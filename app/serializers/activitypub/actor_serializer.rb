@@ -7,7 +7,7 @@ class ActivityPub::ActorSerializer < ActivityPub::Serializer
 
   context_extensions :manually_approves_followers, :featured, :also_known_as,
                      :moved_to, :property_value, :identity_proof,
-                     :discoverable
+                     :discoverable, :olm
 
   attributes :id, :type, :following, :followers,
              :inbox, :outbox, :featured,
@@ -20,6 +20,7 @@ class ActivityPub::ActorSerializer < ActivityPub::Serializer
   has_many :virtual_tags, key: :tag
   has_many :virtual_attachments, key: :attachment
 
+  attribute :devices, unless: :instance_actor?
   attribute :moved_to, if: :moved?
   attribute :also_known_as, if: :also_known_as?
 
@@ -38,7 +39,7 @@ class ActivityPub::ActorSerializer < ActivityPub::Serializer
   has_one :icon,  serializer: ActivityPub::ImageSerializer, if: :avatar_exists?
   has_one :image, serializer: ActivityPub::ImageSerializer, if: :header_exists?
 
-  delegate :moved?, to: :object
+  delegate :moved?, :instance_actor?, to: :object
 
   def id
     object.instance_actor? ? instance_actor_url : account_url(object)
@@ -66,6 +67,10 @@ class ActivityPub::ActorSerializer < ActivityPub::Serializer
 
   def inbox
     object.instance_actor? ? instance_actor_inbox_url : account_inbox_url(object)
+  end
+
+  def devices
+    account_collection_url(object, :devices)
   end
 
   def outbox

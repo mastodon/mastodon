@@ -39,7 +39,7 @@ describe WebfingerResource do
 
         expect {
           WebfingerResource.new(resource).username
-        }.to raise_error(ActiveRecord::RecordNotFound)
+        }.to raise_error(WebfingerResource::InvalidRequest)
       end
 
       it 'finds the username in a valid https route' do
@@ -121,6 +121,16 @@ describe WebfingerResource do
 
         result = WebfingerResource.new(resource).username
         expect(result).to eq 'alice'
+      end
+    end
+
+    describe 'with a nonsense resource' do
+      it 'raises InvalidRequest' do
+        resource = 'df/:dfkj'
+
+        expect {
+          WebfingerResource.new(resource).username
+        }.to raise_error(WebfingerResource::InvalidRequest)
       end
     end
   end

@@ -31,17 +31,22 @@ th:
     status_count_before: ผู้สร้าง
     tagline: ติดตามเพื่อน ๆ และค้นพบเพื่อนใหม่ ๆ
     terms: เงื่อนไขการให้บริการ
-    unavailable_content: เนื้อหาไม่พร้อมใช้งาน
+    unavailable_content: เซิร์ฟเวอร์ที่มีการควบคุม
     unavailable_content_description:
       domain: เซิร์ฟเวอร์
       reason: เหตุผล
-      rejecting_media: 'ไฟล์สื่อจากเซิร์ฟเวอร์เหล่านี้จะไม่ได้รับการประมวลผลหรือจัดเก็บ และจะไม่แสดงภาพขนาดย่อ ต้องมีการคลิกไปยังไฟล์ต้นฉบับด้วยตนเอง:'
+      rejecting_media: 'จะไม่ประมวลผลหรือจัดเก็บไฟล์สื่อจากเซิร์ฟเวอร์เหล่านี้ และจะไม่แสดงภาพขนาดย่อ ต้องมีการคลิกไปยังไฟล์ต้นฉบับด้วยตนเอง:'
+      rejecting_media_title: สื่อที่กรองอยู่
+      silenced: 'จะซ่อนโพสต์จากเซิร์ฟเวอร์เหล่านี้ในเส้นเวลาสาธารณะและการสนทนา และจะไม่สร้างการแจ้งเตือนจากการโต้ตอบของผู้ใช้ เว้นแต่คุณกำลังติดตามผู้ใช้:'
+      silenced_title: เซิร์ฟเวอร์ที่เงียบอยู่
+      suspended: 'จะไม่ประมวลผล จัดเก็บ หรือแลกเปลี่ยนข้อมูลจากเซิร์ฟเวอร์เหล่านี้ ทำให้การโต้ตอบหรือการสื่อสารใด ๆ กับผู้ใช้จากเซิร์ฟเวอร์เหล่านี้เป็นไปไม่ได้:'
+      suspended_title: เซิร์ฟเวอร์ที่ระงับอยู่
     user_count_after:
       other: ผู้ใช้
     user_count_before: บ้านของ
     what_is_mastodon: Mastodon คืออะไร?
   accounts:
-    choices_html: 'ทางเลือกของ %{name}:'
+    choices_html: 'ตัวเลือกของ %{name}:'
     follow: ติดตาม
     followers:
       other: ผู้ติดตาม
@@ -71,13 +76,14 @@ th:
   admin:
     account_actions:
       action: ทำการกระทำ
+      title: ทำการกระทำการควบคุม %{acct}
     account_moderation_notes:
       create: เขียนหมายเหตุ
       created_msg: สร้างหมายเหตุการควบคุมสำเร็จ!
       delete: ลบ
       destroyed_msg: ทำลายหมายเหตุการควบคุมสำเร็จ!
     accounts:
-      add_email_domain_block: ขึ้นบัญชีดำโดเมนอีเมล
+      add_email_domain_block: ปิดกั้นโดเมนอีเมล
       approve: อนุมัติ
       approve_all: อนุมัติทั้งหมด
       are_you_sure: คุณแน่ใจหรือไม่?
@@ -130,6 +136,7 @@ th:
       moderation_notes: หมายเหตุการควบคุม
       most_recent_activity: กิจกรรมล่าสุด
       most_recent_ip: IP ล่าสุด
+      no_limits_imposed: ไม่มีขีดจำกัดที่กำหนด
       not_subscribed: ไม่ได้บอกรับ
       pending: การตรวจทานที่รอดำเนินการ
       perform_full_suspension: ระงับ
@@ -175,7 +182,7 @@ th:
       username: ชื่อผู้ใช้
       warn: เตือน
       web: เว็บ
-      whitelisted: ขึ้นบัญชีขาวแล้ว
+      whitelisted: อนุญาตการติดต่อกับภายนอกแล้ว
     action_logs:
       action_types:
         assigned_to_self_report: มอบหมายรายงาน
@@ -214,20 +221,21 @@ th:
         update_custom_emoji: อัปเดตอีโมจิที่กำหนดเอง
         update_status: อัปเดตสถานะ
       actions:
+        assigned_to_self_report: "%{name} ได้มอบหมายรายงาน %{target} ให้กับตนเอง"
         change_email_user: "%{name} ได้เปลี่ยนที่อยู่อีเมลของผู้ใช้ %{target}"
         confirm_user: "%{name} ได้ยืนยันที่อยู่อีเมลของผู้ใช้ %{target}"
         create_account_warning: "%{name} ได้ส่งคำเตือนไปยัง %{target}"
         create_announcement: "%{name} ได้สร้างประกาศใหม่ %{target}"
         create_custom_emoji: "%{name} ได้อัปโหลดอีโมจิใหม่ %{target}"
-        create_domain_allow: "%{name} ได้ขึ้นบัญชีขาวโดเมน %{target}"
+        create_domain_allow: "%{name} ได้อนุญาตการติดต่อกับภายนอกกับโดเมน %{target}"
         create_domain_block: "%{name} ได้ปิดกั้นโดเมน %{target}"
-        create_email_domain_block: "%{name} ได้ขึ้นบัญชีดำโดเมนอีเมล %{target}"
+        create_email_domain_block: "%{name} ได้ปิดกั้นโดเมนอีเมล %{target}"
         demote_user: "%{name} ได้ลดขั้นผู้ใช้ %{target}"
         destroy_announcement: "%{name} ได้ลบประกาศ %{target}"
         destroy_custom_emoji: "%{name} ได้ทำลายอีโมจิ %{target}"
-        destroy_domain_allow: "%{name} ได้เอาโดเมน %{target} ออกจากบัญชีขาว"
+        destroy_domain_allow: "%{name} ได้ไม่อนุญาตการติดต่อกับภายนอกกับโดเมน %{target}"
         destroy_domain_block: "%{name} ได้เลิกปิดกั้นโดเมน %{target}"
-        destroy_email_domain_block: "%{name} ได้ขึ้นบัญชีขาวโดเมนอีเมล %{target}"
+        destroy_email_domain_block: "%{name} ได้เลิกปิดกั้นโดเมนอีเมล %{target}"
         destroy_status: "%{name} ได้เอาสถานะโดย %{target} ออก"
         disable_2fa_user: "%{name} ได้ปิดใช้งานความต้องการสองปัจจัยสำหรับผู้ใช้ %{target}"
         disable_custom_emoji: "%{name} ได้ปิดใช้งานอีโมจิ %{target}"
@@ -287,6 +295,7 @@ th:
       listed: อยู่ในรายการ
       new:
         title: เพิ่มอีโมจิที่กำหนดเองใหม่
+      not_permitted: คุณไม่ได้รับอนุญาตให้ทำการกระทำนี้
       overwrite: เขียนทับ
       shortcode: รหัสย่อ
       title: อีโมจิที่กำหนดเอง
@@ -323,12 +332,12 @@ th:
       week_interactions: การโต้ตอบในสัปดาห์นี้
       week_users_active: ใช้งานอยู่ในสัปดาห์นี้
       week_users_new: ผู้ใช้ในสัปดาห์นี้
-      whitelist_mode: โหมดบัญชีขาว
+      whitelist_mode: โหมดการติดต่อกับภายนอกแบบจำกัด
     domain_allows:
-      add_new: ขึ้นบัญชีขาวโดเมน
-      created_msg: ขึ้นบัญชีขาวโดเมนสำเร็จ
-      destroyed_msg: เอาโดเมนออกจากบัญชีขาวแล้ว
-      undo: เอาออกจากบัญชีขาว
+      add_new: อนุญาตการติดต่อกับภายนอกกับโดเมน
+      created_msg: อนุญาตการติดต่อกับภายนอกกับโดเมนสำเร็จ
+      destroyed_msg: ไม่อนุญาตการติดต่อกับภายนอกกับโดเมนแล้ว
+      undo: ไม่อนุญาตการติดต่อกับภายนอกกับโดเมน
     domain_blocks:
       add_new: เพิ่มการปิดกั้นโดเมนใหม่
       created_msg: กำลังประมวลผลการปิดกั้นโดเมน
@@ -349,6 +358,8 @@ th:
       reject_media: ปฏิเสธไฟล์สื่อ
       reject_media_hint: เอาไฟล์สื่อที่จัดเก็บไว้ในเซิร์ฟเวอร์ออกและปฏิเสธที่จะดาวน์โหลดไฟล์ใด ๆ ในอนาคต ไม่เกี่ยวข้องกับการระงับ
       reject_reports: ปฏิเสธรายงาน
+      rejecting_media: กำลังปฏิเสธไฟล์สื่อ
+      rejecting_reports: กำลังปฏิเสธรายงาน
       severity:
         silence: เงียบอยู่
         suspend: ระงับอยู่
@@ -364,16 +375,16 @@ th:
       view: ดูการปิดกั้นโดเมน
     email_domain_blocks:
       add_new: เพิ่มใหม่
-      created_msg: เพิ่มโดเมนอีเมลเป็นบัญชีดำสำเร็จ
+      created_msg: ปิดกั้นโดเมนอีเมลสำเร็จ
       delete: ลบ
-      destroyed_msg: ลบโดเมนอีเมลออกจากบัญชีดำสำเร็จ
+      destroyed_msg: เลิกปิดกั้นโดเมนอีเมลสำเร็จ
       domain: โดเมน
-      empty: ไม่มีโดเมนอีเมลที่ขึ้นบัญชีดำอยู่
+      empty: ไม่มีโดเมนอีเมลที่ปิดกั้นอยู่
       from_html: จาก %{domain}
       new:
         create: เพิ่มโดเมน
-        title: รายการบัญชีดำอีเมลใหม่
-      title: บัญชีดำอีเมล
+        title: ปิดกั้นโดเมนอีเมลใหม่
+      title: โดเมนอีเมลที่ปิดกั้นอยู่
     instances:
       by_domain: โดเมน
       known_accounts:
@@ -452,6 +463,8 @@ th:
         username: ชื่อผู้ใช้ในการติดต่อ
       custom_css:
         title: CSS ที่กำหนดเอง
+      default_noindex:
+        desc_html: มีผลต่อผู้ใช้ทั้งหมดที่ไม่ได้เปลี่ยนการตั้งค่านี้ด้วยตนเอง
       domain_blocks:
         all: ให้กับทุกคน
         disabled: ให้กับไม่มีใคร
@@ -468,6 +481,8 @@ th:
       peers_api_enabled:
         desc_html: ชื่อโดเมนที่เซิร์ฟเวอร์นี้ได้พบในเฟดิเวิร์ส
         title: เผยแพร่รายการเซิร์ฟเวอร์ที่ค้นพบ
+      preview_sensitive_media:
+        title: แสดงสื่อที่ละเอียดอ่อนในตัวอย่าง OpenGraph
       profile_directory:
         desc_html: อนุญาตให้ผู้ใช้สามารถค้นพบได้
         title: เปิดใช้งานไดเรกทอรีโปรไฟล์
@@ -502,10 +517,14 @@ th:
         desc_html: คุณสามารถเขียนนโยบายความเป็นส่วนตัว, เงื่อนไขการให้บริการ หรือภาษากฎหมายอื่น ๆ ของคุณเอง คุณสามารถใช้แท็ก HTML
         title: เงื่อนไขการให้บริการที่กำหนดเอง
       site_title: ชื่อเซิร์ฟเวอร์
+      thumbnail:
+        title: ภาพขนาดย่อเซิร์ฟเวอร์
       timeline_preview:
         desc_html: แสดงลิงก์ไปยังเส้นเวลาสาธารณะในหน้าเริ่มต้นและอนุญาตการเข้าถึง API ไปยังเส้นเวลาสาธารณะโดยไม่มีการรับรองความถูกต้อง
         title: อนุญาตการเข้าถึงเส้นเวลาสาธารณะที่ไม่ได้รับรองความถูกต้อง
       title: การตั้งค่าไซต์
+      trendable_by_default:
+        desc_html: มีผลต่อแฮชแท็กที่ไม่ได้ไม่อนุญาตก่อนหน้านี้
       trends:
         title: แฮชแท็กที่กำลังนิยม
     site_uploads:
@@ -522,6 +541,7 @@ th:
         title: สื่อ
       no_media: ไม่มีสื่อ
       title: สถานะบัญชี
+      with_media: มีสื่อ
     tags:
       context: บริบท
       directory: ในไดเรกทอรี
@@ -573,6 +593,8 @@ th:
     created: สร้างแอปพลิเคชันสำเร็จ
     destroyed: ลบแอปพลิเคชันสำเร็จ
     invalid_url: URL ที่ระบุไม่ถูกต้อง
+    regenerate_token: สร้างโทเคนการเข้าถึงใหม่
+    token_regenerated: สร้างโทเคนการเข้าถึงใหม่สำเร็จ
     your_token: โทเคนการเข้าถึงของคุณ
   auth:
     apply_for_account: ขอคำเชิญ
@@ -581,6 +603,7 @@ th:
     checkbox_agreement_without_rules_html: ฉันยอมรับ <a href="%{terms_path}" target="_blank">เงื่อนไขการให้บริการ</a>
     delete_account: ลบบัญชี
     description:
+      prefix_invited_by_user: "@%{name} เชิญคุณเข้าร่วมเซิร์ฟเวอร์ Mastodon นี้!"
       prefix_sign_up: ลงทะเบียนใน Mastodon วันนี้!
     didnt_get_confirmation: ไม่ได้รับคำแนะนำการยืนยัน?
     forgot_password: ลืมรหัสผ่านของคุณ?
@@ -596,6 +619,9 @@ th:
     reset_password: ตั้งรหัสผ่านใหม่
     security: ความปลอดภัย
     set_new_password: ตั้งรหัสผ่านใหม่
+    setup:
+      email_below_hint_html: หากที่อยู่อีเมลด้านล่างไม่ถูกต้อง คุณสามารถเปลี่ยนที่อยู่อีเมลที่นี่และรับอีเมลยืนยันใหม่
+      email_settings_hint_html: ส่งอีเมลยืนยันไปยัง %{email} แล้ว หากที่อยู่อีเมลนั้นไม่ถูกต้อง คุณสามารถเปลี่ยนที่อยู่อีเมลในการตั้งค่าบัญชี
     status:
       account_status: สถานะบัญชี
       confirming: กำลังรอการยืนยันอีเมลให้เสร็จสมบูรณ์
@@ -615,6 +641,10 @@ th:
     confirm: ดำเนินการต่อ
     invalid_password: รหัสผ่านไม่ถูกต้อง
     prompt: ยืนยันรหัสผ่านเพื่อดำเนินการต่อ
+  crypto:
+    errors:
+      invalid_key: ไม่ใช่กุญแจ Ed25519 หรือ Curve25519 ที่ถูกต้อง
+      invalid_signature: ไม่ใช่ลายเซ็น Ed25519 ที่ถูกต้อง
   date:
     formats:
       default: "%d %b %Y"
@@ -662,6 +692,7 @@ th:
       title: การตรวจสอบความปลอดภัยล้มเหลว
     '429': คำขอมากเกินไป
     '500':
+      content: เราขออภัย แต่มีบางอย่างผิดพลาดในส่วนของเรา
       title: หน้านี้ไม่ถูกต้อง
     '503': The page could not be served due to a temporary server failure.
   existing_username_validator:
@@ -677,7 +708,7 @@ th:
     csv: CSV
     domain_blocks: การปิดกั้นโดเมน
     lists: รายการ
-    mutes: คุณปิดเสียง
+    mutes: คุณซ่อน
     storage: ที่เก็บข้อมูลสื่อ
   featured_tags:
     add_new: เพิ่มใหม่
@@ -713,12 +744,15 @@ th:
   identity_proofs:
     active: ใช้งานอยู่
     authorize: ใช่ อนุญาต
+    i_am_html: ฉันคือ %{username} ใน %{service}
     identity: ตัวตน
     inactive: ไม่ได้ใช้งาน
     publicize_checkbox: 'และโพสต์สิ่งนี้:'
+    publicize_toot: 'พิสูจน์ตัวตนแล้ว! ฉันคือ %{username} ใน %{service}: %{url}'
     remove: เอาการพิสูจน์ออกจากบัญชี
     removed: เอาการพิสูจน์ออกจากบัญชีสำเร็จ
     status: สถานะการตรวจสอบ
+    view_proof: ดูการพิสูจน์
   imports:
     modes:
       merge: ผสาน
@@ -729,7 +763,7 @@ th:
       blocking: รายการปิดกั้น
       domain_blocking: รายการปิดกั้นโดเมน
       following: รายการติดตาม
-      muting: รายการปิดเสียง
+      muting: รายการซ่อน
     upload: อัปโหลด
   in_memoriam_html: เพื่อระลึกถึง
   invites:
@@ -760,14 +794,21 @@ th:
     cancel: ยกเลิกการเปลี่ยนเส้นทาง
     cancelled_msg: ยกเลิกการเปลี่ยนเส้นทางสำเร็จ
     errors:
+      missing_also_known_as: ไม่ใช่นามแฝงของบัญชีนี้
       move_to_self: ไม่สามารถเป็นบัญชีปัจจุบัน
       not_found: ไม่พบ
+    followers_count: ผู้ติดตาม ณ เวลาที่ย้าย
     incoming_migrations: การย้ายจากบัญชีอื่น
     proceed_with_move: ย้ายผู้ติดตาม
+    redirected_msg: บัญชีของคุณกำลังเปลี่ยนเส้นทางไปยัง %{acct}
     redirecting_to: บัญชีของคุณกำลังเปลี่ยนเส้นทางไปยัง %{acct}
     set_redirect: ตั้งการเปลี่ยนเส้นทาง
   moderation:
     title: การควบคุม
+  move_handler:
+    carry_blocks_over_text: ผู้ใช้นี้ได้ย้ายจาก %{acct} ซึ่งคุณได้ปิดกั้น
+    carry_mutes_over_text: ผู้ใช้นี้ได้ย้ายจาก %{acct} ซึ่งคุณได้ซ่อน
+    copy_account_note_text: 'ผู้ใช้นี้ได้ย้ายจาก %{acct} นี่คือหมายเหตุก่อนหน้าของคุณเกี่ยวกับผู้ใช้:'
   notification_mailer:
     digest:
       action: ดูการแจ้งเตือนทั้งหมด
@@ -920,6 +961,8 @@ th:
     spam_detected: นี่คือรายงานแบบอัตโนมัติ ตรวจพบสแปม
   statuses:
     attached:
+      audio:
+        other: "%{count} เสียง"
       description: 'แนบอยู่: %{attached}'
       image:
         other: "%{count} ภาพ"
@@ -975,6 +1018,7 @@ th:
     enabled_success: เปิดใช้งานการรับรองความถูกต้องด้วยสองปัจจัยสำเร็จ
     generate_recovery_codes: สร้างรหัสกู้คืน
     recovery_codes: รหัสกู้คืนข้อมูลสำรอง
+    recovery_codes_regenerated: สร้างรหัสกู้คืนใหม่สำเร็จ
     setup: ตั้งค่า
     wrong_code: รหัสที่ป้อนไม่ถูกต้อง! เวลาเซิร์ฟเวอร์และเวลาอุปกรณ์ถูกต้องหรือไม่?
   user_mailer:
@@ -995,6 +1039,7 @@ th:
     follow_limit_reached: คุณไม่สามารถติดตามมากกว่า %{limit} คน
     invalid_email: ที่อยู่อีเมลไม่ถูกต้อง
     invalid_otp_token: รหัสสองปัจจัยไม่ถูกต้อง
+    invalid_sign_in_token: รหัสความปลอดภัยไม่ถูกต้อง
     seamless_external_login: คุณได้เข้าสู่ระบบผ่านบริการภายนอก ดังนั้นจึงไม่มีการตั้งค่ารหัสผ่านและอีเมล
     signed_in_as: 'ลงชื่อเข้าเป็น:'
   verification:

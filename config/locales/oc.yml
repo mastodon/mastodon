@@ -37,6 +37,9 @@ oc:
       domain: Servidor
       reason: 'Motiu :'
       rejecting_media: 'Los fichièrs mèdias d’aquestes servidors estant seràn pas tractats o gardats e pas cap de miniatura serà pas mostrada, demanda de clicar sul fichièr original :'
+      rejecting_media_title: Mèdias filtrats
+      silenced_title: Servidors muts
+      suspended_title: Servidors suspenduts
     user_count_after:
       one: utilizaire
       other: utilizaires
@@ -85,6 +88,7 @@ oc:
       delete: Suprimir
       destroyed_msg: Nòta de moderacion ben suprimida !
     accounts:
+      add_email_domain_block: Metre lo domeni del corrièl en lista negra
       approve: Aprovar
       approve_all: O validar tot
       are_you_sure: Sètz segur ?
@@ -208,8 +212,10 @@ oc:
         reopen_report: Tornar dobrir lo rapòrt
         reset_password_user: Reïnicializar lo senhal
         resolve_report: Resòlver lo rapòrt
+        silence_account: " Metre en silenci lo compte"
         suspend_account: Suspendre lo compte
         unassigned_report: Desafectar lo rapòrt
+        unsilence_account: Levar lo silenci del compte
         update_announcement: Actualizar l’anóncia
         update_custom_emoji: Actualizar l’emoji personalizat
         update_status: Actualizar l’estatut
@@ -380,6 +386,7 @@ oc:
       destroyed_msg: Blocatge del domeni de corrièl ben levat
       domain: Domeni
       empty: Cap de domeni de corrièl es pas en lista negra actualament.
+      from_html: de %{domain}
       new:
         create: Crear un blocatge
         title: Nòu blocatge de domeni de corrièl
@@ -553,6 +560,8 @@ oc:
       title: Paramètres del site
       trends:
         title: Etiquetas tendéncia
+    site_uploads:
+      delete: Suprimir lo fichièr enviat
     statuses:
       back_to_account: Tornar a la pagina Compte
       batch:
@@ -805,6 +814,7 @@ oc:
     inactive: Inactiu
     publicize_checkbox: 'E enviatz lo tut seguent :'
     publicize_toot: 'Es provat ! Soi %{username} de %{service} : %{url}'
+    remove: Tirar la pròva del compte
     status: Estatut de verificacion
     view_proof: Veire la pròva
   imports:
@@ -1247,6 +1257,7 @@ oc:
     follow_limit_reached: Podètz pas sègre mai de %{limit} personas
     invalid_email: L’adreça de corrièl es invalida
     invalid_otp_token: Còdi d’autentificacion en dos temps invalid
+    invalid_sign_in_token: Còdi de seguretat invalid
     otp_lost_help_html: Se perdatz l’accès al dos, podètz benlèu contactar %{email}
     seamless_external_login: Sètz connectat via un servici extèrn, los paramètres de senhal e de corrièl son doncas pas disponibles.
     signed_in_as: 'Session a :'

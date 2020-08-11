@@ -21,9 +21,7 @@ nl:
     federation_hint_html: Met een account op %{instance} ben je in staat om mensen die zich op andere Mastodonservers (en op andere plekken) bevinden te volgen.
     get_apps: Mobiele apps
     hosted_on: Mastodon op %{domain}
-    instance_actor_flash: 'Dit account is een virtuel actor die wordt gebruikt om de server zelf te vertegenwoordigen en is geen individuele gebruiker. Het wordt voor federatiedoeleinden gebruikt en moet niet worden geblokkeerd, tenzij je de hele server wil blokkeren. In zo''n geval dien je echter een domeinblokkade te gebruiken.
-
-'
+    instance_actor_flash: Dit account is een virtuel actor dat wordt gebruikt om de server zelf te vertegenwoordigen en is geen individuele gebruiker. Het wordt voor federatiedoeleinden gebruikt en moet niet worden geblokkeerd, tenzij je de hele server wilt blokkeren. In zo'n geval dien je echter een domeinblokkade te gebruiken.
     learn_more: Meer leren
     privacy_policy: Privacybeleid
     see_whats_happening: Kijk wat er aan de hand is
@@ -35,13 +33,16 @@ nl:
     status_count_before: Zij schreven
     tagline: Vrienden volgen en nieuwe ontdekken
     terms: Gebruiksvoorwaarden
-    unavailable_content: Niet beschikbare inhoud
+    unavailable_content: Gemodereerde servers
     unavailable_content_description:
       domain: Server
       reason: 'Reden:'
       rejecting_media: 'Mediabestanden van deze server worden niet verwerkt en er worden geen thumbnails getoond. Je moet handmatig naar deze server doorklikken om de mediabestanden te kunnen bekijken:'
+      rejecting_media_title: Mediabestanden geweigerd
       silenced: Toots van deze server worden nergens weergegeven, behalve op jouw eigen starttijdlijn wanneer je het account volgt.
+      silenced_title: Genegeerde servers
       suspended: Je bent niet in staat om iemand van deze server te volgen, en er worden geen gegevens van deze server verwerkt of opgeslagen, en met deze server uitgewisseld.
+      suspended_title: Opgeschorte servers
     unavailable_content_html: Met Mastodon kun je in het algemeen berichten bekijken van en communiceren met gebruikers van elke andere server in de fediverse. Dit zijn de uitzonderingen die door deze server zijn gemaakt en expliciet alleen hier gelden.
     user_count_after:
       one: gebruiker
@@ -92,6 +93,7 @@ nl:
       delete: Verwijderen
       destroyed_msg: Verwijderen van opmerking voor moderatoren geslaagd!
     accounts:
+      add_email_domain_block: E-maildomein blokkeren
       approve: Goedkeuren
       approve_all: Alles goedkeuren
       are_you_sure: Weet je het zeker?
@@ -172,6 +174,7 @@ nl:
         staff: Medewerkers
         user: Gebruiker
       search: Zoeken
+      search_same_email_domain: Andere gebruikers met hetzelfde e-maildomein
       search_same_ip: Andere gebruikers met hetzelfde IP-adres
       shared_inbox_url: Gedeelde inbox-URL
       show:
@@ -191,8 +194,44 @@ nl:
       username: Gebruikersnaam
       warn: Waarschuwen
       web: Webapp
-      whitelisted: Op de witte lijst
+      whitelisted: Goedgekeurd voor federatie
     action_logs:
+      action_types:
+        assigned_to_self_report: Rapportage toewijzen
+        change_email_user: E-mailadres van gebruiker wijzigen
+        confirm_user: Gebruiker bevestigen
+        create_account_warning: Waarschuwing aanmaken
+        create_announcement: Mededeling aanmaken
+        create_custom_emoji: Lokale emoji aanmaken
+        create_domain_allow: Domeingoedkeuring aanmaken
+        create_domain_block: Domeinblokkade aanmaken
+        create_email_domain_block: E-maildomeinblokkade aanmaken
+        demote_user: Gebruiker degraderen
+        destroy_announcement: Mededeling verwijderen
+        destroy_custom_emoji: Lokale emoji verwijderen
+        destroy_domain_allow: Domeingoedkeuring verwijderen
+        destroy_domain_block: Domeinblokkade verwijderen
+        destroy_email_domain_block: E-maildomeinblokkade verwijderen
+        destroy_status: Toot verwijderen
+        disable_2fa_user: Tweestapsverificatie uitschakelen
+        disable_custom_emoji: Lokale emojij uitschakelen
+        disable_user: Gebruiker uitschakelen
+        enable_custom_emoji: Lokale emoji inschakelen
+        enable_user: Gebruiker inschakelen
+        memorialize_account: Account in gedenkpagina veranderen
+        promote_user: Gebruiker promoveren
+        remove_avatar_user: Avatar verwijderen
+        reopen_report: Rapportage heropenen
+        reset_password_user: Wachtwoord opnieuw instellen
+        resolve_report: Rapportage oplossen
+        silence_account: Account negeren
+        suspend_account: Account opschorten
+        unassigned_report: Rapportage niet langer toewijzen
+        unsilence_account: Account niet langer negeren
+        unsuspend_account: Account niet langer opschorten
+        update_announcement: Mededeling bijwerken
+        update_custom_emoji: Lokale emoji bijwerken
+        update_status: Toot bijwerken
       actions:
         assigned_to_self_report: "%{name} heeft rapportage %{target} aan zichzelf toegewezen"
         change_email_user: "%{name} veranderde het e-mailadres van gebruiker %{target}"
@@ -200,15 +239,15 @@ nl:
         create_account_warning: "%{name} verzond een waarschuwing naar %{target}"
         create_announcement: "%{name} heeft de nieuwe mededeling %{target} aangemaakt"
         create_custom_emoji: Nieuwe emoji %{target} is door %{name} geüpload
-        create_domain_allow: "%{name} heeft het domein %{target} aan de witte lijst toegevoegd"
+        create_domain_allow: "%{name} heeft federatie met het domein %{target} goedgekeurd"
         create_domain_block: Domein %{target} is door %{name} geblokkeerd
-        create_email_domain_block: E-maildomein %{target} is door %{name} op de zwarte lijst geplaatst
+        create_email_domain_block: "%{name} heeft het e-maildomein %{target} geblokkeerd"
         demote_user: Gebruiker %{target} is door %{name} gedegradeerd
         destroy_announcement: "%{name} heeft de mededeling %{target} verwijderd"
         destroy_custom_emoji: "%{name} verwijderde emoji %{target}"
-        destroy_domain_allow: "%{name} heeft het domein %{target} van de witte lijst verwijderd"
+        destroy_domain_allow: "%{name} heeft federatie met het domein %{target} afgekeurd"
         destroy_domain_block: Domein %{target} is door %{name} gedeblokkeerd
-        destroy_email_domain_block: E-maildomein %{target} is door %{name} op de witte lijst geplaatst
+        destroy_email_domain_block: "%{name} heeft het e-maildomein %{target} gedeblokkeerd"
         destroy_status: Toot van %{target} is door %{name} verwijderd
         disable_2fa_user: Vereisten tweestapsverificatie van %{target} zijn door %{name} uitgeschakeld
         disable_custom_emoji: Emoji %{target} is door %{name} uitgeschakeld
@@ -230,6 +269,9 @@ nl:
         update_custom_emoji: Emoji %{target} is door %{name} bijgewerkt
         update_status: De toots van %{target} zijn door %{name} bijgewerkt
       deleted_status: "(verwijderde toot}"
+      empty: Geen logs gevonden.
+      filter_by_action: Op actie filteren
+      filter_by_user: Op gebruiker filteren
       title: Auditlog
     announcements:
       destroyed_msg: Verwijderen van mededeling geslaagd!
@@ -268,6 +310,7 @@ nl:
       listed: Weergegeven
       new:
         title: Lokale emoji toevoegen
+      not_permitted: Het hebt geen rechten om deze actie uit te voeren
       overwrite: Overschrijven
       shortcode: Verkorte code
       shortcode_hint: Tenminste 2 tekens (alleen alfanumeriek en underscores)
@@ -305,12 +348,12 @@ nl:
       week_interactions: interacties deze week
       week_users_active: actieve gebruikers deze week
       week_users_new: nieuwe gebruikers deze week
-      whitelist_mode: Modus voor de witte lijst
+      whitelist_mode: Beperkte federatiemodus
     domain_allows:
-      add_new: Domein voor de witte lijst
-      created_msg: Het domein is succesvol aan de witte lijst toegevoegd
-      destroyed_msg: Het domein is van de witte lijst verwijderd
-      undo: Van de witte lijst verwijderen
+      add_new: Federatie met domein goedkeuren
+      created_msg: Federatie met domein is succesvol goedgekeurd
+      destroyed_msg: Federatie met domein is afgekeurd
+      undo: Federatie met domein afkeuren
     domain_blocks:
       add_new: Nieuwe domeinblokkade toevoegen
       created_msg: Domeinblokkade wordt nu verwerkt
@@ -357,11 +400,12 @@ nl:
       delete: Verwijderen
       destroyed_msg: Deblokkeren e-maildomein geslaagd
       domain: Domein
-      empty: Momenteel staan er geen e-maildomeinen op de zwarte lijst.
+      empty: Momenteel worden er geen e-maildomeinen geblokkeerd.
+      from_html: van %{domain}
       new:
         create: Blokkeren
         title: Nieuw e-maildomein blokkeren
-      title: E-maildomeinen blokkeren
+      title: Geblokkeerde e-maildomeinen
     instances:
       by_domain: Domein
       delivery_available: Bezorging is mogelijk
@@ -374,7 +418,7 @@ nl:
         title: Moderatie
       private_comment: Privé-opmerking
       public_comment: Openbare opmerking
-      title: Andere domeinen
+      title: Federatie
       total_blocked_by_us: Door ons geblokkeerd
       total_followed_by_them: Door hun gevolgd
       total_followed_by_us: Door ons gevolgd
@@ -405,7 +449,7 @@ nl:
       pending: Aan het wachten op toestemming van de relayserver
       save_and_enable: Opslaan en inschakelen
       setup: Een verbinding met een relayserver maken
-      signatures_not_enabled: Federatierelays werken niet goed wanneer de veilige modus of de witte lijstmodus is ingeschakeld
+      signatures_not_enabled: Federatierelays werken niet goed wanneer de veilige modus of de beperkte federatiemodus is ingeschakeld
       status: Status
       title: Relayservers
     report_notes:
@@ -593,6 +637,7 @@ nl:
     add_new: Alias aanmaken
     created_msg: Succesvol een nieuwe alias aangemaakt. Je kunt nu met de verhuizing vanaf het oude account beginnen.
     deleted_msg: De alias is succesvol verwijderd. Verhuizen vanaf dat account naar dit account is niet meer mogelijk.
+    empty: Je hebt geen aliassen.
     hint_html: Wanneer je vanaf een ander account naar dit account wilt verhuizen, kun je hier een alias aanmaken. Dit is nodig voordat je verder kunt gaan met het verhuizen van volgers van het oude naar dit nieuwe account. Deze actie is op zich <strong>ongevaarlijk en omkeerbaar</strong>. <strong>De accountmigratie wordt gestart vanaf het oude account</strong>.
     remove: Alias ontkoppelen
   appearance:
@@ -678,6 +723,10 @@ nl:
     hint_html: "<strong>Tip:</strong> We vragen jou het komende uur niet meer naar jouw wachtwoord."
     invalid_password: Ongeldig wachtwoord
     prompt: Bevestig wachtwoord om door te gaan
+  crypto:
+    errors:
+      invalid_key: is geen geldige Ed25519- of Curve25519-sleutel
+      invalid_signature: is geen geldige Ed25519-handtekening
   date:
     formats:
       default: "%d %b %Y"
@@ -800,13 +849,15 @@ nl:
       keybase:
         invalid_token: Keybasetokens zijn hashes van handtekeningen en moeten een lengte hebben van 66 hexadecimale tekens
         verification_failed: Keybase herkent deze token niet als een handtekening van Keybasegebruiker %{kb_username}. Probeer het opnieuw vanuit Keybase.
-      wrong_user: Er kan geen bewijs worden aangemaakt voor %{proving}   terwijl je bent ingelogd als %{current}. Log in als %{proving} en probeer het opnieuw.
+      wrong_user: Er kan geen bewijs worden aangemaakt voor %{proving} terwijl je bent ingelogd als %{current}. Log in als %{proving} en probeer het opnieuw.
     explanation_html: Hier kun je met behulp van cryptografie jouw andere identiteiten verbinden, zoals een Keybaseprofiel. Hiermee kunnen andere mensen jou versleutelde berichten sturen en inhoud die jij verstuurt vertrouwen.
     i_am_html: Ik ben %{username} op %{service}.
     identity: Identiteit
     inactive: Inactief
     publicize_checkbox: 'En toot dit:'
     publicize_toot: 'Het is bewezen! Ik ben %{username} op %{service}: %{url}'
+    remove: Bewijs uit account verwijderen
+    removed: Bewijs is succesvol uit account verwijderd
     status: Verificatiestatus
     view_proof: Bekijk bewijs
   imports:
@@ -852,6 +903,7 @@ nl:
   media_attachments:
     validations:
       images_and_video: Een video kan niet aan een toot met afbeeldingen worden gekoppeld
+      not_ready: Kan geen bestanden toevoegen die nog niet zijn verwerkt. Probeer het later opnieuw!
       too_many: Er kunnen niet meer dan 4 afbeeldingen toegevoegd worden
   migrations:
     acct: Verhuisd naar
@@ -860,7 +912,7 @@ nl:
     cancelled_msg: De doorverwijzing is succesvol geannuleerd.
     errors:
       already_moved: is hetzelfde account waarnaar je al naar toe bent verhuisd
-      missing_also_known_as: verwijst niet terug naar dit account
+      missing_also_known_as: is geen alias van dit account
       move_to_self: kan niet het huidige account zijn
       not_found: kon niet worden gevonden
       on_cooldown: Jouw laatste migratie is nog te kort geleden
@@ -872,6 +924,7 @@ nl:
     on_cooldown: Je hebt recentelijk jouw account verhuisd. Deze mogelijkheid is weer beschikbaar over %{count} dagen.
     past_migrations: Vorige migraties
     proceed_with_move: Volgers verhuizen
+    redirected_msg: Jouw account wordt nu doorverwezen naar %{acct}.
     redirecting_to: Jouw account wordt nu naar %{acct} doorverwezen.
     set_redirect: Doorverwijzing instellen
     warning:
@@ -885,6 +938,10 @@ nl:
       redirect: Jouw huidige accountprofiel wordt bijgewerkt met een doorverwijzingsmelding en wordt uitgesloten van zoekresultaten
   moderation:
     title: Moderatie
+  move_handler:
+    carry_blocks_over_text: Deze gebruiker is verhuisd vanaf %{acct}. Je hebt dat account geblokkeerd.
+    carry_mutes_over_text: Deze gebruiker is verhuisd vanaf %{acct}. Je hebt dat account genegeerd.
+    copy_account_note_text: 'Deze gebruiker is verhuisd vanaf %{acct}. Je hebt de volgende opmerkingen over dat account gemaakt:'
   notification_mailer:
     digest:
       action: Alle meldingen bekijken
@@ -1061,6 +1118,9 @@ nl:
     spam_detected: Dit is een automatisch gegenereerde rapportage. Er is spam gedetecteerd.
   statuses:
     attached:
+      audio:
+        one: "%{count} geluidsbestand"
+        other: "%{count} geluidsbestanden"
       description: 'Bijlagen: %{attached}'
       image:
         one: "%{count} afbeelding"
@@ -1073,6 +1133,8 @@ nl:
     disallowed_hashtags:
       one: 'bevatte een niet toegestane hashtag: %{tags}'
       other: 'bevatte niet toegestane hashtags: %{tags}'
+    errors:
+      in_reply_not_found: De toot waarop je probeert te reageren lijkt niet te bestaan.
     language_detection: Taal automatisch detecteren
     open_in_web: In de webapp openen
     over_character_limit: Limiet van %{max} tekens overschreden
@@ -1218,6 +1280,12 @@ nl:
       explanation: Je hebt een volledige back-up van jouw Mastodon-account opgevraagd. Het staat nu klaar om te worden gedownload!
       subject: Jouw archief staat klaar om te worden gedownload
       title: Archief ophalen
+    sign_in_token:
+      details: 'Hier zijn details van de poging:'
+      explanation: 'We hebben inlogpoging op je account ontdekt vanaf een onbekend ip-adres. Als jij dit bent, vul dan de beveiligingscode hieronder in op de inlog-uitdagingspagina:'
+      further_actions: 'Als jij dit niet was, verander dan je wachtwoord en schakel authenticatie in twee stappen in op je account. Dat kun je hier doen:'
+      subject: Bevestig de inlogpoging
+      title: Inlogpoging
     warning:
       explanation:
         disable: Zolang jouw account is bevroren blijven jouw accountgegevens intact, maar kun je geen handelingen uitvoeren totdat het account is vrijgegeven.
@@ -1255,11 +1323,14 @@ nl:
       title: Welkom aan boord %{name}!
   users:
     follow_limit_reached: Je kunt niet meer dan %{limit} accounts volgen
+    generic_access_help_html: Problemen met toegang tot je account? Neem dan contact op met %{email}
     invalid_email: E-mailadres is ongeldig
     invalid_otp_token: Ongeldige tweestaps-aanmeldcode
+    invalid_sign_in_token: Ongeldige beveiligingscode
     otp_lost_help_html: Als je toegang tot beiden kwijt bent geraakt, neem dan contact op via %{email}
     seamless_external_login: Je bent ingelogd via een externe dienst, daarom zijn wachtwoorden en e-mailinstellingen niet beschikbaar.
     signed_in_as: 'Ingelogd als:'
+    suspicious_sign_in_confirmation: Het lijkt er op dat je nog niet eerder op dit apparaat bent ingelogd, en je bent een tijdje niet ingelogd, dus sturen we een beveiligingscode naar je e-mailadres om te bevestigen dat jij het bent.
   verification:
     explanation_html: 'Je kunt <strong>jezelf verifiëren als de eigenaar van de links in de metadata van jouw profiel</strong>. Hiervoor moet op de gelinkte website een link terug naar jouw Mastodonprofiel staan. Deze link <strong>moet</strong> het <code>rel="me"</code>-attribuut bevatten. De omschrijving van de link maakt niet uit. Hier is een voorbeeld:'
     verification: Verificatie

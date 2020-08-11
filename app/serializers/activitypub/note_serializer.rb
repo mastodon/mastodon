@@ -167,6 +167,8 @@ class ActivityPub::NoteSerializer < ActivityPub::Serializer
     attributes :type, :media_type, :url, :name, :blurhash
     attribute :focal_point, if: :focal_point?
 
+    has_one :icon, serializer: ActivityPub::ImageSerializer, if: :thumbnail?
+
     def type
       'Document'
     end
@@ -189,6 +191,14 @@ class ActivityPub::NoteSerializer < ActivityPub::Serializer
 
     def focal_point
       [object.file.meta['focus']['x'], object.file.meta['focus']['y']]
+    end
+
+    def icon
+      object.thumbnail
+    end
+
+    def thumbnail?
+      object.thumbnail.present?
     end
   end
 

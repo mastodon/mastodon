@@ -1,6 +1,10 @@
 ---
 ml:
   activerecord:
+    attributes:
+      doorkeeper/application:
+        name: അപ്ലിക്കേഷന്റെ പേര്
+        website: അപ്ലിക്കേഷന്റെ വെബ്സൈറ്റ്
     errors:
       models:
         doorkeeper/application:
@@ -19,7 +23,12 @@ ml:
         submit: സമർപ്പിക്കുക
       confirmations:
         destroy: നിങ്ങൾക്ക് ഉറപ്പാണോ?
+      edit:
+        title: അപ്ലിക്കേഷൻ എഡിറ്റുചെയ്യുക
+      form:
+        error: ക്ഷമിക്കണം! സാധ്യമായ പിശകുകൾക്കായി നിങ്ങളുടെ ഫോം പരിശോധിക്കുക
       index:
+        application: അപ്ലിക്കേഷന്‍
         delete: മായ്ക്കുക
         name: പേര്
     authorized_applications:

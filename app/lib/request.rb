@@ -231,6 +231,7 @@ class Request
             begin
               sock.connect_nonblock(addr_by_socket[sock])
             rescue Errno::EISCONN
+              # Do nothing
             rescue => e
               sock.close
               outer_e = e

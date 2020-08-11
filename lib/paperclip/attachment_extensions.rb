@@ -7,7 +7,7 @@ module Paperclip
     # usage, and we still want to generate thumbnails straight
     # away, it's the only style we need to exclude
     def process_style?(style_name, style_args)
-      if style_name == :original && instance.respond_to?(:delay_processing?) && instance.delay_processing?
+      if style_name == :original && instance.respond_to?(:delay_processing_for_attachment?) && instance.delay_processing_for_attachment?(name)
         false
       else
         style_args.empty? || style_args.include?(style_name)
