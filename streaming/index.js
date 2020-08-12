@@ -210,6 +210,7 @@ const startWorker = (workerId) => {
     if (subs[channel].length === 0) {
       log.verbose(`Unsubscribe ${channel}`);
       redisSubscribeClient.unsubscribe(channel);
+      delete subs[channel];
     }
   };
 
@@ -866,11 +867,13 @@ const startWorker = (workerId) => {
     channelNameToIds(request, channelName, params).then(({ channelIds }) => {
       log.verbose(request.requestId, `Ending stream from ${channelIds.join(', ')} for ${request.accountId}`);
 
-      const { listener, stopHeartbeat } = subscriptions[channelIds.join(';')];
+      const subscription = subscriptions[channelIds.join(';')];
 
-      if (!listener) {
+      if (!subscription) {
         return;
       }
+
+      const { listener, stopHeartbeat } = subscription;
 
       channelIds.forEach(channelId => {
         unsubscribe(`${redisPrefix}${channelId}`, listener);
@@ -878,7 +881,7 @@ const startWorker = (workerId) => {
 
       stopHeartbeat();
 
-      subscriptions[channelIds.join(';')] = undefined;
+      delete subscriptions[channelIds.join(';')];
     }).catch(err => {
       log.verbose(request.requestId, 'Unsubscription error:', err);
       socket.send(JSON.stringify({ error: err.toString() }));
