@@ -1,8 +1,7 @@
----
 hu:
   about:
-    about_hashtag_html: Ezek a <strong>#%{hashtag}</strong> hashtag-gel ellátott publikus tülkök. Reagálhatsz rájuk, ha már van felhasználói fiókod valahol a föderációban.
-    about_mastodon_html: A Mastodon egy szabad webes protokollokat használó, nyílt forráskódú szociális háló. Decentralizált, akár az e-mail.
+    about_hashtag_html: 'Ezek a <strong>#%{hashtag}</strong> hashtag-gel ellátott publikus tülkök. Reagálhatsz rájuk, ha már van felhasználói fiókod valahol a föderációban.'
+    about_mastodon_html: 'A Mastodon egy szabad webes protokollokat használó, nyílt forráskódú szociális háló. Decentralizált, akár az e-mail.'
     about_this: Névjegy
     active_count_after: aktív
     active_footnote: Havonta aktív felhasználók
@@ -11,7 +10,7 @@ hu:
     apps: Mobil appok
     apps_platforms: Használd a Mastodont iOS-ről, Androidról vagy más platformról
     browse_directory: Böngészd a profilokat és szűrj érdeklődési körre
-    browse_local_posts: Nézz bele a szerver publikus, élő adatfolyamába
+    browse_local_posts: Nézz bele a szerver publikus, élő adatfolyamába 
     browse_public_posts: Nézz bele a Mastodon élő adatfolyamába
     contact: Kapcsolat
     contact_missing: Nincs megadva
@@ -20,8 +19,9 @@ hu:
     documentation: Dokumentáció
     federation_hint_html: Egy %{instance} fiókkal bármely más Mastodon szerveren vagy a föderációban lévő felhasználót követni tudsz.
     get_apps: Próbálj ki egy mobil appot
-    hosted_on: "%{domain} Mastodon szerver"
-    instance_actor_flash: Ez a fiók egy virtuális szereplő, mely magát a szervert reprezentálja, nem egy felhasználót. Ez a föderáció támogatására készült, ezért nem szabad blokkolni, hacsak egy teljes szervert nem akarsz kitiltani, amire persze a domain blokkolása jobb megoldás.
+    hosted_on: '%{domain} Mastodon szerver'
+    instance_actor_flash: |
+      Ez a fiók egy virtuális szereplő, mely magát a szervert reprezentálja, nem egy felhasználót. Ez a föderáció támogatására készült, ezért nem szabad blokkolni, hacsak egy teljes szervert nem akarsz kitiltani, amire persze a domain blokkolása jobb megoldás.
     learn_more: Tudj meg többet
     privacy_policy: Adatvédelmi szabályzat
     see_whats_happening: Nézd, mi történik
@@ -37,11 +37,11 @@ hu:
     unavailable_content_description:
       domain: Szerver
       reason: 'Indok:'
-      rejecting_media: A szerverről származó médiafájlok nem kerülnek feldolgozásra, és nem jelennek meg miniatűrök, amelyek kézi átkattintást igényelnek a másik szerverre.
+      rejecting_media: 'A szerverről származó médiafájlok nem kerülnek feldolgozásra, és nem jelennek meg miniatűrök, amelyek kézi átkattintást igényelnek a másik szerverre.'
       rejecting_media_title: Kiszűrt média
-      silenced: A szerver hozzászólásai csak a saját hírvonalon jelennek meg, ha követik a szerzőt.
+      silenced: 'A szerver hozzászólásai csak a saját hírvonalon jelennek meg, ha követik a szerzőt.'
       silenced_title: Elnémított szerverek
-      suspended: Nem fogsz tudni követni senkit ebből a szerverből, és nem kerül feldolgozásra vagy tárolásra a tőle származó adat, és nincs adatcsere.
+      suspended: 'Nem fogsz tudni követni senkit ebből a szerverből, és nem kerül feldolgozásra vagy tárolásra a tőle származó adat, és nincs adatcsere.'
       suspended_title: Felfüggesztett szerverek
     unavailable_content_html: A Mastodon általában mindenféle tartalomcserét és interakciót lehetővé tesz bármelyik szerverrel a fediverzumban. Ezek azok a kivételek, melyek a mi szerverünkön érvényben vannak.
     user_count_after:
@@ -66,8 +66,8 @@ hu:
     network_hidden: Ez az információ nem elérhető
     never_active: Soha
     nothing_here: Nincs itt semmi!
-    people_followed_by: "%{name} követettjei"
-    people_who_follow: "%{name} követői"
+    people_followed_by: '%{name} követettjei'
+    people_who_follow: '%{name} követői'
     pin_errors:
       following: Ehhez szükséges, hogy kövesd már a felhasználót
     posts:
@@ -86,7 +86,7 @@ hu:
   admin:
     account_actions:
       action: Művelet végrehajtása
-      title: "%{acct} moderálása"
+      title: '%{acct} moderálása'
     account_moderation_notes:
       create: Új moderációs bejegyzés
       created_msg: Moderációs bejegyzés létrehozva!
@@ -105,7 +105,7 @@ hu:
         label: E-mail megváltoztatása
         new_email: Új e-mail
         submit: E-mail megváltoztatása
-        title: "%{username} felhasználó e-mail változás"
+        title: '%{username} felhasználó e-mail változás'
       confirm: Megerősítés
       confirmed: Megerősítve
       confirming: Megerősítés alatt
@@ -365,7 +365,7 @@ hu:
         create: Tiltás létrehozása
         hint: A domain tiltása nem gátolja meg az új fiókok hozzáadását az abatbázishoz, de visszamenőlegesen és automatikusan aktivál bizonyos moderációs szabályokat ezen fiókok esetében.
         severity:
-          desc_html: A <strong>Némítás</strong> elrejti az adott felhasználó tülkjeit mindenki elől, aki nem követi az adott felhasználót. A <strong>Felfüggesztés</strong> eltávolítja az adott felhasználó által létrehozott minden tartalmat, ide értve a médiafájlokat és a fiókadatokat is. Válaszd az <strong>Egyik sem</strong> opciót, ha csupán a médiafájlokat szeretnéd elutasítani.
+          desc_html: "A <strong>Némítás</strong> elrejti az adott felhasználó tülkjeit mindenki elől, aki nem követi az adott felhasználót. A <strong>Felfüggesztés</strong> eltávolítja az adott felhasználó által létrehozott minden tartalmat, ide értve a médiafájlokat és a fiókadatokat is. Válaszd az <strong>Egyik sem</strong> opciót, ha csupán a médiafájlokat szeretnéd elutasítani."
           noop: Egyik sem
           silence: Némítás
           suspend: Felfüggesztés
@@ -386,11 +386,11 @@ hu:
       show:
         affected_accounts:
           one: Összesen egy fiók érintett az adatbázisban
-          other: Összesen %{count} fiók érintett az adatbázisban
+          other: "Összesen %{count} fiók érintett az adatbázisban"
         retroactive:
           silence: Minden felhasználó némításának feloldása ezen a domainen
           suspend: Minden felhasználó felfüggesztésének feloldása ezen a domainen
-        title: "%{domain} domain tiltásának feloldása"
+        title: '%{domain} domain tiltásának feloldása'
         undo: Visszavonás
       undo: Domain tiltásának visszavonása
       view: Domain tiltásának megtekintése
@@ -401,7 +401,7 @@ hu:
       destroyed_msg: E-mail domain sikeresen eltávolítva a feketelistáról
       domain: Domain
       empty: Nincs email domain a feketelistán.
-      from_html: "%{domain}-ról"
+      from_html: '%{domain}-ról'
       new:
         create: Domain hozzáadása
         title: Új e-mail feketelista bejegyzés
@@ -480,7 +480,7 @@ hu:
         delete: Törlés
         placeholder: Jegyezd le, mi tettünk az ügy érdekében, vagy bármilyen változást...
       reopen: Bejelentés újranyitása
-      report: "#%{id} számú jelentés"
+      report: '#%{id} számú jelentés'
       reported_account: Bejelentett fiók
       reported_by: 'Jelentette:'
       resolved: Megoldott
@@ -632,7 +632,7 @@ hu:
       subject: 'Új jelentés az alábbi szerveren: %{instance} (#%{id})'
     new_trending_tag:
       body: 'A #%{name} hashtag trendi a mai napon, de még nem engedélyeztük eddig. Nem mutatjuk meg nyilvánosan, hacsak nem engedélyezed. Csak simán mentsd az űrlapot, ha soha többé nem akarsz erről a hashtagről hallani.'
-      subject: Új hashtag (#%{name}) engedélyezésre vár a %{instance} szerveren
+      subject: 'Új hashtag (#%{name}) engedélyezésre vár a %{instance} szerveren'
   aliases:
     add_new: Alias készítése
     created_msg: Elkészült az új aliasod. Most már elkezdheted a költöztetést a régi fiókból.
@@ -717,7 +717,7 @@ hu:
       close: Akár be is zárhatod ezt az ablakot.
       return: Visszatérés a felhasználó profiloldalára
       web: Megtekintés a weben
-    title: "%{acct} követése"
+    title: '%{acct} követése'
   challenge:
     confirm: Folytatás
     hint_html: "<strong>Hasznos:</strong> Nem fogjuk megint a jelszavadat kérdezni a következő órában."
@@ -764,7 +764,7 @@ hu:
   directories:
     directory: Profilok
     explanation: Találj másokra érdeklődésük alapján
-    explore_mastodon: "%{title} felfedezése"
+    explore_mastodon: '%{title} felfedezése'
   domain_validator:
     invalid_domain: nem egy valódi domain név
   errors:
@@ -851,7 +851,7 @@ hu:
         verification_failed: A Keybase ezt a tokent nem ismerte fel a %{kb_username} Keybase felhasználó aláírásaként. Próbáld újra Keybase-ből.
       wrong_user: Nem tudjuk tanúsítani %{proving} felhasználót amíg %{current} felhasználóként vagy bejelentkezve. Jelentkezz be %{proving} felhasználóként és próbáld újra.
     explanation_html: Itt más személyazonosságaiddal tudsz kriptografikus kapcsolatot létesíteni, pl. Keybase profillal. Így mások titkosított üzenetet küldhetnek neked, valamint megbízhatnak az általad küldött tartalomban is.
-    i_am_html: "%{username} vagyok %{service} szerveren."
+    i_am_html: '%{username} vagyok %{service} szerveren.'
     identity: Személyazonosság
     inactive: Inaktív
     publicize_checkbox: 'És ezt tülköld ki:'
@@ -969,8 +969,8 @@ hu:
       title: Új követési kérelem
     mention:
       action: Válasz
-      body: "%{name} megemlített téged:"
-      subject: "%{name} megemlített téged"
+      body: '%{name} megemlített téged:'
+      subject: '%{name} megemlített téged'
       title: Új említés
     reblog:
       body: 'A tülködet %{name} megtolta:'
@@ -1329,7 +1329,7 @@ hu:
     invalid_sign_in_token: Érvénytelen biztonsági kód
     otp_lost_help_html: Ha mindkettőt elvesztetted, kérhetsz segítséget itt %{email}
     seamless_external_login: Külső szolgáltatáson keresztül jelentkeztél be, így a jelszó és e-mail beállítások nem elérhetőek.
-    signed_in_as: Bejelentkezve mint
+    signed_in_as: 'Bejelentkezve mint'
     suspicious_sign_in_confirmation: Úgy tűnik, erről az eszközről még sosem léptél be és egy ideje már nem láttunk, ezért egy biztonsági kódot küldünk az email címedre, hogy megerősítsd, tényleg te vagy az.
   verification:
     explanation_html: 'A profilodon <strong>hitelesítheted magad, mint az itt található linkek tulajdonosa</strong>. Ehhez a linkelt weboldalnak tartalmaznia kell egy linket vissza a Mastodon profilodra. Ennek <strong>tartalmaznia kell</strong> a <code>rel="me"</code> attribútumot. A link szövege bármi lehet. Itt egy példa:'
