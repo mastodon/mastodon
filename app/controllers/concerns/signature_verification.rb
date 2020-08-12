@@ -12,6 +12,37 @@ module SignatureVerification
 
   class SignatureVerificationError < StandardError; end
 
+  class SignatureParamsParser < Parslet::Parser
+    rule(:token)         { match("[0-9a-zA-Z!#$%&'*+.^_`|~-]").repeat(1).as(:token) }
+    rule(:quoted_string) { str('"') >> (qdtext | quoted_pair).repeat.as(:quoted_string) >> str('"') }
+    # qdtext and quoted_pair are not exactly according to spec but meh
+    rule(:qdtext)        { match('[^\\\\"]') }
+    rule(:quoted_pair)   { str('\\') >> any }
+    rule(:bws)           { match('\s').repeat }
+    rule(:param)         { (token.as(:key) >> bws >> str('=') >> bws >> (token | quoted_string).as(:value)).as(:param) }
+    rule(:comma)         { bws >> str(',') >> bws }
+    rule(:params)        { (param >> (comma >> param).repeat).as(:params) }
+    root(:params)
+  end
+
+  class SignatureParamsTransformer < Parslet::Transform
+    rule(params: subtree(:p)) do
+      (p.is_a?(Array) ? p : [p]).each_with_object({}) { |(key, val), h| h[key] = val }
+    end
+
+    rule(param: { key: simple(:key), value: simple(:val) }) do
+      [key, val]
+    end
+
+    rule(quoted_string: simple(:string)) do
+      string.to_s
+    end
+
+    rule(token: simple(:string)) do
+      string.to_s
+    end
+  end
+
   def require_signature!
     render plain: signature_verification_failure_reason, status: signature_verification_failure_code unless signed_request_account
   end
@@ -42,18 +73,12 @@ module SignatureVerification
 
   def signature_params
     @signature_params ||= begin
-      raw_signature    = request.headers['Signature']
-      signature_params = {}
-
-      # TODO: this is really approximative... we should fix it with proper parsing
-      raw_signature.split(',').each do |part|
-        parsed_parts = part.match(/([a-z]+)="([^"]+)"/i)
-        next if parsed_parts.nil? || parsed_parts.size != 3
-        signature_params[parsed_parts[1]] = parsed_parts[2]
-      end
-
-      signature_params
+      raw_signature = request.headers['Signature']
+      tree          = SignatureParamsParser.new.parse(raw_signature)
+      SignatureParamsTransformer.new.apply(tree)
     end
+  rescue Parslet::ParseFailed
+    raise SignatureVerificationError, 'Error parsing signature parameters'
   end
 
   def signed_request_account
