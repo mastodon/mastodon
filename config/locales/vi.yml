@@ -621,7 +621,7 @@ vi:
     new_report:
       body: "%{reporter} vừa báo cáo %{target}"
       body_remote: Ai đó từ %{domain} đã báo cáo %{target}
-      subject: 'Báo cáo mới cho %{instance} (# %{id})'
+      subject: '(%{instance}) Báo cáo #%{id}'
     new_trending_tag:
       body: 'Hashtag # %{name} đang là xu hướng nhưng chưa được kiểm duyệt. Nó sẽ không được hiển thị công khai trừ khi bạn cho phép. Bỏ qua nếu bạn không bao giờ muốn thấy nó xuất hiện.'
       subject: 'Hashtag mới được xem xét trên %{instance} (# %{name})'
@@ -648,7 +648,7 @@ vi:
     notification_preferences: Thay đổi tùy chọn email
     salutation: "%{name},"
     settings: 'Thay đổi tùy chọn email: %{link}'
-    view: 'Xem:'
+    view: 'Chi tiết:'
     view_profile: Xem trang cá nhân
     view_status: Xem tút
   applications:
