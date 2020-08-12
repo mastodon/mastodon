@@ -222,7 +222,7 @@ class Account < ApplicationRecord
   end
 
   def suspended?
-    suspended_at.present?
+    suspended_at.present? && !instance_actor?
   end
 
   def suspended_permanently?
