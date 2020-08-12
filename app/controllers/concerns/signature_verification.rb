@@ -106,7 +106,7 @@ module SignatureVerification
 
     return account unless verify_signature(account, signature, compare_signed_string).nil?
 
-    @signature_verification_failure_reason = "Verification failed for #{account.username}@#{account.domain} #{account.uri}"
+    @signature_verification_failure_reason = "Verification failed for #{account.username}@#{account.domain} #{account.uri} using rsa-sha256 (RSASSA-PKCS1-v1_5 with SHA-256)"
     @signed_request_account = nil
   rescue SignatureVerificationError => e
     @signature_verification_failure_reason = e.message
