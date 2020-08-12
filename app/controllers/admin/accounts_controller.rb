@@ -14,6 +14,8 @@ module Admin
     def show
       authorize @account, :show?
 
+      flash.now[:notice] = I18n.t('accounts.instance_actor_flash') if @account.instance_actor?
+
       @deletion_request        = @account.deletion_request
       @account_moderation_note = current_account.account_moderation_notes.new(target_account: @account)
       @moderation_notes        = @account.targeted_moderation_notes.latest
