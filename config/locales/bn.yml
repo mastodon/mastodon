@@ -204,8 +204,65 @@ bn:
         create_announcement: ঘোষণা তৈরি করুন
         create_custom_emoji: স্বনির্ধারিত ইমোজি তৈরি করুন
         create_domain_allow: ডোমেন অনুমোদন তৈরি করুন
+        create_domain_block: ডোমেন ব্লক তৈরি করুন
+        create_email_domain_block: ইমেইল ডোমেন ব্লক তৈরি করুন
+        demote_user: ব্যবহারকারী কে হীনপদস্থ করুন
+        destroy_announcement: ঘোষণা মুছুন
+        destroy_custom_emoji: স্বনির্ধারিত ইমোজি মুছুন
+        destroy_domain_allow: ডোমেন অনুমোদন মুছুন
+        destroy_domain_block: ডোমেন ব্লক মুছুন
+        destroy_email_domain_block: ইমেইল ডোমেন ব্লক মুছুন
+        destroy_status: স্ট্যাটাস মুছুন
+        disable_2fa_user: 2FA নিষ্ক্রিয় করুন
+        disable_custom_emoji: স্বনির্ধারিত ইমোজি নিষ্ক্রিয় করুন
+        disable_user: ব্যবহারকারী কে নিষ্ক্রিয় করুন
+        enable_custom_emoji: স্বনির্ধারিত ইমোজি সক্রিয় করুন
+        enable_user: ব্যবহারকারী কে সক্রিয় করুন
+        memorialize_account: মেমোরিয়ালাইজ অ্যাকাউন্ট
+        promote_user: ব্যবহারকারী কে পদোন্নতি করুন
+        remove_avatar_user: অবতার অপসারণ করুন
+        reopen_report: প্রতিবেদনটি পুনরায় খুলুন
+        reset_password_user: পাসওয়ার্ড পুনঃস্থাপন করুন
+        resolve_report: প্রতিবেদনটি সমাধান করুন
+        silence_account: অ্যাকাউন্ট নীরব করুন
+        suspend_account: অ্যাকাউন্ট স্থগিত করুন
+        unassigned_report: রিপোর্ট বরাদ্দ মুক্ত করুন
+        unsilence_account: অ্যাকাউন্ট নীরব মুক্ত করুন
+        unsuspend_account: অ্যাকাউন্ট স্থগিতমুক্ত করুন
+        update_announcement: ঘোষণা আপডেট করুন
+        update_custom_emoji: স্বনির্ধারিত ইমোজি আপডেট করুন
+        update_status: স্থিতি আপডেট করুন
       actions:
         assigned_to_self_report: "%{name} তাদের জন্য %{target} রিপোর্ট অর্পণ করেছিলেন"
+        change_email_user: "%{name} %{target} ব্যবহারকারীর ইমেল ঠিকানা পরিবর্তন করেছেন"
+        confirm_user: "%{name} %{target} ব্যবহারকারীর ইমেল ঠিকানা নিশ্চিত করেছেন"
+        create_account_warning: "%{name} %{target} একটি সতর্কতা প্রেরণ করেছেন"
+        create_announcement: "%{name} একটি নতুন ঘোষণা তৈরি করেছেন %{target}"
+        create_custom_emoji: "%{name} নতুন ইমোজি আপলোড করেছেন %{target}"
+        create_domain_allow: "%{name} ডোমেন %{target} এর সঙ্গে ফেডারেশন অনুমোদিত করেছেন"
+        create_domain_block: "%{name} ডোমেন %{target} কে অবরুদ্ধ করেছেন"
+        create_email_domain_block: "%{name} ই-মেইল ডোমেন %{target} কে অবরুদ্ধ করেছেন"
+        demote_user: "%{name} ব্যবহারকারী %{target} কে হীনপদস্থ করেছেন"
+    custom_emojis:
+      destroyed_msg: ইমোজো সফলভাবে ধ্বংস হয়েছে!
+      disable: অক্ষম
+      disabled: অক্ষমিত
+      disabled_msg: সফলভাবে সেই ইমোজি অক্ষম করা হয়েছে
+      emoji: ইমোজি
+      enable: সক্রিয়
+      enabled: সক্রিয়
+      enabled_msg: সফলভাবে সেই ইমোজি সক্ষম করা হয়েছে
+      image_hint: ৫০কেবি অবধি পিএনজি
+      list: তালিকা
+      listed: তালিকাভুক্ত
+      new:
+        title: নতুন স্বনির্ধারিত ইমোজি যোগ করুন
+      not_permitted: আপনার এই ক্রিয়া সম্পাদন করার অনুমতি নেই
+      overwrite: পুনর্লিখন
+      shortcode: শর্টকোড
+      shortcode_hint: কমপক্ষে ২ টি অক্ষর, কেবলমাত্র বর্ণানুক্রমিক অক্ষর এবং আন্ডারস্কোর
+      title: স্বনির্ধারিত ইমোজিগুলি
+      uncategorized: শ্রেণীবিহীন
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
