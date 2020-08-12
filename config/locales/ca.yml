@@ -1323,9 +1323,11 @@ ca:
       tips: Consells
       title: Benvingut a bord, %{name}!
   users:
+    blocked_email_provider: Aquest proveïdor de correu electrònic no és permés
     follow_limit_reached: No pots seguir més de %{limit} persones
     generic_access_help_html: Problemes accedint al teu compte? Pots contactar amb %{email} per a demanar assistència
     invalid_email: L'adreça de correu no és correcta
+    invalid_email_mx: Sembla que l’adreça de correu electrònic no existeix
     invalid_otp_token: El codi de dos factors no és correcte
     invalid_sign_in_token: Codi de seguretat invàlid
     otp_lost_help_html: Si has perdut l'accés a tots dos pots contactar per %{email}
