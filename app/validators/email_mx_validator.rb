@@ -19,7 +19,7 @@ class EmailMxValidator < ActiveModel::Validator
     ips       = []
 
     Resolv::DNS.open do |dns|
-      dns.timeouts = 1
+      dns.timeouts = 5
 
       hostnames = dns.getresources(domain, Resolv::DNS::Resource::IN::MX).to_a.map { |e| e.exchange.to_s }
 
