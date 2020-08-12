@@ -87,7 +87,12 @@ class PostStatusService < BaseService
     end
   end
 
-  def local_only_option(local_only, in_reply_to, federation_setting)
+  def local_only_option(local_only, in_reply_to, federation_setting, text)
+    # This is intended for third party clients. The admin can set a custom :local_only:
+    # emoji that users can append to force a post to be local only.
+    if text.include? ":local_only:"
+      return true
+    end
     if local_only.nil?
       if in_reply_to && in_reply_to.local_only
         return true
@@ -178,7 +183,7 @@ class PostStatusService < BaseService
       visibility: @visibility,
       language: language_from_option(@options[:language]) || @account.user&.setting_default_language&.presence || LanguageDetector.instance.detect(@text, @account),
       application: @options[:application],
-      local_only: local_only_option(@options[:local_only], @in_reply_to, @account.user&.setting_default_federation),
+      local_only: local_only_option(@options[:local_only], @in_reply_to, @account.user&.setting_default_federation, @text),
       rate_limit: @options[:with_rate_limit],
     }.compact
   end
