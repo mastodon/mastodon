@@ -95,6 +95,28 @@ function main() {
       new Rellax('.parallax', { speed: -1 });
     }
 
+    delegate(document, '#registration_user_password_confirmation,#registration_user_password', 'input', () => {
+      const password = document.getElementById('registration_user_password');
+      const confirmation = document.getElementById('registration_user_password_confirmation');
+      if (password.value && password.value !== confirmation.value) {
+        confirmation.setCustomValidity((new IntlMessageFormat(messages['password_confirmation.mismatching'] || 'Password confirmation does not match', locale)).format());
+      } else {
+        confirmation.setCustomValidity('');
+      }
+    });
+
+    delegate(document, '#user_password,#user_password_confirmation', 'input', () => {
+      const password = document.getElementById('user_password');
+      const confirmation = document.getElementById('user_password_confirmation');
+      if (!confirmation) return;
+
+      if (password.value && password.value !== confirmation.value) {
+        confirmation.setCustomValidity((new IntlMessageFormat(messages['password_confirmation.mismatching'] || 'Password confirmation does not match', locale)).format());
+      } else {
+        confirmation.setCustomValidity('');
+      }
+    });
+
     delegate(document, '.custom-emoji', 'mouseover', getEmojiAnimationHandler('data-original'));
     delegate(document, '.custom-emoji', 'mouseout', getEmojiAnimationHandler('data-static'));
 
