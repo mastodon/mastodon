@@ -7,7 +7,6 @@ import { openModal } from '../../../actions/modal';
 import { deleteCircle } from '../../../actions/circles';
 
 const messages = defineMessages({
-  deleteTitle: { id: 'confirmations.delete_circle.title', defaultMessage: 'Delete' },
   deleteMessage: { id: 'confirmations.delete_circle.message', defaultMessage: 'Are you sure you want to permanently delete this circle?' },
   deleteConfirm: { id: 'confirmations.delete_circle.confirm', defaultMessage: 'Delete' },
 });
@@ -49,7 +48,7 @@ class Circle extends React.PureComponent {
           <Icon id='circle-o' className='column-link__icon' fixedWidth />
           {text}
         </button>
-        <button className='circle-delete-button' title={intl.formatMessage(messages.deleteTitle)} onClick={this.handleDeleteClick}>
+        <button className='circle-delete-button' title={intl.formatMessage(messages.deleteConfirm)} onClick={this.handleDeleteClick}>
           <Icon id='trash' className='column-link__icon' fixedWidth />
         </button>
       </div>

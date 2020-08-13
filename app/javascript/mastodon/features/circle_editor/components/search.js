@@ -7,7 +7,7 @@ import classNames from 'classnames';
 import Icon from 'mastodon/components/icon';
 
 const messages = defineMessages({
-  search: { id: 'circles.search', defaultMessage: 'Search among people you follow' },
+  search: { id: 'circles.search', defaultMessage: 'Search among people following you' },
 });
 
 const mapStateToProps = state => ({
