@@ -21,7 +21,9 @@ module SignatureVerification
     rule(:bws)           { match('\s').repeat }
     rule(:param)         { (token.as(:key) >> bws >> str('=') >> bws >> (token | quoted_string).as(:value)).as(:param) }
     rule(:comma)         { bws >> str(',') >> bws }
-    rule(:params)        { (param >> (comma >> param).repeat).as(:params) }
+    # Old versions of node-http-signature add an incorrect "Signature " prefix to the header
+    rule(:buggy_prefix)  { str('Signature ') }
+    rule(:params)        { buggy_prefix.maybe >> (param >> (comma >> param).repeat).as(:params) }
     root(:params)
   end
 
