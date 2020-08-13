@@ -89,7 +89,7 @@ vi:
       delete: Xóa bỏ
       destroyed_msg: Đã ghi chú kiểm duyệt xong!
     accounts:
-      add_email_domain_block: Thêm máy chủ vào danh sách chặn
+      add_email_domain_block: Chặn địa chỉ email
       approve: Phê duyệt
       approve_all: Phê duyệt tất cả
       are_you_sure: Bạn có chắc không?
@@ -237,13 +237,13 @@ vi:
         create_custom_emoji: "%{name} đã tải lên biểu tượng cảm xúc mới %{target}"
         create_domain_allow: "%{name} đưa máy chủ %{target} vào danh sách trắng"
         create_domain_block: "%{name} chặn máy chủ %{target}"
-        create_email_domain_block: "%{name} đưa email %{target} vào danh sách đen"
+        create_email_domain_block: "%{name} chặn địa chỉ email %{target}"
         demote_user: "%{name} đã gỡ bỏ chức vụ %{target}"
         destroy_announcement: "%{name} gỡ thông báo tới %{target}"
         destroy_custom_emoji: "%{name} biểu tượng cảm xúc bị phá hủy %{target}"
         destroy_domain_allow: "%{name} đã xóa tên miền %{target} khỏi danh sách trắng"
         destroy_domain_block: "%{name} bỏ chặn máy chủ %{target}"
-        destroy_email_domain_block: "%{name} cho email %{target} vào danh sách trắng"
+        destroy_email_domain_block: "%{name} bỏ chặn địa chỉ email %{target}"
         destroy_status: "%{name} đã gỡ bỏ tút của %{target}"
         disable_2fa_user: "%{name} đã vô hiệu hóa xác thực hai yếu tố của %{target}"
         disable_custom_emoji: "%{name} đã gỡ bỏ Emoji %{target}"
@@ -391,16 +391,16 @@ vi:
       view: Xem máy chủ chặn
     email_domain_blocks:
       add_new: Thêm mới
-      created_msg: Đã thêm thành công e-mail vào danh sách đen
+      created_msg: Đã chặn địa chỉ email này
       delete: Xóa bỏ
-      destroyed_msg: Đã xóa thành công e-mail khỏi danh sách đen
-      domain: Máy chủ
-      empty: Chưa có máy chủ nào trong danh sách đen.
+      destroyed_msg: Đã bỏ chặn địa chỉ email này
+      domain: Địa chỉ email
+      empty: Chưa chặn địa chỉ email nào.
       from_html: từ %{domain}
       new:
-        create: Thêm máy chủ
-        title: Mục mới trong danh sách đen email
-      title: Danh sách đen email
+        create: Thêm địa chỉ
+        title: Chặn địa chỉ email mới
+      title: Địa chỉ email đã chặn
     instances:
       by_domain: Máy chủ
       delivery_available: Cho phép liên kết
