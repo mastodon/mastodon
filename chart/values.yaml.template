@@ -4,7 +4,7 @@ image:
   repository: tootsuite/mastodon
   pullPolicy: Always
   # https://hub.docker.com/r/tootsuite/mastodon/tags
-  tag: v3.1.5
+  tag: v3.2.0
   # alternatively, use `latest` for the latest release or `edge` for the image
   # built from the most recent commit
   #
@@ -16,6 +16,12 @@ ingress:
     kubernetes.io/ingress.class: nginx
     kubernetes.io/tls-acme: "true"
     # cert-manager.io/cluster-issuer: "letsencrypt"
+    #
+    # ensure that NGINX's upload size matches Mastodon's
+    #   for the K8s ingress controller:
+    # nginx.ingress.kubernetes.io/proxy-body-size: 40m
+    #   for the NGINX ingress controller:
+    # nginx.org/client-max-body-size: 40m
   # this value is used for LOCAL_DOMAIN
   hostname: mastodon.local
   tls:

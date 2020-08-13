@@ -29,7 +29,7 @@ module Remotable
         rescue Mastodon::UnexpectedResponseError, HTTP::TimeoutError, HTTP::ConnectionError, OpenSSL::SSL::SSLError => e
           Rails.logger.debug "Error fetching remote #{attachment_name}: #{e}"
           raise e unless suppress_errors
-        rescue Paperclip::Errors::NotIdentifiedByImageMagickError, Addressable::URI::InvalidURIError, Mastodon::HostValidationError, Mastodon::LengthValidationError, Paperclip::Error, Mastodon::DimensionsValidationError => e
+        rescue Paperclip::Errors::NotIdentifiedByImageMagickError, Addressable::URI::InvalidURIError, Mastodon::HostValidationError, Mastodon::LengthValidationError, Paperclip::Error, Mastodon::DimensionsValidationError, Mastodon::StreamValidationError => e
           Rails.logger.debug "Error fetching remote #{attachment_name}: #{e}"
         end
 

@@ -15,6 +15,8 @@ import { FormattedMessage } from 'react-intl';
 import { fetchAccountIdentityProofs } from '../../actions/identity_proofs';
 import MissingIndicator from 'mastodon/components/missing_indicator';
 import TimelineHint from 'mastodon/components/timeline_hint';
+import { me } from 'mastodon/initial_state';
+import { connectTimeline, disconnectTimeline } from 'mastodon/actions/timelines';
 
 const emptyList = ImmutableList();
 
@@ -61,28 +63,48 @@ class AccountTimeline extends ImmutablePureComponent {
   };
 
   componentWillMount () {
-    const { params: { accountId }, withReplies } = this.props;
+    const { params: { accountId }, withReplies, dispatch } = this.props;
 
-    this.props.dispatch(fetchAccount(accountId));
-    this.props.dispatch(fetchAccountIdentityProofs(accountId));
+    dispatch(fetchAccount(accountId));
+    dispatch(fetchAccountIdentityProofs(accountId));
 
     if (!withReplies) {
-      this.props.dispatch(expandAccountFeaturedTimeline(accountId));
+      dispatch(expandAccountFeaturedTimeline(accountId));
     }
 
-    this.props.dispatch(expandAccountTimeline(accountId, { withReplies }));
+    dispatch(expandAccountTimeline(accountId, { withReplies }));
+
+    if (accountId === me) {
+      dispatch(connectTimeline(`account:${me}`));
+    }
   }
 
   componentWillReceiveProps (nextProps) {
+    const { dispatch } = this.props;
+
     if ((nextProps.params.accountId !== this.props.params.accountId && nextProps.params.accountId) || nextProps.withReplies !== this.props.withReplies) {
-      this.props.dispatch(fetchAccount(nextProps.params.accountId));
-      this.props.dispatch(fetchAccountIdentityProofs(nextProps.params.accountId));
+      dispatch(fetchAccount(nextProps.params.accountId));
+      dispatch(fetchAccountIdentityProofs(nextProps.params.accountId));
 
       if (!nextProps.withReplies) {
-        this.props.dispatch(expandAccountFeaturedTimeline(nextProps.params.accountId));
+        dispatch(expandAccountFeaturedTimeline(nextProps.params.accountId));
       }
 
-      this.props.dispatch(expandAccountTimeline(nextProps.params.accountId, { withReplies: nextProps.params.withReplies }));
+      dispatch(expandAccountTimeline(nextProps.params.accountId, { withReplies: nextProps.params.withReplies }));
+    }
+
+    if (nextProps.params.accountId === me && this.props.params.accountId !== me) {
+      dispatch(connectTimeline(`account:${me}`));
+    } else if (this.props.params.accountId === me && nextProps.params.accountId !== me) {
+      dispatch(disconnectTimeline(`account:${me}`));
+    }
+  }
+
+  componentWillUnmount () {
+    const { dispatch, params: { accountId } } = this.props;
+
+    if (accountId === me) {
+      dispatch(disconnectTimeline(`account:${me}`));
     }
   }
 

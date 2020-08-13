@@ -12,8 +12,7 @@ class UnallowDomainService < BaseService
   private
 
   def suspend_accounts!(domain)
-    Account.where(domain: domain).find_each do |account|
-      SuspendAccountService.new.call(account, reserve_username: false)
-    end
+    Account.where(domain: domain).in_batches.update_all(suspended_at: Time.now.utc)
+    AfterUnallowDomainWorker.perform_async(domain)
   end
 end

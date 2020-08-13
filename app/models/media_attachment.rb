@@ -165,6 +165,9 @@ class MediaAttachment < ApplicationRecord
                     processors: ->(f) { file_processors f },
                     convert_options: GLOBAL_CONVERT_OPTIONS
 
+  before_file_post_process :set_type_and_extension
+  before_file_post_process :check_video_dimensions
+
   validates_attachment_content_type :file, content_type: IMAGE_MIME_TYPES + VIDEO_MIME_TYPES + AUDIO_MIME_TYPES
   validates_attachment_size :file, less_than: IMAGE_LIMIT, unless: :larger_media_format?
   validates_attachment_size :file, less_than: VIDEO_LIMIT, if: :larger_media_format?
@@ -257,9 +260,6 @@ class MediaAttachment < ApplicationRecord
 
   after_post_process :set_meta
 
-  before_file_post_process :set_type_and_extension
-  before_file_post_process :check_video_dimensions
-
   class << self
     def supported_mime_types
       IMAGE_MIME_TYPES + VIDEO_MIME_TYPES + AUDIO_MIME_TYPES
@@ -336,6 +336,7 @@ class MediaAttachment < ApplicationRecord
 
     return unless movie.valid?
 
+    raise Mastodon::StreamValidationError, 'Video has no video stream' if movie.width.nil? || movie.frame_rate.nil?
     raise Mastodon::DimensionsValidationError, "#{movie.width}x#{movie.height} videos are not supported" if movie.width * movie.height > MAX_VIDEO_MATRIX_LIMIT
     raise Mastodon::DimensionsValidationError, "#{movie.frame_rate.to_i}fps videos are not supported" if movie.frame_rate > MAX_VIDEO_FRAME_RATE
   end

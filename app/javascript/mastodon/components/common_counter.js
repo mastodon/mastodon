@@ -37,7 +37,7 @@ export function counterRenderer(counterType, isBold = true) {
     return (displayNumber, pluralReady) => (
       <FormattedMessage
         id='account.following_counter'
-        defaultMessage='{count, plural, other {{counter} Following}}'
+        defaultMessage='{count, plural, one {{counter} Following} other {{counter} Following}}'
         values={{
           count: pluralReady,
           counter: renderCounter(displayNumber),
