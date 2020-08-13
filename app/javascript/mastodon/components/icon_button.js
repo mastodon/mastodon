@@ -20,7 +20,6 @@ export default class IconButton extends React.PureComponent {
     style: PropTypes.object,
     activeStyle: PropTypes.object,
     disabled: PropTypes.bool,
-    privat: PropTypes.bool,
     inverted: PropTypes.bool,
     animate: PropTypes.bool,
     overlay: PropTypes.bool,
@@ -31,7 +30,6 @@ export default class IconButton extends React.PureComponent {
     size: 18,
     active: false,
     disabled: false,
-    privat: false,
     animate: false,
     overlay: false,
     tabIndex: '0',
@@ -92,7 +90,6 @@ export default class IconButton extends React.PureComponent {
       active,
       className,
       disabled,
-      privat,
       expanded,
       icon,
       inverted,
@@ -114,7 +111,6 @@ export default class IconButton extends React.PureComponent {
       activate,
       deactivate,
       overlayed: overlay,
-      privat,
     });
 
     return (
