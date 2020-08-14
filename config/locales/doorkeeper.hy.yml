@@ -91,7 +91,33 @@ hy:
           unknown: Հասանելիութեան կտրոնը անվաւեր է
         resource_owner_authenticator_not_configured: Ռեսուրսի տէրը չգտնուեց Doorkeeper.configure.resource_owner_authenticator֊ի չկարգաւորուած լինելու պատճառով։
         server_error: Նոյնականացման սպասարկիչը բախուել  է չնախատեսուած պայմանի, որը խոչընդոտում է յայտի լրացմանը։
+        temporarily_unavailable: Նոյնականացման սպասարկիչն այժմ չի կարող գործարկել յայտը՝ սպասարկիչի ժամանակաւոր ծանրաբեռնման կամ պահպանման պատճառով։
+        unauthorized_client: Կլիենտը լիազօրուած չէ իրագործել յայտն այս մեթոդով։
+        unsupported_grant_type: Նոյնականացման լիազօրումը չի աջակցուում նոյնականացման սպասարկչի կողմից։
+        unsupported_response_type: Նոյնականացման սերուերը չի աջակցում այս պատասխանը։
+    flash:
+      applications:
+        create:
+          notice: Ստեղծուել է յաւելուած։
+        destroy:
+          notice: Յաւելուածը ջնջուել է։
+        update:
+          notice: Յաւելուածը թարմացուել է։
+      authorized_applications:
+        destroy:
+          notice: Յաւելուածը չեղարկուել է։
+    layouts:
+      admin:
+        nav:
+          applications: Յաւելուածներ
+          oauth2_provider: OAuth2 մատակարար
+      application:
+        title: Անհրաժեշտ է OAuth նոյնականացում
     scopes:
+      "admin:read": կարդալ սպասարկչի ողջ տուեալները
+      "admin:read:accounts": կարդալ բոլոր հաշիւների զգայուն ինֆորմացիան
+      "admin:read:reports": կարդալ բոլոր բողոքների եւ յաղորդուած հաշիւների զգայուն ինֆորմացիան
+      "admin:write": փոփոխել սպասարկչի ողջ տուեալները
       "write:filters": "ստեղծել ֆիլտրեր\n"
       "write:follows": հետեւել
       "write:lists": ստեղծել ցանկեր
