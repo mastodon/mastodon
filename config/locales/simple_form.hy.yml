@@ -52,11 +52,13 @@ hy:
       admin_account_action:
         include_statuses: Ներառել բողոքարկուած թթերը իմակում
         send_email_notification: Տեղեկացնել օգտատիրոջը իմակի միջոցով
+        text: Նախազգուշացում
         type: Գործողություն
         types:
           disable: Փակել մուտքը
           none: Ոչինչ չանել
           silence: Լուռ
+          suspend: Արգելափակել եւ անվերադարձ ջնջել հաշուի ամբողջ ինֆորմացիան
         warning_preset_id: Օգտագործել զգուշացնող նախադիր
       announcement:
         all_day: Օրուայ իրադարձութիւն
@@ -80,6 +82,7 @@ hy:
         expires_in: Սպառուում է
         fields: Հաշուի մետադատա
         header: Վերնագիր
+        irreversible: Թաքցնելու փոխարէն ջնջել
         locale: Ինտերֆեյսի լեզու
         locked: Փակել հաշիւը
         max_uses: Օգտագործման առաւելագոյն քանակ
@@ -88,6 +91,11 @@ hy:
         otp_attempt: 2F կոդ
         password: Գաղտնաբառ
         phrase: Հիմնաբառ կամ արտայայտութիւն
+        setting_advanced_layout: Միացնել ընդլայնուած վեբ ինտերֆեյս
+        setting_aggregate_reblogs: Տարծածները խմբաւորել հոսքում
+        setting_auto_play_gif: Աւտոմատ մեկնարկել GIFs անիմացիաները
+        setting_boost_modal: Ցուցադրել հաստատման պատուհանը տարածելուց առաջ
+        setting_crop_images: Ցոյց տալ թութի նկարը 16x9 համամասնութեամբ
         setting_default_language: Հրապարակման լեզու
         setting_default_privacy: Հրապարակման գաղտնիութիւն
         setting_default_sensitive: Միշտ նշել մեդիան որպէս դիւրազգաց
