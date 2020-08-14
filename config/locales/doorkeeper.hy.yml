@@ -39,14 +39,14 @@ hy:
         delete: Ջնջել
         empty: Դու չունես յաւելուածներ։
         name: Անուն
-        new: Նոր յայտ
+        new: Նոր յաւելուած
         scopes: Դաշտեր
         show: Ցուցադրել
-        title: Քո յայտերը
+        title: Քո յաւելուածները
       new:
-        title: Նոր յայտ
+        title: Նոր յաւելուած
       show:
-        actions: Գործողություններ
+        actions: Գործողութիւններ
         application_id: "Կլիենտի բանալի\n"
         callback_urls: URL֊ների ետկանչ
         scopes: Դաշտեր
@@ -60,10 +60,17 @@ hy:
         title: Առաջացել է սխալ։
       new:
         able_to: Նա կարողանալու է
+        prompt: '%{client_name} յաւելուածը խնդրում է հասանելիութիւն քո հաշուին'
+        title: Անհրաժեշտ է նոյնականացում
+      show:
+        title: Պատճէնիր այս նոյնականացման կոդը եւ փակցրու յաւելուածում։
     authorized_applications:
+      buttons:
+        revoke: Չեղարկել
       confirmations:
         revoke: Վստա՞հ ես
       index:
+        application: Յաւելուած
         created_at: Նոյնականացրած
         date_format: "%Y-%m-%d %H:%M:%S"
         scopes: Դաշտեր
@@ -71,7 +78,12 @@ hy:
     errors:
       messages:
         access_denied: Ռեսուրսի տէրը կամ նոյնականացնող սպասարկիչը մերժել է դիմումը։
+        credential_flow_not_configured: Ռեսուրսի տէր գաղտնաբառի լիազօրագրերը ձախողուեցին Doorkeeper.configure.resource_owner_from_credentials֊ի չկարգաւորուած լինելու պատճառով։
+        invalid_client: Կլիենտի նոյնականացումը ձախողուեց անյայտ կլիենտի, կլիենտի նոյնականացման, կամ նոյնականացման չաջակցուող ձեւի պատճառով։
+        invalid_grant: Տրամադրուած նոյնականացման թոյլտուութիւնն անվաւեր է, սպառուած, չեղարկուած, չի համապատասխանում վերայղուած URI֊ի նոյնականացման յայտին, կամ յղուել է այլ կլիենտի։
+        invalid_redirect_uri: Վերայղուած uri֊ի անվաւեր է։
     scopes:
+      "write:filters": "ստեղծել ֆիլտրեր\n"
       "write:follows": հետեւել
       "write:lists": ստեղծել ցանկեր
       "write:media": բեռնել մեդիա ֆայլեր
