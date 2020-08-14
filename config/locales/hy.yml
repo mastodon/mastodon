@@ -37,6 +37,7 @@ hy:
       rejecting_media: 'Այս հանգոյցների նիւթերը չեն մշակուի կամ պահուի։ Չեն ցուցադրուի նաև մանրապատկերները, պահանջելով ինքնուրոյն անցում դէպի բնօրինակ նիւթը։'
       rejecting_media_title: Զտուած մեդիա
       silenced_title: Լռեցուած սպասարկիչներ
+      suspended_title: Կասեցուած սպասարկիչներ
     user_count_after:
       one: օգտատեր
       other: օգտատերեր
@@ -57,6 +58,8 @@ hy:
     network_hidden: Այս տուեալը հասանելի չէ
     never_active: Երբեք
     nothing_here: Այստեղ բան չկայ
+    people_followed_by: Մարդիկ, որոնց %{name}ը հետեւում է
+    people_who_follow: Մարդիկ, որոնք հետեւում են %{name}ին
     posts:
       one: Թութ
       other: Թութերից
@@ -79,6 +82,9 @@ hy:
     accounts:
       approve: Ընդունել
       approve_all: Ընդունել բոլորը
+      are_you_sure: Վստա՞հ ես
+      avatar: Աւատար
+      by_domain: Դոմէն
       change_email:
         changed_msg: Հաշուի էլ․ հասցէն բարեյաջող փոփոխուեց
         current_email: Ներկայիս էլ․ հասցէ
@@ -119,16 +125,29 @@ hy:
         active: Ակտիվ
         all: Բոլորը
         pending: Սպասում
+        silenced: Լռեցուած
+        suspended: Կասեցուած
         title: Մոդերացիա
+      moderation_notes: Մոդերացիայի նշումներ
       most_recent_activity: Վերջին ակտիւութիւնը
+      most_recent_ip: Վերջին IP
       pending: Սպասում է վերանայման
+      perform_full_suspension: Կասեցում
       protocol: Հաղորդակարգ
       public: Հրապարակային
+      redownload: Թարմացնել հաշիւը
       reject: Մերժել
       reject_all: Մերժել բոլորը
+      remove_avatar: Հեռացնել աւատարը
+      remove_header: Հեռացնել գլխագիրը
+      resend_confirmation:
+        already_confirmed: Օգտատէրն արդէն հաստատուած է
+        send: Հաստատման իմակն ուղարկել կրկին
+        success: Հաստատման իմակը բարեյաջող ուղարկուեց
       reset: Վերականգնել
       reset_password: Վերականգնել գաղտանաբառը
       resubscribe: Կրկին բաժանորդագրուել
+      role: Թոյլտուութիւններ
       roles:
         admin: Ադմինիստրատոր
         moderator: Մոդերատոր
@@ -139,15 +158,40 @@ hy:
       silence: Լռութիւն
       silenced: Լռեցուած
       statuses: Գրառումներ
+      subscribe: Բաժանորդագրուել
+      suspended: Կասեցուած
       time_in_queue: Հերթում է %{time}
+      title: Հաշիւներ
+      unconfirmed_email: Չհաստատուած էլ․ հասցէ
+      undo_silenced: Ետարկել լռեցումը
+      undo_suspension: Ետարկել կասեցումը
+      unsubscribe: Ապաբաժանորդագրուել
       username: Մուտքանուն
       warn: Նախազգուշացում
       web: Վեբ
     action_logs:
       action_types:
+        assigned_to_self_report: Բողոքել
+        change_email_user: Փոխել օգտատիրոջ էլ․ հասցէն
+        confirm_user: Հաստատել օգտատիրոջը
+        create_account_warning: Ստեղծել զգուշացում
+        create_announcement: Ստեղծել յայտարարութիւն
+        create_email_domain_block: Ստեղծել էլ․ հասցէի դոմէյնի արգելափակում
         disable_2fa_user: Անջատել 2FA
+      deleted_status: "(ջնջուած գրառում)"
+      empty: Ոչ մի գրառում չկայ։
+      filter_by_action: Զտել ըստ գործողութեան
+      filter_by_user: Զտել ըստ օգտատիրոջ
     announcements:
+      destroyed_msg: Յայտարարութիւնը բարեյաջող ջնջուեց
+      edit:
+        title: Խմբագրել յայտարարութիւնը
+      empty: Ոչ մի յայտարարութիւն չգտնուեց
       live: Ուղիղ
+      new:
+        create: Ստեղծել յայտարարութիւն
+        title: Նոր յայտարարութիւն
+      published_msg: Յայտարարութիւնը բարեյաջող հրապարակուեց
     custom_emojis:
       copy: Պատճենել
       delete: Ջնջել
