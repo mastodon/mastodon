@@ -35,6 +35,8 @@ hy:
       domain: Սպասարկիչ
       reason: Պատճառը՝
       rejecting_media: 'Այս հանգոյցների նիւթերը չեն մշակուի կամ պահուի։ Չեն ցուցադրուի նաև մանրապատկերները, պահանջելով ինքնուրոյն անցում դէպի բնօրինակ նիւթը։'
+      rejecting_media_title: Զտուած մեդիա
+      silenced_title: Լռեցուած սպասարկիչներ
     user_count_after:
       one: օգտատեր
       other: օգտատերեր
@@ -60,6 +62,7 @@ hy:
       other: Թութերից
     posts_tab_heading: Թթեր
     posts_with_replies: Թթեր եւ պատասխաններ
+    reserved_username: Ծածկանունն արդէն վերցուած է
     roles:
       admin: Ադմինիստրատոր
       bot: Բոտ
@@ -68,12 +71,22 @@ hy:
     unavailable: Պրոֆիլը հասանելի չի
     unfollow: Չհետևել
   admin:
+    account_actions:
+      action: Կատարել գործողութիւն
     account_moderation_notes:
       create: Թողնել նշում
       delete: Ջնջել
     accounts:
       approve: Ընդունել
       approve_all: Ընդունել բոլորը
+      change_email:
+        changed_msg: Հաշուի էլ․ հասցէն բարեյաջող փոփոխուեց
+        current_email: Ներկայիս էլ․ հասցէ
+        label: Փոխել էլ. հասցէն
+        new_email: Նոր էլ․ փոստ
+        submit: Փոխել էլ. հասցէն
+        title: Փոխել էլ․ փոստը %{username}ի համար
+      confirm: Հաստատել
       confirmed: Հաստատված է
       confirming: Հաստատում
       deleted: Ջնջված է
@@ -84,12 +97,14 @@ hy:
       domain: Դոմեն
       edit: Խմբագրել
       email: Էլ. փոստ
+      email_status: Էլ․ փոստի կարգավիճակ
       enable: Միացնել
       enabled: Միացված է
       followers: Հետևորդներ
       follows: Հետևողներ
       header: Վերնագիր
       inbox_url: Մուտքային URL
+      invited_by: Հրաւիրուել է
       ip: IP
       joined: Միացած է
       location:
@@ -97,17 +112,33 @@ hy:
         local: Տեղային
         remote: Հեռակա
         title: Տեղադրությունը
+      login_status: Մուտքի կարգավիճակ
+      media_attachments: Մեդիա կցորդներ
       memorialize: Դարձնել հիշատակարան
       moderation:
         active: Ակտիվ
         all: Բոլորը
         pending: Սպասում
+        title: Մոդերացիա
+      most_recent_activity: Վերջին ակտիւութիւնը
+      pending: Սպասում է վերանայման
       protocol: Հաղորդակարգ
       public: Հրապարակային
       reject: Մերժել
       reject_all: Մերժել բոլորը
+      reset: Վերականգնել
+      reset_password: Վերականգնել գաղտանաբառը
+      resubscribe: Կրկին բաժանորդագրուել
       roles:
+        admin: Ադմինիստրատոր
+        moderator: Մոդերատոր
         user: Oգտատէր
+      search: Որոնել
+      search_same_email_domain: Այլ օգտատէրեր նոյն էլ․ փոստի դոմէյնով
+      search_same_ip: Այլ օգտատէրեր նոյն IP֊ով
+      silence: Լռութիւն
+      silenced: Լռեցուած
+      statuses: Գրառումներ
       time_in_queue: Հերթում է %{time}
       username: Մուտքանուն
       warn: Նախազգուշացում
