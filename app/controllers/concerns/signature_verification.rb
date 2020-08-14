@@ -67,24 +67,6 @@ module SignatureVerification
     nil
   end
 
-  def signature_algorithm
-    signature_params.fetch('algorithm', 'hs2019')
-  end
-
-  def signed_headers
-    signature_params.fetch('headers', signature_algorithm == 'hs2019' ? '(created)' : 'date').downcase.split(' ')
-  end
-
-  def signature_params
-    @signature_params ||= begin
-      raw_signature = request.headers['Signature']
-      tree          = SignatureParamsParser.new.parse(raw_signature)
-      SignatureParamsTransformer.new.apply(tree)
-    end
-  rescue Parslet::ParseFailed
-    raise SignatureVerificationError, 'Error parsing signature parameters'
-  end
-
   def signed_request_account
     return @signed_request_account if defined?(@signed_request_account)
 
@@ -122,6 +104,24 @@ module SignatureVerification
   end
 
   private
+
+  def signature_params
+    @signature_params ||= begin
+      raw_signature = request.headers['Signature']
+      tree          = SignatureParamsParser.new.parse(raw_signature)
+      SignatureParamsTransformer.new.apply(tree)
+    end
+  rescue Parslet::ParseFailed
+    raise SignatureVerificationError, 'Error parsing signature parameters'
+  end
+
+  def signature_algorithm
+    signature_params.fetch('algorithm', 'hs2019')
+  end
+
+  def signed_headers
+    signature_params.fetch('headers', signature_algorithm == 'hs2019' ? '(created)' : 'date').downcase.split(' ')
+  end
 
   def verify_signature_strength!
     raise SignatureVerificationError, 'Mastodon requires the Date header or (created) pseudo-header to be signed' unless signed_headers.include?('date') || signed_headers.include?('(created)')
