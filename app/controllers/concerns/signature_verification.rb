@@ -63,6 +63,8 @@ module SignatureVerification
 
   def signature_key_id
     signature_params['keyId']
+  rescue SignatureVerificationError
+    nil
   end
 
   def signature_algorithm
