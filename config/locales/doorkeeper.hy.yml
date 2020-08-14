@@ -1,4 +1,11 @@
 hy:
+  activerecord:
+    attributes:
+      doorkeeper/application:
+        name: Ծրագրի անուն
+        redirect_uri: վերաղյել URI
+        scopes: Դաշտեր
+        website: Ծրագրի վէբկայք
   doorkeeper:
     applications:
       buttons:
@@ -14,5 +21,10 @@ hy:
       buttons:
         authorize: Լիազօրել
     authorized_applications:
+      confirmations:
+        revoke: Վստա՞հ ես
       index:
+        created_at: Նոյնականացրած
         date_format: "%Y-%m-%d %H:%M:%S"
+        scopes: Դաշտեր
+        title: Քո նոյնականացրած ծրագրերը
