@@ -270,6 +270,11 @@ hy:
         available: Հասանելի
         expired: Սպառուած
         title: Զտիչ
+      title: Հրաւէրներ
+    pending_accounts:
+      title: Սպասող հաշիւներ (%{count})
+    relationships:
+      title: "%{acct}ի յարաբերութիւններ"
     relays:
       delete: Ջնջել
       disable: Անջատել
@@ -278,6 +283,8 @@ hy:
       enabled: Միացված է
       status: Կարգավիճակ
     reports:
+      are_you_sure: Վստա՞հ ես
+      assign_to_self: Ինձ յանձնարարուած
       comment:
         none: Ոչ մի
       notes:
@@ -285,7 +292,15 @@ hy:
         delete: Ջնջել
       status: Կարգավիճակ
     settings:
+      profile_directory:
+        title: Միացնել հաշուի մատեանը
       registrations:
+        closed_message:
+          desc_html: Ցուցադրուում է արտաքին էջում, երբ գրանցումները փակ են։ Կարող ես օգտագործել նաեւ HTML թէգեր
+          title: Փակ գրանցման հաղորդագրութիւն
+        deletion:
+          desc_html: Բոլորին թոյլատրել ջնջել իրենց հաշիւը
+          title: Բացել հաշուի ջնջումը
         min_invite_role:
           disabled: Ոչ ոք
     statuses:
