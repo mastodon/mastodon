@@ -24,15 +24,21 @@ hy:
         autofollow: Հրաւէրի միջոցով գրանցուող մարդիկ կը հետեւեն քեզ
         avatar: PNG, GIF կամ JPG։ Առաւելագոյնը՝ %{size}։ Կը փոքրացուի մինչեւ %{dimensions}
         bot: Այս հաշիւը հիմնականում կատարում է աւտօմատացուած գործողութւնները եւ գուցէ չի վերայսկուում
+        context: Մէկ կամ մի քանի կոնտեքստներ, որտեղ պէտք է կիրառուի զտիչ
         email: Քեզ ուղարկուել է հաստատման իմակ
         fields: Կարող ես ունենալ մինչեւ 4 կէտ հաշուիդ աղիւսակում ցուցադրելու
         header: PNG, GIF կամ JPG։ Առաւելագոյնը՝ %{size}։ Կը փոքրացուի մինչեւ %{dimensions}
         locked: Անհրաժեշտ կը լինի ձեռքով հաստատել հետեւորդներին
         password: Օգտագործիր առնուազն 8 նիշ
+        setting_display_media_default: Թաքցնել կասկածելի բովանդակութիւնը
+        setting_display_media_hide_all: Երբեք մեդիա ցոյց չտալ
+        setting_display_media_show_all: Մեդիա միշտ ցոյց տալ
       featured_tag:
         name: 'Գուցէ ցանկանաս օգտագործել սրանցից մէկը․'
       form_challenge:
         current_password: Մուտք ես գործել ապահով տարածք
+      invite_request:
+        text: Սա կօգնի մեզ ստուգել քո յաւելուածը
     labels:
       account:
         fields:
@@ -88,9 +94,11 @@ hy:
         setting_display_media_show_all: Ցուցադրել բոլորը
         setting_expand_spoilers: Միշտ բացել բովանդակութեան զգուշացմամբ թթերը
         setting_hide_network: Թաքցնել ցանցդ
+        setting_system_font_ui: Օգտագործել համակարգի լռելեայն տառատեսակը
         setting_theme: Կայքի թեման
         setting_trends: Ցուցադրել օրուայ թրենդները
         setting_unfollow_modal: Ցուցադրել հաստատման պատուհանը որեւէ մեկին չհետեւելուց առաջ
+        setting_use_blurhash: Ցուցադրել գունաւոր կտորներ թաքցուած մեդիայից
         severity: Սրություն
         sign_in_token_attempt: Անվտանգության կոդ
         type: Ներմուծման տեսակ
@@ -103,9 +111,14 @@ hy:
         name: Պիտակ
       interactions:
         must_be_follower: Արգելափակել ծանուցումները ոչ հետեւորդներից
+        must_be_following: Արգելափակել ծանուցումները մարդկանցից, որոնց չես հետեւում
+        must_be_following_dm: Արգելափակել հասցէագրուած հաղորդագրութիւնները մարդկանցից, որոնց չես հետեւում
       invite:
         comment: Մեկնաբանություն
+      invite_request:
+        text: Ինչո՞ւ ես ցանկանում միանալ
       notification_emails:
+        digest: Ուղարկել դասակարգուած իմակներ
         favourite: Որեւէ մեկը հաւանեց գրառումդ
         follow: Որեւէ մէկը սկսեց հետեւել քեզ
         follow_request: Որեւէ մէկը քեզ հետեւելու հայց է ուղարկել
