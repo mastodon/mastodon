@@ -125,7 +125,7 @@ module SignatureVerification
 
   def verify_signature_strength!
     raise SignatureVerificationError, 'Mastodon requires the Date header or (created) pseudo-header to be signed' unless signed_headers.include?('date') || signed_headers.include?('(created)')
-    raise SignatureVerificationError, 'Mastodon requires the (request-target) pseudo-header to be signed' unless signed_headers.include?(Request::REQUEST_TARGET)
+    raise SignatureVerificationError, 'Mastodon requires the Digest header or (request-target) pseudo-header to be signed' unless signed_headers.include?(Request::REQUEST_TARGET) || signed_headers.include?('digest')
     raise SignatureVerificationError, 'Mastodon requires the Host header to be signed' unless signed_headers.include?('host')
     raise SignatureVerificationError, 'Mastodon requires the Digest header to be signed when doing a POST request' if request.post? && !signed_headers.include?('digest')
   end
