@@ -80,6 +80,7 @@ hy:
       create: Թողնել նշում
       delete: Ջնջել
     accounts:
+      add_email_domain_block: Արգելափակել էլ․ փոստի տիրոյթը
       approve: Ընդունել
       approve_all: Ընդունել բոլորը
       are_you_sure: Վստա՞հ ես
@@ -131,6 +132,7 @@ hy:
       moderation_notes: Մոդերացիայի նշումներ
       most_recent_activity: Վերջին ակտիւութիւնը
       most_recent_ip: Վերջին IP
+      not_subscribed: Բաժանորդագրուած չէ
       pending: Սպասում է վերանայման
       perform_full_suspension: Կասեցում
       protocol: Հաղորդակարգ
@@ -155,6 +157,8 @@ hy:
       search: Որոնել
       search_same_email_domain: Այլ օգտատէրեր նոյն էլ․ փոստի դոմէյնով
       search_same_ip: Այլ օգտատէրեր նոյն IP֊ով
+      show:
+        targeted_reports: Այլոց կողմից բողոքարկուած
       silence: Լռութիւն
       silenced: Լռեցուած
       statuses: Գրառումներ
@@ -177,6 +181,8 @@ hy:
         create_account_warning: Ստեղծել զգուշացում
         create_announcement: Ստեղծել յայտարարութիւն
         create_email_domain_block: Ստեղծել էլ․ հասցէի դոմէյնի արգելափակում
+        destroy_announcement: Ջնջել յայտարարութիւնը
+        destroy_domain_allow: Ջնջել դոմէնի թոյլտուութիւնը
         destroy_domain_block: Ապաարգելափակել դոմէնը
         destroy_email_domain_block: Ապաարգելափակել էլ․ հասցէի դոմէնը
         destroy_status: Ջնջել գրառումը
@@ -193,6 +199,7 @@ hy:
         unassigned_report: Հանել բողոքը
         unsuspend_account: Ապակասեցնել հաշիւը
         update_announcement: Թարմացնել յայտարարութիւնը
+        update_status: Թարմացնել գրառումը
       deleted_status: "(ջնջուած գրառում)"
       empty: Ոչ մի գրառում չկայ։
       filter_by_action: Զտել ըստ գործողութեան
@@ -207,32 +214,64 @@ hy:
         create: Ստեղծել յայտարարութիւն
         title: Նոր յայտարարութիւն
       published_msg: Յայտարարութիւնը բարեյաջող հրապարակուեց
+      title: Յայտարարութիւններ
+      unpublished_msg: Յայտարարութիւնը բարեյաջող ապահրապարակուեց
+      updated_msg: Յայտարարութիւնը բարեյաջող թարմացուեց
     custom_emojis:
+      by_domain: Տիրոյթ
       copy: Պատճենել
       delete: Ջնջել
       disable: Անջատել
+      disabled: Անջատուած
+      enable: Միացնել
+      enabled: Միացուած
+      image_hint: PNG մինչեւ 50KB
       list: Ցանկ
+      listed: Ցուցակագրուած
       overwrite: Վերագրել
+      unlist: Ապացուցակագրում
+      unlisted: Ծածուկ
       upload: Վերբեռնել
+    dashboard:
+      config: Կարգաւորում
+      feature_deletions: Հաշուի հեռացումներ
     domain_blocks:
       new:
         severity:
           noop: Ոչ մի
           silence: Լուռ
+          suspend: Կասեցում
+      severity:
+        silence: լռեցուած
+        suspend: կասեցուած
       show:
         undo: Ետարկել
+      undo: Ետարկել տիրոյթի արգելափակումը
+      view: Տեսնել տիրոյթի արգելափակումը
     email_domain_blocks:
       add_new: Ավելացնել նորը
+      created_msg: Բարեյաջող արգելափակուեց էլ․ փոստի տիրոյթ
       delete: Ջնջել
+      destroyed_msg: Բարեյաջող ապաարգելափակուեց էլ․ փոստի տիրոյթ
       domain: Դոմեն
+      from_html: '%{domain}ից'
       new:
         create: Ավելացնել դոմեն
+        title: Արգելափակել էլ․ փոստի նոր տիրոյթ
+      title: էլ․ փոստի արգելափակուած տիրոյթներ
     instances:
       by_domain: Դոմեն
       moderation:
         all: Բոլորը
         limited: Սահամանփակ
+    invites:
+      filter:
+        all: Բոլորը
+        available: Հասանելի
+        expired: Սպառուած
+        title: Զտիչ
     relays:
+      delete: Ջնջել
       disable: Անջատել
       disabled: Անջատված է
       enable: Միացնել
