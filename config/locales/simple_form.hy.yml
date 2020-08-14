@@ -27,6 +27,7 @@ hy:
         email: Քեզ ուղարկուել է հաստատման իմակ
         fields: Կարող ես ունենալ մինչեւ 4 կէտ հաշուիդ աղիւսակում ցուցադրելու
         header: PNG, GIF կամ JPG։ Առաւելագոյնը՝ %{size}։ Կը փոքրացուի մինչեւ %{dimensions}
+        locked: Անհրաժեշտ կը լինի ձեռքով հաստատել հետեւորդներին
         password: Օգտագործիր առնուազն 8 նիշ
       featured_tag:
         name: 'Գուցէ ցանկանաս օգտագործել սրանցից մէկը․'
@@ -38,16 +39,21 @@ hy:
           name: Պիտակ
           value: Պարունակություն
       account_warning_preset:
+        text: Նախադրուած տեքստ
         title: Վերնագիր
       admin_account_action:
+        include_statuses: Ներառել բողոքարկուած թթերը իմակում
+        send_email_notification: Տեղեկացնել օգտատիրոջը իմակի միջոցով
         type: Գործողություն
         types:
           disable: Փակել մուտքը
           none: Ոչինչ չանել
           silence: Լուռ
+        warning_preset_id: Օգտագործել զգուշացնող նախադիր
       announcement:
         all_day: Օրուայ իրադարձութիւն
         ends_at: Իրադարձութեան աւարտ
+        scheduled_at: Հրապարակման օրացոյց
         starts_at: Իրադարձութեան սկիզբ
         text: Յայտարարութիւն
       defaults:
@@ -69,7 +75,9 @@ hy:
         max_uses: Օգտագործման առաւելագոյն քանակ
         new_password: Նոր գաղտնաբառ
         note: Բիո
+        otp_attempt: 2F կոդ
         password: Գաղտնաբառ
+        phrase: Հիմնաբառ կամ արտայայտութիւն
         setting_default_language: Հրապարակման լեզու
         setting_default_privacy: Հրապարակման գաղտնիութիւն
         setting_default_sensitive: Միշտ նշել մեդիան որպէս դիւրազգաց
@@ -81,18 +89,36 @@ hy:
         setting_expand_spoilers: Միշտ բացել բովանդակութեան զգուշացմամբ թթերը
         setting_hide_network: Թաքցնել ցանցդ
         setting_theme: Կայքի թեման
+        setting_trends: Ցուցադրել օրուայ թրենդները
+        setting_unfollow_modal: Ցուցադրել հաստատման պատուհանը որեւէ մեկին չհետեւելուց առաջ
         severity: Սրություն
         sign_in_token_attempt: Անվտանգության կոդ
+        type: Ներմուծման տեսակ
         username: Մուտքանուն
+        username_or_email: Ծածկանուն կամ էլ․ փոստ
+        whole_word: Ամբողջ բառը
+      email_domain_block:
+        with_dns_records: Ներառել MX գրառում կամ դոմէյնի IP
       featured_tag:
         name: Պիտակ
+      interactions:
+        must_be_follower: Արգելափակել ծանուցումները ոչ հետեւորդներից
       invite:
         comment: Մեկնաբանություն
       notification_emails:
+        favourite: Որեւէ մեկը հաւանեց գրառումդ
+        follow: Որեւէ մէկը սկսեց հետեւել քեզ
+        follow_request: Որեւէ մէկը քեզ հետեւելու հայց է ուղարկել
+        mention: Որեւէ մեկը նշեց քեզ
         pending_account: Վերանայման կարիք ունեցող նոր հաշիւ
         reblog: Ինչ֊որ մէկը թութդ տարածեց
         report: Նոր բողոք է ուղարկուել
         trending_tag: Չվերանայուած պիտակը թրենդի մէջ է
+      tag:
+        listable: Թոյլատրել, որ այս պիտակը յայտնուի որոնումների եւ հաշուի մատեանում
+        name: Պիտակ
+        trendable: Թոյլատրել, որ այս պիտակը յայտնուի թրենդներում
+        usable: Թոյլատրել թթերին օգտագործել այս պիտակը
     'no': 'Ոչ'
     recommended: Խորհուրդ է տրվում
     required:
