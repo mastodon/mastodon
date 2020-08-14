@@ -2,10 +2,10 @@ hy:
   activerecord:
     attributes:
       doorkeeper/application:
-        name: Ծրագրի անուն
+        name: Յաւելուածի անուն
         redirect_uri: վերաղյել URI
         scopes: Դաշտեր
-        website: Ծրագրի վէբկայք
+        website: "Յաւելուածի վէբկայք\n"
     errors:
       models:
         doorkeeper/application:
@@ -26,21 +26,40 @@ hy:
       confirmations:
         destroy: Վստա՞հ ես
       edit:
-        title: Խմբագրել դիմումը
+        title: Խմբագրել յաւելուածը
       form:
         error: Վա՜յ․ Ստուգիր ձեւանմուշում եղած հնարաւոր սխալները
       help:
         native_redirect_uri: Օգտագործիր %{native_redirect_uri} լոկալ փորձարկման համար
         redirect_uri: Օգտագործիր մէկ տող իւրաքանչիւր URI համար
+        scopes: Բաժանիր դաշտերը բացատներով։ Դատարկ թող՝ լռելեայն դաշտերն օգտագործելու համար։
       index:
+        application: Յաւելուած
+        callback_url: URL ետկանչ
         delete: Ջնջել
+        empty: Դու չունես յաւելուածներ։
         name: Անուն
+        new: Նոր յայտ
+        scopes: Դաշտեր
         show: Ցուցադրել
+        title: Քո յայտերը
+      new:
+        title: Նոր յայտ
       show:
         actions: Գործողություններ
+        application_id: "Կլիենտի բանալի\n"
+        callback_urls: URL֊ների ետկանչ
+        scopes: Դաշտեր
+        secret: Կլիենտի գաղտնիք
+        title: 'Յաւելուած․ %{name}'
     authorizations:
       buttons:
         authorize: Լիազօրել
+        deny: Մերժել
+      error:
+        title: Առաջացել է սխալ։
+      new:
+        able_to: Նա կարողանալու է
     authorized_applications:
       confirmations:
         revoke: Վստա՞հ ես
