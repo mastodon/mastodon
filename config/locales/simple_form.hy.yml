@@ -22,7 +22,16 @@ hy:
         text: Կարող ես օգտագործել թթի շարադասութիւնը։ Խնդրում ենք, եղիր խելամիտ յայտարարութեան տարածքն օգտագործելիս, այն յայտնուելու է օգտատիրոջ էկրանին
       defaults:
         autofollow: Հրաւէրի միջոցով գրանցուող մարդիկ կը հետեւեն քեզ
+        avatar: PNG, GIF կամ JPG։ Առաւելագոյնը՝ %{size}։ Կը փոքրացուի մինչեւ %{dimensions}
+        bot: Այս հաշիւը հիմնականում կատարում է աւտօմատացուած գործողութւնները եւ գուցէ չի վերայսկուում
         email: Քեզ ուղարկուել է հաստատման իմակ
+        fields: Կարող ես ունենալ մինչեւ 4 կէտ հաշուիդ աղիւսակում ցուցադրելու
+        header: PNG, GIF կամ JPG։ Առաւելագոյնը՝ %{size}։ Կը փոքրացուի մինչեւ %{dimensions}
+        password: Օգտագործիր առնուազն 8 նիշ
+      featured_tag:
+        name: 'Գուցէ ցանկանաս օգտագործել սրանցից մէկը․'
+      form_challenge:
+        current_password: Մուտք ես գործել ապահով տարածք
     labels:
       account:
         fields:
@@ -33,11 +42,13 @@ hy:
       admin_account_action:
         type: Գործողություն
         types:
+          disable: Փակել մուտքը
           none: Ոչինչ չանել
           silence: Լուռ
       announcement:
         all_day: Օրուայ իրադարձութիւն
         ends_at: Իրադարձութեան աւարտ
+        starts_at: Իրադարձութեան սկիզբ
         text: Յայտարարութիւն
       defaults:
         autofollow: Հրաւիրել էջիդ հետեւելու
@@ -49,15 +60,39 @@ hy:
         context: Զտել կոնտեքստները
         current_password: Ներկայիս գաղտնաբառը
         data: Տուեալներ
+        display_name: Ցուցադրուող անուն
+        email: Էլ․ հասցէ
+        expires_in: Սպառուում է
+        fields: Հաշուի մետադատա
         header: Վերնագիր
+        locked: Փակել հաշիւը
+        max_uses: Օգտագործման առաւելագոյն քանակ
+        new_password: Նոր գաղտնաբառ
         note: Բիո
         password: Գաղտնաբառ
+        setting_default_language: Հրապարակման լեզու
+        setting_default_privacy: Հրապարակման գաղտնիութիւն
+        setting_default_sensitive: Միշտ նշել մեդիան որպէս դիւրազգաց
+        setting_delete_modal: Ցուցադրել հաստատման պատուհանը ջնջելուց առաջ
+        setting_display_media: Ցուցադրել մեդիա
+        setting_display_media_default: Լռելեայն
+        setting_display_media_hide_all: Թաքցնել բոլորը
+        setting_display_media_show_all: Ցուցադրել բոլորը
+        setting_expand_spoilers: Միշտ բացել բովանդակութեան զգուշացմամբ թթերը
+        setting_hide_network: Թաքցնել ցանցդ
         setting_theme: Կայքի թեման
         severity: Սրություն
         sign_in_token_attempt: Անվտանգության կոդ
         username: Մուտքանուն
+      featured_tag:
+        name: Պիտակ
       invite:
         comment: Մեկնաբանություն
+      notification_emails:
+        pending_account: Վերանայման կարիք ունեցող նոր հաշիւ
+        reblog: Ինչ֊որ մէկը թութդ տարածեց
+        report: Նոր բողոք է ուղարկուել
+        trending_tag: Չվերանայուած պիտակը թրենդի մէջ է
     'no': 'Ոչ'
     recommended: Խորհուրդ է տրվում
     required:
