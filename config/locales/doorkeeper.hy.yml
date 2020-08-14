@@ -6,11 +6,23 @@ hy:
         redirect_uri: վերաղյել URI
         scopes: Դաշտեր
         website: Ծրագրի վէբկայք
+    errors:
+      models:
+        doorkeeper/application:
+          attributes:
+            redirect_uri:
+              fragment_present: չի կարող մաս պարունակել
+              invalid_uri: պէտք է լինի վաւէր URI։
+              relative_uri: պէտք է լինի բացարձակ URI։
+              secured_uri: պէտք է լինի HTTPS/SSL URI։
   doorkeeper:
     applications:
       buttons:
+        authorize: Նոյնականացնել
         cancel: Չեղարկել
+        destroy: Վերացնել
         edit: Խմբագրել
+        submit: Ուղարկել
       index:
         delete: Ջնջել
         name: Անուն
@@ -28,3 +40,14 @@ hy:
         date_format: "%Y-%m-%d %H:%M:%S"
         scopes: Դաշտեր
         title: Քո նոյնականացրած ծրագրերը
+    errors:
+      messages:
+        access_denied: Ռեսուրսի տէրը կամ նոյնականացնող սպասարկիչը մերժել է դիմումը։
+    scopes:
+      "write:follows": հետեւել
+      "write:lists": ստեղծել ցանկեր
+      "write:media": բեռնել մեդիա ֆայլեր
+      "write:mutes": լռեցնել մարդկանց եւ զրոյցները
+      "write:notifications": մաքրել ծանուցումները
+      "write:reports": բողոքել այլոցից
+      "write:statuses": թթել
