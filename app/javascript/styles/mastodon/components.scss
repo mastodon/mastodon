@@ -831,6 +831,7 @@
   p {
     margin-bottom: 20px;
     white-space: pre-wrap;
+    unicode-bidi: plaintext;
 
     &:last-child {
       margin-bottom: 0;
@@ -840,6 +841,7 @@
   a {
     color: $secondary-text-color;
     text-decoration: none;
+    unicode-bidi: isolate;
 
     &:hover {
       text-decoration: underline;
