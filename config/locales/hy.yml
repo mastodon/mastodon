@@ -417,8 +417,21 @@ hy:
   challenge:
     confirm: Շարունակել
     invalid_password: Անվաւեր ծածկագիր
+  crypto:
+    errors:
+      invalid_key: անվաւեր Ed25519 կամ Curve25519 բանալի
+      invalid_signature: անվաւեր Ed25519 բանալի
+  date:
+    formats:
+      default: "%b %d, %Y"
   datetime:
     distance_in_words:
+      about_x_hours: "%{count}ժ"
+      about_x_months: "%{count}ամ"
+      about_x_years: "%{count}տ"
+      almost_x_years: "%{count}տ"
+      half_a_minute: Հէնց հիմա
+      less_than_x_minutes: "%{count}ա"
       less_than_x_seconds: Հենց հիմա
       over_x_years: "%{count}տ"
       x_days: "%{count}օ"
@@ -431,6 +444,8 @@ hy:
   directories:
     directory: Հաշուի մատեան
     explore_mastodon: Բացայայտել %{title}
+  domain_validator:
+    invalid_domain: անվաւէր տիրոյթի անուն
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
@@ -440,6 +455,7 @@ hy:
     '422':
     '429': Չափազանց շատ հարցումներ
     '500':
+      title: Էջը ճիշտ չէ
     '503': The page could not be served due to a temporary server failure.
   existing_username_validator:
     not_found: չյաջողուեց գտնել այս ծածկագրով լոկալ օգտատիրոջ 
@@ -486,7 +502,10 @@ hy:
     authorize: Այո, նոյնականացնել
     i_am_html: Ես %{username}ն եմ %{service}ում։
     identity: Ինքնութիւն
+    inactive: Ոչ ակտիւ
+    publicize_checkbox: 'Թթել սա․'
     publicize_toot: 'Ապացուցուա՜ծ է․ Ես%{username} եմ %{service}ում․ %{url} '
+    remove: Հաշուից հեռացնել ապացոյցը
     view_proof: Նայել ապացոյցը
   imports:
     modes:
