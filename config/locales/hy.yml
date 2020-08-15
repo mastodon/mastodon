@@ -545,6 +545,7 @@ hy:
     all: Բոլորը
     copy: Պատճենել
     delete: Ջնջել
+    order_by: Դասաւորել ըստ
     save_changes: Պահպանել փոփոխութիւնները
   identity_proofs:
     active: Ակտիվ
@@ -570,10 +571,14 @@ hy:
     expires_in:
       '1800': 30 րոպե
       '21600': 6 ժամ
-      '3600': 1 hour
-      '43200': 12 hours
-      '604800': 1 week
-      '86400': 1 day
+      '3600': 1 ժամ
+      '43200': 12 ժամ
+      '604800': 1 շաբաթ
+      '86400': 1 օր
+    expires_in_prompt: Երբեք
+    generate: Գեներացնել հրաւէրի յղում
+    max_uses_prompt: Սահմանափակում չկայ
+    title: Հրաւիրել մարդկանց
   media_attachments:
     validations:
       too_many: 4-ից աւել ֆայլ չի կարող կցուել
@@ -616,12 +621,15 @@ hy:
     other: Այլ
     public_timelines: Հանրային հոսք
   relationships:
+    activity: Հաշուի ակտիւութիւնը
     followers: Հետեւորդներ
     following: Հետեւում ես
     invited: Հրաւիրուած է
     last_active: Վերջին ակտիւութիւնը
     most_recent: Վերջին
     moved: Տեղափոխուած
+    primary: Հիմնական
+    status: Հաշուի կարգավիճակ
   sessions:
     browser: Դիտարկիչ
     browsers:
@@ -662,6 +670,9 @@ hy:
     edit_profile: Խմբագրել պրոֆիլը
     import: Ներմուծել
     import_and_export: Ներմուծել և արտահանել
+    notifications: Ծանուցումներ
+    profile: Հաշիւ
+    two_factor_authentication: Երկքայլ նոյնականացում
   statuses:
     open_in_web: Բացել վէբում
     poll:
@@ -676,7 +687,10 @@ hy:
     title: '%{name}: "%{quote}"'
     visibilities:
       private: Միայն հետեւողներին
+      public: Հրապարակային
   stream_entries:
+    pinned: Ամրացուած թութ
+    reblogged: տարածուած
     sensitive_content: Կասկածելի բովանդակութիւն
   terms:
     body_html: |
@@ -773,6 +787,7 @@ hy:
   two_factor_authentication:
     disable: Անջատել
     enable: Միացնել
+    enabled: Երկքայլ նոյնականացումը միացուած է
     setup: Կարգավորել
   user_mailer:
     warning:
