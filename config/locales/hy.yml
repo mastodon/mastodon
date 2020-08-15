@@ -372,11 +372,19 @@ hy:
     warning_presets:
       add_new: Ավելացնել նորը
       delete: Ջնջել
+  appearance:
+    discovery: Բացայայտում
+    localization:
+      body: Մաստոդոնը թարգմանուում է կամաւորների կողմից։
+      guide_link: https://crowdin.com/project/mastodon
+    sensitive_content: Զգայուն բովանդակութիւն
   application_mailer:
     salutation: "%{name},"
     view: 'Նայել․'
     view_profile: Նայել անձնական էջը
     view_status: Նայել գրառումը
+  applications:
+    invalid_url: Տրամադրուած URL անվաւեր է
   auth:
     change_password: Գաղտնաբառ
     checkbox_agreement_html: Ես համաձայն եմ <a href="%{rules_path}" target="_blank">սպասարկչի կայանքներին</a> և <a href="%{terms_path}" target="_blank">ծառայությունների պայմաններին</a>
@@ -388,11 +396,24 @@ hy:
       cas: CAS
       saml: SAML
     register: Գրանցվել
+    reset_password: Վերականգնել գաղտանաբառը
     security: Անվտանգություն
+    set_new_password: Սահմանել նոր գաղտնաբառ
     setup:
       title: Կարգավորում
+    status:
+      account_status: Հաշուի կարգավիճակ
   authorize_follow:
     follow: Հետևել
+    following: 'Յաջողութի՜ւն։ Դու այժմ հետեւում ես․'
+    post_follow:
+      close: Կամ, կարող ես պարզապէս փակել այս պատուհանը։
+      return: Ցուցադրել օգտատիրոջ էջը
+      web: Անցնել վէբին
+    title: Հետեւել %{acct}
+  challenge:
+    confirm: Շարունակել
+    invalid_password: Անվաւեր ծածկագիր
   datetime:
     distance_in_words:
       less_than_x_seconds: Հենց հիմա
@@ -403,6 +424,10 @@ hy:
       x_seconds: "%{count}վրկ"
   deletes:
     proceed: Ջնջել հաշիվը
+    success_msg: Հաշիւդ բարեյաջող ջնջուեց
+  directories:
+    directory: Հաշուի մատեան
+    explore_mastodon: Բացայայտել %{title}
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
