@@ -506,9 +506,12 @@ hy:
     publicize_checkbox: 'Թթել սա․'
     publicize_toot: 'Ապացուցուա՜ծ է․ Ես%{username} եմ %{service}ում․ %{url} '
     remove: Հաշուից հեռացնել ապացոյցը
+    removed: Ապացոյցը բարեյաջող հեռացուեց հաշուից
+    status: Հաստատման կարգավիճակ
     view_proof: Նայել ապացոյցը
   imports:
     modes:
+      merge: Միաւորել
       overwrite: Վերագրել
     types:
       blocking: Արգելափակումների ցուցակ
@@ -527,6 +530,13 @@ hy:
       too_many: 4-ից աւել ֆայլ չի կարող կցուել
   migrations:
     acct: Տեղափոխել դեպի
+    errors:
+      not_found: չգտնուեց
+    past_migrations: Նախոդ միգրացիաները
+    warning:
+      followers: Այս քայլով քո բոլոր հետեւորդներին այս հաշուից կը տեղափոխես դէպի նորը
+  moderation:
+    title: Մոդերացիա
   notification_mailer:
     favourite:
       title: Նոր հաւանում
@@ -555,6 +565,14 @@ hy:
     truncate: "&hellip;"
   preferences:
     other: Այլ
+    public_timelines: Հանրային հոսք
+  relationships:
+    followers: Հետեւորդներ
+    following: Հետեւում ես
+    invited: Հրաւիրուած է
+    last_active: Վերջին ակտիւութիւնը
+    most_recent: Վերջին
+    moved: Տեղափոխուած
   sessions:
     browser: Դիտարկիչ
     browsers:
@@ -595,6 +613,20 @@ hy:
     edit_profile: Խմբագրել պրոֆիլը
     import: Ներմուծել
     import_and_export: Ներմուծել և արտահանել
+  statuses:
+    open_in_web: Բացել վէբում
+    poll:
+      total_people:
+        one: "%{count} մարդ"
+        other: "%{count} մարդիկ"
+      total_votes:
+        one: "%{count} ձայն"
+        other: "%{count} ձայներ"
+      vote: Քուէարկել
+    show_more: Աւելին
+    title: '%{name}: "%{quote}"'
+    visibilities:
+      private: Միայն հետեւողներին
   stream_entries:
     sensitive_content: Կասկածելի բովանդակութիւն
   terms:
