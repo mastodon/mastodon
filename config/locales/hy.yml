@@ -31,6 +31,7 @@ hy:
     status_count_before: Ովքեր գրել են՝
     tagline: Հետեւիր ընկերներիդ եւ գտիր նորերին 
     terms: Ծառայութեան պայմանները
+    unavailable_content: Մոդերացուող սպասարկիչներ
     unavailable_content_description:
       domain: Սպասարկիչ
       reason: Պատճառը՝
@@ -97,6 +98,7 @@ hy:
       confirmed: Հաստատված է
       confirming: Հաստատում
       deleted: Ջնջված է
+      demote: Աստիճանազրկել
       disable: Անջատել
       disable_two_factor_authentication: Անջատել 2FA
       disabled: Անջատված է
@@ -200,6 +202,12 @@ hy:
         unsuspend_account: Ապակասեցնել հաշիւը
         update_announcement: Թարմացնել յայտարարութիւնը
         update_status: Թարմացնել գրառումը
+      actions:
+        promote_user: "%{name} աջակցեց օգտատիրոջը %{target}"
+        remove_avatar_user: "%{name} հեռացրեց %{target}ի աւատարը"
+        reopen_report: "%{name} վերաբացեց բողոք %{target}"
+        reset_password_user: "%{name} վերականգնեց օգտատիրոջ գաղտնաբառը %{target}"
+        silence_account: "%{name} լռեցրեց %{target}ի հաշիւը"
       deleted_status: "(ջնջուած գրառում)"
       empty: Ոչ մի գրառում չկայ։
       filter_by_action: Զտել ըստ գործողութեան
@@ -229,12 +237,22 @@ hy:
       list: Ցանկ
       listed: Ցուցակագրուած
       overwrite: Վերագրել
+      uncategorized: Չդասակարգուած
       unlist: Ապացուցակագրում
       unlisted: Ծածուկ
       upload: Վերբեռնել
     dashboard:
       config: Կարգաւորում
       feature_deletions: Հաշուի հեռացումներ
+      feature_invites: Հրաւէրի յղումներ
+      feature_profile_directory: Օգտատիրոջ մատեան
+      feature_registrations: Գրանցումներ
+      feature_timeline_preview: Հոսքի նախադիտում
+      features: Յատկանիշներ
+      open_reports: բաց բողոքներ
+      pending_tags: պիտակներն սպասում են վերանայման
+      pending_users: օգտատէրերն սպասում են վերանայման
+      recent_users: Վերջին օգտատէրերը
     domain_blocks:
       new:
         severity:
