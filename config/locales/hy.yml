@@ -348,21 +348,35 @@ hy:
           title: Բացել հաշուի ջնջումը
         min_invite_role:
           disabled: Ոչ ոք
+      site_title: Սպասարկչի անուն
       title: Կայքի կարգաւորումներ
       trends:
         title: Թրենդային պիտակներ
     site_uploads:
       delete: Ջնջել վերբեռնուած ֆայլը
+      destroyed_msg: Կայքի վերբեռնումը բարեյաջող ջնջուեց
     statuses:
       batch:
         delete: Ջնջել
       deleted: Ջնջված է
     tags:
       context: Համատեքստ
+      last_active: Վերջին ակտիւութիւնը
+      most_popular: Ամէնայայտնի
+      most_recent: Վերջին
+      name: Պիտակ
+      review: Վերանայել գրառումը
+      reviewed: Վերանայուած
+      title: Պիտակներ
     title: Ադմինիստարցիա
     warning_presets:
       add_new: Ավելացնել նորը
       delete: Ջնջել
+  application_mailer:
+    salutation: "%{name},"
+    view: 'Նայել․'
+    view_profile: Նայել անձնական էջը
+    view_status: Նայել գրառումը
   auth:
     change_password: Գաղտնաբառ
     checkbox_agreement_html: Ես համաձայն եմ <a href="%{rules_path}" target="_blank">սպասարկչի կայանքներին</a> և <a href="%{terms_path}" target="_blank">ծառայությունների պայմաններին</a>
