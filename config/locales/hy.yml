@@ -208,6 +208,7 @@ hy:
         reopen_report: "%{name} վերաբացեց բողոք %{target}"
         reset_password_user: "%{name} վերականգնեց օգտատիրոջ գաղտնաբառը %{target}"
         silence_account: "%{name} լռեցրեց %{target}ի հաշիւը"
+        suspend_account: "%{name} լռեցրեց %{target}ի հաշիւը"
       deleted_status: "(ջնջուած գրառում)"
       empty: Ոչ մի գրառում չկայ։
       filter_by_action: Զտել ըստ գործողութեան
@@ -254,11 +255,20 @@ hy:
       pending_users: օգտատէրերն սպասում են վերանայման
       recent_users: Վերջին օգտատէրերը
     domain_blocks:
+      edit: Խմբագրել տիրոյթի արգելափակումը
       new:
+        create: Ստեղծել արգելափակում
         severity:
           noop: Ոչ մի
           silence: Լուռ
           suspend: Կասեցում
+        title: Նոր տիրոյթի արգելափակում
+      private_comment: Փակ մեկնաբանութիւն
+      public_comment: Հրապարակային մեկնաբանութիւն
+      reject_media: Մերժել մեդիա ֆայլերը
+      reject_reports: Մերժել բողոքները
+      rejecting_media: մերժուում են մեդիա ֆայլեր
+      rejecting_reports: մերժուում են բողոքներ
       severity:
         silence: լռեցուած
         suspend: կասեցուած
@@ -272,6 +282,7 @@ hy:
       delete: Ջնջել
       destroyed_msg: Բարեյաջող ապաարգելափակուեց էլ․ փոստի տիրոյթ
       domain: Դոմեն
+      empty: Ոչ մի էլ․ փոստի տիրոյթ այժմ արգելափակուած չէ։
       from_html: '%{domain}ից'
       new:
         create: Ավելացնել դոմեն
@@ -282,7 +293,16 @@ hy:
       moderation:
         all: Բոլորը
         limited: Սահամանփակ
+        title: Մոդերացիա
+      private_comment: Փակ մեկնաբանութիւն
+      public_comment: Հրապարակային մեկնաբանութիւն
+      total_blocked_by_us: Մենք արգելափակել ենք
+      total_followed_by_them: Նրանք հետեւում են
+      total_followed_by_us: Մենք հետեւում ենք
+      total_reported: Բողոքներ նրանց մասին
+      total_storage: Մեդիա կցորդներ
     invites:
+      deactivate_all: Ապաակտիւացնել բոլորին
       filter:
         all: Բոլորը
         available: Հասանելի
@@ -299,18 +319,25 @@ hy:
       disabled: Անջատված է
       enable: Միացնել
       enabled: Միացված է
+      save_and_enable: Պահպանել եւ միացնել
       status: Կարգավիճակ
     reports:
       are_you_sure: Վստա՞հ ես
       assign_to_self: Ինձ յանձնարարուած
       comment:
         none: Ոչ մի
+      created_at: Բողոքարկուած
       notes:
         create: Ավելացնել նշում
         delete: Ջնջել
       status: Կարգավիճակ
     settings:
+      domain_blocks:
+        all: Բոլորին
+        disabled: Ոչ մէկին
+        title: Ցուցադրել տիրոյթը արգելափակումները
       profile_directory:
+        desc_html: Թոյլատրել օգտատէրերին բացայայտուել
         title: Միացնել հաշուի մատեանը
       registrations:
         closed_message:
@@ -321,6 +348,11 @@ hy:
           title: Բացել հաշուի ջնջումը
         min_invite_role:
           disabled: Ոչ ոք
+      title: Կայքի կարգաւորումներ
+      trends:
+        title: Թրենդային պիտակներ
+    site_uploads:
+      delete: Ջնջել վերբեռնուած ֆայլը
     statuses:
       batch:
         delete: Ջնջել
