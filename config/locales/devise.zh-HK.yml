@@ -45,11 +45,15 @@ zh-HK:
         subject: 'Mastodon: 重設密碼'
         title: 重設密碼
       two_factor_disabled:
+        explanation: 帳號的雙重認證已禁用。現在僅使用郵箱和密碼登錄即可登錄。
         subject: '長毛象：已關閉雙重認證'
         title: 已關閉雙重認證
       two_factor_enabled:
+        explanation: 賬號的雙重認證已啟用。登錄時將需要用已配對的 TOTP 應用生成驗證碼。
         subject: '長毛象：已啟用雙重認證'
         title: 已啟用雙重認證
+      two_factor_recovery_codes_changed:
+        explanation: 之前的恢復碼失效了，新的已生成。
       unlock_instructions:
         subject: 'Mastodon: 解除用戶鎖定'
     omniauth_callbacks:
