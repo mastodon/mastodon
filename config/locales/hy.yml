@@ -203,6 +203,7 @@ hy:
         update_announcement: Թարմացնել յայտարարութիւնը
         update_status: Թարմացնել գրառումը
       actions:
+        assigned_to_self_report: "%{name} բողոքել է %{target} իրենց համար"
         disable_user: "%{name} անջատել է մուտքը %{target} օգտատիրոջ համար"
         promote_user: "%{name} աջակցեց օգտատիրոջը %{target}"
         remove_avatar_user: "%{name} հեռացրեց %{target}ի աւատարը"
@@ -255,7 +256,11 @@ hy:
       pending_tags: պիտակներն սպասում են վերանայման
       pending_users: օգտատէրերն սպասում են վերանայման
       recent_users: Վերջին օգտատէրերը
+      trends: Թրենդներ
+      week_users_active: շաբաթուայ ակտիւութիւն
+      week_users_new: շաբաթուայ օգտատէրեր
     domain_blocks:
+      domain: Տիրոյթ
       edit: Խմբագրել տիրոյթի արգելափակումը
       new:
         create: Ստեղծել արգելափակում
@@ -291,6 +296,9 @@ hy:
       title: էլ․ փոստի արգելափակուած տիրոյթներ
     instances:
       by_domain: Դոմեն
+      known_accounts:
+        one: "%{count} յայտնի հաշիւ"
+        other: "%{count} յայտնի հաշիւներ"
       moderation:
         all: Բոլորը
         limited: Սահամանփակ
@@ -323,6 +331,10 @@ hy:
       save_and_enable: Պահպանել եւ միացնել
       status: Կարգավիճակ
     reports:
+      account:
+        notes:
+          one: "%{count} նոթ"
+          other: "%{count} նոթեր"
       are_you_sure: Վստա՞հ ես
       assign_to_self: Ինձ յանձնարարուած
       comment:
@@ -333,6 +345,8 @@ hy:
         delete: Ջնջել
       status: Կարգավիճակ
     settings:
+      contact_information:
+        username: Կոնտակտի ծածկանուն
       domain_blocks:
         all: Բոլորին
         disabled: Ոչ մէկին
@@ -349,6 +363,10 @@ hy:
           title: Բացել հաշուի ջնջումը
         min_invite_role:
           disabled: Ոչ ոք
+          title: Թոյլատրել հրաւէրներ
+      registrations_mode:
+        modes:
+          approved: Գրանցման համար անհրաժեշտ է հաստատում
       site_title: Սպասարկչի անուն
       title: Կայքի կարգաւորումներ
       trends:
