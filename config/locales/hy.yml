@@ -164,6 +164,7 @@ hy:
       search_same_email_domain: Այլ օգտատէրեր նոյն էլ․ փոստի դոմէյնով
       search_same_ip: Այլ օգտատէրեր նոյն IP֊ով
       show:
+        created_reports: Կազմել բողոքներ
         targeted_reports: Այլոց կողմից բողոքարկուած
       silence: Լռութիւն
       silenced: Լռեցուած
@@ -213,7 +214,16 @@ hy:
         change_email_user: "%{name} փոփոխել է %{target} օգտատիրոջ էլ․ հասցէն"
         confirm_user: "%{name} հաստատել է %{target} օգտատիրոջ էլ․ հասցէն"
         create_account_warning: "%{name} զգուշացրել է %{target}ին"
+        create_announcement: "%{name} ստեղծեց նոր յայտարարութիւն %{target}"
+        create_email_domain_block: "%{name} արգելափակեց էլ․ փոստի տիրոյթ %{target}"
+        demote_user: "%{name} աստիճանազրկեց օգտատիրոջ %{target}"
+        destroy_announcement: "%{name} ջնջեց յայտարարութիւն %{target}"
+        destroy_domain_block: "%{name} ապաարգելափակեց տիրոյթ %{target}"
+        destroy_email_domain_block: "%{name} ապաարգելափակեց էլ․ փոստի տիրոյթ %{target}"
+        destroy_status: "%{name} ջնջեց %{target}ի գրառում"
         disable_user: "%{name} անջատել է մուտքը %{target} օգտատիրոջ համար"
+        enable_user: "%{name} թոյլատրեց մուտք %{target} օգտատիրոջ համար"
+        memorialize_account: "%{name} դարձրեց %{target}ի հաշիւը յիշատակի էջ"
         promote_user: "%{name} աջակցեց օգտատիրոջը %{target}"
         remove_avatar_user: "%{name} հեռացրեց %{target}ի աւատարը"
         reopen_report: "%{name} վերաբացեց բողոք %{target}"
@@ -234,6 +244,8 @@ hy:
         create: Ստեղծել յայտարարութիւն
         title: Նոր յայտարարութիւն
       published_msg: Յայտարարութիւնը բարեյաջող հրապարակուեց
+      scheduled_for: Պլանաւորուած է %{time}ին
+      scheduled_msg: Յայտարարութիւնը նախապատրաստուեց հրապարակման
       title: Յայտարարութիւններ
       unpublished_msg: Յայտարարութիւնը բարեյաջող ապահրապարակուեց
       updated_msg: Յայտարարութիւնը բարեյաջող թարմացուեց
