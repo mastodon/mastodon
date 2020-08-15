@@ -438,14 +438,31 @@ hy:
     '429': Too many requests
     '500':
     '503': The page could not be served due to a temporary server failure.
+  existing_username_validator:
+    not_found: չյաջողուեց գտնել այս ծածկագրով լոկալ օգտատիրոջ 
+    not_found_multiple: չյաջողուեց գտնել %{usernames}
   exports:
     archive_takeout:
       date: Ամսաթիվ
       download: Ներբեռնեք Ձեր արխիվը
+      request: Պահանջել քո արքիւը
       size: Չափը
+    blocks: Արգելափակել
     csv: CSV
+    domain_blocks: Տիրոյթի արգելափակումներ
     lists: Ցանկեր
+    mutes: Լռեցրել ես
+    storage: Մեդիա պահոց
+  featured_tags:
+    add_new: Աւելացնել նորը
   filters:
+    contexts:
+      account: Պրոֆիլներ
+      home: Տեղական հոսք
+      notifications: Ծանուցումներ
+      thread: Զրոյցներ
+    edit:
+      title: Խմբագրել զտիչը
     index:
       delete: Ջնջել
       title: Ֆիլտրեր
@@ -462,9 +479,15 @@ hy:
     delete: Ջնջել
   identity_proofs:
     active: Ակտիվ
+    i_am_html: Ես %{username}ն եմ %{service}ում։
+    identity: Ինքնութիւն
+    publicize_toot: 'Ապացուցուա՜ծ է․ Ես%{username} եմ %{service}ում․ %{url} '
+    view_proof: Նայել ապացոյցը
   imports:
     modes:
       overwrite: Վերագրել
+    types:
+      blocking: Արգելափակումների ցուցակ
     upload: Վերբեռնել
   invites:
     expires_in:
