@@ -41,6 +41,7 @@ hy:
       rejecting_media_title: Զտուած մեդիա
       silenced: 'Այս սպասարկչի հրապարակումները թաքցուած են հանրային հոսքից եւ զրոյցներից, եւ ոչ մի ծանուցում չի գեներացուում նրանց օգտատէրերի գործողութիւններից, եթէ նրանց չէք հետեւում․'
       silenced_title: Լռեցուած սպասարկիչներ
+      suspended: 'Ոչ մի տուեալ այս սպասարկիչներից չի գործարկուում, պահուում կամ փոխանակուում, կատարել որեւէ գործողութիւն կամ հաղորդակցութիւն այս սպասարկիչի օգտատէրերի հետ անհնար է․'
       suspended_title: Կասեցուած սպասարկիչներ
     user_count_after:
       one: օգտատեր
@@ -285,11 +286,19 @@ hy:
       pending_tags: պիտակներն սպասում են վերանայման
       pending_users: օգտատէրերն սպասում են վերանայման
       recent_users: Վերջին օգտատէրերը
+      search: Տեքստային որոնում
+      single_user_mode: Մէկ օգտատիրոջ ռեժիմ
       software: Ծրագրային ապահովում
+      space: Տարածքի օգտագործում
       title: Գործիքների վահանակ
+      total_users: ընդհանուր օգտատէրեր
       trends: Թրենդներ
+      week_interactions: շաբաթուայ գործողութիւններ
       week_users_active: շաբաթուայ ակտիւութիւն
       week_users_new: շաբաթուայ օգտատէրեր
+      whitelist_mode: Սահմանափակ ֆեդերացիայի ռեժիմ
+    domain_allows:
+      add_new: Թոյլատրել ֆեդերացիա տիրոյթի հետ
     domain_blocks:
       domain: Տիրոյթ
       edit: Խմբագրել տիրոյթի արգելափակումը
@@ -379,8 +388,15 @@ hy:
         create: Ավելացնել նշում
         delete: Ջնջել
       reopen: Վերաբացել բողոքը
+      report: 'Բողոք #%{id}'
+      reported_account: Բողոքարկուած հաշիւ
+      reported_by: Բողոքարկուած է
       resolved: Լուծուած
       status: Կարգավիճակ
+      title: Բողոքներ
+      unassign: Չնշանակել
+      unresolved: Չլուծուած
+      updated_at: Թարմացուած
     settings:
       contact_information:
         username: Կոնտակտի ծածկանուն
@@ -446,11 +462,16 @@ hy:
     warning_presets:
       add_new: Ավելացնել նորը
       delete: Ջնջել
+  admin_mailer:
+    new_report:
+      subject: 'Նոր բողոք %{instance}ի համար(#%{id})'
   appearance:
+    animations_and_accessibility: Անիմացիաներ եւ հասանելիութիւն
     discovery: Բացայայտում
     localization:
       body: Մաստոդոնը թարգմանուում է կամաւորների կողմից։
       guide_link: https://crowdin.com/project/mastodon
+      guide_link_text: Աջակցել կարող են բոլորը։
     sensitive_content: Զգայուն բովանդակութիւն
   application_mailer:
     salutation: "%{name},"
