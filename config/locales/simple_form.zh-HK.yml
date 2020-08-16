@@ -53,6 +53,9 @@ zh-HK:
         whole_word: 如果關鍵字或詞組僅有字母與數字，則其將只在符合整個單字的時候才會套用
       domain_allow:
         domain: 此域將能從此站獲取數據，而此站發出的數據也會被處理和存儲。
+      email_domain_block:
+        domain: 這裡可以是電郵地址中的域名、域名解析到的MX記錄、或MX紀錄解析到的服務器IP。如果上述資料被封禁，那麼註冊將被拒絕。
+        with_dns_records: Mastodon 會嘗試解析所給域名的 DNS 記錄，然後與解析結果一併封禁
       featured_tag:
         name: '您可能想使用其中一個：'
       form_challenge:
@@ -72,8 +75,13 @@ zh-HK:
         fields:
           name: 標籤
           value: 內容
+      account_alias:
+        acct: 處理舊帳戶
+      account_migration:
+        acct: 處理新帳戶
       account_warning_preset:
         text: 預設文字
+        title: 標題
       admin_account_action:
         include_statuses: 在電子郵件中加入檢舉的嘟文
         send_email_notification: 透過電子信件通知使用者
@@ -121,6 +129,7 @@ zh-HK:
         setting_aggregate_reblogs: 時間軸中的群組轉嘟
         setting_auto_play_gif: 自動播放 GIF
         setting_boost_modal: 在轉推前詢問我
+        setting_crop_images: 把未展開嘟文中的圖片裁剪到 16x9
         setting_default_language: 文章語言
         setting_default_privacy: 文章預設為
         setting_default_sensitive: 預設我的內容為敏感內容
@@ -138,12 +147,16 @@ zh-HK:
         setting_theme: 網站主題
         setting_trends: 顯示本日趨勢
         setting_unfollow_modal: 取消關注前跳出詢問我
+        setting_use_blurhash: 將隱藏媒體顯示為彩色漸變
         setting_use_pending_items: 限速模式
         severity: 等級
+        sign_in_token_attempt: 安全碼
         type: 匯入資料類型
         username: 用戶名稱
         username_or_email: 用戶名稱或電郵
         whole_word: 整個詞彙
+      email_domain_block:
+        with_dns_records: 包括域名的 MX 記錄和 IP 地址
       featured_tag:
         name: '「#」標籤'
       interactions:
@@ -163,6 +176,7 @@ zh-HK:
         pending_account: 需要審核的新帳戶
         reblog: 當有用戶轉推你的文章時，發電郵通知
         report: 當提交新檢舉時傳送電子郵件
+        trending_tag: 當未審核的話題成為當前熱門時發郵件提醒
       tag:
         listable: 允許此主題標籤在搜尋及個人檔案目錄中顯示
         name: 主題標籤
@@ -171,5 +185,6 @@ zh-HK:
     'no': '否'
     recommended: 建議
     required:
+      mark: "*"
       text: 必須填寫
     'yes': '是'
