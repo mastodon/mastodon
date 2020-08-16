@@ -10872,10 +10872,17 @@ use-composed-ref@^1.0.0:
   dependencies:
     ts-essentials "^2.0.3"
 
-use-latest@^1.0.0:
+use-isomorphic-layout-effect@^1.0.0:
   version "1.0.0"
-  resolved "https://registry.yarnpkg.com/use-latest/-/use-latest-1.0.0.tgz#c86d2e4893b15f27def69da574a47136d107facb"
-  integrity sha512-CxmFi75KTXeTIBlZq3LhJ4Hz98pCaRKZHCpnbiaEHIr5QnuHvH8lKYoluPBt/ik7j/hFVPB8K3WqF6mQvLyQTg==
+  resolved "https://registry.yarnpkg.com/use-isomorphic-layout-effect/-/use-isomorphic-layout-effect-1.0.0.tgz#f56b4ed633e1c21cd9fc76fe249002a1c28989fb"
+  integrity sha512-JMwJ7Vd86NwAt1jH7q+OIozZSIxA4ND0fx6AsOe2q1H8ooBUp5aN6DvVCqZiIaYU6JaMRJGyR0FO7EBCIsb/Rg==
+
+use-latest@^1.0.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/use-latest/-/use-latest-1.1.0.tgz#7bf9684555869c3f5f37e10d0884c8accf4d3aa6"
+  integrity sha512-gF04d0ZMV3AMB8Q7HtfkAWe+oq1tFXP6dZKwBHQF5nVXtGsh2oAYeeqma5ZzxtlpOcW8Ro/tLcfmEodjDeqtuw==
+  dependencies:
+    use-isomorphic-layout-effect "^1.0.0"
 
 use@^3.1.0:
   version "3.1.1"
