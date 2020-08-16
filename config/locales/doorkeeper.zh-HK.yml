@@ -2,7 +2,7 @@ zh-HK:
   activerecord:
     attributes:
       doorkeeper/application:
-        name: 名稱
+        name: 應用名稱
         redirect_uri: 轉接 URI
         scopes: 權限範圍
         website: 應用網站
@@ -72,6 +72,7 @@ zh-HK:
       index:
         application: 應用程式
         created_at: 授權日期
+        date_format: "%Y-%m-%d %H:%M:%S"
         scopes: 權限範圍
         title: 已獲你授權的程用程式
     errors:
