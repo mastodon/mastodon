@@ -127,7 +127,7 @@ Rails.application.routes.draw do
 
     resources :two_factor_authentication_methods, only: [:index] do
       collection do
-        post 'disable'
+        post :disable
       end
     end
 
@@ -138,7 +138,7 @@ Rails.application.routes.draw do
               controller: 'two_factor_authentication/webauthn_credentials' do
 
       collection do
-        get 'options'
+        get :options
       end
     end
 
