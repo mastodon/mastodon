@@ -49,8 +49,7 @@ class Auth::SessionsController < Devise::SessionsController
 
       render json: options_for_get, status: :ok
     else
-      flash[:error] = t('webauthn_credentials.not_enabled')
-      render json: { redirect_path: sign_in_path }, status: :unauthorized
+      render json: { error: t('webauthn_credentials.not_enabled') }, status: :unauthorized
     end
   end
 

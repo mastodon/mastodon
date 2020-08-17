@@ -55,8 +55,7 @@ module TwoFactorAuthenticationConcern
       sign_in(user)
       render json: { redirect_path: root_path }, status: :ok
     else
-      flash.now[:alert] = t('webauthn_credentials.invalid_credential')
-      render json: {}, status: :unauthorized
+      render json: { error: t('webauthn_credentials.invalid_credential') }, status: :unprocessable_entity
     end
   end
 

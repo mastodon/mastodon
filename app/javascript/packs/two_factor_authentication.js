@@ -29,8 +29,13 @@ function callback(url, body) {
   }).then(function(response) {
     window.location.replace(response.data.redirect_path);
   }).catch(function(error) {
-    window.location.reload();
-    console.error(error);
+    if (error.response.status === 422) {
+      const errorMessage = document.getElementById('security-key-error-message');
+      errorMessage.classList.remove('hidden');
+      console.error(error.response.data.error);
+    } else {
+      console.error(error);
+    }
   });
 }
 
@@ -64,7 +69,7 @@ ready(() => {
               console.error(error);
             });
           }).catch((error) => {
-            console.error(error);
+            console.error(error.response.data.error);
           });
       } else {
         nickname.focus();
@@ -90,7 +95,7 @@ ready(() => {
             console.error(error);
           });
         }).catch((error) => {
-          console.error(error);
+          console.error(error.response.data.error);
         });
     });
 
