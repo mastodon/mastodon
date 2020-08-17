@@ -7,7 +7,8 @@ describe Settings::TwoFactorAuthentication::WebauthnCredentialsController do
   render_views
 
   let(:user) { Fabricate(:user) }
-  let(:fake_client) { WebAuthn::FakeClient.new('http://test.host') }
+  let(:domain) { "#{Rails.configuration.x.use_https ? 'https' : 'http' }://#{Rails.configuration.x.web_domain}" }
+  let(:fake_client) { WebAuthn::FakeClient.new(domain) }
 
   def add_webauthn_credential(user)
     Fabricate(:webauthn_credential, user_id: user.id, nickname: 'USB Key')

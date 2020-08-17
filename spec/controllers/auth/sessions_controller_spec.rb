@@ -298,7 +298,9 @@ RSpec.describe Auth::SessionsController, type: :controller do
           user.webauthn_credentials.take
         end
 
-        let(:fake_client) { WebAuthn::FakeClient.new("http://test.host") }
+        let(:domain) { "#{Rails.configuration.x.use_https ? 'https' : 'http' }://#{Rails.configuration.x.web_domain}" }
+
+        let(:fake_client) { WebAuthn::FakeClient.new(domain) }
 
         let(:challenge) { WebAuthn::Credential.options_for_get.challenge }
 
