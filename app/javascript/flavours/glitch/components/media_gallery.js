@@ -287,10 +287,8 @@ class MediaGallery extends React.PureComponent {
   }
 
   componentDidUpdate (prevProps) {
-    if (this.node && this.node.offsetWidth && this.node.offsetWidth != this.state.width) {
-      this.setState({
-        width: this.node.offsetWidth,
-      });
+    if (this.node) {
+      this.handleResize();
     }
   }
 
