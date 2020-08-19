@@ -14,7 +14,7 @@
 
   = f.simple_fields_for :account do |ff|
     .fields-group
-      = ff.input :username, wrapper: :with_label, autofocus: true, label: t('simple_form.labels.defaults.username'), required: true, input_html: { 'aria-label' => t('simple_form.labels.defaults.username'), :autocomplete => 'off', pattern: '[a-z0-9_]+', maxlength: 30 }, append: "@#{site_hostname}", hint: t('simple_form.hints.defaults.username', domain: site_hostname)
+      = ff.input :username, wrapper: :with_label, autofocus: true, label: t('simple_form.labels.defaults.username'), required: true, input_html: { 'aria-label' => t('simple_form.labels.defaults.username'), :autocomplete => 'off', pattern: '[a-zA-Z0-9_]+', maxlength: 30 }, append: "@#{site_hostname}", hint: t('simple_form.hints.defaults.username', domain: site_hostname)
 
   .fields-group
     = f.input :email, wrapper: :with_label, label: t('simple_form.labels.defaults.email'), required: true, input_html: { 'aria-label' => t('simple_form.labels.defaults.email'), :autocomplete => 'off' }
