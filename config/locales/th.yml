@@ -149,7 +149,7 @@ th:
       remove_avatar: เอาภาพประจำตัวออก
       remove_header: เอาส่วนหัวออก
       resend_confirmation:
-        already_confirmed: ผู้ใช้นี้ได้รับการยืนยันอยู่แล้ว
+        already_confirmed: ยืนยันผู้ใช้นี้อยู่แล้ว
         send: ส่งอีเมลยืนยันอีกครั้ง
         success: ส่งอีเมลยืนยันสำเร็จ!
       reset_password: ตั้งรหัสผ่านใหม่
@@ -631,6 +631,7 @@ th:
     trouble_logging_in: มีปัญหาในการเข้าสู่ระบบ?
   authorize_follow:
     already_following: คุณกำลังติดตามบัญชีนี้อยู่แล้ว
+    already_requested: คุณได้ส่งคำขอติดตามไปยังบัญชีนั้นไปแล้ว
     follow: ติดตาม
     follow_request: 'คุณได้ส่งคำขอติดตามไปยัง:'
     following: 'สำเร็จ! คุณกำลังติดตาม:'
@@ -806,6 +807,8 @@ th:
     redirected_msg: บัญชีของคุณกำลังเปลี่ยนเส้นทางไปยัง %{acct}
     redirecting_to: บัญชีของคุณกำลังเปลี่ยนเส้นทางไปยัง %{acct}
     set_redirect: ตั้งการเปลี่ยนเส้นทาง
+    warning:
+      followers: การกระทำนี้จะย้ายผู้ติดตามทั้งหมดจากบัญชีปัจจุบันไปยังบัญชีใหม่
   moderation:
     title: การควบคุม
   move_handler:
@@ -855,7 +858,7 @@ th:
     truncate: "&hellip;"
   polls:
     errors:
-      already_voted: คุณได้ลงคะแนนในการสำรวจความคิดเห็นนี้อยู่แล้ว
+      already_voted: คุณได้ลงคะแนนในการสำรวจความคิดเห็นนี้ไปแล้ว
       duplicate_options: มีรายการที่ซ้ำกัน
       expired: การสำรวจความคิดเห็นได้สิ้นสุดไปแล้ว
       invalid_choice: ไม่มีตัวเลือกการลงคะแนนที่เลือกอยู่
