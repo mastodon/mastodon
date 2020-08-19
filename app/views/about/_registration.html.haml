@@ -4,7 +4,7 @@
 
     .fields-group
       = f.simple_fields_for :account do |account_fields|
-        = account_fields.input :username, wrapper: :with_label, label: false, required: true, input_html: { 'aria-label' => t('simple_form.labels.defaults.username'), :autocomplete => 'off', placeholder: t('simple_form.labels.defaults.username'), pattern: '[a-z0-9_]+', maxlength: 30 }, append: "@#{site_hostname}", hint: false, disabled: closed_registrations?
+        = account_fields.input :username, wrapper: :with_label, label: false, required: true, input_html: { 'aria-label' => t('simple_form.labels.defaults.username'), :autocomplete => 'off', placeholder: t('simple_form.labels.defaults.username'), pattern: '[a-zA-Z0-9_]+', maxlength: 30 }, append: "@#{site_hostname}", hint: false, disabled: closed_registrations?
 
       = f.input :email, placeholder: t('simple_form.labels.defaults.email'), required: true, input_html: { 'aria-label' => t('simple_form.labels.defaults.email'), :autocomplete => 'off' }, hint: false, disabled: closed_registrations?
       = f.input :password, placeholder: t('simple_form.labels.defaults.password'), required: true, input_html: { 'aria-label' => t('simple_form.labels.defaults.password'), :autocomplete => 'off', :minlength => User.password_length.first, :maxlength => User.password_length.last }, hint: false, disabled: closed_registrations?
