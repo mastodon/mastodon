@@ -72,6 +72,31 @@ describe Api::V1::Statuses::BookmarksController do
         end
       end
 
+      context 'with public status when blocked by its author' do
+        let(:status) { Fabricate(:status) }
+
+        before do
+          Bookmark.find_or_create_by!(account: user.account, status: status)
+          status.account.block!(user.account)
+          post :destroy, params: { status_id: status.id }
+        end
+
+        it 'returns http success' do
+          expect(response).to have_http_status(200)
+        end
+
+        it 'updates the bookmarked attribute' do
+          expect(user.account.bookmarked?(status)).to be false
+        end
+
+        it 'returns json with updated attributes' do
+          hash_body = body_as_json
+
+          expect(hash_body[:id]).to eq status.id.to_s
+          expect(hash_body[:bookmarked]).to be false
+        end
+      end
+
       context 'with private status that was not bookmarked' do
         let(:status) { Fabricate(:status, visibility: :private) }
 
