@@ -245,6 +245,7 @@ th:
         promote_user: "%{name} ได้เลื่อนขั้นผู้ใช้ %{target}"
         remove_avatar_user: "%{name} ได้เอาภาพประจำตัวของ %{target} ออก"
         reopen_report: "%{name} ได้เปิดรายงาน %{target} ใหม่"
+        reset_password_user: "%{name} ได้ตั้งรหัสผ่านของผู้ใช้ %{target} ใหม่"
         resolve_report: "%{name} ได้แก้ปัญหารายงาน %{target}"
         silence_account: "%{name} ได้ทำให้บัญชีของ %{target} เงียบ"
         suspend_account: "%{name} ได้ระงับบัญชีของ %{target}"
@@ -613,6 +614,7 @@ th:
       prefix_sign_up: ลงทะเบียนใน Mastodon วันนี้!
     didnt_get_confirmation: ไม่ได้รับคำแนะนำการยืนยัน?
     forgot_password: ลืมรหัสผ่านของคุณ?
+    invalid_reset_password_token: โทเคนการตั้งรหัสผ่านใหม่ไม่ถูกต้องหรือหมดอายุแล้ว โปรดขอโทเคนใหม่
     login: เข้าสู่ระบบ
     logout: ออกจากระบบ
     migrate_account: ย้ายไปยังบัญชีอื่น
