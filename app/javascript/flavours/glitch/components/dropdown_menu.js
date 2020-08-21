@@ -205,7 +205,7 @@ export default class Dropdown extends React.PureComponent {
 
   handleClose = () => {
     if (this.activeElement) {
-      this.activeElement.focus();
+      this.activeElement.focus({ preventScroll: true });
       this.activeElement = null;
     }
     this.props.onClose(this.state.id);
