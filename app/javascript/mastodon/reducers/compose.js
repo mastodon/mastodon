@@ -87,17 +87,31 @@ const initialPoll = ImmutableMap({
   multiple: false,
 });
 
-function statusToTextMentions(state, status) {
-  let set = ImmutableOrderedSet([]);
-
-  if (status.getIn(['account', 'id']) !== me && status.getIn(['visibility']) !== 'limited') {
-    set = set.add(`@${status.getIn(['account', 'acct'])} `);
+const statusToTextMentions = (text, privacy, status) => {
+  if(status === null) {
+    return text;
   }
 
-  return set.union(status.get('mentions').filterNot(mention => mention.get('id') === me).map(mention => `@${mention.get('acct')} `)).join('');
+  let mentions = ImmutableOrderedSet();
+
+  if (status.getIn(['account', 'id']) !== me) {
+    mentions = mentions.add(`@${status.getIn(['account', 'acct'])} `);
+  }
+
+  mentions = mentions.union(status.get('mentions').filterNot(mention => mention.get('id') === me).map(mention => `@${mention.get('acct')} `));
+
+  const match = /^(\s*(?:(?:@\S+)\s*)*)(.*)/.exec(text);
+  const extrctMentions = ImmutableOrderedSet(match[1].trim().split(/\s+/).filter(Boolean).map(mention => `${mention} `));
+  const others = match[2];
+
+  if(privacy === 'limited') {
+    return extrctMentions.subtract(mentions).add(others).join('');
+  } else {
+    return mentions.union(extrctMentions).add(others).join('');
+  }
 };
 
-function clearAll(state) {
+const clearAll = state => {
   return state.withMutations(map => {
     map.set('text', '');
     map.set('spoiler', false);
@@ -115,7 +129,7 @@ function clearAll(state) {
   });
 };
 
-function appendMedia(state, media, file) {
+const appendMedia = (state, media, file) => {
   const prevSize = state.get('media_attachments').size;
 
   return state.withMutations(map => {
@@ -134,7 +148,7 @@ function appendMedia(state, media, file) {
   });
 };
 
-function removeMedia(state, mediaId) {
+const removeMedia = (state, mediaId) => {
   const prevSize = state.get('media_attachments').size;
 
   return state.withMutations(map => {
@@ -187,29 +201,6 @@ const insertEmoji = (state, position, emojiData, needsSpace) => {
     caretPosition: position + emoji.length + 1,
     idempotencyKey: uuid(),
   });
-};
-
-const resetMentionText = (text, privacy, status) => {
-  if(status === null) {
-    return text;
-  }
-
-  let set = ImmutableOrderedSet([]);
-
-  if (status.getIn(['account', 'id']) !== me) {
-    set = set.add(`@${status.getIn(['account', 'acct'])}`);
-  }
-
-  set = set.union(status.get('mentions').filterNot(mention => mention.get('id') === me).map(mention => `@${mention.get('acct')}`));
-
-  var match = /^(\s*(?:(?:@\S+)\s*)*)(.*)/.exec(text);
-  var mentions = ImmutableOrderedSet((match[1].trim().split(/\s+/)));
-
-  if(privacy === 'limited') {
-    return mentions.subtract(set).add(match[2]).join(' ');
-  } else {
-    return set.union(mentions).add(match[2]).join(' ');
-  }
 };
 
 const privacyPreference = (a, b) => {
@@ -309,10 +300,10 @@ export default function compose(state = initialState, action) {
       .set('idempotencyKey', uuid());
   case COMPOSE_VISIBILITY_CHANGE:
     return state.withMutations(map => {
-      map.set('text', resetMentionText(state.get('text'), action.value, state.get('reply_status')));
+      map.set('text', statusToTextMentions(state.get('text'), action.value, state.get('reply_status')));
       map.set('privacy', action.value);
       map.set('idempotencyKey', uuid());
-      if(action.value === 'limited') {
+      if(action.value === 'limited' && map.get('in_reply_to')) {
         map.set('circle_id', state.getIn(['reply_status', 'in_reply_to_id']) ? 'thread' : 'reply');
       } else {
         map.set('circle_id', null);
@@ -329,11 +320,13 @@ export default function compose(state = initialState, action) {
   case COMPOSE_COMPOSING_CHANGE:
     return state.set('is_composing', action.value);
   case COMPOSE_REPLY:
+    const privacy = privacyPreference(action.status.get('visibility'), state.get('default_privacy'));
+
     return state.withMutations(map => {
       map.set('in_reply_to', action.status.get('id'));
       map.set('reply_status', action.status);
-      map.set('text', statusToTextMentions(state, action.status));
-      map.set('privacy', privacyPreference(action.status.get('visibility'), state.get('default_privacy')));
+      map.set('text', statusToTextMentions('', privacy, action.status));
+      map.set('privacy', privacy);
       if(action.status.get('circle_id')) {
         map.set('circle_id', action.status.get('circle_id'));
       } else if(action.status.get('visibility') === 'limited'){
