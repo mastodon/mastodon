@@ -21,7 +21,7 @@ const messages = defineMessages({
   more: { id: 'status.more', defaultMessage: 'More' },
   replyAll: { id: 'status.replyAll', defaultMessage: 'Reply to thread' },
   reblog: { id: 'status.reblog', defaultMessage: 'Boost' },
-  reblog_private: { id: 'status.reblog_private', defaultMessage: 'Boost to original audience' },
+  reblog_private: { id: 'status.reblog_private', defaultMessage: 'Boost with original visibility' },
   cannot_reblog: { id: 'status.cannot_reblog', defaultMessage: 'This post cannot be boosted' },
   favourite: { id: 'status.favourite', defaultMessage: 'Favourite' },
   bookmark: { id: 'status.bookmark', defaultMessage: 'Bookmark' },
