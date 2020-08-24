@@ -1000,6 +1000,10 @@ es:
     code_hint: Introduce el código generado por tu aplicación de autentificación para confirmar
     description_html: Si habilitas <strong>autenticación de dos factores</strong> a través de una aplicación de autenticación, el ingreso requerirá que estés en posesión de tu teléfono, lo que generará tokens para que ingreses.
     enable: Activar
+    instructions_html: "<strong>Escanea este código QR desde Google Authenticator o una aplicación similar en su teléfono</strong>. Desde ahora, esta aplicación va a generar tokens que tienes que ingresar cuando quieras iniciar sesión."
+    manual_instructions: 'Si no puedes escanear el código QR y necesitas introducirlo manualmente, este es el secreto en texto plano:'
+    setup: Configurar
+    wrong_code: '¡El código ingresado es inválido! ¿El dispositivo y tiempo del servidor están correctos?'
   pagination:
     newer: Más nuevo
     next: Próximo
@@ -1124,6 +1128,7 @@ es:
     profile: Perfil
     relationships: Siguiendo y seguidores
     two_factor_authentication: Autenticación de dos factores
+    webauthn_authentication: Claves de seguridad
   spam_check:
     spam_detected: Este es un informe automatizado. Se ha detectado correo no deseado.
   statuses:
@@ -1270,14 +1275,20 @@ es:
       default: "%d de %b del %Y, %H:%M"
       month: "%b %Y"
   two_factor_authentication:
+    add: Agregar
     disable: Deshabilitar
+    disabled_success: Verificación de dos factores activada con éxito
+    edit: Editar
     enabled: La autenticación de dos factores está activada
     enabled_success: Verificación de dos factores activada exitosamente
     generate_recovery_codes: generar códigos de recuperación
     lost_recovery_codes: Los códigos de recuperación te permiten obtener acceso a tu cuenta si pierdes tu teléfono. Si has perdido tus códigos de recuperación, puedes regenerarlos aquí. Tus viejos códigos de recuperación se harán inválidos.
+    methods: Autenticación de dos factores
+    otp: Aplicación de autenticación
     recovery_codes: Hacer copias de seguridad de tus códigos de recuperación
     recovery_codes_regenerated: Códigos de recuperación regenerados con éxito
     recovery_instructions_html: Si pierdes acceso a tu teléfono, puedes usar uno de los siguientes códigos de recuperación para obtener acceso a tu cuenta. <strong>Mantenlos a salvo</strong>. Por ejemplo, puedes imprimirlos y guardarlos con otros documentos importantes.
+    webauthn: Claves de seguridad
   user_mailer:
     backup_ready:
       explanation: Has solicitado una copia completa de tu cuenta de Mastodon. ¡Ya está preparada para descargar!
@@ -1339,3 +1350,20 @@ es:
   verification:
     explanation_html: 'Puedes <strong> verificarte a ti mismo como el dueño de los links en los metadatos de tu perfil </strong>. Para eso, el sitio vinculado debe contener un vínculo a tu perfil de Mastodon. El vínculo en tu sitio <strong> debe </strong> tener un atributo <code> rel="me"</code>. El texto del vínculo no importa. Aquí un ejemplo:'
     verification: Verificación
+  webauthn_credentials:
+    add: Agregar nueva clave de seguridad
+    create:
+      error: Hubo un problema con añadir su clave de seguridad. Por favor, inténtalo de nuevo.
+      success: Su clave de seguridad se ha añadido correctamente.
+    delete: Borrar
+    delete_confirmation: '¿Estás seguro de que quieres eliminar esta clave de seguridad?'
+    description_html: Si habilita la <strong>autenticación de clave de seguridad</strong>, iniciar sesión requerirá que utilice una de sus claves de seguridad.
+    destroy:
+      error: Hubo un problema con añadir su clave de seguridad. Por favor, inténtalo de nuevo.
+      success: Su clave de seguridad se ha borrado correctamente.
+    invalid_credential: Clave de seguridad inválida
+    nickname_hint: Introduzca el apodo de su nueva clave de seguridad
+    not_enabled: Aún no has activado WebAuthn
+    not_supported: Este navegador no soporta claves de seguridad
+    otp_required: Para usar claves de seguridad, por favor habilite primero la autenticación de dos pasos.
+    registered_on: Registrado el %{date}
