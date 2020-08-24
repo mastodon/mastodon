@@ -177,6 +177,9 @@ br:
       title: Heulier nevez
     mention:
       action: Respont
+  otp_authentication:
+    enable: Gweredekaat
+    setup: Kefluniañ
   relationships:
     followers: Heulier·ezed·ien
   sessions:
@@ -224,10 +227,14 @@ br:
       default: "%He%M, %d %b %Y"
       month: "%b %Y"
   two_factor_authentication:
+    add: Ouzhpennañ
     disable: Diweredekaat
+    edit: Aozañ
   user_mailer:
     warning:
       title:
         none: Diwall
     welcome:
       edit_profile_action: Kefluniañ ar profil
+  webauthn_credentials:
+    delete: Dilemel
