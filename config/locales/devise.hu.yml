@@ -59,6 +59,18 @@ hu:
         title: A kétlépcsős kódok megváltozott
       unlock_instructions:
         subject: 'Mastodon: Feloldási lépések'
+      webauthn_credential:
+        added:
+          explanation: A következő biztonsági kulcsot hozzáadtuk a fiókodhoz
+          subject: 'Mastodon: Új biztonsági kulcs'
+          title: Új biztonsági kulcsot vettünk fel
+        deleted:
+          explanation: A következő biztonsági kulcsot töröltük a fiókodból
+          subject: 'Mastodon: Biztonsági kulcs törölve'
+          title: Az egyik biztonsági kulcsodat törölték
+      webauthn_disabled:
+        explanation: A biztonsági kulccsal történő hitelesítést letiltották a fiókodon. Bejelentkezni csak a párosított TOTP app által generált tokennel lehet.
+        subject: 'Mastodon: Biztonsági kulccsal történő hitelesítés letiltva'
     omniauth_callbacks:
       failure: Sikertelen hitelesítés %{kind} fiókról, mert "%{reason}".
       success: Sikeres hitelesítés %{kind} fiókról.
