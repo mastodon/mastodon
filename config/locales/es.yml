@@ -680,8 +680,11 @@ es:
       prefix_sign_up: '¡Únete a Mastodon hoy!'
       suffix: '¡Con una cuenta podrás seguir a gente, publicar novedades e intercambiar mensajes con usuarios de cualquier servidor de Mastodon y más!'
     didnt_get_confirmation: '¿No recibió el correo de confirmación?'
+    dont_have_your_security_key: '¿No tienes tu clave de seguridad?'
     forgot_password: '¿Olvidaste tu contraseña?'
     invalid_reset_password_token: El token de reinicio de contraseña es inválido o expiró. Por favor pide uno nuevo.
+    link_to_otp: Introduce un código de dos factores desde tu teléfono o un código de recuperación
+    link_to_webauth: Utiliza tu dispositivo de llave de seguridad
     login: Iniciar sesión
     logout: Cerrar sesión
     migrate_account: Mudarse a otra cuenta
@@ -707,6 +710,7 @@ es:
       pending: Su solicitud está pendiente de revisión por nuestros administradores. Eso puede tardar algún tiempo. Usted recibirá un correo electrónico si el solicitud sea aprobada.
       redirecting_to: Tu cuenta se encuentra inactiva porque está siendo redirigida a %{acct}.
     trouble_logging_in: '¿Problemas para iniciar sesión?'
+    use_security_key: Usar la clave de seguridad
   authorize_follow:
     already_following: Ya estás siguiendo a esta cuenta
     already_requested: Ya has enviado una solicitud de seguimiento a esa cuenta
@@ -731,6 +735,7 @@ es:
   date:
     formats:
       default: "%b %d, %Y"
+      with_month_name: "%B %d, %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}h"
@@ -991,6 +996,10 @@ es:
           quadrillion: Q
           thousand: m
           trillion: T
+  otp_authentication:
+    code_hint: Introduce el código generado por tu aplicación de autentificación para confirmar
+    description_html: Si habilitas <strong>autenticación de dos factores</strong> a través de una aplicación de autenticación, el ingreso requerirá que estés en posesión de tu teléfono, lo que generará tokens para que ingreses.
+    enable: Activar
   pagination:
     newer: Más nuevo
     next: Próximo
