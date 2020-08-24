@@ -66,6 +66,7 @@ es:
         text: Esto nos ayudará a revisar su aplicación
       sessions:
         otp: 'Introduce el código de autenticación de dos factores generado por tu aplicación de teléfono o usa uno de tus códigos de recuperación:'
+        webauthn: Si es una tecla USB, asegúrese de insertarla y, si es necesario, púlsela.
       tag:
         name: Sólo se puede cambiar el cajón de las letras, por ejemplo, para que sea más legible
       user:
@@ -187,4 +188,7 @@ es:
     required:
       mark: "*"
       text: necesario
+    title:
+      sessions:
+        webauthn: Utilice una de sus claves de seguridad para iniciar sesión
     'yes': 'Sí'
