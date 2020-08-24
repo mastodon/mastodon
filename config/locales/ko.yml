@@ -1243,21 +1243,14 @@ ko:
       default: "%Y년 %m월 %d일 %H:%M"
       month: "%Y년 %b"
   two_factor_authentication:
-    code_hint: 확인하기 위해서 인증 애플리케이션에서 표시된 코드를 입력해 주십시오
-    description_html: <strong>2단계 인증</strong>을 활성화 하면 로그인 시 전화로 인증 코드를 받을 필요가 있습니다.
     disable: 비활성화
-    enable: 활성화
     enabled: 2단계 인증이 활성화 되어 있습니다
     enabled_success: 2단계 인증이 활성화 되었습니다
     generate_recovery_codes: 복구 코드 생성
-    instructions_html: "<strong>Google Authenticator, 또는 타 TOTP 애플리케이션에서 이 QR 코드를 스캔해 주십시오.</strong> 이후 로그인 시에는 이 애플리케이션에서 생성되는 코드가 필요합니다."
     lost_recovery_codes: 복구 코드를 사용하면 휴대전화를 분실한 경우에도 계정에 접근할 수 있게 됩니다. 복구 코드를 분실한 경우에도 여기서 다시 생성할 수 있지만, 예전 복구 코드는 비활성화 됩니다.
-    manual_instructions: 'QR 코드를 스캔할 수 없어 수동으로 등록을 원하시는 경우 이 비밀 코드를 사용해 주십시오:'
     recovery_codes: 복구 코드
     recovery_codes_regenerated: 복구 코드가 다시 생성되었습니다
     recovery_instructions_html: 휴대전화를 분실한 경우, 아래 복구 코드 중 하나를 사용해 계정에 접근할 수 있습니다. <strong>복구 코드는 안전하게 보관해 주십시오.</strong> 이 코드를 인쇄해 중요한 서류와 함께 보관하는 것도 좋습니다.
-    setup: 초기 설정
-    wrong_code: 코드가 올바르지 않습니다. 서버와 휴대전화 간의 시각이 일치하나요?
   user_mailer:
     backup_ready:
       explanation: 당신이 요청한 계정의 풀 백업이 이제 다운로드 가능합니다!
