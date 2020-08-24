@@ -615,6 +615,7 @@ th:
     didnt_get_confirmation: ไม่ได้รับคำแนะนำการยืนยัน?
     forgot_password: ลืมรหัสผ่านของคุณ?
     invalid_reset_password_token: โทเคนการตั้งรหัสผ่านใหม่ไม่ถูกต้องหรือหมดอายุแล้ว โปรดขอโทเคนใหม่
+    link_to_webauth: ใช้อุปกรณ์กุญแจความปลอดภัยของคุณ
     login: เข้าสู่ระบบ
     logout: ออกจากระบบ
     migrate_account: ย้ายไปยังบัญชีอื่น
@@ -635,6 +636,7 @@ th:
       confirming: กำลังรอการยืนยันอีเมลให้เสร็จสมบูรณ์
       functional: บัญชีของคุณทำงานได้อย่างเต็มที่
     trouble_logging_in: มีปัญหาในการเข้าสู่ระบบ?
+    use_security_key: ใช้กุญแจความปลอดภัย
   authorize_follow:
     already_following: คุณกำลังติดตามบัญชีนี้อยู่แล้ว
     already_requested: คุณได้ส่งคำขอติดตามไปยังบัญชีนั้นไปแล้ว
@@ -657,6 +659,7 @@ th:
   date:
     formats:
       default: "%d %b %Y"
+      with_month_name: "%d %B %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count} ชั่วโมง"
@@ -856,6 +859,8 @@ th:
     email_events: เหตุการณ์สำหรับการแจ้งเตือนอีเมล
     email_events_hint: 'เลือกเหตุการณ์ที่คุณต้องการรับการแจ้งเตือน:'
     other_settings: การตั้งค่าการแจ้งเตือนอื่น ๆ
+  otp_authentication:
+    enable: เปิดใช้งาน
   pagination:
     newer: ใหม่กว่า
     next: ถัดไป
@@ -970,6 +975,7 @@ th:
     profile: โปรไฟล์
     relationships: การติดตามและผู้ติดตาม
     two_factor_authentication: การรับรองความถูกต้องด้วยสองปัจจัย
+    webauthn_authentication: กุญแจความปลอดภัย
   spam_check:
     spam_detected: นี่คือรายงานแบบอัตโนมัติ ตรวจพบสแปม
   statuses:
@@ -1024,12 +1030,15 @@ th:
       default: "%d %b %Y, %H:%M"
       month: "%b %Y"
   two_factor_authentication:
+    add: เพิ่ม
     disable: ปิดใช้งาน
+    edit: แก้ไข
     enabled: เปิดใช้งานการรับรองความถูกต้องด้วยสองปัจจัยแล้ว
     enabled_success: เปิดใช้งานการรับรองความถูกต้องด้วยสองปัจจัยสำเร็จ
     generate_recovery_codes: สร้างรหัสกู้คืน
     recovery_codes: รหัสกู้คืนข้อมูลสำรอง
     recovery_codes_regenerated: สร้างรหัสกู้คืนใหม่สำเร็จ
+    webauthn: กุญแจความปลอดภัย
   user_mailer:
     sign_in_token:
       details: 'นี่คือรายละเอียดของความพยายาม:'
@@ -1061,3 +1070,14 @@ th:
     signed_in_as: 'ลงชื่อเข้าเป็น:'
   verification:
     verification: การตรวจสอบ
+  webauthn_credentials:
+    add: เพิ่มกุญแจความปลอดภัยใหม่
+    create:
+      error: มีปัญหาในการเพิ่มกุญแจความปลอดภัยของคุณ โปรดลองอีกครั้ง
+      success: เพิ่มกุญแจความปลอดภัยของคุณสำเร็จ
+    delete: ลบ
+    destroy:
+      error: มีปัญหาในการลบกุญแจความปลอดภัยของคุณ โปรดลองอีกครั้ง
+      success: ลบกุญแจความปลอดภัยของคุณสำเร็จ
+    invalid_credential: กุญแจความปลอดภัยไม่ถูกต้อง
+    registered_on: ลงทะเบียนเมื่อ %{date}
