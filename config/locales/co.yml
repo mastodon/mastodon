@@ -991,6 +991,12 @@ co:
           quadrillion: P
           thousand: K
           trillion: T
+  otp_authentication:
+    enable: Attivà
+    instructions_html: "<strong>Scanate stu QR code cù Google Authenticator, Authy o qualcosa cusì nant’à u vostru telefuninu</strong>. St’applicazione hà da creà codici da entrà ogni volta chì vi cunnettate."
+    manual_instructions: 'S’ellu ùn hè micca pussibule scanà u QR code, pudete entre sta chjave sicreta:'
+    setup: Attivà
+    wrong_code: U codice ùn hè micca currettu! Site sicuru·a chì l’ora di l'apparechju è di u servore sò esatte?
   pagination:
     newer: Più ricente
     next: Dopu
@@ -1115,6 +1121,7 @@ co:
     profile: Prufile
     relationships: Abbunamenti è abbunati
     two_factor_authentication: Identificazione à dui fattori
+    webauthn_authentication: Chjave di sicurità
   spam_check:
     spam_detected: Quessu ghjè un riportu automaticu. Un spam hè statu ditettatu.
   statuses:
@@ -1261,7 +1268,9 @@ co:
       default: "%d %b %Y, %H:%M"
       month: "%b %Y"
   two_factor_authentication:
+    add: Aghjunghje
     disable: Disattivà
+    edit: Cambià
     enabled: Identificazione à dui fattori attivata
     enabled_success: L’identificazione à dui fattori hè stata attivata
     generate_recovery_codes: Creà codici di ricuperazione
