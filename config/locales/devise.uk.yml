@@ -59,6 +59,15 @@ uk:
         title: Коди двофакторного відновлення змінено
       unlock_instructions:
         subject: 'Mastodon: Інструкції для розблокування'
+      webauthn_credential:
+        added:
+          explanation: Наступний ключ безпеки був доданий до вашого облікового запису
+          subject: 'Mastodon: Новий ключ безпеки'
+          title: Новий ключ безпеки додано
+        deleted:
+          explanation: Наступний ключ безпеки було видалено з вашого облікового запису
+          subject: 'Mastodon: Ключ безпеки видалено'
+          title: Один з ваших ключів безпеки було видалено
     omniauth_callbacks:
       failure: Нам не вдалося аутентифікувати Вас з %{kind} через те, що "%{reason}".
       success: Успішно аутентифіковано з облікового запису %{kind}.
