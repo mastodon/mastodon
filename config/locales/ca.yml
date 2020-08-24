@@ -1261,21 +1261,14 @@ ca:
       default: "%b %d, %Y, %H:%M"
       month: "%b %Y"
   two_factor_authentication:
-    code_hint: Introdueix el codi generat per l'aplicació autenticadora per a confirmar
-    description_html: Si habilites l'<strong>autenticació de dos factors</strong>, et caldrà tenir el teu telèfon, que generarà tokens per a que puguis iniciar sessió.
     disable: Desactiva
-    enable: Activa
     enabled: Autenticació de dos factors activada
     enabled_success: Autenticació de dos factors activada correctament
     generate_recovery_codes: Genera codis de recuperació
-    instructions_html: "<strong>Escaneja aquest codi QR desde Google Authenticator o una aplicació similar del teu telèfon</strong>. Desde ara, aquesta aplicació generarà tokens que tens que ingresar quan volguis iniciar sessió."
     lost_recovery_codes: Els codis de recuperació et permeten recuperar l'accés al teu compte si perds el telèfon. Si has perdut els codis de recuperació els pots tornar a generar aquí. S'anul·laran els codis de recuperació anteriors.
-    manual_instructions: 'Si no pots escanejar el codi QR i necessites introduir-lo manualment, aquí tens el secret en text pla:'
     recovery_codes: Codis de recuperació de còpia de seguretat
     recovery_codes_regenerated: Codis de recuperació regenerats amb èxit
     recovery_instructions_html: Si mai perds l'accés al teu telèfon pots utilitzar un dels codis de recuperació a continuació per a recuperar l'accés al teu compte. <strong>Cal mantenir els codis de recuperació en lloc segur</strong>. Per exemple, imprimint-los i guardar-los amb altres documents importants.
-    setup: Establir
-    wrong_code: El codi introduït no és vàlid! És correcta l'hora del servidor i del dispositiu?
   user_mailer:
     backup_ready:
       explanation: Has sol·licitat una copia completa del teu compte Mastodon. Ara ja està a punt per a descàrrega!
