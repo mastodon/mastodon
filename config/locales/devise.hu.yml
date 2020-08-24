@@ -69,8 +69,13 @@ hu:
           subject: 'Mastodon: Biztonsági kulcs törölve'
           title: Az egyik biztonsági kulcsodat törölték
       webauthn_disabled:
-        explanation: A biztonsági kulccsal történő hitelesítést letiltották a fiókodon. Bejelentkezni csak a párosított TOTP app által generált tokennel lehet.
+        explanation: A biztonsági kulccsal történő hitelesítést letiltottuk a fiókodon. Bejelentkezni csak a párosított TOTP app által generált tokennel lehet.
         subject: 'Mastodon: Biztonsági kulccsal történő hitelesítés letiltva'
+        title: Biztonsági kulcsok letiltva
+      webauthn_enabled:
+        explanation: A biztonsági kulccsal történő hitelesítést engedélyeztük a fiókodon. A biztonsági kulcsodat mostantól használhatod bejelentkezésre.
+        subject: 'Mastodon: Biztonsági kulcsos hitelesítés engedélyezve'
+        title: Biztonsági kulcsok engedélyezve
     omniauth_callbacks:
       failure: Sikertelen hitelesítés %{kind} fiókról, mert "%{reason}".
       success: Sikeres hitelesítés %{kind} fiókról.
