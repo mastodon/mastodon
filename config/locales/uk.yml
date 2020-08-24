@@ -205,6 +205,7 @@ uk:
       whitelisted: У білому списку
     action_logs:
       action_types:
+        assigned_to_self_report: Призначити звіт
         change_email_user: Змінити електронну пошту для користувача
         confirm_user: Підтвердити користувача
         create_account_warning: Створити попередження
@@ -220,10 +221,12 @@ uk:
         destroy_domain_block: Видалити блокування домену
         destroy_email_domain_block: Видалити блокування поштового домену
         destroy_status: Видалити пост
+        disable_2fa_user: Вимкнути 2FA
         disable_custom_emoji: Вимкнути користувацькі емодзі
         disable_user: Відключити користувача
         enable_custom_emoji: Увімкнути користувацькі емодзі
         enable_user: Активувати користувача
+        memorialize_account: Зробити обліковий запис меморіалом
         promote_user: Підвищити користувача
         remove_avatar_user: Видалити аватар
         reopen_report: Перевідкрити скаргу
@@ -231,6 +234,7 @@ uk:
         resolve_report: Розв'язати скаргу
         silence_account: Заглушити обліковий запис
         suspend_account: Призупинити обліковий запис
+        unassigned_report: Видалити скаргу
         unsilence_account: Розглушити обліковий запис
         unsuspend_account: Розморозити обліковий запис
         update_announcement: Оновити оголошення
@@ -1138,6 +1142,11 @@ uk:
     spam_detected: Це автоматична скарга. Було виявлено спам.
   statuses:
     attached:
+      audio:
+        one: "%{count} аудіозапис"
+        few: "%{count} аудіозаписи"
+        many: "%{count} аудіозаписів"
+        other: "%{count} аудіозаписів"
       description: 'Прикріплено: %{attached}'
       image:
         one: "%{count} зображення"
@@ -1353,9 +1362,11 @@ uk:
       tips: Поради
       title: Ласкаво просимо, %{name}!
   users:
+    blocked_email_provider: Цей поштовий провайдер не дозволений
     follow_limit_reached: Не можна слідкувати більш ніж за %{limit} людей
     generic_access_help_html: Не вдається отримати доступ до облікового запису? Ви можете зв'язатися з %{email} для допомоги
     invalid_email: Введена адреса e-mail неправильна
+    invalid_email_mx: Вказана електронна адреса не існує
     invalid_otp_token: Введено неправильний код
     invalid_sign_in_token: Хибний код безпеки
     otp_lost_help_html: Якщо ви втратили доступ до обох, ви можете отримати доступ з %{email}
