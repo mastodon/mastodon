@@ -680,8 +680,10 @@ co:
       prefix_sign_up: Arregistratevi nant'à Mastodon oghji!
       suffix: Cù un contu, puderete siguità l'altri, pustà statuti è scambià missaghji cù l'utilizatori di tutti i servori Mastodon è ancu di più!
     didnt_get_confirmation: Ùn avete micca ricevutu l’istruzione di cunfirmazione?
+    dont_have_your_security_key: Ùn avete micca a chjave di sicurità?
     forgot_password: Chjave scurdata?
     invalid_reset_password_token: U ligame di riinizializazione di a chjave d’accessu hè spiratu o ùn hè micca validu. Pudete dumandà un'altru ligame.
+    link_to_webauth: Utilizate a vostra chjave di sicurità
     login: Cunnettassi
     logout: Scunnettassi
     migrate_account: Cambià di contu
@@ -707,6 +709,7 @@ co:
       pending: A vostra dumanda hè in attesa di rivista da a squadra di muderazione. Quessa pò piglià un certu tempu. Avete da riceve un'e-mail s'ella hè appruvata.
       redirecting_to: U vostru contu hè inattivu perchè riindirizza versu %{acct}.
     trouble_logging_in: Difficultà per cunnettavi?
+    use_security_key: Utilizà a chjave di sicurità
   authorize_follow:
     already_following: Site digià abbunatu·a à stu contu
     already_requested: Avete digià mandatu una dumanda d'abbunamentu à stu contu
@@ -731,6 +734,7 @@ co:
   date:
     formats:
       default: "%d %b %Y"
+      with_month_name: "%d %B %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}o"
@@ -992,6 +996,8 @@ co:
           thousand: K
           trillion: T
   otp_authentication:
+    code_hint: Entrate u codice generatu da l’applicazione per cunfirmà
+    description_html: S’ella hè attivata <strong>l’identificazione à dui fattori</strong> cù un'applicazione d'identificazione, duvete avè u vostru telefuninu pè ottene un codice di cunnezzione.
     enable: Attivà
     instructions_html: "<strong>Scanate stu QR code cù Google Authenticator, Authy o qualcosa cusì nant’à u vostru telefuninu</strong>. St’applicazione hà da creà codici da entrà ogni volta chì vi cunnettate."
     manual_instructions: 'S’ellu ùn hè micca pussibule scanà u QR code, pudete entre sta chjave sicreta:'
@@ -1270,14 +1276,18 @@ co:
   two_factor_authentication:
     add: Aghjunghje
     disable: Disattivà
+    disabled_success: L’identificazione à dui fattori hè stata disattivata
     edit: Cambià
     enabled: Identificazione à dui fattori attivata
     enabled_success: L’identificazione à dui fattori hè stata attivata
     generate_recovery_codes: Creà codici di ricuperazione
     lost_recovery_codes: I codici di ricuperazione à usu unicu vi permettenu di sempre avè accessu à u vostru contu s’è voi avete persu u vostru telefuninu. S’elli sò ancu persi, pudete creà codici novi quì. I vechji codici ùn marchjeranu più.
+    methods: Manere d'I2F
+    otp: Applicazione d'identificazione
     recovery_codes: Codici di ricuperazione
     recovery_codes_regenerated: Codici di ricuperazione ricreati
     recovery_instructions_html: Pudete fà usu di i codici quì sottu per sempre avè accessu à u vostru contu s’ellu hè statu persu u vostru telefuninu. <strong>Guardateli in una piazza sicura</strong>. Per esempiu, stampati è cunservati cù altri ducumenti impurtanti.
+    webauthn: Chjave di sicurità
   user_mailer:
     backup_ready:
       explanation: Avete dumandatu un’archiviu cumpletu di u vostru contu Mastodon. Avà hè prontu per scaricà!
@@ -1339,3 +1349,17 @@ co:
   verification:
     explanation_html: 'Pudete <strong>verificavi cum''è u pruprietariu di i ligami in i metadati di u vostru prufile</strong>. Per quessa, u vostru situ deve avè un ligame versu a vostra pagina Mastodon. U ligame <strong>deve</strong> avè un''attributu <code>rel="me"</code>. U cuntenutu di u testu di u ligame ùn hè micca impurtante. Eccu un''esempiu:'
     verification: Verificazione
+  webauthn_credentials:
+    add: Aghjunghje una chjave di sicurità
+    create:
+      success: A vostra chjave di sicurità hè stata aghjunta.
+    delete: Sguassà
+    delete_confirmation: Site sicuru·a che vulete sguassà sta chjave?
+    destroy:
+      success: A vostra chjave di sicurità hè stata sguassata.
+    invalid_credential: Chjave di sicurità I2F micca validu
+    nickname_hint: Entrate u nome di a vostra nova chjave di sicurità
+    not_enabled: Ùn avete micca attivatu WebAuthn
+    not_supported: E chjave di sicurità ùn marchjanu micca cù quessu navigatore
+    otp_required: Per utilizà una chjave di sicurità duvete attivà l'identificazione à dui fattori prima.
+    registered_on: Arregistrata %{date}
