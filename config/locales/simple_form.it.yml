@@ -66,6 +66,7 @@ it:
         text: Questo ci aiuterà ad esaminare la tua richiesta
       sessions:
         otp: 'Inserisci il codice a due fattori generato dall''app del tuo telefono o usa uno dei codici di recupero:'
+        webauthn: Se si tratta di una chiavetta USB assicurati di inserirla e, se necessario, toccarla.
       tag:
         name: Puoi cambiare solo il minuscolo/maiuscolo delle lettere, ad esempio, per renderlo più leggibile
       user:
@@ -187,4 +188,7 @@ it:
     required:
       mark: "*"
       text: richiesto
+    title:
+      sessions:
+        webauthn: Usa una delle tue chiavi di sicurezza per accedere
     'yes': 'Si'
