@@ -963,21 +963,14 @@ da:
     default: Mastodont (Mørk)
     mastodon-light: Mastodon (Lys)
   two_factor_authentication:
-    code_hint: Indtast koden der er genereret af din app for at bekræfte
-    description_html: Hvis du aktiverer <strong>to-faktor godkendelse</strong>, vil du være nødt til at være i besiddelse af din telefon, der genererer tokens som du skal indtaste, når du logger ind.
     disable: Deaktiver
-    enable: Aktiver
     enabled: To-faktor godkendelse er aktiveret
     enabled_success: To-faktor godkendelse succesfuldt aktiveret
     generate_recovery_codes: Generer gendannelseskoder
-    instructions_html: "<strong>Scan denne QR kode i Google Autehnticator eller lignende TOTP app på din telefon</strong>. Fra nu af vil den app generere koder som du vil være nødt til at indtaste når du logger ind."
     lost_recovery_codes: Gendannelseskoder vil lade dig få adgang til din konto hvis du mister din telefon. Hvis du har mistet dine gendannelseskoder, kan du regenerere dem her. Dine gamle gendannelseskoder vil blive ugyldige.
-    manual_instructions: 'Hvis du ikke kan scanne QR koden er er nødt til at skrive koden ind manuelt, kan er din almindelig tekst secret:'
     recovery_codes: Reserve koder
     recovery_codes_regenerated: Reserve koder blev succesfuldt regenereret
     recovery_instructions_html: Hvis du nogensinde mister adgang til din telefon, kan du bruge en af genoprettelses koderne forneden for at få adgang til din konto. <strong>Gem gendannelses koderne et sikkert sted</strong>. Foreksempel kan du printe dem ud og gemme dem sammen med andre vigtige dokumenter.
-    setup: Sæt op
-    wrong_code: Den indtastede kode var ugyldig! Er serverens tid og enhedens tid korrekte?
   user_mailer:
     backup_ready:
       explanation: Din anmodning for fuld backup af din Mastodon konto. Den er nu klar til at blive hentet!
