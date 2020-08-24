@@ -672,8 +672,11 @@ ko:
       prefix_sign_up: 마스토돈에 가입하세요!
       suffix: 계정 하나로 사람들을 팔로우 하고, 게시물을 작성하며 마스토돈을 포함한 다른 어떤 서버의 유저와도 메시지를 주고 받을 수 있습니다!
     didnt_get_confirmation: 확인 메일을 받지 못하셨습니까?
+    dont_have_your_security_key: 보안 키가 없습니까?
     forgot_password: 비밀번호를 잊어버리셨습니까?
     invalid_reset_password_token: 암호 리셋 토큰이 올바르지 못하거나 기간이 만료되었습니다. 다시 요청해주세요.
+    link_to_otp: 휴대폰의 2차 코드 혹은 복구 키를 입력해주세요
+    link_to_webauth: 보안 키 장치 사용
     login: 로그인
     logout: 로그아웃
     migrate_account: 계정 옮기기
@@ -699,6 +702,7 @@ ko:
       pending: 당신의 가입 신청은 스태프의 검사를 위해 대기중입니다. 이것은 시간이 다소 소요됩니다. 가입 신청이 승인 될 경우 이메일을 받게 됩니다.
       redirecting_to: 계정이 %{acct}로 리다이렉트 중이기 때문에 비활성 상태입니다.
     trouble_logging_in: 로그인 하는데 문제가 있나요?
+    use_security_key: 보안 키 사용
   authorize_follow:
     already_following: 이미 이 계정을 팔로우 하고 있습니다
     already_requested: 이미 이 계정에게 팔로우 요청을 보냈습니다
@@ -723,6 +727,7 @@ ko:
   date:
     formats:
       default: "%Y-%b-%d"
+      with_month_name: "%Y-%B-%d"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}시간"
@@ -979,6 +984,8 @@ ko:
           quadrillion: Q
           thousand: K
           trillion: T
+  otp_authentication:
+    code_hint: 확인을 위해 인증 애플리케이션에 생성된 코드를 입력해 주십시오
   pagination:
     newer: 새로운 툿
     next: 다음
