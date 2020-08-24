@@ -1242,21 +1242,14 @@ zh-CN:
       default: "%Y年%-m月%d日 %H:%M"
       month: "%Y 年 %B"
   two_factor_authentication:
-    code_hint: 输入认证器生成的代码以确认操作
-    description_html: 启用<strong>双重认证</strong>后，你需要输入手机认证器生成的代码才能登录.
     disable: 停用
-    enable: 启用
     enabled: 双重认证已启用
     enabled_success: 双重认证启用成功
     generate_recovery_codes: 生成恢复代码
-    instructions_html: "<strong>请使用 Google 身份验证器或其他 TOTP 双重认证手机应用扫描此处的二维码</strong>。启用双重认证后，你需要输入该应用生成的代码来登录你的帐户。"
     lost_recovery_codes: 如果你的手机不慎丢失，你可以使用恢复代码来重新获得对帐户的访问权。如果你遗失了恢复代码，可以在此处重新生成。之前使用的恢复代码将会失效。
-    manual_instructions: '如果你无法扫描二维码，请手动输入下列文本：'
     recovery_codes: 备份恢复代码
     recovery_codes_regenerated: 恢复代码重新生成成功
     recovery_instructions_html: 如果你的手机无法使用，你可以使用下列任意一个恢复代码来重新获得对帐户的访问权。<strong>请妥善保管好你的恢复代码</strong>（例如，你可以将它们打印出来，然后和其他重要的文件放在一起）。
-    setup: 设置
-    wrong_code: 输入的认证码无效！请确认服务器时间与设备时间是否正确？
   user_mailer:
     backup_ready:
       explanation: 你请求了一份 Mastodon 帐户的完整备份。现在你可以下载了！
