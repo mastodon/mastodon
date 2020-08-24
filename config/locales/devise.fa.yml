@@ -62,6 +62,15 @@ fa:
       webauthn_credential:
         added:
           subject: 'ماستودون: کلید امنیتی جدید'
+          title: کلید امنیتی جدیدی افزوده شد
+        deleted:
+          subject: 'ماستودون: کلید امنیتی حذف شد'
+          title: یکی از کلیدهای امنیتیتان حذف شد
+      webauthn_disabled:
+        title: کلیدهای امنیتی از کار افتادند
+      webauthn_enabled:
+        subject: 'ماستودون: تأیید هویت با کلید امنیتی به کار افتاد'
+        title: کلیدهای امنیتی به کار افتادند
     omniauth_callbacks:
       failure: تآیید هویتتان از %{kind} نتوانست انجام شود چرا که «%{reason}».
       success: تأیید هویت از حساب %{kind} با موفقیت انجام شد.
