@@ -735,6 +735,7 @@ it:
   date:
     formats:
       default: "%d %b %Y"
+      with_month_name: "%d %B %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count} ore"
@@ -1001,6 +1002,7 @@ it:
     enable: Abilita
     instructions_html: "<strong>Scansiona questo codice QR in Google Authenticator o in un'applicazione TOTP simile sul tuo telefono</strong>. D'ora in poi, quell'app genererà i codici che dovrai inserire quando accedi."
     manual_instructions: 'Se non riesci a scansionare il codice QR e hai bisogno di inserirlo manualmente, questo è il codice segreto in chiaro:'
+    setup: Configura
     wrong_code: Il codice inserito non è valido! Controlla che l'ora del server e l'ora del dispositivo siano esatte.
   pagination:
     newer: Più recente
@@ -1278,13 +1280,18 @@ it:
   two_factor_authentication:
     add: Aggiungi
     disable: Disabilita
+    disabled_success: Autenticazione a due fattori disattivata
+    edit: Modifica
     enabled: È abilitata l'autenticazione a due fattori
     enabled_success: Autenticazione a due fattori attivata con successo
     generate_recovery_codes: Genera codici di recupero
     lost_recovery_codes: I codici di recupero ti permettono di accedere al tuo account se perdi il telefono. Se hai perso i tuoi codici di recupero, puoi rigenerarli qui. Quelli vecchi saranno annullati.
+    methods: Metodi a due fattori
+    otp: App di autenticazione
     recovery_codes: Codici di recupero del backup
     recovery_codes_regenerated: I codici di recupero sono stati rigenerati
     recovery_instructions_html: Se perdi il telefono, puoi usare uno dei codici di recupero qui sotto per riottenere l'accesso al tuo account. <strong>Conserva i codici di recupero in un posto sicuro</strong>. Ad esempio puoi stamparli e conservarli insieme ad altri documenti importanti.
+    webauthn: Chiavi di sicurezza
   user_mailer:
     backup_ready:
       explanation: Hai richiesto un backup completo del tuo account Mastodon. È pronto per essere scaricato!
@@ -1346,3 +1353,20 @@ it:
   verification:
     explanation_html: 'Puoi <strong>certificare te stesso come proprietario dei link nei metadati del tuo profilo</strong>. Per farlo, il sito a cui punta il link deve contenere un link che punta al tuo profilo Mastodon. Il link di ritorno <strong>deve</strong> avere l''attributo <code>rel="me"</code>. Il testo del link non ha importanza. Ecco un esempio:'
     verification: Verifica
+  webauthn_credentials:
+    add: Aggiungi una nuova chiave di sicurezza
+    create:
+      error: Si è verificato un problema durante l'aggiunta della chiave di sicurezza. Dovresti riprovare.
+      success: La chiave di sicurezza è stata aggiunta.
+    delete: Cancella
+    delete_confirmation: Sei sicuro di voler cancellare questa chiave di sicurezza?
+    description_html: Se abiliti <strong>l'autenticazione con chiave di sicurezza</strong>, per accedere sarà necessario utilizzare una delle tue chiavi di sicurezza.
+    destroy:
+      error: Si è verificato un problema durante la cancellazione della chiave di sicurezza. Dovresti riprovare.
+      success: La chiave di sicurezza è stata cancellata.
+    invalid_credential: Chiave di sicurezza non valida
+    nickname_hint: Inserisci il soprannome della tua nuova chiave di sicurezza
+    not_enabled: Non hai ancora abilitato WebAuthn
+    not_supported: Questo browser non supporta le chiavi di sicurezza
+    otp_required: Per utilizzare le chiavi di sicurezza, prima abilita l'autenticazione a due fattori.
+    registered_on: Registrato il %{date}
