@@ -734,6 +734,7 @@ hu:
   date:
     formats:
       default: "%Y.%b.%d."
+      with_month_name: "%Y. %B %d"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}ó"
@@ -994,6 +995,14 @@ hu:
           quadrillion: Q
           thousand: K
           trillion: T
+  otp_authentication:
+    code_hint: Jóváhagyáshoz írd be a hitelesítő alkalmazás által generált kódot
+    description_html: Ha engedélyezed a <strong>kétlépcsős azonosítást</strong>, a bejelentkezéshez szükséged lesz a telefonodra és egy alkalmazásra, amely hozzáférési kódot generál számodra.
+    enable: Engedélyezés
+    instructions_html: "<strong>Olvasd be ezt a QR-kódot a telefonodon futó Google Authenticator vagy egyéb TOTP alkalmazással</strong>. A jövőben ez az alkalmazás fog számodra hozzáférési kódot generálni a belépéshez."
+    manual_instructions: 'Ha nem sikerült a QR-kód beolvasása, itt a szöveges kulcs, amelyet manuálisan kell begépelned:'
+    setup: Beállítás
+    wrong_code: A beírt kód nem érvényes! A szerver órája és az eszközöd órája szinkronban jár?
   pagination:
     newer: Újabb
     next: Következő
@@ -1118,6 +1127,7 @@ hu:
     profile: Profil
     relationships: Követések és követők
     two_factor_authentication: Kétlépcsős azonosítás
+    webauthn_authentication: Biztonsági kulcsok
   spam_check:
     spam_detected: Ez egy automatikus jelentés. Spamet érzékeltünk.
   statuses:
@@ -1264,14 +1274,20 @@ hu:
       default: "%Y. %b %d., %H:%M"
       month: "%Y %b"
   two_factor_authentication:
+    add: Hozzáadás
     disable: Kikapcsolás
+    disabled_success: A kétlépcsős azonosítást sikeresen letiltottuk
+    edit: Szerkesztés
     enabled: Kétlépcsős azonosítás engedélyezve
     enabled_success: A kétlépcsős azonosítást sikeresen engedélyezted
     generate_recovery_codes: Visszaállítási kódok generálása
     lost_recovery_codes: A visszaállítási kódok segítségével tudsz belépni, ha elveszítenéd a telefonod. Ha a visszaállítási kódjaidat hagytad el, itt generálhatsz újakat. A régi kódokat ebben az esetben érvénytelenítjük.
+    methods: Kétlépcsős eljárások
+    otp: Hitelesítő alkalmazás
     recovery_codes: Visszaállítási kódok biztonsági mentése
     recovery_codes_regenerated: A visszaállítási kódokat sikeresen újrageneráltuk
     recovery_instructions_html: A visszaállítási kódok egyikének segítségével tudsz majd belépni, ha elveszítenéd a telefonod. <strong>Tartsd biztos helyen a visszaállítási kódjaid</strong>! Például nyomtasd ki őket és tárold a többi fontos iratoddal együtt.
+    webauthn: Biztonsági kulcsok
   user_mailer:
     backup_ready:
       explanation: A Mastodon fiókod teljes mentését kérted. A mentés kész ás letölthető!
@@ -1333,3 +1349,20 @@ hu:
   verification:
     explanation_html: 'A profilodon <strong>hitelesítheted magad, mint az itt található linkek tulajdonosa</strong>. Ehhez a linkelt weboldalnak tartalmaznia kell egy linket vissza a Mastodon profilodra. Ennek <strong>tartalmaznia kell</strong> a <code>rel="me"</code> attribútumot. A link szövege bármi lehet. Itt egy példa:'
     verification: Hitelesítés
+  webauthn_credentials:
+    add: Biztonsági kulcs hozzáadása
+    create:
+      error: A biztonsági kulcs hozzáadása közben hiba történt. Kérlek, próbáld újra.
+      success: A biztonsági kulcsodat sikeresen felvettük.
+    delete: Törlés
+    delete_confirmation: Biztos, hogy le akarod törölni ezt a biztonsági kulcsot?
+    description_html: Ha engedélyezed a <strong>biztonsági kulcsos hitelesítést</strong>, a bejelentkezéshez szükséged lesz az egyik kulcsodra.
+    destroy:
+      error: A biztonsági kulcs törlése közben hiba történt. Kérlek, próbáld újra.
+      success: A biztonsági kulcsodat sikeresen töröltük.
+    invalid_credential: Érvénytelen biztonsági kulcs
+    nickname_hint: Írd be az új biztonsági kulcsod becenevét
+    not_enabled: Még nem engedélyezted a WebAuthn-t
+    not_supported: Ez a böngésző nem támogatja a biztonsági kulcsokat
+    otp_required: A biztonsági kulcsok használatához először engedélyezd a kétlépcsős azonosítást.
+    registered_on: 'Regisztrált ekkor: %{date}'
