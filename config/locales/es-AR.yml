@@ -1261,21 +1261,14 @@ es-AR:
       default: "%Y.%b.%d, %H:%M"
       month: "%b %Y"
   two_factor_authentication:
-    code_hint: Ingresá el código generado por tu aplicación de autenticación para confirmar
-    description_html: Si habilitás la <strong>autenticación de dos factores</strong>, se requerirá estar en posesión de tu dispositivo móvil, lo que generará claves para que las ingresés.
     disable: Deshabilitar
-    enable: Habilitar
     enabled: La autenticación de dos factores está activada
     enabled_success: Se habilitó exitosamente la autenticación de dos factores
     generate_recovery_codes: Generar códigos de recuperación
-    instructions_html: "<strong>Escaneá este código QR con Authy, FreeOTP, Google Authenticator, Microsoft Authenticator o cualquier otra aplicación de generación de contraseñas por única vez basada en el tiempo (\"TOTP\") en tu dispositivo móvil</strong>. Desde ahora, esta aplicación va a generar claves que tenés que ingresar cuando quieras iniciar sesión."
     lost_recovery_codes: Los códigos de recuperación te permiten recuperar el acceso a tu cuenta, si perdés tu dispositivo móvil. Si perdiste tus códigos de recuperación, podés regenerarlos acá. Tus antiguos códigos de recuperación serán invalidados.
-    manual_instructions: 'Si no podés escanear el código QR y necesitás introducirlo manualmente, este es el secreto en texto plano:'
     recovery_codes: Resguardar códigos de recuperación
     recovery_codes_regenerated: Los códigos de recuperación se regeneraron exitosamente
     recovery_instructions_html: Si alguna vez perdés el acceso a tu dispositivo móvil, podés usar uno de los siguientes códigos de recuperación para recuperar el acceso a tu cuenta. <strong>Mantenelos a salvo</strong>. Por ejemplo, podés imprimirlos y guardarlos con otros documentos importantes.
-    setup: Configurar
-    wrong_code: '¡El código ingresado no es válido! ¿La hora en el dispositivo y en el servidor es correcta?'
   user_mailer:
     backup_ready:
       explanation: Solicitado un resguardo completo de tu cuenta de Mastodon. ¡Ya está listo para descargar!
