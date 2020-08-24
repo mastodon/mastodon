@@ -71,6 +71,11 @@ es:
       webauthn_disabled:
         explanation: La autenticación con claves de seguridad ha sido desactivada para su cuenta. El inicio de sesión es ahora posible utilizando sólo el token generado por la aplicación emparejada TOTP.
         subject: 'Mastodon: Autenticación con claves de seguridad desactivada'
+        title: Claves de seguridad desactivadas
+      webauthn_enabled:
+        explanation: La autenticación con clave de seguridad ha sido habilitada para su cuenta. Su clave de seguridad ahora puede ser usada para iniciar sesión.
+        subject: 'Mastodon: Autenticación con clave de seguridad activada'
+        title: Claves de seguridad activadas
     omniauth_callbacks:
       failure: No podemos autentificarle desde %{kind} debido a "%{reason}".
       success: Autentificado con éxito desde la cuenta %{kind} .
