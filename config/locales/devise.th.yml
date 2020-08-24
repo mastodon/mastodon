@@ -59,6 +59,11 @@ th:
         title: เปลี่ยนรหัสกู้คืน 2FA แล้ว
       unlock_instructions:
         subject: 'Mastodon: คำแนะนำการปลดล็อค'
+      webauthn_credential:
+        added:
+          subject: 'Mastodon: กุญแจความปลอดภัยใหม่'
+        deleted:
+          subject: 'Mastodon: ลบกุญแจความปลอดภัยแล้ว'
     omniauth_callbacks:
       failure: ไม่สามารถรับรองความถูกต้องของคุณจาก %{kind} เนื่องจาก "%{reason}"
       success: รับรองความถูกต้องจากบัญชี %{kind} สำเร็จ
