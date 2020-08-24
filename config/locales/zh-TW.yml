@@ -797,21 +797,14 @@ zh-TW:
     formats:
       default: "%Y年%-m月%d日 %H:%M"
   two_factor_authentication:
-    code_hint: 請輸入您認證器產生的代碼，以進行認證
-    description_html: 啟用<strong>兩階段認證</strong>後，登入時將需要使手機、或其他種類認證器產生的代碼。
     disable: 停用
-    enable: 啟用
     enabled: 兩階段認證已啟用
     enabled_success: 已成功啟用兩階段認證
     generate_recovery_codes: 產生備用驗證碼
-    instructions_html: "<strong>請用您手機的認證器應用程式（如 Google Authenticator、Authy），掃描這裡的 QR 圖形碼</strong>。在兩階段認證啟用後，您登入時將須要使用此應用程式產生的認證碼。"
     lost_recovery_codes: 讓你可以在遺失手機時，使用備用驗證碼登入。如果你遺失了備用驗證碼，可以在這裏產生一批新的，舊有的備用驗證碼將會失效。
-    manual_instructions: '如果您無法掃描 QR 圖形碼，請手動輸入:'
     recovery_codes: 備份備用驗證碼
     recovery_codes_regenerated: 成功產生新的備用驗證碼
     recovery_instructions_html: 如果你的手機無法使用，你可以使用下列任意一個備用驗證碼來重新獲得帳戶的訪問權。<strong>請妥善保管好你的備用驗證碼</strong>（例如，你可以將它們列印出來，與你的其他重要文件放在一起）。
-    setup: 設定
-    wrong_code: 您輸入的認證碼無效! 請確認伺服器時間與設備時間是否正確?
   user_mailer:
     backup_ready:
       explanation: 你要求的 Mastodon 帳戶完整備份檔案現已就緒，可供下載!
