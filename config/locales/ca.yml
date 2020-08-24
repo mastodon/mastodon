@@ -680,8 +680,11 @@ ca:
       prefix_sign_up: Registra't avui a Mastodon!
       suffix: Amb un compte seràs capaç de seguir persones, publicar i intercanviar missatges amb usuaris de qualsevol servidor de Mastodon i més!
     didnt_get_confirmation: No has rebut el correu de confirmació?
+    dont_have_your_security_key: No tens la teva clau de seguretat?
     forgot_password: Has oblidat la contrasenya?
     invalid_reset_password_token: L'enllaç de restabliment de la contrasenya no és vàlid o ha caducat. Torna-ho a provar.
+    link_to_otp: Introdueix el teu codi de doble factor des d’el teu mòbil o el codi de recuperació
+    link_to_webauth: Usa el dispositiu de la teva clau de seguretat
     login: Inicia sessió
     logout: Surt
     migrate_account: Mou a un compte diferent
@@ -707,6 +710,7 @@ ca:
       pending: La vostra sol·licitud està pendent de revisió pel nostre personal. Això pot trigar una mica. Rebreu un correu electrònic quan sigui aprovada.
       redirecting_to: El teu compte és inactiu perquè actualment està redirigint a %{acct}.
     trouble_logging_in: Problemes per iniciar la sessió?
+    use_security_key: Usa clau de seguretat
   authorize_follow:
     already_following: Ja estàs seguint aquest compte
     already_requested: Ja has enviat una sol·licitud de seguiment a aquest usuari
@@ -731,6 +735,7 @@ ca:
   date:
     formats:
       default: "%b %d, %Y"
+      with_month_name: "%B %d, %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count} h"
