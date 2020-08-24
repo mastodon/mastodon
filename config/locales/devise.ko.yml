@@ -59,6 +59,15 @@ ko:
         title: 2FA 복구 코드 변경됨
       unlock_instructions:
         subject: '마스토돈: 잠금 해제 방법'
+      webauthn_credential:
+        added:
+          explanation: 계정에 다음 보안 키가 등록되었습니다
+          subject: '마스토돈: 새로운 보안 키'
+          title: 새 보안 키가 추가되었습니다
+        deleted:
+          explanation: 계정에 다음 보안 키가 삭제되었습니다
+          subject: '마스토돈: 보안 키 삭제'
+          title: 보안 키가 삭제되었습니다
     omniauth_callbacks:
       failure: '"%{reason}" 때문에 당신을 %{kind}에서 인증할 수 없습니다.'
       success: 성공적으로 %{kind} 계정을 인증 했습니다.
