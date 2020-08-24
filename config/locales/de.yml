@@ -735,6 +735,7 @@ de:
   date:
     formats:
       default: "%d. %b %Y"
+      with_month_name: "%B %d, %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}h"
@@ -997,7 +998,10 @@ de:
           trillion: T
   otp_authentication:
     code_hint: Geben Sie den von Ihrer Authentifizierungs-App generierten Code ein, um ihn zu bestätigen
+    description_html: Wenn Sie <strong>Zwei-Faktor-Authentifizierung</strong> mit einer Authentifizierungs-App aktivieren, müssen Sie, um sich anzumelden, im Besitz Ihres Telefons sein, das Token für Ihren Zugang generiert.
     enable: Aktivieren
+    instructions_html: "<strong>Scannen Sie diesen QR-Code in Google Authenticator oder einer ähnlichen TOTP-App auf Ihrem Telefon</strong>. Von nun an generiert diese App Tokens, die Sie beim Anmelden eingeben müssen."
+    manual_instructions: 'Wenn Sie den QR-Code nicht scannen können und ihn manuell eingeben müssen, ist hier das Klartext-Geheimnis:'
     setup: Einrichten
     wrong_code: Der eingegebene Code war ungültig! Sind die Serverzeit und die Gerätezeit korrekt?
   pagination:
@@ -1355,6 +1359,7 @@ de:
       success: Ihr Sicherheitsschlüssel wurde erfolgreich hinzugefügt.
     delete: Löschen
     delete_confirmation: Sind Sie sicher, dass Sie diesen Sicherheitsschlüssel löschen möchten?
+    description_html: Wenn Sie <strong>Authentifizierung mit Sicherheitsschlüssel</strong>aktivieren, müssen Sie einen Ihrer Sicherheitsschlüssel verwenden, um sich anmelden zu können.
     destroy:
       error: Es gab ein Problem beim Löschen Ihres Sicherheitsschlüssels. Bitte versuchen Sie es erneut.
       success: Ihr Sicherheitsschlüssel wurde erfolgreich gelöscht.
