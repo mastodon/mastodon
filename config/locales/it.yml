@@ -1264,21 +1264,14 @@ it:
       default: "%b %d, %Y, %H:%M"
       month: "%b %Y"
   two_factor_authentication:
-    code_hint: Inserisci il codice generato dalla tua app di autenticazione
-    description_html: Se abiliti <strong>l'autorizzazione a due fattori</strong>, entrare nel tuo account ti richiederà di avere vicino il tuo telefono, il quale ti genererà un codice per eseguire l'accesso.
     disable: Disabilita
-    enable: Abilita
     enabled: È abilitata l'autenticazione a due fattori
     enabled_success: Autenticazione a due fattori attivata con successo
     generate_recovery_codes: Genera codici di recupero
-    instructions_html: "<strong>Scannerizza questo QR code con Google Authenticator o un'app TOTP simile sul tuo telefono</strong>. Da ora in poi, quell'applicazione genererà codici da inserire necessariamente per eseguire l'accesso."
     lost_recovery_codes: I codici di recupero ti permettono di accedere al tuo account se perdi il telefono. Se hai perso i tuoi codici di recupero, puoi rigenerarli qui. Quelli vecchi saranno annullati.
-    manual_instructions: 'Se non puoi scannerizzare il QR code e hai bisogno di inserirlo manualmente, questo è il codice segreto in chiaro:'
     recovery_codes: Codici di recupero del backup
     recovery_codes_regenerated: I codici di recupero sono stati rigenerati
     recovery_instructions_html: Se perdi il telefono, puoi usare uno dei codici di recupero qui sotto per riottenere l'accesso al tuo account. <strong>Conserva i codici di recupero in un posto sicuro</strong>. Ad esempio puoi stamparli e conservarli insieme ad altri documenti importanti.
-    setup: Configura
-    wrong_code: Il codice inserito non è corretto! Assicurati che l'orario del server e l'orario del dispositivo siano corretti.
   user_mailer:
     backup_ready:
       explanation: Hai richiesto un backup completo del tuo account Mastodon. È pronto per essere scaricato!
