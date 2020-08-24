@@ -1260,21 +1260,14 @@ gl:
       default: "%d %b, %Y, %H:%M"
       month: "%b %Y"
   two_factor_authentication:
-    code_hint: Introducir o código xerado polo seu aplicativo de autenticación para confirmar
-    description_html: Se activa a <strong>autenticación de dobre factor</strong>, a conexión pediralle estar en posesión do seu teléfono, que creará testemuños para poder entrar.
     disable: Deshabilitar
-    enable: Habilitar
     enabled: A autenticación de dobre-factor está activada
     enabled_success: Activouse con éxito a autenticación de dobre-factor
     generate_recovery_codes: Xerar códigos de recuperación
-    instructions_html: "<strong>Escanea este código QR en Google Authenticator ou aplicación TOTP no teu teléfono</strong>. Desde agora, esta aplicación proporcionará testemuños que debes introducir ao conectarte."
     lost_recovery_codes: Os códigos de recuperación permítenlle recuperar o acceso a súa conta si perde o teléfono. Si perde os códigos de recuperación, pode restauralos aquí. Os seus códigos de recuperación anteriores serán invalidados.
-    manual_instructions: 'Si non pode escanear o código QR e precisa introducilo manualmente, aquí está o testemuño secreto en texto plano:'
     recovery_codes: Códigos de recuperación do respaldo
     recovery_codes_regenerated: Códigos de recuperación xerados correctamente
     recovery_instructions_html: Si perdese o acceso ao seu teléfono, pode utilizar un dos códigos inferiores de recuperación para recuperar o acceso a súa conta. <strong>Garde os códigos en lugar seguro</strong>. Por exemplo, pode imprimilos e gardalos xunto con outros documentos importantes.
-    setup: Configurar
-    wrong_code: O código introducido non é válido! Son correctas as horas no dispositivo e o servidor?
   user_mailer:
     backup_ready:
       explanation: Solicitou un respaldo completo da súa conta de Mastodon. Xa está listo para descargar!
