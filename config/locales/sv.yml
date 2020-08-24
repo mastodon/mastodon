@@ -890,21 +890,14 @@ sv:
     default: Mastodon
     mastodon-light: Mastodon (ljust)
   two_factor_authentication:
-    code_hint: Ange koden som genererats av din autentiseringsapp för att bekräfta
-    description_html: Om du aktiverar <strong>tvåfaktorsautentisering</strong> kommer inloggningen kräva att du har din telefon tillgänglig, vilket kommer att generera tokens för dig att ange.
     disable: Inaktivera
-    enable: Aktivera
     enabled: Tvåfaktorsautentisering är aktiverad
     enabled_success: Tvåfaktorsautentisering aktiverad
     generate_recovery_codes: Generera återställningskoder
-    instructions_html: "<strong>Skanna den här QR-koden i Google Authenticator eller en liknande TOTP-app på din telefon </strong>. Från och med nu genererar den appen tokens som du måste ange när du loggar in."
     lost_recovery_codes: Återställningskoder tillåter dig att få tillgång till ditt konto om du förlorar din telefon. Om du har förlorat dina återställningskoder kan du regenerera dem här. Dina gamla återställningskoder kommer att ogiltigförklaras.
-    manual_instructions: 'Om du inte kan skanna QR-koden och behöver skriva in den manuellt, här är den hemliga nyckeln i ren text:'
     recovery_codes: Backup återställningskod
     recovery_codes_regenerated: Återställningskoder genererades på nytt
     recovery_instructions_html: Om du någonsin tappar åtkomst till din telefon kan du använda någon av återställningskoderna nedan för att återställa åtkomst till ditt konto. <strong> Håll återställningskoderna säkra </strong>. Du kan till exempel skriva ut dem och lagra dem med andra viktiga dokument.
-    setup: Ställ in
-    wrong_code: Den angivna koden var ogiltig! Är servertid och enhetstid korrekt?
   user_mailer:
     backup_ready:
       explanation: Du begärde en fullständig säkerhetskopiering av ditt Mastodon-konto. Det är nu klart för nedladdning!
