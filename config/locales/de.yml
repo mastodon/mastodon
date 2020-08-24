@@ -680,8 +680,11 @@ de:
       prefix_sign_up: Melde dich heute bei Mastodon an!
       suffix: Mit einem Konto kannst du Leuten folgen, Updates veröffentlichen und Nachrichten mit Benutzern von jedem Mastodon-Server austauschen und mehr!
     didnt_get_confirmation: Keine Bestätigungs-Mail erhalten?
+    dont_have_your_security_key: Haben Sie Ihren Sicherheitsschlüssel nicht?
     forgot_password: Passwort vergessen?
     invalid_reset_password_token: Das Token zum Zurücksetzen des Passworts ist ungültig oder abgelaufen. Bitte fordere ein neues an.
+    link_to_otp: Geben Sie einen Zwei-Faktor-Code von Ihrem Telefon oder einen Wiederherstellungscode ein
+    link_to_webauth: Verwenden Sie Ihr Sicherheitsschlüsselgerät
     login: Anmelden
     logout: Abmelden
     migrate_account: Ziehe zu einem anderen Konto um
@@ -707,6 +710,7 @@ de:
       pending: Deine Bewerbung wird von unseren Mitarbeitern noch überprüft. Dies kann einige Zeit dauern. Du erhältst eine E-Mail, wenn deine Bewerbung genehmigt wurde.
       redirecting_to: Dein Konto ist inaktiv, da es derzeit zu %{acct} umgeleitet wird.
     trouble_logging_in: Schwierigkeiten beim Anmelden?
+    use_security_key: Sicherheitsschlüssel verwenden
   authorize_follow:
     already_following: Du folgst diesem Konto bereits
     already_requested: Du hast bereits eine Anfrage zum Folgen diesen Accounts versendet
@@ -991,6 +995,11 @@ de:
           quadrillion: Q
           thousand: K
           trillion: T
+  otp_authentication:
+    code_hint: Geben Sie den von Ihrer Authentifizierungs-App generierten Code ein, um ihn zu bestätigen
+    enable: Aktivieren
+    setup: Einrichten
+    wrong_code: Der eingegebene Code war ungültig! Sind die Serverzeit und die Gerätezeit korrekt?
   pagination:
     newer: Neuer
     next: Vorwärts
@@ -1115,6 +1124,7 @@ de:
     profile: Profil
     relationships: Folgende und Gefolgte
     two_factor_authentication: Zwei-Faktor-Auth
+    webauthn_authentication: Sicherheitsschlüssel
   spam_check:
     spam_detected: Dies ist ein automatisierter Bericht. Es wurde Spam erkannt.
   statuses:
@@ -1263,7 +1273,9 @@ de:
       default: "%d.%m.%Y %H:%M"
       month: "%b %Y"
   two_factor_authentication:
+    add: Hinzufügen
     disable: Deaktivieren
+    disabled_success: Zwei-Faktor-Authentifizierung erfolgreich deaktiviert
     edit: Bearbeiten
     enabled: Zwei-Faktor-Authentisierung ist aktiviert
     enabled_success: Zwei-Faktor-Authentisierung erfolgreich aktiviert
@@ -1338,3 +1350,17 @@ de:
     verification: Verifizierung
   webauthn_credentials:
     add: Sicherheitsschlüssel hinzufügen
+    create:
+      error: Beim Hinzufügen des Sicherheitsschlüssels ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.
+      success: Ihr Sicherheitsschlüssel wurde erfolgreich hinzugefügt.
+    delete: Löschen
+    delete_confirmation: Sind Sie sicher, dass Sie diesen Sicherheitsschlüssel löschen möchten?
+    destroy:
+      error: Es gab ein Problem beim Löschen Ihres Sicherheitsschlüssels. Bitte versuchen Sie es erneut.
+      success: Ihr Sicherheitsschlüssel wurde erfolgreich gelöscht.
+    invalid_credential: Ungültiger Sicherheitsschlüssel
+    nickname_hint: Geben Sie den Spitznamen Ihres neuen Sicherheitsschlüssels ein
+    not_enabled: Sie haben WebAuthn noch nicht aktiviert
+    not_supported: Dieser Browser unterstützt keine Sicherheitsschlüssel
+    otp_required: Um Sicherheitsschlüssel zu verwenden, aktivieren Sie bitte zuerst die Zwei-Faktor-Authentifizierung.
+    registered_on: Registriert am %{date}
