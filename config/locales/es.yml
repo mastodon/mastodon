@@ -684,7 +684,7 @@ es:
     forgot_password: '¿Olvidaste tu contraseña?'
     invalid_reset_password_token: El token de reinicio de contraseña es inválido o expiró. Por favor pide uno nuevo.
     link_to_otp: Introduce un código de dos factores desde tu teléfono o un código de recuperación
-    link_to_webauth: Utiliza tu dispositivo de llave de seguridad
+    link_to_webauth: Utilice su dispositivo de clave de seguridad
     login: Iniciar sesión
     logout: Cerrar sesión
     migrate_account: Mudarse a otra cuenta
@@ -998,12 +998,12 @@ es:
           trillion: T
   otp_authentication:
     code_hint: Introduce el código generado por tu aplicación de autentificación para confirmar
-    description_html: Si habilitas <strong>autenticación de dos factores</strong> a través de una aplicación de autenticación, el ingreso requerirá que estés en posesión de tu teléfono, lo que generará tokens para que ingreses.
+    description_html: Si habilitas <strong>autenticación de dos factores</strong> a través de una aplicación de autenticación, el ingreso requerirá que estés en posesión de tu teléfono, que generará códigos para que ingreses.
     enable: Activar
-    instructions_html: "<strong>Escanea este código QR desde Google Authenticator o una aplicación similar en su teléfono</strong>. Desde ahora, esta aplicación va a generar tokens que tienes que ingresar cuando quieras iniciar sesión."
+    instructions_html: "<strong>Escanea este código QR desde Google Authenticator o una aplicación similar en tu teléfono</strong>. A partir de ahora, esta aplicación generará códigos que tendrásque ingresar cuando quieras iniciar sesión."
     manual_instructions: 'Si no puedes escanear el código QR y necesitas introducirlo manualmente, este es el secreto en texto plano:'
     setup: Configurar
-    wrong_code: '¡El código ingresado es inválido! ¿El dispositivo y tiempo del servidor están correctos?'
+    wrong_code: '¡El código ingresado es inválido! ¿Es correcta la hora del dispositivo y el servidor?'
   pagination:
     newer: Más nuevo
     next: Próximo
@@ -1275,15 +1275,15 @@ es:
       default: "%d de %b del %Y, %H:%M"
       month: "%b %Y"
   two_factor_authentication:
-    add: Agregar
+    add: Añadir
     disable: Deshabilitar
-    disabled_success: Verificación de dos factores activada con éxito
+    disabled_success: Autenticación de doble factor desactivada correctamente
     edit: Editar
     enabled: La autenticación de dos factores está activada
     enabled_success: Verificación de dos factores activada exitosamente
     generate_recovery_codes: generar códigos de recuperación
     lost_recovery_codes: Los códigos de recuperación te permiten obtener acceso a tu cuenta si pierdes tu teléfono. Si has perdido tus códigos de recuperación, puedes regenerarlos aquí. Tus viejos códigos de recuperación se harán inválidos.
-    methods: Autenticación de dos factores
+    methods: Métodos de autenticación de doble factor
     otp: Aplicación de autenticación
     recovery_codes: Hacer copias de seguridad de tus códigos de recuperación
     recovery_codes_regenerated: Códigos de recuperación regenerados con éxito
@@ -1353,9 +1353,9 @@ es:
   webauthn_credentials:
     add: Agregar nueva clave de seguridad
     create:
-      error: Hubo un problema con añadir su clave de seguridad. Por favor, inténtalo de nuevo.
+      error: Hubo un problema al añadir su clave de seguridad. Por favor, inténtalo de nuevo.
       success: Su clave de seguridad se ha añadido correctamente.
-    delete: Borrar
+    delete: Eliminar
     delete_confirmation: '¿Estás seguro de que quieres eliminar esta clave de seguridad?'
     description_html: Si habilita la <strong>autenticación de clave de seguridad</strong>, iniciar sesión requerirá que utilice una de sus claves de seguridad.
     destroy:
