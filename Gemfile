@@ -99,6 +99,7 @@ gem 'twitter-text', '~> 1.14'
 gem 'tzinfo-data', '~> 1.2020'
 gem 'webpacker', '~> 5.2'
 gem 'webpush'
+gem 'webauthn', '~> 3.0.0.alpha1'
 
 gem 'json-ld'
 gem 'json-ld-preloaded', '~> 3.1'
