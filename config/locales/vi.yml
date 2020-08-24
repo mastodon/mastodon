@@ -1163,21 +1163,14 @@ vi:
       default: "%d.%m.%Y %H:%M"
       month: "%b %Y"
   two_factor_authentication:
-    code_hint: Nhập mã được tạo bởi ứng dụng xác thực của bạn để xác nhận
-    description_html: Nếu bạn kích hoạt <strong>xác thực hai bước</strong>, mã xác thực đăng nhập sẽ được tạo ra từ điện thoại của bạn.
     disable: Vô hiệu hóa
-    enable: Kích hoạt
     enabled: Đã kích hoạt xác thực hai bước
     enabled_success: Xác thực hai bước được kích hoạt thành công
     generate_recovery_codes: Tạo mã khôi phục
-    instructions_html: "<strong>Quét mã QR này vào Google Authenticator hoặc ứng dụng TOTP tương tự trên điện thoại của bạn</strong>. Từ giờ trở đi, ứng dụng đó sẽ tạo mã thông báo mà bạn sẽ phải nhập khi đăng nhập."
     lost_recovery_codes: Mã khôi phục cho phép bạn lấy lại quyền truy cập vào tài khoản của mình nếu bạn mất điện thoại. Nếu bạn bị mất mã khôi phục, bạn có thể tạo lại chúng ở đây. Mã khôi phục cũ của bạn sẽ bị vô hiệu.
-    manual_instructions: 'Nếu bạn không thể quét mã QR và cần nhập thủ công, đây là mã bí mật:'
     recovery_codes: Mã phục hồi dự phòng
     recovery_codes_regenerated: Mã khôi phục được phục hồi thành công
     recovery_instructions_html: Nếu bạn bị mất điện thoại, hãy sử dụng một trong các mã khôi phục bên dưới để lấy lại quyền truy cập vào tài khoản của mình. <strong>Giữ mã khôi phục an toàn</strong>. Ví dụ, bạn có thể in chúng ra giấy.
-    setup: Thiết lập
-    wrong_code: Mã vừa nhập không hợp lệ! Thời gian máy chủ và thời gian thiết bị có đúng không?
   user_mailer:
     backup_ready:
       explanation: Bạn đã yêu cầu sao lưu toàn bộ tài khoản Mastodon của mình. Bây giờ có thể tải về!
