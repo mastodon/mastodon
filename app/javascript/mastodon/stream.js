@@ -112,11 +112,10 @@ const sharedCallbacks = {
   },
 
   disconnected () {
-    subscriptions.forEach(({ onDisconnect }) => onDisconnect());
+    subscriptions.forEach(subscription => unsubscribe(subscription));
   },
 
   reconnected () {
-    subscriptions.forEach(subscription => subscribe(subscription));
   },
 };
 
@@ -252,15 +251,8 @@ const createConnection = (streamingAPIBaseURL, accessToken, channelName, { conne
 
   const es = new EventSource(`${streamingAPIBaseURL}/api/v1/streaming/${channelName}?${params.join('&')}`);
 
-  let firstConnect = true;
-
   es.onopen = () => {
-    if (firstConnect) {
-      firstConnect = false;
-      connected();
-    } else {
-      reconnected();
-    }
+    connected();
   };
 
   KNOWN_EVENT_TYPES.forEach(type => {
