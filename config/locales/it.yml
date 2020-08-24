@@ -997,6 +997,11 @@ it:
           trillion: T
   otp_authentication:
     code_hint: Inserisci il codice generato dall'app di autenticazione per confermare
+    description_html: Se abiliti <strong>l'autenticazione a due fattori</strong> utilizzando un'app di autenticazione, per accedere sarà necessario essere in possesso del telefono, che genererà dei codici per l'accesso.
+    enable: Abilita
+    instructions_html: "<strong>Scansiona questo codice QR in Google Authenticator o in un'applicazione TOTP simile sul tuo telefono</strong>. D'ora in poi, quell'app genererà i codici che dovrai inserire quando accedi."
+    manual_instructions: 'Se non riesci a scansionare il codice QR e hai bisogno di inserirlo manualmente, questo è il codice segreto in chiaro:'
+    wrong_code: Il codice inserito non è valido! Controlla che l'ora del server e l'ora del dispositivo siano esatte.
   pagination:
     newer: Più recente
     next: Avanti
@@ -1121,6 +1126,7 @@ it:
     profile: Profilo
     relationships: Follows e followers
     two_factor_authentication: Autenticazione a due fattori
+    webauthn_authentication: Chiavi di sicurezza
   spam_check:
     spam_detected: Questo è un rapporto automatico. È stato rilevato dello spam.
   statuses:
@@ -1270,6 +1276,7 @@ it:
       default: "%b %d, %Y, %H:%M"
       month: "%b %Y"
   two_factor_authentication:
+    add: Aggiungi
     disable: Disabilita
     enabled: È abilitata l'autenticazione a due fattori
     enabled_success: Autenticazione a due fattori attivata con successo
