@@ -680,8 +680,11 @@ it:
       prefix_sign_up: Iscriviti oggi a Mastodon!
       suffix: Con un account, sarai in grado di seguire le persone, pubblicare aggiornamenti e scambiare messaggi con gli utenti da qualsiasi server di Mastodon e altro ancora!
     didnt_get_confirmation: Non hai ricevuto le istruzioni di conferma?
+    dont_have_your_security_key: Non hai la tua chiave di sicurezza?
     forgot_password: Hai dimenticato la tua password?
     invalid_reset_password_token: Il token di reimpostazione della password non è valido o è scaduto. Per favore richiedine uno nuovo.
+    link_to_otp: Inserisci un codice a due fattori dal tuo telefono o un codice di recupero
+    link_to_webauth: Usa il tuo dispositivo chiave di sicurezza
     login: Entra
     logout: Esci da Mastodon
     migrate_account: Sposta ad un account differente
@@ -707,6 +710,7 @@ it:
       pending: La tua richiesta è in attesa di esame da parte del nostro staff. Potrebbe richiedere un po' di tempo. Riceverai una e-mail se la richiesta è approvata.
       redirecting_to: Il tuo account è inattivo perché attualmente reindirizza a %{acct}.
     trouble_logging_in: Problemi di accesso?
+    use_security_key: Usa la chiave di sicurezza
   authorize_follow:
     already_following: Stai già seguendo questo account
     already_requested: Hai già mandato una richiesta di seguire questo account
@@ -991,6 +995,8 @@ it:
           quadrillion: P
           thousand: k
           trillion: T
+  otp_authentication:
+    code_hint: Inserisci il codice generato dall'app di autenticazione per confermare
   pagination:
     newer: Più recente
     next: Avanti
