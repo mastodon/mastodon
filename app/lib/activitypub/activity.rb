@@ -168,6 +168,8 @@ class ActivityPub::Activity
   end
 
   def signed_fetch_account
+    return Account.find(@options[:delivered_to_account_id]) if @options[:delivered_to_account_id].present?
+
     first_mentioned_local_account || first_local_follower
   end
 
