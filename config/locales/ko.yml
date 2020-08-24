@@ -986,6 +986,11 @@ ko:
           trillion: T
   otp_authentication:
     code_hint: 확인을 위해 인증 애플리케이션에 생성된 코드를 입력해 주십시오
+    enable: 활성화
+    instructions_html: "<strong>Google Authenticator, 또는 타 TOTP 애플리케이션에서 이 QR 코드를 스캔해 주십시오.</strong> 이후 로그인 시에는 이 애플리케이션에서 생성되는 코드가 필요합니다."
+    manual_instructions: 'QR 코드를 스캔할 수 없어 수동으로 등록을 원하시는 경우 이 비밀 코드를 사용해 주십시오:'
+    setup: 설정
+    wrong_code: 코드가 올바르지 않습니다. 서버와 휴대전화 간의 시각이 일치하나요?
   pagination:
     newer: 새로운 툿
     next: 다음
@@ -1110,6 +1115,7 @@ ko:
     profile: 프로필
     relationships: 팔로잉과 팔로워
     two_factor_authentication: 2단계 인증
+    webauthn_authentication: 보안 키
   spam_check:
     spam_detected: 이것은 자동화 된 신고입니다. 스팸이 감지되었습니다.
   statuses:
@@ -1250,14 +1256,19 @@ ko:
       default: "%Y년 %m월 %d일 %H:%M"
       month: "%Y년 %b"
   two_factor_authentication:
+    add: 추가
     disable: 비활성화
+    disabled_success: 2단계 인증이 비활성화되었습니다.
+    edit: 편집
     enabled: 2단계 인증이 활성화 되어 있습니다
     enabled_success: 2단계 인증이 활성화 되었습니다
     generate_recovery_codes: 복구 코드 생성
     lost_recovery_codes: 복구 코드를 사용하면 휴대전화를 분실한 경우에도 계정에 접근할 수 있게 됩니다. 복구 코드를 분실한 경우에도 여기서 다시 생성할 수 있지만, 예전 복구 코드는 비활성화 됩니다.
+    otp: 인증 앱
     recovery_codes: 복구 코드
     recovery_codes_regenerated: 복구 코드가 다시 생성되었습니다
     recovery_instructions_html: 휴대전화를 분실한 경우, 아래 복구 코드 중 하나를 사용해 계정에 접근할 수 있습니다. <strong>복구 코드는 안전하게 보관해 주십시오.</strong> 이 코드를 인쇄해 중요한 서류와 함께 보관하는 것도 좋습니다.
+    webauthn: 보안 키
   user_mailer:
     backup_ready:
       explanation: 당신이 요청한 계정의 풀 백업이 이제 다운로드 가능합니다!
@@ -1319,3 +1330,17 @@ ko:
   verification:
     explanation_html: '당신은 <strong>프로필 메타데이터의 링크 소유자임을 검증할 수 있습니다</strong>. 이것을 하기 위해서는, 링크 된 웹사이트에서 당신의 마스토돈 프로필을 역으로 링크해야 합니다. 역링크는 <strong>반드시</strong> <code>rel="me"</code> 속성을 가지고 있어야 합니다. 링크의 텍스트는 상관이 없습니다. 여기 예시가 있습니다:'
     verification: 검증
+  webauthn_credentials:
+    add: 보안 키 추가
+    create:
+      error: 보안 키를 추가하는데 문제가 발생했습니다. 다시 시도해보십시오.
+      success: 보안 키가 성공적으로 추가되었습니다.
+    delete: 삭제
+    delete_confirmation: 정말로 이 보안 키를 제거하시겠습니까?
+    destroy:
+      error: 보안 키를 삭제하는데 문제가 발생했습니다. 다시 시도해보십시오.
+      success: 보안 키가 성공적으로 삭제되었습니다.
+    invalid_credential: 잘못된 보안 키
+    nickname_hint: 새 보안 키의 별명을 입력해주세요
+    not_supported: 이 브라우저는 보안 키를 지원하지 않습니다
+    registered_on: '%{date} 에 등록됨'
