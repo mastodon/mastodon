@@ -62,8 +62,13 @@ th:
       webauthn_credential:
         added:
           subject: 'Mastodon: กุญแจความปลอดภัยใหม่'
+          title: เพิ่มกุญแจความปลอดภัยใหม่แล้ว
         deleted:
           subject: 'Mastodon: ลบกุญแจความปลอดภัยแล้ว'
+      webauthn_disabled:
+        title: ปิดใช้งานกุญแจความปลอดภัยแล้ว
+      webauthn_enabled:
+        title: เปิดใช้งานกุญแจความปลอดภัยแล้ว
     omniauth_callbacks:
       failure: ไม่สามารถรับรองความถูกต้องของคุณจาก %{kind} เนื่องจาก "%{reason}"
       success: รับรองความถูกต้องจากบัญชี %{kind} สำเร็จ
