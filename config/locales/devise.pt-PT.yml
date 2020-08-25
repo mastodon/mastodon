@@ -59,6 +59,15 @@ pt-PT:
         title: Códigos de recuperação 2FA alterados
       unlock_instructions:
         subject: 'Mastodon: Instruções para desbloquear a tua conta'
+      webauthn_credential:
+        added:
+          explanation: A seguinte chave de segurança foi adicionada à sua conta
+          subject: 'Mastodon: Nova chave de segurança'
+          title: Foi adicionada uma nova chave de segurança
+        deleted:
+          explanation: A seguinte chave de segurança foi removida da sua conta
+          subject: 'Mastodon: Chave de segurança removida'
+          title: Uma das suas chaves de segurança foi removida
     omniauth_callbacks:
       failure: Não foi possível autenticar %{kind} porque "%{reason}".
       success: Autenticado com sucesso na conta %{kind}.
