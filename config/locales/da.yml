@@ -193,10 +193,13 @@ da:
     action_logs:
       action_types:
         confirm_user: Bekræft bruger
+        create_account_warning: Opret advarsel
         destroy_status: Slet status
         disable_2fa_user: Slet 2FA
         disable_user: Deaktiver brugeren
         enable_user: Aktiver brugeren
+        reset_password_user: Nulstil adgangskode
+        update_status: Opdater status
       actions:
         assigned_to_self_report: "%{name} tildelte anmeldelsen %{target} til sig selv"
         change_email_user: "%{name} ændrede email adressen for brugeren %{target}"
@@ -637,6 +640,7 @@ da:
       invalid_irreversible: Uigenkaldelig filtrering virker kun med hjem eller notifikations kontekst
     index:
       delete: Slet
+      empty: Du har ingen filtre.
       title: Filtrer
     new:
       title: Tilføj nyt filter
@@ -658,6 +662,7 @@ da:
   identity_proofs:
     i_am_html: Jeg er %{username} på %{service}.
     identity: Identitet
+    view_proof: Se bevis
   imports:
     modes:
       overwrite: Overskriv
@@ -867,6 +872,7 @@ da:
     show_more: Vis mere
     show_thread: Vis tråd
     sign_in_to_participate: Log ind for at deltage i samtalen
+    title: '%{name}: "%{quote}"'
     visibilities:
       private: Kun-følgere
       private_long: Vis kun til følgere
@@ -969,6 +975,7 @@ da:
   two_factor_authentication:
     add: Tilføj
     disable: Deaktiver
+    edit: Rediger
     enabled: To-faktor godkendelse er aktiveret
     enabled_success: To-faktor godkendelse succesfuldt aktiveret
     generate_recovery_codes: Generer gendannelseskoder
@@ -982,6 +989,8 @@ da:
       explanation: Din anmodning for fuld backup af din Mastodon konto. Den er nu klar til at blive hentet!
       subject: Dit arkiv er klar til at blive hentet ned
       title: Udpluk af arkiv
+    sign_in_token:
+      title: Login forsøg
     warning:
       title:
         disable: Konto frosset
@@ -1019,3 +1028,4 @@ da:
     add: Tilføj ny sikkerhedsnøgle
     delete: Slet
     invalid_credential: Ugyldig sikkerhedsnøgle
+    registered_on: Registreret den %{date}
