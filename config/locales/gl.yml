@@ -679,8 +679,11 @@ gl:
       prefix_sign_up: Rexístrate agora en Mastodon!
       suffix: Ao abrir unha conta, poderás seguir a xente, actualizacións das publicacións e intercambiar mensaxes coas usuarias de calquera servidor de Mastodon e moito máis!
     didnt_get_confirmation: Non recibeu as instruccións de confirmación?
+    dont_have_your_security_key: '¿Non tes a túa chave de seguridade?'
     forgot_password: Esqueceu o contrasinal?
     invalid_reset_password_token: O testemuño para restablecer o contrasinal non é válido ou caducou. Por favor solicite un novo.
+    link_to_otp: Escribe o código do segundo factor do móbil ou un código de recuperación
+    link_to_webauth: Usa o teu dispositivo de chave de seguridade
     login: Conectar
     logout: Desconectar
     migrate_account: Mover a unha conta diferente
@@ -706,6 +709,7 @@ gl:
       pending: A túa aplicación está pendente de revisión. Poderíanos levar algún tempo. Recibirás un correo se a aplicación está aprobada.
       redirecting_to: A túa conta está inactiva porque está redirixida a %{acct}.
     trouble_logging_in: Problemas para conectar?
+    use_security_key: Usa chave de seguridade
   authorize_follow:
     already_following: Xa está a seguir esta conta
     already_requested: Xa tes enviada unha solicitude de seguimento a esa conta
@@ -730,6 +734,7 @@ gl:
   date:
     formats:
       default: "%d %b, %Y"
+      with_month_name: "%d %B, %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}h"
