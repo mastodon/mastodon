@@ -985,6 +985,12 @@ vi:
           trillion: T
   otp_authentication:
     code_hint: Nhập mã được tạo bởi ứng dụng xác thực của bạn để xác nhận
+    description_html: Nếu kích hoạt <strong>xác thực hai bước</strong> thông qua ứng dụng, bạn sẽ đăng nhập bằng mã token được tạo bởi chính điện thoại của bạn.
+    enable: Kích hoạt
+    instructions_html: "<strong>Quét mã QR bằng Google Authenticator hoặc một ứng dụng TOTP tương tự trên điện thoại của bạn</strong>. Kể từ bây giờ, ứng dụng đó sẽ tạo những token để bạn đăng nhập."
+    manual_instructions: 'Nếu bạn không thể quét mã QR, đây sẽ là dòng chữ gợi ý:'
+    setup: Thiết lập
+    wrong_code: Mã vừa nhập không chính xác! Thời gian máy chủ và thời gian thiết bị chính xác chưa?
   pagination:
     newer: Mới hơn
     next: Kế tiếp
@@ -1109,6 +1115,7 @@ vi:
     profile: Trang cá nhân
     relationships: Lượt theo dõi
     two_factor_authentication: Xác thực hai bước
+    webauthn_authentication: Khóa bảo mật
   spam_check:
     spam_detected: Đây là một báo cáo tự động. Đã phát hiện thư rác.
   statuses:
@@ -1170,14 +1177,20 @@ vi:
       default: "%d.%m.%Y %H:%M"
       month: "%b %Y"
   two_factor_authentication:
+    add: Thêm
     disable: Vô hiệu hóa
+    disabled_success: Đã vô hiệu hóa xác thực hai bước
+    edit: Sửa
     enabled: Đã kích hoạt xác thực hai bước
     enabled_success: Xác thực hai bước được kích hoạt thành công
     generate_recovery_codes: Tạo mã khôi phục
     lost_recovery_codes: Mã khôi phục cho phép bạn lấy lại quyền truy cập vào tài khoản của mình nếu bạn mất điện thoại. Nếu bạn bị mất mã khôi phục, bạn có thể tạo lại chúng ở đây. Mã khôi phục cũ của bạn sẽ bị vô hiệu.
+    methods: Phương pháp xác thực
+    otp: Ứng dụng xác thực
     recovery_codes: Mã phục hồi dự phòng
     recovery_codes_regenerated: Mã khôi phục được phục hồi thành công
     recovery_instructions_html: Nếu bạn bị mất điện thoại, hãy sử dụng một trong các mã khôi phục bên dưới để lấy lại quyền truy cập vào tài khoản của mình. <strong>Giữ mã khôi phục an toàn</strong>. Ví dụ, bạn có thể in chúng ra giấy.
+    webauthn: Khóa bảo mật
   user_mailer:
     backup_ready:
       explanation: Bạn đã yêu cầu sao lưu toàn bộ tài khoản Mastodon của mình. Bây giờ có thể tải về!
@@ -1239,3 +1252,16 @@ vi:
   verification:
     explanation_html: 'Bạn có thể <strong>xác minh mình là chủ sở hữu của các trang web ở đầu trang cá nhân của bạn</strong>. Để xác minh, trang web <strong>phải</strong> chèn mã <code>rel="me"</code>. Nội dung văn bản của liên kết không quan trọng. Đây là một ví dụ:'
     verification: Xác minh
+  webauthn_credentials:
+    add: Thêm khóa bảo mật mới
+    create:
+      error: Có vấn đề khi thêm khóa bảo mật. Xin thử lại.
+      success: Đã thêm khóa bảo mật mới thành công.
+    delete: Xóa
+    delete_confirmation: Bạn có chắc chắn muốn xóa khóa bảo mật này?
+    description_html: Nếu bạn kích hoạt <strong>khóa bảo mật</strong>, khi đăng nhập bạn sẽ cần sử dụng một trong những khóa bảo mật của bạn.
+    destroy:
+      error: Có vấn đề khi xóa khóa bảo mật. Xin thử lại.
+      success: Đã xóa khóa bảo mật thành công.
+    invalid_credential: Khóa bảo mật không hợp lệ
+    nickname_hint: Nhập tên mới cho khóa bảo mật của bạn
