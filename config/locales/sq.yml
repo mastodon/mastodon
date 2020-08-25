@@ -680,8 +680,11 @@ sq:
       prefix_sign_up: Regjistrohuni në Mastodon që sot!
       suffix: Me një llogari, do të jeni në gjendje të ndiqni persona, përditësime postimesh dhe të shkëmbeni mesazhe me përdorues nga cilido shërbyes Mastodon, etj!
     didnt_get_confirmation: S’morët udhëzime ripohimi?
+    dont_have_your_security_key: S’i keni kyçet tuaj të sigurisë?
     forgot_password: Harruat fjalëkalimin tuaj?
     invalid_reset_password_token: Token-i i ricaktimit të fjalëkalimit është i pavlefshëm ose ka skaduar. Ju lutemi, kërkoni një të ri.
+    link_to_otp: Jepni një kod mirëfilltësimi dyfaktorësh prej telefonit tuaj ose një kod rimarrjeje
+    link_to_webauth: Përdorni pajisjen tuaj të kyçeve të sigurisë
     login: Hyni
     logout: Dalje
     migrate_account: Kaloni në një tjetër llogari
@@ -707,6 +710,7 @@ sq:
       pending: Aplikimi juaj është në pritje të shqyrtimit nga stafi ynë. Kjo mund të dojë ca kohë. Nëse aplikimi juaj miratohet, do të merrni një email.
       redirecting_to: Llogaria juaj është joaktive, ngaqë aktualisht ridrejton te %{acct}.
     trouble_logging_in: Probleme me hyrjen?
+    use_security_key: Përdor kyç sigurie
   authorize_follow:
     already_following: E ndiqni tashmë këtë llogari
     already_requested: Keni dërguar tashmë një kërkesë ndjekjeje te ajo llogari
@@ -731,6 +735,7 @@ sq:
   date:
     formats:
       default: "%b %d, %Y"
+      with_month_name: "%d %B, %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}o"
@@ -991,6 +996,14 @@ sq:
           quadrillion: K
           thousand: M
           trillion: T
+  otp_authentication:
+    code_hint: Që të bëhet ripohimi, jepni kodin e prodhuar nga aplikacioni juaj i mirëfilltësimeve
+    description_html: Nëse aktivizoni <strong>mirëfilltësim dyfaktorësh</strong> duke përdorur një aplikacion mirëfilltësimesh, hyrja do të dojë që të keni telefonin tuaj, i cili do të prodhojë për ju token-ë hyrjesh.
+    enable: Aktivizoje
+    instructions_html: "<strong>Skanoje këtë kod QR me Google Authenticator ose një aplikacion të ngjashëm TOTP në telefonin tuaj</strong>. Tani e tutje, ai aplikacion do të prodhojë token-ë të cilët do t’ju duhet t’i jepni kur bëni hyrje."
+    manual_instructions: 'Nëse nuk skanoni kodin QR dhe ju duhet ta jepni dorazi, ja e fshehta si tekst i thjeshtë:'
+    setup: Ujdiseni
+    wrong_code: Kodi i dhënë është i pavlefshëm! A janë të sakta koha e shërbyesit dhe koha e pajisjes?
   pagination:
     newer: Më të ri
     next: Pasuesi
@@ -1115,6 +1128,7 @@ sq:
     profile: Profil
     relationships: Ndjekje dhe ndjekës
     two_factor_authentication: Mirëfilltësim Dyfaktorësh
+    webauthn_authentication: Kyçe sigurie
   spam_check:
     spam_detected: Ky është një raportim i automatizuar. Është pikasur mesazh i padëshiruar.
   statuses:
@@ -1261,14 +1275,20 @@ sq:
       default: "%d %b, %Y, %H:%M"
       month: "%b %Y"
   two_factor_authentication:
+    add: Shtoje
     disable: Çaktivizoje
+    disabled_success: Mirëfilltësimi dyfaktorësh u çaktivizua me sukses
+    edit: Përpunojeni
     enabled: Mirëfilltësimi dyfaktorësh është i aktivizuar
     enabled_success: Mirëfilltësimi dyfaktorësh u aktivizua me sukses
     generate_recovery_codes: Prodho kode rikthimesh
     lost_recovery_codes: Kodet e rikthimit ju lejojnë të rifitoni hyrje në llogarinë tuaj, nëse humbni telefonin tuaj. Nëse keni humbur kodet tuaj të rikthimit, mund t’i prodhoni sërish këtu. Kodet tuaj të vjetër të rikthimit do të bëhen të pavlefshëm.
+    methods: Metoda dyfaktorëshi
+    otp: Aplikacion mirëfilltësimesh
     recovery_codes: Kopjeruani kode rikthimesh
     recovery_codes_regenerated: Kodet e rikthimeve u riprodhuan me sukses
     recovery_instructions_html: Në ndodhtë që të humbni hyrje te telefoni juaj, mund të përdorni një nga kodet e rikthimit më poshtë, që të rifitoni hyrje te llogaria juaj. <strong>Mbajini të parrezikuar kodet e rikthimeve</strong>. Për shembull, mund t’i shtypni dhe t’i ruani tok me dokumente të tjerë të rëndësishëm.
+    webauthn: Kyçe sigurie
   user_mailer:
     backup_ready:
       explanation: Kërkuat një kopjeruajtje të plotë të llogarisë tuaj Mastodon. E keni gati për shkarkim!
@@ -1330,3 +1350,11 @@ sq:
   verification:
     explanation_html: 'Mundeni <strong>të verifikoni veten si i zoti i lidhjeve te tejtëdhënat e profilit tuaj</strong>. Për këtë, sajti i lidhur duhet të përmbajë një lidhje për te profili juaj Mastodon. Lidhje për te ajo <strong>duhet</strong> të ketë një atribut <code>rel="me"</code>. Lënda tekst e lidhjes nuk ngre peshë. Ja një shembull:'
     verification: Verifikim
+  webauthn_credentials:
+    add: Shton kyç të ri sigurie
+    create:
+      error: Pati një problem me shtimin e kyçeve tuaj të sigurisë. Ju lutemi, riprovoni.
+      success: Kyçi juaj i sigurisë u shtua me sukses.
+    delete: Fshije
+    delete_confirmation: Jeni i sigurt se doni të fshihet ky kyç sigurie?
+    description_html: Nëse aktivizoni <strong>mirëfilltësim me kyç sigurie</strong>, hyrja do të kërkojë që të përdorni një nga kyçet tuaj të sigurisë.
