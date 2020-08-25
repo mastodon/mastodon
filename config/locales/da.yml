@@ -553,6 +553,7 @@ da:
     status:
       account_status: Kontostatus
     trouble_logging_in: Har du problemer med at logge på?
+    use_security_key: Brug sikkerhedsnøgle
   authorize_follow:
     already_following: Du følger allerede denne konto
     error: Der opstod desværre en fejl under søgningen af denne fjerne konto
@@ -744,6 +745,8 @@ da:
         units:
           billion: mia.
           million: mio.
+  otp_authentication:
+    enable: Aktiver
   pagination:
     newer: Nyere
     next: Næste
@@ -836,6 +839,7 @@ da:
     profile: Profil
     relationships: Følger og følgere
     two_factor_authentication: To-faktor godkendelse
+    webauthn_authentication: Sikkerhedsnøgler
   statuses:
     attached:
       description: 'Vedhæftede: %{attached}'
@@ -963,6 +967,7 @@ da:
     default: Mastodont (Mørk)
     mastodon-light: Mastodon (Lys)
   two_factor_authentication:
+    add: Tilføj
     disable: Deaktiver
     enabled: To-faktor godkendelse er aktiveret
     enabled_success: To-faktor godkendelse succesfuldt aktiveret
@@ -971,6 +976,7 @@ da:
     recovery_codes: Reserve koder
     recovery_codes_regenerated: Reserve koder blev succesfuldt regenereret
     recovery_instructions_html: Hvis du nogensinde mister adgang til din telefon, kan du bruge en af genoprettelses koderne forneden for at få adgang til din konto. <strong>Gem gendannelses koderne et sikkert sted</strong>. Foreksempel kan du printe dem ud og gemme dem sammen med andre vigtige dokumenter.
+    webauthn: Sikkerhedsnøgler
   user_mailer:
     backup_ready:
       explanation: Din anmodning for fuld backup af din Mastodon konto. Den er nu klar til at blive hentet!
@@ -1009,3 +1015,7 @@ da:
     signed_in_as: 'Logget ind som:'
   verification:
     verification: Verificering
+  webauthn_credentials:
+    add: Tilføj ny sikkerhedsnøgle
+    delete: Slet
+    invalid_credential: Ugyldig sikkerhedsnøgle
