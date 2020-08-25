@@ -861,6 +861,7 @@ th:
     other_settings: การตั้งค่าการแจ้งเตือนอื่น ๆ
   otp_authentication:
     enable: เปิดใช้งาน
+    wrong_code: รหัสที่ป้อนไม่ถูกต้อง! เวลาเซิร์ฟเวอร์และเวลาอุปกรณ์ถูกต้องหรือไม่?
   pagination:
     newer: ใหม่กว่า
     next: ถัดไป
@@ -1083,4 +1084,5 @@ th:
       success: ลบกุญแจความปลอดภัยของคุณสำเร็จ
     invalid_credential: กุญแจความปลอดภัยไม่ถูกต้อง
     not_enabled: คุณยังไม่ได้เปิดใช้งาน WebAuthn
+    not_supported: เบราว์เซอร์นี้ไม่รองรับกุญแจความปลอดภัย
     registered_on: ลงทะเบียนเมื่อ %{date}
