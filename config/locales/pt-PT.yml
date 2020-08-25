@@ -997,6 +997,12 @@ pt-PT:
           trillion: T
   otp_authentication:
     code_hint: Introduza o código gerado pelo seu aplicativo de autentificação para confirmar
+    description_html: Se ativar a <strong>autenticação em duas etapas</strong>, para entrar na sua conta terá de ter consigo o seu telefone, que vai gerar os tokens necessários à validação do seu acesso.
+    enable: Ativar
+    instructions_html: "<strong>Digitalize este código QR no Google Authenticator ou num aplicativo TOTP similar no seu telefone</strong>. A partir de agora, esse aplicativo irá gerar tokens que você terá que introduzir para aceder à sua conta."
+    manual_instructions: 'Se você não consegue digitalizar o código QR e precisa introduzi-lo manualmente, aqui está o código em texto:'
+    setup: Configurar
+    wrong_code: O código introduzido é inválido! A hora do servidor e a hora do dispositivo estão corretos?
   pagination:
     newer: Mais nova
     next: Seguinte
@@ -1121,6 +1127,7 @@ pt-PT:
     profile: Perfil
     relationships: Seguindo e seguidores
     two_factor_authentication: Autenticação em dois passos
+    webauthn_authentication: Chaves de segurança
   spam_check:
     spam_detected: Este é um relatório automatizado. Foi detectado spam.
   statuses:
@@ -1267,14 +1274,20 @@ pt-PT:
       default: "%H:%M em %d de %b de %Y"
       month: "%b de %Y"
   two_factor_authentication:
+    add: Adicionar
     disable: Desativar
+    disabled_success: Autenticação em duas etapas desativada com sucesso
+    edit: Editar
     enabled: A autenticação em dois passos está ativada
     enabled_success: Autenticação em dois passos ativada com sucesso
     generate_recovery_codes: Gerar códigos para recuperar conta
     lost_recovery_codes: Códigos de recuperação permite que você recupere o acesso a sua conta se você perder seu telefone. Se você perder os códigos de recuperação, você pode regera-los aqui. Seus códigos antigos serão invalidados.
+    methods: Métodos de duas etapas
+    otp: Aplicação de autenticação
     recovery_codes: Cópia de segurança dos códigos de recuperação
     recovery_codes_regenerated: Códigos de recuperação foram gerados com sucesso
     recovery_instructions_html: Se tu alguma vez perderes o teu smartphone, to poderás usar um dos códigos de recuperação para voltares a ter acesso à tua conta. <strong>Mantém os códigos de recuperação seguros</strong>. Por exemplo, tu podes imprimi-los e guardá-los junto a outros documentos importantes.
+    webauthn: Chaves de segurança
   user_mailer:
     backup_ready:
       explanation: Pediste uma cópia completa da tua conta Mastodon. Ela já está pronta para descarregares!
@@ -1336,3 +1349,11 @@ pt-PT:
   verification:
     explanation_html: 'Tu podes <strong>comprovar que és o dono dos links nos metadados do teu perfil</strong>. Para isso, o website para o qual o link aponta tem de conter um link para o teu perfil do Mastodon. Este link <strong>tem</strong> de ter um <code>rel="me"</code> atributo. O conteúdo do texto não é relevante. Aqui está um exemplo:'
     verification: Verificação
+  webauthn_credentials:
+    add: Adicionar nova chave de segurança
+    create:
+      error: Ocorreu um problema ao adicionar sua chave de segurança. Tente novamente.
+      success: A sua chave de segurança foi adicionada com sucesso.
+    delete: Remover
+    delete_confirmation: Tem a certeza de que pretende remover esta chave de segurança?
+    description_html: Se você ativar a <strong>autenticação com chave de segurança</strong>, para aceder à sua conta será necessário que utilize uma das suas chaves de segurança.
