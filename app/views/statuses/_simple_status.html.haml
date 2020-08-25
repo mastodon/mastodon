@@ -17,7 +17,7 @@
         %span.display-name
           %bdi
             %strong.display-name__html.p-name.emojify= display_name(status.account, custom_emojify: true, autoplay: autoplay)
-          &nbsp;
+          = ' '
           %span.display-name__account
             = acct(status.account)
             = fa_icon('lock') if status.account.locked?
@@ -35,11 +35,11 @@
   - if !status.media_attachments.empty?
     - if status.media_attachments.first.video?
       - video = status.media_attachments.first
-      = react_component :video, src: video.file.url(:original), preview: video.thumbnail.present? ? video.thumbnail.url : video.file.url(:small), blurhash: video.blurhash, sensitive: status.sensitive?, width: 610, height: 343, inline: true, alt: video.description do
+      = react_component :video, src: full_asset_url(video.file.url(:original)), preview: full_asset_url(video.thumbnail.present? ? video.thumbnail.url : video.file.url(:small)), blurhash: video.blurhash, sensitive: status.sensitive?, width: 610, height: 343, inline: true, alt: video.description do
         = render partial: 'statuses/attachment_list', locals: { attachments: status.media_attachments }
     - elsif status.media_attachments.first.audio?
       - audio = status.media_attachments.first
-      = react_component :audio, src: audio.file.url(:original), poster: audio.thumbnail.present? ? audio.thumbnail.url : status.account.avatar_static_url, backgroundColor: audio.file.meta.dig('colors', 'background'), foregroundColor: audio.file.meta.dig('colors', 'foreground'), accentColor: audio.file.meta.dig('colors', 'accent'), width: 610, height: 343, alt: audio.description, duration: audio.file.meta.dig('original', 'duration') do
+      = react_component :audio, src: full_asset_url(audio.file.url(:original)), poster: full_asset_url(audio.thumbnail.present? ? audio.thumbnail.url : status.account.avatar_static_url), backgroundColor: audio.file.meta.dig('colors', 'background'), foregroundColor: audio.file.meta.dig('colors', 'foreground'), accentColor: audio.file.meta.dig('colors', 'accent'), width: 610, height: 343, alt: audio.description, duration: audio.file.meta.dig('original', 'duration') do
         = render partial: 'statuses/attachment_list', locals: { attachments: status.media_attachments }
     - else
       = react_component :media_gallery, height: 343, sensitive: status.sensitive?, autoplay: autoplay, media: status.media_attachments.map { |a| ActiveModelSerializers::SerializableResource.new(a, serializer: REST::MediaAttachmentSerializer).as_json } do

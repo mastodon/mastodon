@@ -115,6 +115,10 @@ class Audio extends React.PureComponent {
   }
 
   togglePlay = () => {
+    if (!this.audioContext) {
+      this._initAudioContext();
+    }
+
     if (this.state.paused) {
       this.setState({ paused: false }, () => this.audio.play());
     } else {
@@ -132,10 +136,6 @@ class Audio extends React.PureComponent {
 
   handlePlay = () => {
     this.setState({ paused: false });
-
-    if (this.canvas && !this.audioContext) {
-      this._initAudioContext();
-    }
 
     if (this.audioContext && this.audioContext.state === 'suspended') {
       this.audioContext.resume();
@@ -269,8 +269,9 @@ class Audio extends React.PureComponent {
   }
 
   _initAudioContext () {
-    const context  = new AudioContext();
-    const source   = context.createMediaElementSource(this.audio);
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    const context      = new AudioContext();
+    const source       = context.createMediaElementSource(this.audio);
 
     this.visualizer.setAudioContext(context, source);
     source.connect(context.destination);
