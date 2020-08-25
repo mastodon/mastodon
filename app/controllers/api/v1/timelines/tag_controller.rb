@@ -33,9 +33,7 @@ class Api::V1::Timelines::TagController < Api::BaseController
       )
 
       if truthy_param?(:only_media)
-        # `SELECT DISTINCT id, updated_at` is too slow, so pluck ids at first, and then select id, updated_at with ids.
-        status_ids = statuses.joins(:media_attachments).distinct(:id).pluck(:id)
-        statuses.where(id: status_ids)
+        statuses.joins(:media_attachments)
       else
         statuses
       end
