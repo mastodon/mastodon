@@ -62,6 +62,20 @@ vi:
       webauthn_credential:
         added:
           explanation: Khóa bảo mật này đã được thêm vào tài khoản của bạn
+          subject: 'Mastodon: Khóa bảo mật mới'
+          title: Vừa thêm một khóa bảo mật mới
+        deleted:
+          explanation: Khóa bảo mật này đã bị xóa khỏi tài khoản của bạn
+          subject: 'Mastodon: Xóa khóa bảo mật'
+          title: Một trong những khóa bảo mật của bạn vừa bị xóa
+      webauthn_disabled:
+        explanation: Bạn vừa vô hiệu hóa xác thực tài khoản bằng khóa bảo mật. Từ bây giờ, bạn sẽ dùng ứng dụng TOTP để tạo token đăng nhập.
+        subject: 'Mastodon: Vô hiệu hóa xác thực bằng khóa bảo mật'
+        title: Đã vô hiệu hóa khóa bảo mật
+      webauthn_enabled:
+        explanation: Bạn vừa kích hoạt xác thực tài khoản bằng khóa bảo mật. Từ bây giờ, khóa bảo mật của bạn sẽ được dùng để đăng nhập.
+        subject: 'Mastodon: Kích hoạt xác thực bằng khóa bảo mật'
+        title: Đã kích hoạt khóa bảo mật
     omniauth_callbacks:
       failure: Không thể xác thực bạn từ %{kind} bởi vì "%{reason}".
       success: Xác thực thành công từ tài khoản %{kind}.
