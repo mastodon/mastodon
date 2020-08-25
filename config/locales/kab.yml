@@ -41,6 +41,7 @@ kab:
     user_count_before: Amagger n
     what_is_mastodon: D acu-t Maṣṭudun?
   accounts:
+    choices_html: "Afranen n %{name}:"
     follow: Ḍfeṛ
     followers:
       one: Umeḍfaṛ
@@ -65,6 +66,7 @@ kab:
       admin: Anedbal
       bot: Aṛubut
       group: Agraw
+      moderator: Atrar
     unavailable: Ur nufi ara amaɣnu-a
     unfollow: Ur ṭṭafaṛ ara
   admin:
@@ -141,6 +143,7 @@ kab:
       role: Tisirag
       roles:
         admin: Anedbal
+        moderator: Aseɣyad
         staff: Tarbaɛt
         user: Amseqdac
       search: Nadi
@@ -294,6 +297,8 @@ kab:
       title: Iɛaruḍen
     pending_accounts:
       title: Imiḍanen yettrajun (%{count})
+    relationships:
+      title: "Assaɣen n %{acct}"
     relays:
       add_new: Rnu anmegli amaynut
       delete: Kkes
@@ -370,12 +375,14 @@ kab:
       name: Ahacṭag
       reviewed: Yettwacegger
       title: Ihacṭagen
+      unique_uses_today: "%{count} i d-yeffen ass-a"
     title: Tadbelt
     warning_presets:
       add_new: Rnu amaynut
       delete: Kkes
   admin_mailer:
     new_report:
+      body: "%{reporter} yettwazen ɣef %{target}"
       subject: 'Aneqqis amaynut i %{instance} (#%{id})'
   appearance:
     discovery: Asnirem
@@ -395,6 +402,7 @@ kab:
     checkbox_agreement_without_rules_html: Qebleγ <a href="%{terms_path}" target="_blank">tiwtilin n useqdec</a>
     delete_account: Kkes amiḍan
     description:
+      prefix_invited_by_user: "@%{name} inced-ik·ikem ad ternuḍ ɣer uqeddac-a n Mastodon!"
       prefix_sign_up: Zeddi di Maṣṭudun assa!
     forgot_password: Tettud awal-ik uffir?
     login: Qqen
@@ -429,6 +437,7 @@ kab:
   date:
     formats:
       default: "%d %b %Y"
+      with_month_name: "%B %d, %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}isr"
@@ -550,20 +559,26 @@ kab:
       decimal_units:
         format: "%n%u"
         units:
+          billion: AṬ
           million: A
+          thousand: K
           trillion: Am
+  otp_authentication:
+    enable: Rmed
+    setup: Sbadu
   pagination:
     newer: Amaynut
     next: Wayed
     older: Aqbuṛ
     prev: Win iɛeddan
-    truncate: "d"
+    truncate: "&hellip;"
   preferences:
     other: Wiyaḍ
   relationships:
     activity: Armud n umiḍan
     followers: Imeḍfaṛen
     following: Yeṭafaṛ
+    invited: Yettwancad
     last_active: Armud aneggaru
     most_recent: Melmi kan
     moved: Igujj
@@ -612,7 +627,7 @@ kab:
       firefox_os: Firefox OS
       ios: iOS
       linux: Linux
-      mac: Mac
+      mac: macOS
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Tiliγri Windows Phone
@@ -679,7 +694,9 @@ kab:
       default: "%b %d, %Y, %H:%M"
       month: "%b %Y"
   two_factor_authentication:
+    add: Rnu
     disable: Gdel
+    edit: Ẓreg
   user_mailer:
     warning:
       title:
@@ -694,3 +711,5 @@ kab:
     signed_in_as: 'Teqqneḍ amzun d:'
   verification:
     verification: Asenqed
+  webauthn_credentials:
+    delete: Kkes
