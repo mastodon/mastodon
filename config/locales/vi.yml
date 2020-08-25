@@ -671,8 +671,11 @@ vi:
       prefix_sign_up: Tham gia Mastodon ngay hôm nay!
       suffix: Với tài khoản, bạn sẽ có thể theo dõi mọi người, đăng tút và nhắn tin với người dùng từ bất kỳ máy chủ Mastodon khác!
     didnt_get_confirmation: Gửi lại email xác thực?
+    dont_have_your_security_key: Bạn có khóa bảo mật chưa?
     forgot_password: Quên mật khẩu
     invalid_reset_password_token: Mã đặt lại mật khẩu không hợp lệ hoặc hết hạn. Vui lòng yêu cầu một cái mới.
+    link_to_otp: Nhập mã xác thực từ điện thoại hoặc mã phục hồi
+    link_to_webauth: Nhập khóa bảo mật từ thiết bị
     login: Đăng nhập
     logout: Đăng xuất
     migrate_account: Sử dụng một tài khoản khác
@@ -698,6 +701,7 @@ vi:
       pending: Đơn đăng ký của bạn đang chờ phê duyệt. Điều này có thể mất một thời gian. Bạn sẽ nhận được email nếu đơn đăng ký của bạn được chấp thuận.
       redirecting_to: Tài khoản của bạn không hoạt động vì hiện đang chuyển hướng đến %{acct}.
     trouble_logging_in: Gặp sự cố khi đăng nhập?
+    use_security_key: Dùng khóa bảo mật
   authorize_follow:
     already_following: Bạn đang theo dõi người dùng này
     already_requested: Bạn vừa gửi một yêu cầu theo dõi tới người dùng này
@@ -722,6 +726,7 @@ vi:
   date:
     formats:
       default: "%b.%-m.%Y"
+      with_month_name: "%B %d, %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}h"
@@ -978,6 +983,8 @@ vi:
           quadrillion: Q
           thousand: K
           trillion: T
+  otp_authentication:
+    code_hint: Nhập mã được tạo bởi ứng dụng xác thực của bạn để xác nhận
   pagination:
     newer: Mới hơn
     next: Kế tiếp
