@@ -998,10 +998,10 @@ de:
           trillion: T
   otp_authentication:
     code_hint: Gib den von deiner Authentifizierungs-App generierten Code ein, um deine Anmeldung zu bestätigen
-    description_html: Wenn Sie <strong>Zwei-Faktor-Authentifizierung</strong> mit einer Authentifizierungs-App aktivieren, müssen Sie, um sich anzumelden, im Besitz Ihres Telefons sein, das Token für Ihren Zugang generiert.
+    description_html: Wenn du <strong>Zwei-Faktor-Authentifizierung</strong> mit einer Authentifizierungs-App aktivierst, musst du, um dich anzumelden, im Besitz deines Handys sein, dass Tokens für dein Konto generiert.
     enable: Aktivieren
-    instructions_html: "<strong>Scannen Sie diesen QR-Code in Google Authenticator oder einer ähnlichen TOTP-App auf Ihrem Telefon</strong>. Von nun an generiert diese App Tokens, die Sie beim Anmelden eingeben müssen."
-    manual_instructions: 'Wenn Sie den QR-Code nicht scannen können und ihn manuell eingeben müssen, ist hier das Klartext-Geheimnis:'
+    instructions_html: "<strong>Scanne diesen QR-Code in Google Authenticator oder einer ähnlichen TOTP-App auf deinem Handy</strong>. Von nun an generiert diese App Tokens, die du beim Anmelden eingeben musst."
+    manual_instructions: 'Wenn du den QR-Code nicht scannen kannst und ihn manuell eingeben musst, ist hier das Klartext-Geheimnis:'
     setup: Einrichten
     wrong_code: Der eingegebene Code war ungültig! Sind die Serverzeit und die Gerätezeit korrekt?
   pagination:
@@ -1355,17 +1355,17 @@ de:
   webauthn_credentials:
     add: Sicherheitsschlüssel hinzufügen
     create:
-      error: Beim Hinzufügen des Sicherheitsschlüssels ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.
-      success: Ihr Sicherheitsschlüssel wurde erfolgreich hinzugefügt.
+      error: Beim Hinzufügen des Sicherheitsschlüssels ist ein Fehler aufgetreten. Bitte versuche es erneut.
+      success: Dein Sicherheitsschlüssel wurde erfolgreich hinzugefügt.
     delete: Löschen
-    delete_confirmation: Sind Sie sicher, dass Sie diesen Sicherheitsschlüssel löschen möchten?
-    description_html: Wenn Sie <strong>Authentifizierung mit Sicherheitsschlüssel</strong>aktivieren, müssen Sie einen Ihrer Sicherheitsschlüssel verwenden, um sich anmelden zu können.
+    delete_confirmation: Bist du sicher, dass du diesen Sicherheitsschlüssel löschen möchtest?
+    description_html: Wenn du die <strong>Authentifizierung mit Sicherheitsschlüssel</strong> aktivierst, musst du einen deiner Sicherheitsschlüssel verwenden, um dich anmelden zu können.
     destroy:
-      error: Es gab ein Problem beim Löschen Ihres Sicherheitsschlüssels. Bitte versuchen Sie es erneut.
-      success: Ihr Sicherheitsschlüssel wurde erfolgreich gelöscht.
+      error: Es gab ein Problem beim Löschen deines Sicherheitsschlüssels. Bitte versuche es erneut.
+      success: Dein Sicherheitsschlüssel wurde erfolgreich gelöscht.
     invalid_credential: Ungültiger Sicherheitsschlüssel
-    nickname_hint: Geben Sie den Spitznamen Ihres neuen Sicherheitsschlüssels ein
-    not_enabled: Sie haben WebAuthn noch nicht aktiviert
+    nickname_hint: Gib den Spitznamen deines neuen Sicherheitsschlüssels ein
+    not_enabled: Du hast WebAuthn noch nicht aktiviert
     not_supported: Dieser Browser unterstützt keine Sicherheitsschlüssel
-    otp_required: Um Sicherheitsschlüssel zu verwenden, aktivieren Sie bitte zuerst die Zwei-Faktor-Authentifizierung.
+    otp_required: Um Sicherheitsschlüssel zu verwenden, aktiviere zuerst die Zwei-Faktor-Authentifizierung.
     registered_on: Registriert am %{date}
