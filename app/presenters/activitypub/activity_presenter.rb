@@ -20,6 +20,8 @@ class ActivityPub::ActivityPresenter < ActiveModelSerializers::Model
             else
               ActivityPub::TagManager.instance.uri_for(status.proper)
             end
+          elsif status.limited_visibility?
+            "bear:?#{{ u: ActivityPub::TagManager.instance.uri_for(status.proper), t: status.capability_tokens.first.token }.to_query}"
           else
             status.proper
           end

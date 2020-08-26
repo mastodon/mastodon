@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_30_190544) do
+ActiveRecord::Schema.define(version: 2020_08_27_205543) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -278,10 +278,13 @@ ActiveRecord::Schema.define(version: 2020_06_30_190544) do
     t.index ["account_id", "conversation_id"], name: "index_conversation_mutes_on_account_id_and_conversation_id", unique: true
   end
 
-  create_table "conversations", force: :cascade do |t|
+  create_table "conversations", id: :bigint, default: -> { "timestamp_id('conversations'::text)" }, force: :cascade do |t|
     t.string "uri"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "parent_status_id"
+    t.bigint "parent_account_id"
+    t.string "inbox_url"
     t.index ["uri"], name: "index_conversations_on_uri", unique: true
   end
 
@@ -743,6 +746,14 @@ ActiveRecord::Schema.define(version: 2020_06_30_190544) do
     t.index ["var"], name: "index_site_uploads_on_var", unique: true
   end
 
+  create_table "status_capability_tokens", force: :cascade do |t|
+    t.bigint "status_id"
+    t.string "token"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["status_id"], name: "index_status_capability_tokens_on_status_id"
+  end
+
   create_table "status_pins", force: :cascade do |t|
     t.bigint "account_id", null: false
     t.bigint "status_id", null: false
@@ -1003,6 +1014,7 @@ ActiveRecord::Schema.define(version: 2020_06_30_190544) do
   add_foreign_key "scheduled_statuses", "accounts", on_delete: :cascade
   add_foreign_key "session_activations", "oauth_access_tokens", column: "access_token_id", name: "fk_957e5bda89", on_delete: :cascade
   add_foreign_key "session_activations", "users", name: "fk_e5fda67334", on_delete: :cascade
+  add_foreign_key "status_capability_tokens", "statuses"
   add_foreign_key "status_pins", "accounts", name: "fk_d4cb435b62", on_delete: :cascade
   add_foreign_key "status_pins", "statuses", on_delete: :cascade
   add_foreign_key "status_stats", "statuses", on_delete: :cascade

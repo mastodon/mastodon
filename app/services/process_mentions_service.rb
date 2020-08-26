@@ -42,9 +42,21 @@ class ProcessMentionsService < BaseService
       "@#{mentioned_account.acct}"
     end
 
+    if status.limited_visibility? && status.thread&.limited_visibility?
+      # If we are replying to a local status, then we'll have the complete
+      # audience copied here, both local and remote. If we are replying
+      # to a remote status, only local audience will be copied. Then we
+      # need to send our reply to the remote author's inbox for distribution
+
+      status.thread.mentions.includes(:account).find_each do |mention|
+        status.mentions.create(silent: true, account: mention.account)
+      end
+    end
+
     status.save!
     check_for_spam(status)
 
+    # Silent mentions need to be delivered separately
     mentions.each { |mention| create_notification(mention) }
   end
 

@@ -85,6 +85,7 @@ Rails.application.routes.draw do
   end
 
   resource :inbox, only: [:create], module: :activitypub
+  resources :contexts, only: [:show], module: :activitypub
 
   get '/@:username', to: 'accounts#show', as: :short_account
   get '/@:username/with_replies', to: 'accounts#show', as: :short_account_with_replies
