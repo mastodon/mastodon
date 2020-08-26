@@ -235,7 +235,7 @@ vi:
         create_account_warning: "%{name} đã gửi cảnh cáo %{target}"
         create_announcement: "%{name} tạo thông báo mới %{target}"
         create_custom_emoji: "%{name} đã tải lên biểu tượng cảm xúc mới %{target}"
-        create_domain_allow: "%{name} đưa máy chủ %{target} vào danh sách trắng"
+        create_domain_allow: "%{name} kích hoạt liên hợp với %{target}"
         create_domain_block: "%{name} chặn máy chủ %{target}"
         create_email_domain_block: "%{name} chặn địa chỉ email %{target}"
         demote_user: "%{name} đã gỡ bỏ chức vụ %{target}"
@@ -346,13 +346,13 @@ vi:
       week_users_new: đăng ký mới trong tuần
       whitelist_mode: Giới hạn mạng liên hợp
     domain_allows:
-      add_new: Máy chủ thuộc danh sách trắng
-      created_msg: Máy chủ đã được đưa vào danh sách trắng thành công
-      destroyed_msg: Máy chủ đã bị xóa khỏi danh sách trắng
+      add_new: Cho phép liên hợp với máy chủ
+      created_msg: Máy chủ đã được kích hoạt liên hợp thành công
+      destroyed_msg: Máy chủ đã bị ngưng liên hợp
       undo: Xóa khỏi danh sách trắng
     domain_blocks:
       add_new: Chặn máy chủ mới
-      created_msg: Đang xử lý chặn máy chủ
+      created_msg: Đang tiến hành chặn máy chủ
       destroyed_msg: Đã thôi chặn máy chủ
       domain: Máy chủ
       edit: Chỉnh sửa máy chủ bị chặn
