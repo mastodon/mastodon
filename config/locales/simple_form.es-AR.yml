@@ -55,7 +55,7 @@ es-AR:
         domain: Este dominio podrá recolectar datos de este servidor, y los datos entrantes serán procesados y archivados
       email_domain_block:
         domain: Puede ser el nombre de dominio que aparece en la dirección de correo electrónico, el registro MX hacia el cual resuelve el dominio, o la dirección IP del servidor hacia el cual resuelve ese registro MX. Esto se comprobará en el momento del registro del usuario, y el registro será rechazado.
-        with_dns_records: Se hará un intento de resolver los registros DNS del dominio dado y los resultados serán también puestos en la lista de desaprobados
+        with_dns_records: Se hará un intento de resolver los registros DNS del dominio dado y los resultados serán también bloqueados
       featured_tag:
         name: 'Puede que quieras usar una de estas:'
       form_challenge:
@@ -147,7 +147,7 @@ es-AR:
         setting_system_font_ui: Utilizar la tipografía predeterminada del sistema
         setting_theme: Tema del sitio
         setting_trends: Mostrar las tendencias de hoy
-        setting_unfollow_modal: Mostrar diálogo de confirmación antes de dejar de seguir a alguien
+        setting_unfollow_modal: Mostrar diálogo de confirmación antes de dejar de seguir a una cuenta
         setting_use_blurhash: Mostrar gradientes coloridos para medios ocultos
         setting_use_pending_items: Modo lento
         severity: Severidad
@@ -170,14 +170,14 @@ es-AR:
         text: '¿Por qué querés unirte?'
       notification_emails:
         digest: Enviar correos electrónicos compilatorios
-        favourite: Enviar correo electrónico cuando una cuenta marca como favorito tu estado
-        follow: Enviar correo electrónico cuando una cuenta te siga
-        follow_request: Enviar correo electrónico cuando una cuenta solicita seguirte
-        mention: Enviar correo electrónico cuando una cuenta te mencione
-        pending_account: Enviar correo electrónico cuando una nueva cuenta necesita revisión
-        reblog: Enviar correo electrónico cuando una cuenta retootee tu estado
-        report: Enviar correo electrónico cuando se envíe un nuevo informe
-        trending_tag: Enviar correo electrónico cuando una etiqueta no revisada esté en tendencia
+        favourite: Una cuenta marca tu toot como favorito
+        follow: Una cuenta te sigue
+        follow_request: Una cuenta solicita seguirte
+        mention: Una cuenta te menciona
+        pending_account: Una nueva cuenta necesita revisión
+        reblog: Una cuenta retootea tu toot
+        report: Se envía una nueva denuncia
+        trending_tag: Una etiqueta no revisada está en tendencia
       tag:
         listable: Permitir que esta etiqueta aparezca en las búsquedas y en el directorio de perfiles
         name: Etiqueta
