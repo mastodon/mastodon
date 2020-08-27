@@ -59,6 +59,23 @@ es-AR:
         title: Códigos de recuperación 2FA cambiados
       unlock_instructions:
         subject: 'Mastodon: instrucciones de desbloqueo'
+      webauthn_credential:
+        added:
+          explanation: Se agregó la siguiente llave de seguridad a tu cuenta
+          subject: 'Mastodon: nueva llave de seguridad'
+          title: Se agregó una nueva llave de seguridad
+        deleted:
+          explanation: Se eliminó la siguiente llave de seguridad de tu cuenta
+          subject: 'Mastodon: llave de seguridad eliminada'
+          title: Se eliminó una de tus llaves de seguridad
+      webauthn_disabled:
+        explanation: Se deshabilitó la autenticación con llaves de seguridad en tu cuenta. El inicio de sesión ahora es posible usando sólo la clave generada por la aplicación de verificación de 2 factores.
+        subject: 'Mastodon: Autenticación con claves de seguridad desactivada'
+        title: Claves de seguridad desactivadas
+      webauthn_enabled:
+        explanation: La autenticación con clave de seguridad ha sido habilitada para su cuenta. Su clave de seguridad ahora puede ser usada para iniciar sesión.
+        subject: 'Mastodon: Autenticación con clave de seguridad activada'
+        title: Claves de seguridad activadas
     omniauth_callbacks:
       failure: 'No se te pudo autenticar desde %{kind} debido a esto: "%{reason}".'
       success: Se autenticó exitosamente para la cuenta %{kind}.
