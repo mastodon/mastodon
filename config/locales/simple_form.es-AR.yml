@@ -66,6 +66,7 @@ es-AR:
         text: Esto nos ayudará a revisar tu aplicación
       sessions:
         otp: 'Ingresá el código de autenticación de dos factores generado por la aplicación de tu dispositivo móvil, o usá uno de tus códigos de recuperación:'
+        webauthn: Si es una llave USB, asegurate de insertarla y, de ser necesario, tocarla.
       tag:
         name: Sólo podés cambiar la capitalización de las letras, por ejemplo, para que sea más legible
       user:
@@ -187,4 +188,7 @@ es-AR:
     required:
       mark: "*"
       text: obligatorio
+    title:
+      sessions:
+        webauthn: Usá una de tus llaves de seguridad para iniciar sesión
     'yes': 'Sí'
