@@ -680,8 +680,11 @@ es-AR:
       prefix_sign_up: '¡Unite a Mastodon hoy!'
       suffix: Con una cuenta vas a poder seguir gente, escribir estados e intercambiar mensajes ¡con usuarios de cualquier servidor de Mastodon y más!
     didnt_get_confirmation: '¿No recibiste el correo electrónico de confirmación?'
+    dont_have_your_security_key: '¿No tenés tu llave de seguridad?'
     forgot_password: '¿Te olvidaste la contraseña?'
     invalid_reset_password_token: La clave para cambiar la contraseña no es válida o venció. Por favor, solicitá una nueva.
+    link_to_otp: Ingresá un código de dos factores desde tu teléfono o un código de recuperación
+    link_to_webauth: Usá tu dispositivo de llave de seguridad
     login: Iniciar sesión
     logout: Cerrar sesión
     migrate_account: Mudarse a otra cuenta
@@ -707,6 +710,7 @@ es-AR:
       pending: Tu solicitud está pendiente de revisión por nuestra administración. Eso puede tardar algún tiempo. Si se aprueba tu solicitud, vas a recibir un correo electrónico.
       redirecting_to: Tu cuenta se encuentra inactiva porque está siendo redirigida a %{acct}.
     trouble_logging_in: '¿Tenés problemas para iniciar sesión?'
+    use_security_key: Usar la llave de seguridad
   authorize_follow:
     already_following: Ya estás siguiendo a esta cuenta
     already_requested: Ya enviaste una solicitud de seguimiento a esa cuenta
@@ -731,6 +735,7 @@ es-AR:
   date:
     formats:
       default: "%Y.%b.%d"
+      with_month_name: "%Y.%B.%d"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}h"
@@ -991,6 +996,14 @@ es-AR:
           quadrillion: Q
           thousand: m
           trillion: T
+  otp_authentication:
+    code_hint: Ingresá el código generado por tu aplicación de autenticación para confirmar
+    description_html: Si habilitás la <strong>autenticación de dos factores</strong> usando una aplicación de autenticación, entonces en el inicio de sesión se te pedirá que estés con tu dispositivo, el cual generará un código numérico ("token") para que lo ingresés.
+    enable: Habilitar
+    instructions_html: "<strong>Escanea este código QR desde Google Authenticator o una aplicación similar en tu teléfono</strong>. A partir de ahora, esta aplicación generará códigos que tendrásque ingresar cuando quieras iniciar sesión."
+    manual_instructions: 'Si no puedes escanear el código QR y necesitas introducirlo manualmente, este es el secreto en texto plano:'
+    setup: Configurar
+    wrong_code: '¡El código ingresado es inválido! ¿Es correcta la hora del dispositivo y el servidor?'
   pagination:
     newer: Más recientes
     next: Siguiente
@@ -1115,6 +1128,7 @@ es-AR:
     profile: Perfil
     relationships: Seguimientos
     two_factor_authentication: Autenticación de dos factores
+    webauthn_authentication: Claves de seguridad
   spam_check:
     spam_detected: Este es un informe automatizado. Se detectó spam.
   statuses:
@@ -1261,14 +1275,20 @@ es-AR:
       default: "%Y.%b.%d, %H:%M"
       month: "%b %Y"
   two_factor_authentication:
+    add: Añadir
     disable: Deshabilitar
+    disabled_success: Autenticación de doble factor desactivada correctamente
+    edit: Editar
     enabled: La autenticación de dos factores está activada
     enabled_success: Se habilitó exitosamente la autenticación de dos factores
     generate_recovery_codes: Generar códigos de recuperación
     lost_recovery_codes: Los códigos de recuperación te permiten recuperar el acceso a tu cuenta, si perdés tu dispositivo móvil. Si perdiste tus códigos de recuperación, podés regenerarlos acá. Tus antiguos códigos de recuperación serán invalidados.
+    methods: Métodos de autenticación de doble factor
+    otp: Aplicación de autenticación
     recovery_codes: Resguardar códigos de recuperación
     recovery_codes_regenerated: Los códigos de recuperación se regeneraron exitosamente
     recovery_instructions_html: Si alguna vez perdés el acceso a tu dispositivo móvil, podés usar uno de los siguientes códigos de recuperación para recuperar el acceso a tu cuenta. <strong>Mantenelos a salvo</strong>. Por ejemplo, podés imprimirlos y guardarlos con otros documentos importantes.
+    webauthn: Claves de seguridad
   user_mailer:
     backup_ready:
       explanation: Solicitado un resguardo completo de tu cuenta de Mastodon. ¡Ya está listo para descargar!
@@ -1330,3 +1350,20 @@ es-AR:
   verification:
     explanation_html: 'Podés <strong>verificarte a vos mismo como el propietario de los enlaces en los metadatos de tu perfil</strong>. Para eso, el sitio web del enlace debe contener un enlace de vuelta a tu perfil de Mastodon. El enlace en tu sitio <strong>debe</strong> tener un atributo <code>rel="me"</code>. El contenido del texto del enlace no importa. Acá tenés un ejemplo:'
     verification: Verificación
+  webauthn_credentials:
+    add: Agregar nueva clave de seguridad
+    create:
+      error: Hubo un problema al añadir su clave de seguridad. Por favor, inténtalo de nuevo.
+      success: Su clave de seguridad se ha añadido correctamente.
+    delete: Eliminar
+    delete_confirmation: '¿Estás seguro de que quieres eliminar esta clave de seguridad?'
+    description_html: Si habilita la <strong>autenticación de clave de seguridad</strong>, iniciar sesión requerirá que utilice una de sus claves de seguridad.
+    destroy:
+      error: Hubo un problema al añadir su clave de seguridad. Por favor, inténtalo de nuevo.
+      success: Su clave de seguridad se ha eliminado correctamente.
+    invalid_credential: Clave de seguridad no válida
+    nickname_hint: Introduzca el apodo de su nueva clave de seguridad
+    not_enabled: Aún no has activado WebAuthn
+    not_supported: Este navegador no soporta claves de seguridad
+    otp_required: Para usar claves de seguridad, por favor habilite primero la autenticación de doble factor.
+    registered_on: Registrado el %{date}
