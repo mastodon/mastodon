@@ -100,7 +100,7 @@ const statusToTextMentions = (text, privacy, status) => {
 
   mentions = mentions.union(status.get('mentions').filterNot(mention => mention.get('id') === me).map(mention => `@${mention.get('acct')} `));
 
-  const match = /^(\s*(?:(?:@\S+)\s*)*)(.*)/.exec(text);
+  const match = /^(\s*(?:(?:@\S+)\s*)*)([\s\S]*)/.exec(text);
   const extrctMentions = ImmutableOrderedSet(match[1].trim().split(/\s+/).filter(Boolean).map(mention => `${mention} `));
   const others = match[2];
 
