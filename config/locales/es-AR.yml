@@ -195,7 +195,7 @@ es-AR:
       username: Nombre de usuario
       warn: Advertir
       web: Web
-      whitelisted: Aprobadas para federación
+      whitelisted: Permitidas para federación
     action_logs:
       action_types:
         assigned_to_self_report: Asignar denuncia
@@ -240,13 +240,13 @@ es-AR:
         create_account_warning: "%{name} envió una advertencia a %{target}"
         create_announcement: "%{name} creó el nuevo anuncio %{target}"
         create_custom_emoji: "%{name} subió nuevo emoji %{target}"
-        create_domain_allow: "%{name} aprobó la federación con el dominio %{target}"
+        create_domain_allow: "%{name} permitió la federación con el dominio %{target}"
         create_domain_block: "%{name} bloqueó el dominio %{target}"
         create_email_domain_block: "%{name} bloqueó el dominio de correo electrónico %{target}"
         demote_user: "%{name} bajó de nivel al usuario %{target}"
         destroy_announcement: "%{name} eliminó el anuncio %{target}"
         destroy_custom_emoji: "%{name} destruyó el emoji %{target}"
-        destroy_domain_allow: "%{name} desaprobó la federación con el dominio %{target}"
+        destroy_domain_allow: "%{name} no permitió la federación con el dominio %{target}"
         destroy_domain_block: "%{name} desbloqueó el dominio %{target}"
         destroy_email_domain_block: "%{name} desbloqueó el dominio de correo electrónico %{target}"
         destroy_status: "%{name} eliminó el toot de %{target}"
@@ -353,7 +353,7 @@ es-AR:
     domain_allows:
       add_new: Permitir federación con el dominio
       created_msg: El dominio fue exitosamente permitido para la federación
-      destroyed_msg: El dominio fue desaprobado para la federación
+      destroyed_msg: El dominio no fue permitido para la federación
       undo: No permitir federación con el dominio
     domain_blocks:
       add_new: Agregar nuevo bloqueo de dominio
@@ -375,15 +375,15 @@ es-AR:
       private_comment_hint: Comentario sobre la limitación de este dominio, para uso interno de los moderadores.
       public_comment: Comentario público
       public_comment_hint: Comentario sobre la limitación de este dominio para el público en general, si está habilitada la publicación de lista de limitaciones de dominio.
-      reject_media: Rechazar archivos de medio
-      reject_media_hint: Quita los archivos de medio almacenados e impide la descarga en el futuro. Irrelevante para suspensiones.
+      reject_media: Rechazar archivos de medios
+      reject_media_hint: Quita los archivos de medios almacenados e impide la descarga en el futuro. Irrelevante para suspensiones
       reject_reports: Rechazar denuncias
-      reject_reports_hint: Ignora todas las denuncias que vengan de este dominio. Irrelevante para suspensiones.
-      rejecting_media: rechazando archivos de medio
-      rejecting_reports: rechazando denuncias
+      reject_reports_hint: Ignora todas las denuncias que vengan de este dominio. Irrelevante para suspensiones
+      rejecting_media: rechazo de archivos de medios
+      rejecting_reports: rechazo de denuncias
       severity:
-        silence: silenciado
-        suspend: suspendido
+        silence: silenciados
+        suspend: suspendidos
       show:
         affected_accounts:
           one: Una cuenta afectada en la base de datos
