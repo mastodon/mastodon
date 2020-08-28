@@ -22,10 +22,6 @@ class Api::V1::Accounts::StatusesController < Api::BaseController
   end
 
   def cached_account_statuses
-    cache_collection account_statuses, Status
-  end
-
-  def account_statuses
     statuses = truthy_param?(:pinned) ? pinned_scope : permitted_account_statuses
 
     statuses.merge!(only_media_scope) if truthy_param?(:only_media)
@@ -33,7 +29,12 @@ class Api::V1::Accounts::StatusesController < Api::BaseController
     statuses.merge!(no_reblogs_scope) if truthy_param?(:exclude_reblogs)
     statuses.merge!(hashtag_scope)    if params[:tagged].present?
 
-    statuses.paginate_by_id(limit_param(DEFAULT_STATUSES_LIMIT), params_slice(:max_id, :since_id, :min_id))
+    cache_collection_paginated_by_id(
+      statuses,
+      Status,
+      limit_param(DEFAULT_STATUSES_LIMIT),
+      params_slice(:max_id, :since_id, :min_id)
+    )
   end
 
   def permitted_account_statuses

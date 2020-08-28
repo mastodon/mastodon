@@ -20,23 +20,18 @@ class Api::V1::Timelines::TagController < Api::BaseController
   end
 
   def cached_tagged_statuses
-    cache_collection tagged_statuses, Status
-  end
-
-  def tagged_statuses
     if @tag.nil?
       []
     else
-      statuses = tag_timeline_statuses.paginate_by_id(
+      statuses = tag_timeline_statuses
+      statuses = statuses.joins(:media_attachments) if truthy_param?(:only_media)
+
+      cache_collection_paginated_by_id(
+        statuses,
+        Status,
         limit_param(DEFAULT_STATUSES_LIMIT),
         params_slice(:max_id, :since_id, :min_id)
       )
-
-      if truthy_param?(:only_media)
-        statuses.joins(:media_attachments)
-      else
-        statuses
-      end
     end
   end
 
