@@ -59,6 +59,16 @@ tr:
         title: 2FA kurtarma kodları değiştirildi
       unlock_instructions:
         subject: 'Mastodon: Engel kaldırma talimatları'
+      webauthn_credential:
+        added:
+          subject: 'Mastodon: Yeni güvenlik anahtarı'
+        deleted:
+          subject: 'Mastodon: Güvenlik anahtarı silindi'
+      webauthn_disabled:
+        title: Güvenlik anahtarları devre dışı
+      webauthn_enabled:
+        subject: 'Mastodon: Güvenlik anahtarı doğrulaması etkinleştirildi'
+        title: Güvenlik anahtarları etkin
     omniauth_callbacks:
       failure: '%{kind}''den kimliğiniz doğrulanamadı çünkü "%{reason}".'
       success: '%{kind} hesabından başarıyla kimlik doğrulaması yapıldı.'
