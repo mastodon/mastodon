@@ -36,7 +36,8 @@ RUN apt update && \
 	./autogen.sh && \
 	./configure --prefix=/opt/jemalloc && \
 	make -j$(nproc) > /dev/null && \
-	make install_bin install_include install_lib
+	make install_bin install_include install_lib && \
+	cd .. && rm -rf jemalloc-$JE_VER $JE_VER.tar.gz
 
 # Install Ruby
 ENV RUBY_VER="2.6.6"
@@ -56,7 +57,8 @@ RUN apt update && \
 	  --disable-install-doc && \
 	ln -s /opt/jemalloc/lib/* /usr/lib/ && \
 	make -j$(nproc) > /dev/null && \
-	make install
+	make install && \
+	cd .. && rm -rf ruby-$RUBY_VER.tar.gz ruby-$RUBY_VER
 
 ENV PATH="${PATH}:/opt/ruby/bin:/opt/node/bin"
 
