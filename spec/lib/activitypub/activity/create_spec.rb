@@ -121,6 +121,28 @@ RSpec.describe ActivityPub::Activity::Create do
         end
       end
 
+      context 'private with inlined Collection in audience' do
+        let(:object_json) do
+          {
+            id: [ActivityPub::TagManager.instance.uri_for(sender), '#bar'].join,
+            type: 'Note',
+            content: 'Lorem ipsum',
+            to: {
+              'type': 'OrderedCollection',
+              'id': 'http://example.com/followers',
+              'first': 'http://example.com/followers?page=true',
+            }
+          }
+        end
+
+        it 'creates status' do
+          status = sender.statuses.first
+
+          expect(status).to_not be_nil
+          expect(status.visibility).to eq 'private'
+        end
+      end
+
       context 'limited' do
         let(:recipient) { Fabricate(:account) }
 

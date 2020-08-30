@@ -1,0 +1,14 @@
+- content_for :page_title do
+  = t('settings.webauthn_authentication')
+
+= simple_form_for(:new_webauthn_credential, url: settings_webauthn_credentials_path, html: { id: :new_webauthn_credential }) do |f|
+  %p.flash-message.hidden#unsupported-browser-message= t 'webauthn_credentials.not_supported'
+  %p.flash-message.alert.hidden#security-key-error-message= t 'webauthn_credentials.invalid_credential'
+
+  %p.hint= t('webauthn_credentials.description_html')
+
+  .fields_group
+    = f.input :nickname, wrapper: :with_block_label, hint: t('webauthn_credentials.nickname_hint'), input_html: { :autocomplete => 'off' }, required: true
+
+  .actions
+    = f.button :button, t('webauthn_credentials.add'), class: 'js-webauthn', type: :submit

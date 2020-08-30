@@ -1,14 +1,7 @@
 - content_for :page_title do
   = t('auth.login')
 
-= simple_form_for(resource, as: resource_name, url: session_path(resource_name), method: :post) do |f|
-  %p.hint.otp-hint= t('simple_form.hints.sessions.otp')
+- if @webauthn_enabled
+  = render partial: 'auth/sessions/two_factor/webauthn_form', locals: { hidden: @scheme_type != 'webauthn' }
 
-  .fields-group
-    = f.input :otp_attempt, type: :number, wrapper: :with_label, label: t('simple_form.labels.defaults.otp_attempt'), input_html: { 'aria-label' => t('simple_form.labels.defaults.otp_attempt'), :autocomplete => 'off' }, autofocus: true
-
-  .actions
-    = f.button :button, t('auth.login'), type: :submit
-
-  - if Setting.site_contact_email.present?
-    %p.hint.subtle-hint= t('users.otp_lost_help_html', email: mail_to(Setting.site_contact_email, nil))
+= render partial: 'auth/sessions/two_factor/otp_authentication_form', locals: { hidden: @scheme_type != 'totp' }
