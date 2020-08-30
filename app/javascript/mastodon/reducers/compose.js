@@ -303,11 +303,7 @@ export default function compose(state = initialState, action) {
       map.set('text', statusToTextMentions(state.get('text'), action.value, state.get('reply_status')));
       map.set('privacy', action.value);
       map.set('idempotencyKey', uuid());
-      if(action.value === 'limited' && map.get('in_reply_to')) {
-        map.set('circle_id', state.getIn(['reply_status', 'in_reply_to_id']) ? 'thread' : 'reply');
-      } else {
-        map.set('circle_id', null);
-      }
+      map.set('circle_id', null);
     });
   case COMPOSE_CIRCLE_CHANGE:
     return state
@@ -327,13 +323,7 @@ export default function compose(state = initialState, action) {
       map.set('reply_status', action.status);
       map.set('text', statusToTextMentions('', privacy, action.status));
       map.set('privacy', privacy);
-      if(action.status.get('circle_id')) {
-        map.set('circle_id', action.status.get('circle_id'));
-      } else if(action.status.get('visibility') === 'limited'){
-        map.set('circle_id', action.status.get('in_reply_to_id') ? 'thread' : 'reply');
-      } else {
-        map.set('circle_id', null);
-      }
+      map.set('circle_id', null);
       map.set('focusDate', new Date());
       map.set('caretPosition', null);
       map.set('preselectDate', new Date());
@@ -444,7 +434,7 @@ export default function compose(state = initialState, action) {
     return state.withMutations(map => {
       map.set('text', action.raw_text || unescapeHTML(expandMentions(action.status)));
       map.set('in_reply_to', action.status.get('in_reply_to_id'));
-      map.set('reply_status', action.status);
+      map.set('reply_status', action.replyStatus);
       map.set('privacy', action.status.get('visibility'));
       map.set('circle_id', action.status.get('circle_id'));
       map.set('media_attachments', action.status.get('media_attachments'));

@@ -68,7 +68,7 @@ class REST::StatusSerializer < ActiveModel::Serializer
   end
 
   def limited_owned_status?
-    object.limited_visibility? && owned_status?
+    object.limited_visibility? && owned_status? && object.in_reply_to_id.nil?
   end
 
   def circle_id

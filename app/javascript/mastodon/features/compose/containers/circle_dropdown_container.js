@@ -8,8 +8,7 @@ const mapStateToProps = state => {
 
   return {
     value: value,
-    visible: state.getIn(['compose', 'privacy']) === 'limited',
-    reply: state.getIn(['compose', 'in_reply_to']) !== null,
+    visible: state.getIn(['compose', 'privacy']) === 'limited' && state.getIn(['compose', 'reply_status', 'visibility']) !== 'limited',
   };
 };
 

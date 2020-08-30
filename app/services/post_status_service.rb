@@ -68,7 +68,7 @@ class PostStatusService < BaseService
 
     process_hashtags_service.call(@status)
     process_mentions_service.call(@status)
-    redis.setex(circle_id_key, 3.days.seconds, @circle.id) if @circle.present? && @circle.respond_to?(:id)
+    redis.setex(circle_id_key, 3.days.seconds, @circle.id) if @circle.present?
   end
 
   def schedule_status!

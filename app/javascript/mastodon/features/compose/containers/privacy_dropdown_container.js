@@ -7,6 +7,7 @@ import { isUserTouching } from '../../../is_mobile';
 const mapStateToProps = state => ({
   isModalOpen: state.get('modal').modalType === 'ACTIONS',
   value: state.getIn(['compose', 'privacy']),
+  limitedReply: state.getIn(['compose', 'reply_status', 'visibility']) === 'limited',
 });
 
 const mapDispatchToProps = dispatch => ({
