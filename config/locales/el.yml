@@ -991,6 +991,8 @@ el:
           quadrillion: τετράκις.
           thousand: χ.
           trillion: τρις.
+  otp_authentication:
+    enable: Ενεργοποίηση
   pagination:
     newer: Νεότερο
     next: Επόμενο
@@ -1261,7 +1263,9 @@ el:
       default: "%b %d, %Y, %H:%M"
       month: "%b %Y"
   two_factor_authentication:
+    add: Προσθήκη
     disable: Απενεργοποίησε
+    edit: Επεξεργασία
     enabled: Η πιστοποίηση 2 παραγόντων (2FA) είναι ενεργοποιημένη
     enabled_success: Η πιστοποίηση 2 παραγόντων (2FA) ενεργοποιήθηκε επιτυχώς
     generate_recovery_codes: Δημιούργησε κωδικούς ανάκτησης
@@ -1330,3 +1334,5 @@ el:
   verification:
     explanation_html: 'Μπορείς να <strong>πιστοποιήσεις τον εαυτό σου ως ιδιοκτήτη των συνδέσμων που εμφανίζεις στα μεταδεδομένα του προφίλ σου</strong>. Για να συμβεί αυτό, ο συνδεδεμένος ιστότοπος πρέπει να περιέχει ένα σύνδεσμο που να επιστρέφει προς το προφίλ σου στο Mastodon. Ο σύνδεσμος επιστροφής <strong>πρέπει</strong> περιέχει την ιδιότητα (attribute) <code>rel="me"</code>. Το περιεχόμενο του κειμένου δεν έχει σημασία. Για παράδειγμα:'
     verification: Πιστοποίηση
+  webauthn_credentials:
+    delete: Διαγραφή
