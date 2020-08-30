@@ -8,7 +8,7 @@ class HashtagQueryService < BaseService
     all  = tags_for(params[:all])
     none = tags_for(params[:none])
 
-    Status.distinct
+    Status.group(:id)
           .as_tag_timeline(tags, account, local)
           .tagged_with_all(all)
           .tagged_with_none(none)

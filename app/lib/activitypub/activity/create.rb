@@ -15,7 +15,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   private
 
   def create_encrypted_message
-    return reject_payload! if invalid_origin?(@object['id']) || @options[:delivered_to_account_id].blank?
+    return reject_payload! if invalid_origin?(object_uri) || @options[:delivered_to_account_id].blank?
 
     target_account = Account.find(@options[:delivered_to_account_id])
     target_device  = target_account.devices.find_by(device_id: @object.dig('to', 'deviceId'))
@@ -43,7 +43,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   end
 
   def create_status
-    return reject_payload! if unsupported_object_type? || invalid_origin?(@object['id']) || Tombstone.exists?(uri: @object['id']) || !related_to_local_activity?
+    return reject_payload! if unsupported_object_type? || invalid_origin?(object_uri) || tombstone_exists? || !related_to_local_activity?
 
     RedisLock.acquire(lock_options) do |lock|
       if lock.acquired?
@@ -65,11 +65,11 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   end
 
   def audience_to
-    @object['to'] || @json['to']
+    as_array(@object['to'] || @json['to']).map { |x| value_or_id(x) }
   end
 
   def audience_cc
-    @object['cc'] || @json['cc']
+    as_array(@object['cc'] || @json['cc']).map { |x| value_or_id(x) }
   end
 
   def process_status
@@ -90,7 +90,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     fetch_replies(@status)
     check_for_spam
     distribute(@status)
-    forward_for_reply if @status.distributable?
+    forward_for_reply
   end
 
   def find_existing_status
@@ -102,8 +102,8 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   def process_status_params
     @params = begin
       {
-        uri: @object['id'],
-        url: object_url || @object['id'],
+        uri: object_uri,
+        url: object_url || object_uri,
         account: @account,
         text: text_from_content || '',
         language: detected_language,
@@ -122,7 +122,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   end
 
   def process_audience
-    (as_array(audience_to) + as_array(audience_cc)).uniq.each do |audience|
+    (audience_to + audience_cc).uniq.each do |audience|
       next if audience == ActivityPub::TagManager::COLLECTIONS[:public]
 
       # Unlike with tags, there is no point in resolving accounts we don't already
@@ -313,7 +313,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     RedisLock.acquire(poll_lock_options) do |lock|
       if lock.acquired?
         already_voted = poll.votes.where(account: @account).exists?
-        poll.votes.create!(account: @account, choice: poll.options.index(@object['name']), uri: @object['id'])
+        poll.votes.create!(account: @account, choice: poll.options.index(@object['name']), uri: object_uri)
       else
         raise Mastodon::RaceConditionError
       end
@@ -352,11 +352,11 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   end
 
   def visibility_from_audience
-    if equals_or_includes?(audience_to, ActivityPub::TagManager::COLLECTIONS[:public])
+    if audience_to.include?(ActivityPub::TagManager::COLLECTIONS[:public])
       :public
-    elsif equals_or_includes?(audience_cc, ActivityPub::TagManager::COLLECTIONS[:public])
+    elsif audience_cc.include?(ActivityPub::TagManager::COLLECTIONS[:public])
       :unlisted
-    elsif equals_or_includes?(audience_to, @account.followers_url)
+    elsif audience_to.include?(@account.followers_url)
       :private
     elsif direct_message == false
       :limited
@@ -367,7 +367,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
 
   def audience_includes?(account)
     uri = ActivityPub::TagManager.instance.uri_for(account)
-    equals_or_includes?(audience_to, uri) || equals_or_includes?(audience_cc, uri)
+    audience_to.include?(uri) || audience_cc.include?(uri)
   end
 
   def direct_message
@@ -391,7 +391,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   end
 
   def text_from_content
-    return Formatter.instance.linkify([[text_from_name, text_from_summary.presence].compact.join("\n\n"), object_url || @object['id']].join(' ')) if converted_object_type?
+    return Formatter.instance.linkify([[text_from_name, text_from_summary.presence].compact.join("\n\n"), object_url || object_uri].join(' ')) if converted_object_type?
 
     if @object['content'].present?
       @object['content']
@@ -483,11 +483,15 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   def addresses_local_accounts?
     return true if @options[:delivered_to_account_id]
 
-    local_usernames = (as_array(audience_to) + as_array(audience_cc)).uniq.select { |uri| ActivityPub::TagManager.instance.local_uri?(uri) }.map { |uri| ActivityPub::TagManager.instance.uri_to_local_id(uri, :username) }
+    local_usernames = (audience_to + audience_cc).uniq.select { |uri| ActivityPub::TagManager.instance.local_uri?(uri) }.map { |uri| ActivityPub::TagManager.instance.uri_to_local_id(uri, :username) }
 
     return false if local_usernames.empty?
 
     Account.local.where(username: local_usernames).exists?
+  end
+
+  def tombstone_exists?
+    Tombstone.exists?(uri: object_uri)
   end
 
   def check_for_spam
@@ -495,7 +499,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   end
 
   def forward_for_reply
-    return unless @json['signature'].present? && reply_to_local?
+    return unless @status.distributable? && @json['signature'].present? && reply_to_local?
 
     ActivityPub::RawDistributionWorker.perform_async(Oj.dump(@json), replied_to_status.account_id, [@account.preferred_inbox_url])
   end
@@ -513,7 +517,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   end
 
   def lock_options
-    { redis: Redis.current, key: "create:#{@object['id']}" }
+    { redis: Redis.current, key: "create:#{object_uri}" }
   end
 
   def poll_lock_options

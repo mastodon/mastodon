@@ -8,8 +8,6 @@ class FanOutOnWriteService < BaseService
 
     deliver_to_self(status) if status.account.local?
 
-    render_anonymous_payload(status)
-
     if status.direct_visibility?
       deliver_to_mentioned_followers(status)
       deliver_to_direct_timelines(status)
@@ -23,6 +21,8 @@ class FanOutOnWriteService < BaseService
 
     return if status.account.silenced? || !status.public_visibility?
     return if status.reblog? && !Setting.show_reblogs_in_public_timelines
+
+    render_anonymous_payload(status)
 
     deliver_to_hashtags(status)
 
@@ -63,8 +63,10 @@ class FanOutOnWriteService < BaseService
   def deliver_to_mentioned_followers(status)
     Rails.logger.debug "Delivering status #{status.id} to limited followers"
 
-    FeedInsertWorker.push_bulk(status.mentions.includes(:account).map(&:account).select { |mentioned_account| mentioned_account.local? && mentioned_account.following?(status.account) }) do |follower|
-      [status.id, follower.id, :home]
+    status.mentions.joins(:account).merge(status.account.followers_for_local_distribution).select(:id).reorder(nil).find_in_batches do |followers|
+      FeedInsertWorker.push_bulk(followers) do |follower|
+        [status.id, follower.id, :home]
+      end
     end
   end
 
