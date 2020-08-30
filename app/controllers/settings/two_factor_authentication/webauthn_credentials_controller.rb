@@ -85,6 +85,10 @@ module Settings
 
       private
 
+      def set_pack
+        use_pack 'auth'
+      end
+
       def require_otp_enabled
         unless current_user.otp_enabled?
           flash[:error] = t('webauthn_credentials.otp_required')
