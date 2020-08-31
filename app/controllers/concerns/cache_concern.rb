@@ -49,6 +49,6 @@ module CacheConcern
   end
 
   def cache_collection_paginated_by_id(raw, klass, limit, options)
-    cache_collection raw.cache_ids.paginate_by_id(limit, options), klass
+    cache_collection raw.cache_ids.to_a_paginated_by_id(limit, options), klass
   end
 end

@@ -32,7 +32,7 @@ class Api::V1::ScheduledStatusesController < Api::BaseController
   private
 
   def set_statuses
-    @statuses = current_account.scheduled_statuses.paginate_by_id(limit_param(DEFAULT_STATUSES_LIMIT), params_slice(:max_id, :since_id, :min_id))
+    @statuses = current_account.scheduled_statuses.to_a_paginated_by_id(limit_param(DEFAULT_STATUSES_LIMIT), params_slice(:max_id, :since_id, :min_id))
   end
 
   def set_status
