@@ -58,9 +58,9 @@ class FanOutOnWriteService < BaseService
   def deliver_to_mentioned_followers(status)
     Rails.logger.debug "Delivering status #{status.id} to limited followers"
 
-    status.mentions.joins(:account).merge(status.account.followers_for_local_distribution).select(:id).reorder(nil).find_in_batches do |followers|
-      FeedInsertWorker.push_bulk(followers) do |follower|
-        [status.id, follower.id, :home]
+    status.mentions.joins(:account).merge(status.account.followers_for_local_distribution).select(:id, :account_id).reorder(nil).find_in_batches do |mentions|
+      FeedInsertWorker.push_bulk(mentions) do |mention|
+        [status.id, mention.account_id, :home]
       end
     end
   end
