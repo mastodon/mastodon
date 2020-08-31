@@ -7,6 +7,8 @@ class StatusPolicy < ApplicationPolicy
     @preloaded_relations = preloaded_relations
   end
 
+  delegate :reply?, to: :record
+
   def index?
     staff?
   end
@@ -42,7 +44,7 @@ class StatusPolicy < ApplicationPolicy
   end
 
   def show_mentions?
-    limited? && owned?
+    limited? && !reply? && owned?
   end
 
   private
