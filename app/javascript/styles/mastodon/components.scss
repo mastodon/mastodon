@@ -980,14 +980,6 @@
     outline: 0;
     background: lighten($ui-base-color, 4%);
 
-    .status.status-direct {
-      background: lighten($ui-base-color, 12%);
-
-      &.muted {
-        background: transparent;
-      }
-    }
-
     .detailed-status,
     .detailed-status__action-bar {
       background: lighten($ui-base-color, 8%);
@@ -1020,11 +1012,6 @@
   .video-player,
   .audio-player {
     margin-top: 8px;
-  }
-
-  &.status-direct:not(.read) {
-    background: lighten($ui-base-color, 8%);
-    border-bottom-color: lighten($ui-base-color, 12%);
   }
 
   &.light {
@@ -1060,16 +1047,6 @@
           background: lighten($ui-primary-color, 8%);
         }
       }
-    }
-  }
-}
-
-.notification-favourite {
-  .status.status-direct {
-    background: transparent;
-
-    .icon-button.disabled {
-      color: lighten($action-button-color, 13%);
     }
   }
 }
