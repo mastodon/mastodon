@@ -46,9 +46,19 @@ class AccountSearchService < BaseService
     return [] if limit_for_non_exact_results.zero?
 
     @search_results ||= begin
-      results = from_elasticsearch if Chewy.enabled?
+      results   = from_elasticsearch if Chewy.enabled?
       results ||= from_database
-      results
+      results.reject { |result| excluded_domains.include?(result.domain) }
+    end
+  end
+
+  def excluded_domains
+    @excluded_domains ||= begin
+      if account
+        Set.new(account.excluded_from_timeline_domains)
+      else
+        Set.new
+      end
     end
   end
 
@@ -69,8 +79,8 @@ class AccountSearchService < BaseService
   end
 
   def from_elasticsearch
-    must_clauses   = [{ multi_match: { query: terms_for_query, fields: likely_acct? ? %w(acct.edge_ngram acct) : %w(acct.edge_ngram acct display_name.edge_ngram display_name), type: 'most_fields', operator: 'and' } }]
-    should_clauses = []
+    must_clauses     = [{ multi_match: { query: terms_for_query, fields: likely_acct? ? %w(acct.edge_ngram acct) : %w(acct.edge_ngram acct display_name.edge_ngram display_name), type: 'most_fields', operator: 'and' } }]
+    should_clauses   = []
 
     if account
       return [] if options[:following] && following_ids.empty?
