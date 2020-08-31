@@ -40,6 +40,7 @@ const messages = defineMessages({
 
 const mapStateToProps = state => ({
   myAccount: state.getIn(['accounts', me]),
+  columns: state.getIn(['settings', 'columns']),
   unreadFollowRequests: state.getIn(['user_lists', 'follow_requests', 'items'], ImmutableList()).size,
 });
 
@@ -89,7 +90,7 @@ class GettingStarted extends ImmutablePureComponent {
   }
 
   render () {
-    const { intl, myAccount, multiColumn, unreadFollowRequests } = this.props;
+    const { intl, myAccount, columns, multiColumn, unreadFollowRequests } = this.props;
 
     const navItems = [];
     let i = 1;
@@ -122,6 +123,13 @@ class GettingStarted extends ImmutablePureComponent {
         <ColumnLink key={i++} icon='address-book' text={intl.formatMessage(messages.profile_directory)} to='/directory' />,
       );
 
+      height += 48;
+    }
+
+    if (multiColumn && !columns.find(item => item.get('id') === 'HOME')) {
+      navItems.push(
+        <ColumnLink key={i++} icon='home' text={intl.formatMessage(messages.home_timeline)} to='/timelines/home' />,
+      );
       height += 48;
     }
 
