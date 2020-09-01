@@ -207,16 +207,28 @@ sv:
         enable_custom_emoji: Aktivera egna emojis
         enable_user: Aktivera användare
         memorialize_account: Minnesmärk konto
+        promote_user: Befordra användare
+        remove_avatar_user: Ta bort avatar
+        reset_password_user: Återställ lösenord
+        resolve_report: Lös rapport
+        silence_account: Tysta konto
+        suspend_account: Stäng av konto
+        unsuspend_account: Återaktivera konto
+        update_announcement: Uppdatera meddelande
+        update_custom_emoji: Uppdatera egna emojis
+        update_status: Uppdatera status
       actions:
         assigned_to_self_report: "%{name} tilldelade anmälan %{target} till sig själv"
         change_email_user: "%{name} bytte e-postadress för användare %{target}"
         confirm_user: "%{name} bekräftade e-postadress för användare %{target}"
         create_account_warning: "%{name} sände en varning till %{target}"
+        create_announcement: "%{name} skapade nytt meddelande %{target}"
         create_custom_emoji: "%{name} laddade upp ny emoji %{target}"
         create_domain_allow: "%{name} vitlistade domän %{target}"
         create_domain_block: "%{name} blockerade domän %{target}"
         create_email_domain_block: "%{name} svartlistade e-postdomän %{target}"
         demote_user: "%{name} degraderade användare %{target}"
+        destroy_announcement: "%{name} raderade meddelanden %{target}"
         destroy_custom_emoji: "%{name} förstörde emoji %{target}"
         destroy_domain_allow: "%{name} raderade domän %{target} från vitlistan"
         destroy_domain_block: "%{name} avblockerade domän %{target}"
@@ -241,6 +253,7 @@ sv:
         update_custom_emoji: "%{name} uppdaterade emoji %{target}"
         update_status: "%{name} uppdaterade status för %{target}"
       deleted_status: "(raderad status)"
+      empty: Inga loggar hittades.
       title: Revisionslogg
     announcements:
       scheduled_for: Schemalagd för %{time}
@@ -332,6 +345,7 @@ sv:
       reject_media: Avvisa mediafiler
       reject_media_hint: Raderar lokalt lagrade mediefiler och förhindrar möjligheten att ladda ner något i framtiden. Irrelevant för suspensioner
       severity:
+        silence: tystad
         suspend: avstängd
       show:
         affected_accounts:
@@ -350,6 +364,7 @@ sv:
       destroyed_msg: E-postdomän har tagits bort från domänblockslistan utan problem
       domain: Domän
       empty: För tillfället inga svartlistade mejl.
+      from_html: från %{domain}
       new:
         create: Skapa domän
         title: Ny E-postdomänblocklistningsinmatning
@@ -359,7 +374,9 @@ sv:
       moderation:
         all: Alla
         limited: Begränsad
+        title: Moderering
       private_comment: Privat kommentar
+      public_comment: Offentlig kommentar
       title: Kända instanser
     invites:
       filter:
@@ -417,6 +434,11 @@ sv:
         username: Användarnamn för kontakt
       custom_css:
         title: Anpassad CSS
+      default_noindex:
+        title: Undantag användare från sökmotorindexering som standard
+      domain_blocks:
+        all: Till alla
+        disabled: För ingen
       hero:
         desc_html: Visas på framsidan. Minst 600x100px rekommenderas. Om inte angiven faller den tillbaka på instansens miniatyrbild
         title: Hjältebild
