@@ -397,7 +397,9 @@ sv:
     relays:
       delete: Radera
       disable: Inaktivera
+      disabled: Inaktiverad
       enable: Aktivera
+      enable_hint: När den är aktiverad kommer din server att prenumerera på alla publika toots från detta relay, och kommer att börja skicka serverns publika toots till den.
       enabled: Aktivera
       save_and_enable: Spara och aktivera
       status: Status
@@ -409,6 +411,7 @@ sv:
       are_you_sure: Är du säker?
       assign_to_self: Tilldela till mig
       assigned: Tilldelad moderator
+      by_target_domain: Domän för rapporterat konto
       comment:
         none: Ingen
       created_at: Anmäld
@@ -442,8 +445,10 @@ sv:
         email: Företag E-post
         username: Användarnamn för kontakt
       custom_css:
+        desc_html: Ändra utseendet genom CSS laddat på varje sida
         title: Anpassad CSS
       default_noindex:
+        desc_html: Påverkar alla användare som inte har ändrat denna inställning själva
         title: Undantag användare från sökmotorindexering som standard
       domain_blocks:
         all: Till alla
@@ -569,6 +574,7 @@ sv:
       email_settings_hint_html: Bekräftelsemeddelandet skickades till %{email}. Om den e-postadressen inte stämmer så kan du ändra den i kontoinställningarna.
     status:
       account_status: Kontostatus
+      redirecting_to: Ditt konto är inaktivt eftersom det för närvarande dirigeras om till %{acct}.
   authorize_follow:
     already_following: Du följer redan detta konto
     already_requested: Du har redan skickat en vänförfrågan till det kontot
@@ -606,6 +612,8 @@ sv:
     confirm_password: Ange ditt lösenord för att verifiera din identitet
     proceed: Ta bort konto
     success_msg: Ditt konto har raderats
+    warning:
+      irreversible: Du kan inte återställa eller återaktivera ditt konto
   domain_validator:
     invalid_domain: är inte ett giltigt domännamn
   errors:
@@ -703,6 +711,7 @@ sv:
       too_many: Det går inte att bifoga mer än 4 filer
   migrations:
     acct: användarnamn@domän av det nya kontot
+    cancel_explanation: Avstängning av omdirigeringen kommer att återaktivera ditt nuvarande konto, men kommer inte att återskapa följare som har flyttats till det kontot.
     incoming_migrations: Flyttar från ett annat konto
     redirected_msg: Ditt konto dirigeras om till %{acct}.
   moderation:
