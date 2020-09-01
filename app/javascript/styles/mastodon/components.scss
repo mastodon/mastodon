@@ -3864,33 +3864,11 @@ a.status-card.compact:hover {
   line-height: 24px;
 }
 
-.setting-toggle__label,
-.setting-radio__label {
+.setting-toggle__label {
   color: $darker-text-color;
   display: inline-block;
   margin-bottom: 14px;
   margin-left: 8px;
-  vertical-align: middle;
-}
-
-.setting-radio {
-  display: block;
-  line-height: 18px;
-}
-
-.setting-radio__label {
-  margin-bottom: 0;
-}
-
-.column-settings__row legend {
-  color: $darker-text-color;
-  cursor: default;
-  display: block;
-  font-weight: 500;
-  margin-top: 10px;
-}
-
-.setting-radio__input {
   vertical-align: middle;
 }
 
@@ -5977,6 +5955,10 @@ a.status-card.compact:hover {
   .radio-button {
     display: block;
   }
+}
+
+.column-settings__row .radio-button {
+  display: block;
 }
 
 .radio-button {

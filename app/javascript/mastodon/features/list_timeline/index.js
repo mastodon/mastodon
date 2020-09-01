@@ -15,6 +15,7 @@ import { openModal } from '../../actions/modal';
 import MissingIndicator from '../../components/missing_indicator';
 import LoadingIndicator from '../../components/loading_indicator';
 import Icon from 'mastodon/components/icon';
+import RadioButton from 'mastodon/components/radio_button';
 
 const messages = defineMessages({
   deleteMessage: { id: 'confirmations.delete_list.message', defaultMessage: 'Are you sure you want to permanently delete this list?' },
@@ -141,7 +142,7 @@ class ListTimeline extends React.PureComponent {
   }
 
   render () {
-    const { shouldUpdateScroll, hasUnread, columnId, multiColumn, list } = this.props;
+    const { shouldUpdateScroll, hasUnread, columnId, multiColumn, list, intl } = this.props;
     const { id } = this.props.params;
     const pinned = !!columnId;
     const title  = list ? list.get('title') : id;
@@ -176,7 +177,7 @@ class ListTimeline extends React.PureComponent {
           pinned={pinned}
           multiColumn={multiColumn}
         >
-          <div className='column-header__links'>
+          <div className='column-settings__row column-header__links'>
             <button className='text-btn column-header__setting-btn' tabIndex='0' onClick={this.handleEditClick}>
               <Icon id='pencil' /> <FormattedMessage id='lists.edit' defaultMessage='Edit list' />
             </button>
@@ -184,25 +185,20 @@ class ListTimeline extends React.PureComponent {
             <button className='text-btn column-header__setting-btn' tabIndex='0' onClick={this.handleDeleteClick}>
               <Icon id='trash' /> <FormattedMessage id='lists.delete' defaultMessage='Delete list' />
             </button>
-
-            { replies_policy !== undefined && (
-              <div>
-                <div className='column-settings__row'>
-                  <fieldset>
-                    <legend><FormattedMessage id='lists.replies_policy.title' defaultMessage='Show replies to:' /></legend>
-                    { ['no_replies', 'list_replies', 'all_replies'].map(policy => (
-                      <div className='setting-radio'>
-                        <input className='setting-radio__input' id={['setting', 'radio', id, policy].join('-')} type='radio' value={policy} checked={replies_policy === policy} onChange={this.handleRepliesPolicyChange} />
-                        <label className='setting-radio__label' htmlFor={['setting', 'radio', id, policy].join('-')}>
-                          <FormattedMessage {...messages[policy]} />
-                        </label>
-                      </div>
-                    ))}
-                  </fieldset>
-                </div>
-              </div>
-            )}
           </div>
+
+          { replies_policy !== undefined && (
+            <div role='group' aria-labelledby={`list-${id}-replies-policy`}>
+              <span id={`list-${id}-replies-policy`} className='column-settings__section'>
+                <FormattedMessage id='lists.replies_policy.title' defaultMessage='Show replies to:' />
+              </span>
+              <div className='column-settings__row'>
+                { ['no_replies', 'list_replies', 'all_replies'].map(policy => (
+                  <RadioButton name='order' value={policy} label={intl.formatMessage(messages[policy])} checked={replies_policy === policy} onChange={this.handleRepliesPolicyChange} />
+                ))}
+              </div>
+            </div>
+          )}
         </ColumnHeader>
 
         <StatusListContainer
