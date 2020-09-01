@@ -49,7 +49,8 @@ class FeedManager
   def push_to_list(list, status)
     if status.reply? && status.in_reply_to_account_id != status.account_id
       should_filter = status.in_reply_to_account_id != list.account_id
-      should_filter &&= !ListAccount.where(list_id: list.id, account_id: status.in_reply_to_account_id).exists?
+      should_filter &&= !list.show_all_replies?
+      should_filter &&= !(list.show_list_replies? && ListAccount.where(list_id: list.id, account_id: status.in_reply_to_account_id).exists?)
       return false if should_filter
     end
 

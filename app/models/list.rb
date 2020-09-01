@@ -3,17 +3,20 @@
 #
 # Table name: lists
 #
-#  id         :bigint(8)        not null, primary key
-#  account_id :bigint(8)        not null
-#  title      :string           default(""), not null
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id             :bigint(8)        not null, primary key
+#  account_id     :bigint(8)        not null
+#  title          :string           default(""), not null
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  replies_policy :integer          default("list_replies"), not null
 #
 
 class List < ApplicationRecord
   include Paginable
 
   PER_ACCOUNT_LIMIT = 50
+
+  enum replies_policy: [:list_replies, :all_replies, :no_replies], _prefix: :show
 
   belongs_to :account, optional: true
 
