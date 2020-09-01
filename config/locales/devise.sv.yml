@@ -65,6 +65,12 @@ sv:
           title: En ny säkerhetsnyckel har lagts till
         deleted:
           explanation: Följande säkerhetsnyckel har tagits bort från ditt konto
+          subject: 'Mastodon: Säkerhetsnyckeln borttagen'
+          title: En av dina säkerhetsnycklar har tagits bort
+      webauthn_disabled:
+        title: Säkerhetsnycklar inaktiverade
+      webauthn_enabled:
+        title: Säkerhetsnycklar aktiverade
     omniauth_callbacks:
       failure: Det gick inte att autentisera dig från %{kind} för "%{reason}".
       success: Autentiserad från %{kind} konto.
