@@ -33,16 +33,16 @@ module Mastodon
     end
 
     def repository
-      ENV.fetch('GITHUB_REPOSITORY') { 'glitch-soc/mastodon' }
+      ENV.fetch('GITHUB_REPOSITORY', 'glitch-soc/mastodon')
     end
 
     def source_base_url
-      ENV.fetch('SOURCE_BASE_URL') { "https://github.com/#{repository}" }
+      ENV.fetch('SOURCE_BASE_URL', "https://github.com/#{repository}")
     end
 
     # specify git tag or commit hash here
     def source_tag
-      ENV.fetch('SOURCE_TAG') { nil }
+      ENV.fetch('SOURCE_TAG', nil)
     end
 
     def source_url

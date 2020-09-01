@@ -163,6 +163,8 @@ module ApplicationHelper
     end
 
     json = ActiveModelSerializers::SerializableResource.new(InitialStatePresenter.new(state_params), serializer: InitialStateSerializer).to_json
+    # rubocop:disable Rails/OutputSafety
     content_tag(:script, json_escape(json).html_safe, id: 'initial-state', type: 'application/json')
+    # rubocop:enable Rails/OutputSafety
   end
 end
