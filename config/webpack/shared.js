@@ -5,7 +5,6 @@ const { basename, dirname, join, relative, resolve } = require('path');
 const { sync } = require('glob');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const AssetsManifestPlugin = require('webpack-assets-manifest');
-const CopyPlugin = require('copy-webpack-plugin');
 const { env, settings, core, flavours, output } = require('./configuration.js');
 const rules = require('./rules');
 const localePacks = require('./generateLocalePacks');
@@ -109,12 +108,6 @@ module.exports = {
       entrypoints: true,
       writeToDisk: true,
       publicPath: true,
-    }),
-    new CopyPlugin({
-      patterns: [
-        { from: 'node_modules/tesseract.js/dist/worker.min.js', to: 'ocr' },
-        { from: 'node_modules/tesseract.js-core/tesseract-core.wasm.js', to: 'ocr' },
-      ],
     }),
   ],
 
