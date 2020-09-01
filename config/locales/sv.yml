@@ -41,6 +41,9 @@ sv:
       suspended: 'Ingen data från dessa serverdatorer kommer bearbetas, lagras eller bytas ut vilket omöjliggör kommunikation med användare från dessa serverdatorer:'
       suspended_title: Avstängda värddatorer
     unavailable_content_html: Mastodon låter dig se material från, och interagera med, andra användare i servernätverket. Det är undantag som gjorts på denna serverdator.
+    user_count_after:
+      one: användare
+      other: användare
     user_count_before: Hem till
     what_is_mastodon: Vad är Mastodon?
   accounts:
@@ -378,13 +381,19 @@ sv:
       private_comment: Privat kommentar
       public_comment: Offentlig kommentar
       title: Kända instanser
+      total_blocked_by_us: Blockerad av oss
+      total_followed_by_them: Följs av dem
+      total_followed_by_us: Följs av oss
     invites:
+      deactivate_all: Inaktivera alla
       filter:
         all: Alla
         available: Tillgängliga
         expired: Utgångna
         title: Filtrera
       title: Inbjudningar
+    pending_accounts:
+      title: Väntande konton (%{count})
     relays:
       delete: Radera
       disable: Inaktivera
@@ -439,9 +448,17 @@ sv:
       domain_blocks:
         all: Till alla
         disabled: För ingen
+        title: Visa domän-blockeringar
+        users: För inloggade lokala användare
+      domain_blocks_rationale:
+        title: Visa motiv
+      enable_bootstrap_timeline_accounts:
+        title: Aktivera standard följer för nya användare
       hero:
         desc_html: Visas på framsidan. Minst 600x100px rekommenderas. Om inte angiven faller den tillbaka på instansens miniatyrbild
         title: Hjältebild
+      mascot:
+        title: Maskot bild
       peers_api_enabled:
         desc_html: Domännamn denna instans har påträffat i fediverse
         title: Publicera lista över upptäckta instanser
@@ -643,6 +660,9 @@ sv:
     validation_errors:
       one: Något är inte riktigt rätt ännu! Kontrollera felet nedan
       other: Något är inte riktigt rätt ännu! Kontrollera dom %{count} felen nedan
+  identity_proofs:
+    active: Aktiv
+    inactive: Inaktiv
   imports:
     preface: Du kan importera data som du exporterat från en annan instans, till exempel en lista över personer du följer eller blockerar.
     success: Dina uppgifter har laddats upp och kommer nu att behandlas snarast
@@ -737,6 +757,7 @@ sv:
     activity: Kontoaktivitet
     followers: Följare
     following: Följer
+    last_active: Senast aktiv
     status: Kontostatus
   remote_follow:
     acct: Ange ditt användarnamn@domän du vill följa från
