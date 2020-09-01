@@ -1356,7 +1356,6 @@ button.icon-button.active i.fa-retweet {
 }
 
 .setting-toggle__label,
-.setting-radio__label,
 .setting-meta__label {
   color: $darker-text-color;
   display: inline-block;
@@ -1365,25 +1364,8 @@ button.icon-button.active i.fa-retweet {
   vertical-align: middle;
 }
 
-.setting-radio {
+.column-settings__row .radio-button {
   display: block;
-  line-height: 18px;
-}
-
-.setting-radio__label {
-  margin-bottom: 0;
-}
-
-.column-settings__row legend {
-  color: $darker-text-color;
-  cursor: default;
-  display: block;
-  font-weight: 500;
-  margin-top: 10px;
-}
-
-.setting-radio__input {
-  vertical-align: middle;
 }
 
 .setting-meta__label {
