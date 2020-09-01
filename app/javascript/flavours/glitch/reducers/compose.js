@@ -184,7 +184,7 @@ function continueThread (state, status) {
     map.set('in_reply_to', status.id);
     map.update(
       'advanced_options',
-      map => map.merge(new ImmutableMap({ do_not_federate: status.get('local_only') }))
+      map => map.merge(new ImmutableMap({ do_not_federate: status.local_only }))
     );
     map.set('privacy', status.visibility);
     map.set('sensitive', false);
