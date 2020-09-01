@@ -18,9 +18,9 @@ import Icon from 'flavours/glitch/components/icon';
 const messages = defineMessages({
   deleteMessage: { id: 'confirmations.delete_list.message', defaultMessage: 'Are you sure you want to permanently delete this list?' },
   deleteConfirm: { id: 'confirmations.delete_list.confirm', defaultMessage: 'Delete' },
-  all_replies:   { id: 'lists.replies_policy.all_replies', defaultMessage: 'any followed user' },
-  no_replies:    { id: 'lists.replies_policy.no_replies', defaultMessage: 'no one' },
-  list_replies:  { id: 'lists.replies_policy.list_replies', defaultMessage: 'members of the list' },
+  all_replies:   { id: 'lists.replies_policy.all_replies', defaultMessage: 'Any followed user' },
+  no_replies:    { id: 'lists.replies_policy.no_replies', defaultMessage: 'No one' },
+  list_replies:  { id: 'lists.replies_policy.list_replies', defaultMessage: 'Members of the list' },
 });
 
 const mapStateToProps = (state, props) => ({
