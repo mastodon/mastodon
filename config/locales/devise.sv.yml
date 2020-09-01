@@ -59,6 +59,12 @@ sv:
         title: 2FA-återställningskoder ändrades
       unlock_instructions:
         subject: 'Mastodon: Lås upp instruktioner'
+      webauthn_credential:
+        added:
+          subject: 'Mastodon: Ny säkerhetsnyckel'
+          title: En ny säkerhetsnyckel har lagts till
+        deleted:
+          explanation: Följande säkerhetsnyckel har tagits bort från ditt konto
     omniauth_callbacks:
       failure: Det gick inte att autentisera dig från %{kind} för "%{reason}".
       success: Autentiserad från %{kind} konto.
