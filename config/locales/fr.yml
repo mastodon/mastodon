@@ -998,7 +998,11 @@ fr:
           trillion: T
   otp_authentication:
     code_hint: Entrez le code généré par votre application d'authentification pour confirmer
+    description_html: Si vous activez <strong>l’authentification à deux facteurs</strong> en utilisant une application d'authentification, votre connexion vous imposera d'être en possession de votre téléphone, ce qui génèrera des jetons que vous devrez saisir.
     enable: Activer
+    instructions_html: "<strong>Scannez ce code QR dans Google Authenticator ou une application TOTP similiaire sur votre téléphone</strong>. À partir de maintenant, cette application générera des jetons que vous devrez entrer lorsque vous vous connecterez."
+    manual_instructions: 'Si vous ne pouvez pas scanner le QR code et que vous devez le saisir manuellement, voici le texte secret en brut :'
+    wrong_code: Le code saisi est invalide. L'heure du serveur et l'heure de l'appareil sont-ils corrects ?
   pagination:
     newer: Plus récent
     next: Suivant
@@ -1123,6 +1127,7 @@ fr:
     profile: Profil
     relationships: Abonnements et abonné·e·s
     two_factor_authentication: Identification à deux facteurs
+    webauthn_authentication: Clés de sécurité
   spam_check:
     spam_detected: Ceci est un rapport automatisé. Des pollupostages ont été détectés.
   statuses:
@@ -1271,13 +1276,18 @@ fr:
   two_factor_authentication:
     add: Ajouter
     disable: Désactiver
+    disabled_success: L'authentification à deux facteurs a été désactivée avec succès
+    edit: Modifier
     enabled: L’authentification à deux facteurs est activée
     enabled_success: Identification à deux facteurs activée avec succès
     generate_recovery_codes: Générer les codes de récupération
     lost_recovery_codes: Les codes de récupération vous permettent de retrouver les accès à votre compte si vous perdez votre téléphone. Si vous perdez vos codes de récupération, vous pouvez les générer à nouveau ici. Vos anciens codes de récupération seront invalidés.
+    methods: Méthodes à deux facteurs
+    otp: Application d'authentification
     recovery_codes: Codes de récupération
     recovery_codes_regenerated: Codes de récupération régénérés avec succès
     recovery_instructions_html: Si vous perdez l’accès à votre téléphone, vous pouvez utiliser un des codes de récupération ci-dessous pour retrouver l’accès à votre compte. <strong>Conservez les codes de récupération en sécurité</strong>. Par exemple, en les imprimant et en les stockant avec vos autres documents importants.
+    webauthn: Clés de sécurité
   user_mailer:
     backup_ready:
       explanation: Vous avez demandé une sauvegarde complète de votre compte Mastodon. Elle est maintenant prête à être téléchargée !
@@ -1339,3 +1349,5 @@ fr:
   verification:
     explanation_html: 'Vous pouvez <strong>vous vérifier en tant que propriétaire des liens dans les métadonnées de votre profil</strong>. Pour cela, le site web lié doit contenir un lien vers votre profil Mastodon. Le lien de retour <strong>doit</strong> avoir un attribut <code>rel="me"</code> . Le texte du lien n’a pas d’importance. Voici un exemple :'
     verification: Vérification
+  webauthn_credentials:
+    add: Ajouter une nouvelle clé de sécurité
