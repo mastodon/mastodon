@@ -74,7 +74,7 @@ class ActivityPub::ActorSerializer < ActivityPub::Serializer
   end
 
   def outbox
-    account_outbox_url(object)
+    object.instance_actor? ? instance_actor_outbox_url : account_outbox_url(object)
   end
 
   def featured
