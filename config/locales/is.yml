@@ -731,6 +731,7 @@ is:
   date:
     formats:
       default: "%d. %b, %Y"
+      with_month_name: "%d. %B, %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}kl."
@@ -991,6 +992,13 @@ is:
           quadrillion: qi.
           thousand: þús
           trillion: tr.
+  otp_authentication:
+    code_hint: Settu inn kóðann sem auðkenningarforritið útbjó til staðfestingar
+    enable: Virkja
+    instructions_html: "<strong>Skannaðu þennar QR-kóða inn í Google Authenticator eða álíka TOTP-forrit á símanum þínum</strong>. Héðan í frá mun það forrit útbúa teikn sem þú verður að setja inn til að geta skráð þig inn."
+    manual_instructions: 'Ef þú getur ekki skannað QR-kóðann og verður að setja hann inn handvirkt, þá er hér leyniorðið á textaformi:'
+    setup: Setja upp
+    wrong_code: Kóðinn sem þú settir inn er ógildur! Eru klukkur netþjónsins og tækisins réttar?
   pagination:
     newer: Nýrra
     next: Næsta
@@ -1261,7 +1269,10 @@ is:
       default: "%d. %b, %Y, %H:%M"
       month: "%b %Y"
   two_factor_authentication:
+    add: Bæta við
     disable: Gera óvirkt
+    disabled_success: Það tókst að gera tveggja-þátta auðkenningu óvirka
+    edit: Breyta
     enabled: Tveggja-þátta auðkenning er virk
     enabled_success: Það tókst að virkja tveggja-þátta auðkenningu
     generate_recovery_codes: Útbúa endurheimtukóða
@@ -1328,3 +1339,5 @@ is:
   verification:
     explanation_html: 'Þú getur <strong>vottað að þú sért eigandi og ábyrgur fyrir tenglunum í lýsigögnum notandasniðsins þíns</strong>. Til að það virki, þurfa vefsvæðin sem vísað er í að innihalda tengil til baka í Mastodon-notandasniðið. Tengillinn sem vísar til baka <strong>verður</strong> að vera með <code>rel="me"</code> eigindi. Textinn í tenglinum skiptir ekki máli. Hérna er dæmi:'
     verification: Sannprófun
+  webauthn_credentials:
+    delete: Eyða
