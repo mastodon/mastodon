@@ -37,6 +37,7 @@ Rails.application.routes.draw do
 
   resource :instance_actor, path: 'actor', only: [:show] do
     resource :inbox, only: [:create], module: :activitypub
+    resource :outbox, only: [:show], module: :activitypub
   end
 
   devise_scope :user do
