@@ -680,6 +680,7 @@ pt-BR:
       prefix_sign_up: Crie uma conta no Mastodon hoje!
       suffix: Com uma conta, você poderá seguir pessoas, postar atualizações, trocar mensagens com usuários de qualquer instância Mastodon e muito mais!
     didnt_get_confirmation: Não recebeu instruções de confirmação?
+    dont_have_your_security_key: Não está com a sua chave de segurança?
     forgot_password: Esqueceu a sua senha?
     invalid_reset_password_token: Código de alteração de senha é inválido ou expirou. Por favor, solicite um novo.
     link_to_otp: Digite um código de duas etapas do seu telefone ou um código de recuperação
@@ -999,6 +1000,10 @@ pt-BR:
     code_hint: Digite o código gerado pelo seu aplicativo autenticador para confirmar
     description_html: Se você habilitar a <strong>autenticação de dois fatores</strong> usando um aplicativo autenticador, o login exigirá que você esteja com o seu telefone, que gerará tokens para você entrar.
     enable: Habilitar
+    instructions_html: "<strong>Escaneie este código QR no Google Authenticator ou em um aplicativo TOTP similar no seu telefone</strong>. A partir de agora, esse aplicativo irá gerar tokens que você terá que digitar ao fazer login."
+    manual_instructions: 'Se você não pode escanear o código QR e precisa digitá-lo manualmente, aqui está o segredo em texto:'
+    setup: Configurar
+    wrong_code: O código digitado é inválido! O horário do servidor e o horário do dispositivo estão corretos?
   pagination:
     newer: Mais novo
     next: Próximo
@@ -1351,3 +1356,5 @@ pt-BR:
       error: Houve um problema ao adicionar sua chave de segurança. Tente novamente.
       success: A sua chave de segurança foi adicionada com sucesso.
     delete: Excluir
+    delete_confirmation: Você tem certeza de que deseja excluir esta chave de segurança?
+    invalid_credential: Chave de segurança inválida
