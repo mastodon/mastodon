@@ -682,6 +682,8 @@ pt-BR:
     didnt_get_confirmation: Não recebeu instruções de confirmação?
     forgot_password: Esqueceu a sua senha?
     invalid_reset_password_token: Código de alteração de senha é inválido ou expirou. Por favor, solicite um novo.
+    link_to_otp: Digite um código de duas etapas do seu telefone ou um código de recuperação
+    link_to_webauth: Use seu dispositivo de chave de segurança
     login: Entrar
     logout: Sair
     migrate_account: Mudar-se para outra conta
@@ -707,6 +709,7 @@ pt-BR:
       pending: Sua solicitação está com revisão pendente por parte de nossa equipe. Você receberá um e-mail se ela for aprovada.
       redirecting_to: Sua conta está inativa porque atualmente está redirecionando para %{acct}.
     trouble_logging_in: Problemas para entrar?
+    use_security_key: Usar chave de segurança
   authorize_follow:
     already_following: Você já segue
     already_requested: Você já enviou uma solicitação para seguir esta conta
@@ -731,6 +734,7 @@ pt-BR:
   date:
     formats:
       default: "%d %b, %Y"
+      with_month_name: "%d de %b de %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}h"
@@ -991,6 +995,10 @@ pt-BR:
           quadrillion: QUA
           thousand: MIL
           trillion: TRI
+  otp_authentication:
+    code_hint: Digite o código gerado pelo seu aplicativo autenticador para confirmar
+    description_html: Se você habilitar a <strong>autenticação de dois fatores</strong> usando um aplicativo autenticador, o login exigirá que você esteja com o seu telefone, que gerará tokens para você entrar.
+    enable: Habilitar
   pagination:
     newer: Mais novo
     next: Próximo
@@ -1115,6 +1123,7 @@ pt-BR:
     profile: Perfil
     relationships: Seguindo e seguidores
     two_factor_authentication: Autenticação de dois fatores
+    webauthn_authentication: Chaves de segurança
   spam_check:
     spam_detected: Esta é uma denúncia automática. Spam foi detectado.
   statuses:
@@ -1261,14 +1270,20 @@ pt-BR:
       default: "%H:%M em %d de %b de %Y"
       month: "%b de %Y"
   two_factor_authentication:
+    add: Adicionar
     disable: Desativar
+    disabled_success: Autenticação de dois fatores desabilitada com sucesso
+    edit: Editar
     enabled: Autenticação de dois fatores ativada
     enabled_success: Autenticação de dois fatores ativada com sucesso
     generate_recovery_codes: Gerar códigos de recuperação
     lost_recovery_codes: Códigos de recuperação permitem que você recupere o acesso à sua conta caso perca o seu celular. Se você perdeu seus códigos de recuperação, você pode gerá-los novamente aqui. Seus códigos de recuperação anteriores serão invalidados.
+    methods: Métodos de dois fatores
+    otp: Aplicativo autenticador
     recovery_codes: Códigos de recuperação de reserva
     recovery_codes_regenerated: Códigos de recuperação gerados com sucesso
     recovery_instructions_html: Se você perder acesso ao seu celular, você pode usar um dos códigos de recuperação abaixo para acessar a sua conta. <strong>Mantenha os códigos de recuperação em um local seguro</strong>. Por exemplo, você pode imprimi-los e guardá-los junto com outros documentos importantes.
+    webauthn: Chaves de segurança
   user_mailer:
     backup_ready:
       explanation: Você pediu um backup completo da sua conta no Mastodon. E agora está pronto para ser baixado!
@@ -1330,3 +1345,9 @@ pt-BR:
   verification:
     explanation_html: 'Você pode <strong>verificar os links nos metadados do seu perfil</strong>. Para isso, o site citado deve conter um link de volta para o seu perfil do Mastodon. O link de volta <strong>deve</strong> conter um atributo <code>rel="me"</code>. O conteúdo ou texto do link não importa. Aqui está um exemplo:'
     verification: Verificação
+  webauthn_credentials:
+    add: Adicionar nova chave de segurança
+    create:
+      error: Houve um problema ao adicionar sua chave de segurança. Tente novamente.
+      success: A sua chave de segurança foi adicionada com sucesso.
+    delete: Excluir
