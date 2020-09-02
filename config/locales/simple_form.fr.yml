@@ -66,6 +66,7 @@ fr:
         text: Cela nous aidera à considérer votre demande
       sessions:
         otp: 'Entrez le code d’authentification à deux facteurs généré par l’application de votre téléphone ou utilisez un de vos codes de récupération :'
+        webauthn: Si c'est une clé USB, assurez-vous de l'insérer et, si nécessaire, de la tapoter.
       tag:
         name: Vous ne pouvez modifier que la casse des lettres, par exemple, pour le rendre plus lisible
       user:
@@ -187,4 +188,7 @@ fr:
     required:
       mark: "*"
       text: Champs requis
+    title:
+      sessions:
+        webauthn: Utilisez l'une de vos clés de sécurité pour vous connecter
     'yes': 'Oui'
