@@ -680,8 +680,11 @@ fr:
       prefix_sign_up: Inscrivez-vous aujourd’hui sur Mastodon !
       suffix: Avec un compte, vous pourrez suivre des gens, publier des statuts et échanger des messages avec les utilisateur·rice·s de n'importe quel serveur Mastodon et bien plus !
     didnt_get_confirmation: Vous n’avez pas reçu les consignes de confirmation ?
+    dont_have_your_security_key: Vous n'avez pas votre clé de sécurité?
     forgot_password: Mot de passe oublié ?
     invalid_reset_password_token: Le lien de réinitialisation du mot de passe est invalide ou a expiré. Merci de réessayer.
+    link_to_otp: Entrez un code à deux facteurs de votre téléphone ou un code de récupération
+    link_to_webauth: Utilisez votre appareil de clé de sécurité
     login: Se connecter
     logout: Se déconnecter
     migrate_account: Déménager vers un compte différent
@@ -707,6 +710,7 @@ fr:
       pending: Votre demande est en attente d'examen par notre personnel. Cela peut prendre un certain temps. Vous recevrez un courriel si votre demande est approuvée.
       redirecting_to: Votre compte est inactif car il est actuellement redirigé vers %{acct}.
     trouble_logging_in: Vous avez un problème pour vous connecter ?
+    use_security_key: Utiliser la clé de sécurité
   authorize_follow:
     already_following: Vous suivez déjà ce compte
     already_requested: Vous avez déjà envoyé une demande d’abonnement à ce compte
@@ -731,6 +735,7 @@ fr:
   date:
     formats:
       default: "%d %b %Y"
+      with_month_name: "%B %d, %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count} h"
@@ -992,6 +997,7 @@ fr:
           thousand: K
           trillion: T
   otp_authentication:
+    code_hint: Entrez le code généré par votre application d'authentification pour confirmer
     enable: Activer
   pagination:
     newer: Plus récent
