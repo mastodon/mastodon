@@ -731,6 +731,7 @@ tr:
   date:
     formats:
       default: "%b %d, %Y"
+      with_month_name: "%d %B %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}sa"
@@ -991,6 +992,8 @@ tr:
           quadrillion: Q
           thousand: K
           trillion: T
+  otp_authentication:
+    enable: Etkinleştir
   pagination:
     newer: Daha yeni
     next: Sonraki
