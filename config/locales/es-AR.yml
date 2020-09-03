@@ -526,17 +526,17 @@ es-AR:
         desc_html: Nombres de dominio que este servidor encontró en el fediverso
         title: Publicar lista de servidores descubiertos
       preview_sensitive_media:
-        desc_html: Los enlaces de previsualizaciones en otros sitios web mostrarán una miniatura incluso si el medio está marcado como contenido sensible
+        desc_html: Las previsualizaciones de enlaces en otros sitios web mostrarán una miniatura incluso si el medio está marcado como contenido sensible
         title: Mostrar medios sensibles en previsualizaciones de OpenGraph
       profile_directory:
         desc_html: Permitir que los usuarios puedan ser descubiertos
         title: Habilitar directorio de perfiles
       registrations:
         closed_message:
-          desc_html: Mostrado en la portada cuando los registros están cerrados. Podés usar etiquetas HTML.
-          title: Mensaje de registro cerrado
+          desc_html: Mostrado en la página principal cuando los registros de nuevas cuentas están cerrados. Podés usar etiquetas HTML
+          title: Mensaje de registro de nuevas cuentas cerrado
         deletion:
-          desc_html: Permitor que cualquiera elimine su cuenta
+          desc_html: Permitir que cualquiera elimine su cuenta
           title: Abrir eliminación de cuenta
         min_invite_role:
           disabled: Nadie
@@ -557,20 +557,20 @@ es-AR:
         desc_html: Párrafo introductorio en la API. Describe qué hace especial a este servidor de Mastodon y todo lo demás que sea importante. Podés usar etiquetas HTML, en particular <code>&lt;a&gt;</code> y <code>&lt;em&gt;</code>.
         title: Descripción del servidor
       site_description_extended:
-        desc_html: Un buen lugar para tu código de conducta, reglas, guías y otras cosas que definen tu servidor. Podés usar etiquets HTML.
+        desc_html: Un buen lugar para tu código de conducta, reglas, guías y otras cosas que definen tu servidor. Podés usar etiquets HTML
         title: Información extendida personalizada
       site_short_description:
         desc_html: Mostrado en la barra lateral y las etiquetas de metadatos. Describe lo que es Mastodon y qué hace especial a este servidor en un solo párrafo.
         title: Descripción corta del servidor
       site_terms:
-        desc_html: Podés escribir tus propias políticas de privacidad, términos de servicio u otras legalidades. Podés usar etiquetas HTML.
+        desc_html: Podés escribir tus propias políticas de privacidad, términos de servicio u otras legalidades. Podés usar etiquetas HTML
         title: Términos de servicio personalizados
       site_title: Nombre del servidor
       spam_check_enabled:
         desc_html: Mastodon puede denunciar automáticamente cuentas que envían mensajes no solicitados de forma repetida. Podrían haber falsos positivos.
         title: Automatización antispam
       thumbnail:
-        desc_html: Usado para previsualizaciones vía OpenGraph y APIs. Se recomienda 1200x630 píxeles.
+        desc_html: Usado para previsualizaciones vía OpenGraph y APIs. Se recomienda 1200x630 píxeles
         title: Miniatura del servidor
       timeline_preview:
         desc_html: Mostrar enlace a la línea temporal pública en la página de inicio y permitir el acceso a la API a la línea temporal pública sin autenticación
@@ -581,7 +581,7 @@ es-AR:
         title: Permitir que las etiquetas sean tendencia sin revisión previa
       trends:
         desc_html: Mostrar públicamente etiquetas previamente revisadas que son tendencia actualmente
-        title: Etiquetas tendencias
+        title: Etiquetas en tendencia
     site_uploads:
       delete: Eliminar archivo subido
       destroyed_msg: '¡Subida al sitio eliminada exitosamente!'
@@ -596,8 +596,8 @@ es-AR:
       media:
         title: Medios
       no_media: Sin medios
-      no_status_selected: No se cambió ningún estado ya que ninguno fue seleccionado
-      title: Estados de la cuenta
+      no_status_selected: No se cambió ningún toot ya que ninguno fue seleccionado
+      title: Toots de la cuenta
       with_media: Con medios
     tags:
       accounts_today: Usos únicos de hoy
