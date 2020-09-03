@@ -66,6 +66,7 @@ is:
         text: Þetta mun hjálpa okkur við að yfirfara umsóknina þína
       sessions:
         otp: 'Settu inn tveggja-þátta kóðann sem farsímaforritið útbjó eða notaðu einn af endurheimtukóðunum þínum:'
+        webauthn: Ef þetta er USB-lykill, gakktu úr skugga um að honum sé stungið í samband og ef þörf þykir að ýta á hann.
       tag:
         name: Þú getur aðeins breytt stafstöði mill há-/lágstafa, til gæmis til að gera þetta læsilegra
       user:
@@ -187,4 +188,7 @@ is:
     required:
       mark: "*"
       text: nauðsynlegt
+    title:
+      sessions:
+        webauthn: Nota einn af öryggislyklunum þínum til að skrá inn
     'yes': 'Já'
