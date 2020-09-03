@@ -680,8 +680,11 @@ is:
       prefix_sign_up: Skráðu þig á Mastodon strax í dag!
       suffix: Með notandaaðgangi geturðu fylgst með fólki, sent inn stöðufærslur og skipst á skilaboðum við notendur á hvaða Mastodon-vefþjóni sem er, auk margs fleira!
     didnt_get_confirmation: Fékkstu ekki leiðbeiningar um hvernig eigi að staðfesta aðganginn?
+    dont_have_your_security_key: Ertu ekki með öryggislykilinn þinn?
     forgot_password: Gleymdirðu lykilorðinu?
     invalid_reset_password_token: Teikn fyrir endurstillingu lykilorðs er ógilt eða útrunnið. Biddu um nýtt teikn.
+    link_to_otp: Settu inn tveggja-þátta kóða úr farsímanum þínum eða endurheimtukóða
+    link_to_webauth: Notaðu tæki með öryggislykli
     login: Skrá inn
     logout: Skrá út
     migrate_account: Færa á annan notandaaðgang
@@ -707,6 +710,7 @@ is:
       pending: Umsóknin þín bíður eftir að starfsfólkið okkar fari yfir hana. Það gæti tekið nokkurn tíma. Þú munt fá tölvupóst ef umsóknin er samþykkt.
       redirecting_to: Notandaaðgangurinn þinn er óvirkur vegna þess að hann endurbeinist á %{acct}.
     trouble_logging_in: Vandræði við að skrá inn?
+    use_security_key: Nota öryggislykil
   authorize_follow:
     already_following: Þú ert að þegar fylgjast með þessum aðgangi
     already_requested: Þú ert þegar búin/n að senda fylgjendabeiðni á þennan notanda
@@ -994,6 +998,7 @@ is:
           trillion: tr.
   otp_authentication:
     code_hint: Settu inn kóðann sem auðkenningarforritið útbjó til staðfestingar
+    description_html: Ef þú virkjar <strong>tveggja-þátta auðkenningu</strong> með auðkenningarforriti, mun innskráning krefjast þess að þú hafir símann þinn við hendina, með honum þarf að útbúa öryggisteikn sem þú þarft að setja inn.
     enable: Virkja
     instructions_html: "<strong>Skannaðu þennar QR-kóða inn í Google Authenticator eða álíka TOTP-forrit á símanum þínum</strong>. Héðan í frá mun það forrit útbúa teikn sem þú verður að setja inn til að geta skráð þig inn."
     manual_instructions: 'Ef þú getur ekki skannað QR-kóðann og verður að setja hann inn handvirkt, þá er hér leyniorðið á textaformi:'
@@ -1122,7 +1127,8 @@ is:
     preferences: Kjörstillingar
     profile: Notandasnið
     relationships: Fylgist með og fylgjendur
-    two_factor_authentication: Teggja-þátta auðkenning
+    two_factor_authentication: Tveggja-þátta auðkenning
+    webauthn_authentication: Öryggislyklar
   spam_check:
     spam_detected: Þetta er sjálfvirk kæra. Ruslpóstur hefur fundist.
   statuses:
@@ -1277,9 +1283,12 @@ is:
     enabled_success: Það tókst að virkja tveggja-þátta auðkenningu
     generate_recovery_codes: Útbúa endurheimtukóða
     lost_recovery_codes: Endurheimtukóðar gera þér kleift að fá aftur samband við notandaaðganginn þinn ef þú tapar símanum þínum. Ef þú aftur hefur tapað endurheimtukóðunum, geturðu endurgert þá hér. Gömlu endurheimtukóðarnir verða þá ógiltir.
+    methods: Tveggja-þátta auðkenningaraðferðir
+    otp: Auðkenningarforrit
     recovery_codes: Kóðar fyrir endurheimtingu öryggisafrits
     recovery_codes_regenerated: Það tókst að endurgera endurheimtukóða
     recovery_instructions_html: Ef þú tapar símanum þínum geturðu notað einn af endurheimtukóðunum hér fyrir neðan til að fá aftur samband við notandaaðganginn þinn. <strong>Geymdu endurheimtukóðana á öruggum stað</strong>. Sem dæmi gætirðu prentað þá út og geymt með öðrum mikilvægum skjölum.
+    webauthn: Öryggislyklar
   user_mailer:
     backup_ready:
       explanation: Þú baðst um fullt öryggisafrit af Mastodon notandaaðgangnum þínum. Það er núna tilbúið til niðurhals!
@@ -1327,9 +1336,11 @@ is:
       tips: Ábendingar
       title: Velkomin/n um borð, %{name}!
   users:
+    blocked_email_provider: Þessi tölvupóstþjónusta er ekki leyfileg
     follow_limit_reached: Þú getur ekki fylgst með fleiri en %{limit} aðilum
     generic_access_help_html: Vandamál við að tengjast aðgangnum þínum? Þú getur sett þig í samband við %{email} til að fá aðstoð
     invalid_email: Tölvupóstfangið er ógilt
+    invalid_email_mx: Tölvupóstfangið virðist ekki vera til
     invalid_otp_token: Ógildur tveggja-þátta kóði
     invalid_sign_in_token: Ógildur öryggiskóði
     otp_lost_help_html: Ef þú hefur misst aðganginn að hvoru tveggja, geturðu sett þig í samband við %{email}
@@ -1340,4 +1351,19 @@ is:
     explanation_html: 'Þú getur <strong>vottað að þú sért eigandi og ábyrgur fyrir tenglunum í lýsigögnum notandasniðsins þíns</strong>. Til að það virki, þurfa vefsvæðin sem vísað er í að innihalda tengil til baka í Mastodon-notandasniðið. Tengillinn sem vísar til baka <strong>verður</strong> að vera með <code>rel="me"</code> eigindi. Textinn í tenglinum skiptir ekki máli. Hérna er dæmi:'
     verification: Sannprófun
   webauthn_credentials:
+    add: Bæta við nýjum öryggislykli
+    create:
+      error: Það kom upp villa við að bæta við öryggislyklinum þínum. Reyndu aftur.
+      success: Tókst að bæta við öryggislyklinum þínum.
     delete: Eyða
+    delete_confirmation: Ertu viss um að þú viljir eyða þessum öryggislykli?
+    description_html: Ef þú virkjar <strong>auðkenningu með öryggislykli</strong> mun innskráning krefjast þess að þú einn af öryggislyklunum þínum.
+    destroy:
+      error: Það kom upp villa við að eyða öryggislyklinum þínum. Reyndu aftur.
+      success: Tókst að eyða öryggislyklinum þínum.
+    invalid_credential: Ógildur öryggislykill
+    nickname_hint: Settu inn stuttnefni fyrir nýja öryggislykilinn þinn
+    not_enabled: Þú hefur ennþá ekki virkjað WebAuthn
+    not_supported: Þessi vafri styður ekki öryggislykla
+    otp_required: Til að nota öryggislykla skaltu fyrst virkja tveggja-þátta auðkenningu.
+    registered_on: Nýskráður %{date}
