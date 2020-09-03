@@ -739,16 +739,16 @@ es-AR:
   datetime:
     distance_in_words:
       about_x_hours: "%{count}h"
-      about_x_months: "%{count}m"
-      about_x_years: "%{count}a"
-      almost_x_years: "%{count}a"
+      about_x_months: "%{count}M"
+      about_x_years: "%{count}A"
+      almost_x_years: "%{count}A"
       half_a_minute: Recién
-      less_than_x_minutes: "%{count}m"
+      less_than_x_minutes: "%{count}min"
       less_than_x_seconds: Recién
-      over_x_years: "%{count}a"
-      x_days: "%{count}d"
-      x_minutes: "%{count}m"
-      x_months: "%{count}m"
+      over_x_years: "%{count}A"
+      x_days: "%{count}D"
+      x_minutes: "%{count}min"
+      x_months: "%{count}M"
       x_seconds: "%{count}s"
   deletes:
     challenge_not_passed: La información que ingresaste no es correcta
@@ -782,7 +782,7 @@ es-AR:
     '422':
       content: Falló la verificación de seguridad. ¿Estás bloqueando cookies?
       title: Falló la verificación de seguridad
-    '429': Asfixiado
+    '429': Demasiadas solicitudes
     '500':
       content: Lo sentimos, pero algo salió mal en nuestro lado.
       title: Esta página no es correcta
