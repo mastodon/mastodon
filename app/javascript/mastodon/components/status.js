@@ -78,6 +78,7 @@ class Status extends ImmutablePureComponent {
     onReblog: PropTypes.func,
     onDelete: PropTypes.func,
     onDirect: PropTypes.func,
+    onMemberList: PropTypes.func,
     onMention: PropTypes.func,
     onPin: PropTypes.func,
     onOpenMedia: PropTypes.func,
@@ -461,14 +462,7 @@ class Status extends ImmutablePureComponent {
     };
 
     const visibilityIcon = visibilityIconInfo[status.get('visibility')];
-
-    let visibilityLink;
-
-    if (status.getIn(['account', 'id']) !== me || status.get('visibility') !== 'limited' || !!status.get('in_reply_to_id') || !this.context.router) {
-      visibilityLink = <Icon id={visibilityIcon.icon} title={visibilityIcon.text} />;
-    } else {
-      visibilityLink = <Link to={`/statuses/${status.get('id')}/mentions`} className='status__link'><Icon id={visibilityIcon.icon} title={visibilityIcon.text} /></Link>;
-    }
+    const visibilityLink = <Icon id={visibilityIcon.icon} title={visibilityIcon.text} />;
 
     return (
       <HotKeys handlers={handlers}>

@@ -145,6 +145,10 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
     dispatch(directCompose(account, router));
   },
 
+  onMemberList (status, history) {
+    history.push(`/statuses/${status.get('id')}/mentions`);
+  },
+
   onMention (account, router) {
     dispatch(mentionCompose(account, router));
   },

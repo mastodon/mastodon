@@ -190,14 +190,7 @@ class DetailedStatus extends ImmutablePureComponent {
     };
 
     const visibilityIcon = visibilityIconInfo[status.get('visibility')];
-
-    let visibilityLink;
-
-    if (status.getIn(['account', 'id']) !== me || status.get('visibility') !== 'limited' || !!status.get('in_reply_to_id') || !this.context.router) {
-      visibilityLink = <Fragment> · <Icon id={visibilityIcon.icon} title={visibilityIcon.text} /></Fragment>;
-    } else {
-      visibilityLink = <Fragment> · <Link to={`/statuses/${status.get('id')}/mentions`} className='detailed-status__link'><Icon id={visibilityIcon.icon} title={visibilityIcon.text} /></Link></Fragment>;
-    }
+    const visibilityLink = <Fragment> · <Icon id={visibilityIcon.icon} title={visibilityIcon.text} /></Fragment>;
 
     if (!(['public', 'unlisted'].includes(status.get('visibility')))) {
       reblogLink = '';
