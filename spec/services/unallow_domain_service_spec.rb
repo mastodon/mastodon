@@ -55,9 +55,9 @@ RSpec.describe UnallowDomainService, type: :service do
       end
 
       it 'removes the remote accounts\'s statuses and media attachments' do
-        expect { bad_status1.reload }.to_not raise_exception ActiveRecord::RecordNotFound
-        expect { bad_status2.reload }.to_not raise_exception ActiveRecord::RecordNotFound
-        expect { bad_attachment.reload }.to_not raise_exception ActiveRecord::RecordNotFound
+        expect { bad_status1.reload }.to_not raise_error
+        expect { bad_status2.reload }.to_not raise_error
+        expect { bad_attachment.reload }.to_not raise_error
       end
     end
   end
