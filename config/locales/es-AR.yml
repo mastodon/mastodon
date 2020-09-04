@@ -991,9 +991,9 @@ es-AR:
       decimal_units:
         format: "%n%u"
         units:
-          billion: B
+          billion: MM
           million: M
-          quadrillion: Q
+          quadrillion: C
           thousand: m
           trillion: T
   otp_authentication:
@@ -1022,7 +1022,7 @@ es-AR:
       too_few_options: debe tener más de un elemento
       too_many_options: no puede contener más de %{max} elementos
   preferences:
-    other: Otros
+    other: Otras opciones
     posting_defaults: Configuración predeterminada de publicaciones
     public_timelines: Líneas temporales públicas
   reactions:
@@ -1038,7 +1038,7 @@ es-AR:
     last_active: Última actividad
     most_recent: Más reciente
     moved: Mudada
-    mutual: Mutuo
+    mutual: Mutua
     primary: Principal
     relationship: Relación
     remove_selected_domains: Quitar todos los seguidores de los dominios seleccionados
@@ -1048,10 +1048,10 @@ es-AR:
   remote_follow:
     acct: Ingresá tu usuario@dominio desde el que querés seguir
     missing_resource: No se pudo encontrar la dirección web de redireccionamiento requerida para tu cuenta
-    no_account_html: '¿No tenés cuenta? Podés <a href=''%{sign_up_path}'' target=''_blank''>registrarte acá</a>.'
+    no_account_html: '¿No tenés cuenta? Podés <a href=''%{sign_up_path}'' target=''_blank''>registrarte acá</a>'
     proceed: Proceder para seguir
     prompt: 'Vas a seguir a:'
-    reason_html: "¿<strong>¿Por qué es necesario este paso?</strong> <code>%{instance}</code> puede que no sea el servidor donde estás registrado, así que necesitamos redirigirte primero a tu servidor de origen."
+    reason_html: "<strong>¿Por qué es necesario este paso?</strong> <code>%{instance}</code> puede que no sea el servidor donde estás registrado, así que necesitamos redirigirte primero a tu servidor de origen."
   remote_interaction:
     favourite:
       proceed: Proceder para marcar como favorito
