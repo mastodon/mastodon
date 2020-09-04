@@ -441,7 +441,7 @@ RSpec.describe FeedManager do
       FeedManager.instance.push_to_home(receiver, another_status)
 
       # We should have a tracking set and an entry in reblogs.
-      expect(Redis.current.exists(reblog_set_key)).to be true
+      expect(Redis.current.exists?(reblog_set_key)).to be true
       expect(Redis.current.zrange(reblogs_key, 0, -1)).to eq [reblogged.id.to_s]
 
       # Push everything off the end of the feed.
@@ -454,7 +454,7 @@ RSpec.describe FeedManager do
       FeedManager.instance.trim('home', receiver.id)
 
       # We should not have any reblog tracking data.
-      expect(Redis.current.exists(reblog_set_key)).to be false
+      expect(Redis.current.exists?(reblog_set_key)).to be false
       expect(Redis.current.zrange(reblogs_key, 0, -1)).to be_empty
     end
   end
