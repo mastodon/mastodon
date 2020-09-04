@@ -20,23 +20,29 @@ class Api::V1::Timelines::TagController < Api::BaseController
   end
 
   def cached_tagged_statuses
-    if @tag.nil?
-      []
-    else
-      statuses = tag_timeline_statuses
-      statuses = statuses.joins(:media_attachments) if truthy_param?(:only_media)
-
-      cache_collection_paginated_by_id(
-        statuses,
-        Status,
-        limit_param(DEFAULT_STATUSES_LIMIT),
-        params_slice(:max_id, :since_id, :min_id)
-      )
-    end
+    @tag.nil? ? [] : cache_collection(tag_timeline_statuses, Status)
   end
 
   def tag_timeline_statuses
-    HashtagQueryService.new.call(@tag, params.slice(:any, :all, :none), current_account, truthy_param?(:local))
+    tag_feed.get(
+      limit_param(DEFAULT_STATUSES_LIMIT),
+      params[:max_id],
+      params[:since_id],
+      params[:min_id]
+    )
+  end
+
+  def tag_feed
+    TagFeed.new(
+      @tag,
+      current_account,
+      any: params[:any],
+      all: params[:all],
+      none: params[:none],
+      local: truthy_param?(:local),
+      remote: truthy_param?(:remote),
+      only_media: truthy_param?(:only_media)
+    )
   end
 
   def insert_pagination_headers
