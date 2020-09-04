@@ -92,7 +92,7 @@ module ApplicationHelper
     elsif status.private_visibility?
       fa_icon('lock', title: I18n.t('statuses.visibilities.private'))
     elsif status.limited_visibility?
-      fa_icon('circle-o', title: I18n.t('statuses.visibilities.limited'))
+      fa_icon('user-circle', title: I18n.t('statuses.visibilities.limited'))
     elsif status.direct_visibility?
       fa_icon('envelope', title: I18n.t('statuses.visibilities.direct'))
     end
