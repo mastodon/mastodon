@@ -1000,6 +1000,10 @@ ca:
     code_hint: Introdueix el codi generat per l’aplicació d’autentificació per a confirmar
     description_html: Si actives <strong>l’autentificació de factor doble</strong> usant l’aplicació d’autentificació, l’inici de sessió et requerirá tenir el teu mòbil, que generarà els tokens per a entrar.
     enable: Activa
+    instructions_html: "<strong>Escaneja aquest codi QR en l'Autentificador de Google o una aplicació TOTP similar en el teu mòbil</strong>. Des d'ara, aquesta aplicació generarà tokens que hauràs d'introduir quan iniciïs sessió."
+    manual_instructions: 'Si no pots escanejar el codi QR i necessites introduir-lo manualment, aquí està el secret de text pla:'
+    setup: Configurar
+    wrong_code: El codi introduït no és vàlid! És correcta l'hora del servidor i la del dispositiu?
   pagination:
     newer: Més recent
     next: Endavant
@@ -1124,6 +1128,7 @@ ca:
     profile: Perfil
     relationships: Seguits i seguidors
     two_factor_authentication: Autenticació de dos factors
+    webauthn_authentication: Claus de seguretat
   spam_check:
     spam_detected: Aquest és un informe automàtic. S'ha detectat spam.
   statuses:
@@ -1270,14 +1275,20 @@ ca:
       default: "%b %d, %Y, %H:%M"
       month: "%b %Y"
   two_factor_authentication:
+    add: Afegeix
     disable: Desactiva
+    disabled_success: Autenticació de dos factors desactivada amb èxit
+    edit: Edita
     enabled: Autenticació de dos factors activada
     enabled_success: Autenticació de dos factors activada correctament
     generate_recovery_codes: Genera codis de recuperació
     lost_recovery_codes: Els codis de recuperació et permeten recuperar l'accés al teu compte si perds el telèfon. Si has perdut els codis de recuperació els pots tornar a generar aquí. S'anul·laran els codis de recuperació anteriors.
+    methods: Autenticació de dos factors
+    otp: Aplicació autenticadora
     recovery_codes: Codis de recuperació de còpia de seguretat
     recovery_codes_regenerated: Codis de recuperació regenerats amb èxit
     recovery_instructions_html: Si mai perds l'accés al teu telèfon pots utilitzar un dels codis de recuperació a continuació per a recuperar l'accés al teu compte. <strong>Cal mantenir els codis de recuperació en lloc segur</strong>. Per exemple, imprimint-los i guardar-los amb altres documents importants.
+    webauthn: Claus de seguretat
   user_mailer:
     backup_ready:
       explanation: Has sol·licitat una copia completa del teu compte Mastodon. Ara ja està a punt per a descàrrega!
@@ -1339,3 +1350,20 @@ ca:
   verification:
     explanation_html: 'Pots <strong>verificar-te com a propietari dels enllaços a les metadades del teu perfil</strong>. Per això, el lloc web enllaçat ha de contenir un enllaç al teu perfil de Mastodon. El vincle <strong>ha de</strong> tenir l''atribut <code>rel="me"</code>. El contingut del text de l''enllaç no importa. Aquí tens un exemple:'
     verification: Verificació
+  webauthn_credentials:
+    add: Afegir nova clau de seguretat
+    create:
+      error: Hi ha hagut un problema en afegir la teva clau de seguretat. Tornau-ho a provar.
+      success: S'ha afegit correctament la teva clau de seguretat.
+    delete: Esborra
+    delete_confirmation: Segur que vols suprimir aquesta clau de seguretat?
+    description_html: Si actives <strong>l'autenticador amb clau de seguretat</strong>, l'inici de sessió et requerirà emprar un de les teves claus de seguretat.
+    destroy:
+      error: Hi ha hagut un problema al esborrar la teva clau de seguretat. Tornau-ho a provar.
+      success: La teva clau de seguretat s'ha esborrat correctament.
+    invalid_credential: Clau de seguretat invàlida
+    nickname_hint: Introdueix el sobrenom de la teva clau de seguretat nova
+    not_enabled: Encara no has activat WebAuthn
+    not_supported: Aquest navegador no suporta claus de seguretat
+    otp_required: Per emprar claus de seguretat si us plau activa primer l'autenticació de dos factors.
+    registered_on: Registrat en %{date}
