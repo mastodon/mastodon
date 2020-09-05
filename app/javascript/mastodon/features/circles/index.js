@@ -61,7 +61,7 @@ class Circles extends ImmutablePureComponent {
     const emptyMessage = <FormattedMessage id='empty_column.circles' defaultMessage="You don't have any circles yet. When you create one, it will show up here." />;
 
     return (
-      <Column bindToDocument={!multiColumn} icon='circle-o' heading={intl.formatMessage(messages.heading)}>
+      <Column bindToDocument={!multiColumn} icon='user-circle' heading={intl.formatMessage(messages.heading)}>
         <ColumnBackButtonSlim />
 
         <NewCircleForm />

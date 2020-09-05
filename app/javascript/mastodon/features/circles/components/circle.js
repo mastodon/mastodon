@@ -45,7 +45,7 @@ class Circle extends React.PureComponent {
     return (
       <div className='circle-link'>
         <button className='circle-edit-button' onClick={this.handleEditClick}>
-          <Icon id='circle-o' className='column-link__icon' fixedWidth />
+          <Icon id='user-circle' className='column-link__icon' fixedWidth />
           {text}
         </button>
         <button className='circle-delete-button' title={intl.formatMessage(messages.deleteConfirm)} onClick={this.handleDeleteClick}>

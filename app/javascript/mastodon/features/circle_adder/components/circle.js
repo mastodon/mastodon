@@ -54,7 +54,7 @@ class Circle extends ImmutablePureComponent {
       <div className='circle'>
         <div className='circle__wrapper'>
           <div className='circle__display-name'>
-            <Icon id='circle-o' className='column-link__icon' fixedWidth />
+            <Icon id='user-circle' className='column-link__icon' fixedWidth />
             {circle.get('title')}
           </div>
 
