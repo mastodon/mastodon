@@ -15,9 +15,8 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import { MediaGallery, Video, Audio } from '../features/ui/util/async-components';
 import { HotKeys } from 'react-hotkeys';
 import classNames from 'classnames';
-import { Link } from 'react-router-dom';
 import Icon from 'mastodon/components/icon';
-import { displayMedia, me } from '../initial_state';
+import { displayMedia } from '../initial_state';
 import PictureInPicturePlaceholder from 'mastodon/components/picture_in_picture_placeholder';
 
 // We use the component (and not the container) since we do not want
