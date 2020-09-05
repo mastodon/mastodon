@@ -32,10 +32,6 @@ class NewCircleForm extends React.PureComponent {
     onSubmit: PropTypes.func.isRequired,
   };
 
-  componentDidMount() {
-    this.input.focus();
-  }
-
   handleChange = e => {
     this.props.onChange(e.target.value);
   }
@@ -47,10 +43,6 @@ class NewCircleForm extends React.PureComponent {
 
   handleClick = () => {
     this.props.onSubmit();
-  }
-
-  setRef = (c) => {
-    this.input = c;
   }
 
   render () {
@@ -70,7 +62,6 @@ class NewCircleForm extends React.PureComponent {
             disabled={disabled}
             onChange={this.handleChange}
             placeholder={label}
-            ref={this.setRef}
           />
         </label>
 
