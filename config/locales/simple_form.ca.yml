@@ -66,6 +66,7 @@ ca:
         text: Això ens ajudarà a revisar la teva petició
       sessions:
         otp: 'Introdueix el codi de dos factors generat per el teu telèfon o utilitza un dels teus codis de recuperació:'
+        webauthn: Si és una clau USB assegurat de que està inserida i, si és necessari, toca-ho.
       tag:
         name: Només pots canviar la caixa de les lletres, per exemple, per fer-la més llegible
       user:
@@ -187,4 +188,7 @@ ca:
     required:
       mark: "*"
       text: necessari
+    title:
+      sessions:
+        webauthn: Usa una de les teves claus de seguretat per a iniciar sessió
     'yes': 'Sí'
