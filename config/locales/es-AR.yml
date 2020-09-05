@@ -962,7 +962,7 @@ es-AR:
       title: En tu ausencia...
     favourite:
       body: 'Tu toot fue marcado como favorito por %{name}:'
-      subject: "%{name} marcó como favorito tu estado"
+      subject: "%{name} marcó tu toot como favorito"
       title: Nuevo favorito
     follow:
       body: "¡%{name} te está siguiendo!"
@@ -979,8 +979,8 @@ es-AR:
       subject: Fuiste mencionado por %{name}
       title: Nueva mención
     reblog:
-      body: '%{name} retooteó tu estado:'
-      subject: "%{name} retooteó tu estado"
+      body: '%{name} retooteó tu toot:'
+      subject: "%{name} retooteó tu toot"
       title: Nuevo retoot
   notifications:
     email_events: Eventos para notificaciones por correo electrónico
@@ -1117,7 +1117,7 @@ es-AR:
     delete: Eliminación de la cuenta
     development: Desarrollo
     edit_profile: Editar perfil
-    export: Exportar datos
+    export: Exportación de datos
     featured_tags: Etiquetas destacadas
     identity_proofs: Pruebas de identidad
     import: Importar
@@ -1149,7 +1149,7 @@ es-AR:
       one: 'contenía una etiqueta no permitida: %{tags}'
       other: 'contenía las etiquetas no permitidas: %{tags}'
     errors:
-      in_reply_not_found: El estado al que intentás responder no existe.
+      in_reply_not_found: El toot al que intentás responder no existe.
     language_detection: Detectar idioma automáticamente
     open_in_web: Abrir en web
     over_character_limit: se excedió el límite de %{max} caracteres
@@ -1173,7 +1173,7 @@ es-AR:
     visibilities:
       private: Sólo a seguidores
       private_long: Sólo mostrar a seguidores
-      public: Pública
+      public: Público
       public_long: Todos pueden ver
       unlisted: No listado
       unlisted_long: Todos pueden ver, pero no está listado en las líneas temporales públicas
