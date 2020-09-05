@@ -57,7 +57,7 @@ class CircleDropdown extends React.PureComponent {
 
     return (
       <div className={classNames('circle-dropdown', { 'circle-dropdown--visible': visible })}>
-        <IconButton icon='circle-o' className='circle-dropdown__icon' title={intl.formatMessage(messages.circle_open_circle_column)} style={{ width: 'auto', height: 'auto' }} onClick={this.handleOpenCircleColumn} />
+        <IconButton icon='user-circle' className='circle-dropdown__icon' title={intl.formatMessage(messages.circle_open_circle_column)} style={{ width: 'auto', height: 'auto' }} onClick={this.handleOpenCircleColumn} />
 
         {/* eslint-disable-next-line jsx-a11y/no-onchange */}
         <select className='circle-dropdown__menu' title={intl.formatMessage(messages.circle_select)} value={value} onChange={this.handleChange}>
