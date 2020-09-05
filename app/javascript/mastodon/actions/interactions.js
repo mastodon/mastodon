@@ -25,6 +25,10 @@ export const FAVOURITES_FETCH_REQUEST = 'FAVOURITES_FETCH_REQUEST';
 export const FAVOURITES_FETCH_SUCCESS = 'FAVOURITES_FETCH_SUCCESS';
 export const FAVOURITES_FETCH_FAIL    = 'FAVOURITES_FETCH_FAIL';
 
+export const MENTIONS_FETCH_REQUEST = 'MENTIONS_FETCH_REQUEST';
+export const MENTIONS_FETCH_SUCCESS = 'MENTIONS_FETCH_SUCCESS';
+export const MENTIONS_FETCH_FAIL    = 'MENTIONS_FETCH_FAIL';
+
 export const PIN_REQUEST = 'PIN_REQUEST';
 export const PIN_SUCCESS = 'PIN_SUCCESS';
 export const PIN_FAIL    = 'PIN_FAIL';
@@ -333,6 +337,41 @@ export function fetchFavouritesSuccess(id, accounts) {
 export function fetchFavouritesFail(id, error) {
   return {
     type: FAVOURITES_FETCH_FAIL,
+    error,
+  };
+};
+
+export function fetchMentions(id) {
+  return (dispatch, getState) => {
+    dispatch(fetchMentionsRequest(id));
+
+    api(getState).get(`/api/v1/statuses/${id}/mentioned_by`).then(response => {
+      dispatch(importFetchedAccounts(response.data));
+      dispatch(fetchMentionsSuccess(id, response.data));
+    }).catch(error => {
+      dispatch(fetchMentionsFail(id, error));
+    });
+  };
+};
+
+export function fetchMentionsRequest(id) {
+  return {
+    type: MENTIONS_FETCH_REQUEST,
+    id,
+  };
+};
+
+export function fetchMentionsSuccess(id, accounts) {
+  return {
+    type: MENTIONS_FETCH_SUCCESS,
+    id,
+    accounts,
+  };
+};
+
+export function fetchMentionsFail(id, error) {
+  return {
+    type: MENTIONS_FETCH_FAIL,
     error,
   };
 };

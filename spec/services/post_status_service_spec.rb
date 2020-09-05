@@ -54,6 +54,26 @@ RSpec.describe PostStatusService, type: :service do
     end
   end
 
+  it 'creates a new status for a given circle' do
+    account = Fabricate(:account)
+    circle  = Fabricate(:circle, account: account)
+
+    circle_accounts = Fabricate.times(4, :account)
+
+    circle_accounts.each do |target_account|
+      target_account.follow!(account)
+      circle.accounts << target_account
+    end
+
+    text   = 'Circle... hello'
+    status = subject.call(account, text: text, circle: circle)
+
+    expect(status).to be_persisted
+    expect(status.text).to eq text
+    expect(status.visibility).to eq 'limited'
+    expect(status.mentions.map(&:account)).to include(*circle_accounts)
+  end
+
   it 'creates response to the original status of boost' do
     boosted_status = Fabricate(:status)
     in_reply_to_status = Fabricate(:status, reblog: boosted_status)
@@ -138,7 +158,7 @@ RSpec.describe PostStatusService, type: :service do
     status = subject.call(account, text: "test status update")
 
     expect(ProcessMentionsService).to have_received(:new)
-    expect(mention_service).to have_received(:call).with(status)
+    expect(mention_service).to have_received(:call).with(status, nil)
   end
 
   it 'processes hashtags' do

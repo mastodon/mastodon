@@ -13,6 +13,7 @@ const messages = defineMessages({
   delete: { id: 'status.delete', defaultMessage: 'Delete' },
   redraft: { id: 'status.redraft', defaultMessage: 'Delete & re-draft' },
   direct: { id: 'status.direct', defaultMessage: 'Direct message @{name}' },
+  showMemberList: { id: 'status.show_member_list', defaultMessage: 'Show member list' },
   mention: { id: 'status.mention', defaultMessage: 'Mention @{name}' },
   mute: { id: 'account.mute', defaultMessage: 'Mute @{name}' },
   block: { id: 'account.block', defaultMessage: 'Block @{name}' },
@@ -63,6 +64,7 @@ class StatusActionBar extends ImmutablePureComponent {
     onReblog: PropTypes.func,
     onDelete: PropTypes.func,
     onDirect: PropTypes.func,
+    onMemberList: PropTypes.func,
     onMention: PropTypes.func,
     onMute: PropTypes.func,
     onUnmute: PropTypes.func,
@@ -149,6 +151,10 @@ class StatusActionBar extends ImmutablePureComponent {
     this.props.onDirect(this.props.status.get('account'), this.context.router.history);
   }
 
+  handleMemberListClick = () => {
+    this.props.onMemberList(this.props.status, this.context.router.history);
+  }
+
   handleMuteClick = () => {
     const { status, relationship, onMute, onUnmute } = this.props;
     const account = status.get('account');
@@ -228,6 +234,7 @@ class StatusActionBar extends ImmutablePureComponent {
     const mutingConversation = status.get('muted');
     const account            = status.get('account');
     const writtenByMe        = status.getIn(['account', 'id']) === me;
+    const limitedByMe        = status.get('visibility') === 'limited' && status.get('circle_id');
 
     let menu = [];
 
@@ -247,6 +254,11 @@ class StatusActionBar extends ImmutablePureComponent {
     }
 
     menu.push(null);
+
+    if (writtenByMe && limitedByMe) {
+      menu.push({ text: intl.formatMessage(messages.showMemberList), action: this.handleMemberListClick });
+      menu.push(null);
+    }
 
     if (writtenByMe || withDismiss) {
       menu.push({ text: intl.formatMessage(mutingConversation ? messages.unmuteConversation : messages.muteConversation), action: this.handleConversationMuteClick });

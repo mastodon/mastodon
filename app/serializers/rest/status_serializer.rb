@@ -4,13 +4,14 @@ class REST::StatusSerializer < ActiveModel::Serializer
   attributes :id, :created_at, :in_reply_to_id, :in_reply_to_account_id,
              :sensitive, :spoiler_text, :visibility, :language,
              :uri, :url, :replies_count, :reblogs_count,
-             :favourites_count
+             :favourites_count, :limited
 
   attribute :favourited, if: :current_user?
   attribute :reblogged, if: :current_user?
   attribute :muted, if: :current_user?
   attribute :bookmarked, if: :current_user?
   attribute :pinned, if: :pinnable?
+  attribute :circle_id, if: :limited_owned_parent_status?
 
   attribute :content, unless: :source_requested?
   attribute :text, if: :source_requested?
@@ -43,8 +44,12 @@ class REST::StatusSerializer < ActiveModel::Serializer
     !current_user.nil?
   end
 
+  def owned_status?
+    current_user? && current_user.account_id == object.account_id
+  end
+
   def show_application?
-    object.account.user_shows_application? || (current_user? && current_user.account_id == object.account_id)
+    object.account.user_shows_application? || owned_status?
   end
 
   def visibility
@@ -64,6 +69,18 @@ class REST::StatusSerializer < ActiveModel::Serializer
     else
       object.account.sensitized? || object.sensitive
     end
+  end
+
+  def limited
+    object.limited_visibility?
+  end
+
+  def limited_owned_parent_status?
+    object.limited_visibility? && owned_status? && (!object.reply? || object.thread.conversation_id != object.conversation_id)
+  end
+
+  def circle_id
+    Redis.current.get("statuses/#{object.id}/circle_id")
   end
 
   def uri
@@ -119,8 +136,7 @@ class REST::StatusSerializer < ActiveModel::Serializer
   end
 
   def pinnable?
-    current_user? &&
-      current_user.account_id == object.account_id &&
+    owned_status? &&
       !object.reblog? &&
       %w(public unlisted).include?(object.visibility)
   end

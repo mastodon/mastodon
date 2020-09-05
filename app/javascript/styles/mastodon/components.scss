@@ -1085,6 +1085,11 @@
   padding-bottom: 1px;
 }
 
+.status__link {
+  color: inherit;
+  text-decoration: none;
+}
+
 .status__visibility-icon {
   padding: 0 4px;
 }
@@ -6562,6 +6567,136 @@ noscript {
   }
 }
 
+.circle-link {
+  display: flex;
+
+  .circle-edit-button {
+    flex: 1 1 auto;
+  }
+
+  .circle-delete-button {
+    flex: 0 0 auto;
+  }
+
+  .circle-edit-button,
+  .circle-delete-button {
+    background: lighten($ui-base-color, 8%);
+    color: $primary-text-color;
+    padding: 15px;
+    margin: 0;
+    font-size: 16px;
+    text-align: left;
+    text-decoration: none;
+    cursor: pointer;
+    border: 0;
+
+    &:hover,
+    &:focus,
+    &:active {
+      background: lighten($ui-base-color, 11%);
+    }
+
+    &:focus {
+      outline: 0;
+    }
+  }
+}
+
+.circle-editor {
+  background: $ui-base-color;
+  flex-direction: column;
+  border-radius: 8px;
+  box-shadow: 2px 4px 15px rgba($base-shadow-color, 0.4);
+  width: 380px;
+  overflow: hidden;
+
+  @media screen and (max-width: 420px) {
+    width: 90%;
+  }
+
+  h4 {
+    padding: 15px 0;
+    background: lighten($ui-base-color, 13%);
+    font-weight: 500;
+    font-size: 16px;
+    text-align: center;
+    border-radius: 8px 8px 0 0;
+  }
+
+  .drawer__pager {
+    height: 50vh;
+  }
+
+  .drawer__inner {
+    border-radius: 0 0 8px 8px;
+
+    &.backdrop {
+      width: calc(100% - 60px);
+      box-shadow: 2px 4px 15px rgba($base-shadow-color, 0.4);
+      border-radius: 0 0 0 8px;
+    }
+  }
+
+  &__accounts {
+    overflow-y: auto;
+  }
+
+  .account__display-name {
+    &:hover strong {
+      text-decoration: none;
+    }
+  }
+
+  .account__avatar {
+    cursor: default;
+  }
+
+  .search {
+    margin-bottom: 0;
+  }
+}
+
+.circle-adder {
+  background: $ui-base-color;
+  flex-direction: column;
+  border-radius: 8px;
+  box-shadow: 2px 4px 15px rgba($base-shadow-color, 0.4);
+  width: 380px;
+  overflow: hidden;
+
+  @media screen and (max-width: 420px) {
+    width: 90%;
+  }
+
+  &__account {
+    background: lighten($ui-base-color, 13%);
+  }
+
+  &__lists {
+    background: lighten($ui-base-color, 13%);
+    height: 50vh;
+    border-radius: 0 0 8px 8px;
+    overflow-y: auto;
+  }
+
+  .circle {
+    padding: 10px;
+    border-bottom: 1px solid lighten($ui-base-color, 8%);
+  }
+
+  .circle__wrapper {
+    display: flex;
+  }
+
+  .circle__display-name {
+    flex: 1 1 auto;
+    overflow: hidden;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 10px;
+  }
+}
+
 .focal-point {
   position: relative;
   cursor: move;
@@ -7441,5 +7576,59 @@ noscript {
     color: $darker-text-color;
     margin-bottom: 15px;
     text-align: center;
+  }
+}
+
+.circle-dropdown {
+  margin-top: 10px;
+  position: relative;
+  display: none;
+  background-color: $simple-background-color;
+  border: 1px solid darken($simple-background-color, 14%);
+  border-radius: 4px;
+
+  &.circle-dropdown--visible {
+    display: flex;
+  }
+
+  &__icon {
+    padding: 6px 4px;
+    flex: 0 0 auto;
+    font-size: 18px;
+    color: $inverted-text-color;
+  }
+
+  &__menu {
+    flex: 1 1 auto;
+    appearance: none;
+    box-sizing: border-box;
+    font-size: 14px;
+    line-height: 14px;
+    text-align: left;
+    color: $inverted-text-color;
+    display: inline-block;
+    width: 100%;
+    outline: 0;
+    font-family: inherit;
+    background: $simple-background-color url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14.933 18.467' height='19.698' width='15.929'><path d='M3.467 14.967l-3.393-3.5H14.86l-3.392 3.5c-1.866 1.925-3.666 3.5-4 3.5-.335 0-2.135-1.575-4-3.5zm.266-11.234L7.467 0 11.2 3.733l3.733 3.734H0l3.733-3.734z' fill='#{hex-color(darken($simple-background-color, 14%))}'/></svg>") no-repeat right 8px center / auto 16px;
+    border: 0;
+    padding: 9px 30px 9px 4px;
+
+    cursor: pointer;
+    transition: all 100ms ease-in;
+    transition-property: background-color, color;
+
+    &:hover,
+    &:active,
+    &:focus {
+      background-color: rgba($action-button-color, 0.15);
+      transition: all 200ms ease-out;
+      transition-property: background-color, color;
+    }
+
+    &:focus {
+      background-color: rgba($action-button-color, 0.3);
+    }
+
   }
 }

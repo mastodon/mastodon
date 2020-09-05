@@ -15,6 +15,9 @@ class PostStatusService < BaseService
   # @option [String] :spoiler_text
   # @option [String] :language
   # @option [String] :scheduled_at
+  # @option [String] :expires_at
+  # @option [String] :expires_action
+  # @option [Circle] :circle Optional circle to target the status to
   # @option [Hash] :poll Optional poll to attach
   # @option [Enumerable] :media_ids Optional array of media IDs to attach
   # @option [Doorkeeper::Application] :application
@@ -26,6 +29,7 @@ class PostStatusService < BaseService
     @options     = options
     @text        = @options[:text] || ''
     @in_reply_to = @options[:thread]
+    @circle      = @options[:circle]
 
     return idempotency_duplicate if idempotency_given? && idempotency_duplicate?
 
@@ -48,12 +52,14 @@ class PostStatusService < BaseService
   private
 
   def preprocess_attributes!
-    @sensitive    = (@options[:sensitive].nil? ? @account.user&.setting_default_sensitive : @options[:sensitive]) || @options[:spoiler_text].present?
-    @text         = @options.delete(:spoiler_text) if @text.blank? && @options[:spoiler_text].present?
-    @visibility   = @options[:visibility] || @account.user&.setting_default_privacy
-    @visibility   = :unlisted if @visibility&.to_sym == :public && @account.silenced?
-    @scheduled_at = @options[:scheduled_at]&.to_datetime
-    @scheduled_at = nil if scheduled_in_the_past?
+    @sensitive      = (@options[:sensitive].nil? ? @account.user&.setting_default_sensitive : @options[:sensitive]) || @options[:spoiler_text].present?
+    @text           = @options.delete(:spoiler_text) if @text.blank? && @options[:spoiler_text].present?
+    @visibility     = @options[:visibility] || @account.user&.setting_default_privacy
+    @visibility     = :unlisted if @visibility&.to_sym == :public && @account.silenced?
+    @visibility     = :limited if @circle.present?
+    @visibility     = :limited if @visibility&.to_sym != :direct && @in_reply_to&.limited_visibility?
+    @scheduled_at   = @options[:scheduled_at]&.to_datetime
+    @scheduled_at   = nil if scheduled_in_the_past?
   rescue ArgumentError
     raise ActiveRecord::RecordInvalid
   end
@@ -64,10 +70,11 @@ class PostStatusService < BaseService
 
     ApplicationRecord.transaction do
       @status = @account.statuses.create!(status_attributes)
+      @status.capability_tokens.create! if @status.limited_visibility?
     end
 
-    process_hashtags_service.call(@status)
-    process_mentions_service.call(@status)
+    ProcessHashtagsService.new.call(@status)
+    ProcessMentionsService.new.call(@status, @circle)
   end
 
   def schedule_status!
@@ -111,14 +118,6 @@ class PostStatusService < BaseService
 
   def language_from_option(str)
     ISO_639.find(str)&.alpha2
-  end
-
-  def process_mentions_service
-    ProcessMentionsService.new
-  end
-
-  def process_hashtags_service
-    ProcessHashtagsService.new
   end
 
   def scheduled?
@@ -165,6 +164,7 @@ class PostStatusService < BaseService
       sensitive: @sensitive,
       spoiler_text: @options[:spoiler_text] || '',
       visibility: @visibility,
+      circle: @circle,
       language: language_from_option(@options[:language]) || @account.user&.setting_default_language&.presence || LanguageDetector.instance.detect(@text, @account),
       application: @options[:application],
       rate_limit: @options[:with_rate_limit],

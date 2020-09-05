@@ -47,9 +47,12 @@ module AccountAssociations
     # Lists (that the account is on, not owned by the account)
     has_many :list_accounts, inverse_of: :account, dependent: :destroy
     has_many :lists, through: :list_accounts
+    has_many :circle_accounts, inverse_of: :account, dependent: :destroy
+    has_many :circles, through: :circle_accounts
 
     # Lists (owned by the account)
     has_many :owned_lists, class_name: 'List', dependent: :destroy, inverse_of: :account
+    has_many :owned_circles, class_name: 'Circle', dependent: :destroy, inverse_of: :account
 
     # Account migrations
     belongs_to :moved_to_account, class_name: 'Account', optional: true

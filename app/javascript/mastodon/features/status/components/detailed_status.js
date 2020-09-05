@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import Avatar from '../../../components/avatar';
@@ -21,6 +21,7 @@ const messages = defineMessages({
   public_short: { id: 'privacy.public.short', defaultMessage: 'Public' },
   unlisted_short: { id: 'privacy.unlisted.short', defaultMessage: 'Unlisted' },
   private_short: { id: 'privacy.private.short', defaultMessage: 'Followers-only' },
+  limited_short: { id: 'privacy.limited.short', defaultMessage: 'Circle' },
   direct_short: { id: 'privacy.direct.short', defaultMessage: 'Direct' },
 });
 
@@ -176,44 +177,45 @@ class DetailedStatus extends ImmutablePureComponent {
     }
 
     if (status.get('application')) {
-      applicationLink = <React.Fragment> · <a className='detailed-status__application' href={status.getIn(['application', 'website'])} target='_blank' rel='noopener noreferrer'>{status.getIn(['application', 'name'])}</a></React.Fragment>;
+      applicationLink = <Fragment> · <a className='detailed-status__application' href={status.getIn(['application', 'website'])} target='_blank' rel='noopener noreferrer'>{status.getIn(['application', 'name'])}</a></Fragment>;
     }
 
     const visibilityIconInfo = {
       'public': { icon: 'globe', text: intl.formatMessage(messages.public_short) },
       'unlisted': { icon: 'unlock', text: intl.formatMessage(messages.unlisted_short) },
       'private': { icon: 'lock', text: intl.formatMessage(messages.private_short) },
+      'limited': { icon: 'user-circle', text: intl.formatMessage(messages.limited_short) },
       'direct': { icon: 'envelope', text: intl.formatMessage(messages.direct_short) },
     };
 
     const visibilityIcon = visibilityIconInfo[status.get('visibility')];
-    const visibilityLink = <React.Fragment> · <Icon id={visibilityIcon.icon} title={visibilityIcon.text} /></React.Fragment>;
+    const visibilityLink = <Fragment> · <Icon id={visibilityIcon.icon} title={visibilityIcon.text} /></Fragment>;
 
-    if (['private', 'direct'].includes(status.get('visibility'))) {
+    if (!(['public', 'unlisted'].includes(status.get('visibility')))) {
       reblogLink = '';
     } else if (this.context.router) {
       reblogLink = (
-        <React.Fragment>
-          <React.Fragment> · </React.Fragment>
-          <Link to={`/@${status.getIn(['account', 'acct'])}/${status.get('id')}/reblogs`} className='detailed-status__link'>
+        <Fragment>
+          <Fragment> · </Fragment>
+          <Link to={`/statuses/${status.get('id')}/reblogs`} className='detailed-status__link'>
             <Icon id={reblogIcon} />
             <span className='detailed-status__reblogs'>
               <AnimatedNumber value={status.get('reblogs_count')} />
             </span>
           </Link>
-        </React.Fragment>
+        </Fragment>
       );
     } else {
       reblogLink = (
-        <React.Fragment>
-          <React.Fragment> · </React.Fragment>
+        <Fragment>
+          <Fragment> · </Fragment>
           <a href={`/interact/${status.get('id')}?type=reblog`} className='detailed-status__link' onClick={this.handleModalLink}>
             <Icon id={reblogIcon} />
             <span className='detailed-status__reblogs'>
               <AnimatedNumber value={status.get('reblogs_count')} />
             </span>
           </a>
-        </React.Fragment>
+        </Fragment>
       );
     }
 

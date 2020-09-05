@@ -78,6 +78,10 @@ export function Favourites () {
   return import(/* webpackChunkName: "features/favourites" */'../../favourites');
 }
 
+export function Mentions () {
+  return import(/* webpackChunkName: "features/mentions" */'../../mentions');
+}
+
 export function FollowRequests () {
   return import(/* webpackChunkName: "features/follow_requests" */'../../follow_requests');
 }
@@ -136,6 +140,18 @@ export function ListEditor () {
 
 export function ListAdder () {
   return import(/*webpackChunkName: "features/list_adder" */'../../list_adder');
+}
+
+export function Circles () {
+  return import(/* webpackChunkName: "features/circles" */'../../circles');
+}
+
+export function CircleEditor () {
+  return import(/* webpackChunkName: "features/circle_editor" */'../../circle_editor');
+}
+
+export function CircleAdder () {
+  return import(/*webpackChunkName: "features/circle_adder" */'../../circle_adder');
 }
 
 export function Search () {

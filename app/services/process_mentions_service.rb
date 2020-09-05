@@ -7,7 +7,8 @@ class ProcessMentionsService < BaseService
   # local mention pointers, send Salmon notifications to mentioned
   # remote users
   # @param [Status] status
-  def call(status)
+  # @param [Circle] circle
+  def call(status, circle = nil)
     return unless status.local?
 
     @status  = status
@@ -42,8 +43,26 @@ class ProcessMentionsService < BaseService
       "@#{mentioned_account.acct}"
     end
 
+    if circle.present?
+      circle.accounts.find_each do |target_account|
+        status.mentions.create(silent: true, account: target_account)
+      end
+    elsif status.limited_visibility? && status.thread&.limited_visibility?
+      # If we are replying to a local status, then we'll have the complete
+      # audience copied here, both local and remote. If we are replying
+      # to a remote status, only local audience will be copied. Then we
+      # need to send our reply to the remote author's inbox for distribution
+
+      status.thread.mentions.includes(:account).find_each do |mention|
+        status.mentions.create(silent: true, account: mention.account) unless status.account_id == mention.account_id
+      end
+
+      status.mentions.create(silent: true, account: status.thread.account) unless status.account_id == status.thread.account_id
+    end
+
     status.save!
 
+    # Silent mentions need to be delivered separately
     mentions.each { |mention| create_notification(mention) }
   end
 

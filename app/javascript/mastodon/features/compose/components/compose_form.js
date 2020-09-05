@@ -11,6 +11,7 @@ import UploadButtonContainer from '../containers/upload_button_container';
 import { defineMessages, injectIntl } from 'react-intl';
 import SpoilerButtonContainer from '../containers/spoiler_button_container';
 import PrivacyDropdownContainer from '../containers/privacy_dropdown_container';
+import CircleDropdownContainer from '../containers/circle_dropdown_container';
 import EmojiPickerDropdown from '../containers/emoji_picker_dropdown_container';
 import PollFormContainer from '../containers/poll_form_container';
 import UploadFormContainer from '../containers/upload_form_container';
@@ -50,6 +51,7 @@ class ComposeForm extends ImmutablePureComponent {
     isSubmitting: PropTypes.bool,
     isChangingUpload: PropTypes.bool,
     isUploading: PropTypes.bool,
+    isCircleUnselected: PropTypes.bool,
     onChange: PropTypes.func.isRequired,
     onSubmit: PropTypes.func.isRequired,
     onClearSuggestions: PropTypes.func.isRequired,
@@ -82,11 +84,11 @@ class ComposeForm extends ImmutablePureComponent {
   }
 
   canSubmit = () => {
-    const { isSubmitting, isChangingUpload, isUploading, anyMedia } = this.props;
+    const { isSubmitting, isChangingUpload, isUploading, isCircleUnselected, anyMedia } = this.props;
     const fulltext = this.getFulltextForCharacterCounting();
     const isOnlyWhitespace = fulltext.length !== 0 && fulltext.trim().length === 0;
 
-    return !(isSubmitting || isUploading || isChangingUpload || length(fulltext) > 500 || (isOnlyWhitespace && !anyMedia));
+    return !(isSubmitting || isUploading || isChangingUpload || isCircleUnselected || length(fulltext) > 500 || (isOnlyWhitespace && !anyMedia));
   }
 
   handleSubmit = () => {
@@ -198,7 +200,7 @@ class ComposeForm extends ImmutablePureComponent {
     const disabled = this.props.isSubmitting;
     let publishText = '';
 
-    if (this.props.privacy === 'private' || this.props.privacy === 'direct') {
+    if (this.props.privacy !== 'public' && this.props.privacy !== 'unlisted') {
       publishText = <span className='compose-form__publish-private'><Icon id='lock' /> {intl.formatMessage(messages.publish)}</span>;
     } else {
       publishText = this.props.privacy !== 'unlisted' ? intl.formatMessage(messages.publishLoud, { publish: intl.formatMessage(messages.publish) }) : intl.formatMessage(messages.publish);
@@ -259,6 +261,8 @@ class ComposeForm extends ImmutablePureComponent {
           </div>
           <div className='character-counter__wrapper'><CharacterCounter max={500} text={this.getFulltextForCharacterCounting()} /></div>
         </div>
+
+        <CircleDropdownContainer />
 
         <div className='compose-form__publish'>
           <div className='compose-form__publish-button-wrapper'><Button text={publishText} onClick={this.handleSubmit} disabled={!this.canSubmit()} block /></div>

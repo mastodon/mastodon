@@ -12,6 +12,8 @@
 #
 
 class Mention < ApplicationRecord
+  include Paginable
+
   belongs_to :account, inverse_of: :mentions
   belongs_to :status
 
