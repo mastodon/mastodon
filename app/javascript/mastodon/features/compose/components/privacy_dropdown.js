@@ -31,7 +31,6 @@ class PrivacyDropdownMenu extends React.PureComponent {
     style: PropTypes.object,
     items: PropTypes.array.isRequired,
     value: PropTypes.string.isRequired,
-    enableValues: PropTypes.array.isRequired,
     placement: PropTypes.string.isRequired,
     onClose: PropTypes.func.isRequired,
     onChange: PropTypes.func.isRequired,
@@ -122,7 +121,7 @@ class PrivacyDropdownMenu extends React.PureComponent {
 
   render () {
     const { mounted } = this.state;
-    const { style, items, placement, value, enableValues } = this.props;
+    const { style, items, placement, value } = this.props;
 
     return (
       <Motion defaultStyle={{ opacity: 0, scaleX: 0.85, scaleY: 0.75 }} style={{ opacity: spring(1, { damping: 35, stiffness: 400 }), scaleX: spring(1, { damping: 35, stiffness: 400 }), scaleY: spring(1, { damping: 35, stiffness: 400 }) }}>
@@ -132,7 +131,6 @@ class PrivacyDropdownMenu extends React.PureComponent {
           // react-overlays
           <div className={`privacy-dropdown__dropdown ${placement}`} style={{ ...style, opacity: opacity, transform: mounted ? `scale(${scaleX}, ${scaleY})` : null, zIndex: 2 }} role='listbox' ref={this.setRef}>
             {items.map(item => (
-              enableValues.includes(item.value) &&
               <div role='option' tabIndex='0' key={item.value} data-index={item.value} onKeyDown={this.handleKeyDown} onClick={this.handleClick} className={classNames('privacy-dropdown__option', { active: item.value === value })} aria-selected={item.value === value} ref={item.value === value ? this.setFocusRef : null}>
                 <div className='privacy-dropdown__option__icon'>
                   <Icon id={item.icon} fixedWidth />
@@ -161,7 +159,6 @@ class PrivacyDropdown extends React.PureComponent {
     onModalOpen: PropTypes.func,
     onModalClose: PropTypes.func,
     value: PropTypes.string.isRequired,
-    limitedReply: PropTypes.bool.isRequired,
     onChange: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
   };
@@ -247,11 +244,10 @@ class PrivacyDropdown extends React.PureComponent {
   }
 
   render () {
-    const { value, limitedReply, intl } = this.props;
+    const { value, intl } = this.props;
     const { open, placement } = this.state;
 
     const valueOption = this.options.find(item => item.value === value);
-    const enableValues = limitedReply ? ['limited', 'direct'] : ['public', 'unlisted', 'private', 'limited', 'direct'];
 
     return (
       <div className={classNames('privacy-dropdown', placement, { active: open })} onKeyDown={this.handleKeyDown}>
@@ -275,7 +271,6 @@ class PrivacyDropdown extends React.PureComponent {
           <PrivacyDropdownMenu
             items={this.options}
             value={value}
-            enableValues={enableValues}
             onClose={this.handleClose}
             onChange={this.handleChange}
             placement={placement}
