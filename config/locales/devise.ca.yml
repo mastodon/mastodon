@@ -59,6 +59,23 @@ ca:
         title: 2FA codis de recuperació canviats
       unlock_instructions:
         subject: 'Mastodon: Instruccions per a desbloquejar'
+      webauthn_credential:
+        added:
+          explanation: La següent clau de seguretat s'ha afegit al teu compte
+          subject: 'Mastodon: Nova clau de seguretat'
+          title: S'ha afegit una nova clau de seguretat
+        deleted:
+          explanation: La següent clau de seguretat s'ha esborrat del teu compte
+          subject: 'Mastodon: clau de seguretat esborrada'
+          title: Una de les teves claus de seguretat ha estat esborrada
+      webauthn_disabled:
+        explanation: S'ha desactivat l'autentificació amb claus de seguretat per al teu compte. L'inici de sessió és ara possible emprant només el token generat per l'aplicació TOTP.
+        subject: 'Mastodon: S''ha desactivat l''autentificació amb claus de seguretat'
+        title: Claus de seguretat desactivades
+      webauthn_enabled:
+        explanation: S'ha activat l'autentificació amb claus de seguretat. La teva clau de seguretat por ser emprada per a iniciar sessió.
+        subject: 'Mastodon: Autentificació amb clau de seguretat activada'
+        title: Claus de seguretat activades
     omniauth_callbacks:
       failure: No podem autentificar-te des de %{kind} degut a "%{reason}".
       success: Autentificat amb èxit des del compte %{kind}.
