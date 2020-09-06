@@ -1273,21 +1273,21 @@ es-AR:
   time:
     formats:
       default: "%Y.%b.%d, %H:%M"
-      month: "%b %Y"
+      month: "%b de %Y"
   two_factor_authentication:
     add: Agregar
-    disable: Deshabilitar
+    disable: Deshabilitar 2FA
     disabled_success: Autenticación de dos factores exitosamente deshabilitada
     edit: Editar
     enabled: La autenticación de dos factores está activada
     enabled_success: Se habilitó exitosamente la autenticación de dos factores
     generate_recovery_codes: Generar códigos de recuperación
-    lost_recovery_codes: Los códigos de recuperación te permiten recuperar el acceso a tu cuenta, si perdés tu dispositivo móvil. Si perdiste tus códigos de recuperación, podés regenerarlos acá. Tus antiguos códigos de recuperación serán invalidados.
+    lost_recovery_codes: Los códigos de recuperación te permiten recuperar el acceso a tu cuenta, si no tenés acceso a la aplicación de 2FA. Si perdiste tus códigos de recuperación, podés regenerarlos acá. Tus antiguos códigos de recuperación serán invalidados.
     methods: Métodos de dos factores
     otp: Aplicación de autenticación
     recovery_codes: Resguardar códigos de recuperación
     recovery_codes_regenerated: Los códigos de recuperación se regeneraron exitosamente
-    recovery_instructions_html: Si alguna vez perdés el acceso a tu dispositivo móvil, podés usar uno de los siguientes códigos de recuperación para recuperar el acceso a tu cuenta. <strong>Mantenelos a salvo</strong>. Por ejemplo, podés imprimirlos y guardarlos con otros documentos importantes.
+    recovery_instructions_html: Si alguna vez perdés el acceso a tu aplicación de 2FA, podés usar uno de los siguientes códigos de recuperación para recuperar el acceso a tu cuenta. <strong>Mantenelos a salvo</strong>. Por ejemplo, podés imprimirlos y guardarlos con otros documentos importantes.
     webauthn: Llaves de seguridad
   user_mailer:
     backup_ready:
@@ -1332,7 +1332,7 @@ es-AR:
       tip_federated_timeline: La línea temporal federada es una línea contínua global de la red de Mastodon. Pero sólo incluye gente que tus vecinos están siguiendo, así que no es completa.
       tip_following: Predeterminadamente seguís al / a los administrador/es de tu servidor. Para encontrar más gente interesante, revisá las lineas temporales local y federada.
       tip_local_timeline: La línea temporal local es una línea contínua global de cuentas en %{instance}. ¡Estos son tus vecinos inmediatos!
-      tip_mobile_webapp: Si tu navegador web móvil te ofrece agregar Mastodon a tu página de inicio, podés recibir notificaciones PuSH. ¡Actúa como una aplicación nativa de muchas maneras!
+      tip_mobile_webapp: Si tu navegador web móvil te ofrece agregar Mastodon a tu página de inicio, podés recibir notificaciones push. ¡Actúa como una aplicación nativa de muchas maneras!
       tips: Consejos
       title: '¡Bienvenido a bordo, %{name}!'
   users:
