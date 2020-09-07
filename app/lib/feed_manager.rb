@@ -298,9 +298,7 @@ class FeedManager
       # delay of the worker deliverying the original status, the late addition
       # by merging timelines, and other reasons.
       # If such a reblog already exists, just do not re-insert it into the feed.
-      rank = redis.zrevrank(reblog_key, status.id)
-
-      return false unless rank.nil?
+      return false unless redis.zscore(reblog_key, status.id).nil?
 
       redis.zadd(timeline_key, status.id, status.id)
     end
