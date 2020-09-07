@@ -77,9 +77,11 @@ class FeedManager
 
     # Get the score of the REBLOG_FALLOFF'th item in our feed, and stop
     # tracking anything after it for deduplication purposes.
-    falloff_rank  = FeedManager::REBLOG_FALLOFF - 1
+    falloff_rank  = FeedManager::REBLOG_FALLOFF
     falloff_range = redis.zrevrange(timeline_key, falloff_rank, falloff_rank, with_scores: true)
-    falloff_score = falloff_range&.first&.last&.to_i || 0
+    falloff_score = falloff_range&.first&.last&.to_i
+
+    return if falloff_score.nil?
 
     # Get any reblogs we might have to clean up after.
     redis.zrangebyscore(reblog_key, 0, falloff_score).each do |reblogged_id|
@@ -279,14 +281,12 @@ class FeedManager
 
       return false if !rank.nil? && rank < FeedManager::REBLOG_FALLOFF
 
-      reblog_rank = redis.zrevrank(reblog_key, status.reblog_of_id)
-
-      if reblog_rank.nil?
+      # The ordered set at `reblog_key` holds statuses which have a reblog
+      # in the top `REBLOG_FALLOFF` statuses of the timeline
+      if redis.zadd(reblog_key, status.id, status.reblog_of_id, nx: true)
         # This is not something we've already seen reblogged, so we
-        # can just add it to the feed (and note that we're
-        # reblogging it).
+        # can just add it to the feed (and note that we're reblogging it).
         redis.zadd(timeline_key, status.id, status.id)
-        redis.zadd(reblog_key, status.id, status.reblog_of_id)
       else
         # Another reblog of the same status was already in the
         # REBLOG_FALLOFF most recent statuses, so we note that this
@@ -300,9 +300,7 @@ class FeedManager
       # delay of the worker deliverying the original status, the late addition
       # by merging timelines, and other reasons.
       # If such a reblog already exists, just do not re-insert it into the feed.
-      rank = redis.zrevrank(reblog_key, status.id)
-
-      return false unless rank.nil?
+      return false unless redis.zscore(reblog_key, status.id).nil?
 
       redis.zadd(timeline_key, status.id, status.id)
     end
