@@ -444,8 +444,8 @@ RSpec.describe FeedManager do
       expect(Redis.current.exists?(reblog_set_key)).to be true
       expect(Redis.current.zrange(reblogs_key, 0, -1)).to eq [reblogged.id.to_s]
 
-      # Push everything off the end of the feed.
-      FeedManager::MAX_ITEMS.times do
+      # Push everything past the reblog falloff.
+      FeedManager::REBLOG_FALLOFF.times do
         FeedManager.instance.push_to_home(receiver, Fabricate(:status))
       end
 
