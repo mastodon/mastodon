@@ -77,9 +77,11 @@ class FeedManager
 
     # Get the score of the REBLOG_FALLOFF'th item in our feed, and stop
     # tracking anything after it for deduplication purposes.
-    falloff_rank  = FeedManager::REBLOG_FALLOFF - 1
+    falloff_rank  = FeedManager::REBLOG_FALLOFF
     falloff_range = redis.zrevrange(timeline_key, falloff_rank, falloff_rank, with_scores: true)
-    falloff_score = falloff_range&.first&.last&.to_i || 0
+    falloff_score = falloff_range&.first&.last&.to_i
+
+    return if falloff_score.nil?
 
     # Get any reblogs we might have to clean up after.
     redis.zrangebyscore(reblog_key, 0, falloff_score).each do |reblogged_id|
