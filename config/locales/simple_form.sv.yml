@@ -14,6 +14,10 @@ sv:
         text_html: Extra. Du kan använda toot syntax. Du kan <a href="%{path}">lägga till förvalda varningar</a> för att spara tid
         type_html: Välj vad du vill göra med <strong>%{acct}</strong>
         warning_preset_id: Extra. Du kan lägga till valfri text i slutet av förinställningen
+      announcement:
+        all_day: När det är markerat visas endast datum för tidsintervallet
+        ends_at: Frivillig. Meddelandet kommer automatiskt att publiceras just nu
+        scheduled_at: Lämna tomt för att publicera meddelandet omedelbart
       defaults:
         autofollow: Användarkonton som skapas genom din inbjudan kommer automatiskt följa dig
         avatar: PNG, GIF eller JPG. Högst %{size}. Kommer att skalas ner till %{dimensions}px
