@@ -279,14 +279,12 @@ class FeedManager
 
       return false if !rank.nil? && rank < FeedManager::REBLOG_FALLOFF
 
-      reblog_rank = redis.zrevrank(reblog_key, status.reblog_of_id)
-
-      if reblog_rank.nil?
+      # The ordered set at `reblog_key` holds statuses which have a reblog
+      # in the top `REBLOG_FALLOFF` statuses of the timeline
+      if redis.zadd(reblog_key, status.id, status.reblog_of_id, nx: true)
         # This is not something we've already seen reblogged, so we
-        # can just add it to the feed (and note that we're
-        # reblogging it).
+        # can just add it to the feed (and note that we're reblogging it).
         redis.zadd(timeline_key, status.id, status.id)
-        redis.zadd(reblog_key, status.id, status.reblog_of_id)
       else
         # Another reblog of the same status was already in the
         # REBLOG_FALLOFF most recent statuses, so we note that this
