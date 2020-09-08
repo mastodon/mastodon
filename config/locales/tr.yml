@@ -680,8 +680,11 @@ tr:
       prefix_sign_up: Bugün Mastodon'a kaydolun!
       suffix: Bir hesapla, kişileri takip edebilir, güncellemeler gönderebilir, herhangi bir Mastodon sunucusundan kullanıcılarla mesaj alışverişinde bulunabilir ve daha birçok şey yapabilirsin!
     didnt_get_confirmation: Doğrulama talimatlarını almadınız mı?
+    dont_have_your_security_key: Güvenlik anahtarınız yok mu?
     forgot_password: Parolanızı unuttunuz mu?
     invalid_reset_password_token: Parola sıfırlama belirteci geçersiz veya süresi dolmuş. Lütfen yeni bir tane talep edin.
+    link_to_otp: Telefonunuzdan iki adımlı bir kod veya bir kurtarma kodu girin
+    link_to_webauth: Güvenlik anahtarı cihazınızı kullanın
     login: Giriş yap
     logout: Çıkış yap
     migrate_account: Farklı bir hesaba taşının
@@ -707,6 +710,7 @@ tr:
       pending: Başvurunuz personelimiz tarafından gözden geçirilmeyi beklemektedir. Bu biraz zaman alabilir. Başvurunuz onaylanırsa bir e-posta alacaksınız.
       redirecting_to: Hesabınız aktif değil çünkü şu anda %{acct} adresine yönlendirilmektedir.
     trouble_logging_in: Oturum açarken sorun mu yaşıyorsunuz?
+    use_security_key: Güvenlik anahtarını kullan
   authorize_follow:
     already_following: Bu hesabı zaten takip ediyorsunuz
     already_requested: Bu hesaba zaten takip isteği gönderdiniz
@@ -993,7 +997,11 @@ tr:
           thousand: K
           trillion: T
   otp_authentication:
+    code_hint: Onaylamak için authenticator uygulamanız tarafından oluşturulan kodu girin
+    description_html: Bir authenticator uygulamasını kullanarak <strong>iki adımlı kimlik doğrulamayı</strong> etkinleştirirseniz, giriş yapmak için telefonunuzun elinizde olması gerekir ve telefonunuz giriş yapmanız için kodlar oluşturur.
     enable: Etkinleştir
+    instructions_html: "<strong>Bu QR kodunu Google Authenticator'a veya telefonunuzdaki benzer bir TOTP uygulamasına taratın.</strong> Bundan sonra, bu uygulama giriş yaparken girmeniz gereken kodu üretecektir."
+    manual_instructions: 'QR kodunu taratamıyorsanız ve elle girmeniz gerekiyorsa, buradaki gizli düz metni girebilirsiniz:'
   pagination:
     newer: Daha yeni
     next: Sonraki
