@@ -13,15 +13,13 @@ class NotifyService < BaseService
     push_to_conversation! if direct_message?
     send_email! if email_enabled?
   rescue ActiveRecord::RecordInvalid
-    # rubocop:disable Style/RedundantReturn
-    return
-    # rubocop:enable Style/RedundantReturn
+    nil
   end
 
   private
 
   def blocked_mention?
-    FeedManager.instance.filter?(:mentions, @notification.mention.status, @recipient.id)
+    FeedManager.instance.filter?(:mentions, @notification.mention.status, @recipient)
   end
 
   def blocked_favourite?
