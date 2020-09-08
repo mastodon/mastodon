@@ -20,28 +20,26 @@ class Api::V1::Timelines::PublicController < Api::BaseController
   end
 
   def cached_public_statuses_page
-    cache_collection_paginated_by_id(
-      public_statuses,
-      Status,
-      limit_param(DEFAULT_STATUSES_LIMIT),
-      params_slice(:max_id, :since_id, :min_id)
-    )
+    cache_collection(public_statuses, Status)
   end
 
   def public_statuses
-    statuses = public_timeline_statuses
-
-    statuses = statuses.not_local_only unless truthy_param?(:local) || truthy_param?(:allow_local_only)
-
-    if truthy_param?(:only_media)
-      statuses.joins(:media_attachments).group(:id)
-    else
-      statuses
-    end
+    public_feed.get(
+      limit_param(DEFAULT_STATUSES_LIMIT),
+      params[:max_id],
+      params[:since_id],
+      params[:min_id]
+    )
   end
 
-  def public_timeline_statuses
-    Status.as_public_timeline(current_account, truthy_param?(:remote) ? :remote : truthy_param?(:local))
+  def public_feed
+    PublicFeed.new(
+      current_account,
+      local: truthy_param?(:local),
+      remote: truthy_param?(:remote),
+      only_media: truthy_param?(:only_media),
+      allow_local_only: truthy_param?(:allow_local_only)
+    )
   end
 
   def insert_pagination_headers
