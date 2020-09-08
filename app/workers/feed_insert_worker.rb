@@ -29,13 +29,13 @@ class FeedInsertWorker
   end
 
   def feed_filtered?
-    # Note: Lists are a variation of home, so the filtering rules
-    # of home apply to both
     case @type
-    when :home, :list
-      FeedManager.instance.filter?(:home, @status, @follower.id)
+    when :home
+      FeedManager.instance.filter?(:home, @status, @follower)
+    when :list
+      FeedManager.instance.filter?(:list, @status, @list)
     when :direct
-      FeedManager.instance.filter?(:direct, @status, @account.id)
+      FeedManager.instance.filter?(:direct, @status, @account)
     end
   end
 
