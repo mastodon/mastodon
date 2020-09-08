@@ -1002,6 +1002,8 @@ tr:
     enable: Etkinleştir
     instructions_html: "<strong>Bu QR kodunu Google Authenticator'a veya telefonunuzdaki benzer bir TOTP uygulamasına taratın.</strong> Bundan sonra, bu uygulama giriş yaparken girmeniz gereken kodu üretecektir."
     manual_instructions: 'QR kodunu taratamıyorsanız ve elle girmeniz gerekiyorsa, buradaki gizli düz metni girebilirsiniz:'
+    setup: Yapılandır
+    wrong_code: Girilen kod geçersiz! Sunucu zamanı ve cihaz zamanı doğru mu?
   pagination:
     newer: Daha yeni
     next: Sonraki
@@ -1275,6 +1277,7 @@ tr:
   two_factor_authentication:
     add: Ekle
     disable: Devre dışı bırak
+    disabled_success: İki adımlı kimlik doğrulama başarıyla devre dışı bırakıldı
     edit: Düzenle
     enabled: İki adımlı kimlik doğrulama etkin
     enabled_success: İki adımlı kimlik doğrulama başarıyla etkinleştirildi
@@ -1349,6 +1352,18 @@ tr:
     verification: Doğrulama
   webauthn_credentials:
     add: Yeni güvenlik anahtarı ekle
+    create:
+      error: Güvenlik anahtarınızı eklerken bir sorun oluştu. Lütfen tekrar deneyin.
+      success: Güvenlik anahtarınız başarıyla eklendi.
     delete: Sil
+    delete_confirmation: Bu güvenlik anahtarını silmek istediğinizden emin misiniz?
+    description_html: <strong>Güvenlik anahtarı kimlik doğrulamasını</strong> etkinleştirirseniz, giriş yapmak için güvenlik anahtarlarınızdan birini kullanmanız gerekir.
+    destroy:
+      error: Güvenlik anahtarını silerken bir sorun oluştu. Lütfen tekrar deneyin.
+      success: Güvenlik anahtarınız başarıyla silindi.
     invalid_credential: Geçersiz güvenlik anahtarı
+    nickname_hint: Yeni güvenlik anahtarınızın takma adını girin
+    not_enabled: Henüz WebAuthn'u etkinleştirmediniz
+    not_supported: Bu tarayıcı güvenlik anahtarlarını desteklemiyor
+    otp_required: Güvenlik anahtarlarını kullanmak için lütfen önce iki adımlı kimlik doğrulamayı etkinleştirin.
     registered_on: '%{date} tarihinde kaydoldu'
