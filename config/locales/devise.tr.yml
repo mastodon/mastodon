@@ -61,12 +61,19 @@ tr:
         subject: 'Mastodon: Engel kaldırma talimatları'
       webauthn_credential:
         added:
+          explanation: Aşağıdaki güvenlik anahtarı hesabınıza eklendi
           subject: 'Mastodon: Yeni güvenlik anahtarı'
+          title: Yeni bir güvenlik anahtarı eklendi
         deleted:
+          explanation: Aşağıdaki güvenlik anahtarı hesabınızdan silindi
           subject: 'Mastodon: Güvenlik anahtarı silindi'
+          title: Güvenlik anahtarlarınızdan biri silindi
       webauthn_disabled:
+        explanation: Hesabınız için güvenlik anahtarlarıyla kimlik doğrulama devre dışı bırakıldı. Artık yalnızca eşleştirilmiş TOTP uygulaması tarafından oluşturulan kodu kullanarak giriş yapmak mümkündür.
+        subject: 'Mastodon: Güvenlik anahtarlarıyla kimlik doğrulama devre dışı'
         title: Güvenlik anahtarları devre dışı
       webauthn_enabled:
+        explanation: Hesabınız için güvenlik anahtarı doğrulaması etkinleştirildi. Güvenlik anahtarınız artık giriş yapmak için kullanılabilir.
         subject: 'Mastodon: Güvenlik anahtarı doğrulaması etkinleştirildi'
         title: Güvenlik anahtarları etkin
     omniauth_callbacks:
