@@ -17,6 +17,8 @@ import { fetchAccountIdentityProofs } from '../../actions/identity_proofs';
 import MissingIndicator from 'flavours/glitch/components/missing_indicator';
 import TimelineHint from 'flavours/glitch/components/timeline_hint';
 
+const emptyList = ImmutableList();
+
 const mapStateToProps = (state, { params: { accountId }, withReplies = false }) => {
   const path = withReplies ? `${accountId}:with_replies` : accountId;
 
@@ -28,6 +30,7 @@ const mapStateToProps = (state, { params: { accountId }, withReplies = false }) 
     featuredStatusIds: withReplies ? ImmutableList() : state.getIn(['timelines', `account:${accountId}:pinned`, 'items'], ImmutableList()),
     isLoading: state.getIn(['timelines', `account:${path}`, 'isLoading']),
     hasMore:   state.getIn(['timelines', `account:${path}`, 'hasMore']),
+    suspended: state.getIn(['accounts', accountId, 'suspended'], false),
   };
 };
 
@@ -51,6 +54,7 @@ class AccountTimeline extends ImmutablePureComponent {
     hasMore: PropTypes.bool,
     withReplies: PropTypes.bool,
     isAccount: PropTypes.bool,
+    suspended: PropTypes.bool,
     remote: PropTypes.bool,
     remoteUrl: PropTypes.string,
     multiColumn: PropTypes.bool,
@@ -91,7 +95,7 @@ class AccountTimeline extends ImmutablePureComponent {
   }
 
   render () {
-    const { statusIds, featuredStatusIds, isLoading, hasMore, isAccount, multiColumn, remote, remoteUrl } = this.props;
+    const { statusIds, featuredStatusIds, isLoading, hasMore, suspended, isAccount, multiColumn, remote, remoteUrl } = this.props;
 
     if (!isAccount) {
       return (
@@ -112,7 +116,9 @@ class AccountTimeline extends ImmutablePureComponent {
 
     let emptyMessage;
 
-    if (remote && statusIds.isEmpty()) {
+    if (suspended) {
+      emptyMessage = <FormattedMessage id='empty_column.account_unavailable' defaultMessage='Profile unavailable' />;
+    } else if (remote && statusIds.isEmpty()) {
       emptyMessage = <RemoteHint url={remoteUrl} />;
     } else {
       emptyMessage = <FormattedMessage id='empty_column.account_timeline' defaultMessage='No toots here!' />;
@@ -129,7 +135,7 @@ class AccountTimeline extends ImmutablePureComponent {
           alwaysPrepend
           append={remoteMessage}
           scrollKey='account_timeline'
-          statusIds={statusIds}
+          statusIds={suspended ? emptyList : statusIds}
           featuredStatusIds={featuredStatusIds}
           isLoading={isLoading}
           hasMore={hasMore}
