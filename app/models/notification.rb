@@ -41,8 +41,11 @@ class Notification < ApplicationRecord
   validates :account_id, uniqueness: { scope: [:activity_type, :activity_id] }
   validates :activity_type, inclusion: { in: TYPE_CLASS_MAP.values }
 
+  scope :without_suspended, -> { joins(:from_account).merge(Account.without_suspended) }
+
   scope :browserable, ->(exclude_types = [], account_id = nil) {
     types = TYPE_CLASS_MAP.values - activity_types_from_types(exclude_types)
+
     if account_id.nil?
       where(activity_type: types)
     else

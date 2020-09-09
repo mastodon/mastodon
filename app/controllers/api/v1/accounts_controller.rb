@@ -9,7 +9,6 @@ class Api::V1::AccountsController < Api::BaseController
 
   before_action :require_user!, except: [:show, :create]
   before_action :set_account, except: [:create]
-  before_action :check_account_suspension, only: [:show]
   before_action :check_enabled_registrations, only: [:create]
 
   skip_before_action :require_authenticated_user!, only: :create
@@ -71,10 +70,6 @@ class Api::V1::AccountsController < Api::BaseController
 
   def relationships(**options)
     AccountRelationshipsPresenter.new([@account.id], current_user.account_id, options)
-  end
-
-  def check_account_suspension
-    gone if @account.suspended?
   end
 
   def account_params
