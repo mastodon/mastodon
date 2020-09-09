@@ -140,6 +140,8 @@ class Header extends ImmutablePureComponent {
       return null;
     }
 
+    const suspended = account.get('suspended');
+
     let info        = [];
     let actionBtn   = '';
     let lockedIcon  = '';
@@ -268,7 +270,7 @@ class Header extends ImmutablePureComponent {
       <div className={classNames('account__header', { inactive: !!account.get('moved') })} ref={this.setRef}>
         <div className='account__header__image'>
           <div className='account__header__info'>
-            {info}
+            {!suspended && info}
           </div>
 
           <img src={autoPlayGif ? account.get('header') : account.get('header_static')} alt='' className='parallax' />
@@ -282,11 +284,13 @@ class Header extends ImmutablePureComponent {
 
             <div className='spacer' />
 
-            <div className='account__header__tabs__buttons'>
-              {actionBtn}
+            {!suspended && (
+              <div className='account__header__tabs__buttons'>
+                {actionBtn}
 
-              <DropdownMenuContainer items={menu} icon='ellipsis-v' size={24} direction='right' />
-            </div>
+                <DropdownMenuContainer items={menu} icon='ellipsis-v' size={24} direction='right' />
+              </div>
+            )}
           </div>
 
           <div className='account__header__tabs__name'>
@@ -298,7 +302,7 @@ class Header extends ImmutablePureComponent {
 
           <div className='account__header__extra'>
             <div className='account__header__bio'>
-              { (fields.size > 0 || identity_proofs.size > 0) && (
+              {(fields.size > 0 || identity_proofs.size > 0) && (
                 <div className='account__header__fields'>
                   {identity_proofs.map((proof, i) => (
                     <dl key={i}>
@@ -324,33 +328,35 @@ class Header extends ImmutablePureComponent {
                 </div>
               )}
 
-              {account.get('id') !== me && <AccountNoteContainer account={account} />}
+              {account.get('id') !== me && !suspended && <AccountNoteContainer account={account} />}
 
               {account.get('note').length > 0 && account.get('note') !== '<p></p>' && <div className='account__header__content' dangerouslySetInnerHTML={content} />}
             </div>
 
-            <div className='account__header__extra__links'>
-              <NavLink isActive={this.isStatusesPageActive} activeClassName='active' to={`/accounts/${account.get('id')}`} title={intl.formatNumber(account.get('statuses_count'))}>
-                <ShortNumber
-                  value={account.get('statuses_count')}
-                  renderer={counterRenderer('statuses')}
-                />
-              </NavLink>
+            {!suspended && (
+              <div className='account__header__extra__links'>
+                <NavLink isActive={this.isStatusesPageActive} activeClassName='active' to={`/accounts/${account.get('id')}`} title={intl.formatNumber(account.get('statuses_count'))}>
+                  <ShortNumber
+                    value={account.get('statuses_count')}
+                    renderer={counterRenderer('statuses')}
+                  />
+                </NavLink>
 
-              <NavLink exact activeClassName='active' to={`/accounts/${account.get('id')}/following`} title={intl.formatNumber(account.get('following_count'))}>
-                <ShortNumber
-                  value={account.get('following_count')}
-                  renderer={counterRenderer('following')}
-                />
-              </NavLink>
+                <NavLink exact activeClassName='active' to={`/accounts/${account.get('id')}/following`} title={intl.formatNumber(account.get('following_count'))}>
+                  <ShortNumber
+                    value={account.get('following_count')}
+                    renderer={counterRenderer('following')}
+                  />
+                </NavLink>
 
-              <NavLink exact activeClassName='active' to={`/accounts/${account.get('id')}/followers`} title={intl.formatNumber(account.get('followers_count'))}>
-                <ShortNumber
-                  value={account.get('followers_count')}
-                  renderer={counterRenderer('followers')}
-                />
-              </NavLink>
-            </div>
+                <NavLink exact activeClassName='active' to={`/accounts/${account.get('id')}/followers`} title={intl.formatNumber(account.get('followers_count'))}>
+                  <ShortNumber
+                    value={account.get('followers_count')}
+                    renderer={counterRenderer('followers')}
+                  />
+                </NavLink>
+              </div>
+            )}
           </div>
         </div>
       </div>
