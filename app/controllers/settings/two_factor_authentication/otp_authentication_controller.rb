@@ -5,13 +5,10 @@ module Settings
     class OtpAuthenticationController < BaseController
       include ChallengableConcern
 
-      layout 'admin'
+      skip_before_action :require_functional!
 
-      before_action :authenticate_user!
       before_action :verify_otp_not_enabled, only: [:show]
       before_action :require_challenge!, only: [:create]
-
-      skip_before_action :require_functional!
 
       def show
         @confirmation = Form::TwoFactorConfirmation.new
