@@ -524,10 +524,14 @@ zh-TW:
       subject: '來自 %{instance} 的使用者檢舉（#%{id}）'
   appearance:
     advanced_web_interface: 進階網頁介面
+    advanced_web_interface_hint: '進階網頁界面可讓您配置許多不同的欄位來善用多餘的螢幕空間，依需要同時查看盡可能多的資訊如：首頁、通知、站點聯邦時間軸、任意數量的列表和主題標籤。'
+    animations_and_accessibility: 動畫與可用性
     localization:
       body: Mastodon 是由志願者翻譯的。
       guide_link: https://crowdin.com/project/mastodon
       guide_link_text: 每個人都能貢獻。
+    sensitive_content: 敏感內容
+    toot_layout: 嘟文佈局
   application_mailer:
     notification_preferences: 變更電子信件設定
     salutation: "%{name}、"
@@ -697,6 +701,8 @@ zh-TW:
       body: '你的嘟文被 %{name} 轉嘟:'
       subject: "%{name} 轉嘟了你的嘟文"
       title: 新的轉嘟
+  notifications:
+    email_events: 電子郵件通知設定
   number:
     human:
       decimal_units:
