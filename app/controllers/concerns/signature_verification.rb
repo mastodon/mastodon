@@ -131,7 +131,7 @@ module SignatureVerification
   end
 
   def verify_signature(account, signature, compare_signed_string)
-    if account.keypair.public_key.verify(OpenSSL::Digest::SHA256.new, signature, compare_signed_string)
+    if account.keypair.public_key.verify(OpenSSL::Digest.new('SHA256'), signature, compare_signed_string)
       @signed_request_account = account
       @signed_request_account
     end

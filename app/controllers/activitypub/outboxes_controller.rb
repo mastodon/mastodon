@@ -20,9 +20,9 @@ class ActivityPub::OutboxesController < ActivityPub::BaseController
   def outbox_presenter
     if page_requested?
       ActivityPub::CollectionPresenter.new(
-        id: account_outbox_url(@account, page_params),
+        id: outbox_url(page_params),
         type: :ordered,
-        part_of: account_outbox_url(@account),
+        part_of: outbox_url,
         prev: prev_page,
         next: next_page,
         items: @statuses
@@ -32,9 +32,17 @@ class ActivityPub::OutboxesController < ActivityPub::BaseController
         id: account_outbox_url(@account),
         type: :ordered,
         size: @account.statuses_count,
-        first: account_outbox_url(@account, page: true),
-        last: account_outbox_url(@account, page: true, min_id: 0)
+        first: outbox_url(page: true),
+        last: outbox_url(page: true, min_id: 0)
       )
+    end
+  end
+
+  def outbox_url(**kwargs)
+    if params[:account_username].present?
+      account_outbox_url(@account, **kwargs)
+    else
+      instance_actor_outbox_url(**kwargs)
     end
   end
 
@@ -64,5 +72,9 @@ class ActivityPub::OutboxesController < ActivityPub::BaseController
 
   def page_params
     { page: true, max_id: params[:max_id], min_id: params[:min_id] }.compact
+  end
+
+  def set_account
+    @account = params[:account_username].present? ? Account.find_local!(username_param) : Account.representative
   end
 end

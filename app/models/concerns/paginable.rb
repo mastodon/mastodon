@@ -20,12 +20,12 @@ module Paginable
       query
     }
 
-    scope :paginate_by_id, ->(limit, options = {}) {
+    def self.to_a_paginated_by_id(limit, options = {})
       if options[:min_id].present?
         paginate_by_min_id(limit, options[:min_id]).reverse
       else
-        paginate_by_max_id(limit, options[:max_id], options[:since_id])
+        paginate_by_max_id(limit, options[:max_id], options[:since_id]).to_a
       end
-    }
+    end
   end
 end

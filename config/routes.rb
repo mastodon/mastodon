@@ -37,6 +37,7 @@ Rails.application.routes.draw do
 
   resource :instance_actor, path: 'actor', only: [:show] do
     resource :inbox, only: [:create], module: :activitypub
+    resource :outbox, only: [:show], module: :activitypub
   end
 
   devise_scope :user do
@@ -430,6 +431,7 @@ Rails.application.routes.draw do
         resources :following, only: :index, controller: 'accounts/following_accounts'
         resources :lists, only: :index, controller: 'accounts/lists'
         resources :identity_proofs, only: :index, controller: 'accounts/identity_proofs'
+        resources :featured_tags, only: :index, controller: 'accounts/featured_tags'
 
         member do
           post :follow
