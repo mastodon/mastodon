@@ -236,15 +236,15 @@ ko:
         create_account_warning: "%{name}가 %{target}에게 경고 보냄"
         create_announcement: "%{name} 님이 새 공지 %{target}을 만들었습니다"
         create_custom_emoji: "%{name}이 새로운 에모지 %{target}를 추가했습니다"
-        create_domain_allow: "%{name} 님이 %{target} 도메인을 화이트리스트에 넣었습니다"
+        create_domain_allow: "%{name} 님이 %{target} 도메인을 허용리스트에 넣었습니다"
         create_domain_block: "%{name}이 도메인 %{target}를 차단했습니다"
         create_email_domain_block: "%{name}이 이메일 도메인 %{target}를 차단했습니다"
         demote_user: "%{name}이 %{target}을 강등했습니다"
         destroy_announcement: "%{name} 님이 공지 %{target}을 삭제했습니다"
         destroy_custom_emoji: "%{name}이 %{target} 에모지를 삭제함"
-        destroy_domain_allow: "%{name} 님이 %{target} 도메인을 화이트리스트에서 제거하였습니다"
+        destroy_domain_allow: "%{name} 님이 %{target} 도메인을 허용리스트에서 제거하였습니다"
         destroy_domain_block: "%{name}이 도메인 %{target}의 차단을 해제했습니다"
-        destroy_email_domain_block: "%{name}이 이메일 도메인 %{target}을 화이트리스트에 넣었습니다"
+        destroy_email_domain_block: "%{name}이 이메일 도메인 %{target}을 허용리스트에 넣었습니다"
         destroy_status: "%{name}이 %{target}의 툿을 삭제했습니다"
         disable_2fa_user: "%{name}이 %{target}의 2FA를 비활성화 했습니다"
         disable_custom_emoji: "%{name}이 에모지 %{target}를 비활성화 했습니다"
@@ -444,7 +444,7 @@ ko:
       pending: 릴레이의 승인 대기중
       save_and_enable: 저장하고 활성화
       setup: 릴레이 연결 설정
-      signatures_not_enabled: 시큐어모드나 화이트리스트모드를 사용하고 있다면 릴레이는 제대로 동작하지 않을 것입니다
+      signatures_not_enabled: 시큐어모드나 제한된 페더레이션 모드를 사용하고 있다면 릴레이는 제대로 동작하지 않을 것입니다
       status: 상태
       title: 릴레이
     report_notes:
