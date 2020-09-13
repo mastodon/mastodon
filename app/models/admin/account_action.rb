@@ -142,7 +142,7 @@ class Admin::AccountAction
   end
 
   def status_ids
-    @report.status_ids if @report && include_statuses
+    report.status_ids if report && include_statuses
   end
 
   def reports
