@@ -48,6 +48,8 @@ export default class ErrorBoundary extends React.PureComponent {
 
     if (!hasError) return this.props.children;
 
+    const likelyBrowserAddonIssue = errorMessage && errorMessage.includes('NotFoundError');
+
     let debugInfo = '';
     if (stackTrace) {
       debugInfo += 'Stack trace\n-----------\n\n```\n' + errorMessage + '\n' + stackTrace.toString() + '\n```';
@@ -70,6 +72,14 @@ export default class ErrorBoundary extends React.PureComponent {
             <FormattedMessage id='web_app_crash.content' defaultMessage='You could try any of the following:' />
           </p>
           <ul>
+            { likelyBrowserAddonIssue && (
+              <li>
+                <FormattedMessage
+                  id='web_app_crash.disable_addons'
+                  defaultMessage='Disable browser add-ons or built-in translation tools'
+                />
+              </li>
+            ) }
             <li>
               <FormattedMessage
                 id='web_app_crash.report_issue'
