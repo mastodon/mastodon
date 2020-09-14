@@ -7,6 +7,7 @@ class AccountsController < ApplicationController
   include AccountControllerConcern
   include SignatureAuthentication
 
+  before_action :require_signature!, if: -> { request.format == :json && authorized_fetch_mode? }
   before_action :set_cache_headers
   before_action :set_body_classes
 
@@ -49,7 +50,7 @@ class AccountsController < ApplicationController
 
       format.json do
         expires_in 3.minutes, public: !(authorized_fetch_mode? && signed_request_account.present?)
-        render_with_cache json: @account, content_type: 'application/activity+json', serializer: ActivityPub::ActorSerializer, adapter: ActivityPub::Adapter, fields: restrict_fields_to
+        render_with_cache json: @account, content_type: 'application/activity+json', serializer: ActivityPub::ActorSerializer, adapter: ActivityPub::Adapter
       end
     end
   end
@@ -148,13 +149,5 @@ class AccountsController < ApplicationController
 
   def params_slice(*keys)
     params.slice(*keys).permit(*keys)
-  end
-
-  def restrict_fields_to
-    if signed_request_account.present? || public_fetch_mode?
-      # Return all fields
-    else
-      %i(id type preferred_username inbox public_key endpoints)
-    end
   end
 end
