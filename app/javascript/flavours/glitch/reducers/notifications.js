@@ -16,6 +16,7 @@ import {
   NOTIFICATIONS_DELETE_MARKED_FAIL,
   NOTIFICATIONS_ENTER_CLEARING_MODE,
   NOTIFICATIONS_MARK_ALL_FOR_DELETE,
+  NOTIFICATIONS_MARK_AS_READ,
 } from 'flavours/glitch/actions/notifications';
 import {
   ACCOUNT_BLOCK_SUCCESS,
@@ -296,6 +297,9 @@ export default function notifications(state = initialState, action) {
       st = st.set('markNewForDelete', action.yes);
     }
     return markAllForDelete(st, action.yes);
+
+  case NOTIFICATIONS_MARK_AS_READ:
+    return recountUnread(state, state.get('items').first().get('id'));
 
   default:
     return state;

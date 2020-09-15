@@ -12,6 +12,7 @@ import {
   mountNotifications,
   unmountNotifications,
   loadPending,
+  markNotificationsAsRead,
 } from 'flavours/glitch/actions/notifications';
 import { addColumn, removeColumn, moveColumn } from 'flavours/glitch/actions/columns';
 import NotificationContainer from './containers/notification_container';
@@ -31,6 +32,7 @@ import NotificationPurgeButtonsContainer from 'flavours/glitch/containers/notifi
 const messages = defineMessages({
   title: { id: 'column.notifications', defaultMessage: 'Notifications' },
   enterNotifCleaning : { id: 'notification_purge.start', defaultMessage: 'Enter notification cleaning mode' },
+  markAsRead : { id: 'notifications.mark_as_read', defaultMessage: 'Mark every notification as read' },
 });
 
 const getNotifications = createSelector([
@@ -58,12 +60,16 @@ const mapStateToProps = state => ({
   numPending: state.getIn(['notifications', 'pendingItems'], ImmutableList()).size,
   notifCleaningActive: state.getIn(['notifications', 'cleaningMode']),
   lastReadId: state.getIn(['notifications', 'readMarkerId']),
+  canMarkAsRead: !state.getIn(['notifications', 'items']).isEmpty() && state.getIn(['notifications', 'readMarkerId']) !== '0' && compareId(state.getIn(['notifications', 'items']).first().get('id'), state.getIn(['notifications', 'readMarkerId'])) > 0,
 });
 
 /* glitch */
 const mapDispatchToProps = dispatch => ({
   onEnterCleaningMode(yes) {
     dispatch(enterNotificationClearingMode(yes));
+  },
+  onMarkAsRead() {
+    dispatch(markNotificationsAsRead());
   },
   onMount() {
     dispatch(mountNotifications());
@@ -96,6 +102,7 @@ class Notifications extends React.PureComponent {
     onMount: PropTypes.func,
     onUnmount: PropTypes.func,
     lastReadId: PropTypes.string,
+    canMarkAsRead: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -197,8 +204,12 @@ class Notifications extends React.PureComponent {
     this.props.onEnterCleaningMode(!this.props.notifCleaningActive);
   }
 
+  handleMarkAsRead = () => {
+    this.props.onMarkAsRead();
+  }
+
   render () {
-    const { intl, notifications, shouldUpdateScroll, isLoading, isUnread, columnId, multiColumn, hasMore, numPending, showFilterBar, lastReadId } = this.props;
+    const { intl, notifications, shouldUpdateScroll, isLoading, isUnread, columnId, multiColumn, hasMore, numPending, showFilterBar, lastReadId, canMarkAsRead } = this.props;
     const { notifCleaning, notifCleaningActive } = this.props;
     const { animatingNCD } = this.state;
     const pinned = !!columnId;
@@ -256,6 +267,21 @@ class Notifications extends React.PureComponent {
       </ScrollableList>
     );
 
+    const extraButtons = [];
+
+    if (canMarkAsRead) {
+      extraButtons.push(
+        <button
+          aria-label={intl.formatMessage(messages.markAsRead)}
+          title={intl.formatMessage(messages.markAsRead)}
+          onClick={this.handleMarkAsRead}
+          className='column-header__button'
+        >
+          <Icon id='check' />
+        </button>
+      );
+    }
+
     const notifCleaningButtonClassName = classNames('column-header__button', {
       'active': notifCleaningActive,
     });
@@ -267,7 +293,7 @@ class Notifications extends React.PureComponent {
 
     const msgEnterNotifCleaning = intl.formatMessage(messages.enterNotifCleaning);
 
-    const notifCleaningButton = (
+    extraButtons.push(
       <button
         aria-label={msgEnterNotifCleaning}
         title={msgEnterNotifCleaning}
@@ -304,7 +330,7 @@ class Notifications extends React.PureComponent {
           pinned={pinned}
           multiColumn={multiColumn}
           localSettings={this.props.localSettings}
-          extraButton={notifCleaningButton}
+          extraButton={extraButtons}
           appendContent={notifCleaningDrawer}
         >
           <ColumnSettingsContainer />
