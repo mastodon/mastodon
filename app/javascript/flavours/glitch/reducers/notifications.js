@@ -110,8 +110,8 @@ const expandNormalizedNotifications = (state, notifications, next, isLoadingRece
     if (shouldCountUnreadNotifications(state)) {
       mutable.update('unread', unread => unread + items.count(item => compareId(item.get('id'), lastReadId) > 0));
     } else {
-      const mostRecentId = items.first().get('id');
-      if (compareId(lastReadId, mostRecentId) < 0) {
+      const mostRecent = items.find(item => item !== null);
+      if (mostRecent && compareId(lastReadId, mostRecent.get('id')) < 0) {
         mutable.set('lastReadId', mostRecentId);
       }
     }
@@ -299,7 +299,8 @@ export default function notifications(state = initialState, action) {
     return markAllForDelete(st, action.yes);
 
   case NOTIFICATIONS_MARK_AS_READ:
-    return recountUnread(state, state.get('items').first().get('id'));
+    const lastNotification = state.get('items').find(item => item !== null);
+    return lastNotification ? recountUnread(state, lastNotification.get('id')) : state;
 
   default:
     return state;

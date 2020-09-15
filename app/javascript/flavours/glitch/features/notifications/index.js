@@ -60,7 +60,7 @@ const mapStateToProps = state => ({
   numPending: state.getIn(['notifications', 'pendingItems'], ImmutableList()).size,
   notifCleaningActive: state.getIn(['notifications', 'cleaningMode']),
   lastReadId: state.getIn(['notifications', 'readMarkerId']),
-  canMarkAsRead: !state.getIn(['notifications', 'items']).isEmpty() && state.getIn(['notifications', 'readMarkerId']) !== '0' && compareId(state.getIn(['notifications', 'items']).first().get('id'), state.getIn(['notifications', 'readMarkerId'])) > 0,
+  canMarkAsRead: state.getIn(['notifications', 'readMarkerId']) !== '0' && getNotifications(state).some(item => item !== null && compareId(item.get('id'), state.getIn(['notifications', 'readMarkerId'])) > 0),
 });
 
 /* glitch */
