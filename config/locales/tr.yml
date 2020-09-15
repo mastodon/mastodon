@@ -123,6 +123,7 @@ tr:
       email_status: E-posta durumu
       enable: Etkinleştir
       enabled: Etkin
+      enabled_msg: '%{username} hesabı başarıyla çözüldü'
       followers: Takipçiler
       follows: Takip edilen
       header: Üstbilgi
@@ -138,6 +139,8 @@ tr:
       login_status: Giriş durumu
       media_attachments: Medya ekleri
       memorialize: Bir hatıraya dön
+      memorialized: Anıtlaştırıldı
+      memorialized_msg: '%{username} hesabı başarıyla anıt hesabına dönüştürüldü'
       moderation:
         active: Etkin
         all: Hepsi
@@ -158,10 +161,14 @@ tr:
       public: Herkese açık
       push_subscription_expires: PuSH aboneliği dolumu
       redownload: Profili yenile
+      redownloaded_msg: '%{username} kullanıcısının profili kökenden başarıyla yenilendi'
       reject: Reddet
       reject_all: Tümünü reddet
+      rejected_msg: '%{username} adlı kullanıcının kayıt başvurusu başarıyla reddedildi'
       remove_avatar: Avatarı kaldır
       remove_header: Üstbilgiyi kaldır
+      removed_avatar_msg: '%{username} hesabının avatar resmi başarıyla kaldırıldı'
+      removed_header_msg: '%{username} hesabının başlık resmi başarıyla kaldırıldı'
       resend_confirmation:
         already_confirmed: Bu kullanıcı zaten onaylandı
         send: Doğrulama epostasını yeniden gönder
@@ -192,8 +199,11 @@ tr:
       unconfirmed_email: Onaylanmamış e-posta
       undo_silenced: Susturmayı geri al
       undo_suspension: Uzaklaştırmayı geri al
+      unsilenced_msg: '%{username} hesabı başarıyla sınırsız yapıldı'
       unsubscribe: Abonelikten çık
+      unsuspended_msg: '%{username} hesabının askıya alınması başarıyla kaldırıldı'
       username: Kullanıcı adı
+      view_domain: Alan adı için özeti görüntüleyin
       warn: Uyar
       web: Web
       whitelisted: Beyaz listede
