@@ -55,16 +55,16 @@ const notificationToMap = (state, notification) => ImmutableMap({
 });
 
 const normalizeNotification = (state, notification, usePendingItems) => {
-  const top = !shouldCountUnreadNotifications(state);
+  const top = state.get('top');
 
   if (usePendingItems || !state.get('pendingItems').isEmpty()) {
     return state.update('pendingItems', list => list.unshift(notificationToMap(state, notification))).update('unread', unread => unread + 1);
   }
 
-  if (top) {
-    state = state.set('lastReadId', notification.id);
-  } else {
+  if (shouldCountUnreadNotifications(state)) {
     state = state.update('unread', unread => unread + 1);
+  } else {
+    state = state.set('lastReadId', notification.id);
   }
 
   return state.update('items', list => {
@@ -77,7 +77,6 @@ const normalizeNotification = (state, notification, usePendingItems) => {
 };
 
 const expandNormalizedNotifications = (state, notifications, next, isLoadingRecent, usePendingItems) => {
-  const top = !(shouldCountUnreadNotifications(state));
   const lastReadId = state.get('lastReadId');
   let items = ImmutableList();
 
@@ -102,16 +101,17 @@ const expandNormalizedNotifications = (state, notifications, next, isLoadingRece
       });
     }
 
-    if (top) {
-      if (!items.isEmpty()) {
-        mutable.update('lastReadId', id => compareId(id, items.first().get('id')) > 0 ? id : items.first().get('id'));
-      }
-    } else {
-      mutable.update('unread', unread => unread + items.count(item => compareId(item.get('id'), lastReadId) > 0));
-    }
-
     if (!next) {
       mutable.set('hasMore', false);
+    }
+
+    if (shouldCountUnreadNotifications(state)) {
+      mutable.update('unread', unread => unread + items.count(item => compareId(item.get('id'), lastReadId) > 0));
+    } else {
+      const mostRecentId = items.first().get('id');
+      if (compareId(lastReadId, mostRecentId) < 0) {
+        mutable.set('lastReadId', mostRecentId);
+      }
     }
 
     mutable.set('isLoading', false);
@@ -197,7 +197,13 @@ const updateVisibility = (state, visibility) => {
 };
 
 const shouldCountUnreadNotifications = (state) => {
-  return !(state.get('isTabVisible') && state.get('top') && state.get('mounted') > 0);
+  const isTabVisible   = state.get('isTabVisible');
+  const isOnTop        = state.get('top');
+  const isMounted      = state.get('mounted') > 0;
+  const lastReadId     = state.get('lastReadId');
+  const lastItemReached = !state.get('hasMore') || lastReadId === '0' || (!state.get('items').isEmpty() && compareId(state.get('items').last().get('id'), lastReadId) <= 0);
+
+  return !(isTabVisible && isOnTop && isMounted && lastItemReached);
 };
 
 const recountUnread = (state, last_read_id) => {
