@@ -275,7 +275,7 @@
     outline: 0;
     background: lighten($ui-base-color, 4%);
 
-    &.status.status-direct:not(.read) {
+    &.status.status-direct {
       background: lighten($ui-base-color, 12%);
 
       &.muted {
@@ -316,7 +316,7 @@
     margin-top: 8px;
   }
 
-  &.status-direct:not(.read) {
+  &.status-direct {
     background: lighten($ui-base-color, 8%);
     border-bottom-color: lighten($ui-base-color, 12%);
   }
@@ -399,7 +399,7 @@
     &:focus > .status__content:after {
       background: linear-gradient(rgba(lighten($ui-base-color, 4%), 0), rgba(lighten($ui-base-color, 4%), 1));
     }
-    &.status-direct:not(.read)> .status__content:after {
+    &.status-direct > .status__content:after {
       background: linear-gradient(rgba(lighten($ui-base-color, 8%), 0), rgba(lighten($ui-base-color, 8%), 1));
     }
 

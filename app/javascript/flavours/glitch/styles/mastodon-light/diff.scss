@@ -27,7 +27,7 @@
   }
 }
 
-.status.status-direct:not(.read) {
+.status.status-direct {
   background: darken($ui-base-color, 8%);
   border-bottom-color: darken($ui-base-color, 12%);
 
@@ -36,7 +36,7 @@
   }
 }
 
-.focusable:focus.status.status-direct:not(.read) {
+.focusable:focus.status.status-direct {
   background: darken($ui-base-color, 4%);
 
   &.collapsed> .status__content:after {
