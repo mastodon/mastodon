@@ -39,6 +39,7 @@ const initialState = ImmutableMap({
   mounted: 0,
   unread: 0,
   lastReadId: '0',
+  readMarkerId: '0',
   isLoading: false,
   cleaningMode: false,
   isTabVisible: true,
@@ -183,6 +184,7 @@ const deleteMarkedNotifs = (state) => {
 const updateMounted = (state) => {
   state = state.update('mounted', count => count + 1);
   if (!shouldCountUnreadNotifications(state)) {
+    state = state.set('readMarkerId', state.get('lastReadId'));
     state = clearUnread(state);
   }
   return state;
@@ -191,6 +193,7 @@ const updateMounted = (state) => {
 const updateVisibility = (state, visibility) => {
   state = state.set('isTabVisible', visibility);
   if (!shouldCountUnreadNotifications(state)) {
+    state = state.set('readMarkerId', state.get('lastReadId'));
     state = clearUnread(state);
   }
   return state;
@@ -210,6 +213,10 @@ const recountUnread = (state, last_read_id) => {
   return state.withMutations(mutable => {
     if (compareId(last_read_id, mutable.get('lastReadId')) > 0) {
       mutable.set('lastReadId', last_read_id);
+    }
+
+    if (compareId(last_read_id, mutable.get('readMarkerId')) > 0) {
+      mutable.set('readMarkerId', last_read_id);
     }
 
     if (state.get('unread') > 0 || shouldCountUnreadNotifications(state)) {

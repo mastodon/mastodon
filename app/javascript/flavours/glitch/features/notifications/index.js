@@ -57,7 +57,7 @@ const mapStateToProps = state => ({
   hasMore: state.getIn(['notifications', 'hasMore']),
   numPending: state.getIn(['notifications', 'pendingItems'], ImmutableList()).size,
   notifCleaningActive: state.getIn(['notifications', 'cleaningMode']),
-  lastReadId: state.getIn(['notifications', 'lastReadId']),
+  lastReadId: state.getIn(['notifications', 'readMarkerId']),
 });
 
 /* glitch */
@@ -227,7 +227,7 @@ class Notifications extends React.PureComponent {
           accountId={item.get('account')}
           onMoveUp={this.handleMoveUp}
           onMoveDown={this.handleMoveDown}
-          unread={lastReadId && compareId(item.get('id'), lastReadId) > 0}
+          unread={lastReadId !== '0' && compareId(item.get('id'), lastReadId) > 0}
         />
       ));
     } else {
