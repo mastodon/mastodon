@@ -15,7 +15,7 @@ class UserMailer < Devise::Mailer
     @token    = token
     @instance = Rails.configuration.x.local_domain
 
-    return if @resource.disabled?
+    return unless @resource.active_for_authentication?
 
     I18n.with_locale(@resource.locale || I18n.default_locale) do
       mail to: @resource.unconfirmed_email.presence || @resource.email,
@@ -29,7 +29,7 @@ class UserMailer < Devise::Mailer
     @token    = token
     @instance = Rails.configuration.x.local_domain
 
-    return if @resource.disabled?
+    return unless @resource.active_for_authentication?
 
     I18n.with_locale(@resource.locale || I18n.default_locale) do
       mail to: @resource.email, subject: I18n.t('devise.mailer.reset_password_instructions.subject')
@@ -40,7 +40,7 @@ class UserMailer < Devise::Mailer
     @resource = user
     @instance = Rails.configuration.x.local_domain
 
-    return if @resource.disabled?
+    return unless @resource.active_for_authentication?
 
     I18n.with_locale(@resource.locale || I18n.default_locale) do
       mail to: @resource.email, subject: I18n.t('devise.mailer.password_change.subject')
@@ -51,7 +51,7 @@ class UserMailer < Devise::Mailer
     @resource = user
     @instance = Rails.configuration.x.local_domain
 
-    return if @resource.disabled?
+    return unless @resource.active_for_authentication?
 
     I18n.with_locale(@resource.locale || I18n.default_locale) do
       mail to: @resource.email, subject: I18n.t('devise.mailer.email_changed.subject')
@@ -62,7 +62,7 @@ class UserMailer < Devise::Mailer
     @resource = user
     @instance = Rails.configuration.x.local_domain
 
-    return if @resource.disabled?
+    return unless @resource.active_for_authentication?
 
     I18n.with_locale(@resource.locale || I18n.default_locale) do
       mail to: @resource.email, subject: I18n.t('devise.mailer.two_factor_enabled.subject')
@@ -73,7 +73,7 @@ class UserMailer < Devise::Mailer
     @resource = user
     @instance = Rails.configuration.x.local_domain
 
-    return if @resource.disabled?
+    return unless @resource.active_for_authentication?
 
     I18n.with_locale(@resource.locale || I18n.default_locale) do
       mail to: @resource.email, subject: I18n.t('devise.mailer.two_factor_disabled.subject')
@@ -84,7 +84,7 @@ class UserMailer < Devise::Mailer
     @resource = user
     @instance = Rails.configuration.x.local_domain
 
-    return if @resource.disabled?
+    return unless @resource.active_for_authentication?
 
     I18n.with_locale(@resource.locale || I18n.default_locale) do
       mail to: @resource.email, subject: I18n.t('devise.mailer.two_factor_recovery_codes_changed.subject')
@@ -95,7 +95,7 @@ class UserMailer < Devise::Mailer
     @resource = user
     @instance = Rails.configuration.x.local_domain
 
-    return if @resource.disabled?
+    return unless @resource.active_for_authentication?
 
     I18n.with_locale(@resource.locale || I18n.default_locale) do
       mail to: @resource.email, subject: I18n.t('devise.mailer.webauthn_enabled.subject')
@@ -106,7 +106,7 @@ class UserMailer < Devise::Mailer
     @resource = user
     @instance = Rails.configuration.x.local_domain
 
-    return if @resource.disabled?
+    return unless @resource.active_for_authentication?
 
     I18n.with_locale(@resource.locale || I18n.default_locale) do
       mail to: @resource.email, subject: I18n.t('devise.mailer.webauthn_disabled.subject')
@@ -118,7 +118,7 @@ class UserMailer < Devise::Mailer
     @instance = Rails.configuration.x.local_domain
     @webauthn_credential = webauthn_credential
 
-    return if @resource.disabled?
+    return unless @resource.active_for_authentication?
 
     I18n.with_locale(@resource.locale || I18n.default_locale) do
       mail to: @resource.email, subject: I18n.t('devise.mailer.webauthn_credential.added.subject')
@@ -130,7 +130,7 @@ class UserMailer < Devise::Mailer
     @instance = Rails.configuration.x.local_domain
     @webauthn_credential = webauthn_credential
 
-    return if @resource.disabled?
+    return unless @resource.active_for_authentication?
 
     I18n.with_locale(@resource.locale || I18n.default_locale) do
       mail to: @resource.email, subject: I18n.t('devise.mailer.webauthn_credential.deleted.subject')
@@ -141,7 +141,7 @@ class UserMailer < Devise::Mailer
     @resource = user
     @instance = Rails.configuration.x.local_domain
 
-    return if @resource.disabled?
+    return unless @resource.active_for_authentication?
 
     I18n.with_locale(@resource.locale || I18n.default_locale) do
       mail to: @resource.email, subject: I18n.t('user_mailer.welcome.subject')
@@ -153,7 +153,7 @@ class UserMailer < Devise::Mailer
     @instance = Rails.configuration.x.local_domain
     @backup   = backup
 
-    return if @resource.disabled?
+    return unless @resource.active_for_authentication?
 
     I18n.with_locale(@resource.locale || I18n.default_locale) do
       mail to: @resource.email, subject: I18n.t('user_mailer.backup_ready.subject')
@@ -181,7 +181,7 @@ class UserMailer < Devise::Mailer
     @detection  = Browser.new(user_agent)
     @timestamp  = timestamp.to_time.utc
 
-    return if @resource.disabled?
+    return unless @resource.active_for_authentication?
 
     I18n.with_locale(@resource.locale || I18n.default_locale) do
       mail to: @resource.email,
