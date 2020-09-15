@@ -142,6 +142,7 @@ it:
       media_attachments: Media allegati
       memorialize: Trasforma in memoriam
       memorialized: Memorializzato
+      memorialized_msg: Hai trasformato %{username} in un account commemorativo
       moderation:
         active: Attivo
         all: Tutto
@@ -162,10 +163,14 @@ it:
       public: Pubblico
       push_subscription_expires: Sottoscrizione PuSH scaduta
       redownload: Aggiorna avatar
+      redownloaded_msg: Il profilo di %{username} è stato aggiornato dall'origine
       reject: Rifiuta
       reject_all: Rifiuta tutto
+      rejected_msg: Richiesta di registrazione di %{username} rifiutata
       remove_avatar: Rimuovi avatar
       remove_header: Rimuovi intestazione
+      removed_avatar_msg: Immagine dell'avatar di %{username} eliminata
+      removed_header_msg: Immagine di intestazione di %{username} eliminata
       resend_confirmation:
         already_confirmed: Questo utente è già confermato
         send: Reinvia email di conferma
@@ -191,13 +196,18 @@ it:
       statuses: Stati
       subscribe: Sottoscrivi
       suspended: Sospeso
+      suspension_irreversible: I dati di questo account sono stati cancellati in modo irreversibile. È possibile annullare la sospensione dell'account per renderlo utilizzabile, ma non recupererà alcuno dei dati precedenti.
+      suspension_reversible_hint_html: L'account è stato sospeso e i dati saranno completamente eliminati il %{date}. Fino ad allora, l'account può essere ripristinato senza effetti negativi. Se si desidera eliminare immediatamente tutti i dati dell'account, è possibile farlo qui sotto.
       time_in_queue: Attesa in coda %{time}
       title: Account
       unconfirmed_email: Email non confermata
       undo_silenced: Rimuovi silenzia
       undo_suspension: Rimuovi sospensione
+      unsilenced_msg: Sono stati tolti i limiti dell'account di %{username}
       unsubscribe: Annulla l'iscrizione
+      unsuspended_msg: È stata eliminata la sospensione dell'account di %{username}
       username: Nome utente
+      view_domain: Visualizza riepilogo per dominio
       warn: Avverti
       web: Web
       whitelisted: Nella whitelist
