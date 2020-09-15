@@ -190,12 +190,14 @@ pt-BR:
       statuses: Toots
       subscribe: Inscrever-se
       suspended: Banido
+      suspension_irreversible: Os dados desta conta foram excluídos de forma irreversível. Você pode remover a suspensão da conta para torná-la utilizável, mas ela não irá recuperar nenhum dado que ela possuía anteriormente.
       time_in_queue: Esperando na fila por %{time}
       title: Contas
       unconfirmed_email: E-mail não confirmado
       undo_silenced: Desfazer silêncio
       undo_suspension: Desbanir
       unsubscribe: Cancelar inscrição
+      unsuspended_msg: Removida com sucesso a suspensão da conta de %{username}
       username: Nome de usuário
       view_domain: Ver resumo para o domínio
       warn: Notificar
@@ -395,7 +397,7 @@ pt-BR:
           other: "%{count} contas no banco de dados foram afetadas"
         retroactive:
           silence: Dessilenciar contas existentes afetadas deste domínio
-          suspend: Dessuspender contas existentes afetadas deste domínio
+          suspend: Remover a suspensão das contas afetadas deste domínio
         title: Desfazer bloqueio de domínio para %{domain}
         undo: Desfazer
       undo: Desfazer bloqueio de domínio
