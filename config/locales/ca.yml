@@ -169,6 +169,8 @@ ca:
       rejected_msg: L’aplicació de registre de %{username} s’ha rebutjat amb èxit
       remove_avatar: Eliminar avatar
       remove_header: Treu la capçalera
+      removed_avatar_msg: S’ha suprimit amb èxit l’imatge d’acabar de %{username}
+      removed_header_msg: S’ha suprimit amb èxit l’imatge de capçalera de %{username}
       resend_confirmation:
         already_confirmed: Aquest usuari ja està confirmat
         send: Reenviar el correu electrònic de confirmació
@@ -194,13 +196,18 @@ ca:
       statuses: Tuts
       subscribe: Subscriu
       suspended: Suspès
+      suspension_irreversible: Les dades d’aquest compte s’han suprimit irreversiblament. Pots desfer la suspensió del compte per a fer-lo usable però això no recuperarà les dades si és que en tenia.
+      suspension_reversible_hint_html: El compte ha estat suspès i les dades seran totalment suprimides el %{date}. Fins llavors, el compte pot ser restaurat sense problemes. Si vols suprimir immediatament totes les dades del compte, ho pots fer a continuació.
       time_in_queue: Esperant en la cua %{time}
       title: Comptes
       unconfirmed_email: Correu electrònic sense confirmar
       undo_silenced: Deixa de silenciar
       undo_suspension: Desfés la suspensió
+      unsilenced_msg: El compte de %{username} ha estat il·limitat amb èxit
       unsubscribe: Cancel·la la subscripció
+      unsuspended_msg: S’ha desfet amb èxit la suspensió del compte de %{username}
       username: Nom d'usuari
+      view_domain: Veure el resumen del domini
       warn: Avís
       web: Web
       whitelisted: Llista blanca
