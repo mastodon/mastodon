@@ -122,6 +122,7 @@ class Status extends ImmutablePureComponent {
     'notification',
     'hidden',
     'expanded',
+    'unread',
   ]
 
   updateOnStates = [

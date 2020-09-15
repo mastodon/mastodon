@@ -10,6 +10,7 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import NotificationOverlayContainer from '../containers/overlay_container';
 import { HotKeys } from 'react-hotkeys';
 import Icon from 'flavours/glitch/components/icon';
+import classNames from 'classnames';
 
 const messages = defineMessages({
   authorize: { id: 'follow_request.authorize', defaultMessage: 'Authorize' },
@@ -25,6 +26,7 @@ class FollowRequest extends ImmutablePureComponent {
     onReject: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
     notification: ImmutablePropTypes.map.isRequired,
+    unread: PropTypes.bool,
   };
 
   handleMoveUp = () => {
@@ -65,7 +67,7 @@ class FollowRequest extends ImmutablePureComponent {
   }
 
   render () {
-    const { intl, hidden, account, onAuthorize, onReject, notification } = this.props;
+    const { intl, hidden, account, onAuthorize, onReject, notification, unread } = this.props;
 
     if (!account) {
       return <div />;
@@ -94,7 +96,7 @@ class FollowRequest extends ImmutablePureComponent {
 
     return (
       <HotKeys handlers={this.getHandlers()}>
-        <div className='notification notification-follow-request focusable' tabIndex='0'>
+        <div className={classNames('notification notification-follow-request focusable', { unread })} tabIndex='0'>
           <div className='notification__message'>
             <div className='notification__favourite-icon-wrapper'>
               <Icon id='user' fixedWidth />

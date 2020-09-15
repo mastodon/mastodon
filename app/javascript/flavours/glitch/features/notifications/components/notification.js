@@ -46,6 +46,7 @@ export default class Notification extends ImmutablePureComponent {
           onMoveDown={onMoveDown}
           onMoveUp={onMoveUp}
           onMention={onMention}
+          unread={this.props.unread}
         />
       );
     case 'follow_request':
@@ -58,6 +59,7 @@ export default class Notification extends ImmutablePureComponent {
           onMoveDown={onMoveDown}
           onMoveUp={onMoveUp}
           onMention={onMention}
+          unread={this.props.unread}
         />
       );
     case 'mention':
@@ -77,6 +79,7 @@ export default class Notification extends ImmutablePureComponent {
           cacheMediaWidth={this.props.cacheMediaWidth}
           onUnmount={this.props.onUnmount}
           withDismiss
+          unread={this.props.unread}
         />
       );
     case 'favourite':
@@ -98,6 +101,7 @@ export default class Notification extends ImmutablePureComponent {
           cacheMediaWidth={this.props.cacheMediaWidth}
           onUnmount={this.props.onUnmount}
           withDismiss
+          unread={this.props.unread}
         />
       );
     case 'reblog':
@@ -119,6 +123,7 @@ export default class Notification extends ImmutablePureComponent {
           cacheMediaWidth={this.props.cacheMediaWidth}
           onUnmount={this.props.onUnmount}
           withDismiss
+          unread={this.props.unread}
         />
       );
     case 'poll':
@@ -140,6 +145,7 @@ export default class Notification extends ImmutablePureComponent {
           cacheMediaWidth={this.props.cacheMediaWidth}
           onUnmount={this.props.onUnmount}
           withDismiss
+          unread={this.props.unread}
         />
       );
     default:

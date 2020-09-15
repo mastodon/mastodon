@@ -24,6 +24,7 @@ import { debounce } from 'lodash';
 import ScrollableList from 'flavours/glitch/components/scrollable_list';
 import LoadGap from 'flavours/glitch/components/load_gap';
 import Icon from 'flavours/glitch/components/icon';
+import compareId from 'flavours/glitch/util/compare_id';
 
 import NotificationPurgeButtonsContainer from 'flavours/glitch/containers/notification_purge_buttons_container';
 
@@ -56,6 +57,7 @@ const mapStateToProps = state => ({
   hasMore: state.getIn(['notifications', 'hasMore']),
   numPending: state.getIn(['notifications', 'pendingItems'], ImmutableList()).size,
   notifCleaningActive: state.getIn(['notifications', 'cleaningMode']),
+  lastReadId: state.getIn(['notifications', 'lastReadId']),
 });
 
 /* glitch */
@@ -93,6 +95,7 @@ class Notifications extends React.PureComponent {
     onEnterCleaningMode: PropTypes.func,
     onMount: PropTypes.func,
     onUnmount: PropTypes.func,
+    lastReadId: PropTypes.string,
   };
 
   static defaultProps = {
@@ -195,7 +198,7 @@ class Notifications extends React.PureComponent {
   }
 
   render () {
-    const { intl, notifications, shouldUpdateScroll, isLoading, isUnread, columnId, multiColumn, hasMore, numPending, showFilterBar } = this.props;
+    const { intl, notifications, shouldUpdateScroll, isLoading, isUnread, columnId, multiColumn, hasMore, numPending, showFilterBar, lastReadId } = this.props;
     const { notifCleaning, notifCleaningActive } = this.props;
     const { animatingNCD } = this.state;
     const pinned = !!columnId;
@@ -224,6 +227,7 @@ class Notifications extends React.PureComponent {
           accountId={item.get('account')}
           onMoveUp={this.handleMoveUp}
           onMoveDown={this.handleMoveDown}
+          unread={lastReadId && compareId(item.get('id'), lastReadId) > 0}
         />
       ));
     } else {
