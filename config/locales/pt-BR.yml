@@ -115,7 +115,7 @@ pt-BR:
       deleted: Excluído
       demote: Rebaixar
       destroyed_msg: "Os dados de %{username} estão na fila para serem excluídos em breve"
-      disable: Desativar
+      disable: Congelar
       disable_two_factor_authentication: Desativar autenticação de dois fatores
       disabled: Desativada
       display_name: Nome de exibição
@@ -123,7 +123,7 @@ pt-BR:
       edit: Editar
       email: E-mail
       email_status: Status do e-mail
-      enable: Ativar
+      enable: Descongelar
       enabled: Ativada
       followers: Seguidores
       follows: Seguindo
@@ -140,6 +140,7 @@ pt-BR:
       login_status: Situação da conta
       media_attachments: Mídias anexadas
       memorialize: Converter em memorial
+      memorialized_msg: Transformou com sucesso %{username} em uma conta memorial
       moderation:
         active: Ativo
         all: Todos
@@ -160,11 +161,14 @@ pt-BR:
       public: Público
       push_subscription_expires: Inscrição PuSH expira
       redownload: Atualizar perfil
+      redownloaded_msg: Atualizado com sucesso o perfil de %{username} a partir da origem
       reject: Vetar
       reject_all: Vetar tudo
       rejected_msg: Rejeitado com sucesso o pedido de cadastro de %{username}
       remove_avatar: Remover imagem de perfil
       remove_header: Remover capa
+      removed_avatar_msg: Removida com sucesso a imagem de avatar de %{username}
+      removed_header_msg: Removida com sucesso a imagem de capa de %{username}
       resend_confirmation:
         already_confirmed: Este usuário já está confirmado
         send: Reenviar o e-mail de confirmação
@@ -191,6 +195,7 @@ pt-BR:
       subscribe: Inscrever-se
       suspended: Banido
       suspension_irreversible: Os dados desta conta foram excluídos de forma irreversível. Você pode remover a suspensão da conta para torná-la utilizável, mas ela não irá recuperar nenhum dado que ela possuía anteriormente.
+      suspension_reversible_hint_html: A conta foi suspensa e os dados serão totalmente removidos em %{date}. Até lá, a conta pode ser restaurada sem nenhum efeito negativo. Se você deseja remover todos os dados da conta imediatamente, você pode fazer isso abaixo.
       time_in_queue: Esperando na fila por %{time}
       title: Contas
       unconfirmed_email: E-mail não confirmado
@@ -1327,7 +1332,7 @@ pt-BR:
         suspend: Conta banida
     welcome:
       edit_profile_action: Configurar perfil
-      edit_profile_step: Você pode customizar o seu perfil ao fazer upload de um avatar, header, alterar seu nome de exibição e mais. Se você preferir revisar novos seguidores antes de poderem te seguir, você pode trancar a sua conta.
+      edit_profile_step: Você pode personalizar o seu perfil enviando um avatar, uma capa, alterando seu nome de exibição e etc. Se você preferir aprovar seus novos seguidores antes de eles te seguirem, você pode trancar a sua conta.
       explanation: Aqui estão algumas dicas para você começar
       final_action: Comece a tootar
       final_step: 'Comece a tootar! Mesmo sem seguidores, suas mensagens públicas podem ser vistas pelos outros, por exemplo, na linha local e nas hashtags. Você pode querer fazer uma introdução usando a hashtag #introdução, ou em inglês usando a hashtag #introductions.'
