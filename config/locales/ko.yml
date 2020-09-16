@@ -121,6 +121,7 @@ ko:
       email_status: 이메일 상태
       enable: 활성화
       enabled: 활성
+      enabled_msg: '%{username}의 계정을 성공적으로 얼리기 해제하였습니다'
       followers: 팔로워 수
       follows: 팔로잉 수
       header: 헤더
@@ -136,6 +137,8 @@ ko:
       login_status: 로그인 상태
       media_attachments: 첨부된 미디어
       memorialize: 메모리엄으로 전환
+      memorialized: 기념비화 됨
+      memorialized_msg: 성공적으로 %{username}를 기념비 계정으로 전환하였습니다
       moderation:
         active: 활동
         all: 전체
@@ -189,13 +192,18 @@ ko:
       statuses: 툿 수
       subscribe: 구독하기
       suspended: 정지 됨
+      suspension_irreversible: 이 계정의 데이터는 복구할 수 없도록 삭제 됩니다. 계정을 정지 해제함으로서 계정을 다시 사용 가능하게 할 수 있지만 이전에 삭제한 어떤 데이터도 복구되지 않습니다.
+      suspension_reversible_hint_html: 계정이 정지되었습니다, 그리고 %{date}에 데이터가 완전히 삭제될 것입니다. 그 때까지는 어떤 안 좋은 효과 없이 계정이 복구 될 수 있습니다. 만약 지금 당장 계정의 모든 데이터를 삭제하고 싶다면, 아래에서 행할 수 있습니다.
       time_in_queue: '%{time}동안 기다림'
       title: 계정
       unconfirmed_email: 미확인 된 이메일 주소
       undo_silenced: 침묵 해제
       undo_suspension: 정지 해제
+      unsilenced_msg: 성공적으로 %{username} 계정을 제한 해제했습니다
       unsubscribe: 구독 해제
+      unsuspended_msg: 성공적으로 %{username} 계정을 정지 해제했습니다
       username: 아이디
+      view_domain: 도메인의 요약 보기
       warn: 경고
       web: 웹
       whitelisted: 허용 목록
