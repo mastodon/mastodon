@@ -97,6 +97,7 @@ es-AR:
       add_email_domain_block: Bloquear el dominio del correo electrónico
       approve: Aprobar
       approve_all: Aprobar todas
+      approved_msg: Se aprobó exitosamente la solicitud de registro de %{username}
       are_you_sure: '¿Estás seguro?'
       avatar: Avatar
       by_domain: Dominio
@@ -110,8 +111,10 @@ es-AR:
       confirm: Confirmar
       confirmed: Confirmado
       confirming: Confirmación
+      delete: Eliminar datos
       deleted: Eliminado
       demote: Bajar de nivel
+      destroyed_msg: "Los datos de %{username} están ahora en cola para ser eliminados inminentemente"
       disable: Deshabilitar
       disable_two_factor_authentication: Deshabilitar 2FA
       disabled: Deshabilitada
@@ -122,6 +125,7 @@ es-AR:
       email_status: Estado del correo
       enable: Habilitar
       enabled: Habilitada
+      enabled_msg: Se descongeló exitosamente la cuenta de %{username}
       followers: Seguidores
       follows: Seguidores
       header: Cabecera
@@ -137,6 +141,8 @@ es-AR:
       login_status: Estado del inicio de sesión
       media_attachments: Adjuntos
       memorialize: Convertir en cuenta conmemorativa
+      memorialized: Cuenta conmemorativa
+      memorialized_msg: '%{username} se convirtió exitosamente en una cuenta conmemorativa'
       moderation:
         active: Activa
         all: Todas
@@ -157,10 +163,13 @@ es-AR:
       public: Pública
       push_subscription_expires: La suscripción push vence
       redownload: Recargar perfil
+      redownloaded_msg: Se actualizó exitosamente el perfil de %{username} desde el origen
       reject: Rechazar
       reject_all: Rechazar todas
+      rejected_msg: Se rechazó exitosamente la solicitud de registro de %{username}
       remove_avatar: Quitar avatar
       remove_header: Quitar cabecera
+      removed_avatar_msg: Se quitó exitosamente el avatar de %{username}
       resend_confirmation:
         already_confirmed: Este usuario ya está confirmado
         send: Reenviar correo electrónico de confirmación
