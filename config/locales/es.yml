@@ -114,6 +114,7 @@ es:
       delete: Eliminar datos
       deleted: Borrado
       demote: Degradar
+      destroyed_msg: "Los datos de %{username} están ahora en cola para ser eliminados inminentemente"
       disable: Deshabilitar
       disable_two_factor_authentication: Desactivar autenticación de dos factores
       disabled: Deshabilitada
@@ -124,6 +125,7 @@ es:
       email_status: E-mail Status
       enable: Habilitar
       enabled: Habilitada
+      enabled_msg: Se ha descongelado correctamente la cuenta de %{username}
       followers: Seguidores
       follows: Sigue
       header: Cabecera
@@ -139,6 +141,8 @@ es:
       login_status: Estado del login
       media_attachments: Multimedia
       memorialize: Convertir en memorial
+      memorialized: Cuenta conmemorativa
+      memorialized_msg: '%{username} se convirtió con éxito en una cuenta conmemorativa'
       moderation:
         active: Activo
         all: Todos
@@ -159,10 +163,14 @@ es:
       public: Público
       push_subscription_expires: Expiración de la suscripción PuSH
       redownload: Refrescar avatar
+      redownloaded_msg: Se actualizó correctamente el perfil de %{username} desde el origen
       reject: Rechazar
       reject_all: Rechazar todos
+      rejected_msg: La solicitud de registro de %{username} ha sido rechazada con éxito
       remove_avatar: Eliminar el avatar
       remove_header: Eliminar cabecera
+      removed_avatar_msg: Se ha eliminado con éxito la imagen de avatar de %{username}
+      removed_header_msg: Se ha eliminado con éxito la imagen de cabecera de %{username}
       resend_confirmation:
         already_confirmed: Este usuario ya está confirmado
         send: Reenviar el correo electrónico de confirmación
@@ -188,13 +196,18 @@ es:
       statuses: Estados
       subscribe: Suscribir
       suspended: Suspendido
+      suspension_irreversible: Los datos de esta cuenta han sido irreversiblemente eliminados. Puedes deshacer la suspensión de la cuenta para hacerla utilizable, pero no recuperará los datos que tenías anteriormente.
+      suspension_reversible_hint_html: La cuenta ha sido suspendida y los datos se eliminarán completamente el %{date}. Hasta entonces, la cuenta puede ser restaurada sin ningún efecto perjudicial. Si desea eliminar todos los datos de la cuenta inmediatamente, puede hacerlo a continuación.
       time_in_queue: Esperando en cola %{time}
       title: Cuentas
       unconfirmed_email: Correo electrónico sin confirmar
       undo_silenced: Des-silenciar
       undo_suspension: Des-suspender
+      unsilenced_msg: Se eliminó con éxito el límite de la cuenta %{username}
       unsubscribe: Desuscribir
+      unsuspended_msg: Se eliminó con éxito la suspensión de la cuenta de %{username}
       username: Nombre de usuario
+      view_domain: Ver resumen del dominio
       warn: Adevertir
       web: Web
       whitelisted: Añadido a la lista blanca
