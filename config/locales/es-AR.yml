@@ -115,15 +115,15 @@ es-AR:
       deleted: Eliminado
       demote: Bajar de nivel
       destroyed_msg: "Los datos de %{username} están ahora en cola para ser eliminados inminentemente"
-      disable: Deshabilitar
+      disable: Congelar
       disable_two_factor_authentication: Deshabilitar 2FA
-      disabled: Deshabilitada
+      disabled: Congelada
       display_name: Nombre para mostrar
       domain: Dominio
       edit: Editar
       email: Correo electrónico
       email_status: Estado del correo
-      enable: Habilitar
+      enable: Descongelar
       enabled: Habilitada
       enabled_msg: Se descongeló exitosamente la cuenta de %{username}
       followers: Seguidores
@@ -191,8 +191,8 @@ es-AR:
       show:
         created_reports: Denuncias hechas
         targeted_reports: Denunciado por otros
-      silence: Silenciar
-      silenced: Silenciadas
+      silence: Limitar
+      silenced: Limitadas
       statuses: Toots
       subscribe: Suscribirse
       suspended: Suspendidas
@@ -1317,9 +1317,9 @@ es-AR:
       title: Intento de inicio de sesión
     warning:
       explanation:
-        disable: Mientras tu cuenta esté congelada, la información de la misma permanecerá intacta, pero no podés realizar ninguna acción hasta que se desbloquee.
-        silence: Mientras tu cuenta esté limitada, sólo las personas que ya te estén siguiendo verán tus toots en este servidor, y puede que se te excluya de varios listados públicos. Sin embargo, otras personas pueden seguirte manualmente.
-        suspend: Tu cuenta fue suspendida, y todos tus toots y tus archivos de medios subidos fueron irreversiblemente eliminados de este servidor, y de los servidores en donde tenías seguidores.
+        disable: Ya no podés iniciar sesión en tu cuenta o usarla de alguna manera, pero tu perfil y otros datos permanecen intactos.
+        silence: Todavía podés usar tu cuenta, pero sólo las personas que ya te estén siguiendo verán tus toots en este servidor, y puede que se te excluya de varios listados públicos. Sin embargo, otras personas pueden seguirte manualmente.
+        suspend: Ya no podés usar tu cuenta; tu perfil y otros datos ya no son accesibles. Todavía podés iniciar sesión para solicitar un resguardo de tus datos hasta que los mismos sean totalmente quitados, pero retendremos ciertos datos para prevenirte de evadir la suspensión.
       get_in_touch: Podés responder a esta dirección de correo electrónico para ponerte en contacto con la administración de %{instance}.
       review_server_policies: Revisar las políticas del servidor
       statuses: 'Específicamente, para:'
