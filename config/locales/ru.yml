@@ -105,6 +105,7 @@ ru:
       add_email_domain_block: Заблокировать e-mail домен
       approve: Подтвердить
       approve_all: Подтвердить все
+      approved_msg: Успешно одобрена заявка на регистрацию %{username}
       are_you_sure: Вы уверены?
       avatar: Аватар
       by_domain: Домен
@@ -118,8 +119,10 @@ ru:
       confirm: Подтвердить
       confirmed: Подтверждено
       confirming: Подтверждение
+      delete: Удалить данные
       deleted: Удалён
       demote: Разжаловать
+      destroyed_msg: "Данные %{username} поставлены в очередь на удаление"
       disable: Заморозка
       disable_two_factor_authentication: Отключить 2FA
       disabled: Отключено
@@ -130,6 +133,7 @@ ru:
       email_status: Статус e-mail
       enable: Включить
       enabled: Включен
+      enabled_msg: Учётная запись %{username} успешно разморожена
       followers: Подписчики
       follows: Подписки
       header: Шапка
@@ -145,6 +149,8 @@ ru:
       login_status: Статус учётной записи
       media_attachments: Файлы мультимедиа
       memorialize: Сделать мемориалом
+      memorialized: Превращён в памятник
+      memorialized_msg: '%{username} успешно превращён в памятник'
       moderation:
         active: Действующие
         all: Все
@@ -165,10 +171,14 @@ ru:
       public: Публичный
       push_subscription_expires: Подписка PuSH истекает
       redownload: Обновить аватар
+      redownloaded_msg: Профиль %{username} успешно обновлен из оригинала
       reject: Отклонить
       reject_all: Отклонить все
+      rejected_msg: Успешно отклонено приложение для регистрации %{username}
       remove_avatar: Удалить аватар
       remove_header: Убрать шапку
+      removed_avatar_msg: Аватар %{username} успешно удален
+      removed_header_msg: Успешно удалено изображение заголовка %{username}
       resend_confirmation:
         already_confirmed: Этот пользователь уже подтвержден
         send: Повторно отправить подтверждение по электронной почте
@@ -194,13 +204,18 @@ ru:
       statuses: Посты
       subscribe: Подписаться
       suspended: Заморожен
+      suspension_irreversible: Данные этой учётной записи были необратимо удалены. Вы можете разблокировать учетную запись, чтобы сделать её доступной, но это не восстановит ранее имевшиеся в ней данные.
+      suspension_reversible_hint_html: Учётная запись была заблокирована, и данные будут полностью удалены %{date}. До этого момента её можно восстановить без каких-либо неприятных последствий. Если вы хотите немедленно удалить все данные учётной записи, вы можете сделать это ниже.
       time_in_queue: Ожидание в очереди %{time}
       title: Учётные записи
       unconfirmed_email: Неподтверждённый e-mail
       undo_silenced: Отменить скрытие
       undo_suspension: Снять блокировку
+      unsilenced_msg: Ограничения с учётной записи %{username} сняты успешно
       unsubscribe: Отписаться
+      unsuspended_msg: Учётная запись %{username} успешно разморожена
       username: Имя пользователя
+      view_domain: Просмотр сводки по домену
       warn: Предупреждение
       web: Веб
       whitelisted: В белом списке
