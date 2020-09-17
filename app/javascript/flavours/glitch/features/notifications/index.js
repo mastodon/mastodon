@@ -15,6 +15,7 @@ import {
   markNotificationsAsRead,
 } from 'flavours/glitch/actions/notifications';
 import { addColumn, removeColumn, moveColumn } from 'flavours/glitch/actions/columns';
+import { submitMarkers } from 'flavours/glitch/actions/markers';
 import NotificationContainer from './containers/notification_container';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import ColumnSettingsContainer from './containers/column_settings_container';
@@ -70,6 +71,7 @@ const mapDispatchToProps = dispatch => ({
   },
   onMarkAsRead() {
     dispatch(markNotificationsAsRead());
+    dispatch(submitMarkers());
   },
   onMount() {
     dispatch(mountNotifications());

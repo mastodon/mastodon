@@ -12,7 +12,7 @@ import { expandHomeTimeline } from 'flavours/glitch/actions/timelines';
 import { expandNotifications, notificationsSetVisibility } from 'flavours/glitch/actions/notifications';
 import { fetchFilters } from 'flavours/glitch/actions/filters';
 import { clearHeight } from 'flavours/glitch/actions/height_cache';
-import { synchronouslySubmitMarkers, fetchMarkers } from 'flavours/glitch/actions/markers';
+import { synchronouslySubmitMarkers, submitMarkers, fetchMarkers } from 'flavours/glitch/actions/markers';
 import { WrappedSwitch, WrappedRoute } from 'flavours/glitch/util/react_router_helpers';
 import UploadArea from './components/upload_area';
 import PermaLink from 'flavours/glitch/components/permalink';
@@ -358,6 +358,9 @@ class UI extends React.Component {
   handleVisibilityChange = () => {
     const visibility = !document[this.visibilityHiddenProp];
     this.props.dispatch(notificationsSetVisibility(visibility));
+    if (visibility) {
+      this.props.dispatch(submitMarkers());
+    }
   }
 
   componentWillMount () {
