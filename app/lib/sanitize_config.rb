@@ -16,6 +16,7 @@ class Sanitize
       ipns
       ssb
       gopher
+      gemini
       xmpp
       magnet
     ).freeze
