@@ -159,7 +159,7 @@ const NAVIGATION_PANEL_BREAKPOINT = 600 + (285 * 2) + (10 * 2);
     listItems = listItems.concat([
       <div key='9'>
         <ColumnLink key='10' icon='bars' text={intl.formatMessage(messages.lists)} to='/lists' />
-        {lists.map(list =>
+        {lists.filter(list => !columns.find(item => item.get('id') === 'LIST' && item.getIn(['params', 'id']) === list.get('id'))).map(list =>
           <ColumnLink key={(11 + Number(list.get('id'))).toString()} to={`/timelines/list/${list.get('id')}`} icon='list-ul' text={list.get('title')} />
         )}
       </div>,
