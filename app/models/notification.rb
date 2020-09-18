@@ -19,15 +19,24 @@ class Notification < ApplicationRecord
   include Paginable
   include Cacheable
 
-  TYPE_CLASS_MAP = {
-    mention: 'Mention',
-    status: 'Status',
-    reblog: 'Status',
-    follow: 'Follow',
-    follow_request: 'FollowRequest',
-    favourite: 'Favourite',
-    poll: 'Poll',
+  LEGACY_TYPE_CLASS_MAP = {
+    'Mention'       => :mention,
+    'Status'        => :reblog,
+    'Follow'        => :follow,
+    'FollowRequest' => :follow_request,
+    'Favourite'     => :favourite,
+    'Poll'          => :poll,
   }.freeze
+
+  TYPES = %i(
+    mention
+    status
+    reblog
+    follow
+    follow_request
+    favourite
+    poll
+  ).freeze
 
   STATUS_INCLUDES = [:account, :application, :preloadable_poll, :media_attachments, :tags, active_mentions: :account, reblog: [:account, :application, :preloadable_poll, :media_attachments, :tags, active_mentions: :account]].freeze
 
@@ -42,13 +51,12 @@ class Notification < ApplicationRecord
   belongs_to :favourite,      foreign_type: 'Favourite',     foreign_key: 'activity_id', optional: true
   belongs_to :poll,           foreign_type: 'Poll',          foreign_key: 'activity_id', optional: true
 
-  validates :account_id, uniqueness: { scope: [:activity_type, :activity_id] }
-  validates :activity_type, inclusion: { in: TYPE_CLASS_MAP.values }
+  validates :activity_type, inclusion: { in: TYPES }
 
   scope :without_suspended, -> { joins(:from_account).merge(Account.without_suspended) }
 
   scope :browserable, ->(exclude_types = [], account_id = nil) {
-    types = TYPE_CLASS_MAP.keys - exclude_types.map(&:to_sym)
+    types = TYPES - exclude_types.map(&:to_sym)
 
     if account_id.nil?
       where(type: types)
@@ -60,7 +68,7 @@ class Notification < ApplicationRecord
   cache_associated :from_account, status: STATUS_INCLUDES, mention: [status: STATUS_INCLUDES], favourite: [:account, status: STATUS_INCLUDES], follow: :account, follow_request: :account, poll: [status: STATUS_INCLUDES]
 
   def type
-    @type ||= (super || TYPE_CLASS_MAP.invert[activity_type]).to_sym
+    @type ||= (super || LEGACY_TYPE_CLASS_MAP[activity_type]).to_sym
   end
 
   def target_status
