@@ -6,7 +6,6 @@ class MigrateNotificationsType < ActiveRecord::Migration[5.2]
   TYPES_TO_MIGRATE = %w(
     Mention
     Status
-    Status
     Follow
     FollowRequest
     Favourite
