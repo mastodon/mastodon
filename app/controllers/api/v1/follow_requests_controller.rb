@@ -13,7 +13,7 @@ class Api::V1::FollowRequestsController < Api::BaseController
 
   def authorize
     AuthorizeFollowService.new.call(account, current_account)
-    NotifyService.new.call(current_account, Follow.find_by(account: account, target_account: current_account))
+    NotifyService.new.call(current_account, :follow, Follow.find_by(account: account, target_account: current_account))
     render json: account, serializer: REST::RelationshipSerializer, relationships: relationships
   end
 

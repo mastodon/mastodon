@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_08_193330) do
+ActiveRecord::Schema.define(version: 2020_09_17_222734) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -411,6 +411,7 @@ ActiveRecord::Schema.define(version: 2020_09_08_193330) do
     t.bigint "target_account_id", null: false
     t.boolean "show_reblogs", default: true, null: false
     t.string "uri"
+    t.boolean "notify", default: false, null: false
     t.index ["account_id", "target_account_id"], name: "index_follow_requests_on_account_id_and_target_account_id", unique: true
   end
 
@@ -421,6 +422,7 @@ ActiveRecord::Schema.define(version: 2020_09_08_193330) do
     t.bigint "target_account_id", null: false
     t.boolean "show_reblogs", default: true, null: false
     t.string "uri"
+    t.boolean "notify", default: false, null: false
     t.index ["account_id", "target_account_id"], name: "index_follows_on_account_id_and_target_account_id", unique: true
     t.index ["target_account_id"], name: "index_follows_on_target_account_id"
   end
@@ -545,8 +547,8 @@ ActiveRecord::Schema.define(version: 2020_09_08_193330) do
     t.datetime "updated_at", null: false
     t.bigint "account_id", null: false
     t.bigint "from_account_id", null: false
-    t.index ["account_id", "activity_id", "activity_type"], name: "account_activity", unique: true
-    t.index ["account_id", "id"], name: "index_notifications_on_account_id_and_id", order: { id: :desc }
+    t.string "type"
+    t.index ["account_id", "id", "type"], name: "index_notifications_on_account_id_and_id_and_type", order: { id: :desc }
     t.index ["activity_id", "activity_type"], name: "index_notifications_on_activity_id_and_activity_type"
     t.index ["from_account_id"], name: "index_notifications_on_from_account_id"
   end

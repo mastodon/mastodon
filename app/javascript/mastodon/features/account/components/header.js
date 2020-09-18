@@ -7,6 +7,7 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import { autoPlayGif, me, isStaff } from 'mastodon/initial_state';
 import classNames from 'classnames';
 import Icon from 'mastodon/components/icon';
+import IconButton from 'mastodon/components/icon_button';
 import Avatar from 'mastodon/components/avatar';
 import { counterRenderer } from 'mastodon/components/common_counter';
 import ShortNumber from 'mastodon/components/short_number';
@@ -35,6 +36,8 @@ const messages = defineMessages({
   unblockDomain: { id: 'account.unblock_domain', defaultMessage: 'Unblock domain {domain}' },
   hideReblogs: { id: 'account.hide_reblogs', defaultMessage: 'Hide boosts from @{name}' },
   showReblogs: { id: 'account.show_reblogs', defaultMessage: 'Show boosts from @{name}' },
+  enableNotifications: { id: 'account.enable_notifications', defaultMessage: 'Notify me when @{name} posts' },
+  disableNotifications: { id: 'account.disable_notifications', defaultMessage: 'Stop notifying me when @{name} posts' },
   pins: { id: 'navigation_bar.pins', defaultMessage: 'Pinned toots' },
   preferences: { id: 'navigation_bar.preferences', defaultMessage: 'Preferences' },
   follow_requests: { id: 'navigation_bar.follow_requests', defaultMessage: 'Follow requests' },
@@ -68,8 +71,9 @@ class Header extends ImmutablePureComponent {
     onBlock: PropTypes.func.isRequired,
     onMention: PropTypes.func.isRequired,
     onDirect: PropTypes.func.isRequired,
-    onReport: PropTypes.func.isRequired,
     onReblogToggle: PropTypes.func.isRequired,
+    onNotifyToggle: PropTypes.func.isRequired,
+    onReport: PropTypes.func.isRequired,
     onMute: PropTypes.func.isRequired,
     onBlockDomain: PropTypes.func.isRequired,
     onUnblockDomain: PropTypes.func.isRequired,
@@ -144,6 +148,7 @@ class Header extends ImmutablePureComponent {
 
     let info        = [];
     let actionBtn   = '';
+    let bellBtn     = '';
     let lockedIcon  = '';
     let menu        = [];
 
@@ -171,6 +176,10 @@ class Header extends ImmutablePureComponent {
       }
     } else {
       actionBtn = <Button className='logo-button' text={intl.formatMessage(messages.edit_profile)} onClick={this.openEditProfile} />;
+    }
+
+    if (account.getIn(['relationship', 'requested']) || account.getIn(['relationship', 'following'])) {
+      bellBtn = <IconButton icon='bell-o' size={24} active={account.getIn(['relationship', 'notifying'])} title={intl.formatMessage(account.getIn(['relationship', 'notifying']) ? messages.disableNotifications : messages.enableNotifications, { name: account.get('username') })} onClick={this.props.onNotifyToggle} />;
     }
 
     if (account.get('moved') && !account.getIn(['relationship', 'following'])) {
@@ -287,6 +296,7 @@ class Header extends ImmutablePureComponent {
             {!suspended && (
               <div className='account__header__tabs__buttons'>
                 {actionBtn}
+                {bellBtn}
 
                 <DropdownMenuContainer items={menu} icon='ellipsis-v' size={24} direction='right' />
               </div>
