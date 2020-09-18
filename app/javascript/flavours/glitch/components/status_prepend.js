@@ -64,6 +64,14 @@ export default class StatusPrepend extends React.PureComponent {
           values={{ name : link }}
         />
       );
+    case 'status':
+      return (
+        <FormattedMessage
+          id='notification.status'
+          defaultMessage='{name} just posted'
+          values={{ name: link }}
+        />
+      );
     case 'poll':
       if (me === account.get('id')) {
         return (
@@ -88,12 +96,32 @@ export default class StatusPrepend extends React.PureComponent {
     const { Message } = this;
     const { type } = this.props;
 
+    let iconId;
+
+    switch(type) {
+    case 'favourite':
+      iconId = 'star';
+      break;
+    case 'featured':
+      iconId = 'thumb-tack';
+      break;
+    case 'poll':
+      iconId = 'tasks';
+      break;
+    case 'reblogged_by':
+      iconId = 'retweet';
+      break;
+    case 'status':
+      iconId = 'bell';
+      break;
+    };
+
     return !type ? null : (
       <aside className={type === 'reblogged_by' || type === 'featured' ? 'status__prepend' : 'notification__message'}>
         <div className={type === 'reblogged_by' || type === 'featured' ? 'status__prepend-icon-wrapper' : 'notification__favourite-icon-wrapper'}>
           <Icon
             className={`status__prepend-icon ${type === 'favourite' ? 'star-icon' : ''}`}
-            id={type === 'favourite' ? 'star' : (type === 'featured' ? 'thumb-tack' : (type === 'poll' ? 'tasks' : 'retweet'))}
+            id={iconId}
           />
         </div>
         <Message />

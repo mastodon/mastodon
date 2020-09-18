@@ -7,6 +7,7 @@ import { autoPlayGif, me, isStaff } from 'flavours/glitch/util/initial_state';
 import { preferencesLink, profileLink, accountAdminLink } from 'flavours/glitch/util/backend_links';
 import classNames from 'classnames';
 import Icon from 'flavours/glitch/components/icon';
+import IconButton from 'flavours/glitch/components/icon_button';
 import Avatar from 'flavours/glitch/components/avatar';
 import Button from 'flavours/glitch/components/button';
 import { NavLink } from 'react-router-dom';
@@ -34,6 +35,8 @@ const messages = defineMessages({
   unblockDomain: { id: 'account.unblock_domain', defaultMessage: 'Unblock domain {domain}' },
   hideReblogs: { id: 'account.hide_reblogs', defaultMessage: 'Hide boosts from @{name}' },
   showReblogs: { id: 'account.show_reblogs', defaultMessage: 'Show boosts from @{name}' },
+  enableNotifications: { id: 'account.enable_notifications', defaultMessage: 'Notify me when @{name} posts' },
+  disableNotifications: { id: 'account.disable_notifications', defaultMessage: 'Stop notifying me when @{name} posts' },
   pins: { id: 'navigation_bar.pins', defaultMessage: 'Pinned toots' },
   preferences: { id: 'navigation_bar.preferences', defaultMessage: 'Preferences' },
   follow_requests: { id: 'navigation_bar.follow_requests', defaultMessage: 'Follow requests' },
@@ -68,8 +71,9 @@ class Header extends ImmutablePureComponent {
     onBlock: PropTypes.func.isRequired,
     onMention: PropTypes.func.isRequired,
     onDirect: PropTypes.func.isRequired,
-    onReport: PropTypes.func.isRequired,
     onReblogToggle: PropTypes.func.isRequired,
+    onNotifyToggle: PropTypes.func.isRequired,
+    onReport: PropTypes.func.isRequired,
     onMute: PropTypes.func.isRequired,
     onBlockDomain: PropTypes.func.isRequired,
     onUnblockDomain: PropTypes.func.isRequired,
@@ -138,6 +142,7 @@ class Header extends ImmutablePureComponent {
 
     let info        = [];
     let actionBtn   = '';
+    let bellBtn     = '';
     let lockedIcon  = '';
     let menu        = [];
 
@@ -166,6 +171,10 @@ class Header extends ImmutablePureComponent {
       }
     } else if (profileLink) {
       actionBtn = <Button className='logo-button' text={intl.formatMessage(messages.edit_profile)} onClick={this.openEditProfile} />;
+    }
+
+    if (account.getIn(['relationship', 'requested']) || account.getIn(['relationship', 'following'])) {
+      bellBtn = <IconButton icon='bell-o' size={24} active={account.getIn(['relationship', 'notifying'])} title={intl.formatMessage(account.getIn(['relationship', 'notifying']) ? messages.disableNotifications : messages.enableNotifications, { name: account.get('username') })} onClick={this.props.onNotifyToggle} />;
     }
 
     if (account.get('moved') && !account.getIn(['relationship', 'following'])) {
@@ -289,6 +298,7 @@ class Header extends ImmutablePureComponent {
 
             <div className='account__header__tabs__buttons'>
               {actionBtn}
+              {bellBtn}
 
               <DropdownMenuContainer items={menu} icon='ellipsis-v' size={24} direction='right' />
             </div>

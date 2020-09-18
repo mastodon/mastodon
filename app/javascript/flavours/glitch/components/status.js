@@ -680,6 +680,7 @@ class Status extends ImmutablePureComponent {
         favourite: 'favourited',
         reblog: 'boosted',
         reblogged_by: 'boosted',
+        status: 'posted',
       }[prepend];
 
       selectorAttribs[`data-${notifKind}-by`] = `@${account.get('acct')}`;
