@@ -105,15 +105,15 @@ export function submitMarkers() {
 };
 
 export const fetchMarkers = () => (dispatch, getState) => {
-    const params = { timeline: ['notifications'] };
+  const params = { timeline: ['notifications'] };
 
-    dispatch(fetchMarkersRequest());
+  dispatch(fetchMarkersRequest());
 
-    api(getState).get('/api/v1/markers', { params }).then(response => {
-      dispatch(fetchMarkersSuccess(response.data));
-    }).catch(error => {
-      dispatch(fetchMarkersFail(error));
-    });
+  api(getState).get('/api/v1/markers', { params }).then(response => {
+    dispatch(fetchMarkersSuccess(response.data));
+  }).catch(error => {
+    dispatch(fetchMarkersFail(error));
+  });
 };
 
 export function fetchMarkersRequest() {
