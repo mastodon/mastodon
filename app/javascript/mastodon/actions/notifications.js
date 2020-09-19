@@ -33,6 +33,8 @@ export const NOTIFICATIONS_LOAD_PENDING = 'NOTIFICATIONS_LOAD_PENDING';
 export const NOTIFICATIONS_MOUNT   = 'NOTIFICATIONS_MOUNT';
 export const NOTIFICATIONS_UNMOUNT = 'NOTIFICATIONS_UNMOUNT';
 
+export const NOTIFICATIONS_MARK_AS_READ = 'NOTIFICATIONS_MARK_AS_READ';
+
 defineMessages({
   mention: { id: 'notification.mention', defaultMessage: '{name} mentioned you' },
   group: { id: 'notifications.group', defaultMessage: '{count} notifications' },
