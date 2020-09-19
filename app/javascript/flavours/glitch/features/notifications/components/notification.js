@@ -22,6 +22,7 @@ export default class Notification extends ImmutablePureComponent {
     cacheMediaWidth: PropTypes.func,
     cachedMediaWidth: PropTypes.number,
     onUnmount: PropTypes.func,
+    unread: PropTypes.bool,
   };
 
   render () {

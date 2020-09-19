@@ -138,16 +138,16 @@ const updateTop = (state, top) => {
     state = clearUnread(state);
   }
 
-  return state.set('top', top);
+  return state;
 };
 
 const deleteByStatus = (state, statusId) => {
-  const top = !(shouldCountUnreadNotifications(state));
-  if (!top) {
+  if (shouldCountUnreadNotifications(state)) {
     const lastReadId = state.get('lastReadId');
     const deletedUnread = state.get('items').filter(item => item !== null && item.get('status') === statusId && compareId(item.get('id'), lastReadId) > 0);
     state = state.update('unread', unread => unread - deletedUnread.size);
   }
+
   const helper = list => list.filterNot(item => item !== null && item.get('status') === statusId);
   const deletedUnread = state.get('pendingItems').filter(item => item !== null && item.get('status') === statusId && compareId(item.get('id'), lastReadId) > 0);
   state = state.update('unread', unread => unread - deletedUnread.size);

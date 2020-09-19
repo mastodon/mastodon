@@ -18,6 +18,7 @@ import compareId from 'flavours/glitch/util/compare_id';
 import { searchTextFromRawStatus } from 'flavours/glitch/actions/importer/normalizer';
 
 export const NOTIFICATIONS_UPDATE = 'NOTIFICATIONS_UPDATE';
+export const NOTIFICATIONS_UPDATE_NOOP = 'NOTIFICATIONS_UPDATE_NOOP';
 
 // tracking the notif cleaning request
 export const NOTIFICATIONS_DELETE_MARKED_REQUEST = 'NOTIFICATIONS_DELETE_MARKED_REQUEST';
