@@ -117,7 +117,7 @@ pt-PT:
       destroyed_msg: "Os dados de %{username} estão agora em fila de espera para serem eliminados de imediato"
       disable: Desativar
       disable_two_factor_authentication: Desativar 2FA
-      disabled: Desativado
+      disabled: Congelada
       display_name: Nome a mostrar
       domain: Domínio
       edit: Editar
@@ -125,7 +125,7 @@ pt-PT:
       email_status: Estado do e-mail
       enable: Ativar
       enabled: Ativado
-      enabled_msg: Desbloqueio com sucesso da conta %{username}
+      enabled_msg: Descongelou com sucesso a conta %{username}
       followers: Seguidores
       follows: A seguir
       header: Cabeçalho
@@ -197,13 +197,17 @@ pt-PT:
       subscribe: Inscrever-se
       suspended: Suspensa
       suspension_irreversible: Os dados desta conta foram eliminados irreversivelmente. Você pode cancelar a suspensão da conta para torná-la utilizável, mas ela não irá recuperar os dados que possuía anteriormente.
+      suspension_reversible_hint_html: A conta foi suspensa e os dados serão totalmente eliminados em %{date}. Até lá, a conta poderá ser recuperada sem quaisquer efeitos negativos. Se deseja eliminar todos os dados desta conta imediatamente, pode fazê-lo em baixo.
       time_in_queue: Aguardando na fila %{time}
       title: Contas
       unconfirmed_email: E-mail não confirmado
       undo_silenced: Desfazer silenciar
       undo_suspension: Desfazer supensão
+      unsilenced_msg: Removeu com sucesso as limitações da conta %{username}
       unsubscribe: Cancelar inscrição
+      unsuspended_msg: Removeu com sucesso a suspensão da conta %{username}
       username: Utilizador
+      view_domain: Ver resumo do domínio
       warn: Aviso
       web: Web
       whitelisted: Está na lista branca
