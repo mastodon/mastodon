@@ -1246,11 +1246,15 @@ ja:
       default: "%Y年%m月%d日 %H:%M"
       month: "%Y年 %b"
   two_factor_authentication:
+    add: 追加
     disable: 無効化
+    edit: 編集
     enabled: 二段階認証は有効になっています
     enabled_success: 二段階認証が有効になりました
     generate_recovery_codes: リカバリーコードを生成
     lost_recovery_codes: リカバリーコードを使用すると携帯電話を紛失した場合でもアカウントにアクセスできるようになります。 リカバリーコードを紛失した場合もここで再生成することができますが、古いリカバリーコードは無効になります。
+    methods: 方式
+    otp: 認証アプリ
     recovery_codes: リカバリーコード
     recovery_codes_regenerated: リカバリーコードが再生成されました
     recovery_instructions_html: 携帯電話を紛失した場合、以下の内どれかのリカバリーコードを使用してアカウントへアクセスすることができます。<strong>リカバリーコードは大切に保全してください。</strong>たとえば印刷してほかの重要な書類と一緒に保管することができます。
@@ -1320,8 +1324,12 @@ ja:
     add: セキュリティキーを追加
     create:
       error: セキュリティキーの追加中に問題が発生しました。もう一度お試しください。
+      success: セキュリティキーを追加しました。
     delete: 削除
+    delete_confirmation: 本当にこのセキュリティキーを削除しますか？
     description_html: <strong>セキュリティキーによる認証</strong>を有効にすると、ログイン時にセキュリティキーを要求するようにできます。
     destroy:
       error: セキュリティキーの削除中に問題が発生しました。もう一度お試しください。
+      success: セキュリティキーを削除しました。
     invalid_credential: セキュリティキーが間違っています
+    nickname_hint: セキュリティキーの名前を入力してください
