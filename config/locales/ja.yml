@@ -978,6 +978,8 @@ ja:
           quadrillion: Q
           thousand: K
           trillion: T
+  otp_authentication:
+    code_hint: 続行するには認証アプリで表示されたコードを入力してください
   pagination:
     newer: 新しいトゥート
     next: 次
@@ -1102,6 +1104,7 @@ ja:
     profile: プロフィール
     relationships: フォロー・フォロワー
     two_factor_authentication: 二段階認証
+    webauthn_authentication: セキュリティキー
   spam_check:
     spam_detected: これは自動的に作成された通報です。スパムが検出されています。
   statuses:
@@ -1250,6 +1253,7 @@ ja:
     recovery_codes: リカバリーコード
     recovery_codes_regenerated: リカバリーコードが再生成されました
     recovery_instructions_html: 携帯電話を紛失した場合、以下の内どれかのリカバリーコードを使用してアカウントへアクセスすることができます。<strong>リカバリーコードは大切に保全してください。</strong>たとえば印刷してほかの重要な書類と一緒に保管することができます。
+    webauthn: セキュリティキー
   user_mailer:
     backup_ready:
       explanation: Mastodonアカウントのアーカイブを受け付けました。今すぐダウンロードできます！
@@ -1312,4 +1316,11 @@ ja:
     explanation_html: '<strong>プロフィール内のリンクの所有者であることを認証することができます</strong>。そのためにはリンクされたウェブサイトにMastodonプロフィールへのリンクが含まれている必要があります。リンクには<code>rel="me"</code>属性を<strong>必ず</strong>与えなければなりません。リンクのテキストについては重要ではありません。以下は例です：'
     verification: 認証
   webauthn_credentials:
+    add: セキュリティキーを追加
+    create:
+      error: セキュリティキーの追加中に問題が発生しました。もう一度お試しください。
     delete: 削除
+    description_html: <strong>セキュリティキーによる認証</strong>を有効にすると、ログイン時にセキュリティキーを要求するようにできます。
+    destroy:
+      error: セキュリティキーの削除中に問題が発生しました。もう一度お試しください。
+    invalid_credential: セキュリティキーが間違っています
