@@ -114,7 +114,7 @@ pt-PT:
       delete: Eliminar dados
       deleted: Apagada
       demote: Rebaixar
-      destroyed_msg: "Os dados de %{username} estão agora em fila de espera para serem apagados"
+      destroyed_msg: "Os dados de %{username} estão agora em fila de espera para serem eliminados de imediato"
       disable: Desativar
       disable_two_factor_authentication: Desativar 2FA
       disabled: Desativado
@@ -125,6 +125,7 @@ pt-PT:
       email_status: Estado do e-mail
       enable: Ativar
       enabled: Ativado
+      enabled_msg: Desbloqueio com sucesso da conta %{username}
       followers: Seguidores
       follows: A seguir
       header: Cabeçalho
@@ -140,6 +141,8 @@ pt-PT:
       login_status: Estado de início de sessão
       media_attachments: Anexos de media
       memorialize: Converter em memorial
+      memorialized: Em memória
+      memorialized_msg: Conta %{username} transformada com sucesso em memorial
       moderation:
         active: Activo
         all: Todos
@@ -160,10 +163,14 @@ pt-PT:
       public: Público
       push_subscription_expires: A Inscrição PuSH expira
       redownload: Atualizar perfil
+      redownloaded_msg: Atualizado com sucesso o perfil de %{username} da origem
       reject: Rejeitar
       reject_all: Rejeitar todas
+      rejected_msg: Inscrição de %{username} rejeitada com sucesso
       remove_avatar: Remover a imagem de perfil
       remove_header: Remover o cabeçalho
+      removed_avatar_msg: Imagem de perfil de %{username} removida com sucesso
+      removed_header_msg: Imagem de cabeçalho de %{username} removida com sucesso
       resend_confirmation:
         already_confirmed: Este utilizador já está confirmado
         send: Reenviar um email de confirmação
@@ -189,6 +196,7 @@ pt-PT:
       statuses: Status
       subscribe: Inscrever-se
       suspended: Suspensa
+      suspension_irreversible: Os dados desta conta foram eliminados irreversivelmente. Você pode cancelar a suspensão da conta para torná-la utilizável, mas ela não irá recuperar os dados que possuía anteriormente.
       time_in_queue: Aguardando na fila %{time}
       title: Contas
       unconfirmed_email: E-mail não confirmado
