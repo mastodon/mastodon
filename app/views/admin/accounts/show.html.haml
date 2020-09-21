@@ -180,7 +180,7 @@
     = link_to t('admin.accounts.undo_suspension'), unsuspend_admin_account_path(@account.id), method: :post, class: 'button' if can?(:unsuspend, @account)
 
     - if @deletion_request.present?
-      = link_to t('admin.accounts.delete'), admin_account_path(@account.id), method: :destroy, class: 'button button--destructive', data: { confirm: t('admin.accounts.are_you_sure') } if can?(:destroy, @account)
+      = link_to t('admin.accounts.delete'), admin_account_path(@account.id), method: :delete, class: 'button button--destructive', data: { confirm: t('admin.accounts.are_you_sure') } if can?(:destroy, @account)
   - else
     %div.action-buttons
       %div
