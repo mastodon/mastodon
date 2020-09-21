@@ -34,7 +34,17 @@ class ResolveURLService < BaseService
 
     # It may happen that the resource is a private toot, and thus not fetchable,
     # but we can return the toot if we already know about it.
-    status = Status.find_by(uri: @url) || Status.find_by(url: @url)
+    uris = [@url]
+
+    # We don't have an index on `url`, so try guessing the `uri` from `url`
+    parsed_url = Addressable::URI.parse(@url)
+    parsed_url.path.match(%r{/@(?<username>#{Account::USERNAME_RE})/(?<status_id>[0-9]+)\Z}) do |matched|
+      parsed_url.path = "/users/#{matched[:username]}/statuses/#{matched[:status_id]}"
+      uris << parsed_url.to_s
+    end
+
+    status = Status.find_by(uri: uris)
+
     authorize_with @on_behalf_of, status, :show? unless status.nil?
     status
   rescue Mastodon::NotPermittedError
