@@ -134,7 +134,7 @@ class Admin::AccountAction
   end
 
   def process_email!
-    UserMailer.warning(target_account.user, warning, status_ids).deliver_now! if warnable?
+    UserMailer.warning(target_account.user, warning, status_ids).deliver_later! if warnable?
   end
 
   def warnable?
@@ -142,7 +142,7 @@ class Admin::AccountAction
   end
 
   def status_ids
-    @report.status_ids if @report && include_statuses
+    report.status_ids if report && include_statuses
   end
 
   def reports

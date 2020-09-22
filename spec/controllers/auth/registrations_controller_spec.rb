@@ -199,9 +199,10 @@ RSpec.describe Auth::RegistrationsController, type: :controller do
       end
 
       subject do
+        inviter = Fabricate(:user, confirmed_at: 2.days.ago)
         Setting.registrations_mode = 'approved'
         request.headers["Accept-Language"] = accept_language
-        invite = Fabricate(:invite, max_uses: nil, expires_at: 1.hour.from_now)
+        invite = Fabricate(:invite, user: inviter, max_uses: nil, expires_at: 1.hour.from_now)
         post :create, params: { user: { account_attributes: { username: 'test' }, email: 'test@example.com', password: '12345678', password_confirmation: '12345678', 'invite_code': invite.code, agreement: 'true' } }
       end
 

@@ -29,7 +29,7 @@ class FavouriteService < BaseService
     status = favourite.status
 
     if status.account.local?
-      NotifyService.new.call(status.account, favourite)
+      NotifyService.new.call(status.account, :favourite, favourite)
     elsif status.account.activitypub?
       ActivityPub::DeliveryWorker.perform_async(build_json(favourite), favourite.account_id, status.account.inbox_url)
     end

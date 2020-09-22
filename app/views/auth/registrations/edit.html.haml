@@ -30,18 +30,19 @@
 
 = render 'sessions'
 
-%hr.spacer/
-
-%h3= t('auth.migrate_account')
-%p.muted-hint= t('auth.migrate_account_html', path: settings_migration_path)
-
-%hr.spacer/
-
-%h3= t('migrations.incoming_migrations')
-%p.muted-hint= t('migrations.incoming_migrations_html', path: settings_aliases_path)
-
-- if open_deletion? && !current_account.suspended?
+- unless current_account.suspended?
   %hr.spacer/
 
-  %h3= t('auth.delete_account')
-  %p.muted-hint= t('auth.delete_account_html', path: settings_delete_path)
+  %h3= t('auth.migrate_account')
+  %p.muted-hint= t('auth.migrate_account_html', path: settings_migration_path)
+
+  %hr.spacer/
+
+  %h3= t('migrations.incoming_migrations')
+  %p.muted-hint= t('migrations.incoming_migrations_html', path: settings_aliases_path)
+
+  - if open_deletion?
+    %hr.spacer/
+
+    %h3= t('auth.delete_account')
+    %p.muted-hint= t('auth.delete_account_html', path: settings_delete_path)

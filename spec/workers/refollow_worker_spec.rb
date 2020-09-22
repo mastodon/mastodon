@@ -23,8 +23,8 @@ describe RefollowWorker do
       result = subject.perform(account.id)
 
       expect(result).to be_nil
-      expect(service).to have_received(:call).with(alice, account, reblogs: true)
-      expect(service).to have_received(:call).with(bob, account, reblogs: false)
+      expect(service).to have_received(:call).with(alice, account, reblogs: true, notify: false)
+      expect(service).to have_received(:call).with(bob, account, reblogs: false, notify: false)
     end
   end
 end

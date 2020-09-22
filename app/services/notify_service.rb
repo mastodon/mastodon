@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 class NotifyService < BaseService
-  def call(recipient, activity)
+  def call(recipient, type, activity)
     @recipient    = recipient
     @activity     = activity
-    @notification = Notification.new(account: @recipient, activity: @activity)
+    @notification = Notification.new(account: @recipient, type: type, activity: @activity)
 
     return if recipient.user.nil? || blocked?
 
@@ -20,6 +20,10 @@ class NotifyService < BaseService
 
   def blocked_mention?
     FeedManager.instance.filter?(:mentions, @notification.mention.status, @recipient)
+  end
+
+  def blocked_status?
+    false
   end
 
   def blocked_favourite?

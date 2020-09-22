@@ -2,7 +2,7 @@
 
 module Settings
   module Exports
-    class MutedAccountsController < ApplicationController
+    class MutedAccountsController < BaseController
       include ExportControllerConcern
 
       def index

@@ -98,6 +98,7 @@ en:
       add_email_domain_block: Block e-mail domain
       approve: Approve
       approve_all: Approve all
+      approved_msg: Successfully approved %{username}'s sign-up application
       are_you_sure: Are you sure?
       avatar: Avatar
       by_domain: Domain
@@ -111,18 +112,21 @@ en:
       confirm: Confirm
       confirmed: Confirmed
       confirming: Confirming
+      delete: Delete data
       deleted: Deleted
       demote: Demote
-      disable: Disable
+      destroyed_msg: "%{username}'s data is now queued to be deleted imminently"
+      disable: Freeze
       disable_two_factor_authentication: Disable 2FA
-      disabled: Disabled
+      disabled: Frozen
       display_name: Display name
       domain: Domain
       edit: Edit
       email: Email
       email_status: Email status
-      enable: Enable
+      enable: Unfreeze
       enabled: Enabled
+      enabled_msg: Successfully unfroze %{username}'s account
       followers: Followers
       follows: Follows
       header: Header
@@ -138,6 +142,8 @@ en:
       login_status: Login status
       media_attachments: Media attachments
       memorialize: Turn into memoriam
+      memorialized: Memorialized
+      memorialized_msg: Successfully turned %{username} into a memorial account
       moderation:
         active: Active
         all: All
@@ -158,10 +164,14 @@ en:
       public: Public
       push_subscription_expires: PuSH subscription expires
       redownload: Refresh profile
+      redownloaded_msg: Successfully refreshed %{username}'s profile from origin
       reject: Reject
       reject_all: Reject all
+      rejected_msg: Successfully rejected %{username}'s sign-up application
       remove_avatar: Remove avatar
       remove_header: Remove header
+      removed_avatar_msg: Successfully removed %{username}'s avatar image
+      removed_header_msg: Successfully removed %{username}'s header image
       resend_confirmation:
         already_confirmed: This user is already confirmed
         send: Resend confirmation email
@@ -182,18 +192,23 @@ en:
       show:
         created_reports: Made reports
         targeted_reports: Reported by others
-      silence: Silence
-      silenced: Silenced
+      silence: Limit
+      silenced: Limited
       statuses: Statuses
       subscribe: Subscribe
       suspended: Suspended
+      suspension_irreversible: The data of this account has been irreversibly deleted. You can unsuspend the account to make it usable but it will not recover any data it previously had.
+      suspension_reversible_hint_html: The account has been suspended, and the data will be fully removed on %{date}. Until then, the account can be restored without any ill effects. If you wish to remove all of the account's data immediately, you can do so below.
       time_in_queue: Waiting in queue %{time}
       title: Accounts
       unconfirmed_email: Unconfirmed email
       undo_silenced: Undo silence
       undo_suspension: Undo suspension
+      unsilenced_msg: Successfully unlimited %{username}'s account
       unsubscribe: Unsubscribe
+      unsuspended_msg: Successfully unsuspended %{username}'s account
       username: Username
+      view_domain: View summary for domain
       warn: Warn
       web: Web
       whitelisted: Allowed for federation
@@ -1304,9 +1319,9 @@ en:
       title: Sign in attempt
     warning:
       explanation:
-        disable: While your account is frozen, your account data remains intact, but you cannot perform any actions until it is unlocked.
-        silence: While your account is limited, only people who are already following you will see your toots on this server, and you may be excluded from various public listings. However, others may still manually follow you.
-        suspend: Your account has been suspended, and all of your toots and your uploaded media files have been irreversibly removed from this server, and servers where you had followers.
+        disable: You can no longer login to your account or use it in any other way, but your profile and other data remains intact.
+        silence: You can still use your account but only people who are already following you will see your toots on this server, and you may be excluded from various public listings. However, others may still manually follow you.
+        suspend: You can no longer use your account, and your profile and other data are no longer accessible. You can still login to request a backup of your data until the data is fully removed, but we will retain some data to prevent you from evading the suspension.
       get_in_touch: You can reply to this e-mail to get in touch with the staff of %{instance}.
       review_server_policies: Review server policies
       statuses: 'Specifically, for:'
