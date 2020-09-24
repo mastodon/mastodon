@@ -35,11 +35,11 @@ class RSSBuilder
       self
     end
 
-    def enclosure(url, type, size)
-      @item << Ox::Element.new('enclosure').tap do |enclosure|
-        enclosure['url']    = url
-        enclosure['length'] = size
-        enclosure['type']   = type
+    def media_content(url, type, size)
+      @item << Ox::Element.new('media:content').tap do |media_content|
+        media_content['url']    = url
+        media_content['fileSize'] = size
+        media_content['type']   = type
       end
 
       self
