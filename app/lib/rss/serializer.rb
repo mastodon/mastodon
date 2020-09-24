@@ -12,7 +12,7 @@ class RSS::Serializer
             .description(status.spoiler_text.presence || Formatter.instance.format(status, inline_poll_options: true).to_str)
 
         status.media_attachments.each do |media|
-          item.enclosure(full_asset_url(media.file.url(:original, false)), media.file.content_type, media.file.size)
+          item.media_content(full_asset_url(media.file.url(:original, false)), media.file.content_type, media.file.size)
         end
       end
     end
