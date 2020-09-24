@@ -10,15 +10,39 @@ br:
     learn_more: Gouzout hiroc'h
     privacy_policy: Reolennoù prevezded
     source_code: Boneg tarzh
+    status_count_after:
+      one: toud
+      two: toud
+      few: toud
+      many: toud
+      other: toud
     terms: Divizoù gwerzhañ hollek
     unavailable_content_description:
       domain: Dafariad
+    user_count_after:
+      one: implijer·ez
+      two: implijer·ez
+      few: implijer·ez
+      many: implijer·ez
+      other: implijer·ez
     what_is_mastodon: Petra eo Mastodon?
   accounts:
     follow: Heuliañ
+    followers:
+      one: Heulier·ez
+      two: Heulier·ez
+      few: Heulier·ez
+      many: Heulier·ez
+      other: Heulier·ez
     following: O heuliañ
     media: Media
     never_active: Birviken
+    posts:
+      one: Toud
+      two: Toud
+      few: Toud
+      many: Toud
+      other: Toud
     posts_tab_heading: Toudoù
     posts_with_replies: Toudoù ha respontoù
     roles:
@@ -260,8 +284,11 @@ br:
   otp_authentication:
     enable: Gweredekaat
     setup: Kefluniañ
+  pagination:
+    truncate: "&hellip;"
   relationships:
     followers: Heulier·ezed·ien
+    following: O heuliañ
   sessions:
     browser: Merdeer
     browsers:
@@ -271,6 +298,7 @@ br:
       edge: Microsoft Edge
       electron: Electron
       firefox: Firefox
+      generic: Merdeer dianav
       ie: Internet Explorer
       micro_messenger: MicroMessenger
       nokia: Nokia S40 Ovi Browser
@@ -281,6 +309,7 @@ br:
       safari: Safari
       uc_browser: UCBrowser
       weibo: Weibo
+    description: "%{browser} war %{platform}"
     ip: IP
     platforms:
       adobe_air: Adobe Air
@@ -291,8 +320,33 @@ br:
       ios: iOS
       linux: Linux
       mac: macOS
+      other: savenn dianav
       windows: Windows
+      windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
+  settings:
+    account: Kont
+    account_settings: Arventennoù ar gont
+    development: Diorren
+    edit_profile: Aozañ ar profil
+    import: Enporzhiañ
+    import_and_export: Enporzhiañ hag ezporzhiañ
+    preferences: Gwellvezioù
+    profile: Profil
   statuses:
+    attached:
+      image:
+        one: "%{count} skeudenn"
+        two: "%{count} skeudenn"
+        few: "%{count} skeudenn"
+        many: "%{count} skeudenn"
+        other: "%{count} skeudenn"
+      video:
+        one: "%{count} video"
+        two: "%{count} video"
+        few: "%{count} video"
+        many: "%{count} video"
+        other: "%{count} video"
     show_more: Diskouez muioc'h
     title: '%{name}: "%{quote}"'
     visibilities:
@@ -316,5 +370,6 @@ br:
         none: Diwall
     welcome:
       edit_profile_action: Kefluniañ ar profil
+      subject: Donemat e Mastodoñ
   webauthn_credentials:
     delete: Dilemel
