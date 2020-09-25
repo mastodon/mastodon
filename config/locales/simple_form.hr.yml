@@ -4,19 +4,19 @@ hr:
       defaults:
         avatar: PNG, GIF ili JPG. Najviše %{size}. Bit će smanjeno na %{dimensions}px
         header: PNG, GIF ili JPG. Najviše %{size}. Bit će smanjeno na %{dimensions}px
-        locked: traži te da ručno odobriš sljedbenike i postavlja privatnost postova na dostupnu samo sljedbenicima
+        locked: Zahtijeva ručno odobravanje pratitelja
       imports:
-        data: CSV fajl izvezen iz druge Mastodon instance
+        data: CSV datoteka izvezena iz drugog Mastodonovog poslužitelja
     labels:
       defaults:
         confirm_new_password: Potvrdi novu lozinku
         confirm_password: Potvrdi lozinku
         current_password: Trenutna lozinka
-        data: Podaci
-        display_name: Ime koje ću prikazati
-        email: E-mail adresa
-        locale: Jezik
-        locked: Učini račun privatnim
+        data: Podatci
+        display_name: Prikazano ime
+        email: Adresa e-pošte
+        locale: Jezik sučelja
+        locked: Zaključaj račun
         new_password: Nova lozinka
         otp_attempt: Dvo-faktorski kod
         password: Lozinka
