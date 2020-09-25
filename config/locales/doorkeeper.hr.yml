@@ -73,11 +73,11 @@ hr:
           expired: Pristupni token je istekao
           revoked: Pristupni token je opozvan
           unknown: Pristupni token nije valjan
-        server_error: Autorizacijski server naišao je na neočekivani uvjet, što ga je onemogućilo da ispuni zahtjev.
-        temporarily_unavailable: Autorizacijski server trenutno nije u mogućnosti  izvesti zahtjev zbog privremenog preopterećenja ili održavanja servera.
+        server_error: Autorizacijski poslužitelj naišao je na neočekivani uvjet koji sprječava provođenje zahtjeva.
+        temporarily_unavailable: Autorizacijski poslužitelj trenutno nije u mogućnosti obraditi zahtjev zbog privremenog preopterećenja ili njegovog održavanja.
         unauthorized_client: Klijent nije ovlašten izvesti zahtjev koristeći ovu metodu.
-        unsupported_grant_type: The authorization grant tip nije podržan od autorizacijskog servera.
-        unsupported_response_type: Autorizacijski server ne podržava ovaj tip odgovora.
+        unsupported_grant_type: Autorizacijski poslužitelj ne podržava ovu vrstu autorizacijskog odobrenja.
+        unsupported_response_type: Autorizacijski poslužitelj ne podržava ovu vrstu odgovora.
     flash:
       applications:
         create:
@@ -88,7 +88,7 @@ hr:
           notice: Aplikacija je ažurirana.
       authorized_applications:
         destroy:
-          notice: Aplikacija je odbijena.
+          notice: Aplikacija je opozvana.
     layouts:
       admin:
         nav:
@@ -96,6 +96,6 @@ hr:
       application:
         title: Traži se OAuth autorizacija
     scopes:
-      follow: slijediti, blokirati, deblokirati i prestati slijediti račune
-      read: čitati  podatke tvog računa
-      write: slati poruke u tvoje ime
+      follow: mijenjati odnose između računa
+      read: čitati sve podatke Vašeg računa
+      write: mijenjati sve podatke Vašeg računa
