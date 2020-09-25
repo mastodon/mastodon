@@ -50,22 +50,22 @@ hr:
         title: Došlo je do greške
       new:
         able_to: Moći će
-        prompt: Aplikacija %{client_name} je zatražila pristup tvom računu
-        title: Traži se autorizacija
+        prompt: Aplikacija %{client_name} je zatražila pristup Vašem računu
+        title: Potrebna je autorizacija
     authorized_applications:
       buttons:
         revoke: Odbij
       confirmations:
-        revoke: Jesi li siguran?
+        revoke: Jeste li sigurni?
       index:
         application: Aplikacija
         created_at: Ovlašeno
-        title: Tvoje autorizirane aplikacije
+        title: Vaše autorizirane aplikacije
     errors:
       messages:
-        access_denied: Vlasnik resursa / autorizacijski server je odbio zahtjev.
-        invalid_client: Autentifikacija klijenta nije uspjela zbog nepoznatog klijenta, neuključene autentifikacije od strane klijenta, ili nepodržane metode autentifikacije.
-        invalid_redirect_uri: The redirect uri included nije valjan.
+        access_denied: Vlasnik resursa ili autorizacijski poslužitelj odbili su zahtjev.
+        invalid_client: Autentifikacija klijenta nije uspjela zbog nepoznatog klijenta, nedostatka autentifikacije klijenta ili nepodržane metode autentifikacije.
+        invalid_redirect_uri: Sadržani uri preusmjerenja nije valjan.
         invalid_request: Zahtjevu nedostaje traženi parametar, uključuje nepodržanu vrijednost parametra, ili je na neki drugi način neispravno formiran.
         invalid_resource_owner: The provided resource owner credentials nisu valjani, ili vlasnik resursa ne može biti nađen
         invalid_scope: Traženi scope nije valjan, znan, ili je neispravno oblikovan.
