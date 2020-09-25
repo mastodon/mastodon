@@ -3,26 +3,26 @@ hr:
     confirmations:
       confirmed: Vaša adresa e-pošte uspješno je potvrđena.
       send_instructions: Za nekoliko minuta primit ćete e-poštu s uputama kako potvrditi Vašu adresu e-pošte. Molimo pogledajte Vašu mapu s neželjenom poštom, ako niste primili ovu e-poštu.
-      send_paranoid_instructions: Ako tvoja email adresa postoji u našoj bazi podataka, primit ćeš email sa uputama kako ju potvrditi za nekoliko minuta.
+      send_paranoid_instructions: Ako Vaša adresa e-pošte postoji u našoj bazi podataka, za nekoliko minuta primit ćete e-poštu s uputama kako ju potvrditi. Molimo provjerite mapu s neželjenom poštom, ako niste primili ovu e-poštu.
     mailer:
       confirmation_instructions:
-        subject: 'Mastodon: Upute za potvrđivanje %{instance}'
+        subject: 'Mastodon: upute za potvrđivanje za %{instance}'
       email_changed:
-        subject: 'Mastodon: Email adresa je promijenjena'
-        title: Nova email adresa
+        subject: 'Mastodon: adresa e-pošte je promijenjena'
+        title: Nova adresa e-pošte
       password_change:
-        subject: 'Mastodon: Lozinka je promijenjena'
+        subject: 'Mastodon: lozinka je promijenjena'
       reset_password_instructions:
-        subject: 'Mastodon: Upute za resetiranje lozinke'
+        subject: 'Mastodon: upute za ponovno postavljanje lozinke'
       unlock_instructions:
-        subject: 'Mastodon: Upute za otključavanje'
+        subject: 'Mastodon: upute za otključavanje'
     omniauth_callbacks:
-      failure: Ne možemo te autentificirati sa %{kind} zbog "%{reason}".
-      success: Uspješno autentificiran sa %{kind} računa.
+      failure: Ne možemo Vas autentificirati s %{kind} zbog "%{reason}".
+      success: Uspješno ste autentificirani s računom na %{kind}.
     passwords:
-      no_token: Ne možeš pristupiti ovoj stranici bez dolaženja sa emaila za resetiranje lozinke. Ako dolaziš sa tog emaila, pazi da koristiš potpuni link koji ti je dan.
-      send_instructions: Primit ćeš email sa uputama kako resetirati svoju lozinku za nekoliko minuta.
-      send_paranoid_instructions: Ako tvoja email adresa postoji u našoj bazi podataka, primit ćeš link za povrat lozinke na svoju email adresu za nekoliko minuta.
+      no_token: Ovoj stranici ne možete pristupiti, ako ne stižete iz e-pošte za ponovno postavljanje lozinke. Ako dolazite iz e-pošte za ponovno postavljanje lozinke, molimo budite sigurni da koristite puni URL koji ste primili.
+      send_instructions: Ako Vaša adresa e-pošte postoji u našoj bazi podataka, za nekoliko minuta primit ćete poveznicu za oporavak lozinke. Molimo provjerite mapu s neželjenom poštom, ako niste primili ovu e-poštu.
+      send_paranoid_instructions: Ako Vaša adresa e-pošte postoji u našoj bazi podataka, za nekoliko minuta primit ćete e-poštu s poveznicom za oporavak lozinke. Molimo provjerite mapu s neželjenom poštom, ako niste primili ovu e-poštu.
       updated: Tvoja lozinka je uspješno izmijenjena. Sada si prijavljen.
       updated_not_active: Toja lozinka je uspješno izmijenjena.
     registrations:
