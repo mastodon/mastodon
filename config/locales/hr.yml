@@ -79,8 +79,8 @@ hr:
       body: "%{name} je zatražio/la da Vas prati"
       subject: 'Pratitelj na čekanju: %{name}'
     mention:
-      body: 'Spomenuo te je %{name} u:'
-      subject: Spomenuo te je %{name}
+      body: 'Spomenuo/la Vas je %{name} u:'
+      subject: Spomenuo/la Vas je %{name}
     reblog:
       body: 'Tvoj status je potaknut od %{name}:'
       subject: "%{name} je potakao tvoj status"
@@ -110,13 +110,13 @@ hr:
     export: Izvoz podataka
     import: Uvezi
     preferences: Postavke
-    two_factor_authentication: Dvo-faktorska Autentifikacija
+    two_factor_authentication: Dvofaktorska autentifikacija
   statuses:
     open_in_web: Otvori na webu
-    over_character_limit: prijeđen je limit od %{max} znakova
+    over_character_limit: prijeđeno je ograničenje od %{max} znakova
     show_more: Prikaži više
     visibilities:
-      private: Pokaži samo sljedbenicima
+      private: Samo pratitelji
       public: Javno
       unlisted: Neprikazano
   stream_entries:
