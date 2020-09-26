@@ -5,9 +5,16 @@ hr:
         avatar: PNG, GIF ili JPG. Najviše %{size}. Bit će smanjeno na %{dimensions}px
         header: PNG, GIF ili JPG. Najviše %{size}. Bit će smanjeno na %{dimensions}px
         locked: Zahtijeva ručno odobravanje pratitelja
+        setting_display_media_default: Sakrij medijski sadržaj označen kao osjetljiv
+        setting_display_media_hide_all: Uvijek sakrij medijski sadržaj
+        setting_display_media_show_all: Uvijek prikaži medijski sadržaj
       imports:
         data: CSV datoteka izvezena iz drugog Mastodonovog poslužitelja
     labels:
+      account_warning_preset:
+        title: Naslov
+      admin_account_action:
+        type: Radnja
       defaults:
         confirm_new_password: Potvrdi novu lozinku
         confirm_password: Potvrdi lozinku
@@ -18,10 +25,16 @@ hr:
         locale: Jezik sučelja
         locked: Zaključaj račun
         new_password: Nova lozinka
+        note: Biografija
         otp_attempt: Dvofaktorski kôd
         password: Lozinka
         setting_auto_play_gif: Automatski pokreni animirane GIF-ove
         setting_default_privacy: Privatnost objavljivanja
+        setting_display_media_default: Zadano
+        setting_display_media_hide_all: Sakrij sve
+        setting_display_media_show_all: Prikaži sve
+        setting_system_font_ui: Koristi zadani font sustava
+        setting_theme: Tema stranice
         type: Tip uvoza
         username: Korisničko ime
       interactions:
@@ -34,7 +47,10 @@ hr:
         follow_request: Netko zatraži da Vas prati
         mention: Netko Vas spomene
         reblog: Netko boosta Vaš status
+      tag:
+        name: Hashtag
     'no': 'Ne'
     required:
+      mark: "*"
       text: obavezno
     'yes': 'Da'
