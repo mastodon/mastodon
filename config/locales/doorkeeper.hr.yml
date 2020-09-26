@@ -3,6 +3,8 @@ hr:
     attributes:
       doorkeeper/application:
         name: Ime aplikacije
+        scopes: Opsezi
+        website: Web-stranica aplikacije
     errors:
       models:
         doorkeeper/application:
@@ -31,6 +33,7 @@ hr:
         redirect_uri: Koristi jednu liniju po URI-u
         scopes: Odvojite opsege razmacima. Za korištenje zadanih opsega, ostavite prazno.
       index:
+        application: Aplikacija
         name: Ime
         new: Nova aplikacija
         title: Vaše aplikacije
