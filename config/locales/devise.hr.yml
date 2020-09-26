@@ -6,7 +6,10 @@ hr:
       send_paranoid_instructions: Ako Vaša adresa e-pošte postoji u našoj bazi podataka, za nekoliko minuta primit ćete e-poštu s uputama kako ju potvrditi. Molimo provjerite mapu s neželjenom poštom, ako niste primili ovu e-poštu.
     mailer:
       confirmation_instructions:
+        action: Potvrdi adresu e-pošte
+        action_with_app: Potvrdi i vrati se na %{app}
         subject: 'Mastodon: upute za potvrđivanje za %{instance}'
+        title: Potvrdi adresu e-pošte
       email_changed:
         subject: 'Mastodon: adresa e-pošte je promijenjena'
         title: Nova adresa e-pošte
@@ -14,6 +17,9 @@ hr:
         subject: 'Mastodon: lozinka je promijenjena'
       reset_password_instructions:
         subject: 'Mastodon: upute za ponovno postavljanje lozinke'
+        title: Ponovno postavljanje lozinke
+      two_factor_disabled:
+        title: 2FA je onemogućen
       unlock_instructions:
         subject: 'Mastodon: upute za otključavanje'
     omniauth_callbacks:
