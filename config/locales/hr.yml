@@ -1,7 +1,10 @@
 hr:
   about:
+    about_hashtag_html: 'Ovo su javni tootovi označeni s <strong>#%{hashtag}</strong>. Možete biti u interakciji s njima, ako imate račun bilo gdje u fediverzumu.'
     about_mastodon_html: 'Društvena mreža budućnosti: bez oglasa, bez korporativnog nadzora, etički dizajn i decentralizacija! Budite u vlasništvu svojih podataka pomoću Mastodona!'
     about_this: Dodatne informacije
+    active_count_after: aktivnih
+    active_footnote: Mjesečno aktivnih korisnika (MAU)
     api: API
     apps: Mobilne aplikacije
     apps_platforms: Koristite Mastodon na iOS-u, Androidu i drugim platformama
@@ -63,6 +66,28 @@ hr:
       confirming: Potvrđivanje
       delete: Izbriši podatke
       deleted: Izbrisano
+      display_name: Prikazano ime
+      domain: Domena
+      edit: Uredi
+      email: E-pošta
+      email_status: Status e-pošte
+      enabled: Omogućeno
+      followers: Pratitelji
+      follows: Praćeni
+      header: Zaglavlje
+      ip: IP
+      location:
+        all: Sve
+        local: Lokalno
+        remote: Udaljeno
+        title: Lokacija
+      moderation:
+        all: Sve
+    action_logs:
+      deleted_status: "(izbrisani status)"
+      empty: Nema pronađenih izvješća.
+      filter_by_action: Filtriraj prema radnji
+      filter_by_user: Filtriraj prema korisniku
   application_mailer:
     settings: 'Promijeni postavke e-pošte: %{link}'
     view: 'Vidi:'
@@ -104,11 +129,36 @@ hr:
     '500':
     '503': The page could not be served due to a temporary server failure.
   exports:
+    archive_takeout:
+      date: Datum
+      download: Preuzmite svoju arhivu
+      size: Veličina
     blocks: Blokirali ste
+    csv: CSV
+    lists: Liste
     storage: Pohrana medijskih sadržaja
+  filters:
+    contexts:
+      notifications: Obavijesti
+    index:
+      empty: Nemate filtera.
+      title: Filteri
+    new:
+      title: Dodaj novi filter
+  footer:
+    developers: Razvijatelji
+    more: Više…
+    resources: Resursi
+    trending_now: Popularno
   generic:
+    all: Sve
     changes_saved_msg: Izmjene su uspješno sačuvane!
+    copy: Kopiraj
+    delete: Obriši
     save_changes: Sačuvaj izmjene
+  identity_proofs:
+    authorize: Da, autoriziraj
+    identity: Identitet
   imports:
     preface: Možete uvesti podatke koje ste izveli s drugog poslužitelja, kao što su liste ljudi koje pratite ili blokirate.
     success: Vaši podatci uspješno su preneseni i bit će obrađeni u dogledno vrijeme
@@ -116,6 +166,22 @@ hr:
       blocking: Lista blokiranih
       following: Lista praćenih
       muting: Lista utišanih
+  invites:
+    expired: Isteklo
+    expires_in:
+      '1800': 30 minuta
+      '21600': 6 sati
+      '3600': 1 sat
+      '43200': 12 sati
+      '604800': 1 tjedan
+      '86400': 1 dan
+    expires_in_prompt: Nikad
+    generate: Generiraj poveznicu za pozivanje
+    invited_by: 'Poziva Vas:'
+    max_uses:
+      one: 1 korištenje
+      few: "%{count} korištenja"
+      other: "%{count} korištenja"
   notification_mailer:
     digest:
       body: Ovo je kratak sažetak propuštenih poruka od Vašeg prošlog posjeta %{since}
@@ -135,9 +201,25 @@ hr:
     reblog:
       body: 'Vaš status boostao/la je %{name}:'
       subject: "%{name} boostao/la je Vaš status"
+  number:
+    human:
+      decimal_units:
+        units:
+          billion: mrd
+          million: mil
+          thousand: tis
+          trillion: bil
+  otp_authentication:
+    setup: Postavi
   pagination:
+    newer: Novije
     next: Sljedeće
+    older: Starije
     prev: Prethodno
+    truncate: "&hellip;"
+  polls:
+    errors:
+      already_voted: Već ste glasali u ovoj anketi
   remote_follow:
     acct: Unesite Vaše KorisničkoIme@domena s kojim želite izvršiti radnju
     missing_resource: Nije moguće pronaći traženi URL preusmjeravanja za Vaš račun
@@ -145,6 +227,8 @@ hr:
     prompt: 'Pratit ćete:'
   sessions:
     platforms:
+      android: Android
+      blackberry: Blackberry
       chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
@@ -154,7 +238,13 @@ hr:
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
+    revoke: Opozovi
+    revoke_success: Sesija je uspješno opozvana
+    title: Sesije
   settings:
+    account: Račun
+    account_settings: Postavke računa
+    aliases: Pseudonimi računa
     authorized_apps: Autorizirane aplikacije
     back: Natrag na Mastodon
     edit_profile: Uredi profil
