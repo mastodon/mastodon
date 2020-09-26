@@ -245,17 +245,34 @@ hr:
     account: Račun
     account_settings: Postavke računa
     aliases: Pseudonimi računa
+    appearance: Izgled
     authorized_apps: Autorizirane aplikacije
     back: Natrag na Mastodon
+    delete: Brisanje računa
+    development: Razvijanje
     edit_profile: Uredi profil
     export: Izvoz podataka
+    featured_tags: Istaknuti hashtagovi
     import: Uvezi
+    notifications: Obavijesti
     preferences: Postavke
+    profile: Profil
     two_factor_authentication: Dvofaktorska autentifikacija
   statuses:
     open_in_web: Otvori na webu
     over_character_limit: prijeđeno je ograničenje od %{max} znakova
+    poll:
+      total_people:
+        one: "%{count} osoba"
+        few: "%{count} osobe"
+        other: "%{count} ljudi"
+      total_votes:
+        one: "%{count} glas"
+        few: "%{count} glasa"
+        other: "%{count} glasova"
+      vote: Glasaj
     show_more: Prikaži više
+    show_thread: Prikaži nit
     visibilities:
       private: Samo pratitelji
       public: Javno
@@ -265,6 +282,25 @@ hr:
     sensitive_content: Osjetljivi sadržaj
   two_factor_authentication:
     disable: Onemogući 2FA
+  user_mailer:
+    warning:
+      title:
+        disable: Račun je zamrznut
+        none: Upozorenje
+        silence: Račun je ograničen
+        suspend: Račun je suspendiran
+    welcome:
+      edit_profile_action: Postavi profil
+      review_preferences_action: Promijeni postavke
+      subject: Dobro došli na Mastodon
+      tips: Savjeti
   users:
     invalid_email: Adresa e-pošte nije valjana
     invalid_otp_token: Nevažeći dvo-faktorski kôd
+    invalid_sign_in_token: Nevažeći sigurnosni kôd
+    signed_in_as: 'Prijavljeni kao:'
+  verification:
+    verification: Verifikacija
+  webauthn_credentials:
+    add: Dodaj novi sigurnosni ključ
+    delete: Obriši
