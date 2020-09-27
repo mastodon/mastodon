@@ -15,6 +15,7 @@ import scheduleIdleTask from '../../ui/util/schedule_idle_task';
 import classNames from 'classnames';
 import Icon from 'mastodon/components/icon';
 import AnimatedNumber from 'mastodon/components/animated_number';
+import PictureInPicturePlaceholder from 'mastodon/components/picture_in_picture_placeholder';
 
 const messages = defineMessages({
   public_short: { id: 'privacy.public.short', defaultMessage: 'Public' },
@@ -40,6 +41,7 @@ class DetailedStatus extends ImmutablePureComponent {
     domain: PropTypes.string.isRequired,
     compact: PropTypes.bool,
     showMedia: PropTypes.bool,
+    usingPiP: PropTypes.bool,
     onToggleMediaVisibility: PropTypes.func,
   };
 
@@ -100,7 +102,7 @@ class DetailedStatus extends ImmutablePureComponent {
   render () {
     const status = (this.props.status && this.props.status.get('reblog')) ? this.props.status.get('reblog') : this.props.status;
     const outerStyle = { boxSizing: 'border-box' };
-    const { intl, compact } = this.props;
+    const { intl, compact, usingPiP } = this.props;
 
     if (!status) {
       return null;
@@ -116,7 +118,9 @@ class DetailedStatus extends ImmutablePureComponent {
       outerStyle.height = `${this.state.height}px`;
     }
 
-    if (status.get('media_attachments').size > 0) {
+    if (usingPiP) {
+      media = <PictureInPicturePlaceholder />;
+    } else if (status.get('media_attachments').size > 0) {
       if (status.getIn(['media_attachments', 0, 'type']) === 'audio') {
         const attachment = status.getIn(['media_attachments', 0]);
 
