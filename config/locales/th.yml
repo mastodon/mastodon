@@ -610,10 +610,12 @@ th:
     checkbox_agreement_html: ฉันยอมรับ <a href="%{rules_path}" target="_blank">กฎของเซิร์ฟเวอร์</a> และ <a href="%{terms_path}" target="_blank">เงื่อนไขการให้บริการ</a>
     checkbox_agreement_without_rules_html: ฉันยอมรับ <a href="%{terms_path}" target="_blank">เงื่อนไขการให้บริการ</a>
     delete_account: ลบบัญชี
+    delete_account_html: หากคุณต้องการลบบัญชีของคุณ คุณสามารถ <a href="%{path}">ดำเนินการต่อที่นี่</a> คุณจะได้รับการถามเพื่อการยืนยัน
     description:
       prefix_invited_by_user: "@%{name} เชิญคุณเข้าร่วมเซิร์ฟเวอร์ Mastodon นี้!"
       prefix_sign_up: ลงทะเบียนใน Mastodon วันนี้!
     didnt_get_confirmation: ไม่ได้รับคำแนะนำการยืนยัน?
+    dont_have_your_security_key: ไม่มีกุญแจความปลอดภัยของคุณ?
     forgot_password: ลืมรหัสผ่านของคุณ?
     invalid_reset_password_token: โทเคนการตั้งรหัสผ่านใหม่ไม่ถูกต้องหรือหมดอายุแล้ว โปรดขอโทเคนใหม่
     link_to_otp: ป้อนรหัสสองปัจจัยจากโทรศัพท์ของคุณหรือรหัสกู้คืน
@@ -621,6 +623,7 @@ th:
     login: เข้าสู่ระบบ
     logout: ออกจากระบบ
     migrate_account: ย้ายไปยังบัญชีอื่น
+    migrate_account_html: หากคุณต้องการเปลี่ยนเส้นทางบัญชีนี้ไปยังบัญชีอื่น คุณสามารถ <a href="%{path}">กำหนดค่าบัญชีที่นี่</a>
     or_log_in_with: หรือเข้าสู่ระบบด้วย
     providers:
       cas: CAS
