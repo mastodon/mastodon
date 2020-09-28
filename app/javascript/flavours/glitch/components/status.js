@@ -17,6 +17,7 @@ import classNames from 'classnames';
 import { autoUnfoldCW } from 'flavours/glitch/util/content_warning';
 import PollContainer from 'flavours/glitch/containers/poll_container';
 import { displayMedia } from 'flavours/glitch/util/initial_state';
+import PictureInPicturePlaceholder from 'flavours/glitch/components/picture_in_picture_placeholder';
 
 // We use the component (and not the container) since we do not want
 // to use the progress bar to show download progress
@@ -97,6 +98,8 @@ class Status extends ImmutablePureComponent {
     cachedMediaWidth: PropTypes.number,
     onClick: PropTypes.func,
     scrollKey: PropTypes.string,
+    deployPictureInPicture: PropTypes.func,
+    usingPiP: PropTypes.bool,
   };
 
   state = {
@@ -123,6 +126,7 @@ class Status extends ImmutablePureComponent {
     'hidden',
     'expanded',
     'unread',
+    'usingPiP',
   ]
 
   updateOnStates = [
@@ -394,6 +398,12 @@ class Status extends ImmutablePureComponent {
     }
   }
 
+  handleDeployPictureInPicture = (type, mediaProps) => {
+    const { deployPictureInPicture, status } = this.props;
+
+    deployPictureInPicture(status, type, mediaProps);
+  }
+
   handleHotkeyReply = e => {
     e.preventDefault();
     this.props.onReply(this.props.status, this.context.router.history);
@@ -496,6 +506,7 @@ class Status extends ImmutablePureComponent {
       hidden,
       unread,
       featured,
+      usingPiP,
       ...other
     } = this.props;
     const { isExpanded, isCollapsed, forceFilter } = this.state;
@@ -576,6 +587,9 @@ class Status extends ImmutablePureComponent {
     if (status.get('poll')) {
       media = <PollContainer pollId={status.get('poll')} />;
       mediaIcon = 'tasks';
+    } else if (usingPiP) {
+      media = <PictureInPicturePlaceholder width={this.props.cachedMediaWidth} />;
+      mediaIcon = 'video-camera';
     } else if (attachments.size > 0) {
       if (muted || attachments.some(item => item.get('type') === 'unknown')) {
         media = (
@@ -601,6 +615,7 @@ class Status extends ImmutablePureComponent {
                 width={this.props.cachedMediaWidth}
                 height={110}
                 cacheWidth={this.props.cacheMediaWidth}
+                deployPictureInPicture={this.handleDeployPictureInPicture}
               />
             )}
           </Bundle>
@@ -624,6 +639,7 @@ class Status extends ImmutablePureComponent {
               onOpenVideo={this.handleOpenVideo}
               width={this.props.cachedMediaWidth}
               cacheWidth={this.props.cacheMediaWidth}
+              deployPictureInPicture={this.handleDeployPictureInPicture}
               visible={this.state.showMedia}
               onToggleVisibility={this.handleToggleMediaVisibility}
             />)}

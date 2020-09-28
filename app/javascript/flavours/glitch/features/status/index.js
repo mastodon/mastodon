@@ -132,6 +132,7 @@ const makeMapStateToProps = () => {
       settings: state.get('local_settings'),
       askReplyConfirmation: state.getIn(['local_settings', 'confirm_before_clearing_draft']) && state.getIn(['compose', 'text']).trim().length !== 0,
       domain: state.getIn(['meta', 'domain']),
+      usingPiP: state.get('picture_in_picture').statusId === props.params.statusId,
     };
   };
 
@@ -157,6 +158,7 @@ class Status extends ImmutablePureComponent {
     askReplyConfirmation: PropTypes.bool,
     multiColumn: PropTypes.bool,
     domain: PropTypes.string.isRequired,
+    usingPiP: PropTypes.bool,
   };
 
   state = {
@@ -514,7 +516,7 @@ class Status extends ImmutablePureComponent {
   render () {
     let ancestors, descendants;
     const { setExpansion } = this;
-    const { status, settings, ancestorsIds, descendantsIds, intl, domain, multiColumn } = this.props;
+    const { status, settings, ancestorsIds, descendantsIds, intl, domain, multiColumn, usingPiP } = this.props;
     const { fullscreen, isExpanded } = this.state;
 
     if (status === null) {
@@ -578,6 +580,7 @@ class Status extends ImmutablePureComponent {
                   domain={domain}
                   showMedia={this.state.showMedia}
                   onToggleMediaVisibility={this.handleToggleMediaVisibility}
+                  usingPiP={usingPiP}
                 />
 
                 <ActionBar

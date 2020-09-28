@@ -40,16 +40,6 @@ const messages = defineMessages({
   hide: { id: 'status.hide', defaultMessage: 'Hide toot' },
 });
 
-const obfuscatedCount = count => {
-  if (count < 0) {
-    return 0;
-  } else if (count <= 1) {
-    return count;
-  } else {
-    return '1+';
-  }
-};
-
 export default @injectIntl
 class StatusActionBar extends ImmutablePureComponent {
 
@@ -284,10 +274,14 @@ class StatusActionBar extends ImmutablePureComponent {
     );
     if (showReplyCount) {
       replyButton = (
-        <div className='status__action-bar__counter'>
-          {replyButton}
-          <span className='status__action-bar__counter__label' >{obfuscatedCount(status.get('replies_count'))}</span>
-        </div>
+        <IconButton
+          className='status__action-bar-button'
+          title={replyTitle}
+          icon={replyIcon}
+          onClick={this.handleReplyClick}
+          counter={status.get('replies_count')}
+          obfuscateCount
+        />
       );
     }
 

@@ -19,6 +19,7 @@ import PermaLink from 'flavours/glitch/components/permalink';
 import ColumnsAreaContainer from './containers/columns_area_container';
 import classNames from 'classnames';
 import Favico from 'favico.js';
+import PictureInPicture from 'flavours/glitch/features/picture_in_picture';
 import {
   Compose,
   Status,
@@ -614,6 +615,7 @@ class UI extends React.Component {
             {children}
           </SwitchingColumnsArea>
 
+          <PictureInPicture />
           <NotificationsContainer />
           <LoadingBarContainer className='loading-bar' />
           <ModalContainer />
