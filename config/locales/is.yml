@@ -97,6 +97,7 @@ is:
       add_email_domain_block: Útiloka tölvupóstlén
       approve: Samþykkja
       approve_all: Samþykkja allt
+      approved_msg: Tókst að samþykkja skráningu fyrir %{username}
       are_you_sure: Ertu viss?
       avatar: Auðkennismynd
       by_domain: Lén
@@ -110,8 +111,10 @@ is:
       confirm: Staðfesta
       confirmed: Staðfest
       confirming: Staðfesti
+      delete: Eyða gögnum
       deleted: Eytt
       demote: Lækka í tign
+      destroyed_msg: "Gögn notandans %{username} eru núna í bið eftir að vera endanlega eytt"
       disable: Gera óvirkt
       disable_two_factor_authentication: Gera tveggja-þátta auðkenningu óvirka
       disabled: Óvirkt
@@ -122,6 +125,7 @@ is:
       email_status: Staða tölvupósts
       enable: Virkja
       enabled: Virkt
+      enabled_msg: Tókst að affrysta aðgang notandans %{username}
       followers: Fylgjendur
       follows: Fylgist með
       header: Haus
@@ -137,6 +141,8 @@ is:
       login_status: Staða innskráningar
       media_attachments: Myndaviðhengi
       memorialize: Breyta í minningargrein
+      memorialized: Breytt í minningargrein
+      memorialized_msg: Tókst að breyta %{username} í minningaraðgang
       moderation:
         active: Virkur
         all: Allt
@@ -157,10 +163,14 @@ is:
       public: Opinber
       push_subscription_expires: PuSH-áskrift rennur út
       redownload: Endurlesa notandasnið
+      redownloaded_msg: Tókst að endurlesa notandasnið %{username} úr upphaflegu sniði
       reject: Hafna
       reject_all: Hafna öllu
+      rejected_msg: Tókst að hafna skráningu fyrir {username}
       remove_avatar: Fjarlægja auðkennismynd
       remove_header: Fjarlægja haus
+      removed_avatar_msg: Tókst að fjarlægja auðkennismynd notandans %{username}
+      removed_header_msg: Tókst að fjarlægja forsíðumynd notandans %{username}
       resend_confirmation:
         already_confirmed: Þessi notandi hefur þegar verið staðfestur
         send: Senda staðfestingartölvupóst aftur
@@ -191,8 +201,11 @@ is:
       unconfirmed_email: Óstaðfestur tölvupóstur
       undo_silenced: Hætta að hylja
       undo_suspension: Taka úr bið
+      unsilenced_msg: Tókst að fjarlægja takmarkanir af notandaaðgangnum fyrir %{username}
       unsubscribe: Taka úr áskrift
+      unsuspended_msg: Tókst að taka notandaaðganginn fyrir %{username} úr bið
       username: Notandanafn
+      view_domain: Skoða yfirlit fyrir lén
       warn: Aðvara
       web: Vefur
       whitelisted: Á lista yfir leyft
