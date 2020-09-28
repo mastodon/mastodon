@@ -21,6 +21,7 @@ import { WrappedSwitch, WrappedRoute } from './util/react_router_helpers';
 import UploadArea from './components/upload_area';
 import ColumnsAreaContainer from './containers/columns_area_container';
 import DocumentTitle from './components/document_title';
+import PictureInPicture from 'mastodon/features/picture_in_picture';
 import {
   Compose,
   Status,
@@ -547,6 +548,7 @@ class UI extends React.PureComponent {
             {children}
           </SwitchingColumnsArea>
 
+          <PictureInPicture />
           <NotificationsContainer />
           <LoadingBarContainer className='loading-bar' />
           <ModalContainer />
