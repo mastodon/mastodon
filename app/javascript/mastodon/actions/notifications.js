@@ -234,3 +234,7 @@ export const mountNotifications = () => ({
 export const unmountNotifications = () => ({
   type: NOTIFICATIONS_UNMOUNT,
 });
+
+export const markNotificationsAsRead = () => ({
+  type: NOTIFICATIONS_MARK_AS_READ,
+});
