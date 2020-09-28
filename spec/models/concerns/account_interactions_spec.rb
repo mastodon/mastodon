@@ -21,7 +21,7 @@ describe AccountInteractions do
     context 'account with Follow but with reblogs disabled' do
       it 'returns { target_account_id => { reblogs: false } }' do
         Fabricate(:follow, account: account, target_account: target_account, show_reblogs: false)
-        is_expected.to eq(target_account_id => { reblogs: false })
+        is_expected.to eq(target_account_id => { reblogs: false, notify: false })
       end
     end
 
