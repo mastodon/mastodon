@@ -27,6 +27,8 @@ class Api::V1::MutesController < Api::BaseController
 
   def paginated_mutes
     @paginated_mutes ||= Mute.eager_load(:target_account)
+                             .joins(:target_account)
+                             .merge(Account.without_suspended)
                              .where(account: current_account)
                              .paginate_by_max_id(
                                limit_param(DEFAULT_ACCOUNTS_LIMIT),

@@ -11,12 +11,12 @@ class PollExpirationNotifyWorker
     # Notify poll owner and remote voters
     if poll.local?
       ActivityPub::DistributePollUpdateWorker.perform_async(poll.status.id)
-      NotifyService.new.call(poll.account, poll)
+      NotifyService.new.call(poll.account, :poll, poll)
     end
 
     # Notify local voters
     poll.votes.includes(:account).map(&:account).select(&:local?).each do |account|
-      NotifyService.new.call(account, poll)
+      NotifyService.new.call(account, :poll, poll)
     end
   rescue ActiveRecord::RecordNotFound
     true

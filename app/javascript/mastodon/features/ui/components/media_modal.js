@@ -160,7 +160,7 @@ class MediaModal extends ImmutablePureComponent {
             src={image.get('url')}
             width={image.get('width')}
             height={image.get('height')}
-            startTime={time || 0}
+            currentTime={time || 0}
             onCloseVideo={onClose}
             detailed
             alt={image.get('description')}

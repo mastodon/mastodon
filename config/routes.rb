@@ -234,7 +234,7 @@ Rails.application.routes.draw do
 
     resources :report_notes, only: [:create, :destroy]
 
-    resources :accounts, only: [:index, :show] do
+    resources :accounts, only: [:index, :show, :destroy] do
       member do
         post :enable
         post :unsilence
@@ -474,7 +474,7 @@ Rails.application.routes.draw do
       end
 
       namespace :admin do
-        resources :accounts, only: [:index, :show] do
+        resources :accounts, only: [:index, :show, :destroy] do
           member do
             post :enable
             post :unsilence

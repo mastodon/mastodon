@@ -253,7 +253,15 @@ class Request
       alias new open
 
       def check_private_address(address)
-        raise Mastodon::HostValidationError if PrivateAddressCheck.private_address?(IPAddr.new(address.to_s))
+        addr = IPAddr.new(address.to_s)
+        return if private_address_exceptions.any? { |range| range.include?(addr) }
+        raise Mastodon::HostValidationError if PrivateAddressCheck.private_address?(addr)
+      end
+
+      def private_address_exceptions
+        @private_address_exceptions = begin
+          (ENV['ALLOWED_PRIVATE_ADDRESSES'] || '').split(',').map { |addr| IPAddr.new(addr) }
+        end
       end
     end
   end

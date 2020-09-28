@@ -226,23 +226,20 @@ class Account < ApplicationRecord
 
   def suspend!(date = Time.now.utc)
     transaction do
-      user&.disable! if local?
+      create_deletion_request!
       update!(suspended_at: date)
     end
   end
 
   def unsuspend!
     transaction do
-      user&.enable! if local?
+      deletion_request&.destroy!
       update!(suspended_at: nil)
     end
   end
 
   def memorialize!
-    transaction do
-      user&.disable! if local?
-      update!(memorial: true)
-    end
+    update!(memorial: true)
   end
 
   def sign?

@@ -37,7 +37,11 @@ class Audio extends React.PureComponent {
     backgroundColor: PropTypes.string,
     foregroundColor: PropTypes.string,
     accentColor: PropTypes.string,
+    currentTime: PropTypes.number,
     autoPlay: PropTypes.bool,
+    volume: PropTypes.number,
+    muted: PropTypes.bool,
+    deployPictureInPicture: PropTypes.func,
   };
 
   state = {
@@ -62,6 +66,19 @@ class Audio extends React.PureComponent {
     if (this.player) {
       this._setDimensions();
     }
+  }
+
+  _pack() {
+    return {
+      src: this.props.src,
+      volume: this.audio.volume,
+      muted: this.audio.muted,
+      currentTime: this.audio.currentTime,
+      poster: this.props.poster,
+      backgroundColor: this.props.backgroundColor,
+      foregroundColor: this.props.foregroundColor,
+      accentColor: this.props.accentColor,
+    };
   }
 
   _setDimensions () {
@@ -112,6 +129,10 @@ class Audio extends React.PureComponent {
   componentWillUnmount () {
     window.removeEventListener('scroll', this.handleScroll);
     window.removeEventListener('resize', this.handleResize);
+
+    if (!this.state.paused && this.audio && this.props.deployPictureInPicture) {
+      this.props.deployPictureInPicture('audio', this._pack());
+    }
   }
 
   togglePlay = () => {
@@ -248,7 +269,13 @@ class Audio extends React.PureComponent {
     const inView = (top <= (window.innerHeight || document.documentElement.clientHeight)) && (top + height >= 0);
 
     if (!this.state.paused && !inView) {
-      this.setState({ paused: true }, () => this.audio.pause());
+      this.audio.pause();
+
+      if (this.props.deployPictureInPicture) {
+        this.props.deployPictureInPicture('audio', this._pack());
+      }
+
+      this.setState({ paused: true });
     }
   }, 150, { trailing: true });
 
@@ -261,10 +288,22 @@ class Audio extends React.PureComponent {
   }
 
   handleLoadedData = () => {
-    const { autoPlay } = this.props;
+    const { autoPlay, currentTime, volume, muted } = this.props;
+
+    if (currentTime) {
+      this.audio.currentTime = currentTime;
+    }
+
+    if (volume !== undefined) {
+      this.audio.volume = volume;
+    }
+
+    if (muted !== undefined) {
+      this.audio.muted = muted;
+    }
 
     if (autoPlay) {
-      this.audio.play();
+      this.togglePlay();
     }
   }
 
@@ -350,7 +389,7 @@ class Audio extends React.PureComponent {
   render () {
     const { src, intl, alt, editable, autoPlay } = this.props;
     const { paused, muted, volume, currentTime, duration, buffer, dragging } = this.state;
-    const progress = (currentTime / duration) * 100;
+    const progress = Math.min((currentTime / duration) * 100, 100);
 
     return (
       <div className={classNames('audio-player', { editable })} ref={this.setPlayerRef} style={{ backgroundColor: this._getBackgroundColor(), color: this._getForegroundColor(), width: '100%', height: this.props.fullscreen ? '100%' : (this.state.height || this.props.height) }} onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
