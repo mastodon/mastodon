@@ -1148,6 +1148,28 @@
   align-items: center;
   display: flex;
   margin-top: 8px;
+
+  .status__action-bar-button {
+    text-decoration: none;
+  }
+
+  &__counter {
+    display: inline-flex;
+    margin-right: 11px;
+    align-items: center;
+
+    .status__action-bar-button {
+      margin-right: 4px;
+    }
+
+    &__label {
+      display: inline-block;
+      width: 14px;
+      font-size: 12px;
+      font-weight: 500;
+      color: $action-button-color;
+    }
+  }
 }
 
 .status__action-bar-button {
