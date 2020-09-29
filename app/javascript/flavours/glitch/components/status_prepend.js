@@ -108,6 +108,7 @@ export default class StatusPrepend extends React.PureComponent {
     case 'poll':
       iconId = 'tasks';
       break;
+    case 'reblog':
     case 'reblogged_by':
       iconId = 'retweet';
       break;
