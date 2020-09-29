@@ -36,7 +36,7 @@ class BlockDomainService < BaseService
   def suspend_accounts!
     blocked_domain_accounts.without_suspended.in_batches.update_all(suspended_at: @domain_block.created_at)
     blocked_domain_accounts.where(suspended_at: @domain_block.created_at).reorder(nil).find_each do |account|
-      SuspendAccountService.new.call(account, reserve_username: true, suspended_at: @domain_block.created_at)
+      DeleteAccountService.new.call(account, reserve_username: true, suspended_at: @domain_block.created_at)
     end
   end
 

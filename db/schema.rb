@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_30_190544) do
+ActiveRecord::Schema.define(version: 2020_09_17_222734) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,13 @@ ActiveRecord::Schema.define(version: 2020_06_30_190544) do
     t.boolean "unread", default: false, null: false
     t.index ["account_id", "conversation_id", "participant_account_ids"], name: "index_unique_conversations", unique: true
     t.index ["conversation_id"], name: "index_account_conversations_on_conversation_id"
+  end
+
+  create_table "account_deletion_requests", force: :cascade do |t|
+    t.bigint "account_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_account_deletion_requests_on_account_id"
   end
 
   create_table "account_domain_blocks", force: :cascade do |t|
@@ -404,6 +411,7 @@ ActiveRecord::Schema.define(version: 2020_06_30_190544) do
     t.bigint "target_account_id", null: false
     t.boolean "show_reblogs", default: true, null: false
     t.string "uri"
+    t.boolean "notify", default: false, null: false
     t.index ["account_id", "target_account_id"], name: "index_follow_requests_on_account_id_and_target_account_id", unique: true
   end
 
@@ -414,6 +422,7 @@ ActiveRecord::Schema.define(version: 2020_06_30_190544) do
     t.bigint "target_account_id", null: false
     t.boolean "show_reblogs", default: true, null: false
     t.string "uri"
+    t.boolean "notify", default: false, null: false
     t.index ["account_id", "target_account_id"], name: "index_follows_on_account_id_and_target_account_id", unique: true
     t.index ["target_account_id"], name: "index_follows_on_target_account_id"
   end
@@ -538,8 +547,8 @@ ActiveRecord::Schema.define(version: 2020_06_30_190544) do
     t.datetime "updated_at", null: false
     t.bigint "account_id", null: false
     t.bigint "from_account_id", null: false
-    t.index ["account_id", "activity_id", "activity_type"], name: "account_activity", unique: true
-    t.index ["account_id", "id"], name: "index_notifications_on_account_id_and_id", order: { id: :desc }
+    t.string "type"
+    t.index ["account_id", "id", "type"], name: "index_notifications_on_account_id_and_id_and_type", order: { id: :desc }
     t.index ["activity_id", "activity_type"], name: "index_notifications_on_activity_id_and_activity_type"
     t.index ["from_account_id"], name: "index_notifications_on_from_account_id"
   end
@@ -928,6 +937,7 @@ ActiveRecord::Schema.define(version: 2020_06_30_190544) do
   add_foreign_key "account_aliases", "accounts", on_delete: :cascade
   add_foreign_key "account_conversations", "accounts", on_delete: :cascade
   add_foreign_key "account_conversations", "conversations", on_delete: :cascade
+  add_foreign_key "account_deletion_requests", "accounts", on_delete: :cascade
   add_foreign_key "account_domain_blocks", "accounts", name: "fk_206c6029bd", on_delete: :cascade
   add_foreign_key "account_identity_proofs", "accounts", on_delete: :cascade
   add_foreign_key "account_migrations", "accounts", column: "target_account_id", on_delete: :nullify

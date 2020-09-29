@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe SuspendAccountService, type: :service do
+RSpec.describe DeleteAccountService, type: :service do
   describe '#call on local account' do
     before do
       stub_request(:post, "https://alice.com/inbox").to_return(status: 201)

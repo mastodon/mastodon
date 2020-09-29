@@ -48,7 +48,7 @@ const getNotifications = createSelector([
     // we need to turn it off for FilterBar in order not to block ourselves from seeing a specific category
     return notifications.filterNot(item => item !== null && excludedTypes.includes(item.get('type')));
   }
-  return notifications.filter(item => item !== null && allowedType === item.get('type'));
+  return notifications.filter(item => item === null || allowedType === item.get('type'));
 });
 
 const mapStateToProps = state => ({

@@ -25,7 +25,10 @@ class FeedInsertWorker
   private
 
   def check_and_insert
-    perform_push unless feed_filtered?
+    return if feed_filtered?
+
+    perform_push
+    perform_notify if notify?
   end
 
   def feed_filtered?
@@ -39,6 +42,12 @@ class FeedInsertWorker
     end
   end
 
+  def notify?
+    return false if @type != :home || @status.reblog? || (@status.reply? && @status.in_reply_to_account_id != @status.account_id)
+
+    Follow.find_by(account: @follower, target_account: @status.account)&.notify?
+  end
+
   def perform_push
     case @type
     when :home
@@ -48,5 +57,9 @@ class FeedInsertWorker
     when :direct
       FeedManager.instance.push_to_direct(@account, @status)
     end
+  end
+
+  def perform_notify
+    NotifyService.new.call(@follower, :status, @status)
   end
 end

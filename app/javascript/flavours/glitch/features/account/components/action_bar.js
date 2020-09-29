@@ -26,6 +26,19 @@ class ActionBar extends React.PureComponent {
   render () {
     const { account, intl } = this.props;
 
+    if (account.get('suspended')) {
+      return (
+        <div>
+          <div className='account__disclaimer'>
+            <Icon id='info-circle' fixedWidth /> <FormattedMessage
+              id='account.suspended_disclaimer_full'
+              defaultMessage="This user has been suspended by a moderator."
+            />
+          </div>
+        </div>
+      );
+    }
+
     let extraInfo = '';
 
     if (account.get('acct') !== account.get('username')) {

@@ -4,7 +4,14 @@ import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import Column from '../../components/column';
 import ColumnHeader from '../../components/column_header';
-import { expandNotifications, scrollTopNotifications, loadPending, mountNotifications, unmountNotifications } from '../../actions/notifications';
+import {
+  expandNotifications,
+  scrollTopNotifications,
+  loadPending,
+  mountNotifications,
+  unmountNotifications,
+  markNotificationsAsRead,
+} from '../../actions/notifications';
 import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
 import NotificationContainer from './containers/notification_container';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
@@ -15,9 +22,12 @@ import { List as ImmutableList } from 'immutable';
 import { debounce } from 'lodash';
 import ScrollableList from '../../components/scrollable_list';
 import LoadGap from '../../components/load_gap';
+import Icon from 'mastodon/components/icon';
+import compareId from 'mastodon/compare_id';
 
 const messages = defineMessages({
   title: { id: 'column.notifications', defaultMessage: 'Notifications' },
+  markAsRead : { id: 'notifications.mark_as_read', defaultMessage: 'Mark every notification as read' },
 });
 
 const getNotifications = createSelector([
@@ -32,7 +42,7 @@ const getNotifications = createSelector([
     // we need to turn it off for FilterBar in order not to block ourselves from seeing a specific category
     return notifications.filterNot(item => item !== null && excludedTypes.includes(item.get('type')));
   }
-  return notifications.filter(item => item !== null && allowedType === item.get('type'));
+  return notifications.filter(item => item === null || allowedType === item.get('type'));
 });
 
 const mapStateToProps = state => ({
@@ -42,6 +52,8 @@ const mapStateToProps = state => ({
   isUnread: state.getIn(['notifications', 'unread']) > 0 || state.getIn(['notifications', 'pendingItems']).size > 0,
   hasMore: state.getIn(['notifications', 'hasMore']),
   numPending: state.getIn(['notifications', 'pendingItems'], ImmutableList()).size,
+  lastReadId: state.getIn(['notifications', 'readMarkerId']),
+  canMarkAsRead: state.getIn(['notifications', 'readMarkerId']) !== '0' && getNotifications(state).some(item => item !== null && compareId(item.get('id'), state.getIn(['notifications', 'readMarkerId'])) > 0),
 });
 
 export default @connect(mapStateToProps)
@@ -60,6 +72,8 @@ class Notifications extends React.PureComponent {
     multiColumn: PropTypes.bool,
     hasMore: PropTypes.bool,
     numPending: PropTypes.number,
+    lastReadId: PropTypes.string,
+    canMarkAsRead: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -146,8 +160,12 @@ class Notifications extends React.PureComponent {
     }
   }
 
+  handleMarkAsRead = () => {
+    this.props.dispatch(markNotificationsAsRead());
+  };
+
   render () {
-    const { intl, notifications, shouldUpdateScroll, isLoading, isUnread, columnId, multiColumn, hasMore, numPending, showFilterBar } = this.props;
+    const { intl, notifications, shouldUpdateScroll, isLoading, isUnread, columnId, multiColumn, hasMore, numPending, showFilterBar, lastReadId, canMarkAsRead } = this.props;
     const pinned = !!columnId;
     const emptyMessage = <FormattedMessage id='empty_column.notifications' defaultMessage="You don't have any notifications yet. Interact with others to start the conversation." />;
 
@@ -174,6 +192,7 @@ class Notifications extends React.PureComponent {
           accountId={item.get('account')}
           onMoveUp={this.handleMoveUp}
           onMoveDown={this.handleMoveDown}
+          unread={lastReadId !== '0' && compareId(item.get('id'), lastReadId) > 0}
         />
       ));
     } else {
@@ -202,6 +221,21 @@ class Notifications extends React.PureComponent {
       </ScrollableList>
     );
 
+    let extraButton = null;
+
+    if (canMarkAsRead) {
+      extraButton = (
+        <button
+          aria-label={intl.formatMessage(messages.markAsRead)}
+          title={intl.formatMessage(messages.markAsRead)}
+          onClick={this.handleMarkAsRead}
+          className='column-header__button'
+        >
+          <Icon id='check' />
+        </button>
+      );
+    }
+
     return (
       <Column bindToDocument={!multiColumn} ref={this.setColumnRef} label={intl.formatMessage(messages.title)}>
         <ColumnHeader
@@ -213,6 +247,7 @@ class Notifications extends React.PureComponent {
           onClick={this.handleHeaderClick}
           pinned={pinned}
           multiColumn={multiColumn}
+          extraButton={extraButton}
         >
           <ColumnSettingsContainer />
         </ColumnHeader>

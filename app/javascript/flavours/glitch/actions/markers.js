@@ -60,7 +60,7 @@ export const synchronouslySubmitMarkers = () => (dispatch, getState) => {
 const _buildParams = (state) => {
   const params = {};
 
-  const lastHomeId         = state.getIn(['timelines', 'home', 'items', 0]);
+  const lastHomeId         = state.getIn(['timelines', 'home', 'items']).find(item => item !== null);
   const lastNotificationId = state.getIn(['notifications', 'lastReadId']);
 
   if (lastHomeId && compareId(lastHomeId, state.getIn(['markers', 'home'])) > 0) {

@@ -8,7 +8,10 @@ class REST::AccountSerializer < ActiveModel::Serializer
              :followers_count, :following_count, :statuses_count, :last_status_at
 
   has_one :moved_to_account, key: :moved, serializer: REST::AccountSerializer, if: :moved_and_not_nested?
+
   has_many :emojis, serializer: REST::CustomEmojiSerializer
+
+  attribute :suspended, if: :suspended?
 
   class FieldSerializer < ActiveModel::Serializer
     attributes :name, :value, :verified_at
@@ -29,7 +32,7 @@ class REST::AccountSerializer < ActiveModel::Serializer
   end
 
   def note
-    Formatter.instance.simplified_format(object)
+    object.suspended? ? '' : Formatter.instance.simplified_format(object)
   end
 
   def url
@@ -37,23 +40,19 @@ class REST::AccountSerializer < ActiveModel::Serializer
   end
 
   def avatar
-    full_asset_url(object.avatar_original_url)
+    full_asset_url(object.suspended? ? object.avatar.default_url : object.avatar_original_url)
   end
 
   def avatar_static
-    full_asset_url(object.avatar_static_url)
+    full_asset_url(object.suspended? ? object.avatar.default_url : object.avatar_static_url)
   end
 
   def header
-    full_asset_url(object.header_original_url)
+    full_asset_url(object.suspended? ? object.header.default_url : object.header_original_url)
   end
 
   def header_static
-    full_asset_url(object.header_static_url)
-  end
-
-  def moved_and_not_nested?
-    object.moved? && object.moved_to_account.moved_to_account_id.nil?
+    full_asset_url(object.suspended? ? object.header.default_url : object.header_static_url)
   end
 
   def last_status_at
@@ -62,5 +61,43 @@ class REST::AccountSerializer < ActiveModel::Serializer
 
   def followers_count
     (Setting.hide_followers_count || object.user&.setting_hide_followers_count) ? -1 : object.followers_count
+  end
+
+  def display_name
+    object.suspended? ? '' : object.display_name
+  end
+
+  def locked
+    object.suspended? ? false : object.locked
+  end
+
+  def bot
+    object.suspended? ? false : object.bot
+  end
+
+  def discoverable
+    object.suspended? ? false : object.discoverable
+  end
+
+  def moved_to_account
+    object.suspended? ? nil : object.moved_to_account
+  end
+
+  def emojis
+    object.suspended? ? [] : object.emojis
+  end
+
+  def fields
+    object.suspended? ? [] : object.fields
+  end
+
+  def suspended
+    object.suspended?
+  end
+
+  delegate :suspended?, to: :object
+
+  def moved_and_not_nested?
+    object.moved? && object.moved_to_account.moved_to_account_id.nil?
   end
 end

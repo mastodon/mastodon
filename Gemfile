@@ -5,10 +5,10 @@ ruby '>= 2.5.0', '< 3.0.0'
 
 gem 'pkg-config', '~> 1.4'
 
-gem 'puma', '~> 4.3'
-gem 'rails', '~> 5.2.4.3'
+gem 'puma', '~> 5.0'
+gem 'rails', '~> 5.2.4.4'
 gem 'sprockets', '~> 3.7.2'
-gem 'thor', '~> 0.20'
+gem 'thor', '~> 1.0'
 gem 'rack', '~> 2.2.3'
 
 gem 'thwait', '~> 0.2.0'
@@ -20,7 +20,7 @@ gem 'makara', '~> 0.4'
 gem 'pghero', '~> 2.7'
 gem 'dotenv-rails', '~> 2.7'
 
-gem 'aws-sdk-s3', '~> 1.79', require: false
+gem 'aws-sdk-s3', '~> 1.81', require: false
 gem 'fog-core', '<= 2.1.0'
 gem 'fog-openstack', '~> 0.3', require: false
 gem 'paperclip', '~> 6.0'
@@ -123,26 +123,26 @@ end
 group :test do
   gem 'capybara', '~> 3.33'
   gem 'climate_control', '~> 0.2'
-  gem 'faker', '~> 2.13'
+  gem 'faker', '~> 2.14'
   gem 'microformats', '~> 4.2'
   gem 'rails-controller-testing', '~> 1.0'
   gem 'rspec-sidekiq', '~> 3.1'
   gem 'simplecov', '~> 0.19', require: false
-  gem 'webmock', '~> 3.8'
-  gem 'parallel_tests', '~> 3.2'
+  gem 'webmock', '~> 3.9'
+  gem 'parallel_tests', '~> 3.3'
   gem 'rspec_junit_formatter', '~> 0.4'
 end
 
 group :development do
   gem 'active_record_query_trace', '~> 1.7'
   gem 'annotate', '~> 3.1'
-  gem 'better_errors', '~> 2.7'
+  gem 'better_errors', '~> 2.8'
   gem 'binding_of_caller', '~> 0.7'
   gem 'bullet', '~> 6.1'
   gem 'letter_opener', '~> 1.7'
   gem 'letter_opener_web', '~> 1.4'
   gem 'memory_profiler'
-  gem 'rubocop', '~> 0.90', require: false
+  gem 'rubocop', '~> 0.91', require: false
   gem 'rubocop-rails', '~> 2.8', require: false
   gem 'brakeman', '~> 4.9', require: false
   gem 'bundler-audit', '~> 0.7', require: false
