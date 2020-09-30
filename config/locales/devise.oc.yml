@@ -61,9 +61,17 @@ oc:
         subject: 'Mastodon : consignas de desblocatge'
       webauthn_credential:
         added:
-          explanation: La claud de seguretat seguenta foguèt ajustada a vòstre compte
+          explanation: La clau de seguretat seguenta foguèt ajustada a vòstre compte
           subject: 'Mastodon : nòva clau de seguretat'
           title: Una nòva clau de seguretat es estada ajustada
+        deleted:
+          explanation: La clau de seguretat seguenta foguèt suprimida a vòstre compte
+          subject: 'Mastodon : clau de seguretat suprimida'
+      webauthn_disabled:
+        subject: 'Mastodon : autentificacion amb claus de seguretat desactivada'
+        title: Claus de seguretat desactivadas
+      webauthn_enabled:
+        title: Claus de seguretat activadas
     omniauth_callbacks:
       failure: Fracàs al moment de vos autentificar de %{kind} perque "%{reason}".
       success: Sètz ben autentificat dempuèi lo compte %{kind}.
