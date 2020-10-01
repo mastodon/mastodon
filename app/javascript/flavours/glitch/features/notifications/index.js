@@ -71,7 +71,7 @@ const mapDispatchToProps = dispatch => ({
   },
   onMarkAsRead() {
     dispatch(markNotificationsAsRead());
-    dispatch(submitMarkers());
+    dispatch(submitMarkers({ immediate: true }));
   },
   onMount() {
     dispatch(mountNotifications());

@@ -359,7 +359,7 @@ class UI extends React.Component {
     const visibility = !document[this.visibilityHiddenProp];
     this.props.dispatch(notificationsSetVisibility(visibility));
     if (visibility) {
-      this.props.dispatch(submitMarkers());
+      this.props.dispatch(submitMarkers({ immediate: true }));
     }
   }
 
