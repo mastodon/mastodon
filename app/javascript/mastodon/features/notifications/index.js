@@ -12,6 +12,7 @@ import {
   unmountNotifications,
   markNotificationsAsRead,
 } from '../../actions/notifications';
+import { submitMarkers } from '../../actions/markers';
 import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
 import NotificationContainer from './containers/notification_container';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
@@ -162,6 +163,7 @@ class Notifications extends React.PureComponent {
 
   handleMarkAsRead = () => {
     this.props.dispatch(markNotificationsAsRead());
+    this.props.dispatch(submitMarkers({ immediate: true }));
   };
 
   render () {
