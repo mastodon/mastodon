@@ -92,6 +92,7 @@ zh-CN:
       add_email_domain_block: 封禁电子邮箱域名
       approve: 批准
       approve_all: 批准全部
+      approved_msg: 成功批准 %{username} 的注册申请
       are_you_sure: 你确定吗？
       avatar: 头像
       by_domain: 域名
@@ -105,8 +106,10 @@ zh-CN:
       confirm: 确认
       confirmed: 已确认
       confirming: 确认中
+      delete: 删除数据
       deleted: 已删除
       demote: 降任
+      destroyed_msg: "%{username} 的数据已排队等待删除"
       disable: 停用
       disable_two_factor_authentication: 停用双重认证
       disabled: 已停用
@@ -117,6 +120,7 @@ zh-CN:
       email_status: 电子邮件地址状态
       enable: 启用
       enabled: 已启用
+      enabled_msg: 成功解冻 %{username} 的帐号
       followers: 关注者
       follows: 正在关注
       header: 个人资料页横幅图片
@@ -132,6 +136,8 @@ zh-CN:
       login_status: 登录状态
       media_attachments: 媒体文件
       memorialize: 设置为追悼帐户
+      memorialized: 记忆化
+      memorialized_msg: 成功将 %{username} 转换为纪念帐号
       moderation:
         active: 活跃
         all: 全部
@@ -152,10 +158,14 @@ zh-CN:
       public: 公开页面
       push_subscription_expires: PuSH 订阅过期时间
       redownload: 刷新个人资料
+      redownloaded_msg: 成功刷新 %{username} 的资料来源
       reject: 拒绝
       reject_all: 拒绝全部
+      rejected_msg: 成功拒绝 %{username} 的注册申请
       remove_avatar: 删除头像
       remove_header: 删除横幅图片
+      removed_avatar_msg: 成功删除 %{username} 的头像
+      removed_header_msg: 成功删除了 %{username} 的标题图像
       resend_confirmation:
         already_confirmed: 该用户已被确认
         send: 重发确认邮件
@@ -181,13 +191,18 @@ zh-CN:
       statuses: 嘟文
       subscribe: 订阅
       suspended: 已封禁
+      suspension_irreversible: 该帐号的数据已被不可逆转地删除。您可以取消暂停该帐号以使其可用，但它不会恢复以前拥有的任何数据。
+      suspension_reversible_hint_html: 帐号已暂停，数据将在 %{date} 完全删除。 在此之前，帐号可以在不产生任何不良影响的情况下恢复。 如果您想立即移除该帐号的所有数据，可以在下面进行。
       time_in_queue: 已经等待了 %{time}
       title: 用户
       unconfirmed_email: 待验证的电子邮件地址
       undo_silenced: 解除隐藏
       undo_suspension: 解除封禁
+      unsilenced_msg: 成功解除 %{username} 的帐号限制
       unsubscribe: 取消订阅
+      unsuspended_msg: 已成功取消暂停 %{username} 的帐号
       username: 用户名
+      view_domain: 查看域名摘要
       warn: 警告
       web: 站内页面
       whitelisted: 允许跨站交互
@@ -671,8 +686,11 @@ zh-CN:
       prefix_sign_up: 现在就注册 Mastodon！
       suffix: 注册一个帐号，你就可以关注别人、发布嘟文、并和其它任何Mastodon服务器上的用户交流，而且还有其它更多功能！
     didnt_get_confirmation: 没有收到确认邮件？
+    dont_have_your_security_key: 没有您的安全密钥？
     forgot_password: 忘记密码？
     invalid_reset_password_token: 密码重置令牌无效或已过期。请重新发起重置密码请求。
+    link_to_otp: 输入从手机中获得的两步验证代码或恢复代码
+    link_to_webauth: 使用您的安全密钥设备
     login: 登录
     logout: 登出
     migrate_account: 迁移到另一个帐户
@@ -698,6 +716,7 @@ zh-CN:
       pending: 工作人员正在审核您的申请。这需要花点时间。在申请被批准后，您将收到一封电子邮件。
       redirecting_to: 您的帐户无效，因为它已被设置为跳转到 %{acct}
     trouble_logging_in: 登录有问题？
+    use_security_key: 使用安全密钥
   authorize_follow:
     already_following: 你已经在关注此用户了
     already_requested: 你已经向那个账户发送过关注请求了
@@ -722,6 +741,7 @@ zh-CN:
   date:
     formats:
       default: "%Y年%m月%d日"
+      with_month_name: "%Y年%B%d日 "
   datetime:
     distance_in_words:
       about_x_hours: "%{count}时"
@@ -978,6 +998,14 @@ zh-CN:
           quadrillion: Q
           thousand: K
           trillion: T
+  otp_authentication:
+    code_hint: 输入认证器生成的代码以确认操作
+    description_html: 如果您使用身份验证程序应用程序启用了 <strong>双重身份验证</strong>， 登录将需要您拥有您的手机，它将生成您需要的令牌。
+    enable: 启用
+    instructions_html: "<strong>请使用 Google 身份验证器或其他 TOTP 双重认证手机应用扫描此处的二维码</strong>。启用双重认证后，你需要输入该应用生成的代码来登录你的帐户。"
+    manual_instructions: '如果你无法扫描二维码，请手动输入下列文本：'
+    setup: 设置
+    wrong_code: 输入的认证码无效！请确认服务器时间与设备时间是否正确？
   pagination:
     newer: 更新
     next: 下一页
@@ -1102,6 +1130,7 @@ zh-CN:
     profile: 个人资料
     relationships: 关注管理
     two_factor_authentication: 双重认证
+    webauthn_authentication: 安全密钥
   spam_check:
     spam_detected: 这是一个自动报告。已检测到垃圾信息。
   statuses:
@@ -1242,14 +1271,20 @@ zh-CN:
       default: "%Y年%-m月%d日 %H:%M"
       month: "%Y 年 %B"
   two_factor_authentication:
+    add: 添加
     disable: 停用
+    disabled_success: 双重身份验证成功禁用
+    edit: 编辑
     enabled: 双重认证已启用
     enabled_success: 双重认证启用成功
     generate_recovery_codes: 生成恢复代码
     lost_recovery_codes: 如果你的手机不慎丢失，你可以使用恢复代码来重新获得对帐户的访问权。如果你遗失了恢复代码，可以在此处重新生成。之前使用的恢复代码将会失效。
+    methods: 双重认证
+    otp: 身份验证 App
     recovery_codes: 备份恢复代码
     recovery_codes_regenerated: 恢复代码重新生成成功
     recovery_instructions_html: 如果你的手机无法使用，你可以使用下列任意一个恢复代码来重新获得对帐户的访问权。<strong>请妥善保管好你的恢复代码</strong>（例如，你可以将它们打印出来，然后和其他重要的文件放在一起）。
+    webauthn: 安全密钥
   user_mailer:
     backup_ready:
       explanation: 你请求了一份 Mastodon 帐户的完整备份。现在你可以下载了！
@@ -1311,3 +1346,20 @@ zh-CN:
   verification:
     explanation_html: '您可以 <strong>验证自己是个人资料元数据中的某个链接的所有者</strong>。 为此，被链接网站必须包含一个到您的 Mastodon 主页的链接。链接中 <strong>必须</strong> 包括 <code>rel="me"</code> 属性。链接的文本内容可以随意填写。例如：'
     verification: 验证
+  webauthn_credentials:
+    add: 添加新的安全密钥
+    create:
+      error: 添加您的安全密钥时出错。请重试。
+      success: 您的安全密钥已成功添加。
+    delete: 删除
+    delete_confirmation: 您确认要删除这个安全密钥吗？
+    description_html: 如果您启用 <strong>安全密钥身份验证</strong>，登录将需要您使用您的安全密钥。
+    destroy:
+      error: 删除您的安全密钥时出错。请重试。
+      success: 您的安全密钥已成功删除。
+    invalid_credential: 无效的安全密钥
+    nickname_hint: 输入您新安全密钥的昵称
+    not_enabled: 您尚未启用 WebAuthn
+    not_supported: 此浏览器不支持安全密钥
+    otp_required: 要使用安全密钥，请先启用两步验证。
+    registered_on: 注册于 %{date}
