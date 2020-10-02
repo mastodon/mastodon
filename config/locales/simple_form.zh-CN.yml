@@ -66,6 +66,7 @@ zh-CN:
         text: 这会有助于我们处理你的申请
       sessions:
         otp: '输入你手机应用上生成的双重认证码，或者任意一个恢复代码：'
+        webauthn: 如果是 USB 密钥，请确保将其插入，如有必要，请点击它。
       tag:
         name: 您只能改变字母的大小写，让它更易读
       user:
@@ -134,6 +135,7 @@ zh-CN:
         setting_default_privacy: 嘟文默认可见范围
         setting_default_sensitive: 总是将我发送的媒体文件标记为敏感内容
         setting_delete_modal: 在删除嘟文前询问我
+        setting_disable_swiping: 禁用滑动动作
         setting_display_media: 媒体展示
         setting_display_media_default: 默认
         setting_display_media_hide_all: 隐藏全部
@@ -187,4 +189,7 @@ zh-CN:
     required:
       mark: "*"
       text: 必填
+    title:
+      sessions:
+        webauthn: 使用您的安全密钥登录
     'yes': '是'
