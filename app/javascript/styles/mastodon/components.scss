@@ -163,8 +163,7 @@
 }
 
 .icon-button {
-  display: inline-flex;
-  align-items: center;
+  display: inline-block;
   padding: 0;
   color: $action-button-color;
   border: 0;
@@ -173,6 +172,7 @@
   cursor: pointer;
   transition: all 100ms ease-in;
   transition-property: background-color, color;
+  text-decoration: none;
 
   &:hover,
   &:active,
@@ -245,6 +245,12 @@
     &:hover {
       background: rgba($base-overlay-background, 0.9);
     }
+  }
+
+  &--with-counter {
+    display: inline-flex;
+    align-items: center;
+    width: auto !important;
   }
 
   &__counter {
@@ -1152,6 +1158,10 @@
 
 .status__action-bar-button {
   margin-right: 18px;
+
+  &.icon-button--with-counter {
+    margin-right: 14px;
+  }
 }
 
 .status__action-bar-dropdown {

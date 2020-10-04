@@ -116,6 +116,7 @@ export default class IconButton extends React.PureComponent {
       activate,
       deactivate,
       overlayed: overlay,
+      'icon-button--with-counter': typeof counter !== 'undefined',
     });
 
     if (typeof counter !== 'undefined') {
