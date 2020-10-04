@@ -109,7 +109,7 @@ zh-CN:
       delete: 删除数据
       deleted: 已删除
       demote: 降任
-      destroyed_msg: "%{username} 的数据已排队等待删除"
+      destroyed_msg: "%{username} 的数据已进入等待队列，即将被删除"
       disable: 停用
       disable_two_factor_authentication: 停用双重认证
       disabled: 已停用
@@ -120,7 +120,7 @@ zh-CN:
       email_status: 电子邮件地址状态
       enable: 启用
       enabled: 已启用
-      enabled_msg: 成功解冻 %{username} 的帐号
+      enabled_msg: 成功启用 %{username} 的帐号
       followers: 关注者
       follows: 正在关注
       header: 个人资料页横幅图片
@@ -136,8 +136,8 @@ zh-CN:
       login_status: 登录状态
       media_attachments: 媒体文件
       memorialize: 设置为追悼帐户
-      memorialized: 记忆化
-      memorialized_msg: 成功将 %{username} 转换为纪念帐号
+      memorialized: 被悼念
+      memorialized_msg: 成功将 %{username} 转换为悼念帐号
       moderation:
         active: 活跃
         all: 全部
@@ -158,14 +158,14 @@ zh-CN:
       public: 公开页面
       push_subscription_expires: PuSH 订阅过期时间
       redownload: 刷新个人资料
-      redownloaded_msg: 成功刷新 %{username} 的资料来源
+      redownloaded_msg: 成功从来源处刷新 %{username} 的用户资料
       reject: 拒绝
       reject_all: 拒绝全部
       rejected_msg: 成功拒绝 %{username} 的注册申请
       remove_avatar: 删除头像
       remove_header: 删除横幅图片
       removed_avatar_msg: 成功删除 %{username} 的头像
-      removed_header_msg: 成功删除了 %{username} 的标题图像
+      removed_header_msg: 成功删除了 %{username} 的横幅图片
       resend_confirmation:
         already_confirmed: 该用户已被确认
         send: 重发确认邮件
@@ -192,7 +192,7 @@ zh-CN:
       subscribe: 订阅
       suspended: 已封禁
       suspension_irreversible: 该帐号的数据已被不可逆转地删除。您可以取消暂停该帐号以使其可用，但它不会恢复以前拥有的任何数据。
-      suspension_reversible_hint_html: 帐号已暂停，数据将在 %{date} 完全删除。 在此之前，帐号可以在不产生任何不良影响的情况下恢复。 如果您想立即移除该帐号的所有数据，可以在下面进行。
+      suspension_reversible_hint_html: 帐号已封禁，数据将在 %{date} 完全删除。 在此之前，帐号仍可恢复，并且没有任何不良影响。 如果您想立即移除该帐号的所有数据，可以在下面进行。
       time_in_queue: 已经等待了 %{time}
       title: 用户
       unconfirmed_email: 待验证的电子邮件地址
@@ -200,7 +200,7 @@ zh-CN:
       undo_suspension: 解除封禁
       unsilenced_msg: 成功解除 %{username} 的帐号限制
       unsubscribe: 取消订阅
-      unsuspended_msg: 已成功取消暂停 %{username} 的帐号
+      unsuspended_msg: 已成功取消封禁 %{username} 的帐号
       username: 用户名
       view_domain: 查看域名摘要
       warn: 警告
@@ -999,10 +999,10 @@ zh-CN:
           thousand: K
           trillion: T
   otp_authentication:
-    code_hint: 输入认证器生成的代码以确认操作
-    description_html: 如果您使用身份验证程序应用程序启用了 <strong>双重身份验证</strong>， 登录将需要您拥有您的手机，它将生成您需要的令牌。
+    code_hint: 输入认证应用生成的代码以确认操作
+    description_html: 如果您使用身份验证应用启用了 <strong>双重身份验证</strong>， 登录将需要用到您的手机，它将生成您需要的令牌。
     enable: 启用
-    instructions_html: "<strong>请使用 Google 身份验证器或其他 TOTP 双重认证手机应用扫描此处的二维码</strong>。启用双重认证后，你需要输入该应用生成的代码来登录你的帐户。"
+    instructions_html: "<strong>请使用 Google 身份验证器或其他的TOTP双重认证手机应用扫描此处的二维码</strong>。启用双重认证后，在登录时，你需要输入该应用生成的代码。"
     manual_instructions: '如果你无法扫描二维码，请手动输入下列文本：'
     setup: 设置
     wrong_code: 输入的认证码无效！请确认服务器时间与设备时间是否正确？
