@@ -61,8 +61,12 @@ class RelationshipFilter
     case value
     when 'following'
       account.following.eager_load(:account_stat).reorder(nil)
+    when 'nonmutual_following'
+      account.following.eager_load(:account_stat).reorder(nil).where.not(id: account.followers)
     when 'followed_by'
       account.followers.eager_load(:account_stat).reorder(nil)
+    when 'nonmutual_followed_by'
+      account.followers.eager_load(:account_stat).reorder(nil).where.not(id: account.following)
     when 'mutual'
       account.followers.eager_load(:account_stat).reorder(nil).merge(Account.where(id: account.following))
     when 'invited'

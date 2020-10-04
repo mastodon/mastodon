@@ -9,7 +9,9 @@
     %strong= t 'relationships.relationship'
     %ul
       %li= filter_link_to t('relationships.following'), relationship: nil
+      %li= filter_link_to t('relationships.nonmutual-following'), relationship: 'nonmutual_following'
       %li= filter_link_to t('relationships.followers'), relationship: 'followed_by'
+      %li= filter_link_to t('relationships.nonmutual-followers'), relationship: 'nonmutual_followed_by'
       %li= filter_link_to t('relationships.mutual'), relationship: 'mutual'
 
   .filter-subset
