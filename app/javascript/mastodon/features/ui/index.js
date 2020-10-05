@@ -379,7 +379,7 @@ class UI extends React.PureComponent {
 
   componentDidMount () {
     this.hotkeys.__mousetrap__.stopCallback = (e, element) => {
-      return ['TEXTAREA', 'SELECT', 'INPUT'].includes(element.tagName) && !e.altKey;
+      return ['TEXTAREA', 'SELECT', 'INPUT'].includes(element.tagName);
     };
   }
 
