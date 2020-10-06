@@ -160,6 +160,7 @@ fa:
       public: عمومی
       push_subscription_expires: عضویت از راه PuSH منقضی شد
       redownload: نوسازی نمایه
+      redownloaded_msg: حساب %{username} با موفقیت از ابتدا نوسازی شد
       reject: نپذیرفتن
       reject_all: نپذیرفتن هیچکدام
       rejected_msg: کارهٔ ثبت‌نام %{username} با موفقیت رد شد
@@ -192,6 +193,8 @@ fa:
       statuses: نوشته‌ها
       subscribe: اشتراک
       suspended: تعلیق‌شده
+      suspension_irreversible: داده‌های این حساب به صورت بی‌بازگشت حذف شد. می‌توانید برای قابل استفاده کردنش، آن را نامعلّق کنید، ولی این کار هیچ داده‌ای را که از پیش داده، برنخواهد گرداند.
+      suspension_reversible_hint_html: حساب معلّق شد و داده‌ها به صورت کامل در %{date} برداشته خواهند شد. تا آن زمان، حساب می‌تواند بی هیچ عوارضی بازگردانده شود. اگر می‌خواهید فوراً همهٔ داده‌های حساب را بردارید، می‌توانید در پایین این کار را بکنید.
       time_in_queue: در حال انتظار %{time}
       title: حساب‌ها
       unconfirmed_email: ایمیل تأییدنشده
@@ -744,6 +747,7 @@ fa:
   date:
     formats:
       default: "%d %b %Y"
+      with_month_name: "%d %B %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count} ساعت"
@@ -1343,9 +1347,11 @@ fa:
       tips: نکته‌ها
       title: خوش آمدید، کاربر %{name}!
   users:
+    blocked_email_provider: فراهم‌کنندهٔ رایانامه مجاز نیست
     follow_limit_reached: شما نمی‌توانید بیش از %{limit} نفر را پی بگیرید
     generic_access_help_html: مشکل در دسترسی به حسابتان؟ می‌توانید برای کمک با %{email} تکاس بگیرید
     invalid_email: نشانی ایمیل نامعتبر است
+    invalid_email_mx: به نظر نمی‌رسد نشانی رایانامه وجود داشته باشد
     invalid_otp_token: کد ورود دومرحله‌ای نامعتبر است
     invalid_sign_in_token: کد امنیتی نادرست
     otp_lost_help_html: اگر شما دسترسی به هیچ‌کدامشان ندارید، باید با ایمیل %{email} تماس بگیرید
@@ -1366,5 +1372,7 @@ fa:
       error: حذف کلید امنیتیتان با مشکل مواجه شد. لطفاً دوباره تلاش کنید.
       success: کلید امنیتیتان با موفّقیت حذف شد.
     invalid_credential: کلید امنیتی نامعتبر
+    nickname_hint: نام مستعار کلید امنیتی جدیدتان را وارد کنید
     not_supported: این مرورگر از کلیدهای امنیتی پشتیبانی نمی‌کند
+    otp_required: برای استفاده از کلیدهای امنیتی، لطفاً ابتدا تأیید هویت دو عاملی را به کار بیندازید.
     registered_on: ثبت‌شده در %{date}
