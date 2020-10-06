@@ -83,6 +83,7 @@ class Notifications extends React.PureComponent {
 
   componentWillMount() {
     this.props.dispatch(mountNotifications());
+    setTimeout(() => this.handleMarkAsRead(), 5000);
   }
 
   componentWillUnmount () {
