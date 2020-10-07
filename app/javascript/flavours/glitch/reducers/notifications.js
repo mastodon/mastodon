@@ -185,7 +185,7 @@ const deleteMarkedNotifs = (state) => {
 
 const updateMounted = (state) => {
   state = state.update('mounted', count => count + 1);
-  if (!shouldCountUnreadNotifications(state)) {
+  if (!shouldCountUnreadNotifications(state, state.get('mounted') === 1)) {
     state = state.set('readMarkerId', state.get('lastReadId'));
     state = clearUnread(state);
   }
@@ -201,7 +201,7 @@ const updateVisibility = (state, visibility) => {
   return state;
 };
 
-const shouldCountUnreadNotifications = (state) => {
+const shouldCountUnreadNotifications = (state, ignoreScroll = false) => {
   const isTabVisible   = state.get('isTabVisible');
   const isOnTop        = state.get('top');
   const isMounted      = state.get('mounted') > 0;
@@ -209,7 +209,7 @@ const shouldCountUnreadNotifications = (state) => {
   const lastItem       = state.get('items').findLast(item => item !== null);
   const lastItemReached = !state.get('hasMore') || lastReadId === '0' || (lastItem && compareId(lastItem.get('id'), lastReadId) <= 0);
 
-  return !(isTabVisible && isOnTop && isMounted && lastItemReached);
+  return !(isTabVisible && (ignoreScroll || isOnTop) && isMounted && lastItemReached);
 };
 
 const recountUnread = (state, last_read_id) => {
