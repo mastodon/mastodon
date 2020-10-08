@@ -283,6 +283,12 @@ Rails.application.routes.draw do
       end
     end
 
+    resources :ip_blocks, only: [:index, :new, :create] do
+      collection do
+        post :batch
+      end
+    end
+
     resources :account_moderation_notes, only: [:create, :destroy]
 
     resources :tags, only: [:index, :show, :update] do
