@@ -97,6 +97,7 @@ el:
       add_email_domain_block: Εγγραφή τομέα email σε μαύρη λίστα
       approve: Έγκριση
       approve_all: Έγκριση όλων
+      approved_msg: Επιτυχής έγκριση αίτησης εγγραφής του/της %{username}
       are_you_sure: Σίγουρα;
       avatar: Αβατάρ
       by_domain: Τομέας
@@ -113,6 +114,7 @@ el:
       delete: Διαγραφή δεδομένων
       deleted: Διαγραμμένοι
       demote: Υποβίβαση
+      destroyed_msg: "Τα δεδομένα του/της %{username} εκκρεμούν για άμεση διαγραφή"
       disable: Απενεργοποίηση
       disable_two_factor_authentication: Απενεργοποίηση 2FA
       disabled: Απενεργοποιημένο
@@ -123,6 +125,7 @@ el:
       email_status: Κατάσταση email
       enable: Ενεργοποίηση
       enabled: Ενεργοποιημένο
+      enabled_msg: Επιτυχές ξεπάγωμα λογαριασμού του/της %{username}
       followers: Ακόλουθοι
       follows: Ακολουθεί
       header: Επικεφαλίδα
@@ -138,6 +141,8 @@ el:
       login_status: Κατάσταση σύνδεσης
       media_attachments: Συνημμένα πολυμέσα
       memorialize: Μετατροπή σε νεκρολογία
+      memorialized: Μετατροπή σε αναμνηστικό
+      memorialized_msg: Επιτυχής μετατροπή λογαριασμού του/της %{username} σε αναμνηστικό
       moderation:
         active: Ενεργός/ή
         all: Όλα
@@ -158,10 +163,14 @@ el:
       public: Δημόσιο
       push_subscription_expires: Η εγγραφή PuSH λήγει
       redownload: Ανανέωση αβατάρ
+      redownloaded_msg: Επιτυχής ανανέωη προφίλ του/της %{username} από την πηγή
       reject: Απόρριψη
       reject_all: Απόρριψη όλων
+      rejected_msg: Επιτυχής απόρριψη αίτησης εγγραφής του/της %{username}
       remove_avatar: Απομακρυσμένο αβατάρ
       remove_header: Αφαίρεση επικεφαλίδας
+      removed_avatar_msg: Επιτυχής αφαίρεση εικόνας προφίλ του/της%{username}
+      removed_header_msg: Επιτυχής αφαίρεση εικόνας κεφαλίδας του/της %{username}
       resend_confirmation:
         already_confirmed: Ήδη επιβεβαιωμένος χρήστης
         send: Επανάληψη αποστολής email επιβεβαίωσης
@@ -187,6 +196,7 @@ el:
       statuses: Καταστάσεις
       subscribe: Εγγραφή
       suspended: Σε αναστολή
+      suspension_irreversible: Τα δεδομένα αυτού του λογαριασμού έχουν διαγραφεί οριστικά. Μπορείς να άρεις την αναστολή του λογαριασμού για να μπορέσει να χρησιμοποιηθεί αλλά αυτό δεν θα επαναφέρει όσα δεδομένα είχε προηγουμένως.
       time_in_queue: Σε αναμονή για %{time}
       title: Λογαριασμοί
       unconfirmed_email: Ανεπιβεβαίωτο email
