@@ -206,7 +206,8 @@ const shouldCountUnreadNotifications = (state) => {
   const isOnTop        = state.get('top');
   const isMounted      = state.get('mounted') > 0;
   const lastReadId     = state.get('lastReadId');
-  const lastItemReached = !state.get('hasMore') || lastReadId === '0' || (!state.get('items').isEmpty() && compareId(state.get('items').last().get('id'), lastReadId) <= 0);
+  const lastItem       = state.get('items').findLast(item => item !== null);
+  const lastItemReached = !state.get('hasMore') || lastReadId === '0' || (lastItem && compareId(lastItem.get('id'), lastReadId) <= 0);
 
   return !(isTabVisible && isOnTop && isMounted && lastItemReached);
 };
