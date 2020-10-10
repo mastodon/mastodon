@@ -1,13 +1,37 @@
 ckb-IR:
+  activerecord:
+    attributes:
+      doorkeeper/application:
+        name: ناوی بەرنامە
+        redirect_uri: URI گۆڕانی شوێن
+        scopes: بوارەکان
+        website: نەرمەکالای ماڵپەڕ
+    errors:
+      models:
+        doorkeeper/application:
+          attributes:
+            redirect_uri:
+              fragment_present: ناتوانێت پارچەیەک لەخۆوە بگری.
+              invalid_uri: پێویستە URI دروست بێت.
+              relative_uri: پێویستە URI ی ڕەها بێت.
+              secured_uri: پێویستە HTTPS/SSL URI بێت.
   doorkeeper:
     applications:
       buttons:
         authorize: ڕێگەپێدان
         cancel: هەڵوەشاندنەوه
+        destroy: لەناوبردن
         edit: دەستکاری
         submit: ناردن
       confirmations:
         destroy: دڵنیای?
+      edit:
+        title: دەستکاری کردنی بەرنامە
+      form:
+        error: تەحح! بزانە شتێکت لە نێو فۆرمەکە بە هەڵە نەنووسیوە
+      help:
+        native_redirect_uri: بۆ تاقیکردنەوەی ناوخۆیی %{native_redirect_uri} بەکاربەرە،
+        redirect_uri: بەکارهێنانی یەک هێڵ بۆ هەر URI
       index:
         delete: سڕینەوە
         name: ناو
