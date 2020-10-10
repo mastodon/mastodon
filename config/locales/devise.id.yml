@@ -72,6 +72,10 @@ id:
         explanation: Autentikasi dengan kunci keamanan telah dinonaktifkan untuk akun ini. Proses masuk akun hanya mungkin menggunakan token yang dibuat dengan aplikasi TOTP.
         subject: 'Mastodon: Autentikasi dengan kunci keamanan dinoaktifkan'
         title: Kunci keamanan dinonaktifkan
+      webauthn_enabled:
+        explanation: Autentikasi kunci keamanan telah diaktifkan untuk akun Anda. Kunci keamanan Anda kini dapat dipakai untuk masuk.
+        subject: 'Mastodon: Autentikasi kunci keamanan aktif'
+        title: Kunci keamanan aktif
     omniauth_callbacks:
       failure: Tidak dapat mengautentikasi anda dari %{kind} karena "%{reason}".
       success: Autentikasi dari akun %{kind} berhasil dilakukan.
