@@ -32,6 +32,54 @@ ckb-IR:
       help:
         native_redirect_uri: بۆ تاقیکردنەوەی ناوخۆیی %{native_redirect_uri} بەکاربەرە،
         redirect_uri: بەکارهێنانی یەک هێڵ بۆ هەر URI
+        scopes: دۆمەینەکان جیاببکەن بە بۆشاییەکان. بۆ بەکارهێنانی دۆمەینی گریمانەیی چۆڵی بەجێبهێڵە.
       index:
+        application: نەرمەکال
+        callback_url: Callback نیشانی
         delete: سڕینەوە
+        empty: هیچ بەرنامەیەکت نیە.
         name: ناو
+        new: بەرنامەی نوێ
+        scopes: دۆمەینەکان
+        show: نیشاندان
+        title: بەرنامەی تۆ
+      new:
+        title: بەرنامەی نوێ
+      show:
+        actions: کارەکان
+        application_id: کلیلی ڕاژەخواز
+        callback_urls: Callback نیشانەکانی
+        scopes: دۆمەینەکان
+        secret: نهێنی ڕاژەخواز
+        title: 'بەرنامە: %{name}'
+    authorizations:
+      buttons:
+        authorize: ڕێپێدراو
+        deny: نکۆڵی لێبکە
+      error:
+        title: هەڵەیەک ڕوویدا
+      new:
+        able_to: دەتوانێت
+        prompt: بەکارهێنانی %{client_name} داوای چوونە ژوورەوە بۆ هەژمارەکەت دەکات
+        title: ڕێپێدان پێویستە
+      show:
+        title: کۆپیکردنی کۆدی ئەم رێپێدانە و لکاندنی بە بەرنامەکە.
+    authorized_applications:
+      buttons:
+        revoke: بەتاڵی بکە
+      confirmations:
+        revoke: ئایا دڵنیایت?
+      index:
+        application: نەرمەکال
+        created_at: ده‌سه‌ڵاتپێدراو
+        date_format: "%Y-%m-%d %H:%M:%S"
+        scopes: بوارەکان
+        title: بەرنامە ڕێگەپێدراوەکانت
+    errors:
+      messages:
+        access_denied: خاوەنی سەرچاوە یان سێرڤەری ڕێپێدان داواکاریەکەی ڕەت کردەوە.
+        credential_flow_not_configured: لێشاوی بڕواپێدانی تێپەڕەوشەی خاوەن سەرچاوە شکستی هێنا بەهۆی Doorkeeper.configure.resource_owner_from_credentials شێوەبەندی نەکراو.
+        invalid_client: سەلماندنی کڕیار سەرکەوتوو نەبوو بەهۆی کڕیاری نەناسراوەوە، هیچ ڕەسەنایەتی سەلماندنێکی کلایەنت لەخۆوە نەدەگرێت، یان شێوازی سەلماندنی پەسەند نەکراو.
+        invalid_grant: بەخشین مۆڵەتی دابینکراو نایاساییە، بەسەرچووە، هەڵوەشاندنەوەیە، ناگونجێلەگەڵ ئاراستەی URI بەکارهاتوو لە داواکاری ڕێپێدان، یان دەرچووە بۆ کڕیارێکی تر.
+        invalid_redirect_uri: Uri دووبارە ئاڕاستەکردنەوەکە لەخۆدەگرێت دروست نیە.
+        invalid_request: داواکاریەکە پارامیتەری داواکراوی بزرە، بەهای پارامیتەری پشتگیری نەکراو لەخۆ دەگرێت، یان بە پێچەوانەوە نادروستە.
