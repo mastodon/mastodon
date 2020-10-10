@@ -66,6 +66,7 @@ id:
         text: Ini akan membantu kami meninjau aplikasi Anda
       sessions:
         otp: 'Masukkan kode dua-faktor dari handphone atau gunakan kode pemulihan anda.'
+        webauthn: Jika ini kunci USB pastikan dalam keadaan tercolok dan, jika perlu, ketuk.
       tag:
         name: Anda hanya dapat mengubahnya ke huruf kecil/besar, misalnya, agar lebih mudah dibaca
       user:
@@ -134,6 +135,7 @@ id:
         setting_default_privacy: Privasi postingan
         setting_default_sensitive: Selalu tandai media sebagai sensitif
         setting_delete_modal: Tampilkan dialog konfirmasi sebelum hapus toot
+        setting_disable_swiping: Nonaktifkan gerak usap
         setting_display_media: Tampilan media
         setting_display_media_default: Bawaan
         setting_display_media_hide_all: Sembunyikan semua
@@ -150,6 +152,7 @@ id:
         setting_use_blurhash: Tampilkan gradien penuh warna utk media tersembunyi
         setting_use_pending_items: Mode pelan
         severity: Keparahan
+        sign_in_token_attempt: Kode keamanan
         type: Tipe impor
         username: Nama pengguna
         username_or_email: Nama pengguna atau Surel
@@ -186,4 +189,7 @@ id:
     required:
       mark: "*"
       text: wajib
+    title:
+      sessions:
+        webauthn: Gunakan salah satu kunci keamanan untuk masuk
     'yes': 'Ya'
