@@ -129,6 +129,13 @@ ckb-IR:
         update_announcement: بەڕۆژکردنەوەی راگەیەندراو
         update_custom_emoji: بەڕۆژکردنی ئێمۆمۆجی دڵخواز
         update_status: بەڕۆژکردنی دۆخ
+      actions:
+        assigned_to_self_report: "%{name} پێداچوونەوە بە گوزارشتی %{target} لە ئەستۆ گرتووە"
+        change_email_user: "%{name} ناونیشانی ئیمەیلی بەکارهینەری %{target} گۆڕا"
+        confirm_user: "%{name} ناونیشانی ئیمەیلی بەکارهینەری %{target} پەسەند کرد"
+        create_account_warning: "%{name} ئاگاداریێک بۆ %{target} نارد"
+        create_announcement: "%{name} ئاگاداری نوێی دروستکرد %{target}"
+        create_custom_emoji: "%{name} ئیمۆجی نوێی %{target} بارکرد"
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
