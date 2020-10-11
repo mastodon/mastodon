@@ -136,6 +136,23 @@ ckb-IR:
         create_account_warning: "%{name} ئاگاداریێک بۆ %{target} نارد"
         create_announcement: "%{name} ئاگاداری نوێی دروستکرد %{target}"
         create_custom_emoji: "%{name} ئیمۆجی نوێی %{target} بارکرد"
+        create_domain_allow: "%{name} دۆمەینی %{target} ڕێپێدا"
+        create_domain_block: "%{name} دۆمەنی %{target} بلۆککرد"
+        create_email_domain_block: "%{name} دۆمەینی ئیمەیلی %{target} بلۆککرد"
+        demote_user: "%{name} ئاستی بەکارهێنەری %{target} دابەزاند"
+        destroy_announcement: "%{name} ئاگاداری %{target} سڕیەوە"
+        destroy_custom_emoji: "%{name} ئیمۆجی %{target} لە ناوبرد"
+        destroy_domain_allow: "%{name} دۆمەنی%{target} لە پێرستی ڕێپێدراو لابرد"
+        destroy_domain_block: "%{name} بەرگیری لە دۆمەینی %{target} لابرد"
+        destroy_email_domain_block: "%{name} دۆمەینی ئیمەیلی %{target} خستە پێرستی ڕێپێدراو"
+        destroy_status: "%{name} نووسراوەی %{target} سڕیەوە"
+        disable_2fa_user: "%{name} دوو مەرجی فاکتەر بۆ بەکارهێنەر %{target} لە کارخست"
+        disable_custom_emoji: "%{name} ئیمۆجی %{target} ناچالاک کرد"
+        disable_user: "%{name} چوونەژوورەوەی بەکارهێنەری %{target} لەکارخست"
+        enable_custom_emoji: "%{name} ئیمۆجی %{target} چالاک کرد"
+        enable_user: "%{name} چوونەژوورەوەی بەکارهێنەری %{target} چالککرد"
+        memorialize_account: "%{name} هەژمارەی بەکارهێنەری %{target} گۆڕا بە پەڕەی یادەوەری"
+        promote_user: "%{name} ئاستی بەکارهێنەری %{target} بەرزکردەوە"
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
