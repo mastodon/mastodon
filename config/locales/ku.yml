@@ -71,6 +71,64 @@ ckb-IR:
         all: هەموو
         local: ناوخۆیی
         remote: دوور
+        title: شوێن
+      login_status: دۆخی چوونەژوورەوە
+      media_attachments: هاوپێچی میدیا
+      memorialize: گۆڕان بە یادەوەری
+      memorialized: بیرکەوتنەوە
+      memorialized_msg: بە سەرکەوتوویی %{username} بۆ هەژمارێکی بیرەوەری گۆڕا
+      moderation:
+        active: چالاک
+        all: هەموو
+        pending: چاوەڕوان
+        silenced: بێدەنگ
+        suspended: ڕاگرتن
+        title: بەڕێوەبردن
+      moderation_notes: بەڕێوەبردنی تێبینیەکان
+      most_recent_activity: نوێترین چالاکی
+      most_recent_ip: نوێترین ئای پی
+      no_account_selected: هیچ هەژمارەیەک نەگۆڕاوە وەک ئەوەی هیچ یەکێک دیاری نەکراوە
+      no_limits_imposed: هیچ سنوورێک نەسەپێنرا
+      not_subscribed: بەشدار نەبوو
+      pending: پێداچوونەوەی چاوەڕوان
+      perform_full_suspension: ڕاگرتن
+      promote: بەرزکردنەوە
+      protocol: پرۆتۆکۆل
+      public: گشتی
+      push_subscription_expires: بەشداری PuSH بەسەر دەچێت
+      redownload: نوێکردنەوەی پرۆفایل
+      redownloaded_msg: پرۆفایلی %{username} لە بنەڕەتەوە بە سەرکەوتوویی نوێکرایەوە
+      reject: ڕەتکردنەوە
+      reject_all: هەموو ڕەت بکەوە
+      rejected_msg: بەرنامەی تۆمارکردنی %{username} بە سەرکەوتوویی ڕەتکرایەوە
+      remove_avatar: لابردنی وێنۆجکە
+      remove_header: سەرپەڕ لابدە
+    action_logs:
+      action_types:
+        destroy_custom_emoji: سڕینەوەی ئێمۆمۆجی تایبەتمەند
+        destroy_domain_allow: سڕینەوەی ڕێپێدان بە دۆمەین
+        destroy_domain_block: سڕینەوەی بلۆکی دۆمەین
+        destroy_email_domain_block: سڕینەوەی بلۆکی دۆمەینی ئیمەیڵ
+        destroy_status: دۆخ بسڕەوە
+        disable_2fa_user: لەکارخستنی 2FA
+        disable_custom_emoji: سڕینەوەی ئێمۆمۆجی تایبەتمەند
+        disable_user: بەکارهێنەر لە کاربخە
+        enable_custom_emoji: ئیمۆمۆجی تایبەتمەند چالاک بکە
+        enable_user: چالاککردنی بەکارهێنەر
+        memorialize_account: هەژماری بیرکەوتنەوە
+        promote_user: بەرزکردنەوەی بەکارهێنەر
+        remove_avatar_user: لابردنی وێنۆجکە
+        reopen_report: دووبارە کردنەوەی گوزارشت
+        reset_password_user: گەڕانەوەی تێپەڕوشە
+        resolve_report: گوزارشت چارەسەربکە
+        silence_account: هەژماری بێدەنگی
+        suspend_account: ڕاگرتنی هەژمارە
+        unassigned_report: گوزارشتی دیارینەکراو
+        unsilence_account: هەژماری بێ دەنگ
+        unsuspend_account: هەژماری هەڵنەوەستێنراو
+        update_announcement: بەڕۆژکردنەوەی راگەیەندراو
+        update_custom_emoji: بەڕۆژکردنی ئێمۆمۆجی دڵخواز
+        update_status: بەڕۆژکردنی دۆخ
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
