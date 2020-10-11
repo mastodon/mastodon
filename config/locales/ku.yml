@@ -229,6 +229,47 @@ ckb-IR:
       pending: چاوەڕێی پەسەندکردنی ڕێلەی
       save_and_enable: پاشکەوتکردن و چالاککردن
       setup: دامەزراندنی ڕێڵەی پەیوەندی
+      signatures_not_enabled: ڕیلەکان بە دروستی کارناکات لە کاتێکدا دۆخی پارێزراو یان دۆخی سنوورداری گشتی چالاک کراوە
+      status: دۆخ
+      title: ڕێڵەکان
+    report_notes:
+      created_msg: تێبینی ڕاپۆرت کردن بە سەرکەوتوویی دروست کرا!
+      destroyed_msg: تێبینی گوزارشت بە سەرکەوتوویی سڕاوەتەوە!
+    reports:
+      action_taken_by: کردەوە لە لایەن
+      are_you_sure: دڵنیای?
+      assign_to_self: دیاریکردن بۆ من
+      assigned: بەڕێوەبەری بەرپرس
+      by_target_domain: دۆمەینی هەژمارەی گوزارشتدراو
+      comment:
+        none: هیچ
+      created_at: گوزارشتکرا
+      mark_as_resolved: نیشانەی بکە وەک چارەسەرکراو
+      mark_as_unresolved: نیشانەکردن وەک چارەسەرنەکراوە
+      notes:
+        create: زیادکردنی تێبینی
+        create_and_resolve: چارەسەر کردن لەگەڵ تێبینی
+        create_and_unresolve: دووبارە کردنەوەی بە تێبینی
+        delete: سڕینەوە
+        placeholder: باسی ئەو کردارانە بکە کە ئەنجام دراون، یان هەر نوێکردنەوەیەکی پەیوەندیداری ت...
+      reopen: دووبارە کردنەوەی گوزارشت
+      report: 'گوزارشت #%{id}'
+      reported_account: گوزارشتی هەژمارە
+      reported_by: گوزارشت لە لایەن
+      resolved: چارەسەرکرا
+      resolved_msg: گوزارشتکردن بە سەرکەوتوویی چارەسەر کرا!
+      status: دۆخ
+      title: گوزارشتکرا
+      unassign: دیارینەکراوە
+      unresolved: چارەسەر نەکراوە
+      updated_at: نوێکرایەوە
+    settings:
+      activity_api_enabled:
+        desc_html: ژماردنی دۆخی بڵاوکراوە ی ناوخۆیی و بەکارهێنەرە چالاکەکان و تۆماری نوێ لە سەتڵی هەفتانە
+        title: بڵاوکردنەوەی ئاماری کۆ دەربارەی چالاکی بەکارهێنەر
+      bootstrap_timeline_accounts:
+        desc_html: چەند ناوی بەکارهێنەرێک جیابکە بە بۆر، تەنها هەژمارەی بلۆککراوەکان و ناوخۆیی کاردەکەن. بنەڕەت کاتێک بەتاڵ بوو هەموو بەڕێوەبەرە خۆجێیەکانن.
+        title: بەدواداچوەکانی گریمانەیی بۆ بەکارهێنەرە نوێکان
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
