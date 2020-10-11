@@ -188,6 +188,32 @@ ckb-IR:
       title: داشبۆرد
       total_users: ژمارەی بەکارهێنەران
       trends: تاگە بەرچاوکراوەکان
+      week_interactions: چالاکیەکانی ئەم هەفتەیە
+      week_users_active: چالاکی ئەم هەفتەیە
+      week_users_new: بەکارهێنەرانی ئەم هەفتەیە
+      whitelist_mode: شێوەی پێرستی ڕێپێدراو
+    domain_allows:
+      add_new: ڕێپێدان بە دۆمەین
+      created_msg: دۆمەین بە سەرکەوتوویی رێگەی پێدرا
+      destroyed_msg: دۆمەین لە پێرستی رێگەی پێدرا لابرا
+      undo: لابردن لە پێرستی ڕێپێدراو
+    domain_blocks:
+      add_new: زیادکردنی بلۆکی دۆمەینی نوێ
+      created_msg: بلۆککردنی دۆمەین لە حاڵێ جێبەجێکردنە
+      destroyed_msg: بلۆکی دۆمەین هەڵوەشاوەتەوە
+      domain: دۆمەین
+      edit: دەستکاری بلۆکی دۆمەینی نوێ
+      existing_domain_block_html: ئێوە پێشتر سنووری دژوارتنا لە سەر%{name} جێبەجێکردووە، سەرەتا دەبێ <a href="%{unblock_url}">بلۆک هەڵوەشێنەوە</a>.
+      new:
+        create: دروستکردنی بلۆک
+        hint: بلۆکی دۆمەین رێگری لە دروستکردنی هەژمارەی چوونەژوورەوە لە بنکەی زانیارێکان ناکات ، بەڵکو بە شێوەیەکی دووبارە و خۆکارانە رێوشێوازی پێشکەوتوو تایبەت لەسەر ئەو هەژمارانە جێبەجێ دەکات.
+        severity:
+          desc_html: "<strong> بێدەنگی</strong> وا دەکات کە نووسراوەکانی هەژمارەکان نەبینراوە بێت بۆ هەر کەسێک کە شوێنیان نەکەوێ. <strong>ڕاگرتنی</strong> هەموو ناوەڕۆکی هەژمارەکە، میدیا، و داتای پرۆفایلەکەی بەکارهێنان. <strong>هیچ </strong> ئەگەر دەتەوێت فایلەکانی میدیا ڕەت بکەیتەوە."
+          noop: هیچ
+          silence: بێدەنگ
+          suspend: ڕاگرتن
+    pending_accounts:
+      title: هەژمارە هەڵواسراوەکان (%{count})
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
