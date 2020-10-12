@@ -105,6 +105,7 @@ pl:
       add_email_domain_block: Dodaj domenę e-mail na czarną listę
       approve: Przyjmij
       approve_all: Zatwierdź wszystkie
+      approved_msg: Pomyślnie zaakceptowano wniosek o rejestrację %{username}
       are_you_sure: Jesteś tego pewien?
       avatar: Awatar
       by_domain: Domena
@@ -118,8 +119,10 @@ pl:
       confirm: Potwierdź
       confirmed: Potwierdzono
       confirming: Potwierdzanie
+      delete: Usuń dane
       deleted: Usunięto
       demote: Degraduj
+      destroyed_msg: "Dane %{username} są teraz w kolejce do natychmiastowego usunięcia"
       disable: Dezaktywuj
       disable_two_factor_authentication: Wyłącz uwierzytelnianie dwuetapowe
       disabled: Dezaktywowano
@@ -130,6 +133,7 @@ pl:
       email_status: Stan e-maila
       enable: Aktywuj
       enabled: Aktywowano
+      enabled_msg: Pomyślnie odblokowano konto %{username}
       followers: Śledzący
       follows: Śledzeni
       header: Nagłówek
@@ -145,6 +149,8 @@ pl:
       login_status: Stan logowania
       media_attachments: Załączniki multimedialne
       memorialize: Przełącz na „In Memoriam”
+      memorialized: Upamiętniono
+      memorialized_msg: Pomyślnie przełączono %{username} w konto in memoriam
       moderation:
         active: Aktywne
         all: Wszystkie
@@ -165,10 +171,13 @@ pl:
       public: Publiczne
       push_subscription_expires: Subskrypcja PuSH wygasa
       redownload: Odśwież profil
+      redownloaded_msg: Pomyślnie odświeżono profil %{username} z miejsca pochodzenia
       reject: Odrzuć
       reject_all: Odrzuć wszystkie
+      rejected_msg: Pomyślnie odrzucono wniosek o rejestrację %{username}
       remove_avatar: Usun awatar
       remove_header: Usuń nagłówek
+      removed_avatar_msg: Pomyślnie usunięto awatar %{username}
       resend_confirmation:
         already_confirmed: To konto zostało już potwierdzone
         send: Wyślij ponownie e-mail z potwierdzeniem
@@ -747,6 +756,7 @@ pl:
   date:
     formats:
       default: "%d. %b %Y"
+      with_month_name: "%d. %B %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}g"
