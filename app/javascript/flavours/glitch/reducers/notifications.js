@@ -17,6 +17,8 @@ import {
   NOTIFICATIONS_ENTER_CLEARING_MODE,
   NOTIFICATIONS_MARK_ALL_FOR_DELETE,
   NOTIFICATIONS_MARK_AS_READ,
+  NOTIFICATIONS_SET_BROWSER_SUPPORT,
+  NOTIFICATIONS_SET_BROWSER_PERMISSION,
 } from 'flavours/glitch/actions/notifications';
 import {
   ACCOUNT_BLOCK_SUCCESS,
@@ -44,6 +46,8 @@ const initialState = ImmutableMap({
   isLoading: false,
   cleaningMode: false,
   isTabVisible: true,
+  browserSupport: false,
+  browserPermission: 'default',
   // notification removal mark of new notifs loaded whilst cleaningMode is true.
   markNewForDelete: false,
 });
@@ -275,6 +279,10 @@ export default function notifications(state = initialState, action) {
     return action.timeline === 'home' ?
       state.update(action.usePendingItems ? 'pendingItems' : 'items', items => items.first() ? items.unshift(null) : items) :
       state;
+  case NOTIFICATIONS_SET_BROWSER_SUPPORT:
+    return state.set('browserSupport', action.value);
+  case NOTIFICATIONS_SET_BROWSER_PERMISSION:
+    return state.set('browserPermission', action.value);
 
   case NOTIFICATION_MARK_FOR_DELETE:
     return markForDelete(state, action.id, action.yes);

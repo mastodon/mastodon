@@ -16,6 +16,7 @@ import { getFiltersRegex } from 'flavours/glitch/selectors';
 import { usePendingItems as preferPendingItems } from 'flavours/glitch/util/initial_state';
 import compareId from 'flavours/glitch/util/compare_id';
 import { searchTextFromRawStatus } from 'flavours/glitch/actions/importer/normalizer';
+import { requestNotificationPermission } from 'flavours/glitch/util/notifications';
 
 export const NOTIFICATIONS_UPDATE = 'NOTIFICATIONS_UPDATE';
 export const NOTIFICATIONS_UPDATE_NOOP = 'NOTIFICATIONS_UPDATE_NOOP';
@@ -46,7 +47,11 @@ export const NOTIFICATIONS_UNMOUNT = 'NOTIFICATIONS_UNMOUNT';
 
 export const NOTIFICATIONS_SET_VISIBILITY = 'NOTIFICATIONS_SET_VISIBILITY';
 
+
 export const NOTIFICATIONS_MARK_AS_READ = 'NOTIFICATIONS_MARK_AS_READ';
+
+export const NOTIFICATIONS_SET_BROWSER_SUPPORT    = 'NOTIFICATIONS_SET_BROWSER_SUPPORT';
+export const NOTIFICATIONS_SET_BROWSER_PERMISSION = 'NOTIFICATIONS_SET_BROWSER_PERMISSION';
 
 defineMessages({
   mention: { id: 'notification.mention', defaultMessage: '{name} mentioned you' },
@@ -327,3 +332,42 @@ export function markNotificationsAsRead() {
     type: NOTIFICATIONS_MARK_AS_READ,
   };
 };
+
+// Browser support
+export function setupBrowserNotifications() {
+  return dispatch => {
+    dispatch(setBrowserSupport('Notification' in window));
+    if ('Notification' in window) {
+      dispatch(setBrowserPermission(Notification.permission));
+    }
+
+    if ('Notification' in window && 'permissions' in navigator) {
+      navigator.permissions.query({ name: 'notifications' }).then((status) => {
+        status.onchange = () => dispatch(setBrowserPermission(Notification.permission));
+      });
+    }
+  };
+}
+
+export function requestBrowserPermission(callback = noOp) {
+  return dispatch => {
+    requestNotificationPermission((permission) => {
+      dispatch(setBrowserPermission(permission));
+      callback(permission);
+    });
+  };
+};
+
+export function setBrowserSupport (value) {
+  return {
+    type: NOTIFICATIONS_SET_BROWSER_SUPPORT,
+    value,
+  };
+}
+
+export function setBrowserPermission (value) {
+  return {
+    type: NOTIFICATIONS_SET_BROWSER_PERMISSION,
+    value,
+  };
+}

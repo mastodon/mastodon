@@ -463,6 +463,15 @@
   flex: 1;
 }
 
+.column-header__issue-btn {
+  color: $warning-red;
+
+  &:hover {
+    color: $error-red;
+    text-decoration: underline;
+  }
+}
+
 .column-header__icon {
   display: inline-block;
   margin-right: 5px;

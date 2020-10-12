@@ -62,6 +62,7 @@ const mapStateToProps = state => ({
   notifCleaningActive: state.getIn(['notifications', 'cleaningMode']),
   lastReadId: state.getIn(['notifications', 'readMarkerId']),
   canMarkAsRead: state.getIn(['notifications', 'readMarkerId']) !== '0' && getNotifications(state).some(item => item !== null && compareId(item.get('id'), state.getIn(['notifications', 'readMarkerId'])) > 0),
+  needsNotificationPermission: state.getIn(['settings', 'notifications', 'alerts']).includes(true) && state.getIn(['notifications', 'browserSupport']) && state.getIn(['notifications', 'browserPermission']) !== 'granted',
 });
 
 /* glitch */
@@ -105,6 +106,7 @@ class Notifications extends React.PureComponent {
     onUnmount: PropTypes.func,
     lastReadId: PropTypes.string,
     canMarkAsRead: PropTypes.bool,
+    needsNotificationPermission: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -333,6 +335,7 @@ class Notifications extends React.PureComponent {
           multiColumn={multiColumn}
           localSettings={this.props.localSettings}
           extraButton={extraButtons}
+          collapseIssues={this.props.needsNotificationPermission}
           appendContent={notifCleaningDrawer}
         >
           <ColumnSettingsContainer />
