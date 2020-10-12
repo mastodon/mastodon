@@ -222,12 +222,14 @@ es-AR:
         create_domain_allow: Crear permiso de dominio
         create_domain_block: Crear bloqueo de dominio
         create_email_domain_block: Crear bloqueo de dominio de correo electrónico
+        create_ip_block: Crear regla de dirección IP
         demote_user: Descender usuario
         destroy_announcement: Eliminar anuncio
         destroy_custom_emoji: Eliminar emoji personalizado
         destroy_domain_allow: Eliminar permiso de dominio
         destroy_domain_block: Eliminar bloqueo de dominio
         destroy_email_domain_block: Eliminar bloqueo de dominio de correo electrónico
+        destroy_ip_block: Eliminar regla de dirección IP
         destroy_status: Eliminar toot
         disable_2fa_user: Deshabilitar 2FA
         disable_custom_emoji: Deshabilitar emoji personalizado
@@ -258,12 +260,14 @@ es-AR:
         create_domain_allow: "%{name} permitió la federación con el dominio %{target}"
         create_domain_block: "%{name} bloqueó el dominio %{target}"
         create_email_domain_block: "%{name} bloqueó el dominio de correo electrónico %{target}"
+        create_ip_block: "%{name} creó la regla para la dirección IP %{target}"
         demote_user: "%{name} bajó de nivel al usuario %{target}"
         destroy_announcement: "%{name} eliminó el anuncio %{target}"
         destroy_custom_emoji: "%{name} destruyó el emoji %{target}"
         destroy_domain_allow: "%{name} no permitió la federación con el dominio %{target}"
         destroy_domain_block: "%{name} desbloqueó el dominio %{target}"
         destroy_email_domain_block: "%{name} desbloqueó el dominio de correo electrónico %{target}"
+        destroy_ip_block: "%{name} eliminó la regla para la dirección IP %{target}"
         destroy_status: "%{name} eliminó el toot de %{target}"
         disable_2fa_user: "%{name} deshabilitó el requerimiento de dos factores para el usuario %{target}"
         disable_custom_emoji: "%{name} deshabilitó el emoji %{target}"
@@ -448,6 +452,21 @@ es-AR:
         expired: Vencidas
         title: Filtrar
       title: Invitaciones
+    ip_blocks:
+      add_new: Crear regla
+      created_msg: Se agregó exitosamente la nueva regla de dirección IP
+      delete: Eliminar
+      expires_in:
+        '1209600': 2 semanas
+        '15778476': 6 meses
+        '2629746': 1 mes
+        '31556952': 1 año
+        '86400': 1 día
+        '94670856': 3 años
+      new:
+        title: Crear nueva regla de dirección IP
+      no_ip_block_selected: No se han cambiado reglas IP ya que no se ha seleccionado ninguna
+      title: Reglas IP
     pending_accounts:
       title: Cuentas pendientes (%{count})
     relationships:
