@@ -64,6 +64,14 @@ es-AR:
         data: Archivo CSV exportado desde otro servidor de Mastodon
       invite_request:
         text: Esto nos ayudará a revisar tu solicitud
+      ip_block:
+        comment: Opcional. Acordate por qué agregaste esta regla.
+        expires_in: Las direcciones IP son un recurso finito, a veces se comparten y cambian de personas frecuentemente. Por esta razón, no se recomiendan bloqueos indefinidos de direcciones IP.
+        ip: Ingresá una dirección IPv4 ó IPv6. Podés bloquear rangos completos usando la sintaxis CIDR. ¡Tené cuidado de no bloquearte vos mismo!
+        severities:
+          no_access: Bloquear acceso a todos los recursos
+          sign_up_requires_approval: Los nuevos registros requerirán tu aprobación
+        severity: Elegí lo que pasará con las solicitudes desde esta dirección IP
       sessions:
         otp: 'Ingresá el código de autenticación de dos factores generado por la aplicación en tu dispositivo, o usá uno de tus códigos de recuperación:'
         webauthn: Si es una llave USB, asegurate de insertarla y, de ser necesario, tocarla.
@@ -169,6 +177,13 @@ es-AR:
         comment: Comentar
       invite_request:
         text: '¿Por qué querés unirte?'
+      ip_block:
+        comment: Comentario
+        ip: Dirección IP
+        severities:
+          no_access: Bloquear acceso
+          sign_up_requires_approval: Limitar registros
+        severity: Regla
       notification_emails:
         digest: Enviar correos electrónicos compilatorios
         favourite: Una cuenta marca tu toot como favorito
