@@ -229,6 +229,7 @@ tr:
         destroy_domain_allow: İzin Verilen Alan Adını Sil
         destroy_domain_block: Engellenen Alan Adını Sil
         destroy_email_domain_block: E-posta alan adı engelini sil
+        destroy_ip_block: IP kuralını sil
         destroy_status: Durumu Sil
         disable_2fa_user: 2 Adımlı Doğrulamayı Kapat
         disable_custom_emoji: Özel İfadeyi Engelle
@@ -449,6 +450,19 @@ tr:
         expired: Süresi dolmuş
         title: Filtre
       title: Davetler
+    ip_blocks:
+      add_new: Kural oluştur
+      delete: Sil
+      expires_in:
+        '1209600': 2 hafta
+        '15778476': 6 ay
+        '2629746': 1 ay
+        '31556952': 1 yıl
+        '86400': 1 gün
+        '94670856': 3 yıl
+      new:
+        title: Yeni IP kuralı oluştur
+      title: IP kuralları
     pending_accounts:
       title: Bekleyen hesaplar (%{count})
     relationships:
