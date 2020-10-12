@@ -205,6 +205,7 @@ pl:
       subscribe: Subskrybuj
       suspended: Zawieszono
       suspension_irreversible: Dane tego konta zostały bezpowrotnie usunięte. Możesz cofnąć zawieszenie tego konta aby można było z niego ponownie korzystać, lecz nie przywróci to danych które poprzednio się na nim znajdowały.
+      suspension_reversible_hint_html: Twoje konto zostało zawieszone, a dane zostaną całkowicie usunięte %{date}. Do tego czasu, konto może zostać przywrócone bez żadnych negatywnych skutków. Jeżeli chcesz natychmiastowo usunąć wszystkie dane, możesz zrobić to niżej.
       time_in_queue: Czekanie w kolejce %{time}
       title: Konta
       unconfirmed_email: Niepotwierdzony adres e-mail
@@ -1168,6 +1169,11 @@ pl:
     spam_detected: To zgłoszenie jest automatyczne. Został wykryty spam.
   statuses:
     attached:
+      audio:
+        one: "%{count} plik dźwiękowy"
+        few: "%{count} pliki dźwiękowe"
+        many: "%{count} plików dźwiękowych"
+        other: "pliki dźwiękowe (%{count})"
       description: 'Załączono: %{attached}'
       image:
         one: "%{count} obraz"
@@ -1398,3 +1404,5 @@ pl:
       error: Wystąpił problem z dodawaniem klucza bezpieczeństwa. Spróbuj ponownie.
       success: Pomyślnie dodano klucz bezpieczeństwa.
     delete: Usuń
+    invalid_credential: Nieprawidłowy klucz bezpieczeństwa
+    registered_on: Zarejestrowano %{date}
