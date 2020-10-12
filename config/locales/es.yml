@@ -222,12 +222,14 @@ es:
         create_domain_allow: Crear Permiso de Dominio
         create_domain_block: Crear Bloqueo de Dominio
         create_email_domain_block: Crear Bloqueo de Dominio de Correo Electrónico
+        create_ip_block: Crear regla IP
         demote_user: Degradar Usuario
         destroy_announcement: Eliminar Anuncio
         destroy_custom_emoji: Eliminar Emoji Personalizado
         destroy_domain_allow: Eliminar Permiso de Dominio
         destroy_domain_block: Eliminar Bloqueo de Dominio
         destroy_email_domain_block: Eliminar Bloqueo de Dominio de Correo Electrónico
+        destroy_ip_block: Eliminar regla IP
         destroy_status: Eliminar Estado
         disable_2fa_user: Deshabilitar 2FA
         disable_custom_emoji: Deshabilitar Emoji Personalizado
@@ -258,12 +260,14 @@ es:
         create_domain_allow: "%{name} ha añadido a la lista blanca el dominio %{target}"
         create_domain_block: "%{name} bloqueó el dominio %{target}"
         create_email_domain_block: "%{name} puso en lista negra el dominio de correos %{target}"
+        create_ip_block: "%{name} creó la regla para la IP %{target}"
         demote_user: "%{name} degradó al usuario %{target}"
         destroy_announcement: "%{name} eliminó el anuncio %{target}"
         destroy_custom_emoji: "%{name} destruyó el emoji %{target}"
         destroy_domain_allow: "%{name} ha eliminado el dominio %{target} de la lista blanca"
         destroy_domain_block: "%{name} desbloqueó el dominio %{target}"
         destroy_email_domain_block: "%{name} puso en lista blanca el dominio de correos %{target}"
+        destroy_ip_block: "%{name} eliminó la regla para la IP %{target}"
         destroy_status: "%{name} eliminó el estado de %{target}"
         disable_2fa_user: "%{name} deshabilitó el requerimiento de dos factores para el usuario %{target}"
         disable_custom_emoji: "%{name} deshabilitó el emoji %{target}"
@@ -448,6 +452,19 @@ es:
         expired: Expiradas
         title: Filtrar
       title: Invitaciones
+    ip_blocks:
+      add_new: Crear regla
+      created_msg: Nueva regla IP añadida con éxito
+      delete: Eliminar
+      expires_in:
+        '1209600': 2 semanas
+        '15778476': 6 meses
+        '2629746': 1 mes
+        '31556952': 1 año
+        '86400': 1 día
+        '94670856': 3 años
+      new:
+        title: Crear nueva regla IP
     pending_accounts:
       title: Cuentas pendientes (%{count})
     relationships:
