@@ -230,12 +230,14 @@ ru:
         create_domain_allow: Создать разрешение для домена
         create_domain_block: Блокировка доменов
         create_email_domain_block: Блокировка e-mail доменов
+        create_ip_block: Создать IP правило
         demote_user: Разжалование пользователей
         destroy_announcement: Удаление объявлений
         destroy_custom_emoji: Удаление эмодзи
         destroy_domain_allow: Удалить разрешение для домена
         destroy_domain_block: Разблокировка доменов
         destroy_email_domain_block: Разблокировка e-mail доменов
+        destroy_ip_block: Удалить IP правило
         destroy_status: Удаление постов
         disable_2fa_user: Отключение 2FA
         disable_custom_emoji: Отключение эмодзи
@@ -266,12 +268,14 @@ ru:
         create_domain_allow: "%{name} внес(ла) домен %{target} в белый список"
         create_domain_block: "%{name} заблокировал(а) домен %{target}"
         create_email_domain_block: "%{name} добавил(а) e-mail домен %{target} в чёрный список"
+        create_ip_block: "%{name} создал правило для IP %{target}"
         demote_user: "%{name} разжаловал(а) пользователя %{target}"
         destroy_announcement: "%{name} удалил объявление %{target}"
         destroy_custom_emoji: "%{name} измельчил(а) эмодзи %{target} в пыль"
         destroy_domain_allow: "%{name} убрал домен %{target} из белого списка"
         destroy_domain_block: "%{name} разблокировал(а) домен %{target}"
         destroy_email_domain_block: "%{name} добавил(а) e-mail домен %{target} в белый список"
+        destroy_ip_block: "%{name} удалил правило для IP %{target}"
         destroy_status: "%{name} удалил(а) пост пользователя %{target}"
         disable_2fa_user: "%{name} отключил(а) требование двухэтапной авторизации для пользователя %{target}"
         disable_custom_emoji: "%{name} отключил(а) эмодзи %{target}"
@@ -460,6 +464,21 @@ ru:
         expired: Истёкшие
         title: Фильтр
       title: Приглашения
+    ip_blocks:
+      add_new: Создать правило
+      created_msg: Успешно добавлено новое IP правило
+      delete: Удалить
+      expires_in:
+        '1209600': 2 недели
+        '15778476': 6 месяцев
+        '2629746': 1 месяц
+        '31556952': 1 год
+        '86400': 1 день
+        '94670856': 3 года
+      new:
+        title: Создать новое IP правило
+      no_ip_block_selected: Не было изменено ни одного IP правила, так как не было выбрано ни одного
+      title: IP правила
     pending_accounts:
       title: Ожидающие учетные записи (%{count})
     relationships:
