@@ -25,6 +25,8 @@ kab:
         name: 'Ahat ad tebγuḍ ad tesqedceḍ yiwen gar-asen:'
       imports:
         data: Afaylu CSV id yusan seg uqeddac-nniḍen n Maṣṭudun
+      ip_block:
+        comment: D afrayan. Cfu ɣef wayɣer i terniḍ alugen-a.
     labels:
       account:
         fields:
@@ -82,6 +84,12 @@ kab:
         comment: Awennit
       invite_request:
         text: Acimi tebγiḍ ad ternuḍ iman-ik?
+      ip_block:
+        comment: Awennit
+        ip: IP
+        severities:
+          no_access: Sewḥel anekcum
+        severity: Alugen
       notification_emails:
         mention: Yuder-ik·em-id walbɛaḍ
         reblog: Yella win yesselhan adda-dik·im
