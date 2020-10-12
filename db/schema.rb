@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_17_222734) do
+ActiveRecord::Schema.define(version: 2020_10_08_220312) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -463,6 +463,15 @@ ActiveRecord::Schema.define(version: 2020_09_17_222734) do
     t.index ["user_id"], name: "index_invites_on_user_id"
   end
 
+  create_table "ip_blocks", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "expires_at"
+    t.inet "ip", default: "0.0.0.0", null: false
+    t.integer "severity", default: 0, null: false
+    t.text "comment", default: "", null: false
+  end
+
   create_table "list_accounts", force: :cascade do |t|
     t.bigint "list_id", null: false
     t.bigint "account_id", null: false
@@ -891,6 +900,7 @@ ActiveRecord::Schema.define(version: 2020_09_17_222734) do
     t.string "sign_in_token"
     t.datetime "sign_in_token_sent_at"
     t.string "webauthn_id"
+    t.inet "sign_up_ip"
     t.index ["account_id"], name: "index_users_on_account_id"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["created_by_application_id"], name: "index_users_on_created_by_application_id"
