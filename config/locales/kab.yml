@@ -175,6 +175,8 @@ kab:
         change_email_user: Beddel imayl i useqdac
         confirm_user: Sentem aseqdac
         create_custom_emoji: Rnu imujit udmawan
+        create_ip_block: Rnu alugen n IP
+        destroy_ip_block: Kkes alugen n IP
         disable_2fa_user: Gdel 2FA
         enable_user: Rmed aseqdac
         remove_avatar_user: Kkes avaṭar
@@ -190,12 +192,14 @@ kab:
         create_domain_allow: "%{name} yerna taɣult %{target} ɣer tebdart tamellalt"
         create_domain_block: "%{name} yesseḥbes taɣult %{target}"
         create_email_domain_block: "%{name} yerna taɣult n imayl %{target} ɣer tebdart taberkant"
+        create_ip_block: "%{name} rnu alugen i IP %{target}"
         demote_user: "%{name} iṣubb-d deg usellun aseqdac %{target}"
         destroy_announcement: "%{name} yekkes taselɣut %{target}"
         destroy_custom_emoji: "%{name} ihudd imuji %{target}"
         destroy_domain_allow: "%{name} yekkes taɣult %{target} seg tebdart tamellalt"
         destroy_domain_block: "%{name} yekkes aseḥbes n taɣult %{target}"
         destroy_email_domain_block: "%{name} yerna taɣult n imayl %{target} ɣer tebdart tamellalt"
+        destroy_ip_block: "%{name} kkes alugen i IP %{target}"
         destroy_status: "%{name} yekkes tasuffeɣt n %{target}"
         disable_custom_emoji: "%{name} yessens imuji %{target}"
         disable_user: "%{name} yessens tuqqna i umseqdac %{target}"
@@ -318,6 +322,21 @@ kab:
         expired: Ifat
         title: Asizdeg
       title: Iɛaruḍen
+    ip_blocks:
+      add_new: Rnu alugen
+      created_msg: Yettwarna ulugen amaynut n IP akken iwata
+      delete: Kkes
+      expires_in:
+        '1209600': 2 yimalasen
+        '15778476': 6 wayyuren
+        '2629746': 1 wayyur
+        '31556952': 1 useggas
+        '86400': 1 wass
+        '94670856': 3 yiseggasen
+      new:
+        title: Rnu alugen n IP amaynut
+      no_ip_block_selected: Ula yiwen n ulugen n IP ur yettwabeddel acku ula yiwen ur yettwafren
+      title: Ilugan n IP
     pending_accounts:
       title: Imiḍanen yettrajun (%{count})
     relationships:
