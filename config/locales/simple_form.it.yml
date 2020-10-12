@@ -64,6 +64,14 @@ it:
         data: File CSV esportato da un altro server Mastodon
       invite_request:
         text: Questo ci aiuterà ad esaminare la tua richiesta
+      ip_block:
+        comment: Opzionale. Ricorda perché hai aggiunto questa regola.
+        expires_in: Gli indirizzi IP sono una risorsa finita, a volte sono condivisi e spesso cambiano possessore. Per questo motivo, i blocchi IP indefiniti non sono consigliati.
+        ip: Inserisci un indirizzo IPv4 o IPv6. Puoi bloccare interi intervalli usando la sintassi CIDR. Fai attenzione a non bloccare te stesso!
+        severities:
+          no_access: Blocca l'accesso a tutte le risorse
+          sign_up_requires_approval: Le nuove iscrizioni richiederanno la tua approvazione
+        severity: Scegli cosa accadrà con le richieste da questo IP
       sessions:
         otp: 'Inserisci il codice a due fattori generato dall''app del tuo telefono o usa uno dei codici di recupero:'
         webauthn: Se si tratta di una chiavetta USB assicurati di inserirla e, se necessario, toccarla.
@@ -169,6 +177,13 @@ it:
         comment: Commento
       invite_request:
         text: Perché vuoi iscriverti?
+      ip_block:
+        comment: Commento
+        ip: IP
+        severities:
+          no_access: Blocca accesso
+          sign_up_requires_approval: Limita iscrizioni
+        severity: Regola
       notification_emails:
         digest: Invia email riassuntive
         favourite: Invia email quando segna come preferito al tuo stato
