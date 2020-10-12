@@ -221,12 +221,14 @@ hu:
         create_domain_allow: Domain engedélyezés létrehozása
         create_domain_block: Domain blokkolás létrehozása
         create_email_domain_block: E-mail domain blokkolás létrehozása
+        create_ip_block: IP szabály létrehozása
         demote_user: Felhasználó lefokozása
         destroy_announcement: Közlemény törlése
         destroy_custom_emoji: Egyéni emodzsi törlése
         destroy_domain_allow: Domain engedélyezés törlése
         destroy_domain_block: Domain blokkolás törlése
         destroy_email_domain_block: E-mail domain blokkolás törlése
+        destroy_ip_block: IP szabály törlése
         destroy_status: Állapot törlése
         disable_2fa_user: Kétlépcsős hitelesítés letiltása
         disable_custom_emoji: Egyéni emodzsi letiltása
@@ -257,12 +259,14 @@ hu:
         create_domain_allow: "%{name} engedélyező listára vette %{target} domaint"
         create_domain_block: "%{name} letiltotta az alábbi domaint: %{target}"
         create_email_domain_block: "%{name} feketelistára tette az alábbi e-mail domaint: %{target}"
+        create_ip_block: "%{name} létrehozott egy szabályt a %{target} IP-vel kapcsolatban"
         demote_user: "%{name} lefokozta az alábbi felhasználót: %{target}"
         destroy_announcement: "%{name} törölte a közleményt %{target}"
         destroy_custom_emoji: "%{name} törölte az emodzsit: %{target}"
         destroy_domain_allow: "%{name} leszedte %{target} domaint az engedélyező listáról"
         destroy_domain_block: "%{name} engedélyezte az alábbi domaint: %{target}"
         destroy_email_domain_block: "%{name} fehérlistára tette az alábbi e-mail domaint: %{target}"
+        destroy_ip_block: "%{name} törölt egy szabályt a %{target} IP-vel kapcsolatban"
         destroy_status: "%{name} eltávolította az alábbi felhasználó tülkjét: %{target}"
         disable_2fa_user: "%{name} kikapcsolta a kétlépcsős azonosítást %{target} felhasználó fiókján"
         disable_custom_emoji: "%{name} letiltotta az alábbi emodzsit: %{target}"
@@ -447,6 +451,19 @@ hu:
         expired: Elévült
         title: Szűrő
       title: Meghívások
+    ip_blocks:
+      add_new: Szabály létrehozása
+      created_msg: Az új IP szabályt sikeresen felvettük
+      delete: Törlés
+      expires_in:
+        '1209600': 2 hét
+        '15778476': 6 hónap
+        '2629746': 1 hónap
+        '31556952': 1 év
+        '86400': 1 nap
+        '94670856': 3 év
+      new:
+        title: Új IP szabály létrehozása
     pending_accounts:
       title: Függőben lévő fiókok (%{count})
     relationships:
