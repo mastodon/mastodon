@@ -1036,6 +1036,9 @@ pl:
           trillion: bln
   otp_authentication:
     code_hint: Aby potwierdzić, wprowadź kod wygenerowany przez aplikację uwierzytelniającą
+    enable: Aktywuj
+    setup: Skonfiguruj
+    wrong_code: Wprowadzony kod jest nieprawidłowy! Czy czas serwera i urządzenia jest poprawny?
   pagination:
     newer: Nowsze
     next: Następna
@@ -1160,6 +1163,7 @@ pl:
     profile: Profil
     relationships: Śledzeni i śledzący
     two_factor_authentication: Uwierzytelnianie dwuetapowe
+    webauthn_authentication: Klucze bezpieczeństwa
   spam_check:
     spam_detected: To zgłoszenie jest automatyczne. Został wykryty spam.
   statuses:
@@ -1313,14 +1317,20 @@ pl:
       default: "%d. %b %Y, %H:%M"
       month: "%b %Y"
   two_factor_authentication:
+    add: Dodaj
     disable: Wyłącz
+    disabled_success: Pomyślnie wyłączono uwierzytelnianie dwuetapowe
+    edit: Edytuj
     enabled: Uwierzytelnianie dwuetapowe jest włączone
     enabled_success: Pomyślnie aktywowano uwierzytelnianie dwuetapowe
     generate_recovery_codes: Generuj kody zapasowe
     lost_recovery_codes: Kody zapasowe pozwolą uzyskać dostęp do portalu, jeżeli utracisz dostęp do telefonu. Jeżeli utracisz dostęp do nich, możesz wygenerować je ponownie tutaj. Poprzednie zostaną unieważnione.
+    methods: Metody uwierzytelniania dwuetapowego
+    otp: Aplikacja uwierzytelniająca
     recovery_codes: Przywróć kody zapasowe
     recovery_codes_regenerated: Pomyślnie wygenerowano ponownie kody zapasowe
     recovery_instructions_html: Jeżeli kiedykolwiek utracisz dostęp do telefonu, możesz wykorzystać jeden z kodów zapasowych, aby odzyskać dostęp do konta. <strong>Trzymaj je w bezpiecznym miejscu</strong>. Na przykład, wydrukuj je i przechowuj z ważnymi dokumentami.
+    webauthn: Klucze bezpieczeństwa
   user_mailer:
     backup_ready:
       explanation: Zażądałeś pełnej kopii zapasowej konta na Mastodonie. Jest ona dostępna do pobrania!
@@ -1368,9 +1378,11 @@ pl:
       tips: Wskazówki
       title: Witaj na pokładzie, %{name}!
   users:
+    blocked_email_provider: Ten dostawca e-mail jest niedozwolony
     follow_limit_reached: Nie możesz śledzić więcej niż %{limit} osób
     generic_access_help_html: Nie możesz uzyskać dostępu do konta? Skontaktuj się z %{email} aby uzyskać pomoc
     invalid_email: Adres e-mail jest niepoprawny
+    invalid_email_mx: Ten adres e-mail wydaje się nie istnieć
     invalid_otp_token: Kod uwierzytelniający jest niepoprawny
     invalid_sign_in_token: Nieprawidłowy kod zabezpieczający
     otp_lost_help_html: Jeżeli utracisz dostęp do obu, możesz skontaktować się z %{email}
@@ -1380,3 +1392,9 @@ pl:
   verification:
     explanation_html: 'Możesz <strong>zweryfikować siebie jako właściciela stron, do których odnośniki znajdują się w metadanych</strong>. Aby to zrobić, strona musi zawierać odnośnik do Twojego profilu na Mastodonie. Odnośnik <strong>musi</strong> zawierać atrybut <code>rel="me"</code>. Jego zawartość nie ma znaczenia. Przykład:'
     verification: Weryfikacja
+  webauthn_credentials:
+    add: Dodaj nowy klucz bezpieczeństwa
+    create:
+      error: Wystąpił problem z dodawaniem klucza bezpieczeństwa. Spróbuj ponownie.
+      success: Pomyślnie dodano klucz bezpieczeństwa.
+    delete: Usuń
