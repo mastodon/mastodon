@@ -1,10 +1,9 @@
 import { autoPlayGif, useSystemEmojiFont } from 'flavours/glitch/util/initial_state';
 import unicodeMapping from './emoji_unicode_mapping_light';
+import { assetHost } from 'flavours/glitch/util/config';
 import Trie from 'substring-trie';
 
 const trie = new Trie(Object.keys(unicodeMapping));
-
-const assetHost = process.env.CDN_HOST || '';
 
 // Convert to file names from emojis. (For different variation selector emojis)
 const emojiFilenames = (emojis) => {

@@ -13,6 +13,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import detectPassiveEvents from 'detect-passive-events';
 import { buildCustomEmojis, categoriesFromEmojis } from 'flavours/glitch/util/emoji';
 import { useSystemEmojiFont } from 'flavours/glitch/util/initial_state';
+import { assetHost } from 'flavours/glitch/util/config';
 
 const messages = defineMessages({
   emoji: { id: 'emoji_button.label', defaultMessage: 'Insert emoji' },
@@ -105,7 +106,6 @@ const mapDispatchToProps = (dispatch, { onPickEmoji }) => ({
   },
 });
 
-const assetHost = process.env.CDN_HOST || '';
 let EmojiPicker, Emoji; // load asynchronously
 
 const backgroundImageFn = () => `${assetHost}/emoji/sheet_10.png`;
