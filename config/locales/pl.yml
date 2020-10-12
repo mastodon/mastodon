@@ -178,6 +178,7 @@ pl:
       remove_avatar: Usun awatar
       remove_header: Usuń nagłówek
       removed_avatar_msg: Pomyślnie usunięto awatar %{username}
+      removed_header_msg: Pomyślnie usunięto obraz nagłówka %{username}
       resend_confirmation:
         already_confirmed: To konto zostało już potwierdzone
         send: Wyślij ponownie e-mail z potwierdzeniem
@@ -203,13 +204,17 @@ pl:
       statuses: Wpisy
       subscribe: Subskrybuj
       suspended: Zawieszono
+      suspension_irreversible: Dane tego konta zostały bezpowrotnie usunięte. Możesz cofnąć zawieszenie tego konta aby można było z niego ponownie korzystać, lecz nie przywróci to danych które poprzednio się na nim znajdowały.
       time_in_queue: Czekanie w kolejce %{time}
       title: Konta
       unconfirmed_email: Niepotwierdzony adres e-mail
       undo_silenced: Cofnij wyciszenie
       undo_suspension: Cofnij zawieszenie
+      unsilenced_msg: Pomyślnie zwolniono z ograniczeń konto %{username}
       unsubscribe: Przestań subskrybować
+      unsuspended_msg: Pomyślnie cofnięto zawieszenie konto %{username}
       username: Nazwa użytkownika
+      view_domain: Zobacz podsumowanie domeny
       warn: Ostrzeż
       web: Sieć
       whitelisted: Na białej liście
@@ -705,8 +710,11 @@ pl:
       prefix_sign_up: Zarejestruj się na Mastodon już dziś!
       suffix: Mając konto, możesz śledzić ludzi, publikować wpisy i wymieniać się wiadomościami z użytkownikami innych serwerów Mastodona i nie tylko!
     didnt_get_confirmation: Nie otrzymałeś(-aś) instrukcji weryfikacji?
+    dont_have_your_security_key: Nie masz klucza bezpieczeństwa?
     forgot_password: Nie pamiętasz hasła?
     invalid_reset_password_token: Token do resetowania hasła jest nieprawidłowy lub utracił ważność. Spróbuj uzyskać nowy.
+    link_to_otp: Wprowadź kod dwustopniowego uwierzytelniania z telefonu lub użyj zapasowego kodu
+    link_to_webauth: Użyj swojego urządzenia z kluczem bezpieczeństwa
     login: Zaloguj się
     logout: Wyloguj się
     migrate_account: Przenieś konto
@@ -732,6 +740,7 @@ pl:
       pending: Twoje zgłoszenie czeka na zatwierdzenie przez nas. Może to trochę potrwać. Jeżeli zgłoszenie zostanie przyjęte, otrzymasz wiadomość e-mail.
       redirecting_to: Twoje konto jest nieaktywne, ponieważ obecnie przekierowuje je na %{acct}.
     trouble_logging_in: Masz problem z zalogowaniem się?
+    use_security_key: Użyj klucza bezpieczeństwa
   authorize_follow:
     already_following: Już śledzisz to konto
     already_requested: Już wysłałeś(-aś) prośbę o możliwość śledzenia tego konta
@@ -1025,6 +1034,8 @@ pl:
           quadrillion: bld
           thousand: tys
           trillion: bln
+  otp_authentication:
+    code_hint: Aby potwierdzić, wprowadź kod wygenerowany przez aplikację uwierzytelniającą
   pagination:
     newer: Nowsze
     next: Następna
