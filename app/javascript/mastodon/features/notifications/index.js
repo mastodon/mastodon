@@ -55,6 +55,7 @@ const mapStateToProps = state => ({
   numPending: state.getIn(['notifications', 'pendingItems'], ImmutableList()).size,
   lastReadId: state.getIn(['notifications', 'readMarkerId']),
   canMarkAsRead: state.getIn(['notifications', 'readMarkerId']) !== '0' && getNotifications(state).some(item => item !== null && compareId(item.get('id'), state.getIn(['notifications', 'readMarkerId'])) > 0),
+  needsNotificationPermission: state.getIn(['settings', 'notifications', 'alerts']).includes(true) && state.getIn(['notifications', 'browserSupport']) && state.getIn(['notifications', 'browserPermission']) !== 'granted',
 });
 
 export default @connect(mapStateToProps)
@@ -75,6 +76,7 @@ class Notifications extends React.PureComponent {
     numPending: PropTypes.number,
     lastReadId: PropTypes.string,
     canMarkAsRead: PropTypes.bool,
+    needsNotificationPermission: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -250,6 +252,7 @@ class Notifications extends React.PureComponent {
           pinned={pinned}
           multiColumn={multiColumn}
           extraButton={extraButton}
+          collapseIssues={this.props.needsNotificationPermission}
         >
           <ColumnSettingsContainer />
         </ColumnHeader>
