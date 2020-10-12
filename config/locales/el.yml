@@ -222,12 +222,14 @@ el:
         create_domain_allow: Δημιουργία Επιτρεπτού Τομέα
         create_domain_block: Δημιουργία Αποκλεισμένου Τομέα
         create_email_domain_block: Δημουργία Αποκλεισμένου Τομέα email
+        create_ip_block: Δημιουργία κανόνα IP
         demote_user: Υποβιβασμός Χρήστη
         destroy_announcement: Διαγραφή Ανακοίνωσης
         destroy_custom_emoji: Διαγραφή Προσαρμοσμένου Emoji
         destroy_domain_allow: Διαγραφή Επιτρεπτού Τομέα
         destroy_domain_block: Διαγραφή Αποκλεισμού Τομέα
         destroy_email_domain_block: Διαγραφή Αποκλεισμένου Τομέα email
+        destroy_ip_block: Διαγραφή κανόνα IP
         destroy_status: Διαγραφή Κατάστασης
         disable_2fa_user: Απενεργοποίηση 2FA
         disable_custom_emoji: Απενεργοποίηση Προσαρμοσμένων Emoji
@@ -258,12 +260,14 @@ el:
         create_domain_allow: "Ο/Η %{name} έβαλε τον τομέα %{target} σε λευκή λίστα"
         create_domain_block: "Ο/Η %{name} μπλόκαρε τον τομέα %{target}"
         create_email_domain_block: "Ο/Η %{name} έβαλε τον τομέα email %{target} σε μαύρη λίστα"
+        create_ip_block: "Ο/Η %{name} δημιούργησε κανόνα για την IP %{target}"
         demote_user: "Ο/Η %{name} υποβίβασε το χρήστη %{target}"
         destroy_announcement: "Διαγραφή ανακοίνωσης %{target} από %{name}"
         destroy_custom_emoji: "Ο/Η %{name} κατέστρεψε το emoji %{target}"
         destroy_domain_allow: "Ο/Η %{name} αφαίρεσε τον τομέα %{target} από λίστα εγκρίσεων"
         destroy_domain_block: "Ο/Η %{name} ξεμπλόκαρε τον τομέα %{target}"
         destroy_email_domain_block: "Ο/Η %{name} έβαλε τον τομέα email %{target} σε λευκή λίστα"
+        destroy_ip_block: "Ο/Η %{name} διέγραψε κανόνα για την IP %{target}"
         destroy_status: "Ο/Η %{name} αφαίρεσε την κατάσταση του/της %{target}"
         disable_2fa_user: "Ο/Η %{name} απενεργοποίησε την απαίτηση δύο παραγόντων για το χρήστη %{target}"
         disable_custom_emoji: "Ο/Η %{name} απενεργοποίησε το emoji %{target}"
@@ -448,6 +452,20 @@ el:
         expired: Ληγμένες
         title: Φίλτρο
       title: Προσκλήσεις
+    ip_blocks:
+      add_new: Δημιουργία κανόνα
+      created_msg: Επιτυχής προσθήκη νέου κανόνα IP
+      delete: Διαγραφή
+      expires_in:
+        '1209600': 2 εβδομάδες
+        '15778476': 6 μήνες
+        '2629746': 1 μήνας
+        '31556952': 1 έτος
+        '86400': 1 ημέρα
+        '94670856': 3 έτη
+      new:
+        title: Δημιουργία νέου κανόνα IP
+      title: Κανόνες IP
     pending_accounts:
       title: Λογαριασμοί σε αναμονή (%{count})
     relationships:
