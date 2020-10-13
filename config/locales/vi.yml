@@ -217,12 +217,14 @@ vi:
         create_domain_allow: Tạo danh sách máy chủ cho phép
         create_domain_block: Tạo danh sách máy chủ chặn
         create_email_domain_block: Tạo danh sách địa chỉ email chặn
+        create_ip_block: Chặn IP
         demote_user: Gỡ bỏ chức vụ
         destroy_announcement: Gỡ thông báo
         destroy_custom_emoji: Gỡ Emoji
         destroy_domain_allow: Gỡ máy chủ cho phép
         destroy_domain_block: Gỡ máy chủ chặn
         destroy_email_domain_block: Gỡ email đã chặn
+        destroy_ip_block: Bỏ chặn IP
         destroy_status: Xóa tút
         disable_2fa_user: Vô hiệu hóa xác thực hai bước
         disable_custom_emoji: Vô hiệu hóa Emoji
@@ -253,12 +255,14 @@ vi:
         create_domain_allow: "%{name} kích hoạt liên hợp với %{target}"
         create_domain_block: "%{name} chặn máy chủ %{target}"
         create_email_domain_block: "%{name} chặn địa chỉ email %{target}"
+        create_ip_block: "%{name} đã chặn IP %{target}"
         demote_user: "%{name} đã gỡ bỏ chức vụ %{target}"
         destroy_announcement: "%{name} gỡ thông báo tới %{target}"
         destroy_custom_emoji: "%{name} biểu tượng cảm xúc bị phá hủy %{target}"
         destroy_domain_allow: "%{name} đã xóa tên miền %{target} khỏi danh sách trắng"
         destroy_domain_block: "%{name} bỏ chặn máy chủ %{target}"
         destroy_email_domain_block: "%{name} bỏ chặn địa chỉ email %{target}"
+        destroy_ip_block: "%{name} bỏ chặn IP %{target}"
         destroy_status: "%{name} đã gỡ bỏ tút của %{target}"
         disable_2fa_user: "%{name} đã vô hiệu hóa xác thực hai yếu tố của %{target}"
         disable_custom_emoji: "%{name} đã gỡ bỏ Emoji %{target}"
@@ -441,6 +445,21 @@ vi:
         expired: Đã hết hạn
         title: Bộ lọc
       title: Lời mời
+    ip_blocks:
+      add_new: Chặn IP mới
+      created_msg: Đã chặn IP thành công
+      delete: Bỏ chặn
+      expires_in:
+        '1209600': 2 tuần
+        '15778476': 6 tháng
+        '2629746': 1 tháng
+        '31556952': 1 năm
+        '86400': 1 ngày
+        '94670856': 3 năm
+      new:
+        title: Chặn một IP mới
+      no_ip_block_selected: Bạn chưa chọn bất kỳ IP nào
+      title: Những IP bị chặn
     pending_accounts:
       title: Tài khoản đang chờ xét duyệt (%{count})
     relationships:
