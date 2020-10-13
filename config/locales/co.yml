@@ -196,6 +196,7 @@ co:
       undo_suspension: Ùn suspende più
       unsubscribe: Disabbunassi
       username: Cugnome
+      view_domain: Vede un riassuntu per u duminiu
       warn: Averte
       web: Web
       whitelisted: In a lista bianca
@@ -210,12 +211,14 @@ co:
         create_domain_allow: Creà Auturizazione di Duminiu
         create_domain_block: Creà Blucchime di Duminiu
         create_email_domain_block: Creà Blucchime di Duminiu E-mail
+        create_ip_block: Creà regula IP
         demote_user: Ritrugadà Utilizatore
         destroy_announcement: Toglie Annunziu
         destroy_custom_emoji: Toglie Emoji Persunalizata
         destroy_domain_allow: Toglie Auturizazione di Duminiu
         destroy_domain_block: Toglie Blucchime di Duminiu
         destroy_email_domain_block: Toglie blucchime di duminiu e-mail
+        destroy_ip_block: Toglie regula IP
         destroy_status: Toglie u statutu
         disable_2fa_user: Disattivà l’identificazione à 2 fattori
         disable_custom_emoji: Disattivà Emoji Persunalizata
@@ -246,12 +249,14 @@ co:
         create_domain_allow: "%{name} hà messu u duminiu %{target} nant’a lista bianca"
         create_domain_block: "%{name} hà bluccatu u duminiu %{target}"
         create_email_domain_block: "%{name} hà messu u duminiu e-mail %{target} nant’a lista nera"
+        create_ip_block: "%{name} hà creatu a regula IP %{target}"
         demote_user: "%{name} hà ritrugradatu l’utilizatore %{target}"
         destroy_announcement: "%{name} hà sguassatu u novu annunziu %{target}"
         destroy_custom_emoji: "%{name} hà sguassatu l'emoji %{target}"
         destroy_domain_allow: "%{name} hà sguassatu u duminiu %{target} da a lista bianca"
         destroy_domain_block: "%{name} hà sbluccatu u duminiu %{target}"
         destroy_email_domain_block: "%{name} hà messu u duminiu e-mail %{target} nant’a lista bianca"
+        destroy_ip_block: "%{name} hà toltu a regula IP %{target}"
         destroy_status: "%{name} hà toltu u statutu di %{target}"
         disable_2fa_user: "%{name} hà disattivatu l’identificazione à dui fattori per %{target}"
         disable_custom_emoji: "%{name} hà disattivatu l’emoji %{target}"
@@ -436,6 +441,21 @@ co:
         expired: Spirati
         title: Filtrà
       title: Invitazione
+    ip_blocks:
+      add_new: Creà regula
+      created_msg: Nova regula IP aghjunta
+      delete: Toglie
+      expires_in:
+        '1209600': 2 settimane
+        '15778476': 6 mesi
+        '2629746': 1 mese
+        '31556952': 1 annu
+        '86400': 1 ghjornu
+        '94670856': 3 anni
+      new:
+        title: Creà una nova regula IP
+      no_ip_block_selected: E regule ùn sò micca state mudificate perchè manc'un'era selezziunata
+      title: Regule IP
     pending_accounts:
       title: Conti in attesa (%{count})
     relationships:
@@ -834,7 +854,7 @@ co:
   footer:
     developers: Sviluppatori
     more: Di più…
-    resources: Risorze
+    resources: Risorse
     trending_now: Tindenze d'avà
   generic:
     all: Tuttu
