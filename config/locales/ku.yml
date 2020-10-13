@@ -222,7 +222,32 @@ ckb-IR:
         update_announcement: "%{name} بەڕۆژکراوەی راگەیاندنی %{target}"
         update_custom_emoji: "%{name} ئیمۆجی %{target} نوێکرایەوە"
         update_status: "%{name} نووسراوەی %{target} بەڕۆژکرد"
+      deleted_status: "(نووسراوە سڕاوە)"
+      empty: هیچ لاگی کارنەدۆزرایەوە.
+      filter_by_action: فلتەر کردن بە کردار
+      filter_by_user: فلتەر کردن بە کردار
+      title: تۆماری وردبینی
+    announcements:
+      destroyed_msg: بانگەوازەکە بە سەرکەوتوویی سڕاوەتەوە!
+      edit:
+        title: بڵاوکردنەوەی راگەیەندراو
+      empty: هیچ راگەیەندراوێک نەدۆزرایەوە.
+      live: زیندوو
+      new:
+        create: دروستکردنی راگەیەندراو
+        title: ڕاگەیاندنی نوێ
+      published_msg: بانگەوازەکە بە سەرکەوتوویی بڵاو کرایەوە!
+      scheduled_for: خشتەکراوە بۆ %{time}
+      scheduled_msg: ڕاگەیاندنی خشتەی بۆ بڵاوکردنەوە!
+      title: ڕاگه یه نراوەکان
+      unpublished_msg: بانگەواز بە سەرکەوتوویی بڵاونەکرایەوە!
+      updated_msg: بانگەوازەکە بە سەرکەوتوویی نوێکرایەوە!
     custom_emojis:
+      assign_category: دانانی پۆلێن
+      by_domain: دۆمەین
+      copied_msg: کۆپیەکی ناوخۆیی ئیمۆجیبەکە بە سەرکەوتوویی دروست کرد
+      copy: کۆپی
+      copy_failed_msg: نهیتوانی کۆپیهکی ناوخۆیی ئهو ئیمۆجییە دروست بکات
       title: ئیمۆجی دڵخواز
       uncategorized: هاوپۆل نەکراوە
       unlist: بێ پێرست
@@ -278,6 +303,24 @@ ckb-IR:
           noop: هیچ
           silence: بێدەنگ
           suspend: ڕاگرتن
+    instances:
+      delivery_available: گەیاندن بەردەستە
+      moderation:
+        all: هەموو
+        limited: سنووردار
+        title: بەڕێوەبردن
+      private_comment: لێدوانی تایبەت
+      public_comment: سەرنجی گشتی
+      title: پەیوەندی نێوان ڕاژە
+      total_blocked_by_us: لەلایەن ئێمە بەربەست کراوە
+      total_followed_by_them: شوێنمان دەکەون
+      total_followed_by_us: شوێنیان کەوتین
+      total_reported: گوزارشت له باره یان
+      total_storage: هاوپێچی میدیا
+    invites:
+      deactivate_all: هەموو لەکارخستنی
+      filter:
+        all: هەموو
     pending_accounts:
       title: هەژمارە هەڵواسراوەکان (%{count})
     relationships:
