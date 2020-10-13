@@ -64,6 +64,9 @@ co:
         data: Un fugliale CSV da un’altru servore di Mastodon
       invite_request:
         text: Quessu ci aiutarà à valutà a vostra dumanda
+      ip_block:
+        severities:
+          no_access: Bluccà l'accessu à tutte e risorse
       sessions:
         otp: 'Entrate u codice d’identificazione à dui fattori nant’à u vostru telefuninu, o unu di i vostri codici di ricuperazione:'
         webauthn: S'ella hè una chjave USB assicuratevi di brancalla è, s'ellu c'hè unu, appughjà nant'à u buttone.
@@ -135,6 +138,7 @@ co:
         setting_default_privacy: Cunfidenzialità di i statuti
         setting_default_sensitive: Sempre cunsiderà media cum’è sensibili
         setting_delete_modal: Mustrà une cunfirmazione per toglie un statutu
+        setting_disable_swiping: Disattivà e sculiscere
         setting_display_media: Affissera di i media
         setting_display_media_default: Predefinitu
         setting_display_media_hide_all: Piattà tuttu
@@ -168,6 +172,13 @@ co:
         comment: Cummentariu
       invite_request:
         text: Perchè vulete ghjunghje?
+      ip_block:
+        comment: Cummentariu
+        ip: IP
+        severities:
+          no_access: Bluccà l'accessu
+          sign_up_requires_approval: Limità l'arregistramenti
+        severity: Regula
       notification_emails:
         digest: Mandà e-mail di ricapitulazione
         favourite: Mandà un’e-mail quandu qualch’unu aghjunghje i mo statuti à i so favuriti
