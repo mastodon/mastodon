@@ -222,12 +222,14 @@ sq:
         create_domain_allow: Krijo Lejim Përkatësie
         create_domain_block: Krijo Bllokim Përkatësie
         create_email_domain_block: Krijo Bllokim Përkatësie Email-esh
+        create_ip_block: Krijoni Rregull IP
         demote_user: Zhgradoje Përdoruesin
         destroy_announcement: Fshije Lajmërimin
         destroy_custom_emoji: Fshi Emotikon Vetjak
         destroy_domain_allow: Fshi Lejim Përkatësie
         destroy_domain_block: Fshi Bllokim Përkatësie
         destroy_email_domain_block: Fshi bllokim përkatësie email-esh
+        destroy_ip_block: Fshini Rregull IP
         destroy_status: Fshi Gjendje
         disable_2fa_user: Çaktivizo 2FA-në
         disable_custom_emoji: Çaktivizo Emotikon Vetjak
@@ -258,12 +260,14 @@ sq:
         create_domain_allow: "%{name} kaloi në listë lejimesh përkatësinë %{target}"
         create_domain_block: "%{name} bllokoi përkatësinë %{target}"
         create_email_domain_block: "%{name} shtoi në listë bllokimesh përkatësinë %{target}"
+        create_ip_block: "%{name} krijoi rregull për IP-në %{target}"
         demote_user: "%{name} zhgradoi përdoruesin %{target}"
         destroy_announcement: "%{name} fshiu lajmërimin për %{target}"
         destroy_custom_emoji: "%{name} asgjësoi emotikonin %{target}"
         destroy_domain_allow: "%{name} hoqi përkatësinë %{target} nga listë lejimesh"
         destroy_domain_block: "%{name} zhbllokoi përkatësinë %{target}"
         destroy_email_domain_block: "%{name} e shtoi në listë lejimesh përkatësinë %{target}"
+        destroy_ip_block: "%{name} fshiu rregull për IP-në %{target}"
         destroy_status: "%{name} hoqi gjendje nga %{target}"
         disable_2fa_user: "%{name} çaktivizoi domosdoshmëritë për dyfaktorësh për përdoruesin %{target}"
         disable_custom_emoji: "%{name} çaktivizoi emotikonin %{target}"
@@ -448,6 +452,21 @@ sq:
         expired: I skaduar
         title: Filtrim
       title: Ftesa
+    ip_blocks:
+      add_new: Krijoni rregull
+      created_msg: U shtua me sukses rregull i ri IP
+      delete: Fshije
+      expires_in:
+        '1209600': 2 javë
+        '15778476': 6 muaj
+        '2629746': 1 muaj
+        '31556952': 1 vit
+        '86400': 1 ditë
+        '94670856': 3 vjet
+      new:
+        title: Krijoni rregull IP të ri
+      no_ip_block_selected: S’u ndryshua ndonjë rregull IP, ngaqë s’u përzgjodh ndonjë i tillë
+      title: Rregulla IP
     pending_accounts:
       title: Llogari pezull (%{count})
     relationships:
