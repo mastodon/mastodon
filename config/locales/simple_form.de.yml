@@ -64,6 +64,14 @@ de:
         data: CSV-Datei, die aus einem anderen Mastodon-Server exportiert wurde
       invite_request:
         text: Dies wird uns helfen deine Anmeldungsanfrage besser zu verarbeiten
+      ip_block:
+        comment: Optional. Denke daran, warum du diese Regel hinzugefügt hast.
+        expires_in: IP-Adressen sind eine endliche Ressource, sie werden manchmal geteilt und werden ab und zu ausgetauscht. Aus diesem Grund werden unbestimmte IP-Blöcke nicht empfohlen.
+        ip: Gebe eine IPv4- oder IPv6-Adresse an. Du kannst ganze Bereiche mit der CIDR-Syntax blockieren. Achte darauf, dass du dich nicht aussperrst!
+        severities:
+          no_access: Zugriff auf alle Ressourcen blockieren
+          sign_up_requires_approval: Neue Anmeldungen erfordern deine Zustimmung
+        severity: Wähle aus, was mit Anfragen aus dieser IP passiert
       sessions:
         otp: 'Gib die Zwei-Faktor-Authentifizierung von deinem Telefon ein oder benutze einen deiner Wiederherstellungscodes:'
         webauthn: Wenn es sich um einen USB-Schlüssel handelt, stelle sicher, dass du ihn einsteckst und ihn antippst.
@@ -169,6 +177,13 @@ de:
         comment: Kommentar
       invite_request:
         text: Warum möchtest du beitreten?
+      ip_block:
+        comment: Kommentar
+        ip: IP-Adresse
+        severities:
+          no_access: Zugriff sperren
+          sign_up_requires_approval: Anmeldungen begrenzen
+        severity: Regel
       notification_emails:
         digest: Kurzfassungen über E-Mail senden
         favourite: E-Mail senden, wenn jemand meinen Beitrag favorisiert
