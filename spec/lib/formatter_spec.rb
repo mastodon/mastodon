@@ -336,9 +336,20 @@ RSpec.describe Formatter do
       end
 
       context do
+        let(:content_type) { 'text/plain' }
+
         subject do
-          status = Fabricate(:status, text: text, uri: nil)
+          status = Fabricate(:status, text: text, content_type: content_type, uri: nil)
           Formatter.instance.format(status)
+        end
+
+        context 'given an invalid URL (invalid port)' do
+          let(:text) { 'https://foo.bar:X/' }
+          let(:content_type) { 'text/markdown' }
+
+          it 'outputs the raw URL' do
+            is_expected.to eq '<p>https://foo.bar:X/</p>'
+          end
         end
 
         include_examples 'encode and link URLs'
@@ -464,7 +475,8 @@ RSpec.describe Formatter do
     subject { Formatter.instance.plaintext(status) }
 
     context 'given a post with local status' do
-      let(:status) { Fabricate(:status, text: '<p>a text by a nerd who uses an HTML tag in text</p>', uri: nil) }
+      let(:status) { Fabricate(:status, text: '<p>a text by a nerd who uses an HTML tag in text</p>', content_type: content_type, uri: nil) }
+      let(:content_type) { 'text/plain' }
 
       it 'returns the raw text' do
         is_expected.to eq '<p>a text by a nerd who uses an HTML tag in text</p>'

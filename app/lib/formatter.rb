@@ -11,6 +11,8 @@ class HTMLRenderer < Redcarpet::Render::HTML
   def autolink(link, link_type)
     return link if link_type == :email
     Formatter.instance.link_url(link)
+  rescue Addressable::URI::InvalidURIError, IDN::Idna::IdnaError
+    encode(link)
   end
 
   private
