@@ -66,6 +66,12 @@ id:
         text: Ini akan membantu kami meninjau aplikasi Anda
       ip_block:
         comment: Opsional. Harap ingat alasan Anda menambahkan peraturan ini.
+        expires_in: Alamat IP terbatas, kadang-kadang dibagikan dan dipindah tangan. Oleh karena itu, blok IP tidak terbatas tidak disarankan.
+        ip: Masukkan alamat IPv4 atau IPv6. Anda dapat memblokir seluruh rentang dengan sintaks CIDR. Hati-hati, jangan mengunci Anda sendiri!
+        severities:
+          no_access: Blokir akses ke seluruh sumber daya
+          sign_up_requires_approval: Pendaftaran baru memerlukan persetujuan Anda
+        severity: Pilih apa yang akan dilakukan dengan permintaan dari IP ini
       sessions:
         otp: 'Masukkan kode dua-faktor dari handphone atau gunakan kode pemulihan anda.'
         webauthn: Jika ini kunci USB pastikan dalam keadaan tercolok dan, jika perlu, ketuk.
@@ -171,6 +177,13 @@ id:
         comment: Komentar
       invite_request:
         text: Mengapa Anda ingin gabung?
+      ip_block:
+        comment: Komentar
+        ip: IP
+        severities:
+          no_access: Blok akses
+          sign_up_requires_approval: Batasi pendaftaran
+        severity: Aturan
       notification_emails:
         digest: Kirim email berisi rangkuman
         favourite: Kirim email saat seseorang menyukai status anda
