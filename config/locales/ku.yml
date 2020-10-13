@@ -152,11 +152,18 @@ ckb-IR:
         confirm_user: دڵنیابوون لە بەکارهێنەر
         create_account_warning: دروستکردنی ئاگاداری
         create_announcement: دروستکردنی راگەیەندراو
-        create_custom_emoji: دروستکردنی راگەیەندراو ئێمۆمۆجی دڵخواز
+        create_custom_emoji: دروستکردنی ئێمۆمۆجی دڵخواز
+        create_domain_allow: دروستکردنی ڕێپێدان بە دۆمەین
+        create_domain_block: دروستکردنی بلۆکی دۆمەین
+        create_email_domain_block: دروستکردنی بلۆکی دۆمەینی ئیمەیڵ
+        create_ip_block: دروستکردنی یاسای IP
+        demote_user: دابەزاندنی ئاستی بەکارهێنەر
+        destroy_announcement: سڕینەوەی راگەیەندراو
         destroy_custom_emoji: سڕینەوەی ئێمۆمۆجی تایبەتمەند
         destroy_domain_allow: سڕینەوەی ڕێپێدان بە دۆمەین
         destroy_domain_block: سڕینەوەی بلۆکی دۆمەین
         destroy_email_domain_block: سڕینەوەی بلۆکی دۆمەینی ئیمەیڵ
+        destroy_ip_block: سڕینەوەی یاسای IP
         destroy_status: دۆخ بسڕەوە
         disable_2fa_user: لەکارخستنی 2FA
         disable_custom_emoji: سڕینەوەی ئێمۆمۆجی تایبەتمەند
@@ -187,12 +194,14 @@ ckb-IR:
         create_domain_allow: "%{name} دۆمەینی %{target} ڕێپێدا"
         create_domain_block: "%{name} دۆمەنی %{target} بلۆککرد"
         create_email_domain_block: "%{name} دۆمەینی ئیمەیلی %{target} بلۆککرد"
+        create_ip_block: "%{name} یاسای دروستکراو بۆ ئای‌پی %{target}"
         demote_user: "%{name} ئاستی بەکارهێنەری %{target} دابەزاند"
         destroy_announcement: "%{name} ئاگاداری %{target} سڕیەوە"
         destroy_custom_emoji: "%{name} ئیمۆجی %{target} لە ناوبرد"
         destroy_domain_allow: "%{name} دۆمەنی%{target} لە پێرستی ڕێپێدراو لابرد"
         destroy_domain_block: "%{name} بەرگیری لە دۆمەینی %{target} لابرد"
         destroy_email_domain_block: "%{name} دۆمەینی ئیمەیلی %{target} خستە پێرستی ڕێپێدراو"
+        destroy_ip_block: "%{name} یاسای سڕینەوە بۆ ئای‌پی %{target}"
         destroy_status: "%{name} نووسراوەی %{target} سڕیەوە"
         disable_2fa_user: "%{name} دوو مەرجی فاکتەر بۆ بەکارهێنەر %{target} لە کارخست"
         disable_custom_emoji: "%{name} ئیمۆجی %{target} ناچالاک کرد"
@@ -204,6 +213,15 @@ ckb-IR:
         remove_avatar_user: "%{name} وێنۆچکەی بەکارهێنەری %{target} سڕیەوە"
         reopen_report: "%{name} گوزارشتی %{target} دووبارە وەگڕخستەوە"
         reset_password_user: "%{name} تێپەروشەی بەکارهێنەری %{target} گەڕانەوە"
+        resolve_report: "%{name} گوزارشتی %{target} دووبارە وەگڕخستەوە"
+        silence_account: "%{name} هەژماری %{target}'s بێدەنگ کرا"
+        suspend_account: "%{name} هەژماری %{target}'ی ڕاگیرا"
+        unassigned_report: "%{name} ڕاپۆرتی دیاری نەکراوی %{target}"
+        unsilence_account: "%{name} هەژماری %{target}'s بێ دەنگ"
+        unsuspend_account: "%{name} هەژماری %{target}'s هەڵنەپەسێردراو"
+        update_announcement: "%{name} بەڕۆژکراوەی راگەیاندنی %{target}"
+        update_custom_emoji: "%{name} ئیمۆجی %{target} نوێکرایەوە"
+        update_status: "%{name} نووسراوەی %{target} بەڕۆژکرد"
     custom_emojis:
       title: ئیمۆجی دڵخواز
       uncategorized: هاوپۆل نەکراوە
