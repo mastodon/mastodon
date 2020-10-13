@@ -202,12 +202,14 @@ ja:
         create_domain_allow: 連合を許可
         create_domain_block: ドメインブロックを作成
         create_email_domain_block: メールドメインブロックを作成
+        create_ip_block: IPルールを作成
         demote_user: ユーザーを降格
         destroy_announcement: お知らせを削除
         destroy_custom_emoji: カスタム絵文字を削除
         destroy_domain_allow: 連合許可を外す
         destroy_domain_block: ドメインブロックを削除
         destroy_email_domain_block: メールドメインブロックを削除
+        destroy_ip_block: IPルールを削除
         destroy_status: トゥートを削除
         disable_2fa_user: 二段階認証を無効化
         disable_custom_emoji: カスタム絵文字を無効化
@@ -238,12 +240,14 @@ ja:
         create_domain_allow: "%{name} さんが %{target} の連合を許可しました"
         create_domain_block: "%{name} さんがドメイン %{target} をブロックしました"
         create_email_domain_block: "%{name} さんが %{target} をメールドメインブロックに追加しました"
+        create_ip_block: "%{name} さんが IP %{target} のルールを作成しました"
         demote_user: "%{name} さんが %{target} さんを降格しました"
         destroy_announcement: "%{name} さんがお知らせ %{target} を削除しました"
         destroy_custom_emoji: "%{name} さんがカスタム絵文字 %{target} を削除しました"
         destroy_domain_allow: "%{name} さんが %{target} の連合許可を外しました"
         destroy_domain_block: "%{name} さんがドメイン %{target} のブロックを外しました"
         destroy_email_domain_block: "%{name} さんが %{target} をメールドメインブロックから外しました"
+        destroy_ip_block: "%{name} さんが IP %{target} のルールを削除しました"
         destroy_status: "%{name} さんが %{target} さんのトゥートを削除しました"
         disable_2fa_user: "%{name} さんが %{target} さんの二段階認証を無効化しました"
         disable_custom_emoji: "%{name} さんがカスタム絵文字 %{target} を無効化しました"
@@ -426,6 +430,21 @@ ja:
         expired: 期限切れ
         title: フィルター
       title: 招待
+    ip_blocks:
+      add_new: ルールを作成
+      created_msg: IPルールを追加しました
+      delete: 削除
+      expires_in:
+        '1209600': 2週間
+        '15778476': 6ヶ月
+        '2629746': 1ヶ月
+        '31556952': 1年
+        '86400': 1日
+        '94670856': 3年
+      new:
+        title: 新規IPルール
+      no_ip_block_selected: 何も選択されていないためIPルールを変更しませんでした
+      title: IPルール
     pending_accounts:
       title: 承認待ちアカウント (%{count})
     relationships:
@@ -981,6 +1000,7 @@ ja:
           trillion: T
   otp_authentication:
     code_hint: 続行するには認証アプリで表示されたコードを入力してください
+    setup: セットアップ
     wrong_code: コードが間違っています。サーバーとデバイスの時計にずれがあるかもしれません。
   pagination:
     newer: 新しいトゥート
