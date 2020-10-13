@@ -203,6 +203,7 @@ de:
       unconfirmed_email: Unbestätigte E-Mail-Adresse
       undo_silenced: Stummschaltung aufheben
       undo_suspension: Verbannung aufheben
+      unsilenced_msg: '%{username}''s Konto erfolgreich freigegeben'
       unsubscribe: Abbestellen
       unsuspended_msg: '%{username}''s Konto erfolgreich freigegeben'
       username: Profilname
@@ -221,12 +222,14 @@ de:
         create_domain_allow: Domain erlauben
         create_domain_block: Domain blockieren
         create_email_domain_block: E-Mail-Domain-Block erstellen
+        create_ip_block: IP-Regel erstellen
         demote_user: Benutzer degradieren
         destroy_announcement: Ankündigung löschen
         destroy_custom_emoji: Eigene Emoji löschen
         destroy_domain_allow: Erlaube das Löschen von Domains
         destroy_domain_block: Domain-Blockade löschen
         destroy_email_domain_block: E-Mail-Domain-Blockade löschen
+        destroy_ip_block: IP-Regel löschen
         destroy_status: Beitrag löschen
         disable_2fa_user: 2FA deaktivieren
         disable_custom_emoji: Benutzerdefiniertes Emoji deaktivieren
@@ -257,12 +260,14 @@ de:
         create_domain_allow: "%{name} hat die Domain %{target} gewhitelistet"
         create_domain_block: "%{name} hat die Domain %{target} blockiert"
         create_email_domain_block: "%{name} hat die E-Mail-Domain %{target} geblacklistet"
+        create_ip_block: "%{name} hat eine Regel für IP %{target} erstellt"
         demote_user: "%{name} stufte Benutzer_in %{target} herunter"
         destroy_announcement: "%{name} hat die neue Ankündigung %{target} gelöscht"
         destroy_custom_emoji: "%{name} zerstörte Emoji %{target}"
         destroy_domain_allow: "%{name} hat die Domain %{target} von der Whitelist entfernt"
         destroy_domain_block: "%{name} hat die Domain %{target} entblockt"
         destroy_email_domain_block: "%{name} hat die E-Mail-Domain %{target} gewhitelistet"
+        destroy_ip_block: "%{name} hat eine Regel für IP %{target} gelöscht"
         destroy_status: "%{name} hat einen Beitrag von %{target} entfernt"
         disable_2fa_user: "%{name} hat Zwei-Faktor-Anforderung für Benutzer_in %{target} deaktiviert"
         disable_custom_emoji: "%{name} hat das %{target} Emoji deaktiviert"
@@ -447,6 +452,8 @@ de:
         expired: Ausgelaufen
         title: Filter
       title: Einladungen
+    ip_blocks:
+      add_new: Regel erstellen
     pending_accounts:
       title: Ausstehende Konten (%{count})
     relationships:
