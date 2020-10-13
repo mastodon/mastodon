@@ -219,12 +219,14 @@ fa:
         create_domain_allow: ایجاد اجازهٔ دامنه
         create_domain_block: ایجاد انسداد دامنه
         create_email_domain_block: ایجاد انسداد دامنهٔ رایانامه
+        create_ip_block: ایجاد قانون IP
         demote_user: تنزل کاربر
         destroy_announcement: حذف اعلامیه
         destroy_custom_emoji: حذف اموجی سفارشی
         destroy_domain_allow: حذف اجازهٔ دامنه
         destroy_domain_block: حذف انسداد دامنه
         destroy_email_domain_block: حذف انسداد دامنهٔ رایانامه
+        destroy_ip_block: پاک کردن قانون IP
         destroy_status: حذف وضعیت
         disable_2fa_user: از کار انداختن ورود دومرحله‌ای
         disable_custom_emoji: از کار انداختن اموجی سفارشی
@@ -445,6 +447,17 @@ fa:
         expired: منقضی‌شده
         title: فیلتر
       title: دعوت‌ها
+    ip_blocks:
+      add_new: ایجاد قانون
+      delete: پاک کردن
+      expires_in:
+        '1209600': ۲ هفته
+        '15778476': ۶ ماه
+        '2629746': ۱ ماه
+        '31556952': ۱ سال
+        '86400': ۱ روز
+        '94670856': ۳ سال
+      title: قوانین IP
     pending_accounts:
       title: حساب‌های منتظر (%{count})
     relationships:
