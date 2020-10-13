@@ -218,12 +218,14 @@ ko:
         create_domain_allow: 도메인 허용 생성
         create_domain_block: 도메인 차단 추가
         create_email_domain_block: 이메일 도메인 차단 생성
+        create_ip_block: IP 규칙 만들기
         demote_user: 사용자 강등
         destroy_announcement: 공지사항 삭제
         destroy_custom_emoji: 커스텀 에모지 삭제
         destroy_domain_allow: 도메인 허용 삭제
         destroy_domain_block: 도메인 차단 삭제
         destroy_email_domain_block: 이메일 도메인 차단 삭제
+        destroy_ip_block: IP 규칙 삭제
         destroy_status: 게시물 삭제
         disable_2fa_user: 2단계 인증 비활성화
         disable_custom_emoji: 커스텀 에모지 비활성화
@@ -254,12 +256,14 @@ ko:
         create_domain_allow: "%{name} 님이 %{target} 도메인을 허용리스트에 넣었습니다"
         create_domain_block: "%{name}이 도메인 %{target}를 차단했습니다"
         create_email_domain_block: "%{name}이 이메일 도메인 %{target}를 차단했습니다"
+        create_ip_block: "%{name} 님이 IP 규칙 %{target}을 만들었습니다"
         demote_user: "%{name}이 %{target}을 강등했습니다"
         destroy_announcement: "%{name} 님이 공지 %{target}을 삭제했습니다"
         destroy_custom_emoji: "%{name}이 %{target} 에모지를 삭제함"
         destroy_domain_allow: "%{name} 님이 %{target} 도메인을 허용리스트에서 제거하였습니다"
         destroy_domain_block: "%{name}이 도메인 %{target}의 차단을 해제했습니다"
         destroy_email_domain_block: "%{name}이 이메일 도메인 %{target}을 허용리스트에 넣었습니다"
+        destroy_ip_block: "%{name} 님이 IP 규칙 %{target}을 삭제하였습니다"
         destroy_status: "%{name}이 %{target}의 툿을 삭제했습니다"
         disable_2fa_user: "%{name}이 %{target}의 2FA를 비활성화 했습니다"
         disable_custom_emoji: "%{name}이 에모지 %{target}를 비활성화 했습니다"
@@ -442,6 +446,21 @@ ko:
         expired: 만료됨
         title: 필터
       title: 초대
+    ip_blocks:
+      add_new: 규칙 만들기
+      created_msg: 성공적으로 새 IP 규칙을 만들었습니다
+      delete: 삭제
+      expires_in:
+        '1209600': 2 주
+        '15778476': 6 달
+        '2629746': 1 달
+        '31556952': 1 년
+        '86400': 1 일
+        '94670856': 3 년
+      new:
+        title: 새 IP 규칙 만들기
+      no_ip_block_selected: 아무 것도 선택 되지 않아 어떤 IP 규칙도 변경 되지 않았습니다
+      title: IP 규칙들
     pending_accounts:
       title: 대기중인 계정 (%{count})
     relationships:
