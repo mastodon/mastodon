@@ -1,5 +1,7 @@
 ckb-IR:
   about:
+    about_hashtag_html: 'ئەمانە توتی گشتین بە هەشتەگی گشتی <strong>#%{hashtag}}</strong>. گەر ئێوە لە هەر ڕاژەیەک هەژمارەتان بێت دەتوانیت لێرە بەم نووسراوانە هاوئاهەنگ بن.'
+    about_mastodon_html: 'تۆڕی کۆمەڵایەتی داهاتوو: هیچ ڕیکلامێک ، هیچ چاودێرییەکی کۆمپانیا ، دیزاینی ئەخلاقی و لامەرکەزی! خاوەنی داتاکانت نابێ لە ماستۆدۆن!'
     about_this: دەربارە
     active_count_after: چالاک
     active_footnote: بەکارهێنەرانی چالاکی مانگانە (MAU)
@@ -58,24 +60,60 @@ ckb-IR:
       other: شوێن‌کەوتووان
     following: شوێن‌کەوتووی
     joined: بەشداری %{date}
+    last_active: دوا چالاکی
+    link_verified_on: خاوەنداریەتی ئەم لینکە لە %{date} چێک کراوە
     media: میدیا
+    moved_html: "%{name} گواستراوەتەوە بۆ %{new_profile_link}:"
+    network_hidden: ئەم زانیاریە بەردەست نیە
     never_active: هەرگیز
+    nothing_here: لێرە هیچ نییە!
+    people_followed_by: ئەو کەسانەی کە %{name} بەدوایدا دەکەون
+    people_who_follow: ئەو کەسانەی کە بەدوای %{name} دا دەکەون
+    pin_errors:
+      following: تۆ دەبێت هەر ئێستا بە دوای ئەو کەسەدا بیت کە دەتەوێت پەسەندی بکەیت
     posts:
       one: توت
       other: تووتەکان
     posts_tab_heading: تووتەکان
     posts_with_replies: تووتەکان و وڵامەکان
+    reserved_username: ناوی بەکارهێنەر پارێزراوە
     roles:
+      admin: بەڕێوەبەر
       bot: بۆت
       group: گرووپ
       moderator: مۆد
+    unavailable: پرۆفایل بەردەست نیە
     unfollow: بەدوادانەچو
   admin:
+    account_actions:
+      action: ئەنجامدانی کردار
+      title: ئەنجامدانی کاری بەڕێوەبردن لە %{acct}
     account_moderation_notes:
+      create: جێهێشتنی تێبینی
+      created_msg: تێبینی بەڕێوەبەر بە سەرکەوتوویی دروست کرا!
       delete: سڕینەوە
+      destroyed_msg: تێبینی بەڕێوەبەر بە سەرکەوتوویی لەناوچوو!
     accounts:
+      add_email_domain_block: بلۆککردنی هەموو دۆمەینەکە
+      approve: پەسەند کردن
+      approve_all: پەسەندکردنی هەموو
+      approved_msg: بەرنامەی تۆمارکردنی %{username} بۆ چوونەناوی پەسەند کرا
+      are_you_sure: دڵنیای?
       avatar: وێنۆچکە
       by_domain: دۆمەین
+      change_email:
+        changed_msg: ئیمەیڵی ئەژمێر بە سەرکەوتوویی گۆڕا!
+        current_email: ئیمەیلی ئێستا
+        label: گۆڕینی ئیمێڵ
+        new_email: ئیمەیڵی نوێ
+        submit: گۆڕینی ئیمێڵ
+        title: گۆڕینی ئیمەیڵ بۆ %{username}
+      confirm: پشتڕاستی بکەوە
+      confirmed: پشتڕاست کرا
+      confirming: پشتڕاستکردنەوە
+      delete: سڕینەوەی داتا
+      deleted: سڕینەوە
+      demote: پلە نزمکرایەوە
       disable: بەستن
       disable_two_factor_authentication: لەکارخستنی 2FA
       disabled: بەستوو
