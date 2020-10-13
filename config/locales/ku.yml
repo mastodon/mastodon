@@ -321,6 +321,25 @@ ckb-IR:
       deactivate_all: هەموو لەکارخستنی
       filter:
         all: هەموو
+        available: بەردەستە
+        expired: بەسەرچووە
+        title: پاڵاوتن
+      title: بانگهێشتەکان
+    ip_blocks:
+      add_new: دروستکردنی یاسا
+      created_msg: سەرکەوتووانە یاسای نوێی IP زیادکرا
+      delete: سڕینەوە
+      expires_in:
+        '1209600': ٢ هەفتە
+        '15778476': ٦ مانگ
+        '2629746': ١ مانگ
+        '31556952': ١ ساڵ
+        '86400': ١ ڕۆژ
+        '94670856': ٣ ساڵ
+      new:
+        title: دروستکردنی یاسای نوێی IP
+      no_ip_block_selected: هیچ ڕێسایەکی IP نەگۆڕدرا وەک ئەوەی هیچ کامیان دەستنیشان نەکران
+      title: یاساکانی IP
     pending_accounts:
       title: هەژمارە هەڵواسراوەکان (%{count})
     relationships:
@@ -379,6 +398,35 @@ ckb-IR:
       bootstrap_timeline_accounts:
         desc_html: چەند ناوی بەکارهێنەرێک جیابکە بە بۆر، تەنها هەژمارەی بلۆککراوەکان و ناوخۆیی کاردەکەن. بنەڕەت کاتێک بەتاڵ بوو هەموو بەڕێوەبەرە خۆجێیەکانن.
         title: بەدواداچوەکانی گریمانەیی بۆ بەکارهێنەرە نوێکان
+      contact_information:
+        email: ئیمەیلی بازرگانی
+        username: ناوی بەکارهێنەر
+      custom_css:
+        desc_html: دەستکاری کردنی شێوەی CSS بارکراو لەسەر هەموو لاپەڕەکان
+        title: CSSی تایبەتمەند
+      default_noindex:
+        desc_html: کاردەکاتە سەر هەموو بەکارهێنەرەکان کە ئەم ڕێکخستنە خۆیان نەگۆڕاون
+        title: بەکارهێنەران لە پێڕستکردنی بزوێنەری گەڕان بە گریمانەیی هەڵبژێن
+      domain_blocks:
+        all: بۆ هەموو کەسێک
+        disabled: بۆ هیچ کەسێک
+        title: بلۆکەکانی دۆمەین پیشان بدە
+        users: بۆ چوونە ژوورەوەی بەکارهێنەرانی ناوخۆ
+      domain_blocks_rationale:
+        title: پیشاندانی ڕێژەیی
+      enable_bootstrap_timeline_accounts:
+        title: چالاککردنی بەدواکەکانی گریمانەیی بۆ بەکارهێنەرە نوێکان
+      hero:
+        desc_html: نیشان درا لە پەڕەی سەرەتا. بەلایەنی کەمەوە 600x100px پێشنیارکراوە. کاتێک ڕێک نەکەویت، دەگەڕێتەوە بۆ وێنۆجکەی ڕاژە
+        title: وێنەی پاڵەوان
+      mascot:
+        desc_html: نیشان دراوە لە چەند لاپەڕەیەک. بەلایەنی کەمەوە 293× 205px پێشنیارکراوە. کاتێک دیاری ناکرێت، دەگەڕێتەوە بۆ بەختبەختێکی ئاسایی
+        title: وێنەی ماسکۆت
+      peers_api_enabled:
+        desc_html: ناوی دۆمەینەکانێک کە ئەم ڕاژە پەیوەندی پێوەگرتووە
+        title: بڵاوکردنەوەی لیستی راژەکانی دۆزراوە
+      preview_sensitive_media:
+        desc_html: بینینی لینک لە وێب سایتەکانی تر وێنۆچکەیەک پیشان دەدات تەنانەت ئەگەر میدیاکە بە هەستیاری نیشان کرابێت
       timeline_preview:
         title: ڕێگەبدە بە چوونە ژورەوەی نەسەلمێنراو بۆ هێڵی کاتی گشتی
       title: ڕێکخستنەکانی ماڵپەڕ
@@ -428,6 +476,34 @@ ckb-IR:
       add_new: زیادکردنی نوێ
       delete: سڕینەوە
       edit_preset: دەستکاریکردنی ئاگاداری پێشگریمان
+  appearance:
+    localization:
+      body: ماستۆدۆن لەلایەن خۆبەخشەوە وەردەگێڕێت.
+      guide_link: https://crowdin.com/project/mastodon
+      guide_link_text: هەموو کەسێک دەتوانێت بەشداری بکات.
+    sensitive_content: ناوەڕۆکی هەستیار
+    toot_layout: لۆی توت
+  application_mailer:
+    notification_preferences: گۆڕینی پەسەندکراوەکانی ئیمەیڵ
+    salutation: "%{name},"
+    settings: 'گۆڕینی پەسەندکراوەکانی ئیمەیڵ: %{link}'
+    view: 'نیشاندان:'
+    view_profile: پرۆفایل نیشان بدە
+    view_status: پیشاندانی دۆخ
+  applications:
+    created: بەرنامە بە سەرکەوتوویی دروست کرا
+    destroyed: بەرنامە بە سەرکەوتوویی سڕدراوەتەوە
+    invalid_url: بەستەری دابینکراو نادروستە
+    regenerate_token: دووبارە دروستکردنەوەی نیشانەی چوونە ژوورەوە
+    token_regenerated: کۆدی دەستپێگەیشتن بە سەرکەوتوویی دروستکرا
+    warning: زۆر ئاگاداربە لەم داتایە. هەرگیز لەگەڵ کەس دا هاوبەشی مەکە!
+    your_token: کۆدی دەستپێگەیشتنی ئێوە
+  auth:
+    apply_for_account: داواکردنی بانگهێشتێک
+    change_password: تێپەڕوشە
+    checkbox_agreement_html: من ڕازیم بە <a href ="%{rules_path}" target="_blank">یاساکانی ڕاژە</a> وە <a href="%{terms_path}" target="_blank">مەرجەکانی خزمەتگوزاری</a>
+    checkbox_agreement_without_rules_html: من ڕازیم بە <a href="%{terms_path}" target="_blank">مەرجەکانی خزمەتگوزاری</a>
+    delete_account: سڕینەوەی هەژمارە
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
