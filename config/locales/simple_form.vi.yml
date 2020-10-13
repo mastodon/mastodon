@@ -66,6 +66,12 @@ vi:
         text: Điều này sẽ giúp chúng tôi phê duyệt đăng ký của bạn
       ip_block:
         comment: Tùy chọn. Hãy cho biết lý do bạn chặn IP này.
+        expires_in: Có thể sẽ có nhiều người khác nhau sử dụng chung một địa chỉ IP. Vì vậy, bạn nên xem xét không nên chặn IP nào đó vĩnh viễn.
+        ip: Nhập một địa chỉ IPv4 hoặc IPv6. Bạn cũng có thể chặn toàn bộ dãy IP bằng cú pháp CIDR. Hãy cẩn thận đừng chặn nhầm toàn bộ!
+        severities:
+          no_access: Chặn truy cập từ tất cả IP này
+          sign_up_requires_approval: Bạn sẽ phê duyệt những đăng ký mới từ IP này
+        severity: Chọn hành động nếu nhận được yêu cầu từ IP này
       sessions:
         otp: 'Nhập mã xác thực hai yếu tố được tạo bởi ứng dụng điện thoại của bạn hoặc sử dụng một trong các mã khôi phục của bạn:'
         webauthn: Nếu đây là USB key, hãy cắm vào và thử xoay chiều.
@@ -171,6 +177,11 @@ vi:
         comment: Bình luận
       invite_request:
         text: Tại sao bạn muốn tham gia?
+      ip_block:
+        comment: Mô tả
+        ip: IP
+        severities:
+          no_access: Chặn truy cập
       notification_emails:
         digest: Gửi email định kỳ
         favourite: Ai đó thích tút của bạn
