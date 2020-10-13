@@ -222,12 +222,14 @@ ca:
         create_domain_allow: Crea un domini permès
         create_domain_block: Crea un bloqueig de domini
         create_email_domain_block: Crea un bloqueig de domini d'adreça de correu
+        create_ip_block: Crear regla IP
         demote_user: Degrada l'usuari
         destroy_announcement: Esborra l'anunci
         destroy_custom_emoji: Esborra l'emoji personalitzat
         destroy_domain_allow: Esborra el domini permès
         destroy_domain_block: Esborra el bloqueig de domini
         destroy_email_domain_block: Esborra el bloqueig de domini de l'adreça de correu
+        destroy_ip_block: Eliminar regla IP
         destroy_status: Esborra el tut
         disable_2fa_user: Desactiva 2FA
         disable_custom_emoji: Desactiva l'emoji personalitzat
@@ -258,12 +260,14 @@ ca:
         create_domain_allow: "%{name} ha afegit a la llista blanca el domini %{target}"
         create_domain_block: "%{name} ha blocat el domini %{target}"
         create_email_domain_block: "%{name} ha afegit a la llista negra el domini del correu electrònic %{target}"
+        create_ip_block: "%{name} ha creat una regla IP per a %{target}"
         demote_user: "%{name} ha degradat l'usuari %{target}"
         destroy_announcement: "%{name} ha eliminat l'anunci %{target}"
         destroy_custom_emoji: "%{name} ha destruït l'emoji %{target}"
         destroy_domain_allow: "%{name} ha eliminat el domini %{target} de la llista blanca"
         destroy_domain_block: "%{name} ha desblocat el domini %{target}"
         destroy_email_domain_block: "%{name} ha afegit a la llista negra el domini de correu electrònic %{target}"
+        destroy_ip_block: "%{name} ha esborrat la regla IP per a %{target}"
         destroy_status: "%{name} eliminat l'estat per %{target}"
         disable_2fa_user: "%{name} ha desactivat el requisit de dos factors per a l'usuari %{target}"
         disable_custom_emoji: "%{name} ha desactivat l'emoji %{target}"
@@ -448,6 +452,21 @@ ca:
         expired: Caducat
         title: Filtre
       title: Convida
+    ip_blocks:
+      add_new: Crear regla
+      created_msg: S’ha afegit amb èxit la nova regla IP
+      delete: Suprimeix
+      expires_in:
+        '1209600': 2 setmanes
+        '15778476': 6 mesos
+        '2629746': 1 mes
+        '31556952': 1 any
+        '86400': 1 dia
+        '94670856': 3 anys
+      new:
+        title: Crea nova regla IP
+      no_ip_block_selected: No s’ha canviat cap regla IP perquè no s’han seleccionat
+      title: Regles IP
     pending_accounts:
       title: Comptes pendents (%{count})
     relationships:
