@@ -74,7 +74,7 @@ class ActivityPub::Activity
     @object_uri ||= begin
       str = value_or_id(@object)
 
-      if str.start_with?('bear:')
+      if str&.start_with?('bear:')
         Addressable::URI.parse(str).query_values['u']
       else
         str
