@@ -11,7 +11,7 @@ import { showAlert } from 'flavours/glitch/actions/alerts';
 const messages = defineMessages({
   clearMessage: { id: 'notifications.clear_confirmation', defaultMessage: 'Are you sure you want to permanently clear all your notifications?' },
   clearConfirm: { id: 'notifications.clear', defaultMessage: 'Clear notifications' },
-  permissionDenied: { id: 'notifications.permission_denied', defaultMessage: 'Cannot enable desktop notifications as permission has been denied.' },
+  permissionDenied: { id: 'notifications.permission_denied_alert', defaultMessage: 'Desktop notifications can\'t be enabled, as browser permission has been denied before' },
 });
 
 const mapStateToProps = state => ({

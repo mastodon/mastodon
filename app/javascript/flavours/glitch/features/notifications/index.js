@@ -27,6 +27,7 @@ import ScrollableList from 'flavours/glitch/components/scrollable_list';
 import LoadGap from 'flavours/glitch/components/load_gap';
 import Icon from 'flavours/glitch/components/icon';
 import compareId from 'flavours/glitch/util/compare_id';
+import NotificationsPermissionBanner from './components/notifications_permission_banner';
 
 import NotificationPurgeButtonsContainer from 'flavours/glitch/containers/notification_purge_buttons_container';
 
@@ -62,7 +63,7 @@ const mapStateToProps = state => ({
   notifCleaningActive: state.getIn(['notifications', 'cleaningMode']),
   lastReadId: state.getIn(['notifications', 'readMarkerId']),
   canMarkAsRead: state.getIn(['notifications', 'readMarkerId']) !== '0' && getNotifications(state).some(item => item !== null && compareId(item.get('id'), state.getIn(['notifications', 'readMarkerId'])) > 0),
-  needsNotificationPermission: state.getIn(['settings', 'notifications', 'alerts']).includes(true) && state.getIn(['notifications', 'browserSupport']) && state.getIn(['notifications', 'browserPermission']) !== 'granted',
+  needsNotificationPermission: state.getIn(['settings', 'notifications', 'alerts']).includes(true) && state.getIn(['notifications', 'browserSupport']) && state.getIn(['notifications', 'browserPermission']) === 'default',
 });
 
 /* glitch */
@@ -213,7 +214,7 @@ class Notifications extends React.PureComponent {
   }
 
   render () {
-    const { intl, notifications, shouldUpdateScroll, isLoading, isUnread, columnId, multiColumn, hasMore, numPending, showFilterBar, lastReadId, canMarkAsRead } = this.props;
+    const { intl, notifications, shouldUpdateScroll, isLoading, isUnread, columnId, multiColumn, hasMore, numPending, showFilterBar, lastReadId, canMarkAsRead, needsNotificationPermission } = this.props;
     const { notifCleaning, notifCleaningActive } = this.props;
     const { animatingNCD } = this.state;
     const pinned = !!columnId;
@@ -259,6 +260,8 @@ class Notifications extends React.PureComponent {
         showLoading={isLoading && notifications.size === 0}
         hasMore={hasMore}
         numPending={numPending}
+        prepend={needsNotificationPermission && <NotificationsPermissionBanner />}
+        alwaysPrepend
         emptyMessage={emptyMessage}
         onLoadMore={this.handleLoadOlder}
         onLoadPending={this.handleLoadPending}
@@ -335,7 +338,6 @@ class Notifications extends React.PureComponent {
           multiColumn={multiColumn}
           localSettings={this.props.localSettings}
           extraButton={extraButtons}
-          collapseIssues={this.props.needsNotificationPermission}
           appendContent={notifCleaningDrawer}
         >
           <ColumnSettingsContainer />
