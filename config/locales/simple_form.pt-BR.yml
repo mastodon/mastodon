@@ -67,8 +67,11 @@ pt-BR:
       ip_block:
         comment: Opcional. Lembrar de por que você adicionou esta regra.
         expires_in: Endereços IP são um recurso limitado, algumas vezes são compartilhados e muitas vezes mudam de mãos. Por essa razão, blocos de IP indefinidos não são recomendados.
+        ip: Digite um endereço IPv4 ou IPv6. Você pode bloquear intervalos inteiros usando a sintaxe CIDR. Tenha cuidado para não bloquear a si mesmo!
         severities:
           no_access: Bloquear o acesso a todos os recursos
+          sign_up_requires_approval: Novos registros exigirão sua aprovação
+        severity: Escolha o que acontecerá com as solicitações deste IP
       sessions:
         otp: 'Digite o código de dois fatores gerado pelo aplicativo no seu celular ou use um dos códigos de recuperação:'
         webauthn: Se for uma chave USB tenha certeza de inseri-la e, se necessário, tocar nela.
