@@ -54,7 +54,7 @@ pt-BR:
       domain_allow:
         domain: Este domínio poderá obter dados deste servidor e os dados recebidos dele serão processados e armazenados
       email_domain_block:
-        domain: Este pode ser o nome de domínio que aparece no endereço de e-mail, o registro MX para o qual o domínio resolve, ou o IP do servidor para o qual o registro MX resolve. Esses vão ser verificados no momento da cadastro do usuário e o cadastro será rejeitado.
+        domain: Este pode ser o nome de domínio que aparece no endereço de e-mail, o registro MX para o qual o domínio resolve, ou o IP do servidor para o qual o registro MX resolve. Esses vão ser verificados no momento de registro do usuário e o registro será rejeitado.
         with_dns_records: Será feita uma tentativa de resolver os registros DNS do domínio em questão e os resultados também serão colocados na lista negra
       featured_tag:
         name: 'Você pode querer usar um destes:'
@@ -66,6 +66,9 @@ pt-BR:
         text: Isso vai nos ajudar a revisar sua aplicação
       ip_block:
         comment: Opcional. Lembrar de por que você adicionou esta regra.
+        expires_in: Endereços IP são um recurso limitado, algumas vezes são compartilhados e muitas vezes mudam de mãos. Por essa razão, blocos de IP indefinidos não são recomendados.
+        severities:
+          no_access: Bloquear o acesso a todos os recursos
       sessions:
         otp: 'Digite o código de dois fatores gerado pelo aplicativo no seu celular ou use um dos códigos de recuperação:'
         webauthn: Se for uma chave USB tenha certeza de inseri-la e, se necessário, tocar nela.
@@ -171,6 +174,13 @@ pt-BR:
         comment: Comentário
       invite_request:
         text: Por que você deseja criar uma conta aqui?
+      ip_block:
+        comment: Comentário
+        ip: IP
+        severities:
+          no_access: Bloquear acesso
+          sign_up_requires_approval: Limitar registros
+        severity: Regra
       notification_emails:
         digest: Enviar e-mails de resumo
         favourite: Enviar e-mail quando alguém favoritar seus toots
