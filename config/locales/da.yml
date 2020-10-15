@@ -39,6 +39,7 @@ da:
       domain: Server
       reason: Årsag
       rejecting_media: 'Medie filer fra disse servere vil ikke blive behandlet eller gemt, og ingen miniaturebilleder vil blive vist, som kræver tilgang til den originale fil:'
+      rejecting_media_title: Filtrerede medier
       silenced: 'Posteringer fra disse servere vil være skjulte i den offentlige tidslinje feed eller beskeder og ingen notifikationer vil blive genereret fra brugere du ikke følger:'
       suspended: 'Ingen date fra disse servere vil blive behandlet, gemt eller udvekslet, at interagere eller kommunikere med brugere fra disse servere er ikke muligt:'
     unavailable_content_html: Mastodon tillader dig generelt at se indhold og interagere med brugere fra enhver anden server i fediverset. Dette er undtagelser der er foretaget på netop denne server.
@@ -105,6 +106,7 @@ da:
       confirm: Bekræft
       confirmed: Bekræftet
       confirming: Bekræfter
+      delete: Slet data
       deleted: Slettet
       demote: Degrader
       disable: Deaktiver
@@ -192,6 +194,7 @@ da:
       whitelisted: Hvidlistet
     action_logs:
       action_types:
+        change_email_user: Ændre e-mail for bruger
         confirm_user: Bekræft bruger
         create_account_warning: Opret advarsel
         destroy_status: Slet status
@@ -368,6 +371,16 @@ da:
         expired: Udløbet
         title: Filtre
       title: Invitationer
+    ip_blocks:
+      add_new: Opret regel
+      delete: Slet
+      expires_in:
+        '1209600': 2 uger
+        '15778476': 6 måneder
+        '2629746': 1 måned
+        '31556952': 1 år
+        '86400': 1 dag
+        '94670856': 3 år
     relays:
       add_new: Tilføj nyt relay
       delete: Slet
