@@ -14,6 +14,7 @@ export const closeOnboarding = () => dispatch => {
       dispatch(changeSetting(['notifications', 'alerts', 'reblog'], true));
       dispatch(changeSetting(['notifications', 'alerts', 'mention'], true));
       dispatch(changeSetting(['notifications', 'alerts', 'poll'], true));
+      dispatch(changeSetting(['notifications', 'alerts', 'status'], true));
       dispatch(saveSettings());
     }
   }));

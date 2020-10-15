@@ -25,6 +25,7 @@ import ScrollableList from '../../components/scrollable_list';
 import LoadGap from '../../components/load_gap';
 import Icon from 'mastodon/components/icon';
 import compareId from 'mastodon/compare_id';
+import NotificationsPermissionBanner from './components/notifications_permission_banner';
 
 const messages = defineMessages({
   title: { id: 'column.notifications', defaultMessage: 'Notifications' },
@@ -55,7 +56,7 @@ const mapStateToProps = state => ({
   numPending: state.getIn(['notifications', 'pendingItems'], ImmutableList()).size,
   lastReadId: state.getIn(['notifications', 'readMarkerId']),
   canMarkAsRead: state.getIn(['notifications', 'readMarkerId']) !== '0' && getNotifications(state).some(item => item !== null && compareId(item.get('id'), state.getIn(['notifications', 'readMarkerId'])) > 0),
-  needsNotificationPermission: state.getIn(['settings', 'notifications', 'alerts']).includes(true) && state.getIn(['notifications', 'browserSupport']) && state.getIn(['notifications', 'browserPermission']) !== 'granted',
+  needsNotificationPermission: state.getIn(['settings', 'notifications', 'alerts']).includes(true) && state.getIn(['notifications', 'browserSupport']) && state.getIn(['notifications', 'browserPermission']) === 'default',
 });
 
 export default @connect(mapStateToProps)
@@ -169,7 +170,7 @@ class Notifications extends React.PureComponent {
   };
 
   render () {
-    const { intl, notifications, shouldUpdateScroll, isLoading, isUnread, columnId, multiColumn, hasMore, numPending, showFilterBar, lastReadId, canMarkAsRead } = this.props;
+    const { intl, notifications, shouldUpdateScroll, isLoading, isUnread, columnId, multiColumn, hasMore, numPending, showFilterBar, lastReadId, canMarkAsRead, needsNotificationPermission } = this.props;
     const pinned = !!columnId;
     const emptyMessage = <FormattedMessage id='empty_column.notifications' defaultMessage="You don't have any notifications yet. Interact with others to start the conversation." />;
 
@@ -213,6 +214,8 @@ class Notifications extends React.PureComponent {
         showLoading={isLoading && notifications.size === 0}
         hasMore={hasMore}
         numPending={numPending}
+        prepend={needsNotificationPermission && <NotificationsPermissionBanner />}
+        alwaysPrepend
         emptyMessage={emptyMessage}
         onLoadMore={this.handleLoadOlder}
         onLoadPending={this.handleLoadPending}
@@ -252,7 +255,6 @@ class Notifications extends React.PureComponent {
           pinned={pinned}
           multiColumn={multiColumn}
           extraButton={extraButton}
-          collapseIssues={this.props.needsNotificationPermission}
         >
           <ColumnSettingsContainer />
         </ColumnHeader>
