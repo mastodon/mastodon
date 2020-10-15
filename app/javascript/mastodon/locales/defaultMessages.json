@@ -2269,6 +2269,10 @@
         "id": "notifications.column_settings.push"
       },
       {
+        "defaultMessage": "Desktop notifications are unavailable due to previously denied browser permissions request",
+        "id": "notifications.permission_denied"
+      },
+      {
         "defaultMessage": "Quick filter bar",
         "id": "notifications.column_settings.filter_bar.category"
       },
@@ -2295,6 +2299,10 @@
       {
         "defaultMessage": "Poll results:",
         "id": "notifications.column_settings.poll"
+      },
+      {
+        "defaultMessage": "New toots:",
+        "id": "notifications.column_settings.status"
       }
     ],
     "path": "app/javascript/mastodon/features/notifications/components/column_settings.json"
@@ -2381,12 +2389,33 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "Never miss a thing",
+        "id": "notifications_permission_banner.title"
+      },
+      {
+        "defaultMessage": "To receive notifications when Mastodon isn't open, enable desktop notifications. You can control precisely which types of interactions generate desktop notifications through the {icon} button above once they're enabled.",
+        "id": "notifications_permission_banner.how_to_control"
+      },
+      {
+        "defaultMessage": "Enable desktop notifications",
+        "id": "notifications_permission_banner.enable"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/notifications/components/notifications_permission_banner.json"
+  },
+  {
+    "descriptors": [
+      {
         "defaultMessage": "Are you sure you want to permanently clear all your notifications?",
         "id": "notifications.clear_confirmation"
       },
       {
         "defaultMessage": "Clear notifications",
         "id": "notifications.clear"
+      },
+      {
+        "defaultMessage": "Desktop notifications can't be enabled, as browser permission has been denied before",
+        "id": "notifications.permission_denied_alert"
       }
     ],
     "path": "app/javascript/mastodon/features/notifications/containers/column_settings_container.json"
@@ -3005,6 +3034,22 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "{number, plural, one {# minute} other {# minutes}}",
+        "id": "intervals.full.minutes"
+      },
+      {
+        "defaultMessage": "{number, plural, one {# hour} other {# hours}}",
+        "id": "intervals.full.hours"
+      },
+      {
+        "defaultMessage": "{number, plural, one {# day} other {# days}}",
+        "id": "intervals.full.days"
+      },
+      {
+        "defaultMessage": "Indefinite",
+        "id": "mute_modal.indefinite"
+      },
+      {
         "defaultMessage": "Are you sure you want to mute {name}?",
         "id": "confirmations.mute.message"
       },
@@ -3015,6 +3060,10 @@
       {
         "defaultMessage": "Hide notifications from this user?",
         "id": "mute_modal.hide_notifications"
+      },
+      {
+        "defaultMessage": "Duration",
+        "id": "mute_modal.duration"
       },
       {
         "defaultMessage": "Cancel",

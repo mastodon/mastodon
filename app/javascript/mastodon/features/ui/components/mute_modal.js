@@ -12,6 +12,7 @@ const messages = defineMessages({
   minutes: { id: 'intervals.full.minutes', defaultMessage: '{number, plural, one {# minute} other {# minutes}}' },
   hours: { id: 'intervals.full.hours', defaultMessage: '{number, plural, one {# hour} other {# hours}}' },
   days: { id: 'intervals.full.days', defaultMessage: '{number, plural, one {# day} other {# days}}' },
+  indefinite: { id: 'mute_modal.indefinite', defaultMessage: 'Indefinite' },
 });
 
 const mapStateToProps = state => {
@@ -112,7 +113,7 @@ class MuteModal extends React.PureComponent {
 
             {/* eslint-disable-next-line jsx-a11y/no-onchange */}
             <select value={muteDuration} onChange={this.changeMuteDuration}>
-              <option value={0}>{intl.formatMessage({ id: 'mute_modal.indefinite' })}</option>
+              <option value={0}>{intl.formatMessage(messages.indefinite)}</option>
               <option value={300}>{intl.formatMessage(messages.minutes, { number: 5 })}</option>
               <option value={1800}>{intl.formatMessage(messages.minutes, { number: 30 })}</option>
               <option value={3600}>{intl.formatMessage(messages.hours, { number: 1 })}</option>
