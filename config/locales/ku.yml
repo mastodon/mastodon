@@ -661,6 +661,30 @@ ckb-IR:
     checkbox_agreement_html: من ڕازیم بە <a href ="%{rules_path}" target="_blank">یاساکانی ڕاژە</a> وە <a href="%{terms_path}" target="_blank">مەرجەکانی خزمەتگوزاری</a>
     checkbox_agreement_without_rules_html: من ڕازیم بە <a href="%{terms_path}" target="_blank">مەرجەکانی خزمەتگوزاری</a>
     delete_account: سڕینەوەی هەژمارە
+    logout: چوونەدەرەوە
+    providers:
+      cas: CAS
+      saml: SAML
+    reset_password: گەڕانەوەی تێپەڕوشە
+    security: ئاسایش
+    set_new_password: سازدانی تێپەڕوشەی نوێ
+    setup:
+      title: دامەزراندن
+    status:
+      account_status: دۆخی هەژمارە
+  authorize_follow:
+    follow: شوێن کەوە
+  date:
+    formats:
+      default: "%b %d, %Y"
+      with_month_name: "%B %d, %Y"
+  datetime:
+    distance_in_words:
+      about_x_hours: "%{count}کات"
+      about_x_months: "%{count}mo"
+      about_x_years: "%{count}ساڵ"
+      almost_x_years: "%{count}ساڵ"
+      half_a_minute: ئێستا
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
