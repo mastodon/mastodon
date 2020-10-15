@@ -198,12 +198,15 @@ da:
         confirm_user: Bekræft bruger
         create_account_warning: Opret advarsel
         create_announcement: Opret bekendtgørelse
+        create_ip_block: Opret IP-regel
         destroy_announcement: Slet bekendtgørelse
+        destroy_ip_block: Slet IP-regel
         destroy_status: Slet status
         disable_2fa_user: Slet 2FA
         disable_user: Deaktiver brugeren
         enable_user: Aktiver brugeren
         reset_password_user: Nulstil adgangskode
+        update_announcement: Opdater bekendtgørelse
         update_status: Opdater status
       actions:
         assigned_to_self_report: "%{name} tildelte anmeldelsen %{target} til sig selv"
@@ -245,6 +248,9 @@ da:
     announcements:
       edit:
         title: Rediger bekendtgørelse
+      new:
+        create: Opret bekendtgørelse
+        title: Ny bekendtgørelse
       title: Bekendtgørelser
     custom_emojis:
       assign_category: Vælg kategori
@@ -360,6 +366,9 @@ da:
     instances:
       by_domain: Domæne
       delivery_available: Levering er tilgængelig
+      known_accounts:
+        one: "%{count} kendt konto"
+        other: "%{count} kendte konti"
       moderation:
         all: Alle
         limited: Begrænset
@@ -387,6 +396,11 @@ da:
         '31556952': 1 år
         '86400': 1 dag
         '94670856': 3 år
+      new:
+        title: Opret ny IP-regel
+      title: IP-regler
+    pending_accounts:
+      title: Afventende konti (%{count})
     relays:
       add_new: Tilføj nyt relay
       delete: Slet
@@ -498,6 +512,8 @@ da:
         desc_html: Vis offentlig tidslinje på landingssiden
         title: Tidslinje forhåndsvisning
       title: Indstillinger for side
+    site_uploads:
+      delete: Slet oplagt fil
     statuses:
       back_to_account: Tilbage til kontosiden
       batch:
