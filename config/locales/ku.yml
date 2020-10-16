@@ -1001,6 +1001,38 @@ ckb-IR:
     remove_selected_followers: شوێنکەوتوانی دیاریکراو لابدە
     remove_selected_follows: کۆتایی بە بەدوادانەچوی بەکارهێنەرە دیاریکراوەکان بدە
     status: دۆخی هەژمارە
+  remote_follow:
+    acct: ناونیشانی هەژمارەی username@domainخۆت لێرە بنووسە
+    missing_resource: نەیتوانی URLی ئاراستەکردنەوەی پێویست بدۆزێتەوە بۆ ئەژمێرەکەت
+    no_account_html: هێشتا نەبووی بە ئەندام؟ <a href='%{sign_up_path}' target='_blank'>لێرە دەتوانی هەژمارەیەک دروست بکەی</a>
+    proceed: بەردەوام بە بۆ بەدواداچوون
+    prompt: 'تۆ بەدوای دا دەچیت:'
+    reason_html: "<strong> بۆچی ئەم هەنگاوە پێویستە؟ </strong> <code>%{instance}</code> لەوانەیە ئەو ڕاژەیە نەبێت کە تۆ تۆمارت کردووە، بۆیە پێویستە سەرەتا دووبارە ئاڕاستەت بکەین بۆ ڕاژەکاری ماڵەوەت."
+  remote_interaction:
+    favourite:
+      proceed: بۆ دڵخوازکردنی ئەم توتە
+      prompt: 'دەتەوێت ئەم تووتە تپەسەند بکەیت؛:'
+    reblog:
+      proceed: بەردەوام بە بۆ دووبارە توتاندن
+      prompt: 'دەتەوێت ئەم تووتە دووبارە بکەیتەوە:'
+    reply:
+      proceed: بۆ وەڵامدانەوە
+      prompt: 'دەتەوێت ئەم تووتە وڵام بدەیتەوە:'
+  scheduled_statuses:
+    over_daily_limit: ئێوە لە سنووری ڕیپێدراوی %{limit} توتی ئەو رۆژە،خۆرتر ڕۆیشتوویت
+    over_total_limit: تۆ سنووری خشتەکراوی %{limit} ت بەزاندووە
+    too_soon: پێویستە بەرواری خشتەکراو لە داهاتوودا بێت
+  sessions:
+    activity: دوایین چالاکی
+    browser: وێبگەڕ
+    browsers:
+      alipay: Alipay
+      blackberry: بلاکبێری
+      chrome: کرۆم
+      edge: مایکرۆسۆفت ئیچ
+      electron: ئەلکترۆن
+      firefox: فایەرفۆکس
+      generic: وێبگەڕی نەناسراو
   settings:
     preferences: پەسەندەکان
   statuses:
