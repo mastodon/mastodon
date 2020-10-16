@@ -67,6 +67,11 @@ gl:
       ip_block:
         comment: Opcional. Lembrar a razón para engadir esta regra.
         expires_in: Os enderezos IP son un recurso finito, a veces son compartidos e cambian de mans con frecuencia. Por esta razón, non se recomendan os bloqueos indefinidos de IPs.
+        ip: Escribe un enderezo IPv4 ou IPv6. Podes bloquear rangos completos usando a sintaxe CIDR. Ten coidado e non te bloquees a ti mesma!
+        severities:
+          no_access: Bloquear acceso a tódolos recursos
+          sign_up_requires_approval: Os novos rexistros requerirán a túa aprobación
+        severity: Escolle que acontecerá coas peticións desde este IP
       sessions:
         otp: 'Introduce o código do segundo factor creado pola aplicación do teu móbil ou usa un dos códigos de recuperación:'
         webauthn: Se é unha chave USB asegúrate de que está conectada e preme o botón.
@@ -172,6 +177,13 @@ gl:
         comment: Comentar
       invite_request:
         text: Por que queres unirte?
+      ip_block:
+        comment: Comentario
+        ip: IP
+        severities:
+          no_access: Bloquear acceso
+          sign_up_requires_approval: Limitar o rexistro
+        severity: Regra
       notification_emails:
         digest: Enviar correos con resumos
         favourite: Enviar un correo cando alguén marca como favorita unha das tuas publicacións
