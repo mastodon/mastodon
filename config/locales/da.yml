@@ -905,6 +905,12 @@ da:
       private: Ikke offentlige trut kan ikke blive fastgjort
       reblog: Fremhævede trut kan ikke fastgøres
     poll:
+      total_people:
+        one: "%{count} person"
+        other: "%{count} personer"
+      total_votes:
+        one: "%{count} stemme"
+        other: "%{count} stemmer"
       vote: Stem
     show_more: Vis mere
     show_thread: Vis tråd
@@ -1029,6 +1035,8 @@ da:
     sign_in_token:
       title: Login forsøg
     warning:
+      subject:
+        none: Advarsel for %{acct}
       title:
         disable: Konto frosset
         none: Advarsel
