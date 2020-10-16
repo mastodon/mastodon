@@ -1003,9 +1003,15 @@ ckb-IR:
     reblog:
       body: '%{name} نووسیسراوەکەی ئێوەی توتاندەوە:'
       subject: "%{name} نووسراوەکەتی دووبارە توتاند"
+      title: توتاندنەوەی نوێ
+  notifications:
+    email_events: رووداوەکان بۆ ئاگاداری ئیمەیلی
+    email_events_hint: 'ئەو ڕووداوانە دیاریبکە کە دەتەوێت ئاگانامەکان وەربگری بۆ:'
+    other_settings: ڕێکبەندەکانی ئاگانامەکانی تر
   number:
     human:
       decimal_units:
+        format: "%n%u"
         units:
           billion: B
           million: M
@@ -1014,6 +1020,33 @@ ckb-IR:
           trillion: T
   otp_authentication:
     code_hint: کۆدێک داخڵ بکە کە دروست کراوە لەلایەن ئەپی ڕەسەنایەتیەوە بۆ دڵنیابوون
+    description_html: ئەگەر تۆ <strong> هاتنەژوورەوەی دوو قۆناغی</strong> بە یارمەتی ئەپێکی پەسەندکردن چالاک بکەن، پێویستە بۆ چوونەژوورەوە ، بە تەلەفۆنەکەتان کە کۆدیکتان بۆ دروستدەکات دەستپێگەیشتنتان هەبێت.
+    enable: چالاککردن
+    instructions_html: "<strong> QR بدۆزەوە بۆ ناو ڕەسەنایەتی گووگڵ یان کاربەرنامەی TOTP هاوشێوە لەسەر تەلەفۆنەکەت </strong>. لە ئێستاوە، ئەو کاربەرنامەیە نیشانە دروست دەکات کە دەبێت داخڵیان بکەیت لەکاتی چوونە ژوورەوە."
+    manual_instructions: 'ئەگەر ناتوانیت کۆدی QR سکان بکەیت و پێویستە بە دەستی تێبنووسە، ئەمە نهێنیی دەقی سادەیە:'
+    setup: ئامادەکردن
+    wrong_code: کۆدی داخڵکراو نادروستە! ئایا کاتی ڕاژە و کاتی ئامێر راستن?
+  pagination:
+    newer: نوێتر
+    next: داهاتوو
+    older: کۆنتر
+    prev: پێشوو
+    truncate: "&hellip;"
+  polls:
+    errors:
+      already_voted: تۆ پێشتر دەنگت داوە لەسەر ئەم ڕاپرسییە
+      duplicate_options: خاوەنی ئایەمی دووبارە
+      duration_too_long: لە داهاتوو زۆر دوورە
+      duration_too_short: لە داهاتوو زۆر نزیکە
+      expired: ڕاپرسیەکە پێشتر کۆتایی هاتووە
+      invalid_choice: بژاردەی دەنگدانی هەڵبژێردراو بوونی نییە
+      over_character_limit: ناتوانێت هەر کامێکی درێژتر بێت لە %{max} نووسە
+      too_few_options: پێویستە زیاتر لە یەک بڕگەی هەبێت
+      too_many_options: ناتوانێت زیاتر لە %{max} بەندی تێدا بێت
+  preferences:
+    other: هی تر
+    posting_defaults: بڵاوکردنی بنەڕەتەکان
+    public_timelines: هێڵی کاتی گشتی
   reactions:
     errors:
       limit_reached: سنووری کاردانه وه ی جیاواز گه یشت
@@ -1075,7 +1108,18 @@ ckb-IR:
       qq: وێبگەڕی QQ
       safari: سافری
       uc_browser: وێبگەڕی UC
+      weibo: Weibo
+    current_session: دانیشتنی ئێستا
+    description: "%{browser} لەسەر %{platform}"
+    explanation: ئەمانە وێبگەڕەکەن کە ئێستا چووەتە ژوورەوە بۆ ئەژمێری ماستۆدۆنی خۆت.
+    ip: ئای‌پی
     platforms:
+      adobe_air: Adobe Air
+      android: ئەندرۆید
+      blackberry: بلاکبێری
+      chrome_os: سیستەمی کارگێڕی کرۆم
+      firefox_os: سیستەمی کارگێڕی فایەرفۆکس
+      ios: iOS
       linux: لینۆکس
       mac: ماک
       other: سیستەمیکارگێڕی نەناسراو
