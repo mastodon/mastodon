@@ -745,7 +745,24 @@ ckb-IR:
   authorize_follow:
     already_following: ئێوە ئێستا شوێن کەوتووی ئەم هەژمارەیەی
     already_requested: تۆ پێشتر داواکاری بەدواداچوت ناردوە بۆ ئەو هەژمارە
+    error: بەداخەوە هەڵەیەک هەبوو لە کاتی گەڕان بەدوای ئەو هەژمارەیە
     follow: شوێن کەوە
+    follow_request: 'تۆ داواکاری شوێنکەوتنت ناردووە بۆ:'
+    following: 'ئەنجام بوو! تۆ ئێستا بەدوای ئەم بەکارهێنەرە دەکەویت:'
+    post_follow:
+      close: یان، دەتوانیت ئەم پەنجەرەیە دابخەیت.
+      return: پرۆفایلی بەکارهێنەر نیشان بدە
+      web: بڕۆ بۆ وێب
+    title: دوای %{acct} بکەوە
+  challenge:
+    confirm: بەردەوام بە
+    hint_html: "<strong>خاڵ:</strong> ئیمە لە کاتژمێری داهاتوو تێپەروشەت لێداوا ناکەین."
+    invalid_password: تێپەروشە دروست نیە
+    prompt: دڵنیابوون لە نهێنوشە بۆ بەردەوامبوون
+  crypto:
+    errors:
+      invalid_key: کلیلی باوڕپێکراو Ed25519 یان Curve25519 دروست نییە
+      invalid_signature: واژووی Ed25519 بڕوادار نییە
   date:
     formats:
       default: "%b %d, %Y"
@@ -765,7 +782,16 @@ ckb-IR:
       x_months: "%{count}mo"
       x_seconds: "%{count}s"
   deletes:
+    challenge_not_passed: ئەو زانیاریانەی تێنووست کردووە ڕاست نەبوو
+    confirm_password: تێپەڕوشەی ئێستات تێبنووسە بۆ سەلماندنی ناسنامەکەت
+    confirm_username: ناوی بەکارهێنەرت تێبنووسە بۆ دڵنیابوون لە کردارەکە
     proceed: سڕینەوەی هەژمارە
+    success_msg: هەژمارەکەت بە سەرکەوتوویی سڕرایەوە
+    warning:
+      before: 'پێش بەردەوام بوون، تکایە ئەم تێبینیانە بە وردی بخوێننەوە:'
+      caches: وادیارە ئەو ناوەرۆکە کە ڕاژەکانی دیکە پاشکەوتیان کردووە بمینێتەوە
+      data_removal: بابەتەکانت و داتاکانی تر بە هەمیشەیی لادەبرێن
+      email_change_html: دەتوانی <a href="%{path}"> ناونیشانی ئیمەیڵەکەت بگۆڕیت</a> بەبێ سڕینەوەی هەژمارەکەت
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
