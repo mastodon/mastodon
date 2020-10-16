@@ -28,8 +28,13 @@ da:
         whole_word: Når nøgle ordet eller udtrykket kun er alfanumerisk, vil det kun blive brugt hvis det passer hele ordet
       featured_tag:
         name: 'Du kunne måske tænke dig at bruge en af følgende:'
+      form_challenge:
+        current_password: Du indtræder et sikkert område
       imports:
         data: CSV fil eksporteret fra en anden Mastodon server
+      ip_block:
+        severities:
+          no_access: Bloker for adgangen til alle ressourcer
       sessions:
         otp: 'Indtast to-faktor koden der generes af appen af appen på din telefon eller brug en af din genoprettelses koder:'
       user:
@@ -52,6 +57,8 @@ da:
           silence: Silence
           suspend: Suspendér og slet kontodata uopretteligt
         warning_preset_id: Brug en forudindstillet advarsel
+      announcement:
+        text: Bekendtgørelse
       defaults:
         autofollow: Inviter til at følge din konto
         avatar: Profilbillede
