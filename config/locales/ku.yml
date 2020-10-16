@@ -909,7 +909,36 @@ ckb-IR:
       muting: لیستی کپکردنەوە
     upload: بارکردن
   in_memoriam_html: لەیادبوون.
+  invites:
+    delete: لەکارخستن
+    expired: بەسەرچووە
+    expires_in:
+      '1800': ٣٠ خولەک
+      '21600': ٦ کاتژمێر
+      '3600': ١ کاتژمێر
+      '43200': ١٢ کاتژمێر
+      '604800': ١ هەفتە
+      '86400': ١ ڕۆژ
+    expires_in_prompt: هەرگیز
+    generate: دروستکردنی لینکی بانگهێشت
+    invited_by: 'بانگهێشتکرایت لەلایەن:'
+    max_uses_prompt: بێ سنوور
+    prompt: دروست کردن و هاوبەش کردنی لینکەکان لەگەڵ ئەوانی تر بۆ پێدانی چوونە ژوورەوە بۆ ئەم ڕاژە
+    table:
+      expires_at: بەسەرچووە
+      uses: بەکارهاوردنەکان
+    title: بانگهێشتکردنی خەڵک
+  lists:
+    errors:
+      limit: تۆ گەیشتوویتە زۆرترین ڕێژەی لیستەکان
+  media_attachments:
+    validations:
+      images_and_video: ناتوانرێت لەگەڵ ئەو نووسراوانە کە وێنەی لەگەڵە ،ڤیدیۆ بار بکەی
+      not_ready: ناتوانێت فایلەکان هاوپێچ بکات کە پرۆسەکەیان تەواو نەکردووە. دووبارە هەوڵ بدە!
+      too_many: ناتوانێت زیاتر لە ٤ فایل هاوپێچ بکات
   migrations:
+    acct: گوێزرایەوە بۆ
+    cancel: پاشگەزبوونەوە لە دووبارە ئاڕاستەکردنەوە
     cancel_explanation: هەڵوەشاندنەوەی دووبارە ئاڕاستەکردنەوە هەژمارەی ئێستات چالاک دەکات، بەڵام ئەو شوێنکەوتوانی ناهێنە وه کە گواستراوەتەوە بۆ ئەو هەژمارە.
     cancelled_msg: سەرکەوتووانە دووبارە ئاڕاستەکردنەوەکەی بەتاڵ کردەوە.
     errors:
@@ -948,6 +977,30 @@ ckb-IR:
     digest:
       action: پیشاندانی هەموو ئاگانامەکان
       body: ئەمە کورتەی ئەو نامانەی لە دەستت دا لە دوا سەردانیت لە %{since}
+      mention: "%{name} ئاماژەی بە تۆ کرد لە:"
+      title: لە غیابی تۆدا...
+    favourite:
+      body: 'دۆخت پەسەندکراوە لەلایەن %{name}:'
+  reactions:
+    errors:
+      limit_reached: سنووری کاردانه وه ی جیاواز گه یشت
+      unrecognized_emoji: ئیمۆجییەکی ناسراو نییە
+  relationships:
+    activity: چالاکی هەژمارە
+    dormant: ناچالاک
+    followers: شوێنکەوتوان
+    following: شوێن‌کەوتووی
+    invited: بانگهێشتەکان
+    last_active: دوایین چالاکی
+    most_recent: تازەترین
+    moved: گوێزرایەوە
+    mutual: دوولایەنە
+    primary: سەرەتایی
+    relationship: پەیوەندی
+    remove_selected_domains: لابردنی هەموو شوێنکەوتوانی دۆمەینە دیاریکراوەکان
+    remove_selected_followers: شوێنکەوتوانی دیاریکراو لابدە
+    remove_selected_follows: کۆتایی بە بەدوادانەچوی بەکارهێنەرە دیاریکراوەکان بدە
+    status: دۆخی هەژمارە
   settings:
     preferences: پەسەندەکان
   statuses:
@@ -998,7 +1051,13 @@ ckb-IR:
     sensitive_content: ناوەڕۆکی هەستیار
   tags:
     does_not_match_previous_name: لەگەڵ ناوی پێشوو یەک ناگرێتەوە
+  time:
+    formats:
+      default: "%b %d, %Y, %H:%M"
+      month: "%b %Y"
   two_factor_authentication:
+    add: زیادکردن
+    disable: لەکارخستنی 2FA
     edit: دەستکاری
     recovery_instructions_html: گەر تەلەفۆنەکەت بزر کرد دەتوانی بە یەکێک لە کۆدەکانی خوارەوە چاودێری هەژمارەکەت لە دەست بگریت.<strong>ائەم کۆدانە لە شوێنێکی پاراو هەڵبگرە</strong> بۆ نموونە چاپی بکەن یان لەگەڵ بەڵگەنامە گرینگەکانت دایبنێ.
     webauthn: کلیلەکانی پاراستن
