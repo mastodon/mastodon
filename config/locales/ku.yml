@@ -792,15 +792,30 @@ ckb-IR:
       caches: وادیارە ئەو ناوەرۆکە کە ڕاژەکانی دیکە پاشکەوتیان کردووە بمینێتەوە
       data_removal: بابەتەکانت و داتاکانی تر بە هەمیشەیی لادەبرێن
       email_change_html: دەتوانی <a href="%{path}"> ناونیشانی ئیمەیڵەکەت بگۆڕیت</a> بەبێ سڕینەوەی هەژمارەکەت
+      email_contact_html: گەر ئیمەیل نەگەیشتووە بۆ داوای یارمەتی پەیامێک بنێرە بۆ <a href="mailto:%{email}">%{email}</a> پیغام دهید
+      email_reconfirmation_html: ئەگەر ئیمەیڵی پشتڕاستکردنەوەت پێنەگەشتووە، دەتوانیت <a href="%{path}"> دووبارە داوای لێبکە</a>
+      irreversible: ناتوانیت هەژمارەکەت بگەڕێنیتەوە یان کارا بکەیتەوە
+      more_details_html: بۆ زانیاری زیاتر، <a href="%{terms_path}"> پاراستنی نهێنیەکان</a> ببینە.
+      username_available: ناوی تێپەڕبوونت دووبارە بەردەست دەبێت
+      username_unavailable: ناوی تێپەڕبوونت بەردەست نییە
+  directories:
+    directory: ڕێنیشاندەرێکی پرۆفایل
+    explanation: دۆزینەوەی بەکارهێنەران لەسەر بنەمای بەرژەوەندییەکانیان
+    explore_mastodon: گەڕان لە %{title}
+  domain_validator:
+    invalid_domain: ناوی دۆمەین بڕوادار نییە
   errors:
-    '400': The request you submitted was invalid or malformed.
-    '403': You don't have permission to view this page.
-    '404': The page you are looking for isn't here.
-    '406': This page is not available in the requested format.
-    '410': The page you were looking for doesn't exist here anymore.
+    '400': داواکاریەکەی کە پێشکەشت کردووە نادروستە یان نەیپێکا.
+    '403': تۆ مۆڵەتت نیە بۆ بینینی ئەم لاپەڕەیە.
+    '404': ئەو لاپەڕەیەی بەدوای دەگەڕێی لێرە نیە.
+    '406': ئەم پەڕەیە لە فۆرماتی داواکراودا بەردەست نییە.
+    '410': ئەو لاپەڕەیەی بەدوای دا دەگەڕایت چیتر لێرە بوونی نیە.
     '422':
-    '429': Too many requests
+      content: سەلماندنەکەی ئاسایش سەرکەوتوو نەبوو. تۆ بلۆکی کۆکیز دەکەیت?
+      title: سەلماندنەکەی ئاسایش سەرکەوتوو نەبوو
+    '429': داواکاری زۆر
     '500':
+      content: داوای لێبوردن دەکەین، بەڵام لە کۆتاییەکەماندا. شتێک هەڵە ڕویداوە.
       title: ئەم لاپەڕەیە ڕاست نییە
     '503': ناتوانرێت پەڕەکە خزمەت بکرێت بەهۆی شکستی ڕاژەیەکی کاتی.
     noscript_html: بۆ بەکارهێنانی بەرنامەی وێبی ماستۆدۆن، تکایە جاڤاسکریپت بەتوانا بکە. لە جیاتی ئەوە، یەکێک لە < href="%{apps_path}">ئەپێکی ماستۆدۆن</a>بەکارببە.
@@ -862,6 +877,18 @@ ckb-IR:
   identity_proofs:
     active: چالاک
     authorize: بەڵێ، ڕێگە بدە
+  migrations:
+    cancel_explanation: هەڵوەشاندنەوەی دووبارە ئاڕاستەکردنەوە هەژمارەی ئێستات چالاک دەکات، بەڵام ئەو شوێنکەوتوانی ناهێنە وه کە گواستراوەتەوە بۆ ئەو هەژمارە.
+    cancelled_msg: سەرکەوتووانە دووبارە ئاڕاستەکردنەوەکەی بەتاڵ کردەوە.
+    errors:
+      already_moved: هەمان ئەژمێرە کە تۆ پێشتر گواستووتە بۆ
+      missing_also_known_as: نازناوێکی ئەم هەژمارە نییە
+      move_to_self: ناتوانێت هەژمارەی ئێستا بێت
+      not_found: نادۆزرێتەوە
+      on_cooldown: تۆ دەبێت چاوەڕوان بیت
+    followers_count: شوێنکەوتوانی کاتی لە حاڵی گواستنەوە
+    incoming_migrations: گواستنەوە لە هەژمارەی جیاواز
+    incoming_migrations_html: بۆ گواستنەوە لە هەژمارەیەکی ترەوە بۆ ئەم هەژمارە، سەرەتا پێویستە <href="%{path}"> ئەژمێرێک دروست </a> بکەی.
   settings:
     preferences: پەسەندەکان
   statuses:
