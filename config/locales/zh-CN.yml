@@ -217,12 +217,14 @@ zh-CN:
         create_domain_allow: 允许新域名
         create_domain_block: 封禁新域名
         create_email_domain_block: 封禁电子邮箱域名
+        create_ip_block: 新建 IP 规则
         demote_user: 给用户降职
         destroy_announcement: 删除公告
         destroy_custom_emoji: 删除自定义表情符号
         destroy_domain_allow: 解除域名允许
         destroy_domain_block: 解除域名封禁
         destroy_email_domain_block: 解除电子邮箱域名封禁
+        destroy_ip_block: 删除 IP 规则
         destroy_status: 删除嘟文
         disable_2fa_user: 禁用双重认证
         disable_custom_emoji: 禁用自定义表情符号
@@ -253,12 +255,14 @@ zh-CN:
         create_domain_allow: "%{name} 允许了和域名 %{target} 的跨站交互"
         create_domain_block: "%{name} 屏蔽了域名 %{target}"
         create_email_domain_block: "%{name} 屏蔽了电子邮件域名 %{target}"
+        create_ip_block: "%{name} 创建了 IP %{target} 的规则"
         demote_user: "%{name} 对用户 %{target} 进行了降任操作"
         destroy_announcement: "%{name} 删除了公告 %{target}"
         destroy_custom_emoji: "%{name} 销毁了自定义表情 %{target}"
         destroy_domain_allow: "%{name} 拒绝了和 %{target} 跨站交互"
         destroy_domain_block: "%{name} 解除了对域名 %{target} 的屏蔽"
         destroy_email_domain_block: "%{name} 解除了对电子邮件域名 %{target} 的屏蔽"
+        destroy_ip_block: "%{name} 删除了 IP %{target} 的规则"
         destroy_status: "%{name} 删除了 %{target} 的嘟文"
         disable_2fa_user: "%{name} 停用了用户 %{target} 的双重认证"
         disable_custom_emoji: "%{name} 停用了自定义表情 %{target}"
@@ -441,6 +445,21 @@ zh-CN:
         expired: 已失效
         title: 筛选
       title: 邀请用户
+    ip_blocks:
+      add_new: 新建规则
+      created_msg: 成功添加新 IP 规则
+      delete: 删除
+      expires_in:
+        '1209600': 两周
+        '15778476': 6个月
+        '2629746': 1个月
+        '31556952': 1年
+        '86400': 1天
+        '94670856': 3年
+      new:
+        title: 创建新 IP 规则
+      no_ip_block_selected: 因为没有 IP 规则被选中，所以没有更改
+      title: IP 规则
     pending_accounts:
       title: 待处理的帐户 (%{count})
     relationships:
