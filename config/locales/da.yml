@@ -206,6 +206,7 @@ da:
         disable_2fa_user: Slet 2FA
         disable_user: Deaktiver brugeren
         enable_user: Aktiver brugeren
+        reopen_report: Genåben rapport
         reset_password_user: Nulstil adgangskode
         update_announcement: Opdater bekendtgørelse
         update_status: Opdater status
@@ -544,6 +545,7 @@ da:
       last_active: Sidst aktiv
       most_popular: Mest populære
       most_recent: Seneste
+      unreviewed: Ikke gennemlæst
     warning_presets:
       delete: Slet
   admin_mailer:
@@ -594,6 +596,9 @@ da:
     migrate_account: Flyt til en anden konto
     migrate_account_html: Hvis du ønsker at omdirigere denne konto til en anden, kan du <a href="%{path}">gøre det her</a>.
     or_log_in_with: Eller log in med
+    providers:
+      cas: CAS
+      saml: SAML
     register: Opret dig
     registration_closed: "%{instance} accepterer ikke nye medlemmer"
     resend_confirmation: Gensend bekræftelses instrukser
@@ -619,6 +624,9 @@ da:
     confirm: Fortsæt
     invalid_password: Ugyldig adgangskode
     prompt: Bekræft din adgangskode for at fortsætte
+  crypto:
+    errors:
+      invalid_signature: er ikke en gylidig Ed25519 signatur
   datetime:
     distance_in_words:
       about_x_hours: "%{count}t"
