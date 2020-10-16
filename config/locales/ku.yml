@@ -984,14 +984,25 @@ ckb-IR:
       title: لە غیابی تۆدا...
     favourite:
       body: 'دۆخت پەسەندکراوە لەلایەن %{name}:'
+      subject: "%{name} دۆخی تۆی پەسەند کرد"
+      title: دڵخوازکردنی نوێ
     follow:
+      body: "%{name} ئێستا شوێنکەوتوو ئێوەیە!"
+      subject: "%{name} ئێستا شوێنکەوتوو ئێوەیە"
       title: شوێنکەوتوانی نوێ
     follow_request:
       action: بەڕێوەبردنی داوای شوێنکەوتن
       body: "%{name} داوای کردووە کە شوێنت بکەوێت"
+      subject: 'چاوەڕوانی شوێنکەوتووە: %{name}'
       title: داواکاری شوینکەوتنی نوێ
     mention:
       action: وەڵام
+      body: '%{name} لێرە ناوی ئێووەی بردووە:'
+      subject: '%{name} لێرە ناوی ئێووەی بردووە'
+      title: ناوبراوەی نوێ
+    reblog:
+      body: '%{name} نووسیسراوەکەی ئێوەی توتاندەوە:'
+      subject: "%{name} نووسراوەکەتی دووبارە توتاند"
   number:
     human:
       decimal_units:
