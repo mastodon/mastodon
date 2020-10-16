@@ -194,6 +194,7 @@ da:
       whitelisted: Hvidlistet
     action_logs:
       action_types:
+        assigned_to_self_report: Tildel rapport
         change_email_user: Ændre e-mail for bruger
         confirm_user: Bekræft bruger
         create_account_warning: Opret advarsel
@@ -401,6 +402,8 @@ da:
       title: IP-regler
     pending_accounts:
       title: Afventende konti (%{count})
+    relationships:
+      title: "%{acct}'s relationer"
     relays:
       add_new: Tilføj nyt relay
       delete: Slet
@@ -420,6 +423,10 @@ da:
       created_msg: Anmeldelse note blev oprettet!
       destroyed_msg: Anmeldelse note blev slettet!
     reports:
+      account:
+        reports:
+          one: "%{count} rapport"
+          other: "%{count} rapporter"
       action_taken_by: Handling udført af
       are_you_sure: Er du sikker?
       assign_to_self: Tildel til mig
@@ -472,6 +479,8 @@ da:
       preview_sensitive_media:
         desc_html: Forhåndsvisninger af links på andre websider vil vise et miniaturebillede selv hvis mediet er markeret som følsomt
         title: Vis følsomt medie i OpenGraph forhåndsvisninger
+      profile_directory:
+        desc_html: Tillad bruger at kunne blive fundet
       registrations:
         closed_message:
           desc_html: Vist på forsiden når registreringer er lukkede. Du kan bruge HTML tags
@@ -544,8 +553,10 @@ da:
       subject: 'Ny anmeldelse for %{instance} (#%{id})'
   aliases:
     add_new: Opret alias
+    empty: Du har ingen aliasser.
   appearance:
     animations_and_accessibility: Animationer og tilgængelighed
+    confirmation_dialogs: Bekræftelsesdialoger
     discovery: Opdagelse
     localization:
       body: Mastodon oversættes af frivillige.
