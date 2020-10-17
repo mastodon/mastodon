@@ -222,12 +222,14 @@ is:
         create_domain_allow: Búa til lén leyft
         create_domain_block: Búa til lén bannað
         create_email_domain_block: Búa til tölvupóstfang bannað
+        create_ip_block: Búa til IP-reglu
         demote_user: Lækka notanda í tign
         destroy_announcement: Eyða tilkynningu
         destroy_custom_emoji: Eyða sérsniðnu tjáningartákni
         destroy_domain_allow: Eyða léni leyft
         destroy_domain_block: Eyða léni bannað
         destroy_email_domain_block: Eyða tölvupóstfangi bannað
+        destroy_ip_block: Eyða IP-reglu
         destroy_status: Eyða stöðufærslu
         disable_2fa_user: Gera tveggja-þátta auðkenningu óvirka
         disable_custom_emoji: Gera sérsniðið tjáningartákn óvirkt
@@ -258,12 +260,14 @@ is:
         create_domain_allow: "%{name} setti lén %{target} á lista yfir leyft"
         create_domain_block: "%{name} útilokaði lénið %{target}"
         create_email_domain_block: "%{name} setti póstlén %{target} á lista yfir bannað"
+        create_ip_block: "%{name} bjó til reglu fyrir IP-vistfangið %{target}"
         demote_user: "%{name} lækkaði notandann %{target} í tign"
         destroy_announcement: "%{name} eyddi auglýsingu %{target}"
         destroy_custom_emoji: "%{name} henti út tjáningartákninu %{target}"
         destroy_domain_allow: "%{name} fjarlægði lén %{target} af lista yfir leyft"
         destroy_domain_block: "%{name} aflétti útilokun af léninu %{target}"
         destroy_email_domain_block: "%{name} setti póstlén %{target} á lista yfir leyft"
+        destroy_ip_block: "%{name} eyddi reglu fyrir IP-vistfangið %{target}"
         destroy_status: "%{name} fjarlægði stöðufærslu frá %{target}"
         disable_2fa_user: "%{name} gerði tveggja-þátta auðkenningu óvirka fyrir notandann %{target}"
         disable_custom_emoji: "%{name} gerði tjáningartáknið %{target} óvirkt"
@@ -449,6 +453,8 @@ is:
         title: Sía
       title: Boðsgestir
     ip_blocks:
+      add_new: Búa til reglu
+      created_msg: Tókst að búa til nýja IP-reglu
       delete: Eyða
       expires_in:
         '1209600': 2 vikur
@@ -457,6 +463,9 @@ is:
         '31556952': 1 ár
         '86400': 1 dagur
         '94670856': 3 ár
+      new:
+        title: Búa til nýja IP-reglu
+      no_ip_block_selected: Engum IP-reglum var breytt því ekkert var valið
       title: IP-reglur
     pending_accounts:
       title: Notendaaðgangar í bið (%{count})
