@@ -245,7 +245,7 @@ module Mastodon
         end
 
         if [404, 410].include?(code)
-          SuspendAccountService.new.call(account, reserve_username: false) unless options[:dry_run]
+          DeleteAccountService.new.call(account, reserve_username: false) unless options[:dry_run]
           1
         else
           # Touch account even during dry run to avoid getting the account into the window again
