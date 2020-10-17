@@ -260,12 +260,14 @@ tr:
         create_domain_allow: "%{target} alan adı, %{name} tarafından beyaz listeye alındı"
         create_domain_block: "%{target} alanı, %{name} tarafından engellendi"
         create_email_domain_block: "%{target} e-posta alanı, %{name} tarafından kara listeye alınmış"
+        create_ip_block: "%{name}, IP %{target} için kural oluşturdu"
         demote_user: "%{name} %{target} kullanıcısını düşürdü"
         destroy_announcement: "%{name}, %{target} duyurusunu sildi"
         destroy_custom_emoji: "%{target} emoji, %{name} tarafından kaldırıldı"
         destroy_domain_allow: "%{target} alan adı, %{name} tarafından beyaz listeden çıkartıldı"
         destroy_domain_block: "%{target} alan adının engeli %{name} tarafından kaldırıldı"
         destroy_email_domain_block: "%{target} e-posta sunucusu, %{name} tarafından beyaz listeye alındı"
+        destroy_ip_block: "%{name}, IP %{target} için kuralı sildi"
         destroy_status: "%{name}, %{target} kullanıcısının durumunu kaldırdı"
         disable_2fa_user: "%{name}, %{target} kullanıcısı için iki adım gereksinimini kapattı"
         disable_custom_emoji: "%{target} emoji, %{name} tarafından devre dışı bırakıldı"
@@ -452,6 +454,7 @@ tr:
       title: Davetler
     ip_blocks:
       add_new: Kural oluştur
+      created_msg: Yeni IP kuralı başarıyla eklendi
       delete: Sil
       expires_in:
         '1209600': 2 hafta
@@ -462,6 +465,7 @@ tr:
         '94670856': 3 yıl
       new:
         title: Yeni IP kuralı oluştur
+      no_ip_block_selected: Hiçbiri seçilmediğinden hiçbir IP kuralı değiştirilmedi
       title: IP kuralları
     pending_accounts:
       title: Bekleyen hesaplar (%{count})
