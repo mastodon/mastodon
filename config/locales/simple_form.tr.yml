@@ -64,6 +64,14 @@ tr:
         data: Diğer Mastodon sunucusundan dışarı aktardığınız CSV dosyası
       invite_request:
         text: Bu, başvurunuzu gözden geçirmemize yardımcı olacaktır
+      ip_block:
+        comment: İsteğe bağlı. Bu kuralı neden eklediğinizi hatırlayın.
+        expires_in: IP adresleri sınırlı bir kaynaktır, bazen paylaşılırlar ve sıklıkla el değiştirirler. Bu nedenle, belirsiz IP blokları önerilmez.
+        ip: Bir IPv4 veya IPv6 adresi girin. CIDR sözdizimini kullanarak tüm aralıkları engelleyebilirsiniz. Kendinizi dışarıda bırakmamaya dikkat edin!
+        severities:
+          no_access: Tüm kaynaklara erişimi engelle
+          sign_up_requires_approval: Yeni kayıt onayınızı gerektirir
+        severity: Bu IP'den gelen isteklere ne olacağını seçin
       sessions:
         otp: 'Telefonunuzdaki two-factor kodunuzu giriniz veya kurtarma kodlarınızdan birini giriniz.'
         webauthn: Bir USB anahtarıysa, taktığınızdan ve gerekirse üzerine tıkladığınızdan emin olun.
@@ -172,6 +180,9 @@ tr:
       ip_block:
         comment: Yorum
         ip: IP
+        severities:
+          no_access: Erişimi engelle
+          sign_up_requires_approval: Kayıtları sınırla
         severity: Kural
       notification_emails:
         digest: Özet e-postaları gönder
