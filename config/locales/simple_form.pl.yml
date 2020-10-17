@@ -66,6 +66,7 @@ pl:
         text: To pomoże nam w recenzji Twojej aplikacji
       ip_block:
         comment: Niewymagane. Pamiętaj, dlaczego dodałeś tę regułę.
+        expires_in: Adresy IP to ograniczony zasób, czasami są współdzielone i często zmieniają właściciela. Z tego powodu blokady adresów IP nie są zalecane.
         ip: Wprowadź adres IPv4 lub IPv6. Możesz zablokować całe zakresy za pomocą składni CIDR. Uważaj, aby się nie zablokować!
         severities:
           no_access: Zablokuj dostęp do wszystkich zasobów
@@ -142,6 +143,7 @@ pl:
         setting_default_privacy: Widoczność wpisów
         setting_default_sensitive: Zawsze oznaczaj zawartość multimedialną jako wrażliwą
         setting_delete_modal: Pytaj o potwierdzenie przed usunięciem wpisu
+        setting_disable_swiping: Wyłącz ruchy przesuwania
         setting_display_media: Wyświetlanie zawartości multimedialnej
         setting_display_media_default: Domyślne
         setting_display_media_hide_all: Ukryj wszystko
