@@ -230,12 +230,14 @@ pl:
         create_domain_allow: Utwórz zezwolenie dla domeny
         create_domain_block: Utwórz blokadę domeny
         create_email_domain_block: Utwórz blokadę domeny e-mail
+        create_ip_block: Utwórz regułę IP
         demote_user: Zdegraduj użytkownika
         destroy_announcement: Usuń ogłoszenie
         destroy_custom_emoji: Usuń niestandardowe emoji
         destroy_domain_allow: Usuń zezwolenie dla domeny
         destroy_domain_block: Usuń blokadę domeny
         destroy_email_domain_block: Usuń blokadę domeny e-mail
+        destroy_ip_block: Usuń regułę IP
         destroy_status: Usuń wpis
         disable_2fa_user: Wyłącz 2FA
         disable_custom_emoji: Wyłącz niestandardowe emoji
@@ -266,12 +268,14 @@ pl:
         create_domain_allow: "%{name} dodał(a) na białą listę domenę %{target}"
         create_domain_block: "%{name} zablokował(a) domenę %{target}"
         create_email_domain_block: "%{name} dodał(a) domenę e-mail %{target} na czarną listę"
+        create_ip_block: "%{name} stworzył dla IP %{target}"
         demote_user: "%{name} zdegradował(a) użytkownika %{target}"
         destroy_announcement: "%{name} usunął(-ęła) ogłoszenie %{target}"
         destroy_custom_emoji: "%{name} usunął(-ęła) emoji %{target}"
         destroy_domain_allow: "%{name} usunął(-ęła) domenę %{target} z białej listy"
         destroy_domain_block: "%{name} odblokował(a) domenę %{target}"
         destroy_email_domain_block: "%{name} usunął(-ęła) domenę e-mail %{target} z czarnej listy"
+        destroy_ip_block: "%{name} usunął regułę dla IP %{target}"
         destroy_status: "%{name} usunął(-ęła) wpis użytkownika %{target}"
         disable_2fa_user: "%{name} wyłączył(a) uwierzytelnianie dwustopniowe użytkownikowi %{target}"
         disable_custom_emoji: "%{name} wyłączył(a) emoji %{target}"
@@ -460,6 +464,21 @@ pl:
         expired: Wygasłe
         title: Filtruj
       title: Zaproszenia
+    ip_blocks:
+      add_new: Stwórz regułę
+      created_msg: Pomyślnie dodano nową regułę IP
+      delete: Usuń
+      expires_in:
+        '1209600': 2 tygodnie
+        '15778476': 6 miesięcy
+        '2629746': 1 miesiąc
+        '31556952': 1 rok
+        '86400': 1 dzień
+        '94670856': 3 lata
+      new:
+        title: Utwórz nową regułę IP
+      no_ip_block_selected: Żadna reguła nie została zmieniona, ponieważ żadna nie została wybrana
+      title: Reguły adresów IP
     pending_accounts:
       title: Oczekujące konta (%{count})
     relationships:
@@ -1404,5 +1423,11 @@ pl:
       error: Wystąpił problem z dodawaniem klucza bezpieczeństwa. Spróbuj ponownie.
       success: Pomyślnie dodano klucz bezpieczeństwa.
     delete: Usuń
+    destroy:
+      success: Pomyślnie usunięto klucz bezpieczeństwa.
     invalid_credential: Nieprawidłowy klucz bezpieczeństwa
+    nickname_hint: Wprowadź nazwę twojego nowego klucza bezpieczeństwa
+    not_enabled: Nie włączyłeś WebAuthn
+    not_supported: Twoja przeglądarka nie obsługuje kluczy bezpieczeństwa
+    otp_required: Aby użyć kluczy bezpieczeństwa, najpierw włącz uwierzytelnianie dwuskładnikowe.
     registered_on: Zarejestrowano %{date}
