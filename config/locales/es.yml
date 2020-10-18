@@ -1033,11 +1033,11 @@ es-MX:
   otp_authentication:
     code_hint: Ingresa el código generado por tu aplicación de autenticación para confirmar
     description_html: Si habilitas <strong>autenticación de dos factores</strong> a través de una aplicación de autenticación, el ingreso requerirá que estés en posesión de tu teléfono, que generará códigos para que ingreses.
-    enable: Activar
-    instructions_html: "<strong>Escanea este código QR desde Google Authenticator o una aplicación similar en tu teléfono</strong>. A partir de ahora, esta aplicación generará códigos que tendrásque ingresar cuando quieras iniciar sesión."
-    manual_instructions: 'Si no puedes escanear el código QR y necesitas introducirlo manualmente, este es el secreto en texto plano:'
+    enable: Habilitar
+    instructions_html: "<strong>Escanea este código QR en Authy, Google Authenticator o en otra aplicación TOTP en tu dispositivo</strong>. A partir de ahora, esa aplicación generará un código numérico \"token\" para que lo ingreses."
+    manual_instructions: 'Si no puedes escanear el código QR y necesitas ingresarlo manualmente, aquí está el secreto en texto simple:'
     setup: Configurar
-    wrong_code: '¡El código ingresado es inválido! ¿Es correcta la hora del dispositivo y el servidor?'
+    wrong_code: '¡El código que ingresaste no es válido! ¿La hora del servidor y del dispositivo son correctas?'
   pagination:
     newer: Más nuevo
     next: Próximo
