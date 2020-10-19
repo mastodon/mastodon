@@ -17,6 +17,10 @@ class AccountPolicy < ApplicationPolicy
     staff? && !record.user&.staff?
   end
 
+  def destroy?
+    record.suspended? && record.deletion_request.present? && admin?
+  end
+
   def unsuspend?
     staff?
   end

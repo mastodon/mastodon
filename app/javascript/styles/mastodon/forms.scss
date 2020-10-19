@@ -12,6 +12,10 @@ code {
 }
 
 .simple_form {
+  &.hidden {
+    display: none;
+  }
+
   .input {
     margin-bottom: 15px;
     overflow: hidden;
@@ -100,6 +104,14 @@ code {
     }
   }
 
+  .title {
+    color: #d9e1e8;
+    font-size: 20px;
+    line-height: 28px;
+    font-weight: 400;
+    margin-bottom: 30px;
+  }
+
   .hint {
     color: $darker-text-color;
 
@@ -142,7 +154,7 @@ code {
     }
   }
 
-  .otp-hint {
+  .authentication-hint {
     margin-bottom: 25px;
   }
 
@@ -364,7 +376,8 @@ code {
       box-shadow: none;
     }
 
-    &:focus:invalid:not(:placeholder-shown) {
+    &:focus:invalid:not(:placeholder-shown),
+    &:required:invalid:not(:placeholder-shown) {
       border-color: lighten($error-red, 12%);
     }
 
@@ -589,6 +602,10 @@ code {
     border: 1px solid rgba($error-value-color, 0.5);
     background: rgba($error-value-color, 0.1);
     color: $error-value-color;
+  }
+
+  &.hidden {
+    display: none;
   }
 
   a {

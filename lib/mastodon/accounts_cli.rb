@@ -87,7 +87,7 @@ module Mastodon
           say('Use --force to reattach it anyway and delete the other user')
           return
         elsif account.user.present?
-          account.user.destroy!
+          DeleteAccountService.new.call(account, reserve_email: false)
         end
       end
 
@@ -192,7 +192,7 @@ module Mastodon
       end
 
       say("Deleting user with #{account.statuses_count} statuses, this might take a while...")
-      SuspendAccountService.new.call(account, reserve_email: false)
+      DeleteAccountService.new.call(account, reserve_email: false)
       say('OK', :green)
     end
 

@@ -1,3 +1,4 @@
+import './public-path';
 import { delegate } from '@rails/ujs';
 import ready from '../mastodon/ready';
 

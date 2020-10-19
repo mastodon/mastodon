@@ -23,13 +23,25 @@ class FeedInsertWorker
   private
 
   def check_and_insert
-    perform_push unless feed_filtered?
+    return if feed_filtered?
+
+    perform_push
+    perform_notify if notify?
   end
 
   def feed_filtered?
-    # Note: Lists are a variation of home, so the filtering rules
-    # of home apply to both
-    FeedManager.instance.filter?(:home, @status, @follower.id)
+    case @type
+    when :home
+      FeedManager.instance.filter?(:home, @status, @follower)
+    when :list
+      FeedManager.instance.filter?(:list, @status, @list)
+    end
+  end
+
+  def notify?
+    return false if @type != :home || @status.reblog? || (@status.reply? && @status.in_reply_to_account_id != @status.account_id)
+
+    Follow.find_by(account: @follower, target_account: @status.account)&.notify?
   end
 
   def perform_push
@@ -39,5 +51,9 @@ class FeedInsertWorker
     when :list
       FeedManager.instance.push_to_list(@list, @status)
     end
+  end
+
+  def perform_notify
+    NotifyService.new.call(@follower, :status, @status)
   end
 end

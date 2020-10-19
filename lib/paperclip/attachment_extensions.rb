@@ -35,6 +35,10 @@ module Paperclip
 
       formats.include?(other_extension.delete('.')) && File.basename(other_filename, other_extension) == File.basename(original_filename, File.extname(original_filename))
     end
+
+    def default_url(style_name = default_style)
+      @url_generator.for_as_default(style_name)
+    end
   end
 end
 

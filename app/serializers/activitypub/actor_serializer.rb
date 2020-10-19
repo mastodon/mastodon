@@ -10,7 +10,7 @@ class ActivityPub::ActorSerializer < ActivityPub::Serializer
                      :discoverable, :olm
 
   attributes :id, :type, :following, :followers,
-             :inbox, :outbox, :featured,
+             :inbox, :outbox, :featured, :featured_tags,
              :preferred_username, :name, :summary,
              :url, :manually_approves_followers,
              :discoverable
@@ -74,11 +74,15 @@ class ActivityPub::ActorSerializer < ActivityPub::Serializer
   end
 
   def outbox
-    account_outbox_url(object)
+    object.instance_actor? ? instance_actor_outbox_url : account_outbox_url(object)
   end
 
   def featured
     account_collection_url(object, :featured)
+  end
+
+  def featured_tags
+    account_collection_url(object, :tags)
   end
 
   def endpoints

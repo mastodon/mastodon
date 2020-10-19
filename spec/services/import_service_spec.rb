@@ -95,6 +95,7 @@ RSpec.describe ImportService, type: :service do
       let(:import) { Import.create(account: account, type: 'following', data: csv) }
       it 'follows the listed accounts, including boosts' do
         subject.call(import)
+
         expect(account.following.count).to eq 1
         expect(account.follow_requests.count).to eq 1
         expect(Follow.find_by(account: account, target_account: bob).show_reblogs).to be true
