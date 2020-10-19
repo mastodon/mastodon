@@ -3,6 +3,35 @@ Changelog
 
 All notable changes to this project will be documented in this file.
 
+## [3.2.1] - 2020-10-19
+### Added
+
+- Add support for latest HTTP Signatures spec draft ([ThibG](https://github.com/tootsuite/mastodon/pull/14556))
+- Add support for inlined objects in ActivityPub `to`/`cc` ([ThibG](https://github.com/tootsuite/mastodon/pull/14514))
+
+### Changed
+
+- Change actors to not be served at all without authentication in limited federation mode ([ThibG](https://github.com/tootsuite/mastodon/pull/14800))
+  - Previously, a bare version of an actor was served when not authenticated, i.e. username and public key
+  - Because all actor fetch requests are signed using a separate system actor, that is no longer required
+
+### Fixed
+
+- Fix `tootctl media` commands not recognizing very large IDs ([ThibG](https://github.com/tootsuite/mastodon/pull/14536))
+- Fix crash when failing to load emoji picker in web UI ([ThibG](https://github.com/tootsuite/mastodon/pull/14525))
+- Fix contrast requirements in thumbnail color extraction ([ThibG](https://github.com/tootsuite/mastodon/pull/14464))
+- Fix audio/video player not using `CDN_HOST` on public pages ([ThibG](https://github.com/tootsuite/mastodon/pull/14486))
+- Fix private boost icon not being used on public pages ([OmmyZhang](https://github.com/tootsuite/mastodon/pull/14471))
+- Fix audio player on Safari in web UI ([ThibG](https://github.com/tootsuite/mastodon/pull/14485), [ThibG](https://github.com/tootsuite/mastodon/pull/14465))
+- Fix dereferencing remote statuses not using the correct account for signature when receiving a targeted inbox delivery ([ThibG](https://github.com/tootsuite/mastodon/pull/14656))
+- Fix nil error in `tootctl media remove` ([noellabo](https://github.com/tootsuite/mastodon/pull/14657))
+- Fix videos with near-60 fps being rejected ([Gargron](https://github.com/tootsuite/mastodon/pull/14684))
+- Fix reported statuses not being included in warning e-mail ([Gargron](https://github.com/tootsuite/mastodon/pull/14778))
+- Fix `Reject` activities of `Follow` objects not correctly destroying a follow relationship ([ThibG](https://github.com/tootsuite/mastodon/pull/14479))
+- Fix inefficiencies in fan-out-on-write service ([Gargron](https://github.com/tootsuite/mastodon/pull/14682), [noellabo](https://github.com/tootsuite/mastodon/pull/14709))
+- Fix timeout errors when trying to webfinger some IPv6 configurations ([Gargron](https://github.com/tootsuite/mastodon/pull/14919))
+- Fix files served as `application/octet-stream` being rejected without attempting mime type detection ([ThibG](https://github.com/tootsuite/mastodon/pull/14452))
+
 ## [3.2.0] - 2020-07-27
 ### Added
 
