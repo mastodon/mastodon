@@ -64,6 +64,14 @@ is:
         data: CSV-skrá sem flutt hefur verið út af öðrum Mastodon-þjóni
       invite_request:
         text: Þetta mun hjálpa okkur við að yfirfara umsóknina þína
+      ip_block:
+        comment: Valfrjálst. Mundu hvers vegna þú bættir þessari reglu við.
+        expires_in: IP-vistföng eru ekki óendanleg, þeim er stundum deilt og skipta oftu um eigendur. Af þessum ástæðum er ekki mælt með ótakmörkuðum lokunum á blokkir IP-vistfanga.
+        ip: Settu inn IPv4 eða IPv6 vistfang. Þú getur lokað á svið vistfanga með því að nota CIDR-framsetningu. Gættu þess að loka ekki sjálfa/n þig úti!
+        severities:
+          no_access: Loka á aðgang að öllum tilföngum
+          sign_up_requires_approval: Nýskráningar munu þurfa samþykki þitt
+        severity: Veldu hvað munir gerast við beiðnir frá þessu IP-vistfangi
       sessions:
         otp: 'Settu inn tveggja-þátta kóðann sem farsímaforritið útbjó eða notaðu einn af endurheimtukóðunum þínum:'
         webauthn: Ef þetta er USB-lykill, gakktu úr skugga um að honum sé stungið í samband og ef þörf þykir að ýta á hann.
@@ -173,6 +181,7 @@ is:
         comment: Athugasemd
         ip: IP-vistfang
         severities:
+          no_access: Loka á aðgang
           sign_up_requires_approval: Takmarka nýskráningar
         severity: Regla
       notification_emails:
