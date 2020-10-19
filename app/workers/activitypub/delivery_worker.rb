@@ -39,7 +39,7 @@ class ActivityPub::DeliveryWorker
     Request.new(:post, @inbox_url, body: @json, http_client: http_client).tap do |request|
       request.on_behalf_of(@source_account, :uri, sign_with: @options[:sign_with])
       request.add_headers(HEADERS)
-      request.add_headers({ 'X-AS-Collection-Synchronization' => synchronization_header }) if ENV['DISABLE_FOLLOWERS_SYNCHRONIZATION'] != 'true'
+      request.add_headers({ 'X-AS-Collection-Synchronization' => synchronization_header }) if ENV['DISABLE_FOLLOWERS_SYNCHRONIZATION'] != 'true' && @options[:synchronize_followers]
     end
   end
 
