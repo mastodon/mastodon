@@ -243,11 +243,12 @@ module AccountInteractions
          .where('users.current_sign_in_at > ?', User::ACTIVE_DURATION.ago)
   end
 
-  def followers_hash(domain)
-    Rails.cache.fetch("followers_hash:#{id}:#{domain}") do
-      domain = nil if domain == 'local'
-      uris = followers.where(domain: domain).map { |a| ActivityPub::TagManager.instance.uri_for(a) }
-      Digest::SHA256.hexdigest(uris.sort.join("\n"))
+  def followers_hash(url_prefix)
+    key = url_prefix.nil? ? 'local' : url_prefix
+
+    Rails.cache.fetch("followers_hash:#{id}:#{key}") do
+      scope = [nil, 'local'].include?(url_prefix) ? followers.where(domain: nil) : followers.where(Account.arel_table[:uri].matches(url_prefix + '%', false, true))
+      Digest::SHA256.hexdigest(scope.map { |a| ActivityPub::TagManager.instance.uri_for(a) }.sort.join("\n"))
     end
   end
 

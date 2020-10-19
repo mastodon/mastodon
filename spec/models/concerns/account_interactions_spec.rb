@@ -554,16 +554,16 @@ describe AccountInteractions do
 
     context 'on a local user' do
       it 'returns correct hash for remote domains' do
-        expect(me.followers_hash('example.org')).to eq 'dc5eaeff705a65b65a3aeb43d4ea382d5f0523731a62ab70909c950be73f4c3b'
-        expect(me.followers_hash('foo.org')).to eq 'ccb9c18a67134cfff9d62c7f7e7eb88e6b803446c244b84265565f4eba29df0e'
+        expect(me.followers_hash('https://example.org/')).to eq 'dc5eaeff705a65b65a3aeb43d4ea382d5f0523731a62ab70909c950be73f4c3b'
+        expect(me.followers_hash('https://foo.org/')).to eq 'ccb9c18a67134cfff9d62c7f7e7eb88e6b803446c244b84265565f4eba29df0e'
       end
 
       it 'invalidates cache as needed when removing or adding followers' do
-        expect(me.followers_hash('example.org')).to eq 'dc5eaeff705a65b65a3aeb43d4ea382d5f0523731a62ab70909c950be73f4c3b'
+        expect(me.followers_hash('https://example.org/')).to eq 'dc5eaeff705a65b65a3aeb43d4ea382d5f0523731a62ab70909c950be73f4c3b'
         remote_1.unfollow!(me)
-        expect(me.followers_hash('example.org')).to eq '241b00794ce9b46aa864f3220afadef128318da2659782985bac5ed5bd436bff'
+        expect(me.followers_hash('https://example.org/')).to eq '241b00794ce9b46aa864f3220afadef128318da2659782985bac5ed5bd436bff'
         remote_1.follow!(me)
-        expect(me.followers_hash('example.org')).to eq 'dc5eaeff705a65b65a3aeb43d4ea382d5f0523731a62ab70909c950be73f4c3b'
+        expect(me.followers_hash('https://example.org/')).to eq 'dc5eaeff705a65b65a3aeb43d4ea382d5f0523731a62ab70909c950be73f4c3b'
       end
     end
 

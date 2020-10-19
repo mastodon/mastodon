@@ -28,11 +28,10 @@ class DeliveryFailureTracker
   alias reset! track_success!
 
   class << self
-    def without_unavailable(urls_or_pairs)
+    def without_unavailable(urls)
       unavailable_domains_map = Rails.cache.fetch('unavailable_domains') { UnavailableDomain.pluck(:domain).each_with_object({}) { |domain, hash| hash[domain] = true } }
 
-      urls_or_pairs.reject do |url|
-        url = url.first if url.is_a?(Array)
+      urls.reject do |url|
         host = Addressable::URI.parse(url).normalized_host
         unavailable_domains_map[host]
       end

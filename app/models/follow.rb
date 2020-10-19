@@ -69,7 +69,6 @@ class Follow < ApplicationRecord
   def invalidate_hash_cache
     return if account&.local? && target_account&.local?
 
-    cache_domain = account&.local? ? 'local' : account&.domain
-    Rails.cache.delete("followers_hash:#{target_account_id}:#{cache_domain}")
+    Rails.cache.delete("followers_hash:#{target_account_id}:#{account.synchronization_uri_prefix}")
   end
 end

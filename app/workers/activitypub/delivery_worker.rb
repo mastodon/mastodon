@@ -2,6 +2,7 @@
 
 class ActivityPub::DeliveryWorker
   include Sidekiq::Worker
+  include RoutingHelper
   include JsonLdHelper
 
   STOPLIGHT_FAILURE_THRESHOLD = 10
@@ -36,8 +37,11 @@ class ActivityPub::DeliveryWorker
 
   def build_request(http_client)
     Request.new(:post, @inbox_url, body: @json, http_client: http_client).tap do |request|
+      url_prefix = @inbox_url[/http(s?):\/\/[^\/]+\//]
+
       request.on_behalf_of(@source_account, :uri, sign_with: @options[:sign_with])
       request.add_headers(HEADERS)
+      request.add_headers({ 'X-AS-Collection-Synchronization' => "collectionId=\"#{account_followers_url(@source_account)}\", digest=\"#{@source_account.followers_hash(url_prefix)}\", url=\"#{account_followers_synchronization_url(@source_account)}\"" }) if url_prefix.present?
     end
   end
 

@@ -2,7 +2,6 @@ require 'rails_helper'
 
 RSpec.describe ActivityPub::Activity::Create do
   let(:sender) { Fabricate(:account, followers_url: 'http://example.com/followers', domain: 'example.com', uri: 'https://example.com/actor') }
-  let(:collection_synchronization) { nil }
 
   let(:json) do
     {
@@ -11,7 +10,6 @@ RSpec.describe ActivityPub::Activity::Create do
       type: 'Create',
       actor: ActivityPub::TagManager.instance.uri_for(sender),
       object: object_json,
-      collectionSynchronization: collection_synchronization,
     }.with_indifferent_access
   end
 
@@ -28,89 +26,7 @@ RSpec.describe ActivityPub::Activity::Create do
       subject { described_class.new(json, sender) }
 
       before do
-        allow(ActivityPub::FollowersSynchronizationWorker).to receive(:perform_async).and_return(nil)
-        allow_any_instance_of(Account).to receive(:followers_hash).with('local').and_return('somehash')
-
         subject.perform
-      end
-
-      context 'with followers synchronization' do
-        let(:synchronization_domain)             { Rails.configuration.x.local_domain }
-        let(:synchronization_collection)         { sender.followers_url }
-        let(:synchronization_partial_collection) { 'https://example.com/followers-for-domain' }
-        let(:synchronization_hash_algorithm)     { 'http://www.w3.org/2001/04/xmlenc#sha256' }
-        let(:synchronization_hash)               { 'somehash' }
-
-        let(:object_json) do
-          {
-            id: [ActivityPub::TagManager.instance.uri_for(sender), '#bar'].join,
-            type: 'Note',
-            content: 'Lorem ipsum',
-          }
-        end
-
-        let(:collection_synchronization) do
-          [
-            {
-              type: 'SynchronizationItem',
-              domain: synchronization_domain,
-              object: synchronization_collection,
-              partialCollection: synchronization_partial_collection,
-              digest: {
-                type: 'Digest',
-                digestAlgorithm: synchronization_hash_algorithm,
-                digestValue: synchronization_hash,
-              }
-            },
-          ]
-        end
-
-        context 'with mismatching domain attribute' do
-          let(:synchronization_domain) { 'foo.org' }
-
-          it 'does not start a synchronization job' do
-            expect(ActivityPub::FollowersSynchronizationWorker).not_to have_received(:perform_async)
-          end
-        end
-
-        context 'with mismatching object attribute' do
-          let(:synchronization_collection) { 'https://example.com/followers2' }
-
-          it 'does not start a synchronization job' do
-            expect(ActivityPub::FollowersSynchronizationWorker).not_to have_received(:perform_async)
-          end
-        end
-
-        context 'with mismatching domain in partial collection attribute' do
-          let(:synchronization_partial_collection) { 'https://example.org/followers' }
-
-          it 'does not start a synchronization job' do
-            expect(ActivityPub::FollowersSynchronizationWorker).not_to have_received(:perform_async)
-          end
-        end
-
-        context 'with matching digest' do
-          it 'does not start a synchronization job' do
-            expect(ActivityPub::FollowersSynchronizationWorker).not_to have_received(:perform_async)
-          end
-        end
-
-        context 'with mismatching digest and unknown digest algorithm' do
-          let(:synchronization_hash) { 'wronghash' }
-          let(:synchronization_hash_algorithm) { 'foo' }
-
-          it 'does not start a synchronization job' do
-            expect(ActivityPub::FollowersSynchronizationWorker).to_not have_received(:perform_async)
-          end
-        end
-
-        context 'with mismatching digest but correct algorithm' do
-          let(:synchronization_hash) { 'wronghash' }
-
-          it 'starts a synchronization job' do
-            expect(ActivityPub::FollowersSynchronizationWorker).to have_received(:perform_async)
-          end
-        end
       end
 
       context 'unknown object type' do

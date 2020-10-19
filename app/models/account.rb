@@ -352,6 +352,12 @@ class Account < ApplicationRecord
     shared_inbox_url.presence || inbox_url
   end
 
+  def synchronization_uri_prefix
+    return 'local' if local?
+
+    @synchronization_uri_prefix ||= uri[/http(s?):\/\/[^\/]+\//]
+  end
+
   class Field < ActiveModelSerializers::Model
     attributes :name, :value, :verified_at, :account, :errors
 
@@ -413,11 +419,6 @@ class Account < ApplicationRecord
 
     def inboxes
       urls = reorder(nil).where(protocol: :activitypub).pluck(Arel.sql("distinct coalesce(nullif(accounts.shared_inbox_url, ''), accounts.inbox_url)"))
-      DeliveryFailureTracker.without_unavailable(urls)
-    end
-
-    def inboxes_with_domain
-      urls = reorder(nil).where(protocol: :activitypub).pluck(Arel.sql("distinct coalesce(nullif(accounts.shared_inbox_url, ''), accounts.inbox_url), domain"))
       DeliveryFailureTracker.without_unavailable(urls)
     end
 
