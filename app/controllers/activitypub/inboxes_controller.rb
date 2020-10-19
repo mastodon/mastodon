@@ -56,6 +56,7 @@ class ActivityPub::InboxesController < ActivityPub::BaseController
   def process_collection_synchronization
     raw_params = request.headers['X-AS-Collection-Synchronization']
     return if raw_params.blank?
+    return if ENV['DISABLE_FOLLOWERS_SYNCHRONIZATION'] == 'true'
 
     # Re-using the syntax for signature parameters
     tree   = SignatureParamsParser.new.parse(raw_params)
