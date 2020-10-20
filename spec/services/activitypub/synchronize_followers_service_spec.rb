@@ -5,12 +5,14 @@ RSpec.describe ActivityPub::SynchronizeFollowersService, type: :service do
   let(:alice)          { Fabricate(:account, username: 'alice') }
   let(:bob)            { Fabricate(:account, username: 'bob') }
   let(:eve)            { Fabricate(:account, username: 'eve') }
+  let(:mallory)        { Fabricate(:account, username: 'mallory') }
   let(:collection_uri) { 'http://example.com/partial-followers' }
 
   let(:items) do
     [
       ActivityPub::TagManager.instance.uri_for(alice),
       ActivityPub::TagManager.instance.uri_for(eve),
+      ActivityPub::TagManager.instance.uri_for(mallory),
     ]
   end
 
@@ -29,6 +31,7 @@ RSpec.describe ActivityPub::SynchronizeFollowersService, type: :service do
     before do
       alice.follow!(actor)
       bob.follow!(actor)
+      mallory.request_follow!(actor)
 
       allow(ActivityPub::DeliveryWorker).to receive(:perform_async)
 
@@ -43,13 +46,17 @@ RSpec.describe ActivityPub::SynchronizeFollowersService, type: :service do
       expect(bob.following?(actor)).to be false
     end
 
+    it 'converts follow requests to follow relationships when they have been accepted' do
+      expect(mallory.following?(actor)).to be true
+    end
+
     it 'sends an Undo Follow to the actor' do
       expect(ActivityPub::DeliveryWorker).to have_received(:perform_async).with(anything, eve.id, actor.inbox_url)
     end
   end
 
   describe '#call' do
-    context 'when the payload is a Collection with inlined replies' do
+    context 'when the endpoint is a Collection of actor URIs' do
       before do
         stub_request(:get, collection_uri).to_return(status: 200, body: Oj.dump(payload))
       end
@@ -57,7 +64,7 @@ RSpec.describe ActivityPub::SynchronizeFollowersService, type: :service do
       it_behaves_like 'synchronizes followers'
     end
 
-    context 'when the payload is an OrderedCollection with inlined replies' do
+    context 'when the endpoint is an OrderedCollection of actor URIs' do
       let(:payload) do
         {
           '@context': 'https://www.w3.org/ns/activitystreams',
@@ -74,7 +81,7 @@ RSpec.describe ActivityPub::SynchronizeFollowersService, type: :service do
       it_behaves_like 'synchronizes followers'
     end
 
-    context 'when the payload is a paginated Collection with inlined replies' do
+    context 'when the endpoint is a paginated Collection of actor URIs' do
       let(:payload) do
         {
           '@context': 'https://www.w3.org/ns/activitystreams',

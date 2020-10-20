@@ -14,7 +14,7 @@ class ActivityPub::SynchronizeFollowersService < BaseService
     # TODO: what to do with unresolvable accounts?
 
     remove_unexpected_local_followers!
-    undo_unexpected_outgoing_follows!
+    handle_unexpected_outgoing_follows!
   end
 
   private
@@ -25,13 +25,18 @@ class ActivityPub::SynchronizeFollowersService < BaseService
     end
   end
 
-  def undo_unexpected_outgoing_follows!
+  def handle_unexpected_outgoing_follows!
     @expected_followers.each do |expected_follower|
       next if expected_follower.following?(@account)
 
-      follow = Follow.new(account: expected_follower, target_account: @account)
-      # TODO: the follow doesn't have an uri, how does that work?
-      ActivityPub::DeliveryWorker.perform_async(build_undo_follow_json(follow), follow.account_id, follow.target_account.inbox_url)
+      if expected_follower.requested?(@account)
+        # For some reason the follow request went through but we missed it
+        expected_follower.follow_requests.find_by(target_account: @account)&.authorize!
+      else
+        follow = Follow.new(account: expected_follower, target_account: @account)
+        # TODO: the follow doesn't have an uri, how does that work?
+        ActivityPub::DeliveryWorker.perform_async(build_undo_follow_json(follow), follow.account_id, follow.target_account.inbox_url)
+      end
     end
   end
 
