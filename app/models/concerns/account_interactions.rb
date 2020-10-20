@@ -248,11 +248,16 @@ module AccountInteractions
 
     Rails.cache.fetch("followers_hash:#{id}:#{key}") do
       scope = if url_prefix.nil?
-                followers.where(domain: nil).select(:domain, :username)
+                followers.where(domain: nil).select(:domain, :username, :id)
               else
-                followers.where(Account.arel_table[:uri].matches(url_prefix + '%', false, true)).select(:domain, :uri)
+                followers.where(Account.arel_table[:uri].matches(url_prefix + '%', false, true)).select(:domain, :uri, :id)
               end
-      Digest::SHA256.hexdigest(scope.map { |a| ActivityPub::TagManager.instance.uri_for(a) }.sort.join("\n"))
+      digest = [0] * 32
+      scope.find_each do |account|
+        uri_digest = Digest::SHA256.digest(ActivityPub::TagManager.instance.uri_for(account))
+        digest = uri_digest.each_byte.zip(digest).map { |a, b| a ^ b }
+      end
+      digest.pack('C*').unpack('H*')[0]
     end
   end
 

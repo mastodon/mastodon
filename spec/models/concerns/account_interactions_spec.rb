@@ -554,16 +554,16 @@ describe AccountInteractions do
 
     context 'on a local user' do
       it 'returns correct hash for remote domains' do
-        expect(me.followers_hash('https://example.org/')).to eq 'dc5eaeff705a65b65a3aeb43d4ea382d5f0523731a62ab70909c950be73f4c3b'
+        expect(me.followers_hash('https://example.org/')).to eq '707962e297b7bd94468a21bc8e506a1bcea607a9142cd64e27c9b106b2a5f6ec'
         expect(me.followers_hash('https://foo.org/')).to eq 'ccb9c18a67134cfff9d62c7f7e7eb88e6b803446c244b84265565f4eba29df0e'
       end
 
       it 'invalidates cache as needed when removing or adding followers' do
-        expect(me.followers_hash('https://example.org/')).to eq 'dc5eaeff705a65b65a3aeb43d4ea382d5f0523731a62ab70909c950be73f4c3b'
+        expect(me.followers_hash('https://example.org/')).to eq '707962e297b7bd94468a21bc8e506a1bcea607a9142cd64e27c9b106b2a5f6ec'
         remote_1.unfollow!(me)
         expect(me.followers_hash('https://example.org/')).to eq '241b00794ce9b46aa864f3220afadef128318da2659782985bac5ed5bd436bff'
         remote_1.follow!(me)
-        expect(me.followers_hash('https://example.org/')).to eq 'dc5eaeff705a65b65a3aeb43d4ea382d5f0523731a62ab70909c950be73f4c3b'
+        expect(me.followers_hash('https://example.org/')).to eq '707962e297b7bd94468a21bc8e506a1bcea607a9142cd64e27c9b106b2a5f6ec'
       end
     end
 
@@ -575,7 +575,7 @@ describe AccountInteractions do
       it 'invalidates cache as needed when removing or adding followers' do
         expect(remote_1.followers_hash(nil)).to eq Digest::SHA256.hexdigest(ActivityPub::TagManager.instance.uri_for(me))
         me.unfollow!(remote_1)
-        expect(remote_1.followers_hash(nil)).to eq 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855'
+        expect(remote_1.followers_hash(nil)).to eq '0000000000000000000000000000000000000000000000000000000000000000'
         me.follow!(remote_1)
         expect(remote_1.followers_hash(nil)).to eq Digest::SHA256.hexdigest(ActivityPub::TagManager.instance.uri_for(me))
       end
