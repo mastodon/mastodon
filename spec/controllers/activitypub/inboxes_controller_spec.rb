@@ -22,7 +22,7 @@ RSpec.describe ActivityPub::InboxesController, type: :controller do
       end
     end
 
-    context 'with X-AS-Collection-Synchronization header' do
+    context 'with Collection-Synchronization header' do
       let(:remote_account)             { Fabricate(:account, followers_url: 'https://example.com/followers', domain: 'example.com', uri: 'https://example.com/actor', protocol: :activitypub) }
       let(:synchronization_collection) { remote_account.followers_url }
       let(:synchronization_url)        { 'https://example.com/followers-for-domain' }
@@ -31,9 +31,9 @@ RSpec.describe ActivityPub::InboxesController, type: :controller do
 
       before do
         allow(ActivityPub::FollowersSynchronizationWorker).to receive(:perform_async).and_return(nil)
-        allow_any_instance_of(Account).to receive(:followers_hash).with('local').and_return('somehash')
+        allow_any_instance_of(Account).to receive(:followers_hash).with(nil).and_return('somehash')
 
-        request.headers['X-AS-Collection-Synchronization'] = synchronization_header
+        request.headers['Collection-Synchronization'] = synchronization_header
         post :create, body: '{}'
       end
 

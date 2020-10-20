@@ -10,8 +10,11 @@ class ActivityPub::SynchronizeFollowersService < BaseService
     items = collection_items(partial_collection_url)
     return if items.nil?
 
+    # There could be unresolved accounts (hence the call to .compact) but this
+    # should never happen in practice, since in almost all cases we keep an
+    # Account record, and should we not do that, we should have sent a Delete.
+    # In any case there is not much we can do if that occurs.
     @expected_followers = items.map { |uri| ActivityPub::TagManager.instance.uri_to_resource(uri, Account) }.compact
-    # TODO: what to do with unresolvable accounts?
 
     remove_unexpected_local_followers!
     handle_unexpected_outgoing_follows!
@@ -33,8 +36,11 @@ class ActivityPub::SynchronizeFollowersService < BaseService
         # For some reason the follow request went through but we missed it
         expected_follower.follow_requests.find_by(target_account: @account)&.authorize!
       else
+        # Since we were not aware of the follow from our side, we do not have an
+        # ID for it that we can include in the Undo activity. For this reason,
+        # the Undo may not work with software that relies exclusively on
+        # matching activity IDs and not the actor and target
         follow = Follow.new(account: expected_follower, target_account: @account)
-        # TODO: the follow doesn't have an uri, how does that work?
         ActivityPub::DeliveryWorker.perform_async(build_undo_follow_json(follow), follow.account_id, follow.target_account.inbox_url)
       end
     end

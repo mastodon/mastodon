@@ -247,9 +247,13 @@ module AccountInteractions
     key = url_prefix.nil? ? 'local' : url_prefix
 
     Rails.cache.fetch("followers_hash:#{id}:#{key}") do
-      scope = [nil, 'local'].include?(url_prefix) ? followers.where(domain: nil) : followers.where(Account.arel_table[:uri].matches(url_prefix + '%', false, true))
+      scope = url_prefix.nil? ? followers.where(domain: nil) : followers.where(Account.arel_table[:uri].matches(url_prefix + '%', false, true))
       Digest::SHA256.hexdigest(scope.map { |a| ActivityPub::TagManager.instance.uri_for(a) }.sort.join("\n"))
     end
+  end
+
+  def local_followers_hash
+    followers_hash(nil)
   end
 
   private

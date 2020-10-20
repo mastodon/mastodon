@@ -54,9 +54,8 @@ class ActivityPub::InboxesController < ActivityPub::BaseController
   end
 
   def process_collection_synchronization
-    raw_params = request.headers['X-AS-Collection-Synchronization']
-    return if raw_params.blank?
-    return if ENV['DISABLE_FOLLOWERS_SYNCHRONIZATION'] == 'true'
+    raw_params = request.headers['Collection-Synchronization']
+    return if raw_params.blank? || ENV['DISABLE_FOLLOWERS_SYNCHRONIZATION'] == 'true'
 
     # Re-using the syntax for signature parameters
     tree   = SignatureParamsParser.new.parse(raw_params)
@@ -64,7 +63,7 @@ class ActivityPub::InboxesController < ActivityPub::BaseController
 
     ActivityPub::PrepareFollowersSynchronizationService.new.call(signed_request_account, params)
   rescue Parslet::ParseFailed
-    Rails.logger.warn 'Error parsing collection synchronization header'
+    Rails.logger.warn 'Error parsing Collection-Synchronization header'
   end
 
   def process_payload

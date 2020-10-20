@@ -569,15 +569,15 @@ describe AccountInteractions do
 
     context 'on a remote user' do
       it 'returns correct hash for remote domains' do
-        expect(remote_1.followers_hash('local')).to eq Digest::SHA256.hexdigest(ActivityPub::TagManager.instance.uri_for(me))
+        expect(remote_1.followers_hash(nil)).to eq Digest::SHA256.hexdigest(ActivityPub::TagManager.instance.uri_for(me))
       end
 
       it 'invalidates cache as needed when removing or adding followers' do
-        expect(remote_1.followers_hash('local')).to eq Digest::SHA256.hexdigest(ActivityPub::TagManager.instance.uri_for(me))
+        expect(remote_1.followers_hash(nil)).to eq Digest::SHA256.hexdigest(ActivityPub::TagManager.instance.uri_for(me))
         me.unfollow!(remote_1)
-        expect(remote_1.followers_hash('local')).to eq 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855'
+        expect(remote_1.followers_hash(nil)).to eq 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855'
         me.follow!(remote_1)
-        expect(remote_1.followers_hash('local')).to eq Digest::SHA256.hexdigest(ActivityPub::TagManager.instance.uri_for(me))
+        expect(remote_1.followers_hash(nil)).to eq Digest::SHA256.hexdigest(ActivityPub::TagManager.instance.uri_for(me))
       end
     end
   end
