@@ -243,25 +243,24 @@ module AccountInteractions
          .where('users.current_sign_in_at > ?', User::ACTIVE_DURATION.ago)
   end
 
-  def followers_hash(url_prefix)
-    key = url_prefix.nil? ? 'local' : url_prefix
-
-    Rails.cache.fetch("followers_hash:#{id}:#{key}") do
-      scope = if url_prefix.nil?
-                followers.where(domain: nil).select(:domain, :username, :id)
-              else
-                followers.where(Account.arel_table[:uri].matches(url_prefix + '%', false, true)).select(:domain, :uri, :id)
-              end
+  def remote_followers_hash(url_prefix)
+    Rails.cache.fetch("followers_hash:#{id}:#{url_prefix}") do
       digest = "\x00" * 32
-      scope.find_each do |account|
-        Xorcist.xor!(digest, Digest::SHA256.digest(ActivityPub::TagManager.instance.uri_for(account)))
+      followers.where(Account.arel_table[:uri].matches(url_prefix + '%', false, true)).pluck_each(:uri) do |uri|
+        Xorcist.xor!(digest, Digest::SHA256.digest(uri))
       end
       digest.unpack('H*')[0]
     end
   end
 
   def local_followers_hash
-    followers_hash(nil)
+    Rails.cache.fetch("followers_hash:#{id}:local") do
+      digest = "\x00" * 32
+      followers.where(domain: nil).pluck_each(:username) do |username|
+        Xorcist.xor!(digest, Digest::SHA256.digest(ActivityPub::TagManager.instance.uri_for_username(username)))
+      end
+      digest.unpack('H*')[0]
+    end
   end
 
   private

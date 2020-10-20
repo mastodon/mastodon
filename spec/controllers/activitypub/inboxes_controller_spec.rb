@@ -31,7 +31,7 @@ RSpec.describe ActivityPub::InboxesController, type: :controller do
 
       before do
         allow(ActivityPub::FollowersSynchronizationWorker).to receive(:perform_async).and_return(nil)
-        allow_any_instance_of(Account).to receive(:followers_hash).with(nil).and_return('somehash')
+        allow_any_instance_of(Account).to receive(:local_followers_hash).and_return('somehash')
 
         request.headers['Collection-Synchronization'] = synchronization_header
         post :create, body: '{}'
