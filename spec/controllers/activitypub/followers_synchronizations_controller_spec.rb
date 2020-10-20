@@ -30,7 +30,7 @@ RSpec.describe ActivityPub::FollowersSynchronizationsController, type: :controll
     end
 
     context 'with signature from example.com' do
-      let(:remote_account) { Fabricate(:account, domain: 'example.com') }
+      let(:remote_account) { Fabricate(:account, domain: 'example.com', uri: 'https://example.com/instance') }
 
       before do
         get :show, params: { account_username: account.username }
@@ -47,7 +47,7 @@ RSpec.describe ActivityPub::FollowersSynchronizationsController, type: :controll
       it 'returns orderedItems with followers from example.com' do
         json = body_as_json
         expect(json[:orderedItems]).to be_an Array
-        expect(json[:orderedItems]).to eq [follower_1.uri, follower_2.uri]
+        expect(json[:orderedItems].sort).to eq [follower_1.uri, follower_2.uri]
       end
 
       it 'returns private Cache-Control header' do

@@ -10,13 +10,20 @@ class ActivityPub::FollowersSynchronizationsController < ActivityPub::BaseContro
 
   def show
     expires_in 0, public: false
-    render json: collection_presenter, content_type: 'application/activity+json', serializer: ActivityPub::CollectionSerializer, adapter: ActivityPub::Adapter
+    render json: collection_presenter,
+           serializer: ActivityPub::CollectionSerializer,
+           adapter: ActivityPub::Adapter,
+           content_type: 'application/activity+json'
   end
 
   private
 
+  def uri_prefix
+    signed_request_account.uri[/http(s?):\/\/[^\/]+\//]
+  end
+
   def set_items
-    @items = @account.followers.where(domain: signed_request_account.domain).pluck(:uri).sort
+    @items = @account.followers.where(Account.arel_table[:uri].matches(uri_prefix + '%', false, true)).pluck(:uri)
   end
 
   def collection_presenter
