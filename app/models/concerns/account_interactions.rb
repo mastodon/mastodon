@@ -252,12 +252,11 @@ module AccountInteractions
               else
                 followers.where(Account.arel_table[:uri].matches(url_prefix + '%', false, true)).select(:domain, :uri, :id)
               end
-      digest = [0] * 32
+      digest = "\x00" * 32
       scope.find_each do |account|
-        uri_digest = Digest::SHA256.digest(ActivityPub::TagManager.instance.uri_for(account))
-        digest = uri_digest.each_byte.zip(digest).map { |a, b| a ^ b }
+        Xorcist.xor!(digest, Digest::SHA256.digest(ActivityPub::TagManager.instance.uri_for(account)))
       end
-      digest.pack('C*').unpack('H*')[0]
+      digest.unpack('H*')[0]
     end
   end
 
