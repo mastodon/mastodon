@@ -191,18 +191,24 @@ id:
       statuses: Status
       subscribe: Langganan
       suspended: Disuspen
+      suspension_irreversible: Data akun ini telah dihapus secara permanen. Anda dapat mengaktifkan akun agar tetap bisa dipakai lagi tapi data sebelumnya tidak dapat dikembalikan.
+      suspension_reversible_hint_html: Akun telah ditangguhkan, dan data akan dihapus total pada %{date}. Sebelum tanggal tersebut, akun dapat dikembalikan tanpa efek apapun. Jika Anda ingin menghapus segera semua data, Anda dapat melakukan sesuai keterangan di bawah.
       time_in_queue: Menunggu dalam antrean %{time}
       title: Akun
       unconfirmed_email: Email belum dikonfirmasi
       undo_silenced: Undo mendiamkan
       undo_suspension: Undo suspen
+      unsilenced_msg: Berhasil membuka batasan akun %{username}
       unsubscribe: Berhenti langganan
+      unsuspended_msg: Berhasil membuka penangguhan akun %{username}
       username: Nama pengguna
+      view_domain: Tampilkan ringkasan domain
       warn: Beri Peringatan
       web: Web
       whitelisted: Masuk daftar putih
     action_logs:
       action_types:
+        assigned_to_self_report: Berikan laporan
         change_email_user: Ubah Surel untuk Pengguna
         confirm_user: Konfirmasi Pengguna
         create_account_warning: Buat Peringatan
@@ -211,22 +217,26 @@ id:
         create_domain_allow: Buat Izin Domain
         create_domain_block: Buat Blokir Domain
         create_email_domain_block: Buat Surel Blokir Domain
+        create_ip_block: Buat aturan IP
         demote_user: Turunkan Pengguna
         destroy_announcement: Hapus Pengumuman
         destroy_custom_emoji: Hapus Emoji Khusus
         destroy_domain_allow: Hapus Izin Domain
         destroy_domain_block: Hapus Blokir Domain
         destroy_email_domain_block: Hapus surel blokir domain
+        destroy_ip_block: Hapus aturan IP
         destroy_status: Hapus Status
         disable_2fa_user: Nonaktifkan 2FA
         disable_custom_emoji: Nonaktifkan Emoji Khusus
         disable_user: Nonaktifkan Pengguna
         enable_custom_emoji: Aktifkan Emoji Khusus
         enable_user: Aktifkan Pengguna
+        memorialize_account: Kenang Akun
         promote_user: Promosikan Pengguna
         remove_avatar_user: Hapus Avatar
         reopen_report: Buka Lagi Laporan
         reset_password_user: Atur Ulang Kata sandi
+        resolve_report: Selesaikan Laporan
         silence_account: Bisukan Akun
         suspend_account: Tangguhkan Akun
         unsilence_account: Lepas Status Bisu Akun
