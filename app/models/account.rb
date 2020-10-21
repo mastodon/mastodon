@@ -354,6 +354,12 @@ class Account < ApplicationRecord
     shared_inbox_url.presence || inbox_url
   end
 
+  def synchronization_uri_prefix
+    return 'local' if local?
+
+    @synchronization_uri_prefix ||= uri[/http(s?):\/\/[^\/]+\//]
+  end
+
   class Field < ActiveModelSerializers::Model
     attributes :name, :value, :verified_at, :account, :errors
 

@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import unicodeMapping from '../features/emoji/emoji_unicode_mapping_light';
-
-const assetHost = process.env.CDN_HOST || '';
+import { assetHost } from 'mastodon/utils/config';
 
 export default class AutosuggestEmoji extends React.PureComponent {
 

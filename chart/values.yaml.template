@@ -39,6 +39,12 @@ createAdmin:
 # available locales: https://github.com/tootsuite/mastodon/blob/master/config/application.rb#L43
 locale: en
 
+cron:
+  # run `tootctl media remove` every week
+  removeMedia:
+    enabled: true
+    schedule: "0 0 * * 0"
+
 application:
   web:
     port: 3000

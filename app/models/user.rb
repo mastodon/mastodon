@@ -41,6 +41,7 @@
 #  sign_in_token             :string
 #  sign_in_token_sent_at     :datetime
 #  webauthn_id               :string
+#  sign_up_ip                :inet
 #
 
 class User < ApplicationRecord
@@ -97,7 +98,7 @@ class User < ApplicationRecord
   scope :inactive, -> { where(arel_table[:current_sign_in_at].lt(ACTIVE_DURATION.ago)) }
   scope :active, -> { confirmed.where(arel_table[:current_sign_in_at].gteq(ACTIVE_DURATION.ago)).joins(:account).where(accounts: { suspended_at: nil }) }
   scope :matches_email, ->(value) { where(arel_table[:email].matches("#{value}%")) }
-  scope :matches_ip, ->(value) { left_joins(:session_activations).where('users.current_sign_in_ip <<= ?', value).or(left_joins(:session_activations).where('users.last_sign_in_ip <<= ?', value)).or(left_joins(:session_activations).where('session_activations.ip <<= ?', value)) }
+  scope :matches_ip, ->(value) { left_joins(:session_activations).where('users.current_sign_in_ip <<= ?', value).or(left_joins(:session_activations).where('users.sign_up_ip <<= ?', value)).or(left_joins(:session_activations).where('users.last_sign_in_ip <<= ?', value)).or(left_joins(:session_activations).where('session_activations.ip <<= ?', value)) }
   scope :emailable, -> { confirmed.enabled.joins(:account).merge(Account.searchable) }
 
   before_validation :sanitize_languages
@@ -115,7 +116,7 @@ class User < ApplicationRecord
            :reduce_motion, :system_font_ui, :noindex, :flavour, :skin, :display_media, :hide_network, :hide_followers_count,
            :expand_spoilers, :default_language, :aggregate_reblogs, :show_application,
            :advanced_layout, :use_blurhash, :use_pending_items, :trends, :crop_images,
-           :default_content_type, :system_emoji_font,
+           :disable_swiping, :default_content_type, :system_emoji_font,
            to: :settings, prefix: :setting, allow_nil: false
 
   attr_reader :invite_code, :sign_in_token_attempt
@@ -331,6 +332,7 @@ class User < ApplicationRecord
 
       arr << [current_sign_in_at, current_sign_in_ip] if current_sign_in_ip.present?
       arr << [last_sign_in_at, last_sign_in_ip] if last_sign_in_ip.present?
+      arr << [created_at, sign_up_ip] if sign_up_ip.present?
 
       arr.sort_by { |pair| pair.first || Time.now.utc }.uniq(&:last).reverse!
     end
@@ -385,7 +387,17 @@ class User < ApplicationRecord
   end
 
   def set_approved
-    self.approved = open_registrations? || valid_invitation? || external?
+    self.approved = begin
+      if sign_up_from_ip_requires_approval?
+        false
+      else
+        open_registrations? || valid_invitation? || external?
+      end
+    end
+  end
+
+  def sign_up_from_ip_requires_approval?
+    !sign_up_ip.nil? && IpBlock.where(severity: :sign_up_requires_approval).where('ip >>= ?', sign_up_ip.to_s).exists?
   end
 
   def open_registrations?

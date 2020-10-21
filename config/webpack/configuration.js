@@ -57,22 +57,9 @@ for (let i = 0; i < skinFiles.length; i++) {
   }
 }
 
-function removeOuterSlashes(string) {
-  return string.replace(/^\/*/, '').replace(/\/*$/, '');
-}
-
-function formatPublicPath(host = '', path = '') {
-  let formattedHost = removeOuterSlashes(host);
-  if (formattedHost && !/^http/i.test(formattedHost)) {
-    formattedHost = `//${formattedHost}`;
-  }
-  const formattedPath = removeOuterSlashes(path);
-  return `${formattedHost}/${formattedPath}/`;
-}
-
 const output = {
   path: resolve('public', settings.public_output_path),
-  publicPath: formatPublicPath(env.CDN_HOST, settings.public_output_path),
+  publicPath: `/${settings.public_output_path}/`,
 };
 
 module.exports = {
@@ -80,8 +67,8 @@ module.exports = {
   core,
   flavours,
   env: {
-    CDN_HOST: env.CDN_HOST,
     NODE_ENV: env.NODE_ENV,
+    PUBLIC_OUTPUT_PATH: settings.public_output_path,
   },
   output,
 };
