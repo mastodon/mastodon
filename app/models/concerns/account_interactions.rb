@@ -243,6 +243,26 @@ module AccountInteractions
          .where('users.current_sign_in_at > ?', User::ACTIVE_DURATION.ago)
   end
 
+  def remote_followers_hash(url_prefix)
+    Rails.cache.fetch("followers_hash:#{id}:#{url_prefix}") do
+      digest = "\x00" * 32
+      followers.where(Account.arel_table[:uri].matches(url_prefix + '%', false, true)).pluck_each(:uri) do |uri|
+        Xorcist.xor!(digest, Digest::SHA256.digest(uri))
+      end
+      digest.unpack('H*')[0]
+    end
+  end
+
+  def local_followers_hash
+    Rails.cache.fetch("followers_hash:#{id}:local") do
+      digest = "\x00" * 32
+      followers.where(domain: nil).pluck_each(:username) do |username|
+        Xorcist.xor!(digest, Digest::SHA256.digest(ActivityPub::TagManager.instance.uri_for_username(username)))
+      end
+      digest.unpack('H*')[0]
+    end
+  end
+
   private
 
   def remove_potential_friendship(other_account, mutual = false)
