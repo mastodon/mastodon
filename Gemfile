@@ -131,7 +131,7 @@ group :test do
 end
 
 group :development do
-  gem 'active_record_query_trace', '~> 1.7'
+  gem 'active_record_query_trace', '~> 1.8'
   gem 'annotate', '~> 3.1'
   gem 'better_errors', '~> 2.8'
   gem 'binding_of_caller', '~> 0.7'
