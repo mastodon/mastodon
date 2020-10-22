@@ -20,7 +20,7 @@ gem 'makara', '~> 0.4'
 gem 'pghero', '~> 2.7'
 gem 'dotenv-rails', '~> 2.7'
 
-gem 'aws-sdk-s3', '~> 1.81', require: false
+gem 'aws-sdk-s3', '~> 1.83', require: false
 gem 'fog-core', '<= 2.1.0'
 gem 'fog-openstack', '~> 0.3', require: false
 gem 'paperclip', '~> 6.0'
@@ -54,7 +54,6 @@ gem 'doorkeeper', '~> 5.4'
 gem 'ed25519', '~> 1.2'
 gem 'fast_blank', '~> 1.0'
 gem 'fastimage'
-gem 'goldfinger', '~> 2.1'
 gem 'hiredis', '~> 0.6'
 gem 'redis-namespace', '~> 1.8'
 gem 'health_check', git: 'https://github.com/ianheggie/health_check', ref: '0b799ead604f900ed50685e9b2d469cd2befba5b'
@@ -142,9 +141,9 @@ group :development do
   gem 'letter_opener', '~> 1.7'
   gem 'letter_opener_web', '~> 1.4'
   gem 'memory_profiler'
-  gem 'rubocop', '~> 0.91', require: false
+  gem 'rubocop', '~> 0.93', require: false
   gem 'rubocop-rails', '~> 2.8', require: false
-  gem 'brakeman', '~> 4.9', require: false
+  gem 'brakeman', '~> 4.10', require: false
   gem 'bundler-audit', '~> 0.7', require: false
 
   gem 'capistrano', '~> 3.14'
@@ -162,3 +161,6 @@ end
 
 gem 'concurrent-ruby', require: false
 gem 'connection_pool', require: false
+
+gem 'xorcist', '~> 1.1'
+gem 'pluck_each', '~> 0.1.3'

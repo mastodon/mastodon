@@ -1,5 +1,6 @@
 //  This file will be loaded on admin pages, regardless of theme.
 
+import 'packs/public-path';
 import { delegate } from '@rails/ujs';
 import ready from '../mastodon/ready';
 

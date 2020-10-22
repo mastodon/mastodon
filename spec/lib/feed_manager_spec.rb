@@ -108,6 +108,7 @@ RSpec.describe FeedManager do
 
       it 'returns false for status by followee mentioning another account' do
         bob.follow!(alice)
+        jeff.follow!(alice)
         status = PostStatusService.new.call(alice, text: 'Hey @jeff')
         expect(FeedManager.instance.filter?(:home, status, bob)).to be false
       end

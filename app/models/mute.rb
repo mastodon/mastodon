@@ -9,11 +9,14 @@
 #  hide_notifications :boolean          default(TRUE), not null
 #  account_id         :bigint(8)        not null
 #  target_account_id  :bigint(8)        not null
+#  hide_notifications :boolean          default(TRUE), not null
+#  expires_at         :datetime
 #
 
 class Mute < ApplicationRecord
   include Paginable
   include RelationshipCacheable
+  include Expireable
 
   belongs_to :account
   belongs_to :target_account, class_name: 'Account'

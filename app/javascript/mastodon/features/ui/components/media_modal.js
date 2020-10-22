@@ -10,6 +10,7 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import ImageLoader from './image_loader';
 import Icon from 'mastodon/components/icon';
 import GIFV from 'mastodon/components/gifv';
+import { disableSwiping } from 'mastodon/initial_state';
 
 const messages = defineMessages({
   close: { id: 'lightbox.close', defaultMessage: 'Close' },
@@ -212,6 +213,7 @@ class MediaModal extends ImmutablePureComponent {
             containerStyle={containerStyle}
             onChangeIndex={this.handleSwipe}
             index={index}
+            disabled={disableSwiping}
           >
             {content}
           </ReactSwipeableViews>

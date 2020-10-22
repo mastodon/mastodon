@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import unicodeMapping from 'flavours/glitch/util/emoji/emoji_unicode_mapping_light';
 
-const assetHost = process.env.CDN_HOST || '';
+import { assetHost } from 'flavours/glitch/util/config';
 
 export default class AutosuggestEmoji extends React.PureComponent {
 

@@ -1,5 +1,6 @@
 //  This file will be loaded on public pages, regardless of theme.
 
+import 'packs/public-path';
 import ready from '../mastodon/ready';
 
 const { delegate } = require('@rails/ujs');

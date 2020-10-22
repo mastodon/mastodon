@@ -1,3 +1,4 @@
+import 'packs/public-path';
 import loadPolyfills from 'flavours/glitch/util/load_polyfills';
 
 function loaded() {

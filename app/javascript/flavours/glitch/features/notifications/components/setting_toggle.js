@@ -13,6 +13,7 @@ export default class SettingToggle extends React.PureComponent {
     meta: PropTypes.node,
     onChange: PropTypes.func.isRequired,
     defaultValue: PropTypes.bool,
+    disabled: PropTypes.bool,
   }
 
   onChange = ({ target }) => {
@@ -20,12 +21,12 @@ export default class SettingToggle extends React.PureComponent {
   }
 
   render () {
-    const { prefix, settings, settingPath, label, meta, defaultValue } = this.props;
+    const { prefix, settings, settingPath, label, meta, defaultValue, disabled } = this.props;
     const id = ['setting-toggle', prefix, ...settingPath].filter(Boolean).join('-');
 
     return (
       <div className='setting-toggle'>
-        <Toggle id={id} checked={settings.getIn(settingPath, defaultValue)} onChange={this.onChange} onKeyDown={this.onKeyDown} />
+        <Toggle disabled={disabled} id={id} checked={settings.getIn(settingPath, defaultValue)} onChange={this.onChange} onKeyDown={this.onKeyDown} />
         <label htmlFor={id} className='setting-toggle__label'>{label}</label>
         {meta && <span className='setting-meta__label'>{meta}</span>}
       </div>

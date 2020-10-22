@@ -32,13 +32,6 @@ export default class Mastodon extends React.PureComponent {
 
   componentDidMount() {
     this.disconnect = store.dispatch(connectUserStream());
-
-    // Desktop notifications
-    // Ask after 1 minute
-    if (typeof window.Notification !== 'undefined' && Notification.permission === 'default') {
-      window.setTimeout(() => Notification.requestPermission(), 60 * 1000);
-    }
-
     store.dispatch(showOnboardingOnce());
   }
 

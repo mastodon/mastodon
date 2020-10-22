@@ -131,9 +131,12 @@ module AccountInteractions
                        .find_or_create_by!(target_account: other_account)
   end
 
-  def mute!(other_account, notifications: nil)
+  def mute!(other_account, notifications: nil, duration: 0)
     notifications = true if notifications.nil?
-    mute = mute_relationships.create_with(hide_notifications: notifications).find_or_create_by!(target_account: other_account)
+    mute = mute_relationships.create_with(hide_notifications: notifications).find_or_initialize_by(target_account: other_account)
+    mute.expires_in = duration.zero? ? nil : duration
+    mute.save!
+
     remove_potential_friendship(other_account)
 
     # When toggling a mute between hiding and allowing notifications, the mute will already exist, so the find_or_create_by! call will return the existing Mute without updating the hide_notifications attribute. Therefore, we check that hide_notifications? is what we want and set it if it isn't.
@@ -238,6 +241,26 @@ module AccountInteractions
   def lists_for_local_distribution
     lists.joins(account: :user)
          .where('users.current_sign_in_at > ?', User::ACTIVE_DURATION.ago)
+  end
+
+  def remote_followers_hash(url_prefix)
+    Rails.cache.fetch("followers_hash:#{id}:#{url_prefix}") do
+      digest = "\x00" * 32
+      followers.where(Account.arel_table[:uri].matches(url_prefix + '%', false, true)).pluck_each(:uri) do |uri|
+        Xorcist.xor!(digest, Digest::SHA256.digest(uri))
+      end
+      digest.unpack('H*')[0]
+    end
+  end
+
+  def local_followers_hash
+    Rails.cache.fetch("followers_hash:#{id}:local") do
+      digest = "\x00" * 32
+      followers.where(domain: nil).pluck_each(:username) do |username|
+        Xorcist.xor!(digest, Digest::SHA256.digest(ActivityPub::TagManager.instance.uri_for_username(username)))
+      end
+      digest.unpack('H*')[0]
+    end
   end
 
   private

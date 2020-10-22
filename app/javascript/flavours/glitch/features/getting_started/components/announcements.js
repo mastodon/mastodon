@@ -15,6 +15,7 @@ import EmojiPickerDropdown from 'flavours/glitch/features/emoji_picker';
 import AnimatedNumber from 'flavours/glitch/components/animated_number';
 import TransitionMotion from 'react-motion/lib/TransitionMotion';
 import spring from 'react-motion/lib/spring';
+import { assetHost } from 'flavours/glitch/util/config';
 
 const messages = defineMessages({
   close: { id: 'lightbox.close', defaultMessage: 'Close' },
@@ -152,8 +153,6 @@ class Content extends ImmutablePureComponent {
   }
 
 }
-
-const assetHost = process.env.CDN_HOST || '';
 
 class Emoji extends React.PureComponent {
 

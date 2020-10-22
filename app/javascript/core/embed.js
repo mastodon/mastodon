@@ -1,5 +1,7 @@
 //  This file will be loaded on embed pages, regardless of theme.
 
+import 'packs/public-path';
+
 window.addEventListener('message', e => {
   const data = e.data || {};
 

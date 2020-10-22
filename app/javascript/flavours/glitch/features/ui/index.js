@@ -359,7 +359,7 @@ class UI extends React.Component {
     const visibility = !document[this.visibilityHiddenProp];
     this.props.dispatch(notificationsSetVisibility(visibility));
     if (visibility) {
-      this.props.dispatch(submitMarkers());
+      this.props.dispatch(submitMarkers({ immediate: true }));
     }
   }
 
@@ -385,7 +385,7 @@ class UI extends React.Component {
 
   componentDidMount () {
     this.hotkeys.__mousetrap__.stopCallback = (e, element) => {
-      return ['TEXTAREA', 'SELECT', 'INPUT'].includes(element.tagName) && !e.altKey;
+      return ['TEXTAREA', 'SELECT', 'INPUT'].includes(element.tagName);
     };
 
     if (typeof document.hidden !== 'undefined') { // Opera 12.10 and Firefox 18 and later support

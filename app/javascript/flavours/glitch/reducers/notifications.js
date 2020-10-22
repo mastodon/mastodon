@@ -17,6 +17,8 @@ import {
   NOTIFICATIONS_ENTER_CLEARING_MODE,
   NOTIFICATIONS_MARK_ALL_FOR_DELETE,
   NOTIFICATIONS_MARK_AS_READ,
+  NOTIFICATIONS_SET_BROWSER_SUPPORT,
+  NOTIFICATIONS_SET_BROWSER_PERMISSION,
 } from 'flavours/glitch/actions/notifications';
 import {
   ACCOUNT_BLOCK_SUCCESS,
@@ -44,6 +46,8 @@ const initialState = ImmutableMap({
   isLoading: false,
   cleaningMode: false,
   isTabVisible: true,
+  browserSupport: false,
+  browserPermission: 'default',
   // notification removal mark of new notifs loaded whilst cleaningMode is true.
   markNewForDelete: false,
 });
@@ -185,7 +189,7 @@ const deleteMarkedNotifs = (state) => {
 
 const updateMounted = (state) => {
   state = state.update('mounted', count => count + 1);
-  if (!shouldCountUnreadNotifications(state)) {
+  if (!shouldCountUnreadNotifications(state, state.get('mounted') === 1)) {
     state = state.set('readMarkerId', state.get('lastReadId'));
     state = clearUnread(state);
   }
@@ -201,7 +205,7 @@ const updateVisibility = (state, visibility) => {
   return state;
 };
 
-const shouldCountUnreadNotifications = (state) => {
+const shouldCountUnreadNotifications = (state, ignoreScroll = false) => {
   const isTabVisible   = state.get('isTabVisible');
   const isOnTop        = state.get('top');
   const isMounted      = state.get('mounted') > 0;
@@ -209,7 +213,7 @@ const shouldCountUnreadNotifications = (state) => {
   const lastItem       = state.get('items').findLast(item => item !== null);
   const lastItemReached = !state.get('hasMore') || lastReadId === '0' || (lastItem && compareId(lastItem.get('id'), lastReadId) <= 0);
 
-  return !(isTabVisible && isOnTop && isMounted && lastItemReached);
+  return !(isTabVisible && (ignoreScroll || isOnTop) && isMounted && lastItemReached);
 };
 
 const recountUnread = (state, last_read_id) => {
@@ -275,6 +279,10 @@ export default function notifications(state = initialState, action) {
     return action.timeline === 'home' ?
       state.update(action.usePendingItems ? 'pendingItems' : 'items', items => items.first() ? items.unshift(null) : items) :
       state;
+  case NOTIFICATIONS_SET_BROWSER_SUPPORT:
+    return state.set('browserSupport', action.value);
+  case NOTIFICATIONS_SET_BROWSER_PERMISSION:
+    return state.set('browserPermission', action.value);
 
   case NOTIFICATION_MARK_FOR_DELETE:
     return markForDelete(state, action.id, action.yes);

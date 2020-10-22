@@ -83,6 +83,7 @@ Rails.application.routes.draw do
     resource :inbox, only: [:create], module: :activitypub
     resource :claim, only: [:create], module: :activitypub
     resources :collections, only: [:show], module: :activitypub
+    resource :followers_synchronization, only: [:show], module: :activitypub
   end
 
   resource :inbox, only: [:create], module: :activitypub
@@ -285,6 +286,12 @@ Rails.application.routes.draw do
       end
     end
 
+    resources :ip_blocks, only: [:index, :new, :create] do
+      collection do
+        post :batch
+      end
+    end
+
     resources :account_moderation_notes, only: [:create, :destroy]
 
     resources :tags, only: [:index, :show, :update] do
@@ -381,11 +388,7 @@ Rails.application.routes.draw do
 
       resources :media,        only: [:create, :update, :show]
       resources :blocks,       only: [:index]
-      resources :mutes,        only: [:index] do
-        collection do
-          get 'details'
-        end
-      end
+      resources :mutes,        only: [:index]
       resources :favourites,   only: [:index]
       resources :bookmarks,    only: [:index]
       resources :reports,      only: [:create]

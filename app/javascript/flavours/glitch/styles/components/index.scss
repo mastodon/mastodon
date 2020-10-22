@@ -708,6 +708,17 @@
     line-height: 14px;
     color: $primary-text-color;
   }
+
+  &__issue-badge {
+    position: absolute;
+    left: 11px;
+    bottom: 1px;
+    display: block;
+    background: $error-red;
+    border-radius: 50%;
+    width: 0.625rem;
+    height: 0.625rem;
+  }
 }
 
 .column-link--transparent .icon-with-badge__badge {

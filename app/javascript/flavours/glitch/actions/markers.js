@@ -100,8 +100,12 @@ export function submitMarkersSuccess({ home, notifications }) {
   };
 };
 
-export function submitMarkers() {
-  return (dispatch, getState) => debouncedSubmitMarkers(dispatch, getState);
+export function submitMarkers(params = {}) {
+  const result = (dispatch, getState) => debouncedSubmitMarkers(dispatch, getState);
+  if (params.immediate === true) {
+    debouncedSubmitMarkers.flush();
+  }
+  return result;
 };
 
 export const fetchMarkers = () => (dispatch, getState) => {

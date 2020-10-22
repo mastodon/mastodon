@@ -266,7 +266,7 @@ class UI extends React.PureComponent {
 
   handleWindowFocus = () => {
     this.props.dispatch(focusApp());
-    this.props.dispatch(submitMarkers());
+    this.props.dispatch(submitMarkers({ immediate: true }));
   }
 
   handleWindowBlur = () => {
@@ -366,10 +366,6 @@ class UI extends React.PureComponent {
       navigator.serviceWorker.addEventListener('message', this.handleServiceWorkerPostMessage);
     }
 
-    if (typeof window.Notification !== 'undefined' && Notification.permission === 'default') {
-      window.setTimeout(() => Notification.requestPermission(), 120 * 1000);
-    }
-
     this.props.dispatch(fetchMarkers());
     this.props.dispatch(expandHomeTimeline());
     this.props.dispatch(expandNotifications());
@@ -379,7 +375,7 @@ class UI extends React.PureComponent {
 
   componentDidMount () {
     this.hotkeys.__mousetrap__.stopCallback = (e, element) => {
-      return ['TEXTAREA', 'SELECT', 'INPUT'].includes(element.tagName) && !e.altKey;
+      return ['TEXTAREA', 'SELECT', 'INPUT'].includes(element.tagName);
     };
   }
 

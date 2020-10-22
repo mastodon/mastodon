@@ -463,6 +463,15 @@
   flex: 1;
 }
 
+.column-header__issue-btn {
+  color: $warning-red;
+
+  &:hover {
+    color: $error-red;
+    text-decoration: underline;
+  }
+}
+
 .column-header__icon {
   display: inline-block;
   margin-right: 5px;
@@ -558,5 +567,152 @@
   .icon-button {
     flex: 0 0 auto;
     margin: 0 5px;
+  }
+}
+
+.column-settings__outer {
+  background: lighten($ui-base-color, 8%);
+  padding: 15px;
+}
+
+.column-settings__section {
+  color: $darker-text-color;
+  cursor: default;
+  display: block;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.column-settings__row--with-margin {
+  margin-bottom: 15px;
+}
+
+.column-settings__hashtags {
+  .column-settings__row {
+    margin-bottom: 15px;
+  }
+
+  .column-select {
+    &__control {
+      @include search-input();
+
+      &::placeholder {
+        color: lighten($darker-text-color, 4%);
+      }
+
+      &::-moz-focus-inner {
+        border: 0;
+      }
+
+      &::-moz-focus-inner,
+      &:focus,
+      &:active {
+        outline: 0 !important;
+      }
+
+      &:focus {
+        background: lighten($ui-base-color, 4%);
+      }
+
+      @media screen and (max-width: 600px) {
+        font-size: 16px;
+      }
+    }
+
+    &__placeholder {
+      color: $dark-text-color;
+      padding-left: 2px;
+      font-size: 12px;
+    }
+
+    &__value-container {
+      padding-left: 6px;
+    }
+
+    &__multi-value {
+      background: lighten($ui-base-color, 8%);
+
+      &__remove {
+        cursor: pointer;
+
+        &:hover,
+        &:active,
+        &:focus {
+          background: lighten($ui-base-color, 12%);
+          color: lighten($darker-text-color, 4%);
+        }
+      }
+    }
+
+    &__multi-value__label,
+    &__input {
+      color: $darker-text-color;
+    }
+
+    &__clear-indicator,
+    &__dropdown-indicator {
+      cursor: pointer;
+      transition: none;
+      color: $dark-text-color;
+
+      &:hover,
+      &:active,
+      &:focus {
+        color: lighten($dark-text-color, 4%);
+      }
+    }
+
+    &__indicator-separator {
+      background-color: lighten($ui-base-color, 8%);
+    }
+
+    &__menu {
+      @include search-popout();
+      padding: 0;
+      background: $ui-secondary-color;
+    }
+
+    &__menu-list {
+      padding: 6px;
+    }
+
+    &__option {
+      color: $inverted-text-color;
+      border-radius: 4px;
+      font-size: 14px;
+
+      &--is-focused,
+      &--is-selected {
+        background: darken($ui-secondary-color, 10%);
+      }
+    }
+  }
+}
+
+.column-settings__row {
+  .text-btn {
+    margin-bottom: 15px;
+  }
+}
+
+.notifications-permission-banner {
+  padding: 30px;
+  border-bottom: 1px solid lighten($ui-base-color, 8%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  h2 {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 15px;
+    text-align: center;
+  }
+
+  p {
+    color: $darker-text-color;
+    margin-bottom: 15px;
+    text-align: center;
   }
 }
