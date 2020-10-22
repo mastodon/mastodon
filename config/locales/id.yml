@@ -325,6 +325,7 @@ id:
       listed: Terdaftar
       new:
         title: Tambah emoji kustom baru
+      not_permitted: Anda tidak diizinkan untuk melakukan tindakan ini
       overwrite: Timpa
       shortcode: Kode pendek
       shortcode_hint: Sedikitnya 2 karakter, hanya karakter alfanumerik dan garis bawah
@@ -444,6 +445,21 @@ id:
         expired: Kedaluwarsa
         title: Saring
       title: Undang
+    ip_blocks:
+      add_new: Buat aturan
+      created_msg: Berhasil menambah aturan IP baru
+      delete: Hapus
+      expires_in:
+        '1209600': 2 minggu
+        '15778476': 6 bulan
+        '2629746': 1 bulan
+        '31556952': 1 tahun
+        '86400': 1 hari
+        '94670856': 3 tahun
+      new:
+        title: Buat aturan IP baru
+      no_ip_block_selected: Tak ada aturan IP yang berubah karena tak ada yang dipilih
+      title: Aturan IP
     pending_accounts:
       title: Akun tertunda (%{count})
     relationships:
