@@ -663,6 +663,7 @@ id:
     add_new: Buat alias
     created_msg: Berhasil membuat alias baru. Sekarang Anda dapat memulai pindah dari akun lama.
     deleted_msg: Berhasil menghapus alias. Pindah dari akun tersebut ke sini tidak akan lagi bisa dilakukan.
+    empty: Anda tidak memiliki alias.
     hint_html: Jika Anda ingin pindah dari akun lain ke sini, Anda dapat membuat alias, yang dilakukan sebelum Anda setuju dengan memindah pengikut dari akun lama ke akun sini. Aksi ini <strong>tidak berbahaya dan tidak bisa dikembalikan</strong>. <strong>Pemindahan akun dimulai dari akun lama</strong>.
     remove: Hapus tautan alias
   appearance:
@@ -704,8 +705,11 @@ id:
       prefix_sign_up: Daftar ke Mastodon hari ini!
       suffix: Dengan sebuah akun, Anda dapat mengikuti orang, mengirim pembaruan, dan bertukar pesan dengan pengguna dari server Mastodon mana pun dan lainnya!
     didnt_get_confirmation: Tidak menerima petunjuk konfirmasi?
+    dont_have_your_security_key: Tidak memiliki kunci keamanan?
     forgot_password: Lupa kata sandi?
     invalid_reset_password_token: Token reset kata sandi tidak valid atau kedaluwarsa. Silakan minta yang baru.
+    link_to_otp: Masukkan kode dua-faktor dari ponsel Anda atau dari kode pemulihan
+    link_to_webauth: Gunakan perangkat kunci keamanan Anda
     login: Masuk
     logout: Keluar
     migrate_account: Pindah ke akun berbeda
@@ -731,6 +735,7 @@ id:
       pending: Lamaran Anda sedang ditinjau oleh staf kami. Ini mungkin butuh beberapa waktu. Anda akan menerima sebuah surel jika lamaran Anda diterima.
       redirecting_to: Akun Anda tidak aktif karena sekarang dialihkan ke %{acct}.
     trouble_logging_in: Kesulitan masuk?
+    use_security_key: Gunakan kunci keamanan
   authorize_follow:
     already_following: Anda sudah mengikuti akun ini
     already_requested: Anda sudah mengirimkan permintaan untuk mengikuti akun tersebut
@@ -748,9 +753,14 @@ id:
     hint_html: "<strong>Tip:</strong> Kami tidak akan meminta kata sandi Anda lagi untuk beberapa jam ke depan."
     invalid_password: Kata sandi tidak valid
     prompt: Konfirmasi kata sandi untuk melanjutkan
+  crypto:
+    errors:
+      invalid_key: bukan kunci Ed25519 atau Curve25519 yang valid
+      invalid_signature: bukan tanda tangan Ed25519 yang valid
   date:
     formats:
       default: "%d %b %Y"
+      with_month_name: "%d %B %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}j"
@@ -876,6 +886,8 @@ id:
     inactive: Tidak aktif
     publicize_checkbox: 'Dan toot ini:'
     publicize_toot: 'Terbukti! Saya adalah %{username} di %{service}: %{url}'
+    remove: Hapus bukti dari akun
+    removed: Berhasil menghapus bukti dari akun
     status: Status verifikasi
     view_proof: Lihat bukti
   imports:
@@ -941,6 +953,7 @@ id:
     on_cooldown: Anda baru saja memindahkan akun Anda. Fungsi ini akan tersedia kembali %{count} hari lagi.
     past_migrations: Migrasi lampau
     proceed_with_move: Pindahkan pengikut
+    redirected_msg: Akun Anda sedang dialihkan ke %{acct}.
     redirecting_to: Akun Anda dialihkan ke %{acct}.
     set_redirect: Atur peralihan
     warning:
@@ -954,6 +967,10 @@ id:
       redirect: Pemberitahuan peralihan akan dimunculkan pada akun profil Anda dan akun akan dikecualikan dari pencarian
   moderation:
     title: Moderasi
+  move_handler:
+    carry_blocks_over_text: Pengguna ini pindah dari %{acct}, yang telah Anda blokir sebelumnya.
+    carry_mutes_over_text: Pengguna ini pindah dari %{acct}, yang telah Anda bisukan sebelumnya.
+    copy_account_note_text: 'Pengguna ini pindah dari %{acct}, ini dia pesan Anda sebelumnya tentang mereka:'
   notification_mailer:
     digest:
       action: Lihat semua notifikasi
