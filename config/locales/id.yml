@@ -1017,6 +1017,14 @@ id:
           quadrillion: Kdt
           thousand: Rb
           trillion: T
+  otp_authentication:
+    code_hint: Masukkan kode yang dibuat oleh aplikasi autentikator sebagai konfirmasi
+    description_html: Jika Anda mengaktifkan <strong>autentikasi dua-faktor</strong> menggunakan aplikasi autentikator, Anda membutuhkan ponsel untuk masuk akun, yang akan membuat token untuk dimasukkan.
+    enable: Aktifkan
+    instructions_html: "<strong>Pindai kode QR ini dengan Google Authenticator anda atau aplikasi TOTP lainnya di ponsel anda</strong>. Mulai sekarang, aplikasi tersebut akan membuat token yang bisa anda gunakan untuk masuk akun."
+    manual_instructions: 'Jika anda tidak bisa memindai kode QR dan harus memasukkannya secara manual, ini dia kode rahasia yang harus dimasukkan:'
+    setup: Persiapan
+    wrong_code: Kode yang dimasukkan tidak cocok! Apakah waktu server dan waktu di ponsel sudah benar?
   pagination:
     newer: Lebih baru
     next: Selanjutnya
@@ -1141,10 +1149,13 @@ id:
     profile: Profil
     relationships: Ikuti dan pengikut
     two_factor_authentication: Autentikasi Two-factor
+    webauthn_authentication: Kunci keamanan
   spam_check:
     spam_detected: Ini adalah laporan otomatis. Spam terdeteksi.
   statuses:
     attached:
+      audio:
+        other: "%{count} audio"
       description: 'Terlampir: %{attached}'
       image:
         other: "%{count} gambar"
@@ -1198,19 +1209,31 @@ id:
       default: "%d %b %Y, %H:%M"
       month: "%b %Y"
   two_factor_authentication:
+    add: Tambah
     disable: Matikan
+    disabled_success: Autentikasi dua-faktor berhasil dinonaktifkan
+    edit: Edit
     enabled: Otentifikasi dua faktor aktif
     enabled_success: Ototentikasi dua faktor telah diaktifkan
     generate_recovery_codes: Buat Kode Pemulihan
     lost_recovery_codes: Kode pemulihan bisa anda gunakan untuk mendapatkan kembali akses pada akun anda jika anda kehilangan handphone anda. Jika anda kehilangan kode pemulihan, anda bisa membuatnya ulang disini. Kode pemulihan anda yang lama tidak akan bisa digunakan lagi.
+    methods: Metode dua-faktor
+    otp: Aplikasi autentikator
     recovery_codes: Kode pemulihan cadangan
     recovery_codes_regenerated: Kode Pemulihan berhasil dibuat ulang
     recovery_instructions_html: Jika anda kehilangan akses pada handphone anda, anda bisa menggunakan kode pemulihan dibawah ini untuk mendapatkan kembali akses pada akun anda. Simpan kode pemulihan anda baik-baik, misalnya dengan mencetaknya atau menyimpannya bersama dokumen penting lainnya.
+    webauthn: Kunci keamanan
   user_mailer:
     backup_ready:
       explanation: Cadangan penuh akun Mastodon Anda sudah dapat diunduh!
       subject: Arsip Anda sudah siap diunduh
       title: Ambil arsip
+    sign_in_token:
+      details: 'Ini dia rincian usaha masuk akun:'
+      explanation: 'Kami mendeteksi usaha masuk ke akun Anda dari alamat IP tak dikenal. Jika ini Anda, mohon masukkan kode keamanan di bawah pada halaman masuk:'
+      further_actions: 'Jika ini bukan Anda, mohon ganti kata sandi dan aktifkan autentikasi dua-faktor pada akun Anda. Anda bisa melakukannya di sini:'
+      subject: Harap konfirmasi usaha masuk akun
+      title: Usaha masuk akun
     warning:
       explanation:
         disable: Saat akun Anda beku, data Anda tetap utuh. Anda tidak akan dapat melakukan apa-apa sampai akun Anda tidak lagi dikunci.
@@ -1247,7 +1270,9 @@ id:
       tips: Tips
       title: Selamat datang, %{name}!
   users:
+    blocked_email_provider: Layanan surel ini tidak diizinkan
     follow_limit_reached: Anda tidak dapat mengikuti lebih dari %{limit} orang
+    generic_access_help_html: Mengalami masalah saat akses akun? Anda mungkin perlu menghubungi %{email} untuk mencari bantuan
     invalid_email: Alamat email tidak cocok
     invalid_otp_token: Kode dua faktor tidak cocok
     otp_lost_help_html: Jika Anda kehilangan akses keduanya, Anda dapat menghubungi %{email}
