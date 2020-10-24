@@ -191,6 +191,7 @@ da:
       undo_suspension: Fortryd udelukkelse
       unsubscribe: Abonner ikke længere
       username: Brugernavn
+      view_domain: Vis resumé for domæne
       warn: Advar
       web: Web
       whitelisted: Hvidlistet
@@ -203,6 +204,7 @@ da:
         create_announcement: Opret bekendtgørelse
         create_ip_block: Opret IP-regel
         destroy_announcement: Slet bekendtgørelse
+        destroy_domain_block: Slet domæneblokering
         destroy_ip_block: Slet IP-regel
         destroy_status: Slet status
         disable_2fa_user: Slet 2FA
@@ -256,10 +258,12 @@ da:
       edit:
         title: Rediger bekendtgørelse
       empty: Ingen bekendtgørelser fundet.
+      live: Direkte
       new:
         create: Opret bekendtgørelse
         title: Ny bekendtgørelse
       published_msg: Bekendtgørelsen blev slettet!
+      scheduled_for: Planlagt til %{time}
       title: Bekendtgørelser
     custom_emojis:
       assign_category: Vælg kategori
@@ -387,6 +391,7 @@ da:
       total_blocked_by_us: Blokeret af os
       total_followed_by_them: Fulgt af dem
       total_followed_by_us: Fulgt af os
+      total_reported: Rapporter om dem
       total_storage: Vedhæftede medier
     invites:
       deactivate_all: Deaktiver alle
@@ -491,6 +496,7 @@ da:
         title: Vis følsomt medie i OpenGraph forhåndsvisninger
       profile_directory:
         desc_html: Tillad bruger at kunne blive fundet
+        title: Aktivér profilmappe
       registrations:
         closed_message:
           desc_html: Vist på forsiden når registreringer er lukkede. Du kan bruge HTML tags
@@ -524,6 +530,8 @@ da:
         desc_html: Du kan skrive din egen privatlivpolitik, servicevilkår, eller lignende. Du kan bruge HTML tags
         title: Brugerdefineret servicevilkår
       site_title: Navn af serveren
+      spam_check_enabled:
+        title: Anti-spam automatisering
       thumbnail:
         desc_html: Brugt til forhåndsvisninger via OpenGraph og API. 1200x630px anbefales
         title: Miniaturebillede for serveren
@@ -531,6 +539,8 @@ da:
         desc_html: Vis offentlig tidslinje på landingssiden
         title: Tidslinje forhåndsvisning
       title: Indstillinger for side
+      trends:
+        title: Populære hashtags
     site_uploads:
       delete: Slet oplagt fil
     statuses:
@@ -551,12 +561,17 @@ da:
       accounts_today: Unikke brug i dag
       accounts_week: Unikke brug denne uge
       context: Kontekst
+      directory: I mappe
+      in_directory: "%{count} i mappe"
       last_active: Sidst aktiv
       most_popular: Mest populære
       most_recent: Seneste
+      name: Hashtag
       review: Gennemgå status
+      title: Hashtags
       trending_right_now: Populære lige nu
       unreviewed: Ikke gennemlæst
+      updated_msg: Hashtag-indstillinger opdateret
     warning_presets:
       delete: Slet
   admin_mailer:
@@ -618,6 +633,7 @@ da:
     set_new_password: Sæt et nyt kodeord
     status:
       account_status: Kontostatus
+      confirming: Venter på at e-mail bekræftelsen er fuldført.
     trouble_logging_in: Har du problemer med at logge på?
     use_security_key: Brug sikkerhedsnøgle
   authorize_follow:
@@ -633,11 +649,17 @@ da:
     title: Følg %{acct}
   challenge:
     confirm: Fortsæt
+    hint_html: "<strong>Tip:</strong> We won't ask you for your password again for the next hour."
     invalid_password: Ugyldig adgangskode
     prompt: Bekræft din adgangskode for at fortsætte
   crypto:
     errors:
+      invalid_key: er ikke en gyldig Ed25519 eller Curve25519 nøgle
       invalid_signature: er ikke en gylidig Ed25519 signatur
+  date:
+    formats:
+      default: "%b %d, %Y"
+      with_month_name: "%B %d, %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}t"
@@ -649,7 +671,9 @@ da:
       over_x_years: "%{count}år"
       x_months: "%{count}md"
   deletes:
+    challenge_not_passed: De oplysninger, du indtastede var ikke korrekte
     confirm_password: Indtast dit nuværende kodeord for at bekræfte din identitet
+    confirm_username: Indtast dit brugernavn for at bekræfte proceduren
     proceed: Slet konto
     success_msg: Din konto er nu blevet slettet
     warning:
@@ -732,6 +756,7 @@ da:
     i_am_html: Jeg er %{username} på %{service}.
     identity: Identitet
     remove: Fjern bevis fra konto
+    removed: Beviset er fjernet fra kontoen
     view_proof: Se bevis
   imports:
     modes:
@@ -741,6 +766,7 @@ da:
     success: Dine data blev succesfuldt uploaded og vil nu blive behandlet hurtigst muligt
     types:
       blocking: Blokeringsliste
+      domain_blocking: Domæne blokeringsliste
       following: Følgningsliste
       muting: Liste over dæmpninger
     upload: Læg op
@@ -773,6 +799,7 @@ da:
   media_attachments:
     validations:
       images_and_video: Kan ikke vedhæfte en video til en status der allerede har billeder
+      not_ready: Kan ikke vedhæfte filer, der ikke er færdige med behandlingen. Prøv igen om et øjeblik!
       too_many: Kan ikke vedhæfte mere en 4 filer
   migrations:
     acct: username@domain af den nye konto
@@ -783,7 +810,9 @@ da:
       on_cooldown: Du er på nedkøling
     followers_count: Følgere på tidspunktet for flytningen
     incoming_migrations: Flytter fra en anden konto
+    past_migrations: Tidligere migrationer
     proceed_with_move: Flyt følgere
+    redirected_msg: Din konto omdirigerer nu til %{acct}.
     redirecting_to: Din konto omdirigerer til %{acct}.
   moderation:
     title: Moderatering
@@ -822,10 +851,12 @@ da:
       subject: "%{name} fremhævede din status"
       title: Ny fremhævelse
   notifications:
+    email_events: Begivenheder for e-mail-meddelelser
     other_settings: Andre indstillinger for notifikationer
   number:
     human:
       decimal_units:
+        format: "%n%u"
         units:
           billion: mia.
           million: mio.
@@ -840,6 +871,7 @@ da:
   polls:
     errors:
       already_voted: Du har allerede stemt i denne afstemning
+      duplicate_options: indeholder dublerede elementer
       duration_too_long: er for langt ude i fremtiden
       duration_too_short: er for tidligy
       expired: Denne afstemning er allerede afsluttet
@@ -848,6 +880,7 @@ da:
     public_timelines: Offentlige tidslinjer
   reactions:
     errors:
+      limit_reached: Grænsen for forskellige reaktioner er nået
       unrecognized_emoji: er ikke en genkendt emoji
   relationships:
     activity: Aktivitet for konto
@@ -869,6 +902,8 @@ da:
     no_account_html: Har du ikke en konto? Du kan <a href='%{sign_up_path}' target='_blank'>oprette dig her</a>
     proceed: Fortsæt for at følge
     prompt: 'Du er ved at følge:'
+  scheduled_statuses:
+    too_soon: Den planlagte dato skal være i fremtiden
   sessions:
     activity: Sidste aktivitet
     browser: Browser
@@ -921,6 +956,7 @@ da:
     development: Udvikling
     edit_profile: Rediger profil
     export: Data eksportering
+    featured_tags: Fremhævede hashtags
     import: Importer
     import_and_export: Importer og eksporter
     migrate: Konto migrering
@@ -978,6 +1014,8 @@ da:
     pinned: Fastgjort trut
     reblogged: fremhævede
     sensitive_content: Følsomt indhold
+  tags:
+    does_not_match_previous_name: stemmer ikke overens med det forrige navn
   terms:
     body_html: |
       <p><h2> Privatlivspolitik </h2> 
@@ -1090,8 +1128,10 @@ da:
       title: Udpluk af arkiv
     sign_in_token:
       details: 'Her er detaljer om forsøget:'
+      subject: Bekræft venligst forsøg på at logge ind
       title: Login forsøg
     warning:
+      statuses: 'Især for:'
       subject:
         disable: Din konto %{acct} er blevet frosset
         none: Advarsel for %{acct}
@@ -1123,6 +1163,7 @@ da:
     blocked_email_provider: Denne e-mail-udbyder er ikke tilladt
     follow_limit_reached: Du kan ikke følge mere end %{limit} personer
     invalid_email: E-mail adressen er ugyldig
+    invalid_email_mx: E-mail-adressen virker ikke til at eksistere
     invalid_otp_token: Ugyldig to-faktor kode
     invalid_sign_in_token: Ugyldig sikkerhedskode
     otp_lost_help_html: Hvis du har mistet adgang til begge, kan du få kontakt via %{email}
@@ -1132,6 +1173,13 @@ da:
     verification: Verificering
   webauthn_credentials:
     add: Tilføj ny sikkerhedsnøgle
+    create:
+      success: Din sikkerhedsnøgle blev tilføjet.
     delete: Slet
+    destroy:
+      success: Din sikkerhedsnøgle blev slettet.
     invalid_credential: Ugyldig sikkerhedsnøgle
+    nickname_hint: Indtast kaldenavnet på din nye sikkerhedsnøgle
+    not_enabled: Du har endnu ikke aktiveret WebAuthn
+    not_supported: Denne browser understøtter ikke sikkerhedsnøgler
     registered_on: Registreret den %{date}
