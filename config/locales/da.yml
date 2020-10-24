@@ -219,6 +219,7 @@ da:
         resolve_report: Løs rapport
         silence_account: Dæmp konto
         suspend_account: Suspendér Konto
+        unsilence_account: Fjern dæmpelse af konto
         update_announcement: Opdater bekendtgørelse
         update_status: Opdater status
       actions:
@@ -272,6 +273,7 @@ da:
       published_msg: Bekendtgørelsen blev slettet!
       scheduled_for: Planlagt til %{time}
       title: Bekendtgørelser
+      updated_msg: Bekendtgørelsen blev opdateret!
     custom_emojis:
       assign_category: Vælg kategori
       by_domain: Domæne
@@ -425,6 +427,7 @@ da:
         '94670856': 3 år
       new:
         title: Opret ny IP-regel
+      no_ip_block_selected: Ingen IP-regler blev ændret, da ingen blev valgt
       title: IP-regler
     pending_accounts:
       title: Afventende konti (%{count})
@@ -443,6 +446,7 @@ da:
       pending: Venter på godkendelse fra relæet
       save_and_enable: Gem og aktiver
       setup: Opsæt en videresendelses forbindelse
+      signatures_not_enabled: Relæer fungerer ikke korrekt, mens sikker tilstand eller begrænset føderationstilstand er aktiveret
       status: Status
       title: Videresendelser
     report_notes:
@@ -651,6 +655,8 @@ da:
     reset_password: Nulstil kodeord
     security: Sikkerhed
     set_new_password: Sæt et nyt kodeord
+    setup:
+      email_settings_hint_html: Bekræftelsesmailen blev sendt til %{email}. Hvis denne e-mailadresse ikke er korrekt, kan du ændre den i kontoindstillinger.
     status:
       account_status: Kontostatus
       confirming: Venter på at e-mail bekræftelsen er fuldført.
@@ -740,6 +746,7 @@ da:
     mutes: Du dæmper
     storage: Medie lager
   featured_tags:
+    add_new: Tilføj ny
     errors:
       limit: Du har allerede vist det maksimale antal hashtags
   filters:
@@ -781,6 +788,7 @@ da:
     i_am_html: Jeg er %{username} på %{service}.
     identity: Identitet
     inactive: Inaktiv
+    publicize_toot: 'Det er bevist! Jeg er %{username} på %{service}: %{url}'
     remove: Fjern bevis fra konto
     removed: Beviset er fjernet fra kontoen
     view_proof: Se bevis
@@ -840,6 +848,8 @@ da:
     proceed_with_move: Flyt følgere
     redirected_msg: Din konto omdirigerer nu til %{acct}.
     redirecting_to: Din konto omdirigerer til %{acct}.
+    warning:
+      other_data: Ingen andre data vil blive flyttet automatisk
   moderation:
     title: Moderatering
   notification_mailer:
@@ -888,6 +898,7 @@ da:
           million: mio.
   otp_authentication:
     enable: Aktiver
+    wrong_code: Den indtastede kode var ugyldig! Er serverens tid og enhedstid korrekt?
   pagination:
     newer: Nyere
     next: Næste
@@ -901,6 +912,10 @@ da:
       duration_too_long: er for langt ude i fremtiden
       duration_too_short: er for tidligy
       expired: Denne afstemning er allerede afsluttet
+      invalid_choice: Den valgte stemmeindstilling findes ikke
+      over_character_limit: kan ikke være længere end %{max} tegn hver
+      too_few_options: skal have mere end et element
+      too_many_options: kan ikke indeholde flere end %{max} elementer
   preferences:
     other: Andet
     public_timelines: Offentlige tidslinjer
@@ -919,6 +934,7 @@ da:
     mutual: Fælles
     primary: Primær
     relationship: Relation
+    remove_selected_domains: Fjern alle følgere fra de valgte domæner
     remove_selected_followers: Fjern valgte følgere
     remove_selected_follows: Følg ikke valgte brugere
     status: Status for konto
