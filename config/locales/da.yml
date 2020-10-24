@@ -41,6 +41,7 @@ da:
       rejecting_media: 'Medie filer fra disse servere vil ikke blive behandlet eller gemt, og ingen miniaturebilleder vil blive vist, som kræver tilgang til den originale fil:'
       rejecting_media_title: Filtrerede medier
       silenced: 'Posteringer fra disse servere vil være skjulte i den offentlige tidslinje feed eller beskeder og ingen notifikationer vil blive genereret fra brugere du ikke følger:'
+      silenced_title: Dæmpede servere
       suspended: 'Ingen date fra disse servere vil blive behandlet, gemt eller udvekslet, at interagere eller kommunikere med brugere fra disse servere er ikke muligt:'
       suspended_title: Suspenderede servere
     unavailable_content_html: Mastodon tillader dig generelt at se indhold og interagere med brugere fra enhver anden server i fediverset. Dette er undtagelser der er foretaget på netop denne server.
@@ -92,6 +93,7 @@ da:
       delete: Slet
       destroyed_msg: Moderator notat succesfuldt destrueret!
     accounts:
+      add_email_domain_block: Bloker e-mail domæne
       approve: Godkend
       approve_all: Godkend alle
       are_you_sure: Er du sikker?
@@ -205,13 +207,17 @@ da:
         create_ip_block: Opret IP-regel
         destroy_announcement: Slet bekendtgørelse
         destroy_domain_block: Slet domæneblokering
+        destroy_email_domain_block: Slet e-mail domæne blokering
         destroy_ip_block: Slet IP-regel
         destroy_status: Slet status
         disable_2fa_user: Slet 2FA
         disable_user: Deaktiver brugeren
         enable_user: Aktiver brugeren
+        remove_avatar_user: Fjern profilbillede
         reopen_report: Genåben rapport
         reset_password_user: Nulstil adgangskode
+        resolve_report: Løs rapport
+        silence_account: Dæmp konto
         suspend_account: Suspendér Konto
         update_announcement: Opdater bekendtgørelse
         update_status: Opdater status
@@ -224,6 +230,7 @@ da:
         create_domain_allow: "%{name} godkendte domænet %{target}"
         create_domain_block: "%{name} blokerede domænet %{target}"
         create_email_domain_block: "%{name} sortlistede email domænet %{target}"
+        create_ip_block: "%{name} oprettede regel for IP %{target}"
         demote_user: "%{name} degraderede %{target}"
         destroy_custom_emoji: "%{name} fjernede emoji %{target}"
         destroy_domain_allow: "%{name} fjernede godkendelsen af domænet %{target}"
@@ -287,6 +294,7 @@ da:
       listed: Listet
       new:
         title: Tilføj nyt brugerdefineret humørikon
+      not_permitted: Du har ikke tilladelse til at udføre denne handling
       overwrite: Overskriv
       shortcode: Kortkode
       shortcode_hint: Mindst 2 tegn, kun alfabetiske tegn og understreger
@@ -353,6 +361,7 @@ da:
       rejecting_media: afviser mediefiler
       rejecting_reports: afviser anmeldelser
       severity:
+        silence: dæmpet
         suspend: suspenderet
       show:
         affected_accounts:
@@ -371,6 +380,7 @@ da:
       delete: Slet
       destroyed_msg: Fjernede succesfuldt email domænet fra sortliste
       domain: Domæne
+      empty: Ingen e-mail-domæner er i øjeblikket blokeret.
       from_html: fra %{domain}
       new:
         create: Tilføj domæne
@@ -385,6 +395,7 @@ da:
       moderation:
         all: Alle
         limited: Begrænset
+        title: Moderation
       private_comment: Privat kommentar
       public_comment: Offentlig kommentar
       title: Førderation
@@ -403,6 +414,7 @@ da:
       title: Invitationer
     ip_blocks:
       add_new: Opret regel
+      created_msg: Ny IP-regel blev tilføjet
       delete: Slet
       expires_in:
         '1209600': 2 uger
@@ -509,8 +521,10 @@ da:
           title: Tillad invitationer af
       registrations_mode:
         modes:
+          approved: Godkendelse påkrævet for tilmelding
           none: Ingen kan tilmelde sig
           open: Alle kan tilmelde sig
+        title: Tilstand for registreringer
       show_known_fediverse_at_about_page:
         desc_html: Når slået til, vil det vise trut fra hele det kendte fedivers på forhåndsvisning. Ellers vil det kun vise lokale trut.
         title: Vis kendte fedivers på tidslinje forhåndsvisning
@@ -568,11 +582,15 @@ da:
       most_recent: Seneste
       name: Hashtag
       review: Gennemgå status
+      reviewed: Gennemgået
       title: Hashtags
       trending_right_now: Populære lige nu
+      unique_uses_today: "%{count} indlæg i dag"
       unreviewed: Ikke gennemlæst
       updated_msg: Hashtag-indstillinger opdateret
+    title: Administration
     warning_presets:
+      add_new: Tilføj ny
       delete: Slet
   admin_mailer:
     new_report:
@@ -583,6 +601,7 @@ da:
     add_new: Opret alias
     empty: Du har ingen aliasser.
   appearance:
+    advanced_web_interface: Avanceret webgrænseflade
     animations_and_accessibility: Animationer og tilgængelighed
     confirmation_dialogs: Bekræftelsesdialoger
     discovery: Opdagelse
@@ -612,6 +631,7 @@ da:
     delete_account: Slet konto
     delete_account_html: Hvis du ønsker at slette din konto, kan du <a href="%{path}">gøre det her</a>. Du vil blive bedt om bekræftelse.
     description:
+      prefix_invited_by_user: "@%{name} inviterer dig til at deltage i denne Mastodons server!"
       prefix_sign_up: Tilmeld dig Mastodon i dag!
     didnt_get_confirmation: Har du endnu ikke modtaget instrukser for bekræftelse?
     dont_have_your_security_key: Har du ikke dine sikkerhedsnøgler?
@@ -638,6 +658,7 @@ da:
     use_security_key: Brug sikkerhedsnøgle
   authorize_follow:
     already_following: Du følger allerede denne konto
+    already_requested: Du har allerede sendt en følgeanmodning til denne konto
     error: Der opstod desværre en fejl under søgningen af denne fjerne konto
     follow: Følg
     follow_request: 'Du har anmodet om at følge:'
@@ -699,7 +720,7 @@ da:
     '500':
       content: Beklager men der gik noget galt i vores ende.
       title: Siden er ikke korrekt
-    '503': The page could not be served due to a temporary server failure.
+    '503': Siden kunne ikke serveres på grund af en midlertidig serverfejl.
     noscript_html: For at bruge Mastodon web applikationen, aktiver JavaScript. Alternativt kan du prøve en af disse <a href="%{apps_path}">apps</a> til Mastodon for din platform.
   existing_username_validator:
     not_found: kunne ikke finde en lokal bruger med dette brugenavn
@@ -718,6 +739,9 @@ da:
     lists: Lister
     mutes: Du dæmper
     storage: Medie lager
+  featured_tags:
+    errors:
+      limit: Du har allerede vist det maksimale antal hashtags
   filters:
     contexts:
       account: Profiler
@@ -752,9 +776,11 @@ da:
       one: Der er noget der ikke er helt som det bør være! Tag lige et kig på følgende fejl forneden
       other: Der er noget der ikke er helt som det bør være! Tag lige et kig på følgende %{count} fejl forneden
   identity_proofs:
+    active: Aktiv
     authorize: Ja, tillad
     i_am_html: Jeg er %{username} på %{service}.
     identity: Identitet
+    inactive: Inaktiv
     remove: Fjern bevis fra konto
     removed: Beviset er fjernet fra kontoen
     view_proof: Se bevis
@@ -1131,6 +1157,7 @@ da:
       subject: Bekræft venligst forsøg på at logge ind
       title: Login forsøg
     warning:
+      review_server_policies: Gennemgå serverpolitikker
       statuses: 'Især for:'
       subject:
         disable: Din konto %{acct} er blevet frosset
@@ -1162,6 +1189,7 @@ da:
   users:
     blocked_email_provider: Denne e-mail-udbyder er ikke tilladt
     follow_limit_reached: Du kan ikke følge mere end %{limit} personer
+    generic_access_help_html: Har du problemer med at få adgang til din konto? Du kan komme i kontakt med %{email} for hjælp
     invalid_email: E-mail adressen er ugyldig
     invalid_email_mx: E-mail-adressen virker ikke til at eksistere
     invalid_otp_token: Ugyldig to-faktor kode
