@@ -35,10 +35,13 @@ da:
         current_password: Du indtræder et sikkert område
       imports:
         data: CSV fil eksporteret fra en anden Mastodon server
+      invite_request:
+        text: Dette vil hjælpe os med at gennemgå din ansøgning
       ip_block:
         comment: Valgfri. Husk hvorfor du har tilføjet denne regel.
         severities:
           no_access: Bloker for adgangen til alle ressourcer
+          sign_up_requires_approval: Nye tilmeldinger kræver din godkendelse
       sessions:
         otp: 'Indtast to-faktor koden der generes af appen af appen på din telefon eller brug en af din genoprettelses koder:'
       user:
@@ -62,6 +65,7 @@ da:
           suspend: Suspendér og slet kontodata uopretteligt
         warning_preset_id: Brug en forudindstillet advarsel
       announcement:
+        all_day: Heldags begivenhed
         scheduled_at: Planlæg offentliggørelse
         text: Bekendtgørelse
       defaults:
