@@ -52,6 +52,7 @@ da:
     what_is_mastodon: Hvad er Mastodon?
   accounts:
     choices_html: "%{name}s valg:"
+    endorsements_hint: Du kan støtte folk du følger fra web-interface, og de vil dukke op her.
     featured_tags_hint: Du kan tilføje specifikke hashtags der vil blive vist her.
     follow: Følg
     followers:
@@ -237,6 +238,7 @@ da:
         destroy_domain_allow: "%{name} fjernede godkendelsen af domænet %{target}"
         destroy_domain_block: "%{name} fjernede blokeringen af domænet %{target}"
         destroy_email_domain_block: "%{name} hvid-listede email domænet %{target}"
+        destroy_ip_block: "%{name} slettede reglen for IP %{target}"
         destroy_status: "%{name} fjernede statussen fra %{target}"
         disable_2fa_user: "%{name} deaktiverede to faktor kravet for brugeren %{target}"
         disable_custom_emoji: "%{name} deaktiverede humørikonet %{target}"
@@ -501,6 +503,8 @@ da:
         all: Til alle
         disabled: Til ingen
         title: Vis domæne blokeringer
+      enable_bootstrap_timeline_accounts:
+        title: Aktiver standard følger for nye brugere
       hero:
         desc_html: Vist på forsiden. Mindst 600x100px anbefales. Hvis ikke sat, vil dette falde tilbage til billedet fra serveren
         title: Billede af helt
