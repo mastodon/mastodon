@@ -1,6 +1,8 @@
 da:
   simple_form:
     hints:
+      account_warning_preset:
+        title: Valgfri. Ikke synlig for modtageren
       admin_account_action:
         type_html: Vælg hvad du vil gøre med <strong>%{acct}</strong>
       defaults:
@@ -8,6 +10,7 @@ da:
         avatar: PNG, GIF eller JPG. Højest %{size}. Vil blive skaleret ned til %{dimensions}px
         bot: Denne konto udfører hovedsageligt automatiserede handlinger og bliver muligvis ikke overvåget
         context: En eller flere sammenhænge hvor filteret skal være gældende
+        current_username: For at bekræfte, angiv venligst brugernavnet på den aktuelle konto
         digest: Sendes kun efter en lang periode med inaktivitet og kun hvis du har modtaget nogle personlige beskeder i dit fravær
         email: Du vil få tilsendt en bekræftelses e-mail
         fields: Du kan have op til 4 ting vist som en tabel på din profil
@@ -33,6 +36,7 @@ da:
       imports:
         data: CSV fil eksporteret fra en anden Mastodon server
       ip_block:
+        comment: Valgfri. Husk hvorfor du har tilføjet denne regel.
         severities:
           no_access: Bloker for adgangen til alle ressourcer
       sessions:
@@ -58,6 +62,7 @@ da:
           suspend: Suspendér og slet kontodata uopretteligt
         warning_preset_id: Brug en forudindstillet advarsel
       announcement:
+        scheduled_at: Planlæg offentliggørelse
         text: Bekendtgørelse
       defaults:
         autofollow: Inviter til at følge din konto
