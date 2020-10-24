@@ -42,6 +42,7 @@ da:
       rejecting_media_title: Filtrerede medier
       silenced: 'Posteringer fra disse servere vil være skjulte i den offentlige tidslinje feed eller beskeder og ingen notifikationer vil blive genereret fra brugere du ikke følger:'
       suspended: 'Ingen date fra disse servere vil blive behandlet, gemt eller udvekslet, at interagere eller kommunikere med brugere fra disse servere er ikke muligt:'
+      suspended_title: Suspenderede servere
     unavailable_content_html: Mastodon tillader dig generelt at se indhold og interagere med brugere fra enhver anden server i fediverset. Dette er undtagelser der er foretaget på netop denne server.
     user_count_after:
       one: bruger
@@ -134,6 +135,7 @@ da:
       login_status: Status på login
       media_attachments: Medie bilag
       memorialize: Omdan til et memoriam
+      memorialized: Memorialiseret
       moderation:
         active: Aktiv
         all: Alle
@@ -208,6 +210,7 @@ da:
         enable_user: Aktiver brugeren
         reopen_report: Genåben rapport
         reset_password_user: Nulstil adgangskode
+        suspend_account: Suspendér Konto
         update_announcement: Opdater bekendtgørelse
         update_status: Opdater status
       actions:
@@ -249,12 +252,14 @@ da:
       filter_by_user: Filtrer efter bruger
       title: Revisionslog
     announcements:
+      destroyed_msg: Bekendtgørelsen blev slettet!
       edit:
         title: Rediger bekendtgørelse
       empty: Ingen bekendtgørelser fundet.
       new:
         create: Opret bekendtgørelse
         title: Ny bekendtgørelse
+      published_msg: Bekendtgørelsen blev slettet!
       title: Bekendtgørelser
     custom_emojis:
       assign_category: Vælg kategori
@@ -382,6 +387,7 @@ da:
       total_blocked_by_us: Blokeret af os
       total_followed_by_them: Fulgt af dem
       total_followed_by_us: Fulgt af os
+      total_storage: Vedhæftede medier
     invites:
       deactivate_all: Deaktiver alle
       filter:
@@ -434,6 +440,7 @@ da:
       are_you_sure: Er du sikker?
       assign_to_self: Tildel til mig
       assigned: Tildelt moderator
+      by_target_domain: Domæne for rapporteret konto
       comment:
         none: Ingen
       created_at: Anmeldt
@@ -547,6 +554,8 @@ da:
       last_active: Sidst aktiv
       most_popular: Mest populære
       most_recent: Seneste
+      review: Gennemgå status
+      trending_right_now: Populære lige nu
       unreviewed: Ikke gennemlæst
     warning_presets:
       delete: Slet
@@ -644,10 +653,12 @@ da:
     proceed: Slet konto
     success_msg: Din konto er nu blevet slettet
     warning:
+      email_change_html: Du kan <a href="%{path}">ændre din e-mail-adresse</a> uden at slette din konto
       username_available: Dit brugernavn vil blive tilgængeligt igen
       username_unavailable: Dit brugernavn vil forblive utilgængeligt
   directories:
     directory: Profilliste
+    explanation: Opdag brugere baseret på deres interesser
     explore_mastodon: Uforsk %{title}
   domain_validator:
     invalid_domain: er ikke et gyldigt domænenavn
@@ -717,8 +728,10 @@ da:
       one: Der er noget der ikke er helt som det bør være! Tag lige et kig på følgende fejl forneden
       other: Der er noget der ikke er helt som det bør være! Tag lige et kig på følgende %{count} fejl forneden
   identity_proofs:
+    authorize: Ja, tillad
     i_am_html: Jeg er %{username} på %{service}.
     identity: Identitet
+    remove: Fjern bevis fra konto
     view_proof: Se bevis
   imports:
     modes:
@@ -764,8 +777,14 @@ da:
   migrations:
     acct: username@domain af den nye konto
     errors:
+      missing_also_known_as: er ikke et alias for denne konto
+      move_to_self: kan ikke være den nuværende konto
       not_found: kunne ikke bive fundet
+      on_cooldown: Du er på nedkøling
+    followers_count: Følgere på tidspunktet for flytningen
+    incoming_migrations: Flytter fra en anden konto
     proceed_with_move: Flyt følgere
+    redirecting_to: Din konto omdirigerer til %{acct}.
   moderation:
     title: Moderatering
   notification_mailer:
@@ -802,6 +821,8 @@ da:
       body: 'Din status blev fremhævet af %{name}:'
       subject: "%{name} fremhævede din status"
       title: Ny fremhævelse
+  notifications:
+    other_settings: Andre indstillinger for notifikationer
   number:
     human:
       decimal_units:
@@ -825,6 +846,9 @@ da:
   preferences:
     other: Andet
     public_timelines: Offentlige tidslinjer
+  reactions:
+    errors:
+      unrecognized_emoji: er ikke en genkendt emoji
   relationships:
     activity: Aktivitet for konto
     followers: Følgere
@@ -836,6 +860,8 @@ da:
     mutual: Fælles
     primary: Primær
     relationship: Relation
+    remove_selected_followers: Fjern valgte følgere
+    remove_selected_follows: Følg ikke valgte brugere
     status: Status for konto
   remote_follow:
     acct: Indtast dit brugernavn@domæne du vil handle fra
@@ -887,6 +913,7 @@ da:
   settings:
     account: Konto
     account_settings: Kontoindstillinger
+    aliases: Konto-aliaser
     appearance: Udseende
     authorized_apps: Godkendte apps
     back: Tilbage til Mastodon
@@ -905,6 +932,9 @@ da:
     webauthn_authentication: Sikkerhedsnøgler
   statuses:
     attached:
+      audio:
+        one: "%{count} lyd"
+        other: "%{count} lyd"
       description: 'Vedhæftede: %{attached}'
       image:
         one: "%{count} billede"
@@ -1036,6 +1066,10 @@ da:
     contrast: Mastodon (Høj kontrast)
     default: Mastodont (Mørk)
     mastodon-light: Mastodon (Lys)
+  time:
+    formats:
+      default: "%b %d, %Y, %H:%M"
+      month: "%b %Y"
   two_factor_authentication:
     add: Tilføj
     disable: Deaktiver
@@ -1044,6 +1078,7 @@ da:
     enabled_success: To-faktor godkendelse succesfuldt aktiveret
     generate_recovery_codes: Generer gendannelseskoder
     lost_recovery_codes: Gendannelseskoder vil lade dig få adgang til din konto hvis du mister din telefon. Hvis du har mistet dine gendannelseskoder, kan du regenerere dem her. Dine gamle gendannelseskoder vil blive ugyldige.
+    methods: To-faktor metoder
     recovery_codes: Reserve koder
     recovery_codes_regenerated: Reserve koder blev succesfuldt regenereret
     recovery_instructions_html: Hvis du nogensinde mister adgang til din telefon, kan du bruge en af genoprettelses koderne forneden for at få adgang til din konto. <strong>Gem gendannelses koderne et sikkert sted</strong>. Foreksempel kan du printe dem ud og gemme dem sammen med andre vigtige dokumenter.
@@ -1054,10 +1089,14 @@ da:
       subject: Dit arkiv er klar til at blive hentet ned
       title: Udpluk af arkiv
     sign_in_token:
+      details: 'Her er detaljer om forsøget:'
       title: Login forsøg
     warning:
       subject:
+        disable: Din konto %{acct} er blevet frosset
         none: Advarsel for %{acct}
+        silence: Din konto %{acct} er blevet begrænset
+        suspend: Din konto %{acct} er blevet suspenderet
       title:
         disable: Konto frosset
         none: Advarsel
@@ -1081,6 +1120,7 @@ da:
       tips: Råd
       title: Velkommen ombord, %{name}!
   users:
+    blocked_email_provider: Denne e-mail-udbyder er ikke tilladt
     follow_limit_reached: Du kan ikke følge mere end %{limit} personer
     invalid_email: E-mail adressen er ugyldig
     invalid_otp_token: Ugyldig to-faktor kode
