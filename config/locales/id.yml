@@ -726,13 +726,13 @@ id:
     set_new_password: Tentukan kata sandi baru
     setup:
       email_below_hint_html: Jika alamat email di bawah tidak benar, Anda dapat menggantinya di sini dan menerima email konfirmasi baru.
-      email_settings_hint_html: Email konfirmasi telah dikirim ke %{email}. Jika alamat surel tidak benar, Anda dapat mengubahnya di pengaturan akun.
+      email_settings_hint_html: Email konfirmasi telah dikirim ke %{email}. Jika alamat email tidak benar, Anda dapat mengubahnya di pengaturan akun.
       title: Atur
     status:
       account_status: Status akun
-      confirming: Menunggu konfirmasi surel diselesaikan.
+      confirming: Menunggu konfirmasi email diselesaikan.
       functional: Akun Anda kini beroperasi penuh.
-      pending: Lamaran Anda sedang ditinjau oleh staf kami. Ini mungkin butuh beberapa waktu. Anda akan menerima sebuah surel jika lamaran Anda diterima.
+      pending: Permintaan Anda sedang ditinjau oleh staf kami. Ini mungkin butuh beberapa waktu. Anda akan menerima email jika permintaan Anda diterima.
       redirecting_to: Akun Anda tidak aktif karena sekarang dialihkan ke %{acct}.
     trouble_logging_in: Kesulitan masuk?
     use_security_key: Gunakan kunci keamanan
@@ -785,9 +785,9 @@ id:
       before: 'Sebelum melanjutkan, silakan baca catatan ini dengan hati-hati:'
       caches: Konten yang telah tersimpan di server lain mungkin akan tetap di sana
       data_removal: Kiriman Anda dan data lainnya akan dihapus secara permanen
-      email_change_html: Anda dapat <a href="%{path}">mengubah alamat surel Anda</a> tanpa perlu menghapus akun
-      email_contact_html: Jika pesan belum diterima, Anda dapat mengirim surel <a href="mailto:%{email}">%{email}</a> sebagai bantuan
-      email_reconfirmation_html: Jika Anda tidak menerima konfirmasi surel, <a href="%{path}">Anda dapat memintanya lagi</a>
+      email_change_html: Anda dapat <a href="%{path}">mengubah alamat email Anda</a> tanpa perlu menghapus akun
+      email_contact_html: Jika pesan belum diterima, Anda dapat mengirim email ke <a href="mailto:%{email}">%{email}</a> untuk mencari bantuan
+      email_reconfirmation_html: Jika Anda tidak menerima email konfirmasi, <a href="%{path}">Anda dapat memintanya lagi</a>
       irreversible: Anda tidak akan bisa lagi mengembalikan atau mengaktifkan kembali akun Anda
       more_details_html: Lebih detailnya, lihat <a href="%{terms_path}">kebijakan privasi</a>.
       username_available: Nama pengguna Anda akan tersedia lagi
@@ -1004,7 +1004,7 @@ id:
       subject: "%{name} mem-boost status anda"
       title: Boost baru
   notifications:
-    email_events: Event untuk notifikasi surel
+    email_events: Event untuk notifikasi email
     email_events_hint: 'Pilih event yang ingin Anda terima notifikasinya:'
     other_settings: Pengaturan notifikasi lain
   number:
@@ -1239,7 +1239,7 @@ id:
         disable: Saat akun Anda beku, data Anda tetap utuh. Anda tidak akan dapat melakukan apa-apa sampai akun Anda tidak lagi dikunci.
         silence: Saat akun Anda dibatasi, hanya akun yang Anda ikuti yang dapat melihat toot Anda di server ini. Akun Anda mungkin akan dikecualikan dari daftar publik. Akun lain dapat mengikuti akun Anda secara manual.
         suspend: Akun Anda telah ditangguhkan. Semua toot dan media yang Anda unggah dihapus secara permanen dari server ini, dan server tempat Anda memiliki pengikut.
-      get_in_touch: Anda dapat membalas surel ini untuk menghubungi pengurus %{instance}.
+      get_in_touch: Anda dapat membalas email ini untuk menghubungi pengurus %{instance}.
       review_server_policies: Tinjau kebijakan server
       statuses: 'Khususnya untuk:'
       subject:
@@ -1261,7 +1261,7 @@ id:
       full_handle: Penanganan penuh Anda
       full_handle_hint: Ini yang dapat Anda sampaikan kepada teman agar mereka dapat mengirim pesan atau mengikuti Anda dari server lain.
       review_preferences_action: Ubah preferensi
-      review_preferences_step: Pastikan Anda telah mengatur preferensi Anda, seperti surel untuk menerima pesan, atau tingkat privasi bawaan untuk kiriman Anda. Jika Anda tidak alergi dengan gerakan gambar, Anda dapat mengaktifkan opsi mainkan otomatis GIF.
+      review_preferences_step: Pastikan Anda telah mengatur preferensi Anda, seperti email untuk menerima pesan, atau tingkat privasi bawaan untuk postingan Anda. Jika Anda tidak alergi dengan gerakan gambar, Anda dapat mengaktifkan opsi mainkan otomatis GIF.
       subject: Selamat datang di Mastodon
       tip_federated_timeline: Linimasa gabungan adalah ruang yang menampilkan jaringan Mastodon. Tapi ini hanya berisi tetangga orang-orang yang Anda ikuti, jadi tidak sepenuhnya komplet.
       tip_following: Anda secara otomatis mengikuti admin server. Untuk mencari akun-akun yang menarik, silakan periksa linimasa lokal dan gabungan.
@@ -1270,13 +1270,13 @@ id:
       tips: Tips
       title: Selamat datang, %{name}!
   users:
-    blocked_email_provider: Layanan surel ini tidak diizinkan
+    blocked_email_provider: Layanan email ini tidak diizinkan
     follow_limit_reached: Anda tidak dapat mengikuti lebih dari %{limit} orang
     generic_access_help_html: Mengalami masalah saat akses akun? Anda mungkin perlu menghubungi %{email} untuk mencari bantuan
     invalid_email: Alamat email tidak cocok
     invalid_otp_token: Kode dua faktor tidak cocok
     otp_lost_help_html: Jika Anda kehilangan akses keduanya, Anda dapat menghubungi %{email}
-    seamless_external_login: Anda masuk via layanan eksternal, sehingga setelan kata sandi dan surel tidak tersedia.
+    seamless_external_login: Anda masuk via layanan eksternal, sehingga pengaturan kata sandi dan email tidak tersedia.
     signed_in_as: 'Masuk sebagai:'
   verification:
     explanation_html: 'Anda dapat <strong>memverifikasi diri Anda sebagai pemiliki tautan pada metadata profil</strong>. Situsweb yang ditautkan haruslah berisi tautan ke profil Mastodon Anda. Tautan tersebut <strong>harus</strong> memiliki atribut <code>rel="me"</code>. Isi teks tautan tidaklah penting. Ini contohnya:'
