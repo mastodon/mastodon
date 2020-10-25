@@ -261,7 +261,7 @@ id:
         destroy_custom_emoji: "%{name} menghapus emoji %{target}"
         destroy_domain_allow: "%{name} menghapus domain %{target} dari daftar putih"
         destroy_domain_block: "%{name} membuka blokir domain %{target}"
-        destroy_email_domain_block: "%{name} memasukkan ke daftar putih surel domain %{target}"
+        destroy_email_domain_block: "%{name} membuka blokir domain email %{target}"
         destroy_ip_block: "%{name} menghapus aturan untuk IP %{target}"
         destroy_status: "%{name} menghapus status %{target}"
         disable_2fa_user: "%{name} mematikan syarat dua faktor utk pengguna %{target}"
@@ -410,9 +410,9 @@ id:
       view: Lihat blokir domain
     email_domain_blocks:
       add_new: Tambah baru
-      created_msg: Berhasil menambahkan domain surel ke daftar hitam
+      created_msg: Berhasil memblokir domain email
       delete: Hapus
-      destroyed_msg: Berhasil menghapus domain surel dari daftar hitam
+      destroyed_msg: Berhasil membuka blokiran domain email
       domain: Domain
       empty: Tidak ada domain surel yang masuk daftar hitam.
       from_html: dari %{domain}
