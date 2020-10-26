@@ -49,6 +49,7 @@ const initialState = ImmutableMap({
     letterbox        : true,
     fullwidth        : true,
     reveal_behind_cw : false,
+    pop_in_player    : true,
   }),
   notifications : ImmutableMap({
     favicon_badge : false,

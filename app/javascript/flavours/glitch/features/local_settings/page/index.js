@@ -420,6 +420,14 @@ class LocalSettingsPage extends React.PureComponent {
         >
           <FormattedMessage id='settings.media_reveal_behind_cw' defaultMessage='Reveal sensitive media behind a CW by default' />
         </LocalSettingsPageItem>
+        <LocalSettingsPageItem
+          settings={settings}
+          item={['media', 'pop_in_player']}
+          id='mastodon-settings--pop-in-player'
+          onChange={onChange}
+        >
+          <FormattedMessage id='settings.pop_in_player' defaultMessage='Enable pop-in player' />
+        </LocalSettingsPageItem>
       </div>
     ),
   ];
