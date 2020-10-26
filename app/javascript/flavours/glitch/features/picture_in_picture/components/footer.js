@@ -30,6 +30,7 @@ const makeMapStateToProps = () => {
   const mapStateToProps = (state, { statusId }) => ({
     status: getStatus(state, { id: statusId }),
     askReplyConfirmation: state.getIn(['compose', 'text']).trim().length !== 0,
+    showReplyCount: state.getIn(['local_settings', 'show_reply_count']),
   });
 
   return mapStateToProps;
@@ -49,6 +50,7 @@ class Footer extends ImmutablePureComponent {
     intl: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired,
     askReplyConfirmation: PropTypes.bool,
+    showReplyCount: PropTypes.bool,
   };
 
   _performReply = () => {
@@ -98,7 +100,7 @@ class Footer extends ImmutablePureComponent {
   };
 
   render () {
-    const { status, intl } = this.props;
+    const { status, intl, showReplyCount } = this.props;
 
     const publicStatus  = ['public', 'unlisted'].includes(status.get('visibility'));
     const reblogPrivate = status.getIn(['account', 'id']) === me && status.get('visibility') === 'private';
@@ -125,9 +127,32 @@ class Footer extends ImmutablePureComponent {
       reblogTitle = intl.formatMessage(messages.cannot_reblog);
     }
 
+    let replyButton = null;
+    if (showReplyCount) {
+      replyButton = (
+        <IconButton
+          className='status__action-bar-button'
+          title={replyTitle}
+          icon={status.get('in_reply_to_account_id') === status.getIn(['account', 'id']) ? 'reply' : replyIcon}
+          onClick={this.handleReplyClick}
+          counter={status.get('replies_count')}
+          obfuscateCount
+        />
+      );
+    } else {
+      replyButton = (
+        <IconButton
+          className='status__action-bar-button'
+          title={replyTitle}
+          icon={status.get('in_reply_to_account_id') === status.getIn(['account', 'id']) ? 'reply' : replyIcon}
+          onClick={this.handleReplyClick}
+        />
+      );
+    }
+
     return (
       <div className='picture-in-picture__footer'>
-        <IconButton className='status__action-bar-button' title={replyTitle} icon={status.get('in_reply_to_account_id') === status.getIn(['account', 'id']) ? 'reply' : replyIcon} onClick={this.handleReplyClick} counter={status.get('replies_count')} obfuscateCount />
+        {replyButton}
         <IconButton className={classNames('status__action-bar-button', { reblogPrivate })} disabled={!publicStatus && !reblogPrivate}  active={status.get('reblogged')} pressed={status.get('reblogged')} title={reblogTitle} icon='retweet' onClick={this.handleReblogClick} counter={status.get('reblogs_count')} />
         <IconButton className='status__action-bar-button star-icon' animate active={status.get('favourited')} pressed={status.get('favourited')} title={intl.formatMessage(messages.favourite)} icon='star' onClick={this.handleFavouriteClick} counter={status.get('favourites_count')} />
       </div>
