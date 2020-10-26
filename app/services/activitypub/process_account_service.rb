@@ -196,7 +196,7 @@ class ActivityPub::ProcessAccountService < BaseService
     total_items = collection.is_a?(Hash) && collection['totalItems'].present? && collection['totalItems'].is_a?(Numeric) ? collection['totalItems'] : nil
     has_first_page = collection.is_a?(Hash) && collection['first'].present?
     @collections[type] = [total_items, has_first_page]
-  rescue HTTP::Error, OpenSSL::SSL::SSLError
+  rescue HTTP::Error, OpenSSL::SSL::SSLError, Mastodon::LengthValidationError
     @collections[type] = [nil, nil]
   end
 
