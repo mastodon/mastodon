@@ -22,6 +22,7 @@ import { initMuteModal } from 'flavours/glitch/actions/mutes';
 import { initBlockModal } from 'flavours/glitch/actions/blocks';
 import { initReport } from 'flavours/glitch/actions/reports';
 import { openModal } from 'flavours/glitch/actions/modal';
+import { deployPictureInPicture } from 'flavours/glitch/actions/picture_in_picture';
 import { changeLocalSetting } from 'flavours/glitch/actions/local_settings';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import { boostModal, favouriteModal, deleteModal } from 'flavours/glitch/util/initial_state';
@@ -69,6 +70,7 @@ const makeMapStateToProps = () => {
       account     : account || props.account,
       settings    : state.get('local_settings'),
       prepend     : prepend || props.prepend,
+      usingPiP    : state.get('picture_in_picture').statusId === props.id,
     };
   };
 
@@ -243,6 +245,14 @@ const mapDispatchToProps = (dispatch, { intl, contextType }) => ({
     } else {
       dispatch(muteStatus(status.get('id')));
     }
+  },
+
+  deployPictureInPicture (status, type, mediaProps) {
+    dispatch((_, getState) => {
+      if (getState().getIn(['local_settings', 'media', 'pop_in_player'])) {
+        dispatch(deployPictureInPicture(status.get('id'), status.getIn(['account', 'id']), type, mediaProps));
+      }
+    });
   },
 
 });

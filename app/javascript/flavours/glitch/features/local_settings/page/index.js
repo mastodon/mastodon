@@ -28,6 +28,8 @@ const messages = defineMessages({
   rewrite_mentions_no: { id: 'settings.rewrite_mentions_no', defaultMessage: 'Do not rewrite mentions' },
   rewrite_mentions_acct: { id: 'settings.rewrite_mentions_acct', defaultMessage: 'Rewrite with username and domain (when the account is remote)' },
   rewrite_mentions_username: { id: 'settings.rewrite_mentions_username', defaultMessage:  'Rewrite with username' },
+  pop_in_left: { id: 'settings.pop_in_left', defaultMessage: 'Left' },
+  pop_in_right: { id: 'settings.pop_in_right', defaultMessage:  'Right' },
 });
 
 export default @injectIntl
@@ -384,7 +386,7 @@ class LocalSettingsPage extends React.PureComponent {
         </section>
       </div>
     ),
-    ({ onChange, settings }) => (
+    ({ intl, onChange, settings }) => (
       <div className='glitch local-settings__page media'>
         <h1><FormattedMessage id='settings.media' defaultMessage='Media' /></h1>
         <LocalSettingsPageItem
@@ -419,6 +421,27 @@ class LocalSettingsPage extends React.PureComponent {
           onChange={onChange}
         >
           <FormattedMessage id='settings.media_reveal_behind_cw' defaultMessage='Reveal sensitive media behind a CW by default' />
+        </LocalSettingsPageItem>
+        <LocalSettingsPageItem
+          settings={settings}
+          item={['media', 'pop_in_player']}
+          id='mastodon-settings--pop-in-player'
+          onChange={onChange}
+        >
+          <FormattedMessage id='settings.pop_in_player' defaultMessage='Enable pop-in player' />
+        </LocalSettingsPageItem>
+        <LocalSettingsPageItem
+          settings={settings}
+          item={['media', 'pop_in_position']}
+          id='mastodon-settings--pop-in-position'
+          options={[
+            { value: 'left', message: intl.formatMessage(messages.pop_in_left) },
+            { value: 'right', message: intl.formatMessage(messages.pop_in_right) },
+          ]}
+          onChange={onChange}
+          dependsOn={[['media', 'pop_in_player']]}
+        >
+          <FormattedMessage id='settings.pop_in_position' defaultMessage='Pop-in player position:' />
         </LocalSettingsPageItem>
       </div>
     ),

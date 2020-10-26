@@ -153,6 +153,7 @@
   cursor: pointer;
   transition: all 100ms ease-in;
   transition-property: background-color, color;
+  text-decoration: none;
 
   &:hover,
   &:active,
@@ -225,6 +226,20 @@
     &:hover {
       background: rgba($base-overlay-background, 0.9);
     }
+  }
+
+  &--with-counter {
+    display: inline-flex;
+    align-items: center;
+    width: auto !important;
+  }
+
+  &__counter {
+    display: inline-block;
+    width: 14px;
+    margin-left: 4px;
+    font-size: 12px;
+    font-weight: 500;
   }
 }
 

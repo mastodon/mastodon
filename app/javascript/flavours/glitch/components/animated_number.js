@@ -5,10 +5,21 @@ import TransitionMotion from 'react-motion/lib/TransitionMotion';
 import spring from 'react-motion/lib/spring';
 import { reduceMotion } from 'flavours/glitch/util/initial_state';
 
+const obfuscatedCount = count => {
+  if (count < 0) {
+    return 0;
+  } else if (count <= 1) {
+    return count;
+  } else {
+    return '1+';
+  }
+};
+
 export default class AnimatedNumber extends React.PureComponent {
 
   static propTypes = {
     value: PropTypes.number.isRequired,
+    obfuscate: PropTypes.bool,
   };
 
   state = {
@@ -36,11 +47,11 @@ export default class AnimatedNumber extends React.PureComponent {
   }
 
   render () {
-    const { value } = this.props;
+    const { value, obfuscate } = this.props;
     const { direction } = this.state;
 
     if (reduceMotion) {
-      return <FormattedNumber value={value} />;
+      return obfuscate ? obfuscatedCount(value) : <FormattedNumber value={value} />;
     }
 
     const styles = [{
@@ -54,7 +65,7 @@ export default class AnimatedNumber extends React.PureComponent {
         {items => (
           <span className='animated-number'>
             {items.map(({ key, data, style }) => (
-              <span key={key} style={{ position: (direction * style.y) > 0 ? 'absolute' : 'static', transform: `translateY(${style.y * 100}%)` }}><FormattedNumber value={data} /></span>
+              <span key={key} style={{ position: (direction * style.y) > 0 ? 'absolute' : 'static', transform: `translateY(${style.y * 100}%)` }}>{obfuscate ? obfuscatedCount(data) : <FormattedNumber value={data} />}</span>
             ))}
           </span>
         )}

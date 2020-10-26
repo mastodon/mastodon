@@ -18,6 +18,7 @@ import classNames from 'classnames';
 import PollContainer from 'flavours/glitch/containers/poll_container';
 import Icon from 'flavours/glitch/components/icon';
 import AnimatedNumber from 'flavours/glitch/components/animated_number';
+import PictureInPicturePlaceholder from 'flavours/glitch/components/picture_in_picture_placeholder';
 
 export default class DetailedStatus extends ImmutablePureComponent {
 
@@ -37,6 +38,7 @@ export default class DetailedStatus extends ImmutablePureComponent {
     domain: PropTypes.string.isRequired,
     compact: PropTypes.bool,
     showMedia: PropTypes.bool,
+    usingPiP: PropTypes.bool,
     onToggleMediaVisibility: PropTypes.func,
   };
 
@@ -109,7 +111,7 @@ export default class DetailedStatus extends ImmutablePureComponent {
 
   render () {
     const status = (this.props.status && this.props.status.get('reblog')) ? this.props.status.get('reblog') : this.props.status;
-    const { expanded, onToggleHidden, settings } = this.props;
+    const { expanded, onToggleHidden, settings, usingPiP } = this.props;
     const outerStyle = { boxSizing: 'border-box' };
     const { compact } = this.props;
 
@@ -131,6 +133,9 @@ export default class DetailedStatus extends ImmutablePureComponent {
     if (status.get('poll')) {
       media = <PollContainer pollId={status.get('poll')} />;
       mediaIcon = 'tasks';
+    } else if (usingPiP) {
+      media = <PictureInPicturePlaceholder />;
+      mediaIcon = 'video-camera';
     } else if (status.get('media_attachments').size > 0) {
       if (status.get('media_attachments').some(item => item.get('type') === 'unknown')) {
         media = <AttachmentList media={status.get('media_attachments')} />;

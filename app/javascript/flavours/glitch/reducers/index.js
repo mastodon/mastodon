@@ -38,6 +38,7 @@ import trends from './trends';
 import announcements from './announcements';
 import markers from './markers';
 import account_notes from './account_notes';
+import picture_in_picture from './picture_in_picture';
 
 const reducers = {
   announcements,
@@ -79,6 +80,7 @@ const reducers = {
   trends,
   markers,
   account_notes,
+  picture_in_picture,
 };
 
 export default combineReducers(reducers);
