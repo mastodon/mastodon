@@ -50,6 +50,7 @@ const initialState = ImmutableMap({
     fullwidth        : true,
     reveal_behind_cw : false,
     pop_in_player    : true,
+    pop_in_position  : 'right',
   }),
   notifications : ImmutableMap({
     favicon_badge : false,

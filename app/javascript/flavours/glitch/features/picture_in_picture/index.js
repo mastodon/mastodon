@@ -6,9 +6,11 @@ import Audio from 'flavours/glitch/features/audio';
 import { removePictureInPicture } from 'flavours/glitch/actions/picture_in_picture';
 import Header from './components/header';
 import Footer from './components/footer';
+import classNames from 'classnames';
 
 const mapStateToProps = state => ({
   ...state.get('picture_in_picture'),
+  left: state.getIn(['local_settings', 'media', 'pop_in_position']) === 'left',
 });
 
 export default @connect(mapStateToProps)
@@ -27,6 +29,7 @@ class PictureInPicture extends React.Component {
     foregroundColor: PropTypes.string,
     accentColor: PropTypes.string,
     dispatch: PropTypes.func.isRequired,
+    left: PropTypes.bool,
   };
 
   handleClose = () => {
@@ -35,7 +38,7 @@ class PictureInPicture extends React.Component {
   }
 
   render () {
-    const { type, src, currentTime, accountId, statusId } = this.props;
+    const { type, src, currentTime, accountId, statusId, left } = this.props;
 
     if (!currentTime) {
       return null;
@@ -72,7 +75,7 @@ class PictureInPicture extends React.Component {
     }
 
     return (
-      <div className='picture-in-picture'>
+      <div className={classNames('picture-in-picture', { left })}>
         <Header accountId={accountId} statusId={statusId} onClose={this.handleClose} />
 
         {player}

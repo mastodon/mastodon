@@ -1066,6 +1066,11 @@ a.status-card.compact:hover {
   right: 20px;
   width: 300px;
 
+  &.left {
+    right: unset;
+    left: 20px;
+  }
+
   &__footer {
     border-radius: 0 0 4px 4px;
     background: lighten($ui-base-color, 4%);
