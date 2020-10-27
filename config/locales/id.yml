@@ -1286,3 +1286,18 @@ id:
     verification: Verifikasi
   webauthn_credentials:
     add: Tambahkan kunci keamanan baru
+    create:
+      error: Terjadi masalah saat menambahkan kunci keamanan. Silakan coba lagi.
+      success: Kunci keamanan Anda berhasil ditambahkan.
+    delete: Hapus
+    delete_confirmation: Yakin ingin menghapus kunci keamanan ini?
+    description_html: Jika Anda mengaktifkan <strong>autentikasi kunci keamanan</strong>, proses masuk Anda akan memerlukan salah satu kunci keamanan Anda.
+    destroy:
+      error: Terjadi masalah saat menghapus kunci keamanan Anda. Silakan coba lagi.
+      success: Kunci keamanan Anda berhasil dihapus.
+    invalid_credential: Kunci keamanan tidak valid
+    nickname_hint: Masukkan panggilan kunci keamanan baru Anda
+    not_enabled: Anda belum mengaktifkan WebAuthn
+    not_supported: Peramban ini tidak mendukung kunci keamanan
+    otp_required: Untuk menggunakan kunci keamanan harap aktifkan autentikasi dua-faktor.
+    registered_on: Terdaftar pada %{date}
