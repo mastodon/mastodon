@@ -113,6 +113,14 @@ class LocalSettingsPage extends React.PureComponent {
             <FormattedMessage id='settings.notifications.favicon_badge' defaultMessage='Unread notifications favicon badge' />
             <span className='hint'><FormattedMessage id='settings.notifications.favicon_badge.hint' defaultMessage="Add a badge for unread notifications to the favicon" /></span>
           </LocalSettingsPageItem>
+          <LocalSettingsPageItem
+            settings={settings}
+            item={['notifications', 'show_unread']}
+            id='mastodon-settings--notifications-show_unread'
+            onChange={onChange}
+          >
+            <FormattedMessage id='settings.notifications.show_unread' defaultMessage='Show unread marker' />
+          </LocalSettingsPageItem>
         </section>
         <section>
           <h2><FormattedMessage id='settings.layout_opts' defaultMessage='Layout options' /></h2>
