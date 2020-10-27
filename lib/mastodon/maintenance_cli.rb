@@ -117,6 +117,8 @@ module Mastodon
       deduplicate_tags!
       deduplicate_webauthn_credentials!
 
+      Rails.cache.clear
+
       @prompt.say 'Finished!'
     end
 
