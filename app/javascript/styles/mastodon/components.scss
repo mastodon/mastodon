@@ -1067,16 +1067,15 @@
 }
 
 .status__relative-time,
-.status__visibility-icon,
 .notification__relative_time {
   color: $dark-text-color;
   float: right;
   font-size: 14px;
+  padding-bottom: 1px;
 }
 
 .status__visibility-icon {
-  margin-left: 4px;
-  margin-right: 4px;
+  padding: 0 4px;
 }
 
 .status__display-name {
