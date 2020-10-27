@@ -5384,7 +5384,6 @@ a.status-card.compact:hover {
   }
 
   .video-player__controls {
-    padding: 0 15px;
     padding-top: 10px;
     background: transparent;
   }
@@ -5503,7 +5502,8 @@ a.status-card.compact:hover {
   &__buttons-bar {
     display: flex;
     justify-content: space-between;
-    padding-bottom: 10px;
+    padding-bottom: 8px;
+    margin: 0 -5px;
 
     .video-player__download__icon {
       color: inherit;
@@ -5520,22 +5520,13 @@ a.status-card.compact:hover {
     overflow: hidden;
     text-overflow: ellipsis;
 
-    &.left {
-      button {
-        padding-left: 0;
-      }
-    }
+    .player-button {
+      display: inline-block;
+      outline: 0;
 
-    &.right {
-      button {
-        padding-right: 0;
-      }
-    }
-
-    button {
       flex: 0 0 auto;
       background: transparent;
-      padding: 2px 10px;
+      padding: 5px;
       font-size: 16px;
       border: 0;
       color: rgba($white, 0.75);
@@ -5553,6 +5544,7 @@ a.status-card.compact:hover {
     flex: 0 1 auto;
     overflow: hidden;
     text-overflow: ellipsis;
+    margin: 0 5px;
   }
 
   &__time-sep,
@@ -5672,7 +5664,7 @@ a.status-card.compact:hover {
       display: block;
       position: absolute;
       height: 4px;
-      top: 10px;
+      top: 14px;
     }
 
     &__progress,
@@ -5681,7 +5673,7 @@ a.status-card.compact:hover {
       position: absolute;
       height: 4px;
       border-radius: 4px;
-      top: 10px;
+      top: 14px;
       background: lighten($ui-highlight-color, 8%);
     }
 
@@ -5696,7 +5688,7 @@ a.status-card.compact:hover {
       border-radius: 50%;
       width: 12px;
       height: 12px;
-      top: 6px;
+      top: 10px;
       margin-left: -6px;
       background: lighten($ui-highlight-color, 8%);
       box-shadow: 1px 2px 6px rgba($base-shadow-color, 0.2);
@@ -5720,7 +5712,7 @@ a.status-card.compact:hover {
   &.detailed,
   &.fullscreen {
     .video-player__buttons {
-      button {
+      .player-button {
         padding-top: 10px;
         padding-bottom: 10px;
       }
