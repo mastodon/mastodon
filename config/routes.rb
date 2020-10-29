@@ -83,6 +83,7 @@ Rails.application.routes.draw do
     resource :inbox, only: [:create], module: :activitypub
     resource :claim, only: [:create], module: :activitypub
     resources :collections, only: [:show], module: :activitypub
+    resource :followers_synchronization, only: [:show], module: :activitypub
   end
 
   resource :inbox, only: [:create], module: :activitypub
@@ -278,6 +279,12 @@ Rails.application.routes.draw do
     end
 
     resources :custom_emojis, only: [:index, :new, :create] do
+      collection do
+        post :batch
+      end
+    end
+
+    resources :ip_blocks, only: [:index, :new, :create] do
       collection do
         post :batch
       end

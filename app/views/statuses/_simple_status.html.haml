@@ -1,10 +1,10 @@
 .status{ class: "status-#{status.visibility}" }
   .status__info
     = link_to ActivityPub::TagManager.instance.url_for(status), class: 'status__relative-time u-url u-uid', target: stream_link_target, rel: 'noopener noreferrer' do
+      %span.status__visibility-icon><
+        = visibility_icon status
       %time.time-ago{ datetime: status.created_at.iso8601, title: l(status.created_at) }= l(status.created_at)
     %data.dt-published{ value: status.created_at.to_time.iso8601 }
-    %span.status__visibility-icon
-      = visibility_icon status
 
     .p-author.h-card
       = link_to ActivityPub::TagManager.instance.url_for(status.account), class: 'status__display-name u-url', target: stream_link_target, rel: 'noopener noreferrer' do
@@ -52,13 +52,12 @@
       = t 'statuses.show_thread'
 
   .status__action-bar
-    .status__action-bar__counter
-      = link_to remote_interaction_path(status, type: :reply), class: 'status__action-bar-button icon-button modal-button' do
-        - if status.in_reply_to_id.nil?
-          = fa_icon 'reply fw'
-        - else
-          = fa_icon 'reply-all fw'
-      .status__action-bar__counter__label= obscured_counter status.replies_count
+    = link_to remote_interaction_path(status, type: :reply), class: 'status__action-bar-button icon-button icon-button--with-counter modal-button' do
+      - if status.in_reply_to_id.nil?
+        = fa_icon 'reply fw'
+      - else
+        = fa_icon 'reply-all fw'
+      %span.icon-button__counter= obscured_counter status.replies_count
     = link_to remote_interaction_path(status, type: :reblog), class: 'status__action-bar-button icon-button modal-button' do
       - if status.distributable?
         = fa_icon 'retweet fw'

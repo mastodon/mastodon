@@ -223,12 +223,14 @@ en:
         create_domain_allow: Create Domain Allow
         create_domain_block: Create Domain Block
         create_email_domain_block: Create E-mail Domain Block
+        create_ip_block: Create IP rule
         demote_user: Demote User
         destroy_announcement: Delete Announcement
         destroy_custom_emoji: Delete Custom Emoji
         destroy_domain_allow: Delete Domain Allow
         destroy_domain_block: Delete Domain Block
         destroy_email_domain_block: Delete e-mail domain block
+        destroy_ip_block: Delete IP rule
         destroy_status: Delete Status
         disable_2fa_user: Disable 2FA
         disable_custom_emoji: Disable Custom Emoji
@@ -259,12 +261,14 @@ en:
         create_domain_allow: "%{name} allowed federation with domain %{target}"
         create_domain_block: "%{name} blocked domain %{target}"
         create_email_domain_block: "%{name} blocked e-mail domain %{target}"
+        create_ip_block: "%{name} created rule for IP %{target}"
         demote_user: "%{name} demoted user %{target}"
         destroy_announcement: "%{name} deleted announcement %{target}"
         destroy_custom_emoji: "%{name} destroyed emoji %{target}"
         destroy_domain_allow: "%{name} disallowed federation with domain %{target}"
         destroy_domain_block: "%{name} unblocked domain %{target}"
         destroy_email_domain_block: "%{name} unblocked e-mail domain %{target}"
+        destroy_ip_block: "%{name} deleted rule for IP %{target}"
         destroy_status: "%{name} removed status by %{target}"
         disable_2fa_user: "%{name} disabled two factor requirement for user %{target}"
         disable_custom_emoji: "%{name} disabled emoji %{target}"
@@ -449,6 +453,21 @@ en:
         expired: Expired
         title: Filter
       title: Invites
+    ip_blocks:
+      add_new: Create rule
+      created_msg: Successfully added new IP rule
+      delete: Delete
+      expires_in:
+        '1209600': 2 weeks
+        '15778476': 6 months
+        '2629746': 1 month
+        '31556952': 1 year
+        '86400': 1 day
+        '94670856': 3 years
+      new:
+        title: Create new IP rule
+      no_ip_block_selected: No IP rules were changed as none were selected
+      title: IP rules
     pending_accounts:
       title: Pending accounts (%{count})
     relationships:

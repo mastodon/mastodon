@@ -52,6 +52,6 @@ class TagFeed < PublicFeed
   end
 
   def tags_for(names)
-    Tag.matching_name(Array(names).take(LIMIT_PER_MODE)) if names.present?
+    Tag.matching_name(Array(names).take(LIMIT_PER_MODE)).pluck(:id) if names.present?
   end
 end
