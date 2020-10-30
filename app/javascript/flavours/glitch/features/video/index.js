@@ -211,7 +211,7 @@ class Video extends React.PureComponent {
   handleTimeUpdate = () => {
     this.setState({
       currentTime: this.video.currentTime,
-      duration: Math.floor(this.video.duration),
+      duration:this.video.duration,
     });
   }
 
@@ -568,7 +568,7 @@ class Video extends React.PureComponent {
                 <span className='video-player__time'>
                   <span className='video-player__time-current'>{formatTime(Math.floor(currentTime))}</span>
                   <span className='video-player__time-sep'>/</span>
-                  <span className='video-player__time-total'>{formatTime(duration)}</span>
+                  <span className='video-player__time-total'>{formatTime(Math.floor(duration))}</span>
                 </span>
               )}
 

@@ -252,7 +252,7 @@ class Audio extends React.PureComponent {
   handleTimeUpdate = () => {
     this.setState({
       currentTime: this.audio.currentTime,
-      duration: Math.floor(this.audio.duration),
+      duration: this.audio.duration,
     });
   }
 
@@ -460,7 +460,7 @@ class Audio extends React.PureComponent {
               <span className='video-player__time'>
                 <span className='video-player__time-current'>{formatTime(Math.floor(currentTime))}</span>
                 <span className='video-player__time-sep'>/</span>
-                <span className='video-player__time-total'>{formatTime(this.state.duration || Math.floor(this.props.duration))}</span>
+                <span className='video-player__time-total'>{formatTime(Math.floor(this.state.duration || this.props.duration))}</span>
               </span>
             </div>
 
