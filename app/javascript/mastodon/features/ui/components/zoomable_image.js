@@ -250,7 +250,8 @@ class ZoomableImage extends React.PureComponent {
           size={40}
           style={{
             fontSize: '30px',
-          }} />
+          }}
+        />
         <div
           className='zoomable-image'
           ref={this.setContainerRef}
