@@ -1,8 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import IconButton from 'mastodon/components/icon_button';
+import { defineMessages, injectIntl } from 'react-intl';
+
+const messages = defineMessages({
+  compress: { id: 'lightbox.compress', defaultMessage: 'Compress image view box' },
+  expand: { id: 'lightbox.expand', defaultMessage: 'Expand image view box' },
+});
 
 const MIN_SCALE = 1;
 const MAX_SCALE = 4;
+// left 10% of button height when expand
+const EXPAND_VIEW_HEIGHT = 0.9;
+const SCROLL_BAR_SIZE = 12;
 
 const getMidpoint = (p1, p2) => ({
   x: (p1.clientX + p2.clientX) / 2,
@@ -14,7 +24,8 @@ const getDistance = (p1, p2) =>
 
 const clamp = (min, max, value) => Math.min(max, Math.max(min, value));
 
-export default class ZoomableImage extends React.PureComponent {
+export default @injectIntl
+class ZoomableImage extends React.PureComponent {
 
   static propTypes = {
     alt: PropTypes.string,
@@ -22,6 +33,8 @@ export default class ZoomableImage extends React.PureComponent {
     width: PropTypes.number,
     height: PropTypes.number,
     onClick: PropTypes.func,
+    zoomButtonHidden: PropTypes.bool,
+    intl: PropTypes.object.isRequired,
   }
 
   static defaultProps = {
@@ -32,6 +45,8 @@ export default class ZoomableImage extends React.PureComponent {
 
   state = {
     scale: MIN_SCALE,
+    navigationHidden: false,
+    zoomState: 'expand'
   }
 
   removers = [];
@@ -55,6 +70,16 @@ export default class ZoomableImage extends React.PureComponent {
     this.removeEventListeners();
   }
 
+  componentDidUpdate () {
+    if (this.props.zoomButtonHidden) {
+      this.setState({ scale: MIN_SCALE }, () => {
+        this.container.scrollLeft = 0;
+        this.container.scrollTop = 0;
+      });
+    }
+    this.setState({ zoomState: this.state.scale >= Math.max((this.container.clientWidth-SCROLL_BAR_SIZE)/this.image.offsetWidth, ((this.container.clientHeight-SCROLL_BAR_SIZE) * EXPAND_VIEW_HEIGHT-SCROLL_BAR_SIZE)/this.image.offsetHeight)? 'compress' : 'expand' });
+  }
+
   removeEventListeners () {
     this.removers.forEach(listeners => listeners());
     this.removers = [];
@@ -67,7 +92,8 @@ export default class ZoomableImage extends React.PureComponent {
   }
 
   handleTouchMove = e => {
-    const { scrollTop, scrollHeight, clientHeight } = this.container;
+    const { scrollTop, scrollHeight, clientHeight, clientWidth } = this.container;
+    const { offsetWidth, offsetHeight } = this.image;
     if (e.touches.length === 1 && scrollTop !== scrollHeight - clientHeight) {
       // prevent propagating event to MediaModal
       e.stopPropagation();
@@ -80,7 +106,8 @@ export default class ZoomableImage extends React.PureComponent {
 
     const distance = getDistance(...e.touches);
     const midpoint = getMidpoint(...e.touches);
-    const scale = clamp(MIN_SCALE, MAX_SCALE, this.state.scale * distance / this.lastDistance);
+    const _MAX_SCALE = Math.max(MAX_SCALE, (clientWidth-SCROLL_BAR_SIZE)/offsetWidth, ((clientHeight-SCROLL_BAR_SIZE) * EXPAND_VIEW_HEIGHT-SCROLL_BAR_SIZE)/offsetHeight)
+    const scale = clamp(MIN_SCALE, _MAX_SCALE, this.state.scale * distance / this.lastDistance);
 
     this.zoom(scale, midpoint);
 
@@ -112,6 +139,36 @@ export default class ZoomableImage extends React.PureComponent {
     e.stopPropagation();
     const handler = this.props.onClick;
     if (handler) handler();
+    this.setState({ navigationHidden: !this.state.navigationHidden })
+  }
+
+  handleZoomClick = e => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    const { width, height } = this.props;
+    const { clientWidth, clientHeight } = this.container;
+    const { offsetWidth, offsetHeight } = this.image;
+    const _clientWidth = clientWidth + SCROLL_BAR_SIZE;
+    const _clientHeight = clientHeight - SCROLL_BAR_SIZE;
+    const _clientHeightFixed = _clientHeight * EXPAND_VIEW_HEIGHT;
+
+    if ( this.state.scale >= Math.max((clientWidth-SCROLL_BAR_SIZE)/offsetWidth, (_clientHeightFixed-SCROLL_BAR_SIZE)/offsetHeight) ) {
+      this.setState({ scale: MIN_SCALE }, () => {
+        this.container.scrollLeft = 0;
+        this.container.scrollTop = 0;
+      });
+    } else if ( width/height < _clientWidth/_clientHeightFixed ) {
+      // full width
+      this.setState({ scale: _clientWidth/offsetWidth }, () => {
+        this.container.scrollLeft = (_clientWidth-offsetWidth)/2;
+      });
+    } else {
+      // full height
+      this.setState({ scale: _clientHeightFixed/offsetHeight }, () => {
+        this.container.scrollTop = (_clientHeightFixed-offsetHeight)/2;
+      });
+    }
   }
 
   setContainerRef = c => {
@@ -123,29 +180,42 @@ export default class ZoomableImage extends React.PureComponent {
   }
 
   render () {
-    const { alt, src } = this.props;
+    const { alt, src, width, height, intl } = this.props;
     const { scale } = this.state;
     const overflow = scale === 1 ? 'hidden' : 'scroll';
+    const zoomButtonSshouldHide = !this.state.navigationHidden && !this.props.zoomButtonHidden ? '' : 'media-modal__zoom-button--hidden';
+    const zoomButtonTitle = this.state.zoomState === 'compress' ? intl.formatMessage(messages.compress) : intl.formatMessage(messages.expand);
 
     return (
-      <div
-        className='zoomable-image'
-        ref={this.setContainerRef}
-        style={{ overflow }}
-      >
-        <img
-          role='presentation'
-          ref={this.setImageRef}
-          alt={alt}
-          title={alt}
-          src={src}
-          style={{
-            transform: `scale(${scale})`,
-            transformOrigin: '0 0',
-          }}
-          onClick={this.handleClick}
-        />
-      </div>
+      <React.Fragment>
+        <IconButton 
+          className={ `media-modal__zoom-button ${zoomButtonSshouldHide}` }
+          title={zoomButtonTitle} 
+          icon={this.state.zoomState}
+          onClick={this.handleZoomClick} 
+          size={40}
+          style={{ fontSize: '30px' }} />
+        <div
+          className='zoomable-image'
+          ref={this.setContainerRef}
+          style={{ overflow }}
+        >
+          <img
+            role='presentation'
+            ref={this.setImageRef}
+            alt={alt}
+            title={alt}
+            src={src}
+            width={width}
+            height={height}
+            style={{
+              transform: `scale(${scale})`,
+              transformOrigin: '0 0',
+            }}
+            onClick={this.handleClick}
+          />
+        </div>
+      </React.Fragment>
     );
   }
 
