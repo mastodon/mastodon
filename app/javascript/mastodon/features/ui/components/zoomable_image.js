@@ -48,6 +48,7 @@ class ZoomableImage extends React.PureComponent {
     zoomState: 'expand',
     pos: { top: 0, left: 0, x: 0, y: 0 },
     dragged: false,
+    cursor: 'auto',
   }
 
   removers = [];
@@ -89,9 +90,7 @@ class ZoomableImage extends React.PureComponent {
     this.setState({ zoomState: this.state.scale >= Math.max( (clientWidth - 2 * SCROLL_BAR_THICKNESS)/offsetWidth, (clientHeight - NAV_BAR_HEIGHT)/offsetHeight ) ? 'compress' : 'expand' });
 
     if (this.state.scale === 1) {
-      this.container.style.cursor = 'auto';
-    } else {
-      this.container.style.cursor = 'grab';
+      this.container.style.removeProperty('cursor');
     }
   }
 
@@ -223,6 +222,9 @@ class ZoomableImage extends React.PureComponent {
         this.container.scrollLeft = (clientWidth-offsetWidth)/2;
       });
     }
+
+    this.container.style.cursor = 'grab';
+    this.container.style.removeProperty('user-select');
   }
 
   setContainerRef = c => {
