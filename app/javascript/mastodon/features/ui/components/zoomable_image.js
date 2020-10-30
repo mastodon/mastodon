@@ -48,7 +48,6 @@ class ZoomableImage extends React.PureComponent {
     zoomState: 'expand',
     pos: { top: 0, left: 0, x: 0, y: 0 },
     dragged: false,
-    cursor: 'auto',
   }
 
   removers = [];
