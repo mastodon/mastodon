@@ -76,6 +76,7 @@ module SignatureVerification
     raise SignatureVerificationError, 'Signed request date outside acceptable time window' unless matches_time_window?
 
     verify_signature_strength!
+    verify_body_digest!
 
     account = account_from_key_id(signature_params['keyId'])
 
@@ -128,6 +129,12 @@ module SignatureVerification
     raise SignatureVerificationError, 'Mastodon requires the Digest header or (request-target) pseudo-header to be signed' unless signed_headers.include?(Request::REQUEST_TARGET) || signed_headers.include?('digest')
     raise SignatureVerificationError, 'Mastodon requires the Host header to be signed' unless signed_headers.include?('host')
     raise SignatureVerificationError, 'Mastodon requires the Digest header to be signed when doing a POST request' if request.post? && !signed_headers.include?('digest')
+  end
+
+  def verify_body_digest!
+    return unless signed_headers.include?('digest')
+
+    raise SignatureVerificationError, "Invalid digest. Computed digest: #{body_digest}" if body_digest != request.headers['digest']
   end
 
   def verify_signature(account, signature, compare_signed_string)
@@ -187,7 +194,7 @@ module SignatureVerification
   end
 
   def body_digest
-    "SHA-256=#{Digest::SHA256.base64digest(request_body)}"
+    @body_digest ||= "SHA-256=#{Digest::SHA256.base64digest(request_body)}"
   end
 
   def to_header_name(name)
