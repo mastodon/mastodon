@@ -48,29 +48,29 @@ class MediaModal extends ImmutablePureComponent {
   handleTransitionEnd = () => {
     this.setState({
       zoomButtonHidden: false,
-     });
+    });
   }
 
   handleNextClick = () => {
-    this.setState({ 
+    this.setState({
       index: (this.getIndex() + 1) % this.props.media.size,
       zoomButtonHidden: true,
-     });
+    });
   }
 
   handlePrevClick = () => {
-    this.setState({ 
+    this.setState({
       index: (this.props.media.size + this.getIndex() - 1) % this.props.media.size,
-      zoomButtonHidden: true, 
+      zoomButtonHidden: true,
     });
   }
 
   handleChangeIndex = (e) => {
     const index = Number(e.currentTarget.getAttribute('data-index'));
-    this.setState({ 
+    this.setState({
       index: index % this.props.media.size,
       zoomButtonHidden: true,
-     });
+    });
   }
 
   handleKeyDown = (e) => {

@@ -65,8 +65,8 @@ class ZoomableImage extends React.PureComponent {
     // https://www.chromestatus.com/features/5093566007214080
     this.container.addEventListener('touchmove', handler, { passive: false });
     this.removers.push(() => this.container.removeEventListener('touchend', handler));
-    
-    handler = this.mouseDownHandler
+
+    handler = this.mouseDownHandler;
     this.container.addEventListener('mousedown', handler);
     this.removers.push(() => this.container.removeEventListener('mousedown', handler));
   }
@@ -105,11 +105,11 @@ class ZoomableImage extends React.PureComponent {
     this.container.style.userSelect = 'none';
 
     this.setState({ pos: {
-        left: this.container.scrollLeft,
-        top: this.container.scrollTop,
-        // Get the current mouse position
-        x: e.clientX,
-        y: e.clientY,
+      left: this.container.scrollLeft,
+      top: this.container.scrollTop,
+      // Get the current mouse position
+      x: e.clientX,
+      y: e.clientY,
     } });
 
     this.image.addEventListener('mousemove', this.mouseMoveHandler);
@@ -157,7 +157,7 @@ class ZoomableImage extends React.PureComponent {
 
     const distance = getDistance(...e.touches);
     const midpoint = getMidpoint(...e.touches);
-    const _MAX_SCALE = Math.max( MAX_SCALE, (clientWidth - 2 * SCROLL_BAR_THICKNESS)/offsetWidth, (clientHeight - NAV_BAR_HEIGHT)/offsetHeight )
+    const _MAX_SCALE = Math.max( MAX_SCALE, (clientWidth - 2 * SCROLL_BAR_THICKNESS)/offsetWidth, (clientHeight - NAV_BAR_HEIGHT)/offsetHeight );
     const scale = clamp(MIN_SCALE, _MAX_SCALE, this.state.scale * distance / this.lastDistance);
 
     this.zoom(scale, midpoint);
@@ -193,7 +193,7 @@ class ZoomableImage extends React.PureComponent {
     if (dragged) return;
     const handler = this.props.onClick;
     if (handler) handler();
-    this.setState({ navigationHidden: !this.state.navigationHidden })
+    this.setState({ navigationHidden: !this.state.navigationHidden });
   }
 
   handleZoomClick = e => {
@@ -242,13 +242,15 @@ class ZoomableImage extends React.PureComponent {
 
     return (
       <React.Fragment>
-        <IconButton 
-          className={ `media-modal__zoom-button ${zoomButtonSshouldHide}` }
-          title={zoomButtonTitle} 
+        <IconButton
+          className={`media-modal__zoom-button ${zoomButtonSshouldHide}`}
+          title={zoomButtonTitle}
           icon={this.state.zoomState}
-          onClick={this.handleZoomClick} 
+          onClick={this.handleZoomClick}
           size={40}
-          style={{ fontSize: '30px' }} />
+          style={{
+            fontSize: '30px'
+          }} />
         <div
           className='zoomable-image'
           ref={this.setContainerRef}
