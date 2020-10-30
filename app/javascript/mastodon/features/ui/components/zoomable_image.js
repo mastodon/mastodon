@@ -249,7 +249,7 @@ class ZoomableImage extends React.PureComponent {
           onClick={this.handleZoomClick}
           size={40}
           style={{
-            fontSize: '30px'
+            fontSize: '30px',
           }} />
         <div
           className='zoomable-image'
