@@ -205,6 +205,8 @@ da:
         confirm_user: Bekræft bruger
         create_account_warning: Opret advarsel
         create_announcement: Opret bekendtgørelse
+        create_domain_allow: Opret domæne tillad
+        create_domain_block: Opret domæneblokering
         create_ip_block: Opret IP-regel
         destroy_announcement: Slet bekendtgørelse
         destroy_domain_block: Slet domæneblokering
@@ -661,6 +663,7 @@ da:
     set_new_password: Sæt et nyt kodeord
     setup:
       email_settings_hint_html: Bekræftelsesmailen blev sendt til %{email}. Hvis denne e-mailadresse ikke er korrekt, kan du ændre den i kontoindstillinger.
+      title: Opsætning
     status:
       account_status: Kontostatus
       confirming: Venter på at e-mail bekræftelsen er fuldført.
@@ -698,9 +701,13 @@ da:
       about_x_years: "%{count}år"
       almost_x_years: "%{count}år"
       half_a_minute: Lige nu
+      less_than_x_minutes: "%{count}m"
       less_than_x_seconds: Lige nu
       over_x_years: "%{count}år"
+      x_days: "%{count}d"
+      x_minutes: "%{count}m"
       x_months: "%{count}md"
+      x_seconds: "%{count}s"
   deletes:
     challenge_not_passed: De oplysninger, du indtastede var ikke korrekte
     confirm_password: Indtast dit nuværende kodeord for at bekræfte din identitet
@@ -792,9 +799,11 @@ da:
     i_am_html: Jeg er %{username} på %{service}.
     identity: Identitet
     inactive: Inaktiv
+    publicize_checkbox: 'Og toot dette:'
     publicize_toot: 'Det er bevist! Jeg er %{username} på %{service}: %{url}'
     remove: Fjern bevis fra konto
     removed: Beviset er fjernet fra kontoen
+    status: Status for verifikation
     view_proof: Se bevis
   imports:
     modes:
