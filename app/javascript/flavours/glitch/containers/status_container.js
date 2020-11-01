@@ -55,7 +55,7 @@ const makeMapStateToProps = () => {
     let account = undefined;
     let prepend = undefined;
 
-    if (props.featured) {
+    if (props.featured && status) {
       account = status.get('account');
       prepend = 'featured';
     } else if (reblogStatus !== null && typeof reblogStatus === 'object') {
