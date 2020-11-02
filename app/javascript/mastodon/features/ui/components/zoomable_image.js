@@ -225,7 +225,7 @@ class ZoomableImage extends React.PureComponent {
       this.container.scrollLeft = this.state.dragPosition.left - dx;
     }
 
-    if ((this.state.pdragPositionos.top - dy) >= this.state.lockScroll.y) {
+    if ((this.state.dragPosition.top - dy) >= this.state.lockScroll.y) {
       this.container.scrollTop = this.state.dragPosition.top - dy;
     }
 
