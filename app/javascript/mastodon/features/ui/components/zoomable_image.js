@@ -113,9 +113,20 @@ class ZoomableImage extends React.PureComponent {
 
   state = {
     scale: MIN_SCALE,
+    zoomMatrix: {
+      type: null, // 'full-width' 'full-height'
+      rate: null, // full screen scale rate
+      clientWidth: null,
+      clientHeight: null,
+      offsetWidth: null,
+      offsetHeight: null,
+      clientHeightFixed: null,
+      scrollTop: null,
+      scrollLeft: null,
+    },
+    zoomState: 'expand', // 'expand' 'compress'
     navigationHidden: false,
-    zoomState: 'expand',
-    pos: { top: 0, left: 0, x: 0, y: 0 },
+    dragPosition: { top: 0, left: 0, x: 0, y: 0 },
     dragged: false,
     lockScroll: { x: 0, y: 0 },
   }
@@ -149,6 +160,8 @@ class ZoomableImage extends React.PureComponent {
     // Old Firefox
     this.container.addEventListener('DOMMouseScroll', handler);
     this.removers.push(() => this.container.removeEventListener('DOMMouseScroll', handler));
+
+    this.initZoomMatrix();
   }
 
   componentWillUnmount () {
@@ -156,9 +169,6 @@ class ZoomableImage extends React.PureComponent {
   }
 
   componentDidUpdate () {
-    const { clientWidth, clientHeight } = this.container;
-    const { offsetWidth, offsetHeight } = this.image;
-
     if (this.props.zoomButtonHidden) {
       this.setState({ scale: MIN_SCALE }, () => {
         this.container.scrollLeft = 0;
@@ -166,7 +176,7 @@ class ZoomableImage extends React.PureComponent {
       });
     }
 
-    this.setState({ zoomState: this.state.scale >= Math.max( (clientWidth - 2 * SCROLL_BAR_THICKNESS)/offsetWidth, (clientHeight - NAV_BAR_HEIGHT)/offsetHeight ) ? 'compress' : 'expand' });
+    this.setState({ zoomState: this.state.scale >= this.state.zoomMatrix.rate ? 'compress' : 'expand' });
 
     if (this.state.scale === 1) {
       this.container.style.removeProperty('cursor');
@@ -181,12 +191,9 @@ class ZoomableImage extends React.PureComponent {
   mouseWheelHandler = e => {
     e.preventDefault();
 
-    const { width, height } = this.props;
-    const { clientWidth, clientHeight } = this.container;
-    const clientHeightFixed = clientHeight - NAV_BAR_HEIGHT;
     const event = normalizeWheel(e);
 
-    if (width/height < clientWidth/clientHeightFixed) {
+    if (this.state.zoomMatrix.type === 'full-width') {
       // full width, scroll vertical
       this.container.scrollTop = this.container.scrollTop + event.pixelY;
     } else {
@@ -199,7 +206,7 @@ class ZoomableImage extends React.PureComponent {
     this.container.style.cursor = 'grabbing';
     this.container.style.userSelect = 'none';
 
-    this.setState({ pos: {
+    this.setState({ dragPosition: {
       left: this.container.scrollLeft,
       top: this.container.scrollTop,
       // Get the current mouse position
@@ -212,20 +219,15 @@ class ZoomableImage extends React.PureComponent {
   }
 
   mouseMoveHandler = e => {
-    // How far the mouse has been moved
-    const dx = e.clientX - this.state.pos.x;
-    const dy = e.clientY - this.state.pos.y;
+    const dx = e.clientX - this.state.dragPosition.x;
+    const dy = e.clientY - this.state.dragPosition.y;
 
-    // Scroll the element
-    // this.container.scrollTop = this.state.pos.top - dy;
-    // this.container.scrollLeft = this.state.pos.left - dx;
-
-    if ((this.state.pos.left - dx) >= this.state.lockScroll.x) {
-      this.container.scrollLeft = this.state.pos.left - dx;
+    if ((this.state.dragPosition.left - dx) >= this.state.lockScroll.x) {
+      this.container.scrollLeft = this.state.dragPosition.left - dx;
     }
 
-    if ((this.state.pos.top - dy) >= this.state.lockScroll.y) {
-      this.container.scrollTop = this.state.pos.top - dy;
+    if ((this.state.pdragPositionos.top - dy) >= this.state.lockScroll.y) {
+      this.container.scrollTop = this.state.dragPosition.top - dy;
     }
 
     this.setState({ dragged: true });
@@ -246,8 +248,7 @@ class ZoomableImage extends React.PureComponent {
   }
 
   handleTouchMove = e => {
-    const { scrollTop, scrollHeight, clientHeight, clientWidth } = this.container;
-    const { offsetWidth, offsetHeight } = this.image;
+    const { scrollTop, scrollHeight, clientHeight } = this.container;
     if (e.touches.length === 1 && scrollTop !== scrollHeight - clientHeight) {
       // prevent propagating event to MediaModal
       e.stopPropagation();
@@ -260,7 +261,7 @@ class ZoomableImage extends React.PureComponent {
 
     const distance = getDistance(...e.touches);
     const midpoint = getMidpoint(...e.touches);
-    const _MAX_SCALE = Math.max( MAX_SCALE, (clientWidth - 2 * SCROLL_BAR_THICKNESS)/offsetWidth, (clientHeight - NAV_BAR_HEIGHT)/offsetHeight );
+    const _MAX_SCALE = Math.max(MAX_SCALE, this.state.zoomMatrix.rate);
     const scale = clamp(MIN_SCALE, _MAX_SCALE, this.state.scale * distance / this.lastDistance);
 
     this.zoom(scale, midpoint);
@@ -303,16 +304,39 @@ class ZoomableImage extends React.PureComponent {
     e.preventDefault();
   }
 
-  handleZoomClick = e => {
-    e.preventDefault();
-    e.stopPropagation();
-
+  initZoomMatrix = e => {
     const { width, height } = this.props;
     const { clientWidth, clientHeight } = this.container;
     const { offsetWidth, offsetHeight } = this.image;
     const clientHeightFixed = clientHeight - NAV_BAR_HEIGHT;
 
-    if ( this.state.scale >= Math.max(( clientWidth - 2 * SCROLL_BAR_THICKNESS)/offsetWidth, clientHeightFixed/offsetHeight ) ) {
+    const type = width/height < clientWidth / clientHeightFixed ? 'full-width' : 'full-height';
+    const rate = type === 'full-width' ? clientWidth / offsetWidth : clientHeightFixed / offsetHeight;
+    const scrollTop = type === 'full-width' ?  (clientHeight - offsetHeight) / 2 - NAV_BAR_HEIGHT : (clientHeightFixed - offsetHeight) / 2;
+    const scrollLeft = (clientWidth - offsetWidth) / 2;
+
+    this.setState({
+      zoomMatrix: {
+        type: type,
+        rate: rate,
+        clientWidth: clientWidth,
+        clientHeight: clientHeight,
+        offsetWidth: offsetWidth,
+        offsetHeight: offsetHeight,
+        clientHeightFixed: clientHeightFixed,
+        scrollTop: scrollTop,
+        scrollLeft: scrollLeft,
+      }
+    });
+  }
+
+  handleZoomClick = e => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    const { scale, zoomMatrix } = this.state;
+
+    if ( scale >= zoomMatrix.rate ) {
       this.setState({ scale: MIN_SCALE }, () => {
         this.container.scrollLeft = 0;
         this.container.scrollTop = 0;
@@ -321,24 +345,13 @@ class ZoomableImage extends React.PureComponent {
           y: 0,
         } });
       });
-    } else if ( width/height < clientWidth/clientHeightFixed ) {
-      // full width
-      this.setState({ scale: clientWidth/offsetWidth }, () => {
-        this.container.scrollLeft = (clientWidth - offsetWidth)/2;
-        this.container.scrollTop = (clientHeight - offsetHeight)/2 - NAV_BAR_HEIGHT;
-        this.setState({ lockScroll: {
-          x: (clientWidth - offsetWidth)/2,
-          y: (clientHeight - offsetHeight)/2 - NAV_BAR_HEIGHT,
-        } });
-      });
     } else {
-      // full height
-      this.setState({ scale: clientHeightFixed/offsetHeight }, () => {
-        this.container.scrollLeft = (clientWidth - offsetWidth)/2;
-        this.container.scrollTop = (clientHeightFixed - offsetHeight)/2;
+      this.setState({ scale: zoomMatrix.rate }, () => {
+        this.container.scrollLeft = zoomMatrix.scrollLeft;
+        this.container.scrollTop = zoomMatrix.scrollTop;
         this.setState({ lockScroll: {
-          x: (clientWidth - offsetWidth)/2,
-          y: (clientHeightFixed - offsetHeight)/2,
+          x: zoomMatrix.scrollLeft,
+          y: zoomMatrix.scrollTop,
         } });
       });
     }
@@ -371,7 +384,7 @@ class ZoomableImage extends React.PureComponent {
           onClick={this.handleZoomClick}
           size={40}
           style={{
-            fontSize: '30px',
+            fontSize: '30px', /* Fontawesome's fa-compress fa-expand is larger than fa-close */
           }}
         />
         <div
