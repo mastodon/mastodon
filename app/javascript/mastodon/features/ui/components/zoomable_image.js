@@ -67,7 +67,7 @@ const normalizeWheel = event => {
   }
 
   if ((pX || pY) && event.deltaMode) {
-    if (event.deltaMode == 1) { // delta in LINE units
+    if (event.deltaMode === 1) { // delta in LINE units
       pX *= LINE_HEIGHT;
       pY *= LINE_HEIGHT;
     } else { // delta in PAGE units
@@ -88,9 +88,9 @@ const normalizeWheel = event => {
     spinX: sX,
     spinY: sY,
     pixelX: pX,
-    pixelY: pY
+    pixelY: pY,
   };
-}
+};
 
 export default @injectIntl
 class ZoomableImage extends React.PureComponent {
