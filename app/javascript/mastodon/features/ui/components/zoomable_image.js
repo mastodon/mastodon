@@ -11,7 +11,6 @@ const messages = defineMessages({
 const MIN_SCALE = 1;
 const MAX_SCALE = 4;
 const NAV_BAR_HEIGHT = 66;
-const SCROLL_BAR_THICKNESS = 0;
 
 const getMidpoint = (p1, p2) => ({
   x: (p1.clientX + p2.clientX) / 2,
@@ -304,7 +303,7 @@ class ZoomableImage extends React.PureComponent {
     e.preventDefault();
   }
 
-  initZoomMatrix = e => {
+  initZoomMatrix = () => {
     const { width, height } = this.props;
     const { clientWidth, clientHeight } = this.container;
     const { offsetWidth, offsetHeight } = this.image;
@@ -326,7 +325,7 @@ class ZoomableImage extends React.PureComponent {
         clientHeightFixed: clientHeightFixed,
         scrollTop: scrollTop,
         scrollLeft: scrollLeft,
-      }
+      },
     });
   }
 
