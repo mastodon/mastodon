@@ -64,6 +64,9 @@ nn:
         data: CSV-fil eksportert frå ein annan Mastodon-tenar
       invite_request:
         text: Dette kjem til å hjelpa oss med å gå gjennom søknaden din
+      ip_block:
+        severities:
+          no_access: Blokker tilgang til alle ressurser
       sessions:
         otp: 'Angi tofaktorkoden fra din telefon eller bruk en av dine gjenopprettingskoder.'
       tag:
@@ -134,6 +137,7 @@ nn:
         setting_default_privacy: Privatliv
         setting_default_sensitive: Merk alltid media som nærtakande
         setting_delete_modal: Vis stadfesting før du slettar eit tut
+        setting_disable_swiping: Skru av sveipebevegelser
         setting_display_media: Medievisning
         setting_display_media_default: Standard
         setting_display_media_hide_all: Gøym alle
@@ -167,6 +171,13 @@ nn:
         comment: Kommentar
       invite_request:
         text: Kvifor vil du verta med?
+      ip_block:
+        comment: Kommentere
+        ip: IP
+        severities:
+          no_access: Blokker tilgang
+          sign_up_requires_approval: Begrens påmeldinger
+        severity: Oppføring
       notification_emails:
         digest: Send samandrag på e-post
         favourite: Send e-post når nokon merkjer statusen din som favoritt
@@ -187,4 +198,7 @@ nn:
     required:
       mark: "*"
       text: obligatorisk
+    title:
+      sessions:
+        webauthn: Bruk en av sikkerhetsnøklene dine til å logge på
     'yes': 'Ja'
