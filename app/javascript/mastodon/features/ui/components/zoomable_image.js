@@ -27,21 +27,31 @@ const clamp = (min, max, value) => Math.min(max, Math.max(min, value));
 // copy from: https://github.com/facebookarchive/fixed-data-table/blob/master/src/vendor_upstream/dom/normalizeWheel.js
 const normalizeWheel = event => {
   // Reasonable defaults
-  const PIXEL_STEP  = 10;
+  const PIXEL_STEP = 10;
   const LINE_HEIGHT = 40;
   const PAGE_HEIGHT = 800;
 
-  let sX = 0, sY = 0,       // spinX, spinY
-      pX = 0, pY = 0;       // pixelX, pixelY
+  let sX = 0,
+    sY = 0, // spinX, spinY
+    pX = 0,
+    pY = 0; // pixelX, pixelY
 
   // Legacy
-  if ('detail'      in event) { sY = event.detail; }
-  if ('wheelDelta'  in event) { sY = -event.wheelDelta / 120; }
-  if ('wheelDeltaY' in event) { sY = -event.wheelDeltaY / 120; }
-  if ('wheelDeltaX' in event) { sX = -event.wheelDeltaX / 120; }
+  if ('detail' in event) {
+    sY = event.detail;
+  }
+  if ('wheelDelta' in event) {
+    sY = -event.wheelDelta / 120;
+  }
+  if ('wheelDeltaY' in event) {
+    sY = -event.wheelDeltaY / 120;
+  }
+  if ('wheelDeltaX' in event) {
+    sX = -event.wheelDeltaX / 120;
+  }
 
   // side scrolling on FF with DOMMouseScroll
-  if ( 'axis' in event && event.axis === event.HORIZONTAL_AXIS ) {
+  if ('axis' in event && event.axis === event.HORIZONTAL_AXIS) {
     sX = sY;
     sY = 0;
   }
@@ -49,22 +59,30 @@ const normalizeWheel = event => {
   pX = sX * PIXEL_STEP;
   pY = sY * PIXEL_STEP;
 
-  if ('deltaY' in event) { pY = event.deltaY; }
-  if ('deltaX' in event) { pX = event.deltaX; }
+  if ('deltaY' in event) {
+    pY = event.deltaY;
+  }
+  if ('deltaX' in event) {
+    pX = event.deltaX;
+  }
 
   if ((pX || pY) && event.deltaMode) {
-    if (event.deltaMode == 1) {          // delta in LINE units
+    if (event.deltaMode == 1) { // delta in LINE units
       pX *= LINE_HEIGHT;
       pY *= LINE_HEIGHT;
-    } else {                             // delta in PAGE units
+    } else { // delta in PAGE units
       pX *= PAGE_HEIGHT;
       pY *= PAGE_HEIGHT;
     }
   }
 
   // Fall-back if spin cannot be determined
-  if (pX && !sX) { sX = (pX < 1) ? -1 : 1; }
-  if (pY && !sY) { sY = (pY < 1) ? -1 : 1; }
+  if (pX && !sX) {
+    sX = (pX < 1) ? -1 : 1;
+  }
+  if (pY && !sY) {
+    sY = (pY < 1) ? -1 : 1;
+  }
 
   return {
     spinX: sX,
@@ -170,24 +188,11 @@ class ZoomableImage extends React.PureComponent {
 
     if (width/height < clientWidth/clientHeightFixed) {
       // full width, scroll vertical
-      if ((this.container.scrollTop + event.pixelY) >= this.state.lockScroll.y) {
-        this.container.scrollTop = this.container.scrollTop + event.pixelY;
-      }
+      this.container.scrollTop = this.container.scrollTop + event.pixelY;
     } else {
       // full height, scroll horizontal
-      if ((this.container.scrollLeft + event.pixelY) >= this.state.lockScroll.y) {
-        this.container.scrollLeft = this.container.scrollLeft + event.pixelY;
-      }
+      this.container.scrollLeft = this.container.scrollLeft + event.pixelY;
     }
-
-    // lock horizontal scroll
-
-    // NB: not sure if this is necesssary?
-    // My computer does not support horizontal scroll, so need someone else to test code block below.
-
-    // if ((this.container.scrollLeft + event.pixelX) >= this.state.lockScroll.x) {
-    //   this.container.scrollLeft = this.container.scrollLeft + event.pixelX;
-    // }
   }
 
   mouseDownHandler = e => {
