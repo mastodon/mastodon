@@ -181,6 +181,8 @@ ja:
       statuses: トゥート数
       subscribe: 購読する
       suspended: 停止済み
+      suspension_irreversible: このアカウントのデータは削除され元に戻せなくなります。後日アカウントの凍結を解除することはできますがデータは元に戻せません。
+      suspension_reversible_hint_html: アカウントは停止されており、データは %{date} に完全に削除されます。それまではアカウントを元に戻すことができます。今すぐ完全に削除したい場合は以下から行うことができます。
       time_in_queue: '%{time} 待ち'
       title: アカウント
       unconfirmed_email: 確認待ちのメールアドレス
@@ -1357,3 +1359,4 @@ ja:
     not_enabled: まだセキュリティキーを有効にしていません
     not_supported: このブラウザはセキュリティキーに対応していないようです
     otp_required: セキュリティキーを使用するには、まず二段階認証を有効にしてください。
+    registered_on: '%{date} に登録'
