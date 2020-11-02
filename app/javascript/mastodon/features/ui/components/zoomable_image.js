@@ -11,7 +11,7 @@ const messages = defineMessages({
 const MIN_SCALE = 1;
 const MAX_SCALE = 4;
 const NAV_BAR_HEIGHT = 66;
-const SCROLL_BAR_THICKNESS = 12;
+const SCROLL_BAR_THICKNESS = 0;
 
 const getMidpoint = (p1, p2) => ({
   x: (p1.clientX + p2.clientX) / 2,
@@ -22,6 +22,57 @@ const getDistance = (p1, p2) =>
   Math.sqrt(Math.pow(p1.clientX - p2.clientX, 2) + Math.pow(p1.clientY - p2.clientY, 2));
 
 const clamp = (min, max, value) => Math.min(max, Math.max(min, value));
+
+// Normalizing mousewheel speed across browsers
+// copy from: https://github.com/facebookarchive/fixed-data-table/blob/master/src/vendor_upstream/dom/normalizeWheel.js
+const normalizeWheel = event => {
+  // Reasonable defaults
+  const PIXEL_STEP  = 10;
+  const LINE_HEIGHT = 40;
+  const PAGE_HEIGHT = 800;
+
+  let sX = 0, sY = 0,       // spinX, spinY
+      pX = 0, pY = 0;       // pixelX, pixelY
+
+  // Legacy
+  if ('detail'      in event) { sY = event.detail; }
+  if ('wheelDelta'  in event) { sY = -event.wheelDelta / 120; }
+  if ('wheelDeltaY' in event) { sY = -event.wheelDeltaY / 120; }
+  if ('wheelDeltaX' in event) { sX = -event.wheelDeltaX / 120; }
+
+  // side scrolling on FF with DOMMouseScroll
+  if ( 'axis' in event && event.axis === event.HORIZONTAL_AXIS ) {
+    sX = sY;
+    sY = 0;
+  }
+
+  pX = sX * PIXEL_STEP;
+  pY = sY * PIXEL_STEP;
+
+  if ('deltaY' in event) { pY = event.deltaY; }
+  if ('deltaX' in event) { pX = event.deltaX; }
+
+  if ((pX || pY) && event.deltaMode) {
+    if (event.deltaMode == 1) {          // delta in LINE units
+      pX *= LINE_HEIGHT;
+      pY *= LINE_HEIGHT;
+    } else {                             // delta in PAGE units
+      pX *= PAGE_HEIGHT;
+      pY *= PAGE_HEIGHT;
+    }
+  }
+
+  // Fall-back if spin cannot be determined
+  if (pX && !sX) { sX = (pX < 1) ? -1 : 1; }
+  if (pY && !sY) { sY = (pY < 1) ? -1 : 1; }
+
+  return {
+    spinX: sX,
+    spinY: sY,
+    pixelX: pX,
+    pixelY: pY
+  };
+}
 
 export default @injectIntl
 class ZoomableImage extends React.PureComponent {
@@ -48,6 +99,7 @@ class ZoomableImage extends React.PureComponent {
     zoomState: 'expand',
     pos: { top: 0, left: 0, x: 0, y: 0 },
     dragged: false,
+    lockScroll: { x: 0, y: 0 },
   }
 
   removers = [];
@@ -69,6 +121,16 @@ class ZoomableImage extends React.PureComponent {
     handler = this.mouseDownHandler;
     this.container.addEventListener('mousedown', handler);
     this.removers.push(() => this.container.removeEventListener('mousedown', handler));
+
+    handler = this.mouseWheelHandler;
+    this.container.addEventListener('wheel', handler);
+    this.removers.push(() => this.container.removeEventListener('wheel', handler));
+    // Old Chrome
+    this.container.addEventListener('mousewheel', handler);
+    this.removers.push(() => this.container.removeEventListener('mousewheel', handler));
+    // Old Firefox
+    this.container.addEventListener('DOMMouseScroll', handler);
+    this.removers.push(() => this.container.removeEventListener('DOMMouseScroll', handler));
   }
 
   componentWillUnmount () {
@@ -98,6 +160,36 @@ class ZoomableImage extends React.PureComponent {
     this.removers = [];
   }
 
+  mouseWheelHandler = e => {
+    e.preventDefault();
+
+    const { width, height } = this.props;
+    const { clientWidth, clientHeight } = this.container;
+    const clientHeightFixed = clientHeight - NAV_BAR_HEIGHT;
+    const event = normalizeWheel(e);
+
+    if (width/height < clientWidth/clientHeightFixed) {
+      // full width, scroll vertical
+      if ((this.container.scrollTop + event.pixelY) >= this.state.lockScroll.y) {
+        this.container.scrollTop = this.container.scrollTop + event.pixelY;
+      }
+    } else {
+      // full height, scroll horizontal
+      if ((this.container.scrollLeft + event.pixelY) >= this.state.lockScroll.y) {
+        this.container.scrollLeft = this.container.scrollLeft + event.pixelY;
+      }
+    }
+
+    // lock horizontal scroll
+
+    // NB: not sure if this is necesssary?
+    // My computer does not support horizontal scroll, so need someone else to test code block below.
+
+    // if ((this.container.scrollLeft + event.pixelX) >= this.state.lockScroll.x) {
+    //   this.container.scrollLeft = this.container.scrollLeft + event.pixelX;
+    // }
+  }
+
   mouseDownHandler = e => {
     this.container.style.cursor = 'grabbing';
     this.container.style.userSelect = 'none';
@@ -120,8 +212,16 @@ class ZoomableImage extends React.PureComponent {
     const dy = e.clientY - this.state.pos.y;
 
     // Scroll the element
-    this.container.scrollTop = this.state.pos.top - dy;
-    this.container.scrollLeft = this.state.pos.left - dx;
+    // this.container.scrollTop = this.state.pos.top - dy;
+    // this.container.scrollLeft = this.state.pos.left - dx;
+
+    if ((this.state.pos.left - dx) >= this.state.lockScroll.x) {
+      this.container.scrollLeft = this.state.pos.left - dx;
+    }
+
+    if ((this.state.pos.top - dy) >= this.state.lockScroll.y) {
+      this.container.scrollTop = this.state.pos.top - dy;
+    }
 
     this.setState({ dragged: true });
   }
@@ -194,6 +294,10 @@ class ZoomableImage extends React.PureComponent {
     this.setState({ navigationHidden: !this.state.navigationHidden });
   }
 
+  handleMouseDown = e => {
+    e.preventDefault();
+  }
+
   handleZoomClick = e => {
     e.preventDefault();
     e.stopPropagation();
@@ -203,22 +307,34 @@ class ZoomableImage extends React.PureComponent {
     const { offsetWidth, offsetHeight } = this.image;
     const clientHeightFixed = clientHeight - NAV_BAR_HEIGHT;
 
-    if ( this.state.scale >= Math.max(( clientWidth - 2 * SCROLL_BAR_THICKNESS)/offsetWidth, (clientHeightFixed)/offsetHeight ) ) {
+    if ( this.state.scale >= Math.max(( clientWidth - 2 * SCROLL_BAR_THICKNESS)/offsetWidth, clientHeightFixed/offsetHeight ) ) {
       this.setState({ scale: MIN_SCALE }, () => {
         this.container.scrollLeft = 0;
         this.container.scrollTop = 0;
+        this.setState({ lockScroll: {
+          x: 0,
+          y: 0,
+        } });
       });
     } else if ( width/height < clientWidth/clientHeightFixed ) {
       // full width
       this.setState({ scale: clientWidth/offsetWidth }, () => {
-        this.container.scrollLeft = (clientWidth-offsetWidth)/2;
-        this.container.scrollTop = (clientHeight-offsetHeight)/2 - NAV_BAR_HEIGHT;
+        this.container.scrollLeft = (clientWidth - offsetWidth)/2;
+        this.container.scrollTop = (clientHeight - offsetHeight)/2 - NAV_BAR_HEIGHT;
+        this.setState({ lockScroll: {
+          x: (clientWidth - offsetWidth)/2,
+          y: (clientHeight - offsetHeight)/2 - NAV_BAR_HEIGHT,
+        } });
       });
     } else {
       // full height
       this.setState({ scale: clientHeightFixed/offsetHeight }, () => {
-        this.container.scrollTop = (clientHeightFixed-offsetHeight)/2;
-        this.container.scrollLeft = (clientWidth-offsetWidth)/2;
+        this.container.scrollLeft = (clientWidth - offsetWidth)/2;
+        this.container.scrollTop = (clientHeightFixed - offsetHeight)/2;
+        this.setState({ lockScroll: {
+          x: (clientWidth - offsetWidth)/2,
+          y: (clientHeightFixed - offsetHeight)/2,
+        } });
       });
     }
 
@@ -272,6 +388,7 @@ class ZoomableImage extends React.PureComponent {
             }}
             draggable={false}
             onClick={this.handleClick}
+            onMouseDown={this.handleMouseDown}
           />
         </div>
       </React.Fragment>
