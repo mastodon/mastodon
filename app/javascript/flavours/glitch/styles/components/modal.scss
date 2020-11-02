@@ -40,6 +40,21 @@
   z-index: 9999;
 }
 
+.media-modal__zoom-button {
+  position: absolute;
+  right: 64px;
+  top: 8px;
+  z-index: 100;
+  pointer-events: auto;
+  transition: opacity 0.3s linear;
+  will-change: opacity;
+}
+
+.media-modal__zoom-button--hidden {
+  pointer-events: none;
+  opacity: 0;
+}
+
 .onboarding-modal,
 .error-modal,
 .embed-modal {
