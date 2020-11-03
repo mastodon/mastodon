@@ -194,11 +194,14 @@ class ZoomableImage extends React.PureComponent {
 
     if (this.state.zoomMatrix.type === 'full-width') {
       // full width, scroll vertical
-      this.container.scrollTop = this.container.scrollTop + event.pixelY;
+      this.container.scrollTop = Math.max(this.container.scrollTop + event.pixelY, this.state.lockScroll.y);
     } else {
       // full height, scroll horizontal
-      this.container.scrollLeft = this.container.scrollLeft + event.pixelY;
+      this.container.scrollLeft = Math.max(this.container.scrollLeft + event.pixelY, this.state.lockScroll.x);
     }
+
+    // lock horizontal scroll
+    this.container.scrollLeft = Math.max(this.container.scrollLeft + event.pixelX, this.state.lockScroll.x);
   }
 
   mouseDownHandler = e => {
@@ -221,13 +224,8 @@ class ZoomableImage extends React.PureComponent {
     const dx = e.clientX - this.state.dragPosition.x;
     const dy = e.clientY - this.state.dragPosition.y;
 
-    if ((this.state.dragPosition.left - dx) >= this.state.lockScroll.x) {
-      this.container.scrollLeft = this.state.dragPosition.left - dx;
-    }
-
-    if ((this.state.dragPosition.top - dy) >= this.state.lockScroll.y) {
-      this.container.scrollTop = this.state.dragPosition.top - dy;
-    }
+    this.container.scrollLeft = Math.max(this.state.dragPosition.left - dx, this.state.lockScroll.x);
+    this.container.scrollTop = Math.max(this.state.dragPosition.top - dy, this.state.lockScroll.y);
 
     this.setState({ dragged: true });
   }
@@ -336,22 +334,26 @@ class ZoomableImage extends React.PureComponent {
     const { scale, zoomMatrix } = this.state;
 
     if ( scale >= zoomMatrix.rate ) {
-      this.setState({ scale: MIN_SCALE }, () => {
-        this.container.scrollLeft = 0;
-        this.container.scrollTop = 0;
-        this.setState({ lockScroll: {
+      this.setState({
+        scale: MIN_SCALE,
+        lockScroll: {
           x: 0,
           y: 0,
-        } });
+        },
+      }, () => {
+        this.container.scrollLeft = 0;
+        this.container.scrollTop = 0;
       });
     } else {
-      this.setState({ scale: zoomMatrix.rate }, () => {
-        this.container.scrollLeft = zoomMatrix.scrollLeft;
-        this.container.scrollTop = zoomMatrix.scrollTop;
-        this.setState({ lockScroll: {
+      this.setState({
+        scale: zoomMatrix.rate,
+        lockScroll: {
           x: zoomMatrix.scrollLeft,
           y: zoomMatrix.scrollTop,
-        } });
+        },
+      }, () => {
+        this.container.scrollLeft = zoomMatrix.scrollLeft;
+        this.container.scrollTop = zoomMatrix.scrollTop;
       });
     }
 
