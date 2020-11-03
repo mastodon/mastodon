@@ -174,7 +174,7 @@ class ZoomableImage extends React.PureComponent {
   componentDidUpdate () {
     this.setState({ zoomState: this.state.scale >= this.state.zoomMatrix.rate ? 'compress' : 'expand' });
 
-    if (this.state.scale === 1) {
+    if (this.state.scale === MIN_SCALE) {
       this.container.style.removeProperty('cursor');
     }
   }
@@ -396,8 +396,8 @@ class ZoomableImage extends React.PureComponent {
   render () {
     const { alt, src, width, height, intl } = this.props;
     const { scale, lockTranslate } = this.state;
-    const overflow = scale === 1 ? 'hidden' : 'scroll';
-    const zoomButtonShouldHide = this.state.navigationHidden || this.props.zoomButtonHidden || this.state.zoomMatrix.rate <= 1 ? 'media-modal__zoom-button--hidden' : '';
+    const overflow = scale === MIN_SCALE ? 'hidden' : 'scroll';
+    const zoomButtonShouldHide = this.state.navigationHidden || this.props.zoomButtonHidden || this.state.zoomMatrix.rate <= MIN_SCALE ? 'media-modal__zoom-button--hidden' : '';
     const zoomButtonTitle = this.state.zoomState === 'compress' ? intl.formatMessage(messages.compress) : intl.formatMessage(messages.expand);
 
     return (
