@@ -334,22 +334,26 @@ class ZoomableImage extends React.PureComponent {
     const { scale, zoomMatrix } = this.state;
 
     if ( scale >= zoomMatrix.rate ) {
-      this.setState({ scale: MIN_SCALE }, () => {
-        this.container.scrollLeft = 0;
-        this.container.scrollTop = 0;
-        this.setState({ lockScroll: {
+      this.setState({
+        scale: MIN_SCALE,
+        lockScroll: {
           x: 0,
           y: 0,
-        } });
+        },
+      }, () => {
+        this.container.scrollLeft = 0;
+        this.container.scrollTop = 0;
       });
     } else {
-      this.setState({ scale: zoomMatrix.rate }, () => {
-        this.container.scrollLeft = zoomMatrix.scrollLeft;
-        this.container.scrollTop = zoomMatrix.scrollTop;
-        this.setState({ lockScroll: {
+      this.setState({
+        scale: zoomMatrix.rate,
+        lockScroll: {
           x: zoomMatrix.scrollLeft,
           y: zoomMatrix.scrollTop,
-        } });
+        },
+      }, () => {
+        this.container.scrollLeft = zoomMatrix.scrollLeft;
+        this.container.scrollTop = zoomMatrix.scrollTop;
       });
     }
 
