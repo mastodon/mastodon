@@ -245,10 +245,11 @@ pt-PT:
         reopen_report: Reabrir Relatório
         reset_password_user: Repor Password
         resolve_report: Resolver Relatório
-        sensitive_account: Marque a media na sua conta como sensível
+        sensitive_account: Marcar a media na sua conta como sensível
         silence_account: Silenciar Conta
         suspend_account: Suspender Conta
         unassigned_report: Desatribuir Relatório
+        unsensitive_account: Desmarcar a media na sua conta como sensível
         unsilence_account: Deixar de Silenciar Conta
         unsuspend_account: Retirar Suspensão à Conta
         update_announcement: Atualizar Anúncio
@@ -284,9 +285,11 @@ pt-PT:
         reopen_report: "%{name} reabriu o relatório %{target}"
         reset_password_user: "%{name} restabeleceu a palavra-passe do utilizador %{target}"
         resolve_report: "%{name} recusou o relatório %{target}"
+        sensitive_account: "%{name} marcou a media de %{target} como sensível"
         silence_account: "%{name} silenciou a conta de %{target}"
         suspend_account: "%{name} suspendeu a conta de %{target}"
         unassigned_report: "%{name} não atribuiu o relatório %{target}"
+        unsensitive_account: "%{name} desmarcou a media de %{target} como sensível"
         unsilence_account: "%{name} desativou o silêncio de %{target}"
         unsuspend_account: "%{name} desativou a suspensão de  %{target}"
         update_announcement: "%{name} atualizou o anúncio %{target}"
@@ -1205,6 +1208,8 @@ pt-PT:
         other: "%{count} votos"
       vote: Votar
     show_more: Mostrar mais
+    show_newer: Mostrar mais recentes
+    show_older: Mostrar mais antigos
     show_thread: Mostrar conversa
     sign_in_to_participate: Inicie a sessão para participar na conversa
     title: '%{name}: "%{quote}"'
@@ -1341,6 +1346,7 @@ pt-PT:
     warning:
       explanation:
         disable: Enquanto a tua conta está congelada, os seus dados permanecem intactos, mas tu não podes executar quaisquer acções até que ela seja desbloqueada.
+        sensitive: Os seus ficheiros de media carregados e os media ligados serão tratados como sensíveis.
         silence: Enquanto a sua conta estiver limitada, só pessoas que já estiver a seguir irão ver as suas publicações nesta instância e poderá ser excluído de várias listagens públicas. No entanto, outros ainda o poderão seguir de forma manual.
         suspend: A sua conta foi suspensa e todas as suas publicações e os seus ficheiros de media foram irreversivelmente removidos desta instância e das instâncias onde tinhas seguidores.
       get_in_touch: Pode responder a este e-mail para entrar em contacto com a equipa de %{instance}.
@@ -1349,11 +1355,13 @@ pt-PT:
       subject:
         disable: A tua conta %{acct} foi congelada
         none: Aviso para %{acct}
+        sensitive: As publicações de media da sua conta %{acct} foram marcadas como sensíveis
         silence: A tua conta %{acct} foi limitada
         suspend: A tua conta %{acct} foi suspensa
       title:
         disable: Conta congelada
         none: Aviso
+        sensitive: A sua media foi marcada como sensível
         silence: Conta limitada
         suspend: Conta suspensa
     welcome:
