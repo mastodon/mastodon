@@ -297,6 +297,7 @@ class MediaGallery extends React.PureComponent {
       this._setDimensions();
     }
   }, 250, {
+    leading: true,
     trailing: true,
   });
 
