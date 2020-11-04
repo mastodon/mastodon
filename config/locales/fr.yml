@@ -289,6 +289,7 @@ fr:
         silence_account: "%{name} a masqué le compte de %{target}"
         suspend_account: "%{name} a suspendu le compte %{target}"
         unassigned_report: "%{name} a désassigné le signalement %{target}"
+        unsensitive_account: "%{name} a enlevé le marquage du média de %{target} comme sensible"
         unsilence_account: "%{name} ne masque plus le compte de %{target}"
         unsuspend_account: "%{name} a réactivé le compte de %{target}"
         update_announcement: "%{name} a actualisé l’annonce %{target}"
@@ -1343,6 +1344,7 @@ fr:
     warning:
       explanation:
         disable: Lorsque votre compte est gelé, les données de votre compte demeurent intactes, mais vous ne pouvez effectuer aucune action jusqu’à ce qu’il soit débloqué.
+        sensitive: Vos fichiers médias téléversés et vos médias liés seront traités comme sensibles.
         silence: Lorsque votre compte est limité, seul·e·s les utilisateur·rice·s qui vous suivent déjà verront vos pouets sur ce serveur, et vous pourriez être exclu de plusieurs listes publiques. Néanmoins, d’autres utilisateur·rice·s peuvent vous suivre manuellement.
         suspend: Votre compte a été suspendu, et tous vos pouets et vos fichiers multimédia téléversés ont été supprimés irréversiblement de ce serveur, et des serveurs où vous aviez des abonné·e·s.
       get_in_touch: Vous pouvez répondre à cette adresse pour entrer en contact avec l’équipe de %{instance}.
@@ -1351,11 +1353,13 @@ fr:
       subject:
         disable: Votre compte %{acct} a été gelé
         none: Avertissement pour %{acct}
+        sensitive: Les médias publiés depuis votre compte %{acct} ont été marqués comme étant sensibles
         silence: Votre compte %{acct} a été limité
         suspend: Votre compte %{acct} a été suspendu
       title:
         disable: Compte gelé
         none: Avertissement
+        sensitive: Votre média a été marqué comme sensible
         silence: Compte limité
         suspend: Compte suspendu
     welcome:
