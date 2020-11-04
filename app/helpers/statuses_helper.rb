@@ -4,8 +4,12 @@ module StatusesHelper
   EMBEDDED_CONTROLLER = 'statuses'
   EMBEDDED_ACTION = 'embed'
 
-  def link_to_more(url)
-    link_to t('statuses.show_more'), url, class: 'load-more load-gap'
+  def link_to_newer(url)
+    link_to t('statuses.show_newer'), url, class: 'load-more load-gap'
+  end
+
+  def link_to_older(url)
+    link_to t('statuses.show_older'), url, class: 'load-more load-gap'
   end
 
   def nothing_here(extra_classes = '')
