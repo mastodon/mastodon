@@ -187,6 +187,8 @@ ca:
       search: Cerca
       search_same_email_domain: Altres usuaris amb el mateix domini de correu
       search_same_ip: Altres usuaris amb la mateixa IP
+      sensitive: Sensible
+      sensitized: marcar com a sensible
       shared_inbox_url: URL de la safata d'entrada compartida
       show:
         created_reports: Informes creats
@@ -201,6 +203,7 @@ ca:
       time_in_queue: Esperant en la cua %{time}
       title: Comptes
       unconfirmed_email: Correu electrònic sense confirmar
+      undo_sensitized: Desmarcar com a sensible
       undo_silenced: Deixa de silenciar
       undo_suspension: Desfés la suspensió
       unsilenced_msg: El compte de %{username} ha estat il·limitat amb èxit
@@ -242,9 +245,11 @@ ca:
         reopen_report: Reobre l'informe
         reset_password_user: Restableix la contrasenya
         resolve_report: Resolt l'informe
+        sensitive_account: Marcar els mèdia en el teu compte com a sensibles
         silence_account: Silencia el compte
         suspend_account: Suspèn el compte
         unassigned_report: Des-assigna l'informe
+        unsensitive_account: Desmarcar els mèdia en el teu compte com a sensibles
         unsilence_account: Desfés el silenci del compte
         unsuspend_account: Desfés la suspensió del compte
         update_announcement: Actualitza l'anunci
@@ -280,9 +285,11 @@ ca:
         reopen_report: "%{name} ha reobert l'informe %{target}"
         reset_password_user: "%{name} ha restablert la contrasenya de l'usuari %{target}"
         resolve_report: "%{name} ha resolt l'informe %{target}"
+        sensitive_account: "%{name} ha marcat els mèdia de %{target} com a sensibles"
         silence_account: "%{name} ha silenciat el compte de %{target}"
         suspend_account: "%{name} ha suspès el compte de %{target}"
         unassigned_report: "%{name} ha des-assignat l'informe %{target}"
+        unsensitive_account: "%{name} ha desmarcat els mèdia de %{target} com a sensibles"
         unsilence_account: "%{name} ha silenciat el compte de %{target}"
         unsuspend_account: "%{name} ha llevat la suspensió del compte de %{target}"
         update_announcement: "%{name} ha actualitzat l'anunci %{target}"
@@ -1337,6 +1344,7 @@ ca:
     warning:
       explanation:
         disable: Mentre el teu compte estigui congelat les dades romandran intactes però no pots dur a terme cap acció fins que no estigui desbloquejat.
+        sensitive: Els fitxers multimèdia pujats i els enllaçats seran tractas com a sensibles.
         silence: Mentre el teu compte estigui limitat només les persones que ja et segueixen veuen les teves dades en aquest servidor i pots ser exclòs de diverses llistes públiques. No obstant això, d'altres encara poden seguir-te manualment.
         suspend: El teu compte s'ha suspès i tots els teus tuts i fitxers multimèdia penjats s'han eliminat de manera irreversible d'aquest servidor i dels servidors on tenies seguidors.
       get_in_touch: Pots respondre a aquest correu electrònic per a contactar amb el personal de %{instance}.
