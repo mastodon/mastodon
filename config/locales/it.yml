@@ -187,6 +187,8 @@ it:
       search: Cerca
       search_same_email_domain: Altri utenti con lo stesso dominio e-mail
       search_same_ip: Altri utenti con lo stesso IP
+      sensitive: Sensibile
+      sensitized: contrassegnato come sensibile
       shared_inbox_url: URL Inbox Condiviso
       show:
         created_reports: Rapporti creati da questo account
@@ -201,6 +203,7 @@ it:
       time_in_queue: Attesa in coda %{time}
       title: Account
       unconfirmed_email: Email non confermata
+      undo_sensitized: Annulla sensibile
       undo_silenced: Rimuovi silenzia
       undo_suspension: Rimuovi sospensione
       unsilenced_msg: Sono stati tolti i limiti dell'account di %{username}
@@ -242,9 +245,11 @@ it:
         reopen_report: Riapri report
         reset_password_user: Reimposta password
         resolve_report: Risolvi report
+        sensitive_account: Contrassegna il media nel tuo profilo come sensibile
         silence_account: Silenzia account
         suspend_account: Sospendi account
         unassigned_report: Disassegna report
+        unsensitive_account: Deseleziona il media nel tuo profilo come sensibile
         unsilence_account: De-silenzia account
         unsuspend_account: Annulla la sospensione dell'account
         update_announcement: Aggiorna annuncio
@@ -1201,6 +1206,8 @@ it:
         other: "%{count} voti"
       vote: Vota
     show_more: Mostra di più
+    show_newer: Mostra più nuovi
+    show_older: Mostra più vecchi
     show_thread: Mostra thread
     sign_in_to_participate: Accedi per partecipare alla conversazione
     title: '%{name}: "%{quote}"'
