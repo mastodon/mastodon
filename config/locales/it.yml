@@ -285,9 +285,11 @@ it:
         reopen_report: "%{name} ha riaperto il rapporto %{target}"
         reset_password_user: "%{name} ha reimpostato la password dell'utente %{target}"
         resolve_report: "%{name} ha risolto il rapporto %{target}"
+        sensitive_account: "%{name} ha contrassegnato il media di %{target} come sensibile"
         silence_account: "%{name} ha silenziato l'account di %{target}"
         suspend_account: "%{name} ha sospeso l'account di %{target}"
         unassigned_report: "%{name} report non assegnato %{target}"
+        unsensitive_account: "%{name} ha deselezionato il media di %{target} come sensibile"
         unsilence_account: "%{name} ha de-silenziato l'account di %{target}"
         unsuspend_account: "%{name} ha annullato la sospensione dell'account di %{target}"
         update_announcement: "%{name} ha aggiornato l'annuncio %{target}"
@@ -1347,6 +1349,7 @@ it:
     warning:
       explanation:
         disable: Mentre il tuo account è congelato, i tuoi dati dell'account rimangono intatti, ma non potrai eseguire nessuna azione fintanto che non viene sbloccato.
+        sensitive: I tuoi file multimediali caricati e multimedia collegati saranno trattati come sensibili.
         silence: Mentre il tuo account è limitato, solo le persone che già ti seguono possono vedere i tuoi toot su questo server, e potresti essere escluso da vari elenchi pubblici. Comunque, altri possono manualmente seguirti.
         suspend: Il tuo account è stato sospeso, e tutti i tuoi toot ed i tuoi file media caricati sono stati irreversibilmente rimossi da questo server, e dai server dove avevi dei seguaci.
       get_in_touch: Puoi rispondere a questa email per entrare in contatto con lo staff di %{instance}.
@@ -1355,11 +1358,13 @@ it:
       subject:
         disable: Il tuo account %{acct} è stato congelato
         none: Avviso per %{acct}
+        sensitive: Il multimedia in pubblicazione del tuo profilo %{acct} è stato contrassegnato come sensibile
         silence: Il tuo account %{acct} è stato limitato
         suspend: Il tuo account %{acct} è stato sospeso
       title:
         disable: Account congelato
         none: Avviso
+        sensitive: Il tuo multimedia è stato contrassegnato come sensibile
         silence: Account limitato
         suspend: Account sospeso
     welcome:
