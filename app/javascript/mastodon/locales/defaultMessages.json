@@ -1339,15 +1339,15 @@
   {
     "descriptors": [
       {
-        "defaultMessage": "Media is marked as sensitive",
+        "defaultMessage": "{count, plural, one {Media is marked as sensitive} other {Media is marked as sensitive}}",
         "id": "compose_form.sensitive.marked"
       },
       {
-        "defaultMessage": "Media is not marked as sensitive",
+        "defaultMessage": "{count, plural, one {Media is not marked as sensitive} other {Media is not marked as sensitive}}",
         "id": "compose_form.sensitive.unmarked"
       },
       {
-        "defaultMessage": "Mark media as sensitive",
+        "defaultMessage": "{count, plural, one {Mark media as sensitive} other {Mark media as sensitive}}",
         "id": "compose_form.sensitive.hide"
       }
     ],
@@ -3213,6 +3213,19 @@
       }
     ],
     "path": "app/javascript/mastodon/features/ui/components/video_modal.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Compress image view box",
+        "id": "lightbox.compress"
+      },
+      {
+        "defaultMessage": "Expand image view box",
+        "id": "lightbox.expand"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/ui/components/zoomable_image.json"
   },
   {
     "descriptors": [

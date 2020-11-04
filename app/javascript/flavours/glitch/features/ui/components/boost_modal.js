@@ -78,9 +78,10 @@ class BoostModal extends ImmutablePureComponent {
           <div className={classNames('status', `status-${status.get('visibility')}`, 'light')}>
             <div className='boost-modal__status-header'>
               <div className='boost-modal__status-time'>
-                <a href={status.get('url')} className='status__relative-time' target='_blank' rel='noopener noreferrer'><RelativeTimestamp timestamp={status.get('created_at')} /></a>
+                <a href={status.get('url')} className='status__relative-time' target='_blank' rel='noopener noreferrer'>
+                  <span className='status__visibility-icon'><Icon id={visibilityIcon.icon} title={visibilityIcon.text} /></span>
+                  <RelativeTimestamp timestamp={status.get('created_at')} /></a>
               </div>
-              <span className='status__visibility-icon'><Icon id={visibilityIcon.icon} title={visibilityIcon.text} /></span>
 
               <a onClick={this.handleAccountClick} href={status.getIn(['account', 'url'])} className='status__display-name'>
                 <div className='status__avatar'>

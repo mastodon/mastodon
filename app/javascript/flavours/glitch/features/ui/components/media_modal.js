@@ -35,23 +35,39 @@ class MediaModal extends ImmutablePureComponent {
   state = {
     index: null,
     navigationHidden: false,
+    zoomButtonHidden: false,
   };
 
   handleSwipe = (index) => {
     this.setState({ index: index % this.props.media.size });
   }
 
+  handleTransitionEnd = () => {
+    this.setState({
+      zoomButtonHidden: false,
+    });
+  }
+
   handleNextClick = () => {
-    this.setState({ index: (this.getIndex() + 1) % this.props.media.size });
+    this.setState({
+      index: (this.getIndex() + 1) % this.props.media.size,
+      zoomButtonHidden: true,
+    });
   }
 
   handlePrevClick = () => {
-    this.setState({ index: (this.props.media.size + this.getIndex() - 1) % this.props.media.size });
+    this.setState({
+      index: (this.props.media.size + this.getIndex() - 1) % this.props.media.size,
+      zoomButtonHidden: true,
+    });
   }
 
   handleChangeIndex = (e) => {
     const index = Number(e.currentTarget.getAttribute('data-index'));
-    this.setState({ index: index % this.props.media.size });
+    this.setState({
+      index: index % this.props.media.size,
+      zoomButtonHidden: true,
+    });
   }
 
   handleKeyDown = (e) => {
@@ -128,6 +144,7 @@ class MediaModal extends ImmutablePureComponent {
             alt={image.get('description')}
             key={image.get('url')}
             onClick={this.toggleNavigation}
+            zoomButtonHidden={this.state.zoomButtonHidden}
           />
         );
       } else if (image.get('type') === 'video') {
@@ -191,6 +208,7 @@ class MediaModal extends ImmutablePureComponent {
             style={swipeableViewsStyle}
             containerStyle={containerStyle}
             onChangeIndex={this.handleSwipe}
+            onTransitionEnd={this.handleTransitionEnd}
             index={index}
           >
             {content}

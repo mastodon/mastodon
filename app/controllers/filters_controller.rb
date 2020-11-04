@@ -10,7 +10,7 @@ class FiltersController < ApplicationController
   before_action :set_body_classes
 
   def index
-    @filters = current_account.custom_filters
+    @filters = current_account.custom_filters.order(:phrase)
   end
 
   def new
