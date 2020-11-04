@@ -187,6 +187,8 @@ de:
       search: Suche
       search_same_email_domain: Andere Benutzer mit der gleichen E-Mail-Domain
       search_same_ip: Andere Benutzer mit derselben IP
+      sensitive: NSFW
+      sensitized: Als NSFW markieren
       shared_inbox_url: Geteilte Posteingang-URL
       show:
         created_reports: Erstellte Meldungen
@@ -201,6 +203,7 @@ de:
       time_in_queue: '%{time} in der Warteschlange'
       title: Konten
       unconfirmed_email: Unbestätigte E-Mail-Adresse
+      undo_sensitized: Nicht mehr als NSFW markieren
       undo_silenced: Stummschaltung aufheben
       undo_suspension: Verbannung aufheben
       unsilenced_msg: '%{username}''s Konto erfolgreich freigegeben'
@@ -242,9 +245,11 @@ de:
         reopen_report: Meldung wieder eröffnen
         reset_password_user: Passwort zurücksetzen
         resolve_report: Bericht lösen
+        sensitive_account: Markiere die Medien in deinem Konto als NSFW
         silence_account: Konto stummschalten
         suspend_account: Konto sperren
         unassigned_report: Meldung widerrufen
+        unsensitive_account: Markiere die Medien in deinem Konto nicht mehr als NSFW
         unsilence_account: Konto nicht mehr stummschalten
         unsuspend_account: Konto nicht mehr sperren
         update_announcement: Ankündigung aktualisieren
@@ -280,9 +285,11 @@ de:
         reopen_report: "%{name} hat die Meldung %{target} wieder geöffnet"
         reset_password_user: "%{name} hat das Passwort von %{target} zurückgesetzt"
         resolve_report: "%{name} hat die Meldung %{target} bearbeitet"
+        sensitive_account: "%{name} markierte %{target}'s Medien als NSFW"
         silence_account: "%{name} hat das Konto von %{target} stummgeschaltet"
         suspend_account: "%{name} hat das Konto von %{target} verbannt"
         unassigned_report: "%{name} hat die Zuweisung der Meldung %{target} entfernt"
+        unsensitive_account: "%{name} markierte %{target}'s Medien nicht als NSFW"
         unsilence_account: "%{name} hat die Stummschaltung von %{target} aufgehoben"
         unsuspend_account: "%{name} hat die Verbannung von %{target} aufgehoben"
         update_announcement: "%{name} aktualisierte Ankündigung %{target}"
@@ -560,8 +567,8 @@ de:
         desc_html: Domain-Namen, die der Server im Fediversum gefunden hat
         title: Veröffentliche entdeckte Server durch die API
       preview_sensitive_media:
-        desc_html: Linkvorschauen auf anderen Webseiten werden ein Vorschaubild anzeigen, obwohl die Medien als heikel gekennzeichnet sind
-        title: Heikle Medien im OpenGraph-Vorschau anzeigen
+        desc_html: Linkvorschauen auf anderen Webseiten werden ein Vorschaubild anzeigen, obwohl die Medien als NSFW markiert sind
+        title: NSFW-Medien in OpenGraph-Vorschau anzeigen
       profile_directory:
         desc_html: Erlaube Benutzer auffindbar zu sein
         title: Aktiviere Profilverzeichnis
@@ -623,8 +630,8 @@ de:
       back_to_account: Zurück zum Konto
       batch:
         delete: Löschen
-        nsfw_off: Als nicht heikel markieren
-        nsfw_on: Als heikel markieren
+        nsfw_off: Als nicht NSFW markieren
+        nsfw_on: Als NSFW markieren
       deleted: Gelöscht
       failed_to_execute: Ausführen fehlgeschlagen
       media:
@@ -685,7 +692,7 @@ de:
       body: Mastodon wurde von Freiwilligen übersetzt.
       guide_link: https://de.crowdin.com/project/mastodon
       guide_link_text: Jeder kann etwas dazu beitragen.
-    sensitive_content: Heikle Inhalte
+    sensitive_content: NSFW
     toot_layout: Beitragslayout
   application_mailer:
     notification_preferences: Ändere E-Mail-Einstellungen
@@ -1201,6 +1208,8 @@ de:
         other: "%{count} Stimmen"
       vote: Abstimmen
     show_more: Mehr anzeigen
+    show_newer: Neuere anzeigen
+    show_older: Ältere anzeigen
     show_thread: Zeige Konversation
     sign_in_to_participate: Melde dich an, um an der Konversation teilzuhaben
     title: '%{name}: "%{quote}"'
@@ -1214,7 +1223,7 @@ de:
   stream_entries:
     pinned: Angehefteter Beitrag
     reblogged: teilte
-    sensitive_content: Heikle Inhalte
+    sensitive_content: NSFW
   tags:
     does_not_match_previous_name: entspricht nicht dem vorherigen Namen
   terms:
@@ -1339,6 +1348,7 @@ de:
     warning:
       explanation:
         disable: Solange dein Konto eingefroren ist, sind deine Benutzerdaten intakt; aber du kannst nichts tun, bis dein Konto entsperrt wurde.
+        sensitive: Deine hochgeladenen Mediendateien und verknüpften Medien werden als NSFW markiert.
         silence: Solange dein Konto limitiert ist, können nur die Leute, die dir bereits folgen, deine Beiträge auf dem Server sehen und es könnte sein, dass du von verschiedenen öffentlichen Listungen ausgeschlossen wirst. Andererseits können andere dir manuell folgen.
         suspend: Dein Konto wurde gesperrt und alle deine Beiträge und hochgeladenen Medien wurden unwiderruflich vom Server und anderen Servern, bei denen du Folgende hattest, gelöscht.
       get_in_touch: Du kannst auf diese E-Mail antworten, um mit dem Personal von %{instance} in Kontakt zu treten.
@@ -1347,11 +1357,13 @@ de:
       subject:
         disable: Dein Konto %{acct} wurde eingefroren
         none: Warnung für %{acct}
+        sensitive: Die Medien deines Konto %{acct} wurden als NSFW markiert
         silence: Dein Konto %{acct} wurde limitiert
         suspend: Dein Konto %{acct} wurde gesperrt
       title:
         disable: Konto eingefroren
         none: Warnung
+        sensitive: Deine Medien wurden als NSFW markiert
         silence: Konto limitiert
         suspend: Konto gesperrt
     welcome:
