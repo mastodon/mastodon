@@ -278,7 +278,7 @@ class ZoomableImage extends React.PureComponent {
   }
 
   zoom(nextScale, midpoint) {
-    const { scale } = this.state;
+    const { scale, zoomMatrix } = this.state;
     const { scrollLeft, scrollTop } = this.container;
 
     // math memo:
@@ -293,6 +293,15 @@ class ZoomableImage extends React.PureComponent {
     this.setState({ scale: nextScale }, () => {
       this.container.scrollLeft = nextScrollLeft;
       this.container.scrollTop = nextScrollTop;
+      // reset the translateX/Y constantly
+      if (nextScale < zoomMatrix.rate) {
+        this.setState({
+          lockTranslate: {
+            x: zoomMatrix.fullScreen ? 0 : zoomMatrix.translateX * ((nextScale - MIN_SCALE) / (zoomMatrix.rate - MIN_SCALE)),
+            y: zoomMatrix.fullScreen ? 0 : zoomMatrix.translateY * ((nextScale - MIN_SCALE) / (zoomMatrix.rate - MIN_SCALE)),
+          },
+        });
+      }
     });
   }
 
