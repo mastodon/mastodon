@@ -1,9 +1,9 @@
 //  Package imports.
-import detectPassiveEvents from 'detect-passive-events';
+import { supportsPassiveEvents } from 'detect-passive-events';
 
 //  This will either be a passive lister options object (if passive
 //  events are supported), or `false`.
-export const withPassive = detectPassiveEvents.hasSupport ? { passive: true } : false;
+export const withPassive = supportsPassiveEvents ? { passive: true } : false;
 
 //  Focuses the root element.
 export function focusRoot () {
