@@ -203,6 +203,7 @@ tr:
       time_in_queue: '%{time} kuyruğunda bekliyor'
       title: Hesaplar
       unconfirmed_email: Onaylanmamış e-posta
+      undo_sensitized: Hassaslığı geri al
       undo_silenced: Susturmayı geri al
       undo_suspension: Uzaklaştırmayı geri al
       unsilenced_msg: '%{username} hesabı başarıyla sınırsız yapıldı'
@@ -244,9 +245,11 @@ tr:
         reopen_report: Şikayeti Tekrar Aç
         reset_password_user: Parolayı Sıfırla
         resolve_report: Şikayeti Çöz
+        sensitive_account: Hesabınızdaki medyayı hassas olarak işaretleyin
         silence_account: Hesabı Sustur
         suspend_account: Hesabı Askıya Al
         unassigned_report: Rapor Atamasını Kaldır
+        unsensitive_account: Hesabınızdaki medyayı hassas olarak işaretlemeyin
         unsilence_account: Hesabın Sesini Aç
         unsuspend_account: Hesabı Askıdan Kaldır
         update_announcement: Duyuruyu Güncelle
@@ -282,9 +285,11 @@ tr:
         reopen_report: "%{name} %{target} şikayetini yeniden açtı"
         reset_password_user: "%{name} %{target} kullanıcısının parolasını resetledi"
         resolve_report: "%{name} %{target} şikayetini çözdü"
+        sensitive_account: "%{name}, %{target} kişisinin medyasını hassas olarak işaretledi"
         silence_account: "%{name} %{target}'in hesabını susturdu"
         suspend_account: "%{name} %{target}'in hesabını uzaklaştırdı"
         unassigned_report: "%{name} %{target} şikayetinin atamasını geri aldı"
+        unsensitive_account: "%{name}, %{target} kişisinin medyasını hassas olarak işaretlemedi"
         unsilence_account: "%{name} %{target}'in hesabının susturmasını kaldırdı"
         unsuspend_account: "%{name} %{target}'in hesabının uzaklaştırmasını kaldırdı"
         update_announcement: "%{name}, %{target} duyurusunu güncelledi"
@@ -1203,6 +1208,8 @@ tr:
         other: "%{count} oy"
       vote: Oy
     show_more: Daha fazla
+    show_newer: Yenileri göster
+    show_older: Eskileri göster
     show_thread: Mesaj dizisini göster
     sign_in_to_participate: Sohbete katılmak için oturum açın
     title: '%{name}: "%{quote}"'
@@ -1339,6 +1346,7 @@ tr:
     warning:
       explanation:
         disable: Hesabınız donmuşken, hesap verileriniz bozulmadan kalır, ancak kilidi açılıncaya kadar herhangi bir işlem gerçekleştiremezsiniz.
+        sensitive: Yüklediğiniz medya dosyalarınız ve bağlantılı medyanız hassas olarak değerlendirilecektir.
         silence: Hesabınız sınırlı iken, yalnızca sizi takip eden kişiler bu sunucuda tootlarınızı görecek ve çeşitli halka açık listelerin dışında tutulabilirsiniz. Ancak, diğerleri hala sizi manuel olarak takip edebilir.
         suspend: Hesabınız askıya alındı ve tüm tootlarınız ve yüklediğiniz medya dosyalarınız bu sunucudan ve takipçilerinizin bulunduğu sunuculardan geri alınamaz şekilde kaldırıldı.
       get_in_touch: '%{instance} çalışanlarıyla iletişim kurmak için bu e-postayı yanıtlayabilirsiniz.'
@@ -1352,6 +1360,7 @@ tr:
       title:
         disable: Hesap donduruldu
         none: Uyarı
+        sensitive: Medyanız hassas olarak işaretlendi
         silence: Hesap sınırlandırıldı
         suspend: Hesap askıya alındı
     welcome:
