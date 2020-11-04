@@ -8,7 +8,7 @@ RSpec.describe AccountPolicy do
   let(:admin)   { Fabricate(:user, admin: true).account }
   let(:john)    { Fabricate(:user).account }
 
-  permissions :index?, :show?, :unsuspend?, :unsilence?, :remove_avatar?, :remove_header? do
+  permissions :index?, :show?, :unsuspend?, :unsensitive?, :unsilence?, :remove_avatar?, :remove_header? do
     context 'staff' do
       it 'permits' do
         expect(subject).to permit(admin)

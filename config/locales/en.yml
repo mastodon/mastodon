@@ -188,6 +188,8 @@ en:
       search: Search
       search_same_email_domain: Other users with the same e-mail domain
       search_same_ip: Other users with the same IP
+      sensitive: Sensitive
+      sensitized: marked as sensitive
       shared_inbox_url: Shared inbox URL
       show:
         created_reports: Made reports
@@ -202,6 +204,7 @@ en:
       time_in_queue: Waiting in queue %{time}
       title: Accounts
       unconfirmed_email: Unconfirmed email
+      undo_sensitized: Undo sensitive
       undo_silenced: Undo silence
       undo_suspension: Undo suspension
       unsilenced_msg: Successfully unlimited %{username}'s account
@@ -243,9 +246,11 @@ en:
         reopen_report: Reopen Report
         reset_password_user: Reset Password
         resolve_report: Resolve Report
+        sensitive_account: Mark the media in your account as sensitive
         silence_account: Silence Account
         suspend_account: Suspend Account
         unassigned_report: Unassign Report
+        unsensitive_account: Unmark the media in your account as sensitive
         unsilence_account: Unsilence Account
         unsuspend_account: Unsuspend Account
         update_announcement: Update Announcement
@@ -281,9 +286,11 @@ en:
         reopen_report: "%{name} reopened report %{target}"
         reset_password_user: "%{name} reset password of user %{target}"
         resolve_report: "%{name} resolved report %{target}"
+        sensitive_account: "%{name} marked %{target}'s media as sensitive"
         silence_account: "%{name} silenced %{target}'s account"
         suspend_account: "%{name} suspended %{target}'s account"
         unassigned_report: "%{name} unassigned report %{target}"
+        unsensitive_account: "%{name} unmarked %{target}'s media as sensitive"
         unsilence_account: "%{name} unsilenced %{target}'s account"
         unsuspend_account: "%{name} unsuspended %{target}'s account"
         update_announcement: "%{name} updated announcement %{target}"
@@ -1339,6 +1346,7 @@ en:
     warning:
       explanation:
         disable: You can no longer login to your account or use it in any other way, but your profile and other data remains intact.
+        sensitive: Your uploaded media files and linked media will be treated as sensitive.
         silence: You can still use your account but only people who are already following you will see your toots on this server, and you may be excluded from various public listings. However, others may still manually follow you.
         suspend: You can no longer use your account, and your profile and other data are no longer accessible. You can still login to request a backup of your data until the data is fully removed, but we will retain some data to prevent you from evading the suspension.
       get_in_touch: You can reply to this e-mail to get in touch with the staff of %{instance}.
@@ -1347,11 +1355,13 @@ en:
       subject:
         disable: Your account %{acct} has been frozen
         none: Warning for %{acct}
+        sensitive: Your account %{acct} posting media has been marked as sensitive
         silence: Your account %{acct} has been limited
         suspend: Your account %{acct} has been suspended
       title:
         disable: Account frozen
         none: Warning
+        sensitive: Your media has been marked as sensitive
         silence: Account limited
         suspend: Account suspended
     welcome:

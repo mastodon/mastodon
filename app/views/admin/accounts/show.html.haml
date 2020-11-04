@@ -69,6 +69,8 @@
           = t('admin.accounts.confirming')
         - elsif @account.local? && !@account.user_approved?
           = t('admin.accounts.pending')
+        - elsif @account.sensitized?
+          = t('admin.accounts.sensitive')
         - else
           = t('admin.accounts.no_limits_imposed')
       .dashboard__counters__label= t 'admin.accounts.login_status'
@@ -191,6 +193,11 @@
             = link_to t('admin.accounts.enable'), enable_admin_account_path(@account.id), method: :post, class: 'button' if can?(:enable, @account.user)
           - else
             = link_to t('admin.accounts.disable'), new_admin_account_action_path(@account.id, type: 'disable'), class: 'button' if can?(:disable, @account.user)
+
+        - if @account.sensitized?
+          = link_to t('admin.accounts.undo_sensitized'), unsensitive_admin_account_path(@account.id), method: :post, class: 'button' if can?(:unsensitive, @account)
+        - elsif !@account.local? || @account.user_approved?
+          = link_to t('admin.accounts.sensitive'), new_admin_account_action_path(@account.id, type: 'sensitive'), class: 'button' if can?(:sensitive, @account)
 
         - if @account.silenced?
           = link_to t('admin.accounts.undo_silenced'), unsilence_admin_account_path(@account.id), method: :post, class: 'button' if can?(:unsilence, @account)
