@@ -281,9 +281,9 @@ class Video extends React.PureComponent {
 
   togglePlay = () => {
     if (this.state.paused) {
-      this.video.play();
+      this.setState({ paused: false }, () => this.video.play());
     } else {
-      this.video.pause();
+      this.setState({ paused: true }, () => this.video.pause());
     }
   }
 
@@ -381,13 +381,16 @@ class Video extends React.PureComponent {
   }
 
   toggleMute = () => {
-    this.video.muted = !this.video.muted;
-    this.setState({ muted: this.video.muted });
+    const muted = !this.video.muted;
+
+    this.setState({ muted }, () => {
+      this.video.muted = muted;
+    });
   }
 
   toggleReveal = () => {
     if (this.state.revealed) {
-      this.video.pause();
+      this.setState({ paused: true });
     }
 
     if (this.props.onToggleVisibility) {
@@ -475,13 +478,6 @@ class Video extends React.PureComponent {
       return (<div className={computedClass} ref={this.setPlayerRef} tabindex={0}></div>);
     }
 
-    let warning;
-    if (sensitive) {
-      warning = <FormattedMessage id='status.sensitive_warning' defaultMessage='Sensitive content' />;
-    } else {
-      warning = <FormattedMessage id='status.media_hidden' defaultMessage='Media hidden' />;
-    }
-
     let preload;
 
     if (this.props.currentTime || fullscreen || dragging) {
@@ -490,6 +486,14 @@ class Video extends React.PureComponent {
       preload = 'metadata';
     } else {
       preload = 'none';
+    }
+
+    let warning;
+
+    if (sensitive) {
+      warning = <FormattedMessage id='status.sensitive_warning' defaultMessage='Sensitive content' />;
+    } else {
+      warning = <FormattedMessage id='status.media_hidden' defaultMessage='Media hidden' />;
     }
 
     return (
