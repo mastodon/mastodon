@@ -187,6 +187,8 @@ fr:
       search: Rechercher
       search_same_email_domain: Autres utilisateurs·trices avec le même domaine de courriel
       search_same_ip: Autres utilisateur·rice·s avec la même IP
+      sensitive: Sensible
+      sensitized: marqué comme sensible
       shared_inbox_url: URL de la boite de réception partagée
       show:
         created_reports: Signalements faits
@@ -201,6 +203,7 @@ fr:
       time_in_queue: En file d’attente %{time}
       title: Comptes
       unconfirmed_email: Courriel non confirmé
+      undo_sensitized: Annuler sensible
       undo_silenced: Ne plus masquer
       undo_suspension: Annuler la suspension
       unsilenced_msg: Le compte de %{username} a été illimité avec succès
@@ -242,9 +245,11 @@ fr:
         reopen_report: Rouvrir le signalement
         reset_password_user: Réinitialiser le mot de passe
         resolve_report: Résoudre le signalement
+        sensitive_account: Marquer les médias de votre compte comme sensibles
         silence_account: Masque le compte
         suspend_account: Suspendre le compte
         unassigned_report: Ne plus assigner le signalement
+        unsensitive_account: Ne pas marquer les médias de votre compte comme sensibles
         unsilence_account: Ne plus masquer le compte
         unsuspend_account: Annuler la suspension du compte
         update_announcement: Modifier l’annonce
@@ -280,6 +285,7 @@ fr:
         reopen_report: "%{name} a rouvert le signalement %{target}"
         reset_password_user: "%{name} a réinitialisé le mot de passe de %{target}"
         resolve_report: "%{name} a résolu le signalement %{target}"
+        sensitive_account: "%{name} a marqué le média de %{target} comme sensible"
         silence_account: "%{name} a masqué le compte de %{target}"
         suspend_account: "%{name} a suspendu le compte %{target}"
         unassigned_report: "%{name} a désassigné le signalement %{target}"
