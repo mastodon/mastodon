@@ -244,6 +244,7 @@ zh-CN:
         silence_account: 隐藏用户
         suspend_account: 封禁用户
         unassigned_report: 取消举报的指派
+        unsensitive_account: 去除你帐号中媒体的敏感内容标记
         unsilence_account: 解除账号隐藏
         unsuspend_account: 解除账号封禁
         update_announcement: 更新公告
@@ -279,9 +280,11 @@ zh-CN:
         reopen_report: "%{name} 重开了举报 %{target}"
         reset_password_user: "%{name} 重置了用户 %{target} 的密码"
         resolve_report: "%{name} 处理了举报 %{target}"
+        sensitive_account: "%{name} 将 %{target} 的媒体标记为敏感内容"
         silence_account: "%{name} 隐藏了用户 %{target}"
         suspend_account: "%{name} 封禁了用户 %{target}"
         unassigned_report: "%{name} 放弃了举报 %{target} 的接管"
+        unsensitive_account: "%{name} 去除了 %{target} 媒体的敏感内容标记"
         unsilence_account: "%{name} 解除了用户 %{target} 的隐藏状态"
         unsuspend_account: "%{name} 解除了用户 %{target} 的封禁状态"
         update_announcement: "%{name} 更新了公告 %{target}"
@@ -1186,6 +1189,8 @@ zh-CN:
         other: "%{count} 票"
       vote: 投票
     show_more: 显示更多
+    show_newer: 显示更新内容
+    show_older: 显示更早内容
     show_thread: 显示全部对话
     sign_in_to_participate: 登录以加入对话
     title: '%{name}：“%{quote}”'
@@ -1322,6 +1327,7 @@ zh-CN:
     warning:
       explanation:
         disable: 虽然您的帐户被冻结，您的帐户数据仍然完整；但是您无法在解锁前执行任何操作。
+        sensitive: 你上传的媒体文件和链接的媒体将被视作敏感内容。
         silence: 当您的帐户受限时，只有已经关注过你的人才会这台服务器上看到你的嘟文，并且您会被排除在各种公共列表之外。但是，其他人仍然可以手动关注你。
         suspend: 您的帐户已被封禁，所有的嘟文和您上传的媒体文件都已经从该服务器和您的关注者的服务器上删除并且不可恢复。
       get_in_touch: 您可回复该邮件以联系 %{instance} 的工作人员。
@@ -1330,11 +1336,13 @@ zh-CN:
       subject:
         disable: 您的帐户 %{acct} 已被冻结
         none: 对 %{acct} 的警告
+        sensitive: 你的帐号 %{acct} 所发布的媒体已被标记为敏感内容
         silence: 您的帐户 %{acct} 已经受限
         suspend: 您的帐户 %{acct} 已被封禁。
       title:
         disable: 账号已冻结
         none: 警示
+        sensitive: 你的媒体被标记为敏感内容
         silence: 帐户受限
         suspend: 账号被封禁
     welcome:
