@@ -179,6 +179,8 @@ ja:
       search: 検索
       search_same_email_domain: 同じドメインのメールアドレスを使用しているユーザー
       search_same_ip: 同じ IP のユーザーを検索
+      sensitive: 閲覧注意
+      sensitized: 閲覧注意にする
       shared_inbox_url: Shared inbox URL
       show:
         created_reports: このアカウントで作られた通報
@@ -193,6 +195,7 @@ ja:
       time_in_queue: '%{time} 待ち'
       title: アカウント
       unconfirmed_email: 確認待ちのメールアドレス
+      undo_sensitized: 機密情報から戻す
       undo_silenced: サイレンスから戻す
       undo_suspension: 停止から戻す
       unsubscribe: 購読の解除
@@ -1168,6 +1171,8 @@ ja:
         other: "%{count}票"
       vote: 投票
     show_more: もっと見る
+    show_newer: 新しいものから表示
+    show_older: 古いものから表示
     show_thread: スレッドを表示
     sign_in_to_participate: ログインして会話に参加
     title: '%{name}: "%{quote}"'
@@ -1311,11 +1316,13 @@ ja:
       subject:
         disable: あなたのアカウント %{acct} は凍結されました
         none: '%{acct} に対する警告'
+        sensitive: あなたのアカウント %{acct} が投稿したメディアは閲覧注意にマークされました
         silence: あなたのアカウント %{acct} はサイレンスにされました
         suspend: あなたのアカウント %{acct} は停止されました
       title:
         disable: アカウントが凍結されました
         none: 警告
+        sensitive: あなたのメディアが閲覧注意に指定されました
         silence: アカウントがサイレンスにされました
         suspend: アカウントが停止されました
     welcome:
