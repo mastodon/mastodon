@@ -187,6 +187,8 @@ es-AR:
       search: Buscar
       search_same_email_domain: Otros usuarios con el mismo dominio de correo electrónico
       search_same_ip: Otros usuarios con la misma dirección IP
+      sensitive: Sensible
+      sensitized: marcado como sensible
       shared_inbox_url: Dirección web de la bandeja de entrada compartida
       show:
         created_reports: Denuncias hechas
@@ -201,6 +203,7 @@ es-AR:
       time_in_queue: Esperando en cola %{time}
       title: Cuentas
       unconfirmed_email: Correo electrónico sin confirmar
+      undo_sensitized: Deshacer marcado como sensible
       undo_silenced: Deshacer silenciado
       undo_suspension: Deshacer suspensión
       unsilenced_msg: Se quitó exitosamente el límite de la cuenta de %{username}
@@ -242,9 +245,11 @@ es-AR:
         reopen_report: Reabrir denuncia
         reset_password_user: Cambiar contraseña
         resolve_report: Resolver denuncia
+        sensitive_account: Marcar el multimedia en tu cuenta como sensible
         silence_account: Silenciar cuenta
         suspend_account: Suspender cuenta
         unassigned_report: Desasignar denuncia
+        unsensitive_account: Desmarcar el multimedia en tu cuenta como sensible
         unsilence_account: Dejar de silenciar cuenta
         unsuspend_account: Dejar de suspender cuenta
         update_announcement: Actualizar anuncio
@@ -280,9 +285,11 @@ es-AR:
         reopen_report: "%{name} reabrió la denuncia %{target}"
         reset_password_user: "%{name} cambió la contraseña del usuario %{target}"
         resolve_report: "%{name} resolvió la denuncia %{target}"
+        sensitive_account: "%{name} ha marcado la multimedia de %{target} como sensible"
         silence_account: "%{name} silenció la cuenta de %{target}"
         suspend_account: "%{name} suspendió la cuenta de %{target}"
         unassigned_report: "%{name} desasignó la denuncia %{target}"
+        unsensitive_account: "%{name} ha desmarcado la multimedia de %{target} como sensible"
         unsilence_account: "%{name} quitó el silenciado de la cuenta de %{target}"
         unsuspend_account: "%{name} quitó la suspensión de la cuenta de %{target}"
         update_announcement: "%{name} actualizó el anuncio %{target}"
@@ -1201,6 +1208,8 @@ es-AR:
         other: "%{count} votos"
       vote: Votar
     show_more: Mostrar más
+    show_newer: Mostrar más recientes
+    show_older: Mostrar más antiguos
     show_thread: Mostrar hilo
     sign_in_to_participate: Iniciá sesión para participar en la conversación
     title: '%{name}: "%{quote}"'
@@ -1337,6 +1346,7 @@ es-AR:
     warning:
       explanation:
         disable: Ya no podés iniciar sesión en tu cuenta o usarla de alguna manera, pero tu perfil y otros datos permanecen intactos.
+        sensitive: Los archivos de medios subidos y los medios vinculados serán tratados como sensibles.
         silence: Todavía podés usar tu cuenta, pero sólo las personas que ya te estén siguiendo verán tus toots en este servidor, y puede que se te excluya de varios listados públicos. Sin embargo, otras personas pueden seguirte manualmente.
         suspend: Ya no podés usar tu cuenta; tu perfil y otros datos ya no son accesibles. Todavía podés iniciar sesión para solicitar un resguardo de tus datos hasta que los mismos sean totalmente quitados, pero retendremos ciertos datos para prevenirte de evadir la suspensión.
       get_in_touch: Podés responder a esta dirección de correo electrónico para ponerte en contacto con la administración de %{instance}.
@@ -1345,11 +1355,13 @@ es-AR:
       subject:
         disable: Tu cuenta %{acct} fue congelada
         none: Advertencia para %{acct}
+        sensitive: Tu cuenta %{acct} ha sido marcada como sensible
         silence: Tu cuenta %{acct} fue limitada
         suspend: Tu cuenta %{acct} fue suspendida
       title:
         disable: Cuenta congelada
         none: Advertencia
+        sensitive: Tu multimedia ha sido marcado como sensible
         silence: Cuenta limitada
         suspend: Cuenta suspendida
     welcome:
