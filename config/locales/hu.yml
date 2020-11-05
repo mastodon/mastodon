@@ -187,6 +187,7 @@ hu:
       search_same_email_domain: Felhasználók ugyanezzel az email domainnel
       search_same_ip: Más felhasználók ugyanezzel az IP-vel
       sensitive: Szenzitív
+      sensitized: szenzitívnek jelölve
       shared_inbox_url: Megosztott bejövő üzenetek URL
       show:
         created_reports: Létrehozott jelentések
@@ -201,6 +202,7 @@ hu:
       time_in_queue: Várakozás a sorban %{time}
       title: Fiókok
       unconfirmed_email: Nem megerősített e-mail
+      undo_sensitized: Szenzitív jelölés levétele
       undo_silenced: Némítás visszavonása
       undo_suspension: Felfüggesztés visszavonása
       unsilenced_msg: A %{username} fiók korlátozásait sikeresen levettük
@@ -1205,6 +1207,8 @@ hu:
         other: "%{count} szavazat"
       vote: Szavazás
     show_more: Mutass többet
+    show_newer: Újabbak mutatása
+    show_older: Régebbiek mutatása
     show_thread: Szál mutatása
     sign_in_to_participate: Jelentkezz be, hogy részt vehess a beszélgetésben
     title: '%{name}: "%{quote}"'
@@ -1350,11 +1354,13 @@ hu:
       subject:
         disable: A fiókodat %{acct} befagyasztották
         none: Figyelmeztetés a %{acct} fióknak
+        sensitive: A %{acct} fiókod médiatartalmait szenzitívnek jelölték
         silence: A fiókodat %{acct} korlátozták
         suspend: A fiókodat %{acct} felfüggesztették
       title:
         disable: Befagyasztott fiók
         none: Figyelem
+        sensitive: Médiatartalmadat szenzitívnek jelölték
         silence: Lekorlátozott fiók
         suspend: Felfüggesztett fiók
     welcome:
