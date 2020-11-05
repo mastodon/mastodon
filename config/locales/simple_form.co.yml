@@ -65,8 +65,13 @@ co:
       invite_request:
         text: Quessu ci aiutarà à valutà a vostra dumanda
       ip_block:
+        comment: In uzzione. Rammintatevi di perchè avete aghjuntu sta regula.
+        expires_in: L'indirizzi IP sò una risorsa finita, ponu esse spartute è spessu cambianu di mani. Ghjè perchè i blucchimi d'IP permanenti ùn sò micca ricumandati.
+        ip: Entrate un'indirizzu IPv4 o IPv6. Pudete bluccà tutt'un'intervallu cù a sintassa CIDR. Fate attenzione, ùn vi bluccate micca!
         severities:
           no_access: Bluccà l'accessu à tutte e risorse
+          sign_up_requires_approval: E nove dumande d'arregistramente necessitaranu a vostr'appruvazione
+        severity: Sceglie ciò chì si passerà cù e richieste di quest'IP
       sessions:
         otp: 'Entrate u codice d’identificazione à dui fattori nant’à u vostru telefuninu, o unu di i vostri codici di ricuperazione:'
         webauthn: S'ella hè una chjave USB assicuratevi di brancalla è, s'ellu c'hè unu, appughjà nant'à u buttone.
@@ -94,6 +99,7 @@ co:
         types:
           disable: Disattivà
           none: Ùn fà nunda
+          sensitive: Sensibile
           silence: Silenzà
           suspend: Suspende è sguassà i dati di u contu di manera irreversibile
         warning_preset_id: Utilizà un'avertimentu preselezziunatu
