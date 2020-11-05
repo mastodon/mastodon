@@ -199,6 +199,7 @@ ko:
       time_in_queue: '%{time}동안 기다림'
       title: 계정
       unconfirmed_email: 미확인 된 이메일 주소
+      undo_sensitized: 민감함으로 설정 취소
       undo_silenced: 침묵 해제
       undo_suspension: 정지 해제
       unsilenced_msg: 성공적으로 %{username} 계정을 제한 해제했습니다
@@ -240,9 +241,11 @@ ko:
         reopen_report: 신고 다시 열기
         reset_password_user: 암호 재설정
         resolve_report: 신고 처리
+        sensitive_account: 당신의 계정의 미디어를 민감함으로 표시
         silence_account: 계정 침묵
         suspend_account: 계정 정지
         unassigned_report: 신고 맡기 취소
+        unsensitive_account: 당신의 계정의 미디어를 민감함으로 표시하지 않음
         unsilence_account: 계정 침묵 취소
         unsuspend_account: 계정 정지 취소
         update_announcement: 공지사항 업데이트
@@ -278,9 +281,11 @@ ko:
         reopen_report: "%{name}이 리포트 %{target}을 다시 열었습니다"
         reset_password_user: "%{name}이 %{target}의 암호를 초기화했습니다"
         resolve_report: "%{name}이 %{target} 신고를 처리됨으로 변경하였습니다"
+        sensitive_account: "%{name} 님이 %{target}의 미디어를 민감함으로 표시했습니다"
         silence_account: "%{name}이 %{target}의 계정을 침묵시켰습니다"
         suspend_account: "%{name}이 %{target}의 계정을 정지시켰습니다"
         unassigned_report: "%{name}이 리포트 %{target}을 할당 해제했습니다"
+        unsensitive_account: "%{name} 님이 %{target}의 미디어를 민감하지 않음으로 표시했습니다"
         unsilence_account: "%{name}이 %{target}에 대한 침묵을 해제했습니다"
         unsuspend_account: "%{name}이 %{target}에 대한 정지를 해제했습니다"
         update_announcement: "%{name} 님이 공지 %{target}을 갱신했습니다"
@@ -1185,6 +1190,8 @@ ko:
         other: "%{count}명 투표함"
       vote: 투표
     show_more: 더 보기
+    show_newer: 새로운 것 표시
+    show_older: 오래된 것 표시
     show_thread: 글타래 보기
     sign_in_to_participate: 로그인 하여 이 대화에 참여하기
     title: '%{name}: "%{quote}"'
@@ -1321,6 +1328,7 @@ ko:
     warning:
       explanation:
         disable: 당신의 계정이 동결 된 동안 당신의 계정은 유지 됩니다. 하지만 잠금이 풀릴 때까지 당신은 아무 것도 할 수 없습니다.
+        sensitive: 당신의 업로드 한 미디어 파일들과 링크된 미디어들은 민감함으로 취급됩니다.
         silence: 당신의 계정이 제한 된 동안엔 당신의 팔로워 이외엔 툿을 받아 볼 수 없고 공개 리스팅에서 제외 됩니다. 하지만 다른 사람들은 여전히 당신을 팔로우 가능합니다.
         suspend: 당신의 계정은 정지 되었으며, 모든 툿과 업로드 한 미디어가 서버에서 삭제 되어 되돌릴 수 없습니다.
       get_in_touch: 이 메일에 대해 답장해서 %{instance}의 스태프와 연락 할 수 있습니다.
@@ -1329,11 +1337,13 @@ ko:
       subject:
         disable: 당신의 계정 %{acct}가 동결 되었습니다
         none: '%{acct}에게의 경고'
+        sensitive: 당신의 계정 %{acct}에서 포스팅 하는 미디어는 민감함으로 설정되었습니다
         silence: 당신의 계정 %{acct}가 제한 되었습니다
         suspend: 당신의 계정 %{acct}가 정지 되었습니다
       title:
         disable: 계정 동결 됨
         none: 경고
+        sensitive: 당신의 미디어는 민감함으로 표시되었습니다
         silence: 계정 제한 됨
         suspend: 계정 정지 됨
     welcome:
