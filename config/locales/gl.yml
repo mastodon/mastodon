@@ -186,6 +186,8 @@ gl:
       search: Procurar
       search_same_email_domain: Outras usuarias co mesmo dominio de email
       search_same_ip: Outras usuarias co mesmo IP
+      sensitive: Sensible
+      sensitized: marcado como sensible
       shared_inbox_url: URL da caixa de entrada compartida
       show:
         created_reports: Denuncias feitas
@@ -200,6 +202,7 @@ gl:
       time_in_queue: Agardando na cola %{time}
       title: Contas
       unconfirmed_email: Email non confirmado
+      undo_sensitized: Desmarcar sensible
       undo_silenced: Desfacer acalar
       undo_suspension: Desfacer suspensión
       unsilenced_msg: Retirado o límite da conta %{username}
@@ -241,9 +244,11 @@ gl:
         reopen_report: Reabrir denuncia
         reset_password_user: Restabelecer contrasinal
         resolve_report: Resolver denuncia
+        sensitive_account: Marca o multimedia da túa conta como sensible
         silence_account: Silenciar conta
         suspend_account: Suspender conta
         unassigned_report: Desasignar denuncia
+        unsensitive_account: Retira a marca de sensible do multimedia da conta
         unsilence_account: Deixar de silenciar conta
         unsuspend_account: Retirar suspensión de conta
         update_announcement: Actualizar anuncio
@@ -279,9 +284,11 @@ gl:
         reopen_report: "%{name} reabriu a denuncia %{target}"
         reset_password_user: "%{name} restableceu o contrasinal da usuaria %{target}"
         resolve_report: "%{name} resolveu a denuncia %{target}"
+        sensitive_account: "%{name} marcou o multimedia de %{target} como sensible"
         silence_account: "%{name} silenciou a conta de %{target}"
         suspend_account: "%{name} suspendeu a conta de %{target}"
         unassigned_report: "%{name} deixou de atribuír a denuncia %{target}"
+        unsensitive_account: "%{name} desmarcou o multimedia de %{target} como sensible"
         unsilence_account: "%{name} deixou de silenciar a conta de %{target}"
         unsuspend_account: "%{name} desactivou a suspensión da conta de %{target}"
         update_announcement: "%{name} actualizou o anuncio %{target}"
@@ -1200,6 +1207,8 @@ gl:
         other: "%{count} votos"
       vote: Votar
     show_more: Mostrar máis
+    show_newer: Mostrar o máis novo
+    show_older: Mostrar o máis vello
     show_thread: Amosar fío
     sign_in_to_participate: Conéctese para participar na conversa
     title: '%{name}: "%{quote}"'
@@ -1336,6 +1345,7 @@ gl:
     warning:
       explanation:
         disable: Cando a súa conta está conxelada, os datos permanecen intactos, pero non pode levar a fin accións ate que se desbloquea.
+        sensitive: Os teus ficheiros e ligazóns a multimedia serán tratados como sensibles.
         silence: Mentras a conta está limitada, só a xente que actualmente te segue verá os teus toots en este servidor, e poderías estar excluída de varias listaxes públicas. Porén, outras persoas poderíante seguir de xeito manual.
         suspend: A súa conta foi suspendida, e todos os seus toots e medios subidos foron eliminados de este servidor de xeito irreversible, e dos servidores onde tivese seguidoras.
       get_in_touch: Pode responder a este correo para contactar coa administración de %{instance}.
@@ -1344,11 +1354,13 @@ gl:
       subject:
         disable: A súa conta %{acct} foi conxelada
         none: Aviso para %{acct}
+        sensitive: Ó publicar multimedia a túa conta %{acct} foi marcada como sensible
         silence: A súa conta %{acct} foi limitada
         suspend: A súa conta %{acct} foi suspendida
       title:
         disable: Conta conxelada
         none: Aviso
+        sensitive: O teu multimedia foi marcado como sensible
         silence: Conta limitada
         suspend: Conta suspendida
     welcome:
