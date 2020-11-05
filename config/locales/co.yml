@@ -97,6 +97,7 @@ co:
       add_email_domain_block: Mette u duminiu e-mail in lista nera
       approve: Appruvà
       approve_all: Appruvà tuttu
+      approved_msg: A dumanda d'arregistramente di %{username} hè stata appruvata
       are_you_sure: Site sicuru·a?
       avatar: Ritrattu di prufile
       by_domain: Duminiu
@@ -162,8 +163,10 @@ co:
       public: Pubblicu
       push_subscription_expires: Spirata di l’abbunamentu PuSH
       redownload: Mette à ghjornu u prufile
+      redownloaded_msg: U prufile di %{username} hè statu attualizatu da l'urighjine
       reject: Righjittà
       reject_all: Righjittà tutti
+      rejected_msg: A dumanda d'arregistramente di %{username} hè stata righjittata
       remove_avatar: Toglie l’avatar
       remove_header: Toglie a cuprendula
       removed_avatar_msg: U ritrattu di prufile di %{username} hè statu toltu
@@ -191,17 +194,21 @@ co:
         created_reports: Signalamenti fatti
         targeted_reports: Signalatu da l'altri
       silence: Silenzà
-      silenced: Silenzatu
+      silenced: Limitatu
       statuses: Statuti
       subscribe: Abbunassi
       suspended: Suspesu
+      suspension_irreversible: I dati di stu contu sò stati irreversibilamente sguassati. Pudete annullà a suspensione di u contu per u rende utilizabile ma ùn pudete micca ricuperà i dati pricedenti.
+      suspension_reversible_hint_html: U contu hè statu suspesu, è i so dati saranu sguassati u %{date}. Da quì à là, u contu pò esse ricuperatu senza prublemu. S'e voi vulete toglie tutti i dati di u contu avà, pudete fallu quì sottu.
       time_in_queue: 'Attesa in fila: %{time}'
       title: Conti
       unconfirmed_email: E-mail micca cunfirmatu
       undo_sensitized: Annullà sensibile
       undo_silenced: Ùn silenzà più
       undo_suspension: Ùn suspende più
+      unsilenced_msg: A limitazione di u contu di %{username} hè stata annullata
       unsubscribe: Disabbunassi
+      unsuspended_msg: A suspensione di u contu di %{username} hè stata annullata
       username: Cugnome
       view_domain: Vede un riassuntu per u duminiu
       warn: Averte
@@ -278,10 +285,12 @@ co:
         reopen_report: "%{name} hà riapertu u signalamentu %{target}"
         reset_password_user: "%{name} hà riinizializatu a chjave d’accessu di %{target}"
         resolve_report: "%{name} hà chjosu u signalamentu %{target}"
-        silence_account: "%{name} hà silenzatu u contu di %{target}"
+        sensitive_account: "%{name} hà marcatu i media di %{target} cum'è sensibili"
+        silence_account: "%{name} hà limitatu u contu di %{target}"
         suspend_account: "%{name} hà suspesu u contu di %{target}"
         unassigned_report: "%{name} hà disassignatu u signalamentu %{target}"
-        unsilence_account: "%{name} hà fattu che u contu di %{target} ùn hè più silenzatu"
+        unsensitive_account: "%{name} hà sguassatu a marcatura di i media di %{target} cum'è sensibili"
+        unsilence_account: "%{name} hà fattu che u contu di %{target} ùn hè più limitatu"
         unsuspend_account: "%{name} hà fattu che u contu di %{target} ùn hè più suspesu"
         update_announcement: "%{name} hà cambiatu u novu annunziu %{target}"
         update_custom_emoji: "%{name} hà messu à ghjornu l’emoji %{target}"
