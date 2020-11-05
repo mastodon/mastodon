@@ -186,6 +186,7 @@ hu:
       search: Keresés
       search_same_email_domain: Felhasználók ugyanezzel az email domainnel
       search_same_ip: Más felhasználók ugyanezzel az IP-vel
+      sensitive: Szenzitív
       shared_inbox_url: Megosztott bejövő üzenetek URL
       show:
         created_reports: Létrehozott jelentések
@@ -241,9 +242,11 @@ hu:
         reopen_report: Jelentés újranyitása
         reset_password_user: Jelszó visszaállítása
         resolve_report: Jelentés megoldása
+        sensitive_account: A fiókodban minden média szenzitívnek jelölése
         silence_account: Fiók némítása
         suspend_account: Fiók felfüggesztése
         unassigned_report: Jelentés hozzárendelésének megszüntetése
+        unsensitive_account: A fiókodban minden média szenzitív állapotának törlése
         unsilence_account: Fiók némításának feloldása
         unsuspend_account: Fiók felfüggesztésének feloldása
         update_announcement: Közlemény frissítése
@@ -279,9 +282,11 @@ hu:
         reopen_report: "%{name} újranyitotta a bejelentést: %{target}"
         reset_password_user: "%{name} visszaállította az alábbi felhasználó jelszavát: %{target}"
         resolve_report: "%{name} megoldotta alábbi bejelentést: %{target}"
+        sensitive_account: "%{name} szenzitívnek jelölte %{target} médiatartalmát"
         silence_account: "%{name} lenémította %{target} felhasználói fiókját"
         suspend_account: "%{name} felfüggesztette %{target} felhasználói fiókját"
         unassigned_report: "%{name} törölte a %{target} bejelentés hozzárendelését"
+        unsensitive_account: "%{name} levette a szenzitív jelölést %{target} médiatartalmáról"
         unsilence_account: "%{name} feloldotta a némítást %{target} felhasználói fiókján"
         unsuspend_account: "%{name} feloldotta %{target} felhasználói fiókjának felfüggesztését"
         update_announcement: "%{name} frissítette a közleményt %{target}"
@@ -1336,6 +1341,7 @@ hu:
     warning:
       explanation:
         disable: A fiókod befagyasztott állapotban megtartja minden adatát, de feloldásig nem csinálhatsz vele semmit.
+        sensitive: A feltöltött és hivatkozott médiatartalmaidat szenzitívként kezeljük.
         silence: A fiókod korlátozott állapotában csak a követőid láthatják a tülkjeidet, valamint nem kerülsz rá nyilvános idővonalakra. Ugyanakkor mások manuálisan még követhetnek.
         suspend: A fiókodat felfüggesztették, így minden tülköd és feltöltött fájlod menthetetlenül elveszett erről a szerverről és minden olyanról is, ahol voltak követőid.
       get_in_touch: Válaszolhatsz erre az emailre, hogy kapcsolatba lépj a %{instance} csapatával.
