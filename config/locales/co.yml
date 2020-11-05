@@ -113,6 +113,7 @@ co:
       delete: Sguassà dati
       deleted: Sguassatu
       demote: Ritrugradà
+      destroyed_msg: "I dati di %{username} sò avà in fila d'attesa per esse tolti da quì à pocu"
       disable: Disattivà
       disable_two_factor_authentication: Disattivà l’identificazione à 2 fattori
       disabled: Disattivatu
@@ -121,11 +122,12 @@ co:
       edit: Mudificà
       email: E-mail
       email_status: Statutu di l’e-mail
-      enable: Attivà
+      enable: Riattivà
       enabled: Attivatu
+      enabled_msg: U contu di %{username} hè statu riattivatu
       followers: Abbunati
       follows: Abbunamenti
-      header: Intistatura
+      header: Ritrattu di cuprendula
       inbox_url: URL di l’inbox
       invited_by: Invitatu da
       ip: IP
@@ -163,7 +165,9 @@ co:
       reject: Righjittà
       reject_all: Righjittà tutti
       remove_avatar: Toglie l’avatar
-      remove_header: Toglie l'intistatura
+      remove_header: Toglie a cuprendula
+      removed_avatar_msg: U ritrattu di prufile di %{username} hè statu toltu
+      removed_header_msg: U ritrattu di cuprendula di %{username} hè statu toltu
       resend_confirmation:
         already_confirmed: St’utilizatore hè digià cunfirmatu
         send: Rimandà un’e-mail di cunfirmazione
@@ -234,9 +238,11 @@ co:
         reopen_report: Riapre Signalamentu
         reset_password_user: Riinizializà Chjave d'Accessu
         resolve_report: Chjode Signalamentu
+        sensitive_account: Marcà i media di u vostru contu cum'è sensibili
         silence_account: Silenzà Contu
         suspend_account: Suspende Contu
         unassigned_report: Disassignà signalamentu
+        unsensitive_account: Ùn marcà più i media di u vostru contu cum'è sensibili
         unsilence_account: Ùn Silenzà Più u Contu
         unsuspend_account: Ùn Suspende Più u Contu
         update_announcement: Cambià Annunziu
@@ -1340,11 +1346,13 @@ co:
       subject:
         disable: U vostru contu %{acct} hè statu ghjacciatu
         none: Avertimentu pè %{acct}
+        sensitive: I media di u vostru contu %{acct} sò stati marcati cum'è sensibili
         silence: U vostru contu %{acct} hè statu limitatu
         suspend: U vostru contu %{acct} hè statu suspesu
       title:
         disable: Contu ghjacciatu
         none: Avertimentu
+        sensitive: U vostru media hè statu marcatu cum'è sensibile
         silence: Contu limitatu
         suspend: Contu suspesu
     welcome:
@@ -1386,6 +1394,7 @@ co:
       success: A vostra chjave di sicurità hè stata aghjunta.
     delete: Sguassà
     delete_confirmation: Site sicuru·a che vulete sguassà sta chjave?
+    description_html: S'e voi attivate l'<strong>autentificazione à chjave di sicurità</strong>, duverete utilizà una di e vostre chjave ogni volta chì vi cunnettate.
     destroy:
       error: C'hè statu un prublemu togliendu a vostra chjave di sicurità. Duvete ripruvà.
       success: A vostra chjave di sicurità hè stata sguassata.
