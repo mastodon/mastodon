@@ -188,8 +188,8 @@ vi:
       show:
         created_reports: Lượt báo cáo
         targeted_reports: Báo cáo bởi người khác
-      silence: Tạm ẩn
-      silenced: Tạm ẩn
+      silence: Ẩn
+      silenced: Đã ẩn
       statuses: Tút
       subscribe: Đăng ký
       suspended: Đã vô hiệu hóa
@@ -199,7 +199,7 @@ vi:
       title: Tài khoản
       unconfirmed_email: Email chưa được xác thực
       undo_sensitized: Đánh dấu bình thường
-      undo_silenced: Bỏ tạm ẩn
+      undo_silenced: Bỏ ẩn
       undo_suspension: Ngừng vô hiệu hóa
       unsilenced_msg: Bỏ ẩn %{username} thành công
       unsubscribe: Hủy đăng ký
@@ -241,11 +241,11 @@ vi:
         reset_password_user: Đặt lại mật khẩu
         resolve_report: Xem xét lại báo cáo
         sensitive_account: Đánh dấu nhạy cảm cho ảnh và video trên tài khoản của bạn
-        silence_account: Tài khoản tạm ẩn
+        silence_account: Tài khoản bị ẩn
         suspend_account: Tài khoản bị vô hiệu hóa
         unassigned_report: Báo cáo chưa xem
         unsensitive_account: Ảnh và video trên tài khoản của bạn là bình thường
-        unsilence_account: Tài khoản bỏ tạm ẩn
+        unsilence_account: Tài khoản bỏ ẩn
         unsuspend_account: Tài khoản đã ngừng vô hiệu hóa
         update_announcement: Cập nhật thông báo
         update_custom_emoji: Cập nhật Emoji mới
@@ -281,11 +281,11 @@ vi:
         reset_password_user: "%{name} đặt lại mật khẩu của người dùng %{target}"
         resolve_report: "%{name} đã giải quyết báo cáo %{target}"
         sensitive_account: "%{name} đánh dấu nội dung của %{target} là nhạy cảm"
-        silence_account: "%{name} đã tạm ẩn %{target}"
+        silence_account: "%{name} đã ẩn %{target}"
         suspend_account: "%{name} đã vô hiệu hóa %{target}"
         unassigned_report: "%{name} báo cáo chưa được chỉ định %{target}"
         unsensitive_account: "%{name} đánh dấu nội dung của %{target} là bình thường"
-        unsilence_account: "%{name} đã bỏ tạm ẩn %{target}"
+        unsilence_account: "%{name} đã bỏ ẩn %{target}"
         unsuspend_account: "%{name} đã ngừng vô hiệu hóa %{target}"
         update_announcement: "%{name} cập nhật thông báo cho %{target}"
         update_custom_emoji: "%{name} đã cập nhật biểu tượng cảm xúc %{target}"
@@ -387,9 +387,9 @@ vi:
         create: Tạo chặn
         hint: Chặn máy chủ sẽ không ngăn việc hiển thị tút của máy chủ đó trong cơ sở dữ liệu, nhưng sẽ khiến tự động áp dụng các phương pháp kiểm duyệt cụ thể trên các tài khoản đó.
         severity:
-          desc_html: "<strong>Tạm ẩn</strong> sẽ làm cho bài đăng của tài khoản trở nên vô hình đối với bất kỳ ai không theo dõi họ. <strong>Vô hiệu hóa</strong> sẽ xóa tất cả nội dung, phương tiện và dữ liệu khác của tài khoản. Sử dụng <strong>Cấm upload</strong> nếu bạn chỉ muốn cấm tải lên ảnh và video."
+          desc_html: "<strong>Ẩn</strong> sẽ làm cho bài đăng của tài khoản trở nên vô hình đối với bất kỳ ai không theo dõi họ. <strong>Vô hiệu hóa</strong> sẽ xóa tất cả nội dung, phương tiện và dữ liệu khác của tài khoản. Sử dụng <strong>Cấm upload</strong> nếu bạn chỉ muốn cấm tải lên ảnh và video."
           noop: Không hoạt động
-          silence: Tạm ẩn
+          silence: Ẩn
           suspend: Vô hiệu hóa
         title: Máy chủ bị chặn mới
       private_comment: Bình luận riêng
@@ -403,13 +403,13 @@ vi:
       rejecting_media: từ chối các tập tin phương tiện truyền thông
       rejecting_reports: từ chối báo cáo
       severity:
-        silence: đã tạm ẩn
+        silence: bị ẩn
         suspend: bị vô hiệu hóa
       show:
         affected_accounts:
           other: "%{count} tài khoản trong cơ sở dữ liệu bị ảnh hưởng"
         retroactive:
-          silence: Những tài khoản tạm ẩn ở máy chủ này
+          silence: Những tài khoản bị ẩn ở máy chủ này
           suspend: Ngưng vô hiệu hóa các tài khoản ở máy chủ này
         title: Hủy chặn máy chủ %{domain}
         undo: Hủy bỏ
@@ -1189,6 +1189,8 @@ vi:
         other: "%{count} bình chọn"
       vote: Bình chọn
     show_more: Đọc thêm
+    show_newer: Mới hơn
+    show_older: Cũ hơn
     show_thread: Xem thảo luận
     sign_in_to_participate: Đăng nhập để trả lời chủ đề này
     title: '%{name}: "%{quote}"'
