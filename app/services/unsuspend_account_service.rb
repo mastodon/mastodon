@@ -18,7 +18,7 @@ class UnsuspendAccountService < BaseService
 
   def merge_into_home_timelines!
     @account.followers_for_local_distribution.find_each do |follower|
-      FeedManager.instance.merge_into_timeline(@account, follower)
+      FeedManager.instance.merge_into_home(@account, follower)
     end
   end
 

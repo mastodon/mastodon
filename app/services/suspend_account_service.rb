@@ -18,7 +18,7 @@ class SuspendAccountService < BaseService
 
   def unmerge_from_home_timelines!
     @account.followers_for_local_distribution.find_each do |follower|
-      FeedManager.instance.unmerge_from_timeline(@account, follower)
+      FeedManager.instance.unmerge_from_home(@account, follower)
     end
   end
 
