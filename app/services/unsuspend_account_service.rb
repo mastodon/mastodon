@@ -18,7 +18,7 @@ class UnsuspendAccountService < BaseService
 
   def merge_into_home_timelines!
     @account.followers_for_local_distribution.find_each do |follower|
-      FeedManager.instance.merge_into_timeline(@account, follower)
+      FeedManager.instance.merge_into_home(@account, follower)
     end
   end
 
@@ -39,11 +39,15 @@ class UnsuspendAccountService < BaseService
         styles.each do |style|
           case Paperclip::Attachment.default_options[:storage]
           when :s3
-            attachment.s3_object(style).acl.put(Paperclip::Attachment.default_options[:s3_permissions])
+            attachment.s3_object(style).acl.put(acl: Paperclip::Attachment.default_options[:s3_permissions])
           when :fog
             # Not supported
           when :filesystem
-            FileUtils.chmod(0o666 & ~File.umask, attachment.path(style))
+            begin
+              FileUtils.chmod(0o666 & ~File.umask, attachment.path(style)) unless attachment.path(style).nil?
+            rescue Errno::ENOENT
+              Rails.logger.warn "Tried to change permission on non-existent file #{attachment.path(style)}"
+            end
           end
         end
       end

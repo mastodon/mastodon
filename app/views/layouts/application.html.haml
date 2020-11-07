@@ -21,12 +21,12 @@
 
     %title= content_for?(:page_title) ? safe_join([yield(:page_title).chomp.html_safe, title], ' - ') : title
 
-    = javascript_pack_tag "locales", integrity: true, crossorigin: 'anonymous'
+    = javascript_pack_tag "locales", crossorigin: 'anonymous'
     - if @theme
       - if @theme[:supported_locales].include? I18n.locale.to_s
-        = javascript_pack_tag "locales/#{@theme[:flavour]}/#{I18n.locale}", integrity: true, crossorigin: 'anonymous'
+        = javascript_pack_tag "locales/#{@theme[:flavour]}/#{I18n.locale}", crossorigin: 'anonymous'
       - elsif @theme[:supported_locales].include? 'en'
-        = javascript_pack_tag "locales/#{@theme[:flavour]}/en", integrity: true, crossorigin: 'anonymous'
+        = javascript_pack_tag "locales/#{@theme[:flavour]}/en", crossorigin: 'anonymous'
     = csrf_meta_tags
     %meta{ name: 'style-nonce', content: request.content_security_policy_nonce }
 

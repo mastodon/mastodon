@@ -1,11 +1,11 @@
 - content_for :header_tags do
   = render_initial_state
-  = javascript_pack_tag "locales", integrity: true, crossorigin: 'anonymous'
+  = javascript_pack_tag "locales", crossorigin: 'anonymous'
   - if @theme
     - if @theme[:supported_locales].include? I18n.locale.to_s
-      = javascript_pack_tag "locales/#{@theme[:flavour]}/#{I18n.locale}", integrity: true, crossorigin: 'anonymous'
+      = javascript_pack_tag "locales/#{@theme[:flavour]}/#{I18n.locale}", crossorigin: 'anonymous'
     - elsif @theme[:supported_locales].include? 'en'
-      = javascript_pack_tag "locales/#{@theme[:flavour]}/en", integrity: true, crossorigin: 'anonymous'
+      = javascript_pack_tag "locales/#{@theme[:flavour]}/en", crossorigin: 'anonymous'
   = render partial: 'layouts/theme', object: @core
   = render partial: 'layouts/theme', object: @theme
 

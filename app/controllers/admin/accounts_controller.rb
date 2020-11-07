@@ -53,6 +53,13 @@ module Admin
       redirect_to admin_account_path(@account.id), notice: I18n.t('admin.accounts.destroyed_msg', username: @account.acct)
     end
 
+    def unsensitive
+      authorize @account, :unsensitive?
+      @account.unsensitize!
+      log_action :unsensitive, @account
+      redirect_to admin_account_path(@account.id)
+    end
+
     def unsilence
       authorize @account, :unsilence?
       @account.unsilence!

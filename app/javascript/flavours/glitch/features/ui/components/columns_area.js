@@ -29,7 +29,7 @@ import Icon from 'flavours/glitch/components/icon';
 import ComposePanel from './compose_panel';
 import NavigationPanel from './navigation_panel';
 
-import detectPassiveEvents from 'detect-passive-events';
+import { supportsPassiveEvents } from 'detect-passive-events';
 import { scrollRight } from 'flavours/glitch/util/scroll';
 
 const componentMap = {
@@ -80,7 +80,7 @@ class ColumnsArea extends ImmutablePureComponent {
 
   componentDidMount() {
     if (!this.props.singleColumn) {
-      this.node.addEventListener('wheel', this.handleWheel,  detectPassiveEvents.hasSupport ? { passive: true } : false);
+      this.node.addEventListener('wheel', this.handleWheel, supportsPassiveEvents ? { passive: true } : false);
     }
 
     this.lastIndex   = getIndex(this.context.router.history.location.pathname);
@@ -97,7 +97,7 @@ class ColumnsArea extends ImmutablePureComponent {
 
   componentDidUpdate(prevProps) {
     if (this.props.singleColumn !== prevProps.singleColumn && !this.props.singleColumn) {
-      this.node.addEventListener('wheel', this.handleWheel,  detectPassiveEvents.hasSupport ? { passive: true } : false);
+      this.node.addEventListener('wheel', this.handleWheel, supportsPassiveEvents ? { passive: true } : false);
     }
     this.lastIndex = getIndex(this.context.router.history.location.pathname);
     this.setState({ shouldAnimate: true });

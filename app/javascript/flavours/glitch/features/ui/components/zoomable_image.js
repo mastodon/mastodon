@@ -113,7 +113,8 @@ class ZoomableImage extends React.PureComponent {
   state = {
     scale: MIN_SCALE,
     zoomMatrix: {
-      type: null, // 'full-width' 'full-height'
+      type: null, // 'width' 'height'
+      fullScreen: null, // bool
       rate: null, // full screen scale rate
       clientWidth: null,
       clientHeight: null,
@@ -122,12 +123,15 @@ class ZoomableImage extends React.PureComponent {
       clientHeightFixed: null,
       scrollTop: null,
       scrollLeft: null,
+      translateX: null,
+      translateY: null,
     },
     zoomState: 'expand', // 'expand' 'compress'
     navigationHidden: false,
     dragPosition: { top: 0, left: 0, x: 0, y: 0 },
     dragged: false,
     lockScroll: { x: 0, y: 0 },
+    lockTranslate: { x: 0, y: 0 },
   }
 
   removers = [];
@@ -168,17 +172,23 @@ class ZoomableImage extends React.PureComponent {
   }
 
   componentDidUpdate () {
+    this.setState({ zoomState: this.state.scale >= this.state.zoomMatrix.rate ? 'compress' : 'expand' });
+
+    if (this.state.scale === MIN_SCALE) {
+      this.container.style.removeProperty('cursor');
+    }
+  }
+
+  UNSAFE_componentWillReceiveProps () {
+    // reset when slide to next image
     if (this.props.zoomButtonHidden) {
-      this.setState({ scale: MIN_SCALE }, () => {
+      this.setState({
+        scale: MIN_SCALE,
+        lockTranslate: { x: 0, y: 0 },
+      }, () => {
         this.container.scrollLeft = 0;
         this.container.scrollTop = 0;
       });
-    }
-
-    this.setState({ zoomState: this.state.scale >= this.state.zoomMatrix.rate ? 'compress' : 'expand' });
-
-    if (this.state.scale === 1) {
-      this.container.style.removeProperty('cursor');
     }
   }
 
@@ -192,7 +202,7 @@ class ZoomableImage extends React.PureComponent {
 
     const event = normalizeWheel(e);
 
-    if (this.state.zoomMatrix.type === 'full-width') {
+    if (this.state.zoomMatrix.type === 'width') {
       // full width, scroll vertical
       this.container.scrollTop = Math.max(this.container.scrollTop + event.pixelY, this.state.lockScroll.y);
     } else {
@@ -268,7 +278,7 @@ class ZoomableImage extends React.PureComponent {
   }
 
   zoom(nextScale, midpoint) {
-    const { scale } = this.state;
+    const { scale, zoomMatrix } = this.state;
     const { scrollLeft, scrollTop } = this.container;
 
     // math memo:
@@ -283,6 +293,15 @@ class ZoomableImage extends React.PureComponent {
     this.setState({ scale: nextScale }, () => {
       this.container.scrollLeft = nextScrollLeft;
       this.container.scrollTop = nextScrollTop;
+      // reset the translateX/Y constantly
+      if (nextScale < zoomMatrix.rate) {
+        this.setState({
+          lockTranslate: {
+            x: zoomMatrix.fullScreen ? 0 : zoomMatrix.translateX * ((nextScale - MIN_SCALE) / (zoomMatrix.rate - MIN_SCALE)),
+            y: zoomMatrix.fullScreen ? 0 : zoomMatrix.translateY * ((nextScale - MIN_SCALE) / (zoomMatrix.rate - MIN_SCALE)),
+          },
+        });
+      }
     });
   }
 
@@ -307,14 +326,18 @@ class ZoomableImage extends React.PureComponent {
     const { offsetWidth, offsetHeight } = this.image;
     const clientHeightFixed = clientHeight - NAV_BAR_HEIGHT;
 
-    const type = width/height < clientWidth / clientHeightFixed ? 'full-width' : 'full-height';
-    const rate = type === 'full-width' ? clientWidth / offsetWidth : clientHeightFixed / offsetHeight;
-    const scrollTop = type === 'full-width' ?  (clientHeight - offsetHeight) / 2 - NAV_BAR_HEIGHT : (clientHeightFixed - offsetHeight) / 2;
+    const type = width / height < clientWidth / clientHeightFixed ? 'width' : 'height';
+    const fullScreen = type === 'width' ?  width > clientWidth : height > clientHeightFixed;
+    const rate = type === 'width' ? Math.min(clientWidth, width) / offsetWidth : Math.min(clientHeightFixed, height) / offsetHeight;
+    const scrollTop = type === 'width' ?  (clientHeight - offsetHeight) / 2 - NAV_BAR_HEIGHT : (clientHeightFixed - offsetHeight) / 2;
     const scrollLeft = (clientWidth - offsetWidth) / 2;
+    const translateX = type === 'width' ? (width - offsetWidth) / (2 * rate) : 0;
+    const translateY = type === 'height' ? (height - offsetHeight) / (2 * rate) : 0;
 
     this.setState({
       zoomMatrix: {
         type: type,
+        fullScreen: fullScreen,
         rate: rate,
         clientWidth: clientWidth,
         clientHeight: clientHeight,
@@ -323,6 +346,8 @@ class ZoomableImage extends React.PureComponent {
         clientHeightFixed: clientHeightFixed,
         scrollTop: scrollTop,
         scrollLeft: scrollLeft,
+        translateX: translateX,
+        translateY: translateY,
       },
     });
   }
@@ -340,6 +365,10 @@ class ZoomableImage extends React.PureComponent {
           x: 0,
           y: 0,
         },
+        lockTranslate: {
+          x: 0,
+          y: 0,
+        },
       }, () => {
         this.container.scrollLeft = 0;
         this.container.scrollTop = 0;
@@ -350,6 +379,10 @@ class ZoomableImage extends React.PureComponent {
         lockScroll: {
           x: zoomMatrix.scrollLeft,
           y: zoomMatrix.scrollTop,
+        },
+        lockTranslate: {
+          x: zoomMatrix.fullScreen ? 0 : zoomMatrix.translateX,
+          y: zoomMatrix.fullScreen ? 0 : zoomMatrix.translateY,
         },
       }, () => {
         this.container.scrollLeft = zoomMatrix.scrollLeft;
@@ -371,15 +404,15 @@ class ZoomableImage extends React.PureComponent {
 
   render () {
     const { alt, src, width, height, intl } = this.props;
-    const { scale } = this.state;
-    const overflow = scale === 1 ? 'hidden' : 'scroll';
-    const zoomButtonSshouldHide = !this.state.navigationHidden && !this.props.zoomButtonHidden ? '' : 'media-modal__zoom-button--hidden';
+    const { scale, lockTranslate } = this.state;
+    const overflow = scale === MIN_SCALE ? 'hidden' : 'scroll';
+    const zoomButtonShouldHide = this.state.navigationHidden || this.props.zoomButtonHidden || this.state.zoomMatrix.rate <= MIN_SCALE ? 'media-modal__zoom-button--hidden' : '';
     const zoomButtonTitle = this.state.zoomState === 'compress' ? intl.formatMessage(messages.compress) : intl.formatMessage(messages.expand);
 
     return (
       <React.Fragment>
         <IconButton
-          className={`media-modal__zoom-button ${zoomButtonSshouldHide}`}
+          className={`media-modal__zoom-button ${zoomButtonShouldHide}`}
           title={zoomButtonTitle}
           icon={this.state.zoomState}
           onClick={this.handleZoomClick}
@@ -402,7 +435,7 @@ class ZoomableImage extends React.PureComponent {
             width={width}
             height={height}
             style={{
-              transform: `scale(${scale})`,
+              transform: `scale(${scale}) translate(-${lockTranslate.x}px, -${lockTranslate.y}px)`,
               transformOrigin: '0 0',
             }}
             draggable={false}

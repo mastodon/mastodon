@@ -10,7 +10,7 @@ import { EmojiPicker as EmojiPickerAsync } from 'flavours/glitch/util/async-comp
 import Overlay from 'react-overlays/lib/Overlay';
 import classNames from 'classnames';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import detectPassiveEvents from 'detect-passive-events';
+import { supportsPassiveEvents } from 'detect-passive-events';
 import { buildCustomEmojis, categoriesFromEmojis } from 'flavours/glitch/util/emoji';
 import { useSystemEmojiFont } from 'flavours/glitch/util/initial_state';
 import { assetHost } from 'flavours/glitch/util/config';
@@ -109,7 +109,7 @@ const mapDispatchToProps = (dispatch, { onPickEmoji }) => ({
 let EmojiPicker, Emoji; // load asynchronously
 
 const backgroundImageFn = () => `${assetHost}/emoji/sheet_10.png`;
-const listenerOptions = detectPassiveEvents.hasSupport ? { passive: true } : false;
+const listenerOptions = supportsPassiveEvents ? { passive: true } : false;
 
 class ModifierPickerMenu extends React.PureComponent {
 

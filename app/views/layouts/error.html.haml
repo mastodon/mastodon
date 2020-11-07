@@ -5,7 +5,7 @@
     %meta{ charset: 'utf-8' }/
     %title= safe_join([yield(:page_title), Setting.default_settings['site_title']], ' - ')
     %meta{ content: 'width=device-width,initial-scale=1', name: 'viewport' }/
-    = javascript_pack_tag "locales", integrity: true, crossorigin: 'anonymous'
+    = javascript_pack_tag "locales", crossorigin: 'anonymous'
     = render partial: 'layouts/theme', object: (@core || { pack: 'common' })
     = render partial: 'layouts/theme', object: (@theme || { pack: 'error', flavour: 'glitch', common: { pack: 'common', flavour: 'glitch', skin: 'default' } })
   %body.error

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import detectPassiveEvents from 'detect-passive-events';
+import { supportsPassiveEvents } from 'detect-passive-events';
 import { scrollTop } from 'flavours/glitch/util/scroll';
 
 export default class Column extends React.PureComponent {
@@ -37,9 +37,9 @@ export default class Column extends React.PureComponent {
 
   componentDidMount () {
     if (this.props.bindToDocument) {
-      document.addEventListener('wheel', this.handleWheel,  detectPassiveEvents.hasSupport ? { passive: true } : false);
+      document.addEventListener('wheel', this.handleWheel, supportsPassiveEvents ? { passive: true } : false);
     } else {
-      this.node.addEventListener('wheel', this.handleWheel,  detectPassiveEvents.hasSupport ? { passive: true } : false);
+      this.node.addEventListener('wheel', this.handleWheel, supportsPassiveEvents ? { passive: true } : false);
     }
   }
 

@@ -1,4 +1,4 @@
-import detectPassiveEvents from 'detect-passive-events';
+import { supportsPassiveEvents } from 'detect-passive-events';
 import { forceSingleColumn } from 'flavours/glitch/util/initial_state';
 
 const LAYOUT_BREAKPOINT = 630;
@@ -17,7 +17,7 @@ export function isMobile(width, columns) {
 const iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
 
 let userTouching = false;
-let listenerOptions = detectPassiveEvents.hasSupport ? { passive: true } : false;
+let listenerOptions = supportsPassiveEvents ? { passive: true } : false;
 
 function touchListener() {
   userTouching = true;
