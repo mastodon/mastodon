@@ -280,9 +280,11 @@ id:
         reopen_report: "%{name} membuka ulang laporan %{target}"
         reset_password_user: "%{name} mereset kata sandi pengguna %{target}"
         resolve_report: "%{name} menyelesaikan laporan %{target}"
+        sensitive_account: "%{name} menandai media %{target} sebagai sensitif"
         silence_account: "%{name} membungkam akun %{target}"
         suspend_account: "%{name} menangguhkan akun %{target}"
         unassigned_report: "%{name} tidak menugaskan laporan %{target}"
+        unsensitive_account: "%{name} membatalkan tanda media %{target} sebagai sensitif"
         unsilence_account: "%{name} menghapus bungkaman akun %{target}"
         unsuspend_account: "%{name} menghapus penangguhan akun %{target}"
         update_announcement: "%{name} memperbarui pengumuman %{target}"
@@ -1187,6 +1189,8 @@ id:
         other: "%{count} memilih"
       vote: Memilih
     show_more: Tampilkan selengkapnya
+    show_newer: Tampilkan lebih baru
+    show_older: Tampilkan lebih lama
     show_thread: Tampilkan utas
     sign_in_to_participate: Masuk untuk mengikuti percakapan
     title: '%{name}: "%{quote}"'
@@ -1323,6 +1327,7 @@ id:
     warning:
       explanation:
         disable: Saat akun Anda beku, data Anda tetap utuh. Anda tidak akan dapat melakukan apa-apa sampai akun Anda tidak lagi dikunci.
+        sensitive: Berkas media dan media tertaut yang Anda unggah akan dianggap sebagai sensitif.
         silence: Saat akun Anda dibatasi, hanya akun yang Anda ikuti yang dapat melihat toot Anda di server ini. Akun Anda mungkin akan dikecualikan dari daftar publik. Akun lain dapat mengikuti akun Anda secara manual.
         suspend: Akun Anda telah ditangguhkan. Semua toot dan media yang Anda unggah dihapus secara permanen dari server ini, dan server tempat Anda memiliki pengikut.
       get_in_touch: Anda dapat membalas email ini untuk menghubungi pengurus %{instance}.
@@ -1331,11 +1336,13 @@ id:
       subject:
         disable: Akun Anda %{acct} telah dibekukan
         none: Peringatan untuk %{acct}
+        sensitive: Postingan media akun Anda %{acct} telah ditandai sebagai sensitif
         silence: Akun Anda %{acct} telah dibatasi
         suspend: Akun Anda %{acct} telah ditangguhkan
       title:
         disable: Akun dibekukan
         none: Peringatan
+        sensitive: Media Anda telah ditandai sebagai sensitif
         silence: Akun dibatasi
         suspend: Akun ditangguhkan
     welcome:
