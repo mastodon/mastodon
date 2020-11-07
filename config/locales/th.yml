@@ -215,9 +215,11 @@ th:
         reopen_report: เปิดรายงานใหม่
         reset_password_user: ตั้งรหัสผ่านใหม่
         resolve_report: แก้ปัญหารายงาน
+        sensitive_account: ทำเครื่องหมายสื่อในบัญชีของคุณว่าละเอียดอ่อน
         silence_account: ทำให้บัญชีเงียบ
         suspend_account: ระงับบัญชี
         unassigned_report: เลิกมอบหมายรายงาน
+        unsensitive_account: เลิกทำเครื่องหมายสื่อในบัญชีของคุณว่าละเอียดอ่อน
         unsilence_account: เลิกทำให้บัญชีเงียบ
         unsuspend_account: เลิกระงับบัญชี
         update_announcement: อัปเดตประกาศ
@@ -253,6 +255,7 @@ th:
         reopen_report: "%{name} ได้เปิดรายงาน %{target} ใหม่"
         reset_password_user: "%{name} ได้ตั้งรหัสผ่านของผู้ใช้ %{target} ใหม่"
         resolve_report: "%{name} ได้แก้ปัญหารายงาน %{target}"
+        sensitive_account: "%{name} ได้ทำเครื่องหมายสื่อของ %{target} ว่าละเอียดอ่อน"
         silence_account: "%{name} ได้ทำให้บัญชีของ %{target} เงียบ"
         suspend_account: "%{name} ได้ระงับบัญชีของ %{target}"
         unassigned_report: "%{name} ได้เลิกมอบหมายรายงาน %{target}"
@@ -1034,6 +1037,8 @@ th:
         other: "%{count} การลงคะแนน"
       vote: ลงคะแนน
     show_more: แสดงเพิ่มเติม
+    show_newer: แสดงที่ใหม่กว่า
+    show_older: แสดงที่เก่ากว่า
     show_thread: แสดงกระทู้
     sign_in_to_participate: ลงชื่อเข้าเพื่อเข้าร่วมการสนทนา
     title: '%{name}: "%{quote}"'
