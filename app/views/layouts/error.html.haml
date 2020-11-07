@@ -11,6 +11,7 @@
     = javascript_pack_tag 'error', crossorigin: 'anonymous'
   %body.error
     .dialog
-      %img{ alt: Setting.default_settings['site_title'], src: '/oops.gif' }/
-      %div
+      .dialog__illustration
+        %img{ alt: Setting.default_settings['site_title'], src: '/oops.gif' }/
+      .dialog__message
         %h1= yield :content
