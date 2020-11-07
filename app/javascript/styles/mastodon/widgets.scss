@@ -2,6 +2,10 @@
   margin-bottom: 10px;
   box-shadow: 0 0 15px rgba($base-shadow-color, 0.2);
 
+  &:last-child {
+    margin-bottom: 0;
+  }
+
   &__img {
     width: 100%;
     position: relative;

@@ -5,6 +5,10 @@ class UnsuspendAccountService < BaseService
     @account = account
 
     unsuspend!
+    refresh_remote_account!
+
+    return if @account.nil?
+
     merge_into_home_timelines!
     merge_into_list_timelines!
     publish_media_attachments!
@@ -14,6 +18,22 @@ class UnsuspendAccountService < BaseService
 
   def unsuspend!
     @account.unsuspend! if @account.suspended?
+  end
+
+  def refresh_remote_account!
+    return if @account.local?
+
+    # While we had the remote account suspended, it could be that
+    # it got suspended on its origin, too. So, we need to refresh
+    # it straight away so it gets marked as remotely suspended in
+    # that case.
+
+    @account.update!(last_webfingered_at: nil)
+    @account = ResolveAccountService.new.call(@account)
+
+    # Worth noting that it is possible that the remote has not only
+    # been suspended, but deleted permanently, in which case
+    # @account would now be nil.
   end
 
   def merge_into_home_timelines!

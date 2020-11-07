@@ -33,6 +33,10 @@ class ActivityPub::InboxesController < ActivityPub::BaseController
     params[:account_username].present?
   end
 
+  def skip_temporary_suspension_response?
+    true
+  end
+
   def body
     return @body if defined?(@body)
 

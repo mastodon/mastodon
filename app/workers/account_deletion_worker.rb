@@ -5,8 +5,8 @@ class AccountDeletionWorker
 
   sidekiq_options queue: 'pull'
 
-  def perform(account_id)
-    DeleteAccountService.new.call(Account.find(account_id), reserve_username: true, reserve_email: false)
+  def perform(account_id, reserve_username: true)
+    DeleteAccountService.new.call(Account.find(account_id), reserve_username: reserve_username, reserve_email: false)
   rescue ActiveRecord::RecordNotFound
     true
   end
