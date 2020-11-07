@@ -11,6 +11,7 @@ class ActivityPub::InboxesController < ActivityPub::BaseController
 
   def create
     upgrade_account
+    process_collection_synchronization
     process_payload
     head 202
   end
@@ -50,6 +51,19 @@ class ActivityPub::InboxesController < ActivityPub::BaseController
     end
 
     DeliveryFailureTracker.reset!(signed_request_account.inbox_url)
+  end
+
+  def process_collection_synchronization
+    raw_params = request.headers['Collection-Synchronization']
+    return if raw_params.blank? || ENV['DISABLE_FOLLOWERS_SYNCHRONIZATION'] == 'true'
+
+    # Re-using the syntax for signature parameters
+    tree   = SignatureParamsParser.new.parse(raw_params)
+    params = SignatureParamsTransformer.new.apply(tree)
+
+    ActivityPub::PrepareFollowersSynchronizationService.new.call(signed_request_account, params)
+  rescue Parslet::ParseFailed
+    Rails.logger.warn 'Error parsing Collection-Synchronization header'
   end
 
   def process_payload

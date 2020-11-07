@@ -6,7 +6,15 @@ module Expireable
   included do
     scope :expired, -> { where.not(expires_at: nil).where('expires_at < ?', Time.now.utc) }
 
-    attr_reader :expires_in
+    def expires_in
+      return @expires_in if defined?(@expires_in)
+
+      if expires_at.nil?
+        nil
+      else
+        (expires_at - created_at).to_i
+      end
+    end
 
     def expires_in=(interval)
       self.expires_at = interval.to_i.seconds.from_now if interval.present?

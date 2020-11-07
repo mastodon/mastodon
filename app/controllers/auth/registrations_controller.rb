@@ -45,9 +45,9 @@ class Auth::RegistrationsController < Devise::RegistrationsController
   def build_resource(hash = nil)
     super(hash)
 
-    resource.locale             = I18n.locale
-    resource.invite_code        = params[:invite_code] if resource.invite_code.blank?
-    resource.current_sign_in_ip = request.remote_ip
+    resource.locale      = I18n.locale
+    resource.invite_code = params[:invite_code] if resource.invite_code.blank?
+    resource.sign_up_ip  = request.remote_ip
 
     resource.build_account if resource.account.nil?
   end

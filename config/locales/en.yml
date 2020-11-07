@@ -188,6 +188,8 @@ en:
       search: Search
       search_same_email_domain: Other users with the same e-mail domain
       search_same_ip: Other users with the same IP
+      sensitive: Sensitive
+      sensitized: marked as sensitive
       shared_inbox_url: Shared inbox URL
       show:
         created_reports: Made reports
@@ -202,6 +204,7 @@ en:
       time_in_queue: Waiting in queue %{time}
       title: Accounts
       unconfirmed_email: Unconfirmed email
+      undo_sensitized: Undo sensitive
       undo_silenced: Undo silence
       undo_suspension: Undo suspension
       unsilenced_msg: Successfully unlimited %{username}'s account
@@ -223,12 +226,14 @@ en:
         create_domain_allow: Create Domain Allow
         create_domain_block: Create Domain Block
         create_email_domain_block: Create E-mail Domain Block
+        create_ip_block: Create IP rule
         demote_user: Demote User
         destroy_announcement: Delete Announcement
         destroy_custom_emoji: Delete Custom Emoji
         destroy_domain_allow: Delete Domain Allow
         destroy_domain_block: Delete Domain Block
         destroy_email_domain_block: Delete e-mail domain block
+        destroy_ip_block: Delete IP rule
         destroy_status: Delete Status
         disable_2fa_user: Disable 2FA
         disable_custom_emoji: Disable Custom Emoji
@@ -241,9 +246,11 @@ en:
         reopen_report: Reopen Report
         reset_password_user: Reset Password
         resolve_report: Resolve Report
+        sensitive_account: Mark the media in your account as sensitive
         silence_account: Silence Account
         suspend_account: Suspend Account
         unassigned_report: Unassign Report
+        unsensitive_account: Unmark the media in your account as sensitive
         unsilence_account: Unsilence Account
         unsuspend_account: Unsuspend Account
         update_announcement: Update Announcement
@@ -259,12 +266,14 @@ en:
         create_domain_allow: "%{name} allowed federation with domain %{target}"
         create_domain_block: "%{name} blocked domain %{target}"
         create_email_domain_block: "%{name} blocked e-mail domain %{target}"
+        create_ip_block: "%{name} created rule for IP %{target}"
         demote_user: "%{name} demoted user %{target}"
         destroy_announcement: "%{name} deleted announcement %{target}"
         destroy_custom_emoji: "%{name} destroyed emoji %{target}"
         destroy_domain_allow: "%{name} disallowed federation with domain %{target}"
         destroy_domain_block: "%{name} unblocked domain %{target}"
         destroy_email_domain_block: "%{name} unblocked e-mail domain %{target}"
+        destroy_ip_block: "%{name} deleted rule for IP %{target}"
         destroy_status: "%{name} removed status by %{target}"
         disable_2fa_user: "%{name} disabled two factor requirement for user %{target}"
         disable_custom_emoji: "%{name} disabled emoji %{target}"
@@ -277,9 +286,11 @@ en:
         reopen_report: "%{name} reopened report %{target}"
         reset_password_user: "%{name} reset password of user %{target}"
         resolve_report: "%{name} resolved report %{target}"
+        sensitive_account: "%{name} marked %{target}'s media as sensitive"
         silence_account: "%{name} silenced %{target}'s account"
         suspend_account: "%{name} suspended %{target}'s account"
         unassigned_report: "%{name} unassigned report %{target}"
+        unsensitive_account: "%{name} unmarked %{target}'s media as sensitive"
         unsilence_account: "%{name} unsilenced %{target}'s account"
         unsuspend_account: "%{name} unsuspended %{target}'s account"
         update_announcement: "%{name} updated announcement %{target}"
@@ -449,6 +460,21 @@ en:
         expired: Expired
         title: Filter
       title: Invites
+    ip_blocks:
+      add_new: Create rule
+      created_msg: Successfully added new IP rule
+      delete: Delete
+      expires_in:
+        '1209600': 2 weeks
+        '15778476': 6 months
+        '2629746': 1 month
+        '31556952': 1 year
+        '86400': 1 day
+        '94670856': 3 years
+      new:
+        title: Create new IP rule
+      no_ip_block_selected: No IP rules were changed as none were selected
+      title: IP rules
     pending_accounts:
       title: Pending accounts (%{count})
     relationships:
@@ -1184,6 +1210,8 @@ en:
         other: "%{count} votes"
       vote: Vote
     show_more: Show more
+    show_newer: Show newer
+    show_older: Show older
     show_thread: Show thread
     sign_in_to_participate: Sign in to participate in the conversation
     title: '%{name}: "%{quote}"'
@@ -1320,6 +1348,7 @@ en:
     warning:
       explanation:
         disable: You can no longer login to your account or use it in any other way, but your profile and other data remains intact.
+        sensitive: Your uploaded media files and linked media will be treated as sensitive.
         silence: You can still use your account but only people who are already following you will see your toots on this server, and you may be excluded from various public listings. However, others may still manually follow you.
         suspend: You can no longer use your account, and your profile and other data are no longer accessible. You can still login to request a backup of your data until the data is fully removed, but we will retain some data to prevent you from evading the suspension.
       get_in_touch: You can reply to this e-mail to get in touch with the staff of %{instance}.
@@ -1328,11 +1357,13 @@ en:
       subject:
         disable: Your account %{acct} has been frozen
         none: Warning for %{acct}
+        sensitive: Your account %{acct} posting media has been marked as sensitive
         silence: Your account %{acct} has been limited
         suspend: Your account %{acct} has been suspended
       title:
         disable: Account frozen
         none: Warning
+        sensitive: Your media has been marked as sensitive
         silence: Account limited
         suspend: Account suspended
     welcome:

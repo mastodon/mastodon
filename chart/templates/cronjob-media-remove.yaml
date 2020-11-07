@@ -1,0 +1,73 @@
+{{ if .Values.cron.removeMedia.enabled }}
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: {{ include "mastodon.fullname" . }}-media-remove
+  labels:
+    {{- include "mastodon.labels" . | nindent 4 }}
+spec:
+  schedule: {{ .Values.cron.removeMedia.schedule }}
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          name: {{ include "mastodon.fullname" . }}-media-remove
+        spec:
+          restartPolicy: OnFailure
+          # ensure we run on the same node as the other rails components; only
+          # required when using PVCs that are ReadWriteOnce
+          {{- if or (eq "ReadWriteOnce" .Values.persistence.assets.accessMode) (eq "ReadWriteOnce" .Values.persistence.system.accessMode) }}
+          affinity:
+            podAffinity:
+              requiredDuringSchedulingIgnoredDuringExecution:
+              - labelSelector:
+                  matchExpressions:
+                    - key: component
+                      operator: In
+                      values:
+                        - rails
+                topologyKey: kubernetes.io/hostname
+          {{- end }}
+          volumes:
+            - name: assets
+              persistentVolumeClaim:
+                claimName: {{ template "mastodon.fullname" . }}-assets
+            - name: system
+              persistentVolumeClaim:
+                claimName: {{ template "mastodon.fullname" . }}-system
+          containers:
+            - name: {{ include "mastodon.fullname" . }}-media-remove
+              image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+              imagePullPolicy: {{ .Values.image.pullPolicy }}
+              command:
+                - bin/tootctl
+                - media
+                - remove
+              envFrom:
+                - configMapRef:
+                    name: {{ include "mastodon.fullname" . }}-env
+                - secretRef:
+                    name: {{ template "mastodon.fullname" . }}
+              env:
+                - name: "DB_PASS"
+                  valueFrom:
+                    secretKeyRef:
+                      {{- if .Values.postgresql.enabled }}
+                      name: {{ .Release.Name }}-postgresql
+                      {{- else }}
+                      name: {{ template "mastodon.fullname" . }}-postgresql
+                      {{- end }}
+                      key: postgresql-password
+                - name: "REDIS_PASSWORD"
+                  valueFrom:
+                    secretKeyRef:
+                      name: {{ .Release.Name }}-redis
+                      key: redis-password
+                - name: "PORT"
+                  value: {{ .Values.application.web.port | quote }}
+              volumeMounts:
+                - name: assets
+                  mountPath: /opt/mastodon/public/assets
+                - name: system
+                  mountPath: /opt/mastodon/public/system
+{{- end }}
