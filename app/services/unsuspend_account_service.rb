@@ -43,7 +43,11 @@ class UnsuspendAccountService < BaseService
           when :fog
             # Not supported
           when :filesystem
-            FileUtils.chmod(0o666 & ~File.umask, attachment.path(style)) unless attachment.path(style).nil?
+            begin
+              FileUtils.chmod(0o666 & ~File.umask, attachment.path(style)) unless attachment.path(style).nil?
+            rescue Errno::ENOENT
+              Rails.logger.warn "Tried to change permission on non-existent file #{attachment.path(style)}"
+            end
           end
         end
       end
