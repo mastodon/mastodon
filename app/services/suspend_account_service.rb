@@ -18,7 +18,7 @@ class SuspendAccountService < BaseService
 
   def unmerge_from_home_timelines!
     @account.followers_for_local_distribution.find_each do |follower|
-      FeedManager.instance.unmerge_from_timeline(@account, follower)
+      FeedManager.instance.unmerge_from_home(@account, follower)
     end
   end
 
@@ -39,11 +39,15 @@ class SuspendAccountService < BaseService
         styles.each do |style|
           case Paperclip::Attachment.default_options[:storage]
           when :s3
-            attachment.s3_object(style).acl.put(:private)
+            attachment.s3_object(style).acl.put(acl: 'private')
           when :fog
             # Not supported
           when :filesystem
-            FileUtils.chmod(0o600 & ~File.umask, attachment.path(style))
+            begin
+              FileUtils.chmod(0o600 & ~File.umask, attachment.path(style)) unless attachment.path(style).nil?
+            rescue Errno::ENOENT
+              Rails.logger.warn "Tried to change permission on non-existent file #{attachment.path(style)}"
+            end
           end
         end
       end

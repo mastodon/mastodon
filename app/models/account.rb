@@ -50,6 +50,7 @@
 #  avatar_storage_schema_version :integer
 #  header_storage_schema_version :integer
 #  devices_url                   :string
+#  sensitized_at                 :datetime
 #
 
 class Account < ApplicationRecord
@@ -96,6 +97,7 @@ class Account < ApplicationRecord
   scope :partitioned, -> { order(Arel.sql('row_number() over (partition by domain)')) }
   scope :silenced, -> { where.not(silenced_at: nil) }
   scope :suspended, -> { where.not(suspended_at: nil) }
+  scope :sensitized, -> { where.not(sensitized_at: nil) }
   scope :without_suspended, -> { where(suspended_at: nil) }
   scope :without_silenced, -> { where(silenced_at: nil) }
   scope :recent, -> { reorder(id: :desc) }
@@ -236,6 +238,18 @@ class Account < ApplicationRecord
       deletion_request&.destroy!
       update!(suspended_at: nil)
     end
+  end
+
+  def sensitized?
+    sensitized_at.present?
+  end
+
+  def sensitize!(date = Time.now.utc)
+    update!(sensitized_at: date)
+  end
+
+  def unsensitize!
+    update!(sensitized_at: nil)
   end
 
   def memorialize!

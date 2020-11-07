@@ -25,6 +25,14 @@ class AccountPolicy < ApplicationPolicy
     staff?
   end
 
+  def sensitive?
+    staff? && !record.user&.staff?
+  end
+
+  def unsensitive?
+    staff?
+  end
+
   def silence?
     staff? && !record.user&.staff?
   end
