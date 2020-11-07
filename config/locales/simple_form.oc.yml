@@ -64,6 +64,8 @@ oc:
         data: Fichièr CSV exportat d’un autre servidor Mastodon
       invite_request:
         text: Aquò nos ajudarà per validar vòstra demanda
+      ip_block:
+        comment: Opcional. Remembratz-vos perque ajustèretz aquesta règla.
       sessions:
         otp: 'Picatz lo còdi d’autentificacion en dos temps (Two factor code) de vòstra aplicacion mobil o utilizatz un de vòstres còdis de recuperacion :'
         webauthn: S’es una clau USB asseguratz-vos de l’inserir, e se cal de la picanhejar.
@@ -91,6 +93,7 @@ oc:
         types:
           disable: Desactivar
           none: Far pas res
+          sensitive: Sensible
           silence: Metre en silence
           suspend: Suspendre e escafar per de bon las donadas del compte
         warning_preset_id: Utilizar un avertiment predefinit
@@ -172,6 +175,9 @@ oc:
       ip_block:
         comment: Comentari
         ip: IP
+        severities:
+          no_access: Blocar l’accès
+          sign_up_requires_approval: Limitar las inscripcions
         severity: Règla
       notification_emails:
         digest: Enviar un corrièl recapitulatiu
