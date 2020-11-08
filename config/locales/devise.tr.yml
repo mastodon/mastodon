@@ -9,7 +9,7 @@ tr:
       inactive: Hesabınız henüz etkinleştirilmedi.
       invalid: Geçersiz %{authentication_keys} ya da şifre.
       last_attempt: Hesabınız kilitlenmeden önce bir kez daha denemeniz gerekir.
-      locked: Hesabınız kilitli.
+      locked: Hesabınız kilitlendi.
       not_found_in_database: Geçersiz %{authentication_keys} ya da şifre.
       pending: Hesabınız hala inceleniyor.
       timeout: Oturum süreniz sona erdi. Lütfen devam etmek için tekrar giriş yapınız.
@@ -44,21 +44,21 @@ tr:
         explanation: Hesabınız için yeni bir şifre istediniz.
         extra: Bunu siz yapmadıysanız, lütfen bu e-postayı dikkate almayın. Parolanız yukarıdaki bağlantıya erişene ve yeni bir tane oluşturuncaya kadar değişmez.
         subject: 'Mastodon: Şifre sıfırlama talimatları'
-        title: Parola sıfırlama
+        title: Şifre sıfırlama
       two_factor_disabled:
         explanation: Hesabınız için iki-adımlı kimlik doğrulama devre dışı bırakıldı. Şimdi sadece e-posta adresi ve parola kullanarak giriş yapabilirsiniz.
         subject: 'Mastodon: İki-adımlı kimlik doğrulama devre dışı bırakıldı'
         title: 2FA devre dışı bırakıldı
       two_factor_enabled:
         explanation: Hesabınız için iki-adımlı kimlik doğrulama etkinleştirildi. Giriş yapmak için eşleştirilmiş TOTP uygulaması tarafından oluşturulan bir belirteç gereklidir.
-        subject: 'Mastodon: İki-adımlı kimlik doğrulama etkinleştirildi'
+        subject: 'Mastodon: İki adımlı kimlik doğrulama etkinleştirildi'
         title: 2FA etkinleştirildi
       two_factor_recovery_codes_changed:
         explanation: Önceki kurtarma kodları geçersiz kılındı ve yenileri oluşturuldu.
-        subject: 'Mastodon: İki-adımlı kurtarma kodları yeniden oluşturuldu'
+        subject: 'Mastodon: İki adımlı kurtarma kodları yeniden oluşturuldu'
         title: 2FA kurtarma kodları değiştirildi
       unlock_instructions:
-        subject: 'Mastodon: Engel kaldırma talimatları'
+        subject: 'Mastodon: Kilit açma talimatları'
       webauthn_credential:
         added:
           explanation: Aşağıdaki güvenlik anahtarı hesabınıza eklendi
