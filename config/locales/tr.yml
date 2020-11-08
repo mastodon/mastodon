@@ -1128,9 +1128,9 @@ tr:
       safari: Safari
       uc_browser: UC Browser
       weibo: Weibo
-    current_session: Şu anki oturum
-    description: "%{platform} üzerinde %{browser}"
-    explanation: Bunlar şu anda Mastodon hesabınızda oturum açan web tarayıcılarıdır.
+    current_session: Geçerli oturum
+    description: "%{platform} - %{browser}"
+    explanation: Bunlar, Mastodon hesabınızda şu anda oturum açmış web tarayıcılarıdır.
     ip: IP
     platforms:
       adobe_air: Adobe Air
@@ -1139,13 +1139,13 @@ tr:
       chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
-      linux: GNU/Linux
-      mac: Mac
+      linux: Linux
+      mac: macOS
       other: bilinmeyen platform
       windows: Windows
-      windows_mobile: Windows Mobil
+      windows_mobile: Windows Mobile
       windows_phone: Windows Phone
-    revoke: İptal
+    revoke: İptal Et
     revoke_success: Oturum başarıyla iptal edildi
     title: Oturumlar
   settings:
@@ -1153,16 +1153,16 @@ tr:
     account_settings: Hesap ayarları
     aliases: Hesap takma adları
     appearance: Görünüm
-    authorized_apps: Yetkilendirilen uygulamalar
+    authorized_apps: Yetkili uygulamalar
     back: Mastodon'a geri dön
     delete: Hesap silme
     development: Geliştirme
     edit_profile: Profili düzenle
-    export: Dışa aktar
-    featured_tags: Öne çıkan hashtag'ler
-    identity_proofs: Kimlik belgesi
+    export: Veriyi dışa aktar
+    featured_tags: Öne çıkan etiketler
+    identity_proofs: Kimlik kanıtları
     import: İçe aktar
-    import_and_export: İçe al ve dışarı aktar
+    import_and_export: İçe ve dışa aktar
     migrate: Hesap taşıma
     notifications: Bildirim
     preferences: Tercihler
@@ -1334,7 +1334,7 @@ tr:
     webauthn: Güvenlik anahtarları
   user_mailer:
     backup_ready:
-      explanation: Mastodon hesabınızın tam bir yedeğini istediniz. Şimdi indirmeye hazır!
+      explanation: Mastodon hesabınızın tam yedeğini istemiştiniz. Şimdi indirilebilir durumda!
       subject: Arşiviniz indirilmeye hazır
       title: Arşiv paketlemesi
     sign_in_token:
