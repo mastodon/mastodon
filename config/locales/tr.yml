@@ -622,7 +622,7 @@ tr:
         title: Ön inceleme yapmadan etiketlerin trend olmasına izin ver
       trends:
         desc_html: Şu anda trend olan ve daha önce incelenen etiketleri herkese açık olarak göster
-        title: Trend etiketler
+        title: Gündem etiketleri
     site_uploads:
       delete: Yüklenen dosyayı sil
       destroyed_msg: Site yüklemesi başarıyla silindi!
@@ -647,7 +647,7 @@ tr:
       context: İçerik
       directory: Dizinde
       in_directory: "Dizinde %{count}"
-      last_active: Son aktivite
+      last_active: Son etkinlik
       most_popular: En popüler
       most_recent: En yeni
       name: Etiket
@@ -697,9 +697,9 @@ tr:
   application_mailer:
     notification_preferences: E-posta tercihlerini değiştir
     salutation: "%{name},"
-    settings: 'E-mail tercihlerini değiştir: %{link}'
+    settings: 'E-posta tercihlerini değiştir: %{link}'
     view: 'Görüntüle:'
-    view_profile: Profili Görüntüle
+    view_profile: Profili görüntüle
     view_status: Durumu görüntüle
   applications:
     created: Uygulama başarıyla oluşturuldu
@@ -711,24 +711,24 @@ tr:
     your_token: Erişim belirteciniz
   auth:
     apply_for_account: Davet et
-    change_password: Parola
+    change_password: Şifre
     checkbox_agreement_html: <a href="%{rules_path}" target="_blank">Sunucu kurallarını</a> ve <a href="%{terms_path}" target="_blank">hizmet şartlarını</a> kabul ediyorum
     checkbox_agreement_without_rules_html: <a href="%{terms_path}" target="_blank">Hizmet şartlarını</a> kabul ediyorum
     delete_account: Hesabı sil
-    delete_account_html: Hesabınızı silmek isterseniz, <a href="%{path}">buradan devam edebilirsiniz</a>. Sizden onay istenecektir.
+    delete_account_html: Hesabınızı silmek isterseniz, <a href="%{path}">buradan devam edebilirsiniz </a>. Onaylamanız istenecektir.
     description:
-      prefix_invited_by_user: "@%{name} sizi Mastodon'un bu sunucusuna katılmaya davet ediyor!"
+      prefix_invited_by_user: "@%{name} sizi bu Mastodon sunucusuna katılmaya davet ediyor!"
       prefix_sign_up: Bugün Mastodon'a kaydolun!
       suffix: Bir hesapla, kişileri takip edebilir, güncellemeler gönderebilir, herhangi bir Mastodon sunucusundan kullanıcılarla mesaj alışverişinde bulunabilir ve daha birçok şey yapabilirsin!
     didnt_get_confirmation: Doğrulama talimatlarını almadınız mı?
     dont_have_your_security_key: Güvenlik anahtarınız yok mu?
-    forgot_password: Parolanızı unuttunuz mu?
+    forgot_password: Şifrenizi mi unuttunuz?
     invalid_reset_password_token: Parola sıfırlama belirteci geçersiz veya süresi dolmuş. Lütfen yeni bir tane talep edin.
     link_to_otp: Telefonunuzdan iki adımlı bir kod veya bir kurtarma kodu girin
     link_to_webauth: Güvenlik anahtarı cihazınızı kullanın
-    login: Giriş yap
-    logout: Çıkış yap
-    migrate_account: Farklı bir hesaba taşının
+    login: Oturum aç
+    logout: Oturumu kapat
+    migrate_account: Farklı bir hesaba taşıyın
     migrate_account_html: Bu hesabı başka bir hesaba yönlendirmek istiyorsanız, <a href="%{path}">buradan yapılandırabilirsiniz</a>.
     or_log_in_with: 'Veya şununla oturum açın:'
     providers:
