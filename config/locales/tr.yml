@@ -873,7 +873,7 @@ tr:
     developers: Geliştiriciler
     more: Daha Fazla…
     resources: Kaynaklar
-    trending_now: Trendler
+    trending_now: Şu an gündemde
   generic:
     all: Tümü
     changes_saved_msg: Değişiklikler başarıyla kaydedildi!
@@ -888,8 +888,8 @@ tr:
   html_validator:
     invalid_markup: 'geçersiz HTML markup içermektedir: %{error}'
   identity_proofs:
-    active: Aktif
-    authorize: Evet, yetkilendir
+    active: Etkin
+    authorize: Evet, izin ver
     authorize_connection_prompt: Bu kriptolu bağlantıyı yetkilendir?
     errors:
       failed: Kriptolu bağlantı başarısız oldu. Lütfen %{provider} üzerinden tekrar deneyin.
@@ -933,8 +933,8 @@ tr:
       '604800': 1 hafta
       '86400': 1 gün
     expires_in_prompt: Asla
-    generate: Oluştur
-    invited_by: 'Tarafından davet edildi:'
+    generate: Davet bağlantısı oluştur
+    invited_by: 'Davet edildiniz:'
     max_uses:
       one: 1 kullanım
       other: "%{count} kullanım"
@@ -946,12 +946,12 @@ tr:
     title: İnsanları davet et
   lists:
     errors:
-      limit: Maksimum liste miktarına ulaştınız
+      limit: En yüksek liste sayısına ulaştınız
   media_attachments:
     validations:
-      images_and_video: Halihazırda görsel içeren bir gönderiye video ekleyemezsiniz
+      images_and_video: Zaten resim içeren bir duruma video eklenemez
       not_ready: İşlemi tamamlanmamış dosyalar eklenemez. Birazdan tekrar deneyin!
-      too_many: 4'ten fazla dosya ekleyemezsiniz
+      too_many: 4'ten fazla dosya eklenemiyor
   migrations:
     acct: Taşındı
     cancel: Yönlendirmeyi iptal et
@@ -984,7 +984,7 @@ tr:
       other_data: Başka bir veri otomatik olarak taşınmayacaktır
       redirect: Mevcut hesabınızın profili bir yönlendirme bildirimi ile güncellenecek ve aramaların dışında tutulacaktır
   moderation:
-    title: Yönetim
+    title: Denetim
   move_handler:
     carry_blocks_over_text: Bu kullanıcı engellediğiniz %{acct} adresinden taşındı.
     carry_mutes_over_text: Bu kullanıcı sessize aldığınız %{acct} adresinden taşındı.
@@ -1032,11 +1032,11 @@ tr:
       decimal_units:
         format: "%n%u"
         units:
-          billion: B
-          million: M
-          quadrillion: Q
-          thousand: K
-          trillion: T
+          billion: Mr
+          million: Mn
+          quadrillion: Kn
+          thousand: Bn
+          trillion: Tn
   otp_authentication:
     code_hint: Onaylamak için authenticator uygulamanız tarafından oluşturulan kodu girin
     description_html: Bir authenticator uygulamasını kullanarak <strong>iki adımlı kimlik doğrulamayı</strong> etkinleştirirseniz, giriş yapmak için telefonunuzun elinizde olması gerekir ve telefonunuz giriş yapmanız için kodlar oluşturur.
@@ -1048,7 +1048,7 @@ tr:
   pagination:
     newer: Daha yeni
     next: Sonraki
-    older: Daha Eski
+    older: Daha eski
     prev: Önceki
     truncate: "&hellip;"
   polls:
