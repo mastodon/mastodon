@@ -995,29 +995,29 @@ tr:
       body: Son ziyaretiniz olan %{since}'den beri'da kaçırdığınız şeylerin özeti
       mention: "%{name} senden bahsetti:"
       new_followers_summary:
-        one: Yeni bir takipçiniz var!
-        other: Yeni %{count} takipçiniz var!
+        one: Ayrıca, uzaktayken yeni bir takipçi kazandınız! Yaşasın!
+        other: Ayrıca, uzaktayken %{count} yeni takipçi kazandınız! İnanılmaz!
       subject:
-        one: "Son ziyaretinizden beri 1 yeni bildiriminiz var \U0001F418"
-        other: "Son ziyaretinizden beri %{count} yeni bildiriminiz var \U0001F418"
+        one: "Son ziyaretinizden bu yana 1 yeni bildirim \U0001F418"
+        other: "Son ziyaretinizden bu yana %{count} yeni bildirim \U0001F418"
       title: Senin yokluğunda...
     favourite:
-      body: '%{name} durumunuzu favorilere ekledi:'
+      body: '%{name} durumunu beğendi:'
       subject: "%{name} durumunu beğendi"
-      title: Yeni favori
+      title: Yeni beğeni
     follow:
-      body: "%{name} sizi takip etmeye başladı!"
-      subject: "%{name} sizi takip etmeye başladı"
+      body: "%{name} artık seni takip ediyor!"
+      subject: "%{name} artık seni takip ediyor"
       title: Yeni takipçi
     follow_request:
       action: Takip isteklerini yönet
-      body: "%{name} size takip isteği gönderdi"
-      subject: 'Takip isteği: %{name}'
+      body: "%{name} sana takip isteği gönderdi"
+      subject: 'Bekleyen takipçi: %{name}'
       title: Yeni takip isteği
     mention:
-      action: Yanıt
-      body: '%{name} sizden bahsetti:'
-      subject: '%{name} sizden bahsetti'
+      action: Yanıtla
+      body: '%{name} senden bahsetti:'
+      subject: '%{name} senden bahsetti'
       title: Yeni bahsetme
     reblog:
       body: '%{name} durumunuzu boostladı:'
@@ -1090,13 +1090,13 @@ tr:
     acct: İşlem yapmak istediğiniz kullaniciadi@alanadini girin
     missing_resource: Hesabınız için gerekli yönlendirme URL'si bulunamadı
     no_account_html: Hesabınız yok mu? <a href='%{sign_up_path}' target='_blank'>Buradan kaydolabilirsiniz</a>
-    proceed: Takip onayı
+    proceed: Takip etmek için devam edin
     prompt: 'Bu kullanıcıyı takip etmek istediğinize emin misiniz?'
     reason_html: "<strong>Bu adım neden gerekli?</strong><code>%{instance}</code> kayıtlı olduğunuz sunucu olmayabilir, bu yüzden önce sizi kendi sunucunuza yönlendirmemiz gerekmektedir."
   remote_interaction:
     favourite:
-      proceed: Favorilere eklemek için ilerle
-      prompt: 'Bu tootu favorilerinize eklemek istiyorsunuz:'
+      proceed: Beğenmek için devam edin
+      prompt: 'Bu tootu beğenmek istiyorsunuz:'
     reblog:
       proceed: Boostlamak için devam edin
       prompt: 'Bu tootu boostlamak istiyorsunuz:'
@@ -1108,11 +1108,11 @@ tr:
     over_total_limit: '%{limit} zamanlanmış toot sınırını aştınız'
     too_soon: Programlanan tarih bugünden ileri bir tarihte olmalıdır
   sessions:
-    activity: Son aktivite
+    activity: Son etkinlik
     browser: Tarayıcı
     browsers:
       alipay: Alipay
-      blackberry: BlackBerry
+      blackberry: Blackberry
       chrome: Chrome
       edge: Microsoft Edge
       electron: Electron
