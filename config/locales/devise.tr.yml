@@ -18,7 +18,7 @@ tr:
     mailer:
       confirmation_instructions:
         action: E-posta adresinizi doğrulayın
-        action_with_app: Onayla ve %{app}'a dön
+        action_with_app: Onayla ve %{app} uygulamasına geri dön
         explanation: Bu e-posta adresiyle %{host} bir hesap oluşturdunuz. Etkinleştirmekten bir tık uzaktasınız. Bu siz değilseniz, lütfen bu e-postayı dikkate almayın.
         explanation_when_pending: Bu e-posta adresiyle %{host} adresine bir davetiye için başvuru yaptınız. E-posta adresinizi onayladıktan sonra başvurunuzu inceleyeceğiz. O zamana kadar giriş yapamazsınız. Başvurunuz reddedilirse, verileriniz silinecek, başka bir işlem yapmanız gerekmeyecek. Bu siz değilseniz, lütfen bu e-postayı dikkate almayın.
         extra_html: Lütfen ayrıca <a href="%{terms_path}">sunucu kurallarını</a> ve <a href="%{policy_path}">hizmet şartlarımızı</a> inceleyin.
@@ -27,23 +27,23 @@ tr:
       email_changed:
         explanation: 'Hesabınızın e-posta adresi şu şekilde değiştirildi:'
         extra: E-posta adresinizi değiştirmediyseniz, büyük olasılıkla birileri hesabınıza erişti. Lütfen derhal parolanızı değiştirin veya hesabınız kilitlendiyse sunucu yöneticisine başvurun.
-        subject: 'Mastodon: E-posta değişti'
+        subject: 'Mastodon: E-posta adresi değişti'
         title: Yeni e-posta adresi
       password_change:
-        explanation: Hesabınızın parolası değiştirildi.
+        explanation: Hesabınızın şifresi değiştirildi.
         extra: Parolanızı değiştirmediyseniz, büyük olasılıkla birileri hesabınıza erişmiş olabilir. Lütfen derhal parolanızı değiştirin veya hesabınız kilitlendiyse sunucu yöneticisine başvurun.
-        subject: 'Mastodon: Parola değiştirildi'
-        title: Parola değiştirildi
+        subject: 'Mastodon: Şifre değiştirildi'
+        title: Şifre değiştirildi
       reconfirmation_instructions:
         explanation: E-postanızı değiştirmek için yeni adresi onaylayın.
         extra: Bu değişiklik sizin tarafınızdan başlatılmadıysa, lütfen bu e-postayı dikkate almayın. Mastodon hesabının e-posta adresi, yukarıdaki bağlantıya erişene kadar değişmez.
         subject: 'Mastodon: %{instance} için e-postayı onayla'
         title: E-posta adresinizi doğrulayın
       reset_password_instructions:
-        action: Parolayı değiştir
-        explanation: Hesabınız için yeni bir parola istediniz.
+        action: Şifreyi değiştir
+        explanation: Hesabınız için yeni bir şifre istediniz.
         extra: Bunu siz yapmadıysanız, lütfen bu e-postayı dikkate almayın. Parolanız yukarıdaki bağlantıya erişene ve yeni bir tane oluşturuncaya kadar değişmez.
-        subject: 'Mastodon: Parola sıfırlama talimatları'
+        subject: 'Mastodon: Şifre sıfırlama talimatları'
         title: Parola sıfırlama
       two_factor_disabled:
         explanation: Hesabınız için iki-adımlı kimlik doğrulama devre dışı bırakıldı. Şimdi sadece e-posta adresi ve parola kullanarak giriş yapabilirsiniz.
@@ -95,9 +95,9 @@ tr:
       update_needs_confirmation: Hesabınızı başarıyla güncellediniz, ancak yeni e-posta adresinizi doğrulamamız gerekiyor. Lütfen e-postanızı kontrol edin ve yeni e-posta adresinizi onaylamak için onay bağlantısını izleyin. Bu e-postayı almadıysanız, lütfen spam klasörünüzü kontrol edin.
       updated: Hesabınız başarıyla güncellendi.
     sessions:
-      already_signed_out: Başarıyla çıkış yapıldı.
-      signed_in: Başarıyla giriş yapıldı.
-      signed_out: Başarıyla çıkış yapıldı.
+      already_signed_out: Başarılı bir şekilde oturum kapatıldı.
+      signed_in: Başarılı bir şekilde oturum açıldı.
+      signed_out: Başarılı bir şekilde oturum kapatıldı.
     unlocks:
       send_instructions: Hesabınızı birkaç dakika içinde nasıl açacağınıza ilişkin talimatları içeren bir e-posta alacaksınız. Bu e-postayı almadıysanız, lütfen spam klasörünüzü kontrol edin.
       send_paranoid_instructions: Hesabınız varsa, birkaç dakika içinde nasıl kilidini açacağınıza ilişkin talimatları içeren bir e-posta alacaksınız. Bu e-postayı almadıysanız, lütfen spam klasörünüzü kontrol edin.
