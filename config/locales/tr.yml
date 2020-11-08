@@ -730,16 +730,16 @@ tr:
     logout: Çıkış yap
     migrate_account: Farklı bir hesaba taşının
     migrate_account_html: Bu hesabı başka bir hesaba yönlendirmek istiyorsanız, <a href="%{path}">buradan yapılandırabilirsiniz</a>.
-    or_log_in_with: Veya giriş yapın
+    or_log_in_with: 'Veya şununla oturum açın:'
     providers:
       cas: CAS
       saml: SAML
-    register: Üye ol
+    register: Kaydol
     registration_closed: "%{instance} yeni üyeler kabul etmemektedir"
     resend_confirmation: Onaylama talimatlarını tekrar gönder
-    reset_password: Parolayı değiştir
-    security: Kimlik bilgileri
-    set_new_password: Yeni parola oluştur
+    reset_password: Şifreyi sıfırla
+    security: Güvenlik
+    set_new_password: Yeni şifre belirle
     setup:
       email_below_hint_html: Eğer aşağıdaki e-posta adresi yanlışsa, onu burada değiştirebilir ve yeni bir doğrulama e-postası alabilirsiniz.
       email_settings_hint_html: Onaylama e-postası %{email} adresine gönderildi. Eğer bu e-posta adresi doğru değilse, hesap ayarlarından değiştirebilirsiniz.
@@ -763,19 +763,19 @@ tr:
       close: Ya da, sadece bu pencereyi kapatabilirsiniz.
       return: Kullanıcının profilini göster
       web: Web'e git
-    title: '%{acct}''i takip et'
+    title: '%{acct} takip et'
   challenge:
     confirm: Devam et
     hint_html: "<strong>İpucu:</strong> Önümüzdeki saat boyunca sana parolanı sormayacağız."
-    invalid_password: Geçersiz parola
-    prompt: Devam etmek parolayı doğrulayın
+    invalid_password: Geçersiz şifre
+    prompt: Devam etmek için şifreyi doğrulayın
   crypto:
     errors:
       invalid_key: geçerli bir Ed25519 veya Curve25519 anahtarı değil
       invalid_signature: geçerli bir Ed25519 imzası değil
   date:
     formats:
-      default: "%b %d, %Y"
+      default: "%d %b %Y"
       with_month_name: "%d %B %Y"
   datetime:
     distance_in_words:
@@ -838,14 +838,14 @@ tr:
       download: Arşivinizi indirin
       hint_html: <strong>Tootlarınızın ve yüklediğiniz ortamların</strong> bir arşivini talep edebilirsiniz. Dışa aktarılan veriler, herhangi bir uyumlu yazılım tarafından okunabilen ActivityPub formatında olacaktır. Her 7 günde bir arşiv talep edebilirsiniz.
       in_progress: Arşivinizi derliyoruz...
-      request: Arşiv isteği
+      request: Arşivinizi isteyin
       size: Boyut
-    blocks: Engelledikleriniz
+    blocks: Engellediklerin
     csv: CSV
     domain_blocks: Alan adı engelleri
     lists: Listeler
-    mutes: Susturduklarınız
-    storage: Ortam deposu
+    mutes: Sessize aldıkların
+    storage: Medya depolaması
   featured_tags:
     add_new: Yeni ekle
     errors:
@@ -906,7 +906,7 @@ tr:
     remove: Hesaptan kanıtı kaldır
     removed: Kanıt hesaptan başarıyla kaldırıldı
     status: Doğrulama durumu
-    view_proof: Kanıt görüntüle
+    view_proof: Kanıtı görüntüle
   imports:
     modes:
       merge: Birleştir
