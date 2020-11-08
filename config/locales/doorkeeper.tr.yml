@@ -3,7 +3,7 @@ tr:
     attributes:
       doorkeeper/application:
         name: Uygulama adı
-        redirect_uri: Yönlendirme URI'si
+        redirect_uri: Yönlendirme URL'si
         scopes: Kapsamlar
         website: Uygulama web sitesi
     errors:
@@ -18,9 +18,9 @@ tr:
   doorkeeper:
     applications:
       buttons:
-        authorize: Yetki ver
-        cancel: İptal et
-        destroy: Yok et
+        authorize: İzin Ver
+        cancel: İptal Et
+        destroy: Yok Et
         edit: Düzenle
         submit: Gönder
       confirmations:
@@ -31,11 +31,11 @@ tr:
         error: Tüh! Muhtemel hatalar için formunuzu kontrol edin
       help:
         native_redirect_uri: Yerel testler için %{native_redirect_uri} kullanın
-        redirect_uri: URl başına bir satır kullanın
+        redirect_uri: URL başına bir satır kullanın
         scopes: Kapsamları boşluklarla ayırın. Varsayılan kapsamları kullanmak için boş bırakın.
       index:
         application: Uygulama
-        callback_url: Geri Dönüş URL
+        callback_url: Callback URL
         delete: Sil
         empty: Hiç uygulamanız yok.
         name: İsim
@@ -47,26 +47,26 @@ tr:
         title: Yeni uygulama
       show:
         actions: Eylemler
-        application_id: İstemci anahtarı
-        callback_urls: Callback URL'si
+        application_id: Client key
+        callback_urls: Callback URL
         scopes: Kapsamlar
-        secret: İstemci secret key
+        secret: Client secret
         title: 'Uygulama: %{name}'
     authorizations:
       buttons:
-        authorize: Yetkilendir
+        authorize: İzin Ver
         deny: Reddet
       error:
         title: Bir hata oluştu
       new:
-        able_to: Şunları yapabilecek
+        able_to: 'Şunları yapabilecek:'
         prompt: '%{client_name} uygulaması hesabınıza erişim istiyor'
-        title: Yetkilendirme gerekli
+        title: İzin gerekli
       show:
-        title: Bu yetki kodunu kopyalayın ve uygulamaya yapıştırın.
+        title: Bu yetkilendirme kodunu kopyalayın ve uygulamaya yapıştırın.
     authorized_applications:
       buttons:
-        revoke: İptal
+        revoke: İptal Et
       confirmations:
         revoke: Emin misiniz?
       index:
@@ -114,9 +114,9 @@ tr:
       application:
         title: OAuth yetkilendirme gerekli
     scopes:
-      "admin:read": sunucudaki tüm verileri oku
-      "admin:read:accounts": tüm hesapların hassas bilgilerini oku
-      "admin:read:reports": tüm raporların ve raporlanan hesapların hassas bilgilerini oku
+      "admin:read": sunucudaki tüm verileri okuma
+      "admin:read:accounts": tüm hesapların hassas bilgilerini okuma
+      "admin:read:reports": tüm raporların ve raporlanan hesapların hassas bilgilerini okuma
       "admin:write": sunucudaki tüm verileri değiştirin
       "admin:write:accounts": hesaplarda denetleme eylemleri gerçekleştirin
       "admin:write:reports": raporlarda denetleme eylemleri gerçekleştirin
