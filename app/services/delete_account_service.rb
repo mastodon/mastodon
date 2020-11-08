@@ -56,6 +56,7 @@ class DeleteAccountService < BaseService
     @options[:skip_activitypub] = true if @options[:skip_side_effects]
 
     reject_follows!
+    undo_follows!
     purge_user!
     purge_profile!
     purge_content!
@@ -76,6 +77,20 @@ class DeleteAccountService < BaseService
 
     ActivityPub::DeliveryWorker.push_bulk(Follow.where(account: @account)) do |follow|
       [Oj.dump(serialize_payload(follow, ActivityPub::RejectFollowSerializer)), follow.target_account_id, @account.inbox_url]
+    end
+  end
+
+  def undo_follows!
+    return if @account.local? || !@account.activitypub? || @options[:skip_activitypub]
+
+    # When deleting a remote account, the account obviously doesn't
+    # actually become deleted on its origin server, but following relationships
+    # are severed on our end. Therefore, make the remote server aware that the
+    # follow relationships are severed to avoid confusion and potential issues
+    # if the remote account gets un-suspended.
+
+    ActivityPub::DeliveryWorker.push_bulk(Follow.where(target_account: @account)) do |follow|
+      [Oj.dump(serialize_payload(follow, ActivityPub::UndoFollowSerializer)), follow.account_id, @account.inbox_url]
     end
   end
 
