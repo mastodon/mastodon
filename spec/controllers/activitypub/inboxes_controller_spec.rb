@@ -20,6 +20,33 @@ RSpec.describe ActivityPub::InboxesController, type: :controller do
       it 'returns http accepted' do
         expect(response).to have_http_status(202)
       end
+
+      context 'for a specific account' do
+        let(:account) { Fabricate(:account) }
+
+        subject(:response) { post :create, params: { account_username: account.username }, body: '{}' }
+
+        context 'when account is permanently suspended' do
+          before do
+            account.suspend!
+            account.deletion_request.destroy
+          end
+
+          it 'returns http gone' do
+            expect(response).to have_http_status(410)
+          end
+        end
+
+        context 'when account is temporarily suspended' do
+          before do
+            account.suspend!
+          end
+
+          it 'returns http accepted' do
+            expect(response).to have_http_status(202)
+          end
+        end
+      end
     end
 
     context 'with Collection-Synchronization header' do
