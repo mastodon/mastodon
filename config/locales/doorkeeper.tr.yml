@@ -50,7 +50,7 @@ tr:
         application_id: İstemci anahtarı
         callback_urls: Callback URL'si
         scopes: Kapsamlar
-        secret: İstemci anahtarı
+        secret: İstemci secret key
         title: 'Uygulama: %{name}'
     authorizations:
       buttons:
@@ -118,33 +118,33 @@ tr:
       "admin:read:accounts": tüm hesapların hassas bilgilerini oku
       "admin:read:reports": tüm raporların ve raporlanan hesapların hassas bilgilerini oku
       "admin:write": sunucudaki tüm verileri değiştirin
-      "admin:write:accounts": hesaplar üzerinde denetleme eylemleri gerçekleştirin
-      "admin:write:reports": raporlar üzerinde denetleme eylemleri gerçekleştirin
+      "admin:write:accounts": hesaplarda denetleme eylemleri gerçekleştirin
+      "admin:write:reports": raporlarda denetleme eylemleri gerçekleştirin
       follow: hesap ilişkilerini değiştirin
       push: anlık bildirimlerizi alın
       read: hesabınızın tüm verilerini okuyun
-      "read:accounts": hesap bilgilerini gör
+      "read:accounts": hesap bilgilerini görün
       "read:blocks": engellemelerinizi görün
       "read:bookmarks": yer imlerinizi görün
-      "read:favourites": favorilerini gör
+      "read:favourites": beğenilerinizi görün
       "read:filters": filtrelerinizi görün
-      "read:follows": izlerini gör
+      "read:follows": takip ettiklerinizi görün
       "read:lists": listelerinizi görün
       "read:mutes": sessize aldıklarınızı görün
       "read:notifications": bildirimlerinizi görün
-      "read:reports": şikayetlerinizi görün
-      "read:search": kendi adınıza arayın
+      "read:reports": raporlarınızı görün
+      "read:search": kendi adınıza arama yapın
       "read:statuses": tüm durumları görün
       write: hesabınızın tüm verilerini değiştirin
-      "write:accounts": profilini değiştir
+      "write:accounts": profilinizi değiştirin
       "write:blocks": hesapları ve alan adlarını engelleyin
-      "write:bookmarks": durumları yer imlerine ekle
-      "write:favourites": favori durumlar
-      "write:filters": filtre oluştur
-      "write:follows": insanları takip et
-      "write:lists": liste oluştur
-      "write:media": medya dosyalarını yükle
+      "write:bookmarks": durumları yer imleyin
+      "write:favourites": durumları beğenin
+      "write:filters": filtreler oluşturun
+      "write:follows": insanları takip edin
+      "write:lists": listeler oluşturun
+      "write:media": medya dosyaları yükleyin
       "write:mutes": insanları ve sohbetleri sessize al
       "write:notifications": bildirimlerinizi temizleyin
-      "write:reports": diğer insanları bildir
+      "write:reports": diğer insanları raporlayın
       "write:statuses": durumları yayınlayın
