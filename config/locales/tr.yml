@@ -1206,8 +1206,8 @@ tr:
       total_votes:
         one: "%{count} oy"
         other: "%{count} oy"
-      vote: Oy
-    show_more: Daha fazla
+      vote: Oy Ver
+    show_more: Daha fazlasını göster
     show_newer: Yenileri göster
     show_older: Eskileri göster
     show_thread: Mesaj dizisini göster
@@ -1315,21 +1315,21 @@ tr:
     mastodon-light: Mastodon (Açık)
   time:
     formats:
-      default: "%b %d, %Y, %H:%M"
+      default: "%d %b %Y %H:%M"
       month: "%b %Y"
   two_factor_authentication:
     add: Ekle
-    disable: Devre dışı bırak
+    disable: 2FA'yı devre dışı bırak
     disabled_success: İki adımlı kimlik doğrulama başarıyla devre dışı bırakıldı
     edit: Düzenle
     enabled: İki adımlı kimlik doğrulama etkin
     enabled_success: İki adımlı kimlik doğrulama başarıyla etkinleştirildi
-    generate_recovery_codes: Kurtarma Kodlarını Oluştur
+    generate_recovery_codes: Kurtarma kodları oluştur
     lost_recovery_codes: Kurtarma kodları telefonunuzu kaybettiğiniz durumlarda hesabınıza erişim yapabilmenize olanak tanır. Eğer kurtarma kodlarınızı kaybettiyseniz burada tekrar oluşturabilirsiniz. Eski kurtarma kodlarınız geçersiz hale gelecektir.
     methods: İki adımlı doğrulama yöntemleri
-    otp: Kimlik doğrulama uygulaması
+    otp: Authenticator uygulaması
     recovery_codes: Kurtarma kodlarını yedekle
-    recovery_codes_regenerated: Kurtarma kodları başarıyla oluşturuldu
+    recovery_codes_regenerated: Kurtarma kodları başarıyla yeniden oluşturuldu
     recovery_instructions_html: 'Eğer telefonunuza erişiminizi kaybederseniz, aşağıdaki kurtarma kodlarından birini kullanarak hesabınıza giriş yapabilirsiniz. Kurtarma kodlarınızı güvenli halde tutunuz. Örneğin: kodların çıktısını alıp diğer önemli belgeleriniz ile birlikte saklayabilirsiniz.'
     webauthn: Güvenlik anahtarları
   user_mailer:
