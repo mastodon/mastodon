@@ -17,7 +17,19 @@ class AccountPolicy < ApplicationPolicy
     staff? && !record.user&.staff?
   end
 
+  def destroy?
+    record.suspended_temporarily? && admin?
+  end
+
   def unsuspend?
+    staff? && record.suspension_origin_local?
+  end
+
+  def sensitive?
+    staff? && !record.user&.staff?
+  end
+
+  def unsensitive?
     staff?
   end
 

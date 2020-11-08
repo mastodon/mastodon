@@ -31,7 +31,7 @@ module Mastodon
       processed, aggregate = parallelize_with_progress(MediaAttachment.cached.where.not(remote_url: '').where('created_at < ?', time_ago)) do |media_attachment|
         next if media_attachment.file.blank?
 
-        size = media_attachment.file_file_size + (media_attachment.thumbnail_file_size || 0)
+        size = (media_attachment.file_file_size || 0) + (media_attachment.thumbnail_file_size || 0)
 
         unless options[:dry_run]
           media_attachment.file.destroy
@@ -47,6 +47,7 @@ module Mastodon
 
     option :start_after
     option :prefix
+    option :fix_permissions, type: :boolean, default: false
     option :dry_run, type: :boolean, default: false
     desc 'remove-orphans', 'Scan storage and check for files that do not belong to existing media attachments'
     long_desc <<~LONG_DESC
@@ -66,6 +67,7 @@ module Mastodon
       when :s3
         paperclip_instance = MediaAttachment.new.file
         s3_interface       = paperclip_instance.s3_interface
+        s3_permissions     = Paperclip::Attachment.default_options[:s3_permissions]
         bucket             = s3_interface.bucket(Paperclip::Attachment.default_options[:s3_credentials][:bucket])
         last_key           = options[:start_after]
 
@@ -86,10 +88,12 @@ module Mastodon
           record_map = preload_records_from_mixed_objects(objects)
 
           objects.each do |object|
+            object.acl.put(acl: s3_permissions) if options[:fix_permissions] && !options[:dry_run]
+
             path_segments = object.key.split('/')
             path_segments.delete('cache')
 
-            if path_segments.size != 7
+            unless [7, 10].include?(path_segments.size)
               progress.log(pastel.yellow("Unrecognized file found: #{object.key}"))
               next
             end
@@ -133,7 +137,7 @@ module Mastodon
           path_segments = key.split(File::SEPARATOR)
           path_segments.delete('cache')
 
-          if path_segments.size != 7
+          unless [7, 10].include?(path_segments.size)
             progress.log(pastel.yellow("Unrecognized file found: #{key}"))
             next
           end
@@ -258,7 +262,7 @@ module Mastodon
       path_segments = path.split('/')[2..-1]
       path_segments.delete('cache')
 
-      if path_segments.size != 7
+      unless [7, 10].include?(path_segments.size)
         say('Not a media URL', :red)
         exit(1)
       end
@@ -311,7 +315,7 @@ module Mastodon
         segments = object.key.split('/')
         segments.delete('cache')
 
-        next if segments.size != 7
+        next unless [7, 10].include?(segments.size)
 
         model_name = segments.first.classify
         record_id  = segments[2..-2].join.to_i

@@ -4,8 +4,12 @@ module StatusesHelper
   EMBEDDED_CONTROLLER = 'statuses'
   EMBEDDED_ACTION = 'embed'
 
-  def link_to_more(url)
-    link_to t('statuses.show_more'), url, class: 'load-more load-gap'
+  def link_to_newer(url)
+    link_to t('statuses.show_newer'), url, class: 'load-more load-gap'
+  end
+
+  def link_to_older(url)
+    link_to t('statuses.show_older'), url, class: 'load-more load-gap'
   end
 
   def nothing_here(extra_classes = '')
@@ -114,6 +118,14 @@ module StatusesHelper
       fa_icon 'lock fw'
     when 'direct'
       fa_icon 'envelope fw'
+    end
+  end
+
+  def sensitized?(status, account)
+    if !account.nil? && account.id == status.account_id
+      status.sensitive
+    else
+      status.account.sensitized? || status.sensitive
     end
   end
 

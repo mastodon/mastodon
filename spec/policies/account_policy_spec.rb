@@ -7,8 +7,9 @@ RSpec.describe AccountPolicy do
   let(:subject) { described_class }
   let(:admin)   { Fabricate(:user, admin: true).account }
   let(:john)    { Fabricate(:user).account }
+  let(:alice)   { Fabricate(:user).account }
 
-  permissions :index?, :show?, :unsuspend?, :unsilence?, :remove_avatar?, :remove_header? do
+  permissions :index? do
     context 'staff' do
       it 'permits' do
         expect(subject).to permit(admin)
@@ -18,6 +19,38 @@ RSpec.describe AccountPolicy do
     context 'not staff' do
       it 'denies' do
         expect(subject).to_not permit(john)
+      end
+    end
+  end
+
+  permissions :show?, :unsilence?, :unsensitive?, :remove_avatar?, :remove_header? do
+    context 'staff' do
+      it 'permits' do
+        expect(subject).to permit(admin, alice)
+      end
+    end
+
+    context 'not staff' do
+      it 'denies' do
+        expect(subject).to_not permit(john, alice)
+      end
+    end
+  end
+
+  permissions :unsuspend? do
+    before do
+      alice.suspend!
+    end
+
+    context 'staff' do
+      it 'permits' do
+        expect(subject).to permit(admin, alice)
+      end
+    end
+
+    context 'not staff' do
+      it 'denies' do
+        expect(subject).to_not permit(john, alice)
       end
     end
   end

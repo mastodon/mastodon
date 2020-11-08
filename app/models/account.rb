@@ -50,6 +50,8 @@
 #  avatar_storage_schema_version :integer
 #  header_storage_schema_version :integer
 #  devices_url                   :string
+#  sensitized_at                 :datetime
+#  suspension_origin             :integer
 #
 
 class Account < ApplicationRecord
@@ -72,6 +74,7 @@ class Account < ApplicationRecord
   }.freeze
 
   enum protocol: [:ostatus, :activitypub]
+  enum suspension_origin: [:local, :remote], _prefix: true
 
   validates :username, presence: true
   validates_with UniqueUsernameValidator, if: -> { will_save_change_to_username? }
@@ -92,6 +95,7 @@ class Account < ApplicationRecord
   scope :partitioned, -> { order(Arel.sql('row_number() over (partition by domain)')) }
   scope :silenced, -> { where.not(silenced_at: nil) }
   scope :suspended, -> { where.not(suspended_at: nil) }
+  scope :sensitized, -> { where.not(sensitized_at: nil) }
   scope :without_suspended, -> { where(suspended_at: nil) }
   scope :without_silenced, -> { where(silenced_at: nil) }
   scope :recent, -> { reorder(id: :desc) }
@@ -220,25 +224,42 @@ class Account < ApplicationRecord
     suspended_at.present?
   end
 
-  def suspend!(date = Time.now.utc)
+  def suspended_permanently?
+    suspended? && deletion_request.nil?
+  end
+
+  def suspended_temporarily?
+    suspended? && deletion_request.present?
+  end
+
+  def suspend!(date: Time.now.utc, origin: :local)
     transaction do
-      user&.disable! if local?
-      update!(suspended_at: date)
+      create_deletion_request!
+      update!(suspended_at: date, suspension_origin: origin)
     end
   end
 
   def unsuspend!
     transaction do
-      user&.enable! if local?
-      update!(suspended_at: nil)
+      deletion_request&.destroy!
+      update!(suspended_at: nil, suspension_origin: nil)
     end
   end
 
+  def sensitized?
+    sensitized_at.present?
+  end
+
+  def sensitize!(date = Time.now.utc)
+    update!(sensitized_at: date)
+  end
+
+  def unsensitize!
+    update!(sensitized_at: nil)
+  end
+
   def memorialize!
-    transaction do
-      user&.disable! if local?
-      update!(memorial: true)
-    end
+    update!(memorial: true)
   end
 
   def sign?
@@ -353,6 +374,12 @@ class Account < ApplicationRecord
 
   def preferred_inbox_url
     shared_inbox_url.presence || inbox_url
+  end
+
+  def synchronization_uri_prefix
+    return 'local' if local?
+
+    @synchronization_uri_prefix ||= uri[/http(s?):\/\/[^\/]+\//]
   end
 
   class Field < ActiveModelSerializers::Model

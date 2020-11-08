@@ -42,7 +42,7 @@ module Mastodon
       end
 
       processed, = parallelize_with_progress(scope) do |account|
-        SuspendAccountService.new.call(account, reserve_username: false, skip_side_effects: true) unless options[:dry_run]
+        DeleteAccountService.new.call(account, reserve_username: false, skip_side_effects: true) unless options[:dry_run]
       end
 
       DomainBlock.where(domain: domains).destroy_all unless options[:dry_run]

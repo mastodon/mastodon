@@ -17,7 +17,7 @@
 - if status.reply? && include_threads
   - if @next_ancestor
     .entry{ class: entry_classes }
-      = link_to_more ActivityPub::TagManager.instance.url_for(@next_ancestor)
+      = link_to_older ActivityPub::TagManager.instance.url_for(@next_ancestor)
 
   = render partial: 'statuses/status', collection: @ancestors, as: :status, locals: { is_predecessor: true, direct_reply_id: status.in_reply_to_id }, autoplay: autoplay
 
@@ -44,16 +44,16 @@
 - if include_threads
   - if @since_descendant_thread_id
     .entry{ class: entry_classes }
-      = link_to_more short_account_status_url(status.account.username, status, max_descendant_thread_id: @since_descendant_thread_id + 1)
+      = link_to_newer short_account_status_url(status.account.username, status, max_descendant_thread_id: @since_descendant_thread_id + 1)
   - @descendant_threads.each do |thread|
     = render partial: 'statuses/status', collection: thread[:statuses], as: :status, locals: { is_successor: true, parent_id: status.id }, autoplay: autoplay
 
     - if thread[:next_status]
       .entry{ class: entry_classes }
-        = link_to_more ActivityPub::TagManager.instance.url_for(thread[:next_status])
+        = link_to_newer ActivityPub::TagManager.instance.url_for(thread[:next_status])
   - if @next_descendant_thread
     .entry{ class: entry_classes }
-      = link_to_more short_account_status_url(status.account.username, status, since_descendant_thread_id: @max_descendant_thread_id - 1)
+      = link_to_newer short_account_status_url(status.account.username, status, since_descendant_thread_id: @max_descendant_thread_id - 1)
 
 - if include_threads && !embedded_view? && !user_signed_in?
   .entry{ class: entry_classes }

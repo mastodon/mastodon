@@ -16,7 +16,7 @@ import { fetchAccountIdentityProofs } from '../../actions/identity_proofs';
 import MissingIndicator from 'mastodon/components/missing_indicator';
 import TimelineHint from 'mastodon/components/timeline_hint';
 import { me } from 'mastodon/initial_state';
-import { connectUserTimelineStream } from '../../actions/streaming';
+import { connectTimeline, disconnectTimeline } from 'mastodon/actions/timelines';
 
 const emptyList = ImmutableList();
 
@@ -31,6 +31,7 @@ const mapStateToProps = (state, { params: { accountId }, withReplies = false }) 
     featuredStatusIds: withReplies ? ImmutableList() : state.getIn(['timelines', `account:${accountId}:pinned`, 'items'], emptyList),
     isLoading: state.getIn(['timelines', `account:${path}`, 'isLoading']),
     hasMore: state.getIn(['timelines', `account:${path}`, 'hasMore']),
+    suspended: state.getIn(['accounts', accountId, 'suspended'], false),
     blockedBy: state.getIn(['relationships', accountId, 'blocked_by'], false),
   };
 };
@@ -57,47 +58,55 @@ class AccountTimeline extends ImmutablePureComponent {
     withReplies: PropTypes.bool,
     blockedBy: PropTypes.bool,
     isAccount: PropTypes.bool,
+    suspended: PropTypes.bool,
     remote: PropTypes.bool,
     remoteUrl: PropTypes.string,
     multiColumn: PropTypes.bool,
   };
 
   componentWillMount () {
-    const { params: { accountId }, withReplies } = this.props;
+    const { params: { accountId }, withReplies, dispatch } = this.props;
 
-    this.props.dispatch(fetchAccount(accountId));
-    this.props.dispatch(fetchAccountIdentityProofs(accountId));
+    dispatch(fetchAccount(accountId));
+    dispatch(fetchAccountIdentityProofs(accountId));
 
     if (!withReplies) {
-      this.props.dispatch(expandAccountFeaturedTimeline(accountId));
+      dispatch(expandAccountFeaturedTimeline(accountId));
     }
 
-    this.props.dispatch(expandAccountTimeline(accountId, { withReplies }));
-  }
+    dispatch(expandAccountTimeline(accountId, { withReplies }));
 
-  componentDidMount () {
-    if (this.props.params.accountId === me) {
-      this.disconnect = this.props.dispatch(connectUserTimelineStream(me));
+    if (accountId === me) {
+      dispatch(connectTimeline(`account:${me}`));
     }
   }
 
   componentWillReceiveProps (nextProps) {
+    const { dispatch } = this.props;
+
     if ((nextProps.params.accountId !== this.props.params.accountId && nextProps.params.accountId) || nextProps.withReplies !== this.props.withReplies) {
-      this.props.dispatch(fetchAccount(nextProps.params.accountId));
-      this.props.dispatch(fetchAccountIdentityProofs(nextProps.params.accountId));
+      dispatch(fetchAccount(nextProps.params.accountId));
+      dispatch(fetchAccountIdentityProofs(nextProps.params.accountId));
 
       if (!nextProps.withReplies) {
-        this.props.dispatch(expandAccountFeaturedTimeline(nextProps.params.accountId));
+        dispatch(expandAccountFeaturedTimeline(nextProps.params.accountId));
       }
 
-      this.props.dispatch(expandAccountTimeline(nextProps.params.accountId, { withReplies: nextProps.params.withReplies }));
+      dispatch(expandAccountTimeline(nextProps.params.accountId, { withReplies: nextProps.params.withReplies }));
+    }
+
+    if (nextProps.params.accountId === me && this.props.params.accountId !== me) {
+      dispatch(connectTimeline(`account:${me}`));
+    } else if (this.props.params.accountId === me && nextProps.params.accountId !== me) {
+      dispatch(disconnectTimeline(`account:${me}`));
     }
   }
 
   componentWillUnmount () {
-    if (this.disconnect) {
-      this.disconnect();
-      this.disconnect = null;
+    const { dispatch, params: { accountId } } = this.props;
+
+    if (accountId === me) {
+      dispatch(disconnectTimeline(`account:${me}`));
     }
   }
 
@@ -106,7 +115,7 @@ class AccountTimeline extends ImmutablePureComponent {
   }
 
   render () {
-    const { shouldUpdateScroll, statusIds, featuredStatusIds, isLoading, hasMore, blockedBy, isAccount, multiColumn, remote, remoteUrl } = this.props;
+    const { shouldUpdateScroll, statusIds, featuredStatusIds, isLoading, hasMore, blockedBy, suspended, isAccount, multiColumn, remote, remoteUrl } = this.props;
 
     if (!isAccount) {
       return (
@@ -127,7 +136,7 @@ class AccountTimeline extends ImmutablePureComponent {
 
     let emptyMessage;
 
-    if (blockedBy) {
+    if (suspended || blockedBy) {
       emptyMessage = <FormattedMessage id='empty_column.account_unavailable' defaultMessage='Profile unavailable' />;
     } else if (remote && statusIds.isEmpty()) {
       emptyMessage = <RemoteHint url={remoteUrl} />;
@@ -146,7 +155,7 @@ class AccountTimeline extends ImmutablePureComponent {
           alwaysPrepend
           append={remoteMessage}
           scrollKey='account_timeline'
-          statusIds={blockedBy ? emptyList : statusIds}
+          statusIds={(suspended || blockedBy) ? emptyList : statusIds}
           featuredStatusIds={featuredStatusIds}
           isLoading={isLoading}
           hasMore={hasMore}

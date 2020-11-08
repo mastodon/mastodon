@@ -16,7 +16,7 @@ class BlockDomainService < BaseService
     scope = Account.by_domain_and_subdomains(domain_block.domain)
 
     scope.where(silenced_at: domain_block.created_at).in_batches.update_all(silenced_at: nil) unless domain_block.silence?
-    scope.where(suspended_at: domain_block.created_at).in_batches.update_all(suspended_at: nil) unless domain_block.suspend?
+    scope.where(suspended_at: domain_block.created_at).in_batches.update_all(suspended_at: nil, suspension_origin: nil) unless domain_block.suspend?
   end
 
   def process_domain_block!
@@ -34,9 +34,10 @@ class BlockDomainService < BaseService
   end
 
   def suspend_accounts!
-    blocked_domain_accounts.without_suspended.in_batches.update_all(suspended_at: @domain_block.created_at)
+    blocked_domain_accounts.without_suspended.in_batches.update_all(suspended_at: @domain_block.created_at, suspension_origin: :local)
+
     blocked_domain_accounts.where(suspended_at: @domain_block.created_at).reorder(nil).find_each do |account|
-      SuspendAccountService.new.call(account, reserve_username: true, suspended_at: @domain_block.created_at)
+      DeleteAccountService.new.call(account, reserve_username: true, suspended_at: @domain_block.created_at)
     end
   end
 

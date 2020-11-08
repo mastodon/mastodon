@@ -56,19 +56,23 @@
     = link_to admin_action_logs_path(target_account_id: @account.id) do
       .dashboard__counters__text
         - if @account.local? && @account.user.nil?
-          %span.neutral= t('admin.accounts.deleted')
+          = t('admin.accounts.deleted')
+        - elsif @account.memorial?
+          = t('admin.accounts.memorialized')
         - elsif @account.suspended?
-          %span.red= t('admin.accounts.suspended')
+          = t('admin.accounts.suspended')
         - elsif @account.silenced?
-          %span.red= t('admin.accounts.silenced')
+          = t('admin.accounts.silenced')
         - elsif @account.local? && @account.user&.disabled?
-          %span.red= t('admin.accounts.disabled')
+          = t('admin.accounts.disabled')
         - elsif @account.local? && !@account.user&.confirmed?
-          %span.neutral= t('admin.accounts.confirming')
+          = t('admin.accounts.confirming')
         - elsif @account.local? && !@account.user_approved?
-          %span.neutral= t('admin.accounts.pending')
+          = t('admin.accounts.pending')
+        - elsif @account.sensitized?
+          = t('admin.accounts.sensitive')
         - else
-          %span.neutral= t('admin.accounts.no_limits_imposed')
+          = t('admin.accounts.no_limits_imposed')
       .dashboard__counters__label= t 'admin.accounts.login_status'
 
 - unless @account.local? && @account.user.nil?
@@ -123,19 +127,6 @@
             %td= table_link_to 'refresh', t('admin.accounts.resend_confirmation.send'), resend_admin_account_confirmation_path(@account.id), method: :post if can?(:confirm, @account.user)
 
           %tr
-            %th= t('admin.accounts.login_status')
-            %td
-              - if @account.user&.disabled?
-                = t('admin.accounts.disabled')
-              - else
-                = t('admin.accounts.enabled')
-            %td
-              - if @account.user&.disabled?
-                = table_link_to 'unlock', t('admin.accounts.enable'), enable_admin_account_path(@account.id), method: :post if can?(:enable, @account.user)
-              - elsif @account.user_approved?
-                = table_link_to 'lock', t('admin.accounts.disable'), new_admin_account_action_path(@account.id, type: 'disable') if can?(:disable, @account.user)
-
-          %tr
             %th= t('simple_form.labels.defaults.locale')
             %td= @account.user_locale
             %td
@@ -172,49 +163,67 @@
             %td
               = @account.inbox_url
               = fa_icon DeliveryFailureTracker.available?(@account.inbox_url) ? 'check' : 'times'
+            %td
+              = table_link_to 'search', @domain_block.present? ? t('admin.domain_blocks.view') : t('admin.accounts.view_domain'), admin_instance_path(@account.domain)
           %tr
             %th= t('admin.accounts.shared_inbox_url')
             %td
               = @account.shared_inbox_url
               = fa_icon DeliveryFailureTracker.available?(@account.shared_inbox_url) ? 'check': 'times'
+            %td
+              - if @domain_block.nil?
+                = table_link_to 'ban', t('admin.domain_blocks.add_new'), new_admin_domain_block_path(_domain: @account.domain)
 
-  %div.action-buttons
-    %div
-      - if @account.local? && @account.user_approved?
-        = link_to t('admin.accounts.warn'), new_admin_account_action_path(@account.id, type: 'none'), class: 'button' if can?(:warn, @account)
-      - if @account.silenced?
-        = link_to t('admin.accounts.undo_silenced'), unsilence_admin_account_path(@account.id), method: :post, class: 'button' if can?(:unsilence, @account)
-      - elsif !@account.local? || @account.user_approved?
-        = link_to t('admin.accounts.silence'), new_admin_account_action_path(@account.id, type: 'silence'), class: 'button button--destructive' if can?(:silence, @account)
+  - if @account.suspended?
+    %hr.spacer/
 
-      - if @account.local?
-        - if @account.user_pending?
-          = link_to t('admin.accounts.approve'), approve_admin_account_path(@account.id), method: :post, data: { confirm: t('admin.accounts.are_you_sure') }, class: 'button' if can?(:approve, @account.user)
-          = link_to t('admin.accounts.reject'), reject_admin_account_path(@account.id), method: :post, data: { confirm: t('admin.accounts.are_you_sure') }, class: 'button button--destructive' if can?(:reject, @account.user)
+    %p.muted-hint= @deletion_request.present? ? t('admin.accounts.suspension_reversible_hint_html', date: content_tag(:strong, l(@deletion_request.due_at.to_date))) : t('admin.accounts.suspension_irreversible')
 
-        - unless @account.user_confirmed?
-          = link_to t('admin.accounts.confirm'), admin_account_confirmation_path(@account.id), method: :post, class: 'button' if can?(:confirm, @account.user)
+    = link_to t('admin.accounts.undo_suspension'), unsuspend_admin_account_path(@account.id), method: :post, class: 'button' if can?(:unsuspend, @account)
 
-      - if @account.suspended?
-        = link_to t('admin.accounts.undo_suspension'), unsuspend_admin_account_path(@account.id), method: :post, class: 'button' if can?(:unsuspend, @account)
-      - elsif !@account.local? || @account.user_approved?
-        = link_to t('admin.accounts.perform_full_suspension'), new_admin_account_action_path(@account.id, type: 'suspend'), class: 'button button--destructive' if can?(:suspend, @account)
+    - if @deletion_request.present?
+      = link_to t('admin.accounts.delete'), admin_account_path(@account.id), method: :delete, class: 'button button--destructive', data: { confirm: t('admin.accounts.are_you_sure') } if can?(:destroy, @account)
+  - else
+    %div.action-buttons
+      %div
+        - if @account.local? && @account.user_approved?
+          = link_to t('admin.accounts.warn'), new_admin_account_action_path(@account.id, type: 'none'), class: 'button' if can?(:warn, @account)
 
-      - unless @account.local?
-        - if DomainBlock.rule_for(@account.domain)
-          = link_to t('admin.domain_blocks.view'), admin_instance_path(@account.domain), class: 'button'
+          - if @account.user_disabled?
+            = link_to t('admin.accounts.enable'), enable_admin_account_path(@account.id), method: :post, class: 'button' if can?(:enable, @account.user)
+          - else
+            = link_to t('admin.accounts.disable'), new_admin_account_action_path(@account.id, type: 'disable'), class: 'button' if can?(:disable, @account.user)
+
+        - if @account.sensitized?
+          = link_to t('admin.accounts.undo_sensitized'), unsensitive_admin_account_path(@account.id), method: :post, class: 'button' if can?(:unsensitive, @account)
+        - elsif !@account.local? || @account.user_approved?
+          = link_to t('admin.accounts.sensitive'), new_admin_account_action_path(@account.id, type: 'sensitive'), class: 'button' if can?(:sensitive, @account)
+
+        - if @account.silenced?
+          = link_to t('admin.accounts.undo_silenced'), unsilence_admin_account_path(@account.id), method: :post, class: 'button' if can?(:unsilence, @account)
+        - elsif !@account.local? || @account.user_approved?
+          = link_to t('admin.accounts.silence'), new_admin_account_action_path(@account.id, type: 'silence'), class: 'button' if can?(:silence, @account)
+
+        - if @account.local?
+          - if @account.user_pending?
+            = link_to t('admin.accounts.approve'), approve_admin_account_path(@account.id), method: :post, data: { confirm: t('admin.accounts.are_you_sure') }, class: 'button' if can?(:approve, @account.user)
+            = link_to t('admin.accounts.reject'), reject_admin_account_path(@account.id), method: :post, data: { confirm: t('admin.accounts.are_you_sure') }, class: 'button button--destructive' if can?(:reject, @account.user)
+
+          - unless @account.user_confirmed?
+            = link_to t('admin.accounts.confirm'), admin_account_confirmation_path(@account.id), method: :post, class: 'button' if can?(:confirm, @account.user)
+
+        - if !@account.local? || @account.user_approved?
+          = link_to t('admin.accounts.perform_full_suspension'), new_admin_account_action_path(@account.id, type: 'suspend'), class: 'button' if can?(:suspend, @account)
+
+      %div
+        - if @account.local?
+          = link_to t('admin.accounts.reset_password'), admin_account_reset_path(@account.id), method: :create, class: 'button' if can?(:reset_password, @account.user)
+          - if @account.user&.otp_required_for_login?
+            = link_to t('admin.accounts.disable_two_factor_authentication'), admin_user_two_factor_authentication_path(@account.user.id), method: :delete, class: 'button' if can?(:disable_2fa, @account.user)
+          - if !@account.memorial? && @account.user_approved?
+            = link_to t('admin.accounts.memorialize'), memorialize_admin_account_path(@account.id), method: :post, data: { confirm: t('admin.accounts.are_you_sure') }, class: 'button button--destructive' if can?(:memorialize, @account)
         - else
-          = link_to t('admin.domain_blocks.add_new'), new_admin_domain_block_path(_domain: @account.domain), class: 'button button--destructive'
-
-    %div
-      - if @account.local?
-        = link_to t('admin.accounts.reset_password'), admin_account_reset_path(@account.id), method: :create, class: 'button' if can?(:reset_password, @account.user)
-        - if @account.user&.otp_required_for_login?
-          = link_to t('admin.accounts.disable_two_factor_authentication'), admin_user_two_factor_authentication_path(@account.user.id), method: :delete, class: 'button' if can?(:disable_2fa, @account.user)
-        - if !@account.memorial? && @account.user_approved?
-          = link_to t('admin.accounts.memorialize'), memorialize_admin_account_path(@account.id), method: :post, data: { confirm: t('admin.accounts.are_you_sure') }, class: 'button button--destructive' if can?(:memorialize, @account)
-      - else
-        = link_to t('admin.accounts.redownload'), redownload_admin_account_path(@account.id), method: :post, class: 'button' if can?(:redownload, @account)
+          = link_to t('admin.accounts.redownload'), redownload_admin_account_path(@account.id), method: :post, class: 'button' if can?(:redownload, @account)
 
   %hr.spacer/
 

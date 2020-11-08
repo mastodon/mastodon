@@ -69,6 +69,6 @@ class Form::AccountBatch
     records = accounts.includes(:user)
 
     records.each { |account| authorize(account.user, :reject?) }
-           .each { |account| SuspendAccountService.new.call(account, reserve_email: false, reserve_username: false) }
+           .each { |account| DeleteAccountService.new.call(account, reserve_email: false, reserve_username: false) }
   end
 end
