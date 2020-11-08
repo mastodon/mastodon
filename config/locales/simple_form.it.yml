@@ -44,7 +44,7 @@ it:
         setting_default_sensitive: Media con contenuti sensibili sono nascosti in modo predefinito e possono essere rivelati con un click
         setting_display_media_default: Nascondi media segnati come sensibili
         setting_display_media_hide_all: Nascondi sempre tutti i media
-        setting_display_media_show_all: Nascondi sempre i media segnati come sensibili
+        setting_display_media_show_all: Mostra sempre i media segnati come sensibili
         setting_hide_network: Chi segui e chi segue te non saranno mostrati sul tuo profilo
         setting_noindex: Ha effetto sul tuo profilo pubblico e sulle pagine degli status
         setting_show_application: L'applicazione che usi per pubblicare i toot sarà mostrata nella vista di dettaglio dei tuoi toot
@@ -65,8 +65,17 @@ it:
         data: File CSV esportato da un altro server Mastodon
       invite_request:
         text: Questo ci aiuterà ad esaminare la tua richiesta
+      ip_block:
+        comment: Opzionale. Ricorda perché hai aggiunto questa regola.
+        expires_in: Gli indirizzi IP sono una risorsa finita, a volte sono condivisi e spesso cambiano possessore. Per questo motivo, i blocchi IP indefiniti non sono consigliati.
+        ip: Inserisci un indirizzo IPv4 o IPv6. Puoi bloccare interi intervalli usando la sintassi CIDR. Fai attenzione a non bloccare te stesso!
+        severities:
+          no_access: Blocca l'accesso a tutte le risorse
+          sign_up_requires_approval: Le nuove iscrizioni richiederanno la tua approvazione
+        severity: Scegli cosa accadrà con le richieste da questo IP
       sessions:
         otp: 'Inserisci il codice a due fattori generato dall''app del tuo telefono o usa uno dei codici di recupero:'
+        webauthn: Se si tratta di una chiavetta USB assicurati di inserirla e, se necessario, toccarla.
       tag:
         name: Puoi cambiare solo il minuscolo/maiuscolo delle lettere, ad esempio, per renderlo più leggibile
       user:
@@ -91,6 +100,7 @@ it:
         types:
           disable: Disabilita
           none: Non fare nulla
+          sensitive: Sensibile
           silence: Silenzia
           suspend: Sospendi e cancella i dati dell'account in modo irreversibile
         warning_preset_id: Usa un avviso preimpostato
@@ -135,6 +145,7 @@ it:
         setting_default_privacy: Privacy dei post
         setting_default_sensitive: Segna sempre i media come sensibili
         setting_delete_modal: Mostra dialogo di conferma prima di eliminare un toot
+        setting_disable_swiping: Disabilita i movimenti di scorrimento
         setting_display_media: Visualizzazione dei media
         setting_display_media_default: Predefinita
         setting_display_media_hide_all: Nascondi tutti
@@ -168,6 +179,13 @@ it:
         comment: Commento
       invite_request:
         text: Perché vuoi iscriverti?
+      ip_block:
+        comment: Commento
+        ip: IP
+        severities:
+          no_access: Blocca accesso
+          sign_up_requires_approval: Limita iscrizioni
+        severity: Regola
       notification_emails:
         digest: Invia email riassuntive
         favourite: Invia email quando segna come preferito al tuo stato
@@ -188,4 +206,7 @@ it:
     required:
       mark: "*"
       text: richiesto
+    title:
+      sessions:
+        webauthn: Usa una delle tue chiavi di sicurezza per accedere
     'yes': Si

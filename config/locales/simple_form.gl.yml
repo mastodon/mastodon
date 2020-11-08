@@ -65,8 +65,17 @@ gl:
         data: Ficheiro CSV exportado desde outro servidor Mastodon
       invite_request:
         text: Esto axudaranos a revisar a tua aplicación
+      ip_block:
+        comment: Opcional. Lembrar a razón para engadir esta regra.
+        expires_in: Os enderezos IP son un recurso finito, a veces son compartidos e cambian de mans con frecuencia. Por esta razón, non se recomendan os bloqueos indefinidos de IPs.
+        ip: Escribe un enderezo IPv4 ou IPv6. Podes bloquear rangos completos usando a sintaxe CIDR. Ten coidado e non te bloquees a ti mesma!
+        severities:
+          no_access: Bloquear acceso a tódolos recursos
+          sign_up_requires_approval: Os novos rexistros requerirán a túa aprobación
+        severity: Escolle que acontecerá coas peticións desde este IP
       sessions:
         otp: 'Introduce o código do segundo factor creado pola aplicación do teu móbil ou usa un dos códigos de recuperación:'
+        webauthn: Se é unha chave USB asegúrate de que está conectada e preme o botón.
       tag:
         name: Só podes cambiar maiús/minúsculas, por exemplo, mellorar a lexibilidade
       user:
@@ -91,6 +100,7 @@ gl:
         types:
           disable: Desactivar conexión
           none: Non facer nada
+          sensitive: Sensible
           silence: Acalar
           suspend: Suspender e eliminar irreversiblemente datos da conta
         warning_preset_id: Utilizar un aviso preestablecido
@@ -135,6 +145,7 @@ gl:
         setting_default_privacy: Privacidade da publicación
         setting_default_sensitive: Marcar sempre multimedia como sensible
         setting_delete_modal: Solicitar confirmación antes de eliminar unha mensaxe
+        setting_disable_swiping: Desactivar opcións de desprazamento
         setting_display_media: Mostrar multimedia
         setting_display_media_default: Por omisión
         setting_display_media_hide_all: Ocultar todo
@@ -168,6 +179,13 @@ gl:
         comment: Comentar
       invite_request:
         text: Por que queres unirte?
+      ip_block:
+        comment: Comentario
+        ip: IP
+        severities:
+          no_access: Bloquear acceso
+          sign_up_requires_approval: Limitar o rexistro
+        severity: Regra
       notification_emails:
         digest: Enviar correos con resumos
         favourite: Enviar un correo cando alguén marca como favorita unha das tuas publicacións
@@ -188,4 +206,7 @@ gl:
     required:
       mark: "*"
       text: requerido
+    title:
+      sessions:
+        webauthn: Usa unha das túas chaves de seguridade para conectar
     'yes': Si

@@ -65,8 +65,17 @@ pt-PT:
         data: Arquivo CSV exportado de outra instância do Mastodon
       invite_request:
         text: Isto vai ajudar-nos a rever o seu pedido
+      ip_block:
+        comment: Opcional. Relembre-se por que adicionou esta regra.
+        expires_in: Endereços IP são um recurso limitado, algumas vezes são compartilhados e muitas vezes mudam de mãos. Por essa razão, bloqueios de IP indefinidos não são recomendados.
+        ip: Introduza um endereço IPv4 ou IPv6. Pode bloquear intervalos inteiros usando a sintaxe CIDR. Tenha cuidado para não se bloquear a sí mesmo!
+        severities:
+          no_access: Bloquear o acesso a todos os recursos
+          sign_up_requires_approval: Novas inscrições requererão a sua aprovação
+        severity: Escolha o que acontecerá com as solicitações deste IP
       sessions:
         otp: 'Insere o código de autenticação em dois passos gerado pelo teu telemóvel ou usa um dos teus códigos de recuperação:'
+        webauthn: Se for uma chave USB tenha certeza de inseri-la e, se necessário, toque nela.
       tag:
         name: Só pode alterar a capitalização das letras, por exemplo, para torná-las mais legíveis
       user:
@@ -91,6 +100,7 @@ pt-PT:
         types:
           disable: Desactivar
           none: Não fazer algo
+          sensitive: Sensível
           silence: Silenciar
           suspend: Suspender e apagar irreversivelmente os dados da conta
         warning_preset_id: Usar um aviso pré-definido
@@ -135,6 +145,7 @@ pt-PT:
         setting_default_privacy: Privacidade da publicação
         setting_default_sensitive: Sempre marcar media como sensível
         setting_delete_modal: Solicitar confirmação antes de eliminar uma publicação
+        setting_disable_swiping: Desactivar os movimentos de deslize
         setting_display_media: Visualização de media
         setting_display_media_default: Pré-definição
         setting_display_media_hide_all: Esconder todos
@@ -168,6 +179,13 @@ pt-PT:
         comment: Comentário
       invite_request:
         text: Porque se quer juntar a nós?
+      ip_block:
+        comment: Comentário
+        ip: IP
+        severities:
+          no_access: Bloquear acesso
+          sign_up_requires_approval: Limitar inscrições
+        severity: Regra
       notification_emails:
         digest: Enviar e-mails de resumo
         favourite: Enviar e-mail quando alguém adiciona uma publicação tua aos favoritos
@@ -188,4 +206,7 @@ pt-PT:
     required:
       mark: "*"
       text: obrigatório
+    title:
+      sessions:
+        webauthn: Utilize uma das suas chaves de segurança para entrar
     'yes': Sim

@@ -65,8 +65,17 @@ sq:
         data: Kartelë CSV të eksportuar nga një tjetër shërbyes Mastodon
       invite_request:
         text: Kjo do të na ndihmojë të shqyrtojmë aplikimin tuaj
+      ip_block:
+        comment: Opsionale. Mbani mend pse e shtuat këtë rregull.
+        expires_in: Adresat IP janë një burim i kufizuar, shpesh janë të përbashkëta dh ndryshojnë zot shpesh. Për këtë arsye, nuk rekomandohem blloqe IP të pafund.
+        ip: Jepni një adresë IPv4 ose IPv6. Duke përdorur sintaksën CIDR, mund të bllokoni intervale të tëra. Hapni sytë mos lini veten jashtë!
+        severities:
+          no_access: Blloko hyrje në krejt burimet
+          sign_up_requires_approval: Regjistrime të reja do të duan miratimin tuaj
+        severity: Zgjidhni ç’do të ndodhë me kërkesa nga kjo IP
       sessions:
         otp: 'Jepni kodin dyfaktorësh të prodhuar nga aplikacioni i telefonit tuaj ose përdorni një nga kodet tuaj të rikthimeve:'
+        webauthn: Nëse është një diskth USB, sigurohuni se e keni futur dhe, në qoftë e nevojshme, prekeni.
       tag:
         name: Mund të ndryshoni shkronjat vetëm nga të mëdha në të vogla ose anasjelltas, për shembull, për t’i bërë më të lexueshme
       user:
@@ -91,6 +100,7 @@ sq:
         types:
           disable: Çaktivizo hyrjen
           none: Mos bëj gjë
+          sensitive: Rezervat
           silence: Heshtje
           suspend: Pezulloje dhe fshi në mënyrë të pakthyeshme të dhënat e llogarisë
         warning_preset_id: Përdor një sinjalizim të paracaktuar
@@ -135,6 +145,7 @@ sq:
         setting_default_privacy: Privatësi postimi
         setting_default_sensitive: Mediave vëru përherë shenjë si rezervat
         setting_delete_modal: Shfaq dialog ripohimi përpara fshirjes së një mesazhi
+        setting_disable_swiping: Çaktivizo lëvizje me fërkim
         setting_display_media: Shfaqje mediash
         setting_display_media_default: Parazgjedhje
         setting_display_media_hide_all: Fshihi krejt
@@ -168,6 +179,13 @@ sq:
         comment: Komentoni
       invite_request:
         text: Pse doni të bëheni pjesë?
+      ip_block:
+        comment: Koment
+        ip: IP
+        severities:
+          no_access: Bllokoji hyrjen
+          sign_up_requires_approval: Kufizo regjistrime
+        severity: Rregull
       notification_emails:
         digest: Dërgo email-e përmbledhës
         favourite: Dikush parapëlqeu gjendjen tuaj
@@ -188,4 +206,7 @@ sq:
     required:
       mark: "*"
       text: e domosdoshme
+    title:
+      sessions:
+        webauthn: Që të bëhet hyrja, përdorni një nga kyçet tuaj të sigurisë
     'yes': Po

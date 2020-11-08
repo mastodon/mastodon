@@ -21,7 +21,9 @@ nl:
     federation_hint_html: Met een account op %{instance} ben je in staat om mensen die zich op andere Mastodonservers (en op andere plekken) bevinden te volgen.
     get_apps: Mobiele apps
     hosted_on: Mastodon op %{domain}
-    instance_actor_flash: Dit account is een virtuel actor dat wordt gebruikt om de server zelf te vertegenwoordigen en is geen individuele gebruiker. Het wordt voor federatiedoeleinden gebruikt en moet niet worden geblokkeerd, tenzij je de hele server wilt blokkeren. In zo'n geval dien je echter een domeinblokkade te gebruiken.
+    instance_actor_flash: 'Dit account is een virtuel actor dat wordt gebruikt om de server zelf te vertegenwoordigen en is geen individuele gebruiker. Het wordt voor federatiedoeleinden gebruikt en moet niet worden geblokkeerd, tenzij je de hele server wilt blokkeren. In zo''n geval dien je echter een domeinblokkade te gebruiken.
+
+'
     learn_more: Meer leren
     privacy_policy: Privacybeleid
     see_whats_happening: Kijk wat er aan de hand is
@@ -111,15 +113,15 @@ nl:
       confirming: Bevestiging
       deleted: Verwijderd
       demote: Degraderen
-      disable: Uitschakelen
+      disable: Bevriezen
       disable_two_factor_authentication: 2FA uitschakelen
-      disabled: Uitgeschakeld
+      disabled: Bevroren
       display_name: Weergavenaam
       domain: Domein
       edit: Bewerken
       email: E-mail
       email_status: E-mailstatus
-      enable: Inschakelen
+      enable: Ontdooien
       enabled: Ingeschakeld
       followers: Volgers
       follows: Volgt
@@ -180,8 +182,8 @@ nl:
       show:
         created_reports: Aangemaakte rapportages
         targeted_reports: Door anderen gerapporteerd
-      silence: Negeren
-      silenced: Genegeerd
+      silence: Beperken
+      silenced: Beperkt
       statuses: Toots
       subscribe: Abonneren
       suspended: Opgeschort
@@ -1260,21 +1262,14 @@ nl:
       default: "%d %B %Y om %H:%M"
       month: "%b %Y"
   two_factor_authentication:
-    code_hint: Voer de code in die door de authenticatie-app gegenereerd is
-    description_html: Na het instellen van <strong>tweestapsverificatie</strong>, kun je alleen inloggen als je jouw mobiele telefoon bij je hebt. Hiermee genereer je namelijk de in te voeren aanmeldcode.
-    disable: Uitschakelen
-    enable: Inschakelen
+    disable: Tweestapsverificatie uitschakelen
     enabled: Tweestapsverificatie is ingeschakeld
     enabled_success: Inschakelen tweestapsverificatie geslaagd
     generate_recovery_codes: Herstelcodes genereren
-    instructions_html: "<strong>Scan deze QR-code in Google Authenticator of een soortgelijke app op jouw mobiele telefoon</strong>. Van nu af aan genereert deze app aanmeldcodes die je bij het inloggen moet invoeren."
     lost_recovery_codes: Met herstelcodes kun je toegang tot jouw account krijgen wanneer je jouw telefoon bent kwijtgeraakt. Wanneer je jouw herstelcodes bent kwijtgeraakt, kan je ze hier opnieuw genereren. Jouw oude herstelcodes zijn daarna ongeldig.
-    manual_instructions: Voor het geval je de QR-code niet kunt scannen en het handmatig moet invoeren, vind je hieronder de geheime code in platte tekst.
     recovery_codes: Herstelcodes back-uppen
     recovery_codes_regenerated: Opnieuw genereren herstelcodes geslaagd
     recovery_instructions_html: Wanneer je ooit de toegang verliest tot jouw telefoon, kan je met behulp van een van de herstelcodes hieronder opnieuw toegang krijgen tot jouw account. <strong>Zorg ervoor dat je de herstelcodes op een veilige plek bewaard</strong>. Je kunt ze bijvoorbeeld printen en ze samen met andere belangrijke documenten bewaren.
-    setup: Instellen
-    wrong_code: De ingevoerde code is ongeldig! Klopt de systeemtijd van de server en die van jouw apparaat?
   user_mailer:
     backup_ready:
       explanation: Je hebt een volledige back-up van jouw Mastodon-account opgevraagd. Het staat nu klaar om te worden gedownload!
@@ -1282,8 +1277,8 @@ nl:
       title: Archief ophalen
     sign_in_token:
       details: 'Hier zijn details van de poging:'
-      explanation: 'We hebben inlogpoging op je account ontdekt vanaf een onbekend ip-adres. Als jij dit bent, vul dan de beveiligingscode hieronder in op de inlog-uitdagingspagina:'
-      further_actions: 'Als jij dit niet was, verander dan je wachtwoord en schakel authenticatie in twee stappen in op je account. Dat kun je hier doen:'
+      explanation: 'We hebben een inlogpoging op je account ontdekt vanaf een onbekend IP-adres. Als jij dit bent, vul dan de beveiligingscode hieronder in op de inlog-uitdagingspagina:'
+      further_actions: 'Als jij dit niet was, verander dan je wachtwoord en schakel tweestapsverificatie voor je account in. Dat kun je hier doen:'
       subject: Bevestig de inlogpoging
       title: Inlogpoging
     warning:
@@ -1323,7 +1318,7 @@ nl:
       title: Welkom aan boord %{name}!
   users:
     follow_limit_reached: Je kunt niet meer dan %{limit} accounts volgen
-    generic_access_help_html: Problemen met toegang tot je account? Neem dan contact op met %{email}
+    generic_access_help_html: Problemen met toegang tot je account? Neem dan contact op met %{email} voor assistentie
     invalid_email: E-mailadres is ongeldig
     invalid_otp_token: Ongeldige tweestaps-aanmeldcode
     invalid_sign_in_token: Ongeldige beveiligingscode

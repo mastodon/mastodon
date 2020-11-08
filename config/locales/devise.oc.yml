@@ -60,6 +60,23 @@ oc:
         title: Còdis 2FA de recuperacion cambiats
       unlock_instructions:
         subject: Mastodon : consignas de desblocatge
+      webauthn_credential:
+        added:
+          explanation: La clau de seguretat seguenta foguèt ajustada a vòstre compte
+          subject: 'Mastodon : nòva clau de seguretat'
+          title: Una nòva clau de seguretat es estada ajustada
+        deleted:
+          explanation: La clau de seguretat seguenta foguèt suprimida a vòstre compte
+          subject: 'Mastodon : clau de seguretat suprimida'
+          title: Una de vòstras claus de seguretats es estada suprimida
+      webauthn_disabled:
+        explanation: L’autentificacion amb de claus de seguretat foguèt estada desactivada per vòstre compte. L’identificacion es ara possible en utilizan un geton generat per una aplicacion TOTP associada.
+        subject: 'Mastodon : autentificacion amb claus de seguretat desactivada'
+        title: Claus de seguretat desactivadas
+      webauthn_enabled:
+        explanation: L’autentificacion amb de claus de seguretat foguèt estada activada per vòstre compte. Vòstra clau de seguretat pòt ara èsser utilizada per l’identificacion.
+        subject: 'Mastodon : autentificacion via clau de seguretat activada'
+        title: Claus de seguretat activadas
     omniauth_callbacks:
       failure: Fracàs al moment de vos autentificar de %{kind} perque "%{reason}".
       success: Sètz ben autentificat dempuèi lo compte %{kind}.

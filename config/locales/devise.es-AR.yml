@@ -39,7 +39,7 @@ es-AR:
         explanation: Confirmá la nueva dirección para cambiar tu correo electrónico.
         extra: Si no pediste este cambio, por favor, ignorá este mensaje. No se cambiará la dirección de correo electrónico de tu cuenta de Mastodon hasta que no accedas al enlace de arriba.
         subject: 'Mastodon: confirmar correo electrónico para %{instance}'
-        title: Verifique dirección de correo electrónico
+        title: Verificar dirección de correo electrónico
       reset_password_instructions:
         action: Cambiar contraseña
         explanation: Pediste una nueva contraseña para tu cuenta.
@@ -60,6 +60,23 @@ es-AR:
         title: Códigos de recuperación 2FA cambiados
       unlock_instructions:
         subject: 'Mastodon: instrucciones de desbloqueo'
+      webauthn_credential:
+        added:
+          explanation: Se agregó la siguiente llave de seguridad a tu cuenta
+          subject: 'Mastodon: nueva llave de seguridad'
+          title: Se agregó una nueva llave de seguridad
+        deleted:
+          explanation: Se eliminó la siguiente llave de seguridad de tu cuenta
+          subject: 'Mastodon: llave de seguridad eliminada'
+          title: Se eliminó una de tus llaves de seguridad
+      webauthn_disabled:
+        explanation: Se deshabilitó la autenticación con llaves de seguridad en tu cuenta. El inicio de sesión ahora es posible usando sólo la clave generada por la aplicación TOTP asociada.
+        subject: 'Mastodon: autenticación con llaves de seguridad, deshabilitada'
+        title: Llaves de seguridad deshabilitadas
+      webauthn_enabled:
+        explanation: Se habilitó la autenticación de llave de seguridad en tu cuenta. Ahora tu llave de seguridad se puede usar para iniciar sesión.
+        subject: 'Mastodon: autenticación con llaves de seguridad, habilitada'
+        title: Llaves de seguridad habilitadas
     omniauth_callbacks:
       failure: 'No se te pudo autenticar desde %{kind} debido a esto: "%{reason}".'
       success: Se autenticó exitosamente para la cuenta %{kind}.
@@ -67,7 +84,7 @@ es-AR:
       no_token: No podés acceder a esta página sin venir desde un correo electrónico destinado al cambio de contraseña. Si venís desde dicho mensaje, por favor, asegurate que usaste toda la dirección web ofrecida.
       send_instructions: Si tu dirección de correo electrónico existe en nuestra base de datos, en unos minutos, vas a recibir un correo electrónico con un enlace para cambiar tu contraseña. Si pasa el tiempo y no recibiste ningún mensaje, por favor, revisá tu carpeta de correo basura / no deseado / spam.
       send_paranoid_instructions: Si tu dirección de correo electrónico existe en nuestra base de datos, en unos minutos, vas a recibir un correo electrónico con un enlace para cambiar tu contraseña. Si pasa el tiempo y no recibiste ningún mensaje, por favor, revisá tu carpeta de correo basura / no deseado / spam.
-      updated: Se cambió existosamente tu contraseña. Ya iniciaste sesión.
+      updated: Se cambió exitosamente tu contraseña. Ya iniciaste sesión.
       updated_not_active: Se cambió exitosamente tu contraseña.
     registrations:
       destroyed: "¡Chauchas! Se canceló exitosamente tu cuenta. Esperamos verte pronto de nuevo."

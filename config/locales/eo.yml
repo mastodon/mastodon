@@ -154,7 +154,7 @@ eo:
       remove_header: Forigi kapan bildon
       resend_confirmation:
         already_confirmed: Ĉi tiu uzanto jam estas konfirmita
-        send: Esend konfirmi retpoŝton
+        send: Resendi konfirman retmesaĝon
         success: Konfirma retmesaĝo sukcese sendita!
       reset: Restarigi
       reset_password: Restarigi pasvorton
@@ -193,14 +193,14 @@ eo:
         create_announcement: Krei Anoncon
         create_custom_emoji: Krei Propran emoĝion
         create_domain_allow: Krei Domajnan Permeson
-        create_domain_block: Krei Domajnan Blokadon
-        create_email_domain_block: Krei Retpoŝtmesaĝan Domajnan Blokadon
+        create_domain_block: Krei blokadon de domajno
+        create_email_domain_block: Krei blokadon de retpoŝta domajno
         demote_user: Malpromocii uzanton
         destroy_announcement: Forigi Anoncon
         destroy_custom_emoji: Forigi Propran emoĝion
         destroy_domain_allow: Forigi Domajnan Permeson
-        destroy_domain_block: Forigi Domajnan Blokadon
-        destroy_email_domain_block: Forigi retpoŝtmesaĝan domajnan blokadon
+        destroy_domain_block: Forigi blokadon de domajno
+        destroy_email_domain_block: Forigi blokadon de retpoŝta domajno
         destroy_status: Forigi mesaĝon
         disable_2fa_user: Malebligi 2FA
         disable_custom_emoji: Malebligi Propran Emoĝion
@@ -223,13 +223,13 @@ eo:
         create_custom_emoji: "%{name} alŝutis novan emoĝion %{target}"
         create_domain_allow: "%{name} aldonis domajnon %{target} al la blanka listo"
         create_domain_block: "%{name} blokis domajnon %{target}"
-        create_email_domain_block: "%{name} aldonis retadresan domajnon %{target} al la nigra listo"
+        create_email_domain_block: "%{name} blokis retpoŝtan domajnon %{target}"
         demote_user: "%{name} degradis uzanton %{target}"
         destroy_announcement: "%{name} forigis anoncon %{target}"
         destroy_custom_emoji: "%{name} neniigis la emoĝion %{target}"
         destroy_domain_allow: "%{name} forigis domajnon %{target} el la blanka listo"
         destroy_domain_block: "%{name} malblokis domajnon %{target}"
-        destroy_email_domain_block: "%{name} aldonis retadresan domajnon %{target} al la blanka listo"
+        destroy_email_domain_block: "%{name} malblokis retpoŝtan domajnon %{target}"
         destroy_status: "%{name} forigis mesaĝojn de %{target}"
         disable_2fa_user: "%{name} malebligis dufaktoran aŭtentigon por uzanto %{target}"
         disable_custom_emoji: "%{name} malebligis emoĝion %{target}"
@@ -333,7 +333,7 @@ eo:
       destroyed_msg: Domajno estis forigita el la blanka listo
       undo: Forigi el la blanka listo
     domain_blocks:
-      add_new: Aldoni novan
+      add_new: Aldoni novan blokadon de domajno
       created_msg: Domajna blokado en traktado
       destroyed_msg: Domajna blokado malfarita
       domain: Domajno
@@ -366,7 +366,7 @@ eo:
         retroactive:
           silence: Malkaŝi ĉiujn kontojn, kiuj ekzistas en ĉi tiu domajno
           suspend: Malhaltigi ĉiujn kontojn, kiuj ekzistas en ĉi tiu domajno
-        title: Malfari domajnan blokadon por %{domain}
+        title: Malfari blokadon de domajno %{domain}
         undo: Malfari
       undo: Malfari
       view: Vidi domajna blokado
@@ -408,6 +408,14 @@ eo:
         expired: Eksvalida
         title: Filtri
       title: Invitoj
+    ip_blocks:
+      expires_in:
+        '1209600': 2 semajnoj
+        '15778476': 6 monatoj
+        '2629746': 1 monato
+        '31556952': 1 jaro
+        '86400': 1 tago
+        '94670856': 3 jaroj
     pending_accounts:
       title: Pritraktataj kontoj (%{count})
     relationships:
@@ -1048,6 +1056,9 @@ eo:
     two_factor_authentication: Dufaktora aŭtentigo
   statuses:
     attached:
+      audio:
+        one: "%{count} aŭdaĵo"
+        other: "%{count} aŭdaĵoj"
       description: 'Ligita: %{attached}'
       image:
         one: "%{count} bildo"
@@ -1077,6 +1088,8 @@ eo:
         other: "%{count} voĉdonoj"
       vote: Voĉdoni
     show_more: Malfoldi
+    show_newer: Neniam montru
+    show_older: Montru pli malnova
     show_thread: Montri la fadenon
     sign_in_to_participate: Ensaluti por partopreni en la konversacio
     title: "%{name}: “%{quote}”"
@@ -1104,21 +1117,16 @@ eo:
       default: "%Y-%m-%d %H:%M"
       month: "%b %Y"
   two_factor_authentication:
-    code_hint: Enmetu la kodon kreitan de via aŭtentiga aplikaĵo por konfirmi
-    description_html: Se vi ebligas <strong>dufaktoran aŭtentigon</strong>, vi bezonos vian poŝtelefonon por ensaluti, ĉar ĝi kreos nombrojn, kiujn vi devos enmeti.
+    add: Aldoni
     disable: Malebligi
-    enable: Ebligi
+    edit: Redakti
     enabled: Dufaktora aŭtentigo ebligita
     enabled_success: Dufaktora aŭtentigo sukcese ebligita
     generate_recovery_codes: Krei realirajn kodojn
-    instructions_html: "<strong>Skanu ĉi tiun QR-kodon per Google Authenticator aŭ per simila aplikaĵo en via poŝtelefono</strong>. De tiam, la aplikaĵo kreos nombrojn, kiujn vi devos enmeti."
     lost_recovery_codes: Realiraj kodoj permesas rehavi aliron al via konto se vi perdis vian telefonon. Se vi perdis viajn realirajn kodojn, vi povas rekrei ilin ĉi tie. Viaj malnovaj realiraj kodoj iĝos eksvalidaj.
-    manual_instructions: 'Se vi ne povas skani la QR-kodon kaj bezonas enmeti ĝin mane, jen la tut-teksta sekreto:'
     recovery_codes: Realiraj kodoj
     recovery_codes_regenerated: Realiraj kodoj sukcese rekreitaj
     recovery_instructions_html: Se vi perdas aliron al via telefono, vi povas uzi unu el la subaj realiraj kodoj por rehavi aliron al via konto. <strong>Konservu realirajn kodojn sekure</strong>. Ekzemple, vi povas printi ilin kaj konservi ilin kun aliaj gravaj dokumentoj.
-    setup: Agordi
-    wrong_code: La enmetita kodo estis nevalida! Ĉu la servila tempo kaj la aparata tempo ĝustas?
   user_mailer:
     backup_ready:
       explanation: Vi petis kompletan arkivon de via Mastodon-konto. Ĝi nun pretas por elŝutado!
@@ -1168,3 +1176,5 @@ eo:
   verification:
     explanation_html: 'Vi povas <strong>pruvi, ke vi estas la posedanto de la ligiloj en viaj profilaj metadatumoj</strong>. Por fari tion, la alligita retejo devas enhavi ligilon reen al via Mastodon-profilo. La religilo <strong>devas</strong> havi la atributon <code>rel="me"</code>. Ne gravas la teksta enhavo de la religilo. Jen ekzemplo:'
     verification: Kontrolo
+  webauthn_credentials:
+    delete: Forigi

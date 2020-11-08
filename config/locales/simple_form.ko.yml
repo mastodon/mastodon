@@ -65,8 +65,17 @@ ko:
         data: 다른 마스토돈 서버에서 추출된 CSV 파일
       invite_request:
         text: 이 정보는 우리가 심사를 하는 데에 참고할 수 있습니다
+      ip_block:
+        comment: 필수 아님. 왜 이 규칙을 추가했는지 기억하세요.
+        expires_in: IP 주소는 한정된 자원입니다, 이것들은 가끔 공유 되거나 자주 소유자가 바뀌기도 합니다. 이런 이유로 인해, IP 차단을 영구히 유지하는 것은 추천하지 않습니다.
+        ip: IPv4 또는 IPv6 주소를 입력하세요. CIDR 문법을 사용해서 모든 범위를 차단할 수도 있습니다. 자기 자신을 잠가버리지 않도록 주의하세요!
+        severities:
+          no_access: 모든 자원에 대한 접근 차단
+          sign_up_requires_approval: 새 가입이 승인을 필요로 하도록 합니다
+        severity: 해당 IP로부터의 요청에 대해 무엇이 일어나게 할 지 고르세요
       sessions:
         otp: '휴대전화에서 생성 된 2단계 인증 코드를 입력하거나, 복구 코드 중 하나를 사용하세요:'
+        webauthn: USB 키라면 삽입했는지 확인하고, 필요하다면 누르세요.
       tag:
         name: 읽기 쉽게하기 위한 글자의 대소문자만 변경할 수 있습니다.
       user:
@@ -91,6 +100,7 @@ ko:
         types:
           disable: 비활성화
           none: 아무 것도 하지 않기
+          sensitive: 민감함
           silence: 침묵
           suspend: 정지하고 되돌릴 수 없는 데이터 삭제
         warning_preset_id: 경고 틀 사용하기
@@ -135,6 +145,7 @@ ko:
         setting_default_privacy: 툿 프라이버시
         setting_default_sensitive: 미디어를 언제나 민감한 컨텐츠로 설정
         setting_delete_modal: 툿 삭제 전 확인 창을 표시
+        setting_disable_swiping: 스와이프 모션 비활성화
         setting_display_media: 미디어 표시
         setting_display_media_default: 기본
         setting_display_media_hide_all: 모두 가리기
@@ -168,6 +179,13 @@ ko:
         comment: 주석
       invite_request:
         text: 가입하려는 이유가 무엇인가요?
+      ip_block:
+        comment: 주석
+        ip: IP
+        severities:
+          no_access: 접근 차단
+          sign_up_requires_approval: 가입 제한
+        severity: 규칙
       notification_emails:
         digest: 요약 이메일 보내기
         favourite: 누군가 내 상태를 즐겨찾기로 등록했을 때 이메일 보내기
@@ -188,4 +206,7 @@ ko:
     required:
       mark: "*"
       text: 필수 항목
+    title:
+      sessions:
+        webauthn: 로그인하기 위해서 보안 키를 사용해 주세요
     'yes': 네
