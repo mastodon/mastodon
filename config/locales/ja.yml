@@ -106,6 +106,7 @@ ja:
       confirm: 確認
       confirmed: 確認済み
       confirming: 確認中
+      delete: データを削除する
       deleted: 削除済み
       demote: 降格
       destroyed_msg: "%{username} のデータは完全に削除されるよう登録されました"
@@ -1016,6 +1017,9 @@ ja:
           trillion: T
   otp_authentication:
     code_hint: 続行するには認証アプリで表示されたコードを入力してください
+    description_html: <strong>二要素認証</strong>を有効にすると、ログイン時に認証アプリからコードを入力する必要があります。
+    instructions_html: "<strong>Google Authenticatorか、もしくはほかのTOTPアプリでこのQRコードをスキャンしてください。</strong>これ以降、ログインするときはそのアプリで生成されるコードが必要になります。"
+    manual_instructions: 'QRコードがスキャンできず、手動での登録を希望の場合はこのシークレットコードを利用してください。:'
     setup: セットアップ
     wrong_code: コードが間違っています。サーバーとデバイスの時計にずれがあるかもしれません。
   pagination:
@@ -1287,6 +1291,7 @@ ja:
   two_factor_authentication:
     add: 追加
     disable: 無効化
+    disabled_success: 二要素認証が更新されました
     edit: 編集
     enabled: 二段階認証は有効になっています
     enabled_success: 二段階認証が有効になりました
