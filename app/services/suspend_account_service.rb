@@ -38,7 +38,7 @@ class SuspendAccountService < BaseService
       [Oj.dump(serialize_payload(follow, ActivityPub::RejectFollowSerializer)), follow.target_account_id, @account.inbox_url]
     end
 
-    follows.in_batches.destroy_all
+    follows.each(&:destroy)
   end
 
   def distribute_update_actor!

@@ -7,7 +7,6 @@ zh-HK:
     active_count_after: 活躍
     active_footnote: 每月活躍使用者 (MAU)
     administered_by: 管理者：
-    api: API
     apps: 行動應用程式
     apps_platforms: 在 iOS、Android 和其他平台使用 Mastodon
     browse_directory: 依興趣瀏覽個人資料目錄和過濾器
@@ -35,10 +34,6 @@ zh-HK:
     unavailable_content_description:
       domain: 伺服器
       reason: 原因
-      rejecting_media: 不會處理或儲存這些伺服器的媒體檔案，也不會顯示縮圖，需要手動點選原始檔：
-      rejecting_media_title: 過濾的媒體
-      silenced_title: 靜音的伺服器
-      suspended_title: 暫停的伺服器
     user_count_after:
       other: 位使用者
     user_count_before: 這裏共註冊有
@@ -134,7 +129,6 @@ zh-HK:
       moderation_notes: 管理記錄
       most_recent_activity: 最新活動
       most_recent_ip: 最新 IP 位域
-      no_account_selected: 未選取任何帳號，因此未變更
       no_limits_imposed: 未受限制
       not_subscribed: 未訂閱
       pending: 等待審核中
@@ -184,15 +178,6 @@ zh-HK:
       web: 用戶頁面
       whitelisted: 已加入白名單
     action_logs:
-      action_types:
-        assigned_to_self_report: 指派回報
-        change_email_user: 變更使用者的電子信箱位址
-        confirm_user: 確認使用者
-        create_account_warning: 建立警告
-        create_announcement: 建立公告
-        create_custom_emoji: 建立自訂顏文字
-        create_domain_allow: 建立允許網域
-        create_domain_block: 建立阻擋網域
       actions:
         assigned_to_self_report: "%{name} 指派了 %{target} 的舉報給自己"
         change_email_user: "%{name} 改變了用戶 %{target} 的電郵地址"
@@ -496,7 +481,6 @@ zh-HK:
       last_active: 上次活躍
       most_popular: 最熱門
       most_recent: 最近
-      name: Hashtag
       review: 審核嘟文
       reviewed: 已審核
       title: 主題標籤
@@ -516,7 +500,6 @@ zh-HK:
   appearance:
     localization:
       body: Mastodon 是由志願者翻譯的。
-      guide_link: https://crowdin.com/project/mastodon
       guide_link_text: 每個人都能貢獻。
   application_mailer:
     notification_preferences: 更改電郵首選項
@@ -545,8 +528,6 @@ zh-HK:
     migrate_account: 轉移到另一個帳號
     migrate_account_html: 想要將這個帳號指向另一個帳號可<a href="%{path}">到這裡設定</a>。
     or_log_in_with: 或登入於
-    providers:
-      saml: SAML
     register: 登記
     resend_confirmation: 重發確認指示電郵
     reset_password: 重設密碼
@@ -606,7 +587,6 @@ zh-HK:
       request: 下載檔案
       size: 檔案大小
     blocks: 被你封鎖的用戶
-    csv: CSV
     lists: 列表
     mutes: 你所靜音的用戶
     storage: 媒體容量大小
@@ -695,16 +675,6 @@ zh-HK:
       body: 您的文章被 %{name} 轉推：
       subject: "%{name} 轉推了你的文章"
       title: 新的轉推
-  number:
-    human:
-      decimal_units:
-        format: "%n%u"
-        units:
-          billion: B
-          million: M
-          quadrillion: Q
-          thousand: K
-          trillion: T
   pagination:
     newer: 較新
     next: 下一頁
@@ -744,7 +714,6 @@ zh-HK:
     explanation: 這些是現在正登入於你的 Mastodon 帳號的瀏覽器。
     ip: IP 位址
     platforms:
-      ios: iOS
       mac: Mac
     revoke: 取消
     revoke_success: 作業階段成功取消
@@ -772,8 +741,6 @@ zh-HK:
     content_warning: 內容警告： %{warning}
     disallowed_hashtags:
       other: 包含不允許的標籤： %{tags}
-    errors:
-      in_reply_not_found: 您嘗試回覆的嘟文看起來不存在。
     language_detection: 自動偵測語言
     open_in_web: 開啟網頁
     over_character_limit: 超過了 %{max} 字的限制
@@ -807,21 +774,14 @@ zh-HK:
     formats:
       default: "%Y年%-m月%d日 %H:%M"
   two_factor_authentication:
-    code_hint: 請輸入你認證器產生的代碼，以確認設定
-    description_html: 當你啟用<strong>雙重認證</strong>後，你登入時將需要使你手機、或其他種類認證器產生的代碼。
     disable: 停用
-    enable: 啟用
     enabled: 雙重認證已啟用
     enabled_success: 已成功啟用雙重認證
     generate_recovery_codes: 產生備用驗證碼
-    instructions_html: "<strong>請用你手機的認證器應用程式（如 Google Authenticator、Authy），掃描這裏的QR 圖形碼</strong>。在雙重認證啟用後，你登入時將須要使用此應用程式產生的認證碼。"
     lost_recovery_codes: 讓你可以在遺失電話時，使用備用驗證碼登入。如果你遺失了備用驗證碼，可以在這裏產生一批新的，舊有的備用驗證碼將會失效。
-    manual_instructions: 如果你無法掃描 QR 圖形碼，請手動輸入這個文字密碼︰
     recovery_codes: 備份恢復驗證碼
     recovery_codes_regenerated: 成功產生新的備用驗證碼
     recovery_instructions_html: 如果你遺失了安裝認證器的裝置（如︰你的電話），你可以使用備用驗證碼進行登入。請確保將備用驗證碼收藏穩當，（如列印出來，和你其他重要文件一起存放）。
-    setup: 設定
-    wrong_code: 你輸入的認證碼並不正確！可能伺服器時間和你手機不一致，請檢查你手機的時鐘，或與本站管理員聯絡。
   user_mailer:
     backup_ready:
       explanation: 你要求的 Mastodon 帳號完整備份檔案現已就緒，可供下載。

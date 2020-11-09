@@ -106,6 +106,7 @@ pl:
       add_email_domain_block: Dodaj domenę e-mail na czarną listę
       approve: Przyjmij
       approve_all: Zatwierdź wszystkie
+      approved_msg: Pomyślnie zaakceptowano wniosek o rejestrację %{username}
       are_you_sure: Jesteś tego pewien?
       avatar: Awatar
       by_domain: Domena
@@ -119,8 +120,10 @@ pl:
       confirm: Potwierdź
       confirmed: Potwierdzono
       confirming: Potwierdzanie
+      delete: Usuń dane
       deleted: Usunięto
       demote: Degraduj
+      destroyed_msg: Dane %{username} są teraz w kolejce do natychmiastowego usunięcia
       disable: Dezaktywuj
       disable_two_factor_authentication: Wyłącz uwierzytelnianie dwuetapowe
       disabled: Dezaktywowano
@@ -131,6 +134,7 @@ pl:
       email_status: Stan e-maila
       enable: Aktywuj
       enabled: Aktywowano
+      enabled_msg: Pomyślnie odblokowano konto %{username}
       followers: Śledzący
       follows: Śledzeni
       header: Nagłówek
@@ -146,6 +150,8 @@ pl:
       login_status: Stan logowania
       media_attachments: Załączniki multimedialne
       memorialize: Przełącz na „In Memoriam”
+      memorialized: Upamiętniono
+      memorialized_msg: Pomyślnie przełączono %{username} w konto in memoriam
       moderation:
         active: Aktywne
         all: Wszystkie
@@ -166,10 +172,14 @@ pl:
       public: Publiczne
       push_subscription_expires: Subskrypcja PuSH wygasa
       redownload: Odśwież profil
+      redownloaded_msg: Pomyślnie odświeżono profil %{username} z miejsca pochodzenia
       reject: Odrzuć
       reject_all: Odrzuć wszystkie
+      rejected_msg: Pomyślnie odrzucono wniosek o rejestrację %{username}
       remove_avatar: Usun awatar
       remove_header: Usuń nagłówek
+      removed_avatar_msg: Pomyślnie usunięto awatar %{username}
+      removed_header_msg: Pomyślnie usunięto obraz nagłówka %{username}
       resend_confirmation:
         already_confirmed: To konto zostało już potwierdzone
         send: Wyślij ponownie e-mail z potwierdzeniem
@@ -195,13 +205,18 @@ pl:
       statuses: Wpisy
       subscribe: Subskrybuj
       suspended: Zawieszono
+      suspension_irreversible: Dane tego konta zostały bezpowrotnie usunięte. Możesz cofnąć zawieszenie tego konta aby można było z niego ponownie korzystać, lecz nie przywróci to danych które poprzednio się na nim znajdowały.
+      suspension_reversible_hint_html: Twoje konto zostało zawieszone, a dane zostaną całkowicie usunięte %{date}. Do tego czasu, konto może zostać przywrócone bez żadnych negatywnych skutków. Jeżeli chcesz natychmiastowo usunąć wszystkie dane, możesz zrobić to niżej.
       time_in_queue: Czekanie w kolejce %{time}
       title: Konta
       unconfirmed_email: Niepotwierdzony adres e-mail
       undo_silenced: Cofnij wyciszenie
       undo_suspension: Cofnij zawieszenie
+      unsilenced_msg: Pomyślnie zwolniono z ograniczeń konto %{username}
       unsubscribe: Przestań subskrybować
+      unsuspended_msg: Pomyślnie cofnięto zawieszenie konto %{username}
       username: Nazwa użytkownika
+      view_domain: Zobacz podsumowanie domeny
       warn: Ostrzeż
       web: Sieć
       whitelisted: Na białej liście
@@ -216,12 +231,14 @@ pl:
         create_domain_allow: Utwórz zezwolenie dla domeny
         create_domain_block: Utwórz blokadę domeny
         create_email_domain_block: Utwórz blokadę domeny e-mail
+        create_ip_block: Utwórz regułę IP
         demote_user: Zdegraduj użytkownika
         destroy_announcement: Usuń ogłoszenie
         destroy_custom_emoji: Usuń niestandardowe emoji
         destroy_domain_allow: Usuń zezwolenie dla domeny
         destroy_domain_block: Usuń blokadę domeny
         destroy_email_domain_block: Usuń blokadę domeny e-mail
+        destroy_ip_block: Usuń regułę IP
         destroy_status: Usuń wpis
         disable_2fa_user: Wyłącz 2FA
         disable_custom_emoji: Wyłącz niestandardowe emoji
@@ -252,12 +269,14 @@ pl:
         create_domain_allow: "%{name} dodał(a) na białą listę domenę %{target}"
         create_domain_block: "%{name} zablokował(a) domenę %{target}"
         create_email_domain_block: "%{name} dodał(a) domenę e-mail %{target} na czarną listę"
+        create_ip_block: "%{name} stworzył dla IP %{target}"
         demote_user: "%{name} zdegradował(a) użytkownika %{target}"
         destroy_announcement: "%{name} usunął(-ęła) ogłoszenie %{target}"
         destroy_custom_emoji: "%{name} usunął(-ęła) emoji %{target}"
         destroy_domain_allow: "%{name} usunął(-ęła) domenę %{target} z białej listy"
         destroy_domain_block: "%{name} odblokował(a) domenę %{target}"
         destroy_email_domain_block: "%{name} usunął(-ęła) domenę e-mail %{target} z czarnej listy"
+        destroy_ip_block: "%{name} usunął regułę dla IP %{target}"
         destroy_status: "%{name} usunął(-ęła) wpis użytkownika %{target}"
         disable_2fa_user: "%{name} wyłączył(a) uwierzytelnianie dwustopniowe użytkownikowi %{target}"
         disable_custom_emoji: "%{name} wyłączył(a) emoji %{target}"
@@ -446,6 +465,21 @@ pl:
         expired: Wygasłe
         title: Filtruj
       title: Zaproszenia
+    ip_blocks:
+      add_new: Stwórz regułę
+      created_msg: Pomyślnie dodano nową regułę IP
+      delete: Usuń
+      expires_in:
+        '1209600': 2 tygodnie
+        '15778476': 6 miesięcy
+        '2629746': 1 miesiąc
+        '31556952': 1 rok
+        '86400': 1 dzień
+        '94670856': 3 lata
+      new:
+        title: Utwórz nową regułę IP
+      no_ip_block_selected: Żadna reguła nie została zmieniona, ponieważ żadna nie została wybrana
+      title: Reguły adresów IP
     pending_accounts:
       title: Oczekujące konta (%{count})
     relationships:
@@ -697,8 +731,11 @@ pl:
       prefix_sign_up: Zarejestruj się na Mastodon już dziś!
       suffix: Mając konto, możesz śledzić ludzi, publikować wpisy i wymieniać się wiadomościami z użytkownikami innych serwerów Mastodona i nie tylko!
     didnt_get_confirmation: Nie otrzymałeś(-aś) instrukcji weryfikacji?
+    dont_have_your_security_key: Nie masz klucza bezpieczeństwa?
     forgot_password: Nie pamiętasz hasła?
     invalid_reset_password_token: Token do resetowania hasła jest nieprawidłowy lub utracił ważność. Spróbuj uzyskać nowy.
+    link_to_otp: Wprowadź kod dwustopniowego uwierzytelniania z telefonu lub użyj zapasowego kodu
+    link_to_webauth: Użyj swojego urządzenia z kluczem bezpieczeństwa
     login: Zaloguj się
     logout: Wyloguj się
     migrate_account: Przenieś konto
@@ -724,6 +761,7 @@ pl:
       pending: Twoje zgłoszenie czeka na zatwierdzenie przez nas. Może to trochę potrwać. Jeżeli zgłoszenie zostanie przyjęte, otrzymasz wiadomość e-mail.
       redirecting_to: Twoje konto jest nieaktywne, ponieważ obecnie przekierowuje je na %{acct}.
     trouble_logging_in: Masz problem z zalogowaniem się?
+    use_security_key: Użyj klucza bezpieczeństwa
   authorize_follow:
     already_following: Już śledzisz to konto
     already_requested: Już wysłałeś(-aś) prośbę o możliwość śledzenia tego konta
@@ -748,6 +786,7 @@ pl:
   date:
     formats:
       default: "%d. %b %Y"
+      with_month_name: "%d. %B %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}g"
@@ -960,6 +999,10 @@ pl:
       redirect: Twoje obecne konto zostanie uaktualnione o informację o przeniesieniu i wyłączone z wyszukiwania
   moderation:
     title: Moderacja
+  move_handler:
+    carry_blocks_over_text: Ten użytkownik przeniósł się z konta %{acct}, które zablokowałeś(-aś).
+    carry_mutes_over_text: Ten użytkownik przeniósł się z konta %{acct}, które wyciszyłeś(-aś).
+    copy_account_note_text: 'Ten użytkownik przeniósł się z konta %{acct}, oto Twoje poprzednie notatki o nim:'
   notification_mailer:
     digest:
       action: Wyświetl wszystkie powiadomienia
@@ -1012,6 +1055,14 @@ pl:
           quadrillion: bld
           thousand: tys
           trillion: bln
+  otp_authentication:
+    code_hint: Aby potwierdzić, wprowadź kod wygenerowany przez aplikację uwierzytelniającą
+    description_html: Jeśli włączysz <strong>uwierzytelnianie dwuetapowe</strong> używając aplikacji uwierzytelniającej, logowanie się będzie wymagało podania tokenu wyświetlonego na Twoim telefonie.
+    enable: Aktywuj
+    instructions_html: "<strong>Zeskanuj ten kod QR na swoim telefonie za pomocą Google Authenticator lub podobnej aplikacji TOTP</strong>. Od teraz będzie ona generowała kody wymagane przy logowaniu."
+    manual_instructions: 'Jeśli nie możesz zeskanować kodu QR i musisz wprowadzić go ręcznie, oto klucz w formie tekstu:'
+    setup: Skonfiguruj
+    wrong_code: Wprowadzony kod jest nieprawidłowy! Czy czas serwera i urządzenia jest poprawny?
   pagination:
     newer: Nowsze
     next: Następna
@@ -1136,10 +1187,16 @@ pl:
     profile: Profil
     relationships: Śledzeni i śledzący
     two_factor_authentication: Uwierzytelnianie dwuetapowe
+    webauthn_authentication: Klucze bezpieczeństwa
   spam_check:
     spam_detected: To zgłoszenie jest automatyczne. Został wykryty spam.
   statuses:
     attached:
+      audio:
+        few: "%{count} pliki dźwiękowe"
+        many: "%{count} plików dźwiękowych"
+        one: "%{count} plik dźwiękowy"
+        other: pliki dźwiękowe (%{count})
       description: 'Załączono: %{attached}'
       image:
         few: "%{count} obrazy"
@@ -1289,21 +1346,20 @@ pl:
       default: "%d. %b %Y, %H:%M"
       month: "%b %Y"
   two_factor_authentication:
-    code_hint: Aby kontynuować, wprowadź kod wyświetlany przez aplikację uwierzytelniającą
-    description_html: Jeśli włączysz <strong>uwierzytelnianie dwuetapowe</strong>, logowanie się będzie wymagało podania tokenu wyświetlonego na Twoim telefonie.
+    add: Dodaj
     disable: Wyłącz
-    enable: Włącz
+    disabled_success: Pomyślnie wyłączono uwierzytelnianie dwuetapowe
+    edit: Edytuj
     enabled: Uwierzytelnianie dwuetapowe jest włączone
     enabled_success: Pomyślnie aktywowano uwierzytelnianie dwuetapowe
     generate_recovery_codes: Generuj kody zapasowe
-    instructions_html: "<strong>Zeskanuj ten kod QR na swoim urządzeniu za pomocą Google Authenticator, FreeOTP lub podobnej aplikacji</strong>. Od teraz będzie ona generowała kody wymagane przy logowaniu."
     lost_recovery_codes: Kody zapasowe pozwolą uzyskać dostęp do portalu, jeżeli utracisz dostęp do telefonu. Jeżeli utracisz dostęp do nich, możesz wygenerować je ponownie tutaj. Poprzednie zostaną unieważnione.
-    manual_instructions: 'Jeżeli nie możesz zeskanować kodu QR, musisz wprowadzić ten kod ręcznie:'
+    methods: Metody uwierzytelniania dwuetapowego
+    otp: Aplikacja uwierzytelniająca
     recovery_codes: Przywróć kody zapasowe
     recovery_codes_regenerated: Pomyślnie wygenerowano ponownie kody zapasowe
     recovery_instructions_html: Jeżeli kiedykolwiek utracisz dostęp do telefonu, możesz wykorzystać jeden z kodów zapasowych, aby odzyskać dostęp do konta. <strong>Trzymaj je w bezpiecznym miejscu</strong>. Na przykład, wydrukuj je i przechowuj z ważnymi dokumentami.
-    setup: Skonfiguruj
-    wrong_code: Wprowadzony kod jest niepoprawny! Czy czas serwera i urządzenia jest poprawny?
+    webauthn: Klucze bezpieczeństwa
   user_mailer:
     backup_ready:
       explanation: Zażądałeś pełnej kopii zapasowej konta na Mastodonie. Jest ona dostępna do pobrania!
@@ -1351,9 +1407,11 @@ pl:
       tips: Wskazówki
       title: Witaj na pokładzie, %{name}!
   users:
+    blocked_email_provider: Ten dostawca e-mail jest niedozwolony
     follow_limit_reached: Nie możesz śledzić więcej niż %{limit} osób
     generic_access_help_html: Nie możesz uzyskać dostępu do konta? Skontaktuj się z %{email} aby uzyskać pomoc
     invalid_email: Adres e-mail jest niepoprawny
+    invalid_email_mx: Ten adres e-mail wydaje się nie istnieć
     invalid_otp_token: Kod uwierzytelniający jest niepoprawny
     invalid_sign_in_token: Nieprawidłowy kod zabezpieczający
     otp_lost_help_html: Jeżeli utracisz dostęp do obu, możesz skontaktować się z %{email}
@@ -1363,3 +1421,20 @@ pl:
   verification:
     explanation_html: 'Możesz <strong>zweryfikować siebie jako właściciela stron, do których odnośniki znajdują się w metadanych</strong>. Aby to zrobić, strona musi zawierać odnośnik do Twojego profilu na Mastodonie. Odnośnik <strong>musi</strong> zawierać atrybut <code>rel="me"</code>. Jego zawartość nie ma znaczenia. Przykład:'
     verification: Weryfikacja
+  webauthn_credentials:
+    add: Dodaj nowy klucz bezpieczeństwa
+    create:
+      error: Wystąpił problem z dodawaniem klucza bezpieczeństwa. Spróbuj ponownie.
+      success: Pomyślnie dodano klucz bezpieczeństwa.
+    delete: Usuń
+    delete_confirmation: Czy jesteś pewien, że chcesz usunąć ten klucz bezpieczeństwa?
+    description_html: Jeśli włączysz <strong>uwierzytelnianie kluczem bezpieczeństwa</strong>, logowanie będzie wymagało użycia jednego z kluczy bezpieczeństwa.
+    destroy:
+      error: Wystąpił problem z usuwaniem klucza bezpieczeństwa. Spróbuj ponownie.
+      success: Pomyślnie usunięto klucz bezpieczeństwa.
+    invalid_credential: Nieprawidłowy klucz bezpieczeństwa
+    nickname_hint: Wprowadź nazwę twojego nowego klucza bezpieczeństwa
+    not_enabled: Nie włączyłeś WebAuthn
+    not_supported: Twoja przeglądarka nie obsługuje kluczy bezpieczeństwa
+    otp_required: Aby użyć kluczy bezpieczeństwa, najpierw włącz uwierzytelnianie dwuskładnikowe.
+    registered_on: Zarejestrowano %{date}

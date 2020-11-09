@@ -60,6 +60,23 @@ zh-CN:
         title: 双重验证的恢复码已更改
       unlock_instructions:
         subject: Mastodon：帐户解锁信息
+      webauthn_credential:
+        added:
+          explanation: 以下安全密钥已添加到您的帐户
+          subject: Mastodon：新的安全密钥
+          title: 已添加一个新的安全密钥
+        deleted:
+          explanation: 以下安全密钥已从您的账户中删除
+          subject: Mastodon：安全密钥已删除
+          title: 您的安全密钥之一已被删除
+      webauthn_disabled:
+        explanation: 您的帐户已禁用安全密钥认证。现在只能使用配对的 TOTP 应用程序生成的令牌登录。
+        subject: Mastodon：安全密钥认证已禁用
+        title: 安全密钥已禁用
+      webauthn_enabled:
+        explanation: 您的帐户已启用安全密钥身份验证。您的安全密钥现在可以用于登录。
+        subject: Mastodon：安全密钥认证已启用
+        title: 已启用安全密钥
     omniauth_callbacks:
       failure: 由于%{reason}，无法从%{kind}获得授权。
       success: 成功地从%{kind}获得授权。
@@ -89,7 +106,7 @@ zh-CN:
   errors:
     messages:
       already_confirmed: 已经确认成功，请尝试登录
-      confirmation_period_expired: 必须在 %{period}以内确认。请重新发起请求
+      confirmation_period_expired: 必须在 %{period} 以内确认。请重新发起请求
       expired: 已过期。请重新发起请求
       not_found: 未找到
       not_locked: 未被锁定

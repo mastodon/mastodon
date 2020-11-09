@@ -3,7 +3,7 @@ zh-HK:
   activerecord:
     attributes:
       doorkeeper/application:
-        name: 名稱
+        name: 應用名稱
         redirect_uri: 轉接 URI
         scopes: 權限範圍
         website: 應用網站
@@ -38,7 +38,7 @@ zh-HK:
         application: 應用
         callback_url: 回傳網址
         delete: 刪除
-        empty: 您沒有安裝 App。
+        empty: 您沒有申請
         name: 名稱
         new: 新增應用程式
         scopes: 權限範圍
@@ -79,9 +79,9 @@ zh-HK:
     errors:
       messages:
         access_denied: 資源擁有者或授權伺服器不接受請求。
-        credential_flow_not_configured: 資源擁有者密碼認證程序 (Resource Owner Password Credentials flow) 失敗，原因是 Doorkeeper.configure.resource_owner_from_credentials 沒有設定。
-        invalid_client: 用戶程式認證 (Client authentication) 失敗，原因是用戶程式未有登記、沒有指定用戶程式 (client)、或者使用了不支援的認證方法 (method)。
-        invalid_grant: 授權申請 (authorization grant) 不正確、過期、已被取消，或者無法對應授權請求 (authorization request) 內的轉接 URI，或者屬於別的用戶程式。
+        credential_flow_not_configured: 資源擁有者密碼認證程序失敗，原因是 Doorkeeper.configure.resource_owner_from_credentials 沒有設定。
+        invalid_client: 用戶程式認證失敗，原因是用戶程式未有登記、沒有指定用戶程式、或者使用了不支援的認證方法。
+        invalid_grant: 授權申請不正確、過期、已被取消，或者無法對應授權請求內的轉接 URI，或者屬於別的用戶程式。
         invalid_redirect_uri: 不正確的轉接網址。
         invalid_request: 請求缺少了必要的參數、包含了不支援的參數、或者其他輸入錯誤。
         invalid_resource_owner: 資源擁有者的登入資訊錯誤、或者無法找到該資源擁有者

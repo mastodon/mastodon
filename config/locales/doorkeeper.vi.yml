@@ -5,7 +5,7 @@ vi:
       doorkeeper/application:
         name: Tên ứng dụng
         redirect_uri: URL chuyển hướng
-        scopes: Phạm vi
+        scopes: Quyền hạn
         website: Trang web ứng dụng
     errors:
       models:
@@ -41,7 +41,7 @@ vi:
         empty: Bạn không có ứng dụng nào.
         name: Tên
         new: Ứng dụng mới
-        scopes: Phạm vi
+        scopes: Quyền hạn
         show: Xem
         title: Ứng dụng của bạn
       new:
@@ -50,7 +50,7 @@ vi:
         actions: Hành động
         application_id: Mã Client
         callback_urls: Gọi lại URLs
-        scopes: Phạm vi
+        scopes: Quyền hạn
         secret: Bí ẩn của Client
         title: 'Ứng dụng: %{name}'
     authorizations:
@@ -74,7 +74,7 @@ vi:
         application: Ứng dụng
         created_at: Đã cho phép
         date_format: "%Y-%m-%d %H:%M:%S"
-        scopes: Phạm vi
+        scopes: Quyền hạn
         title: Các ứng dụng mà bạn cho phép
     errors:
       messages:
@@ -85,7 +85,7 @@ vi:
         invalid_redirect_uri: URL chuyển hướng không hợp lệ.
         invalid_request: Yêu cầu thiếu tham số bắt buộc, bao gồm giá trị tham số không được hỗ trợ hoặc không đúng định dạng.
         invalid_resource_owner: Thông tin xác thực chủ sở hữu tài nguyên được cung cấp không hợp lệ hoặc không thể tìm thấy chủ sở hữu tài nguyên
-        invalid_scope: Phạm vi yêu cầu không hợp lệ, không xác định hoặc không đúng định dạng.
+        invalid_scope: Quyền yêu cầu không hợp lệ, không có thật hoặc sai định dạng.
         invalid_token:
           expired: Mã thông báo truy cập đã hết hạn
           revoked: Mã thông báo truy cập đã bị thu hồi
