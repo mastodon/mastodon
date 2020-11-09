@@ -103,6 +103,10 @@ class AccountsController < ApplicationController
     params[:username]
   end
 
+  def skip_temporary_suspension_response?
+    request.format == :json
+  end
+
   def rss_url
     if tag_requested?
       short_account_tag_url(@account, params[:tag], format: 'rss')

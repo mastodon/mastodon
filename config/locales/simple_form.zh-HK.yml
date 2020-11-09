@@ -8,14 +8,19 @@ zh-HK:
         acct: 指定欲移動至之帳戶的 使用者名稱@站台
       account_warning_preset:
         text: 您可使用嘟文語法，例如網址、「#」標籤和提及功能
+        title: 可選，對接收者不可見
       admin_account_action:
+        include_statuses: 用戶將會看到哪些嘟文導致檢舉或警告
         send_email_notification: 使用者將收到帳戶發生之事情的解釋
         text_html: 選用。您能使用嘟文語法。您可 <a href="%{path}">新增警告預設</a> 來節省時間
         type_html: 設定要使用 <strong>%{acct}</strong> 做的事
         warning_preset_id: 選用。您仍可在預設的結尾新增自訂文字
       announcement:
         all_day: 核取後，只會顯示出時間範圍中的日期部分
+        ends_at: 可選，公告會在該時間點自動取消發布
         scheduled_at: 空白則立即發布公告
+        starts_at: 可選，你可以讓公告在指定時間範圍內顯示
+        text: 你可以使用嘟文格式，但請注意不要讓公告佔據太多用戶屏幕空間。
       defaults:
         autofollow: 通過邀請網址註冊的用戶將會自動關注你
         avatar: 支援 PNG, GIF 或 JPG 圖片，檔案最大為 %{size}，會縮裁成 %{dimensions}px
@@ -24,6 +29,7 @@ zh-HK:
         current_password: 因安全因素，請輸入目前帳戶的密碼
         current_username: 請輸入目前帳戶的使用者名稱以確認
         digest: 僅在你長時間未登錄，且收到了私信時發送
+        discoverable: 用戶目錄可以讓您的帳戶被更多人知道
         email: 您將收到一封確認電子郵件
         fields: 個人資料頁可顯示多至 4 個項目
         header: 支援 PNG, GIF 或 JPG 圖片，檔案最大為 %{size}，會縮裁成 %{dimensions}px
@@ -42,8 +48,15 @@ zh-HK:
         setting_hide_network: 你關注的人和關注你的人將不會在你的個人資料頁上顯示
         setting_noindex: 此設定會影響到你的公開個人資料以及文章頁面
         setting_show_application: 您用來發嘟文的應用程式將會在您嘟文的詳細檢視顯示
+        setting_use_blurhash: 漸變基於隱藏的視覺效果顏色，但會模糊所有細節
+        setting_use_pending_items: 關閉自動滾動更新，時間軸會在點擊後更新
         username: 您的使用者名稱將在 %{domain} 是獨一無二的
         whole_word: 如果關鍵字或詞組僅有字母與數字，則其將只在符合整個單字的時候才會套用
+      domain_allow:
+        domain: 此域將能從此站獲取數據，而此站發出的數據也會被處理和存儲。
+      email_domain_block:
+        domain: 這裡可以是電郵地址中的域名、域名解析到的MX記錄、或MX紀錄解析到的服務器IP。如果上述資料被封禁，那麼註冊將被拒絕。
+        with_dns_records: Mastodon 會嘗試解析所給域名的 DNS 記錄，然後與解析結果一併封禁
       featured_tag:
         name: 您可能想使用其中一個：
       form_challenge:
@@ -63,6 +76,10 @@ zh-HK:
         fields:
           name: 標籤
           value: 內容
+      account_alias:
+        acct: 處理舊帳戶
+      account_migration:
+        acct: 處理新帳戶
       account_warning_preset:
         text: 預設文字
         title: 標題
@@ -113,6 +130,7 @@ zh-HK:
         setting_aggregate_reblogs: 時間軸中的群組轉嘟
         setting_auto_play_gif: 自動播放 GIF
         setting_boost_modal: 在轉推前詢問我
+        setting_crop_images: 把未展開嘟文中的圖片裁剪到 16x9
         setting_default_language: 文章語言
         setting_default_privacy: 文章預設為
         setting_default_sensitive: 預設我的內容為敏感內容
@@ -130,12 +148,16 @@ zh-HK:
         setting_theme: 網站主題
         setting_trends: 顯示本日趨勢
         setting_unfollow_modal: 取消關注前跳出詢問我
+        setting_use_blurhash: 將隱藏媒體顯示為彩色漸變
         setting_use_pending_items: 限速模式
         severity: 等級
+        sign_in_token_attempt: 安全碼
         type: 匯入資料類型
         username: 用戶名稱
         username_or_email: 用戶名稱或電郵
         whole_word: 整個詞彙
+      email_domain_block:
+        with_dns_records: 包括域名的 MX 記錄和 IP 地址
       featured_tag:
         name: "「#」標籤"
       interactions:
@@ -155,6 +177,7 @@ zh-HK:
         pending_account: 需要審核的新帳戶
         reblog: 當有用戶轉推你的文章時，發電郵通知
         report: 當提交新檢舉時傳送電子郵件
+        trending_tag: 當未審核的話題成為當前熱門時發郵件提醒
       tag:
         listable: 允許此主題標籤在搜尋及個人檔案目錄中顯示
         name: 主題標籤

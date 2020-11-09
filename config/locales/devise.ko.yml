@@ -60,6 +60,23 @@ ko:
         title: 2FA 복구 코드 변경됨
       unlock_instructions:
         subject: '마스토돈: 잠금 해제 방법'
+      webauthn_credential:
+        added:
+          explanation: 계정에 다음 보안 키가 등록되었습니다
+          subject: '마스토돈: 새로운 보안 키'
+          title: 새 보안 키가 추가되었습니다
+        deleted:
+          explanation: 계정에서 다음 보안 키가 삭제되었습니다
+          subject: '마스토돈: 보안 키 삭제'
+          title: 보안 키가 삭제되었습니다
+      webauthn_disabled:
+        explanation: 보안 키를 이용한 인증이 당신의 계정에 대해 비활성화 되어 있습니다. TOTP 앱의 토큰만으로 로그인 할 수 있습니다.
+        subject: '마스토돈: 보안 키를 이용한 인증이 비활성화 됨'
+        title: 보안 키 비활성화 됨
+      webauthn_enabled:
+        explanation: 보안 키 인증이 당신의 계정에 대해 활성화 되어 있습니다. 보안 키를 통해 로그인 할 수 있습니다.
+        subject: '마스토돈: 보안 키 인증 활성화 됨'
+        title: 보안 키 활성화 됨
     omniauth_callbacks:
       failure: '"%{reason}" 때문에 당신을 %{kind}에서 인증할 수 없습니다.'
       success: 성공적으로 %{kind} 계정을 인증 했습니다.
@@ -79,9 +96,9 @@ ko:
       update_needs_confirmation: 계정 정보를 업데이트 했습니다. 하지만 새 이메일 주소에 대한 확인이 필요합니다. 이메일을 확인 한 후 링크를 통해 새 이메일을 확인 하세요. 메일을 받지 못 하신 경우 스팸 폴더를 확인해 주세요.
       updated: 계정 정보가 성공적으로 업데이트 되었습니다.
     sessions:
-      already_signed_out: 로그아웃 되었습니다.
-      signed_in: 로그인 되었습니다.
-      signed_out: 로그아웃 되었습니다.
+      already_signed_out: 성공적으로 로그아웃 되었습니다.
+      signed_in: 성공적으로 로그인 되었습니다.
+      signed_out: 성공적으로 로그아웃 되었습니다.
     unlocks:
       send_instructions: 몇 분 이내로 계정 잠금 해제에 대한 안내 메일이 발송 됩니다. 메일을 받지 못 하신 경우 스팸 폴더를 확인해 주세요.
       send_paranoid_instructions: 계정이 존재한다면 몇 분 이내로 계정 잠금 해제에 대한 안내 메일이 발송 됩니다. 메일을 받지 못 하신 경우 스팸 폴더를 확인해 주세요.

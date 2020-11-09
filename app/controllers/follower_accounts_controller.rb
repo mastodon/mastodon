@@ -53,6 +53,14 @@ class FollowerAccountsController < ApplicationController
     account_followers_url(@account, page: page) unless page.nil?
   end
 
+  def next_page_url
+    page_url(follows.next_page) if follows.respond_to?(:next_page)
+  end
+
+  def prev_page_url
+    page_url(follows.prev_page) if follows.respond_to?(:prev_page)
+  end
+
   def collection_presenter
     options = { type: :ordered }
     options[:size] = @account.followers_count unless Setting.hide_followers_count || @account.user&.setting_hide_followers_count
@@ -61,8 +69,8 @@ class FollowerAccountsController < ApplicationController
         id: account_followers_url(@account, page: params.fetch(:page, 1)),
         items: follows.map { |f| ActivityPub::TagManager.instance.uri_for(f.account) },
         part_of: account_followers_url(@account),
-        next: page_url(follows.next_page),
-        prev: page_url(follows.prev_page),
+        next: next_page_url,
+        prev: prev_page_url,
         **options
       )
     else

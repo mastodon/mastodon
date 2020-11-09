@@ -21,7 +21,9 @@ hu:
     federation_hint_html: Egy %{instance} fiókkal bármely más Mastodon szerveren vagy a föderációban lévő felhasználót követni tudsz.
     get_apps: Próbálj ki egy mobil appot
     hosted_on: "%{domain} Mastodon szerver"
-    instance_actor_flash: Ez a fiók egy virtuális szereplő, mely magát a szervert reprezentálja, nem egy felhasználót. Ez a föderáció támogatására készült, ezért nem szabad blokkolni, hacsak egy teljes szervert nem akarsz kitiltani, amire persze a domain blokkolása jobb megoldás.
+    instance_actor_flash: 'Ez a fiók egy virtuális szereplő, mely magát a szervert reprezentálja, nem egy felhasználót. Ez a föderáció támogatására készült, ezért nem szabad blokkolni, hacsak egy teljes szervert nem akarsz kitiltani, amire persze a domain blokkolása jobb megoldás.
+
+'
     learn_more: Tudj meg többet
     privacy_policy: Adatvédelmi szabályzat
     see_whats_happening: Nézd, mi történik
@@ -51,7 +53,7 @@ hu:
     what_is_mastodon: Mi a Mastodon?
   accounts:
     choices_html: "%{name} választásai:"
-    endorsements_hint: A webes felületen jóváhagyhatod a követett embereket, és itt jelennek meg.
+    endorsements_hint: A webes felületen promózhatsz általad követett embereket, akik itt fognak megjelenni.
     featured_tags_hint: Szerepeltethetsz bizonyos hashtageket, melyek itt jelennek majd meg.
     follow: Követés
     followers:
@@ -96,6 +98,7 @@ hu:
       add_email_domain_block: Email domain tiltólistára vétele
       approve: Jóváhagyás
       approve_all: Mindet jóváhagy
+      approved_msg: A %{username} fiók regisztrációs kérelmét sikeresen elfogadtuk
       are_you_sure: Biztos vagy benne?
       avatar: Profilkép
       by_domain: Domain
@@ -109,8 +112,10 @@ hu:
       confirm: Megerősítés
       confirmed: Megerősítve
       confirming: Megerősítés alatt
+      delete: Adatok törlése
       deleted: Törölve
       demote: Lefokozás
+      destroyed_msg: A %{username} fiók adatai bekerültek a végleges törlése váró sorba
       disable: Kikapcsolás
       disable_two_factor_authentication: Kétlépcsős hitelesítés kikapcsolása
       disabled: Kikapcsolva
@@ -121,6 +126,7 @@ hu:
       email_status: E-mail állapot
       enable: Bekapcsolás
       enabled: Bekapcsolva
+      enabled_msg: A %{username} fiók fagyasztását sikeresen visszavontuk
       followers: Követő
       follows: Követett
       header: Fejléc
@@ -136,6 +142,8 @@ hu:
       login_status: Bejelentkezési állapot
       media_attachments: Média-csatolmányok
       memorialize: Emlékállítás
+      memorialized: Emlékezetünkben
+      memorialized_msg: A %{username} fiókot sikeresen emlékké nyilvánítottuk
       moderation:
         active: Aktív
         all: Összes
@@ -156,10 +164,14 @@ hu:
       public: Nyilvános
       push_subscription_expires: A PuSH feliratkozás elévül
       redownload: Profilkép frissítése
+      redownloaded_msg: "%{username} profilját sikeresen frissítettük az eredetiből"
       reject: Elutasítás
       reject_all: Összes elutasítása
+      rejected_msg: A %{username} fiók regisztrációs kérelmét sikeresen elutasítottuk
       remove_avatar: Profilkép eltávolítása
       remove_header: Fejléc törlése
+      removed_avatar_msg: A %{username} fiók avatárját sikeresen töröltük
+      removed_header_msg: A %{username} fiók fejlécét sikeresen töröltük
       resend_confirmation:
         already_confirmed: Ezt a felhasználót már megerősítették
         send: Küldd újra a megerősítő e-mailt
@@ -176,6 +188,8 @@ hu:
       search: Keresés
       search_same_email_domain: Felhasználók ugyanezzel az email domainnel
       search_same_ip: Más felhasználók ugyanezzel az IP-vel
+      sensitive: Szenzitív
+      sensitized: szenzitívnek jelölve
       shared_inbox_url: Megosztott bejövő üzenetek URL
       show:
         created_reports: Létrehozott jelentések
@@ -185,13 +199,19 @@ hu:
       statuses: Tülkök
       subscribe: Feliratkozás
       suspended: Felfüggesztett
+      suspension_irreversible: Ennek a fióknak az adatait visszaállíthatatlanul törölték. Visszavonhatod a fiók felfüggesztését, hogy újra használható legyen, de a régi adatok ettől még nem fognak visszatérni.
+      suspension_reversible_hint_html: A fiókot felfüggesztettük, az adatait %{date}-n teljesen eltávolítjuk. Eddig az időpontig a fiók probléma nélkül visszaállítható. Ha mégis azonnal törölni szeretnéd a fiókot, alább megteheted.
       time_in_queue: Várakozás a sorban %{time}
       title: Fiókok
       unconfirmed_email: Nem megerősített e-mail
+      undo_sensitized: Szenzitív jelölés levétele
       undo_silenced: Némítás visszavonása
       undo_suspension: Felfüggesztés visszavonása
+      unsilenced_msg: A %{username} fiók korlátozásait sikeresen levettük
       unsubscribe: Leiratkozás
+      unsuspended_msg: A %{username} fiók felfüggesztését sikeresen visszavontuk
       username: Felhasználónév
+      view_domain: Domain összefoglalójának megtekintése
       warn: Figyelmeztetés
       web: Web
       whitelisted: Engedélyező-listán
@@ -206,12 +226,14 @@ hu:
         create_domain_allow: Domain engedélyezés létrehozása
         create_domain_block: Domain blokkolás létrehozása
         create_email_domain_block: E-mail domain blokkolás létrehozása
+        create_ip_block: IP szabály létrehozása
         demote_user: Felhasználó lefokozása
         destroy_announcement: Közlemény törlése
         destroy_custom_emoji: Egyéni emodzsi törlése
         destroy_domain_allow: Domain engedélyezés törlése
         destroy_domain_block: Domain blokkolás törlése
         destroy_email_domain_block: E-mail domain blokkolás törlése
+        destroy_ip_block: IP szabály törlése
         destroy_status: Állapot törlése
         disable_2fa_user: Kétlépcsős hitelesítés letiltása
         disable_custom_emoji: Egyéni emodzsi letiltása
@@ -224,9 +246,11 @@ hu:
         reopen_report: Jelentés újranyitása
         reset_password_user: Jelszó visszaállítása
         resolve_report: Jelentés megoldása
+        sensitive_account: A fiókodban minden média szenzitívnek jelölése
         silence_account: Fiók némítása
         suspend_account: Fiók felfüggesztése
         unassigned_report: Jelentés hozzárendelésének megszüntetése
+        unsensitive_account: A fiókodban minden média szenzitív állapotának törlése
         unsilence_account: Fiók némításának feloldása
         unsuspend_account: Fiók felfüggesztésének feloldása
         update_announcement: Közlemény frissítése
@@ -242,12 +266,14 @@ hu:
         create_domain_allow: "%{name} engedélyező listára vette %{target} domaint"
         create_domain_block: "%{name} letiltotta az alábbi domaint: %{target}"
         create_email_domain_block: "%{name} feketelistára tette az alábbi e-mail domaint: %{target}"
+        create_ip_block: "%{name} létrehozott egy szabályt a %{target} IP-vel kapcsolatban"
         demote_user: "%{name} lefokozta az alábbi felhasználót: %{target}"
         destroy_announcement: "%{name} törölte a közleményt %{target}"
         destroy_custom_emoji: "%{name} törölte az emodzsit: %{target}"
         destroy_domain_allow: "%{name} leszedte %{target} domaint az engedélyező listáról"
         destroy_domain_block: "%{name} engedélyezte az alábbi domaint: %{target}"
         destroy_email_domain_block: "%{name} fehérlistára tette az alábbi e-mail domaint: %{target}"
+        destroy_ip_block: "%{name} törölt egy szabályt a %{target} IP-vel kapcsolatban"
         destroy_status: "%{name} eltávolította az alábbi felhasználó tülkjét: %{target}"
         disable_2fa_user: "%{name} kikapcsolta a kétlépcsős azonosítást %{target} felhasználó fiókján"
         disable_custom_emoji: "%{name} letiltotta az alábbi emodzsit: %{target}"
@@ -260,9 +286,11 @@ hu:
         reopen_report: "%{name} újranyitotta a bejelentést: %{target}"
         reset_password_user: "%{name} visszaállította az alábbi felhasználó jelszavát: %{target}"
         resolve_report: "%{name} megoldotta alábbi bejelentést: %{target}"
+        sensitive_account: "%{name} szenzitívnek jelölte %{target} médiatartalmát"
         silence_account: "%{name} lenémította %{target} felhasználói fiókját"
         suspend_account: "%{name} felfüggesztette %{target} felhasználói fiókját"
         unassigned_report: "%{name} törölte a %{target} bejelentés hozzárendelését"
+        unsensitive_account: "%{name} levette a szenzitív jelölést %{target} médiatartalmáról"
         unsilence_account: "%{name} feloldotta a némítást %{target} felhasználói fiókján"
         unsuspend_account: "%{name} feloldotta %{target} felhasználói fiókjának felfüggesztését"
         update_announcement: "%{name} frissítette a közleményt %{target}"
@@ -432,6 +460,21 @@ hu:
         expired: Elévült
         title: Szűrő
       title: Meghívások
+    ip_blocks:
+      add_new: Szabály létrehozása
+      created_msg: Az új IP szabályt sikeresen felvettük
+      delete: Törlés
+      expires_in:
+        '1209600': 2 hét
+        '15778476': 6 hónap
+        '2629746': 1 hónap
+        '31556952': 1 év
+        '86400': 1 nap
+        '94670856': 3 év
+      new:
+        title: Új IP szabály létrehozása
+      no_ip_block_selected: Nem változtattunk egy IP szabályon sem, mivel egy sem volt kiválasztva
+      title: IP szabály
     pending_accounts:
       title: Függőben lévő fiókok (%{count})
     relationships:
@@ -679,8 +722,11 @@ hu:
       prefix_sign_up: Regisztrláj még ma a Mastodonra!
       suffix: Egy fiókkal követhetsz másokat, tülkölhetsz, eszmét cserélhetsz más Mastodon szerverek felhasználóival!
     didnt_get_confirmation: Nem kaptad meg a megerősítési lépéseket?
+    dont_have_your_security_key: Nincs biztonsági kulcsod?
     forgot_password: Elfelejtetted a jelszavad?
     invalid_reset_password_token: A jelszó-visszaállítási kulcs nem megfelelő vagy lejárt. Kérlek generálj egy újat.
+    link_to_otp: Írj be egy kétlépcsős azonosító kódot a telefonodról vagy egy visszaállító kódot
+    link_to_webauth: Használd a biztonsági kulcs eszközödet
     login: Bejelentkezés
     logout: Kijelentkezés
     migrate_account: Felhasználói fiók költöztetése
@@ -706,6 +752,7 @@ hu:
       pending: A jelentkezésed engedélyezésre vár. Ez eltarthat egy ideig. Kapsz egy e-mailt, ha az elbírálás megtörtént.
       redirecting_to: A fiókod inaktív, mert jelenleg ide %{acct} van átirányítva.
     trouble_logging_in: Problémád van a bejelentkezéssel?
+    use_security_key: Biztonsági kulcs használata
   authorize_follow:
     already_following: Már követed ezt a felhasználót
     already_requested: Már küldtél követési kérelmet ennek a fióknak
@@ -730,6 +777,7 @@ hu:
   date:
     formats:
       default: "%Y.%b.%d."
+      with_month_name: "%Y. %B %d"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}ó"
@@ -990,6 +1038,14 @@ hu:
           quadrillion: Q
           thousand: K
           trillion: T
+  otp_authentication:
+    code_hint: Jóváhagyáshoz írd be a hitelesítő alkalmazás által generált kódot
+    description_html: Ha engedélyezed a <strong>kétlépcsős azonosítást</strong>, a bejelentkezéshez szükséged lesz a telefonodra és egy alkalmazásra, amely hozzáférési kódot generál számodra.
+    enable: Engedélyezés
+    instructions_html: "<strong>Olvasd be ezt a QR-kódot a telefonodon futó Google Authenticator vagy egyéb TOTP alkalmazással</strong>. A jövőben ez az alkalmazás fog számodra hozzáférési kódot generálni a belépéshez."
+    manual_instructions: 'Ha nem sikerült a QR-kód beolvasása, itt a szöveges kulcs, amelyet manuálisan kell begépelned:'
+    setup: Beállítás
+    wrong_code: A beírt kód nem érvényes! A szerver órája és az eszközöd órája szinkronban jár?
   pagination:
     newer: Újabb
     next: Következő
@@ -1114,6 +1170,7 @@ hu:
     profile: Profil
     relationships: Követések és követők
     two_factor_authentication: Kétlépcsős azonosítás
+    webauthn_authentication: Biztonsági kulcsok
   spam_check:
     spam_detected: Ez egy automatikus jelentés. Spamet érzékeltünk.
   statuses:
@@ -1152,6 +1209,8 @@ hu:
         other: "%{count} szavazat"
       vote: Szavazás
     show_more: Mutass többet
+    show_newer: Újabbak mutatása
+    show_older: Régebbiek mutatása
     show_thread: Szál mutatása
     sign_in_to_participate: Jelentkezz be, hogy részt vehess a beszélgetésben
     title: '%{name}: "%{quote}"'
@@ -1260,21 +1319,20 @@ hu:
       default: "%Y. %b %d., %H:%M"
       month: "%Y %b"
   two_factor_authentication:
-    code_hint: Megerősítéshez írd be az alkalmazás által generált kódot
-    description_html: He engedélyezed a <strong>kétlépcsős azonosítást</strong>, a bejelentkezéshez szükséged lesz a telefonodra és egy alkalmazásra, amely hozzáférési kódot generál számodra.
+    add: Hozzáadás
     disable: Kikapcsolás
-    enable: Engedélyezés
+    disabled_success: A kétlépcsős azonosítást sikeresen letiltottuk
+    edit: Szerkesztés
     enabled: Kétlépcsős azonosítás engedélyezve
     enabled_success: A kétlépcsős azonosítást sikeresen engedélyezted
     generate_recovery_codes: Visszaállítási kódok generálása
-    instructions_html: "<strong>Olvasd be ezt a QR-kódot a telefonodon futó Google Authenticator vagy egyéb TOTP alkalmazással</strong>. A jövőben ez az alkalmazás fog számodra hozzáférési kódot generálni a belépéshez."
     lost_recovery_codes: A visszaállítási kódok segítségével tudsz belépni, ha elveszítenéd a telefonod. Ha a visszaállítási kódjaidat hagytad el, itt generálhatsz újakat. A régi kódokat ebben az esetben érvénytelenítjük.
-    manual_instructions: 'Ha nem sikerült a QR-kód beolvasása, itt a szöveges kulcs, amelyet manuálisan kell begépelned:'
+    methods: Kétlépcsős eljárások
+    otp: Hitelesítő alkalmazás
     recovery_codes: Visszaállítási kódok biztonsági mentése
     recovery_codes_regenerated: A visszaállítási kódokat sikeresen újrageneráltuk
     recovery_instructions_html: A visszaállítási kódok egyikének segítségével tudsz majd belépni, ha elveszítenéd a telefonod. <strong>Tartsd biztos helyen a visszaállítási kódjaid</strong>! Például nyomtasd ki őket és tárold a többi fontos iratoddal együtt.
-    setup: Beállítás
-    wrong_code: A beírt kód nem érvényes! A szerver órája és az eszközöd órája szinkronban jár?
+    webauthn: Biztonsági kulcsok
   user_mailer:
     backup_ready:
       explanation: A Mastodon fiókod teljes mentését kérted. A mentés kész ás letölthető!
@@ -1289,6 +1347,7 @@ hu:
     warning:
       explanation:
         disable: A fiókod befagyasztott állapotban megtartja minden adatát, de feloldásig nem csinálhatsz vele semmit.
+        sensitive: A feltöltött és hivatkozott médiatartalmaidat szenzitívként kezeljük.
         silence: A fiókod korlátozott állapotában csak a követőid láthatják a tülkjeidet, valamint nem kerülsz rá nyilvános idővonalakra. Ugyanakkor mások manuálisan még követhetnek.
         suspend: A fiókodat felfüggesztették, így minden tülköd és feltöltött fájlod menthetetlenül elveszett erről a szerverről és minden olyanról is, ahol voltak követőid.
       get_in_touch: Válaszolhatsz erre az emailre, hogy kapcsolatba lépj a %{instance} csapatával.
@@ -1297,11 +1356,13 @@ hu:
       subject:
         disable: A fiókodat %{acct} befagyasztották
         none: Figyelmeztetés a %{acct} fióknak
+        sensitive: A %{acct} fiókod médiatartalmait szenzitívnek jelölték
         silence: A fiókodat %{acct} korlátozták
         suspend: A fiókodat %{acct} felfüggesztették
       title:
         disable: Befagyasztott fiók
         none: Figyelem
+        sensitive: Médiatartalmadat szenzitívnek jelölték
         silence: Lekorlátozott fiók
         suspend: Felfüggesztett fiók
     welcome:
@@ -1322,9 +1383,11 @@ hu:
       tips: Tippek
       title: Üdv a fedélzeten, %{name}!
   users:
+    blocked_email_provider: Ez az email szolgáltató nem engedélyezett
     follow_limit_reached: Nem követhetsz több, mint %{limit} embert
     generic_access_help_html: Nem tudod elérni a fiókodat? Segítségért lépj kapcsolatba velünk ezen %{email}
     invalid_email: A megadott e-mail cím helytelen
+    invalid_email_mx: Az email cím nem tűnik létezőnek
     invalid_otp_token: Érvénytelen ellenőrző kód
     invalid_sign_in_token: Érvénytelen biztonsági kód
     otp_lost_help_html: Ha mindkettőt elvesztetted, kérhetsz segítséget itt %{email}
@@ -1334,3 +1397,20 @@ hu:
   verification:
     explanation_html: 'A profilodon <strong>hitelesítheted magad, mint az itt található linkek tulajdonosa</strong>. Ehhez a linkelt weboldalnak tartalmaznia kell egy linket vissza a Mastodon profilodra. Ennek <strong>tartalmaznia kell</strong> a <code>rel="me"</code> attribútumot. A link szövege bármi lehet. Itt egy példa:'
     verification: Hitelesítés
+  webauthn_credentials:
+    add: Biztonsági kulcs hozzáadása
+    create:
+      error: A biztonsági kulcs hozzáadása közben hiba történt. Kérlek, próbáld újra.
+      success: A biztonsági kulcsodat sikeresen felvettük.
+    delete: Törlés
+    delete_confirmation: Biztos, hogy le akarod törölni ezt a biztonsági kulcsot?
+    description_html: Ha engedélyezed a <strong>biztonsági kulcsos hitelesítést</strong>, a bejelentkezéshez szükséged lesz az egyik kulcsodra.
+    destroy:
+      error: A biztonsági kulcs törlése közben hiba történt. Kérlek, próbáld újra.
+      success: A biztonsági kulcsodat sikeresen töröltük.
+    invalid_credential: Érvénytelen biztonsági kulcs
+    nickname_hint: Írd be az új biztonsági kulcsod becenevét
+    not_enabled: Még nem engedélyezted a WebAuthn-t
+    not_supported: Ez a böngésző nem támogatja a biztonsági kulcsokat
+    otp_required: A biztonsági kulcsok használatához először engedélyezd a kétlépcsős azonosítást.
+    registered_on: 'Regisztrált ekkor: %{date}'

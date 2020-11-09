@@ -193,6 +193,17 @@ zh-TW:
         create_custom_emoji: 建立自訂顏文字
         create_domain_allow: 建立允許網域
         create_domain_block: 建立阻擋網域
+        destroy_announcement: 刪除公告
+        destroy_custom_emoji: 刪除自訂顏文字
+        destroy_domain_allow: 刪除允許網域
+        destroy_domain_block: 刪除阻擋網域
+        destroy_email_domain_block: 刪除阻擋電郵網域
+        destroy_status: 刪除狀態
+        disable_2fa_user: 停用兩階段認證
+        disable_custom_emoji: 停用自訂顏文字
+        disable_user: 停用帳戶
+        enable_custom_emoji: 啓用自訂顏文字
+        enable_user: 啓用帳戶
       actions:
         assigned_to_self_report: "%{name} 接受了檢舉 %{target}"
         change_email_user: "%{name} 變更了使用者 %{target} 的電子信箱位址"
@@ -513,10 +524,15 @@ zh-TW:
       body_remote: 來自 %{domain} 的使用者檢舉了使用者 %{target}
       subject: 來自 %{instance} 的使用者檢舉（#%{id}）
   appearance:
+    advanced_web_interface: 進階網頁介面
+    advanced_web_interface_hint: 進階網頁界面可讓您配置許多不同的欄位來善用多餘的螢幕空間，依需要同時查看盡可能多的資訊如：首頁、通知、站點聯邦時間軸、任意數量的列表和主題標籤。
+    animations_and_accessibility: 動畫與可用性
     localization:
       body: Mastodon 是由志願者翻譯的。
       guide_link: https://crowdin.com/project/mastodon
       guide_link_text: 每個人都能貢獻。
+    sensitive_content: 敏感內容
+    toot_layout: 嘟文佈局
   application_mailer:
     notification_preferences: 變更電子信件設定
     salutation: "%{name}、"
@@ -686,6 +702,10 @@ zh-TW:
       body: '你的嘟文被 %{name} 轉嘟:'
       subject: "%{name} 轉嘟了你的嘟文"
       title: 新的轉嘟
+  notifications:
+    email_events: 電子郵件通知設定
+    email_events_hint: 選取你想接收通知的事件：
+    other_settings: 其他通知設定
   number:
     human:
       decimal_units:
@@ -701,6 +721,8 @@ zh-TW:
     next: 下一頁
     older: 較舊
     prev: 上一頁
+  preferences:
+    other: 其他設定
   remote_follow:
     acct: 請輸入您的使用者名稱@站點網域
     missing_resource: 無法找到資源
@@ -738,6 +760,7 @@ zh-TW:
     revoke_success: Session 取消成功
     title: 作業階段
   settings:
+    appearance: 外觀設定
     authorized_apps: 已授權應用程式
     back: 回到 Mastodon
     delete: 刪除帳戶
@@ -748,6 +771,7 @@ zh-TW:
     migrate: 帳戶搬遷
     notifications: 通知
     preferences: 偏好設定
+    profile: 使用者資訊
     two_factor_authentication: 兩階段認證
   statuses:
     attached:
@@ -787,21 +811,14 @@ zh-TW:
     formats:
       default: "%Y年%-m月%d日 %H:%M"
   two_factor_authentication:
-    code_hint: 請輸入您認證器產生的代碼，以進行認證
-    description_html: 啟用<strong>兩階段認證</strong>後，登入時將需要使手機、或其他種類認證器產生的代碼。
     disable: 停用
-    enable: 啟用
     enabled: 兩階段認證已啟用
     enabled_success: 已成功啟用兩階段認證
     generate_recovery_codes: 產生備用驗證碼
-    instructions_html: "<strong>請用您手機的認證器應用程式（如 Google Authenticator、Authy），掃描這裡的 QR 圖形碼</strong>。在兩階段認證啟用後，您登入時將須要使用此應用程式產生的認證碼。"
     lost_recovery_codes: 讓你可以在遺失手機時，使用備用驗證碼登入。如果你遺失了備用驗證碼，可以在這裏產生一批新的，舊有的備用驗證碼將會失效。
-    manual_instructions: '如果您無法掃描 QR 圖形碼，請手動輸入:'
     recovery_codes: 備份備用驗證碼
     recovery_codes_regenerated: 成功產生新的備用驗證碼
     recovery_instructions_html: 如果你的手機無法使用，你可以使用下列任意一個備用驗證碼來重新獲得帳戶的訪問權。<strong>請妥善保管好你的備用驗證碼</strong>（例如，你可以將它們列印出來，與你的其他重要文件放在一起）。
-    setup: 設定
-    wrong_code: 您輸入的認證碼無效! 請確認伺服器時間與設備時間是否正確?
   user_mailer:
     backup_ready:
       explanation: 你要求的 Mastodon 帳戶完整備份檔案現已就緒，可供下載!
@@ -825,7 +842,9 @@ zh-TW:
       tips: 小幫手
       title: "%{name} 歡迎你的加入！"
   users:
+    blocked_email_provider: 不允許使用這個電子信箱提供者
     invalid_email: 電子信箱位址不正確
+    invalid_email_mx: 似乎沒有這個電子信箱地址
     invalid_otp_token: 兩階段認證碼不正確
     otp_lost_help_html: 如果你無法訪問這兩者，可以通過 %{email} 與我們聯繫
     seamless_external_login: 由於你是從外部系統登入，所以不能設定密碼與電子郵件。

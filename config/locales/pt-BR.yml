@@ -98,6 +98,7 @@ pt-BR:
       add_email_domain_block: Adicionar o domínio de e-mail à lista negra
       approve: Aprovar
       approve_all: Aprovar tudo
+      approved_msg: Aprovado com sucesso o pedido de registro de %{username}
       are_you_sure: Você tem certeza?
       avatar: Imagem de perfil
       by_domain: Domínio
@@ -111,9 +112,11 @@ pt-BR:
       confirm: Confirmar
       confirmed: Confirmado
       confirming: Confirmando
+      delete: Excluir dados
       deleted: Excluído
       demote: Rebaixar
-      disable: Desativar
+      destroyed_msg: Os dados de %{username} estão na fila para serem excluídos em breve
+      disable: Congelar
       disable_two_factor_authentication: Desativar autenticação de dois fatores
       disabled: Desativada
       display_name: Nome de exibição
@@ -121,8 +124,9 @@ pt-BR:
       edit: Editar
       email: E-mail
       email_status: Status do e-mail
-      enable: Ativar
+      enable: Descongelar
       enabled: Ativada
+      enabled_msg: Descongelada com sucesso a conta de %{username}
       followers: Seguidores
       follows: Seguindo
       header: Capa
@@ -138,6 +142,8 @@ pt-BR:
       login_status: Situação da conta
       media_attachments: Mídias anexadas
       memorialize: Converter em memorial
+      memorialized: Convertidas em memorial
+      memorialized_msg: Transformou com sucesso %{username} em uma conta memorial
       moderation:
         active: Ativo
         all: Todos
@@ -158,10 +164,14 @@ pt-BR:
       public: Público
       push_subscription_expires: Inscrição PuSH expira
       redownload: Atualizar perfil
+      redownloaded_msg: Atualizado com sucesso o perfil de %{username} a partir da origem
       reject: Vetar
       reject_all: Vetar tudo
+      rejected_msg: Rejeitado com sucesso o pedido de registro de %{username}
       remove_avatar: Remover imagem de perfil
       remove_header: Remover capa
+      removed_avatar_msg: Removida com sucesso a imagem de avatar de %{username}
+      removed_header_msg: Removida com sucesso a imagem de capa de %{username}
       resend_confirmation:
         already_confirmed: Este usuário já está confirmado
         send: Reenviar o e-mail de confirmação
@@ -187,13 +197,18 @@ pt-BR:
       statuses: Toots
       subscribe: Inscrever-se
       suspended: Banido
+      suspension_irreversible: Os dados desta conta foram excluídos de forma irreversível. Você pode remover a suspensão da conta para torná-la utilizável, mas ela não irá recuperar nenhum dado que ela possuía anteriormente.
+      suspension_reversible_hint_html: A conta foi suspensa e os dados serão totalmente removidos em %{date}. Até lá, a conta pode ser restaurada sem nenhum efeito negativo. Se você deseja remover todos os dados da conta imediatamente, você pode fazer isso abaixo.
       time_in_queue: Esperando na fila por %{time}
       title: Contas
       unconfirmed_email: E-mail não confirmado
       undo_silenced: Desfazer silêncio
       undo_suspension: Desbanir
+      unsilenced_msg: Removidas com sucesso as limitações da conta de %{username}
       unsubscribe: Cancelar inscrição
+      unsuspended_msg: Removida com sucesso a suspensão da conta de %{username}
       username: Nome de usuário
+      view_domain: Ver resumo para o domínio
       warn: Notificar
       web: Web
       whitelisted: Permitido
@@ -208,19 +223,21 @@ pt-BR:
         create_domain_allow: Adicionar domínio permitido
         create_domain_block: Criar Bloqueio de Domínio
         create_email_domain_block: Criar Bloqueio de Domínio de E-mail
+        create_ip_block: Criar regra de IP
         demote_user: Rebaixar usuário
         destroy_announcement: Excluir anúncio
         destroy_custom_emoji: Excluir emoji personalizado
         destroy_domain_allow: Excluir domínio permitido
         destroy_domain_block: Excluir Bloqueio de Domínio
         destroy_email_domain_block: Excluir bloqueio de domínio de e-mail
+        destroy_ip_block: Excluir regra de IP
         destroy_status: Excluir Status
         disable_2fa_user: Desativar autenticação de dois fatores
         disable_custom_emoji: Desativar Emoji Personalizado
         disable_user: Desativar usuário
         enable_custom_emoji: Ativar Emoji Personalizado
         enable_user: Ativar usuário
-        memorialize_account: Memorizar Conta
+        memorialize_account: Converter conta em memorial
         promote_user: Promover usuário
         remove_avatar_user: Remover Avatar
         reopen_report: Reabrir Relatório
@@ -244,19 +261,21 @@ pt-BR:
         create_domain_allow: "%{name} permitiu %{target}"
         create_domain_block: "%{name} bloqueou %{target}"
         create_email_domain_block: "%{name} adicionou o domínio de e-mail %{target} à lista negra"
+        create_ip_block: "%{name} criou regra para o IP %{target}"
         demote_user: "%{name} rebaixou o usuário %{target}"
         destroy_announcement: "%{name} excluiu o anúncio %{target}"
         destroy_custom_emoji: "%{name} excluiu emoji %{target}"
         destroy_domain_allow: "%{name} bloqueou %{target}"
         destroy_domain_block: "%{name} desbloqueou %{target}"
         destroy_email_domain_block: "%{name} adicionou domínio de e-mail %{target} à lista branca"
+        destroy_ip_block: "%{name} excluiu regra para o IP %{target}"
         destroy_status: "%{name} excluiu toot de %{target}"
         disable_2fa_user: "%{name} desativou a exigência de autenticação de dois fatores para o usuário %{target}"
         disable_custom_emoji: "%{name} desativou o emoji %{target}"
         disable_user: "%{name} desativou o acesso para o usuário %{target}"
         enable_custom_emoji: "%{name} ativou o emoji %{target}"
         enable_user: "%{name} ativou o acesso para o usuário %{target}"
-        memorialize_account: "%{name} transformou a conta de %{target} em um memorial"
+        memorialize_account: "%{name} transformou a conta de %{target} em um página de memorial"
         promote_user: "%{name} promoveu o usuário %{target}"
         remove_avatar_user: "%{name} removeu a imagem de perfil de %{target}"
         reopen_report: "%{name} reabriu a denúncia %{target}"
@@ -391,7 +410,7 @@ pt-BR:
           other: "%{count} contas no banco de dados foram afetadas"
         retroactive:
           silence: Dessilenciar contas existentes afetadas deste domínio
-          suspend: Dessuspender contas existentes afetadas deste domínio
+          suspend: Remover a suspensão das contas afetadas deste domínio
         title: Desfazer bloqueio de domínio para %{domain}
         undo: Desfazer
       undo: Desfazer bloqueio de domínio
@@ -434,6 +453,21 @@ pt-BR:
         expired: Expirado
         title: Filtro
       title: Convites
+    ip_blocks:
+      add_new: Criar regra
+      created_msg: Nova regra de IP adicionada com sucesso
+      delete: Excluir
+      expires_in:
+        '1209600': 2 semanas
+        '15778476': 6 meses
+        '2629746': 1 mês
+        '31556952': 1 ano
+        '86400': 1 dia
+        '94670856': 3 anos
+      new:
+        title: Criar nova regra de IP
+      no_ip_block_selected: Nenhuma regra de IP foi alterada pois nenhuma foi selecionada
+      title: Regras de IP
     pending_accounts:
       title: Contas pendentes (%{count})
     relationships:
@@ -681,8 +715,11 @@ pt-BR:
       prefix_sign_up: Crie uma conta no Mastodon hoje!
       suffix: Com uma conta, você poderá seguir pessoas, postar atualizações, trocar mensagens com usuários de qualquer instância Mastodon e muito mais!
     didnt_get_confirmation: Não recebeu instruções de confirmação?
+    dont_have_your_security_key: Não está com a sua chave de segurança?
     forgot_password: Esqueceu a sua senha?
     invalid_reset_password_token: Código de alteração de senha é inválido ou expirou. Por favor, solicite um novo.
+    link_to_otp: Digite um código de duas etapas do seu telefone ou um código de recuperação
+    link_to_webauth: Use seu dispositivo de chave de segurança
     login: Entrar
     logout: Sair
     migrate_account: Mudar-se para outra conta
@@ -708,6 +745,7 @@ pt-BR:
       pending: Sua solicitação está com revisão pendente por parte de nossa equipe. Você receberá um e-mail se ela for aprovada.
       redirecting_to: Sua conta está inativa porque atualmente está redirecionando para %{acct}.
     trouble_logging_in: Problemas para entrar?
+    use_security_key: Usar chave de segurança
   authorize_follow:
     already_following: Você já segue
     already_requested: Você já enviou uma solicitação para seguir esta conta
@@ -732,6 +770,7 @@ pt-BR:
   date:
     formats:
       default: "%d %b, %Y"
+      with_month_name: "%d de %b de %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}h"
@@ -992,6 +1031,14 @@ pt-BR:
           quadrillion: QUA
           thousand: MIL
           trillion: TRI
+  otp_authentication:
+    code_hint: Digite o código gerado pelo seu aplicativo autenticador para confirmar
+    description_html: Se você habilitar a <strong>autenticação de dois fatores</strong> usando um aplicativo autenticador, o login exigirá que você esteja com o seu telefone, que gerará tokens para você entrar.
+    enable: Habilitar
+    instructions_html: "<strong>Escaneie este código QR no Google Authenticator ou em um aplicativo TOTP similar no seu telefone</strong>. A partir de agora, esse aplicativo irá gerar tokens que você terá que digitar ao fazer login."
+    manual_instructions: 'Se você não pode escanear o código QR e precisa digitá-lo manualmente, aqui está o segredo em texto:'
+    setup: Configurar
+    wrong_code: O código digitado é inválido! O horário do servidor e o horário do dispositivo estão corretos?
   pagination:
     newer: Mais novo
     next: Próximo
@@ -1116,6 +1163,7 @@ pt-BR:
     profile: Perfil
     relationships: Seguindo e seguidores
     two_factor_authentication: Autenticação de dois fatores
+    webauthn_authentication: Chaves de segurança
   spam_check:
     spam_detected: Esta é uma denúncia automática. Spam foi detectado.
   statuses:
@@ -1262,21 +1310,20 @@ pt-BR:
       default: "%H:%M em %d de %b de %Y"
       month: "%b de %Y"
   two_factor_authentication:
-    code_hint: Digite o código de dois fatores gerado pelo aplicativo no seu celular
-    description_html: Se você ativar a <strong>autenticação de dois fatores</strong>, o acesso à sua conta exigirá um celular, que gerará códigos para validação.
+    add: Adicionar
     disable: Desativar
-    enable: Ativar
+    disabled_success: Autenticação de dois fatores desabilitada com sucesso
+    edit: Editar
     enabled: Autenticação de dois fatores ativada
     enabled_success: Autenticação de dois fatores ativada com sucesso
     generate_recovery_codes: Gerar códigos de recuperação
-    instructions_html: "<strong>Escaneie este QR Code no Google Authenticator ou aplicativo TOTP similar no seu celular</strong>. De agora em diante, este aplicativo gerará códigos que você terá que inserir ao entrar na sua conta."
     lost_recovery_codes: Códigos de recuperação permitem que você recupere o acesso à sua conta caso perca o seu celular. Se você perdeu seus códigos de recuperação, você pode gerá-los novamente aqui. Seus códigos de recuperação anteriores serão invalidados.
-    manual_instructions: 'Se você não consegue escanear o QR code, aqui está o segredo em texto:'
+    methods: Métodos de dois fatores
+    otp: Aplicativo autenticador
     recovery_codes: Códigos de recuperação de reserva
     recovery_codes_regenerated: Códigos de recuperação gerados com sucesso
     recovery_instructions_html: Se você perder acesso ao seu celular, você pode usar um dos códigos de recuperação abaixo para acessar a sua conta. <strong>Mantenha os códigos de recuperação em um local seguro</strong>. Por exemplo, você pode imprimi-los e guardá-los junto com outros documentos importantes.
-    setup: Configurar
-    wrong_code: Código de dois fatores inválido. O horário da instância e o horário do seu celular estão corretos?
+    webauthn: Chaves de segurança
   user_mailer:
     backup_ready:
       explanation: Você pediu um backup completo da sua conta no Mastodon. E agora está pronto para ser baixado!
@@ -1308,7 +1355,7 @@ pt-BR:
         suspend: Conta banida
     welcome:
       edit_profile_action: Configurar perfil
-      edit_profile_step: Você pode customizar o seu perfil ao fazer upload de um avatar, header, alterar seu nome de exibição e mais. Se você preferir revisar novos seguidores antes de poderem te seguir, você pode trancar a sua conta.
+      edit_profile_step: Você pode personalizar o seu perfil enviando um avatar, uma capa, alterando seu nome de exibição e etc. Se você preferir aprovar seus novos seguidores antes de eles te seguirem, você pode trancar a sua conta.
       explanation: Aqui estão algumas dicas para você começar
       final_action: Comece a tootar
       final_step: 'Comece a tootar! Mesmo sem seguidores, suas mensagens públicas podem ser vistas pelos outros, por exemplo, na linha local e nas hashtags. Você pode querer fazer uma introdução usando a hashtag #introdução, ou em inglês usando a hashtag #introductions.'
@@ -1324,9 +1371,11 @@ pt-BR:
       tips: Dicas
       title: Boas vindas, %{name}!
   users:
+    blocked_email_provider: Este provedor de e-mail não é permitido
     follow_limit_reached: Você não pode seguir mais de %{limit} pessoas
     generic_access_help_html: Problemas para acessar sua conta? Você pode entrar em contato com %{email} para obter ajuda
     invalid_email: Endereço de e-mail inválido
+    invalid_email_mx: O endereço de e-mail parece não existir
     invalid_otp_token: Código de dois fatores inválido
     invalid_sign_in_token: Cógido de segurança inválido
     otp_lost_help_html: Se você perder o acesso à ambos, você pode entrar em contato com %{email}
@@ -1336,3 +1385,20 @@ pt-BR:
   verification:
     explanation_html: 'Você pode <strong>verificar os links nos metadados do seu perfil</strong>. Para isso, o site citado deve conter um link de volta para o seu perfil do Mastodon. O link de volta <strong>deve</strong> conter um atributo <code>rel="me"</code>. O conteúdo ou texto do link não importa. Aqui está um exemplo:'
     verification: Verificação
+  webauthn_credentials:
+    add: Adicionar nova chave de segurança
+    create:
+      error: Houve um problema ao adicionar sua chave de segurança. Tente novamente.
+      success: A sua chave de segurança foi adicionada com sucesso.
+    delete: Excluir
+    delete_confirmation: Você tem certeza de que deseja excluir esta chave de segurança?
+    description_html: Se você habilitar a <strong>autenticação por chave de segurança</strong>, o login exigirá que você use uma das suas chaves de segurança.
+    destroy:
+      error: Houve um problema ao excluir sua chave de segurança. Tente novamente.
+      success: Sua chave de segurança foi excluída com sucesso.
+    invalid_credential: Chave de segurança inválida
+    nickname_hint: Digite o apelido da sua nova chave de segurança
+    not_enabled: Você ainda não habilitou o WebAuthn
+    not_supported: Este navegador não tem suporte a chaves de segurança
+    otp_required: Para usar chaves de segurança, por favor habilite primeiro a autenticação de dois fatores.
+    registered_on: Registrado em %{date}

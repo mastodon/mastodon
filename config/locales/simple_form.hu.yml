@@ -65,8 +65,17 @@ hu:
         data: Egy másik Mastodon szerverről exportált CSV fájl
       invite_request:
         text: Ez segít nekünk átnézni a jelentkezésedet
+      ip_block:
+        comment: Opcionális. Emlékeztető, hogy miért is vetted fel ezt a szabályt.
+        expires_in: Az IP címek korlátos erőforrások, ezért néha meg vannak osztva és gyakran gazdát is cserélnek. Ezért a korlátlan IP tiltások használatát nem javasoljuk.
+        ip: Írj be egy IPv4 vagy IPv6 címet. A CIDR formátum használatával teljes tartományokat tilthatsz ki. Légy óvatos, hogy magadat véletlenül se zárd ki!
+        severities:
+          no_access: Elérés tiltása minden erőforráshoz
+          sign_up_requires_approval: Új regisztrációk csak a jóváhagyásoddal történhetnek majd meg
+        severity: Válaszd ki, mi történjen a kérésekkel erről az IP-ről
       sessions:
         otp: 'Add meg a telefonodon generált kétlépcsős azonosító kódodat vagy használd az egyik tartalék bejelentkező kódot:'
+        webauthn: Ha ez egy USB kulcs, ellenőrizd, hogy csatlakoztattad és ha szükséges, aktiváltad is.
       tag:
         name: Csak a kis/nagybetűséget változtathatod meg, pl. hogy olvashatóbb legyen
       user:
@@ -91,6 +100,7 @@ hu:
         types:
           disable: Letiltás
           none: Ne csinálj semmit
+          sensitive: Szenzitív
           silence: Elnémítás
           suspend: Fiók felfüggesztése, adatok törlése visszaállíthatatlanul
         warning_preset_id: Figyelmeztetés használata
@@ -135,6 +145,7 @@ hu:
         setting_default_privacy: Tülkök alapértelmezett láthatósága
         setting_default_sensitive: Minden médiafájl megjelölése szenzitívként
         setting_delete_modal: Megerősítés kérése tülk törlése előtt
+        setting_disable_swiping: Elhúzás művelet kikapcsolása
         setting_display_media: Média megjelenítése
         setting_display_media_default: Alapértelmezés
         setting_display_media_hide_all: Mindent elrejt
@@ -168,6 +179,13 @@ hu:
         comment: Hozzászólás
       invite_request:
         text: Miért akarsz csatlakozni?
+      ip_block:
+        comment: Megjegyzés
+        ip: IP
+        severities:
+          no_access: Elérés letiltása
+          sign_up_requires_approval: Regisztrációk korlátozása
+        severity: Szabály
       notification_emails:
         digest: Összevont e-mailek küldése
         favourite: E-mail küldése, amikor valaki kedvencnek jelöli a tülködet
@@ -188,4 +206,7 @@ hu:
     required:
       mark: "*"
       text: kötelező
+    title:
+      sessions:
+        webauthn: Használd valamelyik biztonsági kulcsodat a bejelentkezéshez
     'yes': Igen

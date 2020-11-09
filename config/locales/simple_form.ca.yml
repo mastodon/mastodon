@@ -65,8 +65,17 @@ ca:
         data: Fitxer CSV exportat des d'un altre servidor de Mastodon
       invite_request:
         text: Això ens ajudarà a revisar la teva petició
+      ip_block:
+        comment: Opcional. Recordatori de perquè l’has afegit.
+        expires_in: Les adreces IP son un recurs finit, de vegades son compartides i sovint canvien de mans. Per aquest motiu no es recomanen els bloquejos d’IP indefinits.
+        ip: Introdueix una adreça IPv4 o IPv6. Pots bloquejar rangs complets amb la sintaxi CIDR. Ves a compte no et bloquegis a tu mateix!
+        severities:
+          no_access: Bloqueja l’accés a tots els recursos
+          sign_up_requires_approval: Els nous registres requeriran la teva aprovació
+        severity: Tria què passarà amb les sol·licituds des d’aquesta IP
       sessions:
         otp: 'Introdueix el codi de dos factors generat per el teu telèfon o utilitza un dels teus codis de recuperació:'
+        webauthn: Si és una clau USB assegurat de que està inserida i, si és necessari, toca-ho.
       tag:
         name: Només pots canviar la caixa de les lletres, per exemple, per fer-la més llegible
       user:
@@ -91,6 +100,7 @@ ca:
         types:
           disable: Inhabilita
           none: No fer res
+          sensitive: Sensible
           silence: Silenci
           suspend: Suspèn i elimina irreversiblement les dades del compte
         warning_preset_id: Utilitza una configuració predefinida d'avís
@@ -135,6 +145,7 @@ ca:
         setting_default_privacy: Privacitat de les publicacions
         setting_default_sensitive: Marca sempre els elements multimèdia com a sensibles
         setting_delete_modal: Mostra la finestra de confirmació abans d'esborrar un tut
+        setting_disable_swiping: Desactivar les animacions
         setting_display_media: Visualització multimèdia
         setting_display_media_default: Per defecte
         setting_display_media_hide_all: Amaga-ho tot
@@ -168,6 +179,13 @@ ca:
         comment: Comenta
       invite_request:
         text: Per què vols unir-te?
+      ip_block:
+        comment: Comentari
+        ip: IP
+        severities:
+          no_access: Bloquejar l’accés
+          sign_up_requires_approval: Limitar els registres
+        severity: Regla
       notification_emails:
         digest: Envia un resum per correu electrònic
         favourite: Envia un correu electrònic si algú marca com a preferit el teu estat
@@ -188,4 +206,7 @@ ca:
     required:
       mark: "*"
       text: necessari
+    title:
+      sessions:
+        webauthn: Usa una de les teves claus de seguretat per a iniciar sessió
     'yes': Sí
