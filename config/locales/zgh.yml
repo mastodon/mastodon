@@ -1,4 +1,61 @@
 zgh:
+  about:
+    about_this: ⵖⴼ
+    unavailable_content_description:
+      domain: ⴰⵎⴰⴽⴽⴰⵢ
+  accounts:
+    follow: ⴹⴼⵕ
+    never_active: ⵓⵙⴰⵔ
+    roles:
+      group: ⵜⴰⵔⴰⴱⴱⵓⵜ
+  admin:
+    account_moderation_notes:
+      delete: ⴽⴽⵙ
+    accounts:
+      edit: ⵙⵏⴼⵍ
+      email: ⵉⵎⴰⵢⵍ
+      location:
+        all: ⵎⴰⵕⵕⴰ
+      moderation:
+        all: ⵎⴰⵕⵕⴰ
+    custom_emojis:
+      copy: ⵙⵏⵖⵍ
+      emoji: ⵉⵎⵓⵊⵉ
+    email_domain_blocks:
+      delete: ⴽⴽⵙ
+    instances:
+      moderation:
+        all: ⵎⴰⵕⵕⴰ
+    ip_blocks:
+      delete: ⴽⴽⵙ
+      expires_in:
+        '1209600': 2 weeks
+        '15778476': 6 months
+        '2629746': 1 month
+        '31556952': ⴰⵙⴳⴳⵯⴰⵙ
+        '86400': ⴰⵙⵙ
+        '94670856': 3 ⵉⵙⴳⴳⵯⴰⵙⵏ
+    relays:
+      delete: ⴽⴽⵙ
+    reports:
+      notes:
+        delete: ⴽⴽⵙ
+    settings:
+      site_title: ⵉⵙⵎ ⵏ ⵓⵎⴰⴽⴽⴰⵢ
+      title: ⵜⵉⵙⵖⴰⵍ ⵏ ⵡⴰⵙⵉⵜ
+    statuses:
+      batch:
+        delete: ⴽⴽⵙ
+    warning_presets:
+      delete: ⴽⴽⵙ
+  application_mailer:
+    view_profile: ⵙⴽⵏ ⵉⴼⵔⵙ
+  auth:
+    register: ⵣⵎⵎⴻⵎ
+  authorize_follow:
+    follow: ⴹⴼⵕ
+  deletes:
+    proceed: ⴽⴽⵙ ⴰⵎⵉⴹⴰⵏ
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
@@ -9,3 +66,20 @@ zgh:
     '429': Too many requests
     '500':
     '503': The page could not be served due to a temporary server failure.
+  filters:
+    index:
+      delete: ⴽⴽⵙ
+  footer:
+    more: ⵓⴳⴳⴰⵔ…
+  generic:
+    all: ⵎⴰⵕⵕⴰ
+    copy: ⵙⵏⵖⵍ
+    delete: ⴽⴽⵙ
+  invites:
+    expires_in:
+      '1800': 30 ⵜⵓⵙⴷⵉⴷⵉⵏ
+      '21600': 6 ⵜⵙⵔⴰⴳⵉⵏ
+      '3600': 1 hour
+      '43200': 12 hours
+      '604800': 1 week
+      '86400': 1 day
