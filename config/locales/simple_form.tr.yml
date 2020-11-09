@@ -2,15 +2,15 @@ tr:
   simple_form:
     hints:
       account_alias:
-        acct: Taşımak istediğiniz hesabın kullanıcı-adı@alan-adını belirtin
+        acct: Taşımak istediğiniz hesabın kullanıcıadı@alanadını belirtin
       account_migration:
-        acct: Taşınmak istediğiniz hesabın kullanıcı-adı@alan-adını belirtin
+        acct: Taşımak istediğiniz hesabın kullanıcıadı@alanadını belirtin
       account_warning_preset:
-        text: URL'ler, etiketler ve bahsetmeler gibi toot sözdizimleri kullanabilirsiniz
-        title: İsteğe bağlı. Alıcı tarafından görülemez
+        text: URL'ler, etiketler ve bahsedenler gibi toot sözdizimini kullanabilirsiniz
+        title: İsteğe bağlı. Alıcıya görünmez
       admin_account_action:
         include_statuses: Kullanıcı hangi tootların denetleme eylemi ya da uyarısına neden olduğunu görecektir
-        send_email_notification: Kullanıcı, hesabına ne olduğu hakkında bir bildirim alacak
+        send_email_notification: Kullanıcı, hesabına ne olduğuna dair bir açıklama alacak
         text_html: İsteğe bağlı. Toot sözdizimleri kullanabilirsiniz. Zamandan kazanmak için <a href="%{path}">uyarı ön-ayarları ekleyebilirsiniz</a>
         type_html: <strong>%{acct}</strong> ile ne yapılacağını seçin
         warning_preset_id: İsteğe bağlı. Hazır ayarın sonuna hala özel metin ekleyebilirsiniz
@@ -89,25 +89,25 @@ tr:
       account_migration:
         acct: Yeni hesabın tanıtıcısı
       account_warning_preset:
-        text: Ön-ayar metni
+        text: Ön ayarlı metin
         title: Başlık
       admin_account_action:
-        include_statuses: Birdirilen tootları e-postaya dahil et
-        send_email_notification: E-postayla kullanıcıyı bilgilendir
+        include_statuses: Bildirilen tootları e-postaya dahil et
+        send_email_notification: Kullanıcıyı e-posta ile bilgilendir
         text: Özel uyarı
         type: Eylem
         types:
-          disable: Devre dışı
+          disable: Dondur
           none: Hiç birşey
           sensitive: Hassas
           silence: Limit
           suspend: Hesap verilerini askıya alın ve geri alınamaz şekilde silin
-        warning_preset_id: Bir uyarı ön-ayarı kullan
+        warning_preset_id: Bir uyarı ön ayarı kullan
       announcement:
         all_day: Tüm gün etkinliği
-        ends_at: Etkinlik sonu
+        ends_at: Etkinliğin sonu
         scheduled_at: Yayınlamayı zamanla
-        starts_at: Etkinlik başlangıcı
+        starts_at: Etkinliğin başlangıcı
         text: Duyuru
       defaults:
         autofollow: Hesabınızı takip etmeye davet edin
@@ -150,7 +150,7 @@ tr:
         setting_display_media_hide_all: Tümünü gizle
         setting_display_media_show_all: Tümünü göster
         setting_expand_spoilers: İçerik uyarılarıyla işaretli tootları her zaman genişlet
-        setting_hide_network: Ağını gizle
+        setting_hide_network: Ağınızı gizleyin
         setting_noindex: Arama motoru dizinine eklemeyi iptal et
         setting_reduce_motion: Animasyonlarda hareketi azalt
         setting_show_application: Tootları göndermek için kullanılan uygulamayı belirt
@@ -160,9 +160,9 @@ tr:
         setting_unfollow_modal: Birini takip etmeden önce onay iletişim kutusu göster
         setting_use_blurhash: Gizli medya için renkli gradyanlar göster
         setting_use_pending_items: Yavaş mod
-        severity: Zorluk
+        severity: Önem derecesi
         sign_in_token_attempt: Güvenlik kodu
-        type: Dosya türü
+        type: İçeri aktarma türü
         username: Kullanıcı adı
         username_or_email: Kullanıcı adı ya da e-posta
         whole_word: Tam sözcük
@@ -187,8 +187,8 @@ tr:
         severity: Kural
       notification_emails:
         digest: Özet e-postaları gönder
-        favourite: Biri durumumu favorilerine eklediginde bana e-posta gönder
-        follow: Biri beni takip ettiğinde bana e-posta gönder
+        favourite: Birisi durumunuzu beğendi
+        follow: Biri seni takip etti
         follow_request: Biri seni takip etmek istedi
         mention: Biri senden bahsetti
         pending_account: Yeni hesabın incelenmesi gerekiyor
