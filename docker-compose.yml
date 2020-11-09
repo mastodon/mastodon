@@ -1,11 +1,10 @@
-version: '3.7'
+version: '3'
 services:
   db:
     restart: always
     image: postgres:14-alpine
     shm_size: 256mb
     networks:
-      - external_network
       - internal_network
     healthcheck:
       test: ['CMD', 'pg_isready', '-U', 'postgres']
@@ -17,11 +16,7 @@ services:
   redis:
     restart: always
     image: redis:6.0-alpine
-    ports:
-      # - "0.0.0.0:637:6379"
-      - "127.0.0.1:637:6379"
     networks:
-      - external_network
       - internal_network
     healthcheck:
       test: ['CMD', 'redis-cli', 'ping']
@@ -48,7 +43,7 @@ services:
   #       hard: -1
 
   web:
-    # build: .
+    build: .
     image: mashirozx/mastodon:latest
     restart: always
     env_file: .env.production
@@ -67,17 +62,9 @@ services:
       # - es
     volumes:
       - ./public/system:/mastodon/public/system
-    deploy:
-      resources:
-        limits:
-          cpus: '1.00'
-          memory: 400M
-        #reservations:
-        #  cpus: '0.5'
-        #  memory: 300M
 
   streaming:
-    # build: .
+    build: .
     image: mashirozx/mastodon:latest
     restart: always
     env_file: .env.production
@@ -95,7 +82,7 @@ services:
       - redis
 
   sidekiq:
-    # build: .
+    build: .
     image: mashirozx/mastodon:latest
     restart: always
     env_file: .env.production
@@ -127,6 +114,16 @@ services:
   #   networks:
   #     - external_network
   #     - internal_network
+
+translate:
+  restart: always
+  image: mashirozx/google-translate-server:latest
+  # ports:
+  #   - "0.0.0.0:30031:30031"
+  command: "npm start -- --domain ${DOMAIN:-com}"
+  networks:
+    - external_network
+    - internal_network
 
 networks:
   external_network:
