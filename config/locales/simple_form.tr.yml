@@ -1,4 +1,3 @@
----
 tr:
   simple_form:
     hints:
@@ -13,7 +12,7 @@ tr:
         include_statuses: Kullanıcı hangi tootların denetleme eylemi ya da uyarısına neden olduğunu görecektir
         send_email_notification: Kullanıcı, hesabına ne olduğu hakkında bir bildirim alacak
         text_html: İsteğe bağlı. Toot sözdizimleri kullanabilirsiniz. Zamandan kazanmak için <a href="%{path}">uyarı ön-ayarları ekleyebilirsiniz</a>
-        type_html: "<strong>%{acct}</strong> ile ne yapılacağını seçin"
+        type_html: <strong>%{acct}</strong> ile ne yapılacağını seçin
         warning_preset_id: İsteğe bağlı. Hazır ayarın sonuna hala özel metin ekleyebilirsiniz
       announcement:
         all_day: İşaretlendiğinde, yalnızca zaman aralığındaki tarihler görüntülenir
@@ -74,7 +73,7 @@ tr:
           sign_up_requires_approval: Yeni kayıt onayınızı gerektirir
         severity: Bu IP'den gelen isteklere ne olacağını seçin
       sessions:
-        otp: Telefonunuzdaki two-factor kodunuzu giriniz veya kurtarma kodlarınızdan birini giriniz.
+        otp: 'Telefonunuzdaki two-factor kodunuzu giriniz veya kurtarma kodlarınızdan birini giriniz.'
         webauthn: Bir USB anahtarıysa, taktığınızdan ve gerekirse üzerine tıkladığınızdan emin olun.
       tag:
         name: Harflerin, örneğin daha okunabilir yapmak için, sadece büyük/küçük harf durumlarını değiştirebilirsiniz
@@ -101,7 +100,7 @@ tr:
           disable: Devre dışı
           none: Hiç birşey
           sensitive: Hassas
-          silence: Sessiz
+          silence: Limit
           suspend: Hesap verilerini askıya alın ve geri alınamaz şekilde silin
         warning_preset_id: Bir uyarı ön-ayarı kullan
       announcement:
@@ -190,18 +189,18 @@ tr:
         digest: Özet e-postaları gönder
         favourite: Biri durumumu favorilerine eklediginde bana e-posta gönder
         follow: Biri beni takip ettiğinde bana e-posta gönder
-        follow_request: Biri bana takip isteği gönderdiğinde bana e-posta gönder
-        mention: Biri benden bahsettiğinde bana e-posta gönder
-        pending_account: Yeni bir hesap incelemesi gerektiğinde e-posta gönder
-        reblog: Biri durumumu boostladığında bana e-posta gönder
-        report: Yeni bir rapor gönderildiğinde e-posta gönder
-        trending_tag: İncelenmemiş bir hashtag trend olduğunda e-posta gönder
+        follow_request: Biri seni takip etmek istedi
+        mention: Biri senden bahsetti
+        pending_account: Yeni hesabın incelenmesi gerekiyor
+        reblog: Biri durumunuzu boostladı
+        report: Yeni rapor gönderildi
+        trending_tag: İncelenmemiş bir etiket gündem oluyor
       tag:
         listable: Bu etiketin aramalarda ve profil dizininde görünmesine izin ver
         name: Etiket
-        trendable: Bu etiketin trendlerin altında görünmesine izin ver
+        trendable: Bu etiketin gündem altında görünmesine izin ver
         usable: Tootların bu etiketi kullanmasına izin ver
-    'no': Hayır
+    'no': 'Hayır'
     recommended: Önerilen
     required:
       mark: "*"
@@ -209,4 +208,4 @@ tr:
     title:
       sessions:
         webauthn: Giriş yapmak için güvenlik anahtarlarınızdan birini kullanın
-    'yes': Evet
+    'yes': 'Evet'
