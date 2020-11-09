@@ -1,0 +1,10 @@
+/*
+* Wider columns:
+* - Make the multi-column layout use wider columns by default.
+* 
+* author: trwnh
+* license: Public Domain
+*/
+@media (min-width: 640px) {
+    .column, #mastodon-timeline {min-width: 60ch;}
+}

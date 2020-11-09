@@ -1,0 +1,41 @@
+.loading-bar {
+	background:$bhd;
+}
+
+body.app-body,
+.ui {
+	background:$bpg;
+}
+
+body.lighter {
+	background:$btxt;
+}
+
+::-webkit-scrollbar-thumb {
+	background: $cui;
+	border-radius:50px;
+}
+::-webkit-scrollbar-thumb:hover {
+	background: $cbut;
+}
+::-webkit-scrollbar-thumb:active {
+	background: $cui2;
+}
+::-webkit-scrollbar-track {
+	border:0 none #fff;
+	border-radius:0;
+	background:rgba(249,235,221,.7);
+}
+::-webkit-scrollbar-track:active,
+::-webkit-scrollbar-track:hover {
+	background:$bhd;
+}
+::-webkit-scrollbar-corner {
+	background:transparent;
+}
+.column ::-webkit-scrollbar-track {
+	border-radius:0 0 10px 0;
+}
+.drawer__pager ::-webkit-scrollbar-track {
+	border-radius:0 10px 10px 0;
+}

@@ -561,6 +561,18 @@
         "id": "status.cannot_reblog"
       },
       {
+        "defaultMessage": "This post is only visible by other users of your instance",
+        "id": "status.local_only"
+      },
+      {
+        "defaultMessage": "Quote",
+        "id": "status.quote"
+      },
+      {
+        "defaultMessage": "Unlisted quote",
+        "id": "status.unlisted_quote"
+      },
+      {
         "defaultMessage": "Favourite",
         "id": "status.favourite"
       },
@@ -638,8 +650,24 @@
         "id": "status.show_thread"
       },
       {
+        "defaultMessage": "Hide translation",
+        "id": "status.hide_translation"
+      },
+      {
+        "defaultMessage": "Translate toot",
+        "id": "status.show_translation"
+      },
+      {
         "defaultMessage": "Read more",
         "id": "status.read_more"
+      },
+      {
+        "defaultMessage": "Fetch translation failed",
+        "id": "status.translation_failed"
+      },
+      {
+        "defaultMessage": "Translation powered by {google}",
+        "id": "status.translation_by"
       },
       {
         "defaultMessage": "Show more",
@@ -1199,6 +1227,23 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "Plain Text",
+        "id": "content_type.plain.short"
+      },
+      {
+        "defaultMessage": "Markdown",
+        "id": "content_type.markdown.short"
+      },
+      {
+        "defaultMessage": "Adjust status content type",
+        "id": "content_type.change"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/compose/components/content_type_dropdown.json"
+  },
+  {
+    "descriptors": [
+      {
         "defaultMessage": "Insert emoji",
         "id": "emoji_button.label"
       },
@@ -1273,6 +1318,31 @@
       }
     ],
     "path": "app/javascript/mastodon/features/compose/components/language_dropdown.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Federated",
+        "id": "federation.federated.short"
+      },
+      {
+        "defaultMessage": "Allow toot to reach other instances",
+        "id": "federation.federated.long"
+      },
+      {
+        "defaultMessage": "Local-only",
+        "id": "federation.local_only.short"
+      },
+      {
+        "defaultMessage": "Restrict this toot only to my instance",
+        "id": "federation.local_only.long"
+      },
+      {
+        "defaultMessage": "Adjust status federation",
+        "id": "federation.change"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/compose/components/federation_dropdown.json"
   },
   {
     "descriptors": [
@@ -1377,6 +1447,15 @@
       }
     ],
     "path": "app/javascript/mastodon/features/compose/components/privacy_dropdown.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Cancel",
+        "id": "quote_indicator.cancel"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/compose/components/quote_indicator.json"
   },
   {
     "descriptors": [
@@ -3121,6 +3200,10 @@
       {
         "defaultMessage": "Direct",
         "id": "privacy.direct.short"
+      },
+      {
+        "defaultMessage": "This post is only visible by other users of your instance",
+        "id": "status.local_only"
       }
     ],
     "path": "app/javascript/mastodon/features/status/components/detailed_status.json"

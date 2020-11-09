@@ -27,11 +27,13 @@ class PostStatusService < BaseService
     @options     = options
     @text        = @options[:text] || ''
     @in_reply_to = @options[:thread]
+    @quote_id    = @options[:quote_id]
 
     return idempotency_duplicate if idempotency_given? && idempotency_duplicate?
 
     validate_media!
     preprocess_attributes!
+    preprocess_quote!
 
     if scheduled?
       schedule_status!
@@ -48,6 +50,19 @@ class PostStatusService < BaseService
 
   private
 
+  def status_from_uri(uri)
+    ActivityPub::TagManager.instance.uri_to_resource(uri, Status)
+  end
+
+  def quote_from_url(url)
+    return nil if url.nil?
+
+    quote = ResolveURLService.new.call(url)
+    status_from_uri(quote.uri) if quote
+  rescue
+    nil
+  end
+
   def preprocess_attributes!
     @sensitive    = (@options[:sensitive].nil? ? @account.user&.setting_default_sensitive : @options[:sensitive]) || @options[:spoiler_text].present?
     @text         = @options.delete(:spoiler_text) if @text.blank? && @options[:spoiler_text].present?
@@ -55,8 +70,19 @@ class PostStatusService < BaseService
     @visibility   = :unlisted if @visibility&.to_sym == :public && @account.silenced?
     @scheduled_at = @options[:scheduled_at]&.to_datetime
     @scheduled_at = nil if scheduled_in_the_past?
+    if @quote_id.nil? && md = @text.match(/QT:\s*\[\s*(https:\/\/.+?)\s*\]/)
+      @quote_id = quote_from_url(md[1])&.id
+      @text.sub!(/QT:\s*\[.*?\]/, '')
+    end
   rescue ArgumentError
     raise ActiveRecord::RecordInvalid
+  end
+
+  def preprocess_quote!
+    if @quote_id.present?
+      quote = Status.find(@quote_id)
+      @quote_id = quote.reblog_of_id.to_s if quote.reblog?
+    end
   end
 
   def process_status!
@@ -91,12 +117,25 @@ class PostStatusService < BaseService
     end
   end
 
+  def local_only_option(local_only, in_reply_to, federation_setting)
+    return in_reply_to&.local_only? if local_only.nil? # XXX temporary, just until clients implement to avoid leaking local_only posts
+    return federation_setting if local_only.nil?
+    local_only
+  end
+
+  def content_type_option(content_type, content_type_setting)
+    return content_type_setting if content_type.nil?
+    content_type
+  end
+
   def postprocess_status!
     Trends.tags.register(@status)
     LinkCrawlWorker.perform_async(@status.id)
     DistributionWorker.perform_async(@status.id)
-    ActivityPub::DistributionWorker.perform_async(@status.id)
-    PollExpirationNotifyWorker.perform_at(@status.poll.expires_at, @status.poll.id) if @status.poll
+    unless @status.local_only?
+      ActivityPub::DistributionWorker.perform_async(@status.id)
+      PollExpirationNotifyWorker.perform_at(@status.poll.expires_at, @status.poll.id) if @status.poll
+    end
   end
 
   def validate_media!
@@ -169,6 +208,9 @@ class PostStatusService < BaseService
       language: valid_locale_cascade(@options[:language], @account.user&.preferred_posting_language, I18n.default_locale),
       application: @options[:application],
       rate_limit: @options[:with_rate_limit],
+      local_only: local_only_option(@options[:local_only], @in_reply_to, @account.user&.setting_default_federation),
+      content_type: content_type_option(@options[:content_type], @account.user&.setting_default_content_type),
+      quote_id: @quote_id,
     }.compact
   end
 

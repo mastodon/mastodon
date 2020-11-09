@@ -22,6 +22,7 @@ module ContextHelper
     discoverable: { 'toot' => 'http://joinmastodon.org/ns#', 'discoverable' => 'toot:discoverable' },
     voters_count: { 'toot' => 'http://joinmastodon.org/ns#', 'votersCount' => 'toot:votersCount' },
     olm: { 'toot' => 'http://joinmastodon.org/ns#', 'Device' => 'toot:Device', 'Ed25519Signature' => 'toot:Ed25519Signature', 'Ed25519Key' => 'toot:Ed25519Key', 'Curve25519Key' => 'toot:Curve25519Key', 'EncryptedMessage' => 'toot:EncryptedMessage', 'publicKeyBase64' => 'toot:publicKeyBase64', 'deviceId' => 'toot:deviceId', 'claim' => { '@type' => '@id', '@id' => 'toot:claim' }, 'fingerprintKey' => { '@type' => '@id', '@id' => 'toot:fingerprintKey' }, 'identityKey' => { '@type' => '@id', '@id' => 'toot:identityKey' }, 'devices' => { '@type' => '@id', '@id' => 'toot:devices' }, 'messageFranking' => 'toot:messageFranking', 'messageType' => 'toot:messageType', 'cipherText' => 'toot:cipherText' },
+    quoteUrl: { 'quoteUrl' => 'as:quoteUrl' },
     suspended: { 'toot' => 'http://joinmastodon.org/ns#', 'suspended' => 'toot:suspended' },
   }.freeze
 

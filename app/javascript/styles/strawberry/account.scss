@@ -1,0 +1,159 @@
+.account__moved-note {
+	background: $blb;
+	border-color: $cui;
+}
+.account__moved-note__message,
+.public-layout .public-account-bio .account__header__fields a,
+.account__header__fields a {
+	color: $curl;
+}
+
+.account__header > div {
+	background: rgba(247,252,247,.4);
+}
+.account__header>div {
+	background: rgba(235,230,232,.6) !important;
+}
+.account__header .account__header__display-name {
+	color: $btt2;
+	text-shadow: 0 0 0.4em #000
+}
+.account__header .account__header__username {
+	color: $cbut;
+	text-shadow: 1px 1px 0.5px #fff
+}
+.account__header .account__header__content {
+	color: $ctxt;
+	text-shadow: 1px 1px 0.5px #fff;
+}
+.account__action-bar{
+	border-top: 1px solid $cui;
+	border-bottom: 1px solid $cui;
+}
+.account__action-bar__tab,
+.account__header .account__header__fields dl,
+.account__section-headline,
+.account__header__fields dl,
+.account__header__fields {
+	border-color: $cui;
+}
+
+.account__header .account__header__fields dt,
+.account__section-headline a,
+.account__section-headline,
+.account__header__fields dt {
+	background: $blb;
+	color: white;
+	text-shadow: 0 0 5px $ctxt;
+}
+.account__header .account__header__fields dd,
+.account__header__fields dd {
+	background: $btt2;
+	color: $ctxt;
+}
+.account__section-headline a.active {
+	background: $btt3;
+	color: $curl;
+	text-shadow: 0 0 5px white;
+}
+.account__header .account__header__fields dt,
+.account__header__fields dt {
+	border-right: 1px solid $cui;
+}
+.public-layout .public-account-bio__extra, .public-layout .public-account-bio .roles,
+.account__action-bar__tab > span,
+.public-layout .public-account-header__tabs__tabs .counter .counter-label {
+	color: $cui;
+}
+.public-layout .public-account-header__tabs__tabs .counter,
+.public-layout .public-account-header__tabs__tabs .counter::after {
+	border-color: $cui;
+}
+.account__action-bar__tab strong,
+.public-layout .public-account-header__tabs__tabs .counter .counter-number {
+	color: $cbut;
+}
+.account__action-bar__tab.active,
+.public-layout .public-account-header__tabs__tabs .counter.active::after {
+	border-color: $curl;
+}
+
+.account__section-headline a.active:after,
+.account__section-headline a.active:before,
+.community-timeline__section-headline a.active:after,
+.community-timeline__section-headline a.active:before,
+.public-timeline__section-headline a.active:after,
+.public-timeline__section-headline a.active:before {
+	border-color: transparent transparent $cui;
+}
+.account__section-headline a.active:after,
+.community-timeline__section-headline a.active:after,
+.public-timeline__section-headline a.active:after {
+	border-color: transparent transparent $btt;
+}
+
+.account-gallery__item a,
+.public-layout .public-account-header__image {
+	background: $btxt;
+	color: $btt;
+}
+
+.account__disclaimer {
+	color: $cui2;
+	border-color: $cui;
+}
+
+
+.activity-stream .entry {
+	background: $btt;
+}
+
+@media screen and (max-width: 600px) {
+	.public-layout .public-account-header__image,
+	.public-layout .public-account-header__bar {
+		background: $btt3;
+	}
+	.public-layout .public-account-header__image {
+		background: $btxt;
+	}
+	.public-layout .public-account-header__extra__links a,
+	.public-layout .public-account-header__tabs__name h1 small {
+		color: $cui;
+	}
+	.public-layout .public-account-header__extra__links a strong {
+		color: $curl;
+	}
+	.public-layout .public-account-header__extra .public-account-bio .account__header__fields {
+		border-color: $cui;
+	}
+}
+.public-layout .public-account-header__bar::before {
+	background: $btt;
+}
+.public-layout .public-account-header__tabs__name h1 {
+	color: $ctxt;
+	text-shadow: 0 0 0.4em $btt2;
+}
+.public-layout .public-account-header__tabs__name h1 small {
+	color: $cui;
+	text-shadow: 1px 1px 1px $ctxt;
+}
+.button.logo-button {
+	background: $cbut;
+}
+.button.logo-button.button--destructive:active,
+.button.logo-button.button--destructive:focus,
+.button.logo-button.button--destructive:hover {
+	background: $curl;
+}
+
+.public-layout .public-account-bio {
+	background: $btt3;
+}
+.public-layout .public-account-bio .account__header__content {
+	color: $ctxt;
+}
+.public-layout .public-account-header__bar .avatar img {
+	border-color: $cbut;
+	background: transparent;
+}

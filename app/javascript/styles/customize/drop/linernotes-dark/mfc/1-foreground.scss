@@ -1,0 +1,271 @@
+/*------------------------------------------------------------------------------
+* FOREGROUND COLOR PALETTE =====================================================
+------------------------------------------------------------------------------*/
+
+/*----------------------
+base background and text
+----------------------*/
+
+/* status columns */
+.column>.scrollable,
+.status,
+    .status__content,
+.detailed-status,
+    .detailed-status__action-bar,
+    .focusable:focus .detailed-status,
+    .focusable:focus .detailed-status__action-bar,
+.setting-text,
+    .setting-text:active,
+    .setting-text:focus,
+.status-direct .status__content .status__content__spoiler-link,
+.column-link,
+    .getting-started a.column-link,
+    .getting-started__trends .trends__item__current,
+.account__header__content,
+.account__header__bio .account__header__content,
+.account--panel,
+.account__header__bar,
+.account__header__account-note textarea,
+.follow_requests-unlocked_explanation,
+.account-authorize,
+.trends__header,
+/* new conversations */
+.conversation--unread,
+.conversation__content__names,
+/* search */
+.search__input,
+    .search__input:focus,
+.search-results .account,
+.trends__item,
+    .trends__item__name a,
+    .trends__item__current,
+/* compose form */
+.reply-indicator__content, /* in reply to */
+.compose-form .spoiler-input__input, /* cw */
+.compose-form .autosuggest-textarea__textarea, /* post */
+.compose-form .compose-form__modifiers, /* image uploads */
+.compose-form .compose-form__buttons-wrapper, /* buttons */
+/* settings page */
+.simple_form textarea,
+    .simple_form textarea:active,
+    .simple_form textarea:focus,
+.simple_form input[type=email],
+    .simple_form input[type=email]:active,
+    .simple_form input[type=email]:focus,
+.simple_form input[type=number],
+    .simple_form input[type=number]:active,
+    .simple_form input[type=number]:focus,
+.simple_form input[type=password],
+    .simple_form input[type=password]:active,
+    .simple_form input[type=password]:focus,
+.simple_form input[type=text],
+    .simple_form input[type=text]:active,
+    .simple_form input[type=text]:focus,
+.table td,
+    .table th,
+    .table.inline-table>tbody>tr:nth-child(odd)>td,
+    .table.inline-table>tbody>tr:nth-child(odd)>th,
+    .table>tbody>tr:nth-child(odd)>td,
+    .table>tbody>tr:nth-child(odd)>th,
+    .batch-table__row,
+    .batch-table__row:nth-child(2n),
+    .batch-table__row:hover,
+.column-inline-form label,
+.dashboard__counters > div > div, .dashboard__counters > div > a,
+.log-entry,
+    .log-entry__header,
+/* modals */
+.actions-modal,
+    .actions-modal .status,
+    .actions-modal ul li:not(:empty) a,
+    .status.light .display-name strong, .status.light .status__content,
+.boost-modal,
+.confirmation-modal,
+.mute-modal,
+    .block-modal .setting-toggle__label, .mute-modal .setting-toggle__label,
+.report-modal,
+    .report-modal__statuses .status__content p,
+    .report-modal__comment .setting-toggle__label,
+.list-editor,
+    .list-editor .drawer__inner,
+    .list-editor .drawer__inner.backdrop,
+.account__moved-note,
+.introduction__pager,
+.introduction__text p,
+.reactions-bar__item,
+/* profile cards */
+.card__bar,
+    .card>a:active .card__bar,
+    .card>a:focus .card__bar,
+    .card>a:hover .card__bar,
+.directory__card__bar,
+    .directory__card__extra,
+    .accounts-table__count,
+    .directory__card__img,
+/* public pages */
+#new_user .lead,
+.landing .hero-widget__footer,
+    .landing .simple_form .user_agreement .label_input > label,
+    .landing .hero-widget h4,
+    .hero-widget__counter,
+    .landing .hero-widget__counter span,
+    .directory__tag > a, .directory__tag > div,
+.activity-stream .entry,
+.landing-page #mastodon-timeline,
+    .landing-page #mastodon-timeline p,
+    .landing-page__forms,
+    .landing-page__information,
+    .landing-page li,
+    .landing-page p,
+    .directory__tag h4 small,
+    .directory__tag h4 .fa,
+    .landing-page .features-list .features-list__row .text,
+    .landing-page .features-list .features-list__row .visual .fa,
+    .landing-page__short-description h1,
+    .landing-page .separator-or span,
+.box-widget,
+    .contact-widget,
+    .landing-page__information.contact-widget,
+.rich-formatting li,
+    .rich-formatting p,
+.public-layout .public-account-bio .account__header__content,
+    .public-layout .public-account-bio .roles,
+    .public-layout .public-account-bio__extra,
+    .public-layout .public-account-bio,
+.public-layout .public-account-header__bar::before,
+.account__header__fields dt,
+.account__header__fields dd,
+.hero-widget__text,
+.load-more,
+.button.button-secondary,
+.simple_form__overlay-area__overlay
+{
+background: var(--bg);
+color: var(--text)
+}
+
+/*--------------------
+override for bold text
+--------------------*/
+
+/* primary elements */
+.account__display-name strong,
+    .status__display-name strong,
+    .detailed-status__display-name strong,
+    .card__bar .display-name strong,
+    .directory__card__bar .display-name strong,
+    .account__header__tabs__name h1,
+    .account__header__extra__links a strong,
+.account__action-bar__tab strong, /* profile counters */
+.conversation__content__names a,
+.conversation--unread .conversation__content__relative-time,
+/* settings page*/
+.dashboard__counters__num, .dashboard__counters__text,
+.log-entry a,
+    .log-entry .username,
+    .log-entry .target,
+/* public pages */
+#new_user .lead strong,
+.landing-page h3,
+    .landing-page h4,
+    .landing-page em,
+    .landing-page h5,
+    .landing-page h6,
+    .directory__tag h4,
+.rich-formatting h3,
+    .rich-formatting h4,
+.public-layout .public-account-header__tabs__tabs .counter .counter-number,
+.account__header__fields dt
+{
+color: var(--textBold)
+}
+
+/*---------------------
+override for muted text
+---------------------*/
+
+/* secondary elements */
+.display-name__account,
+    .account .account__display-name,
+    .card__bar .display-name span,
+    .directory__card__bar .display-name span,
+    .accounts-table__count small,
+    .account__header__tabs__name h1 small,
+    .account__header__extra__links a,
+    .account__header__account-note label,
+    .account__header__account-note textarea::placeholder,
+    .account__header__extra__links,
+.detailed-status__meta,
+.status__relative-time,
+.status__action-bar__counter__label,
+.status__prepend,
+    .status__prepend .status__display-name strong,
+.account__moved-note__message,
+.attachment-list.compact .fa,
+.icon-button,
+    .icon-button.disabled,
+    .icon-button.active:hover,
+.account__action-bar__tab>span,
+.compose-form .icon-button.inverted,
+    .compose-form .text-icon-button,
+    .compose-form .compose-form__buttons-wrapper .character-counter__wrapper .character-counter,
+.upload-progress,
+.search__icon .fa,
+    .search__icon .fa-times-circle,
+    .trends__item__name,
+.search__input::placeholder,
+.notification__message,
+.muted .status__content,
+    .muted .status__content a,
+    .muted .status__content p,
+    .muted .status__display-name strong,
+.attachment-list__list a,
+a.table-action-link,
+    .table a.table-action-link,
+    button.table-action-link,
+.status__wrapper--filtered,
+.conversation__content__relative-time,
+/* settings page */
+.dashboard__counters__label,
+.log-entry__timestamp,
+/* public pages */
+.landing-page__short-description h1 small,
+    .landing-page__short-description h1 small span,
+.simple_form p.hint.subtle-hint,
+.public-layout .public-account-bio .roles,
+    .public-layout .public-account-bio__extra,
+    .public-layout .public-account-header__tabs__tabs .counter,
+.load-more,
+.account__disclaimer
+{
+color: var(--textMuted)
+}
+
+/* fix announcement reactions */
+.reactions-bar__item__count {color: inherit}
+
+/* fix for conversations font weight */
+.conversation--unread .conversation__content__info {font-weight: 400}
+
+/* fix for border colors */
+.account--panel,
+.account__header__bar,
+.account__header__bio .account__header__fields,
+.status,
+.detailed-status__action-bar,
+.public-layout .public-account-header__tabs__tabs .counter,
+.account__header__fields,
+.account__header__fields dl,
+.account__header__bio .account__header__fields,
+.account,
+.directory__card__extra .account__header__content,
+.account__section-headline, .notification__filter-bar,
+.actions-modal .dropdown-menu__separator, .actions-modal .status
+{border-color: var(--textMuted)}
+
+.account__header__account-note,
+.announcements-list
+{border-color: transparent}
+
+.account__section-headline a.active::after, .account__section-headline button.active::after, .notification__filter-bar a.active::after, .notification__filter-bar button.active::after
+{border-color: transparent transparent var(--bg)}

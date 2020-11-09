@@ -1,0 +1,17 @@
+/*
+Hide buttons that can't be clicked
+- columns on /about and tag pages have buttons that don't work.
+- so, this snippet hides those nonworking buttons to save space
+- and to avoid confusion.
+- unboostable buttons are made transparent on hover instead.
+
+this is fixed in https://github.com/tootsuite/mastodon/pull/10054
+
+author: trwnh
+license: Public Domain
+*/
+.status__action-bar .icon-button.disabled:hover,
+.notification-favourite .status.status-direct .icon-button.disabled:hover
+{color: transparent !important}
+
+#mastodon-timeline .status__action-bar {display: none}

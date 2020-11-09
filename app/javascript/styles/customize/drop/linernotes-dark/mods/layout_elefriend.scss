@@ -1,0 +1,20 @@
+/*
+Release elephant friend from their confines:
+- elephant friend will now hang out in the corner of your browser,
+  instead of being trapped in the drawer.
+
+author: trwnh
+license: Public Domain
+*/
+.drawer__inner, .drawer__inner__mastodon {
+    background: none; z-index: 0
+}
+.drawer__inner__mastodon > img {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    height: 180px;
+    z-index: -1
+}
+.compose-form {z-index: 1}
+.drawer__inner {height: 100%} /* firefox bug highlights drawer text on click? */

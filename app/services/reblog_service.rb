@@ -32,7 +32,9 @@ class ReblogService < BaseService
 
     Trends.register!(reblog)
     DistributionWorker.perform_async(reblog.id)
-    ActivityPub::DistributionWorker.perform_async(reblog.id)
+    unless reblogged_status.local_only?
+      ActivityPub::DistributionWorker.perform_async(reblog.id)
+    end
 
     create_notification(reblog)
     bump_potential_friendship(account, reblog)

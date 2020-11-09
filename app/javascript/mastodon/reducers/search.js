@@ -11,6 +11,7 @@ import {
   COMPOSE_MENTION,
   COMPOSE_REPLY,
   COMPOSE_DIRECT,
+  COMPOSE_QUOTE,
 } from '../actions/compose';
 import { Map as ImmutableMap, List as ImmutableList, fromJS } from 'immutable';
 
@@ -39,6 +40,7 @@ export default function search(state = initialState, action) {
   case COMPOSE_REPLY:
   case COMPOSE_MENTION:
   case COMPOSE_DIRECT:
+  case COMPOSE_QUOTE:
     return state.set('hidden', true);
   case SEARCH_FETCH_REQUEST:
     return state.withMutations(map => {

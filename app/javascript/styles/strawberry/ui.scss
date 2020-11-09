@@ -1,0 +1,51 @@
+.tabs-bar {
+	background: $bhd;
+}
+.tabs-bar__link {
+		color: $cui;
+		border-color: $cui;
+}
+.tabs-bar__link.active {
+	color: $curl;
+	border-color: $cbut;
+}
+.floating-action-button,
+.emoji-mart-anchor-bar {
+	background: $cbut;
+}
+.floating-action-button:hover {
+	background: $curl;
+}
+.button:disabled {
+	background: $cui2;
+}
+
+.emoji-mart-bar:first-child {
+	background: $btt3;
+}
+.emoji-mart-anchor-selected {
+	color: $cbut;
+}
+.emoji-mart-anchor-selected svg {
+	fill: $cbut !important;
+}
+.emoji-mart-anchors svg {
+	fill: $cui;
+}
+.emoji-mart-bar,
+.emoji-mart-search input {
+	border-color: $cui;
+}
+@media screen and (max-width: 700px){
+	.landing-page.tag-page #mastodon-timeline .column {
+		height: 100%;
+	}
+	.navigation-bar {
+	background: $blb;
+	border-bottom: 1px dotted $cui;
+	}
+}
+
+.admin-wrapper .sidebar ul a {
+	color: $btt3;
+}

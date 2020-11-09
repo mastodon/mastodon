@@ -28,7 +28,7 @@
     border-top-width: 1px;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
-    display: none;
+    // display: none;
   }
 }
 
@@ -252,6 +252,109 @@
   }
 }
 
+// .emoji-mart-preview {
+//   display: none;
+// }
+
 .emoji-mart-preview {
-  display: none;
+  position: relative;
+  height: 70px;
+}
+
+.emoji-mart-preview-emoji,
+.emoji-mart-preview-data,
+.emoji-mart-preview-skins {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.emoji-mart-preview-emoji {
+  left: 12px;
+}
+
+.emoji-mart-preview-data {
+  left: 68px; right: 12px;
+  word-break: break-all;
+}
+
+.emoji-mart-preview-skins {
+  right: 30px;
+  text-align: right;
+}
+
+.emoji-mart-preview-skins.custom {
+  right: 10px;
+  text-align: right;
+}
+
+.emoji-mart-preview-name {
+  font-size: 14px;
+}
+
+.emoji-mart-preview-shortname {
+  font-size: 12px;
+  color: #888;
+}
+.emoji-mart-preview-shortname + .emoji-mart-preview-shortname,
+.emoji-mart-preview-shortname + .emoji-mart-preview-emoticon,
+.emoji-mart-preview-emoticon + .emoji-mart-preview-emoticon {
+  margin-left: .5em;
+}
+
+.emoji-mart-preview-emoticon {
+  font-size: 11px;
+  color: #bbb;
+}
+
+@media only screen and (min-width: 500px) {
+  .emoji-mart-bar:last-child {
+    position: absolute;
+    right: 100%;
+    top: 0px;
+    width: 120px;
+    height: 120px;
+    background: #fff;
+    border-radius: 5px;
+  }
+
+  .emoji-mart-preview {
+    position: relative;
+    height: 120px !important;
+  }
+
+  .emoji-mart-preview-emoji {
+    left: 4px !important;
+  }
+
+  .emoji-mart-preview-emoji .emoji-mart-emoji span {
+    width: 100px !important;
+    height: 100px !important;
+  }
+
+  .emoji-mart-preview-emoji .emoji-mart-emoji span[style*='url("/emoji/sheet_'] {
+    width: 32px !important;
+    height: 32px !important;
+    margin: 34px;
+  }
+
+  .emoji-mart-preview-data {
+    left: 0 !important;
+    right: 0 !important;
+    text-align: center;
+    white-space: nowrap !important;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    position: relative;
+    top: 100%;
+    background: #fff;
+    height: 24px;
+    padding: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+  }
+
+  .emoji-mart-preview-name {
+    display:none
+  }
 }

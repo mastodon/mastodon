@@ -1,3 +1,6 @@
+@import '../customize/mastodon-light-diff';
+@import '../customize/highlight/themes/tomorrow';
+
 // Notes!
 // Sass color functions, "darken" and "lighten" are automatically replaced.
 
@@ -259,6 +262,9 @@ html {
 
 // Change the background colors of status__content__spoiler-link
 .reply-indicator__content .status__content__spoiler-link,
+.status__content .status__content__show-translation-button,
+.status__content .status__content__read-more-button,
+.status__content+.status__content__read-more-button,
 .status__content .status__content__spoiler-link {
   background: $ui-base-color;
 

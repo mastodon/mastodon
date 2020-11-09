@@ -22,8 +22,15 @@
     .fields-group.fields-row__column.fields-row__column-6
       = f.input :setting_default_language, collection: [nil] + filterable_languages, wrapper: :with_label, label_method: lambda { |locale| locale.nil? ? I18n.t('statuses.default_language') : native_locale_name(locale) }, required: false, include_blank: false, hint: false
 
+  .fields-row
+    .fields-group.fields-row__column.fields-row__column-6
+      = f.input :setting_default_content_type, collection: Status.selectable_content_types, wrapper: :with_label, include_blank: false, label_method: lambda { |content_type| I18n.t("statuses.content_types.#{content_type}") }, required: false, hint: false
+
   .fields-group
     = f.input :setting_default_sensitive, as: :boolean, wrapper: :with_label
+
+  .fields-group
+    = f.input :setting_default_federation, as: :boolean, wrapper: :with_label
 
   .fields-group
     = f.input :setting_show_application, as: :boolean, wrapper: :with_label, recommended: true

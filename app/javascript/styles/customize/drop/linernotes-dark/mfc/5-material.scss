@@ -1,0 +1,72 @@
+/*-----------------------
+material design overrides
+-----------------------*/
+
+/* turn statuses into cards */
+.drawer__inner darker {filter: drop-shadow(0 0 2px black)}
+.status,
+.conversation,
+.account-authorize__wrapper,
+.follow_requests-unlocked_explanation
+{
+    box-shadow: 0px 0px 2px black;
+    background: var(--bg);
+    margin: 8px;
+    border-radius: 2px;
+    border: 0
+}
+.status__wrapper--filtered {border: none}
+.detailed-status__wrapper {margin: 8px;} /*might look weird in older versions pre-2.6?*/
+
+/* recolors */
+.column>.scrollable,
+.landing-page #mastodon-timeline,
+.activity-stream .entry
+    {background: none !important}
+.account-timeline__header,
+.account,
+.conversation
+    {background: var(--bg)}
+.notification .account,
+.load-more
+    {background: var(--bgPage)}
+.status__prepend,
+.notification__message,
+.status__prepend .status__display-name strong,
+.keyboard-shortcuts
+    {color: var(--textPage) !important}
+.notification-follow .display-name__html
+    {color: var(--textPageBold)}
+.notification-follow .display-name__account,
+.notification-follow .account .icon-button,
+.status__wrapper--filtered,
+.load-more
+    {color: var(--textPageMuted)}
+
+/* borders */
+.account__section-headline, .notification__filter-bar,
+.account--panel, .account__header__bar, .account__header__bio .account__header__fields, .status, .detailed-status__action-bar, .account__header__fields dl, .account__header__bio .account__header__fields, .account, .directory__card__extra .account__header__content, .account__section-headline, .notification__filter-bar,
+.conversation,
+.account__header__fields,
+.account__header__account-note,
+.public-layout .public-account-header__tabs__tabs .counter
+
+{border-color: transparent}
+
+/* triangle tab indicator */
+.account__section-headline a.active:after,
+.account__section-headline a.active:before,
+.community-timeline__section-headline a.active:after,
+.community-timeline__section-headline a.active:before,
+.public-timeline__section-headline a.active:after,
+.public-timeline__section-headline a.active:before,
+.notification__filter-bar button.active::before,
+.notification__filter-bar button.active::after
+{
+    border-color: transparent transparent var(--bgHead)
+}
+
+/* fix rounding on end toots in stream */
+.activity-stream .entry:first-child .status,
+.activity-stream .entry:last-child .status
+{border-radius: 2px}

@@ -1444,6 +1444,9 @@ en:
         one: "%{count} video"
         other: "%{count} videos"
     boosted_from_html: Boosted from %{acct_link}
+    content_types:
+      text/markdown: Markdown
+      text/plain: Plain text
     content_warning: 'Content warning: %{warning}'
     default_language: Same as interface language
     disallowed_hashtags:
@@ -1452,6 +1455,7 @@ en:
     edited_at_html: Edited %{date}
     errors:
       in_reply_not_found: The post you are trying to reply to does not appear to exist.
+    local_only: Local-only
     open_in_web: Open in web
     over_character_limit: character limit of %{max} exceeded
     pin_errors:
@@ -1609,9 +1613,38 @@ en:
       <p>Originally adapted from the <a href="https://github.com/discourse/discourse">Discourse privacy policy</a>.</p>
     title: "%{instance} Terms of Service and Privacy Policy"
   themes:
-    contrast: Mastodon (High contrast)
-    default: Mastodon (Dark)
-    mastodon-light: Mastodon (Light)
+    bilibili-light: Bilibili
+    contrast: Mastodon (Dark-Blue)
+    cybre-light: Cybre Light
+    dark-cyan: Mastodon (Dark-Cyan)
+    dark-green: Mastodon (Dark-Green)
+    dark-orange: Mastodon (Dark-Orange)
+    dark-pink: Mastodon (Dark-Pink)
+    dark-purple: Mastodon (Dark-Purple)
+    dark-red: Mastodon (Dark-Red)
+    dark-yellow: Mastodon (Dark-Yellow)
+    default: Mastodon (Default)
+    forest: Forest
+    light-cyan: Mastodon (Light-Cyan)
+    light-green: Mastodon (Light-Green)
+    light-orange: Mastodon (Light-Orange)
+    light-pink: Mastodon (Light-Pink)
+    light-purple: Mastodon (Light-Purple)
+    light-red: Mastodon (Light-Red)
+    light-yellow: Mastodon (Light-Yellow)
+    luxury: Luxury
+    mastodon-light: Mastodon (Light-Blue)
+    new-year: New Year
+    nga: NGA Style
+    sakura: Sakura
+    sleeping-town: Sleeping Town
+    strawberry: Strawberry
+    transparent-aurora: Aurora (Transparent)
+    transparent-forest-trace: Forest Trace (Transparent)
+    transparent-starry-sky: Starry Sky (Transparent)
+    ubuntu-light: Ubuntu Orange
+    ubuntu-terminal: Ubuntu Terminal
+    witches-town: Witches Town
   time:
     formats:
       default: "%b %d, %Y, %H:%M"

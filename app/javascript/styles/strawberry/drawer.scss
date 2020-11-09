@@ -1,0 +1,54 @@
+.drawer__header {
+	background: $bhd;
+}
+.drawer__tab {
+	color: $cui;
+	text-shadow: 0 0 5px white
+}
+.drawer__header a:hover {
+	background: $blb;
+}
+.drawer__inner__mastodon,
+.drawer__inner {
+	background: $btxt;
+}
+
+.navigation-bar,
+.text-icon-button:hover {
+	color: $curl;
+}
+.navigation-bar strong {
+	color: white
+}
+.compose-form .compose-form__buttons-wrapper {
+	background: $blb;
+	border-top: 1px dotted $cui;
+	box-shadow: 0 5px 20px -8px $btt2 inset;
+}
+
+.icon-button.inverted,
+.text-icon-button,
+.compose-form .compose-form__buttons-wrapper .character-counter__wrapper .character-counter {
+	color: $btxt;
+	text-shadow: 0 0 5px white;
+}
+
+.drawer__inner__mastodon {
+	background: linear-gradient(
+		to bottom,
+		rgba(170, 48, 41,1),
+		rgba(170, 48, 41,0),
+		rgba(170, 48, 41,0)
+		),
+	url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 234.80078 31.757813" width="234.80078" height="31.757812"><path d="M19.599609 0c-1.05 0-2.10039.375-2.90039 1.125L0 16.925781v14.832031h234.80078V17.025391l-16.5-15.900391c-1.6-1.5-4.20078-1.5-5.80078 0l-13.80078 13.099609c-1.6 1.5-4.19883 1.5-5.79883 0L179.09961 1.125c-1.6-1.5-4.19883-1.5-5.79883 0L159.5 14.224609c-1.6 1.5-4.20078 1.5-5.80078 0L139.90039 1.125c-1.6-1.5-4.20078-1.5-5.80078 0l-13.79883 13.099609c-1.6 1.5-4.20078 1.5-5.80078 0L100.69922 1.125c-1.600001-1.5-4.198829-1.5-5.798829 0l-13.59961 13.099609c-1.6 1.5-4.200781 1.5-5.800781 0L61.699219 1.125c-1.6-1.5-4.198828-1.5-5.798828 0L42.099609 14.224609c-1.6 1.5-4.198828 1.5-5.798828 0L22.5 1.125C21.7.375 20.649609 0 19.599609 0z" fill="%23ecded2"/></svg>') no-repeat bottom/100% auto;
+}
+
+.button {
+	background: $cbut;
+}
+.button:hover {
+	background: $curl;
+}
+.icon-button.inverted.disabled {
+	color: $cui2;
+}

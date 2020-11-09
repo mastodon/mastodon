@@ -1,0 +1,29 @@
+/*
+Bottom tabs on mobile:
+- Places the tab bar at the bottom instead of the top.
+- Fixes layout errors that are a result of this change.
+
+author: trwnh
+license: Public Domain
+*/
+@media (max-width: 630px) {
+
+.tabs-bar {
+position: fixed;
+bottom: 0;
+z-index: 1;
+width: 100%;
+margin: 0 !important;
+}
+
+.getting-started {overflow: auto} /* can be removed after PR #10075 is merged */
+
+.columns-area {padding: 0}
+.getting-started__trends, .getting-started__wrapper, .search {margin: 0}
+.columns-area__panels__main, .tabs-bar__wrapper {padding: 0}
+  
+.floating-action-button, .column .scrollable > div:last-child {margin-bottom: 50px}
+.react-swipeable-view-container {height: calc(100% - 50px)}
+.react-swipeable-view-container .columns-area {height: 100% !important}
+    
+}

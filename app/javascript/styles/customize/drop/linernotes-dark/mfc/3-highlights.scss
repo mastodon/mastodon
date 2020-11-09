@@ -1,0 +1,224 @@
+/*------------------------------------------------------------------------------
+* HIGHLIGHTS COLOR PALETTE =====================================================
+------------------------------------------------------------------------------*/
+
+/* scrollbar fix */
+html {scrollbar-color: var(--bg) var(--bgPage)}
+
+/*------------------
+headers and warnings
+------------------*/
+
+/* columns view */
+    .column-header,
+        .column-header__button,
+        .column-header__back-button,
+        .column-header__button:hover,
+        .column-header__back-button:hover,
+        .column-back-button,
+        .column-header>.column-header__back-button,
+        .column-header.active .column-header__icon,
+    .search-results__header,
+    .keyboard-shortcuts kbd,
+    .compose-form__warning,
+        .compose-form .compose-form__warning,
+    .react-toggle:hover:not(.react-toggle--disabled) .react-toggle-track,
+    .column-link__badge,
+    .column-link--transparent.active,
+/* settings pages */
+    .list-editor h4,
+    .admin-wrapper .content h4,
+        .admin-wrapper .sidebar ul ul a.selected,
+    .flash-message,
+        .flash-message.notice,
+    .column-inline-form,
+        .column-inline-form .icon-button,
+        .simple_form .warning,
+        .table-form .warning,
+    .pagination .current,
+    .account-role,
+    .batch-table__toolbar
+{
+    background: var(--bgHead);
+    color: var(--textHead)
+}
+
+/*--------------
+accented buttons
+--------------*/
+
+/* primary buttons */
+.directory__tag > a:hover, .directory__tag > a:active, .directory__tag > a:focus,
+    .button,
+        .button:active,
+        .button:focus,
+        .button:hover,
+    .icon-button.overlayed:hover,
+    .floating-action-button,
+    .simple_form button,
+        .simple_form button:active,
+        .simple_form button:focus,
+        .simple_form button:hover,
+        .simple_form .button,
+            .simple_form .button:active,
+            .simple_form .button:focus,
+            .simple_form .button:hover,
+        .simple_form .block-button,
+            .simple_form .block-button:active,
+            .simple_form .block-button:focus,
+            .simple_form .block-button:hover,
+    .button.button-alternative:hover,
+        .button.button-alternative-2:hover,
+    .column-link:hover,
+        .getting-started a.column-link:hover,
+    .column-header__button:hover,
+        .column-header__button.active:hover,
+        .column-header__back-button:hover,
+        .column-back-button:hover,
+    .drawer__header a:hover,
+    .react-toggle--checked .react-toggle-track,
+    .react-toggle--checked:hover:not(.react-toggle--disabled) .react-toggle-track,
+    .privacy-dropdown.active .privacy-dropdown__value.active,
+        .privacy-dropdown__option:hover,
+        .privacy-dropdown__option.active,
+        .privacy-dropdown__option.active:hover,
+    .admin-wrapper .sidebar ul a:hover,
+        .admin-wrapper .sidebar ul ul a.selected:hover,
+    .reply-indicator__content .status__content__spoiler-link:hover,
+        .status__content .status__content__spoiler-link:hover,
+    .load-more:hover,
+    .conversation__unread,
+/* modals */
+    .confirmation-modal__action-bar .confirmation-modal__cancel-button:active,
+        .confirmation-modal__action-bar .confirmation-modal__cancel-button:focus,
+        .confirmation-modal__action-bar .confirmation-modal__cancel-button:hover,
+    .confirmation-modal__action-bar .mute-modal__cancel-button:active,
+        .confirmation-modal__action-bar .mute-modal__cancel-button:focus,
+        .confirmation-modal__action-bar .mute-modal__cancel-button:hover,
+    .mute-modal__action-bar .confirmation-modal__cancel-button:active,
+        .mute-modal__action-bar .confirmation-modal__cancel-button:focus,
+        .mute-modal__action-bar .confirmation-modal__cancel-button:hover,
+    .mute-modal__action-bar .mute-modal__cancel-button:active,
+        .mute-modal__action-bar .mute-modal__cancel-button:focus,
+        .mute-modal__action-bar .mute-modal__cancel-button:hover,
+    .upload-progress__tracker,
+    .radio-button__input.checked,
+/* public pages */
+    .public-layout .header .nav-button:hover,
+        .public-layout .header .brand:active,
+        .public-layout .header .brand:focus,
+        .public-layout .header .brand:hover,
+    .button.button-secondary:hover,
+/* settings pages */
+    .pagination .page.current:hover,
+    .introduction__dot.active,
+    .dashboard__counters > div > a:hover,
+        .dashboard__counters > div > a:focus,
+        .dashboard__counters > div > a:active,
+        .dashboard__counters > div > a:hover .dashboard__counters__label,
+        .dashboard__counters > div > a:focus .dashboard__counters__label,
+        .dashboard__counters > div > a:active .dashboard__counters__label,
+/* video player ui */
+    .video-player__seek__buffer,
+    .video-player__seek__progress,
+    .video-player__volume__current,
+    .video-player__volume__handle,
+/* announcements */
+    .icon-with-badge__badge,
+    .announcements__item__unread,
+    .reactions-bar__item:hover
+{
+    background: var(--accent);
+    color: var(--accentText);
+}
+
+/*------------
+accented links
+------------*/
+
+/* status links */
+    .status__content a,
+        .status__content a.unhandled-link,
+    .getting-started a,
+        .getting-started p a,
+        .getting-started__footer a,
+        .getting-started__footer p a,
+    .reply-indicator__content a,
+        .reply-indicator__content a.unhandled-link,
+        .reply-indicator__cancel .icon-button.inverted:hover,
+    .status__content__read-more-button,
+    .icon-button.active,
+        .icon-button:focus,
+        .icon-button:hover,
+    .search__icon .fa:hover,
+    .account__header__bio .account__header__fields a,
+    .notification-follow .account .icon-button:hover,
+    .notification__message .fa,
+    .notification__display-name:hover,
+    .admin-wrapper .content .muted-hint a,
+    .table a,
+        a.table-action-link:hover,
+        button.table-action-link:hover,
+    .media-spoiler:active,
+        .media-spoiler:focus,
+        .media-spoiler:hover,
+        .video-player__spoiler.active:hover,
+    .column-header__setting-btn:hover,
+        .column-inline-form .icon-button:hover,
+    .empty-column-indicator a, .error-column a,
+    .timeline-hint a,
+/* post options */
+    .compose-form .text-icon-button:hover,
+        .text-icon-button.active,
+        .drawer__inner .icon-button:hover,
+        .icon-button.inverted.active.disabled,
+    .navigation-bar__profile-edit:hover,
+        .navigation-bar__profile-account:hover,
+        .account__action-bar-dropdown .icon-button:hover,
+        .account__section-headline a:hover,
+    .compose-form .compose-form__warning a,
+/* modals */
+    .list-editor .account .icon-button:hover,
+        .list-editor .account .icon-button:active,
+        .list-editor .account .icon-button:focus,
+/* public pages */
+    .simple_form .input.boolean label a,
+    .landing-page__short-description p a,
+        .landing-page #mastodon-timeline p a,
+    .simple_form p.hint.subtle-hint a,
+    .contact-widget__mail a,
+    .public-layout .footer ul a:hover,
+        .public-layout .footer .grid .column-2 h4 a:hover,
+        .public-layout .public-account-bio .account__header__fields a,
+        .form-footer a:hover,
+/* settings pages */
+    .pagination a:hover,
+        .pagination .newer:hover,
+        .pagination .older:hover,
+    .filters .filter-subset a.selected,
+    .simple_form .hint a,
+/* mobile elements */
+    .tabs-bar__link.active
+{
+    color: var(--accent)
+}
+
+/* border fix */
+.react-toggle--checked .react-toggle-thumb,
+.radio-button__input.checked,
+.icon-with-badge__badge,
+.filters .filter-subset a.selected,
+.introduction__dot,
+.public-layout .public-account-header__tabs__tabs .counter.active::after
+{border-color: var(--accent)}
+
+/* trends fix */
+.trends__item__sparkline path:first-child {fill: transparent !important}
+.trends__item__sparkline path:last-child {stroke: var(--accent) !important}
+
+/* focus fix */
+.focusable:focus
+{
+  background: transparent;
+  border: 2px solid var(--accent);
+}

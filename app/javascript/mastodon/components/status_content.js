@@ -7,6 +7,10 @@ import classnames from 'classnames';
 import PollContainer from 'mastodon/containers/poll_container';
 import Icon from 'mastodon/components/icon';
 import { autoPlayGif } from 'mastodon/initial_state';
+import { getLocale  } from 'mastodon/locales';
+import { parse as htmlParser } from 'node-html-parser';
+import googleLogo from 'images/google_logo.svg';
+import api from '../api';
 
 const MAX_HEIGHT = 642; // 20px * 32 (+ 2px padding at the top)
 
@@ -24,10 +28,14 @@ export default class StatusContent extends React.PureComponent {
     onClick: PropTypes.func,
     collapsable: PropTypes.bool,
     onCollapsedToggle: PropTypes.func,
+    quote: PropTypes.bool,
   };
 
   state = {
     hidden: true,
+    hideTranslation: true,
+    translation: null,
+    translationStatus: null,
   };
 
   _updateStatusLinks () {
@@ -163,19 +171,69 @@ export default class StatusContent extends React.PureComponent {
     }
   }
 
+  handleTranslationClick = (e) => {
+    e.preventDefault();
+    const translationServiceEndpoint = '/translate/';
+
+    if (this.state.hideTranslation === true && this.state.translation === null) {
+      const { status } = this.props;
+      const content = status.get('content').length === 0 ? '' : htmlParser(status.get('content')).structuredText;
+
+      let locale = getLocale().localeData[0].locale;
+      if (locale === 'zh') {
+        const domLang = document.documentElement.lang;
+        locale = domLang === 'zh-CN' ? 'zh-cn' : 'zh-tw';
+      }
+
+      this.setState({ translationStatus: 'fetching' });
+      api().post(
+        translationServiceEndpoint,
+        {
+          data: {
+            text: content === '' ? 'Nothing to translate' : content,
+            to: locale,
+          },
+        })
+        .then(res => {
+          this.setState({
+            translation: res.data.text,
+            translationStatus: 'succeed',
+            hideTranslation: false,
+          });
+        })
+        .catch(() => {
+          this.setState({
+            translationStatus: 'failed',
+            hideTranslation: true,
+          });
+        });
+    } else {
+      this.setState({ hideTranslation: !this.state.hideTranslation });
+    }
+  }
+
   setRef = (c) => {
     this.node = c;
   }
 
   render () {
-    const { status } = this.props;
+    const { status, quote } = this.props;
 
     const hidden = this.props.onExpandedToggle ? !this.props.expanded : this.state.hidden;
     const renderReadMore = this.props.onClick && status.get('collapsed');
     const renderViewThread = this.props.showThread && status.get('in_reply_to_id') && status.get('in_reply_to_account_id') === status.getIn(['account', 'id']);
+    const addHashtagMarkup = (html) => {
+      let template = document.createElement('template');
+      template.innerHTML = `<fragment>${html}<fragment/>`;
+      template.content.firstChild.querySelectorAll('.hashtag').forEach((e)=>{
+        e.innerHTML = e.innerHTML.replace('#', '<span class="hash_char">#</span>');
+      })
+      return template.content.firstChild.innerHTML
+    }
 
-    const content = { __html: status.get('contentHtml') };
-    const spoilerContent = { __html: status.get('spoilerHtml') };
+    const content = { __html: addHashtagMarkup(status.get('contentHtml')) };
+    const spoilerContent = { __html: addHashtagMarkup(status.get('spoilerHtml')) };
+
     const classNames = classnames('status__content', {
       'status__content--with-action': this.props.onClick && this.context.router,
       'status__content--with-spoiler': status.get('spoiler_text').length > 0,
@@ -188,10 +246,55 @@ export default class StatusContent extends React.PureComponent {
       </button>
     );
 
+    const toggleTranslation = !this.state.hideTranslation ? <FormattedMessage id='status.hide_translation' defaultMessage='Hide translation' /> : <FormattedMessage id='status.show_translation' defaultMessage='Translate toot' />;
+
     const readMoreButton = (
       <button className='status__content__read-more-button' onClick={this.props.onClick} key='read-more'>
         <FormattedMessage id='status.read_more' defaultMessage='Read more' /><Icon id='angle-right' fixedWidth />
       </button>
+    );
+
+    const translationContainer = (
+      getLocale().localeData[0].locale !== status.get('language') ?
+      <React.Fragment>
+        <button
+          tabIndex='-1' className={'status__content__show-translation-button'}
+          onClick={this.handleTranslationClick.bind(this)}
+        >{toggleTranslation} <Icon id='language ' fixedWidth /></button>
+
+        {/* error message */}
+        <div className='translation-content__wrapper'>
+          <section
+            className={`translation-content__failed ${this.state.translationStatus === 'failed' ? 'display' : 'hidden'}`}
+          >
+            <p><FormattedMessage id='status.translation_failed' defaultMessage='Fetch translation failed' /></p>
+          </section>
+          <section
+            className={`translation-content__loading ${this.state.translationStatus === 'fetching' ? 'display' : 'hidden'}`}
+          >
+            <div className='spinner'>
+              <div />
+              <div />
+              <div />
+              <div />
+            </div>
+            {/* <p>Fetching translation, please wait</p> */}
+          </section>
+          <section
+            className={`translation-content__succeed ${this.state.translationStatus === 'succeed' && !this.state.hideTranslation ? 'display' : 'hidden'}`}
+          >
+            <p className='translation-content__powered-by'>
+              <FormattedMessage
+                id='status.translation_by' defaultMessage='Translation powered by {google}'
+                values={{
+                  google: <img alt='Google' draggable='false' src={googleLogo} />,
+                }}
+              />
+            </p>
+            <p className='translation-content'>{this.state.translation}</p>
+          </section>
+        </div>
+      </React.Fragment> : null
     );
 
     if (status.get('spoiler_text').length > 0) {
@@ -221,7 +324,9 @@ export default class StatusContent extends React.PureComponent {
 
           <div tabIndex={!hidden ? 0 : null} className={`status__content__text ${!hidden ? 'status__content__text--visible' : ''} translate`} dangerouslySetInnerHTML={content} />
 
-          {!hidden && !!status.get('poll') && <PollContainer pollId={status.get('poll')} />}
+          {!hidden ? translationContainer : null}
+
+          {!quote && !hidden && !!status.get('poll') && <PollContainer pollId={status.get('poll')} />}
 
           {renderViewThread && showThreadButton}
         </div>
@@ -231,7 +336,9 @@ export default class StatusContent extends React.PureComponent {
         <div className={classNames} ref={this.setRef} tabIndex='0' onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp} key='status-content' onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
           <div className='status__content__text status__content__text--visible translate' dangerouslySetInnerHTML={content} />
 
-          {!!status.get('poll') && <PollContainer pollId={status.get('poll')} />}
+          {translationContainer}
+
+          {!quote && !!status.get('poll') && <PollContainer pollId={status.get('poll')} />}
 
           {renderViewThread && showThreadButton}
         </div>,
@@ -247,7 +354,9 @@ export default class StatusContent extends React.PureComponent {
         <div className={classNames} ref={this.setRef} tabIndex='0' onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
           <div className='status__content__text status__content__text--visible translate' dangerouslySetInnerHTML={content} />
 
-          {!!status.get('poll') && <PollContainer pollId={status.get('poll')} />}
+          {translationContainer}
+
+          {!quote && !!status.get('poll') && <PollContainer pollId={status.get('poll')} />}
 
           {renderViewThread && showThreadButton}
         </div>

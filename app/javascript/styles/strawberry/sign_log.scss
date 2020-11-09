@@ -1,0 +1,69 @@
+.simple_form input[type=text],
+.simple_form input[type=number],
+.simple_form input[type=email],
+.simple_form input[type=password],
+.simple_form textarea {
+	color: $cui;
+	background: $btt;
+	border: 1px solid $cui2;
+}
+
+.simple_form input[type="email"]:hover,
+.simple_form input[type="number"]:hover,
+.simple_form input[type="password"]:hover,
+.simple_form input[type="text"]:hover,
+.simple_form textarea:hover {
+	border: 1px solid $curl;
+}
+
+.simple_form input[type="email"]:active,
+.simple_form input[type="email"]:focus,
+.simple_form input[type="number"]:active,
+.simple_form input[type="number"]:focus,
+.simple_form input[type="password"]:active,
+.simple_form input[type="password"]:focus,
+.simple_form input[type="text"]:active,
+.simple_form input[type="text"]:focus,
+.simple_form textarea:active,
+.simple_form textarea:focus {
+	background: $btt2;
+	border: 1px solid $curl;
+}
+
+.simple_form button,
+.simple_form .button,
+.simple_form .block-button {
+	background: $cbut;
+}
+
+.simple_form .block-button:hover,
+.simple_form .button:hover,
+.simple_form button:hover,
+.simple_form .block-button:active,
+.simple_form .block-button:focus,
+.simple_form .button:active,
+.simple_form .button:focus,
+.simple_form button:active,
+.simple_form button:focus {
+	background: $curl;
+}
+
+.form-footer a {
+	color: $btt2;
+}
+
+.simple_form .hint,
+.simple_form p.hint {
+	color: $cui;
+}
+
+.simple_form .hint a {
+	color: $cbut;
+}
+
+.simple_form .label_input__append {
+	color: $cui;
+}
+.simple_form .label_input__append::after {
+	background: linear-gradient(to right, rgba(19, 20, 25, 0), $cui);
+}

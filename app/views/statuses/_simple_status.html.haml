@@ -38,6 +38,9 @@
       - if status.preloadable_poll
         = render_poll_component(status)
 
+  - if status.quote?
+    = render partial: "statuses/quote_status", locals: {status: status.quote}
+
   - if !status.ordered_media_attachments.empty?
     - if status.ordered_media_attachments.first.video?
       = render_video_component(status, width: 610, height: 343)
@@ -68,3 +71,6 @@
         = fa_icon 'at fw'
     = link_to remote_interaction_path(status, type: :favourite), class: 'status__action-bar-button icon-button modal-button' do
       = fa_icon 'star fw'
+    - if status.local_only
+      %span.status__action-bar-button.icon-button.disabled{style: 'font-size: 18px; width: 23.1429px; height: 23.1429px; line-height: 23.15px;'}<
+        = fa_icon 'chain-broken fw', 'title': t('statuses.local_only')

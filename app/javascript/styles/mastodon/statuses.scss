@@ -63,6 +63,28 @@
       }
     }
 
+    .status.quote-status {
+      border: solid 1px $ui-base-lighter-color;
+      border-radius: 4px;
+      padding: 5px;
+      margin-top: 15px;
+      cursor: pointer;
+      width: 100%;
+
+      .status__avatar {
+        height: 18px;
+        width: 18px;
+        position: absolute;
+        top: 5px;
+        left: 5px;
+
+        & img {
+          width: 18px;
+          height: 18px;
+        }
+      }
+    }
+
     @media screen and (max-width: 740px) {
       .detailed-status,
       .status,

@@ -1,4 +1,4 @@
-# frozen_string_literal: true
+# frozen_string_literal: truey
 
 source 'https://rubygems.org'
 ruby '>= 2.6.0', '< 3.1.0'
@@ -58,6 +58,9 @@ gem 'http_accept_language', '~> 2.1'
 gem 'httplog', '~> 1.5.0'
 gem 'idn-ruby', require: 'idn'
 gem 'kaminari', '~> 1.2'
+gem 'kramdown', '~> 2.3'
+gem 'kramdown-parser-gfm', '~> 1.1'
+gem 'rouge', '~> 3.21'
 gem 'link_header', '~> 0.0'
 gem 'mime-types', '~> 3.4.1', require: 'mime/types/columnar'
 gem 'nokogiri', '~> 1.13'
@@ -152,4 +155,5 @@ end
 gem 'concurrent-ruby', require: false
 gem 'connection_pool', require: false
 
+gem "sidekiq-statistic", "~> 1.4"
 gem 'xorcist', '~> 1.1'

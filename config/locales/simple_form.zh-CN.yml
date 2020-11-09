@@ -50,6 +50,7 @@ zh-CN:
         scopes: 哪些 API 被允许使用。如果你勾选了更高一级的范围，就不用单独选中子项目了。
         setting_aggregate_reblogs: 不显示最近已经被转嘟过的嘟文(只会影响新收到的转嘟)
         setting_always_send_emails: 一般情况下，如果您活跃使用 Mastodon，我们不会给您发送电子邮件通知
+        setting_default_federation: 关闭后，除非在写作的时候手动指定，否则嘟文不会传递给其他实例
         setting_default_sensitive: 敏感内容默认隐藏，并在点击后显示
         setting_display_media_default: 隐藏被标记为敏感内容的媒体
         setting_display_media_hide_all: 隐藏所有媒体
@@ -156,6 +157,8 @@ zh-CN:
         setting_auto_play_gif: 自动播放 GIF 动画
         setting_boost_modal: 在转嘟前询问我
         setting_crop_images: 把未展开嘟文中的图片裁剪到 16x9
+        setting_default_content_type: 默认的嘟文富文本格式
+        setting_default_federation: 默认允许自己的嘟文出现在其他实例上
         setting_default_language: 发布语言
         setting_default_privacy: 嘟文默认可见范围
         setting_default_sensitive: 总是将我发送的媒体文件标记为敏感内容

@@ -58,6 +58,9 @@ Rails.application.routes.draw do
   get '/users/:username', to: redirect('/@%{username}'), constraints: lambda { |req| req.format.nil? || req.format.html? }
   get '/authorize_follow', to: redirect { |_, request| "/authorize_interaction?#{request.params.to_query}" }
 
+  post '/translate', to: 'translate#create'
+  # get '/translate', to: 'translate#gets'
+
   resources :accounts, path: 'users', only: [:show], param: :username do
     get :remote_follow,  to: 'remote_follow#new'
     post :remote_follow, to: 'remote_follow#create'
@@ -597,6 +600,7 @@ Rails.application.routes.draw do
   get '/about',        to: 'about#show'
   get '/about/more',   to: 'about#more'
   get '/terms',        to: 'about#terms'
+  get '/apps',        to: 'about#apps'
 
   match '/', via: [:post, :put, :patch, :delete], to: 'application#raise_not_found', format: false
   match '*unmatched_route', via: :all, to: 'application#raise_not_found', format: false

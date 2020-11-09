@@ -1,0 +1,1005 @@
+$success-green: #B64579;    // Padua
+
+$ui-base-color: #f7e8ed; // "darkest"
+$ui-base-alt: #f9f2f5;
+$ui-base-lighter-color: darken($ui-base-color, 40%); // Lighter darkest
+$ui-secondary-color: #ead0d6; // "lightest"
+$ui-primary-color: #bf5677; // "lighter"
+$ui-highlight-color: #bf5677; // "vibrant"
+$primary-text-color: #382b32;
+$dark-text-color: #ca748f;
+$secondary-text-color: #382b32;
+
+$header-color: $ui-primary-color;
+$header-text-color: #fff;
+$icon-button-inactive-color: lighten(desaturate($ui-base-lighter-color, 20%), 20%);
+$action-button-color: $icon-button-inactive-color;
+
+$about-page-text: $primary-text-color;
+
+@import 'cybre-base';
+
+$gold-star: $ui-highlight-color;
+
+/* cybre-specific additions */
+
+.column .static-content.getting-started {
+  background-image: url('images/cybrelight/logo-cybre-light.png');
+  background-size:auto 50%;
+  background-position: 50% 75%;
+  background-repeat:no-repeat;
+}
+
+.ui {
+  background: $ui-base-color;
+  background-attachment: fixed;
+}
+
+body, .landing-page, .public-layout {
+  background-image: url('images/cybrelight/background-cybre-light.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+.landing-page .header-wrapper {
+    background-image:url('images/cybrelight/header-cybre-alt.jpg');
+    background-size:cover;
+    background-position:50% 50%;
+}
+
+.landing-page.alternative .header {
+    background-image:url('images/cybrelight/header-cybre-colour.jpg');
+    background-repeat: repeat-x;
+    background-size:contain;
+    height:45vh;
+    width: 100%;
+    position:absolute;
+    z-index: 1;
+    text-align:center;
+
+    display: unset!important;
+}
+
+.landing-page.alternative .header img {
+    margin: auto;
+    max-height:45vh;
+}
+
+
+.landing-page.alternative .grid {
+    position: relative;
+    z-index:2;
+    margin-top:15vh;
+}
+
+.landing-page.alternative .landing-page__hero img {
+    visibility: hidden;
+    max-height:170px;
+}
+
+.landing-page.alternative .landing-page__forms {
+    height:auto;
+}
+
+.landing-page.alternative .column-1 {
+    display:flex;
+    align-items:flex-end;
+}
+
+.landing-page.alternative .column {
+    max-height:initial;
+}
+
+.landing-page.alternative .row__mascot {
+    .floats {
+        position:absolute;
+        img {
+            width:100%;
+            height:100%;
+        }
+        transition: all 0.1s linear;
+        animation-name: floating;
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
+        animation-timing-function: ease-in-out;
+    }
+
+    .float-1 {
+        width:50px;
+        height:50px;
+        bottom:60px;
+        left:110px;
+        animation-duration: 3s;
+    }
+
+    .float-2 {
+        width:130px;
+        height:130px;
+        left:85px;
+        bottom: -60px;
+        animation-duration: 3.5s;
+        animation-delay: 0.2s;
+    }
+
+    .float-3 {
+        width:100px;
+        height:100px;
+        right: 50;
+        top: -10px;
+        animation-duration: 4s;
+        animation-delay: 0.5s;
+    }
+}
+
+/* about.scss */
+
+.landing-page {
+  h1 {
+    color: $about-page-text;
+    small {
+      color: lighten($about-page-text, 10%);
+    }
+  }
+  p, li {
+    color: $about-page-text;
+  }
+
+  .header-wrapper {
+    padding-top:0px;
+
+    background-size:cover;
+    background-position:50% 55%;
+  }
+
+  .header-wrapper {
+    .mascot {
+        width:500px;
+        bottom:-52px;
+        left:-120px;
+    }
+  }
+
+  .container.links {
+     background-color: $ui-base-color;
+     border-top: 5px solid $ui-primary-color;
+     width:100%;
+     max-width:100%;
+     padding:0px calc(50% - 400px);
+
+     a {
+        &:hover {
+          color: lighten($ui-primary-color, 10%);
+        }
+     }
+  }
+
+  .container.hero {
+      .floats {
+          display:none;
+      }
+
+      .closed-registrations-message, form {
+          border-top: 50px solid #5f4770;
+          -webkit-box-shadow: 0 0 6px rgba(0,0,0,.1);
+          box-shadow: 0 0 6px rgba(0,0,0,.1);
+
+          &:before {
+              font-size: 16px;
+              font-family:inherit;
+              line-height:inherit;
+              font-weight:normal;
+              color:white;
+              position:absolute;
+              top:-35px;
+          }
+      }
+
+      .closed-registrations-message:before {
+          content: "Registrations closed";
+      }
+
+      form:before {
+          content: "Register now";
+      }
+  }
+
+  #mastodon-timeline {
+    .column-header {
+      color:white;
+    }
+  }
+}
+
+.features-list__row {
+  .text {
+    color: $about-page-text;
+  }
+}
+
+.information-board {
+  .panel {
+    .panel-header {
+      color: $primary-text-color;
+      border-bottom: 1px solid lighten($ui-secondary-color, 4%);
+
+      a,
+      span {
+        font-weight: 400;
+        color: lighten($ui-primary-color, 4%);
+      }
+    }
+  }
+}
+
+/* components.scss */
+
+.onboarding-modal__page {
+  p {
+    color: $primary-text-color;
+  }
+}
+
+.column-header {
+  background: $header-color;
+  color: $header-text-color;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  box-shadow: 0px 0px 3px rgba(0,0,0,0.3);
+}
+
+.column-header__button {
+  background: $header-color;
+  color: $header-text-color;
+  border-top-right-radius: 3px;
+
+  &:hover {
+    color: darken($ui-base-color, 10%);
+  }
+
+  &.active {
+    color: $primary-text-color;
+    background: darken($ui-base-color, 5%);
+
+    &:hover {
+      background: darken($ui-base-color, 5%);
+    }
+  }
+}
+
+.status-card, .status-card.compact {
+  border-color: $ui-highlight-color;
+}
+
+.search__input {
+  border: 1px solid $ui-primary-color;
+  border-radius: 10px;
+}
+
+.icon-with-badge {
+  &__badge {
+    background: $ui-base-color;
+    border: 2px solid lighten($ui-highlight-color, 30%);
+    color: $dark-text-color;
+  }
+}
+
+.relationship-tag {
+  color: $primary-text-color;
+  background-color: $ui-base-color;
+}
+
+.media-modal__nav {
+  background: rgba($ui-primary-color, 0.5);
+  color: $ui-base-color;
+}
+
+// selectivity -- needs to override .column-header > button
+.column-header .column-header__back-button {
+  background: $header-color;
+  color:$header-text-color;
+}
+
+.column-back-button {
+  background: $header-color;
+  color:$header-text-color;
+}
+
+.column-header__collapsible-inner {
+  background: darken($ui-base-alt, 2%);
+}
+
+.empty-column-indicator,
+.error-column {
+  color: darken($ui-base-lighter-color, 15%);
+}
+
+.compose-form {
+  .autosuggest-textarea__textarea,
+  .spoiler-input__input {
+    color: $primary-text-color;
+    border: 1px solid $ui-primary-color;
+  }
+
+  .autosuggest-textarea__textarea {
+    border-bottom-width:0px;
+  }
+  .compose-form__modifiers {
+    border: 1px solid $ui-primary-color;
+    border-top-width:0px;
+  }
+
+  .compose-form__buttons button.active:last-child {
+    border-radius:3px;
+    background: $ui-base-color;
+    color: $ui-primary-color;
+  }
+  .compose-form__buttons-wrapper {
+    background-color:$ui-primary-color;
+  }
+
+  .compose-form__warning a {
+    color:white;
+  }
+
+  .icon-button.inverted {
+    color:white;
+
+    &:hover {
+      color:$ui-secondary-color;
+    }
+  }
+}
+
+button.icon-button {
+  &.disabled {
+  }
+}
+
+.icon-button {
+  &.inverted {
+    color: darken($ui-base-lighter-color, 10%);
+  }
+
+  &.overlayed {
+    background: rgba($base-overlay-background, 0.2);
+    color: rgba($white, 0.7);
+
+    &:hover {
+      background: rgba($base-overlay-background, 0.4);
+    }
+  }
+
+  &.disabled {
+    color: desaturate($icon-button-inactive-color, 5%);
+
+    &:hover,
+    &:active,
+    &:focus {
+      color: desaturate($icon-button-inactive-color, 5%);
+    }
+  }
+
+  color: $icon-button-inactive-color;
+
+  &:hover,
+  &:active,
+  &:focus {
+    color: darken($icon-button-inactive-color, 5%);
+  }
+}
+
+.icon-button.star-icon,
+.icon-button.star-icon:active {
+  background:transparent;
+  border:none;
+}
+
+.icon-button.star-icon.active {
+  color: $gold-star;
+  &:active,  &:hover, &:focus {
+    color: $gold-star;
+  }
+}
+
+.text-icon-button {
+  color: $white;
+  &.active {
+    background: $ui-base-color;
+    color: $ui-primary-color;
+  }
+  &:focus, &:hover {
+    color: darken($ui-base-color, 3%);
+  }
+}
+.status.status-direct {
+  background: darken($ui-base-alt, 5%);
+  .icon-button.disabled {
+    color: lighten($ui-base-lighter-color, 10%);
+  }
+}
+
+.account__header, .account-card {
+  & > div {
+    background: rgba(lighten($ui-base-color, 4%), 0.6);
+  }
+
+  .account__header__content {
+    color: $primary-text-color;
+  }
+
+  .detailed-status__display-name .display-name strong {
+    color: $ui-highlight-color;
+  }
+
+  .icon-button {
+    &, &:hover {
+      color:desaturate($ui-base-lighter-color, 20%);
+    }
+    &.active {
+      &, &:hover {
+        color:$ui-base-lighter-color;
+      }
+    }
+  }
+}
+
+.account__section-headline a {
+  &.active {
+    color: $primary-text-color;
+
+    &::after {
+      border-bottom-color: $ui-base-alt;
+    }
+
+    &::after {
+      border-bottom-color: $ui-base-alt;
+    }
+  }
+}
+
+.privacy-dropdown.active .privacy-dropdown__value.active .icon-button {
+    color: $ui-primary-color;
+}
+
+.privacy-dropdown__option {
+  color: $primary-text-color;
+
+  strong {
+    color: $primary-text-color;
+  }
+
+  &:hover,
+  &.active {
+    color: $white;
+
+    .privacy-dropdown__option__content {
+      color: $white;
+
+      strong {
+        color: $white;
+      }
+    }
+  }
+}
+
+.emoji-picker-dropdown__menu {
+  .emoji-search-wrapper {
+    border-color: darken($ui-base-color, 10%);
+  }
+  .emoji-search {
+    background: darken($ui-base-color, 5%);
+    border-color: darken($ui-base-color, 10%);
+  }
+  .emoji-mart {
+    color: $ui-primary-color;
+  }
+}
+
+.search-popout {
+  background: $ui-base-color;
+  color: $ui-primary-color;
+
+  h4 {
+    color: $ui-primary-color;
+  }
+
+  em {
+    color: $ui-highlight-color;
+  }
+}
+.search__icon .fa.active {
+  opacity:1.0;
+}
+.search-results__hashtag {
+  color: darken($ui-primary-color, 10%);
+  &:hover {
+    color: lighten($ui-primary-color, 5%);
+  }
+}
+
+.static-content {
+    /*color: $primary-text-color;*/
+}
+
+#Getting-started {
+  background: $ui-primary-color;
+  border-bottom:0px;
+  color:white;
+}
+
+.getting-started {
+  p {
+    color: $primary-text-color;
+  }
+
+  a {
+    color: darken($ui-base-lighter-color, 10%);
+  }
+}
+.getting-started__wrapper {
+  flex: 0 0.5 auto;
+}
+
+.getting-started {
+  .column-link {
+    background: lighten($ui-primary-color, 5%);
+    color:$white;
+    &:hover {
+      background: lighten($ui-primary-color, 10%);
+    }
+  }
+}
+.column-link__badge {
+  background: saturate(darken($ui-primary-color, 5%), 5%);
+}
+.column-subheading {
+  background: darken($ui-primary-color, 5%);
+  color:$white;
+}
+
+.media-spoiler,
+.video-player__spoiler.active {
+  color: $white;
+  &:hover {
+    color: darken($white, 5%);
+  }
+}
+
+.status {
+  border-bottom: 1px solid $ui-secondary-color;
+}
+
+.status__relative-time, .status__display-name {
+  color: darken($ui-base-color, 40%);
+}
+
+.status__content {
+  .status__content__spoiler-link {
+    background: $ui-base-lighter-color;
+
+    &:hover {
+      background: lighten($ui-base-lighter-color, 5%);
+    }
+  }
+}
+
+.muted .status__content p {
+  color: $icon-button-inactive-color;
+}
+
+.dropdown-menu__item {
+  & > a {
+    color: $primary-text-color;
+    &:hover, &:active, &:focus {
+      color: $white;
+    }
+  }
+}
+
+.dropdown--active .dropdown__content {
+  & > ul {
+    background: $ui-base-color;
+    box-shadow: 0 0 5px rgba($base-shadow-color, 0.2);
+    & > li > a {
+      background: $ui-base-color;
+      color: $primary-text-color;
+
+      &:hover {
+        background: $ui-highlight-color;
+        color: $ui-base-color;
+      }
+    }
+  }
+}
+
+.boost-modal,
+.confirmation-modal,
+.report-modal,
+.actions-modal,
+.mute-modal
+{
+  color: $primary-text-color;
+}
+.boost-modal__action-bar,
+.confirmation-modal__action-bar,
+.mute-modal__action-bar,
+.report-modal__action-bar,
+.mute-modal__action-bar  {
+  & > div {
+    color: $ui-primary-color;
+  }
+}
+
+.actions-modal
+{
+  ul {
+    li:not(:empty) {
+      a {
+        color: $primary-text-color;
+        button {
+
+        }
+        &.active, &:hover, &:active, &:focus {
+          color: $white;
+          button {
+            color: $white;
+          }
+        }
+      }
+    }
+  }
+}
+
+.react-toggle-track {
+  background-color: $icon-button-inactive-color;
+}
+
+.report-modal__comment .setting-text {
+  color: $primary-text-color;
+  border-bottom-color: lighten($ui-primary-color, 10%);
+  &:focus, &:active {
+    color: $primary-text-color;
+  }
+}
+
+.status.light {
+  .status__content {
+    color: $primary-text-color;
+  }
+  .display-name strong {
+    color: $primary-text-color;
+  }
+}
+
+.reply-indicator__content a {
+  color: lighten($ui-highlight-color, 30%);
+  &.unhandled-link {
+    color:lighten( #ff0051, 30%);
+  }
+}
+
+.status__content
+{
+  a {
+    color: $ui-highlight-color;
+
+    &:hover {
+      .fa {
+        color: darken($ui-base-color, 40%);
+      }
+    }
+
+    &.unhandled-link {
+      color: #ff0051;
+    }
+  }
+
+}
+
+.detailed-status__display-name {
+  color: $ui-base-lighter-color;
+}
+
+.drawer .drawer__inner {
+  /* overflow: visible;
+  height:inherit; */
+  background:$ui-base-alt;
+}
+
+.search__icon .fa {
+  color: $ui-highlight-color;
+}
+
+/* .drawer__pager {
+  overflow-y:auto;
+} */
+
+.drawer .drawer__header {
+  background: $ui-base-color;
+  border-radius:3px;
+}
+
+.onboarding-modal__page h1 {
+  background-color: darken($ui-primary-color, 5%);
+}
+
+.poll__text input[type="text"],
+.compose-form__poll-wrapper select {
+  color: $primary-text-color;
+}
+
+.compose-form__poll-wrapper .button.button-secondary {
+  color: $ui-highlight-color;
+}
+
+/* forms.scss */
+.block-button, .button, button {
+  background-color: $ui-primary-color;
+  color: $white;
+
+  &.button-alternative {
+    color: $ui-base-color;
+  }
+
+  &.logo-button {
+    color: $white;
+    svg path:first-child {
+      fill: $white;
+    }
+  }
+}
+
+.simple_form {
+  p.hint {
+    color: $primary-text-color;
+  }
+
+  .block-button, .button, button {
+    background-color: $ui-primary-color;
+    color: $white;
+
+    &:hover {
+      background-color: lighten($ui-primary-color, 5%);
+    }
+
+    &:active,
+    &:focus {
+      background-color: darken($ui-primary-color, 5%);
+    }
+
+  }
+}
+
+/* admin.scss */
+
+.table > thead > tr > th {
+  border-bottom-color:  $ui-secondary-color;
+}
+
+.simple_form h4 {
+  border-bottom: 1px solid $ui-highlight-color;
+}
+
+.admin-wrapper {
+  .content {
+    h2, p.hint, h4, h6 {
+      color: $primary-text-color;
+    }
+
+    .muted-hint {
+      color: $primary-text-color;
+    }
+  }
+
+  .sidebar {
+    .logo {
+      -webkit-filter: hue-rotate(133deg) saturate(70%) brightness(110%);
+      filter: hue-rotate(133deg) saturate(70%) brightness(110%);
+    }
+
+    ul {
+      ul {
+        a {
+          &.selected {
+            background-color: $ui-primary-color;
+            color: $white;
+
+            &:hover {
+              background-color: lighten($ui-primary-color, 10%);
+            }
+          }
+        }
+      }
+      a {
+        &.selected {
+          background-color: $ui-primary-color;
+          color: $white;
+
+          &:hover {
+            background-color: lighten($ui-primary-color, 10%);
+          }
+        }
+      }
+    }
+  }
+}
+
+.pagination .current {
+  color: $ui-primary-color;
+}
+
+.report-accounts__item > strong {
+  color: $primary-text-color;
+}
+
+.admin-wrapper .content {
+  & > p {
+    color: $primary-text-color;
+  }
+  hr {
+    border-color: $ui-highlight-color;
+  }
+}
+
+/* accounts.scss */
+.card {
+  .name {
+    color: $white;
+  }
+
+  .counter {
+    .counter-number {
+      color: $white;
+    }
+  }
+}
+
+/* stream_entries.scss */
+.activity-stream {
+  .entry {
+  }
+  .status.light {
+    .display-name {
+      strong {
+        color: $primary-text-color;
+      }
+    }
+    .status__content {
+      color: $primary-text-color;
+    }
+  }
+  .detailed-status.light {
+    .detailed-status__display-name {
+      .display-name {
+        strong {
+          color: $primary-text-color;
+        }
+      }
+    }
+    .status__content {
+      color: $primary-text-color;
+    }
+    .status-card,
+    .status-card__title,
+    .status-card__description {
+      color: $primary-text-color;
+    }
+  }
+}
+
+/* accounts.scss */
+.card {
+  .name {
+    color: darken($ui-primary-color, 15%);
+  }
+  .counter {
+    .counter-number {
+      color: darken($ui-primary-color, 15%);
+    }
+    border-color: $ui-primary-color;
+  }
+}
+
+.activity-stream-tabs {
+  a {
+    color: lighten($ui-primary-color, 10%);
+    &.active {
+      color: darken($ui-primary-color, 10%);
+    }
+  }
+}
+
+/* uncategorized */
+
+.empty-column-indicator, .error-column {
+  background-color: $ui-base-alt;
+}
+
+.actions .button.button-alternative {
+    background: $ui-highlight-color;
+    color: $white;
+
+    &:active,
+    &:focus,
+    &:hover {
+      background-color: lighten($ui-highlight-color, 4%);
+    }
+}
+
+.public-layout .header {
+  background: $ui-highlight-color;
+  color: $white;
+}
+
+.public-layout .public-account-header__tabs__name h1 {
+  color: $white;
+  small {
+    color: $white;
+  }
+}
+.public-layout .header .brand:hover,
+.public-layout .header .brand:focus,
+.public-layout .header .brand:active {
+  background: lighten($ui-highlight-color, 5%);
+}
+
+.public-layout .container:last-child {
+  background:$ui-highlight-color;
+  padding-left: 100px;
+  padding-right: 100px;
+  border-radius: 4px;
+  h4 {
+    color: white;
+  }
+}
+
+.modal-layout, .modal-layout__mastodon > * {
+  background: none;
+}
+
+.dashboard__widgets a:not(.name-tag) {
+  color: $primary-text-color;
+}
+
+.tabs-bar__wrapper {
+  background: $ui-base-color;
+}
+
+.layout-single-column .navigation-panel {
+  background-color: $ui-highlight-color;
+  height: auto;
+  .column-link {
+    background: lighten($ui-primary-color, 5%);
+    color:$white;
+    &:hover {
+      background: lighten($ui-primary-color, 10%);
+    }
+    &.active {
+      background: darken($ui-primary-color, 5%);
+    }
+  }
+  hr {
+    display: none;
+  }
+}
+
+.bookmark-icon.active {
+  color: #ff5050;
+}
+
+
+/* Octagonal avatars, because ???? */
+.account__avatar,
+.account__avatar-overlay-base,
+.account__header__avatar,
+.account__avatar-overlay-overlay {
+    border-radius:0px !important;
+    -webkit-clip-path: polygon(25% 0, 75% 0, 100% 25%, 100% 75%, 75% 100%, 25% 100%, 0 75%, 0 25%);
+    clip-path: polygon(25% 0, 75% 0, 100% 25%, 100% 75%, 75% 100%, 25% 100%, 0 75%, 0 25%);
+}
+
+.drawer__inner__mastodon {
+  background: #f9f2f5 url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 234.80078 31.757813" width="234.80078" height="31.757812"><path d="M19.599609 0c-1.05 0-2.10039.375-2.90039 1.125L0 16.925781v14.832031h234.80078V17.025391l-16.5-15.900391c-1.6-1.5-4.20078-1.5-5.80078 0l-13.80078 13.099609c-1.6 1.5-4.19883 1.5-5.79883 0L179.09961 1.125c-1.6-1.5-4.19883-1.5-5.79883 0L159.5 14.224609c-1.6 1.5-4.20078 1.5-5.80078 0L139.90039 1.125c-1.6-1.5-4.20078-1.5-5.80078 0l-13.79883 13.099609c-1.6 1.5-4.20078 1.5-5.80078 0L100.69922 1.125c-1.600001-1.5-4.198829-1.5-5.798829 0l-13.59961 13.099609c-1.6 1.5-4.200781 1.5-5.800781 0L61.699219 1.125c-1.6-1.5-4.198828-1.5-5.798828 0L42.099609 14.224609c-1.6 1.5-4.198828 1.5-5.798828 0L22.5 1.125C21.7.375 20.649609 0 19.599609 0z" fill="%23bf5677"/></svg>') no-repeat bottom/100% auto !important;
+}

@@ -1,0 +1,46 @@
+/* https://github.com/AstroProfundis/mastodon/blob/lynx/app/javascript/styles/nga.scss */
+
+// Dependent colors
+$black: #330e04;
+$white: #fffffc;
+
+$classic-base-color: #591804;
+$classic-secondary-color: #fff7de;
+$classic-highlight-color: #7f2206;
+
+// Differences
+$success-green: #57a96f;
+
+$base-overlay-background: $white !default;
+$valid-value-color: $success-green !default;
+
+$ui-base-color: $classic-secondary-color !default;
+$ui-base-lighter-color: #f9f7f2;
+$ui-primary-color: #fff1cb;
+$ui-secondary-color: $classic-base-color !default;
+$ui-highlight-color: #591804;
+
+$primary-text-color: $black !default;
+$darker-text-color: $classic-base-color !default;
+$dark-text-color: #281b16;
+$action-button-color: #a4705e;
+
+$inverted-text-color: $black !default;
+$lighter-text-color: $classic-base-color !default;
+$light-text-color: #986756;
+
+//Newly added colors
+$account-background-color: $white !default;
+
+//Invert darkened and lightened colors
+@function darken($color, $amount) {
+  @return hsl(hue($color), saturation($color), lightness($color) + $amount);
+}
+
+@function lighten($color, $amount) {
+  @return hsl(hue($color), saturation($color), lightness($color) - $amount);
+}
+
+// base on mastodon-light theme
+@import 'application';
+@import 'mastodon-light/diff';

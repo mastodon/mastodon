@@ -1,0 +1,368 @@
+pre.highlight {
+  white-space: pre;
+  overflow-x: auto;
+  margin-bottom: 20px;
+  padding: 8px;
+
+  >code {
+    background-color: $highlight-background;
+    padding: 0px;
+  }
+}
+
+.highlight {
+
+  background: $highlight-background;
+  color: $highlight-primary;
+  border-radius: 4px;
+
+
+  >code {
+    color: $highlight-secondary;
+  }
+
+  .hll {
+    background-color: $highlight-selected;
+  }
+
+  .lineno {
+    background-color: $highlight-lineno-background;
+    color: $highlight-secondary;
+  }
+
+  /* --- Generics --- */
+  .ge {
+    /* emph */
+    // font-style: italic;
+  }
+
+  .gs {
+    /* strong */
+    font-weight: bold;
+  }
+
+  /* --- Operators --- */
+  .o {
+    /* Operator */
+    color: $highlight-operator;
+  }
+
+  .ow {
+    /* Word */
+    color: $highlight-operator;
+  }
+
+  /* --- Comments --- */
+  .c {
+    /* Comment */
+    color: $highlight-comment;
+    // font-style: italic;
+  }
+
+  .cm {
+    /* Multi-line */
+    color: $highlight-comment;
+    // font-style: italic;
+  }
+
+  .cp {
+    /* Preproc */
+    color: $highlight-comment;
+    // font-style: italic;
+  }
+
+  .c1 {
+    /* Single */
+    color: $highlight-comment;
+    // font-style: italic;
+  }
+
+  .cs {
+    /* Special */
+    color: $highlight-comment;
+    // font-style: italic;
+  }
+
+  /* --- Names --- */
+  .n {
+    /* Name */
+    color: $highlight-primary;
+  }
+
+  .py {
+    /* Property */
+    color: $highlight-primary;
+  }
+
+  .nl {
+    /* Label */
+    color: $highlight-primary;
+  }
+
+  .ni {
+    /* Entity */
+    color: $highlight-primary;
+  }
+
+  .nb {
+    /* Builtin */
+    /* shell commands */
+    color: $highlight-primary;
+  }
+
+  .bp {
+    /* Builtin.Pseudo */
+    color: $highlight-primary;
+  }
+
+  .nf {
+    /* Function */
+    color: $highlight-secondary;
+  }
+
+  .na {
+    /* Attribute */
+    color: $highlight-secondary;
+  }
+
+  .nx {
+    /* Other */
+    color: $highlight-secondary;
+  }
+
+  .nc {
+    /* Class */
+    color: $highlight-namespace;
+  }
+
+  .nn {
+    /* Namespace */
+    color: $highlight-namespace;
+  }
+
+  .no {
+    /* Constant */
+    color: $highlight-scoped;
+  }
+
+  .ne {
+    /* Exception */
+    color: $highlight-scoped;
+  }
+
+  .nd {
+    /* Decorator */
+    color: $highlight-operator;
+  }
+
+  .nt {
+    /* Tag */
+    color: $highlight-operator;
+  }
+
+  /* --- Keywords --- */
+  .kn {
+    /* Namespace */
+    color: $highlight-operator;
+  }
+
+  .k {
+    /* Keyword */
+    color: $highlight-keyword;
+  }
+
+  .kc {
+    /* Constant */
+    color: $highlight-keyword;
+  }
+
+  .kd {
+    /* Declaration */
+    color: $highlight-keyword;
+  }
+
+  .kp {
+    /* Pseudo */
+    color: $highlight-keyword;
+  }
+
+  .kr {
+    /* Reserved */
+    color: $highlight-keyword;
+  }
+
+  .kt {
+    /* Type */
+    color: $highlight-namespace;
+  }
+
+  /* --- Variables --- */
+  .nv {
+    /* Variable */
+    color: $highlight-scoped;
+  }
+
+  .vc {
+    /* Class */
+    color: $highlight-scoped;
+  }
+
+  .vg {
+    /* Global */
+    color: $highlight-scoped;
+  }
+
+  .vi {
+    /* Instance */
+    color: $highlight-scoped;
+  }
+
+  /* --- Numerals --- */
+  .m {
+    /* Number */
+    color: $highlight-numeric;
+  }
+
+  .il {
+    /* Long */
+    color: $highlight-numeric;
+  }
+
+  .mf {
+    /* Float */
+    color: $highlight-numeric;
+  }
+
+  .mh {
+    /* Hex */
+    color: $highlight-numeric;
+  }
+
+  .mi {
+    /* Integer */
+    color: $highlight-numeric;
+  }
+
+  .mo {
+    /* Oct */
+    color: $highlight-numeric;
+  }
+
+  /* --- Strings --- */
+  .s {
+    /* String */
+    color: $highlight-string;
+  }
+
+  .sr {
+    /* Regex */
+    color: $highlight-string;
+  }
+
+  .sb {
+    /* Backtick */
+    color: $highlight-string;
+  }
+
+  .s2 {
+    /* Double */
+    color: $highlight-string;
+  }
+
+  .sh {
+    /* Heredoc */
+    color: $highlight-string;
+  }
+
+  .sx {
+    /* Other */
+    color: $highlight-string;
+  }
+
+  .s1 {
+    /* Single */
+    color: $highlight-string;
+  }
+
+  .ss {
+    /* Symbol */
+    color: $highlight-string;
+  }
+
+  .se {
+    /* Escape */
+    color: $highlight-numeric;
+  }
+
+  .si {
+    /* Interpol */
+    color: $highlight-numeric;
+  }
+
+  .sc {
+    /* Char */
+    color: $highlight-primary;
+  }
+
+  .sd {
+    /* Doc */
+    color: $highlight-comment;
+  }
+
+  /* --- Other Literals --- */
+  .l {
+    /* Literal */
+    color: $highlight-numeric;
+  }
+
+  .ld {
+    /* Date */
+    color: $highlight-string;
+  }
+
+  /* --- Typographic Elements --- */
+  .p {
+    /* Punctuation */
+    color: $highlight-primary;
+  }
+
+  .w {
+    /* Whitespace */
+    /* shouldn't this have a background-color instead ? */
+    color: $highlight-primary;
+  }
+
+  /* --- Others --- */
+  .err {
+    /* Error */
+    color: $highlight-scoped;
+  }
+
+  .gp {
+    /* shell prompt */
+    color: $highlight-namespace;
+  }
+
+  /* --- Style --- */
+  .gi {
+    /* inserted */
+    color: $highlight-string;
+  }
+
+  .gd {
+    /* deleted */
+    color: $highlight-scoped;
+  }
+
+  .gh {
+    /* heading */
+    color: $highlight-primary;
+    font-weight: bold;
+  }
+
+  .gu {
+    /* subheading */
+    color: $highlight-operator;
+    font-weight: bold;
+  }
+}

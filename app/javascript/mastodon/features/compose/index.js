@@ -13,7 +13,7 @@ import spring from 'react-motion/lib/spring';
 import SearchResultsContainer from './containers/search_results_container';
 import { changeComposing } from '../../actions/compose';
 import { openModal } from 'mastodon/actions/modal';
-import elephantUIPlane from '../../../images/elephant_ui_plane.svg';
+import elephantUIPlane from '../../../images/elephant_ui_plane_sub.png';
 import { mascot } from '../../initial_state';
 import Icon from 'mastodon/components/icon';
 import { logOut } from 'mastodon/utils/log_out';

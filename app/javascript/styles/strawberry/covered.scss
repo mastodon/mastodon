@@ -1,0 +1,62 @@
+.status__content .status__content__spoiler-link,
+.reply-indicator__content .status__content__spoiler-link,
+.status__content__read-more-button {
+	background: $cui;
+	color: $btt2;
+	border-radius: 5px;
+}
+.status__content__read-more-button:hover,
+.status__content .status__content__spoiler-link:hover,
+.reply-indicator__content .status__content__spoiler-link:hover {
+	background: $cbut;
+}
+.media-spoiler {
+	background-color: $btxt;
+	background-image: url(https://cmx.im/strawberry/elephant.png);
+	background-position: 0% 100%;
+	background-repeat:no-repeat;
+	background-size:95% auto;
+	opacity: 0.8;
+	color: white;
+	text-shadow:0 0 10px $btxt;
+}
+
+.media-spoiler:hover {
+	background-color: $cui;
+	background-image: none;
+	color: white;
+	opacity: 0.7;
+}
+
+.media-spoiler .media-spoiler__trigger,
+.media-spoiler .media-spoiler__warning {
+	background: rgba(170,48,41,.3);
+}
+.media-spoiler .media-spoiler__trigger {
+	padding-bottom: 5px
+}
+.media-spoiler .media-spoiler__warning {
+	padding-top: 5px
+}
+
+.status__content__read-more-button {
+	margin-top: 0.5em;
+	display: inline-block;
+	padding: 0px;
+	padding: 1px 6px;
+}
+.status__content__read-more-button:hover {
+	text-decoration: none;
+}
+.status__content.status__content--collapsed {
+	max-height: 25em;
+	background: linear-gradient(to top, transparent 0%, $ctxt 20%);
+	-webkit-background-clip: text;
+}
+.status__content.status__content--collapsed p {
+	color: transparent;
+}
+.icon-button.overlayed,
+.icon-button.overlayed:hover {
+	background: rgba(170,48,41,.8);
+}

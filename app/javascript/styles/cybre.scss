@@ -1,0 +1,282 @@
+$ui-base-color: #181818; // darkest
+$ui-highlight-color: #1ea21e; // vibrant
+$ui-secondary-color: #E4F2E4; // lightest
+$ui-primary-color: #E4F2E4; // lighter
+$ui-primary-color-alt: #a0b49c; // darker, for external pages
+
+$about-page-text: lighten($ui-base-color, 50%);
+
+@import 'cybre-base';
+
+@keyframes floating {
+  from {
+    transform: translate(0, 0);
+  }
+  65% {
+    transform: translate(0, 4px);
+  }
+  to {
+    transform: translate(0, -0);
+  }
+}
+
+body, body.about-body {
+  background: $ui-base-color url('images/cybrelight/background-cybre.png');
+}
+
+body.about-body {
+  // basics.scss &.about-body
+  background: darken($ui-base-color, 8%) url('images/cybrelight/background-cybre.png');
+
+  background-position-y: 200px;
+  background-position-x: center;
+}
+
+.about-body .mascot {
+  display: none;
+}
+
+.muted {
+  .status__content p, .status__content a {
+    color: lighten($ui-base-color, 35%);
+  }
+
+  .status__display-name strong {
+    color: lighten($ui-base-color, 35%);
+  }
+}
+
+.compose-form__buttons button.active:last-child {
+  color:$ui-secondary-color;
+  background-color: $ui-highlight-color;
+  border-radius:3px;
+}
+
+.screenshot-with-signup {
+  min-height:300px;
+}
+
+.container.hero .closed-registrations-message .clock {
+  font-size: 150%;
+  margin: 1em auto;
+}
+
+.column .static-content.getting-started {
+  background-image: url('images/cybrelight/logo-cybre.png'), url('images/cybrelight/background-cybre.png');
+  background-size:auto 50%, cover;
+  background-position: 50% 75%, center center;
+  background-repeat:no-repeat, no-repeat;
+}
+
+.columns-area {
+  background: $ui-base-color url('images/cybrelight/background-cybre.png');
+}
+
+.actions .button.button-alternative {
+    background: $ui-highlight-color;
+    color: $ui-primary-color;
+
+    &:active,
+    &:focus,
+    &:hover {
+      background-color: lighten($ui-highlight-color, 4%);
+    }
+}
+
+@media screen and (max-width: 1280px) {
+  .landing-page .container.links {
+      top: -15px;
+  }
+}
+
+.landing-page.alternative .header {
+    background-image:url('images/cybrelight/header-cybre-colour.jpg');
+    background-repeat: repeat-x;
+    background-size:contain;
+    height:45vh;
+    width: 100%;
+    position:absolute;
+    z-index: 1;
+    text-align:center;
+
+    display: unset!important;
+}
+
+.landing-page.alternative .header img {
+    margin: auto;
+    max-height:45vh;
+}
+
+
+.landing-page.alternative .grid {
+    position: relative;
+    z-index:2;
+    margin-top:15vh;
+}
+
+.landing-page.alternative .landing-page__hero img {
+    visibility: hidden;
+    max-height:170px;
+}
+
+.landing-page.alternative .landing-page__forms {
+    height:auto;
+}
+
+.landing-page.alternative .column-1 {
+    display:flex;
+    align-items:flex-end;
+}
+
+.landing-page.alternative .column {
+    max-height:initial;
+}
+
+.landing-page.alternative .row__mascot {
+    .floats {
+        position:absolute;
+        img {
+            width:100%;
+            height:100%;
+        }
+        transition: all 0.1s linear;
+        animation-name: floating;
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
+        animation-timing-function: ease-in-out;
+    }
+
+    .float-1 {
+        width:50px;
+        height:50px;
+        bottom:60px;
+        left:110px;
+        animation-duration: 3s;
+    }
+
+    .float-2 {
+        width:130px;
+        height:130px;
+        left:85px;
+        bottom: -60px;
+        animation-duration: 3.5s;
+        animation-delay: 0.2s;
+    }
+
+    .float-3 {
+        width:100px;
+        height:100px;
+        right: 50;
+        top: -10px;
+        animation-duration: 4s;
+        animation-delay: 0.5s;
+    }
+}
+
+.activity-stream {
+  .status.light {
+    .status__header .status__meta .status__relative-time {
+      color: $ui-primary-color-alt;
+    }
+
+    .display-name span {
+      color: $ui-primary-color-alt;
+    }
+
+    .status__content {
+      a.status__content__spoiler-link {
+        background: $ui-primary-color-alt;
+
+        &:hover {
+          background: lighten($ui-primary-color-alt, 8%);
+        }
+      }
+    }
+  }
+
+  .detailed-status.light {
+    .detailed-status__display-name .display-name span {
+      color: $ui-primary-color-alt;
+    }
+
+    .status__content a.status__content__spoiler-link {
+      background: $ui-primary-color-alt;
+
+      &:hover {
+        background: lighten($ui-primary-color-alt, 8%);
+      }
+    }
+
+    .detailed-status__meta {
+      color: $ui-primary-color-alt;
+    }
+  }
+
+  .media-spoiler {
+    background: $ui-primary-color-alt;
+    &:hover {
+      background: darken($ui-primary-color-alt, 5%);
+    }
+  }
+
+  .pre-header {
+    color: $ui-primary-color-alt;
+    .status__display-name.muted strong {
+      color: $ui-primary-color-alt;
+    }
+  }
+}
+
+.embed .activity-stream .entry .detailed-status.light .button.button-secondary.logo-button {
+  color: $ui-primary-color-alt;
+  svg {
+    path:first-child {
+      fill: $ui-primary-color-alt;
+    }
+  }
+  &:active,
+  &:focus,
+  &:hover {
+    svg path:first-child {
+      fill: lighten($ui-primary-color-alt, 4%);
+    }
+  }
+}
+
+.emoji-mart-search {
+  background: $simple-background-color;
+  input {
+    color: $ui-primary-color-alt;
+    border: 1px solid $ui-primary-color-alt;
+  }
+}
+
+.emoji-mart-anchor {
+  color: $ui-primary-color-alt;
+  &:hover {
+    color: darken($ui-primary-color-alt, 8%);
+  }
+}
+
+.search-popout {
+  background: $ui-base-color;
+  color: $ui-primary-color;
+
+  h4 {
+    color: $ui-primary-color;
+  }
+
+  em {
+    color: $ui-highlight-color;
+  }
+}
+
+/* Octagonal avatars, because ???? */
+.account__avatar,
+.account__avatar-overlay-base,
+.account__header__avatar,
+.account__avatar-overlay-overlay {
+    border-radius:0px !important;
+    -webkit-clip-path: polygon(25% 0, 75% 0, 100% 25%, 100% 75%, 75% 100%, 25% 100%, 0 75%, 0 25%);
+    clip-path: polygon(25% 0, 75% 0, 100% 25%, 100% 75%, 75% 100%, 25% 100%, 0 75%, 0 25%);
+}

@@ -1,0 +1,341 @@
+$ui-base-color: #0C023D; // darkest
+$ui-highlight-color: #5c82c2; // vibrant
+$ui-secondary-color: #b5c6d4; // lightest
+$ui-primary-color: #afc5d6; // lighter
+$ui-primary-color-alt: #9498be; // darker, for external pages
+$ui-link-text-color: #85d7ee;
+
+$about-page-text: lighten($ui-base-color, 50%);
+
+@import 'neon-base';
+
+@keyframes floating {
+  from {
+    transform: translate(0, 0);
+  }
+  65% {
+    transform: translate(0, 4px);
+  }
+  to {
+    transform: translate(0, -0);
+  }
+}
+
+.about-body .mascot {
+  display: none;
+}
+
+.muted {
+  .status__content p, .status__content a {
+    color: lighten($ui-base-color, 60%);
+  }
+
+  .status__display-name strong {
+    color: lighten($ui-base-color, 60%);
+  }
+}
+
+.status__content__read-more-button {
+  color: lighten($ui-base-color, 60%) !important;
+}
+
+.compose-form__buttons button.active:last-child {
+  color:$ui-secondary-color;
+  background-color: $ui-highlight-color;
+  border-radius:3px;
+}
+
+.screenshot-with-signup {
+  min-height:300px;
+}
+
+.container.hero .closed-registrations-message .clock {
+  font-size: 150%;
+  margin: 1em auto;
+}
+
+.actions .button.button-alternative {
+    background: $ui-highlight-color;
+    color: $ui-primary-color;
+
+    &:active,
+    &:focus,
+    &:hover {
+      background-color: lighten($ui-highlight-color, 4%);
+    }
+}
+
+@media screen and (max-width: 1280px) {
+  .landing-page .container.links {
+      top: -15px;
+  }
+}
+
+.landing-page.alternative .header {
+    // background-image:url('../themes/neoncity/images/header-cybre-colour.jpg');
+    background-repeat: repeat-x;
+    background-size:contain;
+    height:45vh;
+    width: 100%;
+    position:absolute;
+    z-index: 1;
+    text-align:center;
+
+    display: unset!important;
+}
+
+.landing-page.alternative .header img {
+    margin: auto;
+    max-height:45vh;
+}
+
+
+.landing-page.alternative .grid {
+    position: relative;
+    z-index:2;
+    margin-top:15vh;
+}
+
+.landing-page.alternative .landing-page__hero img {
+    visibility: hidden;
+    max-height:170px;
+}
+
+.landing-page.alternative .landing-page__forms {
+    height:auto;
+}
+
+.landing-page.alternative .column-1 {
+    display:flex;
+    align-items:flex-end;
+}
+
+.landing-page.alternative .column {
+    max-height:initial;
+}
+
+.landing-page.alternative .row__mascot {
+    .floats {
+        position:absolute;
+        img {
+            width:100%;
+            height:100%;
+        }
+        transition: all 0.1s linear;
+        animation-name: floating;
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
+        animation-timing-function: ease-in-out;
+    }
+
+    .float-1 {
+        width:50px;
+        height:50px;
+        bottom:60px;
+        left:110px;
+        animation-duration: 3s;
+    }
+
+    .float-2 {
+        width:130px;
+        height:130px;
+        left:85px;
+        bottom: -60px;
+        animation-duration: 3.5s;
+        animation-delay: 0.2s;
+    }
+
+    .float-3 {
+        width:100px;
+        height:100px;
+        right: 50;
+        top: -10px;
+        animation-duration: 4s;
+        animation-delay: 0.5s;
+    }
+}
+
+.activity-stream {
+  .status.light {
+    .status__header .status__meta .status__relative-time {
+      color: $ui-primary-color-alt;
+    }
+
+    .display-name span {
+      color: $ui-primary-color-alt;
+    }
+
+    .status__content {
+      a.status__content__spoiler-link {
+        background: $ui-primary-color-alt;
+
+        &:hover {
+          background: lighten($ui-primary-color-alt, 8%);
+        }
+      }
+    }
+  }
+
+  .detailed-status.light {
+    .detailed-status__display-name .display-name span {
+      color: $ui-primary-color-alt;
+    }
+
+    .status__content a.status__content__spoiler-link {
+      background: $ui-primary-color-alt;
+
+      &:hover {
+        background: lighten($ui-primary-color-alt, 8%);
+      }
+    }
+
+    .detailed-status__meta {
+      color: $ui-primary-color-alt;
+    }
+  }
+
+  .media-spoiler {
+    background: $ui-primary-color-alt;
+    &:hover {
+      background: darken($ui-primary-color-alt, 5%);
+    }
+  }
+
+  .pre-header {
+    color: $ui-primary-color-alt;
+    .status__display-name.muted strong {
+      color: $ui-primary-color-alt;
+    }
+  }
+}
+
+.embed .activity-stream .entry .detailed-status.light .button.button-secondary.logo-button {
+  color: $ui-primary-color-alt;
+  svg {
+    path:first-child {
+      fill: $ui-primary-color-alt;
+    }
+  }
+  &:active,
+  &:focus,
+  &:hover {
+    svg path:first-child {
+      fill: lighten($ui-primary-color-alt, 4%);
+    }
+  }
+}
+
+.emoji-mart-search {
+  background: $simple-background-color;
+  input {
+    color: $ui-primary-color-alt;
+    border: 1px solid $ui-primary-color-alt;
+  }
+}
+
+.emoji-mart-anchor {
+  color: $ui-primary-color-alt;
+  &:hover {
+    color: darken($ui-primary-color-alt, 8%);
+  }
+}
+
+.search-popout {
+  background: $ui-base-color;
+  color: $ui-primary-color;
+
+  h4 {
+    color: $ui-primary-color;
+  }
+
+  em {
+    color: $ui-highlight-color;
+  }
+}
+
+/* customize color and opacity */
+.status__content a,
+.status__content a.unhandled-link {
+  color: $ui-link-text-color;
+}
+
+.status__content {
+  color: lighten($ui-primary-color, 6%);
+}
+
+.status__display-name strong {
+  color: lighten($ui-primary-color, 15%);
+}
+
+.column > .scrollable {
+  background-color: #0C023DB5;
+}
+
+.drawer__inner, .drawer__inner__mastodon {
+  opacity: 0.8;
+}
+
+body, .landing-page, .public-layout {
+  // background-image: url("../themes/swan-lake.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+.layout-single-column .navigation-panel {
+  //background-color: $ui-highlight-color;
+  opacity: 0.8;
+  height: auto;
+  .column-link {
+    background: lighten($ui-base-color, 5%);
+    color:$white;
+    &:hover {
+      background: lighten($ui-base-color, 10%);
+    }
+    &.active {
+      background: darken($ui-base-color, 5%);
+    }
+  }
+  hr {
+    display: none;
+  }
+}
+
+.getting-started {
+  opacity: 0.8;
+  .column-link {
+    background: lighten($ui-base-color, 5%);
+    color:$white;
+    &:hover {
+      background: lighten($ui-base-color, 10%);
+    }
+  }
+}
+
+.landing__grid {
+  opacity: 0.9;
+}
+
+.activity-stream .entry {
+  background-color:#0C023DB5;
+}
+
+.account__section-headline {
+  background-color: #0C023D;
+}
+
+.hashtag:hover, .mention:hover {
+  text-shadow: 0 0 8px #fff;
+}
+.status-link:hover {
+  text-shadow: 0 0 8px #8ca6f6;
+}
+
+.button:hover {
+  text-shadow: 0 0 8px #fcfcf6 !important;
+}
+
+.status__content__read-more-button:hover {
+text-shadow: 0 0 8px #A59BD6 !important;
+}

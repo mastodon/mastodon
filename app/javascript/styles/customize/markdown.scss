@@ -1,0 +1,137 @@
+.status__content,
+.reply-indicator__content {
+
+  p {
+    line-height: 26px;
+  }
+
+  blockquote {
+    margin-bottom: 20px;
+    padding-left: 10px;
+    border-left: 3px solid $ui-base-lighter-color;
+    color: $darker-text-color;
+    white-space: nowrap;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  pre {
+    padding: 4px;
+  }
+
+  strong,
+  b {
+    font-weight: 700;
+  }
+
+  em,
+  i {
+    font-style: italic;
+  }
+
+  sub {
+    font-size: smaller;
+    text-align: sub;
+  }
+
+  hr {
+    height: .25em;
+    padding: 0;
+    margin: 24px 0;
+    background-color: $ui-base-lighter-color;
+    border: 0;
+  }
+
+  code {
+    font-family: $font-monospace, monospace;
+    background-color: darken($ui-base-color, 8%);
+    border-radius: 3px;
+    font-size: 0.85em;
+    padding: 0.075em 0.4em;
+  }
+
+  del,
+  s {
+    text-decoration: line-through;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    line-height: 1.5em;
+    font-size: 1.5em;
+    font-weight: 600;
+    margin-bottom: 20px;
+    padding-bottom: .3em;
+    border-bottom: 1px solid $ui-base-lighter-color;
+  }
+
+  h1 {
+    &::before {
+      content: '# ';
+    }
+  }
+
+  h2 {
+    &::before {
+      content: '## ';
+    }
+  }
+
+  h3 {
+    &::before {
+      content: '### ';
+    }
+  }
+
+  h4 {
+    &::before {
+      content: '#### ';
+    }
+  }
+
+  h5 {
+    &::before {
+      content: '##### ';
+    }
+  }
+
+  h6 {
+    &::before {
+      content: '###### ';
+    }
+  }
+
+  ul,
+  ol {
+    margin-left: 2em;
+    margin-bottom: 20px;
+  }
+
+  ul {
+    list-style-type: disc;
+  }
+
+  ol {
+    list-style-type: decimal;
+  }
+
+  .poll ul {
+    margin: 0;
+    list-style: none;
+  }
+
+  table {
+    overflow-x: auto;
+    display: block;
+  }
+
+  img {
+    max-width: 100%;
+  }
+}

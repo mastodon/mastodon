@@ -1,0 +1,102 @@
+@import 'mastodon-light/variables';
+@import 'application';
+@import 'mastodon-light/diff';
+.navigation-bar {
+    color: #2C2C2C !important;
+  }
+  .navigation-bar strong {
+    color: rgb(24, 24, 24) !important;
+  }
+
+  .column, .scrollable, .status-list, .status__prepend, .detailed-status__action-bar, .missing-indicator {
+    background-color: transparent !important;
+  }
+  
+  .empty-column-indicator, .detailed-status, .notification, .status, .getting-started, .column-link, .column-subheading, .column-header, .column-header__button, .search__input, .drawer__header, .drawer__tab, .column-back-button,  .account__header__content, .account__header, .account__action-bar__tab > span, .account__action-bar__tab strong, .column-header__back-button, .search__icon .fa, .search, .drawer__inner, .status-card__title, .column-header__collapsible-inner, .setting-toggle__label, .column-settings__section, .column-inline-form, .getting-started__wrapper, .keyboard-shortcuts, .status__content, .account__header__fields dt, .account__header__fields dd, .account__section-headline, .account__section-headline a {
+    background-color: transparent !important;
+    color: #181818 !important;
+  }
+  .search-results__header, .search-results__section, .list-editor, .status__wrapper:focus {
+    background-color: rgb(255,255,255,0.95) !important;
+  }
+  
+  .account__header__content, .account__header__display-name {
+    color: #181818 !important;
+  }
+  .account__header > div {
+    background-color: rgb(210,210,236,0.8) !important;
+  }
+  
+  .account--follows-info, kbd {
+    background-color: rgb(57,57,57,0.8) !important;
+    color: #fff !important;
+  }
+.account-role {
+    color: #181818 !important;
+    border-color: #181818 !important;
+}
+
+  .hashtag, .mention, .status-link, .search-results__hashtag, .notification__display-name:hover {
+    text-decoration: underline !important;
+    color: #245974 !important;
+  }
+  .display-name__html {
+    color: #082a2a !important;
+  }
+   .status__content__spoiler-link {
+    color: #d2ecd2 !important;
+    background-color: rgb(57,57,57,0.8) !important;
+  }
+
+  .status-card__description {
+    color: #393939 !important;
+  }
+  
+  .status-card:hover {
+    background-color: rgb(210,210,236,0.7) !important;
+  }
+
+  .notification__message, .display-name__account, .setting-text {
+    color: #082a2a !important;
+    border-bottom-color: #393939 !important;
+  }
+  
+  .react-toggle-track {
+    background-color: #393939 !important;
+    color: #181818 !important;
+  }
+  
+  .react-toggle-thumb, .drawer__inner.backdrop {
+    background-color: #d2d2ec !important;
+    border-style: none !important;
+  }
+  
+  .column-header__collapsible.collapsed {
+    border-style: none !important;
+  }
+  
+  .column-header__collapsible {
+    border-style: solid !important;
+    border-width: 1px !important;
+    border-color: #fff !important;
+    background-color: rgb(210,210,236,0.2) !important;
+  }
+ 
+  
+  .columns-area {
+    background: linear-gradient(#D2D2EC, #D2ECD2) !important;
+  }
+
+  /* ---------First Column--------- */
+
+.drawer__inner__mastodon {
+    background: #d2e1dd url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 234.80078 31.757813" width="234.80078" height="31.757812"><path d="M19.599609 0c-1.05 0-2.10039.375-2.90039 1.125L0 16.925781v14.832031h234.80078V17.025391l-16.5-15.900391c-1.6-1.5-4.20078-1.5-5.80078 0l-13.80078 13.099609c-1.6 1.5-4.19883 1.5-5.79883 0L179.09961 1.125c-1.6-1.5-4.19883-1.5-5.79883 0L159.5 14.224609c-1.6 1.5-4.20078 1.5-5.80078 0L139.90039 1.125c-1.6-1.5-4.20078-1.5-5.80078 0l-13.79883 13.099609c-1.6 1.5-4.20078 1.5-5.80078 0L100.69922 1.125c-1.600001-1.5-4.198829-1.5-5.798829 0l-13.59961 13.099609c-1.6 1.5-4.200781 1.5-5.800781 0L61.699219 1.125c-1.6-1.5-4.198828-1.5-5.798828 0L42.099609 14.224609c-1.6 1.5-4.198828 1.5-5.798828 0L22.5 1.125C21.7.375 20.649609 0 19.599609 0z" fill="%23F7EFFF"/></svg>') no-repeat bottom/100% auto;
+  }
+  
+body, .activity-stream--under-tabs {
+    background: linear-gradient(#D2D2EC, #D2ECD2) !important;
+  }
+
+.activity-stream .entry,.public-layout .public-account-bio, .public-layout .hero-widget__text, .directory__tag > a, .public-layout .public-account-header__bar::before, .grid-4 .landing-page__call-to-action, .contact-widget, .box-widget {
+    background: transparent !important;
+}

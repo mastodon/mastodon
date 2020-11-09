@@ -1,0 +1,84 @@
+
+@import 'application';
+@import 'customize/highlight/themes/tomorrow';
+
+/* Wider compose area */
+// @media screen and (min-width: 1300px) {
+//   .drawer {
+//     width: 17%; /* Not part of the flex fun */
+//     max-width: 400px;
+//     min-width: 330px;
+//   }
+//   .layout-multiple-columns .column {
+//     flex-grow: 1 !important;
+//     max-width: 400px;
+//   }
+// }
+
+/* Don't show outline around statuses if we're in
+ * mouse or touch mode (rather than keyboard) */
+[data-whatinput="mouse"], [data-whatinput="touch"] {
+  .status__content:focus, .status:focus,
+  .status__wrapper:focus, .status__content__text:focus {
+    outline: none;
+  }
+}
+
+/* Less emphatic show more */
+// .status__content__read-more-button {
+//   font-size: 14px;
+//   color: $dark-text-color;
+
+//   .status__prepend-icon {
+//     padding-right: 4px;
+//   }
+// }
+
+/* Show a little arrowey thing after the time in a
+ * status to signal that you can click it to see
+ * a detailed view */
+// .status time:after,
+// .detailed-status__datetime span:after {
+//   font: normal normal normal 14px/1 'Font Awesome 5 Pro';
+//   content: "\00a0\00a0\f08e";
+// }
+
+/* Don't display the elephant mascot (we have our
+ * own, thanks) */
+/*.drawer__inner__mastodon {
+  display: none;
+} */
+
+/* Let the compose area/drawer be short, but
+ * expand if necessary */
+/* .drawer .drawer__inner {
+  overflow: visible;
+  height:inherit;
+  background-image: none;
+}
+.drawer__pager {
+  overflow-y:auto;
+} */
+
+/* Put a reasonable background on the single-column compose form */
+.layout-single-column .compose-panel {
+  background-color: $ui-base-color;
+  height: auto;
+  overflow-y: visible;
+  margin-top: 65px;
+}
+
+/* Better distinguish the search bar */
+.layout-single-column .compose-panel .search {
+  position:relative;
+  top: -55px;
+  margin-bottom: -55px;
+}
+
+/* Use display: none instead of visibility:hidden
+ * to hide the suggested follows list on non-mobile */
+@media screen and (min-width: 630px) {
+  .search-results .trends {
+     display:none;
+  }
+}

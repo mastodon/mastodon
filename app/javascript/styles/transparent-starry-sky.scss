@@ -1,0 +1,17 @@
+$ui-base-color: #1b1b1b; // darkest
+$ui-highlight-color: rgb(149, 84, 148); // vibrant
+$ui-secondary-color: #b9b9ba; // lightest
+$ui-primary-color: #b9b9ba; // lighter
+$ui-primary-color-alt: #b49cac; // darker, for external pages
+$ui-link-text-color: $ui-highlight-color;
+
+$about-page-text: lighten($ui-base-color, 50%);
+
+$transparent-light:rgba(27, 27, 27, 0.9);
+$transparent-dark:rgba(17, 17, 17, 0.9);
+
+$background-image: url("images/transparent/bg-starry-sky.jpg");
+$link-background-color: linear-gradient(92.05deg, #BCA1F7 12.09%, #E577B4 42.58%, #FF7170 84.96%);
+
+@import 'application';
+@import 'transparent/neon-city'

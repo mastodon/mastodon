@@ -31,6 +31,7 @@ class Sanitize
         next true if /^(h|p|u|dt|e)-/.match?(e) # microformats classes
         next true if /^(mention|hashtag)$/.match?(e) # semantic classes
         next true if /^(ellipsis|invisible)$/.match?(e) # link formatting classes
+        next true if /^quote-inline$/.match?(e) # quote inline classes
       end
 
       node['class'] = class_list.join(' ')
@@ -53,7 +54,7 @@ class Sanitize
     end
 
     UNSUPPORTED_ELEMENTS_TRANSFORMER = lambda do |env|
-      return unless %w(h1 h2 h3 h4 h5 h6 blockquote pre ul ol li).include?(env[:node_name])
+      return unless %w(h1 h2 h3 h4 h5 h6 ul ol li).include?(env[:node_name])
 
       current_node = env[:node]
 
@@ -71,7 +72,7 @@ class Sanitize
     end
 
     MASTODON_STRICT ||= freeze_config(
-      elements: %w(p br span a),
+      elements: %w(p br span a em i  strong b code del s blockquote pre code),
 
       attributes: {
         'a'    => %w(href rel class),

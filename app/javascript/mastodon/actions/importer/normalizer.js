@@ -63,6 +63,8 @@ export function normalizeStatus(status, normalOldStatus) {
     normalStatus.spoilerHtml = normalOldStatus.get('spoilerHtml');
     normalStatus.spoiler_text = normalOldStatus.get('spoiler_text');
     normalStatus.hidden = normalOldStatus.get('hidden');
+    normalStatus.quote = normalOldStatus.get('quote');
+    normalStatus.quote_hidden = normalOldStatus.get('quote_hidden');
   } else {
     // If the status has a CW but no contents, treat the CW as if it were the
     // status' contents, to avoid having a CW toggle with seemingly no effect.
@@ -79,6 +81,32 @@ export function normalizeStatus(status, normalOldStatus) {
     normalStatus.contentHtml  = emojify(normalStatus.content, emojiMap);
     normalStatus.spoilerHtml  = emojify(escapeTextContentForBrowser(spoilerText), emojiMap);
     normalStatus.hidden       = expandSpoilers ? false : spoilerText.length > 0 || normalStatus.sensitive;
+
+    if (status.quote && status.quote.id) {
+      const quote_spoilerText = status.quote.spoiler_text || '';
+      const quote_searchContent = [quote_spoilerText, status.quote.content].join('\n\n').replace(/<br\s*\/?>/g, '\n').replace(/<\/p><p>/g, '\n\n');
+
+      const quote_emojiMap = makeEmojiMap(normalStatus.quote);
+
+      const quote_account_emojiMap = makeEmojiMap(status.quote.account);
+      const displayName = normalStatus.quote.account.display_name.length === 0 ? normalStatus.quote.account.username : normalStatus.quote.account.display_name;
+      normalStatus.quote.account.display_name_html = emojify(escapeTextContentForBrowser(displayName), quote_account_emojiMap);
+      normalStatus.quote.search_index = domParser.parseFromString(quote_searchContent, 'text/html').documentElement.textContent;
+      let docElem = domParser.parseFromString(normalStatus.quote.content, 'text/html').documentElement;
+      Array.from(docElem.querySelectorAll('p,br'), line => {
+        let parentNode = line.parentNode;
+        if (line.nextSibling) {
+          parentNode.insertBefore(document.createTextNode(' '), line.nextSibling);
+        }
+      });
+      // TODO: how to use normalOldStatus?
+      // let _contentHtml = docElem.textContent;
+      // normalStatus.quote.contentHtml  = '<p>'+emojify(_contentHtml.substr(0, 150), quote_emojiMap) + (_contentHtml.substr(150) ? '...' : '')+'</p>';
+      let _contentHtml = docElem.innerHTML;
+      normalStatus.quote.contentHtml  = '<p>'+emojify(_contentHtml, quote_emojiMap)+'</p>';
+      normalStatus.quote.spoilerHtml  = emojify(escapeTextContentForBrowser(quote_spoilerText), quote_emojiMap);
+      normalStatus.quote_hidden       = expandSpoilers ? false : quote_spoilerText.length > 0 || normalStatus.quote.sensitive;
+    }
   }
 
   return normalStatus;

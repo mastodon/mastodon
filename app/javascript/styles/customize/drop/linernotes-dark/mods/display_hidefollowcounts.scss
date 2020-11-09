@@ -1,0 +1,10 @@
+/*
+Hide the following and follower counters on profiles.
+- full counts are still available by hovering over the text, though
+author: trwnh
+license: Public Domain
+*/
+.account__header__extra__links a:not(:first-child) strong
+{display: none}
+.details-counters .counter:not(:first-child) .counter-number
+{visibility: hidden}

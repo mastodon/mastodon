@@ -1,10 +1,11 @@
-version: '3'
+version: '3.7'
 services:
   db:
     restart: always
     image: postgres:14-alpine
     shm_size: 256mb
     networks:
+      - external_network
       - internal_network
     healthcheck:
       test: ['CMD', 'pg_isready', '-U', 'postgres']
@@ -15,8 +16,12 @@ services:
 
   redis:
     restart: always
-    image: redis:6-alpine
+    image: redis:6.0-alpine
+    ports:
+      # - "0.0.0.0:637:6379"
+      - "127.0.0.1:637:6379"
     networks:
+      - external_network
       - internal_network
     healthcheck:
       test: ['CMD', 'redis-cli', 'ping']
@@ -43,8 +48,8 @@ services:
   #       hard: -1
 
   web:
-    build: .
-    image: tootsuite/mastodon
+    # build: .
+    image: mashirozx/mastodon:latest
     restart: always
     env_file: .env.production
     command: bash -c "rm -f /mastodon/tmp/pids/server.pid; bundle exec rails s -p 3000"
@@ -62,10 +67,18 @@ services:
       # - es
     volumes:
       - ./public/system:/mastodon/public/system
+    deploy:
+      resources:
+        limits:
+          cpus: '1.00'
+          memory: 400M
+        #reservations:
+        #  cpus: '0.5'
+        #  memory: 300M
 
   streaming:
-    build: .
-    image: tootsuite/mastodon
+    # build: .
+    image: mashirozx/mastodon:latest
     restart: always
     env_file: .env.production
     command: node ./streaming
@@ -82,8 +95,8 @@ services:
       - redis
 
   sidekiq:
-    build: .
-    image: tootsuite/mastodon
+    # build: .
+    image: mashirozx/mastodon:latest
     restart: always
     env_file: .env.production
     command: bundle exec sidekiq

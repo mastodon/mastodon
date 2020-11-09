@@ -1,0 +1,123 @@
+/*$ui-highlight-color: #4286f4;
+$classic-base-color: #94D0FF;
+$classic-primary-color: #8795E8;
+$classic-secondary-color: #FF6AD5;
+$classic-highlight-color: #2b90d9;*/
+@import 'fonts/press-start';
+
+$classic-base-color: #1d146e;
+$ui-base-color: $classic-base-color;
+/*$ui-base-lighter-color: #b0c0cf;
+$ui-primary-color: #9bcbed;
+$ui-secondary-color: $classic-secondary-color !default;
+$ui-highlight-color: #2b5fd9;
+*/
+
+@mixin gradient-background{
+    background: linear-gradient(to bottom, #fc00ff , #00dbde) !important;
+}
+
+@mixin text-shadow{
+    text-shadow: -3px -2px 3px #FF00E0;
+}
+@mixin corner-rounded{
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+@mixin opacity-setting{
+    opacity:0.86 !important;
+}
+
+.form-container{
+    background: $ui-base-color;
+    opacity: 0.86;
+}
+
+.columns-area{
+    /*background: repeating-linear-gradient(
+        45deg,
+        #FF6AD5,
+        #FF6AD5 10px,
+        #000000 10px,
+        #465298 20px
+      );*/
+      @include gradient-background();
+}
+/*html{
+    background: repeating-linear-gradient(
+        45deg,
+        #FF6AD5,
+        #FF6AD5 10px,
+        #000000 10px,
+        #465298 20px
+      ) !important;
+}*/
+body{
+    @include gradient-background();
+}
+
+.admin-wrapper{
+    @include gradient-background();
+}
+
+.scrollable, .drawer__inner{
+    opacity: 0.86;
+    @include corner-rounded();
+}
+.empty-column-indicator{
+   @include corner-rounded();
+}
+.column{
+    @include opacity-setting();
+    @include corner-rounded();
+}
+.column-3{
+    @include opacity-setting();
+}
+.admin-wrapper{
+    @include opacity-setting();
+}
+.content-wrapper{
+    @include opacity-setting();
+    background: $ui-base-color;
+}
+.sidebar-wrapper{
+    @include opacity-setting();
+    background: $ui-base-color;
+}
+.column-header button{
+    font-family: 'is-this-vaporwave', cursive !important;
+    font-size: 13px !important;
+    text-shadow: -5px -2px 1px #FF00E0;
+}
+.getting_started {
+    @include corner-rounded();
+}
+.getting_started__wrapper {
+    @include corner-rounded();
+}
+
+.drawer__tab{
+    @include text-shadow();
+    color: #ffffff !important;
+}
+
+.drawer__header {
+    @include opacity-setting();
+}
+
+.drawer__inner.darker{
+    opacity: 1 !important;
+}
+
+.getting-started__trends h4, .getting-started__trends .trends__item__current, .trends__item__name a {
+    color: #373737 !important;
+}
+
+/*.footer {
+    background: $ui-base-color;
+    @include opacity-setting();
+    @include corner-rounded();
+}*/
+@import 'application';

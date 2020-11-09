@@ -2,7 +2,7 @@
 
 module MascotHelper
   def mascot_url
-    full_asset_url(instance_presenter.mascot&.file&.url || asset_pack_path('media/images/elephant_ui_plane.svg'))
+    full_asset_url(instance_presenter.mascot&.file&.url || asset_pack_path('media/images/elephant_ui_plane_sub.png'))
   end
 
   private

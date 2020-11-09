@@ -1419,6 +1419,9 @@ zh-CN:
       video:
         other: "%{count} 段视频"
     boosted_from_html: 转嘟自 %{acct_link}
+    content_types:
+      text/markdown: Markdown
+      text/plain: 纯文本
     content_warning: 内容警告：%{warning}
     default_language: 与界面显示语言相同
     disallowed_hashtags:
@@ -1426,6 +1429,7 @@ zh-CN:
     edited_at_html: 编辑于 %{date}
     errors:
       in_reply_not_found: 你回复的嘟文似乎不存在
+    local_only: 仅在本站内可见
     open_in_web: 在站内打开
     over_character_limit: 超过了 %{max} 字的限制
     pin_errors:
@@ -1581,9 +1585,38 @@ zh-CN:
       <p>最初改编自 <a href="https://github.com/discourse/discourse">Discourse 隐私政策</a>.</p>
     title: "%{instance} 使用条款和隐私权政策"
   themes:
-    contrast: Mastodon（高对比度）
-    default: Mastodon（暗色主题）
-    mastodon-light: Mastodon（亮色主题）
+    bilibili-light: 哔哩哔哩(゜-゜)つロ干杯~
+    contrast: Mastodon（深色主题-群青）
+    cybre-light: 老夫的少女心
+    dark-cyan: Mastodon（深色主题-錆浅葱）
+    dark-green: Mastodon（深色主题-若竹）
+    dark-orange: Mastodon（深色主题-赤橙）
+    dark-pink: Mastodon（深色主题-桜色）
+    dark-purple: Mastodon（深色主题-桔梗）
+    dark-red: Mastodon（深色主题-红绯）
+    dark-yellow: Mastodon（深色主题-向日葵）
+    default: Mastodon（默认）
+    forest: 小森林
+    light-cyan: Mastodon（浅色主题-錆浅葱）
+    light-green: Mastodon（浅色主题-若竹）
+    light-orange: Mastodon（浅色主题-赤橙）
+    light-pink: Mastodon（浅色主题-桜色）
+    light-purple: Mastodon（浅色主题-桔梗）
+    light-red: Mastodon（浅色主题-红绯）
+    light-yellow: Mastodon（浅色主题-向日葵）
+    luxury: 奢华
+    mastodon-light: Mastodon（浅色主题-群青）
+    new-year: 新年
+    nga: NGA风格
+    sakura: 樱花
+    sleeping-town: 小镇黎明
+    strawberry: 草莓
+    transparent-aurora: 极光（透明）
+    transparent-forest-trace: 林间小道（透明）
+    transparent-starry-sky: 星空（透明）
+    ubuntu-light: Ubuntu 橙
+    ubuntu-terminal: Ubuntu 命令行
+    witches-town: 巫师小镇
   time:
     formats:
       default: "%Y年%m月%d日 %H:%M"

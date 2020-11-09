@@ -1,0 +1,18 @@
+/* show trands in getting-started bar on in column view */
+.column .getting-started__trends .trends__item:nth-child(2),
+.column .getting-started__trends .trends__item:nth-child(3),
+.column .getting-started__trends .trends__item:last-child {
+  background: $white;
+}
+
+.column .getting-started__trends .trends__item:last-child {
+  border-bottom: 1px solid lighten($ui-base-color, 8%);
+}
+.column .getting-started__trends h4 {
+  padding: 8px 20px;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  background: darken($ui-base-color, 4%);
+  border-bottom: 1px solid lighten($ui-base-color, 8%);
+}

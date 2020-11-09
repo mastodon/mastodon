@@ -1,0 +1,160 @@
+// export theme colors
+:root {
+  --theme-black: #{$black};
+  --theme-white: #{$white};
+  --theme-classic-base-color: #{$classic-base-color};
+  --theme-classic-primary-color: #{$classic-primary-color};
+  --theme-classic-secondary-color: #{$classic-secondary-color};
+  --theme-classic-highlight-color: #{$classic-highlight-color};
+  --theme-success-green: #{$success-green};
+  --theme-base-overlay-background: #{$base-overlay-background};
+  --theme-valid-value-color: #{$valid-value-color};
+  --theme-ui-base-color: #{$ui-base-color};
+  --theme-ui-base-lighter-color: #{$ui-base-lighter-color};
+  --theme-ui-primary-color: #{$ui-primary-color};
+  --theme-ui-secondary-color: #{$ui-secondary-color};
+  --theme-ui-highlight-color: #{$ui-highlight-color};
+  --theme-primary-text-color: #{$primary-text-color};
+  --theme-darker-text-color: #{$darker-text-color};
+  --theme-dark-text-color: #{$dark-text-color};
+  --theme-action-button-color: #{$action-button-color};
+  --theme-inverted-text-color: #{$inverted-text-color};
+  --theme-lighter-text-color: #{$lighter-text-color};
+  --theme-light-text-color: #{$light-text-color};
+}
+
+// show trands in getting-started bar on in column view
+.column .getting-started__trends .trends__item:nth-child(2),
+.column .getting-started__trends .trends__item:nth-child(3),
+.column .getting-started__trends .trends__item:last-child {
+  background: lighten($ui-base-color, 8%);
+}
+
+.column .getting-started__trends h4 {
+  background: $ui-base-color;
+  color: $dark-text-color;
+  padding: 0 20px 8px;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  cursor: default;
+  border-bottom: 0;
+}
+
+// hashtag style (.status-link removed)
+// not work: .u-url:not(.detailed-status__display-name):not(.detailed-status__datetime):not(.status__relative-time):not(.status__display-name)
+.hashtag,
+.u-url.status-link:not(.unhandled-link) {
+  background: rgba(darken($ui-base-color, 7%), 0.36);
+  color: $highlight-text-color;
+  padding: 0px 5px;
+  text-align: center;
+  text-decoration: none !important;
+  display: inline-block;
+  border-style: dashed;
+  border-color: $highlight-text-color;
+  border-width: 0.5px;
+  border-radius: 5px;
+  margin: 1px;
+
+  &:before {
+    // you may use your own icon font here
+    padding-right: 2px;
+  }
+
+  &:hover {
+    background-color: rgba(lighten($ui-base-color, 13%), 0.36);
+  }
+
+  span {
+    text-decoration: none !important;
+  }
+}
+
+.muted .status__content a {
+  border-color: $dark-text-color;
+}
+
+// translation 
+.status__content__show-translation-button {
+  margin-top: 8px !important;
+
+  i {
+    font-style: normal !important;
+  }
+}
+
+.translation-content__wrapper {
+  margin-top: 8px;
+
+  .translation-content__failed,
+  .translation-content__loading,
+  .translation-content__succeed {
+    &.display {
+      display: block;
+    }
+
+    &.hidden {
+      display: none;
+    }
+
+    .translation-content__powered-by {
+      font-size: 16px;
+
+      img {
+        height: 1em;
+        margin: 5px;
+        vertical-align: middle;
+      }
+    }
+
+    .translation-content {
+      font-size: 16px;
+    }
+
+    .spinner {
+      display: block;
+      position: relative;
+      width: 80px;
+      height: 80px;
+      margin: auto;
+      transform: scale(0.6);
+      transform-origin: left;
+
+      div {
+        box-sizing: border-box;
+        display: block;
+        position: absolute;
+        width: 64px;
+        height: 64px;
+        margin: 8px;
+        border: 8px solid $ui-base-lighter-color;
+        border-radius: 50%;
+        animation: spinner 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+        border-color: $ui-base-lighter-color transparent transparent transparent;
+
+        &:nth-child(1) {
+          animation-delay: -0.45s;
+        }
+
+        &:nth-child(2) {
+          animation-delay: -0.3s;
+        }
+
+        &:nth-child(3) {
+          animation-delay: -0.15s;
+        }
+      }
+    }
+
+    @keyframes spinner {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  }
+}

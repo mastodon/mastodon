@@ -1,6 +1,6 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
-import illustration from 'mastodon/../images/elephant_ui_working.svg';
+import illustration from 'mastodon/../images/elephant_ui_working_sub.png';
 
 const RegenerationIndicator = () => (
   <div className='regeneration-indicator'>

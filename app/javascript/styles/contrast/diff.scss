@@ -42,21 +42,22 @@
     text-decoration: none;
   }
 
+  &.status__content__read-more-button,
   &.status__content__spoiler-link {
     color: $secondary-text-color;
     text-decoration: none;
   }
 }
 
-.status__content__read-more-button {
-  text-decoration: underline;
+// .status__content__read-more-button {
+//   text-decoration: underline;
 
-  &:hover,
-  &:focus,
-  &:active {
-    text-decoration: none;
-  }
-}
+//   &:hover,
+//   &:focus,
+//   &:active {
+//     text-decoration: none;
+//   }
+// }
 
 .getting-started__footer a {
   text-decoration: underline;

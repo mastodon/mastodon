@@ -13,8 +13,22 @@ export default class Icon extends React.PureComponent {
   render () {
     const { id, className, fixedWidth, ...other } = this.props;
 
+    const key = ['fab', 'fas', 'far', 'fal', 'fad'];
+
+    let fa = 'fa',
+        tag = id;
+    if (id.includes(':')) {
+      key.forEach(key => {
+        if (id.includes(`:${key}`)) {
+          fa = key;
+          tag = id.replace(`:${key}`, '');
+          return false;
+        }
+      })
+    }
+
     return (
-      <i role='img' className={classNames('fa', `fa-${id}`, className, { 'fa-fw': fixedWidth })} {...other} />
+      <i role='img' className={classNames(fa, `fa-${tag}`, className, { 'fa-fw': fixedWidth })} {...other} />
     );
   }
 
