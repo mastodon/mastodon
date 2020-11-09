@@ -3,6 +3,7 @@ zgh:
     about_this: ⵖⴼ
     unavailable_content_description:
       domain: ⴰⵎⴰⴽⴽⴰⵢ
+    what_is_mastodon: ⵎⴰ'ⵢⴷ ⵉⴳⴰⵏ ⵎⴰⵙⵜⵔⴷⵓⵎ?
   accounts:
     follow: ⴹⴼⵕ
     never_active: ⵓⵙⴰⵔ
@@ -12,14 +13,26 @@ zgh:
     account_moderation_notes:
       delete: ⴽⴽⵙ
     accounts:
+      change_email:
+        label: ⵙⵏⴼⵍ ⵉⵎⴰⵢⵍ
+        submit: ⵙⵏⴼⵍ ⵉⵎⴰⵢⵍ
+      confirm: ⵙⵏⵜⵎ
+      delete: ⴽⴽⵙ ⵉⴼⵙⴽⴰ
       edit: ⵙⵏⴼⵍ
       email: ⵉⵎⴰⵢⵍ
       location:
         all: ⵎⴰⵕⵕⴰ
       moderation:
         all: ⵎⴰⵕⵕⴰ
+      public: ⴰⴳⴷⵓⴷⴰⵏ
+      reject: ⴰⴳⵢ
+      title: ⵉⵎⵉⴹⴰⵏⵏ
+      web: ⵡⵉⴱ
+    announcements:
+      live: ⵓⵙⵔⵉⴷ
     custom_emojis:
       copy: ⵙⵏⵖⵍ
+      delete: ⴽⴽⵙ
       emoji: ⵉⵎⵓⵊⵉ
     email_domain_blocks:
       delete: ⴽⴽⵙ
@@ -30,30 +43,46 @@ zgh:
       delete: ⴽⴽⵙ
       expires_in:
         '1209600': 2 weeks
-        '15778476': 6 months
-        '2629746': 1 month
+        '15778476': 6 ⵡⴰⵢⵢⵓⵔⵏ
+        '2629746': ⴰⵢⵢⵓⵔ
         '31556952': ⴰⵙⴳⴳⵯⴰⵙ
         '86400': ⴰⵙⵙ
         '94670856': 3 ⵉⵙⴳⴳⵯⴰⵙⵏ
     relays:
       delete: ⴽⴽⵙ
+      status: ⴰⴷⴷⴰⴷ
     reports:
       notes:
         delete: ⴽⴽⵙ
+      status: ⴰⴷⴷⴰⴷ
     settings:
       site_title: ⵉⵙⵎ ⵏ ⵓⵎⴰⴽⴽⴰⵢ
       title: ⵜⵉⵙⵖⴰⵍ ⵏ ⵡⴰⵙⵉⵜ
     statuses:
       batch:
         delete: ⴽⴽⵙ
+      media:
+        title: ⵉⵙⵏⵖⵎⵉⵙⵏ
+      with_media: ⵙ ⵉⵙⵏⵖⵎⵉⵙⵏ
+    tags:
+      name: ⵀⴰⵛⵟⴰⴳ
+      title: ⵉⵀⴰⵛⵟⴰⴳⵏ
     warning_presets:
       delete: ⴽⴽⵙ
   application_mailer:
     view_profile: ⵙⴽⵏ ⵉⴼⵔⵙ
   auth:
+    change_password: ⵜⴰⴳⵓⵔⵉ ⵏ ⵓⵣⵔⴰⵢ
+    forgot_password: ⵜⴻⵜⵜⵓⴷ ⵜⴰⴳⵓⵔⵉ ⵏ ⵓⵣⵔⴰⵢ ⵏⵏⴽ?
+    login: ⴽⵛⵎ
+    logout: ⴼⴼⵖ
+    or_log_in_with: ⵏⵖ ⴽⵛⵎ ⵙ
     register: ⵣⵎⵎⴻⵎ
+    status:
+      account_status: ⴰⴷⴷⴰⴷ ⵏ ⵓⵎⵉⴹⴰⵏ
   authorize_follow:
     follow: ⴹⴼⵕ
+    title: ⴹⴼⵕ %{acct}
   deletes:
     proceed: ⴽⴽⵙ ⴰⵎⵉⴹⴰⵏ
   errors:
@@ -66,6 +95,9 @@ zgh:
     '429': Too many requests
     '500':
     '503': The page could not be served due to a temporary server failure.
+  exports:
+    archive_takeout:
+      date: ⴰⵣⵎⵣ
   filters:
     index:
       delete: ⴽⴽⵙ
