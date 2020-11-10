@@ -1,4 +1,3 @@
----
 vi:
   simple_form:
     hints:
@@ -41,7 +40,7 @@ vi:
         phrase: Sẽ được hiện thị trong văn bản hoặc cảnh báo nội dung của một tút
         scopes: API nào ứng dụng sẽ được phép truy cập. Nếu bạn chọn quyền hạn cấp cao nhất, bạn không cần chọn từng phạm vi.
         setting_aggregate_reblogs: Nếu một tút đã được chia sẻ thì những lượt chia sẻ sau sẽ không hiển thị trên bảng tin nữa
-        setting_default_sensitive: Nội dung nhạy cảm sẽ mặc định là ẩn và chỉ hiển thị nếu nhấp chuột
+        setting_default_sensitive: Nội dung nhạy cảm mặc định là ẩn và chỉ hiển thị nếu nhấn vào
         setting_display_media_default: Làm mờ những thứ được đánh dấu là nhạy cảm
         setting_display_media_hide_all: Không hiển thị
         setting_display_media_show_all: Luôn luôn hiển thị
@@ -201,7 +200,7 @@ vi:
         name: Hashtag
         trendable: Cho phép hashtag này xuất hiện trong xu hướng
         usable: Cho phép sử dụng hashtag này trong tút
-    'no': Tắt
+    'no': 'Tắt'
     recommended: Khuyến nghị
     required:
       mark: "*"
@@ -209,4 +208,4 @@ vi:
     title:
       sessions:
         webauthn: Dùng một trong những khóa bảo mật của bạn để đăng nhập
-    'yes': Bật
+    'yes': 'Bật'
