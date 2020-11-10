@@ -1,11 +1,10 @@
----
 vi:
   simple_form:
     hints:
       account_alias:
-        acct: Chọn tên_người_dùng@máy chủ của tài khoản lúc trước
+        acct: Nhập tên_người_dùng@máy chủ của tài khoản cũ
       account_migration:
-        acct: Chọn tên_người_dùng@máy chủ của tài khoản bạn muốn dời sang
+        acct: Nhập tên_người_dùng@máy chủ của tài khoản bạn muốn dời sang
       account_warning_preset:
         text: Bạn có thể sử dụng URL, hashtag và nhắc đến
         title: Tùy chọn. Không cho người nhận xem
@@ -86,9 +85,9 @@ vi:
           name: Nhãn
           value: Nội dung
       account_alias:
-        acct: Xử lý tài khoản cũ
+        acct: Tài khoản cũ
       account_migration:
-        acct: Xử lý tài khoản mới
+        acct: Tài khoản mới
       account_warning_preset:
         text: Văn bản cài sẵn
         title: Tựa đề
@@ -201,7 +200,7 @@ vi:
         name: Hashtag
         trendable: Cho phép hashtag này xuất hiện trong xu hướng
         usable: Cho phép sử dụng hashtag này trong tút
-    'no': Tắt
+    'no': 'Tắt'
     recommended: Khuyến nghị
     required:
       mark: "*"
@@ -209,4 +208,4 @@ vi:
     title:
       sessions:
         webauthn: Dùng một trong những khóa bảo mật của bạn để đăng nhập
-    'yes': Bật
+    'yes': 'Bật'
