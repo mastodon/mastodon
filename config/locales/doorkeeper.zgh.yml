@@ -1,1 +1,42 @@
+---
 zgh:
+  activerecord:
+    attributes:
+      doorkeeper/application:
+        name: ⵉⵙⵏ ⵏ ⵜⵙⵏⵙⵉ
+        website: ⴰⵙⵉⵜ ⵡⵉⴱ ⵏ ⵜⵙⵏⵙⵉ
+  doorkeeper:
+    applications:
+      buttons:
+        authorize: ⵙⵙⵓⵔⴳ
+        cancel: ⵙⵔ
+        edit: ⵙⵏⴼⵍ
+        submit: ⴰⵣⵏ
+      confirmations:
+        destroy: ⵉⵙ ⵏⵉⵜ?
+      edit:
+        title: ⵙⵏⴼⵍ ⵜⵉⵙⵏⵙⵉ
+      index:
+        application: ⵜⵉⵙⵏⵙⵉ
+        delete: ⴽⴽⵙ
+        empty: ⵓⵔ ⵖⵓⵔⴽ ⴽⵔⴰ ⵏ ⵜⵙⵏⵙⵉⵡⵉⵏ.
+        name: ⵉⵙⵎ
+        new: ⵜⵉⵙⵏⵙⵉ ⵜⴰⵎⴰⵢⵏⵓⵜ
+        title: ⵜⵉⵙⵏⵙⵉⵡⵉⵏ ⵏⵏⴽ
+      new:
+        title: ⵜⵉⵙⵏⵙⵉ ⵜⴰⵎⴰⵢⵏⵓⵜ
+      show:
+        actions: ⵜⵉⴳⴰⵡⵉⵏ
+        title: ⵜⵉⵙⵏⵙⵉ %{name}
+    authorizations:
+      buttons:
+        authorize: ⵙⵙⵓⵔⴳ
+        deny: ⴰⴳⵢ
+    authorized_applications:
+      confirmations:
+        revoke: ⵉⵙ ⵏⵉⵜ?
+      index:
+        application: ⵜⵉⵙⵏⵙⵉ
+        created_at: ⵜⴻⵜⵜⵓⵙⵓⵔⴳ
+        date_format: "%d-%m-%Y %H:%M:%S"
+        title: ⵜⵉⵙⵏⵙⵉⵡⵉⵏ ⵏⵏⴽ ⵉⵜⵜⵓⵙⵓⵔⴷⵏ

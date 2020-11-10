@@ -206,7 +206,7 @@ vi:
       unsilenced_msg: Bỏ ẩn %{username} thành công
       unsubscribe: Hủy đăng ký
       unsuspended_msg: Đã kích hoạt lại tài khoản %{username} thành công
-      username: ABC
+      username: Tài khoản
       view_domain: Xem mô tả tài khoản này
       warn: Cảnh cáo
       web: Web
@@ -669,16 +669,16 @@ vi:
       body: 'Hashtag # %{name} đang là xu hướng nhưng chưa được kiểm duyệt. Nó sẽ không được hiển thị công khai trừ khi bạn cho phép. Bỏ qua nếu bạn không bao giờ muốn thấy nó xuất hiện.'
       subject: Hashtag mới được xem xét trên %{instance} (# %{name})
   aliases:
-    add_new: Tạo tên hiển thị
+    add_new: Kết nối tài khoản
     created_msg: Tạo thành công một tên hiển thị mới. Bây giờ bạn có thể bắt đầu di chuyển từ tài khoản cũ.
     deleted_msg: Xóa thành công tên hiển thị. Chuyển từ tài khoản này sang tài khoản này sẽ không còn có thể.
-    empty: Bạn không tên hiển thị nào.
-    hint_html: Nếu bạn muốn chuyển từ máy chủ khác sang máy chủ này, tại đây bạn có thể tạo bí danh, điều này là bắt buộc trước khi bạn có thể tiến hành chuyển người theo dõi từ tài khoản cũ sang tài khoản này. Hành động này của chính nó là <strong>vô hại và có thể đảo ngược</strong>. <strong>Việc di chuyển tài khoản được bắt đầu từ tài khoản cũ</strong>.
+    empty: Bạn không có tài khoản cũ nào.
+    hint_html: Nếu bạn muốn chuyển từ máy chủ khác sang máy chủ này, bắt buộc bạn phải tạo tên người dùng mới thì mới có thể tiến hành chuyển được người theo dõi. Hành động này <strong>không ảnh hưởng gì và có thể đảo ngược</strong>. <strong>Việc di chuyển tài khoản được bắt đầu từ tài khoản cũ</strong>.
     remove: Bỏ liên kết bí danh
   appearance:
     advanced_web_interface: Bố cục
     advanced_web_interface_hint: 'Giao diện nhiều cột cho phép bạn chuyển đổi bố cục hiển thị thành nhiều cột khác nhau. Bao gồm: Bảng tin, thông báo, thế giới, cũng như danh sách và hashtag. Rất thích hợp nếu bạn sử dụng màn hình rộng.'
-    animations_and_accessibility: Nâng cao
+    animations_and_accessibility: Bảng tin
     confirmation_dialogs: Hộp thoại xác nhận
     discovery: Khám phá
     localization:
@@ -792,7 +792,7 @@ vi:
     success_msg: Tài khoản của bạn đã được xóa thành công
     warning:
       before: 'Trước khi tiếp tục, xin vui lòng xem xét cẩn thận:'
-      caches: Nội dung đã được lưu trữ bởi các máy chủ khác có thể tồn tại
+      caches: Nội dung đã lưu trữ trên các máy chủ khác có thể vẫn tồn tại
       data_removal: Bài viết của bạn và dữ liệu khác sẽ bị xóa vĩnh viễn
       email_change_html: Bạn có thể <a href="%{path}">thay đổi địa chỉ email</a> mà không cần phải xóa tài khoản
       email_contact_html: Nếu vẫn không nhận được, bạn có thể liên hệ <a href="mailto:%{email}">%{email}</a> để được giúp đỡ
@@ -966,14 +966,14 @@ vi:
     redirecting_to: Tài khoản của bạn đang chuyển hướng đến %{acct}.
     set_redirect: Thiết lập chuyển hướng
     warning:
-      backreference_required: Tài khoản mới trước tiên phải được cấu hình để tham chiếu lại tài khoản này
+      backreference_required: Bạn cần phải đăng ký tài khoản mới ở máy chủ khác trước
       before: 'Trước khi tiếp tục, xin vui lòng đọc các lưu ý:'
-      cooldown: Sau khi di chuyển, có thời gian chiêu hồi, trong đó bạn sẽ không thể di chuyển nữa
-      disabled_account: Tài khoản hiện tại của bạn sẽ không thể sử dụng đầy đủ sau đó. Tuy nhiên, bạn sẽ có quyền truy cập để xuất dữ liệu cũng như kích hoạt lại.
+      cooldown: Trong thời gian chuyển tài khoản, bạn sẽ không thể sử dụng tài khoản này
+      disabled_account: Tài khoản này sẽ không thể tiếp tục sử dụng. Tuy nhiên, bạn có quyền truy cập để xuất dữ liệu cũng như kích hoạt lại.
       followers: Hành động này sẽ chuyển tất cả người theo dõi từ tài khoản hiện tại sang tài khoản mới
       only_redirect_html: Ngoài ra, bạn có thể <a href="%{path}">đặt chuyển hướng trên trang cá nhân của bạn</a>.
       other_data: Dữ liệu khác sẽ không được di chuyển tự động
-      redirect: Trang cá nhân hiện tại của bạn sẽ được cập nhật với thông báo chuyển hướng và bị loại khỏi các tìm kiếm
+      redirect: Trang cá nhân hiện tại của bạn sẽ hiển thị thông báo chuyển hướng và bị loại khỏi kết quả tìm kiếm
   moderation:
     title: Kiểm duyệt
   move_handler:
@@ -995,8 +995,8 @@ vi:
       subject: "%{name} vừa thích tút của bạn"
       title: Lượt thích mới
     follow:
-      body: Bạn vừa mới được %{name} theo dõi
-      subject: "%{name} vừa mới theo dõi bạn"
+      body: Bạn vừa được %{name} theo dõi!
+      subject: "%{name} vừa theo dõi bạn"
       title: Người theo dõi mới
     follow_request:
       action: Quản lý yêu cầu theo dõi
@@ -1140,7 +1140,7 @@ vi:
   settings:
     account: Tài khoản
     account_settings: Cài đặt tài khoản
-    aliases: Định danh tài khoản
+    aliases: Kết nối tài khoản
     appearance: Giao diện
     authorized_apps: App đã sử dụng
     back: Quay lại Mastodon
@@ -1221,7 +1221,7 @@ vi:
   time:
     formats:
       default: "%d.%m.%Y %H:%M"
-      month: "%b %Y"
+      month: "%B %Y"
   two_factor_authentication:
     add: Thêm
     disable: Vô hiệu hóa

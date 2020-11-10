@@ -3,9 +3,9 @@ vi:
   simple_form:
     hints:
       account_alias:
-        acct: Chọn tên_người_dùng@máy chủ của tài khoản lúc trước
+        acct: Nhập tên_người_dùng@máy chủ của tài khoản cũ
       account_migration:
-        acct: Chọn tên_người_dùng@máy chủ của tài khoản bạn muốn dời sang
+        acct: Nhập tên_người_dùng@máy chủ của tài khoản bạn muốn dời sang
       account_warning_preset:
         text: Bạn có thể sử dụng URL, hashtag và nhắc đến
         title: Tùy chọn. Không cho người nhận xem
@@ -41,15 +41,15 @@ vi:
         phrase: Sẽ được hiện thị trong văn bản hoặc cảnh báo nội dung của một tút
         scopes: API nào ứng dụng sẽ được phép truy cập. Nếu bạn chọn quyền hạn cấp cao nhất, bạn không cần chọn từng phạm vi.
         setting_aggregate_reblogs: Nếu một tút đã được chia sẻ thì những lượt chia sẻ sau sẽ không hiển thị trên bảng tin nữa
-        setting_default_sensitive: Nội dung nhạy cảm sẽ mặc định là ẩn và chỉ hiển thị nếu nhấp chuột
+        setting_default_sensitive: Nội dung nhạy cảm mặc định là ẩn và chỉ hiển thị nếu nhấn vào
         setting_display_media_default: Làm mờ những thứ được đánh dấu là nhạy cảm
         setting_display_media_hide_all: Không hiển thị
         setting_display_media_show_all: Luôn luôn hiển thị
         setting_hide_network: Ẩn những người bạn theo dõi và những người theo dõi bạn trên trang cá nhân
         setting_noindex: Ảnh hưởng đến trang cá nhân và tút của bạn
-        setting_show_application: Tên ứng dụng bạn sử dụng để đăng tút sẽ được hiển thị trong chi tiết bài đăng
+        setting_show_application: Tên ứng dụng bạn dùng để đăng tút sẽ hiện trong chi tiết bài đăng
         setting_use_blurhash: Lớp phủ mờ dựa trên màu sắc của hình ảnh nhạy cảm
-        setting_use_pending_items: Ẩn cập nhật bảng tin bằng một cái nhấp chuột thay vì phải cuộn toàn bộ
+        setting_use_pending_items: Dồn lại toàn bộ tút mới và chỉ hiển thị khi nào nhấp chuột vào
         username: Tên người dùng của bạn sẽ là duy nhất trên %{domain}
         whole_word: Khi từ khóa hoặc cụm từ là chữ và số, nó sẽ chỉ hiện ra những từ chính xác như vậy
       domain_allow:
@@ -86,9 +86,9 @@ vi:
           name: Nhãn
           value: Nội dung
       account_alias:
-        acct: Xử lý tài khoản cũ
+        acct: Tài khoản cũ
       account_migration:
-        acct: Xử lý tài khoản mới
+        acct: Tài khoản mới
       account_warning_preset:
         text: Văn bản cài sẵn
         title: Tựa đề
@@ -120,7 +120,7 @@ vi:
         context: Áp dụng
         current_password: Mật khẩu hiện tại
         data: Dữ liệu
-        discoverable: Liệt kê tài khoản này trên danh sách thành viên
+        discoverable: Liệt kê tài khoản trên danh sách thành viên
         display_name: Tên hiển thị
         email: Địa chỉ email
         expires_in: Hết hạn sau
@@ -138,7 +138,7 @@ vi:
         phrase: Từ khóa hoặc cụm từ
         setting_advanced_layout: Kích hoạt giao diện nhiều cột
         setting_aggregate_reblogs: Không hiện lượt chia sẻ trùng
-        setting_auto_play_gif: Tự động phát GIF
+        setting_auto_play_gif: Tự động phát ảnh GIF
         setting_boost_modal: Yêu cầu xác nhận trước khi chia sẻ tút
         setting_crop_images: Hiển thị ảnh theo tỉ lệ 16x9
         setting_default_language: Ngôn ngữ đăng
@@ -154,9 +154,9 @@ vi:
         setting_hide_network: Ẩn kết nối của bạn
         setting_noindex: Không xuất hiện trong công cụ tìm kiếm
         setting_reduce_motion: Giảm chuyển động ảnh GIF
-        setting_show_application: Hiện ứng dụng được sử dụng để đăng tút
+        setting_show_application: Hiện ứng dụng đã dùng để đăng tút
         setting_system_font_ui: Sử dụng phông chữ mặc định của hệ thống
-        setting_theme: Giao diện trang web
+        setting_theme: Giao diện
         setting_trends: Hiển thị xu hướng hôm nay
         setting_unfollow_modal: Yêu cầu xác nhận trước khi hủy theo dõi ai đó
         setting_use_blurhash: Làm mờ trước ảnh/video nhạy cảm
