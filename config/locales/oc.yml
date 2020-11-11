@@ -708,7 +708,8 @@ oc:
     prompt: Confirmatz lo senhal per dire de contunhar
   date:
     formats:
-      default: "%d %B de %Y"
+      default: "%e %B de %Y"
+      with_month_name: "%e %B de %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count} h"
@@ -1215,8 +1216,8 @@ oc:
     mastodon-light: Mastodon (Clar)
   time:
     formats:
-      default: "Lo %d %b de %Y a %Ho%M"
-      month: "%b de %Y"
+      default: "Lo %e %B de %Y a %Ho%M"
+      month: "%B de %Y"
   two_factor_authentication:
     disable: Desactivar
     enabled: Autentificacion en dos temps activada
