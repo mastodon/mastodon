@@ -39,6 +39,8 @@
       %label.batch-table__toolbar__select.batch-checkbox-all
         = check_box_tag :batch_checkbox_all, nil, false
       .batch-table__toolbar__actions
+        = f.button safe_join([fa_icon('user-plus'), t('relationships.follow_selected_followers')]), name: :follow, class: 'table-action-link', type: :submit, data: { confirm: t('admin.reports.are_you_sure') } if followed_by_relationship? && !mutual_relationship?
+
         = f.button safe_join([fa_icon('user-times'), t('relationships.remove_selected_follows')]), name: :unfollow, class: 'table-action-link', type: :submit, data: { confirm: t('admin.reports.are_you_sure') } unless followed_by_relationship?
 
         = f.button safe_join([fa_icon('trash'), t('relationships.remove_selected_followers')]), name: :remove_from_followers, class: 'table-action-link', type: :submit, data: { confirm: t('admin.reports.are_you_sure') } unless following_relationship?

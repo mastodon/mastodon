@@ -6,6 +6,7 @@ class RelationshipsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_accounts, only: :show
   before_action :set_pack
+  before_action :set_relationships, only: :show
   before_action :set_body_classes
 
   helper_method :following_relationship?, :followed_by_relationship?, :mutual_relationship?
@@ -29,6 +30,10 @@ class RelationshipsController < ApplicationController
     @accounts = RelationshipFilter.new(current_account, filter_params).results.page(params[:page]).per(40)
   end
 
+  def set_relationships
+    @relationships = AccountRelationshipsPresenter.new(@accounts.pluck(:id), current_user.account_id)
+  end
+
   def form_account_batch_params
     params.require(:form_account_batch).permit(:action, account_ids: [])
   end
@@ -50,7 +55,9 @@ class RelationshipsController < ApplicationController
   end
 
   def action_from_button
-    if params[:unfollow]
+    if params[:follow]
+      'follow'
+    elsif params[:unfollow]
       'unfollow'
     elsif params[:remove_from_followers]
       'remove_from_followers'

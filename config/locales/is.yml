@@ -167,7 +167,7 @@ is:
       redownloaded_msg: Tókst að endurlesa notandasnið %{username} úr upphaflegu sniði
       reject: Hafna
       reject_all: Hafna öllu
-      rejected_msg: Tókst að hafna skráningu fyrir {username}
+      rejected_msg: Tókst að hafna skráningu fyrir %{username}
       remove_avatar: Fjarlægja auðkennismynd
       remove_header: Fjarlægja haus
       removed_avatar_msg: Tókst að fjarlægja auðkennismynd notandans %{username}
@@ -188,6 +188,8 @@ is:
       search: Leita
       search_same_email_domain: Aðra notendur með sama tölvupóstlén
       search_same_ip: Aðrir notendur með sama IP-vistfang
+      sensitive: Viðkvæmt
+      sensitized: merkt sem viðkvæmt
       shared_inbox_url: Slóð á sameiginlegt innhólf
       show:
         created_reports: Gerðar kærur
@@ -202,6 +204,7 @@ is:
       time_in_queue: Bíður í biðröð %{time}
       title: Notandaaðgangar
       unconfirmed_email: Óstaðfestur tölvupóstur
+      undo_sensitized: Afturkalla merkingu sem viðkvæmt
       undo_silenced: Hætta að hylja
       undo_suspension: Taka úr bið
       unsilenced_msg: Tókst að fjarlægja takmarkanir af notandaaðgangnum fyrir %{username}
@@ -243,9 +246,11 @@ is:
         reopen_report: Enduropna kæru
         reset_password_user: Endurstilla lykilorð
         resolve_report: Leysa kæru
+        sensitive_account: Merkja myndefni á aðgangnum þínum sem viðkvæmt
         silence_account: Hylja notandaaðgang
         suspend_account: Setja notandaaðgang í bið
         unassigned_report: Aftengja úthlutun kæru
+        unsensitive_account: Afmerkja myndefni á aðgangnum þínum sem viðkvæmt
         unsilence_account: Hætta að hylja notandaaðgang
         unsuspend_account: Taka notandaaðgang úr bið
         update_announcement: Uppfæra tilkynningu
@@ -281,9 +286,11 @@ is:
         reopen_report: "%{name} enduropnaði skýrslu %{target}"
         reset_password_user: "%{name} endurstillti lykilorð fyrir notandann %{target}"
         resolve_report: "%{name} leysti skýrslu %{target}"
+        sensitive_account: "%{name} merkti myndefni frá %{target} sem viðkvæmt"
         silence_account: "%{name} gerði notandaaðganginn %{target} hulinn"
         suspend_account: "%{name} setti notandaaðganginn %{target} í bið"
         unassigned_report: "%{name} fjarlægði úthlutun af skýrslu %{target}"
+        unsensitive_account: "%{name} afmerkti myndefni frá %{target} sem viðkvæmt"
         unsilence_account: "%{name} hætti að hylja notandaaðganginn %{target}"
         unsuspend_account: "%{name} tók notandaaðganginn %{target} úr bið"
         update_announcement: "%{name} uppfærði auglýsingu %{target}"
@@ -1202,6 +1209,8 @@ is:
         other: "%{count} atkvæði"
       vote: Greiða atkvæði
     show_more: Sýna meira
+    show_newer: Sýna nýrri
+    show_older: Sýna eldri
     show_thread: Birta þráð
     sign_in_to_participate: Skráðu þig inn til að taka þátt í samtalinu
     title: "%{name}: „%{quote}‟"
@@ -1338,6 +1347,7 @@ is:
     warning:
       explanation:
         disable: Á meðan aðgangurinn þinn er frystur, eru gögn aðgangsins ósnert, en þú getur ekki framkvæmt neinar aðgerðir fyrr en honum hefur verið aflæst.
+        sensitive: Innsent myndefni sem þú sendir inn og tengt myndefni verður farið með sem viðkvæmt efni.
         silence: Á meðan aðgangurinn þinn er takmarkaður, mun aðeins fólk sem þegar fylgist með þér sjá tístin þín á þessum vefþjóni, auk þess sem lokað gæti verið á þig á ýmsum opinberum listum. Aftur á móti geta aðrir gerst fylgjendur þínir handvirkt.
         suspend: Aðgangurinn þinn hefur verið settur í biðstöðu, öll þín tíst og innsent myndefni hafa verið óafturkræft fjarlægð af þessum vefþjóni, sem og af þeim vefþjónum þar sem þú áttir þér fylgjendur.
       get_in_touch: Þú getur svarað þessum tölvupósti til að setja þig í samband við umsjónarmenn %{instance}.
@@ -1346,11 +1356,13 @@ is:
       subject:
         disable: Notandaaðgangurinn þinn %{acct} hefur verið frystur
         none: Aðvörun fyrir %{acct}
+        sensitive: Myndefni sent frá %{acct} aðgangnum þínum hefur verið merkt sem viðkvæmt
         silence: Notandaaðgangurinn þinn %{acct} hefur verið takmarkaður
         suspend: Notandaaðgangurinn þinn %{acct} hefur verið settur í bið
       title:
         disable: Notandaaðgangur frystur
         none: Aðvörun
+        sensitive: Myndefnið þitt hefur verið merkt sem viðkvæmt
         silence: Notandaaðgangur takmarkaður
         suspend: Notandaaðgangur í bið
     welcome:
