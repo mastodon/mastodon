@@ -126,7 +126,7 @@ class Tag < ApplicationRecord
     end
 
     def search_for(term, limit = 5, offset = 0, options = {})
-      normalized_term = normalize(term.strip).mb_chars.downcase.to_s
+      normalized_term = normalize(term.strip)
       pattern         = sanitize_sql_like(normalized_term) + '%'
       query           = Tag.listable.where(arel_table[:name].lower.matches(pattern))
       query           = query.where(arel_table[:name].lower.eq(normalized_term).or(arel_table[:reviewed_at].not_eq(nil))) if options[:exclude_unreviewed]
