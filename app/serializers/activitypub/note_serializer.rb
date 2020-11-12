@@ -40,10 +40,6 @@ class ActivityPub::NoteSerializer < ActivityPub::Serializer
     object.spoiler_text.presence || (instance_options[:allow_local_only] ? nil : Setting.outgoing_spoilers.presence)
   end
 
-  def sensitive
-    object.sensitive || (!instance_options[:allow_local_only] && Setting.outgoing_spoilers.present?)
-  end
-
   def direct_message
     object.direct_visibility?
   end
@@ -111,7 +107,7 @@ class ActivityPub::NoteSerializer < ActivityPub::Serializer
   end
 
   def sensitive
-    object.account.sensitized? || object.sensitive
+    object.account.sensitized? || object.sensitive || (!instance_options[:allow_local_only] && Setting.outgoing_spoilers.present?)
   end
 
   def virtual_tags
