@@ -3,10 +3,10 @@ tr:
   about:
     about_hashtag_html: Bunlar <strong>#%{hashtag}</strong> ile etiketlenen genel tootlar. Fediverse içinde herhangi bir yerde bir hesabınız varsa, onlarla etkileşime geçebilirsiniz.
     about_mastodon_html: Mastodon <em>ücretsiz ve açık kaynaklı</em> bir sosyal ağdır. <em>Merkezileştirilmemiş</em> yapısı sayesinde diğer ticari sosyal platformların aksine iletişimininizin tek bir firmada tutulmasının/yönetilmesinin önüne geçer. Güvendiğiniz bir sunucuyu seçerek oradaki kişilerle etkileşimde bulunabilirsiniz. Herkes kendi Mastodon sunucusunu kurabilir ve sorunsuz bir şekilde Mastodon <em>sosyal ağına</em> dahil edebilir.
-    about_this: Bu sunucu hakkında
+    about_this: Hakkında
     active_count_after: etkin
     active_footnote: Aylık Aktif Kullanıcılar (AAK)
-    administered_by: 'Yöneten:'
+    administered_by: 'Yönetici:'
     api: API
     apps: Mobil uygulamalar
     apps_platforms: İos, Android ve diğer platformlardaki Mastodon'u kullanın
@@ -30,8 +30,8 @@ tr:
     server_stats: 'Sunucu istatistikleri:'
     source_code: Kaynak kodu
     status_count_after:
-      one: durum
-      other: durum
+      one: durum yazıldı
+      other: durum yazıldı
     status_count_before: Şu ana kadar
     tagline: Arkadaşlarını takip et ve yenilerini keşfet
     terms: Kullanım şartları
@@ -74,7 +74,7 @@ tr:
       following: Onaylamak istediğiniz kişiyi zaten takip ediyor olmalısınız
     posts:
       one: Toot
-      other: Tootlar
+      other: Toot
     posts_tab_heading: Tootlar
     posts_with_replies: Tootlar ve yanıtlar
     reserved_username: Kullanıcı adı saklıdır
@@ -100,8 +100,8 @@ tr:
       approve_all: Tümünü onayla
       approved_msg: "%{username} adlı kullanıcının kayıt başvurusu başarıyla onaylandı"
       are_you_sure: Emin misiniz?
-      avatar: Avatar
-      by_domain: Sunucu
+      avatar: Profil resmi
+      by_domain: Alan adı
       change_email:
         changed_msg: Hesap e-postası başarıyla değiştirildi!
         current_email: Mevcut e-posta
@@ -111,16 +111,16 @@ tr:
         title: "%{username} için e-postayı değiştir"
       confirm: Onayla
       confirmed: Onaylandı
-      confirming: Onaylama
+      confirming: Onaylanıyor
       delete: Veriyi sil
-      deleted: Silinen
+      deleted: Silindi
       demote: Düşür
       destroyed_msg: "%{username} verilerinin hemen silinmesi için kuyruğa alındı"
       disable: Devre dışı
       disable_two_factor_authentication: 2AD kapat
       disabled: Kapalı
-      display_name: Görünen adınız
-      domain: Sunucu
+      display_name: Görünen isim
+      domain: Alan adı
       edit: Düzenle
       email: E-posta
       email_status: E-posta durumu
@@ -168,7 +168,7 @@ tr:
       reject: Reddet
       reject_all: Tümünü reddet
       rejected_msg: "%{username} adlı kullanıcının kayıt başvurusu başarıyla reddedildi"
-      remove_avatar: Avatarı kaldır
+      remove_avatar: Profil resmini kaldır
       remove_header: Üstbilgiyi kaldır
       removed_avatar_msg: "%{username} hesabının avatar resmi başarıyla kaldırıldı"
       removed_header_msg: "%{username} hesabının başlık resmi başarıyla kaldırıldı"
@@ -177,7 +177,7 @@ tr:
         send: Doğrulama epostasını yeniden gönder
         success: Onay e-postası başarıyla gönderildi!
       reset: Sıfırla
-      reset_password: Parolayı değiştir
+      reset_password: Şifreyi sıfırla
       resubscribe: Yeniden abone ol
       role: İzinler
       roles:
@@ -312,7 +312,7 @@ tr:
         title: Yeni duyuru
       published_msg: Duyuru başarıyla yayınlandı!
       scheduled_for: "%{time} için zamanlandı"
-      scheduled_msg: Duyuru yayınlanmak üzere planlandı!
+      scheduled_msg: Duyuru yayınlanmak üzere zamanlandı!
       title: Duyurular
       unpublished_msg: Duyuru başarıyla yayından kaldırıldı!
       updated_msg: Duyuru başarıyla güncellendi!
@@ -322,8 +322,8 @@ tr:
       copied_msg: Emojinin yerel kopyası başarıyla oluşturuldu
       copy: Kopyala
       copy_failed_msg: Bu emojinin yerel bir kopyası oluşturulamadı
-      create_new_category: Yeni kategori ekle
-      created_msg: Emoji başarıyla oluşturuldu!
+      create_new_category: Yeni kategori oluştur
+      created_msg: İfade başarıyla oluşturuldu!
       delete: Sil
       destroyed_msg: Emojo başarıyla yok edildi!
       disable: Devre dışı bırak
@@ -354,7 +354,7 @@ tr:
       backlog: bekleyen işler
       config: Yapılandırma
       feature_deletions: Hesap silme
-      feature_invites: Davet linkleri
+      feature_invites: Davet bağlantıları
       feature_profile_directory: Profil Dizini
       feature_registrations: Kayıtlar
       feature_relay: Federasyon aktarıcısı
@@ -372,7 +372,7 @@ tr:
       space: Alan kullanımı
       title: Kontrol Paneli
       total_users: toplam kullanıcı
-      trends: Trendler
+      trends: Gündemler
       week_interactions: bu haftaki etkileşimler
       week_users_active: bu hafta aktif
       week_users_new: bu hafta kullanıcılar
@@ -1073,7 +1073,7 @@ tr:
       unrecognized_emoji: tanınan bir emoji değil
   relationships:
     activity: Hesap etkinliği
-    dormant: Atıl
+    dormant: Uykuda
     followers: Takipçiler
     following: Takip edilenler
     invited: Davet edildi
@@ -1211,7 +1211,7 @@ tr:
     show_more: Daha fazlasını göster
     show_newer: Yenileri göster
     show_older: Eskileri göster
-    show_thread: Mesaj dizisini göster
+    show_thread: Konuyu göster
     sign_in_to_participate: Sohbete katılmak için oturum açın
     title: '%{name}: "%{quote}"'
     visibilities:

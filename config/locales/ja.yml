@@ -108,6 +108,7 @@ ja:
       confirm: 確認
       confirmed: 確認済み
       confirming: 確認中
+      delete: データを削除する
       deleted: 削除済み
       demote: 降格
       destroyed_msg: "%{username} のデータは完全に削除されるよう登録されました"
@@ -182,7 +183,7 @@ ja:
       search_same_email_domain: 同じドメインのメールアドレスを使用しているユーザー
       search_same_ip: 同じ IP のユーザーを検索
       sensitive: 閲覧注意
-      sensitized: 閲覧注意済み
+      sensitized: 閲覧注意にする
       shared_inbox_url: Shared inbox URL
       show:
         created_reports: このアカウントで作られた通報
@@ -197,11 +198,12 @@ ja:
       time_in_queue: "%{time} 待ち"
       title: アカウント
       unconfirmed_email: 確認待ちのメールアドレス
-      undo_sensitized: 閲覧注意から戻す
+      undo_sensitized: 機密情報から戻す
       undo_silenced: サイレンスから戻す
       undo_suspension: 停止から戻す
       unsubscribe: 購読の解除
       username: ユーザー名
+      view_domain: ドメインの概要を表示
       warn: 警告
       web: Web
       whitelisted: 連合許可済み
@@ -236,11 +238,9 @@ ja:
         reopen_report: 通報を再度開く
         reset_password_user: パスワードをリセット
         resolve_report: 通報を解決済みにする
-        sensitive_account: アカウントのメディアを閲覧注意にマーク
         silence_account: アカウントをサイレンス
         suspend_account: アカウントを停止
         unassigned_report: 通報の担当を解除
-        unsensitive_account: アカウントのメディアの閲覧注意マークを解除
         unsilence_account: アカウントのサイレンスを解除
         unsuspend_account: アカウントの停止を解除
         update_announcement: お知らせを更新
@@ -276,11 +276,9 @@ ja:
         reopen_report: "%{name} さんが通報 %{target} を再び開きました"
         reset_password_user: "%{name} さんが %{target} さんのパスワードをリセットしました"
         resolve_report: "%{name} さんが通報 %{target} を解決済みにしました"
-        sensitive_account: "%{name} さんが %{target} さんのメディアを閲覧注意にマークしました"
         silence_account: "%{name} さんが %{target} さんをサイレンスにしました"
         suspend_account: "%{name} さんが %{target} さんを停止しました"
         unassigned_report: "%{name} さんが通報 %{target} の担当を外しました"
-        unsensitive_account: "%{name} さんが %{target} さんのメディアの閲覧注意を解除しました"
         unsilence_account: "%{name} さんが %{target} さんのサイレンスを解除しました"
         unsuspend_account: "%{name} さんが %{target} さんの停止を解除しました"
         update_announcement: "%{name} さんがお知らせ %{target} を更新しました"
@@ -708,9 +706,11 @@ ja:
       prefix_sign_up: 今すぐ Mastodon を始めよう！
       suffix: アカウントがあれば、どんな Mastodon 互換サーバーのユーザーでもフォローしたりメッセージをやり取りできるようになります！
     didnt_get_confirmation: 確認メールを受信できませんか？
+    dont_have_your_security_key: セキュリティキーを持っていませんか？
     forgot_password: パスワードをお忘れですか？
     invalid_reset_password_token: パスワードリセットトークンが正しくないか期限切れです。もう一度リクエストしてください。
     link_to_otp: 携帯電話から二段階認証コードを入力するか、リカバリーコードを入力してください
+    link_to_webauth: セキュリティキーを使用する
     login: ログイン
     logout: ログアウト
     migrate_account: 別のアカウントに引っ越す
@@ -736,6 +736,7 @@ ja:
       pending: あなたの申請は現在サーバー管理者による審査待ちです。これにはしばらくかかります。申請が承認されるとメールが届きます。
       redirecting_to: アカウントは %{acct} に引っ越し設定されているため非アクティブになっています。
     trouble_logging_in: ログインできませんか？
+    use_security_key: セキュリティキーを使用
   authorize_follow:
     already_following: あなたは既にこのアカウントをフォローしています
     already_requested: 既にこのアカウントへフォローリクエストを送信しています
@@ -1018,6 +1019,9 @@ ja:
           trillion: T
   otp_authentication:
     code_hint: 続行するには認証アプリで表示されたコードを入力してください
+    description_html: "<strong>二要素認証</strong>を有効にすると、ログイン時に認証アプリからコードを入力する必要があります。"
+    instructions_html: "<strong>Google Authenticatorか、もしくはほかのTOTPアプリでこのQRコードをスキャンしてください。</strong>これ以降、ログインするときはそのアプリで生成されるコードが必要になります。"
+    manual_instructions: 'QRコードがスキャンできず、手動での登録を希望の場合はこのシークレットコードを利用してください。:'
     setup: セットアップ
     wrong_code: コードが間違っています。サーバーとデバイスの時計にずれがあるかもしれません。
   pagination:
@@ -1289,6 +1293,7 @@ ja:
   two_factor_authentication:
     add: 追加
     disable: 無効化
+    disabled_success: 二要素認証が更新されました
     edit: 編集
     enabled: 二段階認証は有効になっています
     enabled_success: 二段階認証が有効になりました
