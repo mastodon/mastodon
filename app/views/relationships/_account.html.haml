@@ -5,6 +5,8 @@
     %table.accounts-table
       %tbody
         %tr
+          %td.accounts-table__interrelationships
+            = interrelationships_icon(@relationships, account.id)
           %td= account_link_to account
           %td.accounts-table__count.optional
             = number_to_human account.statuses_count, strip_insignificant_zeros: true
