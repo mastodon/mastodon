@@ -21,7 +21,9 @@ module TwoFactorAuthenticationConcern
   def authenticate_with_two_factor
     user = self.resource = find_user
 
-    if user_params[:otp_attempt].present? && session[:attempt_user_id]
+    if user.present? && session[:attempt_user_id].present? && session[:attempt_user_updated_at] != user.updated_at.to_s
+      restart_session
+    elsif user_params[:otp_attempt].present? && session[:attempt_user_id]
       authenticate_with_two_factor_attempt(user)
     elsif user.present? && user.external_or_valid_password?(user_params[:password])
       prompt_for_two_factor(user)
@@ -30,7 +32,7 @@ module TwoFactorAuthenticationConcern
 
   def authenticate_with_two_factor_attempt(user)
     if valid_otp_attempt?(user)
-      session.delete(:attempt_user_id)
+      clear_attempt_from_session
       remember_me(user)
       sign_in(user)
     else
@@ -40,10 +42,10 @@ module TwoFactorAuthenticationConcern
   end
 
   def prompt_for_two_factor(user)
-    set_locale do
-      session[:attempt_user_id] = user.id
-      @body_classes = 'lighter'
-      render :two_factor
-    end
+    set_attempt_session(user)
+
+    @body_classes = 'lighter'
+
+    set_locale { render :two_factor }
   end
 end

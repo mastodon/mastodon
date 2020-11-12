@@ -102,7 +102,7 @@ class Api::BaseController < ApplicationController
     elsif !current_user.approved?
       render json: { error: 'Your login is currently pending approval' }, status: 403
     else
-      set_user_activity
+      update_user_sign_in
     end
   end
 
