@@ -28,7 +28,7 @@ class Form::AccountBatch
 
   def follow!
     accounts.find_each do |target_account|
-      follow = FollowService.new.call(current_account, target_account)
+      FollowService.new.call(current_account, target_account)
     end
   end
 
