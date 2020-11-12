@@ -93,9 +93,9 @@ module ApplicationHelper
     if relationships.following[account_id] && relationships.followed_by[account_id]
       fa_icon('exchange', title: I18n.t('relationships.mutual'), class: 'fa-fw active passive')
     elsif relationships.following[account_id]
-      fa_icon('arrow-right', title: I18n.t('relationships.following'), class: 'fa-fw active')
+      fa_icon(locale_direction == 'ltr' ? 'arrow-right' : 'arrow-left', title: I18n.t('relationships.following'), class: 'fa-fw active')
     elsif relationships.followed_by[account_id]
-      fa_icon('arrow-left', title: I18n.t('relationships.followers'), class: 'fa-fw passive')
+      fa_icon(locale_direction == 'ltr' ? 'arrow-left' : 'arrow-right', title: I18n.t('relationships.followers'), class: 'fa-fw passive')
     end
   end
 
