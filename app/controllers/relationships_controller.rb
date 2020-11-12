@@ -49,7 +49,9 @@ class RelationshipsController < ApplicationController
   end
 
   def action_from_button
-    if params[:unfollow]
+    if params[:follow]
+      'follow'
+    elsif params[:unfollow]
       'unfollow'
     elsif params[:remove_from_followers]
       'remove_from_followers'
