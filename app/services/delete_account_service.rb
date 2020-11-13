@@ -41,7 +41,7 @@ class DeleteAccountService < BaseService
   # @option [Boolean] :reserve_email Keep user record. Only applicable for local accounts
   # @option [Boolean] :reserve_username Keep account record
   # @option [Boolean] :skip_side_effects Side effects are ActivityPub and streaming API payloads
-  # @option [Boolean] :skip_activitypub Skip sending ActivityPub payloads
+  # @option [Boolean] :skip_activitypub Skip sending ActivityPub payloads. Implied by :skip_side_effects
   # @option [Time]    :suspended_at Only applicable when :reserve_username is true
   def call(account, **options)
     @account = account
@@ -52,6 +52,8 @@ class DeleteAccountService < BaseService
       @options[:reserve_username]  = false
       @options[:skip_side_effects] = true
     end
+
+    @options[:skip_activitypub] = true if @options[:skip_side_effects]
 
     reject_follows!
     purge_user!
