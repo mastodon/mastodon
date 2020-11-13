@@ -37,9 +37,11 @@ module TwoFactorAuthenticationConcern
   def authenticate_with_two_factor
     user = self.resource = find_user
 
-    if user.webauthn_enabled? && user_params[:credential].present? && session[:attempt_user_id]
+    if user.present? && session[:attempt_user_id].present? && session[:attempt_user_updated_at] != user.updated_at.to_s
+      restart_session
+    elsif user.webauthn_enabled? && user_params.key?(:credential) && session[:attempt_user_id]
       authenticate_with_two_factor_via_webauthn(user)
-    elsif user_params[:otp_attempt].present? && session[:attempt_user_id]
+    elsif user_params.key?(:otp_attempt) && session[:attempt_user_id]
       authenticate_with_two_factor_via_otp(user)
     elsif user.present? && user.external_or_valid_password?(user_params[:password])
       prompt_for_two_factor(user)
@@ -50,7 +52,7 @@ module TwoFactorAuthenticationConcern
     webauthn_credential = WebAuthn::Credential.from_get(user_params[:credential])
 
     if valid_webauthn_credential?(user, webauthn_credential)
-      session.delete(:attempt_user_id)
+      clear_attempt_from_session
       remember_me(user)
       sign_in(user)
       render json: { redirect_path: root_path }, status: :ok
@@ -61,7 +63,7 @@ module TwoFactorAuthenticationConcern
 
   def authenticate_with_two_factor_via_otp(user)
     if valid_otp_attempt?(user)
-      session.delete(:attempt_user_id)
+      clear_attempt_from_session
       remember_me(user)
       sign_in(user)
     else
@@ -71,17 +73,20 @@ module TwoFactorAuthenticationConcern
   end
 
   def prompt_for_two_factor(user)
-    set_locale do
-      session[:attempt_user_id] = user.id
-      use_pack 'auth'
-      @body_classes = 'lighter'
-      @webauthn_enabled = user.webauthn_enabled?
-      @scheme_type = if user.webauthn_enabled? && user_params[:otp_attempt].blank?
-                       'webauthn'
-                     else
-                       'totp'
-                     end
-      render :two_factor
+    set_attempt_session(user)
+
+    use_pack 'auth'
+
+    @body_classes     = 'lighter'
+    @webauthn_enabled = user.webauthn_enabled?
+    @scheme_type      = begin
+      if user.webauthn_enabled? && user_params[:otp_attempt].blank?
+        'webauthn'
+      else
+        'totp'
+      end
     end
+
+    set_locale { render :two_factor }
   end
 end

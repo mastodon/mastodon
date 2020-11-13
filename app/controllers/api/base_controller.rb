@@ -103,7 +103,7 @@ class Api::BaseController < ApplicationController
     elsif !current_user.functional?
       render json: { error: 'Your login is currently disabled' }, status: 403
     else
-      set_user_activity
+      update_user_sign_in
     end
   end
 
