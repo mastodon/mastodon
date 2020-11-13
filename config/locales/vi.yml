@@ -387,7 +387,7 @@ vi:
         create: Tạo chặn
         hint: Chặn máy chủ sẽ không ngăn việc hiển thị tút của máy chủ đó trong cơ sở dữ liệu, nhưng sẽ khiến tự động áp dụng các phương pháp kiểm duyệt cụ thể trên các tài khoản đó.
         severity:
-          desc_html: "<strong>Ẩn</strong> sẽ làm cho bài đăng của tài khoản trở nên vô hình đối với bất kỳ ai không theo dõi họ. <strong>Vô hiệu hóa</strong> sẽ xóa tất cả nội dung, phương tiện và dữ liệu khác của tài khoản. Sử dụng <strong>Cấm upload</strong> nếu bạn chỉ muốn cấm tải lên ảnh và video."
+          desc_html: "<strong>Ẩn</strong> sẽ làm cho bài đăng của tài khoản trở nên vô hình đối với bất kỳ ai không theo dõi họ. <strong>Vô hiệu hóa</strong> sẽ xóa tất cả nội dung, phương tiện và dữ liệu khác của tài khoản. Dùng <strong>Cấm upload</strong> nếu bạn chỉ muốn cấm tải lên ảnh và video."
           noop: Không hoạt động
           silence: Ẩn
           suspend: Vô hiệu hóa
@@ -549,10 +549,10 @@ vi:
       enable_bootstrap_timeline_accounts:
         title: Gợi ý theo dõi cho người dùng mới
       hero:
-        desc_html: Hiển thị trên trang chủ. Kích cỡ tối thiểu 600x100px. Khi không được đặt, sử dụng hình thu nhỏ của máy chủ
+        desc_html: Hiển thị trên trang chủ. Kích cỡ tối thiểu 600x100px. Mặc định dùng hình thu nhỏ của máy chủ
         title: Hình ảnh giới thiệu
       mascot:
-        desc_html: Hiển thị trên nhiều trang. Kích cỡ tối thiểu 293 × 205px. Khi không được đặt, sử dụng linh vật mặc định Mastodon
+        desc_html: Hiển thị trên nhiều trang. Kích cỡ tối thiểu 293 × 205px. Mặc định dùng linh vật Mastodon
         title: Logo máy chủ
       peers_api_enabled:
         desc_html: Tên miền mà máy chủ này đã kết giao trong mạng liên hợp
@@ -565,7 +565,7 @@ vi:
         title: Cho phép hiện danh sách thành viên
       registrations:
         closed_message:
-          desc_html: Hiển thị trên trang chủ khi đăng ký được đóng lại. Bạn có thể sử dụng thẻ HTML
+          desc_html: Hiển thị trên trang chủ khi đăng ký được đóng lại. Bạn có thể viết bằng thẻ HTML
           title: Thông điệp báo máy chủ đã ngừng đăng ký
         deletion:
           desc_html: Cho phép mọi người xóa tài khoản của họ
@@ -586,23 +586,23 @@ vi:
         desc_html: Hiển thị huy hiệu nhân viên trên trang người dùng
         title: Hiển thị huy hiệu nhân viên
       site_description:
-        desc_html: Đoạn giới thiệu về API. Mô tả những gì làm cho máy chủ Mastodon này đặc biệt và bất cứ điều gì quan trọng khác. Bạn có thể sử dụng các thẻ HTML, đặc biệt là <code>&lt;a&gt;</code> và <code>&lt;em&gt;</code> .
+        desc_html: Nội dung giới thiệu về máy chủ. Mô tả những gì làm cho máy chủ Mastodon này đặc biệt và bất cứ điều gì quan trọng khác. Bạn có thể dùng các thẻ HTML, đặc biệt là <code>&lt;a&gt;</code> và <code>&lt;em&gt;</code>.
         title: Mô tả máy chủ
       site_description_extended:
-        desc_html: Bạn có thể tạo thêm các mục như quy định chung, hướng dẫn và những thứ khác liên quan tới máy chủ của bạn. Sử dụng thẻ HTML
+        desc_html: Bạn có thể tạo thêm các mục như quy định chung, hướng dẫn và những thứ khác liên quan tới máy chủ của bạn. Dùng thẻ HTML
         title: Thông tin mở rộng tùy chỉnh
       site_short_description:
         desc_html: Hiển thị trong thanh bên và thẻ meta. Mô tả Mastodon là gì và điều gì làm cho máy chủ này trở nên đặc biệt trong một đoạn văn duy nhất.
         title: Mô tả máy chủ ngắn
       site_terms:
-        desc_html: Bạn có thể viết chính sách bảo mật của riêng bạn, điều khoản dịch vụ hoặc pháp lý khác. Bạn có thể sử dụng thẻ HTML
+        desc_html: Bạn có thể viết điều khoản dịch vụ, quyền riêng tư hoặc các vấn đề pháp lý khác. Dùng thẻ HTML
         title: Điều khoản dịch vụ tùy chỉnh
       site_title: Tên máy chủ
       spam_check_enabled:
         desc_html: Mastodon có thể tự động báo cáo các tài khoản gửi tin nhắn không mong muốn lặp đi lặp lại. Có thể có dương tính giả.
         title: Tự động chống thư rác
       thumbnail:
-        desc_html: Được sử dụng để xem trước thông qua OpenGraph và API. Khuyến nghị 1200x630px
+        desc_html: Bản xem trước thông qua OpenGraph và API. Khuyến nghị 1200x630px
         title: Hình thu nhỏ của máy chủ
       timeline_preview:
         desc_html: Hiển thị dòng thời gian công khai trên trang đích và cho phép API truy cập vào dòng thời gian công khai mà không cần xác thực
@@ -719,8 +719,8 @@ vi:
     link_to_webauth: Nhập khóa bảo mật từ thiết bị
     login: Đăng nhập
     logout: Đăng xuất
-    migrate_account: Sử dụng một tài khoản khác
-    migrate_account_html: Nếu bạn muốn bỏ tài khoản này để sử dụng một tài khoản khác, bạn có thể <a href="%{path}">thiết lập nó ở đây</a>.
+    migrate_account: Chuyển sang tài khoản khác
+    migrate_account_html: Nếu bạn muốn bỏ tài khoản này để dùng một tài khoản khác, bạn có thể <a href="%{path}">thiết lập nó ở đây</a>.
     or_log_in_with: Hoặc đăng nhập bằng
     providers:
       cas: CAS
@@ -819,7 +819,7 @@ vi:
       content: Chúng tôi xin lỗi, nhưng đã xảy ra sự cố.
       title: Múi giờ trên thiết bị không đúng
     '503': Trang không thể hiển thị do lỗi máy chủ tạm thời.
-    noscript_html: Để sử dụng ứng dụng web Mastodon, vui lòng bật JavaScript. Ngoài ra, hãy thử một trong những <a href="%{apps_path}">ứng dụng gốc</a> của Mastodon cho hệ điều hành của bạn.
+    noscript_html: Để vào Mastodon bản web, vui lòng bật JavaScript. Ngoài ra, hãy thử dùng một <a href="%{apps_path}">ứng dụng lướt Mastodon</a> cho thiết bị của bạn.
   existing_username_validator:
     not_found: không có tên người dùng này trên máy chủ
     not_found_multiple: không tìm thấy %{usernames}
@@ -841,7 +841,7 @@ vi:
     add_new: Thêm mới
     errors:
       limit: Bạn đã đạt tới số lượng hashtag tối đa
-    hint_html: "<strong>Hashtags thường dùng</strong> là gì? Chúng là những hashtag sẽ được hiển thị nổi bật trên trang cá nhân của bạn, cho phép mọi người tìm kiếm các bài đăng công khai của bạn có chứa các hashtag đó. Tính năng này có thể sử dụng để đánh dấu chuỗi tác phẩm sáng tạo hoặc dự án dài hạn."
+    hint_html: "<strong>Hashtags thường dùng</strong> là gì? Chúng là những hashtag sẽ được hiển thị nổi bật trên trang cá nhân của bạn, cho phép mọi người tìm kiếm các bài đăng công khai của bạn có chứa các hashtag đó. Tính năng này có thể dùng để đánh dấu chuỗi tác phẩm sáng tạo hoặc dự án dài hạn."
   filters:
     contexts:
       account: Trang cá nhân
@@ -926,7 +926,7 @@ vi:
     generate: Tạo lời mời
     invited_by: 'Bạn đã được mời bởi:'
     max_uses:
-      other: "%{count} lần sử dụng"
+      other: "%{count} lần dùng"
     max_uses_prompt: Không giới hạn
     prompt: Tạo và chia sẻ liên kết với những người khác để cấp quyền truy cập vào máy chủ này
     table:
