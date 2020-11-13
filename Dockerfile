@@ -3,8 +3,8 @@ FROM ubuntu:20.04 as build-dep
 # Use bash for the shell
 SHELL ["bash", "-c"]
 
-# Install Node v12 (LTS)
-ENV NODE_VER="12.16.3"
+# Install Node v14 (LTS)
+ENV NODE_VER="14.15.0"
 RUN ARCH= && \
     dpkgArch="$(dpkg --print-architecture)" && \
   case "${dpkgArch##*-}" in \
