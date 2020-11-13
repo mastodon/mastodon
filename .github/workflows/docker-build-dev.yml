@@ -19,4 +19,5 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
           repository: mashirozx/mastodon
-          tags: alpha
+          tag_with_ref: true
+          tag_with_sha: true
