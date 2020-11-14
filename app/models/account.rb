@@ -188,6 +188,10 @@ class Account < ApplicationRecord
     "acct:#{local_username_and_domain}"
   end
 
+  def to_webfinger_aliases
+    (Rails.configuration.x.alternate_domains + [Rails.configuration.x.web_domain]).map { |alternate_domain| "acct:#{username}@#{alternate_domain}" }.uniq - [to_webfinger_s]
+  end
+
   def subscribed?
     subscription_expires_at.present?
   end

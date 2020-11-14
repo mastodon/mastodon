@@ -13,7 +13,7 @@ class WebfingerSerializer < ActiveModel::Serializer
     if object.instance_actor?
       [instance_actor_url]
     else
-      [short_account_url(object), account_url(object)]
+      object.to_webfinger_aliases + [short_account_url(object), account_url(object)]
     end
   end
 

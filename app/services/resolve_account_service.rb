@@ -82,7 +82,7 @@ class ResolveAccountService < BaseService
     @webfinger                           = webfinger!("acct:#{uri}")
     confirmed_username, confirmed_domain = @webfinger.subject.gsub(/\Aacct:/, '').split('@')
 
-    if confirmed_username.casecmp(@username).zero? && confirmed_domain.casecmp(@domain).zero?
+    if (confirmed_username.casecmp(@username).zero? && confirmed_domain.casecmp(@domain).zero?) || @webfinger.aliases.any? { |s| s.casecmp("acct:#{@username}@#{@domain}").zero? }
       @username = confirmed_username
       @domain   = confirmed_domain
       @uri      = uri

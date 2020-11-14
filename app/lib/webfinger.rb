@@ -14,6 +14,10 @@ class Webfinger
       @json['subject']
     end
 
+    def aliases
+      @json['aliases']
+    end
+
     def link(rel, attribute)
       links.dig(rel, attribute)
     end
