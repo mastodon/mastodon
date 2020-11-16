@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { FormattedMessage } from 'react-intl';
 import ClearColumnButton from './clear_column_button';
+import GrantPermissionButton from './grant_permission_button';
 import SettingToggle from './setting_toggle';
 
 export default class ColumnSettings extends React.PureComponent {
@@ -23,7 +24,7 @@ export default class ColumnSettings extends React.PureComponent {
   }
 
   render () {
-    const { settings, pushSettings, onChange, onClear, alertsEnabled, browserSupport, browserPermission } = this.props;
+    const { settings, pushSettings, onChange, onClear, alertsEnabled, browserSupport, browserPermission, onRequestNotificationPermission } = this.props;
 
     const filterShowStr = <FormattedMessage id='notifications.column_settings.filter_bar.show' defaultMessage='Show' />;
     const filterAdvancedStr = <FormattedMessage id='notifications.column_settings.filter_bar.advanced' defaultMessage='Display all categories' />;
@@ -39,6 +40,13 @@ export default class ColumnSettings extends React.PureComponent {
         {alertsEnabled && browserSupport && browserPermission === 'denied' && (
           <div className='column-settings__row column-settings__row--with-margin'>
             <span className='warning-hint'><FormattedMessage id='notifications.permission_denied' defaultMessage='Desktop notifications are unavailable due to previously denied browser permissions request' /></span>
+          </div>
+        )}
+
+        {alertsEnabled && browserSupport && browserPermission === 'default' && (
+          <div className='column-settings__row column-settings__row--with-margin'>
+            <span className='warning-hint'><FormattedMessage id='notifications.permission_required' defaultMessage='Desktop notifications are unavailable because the required permission has not been granted.' /></span>
+            <GrantPermissionButton onClick={onRequestNotificationPermission} />
           </div>
         )}
 
