@@ -195,6 +195,8 @@ pl:
       search: Szukaj
       search_same_email_domain: Inni użytkownicy z e-mail w tej domenie
       search_same_ip: Inni użytkownicy z tym samym IP
+      sensitive: Wrażliwe
+      sensitized: oznaczono jako wrażliwe
       shared_inbox_url: Adres udostępnianej skrzynki
       show:
         created_reports: Zgłoszenia tego użytkownika
@@ -209,6 +211,7 @@ pl:
       time_in_queue: Czekanie w kolejce %{time}
       title: Konta
       unconfirmed_email: Niepotwierdzony adres e-mail
+      undo_sensitized: Cofnij oznaczenie
       undo_silenced: Cofnij wyciszenie
       undo_suspension: Cofnij zawieszenie
       unsilenced_msg: Pomyślnie zwolniono z ograniczeń konto %{username}
@@ -1090,6 +1093,7 @@ pl:
   relationships:
     activity: Aktywność konta
     dormant: Uśpione
+    follow_selected_followers: Zacznij śledzić wybranych śledzących
     followers: Śledzący
     following: Śledzeni
     invited: Zaproszeni
@@ -1237,6 +1241,8 @@ pl:
         other: "%{count} głosy"
       vote: Głosuj
     show_more: Pokaż więcej
+    show_newer: Pokaż nowsze
+    show_older: Pokaż starsze
     show_thread: Pokaż wątek
     sign_in_to_participate: Zaloguj się, aby udzielić się w tej konwersacji
     title: '%{name}: "%{quote}"'
