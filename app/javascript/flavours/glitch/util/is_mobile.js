@@ -3,14 +3,26 @@ import { forceSingleColumn } from 'flavours/glitch/util/initial_state';
 
 const LAYOUT_BREAKPOINT = 630;
 
-export function isMobile(width, columns) {
-  switch (columns) {
+export const isMobile = width => width <= LAYOUT_BREAKPOINT;
+
+export const layoutFromWindow = (layout_local_setting) => {
+  switch (layout_local_setting) {
   case 'multiple':
-    return false;
+    return 'multi-column';
   case 'single':
-    return true;
+    if (isMobile(window.innerWidth)) {
+      return 'mobile';
+    } else {
+      return 'single-column';
+    }
   default:
-    return forceSingleColumn || width <= LAYOUT_BREAKPOINT;
+    if (isMobile(window.innerWidth)) {
+      return 'mobile';
+    } else if (forceSingleColumn) {
+      return 'single-column';
+    } else {
+      return 'multi-column';
+    }
   }
 };
 
@@ -19,17 +31,13 @@ const iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
 let userTouching = false;
 let listenerOptions = supportsPassiveEvents ? { passive: true } : false;
 
-function touchListener() {
+const touchListener = () => {
   userTouching = true;
   window.removeEventListener('touchstart', touchListener, listenerOptions);
-}
+};
 
 window.addEventListener('touchstart', touchListener, listenerOptions);
 
-export function isUserTouching() {
-  return userTouching;
-}
+export const isUserTouching = () => userTouching;
 
-export function isIOS() {
-  return iOS;
-};
+export const isIOS = () => iOS;

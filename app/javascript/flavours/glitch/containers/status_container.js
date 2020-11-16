@@ -76,12 +76,16 @@ const makeMapStateToProps = () => {
     }
 
     return {
-      containerId : props.containerId || props.id,  //  Should match reblogStatus's id for reblogs
-      status      : status,
-      account     : account || props.account,
-      settings    : state.get('local_settings'),
-      prepend     : prepend || props.prepend,
-      usingPiP    : state.get('picture_in_picture').statusId === props.id,
+      containerId: props.containerId || props.id,  //  Should match reblogStatus's id for reblogs
+      status: status,
+      account: account || props.account,
+      settings: state.get('local_settings'),
+      prepend: prepend || props.prepend,
+
+      pictureInPicture: {
+        inUse: state.getIn(['meta', 'layout']) !== 'mobile' && state.get('picture_in_picture').statusId === props.id,
+        available: state.getIn(['meta', 'layout']) !== 'mobile',
+      },
     };
   };
 
