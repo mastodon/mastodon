@@ -192,13 +192,17 @@ hy:
         create_account_warning: Ստեղծել զգուշացում
         create_announcement: Ստեղծել յայտարարութիւն
         create_email_domain_block: Ստեղծել էլ․ հասցէի դոմէյնի արգելափակում
+        create_ip_block: Ստեղծել IP կանոն
         destroy_announcement: Ջնջել յայտարարութիւնը
         destroy_domain_allow: Ջնջել դոմէնի թոյլտուութիւնը
         destroy_domain_block: Ապաարգելափակել դոմէնը
         destroy_email_domain_block: Ապաարգելափակել էլ․ հասցէի դոմէնը
+        destroy_ip_block: Ջնջել IP կանոնը
         destroy_status: Ջնջել գրառումը
         disable_2fa_user: Անջատել 2FA
+        disable_custom_emoji: Անջատել սեփական էմոջիները
         disable_user: Ապաակտիւացնել օգտատիրոջը
+        enable_custom_emoji: Միացնել սեփական էմոջիները
         enable_user: Ակտիւացնել օգտատիրոջը
         memorialize_account: Յիշել հաշիւը
         promote_user: Աջակցել օգտատիրոջը
@@ -212,6 +216,7 @@ hy:
         unsilence_account: Լսել հաշուին
         unsuspend_account: Ապակասեցնել հաշիւը
         update_announcement: Թարմացնել յայտարարութիւնը
+        update_custom_emoji: Թարմացնել սեփական էմոջիները
         update_status: Թարմացնել գրառումը
       actions:
         assigned_to_self_report: "%{name} բողոքել է %{target} իրենց համար"
@@ -358,6 +363,18 @@ hy:
         expired: Սպառուած
         title: Զտիչ
       title: Հրաւէրներ
+    ip_blocks:
+      delete: Ջնջել
+      expires_in:
+        '1209600': 2 շաբաթ
+        '15778476': 6 ամիս
+        '2629746': 1 ամիս
+        '31556952': 1 տարի
+        '86400': 1 օր
+        '94670856': 3 տարի
+      new:
+        title: Ստեղծել նոր IP կանոն
+      title: IP կանոններ
     pending_accounts:
       title: Սպասող հաշիւներ (%{count})
     relationships:
@@ -400,6 +417,8 @@ hy:
     settings:
       contact_information:
         username: Կոնտակտի ծածկանուն
+      custom_css:
+        title: Սեփական CSS
       domain_blocks:
         all: Բոլորին
         disabled: Ոչ մէկին
@@ -466,6 +485,7 @@ hy:
     new_report:
       subject: 'Նոր բողոք %{instance}ի համար(#%{id})'
   appearance:
+    advanced_web_interface: Սյունակավոր ինտերֆեյս
     animations_and_accessibility: Անիմացիաներ եւ հասանելիութիւն
     discovery: Բացայայտում
     localization:
@@ -521,6 +541,7 @@ hy:
   date:
     formats:
       default: "%b %d, %Y"
+      with_month_name: "%d %B %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}ժ"
