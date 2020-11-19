@@ -364,6 +364,7 @@ hy:
         title: Զտիչ
       title: Հրաւէրներ
     ip_blocks:
+      add_new: Ստեղծել կանոն
       delete: Ջնջել
       expires_in:
         '1209600': 2 շաբաթ
@@ -587,6 +588,7 @@ hy:
       request: Պահանջել քո արքիւը
       size: Չափը
     blocks: Արգելափակել
+    bookmarks: Էջանիշեր
     csv: CSV
     domain_blocks: Տիրոյթի արգելափակումներ
     lists: Ցանկեր
@@ -599,6 +601,7 @@ hy:
       account: Պրոֆիլներ
       home: Տեղական հոսք
       notifications: Ծանուցումներ
+      public: Հանրային հոսքեր
       thread: Զրոյցներ
     edit:
       title: Խմբագրել զտիչը
@@ -648,7 +651,13 @@ hy:
       '86400': 1 օր
     expires_in_prompt: Երբեք
     generate: Գեներացնել հրաւէրի յղում
+    max_uses:
+      one: '%{count} կիրառում'
+      other: "%{count} կիրառում"
     max_uses_prompt: Սահմանափակում չկայ
+    table:
+      expires_at: Սպառւում է
+      uses: Կիրառում
     title: Հրաւիրել մարդկանց
   media_attachments:
     validations:
@@ -676,12 +685,16 @@ hy:
   number:
     human:
       decimal_units:
+        format: "%n %u"
         units:
           billion: Մլր
           million: Մլն
           quadrillion: Քլր
           thousand: Հազ
           trillion: Տրլ
+  otp_authentication:
+    enable: Միացնել
+    setup: Կարգաւորել
   pagination:
     newer: Ավելի նոր
     next: Հաջորդ
@@ -699,11 +712,14 @@ hy:
     last_active: Վերջին ակտիւութիւնը
     most_recent: Վերջին
     moved: Տեղափոխուած
+    mutual: Փոխադարձ
     primary: Հիմնական
+    relationship: Կապ
     remove_selected_domains: Հեռացնել բոլոր հետեւորդներին նշուած դոմեյններից
     remove_selected_followers: Հեռացնել նշուած հետեւորդներին
     status: Հաշուի կարգավիճակ
   sessions:
+    activity: Վերջին թութը
     browser: Դիտարկիչ
     browsers:
       alipay: Alipay
@@ -740,13 +756,28 @@ hy:
     revoke: Չեղարկել
   settings:
     account: Հաշիվ
+    appearance: Տեսք
+    delete: Հաշուի ջնջում
+    development: Ծրագրավորում
     edit_profile: Խմբագրել պրոֆիլը
+    export: Տվյալների արտահանում
     import: Ներմուծել
     import_and_export: Ներմուծել և արտահանել
+    migrate: Հաշուի տեղափոխում
     notifications: Ծանուցումներ
+    preferences: Կարգավորումներ
     profile: Հաշիւ
+    relationships: Հետեւումներ և հետեւորդներ
     two_factor_authentication: Երկքայլ նոյնականացում
+    webauthn_authentication: Անվտանգութեան բանալիներ
   statuses:
+    attached:
+      audio:
+        one: "%{count} ձայնագրութիւն"
+        other: "%{count} ձայնագրութիւն"
+      image:
+        one: "%{count} նկար"
+        other: "%{count} նկար"
     language_detection: Ինքնուրոյն ճանաչել լեզուն
     open_in_web: Բացել վէբում
     poll:
@@ -873,6 +904,11 @@ hy:
     enabled: Երկքայլ նոյնականացումը միացուած է
     enabled_success: Երկքայլ նոյնականացումը հաջողութեամբ միացուած է
     generate_recovery_codes: Ստեղծել վերականգնման կոդեր
+    lost_recovery_codes: Վերականգնման կոդերը հնարաւորութիւն են տալիս մուտք գործել հաշիւ՝ հեռախօսի կորստի դէպքում։ Եթէ կորցրել ես վերականգնման կոդերը, այստեղ կարող ես ստեղծել նորերը։ Նախկին վերականգման կոդերը կչեղարկվեն։
+    methods: Երկքայլ նոյնականացում տարբերակներ
+    otp: Նոյնականացման հավելված 
+    recovery_codes: Վերականգնման կոդեր
+    recovery_codes_regenerated: Վերականգման կոդերը հաջողութեամբ ստեղծուել են
   user_mailer:
     warning:
       title:
