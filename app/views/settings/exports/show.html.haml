@@ -36,6 +36,10 @@
         %th= t('exports.domain_blocks')
         %td= number_with_delimiter @export.total_domain_blocks
         %td= table_link_to 'download', t('exports.csv'), settings_exports_domain_blocks_path(format: :csv)
+      %tr
+        %th= t('exports.bookmarks')
+        %td= number_with_delimiter @export.total_bookmarks
+        %td= table_link_to 'download', t('bookmarks.csv'), settings_exports_bookmarks_path(format: :csv)
 
 %hr.spacer/
 
