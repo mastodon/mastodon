@@ -29,6 +29,7 @@ class ResolveAccountService < BaseService
     # At this point we are in need of a Webfinger query, which may
     # yield us a different username/domain through a redirect
     process_webfinger!(@uri)
+    @domain = nil if TagManager.instance.local_domain?(@domain)
 
     # Because the username/domain pair may be different than what
     # we already checked, we need to check if we've already got
@@ -78,23 +79,29 @@ class ResolveAccountService < BaseService
     @uri = [@username, @domain].compact.join('@')
   end
 
-  def process_webfinger!(uri, redirected = false)
+  def process_webfinger!(uri)
     @webfinger                           = webfinger!("acct:#{uri}")
-    confirmed_username, confirmed_domain = @webfinger.subject.gsub(/\Aacct:/, '').split('@')
+    confirmed_username, confirmed_domain = split_acct(@webfinger.subject)
 
     if confirmed_username.casecmp(@username).zero? && confirmed_domain.casecmp(@domain).zero?
       @username = confirmed_username
       @domain   = confirmed_domain
-      @uri      = uri
-    elsif !redirected
-      return process_webfinger!("#{confirmed_username}@#{confirmed_domain}", true)
-    else
-      raise Webfinger::RedirectError, "The URI #{uri} tries to hijack #{@username}@#{@domain}"
+      return
     end
 
-    @domain = nil if TagManager.instance.local_domain?(@domain)
+    # Account doesn't match, so it may have been redirected
+    @webfinger         = webfinger!("acct:#{confirmed_username}@#{confirmed_domain}")
+    @username, @domain = split_acct(@webfinger.subject)
+
+    unless confirmed_username.casecmp(@username).zero? && confirmed_domain.casecmp(@domain).zero?
+      raise Webfinger::RedirectError, "The URI #{uri} tries to hijack #{@username}@#{@domain}"
+    end
   rescue Webfinger::GoneError
     @gone = true
+  end
+
+  def split_acct(acct)
+    acct.gsub(/\Aacct:/, '').split('@')
   end
 
   def process_account!

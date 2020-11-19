@@ -4,11 +4,8 @@ RSpec.describe ResolveAccountService, type: :service do
   subject { described_class.new }
 
   before do
-    stub_request(:get, "https://quitter.no/.well-known/host-meta").to_return(request_fixture('.host-meta.txt'))
-    stub_request(:get, "https://example.com/.well-known/webfinger?resource=acct:catsrgr8@example.com").to_return(status: 404)
     stub_request(:get, "https://example.com/.well-known/host-meta").to_return(status: 404)
     stub_request(:get, "https://quitter.no/avatar/7477-300-20160211190340.png").to_return(request_fixture('avatar.txt'))
-    stub_request(:get, "https://quitter.no/.well-known/webfinger?resource=acct:catsrgr8@quitter.no").to_return(status: 404)
     stub_request(:get, "https://ap.example.com/.well-known/webfinger?resource=acct:foo@ap.example.com").to_return(request_fixture('activitypub-webfinger.txt'))
     stub_request(:get, "https://ap.example.com/users/foo").to_return(request_fixture('activitypub-actor.txt'))
     stub_request(:get, "https://ap.example.com/users/foo.atom").to_return(request_fixture('activitypub-feed.txt'))
@@ -16,12 +13,25 @@ RSpec.describe ResolveAccountService, type: :service do
     stub_request(:get, 'https://example.com/.well-known/webfinger?resource=acct:hoge@example.com').to_return(status: 410)
   end
 
-  it 'returns nil if no such user can be resolved via webfinger' do
-    expect(subject.call('catsrgr8@quitter.no')).to be_nil
+  context 'when there is an LRDD endpoint but no resolvable account' do
+    before do
+      stub_request(:get, "https://quitter.no/.well-known/host-meta").to_return(request_fixture('.host-meta.txt'))
+      stub_request(:get, "https://quitter.no/.well-known/webfinger?resource=acct:catsrgr8@quitter.no").to_return(status: 404)
+    end
+
+    it 'returns nil' do
+      expect(subject.call('catsrgr8@quitter.no')).to be_nil
+    end
   end
 
-  it 'returns nil if the domain does not have webfinger' do
-    expect(subject.call('catsrgr8@example.com')).to be_nil
+  context 'when there is no LRDD endpoint nor resolvable account' do
+    before do
+      stub_request(:get, "https://example.com/.well-known/webfinger?resource=acct:catsrgr8@example.com").to_return(status: 404)
+    end
+
+    it 'returns nil' do
+      expect(subject.call('catsrgr8@example.com')).to be_nil
+    end
   end
 
   context 'when webfinger returns http gone' do
@@ -45,6 +55,34 @@ RSpec.describe ResolveAccountService, type: :service do
       it 'returns nil' do
         expect(subject.call('hoge@example.com')).to be_nil
       end
+    end
+  end
+
+  context 'with a legitimate webfinger redirection' do
+    before do
+      webfinger = { subject: 'acct:foo@ap.example.com', links: [{ rel: 'self', href: 'https://ap.example.com/users/foo' }] }
+      stub_request(:get, 'https://redirected.example.com/.well-known/webfinger?resource=acct:Foo@redirected.example.com').to_return(body: Oj.dump(webfinger), headers: { 'Content-Type': 'application/jrd+json' })
+    end
+
+    it 'returns new remote account' do
+      account = subject.call('Foo@redirected.example.com')
+
+      expect(account.activitypub?).to eq true
+      expect(account.acct).to eq 'foo@ap.example.com'
+      expect(account.inbox_url).to eq 'https://ap.example.com/users/foo/inbox'
+    end
+  end
+
+  context 'with too many webfinger redirections' do
+    before do
+      webfinger = { subject: 'acct:foo@evil.example.com', links: [{ rel: 'self', href: 'https://ap.example.com/users/foo' }] }
+      stub_request(:get, 'https://redirected.example.com/.well-known/webfinger?resource=acct:Foo@redirected.example.com').to_return(body: Oj.dump(webfinger), headers: { 'Content-Type': 'application/jrd+json' })
+      webfinger2 = { subject: 'acct:foo@ap.example.com', links: [{ rel: 'self', href: 'https://ap.example.com/users/foo' }] }
+      stub_request(:get, 'https://evil.example.com/.well-known/webfinger?resource=acct:foo@evil.example.com').to_return(body: Oj.dump(webfinger2), headers: { 'Content-Type': 'application/jrd+json' })
+    end
+
+    it 'returns new remote account' do
+      expect { subject.call('Foo@redirected.example.com') }.to raise_error Webfinger::RedirectError
     end
   end
 
