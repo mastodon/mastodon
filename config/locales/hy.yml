@@ -758,10 +758,16 @@ hy:
         other: "%{count} ձայներ"
       vote: Քուէարկել
     show_more: Աւելին
+    show_thread: Բացել շղթան
+    sign_in_to_participate: Մուտք գործէք՝ զրոյցին միանալու համար 
     title: '%{name}: "%{quote}"'
     visibilities:
       private: Միայն հետեւողներին
+      private_long: Հասանելի միայն հետեւորդներին
       public: Հրապարակային
+      public_long: Տեսանելի բոլորին
+      unlisted: Ծածուկ
+      unlisted_long: Տեսանելի է բոլորին, բայց չի յայտնւում հանրային հոսքերում
   stream_entries:
     pinned: Ամրացուած թութ
     reblogged: տարածուած
@@ -852,6 +858,7 @@ hy:
 
       <p><strong>Ոչ պաշտօնական, ոչ իրաւական թարգմանութիւն</strong></p>
   themes:
+    contrast: Mastodon (բարձր կոնտրաստով)
     default: Mastodon (Մուգ)
     mastodon-light: Mastodon (Լուսավոր)
   time:
@@ -859,8 +866,13 @@ hy:
       default: "%b %d, %Y, %H:%M"
       month: "%b %Y"
   two_factor_authentication:
+    add: Ավելացնել
     disable: Անջատել
+    disabled_success: Երկքայլ նոյնականացումը հաջողութեամբ անջուած է
+    edit: Խմբագրել
     enabled: Երկքայլ նոյնականացումը միացուած է
+    enabled_success: Երկքայլ նոյնականացումը հաջողութեամբ միացուած է
+    generate_recovery_codes: Ստեղծել վերականգնման կոդեր
   user_mailer:
     warning:
       title:
@@ -868,6 +880,8 @@ hy:
     welcome:
       subject: Բարի գալուստ Մաստոդոն
       tip_federated_timeline: Դաշնային հոսքում երևում է ամբողջ Մաստոդոնի ցանցը։ Բայց այն ներառում է միայն այն օգտատերերին որոնց բաժանորդագրուած են ձեր հարևաններ, այդ պատճառով այն կարող է լինել ոչ ամբողջական։
+      tip_following: Դու հետեւում էս քո հանգոյցի ադմին(ներ)ին լռելայն։ Այլ հետաքրքիր անձանց գտնելու համար՝ թերթիր տեղական և դաշնային հոսքերը։
+      tip_local_timeline: Տեղական հոսքում երևում են %{instance} հանգոյցի օգտատերի գրառումները։ Նրանք քո հանգոյցի հարևաններն են։
       tips: Հուշումներ
   users:
     blocked_email_provider: Սույն էլփոստի տրամադրողը արգելված է
