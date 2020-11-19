@@ -211,10 +211,12 @@ class DetailedStatus extends ImmutablePureComponent {
       );
     }
 
-    if (pictureInPicture.get('inUse')) {
-      media = <PictureInPicturePlaceholder />;
-    } else if (status.get('media_attachments').size > 0) {
-      if (status.getIn(['media_attachments', 0, 'type']) === 'audio') {
+    if (status.get('media_attachments').size > 0) {
+      if (pictureInPicture.get('inUse')) {
+        media = <PictureInPicturePlaceholder width={this.props.cachedMediaWidth} />;
+      } else if (this.props.muted) {
+        media = <AttachmentList compact media={status.get('media_attachments')} />;
+      } else if (status.getIn(['media_attachments', 0, 'type']) === 'audio') {
         const attachment = status.getIn(['media_attachments', 0]);
 
         media = (
