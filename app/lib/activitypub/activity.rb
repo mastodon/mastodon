@@ -168,11 +168,13 @@ class ActivityPub::Activity
   end
 
   def signed_fetch_account
+    return Account.find(@options[:delivered_to_account_id]) if @options[:delivered_to_account_id].present?
+
     first_mentioned_local_account || first_local_follower
   end
 
   def first_mentioned_local_account
-    audience = (as_array(@json['to']) + as_array(@json['cc'])).uniq
+    audience = (as_array(@json['to']) + as_array(@json['cc'])).map { |x| value_or_id(x) }.uniq
     local_usernames = audience.select { |uri| ActivityPub::TagManager.instance.local_uri?(uri) }
                               .map { |uri| ActivityPub::TagManager.instance.uri_to_local_id(uri, :username) }
 

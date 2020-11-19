@@ -43,8 +43,7 @@ describe RemoteFollowController do
         end
 
         it 'renders new when template is nil' do
-          link_with_nil_template = double(template: nil)
-          resource_with_link = double(link: link_with_nil_template)
+          resource_with_link = double(link: nil)
           allow_any_instance_of(WebfingerHelper).to receive(:webfinger!).with('acct:user@example.com').and_return(resource_with_link)
           post :create, params: { account_username: @account.to_param, remote_follow: { acct: 'user@example.com' } }
 
@@ -55,8 +54,7 @@ describe RemoteFollowController do
 
       context 'when webfinger values are good' do
         before do
-          link_with_template = double(template: 'http://example.com/follow_me?acct={uri}')
-          resource_with_link = double(link: link_with_template)
+          resource_with_link = double(link: 'http://example.com/follow_me?acct={uri}')
           allow_any_instance_of(WebfingerHelper).to receive(:webfinger!).with('acct:user@example.com').and_return(resource_with_link)
           post :create, params: { account_username: @account.to_param, remote_follow: { acct: 'user@example.com' } }
         end
@@ -78,8 +76,8 @@ describe RemoteFollowController do
         expect(response).to render_template(:new)
       end
 
-      it 'renders new with error when goldfinger fails' do
-        allow_any_instance_of(WebfingerHelper).to receive(:webfinger!).with('acct:user@example.com').and_raise(Goldfinger::Error)
+      it 'renders new with error when webfinger fails' do
+        allow_any_instance_of(WebfingerHelper).to receive(:webfinger!).with('acct:user@example.com').and_raise(Webfinger::Error)
         post :create, params: { account_username: @account.to_param, remote_follow: { acct: 'user@example.com' } }
 
         expect(response).to render_template(:new)

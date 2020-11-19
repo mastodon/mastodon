@@ -5,6 +5,7 @@ require 'mime/types/columnar'
 module Paperclip
   class ColorExtractor < Paperclip::Processor
     MIN_CONTRAST        = 3.0
+    ACCENT_MIN_CONTRAST = 2.0
     FREQUENCY_THRESHOLD = 0.01
 
     def make
@@ -26,8 +27,9 @@ module Paperclip
 
       foreground_palette.each do |color|
         distance = ColorDiff.between(background_color, color)
+        contrast = w3c_contrast(background_color, color)
 
-        if distance > max_distance
+        if distance > max_distance && contrast >= ACCENT_MIN_CONTRAST
           max_distance = distance
           max_distance_color = color
         end
@@ -77,8 +79,8 @@ module Paperclip
     private
 
     def w3c_contrast(color1, color2)
-      luminance1 = (0.2126 * color1.r + 0.7152 * color1.g + 0.0722 * color1.b) + 0.05
-      luminance2 = (0.2126 * color2.r + 0.7152 * color2.g + 0.0722 * color2.b) + 0.05
+      luminance1 = color1.to_xyz.y * 0.01 + 0.05
+      luminance2 = color2.to_xyz.y * 0.01 + 0.05
 
       if luminance1 > luminance2
         luminance1 / luminance2

@@ -348,24 +348,8 @@ RSpec.describe AccountsController, type: :controller do
         context 'in authorized fetch mode' do
           let(:authorized_fetch_mode) { true }
 
-          it 'returns http success' do
-            expect(response).to have_http_status(200)
-          end
-
-          it 'returns application/activity+json' do
-            expect(response.content_type).to eq 'application/activity+json'
-          end
-
-          it_behaves_like 'cachable response'
-
-          it 'returns Vary header with Signature' do
-            expect(response.headers['Vary']).to include 'Signature'
-          end
-
-          it 'renders bare minimum account' do
-            json = body_as_json
-            expect(json).to include(:id, :type, :preferredUsername, :inbox, :publicKey)
-            expect(json).to_not include(:name, :summary)
+          it 'returns http unauthorized' do
+            expect(response).to have_http_status(401)
           end
         end
       end
