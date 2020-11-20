@@ -40,7 +40,7 @@ RUN apt update && \
 	cd .. && rm -rf jemalloc-$JE_VER $JE_VER.tar.gz
 
 # Install Ruby
-ENV RUBY_VER="2.6.6"
+ENV RUBY_VER="2.7.2"
 ENV CPPFLAGS="-I/opt/jemalloc/include"
 ENV LDFLAGS="-L/opt/jemalloc/lib/"
 RUN apt update && \
