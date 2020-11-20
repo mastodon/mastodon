@@ -386,13 +386,59 @@ class Audio extends React.PureComponent {
     return this.props.foregroundColor || '#ffffff';
   }
 
+  seekBy (time) {
+    const currentTime = this.audio.currentTime + time;
+
+    if (!isNaN(currentTime)) {
+      this.setState({ currentTime }, () => {
+        this.audio.currentTime = currentTime;
+      });
+    }
+  }
+
+  handleAudioKeyDown = e => {
+    // On the audio element or the seek bar, we can safely use the space bar
+    // for playback control because there are no buttons to press
+
+    if (e.key === ' ') {
+      e.preventDefault();
+      e.stopPropagation();
+      this.togglePlay();
+    }
+  }
+
+  handleKeyDown = e => {
+    switch(e.key) {
+    case 'k':
+      e.preventDefault();
+      e.stopPropagation();
+      this.togglePlay();
+      break;
+    case 'm':
+      e.preventDefault();
+      e.stopPropagation();
+      this.toggleMute();
+      break;
+    case 'j':
+      e.preventDefault();
+      e.stopPropagation();
+      this.seekBy(-10);
+      break;
+    case 'l':
+      e.preventDefault();
+      e.stopPropagation();
+      this.seekBy(10);
+      break;
+    }
+  }
+
   render () {
     const { src, intl, alt, editable, autoPlay } = this.props;
     const { paused, muted, volume, currentTime, duration, buffer, dragging } = this.state;
     const progress = Math.min((currentTime / duration) * 100, 100);
 
     return (
-      <div className={classNames('audio-player', { editable })} ref={this.setPlayerRef} style={{ backgroundColor: this._getBackgroundColor(), color: this._getForegroundColor(), width: '100%', height: this.props.fullscreen ? '100%' : (this.state.height || this.props.height) }} onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
+      <div className={classNames('audio-player', { editable })} ref={this.setPlayerRef} style={{ backgroundColor: this._getBackgroundColor(), color: this._getForegroundColor(), width: '100%', height: this.props.fullscreen ? '100%' : (this.state.height || this.props.height) }} onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave} tabIndex='0' onKeyDown={this.handleKeyDown}>
         <audio
           src={src}
           ref={this.setAudioRef}
@@ -406,12 +452,14 @@ class Audio extends React.PureComponent {
 
         <canvas
           role='button'
+          tabIndex='0'
           className='audio-player__canvas'
           width={this.state.width}
           height={this.state.height}
           style={{ width: '100%', position: 'absolute', top: 0, left: 0 }}
           ref={this.setCanvasRef}
           onClick={this.togglePlay}
+          onKeyDown={this.handleAudioKeyDown}
           title={alt}
           aria-label={alt}
         />
@@ -432,6 +480,7 @@ class Audio extends React.PureComponent {
             className={classNames('video-player__seek__handle', { active: dragging })}
             tabIndex='0'
             style={{ left: `${progress}%`, backgroundColor: this._getAccentColor() }}
+            onKeyDown={this.handleAudioKeyDown}
           />
         </div>
 

@@ -57,7 +57,11 @@ const makeMapStateToProps = () => {
 
   const mapStateToProps = (state, props) => ({
     status: getStatus(state, props),
-    usingPiP: state.get('picture_in_picture').statusId === props.id,
+
+    pictureInPicture: {
+      inUse: state.getIn(['meta', 'layout']) !== 'mobile' && state.get('picture_in_picture').statusId === props.id,
+      available: state.getIn(['meta', 'layout']) !== 'mobile',
+    },
   });
 
   return mapStateToProps;

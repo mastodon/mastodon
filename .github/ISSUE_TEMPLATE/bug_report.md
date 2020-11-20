@@ -1,7 +1,7 @@
 ---
 name: Bug Report
-about: Create a report to help us improve
-
+about: If something isn't working as expected
+labels: bug
 ---
 
 [Issue text goes here].
