@@ -182,10 +182,7 @@ class Video extends React.PureComponent {
     this.volume = c;
   }
 
-  handleMouseDownRoot = e => {
-    e.preventDefault();
-    e.stopPropagation();
-  }
+  handleClickRoot = e => e.stopPropagation();
 
   handlePlay = () => {
     this.setState({ paused: false });
@@ -578,7 +575,7 @@ class Video extends React.PureComponent {
         ref={this.setPlayerRef}
         onMouseEnter={this.handleMouseEnter}
         onMouseLeave={this.handleMouseLeave}
-        onMouseDown={this.handleMouseDownRoot}
+        onClick={this.handleClickRoot}
         onKeyDown={this.handleKeyDown}
         tabIndex={0}
       >
