@@ -386,6 +386,7 @@ class FocalPointModal extends ImmutablePureComponent {
             {media.get('type') === 'video' && (
               <Video
                 preview={media.get('preview_url')}
+                frameRate={media.getIn(['meta', 'original', 'frame_rate'])}
                 blurhash={media.get('blurhash')}
                 src={media.get('url')}
                 detailed
