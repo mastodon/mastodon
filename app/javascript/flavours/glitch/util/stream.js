@@ -16,7 +16,7 @@ let sharedConnection;
  * @property {function(): void} onDisconnect
  */
 
- /**
+/**
   * @typedef StreamEvent
   * @property {string} event
   * @property {object} payload

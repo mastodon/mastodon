@@ -18,7 +18,9 @@ import { length } from 'stringz';
 import { Tesseract as fetchTesseract } from 'flavours/glitch/util/async-components';
 import GIFV from 'flavours/glitch/components/gifv';
 import { me } from 'flavours/glitch/util/initial_state';
+// eslint-disable-next-line import/no-extraneous-dependencies
 import tesseractCorePath from 'tesseract.js-core/tesseract-core.wasm.js';
+// eslint-disable-next-line import/extensions
 import tesseractWorkerPath from 'tesseract.js/dist/worker.min.js';
 import { assetHost } from 'flavours/glitch/util/config';
 
