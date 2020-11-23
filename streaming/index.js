@@ -230,13 +230,13 @@ const startWorker = (workerId) => {
   const FALSE_VALUES = [
     false,
     0,
-    "0",
-    "f",
-    "F",
-    "false",
-    "FALSE",
-    "off",
-    "OFF"
+    '0',
+    'f',
+    'F',
+    'false',
+    'FALSE',
+    'off',
+    'OFF',
   ];
 
   /**
@@ -377,6 +377,8 @@ const startWorker = (workerId) => {
       return 'direct';
     case '/api/v1/streaming/list':
       return 'list';
+    default:
+      return undefined;
     }
   };
 
@@ -475,7 +477,7 @@ const startWorker = (workerId) => {
         log.verbose(req.requestId, `Closing connection for ${req.accountId} due to expired access token`);
         eventHandlers.onKill();
       }
-    }
+    };
   };
 
   /**
@@ -530,7 +532,8 @@ const startWorker = (workerId) => {
     log.error(req.requestId, err.toString());
 
     if (res.headersSent) {
-      return next(err);
+      next(err);
+      return;
     }
 
     res.writeHead(err.status || 500, { 'Content-Type': 'application/json' });
@@ -1032,7 +1035,7 @@ const startWorker = (workerId) => {
       if (type === 'subscribe') {
         subscribeWebsocketToChannel(session, firstParam(stream), params);
       } else if (type === 'unsubscribe') {
-        unsubscribeWebsocketFromChannel(session, firstParam(stream), params)
+        unsubscribeWebsocketFromChannel(session, firstParam(stream), params);
       } else {
         // Unknown action type
       }
