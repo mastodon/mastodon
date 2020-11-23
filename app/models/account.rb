@@ -67,6 +67,7 @@ class Account < ApplicationRecord
   include Paginable
   include AccountCounters
   include DomainNormalizable
+  include AccountMerging
 
   TRUST_LEVELS = {
     untrusted: 0,
