@@ -377,6 +377,8 @@ const startWorker = (workerId) => {
       return 'direct';
     case '/api/v1/streaming/list':
       return 'list';
+    default:
+      return undefined;
     }
   };
 
@@ -530,7 +532,8 @@ const startWorker = (workerId) => {
     log.error(req.requestId, err.toString());
 
     if (res.headersSent) {
-      return next(err);
+      next(err);
+      return;
     }
 
     res.writeHead(err.status || 500, { 'Content-Type': 'application/json' });
