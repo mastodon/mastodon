@@ -226,7 +226,7 @@ module Mastodon
 
       if from_account.public_key != to_account.public_key && !options[:force]
         say("Accounts don't have the same public key, might not be duplicates!", :red)
-        say("Override with --force", :red)
+        say('Override with --force', :red)
         exit(1)
       end
 
