@@ -476,45 +476,10 @@ module Mastodon
         if other_account.public_key == reference_account.public_key
           # The accounts definitely point to the same resource, so
           # it's safe to re-attribute content and relationships
-          merge_accounts!(reference_account, other_account)
+          reference_account.merge_with!(other_account)
         end
 
         other_account.destroy
-      end
-    end
-
-    def merge_accounts!(main_account, duplicate_account)
-      # Since it's the same remote resource, the remote resource likely
-      # already believes we are following/blocking, so it's safe to
-      # re-attribute the relationships too. However, during the presence
-      # of the index bug users could have *also* followed the reference
-      # account already, therefore mass update will not work and we need
-      # to check for (and skip past) uniqueness errors
-      owned_classes = [
-        Status, StatusPin, MediaAttachment, Poll, Report, Tombstone, Favourite,
-        Follow, FollowRequest, Block, Mute, AccountIdentityProof,
-        AccountModerationNote, AccountPin, AccountStat, ListAccount,
-        PollVote, Mention
-      ]
-      owned_classes.each do |klass|
-        klass.where(account_id: duplicate_account.id).find_each do |record|
-          begin
-            record.update_attribute(:account_id, main_account.id)
-          rescue ActiveRecord::RecordNotUnique
-            next
-          end
-        end
-      end
-
-      target_classes = [Follow, FollowRequest, Block, Mute, AccountModerationNote, AccountPin]
-      target_classes.each do |klass|
-        klass.where(target_account_id: duplicate_account.id).find_each do |record|
-          begin
-            record.update_attribute(:target_account_id, main_account.id)
-          rescue ActiveRecord::RecordNotUnique
-            next
-          end
-        end
       end
     end
 
