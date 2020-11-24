@@ -67,7 +67,13 @@ zh-HK:
         deleted:
           explanation: 以下的安全鑰匙已經從你的帳號中移除了
           subject: 'Mastodon: 安全鑰匙已移除'
-          title: 你的其中一個安全鑰匙已經被移除了
+          title: 你其中的一個安全鑰匙已經被移除了
+      webauthn_disabled:
+        explanation: 你的帳號的安全鑰匙身份驗證已經停用。你只可以用過去已經配對好的基於時間一次性密碼程式生成的密碼來登錄。
+        subject: 'Mastodon: 安全鑰匙身份驗證已經停用'
+        title: 已啟用安全鑰匙
+      webauthn_enabled:
+        title: 已啟用安全鑰匙
     omniauth_callbacks:
       failure: 無法以 %{kind} 登入你的用戶，原因是︰「%{reason}」。
       success: 成功以 %{kind} 登入你的用戶。
