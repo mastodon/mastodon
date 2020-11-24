@@ -152,12 +152,12 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
     dispatch(mentionCompose(account, router));
   },
 
-  onOpenMedia (media, index) {
-    dispatch(openModal('MEDIA', { media, index }));
+  onOpenMedia (statusId, media, index) {
+    dispatch(openModal('MEDIA', { statusId, media, index }));
   },
 
-  onOpenVideo (media, options) {
-    dispatch(openModal('VIDEO', { media, options }));
+  onOpenVideo (statusId, media, options) {
+    dispatch(openModal('VIDEO', { statusId, media, options }));
   },
 
   onBlock (status) {
