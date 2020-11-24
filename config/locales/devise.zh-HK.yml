@@ -62,7 +62,7 @@ zh-HK:
       webauthn_credential:
         added:
           explanation: 以下的安全鑰匙已經加進你的帳號
-          subject: 'Mastodon: 新安全鑰匙'
+          subject: 'Mastodon: 新的安全鑰匙'
           title: 已經加入一個新的安全鑰匙
         deleted:
           explanation: 以下的安全鑰匙已經從你的帳號中移除了
@@ -73,6 +73,8 @@ zh-HK:
         subject: 'Mastodon: 安全鑰匙身份驗證已經停用'
         title: 已啟用安全鑰匙
       webauthn_enabled:
+        explanation: 安全鑰匙身份驗證已啟用。你的安全鑰匙現在可以用來登錄。
+        subject: 'Mastodon: 安全鑰匙身份驗證已啟用'
         title: 已啟用安全鑰匙
     omniauth_callbacks:
       failure: 無法以 %{kind} 登入你的用戶，原因是︰「%{reason}」。
