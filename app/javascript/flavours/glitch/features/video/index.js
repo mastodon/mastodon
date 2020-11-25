@@ -544,7 +544,7 @@ class Video extends React.PureComponent {
       return this.props.frameRate.split('/').reduce((p, c) => p / c);
     }
 
-    return this.props.frameRate;
+    return this.props.frameRate || 25;
   }
 
   render () {
