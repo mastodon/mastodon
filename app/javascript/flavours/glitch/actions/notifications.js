@@ -345,7 +345,7 @@ export function setupBrowserNotifications() {
     if ('Notification' in window && 'permissions' in navigator) {
       navigator.permissions.query({ name: 'notifications' }).then((status) => {
         status.onchange = () => dispatch(setBrowserPermission(Notification.permission));
-      });
+      }).catch(console.warn);
     }
   };
 }

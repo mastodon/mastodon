@@ -99,6 +99,7 @@ class Video extends React.PureComponent {
 
   static propTypes = {
     preview: PropTypes.string,
+    frameRate: PropTypes.string,
     src: PropTypes.string.isRequired,
     alt: PropTypes.string,
     width: PropTypes.number,
@@ -121,6 +122,10 @@ class Video extends React.PureComponent {
     autoPlay: PropTypes.bool,
     volume: PropTypes.number,
     muted: PropTypes.bool,
+  };
+
+  static defaultProps = {
+    frameRate: 25,
   };
 
   state = {
@@ -288,7 +293,7 @@ class Video extends React.PureComponent {
   }
 
   handleKeyDown = e => {
-    const frameTime = 1 / 25;
+    const frameTime = 1 / this.getFrameRate();
 
     switch(e.key) {
     case 'k':
@@ -515,6 +520,17 @@ class Video extends React.PureComponent {
   handleCloseVideo = () => {
     this.video.pause();
     this.props.onCloseVideo();
+  }
+
+  getFrameRate () {
+    if (this.props.frameRate && isNaN(this.props.frameRate)) {
+      // The frame rate is returned as a fraction string so we
+      // need to convert it to a number
+
+      return this.props.frameRate.split('/').reduce((p, c) => p / c);
+    }
+
+    return this.props.frameRate;
   }
 
   render () {

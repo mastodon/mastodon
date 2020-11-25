@@ -196,6 +196,46 @@ module Mastodon
       say('OK', :green)
     end
 
+    option :force, type: :boolean, aliases: [:f], description: 'Override public key check'
+    desc 'merge FROM TO', 'Merge two remote accounts into one'
+    long_desc <<-LONG_DESC
+      Merge two remote accounts specified by their username@domain
+      into one, whereby the TO account is the one being merged into
+      and kept, while the FROM one is removed. It is primarily meant
+      to fix duplicates caused by other servers changing their domain.
+
+      The command by default only works if both accounts have the same
+      public key to prevent mistakes. To override this, use the --force.
+    LONG_DESC
+    def merge(from_acct, to_acct)
+      username, domain = from_acct.split('@')
+      from_account = Account.find_remote(username, domain)
+
+      if from_account.nil? || from_account.local?
+        say("No such account (#{from_acct})", :red)
+        exit(1)
+      end
+
+      username, domain = to_acct.split('@')
+      to_account = Account.find_remote(username, domain)
+
+      if to_account.nil? || to_account.local?
+        say("No such account (#{to_acct})", :red)
+        exit(1)
+      end
+
+      if from_account.public_key != to_account.public_key && !options[:force]
+        say("Accounts don't have the same public key, might not be duplicates!", :red)
+        say('Override with --force', :red)
+        exit(1)
+      end
+
+      to_account.merge_with!(from_account)
+      from_account.destroy
+
+      say('OK', :green)
+    end
+
     desc 'backup USERNAME', 'Request a backup for a user'
     long_desc <<-LONG_DESC
       Request a new backup for an account with a given USERNAME.
@@ -335,7 +375,8 @@ module Mastodon
     option :verbose, type: :boolean, aliases: [:v]
     desc 'unfollow ACCT', 'Make all local accounts unfollow account specified by ACCT'
     def unfollow(acct)
-      target_account = Account.find_remote(*acct.split('@'))
+      username, domain = acct.split('@')
+      target_account = Account.find_remote(username, domain)
 
       if target_account.nil?
         say('No such account', :red)

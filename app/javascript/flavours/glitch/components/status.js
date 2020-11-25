@@ -628,6 +628,7 @@ class Status extends ImmutablePureComponent {
           <Bundle fetchComponent={Video} loading={this.renderLoadingVideoPlayer} >
             {Component => (<Component
               preview={attachment.get('preview_url')}
+              frameRate={attachment.getIn(['meta', 'original', 'frame_rate'])}
               blurhash={attachment.get('blurhash')}
               src={attachment.get('url')}
               alt={attachment.get('description')}

@@ -14,11 +14,7 @@ export default class ModalRoot extends React.PureComponent {
     noEsc: PropTypes.bool,
   };
 
-  state = {
-    revealed: !!this.props.children,
-  };
-
-  activeElement = this.state.revealed ? document.activeElement : null;
+  activeElement = this.props.children ? document.activeElement : null;
 
   handleKeyUp = (e) => {
     if ((e.key === 'Escape' || e.key === 'Esc' || e.keyCode === 27)
@@ -59,8 +55,6 @@ export default class ModalRoot extends React.PureComponent {
       this.activeElement = document.activeElement;
 
       this.getSiblings().forEach(sibling => sibling.setAttribute('inert', true));
-    } else if (!nextProps.children) {
-      this.setState({ revealed: false });
     }
   }
 
@@ -80,11 +74,8 @@ export default class ModalRoot extends React.PureComponent {
 
       this.handleModalClose();
     }
-    if (this.props.children) {
-      requestAnimationFrame(() => {
-        this.setState({ revealed: true });
-      });
-      if (!prevProps.children) this.handleModalOpen();
+    if (this.props.children && !prevProps.children) {
+      this.handleModalOpen();
     }
   }
 
@@ -121,7 +112,6 @@ export default class ModalRoot extends React.PureComponent {
 
   render () {
     const { children, onClose } = this.props;
-    const { revealed } = this.state;
     const visible = !!children;
 
     if (!visible) {
@@ -131,7 +121,7 @@ export default class ModalRoot extends React.PureComponent {
     }
 
     return (
-      <div className='modal-root' ref={this.setRef} style={{ opacity: revealed ? 1 : 0 }}>
+      <div className='modal-root' ref={this.setRef}>
         <div style={{ pointerEvents: visible ? 'auto' : 'none' }}>
           <div role='presentation' className='modal-root__overlay' onClick={onClose} />
           <div role='dialog' className='modal-root__container'>{children}</div>
