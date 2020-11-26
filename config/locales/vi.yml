@@ -431,7 +431,7 @@ vi:
       by_domain: Máy chủ
       delivery_available: Cho phép liên kết
       known_accounts:
-        other: "%{count} tài khoản đã xác thực"
+        other: "%{count} tài khoản đã biết"
       moderation:
         all: Tất cả
         limited: Hạn chế
@@ -959,7 +959,7 @@ vi:
     incoming_migrations_html: Để chuyển từ tài khoản khác sang tài khoản này, trước tiên bạn cần <a href="%{path}">tạo tham chiếu tài khoản</a>.
     moved_msg: Tài khoản của bạn hiện đang chuyển hướng đến %{acct} và những người theo dõi bạn cũng sẽ được chuyển đi.
     not_redirecting: Tài khoản của bạn hiện không chuyển hướng đến bất kỳ tài khoản nào khác.
-    on_cooldown: Gần đây bạn đã di chuyển tài khoản của bạn. Chức năng này sẽ trở nên khả dụng một lần nữa sau %{count} ngày.
+    on_cooldown: Bạn vừa mới chuyển tài khoản của bạn đi nơi khác. Chỉ có thể sử dụng tiếp tính năng này sau %{count} ngày.
     past_migrations: Những lần dời nhà cũ
     proceed_with_move: Chuyển hướng người theo dõi
     redirected_msg: Tài khoản của bạn đã chuyển hướng đến %{acct}.
@@ -1135,8 +1135,8 @@ vi:
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Điện thoại Windows
-    revoke: Thu hồi
-    revoke_success: Thu hồi phiên thành công
+    revoke: Gỡ
+    revoke_success: Gỡ phiên thành công
     title: Phiên
   settings:
     account: Tài khoản
@@ -1165,7 +1165,7 @@ vi:
   statuses:
     attached:
       audio:
-        other: "%{count} bài hát"
+        other: "%{count} âm thanh"
       description: 'Đính kèm: %{attached}'
       image:
         other: "%{count} hình ảnh"
