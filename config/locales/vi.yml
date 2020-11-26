@@ -89,7 +89,7 @@ vi:
       delete: Xóa bỏ
       destroyed_msg: Đã ghi chú kiểm duyệt xong!
     accounts:
-      add_email_domain_block: Chặn địa chỉ email
+      add_email_domain_block: Chặn tên miền email
       approve: Phê duyệt
       approve_all: Phê duyệt tất cả
       approved_msg: Đã phê duyệt %{username} đăng ký thành công
@@ -214,12 +214,12 @@ vi:
         assigned_to_self_report: Xử lý báo cáo
         change_email_user: Đổi email cho người dùng
         confirm_user: Xác nhận người dùng
-        create_account_warning: Tạo cảnh cáo cài sẵn
+        create_account_warning: Gửi cảnh cáo
         create_announcement: Tạo thông báo
         create_custom_emoji: Tạo Emoji mới
         create_domain_allow: Tạo danh sách máy chủ cho phép
         create_domain_block: Tạo danh sách máy chủ chặn
-        create_email_domain_block: Tạo danh sách địa chỉ email chặn
+        create_email_domain_block: Chặn tên miền email
         create_ip_block: Chặn IP
         demote_user: Gỡ bỏ chức vụ
         destroy_announcement: Gỡ thông báo
@@ -259,14 +259,14 @@ vi:
         create_custom_emoji: "%{name} đã tải lên biểu tượng cảm xúc mới %{target}"
         create_domain_allow: "%{name} kích hoạt liên hợp với %{target}"
         create_domain_block: "%{name} chặn máy chủ %{target}"
-        create_email_domain_block: "%{name} chặn địa chỉ email %{target}"
+        create_email_domain_block: "%{name} chặn tên miền email %{target}"
         create_ip_block: "%{name} đã chặn IP %{target}"
         demote_user: "%{name} đã gỡ bỏ chức vụ %{target}"
         destroy_announcement: "%{name} gỡ thông báo %{target}"
         destroy_custom_emoji: "%{name} biểu tượng cảm xúc bị phá hủy %{target}"
         destroy_domain_allow: "%{name} đã xóa tên miền %{target} khỏi danh sách trắng"
         destroy_domain_block: "%{name} bỏ chặn máy chủ %{target}"
-        destroy_email_domain_block: "%{name} bỏ chặn địa chỉ email %{target}"
+        destroy_email_domain_block: "%{name} bỏ chặn tên miền email %{target}"
         destroy_ip_block: "%{name} bỏ chặn IP %{target}"
         destroy_status: "%{name} đã gỡ bỏ tút của %{target}"
         disable_2fa_user: "%{name} đã vô hiệu hóa xác thực hai yếu tố của %{target}"
@@ -417,16 +417,16 @@ vi:
       view: Xem máy chủ chặn
     email_domain_blocks:
       add_new: Thêm mới
-      created_msg: Đã chặn địa chỉ email này
+      created_msg: Đã chặn tên miền email này
       delete: Xóa bỏ
-      destroyed_msg: Đã bỏ chặn địa chỉ email này
+      destroyed_msg: Đã bỏ chặn tên miền email này
       domain: Địa chỉ email
-      empty: Chưa chặn địa chỉ email nào.
+      empty: Chưa chặn tên miền email nào.
       from_html: từ %{domain}
       new:
         create: Thêm địa chỉ
-        title: Chặn địa chỉ email mới
-      title: Địa chỉ email đã chặn
+        title: Chặn tên miền email mới
+      title: Tên miền email đã chặn
     instances:
       by_domain: Máy chủ
       delivery_available: Cho phép liên kết
