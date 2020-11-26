@@ -99,6 +99,7 @@ class Video extends React.PureComponent {
 
   static propTypes = {
     preview: PropTypes.string,
+    frameRate: PropTypes.string,
     src: PropTypes.string.isRequired,
     alt: PropTypes.string,
     width: PropTypes.number,
@@ -121,6 +122,10 @@ class Video extends React.PureComponent {
     autoPlay: PropTypes.bool,
     volume: PropTypes.number,
     muted: PropTypes.bool,
+  };
+
+  static defaultProps = {
+    frameRate: 25,
   };
 
   state = {
@@ -265,6 +270,81 @@ class Video extends React.PureComponent {
       });
     }
   }, 15);
+
+  seekBy (time) {
+    const currentTime = this.video.currentTime + time;
+
+    if (!isNaN(currentTime)) {
+      this.setState({ currentTime }, () => {
+        this.video.currentTime = currentTime;
+      });
+    }
+  }
+
+  handleVideoKeyDown = e => {
+    // On the video element or the seek bar, we can safely use the space bar
+    // for playback control because there are no buttons to press
+
+    if (e.key === ' ') {
+      e.preventDefault();
+      e.stopPropagation();
+      this.togglePlay();
+    }
+  }
+
+  handleKeyDown = e => {
+    const frameTime = 1 / this.getFrameRate();
+
+    switch(e.key) {
+    case 'k':
+      e.preventDefault();
+      e.stopPropagation();
+      this.togglePlay();
+      break;
+    case 'm':
+      e.preventDefault();
+      e.stopPropagation();
+      this.toggleMute();
+      break;
+    case 'f':
+      e.preventDefault();
+      e.stopPropagation();
+      this.toggleFullscreen();
+      break;
+    case 'j':
+      e.preventDefault();
+      e.stopPropagation();
+      this.seekBy(-10);
+      break;
+    case 'l':
+      e.preventDefault();
+      e.stopPropagation();
+      this.seekBy(10);
+      break;
+    case ',':
+      e.preventDefault();
+      e.stopPropagation();
+      this.seekBy(-frameTime);
+      break;
+    case '.':
+      e.preventDefault();
+      e.stopPropagation();
+      this.seekBy(frameTime);
+      break;
+    }
+
+    // If we are in fullscreen mode, we don't want any hotkeys
+    // interacting with the UI that's not visible
+
+    if (this.state.fullscreen) {
+      e.preventDefault();
+      e.stopPropagation();
+
+      if (e.key === 'Escape') {
+        exitFullscreen();
+      }
+    }
+  }
 
   togglePlay = () => {
     if (this.state.paused) {
@@ -442,6 +522,17 @@ class Video extends React.PureComponent {
     this.props.onCloseVideo();
   }
 
+  getFrameRate () {
+    if (this.props.frameRate && isNaN(this.props.frameRate)) {
+      // The frame rate is returned as a fraction string so we
+      // need to convert it to a number
+
+      return this.props.frameRate.split('/').reduce((p, c) => p / c);
+    }
+
+    return this.props.frameRate;
+  }
+
   render () {
     const { preview, src, inline, onOpenVideo, onCloseVideo, intl, alt, detailed, sensitive, link, editable, blurhash } = this.props;
     const { containerWidth, currentTime, duration, volume, buffer, dragging, paused, fullscreen, hovered, muted, revealed } = this.state;
@@ -484,6 +575,7 @@ class Video extends React.PureComponent {
         onMouseEnter={this.handleMouseEnter}
         onMouseLeave={this.handleMouseLeave}
         onClick={this.handleClickRoot}
+        onKeyDown={this.handleKeyDown}
         tabIndex={0}
       >
         <Blurhash
@@ -507,6 +599,7 @@ class Video extends React.PureComponent {
           height={height}
           volume={volume}
           onClick={this.togglePlay}
+          onKeyDown={this.handleVideoKeyDown}
           onPlay={this.handlePlay}
           onPause={this.handlePause}
           onLoadedData={this.handleLoadedData}
@@ -529,6 +622,7 @@ class Video extends React.PureComponent {
               className={classNames('video-player__seek__handle', { active: dragging })}
               tabIndex='0'
               style={{ left: `${progress}%` }}
+              onKeyDown={this.handleVideoKeyDown}
             />
           </div>
 

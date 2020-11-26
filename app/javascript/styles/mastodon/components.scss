@@ -4439,8 +4439,6 @@ a.status-card.compact:hover {
 
 .modal-root {
   position: relative;
-  transition: opacity 0.3s linear;
-  will-change: opacity;
   z-index: 9999;
 }
 
@@ -7204,6 +7202,13 @@ noscript {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  position: relative;
+
+  &__close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
 
   h2 {
     font-size: 16px;

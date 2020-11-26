@@ -78,6 +78,8 @@ class SuspendAccountService < BaseService
               Rails.logger.warn "Tried to change permission on non-existent file #{attachment.path(style)}"
             end
           end
+
+          CacheBusterWorker.perform_async(attachment.path(style)) if Rails.configuration.x.cache_buster_enabled
         end
       end
     end
