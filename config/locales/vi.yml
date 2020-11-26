@@ -211,7 +211,7 @@ vi:
       whitelisted: Danh sách trắng
     action_logs:
       action_types:
-        assigned_to_self_report: Xử lý báo cáo
+        assigned_to_self_report: Xử lý báo cáo được giao
         change_email_user: Đổi email cho người dùng
         confirm_user: Xác nhận người dùng
         create_account_warning: Gửi cảnh cáo
@@ -233,14 +233,14 @@ vi:
         disable_custom_emoji: Vô hiệu hóa Emoji
         disable_user: Tạm khóa người dùng
         enable_custom_emoji: Cho phép Emoji
-        enable_user: Mở lại người dùng
+        enable_user: Mở khóa người dùng
         memorialize_account: Tài khoản tưởng niệm
         promote_user: Chỉ định chức vụ
         remove_avatar_user: Xóa ảnh đại diện
         reopen_report: Mở lại báo cáo
         reset_password_user: Đặt lại mật khẩu
-        resolve_report: Xem xét lại báo cáo
-        sensitive_account: Đánh dấu nhạy cảm cho ảnh và video trên tài khoản của bạn
+        resolve_report: Xử lý báo cáo
+        sensitive_account: Đánh dấu nhạy cảm cho tài khoản
         silence_account: Tài khoản bị ẩn
         suspend_account: Vô hiệu hóa người dùng
         unassigned_report: Báo cáo chưa xem
@@ -251,7 +251,7 @@ vi:
         update_custom_emoji: Cập nhật Emoji mới
         update_status: Cập nhật trạng thái máy chủ
       actions:
-        assigned_to_self_report: "%{name} đã xử lý báo cáo %{target}"
+        assigned_to_self_report: "%{name} đã xử lý báo cáo được giao %{target}"
         change_email_user: "%{name} đã thay đổi địa chỉ email cho %{target}"
         confirm_user: "%{name} xác nhận địa chỉ email của người dùng %{target}"
         create_account_warning: "%{name} đã gửi cảnh cáo %{target}"
@@ -273,7 +273,7 @@ vi:
         disable_custom_emoji: "%{name} đã ẩn emoji %{target}"
         disable_user: "%{name} tạm khóa %{target}"
         enable_custom_emoji: "%{name} cho phép Emoji %{target}"
-        enable_user: "%{name} phê duyệt đăng nhập cho người dùng %{target}"
+        enable_user: "%{name} mở khóa cho người dùng %{target}"
         memorialize_account: "%{name} đã biến tài khoản %{target} thành một trang tưởng niệm"
         promote_user: "%{name} đã chỉ định chức vụ cho %{target}"
         remove_avatar_user: "%{name} đã xóa ảnh đại diện của %{target}"
