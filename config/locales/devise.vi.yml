@@ -1,4 +1,3 @@
----
 vi:
   devise:
     confirmations:
@@ -8,10 +7,10 @@ vi:
     failure:
       already_authenticated: Bạn đã đăng nhập rồi.
       inactive: Tài khoản của bạn chưa được kich hoạt.
-      invalid: "%{authentication_keys} hoặc mật khẩu không khớp."
+      invalid: '%{authentication_keys} hoặc mật khẩu không khớp.'
       last_attempt: Nếu thử sai lần nữa, tài khoản của bạn sẽ bị khóa.
       locked: Tài khoản của bạn bị khóa.
-      not_found_in_database: "%{authentication_keys} không có trong dữ liệu."
+      not_found_in_database: '%{authentication_keys} không có trong dữ liệu.'
       pending: Tài khoản của bạn vẫn đang được xem xét.
       timeout: Phiên của bạn đã hết hạn. Vui lòng đăng nhập lại để tiếp tục.
       unauthenticated: Bạn cần đăng nhập hoặc đăng ký trước khi tiếp tục.
@@ -21,7 +20,7 @@ vi:
         action: Xác thực địa chỉ email
         action_with_app: Xác nhận và quay lại %{app}
         explanation: Bạn đã tạo một tài khoản trên %{host} với địa chỉ email này. Chỉ cần một cú nhấp chuột nữa để kích hoạt nó. Nếu đây không phải là bạn, xin vui lòng bỏ qua email này.
-        explanation_when_pending: Bạn đã đăng ký %{host} với địa chỉ email này. Chúng tôi chỉ xem xét đơn đăng ký sau khi bạn xác thực địa chỉ email. Bạn có thể đăng nhập để thay đổi chi tiết hoặc xóa tài khoản của mình, nhưng bạn không thể truy cập hầu hết các chức năng cho đến khi tài khoản của bạn được chấp thuận. Nếu bạn bị từ chối, dữ liệu của bạn sẽ bị xóa, do đó bạn sẽ không cần phải thực hiện thêm hành động nào nữa. Nếu đây không phải là bạn, xin vui lòng bỏ qua email này.
+        explanation_when_pending: Bạn vừa đăng ký %{host} với địa chỉ email này. Chúng tôi chỉ xem xét đơn đăng ký sau khi bạn xác thực địa chỉ email. Bạn có thể đăng nhập để thay đổi chi tiết hoặc xóa tài khoản của mình, nhưng bạn không thể sử dụng đầy đủ tính năng cho đến khi tài khoản được xác thực. Nếu bạn bị từ chối, dữ liệu của bạn sẽ bị xóa, do đó bạn sẽ không cần phải làm gì thêm nữa. Nếu không phải do bạn đăng ký, xin vui lòng bỏ qua email này.
         extra_html: Xin đọc kỹ <a href="%{terms_path}">quy tắc máy chủ</a> và <a href="%{policy_path}">chính sách riêng tư</a> của chúng tôi.
         subject: 'Mastodon: Xác thực email cho %{instance}'
         title: Xác thực địa chỉ email
@@ -111,4 +110,4 @@ vi:
       not_found: không tìm thấy
       not_locked: không bị khóa
       not_saved:
-        other: 'Không thể lưu lại %{resource} bởi vì xảy ra %{count} lỗi:'
+        other: "Không thể lưu lại %{resource} bởi vì xảy ra %{count} lỗi:"
