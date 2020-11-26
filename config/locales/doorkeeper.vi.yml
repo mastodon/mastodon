@@ -1,4 +1,3 @@
----
 vi:
   activerecord:
     attributes:
@@ -67,7 +66,7 @@ vi:
         title: Sao chép mã này và dán nó vào ứng dụng.
     authorized_applications:
       buttons:
-        revoke: Thu hồi
+        revoke: Gỡ
       confirmations:
         revoke: Bạn có chắc không?
       index:
@@ -81,14 +80,14 @@ vi:
         access_denied: Chủ sở hữu tài nguyên hoặc máy chủ đã từ chối yêu cầu.
         credential_flow_not_configured: Resource Owner Password Credentials không thành công do Doorkeeper.configure.resource_owner_from_credentials không được định cấu hình.
         invalid_client: Xác thực ứng dụng khách không thành công do máy khách mơ hồ, không bao gồm xác thực ứng dụng khách hoặc phương thức xác thực không được hỗ trợ.
-        invalid_grant: Yêu cầu không hợp lệ, hết hạn, bị thu hồi hoặc không khớp với tài khoản đã cấp phép. Hoặc xung đột với ứng dụng khác.
+        invalid_grant: Yêu cầu không hợp lệ, hết hạn, bị gỡ hoặc không khớp với tài khoản đã cấp phép. Hoặc xung đột với ứng dụng khác.
         invalid_redirect_uri: URL chuyển hướng không hợp lệ.
         invalid_request: Yêu cầu thiếu tham số bắt buộc, bao gồm giá trị tham số không được hỗ trợ hoặc không đúng định dạng.
         invalid_resource_owner: Thông tin xác thực chủ sở hữu tài nguyên được cung cấp không hợp lệ hoặc không thể tìm thấy chủ sở hữu tài nguyên
         invalid_scope: Quyền yêu cầu không hợp lệ, không có thật hoặc sai định dạng.
         invalid_token:
           expired: Mã thông báo truy cập đã hết hạn
-          revoked: Mã thông báo truy cập đã bị thu hồi
+          revoked: Mã token đăng nhập đã bị hủy
           unknown: Mã thông báo truy cập không hợp lệ
         resource_owner_authenticator_not_configured: Chủ sở hữu tài nguyên tìm thấy thất bại do Doorkeeper.configure.resource_owner_authenticator không được định cấu hình.
         server_error: Có một điều kiện không thể chấp nhận khiến máy chủ không thực hiện yêu cầu.
@@ -106,7 +105,7 @@ vi:
           notice: Ứng dụng cập nhật.
       authorized_applications:
         destroy:
-          notice: Ứng dụng bị thu hồi.
+          notice: Ứng dụng bị gỡ.
     layouts:
       admin:
         nav:
@@ -115,37 +114,37 @@ vi:
       application:
         title: Đăng nhập bằng OAuth
     scopes:
-      admin:read: đọc tất cả dữ liệu trên máy chủ
-      admin:read:accounts: đọc thông tin nhạy cảm của tất cả các tài khoản
-      admin:read:reports: đọc thông tin của các báo cáo và các tài khoản bị báo cáo
-      admin:write: sửa đổi tất cả dữ liệu trên máy chủ
-      admin:write:accounts: áp đặt hành động kiểm duyệt trên tài khoản
-      admin:write:reports: áp đặt kiểm duyệt với các báo cáo
+      "admin:read": đọc tất cả dữ liệu trên máy chủ
+      "admin:read:accounts": đọc thông tin nhạy cảm của tất cả các tài khoản
+      "admin:read:reports": đọc thông tin của các báo cáo và các tài khoản bị báo cáo
+      "admin:write": sửa đổi tất cả dữ liệu trên máy chủ
+      "admin:write:accounts": áp đặt hành động kiểm duyệt trên tài khoản
+      "admin:write:reports": áp đặt kiểm duyệt với các báo cáo
       follow: sửa đổi các mối quan hệ tài khoản
       push: nhận thông báo đẩy của bạn
       read: đọc tất cả dữ liệu tài khoản của bạn
-      read:accounts: xem thông tin tài khoản
-      read:blocks: xem những người bạn chặn
-      read:bookmarks: xem những thứ bạn đã lưu
-      read:favourites: xem lượt thích
-      read:filters: xem bộ lọc của bạn
-      read:follows: xem lượt theo dõi của bạn
-      read:lists: xem danh sách của bạn
-      read:mutes: xem những người bạn đã ẩn
-      read:notifications: xem thông báo của bạn
-      read:reports: xem báo cáo của bạn
-      read:search: thay mặt bạn tìm kiếm
-      read:statuses: xem toàn bộ tút
+      "read:accounts": xem thông tin tài khoản
+      "read:blocks": xem những người bạn chặn
+      "read:bookmarks": xem những thứ bạn đã lưu
+      "read:favourites": xem lượt thích
+      "read:filters": xem bộ lọc của bạn
+      "read:follows": xem lượt theo dõi của bạn
+      "read:lists": xem danh sách của bạn
+      "read:mutes": xem những người bạn đã ẩn
+      "read:notifications": xem thông báo của bạn
+      "read:reports": xem báo cáo của bạn
+      "read:search": thay mặt bạn tìm kiếm
+      "read:statuses": xem toàn bộ tút
       write: sửa đổi mọi dữ liệu tài khoản của bạn
-      write:accounts: sửa đổi trang cá nhân của bạn
-      write:blocks: chặn người dùng và máy chủ
-      write:bookmarks: sửa đổi những thứ bạn lưu
-      write:favourites: lượt thích
-      write:filters: tạo bộ lọc
-      write:follows: theo dõi ai đó
-      write:lists: tạo danh sách
-      write:media: tải lên tập tin
-      write:mutes: ẩn người dùng và cuộc đối thoại
-      write:notifications: xóa thông báo của bạn
-      write:reports: báo cáo người khác
-      write:statuses: đăng tút
+      "write:accounts": sửa đổi trang cá nhân của bạn
+      "write:blocks": chặn người dùng và máy chủ
+      "write:bookmarks": sửa đổi những thứ bạn lưu
+      "write:favourites": lượt thích
+      "write:filters": tạo bộ lọc
+      "write:follows": theo dõi ai đó
+      "write:lists": tạo danh sách
+      "write:media": tải lên tập tin
+      "write:mutes": ẩn người dùng và cuộc đối thoại
+      "write:notifications": xóa thông báo của bạn
+      "write:reports": báo cáo người khác
+      "write:statuses": đăng tút
