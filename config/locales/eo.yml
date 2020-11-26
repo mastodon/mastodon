@@ -766,7 +766,7 @@ eo:
   filters:
     contexts:
       account: Profiloj
-      home: Hejma templinio
+      home: Hejmo kaj listoj
       notifications: Sciigoj
       public: Publika templinio
       thread: Konversacioj
@@ -958,6 +958,7 @@ eo:
   relationships:
     activity: Konta aktiveco
     dormant: Dormanta
+    follow_selected_followers: Forigu selektitajn sekvantojn
     followers: Sekvantoj
     following: Sekvatoj
     invited: Invitita
@@ -1088,8 +1089,8 @@ eo:
         other: "%{count} voĉdonoj"
       vote: Voĉdoni
     show_more: Malfoldi
-    show_newer: Neniam montru
-    show_older: Montru pli malnova
+    show_newer: Montri pli novajn
+    show_older: Montri pli malnovajn
     show_thread: Montri la fadenon
     sign_in_to_participate: Ensaluti por partopreni en la konversacio
     title: "%{name}: “%{quote}”"
@@ -1167,7 +1168,7 @@ eo:
       tips: Konsiloj
       title: Bonvenon, %{name}!
   users:
-    follow_limit_reached: Vi ne povas sekvi pli da %{limit} homojn
+    follow_limit_reached: Vi ne povas sekvi pli ol %{limit} homo(j)
     invalid_email: La retadreso estas nevalida
     invalid_otp_token: Nevalida kodo de dufaktora aŭtentigo
     otp_lost_help_html: Se vi perdas aliron al ambaŭ, vi povas kontakti %{email}

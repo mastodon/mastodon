@@ -196,6 +196,8 @@ pl:
       search: Szukaj
       search_same_email_domain: Inni użytkownicy z e-mail w tej domenie
       search_same_ip: Inni użytkownicy z tym samym IP
+      sensitive: Wrażliwe
+      sensitized: oznaczono jako wrażliwe
       shared_inbox_url: Adres udostępnianej skrzynki
       show:
         created_reports: Zgłoszenia tego użytkownika
@@ -210,6 +212,7 @@ pl:
       time_in_queue: Czekanie w kolejce %{time}
       title: Konta
       unconfirmed_email: Niepotwierdzony adres e-mail
+      undo_sensitized: Cofnij oznaczenie
       undo_silenced: Cofnij wyciszenie
       undo_suspension: Cofnij zawieszenie
       unsilenced_msg: Pomyślnie zwolniono z ograniczeń konto %{username}
@@ -251,9 +254,11 @@ pl:
         reopen_report: Otwórz zgłoszenie ponownie
         reset_password_user: Resetuj hasło
         resolve_report: Rozwiąż zgłoszenie
+        sensitive_account: Oznacz zawartość multimedialną swojego konta jako wrażliwą
         silence_account: Wycisz konto
         suspend_account: Zawieś konto
         unassigned_report: Cofnij przypisanie zgłoszenia
+        unsensitive_account: Cofnij oznaczenie zawartości multimedialnej swojego konta jako wrażliwą
         unsilence_account: Cofnij wyciszenie konta
         unsuspend_account: Cofnij zawieszenie konta
         update_announcement: Aktualizuj ogłoszenie
@@ -289,9 +294,11 @@ pl:
         reopen_report: "%{name} otworzył(a) ponownie zgłoszenie %{target}"
         reset_password_user: "%{name} przywrócił(a) hasło użytkownikowi %{target}"
         resolve_report: "%{name} rozwiązał(a) zgłoszenie %{target}"
+        sensitive_account: "%{name} oznaczył(a) zawartość multimedialną %{target} jako wrażliwą"
         silence_account: "%{name} wyciszył(a) konto %{target}"
         suspend_account: "%{name} zawiesił(a) konto %{target}"
         unassigned_report: "%{name} cofnął(-ęła) przypisanie zgłoszenia %{target}"
+        unsensitive_account: "%{name} cofnął(-ęła) oznaczenie zawartości multimedialnej %{target} jako wrażliwą"
         unsilence_account: "%{name} cofnął(-ęła) wyciszenie konta %{target}"
         unsuspend_account: "%{name} cofnął(-ęła) zawieszenie konta %{target}"
         update_announcement: "%{name} zaktualizował(-a) ogłoszenie %{target}"
@@ -851,6 +858,7 @@ pl:
       request: Uzyskaj archiwum
       size: Rozmiar
     blocks: Zablokowani
+    bookmarks: Zakładki
     csv: CSV
     domain_blocks: Blokady domen
     lists: Listy
@@ -929,6 +937,7 @@ pl:
     success: Twoje dane zostały załadowane i zostaną niebawem przetworzone
     types:
       blocking: Lista blokowanych
+      bookmarks: Zakładki
       domain_blocking: Lista zablokowanych domen
       following: Lista śledzonych
       muting: Lista wyciszonych
@@ -1091,6 +1100,7 @@ pl:
   relationships:
     activity: Aktywność konta
     dormant: Uśpione
+    follow_selected_followers: Zacznij śledzić wybranych śledzących
     followers: Śledzący
     following: Śledzeni
     invited: Zaproszeni
@@ -1238,6 +1248,8 @@ pl:
         other: "%{count} głosy"
       vote: Głosuj
     show_more: Pokaż więcej
+    show_newer: Pokaż nowsze
+    show_older: Pokaż starsze
     show_thread: Pokaż wątek
     sign_in_to_participate: Zaloguj się, aby udzielić się w tej konwersacji
     title: '%{name}: "%{quote}"'
@@ -1374,6 +1386,7 @@ pl:
     warning:
       explanation:
         disable: Kiedy Twoje konto jest wyłączone, Twoje dane pozostają na serwerze, ale nie możesz wykonywać żadnych działań, zanim zostanie odblokowane.
+        sensitive: Wysyłane przez Ciebie pliki multimedialne i media z odnośników będą traktowane jako wrażliwe.
         silence: Kiedy Twoje konto jest ograniczone, tylko osoby które je śledzą będą widzieć Twoje wpisy. Może ono też przestać być widoczne na publicznych listach. Inni wciąż mogą zacząć Cię śledzić.
         suspend: Twoje konto zostało zawieszone i wszystkie Twoje wpisy wraz z zawartością multimedialną zostały nieodwracalnie usunięte z tego serwera i serwerów, których użytkownicy śledzili Cię.
       get_in_touch: Możesz odpowiedzieć na ten e-mail aby pozostać w kontakcie z prowadzącymi %{instance}.
@@ -1382,11 +1395,13 @@ pl:
       subject:
         disable: Twoje konto %{acct} zostało wyłączone
         none: Ostrzeżenie dla %{acct}
+        sensitive: Zawartość multimedialna publikowana przez Twoje konto %{acct} została oznaczona jako wrażliwa
         silence: Twoje konto %{acct} zostało ograniczone
         suspend: Twoje konto %{acct} zostało zawieszone
       title:
         disable: Konto wyłączone
         none: Ostrzeżenie
+        sensitive: Twoja zawartość multimedialna została oznaczona jako wrażliwa
         silence: Konto ograniczone
         suspend: Konto zawieszone
     welcome:
