@@ -222,8 +222,8 @@ vi:
         create_email_domain_block: Chặn tên miền email
         create_ip_block: Chặn IP
         demote_user: Xóa chức vụ
-        destroy_announcement: Gỡ thông báo
-        destroy_custom_emoji: Gỡ Emoji
+        destroy_announcement: Xóa thông báo
+        destroy_custom_emoji: Xóa Emoji
         destroy_domain_allow: Gỡ máy chủ cho phép
         destroy_domain_block: Gỡ máy chủ chặn
         destroy_email_domain_block: Gỡ email đã chặn
@@ -231,8 +231,8 @@ vi:
         destroy_status: Xóa tút
         disable_2fa_user: Vô hiệu hóa xác thực hai bước
         disable_custom_emoji: Vô hiệu hóa Emoji
-        disable_user: Vô hiệu hóa người dùng
-        enable_custom_emoji: Bật Emoji
+        disable_user: Tạm khóa người dùng
+        enable_custom_emoji: Cho phép Emoji
         enable_user: Mở lại người dùng
         memorialize_account: Tài khoản tưởng niệm
         promote_user: Chỉ định chức vụ
@@ -242,7 +242,7 @@ vi:
         resolve_report: Xem xét lại báo cáo
         sensitive_account: Đánh dấu nhạy cảm cho ảnh và video trên tài khoản của bạn
         silence_account: Tài khoản bị ẩn
-        suspend_account: Tài khoản bị vô hiệu hóa
+        suspend_account: Vô hiệu hóa người dùng
         unassigned_report: Báo cáo chưa xem
         unsensitive_account: Ảnh và video trên tài khoản của bạn là bình thường
         unsilence_account: Tài khoản bỏ ẩn
@@ -262,17 +262,17 @@ vi:
         create_email_domain_block: "%{name} chặn tên miền email %{target}"
         create_ip_block: "%{name} đã chặn IP %{target}"
         demote_user: "%{name} đã xóa chức vụ %{target}"
-        destroy_announcement: "%{name} gỡ thông báo %{target}"
-        destroy_custom_emoji: "%{name} biểu tượng cảm xúc bị phá hủy %{target}"
+        destroy_announcement: "%{name} xóa thông báo %{target}"
+        destroy_custom_emoji: "%{name} đã xóa emoji %{target}"
         destroy_domain_allow: "%{name} đã xóa tên miền %{target} khỏi danh sách trắng"
         destroy_domain_block: "%{name} bỏ chặn máy chủ %{target}"
         destroy_email_domain_block: "%{name} bỏ chặn tên miền email %{target}"
         destroy_ip_block: "%{name} bỏ chặn IP %{target}"
         destroy_status: "%{name} đã xóa tút của %{target}"
         disable_2fa_user: "%{name} đã vô hiệu hóa xác thực hai yếu tố của %{target}"
-        disable_custom_emoji: "%{name} đã xóa Emoji %{target}"
-        disable_user: "%{name} vô hiệu hóa đăng nhập của người dùng %{target}"
-        enable_custom_emoji: "%{name} kích hoạt Emoji %{target}"
+        disable_custom_emoji: "%{name} đã ẩn emoji %{target}"
+        disable_user: "%{name} tạm khóa %{target}"
+        enable_custom_emoji: "%{name} cho phép Emoji %{target}"
         enable_user: "%{name} phê duyệt đăng nhập cho người dùng %{target}"
         memorialize_account: "%{name} đã biến tài khoản %{target} thành một trang tưởng niệm"
         promote_user: "%{name} đã chỉ định chức vụ cho %{target}"
@@ -308,7 +308,7 @@ vi:
       scheduled_for: Đã lên lịch %{time}
       scheduled_msg: Thông báo đã lên lịch!
       title: Thông báo
-      unpublished_msg: Gỡ bỏ thông báo thành xong!
+      unpublished_msg: Xóa bỏ thông báo thành xong!
       updated_msg: Cập nhật thông báo thành công!
     custom_emojis:
       assign_category: Xếp vào danh mục
@@ -319,14 +319,14 @@ vi:
       create_new_category: Tạo danh mục mới
       created_msg: Emoji được tạo thành công!
       delete: Xóa bỏ
-      destroyed_msg: Đã gỡ Emoji thành công!
+      destroyed_msg: Đã xóa Emoji thành công!
       disable: Vô hiệu hóa
       disabled: Đã vô hiệu hóa
       disabled_msg: Vô hiệu hóa thành công Emoji này
       emoji: Emoji
       enable: Cho phép
-      enabled: Đã kích hoạt
-      enabled_msg: Kích hoạt thành công Emoji này
+      enabled: Đã cho phép
+      enabled_msg: Đã cho phép thành công Emoji này
       image_hint: PNG tối đa 50KB
       list: Danh sách
       listed: Liệt kê
