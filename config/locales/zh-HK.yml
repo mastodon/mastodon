@@ -494,10 +494,13 @@ zh-HK:
       account:
         notes:
           other: "%{count} 備註"
+        reports:
+          other: "%{count} 舉報"
       action_taken_by: 操作執行者
       are_you_sure: 你確認嗎？
       assign_to_self: 指派給自己
       assigned: 指派負責人
+      by_target_domain: 被舉報帳號的域名
       comment:
         none: 沒有
       created_at: 日期
@@ -530,19 +533,32 @@ zh-HK:
       contact_information:
         email: 輸入一個公開的電郵地址
         username: 輸入使用者名稱
+      custom_css:
+        desc_html: 更改通用的CSS外觀
+        title: 自訂 CSS
+      default_noindex:
+        desc_html: 影響所有未自行設定的用戶
+        title: 預設用戶不在搜尋引擎索引之內
       domain_blocks:
         all: 給任何人
         disabled: 給沒有人
         title: 顯示封鎖的網域
+        users: 所有已登入的用戶
+      domain_blocks_rationale:
+        title: 顯示原因予
       enable_bootstrap_timeline_accounts:
         title: 啟用「新使用者預設關注」功能
       hero:
         desc_html: 在首頁顯示。推薦最小 600x100px。如果留空，就會默認為服務站縮圖
         title: 主題圖片
+      mascot:
+        desc_html: 在不同頁面顯示。推薦最小 293×205px。如果留空，就會默認為伺服器縮圖。
+        title: 縮圖
       peers_api_enabled:
         desc_html: 現時本服務站在網絡中已發現的域名
         title: 公開已知服務站的列表
       preview_sensitive_media:
+        desc_html: 在其他頁面預覽的連結將會在敏感媒體的情況下顯示縮圖
         title: 在 OpenGraph 預覽中顯示敏感媒體
       profile_directory:
         desc_html: 允許使用者被搜尋
