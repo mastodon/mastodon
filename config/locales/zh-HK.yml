@@ -20,6 +20,8 @@ zh-HK:
     federation_hint_html: 你只需要擁有 %{instance} 的帳戶，就可以追蹤隨便一台 Mastodon 伺服器上的人等等。
     get_apps: 嘗試行動應用程式
     hosted_on: 在 %{domain} 運作的 Mastodon 服務站
+    instance_actor_flash: |
+      這個帳戶為代表伺服器，不是任何個人用戶所用的虛擬帳號。此帳戶為聯盟用途。除非您想封鎖整個伺服器的話，否則請不要封銷此帳戶（請使用網域封鎖以達到相同效果）。
     learn_more: 了解更多
     privacy_policy: 隱私權政策
     see_whats_happening: 看看發生什麼事
@@ -34,6 +36,7 @@ zh-HK:
     unavailable_content_description:
       domain: 伺服器
       reason: 原因
+      rejecting_media: '這些伺服器的媒體檔案將不會被處理或儲存，我們亦不會展示其縮圖。請手動點擊以觀看原始檔：'
     user_count_after:
       other: 位使用者
     user_count_before: 本站共有
@@ -57,7 +60,7 @@ zh-HK:
     posts:
       other: 嘟文
     posts_tab_heading: 嘟文
-    posts_with_replies: 文章和回覆
+    posts_with_replies: 包含回覆的嘟文
     reserved_username: 這個使用者名稱已被保留
     roles:
       admin: 管理員
@@ -1162,3 +1165,6 @@ zh-HK:
     invalid_credential: 無效的安全密鑰裝置
     nickname_hint: 請為您的安全密鑰裝置命名
     not_enabled: 您還未啟用WebAuthn
+    not_supported: 這個瀏覽器並不支援安全密鑰裝置
+    otp_required: 請開啟雙重認證以使用安全密鑰裝置
+    registered_on: 在 %{date} 注冊
