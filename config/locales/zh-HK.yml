@@ -1100,6 +1100,20 @@ zh-HK:
         disable: 您不能以任何方式登入或使用您的帳號，但你的個人資料頁面和其他數據仍保持完整。
         sensitive: 你上載的媒體檔案和連結媒體將被標記為敏感項目。
         silence: 你仍然可以使用你的帳號但只有你現時的追隨者會看見你在此伺服器的嘟文。你或從公開名冊中被剔除。但是其他人仍然可以主動關注你。
+        suspend: 您將不能使用您的帳號，您的個人資料頁面及其他數據將不能再被取得。您仍然可以在您的資料被完全刪除前請求下載您的數據，但我們仍會保留一部份數據以防止帳號停權被中止。
+      get_in_touch: 你可以回覆此電郵來跟我們(%{instance})聯絡
+      review_server_policies: 審視伺服器政策
+      statuses: '特別是：'
+      subject:
+        disable: 你的帳號%{acct} 已經被涷結
+        none: 警告帳號%{acct}
+        sensitive: 你的帳號%{acct} 的媒體已被標記為敏感內容
+        silence: 你的帳號%{acct} 已經被限制
+        suspend: 你的帳號%{acct} 已經被停權
+      title:
+        disable: 帳號涷結
+        none: 警告
+        sensitive: 您的媒體已被標記為敏感內容
     welcome:
       edit_profile_action: 設定個人資料
       edit_profile_step: 你可以設定你的個人資料，包括上傳頭像、橫幅圖片、更改顯示名稱等等。如果你想在新的關注者關注你之前對他們進行審核，你也可以選擇為你的帳戶設為「私人」。
