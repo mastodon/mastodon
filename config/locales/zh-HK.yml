@@ -670,9 +670,20 @@ zh-HK:
       x_months: "%{count}個月"
       x_seconds: "%{count}秒"
   deletes:
+    challenge_not_passed: 您填寫的資料不正確
     confirm_password: 輸入你現在的密碼來驗證身份
+    confirm_username: 請填寫您的用戶名以確認程序
     proceed: 刪除帳戶
     success_msg: 你的帳戶已經成功刪除
+    warning:
+      before: '在繼續之前，請仔細閱讀以下說明：'
+      caches: 已被其他服務器緩存的內容可能不會消失
+      data_removal: 您的文章和其他數據將被永久刪除
+      email_change_html: 您可以在不刪除帳戶的情況下<a href="%{path}">更改電子郵件地址</a>
+      email_contact_html: 如果仍然沒有送達，您可以通過電子郵件發送到<a href="mailto:%{email}">%{email}</a>以獲得協助
+      email_reconfirmation_html: 如果您沒有收到確認電郵，您可以<a href="%{path}">再次請求電郵</a>
+      irreversible: 你將無法重啟你的帳戶
+      more_details_html: 請參見<a href="%{terms_path}">隱私政策</a>以瀏覽細節。
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': 你沒有觀看本頁的權限。
