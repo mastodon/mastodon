@@ -626,6 +626,10 @@ zh-HK:
       account_status: 帳戶文章
       confirming: 正在等待確認電郵地址。
       functional: 你的帳戶可以正常使用。
+      pending: 管理員正在處理您的申請。可能會需要一點時間處理。我們將會在申請被批準的時候馬上寄電郵給你。
+      redirecting_to: 您的帳戶因為正在重新定向到 %{acct} 所以暫時被停用。
+    trouble_logging_in: 不能登入？
+    use_security_key: 使用安全密鑰裝置
   authorize_follow:
     already_following: 你已經關注了這個帳號
     already_requested: 您早已向該帳戶寄送追蹤請求
@@ -638,6 +642,19 @@ zh-HK:
       return: 顯示個人資料頁
       web: 返回本站
     title: 關注 %{acct}
+  challenge:
+    confirm: 繼續
+    hint_html: "<strong>温馨提示</strong> 我們在未來一小時內不會再要求你填寫密碼。"
+    invalid_password: 密碼錯誤
+    prompt: 確認密碼以繼續
+  crypto:
+    errors:
+      invalid_key: 不是一個有效的 Ed25519 或 Curve25519 密鑰
+      invalid_signature: 不是一個有效的 Ed25519 簽名
+  date:
+    formats:
+      default: "%Y年%b月%d日"
+      with_month_name: "%B %d, %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}小時前"
