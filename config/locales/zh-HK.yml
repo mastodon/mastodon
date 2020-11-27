@@ -669,6 +669,8 @@ zh-HK:
   aliases:
     add_new: 建立別名(alias)
     created_msg: 成功建立別名(alias)。您可以從舊帳號開始轉移。
+    deleted_msg: 成功刪除別名(alias)。您將不可以由舊帳號轉移到當前帳號。
+    empty: 您沒有別名(alias)。
     hint_html: 如果您想由另一個帳戶轉移到此帳戶，您可以在此處創建別名(alias)，然後才能將關注者由舊帳戶轉移到此帳戶。此操作是<strong>無害且可逆的</strong>。 <strong>帳戶遷移是在舊帳戶實施的</strong>。
     remove: 取消連結別名(alias)
   appearance:
@@ -1027,19 +1029,48 @@ zh-HK:
   otp_authentication:
     code_hint: 請輸入您的認證器所產生的代碼，以確認設定
     description_html: 當你啟用<strong>雙重認證</strong>後，你登入時將需要使用你的手機或其他認證器所產生的代碼。
+    enable: 啟用
+    setup: 設定
   pagination:
     newer: 較新
     next: 下一頁
     older: 較舊
     prev: 上一頁
     truncate: "……"
+  preferences:
+    other: 其他
+  reactions:
+    errors:
+      unrecognized_emoji: 不能識別這個emoji
   relationships:
+    dormant: 潛在
+    follow_selected_followers: 關注所選的追隨者
+    followers: 追隨者
+    following: 正在關注
+    invited: 已邀請
+    last_active: 上次活躍
+    most_recent: 最近
+    moved: 已轉移
+    mutual: 共同
+    primary: 主要
+    relationship: 關係
     remove_selected_followers: 刪除所選選項
+    remove_selected_follows: 取消關注所選用戶
+    status: 帳戶帖文
   remote_follow:
     acct: 請輸入你想使用的「使用者名稱@域名」身份
     missing_resource: 無法找到你用戶的轉接網址
     proceed: 下一步
     prompt: '你希望關注︰'
+  remote_interaction:
+    favourite:
+      proceed: 下一步
+    reblog:
+      proceed: 繼續轉嘟
+      prompt: '您要求轉嘟：'
+    reply:
+      proceed: 下一步
+      prompt: '您要求回覆：'
   sessions:
     activity: 最近活動
     browser: 瀏覽器
@@ -1066,6 +1097,11 @@ zh-HK:
     explanation: 這些是現在正登入於你的 Mastodon 帳號的瀏覽器。
     ip: IP 位址
     platforms:
+      adobe_air: Adobe Air
+      android: Android
+      blackberry: Blackberry
+      chrome_os: ChromeOS
+      firefox_os: Firefox OS
       ios: iOS
       linux: Linux
       mac: Mac
