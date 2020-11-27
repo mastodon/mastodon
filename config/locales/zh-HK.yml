@@ -36,7 +36,7 @@ zh-HK:
       reason: 原因
     user_count_after:
       other: 位使用者
-    user_count_before: 這裏共註冊有
+    user_count_before: 註冊使用者
     what_is_mastodon: Mastodon 是甚麼？
   accounts:
     choices_html: "%{name} 的選擇："
@@ -392,17 +392,17 @@ zh-HK:
         desc_html: 本站的文章數量、活躍使用者數量、及每週新註冊使用者數量
         title: 公佈使用者活躍度的統計數據
       bootstrap_timeline_accounts:
-        desc_html: 以半形逗號分隔多個用戶名。只能加入來自本站且未開啟保護的帳號。如果留空，則默認關注本站所有管理員。
-        title: 新用戶默認關注
+        desc_html: 以半形逗號分隔多個使用者名稱。只能加入來自本站且未開啟保護的帳號。如果留空，則默認關注本站所有管理員。
+        title: 新使用者預設關注的對像
       contact_information:
         email: 輸入一個公開的電郵地址
-        username: 輸入用戶名稱
+        username: 輸入使用者名稱
       domain_blocks:
         all: 給任何人
         disabled: 給沒有人
         title: 顯示封鎖的網域
       enable_bootstrap_timeline_accounts:
-        title: 啟用新使用者的預設追蹤
+        title: 啟用「新使用者預設關注」功能
       hero:
         desc_html: 在首頁顯示。推薦最小 600x100px。如果留空，就會默認為服務站縮圖
         title: 主題圖片
@@ -412,7 +412,7 @@ zh-HK:
       preview_sensitive_media:
         title: 在 OpenGraph 預覽中顯示敏感媒體
       profile_directory:
-        desc_html: 允許能探索使用者
+        desc_html: 允許使用者被搜尋
         title: 啟用個人資料目錄
       registrations:
         closed_message:
@@ -686,7 +686,7 @@ zh-HK:
   relationships:
     remove_selected_followers: 刪除所選選項
   remote_follow:
-    acct: 請輸入你的︰用戶名稱@服務點域名
+    acct: 請輸入你想使用的「使用者名稱@域名」身份
     missing_resource: 無法找到你用戶的轉接網址
     proceed: 下一步
     prompt: '你希望關注︰'
@@ -797,18 +797,18 @@ zh-HK:
       final_step: '開始發文吧！即使你現在沒有關注者，其他人仍然能在本站時間軸或者話題標籤等地方看到你的公開文章。試著用 #introductions 這個話題標籤介紹一下自己吧。'
       full_handle: 你的完整用戶地址
       full_handle_hint: 你需要把這個告訴你的朋友們，這樣他們就能從另一個實例向你發送信息或者關注你。
-      review_preferences_action: 更改首選項
-      review_preferences_step: 記得調整你的偏好設置，比如你想接收什麼類型的郵件，或者你想把你的文章可見範圍默認設定為什麼級別。如果你沒有暈車的話，考慮一下啟用「自動播放 GIF 動畫」這個選項吧。
+      review_preferences_action: 更改偏好設定
+      review_preferences_step: 記得調整你的偏好設定，比如你想接收什麼類型的郵件，或者你想把你的文章可見範圍默認設定為什麼級別。如果你沒有暈車的話，考慮一下啟用「自動播放 GIF 動畫」這個選項吧。
       subject: 歡迎來到 Mastodon
-      tip_federated_timeline: 跨站公共時間軸可以讓你一窺更廣闊的 Mastodon 網絡。不過，由於它只顯示你的鄰居們所訂閱的內容，所以並不是全部。
-      tip_following: 默認情況下，你會自動關注你所在服務站的管理員。想結交更多有趣的人的話，記得多逛逛本站時間軸和跨站公共時間軸哦。
-      tip_local_timeline: 本站時間軸可以讓你一窺 %{instance} 上的用戶。他們就是離你最近的鄰居！
-      tip_mobile_webapp: 如果你的移動設備瀏覽器允許你將 Mastodon 添加到主屏幕，你就能夠接收推送消息。它就像本地應用一樣好使！
+      tip_federated_timeline: 跨站時間軸可以讓你一窺更廣闊的 Mastodon 網絡。不過，由於它只顯示你的鄰居們所訂閱的內容，所以並不是全部。
+      tip_following: 你會預設關注你服務站的管理員。想結交更多有趣的人的話，記得多逛逛本站時間軸和跨站時間軸哦。
+      tip_local_timeline: 本站時間軸可以讓你一窺 %{instance} 本站上的用戶。他們就是離你最近的鄰居！
+      tip_mobile_webapp: 如果你的移動設備瀏覽器支援，你可以將 Mastodon 加到裝置的主畫面，讓你可以選擇接收推送通知，就像本機的 App 一樣方便！
       tips: 小貼士
-      title: '%{name}，歡迎你的加入！'
+      title: 歡迎 %{name} 加入！
   users:
     invalid_email: 電郵地址格式不正確
-    invalid_otp_token: 雙重認證確認碼不正確
+    invalid_otp_token: 雙重認證碼不正確
     otp_lost_help_html: 如果你無法訪問這兩者，可以通過 %{email} 與我們聯繫
     seamless_external_login: 由於你是從外部系統登入，所以不能設定密碼和電郵。
     signed_in_as: '目前登入的帳戶：'
