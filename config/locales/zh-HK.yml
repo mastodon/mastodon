@@ -798,8 +798,16 @@ zh-HK:
       before: '在繼續之前，請仔細閱讀以下說明：'
       cooldown: 在轉移帳號之後將會有一段冷卻時間，在冷卻時間內你將不能再次轉移帳號
       disabled_account: 你的當前帳號將不能完整地運作。但你將會有權力匯出你的數據和重新啟用你的帳號。
+      followers: 此操作將會由當前帳號轉移所有追隨者至新帳號
+      only_redirect_html: 另外，你亦可<a href="%{path}">只在你的個人資料頁面放上重新定向標記</a>.
+      other_data: 並不會自動轉移其他數據
+      redirect: 您的當前帳號的個人資料頁面將會加上一個重新定向公告，並會在搜尋結果中被剔除。
   moderation:
     title: 營運
+  move_handler:
+    carry_blocks_over_text: 此用戶從%{acct} 轉移，該帳號已被你封鎖。
+    carry_mutes_over_text: 此用戶從%{acct} 轉移，該帳號已被你靜音。
+    copy_account_note_text: '此用戶從%{acct} 轉移，這是你之前在該帳號留下的備注：'
   notification_mailer:
     digest:
       action: 查看所有通知
