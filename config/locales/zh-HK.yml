@@ -793,18 +793,36 @@ zh-HK:
       title: 編輯篩選器
     errors:
       invalid_context: 沒有提供內文或內文無效
+      invalid_irreversible: 不可逆的篩選器只適用放主頁或通知頁面
     index:
+      delete: 刪除
       empty: 您沒有過濾器。
+      title: 篩選
+    new:
+      title: 新增篩選器
   footer:
+    developers: 開發者
     more: 更多......
+    resources: 項目
+    trending_now: 今期流行
   generic:
     all: 全部
     changes_saved_msg: 已成功儲存修改。
     copy: 複製
+    delete: 刪除
+    no_batch_actions_available: 此頁目沒有可用的批次操作
+    order_by: 排序
     save_changes: 儲存修改
     validation_errors:
       other: 提交的資料有 %{count} 項問題
+  html_validator:
+    invalid_markup: '含有無效的HTML標記：%{error}'
   identity_proofs:
+    active: 活躍
+    authorize: 是的，請授權
+    authorize_connection_prompt: 授權此加密通訊？
+    errors:
+      failed: 加密通訊失敗。請在%{provider} 重試。
     status: 確認狀態
     view_proof: 查看證明
   imports:
