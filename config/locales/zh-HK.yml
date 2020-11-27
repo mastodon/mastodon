@@ -785,8 +785,19 @@ zh-HK:
     followers_count: 轉移時的追隨者
     incoming_migrations: 由另一個帳號轉移
     incoming_migrations_html: 要由其他帳戶轉移至當前帳戶的話，首先你需要 <a href="%{path}">新增帳戶別名(alias)</a>.
-    moved_msg: 您的帳戶正重新定向至 %{acct} 及你的追隨者同時正在轉移至該帳戶。
-    not_redirecting: 你的帳戶現時並未被重新定向。
+    moved_msg: 您的帳戶正重新定向至 %{acct} ，您的追隨者正在同步轉移至該帳戶。
+    not_redirecting: 您的帳戶現時並未被重新定向。
+    on_cooldown: 您最近已經轉移過帳戶。此功能將在 %{count} 天後可重新使用。
+    past_migrations: 以往的帳戶轉移
+    proceed_with_move: 移動追隨者
+    redirected_msg: 你的帳戶即將被重新定向至%{acct}。
+    redirecting_to: 你的帳戶正被重新定向至%{acct}。
+    set_redirect: 設定重新定向
+    warning:
+      backreference_required: 新帳戶必須首先反向標識(back-reference)當前帳戶
+      before: '在繼續之前，請仔細閱讀以下說明：'
+      cooldown: 在轉移帳號之後將會有一段冷卻時間，在冷卻時間內你將不能再次轉移帳號
+      disabled_account: 你的當前帳號將不能完整地運作。但你將會有權力匯出你的數據和重新啟用你的帳號。
   moderation:
     title: 營運
   notification_mailer:
