@@ -1145,3 +1145,20 @@ zh-HK:
     seamless_external_login: 因為你正在使用第三方服務登入，所以不能設定密碼和電郵。
     signed_in_as: '目前登入的帳戶：'
     suspicious_sign_in_confirmation: 您似乎未曾從此設備登入，而您又有一段時間沒有登入了。我們剛剛把安全碼傳送到您的電郵地址，請查看您的信箱確認這是您本人。
+  verification:
+    explanation_html: '您可以<strong>根據個人資料頁面的元類據認證是你本人</strong>。您的連結網站一定要有一個定向至您的Mastodon個人頁面的連結，並<strong>必須</strong>有一個<code>rel="me"</code>的屬性，連結中的任何文字都不會影響認證。這裏有一個例子：'
+    verification: 驗證
+  webauthn_credentials:
+    add: 新增安全密鑰裝置
+    create:
+      error: 新增安全密鑰裝置時出現了問題。請重新再試一次。
+      success: 您的安全密鑰裝置已成功被新增。
+    delete: 刪除
+    delete_confirmation: 你確定要刪除這個安全密鑰裝置嗎？
+    description_html: 如果您啟用<strong>安全密鑰驗證</strong>的話，登入時您將需要使用其中一個安全密鑰。
+    destroy:
+      error: 刪除安全密鑰裝置時出現了問題。請重新再試一次。
+      success: 您的安全密鑰裝置已成功被刪除。
+    invalid_credential: 無效的安全密鑰裝置
+    nickname_hint: 請為您的安全密鑰裝置命名
+    not_enabled: 您還未啟用WebAuthn
