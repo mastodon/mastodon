@@ -1030,19 +1030,37 @@ zh-HK:
     code_hint: 請輸入您的認證器所產生的代碼，以確認設定
     description_html: 當你啟用<strong>雙重認證</strong>後，你登入時將需要使用你的手機或其他認證器所產生的代碼。
     enable: 啟用
+    instructions_html: "<strong>請用你手機的認證器應用程式（如 Google Authenticator、Authy），掃描這裏的QR 圖形碼</strong>。在雙重認證啟用後，你登入時將須要使用此應用程式產生的認證碼。"
+    manual_instructions: '如果你無法掃描 QR 圖形碼，請手動輸入這個文字密碼︰'
     setup: 設定
+    wrong_code: 你輸入的認證碼並不正確！可能伺服器時間和你手機不一致，請檢查你手機的時鐘，或與本站管理員聯絡。
   pagination:
     newer: 較新
     next: 下一頁
     older: 較舊
     prev: 上一頁
     truncate: "……"
+  polls:
+    errors:
+      already_voted: 您已參與此投票
+      duplicate_options: 含有重覆項目
+      duration_too_long: 太久了！
+      duration_too_short: 時間太近了！
+      expired: 投票已結束
+      invalid_choice: 您所選的投票選項不存在
+      over_character_limit: 不能多於 %{max} 個字符
+      too_few_options: 一定要多於一個項目
+      too_many_options: 不能多於 %{max} 個項目
   preferences:
     other: 其他
+    posting_defaults: 發佈預設值
+    public_timelines: 公共時間軸
   reactions:
     errors:
+      limit_reached: 已達到可以給予反應極限
       unrecognized_emoji: 不能識別這個emoji
   relationships:
+    activity: 帳戶活動
     dormant: 潛在
     follow_selected_followers: 關注所選的追隨者
     followers: 追隨者
@@ -1054,17 +1072,21 @@ zh-HK:
     mutual: 共同
     primary: 主要
     relationship: 關係
+    remove_selected_domains: 從所選伺服器清除所有追隨者
     remove_selected_followers: 刪除所選選項
     remove_selected_follows: 取消關注所選用戶
     status: 帳戶帖文
   remote_follow:
     acct: 請輸入你想使用的「使用者名稱@域名」身份
     missing_resource: 無法找到你用戶的轉接網址
+    no_account_html: 沒有帳號？您可以<a href='%{sign_up_path}' target='_blank'>在這裏注冊</a>
     proceed: 下一步
     prompt: '你希望關注︰'
+    reason_html: "<strong>為甚麼這步十分重要？</strong> <code>%{instance}</code>未必是您注冊的伺服器，所以我們首先需要將您帶回您的伺服器。"
   remote_interaction:
     favourite:
       proceed: 下一步
+      prompt: '您要求把此嘟文加入最愛：'
     reblog:
       proceed: 繼續轉嘟
       prompt: '您要求轉嘟：'
