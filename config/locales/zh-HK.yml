@@ -776,6 +776,17 @@ zh-HK:
     cancel: 取消定向
     cancel_explanation: 取消重新定向將會重新激活當前帳戶，但並不會還原已移至該帳戶的關注者。
     cancelled_msg: 成功取消定向。
+    errors:
+      already_moved: 是已經移至的相同帳戶
+      missing_also_known_as: 不是此帳戶的別名(alias)
+      move_to_self: 不能移至當前帳戶
+      not_found: 找不到
+      on_cooldown: 你正在處於冷卻狀態
+    followers_count: 轉移時的追隨者
+    incoming_migrations: 由另一個帳號轉移
+    incoming_migrations_html: 要由其他帳戶轉移至當前帳戶的話，首先你需要 <a href="%{path}">新增帳戶別名(alias)</a>.
+    moved_msg: 您的帳戶正重新定向至 %{acct} 及你的追隨者同時正在轉移至該帳戶。
+    not_redirecting: 你的帳戶現時並未被重新定向。
   moderation:
     title: 營運
   notification_mailer:
