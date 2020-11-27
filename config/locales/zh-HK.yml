@@ -565,9 +565,13 @@ zh-HK:
     advanced_web_interface_hint: '如果您想運用整個螢幕，您可以使用進階網頁介面來配置許多不同的欄目，以根據需要同時查看盡可能多的信息：主頁、通知、其他站點和任何的列表和標籤。'
     animations_and_accessibility: 動畫和輔助功能
     confirmation_dialogs: 確認對話框
+    discovery: 探索
     localization:
       body: Mastodon 是由志願者翻譯的。
+      guide_link: https://crowdin.com/project/mastodon
       guide_link_text: 每個人都能貢獻。
+    sensitive_content: 敏感內容
+    toot_layout: 嘟文介面
   application_mailer:
     notification_preferences: 更改電郵首選項
     salutation: "%{name}："
@@ -584,18 +588,32 @@ zh-HK:
     warning: 警告，不要把它分享給任何人！
     your_token: token
   auth:
+    apply_for_account: 請求邀請
     change_password: 密碼
+    checkbox_agreement_html: 我同意 <a href="%{rules_path}" target="_blank">的伺服器規則</a> 和<a href="%{terms_path}" target="_blank">服務條款</a>
+    checkbox_agreement_without_rules_html: 我同意 <a href="%{terms_path}" target="_blank">服務條款</a>
     delete_account: 刪除帳戶
     delete_account_html: 如果你想刪除你的帳戶，請<a href="%{path}">點擊這裡繼續</a>。你需要確認你的操作。
+    description:
+      prefix_invited_by_user: "@%{name} 邀請您加入這個Mastodon服務器！"
+      prefix_sign_up: 立即註冊Mastodon！
+      suffix: 有了一個帳戶，就可以從任何Mastodon服務器關注任何人，發佈更新並與任何Mastodon服務器的用戶交流！
     didnt_get_confirmation: 沒有收到確認指示電郵？
+    dont_have_your_security_key: 找不到安全密鑰？
     forgot_password: 忘記了密碼？
     invalid_reset_password_token: 密碼重置 token 無效或已過期。請重新重設密碼。
+    link_to_otp: 請輸入兩步䮕認證碼或恢復碼
+    link_to_webauth: 使用你的安全密鑰裝置
     login: 登入
     logout: 登出
     migrate_account: 轉移到另一個帳號
     migrate_account_html: 想要將這個帳號指向另一個帳號可<a href="%{path}">到這裡設定</a>。
     or_log_in_with: 或登入於
+    providers:
+      cas: CAS
+      saml: SAML
     register: 登記
+    registration_closed: "%{instance} 並不接受新成員請求"
     resend_confirmation: 重發確認指示電郵
     reset_password: 重設密碼
     security: 登入資訊
