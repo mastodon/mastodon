@@ -196,6 +196,8 @@ zh-HK:
         unsilence_account: 取消用戶的靜音狀態
         unsuspend_account: 取消用戶的停權狀態
         update_announcement: 更新公告
+        update_custom_emoji: 更新自定的Emoji
+        update_status: 更新嘟文
       actions:
         assigned_to_self_report: "%{name} 指派了 %{target} 的舉報給自己"
         change_email_user: "%{name} 改變了使用者 %{target} 的電郵地址"
@@ -206,12 +208,14 @@ zh-HK:
         create_domain_allow: "%{name} 將 %{target} 網域加入黑名單了"
         create_domain_block: "%{name} 阻隔了網域 %{target}"
         create_email_domain_block: "%{name} 阻隔了電郵網域 %{target}"
+        create_ip_block: "%{name} 已經設定了IP %{target} 的規則"
         demote_user: "%{name} 把使用者 %{target} 降權"
         destroy_announcement: "%{name} 刪除了公告 %{target}"
         destroy_custom_emoji: "%{name} 破壞了 %{target} 表情符號"
         destroy_domain_allow: "%{name} 從白名單中移除了 %{target} 網域"
         destroy_domain_block: "%{name} 取消了對網域 %{target} 的阻隔"
         destroy_email_domain_block: "%{name} 取消了對電郵網域 %{target} 的阻隔"
+        destroy_ip_block: "%{name} 已經刪除了 IP %{target} 的規則"
         destroy_status: "%{name} 刪除了 %{target} 的文章"
         disable_2fa_user: "%{name} 停用了使用者 %{target} 的雙重認證"
         disable_custom_emoji: "%{name} 停用了自訂表情符號 %{target}"
@@ -224,15 +228,20 @@ zh-HK:
         reopen_report: "%{name} 重開 %{target} 的舉報"
         reset_password_user: "%{name} 重設了使用者 %{target} 的密碼"
         resolve_report: "%{name} 處理了 %{target}　的舉報"
+        sensitive_account: "%{name} 將 %{target} 的媒體檔案列為敏感"
         silence_account: "%{name} 靜音了用戶 %{target}"
         suspend_account: "%{name} 停權了用戶 %{target}"
         unassigned_report: "%{name} 取消指派 %{target} 的舉報"
+        unsensitive_account: "%{name} 將 %{target} 的媒體檔案的敏感狀態取消"
         unsilence_account: "%{name} 取消了用戶 %{target} 的靜音狀態"
         unsuspend_account: "%{name} 取消了用戶 %{target} 的停權狀態"
         update_announcement: "%{name} 更新了公告 %{target}"
         update_custom_emoji: "%{name} 更新了自訂表情符號 %{target}"
         update_status: "%{name} 刷新了 %{target} 的文章"
       deleted_status: "（已刪除嘟文）"
+      empty: 找不到任何日誌。
+      filter_by_action: 按動作篩選
+      filter_by_user: 按用戶篩選
       title: 營運日誌
     announcements:
       destroyed_msg: 成功刪除公告！
@@ -271,11 +280,13 @@ zh-HK:
       listed: 已顯示
       new:
         title: 加入新的自訂表情符號
+      not_permitted: 您無權執行此操作
       overwrite: 覆蓋
       shortcode: 短代碼
       shortcode_hint: 至少 2 個字元，只能使用字母、數字和下劃線
       title: 自訂 emoji
       uncategorized: 未分類
+      unlist: 不公開
       unlisted: 已隱藏
       update_failed_msg: 無法更新表情符號
       updated_msg: 已更新表情符號
