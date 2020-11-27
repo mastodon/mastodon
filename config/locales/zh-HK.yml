@@ -557,7 +557,14 @@ zh-HK:
       body: "%{reporter} 舉報了用戶 %{target}"
       body_remote: 來自 %{domain} 的用戶舉報了用戶 %{target}
       subject: '來自 %{instance} 的用戶舉報（#%{id}）'
+  aliases:
+    hint_html: 如果您想由另一個帳戶轉移到此帳戶，您可以在此處創建別名(alias)，然後才能將關注者由舊帳戶轉移到此帳戶。此操作是<strong>無害且可逆的</strong>。 <strong>帳戶遷移是在舊帳戶實施的</strong>。
+    remove: 取消連結別名(alias)
   appearance:
+    advanced_web_interface: 進階網頁介面
+    advanced_web_interface_hint: '如果您想運用整個螢幕，您可以使用進階網頁介面來配置許多不同的欄目，以根據需要同時查看盡可能多的信息：主頁、通知、其他站點和任何的列表和標籤。'
+    animations_and_accessibility: 動畫和輔助功能
+    confirmation_dialogs: 確認對話框
     localization:
       body: Mastodon 是由志願者翻譯的。
       guide_link_text: 每個人都能貢獻。
