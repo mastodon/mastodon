@@ -429,13 +429,23 @@ zh-HK:
       title: 電郵網域阻隔
     instances:
       by_domain: 域名
+      delivery_available: 傳送可用
+      known_accounts:
+        other: "%{count} 已知的帳號"
       moderation:
         all: 全部
         limited: 限制
         title: 版主
+      private_comment: 私人留言
+      public_comment: 公開留言
       title: 已知服務站
+      total_blocked_by_us: 被我們封鎖
+      total_followed_by_them: 被他們關注
       total_followed_by_us: 開始關注你
+      total_reported: 關於他們的舉報
+      total_storage: 媒體附件
     invites:
+      deactivate_all: 全部停用
       filter:
         all: 全部
         available: 可用
@@ -443,6 +453,8 @@ zh-HK:
         title: 篩選
       title: 邀請用戶
     ip_blocks:
+      add_new: 新增規則
+      created_msg: 成功新增IP規則
       delete: 刪除
       expires_in:
         '1209600': 兩週
@@ -467,10 +479,21 @@ zh-HK:
       disabled: 停用
       enable: 啟用
       enable_hint: 啟用後，您的服務器將訂閱該中繼的所有公開嘟文，並將會開始向其發送此服務器的公開嘟文。
+      enabled: 已啟用
+      inbox_url: 中繼URL
+      pending: 正在等待中繼許可
+      save_and_enable: 儲存並啟用
+      setup: 建立中繼通訊
+      signatures_not_enabled: 中繼不會在安全模式或有限聯盟模式被開啓的情況下正常運作
+      status: 狀態
+      title: 中繼
     report_notes:
       created_msg: 舉報筆記已建立。
       destroyed_msg: 舉報筆記已刪除。
     reports:
+      account:
+        notes:
+          other: "%{count} 備註"
       action_taken_by: 操作執行者
       are_you_sure: 你確認嗎？
       assign_to_self: 指派給自己
@@ -831,6 +854,10 @@ zh-HK:
     i_am_html: 我是 %{service} 上的 %{username}
     identity: 身份
     inactive: 停用
+    publicize_checkbox: '嘟這個：'
+    publicize_toot: '驗證成功！我在%{service} 是%{username} ：%{url}'
+    remove: 刪除帳號的驗證
+    removed: 成功刪除身份驗證
     status: 確認狀態
     view_proof: 查看證明
   imports:
