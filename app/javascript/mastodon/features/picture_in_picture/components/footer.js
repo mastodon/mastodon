@@ -22,6 +22,7 @@ const messages = defineMessages({
   favourite: { id: 'status.favourite', defaultMessage: 'Favourite' },
   replyConfirm: { id: 'confirmations.reply.confirm', defaultMessage: 'Reply' },
   replyMessage: { id: 'confirmations.reply.message', defaultMessage: 'Replying now will overwrite the message you are currently composing. Are you sure you want to proceed?' },
+  open: { id: 'status.open', defaultMessage: 'Expand this status' },
 });
 
 const makeMapStateToProps = () => {
@@ -49,11 +50,19 @@ class Footer extends ImmutablePureComponent {
     intl: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired,
     askReplyConfirmation: PropTypes.bool,
+    withOpenButton: PropTypes.bool,
+    onClose: PropTypes.func,
   };
 
   _performReply = () => {
-    const { dispatch, status } = this.props;
-    dispatch(replyCompose(status, this.context.router.history));
+    const { dispatch, status, onClose } = this.props;
+    const { router } = this.context;
+
+    if (onClose) {
+      onClose();
+    }
+
+    dispatch(replyCompose(status, router.history));
   };
 
   handleReplyClick = () => {
@@ -97,8 +106,20 @@ class Footer extends ImmutablePureComponent {
     }
   };
 
+  handleOpenClick = e => {
+    const { router } = this.context;
+
+    if (e.button !== 0 || !router) {
+      return;
+    }
+
+    const { status } = this.props;
+
+    router.history.push(`/statuses/${status.get('id')}`);
+  }
+
   render () {
-    const { status, intl } = this.props;
+    const { status, intl, withOpenButton } = this.props;
 
     const publicStatus  = ['public', 'unlisted'].includes(status.get('visibility'));
     const reblogPrivate = status.getIn(['account', 'id']) === me && status.get('visibility') === 'private';
@@ -130,6 +151,7 @@ class Footer extends ImmutablePureComponent {
         <IconButton className='status__action-bar-button' title={replyTitle} icon={status.get('in_reply_to_account_id') === status.getIn(['account', 'id']) ? 'reply' : replyIcon} onClick={this.handleReplyClick} counter={status.get('replies_count')} obfuscateCount />
         <IconButton className={classNames('status__action-bar-button', { reblogPrivate })} disabled={!publicStatus && !reblogPrivate}  active={status.get('reblogged')} pressed={status.get('reblogged')} title={reblogTitle} icon='retweet' onClick={this.handleReblogClick} counter={status.get('reblogs_count')} />
         <IconButton className='status__action-bar-button star-icon' animate active={status.get('favourited')} pressed={status.get('favourited')} title={intl.formatMessage(messages.favourite)} icon='star' onClick={this.handleFavouriteClick} counter={status.get('favourites_count')} />
+        {withOpenButton && <IconButton className='status__action-bar-button' title={intl.formatMessage(messages.open)} icon='external-link' onClick={this.handleOpenClick} />}
       </div>
     );
   }

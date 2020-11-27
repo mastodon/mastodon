@@ -105,15 +105,18 @@ class AccountGallery extends ImmutablePureComponent {
   }
 
   handleOpenMedia = attachment => {
+    const { dispatch } = this.props;
+    const statusId = attachment.getIn(['status', 'id']);
+
     if (attachment.get('type') === 'video') {
-      this.props.dispatch(openModal('VIDEO', { media: attachment, status: attachment.get('status'), options: { autoPlay: true } }));
+      dispatch(openModal('VIDEO', { media: attachment, statusId, options: { autoPlay: true } }));
     } else if (attachment.get('type') === 'audio') {
-      this.props.dispatch(openModal('AUDIO', { media: attachment, status: attachment.get('status'), options: { autoPlay: true } }));
+      dispatch(openModal('AUDIO', { media: attachment, statusId, options: { autoPlay: true } }));
     } else {
       const media = attachment.getIn(['status', 'media_attachments']);
       const index = media.findIndex(x => x.get('id') === attachment.get('id'));
 
-      this.props.dispatch(openModal('MEDIA', { media, index, status: attachment.get('status') }));
+      dispatch(openModal('MEDIA', { media, index, statusId }));
     }
   }
 
