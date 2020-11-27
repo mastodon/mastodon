@@ -203,12 +203,24 @@ zh-HK:
       undo_suspension: 解除停權
       unsilenced_msg: 成功取消限制 %{username} 的帳號
       unsubscribe: 取消訂閱
+      unsuspended_msg: 成功取消將 %{username} 的帳號停權
       username: 使用者名稱
+      view_domain: 查看域名概要
       warn: 警告
       web: 用戶頁面
       whitelisted: 已加入白名單
     action_logs:
       action_types:
+        assigned_to_self_report: 指派舉報
+        change_email_user: 改變用戶的電郵
+        confirm_user: 確認用戶
+        create_account_warning: 新增警告
+        create_announcement: 建立公告
+        create_custom_emoji: 新增自定的Emoji
+        create_domain_allow: 新增允許的域名
+        create_domain_block: 封鎖域名
+        create_email_domain_block: 封鎖電郵域名
+        create_ip_block: 新增IP規則
         demote_user: 將用戶降級
         destroy_announcement: 刪除公告
         destroy_custom_emoji: 刪除自定的Emoji
@@ -221,6 +233,18 @@ zh-HK:
         disable_custom_emoji: 停用自定的Emoji
         disable_user: 停用用戶
         enable_custom_emoji: 啟用自定的Emoji
+        enable_user: 啟用用戶
+        memorialize_account: 把帳號設定為悼念帳號
+        promote_user: 將用戶升級
+        remove_avatar_user: 刪除頭像
+        reopen_report: 重開舉報
+        reset_password_user: 重設密碼
+        resolve_report: 消除舉報
+        sensitive_account: 把您的帳號的媒體設定為敏感內容
+        silence_account: 把用戶靜音
+        suspend_account: 把用戶停權
+        unassigned_report: 取消指派舉報
+        unsensitive_account: 取消把您的帳號的媒體設定為敏感內容
         unsilence_account: 取消用戶的靜音狀態
         unsuspend_account: 取消用戶的停權狀態
         update_announcement: 更新公告
