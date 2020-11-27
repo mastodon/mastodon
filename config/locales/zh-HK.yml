@@ -736,11 +736,19 @@ zh-HK:
       email_reconfirmation_html: 如果您沒有收到確認電郵，您可以<a href="%{path}">再次請求電郵</a>
       irreversible: 你將無法重啟你的帳戶
       more_details_html: 請參見<a href="%{terms_path}">隱私政策</a>以瀏覽細節。
+      username_available: 您的帳號將可重新使用
+      username_unavailable: 您的帳號將繼續不能使用
+  directories:
+    directory: 個人資料目錄
+    explanation: 根據興趣認識新朋友
+    explore_mastodon: 探索%{title}
+  domain_validator:
+    invalid_domain: 不是一個可用域名
   errors:
-    '400': The request you submitted was invalid or malformed.
+    '400': 您的請求無效或輸入錯誤。
     '403': 你沒有觀看本頁的權限。
     '404': 找不到內容。
-    '406': This page is not available in the requested format.
+    '406': 無法根據的格式顯示此頁面
     '410': 內容已被刪除。
     '422':
       content: 無法確認登入資訊。會不會你阻擋了本站使用 Cookies 的權限？
@@ -749,8 +757,11 @@ zh-HK:
     '500':
       content: 抱歉，我們的後台出錯了。
       title: 這個頁面有問題
-    '503': The page could not be served due to a temporary server failure.
+    '503': 因短暫的伺服器錯誤而未能提供此頁面
     noscript_html: 使用 Mastodon 網頁版應用需要啟用 JavaScript。你也可以選擇適用於你的平台的 <a href="%{apps_path}">Mastodon 應用</a>。
+  existing_username_validator:
+    not_found: 無法找到位於本伺服器的用戶
+    not_found_multiple: 無法找到%{usernames}
   exports:
     archive_takeout:
       date: 日期
@@ -760,10 +771,28 @@ zh-HK:
       request: 下載檔案
       size: 檔案大小
     blocks: 被你封鎖的用戶
+    bookmarks: 書籤
+    csv: CSV
+    domain_blocks: 域名封鎖
     lists: 列表
     mutes: 你所靜音的用戶
     storage: 媒體容量大小
+  featured_tags:
+    add_new: 新增
+    errors:
+      limit: 你所推薦的標籤數量已經達到上限
+    hint_html: "<strong>甚麼是推薦標籤？</strong> 它們在您的個人資料頁面被顯示，讓其他人可以根據標籤瀏覽您的公開嘟文。它們是您長期創作的好幫手！"
   filters:
+    contexts:
+      account: 個人資料
+      home: 主頁和列表
+      notifications: 通知
+      public: 公共時間軸
+      thread: 對話
+    edit:
+      title: 編輯篩選器
+    errors:
+      invalid_context: 沒有提供內文或內文無效
     index:
       empty: 您沒有過濾器。
   footer:
