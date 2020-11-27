@@ -840,6 +840,10 @@ zh-HK:
       body: '您的文章被 %{name} 轉推：'
       subject: "%{name} 轉推了你的文章"
       title: 新的轉推
+  notifications:
+    email_events: 電郵通知活動
+    email_events_hint: '選擇你想接收通知的活動：'
+    other_settings: 其他通知設定
   number:
     human:
       decimal_units:
@@ -850,6 +854,9 @@ zh-HK:
           quadrillion: 千兆
           thousand: 千
           trillion: 兆
+  otp_authentication:
+    code_hint: 請輸入您的認證器所產生的代碼，以確認設定
+    description_html: 當你啟用<strong>雙重認證</strong>後，你登入時將需要使用你的手機或其他認證器所產生的代碼。
   pagination:
     newer: 較新
     next: 下一頁
@@ -889,24 +896,44 @@ zh-HK:
     explanation: 這些是現在正登入於你的 Mastodon 帳號的瀏覽器。
     ip: IP 位址
     platforms:
+      ios: iOS
+      linux: Linux
       mac: Mac
+      other: 未知平台
+      windows: Windows
+      windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
     revoke: 取消
     revoke_success: 作業階段成功取消
     title: 作業階段
   settings:
+    account: 帳戶
+    account_settings: 帳戶設定
+    aliases: 帳戶別名(aliases)
+    appearance: 外觀設定
     authorized_apps: 授權應用程式
     back: 回到 Mastodon
     delete: 刪除帳戶
     development: 開發
     edit_profile: 修改個人資料
     export: 匯出
+    featured_tags: 推薦的標籤
+    identity_proofs: 身份驗證
     import: 匯入
+    import_and_export: 匯入及匯出
     migrate: 帳戶遷移
     notifications: 通知
     preferences: 偏好設定
+    profile: 個人資料
+    relationships: 關注及追隨者
     two_factor_authentication: 雙重認證
+    webauthn_authentication: 安全鑰匙
+  spam_check:
+    spam_detected: 此為系統的自動報告：已發現垃圾訊息。
   statuses:
     attached:
+      audio:
+        other: "%{count} 段影片"
       description: '附件： %{attached}'
       image:
         other: "%{count} 幅圖片"
@@ -916,6 +943,8 @@ zh-HK:
     content_warning: '內容警告： %{warning}'
     disallowed_hashtags:
       other: '包含不允許的標籤： %{tags}'
+    errors:
+      in_reply_not_found: 你所回覆的嘟文並不存在。
     language_detection: 自動偵測語言
     open_in_web: 開啟網頁
     over_character_limit: 超過了 %{max} 字的限制
@@ -925,8 +954,16 @@ zh-HK:
       private: 不能置頂非公開的文章
       reblog: 不能置頂轉推
     poll:
+      total_people:
+        other: "%{count} 人"
+      total_votes:
+        other: "%{count} 票"
       vote: 投票
     show_more: 顯示更多
+    show_newer: 顯示較新嘟文
+    show_older: 顯示較舊嘟文
+    show_thread: 顯示討論串
+    sign_in_to_participate: 登入以加入討論
     title: '%{name}：「%{quote}」'
     visibilities:
       private: 關注者觀看
@@ -939,6 +976,8 @@ zh-HK:
     pinned: 置頂文章
     reblogged: 轉推
     sensitive_content: 敏感內容
+  tags:
+    does_not_match_previous_name: 和舊有名稱並不符合
   terms:
     title: "%{instance} 使用條款和隱私權政策"
   themes:
