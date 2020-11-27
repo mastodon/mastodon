@@ -592,12 +592,14 @@ zh-HK:
         desc_html: 本站詳細資訊頁的內文<br/>你可以在此使用 HTML
         title: 本站詳細資訊
       site_short_description:
+        desc_html: 顯示在側邊欄和網頁標籤(meta tags)。以一句話描述Mastodon是甚麼，有甚麼令這個伺服器脫𩓙而出。
         title: 伺服器短描述
       site_terms:
         desc_html: 可以填寫自己的隱私權政策、使用條款或其他法律文本。可以使用 HTML 標籤
         title: 自訂使用條款
       site_title: 本站名稱
       spam_check_enabled:
+        desc_html: Mastodon可以自動舉報產生重複的垃圾內容的帳號，不過未必準確。
         title: 自動防廣告訊息
       thumbnail:
         desc_html: 用於在 OpenGraph 和 API 中顯示預覽圖。推薦大小 1200×630px
@@ -606,6 +608,9 @@ zh-HK:
         desc_html: 在主頁顯示本站時間軸
         title: 時間軸預覽
       title: 網站設定
+      trendable_by_default:
+        desc_html: 影響之前並未禁止的標籤
+        title: 容許標籤不需要審核來成為今期流行
       trends:
         title: 趨勢主題標籤
     site_uploads:
