@@ -58,7 +58,7 @@ zh-HK:
       other: 嘟文
     posts_tab_heading: 嘟文
     posts_with_replies: 文章和回覆
-    reserved_username: 此用戶名已被保留
+    reserved_username: 這個使用者名稱已被保留
     roles:
       admin: 管理員
       bot: 機械人
@@ -143,7 +143,7 @@ zh-HK:
       remove_avatar: 取消頭像
       remove_header: 移除開頭
       resend_confirmation:
-        already_confirmed: 该用户已被确认
+        already_confirmed: 這個使用者先前已經被確認過
         send: 重发确认邮件
         success: 确认电子邮件成功发送！
       reset: 重設
@@ -154,10 +154,10 @@ zh-HK:
         admin: 管理員
         moderator: 監察員
         staff: 管理人員
-        user: 普通用戶
+        user: 普通使用者
       search: 搜索
       search_same_email_domain: 其他有同個電子郵件網域的使用者
-      search_same_ip: 其他有同個 IP 的使用者
+      search_same_ip: 其他有同樣 IP 位址的使用者
       sensitive: 敏感内容
       sensitized: 已標記為敏感內容
       shared_inbox_url: 公共收件箱（Shared Inbox）URL
@@ -175,7 +175,7 @@ zh-HK:
       undo_silenced: 解除靜音
       undo_suspension: 解除停權
       unsubscribe: 取消訂閱
-      username: 用戶名稱
+      username: 使用者名稱
       warn: 警告
       web: 用戶頁面
       whitelisted: 已加入白名單
@@ -197,16 +197,16 @@ zh-HK:
         destroy_domain_block: "%{name} 取消了對網域 %{target} 的阻隔"
         destroy_email_domain_block: "%{name} 取消了對電郵網域 %{target} 的阻隔"
         destroy_status: "%{name} 刪除了 %{target} 的文章"
-        disable_2fa_user: "%{name} 停用了 %{target} 使用者的雙重認證"
+        disable_2fa_user: "%{name} 停用了使用者 %{target} 的雙重認證"
         disable_custom_emoji: "%{name} 停用了自訂表情符號 %{target}"
-        disable_user: "%{name} 把用戶 %{target} 設定為禁止登入"
+        disable_user: "%{name} 把使用者 %{target} 設定為禁止登入"
         enable_custom_emoji: "%{name} 啟用了自訂表情符號 %{target}"
-        enable_user: "%{name} 把用戶 %{target} 設定為允許登入"
+        enable_user: "%{name} 把使用者 %{target} 設定為允許登入"
         memorialize_account: "%{name} 把 %{target} 設定為追悼帳戶"
-        promote_user: "%{name} 對用戶 %{target} 进行了升任操作"
+        promote_user: "%{name} 對提升了使用者 %{target} 的權限"
         remove_avatar_user: "%{name} 取消了 %{target} 的頭像"
         reopen_report: "%{name} 重開 %{target} 的舉報"
-        reset_password_user: "%{name} 重設了用戶 %{target} 的密碼"
+        reset_password_user: "%{name} 重設了使用者 %{target} 的密碼"
         resolve_report: "%{name} 處理了 %{target}　的舉報"
         silence_account: "%{name} 靜音了用戶 %{target}"
         suspend_account: "%{name} 停權了用戶 %{target}"
@@ -354,7 +354,7 @@ zh-HK:
         title: 篩選
       title: 邀請用戶
     relays:
-      description_html: <strong>聯邦中繼站</strong> 是種中繼伺服器，會在訂閱並推送至此中繼站的伺服器之間交換大量的公開嘟文。<strong>中繼站也能協助小型或中型伺服器從聯邦中探索內容</strong>，而無須本地使用者手動關注遠端伺服器的其他使用者。
+      description_html: <strong>聯盟中繼站</strong>是一種中繼伺服器，會在訂閱並推送至此中繼站的伺服器之間交換大量的公開嘟文。<strong>中繼站也能協助小型或中型伺服器從聯邦中探索內容</strong>，而無須本地使用者手動關注遠端伺服器的其他使用者。
       disabled: 停用
       enable: 啟用
     report_notes:
@@ -389,8 +389,8 @@ zh-HK:
       updated_at: 更新
     settings:
       activity_api_enabled:
-        desc_html: 本站用戶發佈的文章，以及本站的活躍用戶和一週內新用戶數
-        title: 公開用戶活躍度的統計數據
+        desc_html: 本站的文章數量、活躍使用者數量、及每週新註冊使用者數量
+        title: 公佈使用者活躍度的統計數據
       bootstrap_timeline_accounts:
         desc_html: 以半形逗號分隔多個用戶名。只能加入來自本站且未開啟保護的帳號。如果留空，則默認關注本站所有管理員。
         title: 新用戶默認關注
