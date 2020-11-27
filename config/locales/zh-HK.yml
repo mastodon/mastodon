@@ -1105,15 +1105,17 @@ zh-HK:
       review_server_policies: 審視伺服器政策
       statuses: '特別是：'
       subject:
-        disable: 你的帳號%{acct} 已經被涷結
+        disable: 您的帳號%{acct} 已經被涷結
         none: 警告帳號%{acct}
-        sensitive: 你的帳號%{acct} 的媒體已被標記為敏感內容
-        silence: 你的帳號%{acct} 已經被限制
-        suspend: 你的帳號%{acct} 已經被停權
+        sensitive: 您的帳號%{acct} 的媒體已被標記為敏感內容
+        silence: 您的帳號%{acct} 已經被限制
+        suspend: 您的帳號%{acct} 已經被停權
       title:
         disable: 帳號涷結
         none: 警告
         sensitive: 您的媒體已被標記為敏感內容
+        silence: 賬戶已被限制
+        suspend: 帳號已停用
     welcome:
       edit_profile_action: 設定個人資料
       edit_profile_step: 你可以設定你的個人資料，包括上傳頭像、橫幅圖片、更改顯示名稱等等。如果你想在新的關注者關注你之前對他們進行審核，你也可以選擇為你的帳戶設為「私人」。
@@ -1132,8 +1134,14 @@ zh-HK:
       tips: 小貼士
       title: 歡迎 %{name} 加入！
   users:
+    blocked_email_provider: 此電郵提供商並不被允許
+    follow_limit_reached: 你不能關注多於%{limit} 人
+    generic_access_help_html: 不能登入？您可以寄電郵至 %{email} 尋求協助
     invalid_email: 電郵地址格式不正確
+    invalid_email_mx: 此電郵地址不存在
     invalid_otp_token: 雙重認證碼不正確
+    invalid_sign_in_token: 無效的安全碼
     otp_lost_help_html: 如果這兩者你均無法登入，你可以聯繫 %{email}
     seamless_external_login: 因為你正在使用第三方服務登入，所以不能設定密碼和電郵。
     signed_in_as: '目前登入的帳戶：'
+    suspicious_sign_in_confirmation: 您似乎未曾從此設備登入，而您又有一段時間沒有登入了。我們剛剛把安全碼傳送到您的電郵地址，請查看您的信箱確認這是您本人。
