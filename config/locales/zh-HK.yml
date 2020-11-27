@@ -612,6 +612,7 @@ zh-HK:
         desc_html: 影響之前並未禁止的標籤
         title: 容許標籤不需要審核來成為今期流行
       trends:
+        desc_html: 公開地顯示已審核的標籤為今期流行
         title: 趨勢主題標籤
     site_uploads:
       delete: 刪除上傳的檔案
@@ -631,12 +632,16 @@ zh-HK:
       title: 帳戶文章
       with_media: 含有媒體檔案
     tags:
+      accounts_today: 今日特殊使用
+      accounts_week: 今週特殊使用
+      breakdown: 根據來源剖析是日用量
       context: 上下文
       directory: 在目錄中
       in_directory: "目錄中有 %{count} 個"
       last_active: 上次活躍
       most_popular: 最熱門
       most_recent: 最近
+      name: 主題標籤
       review: 審核嘟文
       reviewed: 已審核
       title: 主題標籤
@@ -648,12 +653,22 @@ zh-HK:
     warning_presets:
       add_new: 新增
       delete: 刪除
+      edit_preset: 設定警告預設
+      title: 管理警告預設
   admin_mailer:
+    new_pending_account:
+      body: 以下是新帳戶的資訊。您可以審核這項申請。
+      subject: 未審核的新用戶在%{instance} (%{username})
     new_report:
       body: "%{reporter} 舉報了用戶 %{target}"
       body_remote: 來自 %{domain} 的用戶舉報了用戶 %{target}
       subject: '來自 %{instance} 的用戶舉報（#%{id}）'
+    new_trending_tag:
+      body: '未審核主題標籤 #%{name} 正在今期流行。在您允許之前它將不會公開地顯示，您亦可以無視它使它不再污染您的眼睛。'
+      subject: 未審核的主題標籤在%{instance} (%{name})
   aliases:
+    add_new: 建立別名(alias)
+    created_msg: 成功建立別名(alias)。您可以從舊帳號開始轉移。
     hint_html: 如果您想由另一個帳戶轉移到此帳戶，您可以在此處創建別名(alias)，然後才能將關注者由舊帳戶轉移到此帳戶。此操作是<strong>無害且可逆的</strong>。 <strong>帳戶遷移是在舊帳戶實施的</strong>。
     remove: 取消連結別名(alias)
   appearance:
