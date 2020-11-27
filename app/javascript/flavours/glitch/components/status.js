@@ -379,21 +379,24 @@ class Status extends ImmutablePureComponent {
   };
 
   handleOpenVideo = (media, options) => {
-    this.props.onOpenVideo(media, options);
+    this.props.onOpenVideo(this.props.status.get('id'), media, options);
+  }
+
+  handleOpenMedia = (media, index) => {
+    this.props.onOpenMedia(this.props.status.get('id'), media, index);
   }
 
   handleHotkeyOpenMedia = e => {
     const { status, onOpenMedia, onOpenVideo } = this.props;
+    const statusId = status.get('id');
 
     e.preventDefault();
 
     if (status.get('media_attachments').size > 0) {
-      if (status.getIn(['media_attachments', 0, 'type']) === 'audio') {
-        // TODO: toggle play/paused?
-      } else if (status.getIn(['media_attachments', 0, 'type']) === 'video') {
-        onOpenVideo(status.getIn(['media_attachments', 0]), { startTime: 0 });
+      if (status.getIn(['media_attachments', 0, 'type']) === 'video') {
+        onOpenVideo(statusId, status.getIn(['media_attachments', 0]), { startTime: 0 });
       } else {
-        onOpenMedia(status.get('media_attachments'), 0);
+        onOpenMedia(statusId, status.get('media_attachments'), 0);
       }
     }
   }
@@ -657,7 +660,7 @@ class Status extends ImmutablePureComponent {
                 letterbox={settings.getIn(['media', 'letterbox'])}
                 fullwidth={settings.getIn(['media', 'fullwidth'])}
                 hidden={isCollapsed || !isExpanded}
-                onOpenMedia={this.props.onOpenMedia}
+                onOpenMedia={this.handleOpenMedia}
                 cacheWidth={this.props.cacheMediaWidth}
                 defaultWidth={this.props.cachedMediaWidth}
                 visible={this.state.showMedia}
@@ -675,7 +678,7 @@ class Status extends ImmutablePureComponent {
     } else if (status.get('card') && settings.get('inline_preview_cards')) {
       media = (
         <Card
-          onOpenMedia={this.props.onOpenMedia}
+          onOpenMedia={this.handleOpenMedia}
           card={status.get('card')}
           compact
           cacheWidth={this.props.cacheMediaWidth}

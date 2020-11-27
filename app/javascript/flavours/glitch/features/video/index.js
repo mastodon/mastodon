@@ -120,7 +120,6 @@ class Video extends React.PureComponent {
     deployPictureInPicture: PropTypes.func,
     preventPlayback: PropTypes.bool,
     blurhash: PropTypes.string,
-    link: PropTypes.node,
     autoPlay: PropTypes.bool,
     volume: PropTypes.number,
     muted: PropTypes.bool,
@@ -548,7 +547,7 @@ class Video extends React.PureComponent {
   }
 
   render () {
-    const { preview, src, inline, onOpenVideo, onCloseVideo, intl, alt, letterbox, fullwidth, detailed, sensitive, link, editable, blurhash } = this.props;
+    const { preview, src, inline, onOpenVideo, onCloseVideo, intl, alt, letterbox, fullwidth, detailed, sensitive, editable, blurhash } = this.props;
     const { containerWidth, currentTime, duration, volume, buffer, dragging, paused, fullscreen, hovered, muted, revealed } = this.state;
     const progress = Math.min((currentTime / duration) * 100, 100);
     const playerStyle = {};
@@ -666,8 +665,6 @@ class Video extends React.PureComponent {
                   <span className='video-player__time-total'>{formatTime(Math.floor(duration))}</span>
                 </span>
               )}
-
-              {link && <span className='video-player__link'>{link}</span>}
             </div>
 
             <div className='video-player__buttons right'>
