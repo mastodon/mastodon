@@ -823,6 +823,14 @@ zh-HK:
     authorize_connection_prompt: 授權此加密通訊？
     errors:
       failed: 加密通訊失敗。請在%{provider} 重試。
+      keybase:
+        invalid_token: Keybase tokens必定為66個16位元字符的簽名檔散列。
+        verification_failed: Keybase不能識別此令牌為Keybase用戶%{kb_username} 的簽名。請在Keybase再試一次。
+      wrong_user: 未能以%{current} 為 %{proving} 建立身份驗證。請登入為%{proving} 再試一次。
+    explanation_html: 在此你可以用例如Keybase等平台安全地聯通不同的網絡身份。其他人可以傳送加密信息給您並驗證您的身份。
+    i_am_html: 我是 %{service} 上的 %{username}
+    identity: 身份
+    inactive: 停用
     status: 確認狀態
     view_proof: 查看證明
   imports:
