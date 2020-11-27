@@ -180,6 +180,22 @@ zh-HK:
       web: 用戶頁面
       whitelisted: 已加入白名單
     action_logs:
+      action_types:
+        demote_user: 將用戶降級
+        destroy_announcement: 刪除公告
+        destroy_custom_emoji: 刪除自定的Emoji
+        destroy_domain_allow: 刪除允許的域名
+        destroy_domain_block: 刪除已封鎖的域名
+        destroy_email_domain_block: 刪除已封鎖的電郵城名
+        destroy_ip_block: 刪除IP規則
+        destroy_status: 刪除嘟文
+        disable_2fa_user: 關閉兩步驟驗證
+        disable_custom_emoji: 停用自定的Emoji
+        disable_user: 停用用戶
+        enable_custom_emoji: 啟用自定的Emoji
+        unsilence_account: 取消用戶的靜音狀態
+        unsuspend_account: 取消用戶的停權狀態
+        update_announcement: 更新公告
       actions:
         assigned_to_self_report: "%{name} 指派了 %{target} 的舉報給自己"
         change_email_user: "%{name} 改變了使用者 %{target} 的電郵地址"
