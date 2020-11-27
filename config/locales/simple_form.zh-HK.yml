@@ -1,16 +1,15 @@
----
 zh-HK:
   simple_form:
     hints:
       account_alias:
-        acct: 指定欲移動之帳戶的 使用者名稱@站台
+        acct: 指定欲移動之帳戶的「使用者名稱@域名」
       account_migration:
-        acct: 指定欲移動至之帳戶的 使用者名稱@站台
+        acct: 指定欲移動至之帳戶的「使用者名稱@域名」
       account_warning_preset:
-        text: 您可使用嘟文語法，例如網址、「#」標籤和提及功能
+        text: '您可使用嘟文語法，例如網址、「#」標籤和提及功能'
         title: 可選，對接收者不可見
       admin_account_action:
-        include_statuses: 用戶將會看到哪些嘟文導致檢舉或警告
+        include_statuses: 使用者將會看到哪些文章導致檢舉或警告
         send_email_notification: 使用者將收到帳戶發生之事情的解釋
         text_html: 選用。您能使用嘟文語法。您可 <a href="%{path}">新增警告預設</a> 來節省時間
         type_html: 設定要使用 <strong>%{acct}</strong> 做的事
@@ -20,7 +19,7 @@ zh-HK:
         ends_at: 可選，公告會在該時間點自動取消發布
         scheduled_at: 空白則立即發布公告
         starts_at: 可選，你可以讓公告在指定時間範圍內顯示
-        text: 你可以使用嘟文格式，但請注意不要讓公告佔據太多用戶屏幕空間。
+        text: 你可以使用文章格式，但請小心別讓公告佔據太大的使用者畫面空間。
       defaults:
         autofollow: 通過邀請網址註冊的用戶將會自動關注你
         avatar: 支援 PNG, GIF 或 JPG 圖片，檔案最大為 %{size}，會縮裁成 %{dimensions}px
@@ -50,7 +49,7 @@ zh-HK:
         setting_show_application: 您用來發嘟文的應用程式將會在您嘟文的詳細檢視顯示
         setting_use_blurhash: 漸變基於隱藏的視覺效果顏色，但會模糊所有細節
         setting_use_pending_items: 關閉自動滾動更新，時間軸會在點擊後更新
-        username: 您的使用者名稱將在 %{domain} 是獨一無二的
+        username: 你的使用者名稱在 %{domain} 將是獨一無二的
         whole_word: 如果關鍵字或詞組僅有字母與數字，則其將只在符合整個單字的時候才會套用
       domain_allow:
         domain: 此域將能從此站獲取數據，而此站發出的數據也會被處理和存儲。
@@ -58,7 +57,7 @@ zh-HK:
         domain: 這裡可以是電郵地址中的域名、域名解析到的MX記錄、或MX紀錄解析到的服務器IP。如果上述資料被封禁，那麼註冊將被拒絕。
         with_dns_records: Mastodon 會嘗試解析所給域名的 DNS 記錄，然後與解析結果一併封禁
       featured_tag:
-        name: 您可能想使用其中一個：
+        name: '您可能想使用其中一個：'
       form_challenge:
         current_password: 您正要進入安全區域
       imports:
@@ -66,7 +65,7 @@ zh-HK:
       invite_request:
         text: 這會協助我們審核您的應用程式
       sessions:
-        otp: 輸入你手機上生成的雙重認證碼，或者任意一個恢復代碼：
+        otp: '輸入你手機上生成的雙重認證碼，或者任意一個恢復代碼：'
       tag:
         name: 您只能變更大小寫，例如，以使其更易讀。
       user:
@@ -153,13 +152,13 @@ zh-HK:
         severity: 等級
         sign_in_token_attempt: 安全碼
         type: 匯入資料類型
-        username: 用戶名稱
-        username_or_email: 用戶名稱或電郵
+        username: 使用者名稱
+        username_or_email: 使用者名稱或電郵
         whole_word: 整個詞彙
       email_domain_block:
         with_dns_records: 包括域名的 MX 記錄和 IP 地址
       featured_tag:
-        name: "「#」標籤"
+        name: '「#」標籤'
       interactions:
         must_be_follower: 隱藏沒有關注你的用戶的通知
         must_be_following: 隱藏你不關注的用戶的通知
@@ -185,9 +184,9 @@ zh-HK:
         name: 主題標籤
         trendable: 允許此主題標籤在趨勢下顯示
         usable: 允許嘟文使用此主題標籤
-    'no': 否
+    'no': '否'
     recommended: 建議
     required:
       mark: "*"
       text: 必須填寫
-    'yes': 是
+    'yes': '是'
