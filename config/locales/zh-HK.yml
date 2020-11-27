@@ -329,6 +329,8 @@ zh-HK:
       created_msg: 正處理域名阻隔
       destroyed_msg: 已撤銷域名阻隔
       domain: 域名阻隔
+      edit: 更改封鎖的網域
+      existing_domain_block_html: 您已經對 %{name} 施加了更嚴格的限制，您需要先把他<a href="%{unblock_url}">取消封鎖</a>。
       new:
         create: 新增域名阻隔
         hint: '「域名阻隔」不會隔絕該域名用戶的用戶進入本站資料庫，而是會在時候自動套用特定的審批操作。'
@@ -338,6 +340,10 @@ zh-HK:
           silence: 自動靜音
           suspend: 自動刪除
         title: 新增域名阻隔
+      private_comment: 私人留言
+      private_comment_hint: 請提供更多有關此域名限制的資訊以供管理員作內部參考。
+      public_comment: 公開留言
+      public_comment_hint: 如果你已經啟用域名限制列表的公告，請為一般大眾提供更多有關此域名限制的資訊。
       reject_media: 拒絕媒體檔案
       reject_media_hint: 刪除本地緩存的媒體檔案，再也不在未來下載這個站點的檔案。和自動刪除無關
       reject_reports: 拒絕檢舉
@@ -356,17 +362,21 @@ zh-HK:
         title: 撤銷 %{domain} 的域名阻隔
         undo: 撤銷
       undo: 撤銷
+      view: 顯示封鎖的網域
     email_domain_blocks:
       add_new: 加入新項目
       created_msg: 已新增電郵網域阻隔
       delete: 刪除
       destroyed_msg: 已刪除電郵網域阻隔
       domain: 網域
+      empty: 現時並沒有電郵域名被封鎖。
+      from_html: 由%{domain}
       new:
         create: 新增網域
         title: 新增電郵網域阻隔
       title: 電郵網域阻隔
     instances:
+      by_domain: 域名
       moderation:
         all: 全部
         limited: 限制
@@ -380,10 +390,31 @@ zh-HK:
         expired: 已失效
         title: 篩選
       title: 邀請用戶
+    ip_blocks:
+      delete: 刪除
+      expires_in:
+        '1209600': 兩週
+        '15778476': 六個月
+        '2629746': 1個月
+        '31556952': 1年
+        '86400': 1日
+        '94670856': 3年
+      new:
+        title: 新增IP規則
+      no_ip_block_selected: 因未選擇IP規則而未有任何變更。
+      title: IP規則
+    pending_accounts:
+      title: 待處理帳戶(%{count})
+    relationships:
+      title: "%{acct} 的關係"
     relays:
+      add_new: 新增中繼
+      delete: 刪除
       description_html: <strong>聯盟中繼站</strong>是一種中繼伺服器，會在訂閱並推送至此中繼站的伺服器之間交換大量的公開嘟文。<strong>中繼站也能協助小型或中型伺服器從聯邦中探索內容</strong>，而無須本地使用者手動關注遠端伺服器的其他使用者。
+      disable: 停用
       disabled: 停用
       enable: 啟用
+      enable_hint: 啟用後，您的服務器將訂閱該中繼的所有公開嘟文，並將會開始向其發送此服務器的公開嘟文。
     report_notes:
       created_msg: 舉報筆記已建立。
       destroyed_msg: 舉報筆記已刪除。
