@@ -50,6 +50,7 @@ zh-HK:
   accounts:
     choices_html: "%{name} 的選擇："
     endorsements_hint: 您可以推薦您在網頁介面關注的人，然後他們會在此出現。
+    featured_tags_hint: 您可以推薦不同標籤，它們也會在此處出現。
     follow: 關注
     followers:
       other: 關注者
@@ -64,6 +65,8 @@ zh-HK:
     nothing_here: 暫時未有內容可以顯示。
     people_followed_by: '%{name} 關注的人'
     people_who_follow: 關注 %{name} 的人
+    pin_errors:
+      following: 你必須關注您想推薦的用戶。
     posts:
       other: 嘟文
     posts_tab_heading: 嘟文
@@ -89,6 +92,7 @@ zh-HK:
       add_email_domain_block: 將電子郵件網域加入黑名單
       approve: 核准
       approve_all: 全部批准
+      approved_msg: 成功審核了%{username} 的新帳號申請
       are_you_sure: 你確定嗎？
       avatar: 頭像
       by_domain: 域名
@@ -102,8 +106,10 @@ zh-HK:
       confirm: 確定
       confirmed: 已確定
       confirming: 確定
+      delete: 刪除資料
       deleted: 已刪除
       demote: 降任
+      destroyed_msg: "即將刪除 %{username} 的數據"
       disable: 停用
       disable_two_factor_authentication: 停用雙重認證
       disabled: 已停用
@@ -114,6 +120,7 @@ zh-HK:
       email_status: 电子邮件状态
       enable: 啟用
       enabled: 已啟用
+      enabled_msg: 成功解涷 %{username} 的帳號
       followers: 關注者
       follows: 正在關注
       header: 開頭
@@ -129,6 +136,8 @@ zh-HK:
       login_status: 登入狀態
       media_attachments: 媒體檔案
       memorialize: 設定為追悼帳戶
+      memorialized: 被悼念的
+      memorialized_msg: 成功將%{username} 的帳號變為紀念帳號
       moderation:
         active: 活躍
         all: 全部
@@ -139,6 +148,7 @@ zh-HK:
       moderation_notes: 管理記錄
       most_recent_activity: 最新活動
       most_recent_ip: 最新 IP 位域
+      no_account_selected: 因未選擇帳號而未有任何變更
       no_limits_imposed: 未受限制
       not_subscribed: 未訂閱
       pending: 等待審核中
@@ -148,10 +158,14 @@ zh-HK:
       public: 公共
       push_subscription_expires: PuSH 訂閱過期
       redownload: 更新頭像
+      redownloaded_msg: 成功重新載入%{username} 的個人資料頁面
       reject: 拒絕
       reject_all: 全部拒絕
+      rejected_msg: 成功拒絕了%{username} 的新帳號申請
       remove_avatar: 取消頭像
       remove_header: 移除開頭
+      removed_avatar_msg: 成功刪除%{username} 的頭像
+      removed_header_msg: 成功刪除%{username} 的頁面頂端
       resend_confirmation:
         already_confirmed: 這個使用者先前已經被確認過
         send: 重发确认邮件
@@ -179,11 +193,15 @@ zh-HK:
       statuses: 文章
       subscribe: 訂閱
       suspended: 已停權
+      suspension_irreversible: 已永久刪除此帳戶的數據。您可以取消此帳戶的停權狀態但數據已被永久刪除。
+      suspension_reversible_hint_html: 此帳戶已被停權及所有數據將會在%{date} 被刪除。在此之前，您可以完全回復帳號。如果您想即時刪除此帳戶的數據，您可以在下面進行操作。
       time_in_queue: 正在佇列等待 %{time}
       title: 用戶
       unconfirmed_email: 未確認的電郵
+      undo_sensitized: 取消敏感狀態
       undo_silenced: 解除靜音
       undo_suspension: 解除停權
+      unsilenced_msg: 成功取消限制 %{username} 的帳號
       unsubscribe: 取消訂閱
       username: 使用者名稱
       warn: 警告
