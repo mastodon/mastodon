@@ -1,8 +1,8 @@
 zh-HK:
   about:
-    about_hashtag_html: '這些是包含「<strong>#%{hashtag}</strong>」標籤的公開文章。只要你有任何 Mastodon 服務站、或者聯盟網站的用戶，便可以與他們互動。'
+    about_hashtag_html: '這些是包含「<strong>#%{hashtag}</strong>」標籤的公開文章。只要你是任何聯盟網站的用戶，便可以與他們互動。'
     about_mastodon_html: 'Mastodon（萬象）是屬於未來的社交網絡︰無廣告煩擾、無企業監控、設計講道義、分散無大台！立即重奪個人資料的控制權，使用 Mastodon 吧！'
-    about_this: 關於本服務站
+    about_this: 關於本伺服器
     active_count_after: 活躍
     active_footnote: 每月活躍使用者 (MAU)
     administered_by: '管理者：'
@@ -10,16 +10,16 @@ zh-HK:
     apps: 行動應用程式
     apps_platforms: 在 iOS、Android 和其他平台使用 Mastodon
     browse_directory: 依興趣瀏覽個人資料目錄和過濾器
-    browse_local_posts: 瀏覽這台伺服器中公開嘟文的直播串流
+    browse_local_posts: 在這個伺服器瀏覽公開嘟文的即時串流
     browse_public_posts: 在 Mastodon 瀏覽公開嘟文的即時串流
     contact: 聯絡
     contact_missing: 未設定
-    contact_unavailable: 未公開
+    contact_unavailable: 不適用
     discover_users: 探索使用者
     documentation: 文件
-    federation_hint_html: 你只需要擁有 %{instance} 的帳戶，就可以追蹤隨便一台 Mastodon 伺服器上的人等等。
-    get_apps: 嘗試行動應用程式
-    hosted_on: 在 %{domain} 運作的 Mastodon 服務站
+    federation_hint_html: 你只需要擁有 %{instance} 的帳戶，就可以追蹤所有Mastodon伺服器上的人！
+    get_apps: 嘗試使用行動應用程式
+    hosted_on: 在 %{domain} 運作的 Mastodon 伺服器
     instance_actor_flash: |
       這個帳戶為代表伺服器，不是任何個人用戶所用的虛擬帳號。此帳戶為聯盟用途。除非您想封鎖整個伺服器的話，否則請不要封銷此帳戶（請使用網域封鎖以達到相同效果）。
     learn_more: 了解更多
@@ -28,11 +28,11 @@ zh-HK:
     server_stats: '伺服器統計：'
     source_code: 源代碼
     status_count_after:
-      other: 條嘟文
-    status_count_before: 他們共發佈了
+      other: 嘟文
+    status_count_before: 共發佈了
     tagline: 關注朋友並探索新朋友
     terms: 使用條款
-    unavailable_content: 無法取得的內容
+    unavailable_content: 受限制的伺服器
     unavailable_content_description:
       domain: 伺服器
       reason: 原因
@@ -53,7 +53,7 @@ zh-HK:
     featured_tags_hint: 您可以推薦不同標籤，它們也會在此處出現。
     follow: 關注
     followers:
-      other: 關注者
+      other: 追隨者
     following: 正在關注
     joined: 加入於 %{date}
     last_active: 上次活躍時間
@@ -1093,6 +1093,10 @@ zh-HK:
     reply:
       proceed: 下一步
       prompt: '您要求回覆：'
+  scheduled_statuses:
+    over_daily_limit: 你已經超越了當天可以排定的嘟文最大值(%{limit})
+    over_total_limit: 你已經超越了可以排定的嘟文最大值(%{limit})
+    too_soon: 不可以改變過去哦，嘟文只可以排定在未來
   sessions:
     activity: 最近活動
     browser: 瀏覽器
