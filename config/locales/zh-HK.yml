@@ -723,11 +723,21 @@ zh-HK:
     save_changes: 儲存修改
     validation_errors:
       other: 提交的資料有 %{count} 項問題
+  identity_proofs:
+    status: 確認狀態
+    view_proof: 查看證明
   imports:
+    modes:
+      merge: 合併
+      merge_long: 留下舊有記錄並添加新的資訊
+      overwrite: 覆蓋
+      overwrite_long: 用新記錄覆蓋當前記錄
     preface: 你可以在此匯入你在其他服務站所匯出的資料檔，包括︰你所關注的用戶，被你封鎖的用戶。
     success: 你已成功上載資料檔，我們正將資料匯入，請稍候
     types:
       blocking: 被你封鎖的用戶名單
+      bookmarks: 書籤
+      domain_blocking: 域名封鎖名單
       following: 你所關注的用戶名單
       muting: 靜音名單
     upload: 上載
@@ -759,9 +769,13 @@ zh-HK:
   media_attachments:
     validations:
       images_and_video: 不能在已有圖片的文章上加入影片
+      not_ready: 無法附加尚未處理完的檔案。 請稍後再試！
       too_many: 不可以加入超過 4 個檔案
   migrations:
     acct: 新帳戶的 用戶名@域名
+    cancel: 取消定向
+    cancel_explanation: 取消重新定向將會重新激活當前帳戶，但並不會還原已移至該帳戶的關注者。
+    cancelled_msg: 成功取消定向。
   moderation:
     title: 營運
   notification_mailer:
@@ -796,6 +810,16 @@ zh-HK:
       body: '您的文章被 %{name} 轉推：'
       subject: "%{name} 轉推了你的文章"
       title: 新的轉推
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          billion: 十億
+          million: 百萬
+          quadrillion: 千兆
+          thousand: 千
+          trillion: 兆
   pagination:
     newer: 較新
     next: 下一頁
