@@ -231,9 +231,12 @@ class MediaModal extends ImmutablePureComponent {
   _sendBackgroundColor () {
     const { media, onChangeBackgroundColor } = this.props;
     const index = this.getIndex();
-    const backgroundColor = decodeRGB(decode83(media.getIn([index, 'blurhash']).slice(2, 6)));
+    const blurhash = media.getIn([index, 'blurhash']);
 
-    onChangeBackgroundColor(backgroundColor);
+    if (blurhash) {
+      const backgroundColor = decodeRGB(decode83(blurhash.slice(2, 6)));
+      onChangeBackgroundColor(backgroundColor);
+    }
   }
 
   render () {
