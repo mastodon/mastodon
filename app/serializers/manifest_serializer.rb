@@ -74,9 +74,9 @@ class ManifestSerializer < ActiveModel::Serializer
           {
             src: '/shortcuts/local.png',
             type: 'image/png',
-            sizes: '192x192'
-          }
-        ]
+            sizes: '192x192',
+          },
+        ],
       },
       {
         name: 'Notifications',
@@ -85,9 +85,9 @@ class ManifestSerializer < ActiveModel::Serializer
           {
             src: '/shortcuts/notifications.png',
             type: 'image/png',
-            sizes: '192x192'
-          }
-        ]
+            sizes: '192x192',
+          },
+        ],
       },
       {
         name: 'Direct messages',
@@ -96,9 +96,9 @@ class ManifestSerializer < ActiveModel::Serializer
           {
             src: '/shortcuts/direct.png',
             type: 'image/png',
-            sizes: '192x192'
-          }
-        ]
+            sizes: '192x192',
+          },
+        ],
       },
       {
         name: 'Profile directory',
@@ -107,10 +107,10 @@ class ManifestSerializer < ActiveModel::Serializer
           {
             src: '/shortcuts/directory.png',
             type: 'image/png',
-            sizes: '192x192'
-          }
-        ]
-      }
+            sizes: '192x192',
+          },
+        ],
+      },
     ]
   end
 end
