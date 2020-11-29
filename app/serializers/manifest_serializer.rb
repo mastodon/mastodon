@@ -7,7 +7,7 @@ class ManifestSerializer < ActiveModel::Serializer
   attributes :name, :short_name, :description,
              :icons, :theme_color, :background_color,
              :display, :start_url, :scope,
-             :share_target
+             :share_target, :shortcuts
 
   def name
     object.site_title
@@ -63,5 +63,54 @@ class ManifestSerializer < ActiveModel::Serializer
         url: 'url',
       },
     }
+  end
+
+  def shortcuts
+    [
+      {
+        name: 'Local timeline',
+        url: '/web/timelines/public/local',
+        icons: [
+          {
+            src: '/shortcuts/local.png',
+            type: 'image/png',
+            sizes: '192x192'
+          }
+        ]
+      },
+      {
+        name: 'Notifications',
+        url: '/web/notifications',
+        icons: [
+          {
+            src: '/shortcuts/notifications.png',
+            type: 'image/png',
+            sizes: '192x192'
+          }
+        ]
+      },
+      {
+        name: 'Direct messages',
+        url: '/web/timelines/direct',
+        icons: [
+          {
+            src: '/shortcuts/direct.png',
+            type: 'image/png',
+            sizes: '192x192'
+          }
+        ]
+      },
+      {
+        name: 'Profile directory',
+        url: '/web/directory',
+        icons: [
+          {
+            src: '/shortcuts/directory.png',
+            type: 'image/png',
+            sizes: '192x192'
+          }
+        ]
+      }
+    ]
   end
 end
