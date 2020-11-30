@@ -113,21 +113,21 @@ zh-HK:
       destroyed_msg: "即將刪除 %{username} 的數據"
       disable: 停用
       disable_two_factor_authentication: 關閉雙重認證
-      disabled: 已停用
+      disabled: 已凍結
       display_name: 顯示名稱
       domain: 域名
       edit: 編輯
       email: 電郵地址
       email_status: 電郵狀態
-      enable: 啟用
+      enable: 解除凍結
       enabled: 已啟用
-      enabled_msg: 成功解涷 %{username} 的帳號
+      enabled_msg: 成功解除 %{username} 帳號的凍結
       followers: 關注者
       follows: 正在關注
-      header: 開頭
+      header: 個人資料頁頂圖片
       inbox_url: 收件箱（Inbox）URL
       invited_by: 邀請者
-      ip: IP 位域
+      ip: IP 位址
       joined: 已加入
       location:
         all: 全部
@@ -142,7 +142,7 @@ zh-HK:
       moderation:
         active: 活躍
         all: 全部
-        pending: 等待中
+        pending: 處理中
         silenced: 被靜音的
         suspended: 被停權的
         title: 管理操作
@@ -208,16 +208,16 @@ zh-HK:
       username: 使用者名稱
       view_domain: 查看域名概要
       warn: 警告
-      web: 用戶頁面
-      whitelisted: 已加入白名單
+      web: 頁面
+      whitelisted: 容許互傳文章
     action_logs:
       action_types:
         assigned_to_self_report: 指派舉報
-        change_email_user: 改變用戶的電郵
-        confirm_user: 確認用戶
+        change_email_user: 更改使用者的電郵
+        confirm_user: 確認使用者
         create_account_warning: 新增警告
         create_announcement: 建立公告
-        create_custom_emoji: 新增自定的Emoji
+        create_custom_emoji: 新增自訂的 Emoji
         create_domain_allow: 新增允許的域名
         create_domain_block: 封鎖域名
         create_email_domain_block: 封鎖電郵域名
