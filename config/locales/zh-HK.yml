@@ -68,9 +68,9 @@ zh-HK:
     pin_errors:
       following: 你必須關注您想推薦的用戶。
     posts:
-      other: 嘟文
-    posts_tab_heading: 嘟文
-    posts_with_replies: 包含回覆的嘟文
+      other: 文章
+    posts_tab_heading: 文章
+    posts_with_replies: 包含回覆的文章
     reserved_username: 這個使用者名稱已被保留
     roles:
       admin: 管理員
@@ -478,7 +478,7 @@ zh-HK:
       disable: 停用
       disabled: 停用
       enable: 啟用
-      enable_hint: 啟用後，您的服務器將訂閱該中繼的所有公開嘟文，並將會開始向其發送此服務器的公開嘟文。
+      enable_hint: 啟用後，你的伺服器將訂閱該中繼的所有公開文章，並將會此伺服器的公開文章發送給它。
       enabled: 已啟用
       inbox_url: 中繼URL
       pending: 正在等待中繼許可
@@ -684,7 +684,7 @@ zh-HK:
       guide_link: https://crowdin.com/project/mastodon
       guide_link_text: 每個人都能貢獻。
     sensitive_content: 敏感內容
-    toot_layout: 嘟文介面
+    toot_layout: 發文介面
   application_mailer:
     notification_preferences: 更改電郵首選項
     salutation: "%{name}："
@@ -827,7 +827,7 @@ zh-HK:
     archive_takeout:
       date: 日期
       download: 下載檔案
-      hint_html: 你可以下載包含你的<strong>文章和媒體</strong>的檔案。資料以 ActivityPub 格式儲存，可用於相容的軟體。你可以每七天下載一次。
+      hint_html: 你可以下載包含你的<strong>文章和媒體</strong>的檔案。資料以 ActivityPub 格式儲存，可用於相容的軟體。你可以每 7 天下載一次。
       in_progress: 檔案製作中...
       request: 下載檔案
       size: 檔案大小
@@ -892,7 +892,7 @@ zh-HK:
     i_am_html: 我是 %{service} 上的 %{username}
     identity: 身份
     inactive: 停用
-    publicize_checkbox: '嘟這個：'
+    publicize_checkbox: '發表文章：'
     publicize_toot: '驗證成功！我在%{service} 是%{username} ：%{url}'
     remove: 刪除帳號的驗證
     removed: 成功刪除身份驗證
@@ -991,9 +991,9 @@ zh-HK:
         other: "自從上次登入以來，你收到 %{count} 則新的通知 \U0001F418"
       title: 在你不在的這段時間……
     favourite:
-      body: '您的文章被 %{name} 收藏：'
-      subject: "%{name} 收藏了你的文章"
-      title: 新的收藏
+      body: '你的文章被 %{name} 喜愛：'
+      subject: "%{name} 喜歡你的文章"
+      title: 新的最愛
     follow:
       body: "%{name} 開始關注你！"
       subject: "%{name} 現正關注你"
@@ -1086,16 +1086,16 @@ zh-HK:
   remote_interaction:
     favourite:
       proceed: 下一步
-      prompt: '您要求把此嘟文加入最愛：'
+      prompt: '你要求把這篇文章加入最愛：'
     reblog:
       proceed: 繼續轉嘟
-      prompt: '您要求轉嘟：'
+      prompt: '你想轉推：'
     reply:
       proceed: 下一步
-      prompt: '您要求回覆：'
+      prompt: '你想回覆：'
   scheduled_statuses:
-    over_daily_limit: 你已經超越了當天可以排定的嘟文最大值(%{limit})
-    over_total_limit: 你已經超越了可以排定的嘟文最大值(%{limit})
+    over_daily_limit: 你已經超越了當天排定發文的限額 (%{limit})
+    over_total_limit: 你已經超越了排定發文的限額 (%{limit})
     too_soon: 不可以改變過去哦，嘟文只可以排定在未來
   sessions:
     activity: 最近活動
@@ -1331,7 +1331,7 @@ zh-HK:
       explanation:
         disable: 您不能以任何方式登入或使用您的帳號，但你的個人資料頁面和其他數據仍保持完整。
         sensitive: 你上載的媒體檔案和連結媒體將被標記為敏感項目。
-        silence: 你仍然可以使用你的帳號但只有你現時的追隨者會看見你在此伺服器的嘟文。你或從公開名冊中被剔除。但是其他人仍然可以主動關注你。
+        silence: 你仍然可以使用你的帳號，但只有你現時的追隨者會看見你在此伺服器的嘟文。你或從公開名冊中被剔除。但是其他人仍然可以主動關注你。
         suspend: 您將不能使用您的帳號，您的個人資料頁面及其他數據將不能再被取得。您仍然可以在您的資料被完全刪除前請求下載您的數據，但我們仍會保留一部份數據以防止帳號停權被中止。
       get_in_touch: 你可以回覆此電郵來跟我們(%{instance})聯絡
       review_server_policies: 審視伺服器政策
