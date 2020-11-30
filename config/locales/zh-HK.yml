@@ -2,33 +2,34 @@ zh-HK:
   about:
     about_hashtag_html: '這些是包含「<strong>#%{hashtag}</strong>」標籤的公開文章。只要你是任何聯盟網站的用戶，便可以與他們互動。'
     about_mastodon_html: 'Mastodon（萬象）是屬於未來的社交網絡︰無廣告煩擾、無企業監控、設計講道義、分散無大台！立即重奪個人資料的控制權，使用 Mastodon 吧！'
-    about_this: 關於本伺服器
+    about_this: 關於本服務站
     active_count_after: 活躍
     active_footnote: 每月活躍使用者 (MAU)
     administered_by: '管理者：'
     api: API
-    apps: 行動應用程式
+    apps: 手機 App
     apps_platforms: 在 iOS、Android 和其他平台使用 Mastodon
     browse_directory: 依興趣瀏覽個人資料目錄和過濾器
-    browse_local_posts: 在這個伺服器瀏覽公開嘟文的即時串流
-    browse_public_posts: 在 Mastodon 瀏覽公開嘟文的即時串流
+    browse_local_posts: 瀏覽這個伺服器的公開文章即時串流
+    browse_public_posts: 在 Mastodon 瀏覽公開文章的即時串流
     contact: 聯絡
     contact_missing: 未設定
     contact_unavailable: 不適用
     discover_users: 探索使用者
-    documentation: 文件
-    federation_hint_html: 你只需要擁有 %{instance} 的帳戶，就可以追蹤所有Mastodon伺服器上的人！
-    get_apps: 嘗試使用行動應用程式
+    documentation: 說明文件
+    federation_hint_html: 你只需要擁有 %{instance} 的帳戶，就可以追蹤任何 Mastodon 服務站上的人！
+    get_apps: 嘗試使用手機 App
     hosted_on: 在 %{domain} 運作的 Mastodon 伺服器
     instance_actor_flash: |
-      這個帳戶為代表伺服器，不是任何個人用戶所用的虛擬帳號。此帳戶為聯盟用途。除非您想封鎖整個伺服器的話，否則請不要封銷此帳戶（請使用網域封鎖以達到相同效果）。
+      這個帳戶是代表伺服器，而非代表任何個人用戶的虛擬帳號。
+      此帳戶是為聯盟協定而設。除非你想封鎖整個伺服器的話，否則請不要封鎖這個帳戶。如果你想封鎖伺服器，請使用網域封鎖以達到相同效果。
     learn_more: 了解更多
     privacy_policy: 隱私權政策
     see_whats_happening: 看看發生什麼事
     server_stats: '伺服器統計：'
     source_code: 源代碼
     status_count_after:
-      other: 嘟文
+      other: 篇文章
     status_count_before: 共發佈了
     tagline: 關注朋友並探索新朋友
     terms: 使用條款
@@ -38,9 +39,9 @@ zh-HK:
       reason: 原因
       rejecting_media: '這些伺服器的媒體檔案將不會被處理或儲存，我們亦不會展示其縮圖。請手動點擊以觀看原始檔：'
       rejecting_media_title: 被篩選的媒體檔案
-      silenced: '除非您已經關注個別用戶，否則來自這些伺服器的嘟文和通知將會被隱藏。'
+      silenced: '除非你已經關注個別使用者，否則來自這些伺服器的文章和通知將會被隱藏。'
       silenced_title: 已靜音的伺服器
-      suspended: '來自這些伺服器的所有數據將不會被處理。您將不可能聯絡來自這些伺服器的用戶。'
+      suspended: '來自這些伺服器的所有數據將不會被處理。你將不可能聯絡來自這些伺服器的使用者。'
       suspended_title: 已停權的伺服器
     unavailable_content_html: Mastodon通常容許您瀏覽除這些個別伺服器以外，位於聯盟的所有伺服器。
     user_count_after:
@@ -664,7 +665,7 @@ zh-HK:
       body_remote: 來自 %{domain} 的用戶舉報了用戶 %{target}
       subject: '來自 %{instance} 的用戶舉報（#%{id}）'
     new_trending_tag:
-      body: '未審核主題標籤 #%{name} 正在今期流行。在您允許之前它將不會公開地顯示，您亦可以無視它使它不再污染您的眼睛。'
+      body: '今天流行使用未被審核的 #%{name} 主題標籤。在你允許之前，它不會被公開地顯示，你亦可以無視它使它不再污染你的眼睛。'
       subject: 未審核的主題標籤在%{instance} (%{name})
   aliases:
     add_new: 建立別名(alias)
