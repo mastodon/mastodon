@@ -17,6 +17,7 @@ import Publisher from './publisher';
 import TextareaIcons from './textarea_icons';
 import { maxChars } from 'flavours/glitch/util/initial_state';
 import CharacterCounter from './character_counter';
+import { length } from 'stringz';
 
 const messages = defineMessages({
   placeholder: { id: 'compose_form.placeholder', defaultMessage: 'What is on your mind?' },
@@ -81,30 +82,37 @@ class ComposeForm extends ImmutablePureComponent {
     this.props.onChange(e.target.value);
   }
 
+  getFulltextForCharacterCounting = () => {
+    return [
+      this.props.spoiler? this.props.spoilerText: '',
+      countableText(this.props.text),
+      this.props.advancedOptions && this.props.advancedOptions.get('do_not_federate') ? ' 👁️' : ''
+    ].join('');
+  }
+
+  canSubmit = () => {
+    const { isSubmitting, isChangingUpload, isUploading, anyMedia } = this.props;
+    const fulltext = this.getFulltextForCharacterCounting();
+
+    return !(isSubmitting || isUploading || isChangingUpload || length(fulltext) > maxChars || (!fulltext.trim().length && !anyMedia));
+  }
+
   handleSubmit = (overriddenVisibility = null) => {
-    const { textarea: { value }, uploadForm } = this;
     const {
-      onChange,
       onSubmit,
-      isSubmitting,
-      isChangingUpload,
-      isUploading,
       media,
-      anyMedia,
-      text,
       mediaDescriptionConfirmation,
       onMediaDescriptionConfirm,
       onChangeVisibility,
     } = this.props;
 
-    //  If something changes inside the textarea, then we update the
-    //  state before submitting.
-    if (onChange && text !== value) {
-      onChange(value);
+    if (this.props.text !== this.textarea.value) {
+      // Something changed the text inside the textarea (e.g. browser extensions like Grammarly)
+      // Update the state to match the current text
+      this.props.onChange(this.textarea.value);
     }
 
-    // Submit disabled:
-    if (isSubmitting || isUploading || isChangingUpload || (!text.trim().length && !anyMedia)) {
+    if (!this.canSubmit()) {
       return;
     }
 
@@ -260,13 +268,9 @@ class ComposeForm extends ImmutablePureComponent {
     } = this;
     const {
       advancedOptions,
-      anyMedia,
       intl,
       isSubmitting,
-      isChangingUpload,
-      isUploading,
       layout,
-      media,
       onChangeSpoilerness,
       onChangeVisibility,
       onClearSuggestions,
@@ -279,13 +283,10 @@ class ComposeForm extends ImmutablePureComponent {
       spoiler,
       spoilerText,
       suggestions,
-      text,
       spoilersAlwaysOn,
     } = this.props;
 
-    let disabledButton = isSubmitting || isUploading || isChangingUpload || (!text.trim().length && !anyMedia);
-
-    const countText = `${spoilerText}${countableText(text)}${advancedOptions && advancedOptions.get('do_not_federate') ? ' 👁️' : ''}`;
+    const countText = this.getFulltextForCharacterCounting();
 
     return (
       <div className='composer'>
@@ -353,7 +354,7 @@ class ComposeForm extends ImmutablePureComponent {
 
         <Publisher
           countText={countText}
-          disabled={disabledButton}
+          disabled={!this.canSubmit()}
           onSecondarySubmit={handleSecondarySubmit}
           onSubmit={handleSubmit}
           privacy={privacy}
