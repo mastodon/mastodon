@@ -43,31 +43,31 @@ zh-HK:
       silenced_title: 已靜音的伺服器
       suspended: '來自這些伺服器的所有數據將不會被處理。你將不可能聯絡來自這些伺服器的使用者。'
       suspended_title: 已停權的伺服器
-    unavailable_content_html: Mastodon通常容許您瀏覽除這些個別伺服器以外，位於聯盟的所有伺服器。
+    unavailable_content_html: Mastodon 通常讓你瀏覽其他社交聯盟網站的所有內容，但是對於這個特定網站，有這些特別的例外規則。
     user_count_after:
       other: 位使用者
     user_count_before: 本站共有
-    what_is_mastodon: Mastodon 是甚麼？
+    what_is_mastodon: Mastodon （萬象）是甚麼？
   accounts:
     choices_html: "%{name} 的選擇："
     endorsements_hint: 您可以推薦您在網頁介面關注的人，然後他們會在此出現。
     featured_tags_hint: 您可以推薦不同標籤，它們也會在此處出現。
     follow: 關注
     followers:
-      other: 追隨者
+      other: 關注者
     following: 正在關注
-    joined: 加入於 %{date}
+    joined: 於 %{date} 加入
     last_active: 上次活躍時間
     link_verified_on: 此連結的所有權已在 %{date} 檢查過
     media: 媒體
     moved_html: "%{name} 已經轉移到 %{new_profile_link}："
     network_hidden: 此信息不可用
     never_active: 永不
-    nothing_here: 暫時未有內容可以顯示。
+    nothing_here: 暫時未有內容可以顯示！
     people_followed_by: '%{name} 關注的人'
     people_who_follow: 關注 %{name} 的人
     pin_errors:
-      following: 你必須關注您想推薦的用戶。
+      following: 你只能推薦你正在關注的使用者。
     posts:
       other: 文章
     posts_tab_heading: 文章
@@ -77,13 +77,13 @@ zh-HK:
       admin: 管理員
       bot: 機械人
       group: 群組
-      moderator: 監察員
+      moderator: 板主
     unavailable: 無法取得個人檔案
     unfollow: 取消關注
   admin:
     account_actions:
       action: 執行動作
-      title: 在 %{acct} 執行管理員動作
+      title: 在 %{acct} 執行管理操作
     account_moderation_notes:
       create: 記錄
       created_msg: 管理記錄已新增
@@ -581,8 +581,8 @@ zh-HK:
           open: 任何人皆能註冊
         title: 註冊模式
       show_known_fediverse_at_about_page:
-        desc_html: 如果開啟，就會在時間軸預覽顯示跨站文章，否則就只會顯示本站文章。
-        title: 在時間軸預覽顯示跨站文章
+        desc_html: 如果停用，將會只在本站的歡迎頁顯示本站的文章。
+        title: 在訪客預覽本站的時間軸上，顯示跨站文章
       show_staff_badge:
         desc_html: 在個人資料頁上顯示管理人員標誌
         title: 顯示管理人員標誌
