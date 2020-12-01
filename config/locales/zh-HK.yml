@@ -180,24 +180,24 @@ zh-HK:
         moderator: 管理員
         staff: 管理人員
         user: 普通使用者
-      search: 搜索
+      search: 搜尋
       search_same_email_domain: 其他有相同電郵網域的使用者
       search_same_ip: 其他有相同 IP 位址的使用者
       sensitive: 敏感内容
       sensitized: 已標記為敏感內容
       shared_inbox_url: 公共收件箱（Shared Inbox）URL
       show:
-        created_reports: 此用戶所提舉報的紀錄
-        targeted_reports: 此用戶被舉報的紀錄
+        created_reports: 舉報紀錄
+        targeted_reports: 被其他人舉報的紀錄
       silence: 靜音
       silenced: 已靜音
-      statuses: 文章
+      statuses: 嘟文
       subscribe: 訂閱
       suspended: 已停權
       suspension_irreversible: 已永久刪除此帳戶的數據。您可以取消此帳戶的停權狀態但數據已被永久刪除。
       suspension_reversible_hint_html: 此帳戶已被停權及所有數據將會在%{date} 被刪除。在此之前，您可以完全回復帳號。如果您想即時刪除此帳戶的數據，您可以在下面進行操作。
-      time_in_queue: 正在佇列等待 %{time}
-      title: 用戶
+      time_in_queue: 排隊中 %{time}
+      title: 帳戶
       unconfirmed_email: 未確認的電郵
       undo_sensitized: 取消敏感狀態
       undo_silenced: 解除靜音
@@ -255,25 +255,25 @@ zh-HK:
         assigned_to_self_report: "%{name} 指派了 %{target} 的舉報給自己"
         change_email_user: "%{name} 改變了使用者 %{target} 的電郵地址"
         confirm_user: "%{name} 確認了使用者 %{target} 的電郵地址"
-        create_account_warning: "%{name} 已對 %{target} 送出警告"
-        create_announcement: "%{name} 建立了新公告 %{target}"
-        create_custom_emoji: "%{name} 加入自訂表情符號 %{target}"
-        create_domain_allow: "%{name} 將 %{target} 網域加入黑名單了"
-        create_domain_block: "%{name} 阻隔了網域 %{target}"
-        create_email_domain_block: "%{name} 阻隔了電郵網域 %{target}"
+        create_account_warning: "%{name} 已警告了 %{target}"
+        create_announcement: "%{name} 新增了公告 %{target}"
+        create_custom_emoji: "%{name} 加入了新的emoji %{target}"
+        create_domain_allow: "%{name} 和 %{target} 網域結盟了"
+        create_domain_block: "%{name} 封鎖了網域 %{target}"
+        create_email_domain_block: "%{name} 封鎖了電郵網域 %{target}"
         create_ip_block: "%{name} 已經設定了IP %{target} 的規則"
         demote_user: "%{name} 把使用者 %{target} 降權"
         destroy_announcement: "%{name} 刪除了公告 %{target}"
-        destroy_custom_emoji: "%{name} 破壞了 %{target} 表情符號"
-        destroy_domain_allow: "%{name} 從白名單中移除了 %{target} 網域"
-        destroy_domain_block: "%{name} 取消了對網域 %{target} 的阻隔"
-        destroy_email_domain_block: "%{name} 取消了對電郵網域 %{target} 的阻隔"
+        destroy_custom_emoji: "%{name} 刪除了emoji %{target}"
+        destroy_domain_allow: "%{name} 取消了和 %{target} 網域的結盟"
+        destroy_domain_block: "%{name} 取消了對網域 %{target} 的封鎖"
+        destroy_email_domain_block: "%{name} 取消了對電郵網域 %{target} 的封鎖"
         destroy_ip_block: "%{name} 已經刪除了 IP %{target} 的規則"
-        destroy_status: "%{name} 刪除了 %{target} 的文章"
+        destroy_status: "%{name} 刪除了 %{target} 的嘟文"
         disable_2fa_user: "%{name} 停用了使用者 %{target} 的雙重認證"
-        disable_custom_emoji: "%{name} 停用了自訂表情符號 %{target}"
+        disable_custom_emoji: "%{name} 停用了emoji %{target}"
         disable_user: "%{name} 把使用者 %{target} 設定為禁止登入"
-        enable_custom_emoji: "%{name} 啟用了自訂表情符號 %{target}"
+        enable_custom_emoji: "%{name} 啟用了emoji %{target}"
         enable_user: "%{name} 把使用者 %{target} 設定為允許登入"
         memorialize_account: "%{name} 把 %{target} 設定為追悼帳戶"
         promote_user: "%{name} 對提升了使用者 %{target} 的權限"
@@ -289,8 +289,8 @@ zh-HK:
         unsilence_account: "%{name} 取消了用戶 %{target} 的靜音狀態"
         unsuspend_account: "%{name} 取消了用戶 %{target} 的停權狀態"
         update_announcement: "%{name} 更新了公告 %{target}"
-        update_custom_emoji: "%{name} 更新了自訂表情符號 %{target}"
-        update_status: "%{name} 刷新了 %{target} 的文章"
+        update_custom_emoji: "%{name} 更新了emoji %{target}"
+        update_status: "%{name} 更新了 %{target} 的嘟文"
       deleted_status: "（已刪除嘟文）"
       empty: 找不到任何日誌。
       filter_by_action: 按動作篩選
@@ -301,7 +301,7 @@ zh-HK:
       edit:
         title: 編輯公告
       empty: 找不到公告。
-      live: 直播
+      live: 上綫
       new:
         create: 建立公告
         title: 新增公告
@@ -584,7 +584,7 @@ zh-HK:
         desc_html: 如果停用，將會只在本站的歡迎頁顯示本站的文章。
         title: 在訪客預覽本站的時間軸上，顯示跨站文章
       show_staff_badge:
-        desc_html: 在個人資料頁上顯示管理人員標誌
+        desc_html: 在個人資料頁上顯示工作人員標誌
         title: 顯示工作人員標誌
       site_description:
         desc_html: 在首頁顯示，及在 meta 標籤使用作網站介紹。<br/> 你可以在此使用 <code>&lt;a&gt;</code> 和 <code>&lt;em&gt;</code> 等 HTML 標籤。
