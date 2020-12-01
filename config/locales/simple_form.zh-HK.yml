@@ -65,6 +65,9 @@ zh-HK:
       invite_request:
         text: 這會協助我們審核您的應用程式
       ip_block:
+        comment: 可選，但請記得自己為甚麼添加了這個規則。
+        expires_in: 因為IP位置是經常被分享或轉手的有限資源，所以我們不推薦您無限期地封鎖IP位置。
+        ip: 請輸入IPv4或IPv6位置，您亦可以用CIDR語法來封鎖整個ip位值。請小心不要自己都一併封鎖！
         severities:
           no_access: 封鎖所有資源存取
           sign_up_requires_approval: 您將需要審批新注冊
