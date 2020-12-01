@@ -1,7 +1,7 @@
 sc:
   devise:
     confirmations:
-      confirmed: S'indiritzu tuo de posta eletrònica est istadu cunfirmadu cun revèntida.
+      confirmed: S'indiritzu tuo de posta eletrònica est istadu cunfirmadu.
       send_instructions: As a retzire unu messàgiu de posta eletrònica cun is istrutziones pro sa cunfirma de s'indiritzu de posta eletrònica tra pagos minutos. Controlla sa cartella de s'arga si no as retzidu custu messàgiu de posta eletrònica.
       send_paranoid_instructions: Si s'indiritzu de posta eletrònica tuo esistit in sa base de datos nostra, as a retzire unu messàgiu de posta eletrònica cun is istrutziones pro sa cunfirma de s'indiritzu de posta eletrònica tra pagos minutos.  Controlla sa cartella de s'arga si no as retzidu custu messàgiu de posta eletrònica.
     failure:
@@ -56,15 +56,15 @@ sc:
       unlock_instructions:
         subject: 'Mastodon: Istrutziones pro s''isblocu'
     omniauth_callbacks:
-      success: Autenticadu cun revèntida dae %{kind} contu.
+      success: Autenticadu dae su contu de %{kind}.
     passwords:
       no_token: No podes intrare a custa pàgina chene passare dae unu messàgiu de posta eletrònica pro resetare sa crae. Si benes dae su messàgiu de posta pro resetare sa crae, faghe in modu de impreare s'URL intreu chi t'ant donadu.
       send_instructions: Si s'indiritzu de posta eletrònica tuo esistit in sa base de datos nostra, as a retzire una unu ligàmene de recùperu de sa crae a s'indiritzu tuo de posta eletrònica tra pagos minutos.  Controlla sa cartella de s'arga si no as retzidu custu messàgiu de posta eletrònica.
       send_paranoid_instructions: Si s'indiritzu de posta eletrònica tuo esistit in sa base de datos nostra, as a retzire una unu ligàmene de recùperu de sa crae a s'indiritzu tuo de posta eletrònica tra pagos minutos.  Controlla sa cartella de s'arga si no as retzidu custu messàgiu de posta eletrònica.
-      updated: Sa crae tua est istada mudada cun revèntida. Immoe ses intradu.
-      updated_not_active: Sa crae tua est istada mudada cun revèntida.
+      updated: Sa crae tua est istada mudada. Immoe ses intradu.
+      updated_not_active: Sa crae tua est istada mudada.
     registrations:
-      destroyed: A si bìdere! Su contu tuo est istadu cantzelladu cun revèntida. Isperamus de ti torrare a bìdere chitzi.
+      destroyed: A si bìdere! Su contu tuo est istadu cantzelladu. Isperamus de ti torrare a bìdere chitzi.
       signed_up: Ti donamus sa benebènnida! Ti ses registradu cun revèntida.
       signed_up_but_inactive: Ti ses registradu cun revèntida. Mancari de aici, si no ti faghimus intrare est ca su contu tuo no est ancora ativu.
       signed_up_but_locked: Ti ses registradu cun revèntida. Mancari de aici, si no ti faghimus intrare est ca su contu tuo est blocadu.
