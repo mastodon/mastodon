@@ -64,8 +64,13 @@ zh-HK:
         data: 自其他服務站匯出的 CSV 檔案
       invite_request:
         text: 這會協助我們審核您的應用程式
+      ip_block:
+        severities:
+          no_access: 封鎖所有資源存取
+          sign_up_requires_approval: 您將需要審批新注冊
       sessions:
         otp: '輸入你手機上生成的雙重認證碼，或者任意一個恢復代碼：'
+        webauthn: 如果您有使用USB手指的話麻煩把它插入並點擊（如適用）。
       tag:
         name: 您只能變更大小寫，例如，以使其更易讀。
       user:
@@ -90,6 +95,7 @@ zh-HK:
         types:
           disable: 停用
           none: 什麼也不做
+          sensitive: 敏感内容
           silence: 安靜
           suspend: 停權並不可逆的刪除帳戶資料
         warning_preset_id: 使用警告預設
@@ -134,6 +140,7 @@ zh-HK:
         setting_default_privacy: 文章預設為
         setting_default_sensitive: 預設我的內容為敏感內容
         setting_delete_modal: 刪除文章前，請要求我確認
+        setting_disable_swiping: 停用動作（滑動）
         setting_display_media: 媒體顯示
         setting_display_media_default: 預設
         setting_display_media_hide_all: 全部隱藏
@@ -168,7 +175,12 @@ zh-HK:
       invite_request:
         text: 加入的原因
       ip_block:
+        comment: 備註
         ip: IP 地址
+        severities:
+          no_access: 封鎖
+          sign_up_requires_approval: 限制注冊
+        severity: 規則
       notification_emails:
         digest: 定期電郵摘要
         favourite: 有人喜歡你的文章
@@ -189,4 +201,7 @@ zh-HK:
     required:
       mark: "*"
       text: 必須填寫
+    title:
+      sessions:
+        webauthn: 使用您的安全密鑰裝置來登入
     'yes': '是'
