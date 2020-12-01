@@ -42,6 +42,7 @@ sc:
       silenced: 'Is messàgios dae custos serbidores ant a èssere cuados in is lìnias de tempus e is arresonadas pùblicas, e no at a èssere generada peruna notìfica dae is interatziones de is utentes, francu chi nde sias sighende:'
       silenced_title: Serbidores a sa muda
       suspended: 'Perunu datu de custos serbidores at a èssere protzessadu, immagasinadu o cuncambiadu; est impossìbile duncas cale si siat interatzione o comunicatzione cun is utentes de custos serbidores:'
+      suspended_title: Serbidores suspèndidos
     unavailable_content_html: Mastodon ti permitit de bìdere su cuntenutu de utentes de cale si siat àteru serbidore de su fediversu. Custas sunt etzetziones chi fatas in custu serbidore particulare.
     user_count_after:
       one: utente
@@ -76,6 +77,8 @@ sc:
     posts_with_replies: Tuts e rispostas
     reserved_username: Custu nòmine de utente est giai impreadu
     roles:
+      admin: Admin
+      bot: Bot
       group: Grupu
     unavailable: Su profilu no est a disponimentu
     unfollow: Non sigas prus
@@ -89,7 +92,10 @@ sc:
       delete: Cantzella
       destroyed_msg: As cantzelladu una nota de moderatzione.
     accounts:
+      add_email_domain_block: Bloca domìniu de posta eletrònica
+      approve: Aprova
       approve_all: Aprova totus
+      approved_msg: Sa dimanda de registru de %{username} est istada aprovada
       are_you_sure: Seguru?
       avatar: Immàgine de profilu
       by_domain: Domìniu
@@ -103,20 +109,27 @@ sc:
       confirm: Cunfirma
       confirmed: Cunfirmadu
       confirming: Cunfirmende
+      delete: Cantzella datos
       deleted: Cantzelladu
       demote: Degrada
+      destroyed_msg: "Is datos de %{username} sunt a sa coa pro èssere cantzellados luego"
+      disable: Disativa
       disable_two_factor_authentication: Disativa 2FA
+      disabled: Disativadu
       display_name: Nòmine visìbile
       domain: Domìniu
       edit: Modìfica
       email: Posta eletrònica
       email_status: Istadu de s'indiritzu eletrònicu
+      enable: Ativa
       enabled: Ativadu
+      enabled_msg: Su contu de %{username} est istadu ativadu
       followers: Sighiduras
       follows: Sighende
       header: Intestatzione
       inbox_url: URL de intrada
       invited_by: Invitu dae
+      ip: IP
       joined: At aderidu
       location:
         all: Totus
@@ -126,12 +139,13 @@ sc:
       login_status: Istadu de atzessu
       media_attachments: Allegados multimediales
       memorialize: Cunverte in memoriam
+      memorialized: Memorializadu
       moderation:
         active: Ativu
         all: Totus
         pending: De imbiare
         silenced: A sa muda
-        suspended: Suspesu
+        suspended: Suspèndidu
         title: Moderatzione
       moderation_notes: Notas de moderatzione
       most_recent_activity: Atividade prus reghente
@@ -140,7 +154,7 @@ sc:
       no_limits_imposed: Sena lìmites
       not_subscribed: Sena sutiscritzione
       pending: De revisionare
-      perform_full_suspension: Suspesu
+      perform_full_suspension: Suspèndidu
       promote: Promove
       protocol: Protocollu
       public: Pùblicu
@@ -173,7 +187,7 @@ sc:
       silenced: Limitadas
       statuses: Tuts
       subscribe: Sutascrie·ti
-      suspended: Suspesu
+      suspended: Suspèndidu
       time_in_queue: Isetende in coa %{time}
       title: Contos
       unconfirmed_email: Posta eletrònica sena cunfirmare
@@ -244,7 +258,7 @@ sc:
         reset_password_user: "%{name} at restadu sa crae de s'utente %{target}"
         resolve_report: "%{name} at isòrvidu s'informe %{target}"
         silence_account: "%{name} at postu su contu de %{target} a sa muda"
-        suspend_account: "%{name} at suspesu su contu de %{target}"
+        suspend_account: "%{name} at suspèndidu su contu de %{target}"
         unassigned_report: "%{name} at bogadu s'assignatzione de s'informe %{target}"
         unsilence_account: "%{name} at postu su contu de %{target} a sa muda"
         unsuspend_account: "%{name} at bogadu sa suspensione de su contu de %{target}"
@@ -342,7 +356,7 @@ sc:
           desc_html: "<strong>A sa muda</strong> at a pònnere is messàgios de custos contos comente invisìbiles a sa gente chi no ddi siat sighende. <strong>Sa suspensione</strong> at a cantzellare totu su cuntenutu de su contu, mèdia e datos de profilu. Imprea <strong>Perunu</strong> si boles isceti refudare is archìvios multimediales."
           noop: Perunu
           silence: A sa muda
-          suspend: Suspesu
+          suspend: Suspèndidu
         title: Blocu de domìniu nou
       private_comment: Cummentu privadu
       private_comment_hint: Lassa unu cummentu a subra de custa limitatzione de domìniu pro impreu internu de s'iscuadra de moderatzione.
@@ -356,7 +370,7 @@ sc:
       rejecting_reports: refudende informes
       severity:
         silence: a sa muda
-        suspend: suspesu
+        suspend: suspèndidu
       show:
         affected_accounts:
           one: Unu contu de sa base de datos implicadu
@@ -1099,7 +1113,7 @@ sc:
         disable: Contu congeladu
         none: Atentzione
         silence: Contu limitadu
-        suspend: Contu suspesu
+        suspend: Contu suspèndidu
     welcome:
       edit_profile_action: Cunfigura su profilu
   webauthn_credentials:
