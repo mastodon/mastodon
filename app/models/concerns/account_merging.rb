@@ -39,5 +39,10 @@ module AccountMerging
         end
       end
     end
+
+    # Some follow relationships have moved, so the cache is stale
+    Rails.cache.delete_matched("followers_hash:#{id}:*")
+    Rails.cache.delete_matched("relationships:#{id}:*")
+    Rails.cache.delete_matched("relationships:*:#{id}")
   end
 end
