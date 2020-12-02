@@ -39,7 +39,7 @@
       %span
         = t('stream_entries.pinned')
 
-  = render (centered ? 'statuses/detailed_status' : 'statuses/simple_status'), status: status.proper, autoplay: autoplay
+  = render (centered ? 'statuses/detailed_status' : 'statuses/simple_status'), status: status.proper, autoplay: autoplay, hide_show_thread: is_predecessor || is_successor
 
 - if include_threads
   - if @since_descendant_thread_id
