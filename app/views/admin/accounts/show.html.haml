@@ -157,6 +157,12 @@
               %td= admin_account_link_to @account.user.invite.user.account
               %td
 
+          - if @account.user&.invite_request&.text&.present?
+            %tr
+              %th= t('admin.accounts.invite_request')
+              %td= @account.user&.invite_request&.text
+              %td
+
         - else
           %tr
             %th= t('admin.accounts.inbox_url')
