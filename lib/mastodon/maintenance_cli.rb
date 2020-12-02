@@ -55,8 +55,8 @@ module Mastodon
       belongs_to :account, inverse_of: :account_stat
     end
 
+    # Dummy class, to make migration possible across version changes
     class Account < ApplicationRecord
-      # Dummy class, to make migration possible across version changes
       has_one :user, inverse_of: :account
       has_one :account_stat, inverse_of: :account
 
@@ -68,6 +68,49 @@ module Mastodon
 
       def acct
         local? ? username : "#{username}@#{domain}"
+      end
+
+      # This is a duplicate of the AccountMerging concern because we need it to
+      # be independent from code version.
+      def merge_with!(other_account)
+        # Since it's the same remote resource, the remote resource likely
+        # already believes we are following/blocking, so it's safe to
+        # re-attribute the relationships too. However, during the presence
+        # of the index bug users could have *also* followed the reference
+        # account already, therefore mass update will not work and we need
+        # to check for (and skip past) uniqueness errors
+
+        owned_classes = [
+          Status, StatusPin, MediaAttachment, Poll, Report, Tombstone, Favourite,
+          Follow, FollowRequest, Block, Mute, AccountIdentityProof,
+          AccountModerationNote, AccountPin, AccountStat, ListAccount,
+          PollVote, Mention
+        ]
+        owned_classes << AccountDeletionRequest if ActiveRecord::Base.connection.table_exists?(:account_deletion_requests)
+        owned_classes << AccountNote if ActiveRecord::Base.connection.table_exists?(:account_notes)
+
+        owned_classes.each do |klass|
+          klass.where(account_id: other_account.id).find_each do |record|
+            begin
+              record.update_attribute(:account_id, id)
+            rescue ActiveRecord::RecordNotUnique
+              next
+            end
+          end
+        end
+
+        target_classes = [Follow, FollowRequest, Block, Mute, AccountModerationNote, AccountPin]
+        target_classes << AccountNote if ActiveRecord::Base.connection.table_exists?(:account_notes)
+
+        target_classes.each do |klass|
+          klass.where(target_account_id: other_account.id).find_each do |record|
+            begin
+              record.update_attribute(:target_account_id, id)
+            rescue ActiveRecord::RecordNotUnique
+              next
+            end
+          end
+        end
       end
     end
 
