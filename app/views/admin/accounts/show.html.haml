@@ -271,7 +271,10 @@
   - if @account.user&.invite_request&.text&.present?
     %div.speech-bubble
       %div.speech-bubble__bubble
-        = @account.user&.invite_request&.text
+        = simple_format(@account.user&.invite_request&.text)
       %div.speech-bubble__owner
         = admin_account_link_to @account
         = t('admin.accounts.invite_request_text')
+        •
+        %time
+          = t('admin.accounts.invite_request_time_ago', time: time_ago_in_words(account.user&.created_at))
