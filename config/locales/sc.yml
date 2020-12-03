@@ -755,8 +755,16 @@ sc:
     distance_in_words:
       about_x_hours: "%{count} o"
       about_x_months: "%{count} me"
+      about_x_years: "%{count} an"
+      almost_x_years: "%{count} an"
       half_a_minute: Immoe etotu
+      less_than_x_minutes: "%{count} m"
       less_than_x_seconds: Immoe etotu
+      over_x_years: "%{count} an"
+      x_days: "%{count} d"
+      x_minutes: "%{count} m"
+      x_months: "%{count} me"
+      x_seconds: "%{count} s"
   deletes:
     challenge_not_passed: S'informatzione insertada no est curreta
     confirm_password: Inserta·nche sa crae atuale pro verificare s'identidade
@@ -808,6 +816,7 @@ sc:
       size: Mannària
     blocks: Ses blochende
     bookmarks: Sinnalibros
+    csv: CSV
     domain_blocks: Blocos de domìnios
     lists: Listas
     mutes: Ses ponende a sa muda
@@ -820,6 +829,7 @@ sc:
   filters:
     contexts:
       account: Profilos
+      home: Pàgina printzipale e listas
       notifications: Notìficas
       public: Lìnias de tempos pùblicas
       thread: Arresonadas
@@ -862,10 +872,14 @@ sc:
         invalid_token: Is còdighes de autorizatzione de Keybase sunt hash de firmas e depent tènnere 66 caràteres esadetzimales
         verification_failed: Keybase non reconnoschet custu còdighe de autorizatzione che a firma de s'utente de Keybase %{kb_username}. Torra·bi a proare dae Keybase.
       wrong_user: Impossìbile creare una proa pro %{proving} cando as fatu s'atzessu che a %{current}. Intra che a %{proving} e torra·bi a proare.
+    explanation_html: Inoghe podes collegare critograficamente is àteras identidades tuas dae àteras prataformas, che a Keybase. Custu permitit a àteras persones de t'imbiare messàgios tzifrados in cussas prataformas e de tènnere sa seguresa chi sos cuntenutos chi lis mandas benit dae tene.
+    i_am_html: So %{username} in %{service}.
     identity: Identidade
     inactive: Inativu
     publicize_checkbox: 'E imbiat custu tut:'
     publicize_toot: 'Verificadu! So %{username} in %{service}: %{url}'
+    remove: Boga sa proa dae su contu
+    removed: Proa bogada dae su contu
     status: Istadu de verìfica
     view_proof: Bìdere sa proa
   imports:
@@ -1049,11 +1063,30 @@ sc:
     browser: Navigadore
     browsers:
       generic: Navigadore disconnotu
+      nokia: Navigadore Nokia S40 Ovi
+      opera: Opera
+      otter: Otter
+      phantom_js: PhantomJS
+      qq: QQ Browser
+      safari: Safari
+      uc_browser: UCBrowser
+      weibo: Weibo
     current_session: Sessione atuale
     description: "%{browser} de %{platform}"
     explanation: Custos sunt is navigadores web de is chi ses intradu in su contu tuo de Mastodon.
+    ip: IP
     platforms:
+      adobe_air: Adobe Air
+      android: Android
+      blackberry: Blackberry
+      chrome_os: ChromeOS
+      firefox_os: Firefox OS
+      ios: iOS
+      linux: Linux
+      mac: macOS
       other: prataforma disconnota
+      windows: Windows
+      windows_mobile: Windows Mobile
       windows_phone: Windows Phone
     revoke: Rèvoca
     revoke_success: Sessione revocada
@@ -1079,6 +1112,7 @@ sc:
     profile: Profilu
     relationships: Persones chi sighis e chi ti sighint
     two_factor_authentication: Autenticatzione de duos fatores
+    webauthn_authentication: Craes de seguresa
   spam_check:
     spam_detected: Custu est un'informe automàticu. Àliga rilevada.
   statuses:
@@ -1116,6 +1150,7 @@ sc:
     show_more: Ammustra·nde prus
     show_thread: Ammustra su tema
     sign_in_to_participate: Cumintzat sa sessione pro partetzipare in s'arresonada
+    title: '%{name}: "%{quote}"'
     visibilities:
       private: Isceti pro chie ti sighit
       private_long: Ammustra isceti a chie ti sighit
@@ -1135,8 +1170,14 @@ sc:
     contrast: Mastodon (cuntrastu artu)
     default: Mastodon (iscuru)
     mastodon-light: Mastodon (craru)
+  time:
+    formats:
+      default: "%d %b %Y, %H:%M"
+      month: "%b %Y"
   two_factor_authentication:
+    add: Agiunghe
     disable: Disativa 2FA
+    disabled_success: Autenticatzione de duos fatores disativada
     edit: Modìfica
     enabled: Autenticatzione de duos fatores ativada
     enabled_success: Autenticatzione de duos fatores ativada
