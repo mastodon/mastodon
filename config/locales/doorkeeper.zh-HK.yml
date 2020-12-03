@@ -79,16 +79,16 @@ zh-HK:
       messages:
         access_denied: 資源擁有者或授權伺服器不接受請求。
         credential_flow_not_configured: 資源擁有者密碼認證程序失敗，原因是 Doorkeeper.configure.resource_owner_from_credentials 沒有設定。
-        invalid_client: 用戶程式認證失敗，原因是用戶程式未有登記、沒有指定用戶程式、或者使用了不支援的認證方法。
+        invalid_client: 客戶端驗證失敗。可能是因為您使用了未知的客戶端程式、過程中客戶端沒有進行驗證、或使用了不支援的認證方法。
         invalid_grant: 您所提供的申請無效、過期、已被取消、和授權請求的重新導向 URI 不符、或者因為使用了其他客戶端程式的 URI 而無法識別。
-        invalid_redirect_uri: 不正確的轉接網址。
-        invalid_request: 請求缺少了必要的參數、包含了不支援的參數、或者其他輸入錯誤。
-        invalid_resource_owner: 資源擁有者的登入資訊錯誤、或者無法找到該資源擁有者
-        invalid_scope: 請求的權限範圍 (scope) 不正確、未有定義、或者輸入錯誤。
+        invalid_redirect_uri: 包含的重新導向 Uri 無效。
+        invalid_request: 請求缺少必要的參數、有不支援的參數、或其他格式錯誤。
+        invalid_resource_owner: 資源擁有者的登入資訊無效、或者無法找到該資源擁有者
+        invalid_scope: 您所請求的權限範圍 (scope) 無效、未知、或格式錯誤。
         invalid_token:
-          expired: access token 已經過期
-          revoked: access token 已被取消
-          unknown: access token 不正確
+          expired: 存取憑證已過期
+          revoked: 存取憑證已被撤銷
+          unknown: 存取憑證無效
         resource_owner_authenticator_not_configured: 無法找到資源擁有者，原因是 Doorkeeper.configure.resource_owner_authenticator 沒有設定。
         server_error: 認證伺服器遇上未知狀況，令請求無法通過。
         temporarily_unavailable: 認證伺服器由於臨時負荷過重或者維護，目前未能處理請求。
