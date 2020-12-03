@@ -64,6 +64,10 @@ nl:
         data: CSV-bestand dat op een andere Mastodonserver werd geëxporteerd
       invite_request:
         text: Dit helpt ons om jouw aanvraag te beoordelen
+      ip_block:
+        comment: Optioneel. Vergeet niet te onthouden waarom je deze regel hebt toegevoegd.
+        severities:
+          sign_up_requires_approval: Nieuwe registraties vereisen jouw goedkeuring
       sessions:
         otp: 'Voer de tweestaps-aanmeldcode vanaf jouw mobiele telefoon in of gebruik een van jouw herstelcodes:'
       tag:
@@ -174,6 +178,8 @@ nl:
         ip: IP
         severities:
           no_access: Toegang blokkeren
+          sign_up_requires_approval: Registraties beperken
+        severity: Regel
       notification_emails:
         digest: Periodiek e-mails met een samenvatting versturen
         favourite: Wanneer iemand jouw toot aan hun favorieten heeft toegevoegd
