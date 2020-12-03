@@ -141,6 +141,7 @@ sc:
       media_attachments: Allegados multimediales
       memorialize: Cunverte in memoriam
       memorialized: Memorializadu
+      memorialized_msg: As trasformadu %{username} in unu contu de ammentu
       moderation:
         active: Ativu
         all: Totus
@@ -161,10 +162,14 @@ sc:
       public: Pùblicu
       push_subscription_expires: Sa sutiscritzione PuSH iscadit
       redownload: Atualiza su profilu
+      redownloaded_msg: Su profilu de %{username} est istadu agiornadu dae s'orìgine
       reject: Refuda
       reject_all: Refuda totu
+      rejected_msg: Sa dimanda de registru de %{username} est istada refudada
       remove_avatar: Boga immàgine de profilu
       remove_header: Boga s'intestatzione
+      removed_avatar_msg: S'immàgine de d'àvatar de %{username} est istada bogada
+      removed_header_msg: S'immàgine de intestatzione de %{username} est istada bogada
       resend_confirmation:
         already_confirmed: Custa persone est giai cunfirmada
         send: Torra a imbiare messàgiu eletrònicu de cunfirmatzione
@@ -181,22 +186,32 @@ sc:
       search: Chirca
       search_same_email_domain: Àteras persones cun su pròpiu domìniu de posta
       search_same_ip: Àteras persones cun sa pròpiu IP
+      sensitive: Sensìbile
+      sensitized: marcadu comente a sensìbile
       shared_inbox_url: URL de intrada cumpartzida
       show:
         created_reports: Informes creados
         targeted_reports: Informes de àtere
+      silence: Lìmita
       silenced: Limitadas
       statuses: Tuts
       subscribe: Sutascrie·ti
       suspended: Suspèndidu
+      suspension_irreversible: Is datos de custu contu sunt istados cantzellados in manera irreversìbile. Podes bogare sa suspensione a su contu pro chi si potzat impreare, ma no at a recuperare datu perunu de is chi teniat in antis.
+      suspension_reversible_hint_html: Su contu est istadu suspèndidu, e is datos ant a èssere cantzelladu de su totu su %{date}. Finas a tando, su contu si podet ripristinare sena efetu malu perunu. Si boles cantzellare totu is datos de su contu immediatamente ddu podes fàghere inoghe in bassu.
       time_in_queue: Isetende in coa %{time}
       title: Contos
       unconfirmed_email: Posta eletrònica sena cunfirmare
+      undo_sensitized: Boga sa marcadura comente "sensìbile"
       undo_silenced: Non pòngias a sa muda
       undo_suspension: Iscontza sa suspensione
+      unsilenced_msg: As bogadu is lìmites a su contu de %{username}
       unsubscribe: Annulla sa sutiscritzione
+      unsuspended_msg: As bogadu sa suspensione a su contu de %{username}
       username: Nòmine utente
+      view_domain: Càstia unu resumu pro su domìniu
       warn: Avisu
+      web: Web
     action_logs:
       action_types:
         assigned_to_self_report: Assigna s'informe
