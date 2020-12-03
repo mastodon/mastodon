@@ -223,12 +223,14 @@ sc:
         create_domain_allow: Crea unu domìniu permìtidu
         create_domain_block: Crea unu blocu de domìniu
         create_email_domain_block: Crea unu blocu de domìniu de indiritzu de posta
+        create_ip_block: Crea una règula IP
         demote_user: Degrada s'utente
         destroy_announcement: Cantzella s'annùntziu
         destroy_custom_emoji: Cantzella s'emoji personalizadu
         destroy_domain_allow: Cantzella su domìniu permìtidu
         destroy_domain_block: Cantzella su blocu de domìniu
         destroy_email_domain_block: Cantzella su blocu de domìniu de s'indiritzu de posta
+        destroy_ip_block: Cantzella sa règula IP
         destroy_status: Cantzella s'istadu
         disable_2fa_user: Disativa 2FA
         disable_custom_emoji: Disativa s'emoji personalizadu
@@ -241,9 +243,11 @@ sc:
         reopen_report: Torra a abèrrere s'informe
         reset_password_user: Reseta sa crae
         resolve_report: Isorve s'informe
+        sensitive_account: Marca sos cuntenutos multimediales in su contu tuo comente sensìbile
         silence_account: Pone custu contu a sa muda
         suspend_account: Suspende custu contu
         unassigned_report: Boga s'assignatzione de custu informe
+        unsensitive_account: Boga sa marcadura "sensìbiles" a sos cuntenutos multimediales in su contu tuo
         unsilence_account: Boga custu contu de is contos a sa muda
         unsuspend_account: Boga custu contu de is contos suspèndidos
         update_announcement: Atualiza s'annùntziu
@@ -314,6 +318,7 @@ sc:
       disable: Disativa
       disabled: Disativu
       disabled_msg: As disativadu s'emoji
+      emoji: Emoji
       enable: Ativa
       enabled: Ativadu
       enabled_msg: As ativadu s'emoji
@@ -322,6 +327,7 @@ sc:
       listed: Listadu
       new:
         title: Agiunghe emoji personalizadu nou
+      not_permitted: Non tenes su permissu de fàghere custa atzione
       overwrite: Subraiscrie
       shortcode: Incurtzadura
       shortcode_hint: Mìnimu 2 caràteres, isceti caràteres alfanumèricos e tratigheddos bàscios
@@ -432,14 +438,20 @@ sc:
         title: Filtru
       title: Invitos
     ip_blocks:
+      add_new: Crea una règula
+      created_msg: As agiuntu una règula IP noa
       delete: Cantzella
       expires_in:
-        '1209600': 2 weeks
-        '15778476': 6 months
-        '2629746': 1 month
-        '31556952': 1 year
+        '1209600': 2 chidas
+        '15778476': 6 meses
+        '2629746': 1 mese
+        '31556952': 1 annu
         '86400': 1 die
-        '94670856': 3 years
+        '94670856': 3 annos
+      new:
+        title: Crea una règula IP noa
+      no_ip_block_selected: Peruna règula IP est istada mudada dae chi non nd'as seletzionadu
+      title: Règulas IP
     pending_accounts:
       title: Contos in ispera (%{count})
     relationships:
@@ -659,6 +671,7 @@ sc:
     toot_layout: Dispositzione de is tuts
   application_mailer:
     notification_preferences: Muda is preferèntzias de posta
+    salutation: "%{name},"
     settings: 'Muda is preferèntzias de posta: %{link}'
     view: 'Visualizatzione:'
     view_profile: Visualiza profilu
@@ -683,13 +696,18 @@ sc:
       prefix_sign_up: Registra·ti oe a Mastodon!
       suffix: Cun unu contu as a pòdere sighire gente, publicare e cuncambiare messàgios cun persones de cale si siat serbidore de Mastodon e àteru!
     didnt_get_confirmation: No as retzidu su messàgiu de cunfirmatzione?
+    dont_have_your_security_key: Non tenes sa crae de seguresa tua?
     forgot_password: Ti ses iscarèssidu de sa crae?
     invalid_reset_password_token: Su còdighe de autorizatzione pro resetare sa crae no est vàlidu o est iscadidu. Dimanda·nde un'àteru.
+    link_to_otp: Inserta unu còdighe a duas fases dae su telèfono tuo o unu còdighe de recùperu
     login: Intra
     logout: Essi
     migrate_account: Moe a unu contu diferente
     migrate_account_html: Si boles torrare a indiritzare custu contu a un'àteru, ddu as a pòdere <a href="%{path}">fàghere inoghe</a>.
     or_log_in_with: O intra cun
+    providers:
+      cas: CAS
+      saml: SAML
     register: Registru
     registration_closed: "%{instance} no atzetat àteras persones"
     resend_confirmation: Torra a imbiare is istrutziones de cunfirmatzione
@@ -707,6 +725,7 @@ sc:
       pending: Sa dimanda tua est in protzessu de revisione dae su personale nostru. Podet serbire unu pagu de tempus. As a retzire unu messàgiu eletrònicu si sa dimanda est aprovada.
       redirecting_to: Su contu tuo est inativu ca in die de oe est torrende a indiritzare a %{acct}.
     trouble_logging_in: Tenes problemas de atzessu?
+    use_security_key: Imprea una crae de seguresa
   authorize_follow:
     already_following: Ses giai sighende custu contu
     already_requested: As giai imbiadu una dimanda de sighidura a custa persone
@@ -724,8 +743,19 @@ sc:
     hint_html: "<strong>Cussìgiu:</strong> No t'amus a torrare a dimandare sa crae in s'ora imbeniente."
     invalid_password: Sa crae no est vàlida
     prompt: Cunfirma sa crae pro sighire
+  crypto:
+    errors:
+      invalid_key: no est una crae Ed25519 o Curve25519 vàlida
+      invalid_signature: no est una firma Ed25519 vàlida
+  date:
+    formats:
+      default: "%d %b %Y"
+      with_month_name: "%d %B %Y"
   datetime:
     distance_in_words:
+      about_x_hours: "%{count} o"
+      about_x_months: "%{count} me"
+      half_a_minute: Immoe etotu
       less_than_x_seconds: Immoe etotu
   deletes:
     challenge_not_passed: S'informatzione insertada no est curreta
@@ -1024,6 +1054,7 @@ sc:
     explanation: Custos sunt is navigadores web de is chi ses intradu in su contu tuo de Mastodon.
     platforms:
       other: prataforma disconnota
+      windows_phone: Windows Phone
     revoke: Rèvoca
     revoke_success: Sessione revocada
     title: Sessiones
