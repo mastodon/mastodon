@@ -157,12 +157,6 @@
               %td= admin_account_link_to @account.user.invite.user.account
               %td
 
-          - if @account.user&.invite_request&.text&.present?
-            %tr
-              %th= t('admin.accounts.invite_request')
-              %td= @account.user&.invite_request&.text
-              %td
-
         - else
           %tr
             %th= t('admin.accounts.inbox_url')
@@ -248,3 +242,16 @@
 
     .actions
       = f.button :button, t('admin.account_moderation_notes.create'), type: :submit
+
+  %hr.spacer/
+
+  - if @account.user&.invite_request&.text&.present?
+    %div.speech-bubble
+      %div.speech-bubble__bubble
+        = simple_format(h(@account.user&.invite_request&.text))
+      %div.speech-bubble__owner
+        = admin_account_link_to @account
+        = t('admin.accounts.invite_request_text')
+        •
+        %time
+          = t('admin.accounts.invite_request_time_ago', time: time_ago_in_words(account.user&.created_at))
