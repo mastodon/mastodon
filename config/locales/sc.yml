@@ -1148,6 +1148,8 @@ sc:
         other: "%{count} votos"
       vote: Vota
     show_more: Ammustra·nde prus
+    show_newer: Ammustra is prus noos
+    show_older: Ammustra is prus betzos
     show_thread: Ammustra su tema
     sign_in_to_participate: Cumintzat sa sessione pro partetzipare in s'arresonada
     title: '%{name}: "%{quote}"'
@@ -1182,8 +1184,13 @@ sc:
     enabled: Autenticatzione de duos fatores ativada
     enabled_success: Autenticatzione de duos fatores ativada
     generate_recovery_codes: Gènera còdighes de recùperu
+    lost_recovery_codes: Is còdighes de recùperu ti permitint de recuperare s'atzessu a su contu tuo si as a pèrdere su telèfonu tuo. Si perdes is còdighes de recùperu tuos, ddos podes torrare a ingendrare inoghe. Is còdighes betzos tuos s'ant a invalidare.
+    methods: Mètodos in duos fatores
+    otp: Aplicatzione de autenticatzione
     recovery_codes: Còdighes de recùperu de còpia de seguridade
     recovery_codes_regenerated: Còdighes de recùperu torrados a generare
+    recovery_instructions_html: Si una die as a pèrdere s'atzessu a su telèfonu tuo, as a pòdere impreare unu de is còdighes de recùperu inoghe in suta pro recuperare s'atzessu a su contu tuo. <strong>Cunserva is còdighes in manera segura</strong>. A esèmpiu, ddos dias pòdere imprentare e archiviare in paris a àteros documentos de importu.
+    webauthn: Craes de seguresa
   user_mailer:
     backup_ready:
       subject: S'archìviu tuo est prontu pro èssere iscarrigadu
@@ -1204,5 +1211,20 @@ sc:
         suspend: Contu suspèndidu
     welcome:
       edit_profile_action: Cunfigura su profilu
+      explanation: Inoghe b'ant una paja de impòsitos pro cumintzare
+      final_action: Cumintza a publicare
+      final_step: 'Cumintza a publicare! Fintzas sena sighidores is àteros podent bìdere is messàgios pùblicos tuos, a esèmpiu in sa lìnia de tempus locale e in is etichetas ("hashtags"). Ti dias pòdere bòlere introduire a is àteros cun s''eticheta #introductions.'
+      tips: Impòsitos
+      title: Bene bènnidu a bordu, %{name}!
+  users:
+    blocked_email_provider: Custu frunidore de posta eletrònica no est permìtidu
+    follow_limit_reached: Non podes sighire prus de %{limit} persones
+    generic_access_help_html: Tenes problemas a intrare in su contu tuo? Podes cuntatare a %{email} pro retzire agiudu
+    invalid_email: Custu indiritzu de posta eletrònica no est vàlidu
+    invalid_email_mx: Custu indiritzu de posta eletrònica paret chi no esistat
+    invalid_otp_token: Còdighe a duas fases non vàlidu
+    invalid_sign_in_token: Còdighe de seguresa non vàlidu
+    otp_lost_help_html: Si as pèrdidu s'atzessu a ambos, podes cuntatare a %{email}
+    seamless_external_login: Ses intradu pro mèdiu de unu servìtziu esternu, e pro custa resone is impostatziones de sa crae de intrada e de posta eletrònica non sunt a disponimentu.
   webauthn_credentials:
     delete: Cantzella
