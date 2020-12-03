@@ -1364,9 +1364,11 @@ nl:
       tips: Tips
       title: Welkom aan boord %{name}!
   users:
+    blocked_email_provider: Deze e-mailprovider is niet toegestaan
     follow_limit_reached: Je kunt niet meer dan %{limit} accounts volgen
     generic_access_help_html: Problemen met toegang tot je account? Neem dan contact op met %{email} voor assistentie
     invalid_email: E-mailadres is ongeldig
+    invalid_email_mx: Het e-mailadres lijkt niet te bestaan
     invalid_otp_token: Ongeldige tweestaps-aanmeldcode
     invalid_sign_in_token: Ongeldige beveiligingscode
     otp_lost_help_html: Als je toegang tot beiden kwijt bent geraakt, neem dan contact op via %{email}
@@ -1376,3 +1378,15 @@ nl:
   verification:
     explanation_html: 'Je kunt <strong>jezelf verifiëren als de eigenaar van de links in de metadata van jouw profiel</strong>. Hiervoor moet op de gelinkte website een link terug naar jouw Mastodonprofiel staan. Deze link <strong>moet</strong> het <code>rel="me"</code>-attribuut bevatten. De omschrijving van de link maakt niet uit. Hier is een voorbeeld:'
     verification: Verificatie
+  webauthn_credentials:
+    add: Nieuwe beveiligingssleutel toevoegen
+    create:
+      success: Het toevoegen van je beveiligingssleutel is geslaagd.
+    delete: Verwijderen
+    delete_confirmation: Weet je zeker dat je deze beveiligingssleutel wilt verwijderen?
+    invalid_credential: Ongeldige beveiligingssleutel
+    nickname_hint: Voer de bijnaam in van jouw nieuwe beveiligingssleutel
+    not_enabled: Je hebt WebAuthn nog niet ingeschakeld
+    not_supported: Deze browser ondersteunt geen beveiligingssleutels
+    otp_required: Om beveiligingssleutels te kunnen gebruiken, moet je eerst tweestapsverificatie inschakelen.
+    registered_on: Geregistreerd op %{date}
