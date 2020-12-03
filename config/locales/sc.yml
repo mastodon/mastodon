@@ -105,7 +105,7 @@ sc:
         label: Muda s'indiritzu eletrònicu
         new_email: Indiritzu de eletrònicu nou
         submit: Muda s'indiritzu eletrònicu
-        title: Muda s'indiritzu eletrònicu de %{name}
+        title: Muda s'indiritzu eletrònicu de %{username}
       confirm: Cunfirma
       confirmed: Cunfirmadu
       confirming: Cunfirmende
@@ -469,7 +469,7 @@ sc:
         create_and_resolve: Isorve cun una nota
         create_and_unresolve: Torra a abèrrere cun una nota
         delete: Cantzella
-        placeholder: Descrie is atziones chi as pigadu o cale si siat àtera atualizatzione de importu…
+        placeholder: Descrie is atziones chi as pigadu o cale si siat àtera atualizatzione de importu...
       reopen: Torra a abèrrere s'informe
       report: 'Informe #%{id}'
       reported_account: Contu signaladu
@@ -523,7 +523,7 @@ sc:
         title: Ativa diretòriu de profilos
       registrations:
         closed_message:
-          desc_html: Ammustradu in sa prima pàgina cando is registratziones sunt serradas. Podes impreare etichetas HTML.
+          desc_html: Ammustradu in sa prima pàgina cando is registratziones sunt serradas. Podes impreare etichetas HTML
           title: Messàgiu de registru serradu
         deletion:
           desc_html: Permite a chie si siat de cantzellare su contu suo
@@ -546,13 +546,13 @@ sc:
       site_description:
         title: Descritzione de su serbidore
       site_description_extended:
-        desc_html: Unu logu adatu pro publicare su còdighe de cumportamentu, règulas, diretivas e àteras caraterìsticas ispetzìficas de su serbidore tuo. Podes impreare etichetas HTML.
+        desc_html: Unu logu adatu pro publicare su còdighe de cumportamentu, règulas, diretivas e àteras caraterìsticas ispetzìficas de su serbidore tuo. Podes impreare etichetas HTML
         title: Descritzione estèndida de su logu
       site_short_description:
         desc_html: Ammustradu in sa barra laterale e in is meta-etichetas. Descrie ite est Mastodon e pro ite custu serbidore est ispetziale in unu paràgrafu.
         title: Descritzione curtza de su serbidore
       site_terms:
-        desc_html: Podes iscriere sa tua normativa de riservadesa pròpia, cunditziones de servìtziu e àteras normas legales. Podes impreare etichetas HTML.
+        desc_html: Podes iscriere sa tua normativa de riservadesa pròpia, cunditziones de servìtziu e àteras normas legales. Podes impreare etichetas HTML
         title: Termes de su servìtziu personalizados
       site_title: Nòmine de su serbidore
       spam_check_enabled:
@@ -573,7 +573,7 @@ sc:
         title: Etichetas de tendèntzia
     site_uploads:
       delete: Cantzella s'archìviu carrigadu
-      destroyed_msg: Càrriga de su logu cantzellada.
+      destroyed_msg: Càrriga de su situ cantzellada.
     statuses:
       back_to_account: Torra a sa pàgina de su contu
       batch:
@@ -719,10 +719,10 @@ sc:
     success_msg: Contu cantzelladu
     warning:
       before: 'In antis de sighire, leghe custu cun atentzione:'
-      caches: Su cuntenutu chi siat istadu sarvadu in sa memòria temporànea de àteros serbidores podet sighire a esìstere.
-      data_removal: Is publicatziones tuas e àteros datos ant a èssere cantzellados in manera permanente.
+      caches: Su cuntenutu chi siat istadu sarvadu in sa memòria temporànea de àteros serbidores podet sighire a esìstere
+      data_removal: Is publicatziones tuas e àteros datos ant a èssere cantzellados in manera permanente
       email_change_html: Podes <a href="%{path}">mudare s'indiritzu tuo de posta eletrònica</a> sena cantzellare su contu
-      email_contact_html: Si no est ancora arribada, podes imbiare unu messàgiu a <a href="mailto:%{email}">%{email}</a> e dimandare agiudu.
+      email_contact_html: Si no est ancora arribada, podes imbiare unu messàgiu a <a href="mailto:%{email}">%{email}</a> e dimandare agiudu
       email_reconfirmation_html: Si no ses retzende su messàgiu de cunfirmatzione, ddu podes <a href="%{path}">torrare a dimandare</a>
       irreversible: No as a pòdere ripristinare o torrare a ativare su contu tuo
       more_details_html: Pro àteros detàllios, bide sa <a href="%{terms_path}">normativa de riservadesa</a>.
@@ -750,8 +750,8 @@ sc:
     '503': Faddina in sa trasmissione de sa pàgina pro more de una faddina temporànea de su serbidore.
     noscript_html: Pro impreare s'aplicatzione web de Mastodon, ativa JavaScript. In alternativa, proa una de is <a href="%{apps_path}">aplicatziones nativas</a> pro Mastodon in sa prataforma tua.
   existing_username_validator:
-    not_found: Impossìbile agatare utentes locales cun cussu nòmine de utente
-    not_found_multiple: Impossìbile agatare %{usernames}
+    not_found: impossìbile agatare utentes locales cun cussu nòmine
+    not_found_multiple: impossìbile agatare %{usernames}
   exports:
     archive_takeout:
       date: Data
@@ -866,7 +866,7 @@ sc:
   media_attachments:
     validations:
       images_and_video: Non si podet allegare unu vìdeu in una publicatzione chi cuntenet giai immàgines
-      not_ready: Impossìbile allegare archìvios chi no siant istados protzessados in manera totale. Torra·bi a proare intre unu momentu.
+      not_ready: Impossìbile allegare archìvios chi no siant istados protzessados in manera totale. Torra·bi a proare a pustis
       too_many: Impossìbile allegare prus de 4 archìvios
   migrations:
     acct: Mòidu a
@@ -907,7 +907,7 @@ sc:
       subject:
         one: "1 notìfica noa dae s'ùrtima visita tua \U0001F418"
         other: "%{count} notìficas noas dae s'ùrtima visita tua \U0001F418"
-      title: Durante s'ausèntzia tua…
+      title: Durante s'ausèntzia tua...
     favourite:
       body: '%{name} at marcadu comente a preferidu s''istadu tuo:'
       subject: "%{name} at marcadu comente a preferidu s'istadu tuo"
@@ -952,7 +952,7 @@ sc:
       invalid_choice: Su sèberu de votu chi as seberadu no esistet
       over_character_limit: non podet èssere superiore a %{max} caràteres cadaunu
       too_few_options: depet tènnere prus de un'elementu
-      too_many_options: non podet cuntènnere prus de %{*max} elementos
+      too_many_options: non podet cuntènnere prus de %{max} elementos
   preferences:
     other: Àteru
     posting_defaults: Valores predefinidos de publicatzione
@@ -1004,7 +1004,7 @@ sc:
     browsers:
       generic: Navigadore disconnotu
     current_session: Sessione atuale
-    description: "%{browser} de {*platform}"
+    description: "%{browser} de %{platform}"
     explanation: Custos sunt is navigadores web de is chi ses intradu in su contu tuo de Mastodon.
     platforms:
       other: prataforma disconnota
@@ -1101,7 +1101,7 @@ sc:
       subject: S'archìviu tuo est prontu pro èssere iscarrigadu
       title: Collida dae s'archìviu
     warning:
-      get_in_touch: Podes rispònnere a custa posta eletrònica pro cuntatare cun su personale de %{*instance}.
+      get_in_touch: Podes rispòndere a custu indiritzu de posta eletrònica pro cuntatare cun su personale de %{instance}.
       review_server_policies: Revisionat sas polìticas de su serbidore
       statuses: 'In manera cuncreta, pro:'
       subject:
