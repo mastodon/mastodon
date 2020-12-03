@@ -138,6 +138,7 @@ nl:
       media_attachments: Mediabijlagen
       memorialize: Naar een In memoriam veranderen
       memorialized: In memoriam
+      memorialized_msg: Het naar een In memoriam veranderen van het account van %{username} is geslaagd
       moderation:
         active: Actief
         all: Alles
@@ -225,7 +226,7 @@ nl:
         disable_user: Gebruiker uitschakelen
         enable_custom_emoji: Lokale emoji inschakelen
         enable_user: Gebruiker inschakelen
-        memorialize_account: Account in gedenkpagina veranderen
+        memorialize_account: Het account in een In memoriam veranderen
         promote_user: Gebruiker promoveren
         remove_avatar_user: Avatar verwijderen
         reopen_report: Rapportage heropenen
@@ -261,7 +262,7 @@ nl:
         disable_user: "Inloggen voor %{target} is door %{name} uitgeschakeld"
         enable_custom_emoji: "Emoji %{target} is door %{name} ingeschakeld"
         enable_user: "Inloggen voor %{target} is door %{name} ingeschakeld"
-        memorialize_account: "Account %{target} is door %{name} in een gedenkpagina veranderd"
+        memorialize_account: "Het account %{target} is door %{name} in een In memoriam veranderd"
         promote_user: "Gebruiker %{target} is door %{name} gepromoveerd"
         remove_avatar_user: "%{name} verwijderde de avatar van %{target}"
         reopen_report: "%{name} heeft rapportage %{target} heropend"
@@ -440,14 +441,20 @@ nl:
         title: Filter
       title: Uitnodigingen
     ip_blocks:
+      add_new: Regel aanmaken
+      created_msg: Het toevoegen van een nieuwe IP-regel is geslaagd
       delete: Verwijderen
       expires_in:
         '1209600': 2 weken
         '15778476': 6 maanden
         '2629746': 1 maand
         '31556952': 1 jaar
-        '86400': 1 day
-        '94670856': 3 years
+        '86400': 1 dag
+        '94670856': 3 jaar
+      new:
+        title: Nieuwe IP-regel aanmaken
+      no_ip_block_selected: Er zijn geen IP-regels veranderd, omdat er geen een was geselecteerd
+      title: IP-regels
     pending_accounts:
       title: Accounts in afwachting (%{count})
     relationships:
@@ -695,6 +702,7 @@ nl:
       prefix_sign_up: Registreer je vandaag nog op Mastodon!
       suffix: Met een account ben je in staat om mensen te volgen, berichten te plaatsen en uit te wisselen met mensen die zich op andere Mastodonservers bevinden en meer!
     didnt_get_confirmation: Geen bevestigingsinstructies ontvangen?
+    dont_have_your_security_key: Heb je jouw beveiligingssleutel niet bij de hand?
     forgot_password: Wachtwoord vergeten?
     invalid_reset_password_token: De code om jouw wachtwoord opnieuw in te stellen is verlopen. Vraag een nieuwe aan.
     login: Inloggen
