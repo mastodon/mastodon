@@ -3,7 +3,7 @@ zh-HK:
     attributes:
       doorkeeper/application:
         name: 應用程式名稱
-        redirect_uri: 轉接 URI
+        redirect_uri: 重新導向 URI
         scopes: 權限範圍
         website: 應用網站
     errors:
@@ -11,10 +11,10 @@ zh-HK:
         doorkeeper/application:
           attributes:
             redirect_uri:
-              fragment_present: 'URI 不可包含 "#fragment" 部份。'
-              invalid_uri: 必需有正確的 URI。
-              relative_uri: 必需為完整 URI。
-              secured_uri: 必需使用有 HTTPS/SSL 加密的 URI。
+              fragment_present: 不能包含 fragment。
+              invalid_uri: 必需是一個有效的 URI。
+              relative_uri: 必須為絕對 URI。
+              secured_uri: 必須為 HTTPS/SSL 加密的 URI。
   doorkeeper:
     applications:
       buttons:
@@ -31,7 +31,7 @@ zh-HK:
         error: 噢！請檢查你表格的錯誤訊息
       help:
         native_redirect_uri: 使用 %{native_redirect_uri} 作局部測試
-        redirect_uri: 每行輸入一個 URI
+        redirect_uri: 一行一個 URI
         scopes: 請用半形空格分開權限範圍 (scope)。留空表示使用預設的權限範圍。
       index:
         application: 應用
@@ -80,7 +80,7 @@ zh-HK:
         access_denied: 資源擁有者或授權伺服器不接受請求。
         credential_flow_not_configured: 資源擁有者密碼認證程序失敗，原因是 Doorkeeper.configure.resource_owner_from_credentials 沒有設定。
         invalid_client: 用戶程式認證失敗，原因是用戶程式未有登記、沒有指定用戶程式、或者使用了不支援的認證方法。
-        invalid_grant: 授權申請不正確、過期、已被取消，或者無法對應授權請求內的轉接 URI，或者屬於別的用戶程式。
+        invalid_grant: 您所提供的申請無效、過期、已被取消、和授權請求的重新導向 URI 不符、或者因為使用了其他客戶端程式的 URI 而無法識別。
         invalid_redirect_uri: 不正確的轉接網址。
         invalid_request: 請求缺少了必要的參數、包含了不支援的參數、或者其他輸入錯誤。
         invalid_resource_owner: 資源擁有者的登入資訊錯誤、或者無法找到該資源擁有者
