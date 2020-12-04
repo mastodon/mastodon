@@ -212,6 +212,7 @@ sc:
       view_domain: Càstia unu resumu pro su domìniu
       warn: Avisu
       web: Web
+      whitelisted: Federatzione permìtida
     action_logs:
       action_types:
         assigned_to_self_report: Assigna s'informe
@@ -260,11 +261,17 @@ sc:
         create_account_warning: "%{name} at imbiadu un'avisu a %{target}"
         create_announcement: "%{name} at creadu un'annùntziu nou %{target}"
         create_custom_emoji: "%{name} at carrigadu un'emoji nou%{target}"
+        create_domain_allow: "%{name} at permìtidu sa federatzione cun su domìniu %{target}"
         create_domain_block: "%{name} at blocadu su domìniu %{target}"
+        create_email_domain_block: "%{name} at blocadu su domìniu de posta eletrònica %{target}"
+        create_ip_block: "%{name} at creadu una règula pro s'IP %{target}"
         demote_user: "%{name} at degradadu s'utente %{target}"
         destroy_announcement: "%{name} at cantzelladu s'annùntziu %{target}"
         destroy_custom_emoji: "%{name} at cantzelladu s'emoji %{target}"
+        destroy_domain_allow: "%{name} no at permìtidu sa federatzione cun su domìniu %{target}"
         destroy_domain_block: "%{name} at isblocadu su domìniu %{target}"
+        destroy_email_domain_block: "%{name} at isblocadu su domìniu de posta eletrònica %{target}"
+        destroy_ip_block: "%{name} at cantzelladu sa règula pro s'IP %{target}"
         destroy_status: "%{name} at eliminadu s'istadu de %{target}"
         disable_2fa_user: "%{name} at disativadu su rechisitu de duos fatores pro s'utente %{target}"
         disable_custom_emoji: "%{name} at disativadu s'emoji %{target}"
@@ -277,9 +284,11 @@ sc:
         reopen_report: "%{name} at torradu a abèrrere s'informe %{target}"
         reset_password_user: "%{name} at restadu sa crae de s'utente %{target}"
         resolve_report: "%{name} at isòrvidu s'informe %{target}"
+        sensitive_account: "%{name} at marcadu su cuntenutu multimediale de %{target} comente sensìbile"
         silence_account: "%{name} at postu su contu de %{target} a sa muda"
         suspend_account: "%{name} at suspèndidu su contu de %{target}"
         unassigned_report: "%{name} at bogadu s'assignatzione de s'informe %{target}"
+        unsensitive_account: "%{name} at bogadu sa marcadura \"sensìbile\" a su cuntenutu multimediale de %{target}"
         unsilence_account: "%{name} at postu su contu de %{target} a sa muda"
         unsuspend_account: "%{name} at bogadu sa suspensione de su contu de %{target}"
         update_announcement: "%{name} at atualizadu s'annùntziu %{target}"
@@ -347,6 +356,7 @@ sc:
       feature_profile_directory: Diretòriu de profilos
       feature_registrations: Registradas
       feature_relay: Ripetidore de federatzione
+      feature_spam_check: Anti-àliga
       feature_timeline_preview: Pre-visualizatzione de sa lìnia de tempus
       features: Caraterìsticas
       hidden_service: Federatzione cun servìtzios cuados
@@ -364,6 +374,9 @@ sc:
       week_interactions: interatziones de custa chida
       week_users_active: persones ativas custa chida
       week_users_new: persones noas de custa chida
+      whitelist_mode: Modalidade de federatzione limitada
+    domain_allows:
+      add_new: Permite sa federatzione cun domìniu
     domain_blocks:
       add_new: Agiunghe blocu de domìniu nou
       created_msg: Protzessende su blocu de domìniu
@@ -406,11 +419,16 @@ sc:
       view: Bide su blocu de domìniu
     email_domain_blocks:
       add_new: Agiunghe noa
+      created_msg: Domìniu de posta eletrònica blocadu
       delete: Cantzella
+      destroyed_msg: Domìniu de posta eletrònica isblocadu
       domain: Domìniu
+      empty: Perunu domìniu de posta eletrònica blocadu.
       from_html: dae %{domain}
       new:
         create: Agiunghe unu domìniu
+        title: Bloca su domìniu de posta eletrònica nou
+      title: Domìnios de posta eletrònica blocados
     instances:
       by_domain: Domìniu
       delivery_available: Sa cunsigna est a disponimentu
@@ -666,6 +684,7 @@ sc:
     discovery: Iscoberta
     localization:
       body: Mastodon est bortadu in manera voluntària.
+      guide_link: https://crowdin.com/project/mastodon
       guide_link_text: Chie si siat podet contribuire.
     sensitive_content: Cuntenutu sensìbile
     toot_layout: Dispositzione de is tuts
@@ -700,6 +719,7 @@ sc:
     forgot_password: Ti ses iscarèssidu de sa crae?
     invalid_reset_password_token: Su còdighe de autorizatzione pro resetare sa crae no est vàlidu o est iscadidu. Dimanda·nde un'àteru.
     link_to_otp: Inserta unu còdighe a duas fases dae su telèfono tuo o unu còdighe de recùperu
+    link_to_webauth: Imprea su dispositivu tuo de crae de seguresa
     login: Intra
     logout: Essi
     migrate_account: Moe a unu contu diferente
@@ -935,6 +955,7 @@ sc:
     cancelled_msg: Indiritzamentu annulladu.
     errors:
       already_moved: est su pròpiu contu a su chi as giai tramudadu
+      missing_also_known_as: no est unu nomìngiu de custu countu
       move_to_self: non podet èssere su contu atuale
       not_found: no agatadu
       on_cooldown: Ses in perìodu de pàusa intre una tràmuda e s'àtera
@@ -946,6 +967,7 @@ sc:
     on_cooldown: As tramudadu su contu tuo de reghente. Custa funtzionalidade at a torrare a èssere a disponimentu de immoe a %{count} dies.
     past_migrations: Tràmudas pretzedentes
     proceed_with_move: Tràmuda sa gente chi ti sighit
+    redirected_msg: Su contu tuo immoe est torrende a indiritzare a %{acct}.
     redirecting_to: Su contu tuo est torrende a indiritzare a %{acct}.
     set_redirect: Cunfigura s'indiritzamentu
     warning:
@@ -994,14 +1016,20 @@ sc:
     email_events: Eventos pro notìficas cun posta eletrònica
     email_events_hint: 'Seletziona eventos pro is chi boles retzire notìficas:'
     other_settings: Àteras configuratziones de notìficas
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
   otp_authentication:
     code_hint: Inserta·nche su còdighe generadu dae s'aplicatzione di autenticatzione pro cunfirmare
     enable: Ativa
     setup: Cunfigura
   pagination:
+    newer: Prus reghente
     next: Sighi
     older: Prus betzu
     prev: A coa
+    truncate: "&hellip;"
   polls:
     errors:
       already_voted: As giai votadu in custu sondàgiu
@@ -1024,6 +1052,7 @@ sc:
   relationships:
     activity: Atividade de su contu
     dormant: Firmu
+    follow_selected_followers: Sighi is persones seletzionadas
     followers: Sighiduras
     following: Sighende
     invited: Invitos
@@ -1062,7 +1091,15 @@ sc:
     activity: Ùrtima atividade
     browser: Navigadore
     browsers:
+      alipay: Alipay
+      blackberry: Blackberry
+      chrome: Chrome
+      edge: Microsoft Edge
+      electron: Electron
+      firefox: Firefox
       generic: Navigadore disconnotu
+      ie: Internet Explorer
+      micro_messenger: MicroMessenger
       nokia: Navigadore Nokia S40 Ovi
       opera: Opera
       otter: Otter
@@ -1117,6 +1154,9 @@ sc:
     spam_detected: Custu est un'informe automàticu. Àliga rilevada.
   statuses:
     attached:
+      audio:
+        one: "%{count} àudio"
+        other: "%{count} àudios"
       description: 'Allegadu: %{attached}'
       image:
         one: "%{count} immàgine"
