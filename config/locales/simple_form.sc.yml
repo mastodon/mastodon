@@ -3,18 +3,58 @@ sc:
     hints:
       account_warning_preset:
         text: Podes impreare sa sintassi de is tuts, che a is URL, is etichetas e is mentovos
+      admin_account_action:
+        send_email_notification: S'utente at a retzire un'ispiegatzione de su chi siat sutzèdidu in su contu suo
       defaults:
         password: Imprea a su mancu 8 caràteres
+        setting_display_media_hide_all: Cua semper elementos multimediales
+        setting_display_media_show_all: Ammustra semper elementos multimediales
+        setting_hide_network: Sa gente chi sighis o chi ti sighit no at a èssere ammustrada in su profilu tuo
+        setting_show_application: S'aplicatzione chi impreas pro publicare toots at a èssere ammustrada in sa visualizatzione de detàlliu de is toots
+        username: Su nòmine de utente tuo at a èssere ùnicu in %{domain}
+      featured_tag:
+        name: 'Forsis boles impreare unu de custos:'
+      form_challenge:
+        current_password: Ses intrende in un'àrea segura
+      imports:
+        data: Archìviu CSV esportadu dae un'àteru serbidore de Mastodon
+      invite_request:
+        text: Custu si at a agiudare a revisionare sa dimanda tua
+      ip_block:
+        severities:
+          no_access: Bloca s'atzessu a totu is resursas
+          sign_up_requires_approval: As a dèpere aprovare is iscritziones noas
+        severity: Sèbera ite at a sutzèdere cun is rechestas de custa IP
+      sessions:
+        otp: 'Inserta su còdighe de atzessu in duos passos generadu dae s''aplicatzione mòbile tua o imprea unu de custos còdighes de recùperu:'
     labels:
       account:
         fields:
           name: Eticheta
+          value: Cuntenutu
       account_warning_preset:
+        text: Testu predefinidu
         title: Tìtulu
+      admin_account_action:
+        send_email_notification: Notìfica s'utente pro mèdiu de posta eletrònica
+        text: Avisu personalizadu
+        type: Atzione
+        types:
+          disable: Disativa
+          none: Imbia un'avisu
+          silence: A sa muda
+          suspend: Suspende
+        warning_preset_id: Imprea un'avisu predefinidu
       announcement:
+        all_day: Eventu de totu sa die
+        ends_at: Fine de s'eventu
+        scheduled_at: Programma sa publicatzione
+        starts_at: Cumintzu de s'eventu
         text: Annùntziu
       defaults:
+        autofollow: Invita a sighire su contu tuo
         avatar: Immàgine de profilu
+        bot: Custu contu est unu bot
         display_name: Nòmine visìbile
         header: Intestatzione
         note: Biografia
