@@ -17,6 +17,6 @@ class Api::V1::Accounts::FeaturedTagsController < Api::BaseController
   end
 
   def set_featured_tags
-    @featured_tags = @account.suspended? ? @account.featured_tags : []
+    @featured_tags = @account.suspended? ? [] : @account.featured_tags
   end
 end
