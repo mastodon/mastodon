@@ -986,6 +986,9 @@ sc:
       action: Ammustra totu is notìficas
       body: Custu est unu resumu de su chi ti est sutzèdidu dae sa visita ùrtima tua su %{since}
       mention: "%{name} t'at mentovadu in:"
+      new_followers_summary:
+        one: In prus, %{count} persone noa ti sighit dae cando fias assente. Incredìbile!
+        other: In prus, %{count} persones noas ti sighint dae cando fias assente. Incredìbile!
       subject:
         one: "1 notìfica noa dae s'ùrtima visita tua \U0001F418"
         other: "%{count} notìficas noas dae s'ùrtima visita tua \U0001F418"
@@ -1020,6 +1023,10 @@ sc:
     human:
       decimal_units:
         format: "%n%u"
+        units:
+          billion: Mrd
+          million: M
+          thousand: m
   otp_authentication:
     code_hint: Inserta·nche su còdighe generadu dae s'aplicatzione di autenticatzione pro cunfirmare
     enable: Ativa
@@ -1235,6 +1242,12 @@ sc:
     backup_ready:
       subject: S'archìviu tuo est prontu pro èssere iscarrigadu
       title: Collida dae s'archìviu
+    sign_in_token:
+      details: 'Custos sunt is detàllios de su tentativu:'
+      explanation: 'Amus rilevadu unu tentativu de identificatzione in su contu tuo dae un''indiritzu IP non reconnotu. Si fias tue, inserta su còdighe de seguresa in bàsciu in sa pàgina disafiu de identificatzione:'
+      further_actions: 'Si no fias tue, càmbia sa crae tua e ativa s''autenticatzione in duos passos in su contu tuo. Ddu podes fàghere inoghe:'
+      subject: Cunfirma su tentativu de identificatzione
+      title: Tentativu de identificatzione
     warning:
       get_in_touch: Podes rispòndere a custu indiritzu de posta eletrònica pro cuntatare cun su personale de %{instance}.
       review_server_policies: Revisionat sas polìticas de su serbidore
@@ -1247,6 +1260,7 @@ sc:
       title:
         disable: Contu congeladu
         none: Atentzione
+        sensitive: S'elementu multimediale tuo est istadu marcadu comente sensìbile
         silence: Contu limitadu
         suspend: Contu suspèndidu
     welcome:
@@ -1254,6 +1268,8 @@ sc:
       explanation: Inoghe b'ant una paja de impòsitos pro cumintzare
       final_action: Cumintza a publicare
       final_step: 'Cumintza a publicare! Fintzas sena sighidores is àteros podent bìdere is messàgios pùblicos tuos, a esèmpiu in sa lìnia de tempus locale e in is etichetas ("hashtags"). Ti dias pòdere bòlere introduire a is àteros cun s''eticheta #introductions.'
+      review_preferences_action: Muda is preferèntzias
+      subject: Ti donamus su benebènnidu a Mastodon
       tips: Impòsitos
       title: Bene bènnidu a bordu, %{name}!
   users:
@@ -1266,8 +1282,21 @@ sc:
     invalid_sign_in_token: Còdighe de seguresa non vàlidu
     otp_lost_help_html: Si as pèrdidu s'atzessu a ambos, podes cuntatare a %{email}
     seamless_external_login: Ses intradu pro mèdiu de unu servìtziu esternu, e pro custa resone is impostatziones de sa crae de intrada e de posta eletrònica non sunt a disponimentu.
+    signed_in_as: 'Sessione aberta comente:'
   verification:
     verification: Verìfica
   webauthn_credentials:
     add: Agiunghe una crae de seguresa noa
+    create:
+      success: Sa crae de seguresa tua est istada agiunta.
     delete: Cantzella
+    delete_confirmation: Seguru chi boles cantzellare custa crae de seguresa?
+    description_html: Si permites s'<strong>autenticatzione cun crae de seguresa</strong>, as a tènnere bisòngiu de impreare una de is craes de seguresa tuas pro ti identificare.
+    destroy:
+      success: Sa crae de seguresa tua est istada cantzellada.
+    invalid_credential: Crae de seguresa non vàlida
+    nickname_hint: Inserta su nomìngiu de sa crae de seguresa tua noa
+    not_enabled: No as ativadu ancora WebAuthn
+    not_supported: Custu navigadore no est cumpatìbile cun is craes de seguresa
+    otp_required: Pro impreare is craes de seguresa depes ativare prima s'autenticatzione in duos passos.
+    registered_on: 'Registratzione: %{date}'
