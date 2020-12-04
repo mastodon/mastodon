@@ -3,6 +3,14 @@ sc:
     attributes:
       doorkeeper/application:
         name: Nòmine de s'aplicatzione
+    errors:
+      models:
+        doorkeeper/application:
+          attributes:
+            redirect_uri:
+              invalid_uri: depet èssere un'URI vàlidu.
+              relative_uri: devet èssere un'URI assolutu.
+              secured_uri: depet èssere un'URI HTTPS/SSL.
   doorkeeper:
     applications:
       buttons:
@@ -13,9 +21,20 @@ sc:
         submit: Imbia
       confirmations:
         destroy: Seguru?
+      edit:
+        title: Modìfica s'aplicatzione
+      form:
+        error: Controlla si su formulàriu tuo tenet faddinas
+      help:
+        native_redirect_uri: Imprea %{native_redirect_uri} pro is tests locales
+        redirect_uri: Imprea una lìnia pro ogni URI
       index:
+        application: Aplicatzione
         delete: Cantzella
+        empty: No tenes peruna aplicatzione.
         name: Nòmine
+        new: Aplicatzione noa
+        scopes: Àmbitos
         show: Ammustra
       show:
         actions: Atziones
