@@ -36,13 +36,38 @@ sc:
         new: Aplicatzione noa
         scopes: Àmbitos
         show: Ammustra
+        title: Is aplicatziones tuas
+      new:
+        title: Aplicatzione noa
       show:
         actions: Atziones
+        application_id: ID de s'aplicatzione
+        scopes: Àmbitos
+        secret: Segretu de cliente
+        title: 'Aplicatzione: %{name}'
     authorizations:
       buttons:
         authorize: Autoriza
+        deny: Refuda
+      error:
+        title: Faddina
+      new:
+        able_to: At a pòdere
+        prompt: S'aplicatzione %{client_name} est preguntende atzessu a su contu tuo
+        title: Autorizatzione rechesta
+      show:
+        title: Còpia custu còdighe de autorizatzione e incolla·ddu a s'aplicatzione.
     authorized_applications:
       buttons:
         revoke: Rèvoca
       confirmations:
         revoke: Seguru?
+      index:
+        application: Aplicatzione
+        created_at: Autorizada
+        date_format: "%Y-%m-%d %H:%M:%S"
+        scopes: Àmbitos
+        title: Is aplicatziones autorizadas tuas
+    errors:
+      messages:
+        access_denied: Sa propiedade sa resursa o su serbidore de autorizatziones at refudadu sa rechesta.
