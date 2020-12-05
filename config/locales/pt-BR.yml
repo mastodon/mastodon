@@ -188,6 +188,8 @@ pt-BR:
       search: Pesquisar
       search_same_email_domain: Outros usuários com o mesmo domínio de e-mail
       search_same_ip: Outros usuários com o mesmo IP
+      sensitive: Sensíveis
+      sensitized: marcadas como sensíveis
       shared_inbox_url: Link da caixa de entrada compartilhada
       show:
         created_reports: Denúncias desta conta
@@ -202,6 +204,7 @@ pt-BR:
       time_in_queue: Esperando na fila por %{time}
       title: Contas
       unconfirmed_email: E-mail não confirmado
+      undo_sensitized: Desfazer sensível
       undo_silenced: Desfazer silêncio
       undo_suspension: Desbanir
       unsilenced_msg: Removidas com sucesso as limitações da conta de %{username}
@@ -243,9 +246,11 @@ pt-BR:
         reopen_report: Reabrir Relatório
         reset_password_user: Redefinir a senha
         resolve_report: Resolver Relatório
+        sensitive_account: Marcar a mídia na sua conta como sensível
         silence_account: Silenciar conta
         suspend_account: Suspender Conta
         unassigned_report: Remover relatório
+        unsensitive_account: Desmarcar a mídia na sua conta como sensível
         unsilence_account: Desfazer silenciar conta
         unsuspend_account: Remover suspensão de conta
         update_announcement: Editar anúncio
@@ -281,9 +286,11 @@ pt-BR:
         reopen_report: "%{name} reabriu a denúncia %{target}"
         reset_password_user: "%{name} redefiniu a senha do usuário %{target}"
         resolve_report: "%{name} resolveu a denúncia %{target}"
+        sensitive_account: "%{name} marcou a mídia de %{target} como sensível"
         silence_account: "%{name} silenciou a conta de %{target}"
         suspend_account: "%{name} baniu a conta de %{target}"
         unassigned_report: "%{name} largou a denúncia %{target}"
+        unsensitive_account: "%{name} desmarcou a mídia de %{target} como sensível"
         unsilence_account: "%{name} desativou o silêncio de %{target}"
         unsuspend_account: "%{name} removeu a suspensão da conta de %{target}"
         update_announcement: "%{name} atualizou o anúncio %{target}"
@@ -1067,6 +1074,7 @@ pt-BR:
   relationships:
     activity: Atividade da conta
     dormant: Inativo
+    follow_selected_followers: Seguir os seguidores selecionados
     followers: Seguidores
     following: Seguindo
     invited: Convidado
@@ -1202,6 +1210,8 @@ pt-BR:
         other: "%{count} votos"
       vote: Votar
     show_more: Mostrar mais
+    show_newer: Mostrar mais recentes
+    show_older: Mostrar mais antigos
     show_thread: Mostrar conversa
     sign_in_to_participate: Entre para participar dessa conversa
     title: '%{name}: "%{quote}"'
@@ -1338,6 +1348,7 @@ pt-BR:
     warning:
       explanation:
         disable: Enquanto sua conta está congelada, seus dados de conta permanecem intactos, mas você não pode realizar nenhuma ação até que esteja destrancada.
+        sensitive: Seus arquivos de mídia carregados e mídias vinculadas serão tratados como sensíveis.
         silence: Enquanto sua conta está silenciada, somente pessoas que já estão seguindo você poderão ver seus toots nessa instância, e você pode ser excluído de várias listas públicas. No entanto, outros ainda podem te seguir manualmente.
         suspend: Sua conta foi banida e todos os seus toots e mídias foram irreversivelmente excluídos desta instância e das instâncias dos seus seguidores.
       get_in_touch: Você pode responder a este e-mail para entrar em contato com a equipe de %{instance}.
@@ -1346,11 +1357,13 @@ pt-BR:
       subject:
         disable: Sua conta %{acct} foi bloqueada
         none: Aviso para %{acct}
+        sensitive: Sua conta %{acct} de postagem de mídia foi marcada como sensível
         silence: Sua conta %{acct} foi silenciada
         suspend: Sua conta %{acct} foi banida
       title:
         disable: Conta bloqueada
         none: Aviso
+        sensitive: Sua mídia foi marcada como sensível
         silence: Conta silenciada
         suspend: Conta banida
     welcome:

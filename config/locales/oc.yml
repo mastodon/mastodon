@@ -171,6 +171,8 @@ oc:
         user: Uitlizaire
       search: Cercar
       search_same_ip: Autres utilizaires amb la meteissa IP
+      sensitive: Sensible
+      sensitized: marcar coma sensible
       shared_inbox_url: URL de recepcion partejada
       show:
         created_reports: Senhalaments creats
@@ -183,6 +185,7 @@ oc:
       time_in_queue: En espèra a la fila %{time}
       title: Comptes
       unconfirmed_email: Adreça pas confirmada
+      undo_sensitized: Desmarcar coma sensible
       undo_silenced: Levar lo silenci
       undo_suspension: Levar la suspension
       unsubscribe: Se desabonar
@@ -198,6 +201,7 @@ oc:
         create_account_warning: Crear un avertiment
         create_announcement: Crear una anóncia
         create_custom_emoji: Crear un emoji personalizat
+        create_ip_block: Crear una règla IP
         demote_user: Retrogradar l’utilizaire
         destroy_announcement: Suprimir l’anóncia
         destroy_custom_emoji: Suprimir l’emoji personalizat
@@ -419,6 +423,8 @@ oc:
         title: Filtre
       title: Convits
     ip_blocks:
+      add_new: Crear una règla
+      delete: Suprimir
       expires_in:
         '1209600': 2 setmanas
         '15778476': 6 meses
@@ -426,6 +432,9 @@ oc:
         '31556952': 1 an
         '86400': 1 jorn
         '94670856': 3 ans
+      new:
+        title: Crear una règlas IP novèla
+      title: Règlas IP
     pending_accounts:
       title: Comptes en espèra (%{count})
     relationships:
@@ -700,7 +709,8 @@ oc:
     prompt: Confirmatz lo senhal per dire de contunhar
   date:
     formats:
-      default: "%d %B de %Y"
+      default: "%e %B de %Y"
+      with_month_name: "%e %B de %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count} h"
@@ -1207,8 +1217,8 @@ oc:
     mastodon-light: Mastodon (Clar)
   time:
     formats:
-      default: Lo %d %b de %Y a %Ho%M
-      month: "%b de %Y"
+      default: Lo %e %B de %Y a %Ho%M
+      month: "%B de %Y"
   two_factor_authentication:
     disable: Desactivar
     enabled: Autentificacion en dos temps activada

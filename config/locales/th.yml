@@ -127,6 +127,7 @@ th:
       login_status: สถานะการเข้าสู่ระบบ
       media_attachments: ไฟล์แนบสื่อ
       memorialize: เปลี่ยนเป็นอนุสรณ์
+      memorialized_msg: เปลี่ยน %{username} เป็นบัญชีอนุสรณ์สำเร็จ
       moderation:
         active: ใช้งานอยู่
         all: ทั้งหมด
@@ -150,6 +151,8 @@ th:
       reject_all: ปฏิเสธทั้งหมด
       remove_avatar: เอาภาพประจำตัวออก
       remove_header: เอาส่วนหัวออก
+      removed_avatar_msg: เอาภาพประจำตัวของ %{username} ออกสำเร็จ
+      removed_header_msg: เอาภาพส่วนหัวของ %{username} ออกสำเร็จ
       resend_confirmation:
         already_confirmed: ผู้ใช้นี้ได้รับการยืนยันอยู่แล้ว
         send: ส่งอีเมลยืนยันอีกครั้ง
@@ -750,6 +753,7 @@ th:
       request: ขอการเก็บถาวรของคุณ
       size: ขนาด
     blocks: คุณปิดกั้น
+    bookmarks: ที่คั่นหน้า
     csv: CSV
     domain_blocks: การปิดกั้นโดเมน
     lists: รายการ
@@ -806,6 +810,7 @@ th:
       overwrite_long: แทนที่ระเบียนปัจจุบันด้วยระเบียนใหม่
     types:
       blocking: รายการปิดกั้น
+      bookmarks: ที่คั่นหน้า
       domain_blocking: รายการปิดกั้นโดเมน
       following: รายการติดตาม
       muting: รายการซ่อน
@@ -920,6 +925,7 @@ th:
   relationships:
     activity: กิจกรรมบัญชี
     dormant: ไม่เคลื่อนไหว
+    follow_selected_followers: ติดตามผู้ติดตามที่เลือก
     followers: ผู้ติดตาม
     following: กำลังติดตาม
     invited: เชิญแล้ว

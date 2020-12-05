@@ -35,7 +35,7 @@ tr:
     status_count_before: Şu ana kadar
     tagline: Arkadaşlarını takip et ve yenilerini keşfet
     terms: Kullanım şartları
-    unavailable_content: Mevcut olmayan içerik
+    unavailable_content: Denetlenen sunucular
     unavailable_content_description:
       domain: Sunucu
       reason: Sebep
@@ -52,16 +52,16 @@ tr:
     user_count_before: Kayıtlı
     what_is_mastodon: Mastodon nedir?
   accounts:
-    choices_html: "%{name} seçimleri:"
+    choices_html: "%{name} kişisinin seçimleri:"
     endorsements_hint: Takip ettiğiniz kişileri web arayüzünden onaylayabilirsiniz, burada görünecekler.
     featured_tags_hint: Burada görüntülenecek belirli etiketlere sahip olabilirsiniz.
     follow: Takip et
     followers:
       one: Takipçi
       other: Takipçi
-    following: Takip ettikleri
+    following: Takip edilenler
     joined: "%{date} tarihinde katıldı"
-    last_active: son aktivite
+    last_active: son etkinlik
     link_verified_on: Bu bağlantının mülkiyeti %{date} tarihinde kontrol edildi
     media: Medya
     moved_html: "%{name}, %{new_profile_link} adresine taşındı:"
@@ -77,7 +77,7 @@ tr:
       other: Toot
     posts_tab_heading: Tootlar
     posts_with_replies: Tootlar ve yanıtlar
-    reserved_username: Kullanıcı adı saklıdır
+    reserved_username: Kullanıcı adı rezerve edildi
     roles:
       admin: Yönetici
       bot: Bot
@@ -90,7 +90,7 @@ tr:
       action: Eylemi gerçekleştir
       title: "%{acct} üzerinde denetleme eylemi gerçekleştir"
     account_moderation_notes:
-      create: Not bırakın
+      create: Not bırak
       created_msg: Denetim notu başarıyla oluşturuldu!
       delete: Sil
       destroyed_msg: Denetim notu başarıyla yok edildi!
@@ -139,9 +139,9 @@ tr:
         local: Yerel
         remote: Uzaktan
         title: Konum
-      login_status: Giriş durumu
+      login_status: Oturum açma durumu
       media_attachments: Medya ekleri
-      memorialize: Bir hatıraya dön
+      memorialize: Anıta dönüştür
       memorialized: Anıtlaştırıldı
       memorialized_msg: "%{username} hesabı başarıyla anıt hesabına dönüştürüldü"
       moderation:
@@ -150,7 +150,7 @@ tr:
         pending: Bekliyor
         silenced: Susturulanlar
         suspended: Uzaklaştırılanlar
-        title: Yönetim
+        title: Denetim
       moderation_notes: Denetleme notları
       most_recent_activity: Son aktivite
       most_recent_ip: Son IP
@@ -218,7 +218,7 @@ tr:
     action_logs:
       action_types:
         assigned_to_self_report: Raporu Ata
-        change_email_user: Kullanıcı için e-postayı değiştir
+        change_email_user: Kullanıcı E-postasını Değiştir
         confirm_user: Kullanıcıyı Onayla
         create_account_warning: Uyarı Oluştur
         create_announcement: Duyuru Oluştur
@@ -235,14 +235,14 @@ tr:
         destroy_email_domain_block: E-posta alan adı engelini sil
         destroy_ip_block: IP kuralını sil
         destroy_status: Durumu Sil
-        disable_2fa_user: 2 Adımlı Doğrulamayı Kapat
-        disable_custom_emoji: Özel İfadeyi Engelle
-        disable_user: Kullanıcıyı Engelle
+        disable_2fa_user: 2AD Kapat
+        disable_custom_emoji: Özel İfadeyi Devre Dışı Bırak
+        disable_user: Kullanıcıyı Devre Dışı Bırak
         enable_custom_emoji: Özel İfadeyi Etkinleştir
         enable_user: Kullanıcıyı Etkinleştir
-        memorialize_account: Hesabı Hatırlat
+        memorialize_account: Hesabı Anıtlaştır
         promote_user: Kullanıcıyı Yükselt
-        remove_avatar_user: Avatarı Kaldır
+        remove_avatar_user: Profil Resmini Kaldır
         reopen_report: Şikayeti Tekrar Aç
         reset_password_user: Parolayı Sıfırla
         resolve_report: Şikayeti Çöz
@@ -280,7 +280,7 @@ tr:
         disable_user: "%{name} %{target} kullanıcısı için oturum açmayı devre dışı bıraktı"
         enable_custom_emoji: "%{name} %{target} için emojiyi etkinleştirdi"
         enable_user: "%{name} %{target} için oturum açmayı etkinleştirdi"
-        memorialize_account: "%{name} %{target}'in hesabını bir hatıra sayfasına dönüştürdü"
+        memorialize_account: "%{name}, %{target} kişisinin hesabını anıt sayfasına dönüştürdü"
         promote_user: "%{name} %{target} kullanıcısını yükseltti"
         remove_avatar_user: "%{name} %{target}'in avatarını kaldırdı"
         reopen_report: "%{name} %{target} şikayetini yeniden açtı"
@@ -842,6 +842,7 @@ tr:
       request: Arşivinizi isteyin
       size: Boyut
     blocks: Engellediklerin
+    bookmarks: Yer imleri
     csv: CSV
     domain_blocks: Alan adı engelleri
     lists: Listeler
@@ -918,6 +919,7 @@ tr:
     success: Verileriniz başarıyla yüklendi ve zaman içinde işlenecek
     types:
       blocking: Engellenenler listesi
+      bookmarks: Yer imleri
       domain_blocking: Alan adı engelleme listesi
       following: Takip edilenler listesi
       muting: Susturulanlar listesi
@@ -1074,6 +1076,7 @@ tr:
   relationships:
     activity: Hesap etkinliği
     dormant: Uykuda
+    follow_selected_followers: Seçili takipçileri takip et
     followers: Takipçiler
     following: Takip edilenler
     invited: Davet edildi

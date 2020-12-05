@@ -51,8 +51,11 @@ namespace :db do
   task :post_migration_hook do
     at_exit do
       unless %w(C POSIX).include?(ActiveRecord::Base.connection.execute('SELECT datcollate FROM pg_database WHERE datname = current_database();').first['datcollate'])
-        Rails.logger.warn 'WARNING: Your database is using an unsafe collation setting, which might result in index corruption.'
-        Rails.logger.warn 'WARNING: See https://docs.joinmastodon.org/admin/troubleshooting/index-corruption/#am-i-affected'
+        warn <<~WARNING
+          Your database collation is susceptible to index corruption.
+            (This warning does not indicate that index corruption has occured and can be ignored)
+            (To learn more, visit: https://docs.joinmastodon.org/admin/troubleshooting/index-corruption/)
+        WARNING
       end
     end
   end

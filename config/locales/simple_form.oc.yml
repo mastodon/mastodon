@@ -67,6 +67,11 @@ oc:
         text: Aquò nos ajudarà per validar vòstra demanda
       ip_block:
         comment: Opcional. Remembratz-vos perque ajustèretz aquesta règla.
+        expires_in: Las adreças IP son una ressorsa finida, son de còps partejadas e càmbian sovent de mans. Per aquesta rason, los blocatges d’IP sens fin son pas recomandats.
+        ip: Dintratz una adreça IPv4 o IPv6. Podètz blocar de plajas entièras en utilizant la sintaxi CIDR. Agachatz de pas vos blocar defòra !
+        severities:
+          no_access: Blocar l’accès a totas las ressorsas
+          sign_up_requires_approval: Las inscripcions novèlas requeriràn vòstra validacion
         severity: Causissètz que far amb las requèstas d’aquesta IP
       sessions:
         otp: 'Picatz lo còdi d’autentificacion en dos temps (Two factor code) de vòstra aplicacion mobil o utilizatz un de vòstres còdis de recuperacion :'

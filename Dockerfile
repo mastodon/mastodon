@@ -4,7 +4,7 @@ FROM ubuntu:20.04 as build-dep
 SHELL ["bash", "-c"]
 
 # Install Node v12 (LTS)
-ENV NODE_VER="12.16.3"
+ENV NODE_VER="12.20.0"
 RUN ARCH= && \
     dpkgArch="$(dpkg --print-architecture)" && \
   case "${dpkgArch##*-}" in \
