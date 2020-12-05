@@ -6,7 +6,7 @@ class REST::InstanceSerializer < ActiveModel::Serializer
   attributes :uri, :title, :short_description, :description, :email,
              :version, :urls, :stats, :thumbnail,
              :languages, :registrations, :approval_required, :invites_enabled,
-             :configuration, :feature_quote
+             :configuration, :feature_quote, :max_toot_chars
 
   has_one :contact_account, serializer: REST::AccountSerializer
 
@@ -98,6 +98,10 @@ class REST::InstanceSerializer < ActiveModel::Serializer
 
   def feature_quote
     true
+  end
+
+  def max_toot_chars
+    StatusLengthValidator::MAX_CHARS
   end
 
   private
