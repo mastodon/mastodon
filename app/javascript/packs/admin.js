@@ -57,8 +57,10 @@ const onEnableBootstrapTimelineAccountsChange = (target) => {
     bootstrapTimelineAccountsField.disabled = !target.checked;
     if (target.checked) {
       bootstrapTimelineAccountsField.parentElement.classList.remove('disabled');
+      bootstrapTimelineAccountsField.parentElement.parentElement.classList.remove('disabled');
     } else {
       bootstrapTimelineAccountsField.parentElement.classList.add('disabled');
+      bootstrapTimelineAccountsField.parentElement.parentElement.classList.add('disabled');
     }
   }
 };
