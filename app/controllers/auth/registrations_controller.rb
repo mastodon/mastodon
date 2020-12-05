@@ -2,6 +2,7 @@
 
 class Auth::RegistrationsController < Devise::RegistrationsController
   include Devise::Controllers::Rememberable
+  include RegistrationSpamConcern
 
   layout :determine_layout
 
@@ -13,6 +14,8 @@ class Auth::RegistrationsController < Devise::RegistrationsController
   before_action :set_body_classes, only: [:new, :create, :edit, :update]
   before_action :require_not_suspended!, only: [:update]
   before_action :set_cache_headers, only: [:edit, :update]
+  before_action :set_registration_form_time, only: :new
+  before_action :check_registration_form_time!, only: :create
 
   skip_before_action :require_functional!, only: [:edit, :update]
 
@@ -125,5 +128,17 @@ class Auth::RegistrationsController < Devise::RegistrationsController
 
   def set_cache_headers
     response.headers['Cache-Control'] = 'no-cache, no-store, max-age=0, must-revalidate'
+  end
+
+  def check_registration_form_time!
+    return if valid_registration_time?
+
+    # This duplicates a bit from Devise but it's the easiest way I could find
+    flash.now[:alert] = I18n.t('auth.too_fast')
+    build_resource(sign_up_params)
+    resource.validate
+    clean_up_passwords resource
+    set_minimum_password_length
+    render :new
   end
 end
