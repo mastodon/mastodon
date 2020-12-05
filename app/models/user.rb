@@ -89,6 +89,12 @@ class User < ApplicationRecord
   validates_with EmailMxValidator, if: :validate_email_dns?
   validates :agreement, acceptance: { allow_nil: false, accept: [true, 'true', '1'] }, on: :create
 
+  # Those are honeypot fields
+  attr_accessor :website, :confirm_password
+
+  validates :website, absence: true, on: :create
+  validates :confirm_password, absence: true, on: :create
+
   scope :recent, -> { order(id: :desc) }
   scope :pending, -> { where(approved: false) }
   scope :approved, -> { where(approved: true) }

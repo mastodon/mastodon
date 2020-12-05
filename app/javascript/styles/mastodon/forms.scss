@@ -354,6 +354,7 @@ code {
   input[type=number],
   input[type=email],
   input[type=password],
+  input[type=url],
   textarea {
     box-sizing: border-box;
     font-size: 16px;
@@ -993,4 +994,9 @@ code {
     display: flex;
     flex-direction: row;
   }
+}
+
+.input.user_confirm_password,
+.input.user_website {
+  display: none;
 }
