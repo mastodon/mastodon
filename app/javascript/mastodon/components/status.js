@@ -193,22 +193,24 @@ class Status extends ImmutablePureComponent {
   }
 
   handleOpenVideo = (media, options) => {
-    this.props.onOpenVideo(media, options);
+    this.props.onOpenVideo(this._properStatus().get('id'), media, options);
+  }
+
+  handleOpenMedia = (media, index) => {
+    this.props.onOpenMedia(this._properStatus().get('id'), media, index);
   }
 
   handleHotkeyOpenMedia = e => {
     const { onOpenMedia, onOpenVideo } = this.props;
-    const status = this._properStatus();
+    const statusId = this._properStatus().get('id');
 
     e.preventDefault();
 
     if (status.get('media_attachments').size > 0) {
-      if (status.getIn(['media_attachments', 0, 'type']) === 'audio') {
-        // TODO: toggle play/paused?
-      } else if (status.getIn(['media_attachments', 0, 'type']) === 'video') {
-        onOpenVideo(status.getIn(['media_attachments', 0]), { startTime: 0 });
+      if (status.getIn(['media_attachments', 0, 'type']) === 'video') {
+        onOpenVideo(statusId, status.getIn(['media_attachments', 0]), { startTime: 0 });
       } else {
-        onOpenMedia(status.get('media_attachments'), 0);
+        onOpenMedia(statusId, status.get('media_attachments'), 0);
       }
     }
   }
@@ -416,7 +418,7 @@ class Status extends ImmutablePureComponent {
                 media={status.get('media_attachments')}
                 sensitive={status.get('sensitive')}
                 height={110}
-                onOpenMedia={this.props.onOpenMedia}
+                onOpenMedia={this.handleOpenMedia}
                 cacheWidth={this.props.cacheMediaWidth}
                 defaultWidth={this.props.cachedMediaWidth}
                 visible={this.state.showMedia}

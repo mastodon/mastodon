@@ -183,7 +183,7 @@ ja:
       search_same_email_domain: 同じドメインのメールアドレスを使用しているユーザー
       search_same_ip: 同じ IP のユーザーを検索
       sensitive: 閲覧注意
-      sensitized: 閲覧注意にする
+      sensitized: 閲覧注意済み
       shared_inbox_url: Shared inbox URL
       show:
         created_reports: このアカウントで作られた通報
@@ -198,7 +198,7 @@ ja:
       time_in_queue: "%{time} 待ち"
       title: アカウント
       unconfirmed_email: 確認待ちのメールアドレス
-      undo_sensitized: 機密情報から戻す
+      undo_sensitized: 閲覧注意から戻す
       undo_silenced: サイレンスから戻す
       undo_suspension: 停止から戻す
       unsubscribe: 購読の解除
@@ -238,9 +238,11 @@ ja:
         reopen_report: 通報を再度開く
         reset_password_user: パスワードをリセット
         resolve_report: 通報を解決済みにする
+        sensitive_account: アカウントのメディアを閲覧注意にマーク
         silence_account: アカウントをサイレンス
         suspend_account: アカウントを停止
         unassigned_report: 通報の担当を解除
+        unsensitive_account: アカウントのメディアの閲覧注意マークを解除
         unsilence_account: アカウントのサイレンスを解除
         unsuspend_account: アカウントの停止を解除
         update_announcement: お知らせを更新
@@ -276,9 +278,11 @@ ja:
         reopen_report: "%{name} さんが通報 %{target} を再び開きました"
         reset_password_user: "%{name} さんが %{target} さんのパスワードをリセットしました"
         resolve_report: "%{name} さんが通報 %{target} を解決済みにしました"
+        sensitive_account: "%{name} さんが %{target} さんのメディアを閲覧注意にマークしました"
         silence_account: "%{name} さんが %{target} さんをサイレンスにしました"
         suspend_account: "%{name} さんが %{target} さんを停止しました"
         unassigned_report: "%{name} さんが通報 %{target} の担当を外しました"
+        unsensitive_account: "%{name} さんが %{target} さんのメディアの閲覧注意を解除しました"
         unsilence_account: "%{name} さんが %{target} さんのサイレンスを解除しました"
         unsuspend_account: "%{name} さんが %{target} さんの停止を解除しました"
         update_announcement: "%{name} さんがお知らせ %{target} を更新しました"
@@ -825,6 +829,7 @@ ja:
       request: アーカイブをリクエスト
       size: 容量
     blocks: ブロック
+    bookmarks: ブックマーク
     csv: CSV
     domain_blocks: 非表示にしたドメイン
     lists: リスト
@@ -900,6 +905,7 @@ ja:
     success: ファイルは正常にアップロードされ、現在処理中です。しばらくしてから確認してください
     types:
       blocking: ブロックしたアカウントリスト
+      bookmarks: ブックマーク
       domain_blocking: 非表示にしたドメインリスト
       following: フォロー中のアカウントリスト
       muting: ミュートしたアカウントリスト
@@ -1020,6 +1026,7 @@ ja:
   otp_authentication:
     code_hint: 続行するには認証アプリで表示されたコードを入力してください
     description_html: "<strong>二要素認証</strong>を有効にすると、ログイン時に認証アプリからコードを入力する必要があります。"
+    enable: 有効化
     instructions_html: "<strong>Google Authenticatorか、もしくはほかのTOTPアプリでこのQRコードをスキャンしてください。</strong>これ以降、ログインするときはそのアプリで生成されるコードが必要になります。"
     manual_instructions: 'QRコードがスキャンできず、手動での登録を希望の場合はこのシークレットコードを利用してください。:'
     setup: セットアップ
@@ -1052,6 +1059,7 @@ ja:
   relationships:
     activity: 活動
     dormant: 非アクティブ
+    follow_selected_followers: 選択したフォロワーをフォロー
     followers: フォロワー
     following: フォロー中
     invited: 招待済み
@@ -1293,7 +1301,7 @@ ja:
   two_factor_authentication:
     add: 追加
     disable: 無効化
-    disabled_success: 二要素認証が更新されました
+    disabled_success: 二段階認証が無効になりました
     edit: 編集
     enabled: 二段階認証は有効になっています
     enabled_success: 二段階認証が有効になりました
@@ -1319,7 +1327,7 @@ ja:
     warning:
       explanation:
         disable: あなたのアカウントはログインが禁止され使用できなくなりました。しかしアカウントのデータはそのまま残っています。
-        sensitive: アップロードされたメディアファイルとリンクされたメディアは閲覧注意として扱われます。
+        sensitive: あなたのアップロードしたメディアファイルとリンク先のメディアは、閲覧注意として扱われます。
         silence: あなたのアカウントは制限されましたがそのまま使用できます。ただし既にフォローしている人はあなたのトゥートを見ることができますが、様々な公開タイムラインには表示されない場合があります。また他のユーザーは今後も手動であなたをフォローすることができます。
         suspend: あなたのアカウントは使用できなくなりプロフィールやその他データにアクセスできなくなりました。アカウントが完全に削除されるまではログインしてデータのエクスポートをリクエストできます。証拠隠滅を防ぐため一部のデータは削除されず残ります。
       get_in_touch: このメールに返信することで %{instance} のスタッフと連絡を取ることができます。
@@ -1328,13 +1336,13 @@ ja:
       subject:
         disable: あなたのアカウント %{acct} は凍結されました
         none: "%{acct} に対する警告"
-        sensitive: あなたのアカウント %{acct} が投稿したメディアは閲覧注意にマークされました
+        sensitive: あなたのアカウント %{acct} の投稿メディアは閲覧注意とマークされました
         silence: あなたのアカウント %{acct} はサイレンスにされました
         suspend: あなたのアカウント %{acct} は停止されました
       title:
         disable: アカウントが凍結されました
         none: 警告
-        sensitive: あなたのメディアが閲覧注意に指定されました
+        sensitive: あなたのメディアが閲覧注意とマークされました
         silence: アカウントがサイレンスにされました
         suspend: アカウントが停止されました
     welcome:

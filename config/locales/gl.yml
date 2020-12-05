@@ -628,7 +628,7 @@ gl:
       delete: Eliminar o ficheiro subido
       destroyed_msg: Eliminado correctamente o subido!
     statuses:
-      back_to_account: Voltar a páxina da conta
+      back_to_account: Volver a páxina da conta
       batch:
         delete: Eliminar
         nsfw_off: Marcar como non sensible
@@ -737,7 +737,7 @@ gl:
       saml: SAML
     register: Rexistro
     registration_closed: "%{instance} non está a aceptar novas usuarias"
-    resend_confirmation: Voltar a enviar intruccións de confirmación
+    resend_confirmation: Reenviar as intruccións de confirmación
     reset_password: Restablecer contrasinal
     security: Seguranza
     set_new_password: Estabelecer novo contrasinal
@@ -842,6 +842,7 @@ gl:
       request: Solicite o ficheiro
       size: Tamaño
     blocks: Bloqueos
+    bookmarks: Marcadores
     csv: CSV
     domain_blocks: Bloqueos de dominio
     lists: Listaxes
@@ -918,6 +919,7 @@ gl:
     success: Os seus datos foron correctamente subidos e serán procesados ao momento
     types:
       blocking: Lista de bloqueo
+      bookmarks: Marcadores
       domain_blocking: Lista de bloqueo de dominios
       following: Lista de seguimento
       muting: Lista de usuarias acaladas
@@ -978,7 +980,7 @@ gl:
     warning:
       backreference_required: Tes que configurar primeiro a nova conta para referenciar hacia esta
       before: 'Antes de seguir, por favor lé estas notas con atención:'
-      cooldown: Tras a migración existe un período de calma durante o cal non poderás voltar a migrar de novo
+      cooldown: Tras a migración existe un período de calma durante o cal non poderás volver a migrar de novo
       disabled_account: Tras o cambio a túa conta actual non será totalmente usable, pero terás acceso a exportar os datos e tamén a reactivación.
       followers: Esta acción moverá todas as túas seguidoras desde a conta actual a nova conta
       only_redirect_html: De xeito alternativo, podes <a href="%{path}">simplemente por unha redirección no perfil</a>.
@@ -1074,6 +1076,7 @@ gl:
   relationships:
     activity: Actividade da conta
     dormant: En repouso
+    follow_selected_followers: Seguir seguidoras seleccionadas
     followers: Seguidoras
     following: Seguindo
     invited: Convidado
@@ -1155,7 +1158,7 @@ gl:
     aliases: Alcumes da conta
     appearance: Aparencia
     authorized_apps: Apps autorizadas
-    back: Voltar a Mastodon
+    back: Volver a Mastodon
     delete: Eliminación da conta
     development: Desenvolvemento
     edit_profile: Editar perfil
@@ -1223,19 +1226,19 @@ gl:
       unlisted_long: Visible para calquera, pero non listado en liñas de tempo públicas
   stream_entries:
     pinned: Mensaxe fixada
-    reblogged: promovida
+    reblogged: comparteu
     sensitive_content: Contido sensible
   tags:
     does_not_match_previous_name: non concorda co nome anterior
   terms:
     body_html: |
-      <h2>Intimidade</h2>
+      <h2>Privacidade</h2>
       <h3 id="collect">Qué información recollemos?</h3>
 
       <ul>
       <li><em>Información básica da conta</em>: Se se rexistra en este servidor, pediráselle un nome de usuaria, un enderezo de correo electrónico e un contrasinal. De xeito adicional tamén poderá introducir información como un nome público e biografía, tamén subir unha fotografía de perfil e unha imaxe para a cabeceira. O nome de usuaria, o nome público, a biografía e as imaxes de perfil e cabeceira sempre se mostran publicamente.</li>
-      <li><em>Publicacións, seguimento e outra información pública</em>: O listado das persoas que segue é un listado público, o mesmo acontece coas súas seguidoras. Cando evía unha mensaxe, a data e hora gárdanse así como o aplicativo que utilizou para enviar a mensaxe. As publicacións poderían conter ficheiros de medios anexos, como fotografías e vídeos. As publicacións públicas e as non listadas están dispoñibles de xeito público. Cando destaca unha publicación no seu perfil tamén é pública. As publicacións son enviadas as súas seguidoras, en algúns casos pode acontecer que estén en diferentes servidores e gárdanse copias neles. Cando elemina unha publicación tamén se envía as súas seguidoras. A acción de voltar a publicar ou marcar como favorita outra publicación sempre é pública.</li>
-      <li><em>Mensaxes directas e só para seguidoras</em>: Todas as mensaxes gárdanse e procésanse no servidor. As mensaxes só para seguidoras son entregadas as súas seguidoras e as usuarias que son mencionadas en elas, e as mensaxes directas entréganse só as usuarias mencionadas en elas. En algúns casos esto implica que son entregadas a diferentes servidores e gárdanse copias alí. Facemos un esforzo sincero para limitar o acceso a esas publicacións só as persoas autorizadas, pero outros servidores poderían non ser tan escrupulosos. Polo tanto, é importante revisar os servidores onde se hospedan as súas seguidoras. Nos axustes pode activar a opción de aprovar ou rexeitar novas seguidoras de xeito manual. <em>Teña en conta que a administración do servidor e todos os outros servidores implicados poden ver as mensaxes.</em>, e as destinatarias poderían facer capturas de pantalla, copiar e voltar a compartir as mensaxes. <em>Non comparta información comprometida en Mastodon.</em></li>
+      <li><em>Publicacións, seguimento e outra información pública</em>: O listado das persoas que segue é un listado público, o mesmo acontece coas súas seguidoras. Cando evía unha mensaxe, a data e hora gárdanse así como o aplicativo que utilizou para enviar a mensaxe. As publicacións poderían conter ficheiros de medios anexos, como fotografías e vídeos. As publicacións públicas e as non listadas están dispoñibles de xeito público. Cando destaca unha publicación no seu perfil tamén é pública. As publicacións son enviadas as súas seguidoras, en algúns casos pode acontecer que estén en diferentes servidores e gárdanse copias neles. Cando elemina unha publicación tamén se envía as súas seguidoras. A acción de volver a publicar ou marcar como favorita outra publicación sempre é pública.</li>
+      <li><em>Mensaxes directas e só para seguidoras</em>: Todas as mensaxes gárdanse e procésanse no servidor. As mensaxes só para seguidoras son entregadas as súas seguidoras e as usuarias que son mencionadas en elas, e as mensaxes directas entréganse só as usuarias mencionadas en elas. En algúns casos esto implica que son entregadas a diferentes servidores e gárdanse copias alí. Facemos un esforzo sincero para limitar o acceso a esas publicacións só as persoas autorizadas, pero outros servidores poderían non ser tan escrupulosos. Polo tanto, é importante revisar os servidores onde se hospedan as súas seguidoras. Nos axustes pode activar a opción de aprovar ou rexeitar novas seguidoras de xeito manual. <em>Teña en conta que a administración do servidor e todos os outros servidores implicados poden ver as mensaxes.</em>, e as destinatarias poderían facer capturas de pantalla, copiar e volver a compartir as mensaxes. <em>Non comparta información comprometida en Mastodon.</em></li>
       <li><em>IPs e outros metadatos</em>: Cando se conecta, gravamos o IP desde onde se conecta, así como o nome do aplicativo desde onde o fai. Todas as sesións conectadas están dispoñibles para revisar e revogar nos axustes. O último enderezo IP utilizado gárdase ate por 12 meses. Tamén poderiamos gardar informes do servidor que inclúan o enderezo IP de cada petición ao servidor.</li>
       </ul>
 

@@ -35,7 +35,7 @@ fr:
     status_count_before: Ayant publié
     tagline: Suivez vos ami·e·s et découvrez-en de nouveaux·elles
     terms: Conditions d’utilisation
-    unavailable_content: Contenu non disponible
+    unavailable_content: Serveurs modérés
     unavailable_content_description:
       domain: Serveur
       reason: Motif
@@ -568,7 +568,7 @@ fr:
         desc_html: Noms des domaines que ce serveur a découvert dans le fediverse
         title: Publier la liste des serveurs découverts
       preview_sensitive_media:
-        desc_html: Les liens de prévisualisation sur les autres sites web afficheront une vignette même si le média est sensible
+        desc_html: Les aperçus de lien sur les autres sites web afficheront une vignette même si les médias sont marqués comme sensibles
         title: Montrer les médias sensibles dans les prévisualisations OpenGraph
       profile_directory:
         desc_html: Permettre aux utilisateur·ice·s d’être découvert·e·s
@@ -842,6 +842,7 @@ fr:
       request: Demandez vos archives
       size: Taille
     blocks: Vous bloquez
+    bookmarks: Signets
     csv: CSV
     domain_blocks: Bloqueurs de domaine
     lists: Listes
@@ -855,7 +856,7 @@ fr:
   filters:
     contexts:
       account: Profils
-      home: Accueil
+      home: Accueil et listes
       notifications: Notifications
       public: Fils publics
       thread: Conversations
@@ -918,6 +919,7 @@ fr:
     success: Vos données ont été importées avec succès et seront traitées en temps et en heure
     types:
       blocking: Liste de comptes bloqués
+      bookmarks: Signets
       domain_blocking: Liste des serveurs bloqués
       following: Liste d’utilisateur·rice·s suivi·e·s
       muting: Liste d’utilisateur·rice·s que vous masquez
@@ -1074,6 +1076,7 @@ fr:
   relationships:
     activity: Activité du compte
     dormant: Dormant
+    follow_selected_followers: Suivre les abonné·e·s sélectionné·e·s
     followers: Abonné·e·s
     following: Abonnements
     invited: Invité·e
@@ -1209,8 +1212,8 @@ fr:
         other: "%{count} votes"
       vote: Voter
     show_more: Déplier
-    show_newer: Afficher les plus récents
-    show_older: Afficher les plus ancien
+    show_newer: Plus récents
+    show_older: Plus anciens
     show_thread: Afficher le fil de discussion
     sign_in_to_participate: Inscrivez-vous pour prendre part à la conversation
     title: '%{name} : "%{quote}"'
@@ -1362,7 +1365,7 @@ fr:
       title:
         disable: Compte gelé
         none: Avertissement
-        sensitive: Votre média a été marqué comme sensible
+        sensitive: Vos médias ont été marqués comme sensibles
         silence: Compte limité
         suspend: Compte suspendu
     welcome:

@@ -105,6 +105,7 @@ hy:
       confirm: Հաստատել
       confirmed: Հաստատված է
       confirming: Հաստատում
+      delete: Ջնջել տվյալները
       deleted: Ջնջված է
       demote: Աստիճանազրկել
       disable: Անջատել
@@ -194,13 +195,17 @@ hy:
         create_account_warning: Ստեղծել զգուշացում
         create_announcement: Ստեղծել յայտարարութիւն
         create_email_domain_block: Ստեղծել էլ․ հասցէի դոմէյնի արգելափակում
+        create_ip_block: Ստեղծել IP կանոն
         destroy_announcement: Ջնջել յայտարարութիւնը
         destroy_domain_allow: Ջնջել դոմէնի թոյլտուութիւնը
         destroy_domain_block: Ապաարգելափակել դոմէնը
         destroy_email_domain_block: Ապաարգելափակել էլ․ հասցէի դոմէնը
+        destroy_ip_block: Ջնջել IP կանոնը
         destroy_status: Ջնջել գրառումը
         disable_2fa_user: Անջատել 2FA
+        disable_custom_emoji: Անջատել սեփական էմոջիները
         disable_user: Ապաակտիւացնել օգտատիրոջը
+        enable_custom_emoji: Միացնել սեփական էմոջիները
         enable_user: Ակտիւացնել օգտատիրոջը
         memorialize_account: Յիշել հաշիւը
         promote_user: Աջակցել օգտատիրոջը
@@ -214,6 +219,7 @@ hy:
         unsilence_account: Լսել հաշուին
         unsuspend_account: Ապակասեցնել հաշիւը
         update_announcement: Թարմացնել յայտարարութիւնը
+        update_custom_emoji: Թարմացնել սեփական էմոջիները
         update_status: Թարմացնել գրառումը
       actions:
         assigned_to_self_report: "%{name} բողոքել է %{target} իրենց համար"
@@ -347,6 +353,7 @@ hy:
         title: Մոդերացիա
       private_comment: Փակ մեկնաբանութիւն
       public_comment: Հրապարակային մեկնաբանութիւն
+      title: Դաշնություն
       total_blocked_by_us: Մենք արգելափակել ենք
       total_followed_by_them: Նրանք հետեւում են
       total_followed_by_us: Մենք հետեւում ենք
@@ -360,6 +367,19 @@ hy:
         expired: Սպառուած
         title: Զտիչ
       title: Հրաւէրներ
+    ip_blocks:
+      add_new: Ստեղծել կանոն
+      delete: Ջնջել
+      expires_in:
+        '1209600': 2 շաբաթ
+        '15778476': 6 ամիս
+        '2629746': 1 ամիս
+        '31556952': 1 տարի
+        '86400': 1 օր
+        '94670856': 3 տարի
+      new:
+        title: Ստեղծել նոր IP կանոն
+      title: IP կանոններ
     pending_accounts:
       title: Սպասող հաշիւներ (%{count})
     relationships:
@@ -402,6 +422,8 @@ hy:
     settings:
       contact_information:
         username: Կոնտակտի ծածկանուն
+      custom_css:
+        title: Սեփական CSS
       domain_blocks:
         all: Բոլորին
         disabled: Ոչ մէկին
@@ -468,6 +490,7 @@ hy:
     new_report:
       subject: Նոր բողոք %{instance}ի համար(#%{id})
   appearance:
+    advanced_web_interface: Սյունակավոր ինտերֆեյս
     animations_and_accessibility: Անիմացիաներ եւ հասանելիութիւն
     discovery: Բացայայտում
     localization:
@@ -523,6 +546,7 @@ hy:
   date:
     formats:
       default: "%b %d, %Y"
+      with_month_name: "%d %B %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}ժ"
@@ -568,6 +592,7 @@ hy:
       request: Պահանջել քո արքիւը
       size: Չափը
     blocks: Արգելափակել
+    bookmarks: Էջանիշեր
     csv: CSV
     domain_blocks: Տիրոյթի արգելափակումներ
     lists: Ցանկեր
@@ -580,6 +605,7 @@ hy:
       account: Պրոֆիլներ
       home: Տեղական հոսք
       notifications: Ծանուցումներ
+      public: Հանրային հոսքեր
       thread: Զրոյցներ
     edit:
       title: Խմբագրել զտիչը
@@ -595,6 +621,7 @@ hy:
     trending_now: Այժմ արդիական
   generic:
     all: Բոլորը
+    changes_saved_msg: Փոփոխութիւնները յաջող պահուած են
     copy: Պատճենել
     delete: Ջնջել
     order_by: Դասաւորել ըստ
@@ -617,9 +644,12 @@ hy:
       overwrite: Վերագրել
     types:
       blocking: Արգելափակումների ցուցակ
+      bookmarks: Էջանիշեր
       domain_blocking: Տիրոյթի արգելափակումների ցուցակ
     upload: Վերբեռնել
   invites:
+    delete: Ապաակտիւացնել
+    expired: Ժամկետանց
     expires_in:
       '1800': 30 րոպե
       '21600': 6 ժամ
@@ -629,7 +659,13 @@ hy:
       '86400': 1 օր
     expires_in_prompt: Երբեք
     generate: Գեներացնել հրաւէրի յղում
+    max_uses:
+      one: "%{count} կիրառում"
+      other: "%{count} կիրառում"
     max_uses_prompt: Սահմանափակում չկայ
+    table:
+      expires_at: Սպառւում է
+      uses: Կիրառում
     title: Հրաւիրել մարդկանց
   media_attachments:
     validations:
@@ -639,6 +675,7 @@ hy:
     errors:
       not_found: չգտնուեց
     past_migrations: Նախոդ միգրացիաները
+    proceed_with_move: Տեղափոխել հետեւորդներին
     warning:
       followers: Այս քայլով քո բոլոր հետեւորդներին այս հաշուից կը տեղափոխես դէպի նորը
   moderation:
@@ -657,12 +694,16 @@ hy:
   number:
     human:
       decimal_units:
+        format: "%n %u"
         units:
           billion: Մլր
           million: Մլն
           quadrillion: Քլր
           thousand: Հազ
           trillion: Տրլ
+  otp_authentication:
+    enable: Միացնել
+    setup: Կարգաւորել
   pagination:
     newer: Ավելի նոր
     next: Հաջորդ
@@ -680,9 +721,14 @@ hy:
     last_active: Վերջին ակտիւութիւնը
     most_recent: Վերջին
     moved: Տեղափոխուած
+    mutual: Փոխադարձ
     primary: Հիմնական
+    relationship: Կապ
+    remove_selected_domains: Հեռացնել բոլոր հետեւորդներին նշուած դոմեյններից
+    remove_selected_followers: Հեռացնել նշուած հետեւորդներին
     status: Հաշուի կարգավիճակ
   sessions:
+    activity: Վերջին թութը
     browser: Դիտարկիչ
     browsers:
       alipay: Alipay
@@ -719,14 +765,31 @@ hy:
     revoke: Չեղարկել
   settings:
     account: Հաշիվ
+    appearance: Տեսք
+    delete: Հաշուի ջնջում
+    development: Ծրագրավորում
     edit_profile: Խմբագրել պրոֆիլը
+    export: Տվյալների արտահանում
     import: Ներմուծել
     import_and_export: Ներմուծել և արտահանել
+    migrate: Հաշուի տեղափոխում
     notifications: Ծանուցումներ
+    preferences: Կարգավորումներ
     profile: Հաշիւ
+    relationships: Հետեւումներ և հետեւորդներ
     two_factor_authentication: Երկքայլ նոյնականացում
+    webauthn_authentication: Անվտանգութեան բանալիներ
   statuses:
+    attached:
+      audio:
+        one: "%{count} ձայնագրութիւն"
+        other: "%{count} ձայնագրութիւն"
+      image:
+        one: "%{count} նկար"
+        other: "%{count} նկար"
+    language_detection: Ինքնուրոյն ճանաչել լեզուն
     open_in_web: Բացել վէբում
+    over_character_limit: "%{max} նիշի սահմանը գերազանցուած է"
     poll:
       total_people:
         one: "%{count} մարդ"
@@ -736,10 +799,16 @@ hy:
         other: "%{count} ձայներ"
       vote: Քուէարկել
     show_more: Աւելին
+    show_thread: Բացել շղթան
+    sign_in_to_participate: Մուտք գործէք՝ զրոյցին միանալու համար
     title: '%{name}: "%{quote}"'
     visibilities:
       private: Միայն հետեւողներին
+      private_long: Հասանելի միայն հետեւորդներին
       public: Հրապարակային
+      public_long: Տեսանելի բոլորին
+      unlisted: Ծածուկ
+      unlisted_long: Տեսանելի է բոլորին, բայց չի յայտնւում հանրային հոսքերում
   stream_entries:
     pinned: Ամրացուած թութ
     reblogged: տարածուած
@@ -830,6 +899,7 @@ hy:
 
       <p><strong>Ոչ պաշտօնական, ոչ իրաւական թարգմանութիւն</strong></p>
   themes:
+    contrast: Mastodon (բարձր կոնտրաստով)
     default: Mastodon (Մուգ)
     mastodon-light: Mastodon (Լուսավոր)
   time:
@@ -837,13 +907,28 @@ hy:
       default: "%b %d, %Y, %H:%M"
       month: "%b %Y"
   two_factor_authentication:
+    add: Ավելացնել
     disable: Անջատել
+    disabled_success: Երկքայլ նոյնականացումը հաջողութեամբ անջուած է
+    edit: Խմբագրել
     enabled: Երկքայլ նոյնականացումը միացուած է
+    enabled_success: Երկքայլ նոյնականացումը հաջողութեամբ միացուած է
+    generate_recovery_codes: Ստեղծել վերականգնման կոդեր
+    lost_recovery_codes: Վերականգնման կոդերը հնարաւորութիւն են տալիս մուտք գործել հաշիւ՝ հեռախօսի կորստի դէպքում։ Եթէ կորցրել ես վերականգնման կոդերը, այստեղ կարող ես ստեղծել նորերը։ Նախկին վերականգման կոդերը կչեղարկվեն։
+    methods: Երկքայլ նոյնականացում տարբերակներ
+    otp: Նոյնականացման հավելված
+    recovery_codes: Վերականգնման կոդեր
+    recovery_codes_regenerated: Վերականգման կոդերը հաջողութեամբ ստեղծուել են
   user_mailer:
     warning:
       title:
         none: Զգուշացում
     welcome:
+      final_action: Սկսել թթել
+      subject: Բարի գալուստ Մաստոդոն
+      tip_federated_timeline: Դաշնային հոսքում երևում է ամբողջ Մաստոդոնի ցանցը։ Բայց այն ներառում է միայն այն օգտատերերին որոնց բաժանորդագրուած են ձեր հարևաններ, այդ պատճառով այն կարող է լինել ոչ ամբողջական։
+      tip_following: Դու հետեւում էս քո հանգոյցի ադմին(ներ)ին լռելայն։ Այլ հետաքրքիր անձանց գտնելու համար՝ թերթիր տեղական և դաշնային հոսքերը։
+      tip_local_timeline: Տեղական հոսքում երևում են %{instance} հանգոյցի օգտատերի գրառումները։ Նրանք քո հանգոյցի հարևաններն են։
       tips: Հուշումներ
   users:
     blocked_email_provider: Սույն էլփոստի տրամադրողը արգելված է
@@ -855,3 +940,5 @@ hy:
   verification:
     explanation_html: Պիտակների յղումների հեղինակութիւնը կարելի է վաւերացնել։ Անհրաժեշտ է որ յղուած կայքը պարունակի յետադարձ յղում ձեր մաստադոնի էջին, որը <strong>պէտք է</strong> ունենայ <code>rel="me"</code> նիշքը։ Յղման բովանդակութիւնը կարևոր չէ։ Օրինակ՝
     verification: Ստուգում
+  webauthn_credentials:
+    delete: Ջնջել
