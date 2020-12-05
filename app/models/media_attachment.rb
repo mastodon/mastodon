@@ -159,6 +159,12 @@ class MediaAttachment < ApplicationRecord
     all: '-quality 90 -strip +set modify-date +set create-date',
   }.freeze
 
+  IMAGE_LIMIT = ((ENV['IMAGE_LIMIT'] || 10).to_i).megabytes
+  VIDEO_LIMIT = ((ENV['VIDEO_LIMIT'] || 40).to_i).megabytes
+
+  MAX_VIDEO_MATRIX_LIMIT = 2_304_000 # 1920x1200px
+  MAX_VIDEO_FRAME_RATE   = 60
+
   belongs_to :account,          inverse_of: :media_attachments, optional: true
   belongs_to :status,           inverse_of: :media_attachments, optional: true
   belongs_to :scheduled_status, inverse_of: :media_attachments, optional: true

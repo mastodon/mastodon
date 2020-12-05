@@ -4,7 +4,7 @@ module AccountAvatar
   extend ActiveSupport::Concern
 
   IMAGE_MIME_TYPES = ['image/jpeg', 'image/png', 'image/gif'].freeze
-  LIMIT = 2.megabytes
+  LIMIT = ((ENV['AVATAR_LIMIT'] || 2).to_i).megabytes
 
   class_methods do
     def avatar_styles(file)
