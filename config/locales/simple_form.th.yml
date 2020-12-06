@@ -1,4 +1,3 @@
----
 th:
   simple_form:
     hints:
@@ -94,7 +93,7 @@ th:
           disable: แช่แข็ง
           none: ไม่ทำสิ่งใด
           silence: ทำให้เงียบ
-          suspend: ระงับและลบข้อมูลบัญชีอย่างถาวร
+          suspend: ระงับ
         warning_preset_id: ใช้คำเตือนที่ตั้งไว้ล่วงหน้า
       announcement:
         all_day: เหตุการณ์ตลอดทั้งวัน
@@ -137,6 +136,7 @@ th:
         setting_default_privacy: ความเป็นส่วนตัวของการโพสต์
         setting_default_sensitive: ทำเครื่องหมายสื่อว่าละเอียดอ่อนเสมอ
         setting_delete_modal: แสดงกล่องโต้ตอบการยืนยันก่อนลบโพสต์
+        setting_disable_swiping: ปิดใช้งานการเคลื่อนไหวในการปัด
         setting_display_media: การแสดงสื่อ
         setting_display_media_default: ค่าเริ่มต้น
         setting_display_media_hide_all: ซ่อนทั้งหมด
@@ -192,9 +192,9 @@ th:
         name: แฮชแท็ก
         trendable: อนุญาตให้แฮชแท็กนี้ปรากฏภายใต้แนวโน้ม
         usable: อนุญาตให้โพสต์ใช้แฮชแท็กนี้
-    'no': ไม่
+    'no': 'ไม่'
     recommended: แนะนำ
     required:
       mark: "*"
       text: ต้องระบุ
-    'yes': ใช่
+    'yes': 'ใช่'
