@@ -53,6 +53,8 @@ module Mastodon
       custom_emojis_count = custom_emojis.count
       custom_emojis.destroy_all unless options[:dry_run]
 
+      Instance.refresh unless options[:dry_run]
+
       say("Removed #{custom_emojis_count} custom emojis", :green)
     end
 
@@ -83,7 +85,7 @@ module Mastodon
       processed       = Concurrent::AtomicFixnum.new(0)
       failed          = Concurrent::AtomicFixnum.new(0)
       start_at        = Time.now.to_f
-      seed            = start ? [start] : Account.remote.domains
+      seed            = start ? [start] : Instance.pluck(:domain)
       blocked_domains = Regexp.new('\\.?' + DomainBlock.where(severity: 1).pluck(:domain).join('|') + '$')
       progress        = create_progress_bar
 

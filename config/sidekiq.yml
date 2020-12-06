@@ -36,3 +36,6 @@
   pghero_scheduler:
     cron: '0 0 * * *'
     class: Scheduler::PgheroScheduler
+  instance_refresh_scheduler:
+    cron: '0 * * * *'
+    class: Scheduler::InstanceRefreshScheduler
