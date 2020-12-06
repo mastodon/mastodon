@@ -1,4 +1,3 @@
----
 zgh:
   activerecord:
     attributes:
@@ -22,16 +21,19 @@ zgh:
         empty: ⵓⵔ ⵖⵓⵔⴽ ⴽⵔⴰ ⵏ ⵜⵙⵏⵙⵉⵡⵉⵏ.
         name: ⵉⵙⵎ
         new: ⵜⵉⵙⵏⵙⵉ ⵜⴰⵎⴰⵢⵏⵓⵜ
+        show: ⵙⵎⴰⵍ
         title: ⵜⵉⵙⵏⵙⵉⵡⵉⵏ ⵏⵏⴽ
       new:
         title: ⵜⵉⵙⵏⵙⵉ ⵜⴰⵎⴰⵢⵏⵓⵜ
       show:
         actions: ⵜⵉⴳⴰⵡⵉⵏ
-        title: ⵜⵉⵙⵏⵙⵉ %{name}
+        title: 'ⵜⵉⵙⵏⵙⵉ %{name}'
     authorizations:
       buttons:
         authorize: ⵙⵙⵓⵔⴳ
         deny: ⴰⴳⵢ
+      new:
+        prompt: ⵜⵙⵙⵓⵜⵓⵔ ⵜⵙⵏⵙⵉ %{client_name} ⴰⵙⴰⴷⴼ ⵖⵔ ⵓⵎⵉⴹⴰⵏ ⵏⵏⴽ
     authorized_applications:
       confirmations:
         revoke: ⵉⵙ ⵏⵉⵜ?
@@ -40,6 +42,24 @@ zgh:
         created_at: ⵜⴻⵜⵜⵓⵙⵓⵔⴳ
         date_format: "%d-%m-%Y %H:%M:%S"
         title: ⵜⵉⵙⵏⵙⵉⵡⵉⵏ ⵏⵏⴽ ⵉⵜⵜⵓⵙⵓⵔⴷⵏ
+    flash:
+      applications:
+        create:
+          notice: ⵜⴻⵜⵜⵓⵙⵏⴼⵍⵓⵍ ⵜⵙⵏⵙⵉ.
+        destroy:
+          notice: ⵜⴻⵜⵜⵡⴰⴽⴽⵙ ⵜⵙⵏⵙⵉ.
+        update:
+          notice: ⵜⴻⵜⵜⵓⵙⴷⵖⵉ ⵜⵙⵏⵙⵉ.
+    layouts:
+      admin:
+        nav:
+          applications: ⵜⵉⵙⵏⵙⵉⵡⵉⵏ
     scopes:
-      read:notifications: ⵥⵕ ⵜⵉⵏⵖⵎⵉⵙⵉⵏ ⵏⵏⴽ
-      write:notifications: ⵙⴼⴹ ⵜⵉⵏⵖⵎⵉⵙⵉⵏ ⵏⵏⴽ
+      "admin:read": ⵖⵔ ⵉⴼⵙⴽⴰ ⴰⴽⴽⵯ ⴳ ⵓⵎⴰⴽⴽⴰⵢ
+      "admin:write": ⵙⵏⴼⵍ ⵉⴼⵙⴽⴰ ⴰⴽⴽⵯ ⴳ ⵓⵎⴰⴽⴽⴰⵢ
+      read: ⵖⵔ ⵉⴼⵙⴽⴰ ⴰⴽⴽⵯ ⵏ ⵓⵎⵉⴹⴰⵏ
+      "read:lists": ⵥⵕ ⵜⵉⵍⴳⴰⵎⵉⵏ ⵏⵏⴽ
+      "read:notifications": ⵥⵕ ⵜⵉⵏⵖⵎⵉⵙⵉⵏ ⵏⵏⴽ
+      "read:statuses": ⵥⵕ ⴰⴷⴷⴰⴷⵏ ⴰⴽⴽⵯ
+      "write:lists": ⵙⵏⴼⵍⵓⵍ ⵜⵉⵍⴳⴰⵎⵉⵏ
+      "write:notifications": ⵙⴼⴹ ⵜⵉⵏⵖⵎⵉⵙⵉⵏ ⵏⵏⴽ
