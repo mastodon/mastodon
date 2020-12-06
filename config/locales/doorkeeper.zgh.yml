@@ -3,6 +3,7 @@ zgh:
     attributes:
       doorkeeper/application:
         name: ⵉⵙⵏ ⵏ ⵜⵙⵏⵙⵉ
+        redirect_uri: ⵜⴰⵏⵙⴰ ⵏ ⵓⵙⵉⴼⴹ
         website: ⴰⵙⵉⵜ ⵡⵉⴱ ⵏ ⵜⵙⵏⵙⵉ
   doorkeeper:
     applications:
@@ -15,6 +16,8 @@ zgh:
         destroy: ⵉⵙ ⵏⵉⵜ?
       edit:
         title: ⵙⵏⴼⵍ ⵜⵉⵙⵏⵙⵉ
+      help:
+        native_redirect_uri: ⵙⵎⵔⵙ %{native_redirect_uri} ⵉ ⵉⵔⵉⵎⵏ ⵉⴷⵖⴰⵔⴰⵜⵏ
       index:
         application: ⵜⵉⵙⵏⵙⵉ
         delete: ⴽⴽⵙ
@@ -58,6 +61,8 @@ zgh:
       "admin:read": ⵖⵔ ⵉⴼⵙⴽⴰ ⴰⴽⴽⵯ ⴳ ⵓⵎⴰⴽⴽⴰⵢ
       "admin:write": ⵙⵏⴼⵍ ⵉⴼⵙⴽⴰ ⴰⴽⴽⵯ ⴳ ⵓⵎⴰⴽⴽⴰⵢ
       read: ⵖⵔ ⵉⴼⵙⴽⴰ ⴰⴽⴽⵯ ⵏ ⵓⵎⵉⴹⴰⵏ
+      "read:filters": ⵥⵕ ⵉⵙⵜⴰⵢⵏ ⵏⵏⴽ
+      "read:follows": ⵥⵕ ⵉⵎⴹⴼⴰⵔⵏ ⵏⵏⴽ
       "read:lists": ⵥⵕ ⵜⵉⵍⴳⴰⵎⵉⵏ ⵏⵏⴽ
       "read:notifications": ⵥⵕ ⵜⵉⵏⵖⵎⵉⵙⵉⵏ ⵏⵏⴽ
       "read:statuses": ⵥⵕ ⴰⴷⴷⴰⴷⵏ ⴰⴽⴽⵯ
