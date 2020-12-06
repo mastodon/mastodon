@@ -661,6 +661,7 @@ th:
       cas: CAS
       saml: SAML
     register: ลงทะเบียน
+    registration_closed: "%{instance} ไม่ได้กำลังเปิดรับสมาชิกใหม่"
     resend_confirmation: ส่งคำแนะนำการยืนยันใหม่
     reset_password: ตั้งรหัสผ่านใหม่
     security: ความปลอดภัย
@@ -819,6 +820,7 @@ th:
   in_memoriam_html: เพื่อระลึกถึง
   invites:
     delete: ปิดใช้งาน
+    expired: หมดอายุแล้ว
     expires_in:
       '1800': 30 นาที
       '21600': 6 ชั่วโมง
@@ -1130,4 +1132,5 @@ th:
     invalid_credential: กุญแจความปลอดภัยไม่ถูกต้อง
     not_enabled: คุณยังไม่ได้เปิดใช้งาน WebAuthn
     not_supported: เบราว์เซอร์นี้ไม่รองรับกุญแจความปลอดภัย
+    otp_required: เพื่อใช้กุญแจความปลอดภัย โปรดเปิดใช้งานการรับรองความถูกต้องด้วยสองปัจจัยก่อน
     registered_on: ลงทะเบียนเมื่อ %{date}
