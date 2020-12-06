@@ -192,8 +192,9 @@ class Status extends ImmutablePureComponent {
     return <div className='audio-player' style={{ height: '110px' }} />;
   }
 
-  handleOpenVideo = (media, options) => {
-    this.props.onOpenVideo(this._properStatus().get('id'), media, options);
+  handleOpenVideo = (options) => {
+    const status = this._properStatus();
+    this.props.onOpenVideo(status.get('id'), status.getIn(['media_attachments', 0]), options);
   }
 
   handleOpenMedia = (media, index) => {
