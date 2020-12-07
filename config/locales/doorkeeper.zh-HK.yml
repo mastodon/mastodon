@@ -34,10 +34,10 @@ zh-HK:
         redirect_uri: 一行一個 URI
         scopes: 請用半形空格分開權限範圍 (scope)。留空表示使用預設的權限範圍。
       index:
-        application: 應用
-        callback_url: 回傳網址
+        application: 應用程式
+        callback_url: 回傳網址 (Callback URL)
         delete: 刪除
-        empty: 您沒有申請
+        empty: 你沒有應用程式
         name: 名稱
         new: 新增應用程式
         scopes: 權限範圍
@@ -79,7 +79,7 @@ zh-HK:
       messages:
         access_denied: 資源擁有者或授權伺服器不接受請求。
         credential_flow_not_configured: 資源擁有者密碼認證程序失敗，原因是 Doorkeeper.configure.resource_owner_from_credentials 沒有設定。
-        invalid_client: 客戶端驗證失敗。可能是因為您使用了未知的客戶端程式、過程中客戶端沒有進行驗證、或使用了不支援的認證方法。
+        invalid_client: 用戶程式認證 (Client Authentication) 失敗，原因是使用了未知的用戶程式、沒有傳回用戶認證資訊、或者使用了不支援的認證方法 (Authentication Method)。
         invalid_grant: 您所提供的申請無效、過期、已被取消、和授權請求的重新導向 URI 不符、或者因為使用了其他客戶端程式的 URI 而無法識別。
         invalid_redirect_uri: 包含的重新導向 Uri 無效。
         invalid_request: 請求缺少必要的參數、有不支援的參數、或其他格式錯誤。
