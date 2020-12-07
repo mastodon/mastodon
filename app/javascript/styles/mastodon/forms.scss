@@ -1031,6 +1031,26 @@ code {
   }
 }
 
+.rucaptcha_wrapper {
+  display: -webkit-flex;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  flex: 1 1 auto;
+
+  input {
+    flex: 1 1 auto;
+    min-width: 100px;
+  }
+
+  img {
+    flex: 1 1 auto;
+    margin-left: 15px;
+    border-radius: 4px;
+    max-height: 41px;
+  }
+}
+
 .input.user_confirm_password,
 .input.user_website {
   &:not(.field_with_errors) {

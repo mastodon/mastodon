@@ -24,6 +24,9 @@
     .fields-group
       = f.input :agreement, as: :boolean, wrapper: :with_label, label: t('auth.checkbox_agreement_html', rules_path: about_more_path, terms_path: terms_path), required: true, disabled: disabled
 
+    .fields-group
+      = render 'shared/rucaptcha', object: nil
+
     .actions
       = f.button :button, sign_up_message, type: :submit, class: 'button button-primary', disabled: disabled
 

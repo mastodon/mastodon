@@ -44,6 +44,12 @@
   %hr.spacer/
 
   .fields-group
+    = f.input :enable_captcha, as: :boolean, wrapper: :with_label, label: t('admin.settings.registrations.enable_captcha.title'), hint: t('admin.settings.registrations.enable_captcha.desc_html'), disabled: !approved_registrations?
+  .fields-group
+
+  %hr.spacer/
+
+  .fields-group
     = f.input :require_invite_text, as: :boolean, wrapper: :with_label, label: t('admin.settings.registrations.require_invite_text.title'), hint: t('admin.settings.registrations.require_invite_text.desc_html'), disabled: !approved_registrations?
   .fields-group
 

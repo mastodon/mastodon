@@ -1,0 +1,24 @@
+- if Setting.enable_captcha
+  - captcha_invalid = false
+  - wrapper_class = 'input with_label captcha required'
+  - unless object == nil
+    - wrapper_class = 'input with_label field_with_hint captcha required'
+    - object.errors.each do |key, value|
+      - if value == t('auth.rucaptcha_invalid')
+        - captcha_invalid = true
+        - wrapper_class = 'input with_label field_with_errors field_with_hint captcha required'
+
+  %div{:class => wrapper_class}
+    %div.label_input
+      %label{:class => 'captcha required', :for => 'rucaptcha'}
+        = t('simple_form.labels.defaults.captcha_label')
+        %abbr{:title => 'required'}
+          *
+      %div.label_input__wrapper
+        %div.rucaptcha_wrapper
+          = rucaptcha_input_tag(type: 'text', class: 'required', id: 'rucaptcha', required: 'required', aria_label: t('simple_form.labels.defaults.captcha_label'))
+          = rucaptcha_image_tag(id: 'rucaptcha-image', alt: t('simple_form.labels.defaults.captcha_image'))
+      - unless object == nil
+        %span.hint= t('simple_form.labels.defaults.captcha_hint')
+      - if captcha_invalid
+        %span.error= t('simple_form.labels.defaults.captcha_invalid')

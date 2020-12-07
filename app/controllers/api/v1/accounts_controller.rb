@@ -22,15 +22,20 @@ class Api::V1::AccountsController < Api::BaseController
   end
 
   def create
-    token    = AppSignUpService.new.call(doorkeeper_token.application, request.remote_ip, account_params)
-    response = Doorkeeper::OAuth::TokenResponse.new(token)
+    if Setting.enable_captcha
+      # disable registration via Rest API when captcha enabled
+      not_found
+    else
+      token    = AppSignUpService.new.call(doorkeeper_token.application, request.remote_ip, account_params)
+      response = Doorkeeper::OAuth::TokenResponse.new(token)
 
-    headers.merge!(response.headers)
+      headers.merge!(response.headers)
 
-    self.response_body = Oj.dump(response.body)
-    self.status        = response.status
-  rescue ActiveRecord::RecordInvalid => e
-    render json: ValidationErrorFormatter.new(e, :'account.username' => :username, :'invite_request.text' => :reason).as_json, status: :unprocessable_entity
+      self.response_body = Oj.dump(response.body)
+      self.status        = response.status
+    rescue ActiveRecord::RecordInvalid => e
+      render json: ValidationErrorFormatter.new(e, :'account.username' => :username, :'invite_request.text' => :reason).as_json, status: :unprocessable_entity
+    end
   end
 
   def follow

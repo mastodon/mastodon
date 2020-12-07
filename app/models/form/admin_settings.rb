@@ -33,6 +33,7 @@ class Form::AdminSettings
     show_domain_blocks
     show_domain_blocks_rationale
     noindex
+    enable_captcha
     require_invite_text
   ).freeze
 
@@ -48,6 +49,7 @@ class Form::AdminSettings
     trends
     trendable_by_default
     noindex
+    enable_captcha
     require_invite_text
   ).freeze
 

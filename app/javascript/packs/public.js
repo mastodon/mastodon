@@ -53,6 +53,12 @@ function main() {
   };
 
   ready(() => {
+    [].forEach.call(document.querySelectorAll('img.rucaptcha-image'), (content) => {
+      content.addEventListener('click', e => {
+        content.src = '/rucaptcha/?t=' + Date.now();
+      });
+    });
+
     const locale = document.documentElement.lang;
 
     const dateTimeFormat = new Intl.DateTimeFormat(locale, {

@@ -701,6 +701,9 @@ en:
         deletion:
           desc_html: Allow anyone to delete their account
           title: Open account deletion
+        enable_captcha:
+          desc_html: Use captcha in registration form
+          title: Enable captcha
         min_invite_role:
           disabled: No one
           title: Allow invitations by
@@ -951,6 +954,7 @@ en:
     registration_closed: "%{instance} is not accepting new members"
     resend_confirmation: Resend confirmation instructions
     reset_password: Reset password
+    rucaptcha_invalid: Captcha input incorrect, try again!
     security: Security
     set_new_password: Set new password
     setup:

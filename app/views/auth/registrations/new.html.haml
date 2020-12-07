@@ -38,6 +38,9 @@
   .fields-group
     = f.input :agreement, as: :boolean, wrapper: :with_label, label: whitelist_mode? ? t('auth.checkbox_agreement_without_rules_html', terms_path: terms_path) : t('auth.checkbox_agreement_html', rules_path: about_more_path, terms_path: terms_path), required: true
 
+  .fields-group
+    = render 'shared/rucaptcha', object: resource
+
   .actions
     = f.button :button, @invite.present? ? t('auth.register') : sign_up_message, type: :submit
 
