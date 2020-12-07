@@ -80,6 +80,18 @@ sc:
         access_denied: Sa propiedade sa resursa o su serbidore de autorizatziones at refudadu sa rechesta.
         credential_flow_not_configured: Su flussu de is credentziales de sa crae de intrada de su mere de sa risursa est fallidu pro neghe de su fatu chi Doorkeeper.configure.resource_owner_from_credentials no est cunfiguradu.
         invalid_client: S'autenticatzione de su cliente est fallida ca su cliente est disconnotu, s'atzessu a su cliente no est istadu incluidu, o sa manera de autenticatzione no est suportada.
+        invalid_grant: Su permissu de autorizatzione est invàlidu, iscadidu, revocadu, non currispondet a s'URI de re-indiritzamentu impreadu in sa rechesta de autorizatzione, o est istadu frunidu a un'àteru cliente.
+        invalid_redirect_uri: S'URI de re-indiritzamentu no est vàlidu.
+        invalid_request: In sa rechesta mancat unu paràmetru netzessàriu, ddoe est unu valore de unu paràmetru non suportadu o est fata male in carchi àtera manera.
+        invalid_resource_owner: Is credentziales de su mere de sa risursa frunidas non sunt vàlidas, o su mere de sa risursa non podet èssere agatadu
+        invalid_scope: S'àmbitu pedidu est invàlidu, disconnotu, o formuladu male.
+        invalid_token:
+          expired: Su getone de atzessu est iscadidu
+          revoked: Su getone de atzessu est istadu revocadu
+          unknown: Su getone de atzessu no est vàlidu
+        resource_owner_authenticator_not_configured: Su mere de sa risursa no est istadu agatadu pro neghe de su fatu chi Doorkeeper.configure.resource_owner_authenticator no est configuradu.
+        server_error: Su serbidore de autorizatzione at agatadu una cunditzione no isetada chi dd'at impedidu de esecutare sa rechesta tua.
+        temporarily_unavailable: Su serbidore de autorizatzione no est, in custu momentu, in gradu de gestire sa rechesta pro neghe de unu subracàricu temporàneu o de una manutentzione.
     layouts:
       admin:
         nav:
