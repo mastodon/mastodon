@@ -21,11 +21,11 @@ zh-HK:
         action_with_app: 確認並回到%{app}
         explanation: 你已成功用這個電郵在 %{host} 上建立了帳號。只需點擊下面的連結，即可啟用帳戶。如果你並沒有建立過帳戶，請忽略此郵件。
         explanation_when_pending: 你使用此電郵地址申請了%{host} 帳戶。確認電郵地址後，我們將審核你的申請。你可在登入後更改詳細信息，或刪除帳戶，但在帳戶獲得批准之前，你將無法使用大部份功能。如果你的申請被拒絕，你的資料會被直接刪除，而無需你採取任何動作。如果申請人不是你，請忽略此電郵。
-        extra_html: 請記得閱讀本服務站的<a href="%{terms_path}">相關規定</a>和<a href="%{policy_path}">使用條款</a>。
+        extra_html: 請閱讀<a href="%{terms_path}">站規</a>和<a href="%{policy_path}">我們的使用條款</a>。
         subject: 'Mastodon: 確認電郵地址 %{instance}'
         title: 驗證電子郵件地址
       email_changed:
-        explanation: '你的帳戶的電子郵件地址即將變更為：'
+        explanation: '你的帳號的電郵地址即將變更為：'
         extra: 如果你沒有請求更改你的電子郵件地址，則他人很有可能已經入侵你的帳戶。請立即更改你的密碼；如果你已經無法訪問你的帳戶，請聯繫服務站的管理員請求協助。
         subject: 'Mastodon：電子郵件地址已被更改'
         title: 新電子郵件地址
