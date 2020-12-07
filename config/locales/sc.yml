@@ -594,6 +594,7 @@ sc:
         desc_html: Ammustra un'insigna de personale in sa pàgina de utente
         title: Ammustra insigna de personale
       site_description:
+        desc_html: Paràgrafu de introdutzione a s'API. Descrie ite rendet ispatziale custu serbidore de Mastodon e cale si siat àtera cosa de importu. Podes impreare etichetas HTML, mescamente <code>&lt;a&gt;</code> e <code>&lt;em&gt;</code>.
         title: Descritzione de su serbidore
       site_description_extended:
         desc_html: Unu logu adatu pro publicare su còdighe de cumportamentu, règulas, diretivas e àteras caraterìsticas ispetzìficas de su serbidore tuo. Podes impreare etichetas HTML
@@ -985,6 +986,10 @@ sc:
       redirect: Su profilu de su contu atuale tuo at a èssere atualizadu cun un'avisu de indiritzamentu e at a èssere esclùidu dae is chircas
   moderation:
     title: Moderatzione
+  move_handler:
+    carry_blocks_over_text: Custu utente s'est tramudadu dae %{acct}, chi as blocadu.
+    carry_mutes_over_text: Custu utente s'est tramudadu dae %{acct}, chi as impostadu a sa muda.
+    copy_account_note_text: 'Custu utente s''est tramudadu dae %{acct}, custas sunt sas notas antepostas tuas chi li pertocant:'
   notification_mailer:
     digest:
       action: Ammustra totu is notìficas
@@ -1030,11 +1035,17 @@ sc:
         units:
           billion: Mrd
           million: M
+          quadrillion: Blr
           thousand: m
+          trillion: Bln
   otp_authentication:
     code_hint: Inserta·nche su còdighe generadu dae s'aplicatzione di autenticatzione pro cunfirmare
+    description_html: Si as a abilitare <strong>s'autenticatzione in duas fases</strong> impreende un'aplicatzione de autenticatzione, pro s'intrada as a dèpere tènnere in fatu su telèfonu tuo, chi at a ingendrare getones pro ti fàghere intrare.
     enable: Ativa
+    instructions_html: "<strong>Iscansi custu còdighe QR in s'autenticadore de Google o in un'aplicatzione TOTP simigiante in su telèfonu tuo</strong>. Dae como a in antis, cuss'aplicatzione at a ingendrare getones chi as a dèpere insertare pro pòdere fàghere s'atzessu."
+    manual_instructions: 'Si non podet iscansire su còdighe QR e tenes bisòngiu de dd''insertare manualmente, inoghe ddoe est su còdighe segretu in testu craru:'
     setup: Cunfigura
+    wrong_code: Su còdighe insertadu no est vàlidu! S'ora de su serbidore e de su dispositivu sunt curretas?
   pagination:
     newer: Prus reghente
     next: Sighi
