@@ -44,15 +44,15 @@ zh-HK:
         setting_display_media_default: 隱藏標為敏感的媒體
         setting_display_media_hide_all: 總是隱藏所有媒體
         setting_display_media_show_all: 總是顯示標為敏感的媒體
-        setting_hide_network: 你關注的人和關注你的人將不會在你的個人資料頁上顯示
+        setting_hide_network: 你所關注的人，和關注你的人，將不會在你的個人資料頁上顯示
         setting_noindex: 此設定會影響到你的公開個人資料以及文章頁面
         setting_show_application: 你用來發表文章的應用程式，將會顯示在你文章的詳細檢視中
-        setting_use_blurhash: 漸變基於隱藏的視覺效果顏色，但會模糊所有細節
+        setting_use_blurhash: 漸變圖樣會基於隱藏媒體內容產生，但所有細節會變得模糊
         setting_use_pending_items: 關閉自動滾動更新，時間軸會在點擊後更新
         username: 你的使用者名稱在 %{domain} 將是獨一無二的
         whole_word: 如果關鍵字或詞組僅有字母與數字，則其將只在符合整個單字的時候才會套用
       domain_allow:
-        domain: 此域將能從此站獲取數據，而此站發出的數據也會被處理和存儲。
+        domain: 此網域將能從此站獲取資料，而此站發出的數據也會被處理和存儲。
       email_domain_block:
         domain: 這裡可以是電郵地址中的域名、域名解析到的MX記錄、或MX紀錄解析到的服務器IP。如果上述資料被封禁，那麼註冊將被拒絕。
         with_dns_records: Mastodon 會嘗試解析所給域名的 DNS 記錄，然後與解析結果一併封禁
@@ -71,7 +71,7 @@ zh-HK:
         severities:
           no_access: 封鎖所有資源存取
           sign_up_requires_approval: 新登記申請正等候你審批
-        severity: 請設定伺服器將如何處理來自這個IP位置的請求
+        severity: 請設定伺服器將如何處理來自這個 IP 位址的請求
       sessions:
         otp: '輸入你手機上生成的雙重認證碼，或者任意一個恢復代碼：'
         webauthn: 如果它是 USB 安全鑰匙的話，請先插入電腦。如鑰匙設計有需要，請按鍵啟用。
