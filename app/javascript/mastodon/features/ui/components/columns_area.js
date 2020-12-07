@@ -75,7 +75,9 @@ class ColumnsArea extends ImmutablePureComponent {
   }
 
   componentWillReceiveProps() {
-    this.setState({ shouldAnimate: false });
+    if (typeof this.pendingIndex !== 'number' && this.lastIndex !== getIndex(this.context.router.history.location.pathname)) {
+      this.setState({ shouldAnimate: false });
+    }
   }
 
   componentDidMount() {
