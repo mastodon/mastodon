@@ -7,7 +7,11 @@ sc:
     failure:
       already_authenticated: Ses giai intradu.
       inactive: Su contu tuo no est ancora ativadu.
+      invalid: '%{authentication_keys} o crae de intrada non vàlida.'
+      last_attempt: Tenes ancora un'àteru tentativu, in antis chi su contu tuo bèngiat blocadu.
       locked: Su contu tuo est blocadu.
+      not_found_in_database: '%{authentication_keys} o crae de intrada non vàlida.'
+      pending: Su contu tuo est ancora in revisione.
       timeout: Sa sessione tua est iscadida. Torra·bi a intrare pro sighire.
       unauthenticated: Tocat a ti autenticare o ti registrare prima de sighire.
       unconfirmed: Deves cunfirmare s'indiritzu tuo de posta eletrònica prima de sighire.
@@ -55,6 +59,19 @@ sc:
         title: còdighes de recùperu 2FA mudados
       unlock_instructions:
         subject: 'Mastodon: Istrutziones pro s''isblocu'
+      webauthn_credential:
+        added:
+          explanation: Sa crae de seguresa chi sighit est istada agiunta a su contu tuo
+          subject: 'Mastodon: Crae de seguresa noa'
+          title: Est istada agiunta una crae de seguresa noa
+        deleted:
+          explanation: Sa crae de seguresa chi sighit est istada cantzellada dae su contu tuo
+          subject: 'Mastodon: Crae de seguresa cantzellada'
+          title: Una de is craes de seguresa tuas est istada cantzellada
+      webauthn_disabled:
+        explanation: S'autenticatzione cun craes de seguresa est istada disabilitada pro su contu tuo. S'intrada como est possìbile impreende isceti su getone ingendradu dae s'aplicatzione TOTP ligada.
+        subject: 'Mastodon: Autenticatzione cun craes de seguresa disabilitada'
+        title: Craes de seguresa disabilitadas
     omniauth_callbacks:
       success: Autenticadu dae su contu de %{kind}.
     passwords:
