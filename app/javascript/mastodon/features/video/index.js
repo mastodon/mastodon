@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
-import { fromJS, is } from 'immutable';
+import { is } from 'immutable';
 import { throttle, debounce } from 'lodash';
 import classNames from 'classnames';
 import { isFullscreen, requestFullscreen, exitFullscreen } from '../ui/util/fullscreen';
@@ -495,25 +495,13 @@ class Video extends React.PureComponent {
   }
 
   handleOpenVideo = () => {
-    const { src, preview, width, height, alt } = this.props;
+    this.video.pause();
 
-    const media = fromJS({
-      type: 'video',
-      url: src,
-      preview_url: preview,
-      description: alt,
-      width,
-      height,
-    });
-
-    const options = {
+    this.props.onOpenVideo({
       startTime: this.video.currentTime,
       autoPlay: !this.state.paused,
       defaultVolume: this.state.volume,
-    };
-
-    this.video.pause();
-    this.props.onOpenVideo(media, options);
+    });
   }
 
   handleCloseVideo = () => {
