@@ -3,11 +3,15 @@ sc:
     attributes:
       doorkeeper/application:
         name: Nòmine de s'aplicatzione
+        redirect_uri: URL de re-indiritzamentu
+        scopes: Àmbitos
+        website: Situ web de s'aplicatzione
     errors:
       models:
         doorkeeper/application:
           attributes:
             redirect_uri:
+              fragment_present: non podet cuntènnere un'ascra.
               invalid_uri: depet èssere un'URI vàlidu.
               relative_uri: devet èssere un'URI assolutu.
               secured_uri: depet èssere un'URI HTTPS/SSL.
@@ -28,8 +32,10 @@ sc:
       help:
         native_redirect_uri: Imprea %{native_redirect_uri} pro is tests locales
         redirect_uri: Imprea una lìnia pro ogni URI
+        scopes: Iscroba is àmbitos cun ispàtzios. Lassa bòidu pro impreare is predefinidos.
       index:
         application: Aplicatzione
+        callback_url: URL de torrada
         delete: Cantzella
         empty: No tenes peruna aplicatzione.
         name: Nòmine
@@ -42,6 +48,7 @@ sc:
       show:
         actions: Atziones
         application_id: ID de s'aplicatzione
+        callback_urls: URLs de torrada
         scopes: Àmbitos
         secret: Segretu de cliente
         title: 'Aplicatzione: %{name}'
