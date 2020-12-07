@@ -53,6 +53,9 @@ sc:
         whole_word: Cando sa paràula o sa fràsia crae est alfanumèrica ebbia s'at a aplicare isceti si currispondet a sa paràula intrea
       domain_allow:
         domain: Custu domìniu at a pòdere recuperare datos dae custu serbidore e is datos in intrada dae cue ant a èssere protzessados e archiviados
+      email_domain_block:
+        domain: Custu podet èssere su nòmine de domìniu chi benit ammustradu in s'indiritzu de posta eletrònica, in su registru MX in ue si risolvet su domìniu o s'IP de su serbidore in ue si risolvet su registru MX. Custos ant a èssere verificados a pustis de sa registratzione e sa registratzione at a èssere refudada.
+        with_dns_records: S'at a fàghere unu tentativu de risòlvere is registros DNS de su domìniu e fintzas is risultados ant a èssere blocados
       featured_tag:
         name: 'Forsis boles impreare unu de custos:'
       form_challenge:
@@ -62,12 +65,16 @@ sc:
       invite_request:
         text: Custu si at a agiudare a revisionare sa dimanda tua
       ip_block:
+        comment: Optzionale. Ammenta·ti proite as agiuntu custa règula.
+        expires_in: Is indiritzos IP sunt una risursa limitada, fatu-fatu benint cumpartzidos e podent mudare de mere. Pro custa resone is blocos indefinidos de indiritzos IP non sunt racumandados.
+        ip: Inserta un'indiritzu IPv4 o IPv6. Podes blocare intervallos intreos impreende sa sintassi CIDR. Dae cara e non ti bloches a sa sola!
         severities:
           no_access: Bloca s'atzessu a totu is resursas
           sign_up_requires_approval: As a dèpere aprovare is iscritziones noas
         severity: Sèbera ite at a sutzèdere cun is rechestas de custa IP
       sessions:
         otp: 'Inserta su còdighe de atzessu in duos passos generadu dae s''aplicatzione mòbile tua o imprea unu de custos còdighes de recùperu:'
+        webauthn: Si est una crae USB assegura·ti de l'insertare e, si serbit, de la tocare.
     labels:
       account:
         fields:
