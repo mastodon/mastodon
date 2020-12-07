@@ -1,10 +1,23 @@
 sc:
   simple_form:
     hints:
+      account_alias:
+        acct: Dislinda su nòmineutente@domìniu de su contu dae su cale ti boles mòere
+      account_migration:
+        acct: Dislinda su nòmineutente@domìniu de su contu cara a su cale ti boles mòere
       account_warning_preset:
         text: Podes impreare sa sintassi de is tuts, che a is URL, is etichetas e is mentovos
+        title: Optzionale. Invisìbile a su destinatàriu
       admin_account_action:
+        include_statuses: S'utente at a bìdere is tuts chi ant causadu s'atzione o s'avisu de moderatzione
         send_email_notification: S'utente at a retzire un'ispiegatzione de su chi siat sutzèdidu in su contu suo
+        text_html: Optzionale. Podes impreare sa sintassi de is tuts. Podes <a href="%{path}">agiùnghere avisos pre-impostados</a> pro risparmiare tempus
+        type_html: Issèbera ite fàghere cun <strong>%{acct}</strong>
+        warning_preset_id: Optzionales. Podes ancora agiùnghere testu personalizadu a s'acabu de cussu pre-impostadu
+      announcement:
+        all_day: Si est marcadu ant a èssere ammustradas isceti is datas de s'intervallu de tempus
+        ends_at: Optzionale. S'annùntziu at a acabbare de abarrare publicadu in custu momentu
+        scheduled_at: Lassa bòidu pro publicare s'annùntziu immediatamente
       defaults:
         password: Imprea a su mancu 8 caràteres
         setting_display_media_hide_all: Cua semper elementos multimediales
