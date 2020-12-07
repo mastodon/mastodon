@@ -3,6 +3,8 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import Video from 'flavours/glitch/features/video';
 import ImmutablePureComponent from 'react-immutable-pure-component';
+import Footer from 'flavours/glitch/features/picture_in_picture/components/footer';
+import { getAverageFromBlurhash } from 'flavours/glitch/blurhash';
 
 export default class VideoModal extends ImmutablePureComponent {
 
@@ -19,10 +21,21 @@ export default class VideoModal extends ImmutablePureComponent {
       defaultVolume: PropTypes.number,
     }),
     onClose: PropTypes.func.isRequired,
+    onChangeBackgroundColor: PropTypes.func.isRequired,
   };
 
+  componentDidMount () {
+    const { media, onChangeBackgroundColor, onClose } = this.props;
+
+    const backgroundColor = getAverageFromBlurhash(media.get('blurhash'));
+
+    if (backgroundColor) {
+      onChangeBackgroundColor(backgroundColor);
+    }
+  }
+
   render () {
-    const { media, onClose } = this.props;
+    const { media, statusId, onClose } = this.props;
     const options = this.props.options || {};
 
     return (
@@ -40,6 +53,10 @@ export default class VideoModal extends ImmutablePureComponent {
             detailed
             alt={media.get('description')}
           />
+        </div>
+
+        <div className='media-modal__overlay'>
+          {statusId && <Footer statusId={statusId} withOpenButton onClose={onClose} />}
         </div>
       </div>
     );

@@ -68,8 +68,8 @@ export default class DetailedStatus extends ImmutablePureComponent {
     e.stopPropagation();
   }
 
-  handleOpenVideo = (media, options) => {
-    this.props.onOpenVideo(media, options);
+  handleOpenVideo = (options) => {
+    this.props.onOpenVideo(this.props.status.getIn(['media_attachments', 0]), options);
   }
 
   _measureHeight (heightJustChanged) {
