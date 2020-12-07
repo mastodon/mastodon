@@ -35,10 +35,10 @@ zh-HK:
         inbox_url: 在你想要使用的中繼站首頁，複製它的網址
         irreversible: 文章過濾是不可還原的，即使日後過濾器被移除，也無法重新看到被它濾走的文章
         locale: 使用者介面、電郵和通知的語言
-        locked: 你必須人手核准每個用戶對你的關注請求，而你的文章私隱會被預設為「只有關注你的人能看」
+        locked: 你必須手動審核每個人對你的關注請求
         password: 使用至少 8 個字元
         phrase: 過濾器會閱讀文章和內容警告標語的字眼，然後決定過濾與否
-        scopes: 允許讓應用程式存取的 API。 若您選擇最高階範圍，則無須選擇個別項目。
+        scopes: 選擇應用程式可以存取的 API。 若你選擇最高階的權限範圍，則無須選擇個別項目。
         setting_aggregate_reblogs: 請勿顯示新近被轉推的文章（只影響最新被推的文章）
         setting_default_sensitive: 敏感媒體預設隱藏，且按一下即可重新顯示
         setting_display_media_default: 隱藏標為敏感的媒體
@@ -57,26 +57,26 @@ zh-HK:
         domain: 這裡可以是電郵地址中的域名、域名解析到的MX記錄、或MX紀錄解析到的服務器IP。如果上述資料被封禁，那麼註冊將被拒絕。
         with_dns_records: Mastodon 會嘗試解析所給域名的 DNS 記錄，然後與解析結果一併封禁
       featured_tag:
-        name: '您可能想使用其中一個：'
+        name: '你可能想使用其中一個：'
       form_challenge:
-        current_password: 您正要進入安全區域
+        current_password: 你正要進入安全區域
       imports:
         data: 自其他服務站匯出的 CSV 檔案
       invite_request:
-        text: 這會協助我們審核您的應用程式
+        text: 這將有助我們審核你的應用程式
       ip_block:
         comment: 可選，但請記得自己為甚麼添加了這個規則。
-        expires_in: 因為IP位置是經常被分享或轉手的有限資源，所以我們不推薦您無限期地封鎖IP位置。
-        ip: 請輸入IPv4或IPv6位置，您亦可以用CIDR語法來封鎖整個ip位值。請小心不要自己都一併封鎖！
+        expires_in: 因為 IP 位址是經常被分享或轉手的有限資源，所以我們不建議你無限期地封鎖 IP 位址。
+        ip: 請輸入 IPv4 或 IPv6 位址，你亦可以用 CIDR 語法來封鎖整個 IP 區段。請小心使用，不要把自己給一併封鎖！
         severities:
           no_access: 封鎖所有資源存取
-          sign_up_requires_approval: 您將需要審批新注冊
+          sign_up_requires_approval: 新登記申請正等候你審批
         severity: 請設定伺服器將如何處理來自這個IP位置的請求
       sessions:
         otp: '輸入你手機上生成的雙重認證碼，或者任意一個恢復代碼：'
-        webauthn: 如果您有使用USB手指的話麻煩把它插入並點擊（如適用）。
+        webauthn: 如果它是 USB 安全鑰匙的話，請先插入電腦。如鑰匙設計有需要，請按鍵啟用。
       tag:
-        name: 您只能變更大小寫，例如，以使其更易讀。
+        name: 你只能變更大小寫（以使其更易讀）。
       user:
         chosen_languages: 只有被選擇的語言會在公開時間軸內顯示
     labels:
@@ -85,9 +85,9 @@ zh-HK:
           name: 標籤
           value: 內容
       account_alias:
-        acct: 處理舊帳戶
+        acct: 舊帳號名稱
       account_migration:
-        acct: 處理新帳戶
+        acct: 新帳號名稱
       account_warning_preset:
         text: 預設文字
         title: 標題
@@ -95,14 +95,14 @@ zh-HK:
         include_statuses: 在電郵中加入被檢舉的文章
         send_email_notification: 透過電子信件通知使用者
         text: 自訂警告
-        type: 動作
+        type: 操作
         types:
           disable: 停用
-          none: 什麼也不做
+          none: 發送警告
           sensitive: 敏感内容
-          silence: 安靜
-          suspend: 停權並不可逆的刪除帳戶資料
-        warning_preset_id: 使用警告預設
+          silence: 限制
+          suspend: 停權
+        warning_preset_id: 使用預設警告
       announcement:
         all_day: 全天活動
         ends_at: 活動結束時間
@@ -110,10 +110,10 @@ zh-HK:
         starts_at: 活動開始時間
         text: 公告
       defaults:
-        autofollow: 邀請別人關注你的賬號
+        autofollow: 邀請別人關注你的帳號
         avatar: 個人頭像
         bot: 這帳號是機械人
-        chosen_languages: 語言過濾
+        chosen_languages: 按語言過濾
         confirm_new_password: 確認新密碼
         confirm_password: 確認密碼
         context: 過濾情境
@@ -207,5 +207,5 @@ zh-HK:
       text: 必須填寫
     title:
       sessions:
-        webauthn: 使用您的安全密鑰裝置來登入
+        webauthn: 使用你的安全密鑰裝置來登入
     'yes': '是'
