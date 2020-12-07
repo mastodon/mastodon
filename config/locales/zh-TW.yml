@@ -49,6 +49,8 @@ zh-TW:
     what_is_mastodon: 什麼是 Mastodon?
   accounts:
     choices_html: "%{name} 的選擇："
+    endorsements_hint: 推薦您已經關注的人，把他們釘在您的個人頁面。
+    featured_tags_hint: 您可以推薦不同主題標籤，它們也會在此處出現。
     follow: 關注
     followers:
       other: 關注者
@@ -63,6 +65,8 @@ zh-TW:
     nothing_here: 暫時沒有內容可供顯示!
     people_followed_by: '%{name} 關注的人'
     people_who_follow: 關注 %{name} 的人
+    pin_errors:
+      following: 你只能推薦你正在關注的使用者。
     posts:
       other: 嘟文
     posts_tab_heading: 嘟文
@@ -88,6 +92,7 @@ zh-TW:
       add_email_domain_block: 將電子郵件網域加入黑名單
       approve: 核准
       approve_all: 全部批准
+      approved_msg: 成功審核了%{username} 的新帳戶申請
       are_you_sure: 您確定嗎?
       avatar: 頭像
       by_domain: 站點
@@ -101,8 +106,10 @@ zh-TW:
       confirm: 確定
       confirmed: 已確定
       confirming: 確定
+      delete: 刪除資料
       deleted: 已刪除
       demote: 降級
+      destroyed_msg: "即將刪除 %{username} 的數據"
       disable: 停用
       disable_two_factor_authentication: 停用兩階段認證
       disabled: 已停用
@@ -113,6 +120,7 @@ zh-TW:
       email_status: 電子信箱狀態
       enable: 啟用
       enabled: 已啟用
+      enabled_msg: 成功解除 %{username} 帳戶的凍結
       followers: 關注者
       follows: 正在關注
       header: 開頭
@@ -128,6 +136,8 @@ zh-TW:
       login_status: 登入狀態
       media_attachments: 多媒體附件
       memorialize: 設定為追悼帳戶
+      memorialized: 被悼念的
+      memorialized_msg: 成功將%{username} 的帳號變為紀念帳號
       moderation:
         active: 活躍
         all: 全部
@@ -148,10 +158,14 @@ zh-TW:
       public: 公開
       push_subscription_expires: PuSH 訂閱過期
       redownload: 重新整理個人資料
+      redownloaded_msg: 成功重新載入%{username} 的個人資料頁面
       reject: 拒絕
       reject_all: 全部拒絕
+      rejected_msg: 成功拒絕了%{username} 的新帳號申請
       remove_avatar: 取消頭像
       remove_header: 移除開頭
+      removed_avatar_msg: 成功刪除了 %{username} 的頭像
+      removed_header_msg: 成功刪除了 %{username} 的頁面頂端
       resend_confirmation:
         already_confirmed: 此使用者已被確認
         send: 重新發送驗證信
@@ -168,6 +182,8 @@ zh-TW:
       search: 搜尋
       search_same_email_domain: 其他有同個電子郵件網域的使用者
       search_same_ip: 其他有同個 IP 的使用者
+      sensitive: 敏感内容
+      sensitized: 已標記為敏感內容
       shared_inbox_url: 共享收件箱網址
       show:
         created_reports: 建立檢舉
@@ -177,13 +193,19 @@ zh-TW:
       statuses: 嘟文
       subscribe: 訂閱
       suspended: 已停權
+      suspension_irreversible: 已永久刪除這個帳戶的數據。雖然這個帳戶的數據已被永久刪除，但是您仍然可以取消暫停這個帳戶。
+      suspension_reversible_hint_html: 這個帳戶已被暫停，所有數據將會在 %{date} 被刪除。在此之前，您可以完全回復您的帳戶。如果您想即時刪除這個帳戶的數據，您可以在下面進行操作。
       time_in_queue: 正在佇列等待 %{time}
       title: 帳戶
       unconfirmed_email: 未確認的電子信箱位址
+      undo_sensitized: 取消敏感狀態
       undo_silenced: 取消靜音
       undo_suspension: 取消停權
+      unsilenced_msg: 成功解除 %{username} 的帳戶限制
       unsubscribe: 取消訂閱
+      unsuspended_msg: 成功取消暫停 %{username} 的帳戶
       username: 使用者名稱
+      view_domain: 查看站台概要
       warn: 警告
       web: 頁面
       whitelisted: 已加入白名單
@@ -197,6 +219,9 @@ zh-TW:
         create_custom_emoji: 建立自訂顏文字
         create_domain_allow: 建立允許網域
         create_domain_block: 建立阻擋網域
+        create_email_domain_block: 封鎖電子郵件站台
+        create_ip_block: 新增IP規則
+        demote_user: 把用戶降級
         destroy_announcement: 刪除公告
         destroy_custom_emoji: 刪除自訂顏文字
         destroy_domain_allow: 刪除允許網域
@@ -210,9 +235,21 @@ zh-TW:
         enable_custom_emoji: 啓用自訂顏文字
         enable_user: 啓用帳戶
         memorialize_account: 設定成紀念帳號
+        promote_user: 把用戶升級
         remove_avatar_user: 刪除大頭貼
+        reopen_report: 重開舉報
+        reset_password_user: 重設密碼
+        resolve_report: 消除舉報
+        sensitive_account: 把您的帳號的媒體標記為敏感內容
+        silence_account: 靜音用戶
+        suspend_account: 暫停用戶
+        unassigned_report: 取消指派舉報
+        unsensitive_account: 取消把您的帳號的媒體設定為敏感內容
+        unsilence_account: 取消用戶的靜音狀態
+        unsuspend_account: 取消用戶的暫停狀態
         update_announcement: 更新公告
         update_custom_emoji: 更新自訂顏文字
+        update_status: 更新狀態
       actions:
         assigned_to_self_report: "%{name} 接受了檢舉 %{target}"
         change_email_user: "%{name} 變更了使用者 %{target} 的電子信箱位址"
@@ -223,12 +260,14 @@ zh-TW:
         create_domain_allow: "%{name} 將 %{target} 網域加入黑名單了"
         create_domain_block: "%{name} 封鎖了站點 %{target}"
         create_email_domain_block: "%{name} 封鎖了電子信箱網域 %{target}"
+        create_ip_block: "%{name} 已經設定了IP %{target} 的規則"
         demote_user: "%{name} 把使用者 %{target} 降級"
         destroy_announcement: "%{name} 刪除了公告 %{target}"
         destroy_custom_emoji: "%{name} 破壞了 %{target} 表情符號"
         destroy_domain_allow: "%{name} 從白名單中移除了 %{target} 網域"
         destroy_domain_block: "%{name} 取消了對站點 %{target} 的封鎖"
         destroy_email_domain_block: "%{name} 取消了對電子信箱網域 %{target} 的封鎖"
+        destroy_ip_block: "%{name} 已經刪除了 IP %{target} 的規則"
         destroy_status: "%{name} 刪除了 %{target} 的嘟文"
         disable_2fa_user: "%{name} 停用了使用者 %{target} 的兩階段認證"
         disable_custom_emoji: "%{name} 停用了自訂表情符號 %{target}"
@@ -241,9 +280,11 @@ zh-TW:
         reopen_report: "%{name} 重新開啟 %{target} 的檢舉"
         reset_password_user: "%{name} 重新設定了使用者 %{target} 的密碼"
         resolve_report: "%{name} 處理了 %{target}　的檢舉"
+        sensitive_account: "%{name} 將 %{target} 的媒體檔案標記為敏感內容"
         silence_account: "%{name} 靜音了使用者 %{target}"
         suspend_account: "%{name} 停權了使用者 %{target}"
         unassigned_report: "%{name} 取消指派 %{target} 的檢舉"
+        unsensitive_account: "%{name} 將 %{target} 的媒體檔案的敏感狀態取消"
         unsilence_account: "%{name} 取消了使用者 %{target} 的靜音狀態"
         unsuspend_account: "%{name} 取消了使用者 %{target} 的停權狀態"
         update_announcement: "%{name} 更新了公告 %{target}"
@@ -251,6 +292,8 @@ zh-TW:
         update_status: "%{name} 重整了 %{target} 的嘟文"
       deleted_status: "（已刪除嘟文）"
       empty: 找不到 log
+      filter_by_action: 按動作篩選
+      filter_by_user: 按使用者篩選
       title: 營運日誌
     announcements:
       destroyed_msg: 成功刪除公告！
@@ -289,11 +332,13 @@ zh-TW:
       listed: 已顯示
       new:
         title: 加入新的自訂表情符號
+      not_permitted: 您無權執行此操作
       overwrite: 覆蓋
       shortcode: 短代碼
       shortcode_hint: 至少 2 個字元，只能使用字母、數字和下劃線
       title: 自訂表情符號
       uncategorized: 未分類
+      unlist: 不公開
       unlisted: 已隱藏
       update_failed_msg: 無法更新表情符號
       updated_msg: 已更新表情符號!
@@ -336,6 +381,7 @@ zh-TW:
       created_msg: 正在進行站點封鎖
       destroyed_msg: 已撤銷站點封鎖
       domain: 站點
+      edit: 更改封鎖的站台
       new:
         create: 新增封鎖
         hint: 站點封鎖動作並不會阻止帳戶紀錄被新增至資料庫，但會自動回溯性地對那些帳戶套用特定管理設定。
