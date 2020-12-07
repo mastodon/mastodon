@@ -75,21 +75,31 @@ sc:
       sessions:
         otp: 'Inserta su còdighe de atzessu in duos passos generadu dae s''aplicatzione mòbile tua o imprea unu de custos còdighes de recùperu:'
         webauthn: Si est una crae USB assegura·ti de l'insertare e, si serbit, de la tocare.
+      tag:
+        name: Podes isceti cambiare su minùsculu/maiùsculu de is lìteras, a esèmpiu, pro fàghere in manera chi siant prus fàtziles de lèghere
+      user:
+        chosen_languages: Cando est incarcadu, isceti is tuts in is limbas ischertadas ant a èssere ammustrados in is lìnias de tempus pùblicas
     labels:
       account:
         fields:
           name: Eticheta
           value: Cuntenutu
+      account_alias:
+        acct: Nòmine utente de su contu betzu
+      account_migration:
+        acct: Nòmine utente de su contu nou
       account_warning_preset:
         text: Testu predefinidu
         title: Tìtulu
       admin_account_action:
+        include_statuses: Include is tuts sinnalados in sa lìtera eletrònica
         send_email_notification: Notìfica s'utente pro mèdiu de posta eletrònica
         text: Avisu personalizadu
         type: Atzione
         types:
           disable: Disativa
           none: Imbia un'avisu
+          sensitive: Sensìbile
           silence: A sa muda
           suspend: Suspende
         warning_preset_id: Imprea un'avisu predefinidu
