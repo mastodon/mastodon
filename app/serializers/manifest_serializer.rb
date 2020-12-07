@@ -68,11 +68,11 @@ class ManifestSerializer < ActiveModel::Serializer
   def shortcuts
     [
       {
-        name: 'Local timeline',
-        url: '/web/timelines/public/local',
+        name: 'New toot',
+        url: '/web/statuses/new',
         icons: [
           {
-            src: '/shortcuts/local.png',
+            src: '/shortcuts/new-status.png',
             type: 'image/png',
             sizes: '192x192',
           },
@@ -95,17 +95,6 @@ class ManifestSerializer < ActiveModel::Serializer
         icons: [
           {
             src: '/shortcuts/direct.png',
-            type: 'image/png',
-            sizes: '192x192',
-          },
-        ],
-      },
-      {
-        name: 'Profile directory',
-        url: '/web/directory',
-        icons: [
-          {
-            src: '/shortcuts/directory.png',
             type: 'image/png',
             sizes: '192x192',
           },
