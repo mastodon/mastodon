@@ -119,16 +119,16 @@ zh-HK:
         context: 過濾情境
         current_password: 目前密碼
         data: 資料
-        discoverable: 在目錄列出此帳戶
+        discoverable: 在目錄列出此帳號
         display_name: 顯示名稱
         email: 電郵地址
         expires_in: 失效時間
         fields: 資料
         header: 個人頁面頂部
         inbox_url: 中繼收件匣的 URL
-        irreversible: 放棄而非隱藏
+        irreversible: 丟棄而非隱藏
         locale: 介面語言
-        locked: 將用戶轉為「私人」
+        locked: 將帳號轉為「私人」
         max_uses: 最大使用次數
         new_password: 新密碼
         note: 簡介
@@ -136,7 +136,7 @@ zh-HK:
         password: 密碼
         phrase: 關鍵字或片語
         setting_advanced_layout: 啟用進階網頁介面
-        setting_aggregate_reblogs: 時間軸中的群組轉嘟
+        setting_aggregate_reblogs: 時間軸中的群組轉推
         setting_auto_play_gif: 自動播放 GIF
         setting_boost_modal: 在轉推前詢問我
         setting_crop_images: 將未展開文章中的圖片裁剪到 16x9
@@ -144,7 +144,7 @@ zh-HK:
         setting_default_privacy: 文章預設為
         setting_default_sensitive: 預設我的內容為敏感內容
         setting_delete_modal: 刪除文章前，請要求我確認
-        setting_disable_swiping: 停用動作（滑動）
+        setting_disable_swiping: 停用滑動手勢
         setting_display_media: 媒體顯示
         setting_display_media_default: 預設
         setting_display_media_hide_all: 全部隱藏
@@ -171,30 +171,30 @@ zh-HK:
       featured_tag:
         name: '「#」標籤'
       interactions:
-        must_be_follower: 隱藏沒有關注你的用戶的通知
-        must_be_following: 隱藏你不關注的用戶的通知
-        must_be_following_dm: 隱藏你不關注的用戶的私信
+        must_be_follower: 隱藏你關注者以外的人的通知
+        must_be_following: 隱藏你不關注的人的通知
+        must_be_following_dm: 隱藏你不關注的人的私信
       invite:
         comment: 備註
       invite_request:
         text: 加入的原因
       ip_block:
         comment: 備註
-        ip: IP 地址
+        ip: IP 位址
         severities:
           no_access: 封鎖
-          sign_up_requires_approval: 限制注冊
+          sign_up_requires_approval: 限制註冊
         severity: 規則
       notification_emails:
         digest: 定期電郵摘要
         favourite: 有人喜歡你的文章
-        follow: 當有用戶關注你時，發電郵通知
-        follow_request: 當有用戶要求關注你時，發電郵通知
-        mention: 當有用戶在文章提及你時，發電郵通知
-        pending_account: 需要審核的新帳戶
-        reblog: 當有用戶轉推你的文章時，發電郵通知
-        report: 當提交新檢舉時傳送電子郵件
-        trending_tag: 當未審核的話題成為當前熱門時發郵件提醒
+        follow: 當有人關注你時
+        follow_request: 當有人要求關注你時
+        mention: 當有人在文章提及你時
+        pending_account: 有新帳號需要審核時
+        reblog: 當有人轉推你的文章時
+        report: 收到新檢舉時
+        trending_tag: 當未審核的標籤成為當前熱門時
       tag:
         listable: 允許此主題標籤在搜尋及個人檔案目錄中顯示
         name: 主題標籤
