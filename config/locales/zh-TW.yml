@@ -382,6 +382,7 @@ zh-TW:
       destroyed_msg: 已撤銷站點封鎖
       domain: 站點
       edit: 更改封鎖的站台
+      existing_domain_block_html: 您已經對 %{name} 施加了更嚴格的限制，您需要先把他<a href="%{unblock_url}">取消封鎖</a>。
       new:
         create: 新增封鎖
         hint: 站點封鎖動作並不會阻止帳戶紀錄被新增至資料庫，但會自動回溯性地對那些帳戶套用特定管理設定。
@@ -392,7 +393,9 @@ zh-TW:
           suspend: 停權
         title: 新增封鎖站點
       private_comment: 私人留言
+      private_comment_hint: 請提供更多有關此站台限制的資訊以供版主作內部參考。
       public_comment: 公開留言
+      public_comment_hint: 如果你已經啟用站台限制列表的公告，請為一般大眾提供更多有關此站台限制的資訊。
       reject_media: 拒絕媒體檔案
       reject_media_hint: 刪除本地快取的媒體檔案，並且不再接收來自該站點的任何媒體檔案。與停權無關
       reject_reports: 拒絕檢舉
@@ -419,11 +422,13 @@ zh-TW:
       destroyed_msg: 已成功從黑名單刪除電子信箱網域
       domain: 站點
       empty: 現在沒有阻擋任何 e-mail 網域。
+      from_html: 由 %{domain}
       new:
         create: 新增站點
         title: 新增電子信箱黑名單項目
       title: 電子信箱黑名單
     instances:
+      by_domain: 站台
       moderation:
         all: 全部
         limited: 限制
