@@ -61,7 +61,7 @@ sc:
     joined: At aderidu su %{date}
     last_active: ùrtima atividade
     link_verified_on: Sa propiedade de custu ligàmene est istada controllada su %{date}
-    media: Cuntenutu multimediale
+    media: Elementos multimediales
     moved_html: "%{name} est istadu trasferidu a %{new_profile_link}:"
     network_hidden: Custa informatzione no a disponimentu
     never_active: Mai
@@ -248,7 +248,7 @@ sc:
         silence_account: Pone custu contu a sa muda
         suspend_account: Suspende custu contu
         unassigned_report: Boga s'assignatzione de custu informe
-        unsensitive_account: Boga sa marcadura "sensìbiles" a sos cuntenutos multimediales in su contu tuo
+        unsensitive_account: Boga sa marcadura "sensìbiles" a is elementos multimediales in su contu tuo
         unsilence_account: Boga custu contu de is contos a sa muda
         unsuspend_account: Boga custu contu de is contos suspèndidos
         update_announcement: Atualiza s'annùntziu
@@ -284,11 +284,11 @@ sc:
         reopen_report: "%{name} at torradu a abèrrere s'informe %{target}"
         reset_password_user: "%{name} at restadu sa crae de s'utente %{target}"
         resolve_report: "%{name} at isòrvidu s'informe %{target}"
-        sensitive_account: "%{name} at marcadu su cuntenutu multimediale de %{target} comente sensìbile"
+        sensitive_account: "%{name} at marcadu s'elementu multimediale de %{target} comente sensìbile"
         silence_account: "%{name} at postu su contu de %{target} a sa muda"
         suspend_account: "%{name} at suspèndidu su contu de %{target}"
         unassigned_report: "%{name} at bogadu s'assignatzione de s'informe %{target}"
-        unsensitive_account: "%{name} at bogadu sa marcadura \"sensìbile\" a su cuntenutu multimediale de %{target}"
+        unsensitive_account: "%{name} at bogadu sa marcadura \"sensìbile\" a s'elementu multimediale de %{target}"
         unsilence_account: "%{name} at postu su contu de %{target} a sa muda"
         unsuspend_account: "%{name} at bogadu sa suspensione de su contu de %{target}"
         update_announcement: "%{name} at atualizadu s'annùntziu %{target}"
@@ -391,7 +391,7 @@ sc:
         create: Crea unu blocu
         hint: Su blocu de domìniu no at a impedire sa creatzione de contos noos in sa base de datos, ma ant a èssere aplicados in manera retroativa mètodos de moderatzione ispetzìficos subra custos contos.
         severity:
-          desc_html: "<strong>A sa muda</strong> at a pònnere is messàgios de custos contos comente invisìbiles a sa gente chi no ddi siat sighende. <strong>Sa suspensione</strong> at a cantzellare totu su cuntenutu de su contu, mèdia e datos de profilu. Imprea <strong>Perunu</strong> si boles isceti refudare is archìvios multimediales."
+          desc_html: "<strong>A sa muda</strong> at a pònnere is messàgios de custos contos comente invisìbiles a sa gente chi no ddi siat sighende. <strong>Sa suspensione</strong> at a cantzellare totu su cuntenutu de su contu, mèdios (elementos multimediales) e datos de profilu. Imprea <strong>Perunu</strong> si boles isceti refudare is archìvios multimediales."
           noop: Perunu
           silence: A sa muda
           suspend: Suspèndidu
@@ -400,11 +400,11 @@ sc:
       private_comment_hint: Lassa unu cummentu a subra de custa limitatzione de domìniu pro impreu internu de s'iscuadra de moderatzione.
       public_comment: Cummentu pùblicu
       public_comment_hint: Lassa unu cummentu pro su pùblicu generale a subra de custa limitatzione de su domìniu, si sa publicatzione de sa lista de limitatziones de domìniu est abilitada.
-      reject_media: Refuda archìvios multimediales
-      reject_media_hint: Cantzellat archìvios multimediales sarvados in locale e refudat iscarrigamentos in su benidore. Non rilevante pro is suspensiones
+      reject_media: Refuda documentos multimediales
+      reject_media_hint: Cantzellat documentos multimediales sarvados in locale e refudat iscarrigamentos in su benidore. Non rilevante pro is suspensiones
       reject_reports: Refuda informes
       reject_reports_hint: Iscarta informes chi benint de custu domìniu. Non rilevante pro is suspensiones
-      rejecting_media: refudende archìvios multimediales
+      rejecting_media: refudende documentos multimediales
       rejecting_reports: refudende informes
       severity:
         silence: a sa muda
@@ -566,7 +566,7 @@ sc:
         desc_html: Is nòmines de domìniu chi custu serbidore at agatadu in su fediversu
         title: Pùblica sa lista de serbidores iscobertos
       preview_sensitive_media:
-        desc_html: Is visualizatziones anteriores de ligàmenes de àteros sitos web ant a ammustrare una miniadura mancari is mèdios de comunicatzione siant marcados comente a sensìbiles
+        desc_html: Is antiprimas de ligòngios de àteros sitos web ant a ammustrare una miniadura mancari is mèdios de comunicatzione siant marcados comente a sensìbiles
         title: Ammustra mèdios sensìbiles in sas previsualizatziones de OpenGraph
       profile_directory:
         desc_html: Permite a is persone de èssere iscobertas
