@@ -958,9 +958,9 @@ zh-HK:
     followers_count: 轉移時的追隨者
     incoming_migrations: 由另一個帳號轉移
     incoming_migrations_html: 要由其他帳戶轉移至當前帳戶的話，首先你需要 <a href="%{path}">新增帳戶別名(alias)</a>.
-    moved_msg: 您的帳戶正重新定向至 %{acct} ，您的追隨者正在同步轉移至該帳戶。
-    not_redirecting: 您的帳戶現時並未被重新定向。
-    on_cooldown: 您最近已經轉移過帳戶。此功能將在 %{count} 天後可重新使用。
+    moved_msg: 你的帳號正被轉接至 %{acct} ，你的關注者正在同步轉移至該帳號。
+    not_redirecting: 你的帳號現時並未被重新定向。
+    on_cooldown: 你最近已經轉移過帳戶。此功能將在 %{count} 天後可重新使用。
     past_migrations: 以往的帳戶轉移
     proceed_with_move: 移動追隨者
     redirected_msg: 你的帳戶即將被重新定向至%{acct}。
@@ -974,7 +974,7 @@ zh-HK:
       followers: 此操作將會由當前帳號轉移所有追隨者至新帳號
       only_redirect_html: 另外，你亦可<a href="%{path}">只在你的個人資料頁面放上重新定向標記</a>.
       other_data: 並不會自動轉移其他數據
-      redirect: 您的當前帳號的個人資料頁面將會加上一個重新定向公告，並會在搜尋結果中被剔除。
+      redirect: 你的當前帳號的個人資料頁面將會加上一個重新定向公告，並會在搜尋結果中被剔除。
   moderation:
     title: 營運
   move_handler:
@@ -1010,7 +1010,7 @@ zh-HK:
       subject: '%{name} 在文章中提及你'
       title: 新的提及
     reblog:
-      body: '您的文章被 %{name} 轉推：'
+      body: '你的文章被 %{name} 轉推：'
       subject: "%{name} 轉推了你的文章"
       title: 新的轉推
   notifications:
@@ -1028,7 +1028,7 @@ zh-HK:
           thousand: 千
           trillion: 兆
   otp_authentication:
-    code_hint: 請輸入您的認證器所產生的代碼，以確認設定
+    code_hint: 請輸入你認證器所產生的代碼，以確認設定
     description_html: 當你啟用<strong>雙重認證</strong>後，你登入時將需要使用你的手機或其他認證器所產生的代碼。
     enable: 啟用
     instructions_html: "<strong>請用你手機的認證器應用程式（如 Google Authenticator、Authy），掃描這裏的QR 圖形碼</strong>。在雙重認證啟用後，你登入時將須要使用此應用程式產生的認證碼。"
@@ -1043,12 +1043,12 @@ zh-HK:
     truncate: "……"
   polls:
     errors:
-      already_voted: 您已參與此投票
+      already_voted: 你已投票
       duplicate_options: 含有重覆項目
       duration_too_long: 太久了！
       duration_too_short: 時間太近了！
       expired: 投票已結束
-      invalid_choice: 您所選的投票選項不存在
+      invalid_choice: 你所選的投票選項不存在
       over_character_limit: 不能多於 %{max} 個字符
       too_few_options: 一定要多於一個項目
       too_many_options: 不能多於 %{max} 個項目
@@ -1080,10 +1080,10 @@ zh-HK:
   remote_follow:
     acct: 請輸入你想使用的「使用者名稱@域名」身份
     missing_resource: 無法找到你用戶的轉接網址
-    no_account_html: 沒有帳號？您可以<a href='%{sign_up_path}' target='_blank'>在這裏注冊</a>
+    no_account_html: 沒有帳號？你可以<a href='%{sign_up_path}' target='_blank'>在這裏註冊</a>
     proceed: 下一步
     prompt: '你希望關注︰'
-    reason_html: "<strong>為甚麼這步十分重要？</strong> <code>%{instance}</code>未必是您注冊的伺服器，所以我們首先需要將您帶回您的伺服器。"
+    reason_html: "<strong>為甚麼有必要做這個步驟？</strong>因為<code>%{instance}</code>未必是你註冊的伺服器，所以我們首先需要將你帶回你的伺服器。"
   remote_interaction:
     favourite:
       proceed: 下一步
@@ -1324,16 +1324,16 @@ zh-HK:
       title: 檔案匯出
     sign_in_token:
       details: '這是嘗試的詳細資訊'
-      explanation: '我們檢測到有人嘗試以未使用過的IP位址登錄到您的帳戶。 如果這是您，請在「登錄請求」頁面上輸入以下安全代碼：'
-      further_actions: '如果這不是您，請更改您的密碼並啟用雙重認證，你可以在此更改：'
+      explanation: '我們發現有人嘗試以未使用過的 IP 位址登入到你的帳號。 如果這個登入的人是你，請在「登入請求」頁面上輸入以下安全代碼：'
+      further_actions: '如果這不是你，請到這裏更改你的密碼，並啟用雙重認證：'
       subject: 請確認登入請求
       title: 登入請求
     warning:
       explanation:
-        disable: 您不能以任何方式登入或使用您的帳號，但你的個人資料頁面和其他數據仍保持完整。
+        disable: 你不能以任何方式登入或使用你的帳號，但你的個人資料頁面和其他資料仍保持完整。
         sensitive: 你上載的媒體檔案和連結媒體將被標記為敏感項目。
         silence: 你仍然可以使用你的帳號，但只有你現時的追隨者會看見你在此伺服器的嘟文。你或從公開名冊中被剔除。但是其他人仍然可以主動關注你。
-        suspend: 您將不能使用您的帳號，您的個人資料頁面及其他數據將不能再被取得。您仍然可以在您的資料被完全刪除前請求下載您的數據，但我們仍會保留一部份數據以防止帳號停權被中止。
+        suspend: 你將不能使用您的帳號，你的個人資料頁面及其他資料將不能再被取得。你仍可在資料被完全刪除前請求下載你的數據，但我們仍會保留一部份資料，以防止有人規避停權處罰。
       get_in_touch: 你可以回覆此電郵來跟我們(%{instance})聯絡
       review_server_policies: 審視伺服器政策
       statuses: '特別是：'
