@@ -432,7 +432,7 @@ class Status extends ImmutablePureComponent {
     } else if (status.get('spoiler_text').length === 0 && status.get('card')) {
       media = (
         <Card
-          onOpenMedia={this.props.onOpenMedia}
+          onOpenMedia={this.handleOpenMedia}
           card={status.get('card')}
           compact
           cacheWidth={this.props.cacheMediaWidth}
