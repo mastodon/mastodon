@@ -746,7 +746,7 @@ zh-HK:
     use_security_key: 使用安全密鑰裝置
   authorize_follow:
     already_following: 你已經關注了這個帳號
-    already_requested: 您早已向該帳戶寄送追蹤請求
+    already_requested: 你先前已向該帳號發送關注請求
     error: 對不起，尋找這個跨站用戶的過程發生錯誤
     follow: 關注
     follow_request: '關注請求已發送给：'
@@ -792,14 +792,14 @@ zh-HK:
     warning:
       before: '在繼續之前，請仔細閱讀以下說明：'
       caches: 已被其他服務器緩存的內容可能不會消失
-      data_removal: 您的文章和其他數據將被永久刪除
-      email_change_html: 您可以在不刪除帳戶的情況下<a href="%{path}">更改電子郵件地址</a>
-      email_contact_html: 如果仍然沒有送達，您可以通過電子郵件發送到<a href="mailto:%{email}">%{email}</a>以獲得協助
-      email_reconfirmation_html: 如果您沒有收到確認電郵，您可以<a href="%{path}">再次請求電郵</a>
+      data_removal: 你的文章和其他資料將被永久刪除
+      email_change_html: 你可以在不刪除帳戶的情況下<a href="%{path}">更改電子郵件地址</a>
+      email_contact_html: 如果仍然沒有送達，你可以通過電子郵件發送到<a href="mailto:%{email}">%{email}</a>以獲得協助
+      email_reconfirmation_html: 如果你沒有收到確認電郵，你可以<a href="%{path}">要求再次發送它</a>
       irreversible: 你將無法重啟你的帳戶
       more_details_html: 請參見<a href="%{terms_path}">隱私政策</a>以瀏覽細節。
       username_available: 你的登入名稱將可被其他人使用
-      username_unavailable: 您的帳號將繼續不能使用
+      username_unavailable: 你的登入名稱將不能讓其他人使用
   directories:
     directory: 個人資料目錄
     explanation: 根據興趣認識新朋友
@@ -807,7 +807,7 @@ zh-HK:
   domain_validator:
     invalid_domain: 不是一個可用域名
   errors:
-    '400': 您的請求無效或格式不正確。
+    '400': 你的請求無效或格式不正確。
     '403': 你沒有觀看本頁的權限。
     '404': 找不到內容。
     '406': 無法根據的格式顯示此頁面
@@ -843,7 +843,7 @@ zh-HK:
     add_new: 新增
     errors:
       limit: 你所推薦的標籤數量已經達到上限
-    hint_html: "<strong>甚麼是推薦標籤？</strong> 它們在您的個人資料頁面被顯示，讓其他人可以根據標籤瀏覽您的公開嘟文。它們是您長期創作的好幫手！"
+    hint_html: "<strong>甚麼是推薦主題標籤？</strong> 它們會被顯示在你的個人資料頁面，讓其他人可以根據標籤瀏覽你的公開文章，令人們更易找到你創作或者長期作品！"
   filters:
     contexts:
       account: 個人資料
@@ -858,7 +858,7 @@ zh-HK:
       invalid_irreversible: 不可逆的篩選器只適用放主頁或通知頁面
     index:
       delete: 刪除
-      empty: 您沒有過濾器。
+      empty: 你沒有過濾器。
       title: 篩選
     new:
       title: 新增篩選器
@@ -889,7 +889,7 @@ zh-HK:
         invalid_token: Keybase tokens必定為66個16位元字符的簽名檔散列。
         verification_failed: Keybase不能識別此令牌為Keybase用戶%{kb_username} 的簽名。請在Keybase再試一次。
       wrong_user: 未能以%{current} 為 %{proving} 建立身份驗證。請登入為%{proving} 再試一次。
-    explanation_html: 在此你可以用例如Keybase等平台安全地聯通不同的網絡身份。其他人可以傳送加密信息給您並驗證您的身份。
+    explanation_html: 在此你連結其他網路平台（如 Keybase）上的加密身份。讓其他人可以在那些平台上，傳送加密信息給你，並驗證你的身份。
     i_am_html: 我是 %{service} 上的 %{username}
     identity: 身份
     inactive: 停用
@@ -1338,15 +1338,15 @@ zh-HK:
       review_server_policies: 審視伺服器政策
       statuses: '特別是：'
       subject:
-        disable: 您的帳號%{acct} 已經被涷結
+        disable: 你的帳號 %{acct} 已經被涷結
         none: 警告帳號%{acct}
-        sensitive: 您的帳號%{acct} 的媒體已被標記為敏感內容
-        silence: 您的帳號%{acct} 已經被限制
-        suspend: 您的帳號%{acct} 已經被停權
+        sensitive: 你的帳號 %{acct} 的媒體已被標記為敏感內容
+        silence: 你的帳號 %{acct} 已經被限制
+        suspend: 你的帳號 %{acct} 已經被停權
       title:
         disable: 帳號涷結
         none: 警告
-        sensitive: 您的媒體已被標記為敏感內容
+        sensitive: 你的媒體已被標記為敏感內容
         silence: 賬戶已被限制
         suspend: 帳號已停用
     welcome:
@@ -1369,7 +1369,7 @@ zh-HK:
   users:
     blocked_email_provider: 此電郵提供商並不被允許
     follow_limit_reached: 你不能關注多於%{limit} 人
-    generic_access_help_html: 不能登入？您可以寄電郵至 %{email} 尋求協助
+    generic_access_help_html: 不能登入？你可以寄電郵至 %{email} 尋求協助
     invalid_email: 電郵地址格式不正確
     invalid_email_mx: 此電郵地址不存在
     invalid_otp_token: 雙重認證碼不正確
@@ -1377,24 +1377,24 @@ zh-HK:
     otp_lost_help_html: 如果這兩者你均無法登入，你可以聯繫 %{email}
     seamless_external_login: 因為你正在使用第三方服務登入，所以不能設定密碼和電郵。
     signed_in_as: '目前登入的帳戶：'
-    suspicious_sign_in_confirmation: 您似乎未曾從此設備登入，而您又有一段時間沒有登入了。我們剛剛把安全碼傳送到您的電郵地址，請查看您的信箱確認這是您本人。
+    suspicious_sign_in_confirmation: 你似乎未曾從此設備登入，而你又有一段時間沒有登入了。我們剛剛把安全碼傳送到你的電郵地址，請查看你的電郵信箱，以確認你是帳號擁有者本人。
   verification:
-    explanation_html: '您可以<strong>根據個人資料頁面的元類據認證是你本人</strong>。您的連結網站一定要有一個定向至您的Mastodon個人頁面的連結，並<strong>必須</strong>有一個<code>rel="me"</code>的屬性，連結中的任何文字都不會影響認證。這裏有一個例子：'
+    explanation_html: '你可以<strong>認證個人資料頁面的元數據 (Metadata) 連結是屬於你的</strong>。要認證，那些連結的目的地網站必須有一條回到你 Mastodon 個人頁面的連結，而且連結<strong>必須</strong>具有<code>rel="me"</code>屬性。連結的文字內容都不會影響認證。這裏有一個例子：'
     verification: 驗證
   webauthn_credentials:
     add: 新增安全密鑰裝置
     create:
       error: 新增安全密鑰裝置時出現了問題。請重新再試一次。
-      success: 您的安全密鑰裝置已成功被新增。
+      success: 你已成功將安全密鑰裝置加入帳號。
     delete: 刪除
     delete_confirmation: 你確定要刪除這個安全密鑰裝置嗎？
-    description_html: 如果您啟用<strong>安全密鑰驗證</strong>的話，登入時您將需要使用其中一個安全密鑰。
+    description_html: 如果你啟用<strong>安全密鑰驗證</strong>的話，登入時你將需要使用其中一個安全密鑰。
     destroy:
       error: 刪除安全密鑰裝置時出現了問題。請重新再試一次。
-      success: 您的安全密鑰裝置已成功被刪除。
+      success: 你已成功將安全密鑰裝置從帳號移除。
     invalid_credential: 無效的安全密鑰裝置
-    nickname_hint: 請為您的安全密鑰裝置命名
-    not_enabled: 您還未啟用WebAuthn
+    nickname_hint: 請為你的安全密鑰裝置命名
+    not_enabled: 你還未啟用 WebAuthn
     not_supported: 這個瀏覽器並不支援安全密鑰裝置
     otp_required: 請開啟雙重認證以使用安全密鑰裝置
     registered_on: 在 %{date} 注冊
