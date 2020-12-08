@@ -583,7 +583,7 @@ class Status extends ImmutablePureComponent {
                   media={quote_status.get('media_attachments')}
                   sensitive={quote_status.get('sensitive')}
                   height={110}
-                  onOpenMedia={this.props.onOpenMedia}
+                  onOpenMedia={this.handleOpenMedia}
                   cacheWidth={this.props.cacheMediaWidth}
                   defaultWidth={this.props.cachedMediaWidth}
                   visible={this.state.showQuoteMedia}
