@@ -50,8 +50,8 @@ zh-HK:
     what_is_mastodon: Mastodon （萬象）是甚麼？
   accounts:
     choices_html: "%{name} 的選擇："
-    endorsements_hint: 推薦您已經關注的人，然後把他們釘在您的個人頁面。
-    featured_tags_hint: 您可以推薦不同標籤，它們也會在此處出現。
+    endorsements_hint: 你可以推薦正在關注的人，他們會被顯示在你的個人頁面。
+    featured_tags_hint: 你可以推薦不同標籤，它們也會在此處出現。
     follow: 關注
     followers:
       other: 關注者
@@ -194,8 +194,8 @@ zh-HK:
       statuses: 嘟文
       subscribe: 訂閱
       suspended: 已停權
-      suspension_irreversible: 已永久刪除此帳戶的數據。您可以取消此帳戶的停權狀態但數據已被永久刪除。
-      suspension_reversible_hint_html: 此帳戶已被停權及所有數據將會在%{date} 被刪除。在此之前，您可以完全回復帳號。如果您想即時刪除此帳戶的數據，您可以在下面進行操作。
+      suspension_irreversible: 已永久刪除此帳號的數據。你可以取消此帳號的停權狀態，但帳號的資料已被永久刪除。
+      suspension_reversible_hint_html: 此帳戶已被停權及所有數據將會於 %{date} 被刪除。在此之前，你仍可以完全回復帳號。如果你想即時刪除此帳戶的資料，可以在下面進行操作。
       time_in_queue: 排隊中 %{time}
       title: 帳戶
       unconfirmed_email: 未確認的電郵
@@ -241,11 +241,11 @@ zh-HK:
         reopen_report: 重開舉報
         reset_password_user: 重設密碼
         resolve_report: 消除舉報
-        sensitive_account: 把您的帳號的媒體設定為敏感內容
+        sensitive_account: 把你的帳號的媒體設定為敏感內容
         silence_account: 把用戶靜音
         suspend_account: 把用戶停權
         unassigned_report: 取消指派舉報
-        unsensitive_account: 取消把您的帳號的媒體設定為敏感內容
+        unsensitive_account: 取消把你帳號的媒體設定為敏感內容
         unsilence_account: 取消用戶的靜音狀態
         unsuspend_account: 取消用戶的停權狀態
         update_announcement: 更新公告
@@ -333,7 +333,7 @@ zh-HK:
       listed: 已顯示
       new:
         title: 加入新的自訂表情符號
-      not_permitted: 您無權執行此操作
+      not_permitted: 你無權執行此操作
       overwrite: 覆蓋
       shortcode: 短代碼
       shortcode_hint: 至少 2 個字元，只能使用字母、數字和下劃線
@@ -383,7 +383,7 @@ zh-HK:
       destroyed_msg: 已撤銷域名阻隔
       domain: 域名阻隔
       edit: 更改封鎖的網域
-      existing_domain_block_html: 您已經對 %{name} 施加了更嚴格的限制，您需要先把他<a href="%{unblock_url}">取消封鎖</a>。
+      existing_domain_block_html: 你已經對 %{name} 施加了更嚴格的限制，你需要先對他<a href="%{unblock_url}">取消封鎖</a>。
       new:
         create: 新增域名阻隔
         hint: '「域名阻隔」不會隔絕該域名用戶的用戶進入本站資料庫，而是會在時候自動套用特定的審批操作。'
@@ -658,7 +658,7 @@ zh-HK:
       title: 管理警告預設
   admin_mailer:
     new_pending_account:
-      body: 以下是新帳戶的資訊。您可以審核這項申請。
+      body: 以下是新帳戶的資訊。你可以審核這項申請。
       subject: 未審核的新用戶在%{instance} (%{username})
     new_report:
       body: "%{reporter} 舉報了用戶 %{target}"
