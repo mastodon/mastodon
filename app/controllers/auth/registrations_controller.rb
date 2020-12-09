@@ -15,7 +15,6 @@ class Auth::RegistrationsController < Devise::RegistrationsController
   before_action :require_not_suspended!, only: [:update]
   before_action :set_cache_headers, only: [:edit, :update]
   before_action :set_registration_form_time, only: :new
-  before_action :check_registration_form_time!, only: :create
 
   skip_before_action :require_functional!, only: [:edit, :update]
 
@@ -48,9 +47,10 @@ class Auth::RegistrationsController < Devise::RegistrationsController
   def build_resource(hash = nil)
     super(hash)
 
-    resource.locale      = I18n.locale
-    resource.invite_code = params[:invite_code] if resource.invite_code.blank?
-    resource.sign_up_ip  = request.remote_ip
+    resource.locale                 = I18n.locale
+    resource.invite_code            = params[:invite_code] if resource.invite_code.blank?
+    resource.registration_form_time = session[:registration_form_time]
+    resource.sign_up_ip             = request.remote_ip
 
     resource.build_account if resource.account.nil?
   end
@@ -128,17 +128,5 @@ class Auth::RegistrationsController < Devise::RegistrationsController
 
   def set_cache_headers
     response.headers['Cache-Control'] = 'no-cache, no-store, max-age=0, must-revalidate'
-  end
-
-  def check_registration_form_time!
-    return if valid_registration_time?
-
-    # This duplicates a bit from Devise but it's the easiest way I could find
-    flash.now[:alert] = I18n.t('auth.too_fast')
-    build_resource(sign_up_params)
-    resource.validate
-    clean_up_passwords resource
-    set_minimum_password_length
-    render :new
   end
 end
