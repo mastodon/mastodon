@@ -287,11 +287,11 @@ zh-HK:
         unassigned_report: "%{name} 取消指派 %{target} 的舉報"
         unsensitive_account: "%{name} 取消將 %{target} 的媒體檔案的設為敏感"
         unsilence_account: "%{name} 取消了用戶 %{target} 的靜音狀態"
-        unsuspend_account: "%{name} 取消了用戶 %{target} 的停權狀態"
+        unsuspend_account: "%{name} 取消了帳號 %{target} 的停權狀態"
         update_announcement: "%{name} 更新了公告 %{target}"
-        update_custom_emoji: "%{name} 更新了emoji %{target}"
-        update_status: "%{name} 更新了 %{target} 的嘟文"
-      deleted_status: "（已刪除嘟文）"
+        update_custom_emoji: "%{name} 更新了 Emoji 表情符號 %{target}"
+        update_status: "%{name} 更新了 %{target} 的文章"
+      deleted_status: "（已刪除文章）"
       empty: 找不到任何日誌。
       filter_by_action: 按動作篩選
       filter_by_user: 按帳號篩選
@@ -301,13 +301,13 @@ zh-HK:
       edit:
         title: 編輯公告
       empty: 找不到公告。
-      live: 上綫
+      live: 在線
       new:
         create: 建立公告
         title: 新增公告
       published_msg: 成功發布公告！
       scheduled_for: 排定 %{time}
-      scheduled_msg: 公告已排定公開！
+      scheduled_msg: 公告已排程！
       title: 公告
       unpublished_msg: 成功取消發布公告！
       updated_msg: 成功更新公告！
@@ -348,7 +348,7 @@ zh-HK:
       authorized_fetch_mode: 安全模式
       backlog: 未處理工作數
       config: 設定
-      feature_deletions: 帳戶刪除
+      feature_deletions: 刪除帳號功能
       feature_invites: 邀請連結
       feature_profile_directory: 個人資料目錄
       feature_registrations: 註冊
@@ -569,8 +569,8 @@ zh-HK:
           desc_html: 當本站暫停接受註冊時，會顯示這個訊息。<br/> 可使用 HTML
           title: 暫停註冊訊息
         deletion:
-          desc_html: 允許所有人刪除自己的帳戶
-          title: 開放刪除帳戶的權限
+          desc_html: 允許所有人刪除自己的帳號
+          title: 容許刪除帳號
         min_invite_role:
           disabled: 沒有人
           title: 允許發送邀請的身份
