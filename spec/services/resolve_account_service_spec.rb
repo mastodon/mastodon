@@ -126,6 +126,41 @@ RSpec.describe ResolveAccountService, type: :service do
     end
   end
 
+  context 'with an already-known actor changing acct: URI' do
+    let!(:duplicate) { Fabricate(:account, username: 'foo', domain: 'old.example.com', uri: 'https://ap.example.com/users/foo') }
+    let!(:status)    { Fabricate(:status, account: duplicate, text: 'foo') }
+
+    it 'returns new remote account' do
+      account = subject.call('foo@ap.example.com')
+
+      expect(account.activitypub?).to eq true
+      expect(account.domain).to eq 'ap.example.com'
+      expect(account.inbox_url).to eq 'https://ap.example.com/users/foo/inbox'
+      expect(account.uri).to eq 'https://ap.example.com/users/foo'
+    end
+
+    it 'merges accounts' do
+      account = subject.call('foo@ap.example.com')
+
+      expect(status.reload.account_id).to eq account.id
+      expect(Account.where(uri: account.uri).count).to eq 1
+    end
+  end
+
+  context 'with an already-known acct: URI changing ActivityPub id' do
+    let!(:old_account) { Fabricate(:account, username: 'foo', domain: 'ap.example.com', uri: 'https://old.example.com/users/foo', last_webfingered_at: nil) }
+    let!(:status)    { Fabricate(:status, account: old_account, text: 'foo') }
+
+    it 'returns new remote account' do
+      account = subject.call('foo@ap.example.com')
+
+      expect(account.activitypub?).to eq true
+      expect(account.domain).to eq 'ap.example.com'
+      expect(account.inbox_url).to eq 'https://ap.example.com/users/foo/inbox'
+      expect(account.uri).to eq 'https://ap.example.com/users/foo'
+    end
+  end
+
   it 'processes one remote account at a time using locks' do
     wait_for_start = true
     fail_occurred  = false
