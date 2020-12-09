@@ -28,6 +28,8 @@ class ActivityPub::ProcessAccountService < BaseService
         update_account
         process_tags
         process_attachments
+
+        process_duplicate_accounts! if @options[:verified_webfinger]
       else
         raise Mastodon::RaceConditionError
       end
@@ -146,6 +148,12 @@ class ActivityPub::ProcessAccountService < BaseService
 
   def check_links!
     VerifyAccountLinksWorker.perform_async(@account.id)
+  end
+
+  def process_duplicate_accounts!
+    return unless Account.where(uri: @account.uri).where.not(id: @account.id).exists?
+
+    AccountMergingWorker.perform_async(@account.id)
   end
 
   def actor_type
