@@ -998,5 +998,7 @@ code {
 
 .input.user_confirm_password,
 .input.user_website {
-  display: none;
+  &:not(.field_with_errors) {
+    display: none;
+  }
 }
