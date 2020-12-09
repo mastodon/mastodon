@@ -60,7 +60,22 @@ RSpec.describe ResolveAccountService, type: :service do
 
   context 'with a legitimate webfinger redirection' do
     before do
-      webfinger = { subject: 'acct:foo@ap.example.com', links: [{ rel: 'self', href: 'https://ap.example.com/users/foo' }] }
+      webfinger = { subject: 'acct:foo@ap.example.com', links: [{ rel: 'self', href: 'https://ap.example.com/users/foo', type: 'application/activity+json' }] }
+      stub_request(:get, 'https://redirected.example.com/.well-known/webfinger?resource=acct:Foo@redirected.example.com').to_return(body: Oj.dump(webfinger), headers: { 'Content-Type': 'application/jrd+json' })
+    end
+
+    it 'returns new remote account' do
+      account = subject.call('Foo@redirected.example.com')
+
+      expect(account.activitypub?).to eq true
+      expect(account.acct).to eq 'foo@ap.example.com'
+      expect(account.inbox_url).to eq 'https://ap.example.com/users/foo/inbox'
+    end
+  end
+
+  context 'with a misconfigured redirection' do
+    before do
+      webfinger = { subject: 'acct:Foo@redirected.example.com', links: [{ rel: 'self', href: 'https://ap.example.com/users/foo', type: 'application/activity+json' }] }
       stub_request(:get, 'https://redirected.example.com/.well-known/webfinger?resource=acct:Foo@redirected.example.com').to_return(body: Oj.dump(webfinger), headers: { 'Content-Type': 'application/jrd+json' })
     end
 
@@ -75,9 +90,9 @@ RSpec.describe ResolveAccountService, type: :service do
 
   context 'with too many webfinger redirections' do
     before do
-      webfinger = { subject: 'acct:foo@evil.example.com', links: [{ rel: 'self', href: 'https://ap.example.com/users/foo' }] }
+      webfinger = { subject: 'acct:foo@evil.example.com', links: [{ rel: 'self', href: 'https://ap.example.com/users/foo', type: 'application/activity+json' }] }
       stub_request(:get, 'https://redirected.example.com/.well-known/webfinger?resource=acct:Foo@redirected.example.com').to_return(body: Oj.dump(webfinger), headers: { 'Content-Type': 'application/jrd+json' })
-      webfinger2 = { subject: 'acct:foo@ap.example.com', links: [{ rel: 'self', href: 'https://ap.example.com/users/foo' }] }
+      webfinger2 = { subject: 'acct:foo@ap.example.com', links: [{ rel: 'self', href: 'https://ap.example.com/users/foo', type: 'application/activity+json' }] }
       stub_request(:get, 'https://evil.example.com/.well-known/webfinger?resource=acct:foo@evil.example.com').to_return(body: Oj.dump(webfinger2), headers: { 'Content-Type': 'application/jrd+json' })
     end
 
