@@ -70,8 +70,9 @@ class ActivityPub::ProcessAccountService < BaseService
 
     set_suspension!
     set_immediate_protocol_attributes!
+    set_fetchable_key! unless @account.suspended? && @account.suspension_origin_local?
     set_immediate_attributes! unless @account.suspended?
-    set_fetchable_attributes! unless @options[:only_keys] || @account.suspended?
+    set_fetchable_attributes! unless @options[:only_key] || @account.suspended?
 
     @account.save_with_optional_media!
   end
@@ -97,10 +98,13 @@ class ActivityPub::ProcessAccountService < BaseService
     @account.discoverable            = @json['discoverable'] || false
   end
 
+  def set_fetchable_key!
+    @account.public_key        = public_key || ''
+  end
+
   def set_fetchable_attributes!
     @account.avatar_remote_url = image_url('icon')  || '' unless skip_download?
     @account.header_remote_url = image_url('image') || '' unless skip_download?
-    @account.public_key        = public_key || ''
     @account.statuses_count    = outbox_total_items    if outbox_total_items.present?
     @account.following_count   = following_total_items if following_total_items.present?
     @account.followers_count   = followers_total_items if followers_total_items.present?
