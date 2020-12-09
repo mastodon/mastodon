@@ -1,7 +1,6 @@
 import api from '../api';
 import { debounce } from 'lodash';
 import compareId from '../compare_id';
-import { showAlertForError } from './alerts';
 
 export const MARKERS_FETCH_REQUEST = 'MARKERS_FETCH_REQUEST';
 export const MARKERS_FETCH_SUCCESS = 'MARKERS_FETCH_SUCCESS';
@@ -29,15 +28,19 @@ export const synchronouslySubmitMarkers = () => (dispatch, getState) => {
       },
       body: JSON.stringify(params),
     });
+
     return;
   } else if (navigator && navigator.sendBeacon) {
     // Failing that, we can use sendBeacon, but we have to encode the data as
     // FormData for DoorKeeper to recognize the token.
     const formData = new FormData();
+
     formData.append('bearer_token', accessToken);
+
     for (const [id, value] of Object.entries(params)) {
       formData.append(`${id}[last_read_id]`, value.last_read_id);
     }
+
     if (navigator.sendBeacon('/api/v1/markers', formData)) {
       return;
     }
@@ -85,11 +88,9 @@ const debouncedSubmitMarkers = debounce((dispatch, getState) => {
     return;
   }
 
-  api().post('/api/v1/markers', params).then(() => {
+  api(getState).post('/api/v1/markers', params).then(() => {
     dispatch(submitMarkersSuccess(params));
-  }).catch(error => {
-    dispatch(showAlertForError(error));
-  });
+  }).catch(() => {});
 }, 300000, { leading: true, trailing: true });
 
 export function submitMarkersSuccess({ home, notifications }) {
@@ -102,9 +103,11 @@ export function submitMarkersSuccess({ home, notifications }) {
 
 export function submitMarkers(params = {}) {
   const result = (dispatch, getState) => debouncedSubmitMarkers(dispatch, getState);
+
   if (params.immediate === true) {
     debouncedSubmitMarkers.flush();
   }
+
   return result;
 };
 

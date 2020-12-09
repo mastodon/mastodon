@@ -8,7 +8,7 @@
 #  title          :string           default(""), not null
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
-#  replies_policy :integer          default("list_replies"), not null
+#  replies_policy :integer          default("list"), not null
 #
 
 class List < ApplicationRecord
@@ -16,7 +16,7 @@ class List < ApplicationRecord
 
   PER_ACCOUNT_LIMIT = 50
 
-  enum replies_policy: [:list_replies, :all_replies, :no_replies], _prefix: :show
+  enum replies_policy: [:list, :followed, :none], _prefix: :show
 
   belongs_to :account, optional: true
 

@@ -12,6 +12,7 @@ import Icon from 'mastodon/components/icon';
 import GIFV from 'mastodon/components/gifv';
 import { disableSwiping } from 'mastodon/initial_state';
 import Footer from 'mastodon/features/picture_in_picture/components/footer';
+import { getAverageFromBlurhash } from 'mastodon/blurhash';
 
 const messages = defineMessages({
   close: { id: 'lightbox.close', defaultMessage: 'Close' },
@@ -20,111 +21,6 @@ const messages = defineMessages({
 });
 
 export const previewState = 'previewMediaModal';
-
-const digitCharacters = [
-  '0',
-  '1',
-  '2',
-  '3',
-  '4',
-  '5',
-  '6',
-  '7',
-  '8',
-  '9',
-  'A',
-  'B',
-  'C',
-  'D',
-  'E',
-  'F',
-  'G',
-  'H',
-  'I',
-  'J',
-  'K',
-  'L',
-  'M',
-  'N',
-  'O',
-  'P',
-  'Q',
-  'R',
-  'S',
-  'T',
-  'U',
-  'V',
-  'W',
-  'X',
-  'Y',
-  'Z',
-  'a',
-  'b',
-  'c',
-  'd',
-  'e',
-  'f',
-  'g',
-  'h',
-  'i',
-  'j',
-  'k',
-  'l',
-  'm',
-  'n',
-  'o',
-  'p',
-  'q',
-  'r',
-  's',
-  't',
-  'u',
-  'v',
-  'w',
-  'x',
-  'y',
-  'z',
-  '#',
-  '$',
-  '%',
-  '*',
-  '+',
-  ',',
-  '-',
-  '.',
-  ':',
-  ';',
-  '=',
-  '?',
-  '@',
-  '[',
-  ']',
-  '^',
-  '_',
-  '{',
-  '|',
-  '}',
-  '~',
-];
-
-const decode83 = (str) => {
-  let value = 0;
-  let c, digit;
-
-  for (let i = 0; i < str.length; i++) {
-    c = str[i];
-    digit = digitCharacters.indexOf(c);
-    value = value * 83 + digit;
-  }
-
-  return value;
-};
-
-const decodeRGB = int => ({
-  r: Math.max(0, (int >> 16)),
-  g: Math.max(0, (int >> 8) & 255),
-  b: Math.max(0, (int & 255)),
-});
 
 export default @injectIntl
 class MediaModal extends ImmutablePureComponent {
@@ -224,7 +120,7 @@ class MediaModal extends ImmutablePureComponent {
     const blurhash = media.getIn([index, 'blurhash']);
 
     if (blurhash) {
-      const backgroundColor = decodeRGB(decode83(blurhash.slice(2, 6)));
+      const backgroundColor = getAverageFromBlurhash(blurhash);
       onChangeBackgroundColor(backgroundColor);
     }
   }

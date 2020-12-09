@@ -3,6 +3,8 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import Video from 'mastodon/features/video';
 import ImmutablePureComponent from 'react-immutable-pure-component';
+import Footer from 'mastodon/features/picture_in_picture/components/footer';
+import { getAverageFromBlurhash } from 'mastodon/blurhash';
 
 export const previewState = 'previewVideoModal';
 
@@ -17,6 +19,7 @@ export default class VideoModal extends ImmutablePureComponent {
       defaultVolume: PropTypes.number,
     }),
     onClose: PropTypes.func.isRequired,
+    onChangeBackgroundColor: PropTypes.func.isRequired,
   };
 
   static contextTypes = {
@@ -24,29 +27,35 @@ export default class VideoModal extends ImmutablePureComponent {
   };
 
   componentDidMount () {
-    if (this.context.router) {
-      const history = this.context.router.history;
+    const { router } = this.context;
+    const { media, onChangeBackgroundColor, onClose } = this.props;
 
-      history.push(history.location.pathname, previewState);
+    if (router) {
+      router.history.push(router.history.location.pathname, previewState);
+      this.unlistenHistory = router.history.listen(() => onClose());
+    }
 
-      this.unlistenHistory = history.listen(() => {
-        this.props.onClose();
-      });
+    const backgroundColor = getAverageFromBlurhash(media.get('blurhash'));
+
+    if (backgroundColor) {
+      onChangeBackgroundColor(backgroundColor);
     }
   }
 
   componentWillUnmount () {
-    if (this.context.router) {
+    const { router } = this.context;
+
+    if (router) {
       this.unlistenHistory();
 
-      if (this.context.router.history.location.state === previewState) {
-        this.context.router.history.goBack();
+      if (router.history.location.state === previewState) {
+        router.history.goBack();
       }
     }
   }
 
   render () {
-    const { media, onClose } = this.props;
+    const { media, statusId, onClose } = this.props;
     const options = this.props.options || {};
 
     return (
@@ -64,6 +73,10 @@ export default class VideoModal extends ImmutablePureComponent {
             detailed
             alt={media.get('description')}
           />
+        </div>
+
+        <div className='media-modal__overlay'>
+          {statusId && <Footer statusId={statusId} withOpenButton onClose={onClose} />}
         </div>
       </div>
     );

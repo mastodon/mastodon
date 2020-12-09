@@ -75,7 +75,9 @@ class ColumnsArea extends ImmutablePureComponent {
   }
 
   componentWillReceiveProps() {
-    this.setState({ shouldAnimate: false });
+    if (typeof this.pendingIndex !== 'number' && this.lastIndex !== getIndex(this.context.router.history.location.pathname)) {
+      this.setState({ shouldAnimate: false });
+    }
   }
 
   componentDidMount() {
@@ -99,8 +101,13 @@ class ColumnsArea extends ImmutablePureComponent {
     if (this.props.singleColumn !== prevProps.singleColumn && !this.props.singleColumn) {
       this.node.addEventListener('wheel', this.handleWheel, supportsPassiveEvents ? { passive: true } : false);
     }
-    this.lastIndex = getIndex(this.context.router.history.location.pathname);
-    this.setState({ shouldAnimate: true });
+
+    const newIndex = getIndex(this.context.router.history.location.pathname);
+
+    if (this.lastIndex !== newIndex) {
+      this.lastIndex = newIndex;
+      this.setState({ shouldAnimate: true });
+    }
   }
 
   componentWillUnmount () {
