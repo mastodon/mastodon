@@ -46,7 +46,7 @@ class ResolveAccountService < BaseService
     # Now it is certain, it is definitely a remote account, and it
     # either needs to be created, or updated from fresh data
 
-    process_account!
+    fetch_account!
   rescue Webfinger::Error, WebfingerRedirectError, Oj::ParseError => e
     Rails.logger.debug "Webfinger query for #{@uri} failed: #{e}"
     nil
@@ -99,16 +99,12 @@ class ResolveAccountService < BaseService
     acct.gsub(/\Aacct:/, '').split('@')
   end
 
-  def process_account!
+  def fetch_account!
     return unless activitypub_ready?
 
     RedisLock.acquire(lock_options) do |lock|
       if lock.acquired?
-        @account = Account.find_remote(@username, @domain)
-
-        next if actor_json.nil?
-
-        @account = ActivityPub::ProcessAccountService.new.call(@username, @domain, actor_json)
+        @account = ActivityPub::FetchRemoteAccountService.new.call(actor_url)
       else
         raise Mastodon::RaceConditionError
       end
