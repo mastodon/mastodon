@@ -69,27 +69,31 @@ class ActivityPub::ProcessAccountService < BaseService
     @account.protocol            = :activitypub
 
     set_suspension!
+    set_immediate_protocol_attributes!
     set_immediate_attributes! unless @account.suspended?
     set_fetchable_attributes! unless @options[:only_keys] || @account.suspended?
 
     @account.save_with_optional_media!
   end
 
-  def set_immediate_attributes!
+  def set_immediate_protocol_attributes!
     @account.inbox_url               = @json['inbox'] || ''
     @account.outbox_url              = @json['outbox'] || ''
     @account.shared_inbox_url        = (@json['endpoints'].is_a?(Hash) ? @json['endpoints']['sharedInbox'] : @json['sharedInbox']) || ''
     @account.followers_url           = @json['followers'] || ''
-    @account.featured_collection_url = @json['featured'] || ''
-    @account.devices_url             = @json['devices'] || ''
     @account.url                     = url || @uri
     @account.uri                     = @uri
+    @account.actor_type              = actor_type
+  end
+
+  def set_immediate_attributes!
+    @account.featured_collection_url = @json['featured'] || ''
+    @account.devices_url             = @json['devices'] || ''
     @account.display_name            = @json['name'] || ''
     @account.note                    = @json['summary'] || ''
     @account.locked                  = @json['manuallyApprovesFollowers'] || false
     @account.fields                  = property_values || {}
     @account.also_known_as           = as_array(@json['alsoKnownAs'] || []).map { |item| value_or_id(item) }
-    @account.actor_type              = actor_type
     @account.discoverable            = @json['discoverable'] || false
   end
 
