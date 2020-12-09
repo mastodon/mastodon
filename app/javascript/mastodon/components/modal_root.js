@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import 'wicg-inert';
-import { normal } from 'color-blend';
+import { multiply } from 'color-blend';
 
 export default class ModalRoot extends React.PureComponent {
 
@@ -98,7 +98,7 @@ export default class ModalRoot extends React.PureComponent {
     let backgroundColor = null;
 
     if (this.props.backgroundColor) {
-      backgroundColor = normal({ ...this.props.backgroundColor, a: 1 }, { r: 0, g: 0, b: 0, a: 0.3 });
+      backgroundColor = multiply({ ...this.props.backgroundColor, a: 1 }, { r: 0, g: 0, b: 0, a: 0.7 });
     }
 
     return (

@@ -403,8 +403,8 @@ class FeedManager
   def filter_from_list?(status, list)
     if status.reply? && status.in_reply_to_account_id != status.account_id
       should_filter = status.in_reply_to_account_id != list.account_id
-      should_filter &&= !list.show_all_replies?
-      should_filter &&= !(list.show_list_replies? && ListAccount.where(list_id: list.id, account_id: status.in_reply_to_account_id).exists?)
+      should_filter &&= !list.show_followed?
+      should_filter &&= !(list.show_list? && ListAccount.where(list_id: list.id, account_id: status.in_reply_to_account_id).exists?)
 
       return !!should_filter
     end
