@@ -146,7 +146,11 @@ eo:
       invite_request:
         text: Kial vi volas aliĝi?
       ip_block:
+        comment: Komento
         ip: IP
+        severities:
+          no_access: Bloki atingon
+          sign_up_requires_approval: Limigi registriĝojn
         severity: Regulo
       notification_emails:
         digest: Sendi resumajn retmesaĝojn
