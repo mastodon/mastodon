@@ -32,10 +32,16 @@ const messages = defineMessages({
   markAsRead : { id: 'notifications.mark_as_read', defaultMessage: 'Mark every notification as read' },
 });
 
+const getExcludedTypes = createSelector([
+  state => state.getIn(['settings', 'notifications', 'shows']),
+], (shows) => {
+  return ImmutableList(shows.filter(item => !item).keys());
+});
+
 const getNotifications = createSelector([
   state => state.getIn(['settings', 'notifications', 'quickFilter', 'show']),
   state => state.getIn(['settings', 'notifications', 'quickFilter', 'active']),
-  state => ImmutableList(state.getIn(['settings', 'notifications', 'shows']).filter(item => !item).keys()),
+  getExcludedTypes,
   state => state.getIn(['notifications', 'items']),
 ], (showFilterBar, allowedType, excludedTypes, notifications) => {
   if (!showFilterBar || allowedType === 'all') {

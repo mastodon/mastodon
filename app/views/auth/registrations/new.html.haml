@@ -24,6 +24,9 @@
 
   .fields-group
     = f.input :password_confirmation, wrapper: :with_label, label: t('simple_form.labels.defaults.confirm_password'), required: true, input_html: { 'aria-label' => t('simple_form.labels.defaults.confirm_password'), :autocomplete => 'off' }
+    = f.input :confirm_password, as: :string, wrapper: :with_label, label: t('simple_form.labels.defaults.honeypot', label: t('simple_form.labels.defaults.password')), required: false, input_html: { 'aria-label' => t('simple_form.labels.defaults.honeypot', label: t('simple_form.labels.defaults.password')), :autocomplete => 'off' }
+
+  = f.input :website, as: :url, wrapper: :with_label, label: t('simple_form.labels.defaults.honeypot', label: 'Website'), required: false, input_html: { 'aria-label' => t('simple_form.labels.defaults.honeypot', label: 'Website'), :autocomplete => 'off' }
 
   - if approved_registrations? && !@invite.present?
     .fields-group

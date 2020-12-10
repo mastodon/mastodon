@@ -1,13 +1,17 @@
 # frozen_string_literal: true
 
 class AboutController < ApplicationController
+  include RegistrationSpamConcern
+
   before_action :set_pack
+
   layout 'public'
 
   before_action :require_open_federation!, only: [:show, :more]
   before_action :set_body_classes, only: :show
   before_action :set_instance_presenter
-  before_action :set_expires_in, only: [:show, :more, :terms]
+  before_action :set_expires_in, only: [:more, :terms]
+  before_action :set_registration_form_time, only: :show
 
   skip_before_action :require_functional!, only: [:more, :terms]
 
