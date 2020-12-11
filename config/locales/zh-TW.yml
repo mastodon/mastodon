@@ -661,6 +661,7 @@ zh-TW:
     didnt_get_confirmation: 沒有收到驗證信?
     forgot_password: 忘記密碼？
     invalid_reset_password_token: 密碼重設 token 無效或已過期。請重新設定密碼。
+    link_to_webauth: 使用您的安全金鑰
     login: 登入
     logout: 登出
     migrate_account: 轉移到另一個帳戶
@@ -669,11 +670,13 @@ zh-TW:
     providers:
       saml: SAML
     register: 註冊
+    registration_closed: "%{instance} 現在不開放新成員"
     resend_confirmation: 重新寄送確認指引
     reset_password: 重設密碼
     security: 登入資訊
     set_new_password: 設定新密碼
     setup:
+      email_settings_hint_html: 請確認 e-mail 是否傳送到 %{email} 。如果不對的話，可以從帳號設定修改。
       title: 設定
   authorize_follow:
     already_following: 你已經關注了這個使用者
