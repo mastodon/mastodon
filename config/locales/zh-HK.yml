@@ -659,21 +659,21 @@ zh-HK:
   admin_mailer:
     new_pending_account:
       body: 以下是新帳戶的資訊。你可以審核這項申請。
-      subject: 未審核的新用戶在%{instance} (%{username})
+      subject: 在 %{instance} 上未審核的新用戶(%{username})
     new_report:
-      body: "%{reporter} 舉報了用戶 %{target}"
-      body_remote: 來自 %{domain} 的用戶舉報了用戶 %{target}
-      subject: '來自 %{instance} 的用戶舉報（#%{id}）'
+      body: "%{reporter} 舉報了 %{target}"
+      body_remote: 來自 %{domain} 的人舉報了 %{target}
+      subject: '針對 %{instance} 的舉報（#%{id}）'
     new_trending_tag:
       body: '今天流行使用未被審核的 #%{name} 主題標籤。在你允許之前，它不會被公開地顯示，你亦可以無視它使它不再污染你的眼睛。'
-      subject: 未審核的主題標籤在%{instance} (%{name})
+      subject: 在 %{instance} 上未審核的主題標籤 (%{name})
   aliases:
-    add_new: 建立別名(alias)
+    add_new: 建立別名 (Alias)
     created_msg: 成功建立別名 (alias)。你可以從舊帳號開始轉移。
     deleted_msg: 成功刪除別名 (alias)。你將不可以由舊帳號轉移到當前帳號。
     empty: 你沒有別名 (alias)。
     hint_html: 如果你想由另一個帳戶轉移到此帳號，你可以在此處創建別名 (alias)，然後系統容許你將關注者由舊帳戶轉移到此帳號。此操作是<strong>無害且可以還原的</strong>。 <strong>帳號遷移程序，需要在舊帳號啟動</strong>。
-    remove: 取消連結別名(alias)
+    remove: 取消連結別名 (Alias)
   appearance:
     advanced_web_interface: 進階網頁介面
     advanced_web_interface_hint: '如果你想善用整個螢幕闊度，你可以啟用「進階網頁介面」，在畫面上配置多個不同的欄目，讓你能根據需要，同時查看盡可能多的信息，支援的欄位包括：主頁、通知、其他站點和任何的列表和標籤。'
@@ -687,15 +687,15 @@ zh-HK:
     sensitive_content: 敏感內容
     toot_layout: 發文介面
   application_mailer:
-    notification_preferences: 更改電郵首選項
+    notification_preferences: 更改電郵設定
     salutation: "%{name}："
     settings: '修改電郵設定︰%{link}'
     view: '進入瀏覽︰'
     view_profile: 檢視個人資料頁
     view_status: 檢視文章
   applications:
-    created: 已建立應用
-    destroyed: 已刪除應用
+    created: 已建立應用程式
+    destroyed: 已刪除應用程式
     invalid_url: 所提供的網址不正確
     regenerate_token: 重設 token
     token_regenerated: 已重設 token
@@ -706,11 +706,11 @@ zh-HK:
     change_password: 密碼
     checkbox_agreement_html: 我同意 <a href="%{rules_path}" target="_blank">的伺服器規則</a> 和<a href="%{terms_path}" target="_blank">服務條款</a>
     checkbox_agreement_without_rules_html: 我同意 <a href="%{terms_path}" target="_blank">服務條款</a>
-    delete_account: 刪除帳戶
-    delete_account_html: 如果你想刪除你的帳戶，請<a href="%{path}">點擊這裡繼續</a>。你需要確認你的操作。
+    delete_account: 刪除帳號
+    delete_account_html: 如果你想刪除你的帳號，請<a href="%{path}">點擊這裡繼續</a>。你需要確認你的操作。
     description:
       prefix_invited_by_user: "@%{name} 邀請你加入這個 Mastodon 服務站！"
-      prefix_sign_up: 立即註冊Mastodon！
+      prefix_sign_up: 立即註冊 Mastodon！
       suffix: 有了一個帳戶，就可以從任何Mastodon服務器關注任何人，發佈更新並與任何Mastodon服務器的用戶交流！
     didnt_get_confirmation: 沒有收到確認指示電郵？
     dont_have_your_security_key: 找不到安全密鑰？
