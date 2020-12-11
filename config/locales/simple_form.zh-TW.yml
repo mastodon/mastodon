@@ -146,6 +146,13 @@ zh-TW:
         comment: 備註
       invite_request:
         text: 加入的原因
+      ip_block:
+        comment: 備註
+        ip: IP 位址
+        severities:
+          no_access: 封鎖
+          sign_up_requires_approval: 限制註冊
+        severity: 規則
       notification_emails:
         digest: 傳送摘要信件
         favourite: 當有使用者喜歡你的嘟文時，傳送電子信件通知
@@ -165,4 +172,7 @@ zh-TW:
     required:
       mark: "*"
       text: 必須填寫
+    title:
+      sessions:
+        webauthn: 使用您的安全金鑰來登入
     'yes': '是'
