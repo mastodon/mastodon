@@ -399,7 +399,7 @@ zh-HK:
       public_comment_hint: 如果你已經啟用域名限制列表的公告，請為一般大眾提供更多有關此域名限制的資訊。
       reject_media: 拒絕媒體檔案
       reject_media_hint: 刪除本地緩存的媒體檔案，再也不在未來下載這個站點的檔案。和自動刪除無關
-      reject_reports: 拒絕檢舉
+      reject_reports: 拒絕檢舉個案
       reject_reports_hint: 忽略所有來自此站點的檢舉。與停權無關
       rejecting_media: 拒絕媒體檔案
       rejecting_reports: 拒絕檢舉中
@@ -408,13 +408,13 @@ zh-HK:
         suspend: 已停權
       show:
         affected_accounts:
-          other: "將影響到資料庫中的 %{count} 個帳戶"
+          other: "將影響到資料庫中的 %{count} 個帳號"
         retroactive:
-          silence: 對此域名的所有用戶取消靜音
-          suspend: 對此域名的所有用戶取消除名
+          silence: 對此域名的所有帳號取消靜音
+          suspend: 對此域名的所有帳號取消除名
         title: 撤銷 %{domain} 的域名阻隔
         undo: 撤銷
-      undo: 撤銷
+      undo: 撤銷域名阻隔
       view: 顯示封鎖的網域
     email_domain_blocks:
       add_new: 加入新項目
