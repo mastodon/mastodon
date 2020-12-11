@@ -378,17 +378,17 @@ zh-HK:
       destroyed_msg: 網域已成功從白名單移除
       undo: 從白名單移除
     domain_blocks:
-      add_new: 新增
-      created_msg: 正處理域名阻隔
+      add_new: 新增域名阻隔規則
+      created_msg: 正處理阻隔域名的請求
       destroyed_msg: 已撤銷域名阻隔
       domain: 域名阻隔
-      edit: 更改封鎖的網域
+      edit: 更改域名阻隔
       existing_domain_block_html: 你已經對 %{name} 施加了更嚴格的限制，你需要先對他<a href="%{unblock_url}">取消封鎖</a>。
       new:
         create: 新增域名阻隔
-        hint: '「域名阻隔」不會隔絕該域名用戶的用戶進入本站資料庫，而是會在時候自動套用特定的審批操作。'
+        hint: '「域名阻隔」不會隔絕該域名帳號進入本站資料庫，但是會在符合條件的帳號進入資料庫後，自動對它們套用特定審批操作。'
         severity:
-          desc_html: "「<strong>自動靜音</strong>」令該域名下用戶的文章，設為只對關注者顯示，沒有關注的人會看不到。 「<strong>自動刪除</strong>」會刪除將該域名下用戶的文章、媒體檔案和個人資料。「<strong>無</strong>」則會拒絕接收來自該域名的媒體檔案。"
+          desc_html: "「<strong>自動靜音</strong>」令該域名下帳號的文章，被設為只對關注者顯示，沒有關注的人會看不到。 「<strong>自動刪除</strong>」會刪除將該域名下用戶的文章、媒體檔案和個人資料。「<strong>無</strong>」則會拒絕接收來自該域名的媒體檔案。"
           noop: 無
           silence: 自動靜音
           suspend: 自動刪除
