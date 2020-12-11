@@ -452,24 +452,24 @@ zh-HK:
         available: 可用
         expired: 已失效
         title: 篩選
-      title: 邀請用戶
+      title: 邀請
     ip_blocks:
       add_new: 新增規則
-      created_msg: 成功新增IP規則
+      created_msg: 成功新增 IP 規則
       delete: 刪除
       expires_in:
-        '1209600': 兩週
-        '15778476': 六個月
-        '2629746': 1個月
-        '31556952': 1年
-        '86400': 1日
-        '94670856': 3年
+        '1209600': 2 週
+        '15778476': 6 個月
+        '2629746': 1 個月
+        '31556952': 1 年
+        '86400': 1 日
+        '94670856': 3 年
       new:
-        title: 新增IP規則
-      no_ip_block_selected: 因未選擇IP規則而未有任何變更。
-      title: IP規則
+        title: 新增 IP 規則
+      no_ip_block_selected: 因未選擇 IP 規則而未有任何變更。
+      title: IP 規則
     pending_accounts:
-      title: 待處理帳戶(%{count})
+      title: 待處理帳戶（%{count}）
     relationships:
       title: "%{acct} 的關係"
     relays:
@@ -477,11 +477,11 @@ zh-HK:
       delete: 刪除
       description_html: <strong>聯盟中繼站</strong>是一種中繼伺服器，會在訂閱並推送至此中繼站的伺服器之間交換大量的公開嘟文。<strong>中繼站也能協助小型或中型伺服器從聯邦中探索內容</strong>，而無須本地使用者手動關注遠端伺服器的其他使用者。
       disable: 停用
-      disabled: 停用
+      disabled: 已停用
       enable: 啟用
       enable_hint: 啟用後，你的伺服器將訂閱該中繼的所有公開文章，並將會此伺服器的公開文章發送給它。
       enabled: 已啟用
-      inbox_url: 中繼URL
+      inbox_url: 中繼 URL
       pending: 正在等待中繼許可
       save_and_enable: 儲存並啟用
       setup: 建立中繼通訊
@@ -489,18 +489,18 @@ zh-HK:
       status: 狀態
       title: 中繼
     report_notes:
-      created_msg: 舉報筆記已建立。
-      destroyed_msg: 舉報筆記已刪除。
+      created_msg: 舉報備註已建立！
+      destroyed_msg: 舉報備註已刪除！
     reports:
       account:
         notes:
-          other: "%{count} 備註"
+          other: "%{count} 則備註"
         reports:
-          other: "%{count} 舉報"
+          other: "%{count} 則舉報"
       action_taken_by: 操作執行者
       are_you_sure: 你確認嗎？
       assign_to_self: 指派給自己
-      assigned: 指派負責人
+      assigned: 指派版主
       by_target_domain: 被舉報帳號的域名
       comment:
         none: 沒有
@@ -508,7 +508,7 @@ zh-HK:
       mark_as_resolved: 標示為「已處理」
       mark_as_unresolved: 標示為「未處理」
       notes:
-        create: 建立筆記
+        create: 建立備註
         create_and_resolve: 建立筆記並標示為「已處理」
         create_and_unresolve: 建立筆記並標示為「未處理」
         delete: 刪除
