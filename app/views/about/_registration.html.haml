@@ -16,7 +16,7 @@
     - if approved_registrations?
       .fields-group
         = f.simple_fields_for :invite_request do |invite_request_fields|
-          = invite_request_fields.input :text, as: :text, wrapper: :with_block_label, required: false
+          = invite_request_fields.input :text, as: :text, wrapper: :with_block_label, required: Setting.require_invite_text
 
     .fields-group
       = f.input :agreement, as: :boolean, wrapper: :with_label, label: t('auth.checkbox_agreement_html', rules_path: about_more_path, terms_path: terms_path), required: true, disabled: closed_registrations?
