@@ -762,6 +762,9 @@ en:
         deletion:
           desc_html: Allow anyone to delete their account
           title: Open account deletion
+        invite_text_filter:
+          desc_html: 'Regular expression used to automatically reject users based on their invite request text. This can be used to cut down on registration spam. For instance, to reject registrations refering to blockchains or featuring links, you can use the following filter: <code>blockchain|https://</code>'
+          title: Registration text filter
         require_invite_text:
           desc_html: When registrations require manual approval, make the “Why do you want to join?” text input mandatory rather than optional
           title: Require new users to enter a reason to join
@@ -1406,6 +1409,8 @@ en:
     errors:
       limit_reached: Limit of different reactions reached
       unrecognized_emoji: is not a recognized emoji
+  regex_validator:
+    invalid_regexp: 'error parsing regular expression: %{error}'
   relationships:
     activity: Account activity
     dormant: Dormant
@@ -1789,6 +1794,7 @@ en:
       title: Welcome aboard, %{name}!
   users:
     follow_limit_reached: You cannot follow more than %{limit} people
+    invalid_invite_request_text: This text includes forbidden words or expressions
     invalid_otp_token: Invalid two-factor code
     otp_lost_help_html: If you lost access to both, you may get in touch with %{email}
     seamless_external_login: You are logged in via an external service, so password and e-mail settings are not available.

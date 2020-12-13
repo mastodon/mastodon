@@ -46,6 +46,7 @@
   .fields-group
     = f.input :require_invite_text, as: :boolean, wrapper: :with_label, label: t('admin.settings.registrations.require_invite_text.title'), hint: t('admin.settings.registrations.require_invite_text.desc_html'), disabled: !approved_registrations?
   .fields-group
+    = f.input :invite_text_filter, wrapper: :with_block_label, label: t('admin.settings.registrations.invite_text_filter.title'), hint: t('admin.settings.registrations.invite_text_filter.desc_html'), disabled: !approved_registrations?
 
   %hr.spacer/
 
