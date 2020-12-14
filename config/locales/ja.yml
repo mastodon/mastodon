@@ -136,6 +136,7 @@ ja:
       login_status: ログイン
       media_attachments: 添付されたメディア
       memorialize: 追悼アカウント化
+      memorialized: 追悼化済み
       memorialized_msg: '%{username} を追悼アカウント化しました'
       moderation:
         active: アクティブ
@@ -247,6 +248,7 @@ ja:
         unsuspend_account: アカウントの停止を解除
         update_announcement: お知らせを更新
         update_custom_emoji: カスタム絵文字を更新
+        update_domain_block: ドメインブロックを更新
         update_status: トゥートを更新
       actions:
         assigned_to_self_report: "%{name} さんが通報 %{target} を自身の担当に割り当てました"
@@ -287,6 +289,7 @@ ja:
         unsuspend_account: "%{name} さんが %{target} さんの停止を解除しました"
         update_announcement: "%{name} さんがお知らせ %{target} を更新しました"
         update_custom_emoji: "%{name} さんがカスタム絵文字 %{target} を更新しました"
+        update_domain_block: "%{name} が %{target} のドメインブロックを更新しました"
         update_status: "%{name} さんが %{target} さんのトゥートを更新しました"
       deleted_status: "(削除済)"
       empty: ログが見つかりませんでした
@@ -428,6 +431,7 @@ ja:
     instances:
       by_domain: ドメイン
       delivery_available: 配送可能
+      empty: ドメインが見つかりませんでした。
       known_accounts:
         other: "既知のアカウント数 %{count}"
       moderation:
@@ -739,6 +743,7 @@ ja:
       functional: アカウントは完全に機能しています。
       pending: あなたの申請は現在サーバー管理者による審査待ちです。これにはしばらくかかります。申請が承認されるとメールが届きます。
       redirecting_to: アカウントは %{acct} に引っ越し設定されているため非アクティブになっています。
+    too_fast: フォームの送信が速すぎます。もう一度やり直してください。
     trouble_logging_in: ログインできませんか？
     use_security_key: セキュリティキーを使用
   authorize_follow:
