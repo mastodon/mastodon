@@ -152,6 +152,14 @@ class AccountGallery extends ImmutablePureComponent {
       loadOlder = <LoadMore visible={!isLoading} onClick={this.handleLoadOlder} />;
     }
 
+    let emptyMessage;
+
+    if (suspended) {
+      emptyMessage = <FormattedMessage id='empty_column.account_suspended' defaultMessage='Account suspended' />;
+    } else if (blockedBy) {
+      emptyMessage = <FormattedMessage id='empty_column.account_unavailable' defaultMessage='Profile unavailable' />;
+    }
+
     return (
       <Column>
         <ColumnBackButton multiColumn={multiColumn} />
@@ -162,7 +170,7 @@ class AccountGallery extends ImmutablePureComponent {
 
             {(suspended || blockedBy) ? (
               <div className='empty-column-indicator'>
-                <FormattedMessage id='empty_column.account_unavailable' defaultMessage='Profile unavailable' />
+                {emptyMessage}
               </div>
             ) : (
               <div role='feed' className='account-gallery__container' ref={this.handleRef}>
