@@ -254,6 +254,7 @@ fr:
         unsuspend_account: Annuler la suspension du compte
         update_announcement: Modifier l’annonce
         update_custom_emoji: Mettre à jour les émojis personnalisés
+        update_domain_block: Mettre à jour le blocage de domaine
         update_status: Mettre à jour le statut
       actions:
         assigned_to_self_report: "%{name} s’est assigné·e le signalement de %{target}"
@@ -294,6 +295,7 @@ fr:
         unsuspend_account: "%{name} a réactivé le compte de %{target}"
         update_announcement: "%{name} a actualisé l’annonce %{target}"
         update_custom_emoji: "%{name} a mis à jour l’émoji %{target}"
+        update_domain_block: "%{name} a mis à jour le blocage de domaine pour %{target}"
         update_status: "%{name} a mis à jour le statut de %{target}"
       deleted_status: "(statut supprimé)"
       empty: Aucun journal trouvé.
@@ -436,6 +438,7 @@ fr:
     instances:
       by_domain: Domaine
       delivery_available: Livraison disponible
+      empty: Aucun domaine trouvé.
       known_accounts:
         one: "%{count} compte connu"
         other: "%{count} comptes connus"
@@ -582,6 +585,9 @@ fr:
         min_invite_role:
           disabled: Personne
           title: Autoriser les invitations par
+        require_invite_text:
+          desc_html: Lorsque les enregistrements nécessitent une approbation manuelle, rendre le texte de l’invitation "Pourquoi voulez-vous vous inscrire ?" obligatoire plutôt que facultatif
+          title: Exiger que les nouveaux utilisateurs remplissent un texte de demande d’invitation
       registrations_mode:
         modes:
           approved: Approbation requise pour s’inscrire
