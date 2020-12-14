@@ -295,6 +295,7 @@ es-AR:
         unsuspend_account: "%{name} quitó la suspensión de la cuenta de %{target}"
         update_announcement: "%{name} actualizó el anuncio %{target}"
         update_custom_emoji: "%{name} actualizó el emoji %{target}"
+        update_domain_block: "%{name} actualizó el bloqueo de dominio para %{target}"
         update_status: "%{name} actualizó el toot de %{target}"
       deleted_status: "[toot eliminado]"
       empty: No se encontraron registros.
@@ -437,6 +438,7 @@ es-AR:
     instances:
       by_domain: Dominio
       delivery_available: La entrega está disponible
+      empty: No se encontraron dominios.
       known_accounts:
         one: "%{count} cuenta conocida"
         other: "%{count} cuentas conocidas"
@@ -583,6 +585,9 @@ es-AR:
         min_invite_role:
           disabled: Nadie
           title: Permitir invitaciones de
+        require_invite_text:
+          desc_html: Cuando los registros requieran aprobación manual, hacé que la solicitud de invitación "¿Por qué querés unirte?" sea obligatoria, en vez de opcional
+          title: Requerir que los nuevos usuarios llenen un texto de solicitud de invitación
       registrations_mode:
         modes:
           approved: Se requiere aprobación para registrarse
