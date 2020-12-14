@@ -254,6 +254,7 @@ ca:
         unsuspend_account: Desfés la suspensió del compte
         update_announcement: Actualitza l'anunci
         update_custom_emoji: Actualitza l'emoji personalitzat
+        update_domain_block: Actualitza el Bloqueig de Domini
         update_status: Actualitza l'estat
       actions:
         assigned_to_self_report: "%{name} han assignat l'informe %{target} a ells mateixos"
@@ -582,6 +583,9 @@ ca:
         min_invite_role:
           disabled: Ningú
           title: Permet les invitacions de
+        require_invite_text:
+          desc_html: Quan el registre requereix aprovació manual, fer que sigui obligatori enlloc d'opcions l escriure el text de la solicitud d'invitació "Perquè vols unirte?"
+          title: Requerir als nous usuaris omplir el text de la solicitud d'invitació
       registrations_mode:
         modes:
           approved: Es requereix l’aprovació per registrar-se
