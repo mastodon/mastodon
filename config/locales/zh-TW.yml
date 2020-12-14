@@ -534,6 +534,9 @@ zh-TW:
       hero:
         desc_html: 在首頁顯示。推薦最小 600x100px。如果留空，就會重設回伺服器預覽圖
         title: 主題圖片
+      mascot:
+        desc_html: 在許多頁面都會顯示。推薦最小 293x205px。如果留空，將採用預設的吉祥物
+        title: 吉祥物圖片
       peers_api_enabled:
         desc_html: 本伺服器在聯邦中發現的站點
         title: 發布已知伺服器的列表
@@ -552,6 +555,8 @@ zh-TW:
         min_invite_role:
           disabled: 沒有人
           title: 允許發送邀請的身份
+        require_invite_text:
+          title: 要求新使用者填申請書以索取邀請
       registrations_mode:
         modes:
           approved: 註冊需要核准
@@ -585,6 +590,8 @@ zh-TW:
         desc_html: 在主頁顯示本站時間軸
         title: 時間軸預覽
       title: 網站設定
+      trendable_by_default:
+        title: 允許熱門的主題標籤直接顯示於趨勢區，不需經過審核
       trends:
         title: 趨勢主題標籤
     site_uploads:
@@ -605,6 +612,8 @@ zh-TW:
       title: 帳戶嘟文
       with_media: 含有媒體檔案
     tags:
+      accounts_today: 本日不重複使用者數
+      accounts_week: 本週不重複使用者數
       context: 上下文
       directory: 在目錄中
       in_directory: "目錄中有 %{count} 個"
@@ -655,9 +664,12 @@ zh-TW:
     warning: 警告，不要把它分享給任何人!
     your_token: 你的 token
   auth:
+    apply_for_account: 索取註冊邀請
     change_password: 密碼
     delete_account: 刪除帳戶
     delete_account_html: 如果你想刪除你的帳戶，請<a href="%{path}">點擊這裡繼續</a>。你需要確認你的操作。
+    description:
+      prefix_sign_up: 現在就註冊 Mastodon 帳號吧！
     didnt_get_confirmation: 沒有收到驗證信?
     forgot_password: 忘記密碼？
     invalid_reset_password_token: 密碼重設 token 無效或已過期。請重新設定密碼。
