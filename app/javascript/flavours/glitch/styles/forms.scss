@@ -368,11 +368,6 @@ code {
       box-shadow: none;
     }
 
-    &:focus:invalid:not(:placeholder-shown),
-    &:required:invalid:not(:placeholder-shown) {
-      border-color: lighten($error-red, 12%);
-    }
-
     &:required:valid {
       border-color: $valid-value-color;
     }
@@ -385,6 +380,16 @@ code {
     &:focus {
       border-color: $highlight-text-color;
       background: darken($ui-base-color, 8%);
+    }
+  }
+
+  input[type=text],
+  input[type=number],
+  input[type=email],
+  input[type=password] {
+    &:focus:invalid:not(:placeholder-shown),
+    &:required:invalid:not(:placeholder-shown) {
+      border-color: lighten($error-red, 12%);
     }
   }
 
