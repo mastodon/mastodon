@@ -67,10 +67,36 @@ const onEnableBootstrapTimelineAccountsChange = (target) => {
 
 delegate(document, '#form_admin_settings_enable_bootstrap_timeline_accounts', 'change', ({ target }) => onEnableBootstrapTimelineAccountsChange(target));
 
+const onChangeRegistrationMode = (target) => {
+  const enabled = target.value === 'approved';
+
+  [].forEach.call(document.querySelectorAll('#form_admin_settings_require_invite_text'), (input) => {
+    input.disabled = !enabled;
+    if (enabled) {
+      let element = input;
+      do {
+        element.classList.remove('disabled');
+        element = element.parentElement;
+      } while (element && !element.classList.contains('fields-group'));
+    } else {
+      let element = input;
+      do {
+        element.classList.add('disabled');
+        element = element.parentElement;
+      } while (element && !element.classList.contains('fields-group'));
+    }
+  });
+};
+
+delegate(document, '#form_admin_settings_registrations_mode', 'change', ({ target }) => onChangeRegistrationMode(target));
+
 ready(() => {
   const domainBlockSeverityInput = document.getElementById('domain_block_severity');
   if (domainBlockSeverityInput) onDomainBlockSeverityChange(domainBlockSeverityInput);
 
   const enableBootstrapTimelineAccounts = document.getElementById('form_admin_settings_enable_bootstrap_timeline_accounts');
   if (enableBootstrapTimelineAccounts) onEnableBootstrapTimelineAccountsChange(enableBootstrapTimelineAccounts);
+
+  const registrationMode = document.getElementById('form_admin_settings_registrations_mode');
+  if (registrationMode) onChangeRegistrationMode(registrationMode);
 });
