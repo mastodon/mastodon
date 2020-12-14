@@ -253,6 +253,7 @@ hu:
         unsuspend_account: Fiók felfüggesztésének feloldása
         update_announcement: Közlemény frissítése
         update_custom_emoji: Egyéni emodzsi frissítése
+        update_domain_block: Domain Tiltás Frissítése
         update_status: Állapot frissítése
       actions:
         assigned_to_self_report: "%{name} a %{target} bejelentést magához rendelte"
@@ -293,6 +294,7 @@ hu:
         unsuspend_account: "%{name} feloldotta %{target} felhasználói fiókjának felfüggesztését"
         update_announcement: "%{name} frissítette a közleményt %{target}"
         update_custom_emoji: "%{name} frissítette az alábbi emodzsit: %{target}"
+        update_domain_block: "%{name} frissítette a %{target} domain tiltását"
         update_status: "%{name} frissítette %{target} felhasználó tülkjét"
       deleted_status: "(törölt tülk)"
       empty: Nem található napló.
@@ -435,6 +437,7 @@ hu:
     instances:
       by_domain: Domain
       delivery_available: Kézbesítés elérhető
+      empty: Nem található domain.
       known_accounts:
         one: "%{count} ismert fiók"
         other: "%{count} ismert fiók"
@@ -581,6 +584,9 @@ hu:
         min_invite_role:
           disabled: Senki
           title: Meghívások engedélyezése
+        require_invite_text:
+          desc_html: Amikor a regisztrációhoz manuális jóváhagyásra is szükség van, legyen a "Miért akarsz csatlakozni?" válasz kitöltése kötelező, és ne opcionális
+          title: Új felhasználóknak ki kelljen tölteni egy meghívási kérelmet
       registrations_mode:
         modes:
           approved: A regisztráció engedélyhez kötött
