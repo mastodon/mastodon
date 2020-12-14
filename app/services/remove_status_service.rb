@@ -160,7 +160,7 @@ class RemoveStatusService < BaseService
   end
 
   def remove_from_direct
-    @mentions.each do |mention|
+    @status.active_mentions.each do |mention|
       FeedManager.instance.unpush_from_direct(mention.account, @status) if mention.account.local?
     end
   end
