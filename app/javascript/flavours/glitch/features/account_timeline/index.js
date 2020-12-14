@@ -117,7 +117,7 @@ class AccountTimeline extends ImmutablePureComponent {
     let emptyMessage;
 
     if (suspended) {
-      emptyMessage = <FormattedMessage id='empty_column.account_unavailable' defaultMessage='Profile unavailable' />;
+      emptyMessage = <FormattedMessage id='empty_column.account_suspended' defaultMessage='Account suspended' />;
     } else if (remote && statusIds.isEmpty()) {
       emptyMessage = <RemoteHint url={remoteUrl} />;
     } else {
