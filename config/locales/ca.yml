@@ -295,6 +295,7 @@ ca:
         unsuspend_account: "%{name} ha llevat la suspensió del compte de %{target}"
         update_announcement: "%{name} ha actualitzat l'anunci %{target}"
         update_custom_emoji: "%{name} ha actualitzat l'emoji %{target}"
+        update_domain_block: "%{name} ha actualitzat el bloqueig de domini per %{target}"
         update_status: "%{name} estat actualitzat per %{target}"
       deleted_status: "(tut esborrat)"
       empty: No s’han trobat registres.
@@ -437,6 +438,7 @@ ca:
     instances:
       by_domain: Domini
       delivery_available: El lliurament està disponible
+      empty: No s'han trobat dominis.
       known_accounts:
         one: "%{count} compte conegut"
         other: "%{count} comptes coneguts"
