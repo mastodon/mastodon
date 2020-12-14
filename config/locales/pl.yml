@@ -262,6 +262,7 @@ pl:
         unsuspend_account: Cofnij zawieszenie konta
         update_announcement: Aktualizuj ogłoszenie
         update_custom_emoji: Aktualizuj niestandardowe emoji
+        update_domain_block: Zaktualizuj blokadę domeny
         update_status: Aktualizuj wpis
       actions:
         assigned_to_self_report: "%{name} przypisał(a) sobie zgłoszenie %{target}"
@@ -302,6 +303,7 @@ pl:
         unsuspend_account: "%{name} cofnął(-ęła) zawieszenie konta %{target}"
         update_announcement: "%{name} zaktualizował(-a) ogłoszenie %{target}"
         update_custom_emoji: "%{name} zaktualizował(a) emoji %{target}"
+        update_domain_block: "%{name} zaktualizował(-a) blokadę domeny dla %{target}"
         update_status: "%{name} zaktualizował(a) wpis użytkownika %{target}"
       deleted_status: "(usunięty wpis)"
       empty: Nie znaleziono aktywności w dzienniku.
@@ -446,6 +448,7 @@ pl:
     instances:
       by_domain: Domena
       delivery_available: Doręczanie jest dostępne
+      empty: Nie znaleziono domen.
       known_accounts:
         one: "%{count} znane konto"
         few: "%{count} znane konta"
@@ -598,6 +601,8 @@ pl:
         min_invite_role:
           disabled: Nikt
           title: Kto może zapraszać użytkowników
+        require_invite_text:
+          desc_html: Kiedy rejestracje wymagają ręcznego zatwierdzenia, ustaw pole "Dlaczego chcesz dołączyć?" jako obowiązkowe, a nie opcjonalne
       registrations_mode:
         modes:
           approved: Przyjęcie jest wymagane do rejestracji
