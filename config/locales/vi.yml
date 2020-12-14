@@ -249,6 +249,7 @@ vi:
         unsuspend_account: Ngừng vô hiệu hóa
         update_announcement: Cập nhật thông báo
         update_custom_emoji: Cập nhật Emoji mới
+        update_domain_block: Cập nhật máy chủ chặn
         update_status: Cập nhật tút
       actions:
         assigned_to_self_report: "%{name} đã xử lý báo cáo được giao %{target}"
@@ -289,6 +290,7 @@ vi:
         unsuspend_account: "%{name} đã ngừng vô hiệu hóa %{target}"
         update_announcement: "%{name} cập nhật thông báo cho %{target}"
         update_custom_emoji: "%{name} đã cập nhật biểu tượng cảm xúc %{target}"
+        update_domain_block: "%{name} cập nhật chặn máy chủ %{target}"
         update_status: "%{name} cập nhật tút của %{target}"
       deleted_status: "(tút đã xóa)"
       empty: Không tìm thấy bản ghi.
@@ -430,6 +432,7 @@ vi:
     instances:
       by_domain: Máy chủ
       delivery_available: Cho phép liên kết
+      empty: Không có máy chủ nào.
       known_accounts:
         other: "%{count} tài khoản đã biết"
       moderation:
