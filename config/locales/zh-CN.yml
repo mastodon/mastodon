@@ -249,6 +249,7 @@ zh-CN:
         unsuspend_account: 解除账号封禁
         update_announcement: 更新公告
         update_custom_emoji: 更新自定义表情符号
+        update_domain_block: 更新域名屏蔽
         update_status: 更新嘟文
       actions:
         assigned_to_self_report: "%{name} 接管了举报 %{target}"
@@ -289,6 +290,7 @@ zh-CN:
         unsuspend_account: "%{name} 解除了用户 %{target} 的封禁状态"
         update_announcement: "%{name} 更新了公告 %{target}"
         update_custom_emoji: "%{name} 更新了自定义表情 %{target}"
+        update_domain_block: "%{name} 更新了对 %{target} 的域名屏蔽"
         update_status: "%{name} 刷新了 %{target} 的嘟文"
       deleted_status: "（嘟文已删除）"
       empty: 没有找到日志
@@ -430,6 +432,7 @@ zh-CN:
     instances:
       by_domain: 域名
       delivery_available: 可投递
+      empty: 暂无域名
       known_accounts:
         other: "%{count} 个已知帐户"
       moderation:
