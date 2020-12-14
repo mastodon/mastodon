@@ -254,6 +254,7 @@ es:
         unsuspend_account: Dejar de Suspender Cuenta
         update_announcement: Actualizar Anuncio
         update_custom_emoji: Actualizar Emoji Personalizado
+        update_domain_block: Actualizar el Bloqueo de Dominio
         update_status: Actualizar Estado
       actions:
         assigned_to_self_report: "%{name} se ha asignado la denuncia %{target} a sí mismo"
@@ -294,6 +295,7 @@ es:
         unsuspend_account: "%{name} desactivó la suspensión de la cuenta de %{target}"
         update_announcement: "%{name} actualizó el anuncio %{target}"
         update_custom_emoji: "%{name} actualizó el emoji %{target}"
+        update_domain_block: "%{name} actualizó el bloqueo de dominio para %{target}"
         update_status: "%{name} actualizó el estado de %{target}"
       deleted_status: "(estado borrado)"
       empty: No se encontraron registros.
@@ -436,6 +438,7 @@ es:
     instances:
       by_domain: Dominio
       delivery_available: Entrega disponible
+      empty: No se encontraron dominios.
       known_accounts:
         one: "%{count} cuenta conocida"
         other: "%{count} cuentas conocidas"
@@ -584,6 +587,7 @@ es:
           title: Permitir invitaciones de
         require_invite_text:
           desc_html: Cuando los registros requieren aprobación manual, haga obligatorio en la invitaciones el campo "¿Por qué quieres unirte?" en lugar de opcional
+          title: Requiere a los nuevos usuarios rellenar un texto de solicitud de invitación
       registrations_mode:
         modes:
           approved: Se requiere aprobación para registrarse
