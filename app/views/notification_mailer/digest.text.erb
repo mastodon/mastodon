@@ -7,7 +7,7 @@
 
   <%= raw Formatter.instance.plaintext(notification.target_status) %>
 
-  <%= raw t('application_mailer.view')%> <%= web_url("statuses/#{notification.target_status.id}") %>
+  <%= raw t('application_mailer.view')%> <%= short_account_status_url(notification.target_status.account.acct, notification.target_status.id) %>
 <% end %>
 <% if @follows_since > 0 %>
 

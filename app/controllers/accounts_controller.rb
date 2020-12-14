@@ -5,11 +5,11 @@ class AccountsController < ApplicationController
   PAGE_SIZE_MAX = 200
 
   include AccountControllerConcern
+  include WebAppControllerConcern
   include SignatureAuthentication
 
   before_action :require_signature!, if: -> { request.format == :json && authorized_fetch_mode? }
   before_action :set_cache_headers
-  before_action :set_body_classes
 
   skip_around_action :set_locale, if: -> { [:json, :rss].include?(request.format&.to_sym) }
   skip_before_action :require_functional!, unless: :whitelist_mode?
@@ -18,24 +18,6 @@ class AccountsController < ApplicationController
     respond_to do |format|
       format.html do
         expires_in 0, public: true unless user_signed_in?
-
-        @pinned_statuses   = []
-        @endorsed_accounts = @account.endorsed_accounts.to_a.sample(4)
-        @featured_hashtags = @account.featured_tags.order(statuses_count: :desc)
-
-        if current_account && @account.blocking?(current_account)
-          @statuses = []
-          return
-        end
-
-        @pinned_statuses = cache_collection(@account.pinned_statuses, Status) if show_pinned_statuses?
-        @statuses        = cached_filtered_status_page
-        @rss_url         = rss_url
-
-        unless @statuses.empty?
-          @older_url = older_url if @statuses.last.id > filtered_statuses.last.id
-          @newer_url = newer_url if @statuses.first.id < filtered_statuses.first.id
-        end
       end
 
       format.rss do
@@ -55,10 +37,6 @@ class AccountsController < ApplicationController
   end
 
   private
-
-  def set_body_classes
-    @body_classes = 'with-modals'
-  end
 
   def show_pinned_statuses?
     [replies_requested?, media_requested?, tag_requested?, params[:max_id].present?, params[:min_id].present?].none?

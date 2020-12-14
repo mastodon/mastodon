@@ -2,6 +2,7 @@
 
 class FollowingAccountsController < ApplicationController
   include AccountControllerConcern
+  include WebAppControllerConcern
   include SignatureVerification
 
   before_action :require_signature!, if: -> { request.format == :json && authorized_fetch_mode? }
@@ -14,10 +15,6 @@ class FollowingAccountsController < ApplicationController
     respond_to do |format|
       format.html do
         expires_in 0, public: true unless user_signed_in?
-
-        next if @account.user_hides_network?
-
-        follows
       end
 
       format.json do
@@ -35,6 +32,10 @@ class FollowingAccountsController < ApplicationController
   end
 
   private
+
+  def username_param
+    params[:username] || params[:account_username]
+  end
 
   def follows
     return @follows if defined?(@follows)

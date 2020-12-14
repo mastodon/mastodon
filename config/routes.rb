@@ -5,6 +5,25 @@ require 'sidekiq-scheduler/web'
 
 Sidekiq::Web.set :session_secret, Rails.application.secrets[:secret_key_base]
 
+# These paths do not have special server-side controllers and must load the web app only
+APP_PATHS = %w(
+  /home
+  /getting-started
+  /keyboard-shortcuts
+  /conversations
+  /lists/(*any)
+  /notifications
+  /favourites
+  /bookmarks
+  /pinned
+  /search
+  /publish
+  /follow_requests
+  /blocks
+  /domain_blocks
+  /mutes
+).freeze
+
 Rails.application.routes.draw do
   root 'home#index'
 
@@ -76,8 +95,6 @@ Rails.application.routes.draw do
 
     resources :followers, only: [:index], controller: :follower_accounts
     resources :following, only: [:index], controller: :following_accounts
-    resource :follow, only: [:create], controller: :account_follow
-    resource :unfollow, only: [:create], controller: :account_unfollow
 
     resource :outbox, only: [:show], module: :activitypub
     resource :inbox, only: [:create], module: :activitypub
@@ -92,6 +109,8 @@ Rails.application.routes.draw do
   get '/@:username/with_replies', to: 'accounts#show', as: :short_account_with_replies
   get '/@:username/media', to: 'accounts#show', as: :short_account_media
   get '/@:username/tagged/:tag', to: 'accounts#show', as: :short_account_tag
+  get '/@:username/followers', to: 'follower_accounts#index', as: :short_account_followers
+  get '/@:username/following', to: 'following_accounts#index', as: :short_account_following
   get '/@:account_username/:id', to: 'statuses#show', as: :short_account_status
   get '/@:account_username/:id/embed', to: 'statuses#embed', as: :embed_short_account_status
 
@@ -99,7 +118,6 @@ Rails.application.routes.draw do
   post '/interact/:id', to: 'remote_interaction#create'
 
   get '/explore', to: 'directories#index', as: :explore
-  get '/explore/:id', to: 'directories#show', as: :explore_hashtag
 
   get '/settings', to: redirect('/settings/profile')
 
@@ -181,6 +199,7 @@ Rails.application.routes.draw do
   resource :relationships, only: [:show, :update]
 
   get '/public', to: 'public_timelines#show', as: :public_timeline
+  get '/public/local', to: 'public_timelines#show', as: :local_public_timeline
   get '/media_proxy/:id/(*any)', to: 'media_proxy#show', as: :media_proxy
 
   resource :authorize_interaction, only: [:show, :create]
@@ -431,6 +450,7 @@ Rails.application.routes.draw do
         get :verify_credentials, to: 'credentials#show'
         patch :update_credentials, to: 'credentials#update'
         resource :search, only: :show, controller: :search
+        resource :lookup, only: :show, controller: :lookup
         resources :relationships, only: :index
       end
 
@@ -515,7 +535,9 @@ Rails.application.routes.draw do
     end
   end
 
-  get '/web/(*any)', to: 'home#index', as: :web
+  APP_PATHS.each do |app_path|
+    get app_path, to: 'home#index'
+  end
 
   get '/about',        to: 'about#show'
   get '/about/more',   to: 'about#more'

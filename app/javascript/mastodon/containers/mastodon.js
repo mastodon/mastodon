@@ -14,7 +14,7 @@ import { IntlProvider, addLocaleData } from 'react-intl';
 import { getLocale } from '../locales';
 import { previewState as previewMediaState } from 'mastodon/features/ui/components/media_modal';
 import { previewState as previewVideoState } from 'mastodon/features/ui/components/video_modal';
-import initialState from '../initial_state';
+import initialState, { me } from '../initial_state';
 import ErrorBoundary from '../components/error_boundary';
 
 const { localeData, messages } = getLocale();
@@ -27,7 +27,7 @@ store.dispatch(hydrateAction);
 store.dispatch(fetchCustomEmojis());
 
 const mapStateToProps = state => ({
-  showIntroduction: state.getIn(['settings', 'introductionVersion'], 0) < INTRODUCTION_VERSION,
+  showIntroduction: me && state.getIn(['settings', 'introductionVersion'], 0) < INTRODUCTION_VERSION,
 });
 
 @connect(mapStateToProps)
@@ -49,7 +49,7 @@ class MastodonMount extends React.PureComponent {
     }
 
     return (
-      <BrowserRouter basename='/web'>
+      <BrowserRouter>
         <ScrollContext shouldUpdateScroll={this.shouldUpdateScroll}>
           <Route path='/' component={UI} />
         </ScrollContext>

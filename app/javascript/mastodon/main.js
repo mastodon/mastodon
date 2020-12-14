@@ -13,9 +13,9 @@ function main() {
   if (window.history && history.replaceState) {
     const { pathname, search, hash } = window.location;
     const path = pathname + search + hash;
-    if (!(/^\/web($|\/)/).test(path)) {
-      history.replaceState(null, document.title, `/web${path}`);
-    }
+    //if (!(/^\/web($|\/)/).test(path)) {
+    //  history.replaceState(null, document.title, `/web${path}`);
+    //}
   }
 
   ready(() => {

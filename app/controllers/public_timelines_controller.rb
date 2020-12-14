@@ -1,26 +1,18 @@
 # frozen_string_literal: true
 
 class PublicTimelinesController < ApplicationController
-  layout 'public'
+  include WebAppControllerConcern
 
   before_action :authenticate_user!, if: :whitelist_mode?
   before_action :require_enabled!
-  before_action :set_body_classes
-  before_action :set_instance_presenter
 
-  def show; end
+  def show
+    expires_in 0, public: true if current_account.nil?
+  end
 
   private
 
   def require_enabled!
-    not_found unless Setting.timeline_preview
-  end
-
-  def set_body_classes
-    @body_classes = 'with-modals'
-  end
-
-  def set_instance_presenter
-    @instance_presenter = InstancePresenter.new
+    not_found unless user_signed_in? || Setting.timeline_preview
   end
 end

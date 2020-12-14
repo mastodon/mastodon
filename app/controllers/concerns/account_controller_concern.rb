@@ -8,17 +8,10 @@ module AccountControllerConcern
   FOLLOW_PER_PAGE = 12
 
   included do
-    layout 'public'
-
-    before_action :set_instance_presenter
     before_action :set_link_headers, if: -> { request.format.nil? || request.format == :html }
   end
 
   private
-
-  def set_instance_presenter
-    @instance_presenter = InstancePresenter.new
-  end
 
   def set_link_headers
     response.headers['Link'] = LinkHeader.new(

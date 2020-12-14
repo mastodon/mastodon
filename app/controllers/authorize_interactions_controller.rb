@@ -13,7 +13,7 @@ class AuthorizeInteractionsController < ApplicationController
     if @resource.is_a?(Account)
       render :show
     elsif @resource.is_a?(Status)
-      redirect_to web_url("statuses/#{@resource.id}")
+      redirect_to short_account_status_path(@resource.account.acct, @resource.id)
     else
       render :error
     end

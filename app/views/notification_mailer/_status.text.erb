@@ -5,4 +5,4 @@
 <% end %>
 <%= raw Formatter.instance.plaintext(status) %>
 
-<%= raw t('application_mailer.view')%> <%= web_url("statuses/#{status.id}") %>
+<%= raw t('application_mailer.view')%> <%= short_account_status_url(status.account.acct, status.id) %>
