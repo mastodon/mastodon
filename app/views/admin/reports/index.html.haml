@@ -60,8 +60,8 @@
                 = report.media_attachments.count
 
               - if report.forwarded?
-                %span.report-card__summary__item__content__icon{ title: t('admin.reports.forwarded') }
-                  = fa_icon('share')
+                ·
+                = t('admin.reports.forwarded_to', domain: target_account.domain)
 
           .report-card__summary__item__assigned
             - if report.assigned_account.present?

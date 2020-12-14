@@ -51,7 +51,7 @@
           %th= t('admin.reports.forwarded')
           %td{ colspan: 3 }
             - if @report.forwarded.nil?
-              = t('admin.reports.forwarded_unknown')
+              \-
             - elsif @report.forwarded?
               = t('simple_form.yes')
             - else
