@@ -16,6 +16,7 @@
 
 class DomainBlock < ApplicationRecord
   include DomainNormalizable
+  include DomainMaterializable
 
   enum severity: [:silence, :suspend, :noop]
 

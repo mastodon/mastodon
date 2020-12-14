@@ -67,6 +67,7 @@ class Account < ApplicationRecord
   include Paginable
   include AccountCounters
   include DomainNormalizable
+  include DomainMaterializable
   include AccountMerging
 
   TRUST_LEVELS = {
@@ -103,7 +104,6 @@ class Account < ApplicationRecord
   scope :bots, -> { where(actor_type: %w(Application Service)) }
   scope :groups, -> { where(actor_type: 'Group') }
   scope :alphabetic, -> { order(domain: :asc, username: :asc) }
-  scope :by_domain_accounts, -> { group(:domain).select(:domain, 'COUNT(*) AS accounts_count').order('accounts_count desc') }
   scope :matches_username, ->(value) { where(arel_table[:username].matches("#{value}%")) }
   scope :matches_display_name, ->(value) { where(arel_table[:display_name].matches("#{value}%")) }
   scope :matches_domain, ->(value) { where(arel_table[:domain].matches("%#{value}%")) }
@@ -436,10 +436,6 @@ class Account < ApplicationRecord
   class << self
     def readonly_attributes
       super - %w(statuses_count following_count followers_count)
-    end
-
-    def domains
-      reorder(nil).pluck(Arel.sql('distinct accounts.domain'))
     end
 
     def inboxes

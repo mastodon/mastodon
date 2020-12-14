@@ -255,6 +255,7 @@ en:
         unsuspend_account: Unsuspend Account
         update_announcement: Update Announcement
         update_custom_emoji: Update Custom Emoji
+        update_domain_block: Update Domain Block
         update_status: Update Status
       actions:
         assigned_to_self_report: "%{name} assigned report %{target} to themselves"
@@ -295,6 +296,7 @@ en:
         unsuspend_account: "%{name} unsuspended %{target}'s account"
         update_announcement: "%{name} updated announcement %{target}"
         update_custom_emoji: "%{name} updated emoji %{target}"
+        update_domain_block: "%{name} updated domain block for %{target}"
         update_status: "%{name} updated status by %{target}"
       deleted_status: "(deleted status)"
       empty: No logs found.
@@ -437,6 +439,7 @@ en:
     instances:
       by_domain: Domain
       delivery_available: Delivery is available
+      empty: No domains found.
       known_accounts:
         one: "%{count} known account"
         other: "%{count} known accounts"
