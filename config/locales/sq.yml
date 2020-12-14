@@ -254,6 +254,7 @@ sq:
         unsuspend_account: Hiqe Pezullimin e Llogarisë
         update_announcement: Përditëso Lajmërimin
         update_custom_emoji: Përditëso Emotikon Vetjak
+        update_domain_block: Përditëso Bllok Përkatësish
         update_status: Përditëso Gjendjen
       actions:
         assigned_to_self_report: "%{name} ia kaloi raportimin %{target} në ngarkim vetvetes"
@@ -294,6 +295,7 @@ sq:
         unsuspend_account: "%{name} hoqi pezullimin për llogarinë e %{target}"
         update_announcement: "%{name} përditësoi lajmërimin %{target}"
         update_custom_emoji: "%{name} përditësoi emotikonin %{target}"
+        update_domain_block: "%{name} përditësoi bllok përkatësish për %{target}"
         update_status: "%{name} përditësoi gjendjen me %{target}"
       deleted_status: "(fshiu gjendjen)"
       empty: S’u gjetën regjistra.
@@ -436,6 +438,7 @@ sq:
     instances:
       by_domain: Përkatësi
       delivery_available: Ka shpërndarje të mundshme
+      empty: S’u gjetën përkatësi.
       known_accounts:
         one: "%{count} llogari e njohur"
         other: "%{count} llogari të njohura"
@@ -582,6 +585,9 @@ sq:
         min_invite_role:
           disabled: Asnjë
           title: Lejo ftesa nga
+        require_invite_text:
+          desc_html: Kur regjistrimet lypin miratim dorazi, tekstin e kërkesës për ftesë “Pse doni të merrni pjesë?” bëje të detyrueshëm, në vend se opsional
+          title: Kërkoju përdoruesve të rinj të plotësojnë doemos një tekst kërkese për ftesë
       registrations_mode:
         modes:
           approved: Për regjistrim, lypset miratimi
