@@ -130,6 +130,7 @@ de:
       follows: Folgt
       header: Titelbild
       inbox_url: Posteingangs-URL
+      invite_request_text: Begründung für das beitreten
       invited_by: Eingeladen von
       ip: IP-Adresse
       joined: Beigetreten
@@ -254,6 +255,7 @@ de:
         unsuspend_account: Konto nicht mehr sperren
         update_announcement: Ankündigung aktualisieren
         update_custom_emoji: Benutzerdefiniertes Emoji aktualisieren
+        update_domain_block: Domain Block aktualisieren
         update_status: Beitrag aktualisieren
       actions:
         assigned_to_self_report: "%{name} hat sich die Meldung %{target} selbst zugewiesen"
@@ -294,6 +296,7 @@ de:
         unsuspend_account: "%{name} hat die Verbannung von %{target} aufgehoben"
         update_announcement: "%{name} aktualisierte Ankündigung %{target}"
         update_custom_emoji: "%{name} hat das %{target} Emoji geändert"
+        update_domain_block: "%{name} hat den Domain-Block für %{target} aktualisiert"
         update_status: "%{name} hat einen Beitrag von %{target} aktualisiert"
       deleted_status: "(gelöschter Beitrag)"
       empty: Keine Protokolle gefunden.
@@ -436,6 +439,7 @@ de:
     instances:
       by_domain: Domain
       delivery_available: Zustellung funktioniert
+      empty: Keine Domains gefunden.
       known_accounts:
         one: "%{count} bekanntes Konto"
         other: "%{count} bekannte Konten"
@@ -513,6 +517,8 @@ de:
       comment:
         none: Kein
       created_at: Gemeldet
+      forwarded: Weitergeleitet
+      forwarded_to: Weitergeleitet an %{domain}
       mark_as_resolved: Als gelöst markieren
       mark_as_unresolved: Als ungelöst markieren
       notes:
@@ -582,6 +588,9 @@ de:
         min_invite_role:
           disabled: Niemand
           title: Einladungen erlauben von
+        require_invite_text:
+          desc_html: Wenn eine Registrierung manuell genehmigt werden muss, mache den "Warum möchtest du beitreten?" Text eher obligatorisch als optional
+          title: Neue Benutzer müssen einen Einladungstext ausfüllen
       registrations_mode:
         modes:
           approved: Zustimmung benötigt zur Registrierung
