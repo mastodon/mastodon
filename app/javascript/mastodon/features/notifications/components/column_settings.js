@@ -45,8 +45,9 @@ export default class ColumnSettings extends React.PureComponent {
 
         {alertsEnabled && browserSupport && browserPermission === 'default' && (
           <div className='column-settings__row column-settings__row--with-margin'>
-            <span className='warning-hint'><FormattedMessage id='notifications.permission_required' defaultMessage='Desktop notifications are unavailable because the required permission has not been granted.' /></span>
-            <GrantPermissionButton onClick={onRequestNotificationPermission} />
+            <span className='warning-hint'>
+              <FormattedMessage id='notifications.permission_required' defaultMessage='Desktop notifications are unavailable because the required permission has not been granted.' /> <GrantPermissionButton onClick={onRequestNotificationPermission} />
+            </span>
           </div>
         )}
 
