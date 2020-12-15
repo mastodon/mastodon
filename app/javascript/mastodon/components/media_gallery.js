@@ -130,6 +130,151 @@ class Item extends React.PureComponent {
       }
     }
 
+    if (size === 5) {
+      height = 50;
+      width = 33;
+
+      if (index === 4) {
+        width = 66.6;
+      }
+
+      if (index < 3) {
+        bottom = '2px';
+      } else {
+        top = '2px';
+      }
+
+      if (index !== 2 && index !== 4) {
+        right = '2px';
+      }
+
+      if (index !== 0 && index !== 3) {
+        if (index % 3 === 1) {
+          left = '2px';
+        } else {
+          left = '6px';
+        }
+      }
+    }
+
+    if (size === 6) {
+      height = 50;
+      width = 33;
+
+      if (index < 3) {
+        bottom = '2px';
+      } else {
+        top = '2px';
+      }
+
+      if (index !== 2 && index !== 5) {
+        right = '2px';
+      }
+
+      if (index !== 0 && index !== 3) {
+        if (index % 3 === 1) {
+          left = '2px';
+        } else {
+          left = '6px';
+        }
+      }
+    }
+
+    if (size === 7) {
+      height = 33;
+      width = 33;
+
+      if (index === 6) {
+        width = 100;
+      }
+
+      if (index < 6) {
+        bottom = '2px';
+      }
+
+      if (index > 2) {
+        if (parseInt(index/3) === 1) {
+          top = '2px';
+        } else {
+          top = '6px';
+        }
+      }
+
+      if (index !== 2 && index !== 5 && index !== 6) {
+        right = '2px';
+      }
+
+      if (index !== 0 && index !== 3 && index !== 6) {
+        if (index % 3 === 1) {
+          left = '2px';
+        } else {
+          left = '6px';
+        }
+      }
+    }
+
+    if (size === 8) {
+      height = 33;
+      width = 33;
+
+      if (index === 7) {
+        width = 66.6;
+      }
+
+      if (index < 6) {
+        bottom = '2px';
+      }
+
+      if (index > 2) {
+        if (parseInt(index/3) === 1) {
+          top = '2px';
+        } else {
+          top = '6px';
+        }
+      }
+
+      if (index !== 2 && index !== 5 && index !== 7) {
+        right = '2px';
+      }
+
+      if (index !== 0 && index !== 3 && index !== 6) {
+        if (index % 3 === 1) {
+          left = '2px';
+        } else {
+          left = '6px';
+        }
+      }
+    }
+
+    if (size === 9) {
+      height = 33;
+      width = 33;
+
+      if (index < 6) {
+        bottom = '2px';
+      }
+
+      if (index > 2) {
+        if (parseInt(index/3) === 1) {
+          top = '2px';
+        } else {
+          top = '6px';
+        }
+      }
+
+      if (index !== 2 && index !== 5 && index !== 8) {
+        right = '2px';
+      }
+
+      if (index !== 0 && index !== 3 && index !== 6) {
+        if (index % 3 === 1) {
+          left = '2px';
+        } else {
+          left = '6px';
+        }
+      }
+    }
+
     let thumbnail = '';
 
     if (attachment.get('type') === 'unknown') {
@@ -315,6 +460,8 @@ class MediaGallery extends React.PureComponent {
     const { media, intl, sensitive, height, defaultWidth, standalone, autoplay, quote } = this.props;
     const { visible } = this.state;
 
+    const size     = media.take(9).size;
+
     const width = this.state.width || defaultWidth;
 
     let children, spoilerButton;
@@ -325,23 +472,24 @@ class MediaGallery extends React.PureComponent {
       if (width) {
         style.height = width / this.props.media.getIn([0, 'meta', 'small', 'aspect']);
       }
+    } else if (size > 6) {
+      style.height = width / (1/1);
     } else if (width) {
       style.height = width / (16/9);
     } else {
       style.height = height;
     }
 
-    const size     = media.take(4).size;
     const uncached = media.every(attachment => attachment.get('type') === 'unknown');
 
     if (quote && style.height) {
-      style.height /= 2;
+      style.height /= 1;
     }
 
     if (standalone && this.isFullSizeEligible()) {
       children = <Item standalone autoplay={autoplay} onClick={this.handleClick} attachment={media.get(0)} displayWidth={width} visible={visible} />;
     } else {
-      children = media.take(4).map((attachment, i) => <Item key={attachment.get('id')} autoplay={autoplay} onClick={this.handleClick} attachment={attachment} index={i} size={size} displayWidth={width} visible={visible || uncached} />);
+      children = media.take(9).map((attachment, i) => <Item key={attachment.get('id')} autoplay={autoplay} onClick={this.handleClick} attachment={attachment} index={i} size={size} displayWidth={width} visible={visible || uncached} />);
     }
 
     if (uncached) {

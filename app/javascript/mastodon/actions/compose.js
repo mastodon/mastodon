@@ -254,7 +254,7 @@ export function submitComposeFail(error) {
 
 export function uploadCompose(files) {
   return function (dispatch, getState) {
-    const uploadLimit = 4;
+    const uploadLimit = 9;
     const media  = getState().getIn(['compose', 'media_attachments']);
     const pending  = getState().getIn(['compose', 'pending_media_attachments']);
     const progress = new Array(files.length).fill(0);
@@ -273,7 +273,7 @@ export function uploadCompose(files) {
     dispatch(uploadComposeRequest());
 
     for (const [i, f] of Array.from(files).entries()) {
-      if (media.size + i > 3) break;
+      if (media.size + i > 8) break;
 
       resizeImage(f).then(file => {
         const data = new FormData();

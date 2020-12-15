@@ -147,13 +147,13 @@ class PostStatusService < BaseService
       return if remote_media.blank?
 
       media_ids = remote_media
-      id = remote_media.take(4).map(&:id)
+      id = remote_media.take(9).map(&:id)
     else
       media_ids = @options[:media_ids]
-      id = @options[:media_ids].take(4).map(&:to_i)
+      id = @options[:media_ids].take(9).map(&:to_i)
     end
 
-    raise Mastodon::ValidationError, I18n.t('media_attachments.validations.too_many') if media_ids.size > 4 || @options[:poll].present?
+    raise Mastodon::ValidationError, I18n.t('media_attachments.validations.too_many') if media_ids.size > 9 || @options[:poll].present?
 
     @media = @account.media_attachments.where(status_id: nil).where(id: id)
 
@@ -176,7 +176,7 @@ class PostStatusService < BaseService
                   end
 
     media_array.each do |media|
-      next if media_attachments.size >= 4
+      next if media_attachments.size >= 9
 
       original  = Addressable::URI.parse(media[0]).normalize.to_s
       thumbnail = thumbnail_remote_url(media[1])
