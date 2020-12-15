@@ -131,6 +131,7 @@ en:
       follows: Follows
       header: Header
       inbox_url: Inbox URL
+      invite_request_text: Reasons for joining
       invited_by: Invited by
       ip: IP
       joined: Joined
@@ -255,6 +256,7 @@ en:
         unsuspend_account: Unsuspend Account
         update_announcement: Update Announcement
         update_custom_emoji: Update Custom Emoji
+        update_domain_block: Update Domain Block
         update_status: Update Status
       actions:
         assigned_to_self_report: "%{name} assigned report %{target} to themselves"
@@ -295,6 +297,7 @@ en:
         unsuspend_account: "%{name} unsuspended %{target}'s account"
         update_announcement: "%{name} updated announcement %{target}"
         update_custom_emoji: "%{name} updated emoji %{target}"
+        update_domain_block: "%{name} updated domain block for %{target}"
         update_status: "%{name} updated status by %{target}"
       deleted_status: "(deleted status)"
       empty: No logs found.
@@ -437,6 +440,7 @@ en:
     instances:
       by_domain: Domain
       delivery_available: Delivery is available
+      empty: No domains found.
       known_accounts:
         one: "%{count} known account"
         other: "%{count} known accounts"
@@ -514,6 +518,8 @@ en:
       comment:
         none: None
       created_at: Reported
+      forwarded: Forwarded
+      forwarded_to: Forwarded to %{domain}
       mark_as_resolved: Mark as resolved
       mark_as_unresolved: Mark as unresolved
       notes:
@@ -583,6 +589,9 @@ en:
         min_invite_role:
           disabled: No one
           title: Allow invitations by
+        require_invite_text:
+          desc_html: When registrations require manual approval, make the “Why do you want to join?” invite request text mandatory rather than optional
+          title: Require new users to fill an invite request text
       registrations_mode:
         modes:
           approved: Approval required for sign up
