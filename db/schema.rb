@@ -717,6 +717,7 @@ ActiveRecord::Schema.define(version: 2020_12_06_004238) do
     t.bigint "target_account_id", null: false
     t.bigint "assigned_account_id"
     t.string "uri"
+    t.boolean "forwarded"
     t.index ["account_id"], name: "index_reports_on_account_id"
     t.index ["target_account_id"], name: "index_reports_on_target_account_id"
   end
