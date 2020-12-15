@@ -127,8 +127,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
       visibility: @status_parser.visibility,
       thread: replied_to_status,
       conversation: conversation_from_uri(@object['conversation']),
-      media_attachment_ids: attachment_ids,
-      ordered_media_attachment_ids: attachment_ids,
+      media_attachment_ids: process_attachments.take(9).map(&:id),
       poll: process_poll,
     }
   end
