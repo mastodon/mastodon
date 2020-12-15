@@ -91,14 +91,34 @@ class Item extends PureComponent {
     let badges = [], thumbnail;
 
     let width  = 50;
-    let height = 100;
+    let height = 50;
+
+    let spans = 1;
 
     if (size === 1) {
       width = 100;
+      height = 100;
+      spans = 2;
     }
 
-    if (size === 4 || (size === 3 && index > 0)) {
-      height = 50;
+    if (size === 2) {
+      height = 100;
+    }
+
+    if (size === 3 && index === 0) {
+      height = 100;
+    }
+    
+    if (size === 5 && index === 3) {
+      spans = 2;
+    }
+
+    if (size === 7 && index === 6) {
+      spans = 3;
+    }
+
+    if (size === 8 && index === 6) {
+      spans = 2;
     }
 
     if (attachment.get('description')?.length > 0) {
@@ -109,7 +129,7 @@ class Item extends PureComponent {
 
     if (attachment.get('type') === 'unknown') {
       return (
-        <div className={classNames('media-gallery__item', { standalone, 'media-gallery__item--tall': height === 100, 'media-gallery__item--wide': width === 100 })} key={attachment.get('id')}>
+        <div className={classNames('media-gallery__item', { standalone, 'media-gallery__item--tall': height === 100, 'media-gallery__item--wide': width === 100 })} key={attachment.get('id')} style={{ gridColumn: `span ${spans}` }}>
           <a className='media-gallery__item-thumbnail' href={attachment.get('remote_url') || attachment.get('url')} style={{ cursor: 'pointer' }} title={description} lang={lang} target='_blank' rel='noopener noreferrer'>
             <Blurhash
               hash={attachment.get('blurhash')}
@@ -183,7 +203,7 @@ class Item extends PureComponent {
     }
 
     return (
-      <div className={classNames('media-gallery__item', { standalone, 'media-gallery__item--tall': height === 100, 'media-gallery__item--wide': width === 100 })} key={attachment.get('id')}>
+      <div className={classNames('media-gallery__item', { standalone, 'media-gallery__item--tall': height === 100, 'media-gallery__item--wide': width === 100 })} key={attachment.get('id')} style={{ gridColumn: `span ${spans}` }}>
         <Blurhash
           hash={attachment.get('blurhash')}
           dummy={!useBlurhash}
@@ -334,6 +354,9 @@ class MediaGallery extends PureComponent {
         </button>
       );
     }
+
+    style.gridTemplateColumns = this.props.media.size < 5 ? '50% 50%' : '33.3% 33.3% 33.3%';
+    style.gridTemplateRows = this.props.media.size < 7 ? '50% 50%' : '33.3% 33.3% 33.3%';
 
     return (
       <div className='media-gallery' style={style} ref={this.handleRef}>
