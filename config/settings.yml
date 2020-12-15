@@ -79,6 +79,7 @@ defaults: &defaults
   show_domain_blocks: 'disabled'
   show_domain_blocks_rationale: 'disabled'
   outgoing_spoilers: ''
+  require_invite_text: false
 
 development:
   <<: *defaults

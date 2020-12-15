@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_17_234926) do
+ActiveRecord::Schema.define(version: 2020_12_06_004238) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -717,6 +717,7 @@ ActiveRecord::Schema.define(version: 2020_10_17_234926) do
     t.bigint "target_account_id", null: false
     t.bigint "assigned_account_id"
     t.string "uri"
+    t.boolean "forwarded"
     t.index ["account_id"], name: "index_reports_on_account_id"
     t.index ["target_account_id"], name: "index_reports_on_target_account_id"
   end
@@ -1047,4 +1048,29 @@ ActiveRecord::Schema.define(version: 2020_10_17_234926) do
   add_foreign_key "web_push_subscriptions", "users", on_delete: :cascade
   add_foreign_key "web_settings", "users", name: "fk_11910667b2", on_delete: :cascade
   add_foreign_key "webauthn_credentials", "users"
+
+  create_view "instances", materialized: true, sql_definition: <<-SQL
+      WITH domain_counts(domain, accounts_count) AS (
+           SELECT accounts.domain,
+              count(*) AS accounts_count
+             FROM accounts
+            WHERE (accounts.domain IS NOT NULL)
+            GROUP BY accounts.domain
+          )
+   SELECT domain_counts.domain,
+      domain_counts.accounts_count
+     FROM domain_counts
+  UNION
+   SELECT domain_blocks.domain,
+      COALESCE(domain_counts.accounts_count, (0)::bigint) AS accounts_count
+     FROM (domain_blocks
+       LEFT JOIN domain_counts ON (((domain_counts.domain)::text = (domain_blocks.domain)::text)))
+  UNION
+   SELECT domain_allows.domain,
+      COALESCE(domain_counts.accounts_count, (0)::bigint) AS accounts_count
+     FROM (domain_allows
+       LEFT JOIN domain_counts ON (((domain_counts.domain)::text = (domain_allows.domain)::text)));
+  SQL
+  add_index "instances", ["domain"], name: "index_instances_on_domain", unique: true
+
 end

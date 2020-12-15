@@ -1,7 +1,6 @@
 import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
-import { isRtl } from 'flavours/glitch/util/rtl';
 import { FormattedMessage } from 'react-intl';
 import Permalink from './permalink';
 import classnames from 'classnames';
@@ -277,15 +276,10 @@ export default class StatusContent extends React.PureComponent {
 
     const content = { __html: status.get('contentHtml') };
     const spoilerContent = { __html: status.get('spoilerHtml') };
-    const directionStyle = { direction: 'ltr' };
     const classNames = classnames('status__content', {
       'status__content--with-action': parseClick && !disabled,
       'status__content--with-spoiler': status.get('spoiler_text').length > 0,
     });
-
-    if (isRtl(status.get('search_index'))) {
-      directionStyle.direction = 'rtl';
-    }
 
     if (status.get('spoiler_text').length > 0) {
       let mentionsPlaceholder = '';
@@ -346,7 +340,6 @@ export default class StatusContent extends React.PureComponent {
             <div
               ref={this.setContentsRef}
               key={`contents-${tagLinks}`}
-              style={directionStyle}
               tabIndex={!hidden ? 0 : null}
               dangerouslySetInnerHTML={content}
               className='status__content__text'
@@ -360,7 +353,6 @@ export default class StatusContent extends React.PureComponent {
       return (
         <div
           className={classNames}
-          style={directionStyle}
           onMouseDown={this.handleMouseDown}
           onMouseUp={this.handleMouseUp}
           tabIndex='0'
@@ -380,7 +372,6 @@ export default class StatusContent extends React.PureComponent {
       return (
         <div
           className='status__content'
-          style={directionStyle}
           tabIndex='0'
           ref={this.setRef}
         >

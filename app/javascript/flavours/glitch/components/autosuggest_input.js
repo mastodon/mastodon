@@ -4,7 +4,6 @@ import AutosuggestEmoji from './autosuggest_emoji';
 import AutosuggestHashtag from './autosuggest_hashtag';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
-import { isRtl } from 'flavours/glitch/util/rtl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import classNames from 'classnames';
 import { List as ImmutableList } from 'immutable';
@@ -189,11 +188,6 @@ export default class AutosuggestInput extends ImmutablePureComponent {
   render () {
     const { value, suggestions, disabled, placeholder, onKeyUp, autoFocus, className, id, maxLength } = this.props;
     const { suggestionsHidden } = this.state;
-    const style = { direction: 'ltr' };
-
-    if (isRtl(value)) {
-      style.direction = 'rtl';
-    }
 
     return (
       <div className='autosuggest-input'>
@@ -212,7 +206,7 @@ export default class AutosuggestInput extends ImmutablePureComponent {
             onKeyUp={onKeyUp}
             onFocus={this.onFocus}
             onBlur={this.onBlur}
-            style={style}
+            dir='auto'
             aria-autocomplete='list'
             id={id}
             className={className}

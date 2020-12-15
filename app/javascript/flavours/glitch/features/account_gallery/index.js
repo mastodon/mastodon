@@ -168,7 +168,7 @@ class AccountGallery extends ImmutablePureComponent {
 
             {suspended ? (
               <div className='empty-column-indicator'>
-                <FormattedMessage id='empty_column.account_unavailable' defaultMessage='Profile unavailable' />
+                <FormattedMessage id='empty_column.account_suspended' defaultMessage='Account suspended' />
               </div>
             ) : (
               <div role='feed' className='account-gallery__container' ref={this.handleRef}>

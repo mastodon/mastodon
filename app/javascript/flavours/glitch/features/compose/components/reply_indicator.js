@@ -10,9 +10,6 @@ import AccountContainer from 'flavours/glitch/containers/account_container';
 import IconButton from 'flavours/glitch/components/icon_button';
 import AttachmentList from 'flavours/glitch/components/attachment_list';
 
-//  Utils.
-import { isRtl } from 'flavours/glitch/util/rtl';
-
 //  Messages.
 const messages = defineMessages({
   cancel: {
@@ -71,7 +68,6 @@ class ReplyIndicator extends ImmutablePureComponent {
         <div
           className='content'
           dangerouslySetInnerHTML={{ __html: content || '' }}
-          style={{ direction: isRtl(content) ? 'rtl' : 'ltr' }}
         />
         {attachments.size > 0 && (
           <AttachmentList
