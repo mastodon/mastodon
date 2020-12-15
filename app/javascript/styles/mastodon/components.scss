@@ -3459,6 +3459,12 @@ a.status-card.compact:hover {
   }
 }
 
+.column-header__permission-btn {
+  display: inline;
+  font-weight: inherit;
+  text-decoration: underline;
+}
+
 .column-header__setting-arrows {
   float: right;
 
@@ -3857,7 +3863,7 @@ a.status-card.compact:hover {
 }
 
 .column-settings__row {
-  .text-btn {
+  .text-btn:not(.column-header__permission-btn) {
     margin-bottom: 15px;
   }
 }
