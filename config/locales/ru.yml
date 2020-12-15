@@ -65,6 +65,7 @@ ru:
       many: подписчиков
       other: подписчиков
     following: подписки
+    instance_actor_flash: Эта учетная запись - виртуальный пользователь, используемый для представления самого сервера, а не отдельного пользователя. Она используется для организационных целей и не может быть заморожена.
     joined: 'Дата регистрации: %{date}'
     last_active: последняя активность
     link_verified_on: Владение этой ссылкой было проверено %{date}
@@ -138,6 +139,7 @@ ru:
       follows: Подписки
       header: Шапка
       inbox_url: URL входящих
+      invite_request_text: Причины для присоединения
       invited_by: Приглашение выдал(а)
       ip: IP
       joined: Дата регистрации
@@ -303,6 +305,7 @@ ru:
         unsuspend_account: "%{name} снял(а) блокировку с пользователя %{target}"
         update_announcement: "%{name} обновил объявление %{target}"
         update_custom_emoji: "%{name} обновил(а) эмодзи %{target}"
+        update_domain_block: "%{name} обновил блокировку домена для %{target}"
         update_status: "%{name} изменил(а) пост пользователя %{target}"
       deleted_status: "(удалённый пост)"
       empty: Журнал пуст.
