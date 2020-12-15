@@ -203,6 +203,7 @@ ja:
       undo_sensitized: 閲覧注意から戻す
       undo_silenced: サイレンスから戻す
       undo_suspension: 停止から戻す
+      unsilenced_msg: '%{username} のサイレンス解除に成功しました'
       unsubscribe: 購読の解除
       unsuspended_msg: '%{username} の無効化を解除しました'
       username: ユーザー名
@@ -508,6 +509,8 @@ ja:
       comment:
         none: なし
       created_at: 通報日時
+      forwarded: 転送済み
+      forwarded_to: '%{domain} に転送されました'
       mark_as_resolved: 解決済みとしてマーク
       mark_as_unresolved: 未解決として再び開く
       notes:
@@ -772,6 +775,7 @@ ja:
   date:
     formats:
       default: "%Y年%m月%d日"
+      with_month_name: "%Y年%m月%d日"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}時間"
