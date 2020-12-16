@@ -653,6 +653,10 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "Account suspended",
+        "id": "empty_column.account_suspended"
+      },
+      {
         "defaultMessage": "Profile unavailable",
         "id": "empty_column.account_unavailable"
       }
@@ -711,6 +715,10 @@
       {
         "defaultMessage": "Older toots",
         "id": "timeline_hint.resources.statuses"
+      },
+      {
+        "defaultMessage": "Account suspended",
+        "id": "empty_column.account_suspended"
       },
       {
         "defaultMessage": "Profile unavailable",
@@ -2161,15 +2169,15 @@
       },
       {
         "defaultMessage": "Any followed user",
-        "id": "lists.replies_policy.all_replies"
+        "id": "lists.replies_policy.followed"
       },
       {
         "defaultMessage": "No one",
-        "id": "lists.replies_policy.no_replies"
+        "id": "lists.replies_policy.none"
       },
       {
         "defaultMessage": "Members of the list",
-        "id": "lists.replies_policy.list_replies"
+        "id": "lists.replies_policy.list"
       },
       {
         "defaultMessage": "Edit list",
@@ -2273,6 +2281,10 @@
         "id": "notifications.permission_denied"
       },
       {
+        "defaultMessage": "Desktop notifications are unavailable because the required permission has not been granted.",
+        "id": "notifications.permission_required"
+      },
+      {
         "defaultMessage": "Quick filter bar",
         "id": "notifications.column_settings.filter_bar.category"
       },
@@ -2352,6 +2364,15 @@
       }
     ],
     "path": "app/javascript/mastodon/features/notifications/components/follow_request.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Grant permission.",
+        "id": "notifications.grant_permission"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/notifications/components/grant_permission_button.json"
   },
   {
     "descriptors": [
@@ -2478,6 +2499,10 @@
       {
         "defaultMessage": "Replying now will overwrite the message you are currently composing. Are you sure you want to proceed?",
         "id": "confirmations.reply.message"
+      },
+      {
+        "defaultMessage": "Expand this status",
+        "id": "status.open"
       }
     ],
     "path": "app/javascript/mastodon/features/picture_in_picture/components/footer.json"
@@ -2767,15 +2792,6 @@
   {
     "descriptors": [
       {
-        "defaultMessage": "View context",
-        "id": "lightbox.view_context"
-      }
-    ],
-    "path": "app/javascript/mastodon/features/ui/components/audio_modal.json"
-  },
-  {
-    "descriptors": [
-      {
         "defaultMessage": "Are you sure you want to block {name}?",
         "id": "confirmations.block.message"
       },
@@ -3036,10 +3052,6 @@
       {
         "defaultMessage": "Next",
         "id": "lightbox.next"
-      },
-      {
-        "defaultMessage": "View context",
-        "id": "lightbox.view_context"
       }
     ],
     "path": "app/javascript/mastodon/features/ui/components/media_modal.json"
@@ -3204,15 +3216,6 @@
       }
     ],
     "path": "app/javascript/mastodon/features/ui/components/upload_area.json"
-  },
-  {
-    "descriptors": [
-      {
-        "defaultMessage": "View context",
-        "id": "lightbox.view_context"
-      }
-    ],
-    "path": "app/javascript/mastodon/features/ui/components/video_modal.json"
   },
   {
     "descriptors": [
