@@ -131,6 +131,7 @@ is:
       follows: Fylgist með
       header: Haus
       inbox_url: Slóð á innhólf
+      invite_request_text: Ástæður fyrir þátttöku
       invited_by: Boðið af
       ip: IP-vistfang
       joined: Gerðist þátttakandi
@@ -255,6 +256,7 @@ is:
         unsuspend_account: Taka notandaaðgang úr bið
         update_announcement: Uppfæra tilkynningu
         update_custom_emoji: Uppfæra sérsniðið tjáningartákn
+        update_domain_block: Uppfæra útilokun léns
         update_status: Uppfæra stöðufærslu
       actions:
         assigned_to_self_report: "%{name} úthlutaði skýrslu %{target} til sín"
@@ -295,6 +297,7 @@ is:
         unsuspend_account: "%{name} tók notandaaðganginn %{target} úr bið"
         update_announcement: "%{name} uppfærði auglýsingu %{target}"
         update_custom_emoji: "%{name} uppfærði tjáningartákn %{target}"
+        update_domain_block: "%{name} uppfærði útilokun lénsins %{target}"
         update_status: "%{name} uppfærði stöðufærslu frá %{target}"
       deleted_status: "(eydd stöðufærsla)"
       empty: Engar atvikaskrár fundust.
@@ -437,6 +440,7 @@ is:
     instances:
       by_domain: Lén
       delivery_available: Afhending er til taks
+      empty: Engin lén fundust.
       known_accounts:
         one: "%{count} þekktur notandaaðgangur"
         other: "%{count} þekktir notendaaðgangar"
@@ -514,6 +518,8 @@ is:
       comment:
         none: Ekkert
       created_at: Tilkynnt
+      forwarded: Áframsent
+      forwarded_to: Áframsent á %{domain}
       mark_as_resolved: Merkja sem leyst
       mark_as_unresolved: Merkja sem óleyst
       notes:
@@ -583,6 +589,9 @@ is:
         min_invite_role:
           disabled: Enginn
           title: Leyfa boð frá
+        require_invite_text:
+          desc_html: Þegar nýskráningar krefjast handvirks samþykkis, skal gera "Hvers vegna viltu taka þátt?" boðstexta að skyldu fremur en valkvæðan
+          title: Krefja nýja notendur um að fylla út boðstexta
       registrations_mode:
         modes:
           approved: Krafist er samþykkt nýskráningar
@@ -751,6 +760,7 @@ is:
       functional: Notandaaðgangurinn þinn er með fulla virkni.
       pending: Umsóknin þín bíður eftir að starfsfólkið okkar fari yfir hana. Það gæti tekið nokkurn tíma. Þú munt fá tölvupóst ef umsóknin er samþykkt.
       redirecting_to: Notandaaðgangurinn þinn er óvirkur vegna þess að hann endurbeinist á %{acct}.
+    too_fast: Innfyllingarform sent inn of hratt, prófaðu aftur.
     trouble_logging_in: Vandræði við að skrá inn?
     use_security_key: Nota öryggislykil
   authorize_follow:
@@ -842,6 +852,7 @@ is:
       request: Biddu um safnskrána þína
       size: Stærð
     blocks: Þú útilokar
+    bookmarks: Bókamerki
     csv: CSV
     domain_blocks: Útilokanir á lénum
     lists: Listar
@@ -918,6 +929,7 @@ is:
     success: Það tókst að senda inn gögnin þín og verður unnið með þau þegar færi gefst
     types:
       blocking: Listi yfir útilokanir
+      bookmarks: Bókamerki
       domain_blocking: Listi yfir útilokanir léna
       following: Listi yfir þá sem fylgst er með
       muting: Listi yfir þagganir

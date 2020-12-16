@@ -221,6 +221,7 @@ sv:
         unsuspend_account: Återaktivera konto
         update_announcement: Uppdatera meddelande
         update_custom_emoji: Uppdatera egna emojis
+        update_domain_block: Uppdatera blockerad domän
         update_status: Uppdatera status
       actions:
         assigned_to_self_report: "%{name} tilldelade anmälan %{target} till sig själv"
@@ -256,6 +257,7 @@ sv:
         unsilence_account: "%{name} återljudade %{target}s konto"
         unsuspend_account: "%{name} aktiverade %{target}s konto"
         update_custom_emoji: "%{name} uppdaterade emoji %{target}"
+        update_domain_block: "%{name} uppdaterade blockerad domän för %{target}"
         update_status: "%{name} uppdaterade status för %{target}"
       deleted_status: "(raderad status)"
       empty: Inga loggar hittades.
@@ -376,6 +378,7 @@ sv:
       title: E-postdomänblock
     instances:
       by_domain: Domän
+      empty: Inga domäner hittades.
       moderation:
         all: Alla
         limited: Begränsad
@@ -417,6 +420,8 @@ sv:
       comment:
         none: Ingen
       created_at: Anmäld
+      forwarded: Vidarebefordrad
+      forwarded_to: Vidarebefordrad till %{domain}
       mark_as_resolved: Markera som löst
       mark_as_unresolved: Markera som olöst
       notes:
@@ -479,6 +484,9 @@ sv:
         min_invite_role:
           disabled: Ingen
           title: Tillåt inbjudningar av
+        require_invite_text:
+          desc_html: När nyregistrering kräver manuellt godkännande, gör det obligatoriskt att fylla i text i fältet "Varför vill du gå med?"
+          title: Kräv att nya användare fyller i en inbjudningsförfrågan
       show_known_fediverse_at_about_page:
         desc_html: När den växlas, kommer toots från hela fediverse visas på förhandsvisning. Annars visas bara lokala toots.
         title: Visa det kända fediverse på tidslinjens förhandsgranskning
@@ -577,6 +585,7 @@ sv:
     status:
       account_status: Kontostatus
       redirecting_to: Ditt konto är inaktivt eftersom det för närvarande dirigeras om till %{acct}.
+    too_fast: Formuläret har skickats för snabbt, försök igen.
   authorize_follow:
     already_following: Du följer redan detta konto
     already_requested: Du har redan skickat en vänförfrågan till det kontot
@@ -778,6 +787,7 @@ sv:
     missing_resource: Det gick inte att hitta den begärda omdirigeringsadressen för ditt konto
     proceed: Fortsätt för att följa
     prompt: 'Du kommer att följa:'
+    reason_html: "<strong>Varför är det här steget nödvändigt?</strong> <code>%{instance}</code> är kanske inte den server du är registrerad vid, så vi behöver dirigera dig till din hemserver först."
   sessions:
     activity: Senaste aktivitet
     browser: Webbläsare

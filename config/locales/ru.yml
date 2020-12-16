@@ -66,6 +66,7 @@ ru:
       one: подписчик
       other: подписчиков
     following: подписки
+    instance_actor_flash: Эта учетная запись - виртуальный пользователь, используемый для представления самого сервера, а не отдельного пользователя. Она используется для организационных целей и не может быть заморожена.
     joined: 'Дата регистрации: %{date}'
     last_active: последняя активность
     link_verified_on: Владение этой ссылкой было проверено %{date}
@@ -139,6 +140,7 @@ ru:
       follows: Подписки
       header: Шапка
       inbox_url: URL входящих
+      invite_request_text: Причины для присоединения
       invited_by: Приглашение выдал(а)
       ip: IP
       joined: Дата регистрации
@@ -263,6 +265,7 @@ ru:
         unsuspend_account: Разблокировка пользователей
         update_announcement: Обновление объявлений
         update_custom_emoji: Обновление эмодзи
+        update_domain_block: Изменить блокировку домена
         update_status: Изменение постов
       actions:
         assigned_to_self_report: "%{name} назначил(а) себя для решения жалобы %{target}"
@@ -303,6 +306,7 @@ ru:
         unsuspend_account: "%{name} снял(а) блокировку с пользователя %{target}"
         update_announcement: "%{name} обновил объявление %{target}"
         update_custom_emoji: "%{name} обновил(а) эмодзи %{target}"
+        update_domain_block: "%{name} обновил блокировку домена для %{target}"
         update_status: "%{name} изменил(а) пост пользователя %{target}"
       deleted_status: "(удалённый пост)"
       empty: Журнал пуст.
@@ -452,6 +456,7 @@ ru:
     instances:
       by_domain: Домен
       delivery_available: Доставка возможна
+      empty: Домены не найдены.
       known_accounts:
         few: "%{count} известные учётные записи"
         many: "%{count} известных учётных записей"
@@ -535,6 +540,8 @@ ru:
       comment:
         none: Нет
       created_at: Создана
+      forwarded: Переслано
+      forwarded_to: Переслано на %{domain}
       mark_as_resolved: Отметить как решённую
       mark_as_unresolved: Отметить как нерешённую
       notes:
@@ -604,6 +611,9 @@ ru:
         min_invite_role:
           disabled: Никого
           title: Разрешать приглашения от
+        require_invite_text:
+          desc_html: Когда регистрация требует ручного подтверждения, сделать ответ на вопрос "Почему вы хотите присоединиться?" обязательным, а не опциональным
+          title: Обязать новых пользователей заполнять текст запроса на приглашение
       registrations_mode:
         modes:
           approved: Для регистрации требуется подтверждение
@@ -772,6 +782,7 @@ ru:
       functional: Ваша учётная запись в полном порядке.
       pending: Ваша заявка ожидает одобрения администраторами, это может занять немного времени. Вы получите письмо, как только заявку одобрят.
       redirecting_to: Ваша учётная запись деактивированна, потому что вы настроили перенаправление на %{acct}.
+    too_fast: Форма отправлена слишком быстро, попробуйте еще раз.
     trouble_logging_in: Не удаётся войти?
     use_security_key: Использовать ключ безопасности
   authorize_follow:

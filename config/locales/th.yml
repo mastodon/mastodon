@@ -102,15 +102,15 @@ th:
       delete: ลบข้อมูล
       deleted: ลบแล้ว
       demote: ลดขั้น
-      disable: ปิดใช้งาน
+      disable: อายัด
       disable_two_factor_authentication: ปิดใช้งาน 2FA
-      disabled: ปิดใช้งานอยู่
+      disabled: อายัดอยู่
       display_name: ชื่อที่แสดง
       domain: โดเมน
       edit: แก้ไข
       email: อีเมล
       email_status: สถานะอีเมล
-      enable: เปิดใช้งาน
+      enable: เลิกอายัด
       enabled: เปิดใช้งานอยู่
       followers: ผู้ติดตาม
       follows: การติดตาม
@@ -172,8 +172,8 @@ th:
       show:
         created_reports: รายงานที่สร้าง
         targeted_reports: รายงานโดยผู้อื่น
-      silence: ทำให้เงียบ
-      silenced: เงียบอยู่
+      silence: จำกัด
+      silenced: จำกัดอยู่
       statuses: สถานะ
       subscribe: บอกรับ
       suspended: ระงับอยู่
@@ -602,6 +602,8 @@ th:
       edit_preset: แก้ไขคำเตือนที่ตั้งไว้ล่วงหน้า
       title: จัดการคำเตือนที่ตั้งไว้ล่วงหน้า
   admin_mailer:
+    new_pending_account:
+      body: รายละเอียดของบัญชีใหม่อยู่ด้านล่าง คุณสามารถอนุมัติหรือปฏิเสธใบสมัครนี้
     new_report:
       body: "%{reporter} ได้รายงาน %{target}"
       body_remote: ใครสักคนจาก %{domain} ได้รายงาน %{target}
@@ -660,6 +662,7 @@ th:
       cas: CAS
       saml: SAML
     register: ลงทะเบียน
+    registration_closed: "%{instance} ไม่ได้กำลังเปิดรับสมาชิกใหม่"
     resend_confirmation: ส่งคำแนะนำการยืนยันใหม่
     reset_password: ตั้งรหัสผ่านใหม่
     security: ความปลอดภัย
@@ -764,7 +767,7 @@ th:
   filters:
     contexts:
       account: โปรไฟล์
-      home: เส้นเวลาหน้าแรก
+      home: หน้าแรกและรายการ
       notifications: การแจ้งเตือน
       public: เส้นเวลาสาธารณะ
       thread: การสนทนา
@@ -818,6 +821,7 @@ th:
   in_memoriam_html: เพื่อระลึกถึง
   invites:
     delete: ปิดใช้งาน
+    expired: หมดอายุแล้ว
     expires_in:
       '1800': 30 นาที
       '21600': 6 ชั่วโมง
@@ -1074,7 +1078,7 @@ th:
       month: "%b %Y"
   two_factor_authentication:
     add: เพิ่ม
-    disable: ปิดใช้งาน
+    disable: ปิดใช้งาน 2FA
     disabled_success: ปิดใช้งานการรับรองความถูกต้องด้วยสองปัจจัยสำเร็จ
     edit: แก้ไข
     enabled: เปิดใช้งานการรับรองความถูกต้องด้วยสองปัจจัยแล้ว
@@ -1129,4 +1133,5 @@ th:
     invalid_credential: กุญแจความปลอดภัยไม่ถูกต้อง
     not_enabled: คุณยังไม่ได้เปิดใช้งาน WebAuthn
     not_supported: เบราว์เซอร์นี้ไม่รองรับกุญแจความปลอดภัย
+    otp_required: เพื่อใช้กุญแจความปลอดภัย โปรดเปิดใช้งานการรับรองความถูกต้องด้วยสองปัจจัยก่อน
     registered_on: ลงทะเบียนเมื่อ %{date}

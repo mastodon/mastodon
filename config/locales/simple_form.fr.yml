@@ -126,6 +126,7 @@ fr:
         expires_in: Expire après
         fields: Métadonnées du profil
         header: Image d’en-tête
+        honeypot: "%{label} (ne pas remplir)"
         inbox_url: URL de la boîte de relais
         irreversible: Supprimer plutôt que masquer
         locale: Langue de l’interface
@@ -172,15 +173,15 @@ fr:
       featured_tag:
         name: Hashtag
       interactions:
-        must_be_follower: Masquer les notifications des personnes qui ne vous suivent pas
-        must_be_following: Masquer les notifications des personnes que vous ne suivez pas
+        must_be_follower: Bloquer les notifications des personnes qui ne vous suivent pas
+        must_be_following: Bloquer les notifications des personnes que vous ne suivez pas
         must_be_following_dm: Bloquer les messages directs des personnes que vous ne suivez pas
       invite:
         comment: Commentaire
       invite_request:
         text: Pourquoi voulez-vous vous inscrire ?
       ip_block:
-        comment: Commenter
+        comment: Commentaire
         ip: IP
         severities:
           no_access: Bloquer l’accès
@@ -188,13 +189,13 @@ fr:
         severity: Règle
       notification_emails:
         digest: Envoyer des courriels récapitulatifs
-        favourite: Envoyer un courriel lorsque quelqu’un ajoute mes statuts à ses favoris
-        follow: Envoyer un courriel lorsque quelqu’un me suit
-        follow_request: Envoyer un courriel lorsque quelqu’un demande à me suivre
-        mention: Envoyer un courriel lorsque quelqu’un me mentionne
+        favourite: Quelqu’un ajoute mon pouet à ses favoris
+        follow: Quelqu’un vient de me suivre
+        follow_request: Quelqu’un demande à me suivre
+        mention: Quelqu’un me mentionne
         pending_account: Nouveau compte en attente d’approbation
-        reblog: Quelqu’un a partagé votre pouet
-        report: Envoyer un courriel lorsqu’un nouveau rapport est soumis
+        reblog: Quelqu’un partage mon pouet
+        report: Un nouveau rapport est envoyé
         trending_tag: Un hashtag non approuvé est dans les tendances
       tag:
         listable: Autoriser ce hashtag à apparaître dans les recherches et dans l’annuaire des profils

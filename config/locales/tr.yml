@@ -255,6 +255,7 @@ tr:
         unsuspend_account: Hesabı Askıdan Kaldır
         update_announcement: Duyuruyu Güncelle
         update_custom_emoji: Özel İfadeyi Güncelle
+        update_domain_block: Engellenen Alan Adını Güncelle
         update_status: Durumu Güncelle
       actions:
         assigned_to_self_report: "%{name} kendilerine %{target} adlı raporu verdi"
@@ -295,6 +296,7 @@ tr:
         unsuspend_account: "%{name} %{target}'in hesabının uzaklaştırmasını kaldırdı"
         update_announcement: "%{name}, %{target} duyurusunu güncelledi"
         update_custom_emoji: "%{name} %{target} emojiyi güncelledi"
+        update_domain_block: "%{name}, %{target} için alan adı engelini güncelledi"
         update_status: "%{name}, %{target} kullanıcısının durumunu güncelledi"
       deleted_status: "(silinmiş durum)"
       empty: Kayıt bulunamadı.
@@ -437,6 +439,7 @@ tr:
     instances:
       by_domain: Alan adı
       delivery_available: Teslimat mevcut
+      empty: Alan adı bulunamadı.
       known_accounts:
         one: "%{count} bilinen hesap"
         other: "%{count} bilinen hesap"
@@ -751,6 +754,7 @@ tr:
       functional: Hesabınız tamamen kullanıma hazır.
       pending: Başvurunuz personelimiz tarafından gözden geçirilmeyi beklemektedir. Bu biraz zaman alabilir. Başvurunuz onaylanırsa bir e-posta alacaksınız.
       redirecting_to: Hesabınız aktif değil çünkü şu anda %{acct} adresine yönlendirilmektedir.
+    too_fast: Form çok hızlı gönderildi, tekrar deneyin.
     trouble_logging_in: Oturum açarken sorun mu yaşıyorsunuz?
     use_security_key: Güvenlik anahtarını kullan
   authorize_follow:

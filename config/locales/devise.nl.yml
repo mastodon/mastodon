@@ -60,6 +60,23 @@ nl:
         title: Herstelcodes tweestapsverificatie veranderd
       unlock_instructions:
         subject: 'Mastodon: Instructies om opschorten account ongedaan te maken'
+      webauthn_credential:
+        added:
+          explanation: De volgende beveiligingssleutel is aan uw account toegevoegd
+          subject: 'Mastodon: Nieuwe beveiligingssleutel'
+          title: Een nieuwe beveiligingssleutel is toegevoegd
+        deleted:
+          explanation: De volgende beveiligingssleutel is uit jouw account verwijderd
+          subject: 'Mastodon: Beveiligingssleutel verwijderd'
+          title: Een van jouw beveiligingssleutels is verwijderd
+      webauthn_disabled:
+        explanation: Verificatie met beveiligingssleutels is uitgeschakeld voor jouw account. Inloggen is nu alleen mogelijk met het gebruik van een door een gepaarde TOTP-app genereerde sleutel.
+        subject: 'Mastodon: Verificatie met beveiligingssleutels is uitgeschakeld'
+        title: Beveiligingssleutels uitgeschakeld
+      webauthn_enabled:
+        explanation: Verificatie met beveiligingssleutels is ingeschakeld voor jouw account. Jouw beveiligingssleutel kan nu gebruikt worden om in te loggen.
+        subject: 'Mastodon: Verificatie met beveiligingssleutels is ingeschakeld'
+        title: Beveiligingssleutels ingeschakeld
     omniauth_callbacks:
       failure: Kon je niet inloggen met jouw %{kind} account, omdat "%{reason}".
       success: Succesvol met jouw %{kind} account ingelogd.

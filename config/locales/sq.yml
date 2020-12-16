@@ -131,6 +131,7 @@ sq:
       follows: Ndjekje
       header: Krye
       inbox_url: URL Mesazhesh të Marrë
+      invite_request_text: Arsye për pjesëmarrje
       invited_by: Ftuar nga
       ip: IP
       joined: U bë pjesë
@@ -255,6 +256,7 @@ sq:
         unsuspend_account: Hiqe Pezullimin e Llogarisë
         update_announcement: Përditëso Lajmërimin
         update_custom_emoji: Përditëso Emotikon Vetjak
+        update_domain_block: Përditëso Bllok Përkatësish
         update_status: Përditëso Gjendjen
       actions:
         assigned_to_self_report: "%{name} ia kaloi raportimin %{target} në ngarkim vetvetes"
@@ -295,6 +297,7 @@ sq:
         unsuspend_account: "%{name} hoqi pezullimin për llogarinë e %{target}"
         update_announcement: "%{name} përditësoi lajmërimin %{target}"
         update_custom_emoji: "%{name} përditësoi emotikonin %{target}"
+        update_domain_block: "%{name} përditësoi bllok përkatësish për %{target}"
         update_status: "%{name} përditësoi gjendjen me %{target}"
       deleted_status: "(fshiu gjendjen)"
       empty: S’u gjetën regjistra.
@@ -437,6 +440,7 @@ sq:
     instances:
       by_domain: Përkatësi
       delivery_available: Ka shpërndarje të mundshme
+      empty: S’u gjetën përkatësi.
       known_accounts:
         one: "%{count} llogari e njohur"
         other: "%{count} llogari të njohura"
@@ -514,6 +518,8 @@ sq:
       comment:
         none: Asnjë
       created_at: Raportuar më
+      forwarded: U përcoll
+      forwarded_to: U përcoll te %{domain}
       mark_as_resolved: Vëri shenjë si i zgjidhur
       mark_as_unresolved: Vëri shenjë si të pazgjidhur
       notes:
@@ -583,6 +589,9 @@ sq:
         min_invite_role:
           disabled: Asnjë
           title: Lejo ftesa nga
+        require_invite_text:
+          desc_html: Kur regjistrimet lypin miratim dorazi, tekstin e kërkesës për ftesë “Pse doni të merrni pjesë?” bëje të detyrueshëm, në vend se opsional
+          title: Kërkoju përdoruesve të rinj të plotësojnë doemos një tekst kërkese për ftesë
       registrations_mode:
         modes:
           approved: Për regjistrim, lypset miratimi
@@ -751,6 +760,7 @@ sq:
       functional: Llogaria juaj është tërësisht funksionale.
       pending: Aplikimi juaj është në pritje të shqyrtimit nga stafi ynë. Kjo mund të dojë ca kohë. Nëse aplikimi juaj miratohet, do të merrni një email.
       redirecting_to: Llogaria juaj është joaktive, ngaqë aktualisht ridrejton te %{acct}.
+    too_fast: Formulari u parashtrua shumë shpejt, riprovoni.
     trouble_logging_in: Probleme me hyrjen?
     use_security_key: Përdor kyç sigurie
   authorize_follow:

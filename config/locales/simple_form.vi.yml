@@ -10,7 +10,7 @@ vi:
         text: Bạn có thể dùng URL, hashtag và nhắc đến
         title: Tùy chọn. Không cho người nhận xem
       admin_account_action:
-        include_statuses: Người dùng sẽ thấy các tút bị kiểm duyệt
+        include_statuses: Người dùng sẽ thấy các tút nào của họ bị kiểm duyệt
         send_email_notification: Người dùng sẽ nhận được lời giải thích về những gì xảy ra với tài khoản của họ
         text_html: Tùy chọn. Bạn nên dùng <a href="%{path}">cảnh cáo cài sẵn</a> để tiết kiệm thời gian
         type_html: Chọn làm gì với <strong>%{acct}</strong>
@@ -126,6 +126,7 @@ vi:
         expires_in: Hết hạn sau
         fields: Metadata
         header: Ảnh bìa
+        honeypot: "%{label} (đừng điền vào)"
         inbox_url: Hộp thư relay
         irreversible: Xóa bỏ vĩnh viễn
         locale: Ngôn ngữ

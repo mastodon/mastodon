@@ -57,6 +57,7 @@ ja:
     followers:
       other: フォロワー
     following: フォロー中
+    instance_actor_flash: このアカウントは、個々のユーザーではなく、サーバー自体を表すために使用される仮想のユーザーです。 連合のために使用されるため、停止しないで下さい。
     joined: "%{date} に登録"
     last_active: 最後の活動
     link_verified_on: このリンクの所有権は %{date} に確認されました
@@ -127,6 +128,7 @@ ja:
       follows: フォロー数
       header: ヘッダー
       inbox_url: Inbox URL
+      invite_request_text: 登録理由
       invited_by: 招待した人
       ip: IP
       joined: 登録日
@@ -138,6 +140,7 @@ ja:
       login_status: ログイン
       media_attachments: 添付されたメディア
       memorialize: 追悼アカウント化
+      memorialized: 追悼化済み
       memorialized_msg: "%{username} を追悼アカウント化しました"
       moderation:
         active: アクティブ
@@ -159,6 +162,7 @@ ja:
       public: パブリック
       push_subscription_expires: PuSH購読期限
       redownload: プロフィールを更新
+      redownloaded_msg: "%{username} のプロフィールを正常に更新しました"
       reject: 却下
       reject_all: すべて却下
       rejected_msg: "%{username} の登録申請を却下しました"
@@ -201,7 +205,9 @@ ja:
       undo_sensitized: 閲覧注意から戻す
       undo_silenced: サイレンスから戻す
       undo_suspension: 停止から戻す
+      unsilenced_msg: "%{username} のサイレンス解除に成功しました"
       unsubscribe: 購読の解除
+      unsuspended_msg: "%{username} の無効化を解除しました"
       username: ユーザー名
       view_domain: ドメインの概要を表示
       warn: 警告
@@ -247,6 +253,7 @@ ja:
         unsuspend_account: アカウントの停止を解除
         update_announcement: お知らせを更新
         update_custom_emoji: カスタム絵文字を更新
+        update_domain_block: ドメインブロックを更新
         update_status: トゥートを更新
       actions:
         assigned_to_self_report: "%{name} さんが通報 %{target} を自身の担当に割り当てました"
@@ -287,6 +294,7 @@ ja:
         unsuspend_account: "%{name} さんが %{target} さんの停止を解除しました"
         update_announcement: "%{name} さんがお知らせ %{target} を更新しました"
         update_custom_emoji: "%{name} さんがカスタム絵文字 %{target} を更新しました"
+        update_domain_block: "%{name} が %{target} のドメインブロックを更新しました"
         update_status: "%{name} さんが %{target} さんのトゥートを更新しました"
       deleted_status: "(削除済)"
       empty: ログが見つかりませんでした
@@ -428,6 +436,7 @@ ja:
     instances:
       by_domain: ドメイン
       delivery_available: 配送可能
+      empty: ドメインが見つかりませんでした。
       known_accounts:
         other: 既知のアカウント数 %{count}
       moderation:
@@ -502,6 +511,8 @@ ja:
       comment:
         none: なし
       created_at: 通報日時
+      forwarded: 転送済み
+      forwarded_to: "%{domain} に転送されました"
       mark_as_resolved: 解決済みとしてマーク
       mark_as_unresolved: 未解決として再び開く
       notes:
@@ -739,6 +750,7 @@ ja:
       functional: アカウントは完全に機能しています。
       pending: あなたの申請は現在サーバー管理者による審査待ちです。これにはしばらくかかります。申請が承認されるとメールが届きます。
       redirecting_to: アカウントは %{acct} に引っ越し設定されているため非アクティブになっています。
+    too_fast: フォームの送信が速すぎます。もう一度やり直してください。
     trouble_logging_in: ログインできませんか？
     use_security_key: セキュリティキーを使用
   authorize_follow:
@@ -765,6 +777,7 @@ ja:
   date:
     formats:
       default: "%Y年%m月%d日"
+      with_month_name: "%Y年%m月%d日"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}時間"

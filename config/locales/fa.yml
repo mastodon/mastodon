@@ -62,6 +62,7 @@ fa:
       one: پیگیر
       other: پیگیر
     following: پی می‌گیرد
+    instance_actor_flash: این حساب یک عامل مجازی است که به نمایندگی از خود کارساز استفاده می‌شود و نه هیچ یکی از کاربران. این حساب به منظور اتصال به فدراسیون استفاده می‌شود و نباید معلق شود.
     joined: کاربر از %{date}
     last_active: آخرین فعالیت
     link_verified_on: مالکیت این پیوند در %{date} بررسی شد
@@ -128,10 +129,12 @@ fa:
       email_status: وضعیت ایمیل
       enable: به کار انداختن
       enabled: به کار افتاده
+      enabled_msg: حساب %{username} با موفقیت به کار انداخته شد
       followers: پیگیران
       follows: پی می‌گیرد
       header: تصویر زمینه
       inbox_url: نشانی صندوق ورودی
+      invite_request_text: دلایل‌تان برای پیوستن
       invited_by: دعوت‌شده از طرف
       ip: IP
       joined: عضو شده در
@@ -143,6 +146,8 @@ fa:
       login_status: وضعیت ورود
       media_attachments: پیوست‌های رسانه‌ای
       memorialize: تبدیل به یادمان
+      memorialized: یادمان‌سازی شده
+      memorialized_msg: "%{username} با موفقیت به یک حساب یادمانی تبدیل شد"
       moderation:
         active: فعّال
         all: همه
@@ -254,6 +259,7 @@ fa:
         unsuspend_account: رفع تعلیق حساب
         update_announcement: به‌روز رسانی اعلامیه
         update_custom_emoji: به‌روز رسانی اموجی سفارشی
+        update_domain_block: به‌روزرسانی مسدودسازی دامنه
         update_status: به‌روز رسانی وضعیت
       actions:
         assigned_to_self_report: "%{name} رسیدگی به گزارش %{target} را به عهده گرفت"
@@ -285,13 +291,16 @@ fa:
         reopen_report: "%{name} گزارش %{target} را دوباره به جریان انداخت"
         reset_password_user: "%{name} رمز کاربر %{target} را بازنشاند"
         resolve_report: "%{name} گزارش %{target} را رفع کرد"
+        sensitive_account: "%{name} رسانهٔ %{target} را به عنوان حساس علامت‌گذاری کرد"
         silence_account: "%{name} حساب کاربر %{target} را خاموش (بی‌صدا) کرد"
         suspend_account: "%{name} حساب کاربر %{target} را تعلیق کرد"
         unassigned_report: "%{name} بررسی گزارش %{target} را متوقف کرد"
+        unsensitive_account: "%{name} علامت حساس رسانهٔ %{target} را برداشت"
         unsilence_account: "%{name} حساب کاربر %{target} را روشن (باصدا) کرد"
         unsuspend_account: "%{name} حساب کاربر %{target} را از تعلیق خارج کرد"
         update_announcement: "%{name} اعلامیهٔ %{target} را به‌روز کرد"
         update_custom_emoji: "%{name} شکلک %{target} را به‌روز کرد"
+        update_domain_block: "%{name} مسدودسازی دامنه را برای %{target} به‌روزرسانی کرد"
         update_status: "%{name} نوشتهٔ %{target} را به‌روز کرد"
       deleted_status: "(نوشتهٔ پاک‌شده)"
       empty: هیچ گزارشی پیدا نشد.
@@ -434,6 +443,7 @@ fa:
     instances:
       by_domain: دامین
       delivery_available: پیام آماده است
+      empty: هیج دامنه‌ای پیدا نشد.
       known_accounts:
         one: "%{count} حساب شناخته‌شده"
         other: "%{count} حساب شناخته‌شده"
@@ -511,6 +521,8 @@ fa:
       comment:
         none: هیچ
       created_at: گزارش‌شده
+      forwarded: هدایت شده
+      forwarded_to: هدایت شده به %{domain}
       mark_as_resolved: علامت‌گذاری به عنوان حل‌شده
       mark_as_unresolved: علامت‌گذاری به عنوان حل‌نشده
       notes:
@@ -580,6 +592,9 @@ fa:
         min_invite_role:
           disabled: هیچ کس
           title: اجازهٔ دعوت به
+        require_invite_text:
+          desc_html: زمانی که نام‌نویسی نیازمند تایید دستی است، متن «چرا می‌خواهید عضو شود؟» بخش درخواست دعوت را به جای اختیاری، اجباری کنید
+          title: نیازمند پر کردن متن درخواست دعوت توسط کاربران جدید
       registrations_mode:
         modes:
           approved: ثبت نام نیازمند تأیید مدیران است
@@ -748,6 +763,7 @@ fa:
       functional: حساب شما قابل استفاده است.
       pending: درخواست شما منتظر تأیید مسئولان سایت است و این فرایند ممکن است کمی طول بکشد. اگر درخواست شما پذیرفته شود به شما ایمیلی فرستاده خواهد شد.
       redirecting_to: حساب شما غیرفعال است زیرا هم‌اکنون به %{acct} منتقل شده است.
+    too_fast: فرم با سرعت بسیار زیادی فرستاده شد، دوباره تلاش کنید.
     trouble_logging_in: برای ورود مشکلی دارید؟
     use_security_key: استفاده از کلید امنیتی
   authorize_follow:
@@ -1041,6 +1057,7 @@ fa:
     code_hint: برای تأیید، کدی را که برنامهٔ تأییدکننده ساخته است وارد کنید
     description_html: اگر <strong>ورود دومرحله‌ای</strong> را با استفاده از از یک کارهٔ تأییدکننده به کار بیندازید، لازم است برای ورود، به تلفن خود که برایتان یک ژتون خواهد ساخت دسترسی داشته باشید.
     enable: به کار انداختن
+    instructions_html: "<strong>این کد QR را با برنامهٔ Google Authenticator یا برنامه‌های TOTP مشابه اسکن کنید</strong>. از این به بعد، آن برنامه کدهایی موقتی خواهد ساخت که برای ورود باید آن‌ها را وارد کنید."
     manual_instructions: 'اگر نمی‌توانید رمز QR را بپویید و باید دستی واردظ کنید، متن رمز این‌جاست:'
     setup: برپا سازی
     wrong_code: رمز وارد شده نامعتبر بود! آیا زمان کارساز و زمان افزاره درستند؟
@@ -1072,6 +1089,7 @@ fa:
   relationships:
     activity: فعالیت حساب
     dormant: غیرفعال
+    follow_selected_followers: پیگیری پیگیران انتخاب شده
     followers: پی‌گیران
     following: پی می‌گیرد
     invited: مدعو
@@ -1207,6 +1225,8 @@ fa:
         other: "%{count} رأی"
       vote: رأی
     show_more: نمایش
+    show_newer: نمایش جدیدتر
+    show_older: نمایش قدیمی‌تر
     show_thread: نمایش رشته
     sign_in_to_participate: برای شرکت در گفتگو وارد حساب خود شوید
     title: '%{name}: "%{quote}"'
@@ -1352,6 +1372,7 @@ fa:
       subject:
         disable: حساب %{acct} شما متوقف شده است
         none: هشدار برای %{acct}
+        sensitive: رسانه‌های فرستاده شده توسط حساب %{acct} شما برچسب حساس خورده‌اند
         silence: حساب %{acct} شما محدود شده است
         suspend: حساب %{acct}  شما معلق شده است
       title:
@@ -1399,6 +1420,7 @@ fa:
       success: کلید امنیتیتان با موفّقیت افزوده شد.
     delete: حذف
     delete_confirmation: مطمئنید که می‌خواهید این کلید امنیتی را حذف کنید؟
+    description_html: اگر <strong>احراز هویت کلید امنیتی</strong> را فعال کنید، ورود نیازمند این خواهد بود که یکی از کلیدهای امنیتی‌تان را استفاده کنید.
     destroy:
       error: حذف کلید امنیتیتان با مشکل مواجه شد. لطفاً دوباره تلاش کنید.
       success: کلید امنیتیتان با موفّقیت حذف شد.

@@ -251,6 +251,7 @@ id:
         unsuspend_account: Lepas Status Tangguh Akun
         update_announcement: Perbarui Pengumuman
         update_custom_emoji: Perbarui Emoji Khusus
+        update_domain_block: Perbarui Blokir Domain
         update_status: Perbarui Status
       actions:
         assigned_to_self_report: "%{name} menugaskan laporan %{target} kpd dirinya sendiri"
@@ -291,6 +292,7 @@ id:
         unsuspend_account: "%{name} menghapus penangguhan akun %{target}"
         update_announcement: "%{name} memperbarui pengumuman %{target}"
         update_custom_emoji: "%{name} memperbarui emoji %{target}"
+        update_domain_block: "%{name} memperbarui blokir domain untuk %{target}"
         update_status: "%{name} memperbarui status %{target}"
       deleted_status: "(status dihapus)"
       empty: Log tidak ditemukan.
@@ -432,6 +434,7 @@ id:
     instances:
       by_domain: Domain
       delivery_available: Pengiriman tersedia
+      empty: Domain tidak ditemukan.
       known_accounts:
         other: "%{count} akun yang dikenal"
       moderation:

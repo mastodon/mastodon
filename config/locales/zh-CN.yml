@@ -127,6 +127,7 @@ zh-CN:
       follows: 正在关注
       header: 个人资料页横幅图片
       inbox_url: 收件箱（Inbox）URL
+      invite_request_text: 加入理由
       invited_by: 邀请者为
       ip: IP 地址
       joined: 加入于
@@ -251,6 +252,7 @@ zh-CN:
         unsuspend_account: 解除账号封禁
         update_announcement: 更新公告
         update_custom_emoji: 更新自定义表情符号
+        update_domain_block: 更新域名屏蔽
         update_status: 更新嘟文
       actions:
         assigned_to_self_report: "%{name} 接管了举报 %{target}"
@@ -291,6 +293,7 @@ zh-CN:
         unsuspend_account: "%{name} 解除了用户 %{target} 的封禁状态"
         update_announcement: "%{name} 更新了公告 %{target}"
         update_custom_emoji: "%{name} 更新了自定义表情 %{target}"
+        update_domain_block: "%{name} 更新了对 %{target} 的域名屏蔽"
         update_status: "%{name} 刷新了 %{target} 的嘟文"
       deleted_status: "（嘟文已删除）"
       empty: 没有找到日志
@@ -432,6 +435,7 @@ zh-CN:
     instances:
       by_domain: 域名
       delivery_available: 可投递
+      empty: 暂无域名。
       known_accounts:
         other: "%{count} 个已知帐户"
       moderation:
@@ -506,6 +510,8 @@ zh-CN:
       comment:
         none: 没有
       created_at: 举报时间
+      forwarded: 已转发
+      forwarded_to: 转发举报至 %{domain}
       mark_as_resolved: 标记为“已处理”
       mark_as_unresolved: 标记为“未处理”
       notes:
@@ -575,6 +581,9 @@ zh-CN:
         min_invite_role:
           disabled: 没有人
           title: 允许发送邀请的用户组
+        require_invite_text:
+          desc_html: 当注册需要手动批准时，将“你为什么想要加入？”设为必填项
+          title: 要求新用户填写注册申请
       registrations_mode:
         modes:
           approved: 注册时需要批准
@@ -743,6 +752,7 @@ zh-CN:
       functional: 您的帐号可以正常使用了。
       pending: 工作人员正在审核您的申请。这需要花点时间。在申请被批准后，您将收到一封电子邮件。
       redirecting_to: 您的帐户无效，因为它已被设置为跳转到 %{acct}
+    too_fast: 表单提交过快，请重试。
     trouble_logging_in: 登录有问题？
     use_security_key: 使用安全密钥
   authorize_follow:
@@ -1332,7 +1342,7 @@ zh-CN:
     warning:
       explanation:
         disable: 虽然您的帐户被冻结，您的帐户数据仍然完整；但是您无法在解锁前执行任何操作。
-        sensitive: 你上传的媒体文件和链接的媒体将被视作敏感内容。
+        sensitive: 你上传的媒体文件和媒体链接将被视作敏感内容。
         silence: 当您的帐户受限时，只有已经关注过你的人才会这台服务器上看到你的嘟文，并且您会被排除在各种公共列表之外。但是，其他人仍然可以手动关注你。
         suspend: 您的帐户已被封禁，所有的嘟文和您上传的媒体文件都已经从该服务器和您的关注者的服务器上删除并且不可恢复。
       get_in_touch: 您可回复该邮件以联系 %{instance} 的工作人员。

@@ -255,6 +255,7 @@ gl:
         unsuspend_account: Retirar suspensión de conta
         update_announcement: Actualizar anuncio
         update_custom_emoji: Actualizar emoticona personalizada
+        update_domain_block: Actualizar bloqueo do dominio
         update_status: Actualizar estado
       actions:
         assigned_to_self_report: "%{name} atribuíu a denuncia %{target} a el mesmo"
@@ -295,6 +296,7 @@ gl:
         unsuspend_account: "%{name} desactivou a suspensión da conta de %{target}"
         update_announcement: "%{name} actualizou o anuncio %{target}"
         update_custom_emoji: "%{name} actualizou a emoticona %{target}"
+        update_domain_block: "%{name} actualizou o bloqueo do dominio %{target}"
         update_status: "%{name} actualizou o estado de %{target}"
       deleted_status: "(estado eliminado)"
       empty: Non se atoparon rexistros.
@@ -437,6 +439,7 @@ gl:
     instances:
       by_domain: Dominio
       delivery_available: Entrega dispoñíbel
+      empty: Non se atopan dominios.
       known_accounts:
         one: "%{count} conta coñecida"
         other: "%{count} contas coñecidas"
@@ -514,6 +517,8 @@ gl:
       comment:
         none: Ningún
       created_at: Denunciado
+      forwarded: Reenviado
+      forwarded_to: Reenviado a %{domain}
       mark_as_resolved: Marcar como resolto
       mark_as_unresolved: Marcar como non resolto
       notes:
@@ -583,6 +588,9 @@ gl:
         min_invite_role:
           disabled: Ninguén
           title: Permitir convites por
+        require_invite_text:
+          desc_html: Cando os rexistros requiren aprobación manual, facer que o texto "Por que te queres rexistrar?" do convite sexa obrigatorio en lugar de optativo
+          title: Require que as novas usuarias completen solicitude de texto do convite
       registrations_mode:
         modes:
           approved: Precisa aprobación para rexistrarse
@@ -751,6 +759,7 @@ gl:
       functional: A súa conta está totalmente operativa.
       pending: A túa aplicación está pendente de revisión. Poderíanos levar algún tempo. Recibirás un correo se a aplicación está aprobada.
       redirecting_to: A túa conta está inactiva porque está redirixida a %{acct}.
+    too_fast: Formulario enviado demasiado rápido, inténtao outra vez.
     trouble_logging_in: Problemas para conectar?
     use_security_key: Usa chave de seguridade
   authorize_follow:

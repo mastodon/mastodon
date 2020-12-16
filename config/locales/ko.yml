@@ -57,6 +57,7 @@ ko:
     followers:
       other: 팔로워
     following: 팔로잉
+    instance_actor_flash: 이 계정은 서버 자신을 나타내기 위한 가상의 계정이며 개인 사용자가 아닙니다. 이 계정은 연합을 위해 사용되며 정지되지 않아야 합니다.
     joined: "%{date}에 가입함"
     last_active: 최근 활동
     link_verified_on: "%{date}에 이 링크의 소유가 확인되었습니다"
@@ -108,7 +109,7 @@ ko:
       confirm: 확인
       confirmed: 확인됨
       confirming: 확인 중
-      delete: 데이터 식제
+      delete: 데이터 삭제
       deleted: 삭제됨
       demote: 강등
       destroyed_msg: "%{username}의 데이터는 곧 삭제되도록 큐에 들어갔습니다"
@@ -251,6 +252,7 @@ ko:
         unsuspend_account: 계정 정지 취소
         update_announcement: 공지사항 업데이트
         update_custom_emoji: 커스텀 에모지 업데이트
+        update_domain_block: 도메인 차단 갱신
         update_status: 게시물 게시
       actions:
         assigned_to_self_report: "%{name}이 리포트 %{target}을 자신에게 할당했습니다"
@@ -291,6 +293,7 @@ ko:
         unsuspend_account: "%{name}이 %{target}에 대한 정지를 해제했습니다"
         update_announcement: "%{name} 님이 공지 %{target}을 갱신했습니다"
         update_custom_emoji: "%{name}이 에모지 %{target}를 업데이트 했습니다"
+        update_domain_block: "%{name} 님이 %{target}에 대한 도메인 차단을 갱신했습니다"
         update_status: "%{name}이 %{target}의 상태를 업데이트 했습니다"
       deleted_status: "(삭제됨)"
       empty: 로그를 찾을 수 없습니다
@@ -434,6 +437,7 @@ ko:
     instances:
       by_domain: 도메인
       delivery_available: 전송 가능
+      empty: 도메인이 하나도 없습니다.
       known_accounts:
         other: 알려진 계정 %{count}개
       moderation:
@@ -508,6 +512,8 @@ ko:
       comment:
         none: 없음
       created_at: 리포트 시각
+      forwarded: 전달됨
+      forwarded_to: "%{domain}에게 전달됨"
       mark_as_resolved: 해결 완료 처리
       mark_as_unresolved: 미해결로 표시
       notes:
@@ -577,6 +583,9 @@ ko:
         min_invite_role:
           disabled: 아무도 못 하게
           title: 초대링크를 만들 수 있는 권한
+        require_invite_text:
+          desc_html: 가입이 수동 승인을 필요로 할 때, "왜 가입하려고 하나요?" 항목을 선택사항으로 두는 것보다는 필수로 두는 것이 낫습니다
+          title: 새 사용자가 초대 요청 글을 작성해야 하도록
       registrations_mode:
         modes:
           approved: 가입하려면 승인이 필요함
@@ -745,6 +754,7 @@ ko:
       functional: 계정이 완벽히 작동합니다.
       pending: 당신의 가입 신청은 스태프의 검사를 위해 대기중입니다. 이것은 시간이 다소 소요됩니다. 가입 신청이 승인 될 경우 이메일을 받게 됩니다.
       redirecting_to: 계정이 %{acct}로 리다이렉트 중이기 때문에 비활성 상태입니다.
+    too_fast: 너무 빠르게 양식이 제출되었습니다, 다시 시도하세요.
     trouble_logging_in: 로그인 하는데 문제가 있나요?
     use_security_key: 보안 키 사용
   authorize_follow:

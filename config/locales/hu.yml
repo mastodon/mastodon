@@ -60,6 +60,7 @@ hu:
       one: Követő
       other: Követő
     following: Követett
+    instance_actor_flash: Ez a fiók virtuális és magát a szervert reprezentálja, nem egy konkrét felhasználót. Föderációs okok miatt létezik és nem szabad felfüggeszteni.
     joined: Csatlakozott %{date}
     last_active: utoljára aktív
     link_verified_on: A link tulajdonosát %{date} -n ellenőriztük
@@ -131,6 +132,7 @@ hu:
       follows: Követett
       header: Fejléc
       inbox_url: Beérkezett üzenetek URL-je
+      invite_request_text: Csatlakozás oka
       invited_by: Meghívta
       ip: IP
       joined: Csatlakozott
@@ -255,6 +257,7 @@ hu:
         unsuspend_account: Fiók felfüggesztésének feloldása
         update_announcement: Közlemény frissítése
         update_custom_emoji: Egyéni emodzsi frissítése
+        update_domain_block: Domain blokkolás frissítése
         update_status: Állapot frissítése
       actions:
         assigned_to_self_report: "%{name} a %{target} bejelentést magához rendelte"
@@ -295,6 +298,7 @@ hu:
         unsuspend_account: "%{name} feloldotta %{target} felhasználói fiókjának felfüggesztését"
         update_announcement: "%{name} frissítette a közleményt %{target}"
         update_custom_emoji: "%{name} frissítette az alábbi emodzsit: %{target}"
+        update_domain_block: "%{name} frissítette a(z) %{target} domain blokkolását"
         update_status: "%{name} frissítette %{target} felhasználó tülkjét"
       deleted_status: "(törölt tülk)"
       empty: Nem található napló.
@@ -437,6 +441,7 @@ hu:
     instances:
       by_domain: Domain
       delivery_available: Kézbesítés elérhető
+      empty: Nem található domain.
       known_accounts:
         one: "%{count} ismert fiók"
         other: "%{count} ismert fiók"
@@ -514,6 +519,8 @@ hu:
       comment:
         none: Egyik sem
       created_at: Jelentve
+      forwarded: Továbbítva
+      forwarded_to: Továbbítva neki %{domain}
       mark_as_resolved: Megjelölés megoldottként
       mark_as_unresolved: Megjelölés megoldatlanként
       notes:
@@ -583,6 +590,9 @@ hu:
         min_invite_role:
           disabled: Senki
           title: Meghívások engedélyezése
+        require_invite_text:
+          desc_html: Ha a regisztrációhoz kézi jóváhagyásra van szükség, akkor a „Miért akarsz csatlakozni?” válasz kitöltése legyen kötelező, és ne opcionális
+          title: Az új felhasználóktól legyen megkövetelve a meghívási kérés szövegének kitöltése
       registrations_mode:
         modes:
           approved: A regisztráció engedélyhez kötött
@@ -751,6 +761,7 @@ hu:
       functional: A fiókod teljesen működőképes.
       pending: A jelentkezésed engedélyezésre vár. Ez eltarthat egy ideig. Kapsz egy e-mailt, ha az elbírálás megtörtént.
       redirecting_to: A fiókod inaktív, mert jelenleg ide %{acct} van átirányítva.
+    too_fast: Túl gyorsan küldted el az űrlapot, próbáld később.
     trouble_logging_in: Problémád van a bejelentkezéssel?
     use_security_key: Biztonsági kulcs használata
   authorize_follow:
