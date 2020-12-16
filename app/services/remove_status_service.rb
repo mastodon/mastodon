@@ -9,44 +9,47 @@ class RemoveStatusService < BaseService
   # @param   [Hash] options
   # @option  [Boolean] :redraft
   # @option  [Boolean] :immediate
-  # @option [Boolean] :original_removed
+  # @option  [Boolean] :original_removed
   def call(status, **options)
     @payload  = Oj.dump(event: :delete, payload: status.id.to_s)
     @status   = status
     @account  = status.account
-    @tags     = status.tags.pluck(:name).to_a
-    @mentions = status.active_mentions.includes(:account).to_a
-    @reblogs  = status.reblogs.includes(:account).to_a
     @options  = options
 
     RedisLock.acquire(lock_options) do |lock|
       if lock.acquired?
-        remove_from_self if status.account.local?
+        remove_from_self if @account.local?
         remove_from_followers
         remove_from_lists
-        remove_from_affected
-        remove_reblogs
-        remove_from_hashtags
-        remove_from_public
-        remove_from_media if status.media_attachments.any?
-        remove_from_spam_check
-        remove_media
+
+        # There is no reason to send out Undo activities when the
+        # cause is that the original object has been removed, since
+        # original object being removed implicitly removes reblogs
+        # of it. The Delete activity of the original is forwarded
+        # separately.
+        if @account.local? && !@options[:original_removed]
+          remove_from_remote_followers
+          remove_from_remote_reach
+        end
+
+        # Since reblogs don't mention anyone, don't get reblogged,
+        # favourited and don't contain their own media attachments
+        # or hashtags, this can be skipped
+        unless @status.reblog?
+          remove_from_mentions
+          remove_reblogs
+          remove_from_hashtags
+          remove_from_public
+          remove_from_media if @status.media_attachments.any?
+          remove_from_spam_check
+          remove_media
+        end
 
         @status.destroy! if @options[:immediate] || !@status.reported?
       else
         raise Mastodon::RaceConditionError
       end
     end
-
-    # There is no reason to send out Undo activities when the
-    # cause is that the original object has been removed, since
-    # original object being removed implicitly removes reblogs
-    # of it. The Delete activity of the original is forwarded
-    # separately.
-    return if !@account.local? || @options[:original_removed]
-
-    remove_from_remote_followers
-    remove_from_remote_affected
   end
 
   private
@@ -67,31 +70,35 @@ class RemoveStatusService < BaseService
     end
   end
 
-  def remove_from_affected
-    @mentions.map(&:account).select(&:local?).each do |account|
-      redis.publish("timeline:#{account.id}", @payload)
+  def remove_from_mentions
+    # For limited visibility statuses, the mentions that determine
+    # who receives them in their home feed are a subset of followers
+    # and therefore the delete is already handled by sending it to all
+    # followers. Here we send a delete to actively mentioned accounts
+    # that may not follow the account
+
+    @status.active_mentions.find_each do |mention|
+      redis.publish("timeline:#{mention.account_id}", @payload)
     end
   end
 
-  def remove_from_remote_affected
+  def remove_from_remote_reach
+    return if @status.reblog?
+
     # People who got mentioned in the status, or who
     # reblogged it from someone else might not follow
     # the author and wouldn't normally receive the
     # delete notification - so here, we explicitly
     # send it to them
 
-    target_accounts = (@mentions.map(&:account).reject(&:local?) + @reblogs.map(&:account).reject(&:local?))
-    target_accounts << @status.reblog.account if @status.reblog? && !@status.reblog.account.local?
-    target_accounts.uniq!(&:id)
+    status_reach_finder = StatusReachFinder.new(@status)
 
-    # ActivityPub
-    ActivityPub::DeliveryWorker.push_bulk(target_accounts.select(&:activitypub?).uniq(&:preferred_inbox_url)) do |target_account|
-      [signed_activity_json, @account.id, target_account.preferred_inbox_url]
+    ActivityPub::DeliveryWorker.push_bulk(status_reach_finder.inboxes) do |inbox_url|
+      [signed_activity_json, @account.id, inbox_url]
     end
   end
 
   def remove_from_remote_followers
-    # ActivityPub
     ActivityPub::DeliveryWorker.push_bulk(@account.followers.inboxes) do |inbox_url|
       [signed_activity_json, @account.id, inbox_url]
     end
@@ -118,19 +125,19 @@ class RemoveStatusService < BaseService
     # because once original status is gone, reblogs will disappear
     # without us being able to do all the fancy stuff
 
-    @reblogs.each do |reblog|
+    @status.reblogs.includes(:account).find_each do |reblog|
       RemoveStatusService.new.call(reblog, original_removed: true)
     end
   end
 
   def remove_from_hashtags
-    @account.featured_tags.where(tag_id: @status.tags.pluck(:id)).each do |featured_tag|
+    @account.featured_tags.where(tag_id: @status.tags.map(&:id)).each do |featured_tag|
       featured_tag.decrement(@status.id)
     end
 
     return unless @status.public_visibility?
 
-    @tags.each do |hashtag|
+    @status.tags.map(&:name).each do |hashtag|
       redis.publish("timeline:hashtag:#{hashtag.mb_chars.downcase}", @payload)
       redis.publish("timeline:hashtag:#{hashtag.mb_chars.downcase}:local", @payload) if @status.local?
     end
@@ -140,22 +147,14 @@ class RemoveStatusService < BaseService
     return unless @status.public_visibility?
 
     redis.publish('timeline:public', @payload)
-    if @status.local?
-      redis.publish('timeline:public:local', @payload)
-    else
-      redis.publish('timeline:public:remote', @payload)
-    end
+    redis.publish(@status.local? ? 'timeline:public:local' : 'timeline:public:remote', @payload)
   end
 
   def remove_from_media
     return unless @status.public_visibility?
 
     redis.publish('timeline:public:media', @payload)
-    if @status.local?
-      redis.publish('timeline:public:local:media', @payload)
-    else
-      redis.publish('timeline:public:remote:media', @payload)
-    end
+    redis.publish(@status.local? ? 'timeline:public:local:media' : 'timeline:public:remote:media', @payload)
   end
 
   def remove_media

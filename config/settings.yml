@@ -70,6 +70,7 @@ defaults: &defaults
   spam_check_enabled: true
   show_domain_blocks: 'disabled'
   show_domain_blocks_rationale: 'disabled'
+  require_invite_text: false
 
 development:
   <<: *defaults

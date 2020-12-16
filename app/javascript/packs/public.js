@@ -280,6 +280,17 @@ function main() {
       target.style.display = 'block';
     }
   });
+
+  // Empty the honeypot fields in JS in case something like an extension
+  // automatically filled them.
+  delegate(document, '#registration_new_user,#new_user', 'submit', () => {
+    ['user_website', 'user_confirm_password', 'registration_user_website', 'registration_user_confirm_password'].forEach(id => {
+      const field = document.getElementById(id);
+      if (field) {
+        field.value = '';
+      }
+    });
+  });
 }
 
 loadPolyfills()

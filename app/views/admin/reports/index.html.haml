@@ -59,6 +59,10 @@
                 = fa_icon('camera')
                 = report.media_attachments.count
 
+              - if report.forwarded?
+                ·
+                = t('admin.reports.forwarded_to', domain: target_account.domain)
+
           .report-card__summary__item__assigned
             - if report.assigned_account.present?
               = admin_account_link_to report.assigned_account

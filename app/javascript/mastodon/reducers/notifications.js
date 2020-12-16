@@ -12,7 +12,6 @@ import {
   NOTIFICATIONS_MARK_AS_READ,
   NOTIFICATIONS_SET_BROWSER_SUPPORT,
   NOTIFICATIONS_SET_BROWSER_PERMISSION,
-  NOTIFICATIONS_DISMISS_BROWSER_PERMISSION,
 } from '../actions/notifications';
 import {
   ACCOUNT_BLOCK_SUCCESS,
@@ -251,8 +250,6 @@ export default function notifications(state = initialState, action) {
     return state.set('browserSupport', action.value);
   case NOTIFICATIONS_SET_BROWSER_PERMISSION:
     return state.set('browserPermission', action.value);
-  case NOTIFICATIONS_DISMISS_BROWSER_PERMISSION:
-    return state.set('browserPermission', 'denied');
   default:
     return state;
   }

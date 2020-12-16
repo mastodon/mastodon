@@ -14,7 +14,7 @@ class AccountPolicy < ApplicationPolicy
   end
 
   def suspend?
-    staff? && !record.user&.staff?
+    staff? && !record.user&.staff? && !record.instance_actor?
   end
 
   def destroy?
@@ -62,6 +62,6 @@ class AccountPolicy < ApplicationPolicy
   end
 
   def memorialize?
-    admin? && !record.user&.admin?
+    admin? && !record.user&.admin? && !record.instance_actor?
   end
 end

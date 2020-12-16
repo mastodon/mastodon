@@ -1,3 +1,6 @@
+:ruby
+  hide_show_thread ||= false
+
 .status{ class: "status-#{status.visibility}" }
   .status__info
     = link_to ActivityPub::TagManager.instance.url_for(status), class: 'status__relative-time u-url u-uid', target: stream_link_target, rel: 'noopener noreferrer' do
@@ -26,7 +29,7 @@
       %p<
         %span.p-summary> #{Formatter.instance.format_spoiler(status, autoplay: autoplay)}&nbsp;
         %button.status__content__spoiler-link= t('statuses.show_more')
-    .e-content{ dir: rtl_status?(status) ? 'rtl' : 'ltr' }
+    .e-content
       = Formatter.instance.format(status, custom_emojify: true, autoplay: autoplay)
       - if status.preloadable_poll
         = react_component :poll, disabled: true, poll: ActiveModelSerializers::SerializableResource.new(status.preloadable_poll, serializer: REST::PollSerializer, scope: current_user, scope_name: :current_user).as_json do
@@ -47,7 +50,7 @@
   - elsif status.preview_card
     = react_component :card, sensitive: sensitized?(status, current_account), 'maxDescription': 160, card: ActiveModelSerializers::SerializableResource.new(status.preview_card, serializer: REST::PreviewCardSerializer).as_json
 
-  - if !status.in_reply_to_id.nil? && status.in_reply_to_account_id == status.account.id
+  - if !status.in_reply_to_id.nil? && status.in_reply_to_account_id == status.account.id && !hide_show_thread
     = link_to ActivityPub::TagManager.instance.url_for(status), class: 'status__content__read-more-button', target: stream_link_target, rel: 'noopener noreferrer' do
       = t 'statuses.show_thread'
 

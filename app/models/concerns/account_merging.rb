@@ -15,7 +15,7 @@ module AccountMerging
       Status, StatusPin, MediaAttachment, Poll, Report, Tombstone, Favourite,
       Follow, FollowRequest, Block, Mute, AccountIdentityProof,
       AccountModerationNote, AccountPin, AccountStat, ListAccount,
-      PollVote, Mention
+      PollVote, Mention, AccountDeletionRequest, AccountNote
     ]
 
     owned_classes.each do |klass|
@@ -28,7 +28,10 @@ module AccountMerging
       end
     end
 
-    target_classes = [Follow, FollowRequest, Block, Mute, AccountModerationNote, AccountPin]
+    target_classes = [
+      Follow, FollowRequest, Block, Mute, AccountModerationNote, AccountPin,
+      AccountNote
+    ]
 
     target_classes.each do |klass|
       klass.where(target_account_id: other_account.id).find_each do |record|
@@ -39,5 +42,10 @@ module AccountMerging
         end
       end
     end
+
+    # Some follow relationships have moved, so the cache is stale
+    Rails.cache.delete_matched("followers_hash:#{id}:*")
+    Rails.cache.delete_matched("relationships:#{id}:*")
+    Rails.cache.delete_matched("relationships:*:#{id}")
   end
 end
