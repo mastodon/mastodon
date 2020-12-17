@@ -8,8 +8,8 @@ import PollContainer from 'mastodon/containers/poll_container';
 import Icon from 'mastodon/components/icon';
 import { autoPlayGif } from 'mastodon/initial_state';
 import { getLocale  } from 'mastodon/locales';
-import { parse as htmlParser } from 'node-html-parser';
 import googleLogo from 'images/google_logo.svg';
+import LoadingIndicator from './loading_indicator';
 import api from '../api';
 
 const MAX_HEIGHT = 642; // 20px * 32 (+ 2px padding at the top)
@@ -177,7 +177,14 @@ export default class StatusContent extends React.PureComponent {
 
     if (this.state.hideTranslation === true && this.state.translation === null) {
       const { status } = this.props;
-      const content = status.get('content').length === 0 ? '' : htmlParser(status.get('content')).structuredText;
+
+      const innerText = (html) => {
+        let template = document.createElement('template');
+        template.innerHTML = `<fragment>${html}<fragment/>`;
+        return template.content.firstChild.innerText.trim()
+      }
+
+      const content = status.get('content').length === 0 ? '' : innerText(status.get('content'));
 
       let locale = getLocale().localeData[0].locale;
       if (locale === 'zh') {
@@ -272,12 +279,7 @@ export default class StatusContent extends React.PureComponent {
           <section
             className={`translation-content__loading ${this.state.translationStatus === 'fetching' ? 'display' : 'hidden'}`}
           >
-            <div className='spinner'>
-              <div />
-              <div />
-              <div />
-              <div />
-            </div>
+            <LoadingIndicator />
             {/* <p>Fetching translation, please wait</p> */}
           </section>
           <section

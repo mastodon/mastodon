@@ -75,7 +75,7 @@
   border-color: $dark-text-color;
 }
 
-// translation 
+// translation
 .status__content__show-translation-button {
   margin-top: 8px !important;
 
@@ -112,49 +112,12 @@
       font-size: 16px;
     }
 
-    .spinner {
-      display: block;
+    .loading-indicator {
       position: relative;
-      width: 80px;
-      height: 80px;
-      margin: auto;
-      transform: scale(0.6);
-      transform-origin: left;
-
-      div {
-        box-sizing: border-box;
-        display: block;
-        position: absolute;
-        width: 64px;
-        height: 64px;
-        margin: 8px;
-        border: 8px solid $ui-base-lighter-color;
-        border-radius: 50%;
-        animation: spinner 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-        border-color: $ui-base-lighter-color transparent transparent transparent;
-
-        &:nth-child(1) {
-          animation-delay: -0.45s;
-        }
-
-        &:nth-child(2) {
-          animation-delay: -0.3s;
-        }
-
-        &:nth-child(3) {
-          animation-delay: -0.15s;
-        }
-      }
-    }
-
-    @keyframes spinner {
-      0% {
-        transform: rotate(0deg);
-      }
-
-      100% {
-        transform: rotate(360deg);
-      }
+      height: 100px;
+      top: -10px;
+      left: 0;
+      transform: initial;
     }
   }
 }
