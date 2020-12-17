@@ -59,6 +59,7 @@ pt-PT:
       one: Seguidor
       other: Seguidores
     following: A seguir
+    instance_actor_flash: Esta conta é um actor virtual usado para representar a própria instância e não um utilizador individual. É usada para motivos de federação e não deve ser suspenso.
     joined: Aderiu %{date}
     last_active: última vez activo
     link_verified_on: A posse deste link foi verificada em %{date}
@@ -130,6 +131,7 @@ pt-PT:
       follows: A seguir
       header: Cabeçalho
       inbox_url: URL da caixa de entrada
+      invite_request_text: Razões para se juntar a nós
       invited_by: Convidado(a) por
       ip: IP
       joined: Aderiu
@@ -516,6 +518,8 @@ pt-PT:
       comment:
         none: Nenhum
       created_at: Relatado
+      forwarded: Encaminhado
+      forwarded_to: Encaminhado para %{domain}
       mark_as_resolved: Marcar como resolvido
       mark_as_unresolved: Marcar como não resolvido
       notes:
@@ -585,6 +589,9 @@ pt-PT:
         min_invite_role:
           disabled: Ninguém
           title: Permitir convites de
+        require_invite_text:
+          desc_html: Quando os registos exigirem aprovação manual, faça o texto "Porque se quer juntar a nós?" da solicitação de convite obrigatório, em vez de opcional
+          title: Exigir que novos utilizadores preencham um texto de solicitação de convite
       registrations_mode:
         modes:
           approved: Registo sujeito a aprovação
