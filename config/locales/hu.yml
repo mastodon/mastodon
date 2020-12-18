@@ -400,6 +400,8 @@ hu:
           silence: Némítás
           suspend: Felfüggesztés
         title: Új domain tiltása
+      obfuscate: Domain név álcázása
+      obfuscate_hint: Részlegesen álcázza a domain nevet a listában, ha a domain korlátozások listájának közzététele engedélyezett
       private_comment: Privát megjegyzés
       private_comment_hint: Megjegyzés domain tiltásával kapcsolatban belső használatra, a többi moderátor részére.
       public_comment: Nyilvános megjegyzés
@@ -919,6 +921,8 @@ hu:
     status: Ellenőrzés állapota
     view_proof: Tanúsítás megtekintése
   imports:
+    errors:
+      over_rows_processing_limit: több mint %{count} sort tartalmaz
     modes:
       merge: Összefésülés
       merge_long: Megtartjuk a meglévő bejegyzéseket és hozzávesszük az újakat
