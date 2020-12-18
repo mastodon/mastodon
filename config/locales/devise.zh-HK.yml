@@ -2,16 +2,16 @@
 zh-HK:
   devise:
     confirmations:
-      confirmed: 你的電郵地址成功確認。
-      send_instructions: 你將會在幾分鐘內收到確認指示電郵，上面有確認你電郵地址的指示。
-      send_paranoid_instructions: 如果你的電郵地址已經存在於我們的資料庫，你將會在幾分鐘內收到電郵，確認你電郵地址的指示。
+      confirmed: 已確認你的電郵地址。
+      send_instructions: 你將會在幾分鐘內收到確認指示電郵，上面有確認你電郵地址的指示。如果它沒有出現在你的收件箱，請檢查一下你的垃圾郵件箱。
+      send_paranoid_instructions: 如果你的電郵地址已經存在於我們的資料庫，你將會在幾分鐘內收到電郵，確認你電郵地址的指示。如果它沒有出現在你的收件箱，請檢查一下你的垃圾郵件箱。
     failure:
       already_authenticated: 你之前已經登入了。
-      inactive: 您的帳號尚未啟用。
-      invalid: 不正確的 %{authentication_keys} 或密碼。
+      inactive: 你的帳號尚未被啟用。
+      invalid: 不正確的%{authentication_keys}或密碼。
       last_attempt: 若你再一次嘗試失敗，我們將鎖定你的帳號，以策安全。
       locked: 你的帳號已被鎖定。
-      not_found_in_database: 不正確的 %{authentication_keys} 或密碼。
+      not_found_in_database: 不正確的%{authentication_keys}或密碼。
       pending: 你的帳號仍在審核中
       timeout: 你的登入階段已經過期，請重新登入以繼續使用。
       unauthenticated: 你必須先登入或登記，以繼續使用。
@@ -20,46 +20,46 @@ zh-HK:
       confirmation_instructions:
         action: 驗證電子郵件地址
         action_with_app: 確認並回到%{app}
-        explanation: 你在 %{host} 上使用這個電子郵件地址建立了一個帳戶。只需點擊下面的連結，即可啟用帳戶。如果你並沒有建立過帳戶，請忽略此郵件。
-        explanation_when_pending: 您使用此電郵地址申請了%{host} 帳戶。確認電郵地址後，我們將審核您的申請。您可以登錄更改詳細信息或刪除帳戶，但在帳戶獲得批准之前，您無法訪問大部份功能。如果您的申請被拒絕，您的數據會被刪除，因此您無需採取進一步的措施。如果申請人不是您，請忽略此電郵。
-        extra_html: 請記得閱讀本服務站的<a href="%{terms_path}">相關規定</a>和<a href="%{policy_path}">使用條款</a>。
+        explanation: 你已成功用這個電郵在 %{host} 上建立了帳號。只需點擊下面的連結，即可啟用帳戶。如果你並沒有建立過帳戶，請忽略此郵件。
+        explanation_when_pending: 你使用此電郵地址申請了%{host} 帳戶。確認電郵地址後，我們將審核你的申請。你可在登入後更改詳細信息，或刪除帳戶，但在帳戶獲得批准之前，你將無法使用大部份功能。如果你的申請被拒絕，你的資料會被直接刪除，而無需你採取任何動作。如果申請人不是你，請忽略此電郵。
+        extra_html: 請閱讀<a href="%{terms_path}">站規</a>和<a href="%{policy_path}">我們的使用條款</a>。
         subject: 'Mastodon: 確認電郵地址 %{instance}'
         title: 驗證電子郵件地址
       email_changed:
-        explanation: 你的帳戶的電子郵件地址即將變更為：
-        extra: 如果你沒有請求更改你的電子郵件地址，則他人很有可能已經入侵你的帳戶。請立即更改你的密碼；如果你已經無法訪問你的帳戶，請聯繫服務站的管理員請求協助。
-        subject: Mastodon：電子郵件地址已被更改
-        title: 新電子郵件地址
+        explanation: 你的帳號的電郵地址即將變更為：
+        extra: 如果你沒有更改你的電郵地址，那很有可能已經有其他人入侵你的帳號。請立即更改你的密碼；如果你已經無法訪問你的帳戶，請聯繫服務站的管理員請求協助。
+        subject: Mastodon：電郵地址已被更改
+        title: 新電郵地址
       password_change:
-        explanation: 你的帳戶的密碼已被更改。
-        extra: 如果你沒有請求更改你的密碼，則他人很有可能已經入侵你的帳戶。請立即更改你的密碼；如果你已經無法訪問你的帳戶，請聯繫服務站的管理員請求協助。
-        subject: 'Mastodon: 更改密碼'
-        title: 密碼已被重設
+        explanation: 你的帳號的密碼已被更改。
+        extra: 如果你沒有更改你的密碼，那很有可能已經有其他人入侵你的帳號。請立即更改你的密碼；如果你已經無法訪問你的帳戶，請聯繫服務站的管理員請求協助。
+        subject: 'Mastodon: 密碼已被更改'
+        title: 密碼已被更改
       reconfirmation_instructions:
-        explanation: 點擊下面的連結來確認你的新電子郵件地址。
+        explanation: 點擊下面的連結來確認你的新電郵地址。
         extra: 如果你沒有請求本次變更，請忽略此郵件。 Mastodon 帳戶的電子郵件地址只有在你點擊上面的連結後才會更改。
-        subject: Mastodon：確認 %{instance} 電子郵件地址
-        title: 驗證電子郵件地址
+        subject: Mastodon：確認 %{instance} 電郵地址
+        title: 驗證電郵地址
       reset_password_instructions:
         action: 更改密碼
-        explanation: 點擊下面的連結來更改帳戶的密碼。
-        extra: 如果你沒有請求本次變更，請忽略此郵件。你的密碼只有在你點擊上面的連結並輸入新密碼後才會更改。
+        explanation: 點擊下面的連結來更改帳號的密碼。
+        extra: 如果你沒有請求修改帳號，請忽略此郵件。在你點擊進上面連結並設定新密碼前，帳號密碼會維持不變。
         subject: 'Mastodon: 重設密碼'
         title: 重設密碼
       two_factor_disabled:
-        explanation: 帳號的雙重認證已禁用。現在僅使用郵箱和密碼即可登錄。
-        subject: 長毛象：已關閉雙重認證
+        explanation: 帳號的雙重認證已被停用。現在只需使用電郵地址和密碼，即可登入。
+        subject: Mastodon：已關閉雙重認證
         title: 已關閉雙重認證
       two_factor_enabled:
-        explanation: 賬號的雙重認證已啟用。登錄時將需要用已配對的 TOTP 應用生成驗證碼。
-        subject: 長毛象：已啟用雙重認證
+        explanation: 賬號的雙重認證已被啟用。登錄時，將需要已配對 TOTP 應用程式生成的驗證碼。
+        subject: Mastodon：已啟用雙重認證
         title: 已啟用雙重認證
       two_factor_recovery_codes_changed:
         explanation: 之前的恢復碼失效了，新的已生成。
-        subject: 長毛象：已產生新的雙重認證恢復碼
+        subject: Mastodon：已產生新的雙重認證恢復碼
         title: 雙重認證恢復碼已更改
       unlock_instructions:
-        subject: 'Mastodon: 解除用戶鎖定'
+        subject: 'Mastodon: 解除帳號鎖定'
       webauthn_credential:
         added:
           explanation: 以下的安全鑰匙已經加進你的帳號
@@ -72,37 +72,37 @@ zh-HK:
       webauthn_disabled:
         explanation: 你的帳號的安全鑰匙身份驗證已經停用。你只可以用過去已經配對好的基於時間一次性密碼程式生成的密碼來登錄。
         subject: 'Mastodon: 安全鑰匙身份驗證已經停用'
-        title: 已啟用安全鑰匙
+        title: 已停用安全鑰匙
       webauthn_enabled:
         explanation: 安全鑰匙身份驗證已啟用。你的安全鑰匙現在可以用來登錄。
         subject: 'Mastodon: 安全鑰匙身份驗證已啟用'
         title: 已啟用安全鑰匙
     omniauth_callbacks:
-      failure: 無法以 %{kind} 登入你的用戶，原因是︰「%{reason}」。
+      failure: 無法以 %{kind} 登入你的帳號，原因是︰「%{reason}」。
       success: 成功以 %{kind} 登入你的用戶。
     passwords:
       no_token: 你必須使用重設密碼電郵內的網址進入本頁。如果你確是使用電郵內的網址，請確認你用了完整的網址。
-      send_instructions: 你將在幾分鐘內收到重設密碼的電郵指示。
-      send_paranoid_instructions: 如果你的電郵地址已經存在於我們的資料庫，你將會在幾分鐘內收到重設密碼的電郵指示。
+      send_instructions: 如果你的電郵存在於我們的資料庫中，你將在幾分鐘內收到重設密碼的電郵指示。如果你未能在收件箱找到該電郵，請檢查垃圾郵件箱。
+      send_paranoid_instructions: 如果你的電郵存在於我們的資料庫中，你將在幾分鐘內收到重設密碼的電郵指示。如果你未能在收件箱找到該電郵，請檢查垃圾郵件箱。
       updated: 你的密碼已經更新，你現在正登入本站。
       updated_not_active: 你的密碼已經更新。
     registrations:
-      destroyed: 再見了！你的用戶已被取消，希望我們相有相見的機會吧。
-      signed_up: 歡迎你！你的登記已經成功。
-      signed_up_but_inactive: 你的登記已經成功，可是由於你的用戶還被被啟用，暫時還不能讓你登入。
-      signed_up_but_locked: 你的登記已經成功，可是由於你的用戶已被鎖定，我們無法讓你登入。
-      signed_up_but_pending: 確認連結已發送到您的電郵地址。點擊連結後我們會審核您的申請，一旦通過您將會收到通知。
-      signed_up_but_unconfirmed: 一條確認連結已經電郵到你的郵址。請使用讓連結啟用你的用戶。
-      update_needs_confirmation: 你的用戶已經更新，但我們需要確認你的電郵地址。請打開你的郵箱，使用確認電郵的連結來確認的地郵址。
-      updated: 你的用戶已經成功更新。
+      destroyed: 再見！你的帳號已被取消，希望日後能再見到你。
+      signed_up: 歡迎你！你已經成功登記。
+      signed_up_but_inactive: 你的登記已經成功，可是由於你的帳號還未被啟用，暫時還不能讓你登入。
+      signed_up_but_locked: 你的登記已經成功，可是由於你的帳號已被鎖定，我們無法讓你登入。
+      signed_up_but_pending: 確認連結已發送到你的電郵地址。在你點擊連結後，我們會審核你的申請。一旦通過審核，你將會收到進一步通知。
+      signed_up_but_unconfirmed: 一條確認連結已經電郵到你的郵址。請使用讓連結啟用你的帳號。
+      update_needs_confirmation: 你的帳號已經更新，但我們需要確認你的電郵地址。請打開你的郵箱，使用確認電郵的連結來確認的地郵址。如果未能在收件箱找相關電郵指示，請檢查垃圾郵件箱。
+      updated: 你的帳號已經成功更新。
     sessions:
       already_signed_out: 成功登出。
       signed_in: 成功登入。
       signed_out: 成功登出。
     unlocks:
-      send_instructions: 你將在幾分鐘內收到解除用戶鎖定的電郵指示。
-      send_paranoid_instructions: 如果你的電郵地址已經存在於我們的資料庫，你將在幾分鐘內收到解除用戶鎖定的電郵指示。
-      unlocked: 你的用戶已經解鎖，請登入以繼續。
+      send_instructions: 你將在幾分鐘內收到解除用戶鎖定的電郵指示。如果未能在收件箱找到電郵指示，請檢查垃圾郵件箱。
+      send_paranoid_instructions: 如果你的電郵地址已經存在於我們的資料庫，你將在幾分鐘內收到解除用戶鎖定的電郵指示。如果未能在收件箱找到電郵指示，請檢查垃圾郵件箱。
+      unlocked: 你的帳號已經解鎖，請登入以繼續。
   errors:
     messages:
       already_confirmed: 先前已經確認，請嘗試登入

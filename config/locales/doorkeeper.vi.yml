@@ -67,7 +67,7 @@ vi:
         title: Sao chép mã này và dán nó vào ứng dụng.
     authorized_applications:
       buttons:
-        revoke: Thu hồi
+        revoke: Gỡ
       confirmations:
         revoke: Bạn có chắc không?
       index:
@@ -81,14 +81,14 @@ vi:
         access_denied: Chủ sở hữu tài nguyên hoặc máy chủ đã từ chối yêu cầu.
         credential_flow_not_configured: Resource Owner Password Credentials không thành công do Doorkeeper.configure.resource_owner_from_credentials không được định cấu hình.
         invalid_client: Xác thực ứng dụng khách không thành công do máy khách mơ hồ, không bao gồm xác thực ứng dụng khách hoặc phương thức xác thực không được hỗ trợ.
-        invalid_grant: Yêu cầu không hợp lệ, hết hạn, bị thu hồi hoặc không khớp với tài khoản đã cấp phép. Hoặc xung đột với ứng dụng khác.
+        invalid_grant: Yêu cầu không hợp lệ, hết hạn, bị gỡ hoặc không khớp với tài khoản đã cấp phép. Hoặc xung đột với ứng dụng khác.
         invalid_redirect_uri: URL chuyển hướng không hợp lệ.
         invalid_request: Yêu cầu thiếu tham số bắt buộc, bao gồm giá trị tham số không được hỗ trợ hoặc không đúng định dạng.
         invalid_resource_owner: Thông tin xác thực chủ sở hữu tài nguyên được cung cấp không hợp lệ hoặc không thể tìm thấy chủ sở hữu tài nguyên
         invalid_scope: Quyền yêu cầu không hợp lệ, không có thật hoặc sai định dạng.
         invalid_token:
           expired: Mã thông báo truy cập đã hết hạn
-          revoked: Mã thông báo truy cập đã bị thu hồi
+          revoked: Mã token đăng nhập đã bị hủy
           unknown: Mã thông báo truy cập không hợp lệ
         resource_owner_authenticator_not_configured: Chủ sở hữu tài nguyên tìm thấy thất bại do Doorkeeper.configure.resource_owner_authenticator không được định cấu hình.
         server_error: Có một điều kiện không thể chấp nhận khiến máy chủ không thực hiện yêu cầu.
@@ -106,7 +106,7 @@ vi:
           notice: Ứng dụng cập nhật.
       authorized_applications:
         destroy:
-          notice: Ứng dụng bị thu hồi.
+          notice: Ứng dụng bị gỡ.
     layouts:
       admin:
         nav:

@@ -131,6 +131,7 @@ el:
       follows: Ακολουθεί
       header: Επικεφαλίδα
       inbox_url: URL εισερχομένων
+      invite_request_text: Λόγοι για εγγραφή
       invited_by: Προσκλήθηκε από
       ip: IP
       joined: Γράφτηκε
@@ -188,6 +189,8 @@ el:
       search: Αναζήτηση
       search_same_email_domain: Άλλοι χρήστες με τον ίδιο τομέα e-mail
       search_same_ip: Υπόλοιποι χρήστες με την ίδια διεύθυνση IP
+      sensitive: Ευαίσθητο
+      sensitized: σήμανση ως ευαίσθητο
       shared_inbox_url: URL κοινόχρηστων εισερχομένων
       show:
         created_reports: Αναφορές από αυτόν το λογαριασμό
@@ -202,6 +205,7 @@ el:
       time_in_queue: Σε αναμονή για %{time}
       title: Λογαριασμοί
       unconfirmed_email: Ανεπιβεβαίωτο email
+      undo_sensitized: Αναίρεση ευαίσθητου
       undo_silenced: Αναίρεση αποσιώπησης
       undo_suspension: Αναίρεση παύσης
       unsilenced_msg: Επιτυχής άρση περιορισμών λογαριασμού του/της %{username}
@@ -243,9 +247,11 @@ el:
         reopen_report: Ξανάνοιγμα Καταγγελίας
         reset_password_user: Επαναφορά Συνθηματικού
         resolve_report: Επίλυση Καταγγελίας
+        sensitive_account: Σήμανση των πολυμέσων στον λογαριασμό σας ως ευαίσθητων
         silence_account: Σίγαση Λογαριασμού
         suspend_account: Αναστολή Λογαριασμού
         unassigned_report: Αποδέσμευση Καταγγελίας
+        unsensitive_account: Αφαίρεση σήμανσης των πολυμέσων στον λογαριασμό σας ως ευαίσθητων
         unsilence_account: Άρση Σίγασης Λογαριασμού
         unsuspend_account: Άρση Αναστολής Λογαριασμού
         update_announcement: Ενημέρωση Ανακοίνωσης
@@ -506,6 +512,8 @@ el:
       comment:
         none: Κανένα
       created_at: Καταγγέλθηκε
+      forwarded: Προωθημένα
+      forwarded_to: Προώθημένα προς %{domain}
       mark_as_resolved: Σημειωμένο ως επιλυμένο
       mark_as_unresolved: Σημειωμένο ως ανεπίλυτο
       notes:
@@ -834,6 +842,7 @@ el:
       request: Αιτήσου το αρχείο σου
       size: Μέγεθος
     blocks: Μπλοκάρεις
+    bookmarks: Σελιδοδείκτες
     csv: CSV
     domain_blocks: Μπλοκαρίσματα κόμβων
     lists: Λίστες
@@ -901,6 +910,8 @@ el:
     status: Κατάσταση επαλήθευσης
     view_proof: Εμφάνιση απόδειξης
   imports:
+    errors:
+      over_rows_processing_limit: περιέχει περισσότερες από %{count} γραμμές
     modes:
       merge: Συγχώνευση
       merge_long: Διατήρηση των εγγράφων που υπάρχουν και προσθηκη των νέων
@@ -910,6 +921,7 @@ el:
     success: Τα δεδομένα σου μεταφορτώθηκαν επιτυχώς και θα επεξεργαστούν εν καιρώ
     types:
       blocking: Λίστα αποκλεισμού
+      bookmarks: Σελιδοδείκτες
       domain_blocking: Λίστα αποκλεισμένων τομέων
       following: Λίστα ακολούθων
       muting: Λίστα αποσιωπήσεων
@@ -1344,6 +1356,7 @@ el:
       title:
         disable: Παγωμένος λογαριασμός
         none: Προειδοποίηση
+        sensitive: Το πολυμέσο σας έχει σημανθεί ως ευαίσθητο
         silence: Περιορισμένος λογαριασμός
         suspend: Λογαριασμός σε αναστολή
     welcome:

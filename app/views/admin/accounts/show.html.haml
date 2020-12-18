@@ -1,6 +1,10 @@
 - content_for :page_title do
   = @account.acct
 
+- if @account.instance_actor?
+  .flash-message.notice
+    %strong= t('accounts.instance_actor_flash')
+
 = render 'application/card', account: @account
 
 - account = @account

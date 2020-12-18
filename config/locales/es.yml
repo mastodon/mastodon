@@ -60,6 +60,7 @@ es:
       one: Seguidor
       other: Seguidores
     following: Siguiendo
+    instance_actor_flash: Esta cuenta es un actor virtual utilizado para representar al servidor en sí mismo y no a ningún usuario individual. Se utiliza para propósitos de la federación y no se debe suspender.
     joined: Se unió el %{date}
     last_active: última conexión
     link_verified_on: La propiedad de este vínculo fue verificada el %{date}
@@ -131,6 +132,7 @@ es:
       follows: Sigue
       header: Cabecera
       inbox_url: URL de la bandeja de entrada
+      invite_request_text: Razones para unirse
       invited_by: Invitado por
       ip: IP
       joined: Unido
@@ -255,6 +257,7 @@ es:
         unsuspend_account: Dejar de Suspender Cuenta
         update_announcement: Actualizar Anuncio
         update_custom_emoji: Actualizar Emoji Personalizado
+        update_domain_block: Actualizar el Bloqueo de Dominio
         update_status: Actualizar Estado
       actions:
         assigned_to_self_report: "%{name} se ha asignado la denuncia %{target} a sí mismo"
@@ -295,6 +298,7 @@ es:
         unsuspend_account: "%{name} desactivó la suspensión de la cuenta de %{target}"
         update_announcement: "%{name} actualizó el anuncio %{target}"
         update_custom_emoji: "%{name} actualizó el emoji %{target}"
+        update_domain_block: "%{name} actualizó el bloqueo de dominio para %{target}"
         update_status: "%{name} actualizó el estado de %{target}"
       deleted_status: "(estado borrado)"
       empty: No se encontraron registros.
@@ -398,6 +402,8 @@ es:
           silence: Silenciar
           suspend: Suspender
         title: Nuevo bloque de dominio
+      obfuscate: Ocultar nombre de dominio
+      obfuscate_hint: Oculta parcialmente el nombre de dominio en la lista si mostrar la lista de limitaciones de dominio está habilitado
       private_comment: Comentario privado
       private_comment_hint: Comentario sobre esta limitación de dominio para el uso interno por parte de los moderadores.
       public_comment: Comentario público
@@ -437,6 +443,7 @@ es:
     instances:
       by_domain: Dominio
       delivery_available: Entrega disponible
+      empty: No se encontraron dominios.
       known_accounts:
         one: "%{count} cuenta conocida"
         other: "%{count} cuentas conocidas"
@@ -514,6 +521,8 @@ es:
       comment:
         none: Ninguno
       created_at: Denunciado
+      forwarded: Reenviado
+      forwarded_to: Reenviado a %{domain}
       mark_as_resolved: Marcar como resuelto
       mark_as_unresolved: Marcar como no resuelto
       notes:
@@ -583,6 +592,9 @@ es:
         min_invite_role:
           disabled: Nadie
           title: Permitir invitaciones de
+        require_invite_text:
+          desc_html: Cuando los registros requieren aprobación manual, haga obligatorio en la invitaciones el campo "¿Por qué quieres unirte?" en lugar de opcional
+          title: Requiere a los nuevos usuarios rellenar un texto de solicitud de invitación
       registrations_mode:
         modes:
           approved: Se requiere aprobación para registrarse
@@ -751,6 +763,7 @@ es:
       functional: Su cuenta está totalmente operativa.
       pending: Su solicitud está pendiente de revisión por nuestros administradores. Eso puede tardar algún tiempo. Usted recibirá un correo electrónico si el solicitud sea aprobada.
       redirecting_to: Tu cuenta se encuentra inactiva porque está siendo redirigida a %{acct}.
+    too_fast: Formulario enviado demasiado rápido, inténtelo de nuevo.
     trouble_logging_in: "¿Problemas para iniciar sesión?"
     use_security_key: Usar la clave de seguridad
   authorize_follow:
@@ -910,6 +923,8 @@ es:
     status: Estado de la verificación
     view_proof: Ver prueba
   imports:
+    errors:
+      over_rows_processing_limit: contiene más de %{count} filas
     modes:
       merge: Unir
       merge_long: Mantener registros existentes y añadir nuevos

@@ -236,6 +236,25 @@ module Mastodon
       say('OK', :green)
     end
 
+    desc 'fix-duplicates', 'Find duplicate remote accounts and merge them'
+    option :dry_run, type: :boolean
+    long_desc <<-LONG_DESC
+      Merge known remote accounts sharing an ActivityPub actor identifier.
+
+      Such duplicates can occur when a remote server admin misconfigures their
+      domain configuration.
+    LONG_DESC
+    def fix_duplicates
+      Account.remote.select(:uri, 'count(*)').group(:uri).having('count(*) > 1').pluck_each(:uri) do |uri|
+        say("Duplicates found for #{uri}")
+        begin
+          ActivityPub::FetchRemotAccountService.new.call(uri) unless options[:dry_run]
+        rescue => e
+          say("Error processing #{uri}: #{e}", :red)
+        end
+      end
+    end
+
     desc 'backup USERNAME', 'Request a backup for a user'
     long_desc <<-LONG_DESC
       Request a new backup for an account with a given USERNAME.

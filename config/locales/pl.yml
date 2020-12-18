@@ -66,6 +66,7 @@ pl:
       one: śledzący
       other: Śledzących
     following: śledzonych
+    instance_actor_flash: To konto jest wirtualnym profilem używanym do reprezentowania samego serwera, a nie żadnego indywidualnego użytkownika. Jest ono stosowane do celów federacji i nie powinien być zawieszany.
     joined: Dołączył(a) %{date}
     last_active: ostatnio aktywny(-a)
     link_verified_on: Własność tego odnośnika została sprawdzona %{date}
@@ -139,6 +140,7 @@ pl:
       follows: Śledzeni
       header: Nagłówek
       inbox_url: Adres skrzynki
+      invite_request_text: Powody rejestracji
       invited_by: Zaproszony(-a) przez
       ip: Adres IP
       joined: Dołączył(-a)
@@ -263,6 +265,7 @@ pl:
         unsuspend_account: Cofnij zawieszenie konta
         update_announcement: Aktualizuj ogłoszenie
         update_custom_emoji: Aktualizuj niestandardowe emoji
+        update_domain_block: Zaktualizuj blokadę domeny
         update_status: Aktualizuj wpis
       actions:
         assigned_to_self_report: "%{name} przypisał(a) sobie zgłoszenie %{target}"
@@ -303,6 +306,7 @@ pl:
         unsuspend_account: "%{name} cofnął(-ęła) zawieszenie konta %{target}"
         update_announcement: "%{name} zaktualizował(-a) ogłoszenie %{target}"
         update_custom_emoji: "%{name} zaktualizował(a) emoji %{target}"
+        update_domain_block: "%{name} zaktualizował(-a) blokadę domeny dla %{target}"
         update_status: "%{name} zaktualizował(a) wpis użytkownika %{target}"
       deleted_status: "(usunięty wpis)"
       empty: Nie znaleziono aktywności w dzienniku.
@@ -406,6 +410,8 @@ pl:
           silence: Wycisz
           suspend: Zawieś
         title: Nowa blokada domen
+      obfuscate: Ukryj nazwę domeny
+      obfuscate_hint: Częściowo ukryj nazwę domeny na liście, gdy reklamowanie listy limitów domen jest włączone
       private_comment: Prywatny komentarz
       private_comment_hint: Komentarz na temat ograniczeń dla tej domeny do wewnętrznej informacji dla moderatorów.
       public_comment: Publiczny komentarz
@@ -447,6 +453,7 @@ pl:
     instances:
       by_domain: Domena
       delivery_available: Doręczanie jest dostępne
+      empty: Nie znaleziono domen.
       known_accounts:
         few: "%{count} znane konta"
         many: "%{count} znane konta"
@@ -530,6 +537,8 @@ pl:
       comment:
         none: Brak
       created_at: Zgłoszono
+      forwarded: Przekazano
+      forwarded_to: Przekazano do %{domain}
       mark_as_resolved: Oznacz jako rozwiązane
       mark_as_unresolved: Oznacz jako nierozwiązane
       notes:
@@ -599,6 +608,9 @@ pl:
         min_invite_role:
           disabled: Nikt
           title: Kto może zapraszać użytkowników
+        require_invite_text:
+          desc_html: Kiedy rejestracje wymagają ręcznego zatwierdzenia, ustaw pole "Dlaczego chcesz dołączyć?" jako obowiązkowe, a nie opcjonalne
+          title: Wymagaj od nowych użytkowników wypełnienia tekstu prośby o zaproszenie
       registrations_mode:
         modes:
           approved: Przyjęcie jest wymagane do rejestracji
@@ -767,6 +779,7 @@ pl:
       functional: Twoje konto całkowicie funkcjonuje.
       pending: Twoje zgłoszenie czeka na zatwierdzenie przez nas. Może to trochę potrwać. Jeżeli zgłoszenie zostanie przyjęte, otrzymasz wiadomość e-mail.
       redirecting_to: Twoje konto jest nieaktywne, ponieważ obecnie przekierowuje je na %{acct}.
+    too_fast: Zbyt szybko przesłano formularz, spróbuj ponownie.
     trouble_logging_in: Masz problem z zalogowaniem się?
     use_security_key: Użyj klucza bezpieczeństwa
   authorize_follow:
@@ -928,6 +941,8 @@ pl:
     status: Stan weryfikacji
     view_proof: Wyświetl dowód
   imports:
+    errors:
+      over_rows_processing_limit: zawiera więcej niż %{count} wierszy
     modes:
       merge: Połącz
       merge_long: Zachowaj obecne wpisy i dodaj nowe

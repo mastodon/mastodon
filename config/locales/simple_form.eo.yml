@@ -47,6 +47,9 @@ eo:
         data: CSV-dosiero el alia Mastodon-servilo
       invite_request:
         text: Ĉi tio helpos nin revizii vian kandidatiĝon
+      ip_block:
+        severities:
+          sign_up_requires_approval: Novaj registriĝoj devigos vian aprobon
       sessions:
         otp: 'Enmetu la kodon de dufaktora aŭtentigo el via telefono aŭ uzu unu el viaj realiraj kodoj:'
       user:
@@ -70,6 +73,7 @@ eo:
         types:
           disable: Malebligi
           none: Fari nenion
+          sensitive: Tikla
           silence: Silentigi
           suspend: Haltigi kaj nemalfereble forigi kontajn datumojn
         warning_preset_id: Uzi antaŭagorditan averton
@@ -95,6 +99,7 @@ eo:
         expires_in: Eksvalidiĝas post
         fields: Profilaj metadatumoj
         header: Fonbildo
+        honeypot: "%{label} (ne plenigi)"
         inbox_url: URL de la ripetila enirkesto
         irreversible: Forĵeti anstataŭ kaŝi
         locale: Interfaca lingvo
@@ -108,12 +113,12 @@ eo:
         setting_advanced_layout: Ebligi altnivelan retpaĝan interfacon
         setting_aggregate_reblogs: Grupigi diskonigojn en tempolinioj
         setting_auto_play_gif: Aŭtomate ekigi GIF-ojn
-        setting_boost_modal: Montri fenestron por konfirmi antaŭ ol diskonigi mesaĝon
+        setting_boost_modal: Montri konfirman fenestron antaŭ ol diskonigi mesaĝon
         setting_crop_images: Stuci bildojn en negrandigitaj mesaĝoj al 16x9
         setting_default_language: Publikada lingvo
         setting_default_privacy: Mesaĝa videbleco
         setting_default_sensitive: Ĉiam marki aŭdovidaĵojn tiklaj
-        setting_delete_modal: Montri fenestron por konfirmi antaŭ ol forigi mesaĝon
+        setting_delete_modal: Montri konfirman fenestron antaŭ ol forigi mesaĝon
         setting_display_media: Aŭdovidaĵa montrado
         setting_display_media_default: Dekomenca
         setting_display_media_hide_all: Kaŝi ĉiujn
@@ -126,7 +131,7 @@ eo:
         setting_system_font_ui: Uzi la dekomencan tiparon de la sistemo
         setting_theme: Reteja etoso
         setting_trends: Montri hodiaŭajn furoraĵojn
-        setting_unfollow_modal: Montri fenestron por konfirmi antaŭ ol ĉesi sekvi iun
+        setting_unfollow_modal: Montri konfirman fenestron antaŭ ol ĉesi sekvi iun
         setting_use_blurhash: Montri buntajn transirojn por kaŝitaj aŭdovidaĵoj
         setting_use_pending_items: Malrapida reĝimo
         severity: Graveco
@@ -145,6 +150,13 @@ eo:
         comment: Komento
       invite_request:
         text: Kial vi volas aliĝi?
+      ip_block:
+        comment: Komento
+        ip: IP
+        severities:
+          no_access: Bloki atingon
+          sign_up_requires_approval: Limigi registriĝojn
+        severity: Regulo
       notification_emails:
         digest: Sendi resumajn retmesaĝojn
         favourite: Sendi retmesaĝon kiam iu stelumas vian mesaĝon

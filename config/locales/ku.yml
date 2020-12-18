@@ -188,6 +188,8 @@ ku:
       search: گەڕان
       search_same_email_domain: بەکارهێنەرانی دیکە بە ئیمەیلی یەکسان
       search_same_ip: بەکارهێنەرانی تر بەهەمان ئای پی
+      sensitive: هەستیار
+      sensitized: وەک هەستیار نیشان کراوە
       shared_inbox_url: بەستەری سندوقی هاوبەشکراو
       show:
         created_reports: گوزارشتی تۆمارکراوە
@@ -202,6 +204,7 @@ ku:
       time_in_queue: چاوەڕوانی لە ڕیزدا %{time}
       title: هەژمارەکان
       unconfirmed_email: ئیمەیڵی پشتڕاستنەکراو
+      undo_sensitized: " هەستیار نەکردن"
       undo_silenced: بێدەنگ ببە
       undo_suspension: دووبارە ڕاگرتن
       unsilenced_msg: هەژماری %{username} بە سەرکەوتوویی بێسنوور کرا
@@ -243,9 +246,11 @@ ku:
         reopen_report: دووبارە کردنەوەی گوزارشت
         reset_password_user: گەڕانەوەی تێپەڕوشە
         resolve_report: گوزارشت چارەسەربکە
+        sensitive_account: میدیاکە لە هەژمارەکەت وەک هەستیار نیشانە بکە
         silence_account: هەژماری بێدەنگی
         suspend_account: ڕاگرتنی هەژمارە
         unassigned_report: گوزارشتی دیارینەکراو
+        unsensitive_account: میدیاکە لە هەژمارەکەت وەک هەستیار نیشانە مەکە
         unsilence_account: هەژماری بێ دەنگ
         unsuspend_account: هەژماری هەڵنەوەستێنراو
         update_announcement: بەڕۆژکردنەوەی راگەیەندراو
@@ -281,9 +286,11 @@ ku:
         reopen_report: "%{name} گوزارشتی %{target} دووبارە وەگڕخستەوە"
         reset_password_user: "%{name} تێپەروشەی بەکارهێنەری %{target} گەڕانەوە"
         resolve_report: "%{name} گوزارشتی %{target} دووبارە وەگڕخستەوە"
+        sensitive_account: "%{name} بە %{target}'s میدیا وەک هەستیار دیاری کراوە"
         silence_account: "%{name} هەژماری %{target}'s بێدەنگ کرا"
         suspend_account: "%{name} هەژماری %{target}'ی ڕاگیرا"
         unassigned_report: "%{name} ڕاپۆرتی دیاری نەکراوی %{target}"
+        unsensitive_account: "%{name} بە %{target}'s میدیا وەک هەستیار دیاری نەکراوە"
         unsilence_account: "%{name} هەژماری %{target}'s بێ دەنگ"
         unsuspend_account: "%{name} هەژماری %{target}'s هەڵنەپەسێردراو"
         update_announcement: "%{name} بەڕۆژکراوەی راگەیاندنی %{target}"
@@ -835,6 +842,7 @@ ku:
       request: داوای ئەرشیفەکەت بکە
       size: قەبارە
     blocks: تۆ بلۆک دەکەیت
+    bookmarks: نیشانکراوەکان
     csv: CSV
     domain_blocks: دۆمەین قەپاتکرا
     lists: لیستەکان
@@ -911,6 +919,7 @@ ku:
     success: داتاکەت بە سەرکەوتوویی بارکرا و ئێستا لە کاتی خۆیدا پرۆسێس دەکرێت
     types:
       blocking: لیستی بلۆککردن
+      bookmarks: نیشانەکان
       domain_blocking: لیستی بلۆککردنی دۆمەین
       following: لیستی خوارەوە
       muting: لیستی کپکردنەوە
@@ -961,6 +970,7 @@ ku:
     incoming_migrations: گواستنەوە لە هەژمارەی جیاواز
     incoming_migrations_html: بۆ گواستنەوە لە هەژمارەیەکی ترەوە بۆ ئەم هەژمارە، سەرەتا پێویستە <href="%{path}"> ئەژمێرێک دروست </a> بکەی.
     moved_msg: هەژمارەکەت ئێستا دووبارە ئاڕاستە دەکرێتەوە بۆ %{acct} و شوێنکەوتوانی تۆ گواستراوەتەوە بۆ ئەوێ.
+    not_redirecting: هەژمارەکەت لە ئێستادا دووبارە ئاڕاستە ناکرێتەوە بۆ هیچ هەژمارەیەکی دیکە.
     on_cooldown: تۆ بەم دواییە هەژمارەکەت کۆچ کردووە. ئەم کارە لە رۆژەکانی %{count} دا جارێکی تر بەردەست دەبێت.
     past_migrations: گەواستنەوەکانی ڕابردوو
     proceed_with_move: شوێنکەوتوان بگوازەوە
@@ -1066,6 +1076,7 @@ ku:
   relationships:
     activity: چالاکی هەژمارە
     dormant: ناچالاک
+    follow_selected_followers: شوێنکەوتوان دیاریکراو بکە
     followers: شوێنکەوتوان
     following: شوێن‌کەوتووی
     invited: بانگهێشتەکان
@@ -1201,6 +1212,8 @@ ku:
         other: "%{count} دەنگەکان"
       vote: دەنگ
     show_more: زیاتر پیشان بدە
+    show_newer: نوێتر پیشان بدە
+    show_older: پیشاندانی کۆنتر
     show_thread: نیشاندانی ڕشتە
     sign_in_to_participate: بچۆ ژوورەوە بۆ بەشداریکردن لە گفتوگۆکەدا
     title: '%{name}: "%{quote}"'
@@ -1333,6 +1346,7 @@ ku:
     warning:
       explanation:
         disable: تا کاتێک هەژمارەی ئێوە نەوێستاوە، دراوەکانی ئێوە دەستکاری ناکرێت.بەڵام تا کاتێک کە هەژمارەکەتان ناکرێتەوە. ناتوانن هیچ ئیشێکی لەسەر بکەن.
+        sensitive: پەڕگە میدیایە بارکراوەکانت و میدیا لینککراوەکانت وەک هەستیار مامەڵەیان لەگەڵ دەکرێت.
         silence: تا کاتیک هەژمارەکەتان سنووردار بێت، تەنها ئەو کەسانە کە پێشتر شوێنکەوتووی ئێوە بوون نووسراوەکانی ئێوە لەم ڕاژە دەبینن. شایەد ئێوە لە زۆر پێرستی گشتی دیار نەکەون؛ بەڵام خەڵکانی دیکە دەتوانن بە دڵی خۆیان پەیگیری ئێوە بن.
         suspend: هەژمارەکەتان هەڵواسراوە، وە تەواو توت و میدیاکان کە لەسەر ئەم ڕاژە بارتان کردووە یان ئەو ڕاژانە کە شوێنکەوتووتان لە سەری بووە ئیتر ناگەڕێنەوە.
       get_in_touch: بە وڵام دانەوەی ئەم ئیمەیلە دەتوانن لە گەڵ لیژنەی %{instance} لە پەیوەندی بن.
@@ -1341,11 +1355,13 @@ ku:
       subject:
         disable: هەژمارەکەت %{acct} بەستراوە
         none: ئاگاداری بۆ %{acct}
+        sensitive: هەژمارەکەت %{acct} میدیایەکی پۆست کردن بە هەستیار نیشان کراوە
         silence: هەژمارەکەی %{acct} سنووردار کراوە
         suspend: هەژمارەکەی %{acct} ڕاگیرا
       title:
         disable: هەژمارە بەستراوە
         none: ئاگاداری
+        sensitive: میدیاکەت بە هەستیار نیشان کراوە
         silence: هەژماری سنووردار
         suspend: هەژمار ڕاگیرا
     welcome:

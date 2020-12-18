@@ -60,6 +60,7 @@ ca:
       one: Seguidor
       other: Seguidors
     following: Seguint
+    instance_actor_flash: Aquest compte és un actor virtual usat per a representar el mateix servidor i no cap usuari individual. Es fa servir per a federar i no s'hauria d'esborrar.
     joined: Unit des de %{date}
     last_active: darrer actiu
     link_verified_on: La propietat d'aquest enllaç s'ha verificat el %{date}
@@ -131,6 +132,7 @@ ca:
       follows: Segueix
       header: Capçalera
       inbox_url: URL de la safata d'entrada
+      invite_request_text: Motiu del registre
       invited_by: Convidat per
       ip: IP
       joined: Unit
@@ -255,6 +257,7 @@ ca:
         unsuspend_account: Desfés la suspensió del compte
         update_announcement: Actualitza l'anunci
         update_custom_emoji: Actualitza l'emoji personalitzat
+        update_domain_block: Actualitza el Bloqueig de Domini
         update_status: Actualitza l'estat
       actions:
         assigned_to_self_report: "%{name} han assignat l'informe %{target} a ells mateixos"
@@ -295,6 +298,7 @@ ca:
         unsuspend_account: "%{name} ha llevat la suspensió del compte de %{target}"
         update_announcement: "%{name} ha actualitzat l'anunci %{target}"
         update_custom_emoji: "%{name} ha actualitzat l'emoji %{target}"
+        update_domain_block: "%{name} ha actualitzat el bloqueig de domini per %{target}"
         update_status: "%{name} estat actualitzat per %{target}"
       deleted_status: "(tut esborrat)"
       empty: No s’han trobat registres.
@@ -398,6 +402,8 @@ ca:
           silence: Silenci
           suspend: Suspensió
         title: Bloqueig de domini nou
+      obfuscate: Oculta el nom del domini
+      obfuscate_hint: Oculta parcialment el nom del domini si està activat mostrar la llista de dominis limitats
       private_comment: Comentari privat
       private_comment_hint: Comentari sobre aquesta limitació del domini per a ús intern dels moderadors.
       public_comment: Comentari públic
@@ -437,6 +443,7 @@ ca:
     instances:
       by_domain: Domini
       delivery_available: El lliurament està disponible
+      empty: No s'han trobat dominis.
       known_accounts:
         one: "%{count} compte conegut"
         other: "%{count} comptes coneguts"
@@ -514,6 +521,8 @@ ca:
       comment:
         none: Cap
       created_at: Reportat
+      forwarded: Reenviat
+      forwarded_to: Reenviat a %{domain}
       mark_as_resolved: Marca com a resolt
       mark_as_unresolved: Marcar com a sense resoldre
       notes:
@@ -583,6 +592,9 @@ ca:
         min_invite_role:
           disabled: Ningú
           title: Permet les invitacions de
+        require_invite_text:
+          desc_html: Quan el registre requereix aprovació manual, fer que sigui obligatori enlloc d'opcions l escriure el text de la solicitud d'invitació "Perquè vols unirte?"
+          title: Requerir als nous usuaris omplir el text de la solicitud d'invitació
       registrations_mode:
         modes:
           approved: Es requereix l’aprovació per registrar-se
@@ -751,6 +763,7 @@ ca:
       functional: El teu compte és plenament operatiu.
       pending: La vostra sol·licitud està pendent de revisió pel nostre personal. Això pot trigar una mica. Rebreu un correu electrònic quan sigui aprovada.
       redirecting_to: El teu compte és inactiu perquè actualment està redirigint a %{acct}.
+    too_fast: Formulari enviat massa ràpid, torna a provar-ho.
     trouble_logging_in: Problemes per iniciar la sessió?
     use_security_key: Usa clau de seguretat
   authorize_follow:
@@ -910,6 +923,8 @@ ca:
     status: Estat de verificació
     view_proof: Veure la prova
   imports:
+    errors:
+      over_rows_processing_limit: conté més de %{count} files
     modes:
       merge: Fusionar
       merge_long: Mantenir els registres existents i afegir-ne de nous

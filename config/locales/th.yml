@@ -102,20 +102,21 @@ th:
       delete: ลบข้อมูล
       deleted: ลบแล้ว
       demote: ลดขั้น
-      disable: ปิดใช้งาน
+      disable: อายัด
       disable_two_factor_authentication: ปิดใช้งาน 2FA
-      disabled: ปิดใช้งานอยู่
+      disabled: อายัดอยู่
       display_name: ชื่อที่แสดง
       domain: โดเมน
       edit: แก้ไข
       email: อีเมล
       email_status: สถานะอีเมล
-      enable: เปิดใช้งาน
+      enable: เลิกอายัด
       enabled: เปิดใช้งานอยู่
       followers: ผู้ติดตาม
       follows: การติดตาม
       header: ส่วนหัว
       inbox_url: URL กล่องขาเข้า
+      invite_request_text: เหตุผลสำหรับการเข้าร่วม
       invited_by: เชิญโดย
       ip: IP
       joined: เข้าร่วมเมื่อ
@@ -172,8 +173,8 @@ th:
       show:
         created_reports: รายงานที่สร้าง
         targeted_reports: รายงานโดยผู้อื่น
-      silence: ทำให้เงียบ
-      silenced: เงียบอยู่
+      silence: จำกัด
+      silenced: จำกัดอยู่
       statuses: สถานะ
       subscribe: บอกรับ
       suspended: ระงับอยู่
@@ -228,6 +229,7 @@ th:
         unsuspend_account: เลิกระงับบัญชี
         update_announcement: อัปเดตประกาศ
         update_custom_emoji: อัปเดตอีโมจิที่กำหนดเอง
+        update_domain_block: อัปเดตการปิดกั้นโดเมน
         update_status: อัปเดตสถานะ
       actions:
         assigned_to_self_report: "%{name} ได้มอบหมายรายงาน %{target} ให้กับตนเอง"
@@ -268,6 +270,7 @@ th:
         unsuspend_account: "%{name} ได้เลิกระงับบัญชีของ %{target}"
         update_announcement: "%{name} ได้อัปเดตประกาศ %{target}"
         update_custom_emoji: "%{name} ได้อัปเดตอีโมจิ %{target}"
+        update_domain_block: "%{name} ได้อัปเดตการปิดกั้นโดเมนสำหรับ %{target}"
         update_status: "%{name} ได้อัปเดตสถานะโดย %{target}"
       deleted_status: "(สถานะที่ลบแล้ว)"
       empty: ไม่พบรายการบันทึก
@@ -403,6 +406,7 @@ th:
       title: โดเมนอีเมลที่ปิดกั้นอยู่
     instances:
       by_domain: โดเมน
+      empty: ไม่พบโดเมน
       known_accounts:
         other: "%{count} บัญชีที่รู้จัก"
       moderation:
@@ -471,6 +475,8 @@ th:
       comment:
         none: ไม่มี
       created_at: รายงานเมื่อ
+      forwarded: ส่งต่อแล้ว
+      forwarded_to: ส่งต่อไปยัง %{domain} แล้ว
       mark_as_resolved: ทำเครื่องหมายว่าแก้ปัญหาแล้ว
       mark_as_unresolved: ทำเครื่องหมายว่ายังไม่ได้แก้ปัญหา
       notes:
@@ -602,6 +608,8 @@ th:
       edit_preset: แก้ไขคำเตือนที่ตั้งไว้ล่วงหน้า
       title: จัดการคำเตือนที่ตั้งไว้ล่วงหน้า
   admin_mailer:
+    new_pending_account:
+      body: รายละเอียดของบัญชีใหม่อยู่ด้านล่าง คุณสามารถอนุมัติหรือปฏิเสธใบสมัครนี้
     new_report:
       body: "%{reporter} ได้รายงาน %{target}"
       body_remote: ใครสักคนจาก %{domain} ได้รายงาน %{target}
@@ -660,6 +668,7 @@ th:
       cas: CAS
       saml: SAML
     register: ลงทะเบียน
+    registration_closed: "%{instance} ไม่ได้กำลังเปิดรับสมาชิกใหม่"
     resend_confirmation: ส่งคำแนะนำการยืนยันใหม่
     reset_password: ตั้งรหัสผ่านใหม่
     security: ความปลอดภัย
@@ -764,7 +773,7 @@ th:
   filters:
     contexts:
       account: โปรไฟล์
-      home: เส้นเวลาหน้าแรก
+      home: หน้าแรกและรายการ
       notifications: การแจ้งเตือน
       public: เส้นเวลาสาธารณะ
       thread: การสนทนา
@@ -803,6 +812,8 @@ th:
     status: สถานะการตรวจสอบ
     view_proof: ดูการพิสูจน์
   imports:
+    errors:
+      over_rows_processing_limit: มีมากกว่า %{count} แถว
     modes:
       merge: ผสาน
       merge_long: เก็บระเบียนที่มีอยู่และเพิ่มระเบียนใหม่
@@ -818,6 +829,7 @@ th:
   in_memoriam_html: เพื่อระลึกถึง
   invites:
     delete: ปิดใช้งาน
+    expired: หมดอายุแล้ว
     expires_in:
       '1800': 30 นาที
       '21600': 6 ชั่วโมง
@@ -1074,7 +1086,7 @@ th:
       month: "%b %Y"
   two_factor_authentication:
     add: เพิ่ม
-    disable: ปิดใช้งาน
+    disable: ปิดใช้งาน 2FA
     disabled_success: ปิดใช้งานการรับรองความถูกต้องด้วยสองปัจจัยสำเร็จ
     edit: แก้ไข
     enabled: เปิดใช้งานการรับรองความถูกต้องด้วยสองปัจจัยแล้ว
@@ -1129,4 +1141,5 @@ th:
     invalid_credential: กุญแจความปลอดภัยไม่ถูกต้อง
     not_enabled: คุณยังไม่ได้เปิดใช้งาน WebAuthn
     not_supported: เบราว์เซอร์นี้ไม่รองรับกุญแจความปลอดภัย
+    otp_required: เพื่อใช้กุญแจความปลอดภัย โปรดเปิดใช้งานการรับรองความถูกต้องด้วยสองปัจจัยก่อน
     registered_on: ลงทะเบียนเมื่อ %{date}

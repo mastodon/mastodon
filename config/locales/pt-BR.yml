@@ -60,6 +60,7 @@ pt-BR:
       one: Seguidor
       other: Seguidores
     following: Seguindo
+    instance_actor_flash: Esta conta é um ator virtual usado para representar o próprio servidor e não um usuário individual. É utilizada para fins de federação e não deve ser suspensa.
     joined: Entrou em %{date}
     last_active: última atividade
     link_verified_on: O link foi verificado em %{date}
@@ -131,6 +132,7 @@ pt-BR:
       follows: Seguindo
       header: Capa
       inbox_url: URL da caixa de entrada
+      invite_request_text: Motivos para entrar
       invited_by: Convidado por
       ip: IP
       joined: Entrou
@@ -255,6 +257,7 @@ pt-BR:
         unsuspend_account: Remover suspensão de conta
         update_announcement: Editar anúncio
         update_custom_emoji: Editar Emoji Personalizado
+        update_domain_block: Atualizar bloqueio de domínio
         update_status: Editar Status
       actions:
         assigned_to_self_report: "%{name} pegou a denúncia %{target}"
@@ -295,6 +298,7 @@ pt-BR:
         unsuspend_account: "%{name} removeu a suspensão da conta de %{target}"
         update_announcement: "%{name} atualizou o anúncio %{target}"
         update_custom_emoji: "%{name} atualizou o emoji %{target}"
+        update_domain_block: "%{name} atualizou o bloqueio de domínio para %{target}"
         update_status: "%{name} atualizou o status de %{target}"
       deleted_status: "(status excluído)"
       empty: Nenhum registro encontrado.
@@ -437,6 +441,7 @@ pt-BR:
     instances:
       by_domain: Domínio
       delivery_available: Envio disponível
+      empty: Nenhum domínio encontrado.
       known_accounts:
         one: "%{count} conta conhecida"
         other: "%{count} contas conhecidas"
@@ -514,6 +519,8 @@ pt-BR:
       comment:
         none: Nenhum
       created_at: Denunciado
+      forwarded: Encaminhados
+      forwarded_to: Encaminhado para %{domain}
       mark_as_resolved: Marcar como resolvido
       mark_as_unresolved: Marcar como não resolvido
       notes:
@@ -583,6 +590,9 @@ pt-BR:
         min_invite_role:
           disabled: Ninguém
           title: Permitir convites de
+        require_invite_text:
+          desc_html: Quando o cadastro de novas contas exigir aprovação manual, tornar obrigatório, ao invés de opcional, o texto de solicitação de convite em "Por que você deseja criar uma conta aqui?"
+          title: Exigir que novos usuários preencham um texto de solicitação de convite
       registrations_mode:
         modes:
           approved: Aprovação necessária para criar conta
@@ -751,6 +761,7 @@ pt-BR:
       functional: Sua conta está totalmente operacional.
       pending: Sua solicitação está com revisão pendente por parte de nossa equipe. Você receberá um e-mail se ela for aprovada.
       redirecting_to: Sua conta está inativa porque atualmente está redirecionando para %{acct}.
+    too_fast: O formulário foi enviado muito rapidamente, tente novamente.
     trouble_logging_in: Problemas para entrar?
     use_security_key: Usar chave de segurança
   authorize_follow:
@@ -842,6 +853,7 @@ pt-BR:
       request: Solicitar o seu arquivo
       size: Tamanho
     blocks: Você bloqueou
+    bookmarks: Marcadores
     csv: CSV
     domain_blocks: Bloqueios de domínio
     lists: Listas
@@ -918,6 +930,7 @@ pt-BR:
     success: Os seus dados foram enviados com sucesso e serão processados em instantes
     types:
       blocking: Lista de bloqueio
+      bookmarks: Marcadores
       domain_blocking: Lista de domínios bloqueados
       following: Pessoas que você segue
       muting: Lista de silenciados

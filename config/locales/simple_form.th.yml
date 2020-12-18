@@ -91,10 +91,11 @@ th:
         text: คำเตือนที่กำหนดเอง
         type: การกระทำ
         types:
-          disable: แช่แข็ง
-          none: ไม่ทำสิ่งใด
-          silence: ทำให้เงียบ
-          suspend: ระงับและลบข้อมูลบัญชีอย่างถาวร
+          disable: อายัด
+          none: ส่งคำเตือน
+          sensitive: ละเอียดอ่อน
+          silence: จำกัด
+          suspend: ระงับ
         warning_preset_id: ใช้คำเตือนที่ตั้งไว้ล่วงหน้า
       announcement:
         all_day: เหตุการณ์ตลอดทั้งวัน
@@ -137,6 +138,7 @@ th:
         setting_default_privacy: ความเป็นส่วนตัวของการโพสต์
         setting_default_sensitive: ทำเครื่องหมายสื่อว่าละเอียดอ่อนเสมอ
         setting_delete_modal: แสดงกล่องโต้ตอบการยืนยันก่อนลบโพสต์
+        setting_disable_swiping: ปิดใช้งานการเคลื่อนไหวในการปัด
         setting_display_media: การแสดงสื่อ
         setting_display_media_default: ค่าเริ่มต้น
         setting_display_media_hide_all: ซ่อนทั้งหมด
