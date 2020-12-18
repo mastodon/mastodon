@@ -401,6 +401,8 @@ es:
           silence: Silenciar
           suspend: Suspender
         title: Nuevo bloque de dominio
+      obfuscate: Ocultar nombre de dominio
+      obfuscate_hint: Oculta parcialmente el nombre de dominio en la lista si mostrar la lista de limitaciones de dominio está habilitado
       private_comment: Comentario privado
       private_comment_hint: Comentario sobre esta limitación de dominio para el uso interno por parte de los moderadores.
       public_comment: Comentario público
@@ -920,6 +922,8 @@ es:
     status: Estado de la verificación
     view_proof: Ver prueba
   imports:
+    errors:
+      over_rows_processing_limit: contiene más de %{count} filas
     modes:
       merge: Unir
       merge_long: Mantener registros existentes y añadir nuevos
