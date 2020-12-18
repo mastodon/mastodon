@@ -116,6 +116,7 @@ th:
       follows: การติดตาม
       header: ส่วนหัว
       inbox_url: URL กล่องขาเข้า
+      invite_request_text: เหตุผลสำหรับการเข้าร่วม
       invited_by: เชิญโดย
       ip: IP
       joined: เข้าร่วมเมื่อ
@@ -228,6 +229,7 @@ th:
         unsuspend_account: เลิกระงับบัญชี
         update_announcement: อัปเดตประกาศ
         update_custom_emoji: อัปเดตอีโมจิที่กำหนดเอง
+        update_domain_block: อัปเดตการปิดกั้นโดเมน
         update_status: อัปเดตสถานะ
       actions:
         assigned_to_self_report: "%{name} ได้มอบหมายรายงาน %{target} ให้กับตนเอง"
@@ -268,6 +270,7 @@ th:
         unsuspend_account: "%{name} ได้เลิกระงับบัญชีของ %{target}"
         update_announcement: "%{name} ได้อัปเดตประกาศ %{target}"
         update_custom_emoji: "%{name} ได้อัปเดตอีโมจิ %{target}"
+        update_domain_block: "%{name} ได้อัปเดตการปิดกั้นโดเมนสำหรับ %{target}"
         update_status: "%{name} ได้อัปเดตสถานะโดย %{target}"
       deleted_status: "(สถานะที่ลบแล้ว)"
       empty: ไม่พบรายการบันทึก
@@ -403,6 +406,7 @@ th:
       title: โดเมนอีเมลที่ปิดกั้นอยู่
     instances:
       by_domain: โดเมน
+      empty: ไม่พบโดเมน
       known_accounts:
         other: "%{count} บัญชีที่รู้จัก"
       moderation:
@@ -471,6 +475,8 @@ th:
       comment:
         none: ไม่มี
       created_at: รายงานเมื่อ
+      forwarded: ส่งต่อแล้ว
+      forwarded_to: ส่งต่อไปยัง %{domain} แล้ว
       mark_as_resolved: ทำเครื่องหมายว่าแก้ปัญหาแล้ว
       mark_as_unresolved: ทำเครื่องหมายว่ายังไม่ได้แก้ปัญหา
       notes:
@@ -806,6 +812,8 @@ th:
     status: สถานะการตรวจสอบ
     view_proof: ดูการพิสูจน์
   imports:
+    errors:
+      over_rows_processing_limit: มีมากกว่า %{count} แถว
     modes:
       merge: ผสาน
       merge_long: เก็บระเบียนที่มีอยู่และเพิ่มระเบียนใหม่

@@ -402,6 +402,8 @@ ca:
           silence: Silenci
           suspend: Suspensió
         title: Bloqueig de domini nou
+      obfuscate: Oculta el nom del domini
+      obfuscate_hint: Oculta parcialment el nom del domini si està activat mostrar la llista de dominis limitats
       private_comment: Comentari privat
       private_comment_hint: Comentari sobre aquesta limitació del domini per a ús intern dels moderadors.
       public_comment: Comentari públic
@@ -921,6 +923,8 @@ ca:
     status: Estat de verificació
     view_proof: Veure la prova
   imports:
+    errors:
+      over_rows_processing_limit: conté més de %{count} files
     modes:
       merge: Fusionar
       merge_long: Mantenir els registres existents i afegir-ne de nous

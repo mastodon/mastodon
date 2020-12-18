@@ -23,7 +23,7 @@ vi:
     hosted_on: "%{domain} vận hành nhờ Mastodon"
     instance_actor_flash: 'Đây là một tài khoản ảo được sử dụng để đại diện cho máy chủ chứ không phải bất kỳ người dùng cá nhân nào. Nó được sử dụng cho mục đích liên kết và không nên chặn trừ khi bạn muốn chặn toàn bộ máy chủ.
 
-'
+      '
     learn_more: Tìm hiểu
     privacy_policy: Chính sách bảo mật
     see_whats_happening: Dòng thời gian
@@ -398,6 +398,8 @@ vi:
           silence: Ẩn
           suspend: Vô hiệu hóa
         title: Máy chủ bị chặn mới
+      obfuscate: Làm mờ tên máy chủ
+      obfuscate_hint: Làm mờ tên máy chủ trong danh sách nếu giới hạn máy chủ đã bật
       private_comment: Bình luận riêng
       private_comment_hint: Cho biết vì sao chặn máy chủ này để tiện kiểm duyệt viên tham khảo.
       public_comment: Bình luận công khai
@@ -506,7 +508,7 @@ vi:
       action_taken_by: Hành động được thực hiện bởi
       are_you_sure: Bạn có chắc không?
       assign_to_self: Giao cho tôi
-      assigned: Phân công kiểm duyệt
+      assigned: Người xử lý
       by_target_domain: Tên tài khoản bị báo cáo
       comment:
         none: Không có mô tả
@@ -754,7 +756,7 @@ vi:
       pending: Đơn đăng ký của bạn đang chờ phê duyệt. Điều này có thể mất một thời gian. Bạn sẽ nhận được email nếu đơn đăng ký của bạn được chấp thuận.
       redirecting_to: Tài khoản của bạn không hoạt động vì hiện đang chuyển hướng đến %{acct}.
     too_fast: Nghi vấn đăng ký spam, xin thử lại.
-    trouble_logging_in: Gặp sự cố khi đăng nhập?
+    trouble_logging_in: Quên mật khẩu?
     use_security_key: Dùng khóa bảo mật
   authorize_follow:
     already_following: Bạn đang theo dõi người này
@@ -912,6 +914,8 @@ vi:
     status: Tình trạng xác minh
     view_proof: Xem bằng chứng
   imports:
+    errors:
+      over_rows_processing_limit: chứa nhiều hơn %{count} hàng
     modes:
       merge: Hợp nhất
       merge_long: Giữ hồ sơ hiện có và thêm hồ sơ mới
@@ -1082,7 +1086,7 @@ vi:
     last_active: Hoạt động lần cuối
     most_recent: Mới nhất
     moved: Đã xóa
-    mutual: Cả hai
+    mutual: Đồng thời
     primary: Bình thường
     relationship: Mối quan hệ
     remove_selected_domains: Xóa hết người theo dõi từ các máy chủ đã chọn
@@ -1165,7 +1169,7 @@ vi:
     featured_tags: Hashtags thường dùng
     identity_proofs: Bằng chứng nhận dạng
     import: Nhập dữ liệu
-    import_and_export: Nhập và xuất dữ liệu
+    import_and_export: Dữ liệu
     migrate: Chuyển tài khoản sang máy chủ khác
     notifications: Thông báo
     preferences: Chung
@@ -1191,7 +1195,7 @@ vi:
     errors:
       in_reply_not_found: Bạn đang trả lời một tút không còn tồn tại.
     language_detection: Tự động phát hiện ngôn ngữ
-    open_in_web: Mở trên web
+    open_in_web: Xem trong Mastodon
     over_character_limit: vượt quá giới hạn %{max} ký tự
     pin_errors:
       limit: Bạn đã ghim quá số lượng tút cho phép

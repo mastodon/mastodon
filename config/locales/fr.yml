@@ -402,6 +402,8 @@ fr:
           silence: Masqué
           suspend: Suspendre
         title: Nouveau blocage de domaine
+      obfuscate: Obfusquer le nom de domaine
+      obfuscate_hint: Obfusquer partiellement le nom de domaine dans la liste si la liste des limitations de domaine est activée
       private_comment: Commentaire privé
       private_comment_hint: Commenter sur cette limitation de domaine pour informer les modérateurs internes.
       public_comment: Commentaire public
@@ -921,6 +923,8 @@ fr:
     status: État de la vérification
     view_proof: Voir la preuve
   imports:
+    errors:
+      over_rows_processing_limit: contient plus de %{count} lignes
     modes:
       merge: Fusionner
       merge_long: Garder les enregistrements existants et ajouter les nouveaux

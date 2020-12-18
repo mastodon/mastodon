@@ -57,6 +57,7 @@ zh-HK:
     followers:
       other: 關注者
     following: 正在關注
+    instance_actor_flash: 這個帳戶是結盟用的本伺服器的虛擬象徵，並不代表任何個別用戶。請不要把帳號停權。
     joined: 於 %{date} 加入
     last_active: 上次活躍時間
     link_verified_on: 此連結的所有權已在 %{date} 檢查過
@@ -127,6 +128,7 @@ zh-HK:
       follows: 正在關注
       header: 個人資料頁頂圖片
       inbox_url: 收件箱（Inbox）URL
+      invite_request_text: 加入的原因
       invited_by: 邀請者
       ip: IP 位址
       joined: 已加入
@@ -251,6 +253,7 @@ zh-HK:
         unsuspend_account: 取消帳號的停權狀態
         update_announcement: 更新公告
         update_custom_emoji: 更新自定的 Emoji 表情符號
+        update_domain_block: 更新域名阻隔
         update_status: 更新文章
       actions:
         assigned_to_self_report: "%{name} 指派了 %{target} 的舉報給自己"
@@ -291,6 +294,7 @@ zh-HK:
         unsuspend_account: "%{name} 取消了帳號 %{target} 的停權狀態"
         update_announcement: "%{name} 更新了公告 %{target}"
         update_custom_emoji: "%{name} 更新了 Emoji 表情符號 %{target}"
+        update_domain_block: "%{name} 更新了對 %{target} 的域名阻隔"
         update_status: "%{name} 更新了 %{target} 的文章"
       deleted_status: "（已刪除文章）"
       empty: 找不到任何日誌。
@@ -431,7 +435,8 @@ zh-HK:
       title: 電郵網域阻隔
     instances:
       by_domain: 域名
-      delivery_available: 傳送可用
+      delivery_available: 可傳送
+      empty: 找不到域名。
       known_accounts:
         other: "%{count} 已知的帳號"
       moderation:
@@ -506,6 +511,8 @@ zh-HK:
       comment:
         none: 沒有
       created_at: 日期
+      forwarded: 已轉寄
+      forwarded_to: 已轉寄到 %{domain}
       mark_as_resolved: 標示為「已處理」
       mark_as_unresolved: 標示為「未處理」
       notes:
@@ -575,6 +582,9 @@ zh-HK:
         min_invite_role:
           disabled: 沒有人
           title: 允許發送邀請的身份
+        require_invite_text:
+          desc_html: 如果已設定為手動審核注冊，請把「加入的原因」設定為必填項目。
+          title: 要求新用戶填寫注冊申請
       registrations_mode:
         modes:
           approved: 註冊需要核准

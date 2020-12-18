@@ -23,7 +23,7 @@ hu:
     hosted_on: "%{domain} Mastodon szerver"
     instance_actor_flash: 'Ez a fiók egy virtuális szereplő, mely magát a szervert reprezentálja, nem egy felhasználót. Ez a föderáció támogatására készült, ezért nem szabad blokkolni, hacsak egy teljes szervert nem akarsz kitiltani, amire persze a domain blokkolása jobb megoldás.
 
-'
+      '
     learn_more: Tudj meg többet
     privacy_policy: Adatvédelmi szabályzat
     see_whats_happening: Nézd, mi történik
@@ -60,7 +60,7 @@ hu:
       one: Követő
       other: Követő
     following: Követett
-    instance_actor_flash: Ez a fiók virtuális és magát a szervert reprezentálja, nem egy konkrét felhasználót. Föderációs okok miatt létezik és nem szabad felfüggeszteni.
+    instance_actor_flash: Ez a fiók virtuális és magát a kiszolgálót reprezentálja, nem egy konkrét felhasználót. Föderációs célokból használt, és nem szabad felfüggeszteni.
     joined: Csatlakozott %{date}
     last_active: utoljára aktív
     link_verified_on: A link tulajdonosát %{date} -n ellenőriztük
@@ -142,7 +142,7 @@ hu:
         remote: Távoli
         title: Hely
       login_status: Bejelentkezési állapot
-      media_attachments: Média-csatolmányok
+      media_attachments: Médiamellékletek
       memorialize: Emlékállítás
       memorialized: Emlékezetünkben
       memorialized_msg: A %{username} fiókot sikeresen emlékké nyilvánítottuk
@@ -402,6 +402,8 @@ hu:
           silence: Némítás
           suspend: Felfüggesztés
         title: Új domain tiltása
+      obfuscate: Domain név álcázása
+      obfuscate_hint: Részlegesen álcázza a domain nevet a listában, ha a domain korlátozások listájának közzététele engedélyezett
       private_comment: Privát megjegyzés
       private_comment_hint: Megjegyzés domain tiltásával kapcsolatban belső használatra, a többi moderátor részére.
       public_comment: Nyilvános megjegyzés
@@ -520,7 +522,7 @@ hu:
         none: Egyik sem
       created_at: Jelentve
       forwarded: Továbbítva
-      forwarded_to: Továbbítva neki %{domain}
+      forwarded_to: 'Továbbítva ide: %{domain}'
       mark_as_resolved: Megjelölés megoldottként
       mark_as_unresolved: Megjelölés megoldatlanként
       notes:
@@ -896,8 +898,8 @@ hu:
     order_by: Rendezés
     save_changes: Változások mentése
     validation_errors:
-      one: Valami nincs rendjén! Kérlek tekintsd meg a hibát alant
-      other: Valami nincs rendjén! Kérlek tekintsd meg a %{count} darab hibát alant
+      one: Valami nincs rendjén! Tekintsd meg a hibát lent
+      other: Valami nincs rendjén! Tekintsd meg a(z) %{count} hibát lent
   html_validator:
     invalid_markup: 'hibás HTML leíró: %{error}'
   identity_proofs:
@@ -921,6 +923,8 @@ hu:
     status: Ellenőrzés állapota
     view_proof: Tanúsítás megtekintése
   imports:
+    errors:
+      over_rows_processing_limit: több mint %{count} sort tartalmaz
     modes:
       merge: Összefésülés
       merge_long: Megtartjuk a meglévő bejegyzéseket és hozzávesszük az újakat
@@ -1222,7 +1226,7 @@ hu:
         one: "%{count} szavazat"
         other: "%{count} szavazat"
       vote: Szavazás
-    show_more: Mutass többet
+    show_more: Több megjelenítése
     show_newer: Újabbak mutatása
     show_older: Régebbiek mutatása
     show_thread: Szál mutatása

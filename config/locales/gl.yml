@@ -23,7 +23,7 @@ gl:
     hosted_on: Mastodon aloxado en %{domain}
     instance_actor_flash: 'Esta conta é un actor virtual utilizado para representar ao servidor e non a unha usuaria individual. Utilízase para propósitos de federación e non debería estar bloqueada a menos que queiras bloquear a toda a instancia, en tal caso deberías utilizar o bloqueo do dominio.
 
-'
+      '
     learn_more: Saber máis
     privacy_policy: Política de privacidade
     see_whats_happening: Ver o que está a acontecer
@@ -60,6 +60,7 @@ gl:
       one: Seguidora
       other: Seguidoras
     following: Seguindo
+    instance_actor_flash: Esta conta é un actor virtual utilizado para representar ó servidor mesmo e non a unha usuaria individual. Utilízase por motivos de federación e non debería estar suspendida.
     joined: Uniuse en %{date}
     last_active: última actividade
     link_verified_on: A propiedade desta ligazón foi verificada en %{date}
@@ -131,6 +132,7 @@ gl:
       follows: Seguindo
       header: Cabeceira
       inbox_url: URL da caixa de entrada
+      invite_request_text: Razóns para unirte
       invited_by: Convidada por
       ip: IP
       joined: Uniuse
@@ -1347,8 +1349,8 @@ gl:
     webauthn: Chaves de seguridade
   user_mailer:
     backup_ready:
-      explanation: Solicitou un respaldo completo da súa conta de Mastodon. Xa está listo para descargar!
-      subject: O seu ficheiro xa está listo para descargar
+      explanation: Solicitaches os datos completos da túa conta de Mastodon. Xa está preparados para descargar!
+      subject: O teu ficheiro xa está preparado para descargar
       title: Leve o ficheiro
     sign_in_token:
       details: 'Detalles sobre o intento:'
@@ -1379,7 +1381,7 @@ gl:
         suspend: Conta suspendida
     welcome:
       edit_profile_action: Configurar perfil
-      edit_profile_step: Podes personalizar o teu perfil subindo un avatar, cabeceira, cambiar o nome público e aínda máis. Se restrinxes a tua conta podes revisar a conta das persoas que solicitan seguirte antes de permitirlles o acceso aos teus toots.
+      edit_profile_step: Podes personalizar o teu perfil subindo un avatar, cabeceira, cambiar o nome público e aínda máis. Se restrinxes a túa conta podes revisar a conta das persoas que solicitan seguirte antes de permitirlles o acceso aos teus toots.
       explanation: Aquí ten alunhas endereitas para ir aprendendo
       final_action: Comece a publicar
       final_step: 'Publica! Incluso sen seguidoras as túas mensaxes serán vistas por outras, por exemplo na liña temporal local e nos cancelos. Poderías presentarte ao #fediverso utilizando o cancelo #introductions.'

@@ -60,6 +60,7 @@ is:
       one: fylgjandi
       other: fylgjendur
     following: Fylgist með
+    instance_actor_flash: Þessi notandaaðgangur er sýndarnotandi sem stendur fyrir sjálfan netþjóninn en ekki neinn einstakling. Hann er notaður við skýjasambandsmiðlun og ætti ekki að setja hann í bið eða banna.
     joined: Gerðist þátttakandi %{date}
     last_active: síðasta virkni
     link_verified_on: Eignarhald á þessum tengli var athugað þann %{date}
@@ -401,6 +402,8 @@ is:
           silence: Hylja
           suspend: Setja í bið
         title: Ný útilokun á léni
+      obfuscate: Gera heiti léns ólæsilegt
+      obfuscate_hint: Gera heiti léns ólæsilegt að hluta í listanum ef auglýsing er virk fyrir lista yfir takmarkanir léna
       private_comment: Einkaathugasemd
       private_comment_hint: Athugasemd um þessa útilokun á léni til innanhússnotkunar fyrir umsjónarmenn.
       public_comment: Opinber athugasemd
@@ -920,6 +923,8 @@ is:
     status: Staða sannvottunar
     view_proof: Skoða sönnun
   imports:
+    errors:
+      over_rows_processing_limit: inniheldur meira en %{count} raðir
     modes:
       merge: Sameina
       merge_long: Halda fyrirliggjandi færslum og bæta við nýjum

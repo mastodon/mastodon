@@ -410,6 +410,8 @@ pl:
           silence: Wycisz
           suspend: Zawieś
         title: Nowa blokada domen
+      obfuscate: Ukryj nazwę domeny
+      obfuscate_hint: Częściowo ukryj nazwę domeny na liście, gdy reklamowanie listy limitów domen jest włączone
       private_comment: Prywatny komentarz
       private_comment_hint: Komentarz na temat ograniczeń dla tej domeny do wewnętrznej informacji dla moderatorów.
       public_comment: Publiczny komentarz
@@ -939,6 +941,8 @@ pl:
     status: Stan weryfikacji
     view_proof: Wyświetl dowód
   imports:
+    errors:
+      over_rows_processing_limit: zawiera więcej niż %{count} wierszy
     modes:
       merge: Połącz
       merge_long: Zachowaj obecne wpisy i dodaj nowe

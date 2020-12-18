@@ -60,6 +60,7 @@ sq:
       one: Ndjekës
       other: Ndjekës
     following: Ndjekje
+    instance_actor_flash: Kjo llogari është një aktor virtual, i përdorur për të përfaqësuar vetë shërbyesin dhe jo ndonjë përdorues individual. Përdoret për qëllime federimi dhe s’duhet pezulluar.
     joined: U bë pjesë më %{date}
     last_active: aktiv së fundi
     link_verified_on: Pronësia e kësaj lidhjeje qe kontrolluar më %{date}
@@ -401,6 +402,8 @@ sq:
           silence: Heshtoji
           suspend: Pezulloje
         title: Bllokim i ri përkatësie
+      obfuscate: Errësoje emrin e përkatësisë
+      obfuscate_hint: Errësoje pjesërisht emrin e përkatësisë te lista, nëse është aktivizuar publikimi i listës së kufizimeve të përkatësive
       private_comment: Koment privat
       private_comment_hint: Koment mbi këtë kufizim përkatësie për përdorim të brendshëm nga moderatorët.
       public_comment: Koment publik
@@ -920,6 +923,8 @@ sq:
     status: Gjendje verifikimi
     view_proof: Shihni provën
   imports:
+    errors:
+      over_rows_processing_limit: përmban më shumë se %{count} rreshta
     modes:
       merge: Përzieji
       merge_long: Mbaji zërat ekzistues dhe shto të rinjtë
