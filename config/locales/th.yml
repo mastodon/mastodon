@@ -811,6 +811,8 @@ th:
     status: สถานะการตรวจสอบ
     view_proof: ดูการพิสูจน์
   imports:
+    errors:
+      over_rows_processing_limit: มีมากกว่า %{count} แถว
     modes:
       merge: ผสาน
       merge_long: เก็บระเบียนที่มีอยู่และเพิ่มระเบียนใหม่
