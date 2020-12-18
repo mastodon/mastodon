@@ -27,7 +27,7 @@ class ImportService < BaseService
 
   def import_follows!
     parse_import_data!(['Account address'])
-    import_relationships!('follow', 'unfollow', @account.following, follow_limit, reblogs: { header: 'Show boosts', default: true })
+    import_relationships!('follow', 'unfollow', @account.following, ROWS_PROCESSING_LIMIT, reblogs: { header: 'Show boosts', default: true })
   end
 
   def import_blocks!
@@ -85,6 +85,7 @@ class ImportService < BaseService
 
     head_items = items.uniq { |acct, _| acct.split('@')[1] }
     tail_items = items - head_items
+
     Import::RelationshipWorker.push_bulk(head_items + tail_items) do |acct, extra|
       [@account.id, acct, action, extra]
     end
@@ -131,10 +132,6 @@ class ImportService < BaseService
 
   def import_data
     Paperclip.io_adapters.for(@import.data).read
-  end
-
-  def follow_limit
-    FollowLimitValidator.limit_for_account(@account)
   end
 
   def relations_map_for_account(account, account_ids)
