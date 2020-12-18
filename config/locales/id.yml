@@ -55,6 +55,7 @@ id:
     followers:
       other: Pengikut
     following: Mengikuti
+    instance_actor_flash: Akun ini adalah aktor virtual yang merepresentasikan server itu sendiri dan bukan pengguna individu. Ini dipakai untuk tujuan gabungan dan seharusnya tidak ditangguhkan.
     joined: Bergabung pada %{date}
     last_active: terakhir aktif
     link_verified_on: Kepemilikan tautan ini telah dicek pada %{date}
@@ -125,6 +126,7 @@ id:
       follows: Mengikut
       header: Tajuk
       inbox_url: URL Kotak masuk
+      invite_request_text: Alasan bergabung
       invited_by: Diundang oleh
       ip: IP
       joined: Bergabung
@@ -507,6 +509,8 @@ id:
       comment:
         none: Tidak ada
       created_at: Dilaporkan
+      forwarded: Diteruskan
+      forwarded_to: Diteruskan ke %{domain}
       mark_as_resolved: Tandai telah diseleseikan
       mark_as_unresolved: Tandai belum terselesaikan
       notes:
@@ -576,6 +580,9 @@ id:
         min_invite_role:
           disabled: Tidak ada satu pun
           title: Izinkan undangan oleh
+        require_invite_text:
+          desc_html: Saat pendaftaran harus disetujui manual, buat input teks "Mengapa Anda ingin bergabung?" sebagai hal wajib bukan opsional
+          title: Pengguna baru harus memasukkan alasan bergabung
       registrations_mode:
         modes:
           approved: Persetujuan diperlukan untuk mendaftar
