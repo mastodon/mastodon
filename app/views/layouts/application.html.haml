@@ -30,6 +30,10 @@
 
     = stylesheet_link_tag '/inert.css', skip_pipeline: true, media: 'all', id: 'inert-style'
 
+    -if user_signed_in? && current_user.setting_enable_snowfall
+      = content_tag(:script, nil, src: full_asset_url('plugins/snow.js?v3', skip_pipeline: true), async: true)
+      = stylesheet_link_tag '/plugins/snow.css?v3', skip_pipeline: true, media: 'all', id: 'snow-plugin-style'
+
     - if Setting.custom_css.present?
       = stylesheet_link_tag custom_css_path, host: request.host, media: 'all'
 
