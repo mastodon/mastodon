@@ -817,4 +817,27 @@ RSpec.describe Account, type: :model do
 
   include_examples 'AccountAvatar', :account
   include_examples 'AccountHeader', :account
+
+  describe '#increment_count!' do
+    subject { Fabricate(:account) }
+
+    it 'increments the count in multi-threaded an environment when account_stat is not yet initialized' do
+      subject
+
+      increment_by   = 15
+      wait_for_start = true
+
+      threads = Array.new(increment_by) do
+        Thread.new do
+          true while wait_for_start
+          Account.find(subject.id).increment_count!(:followers_count)
+        end
+      end
+
+      wait_for_start = false
+      threads.each(&:join)
+
+      expect(subject.reload.followers_count).to eq 15
+    end
+  end
 end

@@ -82,7 +82,7 @@ class AccountsController < ApplicationController
   end
 
   def account_media_status_ids
-    @account.media_attachments.attached.reorder(nil).select(:status_id).distinct
+    @account.media_attachments.attached.reorder(nil).select(:status_id).group(:status_id)
   end
 
   def no_replies_scope

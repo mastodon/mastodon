@@ -43,7 +43,7 @@ class Form::AccountBatch
   end
 
   def account_domains
-    accounts.pluck(Arel.sql('distinct domain')).compact
+    accounts.group(:domain).pluck(:domain).compact
   end
 
   def accounts
