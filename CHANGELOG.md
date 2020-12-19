@@ -177,6 +177,32 @@ All notable changes to this project will be documented in this file.
 - Fix 2FA/sign-in token sessions being valid after password change ([Gargron](https://github.com/tootsuite/mastodon/pull/14802))
 - Fix resolving accounts sometimes creating duplicate records for a given ActivityPub identifier ([ThibG](https://github.com/tootsuite/mastodon/pull/15364))
 
+## [3.2.2] - 2020-12-19
+### Added
+
+- Add `tootctl maintenance fix-duplicates` ([ThibG](https://github.com/tootsuite/mastodon/pull/14860), [Gargron](https://github.com/tootsuite/mastodon/pull/15223))
+  - Index corruption in the database?
+  - This command is for you
+
+### Removed
+
+- Remove dependency on unused and unmaintained http_parser.rb gem ([ThibG](https://github.com/tootsuite/mastodon/pull/14574))
+
+### Fixed
+
+- Fix Move handler not being triggered when failing to fetch target account ([ThibG](https://github.com/tootsuite/mastodon/pull/15107))
+- Fix downloading remote media files when server returns empty filename ([ThibG](https://github.com/tootsuite/mastodon/pull/14867))
+- Fix possible casing inconsistencies in hashtag search ([ThibG](https://github.com/tootsuite/mastodon/pull/14906))
+- Fix updating account counters when association is not yet created ([Gargron](https://github.com/tootsuite/mastodon/pull/15108))
+- Fix account processing failing because of large collections ([ThibG](https://github.com/tootsuite/mastodon/pull/15027))
+- Fix resolving an account through its non-canonical form (i.e. alternate domain) ([ThibG](https://github.com/tootsuite/mastodon/pull/15187))
+- Fix slow distinct queries where grouped queries are faster ([Gargron](https://github.com/tootsuite/mastodon/pull/15287))
+
+### Security
+
+- Fix 2FA/sign-in token sessions being valid after password change ([Gargron](https://github.com/tootsuite/mastodon/pull/14802))
+- Fix resolving accounts sometimes creating duplicate records for a given ActivityPub identifier ([ThibG](https://github.com/tootsuite/mastodon/pull/15364))
+
 ## [3.2.1] - 2020-10-19
 ### Added
 
