@@ -139,17 +139,78 @@ class PostStatusService < BaseService
   end
 
   def validate_media!
+
     if @options[:media_ids].blank? || !@options[:media_ids].is_a?(Enumerable)
       @media = []
-      return
+      return unless (ENV['ALLOW_REMOTE_MEDIA_TAG'] || 'false') == 'true'
+      remote_media = process_remote_attachments
+      return if remote_media.blank?
+
+      media_ids = remote_media
+      id = remote_media.take(4).map(&:id)
+    else
+      media_ids = @options[:media_ids]
+      id = @options[:media_ids].take(4).map(&:to_i)
     end
 
-    raise Mastodon::ValidationError, I18n.t('media_attachments.validations.too_many') if @options[:media_ids].size > 4 || @options[:poll].present?
+    raise Mastodon::ValidationError, I18n.t('media_attachments.validations.too_many') if media_ids.size > 4 || @options[:poll].present?
 
-    @media = @account.media_attachments.where(status_id: nil).where(id: @options[:media_ids].take(4).map(&:to_i))
+    @media = @account.media_attachments.where(status_id: nil).where(id: id)
 
     raise Mastodon::ValidationError, I18n.t('media_attachments.validations.images_and_video') if @media.size > 1 && @media.find(&:audio_or_video?)
     raise Mastodon::ValidationError, I18n.t('media_attachments.validations.not_ready') if @media.any?(&:not_processed?)
+  end
+
+  def process_remote_attachments
+    image_array = @text.scan(/IMAGE:\s*\[\s*((?:https|http):\/\/.+?)\s*\](?:\s*\{\s*((?:https|http):\/\/.+?)\s*\})*/)
+    video_array = @text.scan(/VIDEO:\s*\[\s*((?:https|http):\/\/.+?)\s*\](?:\s*\{\s*((?:https|http):\/\/.+?)\s*\})*/)
+
+    @text       = @text.gsub(/(?:IMAGE|VIDEO):\s*\[\s*((?:https|http):\/\/.+?)\s*\](?:\s*\{\s*((?:https|http):\/\/.+?)\s*\})*/, '')
+    return [] if image_array.blank? && video_array.blank?
+
+    media_attachments = []
+    media_array = if !video_array.empty?
+                    [video_array.first]
+                  else
+                    image_array
+                  end
+
+    media_array.each do |media|
+      next if media_attachments.size >= 4
+
+      original  = Addressable::URI.parse(media[0]).normalize.to_s
+      thumbnail = thumbnail_remote_url(media[1])
+      media_attachment = MediaAttachment.create(
+        account: @account,
+        remote_url: original,
+        thumbnail_remote_url: thumbnail,
+        description: "Media source: #{original}",
+        focus: nil,
+        blurhash: nil
+      )
+      media_attachments << media_attachment
+
+      media_attachment.download_file!
+      media_attachment.download_thumbnail!
+      media_attachment.save!
+
+    rescue Mastodon::UnexpectedResponseError, HTTP::TimeoutError, HTTP::ConnectionError, OpenSSL::SSL::SSLError
+      RedownloadMediaWorker.perform_in(rand(30..600).seconds, media_attachment.id)
+    rescue Seahorse::Client::NetworkingError
+      nil
+    end
+
+    media_attachments
+  rescue Addressable::URI::InvalidURIError => e
+    Rails.logger.debug "Invalid URL in attachment: #{e}"
+    media_attachments
+  end
+
+  def thumbnail_remote_url(url)
+    return nil if url == nil
+    Addressable::URI.parse(url).normalize.to_s
+  rescue Addressable::URI::InvalidURIError
+    nil
   end
 
   def process_mentions_service
