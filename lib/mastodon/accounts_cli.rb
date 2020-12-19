@@ -245,10 +245,10 @@ module Mastodon
       domain configuration.
     LONG_DESC
     def fix_duplicates
-      Account.remote.select(:uri, 'count(*)').group(:uri).having('count(*) > 1').pluck_each(:uri) do |uri|
+      Account.remote.select(:uri, 'count(*)').group(:uri).having('count(*) > 1').pluck(:uri).each do |uri|
         say("Duplicates found for #{uri}")
         begin
-          ActivityPub::FetchRemotAccountService.new.call(uri) unless options[:dry_run]
+          ActivityPub::FetchRemoteAccountService.new.call(uri) unless options[:dry_run]
         rescue => e
           say("Error processing #{uri}: #{e}", :red)
         end
