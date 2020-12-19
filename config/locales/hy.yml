@@ -576,7 +576,7 @@ hy:
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
-    '404': The page you are looking for isn't here.
+    '404': Էջը, որը փնտրում ես գոյութիւն չունի։
     '406': This page is not available in the requested format.
     '410': The page you were looking for doesn't exist here anymore.
     '422':
@@ -631,6 +631,7 @@ hy:
   identity_proofs:
     active: Ակտիվ
     authorize: Այո, նոյնականացնել
+    authorize_connection_prompt: Հաւաստագրէ՞լ այս ծածկագրման կապակցումը
     i_am_html: Ես %{username}ն եմ %{service}ում։
     identity: Ինքնութիւն
     inactive: Ոչ ակտիւ
@@ -678,11 +679,14 @@ hy:
       not_found: չգտնուեց
     past_migrations: Նախոդ միգրացիաները
     proceed_with_move: Տեղափոխել հետեւորդներին
+    redirecting_to: Քո հաշիւը վերահասցեաորում է %{acct}-ին
     warning:
       followers: Այս քայլով քո բոլոր հետեւորդներին այս հաշուից կը տեղափոխես դէպի նորը
   moderation:
     title: Մոդերացիա
   notification_mailer:
+    digest:
+      title: Երբ բացակայ էիր...
     favourite:
       title: Նոր հաւանում
     follow:
@@ -928,10 +932,13 @@ hy:
     recovery_codes_regenerated: Վերականգման կոդերը հաջողութեամբ ստեղծուել են
   user_mailer:
     warning:
+      statuses: 'Մասնաւորապէս, միայն՝'
       title:
         none: Զգուշացում
+        sensitive: Մեդիաֆայլը պիտակուել է որպէս զգայուն։
     welcome:
       final_action: Սկսել թթել
+      review_preferences_action: Փոփոխել կարգաւորումները
       subject: Բարի գալուստ Մաստոդոն
       tip_federated_timeline: Դաշնային հոսքում երևում է ամբողջ Մաստոդոնի ցանցը։ Բայց այն ներառում է միայն այն օգտատերերին որոնց բաժանորդագրուած են ձեր հարևաններ, այդ պատճառով այն կարող է լինել ոչ ամբողջական։
       tip_following: Դու հետեւում էս քո հանգոյցի ադմին(ներ)ին լռելայն։ Այլ հետաքրքիր անձանց գտնելու համար՝ թերթիր տեղական և դաշնային հոսքերը։
