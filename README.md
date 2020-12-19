@@ -1,3 +1,11 @@
+**Mastodon fork for <https://hello.2heng.xin>**
+
+![Build and Push Alpha Image to Docker Hub](https://github.com/mashirozx/mastodon/workflows/Build%20and%20Push%20Alpha%20Image%20to%20Docker%20Hub/badge.svg)
+
+This is a rebase fork of tootsuite/mastodon, all local changes are rebased on the top. To pull the latest commits of this repo, use `git reset --hard origin/master` instead of `git pull`.
+
+To apply the new custom features, please add the necessary configurations first according to the file end of `.env.production.sample`.
+
 ![Mastodon](https://i.imgur.com/NhZc40l.png)
 ========
 
