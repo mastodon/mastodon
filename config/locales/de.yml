@@ -60,6 +60,7 @@ de:
       one: Folgender
       other: Folgende
     following: Folgt
+    instance_actor_flash: Dieses Konto ist ein virtueller Akteur, der den Server selbst repräsentiert und nicht ein einzelner Benutzer. Es wird für Föderationszwecke verwendet und sollte nicht gesperrt werden.
     joined: Beigetreten am %{date}
     last_active: zuletzt aktiv
     link_verified_on: Besitz des Links wurde überprüft am %{date}
@@ -131,6 +132,7 @@ de:
       follows: Folgt
       header: Titelbild
       inbox_url: Posteingangs-URL
+      invite_request_text: Begründung für das beitreten
       invited_by: Eingeladen von
       ip: IP-Adresse
       joined: Beigetreten
@@ -255,6 +257,7 @@ de:
         unsuspend_account: Konto nicht mehr sperren
         update_announcement: Ankündigung aktualisieren
         update_custom_emoji: Benutzerdefiniertes Emoji aktualisieren
+        update_domain_block: Domain Block aktualisieren
         update_status: Beitrag aktualisieren
       actions:
         assigned_to_self_report: "%{name} hat sich die Meldung %{target} selbst zugewiesen"
@@ -295,6 +298,7 @@ de:
         unsuspend_account: "%{name} hat die Verbannung von %{target} aufgehoben"
         update_announcement: "%{name} aktualisierte Ankündigung %{target}"
         update_custom_emoji: "%{name} hat das %{target} Emoji geändert"
+        update_domain_block: "%{name} hat den Domain-Block für %{target} aktualisiert"
         update_status: "%{name} hat einen Beitrag von %{target} aktualisiert"
       deleted_status: "(gelöschter Beitrag)"
       empty: Keine Protokolle gefunden.
@@ -437,6 +441,7 @@ de:
     instances:
       by_domain: Domain
       delivery_available: Zustellung funktioniert
+      empty: Keine Domains gefunden.
       known_accounts:
         one: "%{count} bekanntes Konto"
         other: "%{count} bekannte Konten"
@@ -514,6 +519,8 @@ de:
       comment:
         none: Kein
       created_at: Gemeldet
+      forwarded: Weitergeleitet
+      forwarded_to: Weitergeleitet an %{domain}
       mark_as_resolved: Als gelöst markieren
       mark_as_unresolved: Als ungelöst markieren
       notes:
@@ -583,6 +590,9 @@ de:
         min_invite_role:
           disabled: Niemand
           title: Einladungen erlauben von
+        require_invite_text:
+          desc_html: Wenn eine Registrierung manuell genehmigt werden muss, mache den "Warum möchtest du beitreten?" Text eher obligatorisch als optional
+          title: Neue Benutzer müssen einen Einladungstext ausfüllen
       registrations_mode:
         modes:
           approved: Zustimmung benötigt zur Registrierung
@@ -751,6 +761,7 @@ de:
       functional: Dein Konto ist voll funktionsfähig.
       pending: Deine Bewerbung wird von unseren Mitarbeitern noch überprüft. Dies kann einige Zeit dauern. Du erhältst eine E-Mail, wenn deine Bewerbung genehmigt wurde.
       redirecting_to: Dein Konto ist inaktiv, da es derzeit zu %{acct} umgeleitet wird.
+    too_fast: Formular zu schnell gesendet, versuchen Sie es erneut.
     trouble_logging_in: Schwierigkeiten beim Anmelden?
     use_security_key: Sicherheitsschlüssel verwenden
   authorize_follow:

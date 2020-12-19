@@ -2,7 +2,8 @@ import React from 'react';
 import Icon from 'flavours/glitch/components/icon';
 import Button from 'flavours/glitch/components/button';
 import IconButton from 'flavours/glitch/components/icon_button';
-import { requestBrowserPermission, dismissBrowserPermission } from 'flavours/glitch/actions/notifications';
+import { requestBrowserPermission } from 'flavours/glitch/actions/notifications';
+import { changeSetting } from 'flavours/glitch/actions/settings';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
@@ -25,7 +26,7 @@ class NotificationsPermissionBanner extends React.PureComponent {
   }
 
   handleClose = () => {
-    this.props.dispatch(dismissBrowserPermission());
+    this.props.dispatch(changeSetting(['notifications', 'dismissPermissionBanner'], true));
   }
 
   render () {

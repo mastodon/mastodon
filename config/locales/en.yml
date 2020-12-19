@@ -60,6 +60,7 @@ en:
       one: Follower
       other: Followers
     following: Following
+    instance_actor_flash: This account is a virtual actor used to represent the server itself and not any individual user. It is used for federation purposes and should not be suspended.
     joined: Joined %{date}
     last_active: last active
     link_verified_on: Ownership of this link was checked on %{date}
@@ -401,6 +402,8 @@ en:
           silence: Silence
           suspend: Suspend
         title: New domain block
+      obfuscate: Obfuscate domain name
+      obfuscate_hint: Partially obfuscate the domain name in the list if advertising the list of domain limitations is enabled
       private_comment: Private comment
       private_comment_hint: Comment about this domain limitation for internal use by the moderators.
       public_comment: Public comment
@@ -563,6 +566,7 @@ en:
       domain_blocks_rationale:
         title: Show rationale
       enable_bootstrap_timeline_accounts:
+        desc_html: Make new users automatically follow configured accounts so their home feed doesn't start out empty
         title: Enable default follows for new users
       hero:
         desc_html: Displayed on the frontpage. At least 600x100px recommended. When not set, falls back to server thumbnail
@@ -590,8 +594,8 @@ en:
           disabled: No one
           title: Allow invitations by
         require_invite_text:
-          desc_html: When registrations require manual approval, make the “Why do you want to join?” invite request text mandatory rather than optional
-          title: Require new users to fill an invite request text
+          desc_html: When registrations require manual approval, make the “Why do you want to join?” text input mandatory rather than optional
+          title: Require new users to enter a reason to join
       registrations_mode:
         modes:
           approved: Approval required for sign up
@@ -920,6 +924,8 @@ en:
     status: Verification status
     view_proof: View proof
   imports:
+    errors:
+      over_rows_processing_limit: contains more than %{count} rows
     modes:
       merge: Merge
       merge_long: Keep existing records and add new ones

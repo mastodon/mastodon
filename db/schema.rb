@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_06_004238) do
+ActiveRecord::Schema.define(version: 2020_12_18_054746) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -360,6 +360,7 @@ ActiveRecord::Schema.define(version: 2020_12_06_004238) do
     t.boolean "reject_reports", default: false, null: false
     t.text "private_comment"
     t.text "public_comment"
+    t.boolean "obfuscate", default: false, null: false
     t.index ["domain"], name: "index_domain_blocks_on_domain", unique: true
   end
 

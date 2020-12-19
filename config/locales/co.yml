@@ -60,6 +60,7 @@ co:
       one: Abbunatu·a
       other: Abbunati
     following: Abbunamenti
+    instance_actor_flash: Stu contu virtuale riprisenta u servore stessu, micca un'utilizatore individuale. Hè utilizatu per scopi di federazione è ùn duveria mai esse suspesu.
     joined: Quì dapoi %{date}
     last_active: ultima attività
     link_verified_on: A pruprietà d'issu ligame hè stata verificata u %{date}
@@ -131,6 +132,7 @@ co:
       follows: Abbunamenti
       header: Ritrattu di cuprendula
       inbox_url: URL di l’inbox
+      invite_request_text: Ragione di l'arregistramentu
       invited_by: Invitatu da
       ip: IP
       joined: Ghjuntu
@@ -255,6 +257,7 @@ co:
         unsuspend_account: Ùn Suspende Più u Contu
         update_announcement: Cambià Annunziu
         update_custom_emoji: Cambià Emoji Persunalizata
+        update_domain_block: Mette à Ghjornu Blucchime di Duminiu
         update_status: Cambià Statutu
       actions:
         assigned_to_self_report: "%{name} s’hè assignatu u signalamentu %{target}"
@@ -295,6 +298,7 @@ co:
         unsuspend_account: "%{name} hà fattu che u contu di %{target} ùn hè più suspesu"
         update_announcement: "%{name} hà cambiatu u novu annunziu %{target}"
         update_custom_emoji: "%{name} hà messu à ghjornu l’emoji %{target}"
+        update_domain_block: "%{name} hà messu à ghjornu u blucchime di duminiu per %{target}"
         update_status: "%{name} hà cambiatu u statutu di %{target}"
       deleted_status: "(statutu sguassatu)"
       empty: Nunda trovu.
@@ -437,6 +441,7 @@ co:
     instances:
       by_domain: Duminiu
       delivery_available: Rimessa dispunibule
+      empty: Mancun duminiu trovu.
       known_accounts:
         one: "%{count} contu cunnisciutu"
         other: "%{count} conti cunnisciuti"
@@ -514,6 +519,8 @@ co:
       comment:
         none: Nisunu
       created_at: Palisatu
+      forwarded: Trasferitu
+      forwarded_to: Trasferistu à %{domain}
       mark_as_resolved: Indicà cum’è chjosu
       mark_as_unresolved: Indicà cum’è sempre apertu
       notes:
@@ -581,8 +588,10 @@ co:
           desc_html: Auturizà tuttu u mondu à sguassà u so propiu contu
           title: Auturizà à sguassà i conti
         min_invite_role:
-          disabled: Nisunu
+          disabled: Nimu
           title: Auturizà l’invitazione da
+        require_invite_text:
+          title: Richiede chì i novi utilizatori empiinu una dumanda d'invitazione
       registrations_mode:
         modes:
           approved: Apprubazione necessaria per arregistrassi
@@ -751,6 +760,7 @@ co:
       functional: U vostru contu hè uperaziunale.
       pending: A vostra dumanda hè in attesa di rivista da a squadra di muderazione. Quessa pò piglià un certu tempu. Avete da riceve un'e-mail s'ella hè appruvata.
       redirecting_to: U vostru contu hè inattivu perchè riindirizza versu %{acct}.
+    too_fast: Furmulariu mandatu troppu prestu, ripruvate.
     trouble_logging_in: Difficultà per cunnettavi?
     use_security_key: Utilizà a chjave di sicurità
   authorize_follow:
@@ -842,6 +852,7 @@ co:
       request: Dumandà u vostr’archiviu
       size: Pesu
     blocks: Bluccate
+    bookmarks: Segnalibri
     csv: CSV
     domain_blocks: Blucchime di duminiu
     lists: Liste
@@ -918,6 +929,7 @@ co:
     success: I vostri dati sò stati impurtati è saranu trattati da quì à pocu
     types:
       blocking: Persone chì bluccate
+      bookmarks: Segnalibri
       domain_blocking: Lista di blucchimi di duminiu
       following: Persone chì seguitate
       muting: Persone chì piattate

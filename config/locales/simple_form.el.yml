@@ -65,6 +65,12 @@ el:
         data: Αρχείο CSV που έχει εξαχθεί από διαφορετικό κόμβο Mastodon
       invite_request:
         text: Αυτό θα μας βοηθήσει να επιθεωρήσουμε την αίτησή σου
+      ip_block:
+        comment: Προαιρετικό. Θυμηθείτε γιατί προσθέσατε αυτόν τον κανόνα.
+        severities:
+          no_access: Αποκλεισμός πρόσβασης σε όλους τους πόρους
+          sign_up_requires_approval: Νέες εγγραφές θα απαιτούν την έγκριση σας
+        severity: Επιλέξτε τι θα γίνεται με αιτήσεις από αυτήν την διεύθυνση IP
       sessions:
         otp: 'Βάλε τον κωδικό δυο παραγόντων (2FA) από την εφαρμογή του τηλεφώνου σου ή χρησιμοποίησε κάποιον από τους κωδικούς ανάκτησης σου:'
         webauthn: Αν πρόκειται για ένα κλειδί USB βεβαιωθείτε ότι είναι συνδεδεμένο και αν απαιτείται πατήστε το ελαφρά.
@@ -92,6 +98,7 @@ el:
         types:
           disable: Απενεργοποίηση
           none: Καμία ενέργεια
+          sensitive: Ευαίσθητο
           silence: Αποσιώπηση
           suspend: Αναστολή και αμετάκλητη διαγραφή στοιχείων λογαριασμού
         warning_preset_id: Χρήση προκαθορισμένης προειδοποίησης
@@ -117,6 +124,7 @@ el:
         expires_in: Λήξη μετά από
         fields: Μεταδεδομένα προφίλ
         header: Επικεφαλίδα
+        honeypot: "%{label} (μη συμπληρώνετε)"
         inbox_url: Το URL του inbox του ανταποκριτή (relay)
         irreversible: Απόρριψη αντί για κρύψιμο
         locale: Γλώσσα χρήσης
@@ -136,6 +144,7 @@ el:
         setting_default_privacy: Ιδιωτικότητα δημοσιεύσεων
         setting_default_sensitive: Σημείωση όλων των πολυμέσων ως ευαίσθητου περιεχομένου
         setting_delete_modal: Επιβεβαίωση πριν τη διαγραφή ενός τουτ
+        setting_disable_swiping: Απενεργοποίηση κινήσεων συρσίματος
         setting_display_media: Εμφάνιση πολυμέσων
         setting_display_media_default: Προκαθορισμένο
         setting_display_media_hide_all: Απόκρυψη όλων
@@ -172,6 +181,9 @@ el:
       ip_block:
         comment: Σχόλιο
         ip: IP
+        severities:
+          no_access: Αποκλεισμός πρόσβασης
+          sign_up_requires_approval: Περιορισμός εγγραφών
         severity: Κανόνας
       notification_emails:
         digest: Αποστολή συνοπτικών email

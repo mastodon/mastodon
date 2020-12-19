@@ -28,7 +28,7 @@ class ActivityPub::FetchRemoteAccountService < BaseService
 
     return unless only_key || verified_webfinger?
 
-    ActivityPub::ProcessAccountService.new.call(@username, @domain, @json, only_key: only_key)
+    ActivityPub::ProcessAccountService.new.call(@username, @domain, @json, only_key: only_key, verified_webfinger: !only_key)
   rescue Oj::ParseError
     nil
   end

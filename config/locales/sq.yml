@@ -60,6 +60,7 @@ sq:
       one: Ndjekës
       other: Ndjekës
     following: Ndjekje
+    instance_actor_flash: Kjo llogari është një aktor virtual, i përdorur për të përfaqësuar vetë shërbyesin dhe jo ndonjë përdorues individual. Përdoret për qëllime federimi dhe s’duhet pezulluar.
     joined: U bë pjesë më %{date}
     last_active: aktiv së fundi
     link_verified_on: Pronësia e kësaj lidhjeje qe kontrolluar më %{date}
@@ -131,6 +132,7 @@ sq:
       follows: Ndjekje
       header: Krye
       inbox_url: URL Mesazhesh të Marrë
+      invite_request_text: Arsye për pjesëmarrje
       invited_by: Ftuar nga
       ip: IP
       joined: U bë pjesë
@@ -255,6 +257,7 @@ sq:
         unsuspend_account: Hiqe Pezullimin e Llogarisë
         update_announcement: Përditëso Lajmërimin
         update_custom_emoji: Përditëso Emotikon Vetjak
+        update_domain_block: Përditëso Bllok Përkatësish
         update_status: Përditëso Gjendjen
       actions:
         assigned_to_self_report: "%{name} ia kaloi raportimin %{target} në ngarkim vetvetes"
@@ -295,6 +298,7 @@ sq:
         unsuspend_account: "%{name} hoqi pezullimin për llogarinë e %{target}"
         update_announcement: "%{name} përditësoi lajmërimin %{target}"
         update_custom_emoji: "%{name} përditësoi emotikonin %{target}"
+        update_domain_block: "%{name} përditësoi bllok përkatësish për %{target}"
         update_status: "%{name} përditësoi gjendjen me %{target}"
       deleted_status: "(fshiu gjendjen)"
       empty: S’u gjetën regjistra.
@@ -398,6 +402,8 @@ sq:
           silence: Heshtoji
           suspend: Pezulloje
         title: Bllokim i ri përkatësie
+      obfuscate: Errësoje emrin e përkatësisë
+      obfuscate_hint: Errësoje pjesërisht emrin e përkatësisë te lista, nëse është aktivizuar publikimi i listës së kufizimeve të përkatësive
       private_comment: Koment privat
       private_comment_hint: Koment mbi këtë kufizim përkatësie për përdorim të brendshëm nga moderatorët.
       public_comment: Koment publik
@@ -437,6 +443,7 @@ sq:
     instances:
       by_domain: Përkatësi
       delivery_available: Ka shpërndarje të mundshme
+      empty: S’u gjetën përkatësi.
       known_accounts:
         one: "%{count} llogari e njohur"
         other: "%{count} llogari të njohura"
@@ -514,6 +521,8 @@ sq:
       comment:
         none: Asnjë
       created_at: Raportuar më
+      forwarded: U përcoll
+      forwarded_to: U përcoll te %{domain}
       mark_as_resolved: Vëri shenjë si i zgjidhur
       mark_as_unresolved: Vëri shenjë si të pazgjidhur
       notes:
@@ -583,6 +592,9 @@ sq:
         min_invite_role:
           disabled: Asnjë
           title: Lejo ftesa nga
+        require_invite_text:
+          desc_html: Kur regjistrimet lypin miratim dorazi, tekstin e kërkesës për ftesë “Pse doni të merrni pjesë?” bëje të detyrueshëm, në vend se opsional
+          title: Kërkoju përdoruesve të rinj të plotësojnë doemos një tekst kërkese për ftesë
       registrations_mode:
         modes:
           approved: Për regjistrim, lypset miratimi
@@ -751,6 +763,7 @@ sq:
       functional: Llogaria juaj është tërësisht funksionale.
       pending: Aplikimi juaj është në pritje të shqyrtimit nga stafi ynë. Kjo mund të dojë ca kohë. Nëse aplikimi juaj miratohet, do të merrni një email.
       redirecting_to: Llogaria juaj është joaktive, ngaqë aktualisht ridrejton te %{acct}.
+    too_fast: Formulari u parashtrua shumë shpejt, riprovoni.
     trouble_logging_in: Probleme me hyrjen?
     use_security_key: Përdor kyç sigurie
   authorize_follow:
@@ -910,6 +923,8 @@ sq:
     status: Gjendje verifikimi
     view_proof: Shihni provën
   imports:
+    errors:
+      over_rows_processing_limit: përmban më shumë se %{count} rreshta
     modes:
       merge: Përzieji
       merge_long: Mbaji zërat ekzistues dhe shto të rinjtë

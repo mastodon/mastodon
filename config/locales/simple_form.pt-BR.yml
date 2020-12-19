@@ -67,7 +67,7 @@ pt-BR:
         text: Isso vai nos ajudar a revisar sua aplicação
       ip_block:
         comment: Opcional. Lembrar de por que você adicionou esta regra.
-        expires_in: Endereços IP são um recurso limitado, algumas vezes são compartilhados e muitas vezes mudam de mãos. Por essa razão, blocos de IP indefinidos não são recomendados.
+        expires_in: Endereços IP são um recurso limitado, algumas vezes são compartilhados e muitas vezes mudam de mãos. Por esse motivo, blocos de IP indefinidos não são recomendados.
         ip: Digite um endereço IPv4 ou IPv6. Você pode bloquear intervalos inteiros usando a sintaxe CIDR. Tenha cuidado para não bloquear a si mesmo!
         severities:
           no_access: Bloquear o acesso a todos os recursos
@@ -126,6 +126,7 @@ pt-BR:
         expires_in: Expira em
         fields: Metadados do perfil
         header: Cabeçalho
+        honeypot: "%{label} (não preencher)"
         inbox_url: Link da caixa de entrada do repetidor
         irreversible: Ignorar ao invés de ocultar
         locale: Idioma da interface

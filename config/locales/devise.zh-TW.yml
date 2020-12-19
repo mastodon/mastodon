@@ -60,6 +60,23 @@ zh-TW:
         title: 2FA 復原碼已變更
       unlock_instructions:
         subject: Mastodon：解鎖指引
+      webauthn_credential:
+        added:
+          explanation: 下面的安全密鑰已經新增至您的帳戶
+          subject: 'Mastodon: 新安全密鑰'
+          title: 已新增新安全密鑰
+        deleted:
+          explanation: 下面的安全密鑰已經從您的帳戶中移除
+          subject: 'Mastodon: 安全密鑰已移除'
+          title: 您的一支安全密鑰已經被移除
+      webauthn_disabled:
+        explanation: 您的帳戶並沒有啟用安全密鑰認證方式。只能以 TOTP app 產生地成對 token 登入。
+        subject: 'Mastodon: 安全密鑰認證方式已關閉'
+        title: 已關閉安全密鑰
+      webauthn_enabled:
+        explanation: 安全密鑰認證已在您的帳戶中啟用。您可以使用安全密鑰登入了。
+        subject: 'Mastodon: 以啟用安全密鑰認證'
+        title: 已開啟安全密鑰
     omniauth_callbacks:
       failure: 無法透過 %{kind} 認證是否為您，因為「%{reason}」。
       success: 成功透過 %{kind} 帳戶登入。

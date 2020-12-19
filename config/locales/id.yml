@@ -23,7 +23,7 @@ id:
     hosted_on: Mastodon dihosting di %{domain}
     instance_actor_flash: 'Akun ini adalah aktor virtual yang dipakai untuk merepresentasikan server, bukan pengguna individu. Ini dipakai untuk tujuan federasi dan jangan diblokir kecuali Anda ingin memblokir seluruh instansi, yang seharusnya Anda pakai blokir domain.
 
-'
+      '
     learn_more: Pelajari selengkapnya
     privacy_policy: Kebijakan Privasi
     see_whats_happening: Lihat apa yang sedang terjadi
@@ -57,6 +57,7 @@ id:
     followers:
       other: Pengikut
     following: Mengikuti
+    instance_actor_flash: Akun ini adalah aktor virtual yang merepresentasikan server itu sendiri dan bukan pengguna individu. Ini dipakai untuk tujuan gabungan dan seharusnya tidak ditangguhkan.
     joined: Bergabung pada %{date}
     last_active: terakhir aktif
     link_verified_on: Kepemilikan tautan ini telah dicek pada %{date}
@@ -127,6 +128,7 @@ id:
       follows: Mengikut
       header: Tajuk
       inbox_url: URL Kotak masuk
+      invite_request_text: Alasan bergabung
       invited_by: Diundang oleh
       ip: IP
       joined: Bergabung
@@ -251,6 +253,7 @@ id:
         unsuspend_account: Lepas Status Tangguh Akun
         update_announcement: Perbarui Pengumuman
         update_custom_emoji: Perbarui Emoji Khusus
+        update_domain_block: Perbarui Blokir Domain
         update_status: Perbarui Status
       actions:
         assigned_to_self_report: "%{name} menugaskan laporan %{target} kpd dirinya sendiri"
@@ -291,6 +294,7 @@ id:
         unsuspend_account: "%{name} menghapus penangguhan akun %{target}"
         update_announcement: "%{name} memperbarui pengumuman %{target}"
         update_custom_emoji: "%{name} memperbarui emoji %{target}"
+        update_domain_block: "%{name} memperbarui blokir domain untuk %{target}"
         update_status: "%{name} memperbarui status %{target}"
       deleted_status: "(status dihapus)"
       empty: Log tidak ditemukan.
@@ -432,6 +436,7 @@ id:
     instances:
       by_domain: Domain
       delivery_available: Pengiriman tersedia
+      empty: Domain tidak ditemukan.
       known_accounts:
         other: "%{count} akun yang dikenal"
       moderation:
@@ -506,6 +511,8 @@ id:
       comment:
         none: Tidak ada
       created_at: Dilaporkan
+      forwarded: Diteruskan
+      forwarded_to: Diteruskan ke %{domain}
       mark_as_resolved: Tandai telah diseleseikan
       mark_as_unresolved: Tandai belum terselesaikan
       notes:
@@ -575,6 +582,9 @@ id:
         min_invite_role:
           disabled: Tidak ada satu pun
           title: Izinkan undangan oleh
+        require_invite_text:
+          desc_html: Saat pendaftaran harus disetujui manual, buat input teks "Mengapa Anda ingin bergabung?" sebagai hal wajib bukan opsional
+          title: Pengguna baru harus memasukkan alasan bergabung
       registrations_mode:
         modes:
           approved: Persetujuan diperlukan untuk mendaftar
@@ -743,6 +753,7 @@ id:
       functional: Akun Anda kini beroperasi penuh.
       pending: Permintaan Anda sedang ditinjau oleh staf kami. Ini mungkin butuh beberapa waktu. Anda akan menerima email jika permintaan Anda diterima.
       redirecting_to: Akun Anda tidak aktif karena sekarang dialihkan ke %{acct}.
+    too_fast: Formulir dikirim terlalu cepat, coba lagi.
     trouble_logging_in: Kesulitan masuk?
     use_security_key: Gunakan kunci keamanan
   authorize_follow:
@@ -901,6 +912,8 @@ id:
     status: Status verifikasi
     view_proof: Lihat bukti
   imports:
+    errors:
+      over_rows_processing_limit: berisi lebih dari %{count} baris
     modes:
       merge: Gabung
       merge_long: Pertahankan rekaman yang sudah ada dan buat baru

@@ -17,8 +17,30 @@ body.rtl {
     margin-right: 15px;
   }
 
-  .display-name {
+  .display-name,
+  .announcements__item {
     text-align: right;
+  }
+
+  .announcements__item__range {
+    padding-right: 0;
+    padding-left: 18px;
+  }
+
+  .reactions-bar {
+    margin-left: auto;
+    margin-right: -2px;
+    direction: rtl;
+  }
+
+  .reactions-bar__item__count {
+    margin-left: 0;
+    margin-right: 6px;
+  }
+
+  .announcements__pagination {
+    right: auto;
+    left: 0;
   }
 
   .notification__message {
@@ -26,6 +48,7 @@ body.rtl {
     margin-right: 68px;
   }
 
+  .announcements__mastodon,
   .drawer__inner__mastodon > img {
     transform: scaleX(-1);
   }
@@ -195,6 +218,7 @@ body.rtl {
     margin-right: 0;
   }
 
+  .picture-in-picture__header__account .display-name,
   .detailed-status__display-name .display-name {
     text-align: right;
   }
@@ -203,6 +227,21 @@ body.rtl {
     margin-right: 0;
     margin-left: 10px;
     float: right;
+  }
+
+  .picture-in-picture__header__account .account__avatar {
+    margin-right: 0;
+    margin-left: 10px;
+  }
+
+  .icon-button__counter {
+    margin-left: 0;
+    margin-right: 4px;
+  }
+
+  .notifications-permission-banner__close {
+    right: auto;
+    left: 10px;
   }
 
   .detailed-status__favorites,
@@ -415,5 +454,10 @@ body.rtl {
   .simple_form .input.radio_buttons .radio > label input {
     left: auto;
     right: 0;
+  }
+
+  .picture-in-picture {
+    right: auto;
+    left: 20px;
   }
 }

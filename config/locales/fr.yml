@@ -15,7 +15,7 @@ fr:
     browse_public_posts: Parcourir un flux en direct de messages publics sur Mastodon
     contact: Contact
     contact_missing: Non défini
-    contact_unavailable: N/D
+    contact_unavailable: Non disponible
     discover_users: Découvrez des utilisateur·rice·s
     documentation: Documentation
     federation_hint_html: Avec un compte sur %{instance}, vous pourrez suivre les gens sur n’importe quel serveur Mastodon et au-delà.
@@ -33,7 +33,7 @@ fr:
       one: statut
       other: statuts
     status_count_before: Ayant publié
-    tagline: Suivez vos ami·e·s et découvrez-en de nouveaux·elles
+    tagline: Suivez vos ami·e·s et découvrez en de nouveaux·elles
     terms: Conditions d’utilisation
     unavailable_content: Serveurs modérés
     unavailable_content_description:
@@ -60,6 +60,7 @@ fr:
       one: Abonné·e
       other: Abonné·e·s
     following: Abonnements
+    instance_actor_flash: Ce compte est un acteur virtuel utilisé pour représenter le serveur lui-même et non un utilisateur individuel. Il est utilisé à des fins de fédération et ne doit pas être suspendu.
     joined: Inscrit·e en %{date}
     last_active: dernière activité
     link_verified_on: La propriété de ce lien a été vérifiée le %{date}
@@ -131,6 +132,7 @@ fr:
       follows: Abonnements
       header: Entête
       inbox_url: URL d’entrée
+      invite_request_text: Raisons de l’adhésion
       invited_by: Invité par
       ip: Adresse IP
       joined: Inscrit·e depuis
@@ -255,6 +257,7 @@ fr:
         unsuspend_account: Annuler la suspension du compte
         update_announcement: Modifier l’annonce
         update_custom_emoji: Mettre à jour les émojis personnalisés
+        update_domain_block: Mettre à jour le blocage de domaine
         update_status: Mettre à jour le statut
       actions:
         assigned_to_self_report: "%{name} s’est assigné·e le signalement de %{target}"
@@ -295,6 +298,7 @@ fr:
         unsuspend_account: "%{name} a réactivé le compte de %{target}"
         update_announcement: "%{name} a actualisé l’annonce %{target}"
         update_custom_emoji: "%{name} a mis à jour l’émoji %{target}"
+        update_domain_block: "%{name} a mis à jour le blocage de domaine pour %{target}"
         update_status: "%{name} a mis à jour le statut de %{target}"
       deleted_status: "(statut supprimé)"
       empty: Aucun journal trouvé.
@@ -398,6 +402,8 @@ fr:
           silence: Masqué
           suspend: Suspendre
         title: Nouveau blocage de domaine
+      obfuscate: Obfusquer le nom de domaine
+      obfuscate_hint: Obfusquer partiellement le nom de domaine dans la liste si la liste des limitations de domaine est activée
       private_comment: Commentaire privé
       private_comment_hint: Commenter sur cette limitation de domaine pour informer les modérateurs internes.
       public_comment: Commentaire public
@@ -437,6 +443,7 @@ fr:
     instances:
       by_domain: Domaine
       delivery_available: Livraison disponible
+      empty: Aucun domaine trouvé.
       known_accounts:
         one: "%{count} compte connu"
         other: "%{count} comptes connus"
@@ -514,6 +521,8 @@ fr:
       comment:
         none: Aucun
       created_at: Signalé
+      forwarded: Transféré
+      forwarded_to: Transféré à %{domain}
       mark_as_resolved: Marquer comme résolu
       mark_as_unresolved: Marquer comme non-résolu
       notes:
@@ -583,6 +592,9 @@ fr:
         min_invite_role:
           disabled: Personne
           title: Autoriser les invitations par
+        require_invite_text:
+          desc_html: Lorsque les enregistrements nécessitent une approbation manuelle, rendre le texte de l’invitation "Pourquoi voulez-vous vous inscrire ?" obligatoire plutôt que facultatif
+          title: Exiger que les nouveaux utilisateurs remplissent un texte de demande d’invitation
       registrations_mode:
         modes:
           approved: Approbation requise pour s’inscrire
@@ -751,6 +763,7 @@ fr:
       functional: Votre compte est entièrement opérationnel.
       pending: Votre demande est en attente d'examen par notre personnel. Cela peut prendre un certain temps. Vous recevrez un courriel si votre demande est approuvée.
       redirecting_to: Votre compte est inactif car il est actuellement redirigé vers %{acct}.
+    too_fast: Formulaire envoyé trop rapidement, veuillez réessayer.
     trouble_logging_in: Vous avez un problème pour vous connecter ?
     use_security_key: Utiliser la clé de sécurité
   authorize_follow:
@@ -910,6 +923,8 @@ fr:
     status: État de la vérification
     view_proof: Voir la preuve
   imports:
+    errors:
+      over_rows_processing_limit: contient plus de %{count} lignes
     modes:
       merge: Fusionner
       merge_long: Garder les enregistrements existants et ajouter les nouveaux
@@ -1092,7 +1107,7 @@ fr:
     status: État du compte
   remote_follow:
     acct: Entrez l’adresse profil@serveur depuis laquelle vous voulez effectuer cette action
-    missing_resource: L’URL de redirection n’a pas pu être trouvée
+    missing_resource: L’URL de redirection requise pour votre compte n’a pas pu être trouvée
     no_account_html: Vous n’avez pas de compte ? Vous pouvez <a href='%{sign_up_path}' target='_blank'>vous inscrire ici</a>
     proceed: Confirmer l’abonnement
     prompt: 'Vous allez suivre :'
