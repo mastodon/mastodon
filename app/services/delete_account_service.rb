@@ -122,7 +122,9 @@ class DeleteAccountService < BaseService
     @account.polls.reorder(nil).find_each do |poll|
       next if @options[:reserve_username] && reported_status_ids.include?(poll.status_id)
 
-      poll.destroy
+      # We can safely delete the poll rather than destroy it, as any non-reported
+      # status should have been deleted already
+      poll.delete
     end
 
     associations_for_destruction.each do |association_name|
