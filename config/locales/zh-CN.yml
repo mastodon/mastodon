@@ -55,6 +55,7 @@ zh-CN:
     followers:
       other: 关注者
     following: 正在关注
+    instance_actor_flash: 这个账户是虚拟账户，用来代表服务器自身，不代表任何实际用户。它用于互通功能，不应该封禁。
     joined: 加入于 %{date}
     last_active: 最近活动
     link_verified_on: 此链接的所有权已在 %{date} 检查
@@ -396,6 +397,7 @@ zh-CN:
           suspend: 自动封禁
         title: 新增域名屏蔽
       obfuscate: 混淆域名
+      obfuscate_hint: 如果启用了域名列表公开限制，就部分混淆列表中的域名
       private_comment: 私密评论
       private_comment_hint: 给这一域名限制添加备注，供监察员内部使用
       public_comment: 公开评论
@@ -583,7 +585,7 @@ zh-CN:
           title: 允许发送邀请的用户组
         require_invite_text:
           desc_html: 当注册需要手动批准时，将“你为什么想要加入？”设为必填项
-          title: 要求新用户填写注册申请
+          title: 要求新用户填写申请注册的原因
       registrations_mode:
         modes:
           approved: 注册时需要批准
