@@ -498,13 +498,21 @@ zh-TW:
       created_msg: 檢舉記錄建立成功!
       destroyed_msg: 檢舉記錄刪除成功!
     reports:
+      account:
+        notes:
+          other: "%{count} 則備註"
+        reports:
+          other: "%{count} 則檢舉"
       action_taken_by: 操作執行者
       are_you_sure: 你確定嗎?
       assign_to_self: 指派給自己
       assigned: 指派負責人
+      by_target_domain: 檢舉帳號之網域
       comment:
         none: 無
       created_at: 日期
+      forwarded: 已轉寄
+      forwarded_to: 轉寄到 %{domain}
       mark_as_resolved: 標記為「已解決」
       mark_as_unresolved: 標記為「未解決」
       notes:
@@ -535,11 +543,16 @@ zh-TW:
         email: 用於聯絡的公開電子信箱位址
         username: 請輸入使用者名稱
       custom_css:
+        desc_html: 透過於每個頁面都載入的 CSS 調整外觀
         title: 自訂 CSS
+      default_noindex:
+        desc_html: 影響所有沒有變更此設定的使用者
+        title: 預設將使用者退出搜尋引擎索引
       domain_blocks:
         all: 給任何人
         disabled: 給沒有人
         title: 顯示封鎖的網域
+        users: 套用至所有登入的本機使用者
       enable_bootstrap_timeline_accounts:
         title: 啟用新使用者的預設追蹤
       hero:
