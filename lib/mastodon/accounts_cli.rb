@@ -384,7 +384,7 @@ module Mastodon
       end
 
       processed, = parallelize_with_progress(Account.local.without_suspended) do |account|
-        FollowService.new.call(account, target_account)
+        FollowService.new.call(account, target_account, bypass_limit: true)
       end
 
       say("OK, followed target from #{processed} accounts", :green)
