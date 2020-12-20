@@ -30,6 +30,8 @@ ml:
     roles:
       admin: അഡ്‌മിന്‍
       bot: ബോട്ട്
+      group: ഗ്രൂപ്പ്
+    unavailable: പ്രൊഫൈൽ ലഭ്യമല്ല
   admin:
     account_moderation_notes:
       delete: മായ്ക്കുക
@@ -58,15 +60,22 @@ ml:
       domain: മേഖല
       edit: തിരുത്തുക
       email: ഇമെയിൽ
+      header: തലക്കെട്ട്
+      location:
+        all: എല്ലാം
       resend_confirmation:
         send: സ്ഥിരീകരണ ഇമെയിൽ വീണ്ടും അയയ്ക്കുക
         success: സ്ഥിരീകരണ ഇമെയിൽ വിജയകരമായി അയച്ചു!
       unconfirmed_email: സ്ഥിരീകരിക്കാത്ത ഇമെയിൽ
+    dashboard:
+      feature_profile_directory: പ്രൊഫൈൽ ഡയറക്ടറി
     email_domain_blocks:
       delete: ഇല്ലാതാക്കുക
       domain: ഡൊമൈന്‍
       new:
         create: ഡൊമൈൻ ചേര്‍ക്കുക
+  directories:
+    directory: പ്രൊഫൈൽ ഡയറക്ടറി
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
@@ -77,5 +86,13 @@ ml:
     '429': Too many requests
     '500':
     '503': The page could not be served due to a temporary server failure.
+  filters:
+    contexts:
+      notifications: അറിയിപ്പുകൾ
   generic:
     all: എല്ലാം
+  notification_mailer:
+    digest:
+      action: എല്ലാ അറിയിപ്പുകളും കാണിക്കുക
+  settings:
+    notifications: അറിയിപ്പുകൾ
