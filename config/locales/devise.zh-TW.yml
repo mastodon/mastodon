@@ -81,8 +81,8 @@ zh-TW:
       success: 成功透過 %{kind} 帳戶登入。
     passwords:
       no_token: 您必須透過密碼重設信件才能存取此頁面。若確實如此，請確定輸入的網址是完整的。
-      send_instructions: 若電子信箱位址存在於我們的資料庫中，幾分鐘後您將在信箱中收到密碼復原連結。若未收到請檢查垃圾郵件資料夾。
-      send_paranoid_instructions: 若電子信箱位址存在於我們的資料庫中，幾分鐘後您將在信箱中收到密碼復原連結。若未收到請檢查垃圾郵件資料夾。
+      send_instructions: 若電子信箱位址存在於我們的資料庫，幾分鐘後您將在信箱中收到密碼復原連結。若未收到請檢查垃圾郵件資料夾。
+      send_paranoid_instructions: 若電子信箱位址存在於我們的資料庫，幾分鐘後您將在信箱中收到密碼復原連結。若未收到請檢查垃圾郵件資料夾。
       updated: 您的密碼已成功變更，現在已經登入。
       updated_not_active: 您的密碼已成功變更。
     registrations:
@@ -92,14 +92,14 @@ zh-TW:
       signed_up_but_locked: 您已註冊成功，但由於您的帳戶已被鎖定，我們無法讓您登入。
       signed_up_but_pending: 包含確認連結的訊息已寄到您的電子信箱。按下此連結後我們將審核您的申請。核准後將通知您。
       signed_up_but_unconfirmed: 包含確認連結的訊息已寄到您的電子信箱。請前往連結以啟用帳號。若未收到請檢查垃圾郵件資料夾。
-      update_needs_confirmation: 已更新您的帳號，但仍需驗證您的新信箱。請檢查電子信箱並前往確認連結來確認新信箱位址。若未收到請檢查垃圾郵件資料夾。
+      update_needs_confirmation: 已成功更新您的帳號，但仍需驗證您的新信箱。請檢查電子信箱並前往確認連結來確認新信箱位址。若未收到請檢查垃圾郵件資料夾。
       updated: 您的帳戶已成功更新。
     sessions:
       already_signed_out: 已成功登出。
       signed_in: 已成功登入。
       signed_out: 已成功登出。
     unlocks:
-      send_instructions: 幾分鐘後您將收到確認信件。若未收到此信件，請檢查垃圾郵件資料夾。
+      send_instructions: 幾分鐘後您將收到解鎖帳號的指引信件。若未收到請檢查垃圾郵件資料夾。
       send_paranoid_instructions: 若此帳號存在，您將在幾分鐘後收到解鎖指引信件。若未收到請檢查垃圾郵件資料夾。
       unlocked: 已解鎖您的帳戶，請登入繼續。
   errors:
