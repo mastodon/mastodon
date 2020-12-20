@@ -395,6 +395,7 @@ zh-CN:
           silence: 自动隐藏
           suspend: 自动封禁
         title: 新增域名屏蔽
+      obfuscate: 混淆域名
       private_comment: 私密评论
       private_comment_hint: 给这一域名限制添加备注，供监察员内部使用
       public_comment: 公开评论
@@ -553,6 +554,7 @@ zh-CN:
       domain_blocks_rationale:
         title: 显示理由
       enable_bootstrap_timeline_accounts:
+        desc_html: 让新用户自动关注指定用户，这样，他们的主页时间线就不会在一开始的时候空空荡荡
         title: 开启新用户默认关注功能
       hero:
         desc_html: 将用于在首页展示。推荐使用分辨率 600×100px 以上的图片。如未设置，将默认使用本站缩略图。
@@ -909,6 +911,8 @@ zh-CN:
     status: 验证状态
     view_proof: 查看证明
   imports:
+    errors:
+      over_rows_processing_limit: 包含行数超过了 %{count}
     modes:
       merge: 合并
       merge_long: 保留现有记录并添加新的记录
