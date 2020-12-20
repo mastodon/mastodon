@@ -260,7 +260,7 @@ class Formatter
 
     html_attrs[:rel] = "me #{html_attrs[:rel]}" if options[:me]
 
-    Twitter::Autolink.send(:link_to_text, entity, link_html(entity[:url]), url, html_attrs)
+    Twitter::TwitterText::Autolink.send(:link_to_text, entity, link_html(entity[:url]), url, html_attrs)
   rescue Addressable::URI::InvalidURIError, IDN::Idna::IdnaError
     encode(entity[:url])
   end
