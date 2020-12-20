@@ -19,7 +19,7 @@ ml:
     what_is_mastodon: എന്താണ് മാസ്റ്റഡോൺ?
   accounts:
     follow: പിന്തുടരുക
-    following: നിങ്ങൾ പിന്തുടരുന്നവർ
+    following: പിന്തുടരുന്നു
     joined: '%{date} ൽ ചേർന്നു'
     last_active: അവസാനം സജീവമായിരുന്നത്
     link_verified_on: സന്ധിയുടെ ഉടമസ്ഥാവസ്‌കാശം %{date} ൽ പരിശോധിക്കപ്പെട്ടു
@@ -74,6 +74,8 @@ ml:
       domain: ഡൊമൈന്‍
       new:
         create: ഡൊമൈൻ ചേര്‍ക്കുക
+  authorize_follow:
+    following: 'വിജയകരം! നിങ്ങൾ ഇപ്പോൾ പിന്തുടരുന്നു:'
   directories:
     directory: പ്രൊഫൈൽ ഡയറക്ടറി
   errors:
@@ -94,5 +96,10 @@ ml:
   notification_mailer:
     digest:
       action: എല്ലാ അറിയിപ്പുകളും കാണിക്കുക
+    follow:
+      body: "%{name} ഇപ്പോൾ നിങ്ങളെ പിന്തുടരുന്നു!"
+      subject: "%{name} ഇപ്പോൾ നിങ്ങളെ പിന്തുടരുന്നു"
+  relationships:
+    following: പിന്തുടരുന്നു
   settings:
     notifications: അറിയിപ്പുകൾ
