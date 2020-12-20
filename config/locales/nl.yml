@@ -751,7 +751,7 @@ nl:
       functional: Jouw account is volledig operationeel.
       pending: Jouw aanvraag moet nog worden beoordeeld door een van onze medewerkers. Dit kan misschien eventjes duren. Je ontvangt een e-mail wanneer jouw aanvraag is goedgekeurd.
       redirecting_to: Jouw account is inactief omdat het momenteel wordt doorverwezen naar %{acct}.
-    too_fast: Formulier is te snel ingediend. Probeer opnieuw.
+    too_fast: Formulier is te snel ingediend. Probeer het nogmaals.
     trouble_logging_in: Problemen met inloggen?
     use_security_key: Beveiligingssleutel gebruiken
   authorize_follow:
@@ -1406,9 +1406,14 @@ nl:
   webauthn_credentials:
     add: Nieuwe beveiligingssleutel toevoegen
     create:
+      error: Er deed zich een probleem voor met het toevoegen van jouw beveiligingssleutel. Probeer het nogmaals.
       success: Het toevoegen van je beveiligingssleutel is geslaagd.
     delete: Verwijderen
     delete_confirmation: Weet je zeker dat je deze beveiligingssleutel wilt verwijderen?
+    description_html: Wanneer je <strong>verificatie met beveiligingssleutels</strong> inschakelt, moet je tijdens het inloggen een van jouw beveiligingssleutels gebruiken.
+    destroy:
+      error: Er deed zich een probleem voor met het verwijderen van jouw beveiligingssleutel. Probeer het nogmaals.
+      success: Het verwijderen van jouw beveiligingssleutel is geslaagd.
     invalid_credential: Ongeldige beveiligingssleutel
     nickname_hint: Voer de bijnaam in van jouw nieuwe beveiligingssleutel
     not_enabled: Je hebt WebAuthn nog niet ingeschakeld
