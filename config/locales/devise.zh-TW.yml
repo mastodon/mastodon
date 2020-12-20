@@ -26,12 +26,12 @@ zh-TW:
         title: 驗證電子信箱位址
       email_changed:
         explanation: '您帳戶的電子信箱位址將變更為：'
-        extra: 若您未變更電子信箱，那麼很有可能是某人取得了你帳戶的存取權限。請立刻變更密碼，或當帳戶被鎖定時，請聯絡伺服器的管理員。
+        extra: 若您未變更電子信箱，那麼很有可能是某人取得了您帳戶的存取權限。請立刻變更密碼，或當帳戶被鎖定時聯絡伺服器的管理員。
         subject: 'Mastodon：已變更電子信箱'
         title: 新電子信箱位址
       password_change:
         explanation: 您帳戶的密碼已變更。
-        extra: 如果您未變更密碼，那麼很有可能是某人取得了帳戶的存取權限。請立刻變更密碼，或若帳戶被鎖定時，請聯絡伺服器的管理員。
+        extra: 若您未變更密碼，那麼很有可能是某人取得了您帳戶的存取權限。請立刻變更密碼，或當帳戶被鎖定時聯絡伺服器的管理員。
         subject: 'Mastodon：已變更密碼'
         title: 密碼已變更
       reconfirmation_instructions:
@@ -42,7 +42,7 @@ zh-TW:
       reset_password_instructions:
         action: 變更密碼
         explanation: 您已請求帳戶的新密碼。
-        extra: 若您並未請求，請忽略此信件。您的密碼在存取上方連結並建立新連結前不會變更。
+        extra: 若您並未請求，請忽略此信件。您的密碼在存取上方連結並建立新密碼前不會變更。
         subject: 'Mastodon：重設密碼指引'
         title: 重設密碼
       two_factor_disabled:
@@ -62,27 +62,27 @@ zh-TW:
       webauthn_credential:
         added:
           explanation: 下面的安全密鑰已經新增至您的帳戶
-          subject: 'Mastodon: 新安全密鑰'
+          subject: 'Mastodon：新安全密鑰'
           title: 已新增新安全密鑰
         deleted:
-          explanation: 下面的安全密鑰已經從您的帳戶中移除
-          subject: 'Mastodon: 安全密鑰已移除'
+          explanation: 以下的安全密鑰已經從您的帳戶中移除
+          subject: 'Mastodon：安全密鑰已移除'
           title: 您的一支安全密鑰已經被移除
       webauthn_disabled:
         explanation: 您的帳戶並沒有啟用安全密鑰認證方式。只能以 TOTP app 產生地成對 token 登入。
-        subject: 'Mastodon: 安全密鑰認證方式已關閉'
+        subject: 'Mastodon：安全密鑰認證方式已關閉'
         title: 已關閉安全密鑰
       webauthn_enabled:
-        explanation: 安全密鑰認證已在您的帳戶中啟用。您可以使用安全密鑰登入了。
-        subject: 'Mastodon: 以啟用安全密鑰認證'
-        title: 已開啟安全密鑰
+        explanation: 您的帳戶已啟用安全密鑰認證。您可以使用安全密鑰登入了。
+        subject: 'Mastodon：已啟用安全密鑰認證'
+        title: 已啟用安全密鑰
     omniauth_callbacks:
       failure: 無法透過 %{kind} 認證是否為您，因為「%{reason}」。
       success: 成功透過 %{kind} 帳戶登入。
     passwords:
       no_token: 您必須透過密碼重設信件才能存取此頁面。若確實如此，請確定輸入的網址是完整的。
-      send_instructions: 若電子信箱位址存在於資料庫，幾分鐘後您將在信箱中收到密碼復原連結。若未收到請檢查垃圾郵件資料夾。
-      send_paranoid_instructions: 若電子信箱位址存在於資料庫，幾分鐘後您將在信箱中收到密碼復原連結。若未收到請檢查垃圾郵件資料夾。
+      send_instructions: 若電子信箱位址存在於我們的資料庫中，幾分鐘後您將在信箱中收到密碼復原連結。若未收到請檢查垃圾郵件資料夾。
+      send_paranoid_instructions: 若電子信箱位址存在於我們的資料庫中，幾分鐘後您將在信箱中收到密碼復原連結。若未收到請檢查垃圾郵件資料夾。
       updated: 您的密碼已成功變更，現在已經登入。
       updated_not_active: 您的密碼已成功變更。
     registrations:
