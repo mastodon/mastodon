@@ -553,7 +553,10 @@ zh-TW:
         disabled: 給沒有人
         title: 顯示封鎖的網域
         users: 套用至所有登入的本機使用者
+      domain_blocks_rationale:
+        title: 顯示解釋原因
       enable_bootstrap_timeline_accounts:
+        desc_html: 使新使用者自動跟隨設定之帳號，所以他們的首頁動態一開始不會空白
         title: 啟用新使用者的預設追蹤
       hero:
         desc_html: 在首頁顯示。推薦最小 600x100px。如果留空，就會重設回伺服器預覽圖
@@ -565,6 +568,7 @@ zh-TW:
         desc_html: 本伺服器在聯邦中發現的站點
         title: 發布已知伺服器的列表
       preview_sensitive_media:
+        desc_html: 連結來自其他網站的預覽將顯示於縮圖，即使這些媒體被標記為敏感
         title: 在 OpenGraph 預覽中顯示敏感媒體
       profile_directory:
         desc_html: 允許能探索使用者
