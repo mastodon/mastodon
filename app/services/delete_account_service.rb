@@ -123,7 +123,9 @@ class DeleteAccountService < BaseService
       next if @options[:reserve_username] && reported_status_ids.include?(poll.status_id)
 
       # We can safely delete the poll rather than destroy it, as any non-reported
-      # status should have been deleted already
+      # status should have been deleted already, as long as we take care of
+      # notifications.
+      Notification.where(poll: poll).delete_all
       poll.delete
     end
 
