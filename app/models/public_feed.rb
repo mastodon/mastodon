@@ -24,6 +24,7 @@ class PublicFeed
     scope.merge!(without_replies_scope) unless with_replies?
     scope.merge!(without_reblogs_scope) unless with_reblogs?
     scope.merge!(local_only_scope) if local_only?
+    scope.merge!(without_bots_scope) if local_only?
     scope.merge!(remote_only_scope) if remote_only?
     scope.merge!(account_filters_scope) if account?
     scope.merge!(media_only_scope) if media_only?
@@ -69,6 +70,10 @@ class PublicFeed
 
   def remote_only_scope
     Status.remote
+  end
+
+  def without_bots_scope
+    Status.excluding_bots_accounts
   end
 
   def without_replies_scope
