@@ -19,9 +19,10 @@
       = opengraph 'og:video', full_asset_url(media.file.url(:original))
       = opengraph 'og:video:secure_url', full_asset_url(media.file.url(:original))
       = opengraph 'og:video:type', media.file_content_type
-      = opengraph 'twitter:player', medium_player_url(media)
-      = opengraph 'twitter:player:stream', full_asset_url(media.file.url(:original))
-      = opengraph 'twitter:player:stream:content_type', media.file_content_type
+      - if media.local?
+        = opengraph 'twitter:player', medium_player_url(media)
+        = opengraph 'twitter:player:stream', full_asset_url(media.file.url(:original))
+        = opengraph 'twitter:player:stream:content_type', media.file_content_type
       - unless media.file.meta.nil?
         = opengraph 'og:video:width', media.file.meta.dig('original', 'width')
         = opengraph 'og:video:height', media.file.meta.dig('original', 'height')
