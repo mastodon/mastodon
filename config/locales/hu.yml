@@ -59,7 +59,7 @@ hu:
       one: Követő
       other: Követő
     following: Követett
-    instance_actor_flash: Ez a fiók virtuális és magát a kiszolgálót reprezentálja, nem egy konkrét felhasználót. Föderációs célokból használt, és nem szabad felfüggeszteni.
+    instance_actor_flash: "Ez a fiók virtuális, magát a szervert reprezentálja, nem pedig konkrét\nfelhasználót. Föderációs célokra szolgál, nem szabad tehát felfüggeszteni."
     joined: Csatlakozott %{date}
     last_active: utoljára aktív
     link_verified_on: A link tulajdonosát %{date} -n ellenőriztük
@@ -256,7 +256,7 @@ hu:
         unsuspend_account: Fiók felfüggesztésének feloldása
         update_announcement: Közlemény frissítése
         update_custom_emoji: Egyéni emodzsi frissítése
-        update_domain_block: Domain blokkolás frissítése
+        update_domain_block: Domain tiltás frissítése
         update_status: Állapot frissítése
       actions:
         assigned_to_self_report: "%{name} a %{target} bejelentést magához rendelte"
@@ -297,7 +297,7 @@ hu:
         unsuspend_account: "%{name} feloldotta %{target} felhasználói fiókjának felfüggesztését"
         update_announcement: "%{name} frissítette a közleményt %{target}"
         update_custom_emoji: "%{name} frissítette az alábbi emodzsit: %{target}"
-        update_domain_block: "%{name} frissítette a(z) %{target} domain blokkolását"
+        update_domain_block: "%{name} frissítette a %{target} domain tiltását"
         update_status: "%{name} frissítette %{target} felhasználó tülkjét"
       deleted_status: "(törölt tülk)"
       empty: Nem található napló.
