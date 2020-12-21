@@ -26,6 +26,11 @@ RSpec.describe BatchedRemoveStatusService, type: :service do
     subject.call([status1, status2])
   end
 
+  it 'removes statuses' do
+    expect { Status.find(status1.id) }.to raise_error ActiveRecord::RecordNotFound
+    expect { Status.find(status2.id) }.to raise_error ActiveRecord::RecordNotFound
+  end
+
   it 'removes statuses from author\'s home feed' do
     expect(HomeFeed.new(alice).get(10)).to_not include([status1.id, status2.id])
   end
