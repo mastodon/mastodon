@@ -64,12 +64,6 @@ class BatchedRemoveStatusService < BaseService
         FeedManager.instance.unpush_from_home(follower, status)
       end
     end
-
-    return unless account.local?
-
-    statuses.each do |status|
-      FeedManager.instance.unpush_from_home(account, status)
-    end
   end
 
   def unpush_from_list_timelines(account, statuses)

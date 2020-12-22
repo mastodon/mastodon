@@ -145,6 +145,7 @@ class DeleteAccountService < BaseService
     purge_media_attachments!
     purge_polls!
     purge_generated_notifications!
+    purge_feeds!
     purge_other_associations!
 
     @account.destroy unless keep_account_record?
@@ -179,6 +180,13 @@ class DeleteAccountService < BaseService
     associations_for_destruction.each do |association_name|
       purge_association(association_name)
     end
+  end
+
+  def purge_feeds!
+    return unless @account.local?
+
+    FeedManager.instance.clean_feeds!(:home, [@account.id])
+    FeedManager.instance.clean_feeds!(:list, @account.owned_lists.pluck(:id))
   end
 
   def purge_profile!

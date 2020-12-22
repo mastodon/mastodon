@@ -43,10 +43,6 @@ RSpec.describe BatchedRemoveStatusService, type: :service do
     expect(Redis.current).to have_received(:publish).with("timeline:#{jeff.id}", any_args).at_least(:once)
   end
 
-  it 'notifies streaming API of author' do
-    expect(Redis.current).to have_received(:publish).with("timeline:#{alice.id}", any_args).at_least(:once)
-  end
-
   it 'notifies streaming API of public timeline' do
     expect(Redis.current).to have_received(:publish).with('timeline:public', any_args).at_least(:once)
   end
