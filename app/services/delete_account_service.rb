@@ -151,9 +151,7 @@ class DeleteAccountService < BaseService
   end
 
   def purge_statuses!
-    @account.statuses.reorder(nil).find_in_batches do |statuses|
-      statuses.reject! { |status| reported_status_ids.include?(status.id) } if keep_account_record?
-
+    @account.statuses.reorder(nil).where.not(id: reported_status_ids).in_batches do |statuses|
       BatchedRemoveStatusService.new.call(statuses, skip_side_effects: skip_side_effects?)
     end
   end
@@ -167,11 +165,7 @@ class DeleteAccountService < BaseService
   end
 
   def purge_polls!
-    @account.polls.reorder(nil).find_each do |poll|
-      next if keep_account_record? && reported_status_ids.include?(poll.status_id)
-
-      poll.delete
-    end
+    @account.polls.reorder(nil).where.not(status_id: reported_status_ids).in_batches.delete_all
   end
 
   def purge_generated_notifications!
