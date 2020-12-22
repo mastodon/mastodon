@@ -46,10 +46,12 @@ class DeleteAccountService < BaseService
     featured_tags
     follow_requests
     identity_proofs
+    list_accounts
     migrations
     mute_relationships
     muted_by_relationships
     notifications
+    owned_lists
     scheduled_statuses
     status_pins
   )
