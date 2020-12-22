@@ -61,7 +61,7 @@ class BatchedRemoveStatusService < BaseService
   private
 
   def unpush_from_home_timelines(account, statuses)
-    account.followers_for_local_distribution.includes(:user).find_each do |follower|
+    account.followers_for_local_distribution.includes(:user).reorder(nil).find_each do |follower|
       statuses.each do |status|
         FeedManager.instance.unpush_from_home(follower, status)
       end
@@ -75,7 +75,7 @@ class BatchedRemoveStatusService < BaseService
   end
 
   def unpush_from_list_timelines(account, statuses)
-    account.lists_for_local_distribution.select(:id, :account_id).includes(account: :user).find_each do |list|
+    account.lists_for_local_distribution.select(:id, :account_id).includes(account: :user).reorder(nil).find_each do |list|
       statuses.each do |status|
         FeedManager.instance.unpush_from_list(list, status)
       end
