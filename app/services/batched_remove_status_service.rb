@@ -8,7 +8,7 @@ class BatchedRemoveStatusService < BaseService
   # @param [Hash] options
   # @option [Boolean] :skip_side_effects Do not modify feeds and send updates to streaming API
   def call(statuses, **options)
-    ActiveRecord::Associations::Preloader.new.preload(statuses, options[:skip_side_effects] ? :reblogs : [:account, reblogs: :account])
+    ActiveRecord::Associations::Preloader.new.preload(statuses, options[:skip_side_effects] ? :reblogs : [:account, :tags, reblogs: :account])
 
     statuses_and_reblogs = statuses.flat_map { |status| [status] + status.reblogs }
 
@@ -34,8 +34,6 @@ class BatchedRemoveStatusService < BaseService
     Chewy.strategy.current.update(StatusesIndex, statuses_and_reblogs)
 
     return if options[:skip_side_effects]
-
-    ActiveRecord::Associations::Preloader.new.preload(statuses_and_reblogs, :tags)
 
     # Batch by source account
     statuses_and_reblogs.group_by(&:account_id).each_value do |account_statuses|
