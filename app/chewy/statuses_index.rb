@@ -45,7 +45,7 @@ class StatusesIndex < Chewy::Index
 
   # We do not use delete_if option here because it would call a method that we
   # expect to be called with crutches without crutches, causing n+1 queries
-  index_scope ::Status.unscoped.kept.without_reblogs.includes(:media_attachments, :preloadable_poll)
+  index_scope ::Status.unscoped.kept.without_reblogs.excluding_bots_accounts.includes(:media_attachments, :preloadable_poll)
 
   crutch :mentions do |collection|
     data = ::Mention.where(status_id: collection.map(&:id)).where(account: Account.local, silent: false).pluck(:status_id, :account_id)
