@@ -132,6 +132,7 @@ oc:
       login_status: Estat formulari de connexion
       media_attachments: Mèdias enviats
       memorialize: Passar en memorial
+      memorialized: Memorizat
       moderation:
         active: Actius
         all: Totes
@@ -773,6 +774,7 @@ oc:
       request: Demandar vòstre archiu
       size: Talha
     blocks: Personas que blocatz
+    bookmarks: Marcadors
     csv: CSV
     domain_blocks: Blocatge de domenis
     lists: Listas
@@ -847,6 +849,7 @@ oc:
     success: Vòstras donadas son ben estadas mandadas e seràn tractadas tre que possible
     types:
       blocking: Lista de blocatge
+      bookmarks: Marcadors
       domain_blocking: Lista dels domenis blocats
       following: Lista de monde que seguètz
       muting: Lista de monde que volètz pas legir
@@ -1083,6 +1086,9 @@ oc:
     spam_detected: Aquò es un senhalament automatic. D’spam es estat detectat.
   statuses:
     attached:
+      audio:
+        one: "%{count} àudio"
+        other: "%{count} àudios"
       description: 'Ajustat : %{attached}'
       image:
         one: "%{count} imatge"
@@ -1232,6 +1238,7 @@ oc:
     recovery_codes: Salvar los còdis de recuperacion
     recovery_codes_regenerated: Los còdis de recuperacion son ben estats tornats generar
     recovery_instructions_html: Se vos arriba de perdre vòstre mobil, podètz utilizar un dels còdis de recuperacion cai-jos per poder tornar accedir a vòstre compte. <strong>Gardatz los còdis en seguretat</strong>, per exemple, imprimissètz los e gardatz los amb vòstres documents importants.
+    webauthn: Claus de seguretat
   user_mailer:
     backup_ready:
       explanation: Avètz demandat una salvagarda complèta de vòstre compte Mastodon. Es prèsta per telecargament !
@@ -1284,4 +1291,7 @@ oc:
     explanation_html: 'Podètz <strong>verificar vosautres meteisses coma proprietari dels ligams per las metadonadas de vòstre perfil</strong>. Per aquò far, lo site Web ligat deu conténer un ligam cap a vòstre perfil Mastodon. Lo ligam <strong>deu</strong> aver un atribut <code>rel="me"</code>. Lo contengut tèxte del ligam impòrta pas. Vaquí un exemple :'
     verification: Verificacion
   webauthn_credentials:
+    add: Apondre una clau de seguretat novèla
+    delete: Suprimir
+    invalid_credential: Cau de seguretat invalida
     registered_on: Inscripcion del %{date}

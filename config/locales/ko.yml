@@ -128,6 +128,7 @@ ko:
       follows: 팔로잉 수
       header: 헤더
       inbox_url: 수신함 URL
+      invite_request_text: 가입 하려는 이유
       invited_by: 초대자
       ip: IP
       joined: 가입
@@ -399,6 +400,8 @@ ko:
           silence: 침묵
           suspend: 정지
         title: 새로운 도메인 차단
+      obfuscate: 도메인 이름 난독화
+      obfuscate_hint: 도메인 제한 목록을 공개하는 경우 도메인 이름의 일부를 난독화 합니다
       private_comment: 비공개 주석
       private_comment_hint: 이 도메인 제한에 대한 주석은 중재자를 위해 내부적으로 사용 됩니다.
       public_comment: 공개 주석
@@ -557,6 +560,7 @@ ko:
       domain_blocks_rationale:
         title: 사유 보여주기
       enable_bootstrap_timeline_accounts:
+        desc_html: 새 사용자들이 자동으로 설정 된 계정들을 팔로우 하도록 해서 그들의 홈 피드가 빈 상태로 시작하지 않도록 합니다
         title: 새 유저가 팔로우할 계정을 보여주기
       hero:
         desc_html: 프론트페이지에 표시 됩니다. 최소 600x100픽셀을 권장합니다. 만약 설정되지 않았다면, 서버의 썸네일이 사용 됩니다
