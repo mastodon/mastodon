@@ -37,9 +37,6 @@ class BatchedRemoveStatusService < BaseService
 
     ActiveRecord::Associations::Preloader.new.preload(statuses_and_reblogs, :tags)
 
-    @tags          = statuses_and_reblogs.each_with_object({}) { |s, h| h[s.id] = s.tags.map { |tag| tag.name.mb_chars.downcase } }
-    @json_payloads = statuses_and_reblogs.each_with_object({}) { |s, h| h[s.id] = Oj.dump(event: :delete, payload: s.id.to_s) }
-
     # Batch by source account
     statuses_and_reblogs.group_by(&:account_id).each_value do |account_statuses|
       account = account_statuses.first.account
@@ -85,7 +82,7 @@ class BatchedRemoveStatusService < BaseService
   def unpush_from_public_timelines(status)
     return unless status.public_visibility?
 
-    payload = @json_payloads[status.id]
+    payload = Oj.dump(event: :delete, payload: status.id.to_s)
 
     redis.publish('timeline:public', payload)
     redis.publish(status.local? ? 'timeline:public:local' : 'timeline:public:remote', payload)
@@ -95,7 +92,7 @@ class BatchedRemoveStatusService < BaseService
       redis.publish(status.local? ? 'timeline:public:local:media' : 'timeline:public:remote:media', payload)
     end
 
-    @tags[status.id].each do |hashtag|
+    status.tags.map { |tag| tag.name.mb_chars.downcase }.each do |hashtag|
       redis.publish("timeline:hashtag:#{hashtag}", payload)
       redis.publish("timeline:hashtag:#{hashtag}:local", payload) if status.local?
     end
