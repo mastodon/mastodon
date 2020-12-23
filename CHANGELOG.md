@@ -55,7 +55,7 @@ All notable changes to this project will be documented in this file.
 - Add indication to admin UI of whether a report has been forwarded ([ThibG](https://github.com/tootsuite/mastodon/pull/13237))
 - Add display of reasons for joining of an account in admin UI ([mashirozx](https://github.com/tootsuite/mastodon/pull/15265))
 - Add option to obfuscate domain name in public list of domain blocks ([Gargron](https://github.com/tootsuite/mastodon/pull/15355))
-- Add option to make reasons for joining required on sign-up ([ThibG](https://github.com/tootsuite/mastodon/pull/15326), [ThibG](https://github.com/tootsuite/mastodon/pull/15358))
+- Add option to make reasons for joining required on sign-up ([ThibG](https://github.com/tootsuite/mastodon/pull/15326), [ThibG](https://github.com/tootsuite/mastodon/pull/15358), [ThibG](https://github.com/tootsuite/mastodon/pull/15385), [ThibG](https://github.com/tootsuite/mastodon/pull/15405))
 - Add ActivityPub follower synchronization mechanism ([ThibG](https://github.com/tootsuite/mastodon/pull/14510), [ThibG](https://github.com/tootsuite/mastodon/pull/15026))
 - Add outbox attribute to instance actor ([ThibG](https://github.com/tootsuite/mastodon/pull/14721))
 - Add featured hashtags as an ActivityPub collection ([Gargron](https://github.com/tootsuite/mastodon/pull/11595), [noellabo](https://github.com/tootsuite/mastodon/pull/15277))
@@ -66,7 +66,7 @@ All notable changes to this project will be documented in this file.
 - Add `tootctl accounts merge` ([Gargron](https://github.com/tootsuite/mastodon/pull/15201), [ThibG](https://github.com/tootsuite/mastodon/pull/15264), [ThibG](https://github.com/tootsuite/mastodon/pull/15256))
   - Has someone changed their domain or subdomain thereby creating two accounts where there should be one?
   - This command will fix it on your end
-- Add `tootctl maintenance fix-duplicates` ([ThibG](https://github.com/tootsuite/mastodon/pull/14860), [Gargron](https://github.com/tootsuite/mastodon/pull/15223))
+- Add `tootctl maintenance fix-duplicates` ([ThibG](https://github.com/tootsuite/mastodon/pull/14860), [Gargron](https://github.com/tootsuite/mastodon/pull/15223), [ThibG](https://github.com/tootsuite/mastodon/pull/15373))
   - Index corruption in the database?
   - This command is for you
 - **Add support for managing multiple stream subscriptions in a single connection** ([Gargron](https://github.com/tootsuite/mastodon/pull/14524), [Gargron](https://github.com/tootsuite/mastodon/pull/14566), [mfmfuyu](https://github.com/tootsuite/mastodon/pull/14859), [zunda](https://github.com/tootsuite/mastodon/pull/14608))
@@ -77,6 +77,7 @@ All notable changes to this project will be documented in this file.
 - Add `GET /api/v1/accounts/:id/featured_tags` to REST API ([noellabo](https://github.com/tootsuite/mastodon/pull/11817), [noellabo](https://github.com/tootsuite/mastodon/pull/15270))
 - Add stoplight for object storage failures, return HTTP 503 in REST API ([Gargron](https://github.com/tootsuite/mastodon/pull/13043))
 - Add optional `tootctl remove media` cronjob in Helm chart ([dunn](https://github.com/tootsuite/mastodon/pull/14396))
+- Add clean error message when `RAILS_ENV` is unset ([ThibG](https://github.com/tootsuite/mastodon/pull/15381))
 
 ### Changed
 
@@ -84,7 +85,7 @@ All notable changes to this project will be documented in this file.
   - Background of the overlay matches the color of the image
   - Action bar to interact with or open the toot from the modal
 - Change order of announcements in admin UI to be newest-first ([ThibG](https://github.com/tootsuite/mastodon/pull/15091))
-- **Change account suspensions to be reversible by default** ([Gargron](https://github.com/tootsuite/mastodon/pull/14726), [ThibG](https://github.com/tootsuite/mastodon/pull/15152), [ThibG](https://github.com/tootsuite/mastodon/pull/15106), [ThibG](https://github.com/tootsuite/mastodon/pull/15100), [ThibG](https://github.com/tootsuite/mastodon/pull/15099), [noellabo](https://github.com/tootsuite/mastodon/pull/14855))
+- **Change account suspensions to be reversible by default** ([Gargron](https://github.com/tootsuite/mastodon/pull/14726), [ThibG](https://github.com/tootsuite/mastodon/pull/15152), [ThibG](https://github.com/tootsuite/mastodon/pull/15106), [ThibG](https://github.com/tootsuite/mastodon/pull/15100), [ThibG](https://github.com/tootsuite/mastodon/pull/15099), [noellabo](https://github.com/tootsuite/mastodon/pull/14855), [ThibG](https://github.com/tootsuite/mastodon/pull/15380))
   - Suspensions no longer equal deletions
   - A suspended account can be unsuspended with minimal consequences for 30 days
   - Immediate deletion of data is still available as an explicit option
@@ -162,6 +163,7 @@ All notable changes to this project will be documented in this file.
 - Fix inefficiency when fetching bookmarks ([akihikodaki](https://github.com/tootsuite/mastodon/pull/14674))
 - Fix inefficiency when fetching favourites ([akihikodaki](https://github.com/tootsuite/mastodon/pull/14673))
 - Fix inefficiency when fetching media-only account timeline ([akihikodaki](https://github.com/tootsuite/mastodon/pull/14675))
+- Fix inefficieny when deleting accounts ([Gargron](https://github.com/tootsuite/mastodon/pull/15387), [ThibG](https://github.com/tootsuite/mastodon/pull/15409), [ThibG](https://github.com/tootsuite/mastodon/pull/15407), [ThibG](https://github.com/tootsuite/mastodon/pull/15408), [ThibG](https://github.com/tootsuite/mastodon/pull/15402))
 - Fix redundant query when processing batch actions on custom emojis ([niwatori24](https://github.com/tootsuite/mastodon/pull/14534))
 - Fix slow distinct queries where grouped queries are faster ([Gargron](https://github.com/tootsuite/mastodon/pull/15287))
 - Fix performance on instances list in admin UI ([Gargron](https://github.com/tootsuite/mastodon/pull/15282))
