@@ -56,6 +56,8 @@ class UnsuspendAccountService < BaseService
         attachment = media_attachment.public_send(attachment_name)
         styles     = [:original] | attachment.styles.keys
 
+        next if attachment.blank?
+
         styles.each do |style|
           case Paperclip::Attachment.default_options[:storage]
           when :s3
