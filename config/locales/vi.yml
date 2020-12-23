@@ -202,7 +202,7 @@ vi:
       unconfirmed_email: Email chưa được xác thực
       undo_sensitized: Đánh dấu bình thường
       undo_silenced: Bỏ ẩn
-      undo_suspension: Ngừng vô hiệu hóa
+      undo_suspension: Bỏ vô hiệu hóa
       unsilenced_msg: Bỏ ẩn %{username} thành công
       unsubscribe: Hủy đăng ký
       unsuspended_msg: Đã kích hoạt lại %{username} thành công
@@ -231,11 +231,11 @@ vi:
         destroy_email_domain_block: Gỡ email đã chặn
         destroy_ip_block: Bỏ chặn IP
         destroy_status: Xóa tút
-        disable_2fa_user: Vô hiệu hóa xác thực hai bước
+        disable_2fa_user: Xóa xác thực hai bước
         disable_custom_emoji: Vô hiệu hóa Emoji
         disable_user: Tạm khóa người dùng
         enable_custom_emoji: Cho phép Emoji
-        enable_user: Mở khóa người dùng
+        enable_user: Mở khóa
         memorialize_account: Tài khoản tưởng niệm
         promote_user: Chỉ định chức vụ
         remove_avatar_user: Xóa ảnh đại diện
@@ -243,12 +243,12 @@ vi:
         reset_password_user: Đặt lại mật khẩu
         resolve_report: Xử lý báo cáo
         sensitive_account: Đánh dấu nhạy cảm cho tài khoản
-        silence_account: Tài khoản bị ẩn
-        suspend_account: Vô hiệu hóa người dùng
+        silence_account: Ẩn
+        suspend_account: Vô hiệu hóa
         unassigned_report: Báo cáo chưa xử lý
-        unsensitive_account: Đánh dấu tài khoản là bình thường
-        unsilence_account: Ngừng ẩn
-        unsuspend_account: Ngừng vô hiệu hóa
+        unsensitive_account: Đánh dấu bình thường
+        unsilence_account: Bỏ ẩn
+        unsuspend_account: Bỏ vô hiệu hóa
         update_announcement: Cập nhật thông báo
         update_custom_emoji: Cập nhật Emoji mới
         update_domain_block: Cập nhật máy chủ chặn
@@ -272,9 +272,9 @@ vi:
         destroy_email_domain_block: "%{name} bỏ chặn tên miền email %{target}"
         destroy_ip_block: "%{name} bỏ chặn IP %{target}"
         destroy_status: "%{name} đã xóa tút của %{target}"
-        disable_2fa_user: "%{name} đã vô hiệu hóa xác thực hai yếu tố của %{target}"
+        disable_2fa_user: "%{name} đã vô hiệu hóa xác thực hai bước của %{target}"
         disable_custom_emoji: "%{name} đã ẩn emoji %{target}"
-        disable_user: "%{name} tạm khóa %{target}"
+        disable_user: "%{name} vô hiệu hóa đăng nhập %{target}"
         enable_custom_emoji: "%{name} cho phép Emoji %{target}"
         enable_user: "%{name} mở khóa cho người dùng %{target}"
         memorialize_account: "%{name} đã biến tài khoản %{target} thành một trang tưởng niệm"
