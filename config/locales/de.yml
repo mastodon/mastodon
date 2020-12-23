@@ -402,6 +402,8 @@ de:
           silence: Stummschaltung
           suspend: Sperre
         title: Neue Domain-Blockade
+      obfuscate: Domainname verschleiern
+      obfuscate_hint: Den Domainnamen in der Liste teilweise verschleiern, wenn die Liste der Domänenbeschränkungen aktiviert ist
       private_comment: Privater Kommentar
       private_comment_hint: Kommentar zu dieser Domain-Beschränkung für die interne Nutzung durch die Moderatoren.
       public_comment: Öffentlicher Kommentar
@@ -564,6 +566,7 @@ de:
       domain_blocks_rationale:
         title: Rationale anzeigen
       enable_bootstrap_timeline_accounts:
+        desc_html: Neue Benutzer automatisch den konfigurierten Konten folgen lassen, sodass ihr Home-Feed nicht leer startet
         title: Aktiviere die Option "Konten, denen Neu-Angemeldete automatisch folgen"
       hero:
         desc_html: Wird auf der Startseite angezeigt. Mindestens 600x100px sind empfohlen. Wenn es nicht gesetzt wurde, wird das Server-Thumbnail dafür verwendet
@@ -921,6 +924,8 @@ de:
     status: Verifizierungsstatus
     view_proof: Zeige Nachweis
   imports:
+    errors:
+      over_rows_processing_limit: enthält mehr als %{count} Zeilen
     modes:
       merge: Zusammenführen
       merge_long: Behalte existierende Datensätze und füge neue hinzu

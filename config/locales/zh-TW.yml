@@ -57,6 +57,7 @@ zh-TW:
     followers:
       other: 關注者
     following: 正在關注
+    instance_actor_flash: 這個帳號是一個用來代表此伺服器的虛擬執行者，而非真實使用者。它用途為站點聯盟且不應被停權。
     joined: 加入於 %{date}
     last_active: 上次活躍時間
     link_verified_on: 此連結的所有權已在 %{date} 檢查過
@@ -127,6 +128,7 @@ zh-TW:
       follows: 正在關注
       header: 開頭
       inbox_url: 收件箱 (Inbox) URL
+      invite_request_text: 加入原因
       invited_by: 邀請者
       ip: IP 位址
       joined: 已加入
@@ -251,6 +253,7 @@ zh-TW:
         unsuspend_account: 取消用戶的暫停狀態
         update_announcement: 更新公告
         update_custom_emoji: 更新自訂顏文字
+        update_domain_block: 更新封鎖網域
         update_status: 更新狀態
       actions:
         assigned_to_self_report: "%{name} 接受了檢舉 %{target}"
@@ -291,6 +294,7 @@ zh-TW:
         unsuspend_account: "%{name} 取消了使用者 %{target} 的停權狀態"
         update_announcement: "%{name} 更新了公告 %{target}"
         update_custom_emoji: "%{name} 更新了自訂表情符號 %{target}"
+        update_domain_block: "%{name} 更新封鎖網域 %{target}"
         update_status: "%{name} 重整了 %{target} 的嘟文"
       deleted_status: "（已刪除嘟文）"
       empty: 找不到 log
@@ -394,6 +398,8 @@ zh-TW:
           silence: 靜音
           suspend: 停權
         title: 新增封鎖站點
+      obfuscate: 混淆網域名稱
+      obfuscate_hint: 若啟用網域廣告列表限制，於列表部份混淆網域名稱
       private_comment: 私人留言
       private_comment_hint: 請提供更多有關此站台限制的資訊以供版主作內部參考。
       public_comment: 公開留言
@@ -432,6 +438,7 @@ zh-TW:
     instances:
       by_domain: 站台
       delivery_available: 可傳送
+      empty: 找不到網域
       known_accounts:
         other: "%{count} 已知的帳戶"
       moderation:
@@ -483,19 +490,31 @@ zh-TW:
       enable_hint: 啟用後，你的伺服器將訂閱該中繼的所有公開文章，並將會此伺服器的公開文章發送給它。
       enabled: 已啟用
       inbox_url: 中繼URL
+      pending: 等待中繼站審核
       save_and_enable: 儲存並啟用
+      setup: 設定中繼連結
+      signatures_not_enabled: 若啟用安全模式或受限的站點聯盟模式，中繼將不會正常運作
       status: 狀態
+      title: 中繼
     report_notes:
       created_msg: 檢舉記錄建立成功!
       destroyed_msg: 檢舉記錄刪除成功!
     reports:
+      account:
+        notes:
+          other: "%{count} 則備註"
+        reports:
+          other: "%{count} 則檢舉"
       action_taken_by: 操作執行者
       are_you_sure: 你確定嗎?
       assign_to_self: 指派給自己
       assigned: 指派負責人
+      by_target_domain: 檢舉帳號之網域
       comment:
         none: 無
       created_at: 日期
+      forwarded: 已轉寄
+      forwarded_to: 轉寄到 %{domain}
       mark_as_resolved: 標記為「已解決」
       mark_as_unresolved: 標記為「未解決」
       notes:
@@ -526,12 +545,20 @@ zh-TW:
         email: 用於聯絡的公開電子信箱位址
         username: 請輸入使用者名稱
       custom_css:
+        desc_html: 透過於每個頁面都載入的 CSS 調整外觀
         title: 自訂 CSS
+      default_noindex:
+        desc_html: 影響所有沒有變更此設定的使用者
+        title: 預設將使用者退出搜尋引擎索引
       domain_blocks:
         all: 給任何人
         disabled: 給沒有人
         title: 顯示封鎖的網域
+        users: 套用至所有登入的本機使用者
+      domain_blocks_rationale:
+        title: 顯示解釋原因
       enable_bootstrap_timeline_accounts:
+        desc_html: 使新使用者自動跟隨設定之帳號，所以他們的首頁動態一開始不會空白
         title: 啟用新使用者的預設追蹤
       hero:
         desc_html: 在首頁顯示。推薦最小 600x100px。如果留空，就會重設回伺服器預覽圖
@@ -543,6 +570,7 @@ zh-TW:
         desc_html: 本伺服器在聯邦中發現的站點
         title: 發布已知伺服器的列表
       preview_sensitive_media:
+        desc_html: 連結來自其他網站的預覽將顯示於縮圖，即使這些媒體被標記為敏感
         title: 在 OpenGraph 預覽中顯示敏感媒體
       profile_directory:
         desc_html: 允許能探索使用者
