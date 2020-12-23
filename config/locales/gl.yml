@@ -402,6 +402,8 @@ gl:
           silence: Silenciar
           suspend: Suspender
         title: Novo bloqueo de dominio
+      obfuscate: Ofuscar o nome de dominio
+      obfuscate_hint: Ofuscar parcialmente o nome do dominio na lista se está activada a publicación da lista de limitacións de dominio
       private_comment: Comentario privado
       private_comment_hint: Comentar sobre esta limitación de dominio para uso interno polos moderadores.
       public_comment: Comentario público
@@ -564,6 +566,7 @@ gl:
       domain_blocks_rationale:
         title: Amosar motivo
       enable_bootstrap_timeline_accounts:
+        desc_html: Facer que as novas usuarias sigan automáticamente certas contas para que así a cronoloxía inicial non esté baleira
         title: Activar seguimentos por omisión para novas usuarias
       hero:
         desc_html: Amosado na páxina principal. Polo menos 600x100px recomendados. Se non está definido, estará por defecto a miniatura do servidor
@@ -921,6 +924,8 @@ gl:
     status: Estado da validación
     view_proof: Ver proba
   imports:
+    errors:
+      over_rows_processing_limit: contén máis de %{count} filas
     modes:
       merge: Fusionar
       merge_long: Manter os rexistros actuais e engadir novos

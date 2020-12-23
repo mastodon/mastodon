@@ -166,10 +166,12 @@ hy:
       roles:
         admin: Ադմինիստրատոր
         moderator: Մոդերատոր
+        staff: Անձնակազմ
         user: Oգտատէր
       search: Որոնել
       search_same_email_domain: Այլ օգտատէրեր նոյն էլ․ փոստի դոմէյնով
       search_same_ip: Այլ օգտատէրեր նոյն IP֊ով
+      sensitive: Զգայուն
       show:
         created_reports: Կազմել բողոքներ
         targeted_reports: Այլոց կողմից բողոքարկուած
@@ -194,6 +196,7 @@ hy:
         confirm_user: Հաստատել օգտատիրոջը
         create_account_warning: Ստեղծել զգուշացում
         create_announcement: Ստեղծել յայտարարութիւն
+        create_custom_emoji: Ստեղծել սեփական էմոջիները
         create_email_domain_block: Ստեղծել էլ․ հասցէի դոմէյնի արգելափակում
         create_ip_block: Ստեղծել IP կանոն
         destroy_announcement: Ջնջել յայտարարութիւնը
@@ -278,8 +281,11 @@ hy:
       image_hint: PNG մինչեւ 50KB
       list: Ցանկ
       listed: Ցուցակագրուած
+      new:
+        title: Աւելացնել նոր էմոջի
       overwrite: Վերագրել
       shortcode: Հապավում
+      title: Սեփական էմօջիներ
       uncategorized: Չդասակարգուած
       unlist: Ապացուցակագրում
       unlisted: Ծածուկ
@@ -290,6 +296,7 @@ hy:
       feature_invites: Հրաւէրի յղումներ
       feature_profile_directory: Օգտատիրոջ մատեան
       feature_registrations: Գրանցումներ
+      feature_spam_check: Հակա-սպամ
       feature_timeline_preview: Հոսքի նախադիտում
       features: Յատկանիշներ
       open_reports: բաց բողոքներ
@@ -346,6 +353,7 @@ hy:
       title: էլ․ փոստի արգելափակուած տիրոյթներ
     instances:
       by_domain: Դոմեն
+      empty: Դոմեյնները չեն գտնուել
       known_accounts:
         one: "%{count} յայտնի հաշիւ"
         other: "%{count} յայտնի հաշիւներ"
@@ -387,6 +395,7 @@ hy:
     relationships:
       title: "%{acct}ի յարաբերութիւններ"
     relays:
+      add_new: Աւելացնել նոր վերահեռարձակուիչ
       delete: Ջնջել
       disable: Անջատել
       disabled: Անջատված է
@@ -424,6 +433,7 @@ hy:
       updated_at: Թարմացուած
     settings:
       contact_information:
+        email: Գործնական էլփոստ
         username: Կոնտակտի ծածկանուն
       custom_css:
         title: Սեփական CSS
@@ -449,6 +459,10 @@ hy:
           approved: Գրանցման համար անհրաժեշտ է հաստատում
           none: Ոչ ոք չի կարող գրանցուել
           open: Բոլորը կարող են գրանցուել
+        title: Գրանցումային ռեժիմ
+      show_staff_badge:
+        desc_html: Ցուցադրել անձնակազմի անդամի նշանը օգտատիրոջ էջում
+        title: Ցուցադրել անձնակազմի անդամի նշանը
       site_description:
         title: Կայքի նկարագրութիւն
       site_short_description:
@@ -468,10 +482,13 @@ hy:
       back_to_account: Վերադառնալ անձնական էջ
       batch:
         delete: Ջնջել
+        nsfw_on: Նշել որպէս դիւրազգաց
       deleted: Ջնջված է
+      failed_to_execute: Կատարումը ձախողուեց
       media:
         title: Մեդիա
       no_media: Մեդիա չկայ
+      title: Օգտատիրոջ գրառումները
       with_media: Մեդիայի հետ
     tags:
       context: Համատեքստ
@@ -509,6 +526,7 @@ hy:
     view_status: Նայել գրառումը
   applications:
     invalid_url: Տրամադրուած URL անվաւեր է
+    your_token: Քո մուտքի բանալին
   auth:
     apply_for_account: Հրաւէրի հարցում
     change_password: Գաղտնաբառ
@@ -519,6 +537,7 @@ hy:
     login: Մտնել
     logout: Դուրս գալ
     migrate_account: Տեղափոխուել այլ հաշիւ
+    or_log_in_with: Կամ մուտք գործել օգտագործելով՝
     providers:
       cas: CAS
       saml: SAML
@@ -531,6 +550,7 @@ hy:
       title: Կարգավորում
     status:
       account_status: Հաշուի կարգավիճակ
+      pending: Դիմումը պէտք է քննուի մեր անձնակազմի կողմից, ինչը կարող է մի փոքր ժամանակ խլել։ Դիմումի հաստատուելու դէպքում, կտեղեկացնենք նամակով։
   authorize_follow:
     follow: Հետևել
     following: Յաջողութի՜ւն։ Դու այժմ հետեւում ես․
@@ -578,7 +598,7 @@ hy:
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
-    '404': The page you are looking for isn't here.
+    '404': Էջը, որը փնտրում ես գոյութիւն չունի։
     '406': This page is not available in the requested format.
     '410': The page you were looking for doesn't exist here anymore.
     '422': 
@@ -633,6 +653,7 @@ hy:
   identity_proofs:
     active: Ակտիվ
     authorize: Այո, նոյնականացնել
+    authorize_connection_prompt: Հաւաստագրէ՞լ այս ծածկագրման կապակցումը
     i_am_html: Ես %{username}ն եմ %{service}ում։
     identity: Ինքնութիւն
     inactive: Ոչ ակտիւ
@@ -650,6 +671,7 @@ hy:
       blocking: Արգելափակումների ցուցակ
       bookmarks: Էջանիշեր
       domain_blocking: Տիրոյթի արգելափակումների ցուցակ
+      following: Հետեւումների ցանկ
     upload: Վերբեռնել
   invites:
     delete: Ապաակտիւացնել
@@ -680,11 +702,14 @@ hy:
       not_found: չգտնուեց
     past_migrations: Նախոդ միգրացիաները
     proceed_with_move: Տեղափոխել հետեւորդներին
+    redirecting_to: Քո հաշիւը վերահասցեաորում է %{acct}-ին
     warning:
       followers: Այս քայլով քո բոլոր հետեւորդներին այս հաշուից կը տեղափոխես դէպի նորը
   moderation:
     title: Մոդերացիա
   notification_mailer:
+    digest:
+      title: Երբ բացակայ էիր...
     favourite:
       title: Նոր հաւանում
     follow:
@@ -695,6 +720,8 @@ hy:
       title: Նոր հետեւելու հայցեր
     mention:
       action: Պատասխանել
+  notifications:
+    other_settings: Ծանուցումների այլ կարգաւորումներ
   number:
     human:
       decimal_units:
@@ -714,8 +741,12 @@ hy:
     older: Ավելի հին
     prev: Նախորդ
     truncate: "&hellip;"
+  polls:
+    errors:
+      duration_too_short: շատ կարճ է
   preferences:
     other: Այլ
+    posting_defaults: Կանխադիր կարգաւորումներ
     public_timelines: Հանրային հոսք
   relationships:
     activity: Հաշուի ակտիւութիւնը
@@ -732,6 +763,8 @@ hy:
     remove_selected_domains: Հեռացնել բոլոր հետեւորդներին նշուած դոմեյններից
     remove_selected_followers: Հեռացնել նշուած հետեւորդներին
     status: Հաշուի կարգավիճակ
+  scheduled_statuses:
+    too_soon: Նախադրուած ամսաթիւը պէտք է լինի ապագայում
   sessions:
     activity: Վերջին թութը
     browser: Դիտարկիչ
@@ -771,11 +804,14 @@ hy:
     title: Սեսսիա
   settings:
     account: Հաշիվ
+    account_settings: Հաշուի կարգաւորումներ
     appearance: Տեսք
+    back: Ետ գնալ մաստադոն
     delete: Հաշուի ջնջում
     development: Ծրագրավորում
     edit_profile: Խմբագրել պրոֆիլը
     export: Տվյալների արտահանում
+    featured_tags: Ընտրուած հէշթեգեր
     identity_proofs: Անձի նոյնացումներ
     import: Ներմուծել
     import_and_export: Ներմուծել և արտահանել
@@ -926,12 +962,21 @@ hy:
     otp: Նոյնականացման հավելված
     recovery_codes: Վերականգնման կոդեր
     recovery_codes_regenerated: Վերականգման կոդերը հաջողութեամբ ստեղծուել են
+    webauthn: Անվտանգութեան բանալիներ
   user_mailer:
+    sign_in_token:
+      title: Մուտքի փորձ
     warning:
+      get_in_touch: Կարող էք կապուել %{instance} հանգոյցի անձնակազմի հետ պատասխանելով այս նամակին։
+      statuses: Մասնաւորապէս, միայն՝
       title:
         none: Զգուշացում
+        sensitive: Մեդիաֆայլը պիտակուել է որպէս զգայուն։
+        suspend: Հաշիւը արգելափակուած է
     welcome:
+      edit_profile_action: Կարգաւորել հաշիւը
       final_action: Սկսել թթել
+      review_preferences_action: Փոփոխել կարգաւորումները
       subject: Բարի գալուստ Մաստոդոն
       tip_federated_timeline: Դաշնային հոսքում երևում է ամբողջ Մաստոդոնի ցանցը։ Բայց այն ներառում է միայն այն օգտատերերին որոնց բաժանորդագրուած են ձեր հարևաններ, այդ պատճառով այն կարող է լինել ոչ ամբողջական։
       tip_following: Դու հետեւում էս քո հանգոյցի ադմին(ներ)ին լռելայն։ Այլ հետաքրքիր անձանց գտնելու համար՝ թերթիր տեղական և դաշնային հոսքերը։
@@ -949,3 +994,4 @@ hy:
     verification: Ստուգում
   webauthn_credentials:
     delete: Ջնջել
+    registered_on: Գրանցուել է %{date}

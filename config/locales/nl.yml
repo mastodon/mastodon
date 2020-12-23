@@ -60,6 +60,7 @@ nl:
       one: Volger
       other: Volgers
     following: Volgend
+    instance_actor_flash: Dit account is een 'virtual actor' waarmee de server zichzelf vertegenwoordigd en is dus geen individuele gebruiker. Het wordt voor federatiedoeleinden gebruikt en moet niet worden opgeschort.
     joined: Geregistreerd in %{date}
     last_active: laatst actief
     link_verified_on: Eigendom van deze link is gecontroleerd op %{date}
@@ -131,6 +132,7 @@ nl:
       follows: Volgt
       header: Omslagfoto
       inbox_url: Inbox-URL
+      invite_request_text: Redenen om te registreren
       invited_by: Uitgenodigd door
       ip: IP
       joined: Geregistreerd in
@@ -207,8 +209,11 @@ nl:
       undo_sensitized: Niet meer als gevoelig markeren
       undo_silenced: Niet langer negeren
       undo_suspension: Niet langer opschorten
+      unsilenced_msg: Het opheffen van de beperkingen van %{username} zijn geslaagd
       unsubscribe: Opzeggen
+      unsuspended_msg: Het niet langer opschorten van %{username} is geslaagd
       username: Gebruikersnaam
+      view_domain: Samenvatting voor domein bekijken
       warn: Waarschuwen
       web: Webapp
       whitelisted: Goedgekeurd voor federatie
@@ -243,13 +248,16 @@ nl:
         reopen_report: Rapportage heropenen
         reset_password_user: Wachtwoord opnieuw instellen
         resolve_report: Rapportage oplossen
+        sensitive_account: De media in jouw account als gevoelig markeren
         silence_account: Account negeren
         suspend_account: Account opschorten
         unassigned_report: Rapportage niet langer toewijzen
+        unsensitive_account: De media in jouw account niet langer als gevoelig markeren
         unsilence_account: Account niet langer negeren
         unsuspend_account: Account niet langer opschorten
         update_announcement: Mededeling bijwerken
         update_custom_emoji: Lokale emoji bijwerken
+        update_domain_block: Domeinblokkade bijwerken
         update_status: Toot bijwerken
       actions:
         assigned_to_self_report: "%{name} heeft rapportage %{target} aan zichzelf toegewezen"
@@ -428,6 +436,7 @@ nl:
     instances:
       by_domain: Domein
       delivery_available: Bezorging is mogelijk
+      empty: Geen domeinen gevonden.
       known_accounts:
         one: "%{count} bekend account"
         other: "%{count} bekende accounts"
@@ -505,6 +514,8 @@ nl:
       comment:
         none: Geen
       created_at: Gerapporteerd op
+      forwarded: Doorgestuurd
+      forwarded_to: Doorgestuurd naar %{domain}
       mark_as_resolved: Markeer als opgelost
       mark_as_unresolved: Markeer als onopgelost
       notes:
@@ -742,6 +753,7 @@ nl:
       functional: Jouw account is volledig operationeel.
       pending: Jouw aanvraag moet nog worden beoordeeld door een van onze medewerkers. Dit kan misschien eventjes duren. Je ontvangt een e-mail wanneer jouw aanvraag is goedgekeurd.
       redirecting_to: Jouw account is inactief omdat het momenteel wordt doorverwezen naar %{acct}.
+    too_fast: Formulier is te snel ingediend. Probeer het nogmaals.
     trouble_logging_in: Problemen met inloggen?
     use_security_key: Beveiligingssleutel gebruiken
   authorize_follow:
@@ -901,6 +913,8 @@ nl:
     status: Verificatiestatus
     view_proof: Bekijk bewijs
   imports:
+    errors:
+      over_rows_processing_limit: bevat meer dan %{count} rijen
     modes:
       merge: Samenvoegen
       merge_long: Bestaande gegevens behouden en nieuwe toevoegen
@@ -1350,11 +1364,13 @@ nl:
       subject:
         disable: Jouw account %{acct} is bevroren
         none: Waarschuwing voor %{acct}
+        sensitive: De door jouw account %{acct} geplaatste media is als gevoelig gemarkeerd
         silence: Jouw account %{acct} is nu beperkt
         suspend: Jouw account %{acct} is opgeschort
       title:
         disable: Account bevroren
         none: Waarschuwing
+        sensitive: Jouw media is als gevoelig gemarkeerd
         silence: Account beperkt
         suspend: Account opgeschort
     welcome:
@@ -1392,9 +1408,14 @@ nl:
   webauthn_credentials:
     add: Nieuwe beveiligingssleutel toevoegen
     create:
+      error: Er deed zich een probleem voor met het toevoegen van jouw beveiligingssleutel. Probeer het nogmaals.
       success: Het toevoegen van je beveiligingssleutel is geslaagd.
     delete: Verwijderen
     delete_confirmation: Weet je zeker dat je deze beveiligingssleutel wilt verwijderen?
+    description_html: Wanneer je <strong>verificatie met beveiligingssleutels</strong> inschakelt, moet je tijdens het inloggen een van jouw beveiligingssleutels gebruiken.
+    destroy:
+      error: Er deed zich een probleem voor met het verwijderen van jouw beveiligingssleutel. Probeer het nogmaals.
+      success: Het verwijderen van jouw beveiligingssleutel is geslaagd.
     invalid_credential: Ongeldige beveiligingssleutel
     nickname_hint: Voer de bijnaam in van jouw nieuwe beveiligingssleutel
     not_enabled: Je hebt WebAuthn nog niet ingeschakeld
