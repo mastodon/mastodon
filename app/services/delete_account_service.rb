@@ -142,6 +142,7 @@ class DeleteAccountService < BaseService
     purge_user!
     purge_profile!
     purge_statuses!
+    purge_mentions!
     purge_media_attachments!
     purge_polls!
     purge_generated_notifications!
@@ -157,6 +158,10 @@ class DeleteAccountService < BaseService
     @account.statuses.reorder(nil).where.not(id: reported_status_ids).in_batches do |statuses|
       BatchedRemoveStatusService.new.call(statuses, skip_side_effects: skip_side_effects?)
     end
+  end
+
+  def purge_mentions!
+    @account.mentions.reorder(nil).where.not(status_id: reported_status_ids).in_batches.delete_all
   end
 
   def purge_media_attachments!
