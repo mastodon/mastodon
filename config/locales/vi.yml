@@ -213,8 +213,8 @@ vi:
       whitelisted: Danh sách trắng
     action_logs:
       action_types:
-        assigned_to_self_report: Xử lý báo cáo được giao
-        change_email_user: Đổi email cho người dùng
+        assigned_to_self_report: Tự xử lý báo cáo
+        change_email_user: Đổi email
         confirm_user: Xác nhận người dùng
         create_account_warning: Gửi cảnh cáo
         create_announcement: Tạo thông báo
@@ -226,9 +226,9 @@ vi:
         demote_user: Xóa chức vụ
         destroy_announcement: Xóa thông báo
         destroy_custom_emoji: Xóa Emoji
-        destroy_domain_allow: Gỡ máy chủ cho phép
-        destroy_domain_block: Gỡ máy chủ chặn
-        destroy_email_domain_block: Gỡ email đã chặn
+        destroy_domain_allow: Bỏ máy chủ cho phép
+        destroy_domain_block: Bỏ chặn máy chủ
+        destroy_email_domain_block: Bỏ chặn email
         destroy_ip_block: Bỏ chặn IP
         destroy_status: Xóa tút
         disable_2fa_user: Xóa xác thực hai bước
@@ -254,7 +254,7 @@ vi:
         update_domain_block: Cập nhật máy chủ chặn
         update_status: Cập nhật tút
       actions:
-        assigned_to_self_report: "%{name} đã xử lý báo cáo được giao %{target}"
+        assigned_to_self_report: "%{name} tự xử lý báo cáo %{target}"
         change_email_user: "%{name} đã thay đổi địa chỉ email cho %{target}"
         confirm_user: "%{name} xác nhận địa chỉ email của người dùng %{target}"
         create_account_warning: "%{name} đã gửi cảnh cáo %{target}"
