@@ -31,6 +31,7 @@ class UserSettingsDecorator
     user.settings['reduce_motion']       = reduce_motion_preference if change?('setting_reduce_motion')
     user.settings['disable_swiping']     = disable_swiping_preference if change?('setting_disable_swiping')
     user.settings['enable_snowfall']     = enable_snowfall if change?('setting_enable_snowfall')
+    user.settings['custom_css']          = custom_css if change?('setting_custom_css')
     user.settings['system_font_ui']      = system_font_ui_preference if change?('setting_system_font_ui')
     user.settings['noindex']             = noindex_preference if change?('setting_noindex')
     user.settings['theme']               = theme_preference if change?('setting_theme')
@@ -63,7 +64,7 @@ class UserSettingsDecorator
   def default_federation_preference
     boolean_cast_setting 'setting_default_federation'
   end
-  
+
   def default_content_type_preference
     settings['setting_default_content_type']
   end
@@ -106,6 +107,10 @@ class UserSettingsDecorator
 
   def enable_snowfall
     boolean_cast_setting 'setting_enable_snowfall'
+  end
+
+  def custom_css
+    settings['setting_custom_css']
   end
 
   def noindex_preference

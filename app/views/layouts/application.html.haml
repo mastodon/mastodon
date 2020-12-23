@@ -34,8 +34,8 @@
       = content_tag(:script, nil, src: full_asset_url('plugins/snow.js?v3', skip_pipeline: true), async: true)
       = stylesheet_link_tag '/plugins/snow.css?v3', skip_pipeline: true, media: 'all', id: 'snow-plugin-style'
 
-    - if Setting.custom_css.present?
-      = stylesheet_link_tag custom_css_path, host: request.host, media: 'all'
+    - if Setting.custom_css.present? || Setting.custom_css.present?
+      = stylesheet_link_tag custom_css_path(Digest::SHA1.hexdigest("#{Setting.custom_css if Setting.custom_css.present?}\n#{current_user.setting_custom_css if user_signed_in?}")), host: request.host, media: 'all'
 
     = yield :header_tags
 
