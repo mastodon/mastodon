@@ -229,14 +229,17 @@ hy:
         confirm_user: "%{name} հաստատել է %{target} օգտատիրոջ էլ․ հասցէն"
         create_account_warning: "%{name} զգուշացրել է %{target}ին"
         create_announcement: "%{name} ստեղծեց նոր յայտարարութիւն %{target}"
-        create_custom_emoji: "%{name} վերբեռնել է նոր էմոջի %{target}"
+        create_custom_emoji: "%{name} վերբեռնել է նոր էմոջի՝ %{target}"
         create_email_domain_block: "%{name} արգելափակեց էլ․ փոստի տիրոյթ %{target}"
         demote_user: "%{name} աստիճանազրկեց օգտատիրոջ %{target}"
         destroy_announcement: "%{name} ջնջեց յայտարարութիւն %{target}"
+        destroy_custom_emoji: "%{name} ջնջել է %{target} էմոջին"
         destroy_domain_block: "%{name} ապաարգելափակեց տիրոյթ %{target}"
         destroy_email_domain_block: "%{name} ապաարգելափակեց էլ․ փոստի տիրոյթ %{target}"
         destroy_status: "%{name} ջնջեց %{target}ի գրառում"
+        disable_custom_emoji: "%{name} ապակտիւացրել է %{target} էմոջին"
         disable_user: "%{name} անջատել է մուտքը %{target} օգտատիրոջ համար"
+        enable_custom_emoji: "%{name} ակտիվացրել է %{target} էմոջին"
         enable_user: "%{name} թոյլատրեց մուտք %{target} օգտատիրոջ համար"
         memorialize_account: "%{name} դարձրեց %{target}ի հաշիւը յիշատակի էջ"
         promote_user: "%{name} աջակցեց օգտատիրոջը %{target}"
@@ -247,6 +250,7 @@ hy:
         silence_account: "%{name} լռեցրեց %{target}ի հաշիւը"
         suspend_account: "%{name} լռեցրեց %{target}ի հաշիւը"
         unassigned_report: "%{name} չսահմանուած բողոք %{target}"
+        update_custom_emoji: "%{name} թարմացրել է %{target} էմոջին"
       deleted_status: "(ջնջուած գրառում)"
       empty: Ոչ մի գրառում չկայ։
       filter_by_action: Զտել ըստ գործողութեան
@@ -270,9 +274,13 @@ hy:
     custom_emojis:
       assign_category: Կցել կատեգորիա
       by_domain: Տիրոյթ
+      copied_msg: Էմոջիի տեղական օրինակը հաջողութեամբ ստեղծուած է
       copy: Պատճենել
+      copy_failed_msg: Չյաջողւեց ստեղծել էմոջիի տեղական օրինակ
       create_new_category: Ստեղծել նոր կատեգորիա
+      created_msg: Էմոջին յաջողութեամբ ստեղծուեց
       delete: Ջնջել
+      destroyed_msg: Էմոջին յաջողութեամբ ջնջուեց
       disable: Անջատել
       disabled: Անջատուած
       emoji: Զմայլիկ
@@ -289,6 +297,7 @@ hy:
       uncategorized: Չդասակարգուած
       unlist: Ապացուցակագրում
       unlisted: Ծածուկ
+      updated_msg: Էմոջին թարմացուեց
       upload: Վերբեռնել
     dashboard:
       config: Կարգաւորում
