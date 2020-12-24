@@ -70,7 +70,11 @@ class SuspendAccountService < BaseService
         styles.each do |style|
           case Paperclip::Attachment.default_options[:storage]
           when :s3
-            attachment.s3_object(style).acl.put(acl: 'private')
+            begin
+              attachment.s3_object(style).acl.put(acl: 'private')
+            rescue Aws::S3::Errors::NoSuchKey
+              Rails.logger.warn "Tried to change acl on non-existent key #{attachment.s3_object(style).key}"
+            end
           when :fog
             # Not supported
           when :filesystem
