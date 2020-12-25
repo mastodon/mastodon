@@ -676,6 +676,8 @@ hy:
     status: Հաստատման կարգավիճակ
     view_proof: Նայել ապացոյցը
   imports:
+    errors:
+      over_rows_processing_limit: տողերի քանակը աւելին է քան %{count}-ը
     modes:
       merge: Միաւորել
       overwrite: Վերագրել
@@ -1010,4 +1012,5 @@ hy:
     verification: Ստուգում
   webauthn_credentials:
     delete: Ջնջել
+    not_enabled: WebAuthn-ը դեռ միացուած չէ
     registered_on: Գրանցուել է %{date}
