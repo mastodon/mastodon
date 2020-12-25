@@ -43,9 +43,9 @@ module Mastodon
         tar.each do |entry|
           # File exists && Extension is PNG && not a macOS shadow file (begin with ._)
           next unless entry.file? && entry.full_name.end_with?('.png')
-          
+
           filename = File.basename(entry.full_name, '.*')
-          
+
           next if filename.start_with?('._')
 
           shortcode    = [options[:prefix], filename, options[:suffix]].compact.join
