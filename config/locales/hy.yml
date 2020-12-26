@@ -51,12 +51,14 @@ hy:
     what_is_mastodon: Ի՞նչ է Մաստոդոնը
   accounts:
     choices_html: "%{name}-ի ընտրանի՝"
+    endorsements_hint: Վէբ ինտերֆէյսից կարող ես ցուցադրել մարդկանց, որոնց հետեւում ես, եւ նրանք կը ցուցադրուեն այստեղ։
     featured_tags_hint: Դու կարող ես ցուցադրել յատուկ պիտակներ, որոնք կը ցուցադրուեն այստեղ։
     follow: Հետևել
     followers:
       one: Հետևորդ
       other: Հետևորդներ
     following: Հետևում եք
+    instance_actor_flash: Այս հաշիւը վիրտուալ դերասան է, որը ներկայացնում է հանգոյցը, եւ ոչ որեւէ անհատ օգտատիրոջ։ Այն օգտագործուում է ֆեդերացիայի նպատակներով եւ չպէտք է կասեցուի։
     joined: Միացել են %{date}
     last_active: վերջին թութը
     link_verified_on: Սոյն յղման տիրապետումը ստուգուած է՝ %{date}֊ին
@@ -67,6 +69,8 @@ hy:
     nothing_here: Այստեղ բան չկայ
     people_followed_by: Մարդիկ, որոնց %{name}ը հետեւում է
     people_who_follow: Մարդիկ, որոնք հետեւում են %{name}ին
+    pin_errors:
+      following: Դու պէտք է հետեւես մարդուն, որին ցանկանում ես խրախուսել
     posts:
       one: Թութ
       other: Թութերից
@@ -110,6 +114,7 @@ hy:
       delete: Ջնջել տվյալները
       deleted: Ջնջված է
       demote: Աստիճանազրկել
+      destroyed_msg: "%{username}֊ի տուեալները հերթագրուել է անյապաղ ջնջուողների շարքում"
       disable: Անջատել
       disable_two_factor_authentication: Անջատել 2FA
       disabled: Անջատված է
@@ -120,6 +125,7 @@ hy:
       email_status: Էլ․ փոստի կարգավիճակ
       enable: Միացնել
       enabled: Միացված է
+      enabled_msg: '%{username}֊ի հաշիւը բարեյաջող ապասառեցուեց'
       followers: Հետևորդներ
       follows: Հետևողներ
       header: Վերնագիր
