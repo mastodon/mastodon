@@ -11,11 +11,12 @@ class FollowService < BaseService
   # @option [Boolean] :reblogs Whether or not to show reblogs, defaults to true
   # @option [Boolean] :notify Whether to create notifications about new posts, defaults to false
   # @option [Boolean] :bypass_locked
+  # @option [Boolean] :bypass_limit Allow following past the total follow number
   # @option [Boolean] :with_rate_limit
   def call(source_account, target_account, options = {})
     @source_account = source_account
     @target_account = ResolveAccountService.new.call(target_account, skip_webfinger: true)
-    @options        = { bypass_locked: false, with_rate_limit: false }.merge(options)
+    @options        = { bypass_locked: false, bypass_limit: false, with_rate_limit: false }.merge(options)
 
     raise ActiveRecord::RecordNotFound if following_not_possible?
     raise Mastodon::NotPermittedError  if following_not_allowed?
@@ -54,7 +55,7 @@ class FollowService < BaseService
   end
 
   def request_follow!
-    follow_request = @source_account.request_follow!(@target_account, reblogs: @options[:reblogs], notify: @options[:notify], rate_limit: @options[:with_rate_limit])
+    follow_request = @source_account.request_follow!(@target_account, reblogs: @options[:reblogs], notify: @options[:notify], rate_limit: @options[:with_rate_limit], bypass_limit: @options[:bypass_limit])
 
     if @target_account.local?
       LocalNotificationWorker.perform_async(@target_account.id, follow_request.id, follow_request.class.name, :follow_request)
@@ -66,7 +67,7 @@ class FollowService < BaseService
   end
 
   def direct_follow!
-    follow = @source_account.follow!(@target_account, reblogs: @options[:reblogs], notify: @options[:notify], rate_limit: @options[:with_rate_limit])
+    follow = @source_account.follow!(@target_account, reblogs: @options[:reblogs], notify: @options[:notify], rate_limit: @options[:with_rate_limit], bypass_limit: @options[:bypass_limit])
 
     LocalNotificationWorker.perform_async(@target_account.id, follow.id, follow.class.name, :follow)
     MergeWorker.perform_async(@target_account.id, @source_account.id)
