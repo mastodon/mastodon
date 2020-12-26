@@ -172,7 +172,7 @@ ko:
       removed_header_msg: 성공적으로 %{username}의 헤더 이미지를 삭제하였습니다
       resend_confirmation:
         already_confirmed: 이 사용자는 이미 확인되었습니다
-        send: 다시 확인 이메일
+        send: 확인 메일 다시 보내기
         success: 확인 이메일이 전송되었습니다!
       reset: 초기화
       reset_password: 암호 초기화
@@ -917,6 +917,8 @@ ko:
     status: 인증 상태
     view_proof: 증명 보기
   imports:
+    errors:
+      over_rows_processing_limit: "%{count}개 이상의 열을 포함합니다"
     modes:
       merge: 병합
       merge_long: 기존 것을 그대로 둔 채 새로 추가

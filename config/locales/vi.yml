@@ -23,7 +23,7 @@ vi:
     hosted_on: "%{domain} vận hành nhờ Mastodon"
     instance_actor_flash: 'Đây là một tài khoản ảo được sử dụng để đại diện cho máy chủ chứ không phải bất kỳ người dùng cá nhân nào. Nó được sử dụng cho mục đích liên kết và không nên chặn trừ khi bạn muốn chặn toàn bộ máy chủ.
 
-'
+      '
     learn_more: Tìm hiểu
     privacy_policy: Chính sách bảo mật
     see_whats_happening: Dòng thời gian
@@ -204,7 +204,7 @@ vi:
       unconfirmed_email: Email chưa được xác thực
       undo_sensitized: Đánh dấu bình thường
       undo_silenced: Bỏ ẩn
-      undo_suspension: Ngừng vô hiệu hóa
+      undo_suspension: Bỏ vô hiệu hóa
       unsilenced_msg: Bỏ ẩn %{username} thành công
       unsubscribe: Hủy đăng ký
       unsuspended_msg: Đã kích hoạt lại %{username} thành công
@@ -215,8 +215,8 @@ vi:
       whitelisted: Danh sách trắng
     action_logs:
       action_types:
-        assigned_to_self_report: Xử lý báo cáo được giao
-        change_email_user: Đổi email cho người dùng
+        assigned_to_self_report: Tự xử lý báo cáo
+        change_email_user: Đổi email
         confirm_user: Xác nhận người dùng
         create_account_warning: Gửi cảnh cáo
         create_announcement: Tạo thông báo
@@ -228,16 +228,16 @@ vi:
         demote_user: Xóa chức vụ
         destroy_announcement: Xóa thông báo
         destroy_custom_emoji: Xóa Emoji
-        destroy_domain_allow: Gỡ máy chủ cho phép
-        destroy_domain_block: Gỡ máy chủ chặn
-        destroy_email_domain_block: Gỡ email đã chặn
+        destroy_domain_allow: Bỏ máy chủ cho phép
+        destroy_domain_block: Bỏ chặn máy chủ
+        destroy_email_domain_block: Bỏ chặn email
         destroy_ip_block: Bỏ chặn IP
         destroy_status: Xóa tút
-        disable_2fa_user: Vô hiệu hóa xác thực hai bước
+        disable_2fa_user: Xóa xác thực hai bước
         disable_custom_emoji: Vô hiệu hóa Emoji
         disable_user: Tạm khóa người dùng
         enable_custom_emoji: Cho phép Emoji
-        enable_user: Mở khóa người dùng
+        enable_user: Mở khóa
         memorialize_account: Tài khoản tưởng niệm
         promote_user: Chỉ định chức vụ
         remove_avatar_user: Xóa ảnh đại diện
@@ -245,18 +245,18 @@ vi:
         reset_password_user: Đặt lại mật khẩu
         resolve_report: Xử lý báo cáo
         sensitive_account: Đánh dấu nhạy cảm cho tài khoản
-        silence_account: Tài khoản bị ẩn
-        suspend_account: Vô hiệu hóa người dùng
+        silence_account: Ẩn
+        suspend_account: Vô hiệu hóa
         unassigned_report: Báo cáo chưa xử lý
-        unsensitive_account: Đánh dấu tài khoản là bình thường
-        unsilence_account: Tài khoản bỏ ẩn
-        unsuspend_account: Ngừng vô hiệu hóa
+        unsensitive_account: Đánh dấu bình thường
+        unsilence_account: Bỏ ẩn
+        unsuspend_account: Bỏ vô hiệu hóa
         update_announcement: Cập nhật thông báo
         update_custom_emoji: Cập nhật Emoji mới
         update_domain_block: Cập nhật máy chủ chặn
         update_status: Cập nhật tút
       actions:
-        assigned_to_self_report: "%{name} đã xử lý báo cáo được giao %{target}"
+        assigned_to_self_report: "%{name} tự xử lý báo cáo %{target}"
         change_email_user: "%{name} đã thay đổi địa chỉ email cho %{target}"
         confirm_user: "%{name} xác nhận địa chỉ email của người dùng %{target}"
         create_account_warning: "%{name} đã gửi cảnh cáo %{target}"
@@ -274,9 +274,9 @@ vi:
         destroy_email_domain_block: "%{name} bỏ chặn tên miền email %{target}"
         destroy_ip_block: "%{name} bỏ chặn IP %{target}"
         destroy_status: "%{name} đã xóa tút của %{target}"
-        disable_2fa_user: "%{name} đã vô hiệu hóa xác thực hai yếu tố của %{target}"
+        disable_2fa_user: "%{name} đã vô hiệu hóa xác thực hai bước của %{target}"
         disable_custom_emoji: "%{name} đã ẩn emoji %{target}"
-        disable_user: "%{name} tạm khóa %{target}"
+        disable_user: "%{name} vô hiệu hóa đăng nhập %{target}"
         enable_custom_emoji: "%{name} cho phép Emoji %{target}"
         enable_user: "%{name} mở khóa cho người dùng %{target}"
         memorialize_account: "%{name} đã biến tài khoản %{target} thành một trang tưởng niệm"
@@ -605,7 +605,7 @@ vi:
         title: Mô tả máy chủ
       site_description_extended:
         desc_html: Bạn có thể tạo thêm các mục như quy định chung, hướng dẫn và những thứ khác liên quan tới máy chủ của bạn. Dùng thẻ HTML
-        title: Thông tin mở rộng tùy chỉnh
+        title: Thông tin bổ sung
       site_short_description:
         desc_html: Hiển thị trong thanh bên và thẻ meta. Mô tả Mastodon là gì và điều gì làm cho máy chủ này trở nên đặc biệt trong một đoạn văn duy nhất.
         title: Mô tả máy chủ ngắn
@@ -1212,7 +1212,7 @@ vi:
     show_more: Đọc thêm
     show_newer: Mới hơn
     show_older: Cũ hơn
-    show_thread: Xem thêm
+    show_thread: Toàn bộ chủ đề
     sign_in_to_participate: Đăng nhập để trả lời chủ đề này
     title: '%{name}: "%{quote}"'
     visibilities:

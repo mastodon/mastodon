@@ -398,6 +398,8 @@ zh-HK:
           silence: 自動靜音
           suspend: 自動刪除
         title: 新增域名阻隔
+      obfuscate: 混淆域名名稱
+      obfuscate_hint: 如果已經啟用了網域廣告列表限制，在列表部份混淆網域名稱
       private_comment: 私人留言
       private_comment_hint: 請提供更多有關此域名限制的資訊以供管理員作內部參考。
       public_comment: 公開留言
@@ -556,6 +558,7 @@ zh-HK:
       domain_blocks_rationale:
         title: 顯示原因予
       enable_bootstrap_timeline_accounts:
+        desc_html: 自動為新用戶追隨預設的帳號，為他們的首頁動態增加一點色彩
         title: 啟用「新使用者預設關注」功能
       hero:
         desc_html: 在首頁顯示。推薦最小 600x100px。如果留空，就會默認為服務站縮圖
@@ -912,6 +915,8 @@ zh-HK:
     status: 確認狀態
     view_proof: 查看證明
   imports:
+    errors:
+      over_rows_processing_limit: 包含超過 %{count} 行
     modes:
       merge: 合併
       merge_long: 留下舊有記錄並添加新的資訊
