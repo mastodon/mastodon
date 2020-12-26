@@ -199,16 +199,22 @@ hy:
       statuses: Գրառումներ
       subscribe: Բաժանորդագրուել
       suspended: Կասեցուած
+      suspension_irreversible: Հաշուի տուեալները անդարձ ջնջուեցին։ Դու կարող ես ապակասեցնել հաշիւը՝ դարձնելով այն կիրառելի, բայց այն չի վերականգնի նախկին տուեալները։
+      suspension_reversible_hint_html: Հաշիւը կասեցուեց, եւ տուեալներն ամբողջապէս կը վերացուի %{date}ին։ Մինչեւ այդ, հաշիւը կարող է վերականգնուել՝ առանց կողմնակի ազդեցութիւնների։ Եթէ ցանկանում ես վերացնել հաշուի տուեալները միանգամից, կարող ես դա անել ներքեւում։
       time_in_queue: Հերթում է %{time}
       title: Հաշիւներ
       unconfirmed_email: Չհաստատուած էլ․ հասցէ
       undo_sensitized: Ետարկել դիւրազգացութիւնը 
       undo_silenced: Ետարկել լռեցումը
       undo_suspension: Ետարկել կասեցումը
+      unsilenced_msg: '%{username}֊ի հաշիւը բարեյաջող դարձաւ անսահմանափակ'
       unsubscribe: Ապաբաժանորդագրուել
+      unsuspended_msg: '%{username}֊ի հաշիւ բարեյաջող ապակասեցուեց։'
       username: Մուտքանուն
+      view_domain: Տեսնել տիրոյթի ամփոփումը
       warn: Նախազգուշացում
       web: Վեբ
+      whitelisted: Թոյլատրել ֆեդերացիայի համար
     action_logs:
       action_types:
         assigned_to_self_report: Բողոքել
@@ -217,8 +223,11 @@ hy:
         create_account_warning: Ստեղծել զգուշացում
         create_announcement: Ստեղծել յայտարարութիւն
         create_custom_emoji: Ստեղծել սեփական էմոջիները
+        create_domain_allow: Ստեղծել տիրոյթի թոյլտուութիւն
+        create_domain_block: Ստեղծել տիրոյթի արգելափակում
         create_email_domain_block: Ստեղծել էլ․ հասցէի դոմէյնի արգելափակում
         create_ip_block: Ստեղծել IP կանոն
+        demote_user: Աստիճանազրկել օգտատիրոջը
         destroy_announcement: Ջնջել յայտարարութիւնը
         destroy_custom_emoji: Ջնջել էմոջին
         destroy_domain_allow: Ջնջել դոմէնի թոյլտուութիւնը
@@ -326,14 +335,17 @@ hy:
       updated_msg: Էմոջին թարմացուեց
       upload: Վերբեռնել
     dashboard:
+      authorized_fetch_mode: Անվտանգ եղանակ
       config: Կարգաւորում
       feature_deletions: Հաշուի հեռացումներ
       feature_invites: Հրաւէրի յղումներ
       feature_profile_directory: Օգտատիրոջ մատեան
       feature_registrations: Գրանցումներ
+      feature_relay: Ֆեդերացիայի շերտ
       feature_spam_check: Հակա-սպամ
       feature_timeline_preview: Հոսքի նախադիտում
       features: Յատկանիշներ
+      hidden_service: Ֆեդերացիա թաքնուած ծառայութիւնների հետ
       open_reports: բաց բողոքներ
       pending_tags: պիտակներն սպասում են վերանայման
       pending_users: օգտատէրերն սպասում են վերանայման
@@ -351,6 +363,7 @@ hy:
       whitelist_mode: Սահմանափակ ֆեդերացիայի ռեժիմ
     domain_allows:
       add_new: Թոյլատրել ֆեդերացիա տիրոյթի հետ
+      created_msg: Տիրոյթը յաջողութեամբ թոյլատրուեց ֆեդերացուելու
     domain_blocks:
       add_new: Աւելացնել նոր տիրոյթի արգելափակում
       created_msg: Տիրոյթի արգելափակումն ընթացաւ
@@ -374,6 +387,7 @@ hy:
         silence: լռեցուած
         suspend: կասեցուած
       show:
+        title: Ետարկել տիրոյթի արգելափակումը %{domain}ի համար
         undo: Ետարկել
       undo: Ետարկել տիրոյթի արգելափակումը
       view: Տեսնել տիրոյթի արգելափակումը
