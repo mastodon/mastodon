@@ -353,6 +353,7 @@ hy:
       upload: Վերբեռնել
     dashboard:
       authorized_fetch_mode: Անվտանգ եղանակ
+      backlog: նախատեսուող աշխատանքներ
       config: Կարգաւորում
       feature_deletions: Հաշուի հեռացումներ
       feature_invites: Հրաւէրի յղումներ
@@ -428,6 +429,7 @@ hy:
       title: էլ․ փոստի արգելափակուած տիրոյթներ
     instances:
       by_domain: Դոմեն
+      delivery_available: Փոխանցումը հասանելի է
       empty: Դոմեյնները չեն գտնուել
       known_accounts:
         one: "%{count} յայտնի հաշիւ"
@@ -465,6 +467,7 @@ hy:
         '94670856': 3 տարի
       new:
         title: Ստեղծել նոր IP կանոն
+      no_ip_block_selected: Ոչ մի IP կանոն չի փոխուել, ինչպէս նաեւ, ոչ մեկը չի ընտրուել
       title: IP կանոններ
     pending_accounts:
       title: Սպասող հաշիւներ (%{count})
@@ -477,7 +480,10 @@ hy:
       disabled: Անջատուած է
       enable: Միացնել
       enabled: Միացուած է
+      inbox_url: URL շերտ
+      pending: Սպասում է շերտի հաստատման
       save_and_enable: Պահպանել եւ միացնել
+      setup: Կարգաւորել շերտի կապը
       status: Կարգավիճակ
       title: Վերահեռարձակիչներ
     reports:
@@ -521,6 +527,11 @@ hy:
         all: Բոլորին
         disabled: Ոչ մէկին
         title: Ցուցադրել տիրոյթը արգելափակումները
+      domain_blocks_rationale:
+        title: Ցուցադրել հիմնաւորումը
+      enable_bootstrap_timeline_accounts:
+        desc_html: Նոր օգտատէրերին թոյլ տալով աւտօմատ հետեւել կարգաւորուած հաշիւներին՝ նրանց հիմնական հոսքը դատարկ չի լինի
+        title: Թոյլատրել լռելեայն հետեւումը՝ նոր օգտատէրերի համար
       hero:
         title: Հերոսի պատկեր
       profile_directory:
@@ -574,6 +585,7 @@ hy:
       with_media: Մեդիայի հետ
     tags:
       context: Համատեքստ
+      directory: Շտեմարանում
       last_active: Վերջին ակտիւութիւնը
       most_popular: Ամէնայայտնի
       most_recent: Վերջին
@@ -794,6 +806,7 @@ hy:
     past_migrations: Նախոդ միգրացիաները
     proceed_with_move: Տեղափոխել հետեւորդներին
     redirecting_to: Քո հաշիւը վերահասցեաորում է %{acct}-ին
+    set_redirect: Կարգաւորել վերահասցեավորումը
     warning:
       followers: Այս քայլով քո բոլոր հետեւորդներին այս հաշուից կը տեղափոխես դէպի նորը
   moderation:
@@ -885,6 +898,7 @@ hy:
       safari: Safari
       uc_browser: UCBrowser
       weibo: Weibo
+    current_session: Ընթացիկ սեսսիա
     description: "%{browser}, %{platform}"
     ip: IP
     platforms:
@@ -1077,6 +1091,7 @@ hy:
       get_in_touch: Կարող էք կապուել %{instance} հանգոյցի անձնակազմի հետ պատասխանելով այս նամակին։
       statuses: 'Մասնաւորապէս, միայն՝'
       title:
+        disable: Օգտահաշիվը սառեցուած է
         none: Զգուշացում
         sensitive: Մեդիաֆայլը պիտակուել է որպէս զգայուն։
         suspend: Հաշիւը արգելափակուած է
