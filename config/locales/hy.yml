@@ -489,6 +489,9 @@ hy:
       setup: Կարգաւորել շերտի կապը
       status: Կարգավիճակ
       title: Վերահեռարձակիչներ
+    report_notes:
+      created_msg: Բողոքի նշումը բարեյաջող ստեղծուեց
+      destroyed_msg: Բողոքի նշումը բարեյաջող ջնջուեց
     reports:
       account:
         notes:
@@ -501,6 +504,7 @@ hy:
       are_you_sure: Վստա՞հ ես
       assign_to_self: Ինձ յանձնարարուած
       assigned: Նշանակել մոդերատոր
+      by_target_domain: Զեկուցուած հաշուի տիրոյթը
       comment:
         none: Ոչ մի
       created_at: Բողոքարկուած
@@ -565,6 +569,8 @@ hy:
         title: Ցուցադրել անձնակազմի անդամի նշանը
       site_description:
         title: Կայքի նկարագրութիւն
+      site_description_extended:
+        title: Լրացուցիչ նկարագրութիւն
       site_short_description:
         title: Կայքի հակիրճ նկարագրութիւն
       site_terms:
@@ -584,12 +590,14 @@ hy:
       back_to_account: Վերադառնալ անձնական էջ
       batch:
         delete: Ջնջել
+        nsfw_off: Նշել որպէս ոչ դիւրազգաց
         nsfw_on: Նշել որպէս դիւրազգաց
       deleted: Ջնջուած է
       failed_to_execute: Կատարումը ձախողուեց
       media:
         title: Մեդիա
       no_media: Մեդիա չկայ
+      no_status_selected: Ոչ մի թութ չի փոխուել, ինչպէս նաեւ, ոչ մեկը չի ընտրուել
       title: Օգտատիրոջ գրառումները
       with_media: Մեդիայի հետ
     tags:
@@ -611,8 +619,11 @@ hy:
     warning_presets:
       add_new: Աւելացնել նորը
       delete: Ջնջել
+      edit_preset: Խմբագրել զգուշացնող նախադիրը
+      title: Կառավարել զգուշացնող նախադիրները
   admin_mailer:
     new_report:
+      body: "%{reporter}ը բողոքել է %{target}ին"
       subject: 'Նոր բողոք %{instance}ի համար(#%{id})'
   appearance:
     advanced_web_interface: Սիւնակաւոր ինտերֆեյս
@@ -627,7 +638,9 @@ hy:
     sensitive_content: Զգայուն բովանդակութիւն
     toot_layout: Գրառումների կառուցուածքը
   application_mailer:
+    notification_preferences: Փոխել իմակ կարգաւորումները
     salutation: "%{name},"
+    settings: 'Փոխել իմակ կարգաւորումները․ %{link}'
     view: 'Նայել․'
     view_profile: Նայել անձնական էջը
     view_status: Նայել գրառումը
@@ -635,6 +648,9 @@ hy:
     created: Յաւելուածը բարեյաջող ստեղծուեց
     destroyed: Յաւելուածը բարեյաջող ջնջուեց
     invalid_url: Տրամադրուած URL անվաւեր է
+    regenerate_token: Ստեղծել հասանելիութեան կտրոն
+    token_regenerated: Հասանելիութեան կտրոնը բարեյաջող ստեղծուեց
+    warning: Զգոյշ վարուիր այս տուեալի հետ։ Երբեք այն ինչ֊որ մեկի հետ չկիսես։
     your_token: Քո մուտքի բանալին
   auth:
     apply_for_account: Հրաւէրի հարցում
@@ -713,6 +729,7 @@ hy:
     '406': This page is not available in the requested format.
     '410': The page you were looking for doesn't exist here anymore.
     '422':
+      title: Անվտանգութեան հաստատումը ձախողուեց
     '429': Չափազանց շատ հարցումներ
     '500':
       title: Էջը ճիշտ չէ
@@ -870,7 +887,9 @@ hy:
     truncate: "&hellip;"
   polls:
     errors:
+      duration_too_long: ապագայում շատ հեռու է
       duration_too_short: շատ կարճ է
+      expired: Հարցումն արդեն աւարտուել է
       too_few_options: ընտրանքները պէտք է լինեն մէկից աւել
   preferences:
     other: Այլ
@@ -879,6 +898,7 @@ hy:
   relationships:
     activity: Հաշուի ակտիւութիւնը
     dormant: Չգօրծող
+    follow_selected_followers: Հետեւել նշուած հետեւորդներին
     followers: Հետեւորդներ
     following: Հետեւում ես
     invited: Հրաւիրուած է
@@ -964,6 +984,7 @@ hy:
       video:
         one: "%{count} վիդեո"
         other: "%{count} վիդեո"
+    content_warning: 'Նախազգուշացում։ %{warning}'
     errors:
       in_reply_not_found: Գրառումը որին փորձում ես պատասխանել, այլեւս գոյութիւն չունի
     language_detection: Ինքնուրոյն ճանաչել լեզուն
@@ -1138,6 +1159,7 @@ hy:
     verification: Ստուգում
   webauthn_credentials:
     delete: Ջնջել
+    invalid_credential: Անվաւեր անվտանգութեան բանալի
     not_enabled: WebAuthn-ը դեռ միացուած չէ
     not_supported: Այս դիտարկիչը չի աջակցում անվտանգութեան բանալիներ
     otp_required: Անվտանգութեան բանալիներն օգտագործելու համար, սկզբից միացրու երկքայլ նոյնականացումը
