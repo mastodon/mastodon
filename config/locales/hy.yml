@@ -655,6 +655,7 @@ hy:
     tags:
       accounts_today: Եզակի կիրառումներն այսօր
       accounts_week: Եզակի կիրառումներն այս շաբաթ
+      breakdown: Այսօրեայ օգտագործման խմբաւորումը ըստ աղբիւրի
       context: Համատեքստ
       directory: Շտեմարանում
       in_directory: "%{count}-ը շտեմարանում"
@@ -895,12 +896,19 @@ hy:
     no_batch_actions_available: Ոչ մի փաթեթային քայլեր հասանելի չեն այս էջում
     order_by: Դասաւորել ըստ
     save_changes: Պահպանել փոփոխութիւնները
+    validation_errors:
+      one: Ինչ֊որ բան դեռեւս ամբողջապէս ճիշտ չէ։ Խնդրում ենք, տես ներքեւի սխալը
+      other: Ինչ֊որ բան դեռեւս ամբողջապէս ճիշտ չէ։ Խնդրում ենք, տես ներքեւի %{count} սխալները
   html_validator:
     invalid_markup: 'պատունակում է անվաւեր HTML նշաձեւ․ %{error}'
   identity_proofs:
     active: Ակտիւ
     authorize: Այո, նոյնականացնել
     authorize_connection_prompt: Հաւաստագրէ՞լ այս ծածկագրման կապակցումը
+    errors:
+      failed: Ծածկագրման կապը ձախողուեց։ Խնդրում ենք փորձիր կրկին %{provider}ից։
+      keybase:
+        invalid_token: Բանալիների կտրոնները ստորագրութիւնների հէշեր են եւ պէտք է պարունակեն 66 հեքս նիշեր
     i_am_html: Ես %{username}ն եմ %{service}ում։
     identity: Ինքնութիւն
     inactive: Ոչ ակտիւ
@@ -1088,6 +1096,7 @@ hy:
       proceed: Արձագանքել
       prompt: 'Դու պատրաստւում ես արձագանքել այս թութին՝'
   scheduled_statuses:
+    over_total_limit: Հերթագրումների մինչև %{limit} թութ հերթագրելու սահմանափակումը գերազանցուել է
     too_soon: Նախադրուած ամսաթիւը պէտք է լինի ապագայում
   sessions:
     activity: Վերջին թութը
@@ -1328,6 +1337,7 @@ hy:
       subject:
         disable: Քո %{acct} հաշիւը սառեցուել է
         none: Նախազգուշացուեմ %{acct}-ին
+        silence: Քո %{acct} հաշիւը սահմանափակուել է
         suspend: Քո %{acct} հաշիւը արգելափակուել է
       title:
         disable: Օգտահաշիվը սառեցուած է
