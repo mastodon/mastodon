@@ -381,6 +381,7 @@ hy:
     domain_allows:
       add_new: Թոյլատրել ֆեդերացիա տիրոյթի հետ
       created_msg: Տիրոյթը յաջողութեամբ թոյլատրուեց ֆեդերացուելու
+      destroyed_msg: Տիրոյթը կասեցուեց ֆեդերացիայից
       undo: Չթոյլատրել ֆեդերացիան տիրոյթի հետ
     domain_blocks:
       add_new: Աւելացնել նոր տիրոյթի արգելափակում
@@ -766,6 +767,7 @@ hy:
       '86400': 1 օր
     expires_in_prompt: Երբեք
     generate: Գեներացնել հրաւէրի յղում
+    invited_by: 'Ձեզ հրաւիրել է՝'
     max_uses:
       one: '%{count} կիրառում'
       other: "%{count} կիրառում"
@@ -790,8 +792,10 @@ hy:
     title: Մոդերացիա
   notification_mailer:
     digest:
+      action: Դիտել բոլոր ծանուցումները
       title: Երբ բացակայ էիր...
     favourite:
+      subject: "%{name} հավանեց թութդ"
       title: Նոր հաւանում
     follow:
       body: "%{name}ը հետեւում է քեզ!"
@@ -801,6 +805,12 @@ hy:
       title: Նոր հետեւելու հայցեր
     mention:
       action: Պատասխանել
+      subject: Ձեզ յիշատակել է %{name}
+      title: Նոր յիշատակում
+    reblog:
+      body: 'Քո թութը տարածուել է %{name}֊ի կողմից։'
+      subject: "%{name} տարածեց թութդ"
+      title: Նոր տարածում
   notifications:
     other_settings: Ծանուցումների այլ կարգաւորումներ
   number:
@@ -915,6 +925,8 @@ hy:
       video:
         one: "%{count} վիդեո"
         other: "%{count} վիդեո"
+    errors:
+      in_reply_not_found: Գրառումը որին փորձում ես պատասխանել, այլեւս գոյութիւն չունի
     language_detection: Ինքնուրոյն ճանաչել լեզուն
     open_in_web: Բացել վէբում
     over_character_limit: '%{max} նիշի սահմանը գերազանցուած է'
