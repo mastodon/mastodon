@@ -691,6 +691,7 @@ hy:
     created_msg: Բարեյաջող ստեղծուեց նոր այլանուն։ Այժմ կարող ես սկսել հին հաշուից տեղափոխման գործընթացը։
     deleted_msg: Բարեյաջող վերացուեց այլանունը։ Տեղափոխումն այս հաշուից դէպի միւսն այլեւս հնարաւոր չէ։
     empty: Դու այլանուններ չունես։
+    hint_html: Եթէ ցանկանում ես այս հաշուից տեղափոխուել միւսը, ապա այստեղ կարող ես ստեղծել այլանուն, որը պահանջուում է՝ նախքան դու կարող ես սկսել հետեւորդներին տեղափոխելը։ Այս գործընթացը <strong>անվտանգ է եւ շրջելի</strong>։ <strong>Հաշուի տեղափոխումն սկսուում է հին հաշուից</strong>։
     remove: Հանել այլանունը
   appearance:
     advanced_web_interface: Սիւնակաւոր ինտերֆեյս
@@ -725,7 +726,9 @@ hy:
     checkbox_agreement_html: Ես համաձայն եմ <a href="%{rules_path}" target="_blank">սպասարկչի կայանքներին</a> և <a href="%{terms_path}" target="_blank">ծառայությունների պայմաններին</a>
     checkbox_agreement_without_rules_html: Ես համաձայն եմ <a href="%{terms_path}" target="_blank">ծառայությունների պայմաններին</a>
     delete_account: Ջնջել հաշիվը
+    delete_account_html: Եթէ ցանկանում ես ջնջել հաշիւդ, դու կարող ես  <a href="%{path}">սկսել այստեղից</a>։ Քեզնից կը պահանջուի հաստատում։
     description:
+      prefix_invited_by_user: "@%{name}ը հրաւիրել է քեզ միանալ Մաստոդոնի այս սպասարկչին։"
       prefix_sign_up: Գրանցուի՛ր Մաստոդոնում հենց այսօր
     dont_have_your_security_key: Չունե՞ս անվտանգութեան բանալի
     forgot_password: Մոռացե՞լ ես գաղտնաբառդ
@@ -957,6 +960,9 @@ hy:
       action: Դիտել բոլոր ծանուցումները
       body: Ահա այն նամակների կարճ ամփոփումը, որը բաց էիր թողել %{since} վերջին այցից այս կողմ
       mention: "%{name} նշել է քեզ՝"
+      new_followers_summary:
+        one: Նաև, քո բացակայութեան ընթացքում հետեւորդներդ աւելացել են ևս մէկով։ Յեյ՜
+        other: Նաև, երբ բացակայ էիր հետեւորդներդ աւելացել են %{count}-ով։ Զիլ է չէ՞
       subject:
         one: "%{count} նոր ծանուցում քո վերջին այցելութիւնից \U0001F418"
         other: "%{count} նոր ծանուցում քո վերջին այցելութիւնից \U0001F418"
@@ -1011,6 +1017,7 @@ hy:
       duration_too_long: ապագայում շատ հեռու է
       duration_too_short: շատ կարճ է
       expired: Հարցումն արդեն աւարտուել է
+      invalid_choice: Ընտրուած տարբերակը գոյութիւն չունի
       too_few_options: ընտրանքները պէտք է լինեն մէկից աւել
       too_many_options: չի կարող պարունակել աւելի քան %{max} ընտրանք
   preferences:
@@ -1039,13 +1046,17 @@ hy:
     status: Հաշուի կարգավիճակ
   remote_follow:
     proceed: Հաստատել հետեւումը
+    prompt: 'Դու պատրաստուում ես հետևել՝'
   remote_interaction:
     favourite:
       proceed: Հաւանել
+      prompt: 'Դու պատրաստւում ես հաւանել այս թութը՝'
     reblog:
       proceed: Տարածել
+      prompt: 'Դու պատրաստւում ես տարածել այս թութը՝'
     reply:
       proceed: Արձագանքել
+      prompt: 'Դու պատրաստւում ես արձագանքել այս թութին՝'
   scheduled_statuses:
     too_soon: Նախադրուած ամսաթիւը պէտք է լինի ապագայում
   sessions:
@@ -1086,6 +1097,7 @@ hy:
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
     revoke: Չեղարկել
+    revoke_success: Սեսսիան հաջողութեամբ ընդհատուեց
     title: Սեսսիա
   settings:
     account: Հաշիվ
