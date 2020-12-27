@@ -626,6 +626,9 @@ hy:
         desc_html: Օգտագործուել է նախադիտման համար՝ OpenGraph֊ի եւ API֊ի միջոցով։ Խորհուրդ է տրուում՝ 1200x630px 
         title: Հանգոյցի նկարը
       title: Կայքի կարգաւորումներ
+      trendable_by_default:
+        desc_html: Ազդում է նաև այն հեշթեգերի վրայ, որոնք նախկինում արգելուած չեն եղել
+        title: Թոյլ տալ հեշթեգերին ընգրկուել արդիական ցանկում առանց նախօրօք ստուգելու
       trends:
         title: Թրենդային պիտակներ
     site_uploads:
@@ -661,6 +664,7 @@ hy:
       trending_right_now: Այժմ թրենդի մէջ է
       unique_uses_today: "%{count} հրապարակուել է այսօր"
       unreviewed: Վերանայուած չէ
+      updated_msg: 'Հեշթեգերի կարգաւորումները թարմացուած են:'
     title: Ադմինիստարցիա
     warning_presets:
       add_new: Աւելացնել նորը
@@ -671,6 +675,8 @@ hy:
     new_report:
       body: "%{reporter}ը բողոքել է %{target}ին"
       subject: 'Նոր բողոք %{instance}ի համար(#%{id})'
+    new_trending_tag:
+      subject: 'Նոր հեշթեգ վերանայման համար՝ #%{name} (%{instance})'
   aliases:
     add_new: Ստեղծել այլանուն
     empty: Դու այլանուններ չունես։
@@ -1084,6 +1090,9 @@ hy:
         one: "%{count} վիդեո"
         other: "%{count} վիդեո"
     content_warning: 'Նախազգուշացում։ %{warning}'
+    disallowed_hashtags:
+      one: 'պարունակում է արգելուած հեշթեգ՝ %{tags}'
+      other: 'պարունակում է արգելուած հեշթեգեր՝ %{tags}'
     errors:
       in_reply_not_found: Գրառումը որին փորձում ես պատասխանել, այլեւս գոյութիւն չունի
     language_detection: Ինքնուրոյն ճանաչել լեզուն
