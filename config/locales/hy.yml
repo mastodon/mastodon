@@ -606,6 +606,7 @@ hy:
       accounts_week: Եզակի կիրառումներն այս շաբաթ
       context: Համատեքստ
       directory: Շտեմարանում
+      in_directory: "%{count}-ը շտեմարանում"
       last_active: Վերջին ակտիւութիւնը
       most_popular: Ամէնայայտնի
       most_recent: Վերջին
@@ -626,6 +627,10 @@ hy:
     new_report:
       body: "%{reporter}ը բողոքել է %{target}ին"
       subject: 'Նոր բողոք %{instance}ի համար(#%{id})'
+  aliases:
+    add_new: Ստեղծել այլանուն
+    empty: Դու այլանուններ չունես։
+    remove: Հանել այլանունը
   appearance:
     advanced_web_interface: Սիւնակաւոր ինտերֆեյս
     advanced_web_interface_hint: 'Եթէ ցանկանում ես օգտագործել էկրանիդ ամբողջ լայնքը, ապա ընդլայնուած վեբ ինտերֆեյսով հնարաւոր է էկրանը բաժանել սիւնակների՝ զուգահեռ տեսնելու տարբեր տիպի տեղեկատւութիւն՝ տեղական հոսքը, ծանուցումները, դաշնային հոսքը, և ցանկացած թուի ցուցակ ու պիտակ։'
@@ -974,6 +979,7 @@ hy:
   settings:
     account: Հաշիվ
     account_settings: Հաշուի կարգաւորումներ
+    aliases: Հաշուի այլանուններ
     appearance: Տեսք
     authorized_apps: Թոյլատրուած յաւելուածներ
     back: Ետ գնալ մաստադոն
@@ -1149,6 +1155,7 @@ hy:
       title: Մուտքի փորձ
     warning:
       get_in_touch: Կարող էք կապուել %{instance} հանգոյցի անձնակազմի հետ պատասխանելով այս նամակին։
+      review_server_policies: Վերանայել սերվերի կանոնները
       statuses: 'Մասնաւորապէս, միայն՝'
       subject:
         none: Նախազգուշացուեմ %{acct}-ին
