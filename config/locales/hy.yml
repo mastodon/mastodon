@@ -679,8 +679,10 @@ hy:
     status:
       account_status: Հաշուի կարգավիճակ
       pending: Դիմումը պէտք է քննուի մեր անձնակազմի կողմից, ինչը կարող է մի փոքր ժամանակ խլել։ Դիմումի հաստատուելու դէպքում, կտեղեկացնենք նամակով։
+    use_security_key: Օգտագործել անվտանգութեան բանալի
   authorize_follow:
     follow: Հետևել
+    follow_request: 'Դու ուղարկել ես հետեւելու հայց՝'
     following: 'Յաջողութի՜ւն։ Դու այժմ հետեւում ես․'
     post_follow:
       close: Կամ, կարող ես պարզապէս փակել այս պատուհանը։
@@ -857,6 +859,7 @@ hy:
       subject: "%{name}ը հետեւում է քեզ"
       title: Նոր հետևորդներ
     follow_request:
+      action: Կառավարել հետեւելու հայցեր
       title: Նոր հետեւելու հայցեր
     mention:
       action: Պատասխանել
@@ -889,6 +892,7 @@ hy:
     truncate: "&hellip;"
   polls:
     errors:
+      duplicate_options: պարունակում է կրկնօրինակ ընտրանքներ
       duration_too_long: ապագայում շատ հեռու է
       duration_too_short: շատ կարճ է
       expired: Հարցումն արդեն աւարտուել է
@@ -912,7 +916,11 @@ hy:
     relationship: Կապ
     remove_selected_domains: Հեռացնել բոլոր հետեւորդներին նշուած դոմեյններից
     remove_selected_followers: Հեռացնել նշուած հետեւորդներին
+    remove_selected_follows: Ապահետեւել նշուած օգտատէրերին
     status: Հաշուի կարգավիճակ
+  remote_interaction:
+    favourite:
+      proceed: Հաւանել
   scheduled_statuses:
     too_soon: Նախադրուած ամսաթիւը պէտք է լինի ապագայում
   sessions:
@@ -980,6 +988,7 @@ hy:
       audio:
         one: "%{count} ձայնագրութիւն"
         other: "%{count} ձայնագրութիւն"
+      description: 'Կցում՝ %{attached}'
       image:
         one: "%{count} նկար"
         other: "%{count} նկար"
@@ -1132,6 +1141,8 @@ hy:
     warning:
       get_in_touch: Կարող էք կապուել %{instance} հանգոյցի անձնակազմի հետ պատասխանելով այս նամակին։
       statuses: 'Մասնաւորապէս, միայն՝'
+      subject:
+        none: Նախազգուշացուեմ %{acct}-ին
       title:
         disable: Օգտահաշիվը սառեցուած է
         none: Զգուշացում
