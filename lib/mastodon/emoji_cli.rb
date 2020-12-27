@@ -46,6 +46,7 @@ module Mastodon
 
           filename = File.basename(entry.full_name, '.*')
 
+          # Skip macOS shadow files
           next if filename.start_with?('._')
 
           shortcode    = [options[:prefix], filename, options[:suffix]].compact.join
