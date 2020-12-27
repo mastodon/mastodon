@@ -60,6 +60,23 @@ co:
         title: Cambiamentu di i codici di ricuperazione d'A2F
       unlock_instructions:
         subject: 'Mastodon: Riapre u contu'
+      webauthn_credential:
+        added:
+          explanation: A chjave di sicurità quì sottu hè stata aghjunta à u vostru contu
+          subject: 'Mastodon: Nova chjave di sicurità'
+          title: Una nova chjave di sicurità hè stata aghjunta
+        deleted:
+          explanation: A chjave di sicurità quì sottu hè stata sguassata di u vostru contu
+          subject: 'Mastodon: Chjave di sicurità sguassata'
+          title: Una di e vostre chjave di sicurità hè stata sguassata
+      webauthn_disabled:
+        explanation: L'autentificazione cù una chjave di sicurità hè stata disattivata per u vostru contu. Avà pudete solu cunnettavi cù u codice di cunnessione generatu da l'applicazione TOTP appaghjata.
+        subject: 'Mastodon: Autentificazione cù chjave di sicurità disattivata'
+        title: Chjave di sicurità disattivate
+      webauthn_enabled:
+        explanation: L'autentificazione cù una chjave di sicurità hè stata attivata per u vostru contu. Avà a vostra chjave pò esse utilizata per cunnettavi.
+        subject: 'Mastodon: Identificazione cù chjave di sicurità attivata'
+        title: Chjave di sicurità attivate
     omniauth_callbacks:
       failure: Ùn pudemu micca cunnettavi da %{kind} perchè "%{reason}".
       success: Vi site cunnettatu·a da %{kind}.
@@ -94,5 +111,5 @@ co:
       not_found: ùn hè micca statu trovu
       not_locked: ùn era micca chjosu
       not_saved:
-        one: 'Un prublemu hà impeditu a cunservazione di stu (sta) %{resource}:'
-        other: "%{count} prublemi anu impeditu a cunservazione di stu (sta) %{resource} :"
+        one: 'Un prublemu hà impeditu a cunservazione di stu/sta %{resource}:'
+        other: "%{count} prublemi anu impeditu a cunservazione di stu/sta %{resource} :"

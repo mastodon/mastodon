@@ -98,6 +98,7 @@ el:
       add_email_domain_block: Εγγραφή τομέα email σε μαύρη λίστα
       approve: Έγκριση
       approve_all: Έγκριση όλων
+      approved_msg: Επιτυχής έγκριση αίτησης εγγραφής του/της %{username}
       are_you_sure: Σίγουρα;
       avatar: Αβατάρ
       by_domain: Τομέας
@@ -111,8 +112,10 @@ el:
       confirm: Επιβεβαίωση
       confirmed: Επιβεβαιώθηκε
       confirming: Προς επιβεβαίωση
+      delete: Διαγραφή δεδομένων
       deleted: Διαγραμμένοι
       demote: Υποβίβαση
+      destroyed_msg: Τα δεδομένα του/της %{username} εκκρεμούν για άμεση διαγραφή
       disable: Απενεργοποίηση
       disable_two_factor_authentication: Απενεργοποίηση 2FA
       disabled: Απενεργοποιημένο
@@ -123,10 +126,12 @@ el:
       email_status: Κατάσταση email
       enable: Ενεργοποίηση
       enabled: Ενεργοποιημένο
+      enabled_msg: Επιτυχές ξεπάγωμα λογαριασμού του/της %{username}
       followers: Ακόλουθοι
       follows: Ακολουθεί
       header: Επικεφαλίδα
       inbox_url: URL εισερχομένων
+      invite_request_text: Λόγοι για εγγραφή
       invited_by: Προσκλήθηκε από
       ip: IP
       joined: Γράφτηκε
@@ -138,6 +143,8 @@ el:
       login_status: Κατάσταση σύνδεσης
       media_attachments: Συνημμένα πολυμέσα
       memorialize: Μετατροπή σε νεκρολογία
+      memorialized: Μετατροπή σε αναμνηστικό
+      memorialized_msg: Επιτυχής μετατροπή λογαριασμού του/της %{username} σε αναμνηστικό
       moderation:
         active: Ενεργός/ή
         all: Όλα
@@ -158,10 +165,14 @@ el:
       public: Δημόσιο
       push_subscription_expires: Η εγγραφή PuSH λήγει
       redownload: Ανανέωση αβατάρ
+      redownloaded_msg: Επιτυχής ανανέωη προφίλ του/της %{username} από την πηγή
       reject: Απόρριψη
       reject_all: Απόρριψη όλων
+      rejected_msg: Επιτυχής απόρριψη αίτησης εγγραφής του/της %{username}
       remove_avatar: Απομακρυσμένο αβατάρ
       remove_header: Αφαίρεση επικεφαλίδας
+      removed_avatar_msg: Επιτυχής αφαίρεση εικόνας προφίλ του/της%{username}
+      removed_header_msg: Επιτυχής αφαίρεση εικόνας κεφαλίδας του/της %{username}
       resend_confirmation:
         already_confirmed: Ήδη επιβεβαιωμένος χρήστης
         send: Επανάληψη αποστολής email επιβεβαίωσης
@@ -178,6 +189,8 @@ el:
       search: Αναζήτηση
       search_same_email_domain: Άλλοι χρήστες με τον ίδιο τομέα e-mail
       search_same_ip: Υπόλοιποι χρήστες με την ίδια διεύθυνση IP
+      sensitive: Ευαίσθητο
+      sensitized: σήμανση ως ευαίσθητο
       shared_inbox_url: URL κοινόχρηστων εισερχομένων
       show:
         created_reports: Αναφορές από αυτόν το λογαριασμό
@@ -187,13 +200,19 @@ el:
       statuses: Καταστάσεις
       subscribe: Εγγραφή
       suspended: Σε αναστολή
+      suspension_irreversible: Τα δεδομένα αυτού του λογαριασμού έχουν διαγραφεί οριστικά. Μπορείς να άρεις την αναστολή του λογαριασμού για να μπορέσει να χρησιμοποιηθεί αλλά αυτό δεν θα επαναφέρει όσα δεδομένα είχε προηγουμένως.
+      suspension_reversible_hint_html: Ο λογαριασμός έχει ανασταλλεί και τα δεδομένα του θα διαγραφούν πλήρως στις %{date}. Μέχρι τότε ο λογαριασμός μπορεί να επανέλθει κανονικά. Αν θέλεις να διαγράψεις όλα τα δεδομένα του λογαριασμού, μπορείς να το κάνεις παρακάτω.
       time_in_queue: Σε αναμονή για %{time}
       title: Λογαριασμοί
       unconfirmed_email: Ανεπιβεβαίωτο email
+      undo_sensitized: Αναίρεση ευαίσθητου
       undo_silenced: Αναίρεση αποσιώπησης
       undo_suspension: Αναίρεση παύσης
+      unsilenced_msg: Επιτυχής άρση περιορισμών λογαριασμού του/της %{username}
       unsubscribe: Κατάργηση εγγραφής
+      unsuspended_msg: Επιτυχής άρση αναστολής λογαριασμού του/της %{username}
       username: Όνομα χρήστη
+      view_domain: Προβολή περίληψης για τομέα
       warn: Προειδοποίηση
       web: Διαδίκτυο
       whitelisted: Εγκεκριμένοι
@@ -208,12 +227,14 @@ el:
         create_domain_allow: Δημιουργία Επιτρεπτού Τομέα
         create_domain_block: Δημιουργία Αποκλεισμένου Τομέα
         create_email_domain_block: Δημουργία Αποκλεισμένου Τομέα email
+        create_ip_block: Δημιουργία κανόνα IP
         demote_user: Υποβιβασμός Χρήστη
         destroy_announcement: Διαγραφή Ανακοίνωσης
         destroy_custom_emoji: Διαγραφή Προσαρμοσμένου Emoji
         destroy_domain_allow: Διαγραφή Επιτρεπτού Τομέα
         destroy_domain_block: Διαγραφή Αποκλεισμού Τομέα
         destroy_email_domain_block: Διαγραφή Αποκλεισμένου Τομέα email
+        destroy_ip_block: Διαγραφή κανόνα IP
         destroy_status: Διαγραφή Κατάστασης
         disable_2fa_user: Απενεργοποίηση 2FA
         disable_custom_emoji: Απενεργοποίηση Προσαρμοσμένων Emoji
@@ -226,9 +247,11 @@ el:
         reopen_report: Ξανάνοιγμα Καταγγελίας
         reset_password_user: Επαναφορά Συνθηματικού
         resolve_report: Επίλυση Καταγγελίας
+        sensitive_account: Σήμανση των πολυμέσων στον λογαριασμό σας ως ευαίσθητων
         silence_account: Σίγαση Λογαριασμού
         suspend_account: Αναστολή Λογαριασμού
         unassigned_report: Αποδέσμευση Καταγγελίας
+        unsensitive_account: Αφαίρεση σήμανσης των πολυμέσων στον λογαριασμό σας ως ευαίσθητων
         unsilence_account: Άρση Σίγασης Λογαριασμού
         unsuspend_account: Άρση Αναστολής Λογαριασμού
         update_announcement: Ενημέρωση Ανακοίνωσης
@@ -244,12 +267,14 @@ el:
         create_domain_allow: Ο/Η %{name} έβαλε τον τομέα %{target} σε λευκή λίστα
         create_domain_block: Ο/Η %{name} μπλόκαρε τον τομέα %{target}
         create_email_domain_block: Ο/Η %{name} έβαλε τον τομέα email %{target} σε μαύρη λίστα
+        create_ip_block: Ο/Η %{name} δημιούργησε κανόνα για την IP %{target}
         demote_user: Ο/Η %{name} υποβίβασε το χρήστη %{target}
         destroy_announcement: Διαγραφή ανακοίνωσης %{target} από %{name}
         destroy_custom_emoji: Ο/Η %{name} κατέστρεψε το emoji %{target}
         destroy_domain_allow: Ο/Η %{name} αφαίρεσε τον τομέα %{target} από λίστα εγκρίσεων
         destroy_domain_block: Ο/Η %{name} ξεμπλόκαρε τον τομέα %{target}
         destroy_email_domain_block: Ο/Η %{name} έβαλε τον τομέα email %{target} σε λευκή λίστα
+        destroy_ip_block: Ο/Η %{name} διέγραψε κανόνα για την IP %{target}
         destroy_status: Ο/Η %{name} αφαίρεσε την κατάσταση του/της %{target}
         disable_2fa_user: Ο/Η %{name} απενεργοποίησε την απαίτηση δύο παραγόντων για το χρήστη %{target}
         disable_custom_emoji: Ο/Η %{name} απενεργοποίησε το emoji %{target}
@@ -434,6 +459,20 @@ el:
         expired: Ληγμένες
         title: Φίλτρο
       title: Προσκλήσεις
+    ip_blocks:
+      add_new: Δημιουργία κανόνα
+      created_msg: Επιτυχής προσθήκη νέου κανόνα IP
+      delete: Διαγραφή
+      expires_in:
+        '1209600': 2 εβδομάδες
+        '15778476': 6 μήνες
+        '2629746': 1 μήνας
+        '31556952': 1 έτος
+        '86400': 1 ημέρα
+        '94670856': 3 έτη
+      new:
+        title: Δημιουργία νέου κανόνα IP
+      title: Κανόνες IP
     pending_accounts:
       title: Λογαριασμοί σε αναμονή (%{count})
     relationships:
@@ -473,6 +512,8 @@ el:
       comment:
         none: Κανένα
       created_at: Καταγγέλθηκε
+      forwarded: Προωθημένα
+      forwarded_to: Προώθημένα προς %{domain}
       mark_as_resolved: Σημειωμένο ως επιλυμένο
       mark_as_unresolved: Σημειωμένο ως ανεπίλυτο
       notes:
@@ -516,6 +557,7 @@ el:
       domain_blocks_rationale:
         title: Εμφάνιση σκεπτικού
       enable_bootstrap_timeline_accounts:
+        desc_html: Οι νέοι χρήστες να ακολουθούν τους προρυθμισμένουνς λογαριασμούς ώστε η αρχική ροή τους να μην είναι άδεια
         title: Προεπιλογή παρακολούθησης για τους νέους χρήστες
       hero:
         desc_html: Εμφανίζεται στην μπροστινή σελίδα. Συνίσταται τουλάχιστον 600x100px. Όταν λείπει, χρησιμοποιείται η μικρογραφία του κόμβου
@@ -681,8 +723,11 @@ el:
       prefix_sign_up: Άνοιξε λογαριασμό στο Mastodon σήμερα!
       suffix: Ανοίγοντας λογαριασμό θα μπορείς να ακολουθείς άλλους, να ανεβάζεις ενημερώσεις και να ανταλλάζεις μηνύματα με χρήστες σε οποιοδήποτε διακομιστή Mastodon, καθώς και άλλα!
     didnt_get_confirmation: Δεν έλαβες τις οδηγίες επιβεβαίωσης;
+    dont_have_your_security_key: Δεν έχετε κλειδί ασφαλείας;
     forgot_password: Ξέχασες το συνθηματικό σου;
     invalid_reset_password_token: Το διακριτικό επαναφοράς συνθηματικού είναι άκυρο ή ληγμένο. Παρακαλώ αιτήσου νέο.
+    link_to_otp: Γράψε τον κωδικό πιστοποίησης 2 παραγόντων (2FA) από το τηλέφωνό σου ή τον κωδικό επαναφοράς
+    link_to_webauth: Χρήση συσκευής κλειδιού ασφαλείας
     login: Σύνδεση
     logout: Αποσύνδεση
     migrate_account: Μετακόμιση σε διαφορετικό λογαριασμό
@@ -708,6 +753,7 @@ el:
       pending: Η εφαρμογή σας εκκρεμεί έγκρισης, πιθανόν θα διαρκέσει κάποιο χρόνο. Θα λάβετε email αν εγκριθεί.
       redirecting_to: Ο λογαριασμός σου είναι ανενεργός γιατί επί του παρόντος ανακατευθύνει στον %{acct}.
     trouble_logging_in: Πρόβλημα σύνδεσης;
+    use_security_key: Χρήση κλειδιού ασφαλείας
   authorize_follow:
     already_following: Ήδη ακολουθείς αυτό το λογαριασμό
     already_requested: Έχετε ήδη στείλει ένα αίτημα ακολούθησης σε αυτόν τον λογαριασμό
@@ -732,6 +778,7 @@ el:
   date:
     formats:
       default: "%b %d, %Y"
+      with_month_name: "%B %d, %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}ω"
@@ -796,6 +843,7 @@ el:
       request: Αιτήσου το αρχείο σου
       size: Μέγεθος
     blocks: Μπλοκάρεις
+    bookmarks: Σελιδοδείκτες
     csv: CSV
     domain_blocks: Μπλοκαρίσματα κόμβων
     lists: Λίστες
@@ -863,6 +911,8 @@ el:
     status: Κατάσταση επαλήθευσης
     view_proof: Εμφάνιση απόδειξης
   imports:
+    errors:
+      over_rows_processing_limit: περιέχει περισσότερες από %{count} γραμμές
     modes:
       merge: Συγχώνευση
       merge_long: Διατήρηση των εγγράφων που υπάρχουν και προσθηκη των νέων
@@ -872,6 +922,7 @@ el:
     success: Τα δεδομένα σου μεταφορτώθηκαν επιτυχώς και θα επεξεργαστούν εν καιρώ
     types:
       blocking: Λίστα αποκλεισμού
+      bookmarks: Σελιδοδείκτες
       domain_blocking: Λίστα αποκλεισμένων τομέων
       following: Λίστα ακολούθων
       muting: Λίστα αποσιωπήσεων
@@ -992,6 +1043,10 @@ el:
           quadrillion: τετράκις.
           thousand: χ.
           trillion: τρις.
+  otp_authentication:
+    code_hint: Για να συνεχίσεις, γράψε τον κωδικό που δημιούργησε η εφαρμογή πιστοποίησης
+    enable: Ενεργοποίηση
+    setup: Ρύθμιση
   pagination:
     newer: Νεότερο
     next: Επόμενο
@@ -1154,6 +1209,8 @@ el:
         other: "%{count} ψήφοι"
       vote: Ψήφισε
     show_more: Δείξε περισσότερα
+    show_newer: Εμφάνιση νεότερων
+    show_older: Εμφάνιση παλαιότερων
     show_thread: Εμφάνιση νήματος
     sign_in_to_participate: Συνδέσου για να συμμετάσχεις στη συζήτηση
     title: '%{name}: "%{quote}"'
@@ -1262,21 +1319,17 @@ el:
       default: "%b %d, %Y, %H:%M"
       month: "%b %Y"
   two_factor_authentication:
-    code_hint: Βάλε τον κωδικό που δημιούργησε η εφαρμογή πιστοποίησής σου για επιβεβαίωση
-    description_html: Αν ενεργοποιήσεις την <strong>πιστοποίηση 2 παραγόντων (2FA)</strong>, για να συνδεθείς θα πρέπει να έχεις το τηλέφωνό σου, που θα σου δημιουργήσει κλειδιά εισόδου.
+    add: Προσθήκη
     disable: Απενεργοποίησε
-    enable: Ενεργοποίησε
+    edit: Επεξεργασία
     enabled: Η πιστοποίηση 2 παραγόντων (2FA) είναι ενεργοποιημένη
     enabled_success: Η πιστοποίηση 2 παραγόντων (2FA) ενεργοποιήθηκε επιτυχώς
     generate_recovery_codes: Δημιούργησε κωδικούς ανάκτησης
-    instructions_html: "<strong>Σάρωσε αυτόν τον κωδικό QR με την εφαρμογή Google Authenticator ή κάποια άλλη αντίστοιχη στο τηλέφωνό σου</strong>. Από εδώ και στο εξής, η εφαρμογή αυτή θα δημιουργεί κλειδιά που θα πρέπει να εισάγεις όταν συνδέεσαι."
     lost_recovery_codes: Οι κωδικοί ανάκτησης σου επιτρέπουν να ανακτήσεις ξανά πρόσβαση στον λογαριασμό σου αν χάσεις το τηλέφωνό σου. Αν έχεις χάσει τους κωδικούς ανάκτησης, μπορείς να τους δημιουργήσεις ξανά εδώ. Οι παλιοί κωδικοί σου θα ακυρωθούν.
-    manual_instructions: 'Αν δεν μπορείς να σαρώσεις τον κωδικό QR και χρειάζεσαι να τον εισάγεις χειροκίνητα, ορίστε η μυστική φράση σε μορφή κειμένου:'
+    otp: Εφαρμογή επαλήθευσης
     recovery_codes: Εφεδρικοί κωδικοί ανάκτησης
     recovery_codes_regenerated: Οι εφεδρικοί κωδικοί ανάκτησης δημιουργήθηκαν επιτυχώς
     recovery_instructions_html: Αν ποτέ δεν έχεις πρόσβαση στο κινητό σου, μπορείς να χρησιμοποιήσεις έναν από τους παρακάτω κωδικούς ανάκτησης για να αποκτήσεις πρόσβαση στο λογαριασμό σου. <strong>Διαφύλαξε τους κωδικούς ανάκτησης</strong>. Για παράδειγμα, μπορείς να τους εκτυπώσεις και να τους φυλάξεις μαζί με άλλα σημαντικά σου έγγραφα.
-    setup: Στήσιμο
-    wrong_code: Ο κωδικός που έβαλες ήταν άκυρος! Τα ρολόγια στον διακομιστή και τη συσκευή είναι σωστά;
   user_mailer:
     backup_ready:
       explanation: Είχες ζητήσει εφεδρικό αντίγραφο του λογαριασμού σου στο Mastodon. Είναι έτοιμο για κατέβασμα!
@@ -1304,6 +1357,7 @@ el:
       title:
         disable: Παγωμένος λογαριασμός
         none: Προειδοποίηση
+        sensitive: Το πολυμέσο σας έχει σημανθεί ως ευαίσθητο
         silence: Περιορισμένος λογαριασμός
         suspend: Λογαριασμός σε αναστολή
     welcome:
@@ -1324,9 +1378,11 @@ el:
       tips: Συμβουλές
       title: Καλώς όρισες, %{name}!
   users:
+    blocked_email_provider: Δεν είναι επιτρεπτός αυτός ο πάροχος email
     follow_limit_reached: Δεν μπορείς να ακολουθήσεις περισσότερα από %{limit} άτομα
     generic_access_help_html: Δυσκολεύεσαι να μπεις στο λογαριασμό σου; Μπορείς να επικοινωνήσεις στο %{email} για βοήθεια
     invalid_email: Η διεύθυνση email είναι άκυρη
+    invalid_email_mx: Αυτή η διεύθυνση email δεν φαίνεται να υπάρχει
     invalid_otp_token: Άκυρος κωδικός πιστοποίησης 2 παραγόντων (2FA)
     invalid_sign_in_token: Άκυρος κωδικός ασφάλειας
     otp_lost_help_html: Αν χάσεις και τα δύο, μπορείς να επικοινωνήσεις με τον/την %{email}
@@ -1336,3 +1392,13 @@ el:
   verification:
     explanation_html: 'Μπορείς να <strong>πιστοποιήσεις τον εαυτό σου ως ιδιοκτήτη των συνδέσμων που εμφανίζεις στα μεταδεδομένα του προφίλ σου</strong>. Για να συμβεί αυτό, ο συνδεδεμένος ιστότοπος πρέπει να περιέχει ένα σύνδεσμο που να επιστρέφει προς το προφίλ σου στο Mastodon. Ο σύνδεσμος επιστροφής <strong>πρέπει</strong> περιέχει την ιδιότητα (attribute) <code>rel="me"</code>. Το περιεχόμενο του κειμένου δεν έχει σημασία. Για παράδειγμα:'
     verification: Πιστοποίηση
+  webauthn_credentials:
+    add: Προσθήκη νέου κλειδιού ασφαλείας
+    create:
+      success: Το κλειδί ασφαλείας σας προστέθηκε με επιτυχία.
+    delete: Διαγραφή
+    delete_confirmation: Είστε βέβαιοι ότι θέλετε να διαγράψετε αυτό το κλειδί ασφαλείας;
+    destroy:
+      success: Το κλειδί ασφαλείας σας διαγράφηκε με επιτυχία.
+    invalid_credential: Άκυρο κλειδί ασφαλείας
+    registered_on: Εγγραφή στις %{date}

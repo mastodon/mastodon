@@ -60,6 +60,23 @@ pl:
         title: Zmieniono kody odzyskiwania 2FA
       unlock_instructions:
         subject: 'Mastodon: Instrukcje odblokowania konta'
+      webauthn_credential:
+        added:
+          explanation: Następujący klucz bezpieczeństwa został dodany do twojego konta
+          subject: 'Mastodon: Nowy klucz bezpieczeństwa'
+          title: Dodano nowy klucz bezpieczeństwa
+        deleted:
+          explanation: Następujący klucz bezpieczeństwa został usunięty z Twojego konta
+          subject: 'Mastodon: Klucz bezpieczeństwa usunięty'
+          title: Usunięto jeden z twoich kluczy bezpieczeństwa
+      webauthn_disabled:
+        explanation: Uwierzytelnianie kluczem bezpieczeństwa zostało wyłączone dla Twojego konta. Logowanie jest teraz możliwe tylko przy użyciu tokenu generowanego przez sparowaną aplikację TOTP.
+        subject: 'Mastodon: Wyłączono uwierzytelnianie z kluczami bezpieczeństwa'
+        title: Wyłączono klucze bezpieczeństwa
+      webauthn_enabled:
+        explanation: Uwierzytelnianie klucza bezpieczeństwa zostało włączone dla Twojego konta. Klucz bezpieczeństwa może być teraz wykorzystywany do logowania.
+        subject: 'Mastodon: Włączono uwierzytelnianie z kluczami bezpieczeństwa'
+        title: Włączono klucze bezpieczeństwa
     omniauth_callbacks:
       failure: 'Uwierzytelnienie przez %{kind} nie powiodło się, ponieważ: "%{reason}".'
       success: Uwierzytelnienie przez %{kind} powiodło się.

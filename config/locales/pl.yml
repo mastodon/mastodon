@@ -66,6 +66,7 @@ pl:
       one: śledzący
       other: Śledzących
     following: śledzonych
+    instance_actor_flash: To konto jest wirtualnym profilem używanym do reprezentowania samego serwera, a nie żadnego indywidualnego użytkownika. Jest ono stosowane do celów federacji i nie powinien być zawieszany.
     joined: Dołączył(a) %{date}
     last_active: ostatnio aktywny(-a)
     link_verified_on: Własność tego odnośnika została sprawdzona %{date}
@@ -106,6 +107,7 @@ pl:
       add_email_domain_block: Dodaj domenę e-mail na czarną listę
       approve: Przyjmij
       approve_all: Zatwierdź wszystkie
+      approved_msg: Pomyślnie zaakceptowano wniosek o rejestrację %{username}
       are_you_sure: Jesteś tego pewien?
       avatar: Awatar
       by_domain: Domena
@@ -119,8 +121,10 @@ pl:
       confirm: Potwierdź
       confirmed: Potwierdzono
       confirming: Potwierdzanie
+      delete: Usuń dane
       deleted: Usunięto
       demote: Degraduj
+      destroyed_msg: Dane %{username} są teraz w kolejce do natychmiastowego usunięcia
       disable: Dezaktywuj
       disable_two_factor_authentication: Wyłącz uwierzytelnianie dwuetapowe
       disabled: Dezaktywowano
@@ -131,10 +135,12 @@ pl:
       email_status: Stan e-maila
       enable: Aktywuj
       enabled: Aktywowano
+      enabled_msg: Pomyślnie odblokowano konto %{username}
       followers: Śledzący
       follows: Śledzeni
       header: Nagłówek
       inbox_url: Adres skrzynki
+      invite_request_text: Powody rejestracji
       invited_by: Zaproszony(-a) przez
       ip: Adres IP
       joined: Dołączył(-a)
@@ -146,6 +152,8 @@ pl:
       login_status: Stan logowania
       media_attachments: Załączniki multimedialne
       memorialize: Przełącz na „In Memoriam”
+      memorialized: Upamiętniono
+      memorialized_msg: Pomyślnie przełączono %{username} w konto in memoriam
       moderation:
         active: Aktywne
         all: Wszystkie
@@ -166,10 +174,14 @@ pl:
       public: Publiczne
       push_subscription_expires: Subskrypcja PuSH wygasa
       redownload: Odśwież profil
+      redownloaded_msg: Pomyślnie odświeżono profil %{username} z miejsca pochodzenia
       reject: Odrzuć
       reject_all: Odrzuć wszystkie
+      rejected_msg: Pomyślnie odrzucono wniosek o rejestrację %{username}
       remove_avatar: Usun awatar
       remove_header: Usuń nagłówek
+      removed_avatar_msg: Pomyślnie usunięto awatar %{username}
+      removed_header_msg: Pomyślnie usunięto obraz nagłówka %{username}
       resend_confirmation:
         already_confirmed: To konto zostało już potwierdzone
         send: Wyślij ponownie e-mail z potwierdzeniem
@@ -186,6 +198,8 @@ pl:
       search: Szukaj
       search_same_email_domain: Inni użytkownicy z e-mail w tej domenie
       search_same_ip: Inni użytkownicy z tym samym IP
+      sensitive: Wrażliwe
+      sensitized: oznaczono jako wrażliwe
       shared_inbox_url: Adres udostępnianej skrzynki
       show:
         created_reports: Zgłoszenia tego użytkownika
@@ -195,13 +209,19 @@ pl:
       statuses: Wpisy
       subscribe: Subskrybuj
       suspended: Zawieszono
+      suspension_irreversible: Dane tego konta zostały bezpowrotnie usunięte. Możesz cofnąć zawieszenie tego konta aby można było z niego ponownie korzystać, lecz nie przywróci to danych które poprzednio się na nim znajdowały.
+      suspension_reversible_hint_html: Twoje konto zostało zawieszone, a dane zostaną całkowicie usunięte %{date}. Do tego czasu, konto może zostać przywrócone bez żadnych negatywnych skutków. Jeżeli chcesz natychmiastowo usunąć wszystkie dane, możesz zrobić to niżej.
       time_in_queue: Czekanie w kolejce %{time}
       title: Konta
       unconfirmed_email: Niepotwierdzony adres e-mail
+      undo_sensitized: Cofnij oznaczenie
       undo_silenced: Cofnij wyciszenie
       undo_suspension: Cofnij zawieszenie
+      unsilenced_msg: Pomyślnie zwolniono z ograniczeń konto %{username}
       unsubscribe: Przestań subskrybować
+      unsuspended_msg: Pomyślnie cofnięto zawieszenie konto %{username}
       username: Nazwa użytkownika
+      view_domain: Zobacz podsumowanie domeny
       warn: Ostrzeż
       web: Sieć
       whitelisted: Na białej liście
@@ -216,12 +236,14 @@ pl:
         create_domain_allow: Utwórz zezwolenie dla domeny
         create_domain_block: Utwórz blokadę domeny
         create_email_domain_block: Utwórz blokadę domeny e-mail
+        create_ip_block: Utwórz regułę IP
         demote_user: Zdegraduj użytkownika
         destroy_announcement: Usuń ogłoszenie
         destroy_custom_emoji: Usuń niestandardowe emoji
         destroy_domain_allow: Usuń zezwolenie dla domeny
         destroy_domain_block: Usuń blokadę domeny
         destroy_email_domain_block: Usuń blokadę domeny e-mail
+        destroy_ip_block: Usuń regułę IP
         destroy_status: Usuń wpis
         disable_2fa_user: Wyłącz 2FA
         disable_custom_emoji: Wyłącz niestandardowe emoji
@@ -234,13 +256,16 @@ pl:
         reopen_report: Otwórz zgłoszenie ponownie
         reset_password_user: Resetuj hasło
         resolve_report: Rozwiąż zgłoszenie
+        sensitive_account: Oznacz zawartość multimedialną swojego konta jako wrażliwą
         silence_account: Wycisz konto
         suspend_account: Zawieś konto
         unassigned_report: Cofnij przypisanie zgłoszenia
+        unsensitive_account: Cofnij oznaczenie zawartości multimedialnej swojego konta jako wrażliwą
         unsilence_account: Cofnij wyciszenie konta
         unsuspend_account: Cofnij zawieszenie konta
         update_announcement: Aktualizuj ogłoszenie
         update_custom_emoji: Aktualizuj niestandardowe emoji
+        update_domain_block: Zaktualizuj blokadę domeny
         update_status: Aktualizuj wpis
       actions:
         assigned_to_self_report: "%{name} przypisał(a) sobie zgłoszenie %{target}"
@@ -252,12 +277,14 @@ pl:
         create_domain_allow: "%{name} dodał(a) na białą listę domenę %{target}"
         create_domain_block: "%{name} zablokował(a) domenę %{target}"
         create_email_domain_block: "%{name} dodał(a) domenę e-mail %{target} na czarną listę"
+        create_ip_block: "%{name} stworzył dla IP %{target}"
         demote_user: "%{name} zdegradował(a) użytkownika %{target}"
         destroy_announcement: "%{name} usunął(-ęła) ogłoszenie %{target}"
         destroy_custom_emoji: "%{name} usunął(-ęła) emoji %{target}"
         destroy_domain_allow: "%{name} usunął(-ęła) domenę %{target} z białej listy"
         destroy_domain_block: "%{name} odblokował(a) domenę %{target}"
         destroy_email_domain_block: "%{name} usunął(-ęła) domenę e-mail %{target} z czarnej listy"
+        destroy_ip_block: "%{name} usunął regułę dla IP %{target}"
         destroy_status: "%{name} usunął(-ęła) wpis użytkownika %{target}"
         disable_2fa_user: "%{name} wyłączył(a) uwierzytelnianie dwustopniowe użytkownikowi %{target}"
         disable_custom_emoji: "%{name} wyłączył(a) emoji %{target}"
@@ -270,13 +297,16 @@ pl:
         reopen_report: "%{name} otworzył(a) ponownie zgłoszenie %{target}"
         reset_password_user: "%{name} przywrócił(a) hasło użytkownikowi %{target}"
         resolve_report: "%{name} rozwiązał(a) zgłoszenie %{target}"
+        sensitive_account: "%{name} oznaczył(a) zawartość multimedialną %{target} jako wrażliwą"
         silence_account: "%{name} wyciszył(a) konto %{target}"
         suspend_account: "%{name} zawiesił(a) konto %{target}"
         unassigned_report: "%{name} cofnął(-ęła) przypisanie zgłoszenia %{target}"
+        unsensitive_account: "%{name} cofnął(-ęła) oznaczenie zawartości multimedialnej %{target} jako wrażliwą"
         unsilence_account: "%{name} cofnął(-ęła) wyciszenie konta %{target}"
         unsuspend_account: "%{name} cofnął(-ęła) zawieszenie konta %{target}"
         update_announcement: "%{name} zaktualizował(-a) ogłoszenie %{target}"
         update_custom_emoji: "%{name} zaktualizował(a) emoji %{target}"
+        update_domain_block: "%{name} zaktualizował(-a) blokadę domeny dla %{target}"
         update_status: "%{name} zaktualizował(a) wpis użytkownika %{target}"
       deleted_status: "(usunięty wpis)"
       empty: Nie znaleziono aktywności w dzienniku.
@@ -380,6 +410,8 @@ pl:
           silence: Wycisz
           suspend: Zawieś
         title: Nowa blokada domen
+      obfuscate: Ukryj nazwę domeny
+      obfuscate_hint: Częściowo ukryj nazwę domeny na liście, gdy reklamowanie listy limitów domen jest włączone
       private_comment: Prywatny komentarz
       private_comment_hint: Komentarz na temat ograniczeń dla tej domeny do wewnętrznej informacji dla moderatorów.
       public_comment: Publiczny komentarz
@@ -421,6 +453,7 @@ pl:
     instances:
       by_domain: Domena
       delivery_available: Doręczanie jest dostępne
+      empty: Nie znaleziono domen.
       known_accounts:
         few: "%{count} znane konta"
         many: "%{count} znane konta"
@@ -446,6 +479,21 @@ pl:
         expired: Wygasłe
         title: Filtruj
       title: Zaproszenia
+    ip_blocks:
+      add_new: Stwórz regułę
+      created_msg: Pomyślnie dodano nową regułę IP
+      delete: Usuń
+      expires_in:
+        '1209600': 2 tygodnie
+        '15778476': 6 miesięcy
+        '2629746': 1 miesiąc
+        '31556952': 1 rok
+        '86400': 1 dzień
+        '94670856': 3 lata
+      new:
+        title: Utwórz nową regułę IP
+      no_ip_block_selected: Żadna reguła nie została zmieniona, ponieważ żadna nie została wybrana
+      title: Reguły adresów IP
     pending_accounts:
       title: Oczekujące konta (%{count})
     relationships:
@@ -489,6 +537,8 @@ pl:
       comment:
         none: Brak
       created_at: Zgłoszono
+      forwarded: Przekazano
+      forwarded_to: Przekazano do %{domain}
       mark_as_resolved: Oznacz jako rozwiązane
       mark_as_unresolved: Oznacz jako nierozwiązane
       notes:
@@ -532,6 +582,7 @@ pl:
       domain_blocks_rationale:
         title: Pokaż uzasadnienia
       enable_bootstrap_timeline_accounts:
+        desc_html: Niech nowi użytkownicy automatycznie śledzą ustawione konta, aby ich główna oś czasu nie był początkowo pusta
         title: Dodawaj domyślne obserwacje nowym użytkownikom
       hero:
         desc_html: Wyświetlany na stronie głównej. Zalecany jest rozmiar przynajmniej 600x100 pikseli. Jeżeli nie ustawiony, zostanie użyta miniatura serwera
@@ -558,6 +609,9 @@ pl:
         min_invite_role:
           disabled: Nikt
           title: Kto może zapraszać użytkowników
+        require_invite_text:
+          desc_html: Kiedy rejestracje wymagają ręcznego zatwierdzenia, ustaw pole "Dlaczego chcesz dołączyć?" jako obowiązkowe, a nie opcjonalne
+          title: Wymagaj od nowych użytkowników wypełnienia tekstu prośby o zaproszenie
       registrations_mode:
         modes:
           approved: Przyjęcie jest wymagane do rejestracji
@@ -697,8 +751,11 @@ pl:
       prefix_sign_up: Zarejestruj się na Mastodon już dziś!
       suffix: Mając konto, możesz śledzić ludzi, publikować wpisy i wymieniać się wiadomościami z użytkownikami innych serwerów Mastodona i nie tylko!
     didnt_get_confirmation: Nie otrzymałeś(-aś) instrukcji weryfikacji?
+    dont_have_your_security_key: Nie masz klucza bezpieczeństwa?
     forgot_password: Nie pamiętasz hasła?
     invalid_reset_password_token: Token do resetowania hasła jest nieprawidłowy lub utracił ważność. Spróbuj uzyskać nowy.
+    link_to_otp: Wprowadź kod dwustopniowego uwierzytelniania z telefonu lub użyj zapasowego kodu
+    link_to_webauth: Użyj swojego urządzenia z kluczem bezpieczeństwa
     login: Zaloguj się
     logout: Wyloguj się
     migrate_account: Przenieś konto
@@ -723,7 +780,9 @@ pl:
       functional: Twoje konto całkowicie funkcjonuje.
       pending: Twoje zgłoszenie czeka na zatwierdzenie przez nas. Może to trochę potrwać. Jeżeli zgłoszenie zostanie przyjęte, otrzymasz wiadomość e-mail.
       redirecting_to: Twoje konto jest nieaktywne, ponieważ obecnie przekierowuje je na %{acct}.
+    too_fast: Zbyt szybko przesłano formularz, spróbuj ponownie.
     trouble_logging_in: Masz problem z zalogowaniem się?
+    use_security_key: Użyj klucza bezpieczeństwa
   authorize_follow:
     already_following: Już śledzisz to konto
     already_requested: Już wysłałeś(-aś) prośbę o możliwość śledzenia tego konta
@@ -748,6 +807,7 @@ pl:
   date:
     formats:
       default: "%d. %b %Y"
+      with_month_name: "%d. %B %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}g"
@@ -812,6 +872,7 @@ pl:
       request: Uzyskaj archiwum
       size: Rozmiar
     blocks: Zablokowani
+    bookmarks: Zakładki
     csv: CSV
     domain_blocks: Blokady domen
     lists: Listy
@@ -881,6 +942,8 @@ pl:
     status: Stan weryfikacji
     view_proof: Wyświetl dowód
   imports:
+    errors:
+      over_rows_processing_limit: zawiera więcej niż %{count} wierszy
     modes:
       merge: Połącz
       merge_long: Zachowaj obecne wpisy i dodaj nowe
@@ -890,6 +953,7 @@ pl:
     success: Twoje dane zostały załadowane i zostaną niebawem przetworzone
     types:
       blocking: Lista blokowanych
+      bookmarks: Zakładki
       domain_blocking: Lista zablokowanych domen
       following: Lista śledzonych
       muting: Lista wyciszonych
@@ -960,6 +1024,10 @@ pl:
       redirect: Twoje obecne konto zostanie uaktualnione o informację o przeniesieniu i wyłączone z wyszukiwania
   moderation:
     title: Moderacja
+  move_handler:
+    carry_blocks_over_text: Ten użytkownik przeniósł się z konta %{acct}, które zablokowałeś(-aś).
+    carry_mutes_over_text: Ten użytkownik przeniósł się z konta %{acct}, które wyciszyłeś(-aś).
+    copy_account_note_text: 'Ten użytkownik przeniósł się z konta %{acct}, oto Twoje poprzednie notatki o nim:'
   notification_mailer:
     digest:
       action: Wyświetl wszystkie powiadomienia
@@ -1012,6 +1080,14 @@ pl:
           quadrillion: bld
           thousand: tys
           trillion: bln
+  otp_authentication:
+    code_hint: Aby potwierdzić, wprowadź kod wygenerowany przez aplikację uwierzytelniającą
+    description_html: Jeśli włączysz <strong>uwierzytelnianie dwuetapowe</strong> używając aplikacji uwierzytelniającej, logowanie się będzie wymagało podania tokenu wyświetlonego na Twoim telefonie.
+    enable: Aktywuj
+    instructions_html: "<strong>Zeskanuj ten kod QR na swoim telefonie za pomocą Google Authenticator lub podobnej aplikacji TOTP</strong>. Od teraz będzie ona generowała kody wymagane przy logowaniu."
+    manual_instructions: 'Jeśli nie możesz zeskanować kodu QR i musisz wprowadzić go ręcznie, oto klucz w formie tekstu:'
+    setup: Skonfiguruj
+    wrong_code: Wprowadzony kod jest nieprawidłowy! Czy czas serwera i urządzenia jest poprawny?
   pagination:
     newer: Nowsze
     next: Następna
@@ -1040,6 +1116,7 @@ pl:
   relationships:
     activity: Aktywność konta
     dormant: Uśpione
+    follow_selected_followers: Zacznij śledzić wybranych śledzących
     followers: Śledzący
     following: Śledzeni
     invited: Zaproszeni
@@ -1136,10 +1213,16 @@ pl:
     profile: Profil
     relationships: Śledzeni i śledzący
     two_factor_authentication: Uwierzytelnianie dwuetapowe
+    webauthn_authentication: Klucze bezpieczeństwa
   spam_check:
     spam_detected: To zgłoszenie jest automatyczne. Został wykryty spam.
   statuses:
     attached:
+      audio:
+        few: "%{count} pliki dźwiękowe"
+        many: "%{count} plików dźwiękowych"
+        one: "%{count} plik dźwiękowy"
+        other: pliki dźwiękowe (%{count})
       description: 'Załączono: %{attached}'
       image:
         few: "%{count} obrazy"
@@ -1181,6 +1264,8 @@ pl:
         other: "%{count} głosy"
       vote: Głosuj
     show_more: Pokaż więcej
+    show_newer: Pokaż nowsze
+    show_older: Pokaż starsze
     show_thread: Pokaż wątek
     sign_in_to_participate: Zaloguj się, aby udzielić się w tej konwersacji
     title: '%{name}: "%{quote}"'
@@ -1289,21 +1374,20 @@ pl:
       default: "%d. %b %Y, %H:%M"
       month: "%b %Y"
   two_factor_authentication:
-    code_hint: Aby kontynuować, wprowadź kod wyświetlany przez aplikację uwierzytelniającą
-    description_html: Jeśli włączysz <strong>uwierzytelnianie dwuetapowe</strong>, logowanie się będzie wymagało podania tokenu wyświetlonego na Twoim telefonie.
+    add: Dodaj
     disable: Wyłącz
-    enable: Włącz
+    disabled_success: Pomyślnie wyłączono uwierzytelnianie dwuetapowe
+    edit: Edytuj
     enabled: Uwierzytelnianie dwuetapowe jest włączone
     enabled_success: Pomyślnie aktywowano uwierzytelnianie dwuetapowe
     generate_recovery_codes: Generuj kody zapasowe
-    instructions_html: "<strong>Zeskanuj ten kod QR na swoim urządzeniu za pomocą Google Authenticator, FreeOTP lub podobnej aplikacji</strong>. Od teraz będzie ona generowała kody wymagane przy logowaniu."
     lost_recovery_codes: Kody zapasowe pozwolą uzyskać dostęp do portalu, jeżeli utracisz dostęp do telefonu. Jeżeli utracisz dostęp do nich, możesz wygenerować je ponownie tutaj. Poprzednie zostaną unieważnione.
-    manual_instructions: 'Jeżeli nie możesz zeskanować kodu QR, musisz wprowadzić ten kod ręcznie:'
+    methods: Metody uwierzytelniania dwuetapowego
+    otp: Aplikacja uwierzytelniająca
     recovery_codes: Przywróć kody zapasowe
     recovery_codes_regenerated: Pomyślnie wygenerowano ponownie kody zapasowe
     recovery_instructions_html: Jeżeli kiedykolwiek utracisz dostęp do telefonu, możesz wykorzystać jeden z kodów zapasowych, aby odzyskać dostęp do konta. <strong>Trzymaj je w bezpiecznym miejscu</strong>. Na przykład, wydrukuj je i przechowuj z ważnymi dokumentami.
-    setup: Skonfiguruj
-    wrong_code: Wprowadzony kod jest niepoprawny! Czy czas serwera i urządzenia jest poprawny?
+    webauthn: Klucze bezpieczeństwa
   user_mailer:
     backup_ready:
       explanation: Zażądałeś pełnej kopii zapasowej konta na Mastodonie. Jest ona dostępna do pobrania!
@@ -1318,6 +1402,7 @@ pl:
     warning:
       explanation:
         disable: Kiedy Twoje konto jest wyłączone, Twoje dane pozostają na serwerze, ale nie możesz wykonywać żadnych działań, zanim zostanie odblokowane.
+        sensitive: Wysyłane przez Ciebie pliki multimedialne i media z odnośników będą traktowane jako wrażliwe.
         silence: Kiedy Twoje konto jest ograniczone, tylko osoby które je śledzą będą widzieć Twoje wpisy. Może ono też przestać być widoczne na publicznych listach. Inni wciąż mogą zacząć Cię śledzić.
         suspend: Twoje konto zostało zawieszone i wszystkie Twoje wpisy wraz z zawartością multimedialną zostały nieodwracalnie usunięte z tego serwera i serwerów, których użytkownicy śledzili Cię.
       get_in_touch: Możesz odpowiedzieć na ten e-mail aby pozostać w kontakcie z prowadzącymi %{instance}.
@@ -1326,11 +1411,13 @@ pl:
       subject:
         disable: Twoje konto %{acct} zostało wyłączone
         none: Ostrzeżenie dla %{acct}
+        sensitive: Zawartość multimedialna publikowana przez Twoje konto %{acct} została oznaczona jako wrażliwa
         silence: Twoje konto %{acct} zostało ograniczone
         suspend: Twoje konto %{acct} zostało zawieszone
       title:
         disable: Konto wyłączone
         none: Ostrzeżenie
+        sensitive: Twoja zawartość multimedialna została oznaczona jako wrażliwa
         silence: Konto ograniczone
         suspend: Konto zawieszone
     welcome:
@@ -1351,9 +1438,11 @@ pl:
       tips: Wskazówki
       title: Witaj na pokładzie, %{name}!
   users:
+    blocked_email_provider: Ten dostawca e-mail jest niedozwolony
     follow_limit_reached: Nie możesz śledzić więcej niż %{limit} osób
     generic_access_help_html: Nie możesz uzyskać dostępu do konta? Skontaktuj się z %{email} aby uzyskać pomoc
     invalid_email: Adres e-mail jest niepoprawny
+    invalid_email_mx: Ten adres e-mail wydaje się nie istnieć
     invalid_otp_token: Kod uwierzytelniający jest niepoprawny
     invalid_sign_in_token: Nieprawidłowy kod zabezpieczający
     otp_lost_help_html: Jeżeli utracisz dostęp do obu, możesz skontaktować się z %{email}
@@ -1363,3 +1452,20 @@ pl:
   verification:
     explanation_html: 'Możesz <strong>zweryfikować siebie jako właściciela stron, do których odnośniki znajdują się w metadanych</strong>. Aby to zrobić, strona musi zawierać odnośnik do Twojego profilu na Mastodonie. Odnośnik <strong>musi</strong> zawierać atrybut <code>rel="me"</code>. Jego zawartość nie ma znaczenia. Przykład:'
     verification: Weryfikacja
+  webauthn_credentials:
+    add: Dodaj nowy klucz bezpieczeństwa
+    create:
+      error: Wystąpił problem z dodawaniem klucza bezpieczeństwa. Spróbuj ponownie.
+      success: Pomyślnie dodano klucz bezpieczeństwa.
+    delete: Usuń
+    delete_confirmation: Czy jesteś pewien, że chcesz usunąć ten klucz bezpieczeństwa?
+    description_html: Jeśli włączysz <strong>uwierzytelnianie kluczem bezpieczeństwa</strong>, logowanie będzie wymagało użycia jednego z kluczy bezpieczeństwa.
+    destroy:
+      error: Wystąpił problem z usuwaniem klucza bezpieczeństwa. Spróbuj ponownie.
+      success: Pomyślnie usunięto klucz bezpieczeństwa.
+    invalid_credential: Nieprawidłowy klucz bezpieczeństwa
+    nickname_hint: Wprowadź nazwę twojego nowego klucza bezpieczeństwa
+    not_enabled: Nie włączyłeś WebAuthn
+    not_supported: Twoja przeglądarka nie obsługuje kluczy bezpieczeństwa
+    otp_required: Aby użyć kluczy bezpieczeństwa, najpierw włącz uwierzytelnianie dwuskładnikowe.
+    registered_on: Zarejestrowano %{date}

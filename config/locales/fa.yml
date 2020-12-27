@@ -62,6 +62,7 @@ fa:
       one: پیگیر
       other: پیگیر
     following: پی می‌گیرد
+    instance_actor_flash: این حساب یک عامل مجازی است که به نمایندگی از خود کارساز استفاده می‌شود و نه هیچ یکی از کاربران. این حساب به منظور اتصال به فدراسیون استفاده می‌شود و نباید معلق شود.
     joined: کاربر از %{date}
     last_active: آخرین فعالیت
     link_verified_on: مالکیت این پیوند در %{date} بررسی شد
@@ -100,6 +101,7 @@ fa:
       add_email_domain_block: مسدود کردن دامنهٔ رایانامه
       approve: پذیرفتن
       approve_all: پذیرفتن همه
+      approved_msg: کارهٔ ثبت‌نام %{username} با موفقیت تأیید شد
       are_you_sure: مطمئنید؟
       avatar: تصویر نمایه
       by_domain: دامین
@@ -113,8 +115,10 @@ fa:
       confirm: تأیید
       confirmed: تأیید شد
       confirming: تأیید
+      delete: حذف داده‌ها
       deleted: حذف شده
       demote: تنزل‌دادن
+      destroyed_msg: داده‌های %{username} در صف حدف قرار گرفتند
       disable: از کار انداختن
       disable_two_factor_authentication: از کار انداختن ورود دومرحله‌ای
       disabled: از کار افتاده
@@ -125,10 +129,12 @@ fa:
       email_status: وضعیت ایمیل
       enable: به کار انداختن
       enabled: به کار افتاده
+      enabled_msg: حساب %{username} با موفقیت به کار انداخته شد
       followers: پیگیران
       follows: پی می‌گیرد
       header: تصویر زمینه
       inbox_url: نشانی صندوق ورودی
+      invite_request_text: دلایل‌تان برای پیوستن
       invited_by: دعوت‌شده از طرف
       ip: IP
       joined: عضو شده در
@@ -140,6 +146,8 @@ fa:
       login_status: وضعیت ورود
       media_attachments: پیوست‌های رسانه‌ای
       memorialize: تبدیل به یادمان
+      memorialized: یادمان‌سازی شده
+      memorialized_msg: "%{username} با موفقیت به یک حساب یادمانی تبدیل شد"
       moderation:
         active: فعّال
         all: همه
@@ -160,10 +168,14 @@ fa:
       public: عمومی
       push_subscription_expires: عضویت از راه PuSH منقضی شد
       redownload: نوسازی نمایه
+      redownloaded_msg: حساب %{username} با موفقیت از ابتدا نوسازی شد
       reject: نپذیرفتن
       reject_all: نپذیرفتن هیچکدام
+      rejected_msg: کارهٔ ثبت‌نام %{username} با موفقیت رد شد
       remove_avatar: حذف تصویر نمایه
       remove_header: برداشتن تصویر زمینه
+      removed_avatar_msg: تصویر آواتار %{username} با موفّقیت برداشته شد
+      removed_header_msg: تصویر سرایند %{username} با موفّقیت برداشته شد
       resend_confirmation:
         already_confirmed: این کاربر قبلا تایید شده است
         send: ایمیل تایید را دوباره بفرستید
@@ -180,6 +192,8 @@ fa:
       search: جستجو
       search_same_email_domain: دیگر کاربران با دامنهٔ رایانامهٔ یکسان
       search_same_ip: دیگر کاربران با IP یکسان
+      sensitive: حساس
+      sensitized: علامت‌زده به عنوان حساس
       shared_inbox_url: نشانی صندوق ورودی مشترک
       show:
         created_reports: گزارش‌های ثبت کرده
@@ -189,13 +203,19 @@ fa:
       statuses: نوشته‌ها
       subscribe: اشتراک
       suspended: تعلیق‌شده
+      suspension_irreversible: داده‌های این حساب به صورت بی‌بازگشت حذف شد. می‌توانید برای قابل استفاده کردنش، آن را نامعلّق کنید، ولی این کار هیچ داده‌ای را که از پیش داده، برنخواهد گرداند.
+      suspension_reversible_hint_html: حساب معلّق شد و داده‌ها به صورت کامل در %{date} برداشته خواهند شد. تا آن زمان، حساب می‌تواند بی هیچ عوارضی بازگردانده شود. اگر می‌خواهید فوراً همهٔ داده‌های حساب را بردارید، می‌توانید در پایین این کار را بکنید.
       time_in_queue: در حال انتظار %{time}
       title: حساب‌ها
       unconfirmed_email: ایمیل تأییدنشده
+      undo_sensitized: بازگردانی حساس
       undo_silenced: واگردانی بی‌صداکردن
       undo_suspension: واگردانی تعلیق
+      unsilenced_msg: حساب %{username} با موفّقیت نامحدود شد
       unsubscribe: لغو اشتراک
+      unsuspended_msg: حساب %{username} با موفّقیت نامعلّق شد
       username: نام کاربری
+      view_domain: نمایش خلاصهٔ دامنه
       warn: هشدار
       web: وب
       whitelisted: فهرست مجاز
@@ -210,12 +230,14 @@ fa:
         create_domain_allow: ایجاد اجازهٔ دامنه
         create_domain_block: ایجاد انسداد دامنه
         create_email_domain_block: ایجاد انسداد دامنهٔ رایانامه
+        create_ip_block: ایجاد قاعدهٔ آی‌پی
         demote_user: تنزل کاربر
         destroy_announcement: حذف اعلامیه
         destroy_custom_emoji: حذف اموجی سفارشی
         destroy_domain_allow: حذف اجازهٔ دامنه
         destroy_domain_block: حذف انسداد دامنه
         destroy_email_domain_block: حذف انسداد دامنهٔ رایانامه
+        destroy_ip_block: حذف قاعدهٔ آی‌پی
         destroy_status: حذف وضعیت
         disable_2fa_user: از کار انداختن ورود دومرحله‌ای
         disable_custom_emoji: از کار انداختن اموجی سفارشی
@@ -228,13 +250,16 @@ fa:
         reopen_report: بازگشایی گزارش
         reset_password_user: بازنشانی گذرواژه
         resolve_report: رفع گزارش
+        sensitive_account: علامت‌گذاری رسانه در حسابتان به عنوان حساس
         silence_account: خموشی حساب
         suspend_account: تعلیق حساب
         unassigned_report: رفع واگذاری گزارش
+        unsensitive_account: برداشتن علامت رسانه در حسابتان به عنوان حساس
         unsilence_account: رفع خموشی حساب
         unsuspend_account: رفع تعلیق حساب
         update_announcement: به‌روز رسانی اعلامیه
         update_custom_emoji: به‌روز رسانی اموجی سفارشی
+        update_domain_block: به‌روزرسانی مسدودسازی دامنه
         update_status: به‌روز رسانی وضعیت
       actions:
         assigned_to_self_report: "%{name} رسیدگی به گزارش %{target} را به عهده گرفت"
@@ -246,12 +271,14 @@ fa:
         create_domain_allow: "%{name} دامنهٔ %{target} را مجاز کرد"
         create_domain_block: "%{name} دامین %{target} را مسدود کرد"
         create_email_domain_block: "%{name} دامین ایمیل %{target} را مسدود کرد"
+        create_ip_block: "%{name} برای آی‌پی %{target} قاعده‌ای ایجاد کرد"
         demote_user: "%{name} مقام کاربر %{target} را تنزل داد"
         destroy_announcement: "%{name} اعلامیهٔ %{target} را حذف کرد"
         destroy_custom_emoji: "%{name} اموجی %{target} را نابود کرد"
         destroy_domain_allow: "%{name} دامنهٔ %{target} را از فهرست مجاز برداشت"
         destroy_domain_block: "%{name} انسداد دامنهٔ %{target} را رفع کرد"
         destroy_email_domain_block: "%{name} دامنهٔ ایمیل %{target} را به فهرست مجاز افزود"
+        destroy_ip_block: "%{name} قاعده‌ای را از آی‌پی %{target} حذف کرد"
         destroy_status: "%{name} نوشتهٔ %{target} را پاک کرد"
         disable_2fa_user: "%{name} اجبار ورود دومرحله‌ای را برای کاربر %{target} غیرفعال کرد"
         disable_custom_emoji: "%{name} شکلک %{target} را غیرفعال کرد"
@@ -264,13 +291,16 @@ fa:
         reopen_report: "%{name} گزارش %{target} را دوباره به جریان انداخت"
         reset_password_user: "%{name} رمز کاربر %{target} را بازنشاند"
         resolve_report: "%{name} گزارش %{target} را رفع کرد"
+        sensitive_account: "%{name} رسانهٔ %{target} را به عنوان حساس علامت‌گذاری کرد"
         silence_account: "%{name} حساب کاربر %{target} را خاموش (بی‌صدا) کرد"
         suspend_account: "%{name} حساب کاربر %{target} را تعلیق کرد"
         unassigned_report: "%{name} بررسی گزارش %{target} را متوقف کرد"
+        unsensitive_account: "%{name} علامت حساس رسانهٔ %{target} را برداشت"
         unsilence_account: "%{name} حساب کاربر %{target} را روشن (باصدا) کرد"
         unsuspend_account: "%{name} حساب کاربر %{target} را از تعلیق خارج کرد"
         update_announcement: "%{name} اعلامیهٔ %{target} را به‌روز کرد"
         update_custom_emoji: "%{name} شکلک %{target} را به‌روز کرد"
+        update_domain_block: "%{name} مسدودسازی دامنه را برای %{target} به‌روزرسانی کرد"
         update_status: "%{name} نوشتهٔ %{target} را به‌روز کرد"
       deleted_status: "(نوشتهٔ پاک‌شده)"
       empty: هیچ گزارشی پیدا نشد.
@@ -413,6 +443,7 @@ fa:
     instances:
       by_domain: دامین
       delivery_available: پیام آماده است
+      empty: هیج دامنه‌ای پیدا نشد.
       known_accounts:
         one: "%{count} حساب شناخته‌شده"
         other: "%{count} حساب شناخته‌شده"
@@ -436,6 +467,21 @@ fa:
         expired: منقضی‌شده
         title: فیلتر
       title: دعوت‌ها
+    ip_blocks:
+      add_new: ایجاد قانون
+      created_msg: قانون IP جدید با موفقیت افزوده شد
+      delete: پاک کردن
+      expires_in:
+        '1209600': ۲ هفته
+        '15778476': ۶ ماه
+        '2629746': ۱ ماه
+        '31556952': ۱ سال
+        '86400': ۱ روز
+        '94670856': ۳ سال
+      new:
+        title: ایجاد قانون جدید IP
+      no_ip_block_selected: هیچ قاعدهٔ آی‌پی‌ای تغییری نکرد زیرا هیچ‌کدام گزیده نشده بودند
+      title: قوانین IP
     pending_accounts:
       title: حساب‌های منتظر (%{count})
     relationships:
@@ -475,6 +521,8 @@ fa:
       comment:
         none: هیچ
       created_at: گزارش‌شده
+      forwarded: هدایت شده
+      forwarded_to: هدایت شده به %{domain}
       mark_as_resolved: علامت‌گذاری به عنوان حل‌شده
       mark_as_unresolved: علامت‌گذاری به عنوان حل‌نشده
       notes:
@@ -544,6 +592,9 @@ fa:
         min_invite_role:
           disabled: هیچ کس
           title: اجازهٔ دعوت به
+        require_invite_text:
+          desc_html: زمانی که نام‌نویسی نیازمند تایید دستی است، متن «چرا می‌خواهید عضو شود؟» بخش درخواست دعوت را به جای اختیاری، اجباری کنید
+          title: نیازمند پر کردن متن درخواست دعوت توسط کاربران جدید
       registrations_mode:
         modes:
           approved: ثبت نام نیازمند تأیید مدیران است
@@ -683,8 +734,11 @@ fa:
       prefix_sign_up: همین امروز عضو ماستودون شوید!
       suffix: با داشتن حساب می‌توانید دیگران را پی بگیرید، نوشته‌های تازه منتشر کنید، و با کاربران دیگر از هر سرور ماستودون دیگری و حتی سرورهای دیگر در ارتباط باشید!
     didnt_get_confirmation: راهنمایی برای تأیید را دریافت نکردید؟
+    dont_have_your_security_key: کلید امنیتیتان را ندارید؟
     forgot_password: رمزتان را گم کرده‌اید؟
     invalid_reset_password_token: کد بازنشانی رمز نامعتبر یا منقضی شده است. لطفاً کد دیگری درخواست کنید.
+    link_to_otp: رمز بازگردانی یا رمز دوعاملی را از تلفنتان وارد کنید
+    link_to_webauth: استفاده از افزارهٔ امنیتیتان
     login: ورود
     logout: خروج
     migrate_account: نقل مکان به یک حساب دیگر
@@ -709,7 +763,9 @@ fa:
       functional: حساب شما قابل استفاده است.
       pending: درخواست شما منتظر تأیید مسئولان سایت است و این فرایند ممکن است کمی طول بکشد. اگر درخواست شما پذیرفته شود به شما ایمیلی فرستاده خواهد شد.
       redirecting_to: حساب شما غیرفعال است زیرا هم‌اکنون به %{acct} منتقل شده است.
+    too_fast: فرم با سرعت بسیار زیادی فرستاده شد، دوباره تلاش کنید.
     trouble_logging_in: برای ورود مشکلی دارید؟
+    use_security_key: استفاده از کلید امنیتی
   authorize_follow:
     already_following: شما همین الان هم این حساب را پی‌می‌گیرید
     already_requested: درخواست پی‌گیری‌ای برای آن حساب فرستاده‌ بودید
@@ -734,6 +790,7 @@ fa:
   date:
     formats:
       default: "%d %b %Y"
+      with_month_name: "%d %B %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count} ساعت"
@@ -798,6 +855,7 @@ fa:
       request: درخواست بایگانی داده‌هایتان
       size: اندازه
     blocks: حساب‌های مسدودشده
+    bookmarks: نشانک‌ها
     csv: CSV
     domain_blocks: دامین‌های مسدودشده
     lists: فهرست‌ها
@@ -874,6 +932,7 @@ fa:
     success: داده‌های شما با موفقیت بارگذاری شد و به زودی پردازش می‌شود
     types:
       blocking: فهرست مسدودشده‌ها
+      bookmarks: نشانک‌ها
       domain_blocking: فهرست دامین‌های مسدودشده
       following: فهرست پی‌گیری‌ها
       muting: فهرست بی‌صداشده‌ها
@@ -994,6 +1053,14 @@ fa:
           quadrillion: Q
           thousand: K
           trillion: T
+  otp_authentication:
+    code_hint: برای تأیید، کدی را که برنامهٔ تأییدکننده ساخته است وارد کنید
+    description_html: اگر <strong>ورود دومرحله‌ای</strong> را با استفاده از از یک کارهٔ تأییدکننده به کار بیندازید، لازم است برای ورود، به تلفن خود که برایتان یک ژتون خواهد ساخت دسترسی داشته باشید.
+    enable: به کار انداختن
+    instructions_html: "<strong>این کد QR را با برنامهٔ Google Authenticator یا برنامه‌های TOTP مشابه اسکن کنید</strong>. از این به بعد، آن برنامه کدهایی موقتی خواهد ساخت که برای ورود باید آن‌ها را وارد کنید."
+    manual_instructions: 'اگر نمی‌توانید رمز QR را بپویید و باید دستی واردظ کنید، متن رمز این‌جاست:'
+    setup: برپا سازی
+    wrong_code: رمز وارد شده نامعتبر بود! آیا زمان کارساز و زمان افزاره درستند؟
   pagination:
     newer: تازه‌تر
     next: بعدی
@@ -1022,6 +1089,7 @@ fa:
   relationships:
     activity: فعالیت حساب
     dormant: غیرفعال
+    follow_selected_followers: پیگیری پیگیران انتخاب شده
     followers: پی‌گیران
     following: پی می‌گیرد
     invited: مدعو
@@ -1118,6 +1186,7 @@ fa:
     profile: نمایه
     relationships: پیگیری‌ها و پیگیران
     two_factor_authentication: ورود دومرحله‌ای
+    webauthn_authentication: کلیدهای امنیتی
   spam_check:
     spam_detected: این یک گزارش خودکار برای تشخیص هرزنامه است.
   statuses:
@@ -1156,6 +1225,8 @@ fa:
         other: "%{count} رأی"
       vote: رأی
     show_more: نمایش
+    show_newer: نمایش جدیدتر
+    show_older: نمایش قدیمی‌تر
     show_thread: نمایش رشته
     sign_in_to_participate: برای شرکت در گفتگو وارد حساب خود شوید
     title: '%{name}: "%{quote}"'
@@ -1264,21 +1335,20 @@ fa:
       default: "%d %b %Y, %H:%M"
       month: "%b %Y"
   two_factor_authentication:
-    code_hint: برای تأیید، کدی را که برنامهٔ تأییدکننده ساخته است وارد کنید
-    description_html: اگر <strong>ورود دومرحله‌ای</strong> را فعال کنید، برای ورود به سیستم به تلفن خود نیاز خواهید داشت تا برایتان یک کد موقتی بسازد.
+    add: افزودن
     disable: غیرفعال‌کردن
-    enable: فعال‌کردن
+    disabled_success: ورود دومرحله‌ای با موفقیت از کار افتاد
+    edit: ویرایش
     enabled: ورود دومرحله‌ای فعال است
     enabled_success: ورود دومرحله‌ای با موفقیت فعال شد
     generate_recovery_codes: ساخت کدهای بازیابی
-    instructions_html: "<strong>این کد QR را با برنامهٔ Google Authenticator یا برنامه‌های TOTP مشابه اسکن کنید</strong>. از این به بعد، آن برنامه کدهایی موقتی خواهد ساخت که برای ورود باید آن‌ها را وارد کنید."
     lost_recovery_codes: با کدهای بازیابی می‌توانید اگر تلفن خود را گم کردید به حساب خود دسترسی داشته باشید. اگر کدهای بازیابی خود را گم کردید، آن‌ها را این‌جا دوباره بسازید. کدهای بازیابی قبلی شما نامعتبر خواهند شد.
-    manual_instructions: 'اگر نمی‌توانید کدها را اسکن کنید و باید آن‌ها را دستی وارد کنید، متن کد امنیتی این‌جاست:'
+    methods: روش‌های ورود دومرحله‌ای
+    otp: کارهٔ تأیید کننده
     recovery_codes: پشتیبان‌گیری از کدهای بازیابی
     recovery_codes_regenerated: کدهای بازیابی با موفقیت ساخته شدند
     recovery_instructions_html: اگر تلفن خود را گم کردید، می‌توانید با یکی از کدهای بازیابی زیر کنترل حساب خود را به دست بگیرید. <strong>این کدها را در جای امنی نگه دارید.</strong> مثلاً آن‌ها را چاپ کنید و کنار سایر مدارک مهم خود قرار دهید.
-    setup: راه اندازی
-    wrong_code: کدی که وارد کردید نامعتبر بود! آیا ساعت کارساز و ساعت دستگاه شما درست تنظیم شده‌اند؟
+    webauthn: کلیدهای امنیتی
   user_mailer:
     backup_ready:
       explanation: شما یک نسخهٔ پشتیبان کامل از حساب خود را درخواست کردید. این پشتیبان الان آمادهٔ بارگیری است!
@@ -1293,6 +1363,7 @@ fa:
     warning:
       explanation:
         disable: تا وقتی حساب شما متوقف باشد، داده‌های شما دست‌نخورده باقی می‌مانند، ولی تا وقتی که حسابتان باز نشده، نمی‌توانید هیچ کاری با آن بکنید.
+        sensitive: پرونده‌های رسانهٔ بارگذاری‌شده و رسانه‌های پیوسته به عنوان حساس در نظر گرفته خواهند شد.
         silence: تا وقتی حساب شما محدود باشد، تنها کسانی که از قبل پیگیر شما بودند نوشته‌های شما در این کارساز را می‌بینند و شاید شما در برخی از فهرست‌های عمومی دیده نشوید. ولی دیگران همچنان می‌توانند به دلخواه خودشان پیگیر شما شوند.
         suspend: حسابتان معلق شده و تمام بوق‌ها و رسانه‌های بارگذاشته‌تان، از روی این کارساز و کارسازهایی که پیگیرانی رویشان داشتید، به طور بازگشت‌ناپذیری برداشته شده‌اند.
       get_in_touch: با پاسخ به این ایمیل می‌توانید با دست‌اندرکاران %{instance} در تماس باشید.
@@ -1301,11 +1372,13 @@ fa:
       subject:
         disable: حساب %{acct} شما متوقف شده است
         none: هشدار برای %{acct}
+        sensitive: رسانه‌های فرستاده شده توسط حساب %{acct} شما برچسب حساس خورده‌اند
         silence: حساب %{acct} شما محدود شده است
         suspend: حساب %{acct}  شما معلق شده است
       title:
         disable: حساب متوقف شده است
         none: هشدار
+        sensitive: رسانه‌تان به عنوان حساس در نظر گرفته شد
         silence: حساب محدود شده است
         suspend: حساب معلق شده است
     welcome:
@@ -1326,9 +1399,11 @@ fa:
       tips: نکته‌ها
       title: خوش آمدید، کاربر %{name}!
   users:
+    blocked_email_provider: فراهم‌کنندهٔ رایانامه مجاز نیست
     follow_limit_reached: شما نمی‌توانید بیش از %{limit} نفر را پی بگیرید
     generic_access_help_html: مشکل در دسترسی به حسابتان؟ می‌توانید برای کمک با %{email} تکاس بگیرید
     invalid_email: نشانی ایمیل نامعتبر است
+    invalid_email_mx: به نظر نمی‌رسد نشانی رایانامه وجود داشته باشد
     invalid_otp_token: کد ورود دومرحله‌ای نامعتبر است
     invalid_sign_in_token: کد امنیتی نادرست
     otp_lost_help_html: اگر شما دسترسی به هیچ‌کدامشان ندارید، باید با ایمیل %{email} تماس بگیرید
@@ -1338,3 +1413,20 @@ fa:
   verification:
     explanation_html: 'شما می‌توانید <strong>خود را به عنوان مالک صفحه‌ای که در نمایه‌تان به آن پیوند داده‌اید تأیید کنید.</strong> برای این کار، صفحه‌ای که به آن پیوند داده‌اید، خودش باید پیوندی به نمایهٔ ماستودون شما داشته باشد. پیوند در آن صفحه <strong>باید</strong> عبارت <code>rel="me"‎</code> را به عنوان مشخّصهٔ (attribute) در خود داشته باشد. محتوای متن پیوند اهمتی ندارد. یک نمونه از چنین پیوندی:'
     verification: تأیید
+  webauthn_credentials:
+    add: افزودن کلید امنیتی
+    create:
+      error: افزودن کلید امنیتیتان با مشکل مواجه شد. لطفاً دوباره تلاش کنید.
+      success: کلید امنیتیتان با موفّقیت افزوده شد.
+    delete: حذف
+    delete_confirmation: مطمئنید که می‌خواهید این کلید امنیتی را حذف کنید؟
+    description_html: اگر <strong>احراز هویت کلید امنیتی</strong> را فعال کنید، ورود نیازمند این خواهد بود که یکی از کلیدهای امنیتی‌تان را استفاده کنید.
+    destroy:
+      error: حذف کلید امنیتیتان با مشکل مواجه شد. لطفاً دوباره تلاش کنید.
+      success: کلید امنیتیتان با موفّقیت حذف شد.
+    invalid_credential: کلید امنیتی نامعتبر
+    nickname_hint: نام مستعار کلید امنیتی جدیدتان را وارد کنید
+    not_enabled: شما هنوز WebAuthn را فعال نکرده‌اید
+    not_supported: این مرورگر از کلیدهای امنیتی پشتیبانی نمی‌کند
+    otp_required: برای استفاده از کلیدهای امنیتی، لطفاً ابتدا تأیید هویت دو عاملی را به کار بیندازید.
+    registered_on: ثبت‌شده در %{date}
