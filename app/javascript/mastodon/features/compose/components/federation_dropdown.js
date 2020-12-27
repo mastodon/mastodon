@@ -5,7 +5,7 @@ import IconButton from '../../../components/icon_button';
 import Overlay from 'react-overlays/lib/Overlay';
 import Motion from '../../ui/util/optional_motion';
 import spring from 'react-motion/lib/spring';
-import detectPassiveEvents from 'detect-passive-events';
+import { supportsPassiveEvents } from 'detect-passive-events';
 import classNames from 'classnames';
 
 const messages = defineMessages({
@@ -16,7 +16,7 @@ const messages = defineMessages({
   change_federation: { id: 'federation.change', defaultMessage: 'Adjust status federation' },
 });
 
-const listenerOptions = detectPassiveEvents.hasSupport ? { passive: true } : false;
+const listenerOptions = supportsPassiveEvents ? { passive: true } : false;
 
 class FederationDropdownMenu extends React.PureComponent {
 
