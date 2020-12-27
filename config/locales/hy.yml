@@ -57,9 +57,9 @@ hy:
     followers:
       one: Հետեւորդ
       other: Հետեւորդներ
-    following: Հետեւում էք
+    following: Հետեւում
     instance_actor_flash: Այս հաշիւը վիրտուալ դերասան է, որը ներկայացնում է հանգոյցը, եւ ոչ որեւէ անհատ օգտատիրոջ։ Այն օգտագործուում է ֆեդերացիայի նպատակներով եւ չպէտք է կասեցուի։
-    joined: Միացել են %{date}
+    joined: Միացել է %{date}
     last_active: վերջին թութը
     link_verified_on: Սոյն յղման տիրապետումը ստուգուած է՝ %{date}֊ին
     media: Մեդիա
@@ -73,7 +73,7 @@ hy:
       following: Դու պէտք է հետեւես մարդուն, որին ցանկանում ես խրախուսել
     posts:
       one: Թութ
-      other: Թութերից
+      other: Թութ
     posts_tab_heading: Թթեր
     posts_with_replies: Թթեր եւ պատասխաններ
     reserved_username: Ծածկանունն արդէն վերցուած է
@@ -1106,8 +1106,11 @@ hy:
     status: Հաշուի կարգավիճակ
   remote_follow:
     acct: Մուտքագրիր քո օգտանուն@տիրոյթ, որի անունից ցանկանում ես գործել
+    missing_resource: Չենք կարողանում գտնել անհրաժեշտ վերայղուող URL֊ը՝ քո հաշուի համար
+    no_account_html: Հաշիւ չունե՞ս։ Կարող ես <a href='%{sign_up_path}' target='_blank'>գրանցուել այստեղ</a>
     proceed: Հաստատել հետեւումը
     prompt: 'Դու պատրաստուում ես հետևել՝'
+    reason_html: "<strong>Ինչո՞ւ է այս քայլն անհրաժեշտ</strong> <code>%{instance}</code>ը հնարաւոր է, որ այն սպասարկիչը չէ, որտեղ դու գրանցուել ես, հետեւաբար, մենք կարիք ունենք սկզբում այն վերայղել քո տան սպասարկչին։"
   remote_interaction:
     favourite:
       proceed: Հաւանել
@@ -1119,6 +1122,7 @@ hy:
       proceed: Արձագանքել
       prompt: 'Դու պատրաստւում ես արձագանքել այս թութին՝'
   scheduled_statuses:
+    over_daily_limit: Դու գերազանցել ես հերթագրուած թթերի սահմանափակումը՝ %{limit}, այդ օրուայ համար
     over_total_limit: Հերթագրումների մինչև %{limit} թութ հերթագրելու սահմանափակումը գերազանցուել է
     too_soon: Նախադրուած ամսաթիւը պէտք է լինի ապագայում
   sessions:
@@ -1144,6 +1148,7 @@ hy:
       weibo: Weibo
     current_session: Ընթացիկ սեսսիա
     description: "%{browser}, %{platform}"
+    explanation: Կան այլ զննիչներ, որոնք այս պահին մուտք գործած են քո Մաստոդոն հաշիւ։
     ip: IP
     platforms:
       adobe_air: Adobe Air
@@ -1197,6 +1202,7 @@ hy:
       video:
         one: "%{count} վիդեո"
         other: "%{count} վիդեո"
+    boosted_from_html: Տարածուել է %{acct_link}ից
     content_warning: 'Նախազգուշացում։ %{warning}'
     disallowed_hashtags:
       one: 'պարունակում է արգելուած հեշթեգ՝ %{tags}'
@@ -1207,6 +1213,7 @@ hy:
     open_in_web: Բացել վէբում
     over_character_limit: '%{max} նիշի սահմանը գերազանցուած է'
     pin_errors:
+      limit: Դու արդեն ամրացրել ես առաւելագոյն քանակի թութ
       ownership: Ուրիշի գրառումը հնարաւոր չէ ամրացնել
       private: Ոչ հրապարակային թութը ամրացնել հնարաւոր չէ
       reblog: Ուրիշի գրառումը հնարաւոր չէ ամրացնել
