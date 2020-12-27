@@ -389,13 +389,17 @@ hy:
       destroyed_msg: Տիրոյթի արգելափակումը ետարկուեց
       domain: Տիրոյթ
       edit: Խմբագրել տիրոյթի արգելափակումը
+      existing_domain_block_html: Դու արդէն պարտադրել ես աւելի խիստ սահմանափակումներ %{name}ի համար, դու պէտք է սկզբում <a href="%{unblock_url}">ապաարգելափակես այն</a>։
       new:
         create: Ստեղծել արգելափակում
         severity:
+          desc_html: "<strong>Լռեցումը</strong> հաշուի գրառումները անտեսանելի կը դարձնի նրանց համար, որոնք չեն հետեւում նրան։ <strong>Կասեցումը</strong> կը վերացնի հաշուի բովանդակութիւնը, մեդիան եւ անձնական տուեալները։ Օգտագործիր <strong>Ոչինչ</strong>, եթէ ցանկանում ես մերժել մեդիա նիշքերը։"
           noop: Ոչ մի
           silence: Լուռ
           suspend: Կասեցում
         title: Նոր տիրոյթի արգելափակում
+      obfuscate: Խամրեցնել տիրոյթի անունը
+      obfuscate_hint: Մասնակի խամրեցնել տիրոյթի անունը ցանկում, եթէ գովազդուող տիրոյթների ցանկի սահմանափակումները միացուած են
       private_comment: Փակ մեկնաբանութիւն
       public_comment: Հրապարակային մեկնաբանութիւն
       reject_media: Մերժել մեդիա ֆայլերը
@@ -491,6 +495,7 @@ hy:
       comment:
         none: Ոչ մի
       created_at: Բողոքարկուած
+      forwarded: Փոխանցուած է
       mark_as_resolved: Նշել որպէս լուծուած
       mark_as_unresolved: Նշել որպէս չլուծուած
       notes:
@@ -597,6 +602,7 @@ hy:
       guide_link: https://crowdin.com/project/mastodon
       guide_link_text: Աջակցել կարող են բոլորը։
     sensitive_content: Զգայուն բովանդակութիւն
+    toot_layout: Գրառումների կառուցուածքը
   application_mailer:
     salutation: "%{name},"
     view: 'Նայել․'
@@ -754,7 +760,9 @@ hy:
       bookmarks: Էջանիշեր
       domain_blocking: Տիրոյթի արգելափակումների ցուցակ
       following: Հետեւումների ցանկ
+      muting: Լռեցման ցանկ
     upload: Վերբեռնել
+  in_memoriam_html: Ի յիշատակ։
   invites:
     delete: Ապաակտիւացնել
     expired: Ժամկէտանց
@@ -939,6 +947,8 @@ hy:
         other: "%{count} ձայներ"
       vote: Քուէարկել
     show_more: Աւելին
+    show_newer: Ցուցադրել նորերը
+    show_older: Ցուցադրել հները
     show_thread: Բացել շղթան
     sign_in_to_participate: Մուտք գործէք՝ զրոյցին միանալու համար 
     title: '%{name}: "%{quote}"'
