@@ -83,7 +83,7 @@
   background: $ui-highlight-color;
   color: $primary-text-color;
   text-transform: none;
-  line-height: 16px;
+  line-height: 1.2;
   height: auto;
   min-height: 36px;
   min-width: 88px;
@@ -129,6 +129,12 @@
       display: none;
     }
   }
+}
+
+a.button.logo-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .embed,
