@@ -444,6 +444,16 @@ cs:
         expired: Vypršené
         title: Filtrovat
       title: Pozvánky
+    ip_blocks:
+      add_new: Vytvořit pravidlo
+      delete: Smazat
+      expires_in:
+        '1209600': 2 týdny
+        '15778476': 6 měsíců
+        '2629746': 1 měsíc
+        '31556952': 1 rok
+        '86400': 1 den
+        '94670856': 3 roky
     pending_accounts:
       title: Čekající účty (%{count})
     relationships:
@@ -557,6 +567,7 @@ cs:
           disabled: Nikdo
           title: Povolit pozvánky od
         require_invite_text:
+          desc_html: Když jsou registrace schvalovány ručně, udělat odpověď na otázku "Proč se chcete připojit?" povinnou
           title: Požadovat od nových uživatelů odůvodnění založení
       registrations_mode:
         modes:
