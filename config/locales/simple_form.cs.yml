@@ -65,6 +65,8 @@ cs:
       invite_request:
         text: To nám pomůže posoudit vaši žádost
       ip_block:
+        comment: Nepovinné. Poznamenejte si, proč jste přidali toto pravidlo.
+        expires_in: IP adresy jsou omezeným zdrojem, občas jsou sdílené a často mění majitele. Proto se jejich časově neomezené blokování nedoporučuje.
         severities:
           no_access: Blokovat přístup ke všem zdrojům
           sign_up_requires_approval: Nové registrace budou vyžadovat schválení
