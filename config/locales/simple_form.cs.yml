@@ -64,6 +64,10 @@ cs:
         data: Soubor CSV exportovaný z jiného serveru Mastodon
       invite_request:
         text: To nám pomůže posoudit vaši žádost
+      ip_block:
+        severities:
+          no_access: Blokovat přístup ke všem zdrojům
+          sign_up_requires_approval: Nové registrace budou vyžadovat schválení
       sessions:
         otp: 'Zadejte kód pro dvoufázové ověření vygenerovaný vaší mobilní aplikací, nebo použijte jeden z vašich záložních kódů:'
       tag:
@@ -170,6 +174,7 @@ cs:
         text: Proč se chcete připojit?
       ip_block:
         severities:
+          no_access: Blokovat přístup
           sign_up_requires_approval: Omezit registrace
       notification_emails:
         digest: Posílat e-maily s přehledem
