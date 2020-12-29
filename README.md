@@ -1,3 +1,10 @@
+# Karagedon
+
+The Mastodon instance for Tokyo City University
+
+[https://karagedon.com](https://karagedon.com)
+
+
 ![Mastodon](https://i.imgur.com/NhZc40l.png)
 ========
 
