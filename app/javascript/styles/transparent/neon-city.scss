@@ -1,4 +1,4 @@
-/* Wider compose area 
+/* Wider compose area
 @media screen and (min-width: 1300px) {
   .drawer {
     width: 17%; */
@@ -51,7 +51,7 @@
  } */
 
 /* Let the compose area/drawer be short, but
-  * expand if necessary 
+  * expand if necessary
  .drawer .drawer__inner {
    overflow: visible;
    height:inherit;
@@ -245,6 +245,7 @@
   .placeholder-widget,
   .public-account-header,
   .public-account-bio,
+  .statuses-grid__item,
   .footer {
     // background: $ui-base-color;
     background: $transparent-light;
@@ -254,6 +255,7 @@
   .trends-widget,
   .endorsements-widget,
   .public-account-header,
+  .statuses-grid__item,
   .footer {
     border-radius: 4px;
   }
@@ -394,8 +396,13 @@
   color: lighten($ui-primary-color, 15%);
 }
 
-.column>.scrollable {
+.column {
   background-color: $transparent-light;
+  background-clip: content-box;
+}
+
+.column>.scrollable {
+  background-color: transparent;
 }
 
 .drawer__inner,
