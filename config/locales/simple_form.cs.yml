@@ -67,6 +67,7 @@ cs:
       ip_block:
         comment: Nepovinné. Poznamenejte si, proč jste přidali toto pravidlo.
         expires_in: IP adresy jsou omezeným zdrojem, občas jsou sdílené a často mění majitele. Proto se jejich časově neomezené blokování nedoporučuje.
+        ip: Zadejte IPv4 nebo IPv6 adresu. Můžete blokovat celé rozsahy použitím CIDR notace. Dejte pozor, ať neodříznete přístup sami sobě!
         severities:
           no_access: Blokovat přístup ke všem zdrojům
           sign_up_requires_approval: Nové registrace budou vyžadovat schválení
