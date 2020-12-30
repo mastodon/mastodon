@@ -18,12 +18,12 @@ ja:
     contact_unavailable: N/A
     discover_users: ユーザーを見つける
     documentation: ドキュメント
-    federation_hint_html: "%{instance} のアカウントひとつでどんなMastodon互換サーバーのユーザーでもフォローできるでしょう。"
+    federation_hint_html: |
+        <strong>「からあげドン」へようこそ</strong><br/>
+        <p>からあげドンは東京都市大学専用マストドンインスタンスです。ユーザー登録に使えるメールアドレスは<strong>TCUメール(@tcu.ac.jp)のみ</strong>です。<br/>※ メールアドレスが公開されることはありません。</p><br/>
     get_apps: モバイルアプリを試す
     hosted_on: Mastodon hosted on %{domain}
-    instance_actor_flash: 'このアカウントはサーバーそのものを示す仮想的なもので、特定のユーザーを示すものではありません。これはサーバーの連合のために使用されます。サーバー全体をブロックするときは、このアカウントをブロックせずに、ドメインブロックを使用してください。
-
-'
+    instance_actor_flash: 'このアカウントはサーバーそのものを示す仮想的なもので、特定のユーザーを示すものではありません。これはサーバーの連合のために使用されます。サーバー全体をブロックするときは、このアカウントをブロックせずに、ドメインブロックを使用してください。'
     learn_more: もっと詳しく
     privacy_policy: プライバシーポリシー
     see_whats_happening: やりとりを見てみる
@@ -1369,7 +1369,7 @@ ja:
     welcome:
       edit_profile_action: プロフィールを設定
       edit_profile_step: アイコンやヘッダーの画像をアップロードしたり、表示名を変更したりして、自分のプロフィールをカスタマイズすることができます。また、誰かからの新規フォローを許可する前にその人の様子を見ておきたい場合、アカウントを承認制にすることもできます。
-      explanation: 始めるにあたってのアドバイスです
+      explanation: 東京都市大学専用マストドン「からあげドン」を始めるにあたってのアドバイスです
       final_action: 始めましょう
       final_step: 'さあ、始めましょう！ たとえフォロワーがまだいなくても、あなたの公開した投稿はローカルタイムラインやハッシュタグなどを通じて誰かの目にとまるはずです。自己紹介をしたいときには #introductions ハッシュタグが便利かもしれません。'
       full_handle: あなたの正式なユーザーID
@@ -1384,7 +1384,7 @@ ja:
       tips: 豆知識
       title: ようこそ、%{name}！
   users:
-    blocked_email_provider: このメールプロバイダは許可されていません
+    blocked_email_provider: TCUメール(末尾が@tcu.ac.jp)のみ登録可能です
     follow_limit_reached: あなたは現在 %{limit} 人以上フォローできません
     generic_access_help_html: アクセスできませんか？ %{email} に問い合わせることができます。
     invalid_email: メールアドレスが無効です
