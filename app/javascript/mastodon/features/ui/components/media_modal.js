@@ -32,6 +32,9 @@ class MediaModal extends ImmutablePureComponent {
     onClose: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
     onChangeBackgroundColor: PropTypes.func.isRequired,
+    currentTime: PropTypes.number,
+    autoPlay: PropTypes.bool,
+    volume: PropTypes.number,
   };
 
   static contextTypes = {
@@ -183,7 +186,7 @@ class MediaModal extends ImmutablePureComponent {
           />
         );
       } else if (image.get('type') === 'video') {
-        const { time } = this.props;
+        const { currentTime, autoPlay, volume } = this.props;
 
         return (
           <Video
@@ -192,7 +195,10 @@ class MediaModal extends ImmutablePureComponent {
             src={image.get('url')}
             width={image.get('width')}
             height={image.get('height')}
-            currentTime={time || 0}
+            frameRate={image.getIn(['meta', 'original', 'frame_rate'])}
+            currentTime={currentTime || 0}
+            autoPlay={autoPlay || false}
+            volume={volume || 1}
             onCloseVideo={onClose}
             detailed
             alt={image.get('description')}
