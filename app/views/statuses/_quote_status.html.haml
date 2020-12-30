@@ -22,7 +22,7 @@
   - if !status.media_attachments.empty?
     - if status.media_attachments.first.video?
       - video = status.media_attachments.first
-      = react_component :video, src: video.file.url(:original), preview: video.file.url(:small), blurhash: video.blurhash, sensitive: !current_account&.user&.show_all_media? && status.sensitive? || current_account&.user&.hide_all_media?, width: 610, height: 343, inline: true, alt: video.description, quote: true do
+      = react_component :video, src: video.file.url(:original), preview: video.file.url(:small), frameRate: video.file.meta.dig('original', 'frame_rate'), blurhash: video.blurhash, sensitive: !current_account&.user&.show_all_media? && status.sensitive? || current_account&.user&.hide_all_media?, width: 610, height: 343, inline: true, alt: video.description, media: [ActiveModelSerializers::SerializableResource.new(video, serializer: REST::MediaAttachmentSerializer)].as_json, quote: true do
         = render partial: 'statuses/attachment_list', locals: { attachments: status.media_attachments }
     - elsif status.media_attachments.first.audio?
       - audio = status.media_attachments.first
