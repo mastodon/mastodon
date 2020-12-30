@@ -250,12 +250,14 @@ cs:
         create_domain_allow: "Uživatel %{name} přidal doménu %{target} na bílou listinu"
         create_domain_block: "Uživatel %{name} zablokoval doménu %{target}"
         create_email_domain_block: "Uživatel %{name} přidal e-mailovou doménu %{target} na černou listinu"
+        create_ip_block: "%{name} vytvořil pravidlo pro IP %{target}"
         demote_user: "Uživatel %{name} degradoval uživatele %{target}"
         destroy_announcement: "Uživatel %{name} odstranil oznámení %{target}"
         destroy_custom_emoji: "Uživatel %{name} zničil emoji %{target}"
         destroy_domain_allow: "Uživatel %{name} odebral doménu %{target} z bílé listiny"
         destroy_domain_block: "Uživatel %{name} odblokoval doménu %{target}"
         destroy_email_domain_block: "Uživatel %{name} odebral e-mailovou doménu %{target} z černé listiny"
+        destroy_ip_block: "%{name} odstranil pravidlo pro IP %{target}"
         destroy_status: "Uživatel %{name} odstranil toot uživatele %{target}"
         disable_2fa_user: "Uživatel %{name} vypnul dvoufázové ověřování pro uživatele %{target}"
         disable_custom_emoji: "Uživatel %{name} zakázal emoji %{target}"
@@ -454,6 +456,7 @@ cs:
         '31556952': 1 rok
         '86400': 1 den
         '94670856': 3 roky
+      no_ip_block_selected: Nebyla změněna žádná IP pravidla, protože nebylo žádné zaškrtnuto
     pending_accounts:
       title: Čekající účty (%{count})
     relationships:
@@ -822,6 +825,7 @@ cs:
       request: Vyžádat váš archiv
       size: Velikost
     blocks: Blokujete
+    bookmarks: Záložky
     csv: CSV
     domain_blocks: Blokování domén
     lists: Seznamy
@@ -898,6 +902,7 @@ cs:
     success: Vaše data byla úspěšně nahrána a nyní budou zpracována v daný čas
     types:
       blocking: Seznam blokovaných
+      bookmarks: Záložky
       domain_blocking: Seznam blokovaných domén
       following: Seznam sledovaných
       muting: Seznam ignorovaných
