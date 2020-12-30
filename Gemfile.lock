@@ -160,7 +160,8 @@ GEM
     cose (1.0.0)
       cbor (~> 0.5.9)
       openssl-signature_algorithm (~> 0.4.0)
-    crack (0.4.4)
+    crack (0.4.5)
+      rexml
     crass (1.0.6)
     css_parser (1.7.1)
       addressable
@@ -657,7 +658,7 @@ GEM
       safety_net_attestation (~> 0.4.0)
       securecompare (~> 1.0)
       tpm-key_attestation (~> 0.9.0)
-    webmock (3.10.0)
+    webmock (3.11.0)
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
       hashdiff (>= 0.4.0, < 2.0.0)
@@ -806,7 +807,7 @@ DEPENDENCIES
   twitter-text (~> 1.14)
   tzinfo-data (~> 1.2020)
   webauthn (~> 3.0.0.alpha1)
-  webmock (~> 3.10)
+  webmock (~> 3.11)
   webpacker (~> 5.2)
   webpush
   xorcist (~> 1.1)
