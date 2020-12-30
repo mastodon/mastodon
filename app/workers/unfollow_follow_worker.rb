@@ -14,7 +14,7 @@ class UnfollowFollowWorker
     reblogs = follow&.show_reblogs?
     notify  = follow&.notify?
 
-    FollowService.new.call(follower_account, new_target_account, reblogs: reblogs, notify: notify, bypass_locked: bypass_locked)
+    FollowService.new.call(follower_account, new_target_account, reblogs: reblogs, notify: notify, bypass_locked: bypass_locked, bypass_limit: true)
     UnfollowService.new.call(follower_account, old_target_account, skip_unmerge: true)
   rescue ActiveRecord::RecordNotFound, Mastodon::NotPermittedError
     true

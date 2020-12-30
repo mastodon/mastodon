@@ -7,7 +7,7 @@ class Api::V1::Accounts::FeaturedTagsController < Api::BaseController
   respond_to :json
 
   def index
-    render json: @featured_tags, each_serializer: REST::AccountFeaturedTagSerializer
+    render json: @featured_tags, each_serializer: REST::FeaturedTagSerializer
   end
 
   private
@@ -17,6 +17,6 @@ class Api::V1::Accounts::FeaturedTagsController < Api::BaseController
   end
 
   def set_featured_tags
-    @featured_tags = @account.suspended? ? @account.featured_tags : []
+    @featured_tags = @account.suspended? ? [] : @account.featured_tags
   end
 end

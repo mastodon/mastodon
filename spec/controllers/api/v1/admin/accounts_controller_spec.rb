@@ -111,7 +111,7 @@ RSpec.describe Api::V1::Admin::AccountsController, type: :controller do
 
   describe 'POST #unsuspend' do
     before do
-      account.touch(:suspended_at)
+      account.suspend!
       post :unsuspend, params: { id: account.id }
     end
 

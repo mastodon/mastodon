@@ -354,6 +354,7 @@ code {
   input[type=number],
   input[type=email],
   input[type=password],
+  input[type=url],
   textarea {
     box-sizing: border-box;
     font-size: 16px;
@@ -376,11 +377,6 @@ code {
       box-shadow: none;
     }
 
-    &:focus:invalid:not(:placeholder-shown),
-    &:required:invalid:not(:placeholder-shown) {
-      border-color: lighten($error-red, 12%);
-    }
-
     &:required:valid {
       border-color: $valid-value-color;
     }
@@ -393,6 +389,16 @@ code {
     &:focus {
       border-color: $highlight-text-color;
       background: darken($ui-base-color, 8%);
+    }
+  }
+
+  input[type=text],
+  input[type=number],
+  input[type=email],
+  input[type=password] {
+    &:focus:invalid:not(:placeholder-shown),
+    &:required:invalid:not(:placeholder-shown) {
+      border-color: lighten($error-red, 12%);
     }
   }
 
@@ -992,5 +998,12 @@ code {
     align-items: flex-start;
     display: flex;
     flex-direction: row;
+  }
+}
+
+.input.user_confirm_password,
+.input.user_website {
+  &:not(.field_with_errors) {
+    display: none;
   }
 }

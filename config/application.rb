@@ -85,6 +85,7 @@ module Mastodon
       :kk,
       :kn,
       :ko,
+      :ku,
       :lt,
       :lv,
       :mk,
@@ -100,6 +101,8 @@ module Mastodon
       :'pt-PT',
       :ro,
       :ru,
+      :sa,
+      :sc,
       :sk,
       :sl,
       :sq,
@@ -113,6 +116,7 @@ module Mastodon
       :uk,
       :ur,
       :vi,
+      :zgh,
       :'zh-CN',
       :'zh-HK',
       :'zh-TW',
@@ -136,6 +140,7 @@ module Mastodon
       Doorkeeper::AuthorizationsController.layout 'modal'
       Doorkeeper::AuthorizedApplicationsController.layout 'admin'
       Doorkeeper::Application.send :include, ApplicationExtension
+      Doorkeeper::AccessToken.send :include, AccessTokenExtension
       Devise::FailureApp.send :include, AbstractController::Callbacks
       Devise::FailureApp.send :include, HttpAcceptLanguage::EasyAccess
       Devise::FailureApp.send :include, Localized

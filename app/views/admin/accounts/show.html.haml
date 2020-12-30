@@ -1,6 +1,10 @@
 - content_for :page_title do
   = @account.acct
 
+- if @account.instance_actor?
+  .flash-message.notice
+    %strong= t('accounts.instance_actor_flash')
+
 = render 'application/card', account: @account
 
 - account = @account
@@ -242,3 +246,13 @@
 
     .actions
       = f.button :button, t('admin.account_moderation_notes.create'), type: :submit
+
+  %hr.spacer/
+
+  - if @account.user&.invite_request&.text&.present?
+    %div.speech-bubble
+      %div.speech-bubble__bubble
+        = @account.user&.invite_request&.text
+      %div.speech-bubble__owner
+        = admin_account_link_to @account
+        = t('admin.accounts.invite_request_text')

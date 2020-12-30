@@ -3,6 +3,7 @@
 
 const checkNotificationPromise = () => {
   try {
+    // eslint-disable-next-line promise/catch-or-return
     Notification.requestPermission().then();
   } catch(e) {
     return false;
@@ -22,7 +23,7 @@ const handlePermission = (permission, callback) => {
 
 export const requestNotificationPermission = (callback) => {
   if (checkNotificationPromise()) {
-    Notification.requestPermission().then((permission) => handlePermission(permission, callback));
+    Notification.requestPermission().then((permission) => handlePermission(permission, callback)).catch(console.warn);
   } else {
     Notification.requestPermission((permission) => handlePermission(permission, callback));
   }

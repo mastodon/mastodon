@@ -105,15 +105,18 @@ class AccountGallery extends ImmutablePureComponent {
   }
 
   handleOpenMedia = attachment => {
+    const { dispatch } = this.props;
+    const statusId = attachment.getIn(['status', 'id']);
+
     if (attachment.get('type') === 'video') {
-      this.props.dispatch(openModal('VIDEO', { media: attachment, status: attachment.get('status'), options: { autoPlay: true } }));
+      dispatch(openModal('VIDEO', { media: attachment, statusId, options: { autoPlay: true } }));
     } else if (attachment.get('type') === 'audio') {
-      this.props.dispatch(openModal('AUDIO', { media: attachment, status: attachment.get('status'), options: { autoPlay: true } }));
+      dispatch(openModal('AUDIO', { media: attachment, statusId, options: { autoPlay: true } }));
     } else {
       const media = attachment.getIn(['status', 'media_attachments']);
       const index = media.findIndex(x => x.get('id') === attachment.get('id'));
 
-      this.props.dispatch(openModal('MEDIA', { media, index, status: attachment.get('status') }));
+      dispatch(openModal('MEDIA', { media, index, statusId }));
     }
   }
 
@@ -149,6 +152,14 @@ class AccountGallery extends ImmutablePureComponent {
       loadOlder = <LoadMore visible={!isLoading} onClick={this.handleLoadOlder} />;
     }
 
+    let emptyMessage;
+
+    if (suspended) {
+      emptyMessage = <FormattedMessage id='empty_column.account_suspended' defaultMessage='Account suspended' />;
+    } else if (blockedBy) {
+      emptyMessage = <FormattedMessage id='empty_column.account_unavailable' defaultMessage='Profile unavailable' />;
+    }
+
     return (
       <Column>
         <ColumnBackButton multiColumn={multiColumn} />
@@ -159,7 +170,7 @@ class AccountGallery extends ImmutablePureComponent {
 
             {(suspended || blockedBy) ? (
               <div className='empty-column-indicator'>
-                <FormattedMessage id='empty_column.account_unavailable' defaultMessage='Profile unavailable' />
+                {emptyMessage}
               </div>
             ) : (
               <div role='feed' className='account-gallery__container' ref={this.handleRef}>

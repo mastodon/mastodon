@@ -3,59 +3,81 @@ zh-HK:
   simple_form:
     hints:
       account_alias:
-        acct: 指定欲移動之帳戶的 使用者名稱@站台
+        acct: 指定欲移動之帳戶的「使用者名稱@域名」
       account_migration:
-        acct: 指定欲移動至之帳戶的 使用者名稱@站台
+        acct: 指定欲移動至之帳戶的「使用者名稱@域名」
       account_warning_preset:
-        text: 您可使用嘟文語法，例如網址、「#」標籤和提及功能
+        text: 你可使用 toot 格式，例如網址、「#」標籤和提及功能
+        title: 可選，接收者不會見到
       admin_account_action:
+        include_statuses: 使用者將會看到哪些文章導致檢舉或警告
         send_email_notification: 使用者將收到帳戶發生之事情的解釋
-        text_html: 選用。您能使用嘟文語法。您可 <a href="%{path}">新增警告預設</a> 來節省時間
+        text_html: 選用。你能使用 toot 語法。你可 <a href="%{path}">新增警告預設</a> 來節省時間
         type_html: 設定要使用 <strong>%{acct}</strong> 做的事
-        warning_preset_id: 選用。您仍可在預設的結尾新增自訂文字
+        warning_preset_id: 選用。你仍可在預設訊息的結尾加入自訂文字
       announcement:
-        all_day: 核取後，只會顯示出時間範圍中的日期部分
-        scheduled_at: 空白則立即發布公告
+        all_day: 勾選後，只會顯示出時間範圍中的日期部分
+        ends_at: 可選，公告會在該時間點自動取消發布
+        scheduled_at: 留空此項以立即發布公告
+        starts_at: 可選，你可以讓公告在指定時間範圍內顯示
+        text: 你可以使用文章格式，但請小心別讓公告佔據太大的使用者畫面空間。
       defaults:
         autofollow: 通過邀請網址註冊的用戶將會自動關注你
         avatar: 支援 PNG, GIF 或 JPG 圖片，檔案最大為 %{size}，會縮裁成 %{dimensions}px
-        bot: 提醒用戶本帳號是機械人
-        context: 應該套用過濾器的一項或多項內容
-        current_password: 因安全因素，請輸入目前帳戶的密碼
+        bot: 這個帳號是機械人，所做的事情可能沒有經人為監察
+        context: 過濾器應該套用的一項或多項條件
+        current_password: 基於保安緣故，請輸入目前帳號的密碼
         current_username: 請輸入目前帳戶的使用者名稱以確認
         digest: 僅在你長時間未登錄，且收到了私信時發送
-        email: 您將收到一封確認電子郵件
+        discoverable: 個人資料目錄可以讓你的帳號更廣為人知
+        email: 你將收到一封確認電郵
         fields: 個人資料頁可顯示多至 4 個項目
         header: 支援 PNG, GIF 或 JPG 圖片，檔案最大為 %{size}，會縮裁成 %{dimensions}px
-        inbox_url: 從您想要使用的中繼首頁複製網址
-        irreversible: 已過濾的嘟文將會不可逆的消失，即便過濾器移除之後也一樣
+        inbox_url: 在你想要使用的中繼站首頁，複製它的網址
+        irreversible: 文章過濾是不可還原的，即使日後過濾器被移除，也無法重新看到被它濾走的文章
         locale: 使用者介面、電郵和通知的語言
-        locked: 你必須人手核准每個用戶對你的關注請求，而你的文章私隱會被預設為「只有關注你的人能看」
+        locked: 你必須手動審核每個人對你的關注請求
         password: 使用至少 8 個字元
-        phrase: 無論是嘟文的本文或是內容警告都會被過濾
-        scopes: 允許讓應用程式存取的 API。 若您選擇最高階範圍，則無須選擇個別項目。
-        setting_aggregate_reblogs: 請勿顯示最近已被轉嘟之嘟文的最新轉嘟（只影響最新收到的嘟文）
+        phrase: 過濾器會閱讀文章和內容警告標語的字眼，然後決定過濾與否
+        scopes: 選擇應用程式可以存取的 API。 若你選擇最高階的權限範圍，則無須選擇個別項目。
+        setting_aggregate_reblogs: 請勿顯示新近被轉推的文章（只影響最新被推的文章）
         setting_default_sensitive: 敏感媒體預設隱藏，且按一下即可重新顯示
         setting_display_media_default: 隱藏標為敏感的媒體
         setting_display_media_hide_all: 總是隱藏所有媒體
         setting_display_media_show_all: 總是顯示標為敏感的媒體
-        setting_hide_network: 你關注的人和關注你的人將不會在你的個人資料頁上顯示
+        setting_hide_network: 你所關注的人，和關注你的人，將不會在你的個人資料頁上顯示
         setting_noindex: 此設定會影響到你的公開個人資料以及文章頁面
-        setting_show_application: 您用來發嘟文的應用程式將會在您嘟文的詳細檢視顯示
-        username: 您的使用者名稱將在 %{domain} 是獨一無二的
+        setting_show_application: 你用來發表文章的應用程式，將會顯示在你文章的詳細檢視中
+        setting_use_blurhash: 漸變圖樣會基於隱藏媒體內容產生，但所有細節會變得模糊
+        setting_use_pending_items: 關閉自動滾動更新，時間軸會在點擊後更新
+        username: 你的使用者名稱在 %{domain} 將是獨一無二的
         whole_word: 如果關鍵字或詞組僅有字母與數字，則其將只在符合整個單字的時候才會套用
+      domain_allow:
+        domain: 此網域將能從此站獲取資料，而此站發出的數據也會被處理和存儲。
+      email_domain_block:
+        domain: 這裡可以是電郵地址中的域名、域名解析到的MX記錄、或MX紀錄解析到的服務器IP。如果上述資料被封禁，那麼註冊將被拒絕。
+        with_dns_records: Mastodon 會嘗試解析所給域名的 DNS 記錄，然後與解析結果一併封禁
       featured_tag:
-        name: 您可能想使用其中一個：
+        name: 你可能想使用其中一個：
       form_challenge:
-        current_password: 您正要進入安全區域
+        current_password: 你正要進入安全區域
       imports:
         data: 自其他服務站匯出的 CSV 檔案
       invite_request:
-        text: 這會協助我們審核您的應用程式
+        text: 這將有助我們審核你的應用程式
+      ip_block:
+        comment: 可選，但請記得自己為甚麼添加了這個規則。
+        expires_in: 因為 IP 位址是經常被分享或轉手的有限資源，所以我們不建議你無限期地封鎖 IP 位址。
+        ip: 請輸入 IPv4 或 IPv6 位址，你亦可以用 CIDR 語法來封鎖整個 IP 區段。請小心使用，不要把自己給一併封鎖！
+        severities:
+          no_access: 封鎖所有資源存取
+          sign_up_requires_approval: 新登記申請正等候你審批
+        severity: 請設定伺服器將如何處理來自這個 IP 位址的請求
       sessions:
         otp: 輸入你手機上生成的雙重認證碼，或者任意一個恢復代碼：
+        webauthn: 如果它是 USB 安全鑰匙的話，請先插入電腦。如鑰匙設計有需要，請按鍵啟用。
       tag:
-        name: 您只能變更大小寫，例如，以使其更易讀。
+        name: 你只能變更大小寫（以使其更易讀）。
       user:
         chosen_languages: 只有被選擇的語言會在公開時間軸內顯示
     labels:
@@ -63,20 +85,25 @@ zh-HK:
         fields:
           name: 標籤
           value: 內容
+      account_alias:
+        acct: 舊帳號名稱
+      account_migration:
+        acct: 新帳號名稱
       account_warning_preset:
         text: 預設文字
         title: 標題
       admin_account_action:
-        include_statuses: 在電子郵件中加入檢舉的嘟文
+        include_statuses: 在電郵中加入被檢舉的文章
         send_email_notification: 透過電子信件通知使用者
         text: 自訂警告
-        type: 動作
+        type: 操作
         types:
           disable: 停用
-          none: 什麼也不做
-          silence: 安靜
-          suspend: 停權並不可逆的刪除帳戶資料
-        warning_preset_id: 使用警告預設
+          none: 發送警告
+          sensitive: 敏感内容
+          silence: 限制
+          suspend: 停權
+        warning_preset_id: 使用預設警告
       announcement:
         all_day: 全天活動
         ends_at: 活動結束時間
@@ -84,25 +111,26 @@ zh-HK:
         starts_at: 活動開始時間
         text: 公告
       defaults:
-        autofollow: 邀請別人關注你的賬號
+        autofollow: 邀請別人關注你的帳號
         avatar: 個人頭像
         bot: 這帳號是機械人
-        chosen_languages: 語言過濾
+        chosen_languages: 所過濾語言
         confirm_new_password: 確認新密碼
         confirm_password: 確認密碼
-        context: 過濾情境
+        context: 所過濾情境
         current_password: 目前密碼
         data: 資料
-        discoverable: 在目錄列出此帳戶
+        discoverable: 在目錄列出此帳號
         display_name: 顯示名稱
         email: 電郵地址
         expires_in: 失效時間
         fields: 資料
         header: 個人頁面頂部
+        honeypot: "%{label} (請不要填寫)"
         inbox_url: 中繼收件匣的 URL
-        irreversible: 放棄而非隱藏
+        irreversible: 丟棄而非隱藏
         locale: 介面語言
-        locked: 將用戶轉為「私人」
+        locked: 將帳號轉為「私人」
         max_uses: 最大使用次數
         new_password: 新密碼
         note: 簡介
@@ -110,59 +138,76 @@ zh-HK:
         password: 密碼
         phrase: 關鍵字或片語
         setting_advanced_layout: 啟用進階網頁介面
-        setting_aggregate_reblogs: 時間軸中的群組轉嘟
+        setting_aggregate_reblogs: 時間軸中的群組轉推
         setting_auto_play_gif: 自動播放 GIF
         setting_boost_modal: 在轉推前詢問我
+        setting_crop_images: 將未展開文章中的圖片裁剪到 16x9
         setting_default_language: 文章語言
         setting_default_privacy: 文章預設為
         setting_default_sensitive: 預設我的內容為敏感內容
-        setting_delete_modal: 刪推前詢問我
+        setting_delete_modal: 刪除文章前，請要求我確認
+        setting_disable_swiping: 停用滑動手勢
         setting_display_media: 媒體顯示
         setting_display_media_default: 預設
         setting_display_media_hide_all: 全部隱藏
         setting_display_media_show_all: 全部顯示
-        setting_expand_spoilers: 永遠展開標有內容警告的嘟文
+        setting_expand_spoilers: 永遠展開標有內容警告的文章
         setting_hide_network: 隱藏你的社交網絡
-        setting_noindex: 阻止搜尋引擎檢索
-        setting_reduce_motion: 減低動畫效果
-        setting_show_application: 顯示用來傳送嘟文的應用程式
+        setting_noindex: 聲明本站不希望搜尋器讓外界搜尋
+        setting_reduce_motion: 減少動畫效果
+        setting_show_application: 顯示用來發表文章的應用程式
         setting_system_font_ui: 使用系統預設字型
         setting_theme: 網站主題
-        setting_trends: 顯示本日趨勢
-        setting_unfollow_modal: 取消關注前跳出詢問我
+        setting_trends: 顯示今天熱門主題
+        setting_unfollow_modal: 取消關注前請讓我確定
+        setting_use_blurhash: 將隱藏媒體以彩色漸變圖樣表示
         setting_use_pending_items: 限速模式
         severity: 等級
+        sign_in_token_attempt: 安全碼
         type: 匯入資料類型
-        username: 用戶名稱
-        username_or_email: 用戶名稱或電郵
+        username: 使用者名稱
+        username_or_email: 使用者名稱或電郵
         whole_word: 整個詞彙
+      email_domain_block:
+        with_dns_records: 包括域名的 MX 記錄和 IP 位址
       featured_tag:
-        name: "「#」標籤"
+        name: 主題標籤 (Hashtag)
       interactions:
-        must_be_follower: 隱藏沒有關注你的用戶的通知
-        must_be_following: 隱藏你不關注的用戶的通知
-        must_be_following_dm: 隱藏你不關注的用戶的私信
+        must_be_follower: 隱藏你關注者以外的人的通知
+        must_be_following: 隱藏你不關注的人的通知
+        must_be_following_dm: 隱藏你不關注的人的私信
       invite:
         comment: 備註
       invite_request:
         text: 加入的原因
+      ip_block:
+        comment: 備註
+        ip: IP 位址
+        severities:
+          no_access: 封鎖
+          sign_up_requires_approval: 限制註冊
+        severity: 規則
       notification_emails:
         digest: 定期電郵摘要
-        favourite: 當有用戶喜歡你的文章時，發電郵通知
-        follow: 當有用戶關注你時，發電郵通知
-        follow_request: 當有用戶要求關注你時，發電郵通知
-        mention: 當有用戶在文章提及你時，發電郵通知
-        pending_account: 需要審核的新帳戶
-        reblog: 當有用戶轉推你的文章時，發電郵通知
-        report: 當提交新檢舉時傳送電子郵件
+        favourite: 有人喜歡你的文章
+        follow: 當有人關注你時
+        follow_request: 當有人要求關注你時
+        mention: 當有人在文章提及你時
+        pending_account: 有新帳號需要審核時
+        reblog: 當有人轉推你的文章時
+        report: 收到新檢舉時
+        trending_tag: 當未審核的標籤成為當前熱門時
       tag:
         listable: 允許此主題標籤在搜尋及個人檔案目錄中顯示
         name: 主題標籤
         trendable: 允許此主題標籤在趨勢下顯示
-        usable: 允許嘟文使用此主題標籤
+        usable: 允許文章使用此主題標籤
     'no': 否
     recommended: 建議
     required:
       mark: "*"
       text: 必須填寫
+    title:
+      sessions:
+        webauthn: 使用你的安全密鑰裝置來登入
     'yes': 是

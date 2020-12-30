@@ -60,6 +60,7 @@ en:
       one: Follower
       other: Followers
     following: Following
+    instance_actor_flash: This account is a virtual actor used to represent the server itself and not any individual user. It is used for federation purposes and should not be suspended.
     joined: Joined %{date}
     last_active: last active
     link_verified_on: Ownership of this link was checked on %{date}
@@ -131,6 +132,7 @@ en:
       follows: Follows
       header: Header
       inbox_url: Inbox URL
+      invite_request_text: Reasons for joining
       invited_by: Invited by
       ip: IP
       joined: Joined
@@ -255,6 +257,7 @@ en:
         unsuspend_account: Unsuspend Account
         update_announcement: Update Announcement
         update_custom_emoji: Update Custom Emoji
+        update_domain_block: Update Domain Block
         update_status: Update Status
       actions:
         assigned_to_self_report: "%{name} assigned report %{target} to themselves"
@@ -295,6 +298,7 @@ en:
         unsuspend_account: "%{name} unsuspended %{target}'s account"
         update_announcement: "%{name} updated announcement %{target}"
         update_custom_emoji: "%{name} updated emoji %{target}"
+        update_domain_block: "%{name} updated domain block for %{target}"
         update_status: "%{name} updated status by %{target}"
       deleted_status: "(deleted status)"
       empty: No logs found.
@@ -398,6 +402,8 @@ en:
           silence: Silence
           suspend: Suspend
         title: New domain block
+      obfuscate: Obfuscate domain name
+      obfuscate_hint: Partially obfuscate the domain name in the list if advertising the list of domain limitations is enabled
       private_comment: Private comment
       private_comment_hint: Comment about this domain limitation for internal use by the moderators.
       public_comment: Public comment
@@ -437,6 +443,7 @@ en:
     instances:
       by_domain: Domain
       delivery_available: Delivery is available
+      empty: No domains found.
       known_accounts:
         one: "%{count} known account"
         other: "%{count} known accounts"
@@ -514,6 +521,8 @@ en:
       comment:
         none: None
       created_at: Reported
+      forwarded: Forwarded
+      forwarded_to: Forwarded to %{domain}
       mark_as_resolved: Mark as resolved
       mark_as_unresolved: Mark as unresolved
       notes:
@@ -557,6 +566,7 @@ en:
       domain_blocks_rationale:
         title: Show rationale
       enable_bootstrap_timeline_accounts:
+        desc_html: Make new users automatically follow configured accounts so their home feed doesn't start out empty
         title: Enable default follows for new users
       hero:
         desc_html: Displayed on the frontpage. At least 600x100px recommended. When not set, falls back to server thumbnail
@@ -583,6 +593,9 @@ en:
         min_invite_role:
           disabled: No one
           title: Allow invitations by
+        require_invite_text:
+          desc_html: When registrations require manual approval, make the “Why do you want to join?” text input mandatory rather than optional
+          title: Require new users to enter a reason to join
       registrations_mode:
         modes:
           approved: Approval required for sign up
@@ -751,6 +764,7 @@ en:
       functional: Your account is fully operational.
       pending: Your application is pending review by our staff. This may take some time. You will receive an e-mail if your application is approved.
       redirecting_to: Your account is inactive because it is currently redirecting to %{acct}.
+    too_fast: Form submitted too fast, try again.
     trouble_logging_in: Trouble logging in?
     use_security_key: Use security key
   authorize_follow:
@@ -842,6 +856,7 @@ en:
       request: Request your archive
       size: Size
     blocks: You block
+    bookmarks: Bookmarks
     csv: CSV
     domain_blocks: Domain blocks
     lists: Lists
@@ -855,7 +870,7 @@ en:
   filters:
     contexts:
       account: Profiles
-      home: Home timeline
+      home: Home and lists
       notifications: Notifications
       public: Public timelines
       thread: Conversations
@@ -909,6 +924,8 @@ en:
     status: Verification status
     view_proof: View proof
   imports:
+    errors:
+      over_rows_processing_limit: contains more than %{count} rows
     modes:
       merge: Merge
       merge_long: Keep existing records and add new ones
@@ -918,6 +935,7 @@ en:
     success: Your data was successfully uploaded and will now be processed in due time
     types:
       blocking: Blocking list
+      bookmarks: Bookmarks
       domain_blocking: Domain blocking list
       following: Following list
       muting: Muting list
@@ -1075,6 +1093,7 @@ en:
   relationships:
     activity: Account activity
     dormant: Dormant
+    follow_selected_followers: Follow selected followers
     followers: Followers
     following: Following
     invited: Invited

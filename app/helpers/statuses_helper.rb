@@ -92,22 +92,6 @@ module StatusesHelper
     end
   end
 
-  def rtl_status?(status)
-    status.local? ? rtl?(status.text) : rtl?(strip_tags(status.text))
-  end
-
-  def rtl?(text)
-    text = simplified_text(text)
-    rtl_words = text.scan(/[\p{Hebrew}\p{Arabic}\p{Syriac}\p{Thaana}\p{Nko}]+/m)
-
-    if rtl_words.present?
-      total_size = text.size.to_f
-      rtl_size(rtl_words) / total_size > 0.3
-    else
-      false
-    end
-  end
-
   def fa_visibility_icon(status)
     case status.visibility
     when 'public'
@@ -141,10 +125,6 @@ module StatusesHelper
       new_text.gsub!(Tag::HASHTAG_RE, '')
       new_text.gsub!(/\s+/, '')
     end
-  end
-
-  def rtl_size(words)
-    words.reduce(0) { |acc, elem| acc + elem.size }.to_f
   end
 
   def embedded_view?

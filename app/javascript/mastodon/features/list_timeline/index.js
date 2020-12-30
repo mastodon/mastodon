@@ -20,9 +20,9 @@ import RadioButton from 'mastodon/components/radio_button';
 const messages = defineMessages({
   deleteMessage: { id: 'confirmations.delete_list.message', defaultMessage: 'Are you sure you want to permanently delete this list?' },
   deleteConfirm: { id: 'confirmations.delete_list.confirm', defaultMessage: 'Delete' },
-  all_replies:   { id: 'lists.replies_policy.all_replies', defaultMessage: 'Any followed user' },
-  no_replies:    { id: 'lists.replies_policy.no_replies', defaultMessage: 'No one' },
-  list_replies:  { id: 'lists.replies_policy.list_replies', defaultMessage: 'Members of the list' },
+  followed:   { id: 'lists.replies_policy.followed', defaultMessage: 'Any followed user' },
+  none:    { id: 'lists.replies_policy.none', defaultMessage: 'No one' },
+  list:  { id: 'lists.replies_policy.list', defaultMessage: 'Members of the list' },
 });
 
 const mapStateToProps = (state, props) => ({
@@ -193,7 +193,7 @@ class ListTimeline extends React.PureComponent {
                 <FormattedMessage id='lists.replies_policy.title' defaultMessage='Show replies to:' />
               </span>
               <div className='column-settings__row'>
-                { ['no_replies', 'list_replies', 'all_replies'].map(policy => (
+                { ['none', 'list', 'followed'].map(policy => (
                   <RadioButton name='order' value={policy} label={intl.formatMessage(messages[policy])} checked={replies_policy === policy} onChange={this.handleRepliesPolicyChange} />
                 ))}
               </div>

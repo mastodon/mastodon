@@ -47,7 +47,7 @@ module Mastodon
         ip_block ||= IpBlock.new(ip: address)
 
         ip_block.severity   = options[:severity]
-        ip_block.comment    = options[:comment]
+        ip_block.comment    = options[:comment] if options[:comment].present?
         ip_block.expires_in = options[:duration]
 
         if ip_block.save

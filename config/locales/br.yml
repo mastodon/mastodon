@@ -11,11 +11,39 @@ br:
     learn_more: Gouzout hiroc'h
     privacy_policy: Reolennoù prevezded
     source_code: Boneg tarzh
+    status_count_after:
+      few: toud
+      many: toud
+      one: toud
+      other: toud
+      two: toud
     terms: Divizoù gwerzhañ hollek
     unavailable_content_description:
       domain: Dafariad
+    user_count_after:
+      few: implijer·ez
+      many: implijer·ez
+      one: implijer·ez
+      other: implijer·ez
+      two: implijer·ez
+    what_is_mastodon: Petra eo Mastodon?
   accounts:
+    follow: Heuliañ
+    followers:
+      few: Heulier·ez
+      many: Heulier·ez
+      one: Heulier·ez
+      other: Heulier·ez
+      two: Heulier·ez
+    following: O heuliañ
     media: Media
+    never_active: Birviken
+    posts:
+      few: Toud
+      many: Toud
+      one: Toud
+      other: Toud
+      two: Toud
     posts_tab_heading: Toudoù
     posts_with_replies: Toudoù ha respontoù
     roles:
@@ -29,11 +57,15 @@ br:
     account_moderation_notes:
       delete: Dilemel
     accounts:
+      by_domain: Domani
       change_email:
         current_email: Postel bremanel
         label: Kemm ar postel
         new_email: Postel nevez
         submit: Kemm ar postel
+      deleted: Dilamet
+      domain: Domani
+      email: Postel
       enable: Gweredekaat
       enabled: Gweredekaet
       followers: Heulier·ezed·ien
@@ -58,7 +90,14 @@ br:
         admin: Merour
         moderator: Habaskaer·ez
         user: Implijer·ez
+      search: Klask
+      suspended: Astalet
+      title: Kontoù
+      username: Anv
+      web: Web
     action_logs:
+      action_types:
+        destroy_status: Dilemel ar statud
       deleted_status: "(statud dilemet)"
     announcements:
       new:
@@ -66,15 +105,19 @@ br:
         title: Kemenn nevez
       title: Kemennoù
     custom_emojis:
+      by_domain: Domani
+      copy: Eilañ
       delete: Dilemel
       disable: Diweredekaat
       disabled: Diweredekaet
       emoji: Fromlun
       enable: Gweredekaat
       enabled: Gweredekaet
+      list: Listenn
     dashboard:
       config: Kefluniadur
       software: Meziant
+      title: Taolenn labour
       trends: Luskadoù
     domain_blocks:
       domain: Domani
@@ -100,11 +143,50 @@ br:
       by_domain: Domani
       moderation:
         all: Pep tra
+    invites:
+      filter:
+        available: Hegerzh
+    relays:
+      delete: Dilemel
+      disable: Diweredekaat
+      disabled: Diweredekaet
+      enable: Gweredekaat
+      enabled: Gweredekaet
+      save_and_enable: Enrollañ ha gweredekaat
+      status: Toud
+    reports:
+      account:
+        notes:
+          few: "%{count} a notennoù"
+          many: "%{count} a notennoù"
+          one: "%{count} a notennoù"
+          other: "%{count} a notennoù"
+          two: "%{count} a notennoù"
+      are_you_sure: Ha sur oc'h?
+      notes:
+        delete: Dilemel
+      status: Statud
+      updated_at: Nevesaet
     settings:
       domain_blocks:
         all: D'an holl dud
       site_title: Anv ar servijer
       title: Arventennoù al lec'hienn
+    statuses:
+      batch:
+        delete: Dilemel
+      deleted: Dilamet
+      media:
+        title: Media
+      no_media: Media ebet
+    tags:
+      name: Ger-klik
+      title: Gerioù-klik
+    warning_presets:
+      add_new: Ouzhpenniñ unan nevez
+      delete: Dilemel
+  application_mailer:
+    salutation: "%{name},"
   auth:
     change_password: Ger-tremen
     delete_account: Dilemel ar gont
@@ -116,18 +198,27 @@ br:
     security: Diogelroez
     setup:
       title: Kefluniañ
+    status:
+      account_status: Statud ar gont
   authorize_follow:
+    follow: Heuliañ
     title: Heuliañ %{acct}
   challenge:
     confirm: Kenderc' hel
     invalid_password: Ger-tremen diwiriek
+  date:
+    formats:
+      default: "%d %b %Y"
+      with_month_name: "%d a viz %B %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}e"
       about_x_months: "%{count}miz"
       about_x_years: "%{count}b"
       almost_x_years: "%{count}b"
+      half_a_minute: Diouzhtu
       less_than_x_minutes: "%{count}m"
+      less_than_x_seconds: Diouzhtu
       over_x_years: "%{count}b"
       x_days: "%{count}d"
       x_minutes: "%{count}m"
@@ -147,6 +238,12 @@ br:
     '429': Too many requests
     '500': 
     '503': The page could not be served due to a temporary server failure.
+  exports:
+    archive_takeout:
+      date: Deiziad
+      size: Ment
+    csv: CSV
+    lists: Listennoù
   featured_tags:
     add_new: Ouzhpenniñ unan nevez
   filters:
@@ -155,6 +252,7 @@ br:
       notifications: Kemennoù
     index:
       delete: Dilemel
+      title: Siloù
   footer:
     developers: Diorroerien
     more: Muioc'h…
@@ -163,11 +261,13 @@ br:
     copy: Eilañ
     delete: Dilemel
     order_by: Urzhiañ dre
+  identity_proofs:
+    identity: Identelezh
   invites:
     expires_in:
-      '1800': 30 minutes
-      '21600': 6 hours
-      '3600': 1 hour
+      '1800': 30 munutenn
+      '21600': 6 eur
+      '3600': 1 eur
       '43200': 12 eur
       '604800': 1 sizhun
       '86400': 1 deiz
@@ -178,8 +278,18 @@ br:
       title: Heulier nevez
     mention:
       action: Respont
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+  otp_authentication:
+    enable: Gweredekaat
+    setup: Kefluniañ
+  pagination:
+    truncate: "&hellip;"
   relationships:
     followers: Heulier·ezed·ien
+    following: O heuliañ
   sessions:
     browser: Merdeer
     browsers:
@@ -189,6 +299,7 @@ br:
       edge: Microsoft Edge
       electron: Electron
       firefox: Firefox
+      generic: Merdeer dianav
       ie: Internet Explorer
       micro_messenger: MicroMessenger
       nokia: Nokia S40 Ovi Browser
@@ -199,6 +310,7 @@ br:
       safari: Safari
       uc_browser: UCBrowser
       weibo: Weibo
+    description: "%{browser} war %{platform}"
     ip: IP
     platforms:
       adobe_air: Adobe Air
@@ -209,8 +321,33 @@ br:
       ios: iOS
       linux: Linux
       mac: macOS
+      other: savenn dianav
       windows: Windows
+      windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
+  settings:
+    account: Kont
+    account_settings: Arventennoù ar gont
+    development: Diorren
+    edit_profile: Aozañ ar profil
+    import: Enporzhiañ
+    import_and_export: Enporzhiañ hag ezporzhiañ
+    preferences: Gwellvezioù
+    profile: Profil
   statuses:
+    attached:
+      image:
+        few: "%{count} skeudenn"
+        many: "%{count} skeudenn"
+        one: "%{count} skeudenn"
+        other: "%{count} skeudenn"
+        two: "%{count} skeudenn"
+      video:
+        few: "%{count} video"
+        many: "%{count} video"
+        one: "%{count} video"
+        other: "%{count} video"
+        two: "%{count} video"
     show_more: Diskouez muioc'h
     title: '%{name}: "%{quote}"'
     visibilities:
@@ -225,12 +362,15 @@ br:
       default: "%He%M, %d %b %Y"
       month: "%b %Y"
   two_factor_authentication:
+    add: Ouzhpennañ
     disable: Diweredekaat
-    enable: Gweredekaat
-    setup: Kefluniañ
+    edit: Aozañ
   user_mailer:
     warning:
       title:
         none: Diwall
     welcome:
       edit_profile_action: Kefluniañ ar profil
+      subject: Donemat e Mastodoñ
+  webauthn_credentials:
+    delete: Dilemel

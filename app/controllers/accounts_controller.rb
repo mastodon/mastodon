@@ -81,7 +81,7 @@ class AccountsController < ApplicationController
   end
 
   def account_media_status_ids
-    @account.media_attachments.attached.reorder(nil).select(:status_id).distinct
+    @account.media_attachments.attached.reorder(nil).select(:status_id).group(:status_id)
   end
 
   def no_replies_scope
@@ -100,6 +100,10 @@ class AccountsController < ApplicationController
 
   def username_param
     params[:username]
+  end
+
+  def skip_temporary_suspension_response?
+    request.format == :json
   end
 
   def rss_url

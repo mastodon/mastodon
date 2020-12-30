@@ -127,7 +127,7 @@ class Admin::AccountAction
   def handle_suspend!
     authorize(target_account, :suspend?)
     log_action(:suspend, target_account)
-    target_account.suspend!
+    target_account.suspend!(origin: :local)
   end
 
   def text_for_warning

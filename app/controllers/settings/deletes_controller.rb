@@ -42,7 +42,7 @@ class Settings::DeletesController < Settings::BaseController
   end
 
   def destroy_account!
-    current_account.suspend!
+    current_account.suspend!(origin: :local)
     AccountDeletionWorker.perform_async(current_user.account_id)
     sign_out
   end

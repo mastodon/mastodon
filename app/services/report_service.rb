@@ -24,7 +24,8 @@ class ReportService < BaseService
       target_account: @target_account,
       status_ids: @status_ids,
       comment: @comment,
-      uri: @options[:uri]
+      uri: @options[:uri],
+      forwarded: ActiveModel::Type::Boolean.new.cast(@options[:forward])
     )
   end
 

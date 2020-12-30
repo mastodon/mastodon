@@ -230,6 +230,36 @@ class FeedManager
     end
   end
 
+  # Completely clear multiple feeds at once
+  # @param [Symbol] type
+  # @param [Array<Integer>] ids
+  # @return [void]
+  def clean_feeds!(type, ids)
+    reblogged_id_sets = {}
+
+    redis.pipelined do
+      ids.each do |feed_id|
+        redis.del(key(type, feed_id))
+        reblog_key = key(type, feed_id, 'reblogs')
+        # We collect a future for this: we don't block while getting
+        # it, but we can iterate over it later.
+        reblogged_id_sets[feed_id] = redis.zrange(reblog_key, 0, -1)
+        redis.del(reblog_key)
+      end
+    end
+
+    # Remove all of the reblog tracking keys we just removed the
+    # references to.
+    redis.pipelined do
+      reblogged_id_sets.each do |feed_id, future|
+        future.value.each do |reblogged_id|
+          reblog_set_key = key(type, feed_id, "reblogs:#{reblogged_id}")
+          redis.del(reblog_set_key)
+        end
+      end
+    end
+  end
+
   private
 
   # Trim a feed to maximum size by removing older items
@@ -345,8 +375,8 @@ class FeedManager
   def filter_from_list?(status, list)
     if status.reply? && status.in_reply_to_account_id != status.account_id
       should_filter = status.in_reply_to_account_id != list.account_id
-      should_filter &&= !list.show_all_replies?
-      should_filter &&= !(list.show_list_replies? && ListAccount.where(list_id: list.id, account_id: status.in_reply_to_account_id).exists?)
+      should_filter &&= !list.show_followed?
+      should_filter &&= !(list.show_list? && ListAccount.where(list_id: list.id, account_id: status.in_reply_to_account_id).exists?)
 
       return !!should_filter
     end
