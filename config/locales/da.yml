@@ -178,6 +178,7 @@ da:
         staff: Personale
         user: Bruger
       search: Søg
+      search_same_email_domain: Andre brugere med det samme e-mail domæne
       search_same_ip: Andre brugere med den samme IP-adresse
       sensitive: Følsomt
       sensitized: markeret som følsomt
@@ -209,28 +210,36 @@ da:
         confirm_user: Bekræft bruger
         create_account_warning: Opret advarsel
         create_announcement: Opret bekendtgørelse
+        create_custom_emoji: Opret brugerdefineret emoji
         create_domain_allow: Opret domæne tillad
         create_domain_block: Opret domæneblokering
         create_email_domain_block: Opret e-mail domæne blokering
         create_ip_block: Opret IP-regel
         destroy_announcement: Slet bekendtgørelse
+        destroy_custom_emoji: Slet brugerdefineret emoji
         destroy_domain_allow: Slet domæne tillad
         destroy_domain_block: Slet domæneblokering
         destroy_email_domain_block: Slet e-mail domæne blokering
         destroy_ip_block: Slet IP-regel
         destroy_status: Slet status
         disable_2fa_user: Slet 2FA
+        disable_custom_emoji: Deaktiver brugerdefineret emoji
         disable_user: Deaktiver brugeren
+        enable_custom_emoji: Aktiver brugerdefineret emoji
         enable_user: Aktiver brugeren
+        memorialize_account: Memoraliser konto
+        promote_user: Promover bruger
         remove_avatar_user: Fjern profilbillede
         reopen_report: Genåben rapport
         reset_password_user: Nulstil adgangskode
         resolve_report: Løs rapport
         silence_account: Dæmp konto
         suspend_account: Suspendér Konto
+        unassigned_report: Fjern tildeling af rapport
         unsilence_account: Fjern dæmpelse af konto
         unsuspend_account: Fortryd suspenderingen af konto
         update_announcement: Opdater bekendtgørelse
+        update_custom_emoji: Opdater brugerdefineret emoji
         update_domain_block: Opdater domæneblokering
         update_status: Opdater status
       actions:
@@ -525,6 +534,8 @@ da:
       hero:
         desc_html: Vist på forsiden. Mindst 600x100px anbefales. Hvis ikke sat, vil dette falde tilbage til billedet fra serveren
         title: Billede af helt
+      mascot:
+        title: Mascot billede
       peers_api_enabled:
         desc_html: Domæne navne denne server er stødt på i fediverset
         title: Udgiv liste over opdagede server
@@ -812,9 +823,14 @@ da:
     validation_errors:
       one: Der er noget der ikke er helt som det bør være! Tag lige et kig på følgende fejl forneden
       other: Der er noget der ikke er helt som det bør være! Tag lige et kig på følgende %{count} fejl forneden
+  html_validator:
+    invalid_markup: 'indeholder ugyldig HTML opmarkering: %{error}'
   identity_proofs:
     active: Aktiv
     authorize: Ja, tillad
+    authorize_connection_prompt: Godkend denne kryptografiske forbindelse?
+    errors:
+      failed: Den kryptografiske forbindelse mislykkedes. Prøv igen fra %{provider}.
     i_am_html: Jeg er %{username} på %{service}.
     identity: Identitet
     inactive: Inaktiv
@@ -825,9 +841,13 @@ da:
     status: Status for verifikation
     view_proof: Se bevis
   imports:
+    errors:
+      over_rows_processing_limit: indeholder mere end %{count} rækker
     modes:
       merge: Sammenflet
+      merge_long: Behold eksisterende poster og tilføj nye
       overwrite: Overskriv
+      overwrite_long: Erstat aktuelle poster med de nye
     preface: Du kan importere data du har eksporteret fra en anden server, så som en liste over folk du følger eller blokerer.
     success: Dine data blev succesfuldt uploaded og vil nu blive behandlet hurtigst muligt
     types:
@@ -872,6 +892,7 @@ da:
     acct: username@domain af den nye konto
     cancel: Annuller omdirigering
     errors:
+      already_moved: er den samme konto, du allerede har flyttet til
       missing_also_known_as: er ikke et alias for denne konto
       move_to_self: kan ikke være den nuværende konto
       not_found: kunne ikke bive fundet
@@ -1198,6 +1219,7 @@ da:
     generate_recovery_codes: Generer gendannelseskoder
     lost_recovery_codes: Gendannelseskoder vil lade dig få adgang til din konto hvis du mister din telefon. Hvis du har mistet dine gendannelseskoder, kan du regenerere dem her. Dine gamle gendannelseskoder vil blive ugyldige.
     methods: To-faktor metoder
+    otp: Autentificerings-app
     recovery_codes: Reserve koder
     recovery_codes_regenerated: Reserve koder blev succesfuldt regenereret
     recovery_instructions_html: Hvis du nogensinde mister adgang til din telefon, kan du bruge en af genoprettelses koderne forneden for at få adgang til din konto. <strong>Gem gendannelses koderne et sikkert sted</strong>. Foreksempel kan du printe dem ud og gemme dem sammen med andre vigtige dokumenter.
@@ -1222,6 +1244,7 @@ da:
       title:
         disable: Konto frosset
         none: Advarsel
+        sensitive: Dine medier er blevet markeret som følsomme
         silence: Konto begrænset
         suspend: Konto suspenderet
     welcome:
@@ -1259,6 +1282,7 @@ da:
     create:
       success: Din sikkerhedsnøgle blev tilføjet.
     delete: Slet
+    delete_confirmation: Er du sikker på du ønsker at slette din sikkerhedsnøgle?
     destroy:
       success: Din sikkerhedsnøgle blev slettet.
     invalid_credential: Ugyldig sikkerhedsnøgle
