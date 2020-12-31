@@ -193,6 +193,7 @@ da:
       time_in_queue: Venter i køen %{time}
       title: Konti
       unconfirmed_email: Ikke-bekræftet email
+      undo_sensitized: Fortryd følsom
       undo_silenced: Fortryd dæmpning
       undo_suspension: Fortryd udelukkelse
       unsubscribe: Abonner ikke længere
@@ -210,8 +211,10 @@ da:
         create_announcement: Opret bekendtgørelse
         create_domain_allow: Opret domæne tillad
         create_domain_block: Opret domæneblokering
+        create_email_domain_block: Opret e-mail domæne blokering
         create_ip_block: Opret IP-regel
         destroy_announcement: Slet bekendtgørelse
+        destroy_domain_allow: Slet domæne tillad
         destroy_domain_block: Slet domæneblokering
         destroy_email_domain_block: Slet e-mail domæne blokering
         destroy_ip_block: Slet IP-regel
@@ -226,6 +229,7 @@ da:
         silence_account: Dæmp konto
         suspend_account: Suspendér Konto
         unsilence_account: Fjern dæmpelse af konto
+        unsuspend_account: Fortryd suspenderingen af konto
         update_announcement: Opdater bekendtgørelse
         update_domain_block: Opdater domæneblokering
         update_status: Opdater status
@@ -240,6 +244,7 @@ da:
         create_email_domain_block: "%{name} sortlistede email domænet %{target}"
         create_ip_block: "%{name} oprettede regel for IP %{target}"
         demote_user: "%{name} degraderede %{target}"
+        destroy_announcement: "%{name} slettede bekendtgørelsen %{target}"
         destroy_custom_emoji: "%{name} fjernede emoji %{target}"
         destroy_domain_allow: "%{name} fjernede godkendelsen af domænet %{target}"
         destroy_domain_block: "%{name} fjernede blokeringen af domænet %{target}"
@@ -463,6 +468,9 @@ da:
       destroyed_msg: Anmeldelse note blev slettet!
     reports:
       account:
+        notes:
+          one: "%{count} note"
+          other: "%{count} noter"
         reports:
           one: "%{count} rapport"
           other: "%{count} rapporter"
@@ -474,6 +482,8 @@ da:
       comment:
         none: Ingen
       created_at: Anmeldt
+      forwarded: Videresendt
+      forwarded_to: Videresendt til %{domain}
       mark_as_resolved: Marker som værende løst
       mark_as_unresolved: Marker som værende uløst
       notes:
@@ -652,6 +662,7 @@ da:
     dont_have_your_security_key: Har du ikke dine sikkerhedsnøgler?
     forgot_password: Glemt dit kodeord?
     invalid_reset_password_token: Adgangskode nulstillings token er ugyldig eller udløbet. Anmod venligst om en ny.
+    link_to_webauth: Brug din sikkerhedsnøgleenhed
     login: Log ind
     logout: Log ud
     migrate_account: Flyt til en anden konto
@@ -672,6 +683,8 @@ da:
     status:
       account_status: Kontostatus
       confirming: Venter på at e-mail bekræftelsen er fuldført.
+      functional: Din konto er fuldt operationel.
+    too_fast: Formularen blev indsendt for hurtigt, prøv igen.
     trouble_logging_in: Har du problemer med at logge på?
     use_security_key: Brug sikkerhedsnøgle
   authorize_follow:
@@ -857,6 +870,7 @@ da:
       too_many: Kan ikke vedhæfte mere en 4 filer
   migrations:
     acct: username@domain af den nye konto
+    cancel: Annuller omdirigering
     errors:
       missing_also_known_as: er ikke et alias for denne konto
       move_to_self: kan ikke være den nuværende konto
@@ -868,6 +882,7 @@ da:
     proceed_with_move: Flyt følgere
     redirected_msg: Din konto omdirigerer nu til %{acct}.
     redirecting_to: Din konto omdirigerer til %{acct}.
+    set_redirect: Angiv omdirigering
     warning:
       other_data: Ingen andre data vil blive flyttet automatisk
   moderation:
@@ -918,6 +933,7 @@ da:
           million: mio.
   otp_authentication:
     enable: Aktiver
+    setup: Konfigurer
     wrong_code: Den indtastede kode var ugyldig! Er serverens tid og enhedstid korrekt?
   pagination:
     newer: Nyere
