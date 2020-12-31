@@ -590,6 +590,7 @@ da:
         title: Tidslinje forhåndsvisning
       title: Indstillinger for side
       trends:
+        desc_html: Vis tidligere gennemgåede hashtags, der i øjeblikket er tendenser
         title: Populære hashtags
     site_uploads:
       delete: Slet oplagt fil
@@ -610,6 +611,7 @@ da:
     tags:
       accounts_today: Unikke brug i dag
       accounts_week: Unikke brug denne uge
+      breakdown: Opdeling af dagens brug efter kilde
       context: Kontekst
       directory: I mappe
       in_directory: "%{count} i mappe"
@@ -908,6 +910,8 @@ da:
       other_data: Ingen andre data vil blive flyttet automatisk
   moderation:
     title: Moderatering
+  move_handler:
+    copy_account_note_text: 'Denne bruger flyttede fra %{acct}, her var dine tidligere noter om dem:'
   notification_mailer:
     digest:
       action: Se alle notifikationer
@@ -944,6 +948,7 @@ da:
       title: Ny fremhævelse
   notifications:
     email_events: Begivenheder for e-mail-meddelelser
+    email_events_hint: 'Vælg begivenheder, som du vil modtage notifikationer for:'
     other_settings: Andre indstillinger for notifikationer
   number:
     human:
