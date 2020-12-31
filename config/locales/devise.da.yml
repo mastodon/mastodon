@@ -1,4 +1,3 @@
----
 da:
   devise:
     confirmations:
@@ -70,6 +69,7 @@ da:
       webauthn_disabled:
         title: Sikkerhedsnøgler deaktiveret
       webauthn_enabled:
+        subject: 'Mastodon: Sikkerhedsnøgle godkendelse aktiveret'
         title: Sikkerhedsnøgler aktiveret
     omniauth_callbacks:
       failure: Kunne ikke godkende dig fra %{kind} fordi "%{reason}".
