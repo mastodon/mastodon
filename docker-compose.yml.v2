@@ -86,23 +86,7 @@ services:
     image: tootsuite/mastodon
     restart: always
     env_file: .env.production
-    command: bundle exec sidekiq -q default,1 -q mailers,5 -c 10
-    depends_on:
-      - db
-      - redis
-#      - es
-    networks:
-      - external_network
-      - internal_network
-    volumes:
-      - ./public/system:/mastodon/public/system
-
-  sidekiq-scheduler:
-    build: .
-    image: tootsuite/mastodon
-    restart: always
-    env_file: .env.production
-    command: bundle exec sidekiq -q scheduler,1 -c 10
+    command: bundle exec sidekiq -q default,1 -q mailers,5 -c 10 -q scheduler,1 -c 10
     depends_on:
       - db
       - redis
