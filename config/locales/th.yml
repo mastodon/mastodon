@@ -1,7 +1,6 @@
----
 th:
   about:
-    about_hashtag_html: มีการแท็กโพสต์สาธารณะเหล่านี้ด้วย <strong>#%{hashtag}</strong> คุณสามารถโต้ตอบกับโพสต์หากคุณมีบัญชีที่ใดก็ตามในเฟดิเวิร์ส
+    about_hashtag_html: 'มีการแท็กโพสต์สาธารณะเหล่านี้ด้วย <strong>#%{hashtag}</strong> คุณสามารถโต้ตอบกับโพสต์หากคุณมีบัญชีที่ใดก็ตามในเฟดิเวิร์ส'
     about_mastodon_html: 'เครือข่ายสังคมแห่งอนาคต: ไม่มีโฆษณา, ไม่มีการสอดแนมโดยองค์กร, การออกแบบตามหลักจริยธรรม และการกระจายศูนย์! เป็นเจ้าของข้อมูลของคุณด้วย Mastodon!'
     about_this: เกี่ยวกับ
     active_count_after: ใช้งานอยู่
@@ -46,7 +45,7 @@ th:
     user_count_before: บ้านของ
     what_is_mastodon: Mastodon คืออะไร?
   accounts:
-    choices_html: 'ตัวเลือกของ %{name}:'
+    choices_html: "ตัวเลือกของ %{name}:"
     follow: ติดตาม
     followers:
       other: ผู้ติดตาม
@@ -112,6 +111,7 @@ th:
       email_status: สถานะอีเมล
       enable: เลิกอายัด
       enabled: เปิดใช้งานอยู่
+      enabled_msg: เลิกอายัดบัญชีของ %{username} สำเร็จ
       followers: ผู้ติดตาม
       follows: การติดตาม
       header: ส่วนหัว
@@ -169,6 +169,8 @@ th:
       search: ค้นหา
       search_same_email_domain: ผู้ใช้อื่น ๆ ที่มีโดเมนอีเมลเดียวกัน
       search_same_ip: ผู้ใช้อื่น ๆ ที่มี IP เดียวกัน
+      sensitive: ละเอียดอ่อน
+      sensitized: ทำเครื่องหมายว่าละเอียดอ่อนแล้ว
       shared_inbox_url: URL กล่องขาเข้าที่แบ่งปัน
       show:
         created_reports: รายงานที่สร้าง
@@ -181,6 +183,7 @@ th:
       time_in_queue: กำลังรออยู่ในคิว %{time}
       title: บัญชี
       unconfirmed_email: อีเมลที่ยังไม่ได้ยืนยัน
+      undo_sensitized: เลิกทำการละเอียดอ่อน
       undo_silenced: เลิกทำการทำให้เงียบ
       undo_suspension: เลิกทำการระงับ
       unsubscribe: เลิกบอกรับ
@@ -384,7 +387,7 @@ th:
         suspend: ระงับอยู่
       show:
         affected_accounts:
-          other: มีผลต่อ %{count} บัญชีในฐานข้อมูล
+          other: "มีผลต่อ %{count} บัญชีในฐานข้อมูล"
         retroactive:
           silence: เลิกทำให้บัญชีที่มีอยู่ทั้งหมดจากโดเมนนี้เงียบ
           suspend: เลิกระงับบัญชีที่มีอยู่ทั้งหมดจากโดเมนนี้
@@ -446,7 +449,7 @@ th:
     pending_accounts:
       title: บัญชีที่รอดำเนินการ (%{count})
     relationships:
-      title: ความสัมพันธ์ของ %{acct}
+      title: "ความสัมพันธ์ของ %{acct}"
     relays:
       add_new: เพิ่มรีเลย์ใหม่
       delete: ลบ
@@ -613,7 +616,7 @@ th:
     new_report:
       body: "%{reporter} ได้รายงาน %{target}"
       body_remote: ใครสักคนจาก %{domain} ได้รายงาน %{target}
-      subject: รายงานใหม่สำหรับ %{instance} (#%{id})
+      subject: 'รายงานใหม่สำหรับ %{instance} (#%{id})'
   aliases:
     add_new: สร้างนามแฝง
     deleted_msg: เอานามแฝงออกสำเร็จ จะไม่สามารถย้ายจากบัญชีนั้นไปยังบัญชีนี้ได้อีกต่อไป
@@ -1075,7 +1078,7 @@ th:
   tags:
     does_not_match_previous_name: ไม่ตรงกับชื่อก่อนหน้า
   terms:
-    title: เงื่อนไขการให้บริการและนโยบายความเป็นส่วนตัวของ %{instance}
+    title: "เงื่อนไขการให้บริการและนโยบายความเป็นส่วนตัวของ %{instance}"
   themes:
     contrast: Mastodon (ความคมชัดสูง)
     default: Mastodon (มืด)
