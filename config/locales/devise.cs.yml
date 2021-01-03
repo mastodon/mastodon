@@ -70,8 +70,10 @@ cs:
           title: Jeden z vašich bezpečnostních klíčů byl smazán
       webauthn_disabled:
         explanation: Ověření do vašeho účtu pomocí bezpečnostních klíčů je vypnuto. Přihlášení je nyní možné pouze pomocí tokenu vygenerovaného spárovanou TOTP aplikací.
+        subject: 'Mastodon: Přihlašování bezpečnostními klíči vypnuto'
         title: Bezpečnostní klíče zakázány
       webauthn_enabled:
+        subject: 'Mastodon: Přihlašování bezpečnostními klíči povoleno'
         title: Bezpečnostní klíče povoleny
     omniauth_callbacks:
       failure: Nelze vás ověřit z %{kind}, protože „%{reason}“.
