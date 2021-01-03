@@ -199,13 +199,19 @@ eu:
       statuses: Mezuak
       subscribe: Harpidetu
       suspended: Kanporatuta
+      suspension_irreversible: Kontu honen datuak behin betiko ezabatu dira. Kontua kanporatzea atzera bota dezakezu, berriz erabilgarri izan dadin, baina datuak ezingo dira berreskuratu.
+      suspension_reversible_hint_html: Kontu hau kanporatua izan da eta bere datuak %{date}(e)an behin betiko ezabatuko dira. Ordura arte kontua kalterik gabe leheneratu daiteke. Kontuaren datu guztiak oraintxe bertan ezabatu nahi badituzu, jarraian egin dezakezu.
       time_in_queue: Kolan zain %{time}
       title: Kontuak
       unconfirmed_email: Baieztatu gabeko e-mail helbidea
+      undo_sensitized: Desegin hunkigarria
       undo_silenced: Utzi isilarazteari
       undo_suspension: Desegin kanporatzea
+      unsilenced_msg: '%{username} kontuaren mugak behar bezala kendu dira'
       unsubscribe: Kendu harpidetza
+      unsuspended_msg: '%{username} kontuaren kanporatzea behar bezala bota da atzera'
       username: Erabiltzaile-izena
+      view_domain: Ikusi domeinuaren laburpena
       warn: Abisatu
       web: Weba
       whitelisted: Zerrenda zurian
@@ -220,17 +226,21 @@ eu:
         create_domain_allow: Sortu domeinu baimena
         create_domain_block: Sortu domeinu blokeoa
         create_email_domain_block: Sortu e-mail domeinu blokeoa
+        create_ip_block: Sortu IP araua
+        demote_user: Jaitsi erabiltzailearen maila
         destroy_announcement: Ezabatu iragarpena
         destroy_custom_emoji: Ezabatu emoji pertsonalizatua
         destroy_domain_allow: Ezabatu domeinu baimena
         destroy_domain_block: Ezabatu domeinu blokeoa
         destroy_email_domain_block: Ezabatu e-mail domeinu blokeoa
+        destroy_ip_block: Ezabatu IP araua
         destroy_status: Ezabatu mezua
         disable_2fa_user: Desgaitu 2FA
         disable_custom_emoji: Desgaitu emoji pertsonalizatua
         disable_user: Desgaitu erabiltzailea
         enable_custom_emoji: Gaitu emoji pertsonalizatua
         enable_user: Gaitu erabiltzailea
+        memorialize_account: Bihurtu kontua oroigarri
         update_announcement: Eguneratu iragarpena
       actions:
         assigned_to_self_report: "%{name}(e)k %{target} salaketa bere buruari esleitu dio"
