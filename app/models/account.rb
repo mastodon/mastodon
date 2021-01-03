@@ -52,6 +52,8 @@
 #  devices_url                   :string
 #  sensitized_at                 :datetime
 #  suspension_origin             :integer
+#  avatar_needs_download         :boolean          default(FALSE), not null
+#  header_needs_download         :boolean          default(FALSE), not null
 #
 
 class Account < ApplicationRecord

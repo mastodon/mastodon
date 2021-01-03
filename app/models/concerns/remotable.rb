@@ -7,6 +7,9 @@ module Remotable
     def remotable_attachment(attachment_name, limit, suppress_errors: true, download_on_assign: true, attribute_name: nil)
       attribute_name ||= "#{attachment_name}_remote_url".to_sym
 
+      needs_download_name = "#{attachment_name}_needs_download".to_sym
+      needs_download_name = nil unless respond_to?(needs_download_name)
+
       define_method("download_#{attachment_name}!") do |url = nil|
         url ||= self[attribute_name]
 
@@ -28,16 +31,20 @@ module Remotable
           end
         rescue Mastodon::UnexpectedResponseError, HTTP::TimeoutError, HTTP::ConnectionError, OpenSSL::SSL::SSLError => e
           Rails.logger.debug "Error fetching remote #{attachment_name}: #{e}"
+
+          public_send("#{needs_download_name}=", true) if needs_download_name
           raise e unless suppress_errors
         rescue Paperclip::Errors::NotIdentifiedByImageMagickError, Addressable::URI::InvalidURIError, Mastodon::HostValidationError, Mastodon::LengthValidationError, Paperclip::Error, Mastodon::DimensionsValidationError, Mastodon::StreamValidationError => e
           Rails.logger.debug "Error fetching remote #{attachment_name}: #{e}"
         end
 
+        public_send("#{needs_download_name}=", false) if needs_download_name
+
         nil
       end
 
       define_method("#{attribute_name}=") do |url|
-        return if self[attribute_name] == url && public_send("#{attachment_name}_file_name").present?
+        return if self[attribute_name] == url && public_send("#{attachment_name}_file_name").present? && !(needs_download_name.present? && public_send(needs_download_name))
 
         self[attribute_name] = url if has_attribute?(attribute_name)
 
