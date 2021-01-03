@@ -241,7 +241,22 @@ eu:
         enable_custom_emoji: Gaitu emoji pertsonalizatua
         enable_user: Gaitu erabiltzailea
         memorialize_account: Bihurtu kontua oroigarri
+        promote_user: Igo erabiltzailea mailaz
+        remove_avatar_user: Kendu abatarra
+        reopen_report: Berrireki txostena
+        reset_password_user: Berrezarri pasahitza
+        resolve_report: Konpondu txostena
+        sensitive_account: Markatu zure kontuko multimedia hunkigarri bezala
+        silence_account: Isilarazi kontua
+        suspend_account: Kanporatu kontua
+        unassigned_report: Kendu txostenaren esleipena
+        unsensitive_account: Utzi zure kontuko multimedia hunkigarri bezala markatzeari
+        unsilence_account: Utzi kontua isilarazteari
+        unsuspend_account: Atzera bota kontua kanporatzea
         update_announcement: Eguneratu iragarpena
+        update_custom_emoji: Eguneratu emoji pertsonalizatua
+        update_domain_block: Eguneratu domeinu blokeoa
+        update_status: Eguneratu egoera
       actions:
         assigned_to_self_report: "%{name}(e)k %{target} salaketa bere buruari esleitu dio"
         change_email_user: "%{name}(e)k %{target}(r)en e-mail helbidea aldatu du"
@@ -252,12 +267,14 @@ eu:
         create_domain_allow: "%{name}(e)k %{target} domeinua zerrenda zurian zartu du"
         create_domain_block: "%{name}(e)k %{target} domeinua blokeatu du"
         create_email_domain_block: "%{name}(e)k %{target} e-mail helbideen domeinua zerrenda beltzean sartu du"
+        create_ip_block: "%{name} kontuak %{target} IParen araua sortu du"
         demote_user: "%{name}(e)k %{target} mailaz jaitsi du"
         destroy_announcement: "%{name}(e)k %{target}(e)rako iragarpena kendu du"
         destroy_custom_emoji: "%{name} erabiltzaileak %{target} emojia suntsitu du"
         destroy_domain_allow: "%{name}(e)k %{target} domeinua zerrenda zuritik kendu du"
         destroy_domain_block: "%{name}(e)k %{target} domeinua desblokeatu du"
         destroy_email_domain_block: "%{name}(e)k %{target} e-mail helbideen domeinua zerrenda zurian sartu du"
+        destroy_ip_block: "%{name} kontuak %{target} IParen araua ezabatu du"
         destroy_status: "%{name}(e)k %{target}(e)n egoera kendu du"
         disable_2fa_user: "%{name}(e)k %{target}(r)i bi faktoreetako eskaera kendu dio"
         disable_custom_emoji: "%{name}(e)k %{target} emoji-a desgaitu du"
