@@ -1192,6 +1192,9 @@ eu:
     spam_detected: Hau salaketa automatiko bat da. Spam-a antzeman da.
   statuses:
     attached:
+      audio:
+        one: "Audio %{count}"
+        other: "%{count} audio"
       description: 'Erantsita: %{attached}'
       image:
         one: "irudi %{count}"
@@ -1355,9 +1358,13 @@ eu:
     sign_in_token:
       details: 'Hemen daude saiakeraren xehetasunak:'
       explanation: 'IP helbide ezezagun batetik zure kontuan saioa hasteko saiakera bat detektatu dugu. Zu bazara, sartu beheko segurtasun kodea saioa hasteko erronkaren orrian:'
+      further_actions: 'Ez bazara zu, aldatu zure pasahitza eta gaitu bi faktoreko autentifikazioa zure kontuan. Hemen egin dezakezu:'
+      subject: Berretsi saioa hasteko saiakera
+      title: Saioa hasteko saiakera
     warning:
       explanation:
         disable: Zure kontua izoztuta dagoen bitartean, zure kontua bere horretan dirau, baina ezin duzu ekintzarik burutu desblokeatzen den arte.
+        sensitive: Igotzen dituzun multimedia fitxategiak eta estekatutako edukiak hunkigarri bezala hartuko dira.
         silence: Zure kontua murriztua dagoen bitartean, jada zu jarraitzen zaituztenak besterik ez dituzte zure tootak ikusiko zerbitzari honetan, eta agian zerrenda publikoetatik kenduko zaizu. Hala ere besteek oraindik zu jarraitu zaitzakete.
         suspend: Zure kontua kanporatua izan da, zure toot guztiak eta multimedia fitxategiak behin betiko ezabatu dira zerbitzari honetatik, eta zure jarraitzaileen zerbitzarietatik.
       get_in_touch: '%{instance} instantziako jendearekin harremanetan jartzeko e-mail honi erantzun ahal diozu.'
@@ -1366,11 +1373,13 @@ eu:
       subject:
         disable: Zure  %{acct} kontua izoztu da
         none: '%{acct} konturako abisua'
+        sensitive: Zure %{acct} kontuaren multimedia bidalketak hunkigarri bezala markatu dira
         silence: Zure  %{acct} kontua murriztu da
         suspend: Zure %{acct} kontua kanporatua izan da
       title:
         disable: Kontu izoztua
         none: Abisua
+        sensitive: Zure multimedia edukiak hunkigarri bezala markatu dira
         silence: Kontu murriztua
         suspend: Kontu kanporatua
     welcome:
@@ -1391,21 +1400,30 @@ eu:
       tips: Aholkuak
       title: Ongi etorri, %{name}!
   users:
+    blocked_email_provider: Zure e-posta hornitzailea ez da onartzen
     follow_limit_reached: Ezin dituzu %{limit} pertsona baino gehiago jarraitu
+    generic_access_help_html: Arazoak dituzu zure kontura sartzeko? Jarri harremanetan %{email} helbidearekin laguntzarako
     invalid_email: E-mail helbidea baliogabea da
+    invalid_email_mx: Dirudienez e-posta helbidea ez da existitzen
     invalid_otp_token: Bi faktoreetako kode baliogabea
+    invalid_sign_in_token: Segurtasun kode baliogabea
     otp_lost_help_html: 'Bietara sarbidea galdu baduzu, jarri kontaktuan hemen: %{email}'
     seamless_external_login: Kanpo zerbitzu baten bidez hasi duzu saioa, beraz pasahitza eta e-mail ezarpenak ez daude eskuragarri.
     signed_in_as: 'Saioa honela hasita:'
+    suspicious_sign_in_confirmation: Dirudienez inoiz ez duzu saioa hasi gailu honetatik eta aspaldian ez duzu saiorik hasi. Horregatik, segurtasun kode bat bidaliko dizugu zure e-posta helbidera zu zarela egiaztatzeko.
   verification:
     explanation_html: 'Ezin duzu <strong>zure burua zure profileko metadatuen esteken jabe gisa egiaztatu</strong>. Horretarako, estekatutako webgunean zure Mastodon profilera daraman esteka bat egon behar du. Mastodonera daraman esteka horrek<strong>derrigorrez</strong> <code>rel="me"</code> artibutua izan behar du . Estekaren testuak ez du axola. Hona adibide bat:'
     verification: Egiaztaketa
   webauthn_credentials:
+    add: Gehitu segurtasun gako berria
+    create:
+      error: Arazo bat egon da zure segurtasun gakoa gehitzean. Saiatu berriro mesedez.
+      success: Zure segurtasun gakoa behar bezala gehitu da.
     delete: Ezabatu
     delete_confirmation: Ziur zaude segurtasun gako hau ezabatu nahi duzula?
     description_html: <strong>Segurtasun gako bidezko autentifikazioa</strong> gaitzen baduzu, saioa hasteko zure segurtasun gakoetako bat erabili beharko duzu.
     destroy:
-      error: Arazo bat egon da zure segurtasun kopia ezabatzean. Saiatu berriro mesedez.
+      error: Arazo bat egon da zure segurtasun gakoa ezabatzean. Saiatu berriro mesedez.
       success: Zure segurtasun gakoa behar bezala ezabatu da.
     invalid_credential: Segurtasun gako baliogabea
     nickname_hint: Sartu zure segurtasun gako berriaren ezizena
