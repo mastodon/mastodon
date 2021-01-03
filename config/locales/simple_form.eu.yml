@@ -70,7 +70,7 @@ eu:
         ip: Sartu IPv4 edo IPv6 helbide bat. Tarte osoak blokeatu ditzakezu CIDR sintaxia erabiliz. Kontuz zure burua blokeatu gabe!
         severities:
           no_access: Blokeatu baliabide guztietarako sarbidea
-          sign_up_requires_approval: Erregistro berriek zure onarpena beharko dute
+          sign_up_requires_approval: Izen emate berriek zure onarpena beharko dute
         severity: Aukeratu zer gertatuko den IP honetatik datozen eskaerekin
       sessions:
         otp: 'Sartu zure telefonoko aplikazioak sortutako bi faktoreetako kodea, edo erabili zure berreskuratze kodeetako bat:'
@@ -98,6 +98,7 @@ eu:
         types:
           disable: Desaktibatu
           none: Ez egin ezer
+          sensitive: Hunkigarria
           silence: Isiltarazi
           suspend: Kanporatu eta behin betiko ezabatu kontuko datuak
         warning_preset_id: Erabili aurre-ezarritako abisu bat
@@ -123,6 +124,7 @@ eu:
         expires_in: Iraungitzea
         fields: Profilaren metadatuak
         header: Goiburua
+        honeypot: "%{label} (ez bete)"
         inbox_url: Errelearen sarrera ontziaren URLa
         irreversible: Baztertu ezkutatu ordez
         locale: Interfazearen hizkuntza
@@ -142,6 +144,7 @@ eu:
         setting_default_privacy: Mezuen pribatutasuna
         setting_default_sensitive: Beti markatu edukiak hunkigarri gisa
         setting_delete_modal: Erakutsi baieztapen elkarrizketa-koadroa toot bat ezabatu aurretik
+        setting_disable_swiping: Desgaitu hatza pasatzeko mugimenduak
         setting_display_media: Multimedia bistaratzea
         setting_display_media_default: Lehenetsia
         setting_display_media_hide_all: Ezkutatu guztia
@@ -158,6 +161,7 @@ eu:
         setting_use_blurhash: Erakutsi gradiente koloretsuak ezkutatutako multimediaren ordez
         setting_use_pending_items: Modu geldoa
         severity: Larritasuna
+        sign_in_token_attempt: Segurtasun kodea
         type: Inportazio mota
         username: Erabiltzaile-izena
         username_or_email: Erabiltzaile-izena edo e-mail helbidea
@@ -174,6 +178,13 @@ eu:
         comment: Iruzkina
       invite_request:
         text: Zergatik elkartu nahi duzu?
+      ip_block:
+        comment: Iruzkina
+        ip: IP-a
+        severities:
+          no_access: Blokeatu sarbidea
+          sign_up_requires_approval: Mugatu izen emateak
+        severity: Araua
       notification_emails:
         digest: Bidali laburpenak e-mail bidez
         favourite: Bidali e-mail bat norbaitek zure mezua gogoko duenean
@@ -194,4 +205,7 @@ eu:
     required:
       mark: "*"
       text: beharrezkoa
+    title:
+      sessions:
+        webauthn: Erabili zure segurtasun gakoetako bat saioa hasteko
     'yes': 'Bai'
