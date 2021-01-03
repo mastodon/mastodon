@@ -212,8 +212,17 @@ class Status extends ImmutablePureComponent {
     this.props.onOpenVideo(status.get('id'), status.getIn(['media_attachments', 0]), options);
   }
 
+  handleOpenVideoQuote = (options) => {
+    const status = this._properQuoteStatus();
+    this.props.onOpenVideo(status.get('id'), status.getIn(['media_attachments', 0]), options);
+  }
+
   handleOpenMedia = (media, index) => {
     this.props.onOpenMedia(this._properStatus().get('id'), media, index);
+  }
+
+  handleOpenMediaQuote = (media, index) => {
+    this.props.onOpenMedia(this._properQuoteStatus().get('id'), media, index);
   }
 
   handleHotkeyOpenMedia = e => {
@@ -313,14 +322,18 @@ class Status extends ImmutablePureComponent {
     }
   }
 
-  handleRef = c => {
-    this.node = c;
+  _properQuoteStatus () {
+    const status = this._properStatus();
+
+    if (status.get('quote', null) !== null && typeof status.get('quote') === 'object') {
+      return status.get('quote');
+    } else {
+      return status;
+    }
   }
 
-  _properQuoteStatus () {
-    const { status } = this.props;
-
-    return status.get('quote');
+  handleRef = c => {
+    this.node = c;
   }
 
   render () {
@@ -508,7 +521,7 @@ class Status extends ImmutablePureComponent {
     const visibilityIcon = visibilityIconInfo[status.get('visibility')];
 
     let quote = null;
-    if (status.get('quote', null) !== null) {
+    if (status.get('quote', null) !== null && typeof status.get('quote') === 'object') {
       let quote_status = status.get('quote');
 
       let quote_media = null;
@@ -561,7 +574,7 @@ class Status extends ImmutablePureComponent {
                   height={110}
                   inline
                   sensitive={quote_status.get('sensitive')}
-                  onOpenVideo={this.handleOpenVideo}
+                  onOpenVideo={this.handleOpenVideoQuote}
                   cacheWidth={this.props.cacheMediaWidth}
                   deployPictureInPicture={pictureInPicture.get('available') ? this.handleDeployPictureInPicture : undefined}
                   visible={this.state.showQuoteMedia}
@@ -579,7 +592,7 @@ class Status extends ImmutablePureComponent {
                   media={quote_status.get('media_attachments')}
                   sensitive={quote_status.get('sensitive')}
                   height={110}
-                  onOpenMedia={this.handleOpenMedia}
+                  onOpenMedia={this.handleOpenMediaQuote}
                   cacheWidth={this.props.cacheMediaWidth}
                   defaultWidth={this.props.cachedMediaWidth}
                   visible={this.state.showQuoteMedia}
