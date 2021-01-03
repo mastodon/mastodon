@@ -14,6 +14,7 @@ class ActivityPub::ProcessAccountService < BaseService
     @uri         = @json['id']
     @username    = username
     @domain      = domain
+    @shortcodes  = []
     @collections = {}
 
     RedisLock.acquire(lock_options) do |lock|
@@ -25,8 +26,8 @@ class ActivityPub::ProcessAccountService < BaseService
         @suspension_changed = false
 
         create_account if @account.nil?
-        update_account
         process_tags
+        update_account
         process_attachments
 
         process_duplicate_accounts! if @options[:verified_webfinger]
@@ -92,7 +93,7 @@ class ActivityPub::ProcessAccountService < BaseService
   def set_immediate_attributes!
     @account.featured_collection_url = @json['featured'] || ''
     @account.devices_url             = @json['devices'] || ''
-    @account.display_name            = @json['name'] || ''
+    @account.display_name            = fix_emoji(@json['name']) || ''
     @account.note                    = @json['summary'] || ''
     @account.locked                  = @json['manuallyApprovesFollowers'] || false
     @account.fields                  = property_values || {}
@@ -319,6 +320,8 @@ class ActivityPub::ProcessAccountService < BaseService
     updated   = tag['updated']
     emoji     = CustomEmoji.find_by(shortcode: shortcode, domain: @account.domain)
 
+    @shortcodes << shortcode unless emoji.nil?
+
     return unless emoji.nil? || image_url != emoji.image_remote_url || (updated && updated >= emoji.updated_at)
 
     emoji ||= CustomEmoji.new(domain: @account.domain, shortcode: shortcode, uri: uri)
@@ -332,5 +335,18 @@ class ActivityPub::ProcessAccountService < BaseService
     token             = attachment['signatureValue']
 
     @account.identity_proofs.where(provider: provider, provider_username: provider_username).find_or_create_by(provider: provider, provider_username: provider_username, token: token)
+  end
+
+  def fix_emoji(text)
+    return text if text.blank? || @shortcodes.empty?
+
+    fixed_text = text.dup
+
+    @shortcodes.each do |shortcode|
+      fixed_text.gsub!(/([^\s\u200B])(:#{shortcode}:)/, "\\1\u200B\\2")
+      fixed_text.gsub!(/(:#{shortcode}:)([^\s\u200B])/, "\\1\u200B\\2")
+    end
+
+    fixed_text
   end
 end
