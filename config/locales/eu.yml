@@ -736,6 +736,8 @@ eu:
     dont_have_your_security_key: Ez daukazu zure segurtasun gakoa?
     forgot_password: Pasahitza ahaztu duzu?
     invalid_reset_password_token: Pasahitza berrezartzeko token-a baliogabea da edo iraungitu du. Eskatu beste bat.
+    link_to_otp: Erabili zure mugikorreko bi faktoreko kodea edo berreskuratze kode bat
+    link_to_webauth: Erabili zure segurtasun gako gailua
     login: Hasi saioa
     logout: Amaitu saioa
     migrate_account: Migratu beste kontu batera
@@ -760,7 +762,9 @@ eu:
       functional: Zure kontua guztiz erabilgarri dago.
       pending: Zure eskaera gainbegiratzeko dago oraindik. Honek denbora behar lezake. Zure eskaera onartzen bada e-mail bat jasoko duzu.
       redirecting_to: Zure kontua ez dago aktibo orain %{acct} kontura birbideratzen duelako.
+    too_fast: Formularioa azkarregi bidali duzu, saiatu berriro.
     trouble_logging_in: Arazoak saioa hasteko?
+    use_security_key: Erabili segurtasun gakoa
   authorize_follow:
     already_following: Kontu hau aurretik jarraitzen duzu
     already_requested: Bidali duzu dagoeneko kontu hori jarraitzeko eskaera bat
@@ -778,9 +782,14 @@ eu:
     hint_html: "<strong>Oharra:</strong> Ez dizugu pasahitza berriro eskatuko ordu batez."
     invalid_password: Pasahitz baliogabea
     prompt: Berretsi pasahitza jarraitzeko
+  crypto:
+    errors:
+      invalid_key: ez da baliozko Ed25519 edo Curve25519 gakoa
+      invalid_signature: ez da baliozko Ed25519 sinadura
   date:
     formats:
       default: "%Y(e)ko %b %d"
+      with_month_name: "%Y(e)ko %B %d"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}h"
@@ -845,6 +854,7 @@ eu:
       request: Eskatu zure artxiboa
       size: Tamaina
     blocks: Zuk blokeatutakoak
+    bookmarks: Laster-markak
     csv: CSV
     domain_blocks: Domeinuen blokeoak
     lists: Zerrendak
@@ -912,6 +922,8 @@ eu:
     status: Egiaztatze egoera
     view_proof: Ikusi froga
   imports:
+    errors:
+      over_rows_processing_limit: '%{count} lerro baina gehiago ditu'
     modes:
       merge: Bateratu
       merge_long: Mantendu dauden erregistroak eta gehitu berriak
@@ -921,6 +933,7 @@ eu:
     success: Zure datuak ongi igo dira eta dagokionean prozesatuko dira
     types:
       blocking: Blokeatutakoen zerrenda
+      bookmarks: Laster-markak
       domain_blocking: Domeinuen blokeo zerrenda
       following: Jarraitutakoen zerrenda
       muting: Mutututakoen zerrenda
@@ -975,6 +988,7 @@ eu:
     on_cooldown: Duela gutxi migratu duzu. Funtzio hau %{count} egun barru egongo da berriro eskuragarri.
     past_migrations: Aurreko migrazioak
     proceed_with_move: Mugitu jarraitzaileak
+    redirected_msg: 'Zure kontuak hona birbideratzen du orain: %{acct}.'
     redirecting_to: 'Zure kontuak hona birbideratzen du: %{acct}.'
     set_redirect: Ezarri birbideratzea
     warning:
@@ -988,6 +1002,10 @@ eu:
       redirect: Zure uneko kontuaren profila eguneratuko da birbideratze ohar batekin eta bilaketetatik kenduko da
   moderation:
     title: Moderazioa
+  move_handler:
+    carry_blocks_over_text: Erabiltzaile hau %{acct} kontutik dator, zeina blokeatuta daukazun.
+    carry_mutes_over_text: Erabiltzaile hau %{acct} kontutik dator, zeina isilarazita daukazun.
+    copy_account_note_text: 'Erabiltzaile hau %{acct} kontutik dator, hemen berari buruzko zure aurreko oharrak:'
   notification_mailer:
     digest:
       action: Ikusi jakinarazpen guztiak
@@ -1036,6 +1054,8 @@ eu:
           quadrillion: Q
           thousand: K
           trillion: T
+  otp_authentication:
+    code_hint: Sartu zure autentifikazio aplikazioak sortutako kodea berresteko
   pagination:
     newer: Berriagoa
     next: Hurrengoa
