@@ -83,8 +83,9 @@ class DetailedStatus extends ImmutablePureComponent {
 
   handleAccountClick = (e) => {
     if (e.button === 0 && !(e.ctrlKey || e.metaKey) && this.context.router) {
+      const id = e.currentTarget.getAttribute('data-id');
       e.preventDefault();
-      this.context.router.history.push(`/accounts/${this.props.status.getIn(['account', 'id'])}`);
+      this.context.router.history.push(`/accounts/${id}`);
     }
 
     e.stopPropagation();
@@ -232,7 +233,7 @@ class DetailedStatus extends ImmutablePureComponent {
       } else {
         quote = (
           <div className='quote-status'>
-            <a href={quote_status.getIn(['account', 'url'])} onClick={this.handleAccountClick} className='detailed-status__display-name'>
+            <a href={quote_status.getIn(['account', 'url'])} onClick={this.handleAccountClick} data-id={quote_status.getIn(['account', 'id'])} className='detailed-status__display-name'>
               <div className='detailed-status__display-avatar'><Avatar account={quote_status.get('account')} size={18} /></div>
               <DisplayName account={quote_status.get('account')} localDomain={this.props.domain} />
             </a>
