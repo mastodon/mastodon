@@ -255,7 +255,7 @@ eu:
         unsuspend_account: Atzera bota kontua kanporatzea
         update_announcement: Eguneratu iragarpena
         update_custom_emoji: Eguneratu emoji pertsonalizatua
-        update_domain_block: Eguneratu domeinu blokeoa
+        update_domain_block: Eguneratu domeinu-blokeoa
         update_status: Eguneratu egoera
       actions:
         assigned_to_self_report: "%{name}(e)k %{target} salaketa bere buruari esleitu dio"
@@ -287,13 +287,16 @@ eu:
         reopen_report: "%{name}(e)k %{target}(r)en salaketa berrireki du"
         reset_password_user: "%{name}(e)k %{target}(r)en pasahitza berrezarri du"
         resolve_report: "%{name}(e)k %{target}(r)en salaketa konpondu du"
+        sensitive_account: "%{name} kontuak %{target} kontuaren multimedia hunkigarri bezala markatu du"
         silence_account: "%{name}(e)k %{target}(r)en kontua isilarazi du"
         suspend_account: "%{name}(e)k %{target} kontua kanporatu du"
         unassigned_report: "%{name}(e)k %{target} txotenaren esleipena atzera bota du"
+        unsensitive_account: "%{name} kontuak %{target} kontuaren multimedia hunkigarri bezala markatzeari utzi dio"
         unsilence_account: "%{name}(e)k %{target} isilarazteko agindua kendu du"
         unsuspend_account: "%{name}(e)k %{target} kontuaren kanporaketa atzera bota du"
         update_announcement: "%{name}(e)k %{target}(e)rako iragarpena eguneratu du du"
         update_custom_emoji: "%{name}(e)k %{target} emoji-a eguneratu du"
+        update_domain_block: "%{name} kontuak %{target} domeinu-blokeoa eguneratu du"
         update_status: "%{name} (e)k %{target}(r)en mezua aldatu du"
       deleted_status: "(ezabatutako mezua)"
       empty: Ez da egunkaririk aurkitu.
@@ -337,6 +340,7 @@ eu:
       listed: Zerrendatua
       new:
         title: Gehitu emoji pertsonal berria
+      not_permitted: Ez daukazu ekintza hau burutzeko baimenik
       overwrite: Gainidatzi
       shortcode: Laster-kodea
       shortcode_hint: Gutxienez 2 karaktere, alfanumerikoak eta azpimarra  besterik ez
@@ -396,6 +400,7 @@ eu:
           silence: Isilarazi
           suspend: Kanporatu
         title: Domeinuaren blokeo berria
+      obfuscate: Lausotu domeinu-izena
       private_comment: Iruzkin pribatua
       private_comment_hint: Domeinu hau mugatzeari buruzko iruzkina moderatzaileen barne erabilerarako.
       public_comment: Iruzkin publikoa
