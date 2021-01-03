@@ -1,7 +1,7 @@
 eu:
   about:
     about_hashtag_html: 'Hauek  <strong>#%{hashtag}</strong> traola duten toot publikoak dira. Fedibertsoko edozein kontu baduzu harremanetan jarri zaitezke.'
-    about_mastodon_html: 'Mastodon web protokolo ireki eta libreak darabiltzan gizarte sare bat da. E-mail sarea bezala deszentralizatua da.'
+    about_mastodon_html: 'Etorkizuneko sare soziala: ez iragarkirik eta ez zelatatze korporatiborik, diseinu etikoa eta deszentralizazioa! Izan zure datuen jabea Mastodonekin!'
     about_this: Honi buruz
     active_count_after: aktibo
     active_footnote: Hilabeteko erabiltzaile aktiboak (HEA)
@@ -401,6 +401,7 @@ eu:
           suspend: Kanporatu
         title: Domeinuaren blokeo berria
       obfuscate: Lausotu domeinu-izena
+      obfuscate_hint: Domeinuaren izena partzialki lausotu zerrendan, mugatutako domeinuen zerrenda iragartzea gaituta badago
       private_comment: Iruzkin pribatua
       private_comment_hint: Domeinu hau mugatzeari buruzko iruzkina moderatzaileen barne erabilerarako.
       public_comment: Iruzkin publikoa
@@ -440,6 +441,7 @@ eu:
     instances:
       by_domain: Domeinua
       delivery_available: Bidalketa eskuragarri dago
+      empty: Ez da domeinurik aurkitu.
       known_accounts:
         one: "Kontu ezagun %{count}"
         other: "%{count} kontu ezagun"
@@ -463,6 +465,21 @@ eu:
         expired: Iraungitua
         title: Iragazi
       title: Gonbidapenak
+    ip_blocks:
+      add_new: Sortu araua
+      created_msg: IP arau berria behar bezala gehitu da
+      delete: Ezabatu
+      expires_in:
+        '1209600': 2 aste
+        '15778476': 6 hilabete
+        '2629746': Hilabete 1
+        '31556952': Urte 1
+        '86400': Egun 1
+        '94670856': 3 urte
+      new:
+        title: Sortu IP arau berria
+      no_ip_block_selected: Ez da IP araurik aldatu, ez delako batere hautatu
+      title: IP arauak
     pending_accounts:
       title: Zain dauden kontuak (%{count})
     relationships:
@@ -502,6 +519,8 @@ eu:
       comment:
         none: Bat ere ez
       created_at: Salatua
+      forwarded: Birbidalia
+      forwarded_to: 'Hona birbidalia: %{domain}'
       mark_as_resolved: Markatu konpondutako gisa
       mark_as_unresolved: Markatu konpondu gabeko gisa
       notes:
@@ -545,6 +564,7 @@ eu:
       domain_blocks_rationale:
         title: Erakutsi arrazoia
       enable_bootstrap_timeline_accounts:
+        desc_html: Erabiltzaile berriek konfiguratutako kontuak automatikoki jarraituko dituzte, etxeko denbora-lerroa ez dadin hutsik hasi
         title: Gaitu lehenetsitako jarraipena erabiltzaile berrientzat
       hero:
         desc_html: Azaleko orrian bistaratua. Gutxienez 600x100px aholkatzen da. Ezartzen ez bada, zerbitzariaren irudia hartuko du
@@ -571,6 +591,9 @@ eu:
         min_invite_role:
           disabled: Inor ez
           title: Baimendu hauen gobidapenak
+        require_invite_text:
+          desc_html: Erregistroak eskuz onartu behar direnean, "Zergatik elkartu nahi duzu?" testu sarrera derrigorrezko bezala ezarri, ez hautazko
+          title: Eskatu erabiltzaile berriei bat egiteko arrazoia sartzeko
       registrations_mode:
         modes:
           approved: Izena emateko onarpena behar da
@@ -710,6 +733,7 @@ eu:
       prefix_sign_up: Eman izena Mastodon-en!
       suffix: Kontu bat baduzu, jendea jarraitu ahal izango duzu, mezuak bidali eta Mastodon zein kanpoko zerbitzarietako erabiltzaileekin elkarrizketan aritu!
     didnt_get_confirmation: Ez dituzu berresteko argibideak jaso?
+    dont_have_your_security_key: Ez daukazu zure segurtasun gakoa?
     forgot_password: Pasahitza ahaztu duzu?
     invalid_reset_password_token: Pasahitza berrezartzeko token-a baliogabea da edo iraungitu du. Eskatu beste bat.
     login: Hasi saioa
@@ -1337,3 +1361,16 @@ eu:
   verification:
     explanation_html: 'Ezin duzu <strong>zure burua zure profileko metadatuen esteken jabe gisa egiaztatu</strong>. Horretarako, estekatutako webgunean zure Mastodon profilera daraman esteka bat egon behar du. Mastodonera daraman esteka horrek<strong>derrigorrez</strong> <code>rel="me"</code> artibutua izan behar du . Estekaren testuak ez du axola. Hona adibide bat:'
     verification: Egiaztaketa
+  webauthn_credentials:
+    delete: Ezabatu
+    delete_confirmation: Ziur zaude segurtasun gako hau ezabatu nahi duzula?
+    description_html: <strong>Segurtasun gako bidezko autentifikazioa</strong> gaitzen baduzu, saioa hasteko zure segurtasun gakoetako bat erabili beharko duzu.
+    destroy:
+      error: Arazo bat egon da zure segurtasun kopia ezabatzean. Saiatu berriro mesedez.
+      success: Zure segurtasun gakoa behar bezala ezabatu da.
+    invalid_credential: Segurtasun gako baliogabea
+    nickname_hint: Sartu zure segurtasun gako berriaren ezizena
+    not_enabled: Ez duzu WebAuthn gaitu oraindik
+    not_supported: Nabigatzaileak ez ditu segurtasun gakoak onartzen
+    otp_required: Segurtasun gakoak erabili aurretik bi faktoreko autentifikazioa gaitu behar duzu.
+    registered_on: '%{date}(e)an erregistratua'
