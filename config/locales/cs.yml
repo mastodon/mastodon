@@ -149,6 +149,7 @@ cs:
       login_status: Stav přihlášení
       media_attachments: Mediální přílohy
       memorialize: Změnit na „in memoriam“
+      memorialized: In memoriam
       memorialized_msg: Účet %{username} úspěšně změněn na „in memoriam“
       moderation:
         active: Aktivní
@@ -161,7 +162,7 @@ cs:
       most_recent_activity: Nejnovější aktivita
       most_recent_ip: Nejnovější IP adresa
       no_account_selected: Nebyl změněn žádný účet, neboť žádný nebyl zvolen
-      no_limits_imposed: Nejsou nastavena žádná omezení
+      no_limits_imposed: Nenastavena žádná omezení
       not_subscribed: Neodebírá
       pending: Čeká na posouzení
       perform_full_suspension: Pozastavit
@@ -176,7 +177,7 @@ cs:
       rejected_msg: Žádost o registraci uživatele %{username} úspěšně zamítnuta
       remove_avatar: Odstranit avatar
       remove_header: Odstranit záhlaví
-      removed_avatar_msg: Úspěšně odstraněn profilový obrázek uživatele %{username}
+      removed_avatar_msg: Úspěšně odstraněn avatar uživatele %{username}
       removed_header_msg: Úspěšně odstraněn obrázek záhlaví uživatele %{username}
       resend_confirmation:
         already_confirmed: Tento uživatel je již potvrzen
@@ -226,14 +227,14 @@ cs:
         create_domain_allow: Povolit doménu
         create_domain_block: Zablokovat doménu
         create_email_domain_block: Zablokovat e-maily na doméně
-        create_ip_block: Vytvoření IP pravidla
+        create_ip_block: Vytvořit IP pravidlo
         demote_user: Snížit roli uživatele
         destroy_announcement: Odstranit oznámení
         destroy_custom_emoji: Odstranit vlastní emoji
         destroy_domain_allow: Odstranit povolenou doménu
         destroy_domain_block: Odstranit blokování domény
         destroy_email_domain_block: Odstranit blokování e-mailů na doméně
-        destroy_ip_block: Smazání IP pravidla
+        destroy_ip_block: Smazat IP pravidlo
         destroy_status: Odstranit stav
         disable_2fa_user: Vypnout 2FA
         disable_custom_emoji: Zakázat vlastní emoji
@@ -253,6 +254,7 @@ cs:
         unsuspend_account: Zrušit pozastavení účtu
         update_announcement: Aktualizovat oznámení
         update_custom_emoji: Aktualizovat vlastní emoji
+        update_domain_block: Změnit blokaci domény
         update_status: Aktualizovat stav
       actions:
         assigned_to_self_report: "Uživatel %{name} si přidělil hlášení %{target}"
