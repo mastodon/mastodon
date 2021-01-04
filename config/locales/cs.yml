@@ -925,6 +925,8 @@ cs:
     inactive: Neaktivní
     publicize_checkbox: 'A tootnout tohle:'
     publicize_toot: 'Je to dokázáno! Na %{service} jsem %{username}: %{url}'
+    remove: Odstranit důkaz z účtu
+    removed: Úspěšně odstraněn důkaz z účtu
     status: Stav ověření
     view_proof: Zobrazit důkaz
   imports:
@@ -1063,6 +1065,8 @@ cs:
           thousand: tis
           trillion: bil
   otp_authentication:
+    code_hint: Pro potvrzení zadejte kód vygenerovaný Vaší ověřovací aplikací
+    description_html: Zapnete-li <strong>dvoufaktorové ověřování</strong> pomocí ověřovací aplikace, k přihlášení budete u sebe muset mít svůj mobil, který pro Vás bude generovat kódy k opsání.
     enable: Zapnout
     instructions_html: "<strong>Naskenujte tento QR kód do Google Authenticator nebo podobné TOTP aplikace na Vašem telefonu</strong>. Následně bude tato aplikace generovat kódy, které budete zadávat při přihlašování."
     manual_instructions: 'Nemůžete-li načíst QR kód a potřebujete ho zadat ručně, zde je tajemství v textové podobě:'
@@ -1358,6 +1362,7 @@ cs:
     generate_recovery_codes: Vygenerovat záložní kódy
     lost_recovery_codes: Záložní kódy vám dovolí dostat se k vašemu účtu, pokud ztratíte telefon. Ztratíte-li záložní kódy, můžete je zde znovu vygenerovat. Vaše staré záložní kódy budou zneplatněny.
     methods: Dvoufaktorové metody
+    otp: Ověřovací aplikace
     recovery_codes: Záložní kódy pro obnovu
     recovery_codes_regenerated: Záložní kódy byly úspěšně znovu vygenerovány
     recovery_instructions_html: Ztratíte-li někdy přístup ke svému telefonu, můžete k získání přístupu k účtu použít jeden ze záložních kódů. <strong>Uchovejte tyto kódy v bezpečí</strong>. Můžete si je například vytisknout a uložit je mezi jiné důležité dokumenty.
@@ -1441,4 +1446,5 @@ cs:
     nickname_hint: Zadejte přezdívku nového bezpečnostního klíče
     not_enabled: Zatím jste nepovolili WebAuthn
     not_supported: Tento prohlížeč nepodporuje bezpečnostní klíče
+    otp_required: Pro použití bezpečnostních klíčů prosím nejprve zapněte dvoufaktorové ověřování.
     registered_on: Přidán %{date}
