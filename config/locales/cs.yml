@@ -298,6 +298,7 @@ cs:
         unsuspend_account: "Uživatel %{name} zrušil pozastavení účtu uživatele %{target}"
         update_announcement: "Uživatel %{name} aktualizoval oznámení %{target}"
         update_custom_emoji: "Uživatel %{name} aktualizoval emoji %{target}"
+        update_domain_block: "%{name} aktualizoval blokaci domény %{target}"
         update_status: "Uživatel %{name} aktualizoval toot uživatele %{target}"
       deleted_status: "(smazaný toot)"
       empty: Nebyly nalezeny žádné záznamy.
@@ -573,6 +574,7 @@ cs:
       domain_blocks_rationale:
         title: Zobrazit odůvodnění
       enable_bootstrap_timeline_accounts:
+        desc_html: Nastavit novým uživatelům automaticky sledování vybraných účtů, aby nezačínali s prázdnou domovskou osou
         title: Povolit výchozí sledování pro nové uživatele
       hero:
         desc_html: Zobrazuje se na hlavní stránce. Doporučujeme rozlišení alespoň 600x100 px. Pokud toto není nastaveno, bude zobrazena miniatura serveru
