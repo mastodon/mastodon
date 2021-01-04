@@ -289,9 +289,11 @@ cs:
         reopen_report: "Uživatel %{name} znovu otevřel hlášení %{target}"
         reset_password_user: "Uživatel %{name} obnovil heslo uživatele %{target}"
         resolve_report: "Uživatel %{name} vyřešil hlášení %{target}"
+        sensitive_account: "%{name} označil média účtu %{target} jako citlivá"
         silence_account: "Uživatel %{name} ztišil uživatele %{target}"
         suspend_account: "Uživatel %{name} pozastavil účet uživatele %{target}"
         unassigned_report: "Uživatel %{name} odebral hlášení %{target}"
+        unsensitive_account: "%{name} zrušil označení médií účtu %{target} jako citlivých"
         unsilence_account: "Uživatel %{name} zrušil ztišení uživatele %{target}"
         unsuspend_account: "Uživatel %{name} zrušil pozastavení účtu uživatele %{target}"
         update_announcement: "Uživatel %{name} aktualizoval oznámení %{target}"
@@ -526,6 +528,8 @@ cs:
       comment:
         none: Žádné
       created_at: Nahlášené
+      forwarded: Přeposláno
+      forwarded_to: Přeposláno na %{domain}
       mark_as_resolved: Označit jako vyřešené
       mark_as_unresolved: Označit jako nevyřešené
       notes:
