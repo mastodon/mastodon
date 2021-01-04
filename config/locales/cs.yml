@@ -904,6 +904,8 @@ cs:
     status: Stav ověření
     view_proof: Zobrazit důkaz
   imports:
+    errors:
+      over_rows_processing_limit: obsahuje více než %{count} řádků
     modes:
       merge: Sloučit
       merge_long: Ponechat existující záznamy a přidat nové
@@ -1037,6 +1039,7 @@ cs:
           thousand: tis
           trillion: bil
   otp_authentication:
+    enable: Zapnout
     setup: Nastavit
   pagination:
     newer: Novější
@@ -1321,6 +1324,7 @@ cs:
   two_factor_authentication:
     add: Přidat
     disable: Vypnout
+    disabled_success: Dvoufaktorové ověření bylo úspěšně vypnuto
     edit: Upravit
     enabled: Dvoufázové ověřování je zapnuto
     enabled_success: Dvoufázové ověřování bylo úspěšně zapnuto
@@ -1344,7 +1348,7 @@ cs:
     warning:
       explanation:
         disable: Zatímco je váš účet zmrazen, zůstávají data vašeho účtu nedotčena. Dokud ale nebude odemčen, nemůžete vykonávat žádné akce.
-        sensitive: Vámi nahrané a odkazované soubory budou označeny jako citlivé.
+        sensitive: Vámi nahrané a odkazované soubory budou považovány za citlivé.
         silence: Zatímco je váš účet omezen, mohou vaše tooty na tomto serveru vidět pouze lidé, kteří váš již sledují, a můžete být vyloučeni z různých veřejných seznamů. Ostatní vás však pořád mohou manuálně sledovat.
         suspend: Váš účet byl pozastaven a všechny vaše tooty a nahrané mediální soubory byly nenávratně odstraněny z tohoto serveru a serverů, na kterých jste měli sledující.
       get_in_touch: Můžete odpovědět na tento e-mail a spojit se s personálem serveru %{instance}.
@@ -1353,11 +1357,13 @@ cs:
       subject:
         disable: Váš účet %{acct} byl zmrazen
         none: Varování pro uživatele %{acct}
+        sensitive: Média z Vašeho účtu %{acct} byla označena za citlivá
         silence: Váš účet %{acct} byl omezen
         suspend: Váš účet %{acct} byl pozastaven
       title:
         disable: Účet zmrazen
         none: Varování
+        sensitive: Vaše média byla označena jako citlivá
         silence: Účet omezen
         suspend: Účet pozastaven
     welcome:
@@ -1398,7 +1404,10 @@ cs:
       error: Při přidávání bezpečnostního klíče došlo k chybě. Zkuste to prosím znovu.
       success: Váš bezpečnostní klíč byl úspěšně přidán.
     delete: Odstranit
+    delete_confirmation: Jste si jisti, že chcete odstranit tento bezpečnostní klíč?
+    description_html: Pokud povolíte <strong>ověřování bezpečnostním klíčem</strong>, přihlašování bude vyžadovat použití jednoho z vašich bezpečnostních klíčů.
     destroy:
+      error: Při odstraňování bezpečnostního klíče došlo k chybě. Zkuste to prosím znovu.
       success: Váš bezpečnostní klíč byl úspěšně odstraněn.
     invalid_credential: Neplatný bezpečnostní klíč
     nickname_hint: Zadejte přezdívku nového bezpečnostního klíče
