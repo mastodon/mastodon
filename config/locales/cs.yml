@@ -265,14 +265,14 @@ cs:
         create_custom_emoji: "Uživatel %{name} nahrál nové emoji %{target}"
         create_domain_allow: "Uživatel %{name} přidal doménu %{target} na bílou listinu"
         create_domain_block: "Uživatel %{name} zablokoval doménu %{target}"
-        create_email_domain_block: "Uživatel %{name} přidal e-mailovou doménu %{target} na černou listinu"
+        create_email_domain_block: "Uživatel %{name} zablokoval e-mailovou doménu %{target}"
         create_ip_block: "%{name} vytvořil pravidlo pro IP %{target}"
         demote_user: "Uživatel %{name} degradoval uživatele %{target}"
         destroy_announcement: "Uživatel %{name} odstranil oznámení %{target}"
         destroy_custom_emoji: "Uživatel %{name} zničil emoji %{target}"
         destroy_domain_allow: "Uživatel %{name} odebral doménu %{target} z bílé listiny"
         destroy_domain_block: "Uživatel %{name} odblokoval doménu %{target}"
-        destroy_email_domain_block: "Uživatel %{name} odebral e-mailovou doménu %{target} z černé listiny"
+        destroy_email_domain_block: "Uživatel %{name} odblokoval e-mailovou doménu %{target}"
         destroy_ip_block: "%{name} odstranil pravidlo pro IP %{target}"
         destroy_status: "Uživatel %{name} odstranil toot uživatele %{target}"
         disable_2fa_user: "Uživatel %{name} vypnul dvoufázové ověřování pro uživatele %{target}"
@@ -426,11 +426,11 @@ cs:
       view: Zobrazit blokaci domény
     email_domain_blocks:
       add_new: Přidat
-      created_msg: E-mailová doména úspěšně přidána na černou listinu
+      created_msg: E-mailová doména úspěšně zablokována
       delete: Smazat
-      destroyed_msg: E-mailová doména úspěšně odstraněna z černé listiny
+      destroyed_msg: E-mailová doména úspěšně odblokována
       domain: Doména
-      empty: Na černé listině aktuálně nejsou žádné e-mailové domény.
+      empty: Aktuálně nejsou blokovány žádné e-mailové domény.
       from_html: z domény %{domain}
       new:
         create: Přidat doménu
