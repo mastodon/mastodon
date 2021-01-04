@@ -282,7 +282,7 @@ cs:
         destroy_email_domain_block: "Uživatel %{name} odblokoval e-mailovou doménu %{target}"
         destroy_ip_block: "%{name} odstranil pravidlo pro IP %{target}"
         destroy_status: "Uživatel %{name} odstranil toot uživatele %{target}"
-        disable_2fa_user: "Uživatel %{name} vypnul dvoufázové ověřování pro uživatele %{target}"
+        disable_2fa_user: "Uživatel %{name} vypnul dvoufaktorové ověřování pro uživatele %{target}"
         disable_custom_emoji: "Uživatel %{name} zakázal emoji %{target}"
         disable_user: "Uživatel %{name} zakázal přihlašování pro uživatele %{target}"
         enable_custom_emoji: "Uživatel %{name} povolil emoji %{target}"
@@ -1203,7 +1203,7 @@ cs:
     preferences: Předvolby
     profile: Profil
     relationships: Sledovaní a sledující
-    two_factor_authentication: Dvoufázové ověřování
+    two_factor_authentication: Dvoufaktorové ověřování
     webauthn_authentication: Bezpečnostní klíče
   spam_check:
     spam_detected: Tohle je automatizované hlášení. Byl detekován spam.
@@ -1364,8 +1364,8 @@ cs:
     disable: Vypnout
     disabled_success: Dvoufaktorové ověření bylo úspěšně vypnuto
     edit: Upravit
-    enabled: Dvoufázové ověřování je zapnuto
-    enabled_success: Dvoufázové ověřování bylo úspěšně zapnuto
+    enabled: Dvoufaktorové ověřování je zapnuto
+    enabled_success: Dvoufaktorové ověřování bylo úspěšně zapnuto
     generate_recovery_codes: Vygenerovat záložní kódy
     lost_recovery_codes: Záložní kódy vám dovolí dostat se k vašemu účtu, pokud ztratíte telefon. Ztratíte-li záložní kódy, můžete je zde znovu vygenerovat. Vaše staré záložní kódy budou zneplatněny.
     methods: Dvoufaktorové metody
@@ -1382,7 +1382,7 @@ cs:
     sign_in_token:
       details: 'Zde jsou podrobnosti pokusu:'
       explanation: 'Zjistili jsme, že se někdo pokusil k vašemu přihlásit z neznámé IP adresy. Pokud jste to vy, zadejte níže uvedený kód na přihlašovací stránce s výzvou:'
-      further_actions: 'Pokud jste to nebyli vy, změňte prosím své heslo a zapněte si dvoufázově ověřování svého účtu. Můžete tak učinit hned tady:'
+      further_actions: 'Pokud jste to nebyli vy, změňte prosím své heslo a zapněte si dvoufaktorové ověřování svého účtu. Můžete tak učinit hned tady:'
       subject: Potvrďte prosím pokus o přihlášení
       title: Pokus o přihlášení
     warning:
