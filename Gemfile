@@ -80,7 +80,7 @@ gem 'rails-settings-cached', '~> 0.6'
 gem 'redis', '~> 4.2', require: ['redis', 'redis/connection/hiredis']
 gem 'mario-redis-lock', '~> 1.2', require: 'redis_lock'
 gem 'rqrcode', '~> 1.2'
-gem 'ruby-progressbar', '~> 1.10'
+gem 'ruby-progressbar', '~> 1.11'
 gem 'sanitize', '~> 5.2'
 gem 'scenic', '~> 1.5'
 gem 'sidekiq', '~> 6.1'
