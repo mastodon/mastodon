@@ -105,6 +105,7 @@ cs:
       add_email_domain_block: Blokovat e-maily na této doméně
       approve: Schválit
       approve_all: Schválit vše
+      approved_msg: Žádost o registraci uživatele %{username} úspěšně schválena
       are_you_sure: Opravdu?
       avatar: Avatar
       by_domain: Doména
@@ -118,8 +119,10 @@ cs:
       confirm: Potvrdit
       confirmed: Potvrzeno
       confirming: Potvrzuji
+      delete: Smazat data
       deleted: Smazáno
       demote: Degradovat
+      destroyed_msg: "Data účtu %{username} jsou nyní ve frontě k okamžitému smazání"
       disable: Zmrazit
       disable_two_factor_authentication: Vypnout 2FA
       disabled: Blokováno
@@ -130,6 +133,7 @@ cs:
       email_status: Stav e-mailu
       enable: Rozmrazit
       enabled: Povoleno
+      enabled_msg: Účet %{username} byl úspěšně rozmrazen
       followers: Sledující
       follows: Sleduje
       header: Záhlaví
@@ -165,8 +169,10 @@ cs:
       public: Veřejný
       push_subscription_expires: Odebírání PuSH expiruje
       redownload: Obnovit profil
+      redownloaded_msg: Profil účtu %{username} byl úspěšně obnoven ze zdroje
       reject: Zamítnout
       reject_all: Zamítnout vše
+      rejected_msg: Žádost o registraci uživatele %{username} úspěšně zamítnuta
       remove_avatar: Odstranit avatar
       remove_header: Odstranit záhlaví
       resend_confirmation:
@@ -195,6 +201,7 @@ cs:
       subscribe: Odebírat
       suspended: Uživatel pozastaven
       suspension_irreversible: Data tohoto účtu byla nevratně smazána. Účet můžete obnovit, aby byl použitelný, ale nebudou obnovena žádná jeho dřívější data.
+      suspension_reversible_hint_html: Účet byl pozastaven a jeho data budou kompletně smazána %{date}. Do té doby může být tento účet kompletně obnoven do původního stavu. Chcete-li smazat všechna data účtu ihned, můžete tak učinit níže.
       time_in_queue: Čeká ve frontě %{time}
       title: Účty
       unconfirmed_email: Nepotvrzený e-mail
