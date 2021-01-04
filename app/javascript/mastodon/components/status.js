@@ -618,7 +618,7 @@ class Status extends ImmutablePureComponent {
             </div>
           </div>
         );
-      } else if (quote_status.get('visibility') === 'unlisted' && contextType !== 'home') {
+      } else if (quote_status.get('visibility') === 'unlisted' && !!contextType && ['public', 'community', 'hashtag'].includes(contextType.split(':', 2)[0])) {
         quote = (
           <div className={classNames('quote-status', `status-${quote_status.get('visibility')}`, { muted: this.props.muted })} data-id={quote_status.get('id')}>
             <div className={classNames('status__content unlisted-quote', { 'status__content--with-action': this.context.router })}>
