@@ -215,12 +215,14 @@ cs:
         create_domain_allow: Povolit doménu
         create_domain_block: Zablokovat doménu
         create_email_domain_block: Zablokovat e-maily na doméně
+        create_ip_block: Vytvoření IP pravidla
         demote_user: Snížit roli uživatele
         destroy_announcement: Odstranit oznámení
         destroy_custom_emoji: Odstranit vlastní emoji
         destroy_domain_allow: Odstranit povolenou doménu
         destroy_domain_block: Odstranit blokování domény
         destroy_email_domain_block: Odstranit blokování e-mailů na doméně
+        destroy_ip_block: Smazání IP pravidla
         destroy_status: Odstranit stav
         disable_2fa_user: Vypnout 2FA
         disable_custom_emoji: Zakázat vlastní emoji
@@ -380,6 +382,8 @@ cs:
           silence: Ztišit
           suspend: Pozastavit
         title: Nová blokace domény
+      obfuscate: Obfuskovat doménu
+      obfuscate_hint: Částečně zkreslit název domény v seznamu, pokud je povoleno zveřejnění seznamu omezených domén
       private_comment: Soukromý komentář
       private_comment_hint: Komentář o tomto omezení domény pro vnitřní použití moderátory.
       public_comment: Veřejný komentář
@@ -421,6 +425,7 @@ cs:
     instances:
       by_domain: Doména
       delivery_available: Doručení je k dispozici
+      empty: Nebyly nalezeny žádné domény.
       known_accounts:
         one: "%{count} známý účet"
         few: "%{count} známé účty"
@@ -714,6 +719,7 @@ cs:
       prefix_sign_up: Registrujte se na Mastodonu již dnes!
       suffix: S účtem budete moci sledovat lidi, psát příspěvky a vyměňovat si zprávy s uživateli z kteréhokoliv serveru Mastodon a dalších služeb!
     didnt_get_confirmation: Neobdrželi jste pokyny pro potvrzení?
+    dont_have_your_security_key: Nemáte svůj bezpečnostní klíč?
     forgot_password: Zapomněli jste heslo?
     invalid_reset_password_token: Token pro obnovení hesla je buď neplatný, nebo vypršel. Vyžádejte si prosím nový.
     login: Přihlásit
@@ -740,6 +746,7 @@ cs:
       functional: Váš účet je zcela funkční.
       pending: Vaše žádost čeká na schválení naším personálem. To může nějakou dobu trvat. Pokud bude váš požadavek schválen, obdržíte e-mail.
       redirecting_to: Váš účet je neaktivní, protože je právě přesměrován na účet %{acct}.
+    too_fast: Formulář byl odeslán příliš rychle, zkuste to znovu.
     trouble_logging_in: Problémy s přihlášením?
   authorize_follow:
     already_following: Tento účet již sledujete
@@ -1029,6 +1036,8 @@ cs:
           quadrillion: bld
           thousand: tis
           trillion: bil
+  otp_authentication:
+    setup: Nastavit
   pagination:
     newer: Novější
     next: Další
@@ -1057,6 +1066,7 @@ cs:
   relationships:
     activity: Aktivita účtu
     dormant: Nečinné
+    follow_selected_followers: Sledovat vybrané sledující
     followers: Sledující
     following: Sledovaní
     invited: Pozvánka odeslána
@@ -1153,6 +1163,7 @@ cs:
     profile: Profil
     relationships: Sledovaní a sledující
     two_factor_authentication: Dvoufázové ověřování
+    webauthn_authentication: Bezpečnostní klíče
   spam_check:
     spam_detected: Tohle je automatizované hlášení. Byl detekován spam.
   statuses:
@@ -1308,7 +1319,9 @@ cs:
       default: "%d. %b %Y, %H:%M"
       month: "%b %Y"
   two_factor_authentication:
+    add: Přidat
     disable: Vypnout
+    edit: Upravit
     enabled: Dvoufázové ověřování je zapnuto
     enabled_success: Dvoufázové ověřování bylo úspěšně zapnuto
     generate_recovery_codes: Vygenerovat záložní kódy
@@ -1316,6 +1329,7 @@ cs:
     recovery_codes: Záložní kódy pro obnovu
     recovery_codes_regenerated: Záložní kódy byly úspěšně znovu vygenerovány
     recovery_instructions_html: Ztratíte-li někdy přístup ke svému telefonu, můžete k získání přístupu k účtu použít jeden ze záložních kódů. <strong>Uchovejte tyto kódy v bezpečí</strong>. Můžete si je například vytisknout a uložit je mezi jiné důležité dokumenty.
+    webauthn: Bezpečnostní klíče
   user_mailer:
     backup_ready:
       explanation: Vyžádali jste si úplnou zálohu svého účtu Mastodon. Nyní je připravena ke stažení!
@@ -1330,6 +1344,7 @@ cs:
     warning:
       explanation:
         disable: Zatímco je váš účet zmrazen, zůstávají data vašeho účtu nedotčena. Dokud ale nebude odemčen, nemůžete vykonávat žádné akce.
+        sensitive: Vámi nahrané a odkazované soubory budou označeny jako citlivé.
         silence: Zatímco je váš účet omezen, mohou vaše tooty na tomto serveru vidět pouze lidé, kteří váš již sledují, a můžete být vyloučeni z různých veřejných seznamů. Ostatní vás však pořád mohou manuálně sledovat.
         suspend: Váš účet byl pozastaven a všechny vaše tooty a nahrané mediální soubory byly nenávratně odstraněny z tohoto serveru a serverů, na kterých jste měli sledující.
       get_in_touch: Můžete odpovědět na tento e-mail a spojit se s personálem serveru %{instance}.
@@ -1363,9 +1378,11 @@ cs:
       tips: Tipy
       title: Vítejte na palubě, %{name}!
   users:
+    blocked_email_provider: Tento poskytovatel e-mailu není povolen
     follow_limit_reached: Nemůžete sledovat více než %{limit} lidí
     generic_access_help_html: Máte potíže s přístupem ke svému účtu? Napište nám o pomoc na %{email}.
     invalid_email: E-mailová adresa je neplatná
+    invalid_email_mx: Tato e-mailová adresa zřejmě neexistuje
     invalid_otp_token: Neplatný kód pro dvoufázové ověřování
     invalid_sign_in_token: Neplatný bezpečnostní kód
     otp_lost_help_html: Pokud jste ztratili přístup k oběma, spojte se s %{email}
@@ -1375,3 +1392,16 @@ cs:
   verification:
     explanation_html: 'Můžete se <strong>ověřit jako vlastník odkazů v metadatech profilu</strong>. Pro tento účel musí stránka v odkazu obsahovat odkaz zpět na váš profil na Mastodonu. Odkaz zpět <strong>musí</strong> mít atribut <code>rel="me"</code>. Na textu odkazu nezáleží. Zde je příklad:'
     verification: Ověření
+  webauthn_credentials:
+    add: Přidat nový bezpečnostní klíč
+    create:
+      error: Při přidávání bezpečnostního klíče došlo k chybě. Zkuste to prosím znovu.
+      success: Váš bezpečnostní klíč byl úspěšně přidán.
+    delete: Odstranit
+    destroy:
+      success: Váš bezpečnostní klíč byl úspěšně odstraněn.
+    invalid_credential: Neplatný bezpečnostní klíč
+    nickname_hint: Zadejte přezdívku nového bezpečnostního klíče
+    not_enabled: Zatím jste nepovolili WebAuthn
+    not_supported: Tento prohlížeč nepodporuje bezpečnostní klíče
+    registered_on: Přidán %{date}
