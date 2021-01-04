@@ -282,7 +282,7 @@ cs:
         destroy_email_domain_block: "Uživatel %{name} odblokoval e-mailovou doménu %{target}"
         destroy_ip_block: "%{name} odstranil pravidlo pro IP %{target}"
         destroy_status: "Uživatel %{name} odstranil toot uživatele %{target}"
-        disable_2fa_user: "Uživatel %{name} vypnul dvoufaktorové ověřování pro uživatele %{target}"
+        disable_2fa_user: "Uživatel %{name} vypnul dvoufázové ověřování pro uživatele %{target}"
         disable_custom_emoji: "Uživatel %{name} zakázal emoji %{target}"
         disable_user: "Uživatel %{name} zakázal přihlašování pro uživatele %{target}"
         enable_custom_emoji: "Uživatel %{name} povolil emoji %{target}"
@@ -775,6 +775,7 @@ cs:
       redirecting_to: Váš účet je neaktivní, protože je právě přesměrován na účet %{acct}.
     too_fast: Formulář byl odeslán příliš rychle, zkuste to znovu.
     trouble_logging_in: Problémy s přihlášením?
+    use_security_key: Použít bezpečnostní klíč
   authorize_follow:
     already_following: Tento účet již sledujete
     already_requested: Tomuto účtu už jste žádost o sledování zaslali
@@ -1073,7 +1074,7 @@ cs:
           trillion: bil
   otp_authentication:
     code_hint: Pro potvrzení zadejte kód vygenerovaný Vaší ověřovací aplikací
-    description_html: Zapnete-li <strong>dvoufaktorové ověřování</strong> pomocí ověřovací aplikace, k přihlášení budete u sebe muset mít svůj mobil, který pro Vás bude generovat kódy k opsání.
+    description_html: Zapnete-li <strong>dvoufázové ověřování</strong> pomocí ověřovací aplikace, k přihlášení budete u sebe muset mít svůj mobil, který pro Vás bude generovat kódy k opsání.
     enable: Zapnout
     instructions_html: "<strong>Naskenujte tento QR kód do Google Authenticator nebo podobné TOTP aplikace na Vašem telefonu</strong>. Následně bude tato aplikace generovat kódy, které budete zadávat při přihlašování."
     manual_instructions: 'Nemůžete-li načíst QR kód a potřebujete ho zadat ručně, zde je tajemství v textové podobě:'
@@ -1203,7 +1204,7 @@ cs:
     preferences: Předvolby
     profile: Profil
     relationships: Sledovaní a sledující
-    two_factor_authentication: Dvoufaktorové ověřování
+    two_factor_authentication: Dvoufázové ověřování
     webauthn_authentication: Bezpečnostní klíče
   spam_check:
     spam_detected: Tohle je automatizované hlášení. Byl detekován spam.
@@ -1362,13 +1363,13 @@ cs:
   two_factor_authentication:
     add: Přidat
     disable: Vypnout
-    disabled_success: Dvoufaktorové ověření bylo úspěšně vypnuto
+    disabled_success: Dvoufázové ověření bylo úspěšně vypnuto
     edit: Upravit
-    enabled: Dvoufaktorové ověřování je zapnuto
-    enabled_success: Dvoufaktorové ověřování bylo úspěšně zapnuto
+    enabled: Dvoufázové ověřování je zapnuto
+    enabled_success: Dvoufázové ověřování bylo úspěšně zapnuto
     generate_recovery_codes: Vygenerovat záložní kódy
     lost_recovery_codes: Záložní kódy vám dovolí dostat se k vašemu účtu, pokud ztratíte telefon. Ztratíte-li záložní kódy, můžete je zde znovu vygenerovat. Vaše staré záložní kódy budou zneplatněny.
-    methods: Dvoufaktorové metody
+    methods: Dvoufázové metody
     otp: Ověřovací aplikace
     recovery_codes: Záložní kódy pro obnovu
     recovery_codes_regenerated: Záložní kódy byly úspěšně znovu vygenerovány
@@ -1382,7 +1383,7 @@ cs:
     sign_in_token:
       details: 'Zde jsou podrobnosti pokusu:'
       explanation: 'Zjistili jsme, že se někdo pokusil k vašemu přihlásit z neznámé IP adresy. Pokud jste to vy, zadejte níže uvedený kód na přihlašovací stránce s výzvou:'
-      further_actions: 'Pokud jste to nebyli vy, změňte prosím své heslo a zapněte si dvoufaktorové ověřování svého účtu. Můžete tak učinit hned tady:'
+      further_actions: 'Pokud jste to nebyli vy, změňte prosím své heslo a zapněte si dvoufázově ověřování svého účtu. Můžete tak učinit hned tady:'
       subject: Potvrďte prosím pokus o přihlášení
       title: Pokus o přihlášení
     warning:
@@ -1429,7 +1430,7 @@ cs:
     generic_access_help_html: Máte potíže s přístupem ke svému účtu? Napište nám o pomoc na %{email}.
     invalid_email: E-mailová adresa je neplatná
     invalid_email_mx: Tato e-mailová adresa zřejmě neexistuje
-    invalid_otp_token: Neplatný kód dvoufaktorového ověření
+    invalid_otp_token: Neplatný kód dvoufázového ověření
     invalid_sign_in_token: Neplatný bezpečnostní kód
     otp_lost_help_html: Pokud jste ztratili přístup k oběma, spojte se s %{email}
     seamless_external_login: Jste přihlášeni přes externí službu, nastavení hesla a e-mailu proto nejsou dostupná.
@@ -1453,5 +1454,5 @@ cs:
     nickname_hint: Zadejte přezdívku nového bezpečnostního klíče
     not_enabled: Zatím jste nepovolili WebAuthn
     not_supported: Tento prohlížeč nepodporuje bezpečnostní klíče
-    otp_required: Pro použití bezpečnostních klíčů prosím nejprve zapněte dvoufaktorové ověřování.
+    otp_required: Pro použití bezpečnostních klíčů prosím nejprve zapněte dvoufázové ověřování.
     registered_on: Přidán %{date}
