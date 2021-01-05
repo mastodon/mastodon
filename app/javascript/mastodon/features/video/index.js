@@ -125,7 +125,7 @@ class Video extends React.PureComponent {
   };
 
   static defaultProps = {
-    frameRate: 25,
+    frameRate: '25',
   };
 
   state = {
