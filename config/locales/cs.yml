@@ -197,6 +197,8 @@ cs:
       search: Hledat
       search_same_email_domain: Ostatní uživatelé s e-mailem na stejné doméně
       search_same_ip: Další uživatelé se stejnou IP adresou
+      sensitive: Citlivý
+      sensitized: označen jako citlivý
       shared_inbox_url: URL sdílené příchozí schránky
       show:
         created_reports: Vytvořená hlášení
@@ -211,6 +213,7 @@ cs:
       time_in_queue: Čeká ve frontě %{time}
       title: Účty
       unconfirmed_email: Nepotvrzený e-mail
+      undo_sensitized: Vrátit zpět citlivost
       undo_silenced: Zrušit ztišení
       undo_suspension: Zrušit pozastavení
       unsilenced_msg: Omezení účtu %{username} úspěšně odstraněno
@@ -651,6 +654,7 @@ cs:
         title: Populární hashtagy
     site_uploads:
       delete: Odstranit nahraný soubor
+      destroyed_msg: Upload stránky byl úspěšně smazán!
     statuses:
       back_to_account: Zpět na stránku účtu
       batch:
@@ -1212,6 +1216,11 @@ cs:
     spam_detected: Tohle je automatizované hlášení. Byl detekován spam.
   statuses:
     attached:
+      audio:
+        one: "%{count} audio"
+        few: "%{count} audia"
+        many: "%{count} audií"
+        other: "%{count} audií"
       description: 'Přiloženo: %{attached}'
       image:
         one: "%{count} obrázek"
