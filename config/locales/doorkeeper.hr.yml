@@ -3,7 +3,9 @@ hr:
   activerecord:
     attributes:
       doorkeeper/application:
-        name: Ime
+        name: Ime aplikacije
+        scopes: Opsezi
+        website: Web-stranica aplikacije
     errors:
       models:
         doorkeeper/application:
@@ -22,26 +24,27 @@ hr:
         edit: Uredi
         submit: Pošalji
       confirmations:
-        destroy: Jesi li siguran?
+        destroy: Jeste li sigurni?
       edit:
         title: Uredi aplikaciju
       form:
-        error: Ups! Provjeri svoju formu za moguće greške
+        error: Ups! Provjerite svoj obrazac za moguće greške
       help:
         native_redirect_uri: Koristi %{native_redirect_uri} za lokalne testove
-        redirect_uri: Koristi jednu liniju po URI
-        scopes: Odvoji scopes sa razmacima. Ostavi prazninu kako bi koristio zadane scopes.
+        redirect_uri: Koristi jednu liniju po URI-u
+        scopes: Odvojite opsege razmacima. Za korištenje zadanih opsega, ostavite prazno.
       index:
+        application: Aplikacija
         name: Ime
-        new: Nova Aplikacija
-        title: Tvoje aplikacije
+        new: Nova aplikacija
+        title: Vaše aplikacije
       new:
-        title: Nova Aplikacija
+        title: Nova aplikacija
       show:
-        actions: Akcije
-        application_id: Id Aplikacije
-        callback_urls: Callback urls
-        secret: Tajna
+        actions: Radnje
+        application_id: Ključ klijenta
+        callback_urls: URL-ovi povratnih poziva
+        secret: Tajna klijenta
         title: 'Aplikacija: %{name}'
     authorizations:
       buttons:
@@ -51,34 +54,34 @@ hr:
         title: Došlo je do greške
       new:
         able_to: Moći će
-        prompt: Aplikacija %{client_name} je zatražila pristup tvom računu
-        title: Traži se autorizacija
+        prompt: Aplikacija %{client_name} zatražila je pristup Vašem računu
+        title: Potrebna je autorizacija
     authorized_applications:
       buttons:
         revoke: Odbij
       confirmations:
-        revoke: Jesi li siguran?
+        revoke: Jeste li sigurni?
       index:
         application: Aplikacija
         created_at: Ovlašeno
-        title: Tvoje autorizirane aplikacije
+        title: Vaše autorizirane aplikacije
     errors:
       messages:
-        access_denied: Vlasnik resursa / autorizacijski server je odbio zahtjev.
-        invalid_client: Autentifikacija klijenta nije uspjela zbog nepoznatog klijenta, neuključene autentifikacije od strane klijenta, ili nepodržane metode autentifikacije.
-        invalid_redirect_uri: The redirect uri included nije valjan.
-        invalid_request: Zahtjevu nedostaje traženi parametar, uključuje nepodržanu vrijednost parametra, ili je na neki drugi način neispravno formiran.
-        invalid_resource_owner: The provided resource owner credentials nisu valjani, ili vlasnik resursa ne može biti nađen
-        invalid_scope: Traženi scope nije valjan, znan, ili je neispravno oblikovan.
+        access_denied: Vlasnik resursa ili autorizacijski poslužitelj odbili su zahtjev.
+        invalid_client: Autentifikacija klijenta nije uspjela zbog nepoznatog klijenta, nedostatka autentifikacije klijenta ili nepodržane metode autentifikacije.
+        invalid_redirect_uri: Sadržani uri preusmjerenja nije valjan.
+        invalid_request: Zahtjevu nedostaje traženi parametar, uključuje nepodržanu vrijednost parametra ili je na neki drugi način neispravno formatiran.
+        invalid_resource_owner: Pružene vjerodajnice vlasnika resursa nisu valjane ili nije moguće pronaći vlasnika resursa
+        invalid_scope: Traženi opseg nije valjan, znan ili je neispravno oblikovan.
         invalid_token:
           expired: Pristupni token je istekao
-          revoked: Pristupni token je odbijen
+          revoked: Pristupni token je opozvan
           unknown: Pristupni token nije valjan
-        server_error: Autorizacijski server naišao je na neočekivani uvjet, što ga je onemogućilo da ispuni zahtjev.
-        temporarily_unavailable: Autorizacijski server trenutno nije u mogućnosti  izvesti zahtjev zbog privremenog preopterećenja ili održavanja servera.
+        server_error: Autorizacijski poslužitelj naišao je na neočekivani uvjet koji sprječava provođenje zahtjeva.
+        temporarily_unavailable: Autorizacijski poslužitelj trenutno nije u mogućnosti obraditi zahtjev zbog privremenog preopterećenja ili njegovog održavanja.
         unauthorized_client: Klijent nije ovlašten izvesti zahtjev koristeći ovu metodu.
-        unsupported_grant_type: The authorization grant tip nije podržan od autorizacijskog servera.
-        unsupported_response_type: Autorizacijski server ne podržava ovaj tip odgovora.
+        unsupported_grant_type: Autorizacijski poslužitelj ne podržava ovu vrstu autorizacijskog odobrenja.
+        unsupported_response_type: Autorizacijski poslužitelj ne podržava ovu vrstu odgovora.
     flash:
       applications:
         create:
@@ -89,7 +92,7 @@ hr:
           notice: Aplikacija je ažurirana.
       authorized_applications:
         destroy:
-          notice: Aplikacija je odbijena.
+          notice: Aplikacija je opozvana.
     layouts:
       admin:
         nav:
@@ -97,6 +100,6 @@ hr:
       application:
         title: Traži se OAuth autorizacija
     scopes:
-      follow: slijediti, blokirati, deblokirati i prestati slijediti račune
-      read: čitati  podatke tvog računa
-      write: slati poruke u tvoje ime
+      follow: mijenjati odnose između računa
+      read: čitati sve podatke Vašeg računa
+      write: mijenjati sve podatke Vašeg računa

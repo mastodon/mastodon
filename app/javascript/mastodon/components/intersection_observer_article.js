@@ -2,10 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import scheduleIdleTask from '../features/ui/util/schedule_idle_task';
 import getRectFromEntry from '../features/ui/util/get_rect_from_entry';
-import { is } from 'immutable';
 
-// Diff these props in the "rendered" state
-const updateOnPropsForRendered = ['id', 'index', 'listLength'];
 // Diff these props in the "unrendered" state
 const updateOnPropsForUnrendered = ['id', 'index', 'listLength', 'cachedHeight'];
 
@@ -33,9 +30,12 @@ export default class IntersectionObserverArticle extends React.Component {
       // If we're going from rendered to unrendered (or vice versa) then update
       return true;
     }
-    // Otherwise, diff based on props
-    const propsToDiff = isUnrendered ? updateOnPropsForUnrendered : updateOnPropsForRendered;
-    return !propsToDiff.every(prop => is(nextProps[prop], this.props[prop]));
+    // If we are and remain hidden, diff based on props
+    if (isUnrendered) {
+      return !updateOnPropsForUnrendered.every(prop => nextProps[prop] === this.props[prop]);
+    }
+    // Else, assume the children have changed
+    return true;
   }
 
   componentDidMount () {

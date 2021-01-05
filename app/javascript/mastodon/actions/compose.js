@@ -152,9 +152,7 @@ export function submitCompose(routerHistory) {
         'Idempotency-Key': getState().getIn(['compose', 'idempotencyKey']),
       },
     }).then(function (response) {
-      if (response.data.visibility === 'direct' && getState().getIn(['conversations', 'mounted']) <= 0 && routerHistory) {
-        routerHistory.push('/timelines/direct');
-      } else if (routerHistory && routerHistory.location.pathname === '/statuses/new' && window.history.state) {
+      if (routerHistory && routerHistory.location.pathname === '/statuses/new' && window.history.state) {
         routerHistory.goBack();
       }
 
@@ -163,7 +161,6 @@ export function submitCompose(routerHistory) {
 
       // To make the app more responsive, immediately push the status
       // into the columns
-
       const insertIfOnline = timelineId => {
         const timeline = getState().getIn(['timelines', timelineId]);
 
@@ -179,6 +176,7 @@ export function submitCompose(routerHistory) {
       if (response.data.in_reply_to_id === null && response.data.visibility === 'public') {
         insertIfOnline('community');
         insertIfOnline('public');
+        insertIfOnline(`account:${response.data.account.id}`);
       }
     }).catch(function (error) {
       dispatch(submitComposeFail(error));

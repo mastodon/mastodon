@@ -30,14 +30,15 @@ class ProcessMentionsService < BaseService
       if mention_undeliverable?(mentioned_account)
         begin
           mentioned_account = resolve_account_service.call(Regexp.last_match(1))
-        rescue Goldfinger::Error, HTTP::Error, OpenSSL::SSL::SSLError, Mastodon::UnexpectedResponseError
+        rescue Webfinger::Error, HTTP::Error, OpenSSL::SSL::SSLError, Mastodon::UnexpectedResponseError
           mentioned_account = nil
         end
       end
 
       next match if mention_undeliverable?(mentioned_account) || mentioned_account&.suspended?
 
-      mentions << mentioned_account.mentions.where(status: status).first_or_create(status: status)
+      mention = mentioned_account.mentions.new(status: status)
+      mentions << mention if mention.save
 
       "@#{mentioned_account.acct}"
     end
@@ -64,9 +65,9 @@ class ProcessMentionsService < BaseService
     mentioned_account = mention.account
 
     if mentioned_account.local?
-      LocalNotificationWorker.perform_async(mentioned_account.id, mention.id, mention.class.name)
+      LocalNotificationWorker.perform_async(mentioned_account.id, mention.id, mention.class.name, :mention)
     elsif mentioned_account.activitypub?
-      ActivityPub::DeliveryWorker.perform_async(activitypub_json, mention.status.account_id, mentioned_account.inbox_url)
+      ActivityPub::DeliveryWorker.perform_async(activitypub_json, mention.status.account_id, mentioned_account.inbox_url, { synchronize_followers: !mention.status.distributable? })
     end
   end
 

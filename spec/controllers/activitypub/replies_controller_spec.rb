@@ -7,6 +7,22 @@ RSpec.describe ActivityPub::RepliesController, type: :controller do
   let(:remote_reply_id) { nil }
   let(:remote_account) { nil }
 
+  shared_examples 'cachable response' do
+    it 'does not set cookies' do
+      expect(response.cookies).to be_empty
+      expect(response.headers['Set-Cookies']).to be nil
+    end
+
+    it 'does not set sessions' do
+      response
+      expect(session).to be_empty
+    end
+
+    it 'returns public Cache-Control header' do
+      expect(response.headers['Cache-Control']).to include 'public'
+    end
+  end
+
   before do
     allow(controller).to receive(:signed_request_account).and_return(remote_account)
 
@@ -21,8 +37,32 @@ RSpec.describe ActivityPub::RepliesController, type: :controller do
 
   describe 'GET #index' do
     context 'with no signature' do
-      before do
-        get :index, params: { account_username: status.account.username, status_id: status.id }
+      subject(:response) { get :index, params: { account_username: status.account.username, status_id: status.id } }
+      subject(:body) { body_as_json }
+
+      context 'when account is permanently suspended' do
+        let(:parent_visibility) { :public }
+
+        before do
+          status.account.suspend!
+          status.account.deletion_request.destroy
+        end
+
+        it 'returns http gone' do
+          expect(response).to have_http_status(410)
+        end
+      end
+
+      context 'when account is temporarily suspended' do
+        let(:parent_visibility) { :public }
+
+        before do
+          status.account.suspend!
+        end
+
+        it 'returns http forbidden' do
+          expect(response).to have_http_status(403)
+        end
       end
 
       context 'when status is public' do
@@ -36,17 +76,13 @@ RSpec.describe ActivityPub::RepliesController, type: :controller do
           expect(response.content_type).to eq 'application/activity+json'
         end
 
-        it 'returns public Cache-Control header' do
-          expect(response.headers['Cache-Control']).to include 'public'
-        end
+        it_behaves_like 'cachable response'
 
         it 'returns items with account\'s own replies' do
-          json = body_as_json
-
-          expect(json[:first]).to be_a Hash
-          expect(json[:first][:items]).to be_an Array
-          expect(json[:first][:items].size).to eq 1
-          expect(json[:first][:items].all? { |item| item[:to].include?(ActivityPub::TagManager::COLLECTIONS[:public]) || item[:cc].include?(ActivityPub::TagManager::COLLECTIONS[:public]) }).to be true
+          expect(body[:first]).to be_a Hash
+          expect(body[:first][:items]).to be_an Array
+          expect(body[:first][:items].size).to eq 1
+          expect(body[:first][:items].all? { |item| item[:to].include?(ActivityPub::TagManager::COLLECTIONS[:public]) || item[:cc].include?(ActivityPub::TagManager::COLLECTIONS[:public]) }).to be true
         end
       end
 
@@ -87,9 +123,7 @@ RSpec.describe ActivityPub::RepliesController, type: :controller do
             expect(response.content_type).to eq 'application/activity+json'
           end
 
-          it 'returns public Cache-Control header' do
-            expect(response.headers['Cache-Control']).to include 'public'
-          end
+          it_behaves_like 'cachable response'
 
           context 'without only_other_accounts' do
             it 'returns items with account\'s own replies' do

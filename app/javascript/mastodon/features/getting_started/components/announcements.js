@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import IconButton from 'mastodon/components/icon_button';
 import Icon from 'mastodon/components/icon';
 import { defineMessages, injectIntl, FormattedMessage, FormattedDate } from 'react-intl';
-import { autoPlayGif, reduceMotion } from 'mastodon/initial_state';
+import { autoPlayGif, reduceMotion, disableSwiping } from 'mastodon/initial_state';
 import elephantUIPlane from 'mastodon/../images/elephant_ui_plane.svg';
 import { mascot } from 'mastodon/initial_state';
 import unicodeMapping from 'mastodon/features/emoji/emoji_unicode_mapping_light';
@@ -15,6 +15,7 @@ import EmojiPickerDropdown from 'mastodon/features/compose/containers/emoji_pick
 import AnimatedNumber from 'mastodon/components/animated_number';
 import TransitionMotion from 'react-motion/lib/TransitionMotion';
 import spring from 'react-motion/lib/spring';
+import { assetHost } from 'mastodon/utils/config';
 
 const messages = defineMessages({
   close: { id: 'lightbox.close', defaultMessage: 'Close' },
@@ -152,8 +153,6 @@ class Content extends ImmutablePureComponent {
   }
 
 }
-
-const assetHost = process.env.CDN_HOST || '';
 
 class Emoji extends React.PureComponent {
 
@@ -397,7 +396,7 @@ class Announcements extends ImmutablePureComponent {
   _markAnnouncementAsRead () {
     const { dismissAnnouncement, announcements } = this.props;
     const { index } = this.state;
-    const announcement = announcements.get(index);
+    const announcement = announcements.get(announcements.size - 1 - index);
     if (!announcement.get('read')) dismissAnnouncement(announcement.get('id'));
   }
 
@@ -436,8 +435,9 @@ class Announcements extends ImmutablePureComponent {
                 removeReaction={this.props.removeReaction}
                 intl={intl}
                 selected={index === idx}
+                disabled={disableSwiping}
               />
-            ))}
+            )).reverse()}
           </ReactSwipeableViews>
 
           {announcements.size > 1 && (

@@ -63,7 +63,7 @@ module Mastodon
         ips       = []
 
         Resolv::DNS.open do |dns|
-          dns.timeouts = 1
+          dns.timeouts = 5
           hostnames = dns.getresources(email_domain_block.domain, Resolv::DNS::Resource::IN::MX).to_a.map { |e| e.exchange.to_s }
 
           ([email_domain_block.domain] + hostnames).uniq.each do |hostname|

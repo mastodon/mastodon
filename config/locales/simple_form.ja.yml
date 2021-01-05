@@ -65,8 +65,17 @@ ja:
         data: 他の Mastodon サーバーからエクスポートしたCSVファイルを選択して下さい
       invite_request:
         text: このサーバーは現在承認制です。申請を承認する際に役立つメッセージを添えてください
+      ip_block:
+        comment: オプションです。このルールを追加した理由の覚え書きにご利用ください。
+        expires_in: IPアドレスは有限のリソースです。複数人で共有されたり変更されることもあります。そのため無期限にIPアドレスをブロックするのは推奨されません。
+        ip: IPv4またはIPv6アドレスを入力してください。CIDR構文を用いて範囲指定でブロックすることもできます。自分自身を締め出さないよう注意してください！
+        severities:
+          no_access: すべてのリソースへのアクセスをブロックします
+          sign_up_requires_approval: 承認するまで新規登録が完了しなくなります
+        severity: このIPに対する措置を選択してください
       sessions:
         otp: '携帯電話のアプリで生成された二段階認証コードを入力するか、リカバリーコードを使用してください:'
+        webauthn: USBキーの場合は、必ず挿入し、必要に応じてタップしてください。
       tag:
         name: 視認性向上などのためにアルファベット大文字小文字の変更のみ行うことができます
       user:
@@ -90,9 +99,10 @@ ja:
         type: アクション
         types:
           disable: ログインを無効化
-          none: 何もしない
+          none: 警告を送信
+          sensitive: 閲覧注意
           silence: サイレンス
-          suspend: 停止しアカウントのデータを恒久的に削除する
+          suspend: 停止
         warning_preset_id: プリセット警告文を使用
       announcement:
         all_day: 終日
@@ -116,6 +126,7 @@ ja:
         expires_in: 有効期限
         fields: プロフィール補足情報
         header: ヘッダー
+        honeypot: "%{label} (入力しない)"
         inbox_url: リレーサーバーの inbox URL
         irreversible: 隠すのではなく除外する
         locale: 言語
@@ -135,6 +146,7 @@ ja:
         setting_default_privacy: 投稿の公開範囲
         setting_default_sensitive: メディアを常に閲覧注意としてマークする
         setting_delete_modal: トゥートを削除する前に確認ダイアログを表示する
+        setting_disable_swiping: スワイプでの切り替えを無効にする
         setting_display_media: メディアの表示
         setting_display_media_default: 標準
         setting_display_media_hide_all: 非表示
@@ -168,6 +180,13 @@ ja:
         comment: コメント
       invite_request:
         text: 意気込みをお聞かせください
+      ip_block:
+        comment: コメント
+        ip: IP
+        severities:
+          no_access: ブロック
+          sign_up_requires_approval: 登録を制限
+        severity: ルール
       notification_emails:
         digest: タイムラインからピックアップしてメールで通知する
         favourite: お気に入り登録された時
@@ -188,4 +207,7 @@ ja:
     required:
       mark: "*"
       text: 必須
+    title:
+      sessions:
+        webauthn: セキュリティキーを使用してサインインする
     'yes': はい

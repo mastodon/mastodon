@@ -5,19 +5,47 @@ require 'rails_helper'
 describe StatusesController do
   render_views
 
+  shared_examples 'cachable response' do
+    it 'does not set cookies' do
+      expect(response.cookies).to be_empty
+      expect(response.headers['Set-Cookies']).to be nil
+    end
+
+    it 'does not set sessions' do
+      expect(session).to be_empty
+    end
+
+    it 'returns public Cache-Control header' do
+      expect(response.headers['Cache-Control']).to include 'public'
+    end
+  end
+
   describe 'GET #show' do
     let(:account) { Fabricate(:account) }
     let(:status)  { Fabricate(:status, account: account) }
 
-    context 'when account is suspended' do
-      let(:account) { Fabricate(:account, suspended: true) }
-
+    context 'when account is permanently suspended' do
       before do
+        account.suspend!
+        account.deletion_request.destroy
+
         get :show, params: { account_username: account.username, id: status.id }
       end
 
       it 'returns http gone' do
         expect(response).to have_http_status(410)
+      end
+    end
+
+    context 'when account is temporarily suspended' do
+      before do
+        account.suspend!
+
+        get :show, params: { account_username: account.username, id: status.id }
+      end
+
+      it 'returns http forbidden' do
+        expect(response).to have_http_status(403)
       end
     end
 
@@ -80,9 +108,7 @@ describe StatusesController do
           expect(response.headers['Vary']).to eq 'Accept'
         end
 
-        it 'returns public Cache-Control header' do
-          expect(response.headers['Cache-Control']).to include 'public'
-        end
+        it_behaves_like 'cachable response'
 
         it 'returns Content-Type header' do
           expect(response.headers['Content-Type']).to include 'application/activity+json'
@@ -470,9 +496,7 @@ describe StatusesController do
             expect(response.headers['Vary']).to eq 'Accept'
           end
 
-          it 'returns public Cache-Control header' do
-            expect(response.headers['Cache-Control']).to include 'public'
-          end
+          it_behaves_like 'cachable response'
 
           it 'returns Content-Type header' do
             expect(response.headers['Content-Type']).to include 'application/activity+json'
@@ -665,15 +689,28 @@ describe StatusesController do
     let(:account) { Fabricate(:account) }
     let(:status)  { Fabricate(:status, account: account) }
 
-    context 'when account is suspended' do
-      let(:account) { Fabricate(:account, suspended: true) }
-
+    context 'when account is permanently suspended' do
       before do
+        account.suspend!
+        account.deletion_request.destroy
+
         get :activity, params: { account_username: account.username, id: status.id }
       end
 
       it 'returns http gone' do
         expect(response).to have_http_status(410)
+      end
+    end
+
+    context 'when account is temporarily suspended' do
+      before do
+        account.suspend!
+
+        get :activity, params: { account_username: account.username, id: status.id }
+      end
+
+      it 'returns http forbidden' do
+        expect(response).to have_http_status(403)
       end
     end
 

@@ -72,6 +72,7 @@ class PreviewCard < ApplicationRecord
   class << self
     private
 
+    # rubocop:disable Naming/MethodParameterName
     def image_styles(f)
       styles = {
         original: {
@@ -85,6 +86,7 @@ class PreviewCard < ApplicationRecord
       styles[:original][:format] = 'jpg' if f.instance.image_content_type == 'image/gif'
       styles
     end
+    # rubocop:enable Naming/MethodParameterName
   end
 
   private

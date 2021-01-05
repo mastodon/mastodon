@@ -1,6 +1,5 @@
 import api, { getLinks } from '../api';
-import openDB from '../storage/db';
-import { importAccount, importFetchedAccount, importFetchedAccounts } from './importer';
+import { importFetchedAccount, importFetchedAccounts } from './importer';
 
 export const ACCOUNT_FETCH_REQUEST = 'ACCOUNT_FETCH_REQUEST';
 export const ACCOUNT_FETCH_SUCCESS = 'ACCOUNT_FETCH_SUCCESS';
@@ -74,45 +73,13 @@ export const FOLLOW_REQUEST_REJECT_REQUEST = 'FOLLOW_REQUEST_REJECT_REQUEST';
 export const FOLLOW_REQUEST_REJECT_SUCCESS = 'FOLLOW_REQUEST_REJECT_SUCCESS';
 export const FOLLOW_REQUEST_REJECT_FAIL    = 'FOLLOW_REQUEST_REJECT_FAIL';
 
-function getFromDB(dispatch, getState, index, id) {
-  return new Promise((resolve, reject) => {
-    const request = index.get(id);
-
-    request.onerror = reject;
-
-    request.onsuccess = () => {
-      if (!request.result) {
-        reject();
-        return;
-      }
-
-      dispatch(importAccount(request.result));
-      resolve(request.result.moved && getFromDB(dispatch, getState, index, request.result.moved));
-    };
-  });
-}
-
 export function fetchAccount(id) {
   return (dispatch, getState) => {
     dispatch(fetchRelationships([id]));
-
-    if (getState().getIn(['accounts', id], null) !== null) {
-      return;
-    }
-
     dispatch(fetchAccountRequest(id));
 
-    openDB().then(db => getFromDB(
-      dispatch,
-      getState,
-      db.transaction('accounts', 'read').objectStore('accounts').index('id'),
-      id,
-    ).then(() => db.close(), error => {
-      db.close();
-      throw error;
-    })).catch(() => api(getState).get(`/api/v1/accounts/${id}`).then(response => {
+    api(getState).get(`/api/v1/accounts/${id}`).then(response => {
       dispatch(importFetchedAccount(response.data));
-    })).then(() => {
       dispatch(fetchAccountSuccess());
     }).catch(error => {
       dispatch(fetchAccountFail(id, error));
@@ -142,14 +109,14 @@ export function fetchAccountFail(id, error) {
   };
 };
 
-export function followAccount(id, reblogs = true) {
+export function followAccount(id, options = { reblogs: true }) {
   return (dispatch, getState) => {
     const alreadyFollowing = getState().getIn(['relationships', id, 'following']);
     const locked = getState().getIn(['accounts', id, 'locked'], false);
 
     dispatch(followAccountRequest(id, locked));
 
-    api(getState).post(`/api/v1/accounts/${id}/follow`, { reblogs }).then(response => {
+    api(getState).post(`/api/v1/accounts/${id}/follow`, options).then(response => {
       dispatch(followAccountSuccess(response.data, alreadyFollowing));
     }).catch(error => {
       dispatch(followAccountFail(error, locked));
@@ -290,11 +257,11 @@ export function unblockAccountFail(error) {
 };
 
 
-export function muteAccount(id, notifications) {
+export function muteAccount(id, notifications, duration=0) {
   return (dispatch, getState) => {
     dispatch(muteAccountRequest(id));
 
-    api(getState).post(`/api/v1/accounts/${id}/mute`, { notifications }).then(response => {
+    api(getState).post(`/api/v1/accounts/${id}/mute`, { notifications, duration }).then(response => {
       // Pass in entire statuses map so we can use it to filter stuff in different parts of the reducers
       dispatch(muteAccountSuccess(response.data, getState().get('statuses')));
     }).catch(error => {

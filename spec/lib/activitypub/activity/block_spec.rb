@@ -28,6 +28,28 @@ RSpec.describe ActivityPub::Activity::Block do
     end
   end
 
+  context 'when the recipient is already blocked' do
+    before do
+      sender.block!(recipient, uri: 'old')
+    end
+
+    describe '#perform' do
+      subject { described_class.new(json, sender) }
+
+      before do
+        subject.perform
+      end
+
+      it 'creates a block from sender to recipient' do
+        expect(sender.blocking?(recipient)).to be true
+      end
+
+      it 'sets the uri to that of last received block activity' do
+        expect(sender.block_relationships.find_by(target_account: recipient).uri).to eq 'foo'
+      end
+    end
+  end
+
   context 'when the recipient follows the sender' do
     before do
       recipient.follow!(sender)

@@ -78,6 +78,7 @@ class FetchLinkCardService < BaseService
     uri.host.blank? || TagManager.instance.local_url?(uri.to_s) || !%w(http https).include?(uri.scheme)
   end
 
+  # rubocop:disable Naming/MethodParameterName
   def mention_link?(a)
     @status.mentions.any? do |mention|
       a['href'] == ActivityPub::TagManager.instance.url_for(mention.account)
@@ -88,6 +89,7 @@ class FetchLinkCardService < BaseService
     # Avoid links for hashtags and mentions (microformats)
     a['rel']&.include?('tag') || a['class']&.match?(/u-url|h-card/) || mention_link?(a)
   end
+  # rubocop:enable Naming/MethodParameterName
 
   def attempt_oembed
     service         = FetchOEmbedService.new

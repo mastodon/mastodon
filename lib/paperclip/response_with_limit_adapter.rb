@@ -16,10 +16,10 @@ module Paperclip
     private
 
     def cache_current_values
-      @original_filename = filename_from_content_disposition || filename_from_path || 'data'
+      @original_filename = filename_from_content_disposition.presence || filename_from_path.presence || 'data'
       @size = @target.response.content_length
       @tempfile = copy_to_tempfile(@target)
-      @content_type = @target.response.mime_type || ContentTypeDetector.new(@tempfile.path).detect
+      @content_type = ContentTypeDetector.new(@tempfile.path).detect
     end
 
     def copy_to_tempfile(source)

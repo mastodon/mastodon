@@ -29,14 +29,14 @@ fr:
         current_password: Pour des raisons de sécurité, veuillez saisir le mot de passe du compte courant
         current_username: Pour confirmer, veuillez saisir le nom d'utilisateur du compte courant
         digest: Uniquement envoyé après une longue période d’inactivité et uniquement si vous avez reçu des messages personnels pendant votre absence
-        discoverable: L’annuaire des profils est une autre façon pour votre compte d’atteindre une plus grand audience
+        discoverable: L’annuaire des profils est une autre façon pour votre compte d’atteindre une plus grande audience
         email: Vous recevrez un courriel de confirmation
         fields: Vous pouvez avoir jusqu’à 4 éléments affichés en tant que tableau sur votre profil
         header: Au format PNG, GIF ou JPG. %{size} maximum. Sera réduit à %{dimensions}px
         inbox_url: Copiez l’URL depuis la page d’accueil du relais que vous souhaitez utiliser
         irreversible: Les pouets filtrés disparaîtront irrémédiablement, même si le filtre est supprimé plus tard
         locale: La langue de l’interface, des courriels et des notifications
-        locked: Vous devrez approuver chaque abonné·e et vos statuts ne s’afficheront qu’à vos abonné·e·s
+        locked: Nécessite que vous approuviez manuellement chaque abonné·e
         password: Utilisez au moins 8 caractères
         phrase: Sera filtré sans que la casse ou l’avertissement sur le contenu du pouet soit pris en compte
         scopes: À quelles APIs l’application sera autorisée à accéder. Si vous sélectionnez une permission générale, vous n’avez pas besoin de sélectionner les permissions plus précises.
@@ -65,8 +65,17 @@ fr:
         data: Un fichier CSV généré par un autre serveur de Mastodon
       invite_request:
         text: Cela nous aidera à considérer votre demande
+      ip_block:
+        comment: Optionnel. Pour ne pas oublier pourquoi vous avez ajouté cette règle.
+        expires_in: Les adresses IP sont une ressource finie, elles sont parfois partagées et changent souvent de mains. Pour cette raison, les blocages d’IP indéfiniment ne sont pas recommandés.
+        ip: Entrez une adresse IPv4 ou IPv6. Vous pouvez bloquer des plages entières en utilisant la syntaxe CIDR. Faites attention à ne pas vous bloquer vous-même !
+        severities:
+          no_access: Bloquer l’accès à toutes les ressources
+          sign_up_requires_approval: Les nouvelles inscriptions nécessiteront votre approbation
+        severity: Choisir ce qui se passera avec les requêtes de cette adresse IP
       sessions:
         otp: 'Entrez le code d’authentification à deux facteurs généré par l’application de votre téléphone ou utilisez un de vos codes de récupération :'
+        webauthn: Si c'est une clé USB, assurez-vous de l'insérer et, si nécessaire, de la tapoter.
       tag:
         name: Vous ne pouvez modifier que la casse des lettres, par exemple, pour le rendre plus lisible
       user:
@@ -91,6 +100,7 @@ fr:
         types:
           disable: Désactiver
           none: Ne rien faire
+          sensitive: Sensible
           silence: Masquer
           suspend: Suspendre et supprimer les données du compte de manière irréversible
         warning_preset_id: Utiliser un modèle d’avertissement
@@ -116,6 +126,7 @@ fr:
         expires_in: Expire après
         fields: Métadonnées du profil
         header: Image d’en-tête
+        honeypot: "%{label} (ne pas remplir)"
         inbox_url: URL de la boîte de relais
         irreversible: Supprimer plutôt que masquer
         locale: Langue de l’interface
@@ -135,6 +146,7 @@ fr:
         setting_default_privacy: Confidentialité des statuts
         setting_default_sensitive: Toujours marquer les médias comme sensibles
         setting_delete_modal: Afficher une fenêtre de confirmation avant de supprimer un pouet
+        setting_disable_swiping: Désactiver les actions par glissement
         setting_display_media: Affichage des médias
         setting_display_media_default: Défaut
         setting_display_media_hide_all: Masquer tout
@@ -161,22 +173,29 @@ fr:
       featured_tag:
         name: Hashtag
       interactions:
-        must_be_follower: Masquer les notifications des personnes qui ne vous suivent pas
-        must_be_following: Masquer les notifications des personnes que vous ne suivez pas
+        must_be_follower: Bloquer les notifications des personnes qui ne vous suivent pas
+        must_be_following: Bloquer les notifications des personnes que vous ne suivez pas
         must_be_following_dm: Bloquer les messages directs des personnes que vous ne suivez pas
       invite:
         comment: Commentaire
       invite_request:
         text: Pourquoi voulez-vous vous inscrire ?
+      ip_block:
+        comment: Commentaire
+        ip: IP
+        severities:
+          no_access: Bloquer l’accès
+          sign_up_requires_approval: Limite des inscriptions
+        severity: Règle
       notification_emails:
         digest: Envoyer des courriels récapitulatifs
-        favourite: Envoyer un courriel lorsque quelqu’un ajoute mes statuts à ses favoris
-        follow: Envoyer un courriel lorsque quelqu’un me suit
-        follow_request: Envoyer un courriel lorsque quelqu’un demande à me suivre
-        mention: Envoyer un courriel lorsque quelqu’un me mentionne
+        favourite: Quelqu’un ajoute mon pouet à ses favoris
+        follow: Quelqu’un vient de me suivre
+        follow_request: Quelqu’un demande à me suivre
+        mention: Quelqu’un me mentionne
         pending_account: Nouveau compte en attente d’approbation
-        reblog: Quelqu’un a partagé votre pouet
-        report: Envoyer un courriel lorsqu’un nouveau rapport est soumis
+        reblog: Quelqu’un partage mon pouet
+        report: Un nouveau rapport est envoyé
         trending_tag: Un hashtag non approuvé est dans les tendances
       tag:
         listable: Autoriser ce hashtag à apparaître dans les recherches et dans l’annuaire des profils
@@ -187,5 +206,8 @@ fr:
     recommended: Recommandé
     required:
       mark: "*"
-      text: Champs requis
+      text: champs requis
+    title:
+      sessions:
+        webauthn: Utilisez l'une de vos clés de sécurité pour vous connecter
     'yes': Oui

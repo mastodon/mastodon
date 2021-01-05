@@ -28,7 +28,7 @@ class ApplicationController < ActionController::Base
   rescue_from ActiveRecord::RecordNotFound, with: :not_found
   rescue_from Mastodon::NotPermittedError, with: :forbidden
   rescue_from HTTP::Error, OpenSSL::SSL::SSLError, with: :internal_server_error
-  rescue_from Mastodon::RaceConditionError, with: :service_unavailable
+  rescue_from Mastodon::RaceConditionError, Seahorse::Client::NetworkingError, Stoplight::Error::RedLight, with: :service_unavailable
   rescue_from Mastodon::RateLimitExceededError, with: :too_many_requests
 
   before_action :store_current_location, except: :raise_not_found, unless: :devise_controller?
@@ -55,7 +55,7 @@ class ApplicationController < ActionController::Base
   end
 
   def store_current_location
-    store_location_for(:user, request.url) unless request.format == :json
+    store_location_for(:user, request.url) unless [:json, :rss].include?(request.format&.to_sym)
   end
 
   def require_admin!

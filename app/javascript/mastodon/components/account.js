@@ -8,6 +8,7 @@ import IconButton from './icon_button';
 import { defineMessages, injectIntl } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { me } from '../initial_state';
+import RelativeTimestamp from './relative_timestamp';
 
 const messages = defineMessages({
   follow: { id: 'account.follow', defaultMessage: 'Follow' },
@@ -107,11 +108,17 @@ class Account extends ImmutablePureComponent {
       }
     }
 
+    let mute_expires_at;
+    if (account.get('mute_expires_at')) {
+      mute_expires_at =  <div><RelativeTimestamp timestamp={account.get('mute_expires_at')} futureDate /></div>;
+    }
+
     return (
       <div className='account'>
         <div className='account__wrapper'>
           <Permalink key={account.get('id')} className='account__display-name' title={account.get('acct')} href={account.get('url')} to={`/accounts/${account.get('id')}`}>
             <div className='account__avatar-wrapper'><Avatar account={account} size={36} /></div>
+            {mute_expires_at}
             <DisplayName account={account} />
           </Permalink>
 

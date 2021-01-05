@@ -18,7 +18,7 @@ module Paperclip
       @type_from_mime_magic ||= begin
         begin
           File.open(@file.path) do |file|
-            MimeMagic.by_magic(file)&.type
+            MimeMagic.by_magic(file)&.type || ''
           end
         rescue Errno::ENOENT
           ''
