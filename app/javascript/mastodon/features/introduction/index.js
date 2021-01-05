@@ -9,6 +9,7 @@ import screenHello from '../../../images/screen_hello.svg';
 import screenFederation from '../../../images/screen_federation.svg';
 import screenInteractions from '../../../images/screen_interactions.svg';
 import logoTransparent from '../../../images/logo_transparent.svg';
+import { disableSwiping } from 'mastodon/initial_state';
 
 const FrameWelcome = ({ domain, onNext }) => (
   <div className='introduction__frame'>
@@ -171,7 +172,7 @@ class Introduction extends React.PureComponent {
 
     return (
       <div className='introduction'>
-        <ReactSwipeableViews index={currentIndex} onChangeIndex={this.handleSwipe} className='introduction__pager'>
+        <ReactSwipeableViews index={currentIndex} onChangeIndex={this.handleSwipe} disabled={disableSwiping} className='introduction__pager'>
           {pages.map((page, i) => (
             <div key={i} className={classNames('introduction__frame-wrapper', { 'active': i === currentIndex })}>{page}</div>
           ))}

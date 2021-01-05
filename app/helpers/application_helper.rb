@@ -7,6 +7,13 @@ module ApplicationHelper
     follow
   ).freeze
 
+  RTL_LOCALES = %i(
+    ar
+    fa
+    he
+    ku
+  ).freeze
+
   def active_nav_class(*paths)
     paths.any? { |path| current_page?(path) } ? 'active' : ''
   end
@@ -44,7 +51,7 @@ module ApplicationHelper
   end
 
   def locale_direction
-    if [:ar, :fa, :he].include?(I18n.locale)
+    if RTL_LOCALES.include?(I18n.locale)
       'rtl'
     else
       'ltr'
@@ -86,6 +93,16 @@ module ApplicationHelper
       fa_icon('lock', title: I18n.t('statuses.visibilities.private'))
     elsif status.direct_visibility?
       fa_icon('envelope', title: I18n.t('statuses.visibilities.direct'))
+    end
+  end
+
+  def interrelationships_icon(relationships, account_id)
+    if relationships.following[account_id] && relationships.followed_by[account_id]
+      fa_icon('exchange', title: I18n.t('relationships.mutual'), class: 'fa-fw active passive')
+    elsif relationships.following[account_id]
+      fa_icon(locale_direction == 'ltr' ? 'arrow-right' : 'arrow-left', title: I18n.t('relationships.following'), class: 'fa-fw active')
+    elsif relationships.followed_by[account_id]
+      fa_icon(locale_direction == 'ltr' ? 'arrow-left' : 'arrow-right', title: I18n.t('relationships.followers'), class: 'fa-fw passive')
     end
   end
 

@@ -60,6 +60,17 @@ da:
         title: 2FA gendannelseskoder er ændret
       unlock_instructions:
         subject: 'Mastodon: Instruktioner for oplåsning'
+      webauthn_credential:
+        added:
+          subject: 'Mastodon: Ny sikkerhedsnøgle'
+          title: En ny sikkerhedsnøgle er blevet tilføjet
+        deleted:
+          subject: 'Mastodon: Sikkerhedsnøgle slettet'
+          title: En af dine sikkerhedsnøgler er blevet slettet
+      webauthn_disabled:
+        title: Sikkerhedsnøgler deaktiveret
+      webauthn_enabled:
+        title: Sikkerhedsnøgler aktiveret
     omniauth_callbacks:
       failure: Kunne ikke godkende dig fra %{kind} fordi "%{reason}".
       success: Godkendelse fra %{kind} konto lykkedes.

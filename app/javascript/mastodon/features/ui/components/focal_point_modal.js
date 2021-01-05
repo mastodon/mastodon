@@ -18,8 +18,11 @@ import { length } from 'stringz';
 import { Tesseract as fetchTesseract } from 'mastodon/features/ui/util/async-components';
 import GIFV from 'mastodon/components/gifv';
 import { me } from 'mastodon/initial_state';
+// eslint-disable-next-line import/no-extraneous-dependencies
 import tesseractCorePath from 'tesseract.js-core/tesseract-core.wasm.js';
+// eslint-disable-next-line import/extensions
 import tesseractWorkerPath from 'tesseract.js/dist/worker.min.js';
+import { assetHost } from 'mastodon/utils/config';
 
 const messages = defineMessages({
   close: { id: 'lightbox.close', defaultMessage: 'Close' },
@@ -49,8 +52,6 @@ const mapDispatchToProps = (dispatch, { id }) => ({
 const removeExtraLineBreaks = str => str.replace(/\n\n/g, '******')
   .replace(/\n/g, ' ')
   .replace(/\*\*\*\*\*\*/g, '\n\n');
-
-const assetHost = process.env.CDN_HOST || '';
 
 class ImageLoader extends React.PureComponent {
 
@@ -387,6 +388,7 @@ class FocalPointModal extends ImmutablePureComponent {
             {media.get('type') === 'video' && (
               <Video
                 preview={media.get('preview_url')}
+                frameRate={media.getIn(['meta', 'original', 'frame_rate'])}
                 blurhash={media.get('blurhash')}
                 src={media.get('url')}
                 detailed

@@ -79,7 +79,8 @@ module.exports = {
       chunkFilename: 'css/[name]-[contenthash:8].chunk.css',
     }),
     new AssetsManifestPlugin({
-      integrity: false,
+      integrity: true,
+      integrityHashes: ['sha256'],
       entrypoints: true,
       writeToDisk: true,
       publicPath: true,

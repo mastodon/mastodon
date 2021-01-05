@@ -472,21 +472,14 @@ sr-Latn:
   themes:
     default: Mastodont
   two_factor_authentication:
-    code_hint: Unesite kod sa Vaše aplikacije za proveru identiteta da potvrdite
-    description_html: Ako uključite <strong>dvofaktorsku identifikaciju</strong>, moraćete da imate telefon sa sobom da biste mogli da se prijavite. Telefon će onda generisati tokene za Vašu prijavu.
     disable: Isključi
-    enable: Uključi
     enabled: Dvofaktorska identifikacija je uključena
     enabled_success: Dvofaktorska identifikacija je uspešno uključena
     generate_recovery_codes: Generiši kodove za oporavak
-    instructions_html: "<strong>Skenirajte ovaj QR kod u Google Authenticator ili nekoj sličnoj TOTP aplikaciji na Vašem telefonu</strong>. Od sada, ta aplikacija će Vam generisati tokene koje morate uneti da biste se prijavili."
     lost_recovery_codes: Kodovi za oporavak Vam omogućavaju da povratite pristup nalogu ako izgubite telefon. Ako izgubite kodove za oporavak, možete ih regenerisati ovde. Od tog trenutka, stari kodovi za oporavak više ne važe.
-    manual_instructions: 'Ukoliko ne možete da skenirate QR kod i morate ga unesete ručno, evo je ogoljena šifra:'
     recovery_codes: Napravite rezervu kodova za oporavak
     recovery_codes_regenerated: Kodovi za oporavak uspešno regenerisani
     recovery_instructions_html: Ako ikada izgubite pristup telefonu, možete iskoristiti kodove za oporavak date ispod da povratite pristup nalogu. <strong>Držite kodove za oporavak na sigurnom</strong>. Na primer, odštampajte ih i čuvajte ih sa ostalim važnim dokumentima.
-    setup: Nameštanje
-    wrong_code: Uneseni kod nije ispravan! Da li su vremena na serveru i na uređaju ispravna?
   users:
     invalid_email: Adresa e-pošte nije ispravna
     invalid_otp_token: Neispravni dvofaktorski kod

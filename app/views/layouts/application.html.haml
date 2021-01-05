@@ -6,6 +6,7 @@
 
     - if cdn_host?
       %link{ rel: 'dns-prefetch', href: cdn_host }/
+      %meta{ name: 'cdn-host', content: cdn_host }/
 
     - if storage_host?
       %link{ rel: 'dns-prefetch', href: storage_host }/
@@ -20,10 +21,10 @@
 
     %title= content_for?(:page_title) ? safe_join([yield(:page_title).chomp.html_safe, title], ' - ') : title
 
-    = stylesheet_pack_tag 'common', media: 'all'
-    = stylesheet_pack_tag current_theme, media: 'all'
-    = javascript_pack_tag 'common', integrity: true, crossorigin: 'anonymous'
-    = javascript_pack_tag "locale_#{I18n.locale}", integrity: true, crossorigin: 'anonymous'
+    = stylesheet_pack_tag 'common', media: 'all', crossorigin: 'anonymous'
+    = stylesheet_pack_tag current_theme, media: 'all', crossorigin: 'anonymous'
+    = javascript_pack_tag 'common', crossorigin: 'anonymous'
+    = javascript_pack_tag "locale_#{I18n.locale}", crossorigin: 'anonymous'
     = csrf_meta_tags
     %meta{ name: 'style-nonce', content: request.content_security_policy_nonce }
 

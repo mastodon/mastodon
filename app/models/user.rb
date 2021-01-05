@@ -41,6 +41,7 @@
 #  sign_in_token             :string
 #  sign_in_token_sent_at     :datetime
 #  webauthn_id               :string
+#  sign_up_ip                :inet
 #
 
 class User < ApplicationRecord
@@ -62,7 +63,7 @@ class User < ApplicationRecord
   devise :two_factor_backupable,
          otp_number_of_backup_codes: 10
 
-  devise :registerable, :recoverable, :rememberable, :trackable, :validatable,
+  devise :registerable, :recoverable, :rememberable, :validatable,
          :confirmable
 
   include Omniauthable
@@ -81,12 +82,20 @@ class User < ApplicationRecord
   has_many :webauthn_credentials, dependent: :destroy
 
   has_one :invite_request, class_name: 'UserInviteRequest', inverse_of: :user, dependent: :destroy
-  accepts_nested_attributes_for :invite_request, reject_if: ->(attributes) { attributes['text'].blank? }
+  accepts_nested_attributes_for :invite_request, reject_if: ->(attributes) { attributes['text'].blank? && !Setting.require_invite_text }
+  validates :invite_request, presence: true, on: :create, if: :invite_text_required?
 
   validates :locale, inclusion: I18n.available_locales.map(&:to_s), if: :locale?
   validates_with BlacklistedEmailValidator, on: :create
   validates_with EmailMxValidator, if: :validate_email_dns?
   validates :agreement, acceptance: { allow_nil: false, accept: [true, 'true', '1'] }, on: :create
+
+  # Those are honeypot/antispam fields
+  attr_accessor :registration_form_time, :website, :confirm_password
+
+  validates_with RegistrationFormTimeValidator, on: :create
+  validates :website, absence: true, on: :create
+  validates :confirm_password, absence: true, on: :create
 
   scope :recent, -> { order(id: :desc) }
   scope :pending, -> { where(approved: false) }
@@ -97,7 +106,7 @@ class User < ApplicationRecord
   scope :inactive, -> { where(arel_table[:current_sign_in_at].lt(ACTIVE_DURATION.ago)) }
   scope :active, -> { confirmed.where(arel_table[:current_sign_in_at].gteq(ACTIVE_DURATION.ago)).joins(:account).where(accounts: { suspended_at: nil }) }
   scope :matches_email, ->(value) { where(arel_table[:email].matches("#{value}%")) }
-  scope :matches_ip, ->(value) { left_joins(:session_activations).where('users.current_sign_in_ip <<= ?', value).or(left_joins(:session_activations).where('users.last_sign_in_ip <<= ?', value)).or(left_joins(:session_activations).where('session_activations.ip <<= ?', value)) }
+  scope :matches_ip, ->(value) { left_joins(:session_activations).where('users.current_sign_in_ip <<= ?', value).or(left_joins(:session_activations).where('users.sign_up_ip <<= ?', value)).or(left_joins(:session_activations).where('users.last_sign_in_ip <<= ?', value)).or(left_joins(:session_activations).where('session_activations.ip <<= ?', value)) }
   scope :emailable, -> { confirmed.enabled.joins(:account).merge(Account.searchable) }
 
   before_validation :sanitize_languages
@@ -115,10 +124,11 @@ class User < ApplicationRecord
            :reduce_motion, :system_font_ui, :noindex, :theme, :display_media, :hide_network,
            :expand_spoilers, :default_language, :aggregate_reblogs, :show_application,
            :advanced_layout, :use_blurhash, :use_pending_items, :trends, :crop_images,
+           :disable_swiping,
            to: :settings, prefix: :setting, allow_nil: false
 
   attr_reader :invite_code, :sign_in_token_attempt
-  attr_writer :external
+  attr_writer :external, :bypass_invite_request_check
 
   def confirmed?
     confirmed_at.present?
@@ -163,12 +173,30 @@ class User < ApplicationRecord
     prepare_new_user! if new_user && approved?
   end
 
+  def update_sign_in!(request, new_sign_in: false)
+    old_current, new_current = current_sign_in_at, Time.now.utc
+    self.last_sign_in_at     = old_current || new_current
+    self.current_sign_in_at  = new_current
+
+    old_current, new_current = current_sign_in_ip, request.remote_ip
+    self.last_sign_in_ip     = old_current || new_current
+    self.current_sign_in_ip  = new_current
+
+    if new_sign_in
+      self.sign_in_count ||= 0
+      self.sign_in_count  += 1
+    end
+
+    save(validate: false) unless new_record?
+    prepare_returning_user!
+  end
+
   def pending?
     !approved?
   end
 
   def active_for_authentication?
-    true
+    !account.memorial?
   end
 
   def suspicious_sign_in?(ip)
@@ -176,7 +204,7 @@ class User < ApplicationRecord
   end
 
   def functional?
-    confirmed? && approved? && !disabled? && !account.suspended? && account.moved_to_account_id.nil?
+    confirmed? && approved? && !disabled? && !account.suspended? && !account.memorial? && account.moved_to_account_id.nil?
   end
 
   def unconfirmed_or_pending?
@@ -192,11 +220,6 @@ class User < ApplicationRecord
 
     update!(approved: true)
     prepare_new_user!
-  end
-
-  def update_tracked_fields!(request)
-    super
-    prepare_returning_user!
   end
 
   def otp_enabled?
@@ -330,6 +353,7 @@ class User < ApplicationRecord
 
       arr << [current_sign_in_at, current_sign_in_ip] if current_sign_in_ip.present?
       arr << [last_sign_in_at, last_sign_in_ip] if last_sign_in_ip.present?
+      arr << [created_at, sign_up_ip] if sign_up_ip.present?
 
       arr.sort_by { |pair| pair.first || Time.now.utc }.uniq(&:last).reverse!
     end
@@ -384,7 +408,17 @@ class User < ApplicationRecord
   end
 
   def set_approved
-    self.approved = open_registrations? || valid_invitation? || external?
+    self.approved = begin
+      if sign_up_from_ip_requires_approval?
+        false
+      else
+        open_registrations? || valid_invitation? || external?
+      end
+    end
+  end
+
+  def sign_up_from_ip_requires_approval?
+    !sign_up_ip.nil? && IpBlock.where(severity: :sign_up_requires_approval).where('ip >>= ?', sign_up_ip.to_s).exists?
   end
 
   def open_registrations?
@@ -393,6 +427,10 @@ class User < ApplicationRecord
 
   def external?
     !!@external
+  end
+
+  def bypass_invite_request_check?
+    @bypass_invite_request_check
   end
 
   def sanitize_languages
@@ -431,5 +469,9 @@ class User < ApplicationRecord
 
   def validate_email_dns?
     email_changed? && !(Rails.env.test? || Rails.env.development?)
+  end
+
+  def invite_text_required?
+    Setting.require_invite_text && !invited? && !external? && !bypass_invite_request_check?
   end
 end

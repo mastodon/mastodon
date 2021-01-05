@@ -7,6 +7,6 @@
     - domain_blocks.each do |domain_block|
       %tr
         %td.nowrap
-          %span{ title: domain_block.domain }= domain_block.domain
+          %span{ title: "SHA-256: #{domain_block.domain_digest}" }= domain_block.public_domain
         %td
           = domain_block.public_comment if display_blocks_rationale?

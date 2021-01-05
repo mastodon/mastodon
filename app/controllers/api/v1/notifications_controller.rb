@@ -14,7 +14,7 @@ class Api::V1::NotificationsController < Api::BaseController
   end
 
   def show
-    @notification = current_account.notifications.find(params[:id])
+    @notification = current_account.notifications.without_suspended.find(params[:id])
     render json: @notification, serializer: REST::NotificationSerializer
   end
 
@@ -40,7 +40,7 @@ class Api::V1::NotificationsController < Api::BaseController
   end
 
   def browserable_account_notifications
-    current_account.notifications.browserable(exclude_types, from_account)
+    current_account.notifications.without_suspended.browserable(exclude_types, from_account)
   end
 
   def target_statuses_from_notifications

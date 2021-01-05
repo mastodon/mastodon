@@ -85,23 +85,23 @@ class Status < ApplicationRecord
   scope :recent, -> { reorder(id: :desc) }
   scope :remote, -> { where(local: false).where.not(uri: nil) }
   scope :local,  -> { where(local: true).or(where(uri: nil)) }
-
   scope :with_accounts, ->(ids) { where(id: ids).includes(:account) }
   scope :without_replies, -> { where('statuses.reply = FALSE OR statuses.in_reply_to_account_id = statuses.account_id') }
   scope :without_reblogs, -> { where('statuses.reblog_of_id IS NULL') }
   scope :with_public_visibility, -> { where(visibility: :public) }
-  scope :tagged_with, ->(tag) { joins(:statuses_tags).where(statuses_tags: { tag_id: tag }) }
+  scope :tagged_with, ->(tag_ids) { joins(:statuses_tags).where(statuses_tags: { tag_id: tag_ids }) }
+  scope :in_chosen_languages, ->(account) { where(language: nil).or where(language: account.chosen_languages) }
   scope :excluding_silenced_accounts, -> { left_outer_joins(:account).where(accounts: { silenced_at: nil }) }
   scope :including_silenced_accounts, -> { left_outer_joins(:account).where.not(accounts: { silenced_at: nil }) }
   scope :not_excluded_by_account, ->(account) { where.not(account_id: account.excluded_from_timeline_account_ids) }
   scope :not_domain_blocked_by_account, ->(account) { account.excluded_from_timeline_domains.blank? ? left_outer_joins(:account) : left_outer_joins(:account).where('accounts.domain IS NULL OR accounts.domain NOT IN (?)', account.excluded_from_timeline_domains) }
-  scope :tagged_with_all, ->(tags) {
-    Array(tags).map(&:id).map(&:to_i).reduce(self) do |result, id|
+  scope :tagged_with_all, ->(tag_ids) {
+    Array(tag_ids).reduce(self) do |result, id|
       result.joins("INNER JOIN statuses_tags t#{id} ON t#{id}.status_id = statuses.id AND t#{id}.tag_id = #{id}")
     end
   }
-  scope :tagged_with_none, ->(tags) {
-    Array(tags).map(&:id).map(&:to_i).reduce(self) do |result, id|
+  scope :tagged_with_none, ->(tag_ids) {
+    Array(tag_ids).reduce(self) do |result, id|
       result.joins("LEFT OUTER JOIN statuses_tags t#{id} ON t#{id}.status_id = statuses.id AND t#{id}.tag_id = #{id}")
             .where("t#{id}.tag_id IS NULL")
     end
@@ -228,14 +228,6 @@ class Status < ApplicationRecord
     @emojis = CustomEmoji.from_text(fields.join(' '), account.domain)
   end
 
-  def mark_for_mass_destruction!
-    @marked_for_mass_destruction = true
-  end
-
-  def marked_for_mass_destruction?
-    @marked_for_mass_destruction
-  end
-
   def replies_count
     status_stat&.replies_count || 0
   end
@@ -275,26 +267,6 @@ class Status < ApplicationRecord
   class << self
     def selectable_visibilities
       visibilities.keys - %w(direct limited)
-    end
-
-    def in_chosen_languages(account)
-      where(language: nil).or where(language: account.chosen_languages)
-    end
-
-    def as_public_timeline(account = nil, local_only = false)
-      query = timeline_scope(local_only).without_replies
-
-      apply_timeline_filters(query, account, [:local, true].include?(local_only))
-    end
-
-    def as_tag_timeline(tag, account = nil, local_only = false)
-      query = timeline_scope(local_only).tagged_with(tag)
-
-      apply_timeline_filters(query, account, local_only)
-    end
-
-    def as_outbox_timeline(account)
-      where(account: account, visibility: :public)
     end
 
     def favourites_map(status_ids, account_id)
@@ -373,51 +345,6 @@ class Status < ApplicationRecord
         status&.distributable? ? status : nil
       end.compact
     end
-
-    private
-
-    def timeline_scope(scope = false)
-      starting_scope = case scope
-                       when :local, true
-                         Status.local
-                       when :remote
-                         Status.remote
-                       else
-                         Status
-                       end
-
-      starting_scope
-        .with_public_visibility
-        .without_reblogs
-    end
-
-    def apply_timeline_filters(query, account, local_only)
-      if account.nil?
-        filter_timeline_default(query)
-      else
-        filter_timeline_for_account(query, account, local_only)
-      end
-    end
-
-    def filter_timeline_for_account(query, account, local_only)
-      query = query.not_excluded_by_account(account)
-      query = query.not_domain_blocked_by_account(account) unless local_only
-      query = query.in_chosen_languages(account) if account.chosen_languages.present?
-      query.merge(account_silencing_filter(account))
-    end
-
-    def filter_timeline_default(query)
-      query.excluding_silenced_accounts
-    end
-
-    def account_silencing_filter(account)
-      if account.silenced?
-        including_myself = left_outer_joins(:account).where(account_id: account.id).references(:accounts)
-        excluding_silenced_accounts.or(including_myself)
-      else
-        excluding_silenced_accounts
-      end
-    end
   end
 
   def status_stat
@@ -495,7 +422,7 @@ class Status < ApplicationRecord
   end
 
   def decrement_counter_caches
-    return if direct_visibility? || marked_for_mass_destruction?
+    return if direct_visibility?
 
     account&.decrement_count!(:statuses_count)
     reblog&.decrement_count!(:reblogs_count) if reblog?
@@ -505,7 +432,7 @@ class Status < ApplicationRecord
   def unlink_from_conversations
     return unless direct_visibility?
 
-    mentioned_accounts = mentions.includes(:account).map(&:account)
+    mentioned_accounts = (association(:mentions).loaded? ? mentions : mentions.includes(:account)).map(&:account)
     inbox_owners       = mentioned_accounts.select(&:local?) + (account.local? ? [account] : [])
 
     inbox_owners.each do |inbox_owner|

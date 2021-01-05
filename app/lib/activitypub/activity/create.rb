@@ -111,7 +111,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
         created_at: @object['published'],
         override_timestamps: @options[:override_timestamps],
         reply: @object['inReplyTo'].present?,
-        sensitive: @object['sensitive'] || false,
+        sensitive: @account.sensitized? || @object['sensitive'] || false,
         visibility: visibility_from_audience,
         thread: replied_to_status,
         conversation: conversation_from_uri(@object['conversation']),
@@ -228,6 +228,8 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     emoji ||= CustomEmoji.new(domain: @account.domain, shortcode: shortcode, uri: uri)
     emoji.image_remote_url = image_url
     emoji.save
+  rescue Seahorse::Client::NetworkingError
+    nil
   end
 
   def process_attachments
@@ -250,6 +252,8 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
         media_attachment.save
       rescue Mastodon::UnexpectedResponseError, HTTP::TimeoutError, HTTP::ConnectionError, OpenSSL::SSL::SSLError
         RedownloadMediaWorker.perform_in(rand(30..600).seconds, media_attachment.id)
+      rescue Seahorse::Client::NetworkingError
+        nil
       end
     end
 

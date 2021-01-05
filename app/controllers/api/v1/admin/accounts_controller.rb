@@ -22,6 +22,7 @@ class Api::V1::Admin::AccountsController < Api::BaseController
     active
     pending
     disabled
+    sensitized
     silenced
     suspended
     username
@@ -58,7 +59,20 @@ class Api::V1::Admin::AccountsController < Api::BaseController
 
   def reject
     authorize @account.user, :reject?
-    SuspendAccountService.new.call(@account, reserve_email: false, reserve_username: false)
+    DeleteAccountService.new.call(@account, reserve_email: false, reserve_username: false)
+    render json: @account, serializer: REST::Admin::AccountSerializer
+  end
+
+  def destroy
+    authorize @account, :destroy?
+    Admin::AccountDeletionWorker.perform_async(@account.id)
+    render json: @account, serializer: REST::Admin::AccountSerializer
+  end
+
+  def unsensitive
+    authorize @account, :unsensitive?
+    @account.unsensitize!
+    log_action :unsensitive, @account
     render json: @account, serializer: REST::Admin::AccountSerializer
   end
 
@@ -72,6 +86,7 @@ class Api::V1::Admin::AccountsController < Api::BaseController
   def unsuspend
     authorize @account, :unsuspend?
     @account.unsuspend!
+    Admin::UnsuspensionWorker.perform_async(@account.id)
     log_action :unsuspend, @account
     render json: @account, serializer: REST::Admin::AccountSerializer
   end
