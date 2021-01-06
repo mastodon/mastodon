@@ -154,6 +154,11 @@
     display: block;
     width: 100%;
   }
+
+  .layout-multiple-columns &.button--with-bell {
+    font-size: 12px;
+    padding: 0 8px;
+  }
 }
 
 .column__wrapper {
@@ -2879,6 +2884,7 @@ a.account__display-name {
     flex: 0 0 auto;
     padding: 10px;
     padding-top: 20px;
+    z-index: 1;
 
     ul {
       margin-bottom: 10px;
@@ -7193,21 +7199,6 @@ noscript {
   .video-player,
   .audio-player {
     border-radius: 0;
-  }
-
-  @media screen and (max-width: 415px) {
-    width: 210px;
-    bottom: 10px;
-    right: 10px;
-
-    &__footer {
-      display: none;
-    }
-
-    .video-player,
-    .audio-player {
-      border-radius: 0 0 4px 4px;
-    }
   }
 }
 

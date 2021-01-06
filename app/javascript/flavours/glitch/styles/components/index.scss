@@ -141,6 +141,11 @@
     display: block;
     width: 100%;
   }
+
+  .layout-multiple-columns &.button--with-bell {
+    font-size: 12px;
+    padding: 0 8px;
+  }
 }
 
 .icon-button {
@@ -923,6 +928,7 @@
     flex: 0 0 auto;
     padding: 10px;
     padding-top: 20px;
+    z-index: 1;
 
     ul {
       margin-bottom: 10px;

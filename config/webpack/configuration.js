@@ -2,19 +2,19 @@
 
 const { basename, dirname, extname, join, resolve } = require('path');
 const { env } = require('process');
-const { safeLoad } = require('js-yaml');
+const { load } = require('js-yaml');
 const { lstatSync, readFileSync } = require('fs');
 const glob = require('glob');
 
 const configPath = resolve('config', 'webpacker.yml');
-const settings = safeLoad(readFileSync(configPath), 'utf8')[env.RAILS_ENV || env.NODE_ENV];
+const settings = load(readFileSync(configPath), 'utf8')[env.RAILS_ENV || env.NODE_ENV];
 const flavourFiles = glob.sync('app/javascript/flavours/*/theme.yml');
 const skinFiles = glob.sync('app/javascript/skins/*/*');
 const flavours = {};
 
 const core = function () {
   const coreFile = resolve('app', 'javascript', 'core', 'theme.yml');
-  const data = safeLoad(readFileSync(coreFile), 'utf8');
+  const data = load(readFileSync(coreFile), 'utf8');
   if (!data.pack_directory) {
     data.pack_directory = dirname(coreFile);
   }
@@ -23,7 +23,7 @@ const core = function () {
 
 for (let i = 0; i < flavourFiles.length; i++) {
   const flavourFile = flavourFiles[i];
-  const data = safeLoad(readFileSync(flavourFile), 'utf8');
+  const data = load(readFileSync(flavourFile), 'utf8');
   data.name = basename(dirname(flavourFile));
   data.skin = {};
   if (!data.pack_directory) {

@@ -79,9 +79,14 @@
   background: $ui-highlight-color;
   color: $primary-text-color;
   text-transform: none;
-  line-height: 36px;
+  line-height: 1.2;
   height: auto;
-  padding: 3px 15px;
+  min-height: 36px;
+  min-width: 88px;
+  white-space: normal;
+  overflow-wrap: break-word;
+  hyphens: auto;
+  padding: 0 15px;
   border: 0;
 
   svg {
@@ -120,6 +125,12 @@
       display: none;
     }
   }
+}
+
+a.button.logo-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .embed,

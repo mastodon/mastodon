@@ -47,6 +47,7 @@ oc:
     what_is_mastodon: Qu’es Mastodon ?
   accounts:
     choices_html: 'Recomandacions de %{name} :'
+    endorsements_hint: Podètz recomandar personas que seguètz a partir de l’interfàcia web, apreissaràn aquí.
     featured_tags_hint: Podètz indicar d’etiquetas que mostrarem aquí.
     follow: Sègre
     followers:
@@ -710,8 +711,8 @@ oc:
     prompt: Confirmatz lo senhal per dire de contunhar
   date:
     formats:
-      default: "%e %B de %Y"
-      with_month_name: "%e %B de %Y"
+      default: "%-d %B de %Y"
+      with_month_name: "%-d %B de %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count} h"
@@ -986,13 +987,13 @@ oc:
     activity: Activitat del compte
     dormant: Inactiu
     followers: Seguidors
-    following: Aboanements
+    following: Abonaments
     invited: Convidat
     last_active: Darrièra activitat
     most_recent: Mai recenta
     moved: Mudat
     mutual: Mutuala
-    primary: Pirmària
+    primary: Primària
     relationship: Relacion
     remove_selected_domains: Levar totes los seguidors dels domenis seleccionats
     remove_selected_followers: Levar los seguidors seleccionats
@@ -1225,7 +1226,7 @@ oc:
     mastodon-light: Mastodon (Clar)
   time:
     formats:
-      default: Lo %e %B de %Y a %Ho%M
+      default: Lo %-d %B de %Y a %Ho%M
       month: "%B de %Y"
   two_factor_authentication:
     add: Ajustar

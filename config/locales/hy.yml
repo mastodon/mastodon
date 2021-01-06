@@ -45,6 +45,7 @@ hy:
       silenced_title: Լռեցուած սպասարկիչներ
       suspended: Ոչ մի տուեալ այս սպասարկիչներից չի գործարկուում, պահուում կամ փոխանակուում, կատարել որեւէ գործողութիւն կամ հաղորդակցութիւն այս սպասարկիչի օգտատէրերի հետ անհնար է․
       suspended_title: Կասեցուած սպասարկիչներ
+    unavailable_content_html: Մաստոդոնն ընդհանրապէս թոյլատրում է տեսնել բովանդակութիւնը եւ շփուել այլ դաշնեզերքի այլ հանգոյցների հետ։ Սրանք բացառութիւններն են, որոնք կիրառուել են հէնց այս հանգոյցի համար։
     user_count_after:
       one: օգտատեր
       other: օգտատերեր
@@ -52,11 +53,14 @@ hy:
     what_is_mastodon: Ի՞նչ է Մաստոդոնը
   accounts:
     choices_html: "%{name}-ի ընտրանի՝"
+    endorsements_hint: Վէբ ինտերֆէյսից կարող ես ցուցադրել մարդկանց, որոնց հետեւում ես, եւ նրանք կը ցուցադրուեն այստեղ։
+    featured_tags_hint: Դու կարող ես ցուցադրել յատուկ պիտակներ, որոնք կը ցուցադրուեն այստեղ։
     follow: Հետևել
     followers:
       one: Հետևորդ
       other: Հետևորդներ
     following: Հետևում եք
+    instance_actor_flash: Այս հաշիւը վիրտուալ դերասան է, որը ներկայացնում է հանգոյցը, եւ ոչ որեւէ անհատ օգտատիրոջ։ Այն օգտագործուում է ֆեդերացիայի նպատակներով եւ չպէտք է կասեցուի։
     joined: Միացել են %{date}
     last_active: վերջին թութը
     link_verified_on: Սոյն յղման տիրապետումը ստուգուած է՝ %{date}֊ին
@@ -67,6 +71,8 @@ hy:
     nothing_here: Այստեղ բան չկայ
     people_followed_by: Մարդիկ, որոնց %{name}ը հետեւում է
     people_who_follow: Մարդիկ, որոնք հետեւում են %{name}ին
+    pin_errors:
+      following: Դու պէտք է հետեւես մարդուն, որին ցանկանում ես խրախուսել
     posts:
       one: Թութ
       other: Թութերից
@@ -83,6 +89,7 @@ hy:
   admin:
     account_actions:
       action: Կատարել գործողութիւն
+      title: Իրականացնել մոդերատորական գործողութիւններ %{acct}-ի վրայ
     account_moderation_notes:
       create: Թողնել նշում
       created_msg: Մոդերացիոն նոթը բարեյաջող ստեղծուեց
@@ -92,6 +99,7 @@ hy:
       add_email_domain_block: Արգելափակել էլ․ փոստի տիրոյթը
       approve: Ընդունել
       approve_all: Ընդունել բոլորը
+      approved_msg: Յաջողութեամբ հաստատուեց %{username}֊ի գրանցման յայտը
       are_you_sure: Վստա՞հ ես
       avatar: Աւատար
       by_domain: Դոմէն
@@ -108,6 +116,7 @@ hy:
       delete: Ջնջել տվյալները
       deleted: Ջնջված է
       demote: Աստիճանազրկել
+      destroyed_msg: "%{username}֊ի տուեալները հերթագրուել է անյապաղ ջնջուողների շարքում"
       disable: Անջատել
       disable_two_factor_authentication: Անջատել 2FA
       disabled: Անջատված է
@@ -118,10 +127,12 @@ hy:
       email_status: Էլ․ փոստի կարգավիճակ
       enable: Միացնել
       enabled: Միացված է
+      enabled_msg: "%{username}֊ի հաշիւը բարեյաջող ապասառեցուեց"
       followers: Հետևորդներ
       follows: Հետևողներ
       header: Վերնագիր
       inbox_url: Մուտքային URL
+      invite_request_text: Միանալու պատճառները
       invited_by: Հրաւիրուել է
       ip: IP
       joined: Միացած է
@@ -133,6 +144,8 @@ hy:
       login_status: Մուտքի կարգավիճակ
       media_attachments: Մեդիա կցորդներ
       memorialize: Դարձնել հիշատակարան
+      memorialized: Յիշեցուած
+      memorialized_msg: Բարեյաջող %{username}֊ը փոխուեց յիշատակի հաշուի
       moderation:
         active: Ակտիվ
         all: Բոլորը
@@ -143,6 +156,7 @@ hy:
       moderation_notes: Մոդերացիայի նշումներ
       most_recent_activity: Վերջին ակտիւութիւնը
       most_recent_ip: Վերջին IP
+      no_account_selected: Ոչ մի հաշիւ չի փոխուել, ինչպէս նաեւ, ոչ մեկը չի ընտրուել
       no_limits_imposed: Սահմանափակումներ չկան
       not_subscribed: Բաժանորդագրուած չէ
       pending: Սպասում է վերանայման
@@ -150,11 +164,16 @@ hy:
       promote: Աջակցել
       protocol: Հաղորդակարգ
       public: Հրապարակային
+      push_subscription_expires: PuSH բաժանորդագրութիւնը սպառուում է
       redownload: Թարմացնել հաշիւը
+      redownloaded_msg: "%{username}֊ի հաշիւը սկզբնաղբիւրից բարեյաջող թարմացուեց"
       reject: Մերժել
       reject_all: Մերժել բոլորը
+      rejected_msg: Յաջողութեամբ մերժուեց %{username}֊ի գրանցման յայտը
       remove_avatar: Հեռացնել աւատարը
       remove_header: Հեռացնել գլխագիրը
+      removed_avatar_msg: Յաջողութեամբ հեռացուեց %{username}֊ի աւատարը
+      removed_header_msg: Յաջողութեամբ հեռացուեց %{username}֊ի գլխանկարը
       resend_confirmation:
         already_confirmed: Օգտատէրն արդէն հաստատուած է
         send: Հաստատման իմակն ուղարկել կրկին
@@ -172,6 +191,8 @@ hy:
       search_same_email_domain: Այլ օգտատէրեր նոյն էլ․ փոստի դոմէյնով
       search_same_ip: Այլ օգտատէրեր նոյն IP֊ով
       sensitive: Զգայուն
+      sensitized: նշուեց որպէս դիւրազգաց
+      shared_inbox_url: Ընդհանուր մուտքային URL
       show:
         created_reports: Կազմել բողոքներ
         targeted_reports: Այլոց կողմից բողոքարկուած
@@ -180,15 +201,22 @@ hy:
       statuses: Գրառումներ
       subscribe: Բաժանորդագրուել
       suspended: Կասեցուած
+      suspension_irreversible: Հաշուի տուեալները անդարձ ջնջուեցին։ Դու կարող ես ապակասեցնել հաշիւը՝ դարձնելով այն կիրառելի, բայց այն չի վերականգնի նախկին տուեալները։
+      suspension_reversible_hint_html: Հաշիւը կասեցուեց, եւ տուեալներն ամբողջապէս կը վերացուի %{date}ին։ Մինչեւ այդ, հաշիւը կարող է վերականգնուել՝ առանց կողմնակի ազդեցութիւնների։ Եթէ ցանկանում ես վերացնել հաշուի տուեալները միանգամից, կարող ես դա անել ներքեւում։
       time_in_queue: Հերթում է %{time}
       title: Հաշիւներ
       unconfirmed_email: Չհաստատուած էլ․ հասցէ
+      undo_sensitized: Ետարկել դիւրազգացութիւնը
       undo_silenced: Ետարկել լռեցումը
       undo_suspension: Ետարկել կասեցումը
+      unsilenced_msg: "%{username}֊ի հաշիւը բարեյաջող դարձաւ անսահմանափակ"
       unsubscribe: Ապաբաժանորդագրուել
+      unsuspended_msg: "%{username}֊ի հաշիւ բարեյաջող ապակասեցուեց։"
       username: Մուտքանուն
+      view_domain: Տեսնել տիրոյթի ամփոփումը
       warn: Նախազգուշացում
       web: Վեբ
+      whitelisted: Թոյլատրել ֆեդերացիայի համար
     action_logs:
       action_types:
         assigned_to_self_report: Բողոքել
@@ -197,9 +225,13 @@ hy:
         create_account_warning: Ստեղծել զգուշացում
         create_announcement: Ստեղծել յայտարարութիւն
         create_custom_emoji: Ստեղծել սեփական էմոջիները
+        create_domain_allow: Ստեղծել տիրոյթի թոյլտուութիւն
+        create_domain_block: Ստեղծել տիրոյթի արգելափակում
         create_email_domain_block: Ստեղծել էլ․ հասցէի դոմէյնի արգելափակում
         create_ip_block: Ստեղծել IP կանոն
+        demote_user: Աստիճանազրկել օգտատիրոջը
         destroy_announcement: Ջնջել յայտարարութիւնը
+        destroy_custom_emoji: Ջնջել էմոջին
         destroy_domain_allow: Ջնջել դոմէնի թոյլտուութիւնը
         destroy_domain_block: Ապաարգելափակել դոմէնը
         destroy_email_domain_block: Ապաարգելափակել էլ․ հասցէի դոմէնը
@@ -216,13 +248,16 @@ hy:
         reopen_report: Վերաբացել բողոքը
         reset_password_user: Վերականգնել գաղտանաբառը
         resolve_report: Լուծարել զեկոյցը
+        sensitive_account: Հաշուի մեդիան նշել որպէս դիւրազգաց
         silence_account: Լռեցնել հաշիւը
         suspend_account: Կասեցնել հաշիւը
         unassigned_report: Հանել բողոքը
+        unsensitive_account: Հաշուի մեդիան չնշել որպէս դիւրազգաց
         unsilence_account: Լսել հաշուին
         unsuspend_account: Ապակասեցնել հաշիւը
         update_announcement: Թարմացնել յայտարարութիւնը
         update_custom_emoji: Թարմացնել սեփական էմոջիները
+        update_domain_block: Թարմացնել տիրոյթի արգելափակումը
         update_status: Թարմացնել գրառումը
       actions:
         assigned_to_self_report: "%{name} բողոքել է %{target} իրենց համար"
@@ -230,13 +265,23 @@ hy:
         confirm_user: "%{name} հաստատել է %{target} օգտատիրոջ էլ․ հասցէն"
         create_account_warning: "%{name} զգուշացրել է %{target}ին"
         create_announcement: "%{name} ստեղծեց նոր յայտարարութիւն %{target}"
+        create_custom_emoji: "%{name} վերբեռնել է նոր էմոջի՝ %{target}"
+        create_domain_allow: "%{name} թոյլատրել ֆեդերացիան %{target} տիրոյթի հետ"
+        create_domain_block: "%{name} արգելափակեց %{target} տիրոյթը"
         create_email_domain_block: "%{name} արգելափակեց էլ․ փոստի տիրոյթ %{target}"
+        create_ip_block: "%{name} ստեղծեց կանոն %{target} IP֊ի համար"
         demote_user: "%{name} աստիճանազրկեց օգտատիրոջ %{target}"
         destroy_announcement: "%{name} ջնջեց յայտարարութիւն %{target}"
+        destroy_custom_emoji: "%{name} ջնջել է %{target} էմոջին"
+        destroy_domain_allow: "%{name} չթոյլատրեց ֆեդերացիան %{target} տիրոյթի հետ"
         destroy_domain_block: "%{name} ապաարգելափակեց տիրոյթ %{target}"
         destroy_email_domain_block: "%{name} ապաարգելափակեց էլ․ փոստի տիրոյթ %{target}"
+        destroy_ip_block: "%{name} ջնջեց կանոնը %{target} IP֊ի համար"
         destroy_status: "%{name} ջնջեց %{target}ի գրառում"
+        disable_2fa_user: "%{name}ը կասեցրեց 2F պահանջը %{target} օգտատիրոջ համար"
+        disable_custom_emoji: "%{name} ապակտիւացրել է %{target} էմոջին"
         disable_user: "%{name} անջատել է մուտքը %{target} օգտատիրոջ համար"
+        enable_custom_emoji: "%{name} ակտիվացրել է %{target} էմոջին"
         enable_user: "%{name} թոյլատրեց մուտք %{target} օգտատիրոջ համար"
         memorialize_account: "%{name} դարձրեց %{target}ի հաշիւը յիշատակի էջ"
         promote_user: "%{name} աջակցեց օգտատիրոջը %{target}"
@@ -244,9 +289,17 @@ hy:
         reopen_report: "%{name} վերաբացեց բողոք %{target}"
         reset_password_user: "%{name} վերականգնեց օգտատիրոջ գաղտնաբառը %{target}"
         resolve_report: "%{name} լուծարեց բողոքը %{target}"
+        sensitive_account: "%{name}ը նշեց %{target}ի մեդիան որպէս զգայուն"
         silence_account: "%{name} լռեցրեց %{target}ի հաշիւը"
         suspend_account: "%{name} լռեցրեց %{target}ի հաշիւը"
         unassigned_report: "%{name} չսահմանուած բողոք %{target}"
+        unsensitive_account: "%{name}ը հեռացրեց %{target}֊ի մեդիայի զգայուն նշումը"
+        unsilence_account: "%{name}֊ը հանեց լռեցումը %{target}֊ի հաշուից"
+        unsuspend_account: "%{name}ը ապակասեցրեց %{target}ի հաշիւը"
+        update_announcement: "%{name}ը թարմացրեց %{target}ի յայտարարութիւնը"
+        update_custom_emoji: "%{name} թարմացրել է %{target} էմոջին"
+        update_domain_block: "%{name}ը թարմացրեց %{target}ի տիրոյթի արգելափակումը"
+        update_status: "%{name}ը թարմացրեց %{target}ի կարգավիճակը"
       deleted_status: "(ջնջուած գրառում)"
       empty: Ոչ մի գրառում չկայ։
       filter_by_action: Զտել ըստ գործողութեան
@@ -270,35 +323,48 @@ hy:
     custom_emojis:
       assign_category: Կցել կատեգորիա
       by_domain: Տիրոյթ
+      copied_msg: Էմոջիի տեղական օրինակը հաջողութեամբ ստեղծուած է
       copy: Պատճենել
+      copy_failed_msg: Չյաջողւեց ստեղծել էմոջիի տեղական օրինակ
       create_new_category: Ստեղծել նոր կատեգորիա
+      created_msg: Էմոջին յաջողութեամբ ստեղծուեց
       delete: Ջնջել
+      destroyed_msg: Էմոջին յաջողութեամբ ջնջուեց
       disable: Անջատել
       disabled: Անջատուած
+      disabled_msg: Յաջողութեամբ կասեցուեց էմոջին
       emoji: Զմայլիկ
       enable: Միացնել
       enabled: Միացուած
+      enabled_msg: Յաջողութեամբ միացուեց էմոջին
       image_hint: PNG մինչեւ 50KB
       list: Ցանկ
       listed: Ցուցակագրուած
       new:
         title: Աւելացնել նոր էմոջի
+      not_permitted: Տուեալ գործողութիւնն անելու թոյլտուութիւն չունես
       overwrite: Վերագրել
       shortcode: Հապավում
+      shortcode_hint: Ամենաքիչը 2 նիշ, միայն այբբենական նիշեր, թուեր եւ ընդգծիկներ
       title: Սեփական էմօջիներ
       uncategorized: Չդասակարգուած
       unlist: Ապացուցակագրում
       unlisted: Ծածուկ
+      update_failed_msg: Էմոջին չի կարող թարմացուել
+      updated_msg: Էմոջին թարմացուեց
       upload: Վերբեռնել
     dashboard:
+      authorized_fetch_mode: Անվտանգ եղանակ
       config: Կարգաւորում
       feature_deletions: Հաշուի հեռացումներ
       feature_invites: Հրաւէրի յղումներ
       feature_profile_directory: Օգտատիրոջ մատեան
       feature_registrations: Գրանցումներ
+      feature_relay: Ֆեդերացիայի շերտ
       feature_spam_check: Հակա-սպամ
       feature_timeline_preview: Հոսքի նախադիտում
       features: Յատկանիշներ
+      hidden_service: Ֆեդերացիա թաքնուած ծառայութիւնների հետ
       open_reports: բաց բողոքներ
       pending_tags: պիտակներն սպասում են վերանայման
       pending_users: օգտատէրերն սպասում են վերանայման
@@ -316,7 +382,12 @@ hy:
       whitelist_mode: Սահմանափակ ֆեդերացիայի ռեժիմ
     domain_allows:
       add_new: Թոյլատրել ֆեդերացիա տիրոյթի հետ
+      created_msg: Տիրոյթը յաջողութեամբ թոյլատրուեց ֆեդերացուելու
+      undo: Չթոյլատրել ֆեդերացիան տիրոյթի հետ
     domain_blocks:
+      add_new: Աւելացնել նոր տիրոյթի արգելափակում
+      created_msg: Տիրոյթի արգելափակումն ընթացաւ
+      destroyed_msg: Տիրոյթի արգելափակումը ետարկուեց
       domain: Տիրոյթ
       edit: Խմբագրել տիրոյթի արգելափակումը
       new:
@@ -336,6 +407,7 @@ hy:
         silence: լռեցուած
         suspend: կասեցուած
       show:
+        title: Ետարկել տիրոյթի արգելափակումը %{domain}ի համար
         undo: Ետարկել
       undo: Ետարկել տիրոյթի արգելափակումը
       view: Տեսնել տիրոյթի արգելափակումը
@@ -379,6 +451,7 @@ hy:
       title: Հրաւէրներ
     ip_blocks:
       add_new: Ստեղծել կանոն
+      created_msg: Բարեյաջող աւելացուեց նոր IP կանոն
       delete: Ջնջել
       expires_in:
         '1209600': 2 շաբաթ
@@ -409,6 +482,9 @@ hy:
         notes:
           one: "%{count} նոթ"
           other: "%{count} նոթեր"
+        reports:
+          one: "%{count} զեկոյց"
+          other: "%{count} զեկոյց"
       action_taken_by: Գործողութիւնը կատարել է
       are_you_sure: Վստա՞հ ես
       assign_to_self: Ինձ յանձնարարուած
@@ -441,6 +517,8 @@ hy:
         all: Բոլորին
         disabled: Ոչ մէկին
         title: Ցուցադրել տիրոյթը արգելափակումները
+      hero:
+        title: Հերոսի պատկեր
       profile_directory:
         desc_html: Թոյլատրել օգտատէրերին բացայայտուել
         title: Միացնել հաշուի մատեանը
@@ -513,6 +591,7 @@ hy:
     advanced_web_interface: Սյունակավոր ինտերֆեյս
     advanced_web_interface_hint: Եթէ ցանկանում ես օգտագործել էկրանիդ ամբողջ լայնքը, ապա ընդլայնուած վեբ ինտերֆեյսով հնարաւոր է էկրանը բաժանել սիւնակների՝ զուգահեռ տեսնելու տարբեր տիպի ինֆորմացիա՝ տեղական հոսքը, ծանուցումները, ֆեդերացված հոսքը, և ցանկացած թվի ցուցակ ու հեշթեգ։
     animations_and_accessibility: Անիմացիաներ եւ հասանելիութիւն
+    confirmation_dialogs: Հաստատման պատուհաններ
     discovery: Բացայայտում
     localization:
       body: Մաստոդոնը թարգմանուում է կամաւորների կողմից։
@@ -533,6 +612,8 @@ hy:
     checkbox_agreement_html: Ես համաձայն եմ <a href="%{rules_path}" target="_blank">սպասարկչի կայանքներին</a> և <a href="%{terms_path}" target="_blank">ծառայությունների պայմաններին</a>
     checkbox_agreement_without_rules_html: Ես համաձայն եմ <a href="%{terms_path}" target="_blank">ծառայությունների պայմաններին</a>
     delete_account: Ջնջել հաշիվը
+    description:
+      prefix_sign_up: Գրանցուի՛ր Մաստոդոնում հենց այսօր
     forgot_password: Մոռացե՞լ ես գաղտնաբառդ
     login: Մտնել
     logout: Դուրս գալ
@@ -664,6 +745,8 @@ hy:
     status: Հաստատման կարգավիճակ
     view_proof: Նայել ապացոյցը
   imports:
+    errors:
+      over_rows_processing_limit: տողերի քանակը աւելին է քան %{count}-ը
     modes:
       merge: Միաւորել
       overwrite: Վերագրել
@@ -786,6 +869,7 @@ hy:
       safari: Safari
       uc_browser: UCBrowser
       weibo: Weibo
+    description: "%{browser}, %{platform}"
     ip: IP
     platforms:
       adobe_air: Adobe Air
@@ -830,6 +914,9 @@ hy:
       image:
         one: "%{count} նկար"
         other: "%{count} նկար"
+      video:
+        one: "%{count} վիդեո"
+        other: "%{count} վիդեո"
     language_detection: Ինքնուրոյն ճանաչել լեզուն
     open_in_web: Բացել վէբում
     over_character_limit: "%{max} նիշի սահմանը գերազանցուած է"
@@ -976,6 +1063,7 @@ hy:
     welcome:
       edit_profile_action: Կարգաւորել հաշիւը
       final_action: Սկսել թթել
+      final_step: 'Սկսիր թթե՛լ։ Անգամ առանց հետեւորդների քո հանրային գրառումներ կարող են երևալ ուրիշների մօտ, օրինակ՝ տեղական հոսում կամ հեշթեգերում։ Թէ ցանկանաս, կարող ես յայտնել քո մասին օգտագործելով #եսնորեկեմ հեշթեգը։'
       review_preferences_action: Փոփոխել կարգաւորումները
       subject: Բարի գալուստ Մաստոդոն
       tip_federated_timeline: Դաշնային հոսքում երևում է ամբողջ Մաստոդոնի ցանցը։ Բայց այն ներառում է միայն այն օգտատերերին որոնց բաժանորդագրուած են ձեր հարևաններ, այդ պատճառով այն կարող է լինել ոչ ամբողջական։
@@ -994,4 +1082,5 @@ hy:
     verification: Ստուգում
   webauthn_credentials:
     delete: Ջնջել
+    not_enabled: WebAuthn-ը դեռ միացուած չէ
     registered_on: Գրանցուել է %{date}
