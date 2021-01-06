@@ -142,6 +142,7 @@ class DeleteAccountService < BaseService
     purge_user!
     purge_profile!
     purge_statuses!
+    purge_mentions!
     purge_media_attachments!
     purge_polls!
     purge_generated_notifications!
@@ -157,6 +158,10 @@ class DeleteAccountService < BaseService
     @account.statuses.reorder(nil).where.not(id: reported_status_ids).in_batches do |statuses|
       BatchedRemoveStatusService.new.call(statuses, skip_side_effects: skip_side_effects?)
     end
+  end
+
+  def purge_mentions!
+    @account.mentions.reorder(nil).where.not(status_id: reported_status_ids).in_batches.delete_all
   end
 
   def purge_media_attachments!
@@ -182,7 +187,7 @@ class DeleteAccountService < BaseService
     @account.favourites.in_batches do |favourites|
       ids = favourites.pluck(:status_id)
       StatusStat.where(status_id: ids).update_all('favourites_count = GREATEST(0, favourites_count - 1)')
-      Chewy.strategy.current.update(StatusesIndex, ids) if Chewy.enabled?
+      Chewy.strategy.current.update(StatusesIndex::Status, ids) if Chewy.enabled?
       # Rails.cache.delete_multi would be better, but we don't have it yet
       ids.each { |id| Rails.cache.delete("statuses/#{id}") }
       favourites.delete_all
@@ -191,7 +196,7 @@ class DeleteAccountService < BaseService
 
   def purge_bookmarks!
     @account.bookmarks.in_batches do |bookmarks|
-      Chewy.strategy.current.update(StatusesIndex, bookmarks.pluck(:status_id)) if Chewy.enabled?
+      Chewy.strategy.current.update(StatusesIndex::Status, bookmarks.pluck(:status_id)) if Chewy.enabled?
       bookmarks.delete_all
     end
   end

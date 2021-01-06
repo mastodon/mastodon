@@ -128,7 +128,7 @@ ja:
       follows: フォロー数
       header: ヘッダー
       inbox_url: Inbox URL
-      invite_request_text: 登録理由
+      invite_request_text: 意気込み
       invited_by: 招待した人
       ip: IP
       joined: 登録日
@@ -398,6 +398,8 @@ ja:
           silence: サイレンス
           suspend: 停止
         title: 新規ドメインブロック
+      obfuscate: ドメイン名を伏せ字にする
+      obfuscate_hint: ドメインブロックのリストを公開している場合、ドメイン名の一部を伏せ字にします
       private_comment: コメント (非公開)
       private_comment_hint: このコメントは同じサーバーのモデレーターも閲覧できます。
       public_comment: コメント (公開)
@@ -556,6 +558,7 @@ ja:
       domain_blocks_rationale:
         title: コメントを表示
       enable_bootstrap_timeline_accounts:
+        desc_html: 新規ユーザーが設定したアカウントを自動的にフォローして、ホームフィードが空にならないようにする
         title: 新規ユーザーの自動フォローを有効にする
       hero:
         desc_html: フロントページに表示されます。サイズは600x100px以上推奨です。未設定の場合、標準のサムネイルが使用されます
@@ -582,6 +585,9 @@ ja:
         min_invite_role:
           disabled: 誰にも許可しない
           title: 招待の作成を許可
+        require_invite_text:
+          desc_html: アカウント登録が承認制の場合、「意気込みをお聞かせください」のテキストを必須入力にする
+          title: 新規ユーザー登録時の理由を必須入力にする
       registrations_mode:
         modes:
           approved: 登録には承認が必要
@@ -909,6 +915,8 @@ ja:
     status: 認証状態
     view_proof: 証明を表示
   imports:
+    errors:
+      over_rows_processing_limit: "%{count} 行以上"
     modes:
       merge: 統合
       merge_long: 現在のレコードを保持したまま新しいものを追加します

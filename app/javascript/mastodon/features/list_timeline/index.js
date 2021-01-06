@@ -194,7 +194,7 @@ class ListTimeline extends React.PureComponent {
               </span>
               <div className='column-settings__row'>
                 { ['none', 'list', 'followed'].map(policy => (
-                  <RadioButton name='order' value={policy} label={intl.formatMessage(messages[policy])} checked={replies_policy === policy} onChange={this.handleRepliesPolicyChange} />
+                  <RadioButton name='order' key={policy} value={policy} label={intl.formatMessage(messages[policy])} checked={replies_policy === policy} onChange={this.handleRepliesPolicyChange} />
                 ))}
               </div>
             </div>
