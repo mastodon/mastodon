@@ -142,7 +142,7 @@ module Paperclip
       g = 0.0
       b = 0.0
 
-      if s == 0.0
+      if s.zero?
         r = l.to_f
         g = l.to_f
         b = l.to_f # achromatic
