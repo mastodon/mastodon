@@ -542,7 +542,7 @@ class Video extends React.PureComponent {
     }
 
     if (quote && height) {
-      height /= 2;
+      height /= 1;
       playerStyle.height = height;
     }
 
