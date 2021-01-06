@@ -418,7 +418,7 @@ class Account < ApplicationRecord
 
     def mark_verified!
       self.verified_at = Time.now.utc
-      @original_field['verified_at'] = @verified_at
+      @original_field['verified_at'] = verified_at
     end
 
     def to_h
