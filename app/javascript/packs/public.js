@@ -59,6 +59,11 @@ function main() {
       });
     });
 
+    [].forEach.call(document.querySelectorAll('iframe.custom-full-width-iframe'), (content) => {
+      content.width = '100%';
+      content.height = content.offsetWidth * content.getAttribute('data-height') / content.getAttribute('data-width');
+    });
+
     const locale = document.documentElement.lang;
 
     const dateTimeFormat = new Intl.DateTimeFormat(locale, {
