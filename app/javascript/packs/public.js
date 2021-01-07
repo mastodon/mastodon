@@ -303,6 +303,8 @@ function main() {
     let url = target.closest('.quote-status').getAttribute('dataurl');
     if (target.closest('.status__display-name')) {
       url = target.closest('.status__display-name').getAttribute('href');
+    } else if (target.closest('.detailed-status__display-name')) {
+      url = target.closest('.detailed-status__display-name').getAttribute('href');
     } else if (target.closest('.status-card')) {
       url = target.closest('.status-card').getAttribute('href');
     }

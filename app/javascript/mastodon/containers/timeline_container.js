@@ -47,7 +47,9 @@ export default class TimelineContainer extends React.PureComponent {
       <IntlProvider locale={locale} messages={messages}>
         <Provider store={store}>
           <Fragment>
-            {timeline}
+            <div className='standalone-timeline'>
+              {timeline}
+            </div>
 
             {ReactDOM.createPortal(
               <ModalContainer />,
