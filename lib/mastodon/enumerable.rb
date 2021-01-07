@@ -19,7 +19,7 @@ module Enumerable
             result << res if res
           end
           result
-        end 
+        end
       end
     end
   end
