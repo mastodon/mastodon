@@ -233,6 +233,7 @@ da:
         reopen_report: Genåben rapport
         reset_password_user: Nulstil adgangskode
         resolve_report: Løs rapport
+        sensitive_account: Markér medierne på din konto som følsomme
         silence_account: Dæmp konto
         suspend_account: Suspendér Konto
         unassigned_report: Fjern tildeling af rapport
@@ -377,6 +378,7 @@ da:
           silence: Dæmp
           suspend: Udeluk
         title: Ny domæne blokering
+      obfuscate: Overskyg domænenavn
       private_comment: Privat kommentar
       public_comment: Offentlig kommentar
       reject_media: Afvis medie filer
@@ -630,6 +632,8 @@ da:
     warning_presets:
       add_new: Tilføj ny
       delete: Slet
+      edit_preset: Rediger forudindstilling for advarsel
+      title: Administrer forudindstillinger for advarsel
   admin_mailer:
     new_report:
       body: "%{reporter} har anmeldt %{target}"
@@ -911,6 +915,8 @@ da:
   moderation:
     title: Moderatering
   move_handler:
+    carry_blocks_over_text: Denne bruger er flyttet fra %{acct}, som du har haft blokeret.
+    carry_mutes_over_text: Denne bruger er flyttet fra %{acct}, som du har haft dæmpet.
     copy_account_note_text: 'Denne bruger flyttede fra %{acct}, her var dine tidligere noter om dem:'
   notification_mailer:
     digest:
@@ -987,6 +993,7 @@ da:
       unrecognized_emoji: er ikke en genkendt emoji
   relationships:
     activity: Aktivitet for konto
+    dormant: Slumrende
     follow_selected_followers: Følg valgte følgere
     followers: Følgere
     following: Følger
