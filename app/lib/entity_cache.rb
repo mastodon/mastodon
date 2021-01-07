@@ -29,7 +29,7 @@ class EntityCache
       uncached.each_value { |item| Rails.cache.write(to_key(:emoji, item.shortcode, domain), item, expires_in: MAX_EXPIRATION) }
     end
 
-    shortcodes.map { |shortcode| cached[to_key(:emoji, shortcode, domain)] || uncached[shortcode] }.compact
+    shortcodes.filter_map { |shortcode| cached[to_key(:emoji, shortcode, domain)] || uncached[shortcode] }
   end
 
   def to_key(type, *ids)

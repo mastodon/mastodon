@@ -107,12 +107,12 @@ class ImportService < BaseService
       end
     end
 
-    statuses = items.map do |uri|
+    statuses = items.filter_map do |uri|
       status = ActivityPub::TagManager.instance.uri_to_resource(uri, Status)
       next if status.nil? && ActivityPub::TagManager.instance.local_uri?(uri)
 
       status || ActivityPub::FetchRemoteStatusService.new.call(uri)
-    end.compact
+    end
 
     account_ids         = statuses.map(&:account_id)
     preloaded_relations = relations_map_for_account(@account, account_ids)

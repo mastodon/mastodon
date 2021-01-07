@@ -45,7 +45,7 @@ module CacheConcern
       end
     end
 
-    raw.map { |item| cached_keys_with_value[item.id] || uncached[item.id] }.compact
+    raw.filter_map { |item| cached_keys_with_value[item.id] || uncached[item.id] }
   end
 
   def cache_collection_paginated_by_id(raw, klass, limit, options)
