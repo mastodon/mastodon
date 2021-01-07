@@ -385,15 +385,17 @@ class Account < ApplicationRecord
   end
 
   class Field < ActiveModelSerializers::Model
-    attributes :name, :value, :verified_at, :account, :errors
+    attributes :name, :value, :verified_at, :account
 
     def initialize(account, attributes)
-      @account     = account
-      @attributes  = attributes
-      @name        = attributes['name'].strip[0, string_limit]
-      @value       = attributes['value'].strip[0, string_limit]
-      @verified_at = attributes['verified_at']&.to_datetime
-      @errors      = {}
+      @original_field = attributes
+      string_limit = account.local? ? 255 : 2047
+      super(
+        account:     account,
+        name:        attributes['name'].strip[0, string_limit],
+        value:       attributes['value'].strip[0, string_limit],
+        verified_at: attributes['verified_at']&.to_datetime,
+      )
     end
 
     def verified?
@@ -415,22 +417,12 @@ class Account < ApplicationRecord
     end
 
     def mark_verified!
-      @verified_at = Time.now.utc
-      @attributes['verified_at'] = @verified_at
+      self.verified_at = Time.now.utc
+      @original_field['verified_at'] = verified_at
     end
 
     def to_h
-      { name: @name, value: @value, verified_at: @verified_at }
-    end
-
-    private
-
-    def string_limit
-      if account.local?
-        255
-      else
-        2047
-      end
+      { name: name, value: value, verified_at: verified_at }
     end
   end
 
