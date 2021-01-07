@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Enumerable
-  # TODO: Remove this once stop the support for Ruby 2.6
+  # TODO: Remove this once stop to support Ruby 2.6
   if RUBY_VERSION < '2.7.0'
     def filter_map
       if block_given?
@@ -24,4 +24,3 @@ module Enumerable
     end
   end
 end
-
