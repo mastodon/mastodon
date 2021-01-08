@@ -188,6 +188,11 @@ module Mastodon
       else
         ActiveRecord::Base.connection.add_index :accounts, "lower (username), COALESCE(lower(domain), '')", name: 'index_accounts_on_username_and_domain_lower', unique: true
       end
+
+      @prompt.say 'Reindexing textual indexes on accounts…'
+      ActiveRecord::Base.connection.execute('REINDEX INDEX search_index;')
+      ActiveRecord::Base.connection.execute('REINDEX INDEX index_accounts_on_uri;')
+      ActiveRecord::Base.connection.execute('REINDEX INDEX index_accounts_on_url;')
     end
 
     def deduplicate_users!
