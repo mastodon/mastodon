@@ -190,7 +190,7 @@ class Card extends React.PureComponent {
   }
 
   renderVideo () {
-    const { card }  = this.props;
+    const { card, intl }  = this.props;
     const content   = { __html: this.addAutoPlay(card.get('html')) };
     const { width } = this.state;
     const ratio     = card.get('width') / card.get('height');
@@ -225,7 +225,7 @@ class Card extends React.PureComponent {
   }
 
   render () {
-    const { card, maxDescription, compact, intl } = this.props;
+    const { card, maxDescription, compact } = this.props;
     const { width, embedded, revealed } = this.state;
 
     if (card === null) {
