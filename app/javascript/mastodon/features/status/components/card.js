@@ -158,7 +158,7 @@ class Card extends React.PureComponent {
     const iframe = document.querySelector('iframe');
 
     if (iframe) {
-      this.setState({isIframe: true});
+      this.setState({ isIframe: true });
 
       if (iframe.src.indexOf('?') !== -1) {
         iframe.src += '&';
@@ -209,14 +209,14 @@ class Card extends React.PureComponent {
         />
         {fullscreenEnabled && isIframe ? (
           <IconButton
-            className={`fullscreen-iframe-button`}
+            className={'fullscreen-iframe-button'}
             title={intl.formatMessage(messages.fullscreen)}
-            icon={`arrows-alt`}
+            icon={'arrows-alt'}
             onClick={this.handleIframeFullscreen}
             size={18}
             style={{
-              width: `unset`,
-              height: `unset`,
+              width: 'unset',
+              height: 'unset',
             }}
           />
         ) : null}
