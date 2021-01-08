@@ -9,6 +9,7 @@ import Icon from 'mastodon/components/icon';
 import { useBlurhash } from 'mastodon/initial_state';
 import Blurhash from 'mastodon/components/blurhash';
 import { debounce } from 'lodash';
+import IconButton from 'mastodon/components/icon_button';
 
 const IDNA_PREFIX = 'xn--';
 
@@ -37,27 +38,6 @@ const trim = (text, len) => {
 
 const domParser = new DOMParser();
 
-const addAutoPlay = html => {
-  const document = domParser.parseFromString(html, 'text/html').documentElement;
-  const iframe = document.querySelector('iframe');
-
-  if (iframe) {
-    if (iframe.src.indexOf('?') !== -1) {
-      iframe.src += '&';
-    } else {
-      iframe.src += '?';
-    }
-
-    iframe.src += 'autoplay=1&auto_play=1';
-
-    // DOM parser creates html/body elements around original HTML fragment,
-    // so we need to get innerHTML out of the body and not the entire document
-    return document.querySelector('body').innerHTML;
-  }
-
-  return html;
-};
-
 export default class Card extends React.PureComponent {
 
   static propTypes = {
@@ -80,6 +60,7 @@ export default class Card extends React.PureComponent {
     previewLoaded: false,
     embedded: false,
     revealed: !this.props.sensitive,
+    isIframe: false,
   };
 
   componentWillReceiveProps (nextProps) {
@@ -166,20 +147,74 @@ export default class Card extends React.PureComponent {
     this.setState({ revealed: true });
   }
 
+  addAutoPlay = html => {
+    const document = domParser.parseFromString(html, 'text/html').documentElement;
+    const iframe = document.querySelector('iframe');
+
+    if (iframe) {
+      this.setState({isIframe: true});
+
+      if (iframe.src.indexOf('?') !== -1) {
+        iframe.src += '&';
+      } else {
+        iframe.src += '?';
+      }
+
+      iframe.src += 'autoplay=1&auto_play=1';
+
+      // DOM parser creates html/body elements around original HTML fragment,
+      // so we need to get innerHTML out of the body and not the entire document
+      return document.querySelector('body').innerHTML;
+    }
+
+    return html;
+  }
+
+  handleIframeFullscreen = () => {
+    const iframe = this.node;
+    if (iframe.requestFullscreen) {
+      iframe.requestFullscreen();
+    } else if (iframe.webkitRequestFullscreen) {
+      iframe.webkitRequestFullscreen();
+    } else if (iframe.mozRequestFullScreen) {
+      iframe.mozRequestFullScreen();
+    } else if (iframe.msRequestFullscreen) {
+      iframe.msRequestFullscreen();
+    }
+  }
+
   renderVideo () {
     const { card }  = this.props;
-    const content   = { __html: addAutoPlay(card.get('html')) };
+    const content   = { __html: this.addAutoPlay(card.get('html')) };
     const { width } = this.state;
     const ratio     = card.get('width') / card.get('height');
     const height    = width / ratio;
 
+    const fullscreenModeAvailable = (document.fullscreenEnabled || document.webkitFullscreenEnabled || document.mozFullScreenEnabled || document.msFullscreenEnabled) ? true : false;
+    const isIframe = this.state.isIframe;
+
     return (
-      <div
-        ref={this.setRef}
-        className='status-card__image status-card-video'
-        dangerouslySetInnerHTML={content}
-        style={{ height }}
-      />
+      <div className='status-card__image status-card-video__container'>
+        <div
+          ref={this.setRef}
+          className='status-card__image status-card-video'
+          dangerouslySetInnerHTML={content}
+          style={{ height }}
+        />
+        {fullscreenModeAvailable && isIframe ? (
+          <IconButton
+            className={`fullscreen-iframe-button`}
+            title={`fullscreen`}
+            icon={`expand-wide:fad`}
+            onClick={this.handleIframeFullscreen}
+            size={18}
+            style={{
+              width: `unset`,
+              height: `unset`,
+            }}
+          />
+        ) : null}
+      </div>
     );
   }
 
