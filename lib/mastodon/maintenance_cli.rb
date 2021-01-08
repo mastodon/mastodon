@@ -160,6 +160,7 @@ module Mastodon
       deduplicate_tags!
       deduplicate_webauthn_credentials!
 
+      Scenic.database.refresh_materialized_view('instances', concurrently: true, cascade: false) if ActiveRecord::Migrator.current_version >= 2020_12_06_004238
       Rails.cache.clear
 
       @prompt.say 'Finished!'
