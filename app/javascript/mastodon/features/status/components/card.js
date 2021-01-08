@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Immutable from 'immutable';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, defineMessages, injectIntl } from 'react-intl';
 import punycode from 'punycode';
 import classnames from 'classnames';
 import Icon from 'mastodon/components/icon';
@@ -38,7 +38,12 @@ const trim = (text, len) => {
 
 const domParser = new DOMParser();
 
-export default class Card extends React.PureComponent {
+const messages = defineMessages({
+  fullscreen: { id: 'status.fullscreen', defaultMessage: 'Expand to full screen view' },
+});
+
+export default @injectIntl
+class Card extends React.PureComponent {
 
   static propTypes = {
     card: ImmutablePropTypes.map,
@@ -48,6 +53,7 @@ export default class Card extends React.PureComponent {
     defaultWidth: PropTypes.number,
     cacheWidth: PropTypes.func,
     sensitive: PropTypes.bool,
+    intl: PropTypes.object.isRequired,
   };
 
   static defaultProps = {
@@ -190,7 +196,7 @@ export default class Card extends React.PureComponent {
     const ratio     = card.get('width') / card.get('height');
     const height    = width / ratio;
 
-    const fullscreenModeAvailable = (document.fullscreenEnabled || document.webkitFullscreenEnabled || document.mozFullScreenEnabled || document.msFullscreenEnabled) ? true : false;
+    const fullscreenEnabled = (document.fullscreenEnabled || document.webkitFullscreenEnabled || document.mozFullScreenEnabled || document.msFullscreenEnabled) ? true : false;
     const isIframe = this.state.isIframe;
 
     return (
@@ -201,11 +207,11 @@ export default class Card extends React.PureComponent {
           dangerouslySetInnerHTML={content}
           style={{ height }}
         />
-        {fullscreenModeAvailable && isIframe ? (
+        {fullscreenEnabled && isIframe ? (
           <IconButton
             className={`fullscreen-iframe-button`}
-            title={`fullscreen`}
-            icon={`expand-wide:fad`}
+            title={intl.formatMessage(messages.fullscreen)}
+            icon={`arrows-alt`}
             onClick={this.handleIframeFullscreen}
             size={18}
             style={{
@@ -219,7 +225,7 @@ export default class Card extends React.PureComponent {
   }
 
   render () {
-    const { card, maxDescription, compact } = this.props;
+    const { card, maxDescription, compact, intl } = this.props;
     const { width, embedded, revealed } = this.state;
 
     if (card === null) {
