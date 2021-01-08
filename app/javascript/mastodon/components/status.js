@@ -611,6 +611,18 @@ class Status extends ImmutablePureComponent {
             </Bundle>
           );
         }
+      } else if (quote_status.get('spoiler_text').length === 0 && quote_status.get('card')) {
+        quote_media = (
+          <Card
+            onOpenMedia={this.handleOpenMedia}
+            card={quote_status.get('card')}
+            compact
+            cacheWidth={this.props.cacheMediaWidth}
+            defaultWidth={this.props.cachedMediaWidth}
+            sensitive={quote_status.get('sensitive')}
+            quote
+          />
+        );
       }
 
       if (quote_status.get('visibility') === 'unlisted' && contextType !== 'home') {

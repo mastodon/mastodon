@@ -203,6 +203,8 @@ class DetailedStatus extends ImmutablePureComponent {
             />
           );
         }
+      } else if (quote_status.get('spoiler_text').length === 0) {
+        quote_media = <Card sensitive={quote_status.get('sensitive')} onOpenMedia={this.props.onOpenMedia} card={quote_status.get('card', null)} />;
       }
 
       quote = (

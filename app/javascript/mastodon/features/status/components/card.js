@@ -205,7 +205,7 @@ export default class Card extends React.PureComponent {
     let height      = (compact && !embedded) ? (width / (16 / 9)) : (width / ratio);
 
     if (quote && height) {
-      height /= 2;
+      height /= 1;
     }
 
     const description = (
