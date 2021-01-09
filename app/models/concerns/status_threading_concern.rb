@@ -83,7 +83,7 @@ module StatusThreadingConcern
   def find_statuses_from_tree_path(ids, account, promote: false)
     statuses    = Status.with_accounts(ids).to_a
     account_ids = statuses.map(&:account_id).uniq
-    domains     = statuses.map(&:account_domain).compact.uniq
+    domains     = statuses.filter_map(&:account_domain).uniq
     relations   = relations_map_for_account(account, account_ids, domains)
 
     statuses.reject! { |status| StatusFilter.new(status, account, relations).filtered? }

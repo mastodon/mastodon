@@ -508,7 +508,7 @@ class Account < ApplicationRecord
     def from_text(text)
       return [] if text.blank?
 
-      text.scan(MENTION_RE).map { |match| match.first.split('@', 2) }.uniq.map do |(username, domain)|
+      text.scan(MENTION_RE).map { |match| match.first.split('@', 2) }.uniq.filter_map do |(username, domain)|
         domain = begin
           if TagManager.instance.local_domain?(domain)
             nil
@@ -517,7 +517,7 @@ class Account < ApplicationRecord
           end
         end
         EntityCache.instance.mention(username, domain)
-      end.compact
+      end
     end
 
     private
