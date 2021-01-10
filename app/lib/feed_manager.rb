@@ -396,8 +396,8 @@ class FeedManager
 
     active_filters.map! do |filter|
       if filter.whole_word
-        sb = filter.phrase.match?(/\A[[:word:]]/) ? '\b' : ''
-        eb = filter.phrase.match?(/[[:word:]]\z/) ? '\b' : ''
+        sb = /\A[[:word:]]/.match?(filter.phrase) ? '\b' : ''
+        eb = /[[:word:]]\z/.match?(filter.phrase) ? '\b' : ''
 
         /(?mix:#{sb}#{Regexp.escape(filter.phrase)}#{eb})/
       else
