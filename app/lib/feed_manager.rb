@@ -417,7 +417,7 @@ class FeedManager
       status.media_attachments.map(&:description).join("\n\n"),
     ].compact.join("\n\n")
 
-    !combined_regex.match(combined_text).nil?
+    combined_regex.match?(combined_text)
   end
 
   # Adds a status to an account's feed, returning true if a status was
