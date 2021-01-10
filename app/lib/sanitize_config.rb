@@ -42,7 +42,7 @@ class Sanitize
       current_node = env[:node]
 
       scheme = begin
-        if Sanitize::REGEX_PROTOCOL.match?(current_node['href'])
+        if current_node['href'] =~ Sanitize::REGEX_PROTOCOL
           Regexp.last_match(1).downcase
         else
           :relative
