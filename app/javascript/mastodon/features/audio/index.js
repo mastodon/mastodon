@@ -37,7 +37,11 @@ class Audio extends React.PureComponent {
     backgroundColor: PropTypes.string,
     foregroundColor: PropTypes.string,
     accentColor: PropTypes.string,
+    currentTime: PropTypes.number,
     autoPlay: PropTypes.bool,
+    volume: PropTypes.number,
+    muted: PropTypes.bool,
+    deployPictureInPicture: PropTypes.func,
   };
 
   state = {
@@ -62,6 +66,19 @@ class Audio extends React.PureComponent {
     if (this.player) {
       this._setDimensions();
     }
+  }
+
+  _pack() {
+    return {
+      src: this.props.src,
+      volume: this.audio.volume,
+      muted: this.audio.muted,
+      currentTime: this.audio.currentTime,
+      poster: this.props.poster,
+      backgroundColor: this.props.backgroundColor,
+      foregroundColor: this.props.foregroundColor,
+      accentColor: this.props.accentColor,
+    };
   }
 
   _setDimensions () {
@@ -112,6 +129,10 @@ class Audio extends React.PureComponent {
   componentWillUnmount () {
     window.removeEventListener('scroll', this.handleScroll);
     window.removeEventListener('resize', this.handleResize);
+
+    if (!this.state.paused && this.audio && this.props.deployPictureInPicture) {
+      this.props.deployPictureInPicture('audio', this._pack());
+    }
   }
 
   togglePlay = () => {
@@ -225,7 +246,7 @@ class Audio extends React.PureComponent {
   handleTimeUpdate = () => {
     this.setState({
       currentTime: this.audio.currentTime,
-      duration: Math.floor(this.audio.duration),
+      duration: this.audio.duration,
     });
   }
 
@@ -248,7 +269,13 @@ class Audio extends React.PureComponent {
     const inView = (top <= (window.innerHeight || document.documentElement.clientHeight)) && (top + height >= 0);
 
     if (!this.state.paused && !inView) {
-      this.setState({ paused: true }, () => this.audio.pause());
+      this.audio.pause();
+
+      if (this.props.deployPictureInPicture) {
+        this.props.deployPictureInPicture('audio', this._pack());
+      }
+
+      this.setState({ paused: true });
     }
   }, 150, { trailing: true });
 
@@ -261,10 +288,22 @@ class Audio extends React.PureComponent {
   }
 
   handleLoadedData = () => {
-    const { autoPlay } = this.props;
+    const { autoPlay, currentTime, volume, muted } = this.props;
+
+    if (currentTime) {
+      this.audio.currentTime = currentTime;
+    }
+
+    if (volume !== undefined) {
+      this.audio.volume = volume;
+    }
+
+    if (muted !== undefined) {
+      this.audio.muted = muted;
+    }
 
     if (autoPlay) {
-      this.audio.play();
+      this.togglePlay();
     }
   }
 
@@ -347,13 +386,59 @@ class Audio extends React.PureComponent {
     return this.props.foregroundColor || '#ffffff';
   }
 
+  seekBy (time) {
+    const currentTime = this.audio.currentTime + time;
+
+    if (!isNaN(currentTime)) {
+      this.setState({ currentTime }, () => {
+        this.audio.currentTime = currentTime;
+      });
+    }
+  }
+
+  handleAudioKeyDown = e => {
+    // On the audio element or the seek bar, we can safely use the space bar
+    // for playback control because there are no buttons to press
+
+    if (e.key === ' ') {
+      e.preventDefault();
+      e.stopPropagation();
+      this.togglePlay();
+    }
+  }
+
+  handleKeyDown = e => {
+    switch(e.key) {
+    case 'k':
+      e.preventDefault();
+      e.stopPropagation();
+      this.togglePlay();
+      break;
+    case 'm':
+      e.preventDefault();
+      e.stopPropagation();
+      this.toggleMute();
+      break;
+    case 'j':
+      e.preventDefault();
+      e.stopPropagation();
+      this.seekBy(-10);
+      break;
+    case 'l':
+      e.preventDefault();
+      e.stopPropagation();
+      this.seekBy(10);
+      break;
+    }
+  }
+
   render () {
     const { src, intl, alt, editable, autoPlay } = this.props;
     const { paused, muted, volume, currentTime, duration, buffer, dragging } = this.state;
-    const progress = (currentTime / duration) * 100;
+    const progress = Math.min((currentTime / duration) * 100, 100);
 
     return (
-      <div className={classNames('audio-player', { editable })} ref={this.setPlayerRef} style={{ backgroundColor: this._getBackgroundColor(), color: this._getForegroundColor(), width: '100%', height: this.props.fullscreen ? '100%' : (this.state.height || this.props.height) }} onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
+      <div className={classNames('audio-player', { editable })} ref={this.setPlayerRef} style={{ backgroundColor: this._getBackgroundColor(), color: this._getForegroundColor(), width: '100%', height: this.props.fullscreen ? '100%' : (this.state.height || this.props.height) }} onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave} tabIndex='0' onKeyDown={this.handleKeyDown}>
         <audio
           src={src}
           ref={this.setAudioRef}
@@ -367,12 +452,14 @@ class Audio extends React.PureComponent {
 
         <canvas
           role='button'
+          tabIndex='0'
           className='audio-player__canvas'
           width={this.state.width}
           height={this.state.height}
           style={{ width: '100%', position: 'absolute', top: 0, left: 0 }}
           ref={this.setCanvasRef}
           onClick={this.togglePlay}
+          onKeyDown={this.handleAudioKeyDown}
           title={alt}
           aria-label={alt}
         />
@@ -393,20 +480,21 @@ class Audio extends React.PureComponent {
             className={classNames('video-player__seek__handle', { active: dragging })}
             tabIndex='0'
             style={{ left: `${progress}%`, backgroundColor: this._getAccentColor() }}
+            onKeyDown={this.handleAudioKeyDown}
           />
         </div>
 
         <div className='video-player__controls active'>
           <div className='video-player__buttons-bar'>
             <div className='video-player__buttons left'>
-              <button type='button' title={intl.formatMessage(paused ? messages.play : messages.pause)} aria-label={intl.formatMessage(paused ? messages.play : messages.pause)} onClick={this.togglePlay}><Icon id={paused ? 'play' : 'pause'} fixedWidth /></button>
-              <button type='button' title={intl.formatMessage(muted ? messages.unmute : messages.mute)} aria-label={intl.formatMessage(muted ? messages.unmute : messages.mute)} onClick={this.toggleMute}><Icon id={muted ? 'volume-off' : 'volume-up'} fixedWidth /></button>
+              <button type='button' title={intl.formatMessage(paused ? messages.play : messages.pause)} aria-label={intl.formatMessage(paused ? messages.play : messages.pause)} className='player-button' onClick={this.togglePlay}><Icon id={paused ? 'play' : 'pause'} fixedWidth /></button>
+              <button type='button' title={intl.formatMessage(muted ? messages.unmute : messages.mute)} aria-label={intl.formatMessage(muted ? messages.unmute : messages.mute)} className='player-button' onClick={this.toggleMute}><Icon id={muted ? 'volume-off' : 'volume-up'} fixedWidth /></button>
 
               <div className={classNames('video-player__volume', { active: this.state.hovered })} ref={this.setVolumeRef} onMouseDown={this.handleVolumeMouseDown}>
                 <div className='video-player__volume__current' style={{ width: `${volume * 100}%`, backgroundColor: this._getAccentColor() }} />
 
                 <span
-                  className={classNames('video-player__volume__handle')}
+                  className='video-player__volume__handle'
                   tabIndex='0'
                   style={{ left: `${volume * 100}%`, backgroundColor: this._getAccentColor() }}
                 />
@@ -415,12 +503,14 @@ class Audio extends React.PureComponent {
               <span className='video-player__time'>
                 <span className='video-player__time-current'>{formatTime(Math.floor(currentTime))}</span>
                 <span className='video-player__time-sep'>/</span>
-                <span className='video-player__time-total'>{formatTime(this.state.duration || Math.floor(this.props.duration))}</span>
+                <span className='video-player__time-total'>{formatTime(Math.floor(this.state.duration || this.props.duration))}</span>
               </span>
             </div>
 
             <div className='video-player__buttons right'>
-              <button type='button' title={intl.formatMessage(messages.download)} aria-label={intl.formatMessage(messages.download)} onClick={this.handleDownload}><Icon id='download' fixedWidth /></button>
+              <a title={intl.formatMessage(messages.download)} aria-label={intl.formatMessage(messages.download)} className='video-player__download__icon player-button' href={this.props.src} download>
+                <Icon id={'download'} fixedWidth />
+              </a>
             </div>
           </div>
         </div>

@@ -186,9 +186,9 @@ class SpamCheck
 
   def matching_status_ids
     if nilsimsa?
-      other_digests.select { |record| record.start_with?('nilsimsa') && nilsimsa_compare_value(digest, record.split(':')[1]) >= NILSIMSA_COMPARE_THRESHOLD }.map { |record| record.split(':')[2] }.compact
+      other_digests.select { |record| record.start_with?('nilsimsa') && nilsimsa_compare_value(digest, record.split(':')[1]) >= NILSIMSA_COMPARE_THRESHOLD }.filter_map { |record| record.split(':')[2] }
     else
-      other_digests.select { |record| record.start_with?('md5') && record.split(':')[1] == digest }.map { |record| record.split(':')[2] }.compact
+      other_digests.select { |record| record.start_with?('md5') && record.split(':')[1] == digest }.filter_map { |record| record.split(':')[2] }
     end
   end
 

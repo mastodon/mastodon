@@ -1,5 +1,5 @@
 - content_for :header_tags do
-  = javascript_pack_tag 'admin', integrity: true, async: true, crossorigin: 'anonymous'
+  = javascript_pack_tag 'admin', async: true, crossorigin: 'anonymous'
 
 - content_for :page_title do
   = t('.title')
@@ -19,6 +19,9 @@
 
   .fields-group
     = f.input :reject_reports, as: :boolean, wrapper: :with_label, label: I18n.t('admin.domain_blocks.reject_reports'), hint: I18n.t('admin.domain_blocks.reject_reports_hint')
+
+  .fields-group
+    = f.input :obfuscate, as: :boolean, wrapper: :with_label, label: I18n.t('admin.domain_blocks.obfuscate'), hint: I18n.t('admin.domain_blocks.obfuscate_hint')
 
   .field-group
     = f.input :private_comment, wrapper: :with_label, label: I18n.t('admin.domain_blocks.private_comment'), hint: t('admin.domain_blocks.private_comment_hint'), rows: 6

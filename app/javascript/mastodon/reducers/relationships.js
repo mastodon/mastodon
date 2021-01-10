@@ -45,7 +45,7 @@ const initialState = ImmutableMap();
 export default function relationships(state = initialState, action) {
   switch(action.type) {
   case ACCOUNT_FOLLOW_REQUEST:
-    return state.setIn([action.id, action.locked ? 'requested' : 'following'], true);
+    return state.getIn([action.id, 'following']) ? state : state.setIn([action.id, action.locked ? 'requested' : 'following'], true);
   case ACCOUNT_FOLLOW_FAIL:
     return state.setIn([action.id, action.locked ? 'requested' : 'following'], false);
   case ACCOUNT_UNFOLLOW_REQUEST:

@@ -31,6 +31,7 @@ const mapStateToProps = (state, { params: { accountId }, withReplies = false }) 
     featuredStatusIds: withReplies ? ImmutableList() : state.getIn(['timelines', `account:${accountId}:pinned`, 'items'], emptyList),
     isLoading: state.getIn(['timelines', `account:${path}`, 'isLoading']),
     hasMore: state.getIn(['timelines', `account:${path}`, 'hasMore']),
+    suspended: state.getIn(['accounts', accountId, 'suspended'], false),
     blockedBy: state.getIn(['relationships', accountId, 'blocked_by'], false),
   };
 };
@@ -57,6 +58,7 @@ class AccountTimeline extends ImmutablePureComponent {
     withReplies: PropTypes.bool,
     blockedBy: PropTypes.bool,
     isAccount: PropTypes.bool,
+    suspended: PropTypes.bool,
     remote: PropTypes.bool,
     remoteUrl: PropTypes.string,
     multiColumn: PropTypes.bool,
@@ -113,7 +115,7 @@ class AccountTimeline extends ImmutablePureComponent {
   }
 
   render () {
-    const { shouldUpdateScroll, statusIds, featuredStatusIds, isLoading, hasMore, blockedBy, isAccount, multiColumn, remote, remoteUrl } = this.props;
+    const { shouldUpdateScroll, statusIds, featuredStatusIds, isLoading, hasMore, blockedBy, suspended, isAccount, multiColumn, remote, remoteUrl } = this.props;
 
     if (!isAccount) {
       return (
@@ -134,7 +136,9 @@ class AccountTimeline extends ImmutablePureComponent {
 
     let emptyMessage;
 
-    if (blockedBy) {
+    if (suspended) {
+      emptyMessage = <FormattedMessage id='empty_column.account_suspended' defaultMessage='Account suspended' />;
+    } else if (blockedBy) {
       emptyMessage = <FormattedMessage id='empty_column.account_unavailable' defaultMessage='Profile unavailable' />;
     } else if (remote && statusIds.isEmpty()) {
       emptyMessage = <RemoteHint url={remoteUrl} />;
@@ -153,7 +157,7 @@ class AccountTimeline extends ImmutablePureComponent {
           alwaysPrepend
           append={remoteMessage}
           scrollKey='account_timeline'
-          statusIds={blockedBy ? emptyList : statusIds}
+          statusIds={(suspended || blockedBy) ? emptyList : statusIds}
           featuredStatusIds={featuredStatusIds}
           isLoading={isLoading}
           hasMore={hasMore}

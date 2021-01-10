@@ -45,7 +45,7 @@ class ActivityPub::DistributionWorker
 
   def deliver_to_inboxes!
     ActivityPub::DeliveryWorker.push_bulk(inboxes) do |inbox_url|
-      [payload, @account.id, inbox_url]
+      [payload, @account.id, inbox_url, { synchronize_followers: !@status.distributable? }]
     end
   end
 

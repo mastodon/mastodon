@@ -150,9 +150,9 @@ RSpec.describe SpamCheck do
     let(:redis_key) { spam_check.send(:redis_key) }
 
     it 'remembers' do
-      expect(Redis.current.exists(redis_key)).to be true
+      expect(Redis.current.exists?(redis_key)).to be true
       spam_check.remember!
-      expect(Redis.current.exists(redis_key)).to be true
+      expect(Redis.current.exists?(redis_key)).to be true
     end
   end
 
@@ -166,9 +166,9 @@ RSpec.describe SpamCheck do
     end
 
     it 'resets' do
-      expect(Redis.current.exists(redis_key)).to be true
+      expect(Redis.current.exists?(redis_key)).to be true
       spam_check.reset!
-      expect(Redis.current.exists(redis_key)).to be false
+      expect(Redis.current.exists?(redis_key)).to be false
     end
   end
 

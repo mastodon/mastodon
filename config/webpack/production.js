@@ -2,7 +2,7 @@
 
 const path = require('path');
 const { URL } = require('url');
-const merge = require('webpack-merge');
+const { merge } = require('webpack-merge');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const OfflinePlugin = require('offline-plugin');
 const TerserPlugin = require('terser-webpack-plugin');

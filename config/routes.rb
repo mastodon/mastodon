@@ -37,6 +37,7 @@ Rails.application.routes.draw do
 
   resource :instance_actor, path: 'actor', only: [:show] do
     resource :inbox, only: [:create], module: :activitypub
+    resource :outbox, only: [:show], module: :activitypub
   end
 
   devise_scope :user do
@@ -82,6 +83,7 @@ Rails.application.routes.draw do
     resource :inbox, only: [:create], module: :activitypub
     resource :claim, only: [:create], module: :activitypub
     resources :collections, only: [:show], module: :activitypub
+    resource :followers_synchronization, only: [:show], module: :activitypub
   end
 
   resource :inbox, only: [:create], module: :activitypub
@@ -124,6 +126,7 @@ Rails.application.routes.draw do
       resources :mutes, only: :index, controller: :muted_accounts
       resources :lists, only: :index, controller: :lists
       resources :domain_blocks, only: :index, controller: :blocked_domains
+      resources :bookmarks, only: :index, controller: :bookmarks
     end
 
     resources :two_factor_authentication_methods, only: [:index] do
@@ -232,9 +235,10 @@ Rails.application.routes.draw do
 
     resources :report_notes, only: [:create, :destroy]
 
-    resources :accounts, only: [:index, :show] do
+    resources :accounts, only: [:index, :show, :destroy] do
       member do
         post :enable
+        post :unsensitive
         post :unsilence
         post :unsuspend
         post :redownload
@@ -278,6 +282,12 @@ Rails.application.routes.draw do
     end
 
     resources :custom_emojis, only: [:index, :new, :create] do
+      collection do
+        post :batch
+      end
+    end
+
+    resources :ip_blocks, only: [:index, :new, :create] do
       collection do
         post :batch
       end
@@ -431,6 +441,7 @@ Rails.application.routes.draw do
         resources :following, only: :index, controller: 'accounts/following_accounts'
         resources :lists, only: :index, controller: 'accounts/lists'
         resources :identity_proofs, only: :index, controller: 'accounts/identity_proofs'
+        resources :featured_tags, only: :index, controller: 'accounts/featured_tags'
 
         member do
           post :follow
@@ -465,9 +476,10 @@ Rails.application.routes.draw do
       end
 
       namespace :admin do
-        resources :accounts, only: [:index, :show] do
+        resources :accounts, only: [:index, :show, :destroy] do
           member do
             post :enable
+            post :unsensitive
             post :unsilence
             post :unsuspend
             post :approve

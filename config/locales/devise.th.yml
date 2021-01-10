@@ -60,6 +60,20 @@ th:
         title: เปลี่ยนรหัสกู้คืน 2FA แล้ว
       unlock_instructions:
         subject: 'Mastodon: คำแนะนำการปลดล็อค'
+      webauthn_credential:
+        added:
+          explanation: เพิ่มกุญแจความปลอดภัยดังต่อไปนี้ไปยังบัญชีของคุณแล้ว
+          subject: 'Mastodon: กุญแจความปลอดภัยใหม่'
+          title: เพิ่มกุญแจความปลอดภัยใหม่แล้ว
+        deleted:
+          explanation: ลบกุญแจความปลอดภัยดังต่อไปนี้ออกจากบัญชีของคุณแล้ว
+          subject: 'Mastodon: ลบกุญแจความปลอดภัยแล้ว'
+      webauthn_disabled:
+        subject: 'Mastodon: ปิดใช้งานการรับรองความถูกต้องด้วยกุญแจความปลอดภัยแล้ว'
+        title: ปิดใช้งานกุญแจความปลอดภัยแล้ว
+      webauthn_enabled:
+        subject: 'Mastodon: เปิดใช้งานการรับรองความถูกต้องด้วยกุญแจความปลอดภัยแล้ว'
+        title: เปิดใช้งานกุญแจความปลอดภัยแล้ว
     omniauth_callbacks:
       failure: ไม่สามารถรับรองความถูกต้องของคุณจาก %{kind} เนื่องจาก "%{reason}"
       success: รับรองความถูกต้องจากบัญชี %{kind} สำเร็จ
@@ -88,7 +102,7 @@ th:
       unlocked: ปลดล็อคบัญชีของคุณสำเร็จ โปรดลงชื่อเข้าเพื่อดำเนินการต่อ
   errors:
     messages:
-      already_confirmed: ยืนยันอยู่แล้ว โปรดลองลงชื่อเข้า
+      already_confirmed: ได้รับการยืนยันไปแล้ว โปรดลองลงชื่อเข้า
       confirmation_period_expired: ต้องได้รับการยืนยันภายใน %{period} โปรดขออีเมลใหม่
       expired: หมดอายุแล้ว โปรดขออีเมลใหม่
       not_found: ไม่พบ

@@ -18,7 +18,7 @@ class Api::V1::Accounts::StatusesController < Api::BaseController
   end
 
   def load_statuses
-    cached_account_statuses
+    @account.suspended? ? [] : cached_account_statuses
   end
 
   def cached_account_statuses
