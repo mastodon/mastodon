@@ -28,6 +28,16 @@ html {
   }
 }
 
+.status-card-video__container {
+  .fullscreen-iframe-button {
+    color: rgba($white, 0.8);
+
+    &:hover {
+      color: $white;
+    }
+  }
+}
+
 // Change default background colors of columns
 .column > .scrollable,
 .getting-started,

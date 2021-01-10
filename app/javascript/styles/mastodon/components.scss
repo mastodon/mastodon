@@ -3361,6 +3361,30 @@ a.status-card {
   }
 }
 
+.status-card-video__container {
+  .fullscreen-iframe-button {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    padding: 6px;
+    border-radius: 8px 0 0 8px;
+    color: $secondary-text-color;
+    background: rgba($base-shadow-color, 0.6);
+    transform: translate(100%, -50%);
+    transition: transform 0.5s;
+
+    &:hover {
+      color: $primary-text-color;
+    }
+  }
+
+  &:hover {
+    .fullscreen-iframe-button {
+      transform: translate(0, -50%);
+    }
+  }
+}
+
 .status-card__title {
   display: block;
   font-weight: 500;
