@@ -28,9 +28,9 @@ class Sanitize
       return unless class_list
 
       class_list.keep_if do |e|
-        next true if e =~ /^(h|p|u|dt|e)-/ # microformats classes
-        next true if e =~ /^(mention|hashtag)$/ # semantic classes
-        next true if e =~ /^(ellipsis|invisible)$/ # link formatting classes
+        next true if e.match?(/^(h|p|u|dt|e)-/) # microformats classes
+        next true if e.match?(/^(mention|hashtag)$/) # semantic classes
+        next true if e.match?(/^(ellipsis|invisible)$/) # link formatting classes
       end
 
       node['class'] = class_list.join(' ')
@@ -42,7 +42,7 @@ class Sanitize
       current_node = env[:node]
 
       scheme = begin
-        if current_node['href'] =~ Sanitize::REGEX_PROTOCOL
+        if current_node['href'].match?(Sanitize::REGEX_PROTOCOL)
           Regexp.last_match(1).downcase
         else
           :relative
