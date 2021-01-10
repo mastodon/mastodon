@@ -626,11 +626,15 @@ class Status extends ImmutablePureComponent {
       }
 
       if (quote_status.get('visibility') === 'unlisted' && contextType !== 'home') {
-        unlistedQuoteText = intl.formatMessage({ id: 'status.unlisted_quote', defaultMessage: 'Unlisted quote' });
+        unlistedQuoteText = intl.formatMessage({ id: 'status.unlisted_quote', defaultMessage: 'Unlisted quote content, click to expand' });
         quote = (
           <div className={classNames('quote-status', `status-${quote_status.get('visibility')}`, { muted: this.props.muted })} data-id={quote_status.get('id')}>
             <div className={classNames('status__content unlisted-quote', { 'status__content--with-action': this.context.router })}>
-              <button onClick={this.handleQuoteClick}>{unlistedQuoteText}</button>
+              <button onClick={this.handleQuoteClick}>
+                <Icon id='unlock:fad' />
+                {unlistedQuoteText}
+                <Icon id='angle-double-right:fad' />
+              </button>
             </div>
           </div>
         );
