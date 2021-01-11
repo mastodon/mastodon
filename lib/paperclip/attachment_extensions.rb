@@ -27,7 +27,7 @@ module Paperclip
       return true  if original_filename == other_filename
       return false if original_filename.nil?
 
-      formats = styles.values.map(&:format).compact
+      formats = styles.values.filter_map(&:format)
 
       return false if formats.empty?
 

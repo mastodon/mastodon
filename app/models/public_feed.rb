@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class PublicFeed < Feed
+class PublicFeed
   # @param [Account] account
   # @param [Hash] options
   # @option [Boolean] :with_replies
@@ -35,36 +35,38 @@ class PublicFeed < Feed
 
   private
 
+  attr_reader :account, :options
+
   def allow_local_only?
-    local_account? && (local_only? || @options[:allow_local_only])
+    local_account? && (local_only? || options[:allow_local_only])
   end
 
   def with_reblogs?
-    @options[:with_reblogs]
+    options[:with_reblogs]
   end
 
   def with_replies?
-    @options[:with_replies]
+    options[:with_replies]
   end
 
   def local_only?
-    @options[:local]
+    options[:local]
   end
 
   def remote_only?
-    @options[:remote]
+    options[:remote]
   end
 
   def account?
-    @account.present?
+    account.present?
   end
 
   def local_account?
-    @account&.local?
+    account&.local?
   end
 
   def media_only?
-    @options[:only_media]
+    options[:only_media]
   end
 
   def public_scope
@@ -96,9 +98,9 @@ class PublicFeed < Feed
   end
 
   def account_filters_scope
-    Status.not_excluded_by_account(@account).tap do |scope|
-      scope.merge!(Status.not_domain_blocked_by_account(@account)) unless local_only?
-      scope.merge!(Status.in_chosen_languages(@account)) if @account.chosen_languages.present?
+    Status.not_excluded_by_account(account).tap do |scope|
+      scope.merge!(Status.not_domain_blocked_by_account(account)) unless local_only?
+      scope.merge!(Status.in_chosen_languages(account)) if account.chosen_languages.present?
     end
   end
 end

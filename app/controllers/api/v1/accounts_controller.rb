@@ -42,7 +42,7 @@ class Api::V1::AccountsController < Api::BaseController
   end
 
   def mute
-    MuteService.new.call(current_user.account, @account, notifications: truthy_param?(:notifications), duration: (params[:duration] || 0))
+    MuteService.new.call(current_user.account, @account, notifications: truthy_param?(:notifications), duration: (params[:duration]&.to_i || 0))
     render json: @account, serializer: REST::RelationshipSerializer, relationships: relationships
   end
 
