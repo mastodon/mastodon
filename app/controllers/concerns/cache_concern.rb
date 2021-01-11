@@ -38,7 +38,7 @@ module CacheConcern
     klass.reload_stale_associations!(cached_keys_with_value.values) if klass.respond_to?(:reload_stale_associations!)
 
     unless uncached_ids.empty?
-      uncached = klass.where(id: uncached_ids).with_includes.each_with_object({}) { |item, h| h[item.id] = item }
+      uncached = klass.where(id: uncached_ids).with_includes.index_by(&:id)
 
       uncached.each_value do |item|
         Rails.cache.write(item, item)

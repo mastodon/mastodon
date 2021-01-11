@@ -25,7 +25,7 @@ class EntityCache
     end
 
     unless uncached_ids.empty?
-      uncached = CustomEmoji.where(shortcode: shortcodes, domain: domain, disabled: false).each_with_object({}) { |item, h| h[item.shortcode] = item }
+      uncached = CustomEmoji.where(shortcode: shortcodes, domain: domain, disabled: false).index_by(&:shortcode)
       uncached.each_value { |item| Rails.cache.write(to_key(:emoji, item.shortcode, domain), item, expires_in: MAX_EXPIRATION) }
     end
 
