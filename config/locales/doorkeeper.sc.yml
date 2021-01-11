@@ -1,1 +1,151 @@
+---
 sc:
+  activerecord:
+    attributes:
+      doorkeeper/application:
+        name: Nòmine de s'aplicatzione
+        redirect_uri: URL de re-indiritzamentu
+        scopes: Àmbitos
+        website: Situ web de s'aplicatzione
+    errors:
+      models:
+        doorkeeper/application:
+          attributes:
+            redirect_uri:
+              fragment_present: non podet cuntènnere un'ascra.
+              invalid_uri: depet èssere un'URI vàlidu.
+              relative_uri: devet èssere un'URI assolutu.
+              secured_uri: depet èssere un'URI HTTPS/SSL.
+  doorkeeper:
+    applications:
+      buttons:
+        authorize: Autoriza
+        cancel: Annulla
+        destroy: Distrue
+        edit: Modìfica
+        submit: Imbia
+      confirmations:
+        destroy: Seguru?
+      edit:
+        title: Modìfica s'aplicatzione
+      form:
+        error: Controlla si su formulàriu tuo tenet faddinas
+      help:
+        native_redirect_uri: Imprea %{native_redirect_uri} pro is tests locales
+        redirect_uri: Imprea una lìnia pro ogni URI
+        scopes: Iscroba is àmbitos cun ispàtzios. Lassa bòidu pro impreare is predefinidos.
+      index:
+        application: Aplicatzione
+        callback_url: URL de torrada
+        delete: Cantzella
+        empty: No tenes peruna aplicatzione.
+        name: Nòmine
+        new: Aplicatzione noa
+        scopes: Àmbitos
+        show: Ammustra
+        title: Is aplicatziones tuas
+      new:
+        title: Aplicatzione noa
+      show:
+        actions: Atziones
+        application_id: ID de s'aplicatzione
+        callback_urls: URLs de torrada
+        scopes: Àmbitos
+        secret: Segretu de cliente
+        title: 'Aplicatzione: %{name}'
+    authorizations:
+      buttons:
+        authorize: Autoriza
+        deny: Refuda
+      error:
+        title: Faddina
+      new:
+        able_to: At a pòdere
+        prompt: S'aplicatzione %{client_name} est preguntende atzessu a su contu tuo
+        title: Autorizatzione rechesta
+      show:
+        title: Còpia custu còdighe de autorizatzione e incolla·ddu a s'aplicatzione.
+    authorized_applications:
+      buttons:
+        revoke: Rèvoca
+      confirmations:
+        revoke: Seguru?
+      index:
+        application: Aplicatzione
+        created_at: Autorizada
+        date_format: "%Y-%m-%d %H:%M:%S"
+        scopes: Àmbitos
+        title: Is aplicatziones autorizadas tuas
+    errors:
+      messages:
+        access_denied: Sa propiedade sa resursa o su serbidore de autorizatziones at refudadu sa rechesta.
+        credential_flow_not_configured: Su flussu de is credentziales de sa crae de intrada de su mere de sa risursa est fallidu pro neghe de su fatu chi Doorkeeper.configure.resource_owner_from_credentials no est cunfiguradu.
+        invalid_client: S'autenticatzione de su cliente est fallida ca su cliente est disconnotu, s'atzessu a su cliente no est istadu incluidu, o sa manera de autenticatzione no est suportada.
+        invalid_grant: Su permissu de autorizatzione est invàlidu, iscadidu, revocadu, non currispondet a s'URI de re-indiritzamentu impreadu in sa rechesta de autorizatzione, o est istadu frunidu a un'àteru cliente.
+        invalid_redirect_uri: S'URI de re-indiritzamentu no est vàlidu.
+        invalid_request: In sa rechesta mancat unu paràmetru netzessàriu, ddoe est unu valore de unu paràmetru non suportadu o est fata male in carchi àtera manera.
+        invalid_resource_owner: Is credentziales de su mere de sa risursa frunidas non sunt vàlidas, o su mere de sa risursa non podet èssere agatadu
+        invalid_scope: S'àmbitu pedidu est invàlidu, disconnotu, o formuladu male.
+        invalid_token:
+          expired: Su getone de atzessu est iscadidu
+          revoked: Su getone de atzessu est istadu revocadu
+          unknown: Su getone de atzessu no est vàlidu
+        resource_owner_authenticator_not_configured: Su mere de sa risursa no est istadu agatadu pro neghe de su fatu chi Doorkeeper.configure.resource_owner_authenticator no est configuradu.
+        server_error: Su serbidore de autorizatzione at agatadu una cunditzione no isetada chi dd'at impedidu de esecutare sa rechesta tua.
+        temporarily_unavailable: Su serbidore de autorizatzione no est, in custu momentu, in gradu de gestire sa rechesta pro neghe de unu subracàricu temporàneu o de una manutentzione.
+        unauthorized_client: Su cliente no est autorizadu a esecutare custa rechesta in custa manera.
+        unsupported_grant_type: Sa casta de modalidade de autorizatzione no est suportada dae su serbidore de atzessu.
+        unsupported_response_type: Su serbidore de autorizatzione non suportat custa casta de risposta.
+    flash:
+      applications:
+        create:
+          notice: Aplicatzione creada.
+        destroy:
+          notice: Aplicatzione cantzellada.
+        update:
+          notice: Aplicatzione atualizada.
+      authorized_applications:
+        destroy:
+          notice: Aplicatzione revocada.
+    layouts:
+      admin:
+        nav:
+          applications: Aplicatziones
+          oauth2_provider: Frunidore OAuth2
+      application:
+        title: Autorizatzione OAuth netzessària
+    scopes:
+      admin:read: lèghere totu is datos de su serbidore
+      admin:read:accounts: lèghere informatziones sensìbiles de totu is contos
+      admin:read:reports: lèghere informatziones sensìbiles de totu is sinnalatziones e is contos sinnalados
+      admin:write: modificare totu is datos in su serbidore
+      admin:write:accounts: fàghere atziones de moderatzione in is contos
+      admin:write:reports: fàghere atziones de moderatzione in is sinnalatziones
+      follow: modificare is relatziones intre is contos
+      push: retzire is notìficas push tuas
+      read: lèghere totu is datos de su contu tuo
+      read:accounts: bìdere is informatziones in su contu
+      read:blocks: bìdere is blocos tuos
+      read:bookmarks: càstia is sinnalibros tuos
+      read:favourites: bìdere is preferidos tuos
+      read:filters: bìdere is filtros tuos
+      read:follows: bìdere is sighiduras tuas
+      read:lists: bìdere is listas tuas
+      read:mutes: bìdere is utentes chi as postu a sa muda
+      read:notifications: bìdere is notìficas tuas
+      read:reports: bìdere is sinnalatziones tuas
+      read:search: chircare a nùmene tuo
+      read:statuses: bìdere totu is istados
+      write: modificare totu is datos de su contu tuo
+      write:accounts: modificare su profilu tuo
+      write:blocks: blocare contos e domìnios
+      write:bookmarks: agiunghe is istados a is sinnalibros
+      write:favourites: pònnere istados in is preferidos
+      write:filters: creare filtros
+      write:follows: sighire persones
+      write:lists: creare listas
+      write:media: càrriga documentos multimediales
+      write:mutes: impostare persones e arresonadas a sa muda
+      write:notifications: isboidare is notìficas tuas
+      write:reports: sinnalare àteras persones
+      write:statuses: publicare istados

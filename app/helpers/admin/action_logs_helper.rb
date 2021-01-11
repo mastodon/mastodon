@@ -29,6 +29,8 @@ module Admin::ActionLogsHelper
       link_to record.target_account.acct, admin_account_path(record.target_account_id)
     when 'Announcement'
       link_to truncate(record.text), edit_admin_announcement_path(record.id)
+    when 'IpBlock'
+      "#{record.ip}/#{record.ip.prefix} (#{I18n.t("simple_form.labels.ip_block.severities.#{record.severity}")})"
     end
   end
 
@@ -48,6 +50,8 @@ module Admin::ActionLogsHelper
       end
     when 'Announcement'
       truncate(attributes['text'].is_a?(Array) ? attributes['text'].last : attributes['text'])
+    when 'IpBlock'
+      "#{attributes['ip']}/#{attributes['ip'].prefix} (#{I18n.t("simple_form.labels.ip_block.severities.#{attributes['severity']}")})"
     end
   end
 end

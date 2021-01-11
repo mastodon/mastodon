@@ -5,13 +5,10 @@ module Settings
     class ConfirmationsController < BaseController
       include ChallengableConcern
 
-      layout 'admin'
+      skip_before_action :require_functional!
 
-      before_action :authenticate_user!
       before_action :require_challenge!
       before_action :ensure_otp_secret
-
-      skip_before_action :require_functional!
 
       def new
         prepare_two_factor_form

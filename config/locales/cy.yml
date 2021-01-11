@@ -44,8 +44,11 @@ cy:
       domain: Gweinydd
       reason: 'Rheswm:'
       rejecting_media: Ni fydd ffeiliau cyfryngau o'r gweinydd hwn yn cael eu prosesu ac ni fydd unrhyw fawd yn cael eu harddangos, sy'n gofyn am glicio â llaw i'r gweinydd arall.
+      rejecting_media_title: Cyfrwng hidliedig
       silenced: Ni fydd swyddi o'r gweinydd hwn yn ymddangos yn unman heblaw eich porthiant cartref os dilynwch yr awdur.
+      silenced_title: Gweinyddion wedi'i tawelu
       suspended: Ni fyddwch yn gallu dilyn unrhyw un o'r gweinydd hwn, ac ni fydd unrhyw ddata ohono'n cael ei brosesu na'i storio, ac ni chyfnewidir unrhyw ddata.
+      suspended_title: Gweinyddion wedi'i gwahardd
     unavailable_content_html: Yn gyffredinol, mae Mastodon yn caniatáu ichi weld cynnwys gan unrhyw weinyddwr arall yn y ffederasiwn a rhyngweithio â hi. Dyma'r eithriadau a wnaed ar y gweinydd penodol hwn.
     user_count_after:
       few: defnyddwyr
@@ -325,6 +328,7 @@ cy:
       listed: Rhestredig
       new:
         title: Ychwanegu emoji personol newydd
+      not_permitted: Nid oes gennych caniatâd i gyflawni'r weithred hon
       overwrite: Trosysgrifio
       shortcode: Byrgod
       shortcode_hint: O leiaf 2 nodyn, dim ond nodau alffaniwmerig a tanlinellau
@@ -962,6 +966,7 @@ cy:
     on_cooldown: Rydych wedi mudo eich cyfrif yn diweddar. Bydd y swyddogaeth hon ar gael eto mewn %{count} diwrnod.
     past_migrations: Ymfudiadau yn y gorffennol
     proceed_with_move: Symud dilynwyr
+    redirected_msg: Mae eich cyfrif yn awr yn ailgyfeirio at %{acct}.
     redirecting_to: Mae eich cyfrif yn ailgyfeirio at %{acct}.
     set_redirect: Gosod ailgyfeiriad
     warning:
@@ -975,6 +980,10 @@ cy:
       redirect: Bydd proffil eich cyfrif presennol yn cael ei diweddaru gyda hysbysiad ailgyfeirio ac yn cael ei eithrio o chwiliadau
   moderation:
     title: Goruwchwyliad
+  move_handler:
+    carry_blocks_over_text: Wnaeth y defnyddiwr symud o %{acct}, a oeddech chi wedi'i flocio.
+    carry_mutes_over_text: Wnaeth y defnyddiwr symud o %{acct}, a oeddech chi wedi'i dawelu.
+    copy_account_note_text: 'Wnaeth y defnyddiwr symud o %{acct}, dyma oedd eich hen nodiadau amdanynt:'
   notification_mailer:
     digest:
       action: Gweld holl hysbysiadau
@@ -1161,6 +1170,13 @@ cy:
     spam_detected: Mae hyn yn adrodd awtomatig. Caiff sbam ei ganfod.
   statuses:
     attached:
+      audio:
+        few: "%{count} ffeil clywedol"
+        many: "%{count} ffeil clywedol"
+        one: "%{count} ffeil clywedol"
+        other: "%{count} ffeil clywedol"
+        two: "%{count} ffeil clywedol"
+        zero: "%{count} ffeil clywedol"
       description: 'Ynghlwm: %{attached}'
       image:
         few: "%{count} o luniau"
@@ -1320,26 +1336,25 @@ cy:
       default: "%b %d, %Y, %H:%M"
       month: "%b %Y"
   two_factor_authentication:
-    code_hint: Mewnbynwch y côd a grewyd gan eich ap dilysu i gadarnhau
-    description_html: Os ydych yn galluogi <strong>awdurdodi dau-gam</strong>, bydd mewngofnodi yn gofyn i chi fod a'ch ffôn gerllaw er mwyn cynhyrchu tocyn i chi gael mewnbynnu.
     disable: Diffodd
-    enable: Galluogi
     enabled: Awdurdodi dau-gam wedi'i alluogi
     enabled_success: Awdurdodi dau-gam wedi'i alluogi'n llwyddiannus
     generate_recovery_codes: Cynhyrchu côdau adfer
-    instructions_html: "<strong>Sganiwch y côd QR yn Google Authenticator neu ap TOTP tebyg ar eich ffôn</strong>. O hyn ymlaen, bydd yr ap hwnnw yn cynhyrchu tocynnau y bydd rhaid i chi fewnbynnu tra'n mewngofnodi."
     lost_recovery_codes: Mae côdau adfer yn caniatau i chi gael mynediad i'ch cyfrif eto os ydych yn colli'ch ffôn. Os ydych wedi colli eich côdau adfer, mae modd i chi gynhyrchu nhw eto yma. Bydd eich hen gôdau wedyn yn annilys.
-    manual_instructions: 'Os nad ydych yn gallu sganio côd QR ac angen ei fewnbynnu a llaw, dyma''r gyfrinach testun-plaen:'
     recovery_codes: Creu copi wrth gefn o gôdau adfywio
     recovery_codes_regenerated: Llwyddwyd i ail greu côdau adfywio
     recovery_instructions_html: Os ydych byth yn colli mynediad i'ch ffôn, mae modd i chi ddefnyddio un o'r côdau adfywio isod i ennill mynediad i'ch cyfrif eto. <strong>Cadwch y côdau adfywio yn saff</strong>. Er enghraifft, gallwch eu argraffu a'u cadw gyda dogfennau eraill pwysig.
-    setup: Sefydlu
-    wrong_code: Roedd y cod y mewnbynnwyd yn annilys! A yw'r amser gweinydd ac amser dyfais yn gywir?
   user_mailer:
     backup_ready:
       explanation: Fe wnaethoch chi gais am gopi wrth gefn llawn o'ch cyfrif Mastodon. Mae nawr yn barod i'w lawrlwytho!
       subject: Mae eich archif yn barod i'w lawrlwytho
       title: Allfudo archif
+    sign_in_token:
+      details: 'Dyma''r manylion o''r ceisiad:'
+      explanation: 'Wnaethom ni synhwyro ceisiad i fewngofnodi i''ch cyfrif o gyfeiriad IP anabyddiedig. Os mae hyn yn chi, mewnbynnwch y cod diogelwch isod i fewn i''r dudalen herio mewngofnodiad:'
+      further_actions: 'Os nad oedd hyn yn chi, newidwch eich cyfrinair ac alluogi awdurdodi dauffactor ar eich cyfrif. Gallwch gwneud hyn fama:'
+      subject: Cadarnhewch yr ymgais mewngofnodi
+      title: Ymgais mewngofnodi
     warning:
       explanation:
         disable: Er bod eich cyfrif wedi'i rewi, mae eich data cyfrif yn parhau i fod yn gyfan, ond ni allwch chi berfformio unrhyw gamau nes ei ddatgloi.
@@ -1376,12 +1391,17 @@ cy:
       tips: Awgrymiadau
       title: Croeso, %{name}!
   users:
+    blocked_email_provider: Nid yw'r darparwr ebost hon yn cael ei ganiatâu
     follow_limit_reached: Nid oes modd i chi ddilyn mwy na %{limit} o bobl
+    generic_access_help_html: Cael trafferth yn cyrchu eich cyfrif? Efallai hoffwch cysylltu â %{email} am gymorth
     invalid_email: Mae'r cyfeiriad e-bost hwn yn annilys
+    invalid_email_mx: Nid yw'r ebost yn edrcyh fel ei bod yn bodoli
     invalid_otp_token: Côd dau-ffactor annilys
+    invalid_sign_in_token: Cod diogelwch annilys
     otp_lost_help_html: Os colloch chi fynediad i'r ddau, mae modd i chi gysylltu a %{email}
     seamless_external_login: Yr ydych wedi'ch mewngofnodi drwy wasanaeth allanol, felly nid yw gosodiadau cyfrinair ac e-bost ar gael.
     signed_in_as: 'Wedi mewngofnodi fel:'
+    suspicious_sign_in_confirmation: Mae'n edrych fel nad ydych wedi mewngofnodi o'r dyfais hyn o'r blaen, a nid ydych wedi mewngofnodi am sbel, felly rydym yn anfon cod diogelwch i'ch cyfeiriad ebost i gadarnhau bod chi yw hi.
   verification:
     explanation_html: 'Mae modd i chi <strong>ddilysu eich hun fel perchenog y dolenni yn metadata eich proffil</strong>. Rhaid i''r wefan a dolen iddi gynnwys dolen yn ôl i''ch proffil Mastodon. <strong>Rhaid</strong> i''r ddolen yn ôl gael nodwedd <code>rel="fi"</code>. Nid oes ots beth yw cynnwys testun y ddolen. Dyma enghraifft:'
     verification: Dilysu

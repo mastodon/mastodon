@@ -74,7 +74,7 @@ class ActivityPub::Activity
     @object_uri ||= begin
       str = value_or_id(@object)
 
-      if str.start_with?('bear:')
+      if str&.start_with?('bear:')
         Addressable::URI.parse(str).query_values['u']
       else
         str
@@ -118,13 +118,13 @@ class ActivityPub::Activity
   end
 
   def notify_about_reblog(status)
-    NotifyService.new.call(status.reblog.account, status)
+    NotifyService.new.call(status.reblog.account, :reblog, status)
   end
 
   def notify_about_mentions(status)
     status.active_mentions.includes(:account).each do |mention|
       next unless mention.account.local? && audience_includes?(mention.account)
-      NotifyService.new.call(mention.account, mention)
+      NotifyService.new.call(mention.account, :mention, mention)
     end
   end
 

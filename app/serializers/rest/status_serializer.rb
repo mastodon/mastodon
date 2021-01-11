@@ -63,12 +63,20 @@ class REST::StatusSerializer < ActiveModel::Serializer
     end
   end
 
+  def sensitive
+    if current_user? && current_user.account_id == object.account_id
+      object.sensitive
+    else
+      object.account.sensitized? || object.sensitive
+    end
+  end
+
   def limited
     object.limited_visibility?
   end
 
   def limited_owned_status?
-    object.limited_visibility? && owned_status? && object.in_reply_to_id.nil?
+    object.limited_visibility? && owned_status? && (!object.reply? || object.thread&.conversation_id != object.conversation_id)
   end
 
   def circle_id

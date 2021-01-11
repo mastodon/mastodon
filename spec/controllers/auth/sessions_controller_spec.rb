@@ -219,7 +219,7 @@ RSpec.describe Auth::SessionsController, type: :controller do
 
         context 'using a valid OTP' do
           before do
-            post :create, params: { user: { otp_attempt: user.current_otp } }, session: { attempt_user_id: user.id }
+            post :create, params: { user: { otp_attempt: user.current_otp } }, session: { attempt_user_id: user.id, attempt_user_updated_at: user.updated_at.to_s }
           end
 
           it 'redirects to home' do
@@ -234,7 +234,7 @@ RSpec.describe Auth::SessionsController, type: :controller do
         context 'when the server has an decryption error' do
           before do
             allow_any_instance_of(User).to receive(:validate_and_consume_otp!).and_raise(OpenSSL::Cipher::CipherError)
-            post :create, params: { user: { otp_attempt: user.current_otp } }, session: { attempt_user_id: user.id }
+            post :create, params: { user: { otp_attempt: user.current_otp } }, session: { attempt_user_id: user.id, attempt_user_updated_at: user.updated_at.to_s }
           end
 
           it 'shows a login error' do
@@ -248,7 +248,7 @@ RSpec.describe Auth::SessionsController, type: :controller do
 
         context 'using a valid recovery code' do
           before do
-            post :create, params: { user: { otp_attempt: recovery_codes.first } }, session: { attempt_user_id: user.id }
+            post :create, params: { user: { otp_attempt: recovery_codes.first } }, session: { attempt_user_id: user.id, attempt_user_updated_at: user.updated_at.to_s }
           end
 
           it 'redirects to home' do
@@ -262,7 +262,7 @@ RSpec.describe Auth::SessionsController, type: :controller do
 
         context 'using an invalid OTP' do
           before do
-            post :create, params: { user: { otp_attempt: 'wrongotp' } }, session: { attempt_user_id: user.id }
+            post :create, params: { user: { otp_attempt: 'wrongotp' } }, session: { attempt_user_id: user.id, attempt_user_updated_at: user.updated_at.to_s }
           end
 
           it 'shows a login error' do
@@ -334,7 +334,7 @@ RSpec.describe Auth::SessionsController, type: :controller do
           before do
             @controller.session[:webauthn_challenge] = challenge
 
-            post :create, params: { user: { credential: fake_credential } }, session: { attempt_user_id: user.id }
+            post :create, params: { user: { credential: fake_credential } }, session: { attempt_user_id: user.id, attempt_user_updated_at: user.updated_at.to_s }
           end
 
           it 'instructs the browser to redirect to home' do
@@ -383,7 +383,7 @@ RSpec.describe Auth::SessionsController, type: :controller do
       context 'using a valid sign in token' do
         before do
           user.generate_sign_in_token && user.save
-          post :create, params: { user: { sign_in_token_attempt: user.sign_in_token } }, session: { attempt_user_id: user.id }
+          post :create, params: { user: { sign_in_token_attempt: user.sign_in_token } }, session: { attempt_user_id: user.id, attempt_user_updated_at: user.updated_at.to_s }
         end
 
         it 'redirects to home' do
@@ -397,7 +397,7 @@ RSpec.describe Auth::SessionsController, type: :controller do
 
       context 'using an invalid sign in token' do
         before do
-          post :create, params: { user: { sign_in_token_attempt: 'wrongotp' } }, session: { attempt_user_id: user.id }
+          post :create, params: { user: { sign_in_token_attempt: 'wrongotp' } }, session: { attempt_user_id: user.id, attempt_user_updated_at: user.updated_at.to_s }
         end
 
         it 'shows a login error' do
