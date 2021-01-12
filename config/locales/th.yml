@@ -686,6 +686,7 @@ th:
       account_status: สถานะบัญชี
       confirming: กำลังรอการยืนยันอีเมลให้เสร็จสมบูรณ์
       functional: บัญชีของคุณทำงานได้อย่างเต็มที่
+    too_fast: ส่งแบบฟอร์มเร็วเกินไป ลองอีกครั้ง
     trouble_logging_in: มีปัญหาในการเข้าสู่ระบบ?
     use_security_key: ใช้กุญแจความปลอดภัย
   authorize_follow:
@@ -918,6 +919,7 @@ th:
   otp_authentication:
     code_hint: ป้อนรหัสที่สร้างโดยแอปตัวรับรองความถูกต้องของคุณเพื่อยืนยัน
     enable: เปิดใช้งาน
+    setup: ตั้งค่า
     wrong_code: รหัสที่ป้อนไม่ถูกต้อง! เวลาเซิร์ฟเวอร์และเวลาอุปกรณ์ถูกต้องหรือไม่?
   pagination:
     newer: ใหม่กว่า
@@ -1115,10 +1117,12 @@ th:
       subject:
         none: คำเตือนสำหรับ %{acct}
       title:
+        disable: อายัดบัญชีอยู่
         none: คำเตือน
         silence: จำกัดบัญชีอยู่
         suspend: ระงับบัญชีอยู่
     welcome:
+      edit_profile_action: ตั้งค่าโปรไฟล์
       review_preferences_action: เปลี่ยนการกำหนดลักษณะ
       subject: ยินดีต้อนรับสู่ Mastodon
       tips: เคล็ดลับ
