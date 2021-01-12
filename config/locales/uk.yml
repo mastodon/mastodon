@@ -196,7 +196,7 @@ uk:
       search: Пошук
       search_same_email_domain: Інші користувачі з тим самим поштовим доменом
       search_same_ip: Інші користувачі з тим самим IP
-      sensitive: Дражливе
+      sensitive: Делікатне
       sensitized: позначено як дражливе
       shared_inbox_url: URL спільного вхідного кошика
       show:
@@ -254,11 +254,11 @@ uk:
         reopen_report: Перевідкрити скаргу
         reset_password_user: Скинути пароль
         resolve_report: Розв'язати скаргу
-        sensitive_account: Позначити медіа у вашому обліковому записі як дражливе
+        sensitive_account: Позначити делікатним медіа вашого облікового запису
         silence_account: Заглушити обліковий запис
         suspend_account: Призупинити обліковий запис
         unassigned_report: Видалити скаргу
-        unsensitive_account: Зняти позначку "дражливе" з медіа у вашому обліковому записі
+        unsensitive_account: Прибрати позначку "делікатне" з медіа вашого облікового запису
         unsilence_account: Розглушити обліковий запис
         unsuspend_account: Розморозити обліковий запис
         update_announcement: Оновити оголошення
@@ -295,7 +295,7 @@ uk:
         reopen_report: "%{name} перевідкрив(-ла) скаргу %{target}"
         reset_password_user: "%{name} скинув(-ла) пароль користувача %{target}"
         resolve_report: "%{name} розв'язав(-ла) скаргу %{target}"
-        sensitive_account: "%{name} позначив %{target} медіа як дражливе"
+        sensitive_account: "%{name} позначив %{target} медіа делікатним"
         silence_account: "%{name} заглушив(-ла) обліковий запис %{target}"
         suspend_account: "%{name} заморозив(-ла) обліковий запис %{target}"
         unassigned_report: "%{name} зняв(-ла) призначення скарги %{target}"
@@ -1413,11 +1413,13 @@ uk:
       subject:
         disable: Ваш обліковий запис %{acct} було заморожено
         none: Попередження для %{acct}
+        sensitive: Надісланий вашим обліковим записом %{acct} допис з медіа позначено делікатним
         silence: Ваш обліковий запис %{acct} було обмежено
         suspend: Ваш обліковий запис %{acct} було призупинено
       title:
         disable: Обліковий запис заморожено
         none: Попередження
+        sensitive: Ваші медіа позначено делікатними
         silence: Ообліковий запис обмежено
         suspend: Обліковий запис призупинено
     welcome:
