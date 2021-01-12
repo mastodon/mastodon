@@ -21,7 +21,7 @@ class Webfinger
     private
 
     def links
-      @links ||= @json['links'].map { |link| [link['rel'], link] }.to_h
+      @links ||= @json['links'].index_by { |link| link['rel'] }
     end
   end
 

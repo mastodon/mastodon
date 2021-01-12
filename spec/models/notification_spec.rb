@@ -71,7 +71,7 @@ RSpec.describe Notification, type: :model do
       before do
         allow(accounts_with_ids).to receive(:[]).with(stale_account1.id).and_return(account1)
         allow(accounts_with_ids).to receive(:[]).with(stale_account2.id).and_return(account2)
-        allow(Account).to receive_message_chain(:where, :includes, :each_with_object).and_return(accounts_with_ids)
+        allow(Account).to receive_message_chain(:where, :includes, :index_by).and_return(accounts_with_ids)
       end
 
       let(:cached_items) do
