@@ -397,6 +397,7 @@ uk:
           silence: Глушення
           suspend: Блокування
         title: Нове блокування домену
+      obfuscate: Зробити доменне ім'я незрозумілим
       private_comment: Приватний коментар
       private_comment_hint: Прокоментуйте обмеження для цього домену, а модератори прочитають.
       public_comment: Публічний коментар
@@ -438,6 +439,7 @@ uk:
     instances:
       by_domain: Домен
       delivery_available: Доставлення доступне
+      empty: Доменів не знайдено.
       known_accounts:
         one: "%{count} відомий обліковий запис"
         few: "%{count} відомих облікових записів"
@@ -463,6 +465,21 @@ uk:
         expired: Просрочено
         title: Фільтр
       title: Запрошення
+    ip_blocks:
+      add_new: Створити правило
+      created_msg: Нове IP-правило успішно додано
+      delete: Видалити
+      expires_in:
+        '1209600': 2 тижні
+        '15778476': 6 місяців
+        '2629746': 1 місяць
+        '31556952': 1 рік
+        '86400': 1 день
+        '94670856': 3 роки
+      new:
+        title: Створити нове IP-правило
+      no_ip_block_selected: Жодного IP-правила не було змінено, оскільки жодного не було вибрано
+      title: Правила IP
     pending_accounts:
       title: Облікові записи у черзі (%{count})
     relationships:
@@ -575,6 +592,8 @@ uk:
         min_invite_role:
           disabled: Ніхто
           title: Дозволити запрошення від
+        require_invite_text:
+          title: Вимагати від нових користувачів причину приєднання
       registrations_mode:
         modes:
           approved: Для входу потрібне схвалення
@@ -743,6 +762,7 @@ uk:
       functional: Ваш обліковий запис повністю робочій.
       pending: Ваша заява очікує на розгляд нашим персоналом. Це може зайняти деякий час. Ви отримаєте електронний лист, якщо ваша заява буде схвалена.
       redirecting_to: Ваш обліковий запис наразі неактивний, тому що він перенаправлений до %{acct}.
+    too_fast: Форма подана занадто швидко, спробуйте ще раз.
     trouble_logging_in: Проблема під час входу?
     use_security_key: Використовувати ключ безпеки
   authorize_follow:
@@ -834,6 +854,7 @@ uk:
       request: Зробити запит на архів
       size: Розмір
     blocks: Список блокувань
+    bookmarks: Закладки
     csv: CSV
     domain_blocks: Блокування доменів
     lists: Списки
@@ -903,6 +924,8 @@ uk:
     status: Стан перевірки
     view_proof: Переглянути доказ
   imports:
+    errors:
+      over_rows_processing_limit: містить більше ніж %{count} рядків
     modes:
       merge: Злиття
       merge_long: Зберегти існуючі записи та додати нові
@@ -912,6 +935,7 @@ uk:
     success: Ваші дані були успішно загружені та будуть оброблені в найближчий момент
     types:
       blocking: Список блокувань
+      bookmarks: Закладки
       domain_blocking: Список заблокованих сайтів
       following: Підписки
       muting: Список глушення
@@ -1074,6 +1098,7 @@ uk:
   relationships:
     activity: Діяльність облікового запису
     dormant: Неактивні
+    follow_selected_followers: Підписатися на вибраних підписників
     followers: Підписники
     following: Підписник(-ця)
     invited: Запрошені
@@ -1221,6 +1246,8 @@ uk:
         other: "%{count} голоси"
       vote: Проголосувати
     show_more: Розгорнути
+    show_newer: Показати новіші
+    show_older: Показати старіші
     show_thread: Відкрити обговорення
     sign_in_to_participate: Увійдіть, щоб брати участь у бесіді
     title: '%{name}: "%{quote}"'
