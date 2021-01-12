@@ -197,7 +197,7 @@ uk:
       search_same_email_domain: Інші користувачі з тим самим поштовим доменом
       search_same_ip: Інші користувачі з тим самим IP
       sensitive: Делікатне
-      sensitized: позначено як дражливе
+      sensitized: позначено делікатним
       shared_inbox_url: URL спільного вхідного кошика
       show:
         created_reports: Скарги, створені цим акаунтом
@@ -212,7 +212,7 @@ uk:
       time_in_queue: Очікує в черзі %{time}
       title: Облікові записи
       unconfirmed_email: Непідтверджена адреса електронної пошти
-      undo_sensitized: Відмінити дражливість
+      undo_sensitized: Скасувати позначення делікатним
       undo_silenced: Зняти глушення
       undo_suspension: Зняти призупинення
       unsilenced_msg: З облікового запису %{username} успішно знято обмеження
@@ -299,7 +299,7 @@ uk:
         silence_account: "%{name} заглушив(-ла) обліковий запис %{target}"
         suspend_account: "%{name} заморозив(-ла) обліковий запис %{target}"
         unassigned_report: "%{name} зняв(-ла) призначення скарги %{target}"
-        unsensitive_account: "%{name} зняв позначку \"дражливе\" з %{target} медіа"
+        unsensitive_account: "%{name} прибирає позначку \"делікатне\" з %{target} медіа"
         unsilence_account: "%{name} розглушив(-ла) обліковий запис %{target}"
         unsuspend_account: "%{name} розморозив(-ла) обліковий запис %{target}"
         update_announcement: "%{name} оновив оголошення %{target}"
@@ -592,8 +592,8 @@ uk:
         desc_html: Доменні ім'я, помічені цією інстанцією федисвіту
         title: Опублікувати список знайдених інстанцій
       preview_sensitive_media:
-        desc_html: Передпоказ посилання на інших сайтах буде відображати мініатюру навіть якщо медіа відмічене як дражливе
-        title: Показувати дражливе медіа у передпоказах OpenGraph
+        desc_html: Попередній перегляд посилань на інших сайтах показуватиме мініатюру навіть якщо медіа позначено делікатним
+        title: Показувати делікатне медіа в попередніх переглядах OpenGraph
       profile_directory:
         desc_html: Дозволити користувачам бути видимими
         title: Увімкнути каталог профілів
@@ -658,8 +658,8 @@ uk:
       back_to_account: Назад до сторінки облікового запису
       batch:
         delete: Видалити
-        nsfw_off: Відмітити прийнятним
-        nsfw_on: Відмітити неприйнятним
+        nsfw_off: Позначити не делікатним
+        nsfw_on: Позначити делікатним
       deleted: Видалено
       failed_to_execute: Не вийшло
       media:
@@ -720,7 +720,7 @@ uk:
       body: Mastodon перекладено волонтерами.
       guide_link: https://uk.crowdin.com/project/mastodon
       guide_link_text: Кожен може взяти участь.
-    sensitive_content: Дражливий зміст
+    sensitive_content: Делікатний вміст
     toot_layout: Зовнішній вигляд дмухів
   application_mailer:
     notification_preferences: Змінити налаштування e-mail
@@ -1277,7 +1277,7 @@ uk:
   stream_entries:
     pinned: Закріплений пост
     reblogged: передмухнув(-ла)
-    sensitive_content: Дражливий зміст
+    sensitive_content: Делікатний вміст
   tags:
     does_not_match_previous_name: не збігається з попереднім ім'ям
   terms:
