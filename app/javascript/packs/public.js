@@ -1,3 +1,4 @@
+import './public-path';
 import escapeTextContentForBrowser from 'escape-html';
 import loadPolyfills from '../mastodon/load_polyfills';
 import ready from '../mastodon/ready';
@@ -278,6 +279,17 @@ function main() {
     } else {
       target.style.display = 'block';
     }
+  });
+
+  // Empty the honeypot fields in JS in case something like an extension
+  // automatically filled them.
+  delegate(document, '#registration_new_user,#new_user', 'submit', () => {
+    ['user_website', 'user_confirm_password', 'registration_user_website', 'registration_user_confirm_password'].forEach(id => {
+      const field = document.getElementById(id);
+      if (field) {
+        field.value = '';
+      }
+    });
   });
 }
 

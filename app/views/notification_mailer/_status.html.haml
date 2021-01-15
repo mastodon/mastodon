@@ -26,11 +26,11 @@
                                       = "@#{status.account.acct}"
 
                               - if status.spoiler_text?
-                                %div{ dir: rtl_status?(status) ? 'rtl' : 'ltr' }
+                                %div.auto-dir
                                   %p
                                     = Formatter.instance.format_spoiler(status)
 
-                              %div{ dir: rtl_status?(status) ? 'rtl' : 'ltr' }
+                              %div.auto-dir
                                 = Formatter.instance.format(status)
 
                                 - if status.media_attachments.size > 0

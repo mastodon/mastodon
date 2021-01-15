@@ -1,6 +1,6 @@
 - content_for :header_tags do
   = render_initial_state
-  = javascript_pack_tag 'public', integrity: true, crossorigin: 'anonymous'
+  = javascript_pack_tag 'public', crossorigin: 'anonymous'
 
 - if @media_attachment.video?
   = react_component :video, src: @media_attachment.file.url(:original), preview: @media_attachment.thumbnail.present? ? @media_attachment.thumbnail.url : @media_attachment.file.url(:small), blurhash: @media_attachment.blurhash, width: 670, height: 380, editable: true, detailed: true, inline: true, alt: @media_attachment.description do

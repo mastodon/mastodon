@@ -94,21 +94,42 @@ describe RemoteFollowController do
     end
   end
 
-  describe 'with a suspended account' do
+  context 'with a permanently suspended account' do
     before do
-      @account = Fabricate(:account, suspended: true)
+      @account = Fabricate(:account)
+      @account.suspend!
+      @account.deletion_request.destroy
     end
 
-    it 'returns 410 gone on GET to #new' do
+    it 'returns http gone on GET to #new' do
       get :new, params: { account_username: @account.to_param }
 
-      expect(response).to have_http_status(:gone)
+      expect(response).to have_http_status(410)
     end
 
-    it 'returns 410 gone on POST to #create' do
+    it 'returns http gone on POST to #create' do
       post :create, params: { account_username: @account.to_param }
 
-      expect(response).to have_http_status(:gone)
+      expect(response).to have_http_status(410)
+    end
+  end
+
+  context 'with a temporarily suspended account' do
+    before do
+      @account = Fabricate(:account)
+      @account.suspend!
+    end
+
+    it 'returns http forbidden on GET to #new' do
+      get :new, params: { account_username: @account.to_param }
+
+      expect(response).to have_http_status(403)
+    end
+
+    it 'returns http forbidden on POST to #create' do
+      post :create, params: { account_username: @account.to_param }
+
+      expect(response).to have_http_status(403)
     end
   end
 end

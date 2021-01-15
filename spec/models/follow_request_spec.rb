@@ -7,7 +7,7 @@ RSpec.describe FollowRequest, type: :model do
     let(:target_account) { Fabricate(:account) }
 
     it 'calls Account#follow!, MergeWorker.perform_async, and #destroy!' do
-      expect(account).to        receive(:follow!).with(target_account, reblogs: true, uri: follow_request.uri)
+      expect(account).to        receive(:follow!).with(target_account, reblogs: true, notify: false, uri: follow_request.uri)
       expect(MergeWorker).to    receive(:perform_async).with(target_account.id, account.id)
       expect(follow_request).to receive(:destroy!)
       follow_request.authorize!

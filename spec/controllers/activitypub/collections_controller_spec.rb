@@ -13,6 +13,7 @@ RSpec.describe ActivityPub::CollectionsController, type: :controller do
     end
 
     it 'does not set sessions' do
+      response
       expect(session).to be_empty
     end
 
@@ -34,9 +35,8 @@ RSpec.describe ActivityPub::CollectionsController, type: :controller do
       context 'without signature' do
         let(:remote_account) { nil }
 
-        before do
-          get :show, params: { id: 'featured', account_username: account.username }
-        end
+        subject(:response) { get :show, params: { id: 'featured', account_username: account.username } }
+        subject(:body) { body_as_json }
 
         it 'returns http success' do
           expect(response).to have_http_status(200)
@@ -49,9 +49,29 @@ RSpec.describe ActivityPub::CollectionsController, type: :controller do
         it_behaves_like 'cachable response'
 
         it 'returns orderedItems with pinned statuses' do
-          json = body_as_json
-          expect(json[:orderedItems]).to be_an Array
-          expect(json[:orderedItems].size).to eq 2
+          expect(body[:orderedItems]).to be_an Array
+          expect(body[:orderedItems].size).to eq 2
+        end
+
+        context 'when account is permanently suspended' do
+          before do
+            account.suspend!
+            account.deletion_request.destroy
+          end
+
+          it 'returns http gone' do
+            expect(response).to have_http_status(410)
+          end
+        end
+
+        context 'when account is temporarily suspended' do
+          before do
+            account.suspend!
+          end
+
+          it 'returns http forbidden' do
+            expect(response).to have_http_status(403)
+          end
         end
       end
 

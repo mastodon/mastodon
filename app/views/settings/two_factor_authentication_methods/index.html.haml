@@ -1,0 +1,41 @@
+- content_for :page_title do
+  = t('settings.two_factor_authentication')
+
+- content_for :heading_actions do
+  = link_to t('two_factor_authentication.disable'), disable_settings_two_factor_authentication_methods_path, class: 'button button--destructive', method: :post
+
+%p.hint
+  %span.positive-hint
+    = fa_icon 'check'
+    = ' '
+    = t 'two_factor_authentication.enabled'
+
+.table-wrapper
+  %table.table
+    %thead
+      %tr
+        %th= t('two_factor_authentication.methods')
+        %th
+    %tbody
+      %tr
+        %td= t('two_factor_authentication.otp')
+        %td
+          = table_link_to 'pencil', t('two_factor_authentication.edit'), settings_otp_authentication_path, method: :post
+      %tr
+        %td= t('two_factor_authentication.webauthn')
+        - if current_user.webauthn_enabled?
+          %td
+            = table_link_to 'pencil', t('two_factor_authentication.edit'), settings_webauthn_credentials_path, method: :get
+        - else
+          %td
+            = table_link_to 'key', t('two_factor_authentication.add'), new_settings_webauthn_credential_path, method: :get
+
+%hr.spacer/
+
+%h3= t('two_factor_authentication.recovery_codes')
+%p.muted-hint= t('two_factor_authentication.lost_recovery_codes')
+
+%hr.spacer/
+
+.simple_form
+  = link_to t('two_factor_authentication.generate_recovery_codes'), settings_two_factor_authentication_recovery_codes_path, data: { method: :post }, class: 'block-button'
