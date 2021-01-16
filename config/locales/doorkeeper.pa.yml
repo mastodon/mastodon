@@ -54,6 +54,17 @@ pa:
       applications:
         create:
           notice: ਐਪਲੀਕੇਸ਼ਨ ਬਣਾਈ ਗਈ।
+        destroy:
+          notice: ਐਪਲੀਕੇਸ਼ਨ ਮਿਟਾਈ ਗਈ।
+        update:
+          notice: ਐਪਲੀਕੇਸ਼ਨ ਅੱਪਡੇਟ ਕੀਤੀ ਗਈ।
+      authorized_applications:
+        destroy:
+          notice: ਐਪਲੀਕੇਸ਼ਨ ਮਨਸੂਖ ਕੀਤੀ ਗਈ।
+    layouts:
+      admin:
+        nav:
+          applications: ਐਪਲੀਕੇਸ਼ਨਾਂ
     scopes:
       "read:accounts": ਖਾਤਿਆਂ ਦੀ ਜਾਣਕਾਰੀ ਦੇਖੋ
       "read:blocks": ਆਪਣੇ ਬਲਾਕ ਦੇਖੋ
