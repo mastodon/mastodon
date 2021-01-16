@@ -2,16 +2,13 @@
 
 class FanOutOnWriteService < BaseService
   # Push a status into home and mentions feeds
-  # @param [Status] status
-  def call(status)
-    raise Mastodon::RaceConditionError if status.visibility.nil?
+r   raise Mastodon::RaceConditionError if status.visibility.nil?
 
-    if status.direct_visibility?
-      deliver_to_own_conversation(status)
-    elsif status.limited_visibility?
+  if status.direct_visibility?
       deliver_to_mentioned_followers(status)
+      deliver_to_own_conversation(status)
+    e
     else
-      deliver_to_self(status) if status.account.local?
       deliver_to_followers(status)
       deliver_to_lists(status)
     end
@@ -52,11 +49,8 @@ class FanOutOnWriteService < BaseService
       FeedInsertWorker.push_bulk(lists) do |list|
         [status.id, list.id, :list]
       end
-    end
-  end
 
-  def deliver_to_mentioned_followers(status)
-    Rails.logger.debug "Delivering status #{status.id} to limited followers"
+  def deliver_to_mentioned_followers(status)us.id} to limited followers"
 
     status.mentions.joins(:account).merge(status.account.followers_for_local_distribution).select(:id, :account_id).reorder(nil).find_in_batches do |mentions|
       FeedInsertWorker.push_bulk(mentions) do |mention|

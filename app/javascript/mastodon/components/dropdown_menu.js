@@ -5,9 +5,9 @@ import IconButton from './icon_button';
 import Overlay from 'react-overlays/lib/Overlay';
 import Motion from '../features/ui/util/optional_motion';
 import spring from 'react-motion/lib/spring';
-import detectPassiveEvents from 'detect-passive-events';
+import { supportsPassiveEvents } from 'detect-passive-events';
 
-const listenerOptions = detectPassiveEvents.hasSupport ? { passive: true } : false;
+const listenerOptions = supportsPassiveEvents ? { passive: true } : false;
 let id = 0;
 
 class DropdownMenu extends React.PureComponent {
@@ -205,7 +205,7 @@ export default class Dropdown extends React.PureComponent {
 
   handleClose = () => {
     if (this.activeElement) {
-      this.activeElement.focus();
+      this.activeElement.focus({ preventScroll: true });
       this.activeElement = null;
     }
     this.props.onClose(this.state.id);

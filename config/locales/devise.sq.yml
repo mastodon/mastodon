@@ -60,6 +60,23 @@ sq:
         title: Kodet e rikthimit 2FA u ndryshuan
       unlock_instructions:
         subject: 'Mastodon: Udhëzime shkyçjeje'
+      webauthn_credential:
+        added:
+          explanation: Kyçi vijues i sigurisë është shtuar te llogaria juaj
+          subject: 'Mastodon: Kyç i ri sigurie'
+          title: U shtua një kyç i ri sigurie
+        deleted:
+          explanation: Kyçi vijues i sigurisë është fshirë prej llogarisë tuaj
+          subject: 'Mastodon: Fshirje kyçi sigurie'
+          title: Një nga kyçet tuaj të sigurisë është fshirë
+      webauthn_disabled:
+        explanation: Mirëfilltësimi me kyçe sigurie është çaktivizuar për llogarinë tuaj. Hyrja tani është e mundshme vetëm duke përdorur token-in e prodhuar nga aplikacioni TOTP i çiftuar.
+        subject: 'Mastodon: U çaktivizua mirëfilltësimi me kyçe sigurie'
+        title: U çaktivizuan kyçe sigurie
+      webauthn_enabled:
+        explanation: Mirëfilltësimi përmes kyçesh sigurie është aktivizuar për llogarinë tuaj. Tani, për hyrje mund të përdoren kyçet tuaj të sigurisë.
+        subject: 'Mastodon: U aktivizua mirëfilltësim me kyçe sigurie'
+        title: U aktivizuan kyçe sigurie
     omniauth_callbacks:
       failure: S’u bë dot mirëfilltësimi juaj nga %{kind}, sepse "%{reason}".
       success: Mirëfilltësimi nga llogaria %{kind} u bë me sukses.

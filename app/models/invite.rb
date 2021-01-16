@@ -28,7 +28,7 @@ class Invite < ApplicationRecord
   before_validation :set_code
 
   def valid_for_use?
-    (max_uses.nil? || uses < max_uses) && !expired? && !(user.nil? || user.disabled?)
+    (max_uses.nil? || uses < max_uses) && !expired? && user&.functional?
   end
 
   private

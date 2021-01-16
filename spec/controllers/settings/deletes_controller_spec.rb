@@ -77,26 +77,26 @@ describe Settings::DeletesController do
           expect(response).to redirect_to settings_delete_path
         end
       end
+
+      context 'when account deletions are disabled' do
+        around do |example|
+          open_deletion = Setting.open_deletion
+          example.run
+          Setting.open_deletion = open_deletion
+        end
+
+        it 'redirects' do
+          Setting.open_deletion = false
+          delete :destroy
+          expect(response).to redirect_to root_path
+        end
+      end
     end
 
     context 'when not signed in' do
       it 'redirects' do
         delete :destroy
         expect(response).to redirect_to '/auth/sign_in'
-      end
-    end
-
-    context do
-      around do |example|
-        open_deletion = Setting.open_deletion
-        example.run
-        Setting.open_deletion = open_deletion
-      end
-
-      it 'redirects' do
-        Setting.open_deletion = false
-        delete :destroy
-        expect(response).to redirect_to root_path
       end
     end
   end
