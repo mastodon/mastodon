@@ -1,1 +1,20 @@
 pa:
+  devise:
+    failure:
+      locked: ਤੁਹਾਡਾ ਖਾਤੇ 'ਤੇ ਜਿੰਦਾ ਲੱਗਿਆ ਹੋਇਆ ਹੈ।
+    mailer:
+      email_changed:
+        title: ਨਵਾਂ ਈਮੇਲ ਪਤਾ
+      password_change:
+        title: ਪਾਸਵਰਜ ਬਦਲਿਆ ਗਿਆ
+      reconfirmation_instructions:
+        title: ਈਮੇਲ ਪਤਾ ਤਸਦੀਕ ਕਰੋ
+      reset_password_instructions:
+        action: ਪਾਸਵਰਡ ਬਦਲੋ
+        title: ਪਾਸਵਰਡ ਰੀਸੈੱਟ ਕਰੋ
+      two_factor_disabled:
+        title: 2FA ਬੰਦ ਹੈ
+      two_factor_enabled:
+        title: 2FA ਚਾਲੂ ਹੈ
+    sessions:
+      already_signed_out: ਸਫਲਤਾਪੂਰਵਕ ਬਾਹਰ ਨਿਕਲੇ।
