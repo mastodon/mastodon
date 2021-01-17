@@ -16,6 +16,7 @@ zh-TW:
       announcement:
         all_day: 核取後，只會顯示出時間範圍中的日期部分
         scheduled_at: 空白則立即發布公告
+        text: 你可以使用嘟文語法格式，但請小心別讓公告太鴨霸佔據使用者的整個版面。
       defaults:
         autofollow: 通過邀請網址註冊的使用者將自動關注你
         avatar: 支援 PNG, GIF 或 JPG 圖片，檔案最大為 %{size}，會等比例縮減成 %{dimensions} 像素
@@ -45,6 +46,11 @@ zh-TW:
         setting_show_application: 您用來發嘟文的應用程式將會在您嘟文的詳細檢視顯示
         username: 您的使用者名稱將在 %{domain} 是獨一無二的
         whole_word: 如果關鍵字或詞組僅有字母與數字，則其將只在符合整個單字的時候才會套用
+      domain_allow:
+        domain: 此域名將能夠攫取本站資料，而自域名該發出的資料也會於本站處理和留存。
+      email_domain_block:
+        domain: 這裡可以是電子郵件地址中的域名、域名解析到的MX記錄、或MX記錄解析到的伺服器IP地址。新使用者註冊時會比對上述資料，如果相符時將拒絕相關註冊。
+        with_dns_records: Mastodon 會嘗試解析所給域名的 DNS 記錄，然後與解析結果一併封禁
       featured_tag:
         name: '您可能想使用其中一個：'
       form_challenge:
@@ -54,6 +60,7 @@ zh-TW:
       invite_request:
         text: 這會協助我們審核您的應用程式
       ip_block:
+        comment: 可選，但請記得自己為什麼添加了這項規則。
         expires_in: 因為 IP 位址是經常共用或轉手的有限資源，所以我們不建議你無限期地封鎖特定 IP 位址。
         ip: 請輸入 IPv4 或 IPv6 位址，你亦可以用 CIDR 語法來封鎖整個 IP 區段。小心不要把自己給一併封鎖掉囉！
         severities:
