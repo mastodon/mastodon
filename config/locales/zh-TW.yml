@@ -611,6 +611,7 @@ zh-TW:
         title: 自訂使用條款
       site_title: 伺服器名稱
       spam_check_enabled:
+        desc_html: Mastodon 可以自動通報不斷推送垃圾嘟文的帳號，但判定有可能會出現假陽性的情況。
         title: 自動防廣告訊息
       thumbnail:
         desc_html: 用於在 OpenGraph 和 API 中顯示預覽圖。推薦大小 1200×630px
@@ -661,7 +662,12 @@ zh-TW:
     warning_presets:
       add_new: 新增
       delete: 刪除
+      edit_preset: 編輯預設警告
+      title: 管理預設警告
   admin_mailer:
+    new_pending_account:
+      body: 以下是新帳號的詳細資訊。你可以同意或拒絕這項申請。
+      subject: '%{instance} 上有新帳號 (%{username}) 待審核'
     new_report:
       body: "%{reporter} 檢舉了使用者 %{target}"
       body_remote: 來自 %{domain} 的使用者檢舉了使用者 %{target}
