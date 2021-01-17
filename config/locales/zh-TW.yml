@@ -800,11 +800,20 @@ zh-TW:
       email_contact_html: 如果你仍然沒有收到郵件，請寄信到 <a href="mailto:%{email}">%{email}</a> 以獲得協助
       email_reconfirmation_html: 如果你沒有收到確認郵件，你可以<a href="%{path}">請求再次發送</a>
       irreversible: 你將無法復原或重新啟用你的帳號
+      more_details_html: 更多詳細資訊，請參閲<a href="%{terms_path}">隱私政策</a>。
+      username_available: 你的使用者名稱將會釋出供他人使用
+      username_unavailable: 你的使用者名稱將會保留並不予他人使用
+  directories:
+    directory: 用戶芳名錄
+    explanation: 根據興趣去發現新朋友
+    explore_mastodon: 探索%{title}
+  domain_validator:
+    invalid_domain: 並非一個有效域名
   errors:
-    '400': The request you submitted was invalid or malformed.
+    '400': 你所送出的請求無效或格式不正確。
     '403': 你沒有觀看這個頁面的權限。
     '404': 您所尋找的網頁不存在。
-    '406': This page is not available in the requested format.
+    '406': 此頁面無法以請求的格式顯示。
     '410': 您所尋找的網頁此處已不存在。
     '422':
       content: 安全驗證失敗。請確定有開啟瀏覽器 Cookies 功能?
@@ -813,7 +822,7 @@ zh-TW:
     '500':
       content: 抱歉，我們的後台出現問題了。
       title: 這個頁面有問題
-    '503': The page could not be served due to a temporary server failure.
+    '503': 此頁面因伺服器暫時發生錯誤而無法提供。
     noscript_html: 使用 Mastodon 網頁版應用需要啟用 JavaScript。你也可以選擇適用於你的平台的 <a href="%{apps_path}">Mastodon 應用</a>。
   exports:
     archive_takeout:
