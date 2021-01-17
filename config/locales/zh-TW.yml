@@ -879,7 +879,18 @@ zh-TW:
     no_batch_actions_available: 此頁面目前沒有可用的批次作業
     order_by: 排序
     save_changes: 儲存修改
+    validation_errors:
+      other: 唔…這是什麼鳥？請檢查以下 %{count} 項錯誤
+  html_validator:
+    invalid_markup: '含有無效的 HTML 語法：%{error}'
   identity_proofs:
+    active: 有效
+    authorize: 是的，請授權
+    authorize_connection_prompt: 授權此加密連接？
+    errors:
+      failed: 加密連接失敗。請於 %{provider} 重試。
+      keybase:
+        invalid_token: Keybase 標記必須為雜湊加密簽章並且由66個十六進位字符組成。
     identity: 身分識別
     inactive: 非活躍
     publicize_toot: '驗證成功！我在是住在 %{service} 的 %{username} ： %{url}'
