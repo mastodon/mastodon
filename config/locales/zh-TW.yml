@@ -824,6 +824,9 @@ zh-TW:
       title: 這個頁面有問題
     '503': 此頁面因伺服器暫時發生錯誤而無法提供。
     noscript_html: 使用 Mastodon 網頁版應用需要啟用 JavaScript。你也可以選擇適用於你的平台的 <a href="%{apps_path}">Mastodon 應用</a>。
+  existing_username_validator:
+    not_found: 無法在本站找到這個名稱的使用者
+    not_found_multiple: 揣嘸 %{usernames}
   exports:
     archive_takeout:
       date: 日期
@@ -835,16 +838,35 @@ zh-TW:
     blocks: 您封鎖的使用者
     bookmarks: 書籤
     csv: CSV
+    domain_blocks: 域名封鎖
     lists: 列表
     mutes: 您靜音的使用者
     storage: 儲存空間大小
   featured_tags:
+    add_new: 追加
+    errors:
+      limit: 你所推薦的標籤數量已經達到上限
     hint_html: "<strong>推薦標籤是什麼？</strong> 這些標籤將顯示於您的公開個人檔案頁，訪客可以藉此閱覽您標示了這些標籤的嘟文，拿來展示創意作品或者長期更新的專案很好用唷！"
   filters:
+    contexts:
+      account: 個人資料
+      home: 首頁時間軸
+      notifications: 通知
+      public: 公開時間軸
+      thread: 會話
+    edit:
+      title: 編輯篩選條件
+    errors:
+      invalid_context: 沒有提供內文或內文無效
+      invalid_irreversible: 此功能僅適用於首頁或通知頁面
     index:
+      delete: 刪除
       empty: 您沒有過濾器。
       title: 過濾器
+    new:
+      title: 新增篩選器
   footer:
+    developers: 開發者
     more: 更多......
     trending_now: 現正熱門
   generic:
@@ -892,6 +914,7 @@ zh-TW:
     acct: 新帳戶的 使用者名稱@站點網域
     proceed_with_move: 移動關注者
     redirected_msg: 您的帳號現在指向 %{acct}
+    set_redirect: 設定重定向
   moderation:
     title: 營運
   notification_mailer:
@@ -899,6 +922,8 @@ zh-TW:
       action: 閱覽所有通知
       body: 以下是自%{since}你最後一次登入以來錯過的訊息摘要
       mention: "%{name} 在此提及了你:"
+      subject:
+        other: "你收到 %{count} 則新的通知 \U0001F418"
       title: 你不在的時候...
     favourite:
       body: '你的嘟文被 %{name} 加入了最愛:'
@@ -936,6 +961,8 @@ zh-TW:
           quadrillion: Q
           thousand: K
           trillion: T
+  otp_authentication:
+    code_hint: 請輸入您認證器產生的代碼，以進行認證
   pagination:
     newer: 較新
     next: 下一頁
