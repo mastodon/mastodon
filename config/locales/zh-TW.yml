@@ -963,11 +963,22 @@ zh-TW:
           trillion: T
   otp_authentication:
     code_hint: 請輸入您認證器產生的代碼，以進行認證
+    description_html: 在啓用<strong>雙重認證</strong>後，你的每次登入將需要輸入由認證器應用程式產生的代碼。
+    enable: 啓用
+    instructions_html: "<strong>請打開你行動電話內的認證器應用程式（諸如 Google Authenticator、Authy），掃描這裡的 QR 圖形碼</strong>。在啓用雙重認證後，你每次登入時將需要輸入此應用程式產生的認證碼。"
+    manual_instructions: '如果你無法掃描 QR 圖形碼，請手動輸入這個明文密鑰︰'
+    setup: 設定
+    wrong_code: 你輸入的認證碼無效！請先確認伺服器時間與設備時間是否正確。
   pagination:
     newer: 較新
     next: 下一頁
     older: 較舊
     prev: 上一頁
+    truncate: "&hellip;"
+  polls:
+    errors:
+      already_voted: 你已經投過票了
+      duplicate_options: 含有重覆項目
   preferences:
     other: 其他設定
   remote_follow:
