@@ -1056,11 +1056,21 @@ zh-TW:
     relationships: 關注及追隨者
     two_factor_authentication: 兩階段認證
     webauthn_authentication: 安全金鑰
+  spam_check:
+    spam_detected: 此為系統自動生成報告，已偵測到垃圾訊息。
   statuses:
     attached:
+      audio:
+        other: "%{count} 段音訊"
       description: '附件： %{attached}'
+      image:
+        other: "%{count} 張圖片"
+      video:
+        other: "%{count} 段影片"
     boosted_from_html: 轉嘟自 %{acct_link}
     content_warning: '內容警告： %{warning}'
+    disallowed_hashtags:
+      other: '含有不得使用的標籤： %{tags}'
     errors:
       in_reply_not_found: 您嘗試回覆的嘟文看起來不存在。
     language_detection: 自動偵測語言
@@ -1072,8 +1082,16 @@ zh-TW:
       private: 不能置頂非公開的嘟文
       reblog: 不能置頂轉嘟
     poll:
+      total_people:
+        other: "%{count} 人"
+      total_votes:
+        other: "%{count} 票"
       vote: 投票
     show_more: 顯示更多
+    show_newer: 顯示較新嘟文
+    show_older: 顯示較舊嘟文
+    show_thread: 顯示討論串
+    sign_in_to_participate: 登入以加入討論
     visibilities:
       private: 僅關注者
       private_long: 只有關注你的人能看到
@@ -1093,20 +1111,32 @@ zh-TW:
   time:
     formats:
       default: "%Y年%-m月%d日 %H:%M"
+      month: "%Y年 %b"
   two_factor_authentication:
+    add: 添加
     disable: 停用
+    disabled_success: 已成功啓用雙重認證
+    edit: 編輯
     enabled: 兩階段認證已啟用
     enabled_success: 已成功啟用兩階段認證
     generate_recovery_codes: 產生備用驗證碼
     lost_recovery_codes: 讓你可以在遺失手機時，使用備用驗證碼登入。如果你遺失了備用驗證碼，可以在這裏產生一批新的，舊有的備用驗證碼將會失效。
+    methods: 雙重認證
+    otp: 驗證器應用程式
     recovery_codes: 備份備用驗證碼
     recovery_codes_regenerated: 成功產生新的備用驗證碼
     recovery_instructions_html: 如果你的手機無法使用，你可以使用下列任意一個備用驗證碼來重新獲得帳戶的訪問權。<strong>請妥善保管好你的備用驗證碼</strong>（例如，你可以將它們列印出來，與你的其他重要文件放在一起）。
+    webauthn: 安全金鑰
   user_mailer:
     backup_ready:
       explanation: 你要求的 Mastodon 帳戶完整備份檔案現已就緒，可供下載!
       subject: 你的備份檔已可供下載
       title: 檔案匯出
+    sign_in_token:
+      details: '以下是異常登入活動的詳細資訊：'
+      explanation: '我們偵測到有人嘗試從陌生的 IP 位址登入你的帳號。 如果這個是你，請在「登入確認」頁面輸入以下安全代碼：'
+      further_actions: '如果這不是你，請立即到這裡變更你的密碼，並啓用雙重認證：'
+      subject: 請確認登入請求
     welcome:
       edit_profile_action: 設定個人資料
       edit_profile_step: 你可以設定你的個人資料，包括上傳頭像、橫幅圖片、變更顯示名稱等等。如果你想在新的關注者關注你之前對他們進行審核，你也可以選擇為你的帳戶設為「私人」。
