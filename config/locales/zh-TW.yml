@@ -979,8 +979,15 @@ zh-TW:
     errors:
       already_voted: 你已經投過票了
       duplicate_options: 含有重覆項目
+      expired: 投票已結束
   preferences:
     other: 其他設定
+  relationships:
+    followers: 追隨者
+    following: 已追蹤
+    invited: 已邀請
+    last_active: 最後上線
+    most_recent: 最近
   remote_follow:
     acct: 請輸入您的使用者名稱@站點網域
     missing_resource: 無法找到資源
@@ -1012,12 +1019,25 @@ zh-TW:
     explanation: 這些是現在正登入於你的 Mastodon 帳戶的瀏覽器。
     ip: IP 位址
     platforms:
+      adobe_air: Adobe Air
+      android: 安卓 （Android）
+      blackberry: 黑莓機 （Blackberry）
+      chrome_os: ChromeOS
+      firefox_os: Firefox OS
       ios: iOS
+      linux: Linux
       mac: Mac
+      other: 不明平台
+      windows: Windows
+      windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
     revoke: 取消
     revoke_success: Session 取消成功
     title: 作業階段
   settings:
+    account: 帳號
+    account_settings: 帳號設定
+    aliases: 帳號別名
     appearance: 外觀設定
     authorized_apps: 已授權應用程式
     back: 回到 Mastodon
@@ -1026,12 +1046,16 @@ zh-TW:
     edit_profile: 編輯使用者資訊
     export: 匯出
     featured_tags: 推薦標籤
+    identity_proofs: 身分驗證
     import: 匯入
+    import_and_export: 匯入及匯出
     migrate: 帳戶搬遷
     notifications: 通知
     preferences: 偏好設定
     profile: 使用者資訊
+    relationships: 關注及追隨者
     two_factor_authentication: 兩階段認證
+    webauthn_authentication: 安全金鑰
   statuses:
     attached:
       description: '附件： %{attached}'
