@@ -358,7 +358,12 @@
     }
 
     input[type=checkbox] {
-      display: none;
+      position: absolute;
+      height: 16px;
+      width: 16px;
+      margin: 0 0 0 1px;
+      pointer-events: none;
+      appearance: none;
     }
 
     .checkbox {
