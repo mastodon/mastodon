@@ -584,6 +584,7 @@ zh-TW:
           disabled: 沒有人
           title: 允許發送邀請的身份
         require_invite_text:
+          desc_html: 如果已設定為手動審核註冊，請將「加入原因」設定為必填項目。
           title: 要求新使用者填申請書以索取邀請
       registrations_mode:
         modes:
@@ -718,6 +719,9 @@ zh-TW:
     setup:
       email_settings_hint_html: 請確認 e-mail 是否傳送到 %{email} 。如果不對的話，可以從帳號設定修改。
       title: 設定
+    too_fast: 提交表單的速度太快跟不上，請稍後再試。
+    trouble_logging_in: 無法登入嗎？
+    use_security_key: 使用安全金鑰
   authorize_follow:
     already_following: 你已經關注了這個使用者
     already_requested: 您早已向該帳戶寄送追蹤請求
@@ -730,6 +734,11 @@ zh-TW:
       return: 顯示個人資料頁
       web: 返回本站
     title: 關注 %{acct}
+  challenge:
+    confirm: 繼續
+    hint_html: "<strong>温馨小提醒：</strong> 我們在接下來一小時內不會再要求你輸入密碼。"
+    invalid_password: 無效的密碼
+    prompt: 輸入密碼以繼續
   crypto:
     errors:
       invalid_key: 並非一把有效的 Ed25519 或 Curve25519 金鑰
