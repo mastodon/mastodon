@@ -605,6 +605,7 @@ zh-TW:
         desc_html: 可放置行為準則、規定以及其他此伺服器特有的內容。可使用 HTML 標籤
         title: 本站詳細資訊
       site_short_description:
+        desc_html: 顯示在側邊欄和網頁標籤 (meta tags)。以一段話描述 Mastodon 是甚麼，以及這個伺服器的特色。
         title: 伺服器短描述
       site_terms:
         desc_html: 可以填寫自己的隱私權政策、使用條款或其他法律文本。可以使用 HTML 標籤
@@ -621,8 +622,10 @@ zh-TW:
         title: 時間軸預覽
       title: 網站設定
       trendable_by_default:
+        desc_html: 影響此前並未被禁用的標籤
         title: 允許熱門的主題標籤直接顯示於趨勢區，不需經過審核
       trends:
+        desc_html: 公開目前炎上的已審核標籤
         title: 趨勢主題標籤
     site_uploads:
       delete: 刪除上傳的檔案
@@ -644,6 +647,7 @@ zh-TW:
     tags:
       accounts_today: 本日不重複使用者數
       accounts_week: 本週不重複使用者數
+      breakdown: 根據來源分類本日使用情況
       context: 上下文
       directory: 在目錄中
       in_directory: "目錄中有 %{count} 個"
@@ -677,6 +681,7 @@ zh-TW:
       subject: '%{instance} 上有待審核的主題標籤 (%{name})'
   aliases:
     add_new: 建立別名
+    created_msg: 成功建立別名。你可以自舊帳號開始轉移。
     empty: 你目前沒有任何別名。
     remove: 取消連結別名
   appearance:
@@ -958,12 +963,17 @@ zh-TW:
       on_cooldown: 你正在處於冷卻（CD）狀態
     followers_count: 轉移時的追隨者
     incoming_migrations: 自另一個帳號轉移
-    moved_msg: 你的帳號正被轉接至 %{acct} ，你的關注者正在同步轉移至該帳號。
+    moved_msg: 你的帳號正被重定向至 %{acct} ，你的關注者同時也會轉至該帳號。
+    not_redirecting: 你的帳號現時並未被重新定向。
+    on_cooldown: 你最近已經轉移過帳號。此功能將在 %{count} 天後可再度使用。
+    past_migrations: 以往的轉移紀錄
     proceed_with_move: 移動關注者
     redirected_msg: 您的帳號現在指向 %{acct}
+    redirecting_to: 你的帳號正被重新定向至%{acct}。
     set_redirect: 設定重定向
     warning:
       before: '在進行下一步驟之前，請詳細閱讀以下説明：'
+      cooldown: 在轉移/重定向帳號之後將會有一段冷卻時間，在冷卻時間內你將無法再度轉移帳號
   moderation:
     title: 營運
   notification_mailer:
@@ -1028,10 +1038,20 @@ zh-TW:
     errors:
       already_voted: 你已經投過票了
       duplicate_options: 含有重覆項目
+      duration_too_short: 車速太快了！
       expired: 投票已結束
+      invalid_choice: 你所選的投票選項並不存在
+      over_character_limit: 不能多於 %{max} 個字符
+      too_few_options: 必須是複數
+      too_many_options: 不能多於 %{max} 個項目
   preferences:
     other: 其他設定
+    posting_defaults: 發文預設值
+    public_timelines: 公開時間軸
   relationships:
+    activity: 帳號活動
+    dormant: 潛在
+    follow_selected_followers: 關注所選的追隨者
     followers: 追隨者
     following: 已追蹤
     invited: 已邀請
@@ -1055,6 +1075,10 @@ zh-TW:
   remote_interaction:
     favourite:
       proceed: 加入到我的最愛
+      prompt: '你想把這篇文章加入最愛：'
+    reblog:
+      proceed: 繼續轉嘟
+      prompt: '你想轉嘟：'
   scheduled_statuses:
     over_daily_limit: 你已經超過了當日排定發嘟的限額 (%{limit})
     over_total_limit: 你已經超過了預定發文的限額 (%{limit})
