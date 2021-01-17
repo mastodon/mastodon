@@ -730,6 +730,14 @@ zh-TW:
       return: 顯示個人資料頁
       web: 返回本站
     title: 關注 %{acct}
+  crypto:
+    errors:
+      invalid_key: 並非一把有效的 Ed25519 或 Curve25519 金鑰
+      invalid_signature: 並非一項有效的 Ed25519 簽章
+  date:
+    formats:
+      default: "%Y年%b月%d日"
+      with_month_name: "%Y年%B月%d日"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}小時前"
@@ -745,7 +753,9 @@ zh-TW:
       x_months: "%{count}個月"
       x_seconds: "%{count}秒"
   deletes:
+    challenge_not_passed: 你所填寫的資料不正確
     confirm_password: 輸入你現在的密碼來驗證身份
+    confirm_username: 請輸入你的使用者名稱以作確認
     proceed: 刪除帳戶
     success_msg: 你的帳戶已經成功刪除
   errors:
