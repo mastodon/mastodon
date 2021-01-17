@@ -8,6 +8,7 @@ zh-TW:
       account_warning_preset:
         text: '您可使用嘟文語法，例如網址、「#」標籤和提及功能'
       admin_account_action:
+        include_statuses: 使用者可看到因哪些嘟文導致檢舉或警告
         send_email_notification: 使用者將收到帳戶發生之事情的解釋
         text_html: 選用。您能使用嘟文語法。您可 <a href="%{path}">新增警告預設</a> 來節省時間
         type_html: 設定要使用 <strong>%{acct}</strong> 做的事
@@ -53,6 +54,7 @@ zh-TW:
       invite_request:
         text: 這會協助我們審核您的應用程式
       ip_block:
+        expires_in: 因為 IP 位址是經常共用或轉手的有限資源，所以我們不建議你無限期地封鎖特定 IP 位址。
         ip: 請輸入 IPv4 或 IPv6 位址，你亦可以用 CIDR 語法來封鎖整個 IP 區段。小心不要把自己給一併封鎖掉囉！
         severities:
           no_access: 封鎖對所有資源存取
@@ -180,6 +182,7 @@ zh-TW:
         pending_account: 需要審核的新帳戶
         reblog: 當有使用者轉嘟你的嘟文時，傳送電子信件通知
         report: 當提交新檢舉時傳送電子郵件
+        trending_tag: 當未經審核的標籤炎上時
       tag:
         listable: 允許此主題標籤在搜尋及個人檔案目錄中顯示
         name: 主題標籤
