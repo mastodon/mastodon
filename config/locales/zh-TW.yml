@@ -678,6 +678,7 @@ zh-TW:
   aliases:
     add_new: 建立別名
     empty: 你目前沒有任何別名。
+    remove: 取消連結別名
   appearance:
     advanced_web_interface: 進階網頁介面
     advanced_web_interface_hint: '進階網頁界面可讓您配置許多不同的欄位來善用多餘的螢幕空間，依需要同時查看盡可能多的資訊如：首頁、通知、站點聯邦時間軸、任意數量的列表和主題標籤。'
@@ -868,18 +869,37 @@ zh-TW:
   footer:
     developers: 開發者
     more: 更多......
+    resources: 資源
     trending_now: 現正熱門
   generic:
     all: 全部
     changes_saved_msg: 已成功儲存修改!
     copy: 複製
     delete: 刪除
+    no_batch_actions_available: 此頁面目前沒有可用的批次作業
+    order_by: 排序
     save_changes: 儲存修改
+  identity_proofs:
+    identity: 身分識別
+    inactive: 非活躍
+    publicize_toot: '驗證成功！我在是住在 %{service} 的 %{username} ： %{url}'
+    remove: 移除帳號的證明書
+    removed: 成功移除身分證明書
+    status: 認證狀態
+    view_proof: 查看證明書
   imports:
+    errors:
+      over_rows_processing_limit: 含有超過 %{count} 行
+    modes:
+      merge: 合併
+      merge_long: 保留現有記錄並添加新的資訊
+      overwrite: 覆寫
+      overwrite_long: 以新的記錄覆蓋當前記錄
     preface: 您可以在此匯入您在其他伺服器所匯出的資料檔，包括關注的使用者、封鎖的使用者名單。
     success: 資料檔上傳成功，正在匯入，請稍候
     types:
       blocking: 您封鎖的使用者名單
+      bookmarks: 書籤
       domain_blocking: 域名封鎖名單
       following: 您關注的使用者名單
       muting: 您靜音的使用者名單
@@ -914,6 +934,11 @@ zh-TW:
   migrations:
     acct: 新帳戶的 使用者名稱@站點網域
     cancel: 取消重定向
+    errors:
+      missing_also_known_as: 不是這個帳號的別名
+      move_to_self: 不能是目前帳號
+      not_found: 找不到
+      on_cooldown: 你正在處於冷卻（CD）狀態
     proceed_with_move: 移動關注者
     redirected_msg: 您的帳號現在指向 %{acct}
     set_redirect: 設定重定向
