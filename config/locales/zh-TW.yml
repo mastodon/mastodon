@@ -717,6 +717,7 @@ zh-TW:
       prefix_invited_by_user: "@%{name} 邀請你加入這個 Mastodon 社區！"
       prefix_sign_up: 現在就註冊 Mastodon 帳號吧！
     didnt_get_confirmation: 沒有收到驗證信?
+    dont_have_your_security_key: 找不到安全金鑰？
     forgot_password: 忘記密碼？
     invalid_reset_password_token: 密碼重設 token 無效或已過期。請重新設定密碼。
     link_to_otp: 請輸入雙重驗證（2FA）認證碼或還原代碼
@@ -891,8 +892,11 @@ zh-TW:
       failed: 加密連接失敗。請於 %{provider} 重試。
       keybase:
         invalid_token: Keybase 標記必須為雜湊加密簽章並且由66個十六進位字符組成。
+        verification_failed: Keybase 無法確認此標記為 Keybase 使用者 %{kb_username} 的簽章。請在 Keybase 再試一次。
+    i_am_html: 我是 %{service} 上的 %{username}
     identity: 身分識別
     inactive: 非活躍
+    publicize_checkbox: '並發嘟：'
     publicize_toot: '驗證成功！我在是住在 %{service} 的 %{username} ： %{url}'
     remove: 移除帳號的證明書
     removed: 成功移除身分證明書
@@ -945,11 +949,16 @@ zh-TW:
   migrations:
     acct: 新帳戶的 使用者名稱@站點網域
     cancel: 取消重定向
+    cancelled_msg: 成功取消重定向。
     errors:
+      already_moved: 與已經重定向的帳戶相同
       missing_also_known_as: 不是這個帳號的別名
       move_to_self: 不能是目前帳號
       not_found: 找不到
       on_cooldown: 你正在處於冷卻（CD）狀態
+    followers_count: 轉移時的追隨者
+    incoming_migrations: 自另一個帳號轉移
+    moved_msg: 你的帳號正被轉接至 %{acct} ，你的關注者正在同步轉移至該帳號。
     proceed_with_move: 移動關注者
     redirected_msg: 您的帳號現在指向 %{acct}
     set_redirect: 設定重定向
@@ -1148,6 +1157,7 @@ zh-TW:
     show_older: 顯示較舊嘟文
     show_thread: 顯示討論串
     sign_in_to_participate: 登入以加入討論
+    title: '%{name}：「%{quote}」'
     visibilities:
       private: 僅關注者
       private_long: 只有關注你的人能看到
@@ -1159,6 +1169,8 @@ zh-TW:
     pinned: 置頂嘟文
     reblogged: 轉嘟
     sensitive_content: 敏感內容
+  tags:
+    does_not_match_previous_name: 和舊有名稱並不吻合
   terms:
     body_html: |
       <h2>隱私權政策</h2>
@@ -1276,6 +1288,14 @@ zh-TW:
       further_actions: '如果這不是你，請立即到這裡變更你的密碼，並啓用雙重認證：'
       subject: 請確認登入請求
     warning:
+      review_server_policies: 檢視伺服器政策
+      statuses: '特別是：'
+      subject:
+        disable: 你的帳號 %{acct} 已被涷結
+        none: 對 %{acct} 的警告
+        sensitive: 你帳號 %{acct} 張貼的媒體已被標記為敏感內容
+        silence: 你的帳號 %{acct} 已被限制
+        suspend: 你的帳號 %{acct} 已被停權
       title:
         disable: 帳號已被涷結
         none: 警告
