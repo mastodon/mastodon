@@ -899,6 +899,8 @@ zh-TW:
       keybase:
         invalid_token: Keybase 標記必須為雜湊加密簽章並且由66個十六進位字符組成。
         verification_failed: Keybase 無法確認此標記為 Keybase 使用者 %{kb_username} 的簽章。請在 Keybase 再試一次。
+      wrong_user: 未能為%{current} 以 %{proving} 建立身分驗證。請登入為 %{proving} 再試一次。
+    explanation_html: 在此你連結其他網路平台（如 Keybase）上的加密身分。讓其他人可以在那些平台上，傳送加密訊息給你，並驗證你的身分。
     i_am_html: 我是 %{service} 上的 %{username}
     identity: 身分識別
     inactive: 非活躍
@@ -975,6 +977,7 @@ zh-TW:
     warning:
       before: '在進行下一步驟之前，請詳細閱讀以下説明：'
       cooldown: 在轉移/重定向帳號之後將會有一段冷卻時間，在冷卻時間內你將無法再度轉移帳號
+      only_redirect_html: 或者，你也可以<a href="%{path}">只在你的個人資料頁面加註重定向標記</a>.
   moderation:
     title: 營運
   notification_mailer:
@@ -1039,6 +1042,7 @@ zh-TW:
     errors:
       already_voted: 你已經投過票了
       duplicate_options: 含有重覆項目
+      duration_too_long: 太久了！
       duration_too_short: 車速太快了！
       expired: 投票已結束
       invalid_choice: 你所選的投票選項並不存在
@@ -1049,6 +1053,10 @@ zh-TW:
     other: 其他設定
     posting_defaults: 發文預設值
     public_timelines: 公開時間軸
+  reactions:
+    errors:
+      limit_reached: 達到可回應之上限
+      unrecognized_emoji: 並非一個可識別的 emoji
   relationships:
     activity: 帳號活動
     dormant: 潛在
@@ -1080,9 +1088,13 @@ zh-TW:
     reblog:
       proceed: 繼續轉嘟
       prompt: '你想轉嘟：'
+    reply:
+      proceed: 確認回覆
+      prompt: '你想回覆：'
   scheduled_statuses:
     over_daily_limit: 你已經超過了當日排定發嘟的限額 (%{limit})
     over_total_limit: 你已經超過了預定發文的限額 (%{limit})
+    too_soon: 嘟文不可以改變過去哦，只能預定未來 (咦)
   sessions:
     activity: 最近活動
     browser: 瀏覽器
@@ -1312,7 +1324,14 @@ zh-TW:
       explanation: '我們偵測到有人嘗試從陌生的 IP 位址登入你的帳號。 如果這個是你，請在「登入確認」頁面輸入以下安全代碼：'
       further_actions: '如果這不是你，請立即到這裡變更你的密碼，並啓用雙重認證：'
       subject: 請確認登入請求
+      title: 登入請求
     warning:
+      explanation:
+        disable: 你將無法以任何方式登入或使用你的帳號，但你的個人資料頁面和其他資料仍保持完整。
+        sensitive: 你上載的媒體檔案和連結媒體將被標記為敏感項目。
+        silence: 你仍然可以使用你的帳號，但只有你現時的追隨者會看見你在此伺服器的嘟文。你或從公開名冊中被剔除。但是其他人仍然可以主動關注你。
+        suspend: 你將不能使用您的帳號，你的個人資料頁面及其他資料將不能再被取得。你仍可在資料被完全刪除前請求下載你的數據，但我們仍會保留一部份資料，以防止有人規避停權處罰。
+      get_in_touch: 你可以回覆此電子郵件與 %{instance} 的長工們聯絡
       review_server_policies: 檢視伺服器政策
       statuses: '特別是：'
       subject:
