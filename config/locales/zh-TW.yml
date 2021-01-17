@@ -740,6 +740,10 @@ zh-TW:
       title: 設定
     status:
       account_status: 帳號狀態
+      confirming: 正在等待確認電郵地址。
+      functional: 你的帳號可以正常使用了。
+      pending: 管理員正在處理你的申請，這可能需要一點時間處理。我們將在申請通過後以電子郵件方式通知你。
+      redirecting_to: 你的帳號因目前重定向至 %{acct} 而被停用。
     too_fast: 提交表單的速度太快跟不上，請稍後再試。
     trouble_logging_in: 無法登入嗎？
     use_security_key: 使用安全金鑰
@@ -790,6 +794,12 @@ zh-TW:
     success_msg: 你的帳戶已經成功刪除
     warning:
       before: '在進行下一步驟之前，請詳細閱讀以下説明：'
+      caches: 已被其他節點緩存的內容可能會殘留其中
+      data_removal: 你的嘟文以及其他資料將會永久刪除
+      email_change_html: 你可以在不刪除帳號的情況下<a href="%{path}">變更你的電子郵件地址</a>
+      email_contact_html: 如果你仍然沒有收到郵件，請寄信到 <a href="mailto:%{email}">%{email}</a> 以獲得協助
+      email_reconfirmation_html: 如果你沒有收到確認郵件，你可以<a href="%{path}">請求再次發送</a>
+      irreversible: 你將無法復原或重新啟用你的帳號
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': 你沒有觀看這個頁面的權限。
