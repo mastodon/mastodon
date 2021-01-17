@@ -684,6 +684,7 @@ zh-TW:
     created_msg: 成功建立別名。你可以自舊帳號開始轉移。
     deleted_msg: 成功移除別名。你將無法再由舊帳號轉移到當前帳號。
     empty: 你目前沒有任何別名。
+    hint_html: 如果你想由其他帳號轉移到此帳號，你可以在此處創建別名，稍後系統將容許你把關注者由舊帳號轉移至此。此項作業是<strong>「可防可控」、無害且可復原的</strong>。 <strong>帳號的遷移程序需要在舊帳號啟動</strong>。
     remove: 取消連結別名
   appearance:
     advanced_web_interface: 進階網頁介面
@@ -955,10 +956,12 @@ zh-TW:
   media_attachments:
     validations:
       images_and_video: 無法在已有圖片的文章上加入影片
+      not_ready: 修但幾勒！不能附加未完成處理的檔案欸，咁按呢？
       too_many: 無法加入超過 4 個檔案
   migrations:
     acct: 新帳戶的 使用者名稱@站點網域
     cancel: 取消重定向
+    cancel_explanation: 取消重定向將會重新啓用當前帳號，但不會還原已移至該帳號的關注者。
     cancelled_msg: 成功取消重定向。
     errors:
       already_moved: 與已經重定向的帳戶相同
@@ -968,6 +971,7 @@ zh-TW:
       on_cooldown: 你正在處於冷卻（CD）狀態
     followers_count: 轉移時的追隨者
     incoming_migrations: 自另一個帳號轉移
+    incoming_migrations_html: 要由其他帳號轉移至目前帳號的話，首先你需要<a href="%{path}">新增一個帳號別名</a>.
     moved_msg: 你的帳號正被重定向至 %{acct} ，你的關注者同時也會轉至該帳號。
     not_redirecting: 你的帳號現時並未被重新定向。
     on_cooldown: 你最近已經轉移過帳號。此功能將在 %{count} 天後可再度使用。
@@ -977,8 +981,10 @@ zh-TW:
     redirecting_to: 你的帳號正被重新定向至%{acct}。
     set_redirect: 設定重定向
     warning:
+      backreference_required: 新的帳號必須首先設定為反向參照目前帳號
       before: '在進行下一步驟之前，請詳細閱讀以下説明：'
       cooldown: 在轉移/重定向帳號之後將會有一段冷卻時間，在冷卻時間內你將無法再度轉移帳號
+      disabled_account: 你的當前帳號將不能完整地運作。但你可以匯出你的資料和重新啟用你的帳號。
       followers: 此操作將會由當前帳號的所有追隨者轉移至新帳號
       only_redirect_html: 或者，你也可以<a href="%{path}">只在你的個人資料頁面加註重定向標記</a>.
       other_data: 並不會自動轉移其他資料
