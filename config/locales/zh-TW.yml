@@ -941,6 +941,8 @@ zh-TW:
     expires_in_prompt: 永不過期
     generate: 建立邀請連結
     invited_by: '你的邀請人是：'
+    max_uses:
+      other: "%{count}"
     max_uses_prompt: 無限制
     prompt: 建立分享連結，邀請他人在本伺服器註冊
     table:
@@ -977,14 +979,23 @@ zh-TW:
     warning:
       before: '在進行下一步驟之前，請詳細閱讀以下説明：'
       cooldown: 在轉移/重定向帳號之後將會有一段冷卻時間，在冷卻時間內你將無法再度轉移帳號
+      followers: 此操作將會由當前帳號的所有追隨者轉移至新帳號
       only_redirect_html: 或者，你也可以<a href="%{path}">只在你的個人資料頁面加註重定向標記</a>.
+      other_data: 並不會自動轉移其他資料
+      redirect: 你的當前帳號將會在個人資料頁面加註重定向公告，並會在搜尋結果中剔除。
   moderation:
     title: 營運
+  move_handler:
+    carry_blocks_over_text: 這使用者來自已被你物理隔離的 %{acct} 轉移而來。
+    carry_mutes_over_text: 這使用者來自已被你謝謝再聯絡的 %{acct} 轉移而來。
+    copy_account_note_text: '這使用者從%{acct} 轉移而來，這是你對該帳號留下的備註：'
   notification_mailer:
     digest:
       action: 閱覽所有通知
       body: 以下是自%{since}你最後一次登入以來錯過的訊息摘要
       mention: "%{name} 在此提及了你:"
+      new_followers_summary:
+        other: 你獲得了 %{count} 位新關注者了！好棒棒！
       subject:
         other: "你收到 %{count} 則新的通知 \U0001F418"
       title: 你不在的時候...
