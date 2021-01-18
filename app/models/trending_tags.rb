@@ -91,7 +91,7 @@ class TrendingTags
 
       tags = Tag.where(id: tag_ids)
       tags = tags.trendable if filtered
-      tags = tags.each_with_object({}) { |tag, h| h[tag.id] = tag }
+      tags = tags.index_by(&:id)
 
       tag_ids.map { |tag_id| tags[tag_id] }.compact.take(limit)
     end
