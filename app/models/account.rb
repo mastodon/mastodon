@@ -277,7 +277,7 @@ class Account < ApplicationRecord
   end
 
   def tags_as_strings=(tag_names)
-    hashtags_map = Tag.find_or_create_by_names(tag_names).each_with_object({}) { |tag, h| h[tag.name] = tag }
+    hashtags_map = Tag.find_or_create_by_names(tag_names).index_by(&:name)
 
     # Remove hashtags that are to be deleted
     tags.each do |tag|
