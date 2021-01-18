@@ -4953,6 +4953,9 @@ a.status-card.compact:hover {
   @media screen and (max-width: 480px) {
     max-height: 40vh;
   }
+  @media screen and (min-width: 480px + 1px) and (max-width: 800px) {
+    max-width: 50vw;
+  }
 }
 
 .setting-divider {
