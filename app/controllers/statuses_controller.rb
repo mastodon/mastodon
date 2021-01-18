@@ -8,7 +8,7 @@ class StatusesController < ApplicationController
 
   layout 'public'
 
-  before_action :require_signature!, only: :show, if: -> { request.format == :json && authorized_fetch_mode? }
+  before_action :require_signature!, only: [:show, :activity], if: -> { request.format == :json && authorized_fetch_mode? }
   before_action :set_status
   before_action :set_instance_presenter
   before_action :set_link_headers
