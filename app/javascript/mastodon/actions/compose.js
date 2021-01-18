@@ -11,7 +11,7 @@ import { showAlertForError } from './alerts';
 import { showAlert } from './alerts';
 import { missingDescriptionModal } from '../initial_state';
 import { openModal } from '../actions/modal';
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import { defineMessages } from 'react-intl';
 
 let cancelFetchComposeSuggestionsAccounts, cancelFetchComposeSuggestionsTags;
 
@@ -131,7 +131,6 @@ export function directCompose(account, routerHistory) {
 };
 
 export function submitCompose(routerHistory) {
-
   return function (dispatch, getState) {
     function onModalSubmitCompose () {
       dispatch(submitComposeRequest());
