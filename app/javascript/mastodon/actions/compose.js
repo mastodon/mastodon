@@ -9,7 +9,9 @@ import { importFetchedAccounts } from './importer';
 import { updateTimeline } from './timelines';
 import { showAlertForError } from './alerts';
 import { showAlert } from './alerts';
-import { defineMessages } from 'react-intl';
+import { missingDescriptionModal } from '../initial_state';
+import { openModal } from '../actions/modal';
+import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 
 let cancelFetchComposeSuggestionsAccounts, cancelFetchComposeSuggestionsTags;
 
@@ -129,7 +131,55 @@ export function directCompose(account, routerHistory) {
 };
 
 export function submitCompose(routerHistory) {
+
   return function (dispatch, getState) {
+    function onModalSubmitCompose () {
+      dispatch(submitComposeRequest());
+
+      api(getState).post('/api/v1/statuses', {
+        status,
+        in_reply_to_id: getState().getIn(['compose', 'in_reply_to'], null),
+        media_ids: media.map(item => item.get('id')),
+        sensitive: getState().getIn(['compose', 'sensitive']),
+        spoiler_text: getState().getIn(['compose', 'spoiler']) ? getState().getIn(['compose', 'spoiler_text'], '') : '',
+        visibility: getState().getIn(['compose', 'privacy']),
+        poll: getState().getIn(['compose', 'poll'], null),
+      }, {
+        headers: {
+          'Idempotency-Key': getState().getIn(['compose', 'idempotencyKey']),
+        },
+      }).then(function (response) {
+        if (routerHistory && routerHistory.location.pathname === '/statuses/new' && window.history.state) {
+          routerHistory.goBack();
+        }
+
+        dispatch(insertIntoTagHistory(response.data.tags, status));
+        dispatch(submitComposeSuccess({ ...response.data }));
+
+        // To make the app more responsive, immediately push the status
+        // into the columns
+        const insertIfOnline = timelineId => {
+          const timeline = getState().getIn(['timelines', timelineId]);
+
+          if (timeline && timeline.get('items').size > 0 && timeline.getIn(['items', 0]) !== null && timeline.get('online')) {
+            dispatch(updateTimeline(timelineId, { ...response.data }));
+          }
+        };
+
+        if (response.data.visibility !== 'direct') {
+          insertIfOnline('home');
+        }
+
+        if (response.data.in_reply_to_id === null && response.data.visibility === 'public') {
+          insertIfOnline('community');
+          insertIfOnline('public');
+          insertIfOnline(`account:${response.data.account.id}`);
+        }
+      }).catch(function (error) {
+        dispatch(submitComposeFail(error));
+      });
+    }
+
     const status = getState().getIn(['compose', 'text'], '');
     const media  = getState().getIn(['compose', 'media_attachments']);
 
@@ -137,50 +187,12 @@ export function submitCompose(routerHistory) {
       return;
     }
 
-    dispatch(submitComposeRequest());
-
-    api(getState).post('/api/v1/statuses', {
-      status,
-      in_reply_to_id: getState().getIn(['compose', 'in_reply_to'], null),
-      media_ids: media.map(item => item.get('id')),
-      sensitive: getState().getIn(['compose', 'sensitive']),
-      spoiler_text: getState().getIn(['compose', 'spoiler']) ? getState().getIn(['compose', 'spoiler_text'], '') : '',
-      visibility: getState().getIn(['compose', 'privacy']),
-      poll: getState().getIn(['compose', 'poll'], null),
-    }, {
-      headers: {
-        'Idempotency-Key': getState().getIn(['compose', 'idempotencyKey']),
-      },
-    }).then(function (response) {
-      if (routerHistory && routerHistory.location.pathname === '/statuses/new' && window.history.state) {
-        routerHistory.goBack();
-      }
-
-      dispatch(insertIntoTagHistory(response.data.tags, status));
-      dispatch(submitComposeSuccess({ ...response.data }));
-
-      // To make the app more responsive, immediately push the status
-      // into the columns
-      const insertIfOnline = timelineId => {
-        const timeline = getState().getIn(['timelines', timelineId]);
-
-        if (timeline && timeline.get('items').size > 0 && timeline.getIn(['items', 0]) !== null && timeline.get('online')) {
-          dispatch(updateTimeline(timelineId, { ...response.data }));
-        }
-      };
-
-      if (response.data.visibility !== 'direct') {
-        insertIfOnline('home');
-      }
-
-      if (response.data.in_reply_to_id === null && response.data.visibility === 'public') {
-        insertIfOnline('community');
-        insertIfOnline('public');
-        insertIfOnline(`account:${response.data.account.id}`);
-      }
-    }).catch(function (error) {
-      dispatch(submitComposeFail(error));
-    });
+    if (missingDescriptionModal && media.filter(item => !item.get('description')).size) {
+      dispatch(openModal('MISSING_DESCRIPTION', {
+        some: media.filter(item => !item.get('description')).size !== media.size,
+        onContinue: () => onModalSubmitCompose(),
+      }));
+    } else onModalSubmitCompose();
   };
 };
 

@@ -11,6 +11,7 @@ import VideoModal from './video_modal';
 import BoostModal from './boost_modal';
 import AudioModal from './audio_modal';
 import ConfirmationModal from './confirmation_modal';
+import MissingDescriptionModal from './missing_description_modal';
 import FocalPointModal from './focal_point_modal';
 import {
   MuteModal,
@@ -27,6 +28,7 @@ const MODAL_COMPONENTS = {
   'AUDIO': () => Promise.resolve({ default: AudioModal }),
   'BOOST': () => Promise.resolve({ default: BoostModal }),
   'CONFIRM': () => Promise.resolve({ default: ConfirmationModal }),
+  'MISSING_DESCRIPTION': () => Promise.resolve({ default: MissingDescriptionModal }),
   'MUTE': MuteModal,
   'BLOCK': BlockModal,
   'REPORT': ReportModal,
