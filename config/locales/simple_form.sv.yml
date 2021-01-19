@@ -16,9 +16,9 @@ sv:
         warning_preset_id: Extra. Du kan lägga till valfri text i slutet av förinställningen
       announcement:
         all_day: När det är markerat visas endast datum för tidsintervallet
-        ends_at: Frivillig. Meddelandet kommer automatiskt att publiceras just nu
+        ends_at: Extra. Meddelandet kommer automatiskt att avpubliceras just nu
         scheduled_at: Lämna tomt för att publicera meddelandet omedelbart
-        starts_at: Valfritt. Om ditt meddelande är bundet till ett visst tidsintervall
+        starts_at: Extra. Om ditt meddelande är bundet till ett visst tidsintervall
       defaults:
         autofollow: Användarkonton som skapas genom din inbjudan kommer automatiskt följa dig
         avatar: PNG, GIF eller JPG. Högst %{size}. Kommer att skalas ner till %{dimensions}px
@@ -67,13 +67,23 @@ sv:
         text: Förinställd text
         title: Rubrik
       admin_account_action:
+        include_statuses: Inkludera rapporterade tutar i mejlet
+        send_email_notification: Meddela användaren per e-post
         text: Anpassad varning
         types:
           disable: Inaktivera inloggning
           none: Gör ingenting
+          sensitive: Känslig
           silence: Tysta
+          suspend: Avstänga
+      announcement:
+        all_day: Hela dagen
+        ends_at: Slut på evenemanget
+        scheduled_at: Schemalägg publicering
+        starts_at: Start av evenemang
       defaults:
         autofollow: Bjud in till att följa ditt konto
+        avatar: Profilbild
         bot: Detta är ett botkonto
         chosen_languages: Filtrera språk
         confirm_new_password: Bekräfta nytt lösenord
@@ -88,6 +98,8 @@ sv:
         fields: Profil-metadata
         header: Bakgrundsbild
         honeypot: "%{label} (fyll inte i)"
+        inbox_url: URL för reläinkorg
+        irreversible: Släng istället för att dölja
         locale: Språk
         locked: Lås konto
         max_uses: Högst antal  användningar
@@ -99,6 +111,7 @@ sv:
         setting_advanced_layout: Aktivera avancerat webbgränssnitt
         setting_auto_play_gif: Spela upp animerade GIF-bilder automatiskt
         setting_boost_modal: Visa bekräftelsedialog innan du knuffar
+        setting_crop_images: Beskär bilder i icke-utökade tutar till 16x9
         setting_default_language: Språk
         setting_default_privacy: Postintegritet
         setting_default_sensitive: Markera alltid media som känsligt
@@ -108,6 +121,7 @@ sv:
         setting_display_media_default: Standard
         setting_display_media_hide_all: Dölj alla
         setting_display_media_show_all: Visa alla
+        setting_expand_spoilers: Utöka alltid tutar markerade med innehållsvarningar
         setting_hide_network: Göm ditt nätverk
         setting_noindex: Uteslutning av sökmotorindexering
         setting_reduce_motion: Minska rörelser i animationer
@@ -115,6 +129,7 @@ sv:
         setting_theme: Sidans tema
         setting_trends: Visa dagens trender
         setting_unfollow_modal: Visa bekräftelse innan du slutar följa någon
+        setting_use_pending_items: Långsamt läge
         severity: Strikthet
         type: Importtyp
         username: Användarnamn
