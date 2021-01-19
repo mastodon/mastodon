@@ -55,6 +55,7 @@ sv:
       one: Följare
       other: Följare
     following: Följer
+    instance_actor_flash: Detta konto är en virtuell aktör som används för att representera servern själv och inte någon enskild användare. Den används för federationsändamål och bör inte spärras.
     joined: Gick med %{date}
     last_active: senast aktiv
     link_verified_on: Ägarskap för denna länk kontrollerades den %{date}
@@ -90,6 +91,7 @@ sv:
       add_email_domain_block: Blockera e-postdomän
       approve: Godkänn
       approve_all: Godkänn alla
+      approved_msg: Godkänt %{username}s registreringsansökan
       are_you_sure: Är du säker?
       avatar: Profilbild
       by_domain: Domän
@@ -106,6 +108,7 @@ sv:
       delete: Radera data
       deleted: Raderad
       demote: Degradera
+      destroyed_msg: "%{username}s data har lagts till kön för att raderas"
       disable: inaktivera
       disable_two_factor_authentication: Inaktivera 2FA
       disabled: inaktiverad
@@ -116,10 +119,12 @@ sv:
       email_status: E-poststatus
       enable: Aktivera
       enabled: Aktiverad
+      enabled_msg: '%{username}s konto upplåsat'
       followers: Följare
       follows: Följs
       header: Rubrik
       inbox_url: Inkorgs URL
+      invite_request_text: Anledningar för att gå med
       invited_by: Inbjuden av
       ip: IP-adress
       joined: Gick med
@@ -131,6 +136,8 @@ sv:
       login_status: Inloggningsstatus
       media_attachments: Media bifogade filer
       memorialize: Förvandla till ett memoriam
+      memorialized: Memorialiserad
+      memorialized_msg: Omvandlat %{username} till ett minneskonto
       moderation:
         active: Aktiv
         all: Alla
@@ -151,8 +158,10 @@ sv:
       public: Offentlig
       push_subscription_expires: PuSH-prenumerationen löper ut
       redownload: Uppdatera avatar
+      redownloaded_msg: Uppdaterat %{username}s profil från ursprunget
       reject: Förkasta
       reject_all: Förkasta allt / Avvisa alla
+      rejected_msg: '%{username}s registreringsansökan avvisades'
       remove_avatar: Ta bort avatar
       remove_header: Ta bort rubrik
       removed_avatar_msg: Tagit bort %{username}s profilbild
@@ -184,6 +193,8 @@ sv:
       statuses: Status
       subscribe: Prenumerera
       suspended: Avstängd / Avstängt
+      suspension_irreversible: Datan för detta konto har oåterkalleligen raderats. Du kan låsa upp kontot för att göra det användbart igen, men den datan som det tidigare hade kommer inte att återställas.
+      suspension_reversible_hint_html: Kontot har spärrats och datan kommer att tas bort på %{date}. Fram till dess kan kontot återställas utan några negativa effekter. Om du vill ta bort alla uppgifter om kontot, kan du göra det nedan.
       time_in_queue: Väntar i kö %{time}
       title: Konton
       unconfirmed_email: Obekräftad E-postadress
@@ -206,6 +217,7 @@ sv:
         create_custom_emoji: Skapa egen emoji
         create_domain_allow: Skapa tillåten domän
         create_domain_block: Skapa blockerad domän
+        create_ip_block: Skapa IP-regel
         destroy_announcement: Ta bort anslag
         destroy_custom_emoji: Ta bort egen emoji
         destroy_domain_allow: Ta bort tillåten domän
