@@ -1,4 +1,3 @@
----
 sv:
   simple_form:
     hints:
@@ -19,6 +18,7 @@ sv:
         all_day: När det är markerat visas endast datum för tidsintervallet
         ends_at: Frivillig. Meddelandet kommer automatiskt att publiceras just nu
         scheduled_at: Lämna tomt för att publicera meddelandet omedelbart
+        starts_at: Valfritt. Om ditt meddelande är bundet till ett visst tidsintervall
       defaults:
         autofollow: Användarkonton som skapas genom din inbjudan kommer automatiskt följa dig
         avatar: PNG, GIF eller JPG. Högst %{size}. Kommer att skalas ner till %{dimensions}px
@@ -41,6 +41,15 @@ sv:
         name: 'Du kan vilja använda en av dessa:'
       imports:
         data: CSV-fil som exporteras från en annan Mastodon-instans
+      invite_request:
+        text: Detta kommer att hjälpa oss att granska din ansökan
+      ip_block:
+        comment: Valfritt. Kom ihåg varför du lagt till denna regel.
+        ip: Ange en IPv4 eller IPv6-adress. Du kan blockera hela intervall med hjälp av CIDR-syntax. Tänk på att inte låsa dig själv!
+        severities:
+          no_access: Blockera åtkomst till alla resurser
+          sign_up_requires_approval: Nya registreringar kräver ditt godkännande
+        severity: Välj vad som ska hända med förfrågningar från denna IP
       sessions:
         otp: 'Ange tvåfaktorkoden genererad från din telefonapp eller använd någon av dina återställningskoder:'
       user:
@@ -50,7 +59,12 @@ sv:
         fields:
           name: Etikett
           value: Innehåll
+      account_alias:
+        acct: Hantering av det gamla kontot
+      account_migration:
+        acct: Hantering av det gamla kontot
       account_warning_preset:
+        text: Förinställd text
         title: Rubrik
       admin_account_action:
         text: Anpassad varning
@@ -120,9 +134,9 @@ sv:
         follow_request: Skicka e-post när någon begär att följa dig
         mention: Skicka e-post när någon nämner dig
         reblog: Skicka e-post när någon knuffar din status
-    'no': Nej
+    'no': 'Nej'
     recommended: Rekommenderad
     required:
       mark: "*"
       text: obligatorisk
-    'yes': Ja
+    'yes': 'Ja'
