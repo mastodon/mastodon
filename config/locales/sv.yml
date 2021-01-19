@@ -201,7 +201,9 @@ sv:
       undo_sensitized: Ångra känsligt
       undo_silenced: Ångra tystnad
       undo_suspension: Ångra avstängning
+      unsilenced_msg: '%{username}s konto upplåst'
       unsubscribe: Avsluta prenumeration
+      unsuspended_msg: '%{username}s konto upplåst'
       username: Användarnamn
       view_domain: Visa sammanfattning för domän
       warn: Varna
@@ -217,6 +219,7 @@ sv:
         create_custom_emoji: Skapa egen emoji
         create_domain_allow: Skapa tillåten domän
         create_domain_block: Skapa blockerad domän
+        create_email_domain_block: Blockera s-postdomän
         create_ip_block: Skapa IP-regel
         demote_user: Degradera användare
         destroy_announcement: Ta bort anslag
@@ -237,8 +240,12 @@ sv:
         reopen_report: Återuppta anmälan
         reset_password_user: Återställ lösenord
         resolve_report: Lös rapport
+        sensitive_account: Markera media på ditt konto som känsligt
         silence_account: Tysta konto
         suspend_account: Stäng av konto
+        unassigned_report: Återkalla anmälan
+        unsensitive_account: Avmarkera media på ditt konto som känsligt
+        unsilence_account: Avtysta konto
         unsuspend_account: Återaktivera konto
         update_announcement: Uppdatera meddelande
         update_custom_emoji: Uppdatera egna emojis
@@ -254,12 +261,14 @@ sv:
         create_domain_allow: "%{name} vitlistade domän %{target}"
         create_domain_block: "%{name} blockerade domän %{target}"
         create_email_domain_block: "%{name} svartlistade e-postdomän %{target}"
+        create_ip_block: "%{name} skapade regel för IP %{target}"
         demote_user: "%{name} degraderade användare %{target}"
         destroy_announcement: "%{name} raderade meddelanden %{target}"
         destroy_custom_emoji: "%{name} förstörde emoji %{target}"
         destroy_domain_allow: "%{name} raderade domän %{target} från vitlistan"
         destroy_domain_block: "%{name} avblockerade domän %{target}"
         destroy_email_domain_block: "%{name} vitlistade e-postdomän %{target}"
+        destroy_ip_block: "%{name} raderade regel för IP %{target}"
         destroy_status: "%{name} tog bort status av %{target}"
         disable_2fa_user: "%{name} inaktiverade tvåfaktorsautentiseringskrav för användare %{target}"
         disable_custom_emoji: "%{name} inaktiverade emoji %{target}"
@@ -272,9 +281,11 @@ sv:
         reopen_report: "%{name} återupptog anmälan %{target}"
         reset_password_user: "%{name} återställde lösenord för användaren %{target}"
         resolve_report: "%{name} löste anmälan %{target}"
+        sensitive_account: "%{name} markerade %{target}s media som känsligt"
         silence_account: "%{name} tystade ner %{target}s konto"
         suspend_account: "%{name} suspenderade %{target}s konto"
         unassigned_report: "%{name} otilldelade anmälan %{target}"
+        unsensitive_account: "%{name} avmarkerade %{target}s media som känsligt"
         unsilence_account: "%{name} återljudade %{target}s konto"
         unsuspend_account: "%{name} aktiverade %{target}s konto"
         update_custom_emoji: "%{name} uppdaterade emoji %{target}"
@@ -282,6 +293,8 @@ sv:
         update_status: "%{name} uppdaterade status för %{target}"
       deleted_status: "(raderad status)"
       empty: Inga loggar hittades.
+      filter_by_action: Filtrera efter åtgärd
+      filter_by_user: Filtrera efter användare
       title: Revisionslogg
     announcements:
       live: Direkt
@@ -375,6 +388,7 @@ sv:
       public_comment: Offentlig kommentar
       reject_media: Avvisa mediafiler
       reject_media_hint: Raderar lokalt lagrade mediefiler och förhindrar möjligheten att ladda ner något i framtiden. Irrelevant för suspensioner
+      reject_reports: Avvisa anmälan
       severity:
         silence: tystad
         suspend: avstängd
