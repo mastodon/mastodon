@@ -20,27 +20,27 @@ sv:
         scheduled_at: Lämna tomt för att publicera meddelandet omedelbart
         starts_at: Extra. Om ditt meddelande är bundet till ett visst tidsintervall
       defaults:
-        autofollow: Användarkonton som skapas genom din inbjudan kommer automatiskt följa dig
+        autofollow: Personer som registrerar sig genom din inbjudan kommer automatiskt att följa dig
         avatar: PNG, GIF eller JPG. Högst %{size}. Kommer att skalas ner till %{dimensions}px
         bot: Detta konto utför huvudsakligen automatiserade åtgärder och kanske inte övervakas
         digest: Skickas endast efter en lång period av inaktivitet och endast om du har fått några personliga meddelanden i din frånvaro
-        email: Du kommer att få ett bekräftelsemeddelande via e-post
+        email: Du kommer att få en bekräftele på din e-post
         fields: Du kan ha upp till 4 objekt visade som en tabell på din profil
         header: PNG, GIF eller JPG. Högst %{size}. Kommer att skalas ner till %{dimensions}px
         irreversible: Filtrerade inlägg kommer att försvinna oåterkalleligt, även om filter tas bort senare
         locale: Språket för användargränssnittet, e-postmeddelanden och push-aviseringar
         locked: Kräver att du manuellt godkänner följare
         password: Använd minst 8 tecken
-        setting_display_media_default: Dölj media markerad som känslig
+        setting_display_media_default: Dölj media markerat som känsligt
         setting_display_media_hide_all: Dölj alltid all media
-        setting_display_media_show_all: Visa alltid media markerad som känslig
+        setting_display_media_show_all: Visa alltid media markerat som känsligt
         setting_hide_network: Vem du följer och vilka som följer dig kommer inte att visas på din profilsida
         setting_noindex: Påverkar din offentliga profil och statussidor
-        username: Ditt användarnamn måste vara unikt på %{domain}
+        username: Ditt användarnamn kommer att vara unikt på %{domain}
       featured_tag:
-        name: 'Du kan vilja använda en av dessa:'
+        name: 'Du kanske vill använda en av dessa:'
       imports:
-        data: CSV-fil som exporteras från en annan Mastodon-instans
+        data: CSV-fil som exporteras från en annan Mastodon-server
       invite_request:
         text: Detta kommer att hjälpa oss att granska din ansökan
       ip_block:
