@@ -61,6 +61,7 @@ sv:
         subject: 'Mastodon: Lås upp instruktioner'
       webauthn_credential:
         added:
+          explanation: Följande säkerhetsnyckel har lagts till i ditt konto
           subject: 'Mastodon: Ny säkerhetsnyckel'
           title: En ny säkerhetsnyckel har lagts till
         deleted:
@@ -68,8 +69,10 @@ sv:
           subject: 'Mastodon: Säkerhetsnyckeln borttagen'
           title: En av dina säkerhetsnycklar har tagits bort
       webauthn_disabled:
+        subject: 'Mastodon: Autentisering med säkerhetsnycklar inaktiverat'
         title: Säkerhetsnycklar inaktiverade
       webauthn_enabled:
+        explanation: Säkerhetsnyckelautentisering har aktiverats för ditt konto. Din säkerhetsnyckel kan nu användas för inloggning.
         title: Säkerhetsnycklar aktiverade
     omniauth_callbacks:
       failure: Det gick inte att autentisera dig från %{kind} för "%{reason}".
