@@ -19,6 +19,7 @@ sv:
         ends_at: Extra. Meddelandet kommer automatiskt att avpubliceras just nu
         scheduled_at: Lämna tomt för att publicera meddelandet omedelbart
         starts_at: Extra. Om ditt meddelande är bundet till ett visst tidsintervall
+        text: Du kan använda tut-syntaxen. Tänk på hur mycket plats ditt meddelande tar upp på användarskärmen
       defaults:
         autofollow: Personer som registrerar sig genom din inbjudan kommer automatiskt att följa dig
         avatar: PNG, GIF eller JPG. Högst %{size}. Kommer att skalas ner till %{dimensions}px
@@ -134,6 +135,8 @@ sv:
         type: Importtyp
         username: Användarnamn
         username_or_email: Användarnamn eller e-mail
+      featured_tag:
+        name: Hashtag
       interactions:
         must_be_follower: Blockera aviseringar från icke-följare
         must_be_following: Blockera aviseringar från personer du inte följer
@@ -142,16 +145,32 @@ sv:
         comment: Kommentar
       invite_request:
         text: Varför vill du gå med?
+      ip_block:
+        comment: Kommentar
+        ip: IP-adress
+        severities:
+          no_access: Blockera åtkomst
+          sign_up_requires_approval: Begränsa registreringar
+        severity: Regel
       notification_emails:
         digest: Skicka sammandrag via e-post
         favourite: Någon favoriserade din status
         follow: Någon följer dig
         follow_request: Någon begärde att följa dig
         mention: Någon nämnde dig
+        pending_account: Skicka ett mejl när ett nytt konto behöver granskas
         reblog: Någon knuffade din tut
+        report: Ny rapport har skickats
+      tag:
+        name: Hashtag
+        trendable: Tillåt att denna hashtag visas under trender
+        usable: Tillåt tutningar att använda denna hashtag
     'no': 'Nej'
     recommended: Rekommenderad
     required:
       mark: "*"
       text: obligatorisk
+    title:
+      sessions:
+        webauthn: Använd en av dina säkerhetsnycklar för att logga in
     'yes': 'Ja'
