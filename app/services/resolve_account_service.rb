@@ -52,7 +52,7 @@ class ResolveAccountService < BaseService
     # either needs to be created, or updated from fresh data
 
     fetch_account!
-  rescue Webfinger::Error, Oj::ParseError => e
+  rescue Webfinger::Error => e
     Rails.logger.debug "Webfinger query for #{@uri} failed: #{e}"
     nil
   end
