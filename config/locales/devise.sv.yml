@@ -2,11 +2,11 @@ sv:
   devise:
     confirmations:
       confirmed: Din e-postadress har bekräftats.
-      send_instructions: Du kommer att få ett mail med instruktioner för hur du bekräftar din e-postadress om några minuter. Kontrollera din spammapp om du inte fick det här e-postmeddelandet.
-      send_paranoid_instructions: Om din e-postadress finns i vår databas får du ett mail med instruktioner för hur du bekräftar din e-postadress inom några minuter. Kontrollera din spammapp om du inte fick det här e-postmeddelandet.
+      send_instructions: Du kommer att få ett mejl med instruktioner för hur du bekräftar din e-postadress om några minuter. Kontrollera din spammapp om du inte fick det här mejlet.
+      send_paranoid_instructions: Om din e-postadress finns i vår databas får du ett mejl med instruktioner för hur du bekräftar din e-postadress inom några minuter. Kontrollera din spammapp om du inte fick det här mejlet.
     failure:
       already_authenticated: Du är redan inloggad.
-      inactive: Ditt konto är inte aktiverat än..
+      inactive: Ditt konto är inte aktiverat än.
       invalid: Ogiltigt %{authentication_keys} eller lösenord.
       last_attempt: Du har ytterligare ett försök innan ditt konto blir låst.
       locked: Ditt konto är låst.
@@ -19,7 +19,7 @@ sv:
       confirmation_instructions:
         action: Verifiera e-postadress
         action_with_app: Bekräfta och återgå till %{app}
-        explanation: Du har skapat ett konto på %{host} med den här e-postadressen. Du är ett klick bort från att aktivera det. Om det inte var du ignorerar det här e-postmeddelandet.
+        explanation: Du har skapat ett konto på %{host} med den här e-postadressen. Du är ett klick bort från att aktivera det. Om det inte var du ignorerar det här mejlet.
         explanation_when_pending: Du ansökte om en inbjudan till %{host} med denna e-postadress. När du har bekräftat din e-postadress kommer vi att granska din ansökan. Du kan logga in för att ändra dina uppgifter eller ta bort ditt konto, men du kan inte komma åt de flesta funktionerna förrän ditt konto har godkänts. Om din ansökan avvisas kommer dina uppgifter att tas bort, så ingen ytterligare åtgärd kommer att krävas av dig. Om detta inte var du, vänligen ignorera detta mail.
         extra_html: Kolla gärna också <a href="%{terms_path}">instansens regler</a> och <a href="%{policy_path}">våra användarvillkor</a>.
         subject: 'Mastodon: Bekräftelsesinstruktioner för %{instance}'
