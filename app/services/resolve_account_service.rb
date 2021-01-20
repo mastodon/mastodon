@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class ResolveAccountService < BaseService
-  include JsonLdHelper
   include DomainControlHelper
   include WebfingerHelper
   include Redisable
