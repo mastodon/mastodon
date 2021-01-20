@@ -98,6 +98,15 @@ module SignatureVerification
   rescue SignatureVerificationError => e
     @signature_verification_failure_reason = e.message
     @signed_request_account = nil
+  rescue HTTP::Error, OpenSSL::SSL::SSLError => e
+    @signature_verification_failure_reason = "Failed to fetch remote data: #{e.message}"
+    @signed_request_account = nil
+  rescue Mastodon::UnexptectedResponseError
+    @signature_verification_failure_reason = "Failed to fetch remote data (got unexpected reply from server)"
+    @signed_request_account = nil
+  rescue Stoplight::Error::RedLight
+    @signature_verification_failure_reason = "Fetching attempt skipped because of recent connection failure"
+    @signed_request_account = nil
   end
 
   def request_body
@@ -216,19 +225,20 @@ module SignatureVerification
     end
 
     if key_id.start_with?('acct:')
-      stoplight_wrap_request { ResolveAccountService.new.call(key_id.gsub(/\Aacct:/, '')) }
+      stoplight_wrap_request { ResolveAccountService.new.call(key_id.gsub(/\Aacct:/, ''), suppress_errors: false) }
     elsif !ActivityPub::TagManager.instance.local_uri?(key_id)
       account   = ActivityPub::TagManager.instance.uri_to_resource(key_id, Account)
-      account ||= stoplight_wrap_request { ActivityPub::FetchRemoteKeyService.new.call(key_id, id: false) }
+      account ||= stoplight_wrap_request { ActivityPub::FetchRemoteKeyService.new.call(key_id, id: false, suppress_errors: false) }
       account
     end
-  rescue Mastodon::HostValidationError
-    nil
+  rescue Mastodon::PrivateNetworkAddressError => e
+    raise SignatureVerificationError, "Requests to private network addresses are disallowed (tried to query #{e.host})"
+  rescue Mastodon::HostValidationError, ActivityPub::FetchRemoteAccountService::Error, ActivityPub::FetchRemoteKeyService::Error, Webfinger::Error => e
+    raise SignatureVerificationError, e.message
   end
 
   def stoplight_wrap_request(&block)
     Stoplight("source:#{request.remote_ip}", &block)
-      .with_fallback { nil }
       .with_threshold(1)
       .with_cool_off_time(5.minutes.seconds)
       .with_error_handler { |error, handle| error.is_a?(HTTP::Error) || error.is_a?(OpenSSL::SSL::SSLError) ? handle.call(error) : raise(error) }
@@ -237,6 +247,10 @@ module SignatureVerification
 
   def account_refresh_key(account)
     return if account.local? || !account.activitypub?
-    ActivityPub::FetchRemoteAccountService.new.call(account.uri, only_key: true)
+    ActivityPub::FetchRemoteAccountService.new.call(account.uri, only_key: true, suppress_errors: false)
+  rescue Mastodon::PrivateNetworkAddressError => e
+    raise SignatureVerificationError, "Requests to private network addresses are disallowed (tried to query #{e.host})"
+  rescue Mastodon::HostValidationError, ActivityPub::FetchRemoteAccountService::Error, Webfinger::Error => e
+    raise SignatureVerificationError, e.message
   end
 end
