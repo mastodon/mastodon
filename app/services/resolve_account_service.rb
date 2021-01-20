@@ -95,7 +95,7 @@ class ResolveAccountService < BaseService
     @username, @domain = split_acct(@webfinger.subject)
 
     unless confirmed_username.casecmp(@username).zero? && confirmed_domain.casecmp(@domain).zero?
-      raise Webfinger::RedirectError, "The URI #{uri} tries to hijack #{@username}@#{@domain}"
+      raise Webfinger::RedirectError, "Too many webfinger redirects for URI #{uri} (stopped at #{@username}@#{@domain})"
     end
   rescue Webfinger::GoneError
     @gone = true
