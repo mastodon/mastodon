@@ -12,6 +12,7 @@ class ResolveAccountService < BaseService
   # @param [Hash] options
   # @option options [Boolean] :redirected Do not follow further Webfinger redirects
   # @option options [Boolean] :skip_webfinger Do not attempt any webfinger query or refreshing account data
+  # @option options [Boolean] :suppress_errors When failing, return nil instead of raising an error
   # @return [Account]
   def call(uri, options = {})
     return if uri.blank?
@@ -53,13 +54,13 @@ class ResolveAccountService < BaseService
     fetch_account!
   rescue Webfinger::Error => e
     Rails.logger.debug "Webfinger query for #{@uri} failed: #{e}"
-    nil
+    raise unless @options[:suppress_errors]
   end
 
   private
 
   def process_options!(uri, options)
-    @options = options
+    @options = { suppress_errors: true }.merge(options)
 
     if uri.is_a?(Account)
       @account  = uri
@@ -109,7 +110,7 @@ class ResolveAccountService < BaseService
     return unless activitypub_ready?
 
     with_lock("resolve:#{@username}@#{@domain}") do
-      @account = ActivityPub::FetchRemoteAccountService.new.call(actor_url)
+      @account = ActivityPub::FetchRemoteAccountService.new.call(actor_url, suppress_errors: @options[:suppress_errors])
     end
 
     @account
