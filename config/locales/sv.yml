@@ -449,15 +449,23 @@ sv:
       title: IP-regler
     pending_accounts:
       title: Väntande konton (%{count})
+    relationships:
+      title: "%{acct}s relationer"
     relays:
+      add_new: Lägg till nytt relä
       delete: Radera
       disable: Inaktivera
       disabled: Inaktiverad
       enable: Aktivera
       enable_hint: När den är aktiverad kommer din server att prenumerera på alla publika toots från detta relay, och kommer att börja skicka serverns publika toots till den.
       enabled: Aktivera
+      inbox_url: Relä URL
+      pending: Väntar på reläets godkännande
       save_and_enable: Spara och aktivera
+      setup: Konfigurera en relä anslutning
+      signatures_not_enabled: Reläerna fungerar inte korrekt när de är i säkert läge eller när begränsat federationsläge är aktiverat
       status: Status
+      title: Reläer
     report_notes:
       created_msg: Anmälningsanteckning har skapats!
       destroyed_msg: Anmälningsanteckning har raderats!
