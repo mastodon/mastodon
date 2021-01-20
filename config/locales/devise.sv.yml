@@ -69,10 +69,12 @@ sv:
           subject: 'Mastodon: Säkerhetsnyckeln borttagen'
           title: En av dina säkerhetsnycklar har tagits bort
       webauthn_disabled:
+        explanation: Autentisering med säkerhetsnycklar har inaktiverats för ditt konto. Inloggning är nu endast möjligt med den token som genereras av den parkopplade TOTP-appen.
         subject: 'Mastodon: Autentisering med säkerhetsnycklar inaktiverat'
         title: Säkerhetsnycklar inaktiverade
       webauthn_enabled:
         explanation: Säkerhetsnyckelautentisering har aktiverats för ditt konto. Din säkerhetsnyckel kan nu användas för inloggning.
+        subject: 'Mastodon: Autentisering med säkerhetsnyckel aktiverad'
         title: Säkerhetsnycklar aktiverade
     omniauth_callbacks:
       failure: Det gick inte att autentisera dig från %{kind} för "%{reason}".
