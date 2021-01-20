@@ -25,4 +25,12 @@ module Mastodon
       end
     end
   end
+
+  class PrivateNetworkAddressError < HostValidationError
+    attr_reader :host
+
+    def initialize(host)
+      @host = host
+    end
+  end
 end
