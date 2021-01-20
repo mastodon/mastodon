@@ -435,6 +435,18 @@ sv:
         expired: Utgångna
         title: Filtrera
       title: Inbjudningar
+    ip_blocks:
+      expires_in:
+        '1209600': 2 veckor
+        '15778476': 6 månader
+        '2629746': 1 månad
+        '31556952': 1 år
+        '86400': 1 dag
+        '94670856': 3 år
+      new:
+        title: Skapa IP-regel
+      no_ip_block_selected: Inga IP-regler ändrades eftersom ingen valdes
+      title: IP-regler
     pending_accounts:
       title: Väntande konton (%{count})
     relays:
