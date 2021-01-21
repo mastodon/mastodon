@@ -320,13 +320,13 @@ class Header extends ImmutablePureComponent {
                   <div className='account__header__fields'>
                     {identity_proofs.map((proof, i) => (
                       <dl key={i}>
-                        <dt dangerouslySetInnerHTML={{ __html: proof.get('provider') }} />
+                        <dt dangerouslySetInnerHTML={{ __html: proof.get('provider') }} className='translate' />
 
                         <dd className='verified'>
                           <a href={proof.get('proof_url')} target='_blank' rel='noopener noreferrer'><span title={intl.formatMessage(messages.linkVerifiedOn, { date: intl.formatDate(proof.get('updated_at'), dateFormatOptions) })}>
                             <Icon id='check' className='verified__mark' />
                           </span></a>
-                          <a href={proof.get('profile_url')} target='_blank' rel='noopener noreferrer'><span dangerouslySetInnerHTML={{ __html: ' '+proof.get('provider_username') }} /></a>
+                          <a href={proof.get('profile_url')} target='_blank' rel='noopener noreferrer'><span dangerouslySetInnerHTML={{ __html: ' '+proof.get('provider_username') }} className='translate' /></a>
                         </dd>
                       </dl>
                     ))}
@@ -335,14 +335,14 @@ class Header extends ImmutablePureComponent {
                         <dt dangerouslySetInnerHTML={{ __html: pair.get('name_emojified') }} title={pair.get('name')} />
    
                         <dd className={pair.get('verified_at') && 'verified'} title={pair.get('value_plain')}>
-                          {pair.get('verified_at') && <span title={intl.formatMessage(messages.linkVerifiedOn, { date: intl.formatDate(pair.get('verified_at'), dateFormatOptions) })}><Icon id='check' className='verified__mark' /></span>} <span dangerouslySetInnerHTML={{ __html: pair.get('value_emojified') }} />
+                          {pair.get('verified_at') && <span title={intl.formatMessage(messages.linkVerifiedOn, { date: intl.formatDate(pair.get('verified_at'), dateFormatOptions) })}><Icon id='check' className='verified__mark' /></span>} <span dangerouslySetInnerHTML={{ __html: pair.get('value_emojified') }} className='translate' />
                         </dd>
                       </dl>
                     ))}
                   </div>
                 )}
 
-                {account.get('note').length > 0 && account.get('note') !== '<p></p>' && <div className='account__header__content' dangerouslySetInnerHTML={content} />}
+                {account.get('note').length > 0 && account.get('note') !== '<p></p>' && <div className='account__header__content translate' dangerouslySetInnerHTML={content} />}
               </div>
             </div>
           )}
