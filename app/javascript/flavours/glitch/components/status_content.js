@@ -327,7 +327,7 @@ export default class StatusContent extends React.PureComponent {
           <p
             style={{ marginBottom: hidden && status.get('mentions').isEmpty() ? '0px' : null }}
           >
-            <span dangerouslySetInnerHTML={spoilerContent} />
+            <span dangerouslySetInnerHTML={spoilerContent} className='translate' />
             {' '}
             <button tabIndex='0' className='status__content__spoiler-link' onClick={this.handleSpoilerClick}>
               {toggleText}
@@ -342,7 +342,7 @@ export default class StatusContent extends React.PureComponent {
               key={`contents-${tagLinks}`}
               tabIndex={!hidden ? 0 : null}
               dangerouslySetInnerHTML={content}
-              className='status__content__text'
+              className='status__content__text translate'
             />
             {media}
           </div>
@@ -362,7 +362,7 @@ export default class StatusContent extends React.PureComponent {
             ref={this.setContentsRef}
             key={`contents-${tagLinks}-${rewriteMentions}`}
             dangerouslySetInnerHTML={content}
-            className='status__content__text'
+            className='status__content__text translate'
             tabIndex='0'
           />
           {media}
@@ -375,7 +375,7 @@ export default class StatusContent extends React.PureComponent {
           tabIndex='0'
           ref={this.setRef}
         >
-          <div ref={this.setContentsRef} key={`contents-${tagLinks}`} className='status__content__text' dangerouslySetInnerHTML={content} tabIndex='0' />
+          <div ref={this.setContentsRef} key={`contents-${tagLinks}`} className='status__content__text translate' dangerouslySetInnerHTML={content} tabIndex='0' />
           {media}
         </div>
       );

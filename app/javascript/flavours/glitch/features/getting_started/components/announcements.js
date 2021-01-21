@@ -145,7 +145,7 @@ class Content extends ImmutablePureComponent {
 
     return (
       <div
-        className='announcements__item__content'
+        className='announcements__item__content translate'
         ref={this.setRef}
         dangerouslySetInnerHTML={{ __html: announcement.get('contentHtml') }}
       />
