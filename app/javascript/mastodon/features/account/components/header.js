@@ -328,9 +328,9 @@ class Header extends ImmutablePureComponent {
                   ))}
                   {fields.map((pair, i) => (
                     <dl key={i}>
-                      <dt dangerouslySetInnerHTML={{ __html: pair.get('name_emojified') }} title={pair.get('name')} />
+                      <dt dangerouslySetInnerHTML={{ __html: pair.get('name_emojified') }} title={pair.get('name')} className='translate' />
 
-                      <dd className={pair.get('verified_at') && 'verified'} title={pair.get('value_plain')}>
+                      <dd className={pair.get('verified_at') && 'verified'} title={pair.get('value_plain')} className='translate'>
                         {pair.get('verified_at') && <span title={intl.formatMessage(messages.linkVerifiedOn, { date: intl.formatDate(pair.get('verified_at'), dateFormatOptions) })}><Icon id='check' className='verified__mark' /></span>} <span dangerouslySetInnerHTML={{ __html: pair.get('value_emojified') }} />
                       </dd>
                     </dl>
@@ -340,7 +340,7 @@ class Header extends ImmutablePureComponent {
 
               {account.get('id') !== me && !suspended && <AccountNoteContainer account={account} />}
 
-              {account.get('note').length > 0 && account.get('note') !== '<p></p>' && <div className='account__header__content' dangerouslySetInnerHTML={content} />}
+              {account.get('note').length > 0 && account.get('note') !== '<p></p>' && <div className='account__header__content' dangerouslySetInnerHTML={content} className='translate' />}
             </div>
 
             {!suspended && (
