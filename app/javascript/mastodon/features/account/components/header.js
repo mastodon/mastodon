@@ -340,7 +340,7 @@ class Header extends ImmutablePureComponent {
 
               {account.get('id') !== me && !suspended && <AccountNoteContainer account={account} />}
 
-              {account.get('note').length > 0 && account.get('note') !== '<p></p>' && <div className='account__header__content' dangerouslySetInnerHTML={content} className='translate' />}
+              {account.get('note').length > 0 && account.get('note') !== '<p></p>' && <div className='account__header__content translate' dangerouslySetInnerHTML={content} />}
             </div>
 
             {!suspended && (
