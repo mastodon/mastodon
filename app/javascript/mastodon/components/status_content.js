@@ -221,14 +221,14 @@ export default class StatusContent extends React.PureComponent {
       return (
         <div className={classNames} ref={this.setRef} tabIndex='0' onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp}>
           <p style={{ marginBottom: hidden && status.get('mentions').isEmpty() ? '0px' : null }}>
-            <span dangerouslySetInnerHTML={spoilerContent} />
+            <span dangerouslySetInnerHTML={spoilerContent} className='translate' />
             {' '}
             <button tabIndex='0' className={`status__content__spoiler-link ${hidden ? 'status__content__spoiler-link--show-more' : 'status__content__spoiler-link--show-less'}`} onClick={this.handleSpoilerClick}>{toggleText}</button>
           </p>
 
           {mentionsPlaceholder}
 
-          <div tabIndex={!hidden ? 0 : null} className={`status__content__text ${!hidden ? 'status__content__text--visible' : ''}`} dangerouslySetInnerHTML={content} />
+          <div tabIndex={!hidden ? 0 : null} className={`status__content__text ${!hidden ? 'status__content__text--visible' : ''} translate`} dangerouslySetInnerHTML={content} />
 
           {!hidden && !!status.get('poll') && <PollContainer pollId={status.get('poll')} />}
 
@@ -238,7 +238,7 @@ export default class StatusContent extends React.PureComponent {
     } else if (this.props.onClick) {
       const output = [
         <div className={classNames} ref={this.setRef} tabIndex='0' onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp} key='status-content'>
-          <div className='status__content__text status__content__text--visible' dangerouslySetInnerHTML={content} />
+          <div className='status__content__text status__content__text--visible translate' dangerouslySetInnerHTML={content} />
 
           {!!status.get('poll') && <PollContainer pollId={status.get('poll')} />}
 
@@ -254,7 +254,7 @@ export default class StatusContent extends React.PureComponent {
     } else {
       return (
         <div className={classNames} ref={this.setRef} tabIndex='0'>
-          <div className='status__content__text status__content__text--visible' dangerouslySetInnerHTML={content} />
+          <div className='status__content__text status__content__text--visible translate' dangerouslySetInnerHTML={content} />
 
           {!!status.get('poll') && <PollContainer pollId={status.get('poll')} />}
 
