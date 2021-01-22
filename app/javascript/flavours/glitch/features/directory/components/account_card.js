@@ -241,7 +241,7 @@ class AccountCard extends ImmutablePureComponent {
 
         <div className='directory__card__extra' ref={this.setRef}>
           <div
-            className='account__header__content'
+            className='account__header__content translate'
             dangerouslySetInnerHTML={{ __html: account.get('note_emojified') }}
           />
         </div>
