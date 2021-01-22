@@ -1,11 +1,10 @@
----
 sr:
   activerecord:
     attributes:
       doorkeeper/application:
-        name: Име апликације
-        redirect_uri: Адреса за преусмеравање
-        scopes: Опсег важења
+        name: Назив апликације
+        redirect_uri: Преусмери УРИ
+        scopes: Опсези
         website: Веб сајт апликације
     errors:
       models:
@@ -38,7 +37,8 @@ sr:
         application: Апликација
         callback_url: Адреса за повратни позив
         delete: Обриши
-        name: Име
+        empty: Немате апликације.
+        name: Назив
         new: Нова апликација
         scopes: Опсези важења
         show: Прикажи
@@ -112,8 +112,14 @@ sr:
           applications: Апликације
           oauth2_provider: OAuth2 провајдер
       application:
-        title: OAuth ауторизација потребна
+        title: OAuth ауторизација тражи
     scopes:
+      "admin:read": читање свих података на серверу
+      "admin:read:accounts": читање осетљивих података за све налоге
+      "admin:read:reports": читање осетљивих података свих извештаја и пријављених налога
+      "admin:write": мењање свих података на серверу
+      "admin:write:accounts": могућност модераторских радњи над налозима
+      "admin:write:reports": могућност модераторских радњи над извештајима
       follow: прати, блокира, одблокира и отпрати налоге
       read: чита податке Вашег налога
       write: објављује статусе у Ваше име
