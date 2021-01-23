@@ -227,12 +227,14 @@ cy:
         create_domain_allow: Creu Alluogiad Parth
         create_domain_block: Creu Gwaharddiad Parth
         create_email_domain_block: Creu Gwaharddiad Parth Ebost
+        create_ip_block: Creu rheol IP
         demote_user: Diraddio Defnyddiwr
         destroy_announcement: Dileu Cyhoeddiad
         destroy_custom_emoji: Dileu Emoji Addasiedig
         destroy_domain_allow: Dileu Alluogiad Parth
         destroy_domain_block: Dileu Gwaharddiad Parth
         destroy_email_domain_block: Dileu gwaharddiad parth ebost
+        destroy_ip_block: Dileu rheol IP
         destroy_status: Dileu Statws
         disable_2fa_user: Diffodd 2FA
         disable_custom_emoji: Analluogi Emoji Addasiedig
@@ -252,6 +254,7 @@ cy:
         unsuspend_account: Tynnu Gwahardd Cyfrif Dros Dro
         update_announcement: Diweddaru Cyhoeddiad
         update_custom_emoji: Diweddaru Emoji Addasiedig
+        update_domain_block: Diweddaru Gwaharddiad Parth
         update_status: Diweddaru Statws
       actions:
         assigned_to_self_report: "Aseiniodd %{name} adroddiad %{target} i'w hunan"
@@ -461,6 +464,19 @@ cy:
         expired: Wedi dod i ben
         title: Hidlo
       title: Gwahoddiadau
+    ip_blocks:
+      add_new: Creu rheol
+      delete: Dileu
+      expires_in:
+        '1209600': 2 wythnos
+        '15778476': 6 months
+        '2629746': 1 month
+        '31556952': 1 year
+        '86400': 1 dydd
+        '94670856': 3 years
+      new:
+        title: Creu rheol IP newydd
+      title: Rheolau IP
     pending_accounts:
       title: Cyfrifau yn aros (%{count})
     relationships:
@@ -577,6 +593,8 @@ cy:
         min_invite_role:
           disabled: Neb
           title: Caniatau gwahoddiadau gan
+        require_invite_text:
+          title: Ei gwneud yn ofynnol i ddefnyddwyr newydd nodi rheswm i ymuno
       registrations_mode:
         modes:
           approved: Mae angen cymeradwyaeth ar gyfer cofrestru
@@ -1338,6 +1356,7 @@ cy:
       month: "%b %Y"
   two_factor_authentication:
     disable: Diffodd
+    edit: Golygu
     enabled: Awdurdodi dau-gam wedi'i alluogi
     enabled_success: Awdurdodi dau-gam wedi'i alluogi'n llwyddiannus
     generate_recovery_codes: Cynhyrchu côdau adfer
@@ -1406,3 +1425,5 @@ cy:
   verification:
     explanation_html: 'Mae modd i chi <strong>ddilysu eich hun fel perchenog y dolenni yn metadata eich proffil</strong>. Rhaid i''r wefan a dolen iddi gynnwys dolen yn ôl i''ch proffil Mastodon. <strong>Rhaid</strong> i''r ddolen yn ôl gael nodwedd <code>rel="fi"</code>. Nid oes ots beth yw cynnwys testun y ddolen. Dyma enghraifft:'
     verification: Dilysu
+  webauthn_credentials:
+    delete: Dileu
