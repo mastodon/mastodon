@@ -1,4 +1,3 @@
----
 cy:
   simple_form:
     hints:
@@ -91,6 +90,7 @@ cy:
         types:
           disable: Analluogi
           none: Gwneud dim
+          sensitive: Sensitif
           silence: Tawelwch
           suspend: Dileu data cyfrif
         warning_preset_id: Defnyddiwch ragnod rhag rhybudd
@@ -168,6 +168,10 @@ cy:
         comment: Sylw
       invite_request:
         text: Pam hoffech ymuno?
+      ip_block:
+        comment: Sylw
+        ip: IP
+        severity: Rheol
       notification_emails:
         digest: Anfonwch e-byst crynhoi
         favourite: Anfon e-bost pan mae rhywun yn ffefrynnu eich statws
@@ -183,9 +187,9 @@ cy:
         name: Hashnod
         trendable: Gadewch i'r hashnod hwn ymddangos o dan dueddiadau
         usable: Caniatáu i tŵtiau ddefnyddio'r hashnod hwn
-    'no': Na
+    'no': 'Na'
     recommended: Argymhellwyd
     required:
       mark: "*"
       text: gofynnol
-    'yes': Ie
+    'yes': 'Ie'
