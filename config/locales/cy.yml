@@ -212,6 +212,8 @@ cy:
       statuses: Statysau
       subscribe: Tanysgrifio
       suspended: Ataliwyd
+      suspension_irreversible: Mae data'r cyfrif hwn wedi'i ddileu yn anadferadwy. Gallwch chi beidio â gwario'r cyfrif i'w wneud yn ddefnyddiadwy ond ni fydd yn adfer unrhyw ddata a oedd ganddo o'r blaen.
+      suspension_reversible_hint_html: Mae'r cyfrif wedi'i atal, a bydd y data'n cael ei dynnu'n llawn ar %{date}. Tan hynny, gellir adfer y cyfrif heb unrhyw effeithiau gwael. Os ydych am gael gwared â holl ddata'r cyfrif ar unwaith, gallwch wneud hynny isod.
       time_in_queue: Yn aros yn y rhestr am %{time}
       title: Cyfrifon
       unconfirmed_email: E-bost heb ei gadarnhau
@@ -220,6 +222,7 @@ cy:
       undo_suspension: Dadwneud ataliad
       unsubscribe: Dad-danysgrifio
       username: Enw defnyddiwr
+      view_domain: Gweld crynodeb ar gyfer parth
       warn: Rhybuddio
       web: Gwe
       whitelisted: Rhestredig wen
@@ -254,6 +257,7 @@ cy:
         reopen_report: Ailagor Adroddiad
         reset_password_user: Ailosod Cyfrinair
         resolve_report: Datrus Adroddiad
+        sensitive_account: Marciwch y cyfryngau yn eich cyfrif fel rhai sensitif
         silence_account: Tawelu Cyfrif
         suspend_account: Gwahardd Cyfrif Dros Dro
         unassigned_report: Dadneilltuo Adroddiad
@@ -476,13 +480,14 @@ cy:
       delete: Dileu
       expires_in:
         '1209600': 2 wythnos
-        '15778476': 6 months
-        '2629746': 1 month
-        '31556952': 1 year
+        '15778476': 6 mis
+        '2629746': 1 mis
+        '31556952': 1 flwyddyn
         '86400': 1 dydd
-        '94670856': 3 years
+        '94670856': 3 blynedd
       new:
         title: Creu rheol IP newydd
+      no_ip_block_selected: Ni newidiwyd unrhyw reolau IP gan na ddewiswyd yr un ohonynt
       title: Rheolau IP
     pending_accounts:
       title: Cyfrifau yn aros (%{count})
@@ -574,6 +579,7 @@ cy:
       domain_blocks_rationale:
         title: Dangos rhesymwaith
       enable_bootstrap_timeline_accounts:
+        desc_html: Gwneud i ddefnyddwyr newydd ddilyn cyfrifon wedi'u ffurfweddu yn awtomatig fel nad yw eu porthiant cartref yn cychwyn yn wag
         title: Alluogi dilyn diofyn i ddefnyddwyr newydd
       hero:
         desc_html: Yn cael ei arddangos ar y dudadlen flaen. Awgrymir 600x100px oleia. Pan nad yw wedi ei osod, mae'n ymddangos fel mân-lun yr achos
@@ -743,6 +749,7 @@ cy:
     didnt_get_confirmation: Heb dderbyn cyfarwyddiadau cadarnhau?
     forgot_password: Wedi anghofio'ch cyfrinair?
     invalid_reset_password_token: Tocyn ailosod cyfrinair yn annilys neu wedi dod i ben. Gwnewch gais am un newydd os gwelwch yn dda.
+    link_to_webauth: Defnyddiwch eich dyfais allwedd diogelwch
     login: Mewngofnodi
     logout: Allgofnodi
     migrate_account: Symud i gyfrif gwahanol
@@ -767,7 +774,9 @@ cy:
       functional: Mae eich cyfrif yn gwbl weithredol.
       pending: Mae'ch cais yn aros i gael ei adolygu gan ein staff. Gall hyn gymryd cryn amser. Byddwch yn derbyn e-bost os caiff eich cais ei gymeradwyo.
       redirecting_to: Mae eich cyfrif yn anactif oherwydd ei fod ar hyn o bryd yn ailgyfeirio i %{acct}.
+    too_fast: Ffurflen wedi'i chyflwyno'n rhy gyflym, rhowch gynnig arall arni.
     trouble_logging_in: Trafferdd mewngofnodi?
+    use_security_key: Defnyddiwch allwedd diogelwch
   authorize_follow:
     already_following: Yr ydych yn dilyn y cyfrif hwn yn barod
     already_requested: Rydych barod wedi anfon ceisiad dilyn i'r cyfrif hynny
@@ -792,6 +801,7 @@ cy:
   date:
     formats:
       default: "%b %d, %Y"
+      with_month_name: "%B, %d, %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}awr"
@@ -1202,6 +1212,7 @@ cy:
     profile: Proffil
     relationships: Dilynion a dilynwyr
     two_factor_authentication: Awdurdodi dau-gam
+    webauthn_authentication: Allweddi diogelwch
   spam_check:
     spam_detected: Mae hyn yn adrodd awtomatig. Caiff sbam ei ganfod.
   statuses:
@@ -1264,6 +1275,8 @@ cy:
         other: "%{count} o bleidleisiau"
       vote: Pleidleisio
     show_more: Dangos mwy
+    show_newer: Dangos mwy newydd
+    show_older: Dangos yn hŷn
     show_thread: Dangos edefyn
     sign_in_to_participate: Mengofnodwch i gymryd rhan yn y sgwrs
     title: '%{name}: "%{quote}"'
@@ -1372,6 +1385,7 @@ cy:
       default: "%b %d, %Y, %H:%M"
       month: "%b %Y"
   two_factor_authentication:
+    add: Ychwanegu
     disable: Diffodd
     edit: Golygu
     enabled: Awdurdodi dau-gam wedi'i alluogi
