@@ -59,6 +59,23 @@ cy:
         title: Newidiodd codau adfer 2FA
       unlock_instructions:
         subject: 'Mastodon: Cyfarwyddiadau datgloi'
+      webauthn_credential:
+        added:
+          explanation: Mae'r allwedd ddiogelwch ganlynol wedi'i hychwanegu at eich cyfrif
+          subject: 'Mastodon: Allwedd ddiogelwch newydd'
+          title: Ychwanegwyd allwedd ddiogelwch newydd
+        deleted:
+          explanation: Mae'r allwedd ddiogelwch ganlynol wedi'i dileu o'ch cyfrif
+          subject: 'Mastodon: Dilewyd yr allwedd ddiogelwch'
+          title: Mae un o'ch allweddi diogelwch wedi'i ddileu
+      webauthn_disabled:
+        explanation: Mae dilysu gydag allweddi diogelwch wedi'i anablu ar gyfer eich cyfrif. Bellach mae mewngofnodi yn bosibl gan ddefnyddio'r tocyn a gynhyrchir gan yr ap TOTP pâr yn unig.
+        subject: 'Mastodon: Dilysu gydag allweddi diogelwch wedi''u hanalluogi'
+        title: Allweddi diogelwch yn anabl
+      webauthn_enabled:
+        explanation: Mae dilysu allwedd diogelwch wedi'i alluogi ar gyfer eich cyfrif. Bellach gellir defnyddio'ch allwedd ddiogelwch ar gyfer mewngofnodi.
+        subject: 'Mastodon: Dilysu allwedd diogelwch wedi''i alluogi'
+        title: Allweddi diogelwch wedi'u galluogi
     omniauth_callbacks:
       failure: Methu eich dilysu o %{kind} oherwydd "%{reason}".
       success: Dilyswyd yn llwyddiannus o gyfrif %{kind}.
