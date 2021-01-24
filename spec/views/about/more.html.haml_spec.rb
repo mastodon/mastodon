@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'about/show.html.haml', without_verify_partial_doubles: true do
+describe 'about/more.html.haml', without_verify_partial_doubles: true do
   around do |example|
     activity_api_enabled = Setting.activity_api_enabled
     example.run
@@ -14,9 +14,11 @@ describe 'about/show.html.haml', without_verify_partial_doubles: true do
     allow(view).to receive(:site_title).and_return('example site')
     allow(view).to receive(:new_user).and_return(User.new)
     allow(view).to receive(:use_seamless_external_login?).and_return(false)
+    allow(view).to receive(:display_blocks?).and_return(false)
 
     instance_presenter = double(
       :instance_presenter,
+      site_contact_email: 'admin@example.com',
       site_title: 'something',
       site_short_description: 'something',
       site_description: 'something',
@@ -34,17 +36,7 @@ describe 'about/show.html.haml', without_verify_partial_doubles: true do
     )
 
     assign(:instance_presenter, instance_presenter)
-  end
-
-  it 'has valid open graph tags' do
-    render
-
-    header_tags = view.content_for(:header_tags)
-
-    expect(header_tags).to match(%r{<meta content=".+" property="og:title" />})
-    expect(header_tags).to match(%r{<meta content="website" property="og:type" />})
-    expect(header_tags).to match(%r{<meta content=".+" property="og:image" />})
-    expect(header_tags).to match(%r{<meta content="http://.+" property="og:url" />})
+    assign(:table_of_contents, [])
   end
 
   context 'when activity api is enabled' do
@@ -54,11 +46,14 @@ describe 'about/show.html.haml', without_verify_partial_doubles: true do
 
     it 'displays aggregate statistics about user activity' do
       render
-      expect(rendered).to have_css('.hero-widget__counters__wrapper .hero-widget__counter:nth-child(1) strong', text: '420')
-      expect(rendered).to have_css('.hero-widget__counters__wrapper .hero-widget__counter:nth-child(1) span', text: 'users')
 
-      expect(rendered).to have_css('.hero-widget__counters__wrapper .hero-widget__counter:nth-child(2) strong', text: '420')
-      expect(rendered).to have_css('.hero-widget__counters__wrapper .hero-widget__counter:nth-child(2) span', text: 'active')
+      expect(rendered).to have_css('.information-board__section:nth-child(1) *:nth-child(1)', text: 'Home to')
+      expect(rendered).to have_css('.information-board__section:nth-child(1) *:nth-child(2)', text: '420')
+      expect(rendered).to have_css('.information-board__section:nth-child(1) *:nth-child(3)', text: 'users')
+
+      expect(rendered).to have_css('.information-board__section:nth-child(2) *:nth-child(1)', text: 'Who authored')
+      expect(rendered).to have_css('.information-board__section:nth-child(2) *:nth-child(2)', text: '69')
+      expect(rendered).to have_css('.information-board__section:nth-child(2) *:nth-child(3)', text: 'statuses')
     end
   end
 
@@ -69,7 +64,7 @@ describe 'about/show.html.haml', without_verify_partial_doubles: true do
 
     it 'doesn\'t display aggregate statistics about user activity' do
       render
-      expect(rendered).to_not have_css('.hero-widget__counters__wrapper')
+      expect(rendered).to_not have_css('.information-board__section')
     end
   end
 end
