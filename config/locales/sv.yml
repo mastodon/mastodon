@@ -480,7 +480,7 @@ sv:
     relays:
       add_new: Lägg till nytt relä
       delete: Radera
-      description_html: Ett <strong>federationsrelä</strong> är en mellanliggande server som utbyter stora volymer av offentliga toots mellan servrar som prenumererar och publicerar till den. <strong>Det kan hjälpa små och mellanstora servrar upptäcka innehåll från fediversumet</strong>, vilket annars skulle kräva att lokala användare manuellt följer andra personer på externa servrar.
+      description_html: Ett <strong>federationsrelä</strong> är en mellanliggande server som utbyter stora volymer av offentliga tutningar mellan servrar som prenumererar och publicerar till den. <strong>Det kan hjälpa små och mellanstora servrar upptäcka innehåll från fediversumet</strong>, vilket annars skulle kräva att lokala användare manuellt följer andra personer på externa servrar.
       disable: Inaktivera
       disabled: Inaktiverad
       enable: Aktivera
@@ -665,23 +665,36 @@ sv:
   admin_mailer:
     new_pending_account:
       body: Detaljerna för det nya kontot är nedan. Du kan godkänna eller avvisa denna ansökan.
+      subject: Nytt konto tillgängligt för granskning på %{instance} (%{username})
     new_report:
       body: "%{reporter} har rapporterat %{target}"
       body_remote: Någon från %{domain} har rapporterat %{target}
       subject: 'Ny rapport för %{instance} (#%{id})'
+    new_trending_tag:
+      body: 'Hashtaggen #%{name} trendar idag, men har inte granskats tidigare. Det kommer inte att visas offentligt såvida du inte tillåter det, eller bara spara formuläret som det är för att aldrig höra om det igen.'
+      subject: 'Ny hashtagg tillgänglig för granskning på %{instance} (#%{name})'
   aliases:
     add_new: Skapa alias
+    created_msg: Ett nytt alias skapades. Du kan nu initiera flytten från det gamla kontot.
+    deleted_msg: Aliaset togs bort. Att flytta från det kontot till detta kommer inte längre vara möjligt.
+    empty: Du har inga alias.
+    hint_html: Om du vill flytta från ett annat konto till detta kan du här skapa ett alias, vilket krävs innan du kan fortsätta med att flytta följare från det gamla kontot till detta. Denna åtgärd är <strong>ofarlig och reversibel</strong>. <strong>Kontots migrering initieras från det gamla kontot</strong>.
     remove: Avlänka alias
   appearance:
     advanced_web_interface: Avancerat webbgränssnitt
+    advanced_web_interface_hint: 'Om du vill använda hela skärmens bredd så kan det avancerade webbgränssnittet konfigurera många olika kolumner för att se så mycket information som du vill samtidigt: Hem, notifikationer, federerad tidslinje, valfritt antal listor och hashtaggar.'
     animations_and_accessibility: Animationer och tillgänglighet
+    confirmation_dialogs: Bekräftelsedialoger
     discovery: Upptäck
     localization:
       body: Mastodon översätts av volontärer.
+      guide_link: https://crowdin.com/project/mastodon
       guide_link_text: Alla kan bidra.
     sensitive_content: Känsligt innehåll
+    toot_layout: Tutlayout
   application_mailer:
     notification_preferences: Ändra e-postinställningar
+    salutation: "%{name},"
     settings: 'Ändra e-postinställningar: %{link}'
     view: 'Granska:'
     view_profile: Visa profil
@@ -695,12 +708,22 @@ sv:
     warning: Var mycket försiktig med denna data. Dela aldrig den med någon!
     your_token: Din access token
   auth:
+    apply_for_account: Be om en inbjudan
     change_password: Lösenord
+    checkbox_agreement_html: Jag godkänner <a href="%{rules_path}" target="_blank">serverreglerna</a> och <a href="%{terms_path}" target="_blank">användarvillkoren</a>
+    checkbox_agreement_without_rules_html: Jag godkänner <a href="%{terms_path}" target="_blank">användarvillkoren</a>
     delete_account: Ta bort konto
     delete_account_html: Om du vill radera ditt konto kan du <a href="%{path}">fortsätta här</a>. Du kommer att bli ombedd att bekräfta.
+    description:
+      prefix_invited_by_user: "@%{name} bjuder in dig att gå med i denna Mastodon-servern!"
+      prefix_sign_up: Registrera dig på Mastodon idag!
+      suffix: Med ett konto kommer du att kunna följa personer, lägga upp uppdateringar och utbyta meddelanden med användare från vilken Mastodon-server som helst och mer!
     didnt_get_confirmation: Fick du inte instruktioner om bekräftelse?
+    dont_have_your_security_key: Har du inte din säkerhetsnyckel?
     forgot_password: Glömt ditt lösenord?
     invalid_reset_password_token: Lösenordsåterställningstoken är ogiltig eller utgått. Vänligen be om en ny.
+    link_to_otp: Ange en tvåfaktorskod från din telefon eller en återställningskod
+    link_to_webauth: Använd din säkerhetsnyckelenhet
     login: Logga in
     logout: Logga ut
     migrate_account: Flytta till ett annat konto
@@ -710,16 +733,24 @@ sv:
       cas: CAS
       saml: SAML
     register: Registrera
+    registration_closed: "%{instance} accepterar inte nya medlemmar"
     resend_confirmation: Skicka instruktionerna om bekräftelse igen
     reset_password: Återställ lösenord
     security: Säkerhet
     set_new_password: Skriv in nytt lösenord
     setup:
+      email_below_hint_html: Om nedanstående e-postadress är felaktig, kan du ändra den här och få ett nytt bekräftelsemejl.
       email_settings_hint_html: Bekräftelsemeddelandet skickades till %{email}. Om den e-postadressen inte stämmer så kan du ändra den i kontoinställningarna.
+      title: Konfiguration
     status:
       account_status: Kontostatus
+      confirming: Väntar på att e-postbekräftelsen ska slutföras.
+      functional: Ditt konto är fullt operativt.
+      pending: Din ansökan väntar på granskning av vår personal. Detta kan ta tid. Du kommer att få ett e-postmeddelande om din ansökan godkänns.
       redirecting_to: Ditt konto är inaktivt eftersom det för närvarande dirigeras om till %{acct}.
     too_fast: Formuläret har skickats för snabbt, försök igen.
+    trouble_logging_in: Problem att logga in?
+    use_security_key: Använd säkerhetsnyckel
   authorize_follow:
     already_following: Du följer redan detta konto
     already_requested: Du har redan skickat en vänförfrågan till det kontot
@@ -734,12 +765,17 @@ sv:
     title: Följ %{acct}
   challenge:
     confirm: Fortsätt
+    hint_html: "<strong>Tips:</strong> Vi kommer inte att be dig om ditt lösenord igen inom närmsta timmen."
     invalid_password: Ogiltigt lösenord
     prompt: Bekräfta lösenord för att fortsätta
   crypto:
     errors:
       invalid_key: är inte en giltig Ed25519 eller Curve25519 nyckel
       invalid_signature: är inte en giltig Ed25519 signatur
+  date:
+    formats:
+      default: "%-d %b %Y"
+      with_month_name: "%-d %B %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}tim"
@@ -750,22 +786,38 @@ sv:
       less_than_x_minutes: "%{count}min"
       less_than_x_seconds: Just nu
       over_x_years: "%{count}år"
+      x_days: "%{count}d"
       x_minutes: "%{count}min"
       x_months: "%{count}mån"
       x_seconds: "%{count}sek"
   deletes:
+    challenge_not_passed: Informationen du angav var inte korrekt
     confirm_password: Ange ditt lösenord för att verifiera din identitet
+    confirm_username: Ange ditt användarnamn för att bekräfta proceduren
     proceed: Ta bort konto
     success_msg: Ditt konto har raderats
     warning:
+      before: 'Innan du fortsätter, vänligen läs dessa anteckningar noga:'
+      caches: Innehåll som har cachats av andra servrar kan kvarstå
+      data_removal: Dina inlägg och annan data kommer att tas bort permanent
+      email_change_html: Du kan <a href="%{path}">ändra din e-postadress</a> utan att ta bort ditt konto
+      email_contact_html: Om det fortfarande inte kommer kan du mejla <a href="mailto:%{email}">%{email}</a> för hjälp
+      email_reconfirmation_html: Om du inte får bekräftelsemeddelandet, kan du <a href="%{path}">begära det igen</a>
       irreversible: Du kan inte återställa eller återaktivera ditt konto
+      more_details_html: För mer information, se <a href="%{terms_path}">integritetspolicyn</a>.
+      username_available: Ditt användarnamn kommer att bli tillgängligt igen
+      username_unavailable: Ditt användarnamn kommer att kvarstå som otillgängligt
+  directories:
+    directory: Profilkatalog
+    explanation: Upptäck användare baserat på deras intressen
+    explore_mastodon: Utforska %{title}
   domain_validator:
     invalid_domain: är inte ett giltigt domännamn
   errors:
-    '400': The request you submitted was invalid or malformed.
+    '400': Begäran du lämnade in var ogiltig eller missformad.
     '403': Du har inte behörighet att visa den här sidan.
     '404': Sidan du letade efter existerar inte.
-    '406': This page is not available in the requested format.
+    '406': Denna sida är inte tillgänglig i det begärda formatet.
     '410': Sidan du letade efter existerar inte längre.
     '422':
       content: Säkerhetsverifiering misslyckades Blockerar du cookies?
@@ -862,7 +914,16 @@ sv:
     acct: användarnamn@domän av det nya kontot
     cancel_explanation: Avstängning av omdirigeringen kommer att återaktivera ditt nuvarande konto, men kommer inte att återskapa följare som har flyttats till det kontot.
     incoming_migrations: Flyttar från ett annat konto
+    not_redirecting: Ditt konto omdirigerar inte om till något annat konto för närvarande.
+    on_cooldown: Du har nyligen migrerat ditt konto. Denna funktion kommer att bli tillgänglig igen om %{count} dagar.
+    past_migrations: Tidigare migreringar
+    proceed_with_move: Flytta följare
     redirected_msg: Ditt konto dirigeras om till %{acct}.
+    redirecting_to: Ditt konto dirigeras om till %{acct}.
+    set_redirect: Ange omdirigering
+    warning:
+      backreference_required: Det nya kontot måste först konfigureras att bakåtreferera detta
+      before: 'Innan du fortsätter, vänligen läs dessa anteckningar noga:'
   moderation:
     title: Moderera
   notification_mailer:
