@@ -24,20 +24,38 @@ sv:
         autofollow: Personer som registrerar sig genom din inbjudan kommer automatiskt att följa dig
         avatar: PNG, GIF eller JPG. Högst %{size}. Kommer att skalas ner till %{dimensions}px
         bot: Detta konto utför huvudsakligen automatiserade åtgärder och kanske inte övervakas
+        context: Ett eller flera sammanhang där filtret ska tillämpas
+        current_password: Av säkerhetsskäl vänligen ange lösenordet för det aktuella kontot
+        current_username: För att bekräfta, vänligen ange användarnamnet för det aktuella kontot
         digest: Skickas endast efter en lång period av inaktivitet och endast om du har fått några personliga meddelanden i din frånvaro
+        discoverable: Profilkatalogen är ett annat sätt genom vilket ditt konto kan nå en bredare publik
         email: Du kommer att få en bekräftele på din e-post
         fields: Du kan ha upp till 4 objekt visade som en tabell på din profil
         header: PNG, GIF eller JPG. Högst %{size}. Kommer att skalas ner till %{dimensions}px
+        inbox_url: Kopiera URL:en från framsidan av reläet som du vill använda
         irreversible: Filtrerade inlägg kommer att försvinna oåterkalleligt, även om filter tas bort senare
         locale: Språket för användargränssnittet, e-postmeddelanden och push-aviseringar
         locked: Kräver att du manuellt godkänner följare
         password: Använd minst 8 tecken
+        phrase: Kommer att matchas oavsett användande i text eller innehållsvarning för en tutning
+        scopes: Vilka API:er programmet kommer att få tillgång till. Om du väljer en toppnivå behöver du inte välja individuella sådana.
+        setting_aggregate_reblogs: Visa inte nya knuffar för tutningar som nyligen har knuffats (påverkar endast nymottagna knuffningar)
+        setting_default_sensitive: Känslig media är dold som standard och kan visas med ett klick
         setting_display_media_default: Dölj media markerat som känsligt
         setting_display_media_hide_all: Dölj alltid all media
         setting_display_media_show_all: Visa alltid media markerat som känsligt
         setting_hide_network: Vem du följer och vilka som följer dig kommer inte att visas på din profilsida
         setting_noindex: Påverkar din offentliga profil och statussidor
+        setting_show_application: Programmet du använder för att tuta kommer att visas i den detaljerade vyn av dina tutningar
+        setting_use_blurhash: Gradienter är baserade på färgerna av de dolda objekten men fördunklar alla detaljer
+        setting_use_pending_items: Dölj tidslinjeuppdateringar bakom ett klick istället för att automatiskt bläddra i flödet
         username: Ditt användarnamn kommer att vara unikt på %{domain}
+        whole_word: När sökordet eller frasen endast är alfanumerisk, kommer det endast att tillämpas om det matchar hela ordet
+      domain_allow:
+        domain: Denna domän kommer att kunna hämta data från denna server och inkommande data från den kommer att behandlas och lagras
+      email_domain_block:
+        domain: Detta kan vara det domännamn som dyker upp i e-postadressen, MX-posten som domän löser sig till, eller IP av servern som MX post löser till. Dessa kommer att kontrolleras vid användarregistrering och registreringen kommer att avslås.
+        with_dns_records: Ett försök att lösa den givna domänens DNS-poster kommer att göras och resultaten kommer också att blockeras
       featured_tag:
         name: 'Du kanske vill använda en av dessa:'
       imports:
