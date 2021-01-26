@@ -1074,6 +1074,8 @@ sv:
       phantom_js: PhantomJS
       qq: QQ Browser
       safari: Safari
+      uc_browser: UC Browser
+      weibo: Weibo
     current_session: Nuvarande session
     description: "%{browser} på %{platform}"
     explanation: Detta är inloggade webbläsare på Mastodon just nu.
@@ -1089,6 +1091,8 @@ sv:
       mac: Mac
       other: okänd plattform
       windows: Windows
+      windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
     revoke: Återkalla
     revoke_success: Sessionen återkallas framgångsrikt
     title: Sessioner
@@ -1103,6 +1107,9 @@ sv:
     development: Utveckling
     edit_profile: Redigera profil
     export: Exportera data
+    featured_tags: Utvalda hashtags
+    identity_proofs: Identitetsbevis
+    import: Importera
     import_and_export: Import och export
     migrate: Kontoflytt
     notifications: Aviseringar
@@ -1110,10 +1117,14 @@ sv:
     profile: Profil
     relationships: Följer och följare
     two_factor_authentication: Tvåfaktorsautentisering
+    webauthn_authentication: Säkerhetsnycklar
   spam_check:
     spam_detected: Det här är en automatisk rapport. Spam har upptäckts.
   statuses:
     attached:
+      audio:
+        one: "%{count} ljud"
+        other: "%{count} ljud"
       description: 'Bifogad: %{attached}'
       image:
         one: "%{count} bild"
@@ -1133,8 +1144,20 @@ sv:
       ownership: Någon annans toot kan inte fästas
       private: Icke-offentliga toot kan inte fästas
       reblog: Knuffar kan inte fästas
+    poll:
+      total_people:
+        one: "%{count} person"
+        other: "%{count} personer"
+      total_votes:
+        one: "%{count} röst"
+        other: "%{count} röster"
+      vote: Rösta
     show_more: Visa mer
+    show_newer: Visa nyare
+    show_older: Visa äldre
     show_thread: Visa tråd
+    sign_in_to_participate: Logga in för att delta i konversationen
+    title: '%{name}: "%{quote}"'
     visibilities:
       private: Endast följare
       private_long: Visa endast till följare
@@ -1146,6 +1169,8 @@ sv:
     pinned: Fäst toot
     reblogged: boostad
     sensitive_content: Känsligt innehåll
+  tags:
+    does_not_match_previous_name: matchar inte föregående namn
   terms:
     body_html: |
       <h2>Integritetspolicy</h2>
@@ -1233,20 +1258,43 @@ sv:
     contrast: Hög kontrast
     default: Mastodon
     mastodon-light: Mastodon (ljust)
+  time:
+    formats:
+      default: "%-d %b, %Y, %H:%M"
+      month: "%B %Y"
   two_factor_authentication:
+    add: Lägg till
     disable: Inaktivera
+    disabled_success: Tvåfaktorsautentisering inaktiverad
+    edit: Redigera
     enabled: Tvåfaktorsautentisering är aktiverad
     enabled_success: Tvåfaktorsautentisering aktiverad
     generate_recovery_codes: Generera återställningskoder
     lost_recovery_codes: Återställningskoder tillåter dig att få tillgång till ditt konto om du förlorar din telefon. Om du har förlorat dina återställningskoder kan du regenerera dem här. Dina gamla återställningskoder kommer att ogiltigförklaras.
+    methods: Tvåfaktorsmetoder
+    otp: Autentiseringsapp
     recovery_codes: Backup återställningskod
     recovery_codes_regenerated: Återställningskoder genererades på nytt
     recovery_instructions_html: Om du någonsin tappar åtkomst till din telefon kan du använda någon av återställningskoderna nedan för att återställa åtkomst till ditt konto. <strong> Håll återställningskoderna säkra </strong>. Du kan till exempel skriva ut dem och lagra dem med andra viktiga dokument.
+    webauthn: Säkerhetsnycklar
   user_mailer:
     backup_ready:
       explanation: Du begärde en fullständig säkerhetskopiering av ditt Mastodon-konto. Det är nu klart för nedladdning!
       subject: Ditt arkiv är klart för nedladdning
       title: Arkivuttagning
+    sign_in_token:
+      details: 'Här är detaljer om försöket:'
+      explanation: 'Vi upptäckte ett försök att logga in på ditt konto från en okänd IP-adress. Om detta är du, ange säkerhetskoden nedan i utmaningen på inloggningssidan:'
+      further_actions: 'Om detta inte var du, vänligen ändra ditt lösenord och aktivera tvåfaktorsautentisering på ditt konto. Du kan göra det här:'
+      subject: Bekräfta inloggningsförsöket
+      title: Inloggningsförsök
+    warning:
+      explanation:
+        disable: Du kan inte längre logga in på ditt konto eller använda det på något annat sätt, men din profil och annan data förblir intakt.
+        sensitive: Dina uppladdade mediefiler och länkade medier kommer att behandlas som känsliga.
+        silence: Du kan fortfarande använda ditt konto men bara personer som redan följer dig kommer att se dina tutningar på denna server, och du kan bli utesluten från olika offentliga listor. Andra kan dock fortfarande följa dig manuellt.
+        suspend: Du kan inte längre använda ditt konto och din profil och annan data är inte längre tillgänglig. Du kan fortfarande logga in för att begära en säkerhetskopia av dina data tills datan är helt borttagen, men vi kommer att behålla vissa uppgifter för att hindra dig från att kringgå avstängningen.
+      get_in_touch: Du kan svara på detta e-postmeddelande för att komma i kontakt med personalen på %{instance}.
     welcome:
       edit_profile_action: Profilinställning
       edit_profile_step: Du kan anpassa din profil genom att ladda upp en avatar, bakgrundsbild, ändra ditt visningsnamn och mer. Om du vill granska nya följare innan de får följa dig kan du låsa ditt konto.
