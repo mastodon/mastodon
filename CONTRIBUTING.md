@@ -70,6 +70,6 @@ The smaller the set of changes in the pull request is, the quicker it can be rev
 
 ## Documentation
 
-The [Mastodon documentation](https://docs.joinmastodon.org) is a statically generated site. You can [submit merge requests to mastodon/docs](https://source.joinmastodon.org/mastodon/docs).
+The [Mastodon documentation](https://docs.joinmastodon.org) is a statically generated site. You can [submit merge requests to tootsuite/documentation](https://github.com/tootsuite/documentation).
 
 </blockquote>

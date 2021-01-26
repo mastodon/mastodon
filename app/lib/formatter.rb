@@ -287,7 +287,7 @@ class Formatter
 
     escaped = text.chars.map do |c|
       output = begin
-        if c.ord.to_s(16).length > 2 && UNICODE_ESCAPE_BLACKLIST_RE.match(c).nil?
+        if c.ord.to_s(16).length > 2 && !UNICODE_ESCAPE_BLACKLIST_RE.match?(c)
           CGI.escape(c)
         else
           c
