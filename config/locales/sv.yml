@@ -52,7 +52,7 @@ sv:
   accounts:
     choices_html: "%{name}s val:"
     endorsements_hint: Från webbgränssnittet kan du rekommendera följare, som sedan visas här.
-    featured_tags_hint: Du kan använda fyrkanter som visas här.
+    featured_tags_hint: Du kan ha utvalda hashtaggar som kommer att visas här.
     follow: Följa
     followers:
       one: Följare
@@ -71,6 +71,9 @@ sv:
     people_who_follow: Personer som följer %{name}
     pin_errors:
       following: Du måste vara följare av den person du vill godkänna
+    posts:
+      one: Tutning
+      other: Tutningar
     posts_tab_heading: Toots
     posts_with_replies: Toots med svar
     reserved_username: Användarnamnet är reserverat
@@ -437,7 +440,11 @@ sv:
       title: E-postdomänblock
     instances:
       by_domain: Domän
+      delivery_available: Leverans är tillgänglig
       empty: Inga domäner hittades.
+      known_accounts:
+        one: "%{count} känt konto"
+        other: "%{count} kända konton"
       moderation:
         all: Alla
         limited: Begränsad
@@ -497,6 +504,13 @@ sv:
       created_msg: Anmälningsanteckning har skapats!
       destroyed_msg: Anmälningsanteckning har raderats!
     reports:
+      account:
+        notes:
+          one: "%{count} anteckning"
+          other: "%{count} anteckningar"
+        reports:
+          one: "%{count} rapport"
+          other: "%{count} rapporter"
       action_taken_by: Åtgärder vidtagna av
       are_you_sure: Är du säker?
       assign_to_self: Tilldela till mig
@@ -826,8 +840,11 @@ sv:
     '500':
       content: Vi är ledsna, men något gick fel från vårat håll.
       title: Den här sidan är inte korrekt
-    '503': The page could not be served due to a temporary server failure.
+    '503': Sidan kunde inte visas på grund av ett tillfälligt serverfel.
     noscript_html: För att använda Mastodon webbapplikationen, vänligen aktivera JavaScript. Alternativt kan du prova en av <a href="%{apps_path}">inhemska appar</a> för Mastodon för din plattform.
+  existing_username_validator:
+    not_found: kunde inte hitta en lokal användare med det användarnamnet
+    not_found_multiple: kunde inte hitta %{usernames}
   exports:
     archive_takeout:
       date: Datum
@@ -839,17 +856,27 @@ sv:
     blocks: Du blockerar
     bookmarks: Bokmärken
     csv: CSV
+    domain_blocks: Domänblockeringar
     lists: Listor
     mutes: Du tystar
     storage: Medialagring
   featured_tags:
     add_new: Lägg till ny
+    errors:
+      limit: Du har redan det maximala antalet utvalda hashtaggar
+    hint_html: "<strong>Vad är utvalda hashtaggar?</strong> De visas tydligt på din offentliga profil och tillåter människor att bläddra bland dina offentliga inlägg specifikt under dessa hashtaggar. De är ett bra verktyg för att hålla reda på kreativa arbeten eller långsiktiga projekt."
   filters:
     contexts:
+      account: Profiler
+      home: Hem och listor
       notifications: Aviseringar
+      public: Offentliga tidslinjer
       thread: Konversationer
     edit:
       title: Redigera filter
+    errors:
+      invalid_context: Ingen eller ogiltig kontext angiven
+      invalid_irreversible: Oåterkallelig filtrering fungerar endast med hem- eller aviseringskontext
     index:
       delete: Radera
       empty: Du har inga filter.
@@ -859,24 +886,55 @@ sv:
   footer:
     developers: Utvecklare
     more: Mer…
+    resources: Resurser
+    trending_now: Trendar nu
   generic:
     all: Alla
     changes_saved_msg: Ändringar sparades framgångsrikt!
+    copy: Kopiera
+    delete: Radera
+    no_batch_actions_available: Inga batch-åtgärder tillgängliga på denna sida
+    order_by: Sortera efter
     save_changes: Spara ändringar
     validation_errors:
       one: Något är inte riktigt rätt ännu! Kontrollera felet nedan
       other: Något är inte riktigt rätt ännu! Kontrollera dom %{count} felen nedan
+  html_validator:
+    invalid_markup: 'innehåller ogiltig HTML-märkning: %{error}'
   identity_proofs:
     active: Aktiv
+    authorize: Ja, godkänn
+    authorize_connection_prompt: Godkänn denna kryptografiska anslutning?
+    errors:
+      failed: Den kryptografiska anslutningen misslyckades. Försök igen från %{provider}.
+      keybase:
+        invalid_token: Keybase-tokens är hashar av signaturer och måste vara 66 hex-tecken
+        verification_failed: Keybase känner inte igen denna token som en signatur av Keybase-användaren %{kb_username}. Försök igen från Keybase.
+      wrong_user: Kan inte skapa ett bevis för %{proving} när du är inloggad som %{current}. Logga in som %{proving} och försök igen.
+    explanation_html: Här kan du kryptografiskt ansluta dina andra identiteter från andra plattformar, såsom Keybase. Detta låter andra människor skicka dig krypterade meddelanden på dessa plattformar och låter dem lita på att innehållet du skickar dem kommer från dig.
+    i_am_html: Jag är %{username} på %{service}.
+    identity: Identitet
     inactive: Inaktiv
+    publicize_checkbox: 'Och tuta detta:'
+    publicize_toot: 'Det är bevisat! Jag är %{username} på %{service}: %{url}'
+    remove: Ta bort bevis från konto
+    removed: Tog bort bevis från konto
+    status: Verifieringsstatus
+    view_proof: Visa bevis
   imports:
     errors:
       over_rows_processing_limit: innehåller fler än %{count} rader
+    modes:
+      merge: Sammanfoga
+      merge_long: Behåll befintliga poster och lägg till nya
+      overwrite: Skriv över
+      overwrite_long: Ersätt nuvarande poster med de nya
     preface: Du kan importera data som du exporterat från en annan instans, till exempel en lista över personer du följer eller blockerar.
     success: Dina uppgifter har laddats upp och kommer nu att behandlas snarast
     types:
       blocking: Lista av blockerade
       bookmarks: Bokmärken
+      domain_blocking: Domänblockeringslista
       following: Lista av följare
       muting: Lista av nertystade
     upload: Ladda upp
@@ -909,11 +967,23 @@ sv:
   media_attachments:
     validations:
       images_and_video: Det går inte att bifoga en video till en status som redan innehåller bilder
+      not_ready: Kan inte bifoga filer som inte har behandlats färdigt. Försök igen om ett ögonblick!
       too_many: Det går inte att bifoga mer än 4 filer
   migrations:
     acct: användarnamn@domän av det nya kontot
+    cancel: Avbryt omdirigering
     cancel_explanation: Avstängning av omdirigeringen kommer att återaktivera ditt nuvarande konto, men kommer inte att återskapa följare som har flyttats till det kontot.
+    cancelled_msg: Avbröt omdirigeringen.
+    errors:
+      already_moved: är samma konto som du redan har flyttat till
+      missing_also_known_as: är inte ett alias av detta konto
+      move_to_self: kan inte vara nuvarande konto
+      not_found: kunde inte hittas
+      on_cooldown: Du är på nedkylning
+    followers_count: Följare vid tidpunkten för flytten
     incoming_migrations: Flyttar från ett annat konto
+    incoming_migrations_html: För att flytta från ett annat konto till detta måste du först <a href="%{path}">skapa ett kontoalias</a>.
+    moved_msg: Ditt konto omdirigeras nu till %{acct} och dina följare flyttas över.
     not_redirecting: Ditt konto omdirigerar inte om till något annat konto för närvarande.
     on_cooldown: Du har nyligen migrerat ditt konto. Denna funktion kommer att bli tillgänglig igen om %{count} dagar.
     past_migrations: Tidigare migreringar
@@ -1129,6 +1199,9 @@ sv:
       image:
         one: "%{count} bild"
         other: "%{count} bilder"
+      video:
+        one: "%{count} video"
+        other: "%{count} videor"
     boosted_from_html: Boosted från %{acct_link}
     content_warning: 'Innehållsvarning: %{warning}'
     disallowed_hashtags:
@@ -1295,6 +1368,11 @@ sv:
         silence: Du kan fortfarande använda ditt konto men bara personer som redan följer dig kommer att se dina tutningar på denna server, och du kan bli utesluten från olika offentliga listor. Andra kan dock fortfarande följa dig manuellt.
         suspend: Du kan inte längre använda ditt konto och din profil och annan data är inte längre tillgänglig. Du kan fortfarande logga in för att begära en säkerhetskopia av dina data tills datan är helt borttagen, men vi kommer att behålla vissa uppgifter för att hindra dig från att kringgå avstängningen.
       get_in_touch: Du kan svara på detta e-postmeddelande för att komma i kontakt med personalen på %{instance}.
+      review_server_policies: Granska serverpolicys
+      statuses: 'Specifikt, för:'
+      subject:
+        disable: Ditt konto %{acct} har frysts
+        none: Varning för %{acct}
     welcome:
       edit_profile_action: Profilinställning
       edit_profile_step: Du kan anpassa din profil genom att ladda upp en avatar, bakgrundsbild, ändra ditt visningsnamn och mer. Om du vill granska nya följare innan de får följa dig kan du låsa ditt konto.
