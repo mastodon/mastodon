@@ -58,12 +58,15 @@ sv:
         with_dns_records: Ett försök att lösa den givna domänens DNS-poster kommer att göras och resultaten kommer också att blockeras
       featured_tag:
         name: 'Du kanske vill använda en av dessa:'
+      form_challenge:
+        current_password: Du går in i ett säkert område
       imports:
         data: CSV-fil som exporteras från en annan Mastodon-server
       invite_request:
         text: Detta kommer att hjälpa oss att granska din ansökan
       ip_block:
         comment: Valfritt. Kom ihåg varför du lagt till denna regel.
+        expires_in: IP-adresser är en ändlig resurs, de delas ibland och byter ofta händer. Av denna anledning rekommenderas inte IP-blockeringar på obestämd tid.
         ip: Ange en IPv4 eller IPv6-adress. Du kan blockera hela intervall med hjälp av CIDR-syntax. Tänk på att inte låsa dig själv!
         severities:
           no_access: Blockera åtkomst till alla resurser
@@ -71,6 +74,9 @@ sv:
         severity: Välj vad som ska hända med förfrågningar från denna IP
       sessions:
         otp: 'Ange tvåfaktorkoden genererad från din telefonapp eller använd någon av dina återställningskoder:'
+        webauthn: Om det är en USB-nyckel se till att sätta in den och, om nödvändigt, knacka på den.
+      tag:
+        name: Du kan bara ändra typvarianten av bokstäverna, till exempel för att göra det mer läsbart
       user:
         chosen_languages: När aktiverat så visas bara inlägg i dina valda språk i den offentliga tidslinjen
     labels:
