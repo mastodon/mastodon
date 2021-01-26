@@ -480,6 +480,7 @@ sv:
     relays:
       add_new: Lägg till nytt relä
       delete: Radera
+      description_html: Ett <strong>federationsrelä</strong> är en mellanliggande server som utbyter stora volymer av offentliga toots mellan servrar som prenumererar och publicerar till den. <strong>Det kan hjälpa små och mellanstora servrar upptäcka innehåll från fediversumet</strong>, vilket annars skulle kräva att lokala användare manuellt följer andra personer på externa servrar.
       disable: Inaktivera
       disabled: Inaktiverad
       enable: Aktivera
@@ -549,15 +550,23 @@ sv:
       domain_blocks_rationale:
         title: Visa motiv
       enable_bootstrap_timeline_accounts:
+        desc_html: Gör så att nya användare automatiskt följer konfigurerade konton så att deras hemflöde inte startar tomt
         title: Aktivera standard följer för nya användare
       hero:
         desc_html: Visas på framsidan. Minst 600x100px rekommenderas. Om inte angiven faller den tillbaka på instansens miniatyrbild
         title: Hjältebild
       mascot:
+        desc_html: Visas på flera sidor. Minst 293x205px rekommenderas. När inget är satt faller den tillbaks till standardmaskoten
         title: Maskot bild
       peers_api_enabled:
         desc_html: Domännamn denna instans har påträffat i fediverse
         title: Publicera lista över upptäckta instanser
+      preview_sensitive_media:
+        desc_html: Länkförhandsvisningar på andra webbplatser kommer att visa en miniatyrbild även om media är markerad som känslig
+        title: Visa känslig media i OpenGraph förhandsvisningar
+      profile_directory:
+        desc_html: Tillåt användare att vara upptäckbara
+        title: Aktivera profilkatalog
       registrations:
         closed_message:
           desc_html: Visas på framsidan när registreringen är stängd. Du kan använda HTML-taggar
@@ -576,6 +585,7 @@ sv:
           approved: Godkännande krävs för registrering
           none: Ingen kan registrera sig
           open: Vem som helst kan registrera sig
+        title: Registreringsläge
       show_known_fediverse_at_about_page:
         desc_html: När den växlas, kommer toots från hela fediverse visas på förhandsvisning. Annars visas bara lokala toots.
         title: Visa det kända fediverse på tidslinjens förhandsgranskning
@@ -588,10 +598,16 @@ sv:
       site_description_extended:
         desc_html: Ett bra ställe för din uppförandekod, regler, riktlinjer och andra saker som stämmer med din instans. Du kan använda HTML-taggar
         title: Egentillverkad utökad information
+      site_short_description:
+        desc_html: Visas i sidofältet och metataggar. Beskriv vad Mastodon är och vad som gör denna server speciell i ett enda stycke.
+        title: Kort serverbeskrivning
       site_terms:
         desc_html: Du kan skriva din egen integritetspolicy, användarvillkor eller andra regler. Du kan använda HTML-taggar
         title: Egentillverkad villkor för tjänster
       site_title: Namn på instans
+      spam_check_enabled:
+        desc_html: Mastodon kan automatiskt rapportera konton som skickar upprepade oombedda meddelanden. Det kan finnas falskt positiva.
+        title: Anti-spamm automatisering
       thumbnail:
         desc_html: Används för förhandsgranskningar via OpenGraph och API. 1200x630px rekommenderas
         title: Instans tumnagelbild
@@ -599,8 +615,15 @@ sv:
         desc_html: Visa offentlig tidslinje på landingsidan
         title: Förhandsgranska tidslinje
       title: Sidans inställningar
+      trendable_by_default:
+        desc_html: Påverkar hashtaggar som inte tidigare har blivit otillåtna
+        title: Tillåt hashtaggar att trenden utan föregående granskning
+      trends:
+        desc_html: Visa tidigare granskade hashtaggar som för närvarande är trendande
+        title: Trendande hashtaggar
     site_uploads:
       delete: Radera uppladdad fil
+      destroyed_msg: Webbplatsuppladdningen har raderats!
     statuses:
       back_to_account: Tillbaka till kontosidan
       batch:
@@ -618,11 +641,26 @@ sv:
     tags:
       accounts_today: Unika användare idag
       accounts_week: Unika användare den här veckan
+      breakdown: Fördelning av dagens användning per källa
       context: Kontext
+      directory: I katalog
+      in_directory: "%{count} i katalogen"
       last_active: Senast aktiv
+      most_popular: Mest populära
+      most_recent: Senaste
+      name: Hashtagg
+      review: Granskningsstatus
+      reviewed: Granskad
+      title: Hashtaggar
+      trending_right_now: Trendande just nu
+      unique_uses_today: "%{count} postar idag"
+      unreviewed: Ej granskad
+      updated_msg: Hashtagg-inställningarna har uppdaterats
+    title: Administration
     warning_presets:
       add_new: Lägg till ny
       delete: Radera
+      edit_preset: Redigera varningsförval
   admin_mailer:
     new_report:
       body: "%{reporter} har rapporterat %{target}"
