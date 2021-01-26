@@ -301,8 +301,20 @@ sv:
       filter_by_user: Filtrera efter användare
       title: Revisionslogg
     announcements:
+      destroyed_msg: Meddelandet har tagits bort!
+      edit:
+        title: Redigera meddelande
+      empty: Inga meddelanden hittades.
       live: Direkt
+      new:
+        create: Skapa meddelande
+        title: Nytt meddelande
+      published_msg: Meddelandet har publicerats!
       scheduled_for: Schemalagd för %{time}
+      scheduled_msg: Meddelandet har schemalagts för publicering!
+      title: Meddelanden
+      unpublished_msg: Meddelandet har avpublicerats!
+      updated_msg: Meddelandet har uppdaterats!
     custom_emojis:
       assign_category: Ange kategori
       by_domain: Domän
@@ -390,9 +402,13 @@ sv:
       private_comment: Privat kommentar
       private_comment_hint: Kommentar för moderatorer om denna domänbegränsning.
       public_comment: Offentlig kommentar
+      public_comment_hint: Kommentar om denna domänbegränsning för allmänheten, om listan över domänbegränsningar är publik.
       reject_media: Avvisa mediafiler
       reject_media_hint: Raderar lokalt lagrade mediefiler och förhindrar möjligheten att ladda ner något i framtiden. Irrelevant för suspensioner
       reject_reports: Avvisa anmälan
+      reject_reports_hint: Ignorera alla anmälningar som kommer från denna domän. Irrelevant för avstängningar
+      rejecting_media: avvisar mediefiler
+      rejecting_reports: avvisar anmälningar
       severity:
         silence: tystad
         suspend: avstängd
@@ -406,6 +422,7 @@ sv:
         title: Ångra domänblockering för %{domain}
         undo: Ångra
       undo: Ångra
+      view: Visa domänblockering
     email_domain_blocks:
       add_new: Lägg till ny
       created_msg: E-postdomän har lagts till i domänblockslistan utan problem
@@ -431,6 +448,8 @@ sv:
       total_blocked_by_us: Blockerad av oss
       total_followed_by_them: Följs av dem
       total_followed_by_us: Följs av oss
+      total_reported: Anmälningar om dem
+      total_storage: Mediebilagor
     invites:
       deactivate_all: Inaktivera alla
       filter:
@@ -440,6 +459,9 @@ sv:
         title: Filtrera
       title: Inbjudningar
     ip_blocks:
+      add_new: Skapa regel
+      created_msg: Ny IP-regel lades framgångsrikt till
+      delete: Radera
       expires_in:
         '1209600': 2 veckor
         '15778476': 6 månader
