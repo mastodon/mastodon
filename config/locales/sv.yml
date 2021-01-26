@@ -1373,6 +1373,15 @@ sv:
       subject:
         disable: Ditt konto %{acct} har frysts
         none: Varning för %{acct}
+        sensitive: Media på ditt konto %{acct} har markerats som känsligt
+        silence: Ditt konto %{acct} har begränsats
+        suspend: Ditt konto %{acct} har blivit avstängt
+      title:
+        disable: Konto fryst
+        none: Varning
+        sensitive: Din media har markerats som känsligt
+        silence: Kontot begränsat
+        suspend: Konto avstängt
     welcome:
       edit_profile_action: Profilinställning
       edit_profile_step: Du kan anpassa din profil genom att ladda upp en avatar, bakgrundsbild, ändra ditt visningsnamn och mer. Om du vill granska nya följare innan de får följa dig kan du låsa ditt konto.
@@ -1388,12 +1397,37 @@ sv:
       tip_following: Du följer din servers administratör(er) som standard. För att hitta fler intressanta personer, kolla de lokala och förenade tidslinjerna.
       tip_local_timeline: Den lokala tidslinjen är en störtflodsvy av personer på %{instance}. Det här är dina närmaste grannar!
       tip_mobile_webapp: Om din mobila webbläsare erbjuder dig att lägga till Mastodon på din hemskärm kan du få push-aviseringar. Det fungerar som en inbyggd app på många sätt!
+      tips: Tips
       title: Välkommen ombord, %{name}!
   users:
     blocked_email_provider: Denna e-postleverantör är inte tillåten
+    follow_limit_reached: Du kan inte följa fler än %{limit} personer
+    generic_access_help_html: Problem med att komma åt ditt konto? Du kan komma i kontakt med %{email} för hjälp
     invalid_email: E-postadressen är ogiltig
     invalid_email_mx: E-postadressen verkar inte finnas
     invalid_otp_token: Ogiltig tvåfaktorskod
+    invalid_sign_in_token: Ogiltig säkerhetskod
     otp_lost_help_html: Om du förlorat åtkomst till båda kan du komma i kontakt med %{email}
     seamless_external_login: Du är inloggad via en extern tjänst, så lösenord och e-postinställningar är inte tillgängliga.
     signed_in_as: 'Inloggad som:'
+    suspicious_sign_in_confirmation: Du verkar inte ha loggat in från den här enheten tidigare, och du har inte loggat in på ett tag, så vi skickar en säkerhetskod till din e-postadress för att bekräfta att det är du.
+  verification:
+    explanation_html: 'Du kan <strong>verifiera dig själv som ägare av länkarna i din profilmetadata</strong>. För det måste den länkade webbplatsen innehålla en länk tillbaka till din Mastodon-profil. Länken tillbaka <strong>måste</strong> ha ett <code>rel="me"</code> attribut. Textinnehållet i länken spelar ingen roll. Här är ett exempel:'
+    verification: Verifiering
+  webauthn_credentials:
+    add: Lägg till ny säkerhetsnyckel
+    create:
+      error: Det gick inte att lägga till din säkerhetsnyckel. Försök igen.
+      success: Din säkerhetsnyckel har lagts till.
+    delete: Ta bort
+    delete_confirmation: Är du säker på att du vill ta bort denna säkerhetsnyckel?
+    description_html: Om du aktiverar <strong>säkerhetsnyckelautentisering</strong>, kommer inloggning att kräva att du använder en av dina säkerhetsnycklar.
+    destroy:
+      error: Det gick inte att ta bort din säkerhetsnyckel. Försök igen.
+      success: Din säkerhetsnyckel har tagits bort.
+    invalid_credential: Ogiltig säkerhetsnyckel
+    nickname_hint: Ange smeknamnet på din nya säkerhetsnyckel
+    not_enabled: Du har inte aktiverat WebAuthn ännu
+    not_supported: Denna webbläsare stöder inte säkerhetsnycklar
+    otp_required: För att använda säkerhetsnycklar vänligen aktivera tvåfaktorsautentisering först.
+    registered_on: Registrerad den %{date}
