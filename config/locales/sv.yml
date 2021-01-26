@@ -1000,35 +1000,79 @@ sv:
     truncate: "&hellip;"
   polls:
     errors:
+      already_voted: Du har redan röstat på denna omröstning
+      duplicate_options: innehålla dubbletter
+      duration_too_long: är för långt in i framtiden
+      duration_too_short: är för snart
+      expired: Omröstningen har redan avslutats
       invalid_choice: Det valda röstalternativet finns inte
+      over_character_limit: kan inte vara längre än %{max} tecken var
+      too_few_options: måste ha mer än ett objekt
+      too_many_options: kan inte innehålla mer än %{max} objekt
   preferences:
     other: Annat
+    posting_defaults: Standardinställningar för inlägg
+    public_timelines: Offentliga tidslinjer
+  reactions:
+    errors:
+      limit_reached: Gränsen för olika reaktioner har uppnåtts
+      unrecognized_emoji: är inte en igenkänd emoji
   relationships:
     activity: Kontoaktivitet
+    dormant: Vilande
     follow_selected_followers: Följ valda personer
     followers: Följare
     following: Följer
+    invited: Inbjuden
     last_active: Senast aktiv
+    most_recent: Senaste
+    moved: Flyttad
+    mutual: Ömsesidig
+    primary: Primär
+    relationship: Förhållande
+    remove_selected_domains: Ta bort alla följare från de valda domänerna
+    remove_selected_followers: Ta bort valda följare
+    remove_selected_follows: Sluta följa valda användare
     status: Kontostatus
   remote_follow:
     acct: Ange ditt användarnamn@domän du vill följa från
     missing_resource: Det gick inte att hitta den begärda omdirigeringsadressen för ditt konto
+    no_account_html: Har du inget konto? Du kan <a href='%{sign_up_path}' target='_blank'>registrera dig här</a>
     proceed: Fortsätt för att följa
     prompt: 'Du kommer att följa:'
     reason_html: "<strong>Varför är det här steget nödvändigt?</strong> <code>%{instance}</code> är kanske inte den server du är registrerad vid, så vi behöver dirigera dig till din hemserver först."
+  remote_interaction:
+    favourite:
+      proceed: Markera som favorit
+      prompt: 'Du vill favoritmarkera denna toot:'
+    reblog:
+      proceed: Fortsätt för att knuffa
+      prompt: 'Du vill knuffa denna tutning:'
+    reply:
+      proceed: Fortsätt för att svara
+      prompt: 'Du vill svara på denna tutning:'
+  scheduled_statuses:
+    over_daily_limit: Du har överskridit gränsen för %{limit} schemalagda tutningar för den dagen
+    over_total_limit: Du har överskridit gränsen på %{limit} schemalagda tutningar
+    too_soon: Det schemalagda datumet måste vara i framtiden
   sessions:
     activity: Senaste aktivitet
     browser: Webbläsare
     browsers:
+      alipay: Alipay
+      blackberry: BlackBerry
+      chrome: Chrome
       edge: Microsoft Edge
       electron: Electron
       firefox: Firefox
       generic: Okänd browser
       ie: Internet Explorer
       micro_messenger: MicroMessenger
+      nokia: Nokia S40 Ovi Browser
       opera: Opera
       otter: Otter
       phantom_js: PhantomJS
+      qq: QQ Browser
       safari: Safari
     current_session: Nuvarande session
     description: "%{browser} på %{platform}"
