@@ -71,17 +71,20 @@ sv:
         include_statuses: Inkludera rapporterade tutar i mejlet
         send_email_notification: Meddela användaren per e-post
         text: Anpassad varning
+        type: Åtgärd
         types:
           disable: Inaktivera inloggning
           none: Gör ingenting
           sensitive: Känslig
           silence: Tysta
           suspend: Avstänga
+        warning_preset_id: Använd en varningsförinställning
       announcement:
         all_day: Hela dagen
         ends_at: Slut på evenemanget
         scheduled_at: Schemalägg publicering
         starts_at: Start av evenemang
+        text: Meddelande
       defaults:
         autofollow: Bjud in till att följa ditt konto
         avatar: Profilbild
@@ -110,6 +113,7 @@ sv:
         password: Lösenord
         phrase: Nyckelord eller fras
         setting_advanced_layout: Aktivera avancerat webbgränssnitt
+        setting_aggregate_reblogs: Gruppera knuffar i tidslinjer
         setting_auto_play_gif: Spela upp animerade GIF-bilder automatiskt
         setting_boost_modal: Visa bekräftelsedialog innan du knuffar
         setting_crop_images: Beskär bilder i icke-utökade tutar till 16x9
@@ -126,15 +130,21 @@ sv:
         setting_hide_network: Göm ditt nätverk
         setting_noindex: Uteslutning av sökmotorindexering
         setting_reduce_motion: Minska rörelser i animationer
+        setting_show_application: Visa programmet som används för att skicka tutningar
         setting_system_font_ui: Använd systemets standardfont
         setting_theme: Sidans tema
         setting_trends: Visa dagens trender
         setting_unfollow_modal: Visa bekräftelse innan du slutar följa någon
+        setting_use_blurhash: Visa färgglada gradienter för dold media
         setting_use_pending_items: Långsamt läge
         severity: Allvarsgrad
+        sign_in_token_attempt: Säkerhetskod
         type: Importtyp
         username: Användarnamn
         username_or_email: Användarnamn eller e-mail
+        whole_word: Helt ord
+      email_domain_block:
+        with_dns_records: Inkludera MX-poster och IP-adresser för domänen
       featured_tag:
         name: Hashtag
       interactions:
@@ -161,7 +171,9 @@ sv:
         pending_account: Skicka ett mejl när ett nytt konto behöver granskas
         reblog: Någon knuffade din tut
         report: Ny rapport har skickats
+        trending_tag: En ogranskad hashtag trendar
       tag:
+        listable: Tillåt att denna hashtag visas i sökningar och i profilkatalogen
         name: Hashtag
         trendable: Tillåt att denna hashtag visas under trender
         usable: Tillåt tutningar att använda denna hashtag
