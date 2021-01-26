@@ -22,7 +22,7 @@ class BlacklistedEmailValidator < ActiveModel::Validator
     domains = Rails.configuration.x.email_domains_blacklist.gsub('.', '\.')
     regexp  = Regexp.new("@(.+\\.)?(#{domains})", true)
 
-    @email =~ regexp
+    regexp.match?(@email)
   end
 
   def not_on_whitelist?

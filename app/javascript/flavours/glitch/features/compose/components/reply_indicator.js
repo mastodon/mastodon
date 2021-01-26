@@ -66,7 +66,7 @@ class ReplyIndicator extends ImmutablePureComponent {
           )}
         </header>
         <div
-          className='content'
+          className='content translate'
           dangerouslySetInnerHTML={{ __html: content || '' }}
         />
         {attachments.size > 0 && (
