@@ -924,8 +924,18 @@ sv:
     warning:
       backreference_required: Det nya kontot måste först konfigureras att bakåtreferera detta
       before: 'Innan du fortsätter, vänligen läs dessa anteckningar noga:'
+      cooldown: Efter flytten är det en nedkylningsperiod under vilken du inte kommer att kunna flytta igen
+      disabled_account: Ditt nuvarande konto kommer inte att kunna användas fullt ut efteråt. Du kommer dock att ha tillgång till dataexport samt återaktivering.
+      followers: Denna åtgärd kommer att flytta alla följare från det nuvarande kontot till det nya kontot
+      only_redirect_html: Alternativt kan du <a href="%{path}">bara sätta upp en omdirigering på din profil</a>.
+      other_data: Ingen annan data kommer att flyttas automatiskt
+      redirect: Ditt nuvarande kontos profil kommer att uppdateras med ett meddelande om omdirigering och uteslutas från sökningar
   moderation:
     title: Moderera
+  move_handler:
+    carry_blocks_over_text: Den här användaren flyttade från %{acct}, som du hade blockerat.
+    carry_mutes_over_text: Den här användaren flyttade från %{acct}, som du hade tystat.
+    copy_account_note_text: 'Den här användaren flyttade från %{acct}, här var dina tidigare anteckningar om dem:'
   notification_mailer:
     digest:
       action: Visa alla aviseringar
@@ -961,12 +971,33 @@ sv:
       subject: "%{name} knuffade din status"
       title: Ny knuff
   notifications:
+    email_events: Händelser för e-postnotifikationer
+    email_events_hint: 'Välj händelser som du vill få aviseringar för:'
     other_settings: Andra aviseringsinställningar
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          billion: md
+          million: mn
+          quadrillion: Kvd
+          thousand: k
+          trillion: T
+  otp_authentication:
+    code_hint: Ange koden som genererats av din autentiseringsapp för att bekräfta
+    description_html: Om du aktiverar <strong>tvåfaktorsautentisering</strong> med en autentiseringsapp kommer du att behöva din telefon, vilken kommer att generera tokens för dig att ange.
+    enable: Aktivera
+    instructions_html: "<strong>Skanna den här QR-koden i Google Authenticator eller en liknande TOTP-app på din telefon </strong>. Från och med nu genererar den appen tokens som du måste ange när du loggar in."
+    manual_instructions: 'Om du inte kan skanna QR-koden och behöver skriva in den manuellt, här är den hemliga nyckeln i ren text:'
+    setup: Konfigurera
+    wrong_code: Den angivna koden var ogiltig! Är servertid och enhetstid korrekt?
   pagination:
     newer: Nyare
     next: Nästa
     older: Äldre
     prev: Tidigare
+    truncate: "&hellip;"
   polls:
     errors:
       invalid_choice: Det valda röstalternativet finns inte
