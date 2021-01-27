@@ -688,12 +688,12 @@ gl:
       body: 'O cancelo #%{name} é tendencia hoxe, pero non foi previamente revisada. Non se amosará de xeito público a menos que ti o permitas, ou gardes o formulario para facer que non se che consulte de novo.'
       subject: 'Un novo cancelo que revisar en %{instance} (#%{name})'
   aliases:
-    add_new: Crear alcume
-    created_msg: Creou un novo alcume correctamente. Pode iniciar o movemento desde a conta antiga.
-    deleted_msg: Eliminou correctamente o alcume. Xa non será posible mover desde esa conta a esta.
-    empty: Non tes alcumes.
+    add_new: Crear alias
+    created_msg: Creaches o novo alias correctamente. Podes iniciar o movemento desde a conta antiga.
+    deleted_msg: Eliminaches correctamente o alias. Xa non será posible mover desde esa conta a esta.
+    empty: Non tes alias.
     hint_html: Se queres mudarte desde outra conta a esta nova, aquí podes crear un alias, que é requerido antes de poder proceder a mover as seguidoras da conta antiga a esta nova. Esta acción por si mesma é <strong>inocua e reversible</strong>. <strong>A migración da conta iníciase desde a conta antiga</strong>.
-    remove: Desligar alcume
+    remove: Desligar alias
   appearance:
     advanced_web_interface: Interface web avanzada
     advanced_web_interface_hint: 'Se queres empregar todo o ancho da túa pantalla, a interface web avanzada permíteche configurar diferentes columnas para ver tanta información como desexe. Inicio, notificacións, cronoloxía federada, calquera número de listaxes e cancelos.'
@@ -843,7 +843,7 @@ gl:
     '503': A páxina non se puido servir debido a un fallo temporal no servidor.
     noscript_html: Para utilizar a aplicación web de Mastodon debe habilitar JavaScript. De xeito alternativo, intente unha das <a href="%{apps_path}">apps nativas</a> para Mastodon da súa plataforma.
   existing_username_validator:
-    not_found: non se atopou unha usuaria local con ese alcume
+    not_found: non se atopou unha usuaria local con ese alias
     not_found_multiple: non se atopou a %{usernames}
   exports:
     archive_takeout:
