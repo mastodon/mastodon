@@ -3,7 +3,7 @@ name: Build and Push Alpha Image to Docker Hub
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   docker-build:
@@ -12,7 +12,7 @@ jobs:
     steps:
       - name: 🔍 Checkout code
         uses: actions/checkout@v2
-    
+
       - name: ⚓ Build and push Docker images
         uses: docker/build-push-action@v1
         with:
