@@ -349,10 +349,6 @@ describe ApplicationController, type: :controller do
       expect(C.new.cache_collection(raw, Object)).to eq raw
     end
 
-    context 'Notification' do
-      include_examples 'cacheable', :notification, Notification
-    end
-
     context 'Status' do
       include_examples 'cacheable', :status, Status
     end
