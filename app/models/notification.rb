@@ -17,7 +17,6 @@ class Notification < ApplicationRecord
   self.inheritance_column = nil
 
   include Paginable
-  include Cacheable
 
   LEGACY_TYPE_CLASS_MAP = {
     'Mention'       => :mention,
@@ -37,8 +36,6 @@ class Notification < ApplicationRecord
     favourite
     poll
   ).freeze
-
-  STATUS_INCLUDES = [:account, :application, :preloadable_poll, :media_attachments, :tags, active_mentions: :account, reblog: [:account, :application, :preloadable_poll, :media_attachments, :tags, active_mentions: :account]].freeze
 
   TARGET_STATUS_INCLUDES_BY_TYPE = {
     status: :status,
@@ -73,8 +70,6 @@ class Notification < ApplicationRecord
     end
   }
 
-  cache_associated :from_account, status: STATUS_INCLUDES, mention: [status: STATUS_INCLUDES], favourite: [:account, status: STATUS_INCLUDES], follow: :account, follow_request: :account, poll: [status: STATUS_INCLUDES]
-
   def type
     @type ||= (super || LEGACY_TYPE_CLASS_MAP[activity_type]).to_sym
   end
@@ -95,23 +90,6 @@ class Notification < ApplicationRecord
   end
 
   class << self
-    def cache_ids
-      select(:id, :updated_at, :activity_type, :activity_id)
-    end
-
-    def reload_stale_associations!(cached_items)
-      account_ids = (cached_items.map(&:from_account_id) + cached_items.filter_map { |item| item.target_status&.account_id }).uniq
-
-      return if account_ids.empty?
-
-      accounts = Account.where(id: account_ids).includes(:account_stat).index_by(&:id)
-
-      cached_items.each do |item|
-        item.from_account = accounts[item.from_account_id]
-        item.target_status.account = accounts[item.target_status.account_id] if item.target_status
-      end
-    end
-
     def preload_cache_collection_target_statuses(notifications, &_block)
       notifications.group_by(&:type).each do |type, grouped_notifications|
         associations = TARGET_STATUS_INCLUDES_BY_TYPE[type]
