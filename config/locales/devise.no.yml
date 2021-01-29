@@ -69,9 +69,11 @@
           subject: 'Mastodon: Sikkerhetsnøkkel slettet'
           title: En av sikkerhetsnøklene dine har blitt slettet
       webauthn_disabled:
+        explanation: Innlogging med sikkerhetsnøkler er deaktivert for din konto. Innlogging er nå mulig kun ved hjelp av token som er generert av den parra TOTP-appen.
         subject: 'Mastodon: Autentisering med sikkerhetsnøkler ble skrudd av'
         title: Sikkerhetsnøkler deaktivert
       webauthn_enabled:
+        explanation: Innlogging med sikkerhetsnøkler har blitt skrudd på for din konto. Du kan nå logge inn med sikkerhetsnøklen din.
         subject: 'Mastodon: Sikkerhetsnøkkelsautentisering ble skrudd på'
         title: Sikkerhetsnøkler aktivert
     omniauth_callbacks:
