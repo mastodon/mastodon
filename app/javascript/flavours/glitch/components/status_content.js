@@ -154,35 +154,38 @@ export default class StatusContent extends React.PureComponent {
     }
   }
 
-  _updateStatusEmojis () {
-    const node = this.node;
-
-    if (!node || autoPlayGif) {
+  handleMouseEnter = ({ currentTarget }) => {
+    if (autoPlayGif) {
       return;
     }
 
-    const emojis = node.querySelectorAll('.custom-emoji');
+    const emojis = currentTarget.querySelectorAll('.custom-emoji');
 
     for (var i = 0; i < emojis.length; i++) {
       let emoji = emojis[i];
-      if (emoji.classList.contains('status-emoji')) {
-        continue;
-      }
-      emoji.classList.add('status-emoji');
+      emoji.src = emoji.getAttribute('data-original');
+    }
+  }
 
-      emoji.addEventListener('mouseenter', this.handleEmojiMouseEnter, false);
-      emoji.addEventListener('mouseleave', this.handleEmojiMouseLeave, false);
+  handleMouseLeave = ({ currentTarget }) => {
+    if (autoPlayGif) {
+      return;
+    }
+
+    const emojis = currentTarget.querySelectorAll('.custom-emoji');
+
+    for (var i = 0; i < emojis.length; i++) {
+      let emoji = emojis[i];
+      emoji.src = emoji.getAttribute('data-static');
     }
   }
 
   componentDidMount () {
     this._updateStatusLinks();
-    this._updateStatusEmojis();
   }
 
   componentDidUpdate () {
     this._updateStatusLinks();
-    this._updateStatusEmojis();
     if (this.props.onUpdate) this.props.onUpdate();
   }
 
@@ -204,14 +207,6 @@ export default class StatusContent extends React.PureComponent {
     if (this.props.parseClick) {
       this.props.parseClick(e, `/timelines/tag/${hashtag}`);
     }
-  }
-
-  handleEmojiMouseEnter = ({ target }) => {
-    target.src = target.getAttribute('data-original');
-  }
-
-  handleEmojiMouseLeave = ({ target }) => {
-    target.src = target.getAttribute('data-static');
   }
 
   handleMouseDown = (e) => {
@@ -251,10 +246,6 @@ export default class StatusContent extends React.PureComponent {
     } else {
       this.setState({ hidden: !this.state.hidden });
     }
-  }
-
-  setRef = (c) => {
-    this.node = c;
   }
 
   setContentsRef = (c) => {
@@ -323,7 +314,7 @@ export default class StatusContent extends React.PureComponent {
       }
 
       return (
-        <div className={classNames} tabIndex='0' onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp} ref={this.setRef}>
+        <div className={classNames} tabIndex='0' onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp}>
           <p
             style={{ marginBottom: hidden && status.get('mentions').isEmpty() ? '0px' : null }}
           >
@@ -343,6 +334,8 @@ export default class StatusContent extends React.PureComponent {
               tabIndex={!hidden ? 0 : null}
               dangerouslySetInnerHTML={content}
               className='status__content__text translate'
+              onMouseEnter={this.handleMouseEnter}
+              onMouseLeave={this.handleMouseLeave}
             />
             {media}
           </div>
@@ -356,7 +349,6 @@ export default class StatusContent extends React.PureComponent {
           onMouseDown={this.handleMouseDown}
           onMouseUp={this.handleMouseUp}
           tabIndex='0'
-          ref={this.setRef}
         >
           <div
             ref={this.setContentsRef}
@@ -364,6 +356,8 @@ export default class StatusContent extends React.PureComponent {
             dangerouslySetInnerHTML={content}
             className='status__content__text translate'
             tabIndex='0'
+            onMouseEnter={this.handleMouseEnter}
+            onMouseLeave={this.handleMouseLeave}
           />
           {media}
         </div>
@@ -373,9 +367,16 @@ export default class StatusContent extends React.PureComponent {
         <div
           className='status__content'
           tabIndex='0'
-          ref={this.setRef}
         >
-          <div ref={this.setContentsRef} key={`contents-${tagLinks}`} className='status__content__text translate' dangerouslySetInnerHTML={content} tabIndex='0' />
+          <div
+            ref={this.setContentsRef}
+            key={`contents-${tagLinks}`}
+            className='status__content__text translate'
+            dangerouslySetInnerHTML={content}
+            tabIndex='0'
+            onMouseEnter={this.handleMouseEnter}
+            onMouseLeave={this.handleMouseLeave}
+          />
           {media}
         </div>
       );
