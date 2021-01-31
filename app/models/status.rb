@@ -114,7 +114,7 @@ class Status < ApplicationRecord
                    :tags,
                    :preview_cards,
                    :preloadable_poll,
-                   account: :account_stat,
+                   account: [:account_stat, :user],
                    active_mentions: { account: :account_stat },
                    reblog: [
                      :application,
@@ -124,7 +124,7 @@ class Status < ApplicationRecord
                      :conversation,
                      :status_stat,
                      :preloadable_poll,
-                     account: :account_stat,
+                     account: [:account_stat, :user],
                      active_mentions: { account: :account_stat },
                    ],
                    thread: { account: :account_stat }
@@ -301,7 +301,7 @@ class Status < ApplicationRecord
 
       return if account_ids.empty?
 
-      accounts = Account.where(id: account_ids).includes(:account_stat).index_by(&:id)
+      accounts = Account.where(id: account_ids).includes(:account_stat, :user).index_by(&:id)
 
       cached_items.each do |item|
         item.account = accounts[item.account_id]
