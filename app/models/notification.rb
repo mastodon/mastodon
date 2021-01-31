@@ -17,7 +17,6 @@ class Notification < ApplicationRecord
   self.inheritance_column = nil
 
   include Paginable
-  include Cacheable
 
   LEGACY_TYPE_CLASS_MAP = {
     'Mention'       => :mention,
@@ -38,7 +37,13 @@ class Notification < ApplicationRecord
     poll
   ).freeze
 
-  STATUS_INCLUDES = [:account, :application, :preloadable_poll, :media_attachments, :tags, active_mentions: :account, reblog: [:account, :application, :preloadable_poll, :media_attachments, :tags, active_mentions: :account]].freeze
+  TARGET_STATUS_INCLUDES_BY_TYPE = {
+    status: :status,
+    reblog: [status: :reblog],
+    mention: [mention: :status],
+    favourite: [favourite: :status],
+    poll: [poll: :status],
+  }.freeze
 
   belongs_to :account, optional: true
   belongs_to :from_account, class_name: 'Account', optional: true
@@ -65,8 +70,6 @@ class Notification < ApplicationRecord
     end
   }
 
-  cache_associated :from_account, status: STATUS_INCLUDES, mention: [status: STATUS_INCLUDES], favourite: [:account, status: STATUS_INCLUDES], follow: :account, follow_request: :account, poll: [status: STATUS_INCLUDES]
-
   def type
     @type ||= (super || LEGACY_TYPE_CLASS_MAP[activity_type]).to_sym
   end
@@ -87,21 +90,40 @@ class Notification < ApplicationRecord
   end
 
   class << self
-    def cache_ids
-      select(:id, :updated_at, :activity_type, :activity_id)
-    end
+    def preload_cache_collection_target_statuses(notifications, &_block)
+      notifications.group_by(&:type).each do |type, grouped_notifications|
+        associations = TARGET_STATUS_INCLUDES_BY_TYPE[type]
+        next unless associations
 
-    def reload_stale_associations!(cached_items)
-      account_ids = (cached_items.map(&:from_account_id) + cached_items.filter_map { |item| item.target_status&.account_id }).uniq
-
-      return if account_ids.empty?
-
-      accounts = Account.where(id: account_ids).includes(:account_stat).index_by(&:id)
-
-      cached_items.each do |item|
-        item.from_account = accounts[item.from_account_id]
-        item.target_status.account = accounts[item.target_status.account_id] if item.target_status
+        # Instead of using the usual `includes`, manually preload each type.
+        # If polymorphic associations are loaded with the usual `includes`, other types of associations will be loaded more.
+        ActiveRecord::Associations::Preloader.new.preload(grouped_notifications, associations)
       end
+
+      unique_target_statuses = notifications.map(&:target_status).compact.uniq
+      # Call cache_collection in block
+      cached_statuses_by_id = yield(unique_target_statuses).index_by(&:id)
+
+      notifications.each do |notification|
+        next if notification.target_status.nil?
+
+        cached_status = cached_statuses_by_id[notification.target_status.id]
+
+        case notification.type
+        when :status
+          notification.status = cached_status
+        when :reblog
+          notification.status.reblog = cached_status
+        when :favourite
+          notification.favourite.status = cached_status
+        when :mention
+          notification.mention.status = cached_status
+        when :poll
+          notification.poll.status = cached_status
+        end
+      end
+
+      notifications
     end
   end
 
