@@ -223,11 +223,11 @@ class StatusActionBar extends ImmutablePureComponent {
   render () {
     const { status, relationship, intl, withDismiss, scrollKey } = this.props;
 
-    const mutingConversation = status.get('muted');
     const anonymousAccess    = !me;
     const publicStatus       = ['public', 'unlisted'].includes(status.get('visibility'));
+    const mutingConversation = status.get('muted');
     const account            = status.get('account');
-    const writtenByMe        = status.getIn(['account', 'id']) === me
+    const writtenByMe        = status.getIn(['account', 'id']) === me;
 
     let menu = [];
 
