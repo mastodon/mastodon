@@ -27,7 +27,7 @@ gem 'blurhash', '~> 0.1'
 
 gem 'active_model_serializers', '~> 0.10'
 gem 'addressable', '~> 2.7'
-gem 'bootsnap', '~> 1.5', require: false
+gem 'bootsnap', '~> 1.6', require: false
 gem 'browser'
 gem 'charlock_holmes', '~> 0.7.7'
 gem 'iso-639'
