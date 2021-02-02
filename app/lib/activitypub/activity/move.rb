@@ -4,9 +4,8 @@ class ActivityPub::Activity::Move < ActivityPub::Activity
   PROCESSING_COOLDOWN = 7.days.seconds
 
   def perform
-    return if origin_account.uri != object_uri || processed?
-
-    mark_as_processing!
+    return if origin_account.uri != object_uri
+    return unless mark_as_processing!
 
     target_account = ActivityPub::FetchRemoteAccountService.new.call(target_uri)
 
@@ -35,12 +34,8 @@ class ActivityPub::Activity::Move < ActivityPub::Activity
     value_or_id(@json['target'])
   end
 
-  def processed?
-    redis.exists?("move_in_progress:#{@account.id}")
-  end
-
   def mark_as_processing!
-    redis.setex("move_in_progress:#{@account.id}", PROCESSING_COOLDOWN, true)
+    redis.set("move_in_progress:#{@account.id}", true, nx: true, ex: PROCESSING_COOLDOWN)
   end
 
   def unmark_as_processing!
