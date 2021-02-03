@@ -40,12 +40,13 @@ class Api::V1::NotificationsController < Api::BaseController
   private
 
   def load_notifications
-    cache_collection_paginated_by_id(
-      browserable_account_notifications,
-      Notification,
+    notifications = browserable_account_notifications.includes(from_account: :account_stat).to_a_paginated_by_id(
       limit_param(DEFAULT_NOTIFICATIONS_LIMIT),
       params_slice(:max_id, :since_id, :min_id)
     )
+    Notification.preload_cache_collection_target_statuses(notifications) do |target_statuses|
+      cache_collection(target_statuses, Status)
+    end
   end
 
   def browserable_account_notifications

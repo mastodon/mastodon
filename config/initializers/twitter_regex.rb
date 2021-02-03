@@ -75,7 +75,7 @@ module Twitter
     # XMPP or magnet URIs an empty array will be returned.
     #
     # If a block is given then it will be called for each XMPP URI.
-    def extract_extra_uris_with_indices(text, options = {}) # :yields: uri, start, end
+    def extract_extra_uris_with_indices(text, _options = {}) # :yields: uri, start, end
       return [] unless text && text.index(":")
       urls = []
 
