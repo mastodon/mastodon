@@ -1,0 +1,18 @@
+version = 1
+
+test_patterns = ["/app/javascript/mastodon/**/__tests__/**"]
+
+[[analyzers]]
+name = "ruby"
+enabled = true
+
+[[analyzers]]
+name = "javascript"
+enabled = true
+
+  [analyzers.meta]
+  environment = [
+    "nodejs",
+    "browser",
+    "jest"
+  ]

@@ -8,7 +8,7 @@ gem 'pkg-config', '~> 1.4'
 gem 'puma', '~> 5.1'
 gem 'rails', '~> 5.2.4.4'
 gem 'sprockets', '~> 3.7.2'
-gem 'thor', '~> 1.0'
+gem 'thor', '~> 1.1'
 gem 'rack', '~> 2.2.3'
 
 gem 'hamlit-rails', '~> 0.2'
@@ -31,7 +31,7 @@ gem 'bootsnap', '~> 1.5', require: false
 gem 'browser'
 gem 'charlock_holmes', '~> 0.7.7'
 gem 'iso-639'
-gem 'chewy', '~> 5.1'
+gem 'chewy', '~> 5.2'
 gem 'cld3', '~> 3.4.1'
 gem 'devise', '~> 4.7'
 gem 'devise-two-factor', '~> 3.1'
@@ -73,7 +73,7 @@ gem 'parallel', '~> 1.20'
 gem 'posix-spawn'
 gem 'pundit', '~> 2.1'
 gem 'premailer-rails'
-gem 'rack-attack', '~> 6.3'
+gem 'rack-attack', '~> 6.4'
 gem 'rack-cors', '~> 1.1', require: 'rack/cors'
 gem 'rails-i18n', '~> 5.1'
 gem 'rails-settings-cached', '~> 0.6'
@@ -94,7 +94,7 @@ gem 'stoplight', '~> 2.2.1'
 gem 'strong_migrations', '~> 0.7'
 gem 'tty-prompt', '~> 0.23', require: false
 gem 'twitter-text', '~> 1.14'
-gem 'tzinfo-data', '~> 1.2020'
+gem 'tzinfo-data', '~> 1.2021'
 gem 'webpacker', '~> 5.2'
 gem 'webpush'
 gem 'webauthn', '~> 3.0.0.alpha1'
@@ -119,7 +119,7 @@ group :production, :test do
 end
 
 group :test do
-  gem 'capybara', '~> 3.34'
+  gem 'capybara', '~> 3.35'
   gem 'climate_control', '~> 0.2'
   gem 'faker', '~> 2.15'
   gem 'microformats', '~> 4.2'
@@ -140,7 +140,7 @@ group :development do
   gem 'letter_opener', '~> 1.7'
   gem 'letter_opener_web', '~> 1.4'
   gem 'memory_profiler'
-  gem 'rubocop', '~> 1.7', require: false
+  gem 'rubocop', '~> 1.8', require: false
   gem 'rubocop-rails', '~> 2.9', require: false
   gem 'brakeman', '~> 4.10', require: false
   gem 'bundler-audit', '~> 0.7', require: false
