@@ -70,4 +70,29 @@ RSpec.describe Admin::DomainBlocksController, type: :controller do
       expect(response).to redirect_to(admin_instances_path(limited: '1'))
     end
   end
+
+  describe 'GET #export' do
+    it 'renders instances' do
+      Fabricate(:domain_block, domain: 'bad.domain', severity: 'silence')
+      Fabricate(:domain_block, domain: 'worse.domain', severity: 'suspend')
+
+      get :export, params: { format: :csv }
+      expect(response).to have_http_status(200)
+      expect(response.body).to eq(IO.read(File.join(self.class.fixture_path, 'files/domain_blocks.csv')))
+    end
+  end
+
+  describe 'POST #import' do
+    it 'blocks imported domains' do
+      allow(DomainBlockWorker).to receive(:perform_async).and_return(true)
+
+      post :import, params: { admin_import: { data: fixture_file_upload('files/domain_blocks.csv') } }
+
+      expect(response).to redirect_to(admin_instances_path(limited: '1'))
+      expect(DomainBlockWorker).to have_received(:perform_async).exactly(2).times
+      # Domains should now be added
+      expect{ Fabricate(:domain_block, domain: 'bad.domain') }.to raise_error(ActiveRecord::RecordInvalid)
+      expect{ Fabricate(:domain_block, domain: 'worse.domain') }.to raise_error(ActiveRecord::RecordInvalid)
+    end
+  end
 end

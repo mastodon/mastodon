@@ -1,8 +1,12 @@
 # frozen_string_literal: true
 
+require 'csv'
+
 module Admin
   class DomainBlocksController < BaseController
     before_action :set_domain_block, only: [:show, :destroy, :edit, :update]
+    before_action :dummy_import, only: [:new, :create]
+    ROWS_PROCESSING_LIMIT = 20_000
 
     def new
       authorize :domain_block, :create?
@@ -67,10 +71,44 @@ module Admin
       redirect_to admin_instances_path(limited: '1'), notice: I18n.t('admin.domain_blocks.destroyed_msg')
     end
 
+    def export
+      authorize :domain_block, :show?
+      csv = CSV.generate do |content|
+        DomainBlock.blocked_domains.each do |instance|
+          content << [instance.domain, instance.severity]
+        end
+      end
+      respond_to do |format|
+        format.csv { send_data csv, filename: 'blocked_domains.csv' }
+      end
+    end
+
+    def import
+      authorize :domain_block, :create?
+      @import = Import.new(import_params)
+      parse_import_data!(%w(#domain #severity))
+
+      @data.take(ROWS_PROCESSING_LIMIT).each do |row|
+        domain = row['#domain'].strip
+        next if DomainBlock.rule_for(domain).present?
+
+        domain_block = DomainBlock.new(domain: domain, severity: row['#severity'].strip)
+        if domain_block.save
+          DomainBlockWorker.perform_async(domain_block.id)
+          log_action :create, domain_block
+        end
+      end
+      redirect_to admin_instances_path(limited: '1'), notice: I18n.t('admin.domain_blocks.created_msg')
+    end
+
     private
 
     def set_domain_block
       @domain_block = DomainBlock.find(params[:id])
+    end
+
+    def dummy_import
+      @import = Import.new
     end
 
     def update_params
@@ -79,6 +117,20 @@ module Admin
 
     def resource_params
       params.require(:domain_block).permit(:domain, :severity, :reject_media, :reject_reports, :private_comment, :public_comment, :obfuscate)
+    end
+
+    def import_params
+      params.require(:admin_import).permit(:data)
+    end
+
+    def parse_import_data!(default_headers)
+      data = CSV.parse(import_data, headers: true)
+      data = CSV.parse(import_data, headers: default_headers) unless data.headers&.first&.strip&.include?(' ')
+      @data = data.reject(&:blank?)
+    end
+
+    def import_data
+      Paperclip.io_adapters.for(@import.data).read
     end
   end
 end

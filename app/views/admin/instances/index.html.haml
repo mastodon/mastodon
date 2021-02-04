@@ -4,8 +4,10 @@
 - content_for :heading_actions do
   - if whitelist_mode?
     = link_to t('admin.domain_allows.add_new'), new_admin_domain_allow_path, class: 'button'
+    = link_to t('admin.domain_allows.export'), export_admin_domain_allows_path(format: :csv), class: 'button'
   - else
     = link_to t('admin.domain_blocks.add_new'), new_admin_domain_block_path, class: 'button'
+    = link_to t('admin.domain_blocks.export'), export_admin_domain_blocks_path(format: :csv), class: 'button'
 
 .filters
   .filter-subset

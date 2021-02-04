@@ -12,3 +12,13 @@
 
   .actions
     = f.button :button, t('admin.domain_allows.add_new'), type: :submit
+
+= simple_form_for @import, url: import_admin_domain_allows_path, html: { multipart: true } do |f|
+  .title
+    = t('admin.domain_allows.import')
+  .fields-row
+    .fields-group.fields-row__column.fields-row__column-6
+      = f.input :data, wrapper: :with_block_label, hint: t('simple_form.hints.imports.data'), as: :file
+
+  .actions
+    = f.button :button, t('admin.imports.upload'), type: :submit

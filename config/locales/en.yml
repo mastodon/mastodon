@@ -132,6 +132,12 @@ en:
       followers: Followers
       follows: Follows
       header: Header
+      imports:
+        errors:
+          over_rows_processing_limit: contains more than %{count} rows
+        preface: You can import a list of instances that has been exported from another server
+        success: Your data was successfully uploaded and will now be processed in due time
+        upload: Upload
       inbox_url: Inbox URL
       invite_request_text: Reasons for joining
       invited_by: Invited by
@@ -392,6 +398,8 @@ en:
       created_msg: Domain has been successfully allowed for federation
       destroyed_msg: Domain has been disallowed from federation
       undo: Disallow federation with domain
+      export: Export
+      import: Import
     domain_blocks:
       add_new: Add new domain block
       created_msg: Domain block is now being processed
@@ -399,6 +407,8 @@ en:
       domain: Domain
       edit: Edit domain block
       existing_domain_block_html: You have already imposed stricter limits on %{name}, you need to <a href="%{unblock_url}">unblock it</a> first.
+      export: Export
+      import: Import
       new:
         create: Create block
         hint: The domain block will not prevent creation of account entries in the database, but will retroactively and automatically apply specific moderation methods on those accounts.
