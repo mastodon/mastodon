@@ -132,12 +132,6 @@ en:
       followers: Followers
       follows: Follows
       header: Header
-      imports:
-        errors:
-          over_rows_processing_limit: contains more than %{count} rows
-        preface: You can import a list of instances that has been exported from another server
-        success: Your data was successfully uploaded and will now be processed in due time
-        upload: Upload
       inbox_url: Inbox URL
       invite_request_text: Reasons for joining
       invited_by: Invited by
@@ -397,9 +391,9 @@ en:
       add_new: Allow federation with domain
       created_msg: Domain has been successfully allowed for federation
       destroyed_msg: Domain has been disallowed from federation
-      undo: Disallow federation with domain
       export: Export
       import: Import
+      undo: Disallow federation with domain
     domain_blocks:
       add_new: Add new domain block
       created_msg: Domain block is now being processed
