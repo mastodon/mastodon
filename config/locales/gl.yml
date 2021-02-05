@@ -829,7 +829,7 @@ gl:
     invalid_domain: non é un nome de dominio válido
   errors:
     '400': A solicitude que enviou non é válida ou ten formato incorrecto.
-    '403': Non ten permiso para ver esta páxina.
+    '403': Non tes permiso para ver esta páxina.
     '404': A páxina que está a buscar non está aquí.
     '406': Esta páxina non está dispoñible no formato solicitado.
     '410': A páxina que estaba a buscar xa non existe.
@@ -1032,7 +1032,7 @@ gl:
       subject: 'Seguidora pendente: %{name}'
       title: Nova petición de seguimento
     mention:
-      action: Respostar
+      action: Responder
       body: 'Foi mencionada por %{name} en:'
       subject: Foches mencionada por %{name}
       title: Nova mención
@@ -1105,12 +1105,12 @@ gl:
     remove_selected_follows: Deixar de seguir as usuarias escollidas
     status: Estado da conta
   remote_follow:
-    acct: Introduza o seu usuaria@servidor desde onde quere interactuar
+    acct: Escribe o teu usuaria@servidor desde onde queres interactuar
     missing_resource: Non se puido atopar o URL de redirecionamento requerido para a súa conta
-    no_account_html: Non ten unha conta? Pode <a href='%{sign_up_path}' target='_blank'>rexistrarse aquí</a>
+    no_account_html: Non tes unha conta? Podes <a href='%{sign_up_path}' target='_blank'>rexistrarte aquí</a>
     proceed: Proceda para seguir
     prompt: 'Vas seguir a:'
-    reason_html: "<strong>Por que é necesario este paso?</strong><code>%{instance}</code> podería non ser o servidor onde se rexistrou, así que precisamo redirixila primeiro ao seu servidor de orixe."
+    reason_html: "<strong>Por que é necesario este paso?</strong><code>%{instance}</code> podería non ser o servidor onde te rexistraches, así que precisamos redirixirte primeiro ao teu servidor de orixe."
   remote_interaction:
     favourite:
       proceed: Darlle a favorito
@@ -1119,7 +1119,7 @@ gl:
       proceed: Darlle a promocionar
       prompt: 'Vas promocionar este toot:'
     reply:
-      proceed: Respostar
+      proceed: Responder
       prompt: 'Vas responder a este toot:'
   scheduled_statuses:
     over_daily_limit: Excedeu o límite de %{limit} toots programados para ese día
@@ -1208,7 +1208,7 @@ gl:
       one: 'contiña un cancelo non permitido: %{tags}'
       other: 'contiña uns cancelos non permitidos: %{tags}'
     errors:
-      in_reply_not_found: O estado ó cal tentas respostar semella que non existe.
+      in_reply_not_found: O estado ao cal tentas responder semella que non existe.
     language_detection: Detección automática do idioma
     open_in_web: Abrir na web
     over_character_limit: Excedeu o límite de caracteres %{max}
@@ -1366,8 +1366,8 @@ gl:
         disable: Cando a súa conta está conxelada, os datos permanecen intactos, pero non pode levar a fin accións ate que se desbloquea.
         sensitive: Os teus ficheiros e ligazóns a multimedia serán tratados como sensibles.
         silence: Mentras a conta está limitada, só a xente que actualmente te segue verá os teus toots en este servidor, e poderías estar excluída de varias listaxes públicas. Porén, outras persoas poderíante seguir de xeito manual.
-        suspend: A súa conta foi suspendida, e todos os seus toots e medios subidos foron eliminados de este servidor de xeito irreversible, e dos servidores onde tivese seguidoras.
-      get_in_touch: Pode responder a este correo para contactar coa administración de %{instance}.
+        suspend: A túa conta foi suspendida, e todos os teus toots e multimedia subidos foron eliminados deste servidor de xeito irreversible, e dos servidores onde tiveses seguidoras.
+      get_in_touch: Podes responder a este correo para contactar coa administración de %{instance}.
       review_server_policies: Revisar políticas do servidor
       statuses: 'En concreto, para:'
       subject:
