@@ -63,8 +63,9 @@ RSpec.describe Admin::DomainAllowsController, type: :controller do
 
       expect(response).to redirect_to(admin_instances_path)
       # Domains should now be added
-      expect{ Fabricate(:domain_allow, domain: 'good.domain') }.to raise_error(ActiveRecord::RecordInvalid)
-      expect{ Fabricate(:domain_allow, domain: 'better.domain') }.to raise_error(ActiveRecord::RecordInvalid)
+      %w(good.domain better.domain).each do |domain|
+        expect(DomainAllow.where(domain: domain).present?).to eq(true)
+      end
     end
   end
 end

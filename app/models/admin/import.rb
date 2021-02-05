@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
+# A non-activerecord helper class for csv upload
 class Admin::Import
   extend ActiveModel::Callbacks
   include ActiveModel::Model
   include Paperclip::Glue
 
   FILE_TYPES = %w(text/plain text/csv application/csv).freeze
-  MODES = %i(merge overwrite).freeze
 
   # Paperclip required callbacks
   define_model_callbacks :save, only: [:after]
@@ -19,14 +19,6 @@ class Admin::Import
   validates_attachment_content_type :data, content_type: FILE_TYPES
   validates_attachment_presence :data
   validates_with ImportValidator, on: :create
-
-  def mode
-    overwrite? ? :overwrite : :merge
-  end
-
-  def mode=(str)
-    self.overwrite = str.to_sym == :overwrite
-  end
 
   def save
     run_callbacks :save

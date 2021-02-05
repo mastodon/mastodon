@@ -91,8 +91,9 @@ RSpec.describe Admin::DomainBlocksController, type: :controller do
       expect(response).to redirect_to(admin_instances_path(limited: '1'))
       expect(DomainBlockWorker).to have_received(:perform_async).exactly(2).times
       # Domains should now be added
-      expect{ Fabricate(:domain_block, domain: 'bad.domain') }.to raise_error(ActiveRecord::RecordInvalid)
-      expect{ Fabricate(:domain_block, domain: 'worse.domain') }.to raise_error(ActiveRecord::RecordInvalid)
+      %w(bad.domain worse.domain).each do |domain|
+        expect(DomainBlock.where(domain: domain).present?).to eq(true)
+      end
     end
   end
 end

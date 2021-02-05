@@ -72,7 +72,7 @@ module Admin
     end
 
     def export
-      authorize :domain_block, :show?
+      authorize :instance, :index?
       csv = CSV.generate do |content|
         DomainBlock.blocked_domains.each do |instance|
           content << [instance.domain, instance.severity]
@@ -85,7 +85,7 @@ module Admin
 
     def import
       authorize :domain_block, :create?
-      @import = Import.new(import_params)
+      @import = Admin::Import.new(import_params)
       parse_import_data!(%w(#domain #severity))
 
       @data.take(ROWS_PROCESSING_LIMIT).each do |row|
@@ -108,7 +108,7 @@ module Admin
     end
 
     def dummy_import
-      @import = Import.new
+      @import = Admin::Import.new
     end
 
     def update_params
