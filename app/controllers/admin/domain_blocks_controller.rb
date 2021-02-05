@@ -86,7 +86,12 @@ module Admin
         domain = row['#domain'].strip
         next if DomainBlock.rule_for(domain).present?
 
-        domain_block = DomainBlock.new(domain: domain, severity: row['#severity'].strip)
+        domain_block = DomainBlock.new(domain: domain,
+                                       severity: row['#severity'].strip,
+                                       reject_media: row['#reject_media'].strip,
+                                       reject_reports: row['#reject_reports'].strip,
+                                       public_comment: row['#public_comment'].strip,
+                                       obfuscate: row['#obfuscate'].strip)
         if domain_block.save
           DomainBlockWorker.perform_async(domain_block.id)
           log_action :create, domain_block
@@ -114,14 +119,14 @@ module Admin
     end
 
     def export_headers
-      %w(#domain #severity)
+      %w(#domain #severity #reject_media #reject_reports #public_comment #obfuscate)
     end
 
     def export_data
       CSV.generate do |content|
         content << export_headers
         DomainBlock.blocked_domains.each do |instance|
-          content << [instance.domain, instance.severity]
+          content << [instance.domain, instance.severity, instance.reject_media, instance.reject_reports, instance.public_comment, instance.obfuscate]
         end
       end
     end

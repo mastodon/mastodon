@@ -48,7 +48,7 @@ class DomainBlock < ApplicationRecord
     end
 
     def blocked_domains
-      select(:domain, :severity).where.not(severity: :noop)
+      where.not(severity: :noop)
     end
 
     alias blocked? suspend?
