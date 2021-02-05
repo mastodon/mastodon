@@ -74,6 +74,7 @@ module Admin
     def export
       authorize :instance, :index?
       csv = CSV.generate do |content|
+        content << %w(#domain #severity)
         DomainBlock.blocked_domains.each do |instance|
           content << [instance.domain, instance.severity]
         end
@@ -125,7 +126,7 @@ module Admin
 
     def parse_import_data!(default_headers)
       data = CSV.parse(import_data, headers: true)
-      data = CSV.parse(import_data, headers: default_headers) unless data.headers&.first&.strip&.include?(' ')
+      data = CSV.parse(import_data, headers: default_headers) unless data.headers&.first&.strip&.include?('#domain')
       @data = data.reject(&:blank?)
     end
 

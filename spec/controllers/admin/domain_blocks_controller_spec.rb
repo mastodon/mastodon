@@ -94,6 +94,8 @@ RSpec.describe Admin::DomainBlocksController, type: :controller do
       %w(bad.domain worse.domain).each do |domain|
         expect(DomainBlock.where(domain: domain).present?).to eq(true)
       end
+      # Header should not be imported
+      expect(DomainBlock.where(domain: '#domain').present?).to eq(false)
     end
   end
 end

@@ -35,6 +35,7 @@ class Admin::DomainAllowsController < Admin::BaseController
   def export
     authorize :instance, :index?
     csv = CSV.generate do |content|
+      content << %w(#domain)
       DomainAllow.allowed_domains.each do |instance|
         content << [instance.domain]
       end
@@ -47,7 +48,7 @@ class Admin::DomainAllowsController < Admin::BaseController
   def import
     authorize :domain_allow, :create?
     @import = Admin::Import.new(import_params)
-    parse_import_data!(['#domain'])
+    parse_import_data!(%w(#domain))
 
     @data.take(ROWS_PROCESSING_LIMIT).each do |row|
       domain = row['#domain'].strip
@@ -79,7 +80,7 @@ class Admin::DomainAllowsController < Admin::BaseController
 
   def parse_import_data!(default_headers)
     data = CSV.parse(import_data, headers: true)
-    data = CSV.parse(import_data, headers: default_headers) unless data.headers&.first&.strip&.include?(' ')
+    data = CSV.parse(import_data, headers: default_headers) unless data.headers&.first&.strip&.include?('#domain')
     @data = data.reject(&:blank?)
   end
 
