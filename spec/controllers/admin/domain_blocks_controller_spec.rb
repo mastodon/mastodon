@@ -90,12 +90,14 @@ RSpec.describe Admin::DomainBlocksController, type: :controller do
 
       expect(response).to redirect_to(admin_instances_path(limited: '1'))
       expect(DomainBlockWorker).to have_received(:perform_async).exactly(2).times
-      # Domains should now be added
-      %w(bad.domain worse.domain).each do |domain|
-        expect(DomainBlock.where(domain: domain).present?).to eq(true)
-      end
+
       # Header should not be imported
       expect(DomainBlock.where(domain: '#domain').present?).to eq(false)
+
+      # Domains should now be added
+      get :export, params: { format: :csv }
+      expect(response).to have_http_status(200)
+      expect(response.body).to eq(IO.read(File.join(self.class.fixture_path, 'files/domain_blocks.csv')))
     end
   end
 end

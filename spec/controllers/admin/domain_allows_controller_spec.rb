@@ -62,12 +62,14 @@ RSpec.describe Admin::DomainAllowsController, type: :controller do
       post :import, params: { admin_import: { data: fixture_file_upload('files/domain_allows.csv') } }
 
       expect(response).to redirect_to(admin_instances_path)
-      # Domains should now be added
-      %w(good.domain better.domain).each do |domain|
-        expect(DomainAllow.where(domain: domain).present?).to eq(true)
-      end
+
       # Header should not be imported
-      expect(DomainBlock.where(domain: '#domain').present?).to eq(false)
+      expect(DomainAllow.where(domain: '#domain').present?).to eq(false)
+
+      # Domains should now be added
+      get :export, params: { format: :csv }
+      expect(response).to have_http_status(200)
+      expect(response.body).to eq(IO.read(File.join(self.class.fixture_path, 'files/domain_allows.csv')))
     end
   end
 end

@@ -4,8 +4,9 @@ require 'csv'
 
 module Admin
   class DomainBlocksController < BaseController
+    include AdminExportControllerConcern
+
     before_action :set_domain_block, only: [:show, :destroy, :edit, :update]
-    before_action :dummy_import, only: [:new, :create]
     ROWS_PROCESSING_LIMIT = 20_000
 
     def new
@@ -73,21 +74,13 @@ module Admin
 
     def export
       authorize :instance, :index?
-      csv = CSV.generate do |content|
-        content << %w(#domain #severity)
-        DomainBlock.blocked_domains.each do |instance|
-          content << [instance.domain, instance.severity]
-        end
-      end
-      respond_to do |format|
-        format.csv { send_data csv, filename: 'blocked_domains.csv' }
-      end
+      send_export_file
     end
 
     def import
       authorize :domain_block, :create?
       @import = Admin::Import.new(import_params)
-      parse_import_data!(%w(#domain #severity))
+      parse_import_data!(export_headers)
 
       @data.take(ROWS_PROCESSING_LIMIT).each do |row|
         domain = row['#domain'].strip
@@ -108,10 +101,6 @@ module Admin
       @domain_block = DomainBlock.find(params[:id])
     end
 
-    def dummy_import
-      @import = Admin::Import.new
-    end
-
     def update_params
       params.require(:domain_block).permit(:severity, :reject_media, :reject_reports, :private_comment, :public_comment, :obfuscate)
     end
@@ -120,18 +109,21 @@ module Admin
       params.require(:domain_block).permit(:domain, :severity, :reject_media, :reject_reports, :private_comment, :public_comment, :obfuscate)
     end
 
-    def import_params
-      params.require(:admin_import).permit(:data)
+    def export_filename
+      'domain_blocks.csv'
     end
 
-    def parse_import_data!(default_headers)
-      data = CSV.parse(import_data, headers: true)
-      data = CSV.parse(import_data, headers: default_headers) unless data.headers&.first&.strip&.include?('#domain')
-      @data = data.reject(&:blank?)
+    def export_headers
+      %w(#domain #severity)
     end
 
-    def import_data
-      Paperclip.io_adapters.for(@import.data).read
+    def export_data
+      CSV.generate do |content|
+        content << export_headers
+        DomainBlock.blocked_domains.each do |instance|
+          content << [instance.domain, instance.severity]
+        end
+      end
     end
   end
 end

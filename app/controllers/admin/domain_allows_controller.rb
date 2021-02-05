@@ -3,8 +3,8 @@
 require 'csv'
 
 class Admin::DomainAllowsController < Admin::BaseController
+  include AdminExportControllerConcern
   before_action :set_domain_allow, only: [:destroy]
-  before_action :dummy_import, only: [:new, :create]
   ROWS_PROCESSING_LIMIT = 20_000
 
   def new
@@ -34,21 +34,13 @@ class Admin::DomainAllowsController < Admin::BaseController
 
   def export
     authorize :instance, :index?
-    csv = CSV.generate do |content|
-      content << %w(#domain)
-      DomainAllow.allowed_domains.each do |instance|
-        content << [instance.domain]
-      end
-    end
-    respond_to do |format|
-      format.csv { send_data csv, filename: 'allowed_domains.csv' }
-    end
+    send_export_file
   end
 
   def import
     authorize :domain_allow, :create?
     @import = Admin::Import.new(import_params)
-    parse_import_data!(%w(#domain))
+    parse_import_data!(export_headers)
 
     @data.take(ROWS_PROCESSING_LIMIT).each do |row|
       domain = row['#domain'].strip
@@ -70,21 +62,20 @@ class Admin::DomainAllowsController < Admin::BaseController
     params.require(:domain_allow).permit(:domain)
   end
 
-  def import_params
-    params.require(:admin_import).permit(:data)
+  def export_filename
+    'domain_allows.csv'
   end
 
-  def dummy_import
-    @import = Admin::Import.new
+  def export_headers
+    %w(#domain)
   end
 
-  def parse_import_data!(default_headers)
-    data = CSV.parse(import_data, headers: true)
-    data = CSV.parse(import_data, headers: default_headers) unless data.headers&.first&.strip&.include?('#domain')
-    @data = data.reject(&:blank?)
-  end
-
-  def import_data
-    Paperclip.io_adapters.for(@import.data).read
+  def export_data
+    CSV.generate do |content|
+      content << export_headers
+      DomainAllow.allowed_domains.each do |instance|
+        content << [instance.domain]
+      end
+    end
   end
 end
