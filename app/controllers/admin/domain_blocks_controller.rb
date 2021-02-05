@@ -123,9 +123,8 @@ module Admin
     end
 
     def export_data
-      CSV.generate do |content|
-        content << export_headers
-        DomainBlock.blocked_domains.each do |instance|
+      CSV.generate(headers: export_headers, write_headers: true) do |content|
+        DomainBlock.with_user_facing_limitations.each do |instance|
           content << [instance.domain, instance.severity, instance.reject_media, instance.reject_reports, instance.public_comment, instance.obfuscate]
         end
       end

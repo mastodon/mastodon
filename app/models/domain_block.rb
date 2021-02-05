@@ -47,10 +47,6 @@ class DomainBlock < ApplicationRecord
       !!rule_for(domain)&.reject_reports?
     end
 
-    def blocked_domains
-      where.not(severity: :noop)
-    end
-
     alias blocked? suspend?
 
     def rule_for(domain)

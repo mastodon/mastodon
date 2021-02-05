@@ -71,8 +71,7 @@ class Admin::DomainAllowsController < Admin::BaseController
   end
 
   def export_data
-    CSV.generate do |content|
-      content << export_headers
+    CSV.generate(headers: export_headers, write_headers: true) do |content|
       DomainAllow.allowed_domains.each do |instance|
         content << [instance.domain]
       end

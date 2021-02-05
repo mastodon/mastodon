@@ -4,7 +4,7 @@ module AdminExportControllerConcern
   extend ActiveSupport::Concern
 
   included do
-    before_action :dummy_import
+    before_action :set_dummy_import!, only: [:new, :create]
 
     skip_before_action :require_functional!
   end
@@ -25,7 +25,7 @@ module AdminExportControllerConcern
     raise 'Override in controller'
   end
 
-  def dummy_import
+  def set_dummy_import!
     @import = Admin::Import.new
   end
 
