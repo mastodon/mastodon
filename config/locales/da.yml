@@ -215,6 +215,7 @@ da:
         create_domain_block: Opret domæneblokering
         create_email_domain_block: Opret e-mail domæne blokering
         create_ip_block: Opret IP-regel
+        demote_user: Degrader bruger
         destroy_announcement: Slet bekendtgørelse
         destroy_custom_emoji: Slet brugerdefineret emoji
         destroy_domain_allow: Slet domæne tillad
@@ -532,6 +533,8 @@ da:
         all: Til alle
         disabled: Til ingen
         title: Vis domæne blokeringer
+      domain_blocks_rationale:
+        title: Vis begrundelse
       enable_bootstrap_timeline_accounts:
         title: Aktiver standard følger for nye brugere
       hero:
@@ -912,6 +915,7 @@ da:
     redirecting_to: Din konto omdirigerer til %{acct}.
     set_redirect: Angiv omdirigering
     warning:
+      only_redirect_html: Alternativt kan du <a href="%{path}">kun oprette en omdirigering på din profil</a>.
       other_data: Ingen andre data vil blive flyttet automatisk
   moderation:
     title: Moderatering
@@ -987,6 +991,7 @@ da:
       too_many_options: kan ikke indeholde flere end %{max} elementer
   preferences:
     other: Andet
+    posting_defaults: Standarder for indlæg
     public_timelines: Offentlige tidslinjer
   reactions:
     errors:
