@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: mastodon
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/proxy-body-size: 100m
+    nginx.ingress.kubernetes.io/from-to-www-redirect: "true"
+spec:
+  rules:
+  - host: $(DOMAIN)
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: mastodon-web
+          servicePort: 3000
+      - path: /api/v1/streaming
+        backend:
+          serviceName: mastodon-streaming
+          servicePort: 4000

@@ -1,0 +1,44 @@
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: mastodon-rebuild-timeline
+  labels:
+    app: mastodon-rebuild-timeline
+spec:
+  template:
+    metadata:
+      name: mastodon-rebuild-timeline
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: kubernetes.io/arch
+                operator: In
+                values:
+                - amd64
+      restartPolicy: Never
+      volumes:
+        - name: assets
+          persistentVolumeClaim:
+            claimName: mastodon-assets
+        - name: system
+          persistentVolumeClaim:
+            claimName: mastodon-system
+      containers:
+        - name: mastodon-rebuild-timeline
+          image: "tootsuite/mastodon:v3.3.0"
+          command:
+            - /bin/tootctl
+            - feeds
+            - build
+          envFrom:
+            - secretRef:
+                name: mastodon
+          volumeMounts:
+            - name: assets
+              mountPath: /opt/mastodon/public/assets
+            - name: system
+              mountPath: /opt/mastodon/public/system

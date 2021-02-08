@@ -1,0 +1,81 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mastodon-web
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: mastodon-web
+  template:
+    metadata:
+      labels:
+        app: mastodon-web
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: kubernetes.io/arch
+                operator: In
+                values:
+                - amd64
+      securityContext:
+        fsGroup: 991
+        runAsGroup: 991
+        runAsUser: 991
+      containers:
+        - name: web
+          image: tootsuite/mastodon:v3.3.0
+          command:
+            - bundle
+            - exec
+            - puma
+            - -C
+            - config/puma.rb
+          ports:
+            - name: web
+              containerPort: 3000
+          envFrom:
+            - secretRef:
+                name: mastodon
+          resources:
+            requests:
+              memory: 350Mi
+              cpu: 100m
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: web
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: web
+          volumeMounts:
+            - name: assets
+              mountPath: /opt/mastodon/public/assets
+            - name: system
+              mountPath: /opt/mastodon/public/system
+      volumes:
+        - name: assets
+          persistentVolumeClaim:
+            claimName: mastodon-assets
+        - name: system
+          persistentVolumeClaim:
+            claimName: mastodon-system
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mastodon-web
+spec:
+  ports:
+    - name: web
+      port: 3000
+      targetPort: 3000
+      protocol: TCP
+  selector:
+    app: mastodon-web

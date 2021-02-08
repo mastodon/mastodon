@@ -1,0 +1,18 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: mastodon
+bases:
+  - ../base
+
+commonLabels:
+  domain: your.domain
+
+resources:
+  - ns.yaml
+  - ingress.yaml
+  - pv.yaml
+  - sealed-secret-mastodon.yaml
+
+images:
+  - name: tootsuite/mastodon
+    newTag: v3.3.0

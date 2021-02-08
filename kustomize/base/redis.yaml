@@ -1,0 +1,40 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mastodon-redis
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mastodon-redis
+  template:
+    metadata:
+      labels:
+        app: mastodon-redis
+    spec:
+      containers:
+        - name: redis
+          image: redis:6-alpine
+          resources:
+            requests:
+              memory: 200Mi
+              cpu: 200m
+          ports:
+            - containerPort: 6379
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mastodon-redis
+  labels:
+    app: mastodon-redis
+spec:
+  type: ClusterIP
+  ports:
+    - name: redis
+      port: 6379
+      protocol: TCP
+  selector:
+    app: mastodon-redis

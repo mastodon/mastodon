@@ -1,0 +1,45 @@
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: mastodon-assets
+spec:
+  capacity:
+    storage: 10Gi
+  #volumeMode: Filesystem
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  #storageClassName: ""
+  claimRef:
+    namespace: mastodon
+    name: mastodon-assets
+  mountOptions:
+    - hard
+    - nfsvers=4.1
+  nfs:
+    path: /var/nfs/k8s/mastodon-assets
+    server: 192.168.1.100
+
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: mastodon-system
+spec:
+  capacity:
+    storage: 20Gi
+  #volumeMode: Filesystem
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  #storageClassName: ""
+  claimRef:
+    namespace: mastodon
+    name: mastodon-system
+  mountOptions:
+    - hard
+    - nfsvers=4.1
+  nfs:
+    path: /var/nfs/k8s/mastodon-system
+    server: 192.168.1.100

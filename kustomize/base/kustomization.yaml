@@ -1,0 +1,18 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - redis.yaml
+  - pvc.yaml
+  - web-deploy.yaml
+  - sidekiq-deploy.yaml
+  - streaming-deploy.yaml
+  - cronjob-media-remove-orphans.yaml
+
+vars:
+  - name: DOMAIN
+    objref:
+      apiVersion: apps/v1
+      kind: Deployment
+      name: mastodon-web
+    fieldref:
+      fieldpath: metadata.labels.domain

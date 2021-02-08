@@ -1,0 +1,56 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mastodon-sidekiq
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mastodon-sidekiq
+  template:
+    metadata:
+      labels:
+        app: mastodon-sidekiq
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: kubernetes.io/arch
+                operator: In
+                values:
+                - amd64
+      securityContext:
+        fsGroup: 991
+        runAsGroup: 991
+        runAsUser: 991
+      containers:
+        - name: web
+          image: tootsuite/mastodon:v3.3.0
+          command:
+            - bundle
+            - exec
+            - sidekiq
+            - -c
+            - "25"
+          envFrom:
+            - secretRef:
+                name: mastodon
+          resources:
+            requests:
+              memory: 350Mi
+              cpu: 100m
+          volumeMounts:
+            - name: assets
+              mountPath: /opt/mastodon/public/assets
+            - name: system
+              mountPath: /opt/mastodon/public/system
+      volumes:
+        - name: assets
+          persistentVolumeClaim:
+            claimName: mastodon-assets
+        - name: system
+          persistentVolumeClaim:
+            claimName: mastodon-system

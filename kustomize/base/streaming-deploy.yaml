@@ -1,0 +1,68 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mastodon-streaming
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mastodon-streaming
+  template:
+    metadata:
+      labels:
+        app: mastodon-streaming
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: kubernetes.io/arch
+                operator: In
+                values:
+                - amd64
+      securityContext:
+        fsGroup: 991
+        runAsGroup: 991
+        runAsUser: 991
+      containers:
+        - name: web
+          image: tootsuite/mastodon:v3.3.0
+          command:
+            - node
+            - ./streaming
+          ports:
+            - name: streaming
+              containerPort: 4000
+          env:
+            - name: PORT
+              value: "4000"
+          envFrom:
+            - secretRef:
+                name: mastodon
+          resources:
+            requests:
+              memory: 350Mi
+              cpu: 100m
+          livenessProbe:
+            httpGet:
+              path: /api/v1/streaming/health
+              port: streaming
+          readinessProbe:
+            httpGet:
+              path: /api/v1/streaming/health
+              port: streaming
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mastodon-streaming
+spec:
+  ports:
+    - name: streaming
+      port: 4000
+      targetPort: 4000
+      protocol: TCP
+  selector:
+    app: mastodon-streaming

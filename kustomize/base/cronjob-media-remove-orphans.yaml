@@ -1,0 +1,46 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: mastodon-media-remove-orphans
+  labels:
+    app: mastodon-media-remove-orphans
+spec:
+  schedule: 0 0 * * 0
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          name: mastodon-media-remove-orphans
+        spec:
+          affinity:
+            nodeAffinity:
+              requiredDuringSchedulingIgnoredDuringExecution:
+                nodeSelectorTerms:
+                - matchExpressions:
+                  - key: kubernetes.io/arch
+                    operator: In
+                    values:
+                    - amd64
+          restartPolicy: OnFailure
+          volumes:
+            - name: assets
+              persistentVolumeClaim:
+                claimName: mastodon-assets
+            - name: system
+              persistentVolumeClaim:
+                claimName: mastodon-system
+          containers:
+            - name: mastodon-media-remove-orphans
+              image: "tootsuite/mastodon:v3.3.0"
+              command:
+                - bin/tootctl
+                - media
+                - remove-orphans
+              envFrom:
+                - secretRef:
+                    name: mastodon
+              volumeMounts:
+                - name: assets
+                  mountPath: /opt/mastodon/public/assets
+                - name: system
+                  mountPath: /opt/mastodon/public/system
