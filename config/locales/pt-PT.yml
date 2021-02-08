@@ -1,8 +1,7 @@
----
 pt-PT:
   about:
-    about_hashtag_html: Estes são toots públicos marcados com <strong>#%{hashtag}</strong>. Podes interagir com eles se tiveres uma conta Mastodon.
-    about_mastodon_html: Mastodon é uma rede social baseada em protocolos abertos da web e software livre e gratuito. É descentralizado como e-mail.
+    about_hashtag_html: 'Estes são toots públicos marcados com <strong>#%{hashtag}</strong>. Podes interagir com eles se tiveres uma conta Mastodon.'
+    about_mastodon_html: 'Mastodon é uma rede social baseada em protocolos abertos da web e software livre e gratuito. É descentralizado como e-mail.'
     about_this: Sobre esta instância
     active_count_after: activo
     active_footnote: Utilizadores activos mensais (UAM)
@@ -52,7 +51,7 @@ pt-PT:
     user_count_before: Casa para
     what_is_mastodon: O que é o Mastodon?
   accounts:
-    choices_html: 'escolhas de %{name}:'
+    choices_html: "escolhas de %{name}:"
     endorsements_hint: Você pode, através da interface web, escolher endossar pessoas que segue, e elas aparecerão aqui.
     featured_tags_hint: Você pode destacar hashtags específicas que serão exibidas aqui.
     follow: Seguir
@@ -116,7 +115,7 @@ pt-PT:
       delete: Eliminar dados
       deleted: Apagada
       demote: Rebaixar
-      destroyed_msg: Os dados de %{username} estão agora em fila de espera para serem eliminados de imediato
+      destroyed_msg: "Os dados de %{username} estão agora em fila de espera para serem eliminados de imediato"
       disable: Desativar
       disable_two_factor_authentication: Desativar 2FA
       disabled: Congelada
@@ -485,7 +484,7 @@ pt-PT:
     pending_accounts:
       title: Contas pendentes (%{count})
     relationships:
-      title: Relações de %{acct}
+      title: "Relações de %{acct}"
     relays:
       add_new: Adicionar novo repetidor
       delete: Apagar
@@ -685,10 +684,10 @@ pt-PT:
     new_report:
       body: "%{reporter} relatou %{target}"
       body_remote: Alguém de %{domain} relatou %{target}
-      subject: Novo relatório sobre %{instance} (#%{id})
+      subject: 'Novo relatório sobre %{instance} (#%{id})'
     new_trending_tag:
       body: 'A hashtag #%{name} está hoje a destacar-se, mas não foi anteriormente revista. Ela não será exibida publicamente a menos que você o permita, ou limite-se a salvar o formulário tal como está, para nunca mais ouvir falar dela.'
-      subject: Nova hashtag para revisão em %{instance} (#%{name})
+      subject: 'Nova hashtag para revisão em %{instance} (#%{name})'
   aliases:
     add_new: Criar pseudónimo
     created_msg: Criou com sucesso um novo pseudónimo. Pode agora iniciar a migração da conta antiga.
@@ -1036,7 +1035,7 @@ pt-PT:
     mention:
       action: Responder
       body: 'Foste mencionado por %{name}:'
-      subject: "%{name} mencionou-te"
+      subject: '%{name} mencionou-te'
       title: Nova menção
     reblog:
       body: 'O teu post foi partilhado por %{name}:'
@@ -1274,7 +1273,7 @@ pt-PT:
 
       <h3 id="protect">Como é que nós protegemos a tua informação?</h3>
 
-      <p>Nós implementamos uma variedade de medidas de segurança para garantir a segurança da tua informação pessoal quando tu introduzes, submetes ou acedes à mesma. Entre outras coisas, a tua sessão de navegação, tal como o tráfego entre as tuas aplicações e a API, estão seguras por SSL e a tua palavra-passe é codificada usando um forte algoritmo de sentido único. Tu podes activar a autenticação em dois passos para aumentares ainda mais a segurança do acesso à tua conta.</p>
+      <p>Nós implementamos uma variedade de medidas de segurança para garantir a segurança da tua informação pessoal quando tu introduzes, submetes ou acedes à mesma. Entre outras coisas, a tua sessão de navegação, tal como o tráfego entre as tuas aplicações e a API, estão seguras por SSL e a tua palavra-passe é codificada usando um forte algoritmo de sentido único. Tu podes ativar a autenticação em dois passos para aumentares ainda mais a segurança do acesso à tua conta.</p>
 
       <hr class="spacer" />
 
@@ -1305,7 +1304,7 @@ pt-PT:
 
       <p>Nós não vendemos, trocamos ou transferimos de qualquer modo a tua informação pessoal que seja identificável para qualquer entidade externa. Isto não inclui terceiros de confiança que nos ajudam a manter o nosso site, conduzir o nosso negócio ou prestar-te este serviço, desde que esses terceiros concordem em manter essa informação confidencial. Poderemos também revelar a tua informação quando nós acreditamos que isso é apropriado para cumprir a lei, forçar a aplicação dos nossos termos de serviço ou proteger os direitos, propriedade e segurança, nossos e de outrem.</p>
 
-      <p>O teu conteúdo público pode ser descarregado por outros servidores na rede. As tuas publicações públicas e exclusivas para os teus seguidores são enviadas para os servidores onde os teus seguidores residem e as mensagens directas são entregues aos servidores dos seus destinatários, no caso desses seguidores ou destinatários residirem num servidor diferente deste.</p>
+      <p>O teu conteúdo público pode ser descarregado por outros servidores na rede. As tuas publicações públicas e exclusivas para os teus seguidores são enviadas para os servidores onde os teus seguidores residem e as mensagens diretas são entregues aos servidores dos seus destinatários, no caso desses seguidores ou destinatários residirem num servidor diferente deste.</p>
 
       <p>Quando tu autorizas uma aplicação a usar a tua conta, dependendo da abrangência das permissões que tu aprovas, ela pode ter acesso à informação pública do teu perfil, à lista de quem segues, aos teus seguidores, às tuas listas, a todas as tuas publicações e aos teus favoritos. As aplicações nunca terão acesso ao teu endereço de e-mail ou à tua palavra-passe.</p>
 
@@ -1325,7 +1324,7 @@ pt-PT:
 
       <p>Se nós decidirmos alterar a nossa política de privacidade, nós iremos publicar essas alterações nesta página.</p>
 
-      <p>Este documento é CC-BY-SA. Ele foi actualizado pela última vez em 7 de Março 2018.</p>
+      <p>Este documento é CC-BY-SA. Ele foi atualizado pela última vez em 7 de Março 2018.</p>
 
       <p>Originalmente adaptado de <a href="https://github.com/discourse/discourse">Discourse privacy policy</a>.</p>
     title: "%{instance} Termos de Serviço e Política de Privacidade"
