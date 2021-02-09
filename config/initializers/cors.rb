@@ -22,11 +22,11 @@ Rails.application.config.middleware.insert_before 0, Rack::Cors do
       methods: [:get],
       credentials: false
     resource '/@:username/:id',
-      headers: :any,
+      headers: [],
       methods: [:get],
       credentials: false
     resource '/users/:username/statuses/:id',
-      headers: :any,
+      headers: [],
       methods: [:get],
       credentials: false
     resource '/api/*',
