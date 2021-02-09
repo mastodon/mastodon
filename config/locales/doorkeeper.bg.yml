@@ -1,10 +1,11 @@
----
 bg:
   activerecord:
     attributes:
       doorkeeper/application:
-        name: Име
+        name: Име на приложение
         redirect_uri: URI за пренасочване
+        scopes: Обхват
+        website: Уебсайт на приложение
     errors:
       models:
         doorkeeper/application:
@@ -33,9 +34,14 @@ bg:
         redirect_uri: Използвай един ред за всяко URI
         scopes: Разделяй диапазоните с интервал. Остави празно, за да използваш диапазона по подразбиране.
       index:
+        application: Приложение
         callback_url: URL за обратно повикване
+        delete: Изтриване
+        empty: Нямате приложения.
         name: Име
         new: Ново приложение
+        scopes: Обхват
+        show: Показване
         title: Твоите приложения
       new:
         title: Ново приложение
@@ -56,6 +62,8 @@ bg:
         able_to: Ще е възможно
         prompt: Приложението %{client_name} заявява достъп до твоя акаунт
         title: Изисква се упълномощаване
+      show:
+        title: Копирайте този код за удостоверяване и го поставете в приложението.
     authorized_applications:
       buttons:
         revoke: Отмяна
@@ -64,6 +72,7 @@ bg:
       index:
         application: Приложение
         created_at: Създадено на
+        date_format: "%Y-%m-%d %H:%M:%S"
         scopes: Диапазони
         title: Твоите упълномощени приложения
     errors:
