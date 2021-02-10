@@ -21,6 +21,7 @@ import { muteStatus, unmuteStatus, deleteStatus } from 'flavours/glitch/actions/
 import { initMuteModal } from 'flavours/glitch/actions/mutes';
 import { initBlockModal } from 'flavours/glitch/actions/blocks';
 import { initReport } from 'flavours/glitch/actions/reports';
+import { initBoostModal } from 'flavours/glitch/actions/boosts';
 import { openModal } from 'flavours/glitch/actions/modal';
 import { deployPictureInPicture } from 'flavours/glitch/actions/picture_in_picture';
 import { changeLocalSetting } from 'flavours/glitch/actions/local_settings';
@@ -96,11 +97,11 @@ const mapDispatchToProps = (dispatch, { intl, contextType }) => ({
     });
   },
 
-  onModalReblog (status) {
+  onModalReblog (status, privacy) {
     if (status.get('reblogged')) {
       dispatch(unreblog(status));
     } else {
-      dispatch(reblog(status));
+      dispatch(reblog(status, privacy));
     }
   },
 
@@ -108,11 +109,11 @@ const mapDispatchToProps = (dispatch, { intl, contextType }) => ({
     dispatch((_, getState) => {
       let state = getState();
       if (state.getIn(['local_settings', 'confirm_boost_missing_media_description']) && status.get('media_attachments').some(item => !item.get('description')) && !status.get('reblogged')) {
-        dispatch(openModal('BOOST', { status, onReblog: this.onModalReblog, missingMediaDescription: true }));
+        dispatch(initBoostModal({ status, onReblog: this.onModalReblog, missingMediaDescription: true }));
       } else if (e.shiftKey || !boostModal) {
         this.onModalReblog(status);
       } else {
-        dispatch(openModal('BOOST', { status, onReblog: this.onModalReblog }));
+        dispatch(initBoostModal({ status, onReblog: this.onModalReblog }));
       }
     });
   },

@@ -24,6 +24,7 @@ import {
 import { initMuteModal } from 'flavours/glitch/actions/mutes';
 import { initBlockModal } from 'flavours/glitch/actions/blocks';
 import { initReport } from 'flavours/glitch/actions/reports';
+import { initBoostModal } from 'flavours/glitch/actions/boosts';
 import { openModal } from 'flavours/glitch/actions/modal';
 import { defineMessages, injectIntl } from 'react-intl';
 import { boostModal, deleteModal } from 'flavours/glitch/util/initial_state';
@@ -67,8 +68,8 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
     });
   },
 
-  onModalReblog (status) {
-    dispatch(reblog(status));
+  onModalReblog (status, privacy) {
+    dispatch(reblog(status, privacy));
   },
 
   onReblog (status, e) {
@@ -78,7 +79,7 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
       if (e.shiftKey || !boostModal) {
         this.onModalReblog(status);
       } else {
-        dispatch(openModal('BOOST', { status, onReblog: this.onModalReblog }));
+        dispatch(initBoostModal({ status, onReblog: this.onModalReblog }));
       }
     }
   },

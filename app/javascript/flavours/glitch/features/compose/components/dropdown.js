@@ -31,6 +31,8 @@ export default class ComposerOptionsDropdown extends React.PureComponent {
     title: PropTypes.string,
     value: PropTypes.string,
     onChange: PropTypes.func,
+    noModal: PropTypes.bool,
+    container: PropTypes.func,
   };
 
   state = {
@@ -42,10 +44,10 @@ export default class ComposerOptionsDropdown extends React.PureComponent {
 
   //  Toggles opening and closing the dropdown.
   handleToggle = ({ target, type }) => {
-    const { onModalOpen } = this.props;
+    const { onModalOpen, noModal } = this.props;
     const { open } = this.state;
 
-    if (isUserTouching()) {
+    if (!noModal && isUserTouching()) {
       if (this.state.open) {
         this.props.onModalClose();
       } else {
@@ -183,6 +185,7 @@ export default class ComposerOptionsDropdown extends React.PureComponent {
       items,
       onChange,
       value,
+      container,
     } = this.props;
     const { open, placement } = this.state;
     const computedClass = classNames('composer--options--dropdown', {
@@ -219,6 +222,7 @@ export default class ComposerOptionsDropdown extends React.PureComponent {
           placement={placement}
           show={open}
           target={this}
+          container={container}
         >
           <DropdownMenu
             items={items}
