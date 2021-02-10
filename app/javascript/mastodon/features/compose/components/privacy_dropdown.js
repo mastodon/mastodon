@@ -157,6 +157,8 @@ class PrivacyDropdown extends React.PureComponent {
     onModalClose: PropTypes.func,
     value: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
+    noDirect: PropTpes.bool,
+    container: PropTypes.func,
     intl: PropTypes.object.isRequired,
   };
 
@@ -166,7 +168,7 @@ class PrivacyDropdown extends React.PureComponent {
   };
 
   handleToggle = ({ target }) => {
-    if (this.props.isUserTouching()) {
+    if (this.props.isUserTouching && this.props.isUserTouching()) {
       if (this.state.open) {
         this.props.onModalClose();
       } else {
@@ -235,12 +237,17 @@ class PrivacyDropdown extends React.PureComponent {
       { icon: 'globe', value: 'public', text: formatMessage(messages.public_short), meta: formatMessage(messages.public_long) },
       { icon: 'unlock', value: 'unlisted', text: formatMessage(messages.unlisted_short), meta: formatMessage(messages.unlisted_long) },
       { icon: 'lock', value: 'private', text: formatMessage(messages.private_short), meta: formatMessage(messages.private_long) },
-      { icon: 'envelope', value: 'direct', text: formatMessage(messages.direct_short), meta: formatMessage(messages.direct_long) },
     ];
+
+    if (!this.props.noDirect) {
+      this.options.push(
+        { icon: 'envelope', value: 'direct', text: formatMessage(messages.direct_short), meta: formatMessage(messages.direct_long) },
+      );
+    }
   }
 
   render () {
-    const { value, intl } = this.props;
+    const { value, container, intl } = this.props;
     const { open, placement } = this.state;
 
     const valueOption = this.options.find(item => item.value === value);
@@ -263,7 +270,7 @@ class PrivacyDropdown extends React.PureComponent {
           />
         </div>
 
-        <Overlay show={open} placement={placement} target={this}>
+        <Overlay show={open} placement={placement} target={this} container={container}>
           <PrivacyDropdownMenu
             items={this.options}
             value={value}
