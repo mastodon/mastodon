@@ -1,4 +1,3 @@
----
 tr:
   simple_form:
     hints:
@@ -13,8 +12,8 @@ tr:
         include_statuses: Kullanıcı hangi tootların denetleme eylemi ya da uyarısına neden olduğunu görecektir
         send_email_notification: Kullanıcı, hesabına ne olduğuna dair bir açıklama alacak
         text_html: İsteğe bağlı. Toot sözdizimleri kullanabilirsiniz. Zamandan kazanmak için <a href="%{path}">uyarı ön-ayarları ekleyebilirsiniz</a>
-        type_html: "<strong>%{acct}</strong> ile ne yapılacağını seçin"
-        warning_preset_id: İsteğe bağlı. Hazır ayarın sonuna hala özel metin ekleyebilirsiniz
+        type_html: <strong>%{acct}</strong> ile ne yapılacağını seçin
+        warning_preset_id: İsteğe bağlı. Hazır ayarın sonuna hala özel metin ekleyebilirsin
       announcement:
         all_day: İşaretlendiğinde, yalnızca zaman aralığındaki tarihler görüntülenir
         ends_at: İsteğe bağlı. Duyuru, bu tarihte otomatik olarak yayından kaldırılacak
@@ -26,11 +25,11 @@ tr:
         avatar: En fazla %{size} olacak şekilde PNG, GIF veya JPG formatında yükleyiniz. %{dimensions}px büyüklüğüne indirgenecektir
         bot: Bu hesap temelde otomatik eylemler gerçekleştirir ve izlenmeyebilir
         context: Filtrenin geçerli olması gereken bir veya daha fazla içerik
-        current_password: Güvenlik nedeniyle lütfen şu anki hesabın parolasını girin
+        current_password: Güvenlik amacıyla lütfen şu anki hesabın parolasını girin
         current_username: Onaylamak için lütfen şu anki hesabın kullanıcı adını girin
         digest: Sadece uzun bir süre hareketsiz kaldıktan sonra ve yalnızca yokluğunuzda herhangi bir kişisel mesaj aldıysanız gönderilir
         discoverable: Profil dizini, hesabınızın daha geniş bir kitleye ulaşmasının başka bir yoludur
-        email: Onay e-postası gönderilecek
+        email: Bir onay e-postası alacaksınız
         fields: Profilinizde tablo olarak görüntülenen en fazla 4 ögeye sahip olabilirsiniz
         header: PNG, GIF ya da JPG. En fazla %{size}. %{dimensions}px boyutuna küçültülecek
         inbox_url: Kullanmak istediğiniz aktarıcının ön sayfasından URL'yi kopyalayın
@@ -58,15 +57,15 @@ tr:
         domain: Bu, e-posta adresinde görünen etki alanı adı, etki alanının çözümlediği MX kaydı veya MX kaydının çözümlediği sunucunun IP'si olabilir. Bunlar kullanıcı kaydı ile kontrol edilecek ve kayıt reddedilecektir.
         with_dns_records: Belirli bir alanın DNS kayıtlarını çözmeyi deneyecek ve sonuçlar kara listeye eklenecek
       featured_tag:
-        name: 'Bunlardan birini kullanmak isteyebilirsiniz:'
+        name: 'Bunlardan birini kullanmak isteyebilirsin:'
       form_challenge:
-        current_password: Güvenli bir bölgeye giriyorsunuz
+        current_password: Güvenli bir bölgeye giriyorsun
       imports:
         data: Diğer Mastodon sunucusundan dışarı aktardığınız CSV dosyası
       invite_request:
         text: Bu, başvurunuzu gözden geçirmemize yardımcı olacaktır
       ip_block:
-        comment: İsteğe bağlı. Bu kuralı neden eklediğinizi hatırlayın.
+        comment: İsteğe bağlı. Bu kuralı neden eklediğinizi unutmayın.
         expires_in: IP adresleri sınırlı bir kaynaktır, bazen paylaşılırlar ve sıklıkla el değiştirirler. Bu nedenle, belirsiz IP blokları önerilmez.
         ip: Bir IPv4 veya IPv6 adresi girin. CIDR sözdizimini kullanarak tüm aralıkları engelleyebilirsiniz. Kendinizi dışarıda bırakmamaya dikkat edin!
         severities:
@@ -74,7 +73,7 @@ tr:
           sign_up_requires_approval: Yeni kayıt onayınızı gerektirir
         severity: Bu IP'den gelen isteklere ne olacağını seçin
       sessions:
-        otp: Telefonunuzdaki two-factor kodunuzu giriniz veya kurtarma kodlarınızdan birini giriniz.
+        otp: 'Telefonunuzdaki two-factor kodunuzu giriniz veya kurtarma kodlarınızdan birini giriniz.'
         webauthn: Bir USB anahtarıysa, taktığınızdan ve gerekirse üzerine tıkladığınızdan emin olun.
       tag:
         name: Harflerin, örneğin daha okunabilir yapmak için, sadece büyük/küçük harf durumlarını değiştirebilirsiniz
@@ -99,10 +98,10 @@ tr:
         type: Eylem
         types:
           disable: Dondur
-          none: Hiç birşey
+          none: Bir uyarı gönder
           sensitive: Hassas
           silence: Limit
-          suspend: Hesap verilerini askıya alın ve geri alınamaz şekilde silin
+          suspend: Askıya al
         warning_preset_id: Bir uyarı ön ayarı kullan
       announcement:
         all_day: Tüm gün etkinliği
@@ -202,7 +201,7 @@ tr:
         name: Etiket
         trendable: Bu etiketin gündem altında görünmesine izin ver
         usable: Tootların bu etiketi kullanmasına izin ver
-    'no': Hayır
+    'no': 'Hayır'
     recommended: Önerilen
     required:
       mark: "*"
@@ -210,4 +209,4 @@ tr:
     title:
       sessions:
         webauthn: Oturum açmak için güvenlik anahtarlarınızdan birini kullanın
-    'yes': Evet
+    'yes': 'Evet'
