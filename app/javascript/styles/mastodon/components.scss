@@ -4220,6 +4220,15 @@ a.status-card.compact:hover {
   }
 }
 
+.modal-root__container .privacy-dropdown {
+  flex-grow: 0;
+}
+
+.modal-root__container .privacy-dropdown__dropdown {
+  pointer-events: auto;
+  z-index: 9999;
+}
+
 .privacy-dropdown__option {
   color: $inverted-text-color;
   padding: 10px;
