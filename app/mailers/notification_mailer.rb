@@ -10,6 +10,8 @@ class NotificationMailer < ApplicationMailer
     @me     = recipient
     @status = notification.target_status
 
+    return if Rails.configuration.x.disable_mailer
+
     return unless @me.user.functional? && @status.present?
 
     locale_for_account(@me) do
@@ -22,6 +24,8 @@ class NotificationMailer < ApplicationMailer
     @me      = recipient
     @account = notification.from_account
 
+    return if Rails.configuration.x.disable_mailer
+
     return unless @me.user.functional?
 
     locale_for_account(@me) do
@@ -33,6 +37,8 @@ class NotificationMailer < ApplicationMailer
     @me      = recipient
     @account = notification.from_account
     @status  = notification.target_status
+
+    return if Rails.configuration.x.disable_mailer
 
     return unless @me.user.functional? && @status.present?
 
@@ -47,6 +53,8 @@ class NotificationMailer < ApplicationMailer
     @account = notification.from_account
     @status  = notification.target_status
 
+    return if Rails.configuration.x.disable_mailer
+
     return unless @me.user.functional? && @status.present?
 
     locale_for_account(@me) do
@@ -59,6 +67,8 @@ class NotificationMailer < ApplicationMailer
     @me      = recipient
     @account = notification.from_account
 
+    return if Rails.configuration.x.disable_mailer
+
     return unless @me.user.functional?
 
     locale_for_account(@me) do
@@ -67,6 +77,8 @@ class NotificationMailer < ApplicationMailer
   end
 
   def digest(recipient, **opts)
+    return if Rails.configuration.x.disable_mailer
+
     return unless recipient.user.functional?
 
     @me                  = recipient
