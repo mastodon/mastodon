@@ -385,6 +385,7 @@ bg:
       too_many: Не мога да прикача повече от 4 файла
   notification_mailer:
     digest:
+      action: Преглед на всички известия
       body: Ето кратко резюме на нещата, които се случиха от последното ти посещение на %{since}
       mention: "%{name} те спомена в:"
       new_followers_summary:
@@ -404,14 +405,33 @@ bg:
       body: "%{name} помоли за разрешение да те последва"
       subject: 'Чакащ последовател: %{name}'
     mention:
+      action: Отговор
       body: '%{name} те спомена в:'
       subject: '%{name} те спомена'
+      title: Ново споменаване
     reblog:
       body: 'Твоята публикация беше споделена от %{name}:'
       subject: "%{name} сподели публикацията ти"
+      title: Ново споделяне
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          billion: млр
+          million: млн
+          thousand: хил
   pagination:
+    newer: По-ново
     next: Напред
+    older: По-старо
     prev: Назад
+    truncate: "&hellip;"
+  polls:
+    errors:
+      already_voted: Вече сте гласували на тази анкета
+  preferences:
+    other: Други
   remote_follow:
     acct: Въведи потребителско_име@домейн, от които искаш да следваш
     missing_resource: Неуспешно търсене на нужния URL за пренасочване за твоя акаунт
