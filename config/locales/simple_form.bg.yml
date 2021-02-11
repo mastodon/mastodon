@@ -1,10 +1,9 @@
----
 bg:
   simple_form:
     hints:
       defaults:
         avatar: PNG, GIF или JPG. До %{size}. Ще бъде смалена до %{dimensions} пиксела
-        header: PNG, GIF или JPG. До %{size}. Ще бъде смалена до %{dimensions} пиксела
+        header: PNG, GIF или JPG. До %{size}. Ще бъдат смалени до %{dimensions} пиксела
         locked: Изисква ръчно одобрение на последователите. По подразбиране, публикациите са достъпни само до последователи.
       imports:
         data: CSV файл, експортиран от друга инстанция на Mastodon
@@ -17,7 +16,7 @@ bg:
         data: Данни
         display_name: Показвано име
         email: E-mail адрес
-        header: Заглавен ред
+        header: Заглавна част
         locale: Език
         locked: Направи акаунта поверителен
         new_password: Нова парола
@@ -37,7 +36,7 @@ bg:
         follow_request: Изпращай e-mail, когато някой пожелае да те последва
         mention: Изпращай e-mail, когато някой те спомене
         reblog: Изпращай e-mail, когато някой сподели твоя публикация
-    'no': Не
+    'no': 'Не'
     required:
       text: задължително
-    'yes': Да
+    'yes': 'Да'
