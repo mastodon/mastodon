@@ -169,12 +169,125 @@ bg:
         staff: Персонал
         user: Потребител
       search: Търсене
+      silence: Ограничение
+      silenced: Ограничено
+      statuses: Състояния
+      subscribe: Абониране
+      suspended: Спряно
+      title: Акаунти
+      unconfirmed_email: Непотвърден имейл
+      username: Потребителско име
+      warn: Предупреждение
+    action_logs:
+      action_types:
+        update_status: Актуализация на състояние
+    announcements:
+      live: На живо
+      new:
+        title: Ново оповестяване
+    custom_emojis:
+      by_domain: Домейн
+      copy: Копиране
+      delete: Изтриване
+      disable: Деактивиране
+      disabled: Изключено
+      emoji: Емоджи
+      enable: Активиране
+      enabled: Активирано
+      list: Изброяване
+      listed: Изброено
+    dashboard:
+      config: Конфигурация
+      feature_registrations: Регистрации
+      feature_spam_check: Анти спам
+      features: Функции
+      open_reports: отваряне на доклади
+      recent_users: Последни потребители
+      software: Софтуер
+      title: Табло
+      trends: Тенденции
+    domain_blocks:
+      domain: Домейн
+      show:
+        undo: Отмяна
+    email_domain_blocks:
+      add_new: Добавяне на ново
+      delete: Изтриване
+      domain: Домейн
+      from_html: от %{domain}
+      new:
+        create: Добавяне на домейн
+    instances:
+      by_domain: Домейн
+      empty: Няма намерени домейни.
+      moderation:
+        all: Всичко
+        limited: Ограничено
+        title: Модерация
+    invites:
+      filter:
+        all: Всичко
+        available: Налично
+        expired: Просрочено
+        title: Филтър
+      title: Покани
+    ip_blocks:
+      add_new: Създаване на правило
+      delete: Изтриване
+      expires_in:
+        '1209600': 2 седмици
+        '15778476': 6 месеца
+        '2629746': 1 месец
+        '31556952': 1 година
+        '86400': 1 ден
+        '94670856': 3 години
+    reports:
+      created_at: Докладвано
+      forwarded: Препратено
+      forwarded_to: Препратено към %{domain}
+      mark_as_resolved: Маркиране като решено
+      mark_as_unresolved: Маркиране като нерешено
+      notes:
+        create: Добавяне на бележка
+        delete: Изтриване
+      resolved: Решено
+      status: Състояние
+      title: Доклади
+      updated_at: Обновено
+    settings:
+      contact_information:
+        email: Бизнес имейл
+        username: Потребителско име на контакт
+      custom_css:
+        title: Персонализиран CSS
+      site_description:
+        title: Описание на сървър
+      site_title: Име на сървър
+    statuses:
+      batch:
+        delete: Изтриване
+      deleted: Изтрито
+      media:
+        title: Мултимедия
+      no_media: Без мултимедия
+      with_media: С мултимедия
+    tags:
+      context: Контекст
+      last_active: Последна дейност
+      most_popular: Най-популярни
+      most_recent: Най-скорошни
+      name: Хаштаг
+      title: Хаштагове
   application_mailer:
     settings: 'Промяна на предпочитанията за e-mail: %{link}'
     view: 'Преглед:'
+    view_profile: Преглед на профил
+    view_status: Преглед на състояние
   applications:
     invalid_url: Предоставеният URL е невалиден
   auth:
+    change_password: Парола
+    delete_account: Изтриване на акаунт
     didnt_get_confirmation: Не получих инструкции за потвърждение
     forgot_password: Забравих си паролата
     login: Влизане
@@ -184,6 +297,8 @@ bg:
     reset_password: Подновяване на паролата
     security: Идентификационни данни
     set_new_password: Задай нова парола
+    status:
+      account_status: Състояние на акаунт
   authorize_follow:
     error: Възникна грешка в откриването на потребителя
     follow: Последвай
@@ -202,6 +317,10 @@ bg:
       x_minutes: "%{count} мин"
       x_months: "%{count} м"
       x_seconds: "%{count} сек"
+  deletes:
+    proceed: Изтриване на акаунт
+  directories:
+    directory: Профилна директория
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
@@ -213,11 +332,46 @@ bg:
     '500':
     '503': The page could not be served due to a temporary server failure.
   exports:
+    archive_takeout:
+      date: Дата
+      size: Размер
     blocks: Вашите блокирания
+    bookmarks: Отметки
+    lists: Списъци
     storage: Съхранение на мултимедия
+  featured_tags:
+    add_new: Добавяне на ново
+  filters:
+    contexts:
+      account: Профили
+      home: Начало и списъци
+      notifications: Известия
+      public: Публични емисии
+      thread: Разговори
+    edit:
+      title: Редакция на филтър
+    index:
+      delete: Изтриване
+      empty: Нямате филтри.
+      title: Филтри
+    new:
+      title: Добавяне на нов филтър
+  footer:
+    developers: Разработчици
+    more: Още…
+    resources: Ресурси
+    trending_now: Налагащи се сега
   generic:
+    all: Всичко
     changes_saved_msg: Успешно запазване на промените!
+    copy: Копиране
+    delete: Изтриване
+    order_by: Подреждане по
     save_changes: Запази промените
+  identity_proofs:
+    active: Активно
+    identity: Идентичност
+    inactive: Неактивно
   imports:
     preface: Можеш да импортираш някои данни, като например всички хора, които следваш или блокираш в акаунта си на тази инстанция, от файлове, създадени чрез експорт в друга инстанция.
     success: Твоите данни бяха успешно качени и ще бъдат обработени впоследствие
@@ -245,6 +399,7 @@ bg:
     follow:
       body: "%{name} те последва!"
       subject: "%{name} те последва"
+      title: Нов последовател
     follow_request:
       body: "%{name} помоли за разрешение да те последва"
       subject: 'Чакащ последовател: %{name}'
