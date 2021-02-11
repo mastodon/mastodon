@@ -6,6 +6,8 @@ module Admin
   class ExportDomainBlocksController < BaseController
     include AdminExportControllerConcern
 
+    before_action :set_dummy_import!, only: [:new]
+
     ROWS_PROCESSING_LIMIT = 20_000
 
     def new

@@ -3,12 +3,6 @@
 module AdminExportControllerConcern
   extend ActiveSupport::Concern
 
-  included do
-    before_action :set_dummy_import!, only: [:new, :create]
-
-    skip_before_action :require_functional!
-  end
-
   private
 
   def send_export_file
