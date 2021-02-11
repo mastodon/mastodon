@@ -161,5 +161,3 @@ gem 'connection_pool', require: false
 
 gem 'xorcist', '~> 1.1'
 gem 'pluck_each', '~> 0.1.3'
-
-gem 'secure_headers', '~> 3.5'
