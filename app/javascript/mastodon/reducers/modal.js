@@ -15,6 +15,8 @@ export default function modal(state = initialState, action) {
   case TIMELINE_DELETE:
     if (state.modalProps.statusId === action.id) {
       return (action.modalType === undefined || action.modalType === state.modalType) ? initialState : state;
+    } else {
+      return state;
     }
   default:
     return state;
