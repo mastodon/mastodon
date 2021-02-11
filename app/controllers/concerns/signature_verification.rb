@@ -101,7 +101,7 @@ module SignatureVerification
   rescue HTTP::Error, OpenSSL::SSL::SSLError => e
     @signature_verification_failure_reason = "Failed to fetch remote data: #{e.message}"
     @signed_request_account = nil
-  rescue Mastodon::UnexptectedResponseError
+  rescue Mastodon::UnexpectedResponseError
     @signature_verification_failure_reason = "Failed to fetch remote data (got unexpected reply from server)"
     @signed_request_account = nil
   rescue Stoplight::Error::RedLight

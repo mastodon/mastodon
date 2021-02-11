@@ -21,10 +21,10 @@ class ActivityPub::FetchRemoteAccountService < BaseService
         body_to_json(prefetched_body, compare_id: id ? uri : nil)
       end
     rescue Oj::ParseError
-      raise ParsingError
+      raise Error, "Error parsing JSON-LD document #{uri}"
     end
 
-    raise Error, 'Error fetching actor JSON' if @json.nil?
+    raise Error, "Error fetching actor JSON at #{uri}" if @json.nil?
     raise Error, "Unsupported JSON-LD context for document #{uri}" unless supported_context?
     raise Error, "Unexpected object type for actor #{uri} (expected any of: #{SUPPORTED_TYPES})" unless expected_type?
     raise Error, "Actor #{uri} has moved to #{@json['movedTo']}" if (break_on_redirect && @json['movedTo'].present?)
