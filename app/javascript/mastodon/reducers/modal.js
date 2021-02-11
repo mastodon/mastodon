@@ -1,4 +1,5 @@
 import { MODAL_OPEN, MODAL_CLOSE } from '../actions/modal';
+import { TIMELINE_DELETE } from '../actions/timelines';
 
 const initialState = {
   modalType: null,
@@ -11,6 +12,10 @@ export default function modal(state = initialState, action) {
     return { modalType: action.modalType, modalProps: action.modalProps };
   case MODAL_CLOSE:
     return (action.modalType === undefined || action.modalType === state.modalType) ? initialState : state;
+  case TIMELINE_DELETE:
+    if (state.modalProps.statusId === action.id) {
+      return (action.modalType === undefined || action.modalType === state.modalType) ? initialState : state;
+    }
   default:
     return state;
   }
