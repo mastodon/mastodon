@@ -19,25 +19,30 @@ module Admin
 
     def import
       authorize :domain_block, :create?
-      @import = Admin::Import.new(import_params)
-      parse_import_data!(export_headers)
+      begin
+        @import = Admin::Import.new(import_params)
+        parse_import_data!(export_headers)
 
-      @data.take(ROWS_PROCESSING_LIMIT).each do |row|
-        domain = row['#domain'].strip
-        next if DomainBlock.rule_for(domain).present?
+        @data.take(ROWS_PROCESSING_LIMIT).each do |row|
+          domain = row['#domain'].strip
+          next if DomainBlock.rule_for(domain).present?
 
-        domain_block = DomainBlock.new(domain: domain,
-                                       severity: row['#severity'].strip,
-                                       reject_media: row['#reject_media'].strip,
-                                       reject_reports: row['#reject_reports'].strip,
-                                       public_comment: row['#public_comment'].strip,
-                                       obfuscate: row['#obfuscate'].strip)
-        if domain_block.save
-          DomainBlockWorker.perform_async(domain_block.id)
-          log_action :create, domain_block
+          domain_block = DomainBlock.new(domain: domain,
+                                         severity: row['#severity'].strip,
+                                         reject_media: row['#reject_media'].strip,
+                                         reject_reports: row['#reject_reports'].strip,
+                                         public_comment: row['#public_comment'].strip,
+                                         obfuscate: row['#obfuscate'].strip)
+          if domain_block.save
+            DomainBlockWorker.perform_async(domain_block.id)
+            log_action :create, domain_block
+          end
         end
+        flash[:notice] = I18n.t('admin.domain_blocks.created_msg')
+      rescue ActionController::ParameterMissing
+        flash[:error] = I18n.t('admin.export_domain_blocks.no_file')
       end
-      redirect_to admin_instances_path(limited: '1'), notice: I18n.t('admin.domain_blocks.created_msg')
+      redirect_to admin_instances_path(limited: '1')
     end
 
     private

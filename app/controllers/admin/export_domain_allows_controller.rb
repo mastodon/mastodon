@@ -19,17 +19,22 @@ module Admin
 
     def import
       authorize :domain_allow, :create?
-      @import = Admin::Import.new(import_params)
-      parse_import_data!(export_headers)
+      begin
+        @import = Admin::Import.new(import_params)
+        parse_import_data!(export_headers)
 
-      @data.take(ROWS_PROCESSING_LIMIT).each do |row|
-        domain = row['#domain'].strip
-        next if DomainAllow.allowed?(domain)
+        @data.take(ROWS_PROCESSING_LIMIT).each do |row|
+          domain = row['#domain'].strip
+          next if DomainAllow.allowed?(domain)
 
-        domain_allow = DomainAllow.new(domain: domain)
-        log_action :create, domain_allow if domain_allow.save
+          domain_allow = DomainAllow.new(domain: domain)
+          log_action :create, domain_allow if domain_allow.save
+        end
+        flash[:notice] = I18n.t('admin.domain_allows.created_msg')
+      rescue ActionController::ParameterMissing
+        flash[:error] = I18n.t('admin.export_domain_allows.no_file')
       end
-      redirect_to admin_instances_path, notice: I18n.t('admin.domain_allows.created_msg')
+      redirect_to admin_instances_path
     end
 
     private

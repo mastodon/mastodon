@@ -38,4 +38,10 @@ RSpec.describe Admin::ExportDomainBlocksController, type: :controller do
       expect(response.body).to eq(IO.read(File.join(self.class.fixture_path, 'files/domain_blocks.csv')))
     end
   end
+
+  it 'displays error on no file selected' do
+    post :import, params: { admin_import: {} }
+    expect(response).to redirect_to(admin_instances_path(limited: '1'))
+    expect(flash[:error]).to eq(I18n.t('admin.export_domain_blocks.no_file'))
+  end
 end

@@ -32,5 +32,11 @@ RSpec.describe Admin::ExportDomainAllowsController, type: :controller do
       expect(response).to have_http_status(200)
       expect(response.body).to eq(IO.read(File.join(self.class.fixture_path, 'files/domain_allows.csv')))
     end
+
+    it 'displays error on no file selected' do
+      post :import, params: { admin_import: {} }
+      expect(response).to redirect_to(admin_instances_path)
+      expect(flash[:error]).to eq(I18n.t('admin.export_domain_allows.no_file'))
+    end
   end
 end

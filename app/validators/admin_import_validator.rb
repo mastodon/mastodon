@@ -14,6 +14,6 @@ class AdminImportValidator < ActiveModel::Validator
     row_count  = csv_data.size
     row_count -= 1 if csv_data.first&.first == FIRST_HEADER
 
-    import.errors.add(:data, I18n.t('imports.errors.over_rows_processing_limit', count: ImportService::ROWS_PROCESSING_LIMIT)) if row_count > Admin::DomainBlocksController::ROWS_PROCESSING_LIMIT
+    import.errors.add(:data, I18n.t('imports.errors.over_rows_processing_limit', count: Admin::DomainBlocksController::ROWS_PROCESSING_LIMIT)) if row_count > Admin::DomainBlocksController::ROWS_PROCESSING_LIMIT
   end
 end
