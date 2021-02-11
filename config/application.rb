@@ -25,6 +25,7 @@ require_relative '../lib/devise/two_factor_pam_authenticatable'
 require_relative '../lib/chewy/strategy/custom_sidekiq'
 require_relative '../lib/webpacker/manifest_extensions'
 require_relative '../lib/webpacker/helper_extensions'
+require_relative '../lib/action_dispatch/cookie_jar_extensions'
 require_relative '../lib/rails/engine_extensions'
 
 Dotenv::Railtie.load
@@ -146,42 +147,6 @@ module Mastodon
       Devise::FailureApp.send :include, AbstractController::Callbacks
       Devise::FailureApp.send :include, HttpAcceptLanguage::EasyAccess
       Devise::FailureApp.send :include, Localized
-    end
-
-    # Setting config.action_dispatch.always_write_cookie has to be done before
-    # running initializers, otherwise it isn't picked up by railties
-    config.before_initialize do
-      port     = ENV.fetch('PORT') { 3000 }
-      host     = ENV.fetch('LOCAL_DOMAIN') { "localhost:#{port}" }
-      web_host = ENV.fetch('WEB_DOMAIN') { host }
-
-      alternate_domains = ENV.fetch('ALTERNATE_DOMAINS') { '' }
-
-      https = Rails.env.production? || ENV['LOCAL_HTTPS'] == 'true'
-
-      config.x.local_domain = host
-      config.x.web_domain   = web_host
-      config.x.use_https    = https
-      config.x.use_s3       = ENV['S3_ENABLED'] == 'true'
-      config.x.use_swift    = ENV['SWIFT_ENABLED'] == 'true'
-
-      config.x.alternate_domains = alternate_domains.split(/\s*,\s*/)
-
-      config.action_mailer.default_url_options = { host: web_host, protocol: https ? 'https://' : 'http://', trailing_slash: false }
-
-      config.x.streaming_api_base_url = ENV.fetch('STREAMING_API_BASE_URL') do
-        if Rails.env.production?
-          "ws#{https ? 's' : ''}://#{web_host}"
-        else
-          "ws://#{ENV['REMOTE_DEV'] == 'true' ? host.split(':').first : 'localhost'}:4000"
-        end
-      end
-
-      domains = config.x.alternate_domains
-      domains << config.x.local_domain
-      domains << config.x.web_domain
-
-      config.action_dispatch.always_write_cookie = domains.any? { |domain| domain.end_with?('.onion') }
     end
   end
 end
