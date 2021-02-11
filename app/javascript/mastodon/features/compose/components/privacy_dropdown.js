@@ -157,7 +157,7 @@ class PrivacyDropdown extends React.PureComponent {
     onModalClose: PropTypes.func,
     value: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
-    noDirect: PropTpes.bool,
+    noDirect: PropTypes.bool,
     container: PropTypes.func,
     intl: PropTypes.object.isRequired,
   };
