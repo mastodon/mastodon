@@ -13,11 +13,7 @@ export default function modal(state = initialState, action) {
   case MODAL_CLOSE:
     return (action.modalType === undefined || action.modalType === state.modalType) ? initialState : state;
   case TIMELINE_DELETE:
-    if (state.modalProps.statusId === action.id) {
-      return (action.modalType === undefined || action.modalType === state.modalType) ? initialState : state;
-    } else {
-      return state;
-    }
+    return (state.modalProps.statusId === action.id) ? initialState : state;
   default:
     return state;
   }
