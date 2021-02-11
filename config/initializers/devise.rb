@@ -9,6 +9,7 @@ Warden::Manager.after_set_user except: :fetch do |user, warden|
     value: session_id,
     expires: 1.year.from_now,
     httponly: true,
+    secure: (Rails.env.production? || ENV['LOCAL_HTTPS'] == 'true'),
     same_site: :lax,
   }
 end
@@ -19,6 +20,7 @@ Warden::Manager.after_fetch do |user, warden|
       value: warden.cookies.signed['_session_id'] || warden.raw_session['auth_id'],
       expires: 1.year.from_now,
       httponly: true,
+      secure: (Rails.env.production? || ENV['LOCAL_HTTPS'] == 'true'),
       same_site: :lax,
     }
   else
@@ -226,6 +228,10 @@ Devise.setup do |config|
 
   # If true, extends the user's remember period when remembered via cookie.
   # config.extend_remember_period = false
+
+  # Options to be passed to the created cookie. For instance, you can set
+  # secure: true in order to force SSL only cookies.
+  config.rememberable_options = { secure: true }
 
   # ==> Configuration for :validatable
   # Range for password length.
