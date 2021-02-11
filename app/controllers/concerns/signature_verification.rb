@@ -93,20 +93,15 @@ module SignatureVerification
 
     return account unless verify_signature(account, signature, compare_signed_string).nil?
 
-    @signature_verification_failure_reason = "Verification failed for #{account.username}@#{account.domain} #{account.uri} using rsa-sha256 (RSASSA-PKCS1-v1_5 with SHA-256)"
-    @signed_request_account = nil
+    fail_with! "Verification failed for #{account.username}@#{account.domain} #{account.uri} using rsa-sha256 (RSASSA-PKCS1-v1_5 with SHA-256)"
   rescue SignatureVerificationError => e
-    @signature_verification_failure_reason = e.message
-    @signed_request_account = nil
+    fail_with! e.message
   rescue HTTP::Error, OpenSSL::SSL::SSLError => e
-    @signature_verification_failure_reason = "Failed to fetch remote data: #{e.message}"
-    @signed_request_account = nil
-  rescue Mastodon::UnexpectedResponseError
-    @signature_verification_failure_reason = "Failed to fetch remote data (got unexpected reply from server)"
-    @signed_request_account = nil
+    fail_with! "Failed to fetch remote data: #{e.message}"
+  rescue Mastodon::UnexptectedResponseError
+    fail_with! "Failed to fetch remote data (got unexpected reply from server)"
   rescue Stoplight::Error::RedLight
-    @signature_verification_failure_reason = "Fetching attempt skipped because of recent connection failure"
-    @signed_request_account = nil
+    fail_with! "Fetching attempt skipped because of recent connection failure"
   end
 
   def request_body
@@ -114,6 +109,11 @@ module SignatureVerification
   end
 
   private
+
+  def fail_with!(message)
+    @signature_verification_failure_reason = message
+    @signed_request_account = nil
+  end
 
   def signature_params
     @signature_params ||= begin
