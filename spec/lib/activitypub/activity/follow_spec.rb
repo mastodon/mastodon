@@ -17,62 +17,171 @@ RSpec.describe ActivityPub::Activity::Follow do
   describe '#perform' do
     subject { described_class.new(json, sender) }
 
-    context 'unlocked account' do
-      before do
-        subject.perform
+    context 'with no prior follow' do
+      context 'unlocked account' do
+        before do
+          subject.perform
+        end
+
+        it 'creates a follow from sender to recipient' do
+          expect(sender.following?(recipient)).to be true
+          expect(sender.active_relationships.find_by(target_account: recipient).uri).to eq 'foo'
+        end
+
+        it 'does not create a follow request' do
+          expect(sender.requested?(recipient)).to be false
+        end
       end
 
-      it 'creates a follow from sender to recipient' do
-        expect(sender.following?(recipient)).to be true
+      context 'silenced account following an unlocked account' do
+        before do
+          sender.touch(:silenced_at)
+          subject.perform
+        end
+
+        it 'does not create a follow from sender to recipient' do
+          expect(sender.following?(recipient)).to be false
+        end
+
+        it 'creates a follow request' do
+          expect(sender.requested?(recipient)).to be true
+          expect(sender.follow_requests.find_by(target_account: recipient).uri).to eq 'foo'
+        end
       end
 
-      it 'does not create a follow request' do
-        expect(sender.requested?(recipient)).to be false
+      context 'unlocked account muting the sender' do
+        before do
+          recipient.mute!(sender)
+          subject.perform
+        end
+
+        it 'creates a follow from sender to recipient' do
+          expect(sender.following?(recipient)).to be true
+          expect(sender.active_relationships.find_by(target_account: recipient).uri).to eq 'foo'
+        end
+
+        it 'does not create a follow request' do
+          expect(sender.requested?(recipient)).to be false
+        end
+      end
+
+      context 'locked account' do
+        before do
+          recipient.update(locked: true)
+          subject.perform
+        end
+
+        it 'does not create a follow from sender to recipient' do
+          expect(sender.following?(recipient)).to be false
+        end
+
+        it 'creates a follow request' do
+          expect(sender.requested?(recipient)).to be true
+          expect(sender.follow_requests.find_by(target_account: recipient).uri).to eq 'foo'
+        end
       end
     end
 
-    context 'silenced account following an unlocked account' do
+    context 'when a follow relationship already exists' do
       before do
-        sender.touch(:silenced_at)
-        subject.perform
+        sender.active_relationships.create!(target_account: recipient, uri: 'bar')
       end
 
-      it 'does not create a follow from sender to recipient' do
-        expect(sender.following?(recipient)).to be false
+      context 'unlocked account' do
+        before do
+          subject.perform
+        end
+
+        it 'correctly sets the new URI' do
+          expect(sender.active_relationships.find_by(target_account: recipient).uri).to eq 'foo'
+        end
+
+        it 'does not create a follow request' do
+          expect(sender.requested?(recipient)).to be false
+        end
       end
 
-      it 'creates a follow request' do
-        expect(sender.requested?(recipient)).to be true
+      context 'silenced account following an unlocked account' do
+        before do
+          sender.touch(:silenced_at)
+          subject.perform
+        end
+
+        it 'correctly sets the new URI' do
+          expect(sender.active_relationships.find_by(target_account: recipient).uri).to eq 'foo'
+        end
+
+        it 'does not create a follow request' do
+          expect(sender.requested?(recipient)).to be false
+        end
+      end
+
+      context 'unlocked account muting the sender' do
+        before do
+          recipient.mute!(sender)
+          subject.perform
+        end
+
+        it 'correctly sets the new URI' do
+          expect(sender.active_relationships.find_by(target_account: recipient).uri).to eq 'foo'
+        end
+
+        it 'does not create a follow request' do
+          expect(sender.requested?(recipient)).to be false
+        end
+      end
+
+      context 'locked account' do
+        before do
+          recipient.update(locked: true)
+          subject.perform
+        end
+
+        it 'correctly sets the new URI' do
+          expect(sender.active_relationships.find_by(target_account: recipient).uri).to eq 'foo'
+        end
+
+        it 'does not create a follow request' do
+          expect(sender.requested?(recipient)).to be false
+        end
       end
     end
 
-    context 'unlocked account muting the sender' do
+    context 'when a follow request already exists' do
       before do
-        recipient.mute!(sender)
-        subject.perform
+        sender.follow_requests.create!(target_account: recipient, uri: 'bar')
       end
 
-      it 'creates a follow from sender to recipient' do
-        expect(sender.following?(recipient)).to be true
+      context 'silenced account following an unlocked account' do
+        before do
+          sender.touch(:silenced_at)
+          subject.perform
+        end
+
+        it 'does not create a follow from sender to recipient' do
+          expect(sender.following?(recipient)).to be false
+        end
+
+        it 'correctly sets the new URI' do
+          expect(sender.requested?(recipient)).to be true
+          expect(sender.follow_requests.find_by(target_account: recipient).uri).to eq 'foo'
+        end
       end
 
-      it 'does not create a follow request' do
-        expect(sender.requested?(recipient)).to be false
-      end
-    end
+      context 'locked account' do
+        before do
+          recipient.update(locked: true)
+          subject.perform
+        end
 
-    context 'locked account' do
-      before do
-        recipient.update(locked: true)
-        subject.perform
-      end
+        it 'does not create a follow from sender to recipient' do
+          expect(sender.following?(recipient)).to be false
+        end
 
-      it 'does not create a follow from sender to recipient' do
-        expect(sender.following?(recipient)).to be false
-      end
-
-      it 'creates a follow request' do
-        expect(sender.requested?(recipient)).to be true
+        it 'correctly sets the new URI' do
+          expect(sender.requested?(recipient)).to be true
+          expect(sender.follow_requests.find_by(target_account: recipient).uri).to eq 'foo'
+        end
       end
     end
   end
