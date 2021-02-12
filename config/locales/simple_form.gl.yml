@@ -19,7 +19,7 @@ gl:
         ends_at: Opcional. O anuncio non se publicará de xeito automático neste intre
         scheduled_at: Déixao baleiro para publicar o anuncio de xeito inmediato
         starts_at: Opcional. No caso de que o teu anuncio estea vinculado a un intre de tempo específico
-        text: Podes empregar a sintaxe do toot. Ten en conta o espazo que ocupará o anuncio na pantalla do usuario
+        text: Podes empregar a sintaxe do toot. Ten en conta o espazo que ocupará o anuncio na pantalla da usuaria
       defaults:
         autofollow: As persoas que se conectaron a través dun convite seguirante automáticamente
         avatar: PNG, GIF ou JPG.  Máximo %{size}. Será reducida a %{dimensions}px
@@ -111,6 +111,7 @@ gl:
         text: Anuncio
       defaults:
         autofollow: Convida a seguir a tua conta
+        avatar: Avatar
         bot: Esta conta é de un bot
         chosen_languages: Filtrar idiomas
         confirm_new_password: Confirma o novo contrasinal
@@ -180,6 +181,7 @@ gl:
         text: Por que queres unirte?
       ip_block:
         comment: Comentario
+        ip: IP
         severities:
           no_access: Bloquear acceso
           sign_up_requires_approval: Limitar o rexistro
@@ -202,6 +204,7 @@ gl:
     'no': 'Non'
     recommended: Recomendado
     required:
+      mark: "*"
       text: requerido
     title:
       sessions:
