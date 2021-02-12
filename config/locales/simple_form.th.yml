@@ -1,4 +1,3 @@
----
 th:
   simple_form:
     hints:
@@ -174,7 +173,6 @@ th:
         text: ทำไมคุณจึงต้องการเข้าร่วม?
       ip_block:
         comment: ความคิดเห็น
-        ip: IP
         severities:
           no_access: ปิดกั้นการเข้าถึง
           sign_up_requires_approval: จำกัดการลงทะเบียน
@@ -194,9 +192,8 @@ th:
         name: แฮชแท็ก
         trendable: อนุญาตให้แฮชแท็กนี้ปรากฏภายใต้แนวโน้ม
         usable: อนุญาตให้โพสต์ใช้แฮชแท็กนี้
-    'no': ไม่
+    'no': 'ไม่'
     recommended: แนะนำ
     required:
-      mark: "*"
       text: ต้องระบุ
-    'yes': ใช่
+    'yes': 'ใช่'
