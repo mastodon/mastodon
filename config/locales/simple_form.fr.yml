@@ -1,4 +1,3 @@
----
 fr:
   simple_form:
     hints:
@@ -96,7 +95,6 @@ fr:
         include_statuses: Inclure les pouets signalés dans le courriel
         send_email_notification: Notifier l’utilisateur par courriel
         text: Attention personnalisée
-        type: Action
         types:
           disable: Désactiver
           none: Ne rien faire
@@ -170,8 +168,6 @@ fr:
         whole_word: Mot entier
       email_domain_block:
         with_dns_records: Inclure les enregistrements MX et IP du domaine
-      featured_tag:
-        name: Hashtag
       interactions:
         must_be_follower: Bloquer les notifications des personnes qui ne vous suivent pas
         must_be_following: Bloquer les notifications des personnes que vous ne suivez pas
@@ -182,7 +178,6 @@ fr:
         text: Pourquoi voulez-vous vous inscrire ?
       ip_block:
         comment: Commentaire
-        ip: IP
         severities:
           no_access: Bloquer l’accès
           sign_up_requires_approval: Limite des inscriptions
@@ -199,15 +194,13 @@ fr:
         trending_tag: Un hashtag non approuvé est dans les tendances
       tag:
         listable: Autoriser ce hashtag à apparaître dans les recherches et dans l’annuaire des profils
-        name: Hashtag
         trendable: Autoriser ce hashtag à apparaitre dans les tendances
         usable: Autoriser les pouets à utiliser ce hashtag
-    'no': Non
+    'no': 'Non'
     recommended: Recommandé
     required:
-      mark: "*"
       text: champs requis
     title:
       sessions:
         webauthn: Utilisez l'une de vos clés de sécurité pour vous connecter
-    'yes': Oui
+    'yes': 'Oui'
