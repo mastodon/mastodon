@@ -564,6 +564,7 @@ co:
       domain_blocks_rationale:
         title: Vede ragiò
       enable_bootstrap_timeline_accounts:
+        desc_html: Fà chì i novi utilizatori siguiteghjinu autumaticamente i conti cunfigurati da chì e so pagine d'accolta ùn sianu micca viote
         title: Attivà l'abbunamenti predefiniti per l'utilizatori novi
       hero:
         desc_html: Affissatu nant’a pagina d’accolta. Ricumandemu almenu 600x100px. S’ellu ùn hè micca definiti, a vignetta di u servore sarà usata
@@ -591,6 +592,7 @@ co:
           disabled: Nimu
           title: Auturizà l’invitazione da
         require_invite_text:
+          desc_html: Quandu l'arregistramenti necessitanu un'apprubazione manuale, fà chì u testu "Perchè vulete ghjunghje?" sia ubligatoriu invece d'esse facultativu
           title: Richiede chì i novi utilizatori empiinu una dumanda d'invitazione
       registrations_mode:
         modes:
@@ -1156,7 +1158,11 @@ co:
       firefox_os: Firefox OS
       ios: iOS
       linux: Linux
+      mac: macOS
       other: piattaforma scunnisciuta
+      windows: Windows
+      windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
     revoke: Rivucà
     revoke_success: Sessione rivucata
     title: Sessioni
@@ -1186,6 +1192,9 @@ co:
     spam_detected: Quessu ghjè un riportu automaticu. Un spam hè statu ditettatu.
   statuses:
     attached:
+      audio:
+        one: "%{count} audio"
+        other: "%{count} audio"
       description: 'Aghjuntu: %{attached}'
       image:
         one: "%{count} ritrattu"
@@ -1221,6 +1230,7 @@ co:
     show_older: Vede i più anziani
     show_thread: Vede u filu
     sign_in_to_participate: Cunnettatevi per participà à a cunversazione
+    title: '%{name}: "%{quote}"'
     visibilities:
       private: Solu per l’abbunati
       private_long: Mustrà solu à l’abbunati
@@ -1324,6 +1334,7 @@ co:
   time:
     formats:
       default: "%d %b %Y, %H:%M"
+      month: "%b %Y"
   two_factor_authentication:
     add: Aghjunghje
     disable: Disattivà
