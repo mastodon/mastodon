@@ -37,7 +37,7 @@ class ActivityPub::FetchRemoteAccountService < BaseService
 
     ActivityPub::ProcessAccountService.new.call(@username, @domain, @json, only_key: only_key, verified_webfinger: !only_key)
   rescue Error => e
-    Rails.logger.debug "Fetching account #{uri} failed: e.message"
+    Rails.logger.debug "Fetching account #{uri} failed: #{e.message}"
     raise unless suppress_errors
   end
 
