@@ -1,13 +1,11 @@
----
 nn:
   about:
-    about_hashtag_html: Dette er offentlege tut merkt med <strong>#%{hashtag}</strong>. Du kan nytta dei om du har ein konto kvar som helst i fødiverset.
+    about_hashtag_html: 'Dette er offentlege tut merkt med <strong>#%{hashtag}</strong>. Du kan nytta dei om du har ein konto kvar som helst i fødiverset.'
     about_mastodon_html: 'Framtidas sosiale nettverk: Ingen annonsar, ingen verksemder som overvaker deg, etisk design og desentralisering! Eig idéane dine med Mastodon!'
     about_this: Om oss
     active_count_after: aktiv
     active_footnote: Månadlege aktive brukarar (MAB)
     administered_by: 'Administrert av:'
-    api: API
     apps: Mobilappar
     apps_platforms: Bruk Mastodon på iOS, Android og andre plattformer
     browse_directory: Bla gjennom en profilmappe og filtrer etter interesser
@@ -20,16 +18,15 @@ nn:
     documentation: Dokumentasjon
     federation_hint_html: Med ein konto på %{instance} kan du fylgja folk på kva som helst slags Mastod-tenar og meir.
     get_apps: Prøv ein mobilapp
-    hosted_on: "%{domain} er vert for Mastodon"
-    instance_actor_flash: "Denne brukeren er en virtuell aktør brukt til å representere selve serveren og ingen individuell bruker. Det brukes til foreningsformål og bør ikke blokkeres med mindre du vil blokkere hele instansen, hvor domeneblokkering bør brukes i stedet. \n"
+    hosted_on: '%{domain} er vert for Mastodon'
+    instance_actor_flash: |
+      Denne brukeren er en virtuell aktør brukt til å representere selve serveren og ingen individuell bruker. Det brukes til foreningsformål og bør ikke blokkeres med mindre du vil blokkere hele instansen, hvor domeneblokkering bør brukes i stedet. 
+
     learn_more: Lær meir
     privacy_policy: Personvernsreglar
     see_whats_happening: Sjå kva som skjer
     server_stats: 'Tenarstatistikk:'
     source_code: Kjeldekode
-    status_count_after:
-      one: status
-      other: statusar
     status_count_before: Som skreiv
     tagline: Fylg vener og oppdag nye
     terms: Brukarvilkår
@@ -61,7 +58,6 @@ nn:
     joined: Vart med %{date}
     last_active: sist aktiv
     link_verified_on: Eigarskap for denne lenkja vart sist sjekka %{date}
-    media: Media
     moved_html: "%{name} har flytta til %{new_profile_link}:"
     network_hidden: Denne informasjonen er ikkje tilgjengeleg
     never_active: Aldri
@@ -127,7 +123,7 @@ nn:
       header: Overskrift
       inbox_url: Innbokslenkje
       invited_by: Innboden av
-      ip: IP
+      ip: IP-adresse
       joined: Vart med
       location:
         all: Alle
@@ -170,8 +166,6 @@ nn:
       resubscribe: Ting på nytt
       role: Løyve
       roles:
-        admin: Administrator
-        moderator: Moderator
         staff: Personell
         user: Brukar
       search: Søk
@@ -306,7 +300,6 @@ nn:
       disable: Slå av
       disabled: Slege av
       disabled_msg: Deaktiverte emoji
-      emoji: Emoji
       enable: Slå på
       enabled: Slege på
       enabled_msg: Aktiverte kjensleteikn
@@ -435,7 +428,7 @@ nn:
         all: Alle
         available: Tilgjengeleg
         expired: Utgått
-        title: Filter
+        title: Filtrer
       title: Innbydingar
     ip_blocks:
       add_new: Opprett regel
@@ -469,7 +462,6 @@ nn:
       save_and_enable: Lagr og slå på
       setup: Sett opp en overgangsforbindelse
       signatures_not_enabled: Overganger vil ikke fungere riktig mens sikkermodus eller hvitelistingsmodus er skrudd på
-      status: Status
       title: Vidaresendingar
     report_notes:
       created_msg: Rapportmerknad laga!
@@ -504,7 +496,6 @@ nn:
       reported_by: Rapportert av
       resolved: Oppløyst
       resolved_msg: Rapporten er løyst!
-      status: Status
       title: Rapportar
       unassign: Avset
       unresolved: Uløyst
@@ -604,8 +595,6 @@ nn:
         nsfw_on: NSFW PÅ
       deleted: Sletta
       failed_to_execute: Lét seg ikkje gjera
-      media:
-        title: Media
       no_media: Ingen media
       no_status_selected: Ingen statusar vart endra sidan ingen vart valde
       title: Kontostatusar
@@ -641,10 +630,10 @@ nn:
     new_report:
       body: "%{reporter} har rapportert %{target}"
       body_remote: Nokon frå %{domain} har meldt %{target}
-      subject: Ny rapport for %{instance} (#%{id})
+      subject: 'Ny rapport for %{instance} (#%{id})'
     new_trending_tag:
       body: 'Emneknaggen #%{name} trender i dag, men den har ikke blitt gjennomgått tidligere. Den vil ikke bli vist offentlig med mindre du tillater at den blir det, eller du kan bare lagre skjemaet slik det er for å aldri høre om det igjen.'
-      subject: Ny emneknagg ventar gjennomgang på %{instance} (#%{name})
+      subject: 'Ny emneknagg ventar gjennomgang på %{instance} (#%{name})'
   aliases:
     add_new: Lag psevdonym
     created_msg: Laga eit nytt kallenamn. No kan du setja i gang med flyttinga frå den gamle kontoen.
@@ -660,13 +649,11 @@ nn:
     discovery: Oppdaging
     localization:
       body: Mastodon er oversatt av frivillige.
-      guide_link: https://crowdin.com/project/mastodon
       guide_link_text: Alle kan bidra.
     sensitive_content: Sensitivt innhold
     toot_layout: Tutoppsett
   application_mailer:
     notification_preferences: Endr e-post-innstillingane
-    salutation: "%{name},"
     settings: 'Endr e-post-innstillingar: %{link}'
     view: 'Sjå:'
     view_profile: Sjå profil
@@ -701,9 +688,6 @@ nn:
     migrate_account: Flytt til ein annan konto
     migrate_account_html: Hvis du ønsker å henvise denne kontoen til en annen, kan du <a href="%{path}">konfigurere det her</a>.
     or_log_in_with: Eller logg inn med
-    providers:
-      cas: CAS
-      saml: SAML
     register: Registrer deg
     registration_closed: "%{instance} tek ikkje imot nye medlemmar"
     resend_confirmation: Send stadfestingsinstruksjonar på nytt
@@ -743,9 +727,6 @@ nn:
     errors:
       invalid_key: er ikkje ein gild Ed25519 eller Curve25519 nykel
       invalid_signature: er ikkje ein gild Ed25519-signatur
-  date:
-    formats:
-      default: "%b %d, %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}t"
@@ -756,10 +737,10 @@ nn:
       less_than_x_minutes: "%{count}min"
       less_than_x_seconds: No nettopp
       over_x_years: "%{count} år"
-      x_days: "%{count}d"
+      x_days: "%{count} dager"
       x_minutes: "%{count}min"
       x_months: "%{count}md"
-      x_seconds: "%{count}s"
+      x_seconds: "%{count} sek"
   deletes:
     challenge_not_passed: Det du skreiv var ikkje rett
     confirm_password: Skriv det noverande passordet ditt for å stadfesta identiteten din
@@ -810,7 +791,6 @@ nn:
       request: Bed om arkivet ditt
       size: Storleik
     blocks: Du blokkerer
-    csv: CSV
     domain_blocks: Domeneblokkeringer
     lists: Lister
     mutes: Du dempar
@@ -995,12 +975,12 @@ nn:
   number:
     human:
       decimal_units:
-        format: "%n%u"
+        format: "%n %u"
         units:
           billion: Mrd
           million: Mil
           quadrillion: Bil
-          thousand: K
+          thousand: T
           trillion: Bil
   otp_authentication:
     code_hint: Skriv inn koden generert av autentiseringsappen din for å bekrefte
@@ -1015,7 +995,6 @@ nn:
     next: Neste
     older: Eldre
     prev: Førre
-    truncate: "&hellip;"
   polls:
     errors:
       already_voted: Du har allereie røysta i denne rundspørjinga
@@ -1076,40 +1055,23 @@ nn:
     activity: Siste aktivitet
     browser: Nettlesar
     browsers:
-      alipay: Alipay
-      blackberry: Blackberry
-      chrome: Chrome
-      edge: Microsoft Edge
-      electron: Electron
-      firefox: Firefox
+      alipay: AliPay
+      blackberry: BlackBerry
       generic: Ukjend lesar
-      ie: Internet Explorer
       micro_messenger: Micromessenger
       nokia: Nokia S40 Ovi-lesar
-      opera: Opera
-      otter: Otter
-      phantom_js: PhantomJS
       qq: QQ-lesar
-      safari: Safari
       uc_browser: UC-lesar
-      weibo: Weibo
     current_session: Noverande økt
     description: "%{browser} på %{platform}"
     explanation: Desse nettlesarane er logga inn på Mastodon-kontoen din.
-    ip: IP
+    ip: IP-adresse
     platforms:
-      adobe_air: Adobe Air
-      android: Android
-      blackberry: Blackberry
+      blackberry: BlackBerry
       chrome_os: Chrome OS
-      firefox_os: Firefox OS
       ios: IOS
-      linux: Linux
       mac: Mac
       other: ukjend plattform
-      windows: Windows
-      windows_mobile: Windows Mobile
-      windows_phone: Windows Phone
     revoke: Tilbakekall
     revoke_success: Økt tilbakekalt
     title: Økter
@@ -1146,9 +1108,6 @@ nn:
       image:
         one: "%{count} bilete"
         other: "%{count} bilete"
-      video:
-        one: "%{count} video"
-        other: "%{count} videoar"
     boosted_from_html: Framheva av %{acct_link}
     content_warning: 'Innhaldsåtvaring: %{warning}'
     disallowed_hashtags:
@@ -1165,9 +1124,6 @@ nn:
       private: Du kan ikkje festa uoffentlege tut
       reblog: Ei framheving kan ikkje festast
     poll:
-      total_people:
-        one: "%{count} person"
-        other: "%{count} folk"
       total_votes:
         one: "%{count} røyst"
         other: "%{count} røyster"
@@ -1175,7 +1131,7 @@ nn:
     show_more: Vis meir
     show_thread: Vis tråden
     sign_in_to_participate: Logg inn for å verta med i samtalen
-    title: "%{name}: «%{quote}»"
+    title: '%{name}: «%{quote}»'
     visibilities:
       private: Berre fylgjarar
       private_long: Vis berre til fylgjarar
@@ -1271,7 +1227,7 @@ nn:
       <p>Dette dokumentet er lisensiert under CC BY-SA. Den engelske originalversjonen ble sist oppdatert den 7. mars 2018. Den norske oversettelsen ble sist oppdatert den 13. desember 2019.</p>
 
       <p>Opprinnelig modifisert utifra <a href="https://github.com/discourse/discourse">Discourse sine privatlivsretningslinjer</a>.</p>
-    title: Tenestevilkår og personvernsvilkår for %{instance}
+    title: "Tenestevilkår og personvernsvilkår for %{instance}"
   themes:
     contrast: Mastodon (Høg kontrast)
     default: Mastodon (Mørkt)
@@ -1279,7 +1235,6 @@ nn:
   time:
     formats:
       default: "%d.%b %Y, %H:%M"
-      month: "%b %Y"
   two_factor_authentication:
     add: Legg til
     disable: Slå av
@@ -1337,7 +1292,6 @@ nn:
       tip_following: Du fylgjer automatisk tenaradministrator(ane). For å finna fleire forvitnelege folk kan du sjekka den lokale og fødererte tidslina.
       tip_local_timeline: Den lokale tidslinjen blir kontant matet med meldinger fra personer på %{instance}. Dette er dine nærmeste naboer!
       tip_mobile_webapp: Hvis din mobile nettleser tilbyr deg å legge Mastadon til din hjemmeskjerm kan du motta push-varslinger. Det er nesten som en integrert app på mange måter!
-      tips: Tips
       title: Velkomen om bord, %{name}!
   users:
     blocked_email_provider: Denne E-postleverandøren er ikke tillatt
