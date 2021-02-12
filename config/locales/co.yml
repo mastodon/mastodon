@@ -1,13 +1,11 @@
----
 co:
   about:
-    about_hashtag_html: Quessi sò statuti pubblichi taggati cù <strong>#%{hashtag}</strong>. Pudete interagisce cù elli sì voi avete un contu in qualche parte di u fediverse.
+    about_hashtag_html: 'Quessi sò statuti pubblichi taggati cù <strong>#%{hashtag}</strong>. Pudete interagisce cù elli sì voi avete un contu in qualche parte di u fediverse.'
     about_mastodon_html: 'A rete suciale di u futuru: micca pubblicità, micca surveglianza, cuncezzione etica, è dicentralizazione! Firmate in cuntrollu di i vostri dati cù Mastodon!'
     about_this: À prupositu
     active_count_after: attivi
     active_footnote: Utilizatori Attivi Mensili (UAM)
     administered_by: 'Amministratu da:'
-    api: API
     apps: Applicazione per u telefuninu
     apps_platforms: Utilizà Mastodon dapoi à iOS, Android è altre piattaforme
     browse_directory: Navigà un'annuariu di i prufili è filtra per interessi
@@ -64,7 +62,6 @@ co:
     joined: Quì dapoi %{date}
     last_active: ultima attività
     link_verified_on: A pruprietà d'issu ligame hè stata verificata u %{date}
-    media: Media
     moved_html: "%{name} hà cambiatu di contu, avà hè nant’à %{new_profile_link}:"
     network_hidden: St'infurmazione ùn hè micca dispunibule
     never_active: Mai
@@ -81,7 +78,6 @@ co:
     reserved_username: Stu cugnome hè riservatu
     roles:
       admin: Amministratore
-      bot: Bot
       group: Gruppu
       moderator: Muderatore
     unavailable: Prufile micca dispunibule
@@ -116,7 +112,7 @@ co:
       delete: Sguassà dati
       deleted: Sguassatu
       demote: Ritrugradà
-      destroyed_msg: I dati di %{username} sò avà in fila d'attesa per esse tolti da quì à pocu
+      destroyed_msg: "I dati di %{username} sò avà in fila d'attesa per esse tolti da quì à pocu"
       disable: Disattivà
       disable_two_factor_authentication: Disattivà l’identificazione à 2 fattori
       disabled: Disattivatu
@@ -134,7 +130,6 @@ co:
       inbox_url: URL di l’inbox
       invite_request_text: Ragione di l'arregistramentu
       invited_by: Invitatu da
-      ip: IP
       joined: Ghjuntu
       location:
         all: Tutti
@@ -215,7 +210,6 @@ co:
       username: Cugnome
       view_domain: Vede un riassuntu per u duminiu
       warn: Averte
-      web: Web
       whitelisted: In a lista bianca
     action_logs:
       action_types:
@@ -333,7 +327,6 @@ co:
       disable: Disattivà
       disabled: Disattivatu
       disabled_msg: L’emoji hè stata disattivata
-      emoji: Emoji
       enable: Attivà
       enabled: Attivate
       enabled_msg: L’emoji hè stata attivata
@@ -362,7 +355,6 @@ co:
       feature_profile_directory: Annuariu di i prufili
       feature_registrations: Arregistramenti
       feature_relay: Ripetitore di federazione
-      feature_spam_check: Anti-spam
       feature_timeline_preview: Vista di a linea pubblica
       features: Funziunalità
       hidden_service: Federazione cù servizii piattati
@@ -397,7 +389,7 @@ co:
         create: Creà un blucchime
         hint: U blucchime di duminiu ùn impedirà micca a creazione di conti indè a database, mà metudi di muderazione specifiche saranu applicati.
         severity:
-          desc_html: Cù <strong>Silenzà</strong>, solu l’abbunati di u contu viderenu i so missaghji. <strong>Suspende</strong> sguassarà tutti i cuntenuti è dati di u contu. Utilizate <strong>Nisuna</strong> s’è voi vulete solu righjittà fugliali media.
+          desc_html: "Cù <strong>Silenzà</strong>, solu l’abbunati di u contu viderenu i so missaghji. <strong>Suspende</strong> sguassarà tutti i cuntenuti è dati di u contu. Utilizate <strong>Nisuna</strong> s’è voi vulete solu righjittà fugliali media."
           noop: Nisuna
           silence: Silenzà
           suspend: Suspende
@@ -483,7 +475,7 @@ co:
     pending_accounts:
       title: Conti in attesa (%{count})
     relationships:
-      title: Rilazione di %{acct}
+      title: "Rilazione di %{acct}"
     relays:
       add_new: Aghjunghje un ripetitore
       delete: Sguassà
@@ -644,8 +636,6 @@ co:
         nsfw_on: Indicà cum’è sensibile
       deleted: Sguassatu
       failed_to_execute: Esecuzione impussibule
-      media:
-        title: Media
       no_media: Nisun media
       no_status_selected: I statuti ùn sò micca stati mudificati perchè manc'unu era selezziunatu
       title: Statuti di u contu
@@ -660,7 +650,6 @@ co:
       last_active: Ultima attività
       most_popular: Più pupulari
       most_recent: Più ricente
-      name: Hashtag
       review: Statutu di verificazione
       reviewed: Verificatu
       title: Hashtag
@@ -681,10 +670,10 @@ co:
     new_report:
       body: "%{reporter} hà palisatu %{target}"
       body_remote: Qualch’unu da %{domain} hà palisatu %{target}
-      subject: Novu signalamentu nant’à %{instance} (#%{id})
+      subject: 'Novu signalamentu nant’à %{instance} (#%{id})'
     new_trending_tag:
       body: 'U hashtag #%{name} hè in e tendenze oghji, mà ùn hè micca verificatu. Ùn sarà micca mustratu à u pubblicu eccettu s''ellu hè auturizatu, o pudete ancu salvà u furmulariu cusì per ùn mai più avè à ne sente parlà.'
-      subject: Novu hashtag in attesa di rivista nant'à %{instance} (#%{name})
+      subject: 'Novu hashtag in attesa di rivista nant''à %{instance} (#%{name})'
   aliases:
     add_new: Creà un pseudonimu
     created_msg: Novu pseudonimu creatu. Pudete avà inizià u trasferimentu da u vechju contu.
@@ -706,7 +695,6 @@ co:
     toot_layout: Urganizazione
   application_mailer:
     notification_preferences: Cambià e priferenze e-mail
-    salutation: "%{name},"
     settings: 'Cambià e priferenze e-mail: %{link}'
     view: 'Vede:'
     view_profile: Vede u prufile
@@ -741,9 +729,6 @@ co:
     migrate_account: Cambià di contu
     migrate_account_html: S’è voi vulete riindirizà stu contu versu un’altru, <a href="%{path}">ghjè pussibule quì</a>.
     or_log_in_with: O cunnettatevi cù
-    providers:
-      cas: CAS
-      saml: SAML
     register: Arregistrassi
     registration_closed: "%{instance} ùn accetta micca novi socii"
     resend_confirmation: Rimandà l’istruzzioni di cunfirmazione
@@ -795,13 +780,10 @@ co:
       about_x_years: "%{count}A"
       almost_x_years: "%{count}A"
       half_a_minute: Avà
-      less_than_x_minutes: "%{count}m"
       less_than_x_seconds: Avà
       over_x_years: "%{count}A"
       x_days: "%{count}ghj"
-      x_minutes: "%{count}m"
       x_months: "%{count}Me"
-      x_seconds: "%{count}s"
   deletes:
     challenge_not_passed: L'infurmazione entrata ùn era micca curretta
     confirm_password: Entrate a vostra chjave d’accessu attuale per verificà a vostra identità
@@ -853,7 +835,6 @@ co:
       size: Pesu
     blocks: Bluccate
     bookmarks: Segnalibri
-    csv: CSV
     domain_blocks: Blucchime di duminiu
     lists: Liste
     mutes: Piattate
@@ -1015,7 +996,7 @@ co:
         other: "%{count} nutificazione nove dapoi à a vostr’ultima visita \U0001F418"
       title: Dapoi l’ultima volta…
     favourite:
-      body: "%{name} hà aghjuntu u vostru statutu à i so favuriti :"
+      body: '%{name} hà aghjuntu u vostru statutu à i so favuriti :'
       subject: "%{name} hà messu u vostru post in i so favuriti"
       title: Novu favuritu
     follow:
@@ -1029,8 +1010,8 @@ co:
       title: Nova dumanda d’abbunamentu
     mention:
       action: Risposta
-      body: "%{name} v’hà mintuvatu·a indè :"
-      subject: "%{name} v’hà mintuvatu·a"
+      body: '%{name} v’hà mintuvatu·a indè :'
+      subject: '%{name} v’hà mintuvatu·a'
       title: Nova menzione
     reblog:
       body: 'U vostru statutu hè statu spartutu da %{name}:'
@@ -1043,13 +1024,9 @@ co:
   number:
     human:
       decimal_units:
-        format: "%n%u"
         units:
           billion: G
-          million: M
           quadrillion: P
-          thousand: K
-          trillion: T
   otp_authentication:
     code_hint: Entrate u codice generatu da l’applicazione per cunfirmà
     description_html: S’ella hè attivata <strong>l’identificazione à dui fattori</strong> cù un'applicazione d'identificazione, duvete avè u vostru telefuninu pè ottene un codice di cunnezzione.
@@ -1063,7 +1040,6 @@ co:
     next: Dopu
     older: Più vechju
     prev: Nanzu
-    truncate: "&hellip;"
   polls:
     errors:
       already_voted: Avete digià vutatu nant'à stu scandagliu
@@ -1125,40 +1101,12 @@ co:
     activity: Ultima attività
     browser: Navigatore
     browsers:
-      alipay: Alipay
-      blackberry: Blackberry
-      chrome: Chrome
-      edge: Microsoft Edge
-      electron: Electron
-      firefox: Firefox
       generic: Navigatore scunnisciutu
-      ie: Internet Explorer
-      micro_messenger: MicroMessenger
-      nokia: Nokia S40 Ovi Browser
-      opera: Opera
-      otter: Otter
-      phantom_js: PhantomJS
-      qq: QQ Browser
-      safari: Safari
-      uc_browser: UCBrowser
-      weibo: Weibo
     current_session: Sessione attuale
     description: "%{browser} nant’à %{platform}"
     explanation: Quessi sò i navigatori cunnettati à u vostru contu Mastodon.
-    ip: IP
     platforms:
-      adobe_air: Adobe Air
-      android: Android
-      blackberry: Blackberry
-      chrome_os: ChromeOS
-      firefox_os: Firefox OS
-      ios: iOS
-      linux: Linux
-      mac: macOS
       other: piattaforma scunnisciuta
-      windows: Windows
-      windows_mobile: Windows Mobile
-      windows_phone: Windows Phone
     revoke: Rivucà
     revoke_success: Sessione rivucata
     title: Sessioni
@@ -1188,9 +1136,6 @@ co:
     spam_detected: Quessu ghjè un riportu automaticu. Un spam hè statu ditettatu.
   statuses:
     attached:
-      audio:
-        one: "%{count} audio"
-        other: "%{count} audio"
       description: 'Aghjuntu: %{attached}'
       image:
         one: "%{count} ritrattu"
@@ -1226,7 +1171,6 @@ co:
     show_older: Vede i più anziani
     show_thread: Vede u filu
     sign_in_to_participate: Cunnettatevi per participà à a cunversazione
-    title: '%{name}: "%{quote}"'
     visibilities:
       private: Solu per l’abbunati
       private_long: Mustrà solu à l’abbunati
@@ -1322,7 +1266,7 @@ co:
       <p>Ce document est publié sous lincence CC-BY-SA. Il a été mis à jours pour la dernière fois le 7 mars 2018.</p>
 
       <p>Originellement adapté de la <a href="https://github.com/discourse/discourse">politique de confidentialité de Discourse</a>.</p>
-    title: Termini d’usu è di cunfidenzialità per %{instance}
+    title: "Termini d’usu è di cunfidenzialità per %{instance}"
   themes:
     contrast: Mastodon (Cuntrastu altu)
     default: Mastodon (Scuru)
@@ -1330,7 +1274,6 @@ co:
   time:
     formats:
       default: "%d %b %Y, %H:%M"
-      month: "%b %Y"
   two_factor_authentication:
     add: Aghjunghje
     disable: Disattivà
