@@ -1,13 +1,11 @@
----
 de:
   about:
-    about_hashtag_html: Das sind öffentliche Beiträge, die mit <strong>#%{hashtag}</strong> getaggt wurden. Wenn du irgendwo im Fediversum ein Konto besitzt, kannst du mit ihnen interagieren.
-    about_mastodon_html: Mastodon ist ein soziales Netzwerk. Es basiert auf offenen Web-Protokollen und freier, quelloffener Software. Es ist dezentral (so wie E-Mail!).
+    about_hashtag_html: 'Das sind öffentliche Beiträge, die mit <strong>#%{hashtag}</strong> getaggt wurden. Wenn du irgendwo im Fediversum ein Konto besitzt, kannst du mit ihnen interagieren.'
+    about_mastodon_html: 'Mastodon ist ein soziales Netzwerk. Es basiert auf offenen Web-Protokollen und freier, quelloffener Software. Es ist dezentral (so wie E-Mail!).'
     about_this: Über diesen Server
     active_count_after: aktiv
     active_footnote: Monatlich Aktive User (MAU)
     administered_by: 'Betrieben von:'
-    api: API
     apps: Mobile Apps
     apps_platforms: Benutze Mastodon auf iOS, Android und anderen Plattformen
     browse_directory: Durchsuche das Profilverzeichnis und filtere nach Interessen
@@ -37,13 +35,12 @@ de:
     terms: Nutzungsbedingungen
     unavailable_content: Nicht verfügbarer Inhalt
     unavailable_content_description:
-      domain: Server
       reason: 'Grund:'
-      rejecting_media: Mediendateien dieses Servers werden nicht verarbeitet und keine Thumbnails werden angezeigt, was manuelles anklicken auf den anderen Server erfordert.
+      rejecting_media: 'Mediendateien dieses Servers werden nicht verarbeitet und keine Thumbnails werden angezeigt, was manuelles anklicken auf den anderen Server erfordert.'
       rejecting_media_title: Gefilterte Medien
-      silenced: Beiträge von diesem Server werden nirgends angezeigt, außer in deiner Startseite, wenn du der Person folgst, die den Beitrag verfasst hat.
+      silenced: 'Beiträge von diesem Server werden nirgends angezeigt, außer in deiner Startseite, wenn du der Person folgst, die den Beitrag verfasst hat.'
       silenced_title: Stummgeschaltete Server
-      suspended: Du kannst niemanden von diesem Server folgen, und keine Daten werden verarbeitet oder gespeichert und keine Daten ausgetauscht.
+      suspended: 'Du kannst niemanden von diesem Server folgen, und keine Daten werden verarbeitet oder gespeichert und keine Daten ausgetauscht.'
       suspended_title: Gesperrte Server
     unavailable_content_html: Mastodon erlaubt es dir generell, mit Inhalten zu interagieren, diese anzuzeigen und mit anderen Nutzern im Fediversum über Server hinweg zu interagieren. Dies sind die Ausnahmen, die auf diesem bestimmten Server gemacht wurden.
     user_count_after:
@@ -81,7 +78,6 @@ de:
     reserved_username: Dieser Profilname ist belegt
     roles:
       admin: Administrator
-      bot: Bot
       group: Gruppe
       moderator: Moderator
     unavailable: Profil nicht verfügbar
@@ -99,10 +95,9 @@ de:
       add_email_domain_block: E-Mail-Domain blacklisten
       approve: Akzeptieren
       approve_all: Alle akzeptieren
-      approved_msg: "%{username}'s Anmeldeantrag erfolgreich genehmigt"
+      approved_msg: '%{username}''s Anmeldeantrag erfolgreich genehmigt'
       are_you_sure: Bist du sicher?
       avatar: Profilbild
-      by_domain: Domain
       change_email:
         changed_msg: E-Mail-Adresse des Kontos erfolgreich geändert!
         current_email: Aktuelle E-Mail-Adresse
@@ -121,13 +116,12 @@ de:
       disable_two_factor_authentication: 2FA abschalten
       disabled: Ausgeschaltet
       display_name: Anzeigename
-      domain: Domain
       edit: Bearbeiten
       email: E-Mail
       email_status: E-Mail-Status
       enable: Freischalten
       enabled: Freigegeben
-      enabled_msg: "%{username}'s Konto erfolgreich freigegeben"
+      enabled_msg: '%{username}''s Konto erfolgreich freigegeben'
       followers: Folgende
       follows: Folgt
       header: Titelbild
@@ -145,14 +139,13 @@ de:
       media_attachments: Dateien
       memorialize: In Gedenkmal verwandeln
       memorialized: Memorialisiert
-      memorialized_msg: "%{username} wurde erfolgreich in ein memorialisiertes Konto umgewandelt"
+      memorialized_msg: '%{username} wurde erfolgreich in ein memorialisiertes Konto umgewandelt'
       moderation:
         active: Aktiv
         all: Alle
         pending: In Warteschlange
         silenced: Stummgeschaltet
         suspended: Gesperrt
-        title: Moderation
       moderation_notes: Moderationsnotizen
       most_recent_activity: Letzte Aktivität
       most_recent_ip: Letzte IP-Adresse
@@ -169,11 +162,11 @@ de:
       redownloaded_msg: Profil von %{username} erfolgreich von Ursprung aktualisiert
       reject: Ablehnen
       reject_all: Alle ablehnen
-      rejected_msg: "%{username}'s Anmeldeantrag erfolgreich abgelehnt"
+      rejected_msg: '%{username}''s Anmeldeantrag erfolgreich abgelehnt'
       remove_avatar: Profilbild entfernen
       remove_header: Titelbild entfernen
       removed_avatar_msg: Profilbild von %{username} erfolgreich entfernt
-      removed_header_msg: "%{username}'s Titelbild wurde erfolgreich entfernt"
+      removed_header_msg: '%{username}''s Titelbild wurde erfolgreich entfernt'
       resend_confirmation:
         already_confirmed: Diese_r Benutzer_in wurde bereits bestätigt
         send: Bestätigungs-E-Mail erneut senden
@@ -183,7 +176,6 @@ de:
       resubscribe: Wieder abonnieren
       role: Berechtigungen
       roles:
-        admin: Administrator
         moderator: Moderator_in
         staff: Mitarbeiter
         user: Nutzer
@@ -203,19 +195,18 @@ de:
       suspended: Verbannt
       suspension_irreversible: Die Daten dieses Kontos wurden unwiderruflich gelöscht. Du kannst das Konto aufheben, um es brauchbar zu machen, aber es wird keine Daten wiederherstellen, die es davor schon hatte.
       suspension_reversible_hint_html: Das Konto wurde gesperrt und die Daten werden am %{date} vollständig gelöscht. Bis dahin kann das Konto ohne irgendwelche negativen Auswirkungen wiederhergestellt werden. Wenn du alle Daten des Kontos sofort entfernen möchtest, kannst du dies nachfolgend tun.
-      time_in_queue: "%{time} in der Warteschlange"
+      time_in_queue: '%{time} in der Warteschlange'
       title: Konten
       unconfirmed_email: Unbestätigte E-Mail-Adresse
       undo_sensitized: Nicht mehr als NSFW markieren
       undo_silenced: Stummschaltung aufheben
       undo_suspension: Verbannung aufheben
-      unsilenced_msg: "%{username}'s Konto erfolgreich freigegeben"
+      unsilenced_msg: '%{username}''s Konto erfolgreich freigegeben'
       unsubscribe: Abbestellen
-      unsuspended_msg: "%{username}'s Konto erfolgreich freigegeben"
+      unsuspended_msg: '%{username}''s Konto erfolgreich freigegeben'
       username: Profilname
       view_domain: Übersicht für Domain anzeigen
       warn: Warnen
-      web: Web
       whitelisted: Auf der Whitelist
     action_logs:
       action_types:
@@ -310,7 +301,6 @@ de:
       edit:
         title: Ankündigung bearbeiten
       empty: Keine Ankündigungen gefunden.
-      live: Live
       new:
         create: Ankündigung erstellen
         title: Neue Ankündigung
@@ -322,7 +312,6 @@ de:
       updated_msg: Ankündigung erfolgreich geändert!
     custom_emojis:
       assign_category: Kategorie zuweisen
-      by_domain: Domain
       copied_msg: Eine lokale Kopie des Emojis wurde erstellt
       copy: Kopieren
       copy_failed_msg: Es konnte keine lokale Kopie des Emojis erstellt werden
@@ -333,7 +322,6 @@ de:
       disable: Deaktivieren
       disabled: Deaktiviert
       disabled_msg: Das Emoji wurde deaktiviert
-      emoji: Emoji
       enable: Aktivieren
       enabled: Aktiviert
       enabled_msg: Das Emoji wurde aktiviert
@@ -372,11 +360,9 @@ de:
       recent_users: Neueste Nutzer
       search: Volltextsuche
       single_user_mode: Einzelnutzermodus
-      software: Software
       space: Speicherverbrauch
       title: Übersicht
       total_users: Benutzer insgesamt
-      trends: Trends
       week_interactions: Interaktionen diese Woche
       week_users_active: Aktiv diese Woche
       week_users_new: Benutzer diese Woche
@@ -390,7 +376,6 @@ de:
       add_new: Neue Domainblockade hinzufügen
       created_msg: Die Domain-Blockade wird nun durchgeführt
       destroyed_msg: Die Domain-Blockade wurde rückgängig gemacht
-      domain: Domain
       edit: Domainblockade bearbeiten
       existing_domain_block_html: Es gibt schon eine Blockade für %{name}, diese muss erst <a href="%{unblock_url}">aufgehoben</a> werden.
       new:
@@ -433,7 +418,6 @@ de:
       created_msg: E-Mail-Domain-Blockade erfolgreich erstellt
       delete: Löschen
       destroyed_msg: E-Mail-Domain-Blockade erfolgreich gelöscht
-      domain: Domain
       empty: Keine E-Mail-Domains sind momentan auf der Blacklist.
       from_html: von %{domain}
       new:
@@ -441,7 +425,6 @@ de:
         title: Neue E-Mail-Domain-Blockade
       title: E-Mail-Domain-Blockade
     instances:
-      by_domain: Domain
       delivery_available: Zustellung funktioniert
       empty: Keine Domains gefunden.
       known_accounts:
@@ -450,7 +433,6 @@ de:
       moderation:
         all: Alle
         limited: Beschränkt
-        title: Moderation
       private_comment: Privater Kommentar
       public_comment: Öffentlicher Kommentar
       title: Föderation
@@ -465,7 +447,6 @@ de:
         all: Alle
         available: Verfügbar
         expired: Ausgelaufen
-        title: Filter
       title: Einladungen
     ip_blocks:
       add_new: Regel erstellen
@@ -485,7 +466,7 @@ de:
     pending_accounts:
       title: Ausstehende Konten (%{count})
     relationships:
-      title: Beziehungen von %{acct}
+      title: "Beziehungen von %{acct}"
     relays:
       add_new: Neues Relay hinzufügen
       delete: Löschen
@@ -664,15 +645,12 @@ de:
       last_active: Zuletzt aktiv
       most_popular: Am beliebtesten
       most_recent: Neuste
-      name: Hashtag
       review: Prüfstatus
       reviewed: Überprüft
-      title: Hashtags
       trending_right_now: Aktuell in den Trends
       unique_uses_today: "%{count} Beiträge heute"
       unreviewed: Nicht überprüft
       updated_msg: Hashtageinstellungen wurden erfolgreich aktualisiert
-    title: Administration
     warning_presets:
       add_new: Neu hinzufügen
       delete: Löschen
@@ -685,10 +663,10 @@ de:
     new_report:
       body: "%{reporter} hat %{target} gemeldet"
       body_remote: Jemand von %{domain} hat %{target} gemeldet
-      subject: Neue Meldung auf %{instance} (#%{id})
+      subject: 'Neue Meldung auf %{instance} (#%{id})'
     new_trending_tag:
       body: 'Der Hashtag #%{name} ist heute am trenden, aber wurde vorher noch nicht überprüft. Er wird nicht öffentlich angezeigt, es sei denn du erlaubst es oder speicherst das Formular ab und vergisst es.'
-      subject: Neuer Hashtag zur Überprüfung auf %{instance} verfügbar (#%{name})
+      subject: 'Neuer Hashtag zur Überprüfung auf %{instance} verfügbar (#%{name})'
   aliases:
     add_new: Alias erstellen
     created_msg: Ein neuer Alias wurde erfolgreich erstellt. Du kannst nun den Wechsel vom alten Konto starten.
@@ -698,7 +676,7 @@ de:
     remove: Alle Aliase aufheben
   appearance:
     advanced_web_interface: Fortgeschrittene Benutzeroberfläche
-    advanced_web_interface_hint: Wenn du mehr aus deiner Bildschirmbreite herausholen möchtest, erlaubt dir die fortgeschrittene Benutzeroberfläche viele unterschiedliche Spalten auf einmal zu sehen, wie z.B. deine Startseite, Benachrichtigungen, das gesamte bekannte Netz, deine Listen und beliebige Hashtags.
+    advanced_web_interface_hint: 'Wenn du mehr aus deiner Bildschirmbreite herausholen möchtest, erlaubt dir die fortgeschrittene Benutzeroberfläche viele unterschiedliche Spalten auf einmal zu sehen, wie z.B. deine Startseite, Benachrichtigungen, das gesamte bekannte Netz, deine Listen und beliebige Hashtags.'
     animations_and_accessibility: Animationen und Barrierefreiheit
     confirmation_dialogs: Bestätigungsfenster
     discovery: Entdecken
@@ -710,7 +688,6 @@ de:
     toot_layout: Beitragslayout
   application_mailer:
     notification_preferences: Ändere E-Mail-Einstellungen
-    salutation: "%{name},"
     settings: 'E-Mail-Einstellungen ändern: %{link}'
     view: 'Ansehen:'
     view_profile: Zeige Profil
@@ -745,9 +722,6 @@ de:
     migrate_account: Ziehe zu einem anderen Konto um
     migrate_account_html: Wenn du wünschst, dieses Konto zu einem anderen umzuziehen, kannst du <a href="%{path}">dies hier einstellen</a>.
     or_log_in_with: Oder anmelden mit
-    providers:
-      cas: CAS
-      saml: SAML
     register: Registrieren
     registration_closed: "%{instance} akzeptiert keine neuen Mitglieder"
     resend_confirmation: Bestätigungs-Mail erneut versenden
@@ -778,7 +752,7 @@ de:
       close: Oder du schließt einfach dieses Fenster.
       return: Zeige das Profil
       web: In der Benutzeroberfläche öffnen
-    title: "%{acct} folgen"
+    title: '%{acct} folgen'
   challenge:
     confirm: Fortfahren
     hint_html: "<strong>Hinweis:</strong> Wir werden dich für die nächste Stunde nicht erneut nach deinem Passwort fragen."
@@ -791,21 +765,12 @@ de:
   date:
     formats:
       default: "%d. %b %Y"
-      with_month_name: "%B %d, %Y"
   datetime:
     distance_in_words:
-      about_x_hours: "%{count}h"
-      about_x_months: "%{count}mo"
-      about_x_years: "%{count}y"
-      almost_x_years: "%{count}y"
       half_a_minute: Gerade eben
-      less_than_x_minutes: "%{count}m"
       less_than_x_seconds: Gerade eben
       over_x_years: "%{count}J"
       x_days: "%{count}T"
-      x_minutes: "%{count}m"
-      x_months: "%{count}mo"
-      x_seconds: "%{count}s"
   deletes:
     challenge_not_passed: Die eingegebenen Informationen waren nicht korrekt
     confirm_password: Gib dein derzeitiges Passwort ein, um deine Identität zu bestätigen
@@ -857,7 +822,6 @@ de:
       size: Größe
     blocks: Du hast blockiert
     bookmarks: Lesezeichen
-    csv: CSV
     domain_blocks: Domainblockaden
     lists: Listen
     mutes: Du hast stummgeschaltet
@@ -1002,8 +966,6 @@ de:
       only_redirect_html: Alternativ kannst du <a href="%{path}">nur eine Weiterleitung auf dein Profil</a> erstellen.
       other_data: Keine anderen Daten werden automatisch verschoben
       redirect: Das Profil deines aktuellen Kontos wird mit einer Weiterleitungsnachricht versehen und von Suchanfragen ausgeschlossen
-  moderation:
-    title: Moderation
   move_handler:
     carry_blocks_over_text: Dieses Benutzerkonto ist von %{acct} umgezogen, welches du blockiert hast.
     carry_mutes_over_text: Dieses Benutzerkonto ist von %{acct} umgezogen, welches du stummgeschaltet hast.
@@ -1035,27 +997,17 @@ de:
       title: Neue Folge-Anfrage
     mention:
       action: Antworten
-      body: "%{name} hat dich erwähnt:"
-      subject: "%{name} hat dich erwähnt"
+      body: '%{name} hat dich erwähnt:'
+      subject: '%{name} hat dich erwähnt'
       title: Neue Erwähnung
     reblog:
-      body: "%{name} hat deinen Beitrag geteilt:"
+      body: '%{name} hat deinen Beitrag geteilt:'
       subject: "%{name} hat deinen Beitrag geteilt"
       title: Dein Beitrag wurde geteilt
   notifications:
     email_events: Ereignisse für E-Mail-Benachrichtigungen
     email_events_hint: 'Wähle Ereignisse, für die du Benachrichtigungen erhalten möchtest:'
     other_settings: Weitere Benachrichtigungseinstellungen
-  number:
-    human:
-      decimal_units:
-        format: "%n%u"
-        units:
-          billion: B
-          million: M
-          quadrillion: Q
-          thousand: K
-          trillion: T
   otp_authentication:
     code_hint: Gib den von deiner Authentifizierungs-App generierten Code ein, um deine Anmeldung zu bestätigen
     description_html: Wenn du <strong>Zwei-Faktor-Authentifizierung</strong> mit einer Authentifizierungs-App aktivierst, musst du, um dich anzumelden, im Besitz deines Handys sein, dass Tokens für dein Konto generiert.
@@ -1069,7 +1021,6 @@ de:
     next: Vorwärts
     older: Älter
     prev: Zurück
-    truncate: "&hellip;"
   polls:
     errors:
       already_voted: Du hast bereits für diese Umfrage abgestimmt
@@ -1129,42 +1080,15 @@ de:
     too_soon: Das geplante Datum muss in der Zukunft liegen
   sessions:
     activity: Letzte Aktivität
-    browser: Browser
     browsers:
-      alipay: Alipay
-      blackberry: Blackberry
-      chrome: Chrome
-      edge: Microsoft Edge
-      electron: Electron
-      firefox: Firefox
       generic: Unbekannter Browser
-      ie: Internet Explorer
-      micro_messenger: MicroMessenger
-      nokia: Nokia S40 Ovi Browser
-      opera: Opera
-      otter: Otter
-      phantom_js: PhantomJS
-      qq: QQ Browser
-      safari: Safari
-      uc_browser: UCBrowser
-      weibo: Weibo
     current_session: Aktuelle Sitzung
     description: "%{browser} auf %{platform}"
     explanation: Dies sind die Webbrowser, die derzeit in deinem Mastodon-Konto eingeloggt sind.
     ip: IP-Adresse
     platforms:
-      adobe_air: Adobe Air
-      android: Android
-      blackberry: Blackberry
-      chrome_os: ChromeOS
-      firefox_os: Firefox OS
-      ios: iOS
-      linux: Linux
       mac: Mac
       other: unbekannte Plattform
-      windows: Windows
-      windows_mobile: Windows Mobile
-      windows_phone: Windows Phone
     revoke: Schließen
     revoke_success: Sitzung erfolgreich geschlossen
     title: Sitzungen
@@ -1232,7 +1156,6 @@ de:
     show_older: Ältere anzeigen
     show_thread: Zeige Konversation
     sign_in_to_participate: Melde dich an, um an der Konversation teilzuhaben
-    title: '%{name}: "%{quote}"'
     visibilities:
       private: Nur Folgende
       private_long: Nur für Folgende sichtbar
@@ -1338,7 +1261,6 @@ de:
   time:
     formats:
       default: "%d.%m.%Y %H:%M"
-      month: "%b %Y"
   two_factor_authentication:
     add: Hinzufügen
     disable: Deaktivieren
