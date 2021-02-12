@@ -6,6 +6,7 @@ tr:
     active_count_after: etkin
     active_footnote: Aylık Aktif Kullanıcılar (AAK)
     administered_by: 'Yönetici:'
+    api: API
     apps: Mobil uygulamalar
     apps_platforms: İos, Android ve diğer platformlardaki Mastodon'u kullanın
     browse_directory: Bir profil dizinine göz atın ve ilgi alanlarına göre filtreleyin
@@ -58,6 +59,7 @@ tr:
       one: Takipçi
       other: Takipçi
     following: Takip edilenler
+    instance_actor_flash: Bu hesap, herhangi bir bireysel kullanıcı değil, sunucunun kendisini temsil etmek için kullanılan sanal bir aktördür. Birleştirme amacıyla kullanılmaktadır ve askıya alınmamalıdır.
     joined: '%{date} tarihinde katıldı'
     last_active: son etkinlik
     link_verified_on: Bu bağlantının mülkiyeti %{date} tarihinde kontrol edildi
@@ -75,6 +77,7 @@ tr:
     reserved_username: Kullanıcı adı rezerve edildi
     roles:
       admin: Yönetici
+      bot: Bot
       group: Grup
       moderator: Denetleyici
     unavailable: Profil kullanılamıyor
@@ -125,7 +128,9 @@ tr:
       follows: Takip edilen
       header: Üstbilgi
       inbox_url: Gelen kutusu bağlantısı
+      invite_request_text: Katılma gerekçeleri
       invited_by: Tarafından davet edildi
+      ip: IP
       joined: Katıldı
       location:
         all: Hepsi
@@ -206,6 +211,7 @@ tr:
       username: Kullanıcı adı
       view_domain: Alan adı için özeti görüntüleyin
       warn: Uyar
+      web: Web
       whitelisted: Beyaz listede
     action_logs:
       action_types:
@@ -352,6 +358,7 @@ tr:
       feature_profile_directory: Profil Dizini
       feature_registrations: Kayıtlar
       feature_relay: Federasyon aktarıcısı
+      feature_spam_check: Spam koruması
       feature_timeline_preview: Zaman çizelgesi önizlemesi
       features: Özellikler
       hidden_service: Gizli servislere sahip federasyon
@@ -391,6 +398,8 @@ tr:
           silence: Sustur
           suspend: Uzaklaştır
         title: Yeni domain bloğu
+      obfuscate: Alan adını gizle
+      obfuscate_hint: Alan adı kısıtlamaları listelerinin duyurulması etkinleştirilmişse alan adını listede kısmen gizle
       private_comment: Özel yorum
       private_comment_hint: Denetleyiciler tarafından dahili kullanım için bu alan adı sınırlaması hakkında yorum.
       public_comment: Genel yorum
@@ -508,6 +517,8 @@ tr:
       comment:
         none: Yok
       created_at: Şikayet edildi
+      forwarded: İletildi
+      forwarded_to: '%{domain}''e iletildi'
       mark_as_resolved: Giderildi olarak işaretle
       mark_as_unresolved: Çözümlenmemiş olarak işaretle
       notes:
@@ -551,6 +562,7 @@ tr:
       domain_blocks_rationale:
         title: Gerekçeyi göster
       enable_bootstrap_timeline_accounts:
+        desc_html: Yeni kullanıcıları otomatik olarak yapılandırılmış hesapları izleyecek şekilde ayarla, böylece anasayfa akışları boş başlamayacaktır
         title: Yeni kullanıcılar için varsayılan takipleri etkinleştir
       hero:
         desc_html: Önsayfada görüntülenir. En az 600x100px önerilir. Ayarlanmadığında, sunucu küçük resmi kullanılır
@@ -577,6 +589,9 @@ tr:
         min_invite_role:
           disabled: Hiç kimse
           title: tarafından yapılan davetlere izin ver
+        require_invite_text:
+          desc_html: Kayıtlar elle doğrulama gerektiriyorsa, "Neden katılmak istiyorsunuz?" metin girdisini isteğe bağlı yerine zorunlu yapın
+          title: Yeni kullanıcıların katılmak için bir gerekçe sunmasını gerektir
       registrations_mode:
         modes:
           approved: Kayıt için onay gerekli
@@ -685,11 +700,13 @@ tr:
     discovery: Keşfet
     localization:
       body: Mastodon, gönüllüler tarafından çevrilmektedir.
+      guide_link: https://crowdin.com/project/mastodon
       guide_link_text: Herkes katkıda bulunabilir.
     sensitive_content: Hassas içerik
     toot_layout: Toot yerleşimi
   application_mailer:
     notification_preferences: E-posta tercihlerini değiştir
+    salutation: "%{name},"
     settings: 'E-posta tercihlerini değiştir: %{link}'
     view: 'Görüntüle:'
     view_profile: Profili görüntüle
@@ -724,6 +741,9 @@ tr:
     migrate_account: Farklı bir hesaba taşıyın
     migrate_account_html: Bu hesabı başka bir hesaba yönlendirmek istiyorsanız, <a href="%{path}">buradan yapılandırabilirsiniz</a>.
     or_log_in_with: 'Veya şununla oturum açın:'
+    providers:
+      cas: CAS
+      saml: SAML
     register: Kaydol
     registration_closed: "%{instance} yeni üyeler kabul etmemektedir"
     resend_confirmation: Onaylama talimatlarını tekrar gönder
@@ -833,6 +853,7 @@ tr:
       size: Boyut
     blocks: Engellediklerin
     bookmarks: Yer imleri
+    csv: CSV
     domain_blocks: Alan adı engelleri
     lists: Listeler
     mutes: Sessize aldıkların
@@ -899,6 +920,8 @@ tr:
     status: Doğrulama durumu
     view_proof: Kanıtı görüntüle
   imports:
+    errors:
+      over_rows_processing_limit: '%{count} satırdan fazlasını içeriyor'
     modes:
       merge: Birleştir
       merge_long: Mevcut kayıtları sakla ve yenileri ekle
@@ -1022,6 +1045,7 @@ tr:
   number:
     human:
       decimal_units:
+        format: "%n%u"
         units:
           billion: Mr
           million: Mn
@@ -1041,6 +1065,7 @@ tr:
     next: Sonraki
     older: Daha eski
     prev: Önceki
+    truncate: "&hellip;"
   polls:
     errors:
       already_voted: Bu ankete daha önce oy verdiniz
@@ -1102,7 +1127,19 @@ tr:
     activity: Son etkinlik
     browser: Tarayıcı
     browsers:
+      alipay: Alipay
+      blackberry: Blackberry
+      chrome: Chrome
+      edge: Microsoft Edge
+      electron: Electron
+      firefox: Firefox
       generic: Bilinmeyen tarayıcı
+      ie: Internet Explorer
+      micro_messenger: MicroMessenger
+      nokia: Nokia S40 Ovi Browser
+      opera: Opera
+      otter: Otter
+      phantom_js: PhantomJS
       uc_browser: UC Browser
     current_session: Geçerli oturum
     description: "%{platform} - %{browser}"
