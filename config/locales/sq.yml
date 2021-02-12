@@ -1,13 +1,11 @@
----
 sq:
   about:
-    about_hashtag_html: Këto janë mesazhe publike të etiketuar me <strong>#%{hashtag}</strong>. Mundeni të ndërveproni me ta, nëse keni një llogari kudo qoftë në fedivers.
+    about_hashtag_html: 'Këto janë mesazhe publike të etiketuar me <strong>#%{hashtag}</strong>. Mundeni të ndërveproni me ta, nëse keni një llogari kudo qoftë në fedivers.'
     about_mastodon_html: 'Rrjeti shoqëror i së ardhmes: Pa reklama, pa survejim nga korporata, konceptim etik dhe decentralizim! Jini zot i të dhënave tuaja, me Mastodon-in!'
     about_this: Mbi
     active_count_after: aktive
     active_footnote: Përdorues Aktivë Mujor (PAM)
     administered_by: 'Administruar nga:'
-    api: API
     apps: Aplikacione për celular
     apps_platforms: Përdoreni Mastodon-in prej iOS-i, Android-i dhe platformash të tjera
     browse_directory: Shfletoni një drejtori profilesh dhe filtrojeni sipas interesash
@@ -15,7 +13,6 @@ sq:
     browse_public_posts: Shfletoni një rrjedhë të drejtpërdrejtë postimesh publike në Mastodon
     contact: Kontakt
     contact_missing: I parregulluar
-    contact_unavailable: N/A
     discover_users: Zbuloni përdorues
     documentation: Dokumentim
     federation_hint_html: Me një llogari në %{instance}, do të jeni në gjendje të ndiqni persona në çfarëdo shërbyesi Mastodon dhe më tej.
@@ -52,7 +49,7 @@ sq:
     user_count_before: Shtëpi e
     what_is_mastodon: Ç’është Mastodon-i?
   accounts:
-    choices_html: 'Zgjedhje të %{name}:'
+    choices_html: "Zgjedhje të %{name}:"
     endorsements_hint: Mund t’i mbështesni personat që nga ndërfaqja web, dhe do të shfaqen këtu.
     featured_tags_hint: Mund të zgjidhni hashtag-ë të veçantë që do të shfaqen këtu.
     follow: Ndiqeni
@@ -64,7 +61,6 @@ sq:
     joined: U bë pjesë më %{date}
     last_active: aktiv së fundi
     link_verified_on: Pronësia e kësaj lidhjeje qe kontrolluar më %{date}
-    media: Media
     moved_html: "%{name} ka kaluar te %{new_profile_link}:"
     network_hidden: Këto të dhëna s’janë të passhme
     never_active: Kurrë
@@ -101,7 +97,6 @@ sq:
       approve_all: Miratojini krejt
       approved_msg: U miratua me sukses aplikimi për regjistrim të %{username}
       are_you_sure: Jeni i sigurt?
-      avatar: Avatar
       by_domain: Përkatësi
       change_email:
         changed_msg: Email-i i llogarisë u ndryshua me sukses!
@@ -116,14 +111,13 @@ sq:
       delete: Fshiji të dhënat
       deleted: U fshi
       demote: Zhgradoje
-      destroyed_msg: Të dhënat e %{username} tani janë vënë në radhë për fshirje të menjëhershme
+      destroyed_msg: "Të dhënat e %{username} tani janë vënë në radhë për fshirje të menjëhershme"
       disable: Çaktivizoje
       disable_two_factor_authentication: Çaktivizoni 2FA-në
       disabled: E çaktivizuar
       display_name: Emër në ekran
       domain: Përkatësi
       edit: Përpunojeni
-      email: Email
       email_status: Gjendje email-i
       enable: Aktivizoje
       enabled: E aktivizuar
@@ -134,7 +128,6 @@ sq:
       inbox_url: URL Mesazhesh të Marrë
       invite_request_text: Arsye për pjesëmarrje
       invited_by: Ftuar nga
-      ip: IP
       joined: U bë pjesë
       location:
         all: Krejt
@@ -145,7 +138,7 @@ sq:
       media_attachments: Bashkëngjitje media
       memorialize: Shndërroje në përkujtimore
       memorialized: U shndërrua në përkujtimore
-      memorialized_msg: "%{username} u kthye me sukses në një llogari përkujtimore"
+      memorialized_msg: '%{username} u kthye me sukses në një llogari përkujtimore'
       moderation:
         active: Aktiv
         all: Krejt
@@ -184,7 +177,6 @@ sq:
       role: Leje
       roles:
         admin: Përgjegjës
-        moderator: Moderator
         staff: Staf
         user: Përdorues
       search: Kërkoni
@@ -215,7 +207,6 @@ sq:
       username: Emër përdoruesi
       view_domain: Shihni përmbledhjen për përkatësinë
       warn: Sinjalizoje
-      web: Web
       whitelisted: Lejuar për federim
     action_logs:
       action_types:
@@ -362,7 +353,6 @@ sq:
       feature_profile_directory: Drejtori profilesh
       feature_registrations: Regjistrime
       feature_relay: Rele federimi
-      feature_spam_check: Anti-spam
       feature_timeline_preview: Paraparje rrjedhjeje kohore
       features: Veçori
       hidden_service: Federim me shërbime të fshehura
@@ -372,7 +362,6 @@ sq:
       recent_users: Përdorues së fundi
       search: Kërko tekstin e plotë
       single_user_mode: Mënyrë me përdorues të vetëm
-      software: Software
       space: Përdorim hapësire
       title: Pult
       total_users: përdorues gjithsej
@@ -420,7 +409,7 @@ sq:
       show:
         affected_accounts:
           one: Pat ndikim te një llogari në bazën e të dhënave
-          other: Pat ndikim te %{count} llogari në bazën e të dhënave
+          other: "Pat ndikim te %{count} llogari në bazën e të dhënave"
         retroactive:
           silence: Hiqu heshtimin krejt llogarive ekzistuese nga kjo përkatësi
           suspend: Hiqu pezullimin krejt llogarive ekzistuese nga kjo përkatësi
@@ -485,7 +474,7 @@ sq:
     pending_accounts:
       title: Llogari pezull (%{count})
     relationships:
-      title: Marrëdhënie të %{acct}
+      title: "Marrëdhënie të %{acct}"
     relays:
       add_new: Shtoni rele të re
       delete: Fshije
@@ -648,8 +637,6 @@ sq:
         nsfw_on: Vëri shenjë si rezervat
       deleted: E fshirë
       failed_to_execute: S’u arrit të përmbushej
-      media:
-        title: Media
       no_media: S’ka media
       no_status_selected: S’u ndryshua ndonjë gjendje, ngaqë s’u përzgjodh ndonjë e tillë
       title: Gjendje llogarish
@@ -664,7 +651,6 @@ sq:
       last_active: Aktive së fundi më
       most_popular: Më populloret
       most_recent: Më të rejat
-      name: Hashtag
       review: Gjendja e rishikimit
       reviewed: E shqyrtuar
       title: Hashtag-ë
@@ -685,10 +671,10 @@ sq:
     new_report:
       body: "%{reporter} ka raportuar %{target}"
       body_remote: Dikush nga %{domain} ka raportuar %{target}
-      subject: Raportim i ri për %{instance} (#%{id})
+      subject: 'Raportim i ri për %{instance} (#%{id})'
     new_trending_tag:
       body: 'Hashtag-u #%{name} është popullor sot, por s’është shqyrtuar më parë. S’do të shfaqet publikisht pa e lejuar ju, ose thjesht ruani formularin siç është, që të mos dëgjoni më për të.'
-      subject: Hashtag i ri për shqyrtim te %{instance} (#%{name})
+      subject: 'Hashtag i ri për shqyrtim te %{instance} (#%{name})'
   aliases:
     add_new: Krijo alias
     created_msg: U krijua me sukses alias i ri. Tani mund të filloni lëvizjen prej llogarisë së vjetër.
@@ -704,13 +690,11 @@ sq:
     discovery: Zbulim
     localization:
       body: Mastodon-i përkthehet nga vullnetarë.
-      guide_link: https://crowdin.com/project/mastodon
       guide_link_text: Çdokush mund të kontribuojë.
     sensitive_content: Lëndë rezervat
     toot_layout: Skemë mesazhesh
   application_mailer:
     notification_preferences: Ndryshoni parapëlqime email-i
-    salutation: "%{name},"
     settings: 'Ndryshoni parapëlqime email-i: %{link}'
     view: 'Parje:'
     view_profile: Shihni profilin
@@ -745,9 +729,6 @@ sq:
     migrate_account: Kaloni në një tjetër llogari
     migrate_account_html: Nëse doni ta ridrejtoni këtë llogari te një tjetër, këtë mund <a href="%{path}">ta formësoni këtu</a>.
     or_log_in_with: Ose bëni hyrjen me
-    providers:
-      cas: CAS
-      saml: SAML
     register: Regjistrohuni
     registration_closed: "%{instance} s’pranon anëtarë të rinj"
     resend_confirmation: Ridërgo udhëzime ripohimi
@@ -790,7 +771,6 @@ sq:
       invalid_signature: s’është nënshkrim Ed25519 i vlefshëm
   date:
     formats:
-      default: "%b %d, %Y"
       with_month_name: "%d %B, %Y"
   datetime:
     distance_in_words:
@@ -799,13 +779,9 @@ sq:
       about_x_years: "%{count}v"
       almost_x_years: "%{count}v"
       half_a_minute: Mu tani
-      less_than_x_minutes: "%{count}m"
       less_than_x_seconds: Mu tani
       over_x_years: "%{count}v"
-      x_days: "%{count}d"
-      x_minutes: "%{count}m"
       x_months: "%{count}mj"
-      x_seconds: "%{count}s"
   deletes:
     challenge_not_passed: Të dhënat që dhatë s’qenë të sakta
     confirm_password: Që të verifikohet identiteti juaj, jepni fjalëkalimin tuaj të tanishëm
@@ -857,7 +833,6 @@ sq:
       size: Madhësi
     blocks: Bllokoni
     bookmarks: Faqerojtës
-    csv: CSV
     domain_blocks: Bllokime përkatësish
     lists: Lista
     mutes: Heshtoni
@@ -940,7 +915,6 @@ sq:
       following: Listë ndjekjesh
       muting: Listë heshtimesh
     upload: Ngarkoje
-  in_memoriam_html: In Memoriam.
   invites:
     delete: Çaktivizoje
     expired: Ka skaduar
@@ -1025,8 +999,8 @@ sq:
       subject: "%{name} parapëlqeu gjendjen tuaj"
       title: E parapëlqyer e re
     follow:
-      body: Tani ju ndjek %{name}!
-      subject: Tani ju ndjek %{name}
+      body: "Tani ju ndjek %{name}!"
+      subject: "Tani ju ndjek %{name}"
       title: Ndjekës i ri
     follow_request:
       action: Administroni kërkesa ndjekjeje
@@ -1049,13 +1023,9 @@ sq:
   number:
     human:
       decimal_units:
-        format: "%n%u"
         units:
-          billion: B
-          million: M
           quadrillion: K
           thousand: M
-          trillion: T
   otp_authentication:
     code_hint: Që të bëhet ripohimi, jepni kodin e prodhuar nga aplikacioni juaj i mirëfilltësimeve
     description_html: Nëse aktivizoni <strong>mirëfilltësim dyfaktorësh</strong> duke përdorur një aplikacion mirëfilltësimesh, hyrja do të dojë që të keni telefonin tuaj, i cili do të prodhojë për ju token-ë hyrjesh.
@@ -1069,7 +1039,6 @@ sq:
     next: Pasuesi
     older: Më të vjetër
     prev: I mëparshmi
-    truncate: "&hellip;"
   polls:
     errors:
       already_voted: Keni votuar tashmë në këtë pyetësor
@@ -1131,40 +1100,13 @@ sq:
     activity: Veprimtaria e fundit
     browser: Shfletues
     browsers:
-      alipay: Alipay
-      blackberry: Blackberry
-      chrome: Chrome
-      edge: Microsoft Edge
-      electron: Electron
-      firefox: Firefox
       generic: Shfletues i panjohur
-      ie: Internet Explorer
-      micro_messenger: MicroMessenger
       nokia: Shfletues Nokia S40 Ovi
-      opera: Opera
-      otter: Otter
-      phantom_js: PhantomJS
-      qq: QQ Browser
-      safari: Safari
-      uc_browser: UCBrowser
-      weibo: Weibo
     current_session: Sesioni i tanishëm
     description: "%{browser} në %{platform}"
     explanation: Këta janë shfletuesit e futur në këtë çast te llogaria juaj Mastodon.
-    ip: IP
     platforms:
-      adobe_air: Adobe Air
-      android: Android
-      blackberry: Blackberry
-      chrome_os: ChromeOS
-      firefox_os: Firefox OS
-      ios: iOS
-      linux: Linux
-      mac: macOS
       other: platformë e panjohur
-      windows: Windows
-      windows_mobile: Windows Mobile
-      windows_phone: Windows Phone
     revoke: Shfuqizoje
     revoke_success: Sesioni u shfuqizua me sukses
     title: Sesione
@@ -1201,9 +1143,6 @@ sq:
       image:
         one: "%{count} figurë"
         other: "%{count} figura"
-      video:
-        one: "%{count} video"
-        other: "%{count} video"
     boosted_from_html: Përforcuar nga %{acct_link}
     content_warning: 'Sinjalizim lënde: %{warning}'
     disallowed_hashtags:
@@ -1220,9 +1159,6 @@ sq:
       private: S’mund të fiksohet mesazh jopublik
       reblog: S’mund të fiksohet një përforcim
     poll:
-      total_people:
-        one: "%{count} person"
-        other: "%{count} vetë"
       total_votes:
         one: "%{count} votë"
         other: "%{count} vota"
@@ -1232,7 +1168,6 @@ sq:
     show_older: Shfaq më të vjetra
     show_thread: Shfaq rrjedhën
     sign_in_to_participate: Bëni hyrjen, që të merrni pjesë te biseda
-    title: '%{name}: "%{quote}"'
     visibilities:
       private: Vetëm ndjekësve
       private_long: Shfaqua vetëm ndjekësve
@@ -1328,7 +1263,7 @@ sq:
       <p>Ky dokument është CC-BY-SA. U përditësua së fundi më 7 mars, 2018.</p>
 
       <p>Përshtatur fillimisht nga <a href="https://github.com/discourse/discourse">rregullat e privatësisë në Discourse</a>.</p>
-    title: Kushte Shërbimi dhe Rregulla Privatësie te %{instance}
+    title: "Kushte Shërbimi dhe Rregulla Privatësie te %{instance}"
   themes:
     contrast: Mastodon (Me shumë kontrast)
     default: Mastodon (I errët)
@@ -1336,7 +1271,6 @@ sq:
   time:
     formats:
       default: "%d %b, %Y, %H:%M"
-      month: "%b %Y"
   two_factor_authentication:
     add: Shtoje
     disable: Çaktivizoje
