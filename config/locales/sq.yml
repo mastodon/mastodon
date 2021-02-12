@@ -6,6 +6,7 @@ sq:
     active_count_after: aktive
     active_footnote: Përdorues Aktivë Mujor (PAM)
     administered_by: 'Administruar nga:'
+    api: API
     apps: Aplikacione për celular
     apps_platforms: Përdoreni Mastodon-in prej iOS-i, Android-i dhe platformash të tjera
     browse_directory: Shfletoni një drejtori profilesh dhe filtrojeni sipas interesash
@@ -13,6 +14,7 @@ sq:
     browse_public_posts: Shfletoni një rrjedhë të drejtpërdrejtë postimesh publike në Mastodon
     contact: Kontakt
     contact_missing: I parregulluar
+    contact_unavailable: N/A
     discover_users: Zbuloni përdorues
     documentation: Dokumentim
     federation_hint_html: Me një llogari në %{instance}, do të jeni në gjendje të ndiqni persona në çfarëdo shërbyesi Mastodon dhe më tej.
@@ -61,6 +63,7 @@ sq:
     joined: U bë pjesë më %{date}
     last_active: aktiv së fundi
     link_verified_on: Pronësia e kësaj lidhjeje qe kontrolluar më %{date}
+    media: Media
     moved_html: "%{name} ka kaluar te %{new_profile_link}:"
     network_hidden: Këto të dhëna s’janë të passhme
     never_active: Kurrë
@@ -97,6 +100,7 @@ sq:
       approve_all: Miratojini krejt
       approved_msg: U miratua me sukses aplikimi për regjistrim të %{username}
       are_you_sure: Jeni i sigurt?
+      avatar: Avatar
       by_domain: Përkatësi
       change_email:
         changed_msg: Email-i i llogarisë u ndryshua me sukses!
@@ -118,6 +122,7 @@ sq:
       display_name: Emër në ekran
       domain: Përkatësi
       edit: Përpunojeni
+      email: Email
       email_status: Gjendje email-i
       enable: Aktivizoje
       enabled: E aktivizuar
@@ -128,6 +133,7 @@ sq:
       inbox_url: URL Mesazhesh të Marrë
       invite_request_text: Arsye për pjesëmarrje
       invited_by: Ftuar nga
+      ip: IP
       joined: U bë pjesë
       location:
         all: Krejt
@@ -177,6 +183,7 @@ sq:
       role: Leje
       roles:
         admin: Përgjegjës
+        moderator: Moderator
         staff: Staf
         user: Përdorues
       search: Kërkoni
@@ -207,6 +214,7 @@ sq:
       username: Emër përdoruesi
       view_domain: Shihni përmbledhjen për përkatësinë
       warn: Sinjalizoje
+      web: Web
       whitelisted: Lejuar për federim
     action_logs:
       action_types:
@@ -353,6 +361,7 @@ sq:
       feature_profile_directory: Drejtori profilesh
       feature_registrations: Regjistrime
       feature_relay: Rele federimi
+      feature_spam_check: Anti-spam
       feature_timeline_preview: Paraparje rrjedhjeje kohore
       features: Veçori
       hidden_service: Federim me shërbime të fshehura
@@ -362,6 +371,7 @@ sq:
       recent_users: Përdorues së fundi
       search: Kërko tekstin e plotë
       single_user_mode: Mënyrë me përdorues të vetëm
+      software: Software
       space: Përdorim hapësire
       title: Pult
       total_users: përdorues gjithsej
@@ -637,6 +647,8 @@ sq:
         nsfw_on: Vëri shenjë si rezervat
       deleted: E fshirë
       failed_to_execute: S’u arrit të përmbushej
+      media:
+        title: Media
       no_media: S’ka media
       no_status_selected: S’u ndryshua ndonjë gjendje, ngaqë s’u përzgjodh ndonjë e tillë
       title: Gjendje llogarish
@@ -651,6 +663,7 @@ sq:
       last_active: Aktive së fundi më
       most_popular: Më populloret
       most_recent: Më të rejat
+      name: Hashtag
       review: Gjendja e rishikimit
       reviewed: E shqyrtuar
       title: Hashtag-ë
@@ -690,11 +703,13 @@ sq:
     discovery: Zbulim
     localization:
       body: Mastodon-i përkthehet nga vullnetarë.
+      guide_link: https://crowdin.com/project/mastodon
       guide_link_text: Çdokush mund të kontribuojë.
     sensitive_content: Lëndë rezervat
     toot_layout: Skemë mesazhesh
   application_mailer:
     notification_preferences: Ndryshoni parapëlqime email-i
+    salutation: "%{name},"
     settings: 'Ndryshoni parapëlqime email-i: %{link}'
     view: 'Parje:'
     view_profile: Shihni profilin
@@ -729,6 +744,9 @@ sq:
     migrate_account: Kaloni në një tjetër llogari
     migrate_account_html: Nëse doni ta ridrejtoni këtë llogari te një tjetër, këtë mund <a href="%{path}">ta formësoni këtu</a>.
     or_log_in_with: Ose bëni hyrjen me
+    providers:
+      cas: CAS
+      saml: SAML
     register: Regjistrohuni
     registration_closed: "%{instance} s’pranon anëtarë të rinj"
     resend_confirmation: Ridërgo udhëzime ripohimi
@@ -771,6 +789,7 @@ sq:
       invalid_signature: s’është nënshkrim Ed25519 i vlefshëm
   date:
     formats:
+      default: "%d %b, %Y"
       with_month_name: "%d %B, %Y"
   datetime:
     distance_in_words:
@@ -779,9 +798,13 @@ sq:
       about_x_years: "%{count}v"
       almost_x_years: "%{count}v"
       half_a_minute: Mu tani
+      less_than_x_minutes: "%{count}m"
       less_than_x_seconds: Mu tani
       over_x_years: "%{count}v"
+      x_days: "%{count}d"
+      x_minutes: "%{count}m"
       x_months: "%{count}mj"
+      x_seconds: "%{count}s"
   deletes:
     challenge_not_passed: Të dhënat që dhatë s’qenë të sakta
     confirm_password: Që të verifikohet identiteti juaj, jepni fjalëkalimin tuaj të tanishëm
@@ -833,6 +856,7 @@ sq:
       size: Madhësi
     blocks: Bllokoni
     bookmarks: Faqerojtës
+    csv: CSV
     domain_blocks: Bllokime përkatësish
     lists: Lista
     mutes: Heshtoni
@@ -915,6 +939,7 @@ sq:
       following: Listë ndjekjesh
       muting: Listë heshtimesh
     upload: Ngarkoje
+  in_memoriam_html: In Memoriam.
   invites:
     delete: Çaktivizoje
     expired: Ka skaduar
@@ -1023,9 +1048,13 @@ sq:
   number:
     human:
       decimal_units:
+        format: "%n%u"
         units:
+          billion: B
+          million: M
           quadrillion: K
           thousand: M
+          trillion: T
   otp_authentication:
     code_hint: Që të bëhet ripohimi, jepni kodin e prodhuar nga aplikacioni juaj i mirëfilltësimeve
     description_html: Nëse aktivizoni <strong>mirëfilltësim dyfaktorësh</strong> duke përdorur një aplikacion mirëfilltësimesh, hyrja do të dojë që të keni telefonin tuaj, i cili do të prodhojë për ju token-ë hyrjesh.
@@ -1039,6 +1068,7 @@ sq:
     next: Pasuesi
     older: Më të vjetër
     prev: I mëparshmi
+    truncate: "&hellip;"
   polls:
     errors:
       already_voted: Keni votuar tashmë në këtë pyetësor
