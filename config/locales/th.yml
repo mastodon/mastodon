@@ -1,13 +1,11 @@
----
 th:
   about:
-    about_hashtag_html: มีการแท็กโพสต์สาธารณะเหล่านี้ด้วย <strong>#%{hashtag}</strong> คุณสามารถโต้ตอบกับโพสต์หากคุณมีบัญชีที่ใดก็ตามในเฟดิเวิร์ส
+    about_hashtag_html: 'มีการแท็กโพสต์สาธารณะเหล่านี้ด้วย <strong>#%{hashtag}</strong> คุณสามารถโต้ตอบกับโพสต์หากคุณมีบัญชีที่ใดก็ตามในเฟดิเวิร์ส'
     about_mastodon_html: 'เครือข่ายสังคมแห่งอนาคต: ไม่มีโฆษณา, ไม่มีการสอดแนมโดยองค์กร, การออกแบบตามหลักจริยธรรม และการกระจายศูนย์! เป็นเจ้าของข้อมูลของคุณด้วย Mastodon!'
     about_this: เกี่ยวกับ
     active_count_after: ใช้งานอยู่
     active_footnote: ผู้ใช้งานรายเดือน (MAU)
     administered_by: 'ดูแลโดย:'
-    api: API
     apps: แอปมือถือ
     apps_platforms: ใช้ Mastodon จาก iOS, Android และแพลตฟอร์มอื่น ๆ
     browse_directory: เรียกดูไดเรกทอรีโปรไฟล์และกรองตามความสนใจ
@@ -46,7 +44,7 @@ th:
     user_count_before: บ้านของ
     what_is_mastodon: Mastodon คืออะไร?
   accounts:
-    choices_html: 'ตัวเลือกของ %{name}:'
+    choices_html: "ตัวเลือกของ %{name}:"
     follow: ติดตาม
     followers:
       other: ผู้ติดตาม
@@ -118,7 +116,6 @@ th:
       inbox_url: URL กล่องขาเข้า
       invite_request_text: เหตุผลสำหรับการเข้าร่วม
       invited_by: เชิญโดย
-      ip: IP
       joined: เข้าร่วมเมื่อ
       location:
         all: ทั้งหมด
@@ -384,7 +381,7 @@ th:
         suspend: ระงับอยู่
       show:
         affected_accounts:
-          other: มีผลต่อ %{count} บัญชีในฐานข้อมูล
+          other: "มีผลต่อ %{count} บัญชีในฐานข้อมูล"
         retroactive:
           silence: เลิกทำให้บัญชีที่มีอยู่ทั้งหมดจากโดเมนนี้เงียบ
           suspend: เลิกระงับบัญชีที่มีอยู่ทั้งหมดจากโดเมนนี้
@@ -446,7 +443,7 @@ th:
     pending_accounts:
       title: บัญชีที่รอดำเนินการ (%{count})
     relationships:
-      title: ความสัมพันธ์ของ %{acct}
+      title: "ความสัมพันธ์ของ %{acct}"
     relays:
       add_new: เพิ่มรีเลย์ใหม่
       delete: ลบ
@@ -613,7 +610,7 @@ th:
     new_report:
       body: "%{reporter} ได้รายงาน %{target}"
       body_remote: ใครสักคนจาก %{domain} ได้รายงาน %{target}
-      subject: รายงานใหม่สำหรับ %{instance} (#%{id})
+      subject: 'รายงานใหม่สำหรับ %{instance} (#%{id})'
   aliases:
     add_new: สร้างนามแฝง
     deleted_msg: เอานามแฝงออกสำเร็จ จะไม่สามารถย้ายจากบัญชีนั้นไปยังบัญชีนี้ได้อีกต่อไป
@@ -664,9 +661,6 @@ th:
     migrate_account: ย้ายไปยังบัญชีอื่น
     migrate_account_html: หากคุณต้องการเปลี่ยนเส้นทางบัญชีนี้ไปยังบัญชีอื่น คุณสามารถ <a href="%{path}">กำหนดค่าบัญชีที่นี่</a>
     or_log_in_with: หรือเข้าสู่ระบบด้วย
-    providers:
-      cas: CAS
-      saml: SAML
     register: ลงทะเบียน
     registration_closed: "%{instance} ไม่ได้กำลังเปิดรับสมาชิกใหม่"
     resend_confirmation: ส่งคำแนะนำการยืนยันใหม่
@@ -763,7 +757,6 @@ th:
       size: ขนาด
     blocks: คุณปิดกั้น
     bookmarks: ที่คั่นหน้า
-    csv: CSV
     domain_blocks: การปิดกั้นโดเมน
     lists: รายการ
     mutes: คุณซ่อน
@@ -918,7 +911,6 @@ th:
     next: ถัดไป
     older: เก่ากว่า
     prev: ก่อนหน้า
-    truncate: "&hellip;"
   polls:
     errors:
       already_voted: คุณได้ลงคะแนนในการสำรวจความคิดเห็นนี้ไปแล้ว
@@ -972,38 +964,11 @@ th:
     activity: กิจกรรมล่าสุด
     browser: เบราว์เซอร์
     browsers:
-      alipay: Alipay
-      blackberry: Blackberry
-      chrome: Chrome
-      edge: Microsoft Edge
-      electron: Electron
-      firefox: Firefox
       generic: เบราว์เซอร์ที่ไม่รู้จัก
-      ie: Internet Explorer
-      micro_messenger: MicroMessenger
-      nokia: Nokia S40 Ovi Browser
-      opera: Opera
-      otter: Otter
-      phantom_js: PhantomJS
-      qq: QQ Browser
-      safari: Safari
-      uc_browser: UCBrowser
-      weibo: Weibo
     current_session: เซสชันปัจจุบัน
-    ip: IP
     platforms:
-      adobe_air: Adobe Air
-      android: Android
-      blackberry: Blackberry
-      chrome_os: ChromeOS
-      firefox_os: Firefox OS
-      ios: iOS
-      linux: Linux
       mac: Mac
       other: แพลตฟอร์มที่ไม่รู้จัก
-      windows: Windows
-      windows_mobile: Windows Mobile
-      windows_phone: Windows Phone
     revoke: เพิกถอน
     revoke_success: เพิกถอนเซสชันสำเร็จ
     title: เซสชัน
@@ -1061,7 +1026,6 @@ th:
     show_older: แสดงที่เก่ากว่า
     show_thread: แสดงกระทู้
     sign_in_to_participate: ลงชื่อเข้าเพื่อเข้าร่วมการสนทนา
-    title: '%{name}: "%{quote}"'
     visibilities:
       private: ผู้ติดตามเท่านั้น
       private_long: แสดงแก่ผู้ติดตามเท่านั้น
@@ -1075,7 +1039,7 @@ th:
   tags:
     does_not_match_previous_name: ไม่ตรงกับชื่อก่อนหน้า
   terms:
-    title: เงื่อนไขการให้บริการและนโยบายความเป็นส่วนตัวของ %{instance}
+    title: "เงื่อนไขการให้บริการและนโยบายความเป็นส่วนตัวของ %{instance}"
   themes:
     contrast: Mastodon (ความคมชัดสูง)
     default: Mastodon (มืด)
@@ -1083,7 +1047,6 @@ th:
   time:
     formats:
       default: "%d %b %Y, %H:%M"
-      month: "%b %Y"
   two_factor_authentication:
     add: เพิ่ม
     disable: ปิดใช้งาน 2FA
