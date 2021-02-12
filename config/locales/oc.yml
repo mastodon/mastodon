@@ -1,13 +1,11 @@
----
 oc:
   about:
-    about_hashtag_html: Vaquí los estatuts publics ligats a <strong>#%{hashtag}</strong>. Podètz interagir amb eles s’avètz un compte ont que siasque sul fediverse.
-    about_mastodon_html: Mastodon es un malhum social bastit amb de protocòls liures e gratuits. Es descentralizat coma los corrièls.
+    about_hashtag_html: 'Vaquí los estatuts publics ligats a <strong>#%{hashtag}</strong>. Podètz interagir amb eles s’avètz un compte ont que siasque sul fediverse.'
+    about_mastodon_html: 'Mastodon es un malhum social bastit amb de protocòls liures e gratuits. Es descentralizat coma los corrièls.'
     about_this: A prepaus d’aquesta instància
     active_count_after: actius
     active_footnote: Utilizaire actius per mes (UAM)
     administered_by: 'Administrat per :'
-    api: API
     apps: Aplicacions per mobil
     apps_platforms: Utilizatz Mastodon d‘iOS, Android o d’autras plataforma estant
     browse_directory: Navigatz per l’annuari de perfil e filtratz segon çò qu’aimatz
@@ -46,7 +44,7 @@ oc:
     user_count_before: Ostal de
     what_is_mastodon: Qu’es Mastodon ?
   accounts:
-    choices_html: 'Recomandacions de %{name} :'
+    choices_html: "Recomandacions de %{name} :"
     endorsements_hint: Podètz recomandar personas que seguètz a partir de l’interfàcia web, apreissaràn aquí.
     featured_tags_hint: Podètz indicar d’etiquetas que mostrarem aquí.
     follow: Sègre
@@ -73,7 +71,6 @@ oc:
     posts_with_replies: Tuts e responsas
     reserved_username: Aqueste nom d’utilizaire es reservat
     roles:
-      admin: Admin
       bot: Robòt
       group: Grop
       moderator: Moderador
@@ -93,7 +90,6 @@ oc:
       approve: Aprovar
       approve_all: O validar tot
       are_you_sure: Sètz segur ?
-      avatar: Avatar
       by_domain: Domeni
       change_email:
         changed_msg: Adreça corrèctament cambiada !
@@ -123,7 +119,6 @@ oc:
       header: Bandièra
       inbox_url: URL de recepcion
       invited_by: Convidat per
-      ip: IP
       joined: Venguèt
       location:
         all: Totes
@@ -151,7 +146,6 @@ oc:
       perform_full_suspension: Suspendre
       promote: Promòure
       protocol: Protocòl
-      public: Public
       push_subscription_expires: Fin de l’abonament PuSH
       redownload: Actualizar lo perfil
       reject: Regetar
@@ -167,7 +161,6 @@ oc:
       resubscribe: Se tornar abonar
       role: Autorizacions
       roles:
-        admin: Administrator
         moderator: Moderador
         staff: Personnal
         user: Uitlizaire
@@ -193,7 +186,6 @@ oc:
       unsubscribe: Se desabonar
       username: Nom d’utilizaire
       warn: Avisar
-      web: Web
       whitelisted: Mes en lista blanca
     action_logs:
       action_types:
@@ -219,7 +211,7 @@ oc:
         reopen_report: Tornar dobrir lo rapòrt
         reset_password_user: Reïnicializar lo senhal
         resolve_report: Resòlver lo rapòrt
-        silence_account: " Metre en silenci lo compte"
+        silence_account: ' Metre en silenci lo compte'
         suspend_account: Suspendre lo compte
         unassigned_report: Desafectar lo rapòrt
         unsilence_account: Levar lo silenci del compte
@@ -295,7 +287,6 @@ oc:
       disable: Desactivar
       disabled: Desactivat
       disabled_msg: Aqueste emoji es ben desactivat
-      emoji: Emoji
       enable: Activar
       enabled: Activat
       enabled_msg: Aqueste emoji es ben activat
@@ -323,7 +314,6 @@ oc:
       feature_profile_directory: Annuari de perfils
       feature_registrations: Inscripcions
       feature_relay: Relai de federacion
-      feature_spam_check: Anti-spam
       feature_timeline_preview: Apercebut del flux d’actualitats
       features: Foncionalitats
       hidden_service: Federacion amb servicis amagats
@@ -440,7 +430,7 @@ oc:
     pending_accounts:
       title: Comptes en espèra (%{count})
     relationships:
-      title: Relacions de %{acct}
+      title: "Relacions de %{acct}"
     relays:
       add_new: Ajustar un nòu relai
       delete: Suprimir
@@ -626,9 +616,9 @@ oc:
     new_report:
       body: "%{reporter} a senhalat %{target}"
       body_remote: Qualqu’un de %{domain} senhalèt %{target}
-      subject: Novèl senhalament per %{instance} (#%{id})
+      subject: 'Novèl senhalament per %{instance} (#%{id})'
     new_trending_tag:
-      subject: Nòva etiqueta per repassar sus %{instance} (#%{name})
+      subject: 'Nòva etiqueta per repassar sus %{instance} (#%{name})'
   aliases:
     add_new: Crear un alias
     remove: Desligar l’alias
@@ -640,13 +630,11 @@ oc:
     discovery: Descobèrta
     localization:
       body: Mastodon es traduch per de benevòls.
-      guide_link: https://crowdin.com/project/mastodon
       guide_link_text: Tot lo monde pòt contribuïr.
     sensitive_content: Contengut sensible
     toot_layout: Disposicion del tut
   application_mailer:
     notification_preferences: Cambiar las preferéncias de corrièl
-    salutation: "%{name},"
     settings: 'Cambiar las preferéncias de corrièl : %{link}'
     view: 'Veire :'
     view_profile: Veire lo perfil
@@ -677,9 +665,6 @@ oc:
     migrate_account: Mudar endacòm mai
     migrate_account_html: Se volètz mandar los visitors d’aqueste compte a un autre, podètz<a href="%{path}"> o configurar aquí</a>.
     or_log_in_with: O autentificatz-vos amb
-    providers:
-      cas: CAS
-      saml: SAML
     register: Se marcar
     registration_closed: "%{instance} accepta pas de nòus membres"
     resend_confirmation: Tornar mandar las instruccions de confirmacion
@@ -726,7 +711,6 @@ oc:
       x_days: "%{count} jorns"
       x_minutes: "%{count} min"
       x_months: "%{count} meses"
-      x_seconds: "%{count}s"
   deletes:
     challenge_not_passed: Las informacions qu’avètz fornidas son pas corrèctas
     confirm_password: Picatz vòstre senhal actual per verificar vòstra identitat
@@ -776,7 +760,6 @@ oc:
       size: Talha
     blocks: Personas que blocatz
     bookmarks: Marcadors
-    csv: CSV
     domain_blocks: Blocatge de domenis
     lists: Listas
     mutes: Personas rescondudas
@@ -920,7 +903,7 @@ oc:
         other: "%{count} nòvas notificacions dempuèi vòstra darrièra visita \U0001F418"
       title: Pendent vòstra abséncia…
     favourite:
-      body: "%{name} a mes vòstre estatut en favorit :"
+      body: '%{name} a mes vòstre estatut en favorit :'
       subject: "%{name} a mes vòstre estatut en favorit"
       title: Novèl apondut als favorits
     follow:
@@ -934,27 +917,17 @@ oc:
       title: Novèla demanda d’abonament
     mention:
       action: Respondre
-      body: "%{name} vos a mencionat dins :"
-      subject: "%{name} vos a mencionat"
+      body: '%{name} vos a mencionat dins :'
+      subject: '%{name} vos a mencionat'
       title: Novèla mencion
     reblog:
-      body: "%{name} a tornat partejar vòstre estatut :"
+      body: '%{name} a tornat partejar vòstre estatut :'
       subject: "%{name} a tornat partejar vòstre estatut"
       title: Novèl partatge
   notifications:
     email_events: Eveniments per las notificacions per corrièl
     email_events_hint: 'Seleccionatz los eveniments que volètz recebre :'
     other_settings: Autres paramètres de notificacion
-  number:
-    human:
-      decimal_units:
-        format: "%n%u"
-        units:
-          billion: B
-          million: M
-          quadrillion: Q
-          thousand: K
-          trillion: T
   otp_authentication:
     enable: Activar
     setup: Parametrar
@@ -963,7 +936,6 @@ oc:
     next: Seguent
     older: Mai ancians
     prev: Precedent
-    truncate: "&hellip;"
   polls:
     errors:
       already_voted: Avètz ja votat per aqueste sondatge
@@ -1024,43 +996,15 @@ oc:
     activity: Darrièra activitat
     browser: Navigator
     browsers:
-      alipay: Alipay
-      blackberry: Blackberry
-      chrome: Chrome
-      edge: Microsoft Edge
-      electron: Electron
-      firefox: Firefox
       generic: Navigator desconegut
-      ie: Internet Explorer
-      micro_messenger: MicroMessenger
-      nokia: Nokia S40 Ovi Browser
-      opera: Opera
-      otter: Otter
-      phantom_js: PhantomJS
-      qq: QQ Browser
-      safari: Safari
-      uc_browser: UCBrowser
-      weibo: Weibo
     current_session: Session en cors
     description: "%{browser} sus %{platform}"
     explanation: Aquí los navigators connectats a vòstre compte Mastodon.
-    ip: IP
     platforms:
-      adobe_air: Adobe Air
-      android: Android
-      blackberry: Blackberry
-      chrome_os: ChromeOS
-      firefox_os: Firefox OS
-      ios: iOS
-      linux: Linux
       mac: Mac
       other: plataforma desconeguda
-      windows: Windows
-      windows_mobile: Windows Mobile
-      windows_phone: Windows Phone
     revoke: Revocar
     revoke_success: Session ben revocada
-    title: Sessions
   settings:
     account: Compte
     account_settings: Paramètres de compte
@@ -1125,7 +1069,6 @@ oc:
     visibilities:
       private: Seguidors solament
       private_long: Mostrar pas qu’als seguidors
-      public: Public
       public_long: Tot lo monde pòt veire
       unlisted: Pas listat
       unlisted_long: Tot lo monde pòt veire mai serà pas visible sul flux public
@@ -1219,14 +1162,14 @@ oc:
       <p>Aqueste document es jos licéncia CC-BY-SA. Darrièra mesa a jorn lo 4 de març de 2018</p>
 
       <p>Prima adaptacion de la <a href="https://github.com/discourse/discourse">politica de confidencialitat de Discourse</a>.</p>
-    title: Condicions d’utilizacion e politica de confidencialitat de %{instance}
+    title: "Condicions d’utilizacion e politica de confidencialitat de %{instance}"
   themes:
     contrast: Mastodon (Fòrt contrast)
     default: Mastodon (Escur)
     mastodon-light: Mastodon (Clar)
   time:
     formats:
-      default: Lo %-d %B de %Y a %Ho%M
+      default: "Lo %-d %B de %Y a %Ho%M"
       month: "%B de %Y"
   two_factor_authentication:
     add: Ajustar
