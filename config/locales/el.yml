@@ -6,6 +6,7 @@ el:
     active_count_after: ενεργοί
     active_footnote: Μηνιαίοι Ενεργοί Χρήστες (ΜΕΧ)
     administered_by: 'Διαχειριστής:'
+    api: API
     apps: Εφαρμογές κινητών
     apps_platforms: Χρησιμοποίησε το Mastodon από το iOS, το Android και αλλού
     browse_directory: Ξεφύλλισε τον κατάλογο χρηστών και ψάξε ανά ενδιαφέροντα
@@ -120,6 +121,7 @@ el:
       display_name: Όνομα εμφάνισης
       domain: Τομέας
       edit: Αλλαγή
+      email: Email
       email_status: Κατάσταση email
       enable: Ενεργοποίηση
       enabled: Ενεργοποιημένο
@@ -130,6 +132,7 @@ el:
       inbox_url: URL εισερχομένων
       invite_request_text: Λόγοι για εγγραφή
       invited_by: Προσκλήθηκε από
+      ip: IP
       joined: Γράφτηκε
       location:
         all: Όλες
@@ -324,6 +327,7 @@ el:
       disable: Απενεργοποίηση
       disabled: Απενεργοποιημένα
       disabled_msg: Επιτυχής απενεργοποίηση αυτού του emoji
+      emoji: Emoji
       enable: Ενεργοποίηση
       enabled: Ενεργοποιημένα
       enabled_msg: Επιτυχής ενεργοποίηση αυτού του emoji
@@ -431,6 +435,7 @@ el:
     instances:
       by_domain: Τομέας
       delivery_available: Διαθέσιμη παράδοση
+      empty: Δεν βρέθηκαν τομείς.
       known_accounts:
         one: "%{count} γνωστός λογαριασμός"
         other: "%{count} γνωστοί λογαριασμοί"
@@ -687,11 +692,13 @@ el:
     discovery: Εξερεύνηση
     localization:
       body: Το Mastodon μεταφράζεται από εθελοντές.
+      guide_link: https://crowdin.com/project/mastodon
       guide_link_text: Μπορεί να συνεισφέρει ο οποιοσδήποτε.
     sensitive_content: Ευαίσθητο περιεχόμενο
     toot_layout: Διαρρύθμιση τουτ
   application_mailer:
     notification_preferences: Αλλαγή προτιμήσεων email
+    salutation: "%{name},"
     settings: 'Άλλαξε τις προτιμήσεις email: %{link}'
     view: 'Προβολή:'
     view_profile: Προβολή προφίλ
@@ -745,6 +752,7 @@ el:
       functional: Ο λογαριασμός σου είναι πανέτοιμος.
       pending: Η εφαρμογή σας εκκρεμεί έγκρισης, πιθανόν θα διαρκέσει κάποιο χρόνο. Θα λάβετε email αν εγκριθεί.
       redirecting_to: Ο λογαριασμός σου είναι ανενεργός γιατί επί του παρόντος ανακατευθύνει στον %{acct}.
+    too_fast: Η φόρμα υποβλήθηκε πολύ γρήγορα, προσπαθήστε ξανά.
     trouble_logging_in: Πρόβλημα σύνδεσης;
     use_security_key: Χρήση κλειδιού ασφαλείας
   authorize_follow:
@@ -833,6 +841,7 @@ el:
       size: Μέγεθος
     blocks: Μπλοκάρεις
     bookmarks: Σελιδοδείκτες
+    csv: CSV
     domain_blocks: Μπλοκαρίσματα κόμβων
     lists: Λίστες
     mutes: Αποσιωπήσεις
@@ -1024,6 +1033,7 @@ el:
   number:
     human:
       decimal_units:
+        format: "%n%u"
         units:
           billion: δις.
           million: εκ.
@@ -1039,6 +1049,7 @@ el:
     next: Επόμενο
     older: Παλιότερο
     prev: Προηγούμενο
+    truncate: "&hellip;"
   polls:
     errors:
       already_voted: Έχεις ήδη ψηφίσει σε αυτή την ψηφοφορία
