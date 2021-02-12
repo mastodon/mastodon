@@ -1,13 +1,11 @@
----
 it:
   about:
-    about_hashtag_html: Questi sono i toot pubblici etichettati con <strong>#%{hashtag}</strong>. Puoi interagire con loro se hai un account nel fediverse.
+    about_hashtag_html: 'Questi sono i toot pubblici etichettati con <strong>#%{hashtag}</strong>. Puoi interagire con loro se hai un account nel fediverse.'
     about_mastodon_html: 'Il social network del futuro: niente pubblicità, niente controllo da parte di qualche azienda privata, design etico e decentralizzazione! Con Mastodon il proprietario dei tuoi dati sei tu!'
     about_this: A proposito di questo server
     active_count_after: attivo
     active_footnote: Utenti Attivi Mensili (MAU)
     administered_by: 'Amministrato da:'
-    api: API
     apps: Applicazioni per dispositivi mobili
     apps_platforms: Usa Mastodon da iOS, Android e altre piattaforme
     browse_directory: Sfoglia la directory dei profili e filtra per interessi
@@ -37,9 +35,8 @@ it:
     terms: Termini di Servizio
     unavailable_content: Contenuto non disponibile
     unavailable_content_description:
-      domain: Server
       reason: 'Motivo:'
-      rejecting_media: I file multimediali di questo server non saranno elaborati e non verranno visualizzate miniature, che richiedono clic manuale sull'altro server.
+      rejecting_media: 'I file multimediali di questo server non saranno elaborati e non verranno visualizzate miniature, che richiedono clic manuale sull''altro server.'
       rejecting_media_title: Media filtrati
       silenced: 'I messaggi da questi server saranno nascosti nelle timeline e nelle conversazioni pubbliche, e nessuna notifica verrà generata dalle interazioni dei loro utenti, a meno che non li stai seguendo:'
       silenced_title: Server silenziati
@@ -52,7 +49,7 @@ it:
     user_count_before: Home di
     what_is_mastodon: Che cos'è Mastodon?
   accounts:
-    choices_html: 'Suggerimenti da %{name}:'
+    choices_html: "Suggerimenti da %{name}:"
     endorsements_hint: 'Puoi segnalare persone che segui e che apprezzi dall''interfaccia web: saranno mostrate qui.'
     featured_tags_hint: Puoi mettere in evidenza determinati hashtag che verranno visualizzati qui.
     follow: Segui
@@ -64,7 +61,6 @@ it:
     joined: Dal %{date}
     last_active: ultima attività
     link_verified_on: La proprietà di questo link è stata controllata il %{date}
-    media: Media
     moved_html: "%{name} si è spostato su %{new_profile_link}:"
     network_hidden: Questa informazione non e' disponibile
     never_active: Mai
@@ -73,15 +69,11 @@ it:
     people_who_follow: Persone che seguono %{name}
     pin_errors:
       following: Devi gia seguire la persona che vuoi promuovere
-    posts:
-      one: Toot
-      other: Toot
     posts_tab_heading: Toot
     posts_with_replies: Toot e risposte
     reserved_username: Questo nome utente è già stato preso
     roles:
       admin: Amministratore
-      bot: Bot
       group: Gruppo
       moderator: Moderatore
     unavailable: Profilo non disponibile
@@ -116,14 +108,13 @@ it:
       delete: Elimina dati
       deleted: Cancellato
       demote: Declassa
-      destroyed_msg: I dati di %{username} sono ora in coda per essere eliminati tra poco
+      destroyed_msg: "I dati di %{username} sono ora in coda per essere eliminati tra poco"
       disable: Disabilita
       disable_two_factor_authentication: Disabilita l'autenticazione a due fattori
       disabled: Disabilitato
       display_name: Nome visualizzato
       domain: Dominio
       edit: Modifica
-      email: Email
       email_status: Stato email
       enable: Abilita
       enabled: Abilitato
@@ -134,7 +125,6 @@ it:
       inbox_url: URL inbox
       invite_request_text: Motivi per l'iscrizione
       invited_by: Invitato da
-      ip: IP
       joined: Iscritto da
       location:
         all: Tutto
@@ -215,7 +205,6 @@ it:
       username: Nome utente
       view_domain: Visualizza riepilogo per dominio
       warn: Avverti
-      web: Web
       whitelisted: Nella whitelist
     action_logs:
       action_types:
@@ -333,7 +322,6 @@ it:
       disable: Disabilita
       disabled: Disabilitato
       disabled_msg: Questa emoji è stata disabilitata con successo
-      emoji: Emoji
       enable: Abilita
       enabled: Abilitato
       enabled_msg: Questa emoji è stata abilitata con successo
@@ -362,7 +350,6 @@ it:
       feature_profile_directory: Directory dei profili
       feature_registrations: Registrazioni
       feature_relay: Ripetitore di federazione
-      feature_spam_check: Anti-spam
       feature_timeline_preview: Anteprima timeline
       features: Funzionalità
       hidden_service: Federazione con servizi nascosti
@@ -372,7 +359,6 @@ it:
       recent_users: Utenti Recenti
       search: Ricerca testo intero
       single_user_mode: Modalita utente singolo
-      software: Software
       space: Utilizzo dello spazio
       title: Cruscotto
       total_users: utenti totali
@@ -420,7 +406,7 @@ it:
       show:
         affected_accounts:
           one: Interessato un solo account nel database
-          other: Interessati %{count} account nel database
+          other: "Interessati %{count} account nel database"
         retroactive:
           silence: De-silenzia tutti gli account esistenti da questo dominio
           suspend: Annulla la sospensione di tutti gli account esistenti da questo dominio
@@ -485,7 +471,7 @@ it:
     pending_accounts:
       title: Account in attesa (%{count})
     relationships:
-      title: Relazioni di %{acct}
+      title: "Relazioni di %{acct}"
     relays:
       add_new: Aggiungi ripetitore
       delete: Cancella
@@ -648,8 +634,6 @@ it:
         nsfw_on: Segna come sensibile
       deleted: Cancellato
       failed_to_execute: Impossibile eseguire
-      media:
-        title: Media
       no_media: Nessun media
       no_status_selected: Nessun status è stato modificato perché nessuno era stato selezionato
       title: Gli status dell'account
@@ -664,7 +648,6 @@ it:
       last_active: Ultima attività
       most_popular: Più popolari
       most_recent: Più recenti
-      name: Hashtag
       review: Esamina status
       reviewed: Controllato
       title: Hashtag
@@ -685,7 +668,7 @@ it:
     new_report:
       body: "%{reporter} ha segnalato %{target}"
       body_remote: Qualcuno da %{domain} ha segnalato %{target}
-      subject: Nuova segnalazione per %{instance} (#%{id})
+      subject: 'Nuova segnalazione per %{instance} (#%{id})'
     new_trending_tag:
       body: 'L''hashtag #%{name} oggi è di tendenza, ma non è stato mai controllato. Non sarà visualizzato pubblicamente se non lo permetti; se salvi il form senza modifiche non lo vedrai mai più.'
       subject: Nuovo hashtag pronto per essere controllato su %{instance} (%{name})
@@ -698,9 +681,7 @@ it:
     remove: Scollega alias
   appearance:
     advanced_web_interface: Interfaccia web avanzata
-    advanced_web_interface_hint: |-
-      Se vuoi utilizzare l'intera larghezza dello schermo, l'interfaccia web avanzata ti consente di configurare varie colonne per mostrare più informazioni allo stesso tempo, secondo le tue preferenze:
-      Home, notifiche, timeline federata, qualsiasi numero di liste e etichette.
+    advanced_web_interface_hint: "Se vuoi utilizzare l'intera larghezza dello schermo, l'interfaccia web avanzata ti consente di configurare varie colonne per mostrare più informazioni allo stesso tempo, secondo le tue preferenze:\nHome, notifiche, timeline federata, qualsiasi numero di liste e etichette."
     animations_and_accessibility: Animazioni e accessibiiltà
     confirmation_dialogs: Dialoghi di conferma
     discovery: Scoperta
@@ -712,7 +693,6 @@ it:
     toot_layout: Layout dei toot
   application_mailer:
     notification_preferences: Cambia preferenze email
-    salutation: "%{name},"
     settings: 'Cambia le impostazioni per le email: %{link}'
     view: 'Guarda:'
     view_profile: Mostra profilo
@@ -727,7 +707,6 @@ it:
     your_token: Il tuo token di accesso
   auth:
     apply_for_account: Chiedi un invito
-    change_password: Password
     checkbox_agreement_html: Sono d'accordo con le <a href="%{rules_path}" target="_blank">regole del server</a> ed i <a href="%{terms_path}" target="_blank">termini di servizio</a>
     checkbox_agreement_without_rules_html: Accetto i <a href="%{terms_path}" target="_blank">termini di servizio</a>
     delete_account: Elimina account
@@ -747,9 +726,6 @@ it:
     migrate_account: Sposta ad un account differente
     migrate_account_html: Se vuoi che questo account sia reindirizzato a uno diverso, puoi <a href="%{path}">configurarlo qui</a>.
     or_log_in_with: Oppure accedi con
-    providers:
-      cas: CAS
-      saml: SAML
     register: Iscriviti
     registration_closed: "%{instance} non accetta nuovi membri"
     resend_confirmation: Invia di nuovo le istruzioni di conferma
@@ -859,7 +835,6 @@ it:
       size: Dimensioni
     blocks: Stai bloccando
     bookmarks: Segnalibri
-    csv: CSV
     domain_blocks: Blocchi di dominio
     lists: Liste
     mutes: Stai silenziando
@@ -942,7 +917,6 @@ it:
       following: Lista dei seguiti
       muting: Lista dei silenziati
     upload: Carica
-  in_memoriam_html: In Memoriam.
   invites:
     delete: Disattiva
     expired: Scaduto
@@ -1051,13 +1025,10 @@ it:
   number:
     human:
       decimal_units:
-        format: "%n%u"
         units:
           billion: G
-          million: M
           quadrillion: P
           thousand: k
-          trillion: T
   otp_authentication:
     code_hint: Inserisci il codice generato dall'app di autenticazione per confermare
     description_html: Se abiliti <strong>l'autenticazione a due fattori</strong> utilizzando un'app di autenticazione, per accedere sarà necessario essere in possesso del telefono, che genererà dei codici per l'accesso.
@@ -1071,7 +1042,6 @@ it:
     next: Avanti
     older: Più vecchio
     prev: Indietro
-    truncate: "&hellip;"
   polls:
     errors:
       already_voted: Hai già votato in questo sondaggio
@@ -1131,47 +1101,18 @@ it:
     too_soon: La data di pubblicazione deve essere nel futuro
   sessions:
     activity: Ultima attività
-    browser: Browser
     browsers:
-      alipay: Alipay
-      blackberry: Blackberry
-      chrome: Chrome
-      edge: Microsoft Edge
-      electron: Electron
-      firefox: Firefox
       generic: Browser sconosciuto
-      ie: Internet Explorer
-      micro_messenger: MicroMessenger
-      nokia: Nokia S40 Ovi Browser
-      opera: Opera
-      otter: Otter
-      phantom_js: PhantomJS
-      qq: QQ Browser
-      safari: Safari
-      uc_browser: UCBrowser
-      weibo: Weibo
     current_session: Sessione corrente
     description: "%{browser} su %{platform}"
     explanation: Questi sono i browser da cui attualmente è avvenuto l'accesso al tuo account Mastodon.
-    ip: IP
     platforms:
-      adobe_air: Adobe Air
-      android: Android
-      blackberry: Blackberry
-      chrome_os: ChromeOS
-      firefox_os: Firefox OS
-      ios: iOS
-      linux: Linux
       mac: Mac
       other: piattaforma sconosciuta
-      windows: Windows
-      windows_mobile: Windows Mobile
-      windows_phone: Windows Phone
     revoke: Revoca
     revoke_success: Sessione revocata con successo
     title: Sessioni
   settings:
-    account: Account
     account_settings: Impostazioni dell'account
     aliases: Alias dell'account
     appearance: Interfaccia
@@ -1196,16 +1137,10 @@ it:
     spam_detected: Questo è un rapporto automatico. È stato rilevato dello spam.
   statuses:
     attached:
-      audio:
-        one: "%{count} audio"
-        other: "%{count} audio"
       description: 'Allegato: %{attached}'
       image:
         one: "%{count} immagine"
         other: "%{count} immagini"
-      video:
-        one: "%{count} video"
-        other: "%{count} video"
     boosted_from_html: Condiviso da %{acct_link}
     content_warning: 'Avviso di contenuto: %{warning}'
     disallowed_hashtags:
@@ -1234,7 +1169,6 @@ it:
     show_older: Mostra più vecchi
     show_thread: Mostra thread
     sign_in_to_participate: Accedi per partecipare alla conversazione
-    title: '%{name}: "%{quote}"'
     visibilities:
       private: Mostra solo ai tuoi seguaci
       private_long: Mostra solo ai seguaci
@@ -1338,10 +1272,6 @@ it:
     contrast: Mastodon (contrasto elevato)
     default: Mastodon (scuro)
     mastodon-light: Mastodon (chiaro)
-  time:
-    formats:
-      default: "%b %d, %Y, %H:%M"
-      month: "%b %Y"
   two_factor_authentication:
     add: Aggiungi
     disable: Disabilita
