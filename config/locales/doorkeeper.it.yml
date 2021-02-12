@@ -1,4 +1,3 @@
----
 it:
   activerecord:
     attributes:
@@ -83,7 +82,6 @@ it:
         invalid_client: Accesso al servizio fallito perché il servizio è sconosciuto, l'accesso al servizio non è stato incluso, o il metodo di accesso non è supportato.
         invalid_grant: Il permesso d'autorizzazione è non valido, scaduto, disabilitato, non coincide con l'URI di reindirizzamento fornito nella richiesta di autorizzazione, o è stato rilasciato da un altro client.
         invalid_redirect_uri: L'URI di reindirizzamento fornito non è valido.
-        invalid_request: La richiesta non contiene un parametro necessario, contiene un valore parametrico non supportato, o è altrimenti malformulata.
         invalid_resource_owner: Le credenziali di accesso fornite per il proprietario non sono corrette, o il proprietario del servizio non è stato trovato
         invalid_scope: Lo scope richiesto è invalido, sconosciuto, o malformulato.
         invalid_token:
@@ -115,37 +113,37 @@ it:
       application:
         title: Autorizzazione OAuth richiesta
     scopes:
-      admin:read: leggere tutti i dati dal server
-      admin:read:accounts: leggere dati sensibili di tutti gli account
-      admin:read:reports: leggere dati sensibili di tutte le segnalazioni e gli account segnalati
-      admin:write: modificare tutti i dati sul server
-      admin:write:accounts: eseguire azioni di moderazione sugli account
-      admin:write:reports: eseguire azioni di moderazione sulle segnalazioni
+      "admin:read": leggere tutti i dati dal server
+      "admin:read:accounts": leggere dati sensibili di tutti gli account
+      "admin:read:reports": leggere dati sensibili di tutte le segnalazioni e gli account segnalati
+      "admin:write": modificare tutti i dati sul server
+      "admin:write:accounts": eseguire azioni di moderazione sugli account
+      "admin:write:reports": eseguire azioni di moderazione sulle segnalazioni
       follow: modificare relazioni tra account
       push: ricevere le tue notifiche push
       read: leggere tutte le informazioni del tuo account
-      read:accounts: vedere informazioni sull'account
-      read:blocks: vedere i tuoi blocchi
-      read:bookmarks: vedi i tuoi preferiti
-      read:favourites: vedere i tuoi preferiti
-      read:filters: vedere i tuoi filtri
-      read:follows: vedere i tuoi seguiti
-      read:lists: vedere le tue liste
-      read:mutes: vedere i tuoi silenziati
-      read:notifications: vedere le tue notifiche
-      read:reports: vedere i tuoi rapporti
-      read:search: fare ricerche per te
-      read:statuses: vedere tutti gli status
+      "read:accounts": vedere informazioni sull'account
+      "read:blocks": vedere i tuoi blocchi
+      "read:bookmarks": vedi i tuoi preferiti
+      "read:favourites": vedere i tuoi preferiti
+      "read:filters": vedere i tuoi filtri
+      "read:follows": vedere i tuoi seguiti
+      "read:lists": vedere le tue liste
+      "read:mutes": vedere i tuoi silenziati
+      "read:notifications": vedere le tue notifiche
+      "read:reports": vedere i tuoi rapporti
+      "read:search": fare ricerche per te
+      "read:statuses": vedere tutti gli status
       write: modificare tutti i dati del tuo account
-      write:accounts: modificare il tuo profilo
-      write:blocks: bloccare account e domini
-      write:bookmarks: aggiungi post ai preferiti
-      write:favourites: segnare status come preferiti
-      write:filters: creare filtri
-      write:follows: seguire persone
-      write:lists: creare liste
-      write:media: caricare media
-      write:mutes: silenziare persone e conversazioni
-      write:notifications: cancellare le tue notifiche
-      write:reports: fare rapporto su altre persone
-      write:statuses: pubblicare status
+      "write:accounts": modificare il tuo profilo
+      "write:blocks": bloccare account e domini
+      "write:bookmarks": aggiungi post ai preferiti
+      "write:favourites": segnare status come preferiti
+      "write:filters": creare filtri
+      "write:follows": seguire persone
+      "write:lists": creare liste
+      "write:media": caricare media
+      "write:mutes": silenziare persone e conversazioni
+      "write:notifications": cancellare le tue notifiche
+      "write:reports": fare rapporto su altre persone
+      "write:statuses": pubblicare status
