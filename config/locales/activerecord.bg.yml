@@ -4,3 +4,9 @@ bg:
       poll:
         expires_at: Краен срок
         options: Избори
+    errors:
+      models:
+        account:
+          attributes:
+            username:
+              invalid: само букви, цифри и долни черти
