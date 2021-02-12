@@ -1,13 +1,11 @@
----
 id:
   about:
-    about_hashtag_html: Ini adalah toot publik yang ditandai dengan <strong>#%{hashtag}</strong>. Anda bisa berinteraksi dengan mereka jika anda memiliki akun dimanapun di fediverse.
-    about_mastodon_html: Mastodon adalah sebuah jejaring sosial <em>terbuka, open-source</em. Sebuah alternatif <em>desentralisasi</em> dari platform komersial, menjauhkan anda resiko dari sebuah perusahaan yang memonopoli komunikasi anda. Pilih server yang anda percayai &mdash; apapun yang anda pilih, anda tetap dapat berinteraksi dengan semua orang. Semua orang dapat menjalankan server Mastodon sendiri dan berpartisipasi dalam <em>jejaring sosial</em> dengan mudah.
+    about_hashtag_html: 'Ini adalah toot publik yang ditandai dengan <strong>#%{hashtag}</strong>. Anda bisa berinteraksi dengan mereka jika anda memiliki akun dimanapun di fediverse.'
+    about_mastodon_html: 'Mastodon adalah sebuah jejaring sosial <em>terbuka, open-source</em. Sebuah alternatif <em>desentralisasi</em> dari platform komersial, menjauhkan anda resiko dari sebuah perusahaan yang memonopoli komunikasi anda. Pilih server yang anda percayai &mdash; apapun yang anda pilih, anda tetap dapat berinteraksi dengan semua orang. Semua orang dapat menjalankan server Mastodon sendiri dan berpartisipasi dalam <em>jejaring sosial</em> dengan mudah.'
     about_this: Tentang server ini
     active_count_after: aktif
     active_footnote: Pengguna Aktif Bulanan (PAB)
     administered_by: 'Dikelola oleh:'
-    api: API
     apps: Aplikasi hp
     apps_platforms: Gunakan Mastodon dari iOS, Android, dan platform lain
     browse_directory: Jelajahi direktori profil dan saring sesuai minat
@@ -21,9 +19,8 @@ id:
     federation_hint_html: Dengan akun di %{instance} Anda dapat mengikuti orang di server Mastodon mana pun dan di luarnya.
     get_apps: Coba aplikasi mobile
     hosted_on: Mastodon dihosting di %{domain}
-    instance_actor_flash: 'Akun ini adalah aktor virtual yang dipakai untuk merepresentasikan server, bukan pengguna individu. Ini dipakai untuk tujuan federasi dan jangan diblokir kecuali Anda ingin memblokir seluruh instansi, yang seharusnya Anda pakai blokir domain.
-
-'
+    instance_actor_flash: |
+      Akun ini adalah aktor virtual yang dipakai untuk merepresentasikan server, bukan pengguna individu. Ini dipakai untuk tujuan federasi dan jangan diblokir kecuali Anda ingin memblokir seluruh instansi, yang seharusnya Anda pakai blokir domain. 
     learn_more: Pelajari selengkapnya
     privacy_policy: Kebijakan Privasi
     see_whats_happening: Lihat apa yang sedang terjadi
@@ -36,7 +33,6 @@ id:
     terms: Kebijakan layanan
     unavailable_content: Konten tak tersedia
     unavailable_content_description:
-      domain: Server
       reason: Alasan
       rejecting_media: 'Berkas media dari server ini tak akan diproses dan disimpan, dan tak akan ada gambar kecil yang ditampilkan, perlu klik manual utk menuju berkas asli:'
       rejecting_media_title: Media yang disaring
@@ -50,7 +46,7 @@ id:
     user_count_before: Tempat bernaung bagi
     what_is_mastodon: Apa itu Mastodon?
   accounts:
-    choices_html: 'Pilihan %{name}:'
+    choices_html: "Pilihan %{name}:"
     endorsements_hint: Anda dapat mempromosikan orang yang Anda ikuti lewat antar muka web, dan mereka akan muncul di sini.
     featured_tags_hint: Anda dapat mengunggulkan tagar tertentu yang akan ditampilkan di sini.
     follow: Ikuti
@@ -61,7 +57,6 @@ id:
     joined: Bergabung pada %{date}
     last_active: terakhir aktif
     link_verified_on: Kepemilikan tautan ini telah dicek pada %{date}
-    media: Media
     moved_html: "%{name} telah pindah ke %{new_profile_link}:"
     network_hidden: Informasi ini tidak tersedia
     never_active: Tak pernah
@@ -76,8 +71,6 @@ id:
     posts_with_replies: Toot dan balasan
     reserved_username: Nama pengguna telah dipesan
     roles:
-      admin: Admin
-      bot: Bot
       group: Grup
       moderator: Moderator
     unavailable: Profil tidak tersedia
@@ -97,7 +90,6 @@ id:
       approve_all: Terima semua
       approved_msg: Berhasil menerima pendaftaran %{username}
       are_you_sure: Anda yakin?
-      avatar: Avatar
       by_domain: Domian
       change_email:
         changed_msg: Email akun ini berhasil diubah!
@@ -112,12 +104,11 @@ id:
       delete: Hapus data
       deleted: Terhapus
       demote: Turunkan
-      destroyed_msg: Data %{username} masuk antrean untuk dihapus segera
+      destroyed_msg: "Data %{username} masuk antrean untuk dihapus segera"
       disable: Nonaktifkan
       disable_two_factor_authentication: Nonaktifkan 2FA
       disabled: Dinonaktifkan
       display_name: Nama
-      domain: Domain
       edit: Ubah
       email: E-mail
       email_status: Status Email
@@ -130,7 +121,6 @@ id:
       inbox_url: URL Kotak masuk
       invite_request_text: Alasan bergabung
       invited_by: Diundang oleh
-      ip: IP
       joined: Bergabung
       location:
         all: Semua
@@ -174,13 +164,10 @@ id:
         already_confirmed: Pengguna ini sudah dikonfirmasi
         send: Kirim ulang email konfirmasi
         success: Email konfirmasi berhasil dikirim!
-      reset: Reset
       reset_password: Reset kata sandi
       resubscribe: Langganan ulang
       role: Hak akses
       roles:
-        admin: Administrator
-        moderator: Moderator
         staff: Staf
         user: Pengguna
       search: Cari
@@ -211,7 +198,6 @@ id:
       username: Nama pengguna
       view_domain: Tampilkan ringkasan domain
       warn: Beri Peringatan
-      web: Web
       whitelisted: Masuk daftar putih
     action_logs:
       action_types:
@@ -318,7 +304,6 @@ id:
       updated_msg: Pengumuman berhasil diperbarui!
     custom_emojis:
       assign_category: Beri kategori
-      by_domain: Domain
       copied_msg: Pembuatan salinan lokal emoji berhasil
       copy: Salin
       copy_failed_msg: Tidak dapat membuat salinan lokal emoji
@@ -329,7 +314,6 @@ id:
       disable: Matikan
       disabled: Dinonaktifkan
       disabled_msg: Emoji berhasil dinonaktifkan
-      emoji: Emoji
       enable: Aktifkan
       enabled: Diaktifkan
       enabled_msg: Emoji berhasil diaktifkan
@@ -358,7 +342,6 @@ id:
       feature_profile_directory: Direktori profil
       feature_registrations: Registrasi
       feature_relay: Relai federasi
-      feature_spam_check: Anti-spam
       feature_timeline_preview: Pratinjau linimasa
       features: Fitur
       hidden_service: Federasi dengan layanan tersembunyi
@@ -386,7 +369,6 @@ id:
       add_new: Tambah
       created_msg: Pemblokiran domain sedang diproses
       destroyed_msg: Pemblokiran domain telah dibatalkan
-      domain: Domain
       edit: Edit blok domain
       existing_domain_block_html: Anda telah menerapkan batasan yang lebih ketat pada %{name}, Anda harus <a href="%{unblock_url}">membuka blokirnya</a> lebih dulu.
       new:
@@ -426,7 +408,6 @@ id:
       created_msg: Berhasil memblokir domain email
       delete: Hapus
       destroyed_msg: Berhasil membuka blokiran domain email
-      domain: Domain
       empty: Tidak ada domain email yang diblokir.
       from_html: dari %{domain}
       new:
@@ -434,7 +415,6 @@ id:
         title: Blokir domain email baru
       title: Domain email terblokir
     instances:
-      by_domain: Domain
       delivery_available: Pengiriman tersedia
       empty: Domain tidak ditemukan.
       known_accounts:
@@ -477,11 +457,11 @@ id:
     pending_accounts:
       title: Akun tertunda (%{count})
     relationships:
-      title: Hubungan %{acct}
+      title: "Hubungan %{acct}"
     relays:
       add_new: Tambah relai baru
       delete: Hapus
-      description_html: "<strong>Relai gabungan</strong> adalah server perantara yang menukarkan toot publik dalam jumlah besar antara server yang berlangganan dengan yang menerbitkannya. <strong>Ini akan membantu server kecil hingga medium menemukan konten dari fediverse</strong>, yang tentu saja mengharuskan pengguna lokal untuk mengikuti orang lain dari server remot."
+      description_html: <strong>Relai gabungan</strong> adalah server perantara yang menukarkan toot publik dalam jumlah besar antara server yang berlangganan dengan yang menerbitkannya. <strong>Ini akan membantu server kecil hingga medium menemukan konten dari fediverse</strong>, yang tentu saja mengharuskan pengguna lokal untuk mengikuti orang lain dari server remot.
       disable: Matikan
       disabled: Dimatikan
       enable: Aktifkan
@@ -492,7 +472,6 @@ id:
       save_and_enable: Simpan dan aktifkan
       setup: Atur koneksi relai
       signatures_not_enabled: Relai tak akan bekerja dengan benar saat mode aman atau mode daftar putih diaktifkan
-      status: Status
       title: Relai
     report_notes:
       created_msg: Catatan laporan berhasil dibuat!
@@ -527,7 +506,6 @@ id:
       reported_by: Dilaporkan oleh
       resolved: Terseleseikan
       resolved_msg: Laporan berhasil diselesaikan!
-      status: Status
       title: Laporan
       unassign: Bebas Tugas
       unresolved: Belum Terseleseikan
@@ -638,8 +616,6 @@ id:
         nsfw_on: Tandai sebagai sensitif
       deleted: Dihapus
       failed_to_execute: Gagal mengeksekusi
-      media:
-        title: Media
       no_media: Tanpa media
       no_status_selected: Tak ada status yang berubah karena tak ada yang dipilih
       title: Status akun
@@ -675,10 +651,10 @@ id:
     new_report:
       body: "%{reporter} telah melaporkan %{target}"
       body_remote: Seseorang dari %{domain} telah melaporkan %{target}
-      subject: Laporan baru untuk %{instance} (#%{id})
+      subject: 'Laporan baru untuk %{instance} (#%{id})'
     new_trending_tag:
       body: 'Tagar #%{name} sedang tren hari ini, tetapi belum ditinjau. Itu tidak akan ditampilkan secara publik kecuali Anda mengizinkannya, atau simpan saja borang sebagaimana mestinya untuk tidak mendengarnya lagi.'
-      subject: Tagar baru muncul untuk ditinjau di %{instance} (#%{name})
+      subject: 'Tagar baru muncul untuk ditinjau di %{instance} (#%{name})'
   aliases:
     add_new: Buat alias
     created_msg: Berhasil membuat alias baru. Sekarang Anda dapat memulai pindah dari akun lama.
@@ -694,13 +670,11 @@ id:
     discovery: Jelajah
     localization:
       body: Mastodon diterjemahkan oleh sukarelawan.
-      guide_link: https://crowdin.com/project/mastodon
       guide_link_text: Siapa saja bisa berkontribusi.
     sensitive_content: Konten sensitif
     toot_layout: Tata letak toot
   application_mailer:
     notification_preferences: Ubah pilihan email
-    salutation: "%{name},"
     settings: 'Ubah pilihan email: %{link}'
     view: 'Tampilan:'
     view_profile: Lihat profil
@@ -735,9 +709,6 @@ id:
     migrate_account: Pindah ke akun berbeda
     migrate_account_html: Jika Anda ingin mengalihkan akun ini ke akun lain, Anda dapat <a href="%{path}">mengaturnya di sini</a>.
     or_log_in_with: Atau masuk dengan
-    providers:
-      cas: CAS
-      saml: SAML
     register: Daftar
     registration_closed: "%{instance} tidak menerima anggota baru"
     resend_confirmation: Kirim ulang email konfirmasi
@@ -847,7 +818,6 @@ id:
       size: Ukuran
     blocks: Anda blokir
     bookmarks: Markah
-    csv: CSV
     domain_blocks: Blokir domain
     lists: Daftar
     mutes: Anda bisukan
@@ -1035,13 +1005,11 @@ id:
   number:
     human:
       decimal_units:
-        format: "%n%u"
         units:
           billion: M
           million: Jt
           quadrillion: Kdt
           thousand: Rb
-          trillion: T
   otp_authentication:
     code_hint: Masukkan kode yang dibuat oleh aplikasi autentikator sebagai konfirmasi
     description_html: Jika Anda mengaktifkan <strong>autentikasi dua-faktor</strong> menggunakan aplikasi autentikator, Anda membutuhkan ponsel untuk masuk akun, yang akan membuat token untuk dimasukkan.
@@ -1055,7 +1023,6 @@ id:
     next: Selanjutnya
     older: Lebih lama
     prev: Sebelumnya
-    truncate: "&hellip;"
   polls:
     errors:
       already_voted: Anda sudah mengikuti japat ini
@@ -1085,7 +1052,6 @@ id:
     last_active: Terakhir aktif
     most_recent: Terkini
     moved: Dipindah
-    mutual: Mutual
     primary: Utama
     relationship: Hubungan
     remove_selected_domains: Hapus semua pengikut dari domain yang dipilih
@@ -1117,40 +1083,14 @@ id:
     activity: Aktivitas terakhir
     browser: Peramban
     browsers:
-      alipay: Alipay
-      blackberry: Blackberry
-      chrome: Chrome
-      edge: Microsoft Edge
-      electron: Electron
-      firefox: Firefox
       generic: Peramban tidak dikenal
-      ie: Internet Explorer
-      micro_messenger: MicroMessenger
       nokia: Peramban Nokia S40 Ovi
-      opera: Opera
-      otter: Otter
-      phantom_js: PhantomJS
-      qq: QQ Browser
-      safari: Safari
-      uc_browser: UCBrowser
-      weibo: Weibo
     current_session: Sesi sekarang
     description: "%{browser} di %{platform}"
     explanation: Ini peramban yang sedang dalam posisi masuk akun Mastodon Anda.
-    ip: IP
     platforms:
-      adobe_air: Adobe Air
-      android: Android
-      blackberry: Blackberry
-      chrome_os: ChromeOS
-      firefox_os: Firefox OS
-      ios: iOS
-      linux: Linux
       mac: Mac
       other: platform yang tidak diketahui
-      windows: Windows
-      windows_mobile: Windows Mobile
-      windows_phone: Windows Phone
     revoke: Cabut izin
     revoke_success: Sesi berhasil dicabut
     title: Sesi
@@ -1180,8 +1120,6 @@ id:
     spam_detected: Ini adalah laporan otomatis. Spam terdeteksi.
   statuses:
     attached:
-      audio:
-        other: "%{count} audio"
       description: 'Terlampir: %{attached}'
       image:
         other: "%{count} gambar"
@@ -1212,7 +1150,6 @@ id:
     show_older: Tampilkan lebih lama
     show_thread: Tampilkan utas
     sign_in_to_participate: Masuk untuk mengikuti percakapan
-    title: '%{name}: "%{quote}"'
     visibilities:
       private: Khusus pengikut
       private_long: Hanya tampilkan ke pengikut
@@ -1316,12 +1253,10 @@ id:
   time:
     formats:
       default: "%d %b %Y, %H:%M"
-      month: "%b %Y"
   two_factor_authentication:
     add: Tambah
     disable: Matikan
     disabled_success: Autentikasi dua-faktor berhasil dinonaktifkan
-    edit: Edit
     enabled: Otentifikasi dua faktor aktif
     enabled_success: Ototentikasi dua faktor telah diaktifkan
     generate_recovery_codes: Buat Kode Pemulihan
@@ -1379,7 +1314,6 @@ id:
       tip_following: Anda secara otomatis mengikuti admin server. Untuk mencari akun-akun yang menarik, silakan periksa linimasa lokal dan gabungan.
       tip_local_timeline: Linimasa lokal adalah ruang yang menampilkan orang-orang di %{instance}. Mereka adalah tetangga dekat!
       tip_mobile_webapp: Jika peramban mobile Anda ingin menambahkan Mastodon ke layar utama, Anda dapat menerima notifikasi dorong. Ia akan berjalan seperti aplikasi asli!
-      tips: Tips
       title: Selamat datang, %{name}!
   users:
     blocked_email_provider: Layanan email ini tidak diizinkan
