@@ -169,6 +169,8 @@ hu:
         whole_word: Teljes szó
       email_domain_block:
         with_dns_records: Domain MX rekordjainak és IP-címeinek hozzávétele
+      featured_tag:
+        name: Hashtag
       interactions:
         must_be_follower: Nem követőidtől érkező értesítések tiltása
         must_be_following: Nem követettjeidtől érkező értesítések tiltása
@@ -179,6 +181,7 @@ hu:
         text: Miért akarsz csatlakozni?
       ip_block:
         comment: Megjegyzés
+        ip: IP
         severities:
           no_access: Elérés letiltása
           sign_up_requires_approval: Regisztrációk korlátozása
@@ -195,11 +198,13 @@ hu:
         trending_tag: E-mail küldése, ha egy még nem látott hashtag trendi lett
       tag:
         listable: A hashtag megjelenhet a profiladatbázisban
+        name: Hashtag
         trendable: A hashtag megjelenhet a trendek között
         usable: Tülkök használhatják ezt a hashtaget
     'no': 'Nem'
     recommended: Ajánlott
     required:
+      mark: "*"
       text: kötelező
     title:
       sessions:
