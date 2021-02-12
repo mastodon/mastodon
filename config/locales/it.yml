@@ -6,6 +6,7 @@ it:
     active_count_after: attivo
     active_footnote: Utenti Attivi Mensili (MAU)
     administered_by: 'Amministrato da:'
+    api: API
     apps: Applicazioni per dispositivi mobili
     apps_platforms: Usa Mastodon da iOS, Android e altre piattaforme
     browse_directory: Sfoglia la directory dei profili e filtra per interessi
@@ -35,6 +36,7 @@ it:
     terms: Termini di Servizio
     unavailable_content: Contenuto non disponibile
     unavailable_content_description:
+      domain: Server
       reason: 'Motivo:'
       rejecting_media: 'I file multimediali di questo server non saranno elaborati e non verranno visualizzate miniature, che richiedono clic manuale sull''altro server.'
       rejecting_media_title: Media filtrati
@@ -61,6 +63,7 @@ it:
     joined: Dal %{date}
     last_active: ultima attività
     link_verified_on: La proprietà di questo link è stata controllata il %{date}
+    media: Media
     moved_html: "%{name} si è spostato su %{new_profile_link}:"
     network_hidden: Questa informazione non e' disponibile
     never_active: Mai
@@ -74,6 +77,7 @@ it:
     reserved_username: Questo nome utente è già stato preso
     roles:
       admin: Amministratore
+      bot: Bot
       group: Gruppo
       moderator: Moderatore
     unavailable: Profilo non disponibile
@@ -115,6 +119,7 @@ it:
       display_name: Nome visualizzato
       domain: Dominio
       edit: Modifica
+      email: Email
       email_status: Stato email
       enable: Abilita
       enabled: Abilitato
@@ -125,6 +130,7 @@ it:
       inbox_url: URL inbox
       invite_request_text: Motivi per l'iscrizione
       invited_by: Invitato da
+      ip: IP
       joined: Iscritto da
       location:
         all: Tutto
@@ -205,6 +211,7 @@ it:
       username: Nome utente
       view_domain: Visualizza riepilogo per dominio
       warn: Avverti
+      web: Web
       whitelisted: Nella whitelist
     action_logs:
       action_types:
@@ -322,6 +329,7 @@ it:
       disable: Disabilita
       disabled: Disabilitato
       disabled_msg: Questa emoji è stata disabilitata con successo
+      emoji: Emoji
       enable: Abilita
       enabled: Abilitato
       enabled_msg: Questa emoji è stata abilitata con successo
@@ -350,6 +358,7 @@ it:
       feature_profile_directory: Directory dei profili
       feature_registrations: Registrazioni
       feature_relay: Ripetitore di federazione
+      feature_spam_check: Anti-spam
       feature_timeline_preview: Anteprima timeline
       features: Funzionalità
       hidden_service: Federazione con servizi nascosti
@@ -359,6 +368,7 @@ it:
       recent_users: Utenti Recenti
       search: Ricerca testo intero
       single_user_mode: Modalita utente singolo
+      software: Software
       space: Utilizzo dello spazio
       title: Cruscotto
       total_users: utenti totali
@@ -634,6 +644,8 @@ it:
         nsfw_on: Segna come sensibile
       deleted: Cancellato
       failed_to_execute: Impossibile eseguire
+      media:
+        title: Media
       no_media: Nessun media
       no_status_selected: Nessun status è stato modificato perché nessuno era stato selezionato
       title: Gli status dell'account
@@ -648,6 +660,7 @@ it:
       last_active: Ultima attività
       most_popular: Più popolari
       most_recent: Più recenti
+      name: Hashtag
       review: Esamina status
       reviewed: Controllato
       title: Hashtag
@@ -693,6 +706,7 @@ it:
     toot_layout: Layout dei toot
   application_mailer:
     notification_preferences: Cambia preferenze email
+    salutation: "%{name},"
     settings: 'Cambia le impostazioni per le email: %{link}'
     view: 'Guarda:'
     view_profile: Mostra profilo
@@ -707,6 +721,7 @@ it:
     your_token: Il tuo token di accesso
   auth:
     apply_for_account: Chiedi un invito
+    change_password: Password
     checkbox_agreement_html: Sono d'accordo con le <a href="%{rules_path}" target="_blank">regole del server</a> ed i <a href="%{terms_path}" target="_blank">termini di servizio</a>
     checkbox_agreement_without_rules_html: Accetto i <a href="%{terms_path}" target="_blank">termini di servizio</a>
     delete_account: Elimina account
@@ -726,6 +741,9 @@ it:
     migrate_account: Sposta ad un account differente
     migrate_account_html: Se vuoi che questo account sia reindirizzato a uno diverso, puoi <a href="%{path}">configurarlo qui</a>.
     or_log_in_with: Oppure accedi con
+    providers:
+      cas: CAS
+      saml: SAML
     register: Iscriviti
     registration_closed: "%{instance} non accetta nuovi membri"
     resend_confirmation: Invia di nuovo le istruzioni di conferma
@@ -835,6 +853,7 @@ it:
       size: Dimensioni
     blocks: Stai bloccando
     bookmarks: Segnalibri
+    csv: CSV
     domain_blocks: Blocchi di dominio
     lists: Liste
     mutes: Stai silenziando
@@ -917,6 +936,7 @@ it:
       following: Lista dei seguiti
       muting: Lista dei silenziati
     upload: Carica
+  in_memoriam_html: In Memoriam.
   invites:
     delete: Disattiva
     expired: Scaduto
@@ -1025,10 +1045,13 @@ it:
   number:
     human:
       decimal_units:
+        format: "%n%u"
         units:
           billion: G
+          million: M
           quadrillion: P
           thousand: k
+          trillion: T
   otp_authentication:
     code_hint: Inserisci il codice generato dall'app di autenticazione per confermare
     description_html: Se abiliti <strong>l'autenticazione a due fattori</strong> utilizzando un'app di autenticazione, per accedere sarà necessario essere in possesso del telefono, che genererà dei codici per l'accesso.
@@ -1101,18 +1124,47 @@ it:
     too_soon: La data di pubblicazione deve essere nel futuro
   sessions:
     activity: Ultima attività
+    browser: Browser
     browsers:
+      alipay: Alipay
+      blackberry: Blackberry
+      chrome: Chrome
+      edge: Microsoft Edge
+      electron: Electron
+      firefox: Firefox
       generic: Browser sconosciuto
+      ie: Internet Explorer
+      micro_messenger: MicroMessenger
+      nokia: Nokia S40 Ovi Browser
+      opera: Opera
+      otter: Otter
+      phantom_js: PhantomJS
+      qq: QQ Browser
+      safari: Safari
+      uc_browser: UCBrowser
+      weibo: Weibo
     current_session: Sessione corrente
     description: "%{browser} su %{platform}"
     explanation: Questi sono i browser da cui attualmente è avvenuto l'accesso al tuo account Mastodon.
+    ip: IP
     platforms:
+      adobe_air: Adobe Air
+      android: Android
+      blackberry: Blackberry
+      chrome_os: ChromeOS
+      firefox_os: Firefox OS
+      ios: iOS
+      linux: Linux
       mac: Mac
       other: piattaforma sconosciuta
+      windows: Windows
+      windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
     revoke: Revoca
     revoke_success: Sessione revocata con successo
     title: Sessioni
   settings:
+    account: Account
     account_settings: Impostazioni dell'account
     aliases: Alias dell'account
     appearance: Interfaccia
