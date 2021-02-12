@@ -1,13 +1,11 @@
----
 ku:
   about:
-    about_hashtag_html: ئەمانە توتی گشتین بە هەشتەگی گشتی <strong>#%{hashtag}}</strong>. گەر ئێوە لە هەر ڕاژەیەک هەژمارەتان بێت دەتوانیت لێرە بەم نووسراوانە هاوئاهەنگ بن.
+    about_hashtag_html: 'ئەمانە توتی گشتین بە هەشتەگی گشتی <strong>#%{hashtag}}</strong>. گەر ئێوە لە هەر ڕاژەیەک هەژمارەتان بێت دەتوانیت لێرە بەم نووسراوانە هاوئاهەنگ بن.'
     about_mastodon_html: 'تۆڕی کۆمەڵایەتی داهاتوو: هیچ ڕیکلامێک ، هیچ چاودێرییەکی کۆمپانیا ، دیزاینی ئەخلاقی و لامەرکەزی! خاوەنی داتاکانت نابێ لە ماستۆدۆن!'
     about_this: دەربارە
     active_count_after: چالاک
     active_footnote: بەکارهێنەرانی چالاکی مانگانە (MAU)
     administered_by: 'بەڕێوەبراو لەلایەن:'
-    api: API
     apps: ئەپەکانی مۆبایل
     apps_platforms: بەکارهێنانی ماستۆدۆن لە iOS، ئەندرۆید و سەکۆکانی تر
     browse_directory: گەڕان لە ڕێبەرێکی پرۆفایل و پاڵاوتن بەپێی بەرژەوەندیەکان
@@ -49,10 +47,10 @@ ku:
     user_count_after:
       one: بەکارهێنەر
       other: بەکارهێنەران
-    user_count_before: "`خاوەن"
+    user_count_before: '`خاوەن'
     what_is_mastodon: ماستۆدۆن چییە?
   accounts:
-    choices_html: 'هەڵبژاردنەکانی %{name}:'
+    choices_html: "هەڵبژاردنەکانی %{name}:"
     endorsements_hint: دەتوانیت ئەو کەسانە پەسەند بکەیت کە پەیڕەویان دەکەیت لە ڕووکاری وێب، و ئەوان لێرە دەردەکەون.
     featured_tags_hint: دەتوانیت هاشتاگی تایبەت پێشکەش بکەیت کە لێرە پیشان دەدرێت.
     follow: شوێن کەوە
@@ -115,7 +113,7 @@ ku:
       delete: سڕینەوەی داتا
       deleted: سڕینەوە
       demote: پلە نزمکرایەوە
-      destroyed_msg: دراوەکانی %{username} لە ڕیزی سڕینەوەن
+      destroyed_msg: "دراوەکانی %{username} لە ڕیزی سڕینەوەن"
       disable: بەستن
       disable_two_factor_authentication: لەکارخستنی 2FA
       disabled: بەستوو
@@ -204,7 +202,7 @@ ku:
       time_in_queue: چاوەڕوانی لە ڕیزدا %{time}
       title: هەژمارەکان
       unconfirmed_email: ئیمەیڵی پشتڕاستنەکراو
-      undo_sensitized: " هەستیار نەکردن"
+      undo_sensitized: ' هەستیار نەکردن'
       undo_silenced: بێدەنگ ببە
       undo_suspension: دووبارە ڕاگرتن
       unsilenced_msg: هەژماری %{username} بە سەرکەوتوویی بێسنوور کرا
@@ -478,7 +476,7 @@ ku:
     pending_accounts:
       title: هەژمارە هەڵواسراوەکان (%{count})
     relationships:
-      title: پەیوەنیەکان %{acct}
+      title: "پەیوەنیەکان %{acct}"
     relays:
       add_new: زیادکردنی گواستنەوەی نوێ
       delete: سڕینەوە
@@ -656,7 +654,7 @@ ku:
       reviewed: پێداچوونەوە
       title: هەشتاگ
       trending_right_now: بەرچاوکردن لە ئێستادا
-      unique_uses_today: T%{count} ئەمڕۆ بڵاوکراوە
+      unique_uses_today: "T%{count} ئەمڕۆ بڵاوکراوە"
       unreviewed: پێداچوونەوە نەکراوە
       updated_msg: ڕێکخستنی هاشتاگ بە سەرکەوتوویی نوێکرایەوە
     title: بەڕێوەبەر
@@ -670,12 +668,12 @@ ku:
       body: وردەکاریهەژمارە نوێیەکە لە خوارەوەیە. دەتوانیت ئەم نەرمەکالا پەسەند بکەیت یان ڕەت بکەیتەوە.
       subject: هەژمارەیەک نوێ بۆ پێداچوونەوە لەسەر %{instance} (%{username})
     new_report:
-      body: بەکارهێنەری %{reporter} گوزارشی لە بەکارهینەری%{target} دا
+      body: "بەکارهێنەری %{reporter} گوزارشی لە بەکارهینەری%{target} دا"
       body_remote: کەسێک لە %{domain} گوزارشتی %{target} ناردووە
-      subject: گوزارشتێکی نوی لە %{instance} (#%{id})
+      subject: 'گوزارشتێکی نوی لە %{instance} (#%{id})'
     new_trending_tag:
       body: 'هاشتاگی #%{name} ئەمڕۆ ئاراستە دەکرێت، بەڵام پێشتر پێداچوونەوەی بۆ نەکراوە. بە ئاشکرا پیشان نادرێت مەگەر تۆ ڕێگەی پێ بدەیت، یان تەنها فۆرمەکەت وەک خۆی پاشەکەوت بکەیت کە هەرگیز لێی نەبیستیت.'
-      subject: تاگێکی نوێ لە %{instance} نیازمەندی پێداچوونەوەیە (#%{name})
+      subject: 'تاگێکی نوێ لە %{instance} نیازمەندی پێداچوونەوەیە (#%{name})'
   aliases:
     add_new: دروستکردنی ناوی ساختە
     created_msg: نازناوێکی نوێیان سەرکەوتووانە دروستکرد. ئێستا دەتوانیت دەست بە گواستنەوە کەیت لە هەژمێرە کۆنەکەت.
@@ -691,13 +689,11 @@ ku:
     discovery: دۆزینەوە
     localization:
       body: ماستۆدۆن لەلایەن خۆبەخشەوە وەردەگێڕێت.
-      guide_link: https://crowdin.com/project/mastodon
       guide_link_text: هەموو کەسێک دەتوانێت بەشداری بکات.
     sensitive_content: ناوەڕۆکی هەستیار
     toot_layout: لۆی توت
   application_mailer:
     notification_preferences: گۆڕینی پەسەندکراوەکانی ئیمەیڵ
-    salutation: "%{name},"
     settings: 'گۆڕینی پەسەندکراوەکانی ئیمەیڵ: %{link}'
     view: 'نیشاندان:'
     view_profile: پرۆفایل نیشان بدە
@@ -732,9 +728,6 @@ ku:
     migrate_account: گواستنەوە بۆ ئەژمێرێکی تر
     migrate_account_html: ئەگەر دەتەوێت ئەم هەژمارە دووبارە ئاڕاستە بکەیت بۆ ئەژمێرێکی تر، دەتوانیت <href="%{path}"> کرتەیەک لێرە بکەی </a>.
     or_log_in_with: یان چوونە ژوورەوە بە
-    providers:
-      cas: CAS
-      saml: SAML
     register: خۆ تۆمارکردن
     registration_closed: "%{instance} ئەندامانی نوێ قبووڵ ناکات"
     resend_confirmation: دووبارە ناردنی ڕێنماییەکانی دووپاتکردنەوە
@@ -774,24 +767,15 @@ ku:
     errors:
       invalid_key: کلیلی باوڕپێکراو Ed25519 یان Curve25519 دروست نییە
       invalid_signature: واژووی Ed25519 بڕوادار نییە
-  date:
-    formats:
-      default: "%b %d, %Y"
-      with_month_name: "%B %d, %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}کات"
-      about_x_months: "%{count}mo"
       about_x_years: "%{count}ساڵ"
       almost_x_years: "%{count}ساڵ"
       half_a_minute: ئێستا
-      less_than_x_minutes: "%{count}m"
       less_than_x_seconds: ئێستا
       over_x_years: "%{count}ساڵ"
       x_days: "%{count}ڕۆژ"
-      x_minutes: "%{count}m"
-      x_months: "%{count}mo"
-      x_seconds: "%{count}s"
   deletes:
     challenge_not_passed: ئەو زانیاریانەی تێنووست کردووە ڕاست نەبوو
     confirm_password: تێپەڕوشەی ئێستات تێبنووسە بۆ سەلماندنی ناسنامەکەت
@@ -843,7 +827,6 @@ ku:
       size: قەبارە
     blocks: تۆ بلۆک دەکەیت
     bookmarks: نیشانکراوەکان
-    csv: CSV
     domain_blocks: دۆمەین قەپاتکرا
     lists: لیستەکان
     mutes: هەژمارە بێدەنگ کراوە
@@ -1019,27 +1002,17 @@ ku:
       title: داواکاری شوینکەوتنی نوێ
     mention:
       action: وەڵام
-      body: "%{name} لێرە ناوی ئێووەی بردووە:"
-      subject: "%{name} لێرە ناوی ئێووەی بردووە"
+      body: '%{name} لێرە ناوی ئێووەی بردووە:'
+      subject: '%{name} لێرە ناوی ئێووەی بردووە'
       title: ناوبراوەی نوێ
     reblog:
-      body: "%{name} نووسیسراوەکەی ئێوەی توتاندەوە:"
+      body: '%{name} نووسیسراوەکەی ئێوەی توتاندەوە:'
       subject: "%{name} نووسراوەکەتی دووبارە توتاند"
       title: توتاندنەوەی نوێ
   notifications:
     email_events: رووداوەکان بۆ ئاگاداری ئیمەیلی
     email_events_hint: 'ئەو ڕووداوانە دیاریبکە کە دەتەوێت ئاگانامەکان وەربگری بۆ:'
     other_settings: ڕێکبەندەکانی ئاگانامەکانی تر
-  number:
-    human:
-      decimal_units:
-        format: "%n%u"
-        units:
-          billion: B
-          million: M
-          quadrillion: Q
-          thousand: K
-          trillion: T
   otp_authentication:
     code_hint: کۆدێک داخڵ بکە کە دروست کراوە لەلایەن ئەپی ڕەسەنایەتیەوە بۆ دڵنیابوون
     description_html: ئەگەر تۆ <strong> هاتنەژوورەوەی دوو قۆناغی</strong> بە یارمەتی ئەپێکی پەسەندکردن چالاک بکەن، پێویستە بۆ چوونەژوورەوە ، بە تەلەفۆنەکەتان کە کۆدیکتان بۆ دروستدەکات دەستپێگەیشتنتان هەبێت.
@@ -1053,7 +1026,6 @@ ku:
     next: داهاتوو
     older: کۆنتر
     prev: پێشوو
-    truncate: "&hellip;"
   polls:
     errors:
       already_voted: تۆ پێشتر دەنگت داوە لەسەر ئەم ڕاپرسییە
@@ -1115,7 +1087,6 @@ ku:
     activity: دوایین چالاکی
     browser: وێبگەڕ
     browsers:
-      alipay: Alipay
       blackberry: بلاکبێری
       chrome: کرۆم
       edge: مایکرۆسۆفت ئیچ
@@ -1131,18 +1102,15 @@ ku:
       qq: وێبگەڕی QQ
       safari: سافری
       uc_browser: وێبگەڕی UC
-      weibo: Weibo
     current_session: دانیشتنی ئێستا
     description: "%{browser} لەسەر %{platform}"
     explanation: ئەمانە وێبگەڕەکەن کە ئێستا چووەتە ژوورەوە بۆ ئەژمێری ماستۆدۆنی خۆت.
     ip: ئای‌پی
     platforms:
-      adobe_air: Adobe Air
       android: ئەندرۆید
       blackberry: بلاکبێری
       chrome_os: سیستەمی کارگێڕی کرۆم
       firefox_os: سیستەمی کارگێڕی فایەرفۆکس
-      ios: iOS
       linux: لینۆکس
       mac: ماک
       other: سیستەمیکارگێڕی نەناسراو
@@ -1216,7 +1184,6 @@ ku:
     show_older: پیشاندانی کۆنتر
     show_thread: نیشاندانی ڕشتە
     sign_in_to_participate: بچۆ ژوورەوە بۆ بەشداریکردن لە گفتوگۆکەدا
-    title: '%{name}: "%{quote}"'
     visibilities:
       private: شوێنکەوتوانی تەنها
       private_long: تەنها بۆ شوێنکەوتوانی پیشان بدە
@@ -1313,10 +1280,6 @@ ku:
     contrast: ماستۆدۆن (کۆنتراستی بەرز)
     default: ماستۆدۆن (ڕەش)
     mastodon-light: ماستۆدۆن (کاڵ)
-  time:
-    formats:
-      default: "%b %d, %Y, %H:%M"
-      month: "%b %Y"
   two_factor_authentication:
     add: زیادکردن
     disable: لەکارخستنی 2FA
