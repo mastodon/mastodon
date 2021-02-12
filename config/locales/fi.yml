@@ -1,12 +1,10 @@
----
 fi:
   about:
-    about_hashtag_html: Nämä ovat hashtagilla <strong>#%{hashtag}</strong> merkittyjä julkisia tuuttauksia. Voit vastata niihin, jos sinulla on tili jossain päin fediversumia.
-    about_mastodon_html: Mastodon on sosiaalinen verkosto. Se on toteutettu avoimilla verkkoprotokollilla ja vapailla, avoimen lähdekoodin ohjelmistoilla, ja se toimii hajautetusti samaan tapaan kuin sähköposti.
+    about_hashtag_html: 'Nämä ovat hashtagilla <strong>#%{hashtag}</strong> merkittyjä julkisia tuuttauksia. Voit vastata niihin, jos sinulla on tili jossain päin fediversumia.'
+    about_mastodon_html: 'Mastodon on sosiaalinen verkosto. Se on toteutettu avoimilla verkkoprotokollilla ja vapailla, avoimen lähdekoodin ohjelmistoilla, ja se toimii hajautetusti samaan tapaan kuin sähköposti.'
     about_this: Tietoja tästä palvelimesta
     active_count_after: aktiivinen
     administered_by: 'Ylläpitäjä:'
-    api: API
     apps: Mobiili sovellukset
     apps_platforms: Käytä Mastodonia iOS:llä, Androidilla tai muilla alustoilla
     browse_directory: Selaa profiilihakemistoa ja suodata kiinnostuksen kohteiden mukaan
@@ -51,7 +49,6 @@ fi:
     joined: Liittynyt %{date}
     last_active: viimeksi aktiivinen
     link_verified_on: Tämän linkin omistus on tarkastettu %{date}
-    media: Media
     moved_html: "%{name} on muuttanut osoitteeseen %{new_profile_link}:"
     network_hidden: Nämä tiedot eivät ole käytettävissä
     never_active: Ei koskaan
@@ -114,7 +111,6 @@ fi:
       header: Otsakekuva
       inbox_url: Saapuvan postilaatikon osoite
       invited_by: Kutsuja
-      ip: IP
       joined: Liittynyt
       location:
         all: Kaikki
@@ -253,7 +249,6 @@ fi:
       disable: Poista käytöstä
       disabled: Ei käytössä
       disabled_msg: Emojin poisto käytöstä onnistui
-      emoji: Emoji
       enable: Ota käyttöön
       enabled: Käytössä
       enabled_msg: Emojin käyttöönotto onnistui
@@ -316,7 +311,7 @@ fi:
       show:
         affected_accounts:
           one: Vaikuttaa yhteen tiliin tietokannassa
-          other: Vaikuttaa %{count} tiliin tietokannassa
+          other: "Vaikuttaa %{count} tiliin tietokannassa"
         retroactive:
           silence: Peru kaikkien tässä verkkotunnuksessa jo olemassa olevien tilien hiljennys
           suspend: Peru kaikkien tässä verkkotunnuksessa jo olemassa olevien tilien jäähy
@@ -380,7 +375,7 @@ fi:
         delete: Poista
         placeholder: Kuvaile mitä toimia on tehty tai muita päivityksiä tähän raporttiin…
       reopen: Avaa raportti uudestaan
-      report: Raportti nro %{id}
+      report: 'Raportti nro %{id}'
       reported_account: Raportoitu tili
       reported_by: Raportoija
       resolved: Ratkaistut
@@ -469,8 +464,6 @@ fi:
         nsfw_on: NSFW PÄÄLLÄ
       deleted: Poistettu
       failed_to_execute: Suoritus epäonnistui
-      media:
-        title: Media
       no_media: Ei mediaa
       title: Tilin tilat
       with_media: Sisältää mediaa
@@ -503,7 +496,6 @@ fi:
     sensitive_content: Arkaluontoista sisältöä
   application_mailer:
     notification_preferences: Muuta sähköpostiasetuksia
-    salutation: "%{name},"
     settings: 'Muuta sähköpostiasetuksia: %{link}'
     view: 'Näytä:'
     view_profile: Näytä profiili
@@ -708,7 +700,7 @@ fi:
         other: "%{count} uutta ilmoitusta viime käyntisi jälkeen \U0001F418"
       title: Poissaollessasi…
     favourite:
-      body: "%{name} tykkäsi tilastasi:"
+      body: '%{name} tykkäsi tilastasi:'
       subject: "%{name} tykkäsi tilastasi"
       title: Uusi tykkäys
     follow:
@@ -722,11 +714,11 @@ fi:
       title: Uusi seuraamispyyntö
     mention:
       action: Vastaa
-      body: "%{name} mainitsi sinut:"
-      subject: "%{name} mainitsi sinut"
+      body: '%{name} mainitsi sinut:'
+      subject: '%{name} mainitsi sinut'
       title: Uusi maininta
     reblog:
-      body: "%{name} buustasi tilaasi:"
+      body: '%{name} buustasi tilaasi:'
       subject: "%{name} boostasi tilaasi"
       title: Uusi buustaus
   number:
@@ -735,7 +727,6 @@ fi:
         format: "%n %u"
         units:
           billion: Mrd
-          million: M
           quadrillion: Brd
           thousand: k
           trillion: B
@@ -769,40 +760,14 @@ fi:
     activity: Viimeisin toiminta
     browser: Selain
     browsers:
-      alipay: Alipay
-      blackberry: Blackberry
-      chrome: Chrome
-      edge: Microsoft Edge
-      electron: Electron
-      firefox: Firefox
       generic: Tuntematon selain
-      ie: Internet Explorer
-      micro_messenger: MicroMessenger
       nokia: Nokia S40 Ovi -selain
-      opera: Opera
-      otter: Otter
-      phantom_js: PhantomJS
-      qq: QQ Browser
-      safari: Safari
-      uc_browser: UCBrowser
-      weibo: Weibo
     current_session: Nykyinen istunto
     description: "%{browser}, %{platform}"
     explanation: Nämä verkkoselaimet ovat tällä hetkellä kirjautuneet Mastodon-tilillesi.
     ip: IP-osoite
     platforms:
-      adobe_air: Adobe Air
-      android: Android
-      blackberry: Blackberry
-      chrome_os: ChromeOS
-      firefox_os: Firefox OS
-      ios: iOS
-      linux: Linux
-      mac: macOS
       other: tuntematon järjestelmä
-      windows: Windows
-      windows_mobile: Windows Mobile
-      windows_phone: Windows Phone
     revoke: Hylkää
     revoke_success: Istunnon hylkäys onnistui
     title: Istunnot
@@ -855,7 +820,7 @@ fi:
     show_more: Näytä lisää
     show_thread: Näytä ketju
     sign_in_to_participate: Kirjaudu sisään osallistuaksesi keskusteluun
-    title: "%{name}: ”%{quote}”"
+    title: '%{name}: ”%{quote}”'
     visibilities:
       private: Vain seuraajille
       private_long: Näytä vain seuraajille
