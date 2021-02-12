@@ -1,13 +1,11 @@
----
 et:
   about:
-    about_hashtag_html: Need on avalikud tuututused sildistatud sildiga <strong>#%{hashtag}</strong>. Te saate suhelda nendega, kui Teil on konto üks kõik kus terves fediversumis.
+    about_hashtag_html: 'Need on avalikud tuututused sildistatud sildiga <strong>#%{hashtag}</strong>. Te saate suhelda nendega, kui Teil on konto üks kõik kus terves fediversumis.'
     about_mastodon_html: 'Tuleviku sotsiaalvõrgustik: Reklaamivaba, korporatiivse järelvalveta, eetiline kujundus ning detsentraliseeritus! Oma enda andmeid Mastodonis!'
     about_this: Meist
     active_count_after: aktiivne
     active_footnote: Igakuiselt aktiivseid kasutajaid (MAU)
     administered_by: 'Administraator:'
-    api: API
     apps: Mobiilrakendused
     apps_platforms: Kasuta Mastodoni iOS-is, Androidis ja teistel platvormidel
     browse_directory: Sirvi profiilide kataloogi ja filtreeri huvide alusel
@@ -37,7 +35,6 @@ et:
     terms: Kasutustingimused
     unavailable_content: Sisu pole saadaval
     unavailable_content_description:
-      domain: Server
       reason: Põhjus
       rejecting_media: 'Meedia failid sellelt serverilt ei töödelda ega salvestata ning mitte ühtegi eelvaadet ei kuvata, mis nõuab manuaalselt vajutust originaalfailile:'
       silenced: 'Postitused nendelt serveritelt peidetakse avalikes ajajoontes ja vestlustes ning mitte ühtegi teavitust ei tehta nende kasutajate tegevustest, välja arvatud juhul, kui Te neid jälgite:'
@@ -125,7 +122,6 @@ et:
       header: Päis
       inbox_url: Sisendkausta URL
       invited_by: Kutsuja
-      ip: IP
       joined: Liitus
       location:
         all: Kõik
@@ -364,10 +360,7 @@ et:
         create: Loo blokeering
         hint: Domeeniblokeering ei takista kontode lisamist andmebaasi, aga lisab nendele kontodele tagasiulatuvalt ja automaatselt erinevaid moderatsioonimeetodeid.
         severity:
-          desc_html: |-
-            <strong>Vaigista</strong> teeb konto postitused nähtamatuks kõigile, kes teda ei jälgi.
-            <strong>Peata</strong> eemaldab kogu konto sisu, meedia ja profiiliandmed.
-            <strong>Ei midagi</strong> kui Te soovite lihtsalt keelata meediafailid.
+          desc_html: "<strong>Vaigista</strong> teeb konto postitused nähtamatuks kõigile, kes teda ei jälgi.\n<strong>Peata</strong> eemaldab kogu konto sisu, meedia ja profiiliandmed.\n<strong>Ei midagi</strong> kui Te soovite lihtsalt keelata meediafailid."
           noop: Ei midagi
           silence: Vaigista
           suspend: Peata
@@ -403,7 +396,7 @@ et:
       destroyed_msg: E-posti aadressi keelunimekirjast kustutamine õnnestus
       domain: Domeen
       empty: Ühtegi e-postidomeeni pole blokeeritud.
-      from_html: "%{domain}-ist"
+      from_html: '%{domain}-ist'
       new:
         create: Lisa domeen
         title: Uus e-posti keelunimekirja sisend
@@ -432,7 +425,6 @@ et:
         all: Kõik
         available: Saadaval
         expired: Aegunud
-        title: Filter
       title: Kutsed
     pending_accounts:
       title: Ootel olevad kasutajad (%{count})
@@ -441,7 +433,7 @@ et:
     relays:
       add_new: Lisa uus relee
       delete: Kustuta
-      description_html: "<strong>Föderatsiooni relee</strong> on vahepealne server, mis vahetab suures koguses tuututusi serverite vahel, mis on selle tellijad ning mis sellele saadavad. <strong>See aitab väikestel ja keskmistel serveritel avastada sisu fediversumist</strong>, mis tavaliselt nõuab teisel serveril olevate inimeste jälgimist."
+      description_html: <strong>Föderatsiooni relee</strong> on vahepealne server, mis vahetab suures koguses tuututusi serverite vahel, mis on selle tellijad ning mis sellele saadavad. <strong>See aitab väikestel ja keskmistel serveritel avastada sisu fediversumist</strong>, mis tavaliselt nõuab teisel serveril olevate inimeste jälgimist.
       disable: Keela
       disabled: Keelatud
       enable: Luba
@@ -631,10 +623,10 @@ et:
     new_report:
       body: "%{reporter} teavitas kasutajast %{target}"
       body_remote: Keegi domeenist %{domain} teavitas kasutajast %{target}
-      subject: Uus teavitus %{instance}-ile (#%{id})
+      subject: 'Uus teavitus %{instance}-ile (#%{id})'
     new_trending_tag:
-      body: Silt %{name} on täna trendikas, aga pole eelnevalt üle vaadatud. Seda ei näidata avalikult, välja arvatud juhul, kui Te ise seda lubate või lihtsalt salvestage vorm nagu see on ning Te ei kuule sellest enam kunagi.
-      subject: Uus silt valmis ülevaatluseks serveril %{instance} (#%{name})
+      body: 'Silt %{name} on täna trendikas, aga pole eelnevalt üle vaadatud. Seda ei näidata avalikult, välja arvatud juhul, kui Te ise seda lubate või lihtsalt salvestage vorm nagu see on ning Te ei kuule sellest enam kunagi.'
+      subject: 'Uus silt valmis ülevaatluseks serveril %{instance} (#%{name})'
   aliases:
     add_new: Loo teine nimi
     created_msg: Teine nimi on edukalt loodud. Te saate nüüd alustada kolimist vanalt kontolt.
@@ -650,13 +642,11 @@ et:
     discovery: Avastus
     localization:
       body: Mastodon on tõlgitud vabatahtlike poolt.
-      guide_link: https://crowdin.com/project/mastodon
       guide_link_text: Igaüks võib panustada.
     sensitive_content: Tundlik sisu
     toot_layout: Tuututuse kujundus
   application_mailer:
     notification_preferences: Muuda e-kirjade eelistusi
-    salutation: "%{name},"
     settings: 'Muuda e-kirjade eelistusi: %{link}'
     view: 'Vaade:'
     view_profile: Vaata profiili
@@ -688,9 +678,6 @@ et:
     migrate_account: Koli teisele kasutajale
     migrate_account_html: Kui Te soovite seda kontot ümber viia teisele, <a href="%{path}">saate teha seda siit</a>.
     or_log_in_with: Või logi sisse koos
-    providers:
-      cas: CAS
-      saml: SAML
     register: Loo konto
     registration_closed: "%{instance} ei võta vastu uusi liikmeid"
     resend_confirmation: Saada kinnitusjuhendid uuesti
@@ -739,13 +726,10 @@ et:
       about_x_years: "%{count}a"
       almost_x_years: "%{count}a"
       half_a_minute: Just praegu
-      less_than_x_minutes: "%{count}m"
       less_than_x_seconds: Just praegu
       over_x_years: "%{count}a"
       x_days: "%{count}p"
-      x_minutes: "%{count}m"
       x_months: "%{count}k"
-      x_seconds: "%{count}s"
   deletes:
     challenge_not_passed: Informatsioon, mida sisestasite, oli vale
     confirm_password: Sisesta oma praegune salasõna, et kinnitada oma identiteet
@@ -796,7 +780,6 @@ et:
       request: Taotle oma arhiivi
       size: Suurus
     blocks: Teie blokeerite
-    csv: CSV
     domain_blocks: Domeeni blokeeringud
     lists: Nimistud
     mutes: Teie vaigistate
@@ -953,7 +936,7 @@ et:
         other: "%{count} uut teavitust peale Teie eelmist külastust \U0001F418"
       title: Teie puudumisel...
     favourite:
-      body: "%{name} lisas Teie staatuse lemmikutesse:"
+      body: '%{name} lisas Teie staatuse lemmikutesse:'
       subject: "%{name} märkis su staatuse lemmikuks"
       title: Uus lemmik
     follow:
@@ -967,11 +950,11 @@ et:
       title: Uus jälgimistaotlus
     mention:
       action: Vasta
-      body: "%{name} mainis Teid:"
-      subject: "%{name} mainis Teid"
+      body: '%{name} mainis Teid:'
+      subject: '%{name} mainis Teid'
       title: Uus mainimine
     reblog:
-      body: "%{name} upitas Teie staatust:"
+      body: '%{name} upitas Teie staatust:'
       subject: "%{name} upitas su staatust"
       title: Uus upitus
   notifications:
@@ -981,11 +964,7 @@ et:
   number:
     human:
       decimal_units:
-        format: "%n%u"
         units:
-          billion: B
-          million: M
-          quadrillion: Q
           thousand: T
           trillion: Tr
   pagination:
@@ -993,7 +972,6 @@ et:
     next: Järgmine
     older: Vanemad
     prev: Eelm
-    truncate: "&hellip;"
   polls:
     errors:
       already_voted: Olete siin juba hääletanud
@@ -1035,9 +1013,7 @@ et:
     no_account_html: Teil pole veel kontot? Saate <a href='%{sign_up_path}' target='_blank'>luua ühe siit</a>
     proceed: Jätka jälgimiseks
     prompt: 'Te hakkate jälgima:'
-    reason_html: |-
-      <strong>Miks on see samm vajalik?</strong>
-      <code>%{instance}</code> ei pruugi olla server, kus asub Teie konto, nii et me peame Teid suunama oma kodu serverile.
+    reason_html: "<strong>Miks on see samm vajalik?</strong>\n<code>%{instance}</code> ei pruugi olla server, kus asub Teie konto, nii et me peame Teid suunama oma kodu serverile."
   remote_interaction:
     favourite:
       proceed: Jätka lemmikuks lisamiseks
@@ -1056,40 +1032,13 @@ et:
     activity: Viimane aktiivsus
     browser: Veebilehitseja
     browsers:
-      alipay: Alipay
-      blackberry: Blackberry
-      chrome: Chrome
-      edge: Microsoft Edge
-      electron: Electron
-      firefox: Firefox
       generic: Tundmatu veebilehitseja
-      ie: Internet Explorer
-      micro_messenger: MicroMessenger
-      nokia: Nokia S40 Ovi Browser
-      opera: Opera
-      otter: Otter
-      phantom_js: PhantomJS
-      qq: QQ Browser
-      safari: Safari
-      uc_browser: UCBrowser
-      weibo: Weibo
     current_session: Praegune seanss
     description: "%{browser} platvormil %{platform}"
     explanation: Need on praegused veebilehitsejad, mis on sisse logitud Teie Mastodoni kontosse.
-    ip: IP
     platforms:
-      adobe_air: Adobe Air
-      android: Android
-      blackberry: Blackberry
-      chrome_os: ChromeOS
-      firefox_os: Firefox OS
-      ios: iOS
-      linux: Linux
       mac: Mac
       other: tundmatu platvorm
-      windows: Windows
-      windows_mobile: Windows Mobile
-      windows_phone: Windows Phone
     revoke: Tühista
     revoke_success: Seanssi tühistamine õnnestus
     title: Seanssid
@@ -1122,9 +1071,6 @@ et:
       image:
         one: "%{count} pilt"
         other: "%{count} pilti"
-      video:
-        one: "%{count} video"
-        other: "%{count} videot"
     boosted_from_html: Upitatud %{acct_link}
     content_warning: 'Sisu hoiatus: %{warning}'
     disallowed_hashtags:
@@ -1151,7 +1097,6 @@ et:
     show_more: Näita rohkem
     show_thread: Kuva lõim
     sign_in_to_participate: Logi sisse, et liituda vestlusega
-    title: '%{name}: "%{quote}"'
     visibilities:
       private: Ainult jälgijatele
       private_long: Näita ainult jälgijatele
