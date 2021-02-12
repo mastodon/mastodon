@@ -6,6 +6,7 @@ hu:
     active_count_after: aktív
     active_footnote: Havonta aktív felhasználók
     administered_by: 'Adminisztrátor:'
+    api: API
     apps: Mobil appok
     apps_platforms: Használd a Mastodont iOS-ről, Androidról vagy más platformról
     browse_directory: Böngészd a profilokat és szűrj érdeklődési körre
@@ -13,6 +14,7 @@ hu:
     browse_public_posts: Nézz bele a Mastodon élő adatfolyamába
     contact: Kapcsolat
     contact_missing: Nincs megadva
+    contact_unavailable: N/A
     discover_users: Találj meg másokat
     documentation: Dokumentáció
     federation_hint_html: Egy %{instance} fiókkal bármely más Mastodon szerveren vagy a föderációban lévő felhasználót követni tudsz.
@@ -78,6 +80,7 @@ hu:
     reserved_username: Ez már foglalt felhasználónév
     roles:
       admin: Adminisztrátor
+      bot: Bot
       group: Csoport
       moderator: Moderátor
     unavailable: Nincs ilyen profil
@@ -98,6 +101,7 @@ hu:
       approved_msg: A %{username} fiók regisztrációs kérelmét sikeresen elfogadtuk
       are_you_sure: Biztos vagy benne?
       avatar: Profilkép
+      by_domain: Domain
       change_email:
         changed_msg: A fiókhoz tartozó e-mailt megváltoztattuk!
         current_email: Jelenlegi e-mail
@@ -116,6 +120,7 @@ hu:
       disable_two_factor_authentication: Kétlépcsős hitelesítés kikapcsolása
       disabled: Kikapcsolva
       display_name: Megjelenített név
+      domain: Domain
       edit: Szerkesztés
       email: E-mail
       email_status: E-mail állapot
@@ -128,6 +133,7 @@ hu:
       inbox_url: Beérkezett üzenetek URL-je
       invite_request_text: Csatlakozás oka
       invited_by: Meghívta
+      ip: IP
       joined: Csatlakozott
       location:
         all: Összes
@@ -208,6 +214,7 @@ hu:
       username: Felhasználónév
       view_domain: Domain összefoglalójának megtekintése
       warn: Figyelmeztetés
+      web: Web
       whitelisted: Engedélyező-listán
     action_logs:
       action_types:
@@ -314,6 +321,7 @@ hu:
       updated_msg: A közlemény sikeresen frissítve!
     custom_emojis:
       assign_category: Kategóriák
+      by_domain: Domain
       copied_msg: Sikeresen létrehoztuk az emodzsi helyi másolatát
       copy: Másolás
       copy_failed_msg: Emodzsi helyi másolatának létrehozása sikertelen
@@ -353,6 +361,7 @@ hu:
       feature_profile_directory: Profil adatbázis
       feature_registrations: Regisztráció
       feature_relay: Föderációs relé
+      feature_spam_check: Anti-spam
       feature_timeline_preview: Idővonal betekintő
       features: Funkciók
       hidden_service: Föderáció rejtett szolgáltatásokkal
@@ -380,6 +389,7 @@ hu:
       add_new: Új tiltott domain hozzáadása
       created_msg: A domain-tiltás feldolgozása folyamatban
       destroyed_msg: A domain tiltása feloldva
+      domain: Domain
       edit: Domain tiltás szerkesztése
       existing_domain_block_html: A %{name} domainen már szorosabb korlátokat állítottál be, először <a href="%{unblock_url}">oldd fel a tiltást</a>.
       new:
@@ -422,6 +432,7 @@ hu:
       created_msg: E-mail domain sikeresen letiltva
       delete: Törlés
       destroyed_msg: E-mail domain sikeresen engedélyezve
+      domain: Domain
       empty: Nincs letiltott email domain.
       from_html: '%{domain}-ról'
       new:
@@ -429,6 +440,7 @@ hu:
         title: Új e-mail domain tiltása
       title: Tiltott e-mail domainek
     instances:
+      by_domain: Domain
       delivery_available: Kézbesítés elérhető
       empty: Nem található domain.
       known_accounts:
@@ -691,6 +703,7 @@ hu:
     discovery: Felfedezés
     localization:
       body: A Mastodont önkéntesek fordítják.
+      guide_link: https://crowdin.com/project/mastodon
       guide_link_text: Bárki közreműködhet.
     sensitive_content: Szenzitív tartalom
     toot_layout: Tülkök megjelenése
@@ -731,6 +744,9 @@ hu:
     migrate_account: Felhasználói fiók költöztetése
     migrate_account_html: Ha szeretnéd átirányítani ezt a fiókodat egy másikra, a beállításokat <a href="%{path}">itt találod meg</a>.
     or_log_in_with: Vagy jelentkezz be ezzel
+    providers:
+      cas: CAS
+      saml: SAML
     register: Regisztráció
     registration_closed: "%{instance} nem fogad új tagokat"
     resend_confirmation: Megerősítési lépések újraküldése
@@ -840,6 +856,7 @@ hu:
       size: Méret
     blocks: Tiltólistádon
     bookmarks: Könyvjelzők
+    csv: CSV
     domain_blocks: Tiltott domainjeid
     lists: Listáid
     mutes: Némításaid
@@ -922,6 +939,7 @@ hu:
       following: Követettjeid listája
       muting: Némított felhasználók listája
     upload: Feltöltés
+  in_memoriam_html: Emlékünkben.
   invites:
     delete: Visszavonás
     expired: Lejárt
@@ -1030,8 +1048,13 @@ hu:
   number:
     human:
       decimal_units:
+        format: "%n%u"
         units:
           billion: Mrd
+          million: M
+          quadrillion: Q
+          thousand: K
+          trillion: T
   otp_authentication:
     code_hint: Jóváhagyáshoz írd be a hitelesítő alkalmazás által generált kódot
     description_html: Ha engedélyezed a <strong>kétlépcsős azonosítást</strong>, a bejelentkezéshez szükséged lesz a telefonodra és egy alkalmazásra, amely hozzáférési kódot generál számodra.
@@ -1045,6 +1068,7 @@ hu:
     next: Következő
     older: Régebbi
     prev: Előző
+    truncate: "&hellip;"
   polls:
     errors:
       already_voted: Ezen a szavazáson már voksoltál
@@ -1106,14 +1130,40 @@ hu:
     activity: Legutóbbi tevékenység
     browser: Böngésző
     browsers:
+      alipay: Alipay
+      blackberry: Blackberry
+      chrome: Chrome
+      edge: Microsoft Edge
+      electron: Electron
+      firefox: Firefox
       generic: Ismeretlen böngésző
+      ie: Internet Explorer
+      micro_messenger: MicroMessenger
       nokia: Nokia S40 Ovi Böngésző
+      opera: Opera
+      otter: Otter
+      phantom_js: PhantomJS
+      qq: QQ Browser
+      safari: Safari
+      uc_browser: UCBrowser
+      weibo: Weibo
     current_session: Jelenlegi munkamenet
     description: "%{browser} az alábbi platformon: %{platform}"
     explanation: Jelenleg az alábbi böngészőkkel vagy bejelentkezve a fiókodba.
+    ip: IP
     platforms:
+      adobe_air: Adobe Air
+      android: Android
+      blackberry: Blackberry
+      chrome_os: ChromeOS
+      firefox_os: Firefox OS
+      ios: iOS
+      linux: Linux
       mac: Mac
       other: ismeretlen platform
+      windows: Windows
+      windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
     revoke: Visszavonás
     revoke_success: Munkamenet sikeresen visszavonva
     title: Munkamenetek
