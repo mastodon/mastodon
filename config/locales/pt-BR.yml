@@ -1,13 +1,11 @@
----
 pt-BR:
   about:
-    about_hashtag_html: Estes são toots públicos com a hashtag <strong>#%{hashtag}</strong>. Você pode interagir com eles se tiver uma conta em qualquer lugar no fediverso.
+    about_hashtag_html: 'Estes são toots públicos com a hashtag <strong>#%{hashtag}</strong>. Você pode interagir com eles se tiver uma conta em qualquer lugar no fediverso.'
     about_mastodon_html: 'A rede social do futuro: Sem anúncios, sem vigilância corporativa, com design ético e muita descentralização! Possua seus próprios dados com o Mastodon!'
     about_this: Sobre
     active_count_after: ativo
     active_footnote: Usuários Ativos Mensalmente (UAM)
     administered_by: 'Administrado por:'
-    api: API
     apps: Aplicativos
     apps_platforms: Use o Mastodon a partir do iOS, Android e outras plataformas
     browse_directory: Navegue pelo diretório de perfis e filtre por interesses
@@ -52,7 +50,7 @@ pt-BR:
     user_count_before: Casa de
     what_is_mastodon: O que é Mastodon?
   accounts:
-    choices_html: 'Sugestões de %{name}:'
+    choices_html: "Sugestões de %{name}:"
     endorsements_hint: Você pode sugerir pessoas que você segue, elas aparecerão aqui.
     featured_tags_hint: Você pode destacar hashtags específicas, elas aparecerão aqui.
     follow: Seguir
@@ -73,17 +71,11 @@ pt-BR:
     people_who_follow: Pessoas que seguem %{name}
     pin_errors:
       following: Você deve estar seguindo a pessoa que você deseja sugerir
-    posts:
-      one: Toot
-      other: Toots
-    posts_tab_heading: Toots
     posts_with_replies: Toots e respostas
     reserved_username: Nome de usuário reservado
     roles:
-      admin: Admin
       bot: Robô
       group: Grupo
-      moderator: Mod
     unavailable: Perfil indisponível
     unfollow: Deixar de seguir
   admin:
@@ -116,7 +108,7 @@ pt-BR:
       delete: Excluir dados
       deleted: Excluído
       demote: Rebaixar
-      destroyed_msg: Os dados de %{username} estão na fila para serem excluídos em breve
+      destroyed_msg: "Os dados de %{username} estão na fila para serem excluídos em breve"
       disable: Congelar
       disable_two_factor_authentication: Desativar autenticação de dois fatores
       disabled: Desativada
@@ -134,11 +126,9 @@ pt-BR:
       inbox_url: URL da caixa de entrada
       invite_request_text: Motivos para entrar
       invited_by: Convidado por
-      ip: IP
       joined: Entrou
       location:
         all: Todos
-        local: Local
         remote: Remoto
         title: Localização
       login_status: Situação da conta
@@ -215,7 +205,6 @@ pt-BR:
       username: Nome de usuário
       view_domain: Ver resumo para o domínio
       warn: Notificar
-      web: Web
       whitelisted: Permitido
     action_logs:
       action_types:
@@ -333,7 +322,6 @@ pt-BR:
       disable: Desativar
       disabled: Desativado
       disabled_msg: Emoji desativado com sucesso
-      emoji: Emoji
       enable: Ativar
       enabled: Ativado
       enabled_msg: Emoji ativado com sucesso
@@ -362,7 +350,6 @@ pt-BR:
       feature_profile_directory: Diretório de perfis
       feature_registrations: Novas contas
       feature_relay: Repetidor da federação
-      feature_spam_check: Anti-spam
       feature_timeline_preview: Prévia da linha
       features: Funcionalidades
       hidden_service: Federação com serviços onion
@@ -372,7 +359,6 @@ pt-BR:
       recent_users: Usuários recentes
       search: Pesquisa em texto
       single_user_mode: Modo de usuário único
-      software: Software
       space: Uso de espaço em disco
       title: Painel de controle
       total_users: usuários no total
@@ -483,7 +469,7 @@ pt-BR:
     pending_accounts:
       title: Contas pendentes (%{count})
     relationships:
-      title: Relações de %{acct}
+      title: "Relações de %{acct}"
     relays:
       add_new: Adicionar novo repetidor
       delete: Excluir
@@ -498,7 +484,6 @@ pt-BR:
       save_and_enable: Salvar e ativar
       setup: Configurar uma conexão de repetidor
       signatures_not_enabled: Repetidores não funcionarão adequadamente enquanto o modo seguro ou o modo lista de permitidos estiverem ativos
-      status: Status
       title: Repetidores
     report_notes:
       created_msg: Nota de denúncia criada com sucesso!
@@ -535,7 +520,6 @@ pt-BR:
       reported_by: Denunciada por
       resolved: Resolvido
       resolved_msg: Denúncia resolvida com sucesso!
-      status: Status
       title: Denúncias
       unassign: Largar
       unresolved: Não resolvido
@@ -661,10 +645,8 @@ pt-BR:
       last_active: Última atividade
       most_popular: Mais populares
       most_recent: Mais recentes
-      name: Hashtag
       review: Status da revisão
       reviewed: Revisado
-      title: Hashtags
       trending_right_now: Em alta no momento
       unique_uses_today: "%{count} tootando hoje"
       unreviewed: Não revisadas
@@ -682,10 +664,10 @@ pt-BR:
     new_report:
       body: "%{reporter} denunciou %{target}"
       body_remote: Alguém da instância %{domain} reportou %{target}
-      subject: Nova denúncia sobre %{instance} (#%{id})
+      subject: 'Nova denúncia sobre %{instance} (#%{id})'
     new_trending_tag:
       body: 'A hashtag #%{name} está em alta hoje, mas não foi previamente revisada. Ela não estará visível publicamente a menos que você aprove, ou salve o formulário do jeito que está para nunca mais ouvir falar dela.'
-      subject: Nova hashtag disponível para revisão em %{instance} (#%{name})
+      subject: 'Nova hashtag disponível para revisão em %{instance} (#%{name})'
   aliases:
     add_new: Criar alias
     created_msg: Um novo alias foi criado com sucesso. Agora você pode iniciar a mudança da conta antiga.
@@ -707,7 +689,6 @@ pt-BR:
     toot_layout: Layout do Toot
   application_mailer:
     notification_preferences: Alterar preferências de e-mail
-    salutation: "%{name},"
     settings: 'Alterar e-mail de preferência: %{link}'
     view: 'Ver:'
     view_profile: Ver perfil
@@ -742,9 +723,6 @@ pt-BR:
     migrate_account: Mudar-se para outra conta
     migrate_account_html: Se você quer redirecionar essa conta para uma outra você pode <a href="%{path}">configurar isso aqui</a>.
     or_log_in_with: Ou entre com
-    providers:
-      cas: CAS
-      saml: SAML
     register: Criar conta
     registration_closed: "%{instance} não está aceitando novos membros"
     resend_confirmation: Reenviar instruções de confirmação
@@ -791,15 +769,12 @@ pt-BR:
       with_month_name: "%d de %b de %Y"
   datetime:
     distance_in_words:
-      about_x_hours: "%{count}h"
       about_x_months: "%{count}m"
       about_x_years: "%{count}a"
       almost_x_years: "%{count}a"
       half_a_minute: Agora
-      less_than_x_minutes: "%{count}m"
       less_than_x_seconds: Agora
       over_x_years: "%{count}a"
-      x_days: "%{count}d"
       x_minutes: "%{count}min"
       x_months: "%{count}m"
       x_seconds: "%{count}seg"
@@ -854,7 +829,6 @@ pt-BR:
       size: Tamanho
     blocks: Você bloqueou
     bookmarks: Marcadores
-    csv: CSV
     domain_blocks: Bloqueios de domínio
     lists: Listas
     mutes: Você silenciou
@@ -1016,7 +990,7 @@ pt-BR:
         other: "%{count} novas notificações desde o seu último acesso \U0001F418"
       title: Enquanto você estava ausente...
     favourite:
-      body: "%{name} favoritou seu toot:"
+      body: '%{name} favoritou seu toot:'
       subject: "%{name} favoritou seu toot"
       title: Novo favorito
     follow:
@@ -1030,11 +1004,11 @@ pt-BR:
       title: Novo seguidor pendente
     mention:
       action: Responder
-      body: "%{name} te mencionou em:"
-      subject: "%{name} te mencionou"
+      body: '%{name} te mencionou em:'
+      subject: '%{name} te mencionou'
       title: Nova menção
     reblog:
-      body: "%{name} deu boost no seu toot:"
+      body: '%{name} deu boost no seu toot:'
       subject: "%{name} deu boost no seu toot"
       title: Novo boost
   notifications:
@@ -1044,7 +1018,6 @@ pt-BR:
   number:
     human:
       decimal_units:
-        format: "%n%u"
         units:
           billion: BI
           million: MI
@@ -1064,7 +1037,6 @@ pt-BR:
     next: Próximo
     older: Mais antigo
     prev: Anterior
-    truncate: "&hellip;"
   polls:
     errors:
       already_voted: Enquete votada
@@ -1126,40 +1098,16 @@ pt-BR:
     activity: Última atividade
     browser: Navegador
     browsers:
-      alipay: Alipay
       blackberry: BlackBerry
-      chrome: Chrome
-      edge: Microsoft Edge
-      electron: Electron
-      firefox: Firefox
       generic: Navegador desconhecido
-      ie: Internet Explorer
-      micro_messenger: MicroMessenger
       nokia: Navegador Nokia S40 Ovi
-      opera: Opera
-      otter: Otter
-      phantom_js: PhantomJS
-      qq: QQ Browser
-      safari: Safari
-      uc_browser: UCBrowser
-      weibo: Weibo
     current_session: Sessão atual
     description: "%{browser} em %{platform}"
     explanation: Estes são os navegadores que estão conectados com a sua conta Mastodon.
-    ip: IP
     platforms:
-      adobe_air: Adobe Air
-      android: Android
       blackberry: BlackBerry
-      chrome_os: ChromeOS
-      firefox_os: Firefox OS
-      ios: iOS
-      linux: Linux
       mac: MacOS
       other: Plataforma desconhecida
-      windows: Windows
-      windows_mobile: Windows Mobile
-      windows_phone: Windows Phone
     revoke: Fechar
     revoke_success: Sessão fechada com sucesso
     title: Sessões
@@ -1227,7 +1175,6 @@ pt-BR:
     show_older: Mostrar mais antigos
     show_thread: Mostrar conversa
     sign_in_to_participate: Entre para participar dessa conversa
-    title: '%{name}: "%{quote}"'
     visibilities:
       private: Privado
       private_long: Posta apenas para seguidores
@@ -1323,7 +1270,7 @@ pt-BR:
       <p>CC-BY-SA. Atualizado pela última vez em 7 de março de 2018.</p>
 
       <p>Adaptado originalmente de <a href="https://github.com/discourse/discourse">Política de Privacidade Discourse</a>.</p>
-    title: Termos de Serviço e Política de Privacidade de %{instance}
+    title: "Termos de Serviço e Política de Privacidade de %{instance}"
   themes:
     contrast: Mastodon  (Alto contraste)
     default: Mastodon (Noturno)
