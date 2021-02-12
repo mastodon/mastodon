@@ -1,4 +1,3 @@
----
 fi:
   activerecord:
     attributes:
@@ -83,7 +82,6 @@ fi:
         invalid_client: Asiakasohjelman valtuutus epäonnistui, koska asiakas on tuntematon, asiakkaan valtuutus ei ollut mukana tai valtuutustapaa ei tueta.
         invalid_grant: Valtuutuslupa on virheellinen, umpeutunut, peruttu, valtuutuspyynnössä käytettyä uudelleenohjaus-URI:tä vastaamaton tai myönnetty toiselle asiakkaalle.
         invalid_redirect_uri: Uudelleenohjaus-URI on virheellinen.
-        invalid_request: Pyynnöstä puuttuu vaadittu parametri, se sisältää tukemattoman parametriarvon tai on muulla tavoin väärin muotoiltu.
         invalid_resource_owner: Annetut resurssin omistajan tunnnukset ovat virheelliset, tai resurssin omistajaa ei löydy
         invalid_scope: Pyydetyt oikeudet ovat virheellisiä, tuntemattomia tai väärin muotoiltuja.
         invalid_token:
@@ -115,17 +113,17 @@ fi:
       application:
         title: OAuth-valtuutus tarvitaan
     scopes:
-      admin:read: lukea kaikkia tietoja palvelimelta
-      admin:read:accounts: lukea arkaluontoista sisältöä kaikista tileistä
-      admin:write: muokata kaikkia tietoja palvelimella
+      "admin:read": lukea kaikkia tietoja palvelimelta
+      "admin:read:accounts": lukea arkaluontoista sisältöä kaikista tileistä
+      "admin:write": muokata kaikkia tietoja palvelimella
       follow: seurata, estää, perua eston ja lopettaa tilien seuraaminen
       push: vastaanottaa push-ilmoituksesi
       read: lukea tilin tietoja
-      read:accounts: nähdä tilin tiedot
+      "read:accounts": nähdä tilin tiedot
       write: julkaista puolestasi
-      write:accounts: muokata profiiliasi
-      write:filters: luoda suodattimia
-      write:follows: seurata ihmisiä
-      write:lists: luoda listoja
-      write:media: lähettää mediatiedostoja
-      write:notifications: tyhjentää ilmoituksesi
+      "write:accounts": muokata profiiliasi
+      "write:filters": luoda suodattimia
+      "write:follows": seurata ihmisiä
+      "write:lists": luoda listoja
+      "write:media": lähettää mediatiedostoja
+      "write:notifications": tyhjentää ilmoituksesi
