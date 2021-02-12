@@ -6,6 +6,7 @@ pl:
     active_count_after: aktywni
     active_footnote: Aktywni użytkownicy miesięcznie (MAU)
     administered_by: 'Administrowana przez:'
+    api: API
     apps: Aplikacje
     apps_platforms: Korzystaj z Mastodona z poziomu iOS-a, Androida i innych
     browse_directory: Przeglądaj katalog profilów i filtruj z uwzględnieniem zainteresowań
@@ -87,6 +88,7 @@ pl:
     reserved_username: Ta nazwa użytkownika jest zarezerwowana
     roles:
       admin: Administrator
+      bot: Bot
       group: Grupa
       moderator: Moderator
     unavailable: Profil niedostępny
@@ -188,6 +190,8 @@ pl:
       resubscribe: Ponów subskrypcję
       role: Uprawnienia
       roles:
+        admin: Administrator
+        moderator: Moderator
         staff: Ekipa
         user: Użytkownik
       search: Szukaj
@@ -721,6 +725,7 @@ pl:
     toot_layout: Wygląd wpisów
   application_mailer:
     notification_preferences: Zmień ustawienia e-maili
+    salutation: "%{name},"
     settings: 'Zmień ustawienia powiadamiania: %{link}'
     view: 'Zobacz:'
     view_profile: Wyświetl profil
@@ -755,6 +760,9 @@ pl:
     migrate_account: Przenieś konto
     migrate_account_html: Jeżeli chcesz skonfigurować przekierowanie z obecnego konta na inne, możesz <a href="%{path}">zrobić to tutaj</a>.
     or_log_in_with: Lub zaloguj się z użyciem
+    providers:
+      cas: CAS
+      saml: SAML
     register: Rejestracja
     registration_closed: "%{instance} nie przyjmuje nowych członków"
     resend_confirmation: Ponownie prześlij instrukcje weryfikacji
@@ -812,6 +820,7 @@ pl:
       x_days: "%{count} dni"
       x_minutes: "%{count}min"
       x_months: "%{count} miesięcy"
+      x_seconds: "%{count} s"
   deletes:
     challenge_not_passed: Wprowadzone informacje za nieprawidłowe
     confirm_password: Wprowadź aktualne hasło, aby potwierdzić tożsamość
@@ -863,6 +872,7 @@ pl:
       size: Rozmiar
     blocks: Zablokowani
     bookmarks: Zakładki
+    csv: CSV
     domain_blocks: Blokady domen
     lists: Listy
     mutes: Wyciszeni
@@ -1062,6 +1072,7 @@ pl:
   number:
     human:
       decimal_units:
+        format: "%n%u"
         units:
           billion: mld
           million: mil
@@ -1081,6 +1092,7 @@ pl:
     next: Następna
     older: Starsze
     prev: Poprzednia
+    truncate: "&hellip;"
   polls:
     errors:
       already_voted: Już oddałeś(-aś) głos w tym głosowaniu
@@ -1142,6 +1154,8 @@ pl:
     activity: Ostatnia aktywność
     browser: Przeglądarka
     browsers:
+      alipay: Alipay
+      blackberry: Blackberry
       generic: nieznana przeglądarka
       otter: Przeglądarka Otter
     current_session: Obecna sesja
@@ -1229,6 +1243,7 @@ pl:
     show_older: Pokaż starsze
     show_thread: Pokaż wątek
     sign_in_to_participate: Zaloguj się, aby udzielić się w tej konwersacji
+    title: '%{name}: "%{quote}"'
     visibilities:
       private: Tylko dla śledzących
       private_long: Widoczne tylko dla osób, które Cię śledzą
@@ -1332,6 +1347,7 @@ pl:
   time:
     formats:
       default: "%d. %b %Y, %H:%M"
+      month: "%b %Y"
   two_factor_authentication:
     add: Dodaj
     disable: Wyłącz
