@@ -709,6 +709,7 @@ is:
     toot_layout: Framsetning tísta
   application_mailer:
     notification_preferences: Breyta kjörstillingum tölvupósts
+    salutation: "%{name},"
     settings: 'Breyta kjörstillingum tölvupósts: %{link}'
     view: 'Skoða:'
     view_profile: Skoða notandasnið
@@ -743,6 +744,9 @@ is:
     migrate_account: Færa á annan notandaaðgang
     migrate_account_html: Ef þú vilt endurbeina þessum aðgangi á einhvern annan, geturðu <a href="%{path}">stillt það hér</a>.
     or_log_in_with: Eða skráðu inn með
+    providers:
+      cas: CAS
+      saml: SAML
     register: Nýskrá
     registration_closed: "%{instance} samþykkir ekki nýja meðlimi"
     resend_confirmation: Senda leiðbeiningar vegna staðfestingar aftur
@@ -797,6 +801,7 @@ is:
       less_than_x_minutes: "%{count}mín"
       less_than_x_seconds: Núna
       over_x_years: "%{count}ár"
+      x_days: "%{count}d"
       x_minutes: "%{count}mín"
       x_months: "%{count}mán"
       x_seconds: "%{count}sek"
@@ -851,6 +856,7 @@ is:
       size: Stærð
     blocks: Þú útilokar
     bookmarks: Bókamerki
+    csv: CSV
     domain_blocks: Útilokanir á lénum
     lists: Listar
     mutes: Þú þaggar
@@ -1042,6 +1048,7 @@ is:
   number:
     human:
       decimal_units:
+        format: "%n%u"
         units:
           billion: bi.
           million: mi.
@@ -1061,6 +1068,7 @@ is:
     next: Næsta
     older: Eldra
     prev: Fyrra
+    truncate: "&hellip;"
   polls:
     errors:
       already_voted: Þú hefur þegar greitt atkvæði í þessari könnun
@@ -1122,7 +1130,14 @@ is:
     activity: Síðasta virkni
     browser: Vafri
     browsers:
+      alipay: Alipay
+      blackberry: Blackberry
+      chrome: Chrome
+      edge: Microsoft Edge
+      electron: Electron
+      firefox: Firefox
       generic: Óþekktur vafri
+      ie: Internet Explorer
       nokia: Nokia S40 Ovi vafri
       qq: QQ vafri
     current_session: Núverandi seta
