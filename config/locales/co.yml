@@ -6,6 +6,7 @@ co:
     active_count_after: attivi
     active_footnote: Utilizatori Attivi Mensili (UAM)
     administered_by: 'Amministratu da:'
+    api: API
     apps: Applicazione per u telefuninu
     apps_platforms: Utilizà Mastodon dapoi à iOS, Android è altre piattaforme
     browse_directory: Navigà un'annuariu di i prufili è filtra per interessi
@@ -62,6 +63,7 @@ co:
     joined: Quì dapoi %{date}
     last_active: ultima attività
     link_verified_on: A pruprietà d'issu ligame hè stata verificata u %{date}
+    media: Media
     moved_html: "%{name} hà cambiatu di contu, avà hè nant’à %{new_profile_link}:"
     network_hidden: St'infurmazione ùn hè micca dispunibule
     never_active: Mai
@@ -78,6 +80,7 @@ co:
     reserved_username: Stu cugnome hè riservatu
     roles:
       admin: Amministratore
+      bot: Bot
       group: Gruppu
       moderator: Muderatore
     unavailable: Prufile micca dispunibule
@@ -130,6 +133,7 @@ co:
       inbox_url: URL di l’inbox
       invite_request_text: Ragione di l'arregistramentu
       invited_by: Invitatu da
+      ip: IP
       joined: Ghjuntu
       location:
         all: Tutti
@@ -210,6 +214,7 @@ co:
       username: Cugnome
       view_domain: Vede un riassuntu per u duminiu
       warn: Averte
+      web: Web
       whitelisted: In a lista bianca
     action_logs:
       action_types:
@@ -327,6 +332,7 @@ co:
       disable: Disattivà
       disabled: Disattivatu
       disabled_msg: L’emoji hè stata disattivata
+      emoji: Emoji
       enable: Attivà
       enabled: Attivate
       enabled_msg: L’emoji hè stata attivata
@@ -355,6 +361,7 @@ co:
       feature_profile_directory: Annuariu di i prufili
       feature_registrations: Arregistramenti
       feature_relay: Ripetitore di federazione
+      feature_spam_check: Anti-spam
       feature_timeline_preview: Vista di a linea pubblica
       features: Funziunalità
       hidden_service: Federazione cù servizii piattati
@@ -394,6 +401,7 @@ co:
           silence: Silenzà
           suspend: Suspende
         title: Novu blucchime di duminiu
+      obfuscate: Uscurà u nome di duminiu
       private_comment: Cummentariu privatu
       private_comment_hint: Cummentariu nant'à a limitazione di stu duminiu per l'usu internu di i muderatori.
       public_comment: Cummentariu pubblicu
@@ -636,6 +644,8 @@ co:
         nsfw_on: Indicà cum’è sensibile
       deleted: Sguassatu
       failed_to_execute: Esecuzione impussibule
+      media:
+        title: Media
       no_media: Nisun media
       no_status_selected: I statuti ùn sò micca stati mudificati perchè manc'unu era selezziunatu
       title: Statuti di u contu
@@ -650,6 +660,7 @@ co:
       last_active: Ultima attività
       most_popular: Più pupulari
       most_recent: Più ricente
+      name: Hashtag
       review: Statutu di verificazione
       reviewed: Verificatu
       title: Hashtag
@@ -695,6 +706,7 @@ co:
     toot_layout: Urganizazione
   application_mailer:
     notification_preferences: Cambià e priferenze e-mail
+    salutation: "%{name},"
     settings: 'Cambià e priferenze e-mail: %{link}'
     view: 'Vede:'
     view_profile: Vede u prufile
@@ -729,6 +741,9 @@ co:
     migrate_account: Cambià di contu
     migrate_account_html: S’è voi vulete riindirizà stu contu versu un’altru, <a href="%{path}">ghjè pussibule quì</a>.
     or_log_in_with: O cunnettatevi cù
+    providers:
+      cas: CAS
+      saml: SAML
     register: Arregistrassi
     registration_closed: "%{instance} ùn accetta micca novi socii"
     resend_confirmation: Rimandà l’istruzzioni di cunfirmazione
@@ -780,10 +795,13 @@ co:
       about_x_years: "%{count}A"
       almost_x_years: "%{count}A"
       half_a_minute: Avà
+      less_than_x_minutes: "%{count}m"
       less_than_x_seconds: Avà
       over_x_years: "%{count}A"
       x_days: "%{count}ghj"
+      x_minutes: "%{count}m"
       x_months: "%{count}Me"
+      x_seconds: "%{count}s"
   deletes:
     challenge_not_passed: L'infurmazione entrata ùn era micca curretta
     confirm_password: Entrate a vostra chjave d’accessu attuale per verificà a vostra identità
@@ -835,6 +853,7 @@ co:
       size: Pesu
     blocks: Bluccate
     bookmarks: Segnalibri
+    csv: CSV
     domain_blocks: Blucchime di duminiu
     lists: Liste
     mutes: Piattate
@@ -901,6 +920,8 @@ co:
     status: Statutu di a verificazione
     view_proof: Vede a prova
   imports:
+    errors:
+      over_rows_processing_limit: cuntene più di %{count} filari
     modes:
       merge: Unisce
       merge_long: Cunservà i dati esistenti è aghjunghje i novi
@@ -1024,9 +1045,13 @@ co:
   number:
     human:
       decimal_units:
+        format: "%n%u"
         units:
           billion: G
+          million: M
           quadrillion: P
+          thousand: K
+          trillion: T
   otp_authentication:
     code_hint: Entrate u codice generatu da l’applicazione per cunfirmà
     description_html: S’ella hè attivata <strong>l’identificazione à dui fattori</strong> cù un'applicazione d'identificazione, duvete avè u vostru telefuninu pè ottene un codice di cunnezzione.
@@ -1040,6 +1065,7 @@ co:
     next: Dopu
     older: Più vechju
     prev: Nanzu
+    truncate: "&hellip;"
   polls:
     errors:
       already_voted: Avete digià vutatu nant'à stu scandagliu
@@ -1101,11 +1127,35 @@ co:
     activity: Ultima attività
     browser: Navigatore
     browsers:
+      alipay: Alipay
+      blackberry: Blackberry
+      chrome: Chrome
+      edge: Microsoft Edge
+      electron: Electron
+      firefox: Firefox
       generic: Navigatore scunnisciutu
+      ie: Internet Explorer
+      micro_messenger: MicroMessenger
+      nokia: Nokia S40 Ovi Browser
+      opera: Opera
+      otter: Otter
+      phantom_js: PhantomJS
+      qq: QQ Browser
+      safari: Safari
+      uc_browser: UCBrowser
+      weibo: Weibo
     current_session: Sessione attuale
     description: "%{browser} nant’à %{platform}"
     explanation: Quessi sò i navigatori cunnettati à u vostru contu Mastodon.
+    ip: IP
     platforms:
+      adobe_air: Adobe Air
+      android: Android
+      blackberry: Blackberry
+      chrome_os: ChromeOS
+      firefox_os: Firefox OS
+      ios: iOS
+      linux: Linux
       other: piattaforma scunnisciuta
     revoke: Rivucà
     revoke_success: Sessione rivucata
