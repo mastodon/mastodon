@@ -1,19 +1,16 @@
----
 nl:
   about:
-    about_hashtag_html: Dit zijn openbare toots die getagged zijn met <strong>#%{hashtag}</strong>. Je kunt er op reageren of iets anders mee doen als je op Mastodon (of ergens anders in de fediverse) een account hebt.
-    about_mastodon_html: Mastodon is een sociaal netwerk dat gebruikt maakt van open webprotocollen en vrije software. Het is net zoals e-mail gedecentraliseerd.
+    about_hashtag_html: 'Dit zijn openbare toots die getagged zijn met <strong>#%{hashtag}</strong>. Je kunt er op reageren of iets anders mee doen als je op Mastodon (of ergens anders in de fediverse) een account hebt.'
+    about_mastodon_html: 'Mastodon is een sociaal netwerk dat gebruikt maakt van open webprotocollen en vrije software. Het is net zoals e-mail gedecentraliseerd.'
     about_this: Over deze server
     active_count_after: actief
     active_footnote: Actieve gebruikers per maand (MAU)
     administered_by: 'Beheerd door:'
-    api: API
     apps: Mobiele apps
     apps_platforms: Gebruik Mastodon op iOS, Android en op andere platformen
     browse_directory: Gebruikersgids doorbladeren en op interesses filteren
     browse_local_posts: Livestream van openbare berichten op deze server bekijken
     browse_public_posts: Livestream van openbare Mastodonberichten bekijken
-    contact: Contact
     contact_missing: Niet ingesteld
     contact_unavailable: n.v.t
     discover_users: Gebruikers ontdekken
@@ -21,9 +18,8 @@ nl:
     federation_hint_html: Met een account op %{instance} ben je in staat om mensen die zich op andere Mastodonservers (en op andere plekken) bevinden te volgen.
     get_apps: Mobiele apps
     hosted_on: Mastodon op %{domain}
-    instance_actor_flash: 'Dit account is een virtuel actor dat wordt gebruikt om de server zelf te vertegenwoordigen en is geen individuele gebruiker. Het wordt voor federatiedoeleinden gebruikt en moet niet worden geblokkeerd, tenzij je de hele server wilt blokkeren. In zo''n geval dien je echter een domeinblokkade te gebruiken.
-
-'
+    instance_actor_flash: |
+      Dit account is een virtuel actor dat wordt gebruikt om de server zelf te vertegenwoordigen en is geen individuele gebruiker. Het wordt voor federatiedoeleinden gebruikt en moet niet worden geblokkeerd, tenzij je de hele server wilt blokkeren. In zo'n geval dien je echter een domeinblokkade te gebruiken. 
     learn_more: Meer leren
     privacy_policy: Privacybeleid
     see_whats_happening: Kijk wat er aan de hand is
@@ -37,13 +33,12 @@ nl:
     terms: Gebruiksvoorwaarden
     unavailable_content: Gemodereerde servers
     unavailable_content_description:
-      domain: Server
       reason: 'Reden:'
       rejecting_media: 'Mediabestanden van deze server worden niet verwerkt en er worden geen thumbnails getoond. Je moet handmatig naar deze server doorklikken om de mediabestanden te kunnen bekijken:'
       rejecting_media_title: Mediabestanden geweigerd
-      silenced: Toots van deze server worden nergens weergegeven, behalve op jouw eigen starttijdlijn wanneer je het account volgt.
+      silenced: 'Toots van deze server worden nergens weergegeven, behalve op jouw eigen starttijdlijn wanneer je het account volgt.'
       silenced_title: Genegeerde servers
-      suspended: Je bent niet in staat om iemand van deze server te volgen, en er worden geen gegevens van deze server verwerkt of opgeslagen, en met deze server uitgewisseld.
+      suspended: 'Je bent niet in staat om iemand van deze server te volgen, en er worden geen gegevens van deze server verwerkt of opgeslagen, en met deze server uitgewisseld.'
       suspended_title: Opgeschorte servers
     unavailable_content_html: Met Mastodon kun je in het algemeen berichten bekijken van en communiceren met gebruikers van elke andere server in de fediverse. Dit zijn de uitzonderingen die door deze server zijn gemaakt en expliciet alleen hier gelden.
     user_count_after:
@@ -52,7 +47,7 @@ nl:
     user_count_before: Thuisbasis van
     what_is_mastodon: Wat is Mastodon?
   accounts:
-    choices_html: 'Aanbevelingen van %{name}:'
+    choices_html: "Aanbevelingen van %{name}:"
     endorsements_hint: Je kunt mensen die je volgt in de webomgeving aanbevelen, waarna ze dan hier zullen verschijnen.
     featured_tags_hint: Je kunt specifieke hashtags uitlichten, waarna ze dan hier zullen verschijnen.
     follow: Volgen
@@ -64,7 +59,6 @@ nl:
     joined: Geregistreerd in %{date}
     last_active: laatst actief
     link_verified_on: Eigendom van deze link is gecontroleerd op %{date}
-    media: Media
     moved_html: "%{name} is verhuisd naar %{new_profile_link}:"
     network_hidden: Deze informatie is niet beschikbaar
     never_active: Nooit
@@ -73,15 +67,10 @@ nl:
     people_who_follow: Mensen die %{name} volgen
     pin_errors:
       following: Je moet dit account wel al volgen, alvorens je het kan aanbevelen
-    posts:
-      one: Toot
-      other: Toots
-    posts_tab_heading: Toots
     posts_with_replies: Toots en reacties
     reserved_username: Deze gebruikersnaam is gereserveerd
     roles:
       admin: Beheerder
-      bot: Bot
       group: Groep
       moderator: Moderator
     unavailable: Profiel niet beschikbaar
@@ -101,7 +90,6 @@ nl:
       approve_all: Alles goedkeuren
       approved_msg: Het goedkeuren van het registratieverzoek van %{username} is geslaagd
       are_you_sure: Weet je het zeker?
-      avatar: Avatar
       by_domain: Domein
       change_email:
         changed_msg: E-mailadres van account succesvol veranderd!
@@ -116,7 +104,7 @@ nl:
       delete: Gegevens verwijderen
       deleted: Verwijderd
       demote: Degraderen
-      destroyed_msg: De verwijdering van de gegevens van %{username} staat nu in de wachtrij
+      destroyed_msg: "De verwijdering van de gegevens van %{username} staat nu in de wachtrij"
       disable: Bevriezen
       disable_two_factor_authentication: 2FA uitschakelen
       disabled: Bevroren
@@ -134,7 +122,6 @@ nl:
       inbox_url: Inbox-URL
       invite_request_text: Redenen om te registreren
       invited_by: Uitgenodigd door
-      ip: IP
       joined: Geregistreerd in
       location:
         all: Alles
@@ -162,7 +149,6 @@ nl:
       pending: Moet nog beoordeeld worden
       perform_full_suspension: Opschorten
       promote: Promoveren
-      protocol: Protocol
       public: Openbaar
       push_subscription_expires: PuSH-abonnement verloopt op
       redownload: Profiel vernieuwen
@@ -184,7 +170,6 @@ nl:
       role: Bevoegdheden
       roles:
         admin: Beheerder
-        moderator: Moderator
         staff: Medewerkers
         user: Gebruiker
       search: Zoeken
@@ -203,8 +188,7 @@ nl:
       suspended: Opgeschort
       suspension_irreversible: De gegevens van dit account zijn onomkeerbaar verwijderd. Je kunt het opschorten van dit account ongedaan maken zodat het weer valt te gebruiken, maar de verwijderde gegevens worden hiermee niet hersteld.
       suspension_reversible_hint_html: Dit account is opgeschort en de gegevens worden volledig verwijderd op %{date}. Tot die tijd kan dit account worden hersteld zonder nadelige gevolgen. Wanneer je alle gegevens van dit account onmiddellijk wilt verwijderen, kun je dit hieronder doen.
-      time_in_queue: "%{time} in de wachtrij"
-      title: Accounts
+      time_in_queue: '%{time} in de wachtrij'
       unconfirmed_email: Onbevestigd e-mailadres
       undo_sensitized: Niet meer als gevoelig markeren
       undo_silenced: Niet langer negeren
@@ -262,39 +246,39 @@ nl:
       actions:
         assigned_to_self_report: "%{name} heeft rapportage %{target} aan zichzelf toegewezen"
         change_email_user: "%{name} veranderde het e-mailadres van gebruiker %{target}"
-        confirm_user: E-mailadres van gebruiker %{target} is door %{name} bevestigd
+        confirm_user: "E-mailadres van gebruiker %{target} is door %{name} bevestigd"
         create_account_warning: "%{name} verzond een waarschuwing naar %{target}"
         create_announcement: "%{name} heeft de nieuwe mededeling %{target} aangemaakt"
-        create_custom_emoji: Nieuwe emoji %{target} is door %{name} geüpload
+        create_custom_emoji: "Nieuwe emoji %{target} is door %{name} geüpload"
         create_domain_allow: "%{name} heeft federatie met het domein %{target} goedgekeurd"
-        create_domain_block: Domein %{target} is door %{name} geblokkeerd
+        create_domain_block: "Domein %{target} is door %{name} geblokkeerd"
         create_email_domain_block: "%{name} heeft het e-maildomein %{target} geblokkeerd"
-        demote_user: Gebruiker %{target} is door %{name} gedegradeerd
+        demote_user: "Gebruiker %{target} is door %{name} gedegradeerd"
         destroy_announcement: "%{name} heeft de mededeling %{target} verwijderd"
         destroy_custom_emoji: "%{name} verwijderde emoji %{target}"
         destroy_domain_allow: "%{name} heeft federatie met het domein %{target} afgekeurd"
-        destroy_domain_block: Domein %{target} is door %{name} gedeblokkeerd
+        destroy_domain_block: "Domein %{target} is door %{name} gedeblokkeerd"
         destroy_email_domain_block: "%{name} heeft het e-maildomein %{target} gedeblokkeerd"
-        destroy_status: Toot van %{target} is door %{name} verwijderd
-        disable_2fa_user: Vereisten tweestapsverificatie van %{target} zijn door %{name} uitgeschakeld
-        disable_custom_emoji: Emoji %{target} is door %{name} uitgeschakeld
-        disable_user: Inloggen voor %{target} is door %{name} uitgeschakeld
-        enable_custom_emoji: Emoji %{target} is door %{name} ingeschakeld
-        enable_user: Inloggen voor %{target} is door %{name} ingeschakeld
-        memorialize_account: Het account %{target} is door %{name} in een In memoriam veranderd
-        promote_user: Gebruiker %{target} is door %{name} gepromoveerd
+        destroy_status: "Toot van %{target} is door %{name} verwijderd"
+        disable_2fa_user: "Vereisten tweestapsverificatie van %{target} zijn door %{name} uitgeschakeld"
+        disable_custom_emoji: "Emoji %{target} is door %{name} uitgeschakeld"
+        disable_user: "Inloggen voor %{target} is door %{name} uitgeschakeld"
+        enable_custom_emoji: "Emoji %{target} is door %{name} ingeschakeld"
+        enable_user: "Inloggen voor %{target} is door %{name} ingeschakeld"
+        memorialize_account: "Het account %{target} is door %{name} in een In memoriam veranderd"
+        promote_user: "Gebruiker %{target} is door %{name} gepromoveerd"
         remove_avatar_user: "%{name} verwijderde de avatar van %{target}"
         reopen_report: "%{name} heeft rapportage %{target} heropend"
-        reset_password_user: Wachtwoord van gebruiker %{target} is door %{name} opnieuw ingesteld
+        reset_password_user: "Wachtwoord van gebruiker %{target} is door %{name} opnieuw ingesteld"
         resolve_report: "%{name} heeft rapportage %{target} opgelost"
-        silence_account: Account %{target} is door %{name} genegeerd
-        suspend_account: Account %{target} is door %{name} opgeschort
+        silence_account: "Account %{target} is door %{name} genegeerd"
+        suspend_account: "Account %{target} is door %{name} opgeschort"
         unassigned_report: "%{name} heeft het toewijzen van rapportage %{target} ongedaan gemaakt"
-        unsilence_account: Negeren van account %{target} is door %{name} opgeheven
-        unsuspend_account: Opschorten van account %{target} is door %{name} opgeheven
+        unsilence_account: "Negeren van account %{target} is door %{name} opgeheven"
+        unsuspend_account: "Opschorten van account %{target} is door %{name} opgeheven"
         update_announcement: "%{name} heeft de mededeling %{target} bijgewerkt"
-        update_custom_emoji: Emoji %{target} is door %{name} bijgewerkt
-        update_status: De toots van %{target} zijn door %{name} bijgewerkt
+        update_custom_emoji: "Emoji %{target} is door %{name} bijgewerkt"
+        update_status: "De toots van %{target} zijn door %{name} bijgewerkt"
       deleted_status: "(verwijderde toot}"
       empty: Geen logs gevonden.
       filter_by_action: Op actie filteren
@@ -305,7 +289,6 @@ nl:
       edit:
         title: Mededeling bewerken
       empty: Geen mededelingen gevonden.
-      live: Live
       new:
         create: Mededeling aanmaken
         title: Nieuwe mededeling
@@ -328,7 +311,6 @@ nl:
       disable: Uitschakelen
       disabled: Uitgeschakeld
       disabled_msg: Uitschakelen van deze emoji geslaagd
-      emoji: Emoji
       enable: Inschakelen
       enabled: Ingeschakeld
       enabled_msg: Inschakelen van deze emoji geslaagd
@@ -357,7 +339,6 @@ nl:
       feature_profile_directory: Gebruikersgids
       feature_registrations: Registraties
       feature_relay: Federatierelay
-      feature_spam_check: Anti-spam
       feature_timeline_preview: Voorvertoning van tijdlijn
       features: Functies
       hidden_service: Federatie met verborgen diensten
@@ -367,11 +348,8 @@ nl:
       recent_users: Recente gebruikers
       search: In volledige tekst zoeken
       single_user_mode: Modus voor één gebruiker
-      software: Software
       space: Ruimtegebruik
-      title: Dashboard
       total_users: gebruikers in totaal
-      trends: Trends
       week_interactions: interacties deze week
       week_users_active: actieve gebruikers deze week
       week_users_new: nieuwe gebruikers deze week
@@ -458,7 +436,6 @@ nl:
         all: Alles
         available: Beschikbaar
         expired: Verlopen
-        title: Filter
       title: Uitnodigingen
     ip_blocks:
       add_new: Regel aanmaken
@@ -478,7 +455,7 @@ nl:
     pending_accounts:
       title: Accounts in afwachting (%{count})
     relationships:
-      title: Relaties van %{acct}
+      title: "Relaties van %{acct}"
     relays:
       add_new: Nieuwe relayserver toevoegen
       delete: Verwijderen
@@ -493,7 +470,6 @@ nl:
       save_and_enable: Opslaan en inschakelen
       setup: Een verbinding met een relayserver maken
       signatures_not_enabled: Federatierelays werken niet goed wanneer de veilige modus of de beperkte federatiemodus is ingeschakeld
-      status: Status
       title: Relayservers
     report_notes:
       created_msg: Opmerking bij rapportage succesvol aangemaakt!
@@ -625,7 +601,6 @@ nl:
         title: Hashtags toestaan om trending te worden zonder voorafgaande beoordeling
       trends:
         desc_html: Eerder beoordeelde hashtags die op dit moment trending zijn openbaar tonen
-        title: Trending hashtags
     site_uploads:
       delete: Geüpload bestand verwijderen
       destroyed_msg: Verwijderen website-upload geslaagd!
@@ -637,8 +612,6 @@ nl:
         nsfw_on: Als gevoelig markeren
       deleted: Verwijderd
       failed_to_execute: Uitvoeren mislukt
-      media:
-        title: Media
       no_media: Geen media
       no_status_selected: Er werden geen toots gewijzigd, omdat er geen enkele werd geselecteerd
       title: Toots van account
@@ -647,16 +620,13 @@ nl:
       accounts_today: Aantal verschillende keren vandaag gebruikt
       accounts_week: Aantal verschillende keren deze week gebruikt
       breakdown: Uitsplitsing van het gebruik van vandaag naar bron
-      context: Context
       directory: In de gebruikersgids
       in_directory: "%{count} keer in de gebruikersgids"
       last_active: Laatst actief
       most_popular: Meest populair
       most_recent: Meest recent
-      name: Hashtag
       review: Status beoordelen
       reviewed: Beoordeeld
-      title: Hashtags
       trending_right_now: Op dit moment trending
       unique_uses_today: "%{count} keer vandaag gebruikt"
       unreviewed: Niet beoordeeld
@@ -674,10 +644,10 @@ nl:
     new_report:
       body: "%{reporter} heeft %{target} gerapporteerd"
       body_remote: Iemand van %{domain} heeft %{target} gerapporteerd
-      subject: Nieuwe rapportage op %{instance} (#%{id})
+      subject: 'Nieuwe rapportage op %{instance} (#%{id})'
     new_trending_tag:
       body: 'De hashtag #%{name} is vandaag trending, maar is nog niet beoordeeld. Het wordt niet in het openbaar getoond alvorens je de hashtag goedkeurt. Je kunt ook het formulier zoals het nu is opslaan, waarna je er niks meer over zult horen.'
-      subject: Nieuwe hashtag te beoordelen op %{instance} (#%{name})
+      subject: 'Nieuwe hashtag te beoordelen op %{instance} (#%{name})'
   aliases:
     add_new: Alias aanmaken
     created_msg: Succesvol een nieuwe alias aangemaakt. Je kunt nu met de verhuizing vanaf het oude account beginnen.
@@ -699,7 +669,6 @@ nl:
     toot_layout: Lay-out van toots
   application_mailer:
     notification_preferences: E-mailvoorkeuren wijzigen
-    salutation: "%{name},"
     settings: 'E-mailvoorkeuren wijzigen: %{link}'
     view: 'Bekijk:'
     view_profile: Profiel bekijken
@@ -734,9 +703,6 @@ nl:
     migrate_account: Naar een ander account verhuizen
     migrate_account_html: Wanneer je dit account naar een ander account wilt doorverwijzen, kun je <a href="%{path}">dit hier instellen</a>.
     or_log_in_with: Of inloggen met
-    providers:
-      cas: CAS
-      saml: SAML
     register: Registreren
     registration_closed: "%{instance} laat geen nieuwe gebruikers toe"
     resend_confirmation: Verstuur de bevestigingsinstructies nogmaals
@@ -788,13 +754,9 @@ nl:
       about_x_years: "%{count}j"
       almost_x_years: "%{count}j"
       half_a_minute: Zojuist
-      less_than_x_minutes: "%{count}m"
       less_than_x_seconds: Zojuist
       over_x_years: "%{count}j"
-      x_days: "%{count}d"
-      x_minutes: "%{count}m"
       x_months: "%{count}ma"
-      x_seconds: "%{count}s"
   deletes:
     challenge_not_passed: De informatie die u hebt ingevoerd is ongeldig
     confirm_password: Voer jouw huidige wachtwoord in om jouw identiteit te bevestigen
@@ -815,7 +777,7 @@ nl:
   directories:
     directory: Gebruikersgids
     explanation: Ontdek gebruikers aan de hand van hun interesses
-    explore_mastodon: "%{title} verkennen"
+    explore_mastodon: '%{title} verkennen'
   domain_validator:
     invalid_domain: is een ongeldige domeinnaam
   errors:
@@ -846,7 +808,6 @@ nl:
       size: Omvang
     blocks: Jij blokkeert
     bookmarks: Bladwijzers
-    csv: CSV
     domain_blocks: Domeinblokkades
     lists: Lijsten
     mutes: Jij negeert
@@ -871,7 +832,6 @@ nl:
     index:
       delete: Verwijderen
       empty: Je hebt geen filters aangemaakt.
-      title: Filters
     new:
       title: Nieuw filter toevoegen
   footer:
@@ -1038,12 +998,10 @@ nl:
   number:
     human:
       decimal_units:
-        format: "%n%u"
         units:
           billion: mld.
           million: mln.
           quadrillion: qdn.
-          thousand: K
           trillion: bln.
   otp_authentication:
     code_hint: Voer de code in die door de authenticatie-app werd gegenereerd
@@ -1058,7 +1016,6 @@ nl:
     next: Volgende
     older: Ouder
     prev: Vorige
-    truncate: "&hellip;"
   polls:
     errors:
       already_voted: Je hebt al op deze poll gestemd
@@ -1120,45 +1077,16 @@ nl:
     activity: Laatst actief
     browser: Webbrowser
     browsers:
-      alipay: Alipay
-      blackberry: Blackberry
-      chrome: Chrome
-      edge: Microsoft Edge
-      electron: Electron
-      firefox: Firefox
       generic: Onbekende webbrowser
-      ie: Internet Explorer
-      micro_messenger: MicroMessenger
-      nokia: Nokia S40 Ovi Browser
-      opera: Opera
-      otter: Otter
-      phantom_js: PhantomJS
-      qq: QQ Browser
-      safari: Safari
-      uc_browser: UCBrowser
-      weibo: Weibo
     current_session: Huidige sessie
     description: "%{browser} op %{platform}"
     explanation: Dit zijn de webbrowsers die momenteel met jouw Mastodonaccount zijn ingelogd.
-    ip: IP
     platforms:
-      adobe_air: Adobe Air
-      android: Android
-      blackberry: Blackberry
-      chrome_os: ChromeOS
-      firefox_os: Firefox OS
-      ios: iOS
-      linux: Linux
-      mac: macOS
       other: Onbekend platform
-      windows: Windows
-      windows_mobile: Windows Mobile
-      windows_phone: Windows Phone
     revoke: Intrekken
     revoke_success: Sessie succesvol ingetrokken
     title: Sessies
   settings:
-    account: Account
     account_settings: Accountinstellingen
     aliases: Accountaliassen
     appearance: Uiterlijk
@@ -1190,9 +1118,6 @@ nl:
       image:
         one: "%{count} afbeelding"
         other: "%{count} afbeeldingen"
-      video:
-        one: "%{count} video"
-        other: "%{count} video's"
     boosted_from_html: Geboost van %{acct_link}
     content_warning: 'Tekstwaarschuwing: %{warning}'
     disallowed_hashtags:
@@ -1221,7 +1146,6 @@ nl:
     show_older: Oudere tonen
     show_thread: Gesprek tonen
     sign_in_to_participate: Meld je aan om aan dit gesprek mee te doen
-    title: '%{name}: "%{quote}"'
     visibilities:
       private: Alleen volgers
       private_long: Alleen aan jouw volgers tonen
@@ -1317,7 +1241,7 @@ nl:
       <p>This document is CC-BY-SA. It was last updated March 7, 2018.</p>
 
       <p>Originally adapted from the <a href="https://github.com/discourse/discourse">Discourse privacy policy</a>.</p>
-    title: Gebruiksvoorwaarden en privacybeleid van %{instance}
+    title: "Gebruiksvoorwaarden en privacybeleid van %{instance}"
   themes:
     contrast: Mastodon (hoog contrast)
     default: Mastodon (donker)
@@ -1325,7 +1249,6 @@ nl:
   time:
     formats:
       default: "%d %B %Y om %H:%M"
-      month: "%b %Y"
   two_factor_authentication:
     add: Toevoegen
     disable: Tweestapsverificatie uitschakelen
@@ -1388,7 +1311,6 @@ nl:
       tip_following: Je volgt standaard de beheerder(s) van jouw Mastodonserver. Bekijk de lokale en de globale tijdlijnen om meer interessante mensen te vinden.
       tip_local_timeline: De lokale tijdlijn toont berichten van mensen op %{instance}. Dit zijn jouw naaste buren!
       tip_mobile_webapp: Wanneer jouw mobiele webbrowser Mastodon aan jouw startscherm wilt toevoegen, kun je pushmeldingen ontvangen. Het gedraagt zich op meerdere manieren als een native app!
-      tips: Tips
       title: Welkom aan boord %{name}!
   users:
     blocked_email_provider: Deze e-mailprovider is niet toegestaan
