@@ -1,23 +1,19 @@
----
 fr:
   about:
-    about_hashtag_html: Voici les pouets tagués avec <strong>#%{hashtag}</strong>. Vous pouvez interagir avec eux si vous avez un compte n’importe où dans le Fédiverse.
+    about_hashtag_html: 'Voici les pouets tagués avec <strong>#%{hashtag}</strong>. Vous pouvez interagir avec eux si vous avez un compte n’importe où dans le Fédiverse.'
     about_mastodon_html: 'Le réseau social de l''avenir : Pas d''annonces, pas de surveillance institutionnelle, conception éthique et décentralisation ! Possédez vos données avec Mastodon !'
     about_this: À propos
     active_count_after: actif·ve·s
     active_footnote: Utilisateur·rice·s actif·ve·s mensuels (MAU)
     administered_by: 'Administrée par :'
-    api: API
     apps: Applications mobiles
     apps_platforms: Utilisez Mastodon depuis iOS, Android et d’autres plates-formes
     browse_directory: Parcourir l’annuaire des profils et filtrer par centres d’intérêts
     browse_local_posts: Parcourir un flux en direct de messages publics depuis ce serveur
     browse_public_posts: Parcourir un flux en direct de messages publics sur Mastodon
-    contact: Contact
     contact_missing: Non défini
     contact_unavailable: Non disponible
     discover_users: Découvrez des utilisateur·rice·s
-    documentation: Documentation
     federation_hint_html: Avec un compte sur %{instance}, vous pourrez suivre les gens sur n’importe quel serveur Mastodon et au-delà.
     get_apps: Essayez une application mobile
     hosted_on: Serveur Mastodon hébergé par %{domain}
@@ -80,7 +76,6 @@ fr:
     posts_with_replies: Pouets & réponses
     reserved_username: Ce nom d’utilisateur·ice est réservé
     roles:
-      admin: Admin
       bot: Robot
       group: Groupe
       moderator: Modérateur·trice
@@ -101,7 +96,6 @@ fr:
       approve_all: Tout approuver
       approved_msg: La demande d’inscription de %{username} a été approuvée avec succès
       are_you_sure: Voulez-vous vraiment faire ça ?
-      avatar: Avatar
       by_domain: Domaine
       change_email:
         changed_msg: Courriel du compte modifié avec succès !
@@ -116,7 +110,7 @@ fr:
       delete: Supprimer les données
       deleted: Supprimé
       demote: Rétrograder
-      destroyed_msg: Les données de %{username} sont maintenant en file d’attente pour être supprimées imminemment
+      destroyed_msg: "Les données de %{username} sont maintenant en file d’attente pour être supprimées imminemment"
       disable: Désactiver
       disable_two_factor_authentication: Désactiver l’authentification à deux facteurs
       disabled: Désactivé
@@ -138,7 +132,6 @@ fr:
       joined: Inscrit·e depuis
       location:
         all: Tous
-        local: Local
         remote: Distant
         title: Situation
       login_status: Statut de connexion
@@ -181,7 +174,6 @@ fr:
       reset: Réinitialiser
       reset_password: Réinitialiser le mot de passe
       resubscribe: Se réabonner
-      role: Permissions
       roles:
         admin: Administrateur
         moderator: Modérateur
@@ -215,7 +207,6 @@ fr:
       username: Nom d’utilisateur·ice
       view_domain: Voir le résumé du domaine
       warn: Avertissement
-      web: Web
       whitelisted: Sur liste blanche
     action_logs:
       action_types:
@@ -356,13 +347,11 @@ fr:
     dashboard:
       authorized_fetch_mode: Mode de récupération autorisé
       backlog: tâches en attente
-      config: Configuration
       feature_deletions: Suppressions de comptes
       feature_invites: Liens d’invitation
       feature_profile_directory: Annuaire des profils
       feature_registrations: Inscriptions
       feature_relay: Relais de fédération
-      feature_spam_check: Anti-spam
       feature_timeline_preview: Aperçu du fil public
       features: Fonctionnalités
       hidden_service: Fédération avec des services cachés
@@ -485,7 +474,7 @@ fr:
     pending_accounts:
       title: Comptes en attente (%{count})
     relationships:
-      title: Relations de %{acct}
+      title: "Relations de %{acct}"
     relays:
       add_new: Ajouter un nouveau relais
       delete: Supprimer
@@ -507,9 +496,6 @@ fr:
       destroyed_msg: Note de signalement effacée avec succès !
     reports:
       account:
-        notes:
-          one: "%{count} note"
-          other: "%{count} notes"
         reports:
           one: "%{count} signalement"
           other: "%{count} signalements"
@@ -664,15 +650,12 @@ fr:
       last_active: Dernière activité
       most_popular: Plus populaire
       most_recent: Plus récent
-      name: Hashtag
       review: État du traitement
       reviewed: Traité
-      title: Hashtags
       trending_right_now: Populaire en ce moment
       unique_uses_today: "%{count} posts aujourd'hui"
       unreviewed: Non traité
       updated_msg: Paramètres du hashtag mis à jour avec succès
-    title: Administration
     warning_presets:
       add_new: Ajouter un nouveau
       delete: Supprimer
@@ -685,10 +668,10 @@ fr:
     new_report:
       body: "%{reporter} a signalé %{target}"
       body_remote: Quelqu’un de %{domain} a signalé %{target}
-      subject: Nouveau signalement sur %{instance} (#%{id})
+      subject: 'Nouveau signalement sur %{instance} (#%{id})'
     new_trending_tag:
       body: 'Le hashtag #%{name} est dans les tendances aujourd’hui, mais il n’a pas été approuvé. Il ne sera pas affiché publiquement à moins que vous l’autorisiez, ou sauvegardez simplement ce formulaire tel quel pour ne plus jamais en entendre parler.'
-      subject: Nouveau hashtag en attente d’approbation sur %{instance} (#%{name})
+      subject: 'Nouveau hashtag en attente d’approbation sur %{instance} (#%{name})'
   aliases:
     add_new: Créer un alias
     created_msg: Un nouvel alias a été créé avec succès. Vous pouvez maintenant déménager depuis l'ancien compte.
@@ -710,7 +693,6 @@ fr:
     toot_layout: Agencement du pouet
   application_mailer:
     notification_preferences: Modifier les préférences de courriel
-    salutation: "%{name},"
     settings: 'Changer les préférences courriel : %{link}'
     view: 'Voir :'
     view_profile: Voir le profil
@@ -745,9 +727,6 @@ fr:
     migrate_account: Déménager vers un compte différent
     migrate_account_html: Si vous voulez rediriger ce compte vers un autre, vous pouvez le <a href="%{path}">configurer ici</a>.
     or_log_in_with: Ou authentifiez-vous avec
-    providers:
-      cas: CAS
-      saml: SAML
     register: S’inscrire
     registration_closed: "%{instance} n’accepte pas de nouveaux membres"
     resend_confirmation: Envoyer à nouveau les consignes de confirmation
@@ -791,7 +770,6 @@ fr:
   date:
     formats:
       default: "%d %b %Y"
-      with_month_name: "%B %d, %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count} h"
@@ -849,7 +827,6 @@ fr:
     not_found_multiple: n’a pas trouvé %{usernames}
   exports:
     archive_takeout:
-      date: Date
       download: Télécharger votre archive
       hint_html: Vous pouvez demander une archive de vos <strong>pouets et médias téléversés</strong>. Les données exportées seront au format ActivityPub, lisible par tout logiciel compatible. Vous pouvez demander une archive tous les 7 jours.
       in_progress: Création de votre archive…
@@ -857,7 +834,6 @@ fr:
       size: Taille
     blocks: Vous bloquez
     bookmarks: Signets
-    csv: CSV
     domain_blocks: Bloqueurs de domaine
     lists: Listes
     mutes: Vous masquez
@@ -871,9 +847,7 @@ fr:
     contexts:
       account: Profils
       home: Accueil et listes
-      notifications: Notifications
       public: Fils publics
-      thread: Conversations
     edit:
       title: Éditer le filtre
     errors:
@@ -904,7 +878,6 @@ fr:
   html_validator:
     invalid_markup: 'contient un balisage HTML invalide: %{error}'
   identity_proofs:
-    active: Active
     authorize: Oui, autoriser
     authorize_connection_prompt: Autoriser cette connexion chiffrée ?
     errors:
@@ -916,7 +889,6 @@ fr:
     explanation_html: Ici, vous pouvez connecter de manière chiffrée vos autres identités, par exemple un profil Keybase. Cela permet à d’autres personnes de vous envoyer des messages chiffrés et de faire confiance au contenu que vous leur envoyez.
     i_am_html: Je suis %{username} sur %{service}.
     identity: Identité
-    inactive: Inactive
     publicize_checkbox: 'Et le poueter :'
     publicize_toot: 'C’est prouvé ! Je suis %{username} sur %{service}: %{url}'
     remove: Retirer la preuve du compte
@@ -1021,7 +993,7 @@ fr:
         other: "%{count} nouvelles notifications depuis votre dernière visite \U0001F418"
       title: Pendant votre absence…
     favourite:
-      body: "%{name} a ajouté votre pouet à ses favoris :"
+      body: '%{name} a ajouté votre pouet à ses favoris :'
       subject: "%{name} a ajouté votre pouet à ses favoris"
       title: Nouveau favori
     follow:
@@ -1035,11 +1007,11 @@ fr:
       title: Nouvelle demande d’abonnement
     mention:
       action: Répondre
-      body: "%{name} vous a mentionné⋅e dans :"
-      subject: "%{name} vous a mentionné·e"
+      body: '%{name} vous a mentionné⋅e dans :'
+      subject: '%{name} vous a mentionné·e'
       title: Nouvelle mention
     reblog:
-      body: "%{name} a partagé votre statut :"
+      body: '%{name} a partagé votre statut :'
       subject: "%{name} a partagé votre statut"
       title: Nouveau partage
   notifications:
@@ -1049,13 +1021,9 @@ fr:
   number:
     human:
       decimal_units:
-        format: "%n%u"
         units:
           billion: G
-          million: M
           quadrillion: P
-          thousand: K
-          trillion: T
   otp_authentication:
     code_hint: Entrez le code généré par votre application d'authentification pour confirmer
     description_html: Si vous activez <strong>l’authentification à deux facteurs</strong> en utilisant une application d'authentification, votre connexion vous imposera d'être en possession de votre téléphone, ce qui génèrera des jetons que vous devrez saisir.
@@ -1069,7 +1037,6 @@ fr:
     next: Suivant
     older: Plus ancien
     prev: Précédent
-    truncate: "&hellip;"
   polls:
     errors:
       already_voted: Vous avez déjà voté sur ce sondage
@@ -1091,7 +1058,6 @@ fr:
       unrecognized_emoji: n’est pas un émoji reconnu
   relationships:
     activity: Activité du compte
-    dormant: Dormant
     follow_selected_followers: Suivre les abonné·e·s sélectionné·e·s
     followers: Abonné·e·s
     following: Abonnements
@@ -1131,43 +1097,20 @@ fr:
     activity: Dernière activité
     browser: Navigateur
     browsers:
-      alipay: Alipay
       blackberry: BlackBerry
-      chrome: Chrome
-      edge: Microsoft Edge
-      electron: Electron
-      firefox: Firefox
       generic: Navigateur inconnu
-      ie: Internet Explorer
-      micro_messenger: MicroMessenger
-      nokia: Nokia S40 Ovi Browser
-      opera: Opera
-      otter: Otter
-      phantom_js: PhantomJS
-      qq: QQ Browser
-      safari: Safari
       uc_browser: UC Browser
-      weibo: Weibo
     current_session: Session courante
     description: "%{browser} sur %{platform}"
     explanation: Ceci est la liste des navigateurs actuellement connectés à votre compte Mastodon.
     ip: Adresse IP
     platforms:
-      adobe_air: Adobe Air
-      android: Android
       blackberry: BlackBerry
       chrome_os: Chrome OS
-      firefox_os: Firefox OS
-      ios: iOS
-      linux: Linux
       mac: Mac
       other: système inconnu
-      windows: Windows
-      windows_mobile: Windows Mobile
-      windows_phone: Windows Phone
     revoke: Révoquer
     revoke_success: Session révoquée avec succès
-    title: Sessions
   settings:
     account: Compte
     account_settings: Paramètres du compte
@@ -1184,7 +1127,6 @@ fr:
     import: Import de données
     import_and_export: Import et export
     migrate: Migration de compte
-    notifications: Notifications
     preferences: Préférences
     profile: Profil
     relationships: Abonnements et abonné·e·s
@@ -1194,13 +1136,7 @@ fr:
     spam_detected: Ceci est un rapport automatisé. Des pollupostages ont été détectés.
   statuses:
     attached:
-      audio:
-        one: "%{count} audio"
-        other: "%{count} audio"
       description: 'Attaché : %{attached}'
-      image:
-        one: "%{count} image"
-        other: "%{count} images"
       video:
         one: "%{count} vidéo"
         other: "%{count} vidéos"
@@ -1223,9 +1159,6 @@ fr:
       total_people:
         one: "%{count} personne"
         other: "%{count} personnes"
-      total_votes:
-        one: "%{count} vote"
-        other: "%{count} votes"
       vote: Voter
     show_more: Déplier
     show_newer: Plus récents
@@ -1236,7 +1169,6 @@ fr:
     visibilities:
       private: Abonné⋅e⋅s uniquement
       private_long: Afficher seulement à vos vos abonné·e·s
-      public: Public
       public_long: Tout le monde peut voir vos statuts
       unlisted: Public sans être affiché sur le fil public
       unlisted_long: Tout le monde peut voir vos statuts mais ils ne seront pas sur listés sur les fils publics
@@ -1336,7 +1268,6 @@ fr:
   time:
     formats:
       default: "%d %b %Y, %H:%M"
-      month: "%b %Y"
   two_factor_authentication:
     add: Ajouter
     disable: Désactiver
