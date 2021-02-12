@@ -1140,12 +1140,27 @@ tr:
       opera: Opera
       otter: Otter
       phantom_js: PhantomJS
+      qq: QQ Browser
+      safari: Safari
       uc_browser: UC Browser
+      weibo: Weibo
     current_session: Geçerli oturum
     description: "%{platform} - %{browser}"
     explanation: Bunlar, Mastodon hesabınızda şu anda oturum açmış web tarayıcılarıdır.
+    ip: IP
     platforms:
+      adobe_air: Adobe Air
+      android: Android
+      blackberry: Blackberry
+      chrome_os: ChromeOS
+      firefox_os: Firefox OS
+      ios: iOS
+      linux: Linux
+      mac: macOS
       other: bilinmeyen platform
+      windows: Windows
+      windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
     revoke: İptal Et
     revoke_success: Oturum başarıyla iptal edildi
     title: Oturumlar
@@ -1182,6 +1197,9 @@ tr:
       image:
         one: "%{count} resim"
         other: "%{count} resim"
+      video:
+        one: "%{count} video"
+        other: "%{count} video"
     boosted_from_html: '%{acct_link} kişisinden boostladı'
     content_warning: 'İçerik uyarısı: %{warning}'
     disallowed_hashtags:
@@ -1210,6 +1228,7 @@ tr:
     show_older: Eskileri göster
     show_thread: Konuyu göster
     sign_in_to_participate: Sohbete katılmak için oturum açın
+    title: '%{name}: "%{quote}"'
     visibilities:
       private: Sadece takipçiler
       private_long: Sadece takipçilerime gönder
@@ -1313,6 +1332,7 @@ tr:
   time:
     formats:
       default: "%d %b %Y %H:%M"
+      month: "%b %Y"
   two_factor_authentication:
     add: Ekle
     disable: 2FA'yı devre dışı bırak
