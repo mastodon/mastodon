@@ -1,6 +1,6 @@
 sq:
   about:
-    about_hashtag_html: 'Këto janë mesazhe publike të etiketuar me <strong>#%{hashtag}</strong>. Mundeni të ndërveproni me ta, nëse keni një llogari kudo qoftë në fedivers.'
+    about_hashtag_html: 'Këto janë mesazhe publike të etiketuara me <strong>#%{hashtag}</strong>. Mundeni të ndërveproni me ta, nëse keni një llogari kudo qoftë në fedivers.'
     about_mastodon_html: 'Rrjeti shoqëror i së ardhmes: Pa reklama, pa survejim nga korporata, konceptim etik dhe decentralizim! Jini zot i të dhënave tuaja, me Mastodon-in!'
     about_this: Mbi
     active_count_after: aktive
@@ -1130,13 +1130,40 @@ sq:
     activity: Veprimtaria e fundit
     browser: Shfletues
     browsers:
+      alipay: Alipay
+      blackberry: Blackberry
+      chrome: Chrome
+      edge: Microsoft Edge
+      electron: Electron
+      firefox: Firefox
       generic: Shfletues i panjohur
+      ie: Internet Explorer
+      micro_messenger: MicroMessenger
       nokia: Shfletues Nokia S40 Ovi
+      opera: Opera
+      otter: Otter
+      phantom_js: PhantomJS
+      qq: QQ Browser
+      safari: Safari
+      uc_browser: UCBrowser
+      weibo: Weibo
     current_session: Sesioni i tanishëm
     description: "%{browser} në %{platform}"
     explanation: Këta janë shfletuesit e futur në këtë çast te llogaria juaj Mastodon.
+    ip: IP
     platforms:
+      adobe_air: Adobe Air
+      android: Android
+      blackberry: Blackberry
+      chrome_os: ChromeOS
+      firefox_os: Firefox OS
+      ios: iOS
+      linux: Linux
+      mac: macOS
       other: platformë e panjohur
+      windows: Windows
+      windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
     revoke: Shfuqizoje
     revoke_success: Sesioni u shfuqizua me sukses
     title: Sesione
@@ -1173,6 +1200,9 @@ sq:
       image:
         one: "%{count} figurë"
         other: "%{count} figura"
+      video:
+        one: "%{count} video"
+        other: "%{count} video"
     boosted_from_html: Përforcuar nga %{acct_link}
     content_warning: 'Sinjalizim lënde: %{warning}'
     disallowed_hashtags:
@@ -1189,6 +1219,9 @@ sq:
       private: S’mund të fiksohet mesazh jopublik
       reblog: S’mund të fiksohet një përforcim
     poll:
+      total_people:
+        one: "%{count} person"
+        other: "%{count} vetë"
       total_votes:
         one: "%{count} votë"
         other: "%{count} vota"
@@ -1198,6 +1231,7 @@ sq:
     show_older: Shfaq më të vjetra
     show_thread: Shfaq rrjedhën
     sign_in_to_participate: Bëni hyrjen, që të merrni pjesë te biseda
+    title: '%{name}: "%{quote}"'
     visibilities:
       private: Vetëm ndjekësve
       private_long: Shfaqua vetëm ndjekësve
@@ -1301,6 +1335,7 @@ sq:
   time:
     formats:
       default: "%d %b, %Y, %H:%M"
+      month: "%b %Y"
   two_factor_authentication:
     add: Shtoje
     disable: Çaktivizoje
