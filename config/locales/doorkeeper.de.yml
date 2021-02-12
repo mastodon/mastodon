@@ -38,6 +38,7 @@ de:
         callback_url: Callback-URL
         delete: Löschen
         empty: Du hast keine Anwendungen.
+        name: Name
         new: Neue Anwendung
         scopes: Befugnisse
         show: Zeigen
@@ -81,6 +82,8 @@ de:
         invalid_client: 'Client-Authentifizierung ist fehlgeschlagen: Client unbekannt, keine Authentisierung mitgeliefert oder Authentisierungsmethode wird nicht unterstützt.'
         invalid_grant: Die beigefügte Autorisierung ist ungültig, abgelaufen, wurde widerrufen, einem anderen Client ausgestellt oder der Weiterleitungs-URI stimmt nicht mit der Autorisierungs-Anfrage überein.
         invalid_redirect_uri: Der beigefügte Weiterleitungs-URI ist ungültig.
+        invalid_request:
+          request_not_authorized: Anfrage muss autorisiert werden. Benötigter Parameter für die Autorisierung der Anfrage fehlt oder ungültig.
         invalid_resource_owner: Die angegebenen Zugangsdaten für das Konto sind ungültig oder das Konto kann nicht gefunden werden
         invalid_scope: Die angeforderte Befugnis ist ungültig, unbekannt oder fehlerhaft.
         invalid_token:
