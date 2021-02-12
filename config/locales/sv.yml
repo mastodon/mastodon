@@ -1,13 +1,11 @@
----
 sv:
   about:
-    about_hashtag_html: Dessa är offentliga toots märkta med <strong>#%{hashtag}</strong>. Du kan interagera med dem om du har ett konto någonstans i federationen.
-    about_mastodon_html: Mastodon är ett socialt nätverk baserat på öppna webbprotokoll och gratis, öppen källkodsprogramvara. Det är decentraliserat som e-post.
+    about_hashtag_html: 'Dessa är offentliga toots märkta med <strong>#%{hashtag}</strong>. Du kan interagera med dem om du har ett konto någonstans i federationen.'
+    about_mastodon_html: 'Mastodon är ett socialt nätverk baserat på öppna webbprotokoll och gratis, öppen källkodsprogramvara. Det är decentraliserat som e-post.'
     about_this: Om
     active_count_after: aktiv
     active_footnote: Månatligen Aktiva användare (MAU)
     administered_by: 'Administreras av:'
-    api: API
     apps: Mobilappar
     apps_platforms: Använd Mastodon från iOS, Android och andra plattformar
     browse_directory: Titta på en profilkatalog och filtrera enligt intressen
@@ -21,9 +19,8 @@ sv:
     federation_hint_html: Med ett konto på %{instance} kommer du att kunna följa personer på alla Mastodon-servers och mer än så.
     get_apps: Prova en mobilapp
     hosted_on: Mastodon-värd på %{domain}
-    instance_actor_flash: 'Detta konto är en virtuell agent som används för att representera servern själv och inte någon individuell användare. Det används av sammanslutningsskäl och ska inte blockeras såvitt du inte vill blockera hela instansen, och för detta fall ska domänblockering användas.
-
-'
+    instance_actor_flash: |
+      Detta konto är en virtuell agent som används för att representera servern själv och inte någon individuell användare. Det används av sammanslutningsskäl och ska inte blockeras såvitt du inte vill blockera hela instansen, och för detta fall ska domänblockering användas. 
     learn_more: Lär dig mer
     privacy_policy: Integritetspolicy
     see_whats_happening: Se vad som händer
@@ -34,7 +31,6 @@ sv:
     terms: Användarvillkor
     unavailable_content: Otillgängligt innehåll
     unavailable_content_description:
-      domain: Server
       reason: Anledning
       rejecting_media: 'Mediafiler från dessa servers kommer inte hanteras eller lagras, och inga miniatyrer kammer att visas, utan manuell klickning erfordras på originalfilen:'
       rejecting_media_title: Filtrerade media
@@ -60,7 +56,6 @@ sv:
     joined: Gick med %{date}
     last_active: senast aktiv
     link_verified_on: Ägarskap för denna länk kontrollerades den %{date}
-    media: Media
     moved_html: "%{name} har flyttat till %{new_profile_link}:"
     network_hidden: Denna information är inte tillgänglig
     never_active: Aldrig
@@ -69,7 +64,6 @@ sv:
     people_who_follow: Personer som följer %{name}
     pin_errors:
       following: Du måste vara följare av den person du vill godkänna
-    posts_tab_heading: Toots
     posts_with_replies: Toots med svar
     reserved_username: Användarnamnet är reserverat
     roles:
@@ -166,7 +160,6 @@ sv:
       role: Behörigheter
       roles:
         admin: Administratör
-        moderator: Moderator
         staff: Personal
         user: Användare
       search: Sök
@@ -277,7 +270,6 @@ sv:
       disable: Inaktivera
       disabled: Inaktiverad
       disabled_msg: Inaktiverade emoji utan problem
-      emoji: Emoji
       enable: Aktivera
       enabled: Aktiverad
       enabled_msg: Aktiverade den emoji utan problem
@@ -409,7 +401,6 @@ sv:
       enable_hint: När den är aktiverad kommer din server att prenumerera på alla publika toots från detta relay, och kommer att börja skicka serverns publika toots till den.
       enabled: Aktivera
       save_and_enable: Spara och aktivera
-      status: Status
     report_notes:
       created_msg: Anmälningsanteckning har skapats!
       destroyed_msg: Anmälningsanteckning har raderats!
@@ -438,7 +429,6 @@ sv:
       reported_by: Anmäld av
       resolved: Löst
       resolved_msg: Anmälan har lösts framgångsrikt!
-      status: Status
       title: Anmälningar
       unassign: Otilldela
       unresolved: Olösta
@@ -536,7 +526,7 @@ sv:
     new_report:
       body: "%{reporter} har rapporterat %{target}"
       body_remote: Någon från %{domain} har rapporterat %{target}
-      subject: Ny rapport för %{instance} (#%{id})
+      subject: 'Ny rapport för %{instance} (#%{id})'
   aliases:
     add_new: Skapa alias
     remove: Avlänka alias
@@ -574,9 +564,6 @@ sv:
     migrate_account: Flytta till ett annat konto
     migrate_account_html: Om du vill omdirigera detta konto till ett annat, kan du <a href="%{path}">konfigurera det här</a>.
     or_log_in_with: Eller logga in med
-    providers:
-      cas: CAS
-      saml: SAML
     register: Registrera
     resend_confirmation: Skicka instruktionerna om bekräftelse igen
     reset_password: Återställ lösenord
@@ -654,7 +641,6 @@ sv:
       size: Storlek
     blocks: Du blockerar
     bookmarks: Bokmärken
-    csv: CSV
     lists: Listor
     mutes: Du tystar
     storage: Medialagring
@@ -796,31 +782,13 @@ sv:
     activity: Senaste aktivitet
     browser: Webbläsare
     browsers:
-      edge: Microsoft Edge
-      electron: Electron
-      firefox: Firefox
       generic: Okänd browser
-      ie: Internet Explorer
-      micro_messenger: MicroMessenger
-      opera: Opera
-      otter: Otter
-      phantom_js: PhantomJS
-      safari: Safari
     current_session: Nuvarande session
     description: "%{browser} på %{platform}"
     explanation: Detta är inloggade webbläsare på Mastodon just nu.
-    ip: IP
     platforms:
-      adobe_air: Adobe Air
-      android: Android
-      blackberry: Blackberry
-      chrome_os: ChromeOS
-      firefox_os: Firefox OS
-      ios: iOS
-      linux: Linux
       mac: Mac
       other: okänd plattform
-      windows: Windows
     revoke: Återkalla
     revoke_success: Sessionen återkallas framgångsrikt
     title: Sessioner
