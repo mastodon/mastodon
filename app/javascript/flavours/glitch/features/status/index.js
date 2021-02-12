@@ -30,6 +30,7 @@ import { muteStatus, unmuteStatus, deleteStatus } from 'flavours/glitch/actions/
 import { initMuteModal } from 'flavours/glitch/actions/mutes';
 import { initBlockModal } from 'flavours/glitch/actions/blocks';
 import { initReport } from 'flavours/glitch/actions/reports';
+import { initBoostModal } from 'flavours/glitch/actions/boosts';
 import { makeGetStatus } from 'flavours/glitch/selectors';
 import { ScrollContainer } from 'react-router-scroll-4';
 import ColumnBackButton from 'flavours/glitch/components/column_back_button';
@@ -262,13 +263,13 @@ class Status extends ImmutablePureComponent {
     }
   }
 
-  handleModalReblog = (status) => {
+  handleModalReblog = (status, privacy) => {
     const { dispatch } = this.props;
 
     if (status.get('reblogged')) {
       dispatch(unreblog(status));
     } else {
-      dispatch(reblog(status));
+      dispatch(reblog(status, privacy));
     }
   }
 
@@ -276,11 +277,11 @@ class Status extends ImmutablePureComponent {
     const { settings, dispatch } = this.props;
 
     if (settings.get('confirm_boost_missing_media_description') && status.get('media_attachments').some(item => !item.get('description')) && !status.get('reblogged')) {
-      dispatch(openModal('BOOST', { status, onReblog: this.handleModalReblog, missingMediaDescription: true }));
+      dispatch(initBoostModal({ status, onReblog: this.handleModalReblog, missingMediaDescription: true }));
     } else if ((e && e.shiftKey) || !boostModal) {
       this.handleModalReblog(status);
     } else {
-      dispatch(openModal('BOOST', { status, onReblog: this.handleModalReblog }));
+      dispatch(initBoostModal({ status, onReblog: this.handleModalReblog }));
     }
   }
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
@@ -10,7 +11,9 @@ import DisplayName from 'flavours/glitch/components/display_name';
 import AttachmentList from 'flavours/glitch/components/attachment_list';
 import Icon from 'flavours/glitch/components/icon';
 import ImmutablePureComponent from 'react-immutable-pure-component';
+import PrivacyDropdown from 'flavours/glitch/features/compose/components/privacy_dropdown';
 import classNames from 'classnames';
+import { changeBoostPrivacy } from 'flavours/glitch/actions/boosts';
 
 const messages = defineMessages({
   cancel_reblog: { id: 'status.cancel_reblog_private', defaultMessage: 'Unboost' },
@@ -21,7 +24,22 @@ const messages = defineMessages({
   direct_short: { id: 'privacy.direct.short', defaultMessage: 'Direct' },
 });
 
-export default @injectIntl
+const mapStateToProps = state => {
+  return {
+    privacy: state.getIn(['boosts', 'new', 'privacy']),
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onChangeBoostPrivacy(value) {
+      dispatch(changeBoostPrivacy(value));
+    },
+  };
+};
+
+export default @connect(mapStateToProps, mapDispatchToProps)
+@injectIntl
 class BoostModal extends ImmutablePureComponent {
 
   static contextTypes = {
@@ -41,7 +59,7 @@ class BoostModal extends ImmutablePureComponent {
   }
 
   handleReblog = () => {
-    this.props.onReblog(this.props.status);
+    this.props.onReblog(this.props.status, this.props.privacy);
     this.props.onClose();
   }
 
@@ -55,12 +73,16 @@ class BoostModal extends ImmutablePureComponent {
     }
   }
 
+  _findContainer = () => {
+    return document.getElementsByClassName('modal-root__container')[0];
+  };
+
   setRef = (c) => {
     this.button = c;
   }
 
   render () {
-    const { status, missingMediaDescription, intl } = this.props;
+    const { status, missingMediaDescription, privacy, intl } = this.props;
     const buttonText = status.get('reblogged') ? messages.cancel_reblog : messages.reblog;
 
     const visibilityIconInfo = {
@@ -111,6 +133,15 @@ class BoostModal extends ImmutablePureComponent {
                 <FormattedMessage id='boost_modal.combo' defaultMessage='You can press {combo} to skip this next time' values={{ combo: <span>Shift + <Icon id='retweet' /></span> }} />
             }
           </div>
+
+          {status.get('visibility') !== 'private' && !status.get('reblogged') && (
+            <PrivacyDropdown
+              noDirect
+              value={privacy}
+              container={this._findContainer}
+              onChange={this.props.onChangeBoostPrivacy}
+            />
+          )}
           <Button text={intl.formatMessage(buttonText)} onClick={this.handleReblog} ref={this.setRef} />
         </div>
       </div>

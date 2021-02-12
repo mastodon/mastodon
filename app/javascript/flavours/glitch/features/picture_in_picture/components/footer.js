@@ -11,6 +11,7 @@ import { replyCompose } from 'flavours/glitch/actions/compose';
 import { reblog, favourite, unreblog, unfavourite } from 'flavours/glitch/actions/interactions';
 import { makeGetStatus } from 'flavours/glitch/selectors';
 import { openModal } from 'flavours/glitch/actions/modal';
+import { initBoostModal } from 'flavours/glitch/actions/boosts';
 
 const messages = defineMessages({
   reply: { id: 'status.reply', defaultMessage: 'Reply' },
@@ -82,9 +83,9 @@ class Footer extends ImmutablePureComponent {
     }
   };
 
-  _performReblog = () => {
+  _performReblog = (privacy) => {
     const { dispatch, status } = this.props;
-    dispatch(reblog(status));
+    dispatch(reblog(status, privacy));
   }
 
   handleReblogClick = e => {
@@ -95,7 +96,7 @@ class Footer extends ImmutablePureComponent {
     } else if ((e && e.shiftKey) || !boostModal) {
       this._performReblog();
     } else {
-      dispatch(openModal('BOOST', { status, onReblog: this._performReblog }));
+      dispatch(initBoostModal({ status, onReblog: this._performReblog }));
     }
   };
 
