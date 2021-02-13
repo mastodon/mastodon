@@ -401,7 +401,8 @@ fa:
           silence: خموشاندن
           suspend: تعلیق
         title: مسدودسازی دامین تازه
-      obfuscate: نام دامنهٔ گمراه‌کننده
+      obfuscate: مبهم‌سازی نام دامنهٔ
+      obfuscate_hint: در صورت به کار افتاده بودن اعلام فهرست محدودیت‌های دامنه، نام دامنه در فهرست را به صورت جزیی مبهم می‌کند
       private_comment: یادداشت خصوصی
       private_comment_hint: یادداشتی دربارهٔ محدودیت روی این دامین برای سایر ناظمان.
       public_comment: یادداشت عمومی
@@ -564,6 +565,7 @@ fa:
       domain_blocks_rationale:
         title: دیدن دلیل
       enable_bootstrap_timeline_accounts:
+        desc_html: کاربران جدید به صورت خودکار حساب‌های پیکربندی‌شده را دنبال کنند تا خوراک خانگیشان خالی نباشد
         title: به کار انداختن پیگیری‌های پیش‌گزیده برای کاربران تازه
       hero:
         desc_html: در صفحهٔ آغازین نمایش می‌یابد. دست‌کم ۶۰۰×۱۰۰ پیکسل توصیه می‌شود. اگر تعیین نشود، با تصویر بندانگشتی سرور جایگزین خواهد شد
@@ -701,6 +703,7 @@ fa:
     discovery: کاوش
     localization:
       body: ماستودون توسط داوطلبان ترجمه شده است.
+      guide_link: https://crowdin.com/project/mastodon
       guide_link_text: همه می‌توانند کمک کنند.
     sensitive_content: محتوای حساس
     toot_layout: آرایش بوق
@@ -741,6 +744,9 @@ fa:
     migrate_account: نقل مکان به یک حساب دیگر
     migrate_account_html: اگر می‌خواهید این حساب را به حساب دیگری منتقل کنید، <a href="%{path}">این‌جا را کلیک کنید</a>.
     or_log_in_with: یا ورود به وسیلهٔ
+    providers:
+      cas: CAS
+      saml: SAML
     register: عضو شوید
     registration_closed: "سرور %{instance} عضو تازه‌ای نمی‌پذیرد"
     resend_confirmation: راهنمایی برای تأیید را دوباره بفرست
@@ -850,6 +856,7 @@ fa:
       size: اندازه
     blocks: حساب‌های مسدودشده
     bookmarks: نشانک‌ها
+    csv: CSV
     domain_blocks: دامین‌های مسدودشده
     lists: فهرست‌ها
     mutes: حساب‌های بی‌صداشده
@@ -916,6 +923,8 @@ fa:
     status: وضعیت تأیید
     view_proof: دیدن مدرک
   imports:
+    errors:
+      over_rows_processing_limit: دارای بیش از %{count} ردیف
     modes:
       merge: ادغام
       merge_long: داده‌های فعلی را داشته باشید و داده‌های تازه‌ای بیفزایید
@@ -1036,6 +1045,16 @@ fa:
     email_events: رویدادها برای اعلان‌های ایمیلی
     email_events_hint: 'رویدادهایی که می‌خواهید برایشان اعلانی دریافت کنید را برگزینید:'
     other_settings: سایر تنظیمات اعلان‌ها
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          billion: ب
+          million: م
+          quadrillion: ک
+          thousand: ه
+          trillion: ت
   otp_authentication:
     code_hint: برای تأیید، کدی را که برنامهٔ تأییدکننده ساخته است وارد کنید
     description_html: اگر <strong>ورود دومرحله‌ای</strong> را با استفاده از از یک کارهٔ تأییدکننده به کار بیندازید، لازم است برای ورود، به تلفن خود که برایتان یک ژتون خواهد ساخت دسترسی داشته باشید.
@@ -1110,6 +1129,7 @@ fa:
     activity: آخرین فعالیت
     browser: مرورگر
     browsers:
+      alipay: علی‌پی
       blackberry: بلک‌بری
       chrome: کروم
       edge: مایکروسافت اج
@@ -1118,18 +1138,31 @@ fa:
       generic: مرورگر ناشناخته
       ie: اینترنت اکسپلورر
       micro_messenger: مایکرومسنجر
+      nokia: مرورگر اوی نوکیا اس۴۰
       opera: اپرا
+      otter: دیگر
+      phantom_js: فنتوم‌جی‌اس
+      qq: مرورگر کیوکیو
       safari: سافاری
+      uc_browser: مرورگر یوسی
+      weibo: وبیو
     current_session: نشست فعلی
     description: "%{browser} روی %{platform}"
     explanation: مرورگرهای زیر هم‌اینک به حساب شما وارد شده‌اند.
+    ip: آی‌پی
     platforms:
+      adobe_air: ایر ادوبی
       android: اندروید
       blackberry: بلک‌بری
+      chrome_os: سیستم‌عامل کروم
+      firefox_os: سیستم‌عامل فایرفاکس
+      ios: آی‌اواس
       linux: لینوکس
       mac: مک
       other: سیستم ناشناخته
       windows: ویندوز
+      windows_mobile: ویندوز همراه
+      windows_phone: تلفن ویندوزی
     revoke: لغو کردن
     revoke_success: نشست با موفقیت لغو شد
     title: نشست‌ها
@@ -1197,6 +1230,7 @@ fa:
     show_older: نمایش قدیمی‌تر
     show_thread: نمایش رشته
     sign_in_to_participate: برای شرکت در گفتگو وارد حساب خود شوید
+    title: '%{name}: «%{quote}»'
     visibilities:
       private: خصوصی
       private_long: تنها پیگیران شما می‌بینند
