@@ -1037,7 +1037,10 @@ zh-CN:
         format: "%n%u"
         units:
           billion: 十亿
-          million: 百万
+          million: 兆
+          quadrillion: 拍
+          thousand: 千
+          trillion: 太
   otp_authentication:
     code_hint: 输入认证应用生成的代码以确认操作
     description_html: 如果您使用身份验证应用启用了 <strong>双重身份验证</strong>， 登录将需要用到您的手机，它将生成您需要的令牌。
@@ -1051,6 +1054,7 @@ zh-CN:
     next: 下一页
     older: 更早
     prev: 上一页
+    truncate: "&hellip;"
   polls:
     errors:
       already_voted: 你已经在这里投过票了
@@ -1114,14 +1118,19 @@ zh-CN:
     browsers:
       alipay: 支付宝
       blackberry: 黑莓
+      chrome: Chrome
       edge: 微软 Edge
+      electron: Electron
       firefox: 火狐
       generic: 未知浏览器
       ie: IE 浏览器
       micro_messenger: 微信
       nokia: Nokia S40 Ovi 浏览器
       opera: 欧朋浏览器
+      otter: Otter
+      phantom_js: PhantomJS
       qq: QQ浏览器
+      safari: Safari
       uc_browser: UC浏览器
       weibo: 新浪微博
     current_session: 当前会话
@@ -1129,9 +1138,18 @@ zh-CN:
     explanation: 你的 Mastodon 帐户目前已在这些浏览器上登录。
     ip: IP 地址
     platforms:
+      adobe_air: Adobe Air
+      android: Android
       blackberry: 黑莓
+      chrome_os: Chrome OS
+      firefox_os: Firefox OS
+      ios: iOS
+      linux: Linux
       mac: Mac
       other: 未知平台
+      windows: Windows
+      windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
     revoke: 注销
     revoke_success: 会话注销成功
     title: 会话
