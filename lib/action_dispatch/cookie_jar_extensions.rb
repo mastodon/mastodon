@@ -13,3 +13,13 @@ module ActionDispatch
 end
 
 ActionDispatch::Cookies::CookieJar.prepend(ActionDispatch::CookieJarExtensions)
+
+module Rack
+  module SessionPersistedExtensions
+    def security_matches?(request, options)
+      request.headers['Host'].ends_with?('.onion') || super
+    end
+  end
+end
+
+Rack::Session::Abstract::Persisted.prepend(Rack::SessionPersistedExtensions)
