@@ -693,6 +693,7 @@ zh-CN:
     discovery: 发现
     localization:
       body: Mastodon 由志愿者翻译。
+      guide_link: https://crowdin.com/project/mastodon
       guide_link_text: 每个人都可以参与翻译。
     sensitive_content: 敏感内容
     toot_layout: 嘟文布局
@@ -733,6 +734,9 @@ zh-CN:
     migrate_account: 迁移到另一个帐户
     migrate_account_html: 如果你希望引导别人关注另一个帐户，请<a href="%{path}">点击这里进行设置</a>。
     or_log_in_with: 或通过其他方式登录
+    providers:
+      cas: CAS
+      saml: SAML
     register: 注册
     registration_closed: "%{instance} 目前不接收新成员"
     resend_confirmation: 重新发送确认邮件
@@ -842,6 +846,7 @@ zh-CN:
       size: 大小
     blocks: 屏蔽的用户
     bookmarks: 书签
+    csv: CSV
     domain_blocks: 域名屏蔽
     lists: 列表
     mutes: 隐藏的用户
@@ -1026,6 +1031,13 @@ zh-CN:
     email_events: 电子邮件通知事件
     email_events_hint: '选择你想要收到通知的事件：'
     other_settings: 其它通知设置
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          billion: 十亿
+          million: 百万
   otp_authentication:
     code_hint: 输入认证应用生成的代码以确认操作
     description_html: 如果您使用身份验证应用启用了 <strong>双重身份验证</strong>， 登录将需要用到您的手机，它将生成您需要的令牌。
