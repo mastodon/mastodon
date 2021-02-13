@@ -411,14 +411,11 @@ class UI extends React.PureComponent {
   handleHotkeyFocusColumn = e => {
     const index  = (e.key * 1) + 1; // First child is drawer, skip that
     const column = this.node.querySelector(`.columns-area__panels>div:nth-child(${index})`);
-    
     if (!column) return;
-
     const status = column.querySelector('.scrollable .focusable');
-
     if (status) {
-        status.scrollIntoView(true);
-        status.focus();
+      status.scrollIntoView(true);
+      status.focus();
     }
   }
 
