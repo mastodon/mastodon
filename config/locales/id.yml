@@ -1141,8 +1141,16 @@ id:
     platforms:
       adobe_air: Adobe Air
       android: Android
+      blackberry: Blackberry
+      chrome_os: ChromeOS
+      firefox_os: Firefox OS
+      ios: iOS
+      linux: Linux
       mac: Mac
       other: platform yang tidak diketahui
+      windows: Windows
+      windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
     revoke: Cabut izin
     revoke_success: Sesi berhasil dicabut
     title: Sesi
@@ -1172,6 +1180,8 @@ id:
     spam_detected: Ini adalah laporan otomatis. Spam terdeteksi.
   statuses:
     attached:
+      audio:
+        other: "%{count} audio"
       description: 'Terlampir: %{attached}'
       image:
         other: "%{count} gambar"
@@ -1202,6 +1212,7 @@ id:
     show_older: Tampilkan lebih lama
     show_thread: Tampilkan utas
     sign_in_to_participate: Masuk untuk mengikuti percakapan
+    title: '%{name}: "%{quote}"'
     visibilities:
       private: Khusus pengikut
       private_long: Hanya tampilkan ke pengikut
@@ -1305,10 +1316,12 @@ id:
   time:
     formats:
       default: "%d %b %Y, %H:%M"
+      month: "%b %Y"
   two_factor_authentication:
     add: Tambah
     disable: Matikan
     disabled_success: Autentikasi dua-faktor berhasil dinonaktifkan
+    edit: Edit
     enabled: Otentifikasi dua faktor aktif
     enabled_success: Ototentikasi dua faktor telah diaktifkan
     generate_recovery_codes: Buat Kode Pemulihan
@@ -1366,6 +1379,7 @@ id:
       tip_following: Anda secara otomatis mengikuti admin server. Untuk mencari akun-akun yang menarik, silakan periksa linimasa lokal dan gabungan.
       tip_local_timeline: Linimasa lokal adalah ruang yang menampilkan orang-orang di %{instance}. Mereka adalah tetangga dekat!
       tip_mobile_webapp: Jika peramban mobile Anda ingin menambahkan Mastodon ke layar utama, Anda dapat menerima notifikasi dorong. Ia akan berjalan seperti aplikasi asli!
+      tips: Tips
       title: Selamat datang, %{name}!
   users:
     blocked_email_provider: Layanan email ini tidak diizinkan
