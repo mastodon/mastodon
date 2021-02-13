@@ -506,6 +506,9 @@ fr:
       destroyed_msg: Note de signalement effacée avec succès !
     reports:
       account:
+        notes:
+          one: "%{count} note"
+          other: "%{count} notes"
         reports:
           one: "%{count} signalement"
           other: "%{count} signalements"
@@ -1163,6 +1166,7 @@ fr:
       windows_phone: Windows Phone
     revoke: Révoquer
     revoke_success: Session révoquée avec succès
+    title: Sessions
   settings:
     account: Compte
     account_settings: Paramètres du compte
@@ -1179,6 +1183,7 @@ fr:
     import: Import de données
     import_and_export: Import et export
     migrate: Migration de compte
+    notifications: Notifications
     preferences: Préférences
     profile: Profil
     relationships: Abonnements et abonné·e·s
@@ -1188,7 +1193,13 @@ fr:
     spam_detected: Ceci est un rapport automatisé. Des pollupostages ont été détectés.
   statuses:
     attached:
+      audio:
+        one: "%{count} audio"
+        other: "%{count} audio"
       description: 'Attaché : %{attached}'
+      image:
+        one: "%{count} image"
+        other: "%{count} images"
       video:
         one: "%{count} vidéo"
         other: "%{count} vidéos"
@@ -1211,6 +1222,9 @@ fr:
       total_people:
         one: "%{count} personne"
         other: "%{count} personnes"
+      total_votes:
+        one: "%{count} vote"
+        other: "%{count} votes"
       vote: Voter
     show_more: Déplier
     show_newer: Plus récents
@@ -1221,6 +1235,7 @@ fr:
     visibilities:
       private: Abonné⋅e⋅s uniquement
       private_long: Afficher seulement à vos vos abonné·e·s
+      public: Publique
       public_long: Tout le monde peut voir vos statuts
       unlisted: Public sans être affiché sur le fil public
       unlisted_long: Tout le monde peut voir vos statuts mais ils ne seront pas sur listés sur les fils publics
@@ -1320,6 +1335,7 @@ fr:
   time:
     formats:
       default: "%d %b %Y, %H:%M"
+      month: "%b %Y"
   two_factor_authentication:
     add: Ajouter
     disable: Désactiver
