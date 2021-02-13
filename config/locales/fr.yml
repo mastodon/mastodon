@@ -79,6 +79,7 @@ fr:
     posts_with_replies: Pouets & réponses
     reserved_username: Ce nom d’utilisateur·ice est réservé
     roles:
+      admin: Admin
       bot: Robot
       group: Groupe
       moderator: Modérateur·trice
@@ -99,6 +100,7 @@ fr:
       approve_all: Tout approuver
       approved_msg: La demande d’inscription de %{username} a été approuvée avec succès
       are_you_sure: Voulez-vous vraiment faire ça ?
+      avatar: Avatar
       by_domain: Domaine
       change_email:
         changed_msg: Courriel du compte modifié avec succès !
@@ -135,6 +137,7 @@ fr:
       joined: Inscrit·e depuis
       location:
         all: Tous
+        local: Local
         remote: Distant
         title: Situation
       login_status: Statut de connexion
@@ -177,6 +180,7 @@ fr:
       reset: Réinitialiser
       reset_password: Réinitialiser le mot de passe
       resubscribe: Se réabonner
+      role: Permissions
       roles:
         admin: Administrateur
         moderator: Modérateur
@@ -210,6 +214,7 @@ fr:
       username: Nom d’utilisateur·ice
       view_domain: Voir le résumé du domaine
       warn: Avertissement
+      web: Web
       whitelisted: Sur liste blanche
     action_logs:
       action_types:
@@ -350,11 +355,13 @@ fr:
     dashboard:
       authorized_fetch_mode: Mode de récupération autorisé
       backlog: tâches en attente
+      config: Configuration
       feature_deletions: Suppressions de comptes
       feature_invites: Liens d’invitation
       feature_profile_directory: Annuaire des profils
       feature_registrations: Inscriptions
       feature_relay: Relais de fédération
+      feature_spam_check: Anti-spam
       feature_timeline_preview: Aperçu du fil public
       features: Fonctionnalités
       hidden_service: Fédération avec des services cachés
@@ -653,12 +660,15 @@ fr:
       last_active: Dernière activité
       most_popular: Plus populaire
       most_recent: Plus récent
+      name: Hashtag
       review: État du traitement
       reviewed: Traité
+      title: Hashtags
       trending_right_now: Populaire en ce moment
       unique_uses_today: "%{count} posts aujourd'hui"
       unreviewed: Non traité
       updated_msg: Paramètres du hashtag mis à jour avec succès
+    title: Administration
     warning_presets:
       add_new: Ajouter un nouveau
       delete: Supprimer
@@ -696,6 +706,7 @@ fr:
     toot_layout: Agencement du pouet
   application_mailer:
     notification_preferences: Modifier les préférences de courriel
+    salutation: "%{name},"
     settings: 'Changer les préférences courriel : %{link}'
     view: 'Voir :'
     view_profile: Voir le profil
@@ -730,6 +741,9 @@ fr:
     migrate_account: Déménager vers un compte différent
     migrate_account_html: Si vous voulez rediriger ce compte vers un autre, vous pouvez le <a href="%{path}">configurer ici</a>.
     or_log_in_with: Ou authentifiez-vous avec
+    providers:
+      cas: CAS
+      saml: SAML
     register: S’inscrire
     registration_closed: "%{instance} n’accepte pas de nouveaux membres"
     resend_confirmation: Envoyer à nouveau les consignes de confirmation
@@ -773,6 +787,7 @@ fr:
   date:
     formats:
       default: "%d %b %Y"
+      with_month_name: "%d %B %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count} h"
@@ -830,6 +845,7 @@ fr:
     not_found_multiple: n’a pas trouvé %{usernames}
   exports:
     archive_takeout:
+      date: Date
       download: Télécharger votre archive
       hint_html: Vous pouvez demander une archive de vos <strong>pouets et médias téléversés</strong>. Les données exportées seront au format ActivityPub, lisible par tout logiciel compatible. Vous pouvez demander une archive tous les 7 jours.
       in_progress: Création de votre archive…
@@ -837,6 +853,7 @@ fr:
       size: Taille
     blocks: Vous bloquez
     bookmarks: Signets
+    csv: CSV
     domain_blocks: Bloqueurs de domaine
     lists: Listes
     mutes: Vous masquez
@@ -850,7 +867,9 @@ fr:
     contexts:
       account: Profils
       home: Accueil et listes
+      notifications: Notifications
       public: Fils publics
+      thread: Discussions
     edit:
       title: Éditer le filtre
     errors:
@@ -881,6 +900,7 @@ fr:
   html_validator:
     invalid_markup: 'contient un balisage HTML invalide: %{error}'
   identity_proofs:
+    active: Active
     authorize: Oui, autoriser
     authorize_connection_prompt: Autoriser cette connexion chiffrée ?
     errors:
@@ -892,6 +912,7 @@ fr:
     explanation_html: Ici, vous pouvez connecter de manière chiffrée vos autres identités, par exemple un profil Keybase. Cela permet à d’autres personnes de vous envoyer des messages chiffrés et de faire confiance au contenu que vous leur envoyez.
     i_am_html: Je suis %{username} sur %{service}.
     identity: Identité
+    inactive: Inactive
     publicize_checkbox: 'Et le poueter :'
     publicize_toot: 'C’est prouvé ! Je suis %{username} sur %{service}: %{url}'
     remove: Retirer la preuve du compte
@@ -1024,9 +1045,13 @@ fr:
   number:
     human:
       decimal_units:
+        format: "%n%u"
         units:
           billion: G
+          million: M
           quadrillion: P
+          thousand: K
+          trillion: T
   otp_authentication:
     code_hint: Entrez le code généré par votre application d'authentification pour confirmer
     description_html: Si vous activez <strong>l’authentification à deux facteurs</strong> en utilisant une application d'authentification, votre connexion vous imposera d'être en possession de votre téléphone, ce qui génèrera des jetons que vous devrez saisir.
@@ -1040,6 +1065,7 @@ fr:
     next: Suivant
     older: Plus ancien
     prev: Précédent
+    truncate: "&hellip;"
   polls:
     errors:
       already_voted: Vous avez déjà voté sur ce sondage
@@ -1061,6 +1087,7 @@ fr:
       unrecognized_emoji: n’est pas un émoji reconnu
   relationships:
     activity: Activité du compte
+    dormant: Dormant
     follow_selected_followers: Suivre les abonné·e·s sélectionné·e·s
     followers: Abonné·e·s
     following: Abonnements
@@ -1100,18 +1127,40 @@ fr:
     activity: Dernière activité
     browser: Navigateur
     browsers:
+      alipay: Alipay
       blackberry: BlackBerry
+      chrome: Chrome
+      edge: Microsoft Edge
+      electron: Electron
+      firefox: Firefox
       generic: Navigateur inconnu
+      ie: Internet Explorer
+      micro_messenger: MicroMessenger
+      nokia: Nokia S40 Ovi Browser
+      opera: Opera
+      otter: Otter
+      phantom_js: PhantomJS
+      qq: QQ Browser
+      safari: Safari
       uc_browser: UC Browser
+      weibo: Weibo
     current_session: Session courante
     description: "%{browser} sur %{platform}"
     explanation: Ceci est la liste des navigateurs actuellement connectés à votre compte Mastodon.
     ip: Adresse IP
     platforms:
+      adobe_air: Adobe Air
+      android: Android
       blackberry: BlackBerry
       chrome_os: Chrome OS
+      firefox_os: Firefox OS
+      ios: iOS
+      linux: Linux
       mac: Mac
       other: système inconnu
+      windows: Windows
+      windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
     revoke: Révoquer
     revoke_success: Session révoquée avec succès
   settings:
