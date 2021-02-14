@@ -1,4 +1,4 @@
-{{ if .Values.cron.removeMedia.enabled }}
+{{ if .Values.mastodon.cron.removeMedia.enabled }}
 apiVersion: batch/v1beta1
 kind: CronJob
 metadata:
@@ -6,7 +6,7 @@ metadata:
   labels:
     {{- include "mastodon.labels" . | nindent 4 }}
 spec:
-  schedule: {{ .Values.cron.removeMedia.schedule }}
+  schedule: {{ .Values.mastodon.cron.removeMedia.schedule }}
   jobTemplate:
     spec:
       template:
@@ -16,7 +16,7 @@ spec:
           restartPolicy: OnFailure
           # ensure we run on the same node as the other rails components; only
           # required when using PVCs that are ReadWriteOnce
-          {{- if or (eq "ReadWriteOnce" .Values.persistence.assets.accessMode) (eq "ReadWriteOnce" .Values.persistence.system.accessMode) }}
+          {{- if or (eq "ReadWriteOnce" .Values.mastodon.persistence.assets.accessMode) (eq "ReadWriteOnce" .Values.mastodon.persistence.system.accessMode) }}
           affinity:
             podAffinity:
               requiredDuringSchedulingIgnoredDuringExecution:
@@ -64,7 +64,7 @@ spec:
                       name: {{ .Release.Name }}-redis
                       key: redis-password
                 - name: "PORT"
-                  value: {{ .Values.application.web.port | quote }}
+                  value: {{ .Values.mastodon.web.port | quote }}
               volumeMounts:
                 - name: assets
                   mountPath: /opt/mastodon/public/assets

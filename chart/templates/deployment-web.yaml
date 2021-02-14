@@ -71,7 +71,7 @@ spec:
                   name: {{ .Release.Name }}-redis
                   key: redis-password
             - name: "PORT"
-              value: {{ .Values.application.web.port | quote }}
+              value: {{ .Values.mastodon.web.port | quote }}
           volumeMounts:
             - name: assets
               mountPath: /opt/mastodon/public/assets
@@ -79,7 +79,7 @@ spec:
               mountPath: /opt/mastodon/public/system
           ports:
             - name: http
-              containerPort: {{ .Values.application.web.port }}
+              containerPort: {{ .Values.mastodon.web.port }}
               protocol: TCP
           livenessProbe:
             httpGet:

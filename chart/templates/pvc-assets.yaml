@@ -7,7 +7,7 @@ metadata:
     {{- include "mastodon.labels" . | nindent 4 }}
 spec:
   accessModes:
-    - {{ .Values.persistence.system.accessMode }}
+    - {{ .Values.mastodon.persistence.system.accessMode }}
   resources:
-    {{- toYaml .Values.persistence.assets.resources | nindent 4}}
-  storageClassName: {{ .Values.persistence.assets.storageClassName }}
+    {{- toYaml .Values.mastodon.persistence.assets.resources | nindent 4}}
+  storageClassName: {{ .Values.mastodon.persistence.assets.storageClassName }}

@@ -1,4 +1,4 @@
-{{- if .Values.createAdmin.enabled }}
+{{- if .Values.mastodon.createAdmin.enabled }}
 apiVersion: batch/v1
 kind: Job
 metadata:
@@ -17,7 +17,7 @@ spec:
       restartPolicy: Never
       # ensure we run on the same node as the other rails components; only
       # required when using PVCs that are ReadWriteOnce
-      {{- if or (eq "ReadWriteOnce" .Values.persistence.assets.accessMode) (eq "ReadWriteOnce" .Values.persistence.system.accessMode) }}
+      {{- if or (eq "ReadWriteOnce" .Values.mastodon.persistence.assets.accessMode) (eq "ReadWriteOnce" .Values.mastodon.persistence.system.accessMode) }}
       affinity:
         podAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
@@ -44,9 +44,9 @@ spec:
             - bin/tootctl
             - accounts
             - create
-            - {{ .Values.createAdmin.username }}
+            - {{ .Values.mastodon.createAdmin.username }}
             - --email
-            - {{ .Values.createAdmin.email }}
+            - {{ .Values.mastodon.createAdmin.email }}
             - --confirmed
             - --role
             - admin
@@ -71,7 +71,7 @@ spec:
                   name: {{ .Release.Name }}-redis
                   key: redis-password
             - name: "PORT"
-              value: {{ .Values.application.web.port | quote }}
+              value: {{ .Values.mastodon.web.port | quote }}
           volumeMounts:
             - name: assets
               mountPath: /opt/mastodon/public/assets
