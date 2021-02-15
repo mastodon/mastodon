@@ -6,6 +6,7 @@ gl:
     active_count_after: activas
     active_footnote: Usuarias Activas no Mes (UAM)
     administered_by: 'Administrada por:'
+    api: API
     apps: Aplicacións móbiles
     apps_platforms: Emprega Mastodon dende iOS, Android e outras plataformas
     browse_directory: Navega polo directorio de perfís e filtra por intereses
@@ -70,10 +71,15 @@ gl:
     people_who_follow: Persoas que seguen a %{name}
     pin_errors:
       following: Tes que seguir á persoa que queres engadir
+    posts:
+      one: Toot
+      other: Toots
+    posts_tab_heading: Toots
     posts_with_replies: Toots e respostas
     reserved_username: O nome de usuaria está reservado
     roles:
       admin: Administradora
+      bot: Bot
       group: Grupo
       moderator: Moderadora
     unavailable: Perfil non dispoñíbel
@@ -115,6 +121,7 @@ gl:
       display_name: Nome a amosar
       domain: Dominio
       edit: Editar
+      email: Email
       email_status: Estado do email
       enable: Activar
       enabled: Activado
@@ -125,9 +132,11 @@ gl:
       inbox_url: URL da caixa de entrada
       invite_request_text: Razóns para unirte
       invited_by: Convidada por
+      ip: IP
       joined: Uniuse
       location:
         all: Todo
+        local: Local
         remote: Remoto
         title: Localización
       login_status: Estado da sesión
@@ -204,6 +213,7 @@ gl:
       username: Nome de usuaria
       view_domain: Ver resumo para o dominio
       warn: Aviso
+      web: Web
       whitelisted: Listaxe branca
     action_logs:
       action_types:
@@ -350,6 +360,7 @@ gl:
       feature_profile_directory: Directorio do perfil
       feature_registrations: Rexistros
       feature_relay: Repetidor da federación
+      feature_spam_check: Anti-spam
       feature_timeline_preview: Vista previa da cronoloxía
       features: Funcións
       hidden_service: Federación con servizos agochados
@@ -359,6 +370,7 @@ gl:
       recent_users: Usuarias recentes
       search: Procura por texto completo
       single_user_mode: Modo de usuaria única
+      software: Software
       space: Uso de almacenamento
       title: Taboleiro
       total_users: usuarias en total
@@ -690,11 +702,13 @@ gl:
     discovery: Descubrir
     localization:
       body: Mastodon tradúceno persoas voluntarias.
+      guide_link: https://crowdin.com/project/mastodon
       guide_link_text: Todas podemos contribuír.
     sensitive_content: Contido sensible
     toot_layout: Disposición do toot
   application_mailer:
     notification_preferences: Cambiar os axustes de correo-e
+    salutation: "%{name},"
     settings: 'Mudar as preferencias de e-mail: %{link}'
     view: 'Vista:'
     view_profile: Ver perfil
@@ -729,6 +743,9 @@ gl:
     migrate_account: Mover a unha conta diferente
     migrate_account_html: Se queres redirixir esta conta hacia outra diferente, pode <a href="%{path}">configuralo aquí</a>.
     or_log_in_with: ou conectar con
+    providers:
+      cas: CAS
+      saml: SAML
     register: Rexistro
     registration_closed: "%{instance} non está a aceptar novas usuarias"
     resend_confirmation: Reenviar as intruccións de confirmación
@@ -775,13 +792,18 @@ gl:
       with_month_name: "%d %B, %Y"
   datetime:
     distance_in_words:
+      about_x_hours: "%{count}h"
       about_x_months: "%{count}mes"
       about_x_years: "%{count}ano"
       almost_x_years: "%{count}ano"
       half_a_minute: Agora
+      less_than_x_minutes: "%{count}m"
       less_than_x_seconds: Agora
       over_x_years: "%{count}ano"
+      x_days: "%{count}d"
+      x_minutes: "%{count}m"
       x_months: "%{count}mes"
+      x_seconds: "%{count}s"
   deletes:
     challenge_not_passed: A información introducida non é correcta
     confirm_password: Introduza o seu contrasinal para verificar a súa identidade
@@ -833,6 +855,7 @@ gl:
       size: Tamaño
     blocks: Bloqueos
     bookmarks: Marcadores
+    csv: CSV
     domain_blocks: Bloqueos de dominio
     lists: Listaxes
     mutes: Silenciados
@@ -1021,6 +1044,16 @@ gl:
     email_events: Eventos para os correos de notificación
     email_events_hint: 'Escolle os eventos sobre os que queres recibir notificacións:'
     other_settings: Outros axustes das notificacións
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          billion: B
+          million: M
+          quadrillion: Q
+          thousand: K
+          trillion: T
   otp_authentication:
     code_hint: Escribe o código creado pola app de autenticación para confirmar
     description_html: Se activas a <strong>autenticación con dous factores</strong> utilizando unha app de autenticación, ó conectarte pedirémosche que teñas o móbil á man, para crear o código que precisas para conectarte.
@@ -1034,6 +1067,7 @@ gl:
     next: Seguinte
     older: Máis antigo
     prev: Previo
+    truncate: "&hellip;"
   polls:
     errors:
       already_voted: Xa votaches nesta enquisa
@@ -1095,15 +1129,38 @@ gl:
     activity: Última actividade
     browser: Navegador
     browsers:
+      alipay: Alipay
+      blackberry: Blackberry
+      chrome: Chrome
+      edge: Microsoft Edge
+      electron: Electron
+      firefox: Firefox
       generic: Navegador descoñecido
+      ie: Internet Explorer
+      micro_messenger: MicroMessenger
       nokia: Navegador Nokia S40 Ovi
+      opera: Opera
+      otter: Otter
+      phantom_js: PhantomJS
       qq: Navegador QQ
+      safari: Safari
+      uc_browser: UCBrowser
+      weibo: Weibo
     current_session: Sesión actual
     description: "%{browser} en %{platform}"
     explanation: Estos son os navegadores web nos que actualmente ten sesión aberta.
+    ip: IP
     platforms:
+      adobe_air: Adobe Air
+      android: Android
+      blackberry: Blackberry
+      chrome_os: ChromeOS
+      firefox_os: Firefox OS
+      ios: iOS
+      linux: Linux
       mac: Mac
       other: plataforma descoñecida
+      windows: Windows
     revoke: Revogar
     revoke_success: A sesión revogouse con éxito
     title: Sesións
