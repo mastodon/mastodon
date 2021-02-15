@@ -55,10 +55,10 @@ spec:
                   name: {{ .Release.Name }}-redis
                   key: redis-password
             - name: "PORT"
-              value: {{ .Values.application.streaming.port | quote }}
+              value: {{ .Values.mastodon.streaming.port | quote }}
           ports:
             - name: streaming
-              containerPort: {{ .Values.application.streaming.port }}
+              containerPort: {{ .Values.mastodon.streaming.port }}
               protocol: TCP
           livenessProbe:
             httpGet:
