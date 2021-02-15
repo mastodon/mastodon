@@ -24,7 +24,6 @@ The variables that _must_ be configured are:
 Currently this chart does _not_ support:
 
 - Hidden services
-- S3/Minio/GCS
 - Single Sign-On
 - Swift
 - configurations using `WEB_DOMAIN`

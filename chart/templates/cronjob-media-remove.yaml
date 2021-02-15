@@ -14,6 +14,7 @@ spec:
           name: {{ include "mastodon.fullname" . }}-media-remove
         spec:
           restartPolicy: OnFailure
+          {{- if (not .Values.mastodon.s3.enabled) }}
           # ensure we run on the same node as the other rails components; only
           # required when using PVCs that are ReadWriteOnce
           {{- if or (eq "ReadWriteOnce" .Values.mastodon.persistence.assets.accessMode) (eq "ReadWriteOnce" .Values.mastodon.persistence.system.accessMode) }}
@@ -35,6 +36,7 @@ spec:
             - name: system
               persistentVolumeClaim:
                 claimName: {{ template "mastodon.fullname" . }}-system
+          {{- end }}
           containers:
             - name: {{ include "mastodon.fullname" . }}-media-remove
               image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
@@ -65,9 +67,11 @@ spec:
                       key: redis-password
                 - name: "PORT"
                   value: {{ .Values.mastodon.web.port | quote }}
+              {{- if (not .Values.mastodon.s3.enabled) }}
               volumeMounts:
                 - name: assets
                   mountPath: /opt/mastodon/public/assets
                 - name: system
                   mountPath: /opt/mastodon/public/system
+              {{- end }}
 {{- end }}

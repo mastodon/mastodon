@@ -27,6 +27,16 @@ data:
   RAILS_ENV: "production"
   REDIS_HOST: {{ template "mastodon.redis.fullname" . }}-master
   REDIS_PORT: "6379"
+  {{- if .Values.mastodon.s3.enabled }}
+  S3_BUCKET: {{ .Values.mastodon.s3.bucket }}
+  S3_ENABLED: "true"
+  S3_ENDPOINT: {{ .Values.mastodon.s3.endpoint }}
+  S3_HOSTNAME: {{ .Values.mastodon.s3.hostname }}
+  S3_PROTOCOL: "https"
+  {{- if .Values.mastodon.s3.region }}
+  S3_REGION: {{ .Values.mastodon.s3.region }}
+  {{- end }}
+  {{- end }}
   {{- if .Values.mastodon.smtp.auth_method }}
   SMTP_AUTH_METHOD: {{ .Values.mastodon.smtp.auth_method }}
   {{- end }}

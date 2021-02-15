@@ -31,6 +31,7 @@ spec:
       serviceAccountName: {{ include "mastodon.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      {{- if (not .Values.mastodon.s3.enabled) }}
       volumes:
         - name: assets
           persistentVolumeClaim:
@@ -38,6 +39,7 @@ spec:
         - name: system
           persistentVolumeClaim:
             claimName: {{ template "mastodon.fullname" . }}-system
+      {{- end }}
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
@@ -72,11 +74,13 @@ spec:
                   key: redis-password
             - name: "PORT"
               value: {{ .Values.mastodon.web.port | quote }}
+          {{- if (not .Values.mastodon.s3.enabled) }}
           volumeMounts:
             - name: assets
               mountPath: /opt/mastodon/public/assets
             - name: system
               mountPath: /opt/mastodon/public/system
+          {{- end }}
           ports:
             - name: http
               containerPort: {{ .Values.mastodon.web.port }}
