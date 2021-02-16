@@ -84,6 +84,8 @@ cs:
         invalid_redirect_uri: URI pro přesměrování není platné.
         invalid_request:
           missing_param: 'Chybí potřebný parametr: %{value}.'
+          request_not_authorized: Požadavek musí být autorizován. Potřebný parametr pro autorizaci požadavku chybí nebo není platný.
+          unknown: Požadavku chybí potřebný parametr, obsahuje nepodporovanou hodnotu parametru nebo je jinak špatně formulován.
         invalid_resource_owner: Poskytnuté přihlašovací údaje vlastníka zdroje nejsou platné, nebo vlastník zdroje nemůže být nalezen
         invalid_scope: Požadovaný rozsah je neplatný, neznámý, nebo špatně formulovaný.
         invalid_token:
