@@ -7,7 +7,7 @@ module ActionDispatch
     # Monkey-patch ActionDispatch to serve secure cookies to Tor Hidden Service
     # users. Otherwise, ActionDispatch would drop the cookie over HTTP.
     def write_cookie?(*)
-      request.headers['Host'].ends_with?('.onion') || super
+      request.host.ends_with?('.onion') || super
     end
   end
 end
@@ -17,7 +17,7 @@ ActionDispatch::Cookies::CookieJar.prepend(ActionDispatch::CookieJarExtensions)
 module Rack
   module SessionPersistedExtensions
     def security_matches?(request, options)
-      request.headers['Host'].ends_with?('.onion') || super
+      request.host.ends_with?('.onion') || super
     end
   end
 end
