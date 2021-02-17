@@ -6,6 +6,7 @@ vi:
     active_count_after: hoạt động
     active_footnote: Người dùng hoạt động hàng tháng (MAU)
     administered_by: 'Quản trị viên:'
+    api: API
     apps: Ứng dụng di động
     apps_platforms: Lướt Mastodon trên iOS, Android và các nền tảng khác
     browse_directory: Tìm những người cùng chung sở thích
@@ -13,6 +14,7 @@ vi:
     browse_public_posts: Xem thử những tút công khai trên mạng Mastodon
     contact: Liên lạc
     contact_missing: Chưa thiết lập
+    contact_unavailable: N/A
     discover_users: Thành viên
     documentation: Tài liệu
     federation_hint_html: Đăng ký tài khoản %{instance} là bạn có thể giao tiếp với mọi người trên bất kỳ máy chủ Mastodon nào và còn hơn thế nữa.
@@ -115,6 +117,7 @@ vi:
       display_name: Tên hiển thị
       domain: Máy chủ
       edit: Chỉnh sửa
+      email: Email
       email_status: Trạng thái email
       enable: Mở lại
       enabled: Đã duyệt
@@ -125,6 +128,7 @@ vi:
       inbox_url: Hộp thư của người này
       invite_request_text: Lý do đăng ký
       invited_by: Được mời bởi
+      ip: IP
       joined: Đã tham gia
       location:
         all: Toàn bộ
@@ -205,6 +209,7 @@ vi:
       username: Tài khoản
       view_domain: Xem mô tả tài khoản này
       warn: Cấm upload
+      web: Web
       whitelisted: Danh sách trắng
     action_logs:
       action_types:
@@ -322,6 +327,7 @@ vi:
       disable: Vô hiệu hóa
       disabled: Đã vô hiệu hóa
       disabled_msg: Vô hiệu hóa thành công Emoji này
+      emoji: Emoji
       enable: Cho phép
       enabled: Đã cho phép
       enabled_msg: Đã cho phép thành công Emoji này
@@ -648,6 +654,7 @@ vi:
       last_active: Hôm nay
       most_popular: Phổ biến nhất
       most_recent: Gần đây
+      name: Hashtag
       review: Phê duyệt
       reviewed: Đã phê duyệt
       title: Hashtag
@@ -693,6 +700,7 @@ vi:
     toot_layout: Tút
   application_mailer:
     notification_preferences: Thay đổi tùy chọn email
+    salutation: "%{name},"
     settings: 'Thay đổi tùy chọn email: %{link}'
     view: 'Chi tiết:'
     view_profile: Xem trang cá nhân
@@ -727,6 +735,9 @@ vi:
     migrate_account: Chuyển sang tài khoản khác
     migrate_account_html: Nếu bạn muốn bỏ tài khoản này để dùng một tài khoản khác, bạn có thể <a href="%{path}">thiết lập nó ở đây</a>.
     or_log_in_with: Hoặc đăng nhập bằng
+    providers:
+      cas: CAS
+      saml: SAML
     register: Đăng ký
     registration_closed: "%{instance} tạm ngưng đăng ký mới"
     resend_confirmation: Gửi lại email xác thực
@@ -770,14 +781,21 @@ vi:
   date:
     formats:
       default: "%-d %B, %Y"
+      with_month_name: "%B %d, %Y"
   datetime:
     distance_in_words:
+      about_x_hours: "%{count}h"
       about_x_months: "%{count}th"
+      about_x_years: "%{count}y"
+      almost_x_years: "%{count}y"
       half_a_minute: Vừa xong
       less_than_x_minutes: "%{count}p"
       less_than_x_seconds: Vừa xong
+      over_x_years: "%{count}y"
+      x_days: "%{count}d"
       x_minutes: "%{count}p"
       x_months: "%{count}th"
+      x_seconds: "%{count}s"
   deletes:
     challenge_not_passed: Thông tin bạn nhập không chính xác
     confirm_password: Nhập mật khẩu hiện tại của bạn để xác minh danh tính của bạn
@@ -829,6 +847,7 @@ vi:
       size: Dung lượng
     blocks: Người bạn chặn
     bookmarks: Đã lưu
+    csv: CSV
     domain_blocks: Máy chủ bạn chặn
     lists: Danh sách
     mutes: Người bạn ẩn
@@ -1013,6 +1032,16 @@ vi:
     email_events: Email
     email_events_hint: 'Chọn những hoạt động sẽ gửi thông báo qua email:'
     other_settings: Thông báo khác
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          billion: B
+          million: M
+          quadrillion: Q
+          thousand: K
+          trillion: T
   otp_authentication:
     code_hint: Nhập mã được tạo bởi ứng dụng xác thực của bạn để xác nhận
     description_html: Nếu kích hoạt <strong>xác thực hai bước</strong> thông qua ứng dụng, bạn sẽ đăng nhập bằng mã token được tạo bởi chính điện thoại của bạn.
@@ -1026,6 +1055,7 @@ vi:
     next: Kế tiếp
     older: Cũ hơn
     prev: Trước đó
+    truncate: "&hellip;"
   polls:
     errors:
       already_voted: Bạn đã bình chọn xong rồi
@@ -1087,18 +1117,39 @@ vi:
     activity: Gần đây nhất
     browser: Trình duyệt
     browsers:
+      alipay: Alipay
+      blackberry: Blackberry
+      chrome: Chrome
+      edge: Edge
+      electron: Electron
+      firefox: Firefox
       generic: Trình duyệt khác
+      ie: Internet Explorer
       micro_messenger: MicroMes hành khách
       nokia: Trình duyệt Nokia S40 Ovi
+      opera: Opera
+      otter: Otter
+      phantom_js: PhantomJS
       qq: QQ
+      safari: Safari
       uc_browser: UC
+      weibo: Weibo
     current_session: Phiên hiện tại
     description: "%{browser} trên %{platform}"
     explanation: Đây là các trình duyệt web đã từng đăng nhập vào tài khoản Mastodon của bạn.
+    ip: IP
     platforms:
+      adobe_air: Adobe Air
+      android: Android
+      blackberry: Blackberry
+      chrome_os: ChromeOS
       firefox_os: Hệ điều hành Firefox
+      ios: iOS
+      linux: Linux
       mac: Mac
       other: nền tảng khác
+      windows: Windows
+      windows_mobile: Windows Mobile
       windows_phone: Điện thoại Windows
     revoke: Gỡ
     revoke_success: Gỡ phiên thành công
@@ -1161,6 +1212,7 @@ vi:
     show_older: Cũ hơn
     show_thread: Toàn bộ chủ đề
     sign_in_to_participate: Đăng nhập để trả lời chủ đề này
+    title: '%{name}: "%{quote}"'
     visibilities:
       private: Người theo dõi
       private_long: Chỉ người theo dõi mới xem được tút
