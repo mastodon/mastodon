@@ -3,6 +3,7 @@
 class FollowService < BaseService
   include Redisable
   include Payloadable
+  include DomainControlHelper
 
   # Follow a remote user, notify remote user about the follow
   # @param [Account] source_account From which to follow
@@ -43,7 +44,7 @@ class FollowService < BaseService
   end
 
   def following_not_allowed?
-    @target_account.blocking?(@source_account) || @source_account.blocking?(@target_account) || @target_account.moved? || (!@target_account.local? && @target_account.ostatus?) || @source_account.domain_blocking?(@target_account.domain)
+    domain_not_allowed?(@target_account.domain) || @target_account.blocking?(@source_account) || @source_account.blocking?(@target_account) || @target_account.moved? || (!@target_account.local? && @target_account.ostatus?) || @source_account.domain_blocking?(@target_account.domain)
   end
 
   def change_follow_options!
