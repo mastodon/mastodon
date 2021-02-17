@@ -6,7 +6,7 @@ class FollowService < BaseService
 
   # Follow a remote user, notify remote user about the follow
   # @param [Account] source_account From which to follow
-  # @param [String, Account] uri User URI to follow in the form of username@domain (or account record)
+  # @param [Account] target_account Account to follow
   # @param [Hash] options
   # @option [Boolean] :reblogs Whether or not to show reblogs, defaults to true
   # @option [Boolean] :notify Whether to create notifications about new posts, defaults to false
@@ -15,7 +15,7 @@ class FollowService < BaseService
   # @option [Boolean] :with_rate_limit
   def call(source_account, target_account, options = {})
     @source_account = source_account
-    @target_account = ResolveAccountService.new.call(target_account, skip_webfinger: true)
+    @target_account = target_account
     @options        = { bypass_locked: false, bypass_limit: false, with_rate_limit: false }.merge(options)
 
     raise ActiveRecord::RecordNotFound if following_not_possible?
