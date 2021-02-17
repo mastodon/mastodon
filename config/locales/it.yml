@@ -72,6 +72,9 @@ it:
     people_who_follow: Persone che seguono %{name}
     pin_errors:
       following: Devi gia seguire la persona che vuoi promuovere
+    posts:
+      one: Toot
+      other: Toot
     posts_tab_heading: Toot
     posts_with_replies: Toot e risposte
     reserved_username: Questo nome utente è già stato preso
@@ -1065,6 +1068,7 @@ it:
     next: Avanti
     older: Più vecchio
     prev: Indietro
+    truncate: "&hellip;"
   polls:
     errors:
       already_voted: Hai già votato in questo sondaggio
@@ -1189,10 +1193,16 @@ it:
     spam_detected: Questo è un rapporto automatico. È stato rilevato dello spam.
   statuses:
     attached:
+      audio:
+        one: "%{count} audio"
+        other: "%{count} audio"
       description: 'Allegato: %{attached}'
       image:
         one: "%{count} immagine"
         other: "%{count} immagini"
+      video:
+        one: "%{count} video"
+        other: "%{count} video"
     boosted_from_html: Condiviso da %{acct_link}
     content_warning: 'Avviso di contenuto: %{warning}'
     disallowed_hashtags:
@@ -1221,6 +1231,7 @@ it:
     show_older: Mostra più vecchi
     show_thread: Mostra thread
     sign_in_to_participate: Accedi per partecipare alla conversazione
+    title: '%{name}: "%{quote}"'
     visibilities:
       private: Mostra solo ai tuoi seguaci
       private_long: Mostra solo ai seguaci
