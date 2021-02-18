@@ -6,6 +6,7 @@ sv:
     active_count_after: aktiv
     active_footnote: Månatligen Aktiva användare (MAU)
     administered_by: 'Administreras av:'
+    api: API
     apps: Mobilappar
     apps_platforms: Använd Mastodon från iOS, Android och andra plattformar
     browse_directory: Titta på en profilkatalog och filtrera enligt intressen
@@ -26,11 +27,15 @@ sv:
     see_whats_happening: Se vad som händer
     server_stats: 'Serverstatistik:'
     source_code: Källkod
+    status_count_after:
+      one: status
+      other: statusar
     status_count_before: Som skapat
     tagline: Följ vänner och upptäck nya
     terms: Användarvillkor
     unavailable_content: Otillgängligt innehåll
     unavailable_content_description:
+      domain: Server
       reason: Anledning
       rejecting_media: 'Mediafiler från dessa servers kommer inte hanteras eller lagras, och inga miniatyrer kammer att visas, utan manuell klickning erfordras på originalfilen:'
       rejecting_media_title: Filtrerade media
@@ -56,6 +61,7 @@ sv:
     joined: Gick med %{date}
     last_active: senast aktiv
     link_verified_on: Ägarskap för denna länk kontrollerades den %{date}
+    media: Media
     moved_html: "%{name} har flyttat till %{new_profile_link}:"
     network_hidden: Denna information är inte tillgänglig
     never_active: Aldrig
@@ -64,6 +70,10 @@ sv:
     people_who_follow: Personer som följer %{name}
     pin_errors:
       following: Du måste vara följare av den person du vill godkänna
+    posts:
+      one: Tuta
+      other: Tutor
+    posts_tab_heading: Tutor
     posts_with_replies: Toots med svar
     reserved_username: Användarnamnet är reserverat
     roles:
@@ -99,6 +109,7 @@ sv:
       confirm: Bekräfta
       confirmed: Bekräftad
       confirming: Bekräftande
+      delete: Radera data
       deleted: Raderad
       demote: Degradera
       disable: inaktivera
@@ -115,6 +126,7 @@ sv:
       follows: Följs
       header: Rubrik
       inbox_url: Inkorgs URL
+      invite_request_text: Anledningar att gå med
       invited_by: Inbjuden av
       ip: IP-adress
       joined: Gick med
@@ -165,6 +177,7 @@ sv:
       search: Sök
       search_same_email_domain: Andra användare med samma e-postdomän
       search_same_ip: Annan användare med samma IP-adress
+      sensitive: Känsligt
       shared_inbox_url: Delad inkorg URL
       show:
         created_reports: Anmälningar som skapats av det här kontot
