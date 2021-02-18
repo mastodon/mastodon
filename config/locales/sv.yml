@@ -178,6 +178,7 @@ sv:
       search_same_email_domain: Andra användare med samma e-postdomän
       search_same_ip: Annan användare med samma IP-adress
       sensitive: Känsligt
+      sensitized: markerad som känsligt
       shared_inbox_url: Delad inkorg URL
       show:
         created_reports: Anmälningar som skapats av det här kontot
@@ -207,10 +208,12 @@ sv:
         create_custom_emoji: Skapa egen emoji
         create_domain_allow: Skapa tillåten domän
         create_domain_block: Skapa blockerad domän
+        create_ip_block: Skapa IP-regel
         destroy_announcement: Ta bort anslag
         destroy_custom_emoji: Ta bort egen emoji
         destroy_domain_allow: Ta bort tillåten domän
         destroy_domain_block: Ta bort blockerad domän
+        destroy_ip_block: Ta bort IP-regel
         destroy_status: Ta bort status
         disable_2fa_user: Inaktivera 2FA
         disable_custom_emoji: Inaktivera egna emojis
@@ -269,6 +272,7 @@ sv:
       empty: Inga loggar hittades.
       title: Revisionslogg
     announcements:
+      live: Direkt
       scheduled_for: Schemalagd för %{time}
     custom_emojis:
       assign_category: Ange kategori
