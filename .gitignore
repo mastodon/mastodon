@@ -43,8 +43,7 @@
 /redis
 /elasticsearch
 
-# ignore Helm lockfile, dependency charts, and local values file
-/chart/Chart.lock
+# ignore Helm dependency charts
 /chart/charts/*.tgz
 
 # Ignore Apple files
