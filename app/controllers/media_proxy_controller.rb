@@ -37,7 +37,7 @@ class MediaProxyController < ApplicationController
   end
 
   def version
-    if request.path.ends_with?('/small')
+    if request.path.end_with?('/small')
       :small
     else
       :original
