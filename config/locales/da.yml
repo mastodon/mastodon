@@ -6,6 +6,7 @@ da:
     active_count_after: aktive
     active_footnote: Månedligt Aktive Brugere (MAU)
     administered_by: 'Administreret af:'
+    api: API
     apps: Apps til mobilen
     apps_platforms: Brug Mastodon på iOS, Android og andre platformer
     browse_directory: Gennemse en profils indholdsfortegnelse og filtrer efter interesser
@@ -27,11 +28,15 @@ da:
     see_whats_happening: Se hvad der sker
     server_stats: 'Server statstik:'
     source_code: Kildekode
+    status_count_after:
+      one: status
+      other: statusser
     status_count_before: Som har skrevet
     tagline: Følg venner og find nye
     terms: Vilkår for service
     unavailable_content: Utilgængeligt indhold
     unavailable_content_description:
+      domain: Server
       reason: Årsag
       rejecting_media: 'Medie filer fra disse servere vil ikke blive behandlet eller gemt, og ingen miniaturebilleder vil blive vist, som kræver tilgang til den originale fil:'
       rejecting_media_title: Filtrerede medier
@@ -387,6 +392,7 @@ da:
     instances:
       by_domain: Domæne
       delivery_available: Levering er tilgængelig
+      empty: Ingen domæner fundet.
       known_accounts:
         one: "%{count} kendt konto"
         other: "%{count} kendte konti"
@@ -442,6 +448,7 @@ da:
       save_and_enable: Gem og aktiver
       setup: Opsæt en videresendelses forbindelse
       signatures_not_enabled: Relæer fungerer ikke korrekt, mens sikker tilstand eller begrænset føderationstilstand er aktiveret
+      status: Status
       title: Videresendelser
     report_notes:
       created_msg: Anmeldelse note blev oprettet!
@@ -459,6 +466,8 @@ da:
       comment:
         none: Ingen
       created_at: Anmeldt
+      forwarded: Videresendt
+      forwarded_to: Videresendt til %{domain}
       mark_as_resolved: Marker som værende løst
       mark_as_unresolved: Marker som værende uløst
       notes:
@@ -473,6 +482,7 @@ da:
       reported_by: Anmeldt af
       resolved: Løst
       resolved_msg: Anmeldelse er sat til at være løst!
+      status: Status
       title: Anmeldelser
       unassign: Utildel
       unresolved: Uløst
@@ -672,6 +682,10 @@ da:
     errors:
       invalid_key: er ikke en gyldig Ed25519 eller Curve25519 nøgle
       invalid_signature: er ikke en gylidig Ed25519 signatur
+  date:
+    formats:
+      default: "%b %d, %Y"
+      with_month_name: "%B %d, %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}t"
@@ -912,6 +926,7 @@ da:
       unrecognized_emoji: er ikke en genkendt emoji
   relationships:
     activity: Aktivitet for konto
+    dormant: Slumrende
     follow_selected_followers: Følg valgte følgere
     followers: Følgere
     following: Følger
@@ -960,9 +975,12 @@ da:
     ip: IP
     platforms:
       adobe_air: Adobe air
+      android: Android
       blackberry: Blackberry OS
       chrome_os: Chromeos
       firefox_os: Firefox Os
+      ios: iOS
+      linux: Linux
       mac: Mac.
       other: ukendt platform
       windows: Microsoft windows
@@ -1001,6 +1019,9 @@ da:
       image:
         one: "%{count} billede"
         other: "%{count} billeder"
+      video:
+        one: "%{count} video"
+        other: "%{count} videoer"
     boosted_from_html: Fremhævet fra %{acct_link}
     content_warning: 'Advarsel om indhold: %{warning}'
     disallowed_hashtags:
@@ -1015,6 +1036,9 @@ da:
       private: Ikke offentlige trut kan ikke blive fastgjort
       reblog: Fremhævede trut kan ikke fastgøres
     poll:
+      total_people:
+        one: "%{count} person"
+        other: "%{count} personer"
       total_votes:
         one: "%{count} stemme"
         other: "%{count} stemmer"
@@ -1024,6 +1048,7 @@ da:
     show_older: Vis ældre
     show_thread: Vis tråd
     sign_in_to_participate: Log ind for at deltage i samtalen
+    title: '%{name}: "%{quote}"'
     visibilities:
       private: Kun-følgere
       private_long: Vis kun til følgere
@@ -1125,6 +1150,10 @@ da:
     contrast: Mastodon (Høj kontrast)
     default: Mastodont (Mørk)
     mastodon-light: Mastodon (Lys)
+  time:
+    formats:
+      default: "%b %d, %Y, %H:%M"
+      month: "%b %Y"
   two_factor_authentication:
     add: Tilføj
     disable: Deaktiver
