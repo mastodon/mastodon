@@ -561,6 +561,9 @@ pl:
       updated_at: Zaktualizowano
     rules:
       add_new: Dodaj zasadę
+      description: Chociaż większość twierdzi, że przeczytała i zgadza się z warunkami korzystania z usługi, zwykle ludzie nie czytają ich, dopóki nie pojawi się problem. Ułatw użytkownikom szybkie przejrzenie zasad serwera, umieszczając je na prostej liście punktowanej. Postaraj się, aby poszczególne zasady były krótkie i proste, ale staraj się też nie dzielić ich na wiele oddzielnych elementów.
+      edit: Edytuj zasadę
+      title: Regulamin serwera
     settings:
       activity_api_enabled:
         desc_html: Liczy publikowane lokalnie wpisy, aktywnych użytkowników i nowe rejestracje w ciągu danego tygodnia
@@ -1160,14 +1163,38 @@ pl:
     browsers:
       alipay: Alipay
       blackberry: Blackberry
+      chrome: Chrome
+      edge: Microsoft Edge
+      electron: Electron
+      firefox: Firefox
       generic: nieznana przeglądarka
+      ie: Internet Explorer
+      micro_messenger: MicroMessenger
+      nokia: Przeglądarka Nokia S40 Ovi
+      opera: Opera
       otter: Przeglądarka Otter
+      phantom_js: PhantomJS
+      qq: QQ Browser
+      safari: Safari
+      uc_browser: UCBrowser
+      weibo: Weibo
     current_session: Obecna sesja
     description: "%{browser} na %{platform}"
     explanation: Przeglądarki z aktywną sesją Twojego konta.
     ip: Adres IP
     platforms:
+      adobe_air: Adobe Air
+      android: Android
+      blackberry: Blackberry
+      chrome_os: ChromeOS
+      firefox_os: Firefox OS
+      ios: iOS
+      linux: Linux
+      mac: macOS
       other: nieznana platforma
+      windows: Windows
+      windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
     revoke: Unieważnij
     revoke_success: Pomyślnie unieważniono sesję
     title: Sesje
