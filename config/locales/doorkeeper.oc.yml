@@ -84,6 +84,8 @@ oc:
         invalid_redirect_uri: L’URL de redireccion es pas valida.
         invalid_request:
           missing_param: 'Paramètre requerit absent : %{value}.'
+          request_not_authorized: La requèsta deu èsser autorizada. Lo paramètre requerit per autorizar las requèstas es absent o invalid.
+          unknown: Li manca un paramètre requerit a la requèsta, inclutz un paramètre pas pres en carga, o es mal formatada.
         invalid_resource_owner: La qualificacion del proprietari de la ressorça donada es pas valida, o lo proprietari de la ressorça es pas trobable
         invalid_scope: L’encastre demandat es pas valid, o d’un marrit format.
         invalid_token:
