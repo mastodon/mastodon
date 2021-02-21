@@ -6,6 +6,7 @@ uk:
     active_count_after: активних
     active_footnote: Активні користувачі місяця (MAU)
     administered_by: 'Адміністратор:'
+    api: API
     apps: Мобільні додатки
     apps_platforms: Користуйтесь Mastodon на iOS, Android та інших платформах
     browse_directory: Переглядайте каталог профілів та фільтруйте за інтересами
@@ -23,6 +24,7 @@ uk:
       Цей обліковий запис є віртуальною особою, яка використовується для представлення самого сервера, а не певного користувача. Він використовується для потреб федерації і не повинен бути заблокований, якщо тільки ви не хочете заблокувати весь сервер, у цьому випадку ви повинні скористатися блокуванням домену. 
     learn_more: Дізнатися більше
     privacy_policy: Політика приватності
+    rules: Правила сервера
     see_whats_happening: Погляньте, що відбувається
     server_stats: 'Статистика серверу:'
     source_code: Вихідний код
@@ -132,7 +134,9 @@ uk:
       follows: Підписки
       header: Заголовок
       inbox_url: URL вхідних повідомлень
+      invite_request_text: Причини приєднатися
       invited_by: 'Запросив:'
+      ip: IP
       joined: Приєднався
       location:
         all: Усі
@@ -142,6 +146,7 @@ uk:
       login_status: Статус авторизації
       media_attachments: Мультимедійні вкладення
       memorialize: Зробити пам'ятником
+      memorialized: Перетворено на пам'ятник
       moderation:
         active: Активний
         all: Усі
@@ -182,6 +187,8 @@ uk:
       search: Пошук
       search_same_email_domain: Інші користувачі з тим самим поштовим доменом
       search_same_ip: Інші користувачі з тим самим IP
+      sensitive: Делікатне
+      sensitized: позначено делікатним
       shared_inbox_url: URL спільного вхідного кошика
       show:
         created_reports: Скарги, створені цим акаунтом
@@ -212,12 +219,14 @@ uk:
         create_domain_allow: Створити дозвіл на домен
         create_domain_block: Створити блокування домену
         create_email_domain_block: Створити блокування поштового домену
+        create_ip_block: Створити IP-правило
         demote_user: Понизити користувача
         destroy_announcement: Видалити оголошення
         destroy_custom_emoji: Видалити користувацьке емодзі
         destroy_domain_allow: Видалити дозвіл на домен
         destroy_domain_block: Видалити блокування домену
         destroy_email_domain_block: Видалити блокування поштового домену
+        destroy_ip_block: Видалити правило IP
         destroy_status: Видалити пост
         disable_2fa_user: Вимкнути 2FA
         disable_custom_emoji: Вимкнути користувацькі емодзі
@@ -417,6 +426,7 @@ uk:
     instances:
       by_domain: Домен
       delivery_available: Доставлення доступне
+      empty: Доменів не знайдено.
       known_accounts:
         one: "%{count} відомий обліковий запис"
         few: "%{count} відомих облікових записів"
@@ -442,6 +452,19 @@ uk:
         expired: Просрочено
         title: Фільтр
       title: Запрошення
+    ip_blocks:
+      add_new: Створити правило
+      created_msg: Нове правило IP успішно додано
+      delete: Видалити
+      expires_in:
+        '1209600': 2 тижні
+        '15778476': 6 місяців
+        '2629746': 1 місяць
+        '31556952': 1 рік
+        '86400': 1 день
+        '94670856': 3 роки
+      new:
+        title: Створити нове правило IP
     pending_accounts:
       title: Облікові записи у черзі (%{count})
     relationships:
