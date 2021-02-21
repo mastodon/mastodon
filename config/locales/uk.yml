@@ -118,6 +118,7 @@ uk:
       confirm: Зберегти
       confirmed: Збережено
       confirming: Зберігається
+      delete: Видалити дані
       deleted: Видалено
       demote: Усунути
       disable: Вимкнути
@@ -201,6 +202,7 @@ uk:
       time_in_queue: Очікує в черзі %{time}
       title: Облікові записи
       unconfirmed_email: Непідтверджена адреса електронної пошти
+      undo_sensitized: Скасувати позначення делікатним
       undo_silenced: Зняти глушення
       undo_suspension: Зняти призупинення
       unsubscribe: Відписатися
@@ -219,7 +221,7 @@ uk:
         create_domain_allow: Створити дозвіл на домен
         create_domain_block: Створити блокування домену
         create_email_domain_block: Створити блокування поштового домену
-        create_ip_block: Створити IP-правило
+        create_ip_block: Створити правило IP
         demote_user: Понизити користувача
         destroy_announcement: Видалити оголошення
         destroy_custom_emoji: Видалити користувацьке емодзі
@@ -246,6 +248,7 @@ uk:
         unsuspend_account: Розморозити обліковий запис
         update_announcement: Оновити оголошення
         update_custom_emoji: Оновити користувацькі емодзі
+        update_domain_block: Оновити блокування домену
         update_status: Оновити статус
       actions:
         assigned_to_self_report: "%{name} призначив(-ла) скаргу %{target} на себе"
@@ -257,12 +260,14 @@ uk:
         create_domain_allow: "%{name} додав(-ла) домен %{target} до білого списку"
         create_domain_block: "%{name} заблокував(-ла) домен %{target}"
         create_email_domain_block: "%{name} додав(-ла) поштовий домен %{target} до чорного списку"
+        create_ip_block: "%{name} створює правило для IP %{target}"
         demote_user: "%{name} понизив(-ла) %{target}"
         destroy_announcement: "%{name} видалив оголошення %{target}"
         destroy_custom_emoji: "%{name} знищив(-ла) емодзі %{target}"
         destroy_domain_allow: "%{name} видалив(-ла) домен %{target} з білого списку"
         destroy_domain_block: "%{name} розблокував(-ла) домен %{target}"
         destroy_email_domain_block: "%{name} додав(-ла) поштовий домен %{target} до білого списку"
+        destroy_ip_block: "%{name} видаляє правило для IP %{target}"
         destroy_status: "%{name} видалив(-ла) статус користувача %{target}"
         disable_2fa_user: "%{name} вимкнув(-ла) двофакторну авторизацію для користувача %{target}"
         disable_custom_emoji: "%{name} вимкнув(-ла) емодзі %{target}"
@@ -275,13 +280,16 @@ uk:
         reopen_report: "%{name} перевідкрив(-ла) скаргу %{target}"
         reset_password_user: "%{name} скинув(-ла) пароль користувача %{target}"
         resolve_report: "%{name} розв'язав(-ла) скаргу %{target}"
+        sensitive_account: "%{name} позначає %{target} медіа делікатним"
         silence_account: "%{name} заглушив(-ла) обліковий запис %{target}"
         suspend_account: "%{name} заморозив(-ла) обліковий запис %{target}"
         unassigned_report: "%{name} зняв(-ла) призначення скарги %{target}"
+        unsensitive_account: "%{name} прибирає позначку \"делікатне\" з %{target} медіа"
         unsilence_account: "%{name} розглушив(-ла) обліковий запис %{target}"
         unsuspend_account: "%{name} розморозив(-ла) обліковий запис %{target}"
         update_announcement: "%{name} оновив оголошення %{target}"
         update_custom_emoji: "%{name} оновив(-ла) емодзі %{target}"
+        update_domain_block: "%{name} оновлює блокування домену для %{target}"
         update_status: "%{name} змінив(-ла) статус користуача %{target}"
       deleted_status: "(видалений статус)"
       empty: Не знайдено жодного журналу.
@@ -465,6 +473,8 @@ uk:
         '94670856': 3 роки
       new:
         title: Створити нове правило IP
+      no_ip_block_selected: Жодних правил IP не було змінено, оскільки жодного не було вибрано
+      title: Правила IP
     pending_accounts:
       title: Облікові записи у черзі (%{count})
     relationships:
@@ -508,6 +518,8 @@ uk:
       comment:
         none: Немає
       created_at: Створено
+      forwarded: Переслано
+      forwarded_to: Переслано до %{domain}
       mark_as_resolved: Відмітити як вирішену
       mark_as_unresolved: Відмітити як невирішену
       notes:
@@ -527,6 +539,10 @@ uk:
       unassign: Зняти призначення
       unresolved: Невирішені
       updated_at: Оновлені
+    rules:
+      add_new: Додати правило
+      edit: Змінити правило
+      title: Правила сервера
     settings:
       activity_api_enabled:
         desc_html: Кількість локальних постів, активних та нових користувачів у тижневих розрізах
@@ -691,6 +707,7 @@ uk:
     toot_layout: Зовнішній вигляд дмухів
   application_mailer:
     notification_preferences: Змінити налаштування e-mail
+    salutation: "%{name},"
     settings: 'Змінити налаштування e-mail: %{link}'
     view: 'Перегляд:'
     view_profile: Показати профіль
@@ -725,6 +742,9 @@ uk:
     migrate_account: Переїхати на інший обліковий запис
     migrate_account_html: Якщо ви бажаєте перенаправити цей обліковий запис на інший, ви можете <a href="%{path}">налаштувати це тут</a>.
     or_log_in_with: Або увійдіть з
+    providers:
+      cas: CAS
+      saml: SAML
     register: Зареєструватися
     registration_closed: "%{instance} не приймає нових членів"
     resend_confirmation: Повторно відправити інструкції з підтвердження
@@ -741,6 +761,7 @@ uk:
       functional: Ваш обліковий запис повністю робочій.
       pending: Ваша заява очікує на розгляд нашим персоналом. Це може зайняти деякий час. Ви отримаєте електронний лист, якщо ваша заява буде схвалена.
       redirecting_to: Ваш обліковий запис наразі неактивний, тому що він перенаправлений до %{acct}.
+    too_fast: Форму подано занадто швидко, спробуйте ще раз.
     trouble_logging_in: Проблема під час входу?
     use_security_key: Використовувати ключ безпеки
   authorize_follow:
@@ -764,6 +785,10 @@ uk:
     errors:
       invalid_key: не є припустимим ключем Ed25519 або Curve25519
       invalid_signature: не є дійсним підписом Ed25519
+  date:
+    formats:
+      default: "%b %d, %Y"
+      with_month_name: "%B %d, %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}г"
@@ -828,6 +853,8 @@ uk:
       request: Зробити запит на архів
       size: Розмір
     blocks: Список блокувань
+    bookmarks: Закладки
+    csv: CSV
     domain_blocks: Блокування доменів
     lists: Списки
     mutes: Список глушення
@@ -896,6 +923,8 @@ uk:
     status: Стан перевірки
     view_proof: Переглянути доказ
   imports:
+    errors:
+      over_rows_processing_limit: містить більше ніж %{count} рядків
     modes:
       merge: Злиття
       merge_long: Зберегти існуючі записи та додати нові
@@ -905,6 +934,7 @@ uk:
     success: Ваші дані були успішно загружені та будуть оброблені в найближчий момент
     types:
       blocking: Список блокувань
+      bookmarks: Закладки
       domain_blocking: Список заблокованих сайтів
       following: Підписки
       muting: Список глушення
@@ -1024,6 +1054,7 @@ uk:
   number:
     human:
       decimal_units:
+        format: "%n%u"
         units:
           billion: млрд
           million: млн
@@ -1043,6 +1074,7 @@ uk:
     next: Далі
     older: Старіші
     prev: Назад
+    truncate: "&hellip;"
   polls:
     errors:
       already_voted: Ви вже голосували в цьому опитуванні
@@ -1065,6 +1097,7 @@ uk:
   relationships:
     activity: Діяльність облікового запису
     dormant: Неактивні
+    follow_selected_followers: Стежити за вибраними підписниками
     followers: Підписники
     following: Підписник(-ця)
     invited: Запрошені
@@ -1103,16 +1136,40 @@ uk:
     activity: Остання активність
     browser: Браузер
     browsers:
+      alipay: Alipay
+      blackberry: Blackberry
       chrome: Хром
+      edge: Microsoft Edge
+      electron: Electron
+      firefox: Firefox
       generic: Невідомий браузер
+      ie: Internet Explorer
+      micro_messenger: MicroMessenger
+      nokia: Nokia S40 Ovi Browser
       opera: Опера
+      otter: Otter
+      phantom_js: PhantomJS
+      qq: QQ Browser
       safari: Сафарі
+      uc_browser: UCBrowser
+      weibo: Weibo
     current_session: Активна сесія
     description: "%{browser} на %{platform}"
     explanation: Це веб-браузери, авторизовані у вашому обліковому записі Mastodon.
+    ip: IP
     platforms:
+      adobe_air: Adobe Air
+      android: Android
+      blackberry: Blackberry
+      chrome_os: ChromeOS
+      firefox_os: Firefox OS
+      ios: iOS
+      linux: Linux
       mac: Mac
       other: невідома платформа
+      windows: Windows
+      windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
     revoke: Закінчити
     revoke_success: Сесія успішно закінчена
     title: Сесії
@@ -1188,8 +1245,11 @@ uk:
         other: "%{count} голоси"
       vote: Проголосувати
     show_more: Розгорнути
+    show_newer: Показати новіші
+    show_older: Показати давніші
     show_thread: Відкрити обговорення
     sign_in_to_participate: Увійдіть, щоб брати участь у бесіді
+    title: '%{name}: "%{quote}"'
     visibilities:
       private: Для підписників
       private_long: Показувати тільки підписникам
@@ -1294,6 +1354,10 @@ uk:
     contrast: Висока контрасність
     default: Mastodon
     mastodon-light: Mastodon (світла)
+  time:
+    formats:
+      default: "%b %d, %Y, %H:%M"
+      month: "%b %Y"
   two_factor_authentication:
     add: Додати
     disable: Вимкнути
