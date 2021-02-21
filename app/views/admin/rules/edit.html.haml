@@ -1,0 +1,11 @@
+- content_for :page_title do
+  = t('admin.rules.edit')
+
+= simple_form_for @rule, url: admin_rule_path(@rule) do |f|
+  = render 'shared/error_messages', object: @rule
+
+  .fields-group
+    = f.input :text, wrapper: :with_block_label
+
+  .actions
+    = f.button :button, t('generic.save_changes'), type: :submit
