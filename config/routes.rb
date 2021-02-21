@@ -220,6 +220,7 @@ Rails.application.routes.draw do
     end
 
     resources :instances, only: [:index, :show], constraints: { id: /[^\/]+/ }
+    resources :rules
 
     resources :reports, only: [:index, :show] do
       member do
@@ -405,6 +406,7 @@ Rails.application.routes.draw do
       resource :instance, only: [:show] do
         resources :peers, only: [:index], controller: 'instances/peers'
         resource :activity, only: [:show], controller: 'instances/activity'
+        resources :rules, only: [:index], controller: 'instances/rules'
       end
 
       resource :domain_blocks, only: [:show, :create, :destroy]

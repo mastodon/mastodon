@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_18_054746) do
+ActiveRecord::Schema.define(version: 2021_02_21_045109) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -721,6 +721,14 @@ ActiveRecord::Schema.define(version: 2020_12_18_054746) do
     t.boolean "forwarded"
     t.index ["account_id"], name: "index_reports_on_account_id"
     t.index ["target_account_id"], name: "index_reports_on_target_account_id"
+  end
+
+  create_table "rules", force: :cascade do |t|
+    t.integer "priority", default: 0, null: false
+    t.datetime "deleted_at"
+    t.text "text", default: "", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "scheduled_statuses", force: :cascade do |t|
