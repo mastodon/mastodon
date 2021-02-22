@@ -22,6 +22,7 @@ class AboutController < ApplicationController
 
     toc_generator = TOCGenerator.new(@instance_presenter.site_extended_description)
 
+    @rules             = Rule.ordered
     @contents          = toc_generator.html
     @table_of_contents = toc_generator.toc
     @blocks            = DomainBlock.with_user_facing_limitations.by_severity if display_blocks?

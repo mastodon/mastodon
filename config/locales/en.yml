@@ -26,6 +26,8 @@ en:
       It is used for federation purposes and should not be blocked unless you want to block the whole instance, in which case you should use a domain block.
     learn_more: Learn more
     privacy_policy: Privacy policy
+    rules: Server rules
+    rules_html: 'Below is a summary of rules you need to follow if you want to have an account on this server of Mastodon:'
     see_whats_happening: See what's happening
     server_stats: 'Server stats:'
     source_code: Source code
@@ -542,6 +544,11 @@ en:
       unassign: Unassign
       unresolved: Unresolved
       updated_at: Updated
+    rules:
+      add_new: Add rule
+      description: While most claim to have read and agree to the terms of service, usually people do not read through until after a problem arises. Make it easier to see your server's rules at a glance by providing them in a flat bullet point list. Try to keep individual rules short and simple, but try not to split them up into many separate items either.
+      edit: Edit rule
+      title: Server rules
     settings:
       activity_api_enabled:
         desc_html: Counts of locally posted statuses, active users, and new registrations in weekly buckets
