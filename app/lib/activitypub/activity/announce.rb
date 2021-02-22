@@ -73,9 +73,7 @@ class ActivityPub::Activity::Announce < ActivityPub::Activity
       # If there is at least one silent mention, then the status can be considered
       # as a limited-audience status, and not strictly a direct message, but only
       # if we considered a direct message in the first place
-      next unless @params[:visibility] == :direct
-
-      @params[:visibility] = :limited
+      @params[:visibility] = :limited if @params[:visibility] == :direct
     end
 
     # If the payload was delivered to a specific inbox, the inbox owner must have
@@ -84,9 +82,7 @@ class ActivityPub::Activity::Announce < ActivityPub::Activity
 
     @mentions << Mention.new(account_id: @options[:delivered_to_account_id], silent: true)
 
-    return unless @params[:visibility] == :direct
-
-    @params[:visibility] = :limited
+    @params[:visibility] = :limited if @params[:visibility] == :direct
   end
 
   def postprocess_audience_and_deliver
