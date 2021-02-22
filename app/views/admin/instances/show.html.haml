@@ -3,6 +3,9 @@
 
 .filters
   .back-link
+    = link_to admin_instances_path() do
+      %i.fa.fa-chevron-left.fa-fw
+      = t('admin.instances.back_to_all')
     = link_to admin_instances_path(limited: 1) do
       %i.fa.fa-chevron-left.fa-fw
       = t('admin.instances.back_to_limited')
