@@ -14,8 +14,6 @@ class UnavailableDomain < ApplicationRecord
 
   validates :domain, presence: true, uniqueness: true
 
-  has_one :instance, foreign_key: :domain, primary_key: :domain, inverse_of: :unavailable_domain, dependent: :nullify
-
   after_commit :reset_cache!
 
   private

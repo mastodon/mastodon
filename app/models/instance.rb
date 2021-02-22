@@ -16,7 +16,7 @@ class Instance < ApplicationRecord
 
   belongs_to :domain_block, foreign_key: :domain, primary_key: :domain
   belongs_to :domain_allow, foreign_key: :domain, primary_key: :domain
-  belongs_to :unavailable_domain, foreign_key: :domain, primary_key: :domain, inverse_of: :instance
+  belongs_to :unavailable_domain, foreign_key: :domain, primary_key: :domain # skipcq: RB-RL1031
 
   scope :matches_domain, ->(value) { where(arel_table[:domain].matches("%#{value}%")) }
 
