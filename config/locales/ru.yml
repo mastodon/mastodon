@@ -6,6 +6,7 @@ ru:
     active_count_after: активных
     active_footnote: Ежемесячно активные пользователи (MAU)
     administered_by: 'Администратор узла:'
+    api: API
     apps: Приложения
     apps_platforms: Используйте Mastodon на iOS, Android и других платформах
     browse_directory: Изучите каталог и найдите профили по интересам
@@ -24,6 +25,8 @@ ru:
       Используется для целей федерации и не должен быть заблокирован, если вы не хотите заблокировать всю инстанцию, вместо этого лучше использовать доменную блокировку.
     learn_more: Узнать больше
     privacy_policy: Политика конфиденциальности
+    rules: Правила сервера
+    rules_html: 'Ниже приведена сводка правил, которых вам нужно придерживаться, если вы хотите иметь учётную запись на этом сервере Мастодона:'
     see_whats_happening: Узнайте, что происходит вокруг
     server_stats: 'Статистика сервера:'
     source_code: Исходный код
@@ -140,6 +143,7 @@ ru:
       inbox_url: URL входящих
       invite_request_text: Причины для присоединения
       invited_by: Приглашение выдал(а)
+      ip: IP
       joined: Дата регистрации
       location:
         all: Все
@@ -407,6 +411,8 @@ ru:
           silence: Скрытие
           suspend: Блокировка
         title: Новая блокировка e-mail домена
+      obfuscate: Скрыть доменное имя
+      obfuscate_hint: Частично скрыть доменное имя в списке, если включена публикация списка ограничений домена
       private_comment: Приватный комментарий
       private_comment_hint: Комментарий к доменной блокировке для внутреннего использования модераторами.
       public_comment: Публичный комментарий
@@ -553,6 +559,11 @@ ru:
       unassign: Снять назначение
       unresolved: Нерешённые
       updated_at: Обновлена
+    rules:
+      add_new: Добавить правило
+      description: Хотя большинство утверждает, что прочитали и согласны с условиями обслуживания, обычно люди не читают их до тех пор, пока не возникнет проблема. Упростите просмотр правил вашего сервера с первого взгляда, предоставив их в виде простого маркированного списка. Старайтесь, чтобы отдельные правила были краткими и простыми, но старайтесь не разбивать их на множество отдельных элементов.
+      edit: Редактировать правило
+      title: Правила сервера
     settings:
       activity_api_enabled:
         desc_html: Подсчёт количества локальных постов, активных пользователей и новых регистраций на еженедельной основе
@@ -577,6 +588,7 @@ ru:
       domain_blocks_rationale:
         title: Показать обоснование
       enable_bootstrap_timeline_accounts:
+        desc_html: Сделайте так, чтобы новые пользователи автоматически подписывались на настроенные учётные записи, чтобы их домашняя лента не была пустой
         title: Включить подписки по умолчанию для новых пользователей
       hero:
         desc_html: Отображается на главной странице. Рекомендуется разрешение не менее 600х100px. Если не установлено, используется изображение узла
@@ -720,6 +732,7 @@ ru:
     toot_layout: Структура постов
   application_mailer:
     notification_preferences: Настроить уведомления можно здесь
+    salutation: "%{name},"
     settings: 'Настроить уведомления можно здесь: %{link}'
     view: 'Просмотр:'
     view_profile: Просмотреть профиль
@@ -754,6 +767,9 @@ ru:
     migrate_account: Перенос учётной записи
     migrate_account_html: Завели новую учётную запись? Перенаправьте подписчиков на неё — <a href="%{path}">настройте перенаправление тут</a>.
     or_log_in_with: Или войти с помощью
+    providers:
+      cas: CAS
+      saml: SAML
     register: Зарегистрироваться
     registration_closed: "%{instance} не принимает новых участников"
     resend_confirmation: Повторить отправку инструкции для подтверждения
@@ -863,6 +879,7 @@ ru:
       size: Размер
     blocks: Список блокировки
     bookmarks: Закладки
+    csv: CSV
     domain_blocks: Доменные блокировки
     lists: Списки
     mutes: Ваши игнорируемые
@@ -931,6 +948,8 @@ ru:
     status: Статус
     view_proof: Посмотреть подтверждение
   imports:
+    errors:
+      over_rows_processing_limit: содержит более %{count} строк
     modes:
       merge: Объединить
       merge_long: Сохранить имеющиеся данные и добавить новые.
@@ -1080,6 +1099,7 @@ ru:
     next: След
     older: Старше
     prev: Пред
+    truncate: "&hellip;"
   polls:
     errors:
       already_voted: Вы уже голосовали в этом опросе
@@ -1141,13 +1161,40 @@ ru:
     activity: Последняя активность
     browser: Браузер
     browsers:
+      alipay: Alipay
+      blackberry: Blackberry
+      chrome: Chrome
+      edge: Microsoft Edge
+      electron: Electron
+      firefox: Firefox
       generic: Неизвестный браузер
+      ie: Internet Explorer
+      micro_messenger: MicroMessenger
+      nokia: Nokia S40 Ovi Browser
+      opera: Opera
+      otter: Otter
+      phantom_js: PhantomJS
+      qq: QQ Browser
+      safari: Safari
+      uc_browser: UCBrowser
+      weibo: Weibo
     current_session: Текущая сессия
     description: "%{browser} на %{platform}"
     explanation: Здесь отображаются все веб-браузеры, в которых выполнен вход в вашу учётную запись. Авторизованные приложения отображаются в другой секции.
+    ip: IP
     platforms:
+      adobe_air: Adobe Air
+      android: Android
+      blackberry: Blackberry
+      chrome_os: ChromeOS
+      firefox_os: Firefox OS
+      ios: iOS
+      linux: Linux
       mac: Mac
       other: неизвестной платформе
+      windows: Windows
+      windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
     revoke: Завершить
     revoke_success: Сессия завершена
     title: Сессии
@@ -1227,6 +1274,7 @@ ru:
     show_older: Показать старые
     show_thread: Открыть обсуждение
     sign_in_to_participate: Войдите, чтобы принять участие в дискуссии
+    title: '%{name}: "%{quote}"'
     visibilities:
       private: Для подписчиков
       private_long: Показывать только подписчикам
