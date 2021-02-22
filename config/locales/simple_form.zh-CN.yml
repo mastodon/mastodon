@@ -72,6 +72,8 @@ zh-CN:
           no_access: 阻止访问所有资源
           sign_up_requires_approval: 新的注册需要您的批准
         severity: 选择如何处理来自此 IP 的请求。
+      rule:
+        text: 描述这个服务器上用户的规则或要求。尽量保持简短和简单
       sessions:
         otp: '输入你手机应用上生成的双重认证码，或者任意一个恢复代码：'
         webauthn: 如果是 USB 密钥，请确保将其插入，如有必要，请点击它。
@@ -196,6 +198,8 @@ zh-CN:
         reblog: 当有用户转嘟了我的嘟文时，发送电子邮件提醒我
         report: 在提交新举报时，发送电子邮件提醒我
         trending_tag: 当未经审核的话题成为当前热门时发邮件提醒
+      rule:
+        text: 规则
       tag:
         listable: 允许这个话题标签在用户目录中显示
         name: 话题标签
