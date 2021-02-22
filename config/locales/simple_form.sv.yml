@@ -95,6 +95,7 @@ sv:
         setting_aggregate_reblogs: Gruppera knuffar i tidslinjer
         setting_auto_play_gif: Spela upp animerade GIF-bilder automatiskt
         setting_boost_modal: Visa bekräftelsedialog innan du knuffar
+        setting_crop_images: Beskär bilder i icke-utökade tutningar till 16x9
         setting_default_language: Språk
         setting_default_privacy: Postintegritet
         setting_default_sensitive: Markera alltid media som känsligt
@@ -104,14 +105,19 @@ sv:
         setting_display_media_default: Standard
         setting_display_media_hide_all: Dölj alla
         setting_display_media_show_all: Visa alla
+        setting_expand_spoilers: Utöka alltid tutningar markerade med innehållsvarningar
         setting_hide_network: Göm ditt nätverk
         setting_noindex: Uteslutning av sökmotorindexering
         setting_reduce_motion: Minska rörelser i animationer
+        setting_show_application: Visa programmet som används för att skicka tutningar
         setting_system_font_ui: Använd systemets standardfont
         setting_theme: Sidans tema
         setting_trends: Visa dagens trender
         setting_unfollow_modal: Visa bekräftelse innan du slutar följa någon
+        setting_use_blurhash: Visa färgglada gradienter för dold media
+        setting_use_pending_items: Långsamt läge
         severity: Strikthet
+        sign_in_token_attempt: Säkerhetskod
         type: Importtyp
         username: Användarnamn
         username_or_email: Användarnamn eller e-mail
@@ -132,8 +138,16 @@ sv:
         reblog: Skicka e-post när någon knuffar din status
       rule:
         text: Regel
+      tag:
+        name: Hashtag
+        trendable: Tillåt att denna hashtag visas under trender
+        usable: Tillåt tutningar att använda denna hashtag
     'no': 'Nej'
     recommended: Rekommenderad
     required:
+      mark: "*"
       text: obligatorisk
+    title:
+      sessions:
+        webauthn: Använd en av dina säkerhetsnycklar för att logga in
     'yes': 'Ja'
