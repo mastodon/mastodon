@@ -53,14 +53,6 @@ class DeliveryFailureTracker
       new(url).reset!
     end
 
-    def clear_failures!(url)
-      new(url).clear_failures!
-    end
-
-    def exhausted_deliveries_days(url)
-      new(url).exhausted_deliveries_days
-    end
-
     def warning_domains
       domains = Redis.current.keys(exhausted_deliveries_key('*')).map do |key|
         key.delete_prefix(exhausted_deliveries_key(''))

@@ -17,7 +17,7 @@ module Admin
     def remove_delivery_errors
       authorize :delivery, :remove_delivery_errors?
 
-      DeliveryFailureTracker.new(@instance.domain).clear_failures!
+      @instance.delivery_failure_tracker.clear_failures!
       redirect_to admin_instance_path(@instance.domain)
     end
 
@@ -27,7 +27,7 @@ module Admin
       last_unavailable_domain = unavailable_domain
 
       if last_unavailable_domain.present?
-        DeliveryFailureTracker.new(@instance.domain).track_success!
+        @instance.delivery_failure_tracker.track_success!
         log_action :destroy, last_unavailable_domain
       end
 
@@ -49,7 +49,7 @@ module Admin
     end
 
     def set_exhausted_deliveries_days
-      @exhausted_deliveries_days = DeliveryFailureTracker.exhausted_deliveries_days(@instance.domain)
+      @exhausted_deliveries_days = @instance.delivery_failure_tracker.exhausted_deliveries_days
     end
 
     def set_instances
