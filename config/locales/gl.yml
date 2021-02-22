@@ -1,7 +1,7 @@
 gl:
   about:
     about_hashtag_html: 'Estes son toots públicos etiquetados con <strong>#%{hashtag}</strong>. Podes interactuar con eles se tes unha conta nalgures do fediverso.'
-    about_mastodon_html: 'Mastodon é unha rede social que se basea en protocolos web abertos e libres, software de código aberto. É descentralizada como o correo electrónico.'
+    about_mastodon_html: 'A rede social do futuro: Sen publicidade, sen seguimento por empresas, deseño ético e descentralización! En Mastodon ti posúes os teus datos!'
     about_this: Acerca de
     active_count_after: activas
     active_footnote: Usuarias Activas no Mes (UAM)
@@ -21,7 +21,7 @@ gl:
     get_apps: Probar unha aplicación móbil
     hosted_on: Mastodon aloxado en %{domain}
     instance_actor_flash: |
-      Esta conta é un actor virtual utilizado para representar ao servidor e non a unha usuaria individual. Utilízase para propósitos de federación e non debería estar bloqueada a menos que queiras bloquear a toda a instancia, en tal caso deberías utilizar o bloqueo do dominio. 
+      Esta conta é un actor virtual utilizado para representar ao servidor e non a unha usuaria individual. Utilízase para propósitos de federación e non debería estar bloqueada a menos que queiras bloquear a toda a instancia, en tal caso deberías utilizar o bloqueo do dominio.
     learn_more: Saber máis
     privacy_policy: Política de privacidade
     rules: Regras do servidor
@@ -544,6 +544,9 @@ gl:
       updated_at: Actualizado
     rules:
       add_new: Engadir regra
+      description: Aínda que a maioría din que len e aceptan os termos do servizo, normalmente non os lemos ata que xurde algún problema. Simplifica a lectura das regras do servidor mostrándoas nunha lista simple de elementos. Intenta escribir cada regra de xeito simple e claro, pero tampouco as dividas en demasiados elementos separados.
+      edit: Editar regra
+      title: Regras do servidor
     settings:
       activity_api_enabled:
         desc_html: Conta de estados publicados de xeito local, usuarias activas, e novos rexistros en períodos semanais
@@ -1165,6 +1168,8 @@ gl:
       mac: Mac
       other: plataforma descoñecida
       windows: Windows
+      windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
     revoke: Revogar
     revoke_success: A sesión revogouse con éxito
     title: Sesións
@@ -1194,6 +1199,9 @@ gl:
     spam_detected: Esto é un informe automatizado. Detectouse Spam.
   statuses:
     attached:
+      audio:
+        one: "%{count} audio"
+        other: "%{count} audios"
       description: 'Axenado: %{attached}'
       image:
         one: "%{count} imaxe"
@@ -1229,6 +1237,7 @@ gl:
     show_older: Mostrar o máis vello
     show_thread: Amosar fío
     sign_in_to_participate: Conéctese para participar na conversa
+    title: '%{name}: "%{quote}"'
     visibilities:
       private: Só seguidoras
       private_long: Mostrar só as seguidoras
@@ -1332,6 +1341,7 @@ gl:
   time:
     formats:
       default: "%d %b, %Y, %H:%M"
+      month: "%b %Y"
   two_factor_authentication:
     add: Engadir
     disable: Deshabilitar
