@@ -31,6 +31,7 @@
           %bdi
             %strong.emojify= display_name(status.account, custom_emojify: true)
         = t('stream_entries.reblogged')
+      = visibility_icon status
   - elsif pinned
     .status__prepend
       .status__prepend-icon-wrapper
