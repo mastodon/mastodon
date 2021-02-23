@@ -2,15 +2,15 @@ zh-CN:
   simple_form:
     hints:
       account_alias:
-        acct: 指定您想要迁移过来的帐号的 用户名@站点域名
+        acct: 指定您想要迁移过来的原帐号：用户名@站点域名
       account_migration:
-        acct: 指定你想迁移过去的帐号的 用户名@站点域名
+        acct: 指定你想迁移过去的目标帐号：用户名@站点域名
       account_warning_preset:
         text: 你可以使用嘟文格式，例如加入 URL、话题标签和“@”
         title: 可选。对接收者不可见
       admin_account_action:
         include_statuses: 用户将会看到哪些嘟文导致了审核行为或警告
-        send_email_notification: 用户将收到对其账号上发生的事的解释
+        send_email_notification: 用户将收到关于其账号变化的解释
         text_html: 可选。你可以使用嘟文格式。你可以<a href="%{path}">预置警告</a>以节省时间
         type_html: 用<strong>%{acct}</strong>选择做什么
         warning_preset_id: 可选。你可以在预置文本末尾添加自定义文本
@@ -54,7 +54,7 @@ zh-CN:
       domain_allow:
         domain: 该站点将能够从该服务器上拉取数据，并且从那里发过来的数据也会被处理和存储。
       email_domain_block:
-        domain: 这里可以是邮箱地址中的域名部分、域名解析到的 MX 记录，或者 MX 记录解析到的域名。这些检查会在用户注册时进行，如果邮箱域名被封禁，那么注册会被拒绝。
+        domain: 这里可以是邮箱地址中的域名部分、域名指向的 MX 记录，或者 MX 记录指向的域名。这些检查会在用户注册时进行，如果邮箱域名被封禁，那么注册会被拒绝。
         with_dns_records: Mastodon 会尝试解析所给域名的 DNS 记录，然后把解析结果一并封禁
       featured_tag:
         name: '你可能想要使用以下之一：'
