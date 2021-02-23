@@ -25,6 +25,7 @@ uk:
     learn_more: Дізнатися більше
     privacy_policy: Політика приватності
     rules: Правила сервера
+    rules_html: 'Внизу наведено підсумок правил, яких ви повинні дотримуватися, якщо хочете мати обліковий запис на цьому сервері Mastodon:'
     see_whats_happening: Погляньте, що відбувається
     server_stats: 'Статистика серверу:'
     source_code: Вихідний код
@@ -65,6 +66,7 @@ uk:
       many: Підписників
       other: Підписників
     following: Підписаний(-а)
+    instance_actor_flash: Цей обліковий запис є віртуальним персонажем, який використовується для показу самого сервера, а не будь-якого окремого користувача. Він використовується з метою федералізації і не повинен бути зупинений.
     joined: Приєднався %{date}
     last_active: остання активність
     link_verified_on: Права власності на це посилання були перевірені %{date}
@@ -105,6 +107,7 @@ uk:
       add_email_domain_block: Додати поштовий домен до чорного списку
       approve: Схвалити
       approve_all: Схвалити всіх
+      approved_msg: Заявку на реєстрацію %{username} затверджено
       are_you_sure: Ви впевнені?
       avatar: Аватар
       by_domain: Домен
@@ -121,6 +124,7 @@ uk:
       delete: Видалити дані
       deleted: Видалено
       demote: Усунути
+      destroyed_msg: "Дані %{username} тепер в черзі на негайне видалення"
       disable: Вимкнути
       disable_two_factor_authentication: Вимкнути двофакторну авторизацію
       disabled: Вимкнено
@@ -131,6 +135,7 @@ uk:
       email_status: Статус електронної пошти
       enable: Увімкнути
       enabled: Увімкнено
+      enabled_msg: Обліковий запис %{username} успішно розморожено
       followers: Підписники
       follows: Підписки
       header: Заголовок
@@ -148,6 +153,7 @@ uk:
       media_attachments: Мультимедійні вкладення
       memorialize: Зробити пам'ятником
       memorialized: Перетворено на пам'ятник
+      memorialized_msg: '%{username} успішно перетворено на пам''ятний обліковий запис'
       moderation:
         active: Активний
         all: Усі
@@ -168,10 +174,14 @@ uk:
       public: Публічний
       push_subscription_expires: Підписка PuSH спливає
       redownload: Оновити аватар
+      redownloaded_msg: Профіль %{username} оновлено з джерела походження
       reject: Відхилити
       reject_all: Відхилити усе
+      rejected_msg: Заявку на реєстрацію %{username} відхилено
       remove_avatar: Видалити аватар
       remove_header: Видалити заголовок
+      removed_avatar_msg: Зображення користувача %{username} вилучено
+      removed_header_msg: Зображення обкладинки %{username} вилучено
       resend_confirmation:
         already_confirmed: Цей користувач уже підтверджений
         send: Надіслати електронний лист-підтвердження ще раз
@@ -1395,11 +1405,13 @@ uk:
       subject:
         disable: Ваш обліковий запис %{acct} було заморожено
         none: Попередження для %{acct}
+        sensitive: Ваш обліковий запис %{acct} надсилав медіа позначені делікатними
         silence: Ваш обліковий запис %{acct} було обмежено
         suspend: Ваш обліковий запис %{acct} було призупинено
       title:
         disable: Обліковий запис заморожено
         none: Попередження
+        sensitive: Ваші медіа позначено делікатними
         silence: Ообліковий запис обмежено
         suspend: Обліковий запис призупинено
     welcome:
