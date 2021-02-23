@@ -19,7 +19,7 @@ zh-CN:
         ends_at: 可选。公告会在该时间点自动取消发布
         scheduled_at: 留空的话，公告会立即发布。
         starts_at: 可选。你可以让你的公告只在特定时间段显示。
-        text: 你可以使用嘟文格式。但是请注意不要让公告占据太多用户屏幕上的空间。
+        text: 你可以使用嘟文格式。但请注意不要让公告占据用户太多屏幕空间。
       defaults:
         autofollow: 通过邀请链接注册的用户将会自动关注你
         avatar: 文件大小限制 %{size}，只支持 PNG、GIF 或 JPG 格式。图片分辨率将会压缩至 %{dimensions}px
@@ -37,8 +37,8 @@ zh-CN:
         locale: 用户界面、电子邮件和推送通知中使用的语言
         locked: 你需要手动审核所有关注请求
         password: 至少需要8个字符
-        phrase: 匹配将无视大小写和嘟文的内容警告
-        scopes: 哪些 API 被允许使用。如果你选中了更高一级的范围，就不能单个选中了。
+        phrase: 匹配将忽略嘟文或内容警告里的字母大小写
+        scopes: 哪些 API 被允许使用。如果你勾选了更高一级的范围，就不用单独选中子项目了。
         setting_aggregate_reblogs: 请不要显示最近已经被转嘟过的嘟文(只会影响新收到的转嘟)
         setting_default_sensitive: 敏感内容默认隐藏，并在点击后显示
         setting_display_media_default: 隐藏被标记为敏感内容的媒体
