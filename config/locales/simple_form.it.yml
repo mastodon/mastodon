@@ -13,6 +13,12 @@ it:
         send_email_notification: L'utente riceverà una spiegazione di ciò che è successo con suo account
         text_html: Opzionale. Puoi usare la sintassi dei toot. Puoi <a href="%{path}">aggiungere avvisi preimpostati</a> per risparmiare tempo
         type_html: Decidi cosa fare con <strong>%{acct}</strong>
+        types:
+          disable: Impedisce all'utente di utilizzare il suo account, ma non elimina o nasconde i suoi contenuti.
+          none: Usa questo per inviare un avviso all'utente, senza eseguire altre azioni.
+          sensitive: Forza tutti gli allegati multimediali di questo utente ad essere contrassegnati come sensibili.
+          silence: Impedisce all'utente di poter pubblicare con visibilità pubblica, nasconde i suoi post e notifiche a persone che non lo seguono.
+          suspend: Impedisce qualsiasi interazione da o per questo account ed elimina i suoi contenuti. Annullabile entro 30 giorni.
         warning_preset_id: Opzionale. Puoi aggiungere un testo personalizzato alla fine di quello preimpostato
       announcement:
         all_day: Se selezionato, verranno visualizzate solo le date dell'intervallo di tempo
