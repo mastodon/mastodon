@@ -13,6 +13,12 @@ hu:
         send_email_notification: A felhasználó magyarázatot kap arra, mi történt a fiókjával
         text_html: Opcionális. A tülk szintaxis használható. Egyszerűsítés végett létre is hozhatsz <a href="%{path}">figyelmeztetéseket</a>
         type_html: Megmondhatod, mi legyen vele <strong>%{acct}</strong>
+        types:
+          disable: A felhasználó nem fogja tudni használni a fiókját, de ettől még nem töröljük azt vagy rejtjük el a tartalmait.
+          none: Ezt használd ahhoz, hogy a felhasználónak figyelmeztetést küldj bármilyen más következmény nélkül.
+          sensitive: Ennek a felhasználónak minden médiatartalmát jelöljük meg szenzitívként.
+          silence: Megakadályozzuk, hogy ez a felhasználó nyilvános láthatóságú tülköt tegyen közzé, elrejtjük a tülkjeit és értesítéseit azok elől, akik nem közvetlen követői.
+          suspend: Minden interakciót megakadályozunk ezzel a fiókkal és töröljük a tartalmát. 30 napon belül még visszacsinálható.
         warning_preset_id: Opcionális. A figyelmeztetés végére saját szöveget is írhatsz
       announcement:
         all_day: Bejelölve csak a dátumok számítanak majd a megadott intervallumból
