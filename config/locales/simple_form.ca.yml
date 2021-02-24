@@ -13,6 +13,9 @@ ca:
         send_email_notification: L'usuari rebrà una explicació del que ha passat amb el seu compte
         text_html: Opcional. Pots utilitzar tota la sintaxi. Pots <a href="%{path}">afegir configuracions predefinides d'avís</a> per a estalviar temps
         type_html: Tria què fer amb <strong>%{acct}</strong>
+        types:
+          disable: Evita que l'usuari faci ús del seu compte però no li esborra o amaga els seus continguts.
+          none: Fes servir això per a enviar un avís al usuari sense desencadenar cap altre acció.
         warning_preset_id: Opcional. Encara pots afegir text personalitzat al final de la configuració predefinida
       announcement:
         all_day: Si es marca, només es mostraran les dates de l'interval de temps
