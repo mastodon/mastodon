@@ -16,6 +16,9 @@ ca:
         types:
           disable: Evita que l'usuari faci ús del seu compte però no li esborra o amaga els seus continguts.
           none: Fes servir això per a enviar un avís al usuari sense desencadenar cap altre acció.
+          sensitive: Obliga a marcar tots els fitxers multi mèdia adjunts com a sensibles.
+          silence: Evita que l'usuari sigui capaç de publicar amb visibilitat publica, amaga els tuts i notificacions de usuaris que no el segueixen.
+          suspend: Evita qualsevol interacció de o a aquest compte i esborra els seus continguts. Reversible en un termini de 30 dies.
         warning_preset_id: Opcional. Encara pots afegir text personalitzat al final de la configuració predefinida
       announcement:
         all_day: Si es marca, només es mostraran les dates de l'interval de temps
