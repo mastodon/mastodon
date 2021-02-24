@@ -1,6 +1,13 @@
 es:
   simple_form:
     hints:
+      admin_account_action:
+        types:
+          disable: Evite que el usuario utilice su cuenta, pero no elimine ni oculte sus contenidos.
+          none: Utilice esto para enviar una advertencia al usuario, sin ejecutar ninguna otra acción.
+          sensitive: Forzar que todos los archivos adjuntos de este usuario sean marcados como sensibles.
+          silence: Evitar que el usuario pueda publicar con visibilidad pública, oculta sus mensajes y notificaciones a personas que no lo siguen.
+          suspend: Evite cualquier interacción desde o hacia esta cuenta y elimine su contenido. Reversible en un plazo de 30 días.
       rule:
         text: Describe una norma o requisito para los usuarios de este servidor. Intenta hacerla corta y sencilla
     labels:
