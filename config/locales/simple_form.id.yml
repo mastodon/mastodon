@@ -13,6 +13,10 @@ id:
         send_email_notification: Pengguna akan menerima penjelasan tentang apa yang terjadi pada akun mereka
         text_html: Opsional. Anda dapat memakai sintaks toot. Anda dapat <a href="%{path}">menambahkan preset peringatan</a> untuk hemat waktu
         type_html: Pilih apa yang perlu dilakukan dengan <strong>%{acct}</strong>
+        types:
+          disable: Cegah pengguna menggunakan akun mereka, tetapi jangan menghapus atau menyembunyikan konten mereka.
+          none: Gunakan ini untuk mengirim peringatan kepada pengguna, tanpa memicu tindakan lainnya.
+          sensitive: Paksa semua lampiran media pengguna sebagai sensitif.
         warning_preset_id: Opsional. Anda tetap dapat menambahkan teks kustom pada akhir preset
       announcement:
         all_day: Saat dicentang, hanya tanggal dalam rentang waktu tertentu yang akan ditampilkan
