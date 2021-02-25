@@ -13,6 +13,10 @@ gl:
         send_email_notification: A usuaria recibirá unha explicación sobre o que lle aconteceu a súa conta
         text_html: Optativo. Podes utilizar formato no toot. Podes <a href="%{path}">engadir avisos preestablecidos</a> para aforrar tempo
         type_html: Escolle que facer con <strong>%{acct}</strong>
+        types:
+          disable: Evitar que a usuaria utilice a súa conta, mais non eliminala ou agochar o seu contido.
+          none: Utiliza esto para darlle un aviso á usuaria, se activar ningunha outra acción.
+          sensitive: Forzar que tódolos ficheiros multimedia das usuarias sexan marcadas como sensibles.
         warning_preset_id: Optativo. Poderás engadir texto personalizado ao final do preestablecido
       announcement:
         all_day: Cando se marca, só serán amosadas as datas do intre de tempo
