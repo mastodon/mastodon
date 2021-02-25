@@ -14,7 +14,10 @@ vi:
         text_html: Tùy chọn. Bạn nên dùng <a href="%{path}">cảnh cáo cài sẵn</a> để tiết kiệm thời gian
         type_html: Chọn làm gì với <strong>%{acct}</strong>
         types:
-          silence: Cấm tài khoản này đăng tút công khai, ẩn tút của họ với những người chưa theo dõi họ.
+          disable: Cấm người này tiếp tục đăng nhập, nhưng không xóa hoặc ẩn tút của họ.
+          none: Sử dụng để gửi cảnh cáo tới tài khoản này, không áp đặt trừng phạt.
+          sensitive: Mọi tập tin của tài khoản này tải lên đều sẽ bị gắn nhãn nhạy cảm.
+          silence: Cấm tài khoản này đăng tút công khai, ẩn tút của họ hiện ra với những người chưa theo dõi họ.
           suspend: Vô hiệu hóa mọi hoạt động của tài khoản này và xóa sạch dữ liệu. Có thể mở lại trong vòng 30 ngày.
         warning_preset_id: Tùy chọn. Bạn vẫn có thể thêm ghi chú riêng
       announcement:
@@ -103,7 +106,7 @@ vi:
         type: Hành động
         types:
           disable: Tạm khóa
-          none: Cấm upload
+          none: Gửi cảnh cáo
           sensitive: Nhạy cảm
           silence: Tạm ẩn
           suspend: Vô hiệu hóa
