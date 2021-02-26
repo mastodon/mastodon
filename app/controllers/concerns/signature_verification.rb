@@ -133,6 +133,7 @@ module SignatureVerification
 
   def verify_body_digest!
     return unless signed_headers.include?('digest')
+    raise SignatureVerificationError, 'Digest header missing' unless request.headers.key?('Digest')
 
     digests = request.headers['Digest'].split(',').map { |digest| digest.split('=', 2) }.map { |key, value| [key.downcase, value] }
     sha256  = digests.assoc('sha-256')
