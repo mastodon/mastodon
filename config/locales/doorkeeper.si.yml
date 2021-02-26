@@ -1,1 +1,29 @@
 si:
+  activerecord:
+    attributes:
+      doorkeeper/application:
+        name: යෙදුමේ නම
+  doorkeeper:
+    applications:
+      buttons:
+        cancel: අවලංගු
+        destroy: විනාශ කරන්න
+        edit: සංස්කරණය
+      confirmations:
+        destroy: ඔබට විශ්වාසද?
+      index:
+        application: යෙදුම
+        name: නම
+        show: පෙන්වන්න
+        title: ඔබගේ යෙදුම්
+      show:
+        actions: ක්‍රියාමාර්ග
+        application_id: අනුග්‍රාහක යතුර
+    authorizations:
+      buttons:
+        authorize: සත්‍යාපනය
+    authorized_applications:
+      confirmations:
+        revoke: ඔබට විශ්වාසද?
+      index:
+        application: යෙදුම
