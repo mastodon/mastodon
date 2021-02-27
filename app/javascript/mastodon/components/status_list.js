@@ -84,26 +84,47 @@ export default class StatusList extends ImmutablePureComponent {
       return <RegenerationIndicator />;
     }
 
-    let scrollableContent = (isLoading || statusIds.size > 0) ? (
-      statusIds.map((statusId, index) => statusId === null ? (
-        <LoadGap
-          key={'gap:' + statusIds.get(index + 1)}
-          disabled={isLoading}
-          maxId={index > 0 ? statusIds.get(index - 1) : null}
-          onClick={onLoadMore}
-        />
-      ) : (
-        <StatusContainer
-          key={statusId}
-          id={statusId}
-          onMoveUp={this.handleMoveUp}
-          onMoveDown={this.handleMoveDown}
-          contextType={timelineId}
-          scrollKey={this.props.scrollKey}
-          showThread
-        />
-      ))
-    ) : null;
+    let scrollableContent = [];
+
+    if (isLoading || statusIds.size > 0) {
+      for (var index = 0; index < statusIds.size; index++) {
+
+        if (index % 4 == 0 && index != 0) {
+          scrollableContent.push(
+            <div
+              key={'ad'+statusId}>
+              dasas
+            </div>
+          );
+        }
+
+        var statusId = statusIds.get(index);
+        if (statusId === null) {
+          scrollableContent.push(
+            <LoadGap
+              key={'gap:' + statusIds.get(index + 1)}
+              disabled={isLoading}
+              maxId={index > 0 ? statusIds.get(index - 1) : null}
+              onClick={onLoadMore}
+            />
+          );
+        } else {
+          scrollableContent.push(
+            <StatusContainer
+              key={statusId}
+              id={statusId}
+              onMoveUp={this.handleMoveUp}
+              onMoveDown={this.handleMoveDown}
+              contextType={timelineId}
+              scrollKey={this.props.scrollKey}
+              showThread
+            />
+          )
+        }
+      }
+    } else {
+      scrollableContent = null;
+    }
 
     if (scrollableContent && featuredStatusIds) {
       scrollableContent = featuredStatusIds.map(statusId => (
