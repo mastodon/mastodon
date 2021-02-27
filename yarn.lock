@@ -100,17 +100,6 @@
     browserslist "^4.14.5"
     semver "7.0.0"
 
-"@babel/helper-create-class-features-plugin@^7.12.13":
-  version "7.12.13"
-  resolved "https://registry.yarnpkg.com/@babel/helper-create-class-features-plugin/-/helper-create-class-features-plugin-7.12.13.tgz#0f1707c2eec1a4604f2a22a6fb209854ef2a399a"
-  integrity sha512-Vs/e9wv7rakKYeywsmEBSRC9KtmE7Px+YBlESekLeJOF0zbGUicGfXSNi3o+tfXSNS48U/7K9mIOOCR79Cl3+Q==
-  dependencies:
-    "@babel/helper-function-name" "^7.12.13"
-    "@babel/helper-member-expression-to-functions" "^7.12.13"
-    "@babel/helper-optimise-call-expression" "^7.12.13"
-    "@babel/helper-replace-supers" "^7.12.13"
-    "@babel/helper-split-export-declaration" "^7.12.13"
-
 "@babel/helper-create-class-features-plugin@^7.13.0":
   version "7.13.0"
   resolved "https://registry.yarnpkg.com/@babel/helper-create-class-features-plugin/-/helper-create-class-features-plugin-7.13.0.tgz#28d04ad9cfbd1ed1d8b988c9ea7b945263365846"
@@ -352,13 +341,13 @@
     "@babel/helper-create-class-features-plugin" "^7.13.0"
     "@babel/helper-plugin-utils" "^7.13.0"
 
-"@babel/plugin-proposal-decorators@^7.12.13":
-  version "7.12.13"
-  resolved "https://registry.yarnpkg.com/@babel/plugin-proposal-decorators/-/plugin-proposal-decorators-7.12.13.tgz#d4c89b40c2b7a526b0d394de4f4def36191e413e"
-  integrity sha512-x2aOr5w4ARJoYHFKoG2iEUL/Xe99JAJXjAasHijXp3/KgaetJXGE62SmHgsW3Tia/XUT5AxF2YC0F+JyhPY/0Q==
+"@babel/plugin-proposal-decorators@^7.13.5":
+  version "7.13.5"
+  resolved "https://registry.yarnpkg.com/@babel/plugin-proposal-decorators/-/plugin-proposal-decorators-7.13.5.tgz#d28071457a5ba8ee1394b23e38d5dcf32ea20ef7"
+  integrity sha512-i0GDfVNuoapwiheevUOuSW67mInqJ8qw7uWfpjNVeHMn143kXblEy/bmL9AdZ/0yf/4BMQeWXezK0tQIvNPqag==
   dependencies:
-    "@babel/helper-create-class-features-plugin" "^7.12.13"
-    "@babel/helper-plugin-utils" "^7.12.13"
+    "@babel/helper-create-class-features-plugin" "^7.13.0"
+    "@babel/helper-plugin-utils" "^7.13.0"
     "@babel/plugin-syntax-decorators" "^7.12.13"
 
 "@babel/plugin-proposal-dynamic-import@^7.12.17":
