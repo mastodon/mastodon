@@ -69,9 +69,54 @@ bg:
     posts:
       one: Публикация
       other: Публикации
+    posts_tab_heading: Публикации
+    posts_with_replies: Публикации и отговори
+    reserved_username: Потребителското име е запазено
+    roles:
+      admin: Админ
+      bot: Бот
+      group: Група
+      moderator: Мод
+    unavailable: Профилът не е наличен
     unfollow: Не следвай
   admin:
+    account_actions:
+      action: Изпълняване на действие
+    account_moderation_notes:
+      create: Оставяне на бележка
+      created_msg: Бележката за модерация е създадена успешно!
+      delete: Изтриване
     accounts:
+      add_email_domain_block: Блокиране на имейл домейн
+      approve: Одобряване
+      approve_all: Одобряване на всички
+      are_you_sure: Сигурни ли сте?
+      avatar: Аватар
+      by_domain: Домейн
+      change_email:
+        changed_msg: Имейлът на акаунта беше успешно променен!
+        current_email: Текущ имейл
+        label: Промяна на имейл
+        new_email: Нов имейл
+        submit: Промяна на имейл
+        title: Промяна на имейл за %{username}
+      confirm: Потвърждаване
+      confirmed: Потвърдено
+      confirming: Потвърждаване
+      delete: Изтриване на данни
+      deleted: Изтрито
+      demote: Понижаване
+      destroyed_msg: "Данните на %{username} вече са на опашка за незабавно изтриване"
+      disable: Замразяване
+      disable_two_factor_authentication: Изключване на 2FA
+      disabled: Замразено
+      display_name: Показвано име
+      domain: Домейн
+      edit: Редакция
+      email: Имейл
+      email_status: Състояние на имейл
+      enable: Размразяване
+      enabled: Включено
       follows: Последвания
       header: Заглавна част
       inbox_url: Входящ URL
@@ -111,6 +156,28 @@ bg:
       rejected_msg: Успешно отхвърлена заявка за регистрация на %{username}
       remove_avatar: Премахване на аватар
       remove_header: Премахване на заглавна част
+      unsubscribe: Отписване
+      username: Потребителско име
+      warn: Предупреждение
+      web: Уеб
+    action_logs:
+      action_types:
+        confirm_user: Потвърждаване на потребител
+        create_account_warning: Създаване на предупреждение
+        create_announcement: Създаване на оповестяване
+        create_custom_emoji: Създаване на персонализирано емоджи
+        create_ip_block: Създаване на IP правило
+        demote_user: Понижаване на потребител
+        destroy_announcement: Изтриване на оповестяване
+        destroy_custom_emoji: Изтриване на персонализирано емоджи
+        destroy_status: Изтриване на статус
+        disable_2fa_user: Деактивиране на 2FA
+        disable_custom_emoji: Деактивиране на персонализирано емоджи
+        disable_user: Деактивиране на потребител
+        enable_custom_emoji: Активиране на персонализирано емоджи
+        enable_user: Активиране на потребител
+        promote_user: Повишаване на потребител
+        remove_avatar_user: Премахване на аватар
   application_mailer:
     settings: 'Промяна на предпочитанията за e-mail: %{link}'
     view: 'Преглед:'
