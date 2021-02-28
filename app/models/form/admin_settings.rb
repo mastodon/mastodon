@@ -14,6 +14,7 @@ class Form::AdminSettings
     registrations_mode
     closed_registrations_message
     open_deletion
+    timeline_injection_rate
     timeline_preview
     show_staff_badge
     enable_bootstrap_timeline_accounts
@@ -72,6 +73,7 @@ class Form::AdminSettings
   validates :bootstrap_timeline_accounts, existing_username: { multiple: true }
   validates :show_domain_blocks, inclusion: { in: %w(disabled users all) }
   validates :show_domain_blocks_rationale, inclusion: { in: %w(disabled users all) }
+  validates :timeline_injection_rate, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
 
   def initialize(_attributes = {})
     super

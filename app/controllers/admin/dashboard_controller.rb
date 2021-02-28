@@ -13,6 +13,7 @@ module Admin
       @single_user_mode      = Rails.configuration.x.single_user_mode
       @registrations_enabled = Setting.registrations_mode != 'none'
       @deletions_enabled     = Setting.open_deletion
+      @timeline_injection_rate= Setting.timeline_injection_rate
       @invites_enabled       = Setting.min_invite_role == 'user'
       @search_enabled        = Chewy.enabled?
       @version               = Mastodon::Version.to_s
