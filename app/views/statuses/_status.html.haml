@@ -23,7 +23,7 @@
 .entry{ class: entry_classes }
 
   - if status.reblog?
-    .status__prepend
+    .status__prepend{ class: "status__prepend-#{status.visibility}" }
       .status__prepend-icon-wrapper
         %i.status__prepend-icon.fa.fa-fw.fa-retweet
       %span
@@ -31,7 +31,7 @@
           %bdi
             %strong.emojify= display_name(status.account, custom_emojify: true)
         = t('stream_entries.reblogged')
-      = visibility_icon status
+      = visibility_icon status, class: 'status__prepend-visibility-icon'
   - elsif pinned
     .status__prepend
       .status__prepend-icon-wrapper
