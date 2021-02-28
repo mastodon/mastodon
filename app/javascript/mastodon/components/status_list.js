@@ -92,15 +92,17 @@ export default class StatusList extends ImmutablePureComponent {
     if (isLoading || statusIds.size > 0) {
       for (let index = 0; index < statusIds.size; index++) {
 
-        if (adInjectionRate > 0 && index % adInjectionRate === 0 && index !== 0) {
-          scrollableContent.push(
-            <RootTimelineInjection type={AD_INJECTION_COMPONENT} key={'ad'+statusId} />,
-          );
-        } else if (timelineInjectionRate > 0 && index % timelineInjectionRate === 0 && index !== 0) {
-          scrollableContent.push(
-            <div key={'inject'+statusId}>
-            </div>,
-          );
+        if (this.props.timelineId === 'home') {
+          if (adInjectionRate > 0 && index % adInjectionRate === 0 && index !== 0) {
+            scrollableContent.push(
+              <RootTimelineInjection type={AD_INJECTION_COMPONENT} key={'ad' + statusId}/>,
+            );
+          } else if (timelineInjectionRate > 0 && index % timelineInjectionRate === 0 && index !== 0) {
+            scrollableContent.push(
+              <div key={'inject' + statusId}>
+              </div>,
+            );
+          }
         }
 
         const statusId = statusIds.get(index);
