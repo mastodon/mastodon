@@ -15,6 +15,10 @@ class Form::AdminSettings
     closed_registrations_message
     open_deletion
     timeline_injection_rate
+    ad_injection_rate
+    google_ad_client
+    google_ad_slot
+    google_ad_layout_key
     timeline_preview
     show_staff_badge
     enable_bootstrap_timeline_accounts
@@ -74,6 +78,7 @@ class Form::AdminSettings
   validates :show_domain_blocks, inclusion: { in: %w(disabled users all) }
   validates :show_domain_blocks_rationale, inclusion: { in: %w(disabled users all) }
   validates :timeline_injection_rate, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+  validates :ad_injection_rate, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
 
   def initialize(_attributes = {})
     super

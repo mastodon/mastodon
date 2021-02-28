@@ -204,6 +204,7 @@ Rails.application.routes.draw do
     end
 
     resource :settings, only: [:edit, :update]
+    resource :timeline_injection, only: [:edit, :update]
     resources :site_uploads, only: [:destroy]
 
     resources :invites, only: [:index, :create, :destroy] do

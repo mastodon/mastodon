@@ -31,9 +31,6 @@
   .fields-group
     = f.input :site_description, wrapper: :with_block_label, as: :text, label: t('admin.settings.site_description.title'), hint: t('admin.settings.site_description.desc_html'), input_html: { rows: 2 }
 
-  .fields-group
-    = f.input :timeline_injection_rate, wrapper: :with_block_label, as: :integer, label: t('admin.settings.timeline_injection_rate.title'), hint: t('admin.settings.timeline_injection_rate.desc_html'), input_html: { rows: 2 }
-
   .fields-row
     .fields-row__column.fields-row__column-6.fields-group
       = f.input :thumbnail, as: :file, wrapper: :with_block_label, label: t('admin.settings.thumbnail.title'), hint: site_upload_delete_hint(t('admin.settings.thumbnail.desc_html'), :thumbnail)

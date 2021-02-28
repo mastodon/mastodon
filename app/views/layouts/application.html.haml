@@ -35,6 +35,9 @@
 
     = yield :header_tags
 
+    - if Setting.ad_injection_rate&.to_i > 0
+      %script{async: true, src: 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js'}
+
   %body{ class: body_classes }
     = content_for?(:content) ? yield(:content) : yield
 
