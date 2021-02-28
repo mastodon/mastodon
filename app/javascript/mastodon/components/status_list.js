@@ -99,7 +99,6 @@ export default class StatusList extends ImmutablePureComponent {
         } else if (timelineInjectionRate > 0 && index % timelineInjectionRate === 0 && index !== 0) {
           scrollableContent.push(
             <div key={'inject'+statusId}>
-              This is an injected
             </div>,
           );
         }

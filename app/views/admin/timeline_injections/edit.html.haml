@@ -11,11 +11,6 @@
   = render 'shared/error_messages', object: @admin_settings
 
   .fields-group
-    = f.input :timeline_injection_rate, wrapper: :with_block_label, as: :integer, label: t('admin.settings.timeline_injection_rate.title'), hint: t('admin.settings.timeline_injection_rate.desc_html'), input_html: { rows: 2 }
-
-  %hr.spacer/
-
-  .fields-group
     = f.input :ad_injection_rate, wrapper: :with_block_label, as: :integer, label: t('admin.timeline_injection.ad_injection_rate.title'), hint: t('admin.timeline_injection.ad_injection_rate.desc_html'), input_html: { rows: 1 }
     = f.input :google_ad_client, wrapper: :with_block_label, as: :text, label: t('admin.timeline_injection.google_ad_client.title'), hint: t('admin.timeline_injection.google_ad_client.desc_html'), input_html: { rows: 1 }
     = f.input :google_ad_slot, wrapper: :with_block_label, as: :text, label: t('admin.timeline_injection.google_ad_slot.title'), hint: t('admin.timeline_injection.google_ad_slot.desc_html'), input_html: { rows: 1 }
