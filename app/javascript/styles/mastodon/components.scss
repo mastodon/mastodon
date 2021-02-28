@@ -1048,7 +1048,7 @@
       color: $light-text-color;
     }
 
-    .status__display-name {
+    .status__display-name, .status__display-name__link, {
       color: $inverted-text-color;
     }
 
@@ -1091,7 +1091,7 @@
   padding: 0 4px;
 }
 
-.status__display-name {
+.status__display-name, .status__display-name__link, {
   color: $dark-text-color;
 }
 
@@ -1536,6 +1536,7 @@ a .account__avatar {
 }
 
 .status__display-name,
+.status__display-name__link,
 .account__display-name {
   strong {
     color: $primary-text-color;
@@ -1549,9 +1550,11 @@ a .account__avatar {
 }
 
 .status__display-name,
+.status__display-name__link,
 .reply-indicator__display-name,
 .detailed-status__display-name,
 a.account__display-name {
+  text-decoration: none;
   &:hover strong {
     text-decoration: underline;
   }
@@ -7162,6 +7165,13 @@ noscript {
       pointer-events: none;
     }
   }
+}
+
+.detailed-status__wrapper {
+  margin: 16px 16px 16px 16px;
+  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.16);
+  border-radius: 8px;
+  overflow: hidden;
 }
 
 .picture-in-picture {
