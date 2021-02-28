@@ -7,6 +7,7 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import LoadGap from './load_gap';
 import ScrollableList from './scrollable_list';
 import RegenerationIndicator from 'mastodon/components/regeneration_indicator';
+import { timelineInjectionRate } from '../initial_state';
 
 export default class StatusList extends ImmutablePureComponent {
 
@@ -89,12 +90,14 @@ export default class StatusList extends ImmutablePureComponent {
     if (isLoading || statusIds.size > 0) {
       for (let index = 0; index < statusIds.size; index++) {
 
-        if (index % 4 === 0 && index !== 0) {
-          scrollableContent.push(
-            <div key={'ad'+statusId}>
-              This is an ad
-            </div>,
-          );
+        if (timelineInjectionRate > 0) {
+          if (index % timelineInjectionRate === 0 && index !== 0) {
+            scrollableContent.push(
+              <div key={'inject'+statusId}>
+                This is an ad
+              </div>,
+            );
+          }
         }
 
         const statusId = statusIds.get(index);

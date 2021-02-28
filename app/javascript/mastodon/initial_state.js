@@ -4,6 +4,7 @@ const initialState = element && JSON.parse(element.textContent);
 const getMeta = (prop) => initialState && initialState.meta && initialState.meta[prop];
 
 export const reduceMotion = getMeta('reduce_motion');
+export const timelineInjectionRate = getMeta('timeline_injection_rate');
 export const autoPlayGif = getMeta('auto_play_gif');
 export const displayMedia = getMeta('display_media');
 export const expandSpoilers = getMeta('expand_spoilers');
