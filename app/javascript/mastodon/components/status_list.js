@@ -87,18 +87,17 @@ export default class StatusList extends ImmutablePureComponent {
     let scrollableContent = [];
 
     if (isLoading || statusIds.size > 0) {
-      for (var index = 0; index < statusIds.size; index++) {
+      for (let index = 0; index < statusIds.size; index++) {
 
-        if (index % 4 == 0 && index != 0) {
+        if (index % 4 === 0 && index !== 0) {
           scrollableContent.push(
-            <div
-              key={'ad'+statusId}>
-              dasas
-            </div>
+            <div key={'ad'+statusId}>
+              This is an ad
+            </div>,
           );
         }
 
-        var statusId = statusIds.get(index);
+        const statusId = statusIds.get(index);
         if (statusId === null) {
           scrollableContent.push(
             <LoadGap
@@ -106,7 +105,7 @@ export default class StatusList extends ImmutablePureComponent {
               disabled={isLoading}
               maxId={index > 0 ? statusIds.get(index - 1) : null}
               onClick={onLoadMore}
-            />
+            />,
           );
         } else {
           scrollableContent.push(
@@ -118,8 +117,8 @@ export default class StatusList extends ImmutablePureComponent {
               contextType={timelineId}
               scrollKey={this.props.scrollKey}
               showThread
-            />
-          )
+            />,
+          );
         }
       }
     } else {
