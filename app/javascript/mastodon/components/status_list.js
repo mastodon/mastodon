@@ -93,7 +93,7 @@ export default class StatusList extends ImmutablePureComponent {
 
         if (adInjectionRate > 0 && index % adInjectionRate === 0 && index !== 0) {
           scrollableContent.push(
-            <BaseTimelineInjection />,
+            <BaseTimelineInjection key={'ad'+statusId} />,
           );
         } else if (timelineInjectionRate > 0 && index % timelineInjectionRate === 0 && index !== 0) {
           scrollableContent.push(
