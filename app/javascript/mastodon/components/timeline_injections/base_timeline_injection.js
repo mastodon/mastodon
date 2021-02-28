@@ -4,12 +4,13 @@ import classNames from 'classnames';
 
 class BaseTimelineInjection extends ImmutablePureComponent {
 
+  static propTypes = {
+
+  }
+
+
   render() {
-    return (<div className={classNames('status__wrapper', 'status__wrapper-public')}>
-      <div className={classNames('status', 'status-public')}>
-        Advertisement
-      </div>
-    </div>);
+    return (<div />);
   }
 
 }

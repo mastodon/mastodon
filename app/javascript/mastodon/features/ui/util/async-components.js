@@ -153,3 +153,7 @@ export function Audio () {
 export function Directory () {
   return import(/* webpackChunkName: "features/directory" */'../../directory');
 }
+
+export function AdTimelineInjection() {
+  return import(/* webpackChunkName: "components/ad_timeline_injection" */'../../../components/timeline_injections/ad_timeline_injection');
+}

@@ -8,7 +8,8 @@ import LoadGap from './load_gap';
 import ScrollableList from './scrollable_list';
 import RegenerationIndicator from 'mastodon/components/regeneration_indicator';
 import { timelineInjectionRate, adInjectionRate } from '../initial_state';
-import BaseTimelineInjection from './timeline_injections/base_timeline_injection';
+import RootTimelineInjection from './timeline_injections/root_timeline_injection';
+import { AD_INJECTION_COMPONENT } from '../initial_state';
 
 export default class StatusList extends ImmutablePureComponent {
 
@@ -93,7 +94,7 @@ export default class StatusList extends ImmutablePureComponent {
 
         if (adInjectionRate > 0 && index % adInjectionRate === 0 && index !== 0) {
           scrollableContent.push(
-            <BaseTimelineInjection key={'ad'+statusId} />,
+            <RootTimelineInjection type={AD_INJECTION_COMPONENT} key={'ad'+statusId} />,
           );
         } else if (timelineInjectionRate > 0 && index % timelineInjectionRate === 0 && index !== 0) {
           scrollableContent.push(

@@ -1013,15 +1013,17 @@
   }
 }
 
-.status {
-  padding: 8px 10px;
-  padding-left: 68px;
-  position: relative;
-  min-height: 54px;
+.card_layout {
   border-radius: 8px;
-  cursor: auto;
   background: $ui-base-color;
   box-shadow: 0 3px 3px rgba(0,0,0,0.16);
+}
+
+.status {
+  padding: 15px;
+  position: relative;
+  min-height: 54px;
+  cursor: auto;
 
   @supports (-ms-overflow-style: -ms-autohiding-scrollbar) {
     // Add margin to avoid Edge auto-hiding scrollbar appearing over content.

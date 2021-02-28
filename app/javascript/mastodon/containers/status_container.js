@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Status from '../components/status';
-import MissingIndicator from '../components/missing_indicator';
 import { makeGetStatus, makeGetPictureInPicture } from '../selectors';
 import {
   replyCompose,

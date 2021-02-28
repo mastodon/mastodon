@@ -29,4 +29,6 @@ export const title = getMeta('title');
 export const cropImages = getMeta('crop_images');
 export const disableSwiping = getMeta('disable_swiping');
 
+export const AD_INJECTION_COMPONENT = 'AD_INJECTION_COMPONENT';
+
 export default initialState;
