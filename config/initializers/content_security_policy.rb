@@ -21,7 +21,7 @@ Rails.application.config.content_security_policy do |p|
   p.default_src     :none
   p.frame_ancestors :none
   p.font_src        :self, assets_host
-  p.img_src         :self, :https, :data, :blob, assets_host
+  p.img_src         :self, :https, :data, :blob, assets_host, "https://*.googlesyndication.com"
   p.style_src       :self, assets_host
   p.media_src       :self, :https, :data, assets_host
   p.frame_src       :self, :https
@@ -30,13 +30,13 @@ Rails.application.config.content_security_policy do |p|
   if Rails.env.development?
     webpacker_urls = %w(ws http).map { |protocol| "#{protocol}#{Webpacker.dev_server.https? ? 's' : ''}://#{Webpacker.dev_server.host_with_port}" }
 
-    p.connect_src :self, :data, :blob, assets_host, media_host, Rails.configuration.x.streaming_api_base_url, *webpacker_urls
-    p.script_src  :self, :unsafe_inline, :unsafe_eval, assets_host
+    p.connect_src :self, :data, :blob, assets_host, media_host, Rails.configuration.x.streaming_api_base_url, *webpacker_urls, "https://*.googlesyndication.com"
+    p.script_src  :self, :unsafe_inline, :unsafe_eval, assets_host, "https://*.googlesyndication.com"
     p.child_src   :self, :blob, assets_host
     p.worker_src  :self, :blob, assets_host
   else
-    p.connect_src :self, :data, :blob, assets_host, media_host, Rails.configuration.x.streaming_api_base_url
-    p.script_src  :self, assets_host
+    p.connect_src :self, :data, :blob, assets_host, media_host, Rails.configuration.x.streaming_api_base_url, "https://*.googlesyndication.com"
+    p.script_src  :self, assets_host, "https://*.googlesyndication.com"
     p.child_src   :self, :blob, assets_host
     p.worker_src  :self, :blob, assets_host
   end
