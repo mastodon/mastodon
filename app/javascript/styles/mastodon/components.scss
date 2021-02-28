@@ -1018,8 +1018,10 @@
   padding-left: 68px;
   position: relative;
   min-height: 54px;
-  border-bottom: 1px solid lighten($ui-base-color, 8%);
+  border-radius: 8px;
   cursor: auto;
+  background: $ui-base-color;
+  box-shadow: 0 3px 3px rgba(0,0,0,0.16);
 
   @supports (-ms-overflow-style: -ms-autohiding-scrollbar) {
     // Add margin to avoid Edge auto-hiding scrollbar appearing over content.
@@ -1080,7 +1082,7 @@
 .status__relative-time,
 .notification__relative_time {
   color: $dark-text-color;
-  float: right;
+  //float: right;
   font-size: 14px;
   padding-bottom: 1px;
 }
@@ -1094,9 +1096,16 @@
 }
 
 .status__info .status__display-name {
-  display: block;
+  display: flex;
   max-width: 100%;
   padding-right: 25px;
+
+}
+.status__display-name-title {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  margin-left: 8px;
 }
 
 .status__info {
@@ -1163,6 +1172,7 @@
 .status__action-bar {
   align-items: center;
   display: flex;
+  justify-content: space-around;
   margin-top: 8px;
 }
 
@@ -1589,9 +1599,6 @@ a.account__display-name {
 
 .status__avatar {
   height: 48px;
-  left: 10px;
-  position: absolute;
-  top: 10px;
   width: 48px;
 }
 
@@ -2088,9 +2095,7 @@ a.account__display-name {
   display: flex;
   flex-direction: column;
 
-  > .scrollable {
-    background: $ui-base-color;
-  }
+  > .scrollable {}
 }
 
 .ui {
@@ -2295,7 +2300,7 @@ a.account__display-name {
     }
 
     .status {
-      padding: 15px 15px 15px (48px + 15px * 2);
+      padding: 15px 15px 15px 15px;
       min-height: 48px + 2px;
 
       &__avatar {
@@ -2304,7 +2309,7 @@ a.account__display-name {
       }
 
       &__content {
-        padding-top: 5px;
+        padding-top: 8px;
       }
 
       &__prepend {
@@ -7142,6 +7147,7 @@ noscript {
 .notification,
 .status__wrapper {
   position: relative;
+  margin: 16px 16px 16px 16px;
 
   &.unread {
     &::before {

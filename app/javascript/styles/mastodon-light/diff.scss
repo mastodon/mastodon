@@ -31,8 +31,6 @@ html {
 .column-inline-form,
 .error-column,
 .regeneration-indicator {
-  background: $white;
-  border: 1px solid lighten($ui-base-color, 8%);
   border-top: 0;
 }
 
@@ -264,11 +262,16 @@ html {
 // Change the background colors of status__content__spoiler-link
 .reply-indicator__content .status__content__spoiler-link,
 .status__content .status__content__spoiler-link {
-  background: $ui-base-color;
+  background: $white;
 
   &:hover {
     background: lighten($ui-base-color, 4%);
   }
+}
+
+.status {
+  background: $white;
+
 }
 
 // Change the background colors of media and video spoilers
