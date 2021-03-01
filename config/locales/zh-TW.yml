@@ -855,11 +855,25 @@ zh-TW:
     copy: 複製
     delete: 刪除
     save_changes: 儲存修改
+  identity_proofs:
+    remove: 移除帳號證明
+    removed: 成功移除帳號證明
+    status: 驗證狀態
+    view_proof: 檢視證明
   imports:
+    errors:
+      over_rows_processing_limit: 含有超過 %{count} 行
+    modes:
+      merge: 合併
+      merge_long: 保留現有記錄並新增紀錄
+      overwrite: 覆蓋
+      overwrite_long: 以新的紀錄覆蓋目前紀錄
     preface: 您可以在此匯入您在其他伺服器所匯出的資料檔，包括關注的使用者、封鎖的使用者名單。
     success: 資料檔上傳成功，正在匯入，請稍候
     types:
       blocking: 您封鎖的使用者名單
+      bookmarks: 我的最愛
+      domain_blocking: 域名封鎖名單
       following: 您關注的使用者名單
       muting: 您靜音的使用者名單
     upload: 上傳
@@ -877,6 +891,8 @@ zh-TW:
     expires_in_prompt: 永不過期
     generate: 建立邀請連結
     invited_by: '你的邀請人是：'
+    max_uses:
+      other: "%{count} 則"
     max_uses_prompt: 無限制
     prompt: 建立分享連結，邀請他人在本伺服器註冊
     table:
@@ -889,9 +905,21 @@ zh-TW:
   media_attachments:
     validations:
       images_and_video: 無法在已有圖片的文章上加入影片
+      not_ready: 修但幾勒！不能附加未完成處理的檔案欸，咁按呢？
       too_many: 無法加入超過 4 個檔案
   migrations:
     acct: 新帳戶的 使用者名稱@站點網域
+    cancel: 取消重導向
+    cancel_explanation: 取消重導向將會重新啓用目前帳號，但不會還原已移至該帳號的關注者。
+    cancelled_msg: 成功取消重導向。
+    errors:
+      already_moved: 與已經重導向的帳戶相同
+      missing_also_known_as: 不是這個帳號的別名
+      move_to_self: 不能是目前帳號
+      not_found: 找不到
+      on_cooldown: 你正在處於冷卻（CD）狀態
+    followers_count: 轉移時的追隨者
+    incoming_migrations: 自另一個帳號轉移
     proceed_with_move: 移動關注者
     redirected_msg: 您的帳號現在指向 %{acct}
   moderation:
