@@ -216,6 +216,7 @@ ar:
       time_in_queue: في قائمة الانتظار %{time}
       title: الحسابات
       unconfirmed_email: البريد الإلكتروني غير مؤكد
+      undo_sensitized: التراجع عن حساسية
       undo_silenced: رفع الصمت
       undo_suspension: إلغاء تعليق الحساب
       unsubscribe: إلغاء الاشتراك
@@ -231,9 +232,11 @@ ar:
         create_account_warning: إنشاء تحذير
         create_announcement: إنشاء إعلان
         create_custom_emoji: إنشاء إيموجي مخصص
+        create_ip_block: إنشاء قاعدة IP جديدة
         demote_user: إنزال رتبة المستخدم
         destroy_announcement: احذف الإعلان
         destroy_custom_emoji: احذف الإيموجي المخصص
+        destroy_ip_block: حذف قانون IP
         destroy_status: حذف المنشور
         disable_2fa_user: تعطيل 2FA
         disable_custom_emoji: تعطيل الإيموجي المخصص
@@ -514,6 +517,8 @@ ar:
       comment:
         none: لا شيء
       created_at: ذكرت
+      forwarded: أُعيد توجيهه
+      forwarded_to: أُعيد توجيهه إلى %{domain}
       mark_as_resolved: اعتبار الشكوى كمحلولة
       mark_as_unresolved: علم كغير محلولة
       notes:
@@ -1304,3 +1309,6 @@ ar:
   verification:
     explanation_html: 'يمكنك <strong>التحقق من نفسك كمالك لروابط البيانات التعريفية على صفحتك الشخصية</strong>. لذلك، يجب أن يحتوي الموقع المقترِن على رابط إلى صفحتك التعريفية الشخصية على ماستدون. الرابط الخلفي <strong>يجب أن</strong> يحتوي على رمز <code>rel="me"</code>. محتوى النص في الرابط غير مهم. على سبيل المثال:'
     verification: التحقق
+  webauthn_credentials:
+    invalid_credential: مفتاح الأمان غير صالح
+    nickname_hint: أدخل اسم مستعار لمفتاح الأمان الجديد الخاص بك
