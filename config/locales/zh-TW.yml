@@ -629,8 +629,10 @@ zh-TW:
         title: 時間軸預覽
       title: 網站設定
       trendable_by_default:
+        desc_html: 影響此前並未被禁用的標籤
         title: 允許熱門的主題標籤直接顯示於趨勢區，不需經過審核
       trends:
+        desc_html: 公開目前炎上的已審核標籤
         title: 趨勢主題標籤
     site_uploads:
       delete: 刪除上傳的檔案
@@ -652,12 +654,14 @@ zh-TW:
     tags:
       accounts_today: 本日不重複使用者數
       accounts_week: 本週不重複使用者數
+      breakdown: 根據來源分類本日使用情況
       context: 上下文
       directory: 在目錄中
       in_directory: "目錄中有 %{count} 個"
       last_active: 上次活躍
       most_popular: 最熱門
       most_recent: 最近
+      name: 主題標籤
       review: 審核嘟文
       reviewed: 已審核
       title: 主題標籤
@@ -669,7 +673,11 @@ zh-TW:
     warning_presets:
       add_new: 新增
       delete: 刪除
+      edit_preset: 編輯預設警告
+      title: 管理預設警告
   admin_mailer:
+    new_pending_account:
+      body: 以下是新帳號的詳細資訊。您可以同意或拒絕這項申請。
     new_report:
       body: "%{reporter} 檢舉了使用者 %{target}"
       body_remote: 來自 %{domain} 的使用者檢舉了使用者 %{target}
