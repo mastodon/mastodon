@@ -4,16 +4,19 @@ require 'resolv'
 
 class EmailMxValidator < ActiveModel::Validator
   def validate(user)
+    return if user.email.blank?
+
     domain = get_domain(user.email)
 
-    if domain.nil?
-      user.errors.add(:email, I18n.t('users.invalid_email'))
+    if domain.blank?
+      user.errors.add(:email, :invalid)
     else
       ips, hostnames = resolve_mx(domain)
+
       if ips.empty?
-        user.errors.add(:email, I18n.t('users.invalid_email_mx'))
+        user.errors.add(:email, :unreachable)
       elsif on_blacklist?(hostnames + ips)
-        user.errors.add(:email, I18n.t('users.blocked_email_provider'))
+        user.errors.add(:email, :blocked)
       end
     end
   end

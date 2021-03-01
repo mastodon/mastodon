@@ -2,7 +2,7 @@
 
 class NoteLengthValidator < ActiveModel::EachValidator
   def validate_each(record, attribute, value)
-    record.errors.add(attribute, I18n.t('statuses.over_character_limit', max: options[:maximum])) if too_long?(value)
+    record.errors.add(attribute, :too_long, message: I18n.t('statuses.over_character_limit', max: options[:maximum]), count: options[:maximum]) if too_long?(value)
   end
 
   private
