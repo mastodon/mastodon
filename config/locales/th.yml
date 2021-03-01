@@ -117,6 +117,7 @@ th:
       inbox_url: URL กล่องขาเข้า
       invite_request_text: เหตุผลสำหรับการเข้าร่วม
       invited_by: เชิญโดย
+      ip: IP
       joined: เข้าร่วมเมื่อ
       location:
         all: ทั้งหมด
@@ -126,6 +127,7 @@ th:
       login_status: สถานะการเข้าสู่ระบบ
       media_attachments: ไฟล์แนบสื่อ
       memorialize: เปลี่ยนเป็นอนุสรณ์
+      memorialized: เป็นอนุสรณ์แล้ว
       memorialized_msg: เปลี่ยน %{username} เป็นบัญชีอนุสรณ์สำเร็จ
       moderation:
         active: ใช้งานอยู่
@@ -167,6 +169,8 @@ th:
       search: ค้นหา
       search_same_email_domain: ผู้ใช้อื่น ๆ ที่มีโดเมนอีเมลเดียวกัน
       search_same_ip: ผู้ใช้อื่น ๆ ที่มี IP เดียวกัน
+      sensitive: ละเอียดอ่อน
+      sensitized: ทำเครื่องหมายว่าละเอียดอ่อนแล้ว
       shared_inbox_url: URL กล่องขาเข้าที่แบ่งปัน
       show:
         created_reports: รายงานที่สร้าง
@@ -179,6 +183,7 @@ th:
       time_in_queue: กำลังรออยู่ในคิว %{time}
       title: บัญชี
       unconfirmed_email: อีเมลที่ยังไม่ได้ยืนยัน
+      undo_sensitized: เลิกทำการละเอียดอ่อน
       undo_silenced: เลิกทำการทำให้เงียบ
       undo_suspension: เลิกทำการระงับ
       unsubscribe: เลิกบอกรับ
@@ -495,6 +500,8 @@ th:
       updated_at: อัปเดตเมื่อ
     rules:
       add_new: เพิ่มกฎ
+      edit: แก้ไขกฎ
+      title: กฎของเซิร์ฟเวอร์
     settings:
       bootstrap_timeline_accounts:
         title: การติดตามเริ่มต้นสำหรับผู้ใช้ใหม่
@@ -581,12 +588,15 @@ th:
         nsfw_off: ทำเครื่องหมายว่าไม่ละเอียดอ่อน
         nsfw_on: ทำเครื่องหมายว่าละเอียดอ่อน
       deleted: ลบแล้ว
+      failed_to_execute: ไม่สามารถปฏิบัติการ
       media:
         title: สื่อ
       no_media: ไม่มีสื่อ
       title: สถานะบัญชี
       with_media: มีสื่อ
     tags:
+      accounts_today: การใช้งานที่ไม่ซ้ำกันในวันนี้
+      accounts_week: การใช้งานที่ไม่ซ้ำกันในสัปดาห์นี้
       context: บริบท
       directory: ในไดเรกทอรี
       in_directory: "%{count} ในไดเรกทอรี"
@@ -664,6 +674,9 @@ th:
     migrate_account: ย้ายไปยังบัญชีอื่น
     migrate_account_html: หากคุณต้องการเปลี่ยนเส้นทางบัญชีนี้ไปยังบัญชีอื่น คุณสามารถ <a href="%{path}">กำหนดค่าบัญชีที่นี่</a>
     or_log_in_with: หรือเข้าสู่ระบบด้วย
+    providers:
+      cas: CAS
+      saml: SAML
     register: ลงทะเบียน
     registration_closed: "%{instance} ไม่ได้กำลังเปิดรับสมาชิกใหม่"
     resend_confirmation: ส่งคำแนะนำการยืนยันใหม่
@@ -970,6 +983,7 @@ th:
     browsers:
       generic: เบราว์เซอร์ที่ไม่รู้จัก
     current_session: เซสชันปัจจุบัน
+    ip: IP
     platforms:
       mac: Mac
       other: แพลตฟอร์มที่ไม่รู้จัก
