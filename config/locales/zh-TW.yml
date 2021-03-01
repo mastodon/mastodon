@@ -723,19 +723,28 @@ zh-TW:
   auth:
     apply_for_account: 索取註冊邀請
     change_password: 密碼
+    checkbox_agreement_html: 我同意 <a href="%{rules_path}" target="_blank">之伺服器規則</a> 以及 <a href="%{terms_path}" target="_blank">服務條款</a>
+    checkbox_agreement_without_rules_html: 我同意 <a href="%{terms_path}" target="_blank">服務條款</a>
     delete_account: 刪除帳戶
     delete_account_html: 如果你想刪除你的帳戶，請<a href="%{path}">點擊這裡繼續</a>。你需要確認你的操作。
     description:
+      prefix_invited_by_user: "@%{name} 邀請您加入這個 Mastodon 伺服器！"
       prefix_sign_up: 現在就註冊 Mastodon 帳號吧！
+      suffix: 有了帳號，就可以從任何 Mastodon 伺服器關注任何人、發發廢嘟，並且與任何 Mastodon 伺服器的使用者交♂流？！
     didnt_get_confirmation: 沒有收到驗證信?
+    dont_have_your_security_key: 找不到您的安全金鑰？
     forgot_password: 忘記密碼？
     invalid_reset_password_token: 密碼重設 token 無效或已過期。請重新設定密碼。
+    link_to_otp: 請從您手機輸入雙重驗證 (2FA) 或還原碼
     link_to_webauth: 使用您的安全金鑰
     login: 登入
     logout: 登出
     migrate_account: 轉移到另一個帳戶
     migrate_account_html: 如果你希望引導他人關注另一個帳戶，請<a href="%{path}">到這裡設定</a>。
     or_log_in_with: 或透過其他方式登入
+    providers:
+      cas: CAS
+      saml: SAML
     register: 註冊
     registration_closed: "%{instance} 現在不開放新成員"
     resend_confirmation: 重新寄送確認指引
@@ -743,8 +752,18 @@ zh-TW:
     security: 登入資訊
     set_new_password: 設定新密碼
     setup:
+      email_below_hint_html: 如果此電子郵件地址不正確，您可於此修改並接收郵件進行認證。
       email_settings_hint_html: 請確認 e-mail 是否傳送到 %{email} 。如果不對的話，可以從帳號設定修改。
       title: 設定
+    status:
+      account_status: 帳號狀態
+      confirming: 等待電子郵件確認完成。
+      functional: 您的帳號可以正常使用了。
+      pending: 管管們正在處理您的申請，這可能需要一點時間處理。我們將在申請通過後以電子郵件方式通知您。
+      redirecting_to: 您的帳號因目前重定向至 %{acct} 而被停用。
+    too_fast: 送出表單的速度太快跟不上，請稍後再試。
+    trouble_logging_in: 登錄時遇到困難？
+    use_security_key: 使用安全金鑰
   authorize_follow:
     already_following: 你已經關注了這個使用者
     already_requested: 您早已向該帳戶寄送追蹤請求
@@ -757,6 +776,19 @@ zh-TW:
       return: 顯示個人資料頁
       web: 返回本站
     title: 關注 %{acct}
+  challenge:
+    confirm: 繼續
+    hint_html: "<strong>温馨小提醒：</strong> 我們在接下來一小時內不會再要求您輸入密碼。"
+    invalid_password: 密碼錯誤
+    prompt: 輸入密碼以繼續
+  crypto:
+    errors:
+      invalid_key: 這不是一把有效的 Ed25519 或 Curve25519 金鑰
+      invalid_signature: 這不是有效的 Ed25519 簽章
+  date:
+    formats:
+      default: "%Y年%b月%d日"
+      with_month_name: "%Y年%B月%d日"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}小時前"
@@ -772,9 +804,15 @@ zh-TW:
       x_months: "%{count}個月"
       x_seconds: "%{count}秒"
   deletes:
+    challenge_not_passed: 您所輸入的資料不正確
     confirm_password: 輸入你現在的密碼來驗證身份
+    confirm_username: 請輸入您的使用者名稱以作確認
     proceed: 刪除帳戶
     success_msg: 你的帳戶已經成功刪除
+    warning:
+      before: '在進行下一步驟之前，請詳細閱讀以下説明：'
+      caches: 已被其他節點快取的內容可能會殘留其中
+      data_removal: 您的嘟文和其他資料將會被永久刪除
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': 你沒有觀看這個頁面的權限。
