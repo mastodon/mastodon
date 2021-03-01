@@ -73,6 +73,7 @@ ar:
       many: متابِعون
       other: متابِعون
     following: مُتابَع
+    instance_actor_flash: هذا الحساب هو ممثل افتراضي يُستخدم لتمثيل الخادم نفسه ولا يمثل أي مستخدم فردي، يُستخدم لأغراض الاتحاد ولا ينبغي حظره.
     joined: انضم·ت في %{date}
     last_active: آخر نشاط
     link_verified_on: تم التحقق مِن مالك هذا الرابط بتاريخ %{date}
@@ -111,8 +112,10 @@ ar:
       delete: حذف
       destroyed_msg: تم تدمير ملاحظة الإشراف بنجاح!
     accounts:
+      add_email_domain_block: حظر نطاق بريد إلكتروني
       approve: صادِق عليه
       approve_all: الموافقة على الكل
+      approved_msg: تمت الموافقة على تسجيل %{username}
       are_you_sure: متأكد ؟
       avatar: الصورة الرمزية
       by_domain: النطاق
@@ -126,8 +129,10 @@ ar:
       confirm: تأكيد
       confirmed: مؤكَّد
       confirming: التأكد
+      delete: حذف البيانات
       deleted: تمت إزالته
       demote: إنزال الرُتبة الوظيفية
+      destroyed_msg: "بيانات حساب %{username} الآن في قائمة الانتظار ليتم حذفها قريباً"
       disable: تعطيل
       disable_two_factor_authentication: تعطيل المصادقة بخطوتين
       disabled: معطَّل
@@ -138,10 +143,12 @@ ar:
       email_status: حالة البريد الإلكتروني
       enable: تفعيل
       enabled: مفعَّل
+      enabled_msg: تم إلغاء تجميد حساب %{username}
       followers: المتابِعون
       follows: يتابع
       header: الرأسية
       inbox_url: رابط صندوق الوارد
+      invite_request_text: أسباب للانضمام
       invited_by: تمت دعوته مِن طرف
       ip: عنوان الإيبي
       joined: انضم
@@ -153,6 +160,7 @@ ar:
       login_status: وضع الدخول
       media_attachments: الوسائط المرفقة
       memorialize: تحويل الحساب إلى صفحة ذكرى
+      memorialized: تذكاري
       moderation:
         active: نشِط
         all: الكل
@@ -449,6 +457,7 @@ ar:
         title: التصفية
       title: الدعوات
     ip_blocks:
+      delete: حذف
       expires_in:
         '1209600': أسبوعان
         '15778476': 6 أشهر
@@ -456,6 +465,9 @@ ar:
         '31556952': سنة واحدة
         '86400': يوم واحد
         '94670856': 3 سنوات
+      new:
+        title: إنشاء قاعدة IP جديدة
+      title: قواعد الـIP
     pending_accounts:
       title: الحسابات المعلقة (%{count})
     relationships:
@@ -521,6 +533,10 @@ ar:
       unassign: إلغاء تعيين
       unresolved: غير معالجة
       updated_at: محدث
+    rules:
+      add_new: إضافة قاعدة
+      edit: تعديل القانون
+      title: قوانين الخادم
     settings:
       activity_api_enabled:
         desc_html: عدد المنشورات المحلية و المستخدمين الناشطين و التسجيلات الأسبوعية الجديدة
@@ -535,6 +551,7 @@ ar:
         desc_html: يقوم بتغيير المظهر بواسطة سي أس أس يُحمَّل على كافة الصفحات
         title: سي أس أس مخصص
       default_noindex:
+        desc_html: يؤثر على جميع المستخدمين الذين لم يغيروا هذا الإعداد بأنفسهم
         title: عدم السماح مبدئيا لمحركات البحث بفهرسة الملفات التعريفية للمستخدمين
       domain_blocks:
         all: للجميع
@@ -1217,7 +1234,10 @@ ar:
     default: ماستدون (داكن)
     mastodon-light: ماستدون (فاتح)
   two_factor_authentication:
+    add: إضافة
     disable: تعطيل
+    disabled_success: تم تعطيل المصادقة بخطوتين
+    edit: تعديل
     enabled: نظام المصادقة بخطوتين مُفعَّل
     enabled_success: تم تفعيل المصادقة بخطوتين بنجاح
     generate_recovery_codes: توليد رموز الاسترجاع
