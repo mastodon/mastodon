@@ -928,6 +928,7 @@ th:
     next: ถัดไป
     older: เก่ากว่า
     prev: ก่อนหน้า
+    truncate: "&hellip;"
   polls:
     errors:
       already_voted: คุณได้ลงคะแนนในการสำรวจความคิดเห็นนี้ไปแล้ว
@@ -1044,6 +1045,7 @@ th:
     show_older: แสดงที่เก่ากว่า
     show_thread: แสดงกระทู้
     sign_in_to_participate: ลงชื่อเข้าเพื่อเข้าร่วมการสนทนา
+    title: '%{name}: "%{quote}"'
     visibilities:
       private: ผู้ติดตามเท่านั้น
       private_long: แสดงแก่ผู้ติดตามเท่านั้น
@@ -1065,6 +1067,7 @@ th:
   time:
     formats:
       default: "%d %b %Y, %H:%M"
+      month: "%b %Y"
   two_factor_authentication:
     add: เพิ่ม
     disable: ปิดใช้งาน 2FA
