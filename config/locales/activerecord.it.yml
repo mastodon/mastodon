@@ -4,13 +4,28 @@ it:
       poll:
         expires_at: Scadenza
         options: Scelte
+      user:
+        agreement: Contratto di servizio
+        email: Indirizzo email
+        locale: Area
+        password: Password
+      user/account:
+        username: Nome utente
+      user/invite_request:
+        text: Motivo
     errors:
       models:
         account:
           attributes:
             username:
               invalid: solo lettere, numeri e trattini bassi
+              reserved: è riservato
         status:
           attributes:
             reblog:
               taken: dello stato esiste già
+        user:
+          attributes:
+            email:
+              blocked: utilizza un provider di posta elettronica non autorizzato
+              unreachable: non sembra esistere
