@@ -5,7 +5,9 @@ ar:
         expires_at: آخر أجل
         options: الخيارات
       user:
+        agreement: اتفاقية الخدمة
         email: عنوان البريد الإلكتروني
+        locale: محلي
         password: كلمة المرور
       user/account:
         username: اسم المستخدم
@@ -16,8 +18,14 @@ ar:
         account:
           attributes:
             username:
-              invalid: فقط حروف و أرقام و سطور سفلية
+              invalid: يجب فقط أن يحتوي على حروف، وأرقام، وسطور سفلية
+              reserved: محجوز
         status:
           attributes:
             reblog:
               taken: المنشور موجود مِن قبل
+        user:
+          attributes:
+            email:
+              blocked: يستخدم مزوّد بريد إلكتروني غير مسموح به
+              unreachable: يبدو أنه لا وجود
