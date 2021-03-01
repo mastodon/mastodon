@@ -94,11 +94,15 @@ class Rack::Attack
   end
 
   throttle('throttle_email_confirmations/ip', limit: 25, period: 5.minutes) do |req|
-    req.remote_ip if req.post? && req.path == '/auth/confirmation'
+    req.remote_ip if req.post? && %w(/auth/confirmation /api/v1/emails/confirmations).include?(req.path)
   end
 
   throttle('throttle_email_confirmations/email', limit: 5, period: 30.minutes) do |req|
-    req.params.dig('user', 'email').presence if req.post? && req.path == '/auth/password'
+    if req.post? && req.path == '/auth/password'
+      req.params.dig('user', 'email').presence
+    elsif req.post? && req.path == '/api/v1/emails/confirmations'
+      req.authenticated_user_id
+    end
   end
 
   throttle('throttle_login_attempts/ip', limit: 25, period: 5.minutes) do |req|

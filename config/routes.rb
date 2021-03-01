@@ -403,6 +403,10 @@ Rails.application.routes.draw do
 
       resources :apps, only: [:create]
 
+      namespace :emails do
+        resources :confirmations, only: [:create]
+      end
+
       resource :instance, only: [:show] do
         resources :peers, only: [:index], controller: 'instances/peers'
         resource :activity, only: [:show], controller: 'instances/activity'
