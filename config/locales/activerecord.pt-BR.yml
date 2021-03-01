@@ -4,13 +4,24 @@ pt-BR:
       poll:
         expires_at: Expira em
         options: Escolhas
+      user:
+        email: Endereço de e-mail
+        password: Senha
+      user/account:
+        username: Nome de usuário
     errors:
       models:
         account:
           attributes:
             username:
               invalid: apenas letras, números e underlines ( "_" )
+              reserved: está reservado
         status:
           attributes:
             reblog:
               taken: do status já existe
+        user:
+          attributes:
+            email:
+              blocked: utiliza um provedor de e-mail não permitido
+              unreachable: parece não existir
