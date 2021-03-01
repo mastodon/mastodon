@@ -6,7 +6,7 @@ zh-CN:
     active_count_after: 活跃
     active_footnote: 每月活跃用户
     administered_by: '本站管理员：'
-    api: API
+    api: 应用程序接口
     apps: 移动应用
     apps_platforms: 在 iOS、Android 和其他平台上使用 Mastodon
     browse_directory: 浏览用户目录并按兴趣筛选
@@ -24,8 +24,8 @@ zh-CN:
       这个账号是个虚拟帐号，不代表任何用户，只用来代表服务器本身。它用于和其它服务器互通，所以不应该被封禁，除非你想封禁整个实例。但是想封禁整个实例的时候，你应该用域名封禁。 
     learn_more: 了解详情
     privacy_policy: 隐私政策
-    rules: 实例规则
-    rules_html: '如果您想要在此Mastodon服务器上拥有一个账户，以下是您必须遵守的规则摘要：'
+    rules: 服务器规则
+    rules_html: '如果您想要在此Mastodon服务器上拥有一个账户，您必须遵守相应的规则，摘要如下：'
     see_whats_happening: 看一看现在在发生什么
     server_stats: '服务器统计数据：'
     source_code: 源代码
@@ -535,7 +535,7 @@ zh-CN:
       updated_at: 更新时间
     rules:
       add_new: 添加规则
-      description: 虽然大多数人都声称已经阅读并同意服务条款，但通常人们只有在出现问题后才会阅读。使用一个简洁的要点列表让人们更容易一目了然地看到你的服务器的规则。尽量保持单条规则的简洁，但也尽量不要把它们分割成许多独立的条目。
+      description: 虽然大多数人都声称已经阅读并同意服务条款，但通常人们只有在出现问题后才会阅读。所以写一个简单的要点列表吧，能让大家一目了然。每条规则要尽量简单明了，但也别分出太多条目来。
       edit: 编辑规则
       title: 实例规则
     settings:
@@ -1043,11 +1043,11 @@ zh-CN:
       decimal_units:
         format: "%n%u"
         units:
-          billion: 十亿
-          million: 百万
-          quadrillion: 拍
-          thousand: 千
-          trillion: 太
+          billion: B
+          million: M
+          quadrillion: Q
+          thousand: K
+          trillion: T
   otp_authentication:
     code_hint: 输入认证应用生成的代码以确认操作
     description_html: 如果您使用身份验证应用启用了 <strong>双重身份验证</strong>， 登录将需要用到您的手机，它将生成您需要的令牌。
