@@ -42,7 +42,7 @@
   .column-3
     = render 'application/flashes'
 
-    - if @contents.blank? && (!display_blocks? || @blocks&.empty?)
+    - if @contents.blank? && @rules.empty? && (!display_blocks? || @blocks&.empty?)
       = nothing_here
     - else
       .box-widget

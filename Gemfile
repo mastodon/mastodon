@@ -17,7 +17,7 @@ gem 'makara', '~> 0.5'
 gem 'pghero', '~> 2.7'
 gem 'dotenv-rails', '~> 2.7'
 
-gem 'aws-sdk-s3', '~> 1.88', require: false
+gem 'aws-sdk-s3', '~> 1.89', require: false
 gem 'fog-core', '<= 2.1.0'
 gem 'fog-openstack', '~> 0.3', require: false
 gem 'paperclip', '~> 6.0'
@@ -48,7 +48,7 @@ gem 'omniauth-rails_csrf_protection', '~> 0.1'
 
 gem 'color_diff', '~> 0.1'
 gem 'discard', '~> 1.2'
-gem 'doorkeeper', '~> 5.4'
+gem 'doorkeeper', '~> 5.5'
 gem 'ed25519', '~> 1.2'
 gem 'fast_blank', '~> 1.0'
 gem 'fastimage'
@@ -93,7 +93,7 @@ gem 'sprockets-rails', '~> 3.2', require: 'sprockets/railtie'
 gem 'stoplight', '~> 2.2.1'
 gem 'strong_migrations', '~> 0.7'
 gem 'tty-prompt', '~> 0.23', require: false
-gem 'twitter-text', '~> 1.14'
+gem 'twitter-text', '~> 3.1.0'
 gem 'tzinfo-data', '~> 1.2021'
 gem 'webpacker', '~> 5.2'
 gem 'webpush'
@@ -126,7 +126,7 @@ group :test do
   gem 'rails-controller-testing', '~> 1.0'
   gem 'rspec-sidekiq', '~> 3.1'
   gem 'simplecov', '~> 0.21', require: false
-  gem 'webmock', '~> 3.11'
+  gem 'webmock', '~> 3.12'
   gem 'parallel_tests', '~> 3.4'
   gem 'rspec_junit_formatter', '~> 0.4'
 end

@@ -1,20 +1,20 @@
 # frozen_string_literal: true
 
 module Extractor
-  extend Twitter::Extractor
+  extend Twitter::TwitterText::Extractor
 
   module_function
 
   # :yields: username, list_slug, start, end
   def extract_mentions_or_lists_with_indices(text)
-    return [] unless Twitter::Regex[:at_signs].match?(text)
+    return [] unless Twitter::TwitterText::Regex[:at_signs].match?(text)
 
     possible_entries = []
 
     text.to_s.scan(Account::MENTION_RE) do |screen_name, _|
       match_data = $LAST_MATCH_INFO
       after = $'
-      unless Twitter::Regex[:end_mention_match].match?(after)
+      unless Twitter::TwitterText::Regex[:end_mention_match].match?(after)
         start_position = match_data.char_begin(1) - 1
         end_position = match_data.char_end(1)
         possible_entries << {
@@ -44,7 +44,7 @@ module Extractor
       if %r{\A://}.match?(after)
         hash_text.match(/(.+)(https?\Z)/) do |matched|
           hash_text = matched[1]
-          end_position -= matched[2].char_length
+          end_position -= matched[2].codepoint_length
         end
       end
 
