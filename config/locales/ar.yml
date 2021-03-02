@@ -255,6 +255,7 @@ ar:
         silence_account: كتم الحساب
         suspend_account: تعليق الحساب
         unassigned_report: إلغاء إسناد الشكوى
+        unsensitive_account: إلغاء تحديد الوسائط في حسابك على أنها حساسة
         unsilence_account: إلغاء كتم الحساب
         unsuspend_account: إلغاء تعليق الحساب
         update_announcement: تحديث الإعلان
@@ -744,6 +745,9 @@ ar:
     migrate_account: الانتقال إلى حساب آخر
     migrate_account_html: إن كنت ترغب في تحويل هذا الحساب نحو حساب آخَر، يُمكِنُك <a href="%{path}">إعداده هنا</a>.
     or_log_in_with: أو قم بتسجيل الدخول بواسطة
+    providers:
+      cas: CAS
+      saml: SAML
     register: إنشاء حساب
     registration_closed: "لا يقبل %{instance} استقبال أعضاء جدد"
     resend_confirmation: إعادة إرسال تعليمات التأكيد
@@ -760,6 +764,7 @@ ar:
       functional: حسابك جاهز.
       pending: إن طلبك قيد المراجعة من قبل فريقنا. قد يستغرق هذا بعض الوقت. سوف تتلقى بريدا إلكترونيا إذا تمت الموافقة على طلبك.
       redirecting_to: حسابك غير نشط لأنه تم تحويله حاليا إلى %{acct}.
+    too_fast: تم إرسال النموذج بسرعة كبيرة، حاول مرة أخرى.
     trouble_logging_in: هل صادفتكم مشكلة في الولوج؟
     use_security_key: استخدام مفتاح الأمان
   authorize_follow:
@@ -1040,12 +1045,19 @@ ar:
   number:
     human:
       decimal_units:
+        format: "%n%u"
         units:
           billion: بل
           million: ملي
           quadrillion: كواد
           thousand: ألف
           trillion: ترل
+  otp_authentication:
+    enable: تفعيل
+    instructions_html: "<strong>قم بمسح رمز الـQR عبر Google Authenticator أو أي تطبيق TOTP على جهازك</strong>. من الآن فصاعدا سيقوم ذاك التطبيق بتوليد رموز يجب عليك إدخالها عند تسجيل الدخول."
+    manual_instructions: 'في حالة تعذّر مسح رمز QR وتحتاج إلى إدخاله يدوياً، يُمْكِنك إدخال هذا النص السري على التطبيق:'
+    setup: إعداد
+    wrong_code: الرمز الذي تم إدخاله غير صالح! هل وقت الخادم ووقت الجهاز صحيحَين؟
   pagination:
     newer: الأحدَث
     next: التالي
@@ -1060,6 +1072,7 @@ ar:
       duration_too_short: مبكّر جدا
       expired: لقد انتهى استطلاع الرأي
       invalid_choice: خيار التصويت الذي قُمتَ يتحديده غير موجود
+      over_character_limit: لا يمكن أن يكون أطول من %{max} حرف لكل واحدة
       too_few_options: يجب أن يحتوي على أكثر من عنصر واحد
       too_many_options: لا يمكنه أن يحتوي أكثر مِن %{max} عناصر
   preferences:
@@ -1073,6 +1086,7 @@ ar:
   relationships:
     activity: نشاط الحساب
     dormant: في سبات
+    follow_selected_followers: متابَعة المتابِعين المحددين
     followers: المتابِعون
     following: يُتابِع
     invited: مَدعُوّ
@@ -1169,6 +1183,7 @@ ar:
     profile: الملف التعريفي
     relationships: المتابِعون والمتابَعون
     two_factor_authentication: المُصادقة بخُطوَتَيْن
+    webauthn_authentication: مفاتيح الأمان
   spam_check:
     spam_detected: هذا إبلاغ تلقائي. تم اكتشاف منشورات عشوائية غير مرغوب فيها.
   statuses:
@@ -1231,6 +1246,8 @@ ar:
         other: "%{count} صوتا"
       vote: صوّت
     show_more: أظهر المزيد
+    show_newer: إظهار أحدث
+    show_older: إظهار أقدم
     show_thread: اعرض خيط المحادثة
     sign_in_to_participate: قم بتسجيل الدخول للمشاركة في هذه المحادثة
     visibilities:
@@ -1252,6 +1269,9 @@ ar:
     contrast: ماستدون (تباين عالٍ)
     default: ماستدون (داكن)
     mastodon-light: ماستدون (فاتح)
+  time:
+    formats:
+      month: "%b %Y"
   two_factor_authentication:
     add: إضافة
     disable: تعطيل
@@ -1324,6 +1344,12 @@ ar:
     explanation_html: 'يمكنك <strong>التحقق من نفسك كمالك لروابط البيانات التعريفية على صفحتك الشخصية</strong>. لذلك، يجب أن يحتوي الموقع المقترِن على رابط إلى صفحتك التعريفية الشخصية على ماستدون. الرابط الخلفي <strong>يجب أن</strong> يحتوي على رمز <code>rel="me"</code>. محتوى النص في الرابط غير مهم. على سبيل المثال:'
     verification: التحقق
   webauthn_credentials:
+    create:
+      success: تم إضافة مفتاح الأمان الخاص بك.
+    delete: حذف
+    delete_confirmation: هل أنت متأكد من أنك تريد حذف مفتاح الأمان هذا؟
+    destroy:
+      success: تم حذف مفتاح الأمان الخاص بك.
     invalid_credential: مفتاح الأمان غير صالح
     nickname_hint: أدخل اسم مستعار لمفتاح الأمان الجديد الخاص بك
     not_enabled: لم تقم بتفعيل WebAuthn بعد
