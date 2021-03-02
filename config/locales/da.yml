@@ -119,6 +119,7 @@ da:
       display_name: Visningsnavn
       domain: Domæne
       edit: Rediger
+      email: E-mail
       enable: Aktiver
       enabled: Aktiveret
       followers: Følgere
@@ -207,6 +208,7 @@ da:
         create_domain_allow: Opret domæne tillad
         create_domain_block: Opret domæneblokering
         create_ip_block: Opret IP-regel
+        demote_user: Degrader bruger
         destroy_announcement: Slet bekendtgørelse
         destroy_domain_block: Slet domæneblokering
         destroy_email_domain_block: Slet e-mail domæne blokering
@@ -798,6 +800,8 @@ da:
     status: Status for verifikation
     view_proof: Se bevis
   imports:
+    errors:
+      over_rows_processing_limit: indeholder mere end %{count} rækker
     modes:
       merge: Sammenflet
       overwrite: Overskriv
@@ -904,6 +908,7 @@ da:
           million: mio.
   otp_authentication:
     enable: Aktiver
+    setup: Sæt op
     wrong_code: Den indtastede kode var ugyldig! Er serverens tid og enhedstid korrekt?
   pagination:
     newer: Nyere
@@ -952,6 +957,9 @@ da:
     no_account_html: Har du ikke en konto? Du kan <a href='%{sign_up_path}' target='_blank'>oprette dig her</a>
     proceed: Fortsæt for at følge
     prompt: 'Du er ved at følge:'
+  remote_interaction:
+    reply:
+      proceed: Fortsæt for at svare
   scheduled_statuses:
     too_soon: Den planlagte dato skal være i fremtiden
   sessions:
