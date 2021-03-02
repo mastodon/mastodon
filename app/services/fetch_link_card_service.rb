@@ -2,12 +2,12 @@
 
 class FetchLinkCardService < BaseService
   URL_PATTERN = %r{
-    (                                                                                                 #   $1 URL
-      (https?:\/\/)                                                                                   #   $2 Protocol (required)
-      (#{Twitter::Regex[:valid_domain]})                                                              #   $3 Domain(s)
-      (?::(#{Twitter::Regex[:valid_port_number]}))?                                                   #   $4 Port number (optional)
-      (/#{Twitter::Regex[:valid_url_path]}*)?                                                         #   $5 URL Path and anchor
-      (\?#{Twitter::Regex[:valid_url_query_chars]}*#{Twitter::Regex[:valid_url_query_ending_chars]})? #   $6 Query String
+    (                                                                                                                           #   $1 URL
+      (https?:\/\/)                                                                                                             #   $2 Protocol (required)
+      (#{Twitter::TwitterText::Regex[:valid_domain]})                                                                           #   $3 Domain(s)
+      (?::(#{Twitter::TwitterText::Regex[:valid_port_number]}))?                                                                #   $4 Port number (optional)
+      (/#{Twitter::TwitterText::Regex[:valid_url_path]}*)?                                                                      #   $5 URL Path and anchor
+      (\?#{Twitter::TwitterText::Regex[:valid_url_query_chars]}*#{Twitter::TwitterText::Regex[:valid_url_query_ending_chars]})? #   $6 Query String
     )
   }iox
 
