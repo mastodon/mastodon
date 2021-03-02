@@ -2,8 +2,11 @@ da:
   activerecord:
     attributes:
       poll:
+        expires_at: Tidsfrist
         options: Valgmuligheder
       user:
+        agreement: Serviceaftale
+        email: E-mail adresse
         password: Adgangskode
       user/account:
         username: Brugernavn
@@ -13,7 +16,12 @@ da:
           attributes:
             username:
               invalid: kun tal, bogstaver og understreger
+              reserved: er reserveret
         status:
           attributes:
             reblog:
               taken: af allerede eksisterende status
+        user:
+          attributes:
+            email:
+              unreachable: ser ikke ud til at eksistere
