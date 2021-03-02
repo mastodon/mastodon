@@ -236,6 +236,8 @@ ar:
         demote_user: إنزال رتبة المستخدم
         destroy_announcement: احذف الإعلان
         destroy_custom_emoji: احذف الإيموجي المخصص
+        destroy_domain_block: حذف كتلة النطاق
+        destroy_email_domain_block: حذف نطاق بريد إلكتروني
         destroy_ip_block: حذف قانون IP
         destroy_status: حذف المنشور
         disable_2fa_user: تعطيل 2FA
@@ -249,6 +251,7 @@ ar:
         reopen_report: إعادة فتح التقرير
         reset_password_user: إعادة تعيين كلمة المرور
         resolve_report: حل الشكوى
+        sensitive_account: وضع علامة على الوسائط في حسابك على أنها حساسة
         silence_account: كتم الحساب
         suspend_account: تعليق الحساب
         unassigned_report: إلغاء إسناد الشكوى
@@ -256,6 +259,7 @@ ar:
         unsuspend_account: إلغاء تعليق الحساب
         update_announcement: تحديث الإعلان
         update_custom_emoji: تحديث الإيموجي المخصص
+        update_domain_block: تحديث كتلة النطاق
         update_status: تحديث الحالة
       actions:
         assigned_to_self_report: "قام %{name} بتعيين التقرير %{target} لأنفسهم"
@@ -400,6 +404,8 @@ ar:
       reject_media_hint: يزيل ملفات الوسائط المخزنة محليًا ويرفض تنزيل أي ملفات في المستقبل. غير ذي صلة للتعليق
       reject_reports: رفض التقارير
       reject_reports_hint: تجاهل جميع تقارير الإبلاغ القادمة من هذا النطاق. هذا يستثي التعليقات
+      rejecting_media: جار رفض ملفات الوسائط
+      rejecting_reports: جار رفض التقارير
       severity:
         silence: تم كتمه
         suspend: تم تعليقه
@@ -417,6 +423,7 @@ ar:
         title: رفع حظر النطاق عن %{domain}
         undo: إلغاء
       undo: إلغاء حجب النطاق
+      view: عرض كتلة النطاق
     email_domain_blocks:
       add_new: إضافة
       created_msg: لقد دخل حظر نطاق البريد الإلكتروني حيّز الخدمة
@@ -432,6 +439,7 @@ ar:
     instances:
       by_domain: النطاق
       delivery_available: التسليم متوفر
+      empty: لم يتم العثور على نطاقات.
       known_accounts:
         zero: "%{count} حسابات معروفة"
         one: "حساب معروف %{count}"
@@ -460,6 +468,8 @@ ar:
         title: التصفية
       title: الدعوات
     ip_blocks:
+      add_new: إنشاء قانون
+      created_msg: تمت إضافة قاعدة IP جديدة
       delete: حذف
       expires_in:
         '1209600': أسبوعان
