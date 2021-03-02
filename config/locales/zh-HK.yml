@@ -6,6 +6,7 @@ zh-HK:
     active_count_after: 活躍
     active_footnote: 每月活躍使用者 (MAU)
     administered_by: '管理者：'
+    api: API
     apps: 手機 App
     apps_platforms: 在 iOS、Android 和其他平台使用 Mastodon
     browse_directory: 依興趣瀏覽個人資料目錄和過濾器
@@ -24,6 +25,8 @@ zh-HK:
       此帳戶是為聯盟協定而設。除非你想封鎖整個伺服器的話，否則請不要封鎖這個帳戶。如果你想封鎖伺服器，請使用網域封鎖以達到相同效果。
     learn_more: 了解更多
     privacy_policy: 隱私權政策
+    rules: 系統規則
+    rules_html: '如果你想要在本站開一個新帳戶，以下是你需要遵守的規則：'
     see_whats_happening: 看看發生什麼事
     server_stats: '伺服器統計：'
     source_code: 源代碼
@@ -531,6 +534,11 @@ zh-HK:
       unassign: 取消指派
       unresolved: 未處理
       updated_at: 更新
+    rules:
+      add_new: 新增規則
+      description: 通常大部份自稱已經閱讀並同意服務條款的人，在出現事故之前都沒有仔細閱讀內文。為了讓人方便閱讀服務條款，請以點列的形式將伺服器規則盡可能地寫得簡短一點。嘗試把每一項規則寫得簡短易明，但又不要把它們拆得過份瑣碎。
+      edit: 編輯規則
+      title: 伺服器守則
     settings:
       activity_api_enabled:
         desc_html: 本站的文章數量、活躍使用者數量、及每週新註冊使用者數量
@@ -693,6 +701,7 @@ zh-HK:
     discovery: 探索
     localization:
       body: Mastodon 是由志願者翻譯的。
+      guide_link: https://crowdin.com/project/mastodon
       guide_link_text: 每個人都能貢獻。
     sensitive_content: 敏感內容
     toot_layout: 發文介面
@@ -733,6 +742,9 @@ zh-HK:
     migrate_account: 轉移到另一個帳號
     migrate_account_html: 想要將這個帳號指向另一個帳號可<a href="%{path}">到這裡設定</a>。
     or_log_in_with: 或登入於
+    providers:
+      cas: CAS
+      saml: SAML
     register: 登記
     registration_closed: "%{instance} 並不接受新成員請求"
     resend_confirmation: 重發確認指示電郵
@@ -776,6 +788,7 @@ zh-HK:
   date:
     formats:
       default: "%Y年%b月%d日"
+      with_month_name: "%Y年%B月%d日"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}小時前"
@@ -841,6 +854,7 @@ zh-HK:
       size: 檔案大小
     blocks: 被你封鎖的用戶
     bookmarks: 書籤
+    csv: CSV
     domain_blocks: 域名封鎖
     lists: 列表
     mutes: 你所靜音的用戶
@@ -1028,6 +1042,7 @@ zh-HK:
   number:
     human:
       decimal_units:
+        format: "%n%u"
         units:
           billion: 十億
           million: 百萬
@@ -1131,8 +1146,18 @@ zh-HK:
     explanation: 這些是現在正登入於你的 Mastodon 帳號的瀏覽器。
     ip: IP 位址
     platforms:
+      adobe_air: Adobe Air
+      android: Android
+      blackberry: Blackberry
+      chrome_os: ChromeOS
+      firefox_os: Firefox OS
+      ios: iOS
+      linux: Linux
       mac: Mac
       other: 未知平台
+      windows: Windows
+      windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
     revoke: 取消
     revoke_success: 作業階段成功取消
     title: 作業階段
@@ -1298,6 +1323,7 @@ zh-HK:
   time:
     formats:
       default: "%Y年%-m月%d日 %H:%M"
+      month: "%b %Y"
   two_factor_authentication:
     add: 新增
     disable: 停用
