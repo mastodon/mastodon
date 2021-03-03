@@ -241,10 +241,14 @@ ar:
         create_account_warning: إنشاء تحذير
         create_announcement: إنشاء إعلان
         create_custom_emoji: إنشاء إيموجي مخصص
+        create_domain_allow: إنشاء نطاق المسموح به
+        create_domain_block: إنشاء كتلة نطاق
+        create_email_domain_block: إنشاء كتلة نطاق بريد إلكتروني
         create_ip_block: إنشاء قاعدة IP جديدة
         demote_user: إنزال رتبة المستخدم
         destroy_announcement: احذف الإعلان
         destroy_custom_emoji: احذف الإيموجي المخصص
+        destroy_domain_allow: حذف النطاق المسموح به
         destroy_domain_block: حذف كتلة النطاق
         destroy_email_domain_block: حذف نطاق بريد إلكتروني
         destroy_ip_block: حذف قانون IP
@@ -281,12 +285,14 @@ ar:
         create_domain_allow: "قام %{name} بإضافة النطاق %{target} إلى القائمة البيضاء"
         create_domain_block: "%{name} قام بحجب نطاق %{target}"
         create_email_domain_block: "%{name} قد قام بحظر نطاق البريد الإلكتروني %{target}"
+        create_ip_block: "أنشأ %{name} قاعدة لـ%{target} IP"
         demote_user: "%{name} قد قام بإنزال الرتبة الوظيفية لـ %{target}"
         destroy_announcement: "قام %{name} بحذف الإعلان %{target}"
         destroy_custom_emoji: "قام %{name} بحذف الإيموجي %{target}"
         destroy_domain_allow: "قام %{name} بإزالة النطاق %{target} مِن القائمة البيضاء"
         destroy_domain_block: "%{name} قام بإلغاء الحجب عن النطاق %{target}"
         destroy_email_domain_block: "قام %{name} بإضافة نطاق البريد الإلكتروني %{target} إلى اللائحة البيضاء"
+        destroy_ip_block: "حَذف %{name} قاعدة لـ%{target} IP"
         destroy_status: "لقد قام %{name} بحذف منشور %{target}"
         disable_2fa_user: "%{name} لقد قام بتعطيل ميزة المصادقة بخطوتين للمستخدم %{target}"
         disable_custom_emoji: "%{name} قام بتعطيل الإيموجي %{target}"
@@ -299,13 +305,16 @@ ar:
         reopen_report: "تمت إعادة فتح الشكوى %{name} %{target}"
         reset_password_user: "%{name} لقد قام بإعادة تعيين الكلمة السرية الخاصة بـ %{target}"
         resolve_report: "قام %{name} بحل الشكوى %{target}"
+        sensitive_account: "وضع %{name} علامة على وسائط %{target} على أنها حساسة"
         silence_account: "لقد قام %{name} بكتم حساب %{target}"
         suspend_account: "لقد قام %{name} بتعليق حساب %{target}"
         unassigned_report: "%{name} تقرير غير معتمد %{target}"
+        unsensitive_account: "أزال %{name} علامة حساسة على وسائط %{target}"
         unsilence_account: "لقد قام %{name} بإلغاء الكتم عن حساب %{target}"
         unsuspend_account: "لقد قام %{name} بإلغاء التعليق المفروض على حساب %{target}"
         update_announcement: "قام %{name} بتحديث الإعلان %{target}"
         update_custom_emoji: "%{name} قام بتحديث الإيموجي %{target}"
+        update_domain_block: "حَدث %{name} كتلة النطاق لـ%{target}"
         update_status: "لقد قام %{name} بتحديث منشور %{target}"
       deleted_status: "(منشور محذوف)"
       empty: لم يتم العثور على سجلات.
