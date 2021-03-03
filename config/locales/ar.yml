@@ -815,6 +815,7 @@ ar:
   date:
     formats:
       default: "%d %b %Y"
+      with_month_name: "%d %B %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}سا"
@@ -943,6 +944,8 @@ ar:
     status: حالة التحقق
     view_proof: عرض الدليل
   imports:
+    errors:
+      over_rows_processing_limit: يحتوي على أكثر من %{count} صف
     modes:
       merge: دمج
       merge_long: الإبقاء علي التسجيلات الحالية وإضافة الجديدة
@@ -1015,6 +1018,7 @@ ar:
     redirecting_to: حسابك موجَّه إلى %{acct}.
     set_redirect: تعين إعادة التوجيه
     warning:
+      backreference_required: يجب على الحساب الجديد أن يتم تكوينه كمرجع خلفي لهذا الحساب
       before: 'يرجى قراءة هذه الملاحظات بتأنّي قبل المواصلة:'
       followers: تقوم هذه العملية بنقل كافة المُتابِعين مِن الحساب الحالي إلى الحساب الجديد
       other_data: لن يتم نقل أية بيانات أخرى تلقائيا
