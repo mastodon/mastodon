@@ -6,6 +6,7 @@ ja:
     active_count_after: 人アクティブ
     active_footnote: 月間アクティブユーザー数 (MAU)
     administered_by: '管理者:'
+    api: API
     apps: アプリ
     apps_platforms: iOSやAndroidなど、各種環境から利用できます
     browse_directory: ディレクトリから気になる人を探しましょう
@@ -69,6 +70,8 @@ ja:
       other: トゥート
     posts_tab_heading: トゥート
     posts_with_replies: トゥートと返信
+    roles:
+      group: グループ
     unavailable: プロフィールは利用できません
     unfollow: フォロー解除
   admin:
@@ -116,8 +119,10 @@ ja:
       followers: フォロワー数
       follows: フォロー数
       header: ヘッダー
+      inbox_url: Inbox URL
       invite_request_text: 意気込み
       invited_by: 招待した人
+      ip: IP
       joined: 登録日
       location:
         all: すべて
@@ -197,6 +202,7 @@ ja:
       username: ユーザー名
       view_domain: ドメインの概要を表示
       warn: 警告
+      web: Web
       whitelisted: 連合許可済み
     action_logs:
       action_types:
@@ -519,6 +525,10 @@ ja:
       unassign: 担当を外す
       unresolved: 未解決
       updated_at: 更新日時
+    rules:
+      add_new: ルールを追加
+      edit: ルールを編集
+      title: サーバーのルール
     settings:
       activity_api_enabled:
         desc_html: 週ごとのローカルに投稿されたトゥート数、アクティブなユーザー数、新規登録者数
@@ -722,6 +732,9 @@ ja:
     migrate_account: 別のアカウントに引っ越す
     migrate_account_html: 引っ越し先を明記したい場合は<a href="%{path}">こちら</a>で設定できます。
     or_log_in_with: または次のサービスでログイン
+    providers:
+      cas: CAS
+      saml: SAML
     register: 登録する
     registration_closed: "%{instance} は現在、新規登録停止中です"
     resend_confirmation: 確認メールを再送する
@@ -831,6 +844,7 @@ ja:
       size: 容量
     blocks: ブロック
     bookmarks: ブックマーク
+    csv: CSV
     domain_blocks: 非表示にしたドメイン
     lists: リスト
     mutes: ミュート
@@ -1086,12 +1100,40 @@ ja:
     activity: 最後のアクティビティ
     browser: ブラウザ
     browsers:
+      alipay: Alipay
+      blackberry: Blackberry
+      chrome: Chrome
+      edge: Microsoft Edge
+      electron: Electron
+      firefox: Firefox
       generic: 不明なブラウザ
+      ie: Internet Explorer
+      micro_messenger: MicroMessenger
+      nokia: Nokia S40 Ovi Browser
+      opera: Opera
+      otter: Otter
+      phantom_js: PhantomJS
+      qq: QQ Browser
+      safari: Safari
+      uc_browser: UCBrowser
+      weibo: Weibo
     current_session: 現在のセッション
     description: "%{platform} 上の %{browser}"
     explanation: あなたのMastodonアカウントに現在ログインしているウェブブラウザの一覧です。
+    ip: IP
     platforms:
+      adobe_air: Adobe Air
+      android: Android
+      blackberry: Blackberry
+      chrome_os: ChromeOS
+      firefox_os: Firefox OS
+      ios: iOS
+      linux: Linux
+      mac: macOS
       other: 不明なプラットフォーム
+      windows: Windows
+      windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
     revoke: 削除
     revoke_success: セッションを削除しました
     title: セッション
