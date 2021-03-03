@@ -812,11 +812,24 @@ zh-TW:
       before: '在進行下一步驟之前，請詳細閱讀以下説明：'
       caches: 已被其他節點快取的內容可能會殘留其中
       data_removal: 您的嘟文和其他資料將會被永久刪除
+      email_change_html: 你可以在不刪除帳號的情況下<a href="%{path}">變更你的電子郵件地址</a>
+      email_contact_html: 如果你仍然沒有收到郵件，請寄信到 <a href="mailto:%{email}">%{email}</a> 以獲得協助
+      email_reconfirmation_html: 如果你沒有收到確認郵件，你可以<a href="%{path}">請求再次發送</a>
+      irreversible: 你將無法復原或重新啟用你的帳號
+      more_details_html: 更多詳細資訊，請參閲<a href="%{terms_path}">隱私政策</a>。
+      username_available: 你的使用者名稱將會釋出供他人使用
+      username_unavailable: 你的使用者名稱將會保留並不予他人使用
+  directories:
+    directory: 個人資料目錄
+    explanation: 根據興趣去發現新朋友
+    explore_mastodon: 探索%{title}
+  domain_validator:
+    invalid_domain: 並非一個有效域名
   errors:
-    '400': The request you submitted was invalid or malformed.
+    '400': 你所送出的請求無效或格式不正確。
     '403': 你沒有觀看這個頁面的權限。
     '404': 您所尋找的網頁不存在。
-    '406': This page is not available in the requested format.
+    '406': 此頁面無法以請求的格式顯示。
     '410': 您所尋找的網頁此處已不存在。
     '422':
       content: 安全驗證失敗。請確定有開啟瀏覽器 Cookies 功能?
@@ -825,8 +838,11 @@ zh-TW:
     '500':
       content: 抱歉，我們的後台出現問題了。
       title: 這個頁面有問題
-    '503': The page could not be served due to a temporary server failure.
+    '503': 此頁面因伺服器暫時發生錯誤而無法提供。
     noscript_html: 使用 Mastodon 網頁版應用需要啟用 JavaScript。你也可以選擇適用於你的平台的 <a href="%{apps_path}">Mastodon 應用</a>。
+  existing_username_validator:
+    not_found: 無法在本站找到這個名稱的使用者
+    not_found_multiple: 揣嘸 %{usernames}
   exports:
     archive_takeout:
       date: 日期
@@ -836,25 +852,68 @@ zh-TW:
       request: 下載存檔
       size: 大小
     blocks: 您封鎖的使用者
+    bookmarks: 書籤
+    csv: CSV
+    domain_blocks: 域名封鎖
     lists: 列表
     mutes: 您靜音的使用者
     storage: 儲存空間大小
   featured_tags:
+    add_new: 追加
+    errors:
+      limit: 你所推薦的標籤數量已經達到上限
     hint_html: "<strong>推薦標籤是什麼？</strong> 這些標籤將顯示於您的公開個人檔案頁，訪客可以藉此閱覽您標示了這些標籤的嘟文，拿來展示創意作品或者長期更新的專案很好用唷！"
   filters:
+    contexts:
+      account: 個人資料
+      home: 首頁時間軸
+      notifications: 通知
+      public: 公開時間軸
+      thread: 會話
+    edit:
+      title: 編輯篩選條件
+    errors:
+      invalid_context: 沒有提供內文或內文無效
+      invalid_irreversible: 此功能僅適用於首頁或通知頁面
     index:
+      delete: 刪除
       empty: 您沒有過濾器。
       title: 過濾器
+    new:
+      title: 新增篩選器
   footer:
+    developers: 開發者
     more: 更多......
+    resources: 資源
     trending_now: 現正熱門
   generic:
     all: 全部
     changes_saved_msg: 已成功儲存修改!
     copy: 複製
     delete: 刪除
+    no_batch_actions_available: 此頁面目前沒有可用的批次作業
+    order_by: 排序
     save_changes: 儲存修改
+    validation_errors:
+      other: 唔…這是什麼鳥？請檢查以下 %{count} 項錯誤
+  html_validator:
+    invalid_markup: '含有無效的 HTML 語法：%{error}'
   identity_proofs:
+    active: 有效
+    authorize: 是的，請授權
+    authorize_connection_prompt: 授權此加密連接？
+    errors:
+      failed: 加密連接失敗。請於 %{provider} 重試。
+      keybase:
+        invalid_token: Keybase 標記必須為雜湊加密簽章並且由66個十六進位字符組成。
+        verification_failed: Keybase 無法確認此標記為 Keybase 使用者 %{kb_username} 的簽章。請在 Keybase 再試一次。
+      wrong_user: 未能為%{current} 以 %{proving} 建立身分驗證。請登入為 %{proving} 再試一次。
+    explanation_html: 在此你連結其他網路平台（如 Keybase）上的加密身分。讓其他人可以在那些平台上，傳送加密訊息給你，並驗證你的身分。
+    i_am_html: 我是 %{service} 上的 %{username}
+    identity: 身份
+    inactive: 非活躍
+    publicize_checkbox: '並發嘟：'
+    publicize_toot: '驗證成功！我在是住在 %{service} 的 %{username} ： %{url}'
     remove: 移除帳號證明
     removed: 成功移除帳號證明
     status: 驗證狀態
