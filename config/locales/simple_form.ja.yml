@@ -72,6 +72,8 @@ ja:
           no_access: すべてのリソースへのアクセスをブロックします
           sign_up_requires_approval: 承認するまで新規登録が完了しなくなります
         severity: このIPに対する措置を選択してください
+      rule:
+        text: ユーザーのためのルールや要件を記述してください。短くシンプルにしてください。
       sessions:
         otp: '携帯電話のアプリで生成された二段階認証コードを入力するか、リカバリーコードを使用してください:'
         webauthn: USBキーの場合は、必ず挿入し、必要に応じてタップしてください。
@@ -181,6 +183,7 @@ ja:
         text: 意気込みをお聞かせください
       ip_block:
         comment: コメント
+        ip: IP
         severities:
           no_access: ブロック
           sign_up_requires_approval: 登録を制限
@@ -195,6 +198,8 @@ ja:
         reblog: トゥートがブーストされた時
         report: 通報を受けた時
         trending_tag: 未審査のハッシュタグが人気の時
+      rule:
+        text: ルール
       tag:
         listable: 検索とディレクトリへの使用を許可する
         name: ハッシュタグ
@@ -203,6 +208,7 @@ ja:
     'no': 'いいえ'
     recommended: おすすめ
     required:
+      mark: "*"
       text: 必須
     title:
       sessions:
