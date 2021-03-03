@@ -2,12 +2,13 @@
 
 class FetchLinkCardService < BaseService
   URL_PATTERN = %r{
-    (                                                                                                                           #   $1 URL
-      (https?:\/\/)                                                                                                             #   $2 Protocol (required)
-      (#{Twitter::TwitterText::Regex[:valid_domain]})                                                                           #   $3 Domain(s)
-      (?::(#{Twitter::TwitterText::Regex[:valid_port_number]}))?                                                                #   $4 Port number (optional)
-      (/#{Twitter::TwitterText::Regex[:valid_url_path]}*)?                                                                      #   $5 URL Path and anchor
-      (\?#{Twitter::TwitterText::Regex[:valid_url_query_chars]}*#{Twitter::TwitterText::Regex[:valid_url_query_ending_chars]})? #   $6 Query String
+    (#{Twitter::TwitterText::Regex[:valid_url_preceding_chars]})                                                                #   $1 preceeding chars
+    (                                                                                                                           #   $2 URL
+      (https?:\/\/)                                                                                                             #   $3 Protocol (required)
+      (#{Twitter::TwitterText::Regex[:valid_domain]})                                                                           #   $4 Domain(s)
+      (?::(#{Twitter::TwitterText::Regex[:valid_port_number]}))?                                                                #   $5 Port number (optional)
+      (/#{Twitter::TwitterText::Regex[:valid_url_path]}*)?                                                                      #   $6 URL Path and anchor
+      (\?#{Twitter::TwitterText::Regex[:valid_url_query_chars]}*#{Twitter::TwitterText::Regex[:valid_url_query_ending_chars]})? #   $7 Query String
     )
   }iox
 
@@ -63,7 +64,7 @@ class FetchLinkCardService < BaseService
 
   def parse_urls
     if @status.local?
-      urls = @status.text.scan(URL_PATTERN).map { |array| Addressable::URI.parse(array[0]).normalize }
+      urls = @status.text.scan(URL_PATTERN).map { |array| Addressable::URI.parse(array[1]).normalize }
     else
       html  = Nokogiri::HTML(@status.text)
       links = html.css('a')
