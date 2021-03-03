@@ -82,6 +82,8 @@ ja:
         invalid_client: 不明なクライアントであるか、クライアント情報が含まれていない、またはサポートされていない認証方法のため、クライアントの認証に失敗しました。
         invalid_grant: 指定された認証許可は無効であるか、期限切れ、取り消されている、リダイレクトURIの不一致、または別のクライアントに発行されています。
         invalid_redirect_uri: 無効なリダイレクトURIが含まれています。
+        invalid_request:
+          missing_param: '必須パラメータがありません: %{value}'
         invalid_resource_owner: 指定されたリソース所有者のクレデンシャルが無効であるか、リソース所有者が見つかりません
         invalid_scope: 要求されたアクセス権は無効であるか、不明、または不正なフォーマットです。
         invalid_token:
