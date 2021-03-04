@@ -13,6 +13,9 @@ pt-BR:
         send_email_notification: O usuário receberá uma explicação do que aconteceu com a própria conta
         text_html: Opcional. Você pode usar a sintaxe do toot e também pode <a href="%{path}">adicionar avisos pré-definidos</a> para poupar tempo
         type_html: Decida o que fazer com <strong>%{acct}</strong>
+        types:
+          disable: Impedir o usuário de usar sua conta, porém sem deletá-la ou escondê-la.
+          none: Use isto para enviar uma advertência ao usuário, sem nenhuma outra ação.
         warning_preset_id: Opcional. Você ainda pode adicionar texto personalizado no final do aviso pré-definido
       announcement:
         all_day: Quando marcada, apenas as datas do período serão mostradas
