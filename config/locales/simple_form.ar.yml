@@ -86,6 +86,7 @@ ar:
         types:
           disable: تعطيل
           none: لا تفعل شيئا
+          sensitive: حساس
           silence: كتم
           suspend: علِق
         warning_preset_id: استخدم نموذج تنبيه
@@ -111,6 +112,7 @@ ar:
         expires_in: تنتهي مدة صلاحيته بعد
         fields: البيانات الوصفية للصفحة التعريفية
         header: الرأسية
+        honeypot: "%{label} (لا تملئ)"
         inbox_url: عنوان رابط صندوق المُرَحِّل
         irreversible: إسقاط بدلا من إخفائها
         locale: لغة الواجهة
@@ -130,6 +132,7 @@ ar:
         setting_default_privacy: خصوصية المنشور
         setting_default_sensitive: اعتبر الوسائط دائما كمحتوى حساس
         setting_delete_modal: إظهار مربع حوار للتأكيد قبل حذف أي تبويق
+        setting_disable_swiping: تعطيل حركات التمرير
         setting_display_media: عرض الوسائط
         setting_display_media_default: افتراضي
         setting_display_media_hide_all: إخفاء الكل
@@ -162,7 +165,12 @@ ar:
       invite_request:
         text: لماذا ترغب في الانضمام؟
       ip_block:
+        comment: تعليق
         ip: عنوان IP
+        severities:
+          no_access: حظر الوصول
+          sign_up_requires_approval: حد التسجيلات
+        severity: قانون
       notification_emails:
         digest: إرسال ملخصات عبر البريد الإلكتروني
         favourite: ابعث بريداً إلكترونيًا عندما يُعجَب أحدهم بمنشورك
@@ -173,6 +181,8 @@ ar:
         reblog: ابعث بريداً إلكترونيًا عندما يقوم أحدهم بترقية منشورك
         report: إرسال رسالة إلكترونية عند تلقّي إبلاغ جديد
         trending_tag: ابعث رسالة إلكترونية إن كان هناك وسم متداوَل بحاجة إلى مراجعة
+      rule:
+        text: قانون
       tag:
         listable: اسمح لهذا الوسم بالظهور في البحث وفي دليل الصفحات التعريفية
         name: الوسم
@@ -181,5 +191,9 @@ ar:
     'no': 'لا'
     recommended: موصى بها
     required:
+      mark: "*"
       text: مطلوب
+    title:
+      sessions:
+        webauthn: استخدم أحد مفاتيح الأمان الخاصة بك لتسجيل الدخول
     'yes': 'نعم'
