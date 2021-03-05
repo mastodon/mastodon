@@ -4,12 +4,20 @@ cs:
       poll:
         expires_at: Uzávěrka
         options: Volby
+      user:
+        email: E-mailová adresa
+        password: Heslo
+      user/account:
+        username: Uživatel
+      user/invite_request:
+        text: Zdůvodnění
     errors:
       models:
         account:
           attributes:
             username:
               invalid: pouze písmena, číslice a podtržítka
+              reserved: je vyhrazeno
         status:
           attributes:
             reblog:
