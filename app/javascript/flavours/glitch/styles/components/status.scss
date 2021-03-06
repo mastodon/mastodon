@@ -209,7 +209,7 @@
   display: inline-block;
   border-radius: 2px;
   background: lighten($ui-base-color, 30%);
-  border: none;
+  border: 0;
   color: $inverted-text-color;
   font-weight: 500;
   font-size: 11px;
@@ -389,8 +389,10 @@
       &:after {
         content: "";
         position: absolute;
-        top: 0; bottom: 0;
-        left: 0; right: 0;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
         background: linear-gradient(rgba($ui-base-color, 0), rgba($ui-base-color, 1));
         pointer-events: none;
       }

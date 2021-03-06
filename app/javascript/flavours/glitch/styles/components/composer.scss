@@ -44,7 +44,7 @@
     display: block;
     box-sizing: border-box;
     margin: 0;
-    border: none;
+    border: 0;
     border-radius: 4px;
     padding: 10px;
     width: 100%;
@@ -81,7 +81,9 @@
 
     &:active,
     &:focus,
-    &:hover { text-decoration: none }
+    &:hover {
+      text-decoration: none;
+    }
   }
 }
 
@@ -256,7 +258,7 @@
       display: block;
       box-sizing: border-box;
       margin: 0;
-      border: none;
+      border: 0;
       border-radius: 4px 4px 0 0;
       padding: 10px 32px 0 10px;
       width: 100%;
@@ -277,9 +279,17 @@
         all: unset;
       }
 
-      &:disabled { background: $ui-secondary-color }
-      &:focus { outline: 0 }
-      @include single-column('screen and (max-width: 630px)') { font-size: 16px }
+      &:disabled {
+        background: $ui-secondary-color;
+      }
+
+      &:focus {
+        outline: 0;
+      }
+
+      @include single-column('screen and (max-width: 630px)') {
+        font-size: 16px;
+      }
 
       @include limited-single-column('screen and (max-width: 600px)') {
         height: 100px !important; // prevent auto-resize textarea
