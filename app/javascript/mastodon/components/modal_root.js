@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import 'wicg-inert';
 import { multiply } from 'color-blend';
+import { reduceMotion } from '../initial_state';
 
 export default class ModalRoot extends React.PureComponent {
 
@@ -104,7 +105,7 @@ export default class ModalRoot extends React.PureComponent {
     return (
       <div className='modal-root' ref={this.setRef}>
         <div style={{ pointerEvents: visible ? 'auto' : 'none' }}>
-          <div role='presentation' className='modal-root__overlay' onClick={onClose} style={{ backgroundColor: backgroundColor ? `rgba(${backgroundColor.r}, ${backgroundColor.g}, ${backgroundColor.b}, 0.7)` : null, transition: backgroundColor ? 'background-color 0.5s' : null }} />
+          <div role='presentation' className='modal-root__overlay' onClick={onClose} style={{ backgroundColor: backgroundColor ? `rgba(${backgroundColor.r}, ${backgroundColor.g}, ${backgroundColor.b}, 0.7)` : null, transition: backgroundColor && !reduceMotion ? 'background-color 0.5s' : null }} />
           <div role='dialog' className='modal-root__container'>{children}</div>
         </div>
       </div>
