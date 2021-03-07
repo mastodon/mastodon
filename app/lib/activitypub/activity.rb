@@ -153,11 +153,11 @@ class ActivityPub::Activity
 
     return status unless status.nil?
 
-    # If the boosted toot is embedded and it is a self-boost, handle it like a Create
+    # If the boosted toot is embedded and it is a self-boost or dereferenced, handle it like a Create
     unless unsupported_object_type?
       actor_id = value_or_id(first_of_value(@object['attributedTo']))
 
-      if actor_id == @account.uri
+      if actor_id == @account.uri || !actor_id.nil? && dereferenced?
         return ActivityPub::Activity.factory({ 'type' => 'Create', 'actor' => actor_id, 'object' => @object }, @account).perform
       end
     end
@@ -165,11 +165,16 @@ class ActivityPub::Activity
     fetch_remote_original_status
   end
 
+  def dereferenced?
+    @dereferenced
+  end
+
   def dereference_object!
     return unless @object.is_a?(String)
 
     dereferencer = ActivityPub::Dereferencer.new(@object, permitted_origin: @account.uri, signature_account: signed_fetch_account)
 
+    @dereferenced = !dereferencer.object.nil?
     @object = dereferencer.object unless dereferencer.object.nil?
   end
 

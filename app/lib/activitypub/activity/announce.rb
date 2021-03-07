@@ -2,11 +2,10 @@
 
 class ActivityPub::Activity::Announce < ActivityPub::Activity
   def perform
-    dereference_object!
-
     return reject_payload! if delete_arrived_first?(@json['id']) || !related_to_local_activity?
 
     lock_or_fail("announce:#{@object['id']}") do
+      dereference_object!
       @original_status = status_from_object
 
       return reject_payload! if @original_status.nil? || !announceable?(@original_status)
@@ -138,6 +137,6 @@ class ActivityPub::Activity::Announce < ActivityPub::Activity
   end
 
   def reblog_of_local_status?
-    status_from_uri(object_uri)&.account&.local?
+    ActivityPub::TagManager.instance.local_uri?(object_uri) && status_from_uri(object_uri)&.account&.local?
   end
 end
