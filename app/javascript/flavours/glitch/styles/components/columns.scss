@@ -509,16 +509,34 @@
     opacity: 0.5;
   }
 
-  &:hover:not([disabled]) {
-    background-color: darken($ui-base-color, 10%);
-  }
+  &:not([disabled]) {
+    &:hover {
+      background-color: darken($ui-base-color, 10%);
+    }
 
-  &.active {
-    background-color: $ui-highlight-color;
-  }
+    &:focus {
+      background-color: darken($ui-base-color, 15%);
+    }
 
-  &.active:hover:not([disabled]) {
-    background-color: lighten($ui-highlight-color, 10%);
+    &:active {
+      background-color: darken($ui-base-color, 20%);
+    }
+
+    &.active {
+      background-color: $ui-highlight-color;
+
+      &:hover {
+        background-color: lighten($ui-highlight-color, 10%);
+      }
+
+      &:focus {
+        background-color: lighten($ui-highlight-color, 15%);
+      }
+
+      &:active {
+        background-color: lighten($ui-highlight-color, 20%);
+      }
+    }
   }
 
   /* TODO: check RTL? */
