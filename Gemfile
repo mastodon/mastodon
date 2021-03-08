@@ -109,7 +109,7 @@ group :development, :test do
   gem 'i18n-tasks', '~> 0.9', require: false
   gem 'pry-byebug', '~> 3.9'
   gem 'pry-rails', '~> 0.3'
-  gem 'rspec-rails', '~> 4.0'
+  gem 'rspec-rails', '~> 4.1'
 end
 
 group :production, :test do
