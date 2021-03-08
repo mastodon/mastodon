@@ -13,6 +13,8 @@ ja:
         send_email_notification: ユーザーは自分のアカウントに何が起こったのか説明を受け取ります
         text_html: オプションです。投稿に用いる構文を使うことができます。簡略化のため<a href="%{path}">プリセット警告文を追加</a>することができます
         type_html: <strong>%{acct}</strong>さんに対し、何を行うか選択してください
+        types:
+          sensitive: このユーザーが添付したメディアを強制的に閲覧注意にする
         warning_preset_id: オプションです。プリセット警告文の末尾に任意の文字列を追加することができます
       announcement:
         all_day: 有効化すると、対象期間の箇所に日付だけが表示されます
