@@ -502,7 +502,8 @@
   font-size: inherit;
   flex: auto;
   background-color: $ui-base-color;
-  transition: background-color 0.2s ease;
+  transition-property: background-color, box-shadow;
+  transition: all 0.2s ease;
 
   &[disabled] {
     cursor: not-allowed;
@@ -524,17 +525,21 @@
 
     &.active {
       background-color: $ui-highlight-color;
+      box-shadow: inset 0 5px darken($ui-highlight-color, 20%);
 
       &:hover {
         background-color: lighten($ui-highlight-color, 10%);
+        box-shadow: inset 0 5px darken($ui-highlight-color, 10%);
       }
 
       &:focus {
         background-color: lighten($ui-highlight-color, 15%);
+        box-shadow: inset 0 5px darken($ui-highlight-color, 5%);
       }
 
       &:active {
         background-color: lighten($ui-highlight-color, 20%);
+        box-shadow: inset 0 5px $ui-highlight-color;
       }
     }
   }
