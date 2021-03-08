@@ -64,8 +64,17 @@ cs:
         data: Soubor CSV exportovaný z jiného serveru Mastodon
       invite_request:
         text: To nám pomůže posoudit vaši žádost
+      ip_block:
+        comment: Nepovinné. Poznamenejte si, proč jste přidali toto pravidlo.
+        expires_in: IP adresy jsou omezeným zdrojem, občas jsou sdílené a často mění majitele. Proto se jejich časově neomezené blokování nedoporučuje.
+        ip: Zadejte IPv4 nebo IPv6 adresu. Můžete blokovat celé rozsahy použitím CIDR notace. Dejte pozor, ať neodříznete přístup sami sobě!
+        severities:
+          no_access: Blokovat přístup ke všem zdrojům
+          sign_up_requires_approval: Nové registrace budou vyžadovat schválení
+        severity: Zvolte, jak naložit s požadavky z dané IP
       sessions:
         otp: 'Zadejte kód pro dvoufázové ověření vygenerovaný vaší mobilní aplikací, nebo použijte jeden z vašich záložních kódů:'
+        webauthn: Pokud jde o USB klíč, vložte jej a případně se dotkněte jeho tlačítka.
       tag:
         name: Můžete měnit pouze velikost písmen, například kvůli lepší čitelnosti
       user:
@@ -90,6 +99,7 @@ cs:
         types:
           disable: Deaktivovat přihlašování
           none: Nic nedělat
+          sensitive: Citlivý
           silence: Ztišit
           suspend: Pozastavit účet a nenávratně smazat jeho data
         warning_preset_id: Použít předlohu pro varování
@@ -108,12 +118,14 @@ cs:
         confirm_password: Potvrdit heslo
         context: Kontexty filtrů
         current_password: Současné heslo
+        data: Data
         discoverable: Zveřejnit tento účet v adresáři
         display_name: Zobrazované jméno
         email: E-mailová adresa
         expires_in: Vypršet za
         fields: Metadata profilu
         header: Záhlaví
+        honeypot: "%{label} (nevyplňovat)"
         inbox_url: URL příchozí schránky mostu
         irreversible: Zahodit místo skrytí
         locale: Jazyk rozhraní
@@ -133,6 +145,7 @@ cs:
         setting_default_privacy: Soukromí příspěvků
         setting_default_sensitive: Vždy označovat média jako citlivá
         setting_delete_modal: Před smazáním tootu zobrazovat potvrzovací okno
+        setting_disable_swiping: Vypnout gesta přejetí prsty
         setting_display_media: Zobrazování médií
         setting_display_media_default: Výchozí
         setting_display_media_hide_all: Skrýt vše
@@ -156,6 +169,8 @@ cs:
         whole_word: Celé slovo
       email_domain_block:
         with_dns_records: Zahrnout MX záznamy a IP adresy domény
+      featured_tag:
+        name: Hashtag
       interactions:
         must_be_follower: Blokovat oznámení od lidí, kteří vás nesledují
         must_be_following: Blokovat oznámení od lidí, které nesledujete
@@ -165,7 +180,12 @@ cs:
       invite_request:
         text: Proč se chcete připojit?
       ip_block:
+        comment: Komentář
         ip: IP
+        severities:
+          no_access: Blokovat přístup
+          sign_up_requires_approval: Omezit registrace
+        severity: Pravidlo
       notification_emails:
         digest: Posílat e-maily s přehledem
         favourite: Poslat e-mail, když si někdo oblíbí váš toot
@@ -176,8 +196,11 @@ cs:
         reblog: Poslat e-mail, když někdo boostne váš toot
         report: Poslat e-mail, je-li nahlášeno něco nového
         trending_tag: Poslat e-mail, když se neschválený hashtag stane populárním
+      rule:
+        text: Pravidlo
       tag:
         listable: Povolit tento hashtag ve výsledcích vyhledávání a v adresáři profilů
+        name: Hashtag
         trendable: Povolit tento hashtag v trendech
         usable: Povolit používat tento hashtag v tootech
     'no': 'Ne'
@@ -185,4 +208,7 @@ cs:
     required:
       mark: "*"
       text: vyžadováno
+    title:
+      sessions:
+        webauthn: K přihlášení použijte jeden z Vašich bezpečnostních klíčů
     'yes': 'Ano'
