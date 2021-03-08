@@ -530,9 +530,7 @@ class Account < ApplicationRecord
       terms = unsanitized_terms.gsub(DISALLOWED_TSQUERY_CHARACTERS, ' ')
 
       # The final ":*" is for prefix search.
-      # Not sure what surrounding spaces are for, but they were there in the
-      # original code.
-      "' #{terms} ':*"
+      "'#{terms}':*"
     end
   end
 
