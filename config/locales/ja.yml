@@ -19,6 +19,7 @@ ja:
     documentation: ドキュメント
     federation_hint_html: '%{instance} のアカウントひとつでどんなMastodon互換サーバーのユーザーでもフォローできるでしょう。'
     get_apps: モバイルアプリを試す
+    hosted_on: Mastodon hosted on %{domain}
     instance_actor_flash: |
       このアカウントはサーバーそのものを示す仮想的なもので、特定のユーザーを示すものではありません。これはサーバーの連合のために使用されます。サーバー全体をブロックするときは、このアカウントをブロックせずに、ドメインブロックを使用してください。 
     learn_more: もっと詳しく
@@ -31,6 +32,7 @@ ja:
     status_count_after:
       other: トゥート
     status_count_before: トゥート数
+    tagline: Follow friends and discover new ones
     terms: 利用規約
     unavailable_content: 制限中のサーバー
     unavailable_content_description:
@@ -1036,6 +1038,16 @@ ja:
     email_events: メールによる通知
     email_events_hint: '受信する通知を選択:'
     other_settings: その他の通知設定
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          billion: B
+          million: M
+          quadrillion: Q
+          thousand: K
+          trillion: T
   otp_authentication:
     code_hint: 続行するには認証アプリで表示されたコードを入力してください
     description_html: <strong>二要素認証</strong>を有効にすると、ログイン時に認証アプリからコードを入力する必要があります。
@@ -1049,6 +1061,7 @@ ja:
     next: 次
     older: 以前のトゥート
     prev: 前
+    truncate: "&hellip;"
   polls:
     errors:
       already_voted: このアンケートには投票済みです
