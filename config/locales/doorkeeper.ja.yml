@@ -84,6 +84,8 @@ ja:
         invalid_redirect_uri: 無効なリダイレクトURIが含まれています。
         invalid_request:
           missing_param: '必須パラメータがありません: %{value}'
+          request_not_authorized: リクエストを承認する必要があります。リクエストを認可するために必要なパラメータがありません。
+          unknown: リクエストに必要なパラメータが欠けているか、サポートされていないパラメータが含まれている、または不正なフォーマットです。
         invalid_resource_owner: 指定されたリソース所有者のクレデンシャルが無効であるか、リソース所有者が見つかりません
         invalid_scope: 要求されたアクセス権は無効であるか、不明、または不正なフォーマットです。
         invalid_token:
