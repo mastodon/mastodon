@@ -15,6 +15,10 @@ cs:
         type_html: Vyberte, co chcete s účtem <strong>%{acct}</strong> udělat
         types:
           disable: Zabránit uživateli používat svůj účet, ale nemazat ani neskrývat jejich obsah.
+          none: Toto použijte pro zaslání varování uživateli, bez vyvolání jakékoliv další akce.
+          sensitive: Vynutit označení všech mediálních příloh tohoto uživatele jako citlivých.
+          silence: Zamezit uživateli odesílat příspěvky s veřejnou viditelností, schovat jejich příspěvky a notifikace před lidmi, kteří je nesledují.
+          suspend: Zamezit jakékoliv interakci z nebo do tohoto účtu a smazat jeho obsah. Vratné do 30 dnů.
         warning_preset_id: Volitelné. Na konec předlohy můžete stále vložit vlastní text
       announcement:
         all_day: Po vybrání budou zobrazeny jenom dny z časového období
