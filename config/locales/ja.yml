@@ -185,6 +185,7 @@ ja:
       search_same_ip: 同じ IP のユーザーを検索
       sensitive: 閲覧注意
       sensitized: 閲覧注意済み
+      shared_inbox_url: 共有 inbox URL
       show:
         created_reports: このアカウントで作られた通報
         targeted_reports: このアカウントについての通報
@@ -906,9 +907,11 @@ ja:
         verification_failed: KeybaseはこのトークンをKeybaseユーザー%{kb_username}の署名として認識しませんでした。Keybaseから再試行してください。
       wrong_user: '%{current}としてログインしている間%{proving}の証明を作成することはできません。%{proving}としてログインし、もう一度やり直してください。'
     explanation_html: ここではKeybaseのような他のサービスのアカウントと暗号化し関連づけることができます。これによりそれらのサービス上で他の人が暗号化されたメッセージを送信したり、あなたの送信した内容があなたからのものであると信用できるようになります。
+    i_am_html: 私は %{service} の %{username} です。
     identity: 所属
     inactive: 非アクティブ
     publicize_checkbox: 'そしてこれをトゥートします:'
+    publicize_toot: '証明されました！私は %{service} の %{username} です: %{url}'
     remove: アカウントから証明書を削除
     removed: アカウントから証明書を削除することに成功しました
     status: 認証状態
