@@ -80,7 +80,7 @@
       = link_to t('admin.domain_blocks.add_new'), new_admin_domain_block_path(_domain: @instance.domain), class: 'button'
     - if @instance.delivery_failure_tracker.available?
       - unless @exhausted_deliveries_days.empty?
-        = link_to t('admin.instances.delivery.remove'), remove_delivery_errors_admin_instance_path(@instance), data: { confirm: t('admin.accounts.are_you_sure'), method: :post }, class: 'button'
+        = link_to t('admin.instances.delivery.clear'), clear_delivery_errors_admin_instance_path(@instance), data: { confirm: t('admin.accounts.are_you_sure'), method: :post }, class: 'button'
       = link_to t('admin.instances.delivery.stop'), stop_delivery_admin_instance_path(@instance), data: { confirm: t('admin.accounts.are_you_sure'), method: :post }, class: 'button'
     - else
       = link_to t('admin.instances.delivery.restart'), restart_delivery_admin_instance_path(@instance), data: { confirm: t('admin.accounts.are_you_sure'), method: :post }, class: 'button'

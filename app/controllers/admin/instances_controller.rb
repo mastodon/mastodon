@@ -14,8 +14,8 @@ module Admin
       authorize :instance, :show?
     end
 
-    def remove_delivery_errors
-      authorize :delivery, :remove_delivery_errors?
+    def clear_delivery_errors
+      authorize :delivery, :clear_delivery_errors?
 
       @instance.delivery_failure_tracker.clear_failures!
       redirect_to admin_instance_path(@instance.domain)

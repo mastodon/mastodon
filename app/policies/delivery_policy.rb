@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class DeliveryPolicy < ApplicationPolicy
-  def remove_delivery_errors?
+  def clear_delivery_errors?
       admin?
   end
 
