@@ -111,7 +111,7 @@ group :development, :test do
   gem 'i18n-tasks', '~> 0.9', require: false
   gem 'pry-byebug', '~> 3.9'
   gem 'pry-rails', '~> 0.3'
-  gem 'rspec-rails', '~> 4.0'
+  gem 'rspec-rails', '~> 4.1'
 end
 
 group :production, :test do
@@ -127,7 +127,7 @@ group :test do
   gem 'rspec-sidekiq', '~> 3.1'
   gem 'simplecov', '~> 0.21', require: false
   gem 'webmock', '~> 3.12'
-  gem 'parallel_tests', '~> 3.4'
+  gem 'parallel_tests', '~> 3.5'
   gem 'rspec_junit_formatter', '~> 0.4'
 end
 
@@ -145,7 +145,7 @@ group :development do
   gem 'brakeman', '~> 4.10', require: false
   gem 'bundler-audit', '~> 0.7', require: false
 
-  gem 'capistrano', '~> 3.15'
+  gem 'capistrano', '~> 3.16'
   gem 'capistrano-rails', '~> 1.6'
   gem 'capistrano-rbenv', '~> 2.2'
   gem 'capistrano-yarn', '~> 2.0'

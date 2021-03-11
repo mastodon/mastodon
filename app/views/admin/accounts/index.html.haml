@@ -51,6 +51,6 @@
         %th= t('admin.accounts.most_recent_activity')
         %th
     %tbody
-      = render @accounts
+      = render partial: 'account', collection: @accounts
 
 = paginate @accounts
