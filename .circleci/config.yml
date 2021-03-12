@@ -245,17 +245,17 @@ workflows:
       - install-ruby2.7:
           requires:
             - install
-            - install-ruby3.0
+            - install-ruby2.7
       - install-ruby2.6:
           requires:
             - install
-            - install-ruby3.0
+            - install-ruby2.6
       - build:
           requires:
-            - install-ruby2.7
+            - install-ruby3.0
       - test-migrations:
           requires:
-            - install-ruby2.7
+            - install-ruby3.0
       - test-ruby3.0:
           requires:
             - install-ruby3.0
