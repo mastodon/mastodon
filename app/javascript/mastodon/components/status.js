@@ -101,6 +101,7 @@ class Status extends ImmutablePureComponent {
       inUse: PropTypes.bool,
       available: PropTypes.bool,
     }),
+    showReblogVisibility: PropTypes.bool,
   };
 
   // Avoid checking props that are functions (and whose equality will always
@@ -112,6 +113,7 @@ class Status extends ImmutablePureComponent {
     'hidden',
     'unread',
     'pictureInPicture',
+    'showReblogVisibility',
   ];
 
   state = {
@@ -283,7 +285,7 @@ class Status extends ImmutablePureComponent {
     let media = null;
     let statusAvatar, prepend, rebloggedByText;
 
-    const { intl, hidden, featured, otherAccounts, unread, showThread, scrollKey, pictureInPicture } = this.props;
+    const { intl, hidden, featured, otherAccounts, unread, showThread, scrollKey, pictureInPicture, showReblogVisibility } = this.props;
 
     let { status, account, ...other } = this.props;
 
@@ -354,7 +356,7 @@ class Status extends ImmutablePureComponent {
         <div className={classNames('status__prepend', `status__prepend-${status.get('visibility')}`)}>
           <div className='status__prepend-icon-wrapper'><Icon id='retweet' className='status__prepend-icon' fixedWidth /></div>
           <FormattedMessage id='status.reblogged_by' defaultMessage='{name} boosted' values={{ name: <a onClick={this.handleAccountClick} data-id={status.getIn(['account', 'id'])} href={status.getIn(['account', 'url'])} className='status__display-name muted'><bdi><strong dangerouslySetInnerHTML={display_name_html} /></bdi></a> }} />
-          {visibilityReblogLink}
+          {showReblogVisibility && visibilityReblogLink}
         </div>
       );
 

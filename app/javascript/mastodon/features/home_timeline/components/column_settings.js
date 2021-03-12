@@ -27,6 +27,10 @@ class ColumnSettings extends React.PureComponent {
         <div className='column-settings__row'>
           <SettingToggle prefix='home_timeline' settings={settings} settingPath={['shows', 'reply']} onChange={onChange} label={<FormattedMessage id='home.column_settings.show_replies' defaultMessage='Show replies' />} />
         </div>
+
+        <div className='column-settings__row'>
+          <SettingToggle prefix='home_timeline' settings={settings} settingPath={['shows', 'reblog_visibility']} onChange={onChange} label={<FormattedMessage id='home.column_settings.show_reblog_visibility' defaultMessage='Show boost visibility' />} />
+        </div>
       </div>
     );
   }

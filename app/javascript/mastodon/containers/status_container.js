@@ -60,6 +60,7 @@ const makeMapStateToProps = () => {
   const mapStateToProps = (state, props) => ({
     status: getStatus(state, props),
     pictureInPicture: getPictureInPicture(state, props),
+    showReblogVisibility: state.getIn(['settings', 'home', 'shows', 'reblog_visibility']) === true,
   });
 
   return mapStateToProps;
