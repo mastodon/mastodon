@@ -33,9 +33,9 @@ class Api::V1::AccountsController < Api::BaseController
 
       self.response_body = Oj.dump(response.body)
       self.status        = response.status
-    rescue ActiveRecord::RecordInvalid => e
-      render json: ValidationErrorFormatter.new(e, :'account.username' => :username, :'invite_request.text' => :reason).as_json, status: :unprocessable_entity
     end
+  rescue ActiveRecord::RecordInvalid => e
+    render json: ValidationErrorFormatter.new(e, :'account.username' => :username, :'invite_request.text' => :reason).as_json, status: :unprocessable_entity
   end
 
   def follow
