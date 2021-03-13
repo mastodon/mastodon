@@ -20,7 +20,6 @@ const initialState = ImmutableMap({
     shows: ImmutableMap({
       reblog: true,
       reply: true,
-      reblog_visibility: true,
     }),
 
     regex: ImmutableMap({
