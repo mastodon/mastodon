@@ -32,7 +32,7 @@
           %bdi
             %strong.emojify= display_name(status.account, custom_emojify: true)
         = t('stream_entries.reblogged')
-      - if show_boost_visibility
+      - if show_boost_visibility && !status.public_visibility?
         = visibility_icon status, class: 'status__prepend-visibility-icon'
   - elsif pinned
     .status__prepend
