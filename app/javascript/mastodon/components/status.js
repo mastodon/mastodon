@@ -16,7 +16,7 @@ import { MediaGallery, Video, Audio } from '../features/ui/util/async-components
 import { HotKeys } from 'react-hotkeys';
 import classNames from 'classnames';
 import Icon from 'mastodon/components/icon';
-import { displayMedia } from '../initial_state';
+import { displayMedia, showBoostVisibility } from '../initial_state';
 import PictureInPicturePlaceholder from 'mastodon/components/picture_in_picture_placeholder';
 
 // We use the component (and not the container) since we do not want
@@ -354,7 +354,7 @@ class Status extends ImmutablePureComponent {
         <div className={classNames('status__prepend', `status__prepend-${status.get('visibility')}`)}>
           <div className='status__prepend-icon-wrapper'><Icon id='retweet' className='status__prepend-icon' fixedWidth /></div>
           <FormattedMessage id='status.reblogged_by' defaultMessage='{name} boosted' values={{ name: <a onClick={this.handleAccountClick} data-id={status.getIn(['account', 'id'])} href={status.getIn(['account', 'url'])} className='status__display-name muted'><bdi><strong dangerouslySetInnerHTML={display_name_html} /></bdi></a> }} />
-          {visibilityReblogLink}
+          {showBoostVisibility && visibilityReblogLink}
         </div>
       );
 
