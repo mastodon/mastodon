@@ -164,7 +164,7 @@ class Formatter
             end
           end
           before_html = shortname_start_index.positive? ? html[0..shortname_start_index - 1] : ''
-          html        = before_html + replacement + html[i + 1..-1]
+          html        = before_html + replacement.html_safe + html[i + 1..-1]
           i          += replacement.size - (shortcode.size + 2) - 1
         else
           i -= 1
