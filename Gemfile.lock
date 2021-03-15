@@ -11,6 +11,17 @@ GIT
       rotp (~> 6)
 
 GIT
+  remote: https://github.com/Gargron/nsa
+  revision: d1079e0cdafdfed7f9f35478d13b9bdaa65965c0
+  ref: d1079e0cdafdfed7f9f35478d13b9bdaa65965c0
+  specs:
+    nsa (0.2.8)
+      activesupport (>= 4.2, < 7)
+      concurrent-ruby (~> 1.0, >= 1.0.2)
+      sidekiq (>= 3.5)
+      statsd-ruby (~> 1.4, >= 1.4.0)
+
+GIT
   remote: https://github.com/ianheggie/health_check
   revision: 0b799ead604f900ed50685e9b2d469cd2befba5b
   ref: 0b799ead604f900ed50685e9b2d469cd2befba5b
@@ -376,11 +387,6 @@ GEM
       racc (~> 1.4)
     nokogumbo (2.0.4)
       nokogiri (~> 1.8, >= 1.8.4)
-    nsa (0.2.7)
-      activesupport (>= 4.2, < 6)
-      concurrent-ruby (~> 1.0, >= 1.0.2)
-      sidekiq (>= 3.5)
-      statsd-ruby (~> 1.4, >= 1.4.0)
     oj (3.11.3)
     omniauth (1.9.1)
       hashie (>= 3.4.6)
@@ -566,7 +572,7 @@ GEM
       railties (>= 4.0.0)
     securecompare (1.0.0)
     semantic_range (2.3.0)
-    sidekiq (6.1.3)
+    sidekiq (6.2.0)
       connection_pool (>= 2.2.2)
       rack (~> 2.0)
       redis (>= 4.2.0)
@@ -606,7 +612,7 @@ GEM
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
     stackprof (0.2.16)
-    statsd-ruby (1.4.0)
+    statsd-ruby (1.5.0)
     stoplight (2.2.1)
     streamio-ffmpeg (3.0.2)
       multi_json (~> 1.8)
@@ -747,7 +753,7 @@ DEPENDENCIES
   net-ldap (~> 0.17)
   nilsimsa!
   nokogiri (~> 1.11)
-  nsa (~> 0.2)
+  nsa!
   oj (~> 3.11)
   omniauth (~> 1.9)
   omniauth-cas (~> 2.0)
