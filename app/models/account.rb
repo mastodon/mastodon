@@ -27,7 +27,6 @@
 #  header_file_size              :integer
 #  header_updated_at             :datetime
 #  avatar_remote_url             :string
-#  subscription_expires_at       :datetime
 #  locked                        :boolean          default(FALSE), not null
 #  header_remote_url             :string           default(""), not null
 #  last_webfingered_at           :datetime
@@ -55,6 +54,8 @@
 #
 
 class Account < ApplicationRecord
+  self.ignored_columns = %w(subscription_expires_at)
+
   USERNAME_RE = /[a-z0-9_]+([a-z0-9_\.-]+[a-z0-9_]+)?/i
   MENTION_RE  = /(?<=^|[^\/[:word:]])@((#{USERNAME_RE})(?:@[[:word:]\.\-]+[a-z0-9]+)?)/i
 
@@ -97,7 +98,6 @@ class Account < ApplicationRecord
 
   scope :remote, -> { where.not(domain: nil) }
   scope :local, -> { where(domain: nil) }
-  scope :expiring, ->(time) { remote.where.not(subscription_expires_at: nil).where('subscription_expires_at < ?', time) }
   scope :partitioned, -> { order(Arel.sql('row_number() over (partition by domain)')) }
   scope :silenced, -> { where.not(silenced_at: nil) }
   scope :suspended, -> { where.not(suspended_at: nil) }
@@ -192,10 +192,6 @@ class Account < ApplicationRecord
 
   def to_webfinger_s
     "acct:#{local_username_and_domain}"
-  end
-
-  def subscribed?
-    subscription_expires_at.present?
   end
 
   def searchable?
