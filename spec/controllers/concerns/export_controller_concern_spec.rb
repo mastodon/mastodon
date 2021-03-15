@@ -23,7 +23,7 @@ describe ApplicationController, type: :controller do
 
       expect(response).to have_http_status(200)
       expect(response.media_type).to eq 'text/csv'
-      expect(response.headers['Content-Disposition']).to eq 'attachment; filename="anonymous.csv"'
+      expect(response.headers['Content-Disposition']).to start_with 'attachment; filename="anonymous.csv"'
       expect(response.body).to eq user.account.username
     end
 
