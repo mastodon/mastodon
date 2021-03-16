@@ -692,8 +692,10 @@ eo:
       prefix_invited_by_user: "@%{name} invitigi vin aligiĝi ĉi tiu servilo de Mastodon!"
       prefix_sign_up: Registriĝi ĉe Mastodon hodiaŭ!
     didnt_get_confirmation: Ĉu vi ne ricevis la instrukciojn por konfirmi?
+    dont_have_your_security_key: Ne havas vi vian sekurecan ŝlosilon?
     forgot_password: Pasvorto forgesita?
     invalid_reset_password_token: Ĵetono por restarigi pasvorton nevalida aŭ eksvalida. Bonvolu peti novan.
+    link_to_webauth: Uzi vian sekurecan ŝlosilon
     login: Ensaluti
     logout: Elsaluti
     migrate_account: Movi al alia konto
@@ -1236,7 +1238,12 @@ eo:
     explanation_html: 'Vi povas <strong>pruvi, ke vi estas la posedanto de la ligiloj en viaj profilaj metadatumoj</strong>. Por fari tion, la alligita retejo devas enhavi ligilon reen al via Mastodon-profilo. La religilo <strong>devas</strong> havi la atributon <code>rel="me"</code>. Ne gravas la teksta enhavo de la religilo. Jen ekzemplo:'
     verification: Kontrolo
   webauthn_credentials:
+    add: Aldoni novan sekurecan ŝlosilon
+    create:
+      success: Via sekureca ŝlosilo estis sukcese aldonita.
     delete: Forigi
     delete_confirmation: Ĉu vi certas, ke vi volas forigi ĉi tiun sekurecan ŝlosilon?
+    destroy:
+      success: Via sekureca ŝlosilo estis sukcese forigita.
     invalid_credential: Nevalida sekureca ŝlosilo
     registered_on: Registrigita je %{date}
