@@ -265,6 +265,7 @@ eo:
         reopen_report: "%{name} remalfermis signalon %{target}"
         reset_password_user: "%{name} restarigis pasvorton de uzanto %{target}"
         resolve_report: "%{name} solvis signalon %{target}"
+        sensitive_account: "%{name} markis la aŭdovidaĵojn de %{target} kiel tiklaj"
         silence_account: "%{name} kaŝis la konton de %{target}"
         suspend_account: "%{name} haltigis la konton de %{target}"
         unassigned_report: "%{name} malasignis signalon %{target}"
@@ -660,11 +661,13 @@ eo:
     discovery: Eltrovo
     localization:
       body: Mastodon estas tradukita per volontuloj.
+      guide_link: https://crowdin.com/project/mastodon
       guide_link_text: Ĉiu povas kontribui.
     sensitive_content: Tikla enhavo
     toot_layout: Mesaĝo aranĝo
   application_mailer:
     notification_preferences: Ŝanĝi retmesaĝajn preferojn
+    salutation: "%{name},"
     settings: 'Ŝanĝi retmesaĝajn preferojn: %{link}'
     view: 'Vidi:'
     view_profile: Vidi profilon
@@ -734,6 +737,7 @@ eo:
   date:
     formats:
       default: "%Y-%m-%d "
+      with_month_name: "%e-a de %B %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}h"
@@ -972,8 +976,12 @@ eo:
           thousand: m
           trillion: Dn
   otp_authentication:
+    code_hint: Enmetu la kodon kreitan de via aŭtentiga aplikaĵo por konfirmi
     enable: Ebligi
+    instructions_html: "<strong>Skanu ĉi tiun QR-kodon per Google Authenticator aŭ per simila aplikaĵo en via poŝtelefono</strong>. De tiam, la aplikaĵo kreos nombrojn, kiujn vi devos enmeti."
+    manual_instructions: 'Se vi ne povas skani la QR-kodon kaj bezonas enmeti ĝin mane, jen la tut-teksta sekreto:'
     setup: Agordi
+    wrong_code: La enmetita kodo estis nevalida! Ĉu la servila tempo kaj la aparata tempo ĝustas?
   pagination:
     newer: Pli nova
     next: Sekva
@@ -1160,6 +1168,7 @@ eo:
   time:
     formats:
       default: "%Y-%m-%d %H:%M"
+      month: "%b %Y"
   two_factor_authentication:
     add: Aldoni
     disable: Malebligi
