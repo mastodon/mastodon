@@ -26,7 +26,7 @@ describe SearchService, type: :service do
       context 'that does not find anything' do
         it 'returns the empty results' do
           service = double(call: nil)
-          allow(ResolveURLService).to receive(:new).and_return(service)
+          allow(ResolveUrlService).to receive(:new).and_return(service)
           results = subject.call(@query, nil, 10, resolve: true)
 
           expect(service).to have_received(:call).with(@query, on_behalf_of: nil)
@@ -38,7 +38,7 @@ describe SearchService, type: :service do
         it 'includes the account in the results' do
           account = Account.new
           service = double(call: account)
-          allow(ResolveURLService).to receive(:new).and_return(service)
+          allow(ResolveUrlService).to receive(:new).and_return(service)
 
           results = subject.call(@query, nil, 10, resolve: true)
           expect(service).to have_received(:call).with(@query, on_behalf_of: nil)
@@ -50,7 +50,7 @@ describe SearchService, type: :service do
         it 'includes the status in the results' do
           status = Status.new
           service = double(call: status)
-          allow(ResolveURLService).to receive(:new).and_return(service)
+          allow(ResolveUrlService).to receive(:new).and_return(service)
 
           results = subject.call(@query, nil, 10, resolve: true)
           expect(service).to have_received(:call).with(@query, on_behalf_of: nil)

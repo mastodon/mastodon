@@ -80,7 +80,7 @@ class SearchService < BaseService
   end
 
   def url_resource
-    @_url_resource ||= ResolveURLService.new.call(@query, on_behalf_of: @account)
+    @_url_resource ||= ResolveUrlService.new.call(@query, on_behalf_of: @account)
   end
 
   def url_resource_symbol

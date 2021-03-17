@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe ResolveURLService, type: :service do
+describe ResolveUrlService, type: :service do
   subject { described_class.new }
 
   describe '#call' do

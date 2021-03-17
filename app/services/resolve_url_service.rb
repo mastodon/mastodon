@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ResolveURLService < BaseService
+class ResolveUrlService < BaseService
   include JsonLdHelper
   include Authorization
 
