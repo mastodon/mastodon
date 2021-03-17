@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 namespace    = ENV.fetch('REDIS_NAMESPACE') { nil }
-redis_params = { url: ENV['REDIS_URL'] }
+redis_params = { url: ENV['REDIS_URL'], driver: :hiredis }
 
 if namespace
   redis_params[:namespace] = namespace
