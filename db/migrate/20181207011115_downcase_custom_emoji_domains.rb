@@ -2,7 +2,7 @@ class DowncaseCustomEmojiDomains < ActiveRecord::Migration[5.2]
   disable_ddl_transaction!
 
   def up
-    duplicates = CustomEmoji.connection.select_all('SELECT string_agg(id::text, \',\') AS ids FROM custom_emojis GROUP BY shortcode, lower(domain) HAVING count(*) > 1').to_hash
+    duplicates = CustomEmoji.connection.select_all('SELECT string_agg(id::text, \',\') AS ids FROM custom_emojis GROUP BY shortcode, lower(domain) HAVING count(*) > 1').to_ary
 
     duplicates.each do |row|
       CustomEmoji.where(id: row['ids'].split(',')[0...-1]).destroy_all
