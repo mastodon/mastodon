@@ -4,7 +4,7 @@ class NotificationMailer < ApplicationMailer
   helper :accounts
   helper :statuses
 
-  add_template_helper RoutingHelper
+  helper RoutingHelper
 
   def mention(recipient, notification)
     @me     = recipient
