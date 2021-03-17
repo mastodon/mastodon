@@ -23,6 +23,7 @@ ActiveSupport::Inflector.inflections(:en) do |inflect|
   inflect.acronym 'TOC'
   inflect.acronym 'RSS'
   inflect.acronym 'REST'
+  inflect.acronym 'URL'
 
   inflect.singular 'data', 'data'
 end

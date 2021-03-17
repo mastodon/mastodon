@@ -38,7 +38,7 @@ class AuthorizeInteractionsController < ApplicationController
 
   def located_resource
     if uri_param_is_url?
-      ResolveUrlService.new.call(uri_param)
+      ResolveURLService.new.call(uri_param)
     else
       account_from_remote_follow
     end

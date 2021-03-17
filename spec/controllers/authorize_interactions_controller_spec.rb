@@ -42,7 +42,7 @@ describe AuthorizeInteractionsController do
       it 'sets resource from url' do
         account = Account.new
         service = double
-        allow(ResolveUrlService).to receive(:new).and_return(service)
+        allow(ResolveURLService).to receive(:new).and_return(service)
         allow(service).to receive(:call).with('http://example.com').and_return(account)
 
         get :show, params: { acct: 'http://example.com' }
