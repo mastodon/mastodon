@@ -258,6 +258,7 @@ cs:
         unsuspend_account: Zrušit pozastavení účtu
         update_announcement: Aktualizovat oznámení
         update_custom_emoji: Aktualizovat vlastní emoji
+        update_domain_block: Změnit blokaci domény
         update_status: Aktualizovat stav
       actions:
         assigned_to_self_report: "Uživatel %{name} si přidělil hlášení %{target}"
@@ -269,12 +270,14 @@ cs:
         create_domain_allow: "Uživatel %{name} přidal doménu %{target} na bílou listinu"
         create_domain_block: "Uživatel %{name} zablokoval doménu %{target}"
         create_email_domain_block: "Uživatel %{name} přidal e-mailovou doménu %{target} na černou listinu"
+        create_ip_block: "%{name} vytvořil pravidlo pro IP %{target}"
         demote_user: "Uživatel %{name} degradoval uživatele %{target}"
         destroy_announcement: "Uživatel %{name} odstranil oznámení %{target}"
         destroy_custom_emoji: "Uživatel %{name} zničil emoji %{target}"
         destroy_domain_allow: "Uživatel %{name} odebral doménu %{target} z bílé listiny"
         destroy_domain_block: "Uživatel %{name} odblokoval doménu %{target}"
         destroy_email_domain_block: "Uživatel %{name} odebral e-mailovou doménu %{target} z černé listiny"
+        destroy_ip_block: "%{name} odstranil pravidlo pro IP %{target}"
         destroy_status: "Uživatel %{name} odstranil toot uživatele %{target}"
         disable_2fa_user: "Uživatel %{name} vypnul dvoufázové ověřování pro uživatele %{target}"
         disable_custom_emoji: "Uživatel %{name} zakázal emoji %{target}"
@@ -287,13 +290,16 @@ cs:
         reopen_report: "Uživatel %{name} znovu otevřel hlášení %{target}"
         reset_password_user: "Uživatel %{name} obnovil heslo uživatele %{target}"
         resolve_report: "Uživatel %{name} vyřešil hlášení %{target}"
+        sensitive_account: "%{name} označil média účtu %{target} jako citlivá"
         silence_account: "Uživatel %{name} ztišil uživatele %{target}"
         suspend_account: "Uživatel %{name} pozastavil účet uživatele %{target}"
         unassigned_report: "Uživatel %{name} odebral hlášení %{target}"
+        unsensitive_account: "%{name} zrušil označení médií účtu %{target} jako citlivých"
         unsilence_account: "Uživatel %{name} zrušil ztišení uživatele %{target}"
         unsuspend_account: "Uživatel %{name} zrušil pozastavení účtu uživatele %{target}"
         update_announcement: "Uživatel %{name} aktualizoval oznámení %{target}"
         update_custom_emoji: "Uživatel %{name} aktualizoval emoji %{target}"
+        update_domain_block: "%{name} aktualizoval blokaci domény %{target}"
         update_status: "Uživatel %{name} aktualizoval toot uživatele %{target}"
       deleted_status: "(smazaný toot)"
       empty: Nebyly nalezeny žádné záznamy.
@@ -328,6 +334,7 @@ cs:
       disable: Zakázat
       disabled: Zakázáno
       disabled_msg: Emoji bylo úspěšně zakázáno
+      emoji: Emoji
       enable: Povolit
       enabled: Povoleno
       enabled_msg: Emoji bylo úspěšně povoleno
@@ -366,6 +373,7 @@ cs:
       recent_users: Nedávní uživatelé
       search: Fulltextové vyhledávání
       single_user_mode: Režim jednoho uživatele
+      software: Software
       space: Využití prostoru
       title: Přehled
       total_users: uživatelů celkem
@@ -395,6 +403,8 @@ cs:
           silence: Ztišit
           suspend: Pozastavit
         title: Nová blokace domény
+      obfuscate: Obfuskovat doménu
+      obfuscate_hint: Částečně zkreslit název domény v seznamu, pokud je povoleno zveřejnění seznamu omezených domén
       private_comment: Soukromý komentář
       private_comment_hint: Komentář o tomto omezení domény pro vnitřní použití moderátory.
       public_comment: Veřejný komentář
@@ -436,6 +446,7 @@ cs:
     instances:
       by_domain: Doména
       delivery_available: Doručení je k dispozici
+      empty: Nebyly nalezeny žádné domény.
       known_accounts:
         one: "%{count} známý účet"
         few: "%{count} známé účty"
@@ -461,6 +472,17 @@ cs:
         expired: Vypršené
         title: Filtrovat
       title: Pozvánky
+    ip_blocks:
+      add_new: Vytvořit pravidlo
+      created_msg: Nové IP pravidlo úspěšně přidáno
+      delete: Smazat
+      expires_in:
+        '1209600': 2 týdny
+        '15778476': 6 měsíců
+        '2629746': 1 měsíc
+        '31556952': 1 rok
+        '86400': 1 den
+        '94670856': 3 roky
     pending_accounts:
       title: Čekající účty (%{count})
     relationships:
@@ -1085,11 +1107,22 @@ cs:
     browser: Prohlížeč
     browsers:
       generic: Neznámý prohlížeč
+      micro_messenger: MicroMessenger
+      nokia: Nokia S40 Ovi Browser
+      opera: Opera
+      otter: Otter
+      phantom_js: PhantomJS
+      qq: QQ Browser
+      safari: Safari
+      uc_browser: UCBrowser
+      weibo: Weibo
     current_session: Aktuální relace
     description: "%{browser} na systému %{platform}"
     explanation: Tohle jsou webové prohlížeče aktuálně přihlášené na váš účet Mastodon.
     ip: IP adresa
     platforms:
+      adobe_air: Adobe Air
+      android: Android
       chrome_os: Chrome OS
       mac: Mac
       other: neznámá platforma
