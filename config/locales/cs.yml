@@ -6,6 +6,7 @@ cs:
     active_count_after: aktivních
     active_footnote: Měsíční aktivní uživatelé (MAU)
     administered_by: 'Server spravuje:'
+    api: API
     apps: Mobilní aplikace
     apps_platforms: Používejte Mastodon na iOS, Androidu a dalších platformách
     browse_directory: Prozkoumejte adresář profilů a filtrujte dle zájmů
@@ -37,6 +38,7 @@ cs:
     terms: Podmínky používání
     unavailable_content: Nedostupný obsah
     unavailable_content_description:
+      domain: Server
       reason: Důvod
       rejecting_media: 'Mediální soubory z tohoto serveru nebudou zpracovány a nebudou zobrazeny žádné náhledy. Pro prohlédnutí médií bude třeba manuálně přejít na druhý server:'
       rejecting_media_title: Filtrovaná média
@@ -63,6 +65,7 @@ cs:
       many: Sledujících
       other: Sledujících
     following: Sledovaní
+    instance_actor_flash: Tento účet je virtuální aktér, který představuje server samotný, nikoliv jednotlivého uživatele. Používá se pro účely federace a neměl by být pozastaven.
     joined: Uživatelem od %{date}
     last_active: naposledy aktivní
     link_verified_on: Vlastnictví tohoto odkazu bylo zkontrolováno %{date}
@@ -177,6 +180,8 @@ cs:
       search: Hledat
       search_same_email_domain: Ostatní uživatelé s e-mailem na stejné doméně
       search_same_ip: Další uživatelé se stejnou IP adresou
+      sensitive: Citlivý
+      sensitized: označen jako citlivý
       shared_inbox_url: URL sdílené příchozí schránky
       show:
         created_reports: Vytvořená hlášení
@@ -189,8 +194,10 @@ cs:
       time_in_queue: Čeká ve frontě %{time}
       title: Účty
       unconfirmed_email: Nepotvrzený e-mail
+      undo_sensitized: Vrátit zpět citlivost
       undo_silenced: Zrušit ztišení
       undo_suspension: Zrušit pozastavení
+      unsilenced_msg: Omezení účtu %{username} úspěšně odstraněno
       unsubscribe: Přestat odebírat
       username: Uživatelské jméno
       warn: Varovat
