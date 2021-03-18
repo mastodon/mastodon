@@ -100,7 +100,9 @@ cs:
       add_email_domain_block: Blokovat e-maily na této doméně
       approve: Schválit
       approve_all: Schválit vše
+      approved_msg: Žádost o registraci uživatele %{username} úspěšně schválena
       are_you_sure: Opravdu?
+      avatar: Avatar
       by_domain: Doména
       change_email:
         changed_msg: E-mail k tomuto účtu byl úspěšně změněn!
@@ -112,8 +114,10 @@ cs:
       confirm: Potvrdit
       confirmed: Potvrzeno
       confirming: Potvrzuji
+      delete: Smazat data
       deleted: Smazáno
       demote: Degradovat
+      destroyed_msg: "Data účtu %{username} jsou nyní ve frontě k okamžitému smazání"
       disable: Zablokovat
       disable_two_factor_authentication: Vypnout 2FA
       disabled: Blokováno
@@ -124,6 +128,7 @@ cs:
       email_status: Stav e-mailu
       enable: Povolit
       enabled: Povoleno
+      enabled_msg: Účet %{username} byl úspěšně rozmrazen
       followers: Sledující
       follows: Sleduje
       header: Záhlaví
@@ -140,6 +145,8 @@ cs:
       login_status: Stav přihlášení
       media_attachments: Mediální přílohy
       memorialize: Změnit na „in memoriam“
+      memorialized: In memoriam
+      memorialized_msg: Účet %{username} úspěšně změněn na „in memoriam“
       moderation:
         active: Aktivní
         all: Vše
@@ -160,10 +167,14 @@ cs:
       public: Veřejný
       push_subscription_expires: Odebírání PuSH expiruje
       redownload: Obnovit profil
+      redownloaded_msg: Profil účtu %{username} byl úspěšně obnoven ze zdroje
       reject: Zamítnout
       reject_all: Zamítnout vše
+      rejected_msg: Žádost o registraci uživatele %{username} úspěšně zamítnuta
       remove_avatar: Odstranit avatar
       remove_header: Odstranit záhlaví
+      removed_avatar_msg: Úspěšně odstraněn avatar uživatele %{username}
+      removed_header_msg: Úspěšně odstraněn obrázek záhlaví uživatele %{username}
       resend_confirmation:
         already_confirmed: Tento uživatel je již potvrzen
         send: Znovu odeslat potvrzovací e-mail
@@ -191,6 +202,8 @@ cs:
       statuses: Tooty
       subscribe: Odebírat
       suspended: Uživatel pozastaven
+      suspension_irreversible: Data tohoto účtu byla nevratně smazána. Účet můžete obnovit, aby byl použitelný, ale nebudou obnovena žádná jeho dřívější data.
+      suspension_reversible_hint_html: Účet byl pozastaven a jeho data budou kompletně smazána %{date}. Do té doby může být tento účet kompletně obnoven do původního stavu. Chcete-li smazat všechna data účtu ihned, můžete tak učinit níže.
       time_in_queue: Čeká ve frontě %{time}
       title: Účty
       unconfirmed_email: Nepotvrzený e-mail
@@ -199,8 +212,11 @@ cs:
       undo_suspension: Zrušit pozastavení
       unsilenced_msg: Omezení účtu %{username} úspěšně odstraněno
       unsubscribe: Přestat odebírat
+      unsuspended_msg: Úspěšně obnoven účet %{username}
       username: Uživatelské jméno
+      view_domain: Zobrazit souhrn domény
       warn: Varovat
+      web: Web
       whitelisted: Na bílé listině
     action_logs:
       action_types:
@@ -213,26 +229,31 @@ cs:
         create_domain_allow: Povolit doménu
         create_domain_block: Zablokovat doménu
         create_email_domain_block: Zablokovat e-maily na doméně
+        create_ip_block: Vytvořit IP pravidlo
         demote_user: Snížit roli uživatele
         destroy_announcement: Odstranit oznámení
         destroy_custom_emoji: Odstranit vlastní emoji
         destroy_domain_allow: Odstranit povolenou doménu
         destroy_domain_block: Odstranit blokování domény
         destroy_email_domain_block: Odstranit blokování e-mailů na doméně
+        destroy_ip_block: Smazat IP pravidlo
         destroy_status: Odstranit stav
         disable_2fa_user: Vypnout 2FA
         disable_custom_emoji: Zakázat vlastní emoji
         disable_user: Deaktivovat uživatele
         enable_custom_emoji: Povolit vlastní emoji
         enable_user: Povolit uživatele
+        memorialize_account: Změna na „in memoriam“
         promote_user: Povýšit uživatele
         remove_avatar_user: Odstranit avatar
         reopen_report: Znovu otevřít hlášení
         reset_password_user: Obnovit heslo
         resolve_report: Označit hlášení jako vyřešené
+        sensitive_account: Označit média ve vašem účtu jako citlivá
         silence_account: Ztišit účet
         suspend_account: Pozastavit účet
         unassigned_report: Zrušit přiřazení hlášení
+        unsensitive_account: Zrušit označení médií ve vašem účtu jako citlivých
         unsilence_account: Zrušit ztišení účtu
         unsuspend_account: Zrušit pozastavení účtu
         update_announcement: Aktualizovat oznámení
