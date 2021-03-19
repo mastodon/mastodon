@@ -25,6 +25,7 @@ fa:
       این حساب برای مقاصد خودگردانی به کار می‌رفته و نباید مسدود شود؛ مگر این که بخواهید کل نمونه را مسدود کنید که در آن صورت نیز باید از انسداد دامنه استفاده کنید.
     learn_more: بیشتر بدانید
     privacy_policy: سیاست رازداری
+    rules: قوانین کارساز
     see_whats_happening: ببینید چه خبر است
     server_stats: 'آمار کارساز:'
     source_code: کدهای منبع
@@ -257,6 +258,13 @@ fa:
         update_custom_emoji: به‌روز رسانی اموجی سفارشی
         update_domain_block: به‌روزرسانی مسدودسازی دامنه
         update_status: به‌روز رسانی وضعیت
+      actions:
+        assigned_to_self_report_html: "%{name} رسیدگی به گزارش %{target} را به عهده گرفت"
+        change_email_user_html: "%{name} نشانی رایانامهٔ کاربر %{target} را عوض کرد"
+        confirm_user_html: "%{name} نشانی رایانامهٔ کاربر %{target} را تأیید کرد"
+        create_account_warning_html: "%{name} هشداری برای %{target} فرستاد"
+        create_announcement_html: "%{name} اعلامیه‌ای جدید ایجاد کرد %{target}"
+        create_custom_emoji_html: "%{name} اموجی تازهٔ %{target} را بارگذاشت"
       deleted_status: "(نوشتهٔ پاک‌شده)"
       empty: هیچ گزارشی پیدا نشد.
       filter_by_action: پالایش بر اساس کنش
@@ -499,6 +507,8 @@ fa:
       unassign: پس‌گرفتن مسئولیت
       unresolved: حل‌نشده
       updated_at: به‌روز شد
+    rules:
+      title: قوانین کارساز
     settings:
       activity_api_enabled:
         desc_html: تعداد بوق‌های محلی، کاربران فعال، و کاربران تازه در هر هفته
@@ -995,6 +1005,8 @@ fa:
       body: '%{name} در این‌جا از شما نام برد:'
       subject: '%{name} از شما نام برد'
       title: نام‌برده‌شدن تازه
+    poll:
+      subject: نظرسنجی‌ای از %{name} پایان یافت
     reblog:
       body: '%{name} نوشتهٔ شما را بازبوقید:'
       subject: "%{name} نوشتهٔ شما را بازبوقید"
