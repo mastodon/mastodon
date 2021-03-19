@@ -296,6 +296,17 @@ uk:
         reopen_report_html: "%{name} знову відкриває звіт %{target}"
         reset_password_user_html: "%{name} скидає пароль користувача %{target}"
         resolve_report_html: "%{name} розв'язує скаргу %{target}"
+        sensitive_account_html: "%{name} позначає медіа від %{target} делікатним"
+        silence_account_html: "%{name} приглушує обліковий запис %{target}"
+        suspend_account_html: "%{name} заморожує обліковий запис %{target}"
+        unassigned_report_html: "%{name} прибирає призначення скарги %{target}"
+        unsensitive_account_html: "%{name} прибирає позначку \"делікатне\" з медіа від %{target}"
+        unsilence_account_html: "%{name} розглушує обліковий запис %{target}"
+        unsuspend_account_html: "%{name} розморожує обліковий запис %{target}"
+        update_announcement_html: "%{name} оновлює оголошення %{target}"
+        update_custom_emoji_html: "%{name} оновлює емодзі %{target}"
+        update_domain_block_html: "%{name} оновлює блокування домену для %{target}"
+        update_status_html: "%{name} змінює статус користувача %{target}"
       deleted_status: "(видалений статус)"
       empty: Не знайдено жодного журналу.
       filter_by_action: Фільтрувати за дією
@@ -1055,6 +1066,8 @@ uk:
       body: 'Вас згадав(-ла) %{name} в:'
       subject: Вас згадав(-ла) %{name}
       title: Нова згадка
+    poll:
+      subject: Опитування від %{name} завершено
     reblog:
       body: 'Ваш статус було передмухнуто %{name}:'
       subject: "%{name} передмухнув(-ла) ваш статус"
