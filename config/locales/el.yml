@@ -257,44 +257,6 @@ el:
         update_announcement: Ενημέρωση Ανακοίνωσης
         update_custom_emoji: Ενημέρωση Προσαρμοσμένου Emoji
         update_status: Ενημέρωση Κατάστασης
-      actions:
-        assigned_to_self_report: "Ο/Η %{name} ανάθεσε την καταγγελία %{target} στον εαυτό του/της"
-        change_email_user: "Ο/Η %{name} άλλαξε τη διεύθυνση email του χρήστη %{target}"
-        confirm_user: "Ο/Η %{name} επιβεβαίωσε τη διεύθυνση email του χρήστη %{target}"
-        create_account_warning: "Ο/Η %{name} έστειλε προειδοποίηση προς %{target}"
-        create_announcement: "Νέα ανακοίνωση %{target} από %{name}"
-        create_custom_emoji: "Ο/Η %{name} ανέβασε νέο emoji %{target}"
-        create_domain_allow: "Ο/Η %{name} έβαλε τον τομέα %{target} σε λευκή λίστα"
-        create_domain_block: "Ο/Η %{name} μπλόκαρε τον τομέα %{target}"
-        create_email_domain_block: "Ο/Η %{name} έβαλε τον τομέα email %{target} σε μαύρη λίστα"
-        create_ip_block: "Ο/Η %{name} δημιούργησε κανόνα για την IP %{target}"
-        demote_user: "Ο/Η %{name} υποβίβασε το χρήστη %{target}"
-        destroy_announcement: "Διαγραφή ανακοίνωσης %{target} από %{name}"
-        destroy_custom_emoji: "Ο/Η %{name} κατέστρεψε το emoji %{target}"
-        destroy_domain_allow: "Ο/Η %{name} αφαίρεσε τον τομέα %{target} από λίστα εγκρίσεων"
-        destroy_domain_block: "Ο/Η %{name} ξεμπλόκαρε τον τομέα %{target}"
-        destroy_email_domain_block: "Ο/Η %{name} έβαλε τον τομέα email %{target} σε λευκή λίστα"
-        destroy_ip_block: "Ο/Η %{name} διέγραψε κανόνα για την IP %{target}"
-        destroy_status: "Ο/Η %{name} αφαίρεσε την κατάσταση του/της %{target}"
-        disable_2fa_user: "Ο/Η %{name} απενεργοποίησε την απαίτηση δύο παραγόντων για το χρήστη %{target}"
-        disable_custom_emoji: "Ο/Η %{name} απενεργοποίησε το emoji %{target}"
-        disable_user: "Ο/Η %{name} απενεργοποίησε την είσοδο για το χρήστη %{target}"
-        enable_custom_emoji: "Ο/Η %{name} ενεργοποίησε το emoji %{target}"
-        enable_user: "Ο/Η %{name} ενεργοποίησε την είσοδο του χρήστη %{target}"
-        memorialize_account: "Ο/Η %{name} μετέτρεψε το λογαριασμό του/της %{target} σε σελίδα νεκρολογίας"
-        promote_user: "Ο/Η %{name} προβίβασε το χρήστη %{target}"
-        remove_avatar_user: "Ο/Η %{name} αφαίρεσε το αβατάρ του/της %{target}"
-        reopen_report: "Ο/Η %{name} ξανάνοιξε την καταγγελία %{target}"
-        reset_password_user: "Ο/Η %{name} επανέφερε το συνθηματικό του χρήστη %{target}"
-        resolve_report: "Ο/Η %{name} επέλυσε την καταγγελία %{target}"
-        silence_account: "Ο/Η %{name} αποσιώπησε το λογαριασμό του/της %{target}"
-        suspend_account: "Ο/Η %{name} έπαυσε το λογαριασμό του/της %{target}"
-        unassigned_report: "Ο/Η %{name} αποδέσμευσε την καταγγελία %{target}"
-        unsilence_account: "Ο/Η %{name} ήρε την αποσιώπηση του λογαριασμού του/της %{target}"
-        unsuspend_account: "Ο/Η %{name} ήρε την παύση του λογαριασμού του χρήστη %{target}"
-        update_announcement: "Ενημέρωση ανακοίνωσης %{target} από %{name}"
-        update_custom_emoji: "Ο/Η %{name} ενημέρωσε το emoji %{target}"
-        update_status: "Ο/Η %{name} ενημέρωσε την κατάσταση του/της %{target}"
       deleted_status: "(διαγραμμένη δημοσίευση)"
       empty: Δεν βρέθηκαν αρχεία καταγραφής.
       filter_by_action: Φιλτράρισμα ανά ενέργεια
@@ -1027,8 +989,6 @@ el:
       body: 'Αναφέρθηκες από τον/την %{name} στο:'
       subject: Αναφέρθηκες από τον/την %{name}
       title: Νέα αναφορά
-    poll:
-      title: Μια ψηφοφορία έληξε
     reblog:
       body: 'Η κατάστασή σου προωθήθηκε από τον/την %{name}:'
       subject: "Ο/Η %{name} προώθησε την κατάστασή σου"
