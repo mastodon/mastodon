@@ -1047,6 +1047,8 @@ tr:
       body: '%{name} durumunuzu boostladı:'
       subject: "%{name} durumunuzu boostladı"
       title: Yeni boost
+    status:
+      subject: "%{name} az önce gönderdi"
   notifications:
     email_events: E-posta bildirimi gönderilecek etkinlikler
     email_events_hint: 'Bildirim almak istediğiniz olayları seçin:'
