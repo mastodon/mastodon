@@ -259,47 +259,6 @@ is:
         update_custom_emoji: Uppfæra sérsniðið tjáningartákn
         update_domain_block: Uppfæra útilokun léns
         update_status: Uppfæra stöðufærslu
-      actions:
-        assigned_to_self_report: "%{name} úthlutaði skýrslu %{target} til sín"
-        change_email_user: "%{name} breytti tölvupóstfangi fyrir notandann %{target}"
-        confirm_user: "%{name} staðfesti tölvupóstfang fyrir notandann %{target}"
-        create_account_warning: "%{name} sendi aðvörun til %{target}"
-        create_announcement: "%{name} útbjó auglýsingu %{target}"
-        create_custom_emoji: "%{name} sendi inn nýtt tjáningartákn %{target}"
-        create_domain_allow: "%{name} setti lén %{target} á lista yfir leyft"
-        create_domain_block: "%{name} útilokaði lénið %{target}"
-        create_email_domain_block: "%{name} setti póstlén %{target} á lista yfir bannað"
-        create_ip_block: "%{name} bjó til reglu fyrir IP-vistfangið %{target}"
-        demote_user: "%{name} lækkaði notandann %{target} í tign"
-        destroy_announcement: "%{name} eyddi auglýsingu %{target}"
-        destroy_custom_emoji: "%{name} henti út tjáningartákninu %{target}"
-        destroy_domain_allow: "%{name} fjarlægði lén %{target} af lista yfir leyft"
-        destroy_domain_block: "%{name} aflétti útilokun af léninu %{target}"
-        destroy_email_domain_block: "%{name} setti póstlén %{target} á lista yfir leyft"
-        destroy_ip_block: "%{name} eyddi reglu fyrir IP-vistfangið %{target}"
-        destroy_status: "%{name} fjarlægði stöðufærslu frá %{target}"
-        disable_2fa_user: "%{name} gerði tveggja-þátta auðkenningu óvirka fyrir notandann %{target}"
-        disable_custom_emoji: "%{name} gerði tjáningartáknið %{target} óvirkt"
-        disable_user: "%{name} gerðir innskráningu óvirka fyrir notandann %{target}"
-        enable_custom_emoji: "%{name} gerði tjáningartáknið %{target} virkt"
-        enable_user: "%{name} gerðir innskráningu virka fyrir notandann %{target}"
-        memorialize_account: "%{name} breytti notandaaðgangnum %{target} í minningargreinarsíðu"
-        promote_user: "%{name} hækkaði notandann %{target} í tign"
-        remove_avatar_user: "%{name} fjarlægði auðkennismynd af %{target}"
-        reopen_report: "%{name} enduropnaði skýrslu %{target}"
-        reset_password_user: "%{name} endurstillti lykilorð fyrir notandann %{target}"
-        resolve_report: "%{name} leysti skýrslu %{target}"
-        sensitive_account: "%{name} merkti myndefni frá %{target} sem viðkvæmt"
-        silence_account: "%{name} gerði notandaaðganginn %{target} hulinn"
-        suspend_account: "%{name} setti notandaaðganginn %{target} í bið"
-        unassigned_report: "%{name} fjarlægði úthlutun af skýrslu %{target}"
-        unsensitive_account: "%{name} afmerkti myndefni frá %{target} sem viðkvæmt"
-        unsilence_account: "%{name} hætti að hylja notandaaðganginn %{target}"
-        unsuspend_account: "%{name} tók notandaaðganginn %{target} úr bið"
-        update_announcement: "%{name} uppfærði auglýsingu %{target}"
-        update_custom_emoji: "%{name} uppfærði tjáningartákn %{target}"
-        update_domain_block: "%{name} uppfærði útilokun lénsins %{target}"
-        update_status: "%{name} uppfærði stöðufærslu frá %{target}"
       deleted_status: "(eydd stöðufærsla)"
       empty: Engar atvikaskrár fundust.
       filter_by_action: Sía eftir aðgerð
@@ -1043,8 +1002,6 @@ is:
       body: '%{name} minntist á þig í:'
       subject: '%{name} minntist á þig'
       title: Ný tilvísun
-    poll:
-      title: Könnun er lokið
     reblog:
       body: '%{name} endurbirti stöðufærsluna þína:'
       subject: "%{name} endurbirti stöðufærsluna þína"
