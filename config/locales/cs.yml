@@ -78,6 +78,11 @@ cs:
     people_who_follow: Lidé, kteří sledují uživatele %{name}
     pin_errors:
       following: Osobu, kterou chcete podpořit, už musíte sledovat
+    posts:
+      one: Toot
+      few: Tooty
+      many: Tootů
+      other: Tootů
     posts_tab_heading: Tooty
     posts_with_replies: Tooty a odpovědi
     roles:
@@ -483,6 +488,10 @@ cs:
         '31556952': 1 rok
         '86400': 1 den
         '94670856': 3 roky
+      new:
+        title: Vytvořit nové IP pravidlo
+      no_ip_block_selected: Nebyla změněna žádná IP pravidla, protože nebylo žádné zaškrtnuto
+      title: IP pravidla
     pending_accounts:
       title: Čekající účty (%{count})
     relationships:
@@ -526,6 +535,8 @@ cs:
       comment:
         none: Žádné
       created_at: Nahlášené
+      forwarded: Přeposláno
+      forwarded_to: Přeposláno na %{domain}
       mark_as_resolved: Označit jako vyřešené
       mark_as_unresolved: Označit jako nevyřešené
       notes:
@@ -569,6 +580,7 @@ cs:
       domain_blocks_rationale:
         title: Zobrazit odůvodnění
       enable_bootstrap_timeline_accounts:
+        desc_html: Nastavit novým uživatelům automaticky sledování vybraných účtů, aby nezačínali s prázdnou domovskou osou
         title: Povolit výchozí sledování pro nové uživatele
       hero:
         desc_html: Zobrazuje se na hlavní stránce. Doporučujeme rozlišení alespoň 600x100 px. Pokud toto není nastaveno, bude zobrazena miniatura serveru
@@ -596,6 +608,7 @@ cs:
           disabled: Nikdo
           title: Povolit pozvánky od
         require_invite_text:
+          desc_html: Když jsou registrace schvalovány ručně, udělat odpověď na otázku "Proč se chcete připojit?" povinnou
           title: Požadovat od nových uživatelů zdůvodnění založení
       registrations_mode:
         modes:
@@ -640,6 +653,7 @@ cs:
         title: Populární hashtagy
     site_uploads:
       delete: Odstranit nahraný soubor
+      destroyed_msg: Upload stránky byl úspěšně smazán!
     statuses:
       back_to_account: Zpět na stránku účtu
       batch:
@@ -664,6 +678,7 @@ cs:
       last_active: Naposledy aktivní
       most_popular: Nejpopulárnější
       most_recent: Nejnovější
+      name: Hashtag
       review: Stav schválení
       reviewed: Schválen
       title: Hashtagy
@@ -709,6 +724,7 @@ cs:
     toot_layout: Rozložení tootů
   application_mailer:
     notification_preferences: Změnit předvolby e-mailů
+    salutation: "%{name},"
     settings: 'Změnit předvolby e-mailů: %{link}'
     view: 'Zobrazit:'
     view_profile: Zobrazit profil
@@ -733,13 +749,19 @@ cs:
       prefix_sign_up: Registrujte se na Mastodonu již dnes!
       suffix: S účtem budete moci sledovat lidi, psát příspěvky a vyměňovat si zprávy s uživateli z kteréhokoliv serveru Mastodon a dalších služeb!
     didnt_get_confirmation: Neobdrželi jste pokyny pro potvrzení?
+    dont_have_your_security_key: Nemáte svůj bezpečnostní klíč?
     forgot_password: Zapomněli jste heslo?
     invalid_reset_password_token: Token pro obnovení hesla je buď neplatný, nebo vypršel. Vyžádejte si prosím nový.
+    link_to_otp: Zadat kód dvoufázového ověření z mobilu nebo záložní kód
+    link_to_webauth: Použít svůj bezpečnostní klíč
     login: Přihlásit
     logout: Odhlásit
     migrate_account: Přesunout se na jiný účet
     migrate_account_html: Zde můžete <a href="%{path}">nastavit přesměrování tohoto účtu na jiný</a>.
     or_log_in_with: Nebo se přihlaste pomocí
+    providers:
+      cas: CAS
+      saml: SAML
     register: Registrovat
     registration_closed: "%{instance} nepřijímá nové členy"
     resend_confirmation: Znovu odeslat pokyny pro potvrzení
@@ -756,6 +778,7 @@ cs:
       functional: Váš účet je zcela funkční.
       pending: Vaše žádost čeká na schválení naším personálem. To může nějakou dobu trvat. Pokud bude váš požadavek schválen, obdržíte e-mail.
       redirecting_to: Váš účet je neaktivní, protože je právě přesměrován na účet %{acct}.
+    too_fast: Formulář byl odeslán příliš rychle, zkuste to znovu.
     trouble_logging_in: Problémy s přihlášením?
   authorize_follow:
     already_following: Tento účet již sledujete
@@ -1162,12 +1185,22 @@ cs:
     spam_detected: Tohle je automatizované hlášení. Byl detekován spam.
   statuses:
     attached:
+      audio:
+        one: "%{count} audio"
+        few: "%{count} audia"
+        many: "%{count} audií"
+        other: "%{count} audií"
       description: 'Přiloženo: %{attached}'
       image:
         one: "%{count} obrázek"
         few: "%{count} obrázky"
         many: "%{count} obrázků"
         other: "%{count} obrázků"
+      video:
+        one: "%{count} video"
+        few: "%{count} videa"
+        many: "%{count} videí"
+        other: "%{count} videí"
     boosted_from_html: Boostnuto z %{acct_link}
     content_warning: 'Varování o obsahu: %{warning}'
     disallowed_hashtags:
