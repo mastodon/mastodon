@@ -233,42 +233,6 @@ sv:
         update_custom_emoji: Uppdatera egna emojis
         update_domain_block: Uppdatera blockerad domän
         update_status: Uppdatera status
-      actions:
-        assigned_to_self_report: "%{name} tilldelade anmälan %{target} till sig själv"
-        change_email_user: "%{name} bytte e-postadress för användare %{target}"
-        confirm_user: "%{name} bekräftade e-postadress för användare %{target}"
-        create_account_warning: "%{name} sände en varning till %{target}"
-        create_announcement: "%{name} skapade nytt meddelande %{target}"
-        create_custom_emoji: "%{name} laddade upp ny emoji %{target}"
-        create_domain_allow: "%{name} vitlistade domän %{target}"
-        create_domain_block: "%{name} blockerade domän %{target}"
-        create_email_domain_block: "%{name} svartlistade e-postdomän %{target}"
-        demote_user: "%{name} degraderade användare %{target}"
-        destroy_announcement: "%{name} raderade meddelanden %{target}"
-        destroy_custom_emoji: "%{name} förstörde emoji %{target}"
-        destroy_domain_allow: "%{name} raderade domän %{target} från vitlistan"
-        destroy_domain_block: "%{name} avblockerade domän %{target}"
-        destroy_email_domain_block: "%{name} vitlistade e-postdomän %{target}"
-        destroy_status: "%{name} tog bort status av %{target}"
-        disable_2fa_user: "%{name} inaktiverade tvåfaktorsautentiseringskrav för användare %{target}"
-        disable_custom_emoji: "%{name} inaktiverade emoji %{target}"
-        disable_user: "%{name} inaktiverade inloggning för användare %{target}"
-        enable_custom_emoji: "%{name} aktiverade emoji %{target}"
-        enable_user: "%{name} aktiverade inloggning för användare %{target}"
-        memorialize_account: "%{name} omvandlade %{target}s konto till en memoriam-sida"
-        promote_user: "%{name} flyttade upp användare %{target}"
-        remove_avatar_user: "%{name} tog bort %{target}s avatar"
-        reopen_report: "%{name} återupptog anmälan %{target}"
-        reset_password_user: "%{name} återställde lösenord för användaren %{target}"
-        resolve_report: "%{name} löste anmälan %{target}"
-        silence_account: "%{name} tystade ner %{target}s konto"
-        suspend_account: "%{name} suspenderade %{target}s konto"
-        unassigned_report: "%{name} otilldelade anmälan %{target}"
-        unsilence_account: "%{name} återljudade %{target}s konto"
-        unsuspend_account: "%{name} aktiverade %{target}s konto"
-        update_custom_emoji: "%{name} uppdaterade emoji %{target}"
-        update_domain_block: "%{name} uppdaterade blockerad domän för %{target}"
-        update_status: "%{name} uppdaterade status för %{target}"
       deleted_status: "(raderad status)"
       empty: Inga loggar hittades.
       title: Revisionslogg
@@ -771,8 +735,6 @@ sv:
       body: 'Du nämndes av %{name} in:'
       subject: Du nämndes av %{name}
       title: Ny omnämning
-    poll:
-      title: En omröstning har avslutats
     reblog:
       body: 'Din status knuffades av %{name}:'
       subject: "%{name} knuffade din status"
