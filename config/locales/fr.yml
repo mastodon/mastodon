@@ -259,47 +259,6 @@ fr:
         update_custom_emoji: Mettre à jour les émojis personnalisés
         update_domain_block: Mettre à jour le blocage de domaine
         update_status: Mettre à jour le statut
-      actions:
-        assigned_to_self_report: "%{name} s’est assigné·e le signalement de %{target}"
-        change_email_user: "%{name} a modifié l’adresse de courriel de l’utilisateur·rice %{target}"
-        confirm_user: "%{name} adresse courriel confirmée pour l’utilisateur·rice %{target}"
-        create_account_warning: "%{name} a envoyé un avertissement à %{target}"
-        create_announcement: "%{name} a créé une nouvelle annonce %{target}"
-        create_custom_emoji: "%{name} a importé de nouveaux émojis %{target}"
-        create_domain_allow: "%{name} a inscrit le domaine %{target} sur liste blanche"
-        create_domain_block: "%{name} a bloqué le domaine %{target}"
-        create_email_domain_block: "%{name} a mis le domaine de courriel %{target} sur liste noire"
-        create_ip_block: "%{name} a créé une règle pour l’IP %{target}"
-        demote_user: "%{name} a rétrogradé l’utilisateur·rice %{target}"
-        destroy_announcement: "%{name} a supprimé l’annonce %{target}"
-        destroy_custom_emoji: "%{name} a détruit l’émoticône %{target}"
-        destroy_domain_allow: "%{name} a supprimé le domaine %{target} de la liste blanche"
-        destroy_domain_block: "%{name} a débloqué le domaine %{target}"
-        destroy_email_domain_block: "%{name} a mis le domaine de courriel %{target} sur liste blanche"
-        destroy_ip_block: "%{name} a supprimé la règle pour l’IP %{target}"
-        destroy_status: "%{name} a enlevé le statut de %{target}"
-        disable_2fa_user: "%{name} a désactivé l’authentification à deux facteurs pour l’utilisateur·rice %{target}"
-        disable_custom_emoji: "%{name} a désactivé l’émoji %{target}"
-        disable_user: "%{name} a désactivé la connexion pour l’utilisateur·rice %{target}"
-        enable_custom_emoji: "%{name} a activé l’émoji %{target}"
-        enable_user: "%{name} a activé la connexion pour l’utilisateur·rice %{target}"
-        memorialize_account: "%{name} a transformé le compte de %{target} en une page de mémorial"
-        promote_user: "%{name} a promu l’utilisateur·rice %{target}"
-        remove_avatar_user: "%{name} a supprimé l’avatar de %{target}"
-        reopen_report: "%{name} a rouvert le signalement %{target}"
-        reset_password_user: "%{name} a réinitialisé le mot de passe de %{target}"
-        resolve_report: "%{name} a résolu le signalement %{target}"
-        sensitive_account: "%{name} a marqué le média de %{target} comme sensible"
-        silence_account: "%{name} a masqué le compte de %{target}"
-        suspend_account: "%{name} a suspendu le compte %{target}"
-        unassigned_report: "%{name} a désassigné le signalement %{target}"
-        unsensitive_account: "%{name} a enlevé le marquage du média de %{target} comme sensible"
-        unsilence_account: "%{name} ne masque plus le compte de %{target}"
-        unsuspend_account: "%{name} a réactivé le compte de %{target}"
-        update_announcement: "%{name} a actualisé l’annonce %{target}"
-        update_custom_emoji: "%{name} a mis à jour l’émoji %{target}"
-        update_domain_block: "%{name} a mis à jour le blocage de domaine pour %{target}"
-        update_status: "%{name} a mis à jour le statut de %{target}"
       deleted_status: "(statut supprimé)"
       empty: Aucun journal trouvé.
       filter_by_action: Filtrer par action
@@ -1043,8 +1002,6 @@ fr:
       body: '%{name} vous a mentionné⋅e dans :'
       subject: '%{name} vous a mentionné·e'
       title: Nouvelle mention
-    poll:
-      title: Un sondage a pris fin
     reblog:
       body: '%{name} a partagé votre statut :'
       subject: "%{name} a partagé votre statut"
