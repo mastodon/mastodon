@@ -780,6 +780,7 @@ cs:
       redirecting_to: Váš účet je neaktivní, protože je právě přesměrován na účet %{acct}.
     too_fast: Formulář byl odeslán příliš rychle, zkuste to znovu.
     trouble_logging_in: Problémy s přihlášením?
+    use_security_key: Použít bezpečnostní klíč
   authorize_follow:
     already_following: Tento účet již sledujete
     already_requested: Tomuto účtu už jste žádost o sledování zaslali
@@ -804,6 +805,7 @@ cs:
   date:
     formats:
       default: "%-d. %b %Y"
+      with_month_name: "%d. %B %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count} hod"
@@ -868,6 +870,8 @@ cs:
       request: Vyžádat váš archiv
       size: Velikost
     blocks: Blokujete
+    bookmarks: Záložky
+    csv: CSV
     domain_blocks: Blokování domén
     lists: Seznamy
     mutes: Skryli jste
@@ -931,9 +935,13 @@ cs:
     inactive: Neaktivní
     publicize_checkbox: 'A tootnout tohle:'
     publicize_toot: 'Je to dokázáno! Na %{service} jsem %{username}: %{url}'
+    remove: Odstranit důkaz z účtu
+    removed: Úspěšně odstraněn důkaz z účtu
     status: Stav ověření
     view_proof: Zobrazit důkaz
   imports:
+    errors:
+      over_rows_processing_limit: obsahuje více než %{count} řádků
     modes:
       merge: Sloučit
       merge_long: Ponechat existující záznamy a přidat nové
@@ -943,10 +951,12 @@ cs:
     success: Vaše data byla úspěšně nahrána a nyní budou zpracována v daný čas
     types:
       blocking: Seznam blokovaných
+      bookmarks: Záložky
       domain_blocking: Seznam blokovaných domén
       following: Seznam sledovaných
       muting: Seznam ignorovaných
     upload: Nahrát
+  in_memoriam_html: In Memoriam.
   invites:
     delete: Deaktivovat
     expired: Expirováno
@@ -1012,6 +1022,10 @@ cs:
       redirect: Profil vašeho aktuálního účtu bude aktualizován s oznámením o přesměrování a bude vyloučen z výsledků hledání
   moderation:
     title: Moderování
+  move_handler:
+    carry_blocks_over_text: Tento účet se přesunul z %{acct}, který jste blokovali.
+    carry_mutes_over_text: Tento účet se přesunul z %{acct}, který jste skryli.
+    copy_account_note_text: 'Tento účet se přesunul z %{acct}, zde byly Vaše předchozí poznámky o něm:'
   notification_mailer:
     digest:
       action: Zobrazit všechna oznámení
@@ -1064,11 +1078,20 @@ cs:
           quadrillion: bld
           thousand: tis
           trillion: bil
+  otp_authentication:
+    code_hint: Pro potvrzení zadejte kód vygenerovaný Vaší ověřovací aplikací
+    description_html: Zapnete-li <strong>dvoufázové ověřování</strong> pomocí ověřovací aplikace, k přihlášení budete u sebe muset mít svůj mobil, který pro Vás bude generovat kódy k opsání.
+    enable: Zapnout
+    instructions_html: "<strong>Naskenujte tento QR kód do Google Authenticator nebo podobné TOTP aplikace na Vašem telefonu</strong>. Následně bude tato aplikace generovat kódy, které budete zadávat při přihlašování."
+    manual_instructions: 'Nemůžete-li načíst QR kód a potřebujete ho zadat ručně, zde je tajemství v textové podobě:'
+    setup: Nastavit
+    wrong_code: Zadaný kód je neplatný! Je čas na serveru i zařízení generujícím kód správný?
   pagination:
     newer: Novější
     next: Další
     older: Starší
     prev: Předchozí
+    truncate: "&hellip;"
   polls:
     errors:
       already_voted: V této anketě jste již hlasovali
@@ -1091,6 +1114,7 @@ cs:
   relationships:
     activity: Aktivita účtu
     dormant: Nečinné
+    follow_selected_followers: Sledovat vybrané sledující
     followers: Sledující
     following: Sledovaní
     invited: Pozvánka odeslána
