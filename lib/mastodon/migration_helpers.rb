@@ -319,7 +319,7 @@ module Mastodon
         count_arel = table.project(Arel.star.count.as('count'))
         count_arel = yield table, count_arel if block_given?
 
-        total = exec_query(count_arel.to_sql).to_hash.first['count'].to_i
+        total = exec_query(count_arel.to_sql).to_ary.first['count'].to_i
 
         return if total == 0
       end
@@ -335,7 +335,7 @@ module Mastodon
 
       start_arel = table.project(table[:id]).order(table[:id].asc).take(1)
       start_arel = yield table, start_arel if block_given?
-      first_row = exec_query(start_arel.to_sql).to_hash.first
+      first_row = exec_query(start_arel.to_sql).to_ary.first
       # In case there are no rows but we didn't catch it in the estimated size:
       return unless first_row
       start_id = first_row['id'].to_i
@@ -356,7 +356,7 @@ module Mastodon
             .skip(batch_size)
 
           stop_arel = yield table, stop_arel if block_given?
-          stop_row = exec_query(stop_arel.to_sql).to_hash.first
+          stop_row = exec_query(stop_arel.to_sql).to_ary.first
 
           update_arel = Arel::UpdateManager.new
             .table(table)
