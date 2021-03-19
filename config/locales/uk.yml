@@ -266,47 +266,6 @@ uk:
         update_custom_emoji: Оновити користувацькі емодзі
         update_domain_block: Оновити блокування домену
         update_status: Оновити статус
-      actions:
-        assigned_to_self_report: "%{name} призначив(-ла) скаргу %{target} на себе"
-        change_email_user: "%{name} змінив(-ла) поштову адресу користувача %{target}"
-        confirm_user: "%{name} підтвердив(-ла) статус поштової адреси користувача %{target}"
-        create_account_warning: "%{name} надіслав попередження до %{target}"
-        create_announcement: "%{name} створив нове оголошення %{target}"
-        create_custom_emoji: "%{name} вивантажив(-ла) нове емодзі %{target}"
-        create_domain_allow: "%{name} додав(-ла) домен %{target} до білого списку"
-        create_domain_block: "%{name} заблокував(-ла) домен %{target}"
-        create_email_domain_block: "%{name} додав(-ла) поштовий домен %{target} до чорного списку"
-        create_ip_block: "%{name} створює правило для IP %{target}"
-        demote_user: "%{name} понизив(-ла) %{target}"
-        destroy_announcement: "%{name} видалив оголошення %{target}"
-        destroy_custom_emoji: "%{name} знищив(-ла) емодзі %{target}"
-        destroy_domain_allow: "%{name} видалив(-ла) домен %{target} з білого списку"
-        destroy_domain_block: "%{name} розблокував(-ла) домен %{target}"
-        destroy_email_domain_block: "%{name} додав(-ла) поштовий домен %{target} до білого списку"
-        destroy_ip_block: "%{name} видаляє правило для IP %{target}"
-        destroy_status: "%{name} видалив(-ла) статус користувача %{target}"
-        disable_2fa_user: "%{name} вимкнув(-ла) двофакторну авторизацію для користувача %{target}"
-        disable_custom_emoji: "%{name} вимкнув(-ла) емодзі %{target}"
-        disable_user: "%{name} заборонив(-ла) авторизацію користувачу %{target}"
-        enable_custom_emoji: "%{name} увімкнув(-ла) емодзі %{target}"
-        enable_user: "%{name} увімкнув(-ла) авторизацію користувачу %{target}"
-        memorialize_account: "%{name} перетворив(-ла) обліковий запис %{target} на сторінку пам'яті"
-        promote_user: "%{name} підвищив(-ла) користувача %{target}"
-        remove_avatar_user: "%{name} прибрав(-ла) аватар користувача %{target}"
-        reopen_report: "%{name} перевідкрив(-ла) скаргу %{target}"
-        reset_password_user: "%{name} скинув(-ла) пароль користувача %{target}"
-        resolve_report: "%{name} розв'язав(-ла) скаргу %{target}"
-        sensitive_account: "%{name} позначає %{target} медіа делікатним"
-        silence_account: "%{name} заглушив(-ла) обліковий запис %{target}"
-        suspend_account: "%{name} заморозив(-ла) обліковий запис %{target}"
-        unassigned_report: "%{name} зняв(-ла) призначення скарги %{target}"
-        unsensitive_account: "%{name} прибирає позначку \"делікатне\" з %{target} медіа"
-        unsilence_account: "%{name} розглушив(-ла) обліковий запис %{target}"
-        unsuspend_account: "%{name} розморозив(-ла) обліковий запис %{target}"
-        update_announcement: "%{name} оновив оголошення %{target}"
-        update_custom_emoji: "%{name} оновив(-ла) емодзі %{target}"
-        update_domain_block: "%{name} оновлює блокування домену для %{target}"
-        update_status: "%{name} змінив(-ла) статус користуача %{target}"
       deleted_status: "(видалений статус)"
       empty: Не знайдено жодного журналу.
       filter_by_action: Фільтрувати за дією
@@ -1066,8 +1025,6 @@ uk:
       body: 'Вас згадав(-ла) %{name} в:'
       subject: Вас згадав(-ла) %{name}
       title: Нова згадка
-    poll:
-      title: Опитування завершено
     reblog:
       body: 'Ваш статус було передмухнуто %{name}:'
       subject: "%{name} передмухнув(-ла) ваш статус"
