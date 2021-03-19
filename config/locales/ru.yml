@@ -267,6 +267,23 @@ ru:
         update_custom_emoji: Обновление эмодзи
         update_domain_block: Изменить блокировку домена
         update_status: Изменение постов
+      actions:
+        promote_user_html: "%{name} повысил(а) пользователя %{target}"
+        remove_avatar_user_html: "%{name} убрал(а) аватарку пользователя %{target}"
+        reopen_report_html: "%{name} повторно открыл(а) жалобу %{target}"
+        reset_password_user_html: "%{name} сбросил(а) пароль пользователя %{target}"
+        resolve_report_html: "%{name} решил(а) жалобу %{target}"
+        sensitive_account_html: "%{name} установил(а) отметку файлов %{target} как «деликатных»"
+        silence_account_html: "%{name} наложил(а) ограничения на видимость постов пользователя %{target}"
+        suspend_account_html: "%{name} заблокировал(а) учётную запись %{target}"
+        unassigned_report_html: "%{name} снял(а) назначение жалобы %{target}"
+        unsensitive_account_html: "%{name} снял(а) отметку файлов %{target} как «деликатных»"
+        unsilence_account_html: "%{name} снял(а) ограничения видимости постов пользователя %{target}"
+        unsuspend_account_html: "%{name} снял(а) блокировку с пользователя %{target}"
+        update_announcement_html: "%{name} обновил(а) объявление %{target}"
+        update_custom_emoji_html: "%{name} обновил(а) эмодзи %{target}"
+        update_domain_block_html: "%{name} обновил(а) блокировку домена для %{target}"
+        update_status_html: "%{name} изменил(а) пост пользователя %{target}"
       deleted_status: "(удалённый пост)"
       empty: Журнал пуст.
       filter_by_action: Фильтр по действию
@@ -1026,6 +1043,8 @@ ru:
       body: 'Вас упомянул(а) %{name} в:'
       subject: '%{name} упомянул(а) вас'
       title: Новое упоминание
+    poll:
+      subject: Опрос %{name} завершился
     reblog:
       body: 'Ваш пост был продвинут %{name}:'
       subject: "%{name} продвинул(а) ваш пост"
