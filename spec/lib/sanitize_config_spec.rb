@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
-require Rails.root.join('app', 'lib', 'sanitize_config.rb')
 
 describe Sanitize::Config do
   shared_examples 'common HTML sanitization' do
