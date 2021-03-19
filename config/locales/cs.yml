@@ -267,47 +267,6 @@ cs:
         update_custom_emoji: Aktualizovat vlastní emoji
         update_domain_block: Změnit blokaci domény
         update_status: Aktualizovat stav
-      actions:
-        assigned_to_self_report: "Uživatel %{name} si přidělil hlášení %{target}"
-        change_email_user: "Uživatel %{name} změnil e-mailovou adresu uživatele %{target}"
-        confirm_user: "Uživatel %{name} potvrdil e-mailovou adresu uživatele %{target}"
-        create_account_warning: "Uživatel %{name} poslal varování uživateli %{target}"
-        create_announcement: "Uživatel %{name} vytvořil nové oznámení %{target}"
-        create_custom_emoji: "Uživatel %{name} nahrál nové emoji %{target}"
-        create_domain_allow: "Uživatel %{name} přidal doménu %{target} na bílou listinu"
-        create_domain_block: "Uživatel %{name} zablokoval doménu %{target}"
-        create_email_domain_block: "Uživatel %{name} přidal e-mailovou doménu %{target} na černou listinu"
-        create_ip_block: "%{name} vytvořil pravidlo pro IP %{target}"
-        demote_user: "Uživatel %{name} degradoval uživatele %{target}"
-        destroy_announcement: "Uživatel %{name} odstranil oznámení %{target}"
-        destroy_custom_emoji: "Uživatel %{name} zničil emoji %{target}"
-        destroy_domain_allow: "Uživatel %{name} odebral doménu %{target} z bílé listiny"
-        destroy_domain_block: "Uživatel %{name} odblokoval doménu %{target}"
-        destroy_email_domain_block: "Uživatel %{name} odebral e-mailovou doménu %{target} z černé listiny"
-        destroy_ip_block: "%{name} odstranil pravidlo pro IP %{target}"
-        destroy_status: "Uživatel %{name} odstranil toot uživatele %{target}"
-        disable_2fa_user: "Uživatel %{name} vypnul dvoufázové ověřování pro uživatele %{target}"
-        disable_custom_emoji: "Uživatel %{name} zakázal emoji %{target}"
-        disable_user: "Uživatel %{name} zakázal přihlašování pro uživatele %{target}"
-        enable_custom_emoji: "Uživatel %{name} povolil emoji %{target}"
-        enable_user: "Uživatel %{name} povolil přihlašování pro uživatele %{target}"
-        memorialize_account: "Uživatel %{name} změnil účet %{target} na „in memoriam“ stránku"
-        promote_user: "Uživatel %{name} povýšil uživatele %{target}"
-        remove_avatar_user: "Uživatel %{name} odstranil avatar uživatele %{target}"
-        reopen_report: "Uživatel %{name} znovu otevřel hlášení %{target}"
-        reset_password_user: "Uživatel %{name} obnovil heslo uživatele %{target}"
-        resolve_report: "Uživatel %{name} vyřešil hlášení %{target}"
-        sensitive_account: "%{name} označil média účtu %{target} jako citlivá"
-        silence_account: "Uživatel %{name} ztišil uživatele %{target}"
-        suspend_account: "Uživatel %{name} pozastavil účet uživatele %{target}"
-        unassigned_report: "Uživatel %{name} odebral hlášení %{target}"
-        unsensitive_account: "%{name} zrušil označení médií účtu %{target} jako citlivých"
-        unsilence_account: "Uživatel %{name} zrušil ztišení uživatele %{target}"
-        unsuspend_account: "Uživatel %{name} zrušil pozastavení účtu uživatele %{target}"
-        update_announcement: "Uživatel %{name} aktualizoval oznámení %{target}"
-        update_custom_emoji: "Uživatel %{name} aktualizoval emoji %{target}"
-        update_domain_block: "%{name} aktualizoval blokaci domény %{target}"
-        update_status: "Uživatel %{name} aktualizoval toot uživatele %{target}"
       deleted_status: "(smazaný toot)"
       empty: Nebyly nalezeny žádné záznamy.
       filter_by_action: Filtrovat podle akce
@@ -1067,8 +1026,6 @@ cs:
       body: 'Uživatel %{name} vás zmínil v:'
       subject: Uživatel %{name} vás zmínil
       title: Nová zmínka
-    poll:
-      title: Anketa skončila
     reblog:
       body: 'Uživatel %{name} boostnul váš toot:'
       subject: "Uživatel %{name} boostnul váš toot"
