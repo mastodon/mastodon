@@ -259,47 +259,6 @@ hu:
         update_custom_emoji: Egyéni emodzsi frissítése
         update_domain_block: Domain tiltás frissítése
         update_status: Állapot frissítése
-      actions:
-        assigned_to_self_report: "%{name} a %{target} bejelentést magához rendelte"
-        change_email_user: "%{name} megváltoztatta %{target} felhasználó e-mail címét"
-        confirm_user: "%{name} megerősítette e-mail címét: %{target}"
-        create_account_warning: "%{name} figyelmeztetést küldött %{target} felhasználónak"
-        create_announcement: "%{name} új közleményt hozott létre %{target}"
-        create_custom_emoji: "%{name} új emodzsit töltött fel: %{target}"
-        create_domain_allow: "%{name} engedélyező listára vette %{target} domaint"
-        create_domain_block: "%{name} letiltotta az alábbi domaint: %{target}"
-        create_email_domain_block: "%{name} letiltotta az e-mail domaint: %{target}"
-        create_ip_block: "%{name} létrehozott egy szabályt a %{target} IP-vel kapcsolatban"
-        demote_user: "%{name} lefokozta az alábbi felhasználót: %{target}"
-        destroy_announcement: "%{name} törölte a közleményt %{target}"
-        destroy_custom_emoji: "%{name} törölte az emodzsit: %{target}"
-        destroy_domain_allow: "%{name} leszedte %{target} domaint az engedélyező listáról"
-        destroy_domain_block: "%{name} engedélyezte az alábbi domaint: %{target}"
-        destroy_email_domain_block: "%{name} engedélyezte az e-mail domaint: %{target}"
-        destroy_ip_block: "%{name} törölt egy szabályt a %{target} IP-vel kapcsolatban"
-        destroy_status: "%{name} eltávolította az alábbi felhasználó tülkjét: %{target}"
-        disable_2fa_user: "%{name} kikapcsolta a kétlépcsős azonosítást %{target} felhasználó fiókján"
-        disable_custom_emoji: "%{name} letiltotta az alábbi emodzsit: %{target}"
-        disable_user: "%{name} letiltotta az alábbi felhasználó bejelentkezését: %{target}"
-        enable_custom_emoji: "%{name} engedélyezte az alábbi emodzsit: %{target}"
-        enable_user: "%{name} engedélyezte az alábbi felhasználó bejelentkezését: %{target}"
-        memorialize_account: "%{name} emléket állított az alábbi felhasználónak: %{target}"
-        promote_user: "%{name} előléptette az alábbi felhasználót: %{target}"
-        remove_avatar_user: "%{name} törölte %{target} profilképét"
-        reopen_report: "%{name} újranyitotta a bejelentést: %{target}"
-        reset_password_user: "%{name} visszaállította az alábbi felhasználó jelszavát: %{target}"
-        resolve_report: "%{name} megoldotta alábbi bejelentést: %{target}"
-        sensitive_account: "%{name} szenzitívnek jelölte %{target} médiatartalmát"
-        silence_account: "%{name} lenémította %{target} felhasználói fiókját"
-        suspend_account: "%{name} felfüggesztette %{target} felhasználói fiókját"
-        unassigned_report: "%{name} törölte a %{target} bejelentés hozzárendelését"
-        unsensitive_account: "%{name} levette a szenzitív jelölést %{target} médiatartalmáról"
-        unsilence_account: "%{name} feloldotta a némítást %{target} felhasználói fiókján"
-        unsuspend_account: "%{name} feloldotta %{target} felhasználói fiókjának felfüggesztését"
-        update_announcement: "%{name} frissítette a közleményt %{target}"
-        update_custom_emoji: "%{name} frissítette az alábbi emodzsit: %{target}"
-        update_domain_block: "%{name} frissítette a %{target} domain tiltását"
-        update_status: "%{name} frissítette %{target} felhasználó tülkjét"
       deleted_status: "(törölt tülk)"
       empty: Nem található napló.
       filter_by_action: Szűrés művelet alapján
@@ -1043,8 +1002,6 @@ hu:
       body: '%{name} megemlített téged:'
       subject: '%{name} megemlített téged'
       title: Új említés
-    poll:
-      title: Egy szavazás véget ért
     reblog:
       body: 'A tülködet %{name} megtolta:'
       subject: "%{name} megtolta a tülködet"
