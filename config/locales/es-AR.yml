@@ -259,47 +259,6 @@ es-AR:
         update_custom_emoji: Actualizar emoji personalizado
         update_domain_block: Actualizar bloque de dominio
         update_status: Actualizar toot
-      actions:
-        assigned_to_self_report: "%{name} se asignó la denuncia %{target} a sí"
-        change_email_user: "%{name} cambió la dirección de correo electrónico del usuario %{target}"
-        confirm_user: "%{name} confirmó la dirección de correo del usuario %{target}"
-        create_account_warning: "%{name} envió una advertencia a %{target}"
-        create_announcement: "%{name} creó el nuevo anuncio %{target}"
-        create_custom_emoji: "%{name} subió nuevo emoji %{target}"
-        create_domain_allow: "%{name} permitió la federación con el dominio %{target}"
-        create_domain_block: "%{name} bloqueó el dominio %{target}"
-        create_email_domain_block: "%{name} bloqueó el dominio de correo electrónico %{target}"
-        create_ip_block: "%{name} creó la regla para la dirección IP %{target}"
-        demote_user: "%{name} bajó de nivel al usuario %{target}"
-        destroy_announcement: "%{name} eliminó el anuncio %{target}"
-        destroy_custom_emoji: "%{name} destruyó el emoji %{target}"
-        destroy_domain_allow: "%{name} no permitió la federación con el dominio %{target}"
-        destroy_domain_block: "%{name} desbloqueó el dominio %{target}"
-        destroy_email_domain_block: "%{name} desbloqueó el dominio de correo electrónico %{target}"
-        destroy_ip_block: "%{name} eliminó la regla para la dirección IP %{target}"
-        destroy_status: "%{name} eliminó el toot de %{target}"
-        disable_2fa_user: "%{name} deshabilitó el requerimiento de dos factores para el usuario %{target}"
-        disable_custom_emoji: "%{name} deshabilitó el emoji %{target}"
-        disable_user: "%{name} deshabilitó el inicio de sesión para el usuario %{target}"
-        enable_custom_emoji: "%{name} habilitó el emoji %{target}"
-        enable_user: "%{name} habilitó el inicio de sesión para el usuario %{target}"
-        memorialize_account: "%{name} convirtió la cuenta de %{target} en una cuenta conmemorativa"
-        promote_user: "%{name} promovió al usuario %{target}"
-        remove_avatar_user: "%{name} quitó el avatar de %{target}"
-        reopen_report: "%{name} reabrió la denuncia %{target}"
-        reset_password_user: "%{name} cambió la contraseña del usuario %{target}"
-        resolve_report: "%{name} resolvió la denuncia %{target}"
-        sensitive_account: "%{name} marcó los medios de %{target} como sensibles"
-        silence_account: "%{name} silenció la cuenta de %{target}"
-        suspend_account: "%{name} suspendió la cuenta de %{target}"
-        unassigned_report: "%{name} desasignó la denuncia %{target}"
-        unsensitive_account: "%{name} desmarcó los medios de %{target} como sensibles"
-        unsilence_account: "%{name} quitó el silenciado de la cuenta de %{target}"
-        unsuspend_account: "%{name} quitó la suspensión de la cuenta de %{target}"
-        update_announcement: "%{name} actualizó el anuncio %{target}"
-        update_custom_emoji: "%{name} actualizó el emoji %{target}"
-        update_domain_block: "%{name} actualizó el bloqueo de dominio para %{target}"
-        update_status: "%{name} actualizó el toot de %{target}"
       deleted_status: "[toot eliminado]"
       empty: No se encontraron registros.
       filter_by_action: Filtrar por acción
@@ -1047,6 +1006,8 @@ es-AR:
       body: '%{name} retooteó tu toot:'
       subject: "%{name} retooteó tu toot"
       title: Nuevo retoot
+    status:
+      subject: "%{name} acaba de publicar"
   notifications:
     email_events: Eventos para notificaciones por correo electrónico
     email_events_hint: 'Seleccioná los eventos para los que querés recibir notificaciones:'
