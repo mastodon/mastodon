@@ -45,9 +45,9 @@ module AccountCounters
     sql = if value.positive? && key == :statuses_count
             <<-SQL.squish
               INSERT INTO account_stats(account_id, #{key}, created_at, updated_at, last_status_at)
-                VALUES (#{id}, #{default_value}, now(), now(), now())
+                VALUES (:account_id, :default_value, now(), now(), now())
               ON CONFLICT (account_id) DO UPDATE
-              SET #{key} = account_stats.#{key} + #{value},
+              SET #{key} = account_stats.#{key} + :value,
                   last_status_at = now(),
                   lock_version = account_stats.lock_version + 1,
                   updated_at = now()
@@ -56,16 +56,17 @@ module AccountCounters
           else
             <<-SQL.squish
               INSERT INTO account_stats(account_id, #{key}, created_at, updated_at)
-                VALUES (#{id}, #{default_value}, now(), now())
+                VALUES (:account_id, :default_value, now(), now())
               ON CONFLICT (account_id) DO UPDATE
-              SET #{key} = account_stats.#{key} + #{value},
+              SET #{key} = account_stats.#{key} + :value,
                   lock_version = account_stats.lock_version + 1,
                   updated_at = now()
               RETURNING id;
             SQL
           end
 
-    account_stat_id = ActiveRecord::Base.connection.execute(sql)[0]['id']
+    sql = AccountStat.sanitize_sql([sql, account_id: id, default_value: default_value, value: value])
+    account_stat_id = AccountStat.connection.exec_query(sql)[0]['id']
 
     # Reload account_stat if it was loaded, taking into account newly-created unsaved records
     if association(:account_stat).loaded?
