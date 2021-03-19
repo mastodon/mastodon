@@ -259,47 +259,6 @@ sq:
         update_custom_emoji: Përditëso Emotikon Vetjak
         update_domain_block: Përditëso Bllok Përkatësish
         update_status: Përditëso Gjendjen
-      actions:
-        assigned_to_self_report: "%{name} ia kaloi raportimin %{target} në ngarkim vetvetes"
-        change_email_user: "%{name} ndryshoi adresën email të përdoruesit %{target}"
-        confirm_user: "%{name} ripohoi adresën email të përdoruesit %{target}"
-        create_account_warning: "%{name} dërgoi një sinjalizim për %{target}"
-        create_announcement: "%{name} krijoi lajmërim të ri për %{target}"
-        create_custom_emoji: "%{name} ngarkoi emoxhi të ri %{target}"
-        create_domain_allow: "%{name} kaloi në listë lejimesh përkatësinë %{target}"
-        create_domain_block: "%{name} bllokoi përkatësinë %{target}"
-        create_email_domain_block: "%{name} shtoi në listë bllokimesh përkatësinë %{target}"
-        create_ip_block: "%{name} krijoi rregull për IP-në %{target}"
-        demote_user: "%{name} zhgradoi përdoruesin %{target}"
-        destroy_announcement: "%{name} fshiu lajmërimin për %{target}"
-        destroy_custom_emoji: "%{name} asgjësoi emoxhin %{target}"
-        destroy_domain_allow: "%{name} hoqi përkatësinë %{target} nga listë lejimesh"
-        destroy_domain_block: "%{name} zhbllokoi përkatësinë %{target}"
-        destroy_email_domain_block: "%{name} e shtoi në listë lejimesh përkatësinë %{target}"
-        destroy_ip_block: "%{name} fshiu rregull për IP-në %{target}"
-        destroy_status: "%{name} hoqi gjendje nga %{target}"
-        disable_2fa_user: "%{name} çaktivizoi domosdoshmëritë për dyfaktorësh për përdoruesin %{target}"
-        disable_custom_emoji: "%{name} çaktivizoi emoxhin %{target}"
-        disable_user: "%{name} çaktivizoi hyrje për përdoruesin %{target}"
-        enable_custom_emoji: "%{name} aktivizoi emoxhin %{target}"
-        enable_user: "%{name} aktivizoi hyrje për përdoruesin %{target}"
-        memorialize_account: "%{name} e shndërroi llogarinë e %{target} në një faqe përkujtimore"
-        promote_user: "%{name} gradoi përdoruesin %{target}"
-        remove_avatar_user: "%{name} hoqi avatarin e %{target}"
-        reopen_report: "%{name} rihapi raportimin %{target}"
-        reset_password_user: "%{name} ricaktoi fjalëkalimi për përdoruesin %{target}"
-        resolve_report: "%{name} zgjidhi raportimin %{target}"
-        sensitive_account: "%{name} i vuri shenjë si rezervat medias në %{target}"
-        silence_account: "%{name} heshtoi llogarinë e %{target}"
-        suspend_account: "%{name} pezulloi llogarinë e %{target}"
-        unassigned_report: "%{name} rihapi raportimin %{target}"
-        unsensitive_account: "%{name} ia hoqi shenjën si rezervat medias në %{target}"
-        unsilence_account: "%{name} hoqi heshtimin për llogarinë %{target}"
-        unsuspend_account: "%{name} hoqi pezullimin për llogarinë e %{target}"
-        update_announcement: "%{name} përditësoi lajmërimin %{target}"
-        update_custom_emoji: "%{name} përditësoi emoxhin %{target}"
-        update_domain_block: "%{name} përditësoi bllok përkatësish për %{target}"
-        update_status: "%{name} përditësoi gjendjen me %{target}"
       deleted_status: "(fshiu gjendjen)"
       empty: S’u gjetën regjistra.
       filter_by_action: Filtroji sipas veprimit
@@ -1043,8 +1002,6 @@ sq:
       body: 'U përmendët nga %{name} në:'
       subject: U përmendët nga %{name}
       title: Përmendje e re
-    poll:
-      title: Përfundoi një pyetësor
     reblog:
       body: 'Gjendja juaj u përforcua nga %{name}:'
       subject: "%{name} përforcoi gjendjen tuaj"
