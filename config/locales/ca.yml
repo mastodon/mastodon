@@ -252,47 +252,6 @@ ca:
         update_custom_emoji: Actualitza l'emoji personalitzat
         update_domain_block: Actualitza el Bloqueig de Domini
         update_status: Actualitza l'estat
-      actions:
-        assigned_to_self_report: "%{name} han assignat l'informe %{target} a ells mateixos"
-        change_email_user: "%{name} ha canviat l'adreça de correu electrònic del usuari %{target}"
-        confirm_user: "%{name} ha confirmat l'adreça de correu electrònic de l'usuari %{target}"
-        create_account_warning: "%{name} ha enviat un avís a %{target}"
-        create_announcement: "%{name} ha creat un nou anunci %{target}"
-        create_custom_emoji: "%{name} ha pujat un nou emoji %{target}"
-        create_domain_allow: "%{name} ha afegit a la llista blanca el domini %{target}"
-        create_domain_block: "%{name} ha blocat el domini %{target}"
-        create_email_domain_block: "%{name} ha afegit a la llista negra el domini del correu electrònic %{target}"
-        create_ip_block: "%{name} ha creat una regla IP per a %{target}"
-        demote_user: "%{name} ha degradat l'usuari %{target}"
-        destroy_announcement: "%{name} ha eliminat l'anunci %{target}"
-        destroy_custom_emoji: "%{name} ha destruït l'emoji %{target}"
-        destroy_domain_allow: "%{name} ha eliminat el domini %{target} de la llista blanca"
-        destroy_domain_block: "%{name} ha desblocat el domini %{target}"
-        destroy_email_domain_block: "%{name} ha afegit a la llista negra el domini de correu electrònic %{target}"
-        destroy_ip_block: "%{name} ha esborrat la regla IP per a %{target}"
-        destroy_status: "%{name} eliminat l'estat per %{target}"
-        disable_2fa_user: "%{name} ha desactivat el requisit de dos factors per a l'usuari %{target}"
-        disable_custom_emoji: "%{name} ha desactivat l'emoji %{target}"
-        disable_user: "%{name} ha desactivat l'accés per a l'usuari %{target}"
-        enable_custom_emoji: "%{name} ha activat l'emoji %{target}"
-        enable_user: "%{name} ha activat l'accés per a l'usuari %{target}"
-        memorialize_account: "%{name} ha convertit el compte %{target} en una pàgina de memorial"
-        promote_user: "%{name} ha promogut l'usuari %{target}"
-        remove_avatar_user: "%{name} ha eliminat l'avatar de %{target}"
-        reopen_report: "%{name} ha reobert l'informe %{target}"
-        reset_password_user: "%{name} ha restablert la contrasenya de l'usuari %{target}"
-        resolve_report: "%{name} ha resolt l'informe %{target}"
-        sensitive_account: "%{name} ha marcat els mèdia de %{target} com a sensibles"
-        silence_account: "%{name} ha silenciat el compte de %{target}"
-        suspend_account: "%{name} ha suspès el compte de %{target}"
-        unassigned_report: "%{name} ha des-assignat l'informe %{target}"
-        unsensitive_account: "%{name} ha desmarcat els mèdia de %{target} com a sensibles"
-        unsilence_account: "%{name} ha silenciat el compte de %{target}"
-        unsuspend_account: "%{name} ha llevat la suspensió del compte de %{target}"
-        update_announcement: "%{name} ha actualitzat l'anunci %{target}"
-        update_custom_emoji: "%{name} ha actualitzat l'emoji %{target}"
-        update_domain_block: "%{name} ha actualitzat el bloqueig de domini per %{target}"
-        update_status: "%{name} estat actualitzat per %{target}"
       deleted_status: "(tut esborrat)"
       empty: No s’han trobat registres.
       filter_by_action: Filtra per acció
@@ -1019,8 +978,6 @@ ca:
       body: '%{name} t''ha mencionat en:'
       subject: '%{name} t''ha mencionat'
       title: Menció nova
-    poll:
-      title: Ha acabat una enquesta
     reblog:
       body: '%{name} ha impulsat el teu estat:'
       subject: "%{name} ha impulsat el teu estat"
