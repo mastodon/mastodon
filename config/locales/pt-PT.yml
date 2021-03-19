@@ -259,47 +259,6 @@ pt-PT:
         update_custom_emoji: Atualizar Emoji Personalizado
         update_domain_block: Atualizar Bloqueio de Domínio
         update_status: Atualizar Estado
-      actions:
-        assigned_to_self_report: "%{name} atribuiu o relatório %{target} a si próprios"
-        change_email_user: "%{name} alterou o endereço de e-mail do utilizador %{target}"
-        confirm_user: "%{name} confirmou o endereço de e-mail do utilizador %{target}"
-        create_account_warning: "%{name} enviou um aviso para %{target}"
-        create_announcement: "%{name} criou um novo anúncio %{target}"
-        create_custom_emoji: "%{name} enviado emoji novo %{target}"
-        create_domain_allow: "%{name} colocou o domínio %{target} na lista branca"
-        create_domain_block: "%{name} bloqueou o domínio %{target}"
-        create_email_domain_block: "%{name} adicionou na lista negra o domínio de correio electrónico %{target}"
-        create_ip_block: "%{name} criou regra para o IP %{target}"
-        demote_user: "%{name} rebaixou o utilizador %{target}"
-        destroy_announcement: "%{name} excluiu o anúncio %{target}"
-        destroy_custom_emoji: "%{name} destruiu o emoji %{target}"
-        destroy_domain_allow: "%{name} removeu o domínio %{target} da lista branca"
-        destroy_domain_block: "%{name} desbloqueou o domínio %{target}"
-        destroy_email_domain_block: "%{name} retirou o domínio de e-mail %{target} da lista negra"
-        destroy_ip_block: "%{name} eliminou regra para o IP %{target}"
-        destroy_status: "%{name} removeu o publicação feita por %{target}"
-        disable_2fa_user: "%{name} desactivou o requerimento de autenticação em dois passos para o utilizador %{target}"
-        disable_custom_emoji: "%{name} desabilitou o emoji %{target}"
-        disable_user: "%{name} desativou o acesso para o utilizador %{target}"
-        enable_custom_emoji: "%{name} habilitou o emoji %{target}"
-        enable_user: "%{name} ativou o acesso para o utilizador %{target}"
-        memorialize_account: "%{name} transformou a conta de %{target} em um memorial"
-        promote_user: "%{name} promoveu o utilizador %{target}"
-        remove_avatar_user: "%{name} removeu a imagem de perfil de %{target}"
-        reopen_report: "%{name} reabriu o relatório %{target}"
-        reset_password_user: "%{name} restabeleceu a palavra-passe do utilizador %{target}"
-        resolve_report: "%{name} recusou o relatório %{target}"
-        sensitive_account: "%{name} marcou a media de %{target} como sensível"
-        silence_account: "%{name} silenciou a conta de %{target}"
-        suspend_account: "%{name} suspendeu a conta de %{target}"
-        unassigned_report: "%{name} não atribuiu o relatório %{target}"
-        unsensitive_account: "%{name} desmarcou a media de %{target} como sensível"
-        unsilence_account: "%{name} desativou o silêncio de %{target}"
-        unsuspend_account: "%{name} desativou a suspensão de  %{target}"
-        update_announcement: "%{name} atualizou o anúncio %{target}"
-        update_custom_emoji: "%{name} atualizou o emoji %{target}"
-        update_domain_block: "%{name} atualizou o bloqueio de domínio para %{target}"
-        update_status: "%{name} atualizou o estado de %{target}"
       deleted_status: "(apagou a publicação)"
       empty: Não foram encontrados registos.
       filter_by_action: Filtrar por ação
@@ -1043,8 +1002,6 @@ pt-PT:
       body: 'Foste mencionado por %{name}:'
       subject: '%{name} mencionou-te'
       title: Nova menção
-    poll:
-      title: Uma votação terminou
     reblog:
       body: 'O teu post foi partilhado por %{name}:'
       subject: "%{name} partilhou o teu post"
