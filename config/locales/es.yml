@@ -18,3 +18,8 @@ es:
     '429': Too many requests
     '500':
     '503': The page could not be served due to a temporary server failure.
+  notification_mailer:
+    poll:
+      title: Una encuesta ha terminado
+    status:
+      subject: "%{name} acaba de publicar"
