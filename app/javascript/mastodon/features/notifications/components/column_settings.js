@@ -55,6 +55,16 @@ export default class ColumnSettings extends React.PureComponent {
           <ClearColumnButton onClick={onClear} />
         </div>
 
+        <div role='group' aria-labelledby='notifications-unread-markers'>
+          <span id='notifications-unread-markers' className='column-settings__section'>
+            <FormattedMessage id='notifications.column_settings.unread_markers.category' defaultMessage='Unread notification markers' />
+          </span>
+
+          <div className='column-settings__row'>
+            <SettingToggle id='unread-notification-markers' prefix='notifications' settings={settings} settingPath={['showUnread']} onChange={onChange} label={filterShowStr} />
+          </div>
+        </div>
+
         <div role='group' aria-labelledby='notifications-filter-bar'>
           <span id='notifications-filter-bar' className='column-settings__section'>
             <FormattedMessage id='notifications.column_settings.filter_bar.category' defaultMessage='Quick filter bar' />

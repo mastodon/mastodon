@@ -111,7 +111,7 @@ group :development, :test do
   gem 'i18n-tasks', '~> 0.9', require: false
   gem 'pry-byebug', '~> 3.9'
   gem 'pry-rails', '~> 0.3'
-  gem 'rspec-rails', '~> 4.1'
+  gem 'rspec-rails', '~> 5.0'
 end
 
 group :production, :test do
@@ -143,7 +143,7 @@ group :development do
   gem 'rubocop', '~> 1.11', require: false
   gem 'rubocop-rails', '~> 2.9', require: false
   gem 'brakeman', '~> 4.10', require: false
-  gem 'bundler-audit', '~> 0.7', require: false
+  gem 'bundler-audit', '~> 0.8', require: false
 
   gem 'capistrano', '~> 3.16'
   gem 'capistrano-rails', '~> 1.6'
@@ -155,7 +155,6 @@ end
 
 group :production do
   gem 'lograge', '~> 0.11'
-  gem 'redis-rails', '~> 5.0'
 end
 
 gem 'concurrent-ruby', require: false
