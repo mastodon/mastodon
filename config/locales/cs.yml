@@ -267,6 +267,47 @@ cs:
         update_custom_emoji: Aktualizovat vlastní emoji
         update_domain_block: Změnit blokaci domény
         update_status: Aktualizovat stav
+      actions:
+        assigned_to_self_report_html: "Uživatel %{name} si přidělil hlášení %{target}"
+        change_email_user_html: "Uživatel %{name} změnil e-mailovou adresu uživatele %{target}"
+        confirm_user_html: "Uživatel %{name} potvrdil e-mailovou adresu uživatele %{target}"
+        create_account_warning_html: "Uživatel %{name} poslal varování uživateli %{target}"
+        create_announcement_html: "Uživatel %{name} vytvořil nové oznámení %{target}"
+        create_custom_emoji_html: "Uživatel %{name} nahrál nové emoji %{target}"
+        create_domain_allow_html: "Uživatel %{name} přidal doménu %{target} na bílou listinu"
+        create_domain_block_html: "Uživatel %{name} zablokoval doménu %{target}"
+        create_email_domain_block_html: "Uživatel %{name} přidal e-mailovou doménu %{target} na černou listinu"
+        create_ip_block_html: "%{name} vytvořil pravidlo pro IP %{target}"
+        demote_user_html: "Uživatel %{name} degradoval uživatele %{target}"
+        destroy_announcement_html: "Uživatel %{name} odstranil oznámení %{target}"
+        destroy_custom_emoji_html: "Uživatel %{name} zničil emoji %{target}"
+        destroy_domain_allow_html: "Uživatel %{name} odebral doménu %{target} z bílé listiny"
+        destroy_domain_block_html: "Uživatel %{name} odblokoval doménu %{target}"
+        destroy_email_domain_block_html: "Uživatel %{name} odebral e-mailovou doménu %{target} z černé listiny"
+        destroy_ip_block_html: "%{name} odstranil pravidlo pro IP %{target}"
+        destroy_status_html: "Uživatel %{name} odstranil toot uživatele %{target}"
+        disable_2fa_user_html: "Uživatel %{name} vypnul dvoufázové ověřování pro uživatele %{target}"
+        disable_custom_emoji_html: "Uživatel %{name} zakázal emoji %{target}"
+        disable_user_html: "Uživatel %{name} zakázal přihlašování pro uživatele %{target}"
+        enable_custom_emoji_html: "Uživatel %{name} povolil emoji %{target}"
+        enable_user_html: "Uživatel %{name} povolil přihlašování pro uživatele %{target}"
+        memorialize_account_html: "Uživatel %{name} změnil účet %{target} na „in memoriam“ stránku"
+        promote_user_html: "Uživatel %{name} povýšil uživatele %{target}"
+        remove_avatar_user_html: "Uživatel %{name} odstranil avatar uživatele %{target}"
+        reopen_report_html: "Uživatel %{name} znovu otevřel hlášení %{target}"
+        reset_password_user_html: "Uživatel %{name} obnovil heslo uživatele %{target}"
+        resolve_report_html: "Uživatel %{name} vyřešil hlášení %{target}"
+        sensitive_account_html: "%{name} označil média účtu %{target} jako citlivá"
+        silence_account_html: "Uživatel %{name} ztišil uživatele %{target}"
+        suspend_account_html: "Uživatel %{name} pozastavil účet uživatele %{target}"
+        unassigned_report_html: "Uživatel %{name} odebral hlášení %{target}"
+        unsensitive_account_html: "%{name} zrušil označení médií účtu %{target} jako citlivých"
+        unsilence_account_html: "Uživatel %{name} zrušil ztišení uživatele %{target}"
+        unsuspend_account_html: "Uživatel %{name} zrušil pozastavení účtu uživatele %{target}"
+        update_announcement_html: "Uživatel %{name} aktualizoval oznámení %{target}"
+        update_custom_emoji_html: "Uživatel %{name} aktualizoval emoji %{target}"
+        update_domain_block_html: "%{name} aktualizoval blokaci domény %{target}"
+        update_status_html: "Uživatel %{name} aktualizoval toot uživatele %{target}"
       deleted_status: "(smazaný toot)"
       empty: Nebyly nalezeny žádné záznamy.
       filter_by_action: Filtrovat podle akce
@@ -1026,6 +1067,8 @@ cs:
       body: 'Uživatel %{name} vás zmínil v:'
       subject: Uživatel %{name} vás zmínil
       title: Nová zmínka
+    poll:
+      subject: Anketa od %{name} skončila
     reblog:
       body: 'Uživatel %{name} boostnul váš toot:'
       subject: "Uživatel %{name} boostnul váš toot"
