@@ -1,6 +1,11 @@
 **Mastodon fork for <https://hello.2heng.xin>**
 
-![Build and Push Alpha Image to Docker Hub](https://github.com/mashirozx/mastodon/workflows/Build%20and%20Push%20Alpha%20Image%20to%20Docker%20Hub/badge.svg)
+[![Maintainability](https://api.codeclimate.com/v1/badges/1644d6adc0f9d1bbae6a/maintainability)](https://codeclimate.com/github/mashirozx/mastodon/maintainability)
+[![DeepSource](https://deepsource.io/gh/mashirozx/mastodon.svg/?label=active+issues)](https://deepsource.io/gh/mashirozx/mastodon/?ref=repository-badge)
+[![CircleCI](https://circleci.com/gh/mashirozx/mastodon.svg?style=svg)](https://circleci.com/gh/tootsuite/mastodon)
+[![DockerHub](https://img.shields.io/docker/pulls/mashirozx/mastodon.svg?logo=docker&color=2496ED)](https://hub.docker.com/r/mashirozx/mastodon)
+[![Build and Push Alpha Image to Docker Hub](https://github.com/mashirozx/mastodon/workflows/Build%20and%20Push%20Alpha%20Image%20to%20Docker%20Hub/badge.svg)](https://github.com/mashirozx/mastodon/actions/workflows/docker-build-main.yml)
+
 
 This is a rebase fork of tootsuite/mastodon, all local changes are rebased on the top. To pull the latest commits of this repo, use `git reset --hard origin/master` instead of `git pull`.
 
