@@ -259,6 +259,47 @@ es-AR:
         update_custom_emoji: Actualizar emoji personalizado
         update_domain_block: Actualizar bloque de dominio
         update_status: Actualizar toot
+      actions:
+        assigned_to_self_report_html: "%{name} se asignó la denuncia %{target} a sí"
+        change_email_user_html: "%{name} cambió la dirección de correo electrónico del usuario %{target}"
+        confirm_user_html: "%{name} confirmó la dirección de correo del usuario %{target}"
+        create_account_warning_html: "%{name} envió una advertencia a %{target}"
+        create_announcement_html: "%{name} creó el nuevo anuncio %{target}"
+        create_custom_emoji_html: "%{name} subió nuevo emoji %{target}"
+        create_domain_allow_html: "%{name} permitió la federación con el dominio %{target}"
+        create_domain_block_html: "%{name} bloqueó el dominio %{target}"
+        create_email_domain_block_html: "%{name} bloqueó el dominio de correo electrónico %{target}"
+        create_ip_block_html: "%{name} creó la regla para la dirección IP %{target}"
+        demote_user_html: "%{name} bajó de nivel al usuario %{target}"
+        destroy_announcement_html: "%{name} eliminó el anuncio %{target}"
+        destroy_custom_emoji_html: "%{name} destruyó el emoji %{target}"
+        destroy_domain_allow_html: "%{name} no permitió la federación con el dominio %{target}"
+        destroy_domain_block_html: "%{name} desbloqueó el dominio %{target}"
+        destroy_email_domain_block_html: "%{name} desbloqueó el dominio de correo electrónico %{target}"
+        destroy_ip_block_html: "%{name} eliminó la regla para la dirección IP %{target}"
+        destroy_status_html: "%{name} eliminó el toot de %{target}"
+        disable_2fa_user_html: "%{name} deshabilitó el requerimiento de dos factores para el usuario %{target}"
+        disable_custom_emoji_html: "%{name} deshabilitó el emoji %{target}"
+        disable_user_html: "%{name} deshabilitó el inicio de sesión para el usuario %{target}"
+        enable_custom_emoji_html: "%{name} habilitó el emoji %{target}"
+        enable_user_html: "%{name} habilitó el inicio de sesión para el usuario %{target}"
+        memorialize_account_html: "%{name} convirtió la cuenta de %{target} en una cuenta conmemorativa"
+        promote_user_html: "%{name} promovió al usuario %{target}"
+        remove_avatar_user_html: "%{name} quitó el avatar de %{target}"
+        reopen_report_html: "%{name} reabrió la denuncia %{target}"
+        reset_password_user_html: "%{name} cambió la contraseña del usuario %{target}"
+        resolve_report_html: "%{name} resolvió la denuncia %{target}"
+        sensitive_account_html: "%{name} marcó los medios de %{target} como sensibles"
+        silence_account_html: "%{name} silenció la cuenta de %{target}"
+        suspend_account_html: "%{name} suspendió la cuenta de %{target}"
+        unassigned_report_html: "%{name} desasignó la denuncia %{target}"
+        unsensitive_account_html: "%{name} desmarcó los medios de %{target} como sensibles"
+        unsilence_account_html: "%{name} quitó el silenciado de la cuenta de %{target}"
+        unsuspend_account_html: "%{name} quitó la suspensión de la cuenta de %{target}"
+        update_announcement_html: "%{name} actualizó el anuncio %{target}"
+        update_custom_emoji_html: "%{name} actualizó el emoji %{target}"
+        update_domain_block_html: "%{name} actualizó el bloqueo de dominio para %{target}"
+        update_status_html: "%{name} actualizó el toot de %{target}"
       deleted_status: "[toot eliminado]"
       empty: No se encontraron registros.
       filter_by_action: Filtrar por acción
@@ -1002,6 +1043,8 @@ es-AR:
       body: 'Fuiste mencionado por %{name} en:'
       subject: Fuiste mencionado por %{name}
       title: Nueva mención
+    poll:
+      subject: Terminó una encuesta de %{name}
     reblog:
       body: '%{name} retooteó tu toot:'
       subject: "%{name} retooteó tu toot"
