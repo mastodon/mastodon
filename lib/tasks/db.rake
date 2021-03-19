@@ -19,7 +19,7 @@ namespace :db do
 
   task :post_migration_hook do
     at_exit do
-      unless %w(C POSIX).include?(ActiveRecord::Base.connection.execute('SELECT datcollate FROM pg_database WHERE datname = current_database();').first['datcollate'])
+      unless %w(C POSIX).include?(ActiveRecord::Base.connection.select_one('SELECT datcollate FROM pg_database WHERE datname = current_database();')['datcollate'])
         warn <<~WARNING
           Your database collation is susceptible to index corruption.
             (This warning does not indicate that index corruption has occured and can be ignored)
@@ -29,5 +29,11 @@ namespace :db do
     end
   end
 
+  task :pre_migration_check do
+    version = ActiveRecord::Base.connection.select_one("SELECT current_setting('server_version_num') AS v")['v'].to_i
+    abort 'ERROR: This version of Mastodon requires PostgreSQL 9.5 or newer. Please update PostgreSQL before updating Mastodon.' if version < 90_500
+  end
+
+  Rake::Task['db:migrate'].enhance(['db:pre_migration_check'])
   Rake::Task['db:migrate'].enhance(['db:post_migration_hook'])
 end
