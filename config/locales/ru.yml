@@ -267,47 +267,6 @@ ru:
         update_custom_emoji: Обновление эмодзи
         update_domain_block: Изменить блокировку домена
         update_status: Изменение постов
-      actions:
-        assigned_to_self_report: "%{name} назначил(а) себя для решения жалобы %{target}"
-        change_email_user: "%{name} сменил(а) e-mail пользователя %{target}"
-        confirm_user: "%{name} подтвердил(а) e-mail адрес пользователя %{target}"
-        create_account_warning: "%{name} выдал(а) предупреждение %{target}"
-        create_announcement: "%{name} создал(а) новое объявление %{target}"
-        create_custom_emoji: "%{name} загрузил(а) новый эмодзи %{target}"
-        create_domain_allow: "%{name} внес(ла) домен %{target} в белый список"
-        create_domain_block: "%{name} заблокировал(а) домен %{target}"
-        create_email_domain_block: "%{name} добавил(а) e-mail домен %{target} в чёрный список"
-        create_ip_block: "%{name} создал правило для IP %{target}"
-        demote_user: "%{name} разжаловал(а) пользователя %{target}"
-        destroy_announcement: "%{name} удалил объявление %{target}"
-        destroy_custom_emoji: "%{name} измельчил(а) эмодзи %{target} в пыль"
-        destroy_domain_allow: "%{name} убрал домен %{target} из белого списка"
-        destroy_domain_block: "%{name} разблокировал(а) домен %{target}"
-        destroy_email_domain_block: "%{name} добавил(а) e-mail домен %{target} в белый список"
-        destroy_ip_block: "%{name} удалил правило для IP %{target}"
-        destroy_status: "%{name} удалил(а) пост пользователя %{target}"
-        disable_2fa_user: "%{name} отключил(а) требование двухэтапной авторизации для пользователя %{target}"
-        disable_custom_emoji: "%{name} отключил(а) эмодзи %{target}"
-        disable_user: "%{name} заморозил(а) пользователя %{target}"
-        enable_custom_emoji: "%{name} включил(а) эмодзи %{target}"
-        enable_user: "%{name} разморозил(а) пользователя %{target}"
-        memorialize_account: "%{name} перевел(а) учётную запись пользователя %{target} в режим памятника"
-        promote_user: "%{name} повысил(а) пользователя %{target}"
-        remove_avatar_user: "%{name} убрал(а) аватарку пользователя %{target}"
-        reopen_report: "%{name} переоткрыл(а) жалобу %{target}"
-        reset_password_user: "%{name} сбросил(а) пароль пользователя %{target}"
-        resolve_report: "%{name} решил(а) жалобу %{target}"
-        sensitive_account: "%{name} пометил медиа %{target} как деликатное"
-        silence_account: "%{name} наложил(а) ограничения на видимость постов учётной записи %{target}"
-        suspend_account: "%{name} заблокировал(а) учётную запись %{target}"
-        unassigned_report: "%{name} сняла назначение жалобы %{target}"
-        unsensitive_account: "%{name} снял отметку \"деликатное\" с медиа %{target}"
-        unsilence_account: "%{name} снял ограничения видимости постов пользователя %{target}"
-        unsuspend_account: "%{name} снял(а) блокировку с пользователя %{target}"
-        update_announcement: "%{name} обновил объявление %{target}"
-        update_custom_emoji: "%{name} обновил(а) эмодзи %{target}"
-        update_domain_block: "%{name} обновил блокировку домена для %{target}"
-        update_status: "%{name} изменил(а) пост пользователя %{target}"
       deleted_status: "(удалённый пост)"
       empty: Журнал пуст.
       filter_by_action: Фильтр по действию
@@ -1067,8 +1026,6 @@ ru:
       body: 'Вас упомянул(а) %{name} в:'
       subject: '%{name} упомянул(а) вас'
       title: Новое упоминание
-    poll:
-      title: Опрос завершился
     reblog:
       body: 'Ваш пост был продвинут %{name}:'
       subject: "%{name} продвинул(а) ваш пост"
