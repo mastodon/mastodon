@@ -260,6 +260,7 @@ fr:
         update_domain_block: Mettre à jour le blocage de domaine
         update_status: Mettre à jour le statut
       actions:
+        assigned_to_self_report_html: "%{name} s’est assigné·e le signalement de %{target}"
         change_email_user_html: "%{name} a modifié l'adresse de courriel de l'utilisateur·rice %{target}"
         confirm_user_html: "%{name} a confirmé l'adresse courriel de l'utilisateur·rice %{target}"
         create_account_warning_html: "%{name} a envoyé un avertissement à %{target}"
@@ -276,6 +277,7 @@ fr:
         destroy_domain_block_html: "%{name} a débloqué le domaine %{target}"
         destroy_email_domain_block_html: "%{name} a débloqué le domaine de courriel %{target}"
         destroy_ip_block_html: "%{name} a supprimé la règle pour l'IP %{target}"
+        destroy_status_html: "%{name} a supprimé le statut de %{target}"
         disable_2fa_user_html: "%{name} a désactivé l'authentification à deux facteurs pour l'utilisateur·rice %{target}"
         disable_custom_emoji_html: "%{name} a désactivé l'émoji %{target}"
         disable_user_html: "%{name} a désactivé la connexion de l'utilisateur·rice %{target}"
@@ -284,16 +286,20 @@ fr:
         memorialize_account_html: "%{name} a transformé le compte de %{target} en une page de commémoration"
         promote_user_html: "%{name} a promu l'utilisateur·rice %{target}"
         remove_avatar_user_html: "%{name} a supprimé l'avatar de %{target}"
+        reopen_report_html: "%{name} a rouvert le signalement %{target}"
         reset_password_user_html: "%{name} a réinitialisé le mot de passe de l'utilisateur·rice %{target}"
+        resolve_report_html: "%{name} a résolu le signalement %{target}"
         sensitive_account_html: "%{name} a marqué le média de %{target} comme sensible"
         silence_account_html: "%{name} a masqué le compte de %{target}"
         suspend_account_html: "%{name} a suspendu le compte de %{target}"
+        unassigned_report_html: "%{name} a désassigné le signalement %{target}"
         unsensitive_account_html: "%{name} a enlevé le marquage comme sensible du média de %{target}"
         unsilence_account_html: "%{name} a enlevé le masquage du compte de %{target}"
         unsuspend_account_html: "%{name} a réactivé le compte de %{target}"
         update_announcement_html: "%{name} a mis à jour l'annonce %{target}"
         update_custom_emoji_html: "%{name} a mis à jour l'émoji %{target}"
         update_domain_block_html: "%{name} a mis à jour le blocage de domaine pour %{target}"
+        update_status_html: "%{name} a mis à jour le statut de %{target}"
       deleted_status: "(statut supprimé)"
       empty: Aucun journal trouvé.
       filter_by_action: Filtrer par action
