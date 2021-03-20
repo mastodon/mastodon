@@ -254,6 +254,18 @@ ja:
         update_custom_emoji: カスタム絵文字を更新
         update_domain_block: ドメインブロックを更新
         update_status: トゥートを更新
+      actions:
+        assigned_to_self_report_html: "%{name} さんが通報 %{target} を自身の担当に割り当てました"
+        change_email_user_html: "%{name} さんが %{target} さんのメールアドレスを変更しました"
+        confirm_user_html: "%{name} さんが %{target} さんのメールアドレスを確認済みにしました"
+        create_account_warning_html: "%{name} さんが %{target} さんに警告メールを送信しました"
+        create_announcement_html: "%{name} さんが新しいお知らせ %{target} を作成しました"
+        create_custom_emoji_html: "%{name} さんがカスタム絵文字 %{target} を追加しました"
+        create_domain_allow_html: "%{name} さんが %{target} の連合を許可しました"
+        create_domain_block_html: "%{name} さんがドメイン %{target} をブロックしました"
+        create_email_domain_block_html: "%{name} さんが %{target} をメールドメインブロックに追加しました"
+        create_ip_block_html: "%{name} さんが IP %{target} のルールを作成しました"
+        demote_user_html: "%{name} さんが %{target} さんを降格しました"
       deleted_status: "(削除済)"
       empty: ログが見つかりませんでした
       filter_by_action: アクションでフィルター
