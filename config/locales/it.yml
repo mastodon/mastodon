@@ -269,6 +269,13 @@ it:
         create_domain_block_html: "%{name} ha bloccato dominio %{target}"
         create_email_domain_block_html: "%{name} ha bloccato dominio e-mail %{target}"
         create_ip_block_html: "%{name} ha creato una regola per l'IP %{target}"
+        demote_user_html: "%{name} ha retrocesso l'utente %{target}"
+        destroy_announcement_html: "%{name} ha eliminato l'annuncio %{target}"
+        destroy_custom_emoji_html: "%{name} ha eliminato emoji %{target}"
+        destroy_domain_allow_html: "%{name} ha negato la federazione al dominio %{target}"
+        destroy_domain_block_html: "%{name} ha sbloccato dominio %{target}"
+        destroy_email_domain_block_html: "%{name} ha sbloccato il dominio e-mail %{target}"
+        destroy_ip_block_html: "%{name} ha eliminato la regola per l'IP %{target}"
       deleted_status: "(stato cancellato)"
       empty: Nessun log trovato.
       filter_by_action: Filtra per azione
