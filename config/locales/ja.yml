@@ -266,6 +266,35 @@ ja:
         create_email_domain_block_html: "%{name} さんが %{target} をメールドメインブロックに追加しました"
         create_ip_block_html: "%{name} さんが IP %{target} のルールを作成しました"
         demote_user_html: "%{name} さんが %{target} さんを降格しました"
+        destroy_announcement_html: "%{name} さんがお知らせ %{target} を削除しました"
+        destroy_custom_emoji_html: "%{name} さんがカスタム絵文字 %{target} を削除しました"
+        destroy_domain_allow_html: "%{name} さんが %{target} の連合許可を外しました"
+        destroy_domain_block_html: "%{name} さんがドメイン %{target} のブロックを外しました"
+        destroy_email_domain_block_html: "%{name} さんが %{target} をメールドメインブロックから外しました"
+        destroy_ip_block_html: "%{name} さんが IP %{target} のルールを削除しました"
+        destroy_status_html: "%{name} さんが %{target} さんのトゥートを削除しました"
+        disable_2fa_user_html: "%{name} さんが %{target} さんの二段階認証を無効化しました"
+        disable_custom_emoji_html: "%{name} さんがカスタム絵文字 %{target} を無効化しました"
+        disable_user_html: "%{name} さんが %{target} さんのログインを無効化しました"
+        enable_custom_emoji_html: "%{name} さんがカスタム絵文字 %{target} を有効化しました"
+        enable_user_html: "%{name} さんが %{target} さんのログインを有効化しました"
+        memorialize_account_html: "%{name} さんが %{target} さんを追悼アカウントページに登録しました"
+        promote_user_html: "%{name} さんが %{target} さんを昇格しました"
+        remove_avatar_user_html: "%{name} さんが %{target} さんのアイコンを削除しました"
+        reopen_report_html: "%{name} さんが通報 %{target} を未解決に戻しました"
+        reset_password_user_html: "%{name} さんが %{target} さんのパスワードをリセットしました"
+        resolve_report_html: "%{name} さんが通報 %{target} を解決済みにしました"
+        sensitive_account_html: "%{name} さんが %{target} さんのメディアを閲覧注意にマークしました"
+        silence_account_html: "%{name} さんが %{target} さんをサイレンスにしました"
+        suspend_account_html: "%{name} さんが %{target} さんを停止しました"
+        unassigned_report_html: "%{name} さんが通報 %{target} の担当を外しました"
+        unsensitive_account_html: "%{name} さんが %{target} さんのメディアの閲覧注意を解除しました"
+        unsilence_account_html: "%{name} さんが %{target} さんのサイレンスを解除しました"
+        unsuspend_account_html: "%{name} さんが %{target} さんの停止を解除しました"
+        update_announcement_html: "%{name} さんがお知らせ %{target} を更新しました"
+        update_custom_emoji_html: "%{name} さんがカスタム絵文字 %{target} を更新しました"
+        update_domain_block_html: "%{name} が %{target} のドメインブロックを更新しました"
+        update_status_html: "%{name} さんが %{target} さんのトゥートを更新しました"
       deleted_status: "(削除済)"
       empty: ログが見つかりませんでした
       filter_by_action: アクションでフィルター
@@ -486,7 +515,7 @@ ja:
       forwarded: 転送済み
       forwarded_to: '%{domain} に転送されました'
       mark_as_resolved: 解決済みとしてマーク
-      mark_as_unresolved: 未解決として再び開く
+      mark_as_unresolved: 未解決に戻す
       notes:
         create: 書き込む
         create_and_resolve: 書き込み、解決済みにする
@@ -1001,10 +1030,14 @@ ja:
       body: '%{name} さんから返信がありました:'
       subject: '%{name} さんに返信されました'
       title: 新たな返信
+    poll:
+      subject: '%{name}  さんの投票が終了しました'
     reblog:
       body: '%{name} さんにブーストされた、あなたのトゥートがあります:'
       subject: "%{name} さんにブーストされました"
       title: 新たなブースト
+    status:
+      subject: "%{name} さんがトゥートしました"
   notifications:
     email_events: メールによる通知
     email_events_hint: '受信する通知を選択:'
