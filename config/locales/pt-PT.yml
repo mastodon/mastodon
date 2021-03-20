@@ -294,6 +294,12 @@ pt-PT:
         suspend_account_html: "%{name} suspendeu a conta de %{target}"
         unassigned_report_html: "%{name} desatribuiu o realtório %{target}"
         unsensitive_account_html: "%{name} desmarcou a media de %{target} como sensível"
+        unsilence_account_html: "%{name} desativou o silêncio de %{target}"
+        unsuspend_account_html: "%{name} desativou a suspensão de %{target}"
+        update_announcement_html: "%{name} atualizou o anúncio %{target}"
+        update_custom_emoji_html: "%{name} atualizou o emoji %{target}"
+        update_domain_block_html: "%{name} atualizou o bloqueio de domínio para %{target}"
+        update_status_html: "%{name} atualizou o estado de %{target}"
       deleted_status: "(apagou a publicação)"
       empty: Não foram encontrados registos.
       filter_by_action: Filtrar por ação
@@ -1037,6 +1043,8 @@ pt-PT:
       body: 'Foste mencionado por %{name}:'
       subject: '%{name} mencionou-te'
       title: Nova menção
+    poll:
+      subject: Uma votação realizada por %{name} terminou
     reblog:
       body: 'O teu post foi partilhado por %{name}:'
       subject: "%{name} partilhou o teu post"
