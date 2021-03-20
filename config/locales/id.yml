@@ -291,6 +291,10 @@ id:
         unsensitive_account_html: "%{name} membatalkan tanda media %{target} sebagai sensitif"
         unsilence_account_html: "%{name} membunyikan akun %{target}"
         unsuspend_account_html: "%{name} membatalkan penangguhan akun %{target}"
+        update_announcement_html: "%{name} memperbarui pengumuman %{target}"
+        update_custom_emoji_html: "%{name} memperbarui emoji %{target}"
+        update_domain_block_html: "%{name} memperbarui blokir domain untuk %{target}"
+        update_status_html: "%{name} memperbarui status %{target}"
       deleted_status: "(status dihapus)"
       empty: Log tidak ditemukan.
       filter_by_action: Filter berdasarkan tindakan
@@ -1026,10 +1030,14 @@ id:
       body: 'Anda disebut oleh %{name} pada:'
       subject: Anda disebut oleh %{name}
       title: Sebutan baru
+    poll:
+      subject: Japat oleh %{name} telah berakhir
     reblog:
       body: 'Status anda di-boost oleh %{name}:'
       subject: "%{name} mem-boost status anda"
       title: Boost baru
+    status:
+      subject: "%{name} baru saja memposting"
   notifications:
     email_events: Event untuk notifikasi email
     email_events_hint: 'Pilih event yang ingin Anda terima notifikasinya:'
