@@ -44,6 +44,7 @@ es:
         update_announcement_html: "%{name} actualizó el anuncio %{target}"
         update_custom_emoji_html: "%{name} actualizó el emoji %{target}"
         update_domain_block_html: "%{name} actualizó el bloqueo de dominio para %{target}"
+        update_status_html: "%{name} actualizó el estado de %{target}"
     rules:
       add_new: Añadir norma
       description: Aunque la mayoría afirma haber leído y aceptado los términos de servicio, normalmente la gente no los revisa hasta después de que surge un problema. Haz que sea más fácil ver las normas de su servidor de un vistazo disponiéndolas en una lista por puntos. Trata de hacer cada norma corta y sencilla, pero intenta no dividirlas en muchos ítems individuales.
@@ -60,5 +61,7 @@ es:
     '500':
     '503': The page could not be served due to a temporary server failure.
   notification_mailer:
+    poll:
+      subject: Una encuesta de %{name} ha terminado
     status:
       subject: "%{name} acaba de publicar"
