@@ -267,14 +267,14 @@ gl:
         create_custom_emoji_html: "%{name} subiu un novo emoji %{target}"
         create_domain_allow_html: "%{name} permitiu a federación co dominio %{target}"
         create_domain_block_html: "%{name} bloqueou o dominio %{target}"
-        create_email_domain_block_html: "%{name} bloqueo o dominio de email %{target}"
+        create_email_domain_block_html: "%{name} bloqueou o dominio de email %{target}"
         create_ip_block_html: "%{name} creou regra para o IP %{target}"
         demote_user_html: "%{name} degradou a usuaria %{target}"
         destroy_announcement_html: "%{name} eliminou o anuncio %{target}"
         destroy_custom_emoji_html: "%{name} destruíu o emoji %{target}"
         destroy_domain_allow_html: "%{name} retirou a federación co dominio %{target}"
         destroy_domain_block_html: "%{name} desbloqueou o dominio %{target}"
-        destroy_email_domain_block_html: "%{name} desbloqueou o domino de email %{target}"
+        destroy_email_domain_block_html: "%{name} desbloqueou o dominio de email %{target}"
         destroy_ip_block_html: "%{name} eliminou a regra para o IP %{target}"
         destroy_status_html: "%{name} eliminou o estado de %{target}"
         disable_2fa_user_html: "%{name} desactivou o requerimento do segundo factor para a usuaria %{target}"
@@ -296,6 +296,9 @@ gl:
         unsilence_account_html: "%{name} reactivou a conta de %{target}"
         unsuspend_account_html: "%{name} retiroulle a suspensión á conta de %{target}"
         update_announcement_html: "%{name} actualizou o anuncio %{target}"
+        update_custom_emoji_html: "%{name} actualizou o emoji %{target}"
+        update_domain_block_html: "%{name} actualizou o bloqueo do dominio para %{target}"
+        update_status_html: "%{name} actualizou o estado de %{target}"
       deleted_status: "(estado eliminado)"
       empty: Non se atoparon rexistros.
       filter_by_action: Filtrar por acción
@@ -1039,6 +1042,8 @@ gl:
       body: 'Foi mencionada por %{name} en:'
       subject: Foches mencionada por %{name}
       title: Nova mención
+    poll:
+      subject: A enquisa de %{name} rematou
     reblog:
       body: 'O seu estado foi promocionado por %{name}:'
       subject: "%{name} promoveu o teu estado"
