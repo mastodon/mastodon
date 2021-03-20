@@ -115,7 +115,7 @@ pt-PT:
       confirming: A confirmar
       delete: Eliminar dados
       deleted: Apagada
-      demote: Rebaixar
+      demote: Despromoveu
       destroyed_msg: "Os dados de %{username} estão agora em fila de espera para serem eliminados de imediato"
       disable: Desativar
       disable_two_factor_authentication: Desativar 2FA
@@ -259,6 +259,24 @@ pt-PT:
         update_custom_emoji: Atualizar Emoji Personalizado
         update_domain_block: Atualizar Bloqueio de Domínio
         update_status: Atualizar Estado
+      actions:
+        assigned_to_self_report_html: "%{name} atribuiu o relatório %{target} a si próprio"
+        change_email_user_html: "%{name} alterou o endereço de e-mail do utilizador %{target}"
+        confirm_user_html: "%{name} confirmou o endereço de e-mail do utilizador %{target}"
+        create_account_warning_html: "%{name} enviou um aviso para %{target}"
+        create_announcement_html: "%{name} criou o novo anúncio %{target}"
+        create_custom_emoji_html: "%{name} carregou o novo emoji %{target}"
+        create_domain_allow_html: "%{name} habilitou a federação com o domínio %{target}"
+        create_domain_block_html: "%{name} bloqueou o domínio %{target}"
+        create_email_domain_block_html: "%{name} bloqueou o domínio de e-mail %{target}"
+        create_ip_block_html: "%{name} criou regra para o IP %{target}"
+        demote_user_html: "%{name} despromoveu o utilizador %{target}"
+        destroy_announcement_html: "%{name} eliminou o anúncio %{target}"
+        destroy_custom_emoji_html: "%{name} destruiu o emoji %{target}"
+        destroy_domain_allow_html: "%{name} desabilitou a federação com o domínio %{target}"
+        destroy_domain_block_html: "%{name} desbloqueou o domínio %{target}"
+        destroy_email_domain_block_html: "%{name} desbloqueou o domínio de e-mail %{target}"
+        destroy_ip_block_html: "%{name} eliminou regra para o IP %{target}"
       deleted_status: "(apagou a publicação)"
       empty: Não foram encontrados registos.
       filter_by_action: Filtrar por ação
