@@ -3,6 +3,37 @@ es:
     rules: Normas del servidor
     rules_html: 'A continuación hay un resumen de las normas que debes seguir si quieres tener una cuenta en este servidor de Mastodon:'
   admin:
+    action_logs:
+      actions:
+        assigned_to_self_report_html: "%{name} asignó el informe %{target} a sí mismo"
+        change_email_user_html: "%{name} cambió la dirección de correo electrónico del usuario %{target}"
+        confirm_user_html: "%{name} confirmó la dirección de correo electrónico del usuario %{target}"
+        create_account_warning_html: "%{name} envió una advertencia a %{target}"
+        create_announcement_html: "%{name} ha creado un nuevo anuncio %{target}"
+        create_custom_emoji_html: "%{name} subió un nuevo emoji %{target}"
+        create_domain_allow_html: "%{name} permitió la federación con el dominio %{target}"
+        create_domain_block_html: "%{name} bloqueó el dominio %{target}"
+        create_email_domain_block_html: "%{name} bloqueó el dominio de correo electrónico %{target}"
+        create_ip_block_html: "%{name} creó una regla para la IP %{target}"
+        demote_user_html: "%{name} degradó al usuario %{target}"
+        destroy_announcement_html: "%{name} eliminó el anuncio %{target}"
+        destroy_custom_emoji_html: "%{name} destruyó emoji %{target}"
+        destroy_domain_allow_html: "%{name} bloqueó la federación con el dominio %{target}"
+        destroy_domain_block_html: "%{name} desbloqueó el dominio %{target}"
+        destroy_email_domain_block_html: "%{name} desbloqueó el dominio de correo electrónico %{target}"
+        destroy_ip_block_html: "%{name} eliminó una regla para la IP %{target}"
+        destroy_status_html: "%{name} eliminó el estado por %{target}"
+        disable_2fa_user_html: "%{name} desactivó el requisito de dos factores para el usuario %{target}"
+        disable_custom_emoji_html: "%{name} desactivó el emoji %{target}"
+        disable_user_html: "%{name} deshabilitó el inicio de sesión para el usuario %{target}"
+        enable_custom_emoji_html: "%{name} activó el emoji %{target}"
+        enable_user_html: "%{name} habilitó el inicio de sesión para el usuario %{target}"
+        memorialize_account_html: "%{name} convirtió la cuenta de %{target} en una página in memoriam"
+        promote_user_html: "%{name} promoción al usuario %{target}"
+        remove_avatar_user_html: "%{name} eliminó el avatar de %{target}"
+        reopen_report_html: "%{name} reabrió el informe %{target}"
+        reset_password_user_html: "%{name} reinició la contraseña del usuario %{target}"
+        resolve_report_html: "%{name} resolvió el informe %{target}"
     rules:
       add_new: Añadir norma
       description: Aunque la mayoría afirma haber leído y aceptado los términos de servicio, normalmente la gente no los revisa hasta después de que surge un problema. Haz que sea más fácil ver las normas de su servidor de un vistazo disponiéndolas en una lista por puntos. Trata de hacer cada norma corta y sencilla, pero intenta no dividirlas en muchos ítems individuales.
