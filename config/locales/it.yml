@@ -289,6 +289,11 @@ it:
         silence_account_html: "%{name} ha silenziato l'account di %{target}"
         suspend_account_html: "%{name} ha sospeso l'account di %{target}"
         unsensitive_account_html: "%{name} ha annullato il segnare il media di %{target} come sensibile"
+        unsilence_account_html: "%{name} ha riattivato l'account di %{target}"
+        unsuspend_account_html: "%{name} ha annullato la sospensione dell'account di %{target}"
+        update_announcement_html: "%{name} ha aggiornato l'annuncio %{target}"
+        update_custom_emoji_html: "%{name} ha aggiornato emoji %{target}"
+        update_domain_block_html: "%{name} ha aggiornato il blocco dominio per %{target}"
       deleted_status: "(stato cancellato)"
       empty: Nessun log trovato.
       filter_by_action: Filtra per azione
@@ -1032,6 +1037,8 @@ it:
       body: 'Sei stato menzionato da %{name} su:'
       subject: Sei stato menzionato da %{name}
       title: Nuova menzione
+    poll:
+      subject: Un sondaggio da %{name} è terminato
     reblog:
       body: 'Il tuo status è stato condiviso da %{name}:'
       subject: "%{name} ha condiviso il tuo status"
