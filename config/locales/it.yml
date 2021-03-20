@@ -276,6 +276,14 @@ it:
         destroy_domain_block_html: "%{name} ha sbloccato dominio %{target}"
         destroy_email_domain_block_html: "%{name} ha sbloccato il dominio e-mail %{target}"
         destroy_ip_block_html: "%{name} ha eliminato la regola per l'IP %{target}"
+        disable_2fa_user_html: "%{name} ha disabilitato l'autenticazione a due fattori per l'utente %{target}"
+        disable_custom_emoji_html: "%{name} ha disabilitato emoji %{target}"
+        disable_user_html: "%{name} ha disabilitato il login per l'utente %{target}"
+        enable_custom_emoji_html: "%{name} ha abilitato emoji %{target}"
+        enable_user_html: "%{name} ha abilitato il login per l'utente %{target}"
+        memorialize_account_html: "%{name} ha trasformato l'account di %{target} in una pagina in memoriam"
+        promote_user_html: "%{name} ha promosso l'utente %{target}"
+        remove_avatar_user_html: "%{name} ha rimosso l'immagine profilo di %{target}"
       deleted_status: "(stato cancellato)"
       empty: Nessun log trovato.
       filter_by_action: Filtra per azione
