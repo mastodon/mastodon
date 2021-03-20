@@ -259,6 +259,9 @@ hu:
         update_custom_emoji: Egyéni emodzsi frissítése
         update_domain_block: Domain tiltás frissítése
         update_status: Állapot frissítése
+      actions:
+        confirm_user_html: "%{name} megerősítette %{target} e-mail-címét"
+        create_account_warning_html: "%{name} figyelmeztetést küldött %{target} számára"
       deleted_status: "(törölt tülk)"
       empty: Nem található napló.
       filter_by_action: Szűrés művelet alapján
@@ -1002,6 +1005,8 @@ hu:
       body: '%{name} megemlített téged:'
       subject: '%{name} megemlített téged'
       title: Új említés
+    poll:
+      subject: '%{name} szavazása véget ért'
     reblog:
       body: 'A tülködet %{name} megtolta:'
       subject: "%{name} megtolta a tülködet"
