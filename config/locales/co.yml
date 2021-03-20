@@ -278,6 +278,28 @@ co:
         destroy_email_domain_block_html: "%{name} hà messu u duminiu e-mail %{target} nant’a lista bianca"
         destroy_ip_block_html: "%{name} hà toltu a regula IP %{target}"
         destroy_status_html: "%{name} hà toltu u statutu di %{target}"
+        disable_2fa_user_html: "%{name} hà disattivatu l’identificazione à dui fattori per %{target}"
+        disable_custom_emoji_html: "%{name} hà disattivatu l’emoji %{target}"
+        disable_user_html: "%{name} hà disattivatu a cunnessione per %{target}"
+        enable_custom_emoji_html: "%{name} hà attivatu l’emoji %{target}"
+        enable_user_html: "%{name} hà attivatu a cunnessione per %{target}"
+        memorialize_account_html: "%{name} hà trasfurmatu u contu di %{target} in una pagina mimuriale"
+        promote_user_html: "%{name} hà prumossu %{target}"
+        remove_avatar_user_html: "%{name} hà toltu u ritrattu di %{target}"
+        reopen_report_html: "%{name} hà riapertu u signalamentu %{target}"
+        reset_password_user_html: "%{name} hà riinizializatu a chjave d’accessu di %{target}"
+        resolve_report_html: "%{name} hà chjosu u signalamentu %{target}"
+        sensitive_account_html: "%{name} hà marcatu i media di %{target} cum'è sensibili"
+        silence_account_html: "%{name} hà limitatu u contu di %{target}"
+        suspend_account_html: "%{name} hà suspesu u contu di %{target}"
+        unassigned_report_html: "%{name} hà disassignatu u signalamentu %{target}"
+        unsensitive_account_html: "%{name} hà sguassatu a marcatura di i media di %{target} cum'è sensibili"
+        unsilence_account_html: "%{name} hà fattu che u contu di %{target} ùn hè più limitatu"
+        unsuspend_account_html: "%{name} hà fattu che u contu di %{target} ùn hè più suspesu"
+        update_announcement_html: "%{name} hà cambiatu u novu annunziu %{target}"
+        update_custom_emoji_html: "%{name} hà messu à ghjornu l’emoji %{target}"
+        update_domain_block_html: "%{name} hà messu à ghjornu u blucchime di duminiu per %{target}"
+        update_status_html: "%{name} hà cambiatu u statutu di %{target}"
       deleted_status: "(statutu sguassatu)"
       empty: Nunda trovu.
       filter_by_action: Filtrà da azzione
@@ -1020,10 +1042,14 @@ co:
       body: '%{name} v’hà mintuvatu·a indè :'
       subject: '%{name} v’hà mintuvatu·a'
       title: Nova menzione
+    poll:
+      subject: Un scandagliu da %{name} hè finitu
     reblog:
       body: 'U vostru statutu hè statu spartutu da %{name}:'
       subject: "%{name} hà spartutu u vostru statutu"
       title: Nova spartera
+    status:
+      subject: "%{name} hà appena pubblicatu"
   notifications:
     email_events: Avvenimenti da nutificà cù l'e-mail
     email_events_hint: 'Selezziunate l''avvenimenti per quelli vulete riceve nutificazione:'
