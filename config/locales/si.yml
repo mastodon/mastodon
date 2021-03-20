@@ -82,10 +82,60 @@ si:
           suspend: අත්හිටුවන්න
       private_comment: පුද්ගලික අදහස
       public_comment: ප්‍රසිද්ධ අදහස
+      reject_reports: වාර්තා ප්‍රතික්ෂේප කරන්න
+      rejecting_media: මාධ්‍ය වාර්තා ප්‍රතික්ෂේප කරමින්
+      rejecting_reports: වාර්තා ප්‍රතික්ෂේප කරමින්
       severity:
         suspend: අත්හිටුවන ලදි
       show:
         undo: පෙරසේ
+    email_domain_blocks:
+      domain: වසම
+      new:
+        create: වසම එකතු කරන්න
+      title: අවහිර කළ වි-තැපැල් වසම්
+    instances:
+      by_domain: වසම
+      moderation:
+        all: සියල්ල
+      private_comment: පුද්ගලික අදහස
+      public_comment: ප්‍රසිද්ධ අදහස
+    ip_blocks:
+      title: අ.ජා. කෙ. (IP) නීති
+    relays:
+      disable: අබල කරන්න
+      enable: සබල කරන්න
+      enabled: සබල කර ඇත
+      status: තත්වය
+    reports:
+      are_you_sure: ඔබට විශ්වාසද?
+      by_target_domain: වාර්තා කළ ගිණුමෙහි වසම
+      notes:
+        create: සටහන එකතු කරන්න
+      report: '@%{id} වාර්තා කරන්න'
+      reported_account: වාර්තා කළ ගිණුම
+      status: තත්වය
+      title: වාර්තා
+    settings:
+      site_title: සේවාදායකයේ නම
+    statuses:
+      media:
+        title: මාධ්‍යය
+  application_mailer:
+    salutation: "%{name},"
+  auth:
+    change_password: මුර පදය
+    login: පිවිසෙන්න
+    logout: නික්මෙන්න
+    status:
+      account_status: ගිණුමේ තත්වය
+  date:
+    formats:
+      default: "%b %d, %Y"
+      with_month_name: "%B %d, %Y"
+  datetime:
+    distance_in_words:
+      less_than_x_seconds: මේ දැන්
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
@@ -96,3 +146,35 @@ si:
     '429': Too many requests
     '500':
     '503': The page could not be served due to a temporary server failure.
+  exports:
+    archive_takeout:
+      date: දිනය
+      size: ප්‍රමාණය
+    lists: ලැයිස්තු
+    storage: මාධ්‍ය ගබඩාව
+  filters:
+    contexts:
+      account: පැතිකඩයන්
+      notifications: දැනුම්දීම්
+    edit:
+      title: පෙරහන සංස්කරණය
+    index:
+      title: පෙරහන්
+    new:
+      title: නව පෙරහනක් එකතු කරන්න
+  footer:
+    developers: සංවර්ධකයින්
+    more: තව…
+    resources: සම්පත්
+  identity_proofs:
+    identity: අනන්‍යතාව
+  imports:
+    upload: උඩුගත කරන්න
+  invites:
+    expires_in:
+      '1800': විනාඩි 30
+      '21600': හෝරා 6
+      '3600': හෝරා 1
+      '43200': හෝරා 12
+      '604800': සති 1
+      '86400': දින 1
