@@ -254,6 +254,26 @@ vi:
         update_custom_emoji: Cập nhật Emoji mới
         update_domain_block: Cập nhật máy chủ chặn
         update_status: Cập nhật tút
+      actions:
+        assigned_to_self_report_html: "%{name} tự xử lý báo cáo %{target}"
+        change_email_user_html: "%{name} đã thay đổi địa chỉ email cho %{target}"
+        confirm_user_html: "%{name} xác nhận địa chỉ email của người dùng %{target}"
+        create_account_warning_html: "%{name} đã gửi cảnh cáo %{target}"
+        create_announcement_html: "%{name} tạo thông báo mới %{target}"
+        create_custom_emoji_html: "%{name} đã tải lên biểu tượng cảm xúc mới %{target}"
+        create_domain_allow_html: "%{name} kích hoạt liên hợp với %{target}"
+        create_domain_block_html: "%{name} chặn máy chủ %{target}"
+        create_email_domain_block_html: "%{name} chặn tên miền email %{target}"
+        create_ip_block_html: "%{name} đã chặn IP %{target}"
+        demote_user_html: "%{name} đã xóa chức vụ %{target}"
+        destroy_announcement_html: "%{name} xóa thông báo %{target}"
+        destroy_custom_emoji_html: "%{name} đã xóa emoji %{target}"
+        destroy_domain_allow_html: "%{name} đã ngừng liên hợp với %{target}"
+        destroy_domain_block_html: "%{name} bỏ chặn tên miền email %{target}"
+        destroy_email_domain_block_html: "%{name} bỏ chặn tên miền email %{target}"
+        destroy_ip_block_html: "%{name} bỏ chặn IP %{target}"
+        destroy_status_html: "%{name} đã xóa tút của %{target}"
+        disable_2fa_user_html: "%{name} đã vô hiệu hóa xác thực hai bước của %{target}"
       deleted_status: "(tút đã xóa)"
       empty: Không tìm thấy bản ghi.
       filter_by_action: Lọc theo hành động
@@ -993,6 +1013,8 @@ vi:
       body: 'Tút của bạn vừa được chia sẻ bởi %{name}'
       subject: "%{name} vừa chia sẻ tút của bạn"
       title: Lượt chia sẻ mới
+    status:
+      subject: "Bài đăng mới từ %{name}"
   notifications:
     email_events: Email
     email_events_hint: 'Chọn những hoạt động sẽ gửi thông báo qua email:'
