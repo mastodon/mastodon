@@ -7,6 +7,7 @@ de:
       user:
         agreement: Service-Vereinbarung
         email: E-Mail-Adresse
+        locale: Sprache
         password: Passwort
       user/account:
         username: Benutzername
@@ -18,6 +19,7 @@ de:
           attributes:
             username:
               invalid: nur Buchstaben, Ziffern und Unterstriche
+              reserved: ist reserviert
         status:
           attributes:
             reblog:
@@ -25,4 +27,5 @@ de:
         user:
           attributes:
             email:
+              blocked: verwendet einen nicht erlaubten E-Mail-Anbieter
               unreachable: scheint nicht zu existieren
