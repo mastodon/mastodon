@@ -259,6 +259,47 @@ de:
         update_custom_emoji: Benutzerdefiniertes Emoji aktualisieren
         update_domain_block: Domain Block aktualisieren
         update_status: Beitrag aktualisieren
+      actions:
+        assigned_to_self_report_html: "%{name} hat sich die Meldung %{target} selbst zugewiesen"
+        change_email_user_html: "%{name} hat die E-Mail-Adresse des Nutzers %{target} geändert"
+        confirm_user_html: "%{name} hat die E-Mail-Adresse von %{target} bestätigt"
+        create_account_warning_html: "%{name} hat eine Warnung an %{target} gesendet"
+        create_announcement_html: "%{name} hat die neue Ankündigung %{target} erstellt"
+        create_custom_emoji_html: "%{name} hat neues Emoji %{target} hochgeladen"
+        create_domain_allow_html: "%{name} hat die Domain %{target} gewhitelistet"
+        create_domain_block_html: "%{name} hat die Domain %{target} blockiert"
+        create_email_domain_block_html: "%{name} hat die E-Mail-Domain %{target} geblacklistet"
+        create_ip_block_html: "%{name} hat eine Regel für IP %{target} erstellt"
+        demote_user_html: "%{name} stufte Benutzer_in %{target} herunter"
+        destroy_announcement_html: "%{name} hat die neue Ankündigung %{target} gelöscht"
+        destroy_custom_emoji_html: "%{name} zerstörte Emoji %{target}"
+        destroy_domain_allow_html: "%{name} hat die Domain %{target} von der Whitelist entfernt"
+        destroy_domain_block_html: "%{name} hat die Domain %{target} entblockt"
+        destroy_email_domain_block_html: "%{name} hat die E-Mail-Domain %{target} gewhitelistet"
+        destroy_ip_block_html: "%{name} hat eine Regel für IP %{target} gelöscht"
+        destroy_status_html: "%{name} hat einen Beitrag von %{target} entfernt"
+        disable_2fa_user_html: "%{name} hat Zwei-Faktor-Anforderung für Benutzer_in %{target} deaktiviert"
+        disable_custom_emoji_html: "%{name} hat das %{target} Emoji deaktiviert"
+        disable_user_html: "%{name} hat Zugang von Benutzer_in %{target} deaktiviert"
+        enable_custom_emoji_html: "%{name} hat das %{target} Emoji aktiviert"
+        enable_user_html: "%{name} hat Zugang von Benutzer_in %{target} aktiviert"
+        memorialize_account_html: "%{name} hat das Konto von %{target} in eine Gedenkseite umgewandelt"
+        promote_user_html: "%{name} hat %{target} befördert"
+        remove_avatar_user_html: "%{name} hat das Profilbild von %{target} entfernt"
+        reopen_report_html: "%{name} hat die Meldung %{target} wieder geöffnet"
+        reset_password_user_html: "%{name} hat das Passwort von %{target} zurückgesetzt"
+        resolve_report_html: "%{name} hat die Meldung %{target} bearbeitet"
+        sensitive_account_html: "%{name} markierte %{target}'s Medien als NSFW"
+        silence_account_html: "%{name} hat das Konto von %{target} stummgeschaltet"
+        suspend_account_html: "%{name} hat das Konto von %{target} verbannt"
+        unassigned_report_html: "%{name} hat die Zuweisung der Meldung %{target} entfernt"
+        unsensitive_account_html: "%{name} markierte %{target}'s Medien nicht als NSFW"
+        unsilence_account_html: "%{name} hat die Stummschaltung von %{target} aufgehoben"
+        unsuspend_account_html: "%{name} hat die Verbannung von %{target} aufgehoben"
+        update_announcement_html: "%{name} aktualisierte Ankündigung %{target}"
+        update_custom_emoji_html: "%{name} hat das %{target} Emoji geändert"
+        update_domain_block_html: "%{name} hat den Domain-Block für %{target} aktualisiert"
+        update_status_html: "%{name} hat einen Beitrag von %{target} aktualisiert"
       deleted_status: "(gelöschter Beitrag)"
       empty: Keine Protokolle gefunden.
       filter_by_action: Nach Aktion filtern
@@ -1002,10 +1043,14 @@ de:
       body: '%{name} hat dich erwähnt:'
       subject: '%{name} hat dich erwähnt'
       title: Neue Erwähnung
+    poll:
+      subject: Eine Umfrage von %{name} ist beendet
     reblog:
       body: '%{name} hat deinen Beitrag geteilt:'
       subject: "%{name} hat deinen Beitrag geteilt"
       title: Dein Beitrag wurde geteilt
+    status:
+      subject: "%{name} hat gerade etwas gepostet"
   notifications:
     email_events: Ereignisse für E-Mail-Benachrichtigungen
     email_events_hint: 'Wähle Ereignisse, für die du Benachrichtigungen erhalten möchtest:'
