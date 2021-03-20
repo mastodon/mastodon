@@ -289,6 +289,17 @@ sq:
         reopen_report_html: "%{name} rihapi raportimin %{target}"
         reset_password_user_html: "%{name} ricaktoi fjalëkalimi për përdoruesin %{target}"
         resolve_report_html: "%{name} zgjidhi raportimin %{target}"
+        sensitive_account_html: "%{name} i vuri shenjë si rezervat medias në %{target}"
+        silence_account_html: "%{name} heshtoi llogarinë e %{target}"
+        suspend_account_html: "%{name} pezulloi llogarinë e %{target}"
+        unassigned_report_html: "%{name} rihapi raportimin %{target}"
+        unsensitive_account_html: "%{name} ia hoqi shenjën si rezervat medias në %{target}"
+        unsilence_account_html: "%{name} hoqi heshtimin për llogarinë %{target}"
+        unsuspend_account_html: "%{name} hoqi pezullimin për llogarinë e %{target}"
+        update_announcement_html: "%{name} përditësoi lajmërimin %{target}"
+        update_custom_emoji_html: "%{name} përditësoi emoxhin %{target}"
+        update_domain_block_html: "%{name} përditësoi bllokimin e përkatësish për %{target}"
+        update_status_html: "%{name} përditësoi gjendjen me %{target}"
       deleted_status: "(fshiu gjendjen)"
       empty: S’u gjetën regjistra.
       filter_by_action: Filtroji sipas veprimit
@@ -1032,6 +1043,8 @@ sq:
       body: 'U përmendët nga %{name} në:'
       subject: U përmendët nga %{name}
       title: Përmendje e re
+    poll:
+      subject: Përfundoi një pyetësor nga %{name}
     reblog:
       body: 'Gjendja juaj u përforcua nga %{name}:'
       subject: "%{name} përforcoi gjendjen tuaj"
