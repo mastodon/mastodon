@@ -259,6 +259,20 @@ sq:
         update_custom_emoji: Përditëso Emotikon Vetjak
         update_domain_block: Përditëso Bllok Përkatësish
         update_status: Përditëso Gjendjen
+      actions:
+        assigned_to_self_report_html: "%{name} ia kaloi raportimin %{target} në ngarkim vetvetes"
+        change_email_user_html: "%{name} ndryshoi adresën email të përdoruesit %{target}"
+        confirm_user_html: "%{name} ripohoi adresën email të përdoruesit %{target}"
+        create_account_warning_html: "%{name} dërgoi një sinjalizim për %{target}"
+        create_announcement_html: "%{name} krijoi lajmërim të ri për %{target}"
+        create_custom_emoji_html: "%{name} ngarkoi emoxhi të ri %{target}"
+        create_domain_allow_html: "%{name} kaloi në listë lejimesh përkatësinë %{target}"
+        create_domain_block_html: "%{name} bllokoi përkatësinë %{target}"
+        create_email_domain_block_html: "%{name} shtoi në listë bllokimesh përkatësinë %{target}"
+        create_ip_block_html: "%{name} krijoi rregull për IP-në %{target}"
+        demote_user_html: "%{name} zhgradoi përdoruesin %{target}"
+        destroy_announcement_html: "%{name} fshiu lajmërimin për %{target}"
+        destroy_custom_emoji_html: "%{name} asgjësoi emoxhin %{target}"
       deleted_status: "(fshiu gjendjen)"
       empty: S’u gjetën regjistra.
       filter_by_action: Filtroji sipas veprimit
