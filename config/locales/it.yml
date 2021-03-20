@@ -260,6 +260,7 @@ it:
         update_domain_block: Aggiorna blocco di dominio
         update_status: Aggiorna stato
       actions:
+        assigned_to_self_report_html: "%{name} ha assegnato il rapporto %{target} a se stesso"
         change_email_user_html: "%{name} ha cambiato l'indirizzo e-mail dell'utente %{target}"
         confirm_user_html: "%{name} ha confermato l'indirizzo e-mail dell'utente %{target}"
         create_account_warning_html: "%{name} ha inviato un avviso a %{target}"
@@ -276,6 +277,7 @@ it:
         destroy_domain_block_html: "%{name} ha sbloccato dominio %{target}"
         destroy_email_domain_block_html: "%{name} ha sbloccato il dominio e-mail %{target}"
         destroy_ip_block_html: "%{name} ha eliminato la regola per l'IP %{target}"
+        destroy_status_html: "%{name} ha eliminato lo status di %{target}"
         disable_2fa_user_html: "%{name} ha disabilitato l'autenticazione a due fattori per l'utente %{target}"
         disable_custom_emoji_html: "%{name} ha disabilitato emoji %{target}"
         disable_user_html: "%{name} ha disabilitato il login per l'utente %{target}"
@@ -284,16 +286,20 @@ it:
         memorialize_account_html: "%{name} ha trasformato l'account di %{target} in una pagina in memoriam"
         promote_user_html: "%{name} ha promosso l'utente %{target}"
         remove_avatar_user_html: "%{name} ha rimosso l'immagine profilo di %{target}"
+        reopen_report_html: "%{name} ha riaperto il rapporto %{target}"
         reset_password_user_html: "%{name} ha reimpostato la password dell'utente %{target}"
+        resolve_report_html: "%{name} ha risolto il rapporto %{target}"
         sensitive_account_html: "%{name} ha segnato il media di %{target} come sensibile"
         silence_account_html: "%{name} ha silenziato l'account di %{target}"
         suspend_account_html: "%{name} ha sospeso l'account di %{target}"
+        unassigned_report_html: "%{name} ha disassegnato il rapporto %{target}"
         unsensitive_account_html: "%{name} ha annullato il segnare il media di %{target} come sensibile"
         unsilence_account_html: "%{name} ha riattivato l'account di %{target}"
         unsuspend_account_html: "%{name} ha annullato la sospensione dell'account di %{target}"
         update_announcement_html: "%{name} ha aggiornato l'annuncio %{target}"
         update_custom_emoji_html: "%{name} ha aggiornato emoji %{target}"
         update_domain_block_html: "%{name} ha aggiornato il blocco dominio per %{target}"
+        update_status_html: "%{name} ha aggiornato lo status di %{target}"
       deleted_status: "(stato cancellato)"
       empty: Nessun log trovato.
       filter_by_action: Filtra per azione
