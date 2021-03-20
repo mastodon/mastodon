@@ -259,6 +259,11 @@ it:
         update_custom_emoji: Aggiorna emoji personalizzata
         update_domain_block: Aggiorna blocco di dominio
         update_status: Aggiorna stato
+      actions:
+        change_email_user_html: "%{name} ha cambiato l'indirizzo e-mail dell'utente %{target}"
+        confirm_user_html: "%{name} ha confermato l'indirizzo e-mail dell'utente %{target}"
+        create_account_warning_html: "%{name} ha inviato un avviso a %{target}"
+        create_announcement_html: "%{name} ha creato un nuovo annuncio %{target}"
       deleted_status: "(stato cancellato)"
       empty: Nessun log trovato.
       filter_by_action: Filtra per azione
