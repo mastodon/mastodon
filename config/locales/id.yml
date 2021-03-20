@@ -254,6 +254,31 @@ id:
         update_custom_emoji: Perbarui Emoji Khusus
         update_domain_block: Perbarui Blokir Domain
         update_status: Perbarui Status
+      actions:
+        assigned_to_self_report_html: "%{name} menugaskan laporan %{target} ke dirinya sendiri"
+        change_email_user_html: "%{name} mengubah alamat email pengguna %{target}"
+        confirm_user_html: "%{name} mengonfirmasi alamat email pengguna %{target}"
+        create_account_warning_html: "%{name} mengirim peringatan untuk %{target}"
+        create_announcement_html: "%{name} membuat pengumuman baru %{target}"
+        create_custom_emoji_html: "%{name} mengunggah emoji baru %{target}"
+        create_domain_allow_html: "%{name} mengizinkan penggabungan dengan domain %{target}"
+        create_domain_block_html: "%{name} memblokir domain %{target}"
+        create_email_domain_block_html: "%{name} memblokir domain email %{target}"
+        create_ip_block_html: "%{name} membuat aturan untuk IP %{target}"
+        demote_user_html: "%{name} menurunkan pengguna %{target}"
+        destroy_announcement_html: "%{name} menghapus pengumuman %{target}"
+        destroy_custom_emoji_html: "%{name} menghapus emoji %{target}"
+        destroy_domain_allow_html: "%{name} membatalkan izin penggabungan dengan domain %{target}"
+        destroy_domain_block_html: "%{name} membuka blokir domain %{target}"
+        destroy_email_domain_block_html: "%{name} membuka blokir domain email %{target}"
+        destroy_ip_block_html: "%{name} menghapus aturan untuk IP %{target}"
+        destroy_status_html: "%{name} menghapus status %{target}"
+        disable_2fa_user_html: "%{name} mematikan syarat dua faktor utk pengguna %{target}"
+        disable_custom_emoji_html: "%{name} mematikan emoji %{target}"
+        disable_user_html: "%{name} mematikan login untuk pengguna %{target}"
+        enable_custom_emoji_html: "%{name} mengaktifkan emoji %{target}"
+        enable_user_html: "%{name} mengaktifkan login untuk pengguna %{target}"
+        memorialize_account_html: "%{name} mengubah akun %{target} jadi halaman memorial"
       deleted_status: "(status dihapus)"
       empty: Log tidak ditemukan.
       filter_by_action: Filter berdasarkan tindakan
