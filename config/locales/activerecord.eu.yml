@@ -4,12 +4,22 @@ eu:
       poll:
         expires_at: Epemuga
         options: Aukerak
+      user:
+        agreement: Zerbitzu-hitzarmena
+        email: E-posta helbidea
+        locale: Eskualdeko ezarpenak
+        password: Pasahitza
+      user/account:
+        username: Erabiltzaile-izena
+      user/invite_request:
+        text: Arrazoia
     errors:
       models:
         account:
           attributes:
             username:
               invalid: letrak, zenbakiak eta gidoi baxuak besterik ez
+              reserved: erreserbatuta dago
         status:
           attributes:
             reblog:
