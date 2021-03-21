@@ -274,6 +274,28 @@ eu:
         destroy_email_domain_block_html: "%{name} erabiltzaileak %{target} e-posta helbideen domeinua desblokeatu du"
         destroy_ip_block_html: "%{name} erabiltzaileak %{target} IParen araua ezabatu du"
         destroy_status_html: "%{name} erabiltzaileak %{target} erabiltzailearen egoera kendu du"
+        disable_2fa_user_html: "%{name} erabiltzaileak %{target} erabiltzailearen bi faktoreko autentifikazioa desgaitu du"
+        disable_custom_emoji_html: "%{name} erabiltzaileak %{target} emoji-a desgaitu du"
+        disable_user_html: "%{name} erabiltzaileak %{target} erabiltzailearen saioa desgaitu du"
+        enable_custom_emoji_html: "%{name} erabiltzaileak %{target} emoji-a gaitu du"
+        enable_user_html: "%{name} erabiltzaileak %{target} erabiltzailearen saioa gaitu du"
+        memorialize_account_html: "%{name} erabiltzaileak %{target} kontua memoriala bihurtu du"
+        promote_user_html: "%{name} erabiltzaileak %{target} erabiltzailea mailaz igo du"
+        remove_avatar_user_html: "%{name} erabiltzaileak %{target} erabiltzailearen abatarra kendu du"
+        reopen_report_html: "%{name} erabiltzaileak %{target} txostena berrireki du"
+        reset_password_user_html: "%{name} erabiltzaileak %{target} erabiltzailearen pasahitza berrezarri du"
+        resolve_report_html: "%{name} erabiltzaileak %{target} txostena konpondu du"
+        sensitive_account_html: "%{name} erabiltzaileak %{target} erabiltzailearen multimedia hunkigarri bezala markatu du"
+        silence_account_html: "%{name} erabiltzaileak %{target} kontua isilarazi du"
+        suspend_account_html: "%{name} erabiltzaileak %{target} kontua kanporatu du"
+        unassigned_report_html: "%{name} erabiltzaileak %{target} txostenaren esleipena atzera bota du"
+        unsensitive_account_html: "%{name} erabiltzaileak %{target} erabiltzailearen multimedia hunkigarri bezala markatzeari utzi dio"
+        unsilence_account_html: "%{name} erabiltzaileak %{target} kontua isilarazteari utzi dio"
+        unsuspend_account_html: "%{name} erabiltzaileak %{target} kontuaren kanporaketa atzera bota du"
+        update_announcement_html: "%{name} erabiltzaileak %{target} iragarpena eguneratu du"
+        update_custom_emoji_html: "%{name} erabiltzaileak %{target} emoji-a eguneratu du"
+        update_domain_block_html: "%{name} erabiltzaileak %{target} domeinu-blokeoa eguneratu du"
+        update_status_html: "%{name} erabiltzaileak %{target} erabiltzailearen egoera eguneratu du"
       deleted_status: "(ezabatutako mezua)"
       empty: Ez da egunkaririk aurkitu.
       filter_by_action: Iragazi ekintzen arabera
@@ -316,6 +338,7 @@ eu:
       listed: Zerrendatua
       new:
         title: Gehitu emoji pertsonal berria
+      not_permitted: Ez daukazu ekintza hau burutzeko baimenik
       overwrite: Gainidatzi
       shortcode: Laster-kodea
       shortcode_hint: Gutxienez 2 karaktere, alfanumerikoak eta azpimarra  besterik ez
@@ -335,6 +358,7 @@ eu:
       feature_profile_directory: Profil-direktorioa
       feature_registrations: Izen emateak
       feature_relay: Federazio errelea
+      feature_spam_check: Spamaren kontrakoa
       feature_timeline_preview: Denbora-lerroaren aurrebista
       features: Ezaugarriak
       hidden_service: Federazioa ezkutuko zerbitzuekin
@@ -374,6 +398,8 @@ eu:
           silence: Isilarazi
           suspend: Kanporatu
         title: Domeinuaren blokeo berria
+      obfuscate: Lausotu domeinu-izena
+      obfuscate_hint: Domeinuaren izena partzialki lausotu zerrendan, domeinuen zerrenda iragartzea mugatzea gaituta badago
       private_comment: Iruzkin pribatua
       private_comment_hint: Domeinu hau mugatzeari buruzko iruzkina moderatzaileen barne erabilerarako.
       public_comment: Iruzkin publikoa
@@ -413,6 +439,7 @@ eu:
     instances:
       by_domain: Domeinua
       delivery_available: Bidalketa eskuragarri dago
+      empty: Ez da domeinurik aurkitu.
       known_accounts:
         one: "Kontu ezagun %{count}"
         other: "%{count} kontu ezagun"
@@ -437,6 +464,19 @@ eu:
         title: Iragazi
       title: Gonbidapenak
     ip_blocks:
+      add_new: Sortu araua
+      created_msg: IP arau berria behar bezala gehitu da
+      delete: Ezabatu
+      expires_in:
+        '1209600': 2 aste
+        '15778476': 6 hilabete
+        '2629746': Hilabete 1
+        '31556952': Urte 1
+        '86400': Egun 1
+        '94670856': 3 urte
+      new:
+        title: Sortu IP arau berria
+      no_ip_block_selected: Ez da IP araurik aldatu, ez delako batere hautatu
       title: IP arauak
     pending_accounts:
       title: Zain dauden kontuak (%{count})
