@@ -24,6 +24,8 @@ eu:
       Kontu hau zerbitzaria bera adierazten duen aktore birtual bat da, ez norbanako bat. Federaziorako erabiltzen da eta ez zenuke blokeatu behar instantzia osoa blokeatu nahi ez baduzu, kasu horretan domeinua blokeatzea egokia litzateke. 
     learn_more: Ikasi gehiago
     privacy_policy: Pribatutasun politika
+    rules: Zerbitzariaren arauak
+    rules_html: 'Behean Mastodon zerbitzari honetan kontua eduki nahi baduzu jarraitu beharreko arauen laburpena daukazu:'
     see_whats_happening: Ikusi zer gertatzen ari den
     server_stats: 'Zerbitzariaren estatistikak:'
     source_code: Iturburu kodea
@@ -38,8 +40,11 @@ eu:
       domain: Zerbitzaria
       reason: Arrazoia
       rejecting_media: 'Zerbitzari hauetako multimedia fitxategiak ez dira prozesatuko ez gordeko, eta ez dira iruditxoak bistaratuko, jatorrizko irudira joan behar izango da klik eginez:'
+      rejecting_media_title: Iragazitako multimedia
       silenced: 'Zerbitzari hauetako mezuak denbora-lerro eta elkarrizketa publikoetan ezkutatuko dira, eta bere erabiltzaileen interakzioek ez dute jakinarazpenik sortuko ez badituzu jarraitzen:'
+      silenced_title: Isilarazitako zerbitzariak
       suspended: 'Ez da zerbitzari hauetako daturik prozesatuko, gordeko, edo partekatuko, zerbitzari hauetako erabiltzaileekin komunikatzea ezinezkoa eginez:'
+      suspended_title: Kanporatutako zerbitzariak
     unavailable_content_html: Mastodonek orokorrean fedibertsoko beste zerbitzarietako erabiltzaileen edukia ikustea eta beraiekin aritzea ahalbidetzen dizu. Salbuespena egin da zerbitzari zehatz honekin.
     user_count_after:
       one: erabiltzaile
@@ -55,6 +60,7 @@ eu:
       one: Jarraitzaile
       other: jarraitzaile
     following: Jarraitzen
+    instance_actor_flash: Kontu hau zerbitzaria adierazten duen aktore birtual bat da eta ez banako erabiltzaile bat. Federatzeko helburuarekin erabiltzen da eta ez da kanporatu behar.
     joined: '%{date}(e)an elkartua'
     last_active: azkenekoz aktiboa
     link_verified_on: 'Esteka honen jabetzaren egiaztaketa data: %{date}'
@@ -89,6 +95,7 @@ eu:
       add_email_domain_block: Sartu domeinua zerrenda beltzean
       approve: Onartu
       approve_all: Onartu denak
+      approved_msg: '%{username} erabiltzailearen erregistratzeko eskaera behar bezala onartu da'
       are_you_sure: Ziur zaude?
       avatar: Abatarra
       by_domain: Domeinua
@@ -102,8 +109,10 @@ eu:
       confirm: Berretsi
       confirmed: Berretsita
       confirming: Berresten
+      delete: Ezabatu datuak
       deleted: Ezabatua
       demote: Jaitsi mailaz
+      destroyed_msg: "%{username} erabiltzailearen datuak behin betiko ezabatzeko ilaran daude"
       disable: Desgaitu
       disable_two_factor_authentication: Desgaitu 2FA
       disabled: Desgaituta
@@ -114,10 +123,12 @@ eu:
       email_status: Posta elektronikoaren egoera
       enable: Gaitu
       enabled: Gaituta
+      enabled_msg: '%{username} kontua behar bezala desblokeatu da'
       followers: Jarraitzaileak
       follows: Jarraitzen du
       header: Goiburua
       inbox_url: Sarrera ontziaren URL-a
+      invite_request_text: Bat egiteko arrazoiak
       invited_by: 'Honek gonbidatua:'
       ip: IP-a
       joined: Elkartuta
@@ -129,6 +140,8 @@ eu:
       login_status: Saioaren egoera
       media_attachments: Multimedia eranskinak
       memorialize: Bihurtu memoriala
+      memorialized: Oroigarri bihurtua
+      memorialized_msg: '%{username} behar bezala bihurtu da oroigarri kontu'
       moderation:
         active: Aktiboa
         all: Denak
@@ -149,10 +162,14 @@ eu:
       public: Publikoa
       push_subscription_expires: Push harpidetzaren iraugitzea
       redownload: Freskatu profila
+      redownloaded_msg: '%{username} erabiltzailearen profila behar bezala freskatu da jatorritik'
       reject: Ukatu
       reject_all: Ukatu denak
+      rejected_msg: '%{username} erabiltzailearen izen emate eskaera behar bezala ukatu da'
       remove_avatar: Kendu abatarra
       remove_header: Kendu goiburua
+      removed_avatar_msg: '%{username} erabiltzailearen avatarra behar bezala kendu da'
+      removed_header_msg: '%{username} erabiltzailearen goiburuko irudia behar bezala kendu da'
       resend_confirmation:
         already_confirmed: Erabiltzaile hau berretsita dago
         send: Birbidali baieztapen e-maila
@@ -169,6 +186,8 @@ eu:
       search: Bilatu
       search_same_email_domain: E-mail domeinu bera duten beste erabiltzailean
       search_same_ip: IP bera duten beste erabiltzaileak
+      sensitive: Hunkigarria
+      sensitized: hunkigarri gisa markatua
       shared_inbox_url: Partekatutako sarrera ontziaren URL-a
       show:
         created_reports: Sortutako txostenak
@@ -178,6 +197,7 @@ eu:
       statuses: Mezuak
       subscribe: Harpidetu
       suspended: Kanporatuta
+      suspension_irreversible: Kontu honen datuak behin betiko ezabatu dira. Kontua kanporatzea atzera bota dezakezu, berriz erabilgarri izan dadin, baina datuak ezingo dira berreskuratu.
       time_in_queue: Kolan zain %{time}
       title: Kontuak
       unconfirmed_email: Baieztatu gabeko e-mail helbidea
