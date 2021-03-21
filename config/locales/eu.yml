@@ -262,6 +262,18 @@ eu:
         create_account_warning_html: "%{name} erabiltzaileak abisua bidali dio %{target} erabiltzaileari"
         create_announcement_html: "%{name} erabiltzaileak %{target} iragarpen berria sortu du"
         create_custom_emoji_html: "%{name} erabiltzaileak %{target} emoji berria kargatu du"
+        create_domain_allow_html: "%{name} erabiltzaileak %{target} domeinuarekin federazioa onartu du"
+        create_domain_block_html: "%{name} erabiltzaileak %{target} domeinua blokeatu du"
+        create_email_domain_block_html: "%{name} erabiltzaileak %{target} e-posta helbideen domeinua blokeatu du"
+        create_ip_block_html: "%{name} kontuak %{target} IParen araua sortu du"
+        demote_user_html: "%{name} erabiltzaileak %{target} erabiltzailea mailaz jaitsi du"
+        destroy_announcement_html: "%{name} erabiltzaileak %{target} iragarpena ezabatu du"
+        destroy_custom_emoji_html: "%{name} erabiltzaileak %{target} emojia suntsitu du"
+        destroy_domain_allow_html: "%{name} erabiltzaileak %{target} domeinuarekin federatzea debekatu du"
+        destroy_domain_block_html: "%{name} erabiltzaileak %{target} domeinua desblokeatu du"
+        destroy_email_domain_block_html: "%{name} erabiltzaileak %{target} e-posta helbideen domeinua desblokeatu du"
+        destroy_ip_block_html: "%{name} erabiltzaileak %{target} IParen araua ezabatu du"
+        destroy_status_html: "%{name} erabiltzaileak %{target} erabiltzailearen egoera kendu du"
       deleted_status: "(ezabatutako mezua)"
       empty: Ez da egunkaririk aurkitu.
       filter_by_action: Iragazi ekintzen arabera
@@ -805,6 +817,8 @@ eu:
       request: Eskatu zure artxiboa
       size: Tamaina
     blocks: Zuk blokeatutakoak
+    bookmarks: Laster-markak
+    csv: CSV
     domain_blocks: Domeinuen blokeoak
     lists: Zerrendak
     mutes: Zuk mututukoak
@@ -871,6 +885,8 @@ eu:
     status: Egiaztatze egoera
     view_proof: Ikusi froga
   imports:
+    errors:
+      over_rows_processing_limit: '%{count} lerro baina gehiago ditu'
     modes:
       merge: Bateratu
       merge_long: Mantendu dauden erregistroak eta gehitu berriak
@@ -880,6 +896,7 @@ eu:
     success: Zure datuak ongi igo dira eta dagokionean prozesatuko dira
     types:
       blocking: Blokeatutakoen zerrenda
+      bookmarks: Laster-markak
       domain_blocking: Domeinuen blokeo zerrenda
       following: Jarraitutakoen zerrenda
       muting: Mutututakoen zerrenda
@@ -934,6 +951,7 @@ eu:
     on_cooldown: Duela gutxi migratu duzu. Funtzio hau %{count} egun barru egongo da berriro eskuragarri.
     past_migrations: Aurreko migrazioak
     proceed_with_move: Mugitu jarraitzaileak
+    redirected_msg: 'Zure kontuak hona birbideratzen du orain: %{acct}.'
     redirecting_to: 'Zure kontuak hona birbideratzen du: %{acct}.'
     set_redirect: Ezarri birbideratzea
     warning:
@@ -947,6 +965,10 @@ eu:
       redirect: Zure uneko kontuaren profila eguneratuko da birbideratze ohar batekin eta bilaketetatik kenduko da
   moderation:
     title: Moderazioa
+  move_handler:
+    carry_blocks_over_text: Erabiltzaile hau %{acct} kontutik dator, zeina blokeatuta daukazun.
+    carry_mutes_over_text: Erabiltzaile hau %{acct} kontutik dator, zeina isilarazita daukazun.
+    copy_account_note_text: 'Erabiltzaile hau %{acct} kontutik dator, hemen berari buruzko zure aurreko oharrak:'
   notification_mailer:
     digest:
       action: Ikusi jakinarazpen guztiak
@@ -977,19 +999,42 @@ eu:
       body: '%{name}(e)k aipatu zaitu:'
       subject: '%{name}(e)k aipatu zaitu'
       title: Aipamen berria
+    poll:
+      subject: '%{name} erabiltzailearen inkesta bat amaitu da'
     reblog:
       body: '%{name}(e)k bultzada eman dio zure mezuari:'
       subject: "%{name}(e)k bultzada eman dio zure mezuari"
       title: Bultzada berria
+    status:
+      subject: "%{name} erabiltzaileak bidalketa egin berri du"
   notifications:
     email_events: E-mail jakinarazpenentzako gertaerak
     email_events_hint: 'Hautatu jaso nahi dituzun gertaeren jakinarazpenak:'
     other_settings: Bezte jakinarazpen konfigurazioak
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          billion: B
+          million: M
+          quadrillion: Q
+          thousand: K
+          trillion: T
+  otp_authentication:
+    code_hint: Sartu zure autentifikazio aplikazioak sortutako kodea berresteko
+    description_html: Autentifikazio aplikazio bidezko <strong>bi faktoreetako autentifikazioa</strong> gaitzen baduzu, saioa hasteko telefonoa eskura izan beharko duzu, honek zuk sartu behar dituzun kodeak sortuko dituelako.
+    enable: Gaitu
+    instructions_html: "<strong>Eskaneatu QR kode hau Google Authenticator edo antzeko TOTP aplikazio batekin zure telefonoan</strong>. Hortik aurrera, aplikazio horrek saioa hasteko sartu beharko dituzun kodeak sortuko ditu."
+    manual_instructions: 'Ezin baduzu QR kodea eskaneatu eta eskuz sartu behar baduzu, hona sekretua testu arruntean:'
+    setup: Konfiguratu
+    wrong_code: Sartutako kodea baliogabea da! Zerbitzariaren eta gailuaren erlojuak ondo ezarrita daude?
   pagination:
     newer: Berriagoa
     next: Hurrengoa
     older: Zaharragoa
     prev: Aurrekoa
+    truncate: "&hellip;"
   polls:
     errors:
       already_voted: Inkesta honetan dagoeneko bozkatu duzu
