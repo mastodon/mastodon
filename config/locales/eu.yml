@@ -198,13 +198,18 @@ eu:
       subscribe: Harpidetu
       suspended: Kanporatuta
       suspension_irreversible: Kontu honen datuak behin betiko ezabatu dira. Kontua kanporatzea atzera bota dezakezu, berriz erabilgarri izan dadin, baina datuak ezingo dira berreskuratu.
+      suspension_reversible_hint_html: Kontu hau kanporatua izan da eta bere datuak %{date}(e)an behin betiko ezabatuko dira. Ordura arte kontua kalterik gabe leheneratu daiteke. Kontuaren datu guztiak oraintxe bertan ezabatu nahi badituzu, jarraian egin dezakezu.
       time_in_queue: Kolan zain %{time}
       title: Kontuak
       unconfirmed_email: Baieztatu gabeko e-mail helbidea
+      undo_sensitized: Desegin hunkigarria
       undo_silenced: Utzi isilarazteari
       undo_suspension: Desegin kanporatzea
+      unsilenced_msg: '%{username} kontuaren mugak behar bezala kendu dira'
       unsubscribe: Kendu harpidetza
+      unsuspended_msg: '%{username} kontuaren kanporatzea behar bezala bota da atzera'
       username: Erabiltzaile-izena
+      view_domain: Ikusi domeinuaren laburpena
       warn: Abisatu
       web: Weba
       whitelisted: Zerrenda zurian
@@ -219,18 +224,44 @@ eu:
         create_domain_allow: Sortu domeinu baimena
         create_domain_block: Sortu domeinu blokeoa
         create_email_domain_block: Sortu e-mail domeinu blokeoa
+        create_ip_block: Sortu IP araua
+        demote_user: Jaitsi erabiltzailearen maila
         destroy_announcement: Ezabatu iragarpena
         destroy_custom_emoji: Ezabatu emoji pertsonalizatua
         destroy_domain_allow: Ezabatu domeinu baimena
         destroy_domain_block: Ezabatu domeinu blokeoa
         destroy_email_domain_block: Ezabatu e-mail domeinu blokeoa
+        destroy_ip_block: Ezabatu IP araua
         destroy_status: Ezabatu mezua
         disable_2fa_user: Desgaitu 2FA
         disable_custom_emoji: Desgaitu emoji pertsonalizatua
         disable_user: Desgaitu erabiltzailea
         enable_custom_emoji: Gaitu emoji pertsonalizatua
         enable_user: Gaitu erabiltzailea
+        memorialize_account: Bihurtu kontua oroigarri
+        promote_user: Igo erabiltzailea mailaz
+        remove_avatar_user: Kendu abatarra
+        reopen_report: Berrireki txostena
+        reset_password_user: Berrezarri pasahitza
+        resolve_report: Konpondu txostena
+        sensitive_account: Markatu zure kontuko multimedia hunkigarri bezala
+        silence_account: Isilarazi kontua
+        suspend_account: Kanporatu kontua
+        unassigned_report: Kendu txostenaren esleipena
+        unsensitive_account: Utzi zure kontuko multimedia hunkigarri bezala markatzeari
+        unsilence_account: Utzi kontua isilarazteari
+        unsuspend_account: Atzera bota kontua kanporatzea
         update_announcement: Eguneratu iragarpena
+        update_custom_emoji: Eguneratu emoji pertsonalizatua
+        update_domain_block: Eguneratu domeinu-blokeoa
+        update_status: Eguneratu egoera
+      actions:
+        assigned_to_self_report_html: "%{name} erabiltzaileak %{target} salaketa bere buruari esleitu dio"
+        change_email_user_html: "%{name} erabiltzaileak %{target} erabiltzailearen e-posta helbidea aldatu du"
+        confirm_user_html: "%{name} erabiltzaileak %{target} erabiltzailearen e-posta helbidea berretsi du"
+        create_account_warning_html: "%{name} erabiltzaileak abisua bidali dio %{target} erabiltzaileari"
+        create_announcement_html: "%{name} erabiltzaileak %{target} iragarpen berria sortu du"
+        create_custom_emoji_html: "%{name} erabiltzaileak %{target} emoji berria kargatu du"
       deleted_status: "(ezabatutako mezua)"
       empty: Ez da egunkaririk aurkitu.
       filter_by_action: Iragazi ekintzen arabera
@@ -393,6 +424,8 @@ eu:
         expired: Iraungitua
         title: Iragazi
       title: Gonbidapenak
+    ip_blocks:
+      title: IP arauak
     pending_accounts:
       title: Zain dauden kontuak (%{count})
     relationships:
@@ -432,6 +465,8 @@ eu:
       comment:
         none: Bat ere ez
       created_at: Salatua
+      forwarded: Birbidalia
+      forwarded_to: 'Hona birbidalia: %{domain}'
       mark_as_resolved: Markatu konpondutako gisa
       mark_as_unresolved: Markatu konpondu gabeko gisa
       notes:
@@ -451,6 +486,11 @@ eu:
       unassign: Kendu esleipena
       unresolved: Konpondu gabea
       updated_at: Eguneratua
+    rules:
+      add_new: Gehitu araua
+      description: Gehienek erabilera baldintzak irakurri eta onartu dituztela baieztatzen badute ere, orokorrean arazoren bat dagoen arte ez dituzte irakurtzen. Zerbitzariaren arauak begirada batean ikustea errazteko buletadun zerrenda batean bildu. Saiatu arauak labur eta sinple idazten, baina elementu askotan banatu gabe.
+      edit: Editatu araua
+      title: Zerbitzariaren arauak
     settings:
       activity_api_enabled:
         desc_html: Lokalki bidalitako mezu kopurua, erabiltzaile aktiboak, eta izen emate berriak asteko
@@ -475,6 +515,7 @@ eu:
       domain_blocks_rationale:
         title: Erakutsi arrazoia
       enable_bootstrap_timeline_accounts:
+        desc_html: Erabiltzaile berriek konfiguratutako kontuak automatikoki jarraituko dituzte, etxeko denbora-lerroa ez dadin hutsik hasi
         title: Gaitu lehenetsitako jarraipena erabiltzaile berrientzat
       hero:
         desc_html: Azaleko orrian bistaratua. Gutxienez 600x100px aholkatzen da. Ezartzen ez bada, zerbitzariaren irudia hartuko du
@@ -501,6 +542,9 @@ eu:
         min_invite_role:
           disabled: Inor ez
           title: Baimendu hauen gobidapenak
+        require_invite_text:
+          desc_html: Izen emateak eskuz onartu behar direnean, "Zergatik elkartu nahi duzu?" testu sarrera derrigorrezko bezala ezarri, ez hautazko
+          title: Eskatu erabiltzaile berriei bat egiteko arrazoia sartzeko
       registrations_mode:
         modes:
           approved: Izena emateko onarpena behar da
@@ -609,11 +653,13 @@ eu:
     discovery: Aurkitzea
     localization:
       body: Mastodon boluntarioek itzultzen dute.
+      guide_link: https://crowdin.com/project/mastodon
       guide_link_text: Edonork lagundu dezake.
     sensitive_content: Eduki hunkigarria
     toot_layout: Toot disposizioa
   application_mailer:
     notification_preferences: Aldatu e-mail hobespenak
+    salutation: "%{name},"
     settings: 'Aldatu e-mail hobespenak: %{link}'
     view: 'Ikusi:'
     view_profile: Ikusi profila
@@ -638,13 +684,19 @@ eu:
       prefix_sign_up: Eman izena Mastodon-en!
       suffix: Kontu bat baduzu, jendea jarraitu ahal izango duzu, mezuak bidali eta Mastodon zein kanpoko zerbitzarietako erabiltzaileekin elkarrizketan aritu!
     didnt_get_confirmation: Ez dituzu berresteko argibideak jaso?
+    dont_have_your_security_key: Ez daukazu zure segurtasun gakoa?
     forgot_password: Pasahitza ahaztu duzu?
     invalid_reset_password_token: Pasahitza berrezartzeko token-a baliogabea da edo iraungitu du. Eskatu beste bat.
+    link_to_otp: Erabili zure mugikorreko bi faktoreko kodea edo berreskuratze kode bat
+    link_to_webauth: Erabili zure segurtasun gako gailua
     login: Hasi saioa
     logout: Amaitu saioa
     migrate_account: Migratu beste kontu batera
     migrate_account_html: Kontu hau beste batera birbideratu nahi baduzu, <a href="%{path}">hemen konfiguratu</a> dezakezu.
     or_log_in_with: Edo hasi saioa honekin
+    providers:
+      cas: CAS
+      saml: SAML
     register: Eman izena
     registration_closed: "%{instance} instantziak ez ditu kide berriak onartzen"
     resend_confirmation: Birbidali berresteko argibideak
@@ -661,7 +713,9 @@ eu:
       functional: Zure kontua guztiz erabilgarri dago.
       pending: Zure eskaera gainbegiratzeko dago oraindik. Honek denbora behar lezake. Zure eskaera onartzen bada e-mail bat jasoko duzu.
       redirecting_to: Zure kontua ez dago aktibo orain %{acct} kontura birbideratzen duelako.
+    too_fast: Formularioa azkarregi bidali duzu, saiatu berriro.
     trouble_logging_in: Arazoak saioa hasteko?
+    use_security_key: Erabili segurtasun gakoa
   authorize_follow:
     already_following: Kontu hau aurretik jarraitzen duzu
     already_requested: Bidali duzu dagoeneko kontu hori jarraitzeko eskaera bat
@@ -679,19 +733,28 @@ eu:
     hint_html: "<strong>Oharra:</strong> Ez dizugu pasahitza berriro eskatuko ordu batez."
     invalid_password: Pasahitz baliogabea
     prompt: Berretsi pasahitza jarraitzeko
+  crypto:
+    errors:
+      invalid_key: ez da baliozko Ed25519 edo Curve25519 gakoa
+      invalid_signature: ez da baliozko Ed25519 sinadura
   date:
     formats:
       default: "%Y(e)ko %b %d"
+      with_month_name: "%Y(e)ko %B %d"
   datetime:
     distance_in_words:
+      about_x_hours: "%{count}h"
       about_x_months: "%{count} hilabete"
       about_x_years: "%{count} urte"
       almost_x_years: "%{count} urte"
       half_a_minute: Oraintxe
+      less_than_x_minutes: "%{count}m"
       less_than_x_seconds: Oraintxe
       over_x_years: "%{count} urte"
       x_days: "%{count} egun"
+      x_minutes: "%{count}m"
       x_months: "%{count} hilabete"
+      x_seconds: "%{count}s"
   deletes:
     challenge_not_passed: Sartu duzun informazioa ez da zuzena
     confirm_password: Sartu zure oraingo pasahitza zure identitatea baieztatzeko
