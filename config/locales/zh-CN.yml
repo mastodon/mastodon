@@ -254,6 +254,47 @@ zh-CN:
         update_custom_emoji: 更新自定义表情符号
         update_domain_block: 更新域名屏蔽
         update_status: 更新嘟文
+      actions:
+        assigned_to_self_report_html: "%{name} 接管了举报 %{target}"
+        change_email_user_html: "%{name} 更改了用户 %{target} 的电子邮件地址"
+        confirm_user_html: "%{name} 确认了用户 %{target} 的电子邮件地址"
+        create_account_warning_html: "%{name} 向 %{target} 发送了警告"
+        create_announcement_html: "%{name} 创建了新公告 %{target}"
+        create_custom_emoji_html: "%{name} 添加了新的自定义表情 %{target}"
+        create_domain_allow_html: "%{name} 允许了和域名 %{target} 的跨站交互"
+        create_domain_block_html: "%{name} 屏蔽了域名 %{target}"
+        create_email_domain_block_html: "%{name} 屏蔽了电子邮件域名 %{target}"
+        create_ip_block_html: "%{name} 为 IP %{target} 创建了规则"
+        demote_user_html: "%{name} 对用户 %{target} 进行了降任操作"
+        destroy_announcement_html: "%{name} 删除了公告 %{target}"
+        destroy_custom_emoji_html: "%{name} 销毁了自定义表情 %{target}"
+        destroy_domain_allow_html: "%{name} 拒绝了和 %{target} 跨站交互"
+        destroy_domain_block_html: "%{name} 解除了对域名 %{target} 的屏蔽"
+        destroy_email_domain_block_html: "%{name} 解除了对电子邮件域名 %{target} 的屏蔽"
+        destroy_ip_block_html: "%{name} 删除了 IP %{target} 的规则"
+        destroy_status_html: "%{name} 删除了 %{target} 的嘟文"
+        disable_2fa_user_html: "%{name} 停用了用户 %{target} 的双重认证"
+        disable_custom_emoji_html: "%{name} 停用了自定义表情 %{target}"
+        disable_user_html: "%{name} 将用户 %{target} 设置为禁止登录"
+        enable_custom_emoji_html: "%{name} 启用了自定义表情 %{target}"
+        enable_user_html: "%{name} 将用户 %{target} 设置为允许登录"
+        memorialize_account_html: "%{name} 将 %{target} 设置为追悼帐户"
+        promote_user_html: "%{name} 对用户 %{target} 进行了升任操作"
+        remove_avatar_user_html: "%{name} 删除了 %{target} 的头像"
+        reopen_report_html: "%{name} 重开了举报 %{target}"
+        reset_password_user_html: "%{name} 重置了用户 %{target} 的密码"
+        resolve_report_html: "%{name} 处理了举报 %{target}"
+        sensitive_account_html: "%{name} 将 %{target} 的媒体标记为敏感内容"
+        silence_account_html: "%{name} 隐藏了用户 %{target}"
+        suspend_account_html: "%{name} 封禁了用户 %{target}"
+        unassigned_report_html: "%{name} 放弃接管举报 %{target}"
+        unsensitive_account_html: "%{name} 去除了 %{target} 的媒体的敏感内容标记"
+        unsilence_account_html: "%{name} 解除了用户 %{target} 的隐藏状态"
+        unsuspend_account_html: "%{name} 解除了用户 %{target} 的封禁状态"
+        update_announcement_html: "%{name} 更新了公告 %{target}"
+        update_custom_emoji_html: "%{name} 更新了自定义表情 %{target}"
+        update_domain_block_html: "%{name} 更新了对 %{target} 的域名屏蔽"
+        update_status_html: "%{name} 刷新了 %{target} 的嘟文"
       deleted_status: "（嘟文已删除）"
       empty: 没有找到日志
       filter_by_action: 根据行为过滤
@@ -989,10 +1030,14 @@ zh-CN:
       body: '%{name} 在嘟文中提到了你：'
       subject: '%{name} 提到了你'
       title: 新的提及
+    poll:
+      subject: '%{name} 创建的一个投票已经结束'
     reblog:
       body: '你的嘟文被 %{name} 转嘟了：'
       subject: "%{name} 转嘟了你的嘟文"
       title: 新的转嘟
+    status:
+      subject: "%{name} 刚刚发嘟"
   notifications:
     email_events: 电子邮件通知事件
     email_events_hint: '选择你想要收到通知的事件：'
