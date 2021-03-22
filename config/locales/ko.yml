@@ -255,6 +255,20 @@ ko:
         update_custom_emoji: 커스텀 에모지 업데이트
         update_domain_block: 도메인 차단 갱신
         update_status: 게시물 게시
+      actions:
+        assigned_to_self_report_html: "%{name} 님이 신고 %{target}을 자신에게 할당했습니다"
+        change_email_user_html: "%{name} 님이 사용자 %{target}의 이메일 주소를 변경했습니다"
+        confirm_user_html: "%{name} 님이 사용자 %{target}의 이메일 주소를 승인했습니다"
+        create_account_warning_html: "%{name} 님이 %{target}에게 경고를 보냈습니다"
+        create_announcement_html: "%{name} 님이 새 공지 %{target}을 만들었습니다"
+        create_custom_emoji_html: "%{name} 님이 새로운 에모지 %{target}를 업로드 했습니다"
+        create_domain_allow_html: "%{name} 님이 %{target} 도메인을 허용리스트에 넣었습니다"
+        create_domain_block_html: "%{name} 님이 도메인 %{target}를 차단했습니다"
+        create_email_domain_block_html: "%{name} 님이 이메일 도메인 %{target}를 차단했습니다"
+        create_ip_block_html: "%{name} 님이 IP 규칙 %{target}을 만들었습니다"
+        demote_user_html: "%{name} 님이 사용자 %{target} 님을 강등했습니다"
+        destroy_announcement_html: "%{name} 님이 공지 %{target}을 삭제했습니다"
+        destroy_custom_emoji_html: "%{name} 님이 %{target} 에모지를 삭제했습니다"
       deleted_status: "(삭제됨)"
       empty: 로그를 찾을 수 없습니다
       filter_by_action: 행동으로 거르기
@@ -995,7 +1009,7 @@ ko:
       subject: "%{name} 님이 내 툿을 부스트 했습니다"
       title: 새 부스트
     status:
-      subject: "%{name} 님이 방금 올렸습니다"
+      subject: "%{name} 님이 방금 게시물을 올렸습니다"
   notifications:
     email_events: 이메일 알림에 대한 이벤트
     email_events_hint: '알림 받을 이벤트를 선택해주세요:'
