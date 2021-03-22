@@ -252,6 +252,25 @@ ca:
         update_custom_emoji: Actualitza l'emoji personalitzat
         update_domain_block: Actualitza el Bloqueig de Domini
         update_status: Actualitza l'estat
+      actions:
+        assigned_to_self_report_html: "%{name} han assignat l'informe %{target} a ells mateixos"
+        change_email_user_html: "%{name} ha canviat l'adreça de correu electrònic del usuari %{target}"
+        confirm_user_html: "%{name} ha confirmat l'adreça de correu electrònic de l'usuari %{target}"
+        create_account_warning_html: "%{name} ha enviat un avís a %{target}"
+        create_announcement_html: "%{name} ha creat un nou anunci %{target}"
+        create_custom_emoji_html: "%{name} ha pujat un emoji nou %{target}"
+        create_domain_allow_html: "%{name} ha permès la federació amb el domini %{target}"
+        create_domain_block_html: "%{name} ha bloquejat el domini %{target}"
+        create_email_domain_block_html: "%{name} ha bloquejat el domini de correu electrònic %{target}"
+        create_ip_block_html: "%{name} ha creat una regla per a l'IP %{target}"
+        demote_user_html: "%{name} ha degradat l'usuari %{target}"
+        destroy_announcement_html: "%{name} ha eliminat l'anunci %{target}"
+        destroy_custom_emoji_html: "%{name} ha destruït l'emoji %{target}"
+        destroy_domain_allow_html: "%{name} no permet la federació amb el domini %{target}"
+        destroy_domain_block_html: "%{name} ha desbloquejat el domini %{target}"
+        destroy_email_domain_block_html: "%{name} ha desbloquejat el domini de correu electrònic %{target}"
+        destroy_ip_block_html: "%{name} ha esborrat la regla per a l'IP %{target}"
+        destroy_status_html: "%{name} ha eliminat el tut de %{target}"
       deleted_status: "(tut esborrat)"
       empty: No s’han trobat registres.
       filter_by_action: Filtra per acció
