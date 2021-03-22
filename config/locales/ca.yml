@@ -271,6 +271,28 @@ ca:
         destroy_email_domain_block_html: "%{name} ha desbloquejat el domini de correu electrònic %{target}"
         destroy_ip_block_html: "%{name} ha esborrat la regla per a l'IP %{target}"
         destroy_status_html: "%{name} ha eliminat el tut de %{target}"
+        disable_2fa_user_html: "%{name} ha desactivat el requisit de dos factors per a l'usuari %{target}"
+        disable_custom_emoji_html: "%{name} ha desactivat l'emoji %{target}"
+        disable_user_html: "%{name} ha desactivat l'accés del usuari %{target}"
+        enable_custom_emoji_html: "%{name} ha activat l'emoji %{target}"
+        enable_user_html: "%{name} ha activat l'accés del usuari %{target}"
+        memorialize_account_html: "%{name} ha convertit el compte %{target} en una pàgina de memorial"
+        promote_user_html: "%{name} ha promogut l'usuari %{target}"
+        remove_avatar_user_html: "%{name} ha eliminat l'avatar de %{target}"
+        reopen_report_html: "%{name} ha reobert l'informe %{target}"
+        reset_password_user_html: "%{name} ha restablert la contrasenya de l'usuari %{target}"
+        resolve_report_html: "%{name} ha resolt l'informe %{target}"
+        sensitive_account_html: "%{name} ha marcat els mèdia de %{target} com a sensibles"
+        silence_account_html: "%{name} ha silenciat el compte de %{target}"
+        suspend_account_html: "%{name} ha suspès el compte de %{target}"
+        unassigned_report_html: "%{name} ha des-assignat l'informe %{target}"
+        unsensitive_account_html: "%{name} ha desmarcat com sensibles els mèdia de %{target}"
+        unsilence_account_html: "%{name} ha llevat el silenci del compte %{target}"
+        unsuspend_account_html: "%{name} ha llevat la suspensió del compte de %{target}"
+        update_announcement_html: "%{name} ha actualitzat l'anunci %{target}"
+        update_custom_emoji_html: "%{name} ha actualitzat l'emoji %{target}"
+        update_domain_block_html: "%{name} ha actualitzat el bloqueig de domini per a %{target}"
+        update_status_html: "%{name} ha actualitzat l'estat de %{target}"
       deleted_status: "(tut esborrat)"
       empty: No s’han trobat registres.
       filter_by_action: Filtra per acció
@@ -997,6 +1019,8 @@ ca:
       body: '%{name} t''ha mencionat en:'
       subject: '%{name} t''ha mencionat'
       title: Menció nova
+    poll:
+      subject: Ha finalitzat l'enquesta de %{name}
     reblog:
       body: '%{name} ha impulsat el teu estat:'
       subject: "%{name} ha impulsat el teu estat"
