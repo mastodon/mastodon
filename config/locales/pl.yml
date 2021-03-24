@@ -267,6 +267,45 @@ pl:
         update_custom_emoji: Aktualizuj niestandardowe emoji
         update_domain_block: Zaktualizuj blokadę domeny
         update_status: Aktualizuj wpis
+      actions:
+        assigned_to_self_report_html: "%{name} przypisał(a) sobie zgłoszenie %{target}"
+        change_email_user_html: "%{name} zmienił(a) adres e-mail użytkownika %{target}"
+        confirm_user_html: "%{name} potwierdził(a) adres e-mail użytkownika %{target}"
+        create_account_warning_html: "%{name} wysłał(a) ostrzeżenie do %{target}"
+        create_announcement_html: "%{name} utworzył(a) nowe ogłoszenie %{target}"
+        create_custom_emoji_html: "%{name} dodał(a) nowe emoji %{target}"
+        create_domain_allow_html: "%{name} dodał(a) na białą listę domenę %{target}"
+        create_domain_block_html: "%{name} zablokował(a) domenę %{target}"
+        create_email_domain_block_html: "%{name} dodał(a) domenę e-mail %{target} na czarną listę"
+        create_ip_block_html: "%{name} stworzył(a) regułę dla IP %{target}"
+        demote_user_html: "%{name} zdegradował(a) użytkownika %{target}"
+        destroy_announcement_html: "%{name} usunął(-ęła) ogłoszenie %{target}"
+        destroy_custom_emoji_html: "%{name} usunął(-ęła) emoji %{target}"
+        destroy_domain_allow_html: "%{name} usunął(-ęła) domenę %{target} z białej listy"
+        destroy_domain_block_html: "%{name} odblokował(a) domenę %{target}"
+        destroy_email_domain_block_html: "%{name} usunął(-ęła) domenę e-mail %{target} z czarnej listy"
+        destroy_ip_block_html: "%{name} usunął(-ęła) regułę dla IP %{target}"
+        destroy_status_html: "%{name} usunął(-ęła) wpis użytkownika %{target}"
+        disable_2fa_user_html: "%{name} wyłączył(a) uwierzytelnianie dwustopniowe użytkownikowi %{target}"
+        disable_custom_emoji_html: "%{name} wyłączył(a) emoji %{target}"
+        disable_user_html: "%{name} zablokował(a) możliwość logowania użytkownikowi %{target}"
+        enable_custom_emoji_html: "%{name} włączył(a) emoji %{target}"
+        enable_user_html: "%{name} przywrócił(a) możliwość logowania użytkownikowi %{target}"
+        memorialize_account_html: "%{name} nadał(a) kontu %{target} status in memoriam"
+        promote_user_html: "%{name} podniósł(a) uprawnienia użytkownikowi %{target}"
+        remove_avatar_user_html: "%{name} usunął(-ęła) awatar użytkownikowi %{target}"
+        reopen_report_html: "%{name} otworzył(a) ponownie zgłoszenie %{target}"
+        reset_password_user_html: "%{name} przywrócił(a) hasło użytkownikowi %{target}"
+        resolve_report_html: "%{name} rozwiązał(a) zgłoszenie %{target}"
+        sensitive_account_html: "%{name} oznaczył(a) zawartość multimedialną %{target} jako wrażliwą"
+        silence_account_html: "%{name} wyciszył(a) konto %{target}"
+        suspend_account_html: "%{name} zawiesił(a) konto %{target}"
+        unassigned_report_html: "%{name} cofnął(-ęła) przypisanie zgłoszenia %{target}"
+        unsensitive_account_html: "%{name} cofnął(-ęła) oznaczenie zawartości multimedialnej %{target} jako wrażliwą"
+        unsilence_account_html: "%{name} cofnął(-ęła) wyciszenie konta %{target}"
+        unsuspend_account_html: "%{name} cofnął(-ęła) zawieszenie konta %{target}"
+        update_announcement_html: "%{name} zaktualizował(a) ogłoszenie %{target}"
+        update_custom_emoji_html: "%{name} zaktualizował(a) emoji %{target}"
       deleted_status: "(usunięty wpis)"
       empty: Nie znaleziono aktywności w dzienniku.
       filter_by_action: Filtruj według działania
@@ -1026,10 +1065,14 @@ pl:
       body: '%{name} wspomniał(a) o Tobie w:'
       subject: '%{name} wspomniał(a) o Tobie'
       title: Nowe wspomnienie o Tobie
+    poll:
+      subject: Ankieta %{name} zakończyła się
     reblog:
       body: 'Twój wpis został podbity przez %{name}:'
       subject: "Twój wpis został podbity przez %{name}"
       title: Nowe podbicie
+    status:
+      subject: "%{name} właśnie opublikował(a) wpis"
   notifications:
     email_events: 'Powiadamiaj e-mailem o:'
     email_events_hint: 'Wybierz wydarzenia, o których chcesz otrzymywać powiadomienia:'
