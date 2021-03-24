@@ -20,6 +20,10 @@ ActiveSupport::Inflector.inflections(:en) do |inflect|
   inflect.acronym 'JsonLd'
   inflect.acronym 'NodeInfo'
   inflect.acronym 'Ed25519'
+  inflect.acronym 'TOC'
+  inflect.acronym 'RSS'
+  inflect.acronym 'REST'
+  inflect.acronym 'URL'
 
   inflect.singular 'data', 'data'
 end

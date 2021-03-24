@@ -8,7 +8,7 @@ describe 'The webfinger route' do
       get webfinger_url(resource: alice.to_webfinger_s)
 
       expect(response).to have_http_status(200)
-      expect(response.content_type).to eq 'application/jrd+json'
+      expect(response.media_type).to eq 'application/jrd+json'
     end
   end
 
@@ -17,7 +17,7 @@ describe 'The webfinger route' do
       get webfinger_url(resource: alice.to_webfinger_s, format: :json)
 
       expect(response).to have_http_status(200)
-      expect(response.content_type).to eq 'application/jrd+json'
+      expect(response.media_type).to eq 'application/jrd+json'
     end
 
     it 'returns a json response for json accept header' do
@@ -25,7 +25,7 @@ describe 'The webfinger route' do
       get webfinger_url(resource: alice.to_webfinger_s), headers: headers
 
       expect(response).to have_http_status(200)
-      expect(response.content_type).to eq 'application/jrd+json'
+      expect(response.media_type).to eq 'application/jrd+json'
     end
   end
 end

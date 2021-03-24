@@ -70,8 +70,12 @@ class ColumnsArea extends ImmutablePureComponent {
     children: PropTypes.node,
   };
 
+   // Corresponds to (max-width: 600px + (285px * 1) + (10px * 1)) in SCSS
+   mediaQuery = 'matchMedia' in window && window.matchMedia('(max-width: 895px)');
+
   state = {
     shouldAnimate: false,
+    renderComposePanel: !(this.mediaQuery && this.mediaQuery.matches),
   }
 
   componentWillReceiveProps() {
@@ -83,6 +87,11 @@ class ColumnsArea extends ImmutablePureComponent {
   componentDidMount() {
     if (!this.props.singleColumn) {
       this.node.addEventListener('wheel', this.handleWheel, supportsPassiveEvents ? { passive: true } : false);
+    }
+
+    if (this.mediaQuery) {
+      this.mediaQuery.addEventListener('change', this.handleLayoutChange);
+      this.setState({ renderComposePanel: !this.mediaQuery.matches });
     }
 
     this.lastIndex   = getIndex(this.context.router.history.location.pathname);
@@ -114,6 +123,10 @@ class ColumnsArea extends ImmutablePureComponent {
     if (!this.props.singleColumn) {
       this.node.removeEventListener('wheel', this.handleWheel);
     }
+
+    if (this.mediaQuery) {
+      this.mediaQuery.removeEventListener('change', this.handleLayoutChange);
+    }
   }
 
   handleChildrenContentChange() {
@@ -121,6 +134,10 @@ class ColumnsArea extends ImmutablePureComponent {
       const modifier = this.isRtlLayout ? -1 : 1;
       this._interruptScrollAnimation = scrollRight(this.node, (this.node.scrollWidth - window.innerWidth) * modifier);
     }
+  }
+
+  handleLayoutChange = (e) => {
+    this.setState({ renderComposePanel: !e.matches });
   }
 
   handleSwipe = (index) => {
@@ -186,7 +203,7 @@ class ColumnsArea extends ImmutablePureComponent {
 
   render () {
     const { columns, children, singleColumn, isModalOpen, intl } = this.props;
-    const { shouldAnimate } = this.state;
+    const { shouldAnimate, renderComposePanel } = this.state;
 
     const columnIndex = getIndex(this.context.router.history.location.pathname);
 
@@ -205,7 +222,7 @@ class ColumnsArea extends ImmutablePureComponent {
         <div className='columns-area__panels'>
           <div className='columns-area__panels__pane columns-area__panels__pane--compositional'>
             <div className='columns-area__panels__pane__inner'>
-              <ComposePanel />
+              {renderComposePanel && <ComposePanel />}
             </div>
           </div>
 

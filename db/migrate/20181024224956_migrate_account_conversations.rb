@@ -17,8 +17,8 @@ class MigrateAccountConversations < ActiveRecord::Migration[5.2]
     belongs_to :account, optional: true
     belongs_to :activity, polymorphic: true, optional: true
 
-    belongs_to :status,         foreign_type: 'Status',        foreign_key: 'activity_id', optional: true
-    belongs_to :mention,        foreign_type: 'Mention',       foreign_key: 'activity_id', optional: true
+    belongs_to :status,  foreign_key: 'activity_id', optional: true
+    belongs_to :mention, foreign_key: 'activity_id', optional: true
 
     def target_status
       mention&.status
