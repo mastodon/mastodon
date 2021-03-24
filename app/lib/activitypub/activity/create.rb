@@ -123,7 +123,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
 
   def process_audience
     (audience_to + audience_cc).uniq.each do |audience|
-      next if audience == ActivityPub::TagManager::COLLECTIONS[:public]
+      next if ActivityPub::TagManager.instance.public_collection?(audience)
 
       # Unlike with tags, there is no point in resolving accounts we don't already
       # know here, because silent mentions would only be used for local access
@@ -356,9 +356,9 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   end
 
   def visibility_from_audience
-    if audience_to.include?(ActivityPub::TagManager::COLLECTIONS[:public])
+    if audience_to.any? { |to| ActivityPub::TagManager.instance.public_collection?(to) }
       :public
-    elsif audience_cc.include?(ActivityPub::TagManager::COLLECTIONS[:public])
+    elsif audience_cc.any? { |cc| ActivityPub::TagManager.instance.public_collection?(cc) }
       :unlisted
     elsif audience_to.include?(@account.followers_url)
       :private
