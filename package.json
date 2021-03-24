@@ -81,7 +81,6 @@
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "babel-runtime": "^6.26.0",
     "blurhash": "^1.1.3",
-    "bufferutil": "^4.0.3",
     "classnames": "^2.2.5",
     "color-blend": "^3.0.1",
     "compression-webpack-plugin": "^6.1.1",
@@ -163,7 +162,6 @@
     "throng": "^4.0.0",
     "tiny-queue": "^0.2.1",
     "twitter-text": "3.1.0",
-    "utf-8-validate": "^5.0.4",
     "uuid": "^8.3.1",
     "webpack": "^4.46.0",
     "webpack-assets-manifest": "^4.0.1",
@@ -193,5 +191,9 @@
   },
   "resolutions": {
     "kind-of": "^6.0.3"
+  },
+  "optionalDependencies": {
+    "bufferutil": "^4.0.3",
+    "utf-8-validate": "^5.0.4"
   }
 }
