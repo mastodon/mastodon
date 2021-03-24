@@ -43,9 +43,9 @@ class ActivityPub::Activity::Announce < ActivityPub::Activity
   end
 
   def visibility_from_audience
-    if audience_to.include?(ActivityPub::TagManager::COLLECTIONS[:public])
+    if audience_to.any? { |to| ActivityPub::TagManager.instance.public_collection?(to) }
       :public
-    elsif audience_cc.include?(ActivityPub::TagManager::COLLECTIONS[:public])
+    elsif audience_cc.any? { |cc| ActivityPub::TagManager.instance.public_collection?(cc) }
       :unlisted
     elsif audience_to.include?(@account.followers_url)
       :private

@@ -10,7 +10,7 @@ class EmailMxValidator < ActiveModel::Validator
 
     if domain.blank?
       user.errors.add(:email, :invalid)
-    else
+    elsif !on_allowlist?(domain)
       ips, hostnames = resolve_mx(domain)
 
       if ips.empty?
@@ -31,6 +31,12 @@ class EmailMxValidator < ActiveModel::Validator
     TagManager.instance.normalize_domain(domain)
   rescue Addressable::URI::InvalidURIError
     nil
+  end
+
+  def on_allowlist?(domain)
+    return false if Rails.configuration.x.email_domains_whitelist.blank?
+
+    Rails.configuration.x.email_domains_whitelist.include?(domain)
   end
 
   def resolve_mx(domain)

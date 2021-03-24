@@ -45,7 +45,7 @@ class ImportService < BaseService
     items = @data.take(ROWS_PROCESSING_LIMIT).map { |row| row['#domain'].strip }
 
     if @import.overwrite?
-      presence_hash = items.each_with_object({}) { |id, mapping| mapping[id] = true }
+      presence_hash = items.index_with(true)
 
       @account.domain_blocks.find_each do |domain_block|
         if presence_hash[domain_block.domain]
@@ -96,7 +96,7 @@ class ImportService < BaseService
     items = @data.take(ROWS_PROCESSING_LIMIT).map { |row| row['#uri'].strip }
 
     if @import.overwrite?
-      presence_hash = items.each_with_object({}) { |id, mapping| mapping[id] = true }
+      presence_hash = items.index_with(true)
 
       @account.bookmarks.find_each do |bookmark|
         if presence_hash[bookmark.status.uri]

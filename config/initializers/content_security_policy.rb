@@ -51,17 +51,7 @@ end
 
 Rails.application.config.content_security_policy_nonce_generator = -> request { SecureRandom.base64(16) }
 
-# Monkey-patching Rails 5
-module ActionDispatch
-  class ContentSecurityPolicy
-    def nonce_directive?(directive)
-      directive == 'style-src'
-    end
-  end
-end
-
-# Rails 6 would require the following instead:
-# Rails.application.config.content_security_policy_nonce_directives = %w(style-src)
+Rails.application.config.content_security_policy_nonce_directives = %w(style-src)
 
 PgHero::HomeController.content_security_policy do |p|
   p.script_src :self, :unsafe_inline, assets_host
