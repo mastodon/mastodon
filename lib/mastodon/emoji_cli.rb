@@ -49,7 +49,7 @@ module Mastodon
           next if filename.start_with?('._')
 
           shortcode    = [options[:prefix], filename, options[:suffix]].compact.join
-          custom_emoji = CustomEmoji.local.find_by(shortcode: shortcode)
+          custom_emoji = CustomEmoji.local.find_by("LOWER(shortcode) = ?", shortcode.downcase)
 
           if custom_emoji && !options[:overwrite]
             skipped += 1
