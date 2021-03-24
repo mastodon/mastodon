@@ -16,7 +16,7 @@ ALLOWED_DUPLICATES = [20180410220657, 20180831171112].freeze
 
 module ActiveRecord
   class Migrator
-    def self.new(direction, migrations, target_version = nil)
+    def self.new(direction, migrations, schema_migration, target_version = nil)
       migrated = Set.new(Base.connection.migration_context.get_all_versions)
 
       migrations.group_by(&:name).each do |name, duplicates|
@@ -34,7 +34,7 @@ module ActiveRecord
         end
       end
 
-      super(direction, migrations, target_version)
+      super(direction, migrations, schema_migration, target_version)
     end
   end
 

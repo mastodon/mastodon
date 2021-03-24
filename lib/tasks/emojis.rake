@@ -69,7 +69,7 @@ namespace :emojis do
       end
     end
 
-    existence_maps = grouped_codes.map { |c| c.map { |cc| [cc, File.exist?(Rails.root.join('public', 'emoji', codepoints_to_filename(cc) + '.svg'))] }.to_h }
+    existence_maps = grouped_codes.map { |c| c.index_with { |cc| File.exist?(Rails.root.join('public', 'emoji', codepoints_to_filename(cc) + '.svg')) } }
     map = {}
 
     existence_maps.each do |group|

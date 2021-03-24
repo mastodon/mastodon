@@ -199,6 +199,14 @@ class ComposeForm extends ImmutablePureComponent {
     }
   }
 
+  componentDidMount () {
+    this._updateFocusAndSelection({ });
+  }
+
+  componentDidUpdate (prevProps) {
+    this._updateFocusAndSelection(prevProps);
+  }
+
   //  This statement does several things:
   //  - If we're beginning a reply, and,
   //      - Replying to zero or one users, places the cursor at the end
@@ -206,7 +214,7 @@ class ComposeForm extends ImmutablePureComponent {
   //      - Replying to more than one user, selects any usernames past
   //        the first; this provides a convenient shortcut to drop
   //        everyone else from the conversation.
-  componentDidUpdate (prevProps) {
+   _updateFocusAndSelection = (prevProps) => {
     const {
       textarea,
       spoilerText,

@@ -39,7 +39,7 @@
     = render partial: 'layouts/theme', object: @theme
 
     - if Setting.custom_css.present?
-      = stylesheet_link_tag custom_css_path, media: 'all'
+      = stylesheet_link_tag custom_css_path, host: request.host, media: 'all'
 
   %body{ class: body_classes }
     = content_for?(:content) ? yield(:content) : yield
