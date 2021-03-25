@@ -291,6 +291,11 @@ ko:
         unassigned_report_html: "%{name} 님이 신고 %{target}을 할당 해제했습니다"
         unsensitive_account_html: "%{name} 님이 %{target}의 미디어를 민감하지 않음으로 표시했습니다"
         unsilence_account_html: "%{name} 님이 %{target}의 계정에 대한 침묵을 해제했습니다"
+        unsuspend_account_html: "%{name} 님이 %{target}의 계정에 대한 정지를 해제했습니다"
+        update_announcement_html: "%{name} 님이 공지사항 %{target}을 갱신했습니다"
+        update_custom_emoji_html: "%{name} 님이 에모지 %{target}를 업데이트 했습니다"
+        update_domain_block_html: "%{name} 님이 %{target}에 대한 도메인 차단을 갱신했습니다"
+        update_status_html: "%{name} 님이 %{target}의 게시물을 업데이트 했습니다"
       deleted_status: "(삭제됨)"
       empty: 로그를 찾을 수 없습니다
       filter_by_action: 행동으로 거르기
@@ -1026,6 +1031,8 @@ ko:
       body: '%{name} 님이 답장을 보냈습니다:'
       subject: '%{name} 님이 답장을 보냈습니다'
       title: 새 멘션
+    poll:
+      subject: '%{name}의 투표가 종료되었습니다'
     reblog:
       body: '%{name} 님이 내 툿을 부스트 했습니다:'
       subject: "%{name} 님이 내 툿을 부스트 했습니다"
