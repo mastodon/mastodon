@@ -175,7 +175,7 @@ fr:
       removed_avatar_msg: L’avatar de %{username} a été supprimé avec succès
       removed_header_msg: L’image d’en-tête de %{username} a été supprimée avec succès
       resend_confirmation:
-        already_confirmed: Cet·te utilisateur·rice est déjà confirmé·e
+        already_confirmed: Cet utilisateur est déjà confirmé
         send: Renvoyer un courriel de confirmation
         success: Courriel de confirmation envoyé avec succès !
       reset: Réinitialiser
@@ -196,8 +196,8 @@ fr:
       show:
         created_reports: Signalements faits
         targeted_reports: Signalés par d’autres
-      silence: Masquer
-      silenced: Masqué
+      silence: Limite
+      silenced: Limité
       statuses: Statuts
       subscribe: S’abonner
       suspended: Suspendu
@@ -207,12 +207,12 @@ fr:
       title: Comptes
       unconfirmed_email: Courriel non confirmé
       undo_sensitized: Annuler sensible
-      undo_silenced: Ne plus masquer
+      undo_silenced: Ne plus limité
       undo_suspension: Annuler la suspension
       unsilenced_msg: Le compte de %{username} a été illimité avec succès
       unsubscribe: Se désabonner
       unsuspended_msg: Le compte de %{username} a été désuspendu avec succès
-      username: Nom d’utilisateur·ice
+      username: Nom d’utilisateur
       view_domain: Voir le résumé du domaine
       warn: Avertissement
       web: Web
@@ -220,7 +220,7 @@ fr:
     action_logs:
       action_types:
         assigned_to_self_report: Affecter le signalement
-        change_email_user: Modifier le courriel pour
+        change_email_user: Modifier le courriel pour l'utilisateur
         confirm_user: Confirmer l’utilisateur
         create_account_warning: Créer une alerte
         create_announcement: Créer une annonce
@@ -229,7 +229,7 @@ fr:
         create_domain_block: Créer un blocage de domaine
         create_email_domain_block: Créer un blocage de domaine de courriel
         create_ip_block: Créer une règle IP
-        demote_user: Rétrograder l’utilisateur·ice
+        demote_user: Rétrograder l’utilisateur
         destroy_announcement: Supprimer l’annonce
         destroy_custom_emoji: Supprimer des émojis personnalisés
         destroy_domain_allow: Supprimer le domaine autorisé
@@ -239,7 +239,7 @@ fr:
         destroy_status: Supprimer le statut
         disable_2fa_user: Désactiver l’A2F
         disable_custom_emoji: Désactiver les émojis personnalisés
-        disable_user: Désactiver l’utilisateur·ice
+        disable_user: Désactiver l’utilisateur
         enable_custom_emoji: Activer les émojis personnalisées
         enable_user: Activer l’utilisateur
         memorialize_account: Mémorialiser le compte
@@ -260,9 +260,9 @@ fr:
         update_domain_block: Mettre à jour le blocage de domaine
         update_status: Mettre à jour le statut
       actions:
-        assigned_to_self_report_html: "%{name} s’est assigné·e le signalement de %{target}"
-        change_email_user_html: "%{name} a modifié l'adresse de courriel de l'utilisateur·rice %{target}"
-        confirm_user_html: "%{name} a confirmé l'adresse courriel de l'utilisateur·rice %{target}"
+        assigned_to_self_report_html: "%{name} a assigné le signalement %{target} à lui-même"
+        change_email_user_html: "%{name} a modifié l'adresse de courriel de l'utilisateur %{target}"
+        confirm_user_html: "%{name} a confirmé l'adresse courriel de l'utilisateur %{target}"
         create_account_warning_html: "%{name} a envoyé un avertissement à %{target}"
         create_announcement_html: "%{name} a créé une nouvelle annonce %{target}"
         create_custom_emoji_html: "%{name} a téléversé un nouvel émoji %{target}"
