@@ -980,22 +980,22 @@ fr:
   migrations:
     acct: A déménagé vers
     cancel: Annuler la redirection
-    cancel_explanation: Annuler la redirection réactivera votre compte actuel, mais ne rapportera pas les abonné·e·s qui ont été déplacé·e·s sur ce compte.
+    cancel_explanation: Annuler la redirection réactivera votre compte actuel, mais ne rapportera pas les abonnés qui ont été déplacés sur ce compte.
     cancelled_msg: Suppression de la redirection réussie.
     errors:
       already_moved: est le même compte que vous avez déjà déplacé vers
-      missing_also_known_as: ne référence pas ce compte en retour
+      missing_also_known_as: n'est pas un alias de ce compte
       move_to_self: ne peut pas être le compte actuel
       not_found: n'a pas été trouvé
-      on_cooldown: Vous êtes soumis·e à un temps de rechargement
-    followers_count: Abonné·e·s au moment du déménagement
+      on_cooldown: Vous êtes soumis à un temps de rechargement
+    followers_count: Abonnés au moment du déménagement
     incoming_migrations: Déplacement depuis un compte différent
     incoming_migrations_html: Pour déménager d'un autre compte à celui-ci, vous devez d'abord <a href="%{path}">créer un alias de compte</a>.
-    moved_msg: Votre compte est maintenant redirigé vers %{acct} et vos abonné·e·s sont en train d'être déplacé·e·s.
+    moved_msg: Votre compte est maintenant redirigé vers %{acct} et vos abonnés sont en train d'être déplacés.
     not_redirecting: Votre compte n'est pas redirigé vers un autre compte actuellement.
     on_cooldown: Vous avez récemment migré votre compte. Cette fonction sera à nouveau disponible dans %{count} jours.
     past_migrations: Migrations passées
-    proceed_with_move: Migrer les abonné·e·s
+    proceed_with_move: Migrer les abonnés
     redirected_msg: Votre compte est maintenant redirigé vers %{acct}.
     redirecting_to: Votre compte est redirigé vers %{acct}.
     set_redirect: Définir la redirection
@@ -1004,7 +1004,7 @@ fr:
       before: 'Avant de procéder, veuillez lire attentivement ces notes :'
       cooldown: Après le déménagement, il y a une période de gel pendant laquelle vous ne pourrez plus re-déménager
       disabled_account: Votre compte actuel ne sera pas entièrement utilisable par la suite. Cependant, vous aurez accès à l'exportation de données et à la ré-activation.
-      followers: Cette action va déménager tou·te·s les abonné·e·s du compte actuel vers le nouveau compte
+      followers: Cette action va déménager tous les abonnés du compte actuel vers le nouveau compte
       only_redirect_html: Alternativement, vous pouvez <a href="%{path}">seulement appliquer une redirection sur votre profil</a>.
       other_data: Aucune autre donnée ne sera déplacée automatiquement
       redirect: Le profil de votre compte actuel sera mis à jour avec un avis de redirection et sera exclu des recherches
@@ -1013,15 +1013,15 @@ fr:
   move_handler:
     carry_blocks_over_text: Cet utilisateur que vous aviez bloqué est parti de %{acct}.
     carry_mutes_over_text: Cet utilisateur que vous aviez masqué est parti de %{acct}.
-    copy_account_note_text: 'Cet·te utilisateur·rice est parti de %{acct}, voici vos notes précédentes à son sujet :'
+    copy_account_note_text: 'Cet utilisateur est parti de %{acct}, voici vos notes précédentes à son sujet :'
   notification_mailer:
     digest:
       action: Voir toutes les notifications
       body: Voici un bref résumé des messages que vous avez raté depuis votre dernière visite le %{since}
-      mention: "%{name} vous a mentionné⋅e dans :"
+      mention: "%{name} vous a mentionné dans :"
       new_followers_summary:
-        one: Vous avez un⋅e nouvel⋅le abonné⋅e ! Youpi !
-        other: Vous avez %{count} nouveaux⋅elles abonné⋅e·s ! Incroyable !
+        one: Vous avez acquis un nouvel abonné en étant absent ! Youpi !
+        other: Vous avez %{count} nouveaux abonnés ! Incroyable !
       subject:
         one: "Une nouvelle notification depuis votre dernière visite \U0001F418"
         other: "%{count} nouvelles notifications depuis votre dernière visite \U0001F418"
