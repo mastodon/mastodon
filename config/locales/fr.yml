@@ -3,8 +3,8 @@ fr:
     about_hashtag_html: 'Voici les pouets tagués avec <strong>#%{hashtag}</strong>. Vous pouvez interagir avec eux si vous avez un compte n’importe où dans le Fédiverse.'
     about_mastodon_html: 'Le réseau social de l''avenir : Pas d''annonces, pas de surveillance institutionnelle, conception éthique et décentralisation ! Possédez vos données avec Mastodon !'
     about_this: À propos
-    active_count_after: actif·ve·s
-    active_footnote: Utilisateur·rice·s actif·ve·s mensuels (MAU)
+    active_count_after: actif
+    active_footnote: Utilisateur actif mensuels (MAU)
     administered_by: 'Administrée par :'
     api: API
     apps: Applications mobiles
@@ -15,7 +15,7 @@ fr:
     contact: Contact
     contact_missing: Non défini
     contact_unavailable: Non disponible
-    discover_users: Découvrez des utilisateur·rice·s
+    discover_users: Découvrez des utilisateur
     documentation: Documentation
     federation_hint_html: Avec un compte sur %{instance}, vous pourrez suivre les gens sur n’importe quel serveur Mastodon et au-delà.
     get_apps: Essayez une application mobile
@@ -366,6 +366,7 @@ fr:
       feature_timeline_preview: Aperçu du fil public
       features: Fonctionnalités
       hidden_service: Fédération avec des services cachés
+      misconfigured_sidekiq_alert: 'Aucun processus Sidekiq ne semble gérer les files d''attente suivantes: %{queues}. Veuillez vérifier votre configuration Sidekiq.'
       open_reports: signalements non résolus
       pending_tags: hashtags en attente d’approbation
       pending_users: utilisateur·rice·s en attente d’approbation
