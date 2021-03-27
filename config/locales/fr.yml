@@ -515,7 +515,7 @@ fr:
           one: "%{count} signalement"
           other: "%{count} signalements"
       action_taken_by: Intervention de
-      are_you_sure: Voulez-vous vraiment faire ça ?
+      are_you_sure: Êtes-vous sûr ?
       assign_to_self: Me l’assigner
       assigned: Modérateur assigné
       by_target_domain: Domaine du compte signalé
@@ -531,7 +531,7 @@ fr:
         create_and_resolve: Résoudre avec une note
         create_and_unresolve: Ré-ouvrir avec une note
         delete: Supprimer
-        placeholder: Décrivez quelles actions ont été prises, ou toute autre mise à jour…
+        placeholder: Décrivez quelles actions ont été prises, ou toute autre mise à jour...
       reopen: Ré-ouvrir le signalement
       report: 'Signalement #%{id}'
       reported_account: Compte signalé
@@ -551,13 +551,13 @@ fr:
     settings:
       activity_api_enabled:
         desc_html: Nombre de statuts affichés localement, de comptes actifs et de nouvelles inscriptions regroupés par semaine
-        title: Publier des statistiques agrégées sur l’activité des utilisateur·rice·s
+        title: Publier des statistiques agrégées sur l’activité des utilisateurs
       bootstrap_timeline_accounts:
-        desc_html: Séparez les noms d’utilisateur·rice·s par des virgules. Ne fonctionne qu’avec des comptes locaux et non verrouillés. Si laissé vide, tous les administrateur·rice·s locaux sont sélectionné⋅e⋅s.
+        desc_html: Séparez les noms d’utilisateurs par des virgules. Ne fonctionne qu’avec des comptes locaux et non verrouillés. Si laissé vide, tous les administrateurs locaux sont sélectionnés.
         title: Abonnements par défaut pour les nouveaux utilisateurs
       contact_information:
-        email: Entrez une adresse courriel publique
-        username: Entrez un nom d’utilisateur·ice
+        email: E-mail professionnel
+        username: Nom d'utilisateur du contact
       custom_css:
         desc_html: Modifier l’apparence avec une CSS chargée sur chaque page
         title: CSS personnalisé
@@ -594,7 +594,7 @@ fr:
           desc_html: Affiché sur la page d’accueil lorsque les inscriptions sont fermées. Vous pouvez utiliser des balises HTML
           title: Message de fermeture des inscriptions
         deletion:
-          desc_html: Permettre à tou·te·s les utilisateur·rice·s de supprimer leur compte
+          desc_html: Permettre à tous les utilisateurs de supprimer leur compte
           title: Autoriser les suppressions de compte
         min_invite_role:
           disabled: Personne
@@ -612,7 +612,7 @@ fr:
         desc_html: Lorsque l’option est activée, les pouets provenant de toutes les serveurs connus sont montrés dans la prévisualisation. Sinon, seuls les pouets locaux sont montrés
         title: Afficher le fediverse connu dans la prévisualisation du fil
       show_staff_badge:
-        desc_html: Montrer un badge de responsable sur une page utilisateur·rice
+        desc_html: Montrer un badge de responsable sur une page utilisateur
         title: Montrer un badge de responsable
       site_description:
         desc_html: Paragraphe introductif sur la page d’accueil. Décrivez ce qui rend spécifique ce serveur Mastodon et toute autre chose importante. Vous pouvez utiliser des balises HTML, en particulier <code>&lt;a&gt;</code> et <code>&lt;em&gt;</code>.
