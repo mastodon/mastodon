@@ -1049,7 +1049,7 @@ fr:
     reblog:
       body: 'Votre statut a été booster par %{name} :'
       subject: "%{name} a booster votre statut"
-      title: Nouveau partage
+      title: Nouveau boost
     status:
       subject: "%{name} vient de publier"
   notifications:
@@ -1070,7 +1070,7 @@ fr:
     code_hint: Entrez le code généré par votre application d'authentification pour confirmer
     description_html: Si vous activez <strong>l’authentification à deux facteurs</strong> en utilisant une application d'authentification, votre connexion vous imposera d'être en possession de votre téléphone, ce qui génèrera des jetons que vous devrez saisir.
     enable: Activer
-    instructions_html: "<strong>Scannez ce code QR dans Google Authenticator ou une application TOTP similiaire sur votre téléphone</strong>. À partir de maintenant, cette application générera des jetons que vous devrez entrer lorsque vous vous connecterez."
+    instructions_html: "<strong>Scannez ce code QR dans Google Authenticator ou une application TOTP similaire sur votre téléphone</strong>. À partir de maintenant, cette application générera des jetons que vous devrez entrer lorsque vous vous connecterez."
     manual_instructions: 'Si vous ne pouvez pas scanner le QR code et que vous devez le saisir manuellement, voici le texte secret en brut :'
     setup: Mise en place
     wrong_code: Le code saisi est invalide. L'heure du serveur et l'heure de l'appareil sont-ils corrects ?
@@ -1102,7 +1102,7 @@ fr:
   relationships:
     activity: Activité du compte
     dormant: Dormant
-    follow_selected_followers: Suivre les abonné·e·s sélectionné·e·s
+    follow_selected_followers: Suivre les abonnés sélectionnés
     followers: Abonné·e·s
     following: Abonnements
     invited: Invité·e
@@ -1112,24 +1112,24 @@ fr:
     mutual: Mutuel
     primary: Primaire
     relationship: Relation
-    remove_selected_domains: Supprimer tous les abonné·e·s des domaines sélectionnés
-    remove_selected_followers: Supprimer les abonné·e·s sélectionnés
+    remove_selected_domains: Supprimer tous les abonnés des domaines sélectionnés
+    remove_selected_followers: Supprimer les abonnés sélectionnés
     remove_selected_follows: Ne plus suivre les utilisateurs sélectionnés
     status: État du compte
   remote_follow:
-    acct: Entrez l’adresse profil@serveur depuis laquelle vous voulez effectuer cette action
+    acct: Entrez votre nom d'utilisateur@domaine depuis lequel vous souhaitez effectuer cette action
     missing_resource: L’URL de redirection requise pour votre compte n’a pas pu être trouvée
     no_account_html: Vous n’avez pas de compte ? Vous pouvez <a href='%{sign_up_path}' target='_blank'>vous inscrire ici</a>
     proceed: Confirmer l’abonnement
     prompt: 'Vous allez suivre :'
-    reason_html: "<strong>Pourquoi cette étape est-elle nécessaire?</strong> <code>%{instance}</code> pourrait ne pas être le serveur sur lequel vous vous êtes inscrit·e, et nous devons donc vous rediriger vers votre serveur de base en premier."
+    reason_html: "<strong>Pourquoi cette étape est-elle nécessaire?</strong> <code>%{instance}</code> pourrait ne pas être le serveur sur lequel vous vous êtes inscrit, et nous devons donc vous rediriger vers votre serveur de base en premier."
   remote_interaction:
     favourite:
       proceed: Confirmer l’ajout aux favoris
       prompt: 'Vous souhaitez mettre ce pouet en favori :'
     reblog:
-      proceed: Confirmer le partage
-      prompt: 'Vous souhaitez partager ce pouet :'
+      proceed: Confirmer le boost
+      prompt: 'Vous souhaitez booster ce pouet :'
     reply:
       proceed: Confirmer la réponse
       prompt: 'Vous souhaitez répondre à ce pouet :'
@@ -1197,11 +1197,11 @@ fr:
     notifications: Notifications
     preferences: Préférences
     profile: Profil
-    relationships: Abonnements et abonné·e·s
+    relationships: Abonnements et abonnés
     two_factor_authentication: Identification à deux facteurs
     webauthn_authentication: Clés de sécurité
   spam_check:
-    spam_detected: Ceci est un rapport automatisé. Des pollupostages ont été détectés.
+    spam_detected: Ceci est un rapport automatisé. Des spam ont été détectés.
   statuses:
     attached:
       audio:
@@ -1244,15 +1244,15 @@ fr:
     sign_in_to_participate: Inscrivez-vous pour prendre part à la conversation
     title: '%{name} : "%{quote}"'
     visibilities:
-      private: Abonné⋅e⋅s uniquement
-      private_long: Afficher seulement à vos vos abonné·e·s
+      private: Abonnés uniquement
+      private_long: Afficher seulement à vos vos abonnés
       public: Publique
-      public_long: Tout le monde peut voir vos statuts
-      unlisted: Public sans être affiché sur le fil public
+      public_long: Tout le monde peut voir
+      unlisted: Non listé
       unlisted_long: Tout le monde peut voir vos statuts mais ils ne seront pas sur listés sur les fils publics
   stream_entries:
     pinned: Pouet épinglé
-    reblogged: a partagé
+    reblogged: booster
     sensitive_content: Contenu sensible
   tags:
     does_not_match_previous_name: ne correspond pas au nom précédent
@@ -1349,7 +1349,7 @@ fr:
       month: "%b %Y"
   two_factor_authentication:
     add: Ajouter
-    disable: Désactiver
+    disable: Désactiver l’A2F
     disabled_success: L'authentification à deux facteurs a été désactivée avec succès
     edit: Modifier
     enabled: L’authentification à deux facteurs est activée
@@ -1375,10 +1375,10 @@ fr:
       title: Tentative de connexion
     warning:
       explanation:
-        disable: Lorsque votre compte est gelé, les données de votre compte demeurent intactes, mais vous ne pouvez effectuer aucune action jusqu’à ce qu’il soit débloqué.
+        disable: Vous ne pouvez plus vous connecter à votre compte ou l'utiliser autrement, mais votre profil et d'autres données restent intacts.
         sensitive: Vos fichiers médias téléversés et vos médias liés seront traités comme sensibles.
-        silence: Lorsque votre compte est limité, seul·e·s les utilisateur·rice·s qui vous suivent déjà verront vos pouets sur ce serveur, et vous pourriez être exclu de plusieurs listes publiques. Néanmoins, d’autres utilisateur·rice·s peuvent vous suivre manuellement.
-        suspend: Votre compte a été suspendu, et tous vos pouets et vos fichiers multimédia téléversés ont été supprimés irréversiblement de ce serveur, et des serveurs où vous aviez des abonné·e·s.
+        silence: Lorsque votre compte est limité, seuls les utilisateurs qui vous suivent déjà verront vos pouets sur ce serveur, et vous pourriez être exclu de plusieurs listes publiques. Néanmoins, d’autres utilisateurs peuvent vous suivre manuellement.
+        suspend: Vous ne pouvez plus utiliser votre compte, et votre profil et d'autres données ne sont plus accessibles. Vous pouvez toujours vous connecter pour demander une sauvegarde de vos données jusqu'à ce que les données soient complètement supprimées, mais nous conserverons certaines données pour vous empêcher de contourner la suspension.
       get_in_touch: Vous pouvez répondre à cette adresse pour entrer en contact avec l’équipe de %{instance}.
       review_server_policies: Passer en revue les politiques du serveur
       statuses: 'Spécialement, pour :'
