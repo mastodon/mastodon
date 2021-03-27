@@ -1020,8 +1020,8 @@ fr:
       body: Voici un bref résumé des messages que vous avez raté depuis votre dernière visite le %{since}
       mention: "%{name} vous a mentionné dans :"
       new_followers_summary:
-        one: Vous avez acquis un nouvel abonné en étant absent ! Youpi !
-        other: Vous avez %{count} nouveaux abonnés ! Incroyable !
+        one: Vous avez acquis un nouvel abonné pendant que vous étiez absent ! Youpi !
+        other: Vous avez acquis %{count} nouveaux abonnés pendant que vous étiez absent ! Incroyable !
       subject:
         one: "Une nouvelle notification depuis votre dernière visite \U0001F418"
         other: "%{count} nouvelles notifications depuis votre dernière visite \U0001F418"
@@ -1037,18 +1037,18 @@ fr:
     follow_request:
       action: Gérer les demandes d’abonnement
       body: "%{name} a demandé à vous suivre"
-      subject: 'Abonné·e·s en attente : %{name}'
+      subject: 'Abonné en attente : %{name}'
       title: Nouvelle demande d’abonnement
     mention:
       action: Répondre
-      body: '%{name} vous a mentionné⋅e dans :'
-      subject: '%{name} vous a mentionné·e'
+      body: '%{name} vous a mentionné dans :'
+      subject: '%{name} vous a mentionné'
       title: Nouvelle mention
     poll:
       subject: Un sondage de %{name} est terminé
     reblog:
-      body: '%{name} a partagé votre statut :'
-      subject: "%{name} a partagé votre statut"
+      body: 'Votre statut a été booster par %{name} :'
+      subject: "%{name} a booster votre statut"
       title: Nouveau partage
     status:
       subject: "%{name} vient de publier"
