@@ -48,8 +48,8 @@ fr:
       suspended_title: Serveurs suspendus
     unavailable_content_html: Mastodon vous permet généralement de visualiser le contenu et d'interagir avec les utilisateurs de n'importe quel autre serveur dans le fédiverse. Voici les exceptions qui ont été faites sur ce serveur en particulier.
     user_count_after:
-      one: utilisateur·rice
-      other: utilisateur·rice·s
+      one: utilisateur
+      other: utilisateurs
     user_count_before: Abrite
     what_is_mastodon: Qu’est-ce que Mastodon ?
   accounts:
@@ -58,11 +58,11 @@ fr:
     featured_tags_hint: Vous pouvez mettre en avant certains hashtags qui seront affichés ici.
     follow: Suivre
     followers:
-      one: Abonné·e
-      other: Abonné·e·s
+      one: Abonné
+      other: Abonnés
     following: Abonnements
     instance_actor_flash: Ce compte est un acteur virtuel utilisé pour représenter le serveur lui-même et non un utilisateur individuel. Il est utilisé à des fins de fédération et ne doit pas être suspendu.
-    joined: Inscrit·e en %{date}
+    joined: Inscrit en %{date}
     last_active: dernière activité
     link_verified_on: La propriété de ce lien a été vérifiée le %{date}
     media: Médias
@@ -73,7 +73,7 @@ fr:
     people_followed_by: Personnes suivies par %{name}
     people_who_follow: Personnes qui suivent %{name}
     pin_errors:
-      following: Vous devez être déjà abonné·e à la personne que vous désirez recommander
+      following: Vous devez être déjà abonné à la personne que vous désirez recommander
     posts:
       one: Pouet
       other: Pouets
@@ -83,7 +83,7 @@ fr:
       admin: Admin
       bot: Robot
       group: Groupe
-      moderator: Modérateur·trice
+      moderator: Modérateur
     unavailable: Profil non disponible
     unfollow: Ne plus suivre
   admin:
@@ -379,7 +379,7 @@ fr:
       total_users: utilisateurs au total
       trends: Tendances
       week_interactions: interactions cette semaine
-      week_users_active: actif·ve·s cette semaine
+      week_users_active: actifs cette semaine
       week_users_new: utilisateurs cette semaine
       whitelist_mode: Mode liste blanche
     domain_allows:
@@ -1263,8 +1263,8 @@ fr:
 
       <ul>
       <li><em>Informations de base sur votre compte</em> : Si vous vous inscrivez sur ce serveur, il vous sera demandé de rentrer un identifiant, une adresse électronique et un mot de passe. Vous pourrez également ajouter des informations additionnelles sur votre profil, telles qu’un nom public et une biographie, ainsi que téléverser une image de profil et une image d’en-tête. Vos identifiant, nom public, biographie, image de profil et image d’en-tête seront toujours affichés publiquement.</li>
-      <li><em>Posts, liste d’abonnements et autres informations publiques</em> : La liste de vos abonnements ainsi que la liste de vos abonné·e·s sont publiques. Quand vous postez un message, la date et l’heure d’envoi ainsi que le nom de l’application utilisée pour sa transmission sont enregistré·e·s. Des médias, tels que des images ou des vidéos, peuvent être joints aux messages. Les posts publics et non listés sont affichés publiquement. Quand vous mettez en avant un post sur votre profil, ce post est également affiché publiquement. Vos messages sont délivrés à vos abonné·e·s, ce qui, dans certains cas, signifie qu’ils sont délivrés à des serveurs tiers et que ces derniers en stockent une copie. Quand vous supprimer un post, il est probable que vos abonné·e·s en soient informé·e·s. Partager un message ou le marquer comme favori est toujours une action publique.</li>
-      <li><em>Posts directs et abonné·e·s uniquement</em> : Tous les posts sont stockés et traités par le serveur. Les messages abonné·e·s uniquement ne sont transmis qu’à vos abonné·e·s et aux personnes mentionnées dans le corps du message, tandis que les messages directs ne sont transmis qu’aux personnes mentionnées. Dans certains cas, cela signifie qu’ils sont délivrés à des serveurs tiers et que ces derniers en stockent une copie. Nous faisons un effort de bonne foi pour en limiter l’accès uniquement aux personnes autorisées, mais ce n’est pas nécessairement le cas des autres serveurs. Il est donc très important que vous vérifiiez les serveurs auxquels appartiennent vos abonné·e·s. Il vous est possible d’activer une option dans les paramètres afin d’approuver et de rejeter manuellement les nouveaux·lles abonné·e·s. <em>Gardez s’il vous plaît en mémoire que les opérateur·rice·s du serveur ainsi que celles et ceux de n’importe quel serveur récepteur peuvent voir ces messages</em> et qu’il est possible pour les destinataires de faire des captures d’écran, de copier et plus généralement de repartager ces messages. <em>Ne partager aucune information sensible à l’aide de Mastodon.</em></li>
+      <li><em>Posts, liste d’abonnements et autres informations publiques</em> : La liste de vos abonnements ainsi que la liste de vos abonnés sont publiques. Quand vous postez un message, la date et l’heure d’envoi ainsi que le nom de l’application utilisée pour sa transmission sont enregistrés. Des médias, tels que des images ou des vidéos, peuvent être joints aux messages. Les posts publics et non listés sont affichés publiquement. Quand vous mettez en avant un post sur votre profil, ce post est également affiché publiquement. Vos messages sont délivrés à vos abonnés, ce qui, dans certains cas, signifie qu’ils sont délivrés à des serveurs tiers et que ces derniers en stockent une copie. Quand vous supprimer un post, il est probable que vos abonnés en soient informés. Partager un message ou le marquer comme favori est toujours une action publique.</li>
+      <li><em>Posts directs et abonnés uniquement</em> : Tous les posts sont stockés et traités par le serveur. Les messages abonnés uniquement ne sont transmis qu’à vos abonnés et aux personnes mentionnées dans le corps du message, tandis que les messages directs ne sont transmis qu’aux personnes mentionnées. Dans certains cas, cela signifie qu’ils sont délivrés à des serveurs tiers et que ces derniers en stockent une copie. Nous faisons un effort de bonne foi pour en limiter l’accès uniquement aux personnes autorisées, mais ce n’est pas nécessairement le cas des autres serveurs. Il est donc très important que vous vérifiiez les serveurs auxquels appartiennent vos abonnés. Il vous est possible d’activer une option dans les paramètres afin d’approuver et de rejeter manuellement les nouveaux abonnés. <em>Gardez s’il vous plaît en mémoire que les opérateurs du serveur ainsi que celles et ceux de n’importe quel serveur récepteur peuvent voir ces messages</em> et qu’il est possible pour les destinataires de faire des captures d’écran, de copier et plus généralement de repartager ces messages. <em>Ne partager aucune information sensible à l’aide de Mastodon.</em></li>
       <li><em>IP et autres métadonnées</em> : Quand vous vous connectez, nous enregistrons votre adresse IP ainsi que le nom de votre navigateur web. Toutes les sessions enregistrées peuvent être consultées dans les paramètres, afin que vous puissiez les surveiller et éventuellement les révoquer. La dernière adresse IP utilisée est conservée pour une durée de 12 mois. Nous sommes également susceptibles de conserver les journaux du serveur, ce qui inclut l’adresse IP de chaque requête reçue.</li>
       </ul>
 
@@ -1275,7 +1275,7 @@ fr:
       <p>Toutes les informations que nous collectons sur vous peuvent être utilisées d’une des manières suivantes :</p>
 
       <ul>
-      <li>Pour vous fournir les fonctionnalités de base de Mastodon. Vous ne pouvez interagir avec le contenu des autres et poster votre propre contenu que lorsque vous êtes connecté·e. Par exemple, vous pouvez vous abonner à plusieurs autres comptes pour voir l’ensemble de leurs posts dans votre fil d’accueil personnalisé.</li>
+      <li>Pour vous fournir les fonctionnalités de base de Mastodon. Vous ne pouvez interagir avec le contenu des autres et poster votre propre contenu que lorsque vous êtes connecté. Par exemple, vous pouvez vous abonner à plusieurs autres comptes pour voir l’ensemble de leurs posts dans votre fil d’accueil personnalisé.</li>
       <li>Pour aider à la modération de la communauté, par exemple, comparer votre adresse IP à d’autres afin de déterminer si un bannissement a été contourné ou si une autre violation aux règles a été commise.</li>
       <li>L’adresse électronique que vous nous avez fournie peut être utilisée pour vous envoyer des informations, des notifications lorsque d’autres personnes interagissent avec votre contenu ou vous envoient des messages, pour répondre à des demandes de votre part ainsi que pour touts autres requêtes ou questions.</li>
       </ul>
@@ -1294,7 +1294,7 @@ fr:
 
       <ul>
       <li>Pour ne pas conserver plus de 90 jours les journaux systèmes contenant les adresses IP de toutes les requêtes reçues par ce serveur.</li>
-      <li>Pour ne pas conserver plus de 12 mois les adresses IP associées aux utilisateur·ice·s enregistré·e·s.</li>
+      <li>Pour ne pas conserver plus de 12 mois les adresses IP associées aux utilisateurs enregistrés.</li>
       </ul>
 
       <p>Vous pouvez demander une archive de votre contenu, incluant vos posts, vos médias joints, votre image de profil et votre image d’en-tête.</p>
@@ -1315,9 +1315,9 @@ fr:
 
       <p>Nous ne vendons, n’échangeons ou ne transférons d’une quelque manière que soit des informations permettant de vous identifier personnellement. Cela n’inclut pas les tierces parties de confiance qui nous aident à opérer ce site, à conduire nos activités commerciales ou à vous servir, tant qu’elles acceptent de garder ces informations confidentielles. Nous sommes également susceptibles de partager vos informations quand nous pensons que c’est nécessaire pour nous conformer à la loi, pour appliquer les politiques de notre site ainsi que pour défendre nos droits, notre propriété, notre sécurité et celles et ceux d’autres personnes.</p>
 
-      <p>Votre contenu public peut être téléchargé par d’autres serveurs du réseau. Dans le cas où vos abonné·e·s et vos destinataires résideraient sur des serveurs différents du vôtre, vos posts publics et abonné·e·s uniquement peuvent être délivrés vers les serveurs de vos abonné·e·s tandis que vos messages directs sont délivrés aux serveurs de vos destinataires.</p>
+      <p>Votre contenu public peut être téléchargé par d’autres serveurs du réseau. Dans le cas où vos abonnés et vos destinataires résideraient sur des serveurs différents du vôtre, vos posts publics et abonnés uniquement peuvent être délivrés vers les serveurs de vos abonnés tandis que vos messages directs sont délivrés aux serveurs de vos destinataires.</p>
 
-      <p>Quand vous autorisez une application à utiliser votre compte, en fonction de l’étendue des permissions que vous approuvez, il est possible qu’elle puisse accéder aux informations publiques de votre profil, votre liste d’abonnements, votre liste d’abonné·e·s, vos listes, tous vos posts et vos favoris. Les applications ne peuvent en aucun cas accéder à votre adresse électronique et à votre mot de passe.</p>
+      <p>Quand vous autorisez une application à utiliser votre compte, en fonction de l’étendue des permissions que vous approuvez, il est possible qu’elle puisse accéder aux informations publiques de votre profil, votre liste d’abonnements, votre liste d’abonnés, vos listes, tous vos posts et vos favoris. Les applications ne peuvent en aucun cas accéder à votre adresse électronique et à votre mot de passe.</p>
 
       <hr class="spacer" />
 
@@ -1418,7 +1418,7 @@ fr:
     invalid_sign_in_token: Code de sécurité non valide
     otp_lost_help_html: Si vous perdez accès aux deux, vous pouvez contacter %{email}
     seamless_external_login: Vous êtes connecté via un service externe, donc les paramètres concernant le mot de passe et le courriel ne sont pas disponibles.
-    signed_in_as: 'Connecté·e en tant que :'
+    signed_in_as: 'Connecté en tant que :'
     suspicious_sign_in_confirmation: Il semblerait que vous ne vous êtes pas connecté depuis cet appareil auparavant et que vous ne vous êtes pas connecté depuis un moment, alors nous envoyons un code de sécurité à votre adresse courriel pour confirmer qu’il s’agit bien de vous.
   verification:
     explanation_html: 'Vous pouvez <strong>vous vérifier en tant que propriétaire des liens dans les métadonnées de votre profil</strong>. Pour cela, le site web lié doit contenir un lien vers votre profil Mastodon. Le lien de retour <strong>doit</strong> avoir un attribut <code>rel="me"</code> . Le texte du lien n’a pas d’importance. Voici un exemple :'
