@@ -17,7 +17,7 @@ gem 'makara', '~> 0.5'
 gem 'pghero', '~> 2.8'
 gem 'dotenv-rails', '~> 2.7'
 
-gem 'aws-sdk-s3', '~> 1.92', require: false
+gem 'aws-sdk-s3', '~> 1.93', require: false
 gem 'fog-core', '<= 2.1.0'
 gem 'fog-openstack', '~> 0.3', require: false
 gem 'paperclip', '~> 6.0'
@@ -106,7 +106,7 @@ gem 'rdf-normalize', '~> 0.4'
 gem 'redcarpet', '~> 3.5'
 
 group :development, :test do
-  gem 'fabrication', '~> 2.21'
+  gem 'fabrication', '~> 2.22'
   gem 'fuubar', '~> 2.5'
   gem 'i18n-tasks', '~> 0.9', require: false
   gem 'pry-byebug', '~> 3.9'
@@ -127,7 +127,7 @@ group :test do
   gem 'rspec-sidekiq', '~> 3.1'
   gem 'simplecov', '~> 0.21', require: false
   gem 'webmock', '~> 3.12'
-  gem 'parallel_tests', '~> 3.5'
+  gem 'parallel_tests', '~> 3.6'
   gem 'rspec_junit_formatter', '~> 0.4'
 end
 
@@ -140,7 +140,7 @@ group :development do
   gem 'letter_opener', '~> 1.7'
   gem 'letter_opener_web', '~> 1.4'
   gem 'memory_profiler'
-  gem 'rubocop', '~> 1.11', require: false
+  gem 'rubocop', '~> 1.12', require: false
   gem 'rubocop-rails', '~> 2.9', require: false
   gem 'brakeman', '~> 5.0', require: false
   gem 'bundler-audit', '~> 0.8', require: false

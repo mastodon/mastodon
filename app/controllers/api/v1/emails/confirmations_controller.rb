@@ -5,7 +5,11 @@ class Api::V1::Emails::ConfirmationsController < Api::BaseController
   before_action :require_user_owned_by_application!
 
   def create
-    current_user.resend_confirmation_instructions if current_user.unconfirmed_email.present?
+    if !current_user.confirmed? && current_user.unconfirmed_email.present?
+      current_user.update!(email: params[:email]) if params.key?(:email)
+      current_user.resend_confirmation_instructions
+    end
+
     render_empty
   end
 
