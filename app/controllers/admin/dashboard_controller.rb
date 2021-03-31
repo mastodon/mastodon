@@ -3,7 +3,13 @@ require 'sidekiq/api'
 
 module Admin
   class DashboardController < BaseController
+    SIDEKIQ_QUEUES = %w(default push mailers pull scheduler).freeze
+
     def index
+      missing_queues = Sidekiq::ProcessSet.new.reduce(SIDEKIQ_QUEUES) { |queues, process| queues - process['queues'] }
+
+      flash.now[:alert] = I18n.t('admin.dashboard.misconfigured_sidekiq_alert', queues: missing_queues.join(', ')) unless missing_queues.empty?
+
       @users_count           = User.count
       @pending_users_count   = User.pending.count
       @registrations_week    = Redis.current.get("activity:accounts:local:#{current_week}") || 0
