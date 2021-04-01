@@ -72,6 +72,7 @@ sc:
       index:
         application: Aplicatzione
         created_at: Autorizada
+        date_format: "%Y-%m-%d %H:%M:%S"
         scopes: Àmbitos
         title: Is aplicatziones autorizadas tuas
     errors:
@@ -81,6 +82,8 @@ sc:
         invalid_client: S'autenticatzione de su cliente est fallida ca su cliente est disconnotu, s'atzessu a su cliente no est istadu incluidu, o sa manera de autenticatzione no est suportada.
         invalid_grant: Su permissu de autorizatzione est invàlidu, iscadidu, revocadu, non currispondet a s'URI de re-indiritzamentu impreadu in sa rechesta de autorizatzione, o est istadu frunidu a un'àteru cliente.
         invalid_redirect_uri: S'URI de re-indiritzamentu no est vàlidu.
+        invalid_request:
+          missing_param: 'Ammancat unu paràmetru de cunfiguratzione rechèdidu: %{value}.'
         invalid_resource_owner: Is credentziales de su mere de sa risursa frunidas non sunt vàlidas, o su mere de sa risursa non podet èssere agatadu
         invalid_scope: S'àmbitu pedidu est invàlidu, disconnotu, o formuladu male.
         invalid_token:
