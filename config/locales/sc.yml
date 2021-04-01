@@ -709,12 +709,12 @@ sc:
     error: Faddina in sa chirca de su contu remotu
     follow: Sighi
     follow_request: 'As imbiadu una dimanda de sighidura a:'
-    following: 'Fatu! Immoe ses sighende:'
+    following: 'Fatu! Immoe ses sighende a:'
     post_follow:
       close: O, podes serrare custa ventana.
       return: Ammustra su profilu de custa persone
       web: Bae a su situ web
-    title: Sighi %{acct}
+    title: Sighi a %{acct}
   challenge:
     confirm: Sighi
     hint_html: "<strong>Cussìgiu:</strong> No t'amus a torrare a dimandare sa crae in s'ora imbeniente."
@@ -726,8 +726,8 @@ sc:
       invalid_signature: no est una firma Ed25519 vàlida
   date:
     formats:
-      default: "%d %b %Y"
-      with_month_name: "%d %B %Y"
+      default: "%d %b, %Y"
+      with_month_name: "%d %B, %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count} o"
@@ -848,26 +848,26 @@ sc:
         invalid_token: Is còdighes de autorizatzione de Keybase sunt hash de firmas e depent tènnere 66 caràteres esadetzimales
         verification_failed: Keybase non reconnoschet custu còdighe de autorizatzione che a firma de s'utente de Keybase %{kb_username}. Torra·bi a proare dae Keybase.
       wrong_user: Impossìbile creare una proa pro %{proving} cando as fatu s'atzessu che a %{current}. Intra che a %{proving} e torra·bi a proare.
-    explanation_html: Inoghe podes collegare critograficamente is àteras identidades tuas dae àteras prataformas, che a Keybase. Custu permitit a àteras persones de t'imbiare messàgios tzifrados in cussas prataformas e de tènnere sa seguresa chi sos cuntenutos chi lis mandas benit dae tene.
+    explanation_html: Inoghe podes collegare critograficamente is àteras identidades tuas dae àteras prataformas, che a Keybase. Custu permitit a àteras persones de t'imbiare messàgios tzifrados in cussas prataformas e de tènnere sa seguresa chi is cuntenutos chi ddis ses imbiende benint dae tene.
     i_am_html: So %{username} in %{service}.
     identity: Identidade
     inactive: Inativu
-    publicize_checkbox: 'E imbiat custu tut:'
+    publicize_checkbox: 'E imbia custu tut:'
     publicize_toot: 'Verificadu! So %{username} in %{service}: %{url}'
     remove: Boga sa proa dae su contu
     removed: Proa bogada dae su contu
     status: Istadu de verìfica
-    view_proof: Bìdere sa proa
+    view_proof: Ammustra sa proa
   imports:
     modes:
       merge: Uni
       merge_long: Mantene is registros chi esistint e agiunghe·nde àteros
-      overwrite: Subraiscrie
+      overwrite: Subrascrie
       overwrite_long: Sostitui is registros atuales cun cussos noos
     preface: Podes importare datos chi as esportadu dae unu àteru serbidore, che a sa lista de sa gente chi ses sighende o blochende.
     success: Datos carrigados; ant a èssere protzessados luego
     types:
-      blocking: Lista de blocados
+      blocking: Lista de blocos
       bookmarks: Sinnalibros
       domain_blocking: Lista domìnios blocados
       following: Lista de sighiduras
@@ -970,7 +970,7 @@ sc:
       action: Risponde
       body: '%{name} t''at mentovadu in:'
       subject: '%{name} t''at mentovadu'
-      title: Mentovu nou
+      title: Mèntovu nou
     reblog:
       body: '%{name} at cumpartzidu s''istadu tuo:'
       subject: "%{name} at cumpartzidu s'istadu tuo"
@@ -988,7 +988,7 @@ sc:
           thousand: m
           trillion: Bln
   otp_authentication:
-    code_hint: Inserta·nche su còdighe generadu dae s'aplicatzione di autenticatzione pro cunfirmare
+    code_hint: Inserta·nche su còdighe generadu dae s'aplicatzione de autenticatzione pro cunfirmare
     description_html: Si as a abilitare <strong>s'autenticatzione in duas fases</strong> impreende un'aplicatzione de autenticatzione, pro s'intrada as a dèpere tènnere in fatu su telèfonu tuo, chi at a ingendrare getones pro ti fàghere intrare.
     enable: Ativa
     instructions_html: "<strong>Iscansi custu còdighe QR in s'autenticadore de Google o in un'aplicatzione TOTP simigiante in su telèfonu tuo</strong>. Dae como a in antis, cuss'aplicatzione at a ingendrare getones chi as a dèpere insertare pro pòdere fàghere s'atzessu."
