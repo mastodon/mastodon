@@ -1,6 +1,27 @@
 gd:
   accounts:
     following: A’ leantainn
+  admin:
+    instances:
+      known_accounts:
+        one: "%{count} cunntas as aithne dhuinn"
+        two: "%{count} chunntas as aithne dhuinn"
+        few: "%{count} cunntasan as aithne dhuinn"
+        other: "%{count} cunntas as aithne dhuinn"
+    pending_accounts:
+      title: Cunntasan ri dhèiligeadh (%{count})
+    reports:
+      account:
+        notes:
+          one: "%{count} nòta"
+          two: "%{count} nòta"
+          few: "%{count} nòtaichean"
+          other: "%{count} nòta"
+        reports:
+          one: "%{count} ghearan"
+          two: "%{count} ghearan"
+          few: "%{count} gearanan"
+          other: "%{count} gearan"
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
