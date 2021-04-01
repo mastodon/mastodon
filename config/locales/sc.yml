@@ -350,14 +350,14 @@ sc:
           desc_html: "<strong>A sa muda</strong> at a pònnere is messàgios de custos contos comente invisìbiles a sa gente chi no ddos siat sighende. <strong>Sa suspensione</strong> at a cantzellare totu su cuntenutu de su contu, elementos multimediales e datos de profilu. Imprea <strong>Perunu</strong> si boles isceti refudare is archìvios multimediales."
           noop: Perunu
           silence: A sa muda
-          suspend: Suspèndidu
+          suspend: Suspensione
         title: Blocu de domìniu nou
       private_comment: Cummentu privadu
-      private_comment_hint: Lassa unu cummentu a subra de custa limitatzione de domìniu pro impreu internu de s'iscuadra de moderatzione.
+      private_comment_hint: Lassa unu cummentu subra de custa limitatzione de domìniu pro impreu internu de s'iscuadra de moderatzione.
       public_comment: Cummentu pùblicu
-      public_comment_hint: Lassa unu cummentu pro su pùblicu generale a subra de custa limitatzione de su domìniu, si sa publicatzione de sa lista de limitatziones de domìniu est abilitada.
-      reject_media: Refuda documentos multimediales
-      reject_media_hint: Cantzellat documentos multimediales sarvados in locale e refudat iscarrigamentos in su benidore. Non rilevante pro is suspensiones
+      public_comment_hint: Lassa unu cummentu pro su pùblicu generale subra de custa limitatzione de su domìniu, si sa publicatzione de sa lista de limitatziones de domìniu est abilitada.
+      reject_media: Refuda elementos multimediales
+      reject_media_hint: Cantzellat elementos multimediales sarvados in locale e refudat iscarrigamentos in su benidore. Non rilevante pro is suspensiones
       reject_reports: Refuda informes
       reject_reports_hint: Iscarta informes chi benint de custu domìniu. Non rilevante pro is suspensiones
       rejecting_media: refudende documentos multimediales
@@ -438,7 +438,7 @@ sc:
       delete: Cantzella
       description_html: Unu <strong>ripetidore de federatzione</strong> est unu serbidore intermediàriu chi cuncàmbiat volùmenes mannos de tuts pùblicos intre serbidores chi si connetent e bi pùblicant. <strong>Podet agiudare a serbidores minores e medianos a iscobèrrere cuntenutu de su fediversu</strong>, in manera chi is utentes locales non tèngiant bisòngiu de sighire a manu àtera gente de serbidores remotos.
       disable: Disativa
-      disabled: Disativu
+      disabled: Disativadu
       enable: Ativa
       enable_hint: Si abilitadu, su serbidore tuo at a èssere sutascritu a totu is tuts pùblicos de custu ripetidore e bi at a cumintzare a imbiare totu is tuts pùblicos de custu serbidore.
       enabled: Ativadu
@@ -467,7 +467,7 @@ sc:
       by_target_domain: Domìniu de su contu signaladu
       comment:
         none: Perunu
-      created_at: Signaladu
+      created_at: Sinnaladu
       mark_as_resolved: Marca comente a isòrvidu
       mark_as_unresolved: Marcare comente a non isòrvidu
       notes:
@@ -478,8 +478,8 @@ sc:
         placeholder: Descrie is atziones chi as pigadu o cale si siat àtera atualizatzione de importu...
       reopen: Torra a abèrrere s'informe
       report: 'Informe #%{id}'
-      reported_account: Contu signaladu
-      reported_by: Signaladu dae
+      reported_account: Contu sinnaladu
+      reported_by: Sinnaladu dae
       resolved: Isòrvidu
       resolved_msg: Informe isòrvidu.
       status: Istadu
@@ -624,11 +624,11 @@ sc:
       body: Is detàllios de su contu nou sunt a suta. Podes aprovare o refudare custa rechesta.
       subject: Contu nou de revisionare in %{instance} (%{username})
     new_report:
-      body: "%{reporter} at signaladu %{target}"
-      body_remote: Calicunu de su domìniu %{domain} at signaladu %{target}
+      body: "%{reporter} at sinnaladu %{target}"
+      body_remote: Una persone de su domìniu %{domain} at sinnaladu %{target}
       subject: 'Informe nou pro %{instance} (#%{id})'
     new_trending_tag:
-      body: 'S''eticheta #%{name} est in tendèntzia oe, ma non est istada revisionada in passadu. No at a èssere ammustrada in pùblicu francu chi ddu permitas; si sarvas formulàriu sena ddu modificare no ddu as a bìdere mai prus.'
+      body: 'S''eticheta #%{name} est in tendèntzia oe, ma no est istada revisionada in passadu. No at a èssere ammustrada in pùblicu francu chi ddu permitas; si sarvas su formulàriu sena ddu modificare, no ddu as a bìdere mai prus.'
       subject: 'Eticheta noa de revisionare in %{instance} (#%{name})'
   aliases:
     add_new: Crea unu nomìngiu
@@ -699,8 +699,8 @@ sc:
       confirming: Isetende chi sa posta eletrònica siat cumpletada.
       functional: Su contu tuo est operativu.
       pending: Sa dimanda tua est in protzessu de revisione dae su personale nostru. Podet serbire unu pagu de tempus. As a retzire unu messàgiu eletrònicu si sa dimanda est aprovada.
-      redirecting_to: Su contu tuo est inativu ca in die de oe est torrende a indiritzare a %{acct}.
-    too_fast: Mòdulu imbiadu tropu a lestru, torra a proare.
+      redirecting_to: Su contu tuo est inativu pro ite in die de oe est torrende a indiritzare a %{acct}.
+    too_fast: Formulàriu imbiadu tropu a lestru, torra a proare.
     trouble_logging_in: Tenes problemas de atzessu?
     use_security_key: Imprea una crae de seguresa
   authorize_follow:
