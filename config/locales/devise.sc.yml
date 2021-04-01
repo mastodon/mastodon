@@ -2,36 +2,36 @@ sc:
   devise:
     confirmations:
       confirmed: S'indiritzu tuo de posta eletrònica est istadu cunfirmadu.
-      send_instructions: As a retzire unu messàgiu de posta eletrònica cun is istrutziones pro sa cunfirma de s'indiritzu de posta eletrònica tra pagos minutos. Controlla sa cartella de s'arga si no as retzidu custu messàgiu de posta eletrònica.
-      send_paranoid_instructions: Si s'indiritzu de posta eletrònica tuo esistit in sa base de datos nostra, as a retzire unu messàgiu de posta eletrònica cun is istrutziones pro sa cunfirma de s'indiritzu de posta eletrònica tra pagos minutos. Controlla sa cartella de s'àliga si no as retzidu custu messàgiu de posta eletrònica.
+      send_instructions: As a retzire unu messàgiu de posta eletrònica cun is istrutziones pro sa cunfirma de s'indiritzu de posta eletrònica de immoe a pagos minutos. Controlla sa cartella de s'àliga si no as retzidu custu messàgiu de posta eletrònica.
+      send_paranoid_instructions: Si s'indiritzu de posta eletrònica tuo esistit in sa base de datos nostra, as a retzire unu messàgiu de posta eletrònica cun is istrutziones pro sa cunfirma de s'indiritzu de posta eletrònica de immoe a pagos minutos. Controlla sa cartella de s'àliga si no as retzidu custu messàgiu de posta eletrònica.
     failure:
       already_authenticated: Ses giai intradu.
       inactive: Su contu tuo no est ancora ativadu.
-      invalid: '%{authentication_keys} o crae de intrada non vàlida.'
+      invalid: '%{authentication_keys} o crae non vàlida.'
       last_attempt: Tenes ancora un'àteru tentativu, in antis chi su contu tuo bèngiat blocadu.
       locked: Su contu tuo est blocadu.
-      not_found_in_database: '%{authentication_keys} o crae de intrada non vàlida.'
+      not_found_in_database: '%{authentication_keys} o crae non vàlida.'
       pending: Su contu tuo est ancora in revisione.
       timeout: Sa sessione tua est iscadida. Torra·bi a intrare pro sighire.
       unauthenticated: Tocat a ti autenticare o ti registrare prima de sighire.
-      unconfirmed: Deves cunfirmare s'indiritzu tuo de posta eletrònica prima de sighire.
+      unconfirmed: Depes cunfirmare s'indiritzu tuo de posta eletrònica prima de sighire.
     mailer:
       confirmation_instructions:
         action: Verìfica s'indiritzu de posta eletrònica
         action_with_app: Cunfirma e torra a %{app}
         explanation: As creadu unu contu in %{host} cun custu indiritzu de posta eletrònica. T'ammancat unu clic pro s'ativatzione. Si non fias tue, non càrcules custu messàgiu de posta eletrònica.
         explanation_when_pending: As pedidu un'invitu a %{host} cun custu indiritzu de posta eletrònica. Cunfirmadu s'indiritzu de posta eletrònica, amus a revisionare sa dimanda tua. Podes intrare pro cambiare is detàllios o cantzellare su contu tuo, ma non podes atzèdere a sa majoria de is funtziones finas a chi su contu tuo siat aprovadu. Si sa dimanda tua est refudada, is datos ant a èssere bogados, duncas no t'ant a pedire prus peruna atzione. Si non fias tue, non càrcules custu messàgiu de posta eletrònica.
-        extra_html: Verìfica puru <a href="%{terms_path}">is règulas de su server</a> e <a href="%{policy_path}">is cunditziones de servìtziu nostras</a>.
+        extra_html: Verìfica puru <a href="%{terms_path}">is règulas de su serbidore</a> e <a href="%{policy_path}">is cunditziones de servìtziu nostras</a>.
         subject: 'Mastodon: Istrutziones de cunfirma pro %{instance}'
         title: Verìfica s'indiritzu de posta eletrònica
       email_changed:
-        explanation: 'Custu indiritzu de posta eletrònica pro su contu tuo est istadu mudadu a:'
-        extra: Si no as mudadu indiritzu de posta, forsis un'àtera persone at otentu s'atzessu de su contu tuo. Muda sa crae tua a sa lestra o chistiona cun s'amministratzione de su server si ses blocadu a foras dae su contu tuo.
+        explanation: 'Custu indiritzu de posta eletrònica pro su contu tuo est essende mudadu a:'
+        extra: Si no as mudadu indiritzu de posta, forsis un'àtera persone at otentu s'atzessu de su contu tuo. Muda sa crae tua a sa lestra o chistiona cun s'amministratzione de su serbidore si ses blocadu a foras dae su contu tuo.
         subject: 'Mastodon: Indiritzu de posta mudadu'
         title: Indiritzu de posta eletrònica nou
       password_change:
         explanation: Sa crae de su contu tuo est istada mudada.
-        extra: Si no as mudadu sa crae tua, forsis un'àtera persone at otentu s'atzessu de su contu tuo. Muda sa crae tua a sa lestra o chistiona cun s'amministratzione de su server si ses blocadu a foras dae su contu tuo.
+        extra: Si no as mudadu sa crae tua, forsis un'àtera persone at otentu s'atzessu de su contu tuo. Muda sa crae tua a sa lestra o chistiona cun s'amministratzione de su serbidore si ses blocadu a foras dae su contu tuo.
         subject: 'Mastodon: Crae mudada'
         title: Crae mudada
       reconfirmation_instructions:
