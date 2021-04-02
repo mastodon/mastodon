@@ -1,4 +1,6 @@
 gd:
+  about:
+    about_hashtag_html: 'Seo dùdan poblach le taga <strong>#%{hashtag}</strong> riutha. ’S urrainn dhut eadar-ghnìomh a ghabhail leotha ma tha cunntas agad àite sam bith sa cho-shaoghal.'
   accounts:
     following: A’ leantainn
   admin:
@@ -22,6 +24,13 @@ gd:
           two: "%{count} ghearan"
           few: "%{count} gearanan"
           other: "%{count} gearan"
+      report: 'Gearan air #%{id}'
+  admin_mailer:
+    new_report:
+      subject: 'Tha gearan ùr aig %{instance} (#%{id})'
+    new_trending_tag:
+      body: 'Tha an taga hais #%{name} a’ treandadh an-diugh ach cha deach lèirmheas a dhèanamh air cheana. Cha nochd e gu poblach ach ma cheadaicheas tu e. Ma shàbhaileas tu am foirm seo mar a tha e, cha bhodraig e a-rithist thu.'
+      subject: 'Tha taga hais ùr air %{instance} (#%{name}) a’ feitheamh air lèirmheas'
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
