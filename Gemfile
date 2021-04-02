@@ -34,7 +34,7 @@ gem 'iso-639'
 gem 'chewy', '~> 5.2'
 gem 'cld3', '~> 3.4.1'
 gem 'devise', '~> 4.7'
-gem 'devise-two-factor', git: 'https://github.com/ClearlyClaire/devise-two-factor', ref: '594bb8a32e6f94df7e5ba7c9399eaf9ff25bac0d'
+gem 'devise-two-factor', '~> 4.0'
 
 group :pam_authentication, optional: true do
   gem 'devise_pam_authenticatable2', '~> 9.2'
