@@ -25,12 +25,17 @@ gd:
           few: "%{count} gearanan"
           other: "%{count} gearan"
       report: 'Gearan air #%{id}'
+    settings:
+      show_known_fediverse_at_about_page:
+        title: Gabh a-staigh susbaint cho-naisgte air duilleag na loidhne-ama poblaich gun ùghdarrachadh
   admin_mailer:
     new_report:
       subject: 'Tha gearan ùr aig %{instance} (#%{id})'
     new_trending_tag:
       body: 'Tha an taga hais #%{name} a’ treandadh an-diugh ach cha deach lèirmheas a dhèanamh air cheana. Cha nochd e gu poblach ach ma cheadaicheas tu e. Ma shàbhaileas tu am foirm seo mar a tha e, cha bhodraig e a-rithist thu.'
       subject: 'Tha taga hais ùr air %{instance} (#%{name}) a’ feitheamh air lèirmheas'
+  appearance:
+    advanced_web_interface_hint: 'Ma tha thu airson leud gu lèir na sgrìn agad a chleachdadh, leigidh an eadar-aghaidh-lìn adhartach leat gun rèitich thu mòran cholbhan eadar-dhealaichte ach a faic thu na thogras tu de dh’fhiosrachadh aig an aon àm: Dachaigh, brathan, loidhne-ama cho-naisgte, na thogras tu de liostaichean is tagaichean hais.'
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
@@ -41,3 +46,7 @@ gd:
     '429': Too many requests
     '500':
     '503': The page could not be served due to a temporary server failure.
+  user_mailer:
+    welcome:
+      tip_federated_timeline: '’S e sealladh farsaing dhen lìonra Mastodon a tha san loidhne-ama cho-naisgte. Gidheadh, cha ghabh i a-staigh ach na daoine air an do rinn do nàbaidhean fo-sgrìobhadh, mar sin chan eil i coileanta.'
+      tip_following: Leanaidh tu air rianaire(an) an fhrithealaiche agad o thùs. Airson daoine nas inntinniche a lorg, thoir sùil air na loidhnichean-ama ionadail is co-naisgte.
