@@ -1,16 +1,117 @@
 gd:
   about:
     about_hashtag_html: 'Seo dùdan poblach le taga <strong>#%{hashtag}</strong> riutha. ’S urrainn dhut eadar-ghnìomh a ghabhail leotha ma tha cunntas agad àite sam bith sa cho-shaoghal.'
+    about_mastodon_html: 'An lìonra sòisealta dhan àm ri teachd: Gun sanasachd, gun chaithris corporra, dealbhadh beusail agus dì-mheadhanachadh! Gabh sealbh air an dàta agad fhèin le Mastodon!'
+    about_this: Mu dhèidhinn
+    active_count_after: gnìomhach
+    active_footnote: Cleachdaichean gnìomhach gach mìos (MAU)
+    administered_by: 'Rianachd le:'
+    api: API
+    apps: Aplacaidean mobile
+    apps_platforms: Cleachd Mastodon o iOS, Android ’s ùrlaran eile
     browse_directory: rùraich eòlaire phròifilean ’s criathraich a-rèir ùidhean
+    browse_local_posts: Brabhsaich sruth beò de phostaichean poblach on fhrithealaiche seo
+    browse_public_posts: Brabhsaich sruth beò de phostaichean poblach air Mastodon
+    contact: Fios thugainn
+    contact_missing: Cha deach a shuidheachadh
+    contact_unavailable: Chan eil seo iomchaidh
+    discover_users: Lorg cleachdaichean
+    documentation: Docamaideadh
+    federation_hint_html: Le cunntas air %{instance}, ’s urrainn dhut leantainn air daoine air frithealaiche Mastodon sam bith is a bharrachd.
+    get_apps: Feuch aplacaid mobile
+    hosted_on: Mastodon ’ga òstadh air %{domain}
+    instance_actor_flash: |
+      ’S e actar biortail a tha sa chunntas seo a riochdaicheas am frithealaiche fhèin seach cleachdaiche sònraichte.
+      Tha e ’ga chleachdadh a chùm co-nasgaidh agus cha bu chòir dhut a bhacadh ach ma tha thu airson an t-ionstans gu lèir a bhacadh agus b’ fheàirrde thu bacadh àrainne a chleachdadh an àite sin.
+    learn_more: Barrachd fiosrachaidh
+    privacy_policy: Poileasaidh prìobhaideachd
+    rules: Riaghailtean an fhrithealaiche
+    see_whats_happening: Faic dè tha dol
+    server_stats: 'Stadastaireachd an fhrithealaiche:'
+    source_code: Bun-tùs
+    status_count_after:
+      one: staid
+      two: staid
+      few: staidean
+      other: staid
+    status_count_before: A sgrìobh
+    tagline: Lean air caraidean ’s lorg feadhainn ùra
+    terms: Teirmichean na seirbheise
+    unavailable_content: Frithealaichean fo mhaorsainneachd
+    unavailable_content_description:
+      domain: Frithealaiche
+      reason: Adhbhar
+      rejecting_media: 'Cha dèid faidhlichean meadhain o na frithealaichean seo a phròiseasadh no a stòradh agus cha dèid dealbhagan dhiubh a shealltainn. Feumar briogadh gus an ruigear am faidhle tùsail a làimh:'
+      rejecting_media_title: Meadhanan criathraichte
+      silenced: 'Thèid postaichean o na frithealaichean seo fhalach air loidhnichean-ama is còmhraidhean poblach agus cha dèid brathan a ghintinn à eadar-ghnìomhan nan cleachdaichean aca ach ma bhios tu fèin a’ leantainn orra:'
+      silenced_title: Frithealaichean mùchte
+      suspended: 'Cha dèid dàta sam bith o na frithealaichean seo a phròiseasadh, a stòradh no iomlaid agus chan urrainn do na cleachdaichean o na frithealaichean sin conaltradh no eadar-ghnìomh a ghabhail an-seo:'
+      suspended_title: Frithealaichean à rèim
+    unavailable_content_html: San fharsaingeachd, leigidh Mastodon leat susbaint o fhrithealaiche sam bith sa cho-shaoghal a shealltainn agus eadar-ghìomh a ghabhail leis na cleachdaichean uapa-san. Seo na h-easgaidhean a tha an sàs air an fhrithealaiche shònraichte seo.
+    user_count_after:
+      one: chleachdaiche
+      two: chleachdaiche
+      few: cleachdaichean
+      other: cleachdaiche
+    user_count_before: '’Na dhachaigh do'
+    what_is_mastodon: Dè th’ ann am Mastodon?
   accounts:
+    choices_html: "Roghadh is taghadh %{name}:"
+    endorsements_hint: '’S urrainn dhut daoine air a leanas tu a bhrosnachadh on eadar-aghaidh-lìn agus nochdaidh iad an-seo.'
+    featured_tags_hint: '’S urrainn dhut tagaichean hais sònraichte a bhrosnachadh a thèid a shealltainn an-seo.'
+    follow: Lean air
+    followers:
+      one: Neach-leantainn
+      two: Luchd-leantainn
+      few: Luchd-leantainn
+      other: Luchd-leantainn
     following: A’ leantainn
+    instance_actor_flash: '’S e actar biortail a tha sa chunntas seo a riochdaicheas am frithealaiche fhèin seach cleachdaiche sònraichte. Tha e ’ga chleachdadh a chùm co-nasgaidh agus cha bu chòir dhut a chur à rèim.'
+    joined: Air ballrachd fhaighinn %{date}
+    last_active: gnìomhach an turas mu dheireadh
+    link_verified_on: Chaidh dearbhadh cò leis a tha an ceangal seo %{date}
+    media: Meadhanan
+    moved_html: "Chaidh {name} a ghluasad gu %{new_profile_link}:"
+    network_hidden: Chan eil am fiosrachadh seo ri fhaighinn
+    never_active: Chan ann idir
+    nothing_here: Chan eil dad an-seo!
+    people_followed_by: Daoine air a leanas %{name}
+    people_who_follow: Daoine a tha a’ leantainn air air %{name}
+    pin_errors:
+      following: Feumaidh tu leantainn air neach mus urrainn dhut a bhrosnachadh
+    posts_tab_heading: Dùdan
+    posts_with_replies: Dùdan ’s freagairtean
+    roles:
+      admin: Rianaire
+      bot: Bot
+      group: Buidheann
+      moderator: Maor
+    unavailable: Chan eil a’ phròifil ri làimh
+    unfollow: Na lean tuilleadh
   admin:
+    account_actions:
+      action: Gabh an gnìomh
+      title: Gabh gnìomh maorsainneachd air %{acct}
+    account_moderation_notes:
+      create: Fàg nòta
+      created_msg: Chaidh nòta na maorsainneachd a chruthachadh!
+      delete: Sguab às
+      destroyed_msg: Chaidh nòta na maorsainneachd a mhilleadh!
+    accounts:
+      add_email_domain_block: Bac àrainn a’ phuist-d
+      approve: Aontaich ris
+      approve_all: Aontaich ris na h-uile
+      approved_msg: Chaidh aontachadh ri an iarrtas clàraidh aig %{username}
+      are_you_sure: A bheil thu cinnteach?
+      avatar: Avatar
+      by_domain: Àrainn
     action_logs:
       action_types:
         create_account_warning: Cruthaich rabhadh
       actions:
         create_account_warning_html: "Chuir %{name} rabhadh gu %{target}"
     custom_emojis:
+      destroyed_msg: Chaidh an Emoji gnàthaichte a mhilleadh!
       unlisted: Falaichte o liostaichean
     dashboard:
       feature_profile_directory: Eòlaire nam pròifil
