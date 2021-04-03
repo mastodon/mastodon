@@ -50,6 +50,14 @@ es:
       description: Aunque la mayoría afirma haber leído y aceptado los términos de servicio, normalmente la gente no los revisa hasta después de que surge un problema. Haz que sea más fácil ver las normas de su servidor de un vistazo disponiéndolas en una lista por puntos. Trata de hacer cada norma corta y sencilla, pero intenta no dividirlas en muchos ítems individuales.
       edit: Editar norma
       title: Normas del servidor
+    system_checks:
+      database_schema_check:
+        message_html: Hay migraciones pendientes de la base de datos. Por favor, ejecútalas para asegurarte de que la aplicación funciona como debería
+      rules_check:
+        action: Administrar reglas del servidor
+        message_html: No ha definido ninguna regla del servidor.
+      sidekiq_process_check:
+        message_html: No hay ningún proceso Sidekiq en ejecución para la(s) cola(s) %{value}. Por favor, revise su configuración de Sidekiq
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
