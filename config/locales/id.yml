@@ -656,6 +656,8 @@ id:
       rules_check:
         action: Kelola aturan server
         message_html: Anda belum menentukan aturan server apapun.
+      sidekiq_process_check:
+        message_html: Tidak ada proses Sidekiq yang berjalan untuk %{value} antrian. Silakan tinjau konfigurasi Sidekiq Anda
     tags:
       accounts_today: Penggunaan unik hari ini
       accounts_week: Penggunaan unik minggu ini
