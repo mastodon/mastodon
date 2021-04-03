@@ -659,6 +659,14 @@ sq:
       no_status_selected: S’u ndryshua ndonjë gjendje, ngaqë s’u përzgjodh ndonjë e tillë
       title: Gjendje llogarish
       with_media: Me media
+    system_checks:
+      database_schema_check:
+        message_html: Ka migrime bazash të dhënash pezull. Ju lutemi, kryejini, për të qenë të sigurt se aplikacioni sillet siç priteet
+      rules_check:
+        action: Administroni rregulla shërbyesi
+        message_html: S’keni përcaktuar ndonjë rregull shërbyesi.
+      sidekiq_process_check:
+        message_html: S’ka proces Sidekiq në punë për %{value} radhë. Ju lutemi, shqyrtoni formësimin tuaj për Sidekiq-un
     tags:
       accounts_today: Përdorime unike sot
       accounts_week: Përdorime unike këtë javë
