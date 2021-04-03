@@ -650,6 +650,12 @@ id:
       no_status_selected: Tak ada status yang berubah karena tak ada yang dipilih
       title: Status akun
       with_media: Dengan media
+    system_checks:
+      database_schema_check:
+        message_html: Ada proses migrasi basis data tertunda. Silakan jalankan untuk memastikan aplikasi bekerja seperti yang diharapkan
+      rules_check:
+        action: Kelola aturan server
+        message_html: Anda belum menentukan aturan server apapun.
     tags:
       accounts_today: Penggunaan unik hari ini
       accounts_week: Penggunaan unik minggu ini
