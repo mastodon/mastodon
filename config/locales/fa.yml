@@ -265,6 +265,18 @@ fa:
         create_account_warning_html: "%{name} هشداری برای %{target} فرستاد"
         create_announcement_html: "%{name} اعلامیه‌ای جدید ایجاد کرد %{target}"
         create_custom_emoji_html: "%{name} اموجی تازهٔ %{target} را بارگذاشت"
+        create_domain_allow_html: "%{name} دامنهٔ %{target} را مجاز کرد"
+        create_domain_block_html: "%{name} دامنهٔ %{target} را مسدود کرد"
+        create_email_domain_block_html: "%{name} دامنهٔ رایانامهٔ %{target} را مسدود کرد"
+        create_ip_block_html: "%{name} برای آی‌پی %{target} قانونی ایجاد کرد"
+        demote_user_html: "%{name} کاربر %{target} را تنزل داد"
+        destroy_announcement_html: "%{name} اعلامیهٔ %{target} را حذف کرد"
+        destroy_custom_emoji_html: "%{name} اموجی %{target} را نابود کرد"
+        destroy_domain_allow_html: "%{name} دامنهٔ %{target} را از فهرست مجاز برداشت"
+        destroy_domain_block_html: "%{name} انسداد دامنهٔ %{target} را رفع کرد"
+        destroy_email_domain_block_html: "%{name} انسداد دامنهٔ رایانامهٔ %{target} را برداشت"
+        destroy_ip_block_html: "%{name} قاعدهٔ آی‌پی %{target} را حذف کرد"
+        destroy_status_html: "%{name} وضعیت %{target} را برداشت"
       deleted_status: "(نوشتهٔ پاک‌شده)"
       empty: هیچ گزارشی پیدا نشد.
       filter_by_action: پالایش بر اساس کنش
@@ -626,7 +638,7 @@ fa:
     system_checks:
       rules_check:
         action: مدیریت قانون‌های کارساز
-        message_html: هیچ قاعدهٔ کارسازی تعریف نکرده‌اید.
+        message_html: هیچ قانون کارسازی تعریف نکرده‌اید.
     tags:
       accounts_today: کاربرد یکتا در امروز
       accounts_week: کاربرد یکتا در این هفته
