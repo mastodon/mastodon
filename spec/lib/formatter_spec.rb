@@ -251,6 +251,14 @@ RSpec.describe Formatter do
       end
     end
 
+    context 'given a stand-alone gemini URI' do
+      let(:text) { 'gemini://gemini.circumlunar.space' }
+
+      it 'matches the full URI' do
+        is_expected.to include 'href="gemini://gemini.circumlunar.space"'
+      end
+    end
+
     context 'given a stand-alone xmpp: URI' do
       let(:text) { 'xmpp:user@instance.com' }
 
