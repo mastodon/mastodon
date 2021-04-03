@@ -5,6 +5,7 @@ eo:
         expires_at: Limdato
         options: Elektoj
       user:
+        agreement: Servo-interkonsento
         email: Retadreso
         locale: Lokaĵaro
         password: Pasvorto
@@ -18,7 +19,13 @@ eo:
           attributes:
             username:
               invalid: nur leteroj, ciferoj kaj substrekoj
+              reserved: rezervita
         status:
           attributes:
             reblog:
               taken: de statuso jam ekzistas
+        user:
+          attributes:
+            email:
+              blocked: uzas nepermesitan retpoŝtan provizanton
+              unreachable: ne ŝajnas ekzisti
