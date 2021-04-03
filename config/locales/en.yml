@@ -367,7 +367,6 @@ en:
       feature_timeline_preview: Timeline preview
       features: Features
       hidden_service: Federation with hidden services
-      misconfigured_sidekiq_alert: 'No Sidekiq process seems to be handling the following queues: %{queues}. Please review your Sidekiq configuration.'
       open_reports: open reports
       pending_tags: hashtags waiting for review
       pending_users: users waiting for review
@@ -661,6 +660,14 @@ en:
       no_status_selected: No statuses were changed as none were selected
       title: Account statuses
       with_media: With media
+    system_checks:
+      database_schema_check:
+        message_html: There are pending database migrations. Please run them to ensure the application behaves as expected
+      rules_check:
+        action: Manage server rules
+        message_html: You haven't defined any server rules.
+      sidekiq_process_check:
+        message_html: No Sidekiq process running for the %{value} queue(s). Please review your Sidekiq configuration
     tags:
       accounts_today: Unique uses today
       accounts_week: Unique uses this week
