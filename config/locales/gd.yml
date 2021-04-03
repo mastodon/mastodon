@@ -5,6 +5,13 @@ gd:
   accounts:
     following: A’ leantainn
   admin:
+    action_logs:
+      action_types:
+        create_account_warning: Cruthaich rabhadh
+      actions:
+        create_account_warning_html: "Chuir %{name} rabhadh gu %{target}"
+    custom_emojis:
+      unlisted: Falaichte o liostaichean
     dashboard:
       feature_profile_directory: Eòlaire nam pròifil
     instances:
@@ -36,6 +43,9 @@ gd:
     tags:
       directory: San eòlaire
       in_directory: "Tha %{count} san eòlaire"
+    warning_presets:
+      edit_preset: Deasaich rabhadh ro-shuidhichte
+      title: Stiùirich na rabhaidhean ro-shuidhichte
   admin_mailer:
     new_report:
       subject: 'Tha gearan ùr aig %{instance} (#%{id})'
@@ -56,7 +66,16 @@ gd:
     '429': Too many requests
     '500':
     '503': The page could not be served due to a temporary server failure.
+  statuses:
+    content_warning: 'Rabhadh susbainte: %{warning}'
+    visibilities:
+      unlisted: Falaichte o liostaichean
   user_mailer:
+    warning:
+      subject:
+        none: Rabhadh dha %{acct}
+      title:
+        none: Rabhadh
     welcome:
       tip_federated_timeline: '’S e sealladh farsaing dhen lìonra Mastodon a tha san loidhne-ama cho-naisgte. Gidheadh, cha ghabh i a-staigh ach na daoine air an do rinn do nàbaidhean fo-sgrìobhadh, mar sin chan eil i coileanta.'
       tip_following: Leanaidh tu air rianaire(an) an fhrithealaiche agad o thùs. Airson daoine nas inntinniche a lorg, thoir sùil air na loidhnichean-ama ionadail is co-naisgte.
