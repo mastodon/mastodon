@@ -1,9 +1,12 @@
 gd:
   about:
     about_hashtag_html: 'Seo dùdan poblach le taga <strong>#%{hashtag}</strong> riutha. ’S urrainn dhut eadar-ghnìomh a ghabhail leotha ma tha cunntas agad àite sam bith sa cho-shaoghal.'
+    browse_directory: rùraich eòlaire phròifilean ’s criathraich a-rèir ùidhean
   accounts:
     following: A’ leantainn
   admin:
+    dashboard:
+      feature_profile_directory: Eòlaire nam pròifil
     instances:
       known_accounts:
         one: "%{count} cunntas as aithne dhuinn"
@@ -26,8 +29,13 @@ gd:
           other: "%{count} gearan"
       report: 'Gearan air #%{id}'
     settings:
+      profile_directory:
+        title: Cuir eòlaire nam pròifil an comas
       show_known_fediverse_at_about_page:
         title: Gabh a-staigh susbaint cho-naisgte air duilleag na loidhne-ama poblaich gun ùghdarrachadh
+    tags:
+      directory: San eòlaire
+      in_directory: "Tha %{count} san eòlaire"
   admin_mailer:
     new_report:
       subject: 'Tha gearan ùr aig %{instance} (#%{id})'
@@ -36,6 +44,8 @@ gd:
       subject: 'Tha taga hais ùr air %{instance} (#%{name}) a’ feitheamh air lèirmheas'
   appearance:
     advanced_web_interface_hint: 'Ma tha thu airson leud gu lèir na sgrìn agad a chleachdadh, leigidh an eadar-aghaidh-lìn adhartach leat gun rèitich thu mòran cholbhan eadar-dhealaichte ach a faic thu na thogras tu de dh’fhiosrachadh aig an aon àm: Dachaigh, brathan, loidhne-ama cho-naisgte, na thogras tu de liostaichean is tagaichean hais.'
+  directories:
+    directory: Eòlaire nam pròifil
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
