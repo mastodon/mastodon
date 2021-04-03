@@ -1,10 +1,21 @@
 gd:
   simple_form:
     hints:
+      admin_account_action:
+        include_statuses: Chì an cleachdaiche dè na dùdan a dh’adhbharaich gnìomh na maorsainneachd no an rabhadh
+        text_html: Roghainneil. Faodaidh tu co-chàradh dùid a chleachdadh. ’S urrainn dhut <a href="%{path}">rabhaidhean ro-shuidhichte a chur ris</a> airson ùine a chaomhnadh
+        types:
+          none: Cleachd seo airson rabhadh a chur dhan chleachdaiche gun ghnìomh eile a ghabhail.
       defaults:
         discoverable: '’S e dòigh eile a th’ ann an eòlaire nam pròifil leis an ruig an cunntas agad èisteachd nas fharsainge'
     labels:
+      admin_account_action:
+        text: Rabhadh gnàthaichte
+        types:
+          none: Cuir rabhadh
+        warning_preset_id: Cleachd rabhadh ro-shuidhichte
       defaults:
         discoverable: Seall an cunntas seo san eòlaire
+        setting_expand_spoilers: Leudaich dùdan ris a bheil rabhadh susbainte an-còmhnaidh
       tag:
         listable: Leig leis an taga hais seo gun nochd e ann an toraidhean luirg ’s air eòlaire nam pròifil
