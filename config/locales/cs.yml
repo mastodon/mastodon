@@ -681,6 +681,8 @@ cs:
       rules_check:
         action: Spravovat pravidla serveru
         message_html: Nedefinovali jste žádná pravidla serveru.
+      sidekiq_process_check:
+        message_html: Pro %{value} frontu/fronty neběží žádný Sidekiq proces. Zkontrolujte prosím svou Sidekiq konfiguraci
     tags:
       accounts_today: Dnešní jedinečná použití
       accounts_week: Jedinečná použití tento týden
