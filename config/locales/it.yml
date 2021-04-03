@@ -659,6 +659,14 @@ it:
       no_status_selected: Nessun status è stato modificato perché nessuno era stato selezionato
       title: Gli status dell'account
       with_media: con media
+    system_checks:
+      database_schema_check:
+        message_html: Ci sono migrazioni del database in attesa. Sei pregato di eseguirle per assicurarti che l'applicazione si comporti come previsto
+      rules_check:
+        action: Gestisci regole del server
+        message_html: Non hai definito alcuna regola del server.
+      sidekiq_process_check:
+        message_html: Nessun processo di Sidekiq in esecuzione per le code di %{value}. Sei pregato di revisionare la tua configurazione di Sidekiq
     tags:
       accounts_today: Usi unici oggi
       accounts_week: Usi unici questa settimana
