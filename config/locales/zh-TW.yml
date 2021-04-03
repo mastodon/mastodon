@@ -609,6 +609,14 @@ zh-TW:
       no_status_selected: 因未選擇嘟文而未變更。
       title: 帳戶嘟文
       with_media: 含有媒體檔案
+    system_checks:
+      database_schema_check:
+        message_html: 有挂起的数据库迁移，请运行它们以确保应用程序按照预期运行。
+      rules_check:
+        action: 管理服务器规则
+        message_html: 你没有定义任何服务器规则。
+      sidekiq_process_check:
+        message_html: 没有队列 %{value} 的Sidekiq进程，请检查你的Sidekiq配置
     tags:
       accounts_today: 本日不重複使用者數
       accounts_week: 本週不重複使用者數
