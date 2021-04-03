@@ -650,6 +650,14 @@ vi:
       no_status_selected: Bạn chưa chọn bất kỳ tút nào
       title: Toàn bộ tút
       with_media: Có ảnh hoặc video
+    system_checks:
+      database_schema_check:
+        message_html: Có cơ sở dữ liệu đang chờ xử lý. Xin khởi động nó để ứng dụng có thể hoạt động một cách ổn định nhất
+      rules_check:
+        action: Sửa quy tắc máy chủ
+        message_html: Bạn chưa cập nhật quy tắc máy chủ.
+      sidekiq_process_check:
+        message_html: Sidekiq không hoạt động khi truy vấn %{value}. Hãy kiểm tra lại cấu hình Sidekiq
     tags:
       accounts_today: Sử dụng hôm nay
       accounts_week: Sử dụng trong tuần
