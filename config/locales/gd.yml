@@ -79,6 +79,11 @@ gd:
     people_who_follow: Daoine a tha a’ leantainn air air %{name}
     pin_errors:
       following: Feumaidh tu leantainn air neach mus urrainn dhut a bhrosnachadh
+    posts:
+      one: Dùd
+      two: Dhùd
+      few: Dùdan
+      other: Dùd
     posts_tab_heading: Dùdan
     posts_with_replies: Dùdan ’s freagairtean
     roles:
@@ -101,10 +106,107 @@ gd:
       add_email_domain_block: Bac àrainn a’ phuist-d
       approve: Aontaich ris
       approve_all: Aontaich ris na h-uile
-      approved_msg: Chaidh aontachadh ri an iarrtas clàraidh aig %{username}
+      approved_msg: Chaidh aontachadh ris an iarrtas clàraidh aig %{username}
       are_you_sure: A bheil thu cinnteach?
       avatar: Avatar
       by_domain: Àrainn
+      change_email:
+        changed_msg: Chaidh post-d a’ chunntais atharrachadh!
+        current_email: Am post-d làithreach
+        label: Atharraich am post-d
+        new_email: Post-d ùr
+        submit: Atharraich am post-d
+        title: Atharraich am post-d airson %{username}
+      confirm: Dearbh
+      confirmed: Chaidh a dhearbhachadh
+      confirming: '’Ga dhearbhadh'
+      delete: Sguab às an dàta
+      deleted: Chaidh a sguabadh às
+      demote: Ìslich
+      destroyed_msg: "Chaidh an dàta aig %{username} a chur air a’ chiutha ach an dèid a sguabadh às an ceann greis bheag"
+      disable: Reòth
+      disable_two_factor_authentication: Cuir an dearbhadh dà-cheumnach à comas
+      disabled: Reòthte
+      display_name: Ainm-taisbeanaidh
+      domain: Àrainn
+      edit: Deasaich
+      email: Post-d
+      email_status: Staid a’ phuist-d
+      enable: Dì-reòth
+      enabled: An comas
+      enabled_msg: Chaidh an cunntas aig %{username} a dhì-reòthadh
+      followers: Luchd-leantainn
+      follows: A’ leantainn air
+      header: Bann-cinn
+      inbox_url: URL a’ bhogsa a-steach
+      invite_request_text: Adhbharan na ballrachd
+      invited_by: Air cuireadh fhaighinn o
+      joined: Air ballrachd fhaighinn 
+      location:
+        all: Na h-uile
+        local: Ionadail
+        remote: Cèin
+        title: Ionad
+      login_status: Staid a’ chlàraidh a-steach
+      media_attachments: Ceanglachain mheadhanan
+      memorialize: Dèan cuimhneachan dheth
+      memorialized: Mar chuimhneachan
+      memorialized_msg: Chaidh cunntas cuimhneachain a dhèanamh dhe %{username}
+      moderation:
+        active: Gnìomhach
+        all: Na h-uile
+        pending: Ri dhèiligeadh
+        silenced: Mùchte
+        suspended: À rèim
+        title: Maorsainneachd
+      moderation_notes: Nòtaichean na maorsainneachd
+      most_recent_activity: A’ ghnìomhachd as ùire
+      most_recent_ip: An IP as ùire
+      no_account_selected: Cha deach cunntas sam bith atharrachadh o nach deach gin dhiubh a thaghadh
+      no_limits_imposed: Cha deach crìoch sam bith a sparradh
+      not_subscribed: Gun fho-sgrìobhadh
+      pending: A’ feitheamh air lèirmheas
+      perform_full_suspension: Cuir à rèim
+      promote: Àrdaich
+      protocol: Pròtacal
+      public: Poblach
+      push_subscription_expires: Falbhaidh an ùine air an fho-sgrìobhadh PuSH
+      redownload: Ath-nuadhaich a’ phròifil
+      redownloaded_msg: Chaidh a’ phròifil aig %{username} on tùs
+      reject: Diùlt
+      reject_all: Diùlt na h-uile
+      rejected_msg: Chaidh an t-iarrtas clàraidh aig %{username} a dhiùltadh
+      remove_avatar: Thoir air falbh an t-avatar
+      remove_header: Thoir air falbh am bann-cinn
+      removed_avatar_msg: Chaidh dealbh an avatar aig %{username} a thoirt air falbh
+      removed_header_msg: Chaidh dealbh a’ bhanna-chinn aig %{username} a thoirt air falbh
+      resend_confirmation:
+        already_confirmed: Chaidh an cleachdaiche seo a dhearbhadh mu thràth
+        send: Cuir am post-d dearbhaidh a-rithist
+        success: Chaidh post-d dearbhaidh a chur!
+      reset: Ath-shuidhich
+      reset_password: Ath-shuidhich am facal-faire
+      resubscribe: Fo-sgrìobh a-rithist
+      role: Ceadan
+      roles:
+        admin: Rianaire
+        moderator: Maor
+        staff: Ball dhen sgioba
+        user: Cleachdaiche
+      search: Lorg
+      search_same_email_domain: Cleachdaichean eile aig a bheil an aon àrainn puist-d
+      search_same_ip: Cleachdaichean eile aig a bheil an t-aon IP
+      sensitive: Frionasach
+      sensitized: chaidh comharradh gu bheil e frionasach
+      shared_inbox_url: URL a’ bhogsa a-steach cho-roinnte
+      show:
+        created_reports: Gearanan a chaidh a dhèanamh
+        targeted_reports: Gearanan le càch
+      silence: Crìoch
+      silenced: Cuingichte
+      statuses: Staidean
+      subscribe: Fo-sgrìobh
+      suspended: À rèim
     action_logs:
       action_types:
         create_account_warning: Cruthaich rabhadh
@@ -141,6 +243,9 @@ gd:
         title: Cuir eòlaire nam pròifil an comas
       show_known_fediverse_at_about_page:
         title: Gabh a-staigh susbaint cho-naisgte air duilleag na loidhne-ama poblaich gun ùghdarrachadh
+      show_staff_badge:
+        desc_html: Seall bràist sgioba air duilleag cleachdaiche
+        title: Seall bràist sgioba
     tags:
       directory: San eòlaire
       in_directory: "Tha %{count} san eòlaire"
@@ -155,6 +260,9 @@ gd:
       subject: 'Tha taga hais ùr air %{instance} (#%{name}) a’ feitheamh air lèirmheas'
   appearance:
     advanced_web_interface_hint: 'Ma tha thu airson leud gu lèir na sgrìn agad a chleachdadh, leigidh an eadar-aghaidh-lìn adhartach leat gun rèitich thu mòran cholbhan eadar-dhealaichte ach a faic thu na thogras tu de dh’fhiosrachadh aig an aon àm: Dachaigh, brathan, loidhne-ama cho-naisgte, na thogras tu de liostaichean is tagaichean hais.'
+  auth:
+    status:
+      pending: Feumaidh an sgioba againn lèirmheas a dhèanamh air d’ iarrtas. Dh’fhaoidte gun doir seo greis. Gheibh thu post-d nuair a bhios sinn air aontachadh ri d’ iarrtas.
   directories:
     directory: Eòlaire nam pròifil
   errors:
@@ -173,6 +281,7 @@ gd:
       unlisted: Falaichte o liostaichean
   user_mailer:
     warning:
+      get_in_touch: '’S urrainn dhut freagairt dhan phost-d seo no conaltradh ris an sgioba aig %{instance}.'
       subject:
         none: Rabhadh dha %{acct}
       title:
