@@ -650,6 +650,14 @@ zh-CN:
       no_status_selected: 因为没有嘟文被选中，所以没有更改
       title: 帐户嘟文
       with_media: 含有媒体文件
+    system_checks:
+      database_schema_check:
+        message_html: 有待处理的数据库迁移。请运行它们以确保应用程序正常运行。
+      rules_check:
+        action: 管理服务器规则
+        message_html: 你没有定义任何服务器规则。
+      sidekiq_process_check:
+        message_html: 没有运行 %{value} 队列的 Sidekiq 进程。请检查您的 Sidekiq 配置
     tags:
       accounts_today: 今日活跃用户
       accounts_week: 本周活跃用户
