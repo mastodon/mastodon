@@ -675,6 +675,12 @@ cs:
       no_status_selected: Nebyly změněny žádné tooty, neboť žádné nebyly vybrány
       title: Tooty účtu
       with_media: S médii
+    system_checks:
+      database_schema_check:
+        message_html: Na spuštění čekají databázové migrace. Nechte je prosím proběhnout pro zajištění očekávaného chování aplikace
+      rules_check:
+        action: Spravovat pravidla serveru
+        message_html: Nedefinovali jste žádná pravidla serveru.
     tags:
       accounts_today: Dnešní jedinečná použití
       accounts_week: Jedinečná použití tento týden
