@@ -207,16 +207,160 @@ gd:
       statuses: Staidean
       subscribe: Fo-sgrìobh
       suspended: À rèim
+      suspension_irreversible: Chaidh dàta a’ chunntais seo a sguabadh às gu buan. ’S urrainn an cunntas a chur ann an rèim a-rithist ach an gabh a chleachdadh ach chan fhaigh thu gin dhen dàta air ais a b’ àbhaist a bhith aige.
+      suspension_reversible_hint_html: Chaidh an cunntas a chur à rèim agus thèid an dàta aige a sguabadh às gu buan %{date}. Gus an dig an t-àm ud, gabhaidh an cunntas aiseag fhathast gun droch bhuaidh sam bith air. Nam bu toigh leat gach dàta a’ chunntais a thoirt air falbh sa bhad, ’s urrainn dhut sin a dhèanamh gu h-ìosal.
+      time_in_queue: A’ feitheamh air a’ chiudha fad %{time}
+      title: Cunntasan
+      unconfirmed_email: Post-d gun dearbhadh
+      undo_sensitized: Thoir air falbh a comharra gu bheil e frionasach
+      undo_silenced: Dì-mhùch
+      undo_suspension: Cuir ann an rèim a-rithist
+      unsilenced_msg: Chaidh an cuingeachadh a thoirt air falbh on chunntas aig %{username}
+      unsubscribe: Cuir crìoch air an fho-sgrìobhadh
+      unsuspended_msg: Chaidh an cunntas aig %{username} a chur ann an rèim a-rithist
+      username: Ainm-cleachdaiche
+      view_domain: Sealladh geàrr-chunntas na h-àrainn
+      warn: Thoir rabhadh
+      web: Lìon
+      whitelisted: Ceadaichte a chùm co-nasgaidh
     action_logs:
       action_types:
+        assigned_to_self_report: Iomruin an gearan
+        change_email_user: Atharraich post-d a’ chleachdaiche
+        confirm_user: Dearbh an cleachdaiche
         create_account_warning: Cruthaich rabhadh
+        create_announcement: Cruthaich brath-fios
+        create_custom_emoji: Cruthaich Emoji gnàthaichte
+        create_domain_allow: Cruthaich ceadachadh àrainne
+        create_domain_block: Cruthaich bacadh àrainne
+        create_email_domain_block: Cruthaich bacadh àrainne puist-d
+        create_ip_block: Cruthaich riaghailt IP
+        demote_user: Ìslich an cleachdaiche
+        destroy_announcement: Sguab às am brath-fios
+        destroy_custom_emoji: Sguab às an t-Emoji gnàthaichte
+        destroy_domain_allow: Sguab às ceadachadh na h-àrainne
+        destroy_domain_block: Sguab às bacadh na h-àrainne
+        destroy_email_domain_block: Sguab às bacadh na h-àrainne puist-d
+        destroy_ip_block: Sguab às an riaghailt IP
+        destroy_status: Sguab às an staid
+        disable_2fa_user: Cuir an dearbhadh dà-cheumnach à comas
+        disable_custom_emoji: Cuir an t-Emoji gnàthaichte à comas
+        disable_user: Cuir an cleachdaiche à comas
+        enable_custom_emoji: Cuir an t-Emoji gnàthaichte an comas
+        enable_user: Cuir an cleachdaiche an comas
+        memorialize_account: Dèan cuimhneachan dhen chunntas
+        promote_user: Àrdaich an cleachdaiche
+        remove_avatar_user: Thoir air falbh an t-avatar
+        reopen_report: Fosgail an gearan a-rithist
+        reset_password_user: Ath-shuidhich am facal-faire
+        resolve_report: Fuasgail an gearan
+        sensitive_account: Comharraich gu bheil na meadhanan sa chunntas agad frionasach
+        silence_account: Mùch an cunntas
+        suspend_account: Cuir an cunntas à rèim
+        unassigned_report: Dì-iomruin an gearan
+        unsensitive_account: Comharraich nach eil na meadhanan sa chunntas agad frionasach
+        unsilence_account: Dì-mhùch an cunntas
+        unsuspend_account: Cuir an cunntas ann an rèim a-rithist
+        update_announcement: Ùraich am brath-fios
+        update_custom_emoji: Ùraich an t-Emoji gnàthaichte
+        update_domain_block: Ùraich bacadh na h-àrainne
+        update_status: Ùraich an staid
       actions:
         create_account_warning_html: "Chuir %{name} rabhadh gu %{target}"
+      deleted_status: "(staid air a sguabadh às)"
+      empty: Cha deach loga a lorg.
+      filter_by_action: Criathraich a-rèir gnìomha
+      filter_by_user: Criathraich a-rèir cleachdaiche
+      title: Sgrùd an loga
+    announcements:
+      destroyed_msg: Chaidh am brath-fios a sguabadh às!
+      edit:
+        title: Deasaich am brath-fios
+      empty: Cha deach brath-fios a lorg.
+      live: Beò
+      new:
+        create: Cruthaich brath-fios
+        title: Brath-fios ùr
+      published_msg: Chaidh am brath-fios fhoillseachadh!
+      scheduled_for: Chaidh a chur air an sgeideal %{time}
+      scheduled_msg: Thèid am brath-fios fhoillseachadh a-rèir sgeideil!
+      title: Brathan-fios
+      unpublished_msg: Chaidh am brath-fios a dhì-fhoillseachadh!
+      updated_msg: Chaidh am brath-fios ùrachadh!
     custom_emojis:
+      assign_category: Iomruin roinn-seòrsa dha
+      by_domain: Àrainn
+      copied_msg: Chaidh lethbhreac ionadail dhen Emoji a chruthachadh
+      copy: Dèan lethbhreac
+      copy_failed_msg: Na dèan lethbhreac ionadail dhen Emoji sin
+      create_new_category: Cruthaich roinn-seòrsa ùr
+      created_msg: Chaidh an t-Emoji a chruthachadh!
+      delete: Sguab às
       destroyed_msg: Chaidh an Emoji gnàthaichte a mhilleadh!
+      disable: Cuir à comas
+      disabled: Chaidh a chur à comas
+      disabled_msg: Chaidh an t-Emoji sin a chur à comas
+      enable: Cuir an comas
+      enabled: Chaidh a chur an comas
+      enabled_msg: Chaidh an t-Emoji sin a chur an comas
+      image_hint: PNG suas ri 50KB
+      list: Liosta
+      listed: Liostaichte
+      new:
+        title: Cuir Emoji gnàthaichte ùr ris
+      not_permitted: Chan fhaod thu seo a dhèanamh
+      overwrite: Sgrìobh thairis air
+      shortcode: Geàrr-chòd
+      shortcode_hint: Co-dhiù 2 charactar, litrichean gun stràcan, àireamhan is fo-loidhnichean a-mhàin
+      title: Emojis gnàthaichte
+      uncategorized: Gun roinn-seòrsa
+      unlist: Falaich o liostaichean
       unlisted: Falaichte o liostaichean
+      update_failed_msg: Cha b’ urrainn dhuinn an t-Emoji sin ùrachadh
+      updated_msg: Chaidh an t-Emoji ùrachadh!
+      upload: Luchdaich suas
     dashboard:
+      authorized_fetch_mode: Modh tèarainte
+      backlog: An càrn-obrach
+      config: Rèiteachadh
+      feature_deletions: Cunntasan air an sguabadh às
+      feature_invites: Ceanglaichean cuiridh
       feature_profile_directory: Eòlaire nam pròifil
+      feature_registrations: Clàraidhean
+      feature_relay: Ath-sheachadan co-nasgaidh
+      feature_spam_check: Dìon an aghaidh spama
+      feature_timeline_preview: Ro-shealladh air an loidhne-ama
+      features: Gleusan
+      hidden_service: Co-nasgadh le seirbheisean falaichte
+      open_reports: gearanan fosgailte
+      pending_tags: tagaichean hais a’ feitheamh air lèirmheas
+      pending_users: cleachdaichean a’ feitheamh air lèirmheas
+      recent_users: Cleachdaichean o chionn ghoirid
+      search: Lorg làn-teacsa
+      single_user_mode: Modh a’ chleachdaiche shingilte
+      software: Bathar-bog
+      space: Caitheamh àite
+      title: Deas-bhòrd
+      total_users: cleachdaichean iomlan
+      trends: Treandaichean
+      week_interactions: eadar-ghnìomhan an t-seachdain seo
+      week_users_active: gnìomhach an t-seachdain seo
+      week_users_new: cleachdaichean an t-seachdain seo
+      whitelist_mode: Modh a’ cho-nasgaidh chuingichte
+    domain_allows:
+      add_new: Ceadaich co-nasgadh le àrainn
+      created_msg: Chaidh an àrainn a cheadachadh a chùm co-nasgaidh
+      destroyed_msg: Chan eil co-nasgadh leis an àrainn seo ceadaichte tuilleadh
+      undo: Na ceadaich co-nasgadh leis an àrainn
+    domain_blocks:
+      add_new: Cuir bacadh àrainne ùr ris
+      created_msg: Tha bacadh na h-àrainne ’ga phròiseasadh
+      destroyed_msg: Chan eil an àrainn ’ga bacadh tuilleadh
+      domain: Àrainn
+      edit: Deasaich bacadh na h-àrainne
+      existing_domain_block_html: Chuir thu cuingeachadh nas teinne air %{name} mu thràth, feumaidh tu a <a href="%{unblock_url}">dì-bhacadh</a> an toiseach.
+      new:
+        create: Cruthaich bacadh
     instances:
       known_accounts:
         one: "%{count} cunntas as aithne dhuinn"
