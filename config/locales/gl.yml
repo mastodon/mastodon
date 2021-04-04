@@ -658,6 +658,14 @@ gl:
       no_status_selected: Non se cambiou ningún estado xa que ningún foi seleccionado
       title: Estados da conta
       with_media: con medios
+    system_checks:
+      database_schema_check:
+        message_html: Existen migracións pendentes na base de datos. Bota man desta tarefa para facer que a aplicación funcione como se agarda dela
+      rules_check:
+        action: Xestionar regras do servidor
+        message_html: Non tes definidas regras para o servidor.
+      sidekiq_process_check:
+        message_html: Non hai procesos Sidekiq a funcionar para a cola(s) %{value}. Revisa a túa configuración para Sidekiq
     tags:
       accounts_today: Usos únicos hoxe
       accounts_week: Usos únicos esta semana
