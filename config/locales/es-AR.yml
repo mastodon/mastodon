@@ -659,6 +659,14 @@ es-AR:
       no_status_selected: No se cambió ningún toot ya que ninguno fue seleccionado
       title: Toots de la cuenta
       with_media: Con medios
+    system_checks:
+      database_schema_check:
+        message_html: Hay migraciones pendientes de la base de datos. Por favor, ejecutalas para asegurarte de que la aplicación funciona según lo esperado
+      rules_check:
+        action: Administrar reglas del servidor
+        message_html: No definiste ninguna regla del servidor.
+      sidekiq_process_check:
+        message_html: No hay ningún proceso Sidekiq en ejecución para la/s cola/s %{value}. Por favor, revisá tu configuración de Sidekiq
     tags:
       accounts_today: Usos únicos de hoy
       accounts_week: Usos únicos esta semana
