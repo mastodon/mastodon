@@ -675,6 +675,14 @@ pl:
       no_status_selected: Żaden wpis nie został zmieniony, bo żaden nie został wybrany
       title: Wpisy konta
       with_media: Z zawartością multimedialną
+    system_checks:
+      database_schema_check:
+        message_html: Istnieją oczekujące migracje bazy danych. Uruchom je, aby upewnić się, że aplikacja działa tak, jak powinna
+      rules_check:
+        action: Zarządzaj regułami serwera
+        message_html: Nie zdefiniowano żadnych reguł serwera.
+      sidekiq_process_check:
+        message_html: Brak uruchomionego procesu Sidekiq dla kolejki(-ek) %{value}. Sprawdź konfigurację Sidekiq
     tags:
       accounts_today: Unikalne wykorzystania dzisiaj
       accounts_week: Unikalne wykorzystania w tym tygodniu
