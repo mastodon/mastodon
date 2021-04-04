@@ -625,6 +625,14 @@ tr:
       no_status_selected: Hiçbiri seçilmediğinden hiçbir durum değiştirilmedi
       title: Hesap durumları
       with_media: Medya ile
+    system_checks:
+      database_schema_check:
+        message_html: Beklemede olan veritabanı güncellemeleri mevcut. Uygulamanın beklenildiği gibi çalışması için lütfen onları çalıştırın
+      rules_check:
+        action: Sunucu kurallarını yönet
+        message_html: Herhangi bir sunucu kuralı belirlemediniz.
+      sidekiq_process_check:
+        message_html: '%{value} kuyruk(lar)ı için herhangi bir Sidekiq süreci çalışmıyor. Lütfen Sidekiq yapılandırmanızı gözden geçirin'
     tags:
       accounts_today: Bugünkü eşsiz kullanımlar
       accounts_week: Bu haftaki eşsiz kullanımlar
