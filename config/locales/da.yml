@@ -226,6 +226,9 @@ da:
         unsilence_account: Fjern dæmpelse af konto
         update_announcement: Opdater bekendtgørelse
         update_status: Opdater status
+      actions:
+        create_domain_block_html: "%{name} blokerede domænet %{target}"
+        create_email_domain_block_html: "%{name} blokerede e-mail domænet %{target}"
       deleted_status: "(slettet status)"
       empty: Ingen logs fundet.
       filter_by_action: Filtrer efter handling
@@ -551,6 +554,9 @@ da:
       no_status_selected: Ingen statusser blev ændret eller ingen blev valgt
       title: Konto statusser
       with_media: Med multimedier
+    system_checks:
+      rules_check:
+        action: Administrer serverregler
     tags:
       accounts_today: Unikke brug i dag
       accounts_week: Unikke brug denne uge
@@ -621,6 +627,9 @@ da:
     migrate_account: Flyt til en anden konto
     migrate_account_html: Hvis du ønsker at omdirigere denne konto til en anden, kan du <a href="%{path}">gøre det her</a>.
     or_log_in_with: Eller log in med
+    providers:
+      cas: CAS
+      saml: SAML
     register: Opret dig
     registration_closed: "%{instance} accepterer ikke nye medlemmer"
     resend_confirmation: Gensend bekræftelses instrukser
@@ -689,7 +698,7 @@ da:
     '400': The request you submitted was invalid or malformed.
     '403': Du har ikke tilladelse til at se denne side.
     '404': Den side du leder efter findes ikke.
-    '406': This page is not available in the requested format.
+    '406': Denne side er ikke tilgængelig i det ønskede format.
     '410': Den side du leder efter findes ikke mere.
     '422':
       content: Sikkerhedsbekræftelse mislykkedes. Blokerer du cookies?
@@ -859,6 +868,8 @@ da:
       body: 'Du blev nævnt af %{name} i:'
       subject: Du blev nævnt af %{name}
       title: Ny omtale
+    poll:
+      subject: En afstemning af %{name} er afsluttet
     reblog:
       body: 'Din status blev fremhævet af %{name}:'
       subject: "%{name} fremhævede din status"
