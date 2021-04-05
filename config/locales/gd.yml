@@ -459,6 +459,22 @@ gd:
     relays:
       add_new: Cuir ath-sheachadan ùr ris
       delete: Sguab às
+      description_html: '’S e frithealaiche eadar-mheadhanach a th’ ann an <strong>ath-sheachadan co-nasgaidh</strong> a nì iomlaid air grunnan mòra de dhùdan poblach eadar na frithealaichean a dh’fho-sgrìobhas ’s a dh’fhoillsicheas dha. <strong>’S urrainn dha cuideachadh a thoirt do dh’fhrithealaichean beaga is meadhanach mòr ach an lorg iad susbaint sa cho-shaoghal</strong> agus às an aonais, bhiodh aig cleachdaichean ionadail leantainn air daoine eile air frithealaichean cèine a làimh.'
+      disable: Cuir à comas
+      disabled: Chaidh a chur à comas
+      enable: Cuir an comas
+      enable_hint: Nuair a bhios seo air a chur an comas, nì am frithealaiche agad fo-sgrìobhadh air a h-uile dùd poblach on ath-sheachadan seo agus tòisichidh e air dùdan poblach an fhrithealaiche seo a chur a-null dha.
+      enabled: Chaidh a chur an comas
+      inbox_url: URL an ath-sheachadain
+      pending: A’ feitheamh ri aontachadh an ath-sheachadain
+      save_and_enable: Sàbhail ’s cuir an comas
+      setup: Suidhich ceangal ri ath-sheachadain
+      signatures_not_enabled: Chan obraich ath-sheachadain mar bu chòir nuair a bhios am modh tèarainte no modh a’ cho-nasgaidh chuingichte an comas
+      status: Staid
+      title: Ath-sheachadain
+    report_notes:
+      created_msg: Chaidh nòta a chruthachadh dhan ghearan!
+      destroyed_msg: Chaidh nòta a’ ghearain a sguabadh às!
     reports:
       account:
         notes:
@@ -471,15 +487,114 @@ gd:
           two: "%{count} ghearan"
           few: "%{count} gearanan"
           other: "%{count} gearan"
+      action_taken_by: Chaidh an gnìomh a ghabhail le
+      are_you_sure: A bheil thu cinnteach?
+      assign_to_self: Iomruin dhomh-sa
+      assigned: Maor iomruinte
+      by_target_domain: Àrainn cunntas a’ ghearain
+      comment:
+        none: Chan eil gin
+      created_at: Chaidh an gearan a dhèanamh
+      forwarded: Chaidh a shìneadh air adhart
+      forwarded_to: Chaidh a shìneadh air adhart gu %{domain}
+      mark_as_resolved: Cuir comharra gun deach fhuasgladh
+      mark_as_unresolved: Cuir comharra nach deach fhuasgladh
+      notes:
+        create: Cuir nòta ris
+        create_and_resolve: Fuasgail le nòta
+        create_and_unresolve: Ath-fhosgail le nòta
+        delete: Sguab às
+        placeholder: Mìnich dè na ghnìomhan a chaidh a ghabhail no naidheachd sam bith eile mu dhèidhinn…
+      reopen: Fosgail an gearan a-rithist
       report: 'Gearan air #%{id}'
+      reported_account: Cunntas mun a chaidh a ghearan
+      reported_by: Chaidh gearan a dhèanamh le
+      resolved: Air fhuasgladh
+      resolved_msg: Chaidh an gearan fhuasgladh!
+      status: Staid
+      title: Gearanan
+      unassign: Dì-iomruin
+      unresolved: Gun fhuasgladh
+      updated_at: Air ùrachadh
     settings:
+      activity_api_enabled:
+        desc_html: Cunntasan nan staidean a chaidh a phostadh gu h-ionadail, nan cleachdaichean gnìomhach ’s nan clàraidhean ùra an am bucaidean seachdaineil
+        title: Foillsich agragaid dhen stadastaireachd mu ghnìomhachd nan cleachdaichean
+      bootstrap_timeline_accounts:
+        desc_html: Sgar iomadh ainm cleachdaiche le cromag. Chan obraich ach cunntasan ionadail ’s gun ghlas orra. ’S e na rianairean ionadail uile a tha sa bhun-roghainn nuair a bhios seo falamh.
+        title: Leantainn tùsail nan cleachdaichean ùra
+      contact_information:
+        email: Post-d gnìomhachais
+        username: Ainm cleachdaiche a’ chonaltraidh
+      custom_css:
+        desc_html: Atharraich an coltas le CSS a thèid a luchdadh le gach duilleag
+        title: CSS gnàthaichte
+      default_noindex:
+        desc_html: Bidh buaidh air a h-uile cleachdaiche nach do dh’atharraich an roghainn seo dhaibh fhèin
+        title: Thoir air falbh ro-aonta nan cleachdaichean air inneacsadh le einnseanan-luirg mar a’ bhun-roghainn
+      domain_blocks:
+        all: Dhan a h-uile duine
+        disabled: Na seall idir
+        title: Seall bacaidhean àrainne
+        users: Dhan luchd-chleachdaidh a clàraich a-steach gu h-ionadail
+      domain_blocks_rationale:
+        title: Seall an t-adhbhar
+      enable_bootstrap_timeline_accounts:
+        desc_html: Thoir air cleachdaichean ùra gun lean iad air na cunntasan rèitichte gu fèin-obrachail ach nach tòisich loidhne-ama an dachaigh gu falamh
+        title: Cuir an comas leantainn tùsail nan cleachdaichean ùra
+      hero:
+        desc_html: Thèid seo a shealltainn air a’ phrìomh-dhuilleag. Mholamaid 600x100px air a char as lugha. Mura dèid seo a shuidheachadh, thèid dealbhag an fhrithealaiche a shealltainn ’na àite
+        title: Dealbh gaisgich
+      mascot:
+        desc_html: Thèid seo a shealltainn air iomadh duilleag. Mholamaid 293×205px air a char as lugha. Mura dèid seo a shuidheachadh, thèid an suaichnean a shealltainn ’na àite
+        title: Dealbh suaichnein
+      peers_api_enabled:
+        desc_html: Ainmean àrainne air an do thachair am frithealaiche seo sa cho-shaoghal
+        title: Foillsich liosta nam frithealaichean a chaidh a lorg
+      preview_sensitive_media:
+        desc_html: Ro-sheallaidh ceanglaichean dealbhag fhiù ’s ma chaidh comharradh gu bheil am meadhan frionasach
+        title: Seall meadhanan frionasach ann an ro-sheallaidhean OpenGraph
       profile_directory:
+        desc_html: Suidhich gun gabh cleachdaichean a lorg
         title: Cuir eòlaire nam pròifil an comas
+      registrations:
+        closed_message:
+          desc_html: Thèid seo a shealltainn air an duilleag-dhachaigh nuair a bhios an clàradh dùinte. ’S urrainn dhut tagaichean HTML a chleachdadh.
+          title: Teachdaireachd a’ chlàraidh dhùinte
+        deletion:
+          desc_html: Leig le neach sa bith an cunntas a sguabadh às
+          title: Fosgail sguabadh às chunntasan
+        min_invite_role:
+          disabled: Na ceadaich idir
+          title: Ceadaich cuiridhean le
+        require_invite_text:
+          desc_html: Nuair a bhios aontachadh a làimh riatanach dhan chlàradh, dèan an raon teacsa “Carson a bu mhiann leat ballrachd fhaighinn?” riatanach seach roghainneil
+          title: Iarr air cleachdaichean ùra gun innis iad carson a tha iad ag iarraidh ballrachd
+      registrations_mode:
+        modes:
+          approved: Tha aontachadh riatanach airson clàradh
+          none: Chan fhaod neach sam bith clàradh
+          open: '’S urrainn do neach sam bith clàradh'
+        title: Modh a’ chlàraidh
       show_known_fediverse_at_about_page:
+        desc_html: Nuair a bhios seo à comas, cha sheall an loidhne-ama phoblach a thèid a cheangal rithe on duilleag-lanndaidh ach susbaint ionadail
         title: Gabh a-staigh susbaint cho-naisgte air duilleag na loidhne-ama poblaich gun ùghdarrachadh
       show_staff_badge:
         desc_html: Seall bràist sgioba air duilleag cleachdaiche
         title: Seall bràist sgioba
+      site_description:
+        desc_html: Earrann tuairisgeil air an API. Mìnich dè tha sònraichte mun fhrithealaiche Mastodon seo agus rud sa bith eile a tha cudromach. ’S urrainn dhut tagaichean HTML a chleachdadh agus <code>&lt;a&gt;</code> ’s <code>&lt;em&gt;</code> gu sònraichte.
+        title: Tuairisgeul an fhrithealaiche
+      site_description_extended:
+        desc_html: Seo deagh àite airson an còd-giùlain, na riaghailtean ’s na comharran-treòrachaidh agad agus do nithean eile a tha sònraichte mun fhrithealaiche agad. ‘S urrainn dhut tagaichean HTML a chleachdadh
+        title: Fiosrachadh leudaichte gnàthaichte
+      site_short_description:
+        desc_html: Nochdaidh seo air a’ bhàr-taoibh agus sna meata-thagaichean. Mìnich dè th’ ann am Mastodon agus dè tha sònraichte mun fhrithealaiche agad ann an an earrann a-mhàin.
+        title: Tuairisgeul goirid an fhrithealaiche
+      site_terms:
+        desc_html: '’S urrainn dhut am poileasaidh prìobhaideachd no teirmichean na seirbheise agad fhèin no fiosrachadh laghail sa bith eile a sgrìobhadh. ‘S urrainn dhut tagaichean HTML a chleachdadh'
+        title: Teirmichean gnàthaichte na seirbheise
+      site_title: Ainm an fhrithealaiche
     tags:
       directory: San eòlaire
       in_directory: "Tha %{count} san eòlaire"
