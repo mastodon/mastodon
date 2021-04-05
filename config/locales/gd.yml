@@ -361,14 +361,104 @@ gd:
       existing_domain_block_html: Chuir thu cuingeachadh nas teinne air %{name} mu thràth, feumaidh tu a <a href="%{unblock_url}">dì-bhacadh</a> an toiseach.
       new:
         create: Cruthaich bacadh
+        hint: Cha chuir bacadh na h-àrainne crìoch air cruthachadh chunntasan san stòr-dàta ach cuiridh e dòighean maorsainneachd sònraichte an sàs gu fèin-obrachail air a h-uile dàta a tha aig na cunntasan ud.
+        severity:
+          desc_html: "Falaichidh am <strong>mùchadh</strong> postaichean a’ chunntais do dhuine sam bith nach ail a’ leantainn air. Bheir an <strong>cur à rèim</strong> air falbh gach susbaint, meadhan is dàta pròifil a’ chunntais. Tagh <strong>Chan eil gin</strong> mur eil thu ach airson faidhlichean meadhain a dhiùltadh."
+          noop: Chan eil gin
+          silence: Mùch
+          suspend: Cuir à rèim
+        title: Bacadh àrainne ùr
+      obfuscate: Doilleirich ainm na h-àrainne
+      obfuscate_hint: Doilleirich pàirt de dh’ainm na h-àrainne air an liosta ma tha foillseachadh liosta nan cuingeachaidhean àrainne an comas
+      private_comment: Beachd prìobhaideachd
+      private_comment_hint: Beachd mu chuingeachadh na h-àrainne seo nach cleachd ach na maoir.
+      public_comment: Beachd poblach
+      public_comment_hint: Beachd poblach mu chuingeachadh na h-àrainne seo ma tha foillseachadh liosta nan cuingeachaidhean àrainne an comas
+      reject_media: Diùlt faidhlichean meadhain
+      reject_media_hint: Bheir seo air falbh na faidhlichean meadhain a chaidh a stòradh agus diùltaidh e luchdadh a-nuas sam bith dhiubh san àm ri teachd. Chan eil buaidh aig seo fo chur à rèim
+      reject_reports: Diùlt gearanan
+      reject_reports_hint: Leig seachad gearan sam bith a thig a-steach on àrainn seo. Chan eil buaidh aig seo fo chur à rèim
+      rejecting_media: a’ diùltadh faidhlichean meadhain
+      rejecting_reports: a’ diùltadh gearanan
+      severity:
+        silence: mùchte
+        suspend: à rèim
+      show:
+        affected_accounts:
+          one: Bheir seo buaidh air %{count} chunntas san stòr-dàta
+          two: "Bheir seo buaidh air %{count} chunntas san stòr-dàta"
+          few: "Bheir seo buaidh air %{count} cunntasan san stòr-dàta"
+          other: "Bheir seo buaidh air %{count} cunntas san stòr-dàta"
+        retroactive:
+          silence: Dì-mhùch na cunntasan a tha ann on àrainn seo ’s air a bheil buaidh
+          suspend: Cuir na cunntasan a tha ann on àrainn seo ’s air a bheil buaidh ann an rèim a-rithist
+        title: Neo-dhèan bacadh na h-àrainne %{domain}
+        undo: Neo-dhèan
+      undo: Neo-dhèan bacadh na h-àrainne
+      view: Seall bacadh na h-àrainne
+    email_domain_blocks:
+      add_new: Cuir tè ùr ris
+      created_msg: Chaidh àrainn a’ phuist-d a bhacadh
+      delete: Sguab às
+      destroyed_msg: Chaidh àrainn a’ phuist-d a dhì-bhacadh
+      domain: Àrainn
+      empty: Chan eil àrainn puist-d sam bith ’ga bhacadh aig an àm seo.
+      from_html: o %{domain}
+      new:
+        create: Cuir àrainn ris
+        title: Bac àrainn puist-d ùr
+      title: Àrainnean puist-d ’gam bacadh
     instances:
+      by_domain: Àrainn
+      delivery_available: Tha lìbhrigeadh ri fhaighinn
+      empty: Cha deach àrainn a lorg.
       known_accounts:
         one: "%{count} cunntas as aithne dhuinn"
         two: "%{count} chunntas as aithne dhuinn"
         few: "%{count} cunntasan as aithne dhuinn"
         other: "%{count} cunntas as aithne dhuinn"
+      moderation:
+        all: Na h-uile
+        limited: Cuingichte
+        title: Maorsainneachd
+      private_comment: Beachd prìobhaideachd
+      public_comment: Beachd poblach
+      title: Co-nasgadh
+      total_blocked_by_us: '‘Ga bhacadh leinne'
+      total_followed_by_them: '’Ga leantainn leotha-san'
+      total_followed_by_us: '’Ga leantainn leinne'
+      total_reported: Gearanan mun dèidhinn
+      total_storage: Ceanglachain mheadhanan
+    invites:
+      deactivate_all: Cuir na h-uile à gnìomh
+      filter:
+        all: Na h-uile
+        available: Ri fhaighinn
+        expired: Dh’fhalbh an ùine air
+        title: Criathraich
+      title: Cuiridhean
+    ip_blocks:
+      add_new: Cruthaich riaghailt
+      created_msg: Chaidh riaghailt IP ùr a chur ris
+      delete: Sguab às
+      expires_in:
+        '1209600': 2 sheachdain
+        '15778476': leth-bhliadhna
+        '2629746': mìos
+        '31556952': bliadhna
+        '86400': latha
+        '94670856': 3 bliadhnaichean
+      new:
+        title: Cruthaich riaghailt IP ùr
+      no_ip_block_selected: Cha deach riaghailt IP sam bith atharrachadh o nach deach gin dhiubh a thaghadh
+      title: Riaghailtean IP
     pending_accounts:
       title: Cunntasan ri dhèiligeadh (%{count})
+    relationships:
+      title: "Na dàimhean aig %{acct}"
+    relays:
+      add_new: Cuir ath-sheachadan ùr ris
+      delete: Sguab às
     reports:
       account:
         notes:
