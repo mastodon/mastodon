@@ -652,9 +652,13 @@ ko:
       title: 계정 툿
       with_media: 미디어 있음
     system_checks:
+      database_schema_check:
+        message_html: 데이터베이스 마이그레이션이 대기중입니다. 응용프로그램이 예상한대로 동작할 수 있도록 마이그레이션을 실행해 주세요
       rules_check:
         action: 서버 규칙 관리
         message_html: 아직 서버규칙을 정하지 않았습니다.
+      sidekiq_process_check:
+        message_html: '%{value} 큐에 대한 사이드킥 프로세스가 발견되지 않았습니다. 사이드킥 설정을 검토해주세요'
     tags:
       accounts_today: 오늘의 순 사용자
       accounts_week: 금주의 순 사용자
