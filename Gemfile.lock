@@ -22,14 +22,6 @@ GIT
       statsd-ruby (~> 1.4, >= 1.4.0)
 
 GIT
-  remote: https://github.com/ianheggie/health_check
-  revision: 0b799ead604f900ed50685e9b2d469cd2befba5b
-  ref: 0b799ead604f900ed50685e9b2d469cd2befba5b
-  specs:
-    health_check (4.0.0.pre)
-      rails (>= 4.0)
-
-GIT
   remote: https://github.com/nsommer/pluck_each
   revision: 73be0947c52fc54bf6d7085378db008358aac5eb
   ref: 73be0947c52fc54bf6d7085378db008358aac5eb
@@ -567,7 +559,7 @@ GEM
     rspec-support (3.10.2)
     rspec_junit_formatter (0.4.1)
       rspec-core (>= 2, < 4, != 2.12.0)
-    rubocop (1.12.0)
+    rubocop (1.12.1)
       parallel (~> 1.10)
       parser (>= 3.0.0.0)
       rainbow (>= 2.2.2, < 4.0)
@@ -756,7 +748,6 @@ DEPENDENCIES
   fog-openstack (~> 0.3)
   fuubar (~> 2.5)
   hamlit-rails (~> 0.2)
-  health_check!
   hiredis (~> 0.6)
   htmlentities (~> 4.3)
   http (~> 4.4)
