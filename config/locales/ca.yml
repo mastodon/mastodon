@@ -652,6 +652,8 @@ ca:
       rules_check:
         action: Gestiona les normes del servidor
         message_html: No has definit cap norma del servidor.
+      sidekiq_process_check:
+        message_html: No hi ha cap procés de Sidekiq executant-se per a la cua (o cues) de %{value}. Si us plau revisa la teva configuració de Sidekiq
     tags:
       accounts_today: Usos únics actuals
       accounts_week: Usos únics d'aquesta setmana
