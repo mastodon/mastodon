@@ -90,7 +90,11 @@ class ColumnsArea extends ImmutablePureComponent {
     }
 
     if (this.mediaQuery) {
-      this.mediaQuery.addEventListener('change', this.handleLayoutChange);
+      if (this.mediaQuery.addEventListener) {
+        this.mediaQuery.addEventListener('change', this.handleLayoutChange);
+      } else {
+        this.mediaQuery.addListener(this.handleLayoutChange);
+      }
       this.setState({ renderComposePanel: !this.mediaQuery.matches });
     }
 
@@ -125,7 +129,11 @@ class ColumnsArea extends ImmutablePureComponent {
     }
 
     if (this.mediaQuery) {
-      this.mediaQuery.removeEventListener('change', this.handleLayoutChange);
+      if (this.mediaQuery.removeEventListener) {
+        this.mediaQuery.removeEventListener('change', this.handleLayoutChange);
+      } else {
+        this.mediaQuery.removeListener(this.handleLayouteChange);
+      }
     }
   }
 

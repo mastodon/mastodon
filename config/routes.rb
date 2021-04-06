@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
   mount LetterOpenerWeb::Engine, at: 'letter_opener' if Rails.env.development?
 
-  health_check_routes
+  get 'health', to: 'health#show'
 
   authenticate :user, lambda { |u| u.admin? } do
     mount Sidekiq::Web, at: 'sidekiq', as: :sidekiq
