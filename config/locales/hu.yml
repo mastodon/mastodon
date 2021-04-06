@@ -665,6 +665,8 @@ hu:
       rules_check:
         action: Szerver szabályok menedzselése
         message_html: Még nem definiáltál egy szerver szabályt sem.
+      sidekiq_process_check:
+        message_html: Nincs Sidekiq folyamat, mely a %{value} sorhoz van rendelve. Kérlek, nézd át a Sidekiq beállításait
     tags:
       accounts_today: Egyedi használat a mai napon
       accounts_week: Egyedi használat ezen a héten
