@@ -646,6 +646,12 @@ ca:
       no_status_selected: No s’han canviat els estatus perquè cap no ha estat seleccionat
       title: Estats del compte
       with_media: Amb contingut multimèdia
+    system_checks:
+      database_schema_check:
+        message_html: Hi ha pendents migracions de la base de dades. Si us plau executa-les per a assegurar que l'aplicació es comporta com s'espera
+      rules_check:
+        action: Gestiona les normes del servidor
+        message_html: No has definit cap norma del servidor.
     tags:
       accounts_today: Usos únics actuals
       accounts_week: Usos únics d'aquesta setmana
