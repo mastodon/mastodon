@@ -674,6 +674,14 @@ uk:
       no_status_selected: Жодного статуса не було змінено, оскільки жодного не було вибрано
       title: Статуси облікових записів
       with_media: З медіа
+    system_checks:
+      database_schema_check:
+        message_html: Існують відкладені перенесення бази даних. Запустіть їх, щоб забезпечити очікувану роботу програми
+      rules_check:
+        action: Керування правилами сервера
+        message_html: Ви не визначили будь-які правила сервера.
+      sidekiq_process_check:
+        message_html: Не працює процес Sidekiq для %{value} черги. Перегляньте конфігурації вашого Sidekiq
     tags:
       accounts_today: Унікальних використань за сьогодні
       accounts_week: Унікальних використань за тиждень
