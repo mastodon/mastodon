@@ -659,6 +659,12 @@ hu:
       no_status_selected: Nem változtattunk meg semmit, mert semmi sem volt kiválasztva
       title: Felhasználó tülkjei
       with_media: Médiafájlokkal
+    system_checks:
+      database_schema_check:
+        message_html: Vannak elintézetlen adatbázis migrációink. Kérlek, futtasd őket, hogy biztosítsd, az alkalmazás megfelelően működik
+      rules_check:
+        action: Szerver szabályok menedzselése
+        message_html: Még nem definiáltál egy szerver szabályt sem.
     tags:
       accounts_today: Egyedi használat a mai napon
       accounts_week: Egyedi használat ezen a héten
