@@ -290,6 +290,12 @@ nl:
         suspend_account_html: "Account %{target} is door %{name} opgeschort"
         unassigned_report_html: "%{name} heeft het toewijzen van rapportage %{target} ongedaan gemaakt"
         unsensitive_account_html: "%{name} markeerde media van %{target} als niet gevoelig"
+        unsilence_account_html: "Beperking van account %{target} is door %{name} opgeheven"
+        unsuspend_account_html: "Opschorten van account %{target} is door %{name} opgeheven"
+        update_announcement_html: "%{name} heeft de mededeling %{target} bijgewerkt"
+        update_custom_emoji_html: "Emoji %{target} is door %{name} bijgewerkt"
+        update_domain_block_html: "%{name} heeft de domeinblokkade bijgewerkt voor %{target}"
+        update_status_html: "%{name} heeft de toots van %{target} bijgewerkt"
       deleted_status: "(verwijderde toot}"
       empty: Geen logs gevonden.
       filter_by_action: Op actie filteren
@@ -300,6 +306,7 @@ nl:
       edit:
         title: Mededeling bewerken
       empty: Geen mededelingen gevonden.
+      live: Live
       new:
         create: Mededeling aanmaken
         title: Nieuwe mededeling
@@ -322,6 +329,7 @@ nl:
       disable: Uitschakelen
       disabled: Uitgeschakeld
       disabled_msg: Uitschakelen van deze emoji geslaagd
+      emoji: Emoji
       enable: Inschakelen
       enabled: Ingeschakeld
       enabled_msg: Inschakelen van deze emoji geslaagd
@@ -350,6 +358,7 @@ nl:
       feature_profile_directory: Gebruikersgids
       feature_registrations: Registraties
       feature_relay: Federatierelay
+      feature_spam_check: Anti-spam
       feature_timeline_preview: Voorvertoning van tijdlijn
       features: Functies
       hidden_service: Federatie met verborgen diensten
@@ -359,8 +368,11 @@ nl:
       recent_users: Recente gebruikers
       search: In volledige tekst zoeken
       single_user_mode: Modus voor één gebruiker
+      software: Software
       space: Ruimtegebruik
+      title: Dashboard
       total_users: gebruikers in totaal
+      trends: Trends
       week_interactions: interacties deze week
       week_users_active: actieve gebruikers deze week
       week_users_new: nieuwe gebruikers deze week
@@ -386,6 +398,7 @@ nl:
           silence: Negeren
           suspend: Opschorten
         title: Nieuwe domeinblokkade
+      obfuscate: Domeinnaam verdoezelen
       private_comment: Privé-opmerking
       private_comment_hint: Opmerking over deze domeinbeperking voor intern gebruik door de moderatoren.
       public_comment: Openbare opmerking
@@ -546,6 +559,7 @@ nl:
       domain_blocks_rationale:
         title: Motivering tonen
       enable_bootstrap_timeline_accounts:
+        desc_html: Laat nieuwe gebruikers automatisch geconfigureerde accounts volgen, zodat hun start-tijdlijn niet leeg begint
         title: Standaard te volgen accounts voor nieuwe gebruikers inschakelen
       hero:
         desc_html: Wordt op de voorpagina getoond. Tenminste 600x100px aanbevolen. Wanneer dit niet is ingesteld wordt de thumbnail van de Mastodonserver getoond
@@ -1287,6 +1301,7 @@ nl:
   time:
     formats:
       default: "%d %B %Y om %H:%M"
+      month: "%b %Y"
   two_factor_authentication:
     add: Toevoegen
     disable: Tweestapsverificatie uitschakelen
@@ -1349,6 +1364,7 @@ nl:
       tip_following: Je volgt standaard de beheerder(s) van jouw Mastodonserver. Bekijk de lokale en de globale tijdlijnen om meer interessante mensen te vinden.
       tip_local_timeline: De lokale tijdlijn toont berichten van mensen op %{instance}. Dit zijn jouw naaste buren!
       tip_mobile_webapp: Wanneer jouw mobiele webbrowser Mastodon aan jouw startscherm wilt toevoegen, kun je pushmeldingen ontvangen. Het gedraagt zich op meerdere manieren als een native app!
+      tips: Tips
       title: Welkom aan boord %{name}!
   users:
     follow_limit_reached: Je kunt niet meer dan %{limit} accounts volgen
