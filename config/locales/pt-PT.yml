@@ -659,6 +659,14 @@ pt-PT:
       no_status_selected: Nenhum estado foi alterado porque nenhum foi selecionado
       title: Estado das contas
       with_media: Com media
+    system_checks:
+      database_schema_check:
+        message_html: Existem migrações de base de dados pendentes. Por favor, execute-as para garantir que o aplicativo se comporte como esperado
+      rules_check:
+        action: Gerir regras da instância
+        message_html: Não definiu nenhuma regra para a instância.
+      sidekiq_process_check:
+        message_html: Nenhum processo Sidekiq em execução para a(s) fila(s) %{value}. Reveja a configuração do seu Sidekiq
     tags:
       accounts_today: Usos únicos hoje
       accounts_week: Usos únicos desta semana
