@@ -6,11 +6,13 @@ nl:
     active_count_after: actief
     active_footnote: Actieve gebruikers per maand (MAU)
     administered_by: 'Beheerd door:'
+    api: API
     apps: Mobiele apps
     apps_platforms: Gebruik Mastodon op iOS, Android en op andere platformen
     browse_directory: Gebruikersgids doorbladeren en op interesses filteren
     browse_local_posts: Livestream van openbare berichten op deze server bekijken
     browse_public_posts: Livestream van openbare Mastodonberichten bekijken
+    contact: Contact
     contact_missing: Niet ingesteld
     contact_unavailable: n.v.t
     discover_users: Gebruikers ontdekken
@@ -22,6 +24,8 @@ nl:
       Dit account is een virtuel actor dat wordt gebruikt om de server zelf te vertegenwoordigen en is geen individuele gebruiker. Het wordt voor federatiedoeleinden gebruikt en moet niet worden geblokkeerd, tenzij je de hele server wilt blokkeren. In zo'n geval dien je echter een domeinblokkade te gebruiken. 
     learn_more: Meer leren
     privacy_policy: Privacybeleid
+    rules: Serverregels
+    rules_html: 'Hieronder vind je een samenvatting van de regels die je op deze Mastodon-server moet opvolgen:'
     see_whats_happening: Kijk wat er aan de hand is
     server_stats: 'Serverstatistieken:'
     source_code: Broncode
@@ -33,6 +37,7 @@ nl:
     terms: Gebruiksvoorwaarden
     unavailable_content: Gemodereerde servers
     unavailable_content_description:
+      domain: Server
       reason: 'Reden:'
       rejecting_media: 'Mediabestanden van deze server worden niet verwerkt en er worden geen thumbnails getoond. Je moet handmatig naar deze server doorklikken om de mediabestanden te kunnen bekijken:'
       rejecting_media_title: Mediabestanden geweigerd
@@ -59,6 +64,7 @@ nl:
     joined: Geregistreerd in %{date}
     last_active: laatst actief
     link_verified_on: Eigendom van deze link is gecontroleerd op %{date}
+    media: Media
     moved_html: "%{name} is verhuisd naar %{new_profile_link}:"
     network_hidden: Deze informatie is niet beschikbaar
     never_active: Nooit
@@ -67,9 +73,11 @@ nl:
     people_who_follow: Mensen die %{name} volgen
     pin_errors:
       following: Je moet dit account wel al volgen, alvorens je het kan aanbevelen
+    posts_tab_heading: Toots
     posts_with_replies: Toots en reacties
     roles:
       admin: Beheerder
+      bot: Bot
       group: Groep
       moderator: Moderator
     unavailable: Profiel niet beschikbaar
@@ -89,6 +97,7 @@ nl:
       approve_all: Alles goedkeuren
       approved_msg: Het goedkeuren van het registratieverzoek van %{username} is geslaagd
       are_you_sure: Weet je het zeker?
+      avatar: Avatar
       by_domain: Domein
       change_email:
         changed_msg: E-mailadres van account succesvol veranderd!
@@ -121,6 +130,7 @@ nl:
       inbox_url: Inbox-URL
       invite_request_text: Redenen om te registreren
       invited_by: Uitgenodigd door
+      ip: IP
       joined: Geregistreerd in
       location:
         all: Alles
@@ -148,6 +158,7 @@ nl:
       pending: Moet nog beoordeeld worden
       perform_full_suspension: Opschorten
       promote: Promoveren
+      protocol: Protocol
       public: Openbaar
       push_subscription_expires: PuSH-abonnement verloopt op
       redownload: Profiel vernieuwen
@@ -169,6 +180,7 @@ nl:
       role: Bevoegdheden
       roles:
         admin: Beheerder
+        moderator: Moderator
         staff: Medewerkers
         user: Gebruiker
       search: Zoeken
@@ -188,6 +200,7 @@ nl:
       suspension_irreversible: De gegevens van dit account zijn onomkeerbaar verwijderd. Je kunt het opschorten van dit account ongedaan maken zodat het weer valt te gebruiken, maar de verwijderde gegevens worden hiermee niet hersteld.
       suspension_reversible_hint_html: Dit account is opgeschort en de gegevens worden volledig verwijderd op %{date}. Tot die tijd kan dit account worden hersteld zonder nadelige gevolgen. Wanneer je alle gegevens van dit account onmiddellijk wilt verwijderen, kun je dit hieronder doen.
       time_in_queue: '%{time} in de wachtrij'
+      title: Accounts
       unconfirmed_email: Onbevestigd e-mailadres
       undo_sensitized: Niet meer als gevoelig markeren
       undo_silenced: Niet langer negeren
@@ -242,6 +255,13 @@ nl:
         update_custom_emoji: Lokale emoji bijwerken
         update_domain_block: Domeinblokkade bijwerken
         update_status: Toot bijwerken
+      actions:
+        assigned_to_self_report_html: "%{name} heeft rapportage %{target} aan zichzelf toegewezen"
+        change_email_user_html: "%{name} veranderde het e-mailadres van gebruiker %{target}"
+        confirm_user_html: "E-mailadres van gebruiker %{target} is door %{name} bevestigd"
+        create_account_warning_html: "%{name} verzond een waarschuwing naar %{target}"
+        create_announcement_html: "%{name} heeft de nieuwe mededeling %{target} aangemaakt"
+        create_custom_emoji_html: "Nieuwe emoji %{target} is door %{name} geüpload"
       deleted_status: "(verwijderde toot}"
       empty: Geen logs gevonden.
       filter_by_action: Op actie filteren
