@@ -496,6 +496,7 @@ nl:
       save_and_enable: Opslaan en inschakelen
       setup: Een verbinding met een relayserver maken
       signatures_not_enabled: Federatierelays werken niet goed wanneer de veilige modus of de beperkte federatiemodus is ingeschakeld
+      status: Status
       title: Relayservers
     report_notes:
       created_msg: Opmerking bij rapportage succesvol aangemaakt!
@@ -537,6 +538,8 @@ nl:
       unassign: Niet langer toewijzen
       unresolved: Onopgelost
       updated_at: Bijgewerkt
+    rules:
+      add_new: Regel toevoegen
     settings:
       activity_api_enabled:
         desc_html: Wekelijks overzicht van de hoeveelheid lokale toots, actieve gebruikers en nieuwe registraties
@@ -554,10 +557,10 @@ nl:
         desc_html: Heeft invloed op alle gebruikers die deze instelling niet zelf hebben veranderd
         title: Toots van gebruikers standaard niet door zoekmachines laten indexeren
       domain_blocks:
-        all: Naar iedereen
+        all: Aan iedereen
         disabled: Aan niemand
         title: Domeinblokkades tonen
-        users: Naar ingelogde lokale gebruikers
+        users: Aan ingelogde lokale gebruikers
       domain_blocks_rationale:
         title: Motivering tonen
       enable_bootstrap_timeline_accounts:
@@ -647,13 +650,16 @@ nl:
       accounts_today: Aantal verschillende keren vandaag gebruikt
       accounts_week: Aantal verschillende keren deze week gebruikt
       breakdown: Uitsplitsing van het gebruik van vandaag naar bron
+      context: Context
       directory: In de gebruikersgids
       in_directory: "%{count} keer in de gebruikersgids"
       last_active: Laatst actief
       most_popular: Meest populair
       most_recent: Meest recent
+      name: Hashtag
       review: Status beoordelen
       reviewed: Beoordeeld
+      title: Hashtags
       trending_right_now: Op dit moment trending
       unique_uses_today: "%{count} keer vandaag gebruikt"
       unreviewed: Niet beoordeeld
@@ -696,6 +702,7 @@ nl:
     toot_layout: Lay-out van toots
   application_mailer:
     notification_preferences: E-mailvoorkeuren wijzigen
+    salutation: "%{name},"
     settings: 'E-mailvoorkeuren wijzigen: %{link}'
     view: 'Bekijk:'
     view_profile: Profiel bekijken
@@ -730,6 +737,9 @@ nl:
     migrate_account: Naar een ander account verhuizen
     migrate_account_html: Wanneer je dit account naar een ander account wilt doorverwijzen, kun je <a href="%{path}">dit hier instellen</a>.
     or_log_in_with: Of inloggen met
+    providers:
+      cas: CAS
+      saml: SAML
     register: Registreren
     registration_closed: "%{instance} laat geen nieuwe gebruikers toe"
     resend_confirmation: Verstuur de bevestigingsinstructies nogmaals
@@ -781,6 +791,7 @@ nl:
       about_x_years: "%{count}j"
       almost_x_years: "%{count}j"
       half_a_minute: Zojuist
+      less_than_x_minutes: "%{count} mln"
       less_than_x_seconds: Zojuist
       over_x_years: "%{count}j"
       x_months: "%{count}ma"
