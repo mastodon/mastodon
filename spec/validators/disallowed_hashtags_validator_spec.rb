@@ -40,7 +40,7 @@ RSpec.describe DisallowedHashtagsValidator, type: :validator do
 
         it 'adds an error' do
           expect(errors).to have_received(:add)
-            .with(:text, I18n.t('statuses.disallowed_hashtags', tags: disallowed_tags.join(', '), count: disallowed_tags.size))
+            .with(:text, I18n.t('statuses.disallowed_hashtags', tags: disallowed_tags.sort.join(', '), count: disallowed_tags.size))
         end
       end
     end
