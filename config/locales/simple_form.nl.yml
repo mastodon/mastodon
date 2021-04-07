@@ -80,6 +80,7 @@ nl:
     labels:
       account:
         fields:
+          name: Label
           value: Inhoud
       account_alias:
         acct: Mastodonadres van het oude account
@@ -108,6 +109,7 @@ nl:
         text: Mededeling
       defaults:
         autofollow: Uitnodigen om jouw account te volgen
+        avatar: Avatar
         bot: Dit is een bot-account
         chosen_languages: Talen filteren
         confirm_new_password: Nieuw wachtwoord bevestigen
@@ -128,6 +130,7 @@ nl:
         locked: Maak account besloten
         max_uses: Max. aantal keer te gebruiken
         new_password: Nieuwe wachtwoord
+        note: Bio
         otp_attempt: Tweestaps-aanmeldcode
         password: Wachtwoord
         phrase: Trefwoord of zinsdeel
@@ -164,6 +167,8 @@ nl:
         whole_word: Heel woord
       email_domain_block:
         with_dns_records: MX-records en IP-adressen van het domein toevoegen
+      featured_tag:
+        name: Hashtag
       interactions:
         must_be_follower: Meldingen van mensen die jou niet volgen blokkeren
         must_be_following: Meldingen van mensen die jij niet volgt blokkeren
@@ -174,6 +179,7 @@ nl:
         text: Waarom wil je je hier registreren?
       ip_block:
         comment: Opmerking
+        ip: IP
         severities:
           no_access: Toegang blokkeren
           sign_up_requires_approval: Registraties beperken
@@ -188,13 +194,17 @@ nl:
         reblog: Wanneer iemand jouw toot heeft geboost
         report: Bij het indienen van een nieuwe rapportage
         trending_tag: Wanneer een nog niet beoordeelde hashtag trending is
+      rule:
+        text: Regel
       tag:
         listable: Toestaan dat deze hashtag in zoekopdrachten en in de gebruikersgids te zien valt
+        name: Hashtag
         trendable: Toestaan dat deze hashtag onder trends te zien valt
         usable: Toestaan dat deze hashtag in toots gebruikt mag worden
     'no': 'Nee'
     recommended: Aanbevolen
     required:
+      mark: "*"
       text: vereist
     title:
       sessions:
