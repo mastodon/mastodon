@@ -262,6 +262,34 @@ nl:
         create_account_warning_html: "%{name} verzond een waarschuwing naar %{target}"
         create_announcement_html: "%{name} heeft de nieuwe mededeling %{target} aangemaakt"
         create_custom_emoji_html: "Nieuwe emoji %{target} is door %{name} geüpload"
+        create_domain_allow_html: "%{name} heeft de federatie met het domein %{target} goedgekeurd"
+        create_domain_block_html: "Domein %{target} is door %{name} geblokkeerd"
+        create_email_domain_block_html: "%{name} heeft het e-maildomein %{target} geblokkeerd"
+        create_ip_block_html: "%{name} maakte regel aan voor IP %{target}"
+        demote_user_html: "Gebruiker %{target} is door %{name} gedegradeerd"
+        destroy_announcement_html: "%{name} heeft de mededeling %{target} verwijderd"
+        destroy_custom_emoji_html: "%{name} verwijderde emoji %{target}"
+        destroy_domain_allow_html: "%{name} heeft de federatie met het domein %{target} afgekeurd"
+        destroy_domain_block_html: "Domein %{target} is door %{name} gedeblokkeerd"
+        destroy_email_domain_block_html: "%{name} heeft het e-maildomein %{target} gedeblokkeerd"
+        destroy_ip_block_html: "%{name} verwijderde regel voor IP %{target}"
+        destroy_status_html: "Toot van %{target} is door %{name} verwijderd"
+        disable_2fa_user_html: "De vereiste tweestapsverificatie voor %{target} is door %{name} uitgeschakeld"
+        disable_custom_emoji_html: "Emoji %{target} is door %{name} uitgeschakeld"
+        disable_user_html: "Inloggen voor %{target} is door %{name} uitgeschakeld"
+        enable_custom_emoji_html: "Emoji %{target} is door %{name} ingeschakeld"
+        enable_user_html: "Inloggen voor %{target} is door %{name} ingeschakeld"
+        memorialize_account_html: "Het account %{target} is door %{name} in een In memoriam veranderd"
+        promote_user_html: "Gebruiker %{target} is door %{name} gepromoveerd"
+        remove_avatar_user_html: "%{name} verwijderde de avatar van %{target}"
+        reopen_report_html: "%{name} heeft rapportage %{target} heropend"
+        reset_password_user_html: "Wachtwoord van gebruiker %{target} is door %{name} opnieuw ingesteld"
+        resolve_report_html: "%{name} heeft rapportage %{target} opgelost"
+        sensitive_account_html: "%{name} markeerde de media van %{target} als gevoelig"
+        silence_account_html: "Account %{target} is door %{name} beperkt"
+        suspend_account_html: "Account %{target} is door %{name} opgeschort"
+        unassigned_report_html: "%{name} heeft het toewijzen van rapportage %{target} ongedaan gemaakt"
+        unsensitive_account_html: "%{name} markeerde media van %{target} als niet gevoelig"
       deleted_status: "(verwijderde toot}"
       empty: Geen logs gevonden.
       filter_by_action: Op actie filteren
@@ -1060,16 +1088,42 @@ nl:
     activity: Laatst actief
     browser: Webbrowser
     browsers:
+      edge: Microsoft Edge
+      electron: Electron
+      firefox: Firefox
       generic: Onbekende webbrowser
+      ie: Internet Explorer
+      micro_messenger: MicroMessenger
+      nokia: Nokia S40 Ovi Browser
+      opera: Opera
+      otter: Otter
+      phantom_js: PhantomJS
+      qq: QQ Browser
+      safari: Safari
+      uc_browser: UCBrowser
+      weibo: Weibo
     current_session: Huidige sessie
     description: "%{browser} op %{platform}"
     explanation: Dit zijn de webbrowsers die momenteel met jouw Mastodonaccount zijn ingelogd.
+    ip: IP
     platforms:
+      adobe_air: Adobe Air
+      android: Android
+      blackberry: Blackberry
+      chrome_os: ChromeOS
+      firefox_os: Firefox OS
+      ios: iOS
+      linux: Linux
+      mac: macOS
       other: Onbekend platform
+      windows: Windows
+      windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
     revoke: Intrekken
     revoke_success: Sessie succesvol ingetrokken
     title: Sessies
   settings:
+    account: Account
     account_settings: Accountinstellingen
     aliases: Accountaliassen
     appearance: Uiterlijk
@@ -1129,6 +1183,7 @@ nl:
     show_older: Oudere tonen
     show_thread: Gesprek tonen
     sign_in_to_participate: Meld je aan om aan dit gesprek mee te doen
+    title: '%{name}: "%{quote}"'
     visibilities:
       private: Alleen volgers
       private_long: Alleen aan jouw volgers tonen
