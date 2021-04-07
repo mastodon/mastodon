@@ -73,6 +73,9 @@ nl:
     people_who_follow: Mensen die %{name} volgen
     pin_errors:
       following: Je moet dit account wel al volgen, alvorens je het kan aanbevelen
+    posts:
+      one: Toot
+      other: Toots
     posts_tab_heading: Toots
     posts_with_replies: Toots en reacties
     roles:
@@ -540,6 +543,8 @@ nl:
       updated_at: Bijgewerkt
     rules:
       add_new: Regel toevoegen
+      edit: Regel bewerken
+      title: Serverregels
     settings:
       activity_api_enabled:
         desc_html: Wekelijks overzicht van de hoeveelheid lokale toots, actieve gebruikers en nieuwe registraties
@@ -631,6 +636,7 @@ nl:
         title: Hashtags toestaan om trending te worden zonder voorafgaande beoordeling
       trends:
         desc_html: Eerder beoordeelde hashtags die op dit moment trending zijn openbaar tonen
+        title: Trending hashtags
     site_uploads:
       delete: Geüpload bestand verwijderen
       destroyed_msg: Verwijderen website-upload geslaagd!
@@ -642,10 +648,15 @@ nl:
         nsfw_on: Als gevoelig markeren
       deleted: Verwijderd
       failed_to_execute: Uitvoeren mislukt
+      media:
+        title: Media
       no_media: Geen media
       no_status_selected: Er werden geen toots gewijzigd, omdat er geen enkele werd geselecteerd
       title: Toots van account
       with_media: Met media
+    system_checks:
+      rules_check:
+        action: Serverregels beheren
     tags:
       accounts_today: Aantal verschillende keren vandaag gebruikt
       accounts_week: Aantal verschillende keren deze week gebruikt
@@ -791,10 +802,13 @@ nl:
       about_x_years: "%{count}j"
       almost_x_years: "%{count}j"
       half_a_minute: Zojuist
-      less_than_x_minutes: "%{count} mln"
+      less_than_x_minutes: "%{count}m"
       less_than_x_seconds: Zojuist
       over_x_years: "%{count}j"
+      x_days: "%{count}d"
+      x_minutes: "%{count}m"
       x_months: "%{count}ma"
+      x_seconds: "%{count}s"
   deletes:
     challenge_not_passed: De informatie die u hebt ingevoerd is ongeldig
     confirm_password: Voer jouw huidige wachtwoord in om jouw identiteit te bevestigen
@@ -846,6 +860,7 @@ nl:
       size: Omvang
     blocks: Jij blokkeert
     bookmarks: Bladwijzers
+    csv: CSV
     domain_blocks: Domeinblokkades
     lists: Lijsten
     mutes: Jij negeert
@@ -870,6 +885,7 @@ nl:
     index:
       delete: Verwijderen
       empty: Je hebt geen filters aangemaakt.
+      title: Filters
     new:
       title: Nieuw filter toevoegen
   footer:
@@ -1036,10 +1052,12 @@ nl:
   number:
     human:
       decimal_units:
+        format: "%n%u"
         units:
           billion: mld.
           million: mln.
           quadrillion: qdn.
+          thousand: K
           trillion: bln.
   otp_authentication:
     code_hint: Voer de code in die door de authenticatie-app werd gegenereerd
@@ -1054,6 +1072,7 @@ nl:
     next: Volgende
     older: Ouder
     prev: Vorige
+    truncate: "&hellip;"
   polls:
     errors:
       already_voted: Je hebt al op deze poll gestemd
@@ -1115,6 +1134,9 @@ nl:
     activity: Laatst actief
     browser: Webbrowser
     browsers:
+      alipay: Alipay
+      blackberry: Blackberry
+      chrome: Chrome
       edge: Microsoft Edge
       electron: Electron
       firefox: Firefox
@@ -1182,6 +1204,9 @@ nl:
       image:
         one: "%{count} afbeelding"
         other: "%{count} afbeeldingen"
+      video:
+        one: "%{count} video"
+        other: "%{count} video's"
     boosted_from_html: Geboost van %{acct_link}
     content_warning: 'Tekstwaarschuwing: %{warning}'
     disallowed_hashtags:
