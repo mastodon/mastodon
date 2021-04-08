@@ -13,14 +13,14 @@ da:
       not_found_in_database: Ugyldig %{authentication_keys} eller adgangskode.
       pending: Din konto er stadig under bedømmelse.
       timeout: Din session udløb. Log ind igen for at fortsætte.
-      unauthenticated: Du er nødt til at logge ind eller oprette dig for at fortsætte.
-      unconfirmed: Du er nødt til at bekræfte din email adresse for at fortsætte.
+      unauthenticated: Du skal logge ind eller tilmelde dig for at fortsætte.
+      unconfirmed: Du skal bekræfte din e-mailadresse for at fortsætte.
     mailer:
       confirmation_instructions:
-        action: Bekræft email adresse
-        action_with_app: Bekræft og vend tilbage til %{app}
-        explanation: Du har oprettet en konto på %{host} med denne email adresse. Du er et klik fra at aktivere din konto. Hvis du ikke har oprettet dig, ignorer venligst denne email.
-        explanation_when_pending: Du har ansøgt om en invitation til %{host} med denne mailadresse. Når du bekræfter din mailadresse vil vi bedømme din ansøgning. Indtil da kan du ikke logge ind. Din data slettes hvis din ansøgning bliver afvist så du behøver ikke foretage yderligere handlinger. Hvis dette ikke var dig kan du ignorere denne mail.
+        action: Bekræft e-mailadresse
+        action_with_app: Bekræft og returnér til %{app}
+        explanation: Du har oprettet en konto på %{host} med denne e-mailadresse og er nu et klik fra at aktivere din konto. Har du ikke oprettet dig, så ignorér blot denne e-mail.
+        explanation_when_pending: Du ansøgte om en invitation til %{host} med denne e-mailadresse. Når du har bekræftet din e-mailadresse, gennemgår vi din ansøgning. Du kan logge ind for at ændre dine oplysninger eller slette din konto, men du kan ikke tilgå de fleste af funktionerne, før din konto er godkendt. Afvises din ansøgning, fjernes dine data, så ingen yderligere handling fra dig er nødvendig. Har du ikke ansøgt, så ignorér blot denne e-mail.
         extra_html: Tjek også <a href="%{terms_path}">reglerne for serveren</a> og <a href="%{policy_path}">vores betingelser</a>.
         subject: 'Mastodon: Bekræftelses instrukser for %{instance}'
         title: Bekræft email adresse
