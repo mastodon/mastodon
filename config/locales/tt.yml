@@ -6,6 +6,8 @@ tt:
     privacy_policy: Хосусыйлык сәясәте
     unavailable_content_description:
       domain: Сервер
+    user_count_after:
+      other: кулланучы
   accounts:
     follow: Языл
     following: Язылгансыз
@@ -41,6 +43,8 @@ tt:
       perform_full_suspension: Искә алмау
       reset: Ташлату
       role: Рөхсәтләр
+      roles:
+        user: Кулланучы
       search: Эзләү
       sensitive: Sizmäle
       username: Кулланучы исеме
@@ -109,6 +113,8 @@ tt:
       context: Eştirä
     warning_presets:
       delete: Бетерү
+  application_mailer:
+    salutation: "%{name},"
   auth:
     change_password: Парол
     login: Керү
@@ -121,6 +127,10 @@ tt:
     follow: Язылу
   challenge:
     confirm: Дәвам итү
+  date:
+    formats:
+      default: "%d %b %Y"
+      with_month_name: "%d %B %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}сәг"
@@ -130,6 +140,7 @@ tt:
       less_than_x_seconds: Хәзер генә
       x_days: "%{count}к"
       x_minutes: "%{count}м"
+      x_months: "%{count}ай"
       x_seconds: "%{count}сек"
   errors:
     '400': The request you submitted was invalid or malformed.
@@ -182,6 +193,7 @@ tt:
   pagination:
     next: Киләсе
     prev: Алдыгы
+    truncate: "&hellip;"
   preferences:
     other: Башка
   relationships:
@@ -191,18 +203,24 @@ tt:
     browsers:
       alipay: Аlipay
       chrome: Chrоme
+      electron: Electrоn
       firefox: Firеfox
       opera: Opеra
       otter: Ottеr
+      phantom_js: PhаntomJS
       safari: Safаri
       weibo: Weibо
     ip: ІР
     platforms:
       android: Andrоid
+      chrome_os: ChromеOS
+      firefox_os: Firеfox OS
       ios: iОS
       linux: Lіnux
       mac: macOS
       windows: Windоws
+      windows_mobile: Windows Mоbile
+      windows_phone: Windоws Phone
   settings:
     account: Хисап язмасы
     appearance: Küreneş
@@ -211,8 +229,14 @@ tt:
     import: Импортлау
     preferences: Caylaw
     profile: Профиль
+  statuses:
+    attached:
+      video:
+        other: "%{count} видео"
+    title: '%{name}: "%{quote}"'
   time:
     formats:
+      default: "%d %b %Y, %H:%M"
       month: "%b %Y"
   two_factor_authentication:
     add: Өстәү
