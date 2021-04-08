@@ -1,4 +1,16 @@
 tt:
+  about:
+    api: API
+  accounts:
+    roles:
+      bot: Бот
+  admin:
+    accounts:
+      ip: ІР
+      web: Веб
+  auth:
+    providers:
+      cas: САS
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
@@ -9,3 +21,9 @@ tt:
     '429': Too many requests
     '500':
     '503': The page could not be served due to a temporary server failure.
+  exports:
+    csv: СSV
+  sessions:
+    ip: ІР
+    platforms:
+      ios: iОS
