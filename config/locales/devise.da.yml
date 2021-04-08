@@ -2,8 +2,8 @@ da:
   devise:
     confirmations:
       confirmed: Din e-mail er nu bekræftet.
-      send_instructions: Du vil modtage en mail med instrukser for hvordan du bekræfter din email adresse om få minutter. Tjek venligst din spam mappe hvis du ikke har modtaget denne email.
-      send_paranoid_instructions: Hvis din email adresse allerede findes i vores database, vil du modtage en email med instrukser for hvordan du bekræfter din email adresse om få minutter. Tjek gerne din spam mappe hvis du ikke modtager denne email.
+      send_instructions: Du vil om få minutter modtage en e-mailvejledning til, hvordan du bekræfter din e-mailadresse. Tjek din spammappe, hvis du modtager denne e-mail.
+      send_paranoid_instructions: Findes din e-mailadresse allerede i vores database, vil du om få minutter modtage en e-mailvejledning til, hvordan du bekræfter din e-mailadresse. Tjek din spammappe, hvis du ikke modtager denne e-mail.
     failure:
       already_authenticated: Du er allerede logget ind.
       inactive: Din konto er endnu ikke aktiveret.
@@ -12,7 +12,7 @@ da:
       locked: Din konto er låst.
       not_found_in_database: Ugyldig %{authentication_keys} eller adgangskode.
       pending: Din konto er stadig under bedømmelse.
-      timeout: Din session er udløbet. Log venligst ind igen for at fortsætte.
+      timeout: Din session udløb. Log ind igen for at fortsætte.
       unauthenticated: Du er nødt til at logge ind eller oprette dig for at fortsætte.
       unconfirmed: Du er nødt til at bekræfte din email adresse for at fortsætte.
     mailer:
