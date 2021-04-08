@@ -3,7 +3,6 @@
 #
 # Table name: accounts
 #
-#  id                            :bigint(8)        not null, primary key
 #  username                      :string           default(""), not null
 #  domain                        :string
 #  secret                        :string           default(""), not null
@@ -36,6 +35,7 @@
 #  shared_inbox_url              :string           default(""), not null
 #  followers_url                 :string           default(""), not null
 #  protocol                      :integer          default("ostatus"), not null
+#  id                            :bigint(8)        not null, primary key
 #  memorial                      :boolean          default(FALSE), not null
 #  moved_to_account_id           :bigint(8)
 #  featured_collection_url       :string
@@ -49,6 +49,7 @@
 #  hide_collections              :boolean
 #  avatar_storage_schema_version :integer
 #  header_storage_schema_version :integer
+#  devices_url                   :string
 #
 
 class Account < ApplicationRecord
@@ -414,7 +415,7 @@ class Account < ApplicationRecord
     end
 
     def inboxes
-      urls = reorder(nil).where(protocol: :activitypub).pluck(Arel.sql("distinct coalesce(nullif(accounts.shared_inbox_url, ''), accounts.inbox_url)"))
+      urls = reorder(nil).where(protocol: :activitypub).group(:preferred_inbox_url).pluck(Arel.sql("coalesce(nullif(accounts.shared_inbox_url, ''), accounts.inbox_url) AS preferred_inbox_url"))
       DeliveryFailureTracker.without_unavailable(urls)
     end
 

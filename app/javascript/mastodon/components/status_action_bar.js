@@ -7,6 +7,7 @@ import DropdownMenuContainer from '../containers/dropdown_menu_container';
 import { defineMessages, injectIntl } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { me, isStaff } from '../initial_state';
+import classNames from 'classnames';
 
 const messages = defineMessages({
   delete: { id: 'status.delete', defaultMessage: 'Delete' },
@@ -85,6 +86,7 @@ class StatusActionBar extends ImmutablePureComponent {
     onPin: PropTypes.func,
     onBookmark: PropTypes.func,
     withDismiss: PropTypes.bool,
+    scrollKey: PropTypes.string,
     intl: PropTypes.object.isRequired,
   };
 
@@ -229,7 +231,7 @@ class StatusActionBar extends ImmutablePureComponent {
   }
 
   render () {
-    const { status, relationship, intl, withDismiss } = this.props;
+    const { status, relationship, intl, withDismiss, scrollKey } = this.props;
 
     const mutingConversation = status.get('muted');
     const anonymousAccess    = !me;
@@ -237,8 +239,6 @@ class StatusActionBar extends ImmutablePureComponent {
     const account            = status.get('account');
 
     let menu = [];
-    let reblogIcon = 'retweet';
-    let replyTitle;
 
     menu.push({ text: intl.formatMessage(messages.open), action: this.handleOpen });
 
@@ -258,10 +258,6 @@ class StatusActionBar extends ImmutablePureComponent {
     if (status.getIn(['account', 'id']) === me) {
       if (publicStatus) {
         menu.push({ text: intl.formatMessage(status.get('pinned') ? messages.unpin : messages.pin), action: this.handlePinClick });
-      } else {
-        if (status.get('visibility') === 'private') {
-          menu.push({ text: intl.formatMessage(status.get('reblogged') ? messages.cancel_reblog_private : messages.reblog_private), action: this.handleReblogClick });
-        }
       }
 
       menu.push({ text: intl.formatMessage(messages.delete), action: this.handleDeleteClick });
@@ -305,22 +301,24 @@ class StatusActionBar extends ImmutablePureComponent {
     }
 
     let replyIcon;
-    if (status.get('in_reply_to_id', null) === null) {
-      replyIcon = 'reply';
-    } else {
-      replyIcon = 'reply-all';
-    }
-    
-    if (status.get('visibility') === 'direct') {
-      reblogIcon = 'envelope';
-    } else if (status.get('visibility') === 'private') {
-      reblogIcon = 'lock';
-    }
-
+    let replyTitle;
     if (status.get('in_reply_to_id', null) === null) {
       replyTitle = intl.formatMessage(messages.reply);
     } else {
       replyTitle = intl.formatMessage(messages.replyAll);
+    }
+
+    const reblogPrivate = status.getIn(['account', 'id']) === me && status.get('visibility') === 'private';
+
+    let reblogTitle = '';
+    if (status.get('reblogged')) {
+      reblogTitle = intl.formatMessage(messages.cancel_reblog_private);
+    } else if (publicStatus) {
+      reblogTitle = intl.formatMessage(messages.reblog);
+    } else if (reblogPrivate) {
+      reblogTitle = intl.formatMessage(messages.reblog_private);
+    } else {
+      reblogTitle = intl.formatMessage(messages.cannot_reblog);
     }
 
     const shareButton = ('share' in navigator) && publicStatus && (
@@ -330,12 +328,21 @@ class StatusActionBar extends ImmutablePureComponent {
     return (
       <div className='status__action-bar'>
         <div className='status__action-bar__counter'><IconButton className='status__action-bar-button' title={replyTitle} icon={status.get('in_reply_to_account_id') === status.getIn(['account', 'id']) ? 'reply' : replyIcon} onClick={this.handleReplyClick} /><span className='status__action-bar__counter__label' >{obfuscatedCount(status.get('replies_count'))}</span></div>
-        <IconButton className='status__action-bar-button' disabled={!publicStatus} active={status.get('reblogged')} pressed={status.get('reblogged')} title={!publicStatus ? intl.formatMessage(messages.cannot_reblog) : intl.formatMessage(messages.reblog)} icon={reblogIcon} onClick={this.handleReblogClick} />
+        <IconButton className={classNames('status__action-bar-button', { reblogPrivate })} disabled={!publicStatus && !reblogPrivate}  active={status.get('reblogged')} pressed={status.get('reblogged')} title={reblogTitle} icon='retweet' onClick={this.handleReblogClick} />
         <IconButton className='status__action-bar-button star-icon' animate active={status.get('favourited')} pressed={status.get('favourited')} title={intl.formatMessage(messages.favourite)} icon='star' onClick={this.handleFavouriteClick} />
         {shareButton}
 
         <div className='status__action-bar-dropdown'>
-          <DropdownMenuContainer disabled={anonymousAccess} status={status} items={menu} icon='ellipsis-h' size={18} direction='right' title={intl.formatMessage(messages.more)} />
+          <DropdownMenuContainer
+            scrollKey={scrollKey}
+            disabled={anonymousAccess}
+            status={status}
+            items={menu}
+            icon='ellipsis-h'
+            size={18}
+            direction='right'
+            title={intl.formatMessage(messages.more)}
+          />
         </div>
       </div>
     );

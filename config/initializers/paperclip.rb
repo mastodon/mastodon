@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Paperclip::DataUriAdapter.register
+Paperclip::ResponseWithLimitAdapter.register
 
 Paperclip.interpolates :filename do |attachment, style|
   if style == :original
@@ -111,3 +112,5 @@ else
     url: ENV.fetch('PAPERCLIP_ROOT_URL', '/system') + '/:prefix_url:class/:attachment/:id_partition/:style/:filename',
   )
 end
+
+Paperclip.options[:content_type_mappings] = { csv: Import::FILE_TYPES }

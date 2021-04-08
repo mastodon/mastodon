@@ -199,12 +199,13 @@ class EmojiPickerMenu extends React.PureComponent {
     };
   }
 
-  handleClick = emoji => {
+  handleClick = (emoji, event) => {
     if (!emoji.native) {
       emoji.native = emoji.colons;
     }
-
-    this.props.onClose();
+    if (!(event.ctrlKey || event.metaKey)) {
+      this.props.onClose();
+    }
     this.props.onPick(emoji);
   }
 
@@ -314,7 +315,7 @@ class EmojiPickerDropdown extends React.PureComponent {
 
         this.setState({ loading: false });
       }).catch(() => {
-        this.setState({ loading: false });
+        this.setState({ loading: false, active: false });
       });
     }
 

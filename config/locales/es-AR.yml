@@ -40,8 +40,11 @@ es-AR:
       domain: Servidor
       reason: Razón
       rejecting_media: 'Los archivos de medios de este servidor no van a ser procesados y no se mostrarán miniaturas, lo que requiere un clic manual hacia el archivo original:'
+      rejecting_media_title: Medios filtrados
       silenced: 'Los toots de estos servidores se ocultarán en las líneas temporales y conversaciones públicas, y no se generarán notificaciones de las interacciones de sus usuarios, a menos que los estés siguiendo:'
+      silenced_title: Servidores silenciados
       suspended: 'No se procesarán, almacenarán o intercambiarán datos de estos servidores, haciendo imposible cualquier interacción o comunicación con los usuarios de estos servidores:'
+      suspended_title: Servidores suspendidos
     unavailable_content_html: Mastodon generalmente te permite ver contenido e interactuar con usuarios de cualquier otro servidor en el fediverso. Estas son las excepciones que se hicieron en este servidor en particular.
     user_count_after:
       one: usuario
@@ -50,7 +53,7 @@ es-AR:
     what_is_mastodon: "¿Qué es Mastodon?"
   accounts:
     choices_html: 'Recomendados de %{name}:'
-    endorsements_hint: Podés recomendar a gente que seguís desde la interface web, y van a aparecerán acá.
+    endorsements_hint: Podés recomendar a gente que seguís desde la interface web, y va aparecer acá.
     featured_tags_hint: Podés destacar etiquetas específicas que se mostrarán acá.
     follow: Seguir
     followers:
@@ -209,8 +212,8 @@ es-AR:
         destroy_announcement: Eliminar anuncio
         destroy_custom_emoji: Eliminar emoji personalizado
         destroy_domain_allow: Eliminar permiso de dominio
-        destroy_domain_block: Eliminar bloquedo de dominio
-        destroy_email_domain_block: Eliminar bloquedo de dominio de correo electrónico
+        destroy_domain_block: Eliminar bloqueo de dominio
+        destroy_email_domain_block: Eliminar bloqueo de dominio de correo electrónico
         destroy_status: Eliminar estado
         disable_2fa_user: Deshabilitar 2FA
         disable_custom_emoji: Deshabilitar emoji personalizado
@@ -309,6 +312,7 @@ es-AR:
       listed: Listados
       new:
         title: Agregar nuevo emoji personalizado
+      not_permitted: No tenés permiso para realizar esta acción
       overwrite: Sobreescribir
       shortcode: Código corto
       shortcode_hint: Al menos 2 caracteres, sólo caracteres alfanuméricos y subguiones ("_")
@@ -353,8 +357,8 @@ es-AR:
       destroyed_msg: El dominio no se aprobó
       undo: No aprobado
     domain_blocks:
-      add_new: Agregar nuevo bloquedo de dominio
-      created_msg: Ahora se está procesando el bloquedo de dominio
+      add_new: Agregar nuevo bloqueo de dominio
+      created_msg: Ahora se está procesando el bloqueo de dominio
       destroyed_msg: Se deshizo el bloqueo de dominio
       domain: Dominio
       edit: Editar bloqueo de dominio
@@ -367,7 +371,7 @@ es-AR:
           noop: Ninguno
           silence: Silenciar
           suspend: Suspender
-        title: Nuevo bloquedo de dominio
+        title: Nuevo bloqueo de dominio
       private_comment: Comentario privado
       private_comment_hint: Comentario sobre la limitación de este dominio, para uso interno de los moderadores.
       public_comment: Comentario público
@@ -481,12 +485,12 @@ es-AR:
       report: 'Denunciar #%{id}'
       reported_account: Cuenta denunciada
       reported_by: Denunciada por
-      resolved: Resuelta
+      resolved: Resueltas
       resolved_msg: "¡Denuncia exitosamente resuelta!"
       status: Estado
       title: Denuncias
       unassign: Desasignar
-      unresolved: No resuelta
+      unresolved: No resueltas
       updated_at: Actualizada
     settings:
       activity_api_enabled:
@@ -721,6 +725,10 @@ es-AR:
     hint_html: "<strong>Dato:</strong> No volveremos a preguntarte por la contraseña durante la siguiente hora."
     invalid_password: Contraseña no válida
     prompt: Confirmar contraseña para seguir
+  crypto:
+    errors:
+      invalid_key: no es una clave Ed25519 o Curve25519 válida
+      invalid_signature: no es una firma Ed25519 válida
   date:
     formats:
       default: "%Y.%b.%d"
@@ -918,6 +926,7 @@ es-AR:
     on_cooldown: Recientemente mudaste tu cuenta. Esta función estará disponible de nuevo en %{count} días.
     past_migrations: Mudanzas pasadas
     proceed_with_move: Mudar seguidores
+    redirected_msg: Tu cuenta ahora redirige a %{acct}.
     redirecting_to: Tu cuenta está siendo redirigida a %{acct}.
     set_redirect: Establecer redireccionamiento
     warning:
@@ -931,6 +940,10 @@ es-AR:
       redirect: El perfil de tu cuenta actual se actualizará con un aviso de redireccionamiento y será excluido de las búsquedas
   moderation:
     title: Moderación
+  move_handler:
+    carry_blocks_over_text: Este usuario se mudó desde %{acct}, que habías bloqueado.
+    carry_mutes_over_text: Este usuario se mudó desde %{acct}, que habías silenciado.
+    copy_account_note_text: 'Este usuario se mudó desde %{acct}, acá están tus notas previas sobre él/ella:'
   notification_mailer:
     digest:
       action: Ver todas las notificaciones
@@ -1107,6 +1120,9 @@ es-AR:
     spam_detected: Este es un informe automatizado. Se detectó spam.
   statuses:
     attached:
+      audio:
+        one: "%{count} audio"
+        other: "%{count} audios"
       description: 'Adjunto: %{attached}'
       image:
         one: "%{count} imagen"
@@ -1266,6 +1282,12 @@ es-AR:
       explanation: Solicitado un resguardo completo de tu cuenta de Mastodon. ¡Ya está listo para descargar!
       subject: Tu archivo historial está listo para descargar
       title: Descargar archivo historial
+    sign_in_token:
+      details: 'Acá están los detalles del intento:'
+      explanation: 'Detectamos un intento de inicio de sesión en tu cuenta desde una dirección IP no reconocida. Si fuiste vos, por favor, ingresá el código de seguridad de abajo en la página del desafío:'
+      further_actions: 'Si no eras vos, por favor, cambiá tu contraseña y habilitá la autenticación de dos factores en tu cuenta. Podés hacerlo acá:'
+      subject: Por favor, confirmá el intento de inicio de sesión
+      title: Intento de inicio de sesión
     warning:
       explanation:
         disable: Mientras tu cuenta esté congelada, la información de la misma permanecerá intacta, pero no podés realizar ninguna acción hasta que se desbloquee.
@@ -1303,11 +1325,14 @@ es-AR:
       title: "¡Bienvenido a bordo, %{name}!"
   users:
     follow_limit_reached: No podés seguir a más de %{limit} personas
+    generic_access_help_html: "¿Tenés problemas para acceder a tu cuenta? Podés ponerte en contacto con %{email} para obtener ayuda"
     invalid_email: La dirección de correo electrónico no es correcta
     invalid_otp_token: Código de dos factores no válido
+    invalid_sign_in_token: Código de seguridad no válido
     otp_lost_help_html: Si perdiste al acceso a ambos, podés ponerte en contacto con %{email}
     seamless_external_login: Iniciaste sesión desde un servicio externo, así que la configuración de contraseña y correo electrónico no están disponibles.
     signed_in_as: 'Iniciaste sesión como:'
+    suspicious_sign_in_confirmation: Parece que no iniciaste sesión desde este dispositivo antes, y no iniciaste sesión durante un tiempo, así que te estamos enviando un código de seguridad a tu dirección de correo electrónico para confirmar que sos vos.
   verification:
     explanation_html: 'Podés <strong>verificarte a vos mismo como el propietario de los enlaces en los metadatos de tu perfil</strong>. Para eso, el sitio web del enlace debe contener un enlace de vuelta a tu perfil de Mastodon. El enlace en tu sitio <strong>debe</strong> tener un atributo <code>rel="me"</code>. El contenido del texto del enlace no importa. Acá tenés un ejemplo:'
     verification: Verificación

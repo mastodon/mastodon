@@ -20,6 +20,9 @@ class ActivityPub::Activity::Move < ActivityPub::Activity
 
     # Initiate a re-follow for each follower
     MoveWorker.perform_async(origin_account.id, target_account.id)
+  rescue
+    unmark_as_processing!
+    raise
   end
 
   private
@@ -33,7 +36,7 @@ class ActivityPub::Activity::Move < ActivityPub::Activity
   end
 
   def processed?
-    redis.exists("move_in_progress:#{@account.id}")
+    redis.exists?("move_in_progress:#{@account.id}")
   end
 
   def mark_as_processing!

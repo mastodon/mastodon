@@ -42,8 +42,11 @@ pl:
       domain: Serwer
       reason: Powód
       rejecting_media: 'Pliki multimedialne z tych serwerów nie będą przetwarzane ani przechowywane, ani ich miniaturki nie będą wyświetlane, wymuszając ręczne przejście do oryginalnego pliku:'
+      rejecting_media_title: Filtrowana zawartość multimedialna
       silenced: 'Posty z tych serwerów będą ukryte na publicznych osiach czasu i konwersacjach, a powiadomienia z interakcji ich użytkowników nie będą generowane, chyba że ich obserwujesz:'
+      silenced_title: Wyciszone serwery
       suspended: 'Żadne dane z tych serwerów nie będą przetwarzane, przechowywane ani wymieniane, sprawiając że jakakolwiek interakcja czy komunikacja z użytkownikami tych serwerów będzie niemożliwa:'
+      suspended_title: Zawieszone serwery
     unavailable_content_html: Normalnie Mastodon pozwala ci przeglądać treści od innych użytkowników z jakiegokolwiek serwera w fediwersum. To są wyjątki, które zostały stworzone na tym konkretnym serwerze.
     user_count_after:
       few: użytkowników
@@ -317,6 +320,7 @@ pl:
       listed: Widoczne
       new:
         title: Dodaj nowe niestandardowe emoji
+      not_permitted: Nie masz uprawnień do wykonania tego działania
       overwrite: Zastąp
       shortcode: Krótki kod
       shortcode_hint: Co najmniej 2 znaki, tylko znaki alfanumeryczne i podkreślniki
@@ -737,6 +741,10 @@ pl:
     hint_html: "<strong>Informacja:</strong> Nie będziemy prosić Cię o ponowne podanie hasła przez następną godzinę."
     invalid_password: Nieprawidłowe hasło
     prompt: Potwierdź hasło, aby kontynuować
+  crypto:
+    errors:
+      invalid_key: nie jest prawidłowym kluczem Ed25519 lub Curve25519
+      invalid_signature: nie jest prawidłowym podpisem Ed25519
   date:
     formats:
       default: "%d. %b %Y"
@@ -868,6 +876,8 @@ pl:
     inactive: Niekatywny
     publicize_checkbox: 'I opublikuj to:'
     publicize_toot: 'Udowodnione! Jestem %{username} na %{service}: %{url}'
+    remove: Usuń dowód z konta
+    removed: Pomyślnie usunięto dowód z konta
     status: Stan weryfikacji
     view_proof: Wyświetl dowód
   imports:
@@ -936,6 +946,7 @@ pl:
     on_cooldown: Ostatnio przeniosłeś(-aś) swoje konto. Ta funkcja będzie dostępna ponownie za %{count} dni.
     past_migrations: Poprzednie migracje
     proceed_with_move: Przenieś obserwujących
+    redirected_msg: Twoje konto przekierowuje teraz na %{acct}.
     redirecting_to: Twoje konto przekierowuje na %{acct}.
     set_redirect: Ustaw przekierowanie
     warning:
@@ -1298,6 +1309,12 @@ pl:
       explanation: Zażądałeś pełnej kopii zapasowej konta na Mastodonie. Jest ona dostępna do pobrania!
       subject: Twoje archiwum jest gotowe do pobrania
       title: Odbiór archiwum
+    sign_in_token:
+      details: 'Oto szczegóły próby:'
+      explanation: 'Wykryliśmy próbę zalogowania na Twoje konto z adresu IP którego nie możemy rozpoznać. Jeżeli to Ty, wprowadź poniższy kod na stronie logowania:'
+      further_actions: 'Jeśli to nie Ty, zmień swoje hasło i włącz weryfikację dwuetapową na swoim koncie. Możesz to zrobić tutaj:'
+      subject: Potwierdź próbę zalogowania
+      title: Próba logowania
     warning:
       explanation:
         disable: Kiedy Twoje konto jest wyłączone, Twoje dane pozostają na serwerze, ale nie możesz wykonywać żadnych działań, zanim zostanie odblokowane.
@@ -1335,11 +1352,14 @@ pl:
       title: Witaj na pokładzie, %{name}!
   users:
     follow_limit_reached: Nie możesz śledzić więcej niż %{limit} osób
+    generic_access_help_html: Nie możesz uzyskać dostępu do konta? Skontaktuj się z %{email} aby uzyskać pomoc
     invalid_email: Adres e-mail jest niepoprawny
     invalid_otp_token: Kod uwierzytelniający jest niepoprawny
+    invalid_sign_in_token: Nieprawidłowy kod zabezpieczający
     otp_lost_help_html: Jeżeli utracisz dostęp do obu, możesz skontaktować się z %{email}
     seamless_external_login: Zalogowano z użyciem zewnętrznej usługi, więc ustawienia hasła i adresu e-mail nie są dostępne.
     signed_in_as: 'Zalogowany jako:'
+    suspicious_sign_in_confirmation: Wygląda na to, że nie logowałeś się wcześniej z tego urządzenia i przez jakiś czas nie logowałeś się, więc wysłaliśmy na Twój adres e-mail kod zabezpieczający, aby potwierdzić, że to Ty.
   verification:
     explanation_html: 'Możesz <strong>zweryfikować siebie jako właściciela stron, do których odnośniki znajdują się w metadanych</strong>. Aby to zrobić, strona musi zawierać odnośnik do Twojego profilu na Mastodonie. Odnośnik <strong>musi</strong> zawierać atrybut <code>rel="me"</code>. Jego zawartość nie ma znaczenia. Przykład:'
     verification: Weryfikacja

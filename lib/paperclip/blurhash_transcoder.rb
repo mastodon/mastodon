@@ -3,7 +3,7 @@
 module Paperclip
   class BlurhashTranscoder < Paperclip::Processor
     def make
-      return @file unless options[:style] == :small
+      return @file unless options[:style] == :small || options[:blurhash]
 
       pixels   = convert(':source RGB:-', source: File.expand_path(@file.path)).unpack('C*')
       geometry = options.fetch(:file_geometry_parser).from_file(@file)

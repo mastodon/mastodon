@@ -4,7 +4,7 @@ class MediaController < ApplicationController
   include Authorization
 
   skip_before_action :store_current_location
-  skip_before_action :require_functional!
+  skip_before_action :require_functional!, unless: :whitelist_mode?
 
   before_action :authenticate_user!, if: :whitelist_mode?
   before_action :set_media_attachment

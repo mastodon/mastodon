@@ -142,6 +142,23 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "{count, plural, one {{counter} Toot} other {{counter} Toots}}",
+        "id": "account.statuses_counter"
+      },
+      {
+        "defaultMessage": "{count, plural, one {{counter} Following} other {{counter} Following}}",
+        "id": "account.following_counter"
+      },
+      {
+        "defaultMessage": "{count, plural, one {{counter} Follower} other {{counter} Followers}}",
+        "id": "account.followers_counter"
+      }
+    ],
+    "path": "app/javascript/mastodon/components/common_counter.json"
+  },
+  {
+    "descriptors": [
+      {
         "defaultMessage": "Unblock domain {domain}",
         "id": "account.unblock_domain"
       }
@@ -172,8 +189,8 @@
   {
     "descriptors": [
       {
-        "defaultMessage": "{count} {rawCount, plural, one {person} other {people}} talking",
-        "id": "trends.count_by_accounts"
+        "defaultMessage": "{count, plural, one {{counter} person} other {{counter} people}} talking",
+        "id": "trends.counter_by_accounts"
       }
     ],
     "path": "app/javascript/mastodon/components/hashtag.json"
@@ -217,7 +234,7 @@
   {
     "descriptors": [
       {
-        "defaultMessage": "Hide media",
+        "defaultMessage": "Hide {number, plural, one {image} other {images}}",
         "id": "media_gallery.toggle_visible"
       },
       {
@@ -339,6 +356,23 @@
       }
     ],
     "path": "app/javascript/mastodon/components/relative_timestamp.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "{count}K",
+        "id": "units.short.thousand"
+      },
+      {
+        "defaultMessage": "{count}M",
+        "id": "units.short.million"
+      },
+      {
+        "defaultMessage": "{count}B",
+        "id": "units.short.billion"
+      }
+    ],
+    "path": "app/javascript/mastodon/components/short_number.json"
   },
   {
     "descriptors": [
@@ -493,6 +527,22 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "Public",
+        "id": "privacy.public.short"
+      },
+      {
+        "defaultMessage": "Unlisted",
+        "id": "privacy.unlisted.short"
+      },
+      {
+        "defaultMessage": "Followers-only",
+        "id": "privacy.private.short"
+      },
+      {
+        "defaultMessage": "Direct",
+        "id": "privacy.direct.short"
+      },
+      {
         "defaultMessage": "Filtered",
         "id": "status.filtered"
       },
@@ -506,6 +556,19 @@
       }
     ],
     "path": "app/javascript/mastodon/components/status.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "{resource} from other servers are not displayed.",
+        "id": "timeline_hint.remote_resource_not_displayed"
+      },
+      {
+        "defaultMessage": "Browse more on the original profile",
+        "id": "account.browse_more_on_origin_server"
+      }
+    ],
+    "path": "app/javascript/mastodon/components/timeline_hint.json"
   },
   {
     "descriptors": [
@@ -620,6 +683,10 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "Older toots",
+        "id": "timeline_hint.resources.statuses"
+      },
+      {
         "defaultMessage": "Profile unavailable",
         "id": "empty_column.account_unavailable"
       },
@@ -629,6 +696,23 @@
       }
     ],
     "path": "app/javascript/mastodon/features/account_timeline/index.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Click to add a note",
+        "id": "account_note.placeholder"
+      },
+      {
+        "defaultMessage": "Saved",
+        "id": "generic.saved"
+      },
+      {
+        "defaultMessage": "Note",
+        "id": "account.account_note_header"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/account/components/account_note.json"
   },
   {
     "descriptors": [
@@ -783,18 +867,6 @@
       {
         "defaultMessage": "Group",
         "id": "account.badges.group"
-      },
-      {
-        "defaultMessage": "Toots",
-        "id": "account.posts"
-      },
-      {
-        "defaultMessage": "Follows",
-        "id": "account.follows"
-      },
-      {
-        "defaultMessage": "Followers",
-        "id": "account.followers"
       }
     ],
     "path": "app/javascript/mastodon/features/account/components/header.json"
@@ -1189,7 +1261,7 @@
   {
     "descriptors": [
       {
-        "defaultMessage": "Add media ({formats})",
+        "defaultMessage": "Add images, a video or an audio file",
         "id": "upload_button.label"
       }
     ],
@@ -1543,6 +1615,10 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "Followers",
+        "id": "timeline_hint.resources.followers"
+      },
+      {
         "defaultMessage": "Profile unavailable",
         "id": "empty_column.account_unavailable"
       },
@@ -1555,6 +1631,10 @@
   },
   {
     "descriptors": [
+      {
+        "defaultMessage": "Follows",
+        "id": "timeline_hint.resources.follows"
+      },
       {
         "defaultMessage": "Profile unavailable",
         "id": "empty_column.account_unavailable"
@@ -1919,6 +1999,10 @@
       {
         "defaultMessage": "to start a brand new toot",
         "id": "keyboard_shortcuts.toot"
+      },
+      {
+        "defaultMessage": "to show/hide CW field",
+        "id": "keyboard_shortcuts.spoilers"
       },
       {
         "defaultMessage": "to navigate back",
@@ -2430,6 +2514,36 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "Sensitive content",
+        "id": "status.sensitive_warning"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/status/components/card.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Public",
+        "id": "privacy.public.short"
+      },
+      {
+        "defaultMessage": "Unlisted",
+        "id": "privacy.unlisted.short"
+      },
+      {
+        "defaultMessage": "Followers-only",
+        "id": "privacy.private.short"
+      },
+      {
+        "defaultMessage": "Direct",
+        "id": "privacy.direct.short"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/status/components/detailed_status.json"
+  },
+  {
+    "descriptors": [
+      {
         "defaultMessage": "Delete",
         "id": "confirmations.delete.confirm"
       },
@@ -2546,6 +2660,22 @@
         "id": "status.reblog"
       },
       {
+        "defaultMessage": "Public",
+        "id": "privacy.public.short"
+      },
+      {
+        "defaultMessage": "Unlisted",
+        "id": "privacy.unlisted.short"
+      },
+      {
+        "defaultMessage": "Followers-only",
+        "id": "privacy.private.short"
+      },
+      {
+        "defaultMessage": "Direct",
+        "id": "privacy.direct.short"
+      },
+      {
         "defaultMessage": "You can press {combo} to skip this next time",
         "id": "boost_modal.combo"
       }
@@ -2640,6 +2770,10 @@
         "id": "upload_modal.description_placeholder"
       },
       {
+        "defaultMessage": "Choose image",
+        "id": "upload_modal.choose_image"
+      },
+      {
         "defaultMessage": "Describe for people with hearing loss",
         "id": "upload_form.audio_description"
       },
@@ -2658,6 +2792,10 @@
       {
         "defaultMessage": "Click or drag the circle on the preview to choose the focal point which will always be in view on all thumbnails.",
         "id": "upload_modal.hint"
+      },
+      {
+        "defaultMessage": "Change thumbnail",
+        "id": "upload_form.thumbnail"
       },
       {
         "defaultMessage": "Analyzing picture…",
@@ -2953,10 +3091,6 @@
       {
         "defaultMessage": "Exit full screen",
         "id": "video.exit_fullscreen"
-      },
-      {
-        "defaultMessage": "Download file",
-        "id": "video.download"
       },
       {
         "defaultMessage": "Sensitive content",

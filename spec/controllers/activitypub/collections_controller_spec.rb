@@ -6,6 +6,21 @@ RSpec.describe ActivityPub::CollectionsController, type: :controller do
   let!(:account) { Fabricate(:account) }
   let(:remote_account) { nil }
 
+  shared_examples 'cachable response' do
+    it 'does not set cookies' do
+      expect(response.cookies).to be_empty
+      expect(response.headers['Set-Cookies']).to be nil
+    end
+
+    it 'does not set sessions' do
+      expect(session).to be_empty
+    end
+
+    it 'returns public Cache-Control header' do
+      expect(response.headers['Cache-Control']).to include 'public'
+    end
+  end
+
   before do
     allow(controller).to receive(:signed_request_account).and_return(remote_account)
 
@@ -31,9 +46,7 @@ RSpec.describe ActivityPub::CollectionsController, type: :controller do
           expect(response.content_type).to eq 'application/activity+json'
         end
 
-        it 'returns public Cache-Control header' do
-          expect(response.headers['Cache-Control']).to include 'public'
-        end
+        it_behaves_like 'cachable response'
 
         it 'returns orderedItems with pinned statuses' do
           json = body_as_json
@@ -58,9 +71,7 @@ RSpec.describe ActivityPub::CollectionsController, type: :controller do
             expect(response.content_type).to eq 'application/activity+json'
           end
 
-          it 'returns public Cache-Control header' do
-            expect(response.headers['Cache-Control']).to include 'public'
-          end
+          it_behaves_like 'cachable response'
 
           it 'returns orderedItems with pinned statuses' do
             json = body_as_json

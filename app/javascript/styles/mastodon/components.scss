@@ -11,6 +11,15 @@
   position: relative;
 }
 
+.inline-alert {
+  color: $valid-value-color;
+  font-weight: 400;
+
+  .no-reduce-motion & {
+    transition: opacity 200ms ease;
+  }
+}
+
 .link-button {
   display: block;
   font-size: 15px;
@@ -992,7 +1001,7 @@
   position: relative;
   min-height: 54px;
   border-bottom: 1px solid lighten($ui-base-color, 8%);
-  cursor: default;
+  cursor: auto;
 
   @supports (-ms-overflow-style: -ms-autohiding-scrollbar) {
     // Add margin to avoid Edge auto-hiding scrollbar appearing over content.
@@ -1019,7 +1028,8 @@
   }
 
   &.light {
-    .status__relative-time {
+    .status__relative-time,
+    .status__visibility-icon {
       color: $light-text-color;
     }
 
@@ -1065,10 +1075,16 @@
 }
 
 .status__relative-time,
+.status__visibility-icon,
 .notification__relative_time {
   color: $dark-text-color;
   float: right;
   font-size: 14px;
+}
+
+.status__visibility-icon {
+  margin-left: 4px;
+  margin-right: 4px;
 }
 
 .status__display-name {
@@ -2974,7 +2990,7 @@ a.account__display-name {
   }
 }
 
-.no-reduce-motion button.icon-button i.fa-retweet {
+button.icon-button i.fa-retweet {
   background-position: 0 0;
   height: 19px;
   transition: background-position 0.9s steps(10);
@@ -2988,21 +3004,18 @@ a.account__display-name {
 
 }
 
-.no-reduce-motion button.icon-button.active i.fa-retweet {
+button.icon-button.active i.fa-retweet {
   transition-duration: 0.9s;
   background-position: 0 100%;
 }
 
-.reduce-motion button.icon-button i.fa-retweet {
-  color: $action-button-color;
-  transition: color 100ms ease-in;
-}
-
+.reduce-motion button.icon-button i.fa-retweet,
 .reduce-motion button.icon-button.active i.fa-retweet {
-  color: $highlight-text-color;
+  transition: none;
 }
 
 .status-card {
+  position: relative;
   display: flex;
   font-size: 14px;
   border: 1px solid lighten($ui-base-color, 8%);
@@ -3134,7 +3147,8 @@ a.status-card {
     width: 100%;
   }
 
-  .status-card__image-image {
+  .status-card__image-image,
+  .status-card__image-preview {
     border-radius: 4px 4px 0 0;
   }
 
@@ -3179,6 +3193,24 @@ a.status-card.compact:hover {
   background-position: center center;
 }
 
+.status-card__image-preview {
+  border-radius: 4px 0 0 4px;
+  display: block;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  background: $base-overlay-background;
+
+  &--hidden {
+    display: none;
+  }
+}
+
 .load-more {
   display: block;
   color: $dark-text-color;
@@ -3201,6 +3233,31 @@ a.status-card.compact:hover {
 
 .load-gap {
   border-bottom: 1px solid lighten($ui-base-color, 8%);
+}
+
+.timeline-hint {
+  text-align: center;
+  color: $darker-text-color;
+  padding: 15px;
+  box-sizing: border-box;
+  width: 100%;
+  cursor: default;
+
+  strong {
+    font-weight: 500;
+  }
+
+  a {
+    color: lighten($ui-highlight-color, 8%);
+    text-decoration: none;
+
+    &:hover,
+    &:focus,
+    &:active {
+      text-decoration: underline;
+      color: lighten($ui-highlight-color, 12%);
+    }
+  }
 }
 
 .regeneration-indicator {
@@ -3789,7 +3846,6 @@ a.status-card.compact:hover {
   color: $primary-text-color;
   margin-bottom: 4px;
   display: block;
-  vertical-align: top;
   background-color: $base-overlay-background;
   text-transform: uppercase;
   font-size: 11px;
@@ -4817,6 +4873,15 @@ a.status-card.compact:hover {
   }
 }
 
+.setting-divider {
+  background: transparent;
+  border: 0;
+  margin: 0;
+  width: 100%;
+  height: 1px;
+  margin-bottom: 29px;
+}
+
 .report-modal__comment {
   padding: 20px;
   border-right: 1px solid $ui-secondary-color;
@@ -5154,6 +5219,7 @@ a.status-card.compact:hover {
   border-radius: 4px;
   position: relative;
   width: 100%;
+  min-height: 64px;
 }
 
 .media-gallery__item {
@@ -5247,6 +5313,7 @@ a.status-card.compact:hover {
 }
 
 .audio-player {
+  overflow: hidden;
   box-sizing: border-box;
   position: relative;
   background: darken($ui-base-color, 8%);
@@ -5259,37 +5326,49 @@ a.status-card.compact:hover {
     height: 100%;
   }
 
-  &__waveform {
-    padding: 15px 0;
-    position: relative;
-    overflow: hidden;
+  .video-player__volume::before,
+  .video-player__seek::before {
+    background: currentColor;
+    opacity: 0.15;
+  }
 
-    &::before {
-      content: "";
-      display: block;
-      position: absolute;
-      border-top: 1px solid lighten($ui-base-color, 4%);
-      width: 100%;
-      height: 0;
-      left: 0;
-      top: calc(50% + 1px);
+  .video-player__seek__buffer {
+    background: currentColor;
+    opacity: 0.2;
+  }
+
+  .video-player__buttons button {
+    color: currentColor;
+    opacity: 0.75;
+
+    &:active,
+    &:hover,
+    &:focus {
+      color: currentColor;
+      opacity: 1;
     }
   }
 
-  &__progress-placeholder {
-    background-color: rgba(lighten($ui-highlight-color, 8%), 0.5);
+  .video-player__time-sep,
+  .video-player__time-total,
+  .video-player__time-current {
+    color: currentColor;
   }
 
-  &__wave-placeholder {
-    background-color: lighten($ui-base-color, 16%);
+  .video-player__seek::before,
+  .video-player__seek__buffer,
+  .video-player__seek__progress {
+    top: 0;
+  }
+
+  .video-player__seek__handle {
+    top: -4px;
   }
 
   .video-player__controls {
     padding: 0 15px;
     padding-top: 10px;
-    background: darken($ui-base-color, 8%);
-    border-top: 1px solid lighten($ui-base-color, 4%);
-    border-radius: 0 0 4px 4px;
+    background: transparent;
   }
 }
 
@@ -5301,6 +5380,7 @@ a.status-card.compact:hover {
   border-radius: 4px;
   box-sizing: border-box;
   direction: ltr;
+  color: $white;
 
   &.editable {
     border-radius: 0;
@@ -5312,6 +5392,7 @@ a.status-card.compact:hover {
   }
 
   video {
+    display: block;
     max-width: 100vw;
     max-height: 80vh;
     z-index: 1;
@@ -5412,6 +5493,10 @@ a.status-card.compact:hover {
   }
 
   &__buttons {
+    display: flex;
+    flex: 0 1 auto;
+    min-width: 30px;
+    align-items: center;
     font-size: 16px;
     white-space: nowrap;
     overflow: hidden;
@@ -5430,6 +5515,7 @@ a.status-card.compact:hover {
     }
 
     button {
+      flex: 0 0 auto;
       background: transparent;
       padding: 2px 10px;
       font-size: 16px;
@@ -5444,6 +5530,13 @@ a.status-card.compact:hover {
     }
   }
 
+  &__time {
+    display: inline;
+    flex: 0 1 auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
   &__time-sep,
   &__time-total,
   &__time-current {
@@ -5453,7 +5546,6 @@ a.status-card.compact:hover {
 
   &__time-current {
     color: $white;
-    margin-left: 60px;
   }
 
   &__time-sep {
@@ -5467,9 +5559,22 @@ a.status-card.compact:hover {
   }
 
   &__volume {
+    flex: 0 0 auto;
+    display: inline-flex;
     cursor: pointer;
     height: 24px;
-    display: inline;
+    position: relative;
+    overflow: hidden;
+
+    .no-reduce-motion & {
+      transition: all 100ms linear;
+    }
+
+    &.active {
+      overflow: visible;
+      width: 50px;
+      margin-right: 16px;
+    }
 
     &::before {
       content: "";
@@ -5479,8 +5584,9 @@ a.status-card.compact:hover {
       display: block;
       position: absolute;
       height: 4px;
-      left: 70px;
-      bottom: 20px;
+      left: 0;
+      top: 50%;
+      transform: translate(0, -50%);
     }
 
     &__current {
@@ -5488,8 +5594,9 @@ a.status-card.compact:hover {
       position: absolute;
       height: 4px;
       border-radius: 4px;
-      left: 70px;
-      bottom: 20px;
+      left: 0;
+      top: 50%;
+      transform: translate(0, -50%);
       background: lighten($ui-highlight-color, 8%);
     }
 
@@ -5499,12 +5606,21 @@ a.status-card.compact:hover {
       border-radius: 50%;
       width: 12px;
       height: 12px;
-      bottom: 16px;
-      left: 70px;
-      transition: opacity .1s ease;
+      top: 50%;
+      left: 0;
+      margin-left: -6px;
+      transform: translate(0, -50%);
       background: lighten($ui-highlight-color, 8%);
       box-shadow: 1px 2px 6px rgba($base-shadow-color, 0.2);
-      pointer-events: none;
+      opacity: 0;
+
+      .no-reduce-motion & {
+        transition: opacity 100ms linear;
+      }
+    }
+
+    &.active &__handle {
+      opacity: 1;
     }
   }
 
@@ -5564,10 +5680,12 @@ a.status-card.compact:hover {
       height: 12px;
       top: 6px;
       margin-left: -6px;
-      transition: opacity .1s ease;
       background: lighten($ui-highlight-color, 8%);
       box-shadow: 1px 2px 6px rgba($base-shadow-color, 0.2);
-      pointer-events: none;
+
+      .no-reduce-motion & {
+        transition: opacity .1s ease;
+      }
 
       &.active {
         opacity: 1;
@@ -6387,7 +6505,7 @@ noscript {
   &__tabs {
     display: flex;
     align-items: flex-start;
-    padding: 7px 5px;
+    padding: 7px 10px;
     margin-top: -55px;
 
     &__buttons {
@@ -6409,7 +6527,7 @@ noscript {
     }
 
     &__name {
-      padding: 5px;
+      padding: 5px 10px;
 
       .account-role {
         vertical-align: top;
@@ -6453,6 +6571,11 @@ noscript {
       padding: 20px 15px;
       padding-bottom: 5px;
       color: $primary-text-color;
+
+      .columns-area--mobile & {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
     }
 
     .account__header__fields {
@@ -6492,6 +6615,54 @@ noscript {
           font-weight: 700;
           color: $primary-text-color;
         }
+      }
+    }
+  }
+
+  &__account-note {
+    padding: 15px;
+    padding-bottom: 10px;
+    color: $primary-text-color;
+    font-size: 14px;
+    font-weight: 400;
+    border-bottom: 1px solid lighten($ui-base-color, 12%);
+
+    .columns-area--mobile & {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+
+    label {
+      display: block;
+      font-size: 12px;
+      font-weight: 500;
+      color: $darker-text-color;
+      text-transform: uppercase;
+      margin-bottom: 5px;
+    }
+
+    textarea {
+      display: block;
+      box-sizing: border-box;
+      width: calc(100% + 20px);
+      color: $secondary-text-color;
+      background: transparent;
+      padding: 10px;
+      margin: 0 -10px;
+      font-family: inherit;
+      font-size: 14px;
+      resize: none;
+      border: 0;
+      outline: 0;
+      border-radius: 4px;
+
+      &::placeholder {
+        color: $dark-text-color;
+        opacity: 1;
+      }
+
+      &:focus {
+        background: $ui-base-color;
       }
     }
   }

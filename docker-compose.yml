@@ -1,10 +1,9 @@
-version: '3'
+version: "3"
 services:
-
   db:
     image: postgres:9.6-alpine
     volumes:
-    - /var/lib/postgresql/data
+      - /var/lib/postgresql/data
     shm_size: 256mb
     networks:
       - internal_network
@@ -13,25 +12,32 @@ services:
 
   redis:
     restart: always
-    image: redis:5.0-alpine
+    image: redis:6.0-alpine
     volumes:
-    - /var/data/docker-data/catgram-redis:/data
+      - /var/data/docker-data/catgram-redis:/data
     networks:
       - internal_network
     healthcheck:
       test: ["CMD", "redis-cli", "ping"]
 
-#  es:
-#    restart: always
-#    image: docker.elastic.co/elasticsearch/elasticsearch-oss:6.1.3
-#    environment:
-#      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
-#    networks:
-#      - internal_network
-#    healthcheck:
-#      test: ["CMD-SHELL", "curl --silent --fail localhost:9200/_cluster/health || exit 1"]
-#    volumes:
-#      - ./elasticsearch:/usr/share/elasticsearch/data
+  #  es:
+  #    restart: always
+  #    image: docker.elastic.co/elasticsearch/elasticsearch-oss:6.8.10
+  #    environment:
+  #      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+  #      - "cluster.name=es-mastodon"
+  #      - "discovery.type=single-node"
+  #      - "bootstrap.memory_lock=true"
+  #    networks:
+  #      - internal_network
+  #    healthcheck:
+  #      test: ["CMD-SHELL", "curl --silent --fail localhost:9200/_cluster/health || exit 1"]
+  #    volumes:
+  #      - ./elasticsearch:/usr/share/elasticsearch/data
+  #    ulimits:
+  #      memlock:
+  #        soft: -1
+  #        hard: -1
 
   web:
     build:
@@ -49,14 +55,18 @@ services:
       - external_network
       - internal_network
     healthcheck:
-      test: ["CMD-SHELL", "wget -q --spider --proxy=off localhost:3000/health || exit 1"]
+      test:
+        [
+          "CMD-SHELL",
+          "wget -q --spider --proxy=off localhost:3000/health || exit 1",
+        ]
     ports:
       - "127.0.0.1:3000:3000"
     depends_on:
       - db
       - redis
       - prometheus_exporter
-#      - es
+    #      - es
     volumes:
       - ./public/system:/mastodon/public/system
 
@@ -72,7 +82,11 @@ services:
       - external_network
       - internal_network
     healthcheck:
-      test: ["CMD-SHELL", "wget -q --spider --proxy=off localhost:4000/api/v1/streaming/health || exit 1"]
+      test:
+        [
+          "CMD-SHELL",
+          "wget -q --spider --proxy=off localhost:4000/api/v1/streaming/health || exit 1",
+        ]
     ports:
       - "127.0.0.1:4000:4000"
     depends_on:
@@ -95,7 +109,6 @@ services:
       - internal_network
     volumes:
       - ./public/system:/mastodon/public/system
-
 
   prometheus_exporter:
     image: 563848776164.dkr.ecr.us-west-2.amazonaws.com/prometheus_exporter:latest

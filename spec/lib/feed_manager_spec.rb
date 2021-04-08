@@ -108,6 +108,7 @@ RSpec.describe FeedManager do
 
       it 'returns false for status by followee mentioning another account' do
         bob.follow!(alice)
+        jeff.follow!(alice)
         status = PostStatusService.new.call(alice, text: 'Hey @jeff')
         expect(FeedManager.instance.filter?(:home, status, bob.id)).to be false
       end
@@ -427,6 +428,31 @@ RSpec.describe FeedManager do
 
       deletion = Oj.dump(event: :delete, payload: status.id.to_s)
       expect(Redis.current).to have_received(:publish).with("timeline:#{receiver.id}", deletion)
+    end
+  end
+
+  describe '#clear_from_timeline' do
+    let(:account)          { Fabricate(:account) }
+    let(:followed_account) { Fabricate(:account) }
+    let(:target_account)   { Fabricate(:account) }
+    let(:status_1)         { Fabricate(:status, account: followed_account) }
+    let(:status_2)         { Fabricate(:status, account: target_account) }
+    let(:status_3)         { Fabricate(:status, account: followed_account, mentions: [Fabricate(:mention, account: target_account)]) }
+    let(:status_4)         { Fabricate(:status, mentions: [Fabricate(:mention, account: target_account)]) }
+    let(:status_5)         { Fabricate(:status, account: followed_account, reblog: status_4) }
+    let(:status_6)         { Fabricate(:status, account: followed_account, reblog: status_2) }
+    let(:status_7)         { Fabricate(:status, account: followed_account) }
+
+    before do
+      [status_1, status_3, status_5, status_6, status_7].each do |status|
+        Redis.current.zadd("feed:home:#{account.id}", status.id, status.id)
+      end
+    end
+
+    it 'correctly cleans the timeline' do
+      FeedManager.instance.clear_from_timeline(account, target_account)
+
+      expect(Redis.current.zrange("feed:home:#{account.id}", 0, -1)).to eq [status_1.id.to_s, status_7.id.to_s]
     end
   end
 end

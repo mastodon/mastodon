@@ -5,6 +5,21 @@ RSpec.describe AccountsController, type: :controller do
 
   let(:account) { Fabricate(:user).account }
 
+  shared_examples 'cachable response' do
+    it 'does not set cookies' do
+      expect(response.cookies).to be_empty
+      expect(response.headers['Set-Cookies']).to be nil
+    end
+
+    it 'does not set sessions' do
+      expect(session).to be_empty
+    end
+
+    it 'returns public Cache-Control header' do
+      expect(response.headers['Cache-Control']).to include 'public'
+    end
+  end
+
   describe 'GET #show' do
     let(:format) { 'html' }
 
@@ -323,9 +338,7 @@ RSpec.describe AccountsController, type: :controller do
           expect(response.content_type).to eq 'application/activity+json'
         end
 
-        it 'returns public Cache-Control header' do
-          expect(response.headers['Cache-Control']).to include 'public'
-        end
+        it_behaves_like 'cachable response'
 
         it 'renders account' do
           json = body_as_json
@@ -335,26 +348,8 @@ RSpec.describe AccountsController, type: :controller do
         context 'in authorized fetch mode' do
           let(:authorized_fetch_mode) { true }
 
-          it 'returns http success' do
-            expect(response).to have_http_status(200)
-          end
-
-          it 'returns application/activity+json' do
-            expect(response.content_type).to eq 'application/activity+json'
-          end
-
-          it 'returns public Cache-Control header' do
-            expect(response.headers['Cache-Control']).to include 'public'
-          end
-
-          it 'returns Vary header with Signature' do
-            expect(response.headers['Vary']).to include 'Signature'
-          end
-
-          it 'renders bare minimum account' do
-            json = body_as_json
-            expect(json).to include(:id, :type, :preferredUsername, :inbox, :publicKey)
-            expect(json).to_not include(:name, :summary)
+          it 'returns http unauthorized' do
+            expect(response).to have_http_status(401)
           end
         end
       end
@@ -401,9 +396,7 @@ RSpec.describe AccountsController, type: :controller do
           expect(response.content_type).to eq 'application/activity+json'
         end
 
-        it 'returns public Cache-Control header' do
-          expect(response.headers['Cache-Control']).to include 'public'
-        end
+        it_behaves_like 'cachable response'
 
         it 'renders account' do
           json = body_as_json
@@ -447,9 +440,7 @@ RSpec.describe AccountsController, type: :controller do
           expect(response).to have_http_status(200)
         end
 
-        it 'returns public Cache-Control header' do
-          expect(response.headers['Cache-Control']).to include 'public'
-        end
+        it_behaves_like 'cachable response'
       end
 
       context do

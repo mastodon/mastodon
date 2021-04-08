@@ -10,10 +10,18 @@ import { List as ImmutableList } from 'immutable';
 import classNames from 'classnames';
 import { attachFullscreenListener, detachFullscreenListener, isFullscreen } from '../features/ui/util/fullscreen';
 import LoadingIndicator from './loading_indicator';
+import { connect } from 'react-redux';
 
 const MOUSE_IDLE_DELAY = 300;
 
-export default class ScrollableList extends PureComponent {
+const mapStateToProps = (state, { scrollKey }) => {
+  return {
+    preventScroll: scrollKey === state.getIn(['dropdown_menu', 'scroll_key']),
+  };
+};
+
+export default @connect(mapStateToProps, null, null, { forwardRef: true })
+class ScrollableList extends PureComponent {
 
   static contextTypes = {
     router: PropTypes.object,
@@ -32,10 +40,12 @@ export default class ScrollableList extends PureComponent {
     hasMore: PropTypes.bool,
     numPending: PropTypes.number,
     prepend: PropTypes.node,
+    append: PropTypes.node,
     alwaysPrepend: PropTypes.bool,
     emptyMessage: PropTypes.node,
     children: PropTypes.node,
     bindToDocument: PropTypes.bool,
+    preventScroll: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -128,7 +138,7 @@ export default class ScrollableList extends PureComponent {
   });
 
   handleMouseIdle = () => {
-    if (this.scrollToTopOnMouseIdle) {
+    if (this.scrollToTopOnMouseIdle && !this.props.preventScroll) {
       this.setScrollTop(0);
     }
 
@@ -178,7 +188,7 @@ export default class ScrollableList extends PureComponent {
       this.getFirstChildKey(prevProps) !== this.getFirstChildKey(this.props);
     const pendingChanged = (prevProps.numPending > 0) !== (this.props.numPending > 0);
 
-    if (pendingChanged || someItemInserted && (this.getScrollTop() > 0 || this.mouseMovedRecently)) {
+    if (pendingChanged || someItemInserted && (this.getScrollTop() > 0 || this.mouseMovedRecently || this.props.preventScroll)) {
       return this.getScrollHeight() - this.getScrollTop();
     } else {
       return null;
@@ -280,7 +290,7 @@ export default class ScrollableList extends PureComponent {
   }
 
   render () {
-    const { children, scrollKey, trackScroll, shouldUpdateScroll, showLoading, isLoading, hasMore, numPending, prepend, alwaysPrepend, emptyMessage, onLoadMore } = this.props;
+    const { children, scrollKey, trackScroll, shouldUpdateScroll, showLoading, isLoading, hasMore, numPending, prepend, alwaysPrepend, append, emptyMessage, onLoadMore } = this.props;
     const { fullscreen } = this.state;
     const childrenCount = React.Children.count(children);
 
@@ -327,6 +337,8 @@ export default class ScrollableList extends PureComponent {
             ))}
 
             {loadMore}
+
+            {!hasMore && append}
           </div>
         </div>
       );

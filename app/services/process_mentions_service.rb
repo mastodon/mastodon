@@ -29,14 +29,15 @@ class ProcessMentionsService < BaseService
       if mention_undeliverable?(mentioned_account)
         begin
           mentioned_account = resolve_account_service.call(Regexp.last_match(1))
-        rescue Goldfinger::Error, HTTP::Error, OpenSSL::SSL::SSLError, Mastodon::UnexpectedResponseError
+        rescue Webfinger::Error, HTTP::Error, OpenSSL::SSL::SSLError, Mastodon::UnexpectedResponseError
           mentioned_account = nil
         end
       end
 
       next match if mention_undeliverable?(mentioned_account) || mentioned_account&.suspended?
 
-      mentions << mentioned_account.mentions.where(status: status).first_or_create(status: status)
+      mention = mentioned_account.mentions.new(status: status)
+      mentions << mention if mention.save
 
       "@#{mentioned_account.acct}"
     end
@@ -65,7 +66,7 @@ class ProcessMentionsService < BaseService
 
   def activitypub_json
     return @activitypub_json if defined?(@activitypub_json)
-    @activitypub_json = Oj.dump(serialize_payload(@status, ActivityPub::ActivitySerializer, signer: @status.account))
+    @activitypub_json = Oj.dump(serialize_payload(ActivityPub::ActivityPresenter.from_status(@status), ActivityPub::ActivitySerializer, signer: @status.account))
   end
 
   def resolve_account_service

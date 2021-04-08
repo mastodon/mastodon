@@ -4,6 +4,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import Toggle from 'react-toggle';
 import AsyncSelect from 'react-select/async';
+import { NonceProvider } from 'react-select';
 import SettingToggle from '../../notifications/components/setting_toggle';
 
 const messages = defineMessages({
@@ -58,18 +59,20 @@ class ColumnSettings extends React.PureComponent {
           {this.modeLabel(mode)}
         </span>
 
-        <AsyncSelect
-          isMulti
-          autoFocus
-          value={this.tags(mode)}
-          onChange={this.onSelect(mode)}
-          loadOptions={this.props.onLoad}
-          className='column-select__container'
-          classNamePrefix='column-select'
-          name='tags'
-          placeholder={this.props.intl.formatMessage(messages.placeholder)}
-          noOptionsMessage={this.noOptionsMessage}
-        />
+        <NonceProvider nonce={document.querySelector('meta[name=style-nonce]').content}>
+          <AsyncSelect
+            isMulti
+            autoFocus
+            value={this.tags(mode)}
+            onChange={this.onSelect(mode)}
+            loadOptions={this.props.onLoad}
+            className='column-select__container'
+            classNamePrefix='column-select'
+            name='tags'
+            placeholder={this.props.intl.formatMessage(messages.placeholder)}
+            noOptionsMessage={this.noOptionsMessage}
+          />
+        </NonceProvider>
       </div>
     );
   }

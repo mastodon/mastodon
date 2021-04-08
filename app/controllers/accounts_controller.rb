@@ -1,16 +1,18 @@
 # frozen_string_literal: true
 
 class AccountsController < ApplicationController
-  PAGE_SIZE = 20
+  PAGE_SIZE     = 20
+  PAGE_SIZE_MAX = 200
 
   include AccountControllerConcern
   include SignatureAuthentication
 
+  before_action :require_signature!, if: -> { request.format == :json && authorized_fetch_mode? }
   before_action :set_cache_headers
   before_action :set_body_classes
 
   skip_around_action :set_locale, if: -> { [:json, :rss].include?(request.format&.to_sym) }
-  skip_before_action :require_functional!
+  skip_before_action :require_functional!, unless: :whitelist_mode?
 
   def show
     respond_to do |format|
@@ -40,14 +42,15 @@ class AccountsController < ApplicationController
       format.rss do
         expires_in 1.minute, public: true
 
-        @statuses = filtered_statuses.without_reblogs.limit(PAGE_SIZE)
+        limit     = params[:limit].present? ? [params[:limit].to_i, PAGE_SIZE_MAX].min : PAGE_SIZE
+        @statuses = filtered_statuses.without_reblogs.limit(limit)
         @statuses = cache_collection(@statuses, Status)
         render xml: RSS::AccountSerializer.render(@account, @statuses, params[:tag])
       end
 
       format.json do
         expires_in 3.minutes, public: !(authorized_fetch_mode? && signed_request_account.present?)
-        render_with_cache json: @account, content_type: 'application/activity+json', serializer: ActivityPub::ActorSerializer, adapter: ActivityPub::Adapter, fields: restrict_fields_to
+        render_with_cache json: @account, content_type: 'application/activity+json', serializer: ActivityPub::ActorSerializer, adapter: ActivityPub::Adapter
       end
     end
   end
@@ -79,7 +82,7 @@ class AccountsController < ApplicationController
   end
 
   def account_media_status_ids
-    @account.media_attachments.attached.reorder(nil).select(:status_id).distinct
+    @account.media_attachments.attached.reorder(nil).select(:status_id).group(:status_id)
   end
 
   def no_replies_scope
@@ -146,13 +149,5 @@ class AccountsController < ApplicationController
 
   def params_slice(*keys)
     params.slice(*keys).permit(*keys)
-  end
-
-  def restrict_fields_to
-    if signed_request_account.present? || public_fetch_mode?
-      # Return all fields
-    else
-      %i(id type preferred_username inbox public_key endpoints)
-    end
   end
 end

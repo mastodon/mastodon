@@ -18,7 +18,7 @@ class Settings::Migration::RedirectsController < Settings::BaseController
     if @redirect.valid_with_challenge?(current_user)
       current_account.update!(moved_to_account: @redirect.target_account)
       ActivityPub::UpdateDistributionWorker.perform_async(current_account.id)
-      redirect_to settings_migration_path, notice: I18n.t('migrations.moved_msg', acct: current_account.moved_to_account.acct)
+      redirect_to settings_migration_path, notice: I18n.t('migrations.redirected_msg', acct: current_account.moved_to_account.acct)
     else
       render :new
     end

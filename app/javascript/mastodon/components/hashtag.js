@@ -1,26 +1,65 @@
+// @ts-check
 import React from 'react';
 import { Sparklines, SparklinesCurve } from 'react-sparklines';
 import { FormattedMessage } from 'react-intl';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import Permalink from './permalink';
-import { shortNumberFormat } from '../utils/numbers';
+import ShortNumber from 'mastodon/components/short_number';
+
+/**
+ * Used to render counter of how much people are talking about hashtag
+ *
+ * @type {(displayNumber: JSX.Element, pluralReady: number) => JSX.Element}
+ */
+const accountsCountRenderer = (displayNumber, pluralReady) => (
+  <FormattedMessage
+    id='trends.counter_by_accounts'
+    defaultMessage='{count, plural, one {{counter} person} other {{counter} people}} talking'
+    values={{
+      count: pluralReady,
+      counter: <strong>{displayNumber}</strong>,
+    }}
+  />
+);
 
 const Hashtag = ({ hashtag }) => (
   <div className='trends__item'>
     <div className='trends__item__name'>
-      <Permalink href={hashtag.get('url')} to={`/timelines/tag/${hashtag.get('name')}`}>
+      <Permalink
+        href={hashtag.get('url')}
+        to={`/timelines/tag/${hashtag.get('name')}`}
+      >
         #<span>{hashtag.get('name')}</span>
       </Permalink>
 
-      <FormattedMessage id='trends.count_by_accounts' defaultMessage='{count} {rawCount, plural, one {person} other {people}} talking' values={{ rawCount: hashtag.getIn(['history', 0, 'accounts']) * 1 + hashtag.getIn(['history', 1, 'accounts']) * 1, count: <strong>{shortNumberFormat(hashtag.getIn(['history', 0, 'accounts']) * 1 + hashtag.getIn(['history', 1, 'accounts']) * 1)}</strong> }} />
+      <ShortNumber
+        value={
+          hashtag.getIn(['history', 0, 'accounts']) * 1 +
+          hashtag.getIn(['history', 1, 'accounts']) * 1
+        }
+        renderer={accountsCountRenderer}
+      />
     </div>
 
     <div className='trends__item__current'>
-      {shortNumberFormat(hashtag.getIn(['history', 0, 'uses']) * 1 + hashtag.getIn(['history', 1, 'uses']) * 1)}
+      <ShortNumber
+        value={
+          hashtag.getIn(['history', 0, 'uses']) * 1 +
+          hashtag.getIn(['history', 1, 'uses']) * 1
+        }
+      />
     </div>
 
     <div className='trends__item__sparkline'>
-      <Sparklines width={50} height={28} data={hashtag.get('history').reverse().map(day => day.get('uses')).toArray()}>
+      <Sparklines
+        width={50}
+        height={28}
+        data={hashtag
+          .get('history')
+          .reverse()
+          .map((day) => day.get('uses'))
+          .toArray()}
+      >
         <SparklinesCurve style={{ fill: 'none' }} />
       </Sparklines>
     </div>

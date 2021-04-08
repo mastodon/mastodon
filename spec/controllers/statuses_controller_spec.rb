@@ -5,6 +5,21 @@ require 'rails_helper'
 describe StatusesController do
   render_views
 
+  shared_examples 'cachable response' do
+    it 'does not set cookies' do
+      expect(response.cookies).to be_empty
+      expect(response.headers['Set-Cookies']).to be nil
+    end
+
+    it 'does not set sessions' do
+      expect(session).to be_empty
+    end
+
+    it 'returns public Cache-Control header' do
+      expect(response.headers['Cache-Control']).to include 'public'
+    end
+  end
+
   describe 'GET #show' do
     let(:account) { Fabricate(:account) }
     let(:status)  { Fabricate(:status, account: account) }
@@ -80,9 +95,7 @@ describe StatusesController do
           expect(response.headers['Vary']).to eq 'Accept'
         end
 
-        it 'returns public Cache-Control header' do
-          expect(response.headers['Cache-Control']).to include 'public'
-        end
+        it_behaves_like 'cachable response'
 
         it 'returns Content-Type header' do
           expect(response.headers['Content-Type']).to include 'application/activity+json'
@@ -470,9 +483,7 @@ describe StatusesController do
             expect(response.headers['Vary']).to eq 'Accept'
           end
 
-          it 'returns public Cache-Control header' do
-            expect(response.headers['Cache-Control']).to include 'public'
-          end
+          it_behaves_like 'cachable response'
 
           it 'returns Content-Type header' do
             expect(response.headers['Content-Type']).to include 'application/activity+json'

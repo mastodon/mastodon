@@ -99,6 +99,7 @@ export default class StatusList extends ImmutablePureComponent {
           onMoveUp={this.handleMoveUp}
           onMoveDown={this.handleMoveDown}
           contextType={timelineId}
+          scrollKey={this.props.scrollKey}
           showThread
         />
       ))
