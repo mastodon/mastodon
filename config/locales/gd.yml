@@ -577,7 +577,7 @@ gd:
           open: '’S urrainn do neach sam bith clàradh'
         title: Modh a’ chlàraidh
       show_known_fediverse_at_about_page:
-        desc_html: Nuair a bhios seo à comas, cha sheall an loidhne-ama phoblach a thèid a cheangal rithe on duilleag-lanndaidh ach susbaint ionadail
+        desc_html: Nuair a bhios seo à comas, cha sheall an loidhne-ama phoblach a thèid a cheangal rithe on duilleag-landaidh ach susbaint ionadail
         title: Gabh a-staigh susbaint cho-naisgte air duilleag na loidhne-ama poblaich gun ùghdarrachadh
       show_staff_badge:
         desc_html: Seall bràist sgioba air duilleag cleachdaiche
@@ -601,21 +601,114 @@ gd:
       thumbnail:
         desc_html: Thèid seo a chleachdadh airson ro-sheallaidhean slighe OpenGraph no API. Mholamaid 1200x630px
         title: Dealbhag an fhrithealaiche
+      timeline_preview:
+        desc_html: Seall ceangal dhan loidhne-ama phoblach air an duilleag-landaidh is ceadaich inntrigeadh gun ùghdarrachadh leis an API air an loidhne-ama phoblach
+        title: Ceadaich inntrigeadh gun ùghdarrachadh air an loidhne-ama phoblach
+      title: Roghainnean na làraich
+      trendable_by_default:
+        desc_html: Bheir seo buaidh air na tagaichean hais nach deach a dhì-cheadachadh roimhe
+        title: Leig le tagaichean hais treandadh às aonais lèirmheis ro làimh
+      trends:
+        desc_html: Seall tagaichean hais gu poblach a chaidh lèirmheas a dhèanamh orra roimhe ’s a tha a’ treandadh aig a àm seo
+        title: Tagaichean hais a’ treandadh
+    site_uploads:
+      delete: Sguab às am faidhle a chaidh a luchdadh suas
+      destroyed_msg: Chaidh an luchdadh suas dhan làrach a sguabadh às!
+    statuses:
+      back_to_account: Till gu duilleag a’ chunntais
+      batch:
+        delete: Sguab às
+        nsfw_off: Cuir comharra nach eil e frionasach
+        nsfw_on: Cuir comharra gu bheil e frionasach
+      deleted: Chaidh a sguabadh às
+      failed_to_execute: Cha b’ urrainn dhuinn a ruith
+      media:
+        title: Meadhanan
+      no_media: Chan eil meadhanan ann
+      no_status_selected: Cha deach staid sam bith atharrachadh o nach deach gin dhiubh a thaghadh
+      title: Staidean chunntasan
+      with_media: Le meadhanan riutha
     tags:
+      accounts_today: Cleachdaidhean fa leth an-diugh
+      accounts_week: Cleachdaidhean fa leth an t-seachdain seo
+      breakdown: Seall an cleachdadh an-diugh a-rèir tùis
+      context: Co-theacsa
       directory: San eòlaire
       in_directory: "Tha %{count} san eòlaire"
+      last_active: Gnìomhach an turas mu dheireadh
+      most_popular: Na tha fèill mhòr air
+      most_recent: As ùire
+      name: Taga hais
+      review: Dèan lèirmheas air an staid
+      reviewed: Chaidh lèirmheas a dhèanamh air
+      title: Tagaichean hais
+      trending_right_now: A’ treandadh an-dràsta
+      unique_uses_today: "%{count} a’ postadh an-diugh"
+      unreviewed: Gun lèirmheas
+      updated_msg: Chaidh roghainnean nan tagaichean hais ùrachadh
+    title: Rianachd
     warning_presets:
+      add_new: Cuir fear ùr ris
+      delete: Sguab às
       edit_preset: Deasaich rabhadh ro-shuidhichte
       title: Stiùirich na rabhaidhean ro-shuidhichte
   admin_mailer:
+    new_pending_account:
+      body: Chì thu mion-fhiosrachadh a’ chunntais ùir gu h-ìosal. ’S urrainn dhut gabhail ris an iarrtas seo no a dhiùltadh.
+      subject: Tha cunntas ùr air %{instance} a’ feitheamh air lèirmheas (%{username})
     new_report:
+      body: "Rinn %{reporter} gearan air %{target}"
+      body_remote: Rinn cuideigin o %{domain} gearan air %{target}
       subject: 'Tha gearan ùr aig %{instance} (#%{id})'
     new_trending_tag:
       body: 'Tha an taga hais #%{name} a’ treandadh an-diugh ach cha deach lèirmheas a dhèanamh air cheana. Cha nochd e gu poblach ach ma cheadaicheas tu e. Ma shàbhaileas tu am foirm seo mar a tha e, cha bhodraig e a-rithist thu.'
-      subject: 'Tha taga hais ùr air %{instance} (#%{name}) a’ feitheamh air lèirmheas'
+      subject: 'Tha taga hais ùr air %{instance} a’ feitheamh air lèirmheas (#%{name})'
+  aliases:
+    add_new: Cruthaich alias
+    created_msg: Chaidh an t-alias ùr a chruthachadh. ’S urrainn dhut tòiseachadh air a ghluasad on seann-chunntas a-nis.
+    deleted_msg: Chaidh an t-alias a thoirt air falbh. Chan urrainn dhut gluasad on chunntas ud chan fhear seo tuilleadh.
+    empty: Chan eil alias agad.
+    hint_html: Nam bu mhiann leat gluasad o chunntas eile dhan fhear seo, ’s urrainn dhut alias a chruthachadh an-seo agus feumaidh tu sin a dhèanamh mus urrainn dhut tòiseachadh air an luchd-leantainn agad a ghluasad on seann-chunntas dhan fhear seo. Tha an gnìomh seo fhèin <strong>neo-chronail is gabhaidh a neo-dhèanamh</strong>. <strong>Tòisichidh tu air imrich a’ chunntais on t-seann-chunntas</strong>.
+    remove: Dì-cheangail an t-alias
   appearance:
+    advanced_web_interface: Eadar-aghaidh-lìn adhartach
     advanced_web_interface_hint: 'Ma tha thu airson leud gu lèir na sgrìn agad a chleachdadh, leigidh an eadar-aghaidh-lìn adhartach leat gun rèitich thu mòran cholbhan eadar-dhealaichte ach a faic thu na thogras tu de dh’fhiosrachadh aig an aon àm: Dachaigh, brathan, loidhne-ama cho-naisgte, na thogras tu de liostaichean is tagaichean hais.'
+    animations_and_accessibility: Beòthachaidhean agus so-ruigsinneachd
+    confirmation_dialogs: Còmhraidhean dearbhaidh
+    discovery: Lorg
+    localization:
+      body: Tha Mastodon ’ga eadar-theangachadh le saor-thoilich.
+      guide_link_text: '’S urrainn do dhuine sam bith cuideachadh.'
+    sensitive_content: Susbaint fhrionasach
+    toot_layout: Co-dhealbhachd nan dùd
+  application_mailer:
+    notification_preferences: Atharraich roghainnean a’ phuist-d
+    settings: 'Atharraich roghainnean a’ phuist-d: %{link}'
+    view: 'Seall:'
+    view_profile: Seall a’ phròifil
+    view_status: Seall an staid
+  applications:
+    created: Chaidh an t-iarrtas a chruthachadh
+    destroyed: Chaidh an t-iarrtas a sguabadh às
+    invalid_url: Tha an t-URL a thugadh seachad mì-dhligheach
+    regenerate_token: Ath-ghin an tòcan inntrigidh
+    token_regenerated: Chaidh an tòcan inntrigidh ath-ghintinn
+    warning: Bi glè chùramach leis an dàta seo. Na co-roinn le duine sam bith e!
+    your_token: An tòcan inntrigidh agad
   auth:
+    apply_for_account: Iarr cuireadh
+    change_password: Facal-faire 
+    checkbox_agreement_html: Gabhaidh mi ri <a href="%{rules_path}" target="_blank">riaghailtean an fhrithealaiche</a> ’s <a href="%{terms_path}" target="_blank">teirmichean a’ chleachdaidh</a>
+    checkbox_agreement_without_rules_html: Gabhaidh mi ri <a href="%{terms_path}" target="_blank">teirmichean a’ chleachdaidh</a>
+    delete_account: Sguab às an cunntas
+    delete_account_html: Nam bu mhiann leat an cunntas agad a sguabadh às, <a href="%{path}">Nì thu an-seo e</a>. Thèid dearbhadh iarraidh ort.
+    description:
+      prefix_invited_by_user: "Thug @%{name} cuireadh dhut ach am faigh thu ballrachd air an fhrithealaiche seo de Mhastodon!"
+      prefix_sign_up: Clàraich le Mastodon an-diugh!
+      suffix: Le cunntas, ’s urrainn dhut leantainn air daoine, naidheachdan a phostadh agus conaltradh leis an luchd-chleachdaidh air frithealaiche Mastodon sam bith is a bharrachd!
+    didnt_get_confirmation: Nach d’fhuair thu an stiùireadh mun dearbhadh?
+    dont_have_your_security_key: Nach eil iuchair tèarainteachd agad?
+    forgot_password: Na dhìochuimhnich thu am facal-faire agad?
     status:
       pending: Feumaidh an sgioba againn lèirmheas a dhèanamh air d’ iarrtas. Dh’fhaoidte gun doir seo greis. Gheibh thu post-d nuair a bhios sinn air aontachadh ri d’ iarrtas.
   directories:
