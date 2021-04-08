@@ -5,8 +5,9 @@ da:
         expires_at: Tidsfrist
         options: Valgmuligheder
       user:
-        agreement: Serviceaftale
-        email: E-mail adresse
+        agreement: Tjenesteaftale
+        email: E-mailadresse
+        locale: Landestandard
         password: Adgangskode
       user/account:
         username: Brugernavn
@@ -17,7 +18,7 @@ da:
         account:
           attributes:
             username:
-              invalid: kun tal, bogstaver og understreger
+              invalid: må kun indeholde cifre, bogstaver og understreger
               reserved: er reserveret
         status:
           attributes:
@@ -26,4 +27,5 @@ da:
         user:
           attributes:
             email:
-              unreachable: ser ikke ud til at eksistere
+              blocked: bruger en ikke-tilladt e-mailudbyder
+              unreachable: synes ikke at findes
