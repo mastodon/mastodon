@@ -73,12 +73,14 @@ da:
         subject: 'Mastodon: Godkendelse med sikkerhedsnøgler deaktiveret'
         title: Sikkerhedsnøgler deaktiveret
       webauthn_enabled:
+        explanation: Sikkerhedsnøglegodkendelse er aktiveret for din konto. Din sikkerhedsnøgle kan nu bruges til indlogning.
+        subject: 'Mastodon: Sikkerhedsnøglegodkendelse aktiveret'
         title: Sikkerhedsnøgler aktiveret
     omniauth_callbacks:
       failure: Kunne ikke godkende dig fra %{kind} fordi "%{reason}".
-      success: Godkendelse fra %{kind} konto lykkedes.
+      success: Godkendt fra %{kind}-konto.
     passwords:
-      no_token: Du kan ikke tilgå denne side uden at komme fra en email om nulstilling af adgangskode. Hvis du kommer fra en email om nulstilling af adgangskode, tjek om du brugte det fulde link der blev angivet.
+      no_token: Du kan kun tilgå denne side via linket fra en adgangskodenulstillings e-mail. Kommer du fra en sådan e-mail, så sørg for at benytte den angivne, komplette URL.
       send_instructions: Hvis din email adresse allerede findes i vores database, vil du modtage et link til nulstilling af adgangskode til din email adresse om få minutter. Tjek din spam mappe hvis du ikke har modtaget denne email.
       send_paranoid_instructions: Hvis din email adresse allerede findes i vores database, vil du modtage et link til nulstilling af adgangskode til din email adresse om få minutter. Tjek din spam mappe hvis du ikke har modtaget denne email.
       updated: Din adgangskode er nu blevet ændret. Du er nu logget ind.
