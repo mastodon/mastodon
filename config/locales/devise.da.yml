@@ -61,12 +61,16 @@ da:
         subject: 'Mastodon: Oplåsningsinstruktioner'
       webauthn_credential:
         added:
+          explanation: Flg. sikkerhedsnøgle er tilføjet din konto
           subject: 'Mastodon: Ny sikkerhedsnøgle'
-          title: En ny sikkerhedsnøgle er blevet tilføjet
+          title: En ny sikkerhedsnøgle er tilføjet
         deleted:
+          explanation: Flg. sikkerhedsnøgle er slettet din konto
           subject: 'Mastodon: Sikkerhedsnøgle slettet'
           title: En af dine sikkerhedsnøgler er blevet slettet
       webauthn_disabled:
+        explanation: Godkendelse med sikkerhedsnøgler er blevet deaktiveret for din konto. Indlogning er nu kun mulig via token genereret af den parrede TOTP-app.
+        subject: 'Mastodon: Godkendelse med sikkerhedsnøgler deaktiveret'
         title: Sikkerhedsnøgler deaktiveret
       webauthn_enabled:
         title: Sikkerhedsnøgler aktiveret
