@@ -659,6 +659,14 @@ de:
       no_status_selected: Keine Beiträge wurden geändert, weil keine ausgewählt wurden
       title: Beiträge des Kontos
       with_media: Mit Medien
+    system_checks:
+      database_schema_check:
+        message_html: Es gibt ausstehende Datenbankmigrationen. Bitte führen Sie sie aus, um sicherzustellen, dass sich die Anwendung wie erwartet verhält
+      rules_check:
+        action: Serverregeln verwalten
+        message_html: Sie haben keine Serverregeln definiert.
+      sidekiq_process_check:
+        message_html: Kein Sidekiq-Prozess läuft für die %{value} Warteschlange(n). Bitte überprüfen Sie Ihre Sidekiq-Konfiguration
     tags:
       accounts_today: Einzigartige Nutzungen heute
       accounts_week: Einzigartige Nutzung dieser Woche
