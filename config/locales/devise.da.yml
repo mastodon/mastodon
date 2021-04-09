@@ -100,15 +100,15 @@ da:
       signed_out: Du er nu logget ud.
     unlocks:
       send_instructions: Instruktioner mailes til dig om, hvordan du oplåser din konto. Er denne e-mail ikke er i din indbakke inden for få minutter, så tjek spammappe.
-      send_paranoid_instructions: Hvis din konto findes, vil du modtage en email med instrukser for hvordan du låser op for den om få minutter. Tjek venligst din spam mappe hvis du ikke har modtaget denne mail.
-      unlocked: Din konto er succesfuldt blevet låst op. Log venligst ind for at fortsætte.
+      send_paranoid_instructions: Findes din konto, mailes du instrukser om, hvordan du oplåser den. Ser du ikke denne e-mail i din indbakke undenfor få minutter, så tjek spammappen.
+      unlocked: Din konto er nu oplåst. Log ind for at fortsætte.
   errors:
     messages:
-      already_confirmed: er allerede blevet bekræftet, prøv venligst at logge ind
-      confirmation_period_expired: skal bekræftes indenfor %{period}, anmod venligst om en ny
-      expired: er udløbet, anmod venligst en ny
+      already_confirmed: er allerede bekræftet. Prøv at logge ind
+      confirmation_period_expired: skal bekræftes indenfor %{period}. Anmod om en ny
+      expired: er udløbet. Anmod en ny
       not_found: ikke fundet
       not_locked: blev ikke låst
       not_saved:
-        one: '1 fejl forhindrede denne %{resource} fra at blive gemt:'
-        other: "%{count} fejl forhindrede denne %{resource} fra at blive gemt:"
+        one: '1 fejl forhindrede denne %{resource} i at blive gemt:'
+        other: "%{count} fejl forhindrede denne %{resource} i at blive gemt:"
