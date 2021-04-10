@@ -709,20 +709,129 @@ gd:
     didnt_get_confirmation: Nach d’fhuair thu an stiùireadh mun dearbhadh?
     dont_have_your_security_key: Nach eil iuchair tèarainteachd agad?
     forgot_password: Na dhìochuimhnich thu am facal-faire agad?
+    invalid_reset_password_token: Tha tòcan ath-shuidheachadh an fhacail-fhaire mì-dhligheach no dh’fhalbh an ùine air. Feuch an iarr thu fear ùr.
+    link_to_otp: Cuir a-steach còd dà-cheumnach no còd aisig on fhòn agad
+    link_to_webauth: Cleachd uidheam na h-iuchrach tèarainteachd agad
+    login: Clàraich a-steach
+    logout: Clàraich a-mach
+    migrate_account: Gluais gu cunntas eile
+    migrate_account_html: Nam bu mhiann leat an cunntas seo ath-stiùireadh gu fear eile, ’s urrainn dhut <a href="%{path}">a rèiteachadh an-seo</a>.
+    or_log_in_with: No clàraich a-steach le
+    register: Clàraich leinn
+    registration_closed: "Cha ghabh %{instance} ri buill ùra"
+    resend_confirmation: Cuir an stiùireadh mun dearbhadh a-rithist
+    reset_password: Ath-shuidhich am facal-faire
+    security: Tèarainteachd
+    set_new_password: Suidhich facal-faire ùr
+    setup:
+      email_below_hint_html: Mur eil am post-d gu h-ìosal mar bu chòir, ’s urrainn dhut atharrachadh an-seo agus gheibh thu post-d dearbhaidh ùr.
+      email_settings_hint_html: Chaidh am post-d dearbhaidh a chur gu %{email}. Mur eil an seòladh puist-d seo mar bu chòir, ’s urrainn dhut atharrachadh ann an roghainnean a’ chunntais.
+      title: Suidheachadh
     status:
+      account_status: Staid a’ chunntais
+      confirming: A’ feitheamh air coileanadh an dearbhaidh on phost-d.
+      functional: Tha an cunntas agad ag obair gu slàn.
       pending: Feumaidh an sgioba againn lèirmheas a dhèanamh air d’ iarrtas. Dh’fhaoidte gun doir seo greis. Gheibh thu post-d nuair a bhios sinn air aontachadh ri d’ iarrtas.
+      redirecting_to: Chan eil an cunntas gad gnìomhach on a tha e ’ga ath-stiùireadh gu %{acct}.
+    too_fast: Chaidh am foirm a chur a-null ro luath, feuch ris a-rithist.
+    trouble_logging_in: A bheil duilgheadas agad leis a’ chlàradh a-steach?
+    use_security_key: Cleachd iuchair tèarainteachd
+  authorize_follow:
+    already_following: Tha thu a’ leantainn air a’ chunntas seo mu thràth
+    already_requested: Chuir thu iarrtas leantainn dhan chunntas seo mu thràth
+    error: Gu mì-fhortanach, thachair mearachd le lorg a’ chunntais chèin
+    follow: Lean air
+    follow_request: 'Chuir thu iarrtas leantainn gu:'
+    following: 'Taghta! Chaidh leat a’ leantainn air:'
+    post_follow:
+      close: Air neo dùin an uinneag seo.
+      return: Seall pròifil a’ chleachdaiche
+      web: Tadhail air an lìon
+    title: Lean air %{acct}
+  challenge:
+    confirm: Lean air adhart
+    hint_html: "<strong>Gliocas:</strong> Chan iarr sinn am facal-faire agad ort a-rithist fad uair a thìde."
+    invalid_password: Facal-faire mì-dhligheach
+    prompt: Dearbh am facal-faire airson leantainn air adhart
+  crypto:
+    errors:
+      invalid_key: Chan e iuchair Ed25519 no Curve25519 dhligheach a th’ ann
+      invalid_signature: Chan e soidhneadh Ed25519 dligheach a th’ ann
+  date:
+    formats:
+      default: "%d %b %Y"
+      with_month_name: "%d %B %Y"
+  datetime:
+    distance_in_words:
+      about_x_hours: "%{count}u"
+      about_x_months: "%{count}mì"
+      about_x_years: "%{count}bl"
+      almost_x_years: "%{count}bl"
+      half_a_minute: An-dràsta fhèin
+      less_than_x_seconds: An-dràsta fhèin
+      over_x_years: "%{count}bl"
+      x_days: "%{count}l"
+      x_months: "%{count}mì"
+      x_seconds: "%{count}d"
+  deletes:
+    challenge_not_passed: Chan eil am fiosrachadh a chuir thu a-steach mar bu chòir
+    confirm_password: Cuir a-steach am facal-faire làithreach a dhearbhadh cò thusa
+    confirm_username: Cuir a-steach an t-ainm-cleachdaiche agad a dhearbhadh a’ ghnìomha
+    proceed: Sguab às an cunntas
+    success_msg: Chaidh an cunntas agad a sguabadh às
+    warning:
+      before: 'Mus lean thu air adhart, leugh na nòtaichean seo gu cùramach:'
+      caches: Dh’fhaoidte gum mair susbaint ann an tasgadain fhrithealaichean eile
+      data_removal: Thèid na postaichean agad ’s dàta eile a thoirt air falbh gu buan
+      email_change_html: '’S urrainn dhut <a href="%{path}">an seòladh puist-d agad atharrachadh</a> gun a bhith a’ sguabadh às a’ chunntais agad'
+      email_contact_html: Mura faigh thu fhathast e, ’s urrainn dhut post-d a chur gu <a href="mailto:%{email}">%{email}</a> airson cuideachaidh
+      email_reconfirmation_html: Mur an d’ fhuair thu am post-d dearbhaidh, ’s urrainn dhut <a href="%{path}">iarraidh a-rithist</a>
+      irreversible: Chan urrainn dhut an cunntas agad aiseag no ath-ghnìomhachadh
+      more_details_html: Airson barrachd fiosrachaidh faic am <a href="%{terms_path}">poileasaidh prìobhaideachd</a>.
+      username_available: Bidh an t-ainm-cleachdaiche agad ri fhaighinn a-rithist
+      username_unavailable: Cha bhi an t-ainm-cleachdaiche agad ri fhaighinn fhathast
   directories:
     directory: Eòlaire nam pròifil
+    explanation: Lorg cleachdaichean stèidhichte air an ùidhean
+    explore_mastodon: Rùraich %{title}
+  domain_validator:
+    invalid_domain: '– chan eil seo ’na ainm àrainne dligheach'
   errors:
-    '400': The request you submitted was invalid or malformed.
-    '403': You don't have permission to view this page.
-    '404': The page you are looking for isn't here.
-    '406': This page is not available in the requested format.
-    '410': The page you were looking for doesn't exist here anymore.
+    '400': Cha robh an t-iarrtas a chuir thu a-null dligheach no bha droch-chruth air.
+    '403': Chan eil cead agad gus an duilleag seo a shealltainn.
+    '404': Chan eil an duilleag a tha thu a’ lorg an-seo.
+    '406': Chan eil an duilleag seo ri fhaighinn san fhòrmat a dh’iarr thu.
+    '410': Chan eil an duilleag a tha thu a’ lorg an-seo tuilleadh.
     '422':
-    '429': Too many requests
+      content: Dh’fhàillig le dearbhadh na tèarainteachd. A bheil thu a’ bacadh nam briosgaidean?
+      title: Dh’fhàillig le dearbhadh na tèarainteachd
+    '429': Cus iarrtasan
     '500':
-    '503': The page could not be served due to a temporary server failure.
+      content: Tha sinn duilich ach chaidh rudeigin ceàrr a-bhos an-seo.
+      title: Chan eil an duilleag seo mar bu chòir
+    '503': Cha b’ urrainn an duilleag fhrithealadh ri linn mearachd sealach an fhrithealaiche.
+    noscript_html: Airson aplacaid-lìn Mastodon a chleachdadh, cuir JavaScript an comas. Mar roghainn eile, ’s urrainn dhut fear dhe na <a href="%{apps_path}">cliantan tùsail</a> airson Mastodon dhan ùrlar agad fheuchainn.
+  existing_username_validator:
+    not_found: cha b’ urrainn dhuinn cleachdaiche ionadail a lorg air a bheil an t-ainm-cleachdaiche seo
+    not_found_multiple: cha b’ urrainn dhuinn %{usernames} a lorg
+  exports:
+    archive_takeout:
+      date: Ceann-latha
+      download: Luchdaich a-nuas an tasg-lann agad
+      hint_html: '’S urrainn dhut tasg-lann iarraidh dhe <strong>na dùdan agad is meadhanan a luchdaich thu suas</strong>. Thèid an dàta às-phortadh san fhòrmat ActivityPub a ghabhas leughadh le bathar-bog co-chòrdail sam bith. ’S urrainn dhut tasg-lann iarraidh gach 7 làithean.'
+      in_progress: A’ cruinneachadh na tasg-lainn agad…
+      request: Iarr an tasg-lann agad
+      size: Meud
+    blocks: Tha thu a’ bacadh
+    bookmarks: Comharran-lìn
+    domain_blocks: Bacaidhean àrainne
+    lists: Liostaichean
+    mutes: Tha thu a’ mùchadh
+    storage: Stòras mheadhanan
+  featured_tags:
+    add_new: Cuir fear ùr ris
+    errors:
+      limit: Bhrosnaich thu an uiread as motha de thagaichean hais mu thràth
   statuses:
     content_warning: 'Rabhadh susbainte: %{warning}'
     visibilities:
