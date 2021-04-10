@@ -78,7 +78,7 @@ da:
     errors:
       messages:
         access_denied: Ressourceejeren eller godkendelsesserveren afviste anmodningen.
-        credential_flow_not_configured: Flytning af ressourceejers adgangskode mislykkedes grundet Doorkeeper.configure.resource_owner_from_credentials ikke er opsat.
+        credential_flow_not_configured: Resource Owner Password Credentials flow mislykkedes grundet ikke-opsat Doorkeeper.configure.resource_owner_from_credentials.
         invalid_client: Klient autentikationen mislykkedes grundet en ukendt klient, ingen klient autentikation fulgte med, eller en ikke-understøttet metode.
         invalid_grant: Autoriseringen er ugyldig, udløbet, ophævet, passer ikke med den henvisnings URI der blev brugt i autoriserings anmodningen, eller blev givet til en anden klient.
         invalid_redirect_uri: Ormdirigerings-uri'en der blev angivet er ikke gyldig.
