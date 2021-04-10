@@ -47,28 +47,28 @@ da:
         title: Ny applikation
       show:
         actions: Handlinger
-        application_id: Klient nøgle
-        callback_urls: Callback-URLs
+        application_id: Klientnøgle
+        callback_urls: Callback-URL'er
         scopes: Omfang
-        secret: Secret
+        secret: Klienthemmelighed
         title: 'Applikation: %{name}'
     authorizations:
       buttons:
         authorize: Godkend
         deny: Afvis
       error:
-        title: Der opstod en fejl
+        title: En fejl opstod
       new:
         able_to: Den vil være i stand til
         prompt: Applikationen %{client_name} anmoder om adgang til din konto
-        title: Godkendelse påkrævet
+        title: Godkendelse krævet
       show:
-        title: Kopiere denne godkendelseskode og indsæt den i applikationen.
+        title: Kopiér og indsæt denne godkendelseskode i applikationen.
     authorized_applications:
       buttons:
         revoke: Ophæv
       confirmations:
-        revoke: Er du sikker?
+        revoke: Sikker?
       index:
         application: Applikation
         created_at: Godkendt
@@ -77,7 +77,7 @@ da:
         title: Dine godkendte applikationer
     errors:
       messages:
-        access_denied: Ejeren af ressourcen eller godkendelses serveren afviste anmodningen.
+        access_denied: Ressourceejeren eller godkendelsesserveren afviste anmodningen.
         credential_flow_not_configured: Flytning af ressourceejers adgangskode mislykkedes grundet Doorkeeper.configure.resource_owner_from_credentials ikke er opsat.
         invalid_client: Klient autentikationen mislykkedes grundet en ukendt klient, ingen klient autentikation fulgte med, eller en ikke-understøttet metode.
         invalid_grant: Autoriseringen er ugyldig, udløbet, ophævet, passer ikke med den henvisnings URI der blev brugt i autoriserings anmodningen, eller blev givet til en anden klient.
