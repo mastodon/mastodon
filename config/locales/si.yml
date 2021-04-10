@@ -39,6 +39,17 @@ si:
       email_status: වි-තැපෑලෙහි තත්වය
       enabled: සබල කර ඇත
       ip: අ.ජා. කෙ. (IP)
+      location:
+        all: සියල්ල
+        local: ස්ථානීය
+        remote: දුරස්ථ
+        title: ස්ථානය
+      login_status: පිවිසීමේ තත්වය
+      media_attachments: මාධ්‍ය ඇමුණුම්
+      moderation:
+        active: සක්‍රීයයි
+        all: සියල්ල
+        suspended: අත්හිටුවන ලදි
       perform_full_suspension: අත්හිටුවන්න
       protocol: කෙටුම්පත
       reject: ප්‍රතික්ෂේප
@@ -53,6 +64,7 @@ si:
       statuses: තත්වයන්
       suspended: අත්හිටුවන ලදි
       title: ගිණුම්
+      web: වියමන
     action_logs:
       action_types:
         create_ip_block: අ.ජා. කෙ. (IP) නීතියක් සාදන්න
@@ -129,6 +141,9 @@ si:
     logout: නික්මෙන්න
     status:
       account_status: ගිණුමේ තත්වය
+  authorize_follow:
+    post_follow:
+      web: වියමන ට යන්න
   date:
     formats:
       default: "%b %d, %Y"
@@ -178,3 +193,20 @@ si:
       '43200': හෝරා 12
       '604800': සති 1
       '86400': දින 1
+  sessions:
+    browser: අතිරික්සුව
+    browsers:
+      alipay: අලිපේ
+      blackberry: බ්ලැක්බෙරි
+      chrome: ක්‍රෝම්
+      edge: මයික්‍රොසොෆ්ට් එඩ්ගේ
+      electron: ඉලෙක්ට්‍රෝන්
+      firefox: ෆයර්ෆොක්ස්
+      generic: නොදන්නා අතිරික්සුවකි
+      ie: ඉන්ටර්නෙට් එක්ස්ප්ලෝරර්
+      micro_messenger: මයික්‍රොමැසෙන්ජර්
+      opera: ඔපෙරා
+      otter: ඔටර්
+      safari: සෆාරි
+      weibo: වෙයිබෝ
+    ip: අ.ජා. කෙ. (IP)
