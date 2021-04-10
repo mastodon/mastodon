@@ -78,7 +78,7 @@ da:
     errors:
       messages:
         access_denied: Ressourceejeren eller godkendelsesserveren afviste anmodningen.
-        credential_flow_not_configured: Resource Owner Password Credentials flow mislykkedes grundet ikke-opsat Doorkeeper.configure.resource_owner_from_credentials.
+        credential_flow_not_configured: Ressourceejeradgangskodeakkreditiv flow mislykkedes grundet ikke-opsat Doorkeeper.configure.resource_owner_from_credentials.
         invalid_client: Klientbekræftelse mislykkedes grundet en ukendt klient, ingen klientbekræftelse inkluderet, eller uunderstøttet bekræftelsesmetode.
         invalid_grant: Den leverede godkendelse er ugyldig, udløbet, tilbagekaldt, matcher ikke omdirigerings-URI brugt i godkendelsesanmodningen, eller er udstedt til en anden klient.
         invalid_redirect_uri: Inkluderede ormdirigerings-URI er ugyldig.
@@ -86,16 +86,16 @@ da:
           missing_param: 'Mangler krævet parameter: %{value}.'
           request_not_authorized: Anmodning skal godkendes. Krævet parameter til godkendelse af anmodning mangler eller er ugyldig.
           unknown: Anmodningen mangler en krævet parametre, inkluderer en uunderstøttet parametre værdi eller er på anden vis fejlbehæftet.
-        invalid_resource_owner: De angivne ressource ejer kredentialer er ikke gyldige, eller ressource ejeren kunne ikke blive fundet
-        invalid_scope: Det anmodede omfang er ugyldigt, ukendt eller deformeret.
+        invalid_resource_owner: De angivne ressourceejerakkreditiver er ugyldige, eller ressourceejer kunne ikke findes
+        invalid_scope: Det anmodede omfang er ugyldigt, ukendt eller fejlbehæftet.
         invalid_token:
-          expired: Adgangs-beviset er udløbet
-          revoked: Adgangs-beviset er blevet ophævet
-          unknown: Adgangs-beviset er ugyldigt
-        resource_owner_authenticator_not_configured: Ressource ejeren kunne ikke blive fundet grundet Doorkeeper.configure.resource_owner_authenticator ikke er konfigureret.
-        server_error: Autoriserings serveren blev mødt med en uventet betingelse der forhindrede den i at færdiggøre anmodningen.
-        temporarily_unavailable: Autoriserings serveren er på nuværende tidspunkt ikke i stand til at håndtere anmodningen grundet midlertidig overlast eller serveren er ved at blive opdateret.
-        unauthorized_client: Klienten er ikke godkendt til at udføre denne anmodning ved at bruge denne metode.
+          expired: Adgangstoken er udløbet
+          revoked: Adgangstoken er tilbagekaldt
+          unknown: Adgangstoken er ugyldig
+        resource_owner_authenticator_not_configured: Ressourceejer kunne ikke findes grundet ikke-opsat Doorkeeper.configure.resource_owner_authenticator.
+        server_error: Godkejdelsesserveren stødte på en uventet betingelse, der forhindrede den i at imødekomme anmodningen.
+        temporarily_unavailable: Godkendelsesserveren kan pt. ikke håndtere anmodningen grundet midlertidig overbelastning eller servervedligehold.
+        unauthorized_client: Klienten er ikke godkendt til at udføre denne anmodning via denne metode.
         unsupported_grant_type: Autoriserings typen understøttes ikke af autoriserings serveren.
         unsupported_response_type: Godkendelses serveren understøtter ikke denne type respons.
     flash:
