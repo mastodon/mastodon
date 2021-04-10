@@ -12,26 +12,26 @@ da:
           attributes:
             redirect_uri:
               fragment_present: kan ikke indeholde et fragment.
-              invalid_uri: skal være et gyldigt URI.
+              invalid_uri: skal være en gyldigt URI.
               relative_uri: skal være en absolut URI.
-              secured_uri: skal være en HTTPS/SSL URI.
+              secured_uri: skal være en HTTPS-/SSL-URI.
   doorkeeper:
     applications:
       buttons:
         authorize: Godkend
-        cancel: Annuller
-        destroy: Destruer
-        edit: Rediger
+        cancel: Afbryd
+        destroy: Destruér
+        edit: Redigér
         submit: Indsend
       confirmations:
-        destroy: Er du sikker?
+        destroy: Sikker?
       edit:
-        title: Rediger applikation
+        title: Redigér applikation
       form:
-        error: Ups! Tjek din form for mulige fejl
+        error: Ups! Tjek din formular for mulige fejl
       help:
-        native_redirect_uri: Brug %{native_redirect_uri} for lokale tests
-        redirect_uri: Brug en linje per URI
+        native_redirect_uri: Brug %{native_redirect_uri} til lokale tests
+        redirect_uri: Brug én linje pr. URI
         scopes: Adskil omfang med mellemrum. Lad være blankt for at bruge standard omfang.
       index:
         application: Applikation
