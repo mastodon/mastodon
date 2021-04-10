@@ -79,11 +79,13 @@ da:
       messages:
         access_denied: Ressourceejeren eller godkendelsesserveren afviste anmodningen.
         credential_flow_not_configured: Resource Owner Password Credentials flow mislykkedes grundet ikke-opsat Doorkeeper.configure.resource_owner_from_credentials.
-        invalid_client: Klient autentikationen mislykkedes grundet en ukendt klient, ingen klient autentikation fulgte med, eller en ikke-understøttet metode.
-        invalid_grant: Autoriseringen er ugyldig, udløbet, ophævet, passer ikke med den henvisnings URI der blev brugt i autoriserings anmodningen, eller blev givet til en anden klient.
-        invalid_redirect_uri: Ormdirigerings-uri'en der blev angivet er ikke gyldig.
+        invalid_client: Klientbekræftelse mislykkedes grundet en ukendt klient, ingen klientbekræftelse inkluderet, eller uunderstøttet bekræftelsesmetode.
+        invalid_grant: Den leverede godkendelse er ugyldig, udløbet, tilbagekaldt, matcher ikke omdirigerings-URI brugt i godkendelsesanmodningen, eller er udstedt til en anden klient.
+        invalid_redirect_uri: Inkluderede ormdirigerings-URI er ugyldig.
         invalid_request:
-          missing_param: 'Mangler påkrævet parameter: %{value}.'
+          missing_param: 'Mangler krævet parameter: %{value}.'
+          request_not_authorized: Anmodning skal godkendes. Krævet parameter til godkendelse af anmodning mangler eller er ugyldig.
+          unknown: Anmodningen mangler en krævet parametre, inkluderer en uunderstøttet parametre værdi eller er på anden vis fejlbehæftet.
         invalid_resource_owner: De angivne ressource ejer kredentialer er ikke gyldige, eller ressource ejeren kunne ikke blive fundet
         invalid_scope: Det anmodede omfang er ugyldigt, ukendt eller deformeret.
         invalid_token:
