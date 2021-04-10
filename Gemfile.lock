@@ -9,15 +9,6 @@ GIT
       sidekiq (>= 3.5)
       statsd-ruby (~> 1.4, >= 1.4.0)
 
-GIT
-  remote: https://github.com/nsommer/pluck_each
-  revision: 73be0947c52fc54bf6d7085378db008358aac5eb
-  ref: 73be0947c52fc54bf6d7085378db008358aac5eb
-  specs:
-    pluck_each (0.1.3)
-      activerecord (>= 6.1.0)
-      activesupport (>= 6.1.0)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -771,7 +762,6 @@ DEPENDENCIES
   pg (~> 1.2)
   pghero (~> 2.8)
   pkg-config (~> 1.4)
-  pluck_each!
   posix-spawn
   premailer-rails
   private_address_check (~> 0.5)

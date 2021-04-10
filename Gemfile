@@ -157,4 +157,3 @@ gem 'concurrent-ruby', require: false
 gem 'connection_pool', require: false
 
 gem 'xorcist', '~> 1.1'
-gem 'pluck_each', git: 'https://github.com/nsommer/pluck_each', ref: '73be0947c52fc54bf6d7085378db008358aac5eb'
