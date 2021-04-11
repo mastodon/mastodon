@@ -358,7 +358,6 @@ ko:
       feature_profile_directory: 프로필 책자
       feature_registrations: 가입
       feature_relay: 연합 릴레이
-      feature_spam_check: 안티 스팸
       feature_timeline_preview: 타임라인 미리보기
       features: 기능
       hidden_service: 히든 서비스와의 연합
@@ -618,9 +617,6 @@ ko:
         desc_html: 당신은 독자적인 개인정보 취급 방침이나 이용약관, 그 외의 법적 근거를 작성할 수 있습니다. HTML태그를 사용할 수 있습니다
         title: 커스텀 서비스 이용 약관
       site_title: 서버 이름
-      spam_check_enabled:
-        desc_html: 마스토돈은 반복된 메시지 등의 측정값에 따라 자동으로 계정을 침묵, 신고할 수 있습니다. 위양성(False-positive)이 존재할 수 있습니다.
-        title: 안티 스팸
       thumbnail:
         desc_html: OpenGraph와 API의 미리보기로 사용 됩니다. 1200x630px을 권장합니다
         title: 서버 썸네일
@@ -1195,8 +1191,6 @@ ko:
     relationships: 팔로잉과 팔로워
     two_factor_authentication: 2단계 인증
     webauthn_authentication: 보안 키
-  spam_check:
-    spam_detected: 이것은 자동화 된 신고입니다. 스팸이 감지되었습니다.
   statuses:
     attached:
       audio:
