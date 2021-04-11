@@ -363,7 +363,6 @@ en:
       feature_profile_directory: Profile directory
       feature_registrations: Registrations
       feature_relay: Federation relay
-      feature_spam_check: Anti-spam
       feature_timeline_preview: Timeline preview
       features: Features
       hidden_service: Federation with hidden services
@@ -627,9 +626,6 @@ en:
         desc_html: You can write your own privacy policy, terms of service or other legalese. You can use HTML tags
         title: Custom terms of service
       site_title: Server name
-      spam_check_enabled:
-        desc_html: Mastodon can auto-report accounts that send repeated unsolicited messages. There may be false positives.
-        title: Anti-spam automation
       thumbnail:
         desc_html: Used for previews via OpenGraph and API. 1200x630px recommended
         title: Server thumbnail
@@ -1209,8 +1205,6 @@ en:
     relationships: Follows and followers
     two_factor_authentication: Two-factor Auth
     webauthn_authentication: Security keys
-  spam_check:
-    spam_detected: This is an automated report. Spam has been detected.
   statuses:
     attached:
       audio:

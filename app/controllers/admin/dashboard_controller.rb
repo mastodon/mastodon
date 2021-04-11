@@ -35,7 +35,6 @@ module Admin
       @whitelist_enabled     = whitelist_mode?
       @profile_directory     = Setting.profile_directory
       @timeline_preview      = Setting.timeline_preview
-      @spam_check_enabled    = Setting.spam_check_enabled
       @trends_enabled        = Setting.trends
     end
 

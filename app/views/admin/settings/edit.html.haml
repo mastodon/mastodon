@@ -92,9 +92,6 @@
     .fields-group
       = f.input :noindex, as: :boolean, wrapper: :with_label, label: t('admin.settings.default_noindex.title'), hint: t('admin.settings.default_noindex.desc_html')
 
-  .fields-group
-    = f.input :spam_check_enabled, as: :boolean, wrapper: :with_label, label: t('admin.settings.spam_check_enabled.title'), hint: t('admin.settings.spam_check_enabled.desc_html')
-
   %hr.spacer/
 
   .fields-group
