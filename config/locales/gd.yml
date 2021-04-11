@@ -773,9 +773,11 @@ gd:
       about_x_years: "%{count}bl"
       almost_x_years: "%{count}bl"
       half_a_minute: An-dràsta fhèin
+      less_than_x_minutes: "%{count}m"
       less_than_x_seconds: An-dràsta fhèin
       over_x_years: "%{count}bl"
       x_days: "%{count}l"
+      x_minutes: "%{count}m"
       x_months: "%{count}mì"
       x_seconds: "%{count}d"
   deletes:
@@ -829,6 +831,7 @@ gd:
       size: Meud
     blocks: Tha thu a’ bacadh
     bookmarks: Comharran-lìn
+    csv: CSV
     domain_blocks: Bacaidhean àrainne
     lists: Liostaichean
     mutes: Tha thu a’ mùchadh
@@ -1028,6 +1031,7 @@ gd:
   number:
     human:
       decimal_units:
+        format: "%n%u"
         units:
           billion: bill.
           million: mill.
@@ -1047,6 +1051,7 @@ gd:
     next: Air adhart
     older: Nas sine
     prev: Air ais
+    truncate: "&hellip;"
   polls:
     errors:
       already_voted: Chuir thu bhòt sa chunntas-bheachd seo mu thràth
