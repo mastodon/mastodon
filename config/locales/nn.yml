@@ -289,7 +289,6 @@ nn:
       feature_profile_directory: Profilmappe
       feature_registrations: Registreringar
       feature_relay: Føderasjonsoverganger
-      feature_spam_check: Søppelvern
       feature_timeline_preview: Førehandsvisning av tidsline
       features: Eigenskapar
       hidden_service: Føderering med skjulte tjenester
@@ -530,9 +529,6 @@ nn:
         desc_html: Du kan skrive din egen personverns-strategi, bruksviklår og andre regler. Du kan bruke HTML tagger
         title: Eigne brukarvilkår
       site_title: Tenarnamn
-      spam_check_enabled:
-        desc_html: Mastodon kan auto-rapportere kontoer som sender gjentatte uforespurte meldinger. Det kan oppstå falske positive treff.
-        title: Nettsøppelvern
       thumbnail:
         desc_html: Brukes ved forhandsvisning via OpenGraph og API. 1200x630px anbefales
         title: Småbilete for tenaren
@@ -1058,8 +1054,6 @@ nn:
     relationships: Fylgjar og fylgjarar
     two_factor_authentication: Tostegsautorisering
     webauthn_authentication: Sikkerhetsnøkler
-  spam_check:
-    spam_detected: Dette er en automatisert rapport. Spam har blitt oppdaget.
   statuses:
     attached:
       audio:
