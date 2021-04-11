@@ -362,7 +362,6 @@ is:
       feature_profile_directory: Notandasniðamappa
       feature_registrations: Nýskráningar
       feature_relay: Sambandsendurvarpi
-      feature_spam_check: Ruslpóstvarnir
       feature_timeline_preview: Forskoðun tímalínu
       features: Eiginleikar
       hidden_service: Skýjasamband með faldar þjónustur
@@ -626,9 +625,6 @@ is:
         desc_html: Þú getur skrifað þína eigin persónuverndarstefnu, þjónustuskilmála eða annað lagatæknilegt. Þú getur notað HTML-einindi
         title: Sérsniðnir þjónustuskilmálar
       site_title: Heiti vefþjóns
-      spam_check_enabled:
-        desc_html: Mastodon getur tilkynnt sjálfvirkt um aðganga sem senda ítrekað óumbeðin skilaboð. Mögulega geta verið rangar slíkar tilkynningar.
-        title: Sjálfvirkar ruslpóstvarnir
       thumbnail:
         desc_html: Notað við forskoðun í gegnum OpenGraph og API-kerfisviðmót. Mælt með 1200×630 mynddílum
         title: Smámynd vefþjóns
@@ -1199,8 +1195,6 @@ is:
     relationships: Fylgist með og fylgjendur
     two_factor_authentication: Tveggja-þátta auðkenning
     webauthn_authentication: Öryggislyklar
-  spam_check:
-    spam_detected: Þetta er sjálfvirk kæra. Ruslpóstur hefur fundist.
   statuses:
     attached:
       audio:
