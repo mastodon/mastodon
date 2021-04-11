@@ -362,7 +362,6 @@ it:
       feature_profile_directory: Directory dei profili
       feature_registrations: Registrazioni
       feature_relay: Ripetitore di federazione
-      feature_spam_check: Anti-spam
       feature_timeline_preview: Anteprima timeline
       features: Funzionalità
       hidden_service: Federazione con servizi nascosti
@@ -626,9 +625,6 @@ it:
         desc_html: Potete scrivere la vostra politica sulla privacy, condizioni del servizio o altre informazioni legali. Potete usare tag HTML
         title: Termini di servizio personalizzati
       site_title: Nome del server
-      spam_check_enabled:
-        desc_html: Mastodon può silenziare e segnalare automaticamente account che inviano ripetutamente messaggi non richiesti. Potrebbero esserci falsi positivi.
-        title: Automazione anti-spam
       thumbnail:
         desc_html: Usato per anteprime tramite OpenGraph e API. 1200x630px consigliati
         title: Thumbnail del server
@@ -1207,8 +1203,6 @@ it:
     relationships: Follows e followers
     two_factor_authentication: Autenticazione a due fattori
     webauthn_authentication: Chiavi di sicurezza
-  spam_check:
-    spam_detected: Questo è un rapporto automatico. È stato rilevato dello spam.
   statuses:
     attached:
       audio:
