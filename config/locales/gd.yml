@@ -71,7 +71,7 @@ gd:
     last_active: gnìomhach an turas mu dheireadh
     link_verified_on: Chaidh dearbhadh cò leis a tha an ceangal seo %{date}
     media: Meadhanan
-    moved_html: "Chaidh {name} a ghluasad gu %{new_profile_link}:"
+    moved_html: "Chaidh {name} imrich gu %{new_profile_link}:"
     network_hidden: Chan eil am fiosrachadh seo ri fhaighinn
     never_active: Chan ann idir
     nothing_here: Chan eil dad an-seo!
@@ -141,6 +141,7 @@ gd:
       inbox_url: URL a’ bhogsa a-steach
       invite_request_text: Adhbharan na ballrachd
       invited_by: Air cuireadh fhaighinn o
+      ip: IP
       joined: Air ballrachd fhaighinn 
       location:
         all: Na h-uile
@@ -267,6 +268,8 @@ gd:
         update_status: Ùraich an staid
       actions:
         create_account_warning_html: "Chuir %{name} rabhadh gu %{target}"
+        destroy_status_html: "Thug %{name} staid aig %{target} air falbh"
+        remove_avatar_user_html: "Thug %{name} avatar aig %{target} air falbh"
       deleted_status: "(staid air a sguabadh às)"
       empty: Cha deach loga a lorg.
       filter_by_action: Criathraich a-rèir gnìomha
@@ -300,6 +303,7 @@ gd:
       disable: Cuir à comas
       disabled: Chaidh a chur à comas
       disabled_msg: Chaidh an t-Emoji sin a chur à comas
+      emoji: Emoji
       enable: Cuir an comas
       enabled: Chaidh a chur an comas
       enabled_msg: Chaidh an t-Emoji sin a chur an comas
@@ -661,10 +665,10 @@ gd:
       subject: 'Tha taga hais ùr air %{instance} a’ feitheamh air lèirmheas (#%{name})'
   aliases:
     add_new: Cruthaich alias
-    created_msg: Chaidh an t-alias ùr a chruthachadh. ’S urrainn dhut tòiseachadh air a ghluasad on seann-chunntas a-nis.
-    deleted_msg: Chaidh an t-alias a thoirt air falbh. Chan urrainn dhut gluasad on chunntas ud chan fhear seo tuilleadh.
+    created_msg: Chaidh an t-alias ùr a chruthachadh. ’S urrainn dhut tòiseachadh air imrich on seann-chunntas a-nis.
+    deleted_msg: Chaidh an t-alias a thoirt air falbh. Chan urrainn dhut imrich on chunntas ud chan fhear seo tuilleadh.
     empty: Chan eil alias agad.
-    hint_html: Nam bu mhiann leat gluasad o chunntas eile dhan fhear seo, ’s urrainn dhut alias a chruthachadh an-seo agus feumaidh tu sin a dhèanamh mus urrainn dhut tòiseachadh air an luchd-leantainn agad a ghluasad on seann-chunntas dhan fhear seo. Tha an gnìomh seo fhèin <strong>neo-chronail is gabhaidh a neo-dhèanamh</strong>. <strong>Tòisichidh tu air imrich a’ chunntais on t-seann-chunntas</strong>.
+    hint_html: Nam bu mhiann leat imrich o chunntas eile dhan fhear seo, ’s urrainn dhut alias a chruthachadh an-seo agus feumaidh tu sin a dhèanamh mus urrainn dhut tòiseachadh air an luchd-leantainn agad imrich on seann-chunntas dhan fhear seo. Tha an gnìomh seo fhèin <strong>neo-chronail is can eil e buan</strong>. <strong>Tòisichidh tu air imrich a’ chunntais on t-seann-chunntas</strong>.
     remove: Dì-cheangail an t-alias
   appearance:
     advanced_web_interface: Eadar-aghaidh-lìn adhartach
@@ -674,11 +678,13 @@ gd:
     discovery: Lorg
     localization:
       body: Tha Mastodon ’ga eadar-theangachadh le saor-thoilich.
+      guide_link: https://crowdin.com/project/mastodon
       guide_link_text: '’S urrainn do dhuine sam bith cuideachadh.'
     sensitive_content: Susbaint fhrionasach
     toot_layout: Co-dhealbhachd nan dùd
   application_mailer:
     notification_preferences: Atharraich roghainnean a’ phuist-d
+    salutation: "%{name},"
     settings: 'Atharraich roghainnean a’ phuist-d: %{link}'
     view: 'Seall:'
     view_profile: Seall a’ phròifil
@@ -710,9 +716,12 @@ gd:
     link_to_webauth: Cleachd uidheam na h-iuchrach tèarainteachd agad
     login: Clàraich a-steach
     logout: Clàraich a-mach
-    migrate_account: Gluais gu cunntas eile
+    migrate_account: Imrich gu cunntas eile
     migrate_account_html: Nam bu mhiann leat an cunntas seo ath-stiùireadh gu fear eile, ’s urrainn dhut <a href="%{path}">a rèiteachadh an-seo</a>.
     or_log_in_with: No clàraich a-steach le
+    providers:
+      cas: CAS
+      saml: SAML
     register: Clàraich leinn
     registration_closed: "Cha ghabh %{instance} ri buill ùra"
     resend_confirmation: Cuir an stiùireadh mun dearbhadh a-rithist
@@ -828,12 +837,260 @@ gd:
     add_new: Cuir fear ùr ris
     errors:
       limit: Bhrosnaich thu an uiread as motha de thagaichean hais mu thràth
+    hint_html: "<strong>Dè th’ anns na tagaichean hais brosnaichte?</strong> Thèid an sealltainn gu follaiseach air a’ phròifil phoblach agad agus ’s urrainnear na postaichean poblach agad sa bheil na tagaichean hais sònraichte sin a bhrabhsadh leotha. ’S e deagh-acainn a th’ annta airson sùil a chumail air obair chruthachail no pròiseactan fada."
+  filters:
+    contexts:
+      account: Pròifilean
+      home: Dachaigh ’s liostaichean
+      notifications: Brathan
+      public: Loidhnichean-ama poblach
+      thread: Còmhraidhean
+    edit:
+      title: Deasaich a’ chriathrag
+    errors:
+      invalid_context: Cha deach co-theacs a sholar no tha e mì-dhligheach
+      invalid_irreversible: Chan obraich criathradh buan ach ann an co-theacsa na dachaigh no na brathan
+    index:
+      delete: Sguab às
+      empty: Chan eil criathrag agad.
+      title: Criathragan
+    new:
+      title: Cuir criathrag ùr ris
+  footer:
+    developers: Luchd-leasachaidh
+    more: Barrachd…
+    resources: Goireasan
+    trending_now: A’ treandadh an-dràsta
+  generic:
+    all: Na h-uile
+    changes_saved_msg: Chaidh na h-atharraichean a shàbhaladh!
+    copy: Dèan lethbhreac
+    delete: Sguab às
+    no_batch_actions_available: Chan eil gnìomh grunna ri fhaighinn air an duilleag seo
+    order_by: Seòrsaich a-rèir
+    save_changes: Sàbhail na h-atharraichean
+    validation_errors:
+      one: Tha rud ann nach eil buileach ceart fhathast! Thoir sùil air an %{count} mhearachd gu h-ìosal
+      two: Tha rud ann nach eil buileach ceart fhathast! Thoir sùil air an %{count} mhearachd gu h-ìosal
+      few: Tha rud ann nach eil buileach ceart fhathast! Thoir sùil air na %{count} mhearachdan gu h-ìosal
+      other: Tha rud ann nach eil buileach ceart fhathast! Thoir sùil air an %{count} mearachd gu h-ìosal
+  html_validator:
+    invalid_markup: 'tha HTML markup mì-dhligheach ann: %{error}'
+  identity_proofs:
+    active: Gnìomhach
+    authorize: Tha, ùghdarraich
+    authorize_connection_prompt: A bheil thu airson an ceangal crioptaichte seo ùghdarrachadh?
+    errors:
+      failed: Dh’fhàillig leis a’ cheangal chrioptaichte. Feuch ris a-rithist o %{provider}.
+      keybase:
+        invalid_token: '’S e haisichean de shoidhnidhean a th’ anns na tòcanan Keybase agus feumaidh 66 caractar sia-dheicheach a bhith annta'
+        verification_failed: Chan aithnich Keybase an tòcan seo ’na shoidhneadh aig cleachdaiche Keybase %{kb_username}. Feuch ris a-rithist o Keybase.
+      wrong_user: Chan urrainn dhuinn dearbhadh air %{proving} a chruthachadh fhad ’s a bhios tu clàraichte a-steach mar %{current}. Clàraich a-steach mar %{proving} is feuch ris a-rithist.
+    explanation_html: '’S urrainn dhut na dearbh-aithnean eile agad a cheangal le crioptachadh o ùrlaran eile, can Keybase. Leigidh seo le càch teachdaireachdan crioptaichte a chur thugad air na h-ùrlaran sin agus bheir seo comas dhaibh gun cuir iad earbsa san t-susbaint a chuireas tu thuca ’s iad cinnteach gur ann uat-sa fhèin a thàinig i.'
+    i_am_html: Is mise %{username} air %{service}.
+    identity: Dearbh-aithne
+    inactive: Neo-ghnìomhach
+    publicize_checkbox: '’S postaich seo mar dhùd:'
+    publicize_toot: 'Chaidh a dhearbhadh! Is mise %{username} air %{service}: %{url}'
+    remove: Thoir an dearbhadh air falbh on chunntas
+    removed: Chaidh an dearbhadh a thoirt air falbh on chunntas
+    status: Staid an dearbhaidh
+    view_proof: Seall an dearbhadh
+  imports:
+    errors:
+      over_rows_processing_limit: tha còrr is %{count} ràgh(an) ann
+    modes:
+      merge: Co-aonaich
+      merge_long: Cùm na reacordan a tha ann is cuir feadhainn ùr ris
+      overwrite: Sgrìobh thairis air
+      overwrite_long: Cuir na reacordan ùra an àite na feadhna a tha ann
+    preface: '’S urrainn dhut dàta ion-phortadh a dh’às-phortaich thu o fhrithealaiche eile, can liosta nan daoine air a leanas tu no a tha thu a’ bacadh.'
+    success: Chaidh an dàta agad a luchdadh suas is thèid a phròiseasadh a-nis
+    types:
+      blocking: Liosta-bhacaidh
+      bookmarks: Comharran-lìn
+      domain_blocking: Liosta-bhacaidh àrainnean
+      following: Liosta dhen fheadhainn air a leanas tu
+      muting: Liosta a’ mhùchaidh
+    upload: Luchdaich suas
+  in_memoriam_html: Mar chuimhneachan.
+  invites:
+    delete: Cuir à gnìomh
+    expired: Dh’fhalbh an ùine air
+    expires_in:
+      '1800': Leth-uair a thìde
+      '21600': 6 uairean a thìde
+      '3600': Uair a thìde
+      '43200': 12 uair a thìde
+      '604800': Seachdain
+      '86400': Latha
+    expires_in_prompt: Chan ann idir
+    generate: Gin ceangal cuiridh
+    invited_by: 'Fhuair thu cuireadh o:'
+    max_uses:
+      one: '%{count} chleachdadh'
+      two: "%{count} chleachdadh"
+      few: "%{count} cleachdaichean"
+      other: "%{count} cleachdadh"
+    max_uses_prompt: Gun chrìoch
+    prompt: Cruthaich is co-roinn ceanglaichean le càch airson inntrigeadh dhan fhrithealaiche seo a thoirt dhaibh
+    table:
+      expires_at: Falbhaidh an ùine air
+      uses: Cleachdadh
+    title: Thoir cuireadh do dhaoine
+  lists:
+    errors:
+      limit: Ràinig thu na tha ceadaichte dhut de liostaichean
+  media_attachments:
+    validations:
+      images_and_video: Chan urrainn dhut video a cheangal ri staid sa bheil dealbh mu thràth
+      not_ready: Chan urrainn dhuinn faidhlichean a cheangal ris nach eil air am pròiseasadh fhathast. Feuch ris a-rithist an ceann greis!
+      too_many: Chan urrainn dhut barrachd air 4 faidhlichean a ceangal ris
+  migrations:
+    acct: Air imrich gu
+    cancel: Sguir dhen ath-stiùireadh
+    cancel_explanation: Ma sguireas tu dhen ath-stiùireadh, thèid an cunntas làithreach agad a ghnìomhachadh a-rithist ach chan aisig sin an luchd-leantainn dhut a chaidh imrich dhan chunntas ud.
+    cancelled_msg: Chaidh sgur dhen ath-stiùireadh.
+    errors:
+      already_moved: '– seo an t-aon chunntas chan a ghluais thu mu thràth'
+      missing_also_known_as: '– chan eil seo ’na alias aig a’ chunntas seo'
+      move_to_self: '– chan fhaod thu an cunntas làithreach a chleachdadh dha seo'
+      not_found: '– cha deach seo a lorg'
+      on_cooldown: Tha àm socrachaidh ort
+    followers_count: Luchd-leantainn aig àm na h-imrich
+    incoming_migrations: Ag imrich o chunntas eile
+    incoming_migrations_html: Airson imrich o chunntas eile dhan fhear seo, feumaidh tu <a href="%{path}">alias cunntais a chruthachadh</a> an toiseach.
+    moved_msg: Tha an cunntas agad ’ga ath-stiùireadh gu %{acct} a-nis ’s an luchd-leantainn agad ’gan imrich.
+    not_redirecting: Chan eil an cunntas agad ’ga ath-stiùireadh gu cunntas sam bith eile aig an àm seo.
+    on_cooldown: Rinn thu imrich air a’ chunntas agad o chionn ghoirid. Bidh an gleus seo ri làimh dhut a-rithist an ceann %{count} là(ithean).
+    past_migrations: Imrichean roimhpe
+    proceed_with_move: Imrich an luchd-leantainn
+    redirected_msg: Tha an cunntas agad ’ga ath-stiùireadh gu %{acct} a-nis.
+    redirecting_to: Tha an cunntas agad ’ga ath-stiùireadh gu %{acct}.
+    set_redirect: Suidhich ath-stiùireadh
+    warning:
+      backreference_required: Feumaidh tu an cunntas ùr a rèiteachadh an toiseach ach an tomh e air ais dhan fhear seo
+      before: 'Mus lean thu air adhart, leugh na nòtaichean seo gu cùramach:'
+      cooldown: Às dèidh imrich, tha àm socrachaidh ann rè nach urrainn dhut imrich eile a dhèanamh
+      disabled_account: Cha ghabh an cunntas làithreach agad a chleachdadh gu slàn às a dhèidh. Gidheadh, bidh an dà chuid às-phortadh an dàta is ath-ghnìomhachadh ri fhaighinn dhut.
+      followers: Imrichidh an gnìomh seo a h-uile neach-leantainn on chunntas làithreach dhan chunntas ùr
+      only_redirect_html: Mar roghainn eile, ’s urrainn dhut <a href="%{path}">ath-stiùireadh a-mhàin a chur air a’ phròifil agad</a>.
+      other_data: Cha dèid dàta sam bith eile imrich gu fèin-obrachail
+      redirect: Thèid pròifil a’ chunntais làithrich agad ùrachadh le brath ath-stiùiridh agus às-dhùnadh on lorg
+  moderation:
+    title: Maorsainneachd
+  move_handler:
+    carry_blocks_over_text: Chaidh an cleachdaiche seo imrich o %{acct} a b’ àbhaist dhut a bhacadh.
+    carry_mutes_over_text: Chaidh an cleachdaiche seo imrich o %{acct} a b’ àbhaist dhut a mhùchadh.
+    copy_account_note_text: 'Da cleachdaiche air gluasad o %{acct}, seo na nòtaichean a bh’ agad mu dhèidhinn roimhe:'
+  notification_mailer:
+    digest:
+      action: Seall a h-uile brath
+      body: Seo geàrr-chunntas air na h-atharraichean nach fhaca thu on tadhal mu dheireadh agad %{since}
+      mention: "Thug %{name} iomradh ort an-seo:"
+      new_followers_summary:
+        one: Cuideachd, bhuannaich thu %{count} neach-leantainn ùr on àm a bha thu air falbh! Nach ma sin!
+        two: Cuideachd, bhuannaich thu %{count} neach-leantainn ùr on àm a bha thu air falbh! Nach ma sin!
+        few: Cuideachd, bhuannaich thu %{count} luchd-leantainn ùr on àm a bha thu air falbh! Nach ma sin!
+        other: Cuideachd, bhuannaich thu %{count} luchd-leantainn ùr on àm a bha thu air falbh! Nach ma sin!
+      subject:
+        one: "%{count} bhrath ùr on tadhal mu dheireadh agad \U0001F418"
+        two: "%{count} bhrath ùr on tadhal mu dheireadh agad \U0001F418"
+        few: "%{count} brathan ùra on tadhal mu dheireadh agad \U0001F418"
+        other: "%{count} brath ùr on tadhal mu dheireadh agad \U0001F418"
+      title: Fhad ’s a bha thu air falbh…
+    favourite:
+      body: 'Chaidh an staid agad ’na annsachd aig %{name}:'
+      subject: "Chuir %{name} an staid agad ris na h-annsachdan aca"
+      title: Annsachd ùr
+    follow:
+      body: "Tha %{name} a’ leantainn ort a-nis!"
+      subject: "Tha %{name} a’ leantainn ort a-nis"
+      title: Neach-leantainn ùr
+    follow_request:
+      action: Stiùirich na h-iarrtasan leantainn
+      body: "Dh’iarr %{name} leantainn ort"
+      subject: 'Neach-leantainn ri dhèiligeadh: %{name}'
+      title: Iarrtas leantainn ùr
+    mention:
+      action: Freagair
+      body: 'Thug %{name} iomradh ort an-seo:'
+      subject: Thug %{name} iomradh ort
+      title: Iomradh ùr
+    reblog:
+      body: 'Chaidh an staid agad a bhrosnachadh le %{name}:'
+      subject: "Bhrosnaich %{name} an staid agad"
+      title: Brosnachadh ùr
+  notifications:
+    email_events: Tachartasan nam brathan puist-d
+    email_events_hint: 'Tagh na tachartasan dhan a bheil thu airson brathan fhaighinn:'
+    other_settings: Roghainnean eile nam brathan
+  number:
+    human:
+      decimal_units:
+        units:
+          billion: bill.
+          million: mill.
+          quadrillion: quad.
+          thousand: mìle
+          trillion: trill.
+  otp_authentication:
+    code_hint: Cuir a-steach an còd a chaidh a ghintinn leis an aplacaid dearbhaidh agad airson a dhearbhadh
+    description_html: Ma chuireas tu an comas an <strong>dearbhadh dà-cheumnach</strong> le aplacaid dearbhaidh, feumaidh am fòn agad a bhith ri làimh dhut airson clàradh a-steach is ginidh esan tòcanan dhut.
+    enable: Cuir an comas
+    instructions_html: "<strong>Sganaich an còd QR le Google Authenticator no aplacaid TOTP sam bith eile air an fhòn agad</strong>. O seo a-mach, ginidh an aplacaid ud tòcanan a dh’fheumas tu cur a-steach nuair a bhios tu ri clàradh a-steach."
+    manual_instructions: 'Mur urrainn dhut an còd QR a sganadh is ma dh’fheumas tu a chur a-steach a làimh, seo an rùn ’na theasa lom dhut:'
+    setup: Suidhich
+    wrong_code: Cha robh an còd a chuir thu a-steach mar bu chòir! A bheil àm an fhrithealaiche agus àm an uidheim a-rèir a chèile?
+  pagination:
+    newer: Nas ùire
+    next: Air adhart
+    older: Nas sine
+    prev: Air ais
+  polls:
+    errors:
+      already_voted: Chuir thu bhòt sa chunntas-bheachd seo mu thràth
+      duplicate_options: ' – tha nithean dùblaichte ann'
+      duration_too_long: '– tha seo ro fhad air falbh san àm ri teachd'
+      duration_too_short: '– tha seo ro aithghearr'
+      expired: Tha an cunntas-bheachd air a thighinn gu crìoch
+      invalid_choice: Chan eil an roghainn dhan a bhòt thu ann
+      over_character_limit: '– chan fhaod a bhith nas fhaide na %{max} caractar'
+      too_few_options: '– feumaidh iomadh nì a bhith aige'
+      too_many_options: '– chan fhaod còrr is %{max} nì a bhith ’na bhroinn'
+  preferences:
+    other: Eile
+    posting_defaults: Bun-roghainnean a’ phostaidh
+    public_timelines: Loidhnichean-ama poblach
+  reactions:
+    errors:
+      limit_reached: Ràinig thu crìoch nam freagairtean eadar-dhealaichte
+      unrecognized_emoji: '– chan aithne dhuinn an Emoji seo'
+  relationships:
+    activity: Gnìomhachd a’ chunntais
+    dormant: Na thàmh
+    follow_selected_followers: Lean air an luchd-leantainn a thagh thu
+    followers: Luchd-leantainn
+    following: A’ leantainn
+    invited: Air cuireadh fhaighinn
+    last_active: Gnìomhach an turas mu dheireadh
+    most_recent: As ùire
+    moved: Air imrich
+    mutual: Co-dhàimh
+    primary: Prìomh-dhàimh
+    relationship: Dàimh
+    remove_selected_domains: Thoir air falbh a h-uile neach-leantainn o na h-àrainnean a thagh thu
+    remove_selected_followers: Thoir air falbh a h-uile neach-leantainn a thagh thu
+    remove_selected_follows: Na lean air na cleachdaichean a thagh thu tuilleadh
+    status: Staid a’ chunntais
   statuses:
     content_warning: 'Rabhadh susbainte: %{warning}'
     visibilities:
       unlisted: Falaichte o liostaichean
   user_mailer:
     warning:
+      explanation:
+        suspend: Chan urrainn dhut an cunntas agad a chleachdadh tuilleadh agus chan fhaigh thu grèim air a’ phròifil no air an dàta eile agad. ’S urrainn dhut clàradh a-steach fhathast airson lethbhreac-glèidhidh dhen dàta agad iarraidh mur dèid an dàta a thoirt air falbh gu slàn ach cumaidh sinn cuid dhen dàta ach nach seachain thu an cur à rèim.
       get_in_touch: '’S urrainn dhut freagairt dhan phost-d seo no conaltradh ris an sgioba aig %{instance}.'
       subject:
         none: Rabhadh dha %{acct}
