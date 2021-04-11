@@ -1088,10 +1088,145 @@ gd:
     remove_selected_followers: Thoir air falbh a h-uile neach-leantainn a thagh thu
     remove_selected_follows: Na lean air na cleachdaichean a thagh thu tuilleadh
     status: Staid a’ chunntais
+  remote_follow:
+    acct: Cuir a-steach ainm-cleachdaiche@àrainn airson a chur ort
+    missing_resource: Cha do lorg sinn URL ath-stiùiridh riatanach a’ chunntais agad
+    no_account_html: Nach eil cunntas agad? ’S urrainn dhut <a href='%{sign_up_path}' target='_blank'>clàradh leinn an-seo</a>
+    proceed: Lean air adhart gus leantainn air
+    prompt: 'Bidh thu a’ leantainn air'
+    reason_html: "<strong>Carson a tha feum air a’ cheum seo?</strong> Dh’fhaoidte nach e <code>%{instance}</code> am frithealaiche far an do rinn thu clàradh agus feumaidh sinn d’ ath-stiùireadh dhan fhrithealaiche dachaigh agad an toiseach."
+  remote_interaction:
+    favourite:
+      proceed: Lean air adhart gus a chur ris na h-annsachdan
+      prompt: 'Tha thu airson an dùd seo a chur ris na h-annsachdan:'
+    reblog:
+      proceed: Lean air adhart gus a bhrosnachadh
+      prompt: 'Tha thu airson an dùd seo a bhrosnachadh:'
+    reply:
+      proceed: Lean air adhart gus freagairt
+      prompt: 'Tha thu airson freagairt dhan dùd seo:'
+  scheduled_statuses:
+    over_daily_limit: Chaidh thu thar na crìoch de %{limit} dùd(an) sgeidealaichte dhan latha ud
+    over_total_limit: Chaidh thu thar na crìoch de %{limit} dùd(an) sgeidealaichte
+    too_soon: Feumaidh ceann-latha an sgeideil a bhith san àm ri teachd
+  sessions:
+    activity: A’ ghnìomhachd mu dheireadh
+    browser: Brabhsair
+    browsers:
+      generic: Brabhsair nach aithne dhuinn
+    current_session: An seisean làithreach
+    description: "%{browser} air %{platform}"
+    explanation: Seo na bhrabhsairean-lìn a tha clàraichte a-staigh sa chunntas Mastodon agad aig an àm seo.
+    platforms:
+      other: ùrlar nach aithne dhuinn
+    revoke: Cùl-ghairm
+    revoke_success: Chaidh an seisean a chùl-ghairm
+    title: Seiseanan
+  settings:
+    account: Cunntas
+    account_settings: Roghainnean a’ chunntais
+    aliases: Aliasan a’ chunntais
+    appearance: Coltas
+    authorized_apps: Aplacaidean ùghdarraichte
+    back: Till gu Mastodon
+    delete: Sguabadh às cunntais
+    development: Leasachadh
+    edit_profile: Deasaich a’ phròifil
+    export: Às-phortadh dàta
+    featured_tags: Tagaichean hais brosnaichte
+    identity_proofs: Dearbhaidhean na dearbh-aithne
+    import: Ion-phortaich
+    import_and_export: Ion-phortaich is às-phortaich
+    migrate: Imrich cunntais
+    notifications: Brathan
+    preferences: Roghainnean
+    profile: Pròifil
+    relationships: Dàimhean leantainn
+    two_factor_authentication: Dearbhadh dà-cheumnach
+    webauthn_authentication: Iuchraichean tèarainteachd
   statuses:
+    attached:
+      audio:
+        one: "%{count} fhuaim"
+        two: "%{count} fhuaim"
+        few: "%{count} fuaimean"
+        other: "%{count} fuaim"
+      description: 'Ceanglachain: %{attached}'
+      image:
+        one: "%{count} dealbh"
+        two: "%{count} dhealbh"
+        few: "%{count} dealbhan"
+        other: "%{count} dealbh"
+    boosted_from_html: Brosnachadh o %{acct_link}
     content_warning: 'Rabhadh susbainte: %{warning}'
+    disallowed_hashtags:
+      one: '– bha na tagaichean hais toirmisgte seo ann: %{tags}'
+      two: '– bha na tagaichean hais toirmisgte seo ann: %{tags}'
+      few: '– bha na tagaichean hais toirmisgte seo ann: %{tags}'
+      other: '– bha na tagaichean hais toirmisgte seo ann: %{tags}'
+    errors:
+      in_reply_not_found: Tha coltas nach eil an staid dhan a tha thu airson freagairt ann.
+    language_detection: Mothaich dhan chànan gu fèin-obrachail
+    open_in_web: Fosgail air an lìon
+    over_character_limit: chaidh thu thar crìoch charactaran de %{max}
+    pin_errors:
+      limit: Tha an àireamh as motha de dhùdan prìnichte agad a tha ceadaichte
+      ownership: Chan urrainn dhut dùdan càich a phrìneachadh
+      private: Chan urrainn dhut dùd neo-phoblach a phrìneachadh
+      reblog: Chan urrainn dhut brosnachadh a phrìneachadh
+    poll:
+      total_people:
+        one: "%{count} neach"
+        two: "%{count} neach"
+        few: "%{count} daoine"
+        other: "%{count} duine"
+      total_votes:
+        one: "%{count} bhòt"
+        two: "%{count} bhòt"
+        few: "%{count} bhòtaichean"
+        other: "%{count} bhòt"
+      vote: Bhòt
+    show_more: Seall barrachd dheth
+    show_newer: Seall feadhainn as ùire
+    show_older: Seall feadhainn as sine
+    show_thread: Seall an snàithlean
+    sign_in_to_participate: Clàraich a-steach a ghabhail pàirt sa chòmhradh
+    title: '%{name}: “%{quote}”'
     visibilities:
+      private: Luchd-leantainn a-mhàin
+      private_long: Na seall dhan luchd-leantainn
+      public: Poblach
+      public_long: Chì a h-uile duine seo
       unlisted: Falaichte o liostaichean
+      unlisted_long: Chì a h-uile duine seo ach cha nochd e air loidhnichean-ama poblach
+  stream_entries:
+    pinned: Dùd prìnichte
+    reblogged: '’ga bhrosnachadh'
+    sensitive_content: Susbaint fhrionasach
+  tags:
+    does_not_match_previous_name: '– chan eil seo a-rèir an ainm roimhe'
+  terms:
+    title: "Teirmichean na seirbheise ⁊ poileasaidh prìobhaideachd %{instance}"
+  themes:
+    contrast: Mastodon (iomsgaradh àrd)
+    default: Mastodon (dorcha)
+    mastodon-light: Mastodon (soilleir)
+  time:
+    formats:
+      default: "%d %b %Y, %H∶%M"
+  two_factor_authentication:
+    add: Cuir ris
+    disable: Cuir an dearbhadh dà-cheumnach à comas
+    disabled_success: Chaidh an dearbhadh dà-cheumnach a chur à comas
+    edit: Deasaich
+    enabled: Tha an dearbhadh dà-cheumnach an comas
+    enabled_success: Chaidh an dearbhadh dà-cheumnach a chur an comas
+    generate_recovery_codes: Gin còdan aiseig
+    lost_recovery_codes: Le còdan aiseig, gheibh thu a-steach dhan chunntas agad a-rithist ma chailleas tu am fòn agad. Ma chaill thu na còdan aiseig agad, ’s urrainn dhut an ath-ghintinn an-seo. Cha bhi na seann-chòdan aiseig agad dligheach tuilleadh an uairsin.
+    methods: Dòighean dà-cheumnach
+    otp: Aplacaid dearbhaidh
+    recovery_codes: Còdan aiseig ’nan lethbhreac-glèidhidh
+    recovery_codes_regenerated: Chaidh na còdan aiseig ath-ghintinn
   user_mailer:
     warning:
       explanation:
