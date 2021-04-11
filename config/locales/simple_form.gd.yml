@@ -1,6 +1,10 @@
 gd:
   simple_form:
     hints:
+      account_alias:
+        acct: Sònraich ainm-cleachdaiche@àrainn dhen chunntas a tha thu airson imrich uaithe
+      account_migration:
+        acct: Sònraich ainm-cleachdaiche@àrainn dhen chunntas dhan a tha thu airson imrich
       admin_account_action:
         include_statuses: Chì an cleachdaiche dè na dùdan a dh’adhbharaich gnìomh na maorsainneachd no an rabhadh
         text_html: Roghainneil. Faodaidh tu co-chàradh dùid a chleachdadh. ’S urrainn dhut <a href="%{path}">rabhaidhean ro-shuidhichte a chur ris</a> airson ùine a chaomhnadh
@@ -8,6 +12,7 @@ gd:
           none: Cleachd seo airson rabhadh a chur dhan chleachdaiche gun ghnìomh eile a ghabhail.
       defaults:
         discoverable: '’S e dòigh eile a th’ ann an eòlaire nam pròifil leis an ruig an cunntas agad èisteachd nas fharsainge'
+        irreversible: Thèid dùdan criathraichte a-mach à sealladh gu buan fiù ’s ma bheir thu a’ chriathrag air falbh uaireigin eile
     labels:
       admin_account_action:
         text: Rabhadh gnàthaichte
