@@ -357,7 +357,6 @@ zh-CN:
       feature_profile_directory: 用户目录
       feature_registrations: 公开注册
       feature_relay: 联邦中继站
-      feature_spam_check: 反垃圾
       feature_timeline_preview: 时间轴预览
       features: 功能
       hidden_service: 匿名服务连通性
@@ -617,9 +616,6 @@ zh-CN:
         desc_html: 可以填写自己的隐私权政策、使用条款或其他法律文本。可以使用 HTML 标签
         title: 自定义使用条款
       site_title: 本站名称
-      spam_check_enabled:
-        desc_html: Mastodon可以自动隐藏和举报重复发送垃圾消息的帐号。但是本功能有可能误伤无辜。
-        title: 自动反垃圾
       thumbnail:
         desc_html: 用于在 OpenGraph 和 API 中显示预览图。推荐分辨率 1200×630px
         title: 本站缩略图
@@ -1194,8 +1190,6 @@ zh-CN:
     relationships: 关注管理
     two_factor_authentication: 双重认证
     webauthn_authentication: 安全密钥
-  spam_check:
-    spam_detected: 这是一个自动报告。已检测到垃圾信息。
   statuses:
     attached:
       audio:
