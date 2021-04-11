@@ -361,7 +361,6 @@ gl:
       feature_profile_directory: Directorio do perfil
       feature_registrations: Rexistros
       feature_relay: Repetidor da federación
-      feature_spam_check: Anti-spam
       feature_timeline_preview: Vista previa da cronoloxía
       features: Funcións
       hidden_service: Federación con servizos agochados
@@ -625,9 +624,6 @@ gl:
         desc_html: Podes escribir a túa propia política de privacidade, termos de servizo ou aclaracións legais. Podes empregar cancelos HTML
         title: Termos de servizo personalizados
       site_title: Nome do servidor
-      spam_check_enabled:
-        desc_html: Mastodon pode silenciar e informar automáticamente sobre contas baseándose en medidas como detectar contas que envían mensaxes non solicitadas de xeito repetido. Podería haber falsos positivos.
-        title: Anti-spam
       thumbnail:
         desc_html: Utilizado para vistas previsas vía OpenGraph e API. Recoméndase 1200x630px
         title: Icona do servidor
@@ -1206,8 +1202,6 @@ gl:
     relationships: Seguindo e seguidoras
     two_factor_authentication: Validar Dobre Factor
     webauthn_authentication: Chaves de seguridade
-  spam_check:
-    spam_detected: Esto é un informe automatizado. Detectouse Spam.
   statuses:
     attached:
       audio:
