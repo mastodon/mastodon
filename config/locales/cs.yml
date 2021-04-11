@@ -370,7 +370,6 @@ cs:
       feature_profile_directory: Adresář profilů
       feature_registrations: Registrace
       feature_relay: Federovací most
-      feature_spam_check: Antispam
       feature_timeline_preview: Náhled časové osy
       features: Vlastnosti
       hidden_service: Federace se skrytými službami
@@ -642,9 +641,6 @@ cs:
         desc_html: Můžete si napsat vlastní zásady ochrany osobních údajů, podmínky používání či jiné právní dokumenty. Můžete použít HTML značky
         title: Vlastní podmínky používání
       site_title: Název serveru
-      spam_check_enabled:
-        desc_html: Mastodon může automaticky nahlašovat účty, které opakovaně odesílají nevyžádané zprávy. Mohou se najít špatné shody.
-        title: Antispamová automatizace
       thumbnail:
         desc_html: Používáno pro náhledy přes OpenGraph a API. Doporučujeme rozlišení 1200x630px
         title: Miniatura serveru
@@ -1231,8 +1227,6 @@ cs:
     relationships: Sledovaní a sledující
     two_factor_authentication: Dvoufázové ověřování
     webauthn_authentication: Bezpečnostní klíče
-  spam_check:
-    spam_detected: Tohle je automatizované hlášení. Byl detekován spam.
   statuses:
     attached:
       audio:
