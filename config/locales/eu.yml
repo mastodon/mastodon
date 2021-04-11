@@ -658,6 +658,14 @@ eu:
       no_status_selected: Ez da mezurik aldatu ez delako mezurik aukeratu
       title: Kontuaren mezuak
       with_media: Multimediarekin
+    system_checks:
+      database_schema_check:
+        message_html: Aplikatu gabeko datu-basearen migrazioak daude. Exekutatu aplikazioak esperotako portaera izan dezan
+      rules_check:
+        action: Kudeatu zerbitzariaren arauak
+        message_html: Ez duzu zerbitzariaren araurik definitu.
+      sidekiq_process_check:
+        message_html: Ez da ari Sidekiq prozesurik exekutatzen %{value} ilad(et)an. Egiaztatu Sidekiq konfigurazioa
     tags:
       accounts_today: Erabilera bakanak gaur
       accounts_week: Erabilera bakanak aste honetan
