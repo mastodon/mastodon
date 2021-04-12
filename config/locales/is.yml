@@ -440,7 +440,12 @@ is:
         title: Ný færsla á bannlista fyrir tölvupóstföng
       title: Bannlisti yfir tölvupóstföng
     follow_recommendations:
+      language: Fyrir tungumálið
       status: Staða
+      suppress: Útiloka að fylgja meðmælum
+      suppressed: Útilokað
+      title: Fylgja meðmælum
+      unsuppress: Endurheimta að fylgja meðmælum
     instances:
       by_domain: Lén
       delivery_available: Afhending er til taks
@@ -657,6 +662,14 @@ is:
       no_status_selected: Engum stöðufærslum var breytt þar sem engar voru valdar
       title: Staða notendaaðganga
       with_media: Með myndefni
+    system_checks:
+      database_schema_check:
+        message_html: Það eru fyrirliggjandi yfirfærslur á gagnagrunnum. Keyrðu þær til að tryggja að forritið hegði sér eins og skyldi
+      rules_check:
+        action: Sýsla með reglur netþjónsins
+        message_html: Þú hefur ekki skilgreint neinar reglur fyrir netþjón.
+      sidekiq_process_check:
+        message_html: Ekkert Sidekiq-ferli er í gangi fyrir %{value} biðröð/biðraðir. Endilega athugaðu Sidekiq-uppsetninguna þína
     tags:
       accounts_today: Einstök afnot í dag
       accounts_week: Einstök afnot í þessari viku
