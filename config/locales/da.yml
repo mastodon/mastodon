@@ -207,26 +207,33 @@ da:
       unconfirmed_email: Ikke-bekræftet e-mail
       undo_sensitized: Fortryd sensitiv
       undo_silenced: Fortryd tavsgørelse
-      undo_suspension: Fortryd udelukkelse
-      unsubscribe: Abonner ikke længere
+      undo_suspension: Fortryd suspendering
+      unsilenced_msg: '%{username}s konto er optøet'
+      unsubscribe: Opsig abonnement
+      unsuspended_msg: '%{username}s konto er afsuspenderet'
       username: Brugernavn
       view_domain: Vis resumé for domæne
       warn: Advar
-      whitelisted: Hvidlistet
+      web: Web
+      whitelisted: Tilladt for federering
     action_logs:
       action_types:
         assigned_to_self_report: Tildel rapport
-        change_email_user: Ændre e-mail for bruger
+        change_email_user: Skift e-mail for bruger
         confirm_user: Bekræft bruger
         create_account_warning: Opret advarsel
         create_announcement: Opret bekendtgørelse
-        create_domain_allow: Opret domæne tillad
+        create_custom_emoji: Opret tilpasset emoji
+        create_domain_allow: Opret domænetilladelse
         create_domain_block: Opret domæneblokering
+        create_email_domain_block: Opret e-maildomæneblokering
         create_ip_block: Opret IP-regel
-        demote_user: Degrader bruger
+        demote_user: Degradere bruger
         destroy_announcement: Slet bekendtgørelse
+        destroy_custom_emoji: Slet tilpasset emoji
+        destroy_domain_allow: Slet domænetilladelse
         destroy_domain_block: Slet domæneblokering
-        destroy_email_domain_block: Slet e-mail domæne blokering
+        destroy_email_domain_block: Slet e-maildomæneblokering
         destroy_ip_block: Slet IP-regel
         destroy_status: Slet status
         disable_2fa_user: Slet 2FA
