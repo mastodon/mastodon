@@ -26,6 +26,7 @@ gd:
     learn_more: Barrachd fiosrachaidh
     privacy_policy: Poileasaidh prìobhaideachd
     rules: Riaghailtean an fhrithealaiche
+    rules_html: 'Tha geàrr-chunntas air na riaghailtean a dh’fheumas tu gèilleadh riutha ma tha thu airson cunntas fhaighinn air an fhrithealaiche Mastodon seo gu h-ìosal:'
     see_whats_happening: Faic dè tha dol
     server_stats: 'Stadastaireachd an fhrithealaiche:'
     source_code: Bun-tùs
@@ -267,9 +268,46 @@ gd:
         update_domain_block: Ùraich bacadh na h-àrainne
         update_status: Ùraich an staid
       actions:
+        assigned_to_self_report_html: "Dh’iomruin %{name} an gearan %{target} dhaibh fhèin"
+        change_email_user_html: "Dh’atharraich %{name} seòladh puist-d a’ chleachdaiche %{target}"
+        confirm_user_html: "Dhearbh %{name} seòladh puist-d a’ chleachdaiche %{target}"
         create_account_warning_html: "Chuir %{name} rabhadh gu %{target}"
+        create_announcement_html: "Chruthaich %{name} brath-fios %{target} ùr"
+        create_custom_emoji_html: "Luchdaich %{name} suas Emoji %{target} ùr"
+        create_domain_allow_html: "Cheadaich %{name} co-nasgadh leis an àrainn %{target}"
+        create_domain_block_html: "Bhac %{name} an àrainn %{target}"
+        create_email_domain_block_html: "Bhac %{name} an àrainn puist-d %{target}"
+        create_ip_block_html: "Chruthaich %{name} riaghailt dhan IP %{target}"
+        demote_user_html: "Dh’ìslich %{name} an cleachdaiche %{target}"
+        destroy_announcement_html: "Sguab %{name} às am brath-fios %{target}"
+        destroy_custom_emoji_html: "Mhill %{name} an Emoji %{target}"
+        destroy_domain_allow_html: "Dì-cheadaich %{name} co-nasgadh leis an àrainn %{target}"
+        destroy_domain_block_html: "Dì-bhac %{name} an àrainn %{target}"
+        destroy_email_domain_block_html: "Dì-bhac %{name} an àrainn puist-d %{target}"
+        destroy_ip_block_html: "Sguab %{name} às riaghailt dhan IP %{target}"
         destroy_status_html: "Thug %{name} staid aig %{target} air falbh"
+        disable_2fa_user_html: "Chuir %{name} riatanas an dearbhaidh dà-cheumnaich à comas dhan chleachdaiche %{target}"
+        disable_custom_emoji_html: "Chuir %{name} an Emoji %{target} à comas"
+        disable_user_html: "Chuir %{name} an clàradh a-steach à comas dhan chleachdaiche %{target}"
+        enable_custom_emoji_html: "Chuir %{name} an Emoji %{target} an comas"
+        enable_user_html: "Chuir %{name} an clàradh a-steach an comas dhan chleachdaiche %{target}"
+        memorialize_account_html: "Rinn %{name} duilleag cuimhneachain dhen chunntas aig %{target}"
+        promote_user_html: "Dh’àrdaich %{name} an cleachdaiche %{target}"
         remove_avatar_user_html: "Thug %{name} avatar aig %{target} air falbh"
+        reopen_report_html: "Dh’fhosgail %{name} an gearan %{target} a-rithist"
+        reset_password_user_html: "Dh’ath-shuidhich %{name} am facal-faire aig a’ chleachdaiche %{target}"
+        resolve_report_html: "Dh’fhuasgail %{name} an gearan %{target}"
+        sensitive_account_html: "Chuir %{name} comharra gu bheil e frionasach ri meadhan aig %{target}"
+        silence_account_html: "Mhùch %{name} an cunntas aig %{target}"
+        suspend_account_html: "Chuir %{name} an cunntas aig %{target} à rèim"
+        unassigned_report_html: "Neo-iomruin %{name} an gearan %{target}"
+        unsensitive_account_html: "Chuir %{name} comharra nach eil e frionasach ri meadhan aig %{target}"
+        unsilence_account_html: "Dì-mhùch %{name} an cunntas aig %{target}"
+        unsuspend_account_html: "Chuir %{name} an cunntas aig %{target} ann an rèim a-rithist"
+        update_announcement_html: "Dh’ùraich %{name} am brath-fios %{target}"
+        update_custom_emoji_html: "Dh’ùraich %{name} an Emoji %{target}"
+        update_domain_block_html: "Dh’ùraich %{name} bacadh na h-àrainne %{target}"
+        update_status_html: "Dh’ùraich %{name} staid le %{target}"
       deleted_status: "(staid air a sguabadh às)"
       empty: Cha deach loga a lorg.
       filter_by_action: Criathraich a-rèir gnìomha
@@ -519,6 +557,8 @@ gd:
       unassign: Dì-iomruin
       unresolved: Gun fhuasgladh
       updated_at: Air ùrachadh
+    rules:
+      add_new: Cuir riaghailt ris
     settings:
       activity_api_enabled:
         desc_html: Cunntasan nan staidean a chaidh a phostadh gu h-ionadail, nan cleachdaichean gnìomhach ’s nan clàraidhean ùra an am bucaidean seachdaineil
@@ -1227,7 +1267,15 @@ gd:
     otp: Aplacaid dearbhaidh
     recovery_codes: Còdan aiseig ’nan lethbhreac-glèidhidh
     recovery_codes_regenerated: Chaidh na còdan aiseig ath-ghintinn
+    recovery_instructions_html: Ma chailleas tu an t-inntrigeadh dhan fhòn agad, ’s urrainn dhut fear dhe na còdan aisig gu h-ìosal a chleachdadh airson faighinn a-steach dhan chunntas agad a-rithist. <strong>Cùm na còdan aisig sàbhailte</strong>. Mar eisimpleir, ’s urrainn dhut an clò-bhualadh ’s a chumail far a bheil thu a’ cumail na sgrìobhainnean cudromach eile agad.
+    webauthn: Iuchraichean tèarainteachd
   user_mailer:
+    backup_ready:
+      explanation: Dh’iarr thu lethbhreac-glèidhidh slàn dhen chunntas Mastodon agad. Tha e deis ri luchdadh a-nuas a-nis!
+      subject: Tha an tasg-lann agad deis ri luchdadh a-nuas
+      title: Tasg-lann dhut
+    sign_in_token:
+      details: 'Seo mion-fhiosrachadh mun oidhirp:'
     warning:
       explanation:
         suspend: Chan urrainn dhut an cunntas agad a chleachdadh tuilleadh agus chan fhaigh thu grèim air a’ phròifil no air an dàta eile agad. ’S urrainn dhut clàradh a-steach fhathast airson lethbhreac-glèidhidh dhen dàta agad iarraidh mur dèid an dàta a thoirt air falbh gu slàn ach cumaidh sinn cuid dhen dàta ach nach seachain thu an cur à rèim.
