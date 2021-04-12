@@ -646,6 +646,12 @@ ja:
       no_status_selected: 何も選択されていないため、変更されていません
       title: トゥート一覧
       with_media: メディアあり
+    system_checks:
+      rules_check:
+        action: サーバーのルールを管理
+        message_html: サーバーのルールを定義していません。
+      sidekiq_process_check:
+        message_html: '%{value} キューに対応するSidekiq プロセスがありません。Sidekiq の設定を確認してください。'
     tags:
       accounts_today: 本日使用した人数
       accounts_week: 今週使用した人数
