@@ -11,8 +11,8 @@ export function fetchSuggestions() {
   return (dispatch, getState) => {
     dispatch(fetchSuggestionsRequest());
 
-    api(getState).get('/api/v1/suggestions').then(response => {
-      dispatch(importFetchedAccounts(response.data));
+    api(getState).get('/api/v2/suggestions').then(response => {
+      dispatch(importFetchedAccounts(response.data.map(x => x.account)));
       dispatch(fetchSuggestionsSuccess(response.data));
     }).catch(error => dispatch(fetchSuggestionsFail(error)));
   };
@@ -25,10 +25,10 @@ export function fetchSuggestionsRequest() {
   };
 };
 
-export function fetchSuggestionsSuccess(accounts) {
+export function fetchSuggestionsSuccess(suggestions) {
   return {
     type: SUGGESTIONS_FETCH_SUCCESS,
-    accounts,
+    suggestions,
     skipLoading: true,
   };
 };
