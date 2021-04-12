@@ -63,25 +63,25 @@ da:
     following: Følger
     instance_actor_flash: Denne konto er en virtuel aktør, der bruges til at repræsentere selve serveren og ikke nogen individuel bruger. Den anvendes til føderation og bør ikke suspenderes.
     joined: Tilmeldt %{date}
-    last_active: sidst aktiv
-    link_verified_on: Ejerskabet af dette link blev tjekket den %{date}
+    last_active: senest aktiv
+    link_verified_on: Ejerskab af dette link blev tjekket %{date}
     media: Medier
     moved_html: "%{name} er flyttet til %{new_profile_link}:"
-    network_hidden: Denne information er ikke tilgængelig
+    network_hidden: Denne information er utilgængelig
     never_active: Aldrig
-    nothing_here: Der er intet her!
-    people_followed_by: Folk som %{name} følger
-    people_who_follow: Folk der følger %{name}
+    nothing_here: Der er intet hér!
+    people_followed_by: Personer, som %{name} følger
+    people_who_follow: Personer, som følger %{name}
     pin_errors:
-      following: Du er nødt til at følge den person du ønsker at støtte
+      following: Du skal allerede følge den person, du ønsker at støtte
     posts:
       one: Trut
       other: Trut
     posts_tab_heading: Trut
     posts_with_replies: Trut og svar
     roles:
-      admin: Administrator
-      bot: Robot
+      admin: Admin
+      bot: Bot
       group: Gruppe
       moderator: Moderator
     unavailable: Profil utilgængelig
@@ -89,23 +89,24 @@ da:
   admin:
     account_actions:
       action: Udfør handling
-      title: Udfør moderator handlinger på %{acct}
+      title: Udfør moderatorhandling på %{acct}
     account_moderation_notes:
       create: Læg en note
-      created_msg: Moderator notat succesfuldt oprettet!
+      created_msg: Moderatornotat oprettet!
       delete: Slet
-      destroyed_msg: Moderator notat succesfuldt destrueret!
+      destroyed_msg: Moderatornotat destrueret!
     accounts:
-      add_email_domain_block: Bloker e-mail domæne
+      add_email_domain_block: Blokér e-maildomæne
       approve: Godkend
       approve_all: Godkend alle
-      are_you_sure: Er du sikker?
+      approved_msg: Tilmeldingsansøgning for %{username} blev godkendt
+      are_you_sure: Sikker?
       avatar: Profilbillede
       by_domain: Domæne
       change_email:
-        changed_msg: Email til konto succesfuldt ændret!
-        current_email: Nuværende email
-        label: Ændre email
+        changed_msg: Kontoens e-mail er skiftet!
+        current_email: Nuværende e-mail
+        label: Skift e-mail
         new_email: Ny email
         submit: Ændre email
         title: Ændre email for %{username}
