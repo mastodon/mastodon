@@ -44,9 +44,9 @@ da:
       rejecting_media_title: Filtrerede medier
       silenced: 'Indlæg fra disse servere er skjult i offentlige tidslinjer og konversationer, og der genereres ingen notifikationer fra deres brugerinteraktioner, medmindre du følger dem:'
       silenced_title: Tavsgjorte servere
-      suspended: 'Ingen date fra disse servere vil blive behandlet, gemt eller udvekslet, at interagere eller kommunikere med brugere fra disse servere er ikke muligt:'
+      suspended: 'Ingen data fra disse servere behandles, gemmes eller udveksles, hvilket umuliggør interaktion eller kommunikation med brugere fra disse servere:'
       suspended_title: Suspenderede servere
-    unavailable_content_html: Mastodon tillader dig generelt at se indhold og interagere med brugere fra enhver anden server i fediverset. Dette er undtagelser der er foretaget på netop denne server.
+    unavailable_content_html: Mastodon tillader dig generelt at se indhold og interagere med brugere fra enhver anden server i fediverset. Disse er undtagelserne, som er implementeret på netop denne servertype.
     user_count_after:
       one: bruger
       other: brugere
@@ -54,14 +54,15 @@ da:
     what_is_mastodon: Hvad er Mastodon?
   accounts:
     choices_html: "%{name}s valg:"
-    endorsements_hint: Du kan støtte folk du følger fra web-interface, og de vil dukke op her.
-    featured_tags_hint: Du kan tilføje specifikke hashtags der vil blive vist her.
+    endorsements_hint: Du kan støtte personer, du følger, fra webgrænsefladen, og de vil fremgå hér.
+    featured_tags_hint: Du kan fremhæve bestemte hashtags, som så vil fremgå hér.
     follow: Følg
     followers:
       one: Følger
       other: Følgere
     following: Følger
-    joined: Tilmeldt den %{date}
+    instance_actor_flash: Denne konto er en virtuel aktør, der bruges til at repræsentere selve serveren og ikke nogen individuel bruger. Den anvendes til føderation og bør ikke suspenderes.
+    joined: Tilmeldt %{date}
     last_active: sidst aktiv
     link_verified_on: Ejerskabet af dette link blev tjekket den %{date}
     media: Medier
