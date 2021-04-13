@@ -2,6 +2,7 @@ nl:
   activerecord:
     attributes:
       poll:
+        expires_at: Deadline
         options: Keuzes
       user:
         agreement: Serviceovereenkomst
@@ -23,3 +24,8 @@ nl:
           attributes:
             reblog:
               taken: van toot bestaat al
+        user:
+          attributes:
+            email:
+              blocked: gebruikt een niet toegestane e-mailprovider
+              unreachable: schijnt niet te bestaan
