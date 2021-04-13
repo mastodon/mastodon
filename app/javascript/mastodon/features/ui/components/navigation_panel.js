@@ -7,7 +7,6 @@ import NotificationsCounterIcon from './notifications_counter_icon';
 import FollowRequestsNavLink from './follow_requests_nav_link';
 import ListPanel from './list_panel';
 
-import AnnouncementsContainer from 'mastodon/features/compose/containers/announcements_container';
 import TrendTagsContainer from 'mastodon/features/compose/containers/trend_tags_container';
 
 const NavigationPanel = () => (
@@ -32,7 +31,6 @@ const NavigationPanel = () => (
 
     <hr />
 
-    <AnnouncementsContainer />
     <TrendTagsContainer />
 
   </div>
