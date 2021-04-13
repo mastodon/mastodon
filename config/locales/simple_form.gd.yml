@@ -5,13 +5,22 @@ gd:
         acct: Sònraich ainm-cleachdaiche@àrainn dhen chunntas a tha thu airson imrich uaithe
       account_migration:
         acct: Sònraich ainm-cleachdaiche@àrainn dhen chunntas dhan a tha thu airson imrich
+      account_warning_preset:
+        text: '’S urrainn dhut co-chàradh dùid a chleachdadh, can URLaichean, tagaichean hais is iomraidhean'
+        title: Roghainneil. Chan fhaic am faightear seo
       admin_account_action:
         include_statuses: Chì an cleachdaiche dè na dùdan a dh’adhbharaich gnìomh na maorsainneachd no an rabhadh
+        send_email_notification: Ghaibh am faightear mìneachadh air dè thachair leis a’ chunntas aca
         text_html: Roghainneil. Faodaidh tu co-chàradh dùid a chleachdadh. ’S urrainn dhut <a href="%{path}">rabhaidhean ro-shuidhichte a chur ris</a> airson ùine a chaomhnadh
+        type_html: Tagh dè nì thu le <strong>%{acct}</strong>
         types:
+          disable: Bac an cleachdaiche o chleachdadh a’ chunntais aca ach na sguab às no falaich an t-susbaint aca.
           none: Cleachd seo airson rabhadh a chur dhan chleachdaiche gun ghnìomh eile a ghabhail.
+          sensitive: Èignich comharra gu bheil e frionasach air a h-uile ceanglachan meadhain a’ chleachdaiche seo.
       defaults:
+        avatar: PNG, GIF or JPG. %{size} air a char as motha. Thèid a sgèileadh sìos gu %{dimensions}px
         discoverable: '’S e dòigh eile a th’ ann an eòlaire nam pròifil leis an ruig an cunntas agad èisteachd nas fharsainge'
+        header: PNG, GIF or JPG. %{size} air a char as motha. Thèid a sgèileadh sìos gu %{dimensions}px
         irreversible: Thèid dùdan criathraichte a-mach à sealladh gu buan fiù ’s ma bheir thu a’ chriathrag air falbh uaireigin eile
     labels:
       admin_account_action:
@@ -21,6 +30,7 @@ gd:
         warning_preset_id: Cleachd rabhadh ro-shuidhichte
       defaults:
         discoverable: Seall an cunntas seo san eòlaire
+        setting_auto_play_gif: Cluich GIFs beòthaichte gu fèin-obrachail
         setting_expand_spoilers: Leudaich dùdan ris a bheil rabhadh susbainte an-còmhnaidh
       invite_request:
         text: Carson a bu mhiann leat ballrachd fhaighinn?
