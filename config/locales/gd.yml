@@ -559,6 +559,9 @@ gd:
       updated_at: Air ùrachadh
     rules:
       add_new: Cuir riaghailt ris
+      description: Ged a dh’innseas a’ mhòrchuid gun do leugh iad teirmichean na seirbheise is gu bheil iad ag aontachadh riutha, ’s ann mar as trice nach lean daoine orra ’gan leughadh gun deireadh nuair a thachras iad ri duilgheadas. Dèan e nas fhasa dhaibh gun tuig iad riaghailtean an fhrithealaiche ann am priobadh na sùla is tu a’ toirt liosta peilearaichte dhaibh. Feuch an cùm thu gach riaghailt goirid is sìmplidh ach feuch nach sgaoil thu ann an iomadh nì iad nas motha.
+      edit: Deasaich an riaghailt
+      title: Riaghailtean an fhrithealaiche
     settings:
       activity_api_enabled:
         desc_html: Cunntasan nan staidean a chaidh a phostadh gu h-ionadail, nan cleachdaichean gnìomhach ’s nan clàraidhean ùra an am bucaidean seachdaineil
@@ -668,6 +671,14 @@ gd:
       no_status_selected: Cha deach staid sam bith atharrachadh o nach deach gin dhiubh a thaghadh
       title: Staidean chunntasan
       with_media: Le meadhanan riutha
+    system_checks:
+      database_schema_check:
+        message_html: Tha imrichean stòir-dhàta ri dhèiligeadh ann. Ruith iad a dhèanamh cinnteach gum bi giùlan na h-aplacaid mar a bhiodhte ’n dùil.
+      rules_check:
+        action: Stiùirich riaghailtean an fhrithealaiche
+        message_html: Cha do mhìnich thu riaghailtean an fhrithealaiche fhathast.
+      sidekiq_process_check:
+        message_html: Chan eil pròiseas Sidekiq sam bith a ruith dhan chiutha/dha na ciuthan %{value}. Thoir sùil air an rèiteachadh Sidekiq agad
     tags:
       accounts_today: Cleachdaidhean fa leth an-diugh
       accounts_week: Cleachdaidhean fa leth an t-seachdain seo
@@ -1060,10 +1071,14 @@ gd:
       body: 'Thug %{name} iomradh ort an-seo:'
       subject: Thug %{name} iomradh ort
       title: Iomradh ùr
+    poll:
+      subject: Thàinig cunntas-bheachd le %{name} gu crìoch
     reblog:
       body: 'Chaidh an staid agad a bhrosnachadh le %{name}:'
       subject: "Bhrosnaich %{name} an staid agad"
       title: Brosnachadh ùr
+    status:
+      subject: "Tha %{name} air post a sgrìobhadh"
   notifications:
     email_events: Tachartasan nam brathan puist-d
     email_events_hint: 'Tagh na tachartasan dhan a bheil thu airson brathan fhaighinn:'
@@ -1276,14 +1291,74 @@ gd:
       title: Tasg-lann dhut
     sign_in_token:
       details: 'Seo mion-fhiosrachadh mun oidhirp:'
+      explanation: 'Mhothaich sinn do dh’oidhirp clàraidh a-steach dhan chunntas agad o sheòladh IP nach aithne dhuinn. Mas e tusa a bh’ ann, cuir a-steach an còd tèarainteachd gu h-ìosal air duilleag dùbhlan a’ chlàraidh a-steach:'
+      further_actions: 'Mur e tusa a bh’ ann, atharraich am facal-faire agad agus cuir an comas an dearbhadh dà-cheumnach air a’ chunntas agad. ’S urrainn dhut sin a dhèanamh an-seo:'
+      subject: Dearbh an oidhirp air clàradh a-steach
+      title: Oidhirp clàraidh a-steach
     warning:
       explanation:
+        disable: Chan urrainn dhut clàradh a-steach dhan chunntas agad tuilleadh no a chleachdadh ann an dòigh sam bith eile ach mairidh a’ phròifil ’s an dàta eile agad.
+        sensitive: Thèid dèiligeadh ris na faidhlichean meadhain is na meadhanan ceangailte agad mar fheadhainn fhrionasach.
+        silence: '’S urrainn dhut an cunntas agad a chleachdadh fhathast ach chan fhaic ach na daoine a tha a’ leantainn ort mu thràth na dùdan agad air an fhrithealaiche seo agus dh’fhaoidte gun dèid d’ às-dhùnadh o iomadh liosta phoblach. Gidheadh, faodaidh càch leantainn ort a làimh fhathast.'
         suspend: Chan urrainn dhut an cunntas agad a chleachdadh tuilleadh agus chan fhaigh thu grèim air a’ phròifil no air an dàta eile agad. ’S urrainn dhut clàradh a-steach fhathast airson lethbhreac-glèidhidh dhen dàta agad iarraidh mur dèid an dàta a thoirt air falbh gu slàn ach cumaidh sinn cuid dhen dàta ach nach seachain thu an cur à rèim.
       get_in_touch: '’S urrainn dhut freagairt dhan phost-d seo no conaltradh ris an sgioba aig %{instance}.'
+      review_server_policies: Thoir sùil air riaghailtean an fhrithealaiche
+      statuses: 'Gu sònraichte, dha:'
       subject:
+        disable: Chaidh an cunntas %{acct} agad a reòthadh
         none: Rabhadh dha %{acct}
+        sensitive: Chaidh comharra a chur ri meadhanan a’ chunntais %{acct} agad gu bheil iad frionasach
+        silence: Chaidh an cunntas %{acct} agad a chuingeachadh
+        suspend: Chaidh an cunntas %{acct} agad a chur à rèim
       title:
+        disable: Cunntas reòite
         none: Rabhadh
+        sensitive: Chaidh comharra a chur ris na meadhanan agad gu bheil iad frionasach
+        silence: Cunntas cuingichte
+        suspend: Cunntas à rèim
     welcome:
+      edit_profile_action: Suidhich a’ phròifil agad
+      edit_profile_step: '’S urrainn dhut a’ phròifil agad a ghnàthachadh is tu a’ luchdadh suas avatar no bann-cinn, ag atharrachadh d’ ainm-taisbeanaidh is a bharrachd. Nam bu mhiann leat lèirmheas a dhèanamh air daoine mus fhaod iad leantainn ort, ’s urrainn dhut an cunntas agad a ghlasadh.'
+      explanation: Seo gliocas no dhà gus tòiseachadh
+      final_action: Tòisich air postadh
+      final_step: 'Tòisich air postadh! Fiù ’s mur eil duine sam bith a’ leantainn ort, chì cuid mhath na teachdaireachdan poblach agad, can air an loidhne-ama ionadail agus le tagaichean hais. Saoil an innis thu beagan mu d’ dhèidhinn air an taga hais #introductions?'
+      full_handle: D’ ainm-cleachdaiche slàn
+      full_handle_hint: Seo na bheir thu dha na caraidean agad ach an urrainn dhaibh teachdaireachd a chur thugad no leantainn ort o fhrithealaiche eile.
+      review_preferences_action: Atharraich na roghainnean
+      review_preferences_step: Dèan cinnteach gun suidhich thu na roghainnean agad, can dè na puist-d a bu mhiann leat fhaighinn no dè a’ bun-roghainn air ìre na prìobhaideachd a bu chòir a bhith aig na postaichean agad. Mura cuir gluasad an òrrais ort, b’ urrainn dhut cluich fèin-obrachail nan GIFs a chur an comas.
+      subject: Fàilte gu Mastodon
       tip_federated_timeline: '’S e sealladh farsaing dhen lìonra Mastodon a tha san loidhne-ama cho-naisgte. Gidheadh, cha ghabh i a-staigh ach na daoine air an do rinn do nàbaidhean fo-sgrìobhadh, mar sin chan eil i coileanta.'
       tip_following: Leanaidh tu air rianaire(an) an fhrithealaiche agad o thùs. Airson daoine nas inntinniche a lorg, thoir sùil air na loidhnichean-ama ionadail is co-naisgte.
+      tip_local_timeline: '’S e sealladh farsaing air na daoine a th’ air %{instance} a tha san loidhne-ama ionadail agad. Seo na nàbaidhean a tha faisg ort!'
+      tip_mobile_webapp: Ma leigeas am brabhsair mobile agad leat Mastodon a chur ris an sgrìn-dhachaigh, ’s urrainn dhut brathan putaidh fhaighinn. Bidh e ’ga ghiùlan fhèin coltach ri aplacaid thùsail air iomadh dòigh!
+      tips: Gliocasan
+      title: Fàilte air bòrd, %{name}!
+  users:
+    follow_limit_reached: Chan urrainn dhut leantainn air còrr is %{limit} daoine
+    generic_access_help_html: A bheil trioblaid agad le inntrigeadh a’ chunntais agad? ’S urrainn dhut fios a chur gu %{email} airson taic
+    invalid_otp_token: Còd dà-cheumnach mì-dhligheach
+    invalid_sign_in_token: Còd tèarainteachd mì-dhligheach
+    otp_lost_help_html: Ma chaill thu an t-inntrigeadh dhan dà chuid diubh, ’s urrainn dhut fios a chur gu %{email}
+    seamless_external_login: Rinn thu clàradh a-steach le seirbheis on taobh a-muigh, mar sin chan eil roghainnean an fhacail-fhaire ’s a’ phuist-d ri làimh dhut.
+    signed_in_as: 'Chlàraich thu a-steach mar:'
+    suspicious_sign_in_confirmation: Tha coltas nach do rinn thu clàradh a-steach on uidheam seo cheana agus cha do clàraich thu a-steach greis mhath. Air an adhbhar sin, cuiridh sinn còd tèarainteachd dhan t-seòladh puist-d agad ach an dearbhamaid gur e tusa a th’ ann.
+  verification:
+    explanation_html: '’S urrainn dhut <strong>dearbhadh gur e seilbheadair nan ceanglaichean ann am meata-dàta na pròifil agad a th’ annad</strong>. Airson sin a dhèanamh, feumaidh ceangal air ais dhan phròifil Mastodon a bhith aig an làrach-lìn cheangailte. <strong>Feumaidh</strong> buadh <code>rel="me"</code> a bhith aig a’ cheangal air ais. Chan eil e gu diofar dè an t-susbaint a tha ann an teacsa a’ cheangail. Seo ball-eisimpleir dhut:'
+    verification: Dearbhadh
+  webauthn_credentials:
+    add: Cuir iuchair tèarainteachd ùr ris
+    create:
+      error: Bha duilgheadas ann le bhith a’ cur ris an iuchair tèarainteachd agad. Feuch ris a-rithist.
+      success: Chaidh an iuchair tèarainteachd agad a chur ris.
+    delete: Sguab às
+    delete_confirmation: A bheil thu cinnteach gu bheil thu airson an iuchair tèarainteachd seo a sguabadh às?
+    description_html: Ma chuireas tu <strong>dearbhadh le iuchair tèarainteachd</strong> an comas, chan urrainn dhut clàradh a-steach às aonais tè dhe na h-iuchraichean tèarainteachd agad.
+    destroy:
+      error: Bha duilgheadas ann le bhith a’ sguabadh às an iuchair tèarainteachd agad. Feuch ris a-rithist.
+      success: Chaidh an iuchair tèarainteachd agad a sguabadh às.
+    invalid_credential: Iuchair tèarainteachd mì-dhligheach
+    nickname_hint: Cuir a-steach far-ainm na h-iuchrach tèarainteachd ùir agad
+    not_enabled: Cha do chuir thu WebAuthn an comas fhathast
+    not_supported: Cha chuir am brabhsair seo taic ri iuchraichean tèarainteachd
+    otp_required: Mus cleachd thu iuchraichean tèarainteachd, feumaidh tu an dearbhadh dà-cheumnach a chur an comas.
+    registered_on: Air a chlàradh %{date}
