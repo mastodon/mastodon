@@ -116,6 +116,7 @@ Rails.application.configure do
     'X-Frame-Options'        => 'DENY',
     'X-Content-Type-Options' => 'nosniff',
     'X-XSS-Protection'       => '1; mode=block',
+    'Permissions-Policy'     => 'interest-cohort=()',
   }
 
   config.x.otp_secret = ENV.fetch('OTP_SECRET')
