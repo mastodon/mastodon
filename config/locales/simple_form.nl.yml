@@ -72,9 +72,14 @@ nl:
         text: Dit helpt ons om jouw aanvraag te beoordelen
       ip_block:
         comment: Optioneel. Vergeet niet te onthouden waarom je deze regel hebt toegevoegd.
-        expires_in: IP-adressen zijn een eindige bron, ze worden soms gedeeld en wisselen vaak van eigenaar. Om deze reden worden onbepaalde IP-blokken niet aanbevolen.
+        expires_in: Het aantal IP-adressen zijn beperkt. Ze worden soms gedeeld en wisselen vaak van eigenaar. Om deze reden worden onbeperkte IP-blokkades niet aanbevolen.
+        ip: Voer een IPv4- of IPv6-adres in. Je kunt hele reeksen blokkeren met de CIDR-methode. Pas op dat je jezelf niet buitensluit!
         severities:
+          no_access: Toegang tot de hele server blokkeren
           sign_up_requires_approval: Nieuwe registraties vereisen jouw goedkeuring
+        severity: Kies wat er moet gebeuren met aanvragen van dit IP-adres
+      rule:
+        text: Omschrijf een regel of vereiste voor gebruikers op deze server. Probeer het kort en simpel te houden
       sessions:
         otp: 'Voer de tweestaps-aanmeldcode vanaf jouw mobiele telefoon in of gebruik een van jouw herstelcodes:'
       tag:
