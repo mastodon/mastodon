@@ -550,6 +550,7 @@ nl:
       updated_at: Bijgewerkt
     rules:
       add_new: Regel toevoegen
+      description: Hoewel de meeste mensen zeggen dat ze de gebruiksvoorwaarden hebben gelezen en er mee akkoord gaan, lezen mensen deze meestal niet totdat er een probleem optreedt. Maak het eenvoudiger om de regels van deze server in één oogopslag te zien, door ze puntsgewijs in een lijst te zetten. Probeer de verschillende regels kort en simpel te houden, maar probeer ze ook niet in verschillende items onder te verdelen.
       edit: Regel bewerken
       title: Serverregels
     settings:
@@ -603,6 +604,9 @@ nl:
         min_invite_role:
           disabled: Niemand
           title: Uitnodigingen toestaan door
+        require_invite_text:
+          desc_html: Maak het invullen van "Waarom wil je je hier registreren?" verplicht in plaats van optioneel, wanneer registraties handmatig moeten worden goedgekeurd
+          title: Nieuwe gebruikers moeten een reden invullen waarom ze zich willen registreren
       registrations_mode:
         modes:
           approved: Goedkeuring vereist om te kunnen registreren
@@ -659,6 +663,8 @@ nl:
       title: Toots van account
       with_media: Met media
     system_checks:
+      database_schema_check:
+        message_html: Niet alle databasemigraties zijn voltooid. Je moet deze uitvoeren om er voor te zorgen dat de applicatie blijft werken zoals het hoort
       rules_check:
         action: Serverregels beheren
     tags:
