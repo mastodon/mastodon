@@ -252,12 +252,26 @@ da:
         suspend_account: Suspendér konto
         unassigned_report: Aftildel anmeldelse
         unsensitive_account: Afmarkér medierne i din konto som sensitive
-        unsilence_account: Fjern dæmpelse af konto
-        update_announcement: Opdater bekendtgørelse
-        update_status: Opdater status
+        unsilence_account: Fjern kontotavsgørelse
+        unsuspend_account: Afsuspendér konto
+        update_announcement: Opdatér bekendtgørelse
+        update_custom_emoji: Opdatér tilpasset emoji
+        update_domain_block: Opdatér domæneblokering
+        update_status: Opdatér status
       actions:
+        assigned_to_self_report_html: "%{name} tildelte sig selv anmeldelsen %{target}"
+        change_email_user_html: "%{name} ændrede e-mailadressen for bruger %{target}"
+        confirm_user_html: "%{name} bekræftede e-mailadressen for bruger %{target}"
+        create_announcement_html: "%{name} oprettede den nye bekendtgørelse %{target}"
+        create_custom_emoji_html: "%{name} uploadede det nye emoji %{target}"
+        create_domain_allow_html: "%{name} tillod federering med domænet %{target}"
         create_domain_block_html: "%{name} blokerede domænet %{target}"
-        create_email_domain_block_html: "%{name} blokerede e-mail domænet %{target}"
+        create_email_domain_block_html: "%{name} blokerede e-maildomænet %{target}"
+        create_ip_block_html: "%{name} oprettede en regel for IP %{target}"
+        demote_user_html: "%{name} degraderede bruger %{target}"
+        destroy_announcement_html: "%{name} slettede bekendtgørelsen %{target}"
+        destroy_custom_emoji_html: "%{name} fjernede emojien %{target}"
+        destroy_domain_allow_html: "%{name} fjernede federeringstilladelsen med domænet %{target}"
       deleted_status: "(slettet status)"
       empty: Ingen logs fundet.
       filter_by_action: Filtrer efter handling
