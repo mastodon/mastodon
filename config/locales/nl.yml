@@ -441,6 +441,11 @@ nl:
     follow_recommendations:
       description_html: "<strong>Deze aanbevolen accounts helpen nieuwe gebruikers snel interessante inhoud</strong>te vinden. Wanneer een gebruiker niet met andere gebruikers genoeg interactie heeft gehad om gepersonaliseerde aanbevelingen te krijgen, worden in plaats daarvan deze accounts aanbevolen. Deze accounts worden dagelijks opnieuw berekend met behulp van accounts met het hoogste aantal recente interacties en het hoogste aantal lokale volgers in een bepaalde taal."
       language: Voor taal
+      status: Status
+      suppress: Aanbevolen account niet meer aanbevelen
+      suppressed: Account niet meer aanbevolen
+      title: Aanbevolen accounts
+      unsuppress: Account weer aanbevelen
     instances:
       by_domain: Domein
       delivery_available: Bezorging is mogelijk
@@ -1044,6 +1049,8 @@ nl:
       body: 'Jouw toot werd door %{name} geboost:'
       subject: "%{name} boostte jouw toot"
       title: Nieuwe boost
+    status:
+      subject: "%{name} heeft zojuist een toot geplaatst"
   notifications:
     email_events: E-mailmeldingen voor gebeurtenissen
     email_events_hint: 'Selecteer gebeurtenissen waarvoor je meldingen wilt ontvangen:'
