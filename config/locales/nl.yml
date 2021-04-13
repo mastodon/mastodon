@@ -667,6 +667,9 @@ nl:
         message_html: Niet alle databasemigraties zijn voltooid. Je moet deze uitvoeren om er voor te zorgen dat de applicatie blijft werken zoals het hoort
       rules_check:
         action: Serverregels beheren
+        message_html: Je hebt voor deze server geen regels opgesteld.
+      sidekiq_process_check:
+        message_html: Er draait geen Sidekiqproces voor de wachtrij(en) %{value}. Controleer je Sidekiqconfiguratie
     tags:
       accounts_today: Aantal verschillende keren vandaag gebruikt
       accounts_week: Aantal verschillende keren deze week gebruikt
