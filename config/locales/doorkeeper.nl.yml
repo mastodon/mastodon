@@ -84,6 +84,8 @@ nl:
         invalid_redirect_uri: De opgegeven redirect-URI is ongeldig.
         invalid_request:
           missing_param: 'Ontbrekende vereiste parameter: %{value}.'
+          request_not_authorized: Het verzoek moet worden geautoriseerd. De vereiste parameter voor het autorisatieverzoek ontbreekt of is ongeldig.
+          unknown: Het verzoek mist een vereiste parameter, bevat een niet ondersteunde parameterwaarde of is op een andere manier onjuist.
         invalid_resource_owner: De verstrekte resource-eigenaargegevens zijn ongeldig of de resource-eigenaar kan niet worden gevonden
         invalid_scope: De opgevraagde toestemming is ongeldig, onbekend of onjuist.
         invalid_token:
