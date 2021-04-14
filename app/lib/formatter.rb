@@ -276,7 +276,7 @@ class Formatter
 
     linkable_accounts.each do |item|
       same_username = item.username.casecmp(username).zero?
-      same_domain   = item.domain.nil? ? domain.nil? : item.domain.casecmp(domain).zero?
+      same_domain   = item.domain.nil? ? domain.nil? : item.domain.casecmp(domain)&.zero?
 
       if same_username && !same_domain
         same_username_hits += 1
