@@ -47,7 +47,7 @@ class Web::PushSubscription < ApplicationRecord
   end
 
   def pushable?(notification)
-    ActiveModel::Type::Boolean.new.cast(data&.dig('alerts', notification.type.to_s))
+    policy_allows_notification?(notification) && alert_enabled_for_notification_type?(notification)
   end
 
   def associated_user
@@ -99,5 +99,26 @@ class Web::PushSubscription < ApplicationRecord
 
   def contact_email
     @contact_email ||= ::Setting.site_contact_email
+  end
+
+  def alert_enabled_for_notification_type?(notification)
+    truthy?(data&.dig('alerts', notification.type.to_s))
+  end
+
+  def policy_allows_notification?(notification)
+    case data&.dig('policy')
+    when nil, 'all'
+      true
+    when 'none'
+      false
+    when 'followed'
+      notification.account.following?(notification.from_account)
+    when 'follower'
+      notification.from_account.following?(notification.account)
+    end
+  end
+
+  def truthy?(val)
+    ActiveModel::Type::Boolean.new.cast(val)
   end
 end
