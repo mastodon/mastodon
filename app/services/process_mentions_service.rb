@@ -43,9 +43,11 @@ class ProcessMentionsService < BaseService
       "@#{mentioned_account.acct}"
     end
 
+    mentioned_account_ids = mentions.pluck(:account_id)
+
     if circle.present?
       circle.accounts.find_each do |target_account|
-        status.mentions.create(silent: true, account: target_account)
+        status.mentions.find_or_create_by(silent: true, account: target_account) unless mentioned_account_ids.include?(target_account.id)
       end
     elsif status.limited_visibility? && status.thread&.limited_visibility?
       # If we are replying to a local status, then we'll have the complete
@@ -54,10 +56,10 @@ class ProcessMentionsService < BaseService
       # need to send our reply to the remote author's inbox for distribution
 
       status.thread.mentions.includes(:account).find_each do |mention|
-        status.mentions.create(silent: true, account: mention.account) unless status.account_id == mention.account_id
+        status.mentions.create(silent: true, account: mention.account) unless status.account_id == mention.account_id && mentioned_account_ids.include?(mention.account.id)
       end
 
-      status.mentions.create(silent: true, account: status.thread.account) unless status.account_id == status.thread.account_id
+      status.mentions.create(silent: true, account: status.thread.account) unless status.account_id == status.thread.account_id && mentioned_account_ids.include?(status.thread.account.id)
     end
 
     status.save!
