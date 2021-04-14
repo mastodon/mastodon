@@ -6,8 +6,6 @@ class InitialStateSerializer < ActiveModel::Serializer
 
   has_one :push_subscription, serializer: REST::WebPushSubscriptionSerializer
 
-  has_many :announcements, serializer: REST::AnnouncementSerializer
-
   def meta
     store = {
       streaming_api_base_url: Rails.configuration.x.streaming_api_base_url,
@@ -73,10 +71,6 @@ class InitialStateSerializer < ActiveModel::Serializer
 
   def media_attachments
     { accept_content_types: MediaAttachment.supported_file_extensions + MediaAttachment.supported_mime_types }
-  end
-
-  def announcements
-    Announcement.all
   end
 
   private

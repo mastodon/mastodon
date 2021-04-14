@@ -13,7 +13,6 @@ import SearchContainer from './containers/search_container';
 import Motion from '../ui/util/optional_motion';
 import spring from 'react-motion/lib/spring';
 import SearchResultsContainer from './containers/search_results_container';
-import AnnouncementsContainer from './containers/announcements_container';
 import { changeComposing } from '../../actions/compose';
 import { openModal } from 'mastodon/actions/modal';
 import elephantUIPlane from '../../../images/elephant_ui_plane.svg';
@@ -130,7 +129,6 @@ class Compose extends React.PureComponent {
             <NavigationContainer onClose={this.onBlur} />
 
             <ComposeFormContainer />
-            <AnnouncementsContainer />
             <FavouriteTagsContainer />
             <TrendTagsContainer />
 

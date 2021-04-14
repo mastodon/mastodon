@@ -1,5 +1,4 @@
 import { connectStream } from '../stream';
-import { UPDATE_ANNOUNCEMENTS } from './announcements';
 import { refreshTrendTags } from './trend_tags';
 
 export function connectCommandStream(pollingRefresh = null) {
@@ -8,12 +7,6 @@ export function connectCommandStream(pollingRefresh = null) {
     onDisconnect() {},
     onReceive(data) {
       switch(data.event) {
-      case 'announcements':
-        dispatch({
-          type: UPDATE_ANNOUNCEMENTS,
-          data: JSON.parse(data.payload),
-        });
-        break;
       case 'trend_tags':
         dispatch(refreshTrendTags());
         break;
