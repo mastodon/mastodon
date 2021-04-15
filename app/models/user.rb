@@ -152,7 +152,7 @@ class User < ApplicationRecord
 
   def confirm
     new_user      = !confirmed?
-    self.approved = true if open_registrations?
+    self.approved = true if open_registrations? && !sign_up_from_ip_requires_approval?
 
     super
 
@@ -468,7 +468,7 @@ class User < ApplicationRecord
   end
 
   def validate_email_dns?
-    email_changed? && !(Rails.env.test? || Rails.env.development?)
+    email_changed? && !external? && !(Rails.env.test? || Rails.env.development?)
   end
 
   def invite_text_required?

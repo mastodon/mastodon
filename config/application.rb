@@ -6,8 +6,9 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-require_relative '../app/lib/exceptions'
+require_relative '../lib/exceptions'
 require_relative '../lib/enumerable'
+require_relative '../lib/sanitize_ext/sanitize_config'
 require_relative '../lib/redis/namespace_extensions'
 require_relative '../lib/paperclip/url_generator_extensions'
 require_relative '../lib/paperclip/attachment_extensions'
@@ -25,6 +26,10 @@ require_relative '../lib/devise/two_factor_pam_authenticatable'
 require_relative '../lib/chewy/strategy/custom_sidekiq'
 require_relative '../lib/webpacker/manifest_extensions'
 require_relative '../lib/webpacker/helper_extensions'
+require_relative '../lib/action_dispatch/cookie_jar_extensions'
+require_relative '../lib/rails/engine_extensions'
+require_relative '../lib/active_record/database_tasks_extensions'
+require_relative '../lib/active_record/batches'
 
 Dotenv::Railtie.load
 
@@ -35,7 +40,8 @@ require_relative '../lib/mastodon/redis_config'
 module Mastodon
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 5.2
+    config.load_defaults 6.1
+    config.add_autoload_paths_to_load_path = false
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers

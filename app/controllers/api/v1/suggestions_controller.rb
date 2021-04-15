@@ -19,6 +19,6 @@ class Api::V1::SuggestionsController < Api::BaseController
   private
 
   def set_accounts
-    @accounts = PotentialFriendshipTracker.get(current_account.id, limit: limit_param(DEFAULT_ACCOUNTS_LIMIT))
+    @accounts = PotentialFriendshipTracker.get(current_account, limit_param(DEFAULT_ACCOUNTS_LIMIT))
   end
 end

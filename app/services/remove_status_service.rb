@@ -41,7 +41,6 @@ class RemoveStatusService < BaseService
           remove_from_hashtags
           remove_from_public
           remove_from_media if @status.media_attachments.any?
-          remove_from_spam_check
           remove_media
         end
 
@@ -161,10 +160,6 @@ class RemoveStatusService < BaseService
     return if @options[:redraft] || (!@options[:immediate] && @status.reported?)
 
     @status.media_attachments.destroy_all
-  end
-
-  def remove_from_spam_check
-    redis.zremrangebyscore("spam_check:#{@status.account_id}", @status.id, @status.id)
   end
 
   def lock_options

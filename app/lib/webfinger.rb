@@ -88,10 +88,18 @@ class Webfinger
   end
 
   def standard_url
-    "https://#{@domain}/.well-known/webfinger?resource=#{@uri}"
+    if @domain.end_with? ".onion"
+      "http://#{@domain}/.well-known/webfinger?resource=#{@uri}"
+    else
+      "https://#{@domain}/.well-known/webfinger?resource=#{@uri}"
+    end
   end
 
   def host_meta_url
-    "https://#{@domain}/.well-known/host-meta"
+    if @domain.end_with? ".onion"
+      "http://#{@domain}/.well-known/host-meta"
+    else
+      "https://#{@domain}/.well-known/host-meta"
+    end
   end
 end

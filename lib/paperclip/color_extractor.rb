@@ -55,7 +55,7 @@ module Paperclip
       # If we don't have enough colors for accent and foreground, generate
       # new ones by manipulating the background color
       (2 - foreground_colors.size).times do |i|
-        foreground_colors << lighten_or_darken(background_color, 35 + (15 * i))
+        foreground_colors << lighten_or_darken(background_color, 35 + (i * 15))
       end
 
       # We want the color with the highest contrast to background to be the foreground one,
@@ -147,7 +147,7 @@ module Paperclip
         g = l.to_f
         b = l.to_f # achromatic
       else
-        q = l < 0.5 ? l * (1 + s) : l + s - l * s
+        q = l < 0.5 ? l * (s + 1) : l + s - l * s
         p = 2 * l - q
         r = hue_to_rgb(p, q, h + 1 / 3.0)
         g = hue_to_rgb(p, q, h)

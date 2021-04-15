@@ -44,41 +44,30 @@ class Conversation extends ImmutablePureComponent {
     intl: PropTypes.object.isRequired,
   };
 
-  _updateEmojis () {
-    const node = this.namesNode;
-
-    if (!node || autoPlayGif) {
+  handleMouseEnter = ({ currentTarget }) => {
+    if (autoPlayGif) {
       return;
     }
 
-    const emojis = node.querySelectorAll('.custom-emoji');
+    const emojis = currentTarget.querySelectorAll('.custom-emoji');
 
     for (var i = 0; i < emojis.length; i++) {
       let emoji = emojis[i];
-      if (emoji.classList.contains('status-emoji')) {
-        continue;
-      }
-      emoji.classList.add('status-emoji');
-
-      emoji.addEventListener('mouseenter', this.handleEmojiMouseEnter, false);
-      emoji.addEventListener('mouseleave', this.handleEmojiMouseLeave, false);
+      emoji.src = emoji.getAttribute('data-original');
     }
   }
 
-  componentDidMount () {
-    this._updateEmojis();
-  }
+  handleMouseLeave = ({ currentTarget }) => {
+    if (autoPlayGif) {
+      return;
+    }
 
-  componentDidUpdate () {
-    this._updateEmojis();
-  }
+    const emojis = currentTarget.querySelectorAll('.custom-emoji');
 
-  handleEmojiMouseEnter = ({ target }) => {
-    target.src = target.getAttribute('data-original');
-  }
-
-  handleEmojiMouseLeave = ({ target }) => {
-    target.src = target.getAttribute('data-static');
+    for (var i = 0; i < emojis.length; i++) {
+      let emoji = emojis[i];
+      emoji.src = emoji.getAttribute('data-static');
+    }
   }
 
   handleClick = () => {
@@ -121,10 +110,6 @@ class Conversation extends ImmutablePureComponent {
 
   handleShowMore = () => {
     this.props.onToggleHidden(this.props.lastStatus);
-  }
-
-  setNamesRef = (c) => {
-    this.namesNode = c;
   }
 
   render () {
@@ -171,7 +156,7 @@ class Conversation extends ImmutablePureComponent {
                 {unread && <span className='conversation__unread' />} <RelativeTimestamp timestamp={lastStatus.get('created_at')} />
               </div>
 
-              <div className='conversation__content__names' ref={this.setNamesRef}>
+              <div className='conversation__content__names' onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
                 <FormattedMessage id='conversation.with' defaultMessage='With {names}' values={{ names: <span>{names}</span> }} />
               </div>
             </div>

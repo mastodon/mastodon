@@ -44,6 +44,13 @@ Rails.application.configure do
   # Allow to specify public IP of reverse proxy if it's needed
   config.action_dispatch.trusted_proxies = ENV['TRUSTED_PROXY_IP'].split.map { |item| IPAddr.new(item) } if ENV['TRUSTED_PROXY_IP'].present?
 
+  config.force_ssl = true
+  config.ssl_options = {
+    redirect: {
+      exclude: -> request { request.path.start_with?('/health') || request.headers["Host"].end_with?('.onion') }
+    }
+  }
+
   # Use the lowest log level to ensure availability of diagnostic information
   # when problems arise.
   config.log_level = ENV.fetch('RAILS_LOG_LEVEL', 'info').to_sym
@@ -52,7 +59,7 @@ Rails.application.configure do
   config.log_tags = [:request_id]
 
   # Use a different cache store in production.
-  config.cache_store = :redis_store, ENV['CACHE_REDIS_URL'], REDIS_CACHE_PARAMS
+  config.cache_store = :redis_cache_store, REDIS_CACHE_PARAMS
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
@@ -109,6 +116,7 @@ Rails.application.configure do
     'X-Frame-Options'        => 'DENY',
     'X-Content-Type-Options' => 'nosniff',
     'X-XSS-Protection'       => '1; mode=block',
+    'Permissions-Policy'     => 'interest-cohort=()',
   }
 
   config.x.otp_secret = ENV.fetch('OTP_SECRET')

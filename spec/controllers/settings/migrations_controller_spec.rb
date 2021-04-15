@@ -51,7 +51,7 @@ describe Settings::MigrationsController do
       it_behaves_like 'authenticate user'
     end
 
-    context 'when user is sign in' do
+    context 'when user is signed in' do
       subject { post :create, params: { account_migration: { acct: acct, current_password: '12345678' } } }
 
       let(:user) { Fabricate(:user, password: '12345678') }
@@ -67,11 +67,44 @@ describe Settings::MigrationsController do
         end
       end
 
-      context 'when acct is a current account' do
+      context 'when acct is the current account' do
         let(:acct) { user.account }
 
         it 'renders show' do
           is_expected.to render_template :show
+        end
+
+        it 'does not update the moved account' do
+          expect(user.account.reload.moved_to_account_id).to be_nil
+        end
+      end
+
+      context 'when target account does not reference the account being moved from' do
+        let(:acct) { Fabricate(:account, also_known_as: []) }
+
+        it 'renders show' do
+          is_expected.to render_template :show
+        end
+
+        it 'does not update the moved account' do
+          expect(user.account.reload.moved_to_account_id).to be_nil
+        end
+      end
+
+      context 'when a recent migration already exists ' do
+        let(:acct) { Fabricate(:account, also_known_as: [ActivityPub::TagManager.instance.uri_for(user.account)]) }
+
+        before do
+          moved_to = Fabricate(:account, also_known_as: [ActivityPub::TagManager.instance.uri_for(user.account)])
+          user.account.migrations.create!(acct: moved_to.acct)
+        end
+
+        it 'renders show' do
+          is_expected.to render_template :show
+        end
+
+        it 'does not update the moved account' do
+          expect(user.account.reload.moved_to_account_id).to be_nil
         end
       end
     end

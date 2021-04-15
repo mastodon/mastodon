@@ -56,47 +56,114 @@ RSpec.describe Notification, type: :model do
     end
   end
 
-  describe '.reload_stale_associations!' do
-    context 'account_ids are empty' do
-      let(:cached_items) { [] }
-
-      subject { described_class.reload_stale_associations!(cached_items) }
-
-      it 'returns nil' do
-        is_expected.to be nil
+  describe '.preload_cache_collection_target_statuses' do
+    subject do
+      described_class.preload_cache_collection_target_statuses(notifications) do |target_statuses|
+        # preload account for testing instead of using cache_collection
+        Status.preload(:account).where(id: target_statuses.map(&:id))
       end
     end
 
-    context 'account_ids are present' do
+    context 'notifications are empty' do
+      let(:notifications) { [] }
+
+      it 'returns []' do
+        is_expected.to eq []
+      end
+    end
+
+    context 'notifications are present' do
       before do
-        allow(accounts_with_ids).to receive(:[]).with(stale_account1.id).and_return(account1)
-        allow(accounts_with_ids).to receive(:[]).with(stale_account2.id).and_return(account2)
-        allow(Account).to receive_message_chain(:where, :includes, :index_by).and_return(accounts_with_ids)
+        notifications.each(&:reload)
       end
 
-      let(:cached_items) do
+      let(:mention) { Fabricate(:mention) }
+      let(:status) { Fabricate(:status) }
+      let(:reblog) { Fabricate(:status, reblog: Fabricate(:status)) }
+      let(:follow) { Fabricate(:follow) }
+      let(:follow_request) { Fabricate(:follow_request) }
+      let(:favourite) { Fabricate(:favourite) }
+      let(:poll) { Fabricate(:poll) }
+
+      let(:notifications) do
         [
-          Fabricate(:notification, activity: Fabricate(:status)),
-          Fabricate(:notification, activity: Fabricate(:follow)),
+          Fabricate(:notification, type: :mention, activity: mention),
+          Fabricate(:notification, type: :status, activity: status),
+          Fabricate(:notification, type: :reblog, activity: reblog),
+          Fabricate(:notification, type: :follow, activity: follow),
+          Fabricate(:notification, type: :follow_request, activity: follow_request),
+          Fabricate(:notification, type: :favourite, activity: favourite),
+          Fabricate(:notification, type: :poll, activity: poll),
         ]
       end
 
-      let(:stale_account1) { cached_items[0].from_account }
-      let(:stale_account2) { cached_items[1].from_account }
+      it 'preloads target status' do
+        # mention
+        expect(subject[0].type).to eq :mention
+        expect(subject[0].association(:mention)).to be_loaded
+        expect(subject[0].mention.association(:status)).to be_loaded
 
-      let(:account1) { Fabricate(:account) }
-      let(:account2) { Fabricate(:account) }
+        # status
+        expect(subject[1].type).to eq :status
+        expect(subject[1].association(:status)).to be_loaded
 
-      let(:accounts_with_ids) { { account1.id => account1, account2.id => account2 } }
+        # reblog
+        expect(subject[2].type).to eq :reblog
+        expect(subject[2].association(:status)).to be_loaded
+        expect(subject[2].status.association(:reblog)).to be_loaded
 
-      it 'reloads associations' do
-        expect(cached_items[0].from_account).to be stale_account1
-        expect(cached_items[1].from_account).to be stale_account2
+        # follow: nothing
+        expect(subject[3].type).to eq :follow
+        expect(subject[3].target_status).to be_nil
 
-        described_class.reload_stale_associations!(cached_items)
+        # follow_request: nothing
+        expect(subject[4].type).to eq :follow_request
+        expect(subject[4].target_status).to be_nil
 
-        expect(cached_items[0].from_account).to be account1
-        expect(cached_items[1].from_account).to be account2
+        # favourite
+        expect(subject[5].type).to eq :favourite
+        expect(subject[5].association(:favourite)).to be_loaded
+        expect(subject[5].favourite.association(:status)).to be_loaded
+
+        # poll
+        expect(subject[6].type).to eq :poll
+        expect(subject[6].association(:poll)).to be_loaded
+        expect(subject[6].poll.association(:status)).to be_loaded
+      end
+
+      it 'replaces to cached status' do
+        # mention
+        expect(subject[0].type).to eq :mention
+        expect(subject[0].target_status.association(:account)).to be_loaded
+        expect(subject[0].target_status).to eq mention.status
+
+        # status
+        expect(subject[1].type).to eq :status
+        expect(subject[1].target_status.association(:account)).to be_loaded
+        expect(subject[1].target_status).to eq status
+
+        # reblog
+        expect(subject[2].type).to eq :reblog
+        expect(subject[2].target_status.association(:account)).to be_loaded
+        expect(subject[2].target_status).to eq reblog.reblog
+
+        # follow: nothing
+        expect(subject[3].type).to eq :follow
+        expect(subject[3].target_status).to be_nil
+
+        # follow_request: nothing
+        expect(subject[4].type).to eq :follow_request
+        expect(subject[4].target_status).to be_nil
+
+        # favourite
+        expect(subject[5].type).to eq :favourite
+        expect(subject[5].target_status.association(:account)).to be_loaded
+        expect(subject[5].target_status).to eq favourite.status
+
+        # poll
+        expect(subject[6].type).to eq :poll
+        expect(subject[6].target_status.association(:account)).to be_loaded
+        expect(subject[6].target_status).to eq poll.status
       end
     end
   end

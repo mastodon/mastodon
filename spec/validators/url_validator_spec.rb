@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe UrlValidator, type: :validator do
+RSpec.describe URLValidator, type: :validator do
   describe '#validate_each' do
     before do
       allow(validator).to receive(:compliant?).with(value) { compliant }
