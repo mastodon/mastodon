@@ -1,6 +1,6 @@
 fr:
   about:
-    about_hashtag_html: 'Voici les pouets tagués avec <strong>#%{hashtag}</strong>. Vous pouvez interagir avec eux si vous avez un compte n’importe où dans le Fédiverse.'
+    about_hashtag_html: 'Ce sont des pouets tagués avec <strong>#%{hashtag}</strong>. Vous pouvez interagir si vous avez un compte n’importe où dans le Fédiverse.'
     about_mastodon_html: 'Le réseau social de l''avenir : Pas d''annonces, pas de surveillance institutionnelle, conception éthique et décentralisation ! Possédez vos données avec Mastodon !'
     about_this: À propos
     active_count_after: actif·ve·s
@@ -22,7 +22,7 @@ fr:
     hosted_on: Serveur Mastodon hébergé par %{domain}
     instance_actor_flash: |
       Ce compte est un acteur virtuel utilisé pour représenter le serveur lui-même et non un utilisateur individuel.
-      Il est utilisé à des fins de fédération et ne doit pas être bloqué à moins que vous ne vouliez bloquer l’instance entière, dans ce cas vous devriez utiliser un bloqueur de domaine.
+      Il est utilisé à des fins de fédération et ne doit pas être bloqué à moins que vous ne vouliez bloquer l’instance entière, auquel cas vous devriez utiliser un bloqueur de domaine.
     learn_more: En savoir plus
     privacy_policy: Politique de confidentialité
     rules: Règles du serveur
@@ -669,6 +669,8 @@ fr:
       rules_check:
         action: Gérer les règles du serveur
         message_html: Vous n'avez pas défini de règles pour le serveur.
+      sidekiq_process_check:
+        message_html: Aucun processus Sidekiq en cours d'exécution pour la/les file(s) d'attente %{value}. Veuillez vérifier votre configuration de Sidekiq
     tags:
       accounts_today: Utilisations uniques aujourd'hui
       accounts_week: Utilisation unique cette semaine
