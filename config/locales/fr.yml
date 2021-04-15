@@ -4,7 +4,7 @@ fr:
     about_mastodon_html: 'Le réseau social de l''avenir : Pas d''annonces, pas de surveillance institutionnelle, conception éthique et décentralisation ! Possédez vos données avec Mastodon !'
     about_this: À propos
     active_count_after: actif·ve·s
-    active_footnote: Utilisateur·rice·s actif·ve·s mensuels (MAU)
+    active_footnote: Nombre mensuel d'utilisateur·rice·s actif·ve·s (NMUA)
     administered_by: 'Administrée par :'
     api: API
     apps: Applications mobiles
@@ -664,8 +664,11 @@ fr:
       title: Statuts du compte
       with_media: Avec médias
     system_checks:
+      database_schema_check:
+        message_html: Vous avez des migrations de base de données en attente. Veuillez les exécuter pour vous assurer que l'application se comporte comme prévu
       rules_check:
         action: Gérer les règles du serveur
+        message_html: Vous n'avez pas défini de règles pour le serveur.
     tags:
       accounts_today: Utilisations uniques aujourd'hui
       accounts_week: Utilisation unique cette semaine
