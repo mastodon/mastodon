@@ -22,11 +22,6 @@ describe ApplicationController, type: :controller do
   end
 
   shared_examples 'respond_with_error' do |code|
-    it "returns http #{code} for any" do
-      subject
-      expect(response).to have_http_status(code)
-    end
-
     it "returns http #{code} for http" do
       subject
       expect(response).to have_http_status(code)

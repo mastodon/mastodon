@@ -8,12 +8,8 @@ module WellKnown
 
     def show
       @webfinger_template = "#{webfinger_url}?resource={uri}"
-
-      respond_to do |format|
-        format.xml { render content_type: 'application/xrd+xml' }
-      end
-
       expires_in 3.days, public: true
+      render content_type: 'application/xrd+xml', formats: [:xml]
     end
   end
 end

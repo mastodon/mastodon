@@ -14,6 +14,12 @@ ja:
         text_html: オプションです。投稿に用いる構文を使うことができます。簡略化のため<a href="%{path}">プリセット警告文を追加</a>することができます
         type_html: "<strong>%{acct}</strong>さんに対し、何を行うか選択してください"
         warning_preset_id: オプションです。プリセット警告文の末尾に任意の文字列を追加することができます
+      announcement:
+        all_day: 選択すると、おしらせ対象の開始および終了日時は日付のみ表示されます
+        ends_at: オプションです。指定すると、お知らせの掲載はその日時で自動的に終了します
+        scheduled_at: お知らせを今すぐ掲載する場合は空欄にしてください
+        starts_at: オプションです。お知らせしたい事柄の期間が決まっている場合に使用します
+        text: トゥートと同じ構文を使用できます。アナウンスが占める画面のスペースに注意してください
       defaults:
         autofollow: 招待から登録した人が自動的にあなたをフォローするようになります
         avatar: "%{size}までのPNG、GIF、JPGが利用可能です。%{dimensions}pxまで縮小されます"
@@ -83,6 +89,12 @@ ja:
           silence: サイレンス
           suspend: 停止しアカウントのデータを恒久的に削除する
         warning_preset_id: プリセット警告文を使用
+      announcement:
+        all_day: 終日
+        ends_at: お知らせ対象の終了日時
+        scheduled_at: 掲載する日時
+        starts_at: おしらせ対象の開始日時
+        text: お知らせ
       defaults:
         autofollow: 招待から参加後、あなたをフォロー
         avatar: アイコン
@@ -113,6 +125,7 @@ ja:
         setting_aggregate_reblogs: ブーストをまとめる
         setting_auto_play_gif: アニメーションGIFを自動再生する
         setting_boost_modal: ブーストする前に確認ダイアログを表示する
+        setting_crop_images: トゥート詳細以外では画像を16:9に切り抜く
         setting_default_language: 投稿する言語
         setting_default_privacy: 投稿の公開範囲
         setting_default_sensitive: メディアを常に閲覧注意としてマークする
@@ -149,14 +162,14 @@ ja:
         text: 意気込みをお聞かせください
       notification_emails:
         digest: タイムラインからピックアップしてメールで通知する
-        favourite: お気に入りに登録された時にメールで通知する
-        follow: フォローされた時にメールで通知する
-        follow_request: フォローリクエストを受けた時にメールで通知する
-        mention: 返信が来た時にメールで通知する
-        pending_account: 新しいアカウントの承認が必要な時にメールで通知する
-        reblog: トゥートがブーストされた時にメールで通知する
-        report: 通報を受けた時にメールで通知する
-        trending_tag: 未審査のハッシュタグが人気の時にメールで通知する
+        favourite: お気に入り登録された時
+        follow: フォローされた時
+        follow_request: フォローリクエストを受けた時
+        mention: 返信が来た時
+        pending_account: 新しいアカウントの承認が必要な時
+        reblog: トゥートがブーストされた時
+        report: 通報を受けた時
+        trending_tag: 未審査のハッシュタグが人気の時
       tag:
         listable: 検索とディレクトリへの使用を許可する
         name: ハッシュタグ

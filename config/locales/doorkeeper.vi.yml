@@ -1,0 +1,150 @@
+---
+vi:
+  activerecord:
+    attributes:
+      doorkeeper/application:
+        name: Tên ứng dụng
+        redirect_uri: Chuyển hướng URI
+        scopes: Phạm vi
+        website: Trang web ứng dụng
+    errors:
+      models:
+        doorkeeper/application:
+          attributes:
+            redirect_uri:
+              fragment_present: không thể chứa một mảnh.
+              invalid_uri: phải là một URI hợp lệ.
+              relative_uri: phải là một URI tuyệt đối.
+              secured_uri: phải là URI HTTPS / SSL.
+  doorkeeper:
+    applications:
+      buttons:
+        authorize: Ủy quyền
+        cancel: Hủy bỏ
+        destroy: Xoá bỏ
+        edit: Sửa
+        submit: Gửi đi
+      confirmations:
+        destroy: Bạn có chắc không?
+      edit:
+        title: Chỉnh sửa ứng dụng
+      form:
+        error: Rất tiếc! Hãy kiểm tra thông tin của bạn vì có thể nó có lỗi
+      help:
+        native_redirect_uri: Sử dụng %{native_redirect_uri} khi kiểm thử ở máy nội bộ
+        redirect_uri: Sử dụng một dòng trên mỗi URI
+        scopes: Phạm vi riêng biệt với không gian. Để trống để sử dụng phạm vi mặc định.
+      index:
+        application: Ứng dụng
+        callback_url: gọi lại URL
+        delete: Xóa bỏ
+        name: Tên
+        new: Ứng dụng mới
+        scopes: Phạm vi
+        show: Xem
+        title: Ứng dụng của bạn
+      new:
+        title: Ứng dụng mới
+      show:
+        actions: Hành động
+        application_id: Khóa khách
+        callback_urls: URL gọi lại
+        scopes: Phạm vi
+        secret: Bí mật khách hàng
+        title: 'Ứng dụng: %{name}'
+    authorizations:
+      buttons:
+        authorize: Ủy quyền
+        deny: Từ chối
+      error:
+        title: một lỗi đã xảy ra
+      new:
+        able_to: Nó sẽ có thể
+        prompt: Ứng dụng %{client_name} yêu cầu quyền truy cập vào tài khoản của bạn
+        title: Cần được ủy quyền
+      show:
+        title: Sao chép mã ủy quyền này và dán nó vào ứng dụng.
+    authorized_applications:
+      buttons:
+        revoke: Thu hồi
+      confirmations:
+        revoke: Bạn có chắc không?
+      index:
+        application: Ứng dụng
+        created_at: Được ủy quyền
+        date_format: "% Y-% m-%d% H:% M:% S"
+        scopes: Phạm vi
+        title: Các ứng dụng đã được cấp phép
+    errors:
+      messages:
+        access_denied: Chủ sở hữu tài nguyên hoặc máy chủ ủy quyền từ chối yêu cầu.
+        credential_flow_not_configured: Resource Owner Password Credentials không thành công do Doorkeeper.configure.resource_owner_from_credentials không được định cấu hình.
+        invalid_client: Xác thực ứng dụng khách không thành công do máy khách không xác định, không bao gồm xác thực ứng dụng khách hoặc phương thức xác thực không được hỗ trợ.
+        invalid_grant: Cấp quyền được cung cấp không hợp lệ, hết hạn, bị thu hồi, không khớp với URI chuyển hướng được sử dụng trong yêu cầu ủy quyền hoặc được cấp cho một khách hàng khác.
+        invalid_redirect_uri: Uri chuyển hướng bao gồm không hợp lệ.
+        invalid_request: Yêu cầu thiếu tham số bắt buộc, bao gồm giá trị tham số không được hỗ trợ hoặc không đúng định dạng.
+        invalid_resource_owner: Thông tin xác thực chủ sở hữu tài nguyên được cung cấp không hợp lệ hoặc không thể tìm thấy chủ sở hữu tài nguyên
+        invalid_scope: Phạm vi yêu cầu không hợp lệ, không xác định hoặc không đúng định dạng.
+        invalid_token:
+          expired: Mã thông báo truy cập đã hết hạn
+          revoked: Mã thông báo truy cập đã bị thu hồi
+          unknown: Mã thông báo truy cập không hợp lệ
+        resource_owner_authenticator_not_configured: Chủ sở hữu tài nguyên tìm thấy thất bại do Doorkeeper.configure.resource_owner_authenticator không được định cấu hình.
+        server_error: Máy chủ ủy quyền đã gặp phải một điều kiện không mong muốn khiến nó không thể thực hiện yêu cầu.
+        temporarily_unavailable: Máy chủ ủy quyền hiện không thể xử lý yêu cầu do quá tải tạm thời hoặc bảo trì máy chủ.
+        unauthorized_client: Khách hàng không được phép thực hiện yêu cầu này bằng phương pháp này.
+        unsupported_grant_type: Loại cấp quyền không được hỗ trợ bởi máy chủ ủy quyền.
+        unsupported_response_type: Máy chủ ủy quyền không hỗ trợ loại phản hồi này.
+    flash:
+      applications:
+        create:
+          notice: Ứng dụng được tạo.
+        destroy:
+          notice: Ứng dụng đã bị xóa.
+        update:
+          notice: Ứng dụng cập nhật.
+      authorized_applications:
+        destroy:
+          notice: Ứng dụng bị thu hồi.
+    layouts:
+      admin:
+        nav:
+          applications: Các ứng dụng
+          oauth2_provider: Nhà cung cấp OAuth2
+      application:
+        title: Yêu cầu ủy quyền OAuth
+    scopes:
+      admin:read: đọc tất cả dữ liệu trên máy chủ
+      admin:read:accounts: đọc thông tin nhạy cảm của tất cả các tài khoản
+      admin:read:reports: đọc thông tin nhạy cảm của tất cả các báo cáo và tài khoản báo cáo
+      admin:write: sửa đổi tất cả dữ liệu trên máy chủ
+      admin:write:accounts: thực hiện các hành động kiểm duyệt trên tài khoản
+      admin:write:reports: thực hiện các hành động kiểm duyệt trên các báo cáo
+      follow: sửa đổi các mối quan hệ tài khoản
+      push: nhận thông báo đẩy của bạn
+      read: đọc tất cả dữ liệu tài khoản của bạn
+      read:accounts: xem thông tin tài khoản
+      read:blocks: xem khối của bạn
+      read:bookmarks: xem các mục đã lưu
+      read:favourites: xem yêu thích của bạn
+      read:filters: xem bộ lọc của bạn
+      read:follows: xem sau của bạn
+      read:lists: xem danh sách của bạn
+      read:mutes: xem những người bạn của bạn
+      read:notifications: xem thông báo của bạn
+      read:reports: xem báo cáo của bạn
+      read:search: thay mặt bạn tìm kiếm
+      read:statuses: xem tất cả các trạng thái
+      write: sửa đổi tất cả dữ liệu tài khoản của bạn
+      write:accounts: sửa đổi hồ sơ của bạn
+      write:blocks: chặn tài khoản và tên miền
+      write:bookmarks: những trạng thái đã lưu
+      write:favourites: trạng thái yêu thích
+      write:filters: tạo bộ lọc
+      write:follows: theo dõi mọi người
+      write:lists: tạo danh sách
+      write:media: tải lên tập tin phương tiện truyền thông
+      write:mutes: người câm và nói chuyện
+      write:notifications: xóa thông báo của bạn
+      write:reports: báo cáo người khác
+      write:statuses: xuất bản trạng thái

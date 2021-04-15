@@ -20,7 +20,7 @@
       %p{ :style => ('margin-bottom: 0' unless current_account&.user&.setting_expand_spoilers) }<
         %span.p-summary> #{Formatter.instance.format_spoiler(status, autoplay: autoplay)}&nbsp;
         %button.status__content__spoiler-link= t('statuses.show_more')
-    .e-content{ lang: status.language, style: "display: #{!current_account&.user&.setting_expand_spoilers && status.spoiler_text? ? 'none' : 'block'}; direction: #{rtl_status?(status) ? 'rtl' : 'ltr'}" }
+    .e-content{ style: "display: #{!current_account&.user&.setting_expand_spoilers && status.spoiler_text? ? 'none' : 'block'}; direction: #{rtl_status?(status) ? 'rtl' : 'ltr'}" }
       = Formatter.instance.format(status, custom_emojify: true, autoplay: autoplay)
       - if status.preloadable_poll
         = react_component :poll, disabled: true, poll: ActiveModelSerializers::SerializableResource.new(status.preloadable_poll, serializer: REST::PollSerializer, scope: current_user, scope_name: :current_user).as_json do
@@ -29,14 +29,14 @@
   - if !status.media_attachments.empty?
     - if status.media_attachments.first.video?
       - video = status.media_attachments.first
-      = react_component :video, src: video.file.url(:original), preview: video.file.url(:small), blurhash: video.blurhash, sensitive: !current_account&.user&.show_all_media? && status.sensitive? || current_account&.user&.hide_all_media?, width: 670, height: 380, detailed: true, inline: true, alt: video.description do
+      = react_component :video, src: video.file.url(:original), preview: video.file.url(:small), blurhash: video.blurhash, sensitive: status.sensitive?, width: 670, height: 380, detailed: true, inline: true, alt: video.description do
         = render partial: 'statuses/attachment_list', locals: { attachments: status.media_attachments }
     - elsif status.media_attachments.first.audio?
       - audio = status.media_attachments.first
       = react_component :audio, src: audio.file.url(:original), height: 130, alt: audio.description, preload: true, duration: audio.file.meta.dig(:original, :duration) do
         = render partial: 'statuses/attachment_list', locals: { attachments: status.media_attachments }
     - else
-      = react_component :media_gallery, height: 380, sensitive: !current_account&.user&.show_all_media? && status.sensitive? || current_account&.user&.hide_all_media?, standalone: true, 'autoPlayGif': current_account&.user&.setting_auto_play_gif || autoplay, 'reduceMotion': current_account&.user&.setting_reduce_motion, media: status.media_attachments.map { |a| ActiveModelSerializers::SerializableResource.new(a, serializer: REST::MediaAttachmentSerializer).as_json } do
+      = react_component :media_gallery, height: 380, sensitive: status.sensitive?, standalone: true, autoplay: autoplay, media: status.media_attachments.map { |a| ActiveModelSerializers::SerializableResource.new(a, serializer: REST::MediaAttachmentSerializer).as_json } do
         = render partial: 'statuses/attachment_list', locals: { attachments: status.media_attachments }
   - elsif status.preview_card
     = react_component :card, 'maxDescription': 160, card: ActiveModelSerializers::SerializableResource.new(status.preview_card, serializer: REST::PreviewCardSerializer).as_json
@@ -44,14 +44,14 @@
   .detailed-status__meta
     %data.dt-published{ value: status.created_at.to_time.iso8601 }
 
-    = link_to ActivityPub::TagManager.instance.url_for(status), class: 'detailed-status__datetime u-url u-uid', target: stream_link_target, rel: 'noopener' do
+    = link_to ActivityPub::TagManager.instance.url_for(status), class: 'detailed-status__datetime u-url u-uid', target: stream_link_target, rel: 'noopener noreferrer' do
       %time.formatted{ datetime: status.created_at.iso8601, title: l(status.created_at) }= l(status.created_at)
     ·
     - if status.application && @account.user&.setting_show_application
       - if status.application.website.blank?
         %strong.detailed-status__application= status.application.name
       - else
-        = link_to status.application.name, status.application.website, class: 'detailed-status__application', target: '_blank', rel: 'noopener'
+        = link_to status.application.name, status.application.website, class: 'detailed-status__application', target: '_blank', rel: 'noopener noreferrer'
       ·
     = link_to remote_interaction_path(status, type: :reply), class: 'modal-button detailed-status__link' do
       - if status.in_reply_to_id.nil?

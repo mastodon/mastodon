@@ -17,7 +17,9 @@ class Api::V1::Statuses::RebloggedByAccountsController < Api::BaseController
   private
 
   def load_accounts
-    default_accounts.merge(paginated_statuses).to_a
+    scope = default_accounts
+    scope = scope.where.not(id: current_account.excluded_from_timeline_account_ids) unless current_account.nil?
+    scope.merge(paginated_statuses).to_a
   end
 
   def default_accounts

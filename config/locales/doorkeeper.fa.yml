@@ -5,8 +5,8 @@ fa:
       doorkeeper/application:
         name: نام برنامه
         redirect_uri: نشانی تغییرمسیر
-        scopes: محدوده
-        website: وبگاه برنامه
+        scopes: حوزه‌ها
+        website: پایگاه وب برنامه
     errors:
       models:
         doorkeeper/application:
@@ -23,6 +23,7 @@ fa:
         cancel: لغو
         destroy: پاک کردن
         edit: ویرایش
+        submit: ثبت
       confirmations:
         destroy: آیا مطمئن هستید؟
       edit:
@@ -37,6 +38,7 @@ fa:
         application: برنامه
         callback_url: نشانی Callback
         delete: حذف
+        empty: شما هیچ برنامه‌ای ندارید.
         name: نام
         new: برنامهٔ تازه
         scopes: دامنه‌ها
@@ -45,6 +47,7 @@ fa:
       new:
         title: برنامهٔ تازه
       show:
+        actions: کنش‌ها
         application_id: کلید کلاینت
         callback_urls: نشانی‌های Callabck
         scopes: دامنه‌ها
@@ -70,17 +73,29 @@ fa:
       index:
         application: برنامه
         created_at: مجازشده از
+        date_format: "%Y-%m-%d%H:%M:%S"
         scopes: اجازه‌ها
         title: برنامه‌های مجاز
     errors:
       messages:
         access_denied: دارندهٔ منبع یا سرور اجازه دهنده درخواست را نپذیرفت.
+        credential_flow_not_configured: جریان اعتبارنامهٔ گذرواژهٔ مالک منبع به دلیل پیکربندی نشده بودن Doorkeeper.configure.resource_owner_from_credentials شکست خورد.
+        invalid_client: تأیید هویت کارخواه به دلیل کارخواه ناشناخته، عدم وجود تأیید هویت کاره یا روش تأیید هویت پشتیبانی‌نشده شکست خورد.
+        invalid_grant: اعطای دسترسی فراهم ‌شده نامعتبر، منقضی یا نامطابق با نشانی بازگشت استفاده‌شده در درخواست تأیید هویت بوده و یا برای کارخواهی دیگر صادر شده است.
+        invalid_redirect_uri: نشانی بازگشت موجود، معتبر نیست.
+        invalid_request: درخواست فاقد یک پارامتر ضروری، شامل یک پارامتر پشتیبانی‌نشده یا به‌هم ریخته است.
+        invalid_resource_owner: اعتبارنامهٔ مالک منبع فراهم‌شده نامعتبر بوده یا مالک منبع نتوانست پیدا شود
+        invalid_scope: حوزهٔ درخواستی نامعتبر، ناشناخته یا دستکاری‌شده است.
         invalid_token:
           expired: کد دسترسی منقضی شده است
           revoked: کد دسترسی فسخ شده است
           unknown: کد دسترسی معتبر نیست
+        resource_owner_authenticator_not_configured: یافتن مالک منبع به دلیل پیکربندی‌نشده بودن Doorkeeper.configure.resource_owner_authenticator شکست خورد.
         server_error: خطای پیش‌بینی‌نشده‌ای برای سرور اجازه‌دهنده رخ داد که جلوی اجرای این درخواست را گرفت.
         temporarily_unavailable: سرور اجازه‌دهنده به دلیل بار زیاد یا تعمیرات سرور هم‌اینک نمی‌تواند درخواست شما را بررسی کند.
+        unauthorized_client: کارخواه مجاز نیست این درخواست را با استفاده از این روش انجام دهد.
+        unsupported_grant_type: گونهٔ اعطای تأیید هویت توسّط کارساز تأیید هویتپشتیبانی نمی‌شود.
+        unsupported_response_type: کارساز تأیید هویت این گونه از پاسخ را پشتیبانی نمی‌کند.
     flash:
       applications:
         create:
@@ -100,7 +115,37 @@ fa:
       application:
         title: درخواست اجازهٔ OAuth
     scopes:
+      admin:read: خواندن تمام داده‌ها روی کارساز
+      admin:read:accounts: خواندن اطّلاعات حساس از همهٔ حساب‌ها
+      admin:read:reports: خواندن اطّلاعات حساس از همهٔ گزارش‌ها و حساب‌های گزارش‌شده
+      admin:write: تغییر تمام داده‌ها روی کارساز
+      admin:write:accounts: انجام کنش مدیریتی روی حساب‌ها
+      admin:write:reports: انجام کنش مدیریتی روی گزارش‌ها
       follow: پیگیری، مسدودسازی، لغو مسدودسازی، و لغو پیگیری حساب‌ها
       push: برای حساب خود اعلان‌های لحظه‌ای دریافت کنید
       read: خواندن اطلاعات حساب شما
+      read:accounts: دیدن اطّلاعات حساب
+      read:blocks: دیدن انسدادهایتان
+      read:bookmarks: دیدن نشانک‌هایتان
+      read:favourites: دیدن برگزیده‌هایتان
+      read:filters: دیدن پالایه‌هایتان
+      read:follows: دیدن پی‌گیری‌هایتان
+      read:lists: دیدن فهرست‌هایتان
+      read:mutes: دیدن خموشی‌هایتان
+      read:notifications: دیدن آگاهی‌هایتان
+      read:reports: دیدن گزارش‌هایتان
+      read:search: حست‌وجو از سمت خودتان
+      read:statuses: دیدن همهٔ وضعیت‌ها
       write: انتشار مطالب از طرف شما
+      write:accounts: تغییر نمایه‌تان
+      write:blocks: انسداد حساب‌ها و دامنه‌ها
+      write:bookmarks: نشانک‌گذاری وضعیت‌ها
+      write:favourites: برگزیدن وضعیت‌ها
+      write:filters: ایحاد پالایش‌ها
+      write:follows: پی‌گیری افراد
+      write:lists: ایجاد فهرست‌ها
+      write:media: بارگذاری پرونده‌های رسانه
+      write:mutes: خموش کردن افراد و گفت‌وگوها
+      write:notifications: پام‌سازی آگاهی‌هایتان
+      write:reports: گزارش دیگر افراد
+      write:statuses: انتشار وضعیت‌ها

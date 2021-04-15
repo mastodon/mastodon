@@ -149,10 +149,6 @@ a.table-action-link {
           margin-top: 0;
         }
       }
-
-      @media screen and (max-width: $no-gap-breakpoint) {
-        display: none;
-      }
     }
 
     &__actions,
@@ -174,10 +170,6 @@ a.table-action-link {
       text-align: right;
       padding-right: 16px - 5px;
     }
-
-    @media screen and (max-width: $no-gap-breakpoint) {
-      display: none;
-    }
   }
 
   &__form {
@@ -198,7 +190,7 @@ a.table-action-link {
     background: darken($ui-base-color, 4%);
 
     @media screen and (max-width: $no-gap-breakpoint) {
-      &:first-child {
+      .optional &:first-child {
         border-top: 1px solid darken($ui-base-color, 8%);
       }
     }
@@ -261,6 +253,13 @@ a.table-action-link {
         background: transparent;
         border-radius: 0;
       }
+    }
+  }
+
+  &.optional .batch-table__toolbar,
+  &.optional .batch-table__row__select {
+    @media screen and (max-width: $no-gap-breakpoint) {
+      display: none;
     }
   }
 

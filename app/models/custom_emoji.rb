@@ -67,7 +67,7 @@ class CustomEmoji < ApplicationRecord
   end
 
   class << self
-    def from_text(text, domain)
+    def from_text(text, domain = nil)
       return [] if text.blank?
 
       shortcodes = text.scan(SCAN_RE).map(&:first).uniq

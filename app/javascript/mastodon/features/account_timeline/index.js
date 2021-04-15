@@ -83,6 +83,7 @@ class AccountTimeline extends ImmutablePureComponent {
     if (!isAccount) {
       return (
         <Column>
+          <ColumnBackButton multiColumn={multiColumn} />
           <MissingIndicator />
         </Column>
       );
@@ -114,6 +115,7 @@ class AccountTimeline extends ImmutablePureComponent {
           shouldUpdateScroll={shouldUpdateScroll}
           emptyMessage={emptyMessage}
           bindToDocument={!multiColumn}
+          timelineId='account'
         />
       </Column>
     );

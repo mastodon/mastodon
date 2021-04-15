@@ -1,0 +1,17 @@
+---
+is:
+  activerecord:
+    attributes:
+      poll:
+        expires_at: Lokadagur
+        options: Valkostir
+    errors:
+      models:
+        account:
+          attributes:
+            username:
+              invalid: aðeins bókstafir, tölur og undirstrik
+        status:
+          attributes:
+            reblog:
+              taken: af stöðu er þegar fyrirliggjandi

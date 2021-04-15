@@ -3,6 +3,8 @@
 class Api::ProofsController < Api::BaseController
   include AccountOwnedConcern
 
+  skip_before_action :require_authenticated_user!
+
   before_action :set_provider
 
   def index

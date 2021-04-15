@@ -22,6 +22,8 @@ module Admin::ActionLogsHelper
       log.recorded_changes.slice('severity', 'reject_media')
     elsif log.target_type == 'Status' && log.action == :update
       log.recorded_changes.slice('sensitive')
+    elsif log.target_type == 'Announcement' && log.action == :update
+      log.recorded_changes.slice('text', 'starts_at', 'ends_at', 'all_day')
     end
   end
 
@@ -44,12 +46,16 @@ module Admin::ActionLogsHelper
       'flag'
     when 'DomainBlock'
       'lock'
+    when 'DomainAllow'
+      'plus-circle'
     when 'EmailDomainBlock'
       'envelope'
     when 'Status'
       'pencil'
     when 'AccountWarning'
       'warning'
+    when 'Announcement'
+      'bullhorn'
     end
   end
 
@@ -86,12 +92,14 @@ module Admin::ActionLogsHelper
       record.shortcode
     when 'Report'
       link_to "##{record.id}", admin_report_path(record)
-    when 'DomainBlock', 'EmailDomainBlock'
+    when 'DomainBlock', 'DomainAllow', 'EmailDomainBlock'
       link_to record.domain, "https://#{record.domain}"
     when 'Status'
       link_to record.account.acct, ActivityPub::TagManager.instance.url_for(record)
     when 'AccountWarning'
       link_to record.target_account.acct, admin_account_path(record.target_account_id)
+    when 'Announcement'
+      link_to "##{record.id}", edit_admin_announcement_path(record.id)
     end
   end
 
@@ -99,7 +107,7 @@ module Admin::ActionLogsHelper
     case type
     when 'CustomEmoji'
       attributes['shortcode']
-    when 'DomainBlock', 'EmailDomainBlock'
+    when 'DomainBlock', 'DomainAllow', 'EmailDomainBlock'
       link_to attributes['domain'], "https://#{attributes['domain']}"
     when 'Status'
       tmp_status = Status.new(attributes.except('reblogs_count', 'favourites_count'))
@@ -109,6 +117,8 @@ module Admin::ActionLogsHelper
       else
         I18n.t('admin.action_logs.deleted_status')
       end
+    when 'Announcement'
+      "##{attributes['id']}"
     end
   end
 end

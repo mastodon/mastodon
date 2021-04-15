@@ -90,7 +90,7 @@ class TrendingTags
       tag_ids = redis.zrevrange(KEY, 0, LIMIT - 1).map(&:to_i)
 
       tags = Tag.where(id: tag_ids)
-      tags = tags.where(trendable: true) if filtered
+      tags = tags.trendable if filtered
       tags = tags.each_with_object({}) { |tag, h| h[tag.id] = tag }
 
       tag_ids.map { |tag_id| tags[tag_id] }.compact.take(limit)

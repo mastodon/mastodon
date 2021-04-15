@@ -211,7 +211,6 @@ module Mastodon
     end
 
     option :concurrency, type: :numeric, default: 5, aliases: [:c]
-    option :verbose, type: :boolean, aliases: [:v]
     option :dry_run, type: :boolean
     desc 'cull', 'Remove remote accounts that no longer exist'
     long_desc <<-LONG_DESC

@@ -109,21 +109,7 @@ module Admin
     end
 
     def filter_params
-      params.permit(
-        :local,
-        :remote,
-        :by_domain,
-        :active,
-        :pending,
-        :disabled,
-        :silenced,
-        :suspended,
-        :username,
-        :display_name,
-        :email,
-        :ip,
-        :staff
-      )
+      params.slice(*AccountFilter::KEYS).permit(*AccountFilter::KEYS)
     end
   end
 end

@@ -2,6 +2,10 @@
 it:
   simple_form:
     hints:
+      account_alias:
+        acct: Indica il nomeutente@dominio dell'account da cui vuoi trasferirti
+      account_migration:
+        acct: Indica il nomeutente@dominio dell'account al quale vuoi trasferirti
       account_warning_preset:
         text: Puoi usare la sintassi dei toot, come URL, hashtag e menzioni
       admin_account_action:
@@ -15,7 +19,10 @@ it:
         avatar: PNG, GIF o JPG. Al massimo %{size}. Verranno scalate a %{dimensions}px
         bot: Questo account esegue principalmente operazioni automatiche e potrebbe non essere tenuto sotto controllo da una persona
         context: Uno o più contesti nei quali il filtro dovrebbe essere applicato
+        current_password: Per motivi di sicurezza inserisci la password dell'account attuale
+        current_username: Per confermare, inserisci il nome utente dell'account attuale
         digest: Inviata solo dopo un lungo periodo di inattività e solo se hai ricevuto qualche messaggio personale in tua assenza
+        discoverable: La directory dei profili è un altro modo in cui il tuo account può raggiungere un pubblico più ampio
         email: Ti manderemo una email di conferma
         fields: Puoi avere fino a 4 voci visualizzate come una tabella sul tuo profilo
         header: PNG, GIF o JPG. Al massimo %{size}. Verranno scalate a %{dimensions}px
@@ -42,6 +49,8 @@ it:
         domain: Questo dominio potrà recuperare i dati da questo server e i dati in arrivo da esso verranno elaborati e memorizzati
       featured_tag:
         name: 'Eccone alcuni che potresti usare:'
+      form_challenge:
+        current_password: Stai entrando in un'area sicura
       imports:
         data: File CSV esportato da un altro server Mastodon
       invite_request:
@@ -57,6 +66,10 @@ it:
         fields:
           name: Etichetta
           value: Contenuto
+      account_alias:
+        acct: Handle del vecchio account
+      account_migration:
+        acct: Handle del nuovo account
       account_warning_preset:
         text: Testo preimpostato
       admin_account_action:
@@ -100,6 +113,7 @@ it:
         setting_aggregate_reblogs: Raggruppa condivisioni in timeline
         setting_auto_play_gif: Play automatico GIF animate
         setting_boost_modal: Mostra dialogo di conferma prima del boost
+        setting_crop_images: Ritaglia immagini in toot non espansi a 16x9
         setting_default_language: Lingua dei post
         setting_default_privacy: Privacy dei post
         setting_default_sensitive: Segna sempre i media come sensibili

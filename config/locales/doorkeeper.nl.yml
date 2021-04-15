@@ -114,29 +114,31 @@ nl:
       application:
         title: OAuth-autorisatie vereist
     scopes:
-      admin:read: lees alle gegevens op de server
-      admin:read:accounts: lees gevoelige informatie van alle accounts
-      admin:read:reports: lees gevoelige informatie van alle rapportages en gerapporteerde accounts
+      admin:read: alle gegevens op de server lezen
+      admin:read:accounts: gevoelige informatie van alle accounts lezen
+      admin:read:reports: gevoelige informatie van alle rapportages en gerapporteerde accounts lezen
       admin:write: wijzig alle gegevens op de server
       admin:write:accounts: moderatieacties op accounts uitvoeren
       admin:write:reports: moderatieacties op rapportages uitvoeren
       follow: relaties tussen accounts bewerken
-      push: ontvang jouw pushmeldingen
+      push: jouw pushmeldingen ontvangen
       read: alle gegevens van jouw account lezen
-      read:accounts: zie informatie accounts
-      read:blocks: zie jouw geblokkeerde gebruikers
-      read:favourites: zie jouw favorieten
-      read:filters: zie jouw filters
-      read:follows: zie de accounts die jij volgt
-      read:lists: zie jouw lijsten
-      read:mutes: zie jouw genegeerde gebruikers
-      read:notifications: zie jouw meldingen
-      read:reports: zie jouw gerapporteerde toots
+      read:accounts: informatie accounts bekijken
+      read:blocks: jouw geblokkeerde gebruikers bekijken
+      read:bookmarks: jouw bladwijzers bekijken
+      read:favourites: jouw favorieten bekijken
+      read:filters: jouw filters bekijken
+      read:follows: de accounts die jij volgt bekijken
+      read:lists: jouw lijsten bekijken
+      read:mutes: jouw genegeerde gebruikers bekijken
+      read:notifications: jouw meldingen bekijken
+      read:reports: jouw gerapporteerde toots bekijken
       read:search: namens jou zoeken
-      read:statuses: zie alle toots
+      read:statuses: alle toots bekijken
       write: alle gegevens van jouw account bewerken
       write:accounts: jouw profiel bewerken
       write:blocks: accounts en domeinen blokkeren
+      write:bookmarks: toots aan bladwijzers toevoegen
       write:favourites: toots als favoriet markeren
       write:filters: filters aanmaken
       write:follows: mensen volgen

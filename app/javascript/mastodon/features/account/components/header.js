@@ -238,8 +238,17 @@ class Header extends ImmutablePureComponent {
     const content         = { __html: account.get('note_emojified') };
     const displayNameHtml = { __html: account.get('display_name_html') };
     const fields          = account.get('fields');
-    const badge           = account.get('bot') ? (<div className='account-role bot'><FormattedMessage id='account.badges.bot' defaultMessage='Bot' /></div>) : null;
     const acct            = account.get('acct').indexOf('@') === -1 && domain ? `${account.get('acct')}@${domain}` : account.get('acct');
+
+    let badge;
+
+    if (account.get('bot')) {
+      badge = (<div className='account-role bot'><FormattedMessage id='account.badges.bot' defaultMessage='Bot' /></div>);
+    } else if (account.get('group')) {
+      badge = (<div className='account-role group'><FormattedMessage id='account.badges.group' defaultMessage='Group' /></div>);
+    } else {
+      badge = null;
+    }
 
     return (
       <div className={classNames('account__header', { inactive: !!account.get('moved') })} ref={this.setRef}>
@@ -253,7 +262,7 @@ class Header extends ImmutablePureComponent {
 
         <div className='account__header__bar'>
           <div className='account__header__tabs'>
-            <a className='avatar' href={account.get('url')} rel='noopener' target='_blank'>
+            <a className='avatar' href={account.get('url')} rel='noopener noreferrer' target='_blank'>
               <Avatar account={account} size={90} />
             </a>
 
@@ -282,10 +291,10 @@ class Header extends ImmutablePureComponent {
                       <dt dangerouslySetInnerHTML={{ __html: proof.get('provider') }} />
 
                       <dd className='verified'>
-                        <a href={proof.get('proof_url')} target='_blank' rel='noopener'><span title={intl.formatMessage(messages.linkVerifiedOn, { date: intl.formatDate(proof.get('updated_at'), dateFormatOptions) })}>
+                        <a href={proof.get('proof_url')} target='_blank' rel='noopener noreferrer'><span title={intl.formatMessage(messages.linkVerifiedOn, { date: intl.formatDate(proof.get('updated_at'), dateFormatOptions) })}>
                           <Icon id='check' className='verified__mark' />
                         </span></a>
-                        <a href={proof.get('profile_url')} target='_blank' rel='noopener'><span dangerouslySetInnerHTML={{ __html: ' '+proof.get('provider_username') }} /></a>
+                        <a href={proof.get('profile_url')} target='_blank' rel='noopener noreferrer'><span dangerouslySetInnerHTML={{ __html: ' '+proof.get('provider_username') }} /></a>
                       </dd>
                     </dl>
                   ))}

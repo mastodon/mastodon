@@ -8,8 +8,8 @@
   .filter-subset
     %strong= t 'relationships.relationship'
     %ul
-      %li= filter_link_to t('accounts.following', count: current_account.following_count), relationship: nil
-      %li= filter_link_to t('accounts.followers', count: current_account.followers_count), relationship: 'followed_by'
+      %li= filter_link_to t('relationships.following'), relationship: nil
+      %li= filter_link_to t('relationships.followers'), relationship: 'followed_by'
       %li= filter_link_to t('relationships.mutual'), relationship: 'mutual'
 
   .filter-subset
@@ -33,10 +33,9 @@
 
 = form_for(@form, url: relationships_path, method: :patch) do |f|
   = hidden_field_tag :page, params[:page] || 1
-  = hidden_field_tag :relationship, params[:relationship]
-  = hidden_field_tag :status, params[:status]
-  = hidden_field_tag :activity, params[:activity]
-  = hidden_field_tag :order, params[:order]
+
+  - RelationshipFilter::KEYS.each do |key|
+    = hidden_field_tag key, params[key] if params[key].present?
 
   .batch-table
     .batch-table__toolbar

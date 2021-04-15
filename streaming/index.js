@@ -436,7 +436,10 @@ const startWorker = (workerId) => {
     const accountId = req.accountId || req.remoteAddress;
 
     res.setHeader('Content-Type', 'text/event-stream');
+    res.setHeader('Cache-Control', 'no-store');
     res.setHeader('Transfer-Encoding', 'chunked');
+
+    res.write(':)\n');
 
     const heartbeat = setInterval(() => res.write(':thump\n'), 15000);
 

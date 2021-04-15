@@ -181,10 +181,6 @@ RSpec.describe SpamCheck do
       described_class.new(status2).flag!
     end
 
-    it 'silences the account' do
-      expect(sender.silenced?).to be true
-    end
-
     it 'creates a report about the account' do
       expect(sender.targeted_reports.unresolved.count).to eq 1
     end

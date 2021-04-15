@@ -126,8 +126,8 @@ RSpec.describe Account, type: :model do
       end
 
       it 'sets default avatar, header, avatar_remote_url, and header_remote_url' do
-        expect(account.avatar_remote_url).to eq ''
-        expect(account.header_remote_url).to eq ''
+        expect(account.avatar_remote_url).to eq 'https://remote.test/invalid_avatar'
+        expect(account.header_remote_url).to eq expectation.header_remote_url
         expect(account.avatar_file_name).to  eq nil
         expect(account.header_file_name).to  eq nil
       end
@@ -212,13 +212,6 @@ RSpec.describe Account, type: :model do
     it 'returns an RSA key pair' do
       account = Fabricate(:account)
       expect(account.keypair).to be_instance_of OpenSSL::PKey::RSA
-    end
-  end
-
-  describe '#subscription' do
-    it 'returns an OStatus subscription' do
-      account = Fabricate(:account)
-      expect(account.subscription('')).to be_instance_of OStatus2::Subscription
     end
   end
 
@@ -823,4 +816,5 @@ RSpec.describe Account, type: :model do
   end
 
   include_examples 'AccountAvatar', :account
+  include_examples 'AccountHeader', :account
 end

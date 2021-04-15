@@ -9,7 +9,7 @@ class NotifyService < BaseService
     return if recipient.user.nil? || blocked?
 
     create_notification!
-    push_notification! if @notification.browserable?
+    push_notification!
     push_to_conversation! if direct_message?
     send_email! if email_enabled?
   rescue ActiveRecord::RecordInvalid

@@ -14,6 +14,12 @@ hu:
         text_html: Opcionális. A tülk szintaxis használható. Egyszerűsítés végett létre is hozhatsz <a href="%{path}">figyelmeztetéseket</a>
         type_html: Megmondhatod, mi legyen vele <strong>%{acct}</strong>
         warning_preset_id: Opcionális. A figyelmeztetés végére saját szöveget is írhatsz
+      announcement:
+        all_day: Bejelölve csak a dátumok számítanak majd a megadott intervallumból
+        ends_at: Opcionális. A közleményt ekkor automatikusan levesszük
+        scheduled_at: Hagyd üresen, hogy a közleményt azonnal közzétegyük
+        starts_at: Opcionális. Akkor használd, ha a közleményed adott időintervallumra vonatkozik
+        text: Használhatod a tülkök szintaxisát. Ügyelj arra, mennyi helyet foglal el majd a közlemény a felhasználó képernyőjén
       defaults:
         autofollow: Akik meghívón keresztül regisztrálnak, automatikusan követni fognak téged
         avatar: PNG, GIF vagy JPG. Maximum %{size}. Átméretezzük %{dimensions} pixelre
@@ -83,6 +89,12 @@ hu:
           silence: Elnémítás
           suspend: Fiók felfüggesztése, adatok törlése visszaállíthatatlanul
         warning_preset_id: Figyelmeztetés használata
+      announcement:
+        all_day: Egész napos esemény
+        ends_at: Esemény vége
+        scheduled_at: Közlemény időzítése
+        starts_at: Esemény kezdete
+        text: Közlemény
       defaults:
         autofollow: Meghívás a fiókod követésére
         avatar: Profilkép
@@ -113,6 +125,7 @@ hu:
         setting_aggregate_reblogs: Megtolások csoportosítása az idővonalakon
         setting_auto_play_gif: GIF-ek automatikus lejátszása
         setting_boost_modal: Megerősítés kérése megtolás előtt
+        setting_crop_images: Képek 16x9-re vágása nem kinyitott tülköknél
         setting_default_language: Tülkölés nyelve
         setting_default_privacy: Tülkök alapértelmezett láthatósága
         setting_default_sensitive: Minden médiafájl megjelölése szenzitívként

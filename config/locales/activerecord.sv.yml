@@ -1,9 +1,13 @@
 ---
 sv:
   activerecord:
+    attributes:
+      poll:
+        expires_at: Tidsgräns
+        options: Val
     errors:
       models:
         account:
           attributes:
             username:
-              invalid: enbart bokstäver, siffror och understreck
+              invalid: endast bokstäver, siffror och understrykning

@@ -7,13 +7,19 @@ tr:
       account_migration:
         acct: Taşınmak istediğiniz hesabın kullanıcı-adı@alan-adını belirtin
       account_warning_preset:
-        text: URL'ler, etiketler ve bahsetmeler gibi gönderi sözdizimleri kullanabilirsiniz
+        text: URL'ler, etiketler ve bahsetmeler gibi toot sözdizimleri kullanabilirsiniz
       admin_account_action:
-        include_statuses: Kullanıcı hangi gönderilerin denetleme eylemi ya da uyarısına neden olduğunu görecektir
+        include_statuses: Kullanıcı hangi tootların denetleme eylemi ya da uyarısına neden olduğunu görecektir
         send_email_notification: Kullanıcı, hesabına ne olduğu hakkında bir bildirim alacak
-        text_html: İsteğe bağlı. Gönderi sözdizimleri kullanabilirsiniz. Zamandan kazanmak için <a href="%{path}">uyarı ön-ayarları ekleyebilirsiniz</a>
+        text_html: İsteğe bağlı. Toot sözdizimleri kullanabilirsiniz. Zamandan kazanmak için <a href="%{path}">uyarı ön-ayarları ekleyebilirsiniz</a>
         type_html: "<strong>%{acct}</strong> ile ne yapılacağını seçin"
         warning_preset_id: İsteğe bağlı. Hazır ayarın sonuna hala özel metin ekleyebilirsiniz
+      announcement:
+        all_day: İşaretlendiğinde, yalnızca zaman aralığındaki tarihler görüntülenir
+        ends_at: İsteğe bağlı. Duyuru, bu tarihte otomatik olarak yayından kaldırılacak
+        scheduled_at: Duyuruyu hemen yayınlamak için boş bırakın
+        starts_at: İsteğe bağlı. Duyurunuzun belirli bir zaman aralığına bağlı olması durumunda
+        text: Toot söz dizimini kullanabilirsiniz. Lütfen duyurunun kullanıcının ekranında yer alacağı alanı göz önünde bulundurun
       defaults:
         autofollow: Davetiyeyle kaydolan kişiler sizi otomatik olarak takip eder
         avatar: En fazla %{size} olacak şekilde PNG, GIF veya JPG formatında yükleyiniz. %{dimensions}px büyüklüğüne indirgenecektir
@@ -27,20 +33,20 @@ tr:
         fields: Profilinizde tablo olarak görüntülenen en fazla 4 ögeye sahip olabilirsiniz
         header: En fazla %{size} olacak şekilde PNG, GIF veya JPG formatında yükleyiniz. %{dimensions}px büyüklüğüne indirgenecektir.
         inbox_url: Kullanmak istediğiniz aktarıcının ön sayfasından URL'yi kopyalayın
-        irreversible: Filtre uygulanmış gönderiler, filtre daha sonra çıkartılsa bile geri dönüşümsüz biçimde kaybolur
+        irreversible: Filtre uygulanmış tootlar, filtre daha sonra çıkartılsa bile geri dönüşümsüz biçimde kaybolur
         locale: Kullanıcı arayüzünün dili, e-postalar ve push bildirimleri
         locked: Takipçilerinizi manuel olarak kabul etmenizi ve gönderilerinizi varsayılan olarak sadece takipçilerinizin göreceği şekilde paylaşmanızı sağlar.
         password: En az 8 karakter kullanın
-        phrase: Metnin büyük/küçük harf durumundan veya gönderinin içerik uyarısından bağımsız olarak eşleştirilecek
+        phrase: Metnin büyük/küçük harf durumundan veya tootun içerik uyarısından bağımsız olarak eşleştirilecek
         scopes: Uygulamanın erişmesine izin verilen API'ler. Üst seviye bir kapsam seçtiyseniz, bireysel kapsam seçmenize gerek yoktur.
-        setting_aggregate_reblogs: Yakın zamanda yinelenmiş gönderiler için yeni yinelemeler gösterme (yalnızca yeni alınan yinelemeleri etkiler)
+        setting_aggregate_reblogs: Yakın zamanda yinelenmiş tootlar için yeni yinelemeler gösterme (yalnızca yeni alınan yinelemeleri etkiler)
         setting_default_sensitive: Hassas medya varsayılan olarak gizlenir ve bir tıklama ile görüntülenebilir
         setting_display_media_default: Hassas olarak işaretlenmiş medyayı gizle
         setting_display_media_hide_all: Tüm medyayı gizle
         setting_display_media_show_all: Hassas olarak işaretlenmiş medyayı göster
         setting_hide_network: Takip edilenler ve takipçiler profilinizde gösterilmeyecek
         setting_noindex: Herkese açık profilinizi ve durum sayfalarınızı etkiler
-        setting_show_application: Gönderi için kullandığınız uygulama, gönderilerinizin detaylı görünümünde gösterilecektir
+        setting_show_application: Tootlamak için kullandığınız uygulama, tootlarınızın detaylı görünümünde gösterilecektir
         setting_use_blurhash: Gradyenler gizli görsellerin renklerine dayanır, ancak detayları gizler
         setting_use_pending_items: Zaman çizelgesi güncellemelerini, akışı otomatik olarak kaydırmak yerine bir tıklamanın arkasına gizleyin
         username: Kullanıcı adınız %{domain} alanında benzersiz olacak
@@ -60,7 +66,7 @@ tr:
       tag:
         name: Harflerin, örneğin daha okunabilir yapmak için, sadece büyük/küçük harf durumlarını değiştirebilirsiniz
       user:
-        chosen_languages: İşaretlendiğinde, yalnızca seçilen dillerdeki karakterler genel zaman çizelgelerinde görüntülenir
+        chosen_languages: İşaretlendiğinde, yalnızca seçilen dillerdeki tootlar genel zaman çizelgelerinde görüntülenir
     labels:
       account:
         fields:
@@ -73,7 +79,7 @@ tr:
       account_warning_preset:
         text: Ön-ayar metni
       admin_account_action:
-        include_statuses: Birdirilen gönderileri e-postaya dahil et
+        include_statuses: Birdirilen tootları e-postaya dahil et
         send_email_notification: E-postayla kullanıcıyı bilgilendir
         text: Özel uyarı
         type: Eylem
@@ -83,6 +89,12 @@ tr:
           silence: Sessiz
           suspend: Hesap verilerini askıya alın ve geri alınamaz şekilde silin
         warning_preset_id: Bir uyarı ön-ayarı kullan
+      announcement:
+        all_day: Tüm gün etkinliği
+        ends_at: Etkinlik sonu
+        scheduled_at: Yayınlamayı zamanla
+        starts_at: Etkinlik başlangıcı
+        text: Duyuru
       defaults:
         autofollow: Hesabınızı takip etmeye davet edin
         avatar: Profil resmi
@@ -113,19 +125,20 @@ tr:
         setting_aggregate_reblogs: Zaman çizelgesindeki grup yinelemeleri
         setting_auto_play_gif: GIF'leri otomatik oynatt
         setting_boost_modal: Boost etmeden önce onay diyaloğu göster
+        setting_crop_images: Genişletilmemiş tootlardaki resimleri 16x9 olarak kırp
         setting_default_language: Gönderi dili
         setting_default_privacy: Gönderi gizliliği
         setting_default_sensitive: Her zaman hassas medya olarak işaretle
-        setting_delete_modal: Bir gönderiyi silmeden önce onay iletişim kutusunu göster
+        setting_delete_modal: Bir tootu silmeden önce onay iletişim kutusunu göster
         setting_display_media: Medya görünümü
         setting_display_media_default: Varsayılan
         setting_display_media_hide_all: Tümünü gizle
         setting_display_media_show_all: Tümünü göster
-        setting_expand_spoilers: İçerik uyarılarıyla işaretli gönderileri her zaman genişlet
+        setting_expand_spoilers: İçerik uyarılarıyla işaretli tootları her zaman genişlet
         setting_hide_network: Ağını gizle
         setting_noindex: Arama motoru endekslemesini iptal et
         setting_reduce_motion: Animasyonlarda hareketi azalt
-        setting_show_application: İçerik göndermek için kullanılan uygulamayı belirt
+        setting_show_application: Toot göndermek için kullanılan uygulamayı belirt
         setting_system_font_ui: Sistemin varsayılan yazı tipini kullan
         setting_theme: Site teması
         setting_trends: Bugünün trendlerini göster
@@ -161,7 +174,7 @@ tr:
         listable: Bu etiketin aramalarda ve profil dizininde görünmesine izin ver
         name: Hashtag
         trendable: Bu etiketin trendlerin altında görünmesine izin ver
-        usable: Gönderilerin bu etiketi kullanmasına izin ver
+        usable: Tootların bu etiketi kullanmasına izin ver
     'no': Hayır
     recommended: Önerilen
     required:

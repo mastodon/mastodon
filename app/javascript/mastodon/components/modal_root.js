@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import 'wicg-inert';
 
 export default class ModalRoot extends React.PureComponent {
 
@@ -55,15 +56,21 @@ export default class ModalRoot extends React.PureComponent {
     } else if (!nextProps.children) {
       this.setState({ revealed: false });
     }
-    if (!nextProps.children && !!this.props.children) {
-      this.activeElement.focus();
-      this.activeElement = null;
-    }
   }
 
   componentDidUpdate (prevProps) {
     if (!this.props.children && !!prevProps.children) {
       this.getSiblings().forEach(sibling => sibling.removeAttribute('inert'));
+
+      // Because of the wicg-inert polyfill, the activeElement may not be
+      // immediately selectable, we have to wait for observers to run, as
+      // described in https://github.com/WICG/inert#performance-and-gotchas
+      Promise.resolve().then(() => {
+        this.activeElement.focus();
+        this.activeElement = null;
+      }).catch((error) => {
+        console.error(error);
+      });
     }
     if (this.props.children) {
       requestAnimationFrame(() => {

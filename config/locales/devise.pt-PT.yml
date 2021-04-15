@@ -12,6 +12,7 @@ pt-PT:
       last_attempt: Tens mais uma tentativa antes de a tua conta ficar bloqueada.
       locked: A tua conta está bloqueada.
       not_found_in_database: "%{authentication_keys} ou palavra-passe inválida."
+      pending: A sua conta está ainda a aguardar revisão.
       timeout: A tua sessão expirou. Por favor, entra de novo para continuares.
       unauthenticated: Precisas de entrar na tua conta ou de te registares antes de continuar.
       unconfirmed: Tens de confirmar o teu endereço de email antes de continuar.
@@ -20,6 +21,7 @@ pt-PT:
         action: Verificar o endereço de e-mail
         action_with_app: Confirmar e regressar a %{app}
         explanation: Criaste uma conta em %{host} com este endereço de e-mail. Estás a um clique de activá-la. Se não foste tu que fizeste este registo, por favor ignora esta mensagem.
+        explanation_when_pending: Você solicitou um convite para %{host} com este endereço de e-mail. Logo que confirme o seu endereço de e-mail, iremos rever a sua inscrição. Pode iniciar sessão para alterar os seus dados ou eliminar a sua conta, mas não poderá aceder à maioria das funções até que a sua conta seja aprovada. Se a sua inscrição for rejeitada, os seus dados serão removidos, pelo que não será necessária qualquer acção adicional da sua parte. Se não solicitou este convite, por favor, ignore este e-mail.
         extra_html: Por favor lê <a href="%{terms_path}">as regras da instância</a> e os <a href="%{policy_path}"> nossos termos de serviço</a>.
         subject: 'Mastodon: Instruções de confirmação %{instance}'
         title: Verificar o endereço de e-mail
@@ -44,6 +46,18 @@ pt-PT:
         extra: Se não fizeste este pedido, por favor ignora este e-mail. A tua palavra-passe não irá mudar se não acederes ao link acima e criares uma nova.
         subject: 'Mastodon: Instruções para alterar a palavra-passe'
         title: Solicitar nova palavra-passe
+      two_factor_disabled:
+        explanation: A autenticação de dois fatores para sua conta foi desativada. É agora possível aceder apenas com seu endereço de e-mail e senha.
+        subject: 'Mastodon: Autenticação de dois fatores desativada'
+        title: 2FA desativado
+      two_factor_enabled:
+        explanation: A autenticação de dois fatores foi ativada para sua conta. Um token, gerado pela aplicação TOTP emparelhada, será necessário para aceder.
+        subject: 'Mastodon: Autenticação de dois fatores ativada'
+        title: 2FA ativado
+      two_factor_recovery_codes_changed:
+        explanation: Os códigos de recuperação anteriores foram invalidados e novos foram gerados.
+        subject: 'Mastodonte: Gerados novos códigos de recuperação de dois fatores'
+        title: Códigos de recuperação 2FA alterados
       unlock_instructions:
         subject: 'Mastodon: Instruções para desbloquear a tua conta'
     omniauth_callbacks:
@@ -60,6 +74,7 @@ pt-PT:
       signed_up: Bem-vindo! A tua conta foi registada com sucesso.
       signed_up_but_inactive: A tua conta foi registada. No entanto ainda não está activa.
       signed_up_but_locked: A tua conta foi registada. No entanto está bloqueada.
+      signed_up_but_pending: Uma mensagem com um link de confirmação foi enviada para o seu endereço de e-mail. Depois de clicar no link, iremos rever a sua inscrição. Será notificado se a sua conta é aprovada.
       signed_up_but_unconfirmed: Uma mensagem com um link de confirmação foi enviada para o teu email. Por favor segue esse link para activar a tua conta.
       update_needs_confirmation: Alteraste o teu endereço de email ou palavra-passe, mas é necessário confirmar essa alteração. Por favor vai ao teu email e segue link que te enviámos.
       updated: A tua conta foi actualizada com sucesso.

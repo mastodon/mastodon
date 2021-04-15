@@ -4,7 +4,7 @@ import MissingIndicator from '../../components/missing_indicator';
 
 const GenericNotFound = () => (
   <Column>
-    <MissingIndicator />
+    <MissingIndicator fullPage />
   </Column>
 );
 

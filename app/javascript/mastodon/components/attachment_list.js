@@ -25,7 +25,7 @@ export default class AttachmentList extends ImmutablePureComponent {
 
               return (
                 <li key={attachment.get('id')}>
-                  <a href={displayUrl} target='_blank' rel='noopener'><Icon id='link' /> {filename(displayUrl)}</a>
+                  <a href={displayUrl} target='_blank' rel='noopener noreferrer'><Icon id='link' /> {filename(displayUrl)}</a>
                 </li>
               );
             })}
@@ -46,7 +46,7 @@ export default class AttachmentList extends ImmutablePureComponent {
 
             return (
               <li key={attachment.get('id')}>
-                <a href={displayUrl} target='_blank' rel='noopener'>{filename(displayUrl)}</a>
+                <a href={displayUrl} target='_blank' rel='noopener noreferrer'>{filename(displayUrl)}</a>
               </li>
             );
           })}

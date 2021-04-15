@@ -222,6 +222,12 @@ code {
     }
   }
 
+  .input.datetime .label_input select {
+    display: inline-block;
+    width: auto;
+    flex: 0;
+  }
+
   .required abbr {
     text-decoration: none;
     color: lighten($error-value-color, 12%);
@@ -513,6 +519,10 @@ code {
   &__overlay-area {
     position: relative;
 
+    &__blurred form {
+      filter: blur(2px);
+    }
+
     &__overlay {
       position: absolute;
       top: 0;
@@ -523,8 +533,10 @@ code {
       justify-content: center;
       align-items: center;
       background: rgba($ui-base-color, 0.65);
-      backdrop-filter: blur(2px);
       border-radius: 4px;
+      margin-left: -4px;
+      margin-top: -4px;
+      padding: 4px;
 
       &__content {
         text-align: center;

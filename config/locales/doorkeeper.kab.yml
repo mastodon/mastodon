@@ -1,0 +1,104 @@
+---
+kab:
+  activerecord:
+    attributes:
+      doorkeeper/application:
+        name: Isem n usnas
+        redirect_uri: URI n uwelleh
+        website: Asmel web n usnas
+    errors:
+      models:
+        doorkeeper/application:
+          attributes:
+            redirect_uri:
+              fragment_present: ur yezmir ad yegber afrur.
+              invalid_uri: ilaq ad tili d tansa URL tameɣtut.
+              relative_uri: ilaq ad yili d URI amagdaz.
+              secured_uri: ilaq URI ad yili HTTPS/SSL.
+  doorkeeper:
+    applications:
+      buttons:
+        authorize: Ssireg
+        cancel: Sefsex
+        destroy: Hudd
+        edit: Ẓreg
+        submit: Azen
+      confirmations:
+        destroy: Tetḥeqqeḍ?
+      edit:
+        title: Ẓreg asnas
+      form:
+        error: Ay ay! Senqed tiferkit-inek ma ulac deg-s tuccḍiwin
+      help:
+        native_redirect_uri: Seqdec %{native_redirect_uri} i yisekyaden idiganen
+        redirect_uri: Seqdec yiwen n ujerrid i yal URI
+      index:
+        application: Asnas
+        callback_url: URL n tririt n wawal
+        delete: Kkes
+        name: Isem
+        new: Asnas amaynut
+        show: Ẓer
+        title: Isnasen-ik
+      new:
+        title: Asnas amaynut
+      show:
+        actions: Tigawin
+        application_id: ID n usnas
+        callback_urls: URL n tririt n wawal
+        title: 'Asnas: %{name}'
+    authorizations:
+      buttons:
+        authorize: Ssireg
+        deny: Ggami
+      error:
+        title: Tella-d tuccḍa
+      new:
+        able_to: Asnas-agi yezmer
+        prompt: Eǧǧ i %{client_name} ad yekcem ɣer umiḍan-ik
+      show:
+        title: Nɣel tangalt n wurag sakkin senteḍ-itt deg usnas.
+    authorized_applications:
+      confirmations:
+        revoke: Tetḥeqqeḍ?
+      index:
+        application: Asnas
+        created_at: Yettussireg
+        date_format: "%d-%m-%Y %H:%M:%S"
+    errors:
+      messages:
+        invalid_redirect_uri: URI n uwelleh mačči d ameɣtu.
+    flash:
+      applications:
+        create:
+          notice: Asnas yettwarna-d.
+        destroy:
+          notice: Asnan yettwakkes.
+        update:
+          notice: Asnan yettwalqem.
+    layouts:
+      admin:
+        nav:
+          applications: Isnasen
+    scopes:
+      admin:read: ɣeṛ akk isefka ɣef uqeddac
+      admin:write: ẓreg akk isefka ɣef uqeddac
+      follow: beddel assaɣen n umiḍan
+      push: ṭṭef-d tilɣa-ik yettwademren
+      read: ɣeṛ akk isefka n umiḍan-ik
+      read:accounts: ẓer isallen n yimiḍanen
+      read:blocks: ẓer imiḍanen i tesḥebseḍ
+      read:bookmarks: ẓer ticraḍ-ik
+      read:favourites: ẓer ismenyifen-ik
+      read:filters: ẓer imsizedgen-ik
+      read:follows: ẓer imeḍfaṛen-ik
+      read:lists: ẓer tibdarin-ik
+      read:mutes: ẓer wid i tesgugmeḍ
+      read:notifications: ẓer tilɣa-ik
+      read:statuses: ẓer meṛṛa tisuffaɣ
+      write: beddel meṛṛa isefka n umiḍan-ik
+      write:accounts: ẓreg amaɣnu-ik
+      write:blocks: seḥbes imiḍanen d tɣula
+      write:filters: rnu-d imsizedgen
+      write:follows: ḍfeṛ imdanen
+      write:lists: rnu-d tibdarin

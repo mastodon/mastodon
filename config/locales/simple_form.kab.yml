@@ -1,0 +1,62 @@
+---
+kab:
+  simple_form:
+    hints:
+      account_alias:
+        acct: Specify the username@domain of the account you want to move from
+      account_migration:
+        acct: Sekcem isem n umseqdac@taɣult n umiḍan wuɣur tebɣiḍ ad tuɣaleḍ
+      admin_account_action:
+        send_email_notification: Amseqdac ad t-id-yewweḍ usefhem ɣef wayen yeḍran akked umiḍan-is
+        type_html: Fren d acu ara txedmeḍ s <strong>%{acct}</strong>
+      defaults:
+        autofollow: Imdanen ara ijerrden s usnebgi-inek, ad k-ḍefṛen s wudem awurman
+        discoverable: Tabdert n yimaɣnuten d udem-nniḍen i umiḍan-ik akken ad yettwassen ugar
+        email: Ad n-teṭṭfeḍ imayl i usentem
+        irreversible: Tibarraḥin i tessazedgeḍ ad ttwakksent i lebda, ula ma tekkseḍ imsizdeg-nni ar zdat
+        locale: Tutlayt n ugrudem, imaylen d tilɣa
+        password: Seqdec ma drus 8 n yisekkilen
+        setting_hide_network: Wid i teṭṭafaṛeḍ d wid i k-yeṭṭafaṛen ur d-ttwaseknen ara deg umaɣnu-inek
+        username: Isem-ik n umseqdac ad yili d ayiwen, ulac am netta deg %{domain}
+      featured_tag:
+        name: 'Ahat ad tebɣuḍ ad tesqedceḍ yiwen gar-asen:'
+      imports:
+        data: Afaylu CSV yekka-d seg uqeddac-nniḍen Mastudun
+    labels:
+      account:
+        fields:
+          value: Agbur
+      admin_account_action:
+        types:
+          silence: Sgugem
+      defaults:
+        bot: Wagi d amiḍan aṛubut
+        chosen_languages: Sizdeg tutlayin
+        confirm_new_password: Sentem awal uffir amaynut
+        confirm_password: Sentem awal uffir
+        current_password: Awal uffir n tura
+        data: Isefka
+        display_name: Isem ara d-yettwaskanen
+        email: Tansa imayl
+        header: Ixef
+        locale: Tutlayt n ugrudem
+        new_password: Awal uffir amaynut
+        password: Awal uffir
+        setting_display_media_default: Akk-a kan
+        setting_display_media_hide_all: Ffer kullec
+        setting_display_media_show_all: Sken kullec
+        setting_hide_network: Ffer azetta-k·m
+        username: Isem n useqdac
+        username_or_email: Isem n useqdac neγ imal
+        whole_word: Awal akk
+      featured_tag:
+        name: Ahacṭag
+      invite:
+        comment: Awennit
+      invite_request:
+        text: Acimi tebɣiḍ ad ternuḍ iman-ik?
+    'no': Ala
+    required:
+      mark: "*"
+      text: ilaq
+    'yes': Ih

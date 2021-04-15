@@ -1,1 +1,94 @@
+---
 nn:
+  devise:
+    confirmations:
+      confirmed: E-posten din er stadefesta.
+      send_instructions: Om nokre få minutt får du ein e-post som fortel deg korleis du skal stadfesta e-postadressa di. Sjekk søppelpostmappa di om du ikkje fekk e-posten.
+      send_paranoid_instructions: Om vi har e-postadressa di i databasen vår, får du ein e-post som fortel deg korleis du skal stadfesta e-postadressa om nokre få minutt. Ver venleg og sjekk søppelpostmappa di om du ikkje fekk denne e-posten.
+    failure:
+      already_authenticated: Du er allereie logga inn.
+      inactive: Kontoen din er ikkje aktiv enno.
+      invalid: Ugyldig %{authentication_keys} eller passord.
+      last_attempt: Du har eitt forsøk igjen før kontoen din vert låst.
+      locked: Kontoen din er låst.
+      not_found_in_database: Ugyldig %{authentication_keys} eller passord.
+      pending: Kontoen din er fortsatt under gjennomgang.
+      timeout: Økten din løp ut på tid. Logg inn på nytt for å fortsette.
+      unauthenticated: Du må logge inn eller registrere deg før du kan fortsette.
+      unconfirmed: Du må stadfesta e-postadressa di før du kan gå vidare.
+    mailer:
+      confirmation_instructions:
+        action: Stadfest e-postadresse
+        action_with_app: Stadfest og gå tilbake til %{app}
+        explanation: Du har laget en konto på %{host} med denne e-postadressen. Du er ett klikk unna å aktivere den. Hvis dette ikke var deg, vennligst se bort fra denne e-posten.
+        extra_html: Vennligst også sjekk ut <a href="%{terms_path}">instansens regler </a> og <a href="%{policy_path}">våre bruksvilkår</a>.
+        subject: 'Mastodon: Instruksjoner for å bekrefte e-postadresse %{instance}'
+        title: Stadfest e-postadresse
+      email_changed:
+        explanation: 'E-postadressa til kontoen din vert endra til:'
+        extra: Hvis du ikke endret din e-postadresse, er det sannsynlig at noen har fått tilgang til din konto. Vennligst endre ditt passord umiddelbart eller kontakt instansens administrator dersom du er utestengt fra kontoen din.
+        subject: 'Mastodon: E-postadressa er endra'
+        title: Ny e-postadresse
+      password_change:
+        explanation: Passordet til kontoen din er endra.
+        extra: Om du ikkje har endra passordet er det sannsynleg at nokon har fått tilgang til kontoen din. Ver venleg og skift passordet ditt med det same eller tak kontakt med tenaradministratoren om du er sperra ute av kontoen din.
+        subject: 'Mastodon: Passord endra'
+        title: Passord endra
+      reconfirmation_instructions:
+        explanation: Stadfest den nye adressa for å byta e-postadressa di.
+        extra: Se bort fra denne e-posten dersom du ikke gjorde denne endringen. E-postadressen for Mastadon-kontoen blir ikke endret før du trykker på lenken over.
+        subject: 'Mastodon: Bekreft e-postadresse for %{instance}'
+        title: Stadfest e-postadresse
+      reset_password_instructions:
+        action: Endr passord
+        explanation: Du har bedt om eit nytt passord til kontoen din.
+        extra: Om du ikkje bad om dette, ignorer denne e-posten. Passordet ditt vert ikkje endra før du går inn på lenkja ovanfor og lagar eit nytt.
+        subject: 'Mastodon: Instuksjonar for å endra passord'
+        title: Attstilling av passord
+      two_factor_disabled:
+        subject: 'Mastodon: To-faktor autentisering deaktivert'
+        title: 2FA deaktivert
+      two_factor_enabled:
+        explanation: To-faktor autentisering er aktivert for kontoen din. Et symbol som er generert av den sammenkoblede TOTP-appen vil være påkrevd for innlogging.
+        subject: 'Mastodon: To-faktor autentisering aktivert'
+        title: 2FA aktivert
+      two_factor_recovery_codes_changed:
+        explanation: De forrige gjenopprettingskodene er ugyldig og nye generert.
+      unlock_instructions:
+        subject: 'Mastodon: Instruksjoner for å gjenåpne konto'
+    omniauth_callbacks:
+      failure: Kunne ikke autentisere deg fra %{kind} fordi "%{reason}".
+      success: Vellykket autentisering fra %{kind}.
+    passwords:
+      no_token: Du har ingen tilgang til denne siden hvis ikke klikket på en e-post om nullstilling av passord. Hvis du kommer fra en sådan bør du dobbelsjekke at du limte inn hele URLen.
+      send_instructions: Du vil motta en e-post med instruksjoner om nullstilling av passord om noen få minutter.
+      send_paranoid_instructions: Om vi har e-postadressa di i databasen vår, får du ei lenkje til å endra passordet om nokre få minutt. Ver venleg og sjekk søppelpostmappa om du ikkje fekk denne e-posten.
+      updated: Passordet ditt er endra. No er du logga inn.
+      updated_not_active: Passordet ditt er endra.
+    registrations:
+      destroyed: Ha det! Kontoen din er sletta. Vi vonar å sjå deg igjen snart.
+      signed_up: Velkomen! No er du registrert.
+      signed_up_but_inactive: Du har registrert deg inn, men vi kunne ikkje logga deg inn fordi kontoen din er ikkje aktivert enno.
+      signed_up_but_locked: Du har registrert deg inn, men vi kunne ikkje logga deg inn fordi kontoen din er låst.
+      signed_up_but_pending: Ei melding med ei stadfestingslenkje er vorten send til e-postadressa di. Når du klikkar på lenkja skal vi sjå gjennom søknaden din. Du får ei melding om han vert godkjend.
+      signed_up_but_unconfirmed: En e-post med en bekreftelseslenke har blitt sendt til din innboks. Klikk på lenken i e-posten for å aktivere kontoen din.
+      update_needs_confirmation: Du har oppdatert kontoen din, men vi må bekrefte din nye e-postadresse. Sjekk e-posten din og følg bekreftelseslenken for å bekrefte din nye e-postadresse.
+      updated: Kontoen din ble oppdatert.
+    sessions:
+      already_signed_out: Logga ut.
+      signed_in: Logga inn.
+      signed_out: Logga ut.
+    unlocks:
+      send_instructions: Du vil motta en e-post med instruksjoner for å åpne kontoen din om noen få minutter.
+      send_paranoid_instructions: Hvis kontoen din eksisterer vil du motta en e-post med instruksjoner for å åpne kontoen din om noen få minutter.
+      unlocked: Kontoen din ble åpnet uten problemer. Logg på for å fortsette.
+  errors:
+    messages:
+      already_confirmed: har allerede blitt bekreftet, prøv å logge på istedet
+      confirmation_period_expired: må bekreftes innen %{period}. Spør om en ny e-post for bekreftelse istedet
+      expired: er utgått, ver venleg å beda om ein ny ein
+      not_found: ikkje funne
+      not_locked: var ikkje låst
+      not_saved:
+        one: '1 feil hindret denne %{resource} i å bli lagret:'
+        other: "%{count} feil hindret denne %{resource} i å bli lagret:"

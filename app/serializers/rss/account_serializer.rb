@@ -2,7 +2,7 @@
 
 class RSS::AccountSerializer
   include ActionView::Helpers::NumberHelper
-  include StatusesHelper
+  include AccountsHelper
   include RoutingHelper
 
   def render(account, statuses, tag)

@@ -9,8 +9,8 @@ da:
         avatar: PNG, GIF eller JPG. Højest %{size}. Vil blive skaleret ned til %{dimensions}px
         bot: Denne konto udfører hovedsageligt automatiserede handlinger og bliver muligvis ikke overvåget
         context: En eller flere sammenhænge hvor filteret skal være gældende
-        digest: Sendes kun efter en lang periode med inaktivitet og kun hvis du har modtaget nogle personlige beskeder mens du er væk
-        email: Du vil få tilsendt en bekræftelsed mail
+        digest: Sendes kun efter en lang periode med inaktivitet og kun hvis du har modtaget nogle personlige beskeder i dit fravær
+        email: Du vil få tilsendt en bekræftelses e-mail
         fields: Du kan have op til 4 ting vist som en tabel på din profil
         header: PNG, GIF eller JPG. Højest %{size}. Vil blive skaleret ned til %{dimensions}px
         inbox_url: Kopiere linket fra forsiden af den relay som du ønsker at bruge
@@ -40,10 +40,16 @@ da:
           name: Etiket
           value: Indhold
       admin_account_action:
+        include_statuses: Inkluder rapporteret toot i email
+        send_email_notification: Underret brugeren per email
+        text: Tilpasset advarsel
         type: Handling
         types:
           disable: Deaktiver
           none: Gør intet
+          silence: Silence
+          suspend: Suspendér og slet kontodata uopretteligt
+        warning_preset_id: Brug en forudindstillet advarsel
       defaults:
         autofollow: Inviter til at følge din konto
         avatar: Profilbillede
@@ -53,6 +59,8 @@ da:
         confirm_password: Bekræft adgangskode
         context: Filtrer sammenhænge
         current_password: Nuværende adgangskode
+        data: Data
+        discoverable: Vis denne konto i oversigten
         display_name: Visningsnavn
         email: E-mail adresse
         expires_in: Udløber efter
@@ -68,6 +76,7 @@ da:
         otp_attempt: To-faktor kode
         password: Adgangskode
         phrase: Nøgleord eller sætning
+        setting_advanced_layout: Aktivér avanceret webgrænseflade
         setting_auto_play_gif: Afspil automatisk animerede GIFs
         setting_boost_modal: Vis bekræftelses dialog før du fremhæver
         setting_default_language: Sprog for opslag
@@ -84,6 +93,7 @@ da:
         setting_reduce_motion: Reducer animationers bevægelse
         setting_system_font_ui: Brug systemets standard font
         setting_theme: Tema for side
+        setting_trends: Vis dagens tendenser
         setting_unfollow_modal: Vis bekræftelses dialog før du stopper med at følge nogen
         setting_use_pending_items: Langsom tilstand
         severity: Omfang
@@ -91,10 +101,14 @@ da:
         username: Brugernavn
         username_or_email: Brugernavn eller Email
         whole_word: Helt ord
+      featured_tag:
+        name: Hashtag
       interactions:
         must_be_follower: Bloker notifikationer fra folk der ikke følger dig
         must_be_following: Bloker notifikationer fra folk du ikke følger
         must_be_following_dm: Bloker direkte beskeder fra folk du ikke følger
+      invite:
+        comment: Kommentar
       invite_request:
         text: Hvorfor ønsker du at tilmelde dig?
       notification_emails:
@@ -103,10 +117,15 @@ da:
         follow: Send e-mail når nogen følger dig
         follow_request: Send email når nogen anmoder om at følge dig
         mention: Send e-mail når nogen nævner dig
-        reblog: Send email når nogen fremhæver din status
+        pending_account: Send en email når en ny konto skal gennemgås
+        reblog: Send e-mail når nogen fremhæver din status
         report: Send email når en ny anmeldelse bliver indsendt
+        trending_tag: Send en email når et ikke-gennemset hashtag trender
       tag:
+        listable: Tillad at dette hashtag vises i søgninger og i bruger oversigten
         name: Hashtag
+        trendable: Tillad at dette hashtag vises under trends
+        usable: Tillad toots at benytte dette hashtag
     'no': Nej
     recommended: Anbefalet
     required:

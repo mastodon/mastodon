@@ -14,6 +14,12 @@ ko:
         text_html: 선택사항. 툿 문법을 사용할 수 있습니다. <a href="%{path}">경고 틀을 추가</a>하여 시간을 절약할 수 있습니다
         type_html: "<strong>%{acct}</strong>에 대해 취할 행동 선택"
         warning_preset_id: 선택사항. 틀의 마지막에 임의의 텍스트를 추가 할 수 있습니다
+      announcement:
+        all_day: 체크 되었을 경우, 그 시간에 속한 날짜들에만 표시됩니다
+        ends_at: 옵션입니다. 공지사항이 이 시간에 자동으로 발행 중지 됩니다
+        scheduled_at: 공백으로 두면 공지사항이 곧바로 발행 됩니다
+        starts_at: 공지사항이 특정한 시간에 종속 될 때를 위한 옵션입니다
+        text: 툿 문법을 사용할 수 있습니다. 공지사항은 사용자의 화면 상단 공간을 차지한다는 것을 명심하세요
       defaults:
         autofollow: 이 초대를 통해 가입하는 사람은 당신을 자동으로 팔로우 하게 됩니다
         avatar: PNG, GIF 혹은 JPG. 최대 %{size}. %{dimensions}px로 축소 됨
@@ -22,7 +28,7 @@ ko:
         current_password: 보안을 위해 현재 계정의 암호를 입력해주세요
         current_username: 확인을 위해, 현재 계정의 사용자명을 입력해주세요
         digest: 오랫동안 활동하지 않았을 때 받은 멘션들에 대한 요약 받기
-        discoverable: 프로필 디렉터리는 내 계정이 더 많은 관심을 갖게 할 수 있는 다른 방법입니다
+        discoverable: 프로필 디렉토리는 내 계정이 더 많은 관심을 갖게 할 수 있는 다른 방법입니다
         email: 당신은 확인 메일을 받게 됩니다
         fields: 당신의 프로파일에 최대 4개까지 표 형식으로 나타낼 수 있습니다
         header: PNG, GIF 혹은 JPG. 최대 %{size}. %{dimensions}px로 축소 됨
@@ -83,6 +89,12 @@ ko:
           silence: 침묵
           suspend: 정지하고 되돌릴 수 없는 데이터 삭제
         warning_preset_id: 경고 틀 사용하기
+      announcement:
+        all_day: 종일 일정
+        ends_at: 이벤트 종료
+        scheduled_at: 발행 일정
+        starts_at: 이벤트 시작
+        text: 공지사항
       defaults:
         autofollow: 초대를 통한 팔로우
         avatar: 아바타
@@ -113,6 +125,7 @@ ko:
         setting_aggregate_reblogs: 타임라인의 부스트를 그룹화
         setting_auto_play_gif: 애니메이션 GIF를 자동 재생
         setting_boost_modal: 부스트 전 확인 창을 표시
+        setting_crop_images: 확장되지 않은 툿의 이미지를 16x9로 자르기
         setting_default_language: 게시물 언어
         setting_default_privacy: 툿 프라이버시
         setting_default_sensitive: 미디어를 언제나 민감한 컨텐츠로 설정

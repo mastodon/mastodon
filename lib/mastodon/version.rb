@@ -9,7 +9,7 @@ module Mastodon
     end
 
     def minor
-      0
+      1
     end
 
     def patch
@@ -17,7 +17,7 @@ module Mastodon
     end
 
     def flags
-      ''
+      'rc1'
     end
 
     def suffix
