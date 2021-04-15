@@ -647,6 +647,8 @@ ja:
       title: トゥート一覧
       with_media: メディアあり
     system_checks:
+      database_schema_check:
+        message_html: 未実行のデータベースマイグレーションがあります。実行して正常に動作するようにしてください。
       rules_check:
         action: サーバーのルールを管理
         message_html: サーバーのルールを定義していません。
