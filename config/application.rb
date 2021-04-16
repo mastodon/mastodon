@@ -8,9 +8,9 @@ Bundler.require(*Rails.groups)
 
 require_relative '../lib/exceptions'
 require_relative '../lib/enumerable'
-require_relative '../lib/terrapin/multi_pipe_extensions'
 require_relative '../lib/sanitize_ext/sanitize_config'
 require_relative '../lib/redis/namespace_extensions'
+require_relative '../lib/paperclip/validation_extensions'
 require_relative '../lib/paperclip/url_generator_extensions'
 require_relative '../lib/paperclip/attachment_extensions'
 require_relative '../lib/paperclip/media_type_spoof_detector_extensions'
