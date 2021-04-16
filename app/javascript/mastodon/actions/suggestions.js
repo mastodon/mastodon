@@ -49,6 +49,11 @@ export const dismissSuggestion = accountId => (dispatch, getState) => {
   });
 
   api(getState).delete(`/api/v1/suggestions/${accountId}`).then(() => {
-    fetchSuggestions()(dispatch, getState);
-  });
+    dispatch(fetchSuggestionsRequest());
+
+    api(getState).get('/api/v2/suggestions').then(response => {
+      dispatch(importFetchedAccounts(response.data.map(x => x.account)));
+      dispatch(fetchSuggestionsSuccess(response.data));
+    }).catch(error => dispatch(fetchSuggestionsFail(error)));
+  }); 
 };
