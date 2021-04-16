@@ -1,61 +1,64 @@
 # frozen_string_literal: false
-# Fix adapted from https://github.com/thoughtbot/terrapin/pull/5
+
+require 'fcntl'
 
 module Terrapin
   module MultiPipeExtensions
+    def initialize
+      @stdout_in, @stdout_out = IO.pipe
+      @stderr_in, @stderr_out = IO.pipe
+
+      clear_nonblocking_flags!
+    end
+
+    def pipe_options
+      # Add some flags to explicitly close the other end of the pipes
+      { out: @stdout_out, err: @stderr_out, @stdout_in => :close, @stderr_in => :close }
+    end
+
     def read
-      read_streams(@stdout_in, @stderr_in)
-    end
+      # While we are patching Terrapin, fix child process potentially getting stuck on writing
+      # to stderr.
 
-    def close_read
-      begin
-        @stdout_in.close
-      rescue IOError
-        # Do nothing
-      end
+      @stdout_output = +''
+      @stderr_output = +''
 
-      begin
-        @stderr_in.close
-      rescue IOError
-        # Do nothing
+      fds_to_read = [@stdout_in, @stderr_in]
+      until fds_to_read.empty?
+        rs, = IO.select(fds_to_read)
+
+        read_nonblocking!(@stdout_in, @stdout_output, fds_to_read) if rs.include?(@stdout_in)
+        read_nonblocking!(@stderr_in, @stderr_output, fds_to_read) if rs.include?(@stderr_in)
       end
     end
 
-    def read_streams(output, error)
-      @stdout_output = ''
-      @stderr_output = ''
+    private
 
-      read_fds = [output, error]
-
-      until read_fds.empty?
-        to_read, = IO.select(read_fds)
-
-        if to_read.include?(output)
-          @stdout_output << read_stream(output)
-          read_fds.delete(output) if output.closed?
-        end
-
-        if to_read.include?(error)
-          @stderr_output << read_stream(error)
-          read_fds.delete(error) if error.closed?
-        end
+    # @param [IO] io IO Stream to read until there is nothing to read
+    # @param [String] result Mutable string to which read values will be appended to
+    # @param [Array<IO>] fds_to_read Mutable array from which `io` should be removed on EOF
+    def read_nonblocking!(io, result, fds_to_read)
+      while (partial_result = io.read_nonblock(8192))
+        result << partial_result
       end
+    rescue IO::WaitReadable
+      # Do nothing
+    rescue EOFError
+      fds_to_read.delete(io)
     end
 
-    def read_stream(io)
-      result = ''
+    def clear_nonblocking_flags!
+      # Ruby 3.0 sets pipes to non-blocking mode, and resets the flags as
+      # needed when calling fork/exec-related syscalls, but posix-spawn does
+      # not currently do that, so we need to do it manually for the time being
+      # so that the child process do not error out when the buffers are full.
+      stdout_flags = @stdout_out.fcntl(Fcntl::F_GETFL)
+      @stdout_out.fcntl(Fcntl::F_SETFL, stdout_flags & ~Fcntl::O_NONBLOCK) if stdout_flags & Fcntl::O_NONBLOCK
 
-      begin
-        while (partial_result = io.read_nonblock(8192))
-          result << partial_result
-        end
-      rescue EOFError, Errno::EPIPE
-        io.close
-      rescue Errno::EINTR, Errno::EWOULDBLOCK, Errno::EAGAIN
-        # Do nothing
-      end
-
-      result
+      stderr_flags = @stderr_out.fcntl(Fcntl::F_GETFL)
+      @stderr_out.fcntl(Fcntl::F_SETFL, stderr_flags & ~Fcntl::O_NONBLOCK) if stderr_flags & Fcntl::O_NONBLOCK
+    rescue NameError, NotImplementedError, Errno::EINVAL
+      # Probably on windows, where pipes are blocking by default
     end
   end
 end
