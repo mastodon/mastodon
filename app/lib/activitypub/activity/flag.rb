@@ -10,6 +10,8 @@ class ActivityPub::Activity::Flag < ActivityPub::Activity
     target_accounts.each do |target_account|
       target_statuses = target_statuses_by_account[target_account.id]
 
+      next if target_account.suspended?
+
       ReportService.new.call(
         @account,
         target_account,
