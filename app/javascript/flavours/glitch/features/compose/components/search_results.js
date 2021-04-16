@@ -55,9 +55,9 @@ class SearchResults extends ImmutablePureComponent {
               <AccountContainer
                 key={suggestion.get('account')}
                 id={suggestion.get('account')}
-                actionIcon={suggestion.get('source') === 'past_interaction' && 'times'}
-                actionTitle={suggestion.get('source') === 'past_interaction' && intl.formatMessage(messages.dismissSuggestion)}
-                onActionClick={suggestion.get('source') === 'past_interaction' && dismissSuggestion}
+                actionIcon={suggestion.get('source') === 'past_interaction' ? 'times' : null}
+                actionTitle={suggestion.get('source') === 'past_interaction' ? intl.formatMessage(messages.dismissSuggestion) : null}
+                onActionClick={dismissSuggestion}
               />
             ))}
           </div>
