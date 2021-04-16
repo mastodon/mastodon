@@ -142,7 +142,7 @@ ActiveRecord::Schema.define(version: 2021_03_24_171613) do
     t.index ["target_account_id"], name: "index_account_warnings_on_target_account_id"
   end
 
-  create_table "accounts", id: :bigint, default: -> { "timestamp_id('statuses'::text)" }, force: :cascade do |t|
+  create_table "accounts", id: :bigint, default: -> { "timestamp_id('accounts'::text)" }, force: :cascade do |t|
     t.string "username", default: "", null: false
     t.string "domain"
     t.string "secret", default: "", null: false
