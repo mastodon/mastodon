@@ -49,7 +49,7 @@ class ActivityPub::Activity::Announce < ActivityPub::Activity
         uri: @json['id'],
         created_at: @json['published'],
         override_timestamps: @options[:override_timestamps],
-        visibility: visibility_from_audience
+        visibility: visibility_from_audience,
       }
     end
   end
