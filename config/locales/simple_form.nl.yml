@@ -11,7 +11,7 @@ nl:
       admin_account_action:
         include_statuses: De gebruiker ziet welke toots verantwoordelijk zijn voor de moderatieactie of waarschuwing
         send_email_notification: De gebruiker ontvangt een uitleg over wat er met hun account is gebeurd
-        text_html: Optioneel. Je kunt voor toots specifieke tekst gebruiken. Om tijd te besparen kun je <a href="%{path}">voorinstellingen van waarschuwingen toevoegen</a>
+        text_html: Optioneel. Je kunt voor toots specifieke tekst gebruiken. Om tijd te besparen kun je <a href="%{path}">presets voor waarschuwingen toevoegen</a>
         type_html: Kies wat er met <strong>%{acct}</strong> moet gebeuren
         types:
           disable: Voorkom dat de gebruiker hun account gebruikt, maar verwijder of verberg de inhoud niet.
@@ -29,7 +29,7 @@ nl:
       defaults:
         autofollow: Mensen die zich via de uitnodiging hebben geregistreerd, volgen jou automatisch
         avatar: PNG, GIF of JPG. Maximaal %{size}. Wordt teruggeschaald naar %{dimensions}px
-        bot: Dit is een geautomatiseerd account en wordt mogelijk niet gemonitord
+        bot: Signaal naar andere gebruikers toe dat dit account hoofdzakelijk geautomatiseerde berichten stuurt en mogelijk niet wordt gemonitord
         context: Een of meerdere locaties waar de filter actief moet zijn
         current_password: Voer voor veiligheidsredenen het wachtwoord van je huidige account in
         current_username: Voer ter bevestiging de gebruikersnaam van je huidige account in
@@ -41,7 +41,7 @@ nl:
         inbox_url: Kopieer de URL van de voorpagina van de relayserver die je wil gebruiken
         irreversible: Gefilterde toots verdwijnen onomkeerbaar, zelfs als de filter later wordt verwijderd
         locale: De taal van de gebruikersomgeving, e-mails en pushmeldingen
-        locked: Vereist dat je handmatig volgers moet accepteren
+        locked: Door het goedkeuren van volgers handmatig bepalen wie jou mag volgen
         password: Gebruik tenminste 8 tekens
         phrase: Komt overeen ongeacht hoofd-/kleine letters of tekstwaarschuwingen
         scopes: Tot welke API's heeft de toepassing toegang. Wanneer je een toestemming van het bovenste niveau kiest, hoef je geen individuele toestemmingen meer te kiezen.
@@ -97,7 +97,7 @@ nl:
       account_migration:
         acct: Mastodonadres van het nieuwe account
       account_warning_preset:
-        text: Tekst van voorinstelling
+        text: Tekst van preset
         title: Titel
       admin_account_action:
         include_statuses: Gerapporteerde toots aan de e-mail toevoegen
