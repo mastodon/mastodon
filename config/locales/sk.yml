@@ -235,12 +235,15 @@ sk:
       deleted_status: "(zmazaný príspevok)"
       title: Kontrólny záznam
     announcements:
+      destroyed_msg: Oboznámenie úspešne vymazané!
+      edit:
+        title: Uprav oboznámenie
+      empty: Žiadne oboznámenia nenájdené.
       live: Naživo
       new:
         create: Vytvor oznam
         title: Nové oznámenie
-      published: Zverejnený
-      time_range: Časový rozsah
+      published_msg: Oboznámenie úspešne zverejnené!
       title: Oboznámenia
     custom_emojis:
       assign_category: Priraď kategóriu
@@ -354,6 +357,7 @@ sk:
       delete: Vymaž
       destroyed_msg: Emailová doména bola úspešne vymazaná zo zoznamu zakázaných
       domain: Doména
+      empty: Žiadné emailové domény niesú v súčasnosti na čiernej listine.
       new:
         create: Pridaj doménu
         title: Nový email na zablokovanie
@@ -388,6 +392,8 @@ sk:
       title: Pozvánky
     pending_accounts:
       title: Čakajúcich účtov (%{count})
+    relationships:
+      title: Vzťahy užívateľa %{acct}
     relays:
       add_new: Pridaj nový federovací mostík
       delete: Vymaž
@@ -464,6 +470,8 @@ sk:
         users: Prihláseným, miestnym užívateľom
       domain_blocks_rationale:
         title: Ukáž zdôvodnenie
+      enable_bootstrap_timeline_accounts:
+        title: Novým užívateľom povoľ východiskové následovania
       hero:
         desc_html: Zobrazuje sa na hlavnej stránke. Doporučené je rozlišenie aspoň 600x100px. Pokiaľ nič nieje dodané, bude nastavený základný orázok serveru.
         title: Obrázok hrdinu
@@ -591,6 +599,7 @@ sk:
     confirmation_dialogs: Potvrdzovacie dialógy
     discovery: Nájdenie
     localization:
+      body: Mastodon je prekladaný dobrovoľníkmi.
       guide_link_text: Prispievať môže každý.
     sensitive_content: Chúlostivý obsah
     toot_layout: Rozloženie príspevkov
@@ -935,6 +944,7 @@ sk:
     dormant: Spiace
     followers: Následovatelia
     following: Následovaní
+    invited: Pozvaný/á
     last_active: Naposledy aktívny
     most_recent: Najnovšie
     moved: Presunuli sa

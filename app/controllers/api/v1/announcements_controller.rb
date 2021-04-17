@@ -19,11 +19,7 @@ class Api::V1::AnnouncementsController < Api::BaseController
 
   def set_announcements
     @announcements = begin
-      scope = Announcement.published
-
-      scope.merge!(Announcement.without_muted(current_account)) unless truthy_param?(:with_dismissed)
-
-      scope.chronological
+      Announcement.published.chronological
     end
   end
 

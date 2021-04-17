@@ -206,11 +206,13 @@ cs:
         change_email_user: Uživatel %{name} změnil e-mailovou adresu uživatele %{target}
         confirm_user: Uživatel %{name} potvrdil e-mailovou adresu uživatele %{target}
         create_account_warning: Uživatel %{name} poslal varování uživateli %{target}
+        create_announcement: Uživatel %{name} vytvořil nové oznámení %{target}
         create_custom_emoji: Uživatel %{name} nahrál nové emoji %{target}
         create_domain_allow: Uživatel %{name} přidal doménu %{target} na bílou listinu
         create_domain_block: Uživatel %{name} zablokoval doménu %{target}
         create_email_domain_block: Uživatel %{name} přidal e-mailovou doménu %{target} na černou listinu
         demote_user: Uživatel %{name} degradoval uživatele %{target}
+        destroy_announcement: Uživatel %{name} odstranil oznámení %{target}
         destroy_custom_emoji: Uživatel %{name} zničil emoji %{target}
         destroy_domain_allow: Uživatel %{name} odebral doménu %{target} z bílé listiny
         destroy_domain_block: Uživatel %{name} odblokoval doménu %{target}
@@ -232,10 +234,25 @@ cs:
         unassigned_report: Uživatel %{name} odebral hlášení %{target}
         unsilence_account: Uživatel %{name} zrušil ztišení uživatele %{target}
         unsuspend_account: Uživatel %{name} zrušil pozastavení účtu uživatele %{target}
+        update_announcement: Uživatel %{name} aktualizoval oznámení %{target}
         update_custom_emoji: Uživatel %{name} aktualizoval emoji %{target}
         update_status: Uživatel %{name} aktualizoval toot uživatele %{target}
       deleted_status: "(smazaný toot)"
       title: Auditovací protokol
+    announcements:
+      destroyed_msg: Oznámení bylo úspěšně odstraněno
+      edit:
+        title: Upravit oznámení
+      empty: Nebyla nalezena žádná oznámení.
+      new:
+        create: Vytvořit oznámení
+        title: Nové oznámení
+      published_msg: Oznámení bylo úspěšně zveřejněno
+      scheduled_for: Naplánováno na %{time}
+      scheduled_msg: Zveřejnění oznámení bylo naplánováno
+      title: Oznámení
+      unpublished_msg: Zveřejněné oznámení bylo skryto
+      updated_msg: Oznámení bylo úspěšně aktualizováno
     custom_emojis:
       assign_category: Přiřadit kategorii
       by_domain: Doména
@@ -384,6 +401,8 @@ cs:
       title: Pozvánky
     pending_accounts:
       title: Čekající účty (%{count})
+    relationships:
+      title: Vztahy uživatele %{acct}
     relays:
       add_new: Přidat nový most
       delete: Smazat
@@ -671,6 +690,9 @@ cs:
     hint_html: "<strong>Tip:</strong> Po dobu jedné hodiny vás o heslo nebudeme znovu žádat."
     invalid_password: Neplatné heslo
     prompt: Pokračujte potvrzením hesla
+  date:
+    formats:
+      default: "%-d. %b %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count} hod"
@@ -747,6 +769,7 @@ cs:
     hint_html: "<strong>Co jsou zvýrazněné hashtagy?</strong> Zobrazují se prominentně na vašem veřejném profilu a dovolují lidem prohlížet si vaše veřejné příspěvky konkrétně pod těmi hashtagy. Je to skvělý nástroj pro sledování kreativních děl nebo dlouhodobých projektů."
   filters:
     contexts:
+      account: Profily
       home: Domovská časová osa
       notifications: Oznámení
       public: Veřejné časové osy
@@ -771,6 +794,7 @@ cs:
     all: Všechny
     changes_saved_msg: Změny byly úspěšně uloženy!
     copy: Kopírovat
+    delete: Smazat
     no_batch_actions_available: Pro tuto stránku nejsou dostupné žádné souhrnné akce
     order_by: Seřadit podle
     save_changes: Uložit změny
@@ -950,6 +974,10 @@ cs:
     other: Ostatní
     posting_defaults: Výchozí možnosti psaní
     public_timelines: Veřejné časové osy
+  reactions:
+    errors:
+      limit_reached: Dosažen limit různých reakcí
+      unrecognized_emoji: není známý smajlík
   relationships:
     activity: Aktivita účtu
     dormant: Nečinné

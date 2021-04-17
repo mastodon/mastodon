@@ -3,7 +3,7 @@ Changelog
 
 All notable changes to this project will be documented in this file.
 
-## Unreleased
+## [3.1.0] - 2020-02-09
 ### Added
 
 - Add bookmarks ([ThibG](https://github.com/tootsuite/mastodon/pull/7107), [Gargron](https://github.com/tootsuite/mastodon/pull/12494), [Gomasy](https://github.com/tootsuite/mastodon/pull/12381))
@@ -38,8 +38,9 @@ All notable changes to this project will be documented in this file.
 - Add support for KaiOS arrow navigation to public pages ([nolanlawson](https://github.com/tootsuite/mastodon/pull/12251))
 - Add `discoverable` to accounts in REST API ([trwnh](https://github.com/tootsuite/mastodon/pull/12508))
 - Add admin setting to disable default follows ([ArisuOngaku](https://github.com/tootsuite/mastodon/pull/12566))
-- Add support for LDAP and PAM in the OAuth password grant strategy ([ntl-purism](https://github.com/tootsuite/mastodon/pull/12390))
+- Add support for LDAP and PAM in the OAuth password grant strategy ([ntl-purism](https://github.com/tootsuite/mastodon/pull/12390), [Gargron](https://github.com/tootsuite/mastodon/pull/12743))
 - Allow support for `Accept`/`Reject` activities with a non-embedded object ([puckipedia](https://github.com/tootsuite/mastodon/pull/12199))
+- Add "Show thread" button to public profiles ([Sasha-Sorokin](https://github.com/tootsuite/mastodon/pull/13000))
 
 ### Changed
 
@@ -65,6 +66,7 @@ All notable changes to this project will be documented in this file.
 - Change to fallback to to `Create` audience when `object` has no defined audience ([ThibG](https://github.com/tootsuite/mastodon/pull/12249))
 - Change Twemoji library to 12.1.3 in web UI ([koyuawsmbrtn](https://github.com/tootsuite/mastodon/pull/12342))
 - Change blocked users to be hidden from following/followers lists ([ThibG](https://github.com/tootsuite/mastodon/pull/12733))
+- Change signature verification to ignore signatures with invalid host ([Gargron](https://github.com/tootsuite/mastodon/pull/13033))
 
 ### Removed
 
@@ -92,14 +94,13 @@ All notable changes to this project will be documented in this file.
 - Fix old migrations failing because of strong migrations update ([ThibG](https://github.com/tootsuite/mastodon/pull/12787), [ThibG](https://github.com/tootsuite/mastodon/pull/12692))
 - Fix reuse of detailed status components in web UI ([ThibG](https://github.com/tootsuite/mastodon/pull/12792))
 - Fix base64-encoded file uploads not being possible in REST API ([Gargron](https://github.com/tootsuite/mastodon/pull/12748), [Gargron](https://github.com/tootsuite/mastodon/pull/12857))
-- Fix resource_owner_from_credentials in Doorkeeper initializer ([Gargron](https://github.com/tootsuite/mastodon/pull/12743))
 - Fix error due to missing authentication call in filters controller ([Gargron](https://github.com/tootsuite/mastodon/pull/12746))
 - Fix uncaught unknown format error in host meta controller ([Gargron](https://github.com/tootsuite/mastodon/pull/12747))
 - Fix URL search not returning private toots user has access to ([ThibG](https://github.com/tootsuite/mastodon/pull/12742), [ThibG](https://github.com/tootsuite/mastodon/pull/12336))
 - Fix cache digesting log noise on status embeds ([Gargron](https://github.com/tootsuite/mastodon/pull/12750))
 - Fix slowness due to layout thrashing when reloading a large set of statuses in web UI ([panarom](https://github.com/tootsuite/mastodon/pull/12661), [panarom](https://github.com/tootsuite/mastodon/pull/12744), [Gargron](https://github.com/tootsuite/mastodon/pull/12712))
 - Fix error when fetching followers/following from REST API when user has network hidden ([Gargron](https://github.com/tootsuite/mastodon/pull/12716))
-- Fix IDN mentions not being processed, IDN domains not being rendered ([Gargron](https://github.com/tootsuite/mastodon/pull/12715))
+- Fix IDN mentions not being processed, IDN domains not being rendered ([Gargron](https://github.com/tootsuite/mastodon/pull/12715), [Gargron](https://github.com/tootsuite/mastodon/pull/13035), [Gargron](https://github.com/tootsuite/mastodon/pull/13030))
 - Fix error when searching for empty phrase ([Gargron](https://github.com/tootsuite/mastodon/pull/12711))
 - Fix backups stopping due to read timeouts ([chr-1x](https://github.com/tootsuite/mastodon/pull/12281))
 - Fix batch actions on non-pending tags in admin UI ([ThibG](https://github.com/tootsuite/mastodon/pull/12537))
@@ -152,6 +153,13 @@ All notable changes to this project will be documented in this file.
 - Fix voting issue with remote polls that contain trailing spaces ([ThibG](https://github.com/tootsuite/mastodon/pull/12515))
 - Fix dynamic elements not working in pgHero due to CSP rules ([ykzts](https://github.com/tootsuite/mastodon/pull/12489))
 - Fix overly verbose backtraces when delivering ActivityPub payloads ([zunda](https://github.com/tootsuite/mastodon/pull/12798))
+- Fix rendering `<a>` without `href` when scheme unsupported ([Gargron](https://github.com/tootsuite/mastodon/pull/13040))
+- Fix unfiltered params error when generating ActivityPub tag pagination ([Gargron](https://github.com/tootsuite/mastodon/pull/13049))
+- Fix malformed HTML causing uncaught error ([Gargron](https://github.com/tootsuite/mastodon/pull/13042))
+- Fix native share button not being displayed for unlisted toots ([ThibG](https://github.com/tootsuite/mastodon/pull/13045))
+- Fix remote convertible media attachments (e.g. GIFs) not being saved ([Gargron](https://github.com/tootsuite/mastodon/pull/13032))
+- Fix account query not using faster index ([abcang](https://github.com/tootsuite/mastodon/pull/13016))
+- Fix error when sending moderation notification ([renatolond](https://github.com/tootsuite/mastodon/pull/13014))
 
 ### Security
 

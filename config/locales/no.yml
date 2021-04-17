@@ -3,7 +3,7 @@
   about:
     about_hashtag_html: Dette er offentlige toots merket med <strong>#%{hashtag}</strong>. Du kan interagere med dem om du har en konto et sted i fediverset.
     about_mastodon_html: Mastodon er et sosialt nettverk laget med <em>fri programvare</em>. Et <em>desentralisert</em> alternativ til kommersielle plattformer. Slik kan det unngå risikoene ved å ha et enkelt selskap som monopoliserer din kommunikasjon. Velg en tjener du stoler på &mdash; uansett hvilken du velger så kan du kommunisere med alle andre. Alle kan kjøre sin egen Mastodon og delta sømløst i det sosiale nettverket.
-    about_this: Om denne instansen
+    about_this: Om
     active_count_after: aktive
     active_footnote: Månedlige aktive brukere (MAU)
     administered_by: 'Administrert av:'
@@ -58,7 +58,7 @@
       other: Følgere
     following: Følger
     joined: Ble med den %{date}
-    last_active: senest aktiv
+    last_active: sist aktiv
     link_verified_on: Eierskap av denne lenken ble sjekket %{date}
     media: Media
     moved_html: "%{name} har flyttet til %{new_profile_link}:"
@@ -232,6 +232,7 @@
       deleted_status: "(statusen er slettet)"
       title: Revisionslogg
     announcements:
+      destroyed_msg: Kunngjøringen er slettet!
       edit:
         title: Rediger kunngjøring
       empty: Ingen kunngjøringer funnet.
@@ -239,9 +240,12 @@
       new:
         create: Lag kunngjøring
         title: Ny kunngjøring
-      published: Publisert
-      time_range: Tidsramme
+      published_msg: Kunngjøring publisert!
+      scheduled_for: Planlagt for %{time}
+      scheduled_msg: Kunngjøring planlagt for publisering!
       title: Kunngjøringer
+      unpublished_msg: Kunngjøring upublisert!
+      updated_msg: Kunngjøringen er oppdatert!
     custom_emojis:
       assign_category: Tilegn kategori
       by_domain: Domene
@@ -455,10 +459,13 @@
       custom_css:
         desc_html: Modifiser utseendet med CSS lastet på hver side
         title: Egendefinert CSS
+      default_noindex:
+        desc_html: Påvirker alle brukerne som ikke har justert denne innstillingen selv
       domain_blocks:
         all: Til alle
         disabled: Til ingen
         title: Vis domeneblokkeringer
+        users: Til lokale brukere som er logget inn
       domain_blocks_rationale:
         title: Vis grunnlaget
       hero:
@@ -472,7 +479,9 @@
         title: Publiser liste over oppdagede instanser
       preview_sensitive_media:
         desc_html: Lenkeforhåndsvisninger på andre nettsteder vil vise et miniatyrbilde selv dersom mediet er merket som sensitivt
+        title: Vis sensitive medier i OpenGraph-forhåndsvisninger
       profile_directory:
+        desc_html: Tillat brukere å bli oppdagelige
         title: Skru på profilmappen
       registrations:
         closed_message:
@@ -484,6 +493,12 @@
         min_invite_role:
           disabled: Ingen
           title: Tillat invitasjoner fra
+      registrations_mode:
+        modes:
+          approved: Godkjenning kreves for påmelding
+          none: Ingen kan melde seg inn
+          open: Hvem som helst kan melde seg inn
+        title: Registreringsmodus
       show_staff_badge:
         desc_html: Vis personalemerke på brukersiden
         title: Vis personalemerke
@@ -523,9 +538,11 @@
       media:
         title: Media
       no_media: Ingen media
+      no_status_selected: Ingen statuser ble endret da ingen ble valgt
       title: Kontostatuser
       with_media: Med media
     tags:
+      accounts_today: Ulike brukere i dag
       accounts_week: Unike brukstilfeller denne uken
       context: Sammenheng
       directory: I mappen
@@ -546,8 +563,12 @@
       delete: Slett
       edit: Rediger
   admin_mailer:
+    new_pending_account:
+      body: Detaljer om den nye kontoen er nedenfor. Du kan godkjenne eller avvise denne søknaden.
+      subject: Ny konto opp til vurdering på %{instance} (%{username})
     new_report:
       body: "%{reporter} har rapportert %{target}"
+      body_remote: Noen fra %{domain} har rapportert %{target}
       subject: Ny rapport for %{instance} (#%{id})
     new_trending_tag:
       body: 'Emneknaggen #%{name} trender i dag, men den har ikke blitt gjennomgått tidligere. Den vil ikke bli vist offentlig med mindre du tillater at den blir det, eller du kan bare lagre skjemaet slik det er for å aldri høre om det igjen.'
@@ -561,6 +582,10 @@
     animations_and_accessibility: Animasjoner og tilgjengelighet
     confirmation_dialogs: Bekreftelsesdialoger
     discovery: Oppdagelse
+    localization:
+      body: Mastodon er oversatt av frivillige.
+      guide_link: https://crowdin.com/project/mastodon
+      guide_link_text: Alle kan bidra.
     sensitive_content: Sensitivt innhold
     toot_layout: Tut-utseende
   application_mailer:
@@ -586,6 +611,7 @@
     delete_account: Slett konto
     delete_account_html: Hvis du ønsker å slette kontoen din, kan du <a href="%{path}">gå hit</a>. Du vil bli spurt om bekreftelse.
     description:
+      prefix_invited_by_user: "@%{name} inviterer deg til å bli med på denne serveren til Mastodon!"
       prefix_sign_up: Meld deg opp på Mastodon i dag!
       suffix: Med en konto, vil kunne følge folk, legge ut oppdateringer, og utveksle meldinger med brukere fra enhver Mastodon-tjener, og mer til!
     didnt_get_confirmation: Mottok du ikke instruksjoner om bekreftelse?
@@ -600,6 +626,7 @@
       cas: CAS
       saml: SAML
     register: Bli med
+    registration_closed: "%{instance} godtar ikke nye medlemmer"
     resend_confirmation: Send bekreftelsesinstruksjoner på nytt
     reset_password: Nullstill passord
     security: Sikkerhet
@@ -610,10 +637,13 @@
       title: Innstillinger
     status:
       account_status: Kontostatus
+      confirming: Venter på at e-postbekreftelsen er fullført.
       functional: Kontoen din er fullt operativt.
       pending: Søknaden din avventer gjennomgang av styret vårt. Dette kan ta litt tid. Du vil motta en E-post dersom søknaden din blir godkjent.
+      redirecting_to: Kontoen din er inaktiv fordi den for øyeblikket omdirigerer til %{acct}.
     trouble_logging_in: Har du problemer med å logge på?
   authorize_follow:
+    already_following: Du følger allerede denne kontoen
     error: Uheldigvis skjedde det en feil da vi prøvde å få tak i en bruker fra en annen instans
     follow: Følg
     follow_request: 'Du har sendt en følgeforespørsel til:'
@@ -625,8 +655,12 @@
     title: Følg %{acct}
   challenge:
     confirm: Fortsett
+    hint_html: "<strong>Tips:</strong> Vi ber deg ikke om passordet ditt igjen i løpet av neste time."
     invalid_password: Ugyldig passord
     prompt: Bekreft passordet for å fortsette
+  date:
+    formats:
+      default: "%b %d, %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count} timer"
@@ -642,6 +676,7 @@
       x_months: "%{count} mnd"
       x_seconds: "%{count} sek"
   deletes:
+    challenge_not_passed: Informasjonen du oppga var ikke korrekt
     confirm_password: Skriv inn ditt passord for å verifisere din identitet
     confirm_username: Skriv inn brukernavnet ditt for å bekrefte prosedyren
     proceed: Slett konto
@@ -664,10 +699,10 @@
   domain_validator:
     invalid_domain: er ikke et gyldig domenenavn
   errors:
-    '400': The request you submitted was invalid or malformed.
+    '400': Forespørselen du sendte inn var ugyldig eller feil.
     '403': Du har ikke tillatelse til å vise denne siden.
     '404': Siden du leter etter finnes ikke.
-    '406': This page is not available in the requested format.
+    '406': Denne siden er ikke tilgjengelig i ønsket format.
     '410': Siden du leter etter finnes ikke lenger.
     '422':
       content: Sikkerhetsverifisering feilet. Blokkerer du informasjonskapsler?
@@ -676,15 +711,17 @@
     '500':
       content: Beklager men noe gikk galt ved vår ende.
       title: Denne siden er ikke korrekt
-    '503': The page could not be served due to a temporary server failure.
+    '503': Siden kunne ikke vises på grunn av en midlertidig serverfeil.
     noscript_html: For å bruke Mastodon webapplikasjon må du aktivere JavaScript. Alternativt kan du forsøke en av de mange <a href="%{apps_path}">integrerte appene</a> for Mastodon til din plattform.
   existing_username_validator:
+    not_found: kunne ikke finne en lokal bruker med det brukernavnet
     not_found_multiple: klarte ikke å finne %{usernames}
   exports:
     archive_takeout:
       date: Dato
       download: Last ned arkivet ditt
       hint_html: Du kan be om et arkiv med dine <strong>tuter og opplastede media</strong>. Den eksporterte dataen vil være i ActivityPub-formatet, som kan leses av programmer som støtter det. Du kan be om et arkiv opptil hver 7. dag.
+      in_progress: Samler arkivet ditt...
       request: Be om ditt arkiv
       size: Størrelse
     blocks: Du blokkerer
@@ -698,6 +735,7 @@
     hint_html: "<strong>Hva er utvalgte emneknagger?</strong> De vises frem tydelig på din offentlige profil, og lar folk bla i dine offentlige innlegg som spesifikt har de emneknaggene. De er et bra verktøy for å holde styr på kreative verk eller langtidsprosjekter."
   filters:
     contexts:
+      account: Profiler
       home: Hjemmetidslinje
       notifications: Varslinger
       public: Offentlige tidslinjer
@@ -706,6 +744,7 @@
       title: Rediger filter
     index:
       delete: Slett
+      empty: Du har ingen filtre.
       title: Filtre
     new:
       title: Legg til nytt filter
@@ -718,6 +757,7 @@
     all: Alle
     changes_saved_msg: Vellykket lagring av endringer!
     copy: Kopier
+    delete: Slett
     order_by: Sorter etter
     save_changes: Lagre endringer
     validation_errors:
@@ -726,6 +766,7 @@
   identity_proofs:
     active: Aktive
     authorize: Ja, autoriser
+    authorize_connection_prompt: Vil du autorisere denne kryptografiske forbindelsen?
     errors:
       keybase:
         verification_failed: Keybase kjenner ikke igjen denne sjetongen som en signatur for Keybase-brukeren %{kb_username}. Vennligst prøv igjen gjennom Keybase.
@@ -785,6 +826,7 @@
     cancel: Avbryt omdirigeringen
     cancel_explanation: Å avbryte omdirigeringen vil reaktivere din nåværende konto, men vil ikke bringe tilbake følgere som har blitt flyttet til den kontoen.
     errors:
+      already_moved: er den samme kontoen du allerede har flyttet til
       move_to_self: kan ikke være den nåværende kontoen
       not_found: ble ikke funnet
     incoming_migrations: Flytte fra en annen konto
@@ -857,17 +899,23 @@
       duration_too_long: er for langt frem i tid
       duration_too_short: er for snart
       expired: Denne avstemningen er allerede ferdig
+      invalid_choice: Det valgte stemmealternativet eksisterer ikke
+      over_character_limit: kan ikke være lengre enn %{max} tegn hver
       too_few_options: må ha mer enn én gjenstand
       too_many_options: kan ikke ha mer enn %{max} gjenstander
   preferences:
     other: Annet
     posting_defaults: Innleggsstandarder
     public_timelines: Offentlige tidslinjer
+  reactions:
+    errors:
+      limit_reached: Grensen for forskjellige reaksjoner nådd
   relationships:
     activity: Kontoaktivitet
     dormant: Dormende
     followers: Følgere
     following: Følginger
+    invited: Invitert
     last_active: Senest aktiv
     most_recent: Nyligst
     moved: Flyttet
@@ -984,6 +1032,7 @@
         other: "%{count} stemmer"
       vote: Stem
     show_more: Vis mer
+    sign_in_to_participate: Logg på for å delta i samtalen
     title: "%{name}: «%{quote}»"
     visibilities:
       private: Privat
@@ -1107,6 +1156,7 @@
     wrong_code: Den angitte koden var ugyldig! Stemmer instansens tid overalt med enhetens tid?
   user_mailer:
     backup_ready:
+      explanation: Du ba om en fullstendig sikkerhetskopi av Mastodon-kontoen din. Den er nå klar for nedlasting!
       subject: Arkivet ditt er klart til å lastes ned
     warning:
       explanation:
@@ -1114,6 +1164,7 @@
         silence: Mens kontoen din er begrenset, vil bare folk som allerede følger deg se dine tuter på denne tjeneren, og du kan bli ekskludert fra diverse offentlige oppføringer. Men andre kan fortsatt følge deg manuelt.
         suspend: Kontoen din har blitt suspendert, og alle dine tuter og opplastede media har blitt ugjenkallelig fjernet fra denne tjeneren, og fra tjenere der du hadde følgere.
       get_in_touch: Du kan svare på denne E-posten for å komme i kontakt med styret i %{instance}.
+      review_server_policies: Gjennomgå serverretningslinjer
       statuses: 'Spesifikt for å:'
       subject:
         disable: Kontoen din, %{acct}, har blitt fryst
@@ -1143,8 +1194,10 @@
       tips: Tips
       title: Velkommen ombord, %{name}!
   users:
+    follow_limit_reached: Du kan ikke følge mer enn %{limit} personer
     invalid_email: E-postaddressen er ugyldig
     invalid_otp_token: Ugyldig to-faktorkode
+    otp_lost_help_html: Hvis du mistet tilgangen til begge deler, kan du komme i kontakt med %{email}
     signed_in_as: 'Innlogget som:'
   verification:
     explanation_html: 'Du kan <strong>bekrefte at du selv er eieren av lenkene i din profilmetadata</strong>. For å gjøre det, må det tillenkede nettstedet inneholde en lenke som fører tilbake til Mastodon-profilen din. Lenken tilbake <strong>må</strong> ha en <code>rel="me"</code>-attributt. Tekstinnholdet til lenken er irrelevant. Her er et eksempel:'

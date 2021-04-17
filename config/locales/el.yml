@@ -232,6 +232,7 @@ el:
       deleted_status: "(διαγραμμένη δημοσίευση)"
       title: Αρχείο ελέγχου
     announcements:
+      destroyed_msg: Επιτυχής διαγραφή ανακοίνωσης!
       edit:
         title: Ενημέρωση ανακοίνωσης
       empty: Δεν βρέθηκε ανακοίνωση.
@@ -239,9 +240,12 @@ el:
       new:
         create: Δημιουργία ανακοίνωσης
         title: Νέα ανακοίνωση
-      published: Δημοσιευμένη
-      time_range: Χρονική διάρκεια
+      published_msg: Επιτυχής δημοσίευση ανακοίνωσης!
+      scheduled_for: Προγραμματισμένη για %{time}
+      scheduled_msg: Η ανακοίνωση προγραμματίστηκε για δημοσίευση!
       title: Ανακοινώσεις
+      unpublished_msg: Επιτυχής ακύρωση δημοσίευσης ανακοίνωσης!
+      updated_msg: Επιτυχής ενημέρωση ανακοίνωσης!
     custom_emojis:
       assign_category: Κατηγορία
       by_domain: Τομέας
@@ -776,7 +780,6 @@ el:
     changes_saved_msg: Οι αλλαγές αποθηκεύτηκαν!
     copy: Αντιγραφή
     delete: Διαγραφή
-    edit: Ενημέρωση
     no_batch_actions_available: Δεν υπάρχουν ομαδικές ενέργειες σε αυτή τη σελίδα
     order_by: Ταξινόμηση κατά
     save_changes: Αποθήκευση αλλαγών
@@ -950,6 +953,7 @@ el:
     public_timelines: Δημόσιες ροές
   reactions:
     errors:
+      limit_reached: Το όριο διαφορετικών αντιδράσεων ξεπεράστηκε
       unrecognized_emoji: δεν αναγνωρίζεται ως emoji
   relationships:
     activity: Δραστηριότητα λογαριασμού
@@ -1083,6 +1087,7 @@ el:
         other: "%{count} ψήφοι"
       vote: Ψήφισε
     show_more: Δείξε περισσότερα
+    show_thread: Εμφάνιση νήματος
     sign_in_to_participate: Συνδέσου για να συμμετάσχεις στη συζήτηση
     title: '%{name}: "%{quote}"'
     visibilities:

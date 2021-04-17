@@ -198,11 +198,13 @@ it:
         change_email_user: "%{name} ha cambiato l'indirizzo email per l'utente %{target}"
         confirm_user: "%{name} ha confermato l'indirizzo email per l'utente %{target}"
         create_account_warning: "%{name} ha mandato un avvertimento a %{target}"
+        create_announcement: "%{name} ha creato un nuovo annuncio %{target}"
         create_custom_emoji: "%{name} ha caricato un nuovo emoji %{target}"
         create_domain_allow: "%{name} ha messo il dominio %{target} nella whitelist"
         create_domain_block: "%{name} ha bloccato il dominio %{target}"
         create_email_domain_block: "%{name} ha messo il dominio email %{target} nella blacklist"
         demote_user: "%{name} ha degradato l'utente %{target}"
+        destroy_announcement: "%{name} ha eliminato l'annuncio %{target}"
         destroy_custom_emoji: "%{name} ha distrutto l'emoji %{target}"
         destroy_domain_allow: "%{name} ha tolto il dominio %{target} dalla whitelist"
         destroy_domain_block: "%{name} ha sbloccato il dominio %{target}"
@@ -224,10 +226,26 @@ it:
         unassigned_report: "%{name} report non assegnato %{target}"
         unsilence_account: "%{name} ha de-silenziato l'account di %{target}"
         unsuspend_account: "%{name} ha annullato la sospensione dell'account di %{target}"
+        update_announcement: "%{name} ha aggiornato l'annuncio %{target}"
         update_custom_emoji: "%{name} ha aggiornato l'emoji %{target}"
         update_status: "%{name} stato aggiornato da %{target}"
       deleted_status: "(stato cancellato)"
       title: Registro di controllo
+    announcements:
+      destroyed_msg: Annuncio eliminato!
+      edit:
+        title: Modifica annuncio
+      empty: Nessun annuncio trovato.
+      live: Attivo
+      new:
+        create: Crea annuncio
+        title: Nuovo annuncio
+      published_msg: Annuncio pubblicato!
+      scheduled_for: Programmato per %{time}
+      scheduled_msg: Annuncio programmato per la pubblicazione!
+      title: Annunci
+      unpublished_msg: Annuncio tolto dalla pubblicazione!
+      updated_msg: Annuncio aggiornato!
     custom_emojis:
       assign_category: Assegna categoria
       by_domain: Dominio
@@ -372,6 +390,8 @@ it:
       title: Inviti
     pending_accounts:
       title: Account in attesa (%{count})
+    relationships:
+      title: Relazioni di %{acct}
     relays:
       add_new: Aggiungi ripetitore
       delete: Cancella
@@ -656,6 +676,9 @@ it:
     hint_html: "<strong>Suggerimento:</strong> Non ti chiederemo di nuovo la tua password per la prossima ora."
     invalid_password: Password non valida
     prompt: Conferma la tua password per continuare
+  date:
+    formats:
+      default: "%d %b %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count} ore"
@@ -732,6 +755,7 @@ it:
     hint_html: "<strong>Cosa sono gli hashtag in evidenza?</strong> Sono visualizzati in evidenza sul tuo profilo pubblico e permettono alle persone di visualizzare i tuoi post pubblici marcati con questi hashtag. Sono un grande strumento per tenere traccia di opere creative o progetti a lungo termine."
   filters:
     contexts:
+      account: Profili
       home: Timeline home
       notifications: Notifiche
       public: Timeline pubbliche
@@ -756,6 +780,7 @@ it:
     all: Tutto
     changes_saved_msg: Modifiche effettuate con successo!
     copy: Copia
+    delete: Cancella
     no_batch_actions_available: Nessuna azione batch disponibile su questa pagina
     order_by: Ordina per
     save_changes: Salva modifiche
@@ -927,11 +952,16 @@ it:
     other: Altro
     posting_defaults: Predefinite di pubblicazione
     public_timelines: Timeline pubbliche
+  reactions:
+    errors:
+      limit_reached: Raggiunto il limite di reazioni diverse
+      unrecognized_emoji: non è un emoji riconosciuto
   relationships:
     activity: Attività dell'account
     dormant: Dormiente
     followers: Seguaci
     following: Seguiti
+    invited: Invitato
     last_active: Ultima volta attivo
     most_recent: Più recente
     moved: Trasferito
@@ -1058,6 +1088,7 @@ it:
         other: "%{count} voti"
       vote: Vota
     show_more: Mostra di più
+    show_thread: Mostra thread
     sign_in_to_participate: Accedi per partecipare alla conversazione
     title: '%{name}: "%{quote}"'
     visibilities:

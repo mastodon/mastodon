@@ -232,6 +232,7 @@ fr:
       deleted_status: "(statut supprimé)"
       title: Journal d’audit
     announcements:
+      destroyed_msg: Annonce supprimée avec succès !
       edit:
         title: Modifier l’annonce
       empty: Aucune annonce trouvée.
@@ -239,9 +240,12 @@ fr:
       new:
         create: Créer une annonce
         title: Nouvelle annonce
-      published: Publié
-      time_range: Intervalle de temps
+      published_msg: Annonce publiée avec succès !
+      scheduled_for: Planifiée pour %{time}
+      scheduled_msg: Annonce planifiée pour publication !
       title: Annonces
+      unpublished_msg: L’annonce a été dépubliée avec succès !
+      updated_msg: L’annonce a été mise à jour avec succès !
     custom_emojis:
       assign_category: Attribuer une catégorie
       by_domain: Domaine
@@ -776,7 +780,6 @@ fr:
     changes_saved_msg: Les modifications ont été enregistrées avec succès !
     copy: Copier
     delete: Supprimer
-    edit: Modifier
     no_batch_actions_available: Aucune action par lots disponible sur cette page
     order_by: Classer par
     save_changes: Enregistrer les modifications
@@ -950,6 +953,7 @@ fr:
     public_timelines: Fils publics
   reactions:
     errors:
+      limit_reached: Limite de réactions différentes atteinte
       unrecognized_emoji: n’est pas un émoji reconnu
   relationships:
     activity: Activité du compte
@@ -1083,6 +1087,7 @@ fr:
         other: "%{count} votes"
       vote: Voter
     show_more: Afficher plus
+    show_thread: Afficher le fil de discussion
     sign_in_to_participate: Inscrivez-vous pour prendre part à la conversation
     title: '%{name} : "%{quote}"'
     visibilities:

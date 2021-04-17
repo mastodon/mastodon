@@ -228,6 +228,13 @@ kk:
         update_status: "%{name} жазбасын жаңартты %{target}"
       deleted_status: "(өшірілген жазба)"
       title: Аудит логы
+    announcements:
+      destroyed_msg: Анонс сәтті өшірілді!
+      published_msg: Анонс сәтті жарияланды!
+      scheduled_for: Жоспарланған уақыты %{time}
+      scheduled_msg: Анонс жариялану жоспарына алынды!
+      unpublished_msg: Анонс жарияланбады!
+      updated_msg: Анонс сәтті жаңартылды!
     custom_emojis:
       assign_category: Санатты тағайындаңыз
       by_domain: Домен
@@ -1052,6 +1059,7 @@ kk:
         other: "%{count} дауыс"
       vote: Дауыс беру
     show_more: Тағы әкел
+    show_thread: Тақырыпты көрсет
     sign_in_to_participate: Сұхбатқа қатысу үшін кіріңіз
     title: '%{name}: "%{quote}"'
     visibilities:

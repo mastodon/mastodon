@@ -5,27 +5,29 @@ kab:
       account_alias:
         acct: Specify the username@domain of the account you want to move from
       account_migration:
-        acct: Sekcem isem n umseqdac@taɣult n umiḍan wuɣur tebɣiḍ ad tuɣaleḍ
+        acct: Sekcem isem n umseqdac@taγult n umiḍan anida itebγiḍ ad gujjeḍ
       admin_account_action:
-        send_email_notification: Amseqdac ad t-id-yewweḍ usefhem ɣef wayen yeḍran akked umiḍan-is
+        send_email_notification: Amseqdac ad t-id-yewweḍ usefhem γef wayen yeḍran akked umiḍan-is
         type_html: Fren d acu ara txedmeḍ s <strong>%{acct}</strong>
       defaults:
         autofollow: Imdanen ara ijerrden s usnebgi-inek, ad k-ḍefṛen s wudem awurman
-        discoverable: Tabdert n yimaɣnuten d udem-nniḍen i umiḍan-ik akken ad yettwassen ugar
+        discoverable: Tabdert n yimaγnuten d udem-nniḍen i umiḍan-ik akken ad yettwassen ugar
         email: Ad n-teṭṭfeḍ imayl i usentem
-        irreversible: Tibarraḥin i tessazedgeḍ ad ttwakksent i lebda, ula ma tekkseḍ imsizdeg-nni ar zdat
-        locale: Tutlayt n ugrudem, imaylen d tilɣa
+        irreversible: Tijewwaqin i tessazedgeḍ ad ttwakksent i lebda, ula ma tekkseḍ imsizdeg-nni ar zdat
+        locale: Tutlayt n ugrudem, imaylen d tilγa
         password: Seqdec ma drus 8 n yisekkilen
-        setting_hide_network: Wid i teṭṭafaṛeḍ d wid i k-yeṭṭafaṛen ur d-ttwaseknen ara deg umaɣnu-inek
+        setting_hide_network: Wid i teṭṭafaṛeḍ d wid i k-yeṭṭafaṛen ur d-ttwaseknen ara deg umaγnu-inek
         username: Isem-ik n umseqdac ad yili d ayiwen, ulac am netta deg %{domain}
       featured_tag:
-        name: 'Ahat ad tebɣuḍ ad tesqedceḍ yiwen gar-asen:'
+        name: 'Ahat ad tebγuḍ ad tesqedceḍ yiwen gar-asen:'
       imports:
-        data: Afaylu CSV yekka-d seg uqeddac-nniḍen Mastudun
+        data: Afaylu CSV id yusan seg uqeddac-nniḍen n Maṣṭudun
     labels:
       account:
         fields:
           value: Agbur
+      account_migration:
+        acct: Tansa n umiḍan amaynut
       admin_account_action:
         types:
           silence: Sgugem
@@ -36,16 +38,20 @@ kab:
         confirm_password: Sentem awal uffir
         current_password: Awal uffir n tura
         data: Isefka
+        discoverable: Rnu amiḍan-a γer ukaram
         display_name: Isem ara d-yettwaskanen
         email: Tansa imayl
         header: Ixef
         locale: Tutlayt n ugrudem
         new_password: Awal uffir amaynut
         password: Awal uffir
+        setting_default_language: Tutlayt n tira
+        setting_default_privacy: Tabaḍnit n tira
         setting_display_media_default: Akk-a kan
         setting_display_media_hide_all: Ffer kullec
         setting_display_media_show_all: Sken kullec
         setting_hide_network: Ffer azetta-k·m
+        setting_theme: Asental n wesmel
         username: Isem n useqdac
         username_or_email: Isem n useqdac neγ imal
         whole_word: Awal akk
@@ -54,7 +60,7 @@ kab:
       invite:
         comment: Awennit
       invite_request:
-        text: Acimi tebɣiḍ ad ternuḍ iman-ik?
+        text: Acimi tebγiḍ ad ternuḍ iman-ik?
     'no': Ala
     required:
       mark: "*"

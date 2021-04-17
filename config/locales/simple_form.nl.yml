@@ -14,6 +14,12 @@ nl:
         text_html: Optioneel. Je kunt voor toots specifieke tekst gebruiken. Om tijd te besparen kun je <a href="%{path}">voorinstellingen van waarschuwingen toevoegen</a>
         type_html: Kies wat er met <strong>%{acct}</strong> moet gebeuren
         warning_preset_id: Optioneel. Je kunt nog steeds handmatig tekst toevoegen aan het eind van de voorinstelling
+      announcement:
+        all_day: Wanneer dit is aangevinkt worden alleen de datums binnen het tijdvak getoond
+        ends_at: Optioneel. De publicatie van de mededeling wordt op dit tijdstip automatisch beëindigd
+        scheduled_at: Laat leeg om de mededeling meteen te publiceren
+        starts_at: Optioneel. In het geval dat jouw mededeling aan een bepaald tijdvak is gebonden
+        text: Je kunt voor toots specifieke tekst gebruiken. Let op de ruimte die de mededeling op het scherm van de gebruiker inneemt
       defaults:
         autofollow: Mensen die zich via de uitnodiging hebben geregistreerd, volgen jou automatisch
         avatar: PNG, GIF of JPG. Maximaal %{size}. Wordt teruggeschaald naar %{dimensions}px
@@ -83,6 +89,12 @@ nl:
           silence: Negeren
           suspend: Opschorten en onomkeerbaar accountgegevens verwijderen
         warning_preset_id: Gebruik een voorinstelling van een waarschuwing
+      announcement:
+        all_day: Gedurende de hele dag
+        ends_at: Eindigt
+        scheduled_at: Mededeling inplannen
+        starts_at: Begint
+        text: Mededeling
       defaults:
         autofollow: Uitnodigen om jouw account te volgen
         avatar: Avatar

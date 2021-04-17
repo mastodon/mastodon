@@ -35,7 +35,7 @@ gl:
     status_count_before: Que publicaron
     tagline: Segue ás túas amizades e coñece novas
     terms: Termos do servizo
-    unavailable_content: Contido non dispoñíbel
+    unavailable_content: Contido non dispoñible
     unavailable_content_description:
       domain: Servidor
       reason: Razón
@@ -146,7 +146,7 @@ gl:
       most_recent_ip: IP máis recente
       no_account_selected: Ningunha conta mudou porque ningunha foi seleccionada
       no_limits_imposed: Sen límites impostos
-      not_subscribed: Non subscrito
+      not_subscribed: Non subscrita
       pending: Revisión pendente
       perform_full_suspension: Suspender
       promote: Promocionar
@@ -177,21 +177,21 @@ gl:
       show:
         created_reports: Denuncias feitas
         targeted_reports: Denuncias feitas por outros
-      silence: Silenciar
-      silenced: Silenciado
+      silence: Acalar
+      silenced: Acalada
       statuses: Estados
       subscribe: Subscribirse
-      suspended: Suspendido
+      suspended: Suspendida
       time_in_queue: Agardando na cola %{time}
       title: Contas
       unconfirmed_email: Email non confirmado
-      undo_silenced: Desfacer silencio
+      undo_silenced: Desfacer acalar
       undo_suspension: Desfacer suspensión
       unsubscribe: Desbotar a subscrición
       username: Nome de usuaria
       warn: Aviso
       web: Web
-      whitelisted: Listaxe branca
+      whitelisted: Lista branca
     action_logs:
       actions:
         assigned_to_self_report: "%{name} atribuíu a denuncia %{target} a el mesmo"
@@ -232,6 +232,7 @@ gl:
       deleted_status: "(estado eliminado)"
       title: Rexistro de auditoría
     announcements:
+      destroyed_msg: Anuncio eliminado de xeito correcto!
       edit:
         title: Editar anuncio
       empty: Ningún anuncio atopado.
@@ -239,9 +240,12 @@ gl:
       new:
         create: Crear anuncio
         title: Novo anuncio
-      published: Publicado
-      time_range: Intre de tempo
+      published_msg: Anuncio publicado de xeito correcto!
+      scheduled_for: Programado para %{time}
+      scheduled_msg: Anuncio programado para a súa publicación!
       title: Anuncios
+      unpublished_msg: Anuncio desbotado de xeito correcto!
+      updated_msg: Anuncio actualizado de xeito correcto!
     custom_emojis:
       assign_category: Atribuír categoría
       by_domain: Dominio
@@ -508,13 +512,13 @@ gl:
         desc_html: Parágrafo de presentación na páxina principal. Describe o que fai especial a este servidor Mastodon e calquera outra ouca importante. Pode utilizar etiquetas HTML, en particular <code>&lt;a&gt;</code> e <code>&lt;em&gt;</code>.
         title: Descrición do servidor
       site_description_extended:
-        desc_html: Un bo lugar para o seu código de conducta, regras, guías e outras cousas que distingan ao seu servidor. Pode utilizar etiquetas HTML
+        desc_html: Un bo lugar para o teu código de conduta, regras, guías e outras cousas para diferenciar o teu servidor. Podes empregar etiquetas HTML
         title: Información extendida da personalización
       site_short_description:
-        desc_html: Mostrado na barra lateral e nas etiquetas meta. Describe o que é Mastodon e que fai especial a este servidor nun só parágrafo. Se está baldeiro, mostrará a descrición do servidor.
+        desc_html: Amosado na barra lateral e nas etiquetas meta. Describe o que é Mastodon e que fai especial a este servidor nun só parágrafo. Se está baleiro, amosará a descrición do servidor.
         title: Descrición curta do servidor
       site_terms:
-        desc_html: Pode escribir a súa propia política de intimidade, termos de servizo ou aclaracións legais. Pode utilizar etiquetas HTML
+        desc_html: Podes escribir a túa propia política de privacidade, termos de servizo ou aclaracións legais. Podes empregar etiquetas HTML
         title: Termos de servizo personalizados
       site_title: Nome do servidor
       spam_check_enabled:
@@ -528,11 +532,11 @@ gl:
         title: vista previa da liña temporal
       title: Axustes do sitio
       trendable_by_default:
-        desc_html: Afecta a etiquetas que non foron rexeitadas previamente
-        title: Permite as etiquetas ser tendencia sen revisión previa
+        desc_html: Afecta ós cancelos que non foron rexeitados de xeito previo
+        title: Permite ós cancelos ser tendencia sen revisión previa
       trends:
-        desc_html: Mostrar públicamente etiquetas previamente revisadas que actualmente son tendencia
-        title: Etiquetas Tendencia
+        desc_html: Amosar de xeito público cancelos revisados previamente que actualmente son tendencia
+        title: Cancelos en tendencia
     statuses:
       back_to_account: Voltar a páxina da conta
       batch:
@@ -557,14 +561,14 @@ gl:
       last_active: Úlimo activo
       most_popular: Máis popular
       most_recent: Máis recente
-      name: Etiqueta
+      name: Cancelo
       review: Estado de revisión
       reviewed: Revisado
-      title: Etiquetas
+      title: Cancelos
       trending_right_now: Agora como Tendencia
       unique_uses_today: "%{count} publicando hoxe"
       unreviewed: Sen revisar
-      updated_msg: Actualizaronse os axustes das etiquetas
+      updated_msg: Actualizaronse os axustes dos cancelos
     title: Administración
     warning_presets:
       add_new: Engadir novo
@@ -581,8 +585,8 @@ gl:
       body_remote: Alguén desde %{domain} informou sobre %{target}
       subject: Novo informe sobre %{instance} (#%{id})
     new_trending_tag:
-      body: 'A etiqueta #%{name} é tendencia hoxe, pero non foi previamente revisada. Non se mostrará publicamente a menos que ti o permitas, ou gardes o formulario para facer que non se che consulte de novo.'
-      subject: Unha nova etiqueta que revisar en %{instance} (#%{name})
+      body: 'O cancelo #%{name} é tendencia hoxe, pero non foi previamente revisada. Non se amosará de xeito público a menos que ti o permitas, ou gardes o formulario para facer que non se che consulte de novo.'
+      subject: Un novo cancelo que revisar en %{instance} (#%{name})
   aliases:
     add_new: Crear alcume
     created_msg: Creou un novo alcume correctamente. Pode iniciar o movemento desde a conta antiga.
@@ -591,7 +595,7 @@ gl:
     remove: Desligar alcume
   appearance:
     advanced_web_interface: Interface web avanzada
-    advanced_web_interface_hint: Se quere utilizar todo o ancho da súa pantalla, a interface web avanzada permítelle configurar diferentes columnas para ver tanta información como desexe. Inicio, notificacións, liña temporal federada, calquera número de listas e etiquetas.
+    advanced_web_interface_hint: Se queres empregar todo o ancho da túa pantalla, a interface web avanzada permíteche configurar diferentes columnas para ver tanta información como desexe. Inicio, notificacións, cronoloxía federada, calquera número de listaxes e cancelos.
     animations_and_accessibility: Animacións e accesibilidade
     confirmation_dialogs: Diálogos de confirmación
     discovery: Descubrir
@@ -642,8 +646,8 @@ gl:
     registration_closed: "%{instance} non está a aceptar novas usuarias"
     resend_confirmation: Voltar a enviar intruccións de confirmación
     reset_password: Restablecer contrasinal
-    security: Seguridade
-    set_new_password: Establecer novo contrasinal
+    security: Seguranza
+    set_new_password: Estabelecer novo contrasinal
     setup:
       email_below_hint_html: Se o enderezo inferior non é correcto, pode cambialo aquí e recibir un correo de confirmación.
       email_settings_hint_html: Enviouse un correo de confirmación a %{email}. Se o enderezo non é correcto pode cambialo nos axustes da conta.
@@ -664,7 +668,7 @@ gl:
     post_follow:
       close: Ou, pode pechar esta ventá.
       return: Mostrar o perfil da usuaria
-      web: Ir a web
+      web: Ir á web
     title: Seguir %{acct}
   challenge:
     confirm: Continuar
@@ -678,12 +682,12 @@ gl:
     distance_in_words:
       about_x_hours: "%{count}h"
       about_x_months: "%{count}mes"
-      about_x_years: "%{count}a"
-      almost_x_years: "%{count}a"
+      about_x_years: "%{count}ano"
+      almost_x_years: "%{count}ano"
       half_a_minute: Agora
       less_than_x_minutes: "%{count}m"
       less_than_x_seconds: Agora
-      over_x_years: "%{count}a"
+      over_x_years: "%{count}ano"
       x_days: "%{count}d"
       x_minutes: "%{count}m"
       x_months: "%{count}mes"
@@ -737,16 +741,16 @@ gl:
       in_progress: Xerando o seu ficheiro...
       request: Solicite o ficheiro
       size: Tamaño
-    blocks: A bloquear
+    blocks: Bloqueos
     csv: CSV
     domain_blocks: Bloqueos de dominio
-    lists: Listas
-    mutes: Acalou
-    storage: Almacenamento de medios
+    lists: Listaxes
+    mutes: Silenciados
+    storage: Almacenamento de multimedia
   featured_tags:
     add_new: Engadir novo
     errors:
-      limit: Xa acadou o número máximo de etiquetas
+      limit: Xa acadaches o número máximo de cancelos
     hint_html: "<strong>¿Qué son as etiquetas destacadas?</strong> Móstranse destacadas no seu perfil público e permítenlle a outras persoas ver os seus toots públicos nos que as utilizou. Son unha ferramenta moi útil para facer seguimento de traballos creativos e proxectos a longo prazo."
   filters:
     contexts:
@@ -776,7 +780,6 @@ gl:
     changes_saved_msg: Cambios gardados correctamente!!
     copy: Copiar
     delete: Eliminar
-    edit: Editar
     no_batch_actions_available: Non hai accións en pila dispoñibles nesta páxina
     order_by: Ordenar por
     save_changes: Gardar cambios
@@ -950,6 +953,7 @@ gl:
     public_timelines: Liñas temporais públicas
   reactions:
     errors:
+      limit_reached: Acadouse o límite das diferentes reaccións
       unrecognized_emoji: non é unha emoticona recoñecida
   relationships:
     activity: Actividade da conta
@@ -1040,7 +1044,7 @@ gl:
     development: Desenvolvemento
     edit_profile: Editar perfil
     export: Exportar datos
-    featured_tags: Etiquetas destacadas
+    featured_tags: Cancelos destacados
     identity_proofs: Probas de identidade
     import: Importar
     import_and_export: Importar e exportar
@@ -1064,8 +1068,8 @@ gl:
     boosted_from_html: Promovida desde %{acct_link}
     content_warning: 'Aviso sobre o contido: %{warning}'
     disallowed_hashtags:
-      one: 'contiña unha etiqueta non permitida: %{tags}'
-      other: 'contiña etiquetas non permitidas: %{tags}'
+      one: 'contiña un cancelo non permitido: %{tags}'
+      other: 'contiña uns cancelos non permitidos: %{tags}'
     language_detection: Detección automática do idioma
     open_in_web: Abrir na web
     over_character_limit: Excedeu o límite de caracteres %{max}
@@ -1083,6 +1087,7 @@ gl:
         other: "%{count} votos"
       vote: Votar
     show_more: Mostrar máis
+    show_thread: Amosar fío
     sign_in_to_participate: Conéctese para participar na conversa
     title: '%{name}: "%{quote}"'
     visibilities:

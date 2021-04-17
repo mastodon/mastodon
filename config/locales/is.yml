@@ -198,11 +198,13 @@ is:
         change_email_user: "%{name} breytti tölvupóstfangi fyrir notandann %{target}"
         confirm_user: "%{name} staðfesti tölvupóstfang fyrir notandann %{target}"
         create_account_warning: "%{name} sendi aðvörun til %{target}"
+        create_announcement: "%{name} útbjó auglýsingu %{target}"
         create_custom_emoji: "%{name} sendi inn nýtt tjáningartákn %{target}"
         create_domain_allow: "%{name} setti lén %{target} á lista yfir leyft"
         create_domain_block: "%{name} útilokaði lénið %{target}"
         create_email_domain_block: "%{name} setti póstlén %{target} á lista yfir bannað"
         demote_user: "%{name} lækkaði notandann %{target} í tign"
+        destroy_announcement: "%{name} eyddi auglýsingu %{target}"
         destroy_custom_emoji: "%{name} henti út tjáningartákninu %{target}"
         destroy_domain_allow: "%{name} fjarlægði lén %{target} af lista yfir leyft"
         destroy_domain_block: "%{name} aflétti útilokun af léninu %{target}"
@@ -224,10 +226,26 @@ is:
         unassigned_report: "%{name} fjarlægði úthlutun af skýrslu %{target}"
         unsilence_account: "%{name} hætti að hylja notandaaðganginn %{target}"
         unsuspend_account: "%{name} tók notandaaðganginn %{target} úr bið"
+        update_announcement: "%{name} uppfærði auglýsingu %{target}"
         update_custom_emoji: "%{name} uppfærði tjáningartákn %{target}"
         update_status: "%{name} uppfærði stöðufærslu frá %{target}"
       deleted_status: "(eydd stöðufærsla)"
       title: Atvikaskrá
+    announcements:
+      destroyed_msg: Það tókst að eyða auglýsingunni!
+      edit:
+        title: Breyta auglýsingu
+      empty: Engar auglýsingar fundust.
+      live: Í beinni
+      new:
+        create: Búa til auglýsingu
+        title: Ný auglýsing
+      published_msg: Það tókst að birta auglýsinguna!
+      scheduled_for: Áætlað %{time}
+      scheduled_msg: Auglýsing var sett á áætlun!
+      title: Auglýsingar
+      unpublished_msg: Það tókst að taka auglýsinguna úr birtingu!
+      updated_msg: Það tókst að uppfæra auglýsinguna!
     custom_emojis:
       assign_category: Úthluta flokki
       by_domain: Lén
@@ -372,6 +390,8 @@ is:
       title: Boðsgestir
     pending_accounts:
       title: Notendaaðgangar í bið (%{count})
+    relationships:
+      title: Vensl %{acct}
     relays:
       add_new: Bæta við nýjum endurvarpa
       delete: Eyða
@@ -655,6 +675,9 @@ is:
     hint_html: "<strong>Ábending:</strong> Við munum ekki spyrja þig um lykilorðið aftur næstu klukkustundina."
     invalid_password: Ógilt lykilorð
     prompt: Staðfestu lykilorðið til að halda áfram
+  date:
+    formats:
+      default: "%d. %b, %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}kl."
@@ -731,6 +754,7 @@ is:
     hint_html: "<strong>Hvað eru myllumerki með aukið vægi?</strong> Þau eru birt áberandi á opinbera notandasniðinu þínu og gera fólki kleift að fletta í gegnum opinberu færslurnar þínar sérstaklega undir þessum myllumerkjum. Þau eru frábær aðferð við að halda utan um skapandi vinnu eða langtíma verkefni."
   filters:
     contexts:
+      account: Notandasnið
       home: Heimatímalína
       notifications: Tilkynningar
       public: Opinberar tímalínur
@@ -755,6 +779,7 @@ is:
     all: Allt
     changes_saved_msg: Það tókst að vista breytingarnar!
     copy: Afrita
+    delete: Eyða
     no_batch_actions_available: Engar magnvinnsluaðgerðir tiltækar á þessari síðu
     order_by: Raða eftir
     save_changes: Vista breytingar
@@ -926,11 +951,16 @@ is:
     other: Annað
     posting_defaults: Sjálfgefin gildi við gerð færslna
     public_timelines: Opinberar tímalínur
+  reactions:
+    errors:
+      limit_reached: Hámarki mismunandi viðbragða náð
+      unrecognized_emoji: er ekki þekkt tjáningartákn
   relationships:
     activity: Virkni aðgangs
     dormant: Sofandi
     followers: Fylgjendur
     following: Fylgist með
+    invited: Boðið
     last_active: Síðasta virkni
     most_recent: Nýjast
     moved: Fært
@@ -1057,6 +1087,7 @@ is:
         other: "%{count} atkvæði"
       vote: Greiða atkvæði
     show_more: Sýna meira
+    show_thread: Birta þráð
     sign_in_to_participate: Skráðu þig inn til að taka þátt í samtalinu
     title: "%{name}: „%{quote}‟"
     visibilities:

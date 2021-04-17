@@ -66,7 +66,7 @@ ru:
     joined: 'Дата регистрации: %{date}'
     last_active: последняя активность
     link_verified_on: Владение этой ссылкой было проверено %{date}
-    media: Медиа
+    media: Медиафайлы
     moved_html: "%{name} переехал(а) на %{new_profile_link}:"
     network_hidden: Эта информация недоступна
     never_active: Никогда
@@ -206,7 +206,7 @@ ru:
         change_email_user: "%{name} сменил(а) e-mail пользователя %{target}"
         confirm_user: "%{name} подтвердил(а) e-mail адрес пользователя %{target}"
         create_account_warning: "%{name} выдал(а) предупреждение %{target}"
-        create_announcement: "%{name} содал новое объявление %{target}"
+        create_announcement: "%{name} создал(а) новое объявление %{target}"
         create_custom_emoji: "%{name} загрузил(а) новый эмодзи %{target}"
         create_domain_allow: "%{name} внес(ла) домен %{target} в белый список"
         create_domain_block: "%{name} заблокировал(а) домен %{target}"
@@ -240,6 +240,7 @@ ru:
       deleted_status: "(удалённый пост)"
       title: Журнал событий
     announcements:
+      destroyed_msg: Объявление удалено.
       edit:
         title: Редактировать объявление
       empty: Объявления не найдены.
@@ -247,9 +248,12 @@ ru:
       new:
         create: Создать объявление
         title: Новое объявление
-      published: Опубликованные
-      time_range: Временной диапазон
+      published_msg: Объявление опубликовано.
+      scheduled_for: Запланировано на %{time}
+      scheduled_msg: Объявление добавлено в очередь публикации.
       title: Объявления
+      unpublished_msg: Объявление скрыто.
+      updated_msg: Объявление обновлено.
     custom_emojis:
       assign_category: Задать категорию
       by_domain: Домен
@@ -797,7 +801,6 @@ ru:
     changes_saved_msg: Изменения успешно сохранены!
     copy: Копировать
     delete: Удалить
-    edit: Изменить
     no_batch_actions_available: На этой странице нет запланированных действий
     order_by: Сортировка
     save_changes: Сохранить изменения
@@ -1123,6 +1126,7 @@ ru:
         other: "%{count} голосов"
       vote: Голосовать
     show_more: Развернуть
+    show_thread: Открыть обсуждение
     sign_in_to_participate: Войдите, чтобы принять участие в дискуссии
     title: '%{name}: "%{quote}"'
     visibilities:

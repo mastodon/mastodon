@@ -6,8 +6,9 @@ fi:
         send_email_notification: Käyttäjä saa selityksen mitä tapahtui hänen tililleen
       defaults:
         avatar: PNG, GIF tai JPG. Enintään %{size}. Skaalataan kokoon %{dimensions} px
-        bot: Tämä tili suorittaa enimmäkseen automaattisia toimintoja, eikä sitä ehkä valvota
+        bot: Tämä tili suorittaa enimmäkseen automaattisia toimintoja eikä sitä ehkä valvota
         digest: Lähetetään vain pitkän poissaolon jälkeen ja vain, jos olet saanut suoria viestejä poissaolosi aikana
+        discoverable: Profiilihakemisto on toinen tapa, jolla tilisi voi tavoittaa laajemman yleisön
         email: Sinulle lähetetään vahvistussähköposti
         fields: Sinulla voi olla korkeintaan 4 asiaa profiilissasi taulukossa
         header: PNG, GIF tai JPG. Enintään %{size}. Skaalataan kokoon %{dimensions} px
@@ -28,10 +29,12 @@ fi:
           value: Sisältö
       defaults:
         avatar: Profiilikuva
+        bot: Tämä on botti
         confirm_new_password: Vahvista uusi salasana
         confirm_password: Vahvista salasana
         current_password: Nykyinen salasana
         data: Tiedot
+        discoverable: Listaa tämä tili hakemistoon
         display_name: Nimimerkki
         email: Sähköpostiosoite
         expires_in: Vanhenee

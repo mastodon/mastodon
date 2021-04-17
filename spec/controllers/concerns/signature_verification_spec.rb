@@ -97,6 +97,33 @@ describe ApplicationController, type: :controller do
       end
     end
 
+    context 'with inaccessible key' do
+      before do
+        get :success
+
+        author = Fabricate(:account, domain: 'localhost:5000', uri: 'http://localhost:5000/actor')
+        fake_request = Request.new(:get, request.url)
+        fake_request.on_behalf_of(author)
+        author.destroy
+
+        request.headers.merge!(fake_request.headers)
+
+        stub_request(:get, 'http://localhost:5000/actor#main-key').to_raise(Mastodon::HostValidationError)
+      end
+
+      describe '#signed_request?' do
+        it 'returns true' do
+          expect(controller.signed_request?).to be true
+        end
+      end
+
+      describe '#signed_request_account' do
+        it 'returns nil' do
+          expect(controller.signed_request_account).to be_nil
+        end
+      end
+    end
+
     context 'with body' do
       before do
         post :success, body: 'Hello world'

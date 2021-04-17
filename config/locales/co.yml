@@ -232,6 +232,7 @@ co:
       deleted_status: "(statutu sguassatu)"
       title: Ghjurnale d’audit
     announcements:
+      destroyed_msg: Annunziu sguassatu!
       edit:
         title: Mudificà annunzii
       empty: Manc'un annunziu trovu.
@@ -239,9 +240,12 @@ co:
       new:
         create: Creà un'annunziu
         title: Novu annunziu
-      published: Pubblicatu
-      time_range: Intervallu di tempu
+      published_msg: Annunziu pubblicatu!
+      scheduled_for: Prugrammatu per %{time}
+      scheduled_msg: Annunziu prugrammatu per pubblicazione!
       title: Annunzii
+      unpublished_msg: Annunziu piattatu!
+      updated_msg: Annunziu mudificatu!
     custom_emojis:
       assign_category: Aghjunghje categuria
       by_domain: Duminiu
@@ -776,7 +780,6 @@ co:
     changes_saved_msg: Cambiamenti salvati!
     copy: Cupià
     delete: Sguassà
-    edit: Mudificà
     no_batch_actions_available: Alcun'azzione di gruppu nant'à sta pagina
     order_by: Urdinà da
     save_changes: Salvà e mudificazione
@@ -950,6 +953,7 @@ co:
     public_timelines: Linee pubbliche
   reactions:
     errors:
+      limit_reached: Limita di reazzione sfarente tocca
       unrecognized_emoji: ùn hè micca un'emoji ricunisciuta
   relationships:
     activity: Attività di u contu
@@ -1083,6 +1087,7 @@ co:
         other: "%{count} voti"
       vote: Vutà
     show_more: Vede di più
+    show_thread: Vede u filu
     sign_in_to_participate: Cunnettatevi per participà à a cunversazione
     title: '%{name}: "%{quote}"'
     visibilities:

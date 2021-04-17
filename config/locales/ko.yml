@@ -10,7 +10,7 @@ ko:
     api: API
     apps: 모바일 앱
     apps_platforms: 마스토돈을 iOS, 안드로이드, 다른 플랫폼들에서도 사용하세요
-    browse_directory: 프로필 디렉토리를 둘러보고 관심사 찾기
+    browse_directory: 프로필 책자를 둘러보고 관심사 찾기
     browse_local_posts: 이 서버의 공개글 실시간 스트림을 둘러보기
     browse_public_posts: 마스토돈의 공개 라이브 스트림을 둘러보기
     contact: 연락처
@@ -228,6 +228,7 @@ ko:
       deleted_status: "(삭제됨)"
       title: 감사 기록
     announcements:
+      destroyed_msg: 공지가 성공적으로 삭제되었습니다!
       edit:
         title: 공지사항 수정
       empty: 공지를 찾을 수 없습니다.
@@ -235,9 +236,12 @@ ko:
       new:
         create: 공지사항 생성
         title: 새 공지사항
-      published: 발행됨
-      time_range: 시간 범위
+      published_msg: 공지가 성공적으로 발행되었습니다!
+      scheduled_for: "%{time}에 예약됨"
+      scheduled_msg: 공지의 발행이 예약되었습니다!
       title: 공지사항
+      unpublished_msg: 공지가 성공적으로 발행 취소되었습니다!
+      updated_msg: 공지가 성공적으로 업데이트되었습니다!
     custom_emojis:
       assign_category: 분류 지정
       by_domain: 도메인
@@ -276,7 +280,7 @@ ko:
       config: 설정
       feature_deletions: 계정 삭제
       feature_invites: 초대 링크
-      feature_profile_directory: 프로필 디렉토리
+      feature_profile_directory: 프로필 책자
       feature_registrations: 가입
       feature_relay: 연합 릴레이
       feature_spam_check: 안티 스팸
@@ -475,7 +479,7 @@ ko:
         title: 민감한 미디어를 오픈그래프 미리보기에 보여주기
       profile_directory:
         desc_html: 유저들이 발견 될 수 있도록 허용
-        title: 프로필 디렉토리 활성화
+        title: 프로필 책자 활성화
       registrations:
         closed_message:
           desc_html: 신규 등록을 받지 않을 때 프론트 페이지에 표시됩니다. HTML 태그를 사용할 수 있습니다
@@ -546,7 +550,7 @@ ko:
       accounts_week: 금주의 순 사용자
       breakdown: 소스별 오늘의 사용량 분석
       context: 문맥
-      directory: 디렉토리에 있음
+      directory: 책자에 있음
       in_directory: 디렉토리에 %{count}개 있음
       last_active: 최근 활동
       most_popular: 최고 인기
@@ -700,7 +704,7 @@ ko:
       username_available: 당신의 계정명은 다시 사용할 수 있게 됩니다
       username_unavailable: 당신의 계정명은 앞으로 사용할 수 없습니다
   directories:
-    directory: 프로필 디렉토리
+    directory: 프로필 책자
     explanation: 관심사에 대한 유저들을 발견합니다
     explore_mastodon: "%{title} 탐사하기"
   domain_validator:
@@ -770,7 +774,6 @@ ko:
     changes_saved_msg: 정상적으로 변경되었습니다!
     copy: 복사
     delete: 삭제
-    edit: 수정
     no_batch_actions_available: 이 페이지에서 수행할 수 있는 일괄작업이 없습니다
     order_by: 순서
     save_changes: 변경 사항을 저장
@@ -1069,6 +1072,7 @@ ko:
         other: "%{count}명 투표함"
       vote: 투표
     show_more: 더 보기
+    show_thread: 글타래 보기
     sign_in_to_participate: 로그인 하여 이 대화에 참여하기
     title: '%{name}: "%{quote}"'
     visibilities:

@@ -160,6 +160,8 @@ module SignatureVerification
       account ||= stoplight_wrap_request { ActivityPub::FetchRemoteKeyService.new.call(key_id, id: false) }
       account
     end
+  rescue Mastodon::HostValidationError
+    nil
   end
 
   def stoplight_wrap_request(&block)

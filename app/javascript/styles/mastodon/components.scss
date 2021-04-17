@@ -923,6 +923,7 @@
   background: transparent;
   padding: 0;
   padding-top: 8px;
+  text-decoration: none;
 
   &:hover,
   &:active {
@@ -2522,7 +2523,7 @@ a.account__display-name {
     display: block;
     object-fit: contain;
     object-position: bottom left;
-    width: 100%;
+    width: 85%;
     height: 100%;
     pointer-events: none;
     user-drag: none;
@@ -6692,6 +6693,17 @@ noscript {
       display: block;
       font-weight: 500;
       margin-bottom: 10px;
+    }
+
+    &__unread {
+      position: absolute;
+      top: 19px;
+      right: 19px;
+      display: block;
+      background: $highlight-text-color;
+      border-radius: 50%;
+      width: 0.625rem;
+      height: 0.625rem;
     }
   }
 

@@ -11,7 +11,7 @@ module AccountsHelper
 
   def acct(account)
     if account.local?
-      "@#{account.acct}@#{Rails.configuration.x.local_domain}"
+      "@#{account.acct}@#{site_hostname}"
     else
       "@#{account.pretty_acct}"
     end

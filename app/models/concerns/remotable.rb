@@ -36,8 +36,8 @@ module Remotable
 
             basename = SecureRandom.hex(8)
 
-            send("#{attachment_name}=", StringIO.new(response.body_with_limit(limit)))
             send("#{attachment_name}_file_name=", basename + extname)
+            send("#{attachment_name}=", StringIO.new(response.body_with_limit(limit)))
 
             self[attribute_name] = url if has_attribute?(attribute_name)
           end

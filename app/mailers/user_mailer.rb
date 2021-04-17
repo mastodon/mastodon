@@ -6,6 +6,7 @@ class UserMailer < Devise::Mailer
   helper :accounts
   helper :application
   helper :instance
+  helper :statuses
 
   add_template_helper RoutingHelper
 

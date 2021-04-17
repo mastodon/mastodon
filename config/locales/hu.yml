@@ -234,6 +234,7 @@ hu:
       deleted_status: "(törölt tülk)"
       title: Audit napló
     announcements:
+      destroyed_msg: A közlemény sikeresen törölve!
       edit:
         title: Közlemény szerkesztése
       empty: Nincs közlemény.
@@ -241,9 +242,12 @@ hu:
       new:
         create: Közlemény létrehozása
         title: Új közlemény
-      published: Közzétéve
-      time_range: Időintervallum
+      published_msg: A közlemény sikeresen publikálva!
+      scheduled_for: Ekkorra ütemezve %{time}
+      scheduled_msg: A közlemény közzétételre beütemezve!
       title: Közlemények
+      unpublished_msg: A közlemény közzététele sikeresen visszavonva!
+      updated_msg: A közlemény sikeresen frissítve!
     custom_emojis:
       assign_category: Kategóriák
       by_domain: Domain
@@ -778,7 +782,6 @@ hu:
     changes_saved_msg: A változásokat elmentettük!
     copy: Másolás
     delete: Törlés
-    edit: Szerkesztés
     no_batch_actions_available: Ezen az oldalon nem elérhetőek kötegelt műveletek
     order_by: Rendezés
     save_changes: Változások mentése
@@ -952,6 +955,7 @@ hu:
     public_timelines: Nyilvános idővonalak
   reactions:
     errors:
+      limit_reached: A különböző reakciók száma elérte a határértéket
       unrecognized_emoji: nem ismert emoji
   relationships:
     activity: Fiók aktivitás
@@ -1085,6 +1089,7 @@ hu:
         other: "%{count} szavazat"
       vote: Szavazás
     show_more: Mutass többet
+    show_thread: Szál mutatása
     sign_in_to_participate: Jelentkezz be, hogy részt vehess a beszélgetésben
     title: '%{name}: "%{quote}"'
     visibilities:

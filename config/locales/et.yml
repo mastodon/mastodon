@@ -198,11 +198,13 @@ et:
         change_email_user: "%{name} muutis kasutaja %{target} e-postiaadressit"
         confirm_user: "%{name} kinnitas kasutaja %{target} e-postiaadressi"
         create_account_warning: "%{name} saatis kasutajale %{target} hoiatuse"
+        create_announcement: "%{name} lõi uue teadaande %{target}"
         create_custom_emoji: "%{name} laadis üles uue emotikooni %{target}"
         create_domain_allow: "%{name} lisas domeeni %{target} lubatute nimekirja"
         create_domain_block: "%{name} blokeeris domeeni %{target}"
         create_email_domain_block: "%{name} lisas e-posti domeeni %{target} musta nimekirja"
         demote_user: "%{name} alandas kasutaja %{target}"
+        destroy_announcement: "%{name} kustutas teadaande %{target}"
         destroy_custom_emoji: "%{name} kustutas emotikooni %{target}"
         destroy_domain_allow: "%{name} eemaldas domeeni %{target} lubatute nimekirjast"
         destroy_domain_block: "%{name} eemaldas blokeeringu domeenilt %{target}"
@@ -224,10 +226,26 @@ et:
         unassigned_report: "%{name} eemaldas määratluse teatelt %{target}"
         unsilence_account: "%{name} eemaldas vaigistuse %{target}-i kontolt"
         unsuspend_account: "%{name} eemaldas peatamise %{target}-i kontolt"
+        update_announcement: "%{name} uuendas teadaannet %{target}"
         update_custom_emoji: "%{name} uuendas emotikooni %{target}"
         update_status: "%{name} uuendas kasutaja %{target} staatust"
       deleted_status: "(kustutatud staatus)"
       title: Auditilogi
+    announcements:
+      destroyed_msg: Teadaande kustutamine õnnestus!
+      edit:
+        title: Redigeeri teadaannet
+      empty: Teadaandeid ei leitud.
+      live: Avaldatud
+      new:
+        create: Loo teadaanne
+        title: Uus teadaanne
+      published_msg: Teadaande avaldamine õnnestus!
+      scheduled_for: Kavandatud ajaks %{time}
+      scheduled_msg: Teadaanne kavandatud avaldamiseks!
+      title: Teadaanded
+      unpublished_msg: Teadaande eemaldamine avalikkusest õnnestus!
+      updated_msg: Teadaande uuendamine õnnestus!
     custom_emojis:
       assign_category: Määra kategooria
       by_domain: Domeen
@@ -660,6 +678,9 @@ et:
     hint_html: "<strong>Nõuanne:</strong> Me ei küsi Teilt uuesti salasõna järgmise tunni jooksul."
     invalid_password: Vigane salasõna
     prompt: Jätkamiseks kinnitage salasõna
+  date:
+    formats:
+      default: "%d. %b %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}t"
@@ -761,6 +782,7 @@ et:
     all: Kõik
     changes_saved_msg: Muudatuste salvestamine õnnestus!
     copy: Kopeeri
+    delete: Kustuta
     no_batch_actions_available: Komplekttegevused pole sellel lehel saadaval
     order_by: Järjesta
     save_changes: Salvesta muudatused
@@ -932,6 +954,10 @@ et:
     other: Muu
     posting_defaults: Postitamise vaikesätted
     public_timelines: Avalikud ajajooned
+  reactions:
+    errors:
+      limit_reached: Jõutud on erinevate reaktsioonide limiidini
+      unrecognized_emoji: ei ole tuntud emotikoon
   relationships:
     activity: Konto tegevus
     dormant: Seisev
@@ -1066,6 +1092,7 @@ et:
         other: "%{count} häält"
       vote: Hääleta
     show_more: Näita rohkem
+    show_thread: Kuva lõim
     sign_in_to_participate: Logi sisse, et liituda vestlusega
     title: '%{name}: "%{quote}"'
     visibilities:

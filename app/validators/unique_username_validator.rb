@@ -7,8 +7,9 @@ class UniqueUsernameValidator < ActiveModel::Validator
     return if account.username.nil?
 
     normalized_username = account.username.downcase
+    normalized_domain = account.domain&.downcase
 
-    scope = Account.where(domain: nil).where('lower(username) = ?', normalized_username)
+    scope = Account.where(Account.arel_table[:username].lower.eq normalized_username).where(Account.arel_table[:domain].lower.eq normalized_domain)
     scope = scope.where.not(id: account.id) if account.persisted?
 
     account.errors.add(:username, :taken) if scope.exists?
