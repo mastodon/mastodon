@@ -7,7 +7,7 @@ id:
     active_footnote: Pengguna Aktif Bulanan (PAB)
     administered_by: 'Dikelola oleh:'
     api: API
-    apps: Aplikasi hp
+    apps: Aplikasi mobile
     apps_platforms: Gunakan Mastodon dari iOS, Android, dan platform lain
     browse_directory: Jelajahi direktori profil dan saring sesuai minat
     browse_local_posts: Jelajahi siaran langsung dari pos publik server ini
@@ -309,10 +309,12 @@ id:
       new:
         create: Buat pengumuman
         title: Pengumuman baru
+      publish: Terbitkan
       published_msg: Pengumuman berhasil diterbitkan!
       scheduled_for: Dijadwalkan untuk %{time}
       scheduled_msg: Pengumuman dijadwalkan untuk publikasi!
       title: Pengumuman
+      unpublish: Batal terbitkan
       unpublished_msg: Pengumuman berhasil ditarik!
       updated_msg: Pengumuman berhasil diperbarui!
     custom_emojis:
@@ -542,7 +544,10 @@ id:
       updated_at: Diperbarui
     rules:
       add_new: Tambah aturan
+      delete: Hapus
+      description_html: Saat kebanyakan mengklaim sudah membaca dan menyetujui ketentuan layanan, biasanya orang-orang tidak membacanya sampai masalah muncul. <strong>Lebih mudah melihat sepintas aturan server Anda dengan menampilkannya dalam daftar bulatan</strong>. Coba buat aturan individu sependek dan sesederhana mungkin, tapi coba jangan memisahkannya ke dalam item terpisah yang sangat banyak.
       edit: Edit aturan
+      empty: Belum ada aturan server yang didefinisikan.
       title: Aturan server
     settings:
       activity_api_enabled:
@@ -684,6 +689,7 @@ id:
       add_new: Tambah baru
       delete: Hapus
       edit_preset: Sunting preset peringatan
+      empty: Anda belum mendefinisikan peringatan apapun.
       title: Kelola preset peringatan
   admin_mailer:
     new_pending_account:
