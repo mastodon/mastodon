@@ -6,10 +6,21 @@ class StatusReachFinder
   end
 
   def inboxes
-    Account.where(id: reached_account_ids).inboxes
+    (reached_account_inboxes + followers_inboxes + relay_inboxes).uniq
   end
 
   private
+
+  def reached_account_inboxes
+    # When the status is a reblog, there are no interactions with it
+    # directly, we assume all interactions are with the original one
+
+    if @status.reblog?
+      []
+    else
+      Account.where(id: reached_account_ids).inboxes
+    end
+  end
 
   def reached_account_ids
     [
@@ -48,5 +59,17 @@ class StatusReachFinder
 
   def replies_account_ids
     @status.replies.pluck(:account_id)
+  end
+
+  def followers_inboxes
+    @status.account.followers.inboxes
+  end
+
+  def relay_inboxes
+    if @status.public_visibility?
+      Relay.enabled.pluck(:inbox_url)
+    else
+      []
+    end
   end
 end

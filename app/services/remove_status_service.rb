@@ -27,10 +27,7 @@ class RemoveStatusService < BaseService
         # original object being removed implicitly removes reblogs
         # of it. The Delete activity of the original is forwarded
         # separately.
-        if @account.local? && !@options[:original_removed]
-          remove_from_remote_followers
-          remove_from_remote_reach
-        end
+        remove_from_remote_reach if @account.local? && !@options[:original_removed]
 
         # Since reblogs don't mention anyone, don't get reblogged,
         # favourited and don't contain their own media attachments
@@ -82,35 +79,14 @@ class RemoveStatusService < BaseService
   end
 
   def remove_from_remote_reach
-    return if @status.reblog?
-
-    # People who got mentioned in the status, or who
-    # reblogged it from someone else might not follow
-    # the author and wouldn't normally receive the
-    # delete notification - so here, we explicitly
-    # send it to them
+    # Followers, relays, people who got mentioned in the status,
+    # or who reblogged it from someone else might not follow
+    # the author and wouldn't normally receive the delete
+    # notification - so here, we explicitly send it to them
 
     status_reach_finder = StatusReachFinder.new(@status)
 
     ActivityPub::DeliveryWorker.push_bulk(status_reach_finder.inboxes) do |inbox_url|
-      [signed_activity_json, @account.id, inbox_url]
-    end
-  end
-
-  def remove_from_remote_followers
-    ActivityPub::DeliveryWorker.push_bulk(@account.followers.inboxes) do |inbox_url|
-      [signed_activity_json, @account.id, inbox_url]
-    end
-
-    relay! if relayable?
-  end
-
-  def relayable?
-    @status.public_visibility?
-  end
-
-  def relay!
-    ActivityPub::DeliveryWorker.push_bulk(Relay.enabled.pluck(:inbox_url)) do |inbox_url|
       [signed_activity_json, @account.id, inbox_url]
     end
   end
