@@ -33,7 +33,7 @@ eo:
       one: mesaĝo
       other: mesaĝoj
     status_count_before: Kie skribiĝis
-    tagline: Sekvi amikojn kaj trovi novan onin
+    tagline: Sekvi amikojn kaj trovi iujn novajn
     terms: Uzkondiĉoj
     unavailable_content: Nedisponebla enhavo
     unavailable_content_description:
@@ -557,7 +557,6 @@ eo:
     warning_presets:
       add_new: Aldoni novan
       delete: Forigi
-      edit: Redakti
       edit_preset: Redakti avertan antaŭagordon
       title: Administri avertajn antaŭagordojn
   admin_mailer:
@@ -819,11 +818,12 @@ eo:
       images_and_video: Aldoni videon al mesaĝo, kiu jam havas bildojn ne eblas
       too_many: Aldoni pli ol 4 dosierojn ne eblas
   migrations:
-    acct: uzantnomo@domajno de la nova konto
+    acct: Movigita al
     cancel: Nuligi alidirekton
     cancelled_msg: Sukcese forigis la alidirekton.
     errors:
       already_moved: estas la saman konton vi jam translokiĝis al
+      missing_also_known_as: ne returne referencas al ĉi tiu konto
       move_to_self: ne povas esti nuna konto
       not_found: ne povis trovi
       on_cooldown: Vi estas ĉe malvarmiĝi
@@ -907,11 +907,16 @@ eo:
     other: Aliaj aferoj
     posting_defaults: Afiŝadoj defaŭltoj
     public_timelines: Publikaj templinioj
+  reactions:
+    errors:
+      limit_reached: Limito de malsamaj reagoj atinginta
+      unrecognized_emoji: ne estas rekonita emoĝio
   relationships:
     activity: Konta aktiveco
     dormant: Dormanta
     followers: Sekvantoj
     following: Sekvatoj
+    invited: Invitita
     last_active: Laste aktiva
     most_recent: Plej lasta
     moved: Moviĝita
@@ -1035,7 +1040,7 @@ eo:
         one: "%{count} voĉdono"
         other: "%{count} voĉdonoj"
       vote: Voĉdoni
-    show_more: Montri pli
+    show_more: Malfoldi
     show_thread: Montri la fadenon
     sign_in_to_participate: Ensaluti por partopreni en la konversacio
     title: "%{name}: “%{quote}”"

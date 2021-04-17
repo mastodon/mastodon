@@ -7,8 +7,6 @@ class Api::V1::Statuses::PinsController < Api::BaseController
   before_action :require_user!
   before_action :set_status
 
-  respond_to :json
-
   def create
     StatusPin.create!(account: current_account, status: @status)
     distribute_add_activity!

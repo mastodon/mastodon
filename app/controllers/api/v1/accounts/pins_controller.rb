@@ -7,8 +7,6 @@ class Api::V1::Accounts::PinsController < Api::BaseController
   before_action :require_user!
   before_action :set_account
 
-  respond_to :json
-
   def create
     AccountPin.create!(account: current_account, target_account: @account)
     render json: @account, serializer: REST::RelationshipSerializer, relationships: relationships_presenter

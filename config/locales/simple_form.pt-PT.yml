@@ -8,6 +8,7 @@ pt-PT:
         acct: Especifique o nome de usuário@domínio da conta para onde você deseja mover
       account_warning_preset:
         text: Tu podes usar sintaxe de escrita, como URLs, hashtags e referências
+        title: Opcional. Não visível para o destinatário
       admin_account_action:
         include_statuses: O usuário verá quais ferramentas causaram a ação de moderação ou aviso
         send_email_notification: O utilizador receberá uma explicação sobre o que aconteceu com a sua conta
@@ -41,9 +42,9 @@ pt-PT:
         scopes: Quais as APIs a que será concedido acesso. Se escolheres uma abrangência de nível superior, não precisarás de as seleccionar individualmente.
         setting_aggregate_reblogs: Não mostrar novas partilhas que foram partilhadas recentemente (só afecta as novas partilhas)
         setting_default_sensitive: Média sensível está oculta por padrão e pode ser revelada com um clique
-        setting_display_media_default: Esconder media marcada como sensível
-        setting_display_media_hide_all: Esconder sempre toda a media
-        setting_display_media_show_all: Mostrar sempre a media marcada como sensível
+        setting_display_media_default: Esconder média marcada como sensível
+        setting_display_media_hide_all: Esconder sempre toda a média
+        setting_display_media_show_all: Mostrar sempre a média marcada como sensível
         setting_hide_network: Quem tu segues e quem te segue não será mostrado no teu perfil
         setting_noindex: Afecta o teu perfil público e as páginas das tuas publicações
         setting_show_application: A aplicação que tu usas para publicar será mostrada na vista detalhada das tuas publicações
@@ -53,6 +54,9 @@ pt-PT:
         whole_word: Quando a palavra-chave ou expressão-chave é somente alfanumérica, ela só será aplicada se corresponder à palavra completa
       domain_allow:
         domain: Este domínio será capaz de obter dados deste servidor e os dados dele recebidos serão processados e armazenados
+      email_domain_block:
+        domain: Este pode ser o nome de domínio que aparece no endereço de email, o registro MX para o qual o domínio resolve, ou o IP do servidor para o qual o registro MX resolve. Estes serão verificados no momento da inscrição do utilizador e a inscrição será rejeitada.
+        with_dns_records: Será feita uma tentativa de resolver os registros DNS do domínio em questão e os resultados também serão colocados na lista negra
       featured_tag:
         name: 'Poderás querer usar um destes:'
       form_challenge:
@@ -78,6 +82,7 @@ pt-PT:
         acct: Nome de utilizador da nova conta
       account_warning_preset:
         text: Texto pré-definido
+        title: Título
       admin_account_action:
         include_statuses: Incluir no e-mail os toots reportados
         send_email_notification: Notificar o utilizador por e-mail
@@ -128,9 +133,9 @@ pt-PT:
         setting_crop_images: Cortar imagens em toots não expandidos para o formato 16x9
         setting_default_language: Língua de publicação
         setting_default_privacy: Privacidade da publicação
-        setting_default_sensitive: Sempre marcar media como sensível
+        setting_default_sensitive: Sempre marcar média como sensível
         setting_delete_modal: Solicitar confirmação antes de eliminar uma publicação
-        setting_display_media: Exposição de media
+        setting_display_media: Exposição de média
         setting_display_media_default: Pré-definição
         setting_display_media_hide_all: Esconder todos
         setting_display_media_show_all: Mostrar todos
@@ -150,6 +155,8 @@ pt-PT:
         username: Nome de utilizador
         username_or_email: Nome de utilizador ou e-mail
         whole_word: Palavra completa
+      email_domain_block:
+        with_dns_records: Incluir registros MX e IPs do domínio
       featured_tag:
         name: Hashtag
       interactions:

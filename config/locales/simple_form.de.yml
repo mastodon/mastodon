@@ -8,6 +8,7 @@ de:
         acct: Gib den benutzernamen@domain des Kontos an, zu dem du umziehen möchtest
       account_warning_preset:
         text: Du kannst Beitragssyntax benutzen, wie z.B. URLs, Hashtags und Erwähnungen
+        title: Optional. Für den Empfänger nicht sichtbar
       admin_account_action:
         include_statuses: Der Benutzer wird sehen, welche Beiträge diese Maßnahme verursacht haben
         send_email_notification: Benutzer_in wird Bescheid gegeben, was mit dem Konto geschehen ist
@@ -43,7 +44,7 @@ de:
         setting_default_sensitive: Heikle Medien werden erst nach einem Klick sichtbar
         setting_display_media_default: Verstecke Medien, die als sensibel markiert sind
         setting_display_media_hide_all: Alle Medien immer verstecken
-        setting_display_media_show_all: Medien, die als sensibel markiert sind, immer anzeigen
+        setting_display_media_show_all: Alle Medien immer anzeigen
         setting_hide_network: Wem du folgst und wer dir folgt, wird in deinem Profil nicht angezeigt
         setting_noindex: Betrifft dein öffentliches Profil und deine Beiträge
         setting_show_application: Die Anwendung die du nutzst wird in der detaillierten Ansicht deiner Beiträge angezeigt
@@ -53,6 +54,9 @@ de:
         whole_word: Wenn das Schlagwort nur aus Buchstaben und Zahlen besteht, wird es nur angewendet, wenn es dem ganzen Wort entspricht
       domain_allow:
         domain: Diese Domain kann Daten von diesem Server abrufen und eingehende Daten werden verarbeitet und gespeichert
+      email_domain_block:
+        domain: Dies kann der Domainname sein, der in der E-Mail-Adresse angezeigt wird, den MX-Datensatz, der aufgelöst wird oder die IP des Servers, auf dem der MX-Eintrag aufgelöst wird. Diese werden bei der Registrierung überprüft und die Registrierung wird abgelehnt.
+        with_dns_records: Ein Versuch die DNS-Einträge der Domain aufzulösen wurde unternommen und diese Ergebnisse werden unter anderem auch geblacklistet
       featured_tag:
         name: 'Du möchtest vielleicht einen von diesen benutzen:'
       form_challenge:
@@ -78,6 +82,7 @@ de:
         acct: Adresse des neuen Kontos
       account_warning_preset:
         text: Vorlagentext
+        title: Titel
       admin_account_action:
         include_statuses: Meldungen der E-Mail beifügen
         send_email_notification: Benachrichtige den Nutzer per E-Mail
@@ -150,6 +155,8 @@ de:
         username: Profilname
         username_or_email: Profilname oder E-Mail
         whole_word: Ganzes Wort
+      email_domain_block:
+        with_dns_records: MX-Einträge und IPs der Domain einbeziehen
       featured_tag:
         name: Hashtag
       interactions:

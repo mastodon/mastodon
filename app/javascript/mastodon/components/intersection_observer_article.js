@@ -44,7 +44,7 @@ export default class IntersectionObserverArticle extends React.Component {
     intersectionObserverWrapper.observe(
       id,
       this.node,
-      this.handleIntersection
+      this.handleIntersection,
     );
 
     this.componentMounted = true;

@@ -27,4 +27,5 @@ export const fetchAccountIdentityProofsFail = (accountId, err) => ({
   type: IDENTITY_PROOFS_ACCOUNT_FETCH_FAIL,
   accountId,
   err,
+  skipNotFound: true,
 });

@@ -3,7 +3,7 @@
 class PublishScheduledStatusWorker
   include Sidekiq::Worker
 
-  sidekiq_options unique: :until_executed
+  sidekiq_options lock: :until_executed
 
   def perform(scheduled_status_id)
     scheduled_status = ScheduledStatus.find(scheduled_status_id)

@@ -92,6 +92,7 @@ pt-BR:
       delete: Excluir
       destroyed_msg: Nota de moderação excluída com sucesso!
     accounts:
+      add_email_domain_block: Adicionar o domínio de email à lista negra
       approve: Aprovar
       approve_all: Aprovar tudo
       are_you_sure: Você tem certeza?
@@ -172,6 +173,7 @@ pt-BR:
         staff: Equipe
         user: Usuário
       search: Pesquisar
+      search_same_email_domain: Outros usuários com o mesmo domínio de e-mail
       search_same_ip: Outros usuários com o mesmo IP
       shared_inbox_url: Link da caixa de entrada compartilhada
       show:
@@ -193,21 +195,57 @@ pt-BR:
       web: Web
       whitelisted: Permitido
     action_logs:
+      action_types:
+        assigned_to_self_report: Adicionar relatório
+        change_email_user: Editar e-mail do usuário
+        confirm_user: Confirmar Usuário
+        create_account_warning: Criar Aviso
+        create_announcement: Criar Anúncio
+        create_custom_emoji: Criar Emoji Personalizado
+        create_domain_allow: Adicionar domínio permitido
+        create_domain_block: Adicionar domínio bloqueado
+        create_email_domain_block: Adicionar domínio de e-mail bloqueado
+        demote_user: Despromover Utilizador
+        destroy_announcement: Excluir anúncio
+        destroy_custom_emoji: Excluir emoji personalizado
+        destroy_domain_allow: Excluir domínio permitido
+        destroy_domain_block: Excluir domínio bloqueado
+        destroy_email_domain_block: Excluir domínio de e-mail bloqueado
+        destroy_status: Excluir Status
+        disable_2fa_user: Desativar autenticação de dois fatores
+        disable_custom_emoji: Desativar Emoji Personalizado
+        disable_user: Desativar usuário
+        enable_custom_emoji: Ativar Emoji Personalizado
+        enable_user: Ativar usuário
+        memorialize_account: Memorizar Conta
+        promote_user: Promover usuário
+        remove_avatar_user: Remover Avatar
+        reopen_report: Reabrir Relatório
+        reset_password_user: Redefinir a senha
+        resolve_report: Resolver Relatório
+        silence_account: Silenciar conta
+        suspend_account: Suspender Conta
+        unassigned_report: Remover relatório
+        unsilence_account: Deixar de Silenciar Conta
+        unsuspend_account: Retirar Suspensão à Conta
+        update_announcement: Editar anúncio
+        update_custom_emoji: Editar Emoji Personalizado
+        update_status: Editar Status
       actions:
         assigned_to_self_report: "%{name} pegou a denúncia %{target}"
         change_email_user: "%{name} alterou o endereço de e-mail do usuário %{target}"
         confirm_user: "%{name} confirmou o endereço de e-mail do usuário %{target}"
         create_account_warning: "%{name} enviou um aviso para %{target}"
-        create_announcement: "%{name} criou um novo anúncio %{target}"
+        create_announcement: "%{name} criou o novo anúncio %{target}"
         create_custom_emoji: "%{name} enviou o novo emoji %{target}"
         create_domain_allow: "%{name} permitiu %{target}"
-        create_domain_block: "%{name} bloqueou o domínio %{target}"
+        create_domain_block: "%{name} bloqueou %{target}"
         create_email_domain_block: "%{name} bloqueou o domínio de e-mail %{target}"
         demote_user: "%{name} rebaixou o usuário %{target}"
         destroy_announcement: "%{name} excluiu o anúncio %{target}"
         destroy_custom_emoji: "%{name} excluiu emoji %{target}"
         destroy_domain_allow: "%{name} bloqueou %{target}"
-        destroy_domain_block: "%{name} desbloqueou o domínio %{target}"
+        destroy_domain_block: "%{name} desbloqueou %{target}"
         destroy_email_domain_block: "%{name} permitiu domínio de e-mail %{target}"
         destroy_status: "%{name} excluiu toot de %{target}"
         disable_2fa_user: "%{name} desativou a exigência de autenticação de dois fatores para o usuário %{target}"
@@ -230,13 +268,16 @@ pt-BR:
         update_custom_emoji: "%{name} atualizou o emoji %{target}"
         update_status: "%{name} atualizou o status de %{target}"
       deleted_status: "(status excluído)"
+      empty: Nenhum registro encontrado.
+      filter_by_action: Filtrar por ação
+      filter_by_user: Filtrar por usuário
       title: Auditar histórico
     announcements:
       destroyed_msg: Anúncio excluído com sucesso!
       edit:
         title: Editar anúncio
-      empty: Nenhum anúncio encontrado.
-      live: Em exibição
+      empty: Sem anúncios.
+      live: Ao vivo
       new:
         create: Criar anúncio
         title: Novo anúncio
@@ -244,7 +285,7 @@ pt-BR:
       scheduled_for: Agendado para %{time}
       scheduled_msg: Anúncio agendado para publicação!
       title: Anúncios
-      unpublished_msg: Anúncio retirado de exibição com sucesso!
+      unpublished_msg: Anúncio despublicado com sucesso!
       updated_msg: Anúncio atualizado com sucesso!
     custom_emojis:
       assign_category: Atribuir categoria
@@ -307,12 +348,12 @@ pt-BR:
       week_users_new: usuários essa semana
       whitelist_mode: Modo lista de permitidos
     domain_allows:
-      add_new: Permitir
+      add_new: Permitir domínio
       created_msg: Domínio foi permitido
       destroyed_msg: Domínio foi bloqueado
       undo: Bloquear
     domain_blocks:
-      add_new: Bloquear outro domínio
+      add_new: Novo bloqueio de domínio
       created_msg: Domínio está sendo bloqueado
       destroyed_msg: Domínio desbloqueado
       domain: Domínio
@@ -358,6 +399,7 @@ pt-BR:
       destroyed_msg: Domínio de e-mail desbloqueado
       domain: Domínio
       empty: Sem domínios de e-mail bloqueados.
+      from_html: de %{domain}
       new:
         create: Adicionar domínio
         title: Novo domínio de e-mail bloqueado
@@ -421,7 +463,7 @@ pt-BR:
           other: "%{count} denúncias"
       action_taken_by: Atitude tomada por
       are_you_sure: Você tem certeza?
-      assign_to_self: Acatado por mim
+      assign_to_self: Pegar
       assigned: Moderador responsável
       by_target_domain: Domínio da conta denunciada
       comment:
@@ -537,6 +579,9 @@ pt-BR:
       trends:
         desc_html: Mostrar publicamente hashtags previamente revisadas que estão em alta
         title: Hashtags em alta
+    site_uploads:
+      delete: Excluir arquivo enviado
+      destroyed_msg: Upload do site excluído com sucesso!
     statuses:
       back_to_account: Voltar para página da conta
       batch:
@@ -573,7 +618,6 @@ pt-BR:
     warning_presets:
       add_new: Adicionar novo
       delete: Excluir
-      edit: Editar
       edit_preset: Editar o aviso pré-definido
       title: Gerenciar os avisos pré-definidos
   admin_mailer:
@@ -585,7 +629,7 @@ pt-BR:
       body_remote: Alguém da instância %{domain} reportou %{target}
       subject: Nova denúncia sobre %{instance} (#%{id})
     new_trending_tag:
-      body: 'A hashtag #%{name} está em alta hoje, mas não foi previamente revisada. Ela não estará visível publicamente a menos que você aprove, ou apenas salve o formulário do jeito que está para nunca mais ouvir falar dela.'
+      body: 'A hashtag #%{name} está em alta hoje, mas não foi previamente revisada. Ela não estará visível publicamente a menos que você aprove, ou salve o formulário do jeito que está para nunca mais ouvir falar dela.'
       subject: Nova hashtag disponível para revisão em %{instance} (#%{name})
   aliases:
     add_new: Criar alias
@@ -661,6 +705,7 @@ pt-BR:
     trouble_logging_in: Problemas para entrar?
   authorize_follow:
     already_following: Você já segue
+    already_requested: Você já enviou uma solicitação para seguir esta conta
     error: Infelizmente, ocorreu um erro ao buscar a conta remota
     follow: Seguir
     follow_request: 'Você mandou uma solicitação para seguir para:'
@@ -677,7 +722,7 @@ pt-BR:
     prompt: Confirme sua senha para continuar
   date:
     formats:
-      default: "%d %b %Y"
+      default: "%d %b, %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}h"
@@ -774,12 +819,12 @@ pt-BR:
     developers: Desenvolvedores
     more: Mais…
     resources: Recursos
-    trending_now: Em alta agora
+    trending_now: Em alta no momento
   generic:
     all: Tudo
     changes_saved_msg: Alterações foram salvas com sucesso!
     copy: Copiar
-    delete: Eliminar
+    delete: Excluir
     no_batch_actions_available: Nenhuma ação em lote disponível nesta página
     order_by: Ordenar por
     save_changes: Salvar alterações
@@ -849,6 +894,7 @@ pt-BR:
   media_attachments:
     validations:
       images_and_video: Não foi possível anexar um vídeo a um toot que já contém imagens
+      not_ready: Não é possível anexar arquivos que não terminaram de ser processados. Tente novamente daqui a pouco!
       too_many: Não foi possível anexar mais de 4 imagens
   migrations:
     acct: Mudou-se para
@@ -1070,6 +1116,8 @@ pt-BR:
     disallowed_hashtags:
       one: 'continha hashtag não permitida: %{tags}'
       other: 'continha hashtags não permitidas: %{tags}'
+    errors:
+      in_reply_not_found: O toot que você quer responder parece não existir.
     language_detection: Detectar idioma automaticamente
     open_in_web: Abrir no navegador
     over_character_limit: limite de caracteres de %{max} excedido

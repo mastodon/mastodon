@@ -6,6 +6,8 @@ ta:
         acct: நீங்கள் இங்கே நகர்த்த விரும்பும் கணக்கின் பயனர் பெயர்
       account_migration:
         acct: நீங்கள் இங்கே நகர்த்த விரும்பும் கணக்கின் பயனர் பெயர் username@domain
+      account_warning_preset:
+        title: விருப்பத் தேர்வு. பெறுநரால் பார்க்கமுடியாது
       admin_account_action:
         send_email_notification: தங்கள் கணக்கிற்கு என்ன நேர்ந்தது என்ற விவரம் பயனரால் பெறப்படும்
       announcement:
@@ -23,10 +25,15 @@ ta:
         password: குறைந்தது 8 எழுத்துக்களைப் பயன்படுத்தவும்
         setting_display_media_hide_all: எப்போதும் எல்லா ஊடகங்களையும் மறைக்கவும்
         setting_display_media_show_all: உணர்ச்சி வயப்படு (Sensitive) குறிக்கப்பட்ட மீடியாவை எப்போதும் காட்டுங்கள்
+      email_domain_block:
+        domain: இது மின்னஞ்சலில் காணப்படும் களத்தின் பெயராக இருக்கலாம், அல்லது அக்களம் சார்ந்திருக்கும் MX record-ஆக இருக்கலாம், அல்லது அந்த MX record சார்ந்திருக்கும் சர்வரின் IP முகவரியாக இருக்கலாம். பயனர் கணக்கைத் துவங்கும்போது அவை கண்காணிக்கப்பட்டு, கணக்குத் துவக்கம் நிராகரிக்கப்படும்.
+        with_dns_records: இக்களத்தின் DNS record-களை சரிசெய்யும் முயற்சி மேற்கொள்ளப்படும், மற்றும் அதன் முடிவுகள் தடுப்புப்பட்டியலில் சேர்க்கப்படும்
     labels:
       account:
         fields:
           name: லேபிள்
+      account_warning_preset:
+        title: தலைப்பு
       admin_account_action:
         types:
           disable: உள்நுழைவை முடக்கு
@@ -59,6 +66,8 @@ ta:
         setting_use_pending_items: மெதுவான பயன்முறை
         username: பயனர்பெயர்
         username_or_email: பயனர் பெயர் அல்லது மின்னஞ்சல்
+      email_domain_block:
+        with_dns_records: களத்தின் IP மற்றும் MX records-ஐ உள்ளடக்கு
     required:
       text: தேவை
     'yes': ஆம்

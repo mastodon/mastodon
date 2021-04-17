@@ -96,6 +96,7 @@ class ActivityPub::ProcessAccountService < BaseService
     @account.statuses_count    = outbox_total_items    if outbox_total_items.present?
     @account.following_count   = following_total_items if following_total_items.present?
     @account.followers_count   = followers_total_items if followers_total_items.present?
+    @account.hide_collections  = following_private? || followers_private?
     @account.moved_to_account  = @json['movedTo'].present? ? moved_account : nil
   end
 
@@ -168,26 +169,36 @@ class ActivityPub::ProcessAccountService < BaseService
   end
 
   def outbox_total_items
-    collection_total_items('outbox')
+    collection_info('outbox').first
   end
 
   def following_total_items
-    collection_total_items('following')
+    collection_info('following').first
   end
 
   def followers_total_items
-    collection_total_items('followers')
+    collection_info('followers').first
   end
 
-  def collection_total_items(type)
-    return if @json[type].blank?
+  def following_private?
+    !collection_info('following').last
+  end
+
+  def followers_private?
+    !collection_info('followers').last
+  end
+
+  def collection_info(type)
+    return [nil, nil] if @json[type].blank?
     return @collections[type] if @collections.key?(type)
 
     collection = fetch_resource_without_id_validation(@json[type])
 
-    @collections[type] = collection.is_a?(Hash) && collection['totalItems'].present? && collection['totalItems'].is_a?(Numeric) ? collection['totalItems'] : nil
+    total_items = collection.is_a?(Hash) && collection['totalItems'].present? && collection['totalItems'].is_a?(Numeric) ? collection['totalItems'] : nil
+    has_first_page = collection.is_a?(Hash) && collection['first'].present?
+    @collections[type] = [total_items, has_first_page]
   rescue HTTP::Error, OpenSSL::SSL::SSLError
-    @collections[type] = nil
+    @collections[type] = [nil, nil]
   end
 
   def moved_account

@@ -74,7 +74,7 @@ module Attachmentable
     self.class.attachment_definitions.each_key do |attachment_name|
       attachment = send(attachment_name)
 
-      next if attachment.blank? || attachment.queued_for_write[:original].blank?
+      next if attachment.blank? || attachment.queued_for_write[:original].blank? || attachment.options[:preserve_files]
 
       attachment.instance_write :file_name, SecureRandom.hex(8) + File.extname(attachment.instance_read(:file_name))
     end

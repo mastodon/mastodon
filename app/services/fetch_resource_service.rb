@@ -5,6 +5,8 @@ class FetchResourceService < BaseService
 
   ACCEPT_HEADER = 'application/activity+json, application/ld+json; profile="https://www.w3.org/ns/activitystreams", text/html;q=0.1'
 
+  attr_reader :response_code
+
   def call(url)
     return if url.blank?
 
@@ -27,6 +29,7 @@ class FetchResourceService < BaseService
   end
 
   def process_response(response, terminal = false)
+    @response_code = response.code
     return nil if response.code != 200
 
     if ['application/activity+json', 'application/ld+json'].include?(response.mime_type)

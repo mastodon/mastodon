@@ -92,6 +92,7 @@ gl:
       delete: Eliminar
       destroyed_msg: Nota de moderación eliminada de xeito correcto!
     accounts:
+      add_email_domain_block: Bloquear o dominio do email
       approve: Aprobar
       approve_all: Aprobar todos
       are_you_sure: Está segura?
@@ -172,6 +173,7 @@ gl:
         staff: Persoal (staff)
         user: Usuaria
       search: Procurar
+      search_same_email_domain: Outras usuarias co mesmo dominio de email
       search_same_ip: Outras usuarias co mesmo IP
       shared_inbox_url: URL da caixa de entrada compartida
       show:
@@ -193,6 +195,42 @@ gl:
       web: Web
       whitelisted: Lista branca
     action_logs:
+      action_types:
+        assigned_to_self_report: Asignar denuncia
+        change_email_user: Editar email do usuario
+        confirm_user: Confirmar usuario
+        create_account_warning: Crear aviso
+        create_announcement: Crear anuncio
+        create_custom_emoji: Crear emoticonas personalizadas
+        create_domain_allow: Crear permiso de dominio
+        create_domain_block: Crear bloqueo de dominio
+        create_email_domain_block: Crear bloqueo de dominio de correo electrónico
+        demote_user: Degradar usuario
+        destroy_announcement: Eliminar anuncio
+        destroy_custom_emoji: Eliminar emoticona personalizada
+        destroy_domain_allow: Eliminar permiso de dominio
+        destroy_domain_block: Eliminar bloqueo de dominio
+        destroy_email_domain_block: Eliminar bloqueo de dominio de correo electrónico
+        destroy_status: Eliminar estado
+        disable_2fa_user: Desactivar autenticación de dous factores
+        disable_custom_emoji: Deshabilitar emoticona personalizada
+        disable_user: Deshabilitar usuario
+        enable_custom_emoji: Habilitar emoticona personalizada
+        enable_user: Activar usuario
+        memorialize_account: Transformar en conta conmemorativa
+        promote_user: Promover usuario
+        remove_avatar_user: Eliminar avatar
+        reopen_report: Reabrir denuncia
+        reset_password_user: Restabelecer contrasinal
+        resolve_report: Resolver denuncia
+        silence_account: Silenciar conta
+        suspend_account: Suspender conta
+        unassigned_report: Desasignar denuncia
+        unsilence_account: Deixar de silenciar conta
+        unsuspend_account: Retirar suspensión de conta
+        update_announcement: Actualizar anuncio
+        update_custom_emoji: Actualizar emoticona personalizada
+        update_status: Actualizar estado
       actions:
         assigned_to_self_report: "%{name} atribuíu a denuncia %{target} a el mesmo"
         change_email_user: "%{name} cambiou o enderezo de correo-e da usuaria %{target}"
@@ -230,6 +268,9 @@ gl:
         update_custom_emoji: "%{name} actualizou a emoticona %{target}"
         update_status: "%{name} actualizou o estado de %{target}"
       deleted_status: "(estado eliminado)"
+      empty: Non se atoparon rexistros.
+      filter_by_action: Filtrar por acción
+      filter_by_user: Filtrar por usuario
       title: Rexistro de auditoría
     announcements:
       destroyed_msg: Anuncio eliminado de xeito correcto!
@@ -358,6 +399,7 @@ gl:
       destroyed_msg: Eliminouse de xeito correcto o dominio de email da listaxe negra
       domain: Dominio
       empty: Actualmente non hai dominios de email na listaxe negra.
+      from_html: desde %{domain}
       new:
         create: Engadir dominio
         title: Nova entrada na listaxe negra de email
@@ -537,6 +579,9 @@ gl:
       trends:
         desc_html: Amosar de xeito público cancelos revisados previamente que actualmente son tendencia
         title: Cancelos en tendencia
+    site_uploads:
+      delete: Eliminar o ficheiro subido
+      destroyed_msg: Eliminado correctamente o subido!
     statuses:
       back_to_account: Voltar a páxina da conta
       batch:
@@ -573,7 +618,6 @@ gl:
     warning_presets:
       add_new: Engadir novo
       delete: Eliminar
-      edit: Editar
       edit_preset: Editar aviso preestablecido
       title: Xestionar avisos preestablecidos
   admin_mailer:
@@ -661,6 +705,7 @@ gl:
     trouble_logging_in: Problemas para conectar?
   authorize_follow:
     already_following: Xa está a seguir esta conta
+    already_requested: Xa tes enviada unha solicitude de seguimento a esa conta
     error: Desgraciadamente, algo fallou ao buscar a conta remota
     follow: Seguir
     follow_request: 'Enviou unha petición de seguimento a:'
@@ -849,6 +894,7 @@ gl:
   media_attachments:
     validations:
       images_and_video: Non pode anexar un vídeo a un estado que xa contén imaxes
+      not_ready: Non se poden anexar ficheiros que aínda se están a procesar. Agarda un intre!
       too_many: Non pode anexar máis de 4 ficheiros
   migrations:
     acct: nomeusuaria@dominio da nova conta
@@ -1070,6 +1116,8 @@ gl:
     disallowed_hashtags:
       one: 'contiña un cancelo non permitido: %{tags}'
       other: 'contiña uns cancelos non permitidos: %{tags}'
+    errors:
+      in_reply_not_found: O estado ó cal tentas respostar semella que non existe.
     language_detection: Detección automática do idioma
     open_in_web: Abrir na web
     over_character_limit: Excedeu o límite de caracteres %{max}

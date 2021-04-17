@@ -8,6 +8,7 @@ ca:
         acct: Especifica l'usuari@domini del compte al que et vols moure
       account_warning_preset:
         text: Pots utilitzar totes les sintaxi com ara URL, etiquetes i mencions
+        title: Opcional. No és visible per al destinatari
       admin_account_action:
         include_statuses: L'usuari veurà quins tuts han causat l'acció de moderació o avís
         send_email_notification: L'usuari rebrà una explicació del que ha passat amb el seu compte
@@ -53,6 +54,9 @@ ca:
         whole_word: Quan la paraula clau o la frase sigui només alfanumèrica, s'aplicarà si coincideix amb la paraula sencera
       domain_allow:
         domain: Aquest domini podrà obtenir dades d’aquest servidor i les dades entrants d’aquests seran processades i emmagatzemades
+      email_domain_block:
+        domain: Això pot ser el nom del domini que es veu en l’adreça de correu electrònic, el registre MX al que resol el domini o l’IP del servidor al que resol el registre MX. Es comprovaran amb el registre d’usuari i es rebutjarà la inscripció.
+        with_dns_records: Es procurarà resoldre els registres DNS del domini determinat i els resultats també es llistaran a la llista negra
       featured_tag:
         name: 'És possible que vulguis utilitzar un d''aquests:'
       form_challenge:
@@ -78,6 +82,7 @@ ca:
         acct: Nom del nou compte
       account_warning_preset:
         text: Text predefinit
+        title: Títol
       admin_account_action:
         include_statuses: Inclou tuts reportats en el correu electrònic
         send_email_notification: Notifica l'usuari per correu electrònic
@@ -150,6 +155,8 @@ ca:
         username: Nom d'usuari
         username_or_email: Nom d'usuari o adreça electrònica
         whole_word: Paraula sencera
+      email_domain_block:
+        with_dns_records: Incloure registres MX i IP del domini
       featured_tag:
         name: Etiqueta
       interactions:

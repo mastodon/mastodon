@@ -5,7 +5,7 @@ class Scheduler::IpCleanupScheduler
 
   RETENTION_PERIOD = 1.year
 
-  sidekiq_options unique: :until_executed, retry: 0
+  sidekiq_options lock: :until_executed, retry: 0
 
   def perform
     time_ago = RETENTION_PERIOD.ago

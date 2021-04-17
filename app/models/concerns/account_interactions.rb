@@ -87,11 +87,23 @@ module AccountInteractions
     has_many :announcement_mutes, dependent: :destroy
   end
 
-  def follow!(other_account, reblogs: nil, uri: nil)
+  def follow!(other_account, reblogs: nil, uri: nil, rate_limit: false)
     reblogs = true if reblogs.nil?
 
-    rel = active_relationships.create_with(show_reblogs: reblogs, uri: uri)
+    rel = active_relationships.create_with(show_reblogs: reblogs, uri: uri, rate_limit: rate_limit)
                               .find_or_create_by!(target_account: other_account)
+
+    rel.update!(show_reblogs: reblogs)
+    remove_potential_friendship(other_account)
+
+    rel
+  end
+
+  def request_follow!(other_account, reblogs: nil, uri: nil, rate_limit: false)
+    reblogs = true if reblogs.nil?
+
+    rel = follow_requests.create_with(show_reblogs: reblogs, uri: uri, rate_limit: rate_limit)
+                         .find_or_create_by!(target_account: other_account)
 
     rel.update!(show_reblogs: reblogs)
     remove_potential_friendship(other_account)
