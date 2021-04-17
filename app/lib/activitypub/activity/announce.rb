@@ -61,7 +61,7 @@ class ActivityPub::Activity::Announce < ActivityPub::Activity
   end
 
   def announceable?(status)
-    status.account_id == @account.id || (@account.group? && dereferenced?) || status.distributable?
+    status.account_id == @account.id || status.distributable?
   end
 
   def related_to_local_activity?
