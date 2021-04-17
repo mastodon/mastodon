@@ -309,10 +309,12 @@ zh-CN:
       new:
         create: 创建公告
         title: 新公告
+      publish: 发布
       published_msg: 公告已发布！
       scheduled_for: 定时在 %{time}
       scheduled_msg: 定时公告已创建！
       title: 公告
+      unpublish: 取消发布
       unpublished_msg: 公告已取消发布！
       updated_msg: 公告已成功更新！
     custom_emojis:
@@ -542,7 +544,10 @@ zh-CN:
       updated_at: 更新时间
     rules:
       add_new: 添加规则
+      delete: 删除
+      description_html: 虽然大多数人都声称已经阅读并同意服务条款，但通常人们只有在出现问题后才会阅读。所以写一个简单的要点列表吧，能让大家一目了然。每条规则要尽量简单明了，但也别分出太多条目来。
       edit: 编辑规则
+      empty: 尚未定义提供商。
       title: 实例规则
     settings:
       activity_api_enabled:
@@ -684,6 +689,7 @@ zh-CN:
       add_new: 添加新条目
       delete: 删除
       edit_preset: 编辑预置警告
+      empty: 您还没有添加任何兴趣。
       title: 管理预设警告
   admin_mailer:
     new_pending_account:
