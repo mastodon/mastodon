@@ -283,11 +283,11 @@ vi:
         remove_avatar_user_html: "%{name} đã xóa ảnh đại diện của %{target}"
         reopen_report_html: "%{name} mở lại báo cáo %{target}"
         reset_password_user_html: "%{name} đặt lại mật khẩu của người dùng %{target}"
-        resolve_report_html: "%{name} đã giải quyết báo cáo %{target}"
+        resolve_report_html: "%{name} đã xử lý báo cáo %{target}"
         sensitive_account_html: "%{name} đánh dấu nội dung của %{target} là nhạy cảm"
         silence_account_html: "%{name} đã ẩn %{target}"
         suspend_account_html: "%{name} đã vô hiệu hóa %{target}"
-        unassigned_report_html: "%{name} đã giải quyết báo cáo %{target} chưa xử lí"
+        unassigned_report_html: "%{name} đã xử lý báo cáo %{target} chưa xử lí"
         unsensitive_account_html: "%{name} đánh dấu nội dung của %{target} là bình thường"
         unsilence_account_html: "%{name} đã bỏ ẩn %{target}"
         unsuspend_account_html: "%{name} đã ngừng vô hiệu hóa %{target}"
@@ -522,7 +522,7 @@ vi:
       forwarded: Chuyển tiếp
       forwarded_to: Chuyển tiếp tới %{domain}
       mark_as_resolved: Đã xử lý xong!
-      mark_as_unresolved: Đánh dấu là chưa giải quyết
+      mark_as_unresolved: Mở lại
       notes:
         create: Ghi chú
         create_and_resolve: Xử lý
@@ -534,7 +534,7 @@ vi:
       reported_account: Tài khoản bị báo cáo
       reported_by: Báo cáo bởi
       resolved: Đã xử lý xong
-      resolved_msg: Đã giải quyết báo cáo xong!
+      resolved_msg: Đã xử lý báo cáo xong!
       status: Trạng thái
       title: Báo cáo
       unassign: Bỏ qua
@@ -542,7 +542,6 @@ vi:
       updated_at: Cập nhật lúc
     rules:
       add_new: Thêm quy tắc
-      description: Mặc dù được yêu cầu chấp nhận điều khoản dịch vụ khi đăng ký, nhưng người ta thường không đọc cho đến khi vấn đề gì đó xảy ra. Hãy làm sáng tỏ hơn điều này bằng cách liệt kê quy tắc máy chủ theo gạch đầu dòng. Hãy cố viết ngắn và đơn giản, nhưng đừng tách ra quá nhiều mục.
       edit: Sửa quy tắc
       title: Quy tắc máy chủ
     settings:
@@ -1223,7 +1222,7 @@ vi:
       reblog: Không thể ghim chia sẻ
     poll:
       total_people:
-        other: "%{count} người đã bình chọn"
+        other: "%{count} người bình chọn"
       total_votes:
         other: "%{count} người bình chọn"
       vote: Bình chọn
