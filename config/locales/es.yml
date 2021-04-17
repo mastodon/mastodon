@@ -45,6 +45,9 @@ es:
         update_custom_emoji_html: "%{name} actualizó el emoji %{target}"
         update_domain_block_html: "%{name} actualizó el bloqueo de dominio para %{target}"
         update_status_html: "%{name} actualizó el estado de %{target}"
+    announcements:
+      publish: Publicar
+      unpublish: Eliminar publicación
     follow_recommendations:
       description_html: "<strong>Las recomendaciones de cuentas a las que seguir ayudan a los nuevos usuarios a encontrar rápidamente contenido interesante</strong>. Cuando un usuario no ha interactuado con otros lo suficiente como para formar recomendaciones personalizadas de seguimiento, estas cuentas se recomiendan en su lugar. Se recalculan diariamente a partir de una mezcla de cuentas con las interacciones más recientes y el mayor número de seguidores para un idioma determinado."
       language: Para el idioma
@@ -55,7 +58,10 @@ es:
       unsuppress: Restaurar recomendaciones de cuentas a las que seguir
     rules:
       add_new: Añadir norma
+      delete: Eliminar
+      description_html: Aunque la mayoría de las afirmaciones de haber leído y aceptado los términos de servicio, normalmente la gente no los lee hasta después de que surja un problema. <strong>Haz que sea más fácil ver las reglas de tu servidor de un vistazo, proporcionándolas en una lista de puntos.</strong> Intenta mantener reglas individuales cortas y sencillas, pero intenta no dividirlas en muchos objetos separados.
       edit: Editar norma
+      empty: Aún no se han definido reglas del servidor.
       title: Normas del servidor
     system_checks:
       database_schema_check:
@@ -65,6 +71,8 @@ es:
         message_html: No ha definido ninguna regla del servidor.
       sidekiq_process_check:
         message_html: No hay ningún proceso Sidekiq en ejecución para la(s) cola(s) %{value}. Por favor, revise su configuración de Sidekiq
+    warning_presets:
+      empty: Aún no ha definido ninguna advertencia predefinida.
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
