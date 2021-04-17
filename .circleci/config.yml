@@ -69,7 +69,12 @@ aliases:
         - *install_system_dependencies
         - run: ruby -e 'puts RUBY_VERSION' | tee /tmp/.ruby-version
         - *restore_ruby_dependencies
-        - run: bundle install --clean --jobs 16 --path ./vendor/bundle/ --retry 3 --with pam_authentication --without development production && bundle clean
+        - run: bundle config set clean 'true'
+        - run: bundle config set deployment 'true'
+        - run: bundle config set with 'pam_authentication'
+        - run: bundle config set without 'development production'
+        - run: bundle config set frozen 'true'
+        - run: bundle install --jobs 16 --retry 3 && bundle clean
         - save_cache:
             key: v2-ruby-dependencies-{{ checksum "/tmp/.ruby-version" }}-{{ checksum "Gemfile.lock" }}
             paths:
