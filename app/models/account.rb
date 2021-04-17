@@ -235,6 +235,7 @@ class Account < ApplicationRecord
     transaction do
       create_deletion_request!
       update!(suspended_at: date, suspension_origin: origin)
+      create_canonical_email_block!
     end
   end
 
@@ -242,6 +243,7 @@ class Account < ApplicationRecord
     transaction do
       deletion_request&.destroy!
       update!(suspended_at: nil, suspension_origin: nil)
+      destroy_canonical_email_block!
     end
   end
 
@@ -568,5 +570,17 @@ class Account < ApplicationRecord
 
   def clean_feed_manager
     FeedManager.instance.clean_feeds!(:home, [id])
+  end
+
+  def create_canonical_email_block!
+    return unless local? && user_email.present?
+
+    CanonicalEmailBlock.create(reference_account: self, email: user_email)
+  end
+
+  def destroy_canonical_email_block!
+    return unless local?
+
+    CanonicalEmailBlock.where(reference_account: self).delete_all
   end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_24_171613) do
+ActiveRecord::Schema.define(version: 2021_04_16_200740) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -278,6 +278,15 @@ ActiveRecord::Schema.define(version: 2021_03_24_171613) do
     t.datetime "updated_at", null: false
     t.index ["account_id", "status_id"], name: "index_bookmarks_on_account_id_and_status_id", unique: true
     t.index ["status_id"], name: "index_bookmarks_on_status_id"
+  end
+
+  create_table "canonical_email_blocks", force: :cascade do |t|
+    t.string "canonical_email_hash", default: "", null: false
+    t.bigint "reference_account_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["canonical_email_hash"], name: "index_canonical_email_blocks_on_canonical_email_hash", unique: true
+    t.index ["reference_account_id"], name: "index_canonical_email_blocks_on_reference_account_id"
   end
 
   create_table "conversation_mutes", force: :cascade do |t|
@@ -991,6 +1000,7 @@ ActiveRecord::Schema.define(version: 2021_03_24_171613) do
   add_foreign_key "blocks", "accounts", name: "fk_4269e03e65", on_delete: :cascade
   add_foreign_key "bookmarks", "accounts", on_delete: :cascade
   add_foreign_key "bookmarks", "statuses", on_delete: :cascade
+  add_foreign_key "canonical_email_blocks", "accounts", column: "reference_account_id"
   add_foreign_key "conversation_mutes", "accounts", name: "fk_225b4212bb", on_delete: :cascade
   add_foreign_key "conversation_mutes", "conversations", on_delete: :cascade
   add_foreign_key "custom_filters", "accounts", on_delete: :cascade
