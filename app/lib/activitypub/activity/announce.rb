@@ -5,7 +5,6 @@ class ActivityPub::Activity::Announce < ActivityPub::Activity
     return reject_payload! if delete_arrived_first?(@json['id']) || !related_to_local_activity?
 
     lock_or_fail("announce:#{@object['id']}") do
-      dereference_object!
       @original_status = status_from_object
 
       return reject_payload! if @original_status.nil? || !announceable?(@original_status)

@@ -153,6 +153,8 @@ class ActivityPub::Activity
 
     return status unless status.nil?
 
+    dereference_object!
+
     # If the boosted toot is embedded and it is a self-boost or dereferenced, handle it like a Create
     unless unsupported_object_type?
       actor_id = value_or_id(first_of_value(@object['attributedTo']))
