@@ -313,10 +313,12 @@ gl:
       new:
         create: Crear anuncio
         title: Novo anuncio
+      publish: Publicar
       published_msg: Anuncio publicado de xeito correcto!
       scheduled_for: Programado para %{time}
       scheduled_msg: Anuncio programado para a súa publicación!
       title: Anuncios
+      unpublish: Retirar publicación
       unpublished_msg: Anuncio desbotado de xeito correcto!
       updated_msg: Anuncio actualizado de xeito correcto!
     custom_emojis:
@@ -550,7 +552,10 @@ gl:
       updated_at: Actualizado
     rules:
       add_new: Engadir regra
+      delete: Eliminar
+      description_html: Aínda que a maioría di que leu e acepta os termos de servizo, normalmente non os lemos ata que xurde un problema. <strong>Facilita a visualización das regras do servidor mostrándoas nunha lista de puntos.</strong> Intenta manter as regras individuais curtas e simples, mais non dividilas en demasiados elementos separados.
       edit: Editar regra
+      empty: Aínda non se definiron as regras do servidor.
       title: Regras do servidor
     settings:
       activity_api_enabled:
@@ -692,6 +697,7 @@ gl:
       add_new: Engadir novo
       delete: Eliminar
       edit_preset: Editar aviso preestablecido
+      empty: Non definiches os avisos prestablecidos.
       title: Xestionar avisos preestablecidos
   admin_mailer:
     new_pending_account:
