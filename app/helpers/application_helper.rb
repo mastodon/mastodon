@@ -91,8 +91,6 @@ module ApplicationHelper
       fa_icon('unlock', title: I18n.t('statuses.visibilities.unlisted'))
     elsif status.private_visibility? || status.limited_visibility?
       fa_icon('lock', title: I18n.t('statuses.visibilities.private'))
-    elsif status.direct_visibility?
-      fa_icon('envelope', title: I18n.t('statuses.visibilities.direct'))
     end
   end
 

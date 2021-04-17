@@ -315,10 +315,12 @@ en:
       new:
         create: Create announcement
         title: New announcement
+      publish: Publish
       published_msg: Announcement successfully published!
       scheduled_for: Scheduled for %{time}
       scheduled_msg: Announcement scheduled for publication!
       title: Announcements
+      unpublish: Unpublish
       unpublished_msg: Announcement successfully unpublished!
       updated_msg: Announcement successfully updated!
     custom_emojis:
@@ -552,8 +554,10 @@ en:
       updated_at: Updated
     rules:
       add_new: Add rule
-      description: While most claim to have read and agree to the terms of service, usually people do not read through until after a problem arises. Make it easier to see your server's rules at a glance by providing them in a flat bullet point list. Try to keep individual rules short and simple, but try not to split them up into many separate items either.
+      delete: Delete
+      description_html: While most claim to have read and agree to the terms of service, usually people do not read through until after a problem arises. <strong>Make it easier to see your server's rules at a glance by providing them in a flat bullet point list.</strong> Try to keep individual rules short and simple, but try not to split them up into many separate items either.
       edit: Edit rule
+      empty: No server rules have been defined yet.
       title: Server rules
     settings:
       activity_api_enabled:
@@ -695,6 +699,7 @@ en:
       add_new: Add new
       delete: Delete
       edit_preset: Edit warning preset
+      empty: You haven't defined any warning presets yet.
       title: Manage warning presets
   admin_mailer:
     new_pending_account:
