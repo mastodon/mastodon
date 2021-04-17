@@ -5,14 +5,25 @@ SHELL ["bash", "-c"]
 
 # Install Node v12 (LTS)
 ENV NODE_VER="12.14.0"  
-RUN	echo "Etc/UTC" > /etc/localtime && \
+RUN	ARCH= && \
+    dpkgArch="$(dpkg --print-architecture)" && \
+  case "${dpkgArch##*-}" in \
+    amd64) ARCH='x64';; \
+    ppc64el) ARCH='ppc64le';; \
+    s390x) ARCH='s390x';; \
+    arm64) ARCH='arm64';; \
+    armhf) ARCH='armv7l';; \
+    i386) ARCH='x86';; \
+    *) echo "unsupported architecture"; exit 1 ;; \
+  esac && \
+    echo "Etc/UTC" > /etc/localtime && \
 	apt update && \
 	apt -y install wget python && \
 	cd ~ && \
-	wget https://nodejs.org/download/release/v$NODE_VER/node-v$NODE_VER-linux-x64.tar.gz && \
-	tar xf node-v$NODE_VER-linux-x64.tar.gz && \
-	rm node-v$NODE_VER-linux-x64.tar.gz && \
-	mv node-v$NODE_VER-linux-x64 /opt/node
+	wget https://nodejs.org/download/release/v$NODE_VER/node-v$NODE_VER-linux-$ARCH.tar.gz && \
+	tar xf node-v$NODE_VER-linux-$ARCH.tar.gz && \
+	rm node-v$NODE_VER-linux-$ARCH.tar.gz && \
+	mv node-v$NODE_VER-linux-$ARCH /opt/node
 
 # Install jemalloc
 ENV JE_VER="5.2.1"

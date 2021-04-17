@@ -27,9 +27,9 @@
                     = fa_icon 'check'
                 = Formatter.instance.format_field(account, field.value, custom_emojify: true)
 
-      - if account.note.present?
-        %div
-          .account__header__content.emojify= Formatter.instance.simplified_format(account, custom_emojify: true)
+    - if account.note.present?
+      %div
+        .account__header__content.emojify= Formatter.instance.simplified_format(account, custom_emojify: true)
 
 .dashboard__counters{ style: 'margin-top: 10px' }
   %div

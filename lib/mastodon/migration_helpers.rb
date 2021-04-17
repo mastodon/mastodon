@@ -886,16 +886,12 @@ module Mastodon
 Your database user is not allowed to create, drop, or execute triggers on the
 table #{table}.
 
-If you are using PostgreSQL you can solve this by logging in to the GitLab
+If you are using PostgreSQL you can solve this by logging in to the Mastodon
 database (#{dbname}) using a super user and running:
 
     ALTER USER #{user} WITH SUPERUSER
 
-For MySQL you instead need to run:
-
-    GRANT ALL PRIVILEGES ON *.* TO #{user}@'%'
-
-Both queries will grant the user super user permissions, ensuring you don't run
+The query will grant the user super user permissions, ensuring you don't run
 into similar problems in the future (e.g. when new tables are created).
         EOF
       end

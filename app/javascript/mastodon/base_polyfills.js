@@ -6,6 +6,7 @@ import assign from 'object-assign';
 import values from 'object.values';
 import isNaN from 'is-nan';
 import { decode as decodeBase64 } from './utils/base64';
+import promiseFinally from 'promise.prototype.finally';
 
 if (!Array.prototype.includes) {
   includes.shim();
@@ -22,6 +23,8 @@ if (!Object.values) {
 if (!Number.isNaN) {
   Number.isNaN = isNaN;
 }
+
+promiseFinally.shim();
 
 if (!HTMLCanvasElement.prototype.toBlob) {
   const BASE64_MARKER = ';base64,';
