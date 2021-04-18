@@ -1,5 +1,47 @@
 gd:
   devise:
+    confirmations:
+      confirmed: Chaidh an seòladh puist-d agad a dhearbhadh.
+      send_instructions: Gheibh thu post-d an ceann corra mionaid le stiùireadh air mar a dhearbhas tu an seòladh puist-d agad. Thoir sùil air pasgan an spama agad mura faigh thu am post-d seo.
+      send_paranoid_instructions: Ma tha an seòladh puist-d agad san stòr-dàta againn, gheibh thu post-d an ceann corra mionaid le stiùireadh air mar a dhearbhas tu an seòladh puist-d agad. Thoir sùil air pasgan an spama agad mura faigh thu am post-d seo.
+    failure:
+      already_authenticated: Tha thu air do chlàradh a-steach mu thràth.
+      inactive: Cha deach an cunntas agad a ghnìomhachadh fhathast.
+      invalid: '%{authentication_keys} no facal-faire mì-dhligheach.'
+      last_attempt: Tha aon oidhirp eile agad mus dèid an cunntas agad a ghlasadh.
+      locked: Tha an cunntas agad glaiste.
+      not_found_in_database: '%{authentication_keys} no facal-faire mì-dhligheach.'
+      pending: Tha an cunntas agad fo lèirmheas fhathast.
+      timeout: Dh’fhalbh an ùine air an t-seisean agad. Clàraich a-steach a-rithist airson leantainn air adhart.
+      unauthenticated: Feumaidh tu clàradh a-steach no clàradh leinn mus lean thu air adhart.
+      unconfirmed: Feumaidh tu an seòladh puist-d agad a dhearbhadh mus lean thu air adhart.
     mailer:
       confirmation_instructions:
+        action: Dearbh an seòladh puist-d
+        action_with_app: Dearbh ’s till gu %{app}
+        explanation: Tha thu air cunntas a chruthachadh air %{host} leis an t-seòladh puist-d seo. Chan eil ach aon bhriogadh a dhìth gus am bi e gnìomhach. Mur e tusa a bh’ ann, leig seachad am post-d seo.
         explanation_when_pending: Chuir thu iarrtas a-steach ach am faigh thu cuireadh dha %{host} air an t-seòladh puist-d seo. Nuair a bhios tu air an seòladh puist-d agad a dhearbhadh, nì sinn lèirmheas air d’ iarrtas. ’S urrainn dhut clàradh a-steach airson am fiosrachadh mu d’ dhèidhinn atharrachadh no an cunntas agad a sguabadh às ach chan fhaigh thu cothrom air a’ mhòrchuid a ghleusan gus am bi an cunntas agad air a dhearbhadh. Ma thèid d’ iarrtas a dhiùltadh, thèid an dàta agad a thoirt air falbh is cha leig thu leas dad sam bith eile a dhèanamh. Mur e tusa a bh’ ann, leig seachad am post-d seo.
+        extra_html: Thoir sùil air <a href="%{terms_path}">riaghailtean an fhrithealaiche</a> agus <a href="%{policy_path}">teirmichean na seirbheise againn</a> cuideachd.
+        subject: 'Mastodon: Stiùireadh dearbhaidh airson %{instance}'
+        title: Dearbh an seòladh puist-d
+      email_changed:
+        explanation: 'Tha an seòladh puist-d dhan chunntas agad ’ga atharrachadh gu:'
+        extra: Mur an do dh’atharraich thu fhèin am post-d agad, tha deagh theans gun d’ fhuair cuideigin eile grèim air a’ chunntas agad. Atharraich am facal-faire agad sa bhad no cuir fios gu rianaire an fhrithealaiche ma chaidh do ghlasadh a-mach às a’ chunntas agad.
+        subject: 'Mastodon: Chaidh am post-d atharrachadh'
+        title: Seòladh puist-d ùr
+      password_change:
+        explanation: Chaidh facal-faire a’ chunntais agad atharrachadh.
+        extra: Mur an do dh’atharraich thu fhèin am facal-faire agad, tha deagh theans gun d’ fhuair cuideigin eile grèim air a’ chunntas agad. Atharraich am facal-faire agad sa bhad no cuir fios gu rianaire an fhrithealaiche ma chaidh do ghlasadh a-mach às a’ chunntas agad.
+        subject: 'Mastodon: Chaidh am facal-faire atharrachadh'
+        title: Chaidh am facal-faire atharrachadh
+      reconfirmation_instructions:
+        explanation: Dearbh an seòladh ùr airson am post-d agad atharrachadh.
+        extra: Mura rinn thu fhèin an t-atharrachadh seo, leig seachad am post-d seo. Chan atharraich seòladh puist-d a’ chunntais Mastodon agad gus am briog thu air a’ cheangal gu h-àrd.
+        subject: 'Mastodon: Dearbh am post-d airson %{instance}'
+        title: Dearbh an seòladh puist-d
+      reset_password_instructions:
+        action: Atharraich am facal-faire
+        explanation: Dh’iarr thu facal-faire ùr dhan chunntas agad.
+        extra: Mur an do dh’iarr thu fhèin seo, leig seachad am post-d seo. Chan atharraich am facal-faire agad gus an inntrig thu an ceangal gu h-àrd ’s an cruthaich thu facal-faire ùr.
+        subject: 'Mastodon: Stiùireadh air ath-shuidheachadh an fhacail-fhaire'
+        title: Ath-shuidheachadh an fhacail-fhaire
