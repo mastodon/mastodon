@@ -310,10 +310,12 @@ ko:
       new:
         create: 공지사항 생성
         title: 새 공지사항
+      publish: 게시
       published_msg: 공지가 성공적으로 발행되었습니다!
       scheduled_for: '%{time}에 예약됨'
       scheduled_msg: 공지의 발행이 예약되었습니다!
       title: 공지사항
+      unpublish: 게시 취소
       unpublished_msg: 공지가 성공적으로 발행 취소되었습니다!
       updated_msg: 공지가 성공적으로 업데이트되었습니다!
     custom_emojis:
@@ -543,7 +545,10 @@ ko:
       updated_at: 업데이트 시각
     rules:
       add_new: 규칙 추가
+      delete: 삭제
+      description_html: 대부분의 경우 사람들이 이용약관을 반드시 읽고 동의하도록 하지만, 보통의 사람들은 문제가 일어나기 전까지는 읽지 않습니다. <strong>여러분의 서버 규칙을 목록으로 정리해서 한 번에 읽기 쉽게 만드세요.</strong> 규칙 각각을 짧고 단순하게 만들고, 하나를 여러 개로 쪼개지도 마세요.
       edit: 규칙 수정
+      empty: 아직 정의된 서버 규칙이 없습니다.
       title: 서버 규칙
     settings:
       activity_api_enabled:
@@ -685,6 +690,7 @@ ko:
       add_new: 새로 추가
       delete: 삭제
       edit_preset: 경고 틀 수정
+      empty: 아직 어떤 경고 틀도 정의되지 않았습니다.
       title: 경고 틀 관리
   admin_mailer:
     new_pending_account:
