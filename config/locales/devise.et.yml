@@ -2,7 +2,7 @@
 et:
   devise:
     confirmations:
-      confirmed: Sinu e-postiaadress on edukalt kinnitatud.
+      confirmed: Teie e-postiaadress on edukalt kinnitatud.
       send_instructions: Te saate paari minuti pärast e-kirja juhistega, kuidas oma e-posti aadressit kinnitada. Palun kontrollige oma rämpsposti kausta juhul, kui Te ei saanud seda e-kirja.
       send_paranoid_instructions: Kui Teie e-postiaadress eksisteerib meie andmebaasis, saate paari minuti pärast e-kirja juhistega, kuidas oma e-posti aadressit kinnitada. Palun kontrollige oma rämpsposti kausta juhul, kui Te ei saanud seda e-kirja.
     failure:
@@ -10,7 +10,7 @@ et:
       inactive: Teie konto pole veel aktiveeritud.
       invalid: Valed %{authentication_keys} või parool.
       last_attempt: Teil on veel üks katse kuni teie konto on lukustatud.
-      locked: Sinu konto on lukustatud.
+      locked: Teie konto on lukustatud.
       not_found_in_database: Valed %{authentication_keys} või parool.
       pending: Teie konto on siiani läbivaatlusel.
       timeout: Teie sessioon on aegunud. Jätkamiseks palun sisenege uuesti.
@@ -46,6 +46,18 @@ et:
         extra: Kui Te ei soovinud seda, palun eirake seda kirja. Teie salasõna ei muutu, kuni Te vajutate üleval olevale lingile ning loote uue.
         subject: 'Mastodon: Salasõna lähtestamisjuhendid'
         title: Salasõna lähtestamine
+      two_factor_disabled:
+        explanation: Kaheastmeline autentimine on teie konto jaoks välja lülitatud. Sisselogimine on nüüd ainult võimalik kasutades e-postiaadressit ja salasõna.
+        subject: 'Mastodon: Kaheastmeline autentimine välja lülitatud'
+        title: 2FA väljas
+      two_factor_enabled:
+        explanation: Kaheastmeline autentimine on Teie kontole sisse lülitatud. Teie TOTP rakenduse poolt loodud võtit läheb vaja igal sisselogimisel.
+        subject: 'Mastodon: Kaheastmeline autentimine sisse lülitatud'
+        title: 2FA sees
+      two_factor_recovery_codes_changed:
+        explanation: Eelmised taastuskoodid on kehtetuks tehtud ning uued loodud.
+        subject: 'Mastodon: Kaheastmelise autentimise taastuskoodid taasloodud'
+        title: 2FA taastuskoodid muudetud
       unlock_instructions:
         subject: 'Mastodon: Lahti lukustamis juhendid'
     omniauth_callbacks:

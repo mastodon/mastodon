@@ -1,16 +1,12 @@
 Fabricator(:media_attachment) do
   account
+
   file do |attrs|
-    [
-      case attrs[:type]
-      when :gifv
-        attachment_fixture ['attachment.gif', 'attachment.webm'].sample
-      when :image
-        attachment_fixture 'attachment.jpg'
-      when nil
-        attachment_fixture ['attachment.gif', 'attachment.jpg', 'attachment.webm'].sample
-      end,
-      nil
-    ].sample
+    case attrs[:type]
+    when :gifv, :video
+      attachment_fixture('attachment.webm')
+    else
+      attachment_fixture('attachment.jpg')
+    end
   end
 end

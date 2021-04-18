@@ -39,7 +39,13 @@ class FetchLinkCardService < BaseService
   def process_url
     @card ||= PreviewCard.new(url: @url)
 
-    Request.new(:get, @url).perform do |res|
+    attempt_oembed || attempt_opengraph
+  end
+
+  def html
+    return @html if defined?(@html)
+
+    Request.new(:get, @url).add_headers('Accept' => 'text/html').perform do |res|
       if res.code == 200 && res.mime_type == 'text/html'
         @html = res.body_with_limit
         @html_charset = res.charset
@@ -48,10 +54,6 @@ class FetchLinkCardService < BaseService
         @html_charset = nil
       end
     end
-
-    return if @html.nil?
-
-    attempt_oembed || attempt_opengraph
   end
 
   def attach_card
@@ -65,7 +67,7 @@ class FetchLinkCardService < BaseService
     else
       html  = Nokogiri::HTML(@status.text)
       links = html.css('a')
-      urls  = links.map { |a| Addressable::URI.parse(a['href']).normalize unless skip_link?(a) }.compact
+      urls  = links.map { |a| Addressable::URI.parse(a['href']) unless skip_link?(a) }.compact.map(&:normalize).compact
     end
 
     urls.reject { |uri| bad_url?(uri) }.first
@@ -84,15 +86,20 @@ class FetchLinkCardService < BaseService
 
   def skip_link?(a)
     # Avoid links for hashtags and mentions (microformats)
-    a['rel']&.include?('tag') || a['class']&.include?('u-url') || mention_link?(a)
+    a['rel']&.include?('tag') || a['class']&.match?(/u-url|h-card/) || mention_link?(a)
   end
 
   def attempt_oembed
-    service = FetchOEmbedService.new
-    embed   = service.call(@url, html: @html)
-    url     = Addressable::URI.parse(service.endpoint_url)
+    service         = FetchOEmbedService.new
+    url_domain      = Addressable::URI.parse(@url).normalized_host
+    cached_endpoint = Rails.cache.read("oembed_endpoint:#{url_domain}")
+
+    embed   = service.call(@url, cached_endpoint: cached_endpoint) unless cached_endpoint.nil?
+    embed ||= service.call(@url, html: html) unless html.nil?
 
     return false if embed.nil?
+
+    url = Addressable::URI.parse(service.endpoint_url)
 
     @card.type          = embed[:type]
     @card.title         = embed[:title]         || ''
@@ -127,6 +134,8 @@ class FetchLinkCardService < BaseService
   end
 
   def attempt_opengraph
+    return if html.nil?
+
     detector = CharlockHolmes::EncodingDetector.new
     detector.strip_tags = true
 

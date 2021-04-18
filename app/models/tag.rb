@@ -37,6 +37,7 @@ class Tag < ApplicationRecord
   scope :pending_review, -> { unreviewed.where.not(requested_review_at: nil) }
   scope :usable, -> { where(usable: [true, nil]) }
   scope :listable, -> { where(listable: [true, nil]) }
+  scope :trendable, -> { Setting.trendable_by_default ? where(trendable: [true, nil]) : where(trendable: true) }
   scope :discoverable, -> { listable.joins(:account_tag_stat).where(AccountTagStat.arel_table[:accounts_count].gt(0)).order(Arel.sql('account_tag_stats.accounts_count desc')) }
   scope :most_used, ->(account) { joins(:statuses).where(statuses: { account: account }).group(:id).order(Arel.sql('count(*) desc')) }
   scope :matches_name, ->(value) { where(arel_table[:name].matches("#{value}%")) }
@@ -76,7 +77,7 @@ class Tag < ApplicationRecord
   alias listable? listable
 
   def trendable
-    boolean_with_default('trendable', false)
+    boolean_with_default('trendable', Setting.trendable_by_default)
   end
 
   alias trendable? trendable
@@ -116,7 +117,7 @@ class Tag < ApplicationRecord
   class << self
     def find_or_create_by_names(name_or_names)
       Array(name_or_names).map(&method(:normalize)).uniq { |str| str.mb_chars.downcase.to_s }.map do |normalized_name|
-        tag = matching_name(normalized_name).first || create!(name: normalized_name)
+        tag = matching_name(normalized_name).first || create(name: normalized_name)
 
         yield tag if block_given?
 

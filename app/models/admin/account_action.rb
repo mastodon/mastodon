@@ -62,6 +62,8 @@ class Admin::AccountAction
 
   def process_action!
     case type
+    when 'none'
+      handle_resolve!
     when 'disable'
       handle_disable!
     when 'silence'
@@ -100,6 +102,16 @@ class Admin::AccountAction
     reports.each do |report|
       log_action(:resolve, report)
       report.resolve!(current_account)
+    end
+  end
+
+  def handle_resolve!
+    if with_report? && report.account_id == -99 && target_account.trust_level == Account::TRUST_LEVELS[:untrusted]
+      # This is an automated report and it is being dismissed, so it's
+      # a false positive, in which case update the account's trust level
+      # to prevent further spam checks
+
+      target_account.update(trust_level: Account::TRUST_LEVELS[:trusted])
     end
   end
 

@@ -20,7 +20,7 @@ class VoteService < BaseService
 
         ApplicationRecord.transaction do
           @choices.each do |choice|
-            @votes << @poll.votes.create!(account: @account, choice: choice)
+            @votes << @poll.votes.create!(account: @account, choice: Integer(choice))
           end
         end
       else

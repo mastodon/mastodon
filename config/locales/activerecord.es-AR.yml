@@ -1,0 +1,17 @@
+---
+es-AR:
+  activerecord:
+    attributes:
+      poll:
+        expires_at: Fecha límite
+        options: Opciones
+    errors:
+      models:
+        account:
+          attributes:
+            username:
+              invalid: sólo letras, números y subguiones ("_")
+        status:
+          attributes:
+            reblog:
+              taken: del estado ya existe

@@ -4,18 +4,18 @@ pt-BR:
     attributes:
       doorkeeper/application:
         name: Nome do aplicativo
-        redirect_uri: URI de redirecionamento
+        redirect_uri: Link de redirecionamento
         scopes: Autorizações
-        website: Website do aplicativo
+        website: Site do aplicativo
     errors:
       models:
         doorkeeper/application:
           attributes:
             redirect_uri:
               fragment_present: não pode conter um fragmento.
-              invalid_uri: precisa ser uma URI válida.
-              relative_uri: precisa ser uma URI absoluta.
-              secured_uri: precisa ser uma URI HTTPS/SSL.
+              invalid_uri: precisa ser um link válido.
+              relative_uri: precisa ser um link absoluto.
+              secured_uri: precisa ser um link HTTPS/SSL.
   doorkeeper:
     applications:
       buttons:
@@ -29,26 +29,27 @@ pt-BR:
       edit:
         title: Editar aplicativo
       form:
-        error: Oops! Verifique o seu formulário para saber de possíveis erros
+        error: Eita! Verifique o seu formulário para saber de possíveis erros
       help:
         native_redirect_uri: Use %{native_redirect_uri} para testes locais
-        redirect_uri: Use uma linha para cada URI
+        redirect_uri: Use uma linha para cada link
         scopes: Separe autorizações com espaços. Deixe em branco para usar autorizações padrões.
       index:
         application: Aplicativos
-        callback_url: URL de retorno
+        callback_url: Link de retorno
         delete: Excluir
+        empty: Não tem aplicações.
         name: Nome
         new: Novo aplicativo
         scopes: Autorizações
         show: Mostrar
         title: Seus aplicativos
       new:
-        title: Novos aplicativos
+        title: Novo aplicativo
       show:
         actions: Ações
         application_id: Chave do cliente
-        callback_urls: URLs de retorno
+        callback_urls: Links de retorno
         scopes: Autorizações
         secret: Segredo do cliente
         title: 'Aplicativo: %{name}'
@@ -59,7 +60,7 @@ pt-BR:
       error:
         title: Ocorreu um erro
       new:
-        able_to: Será capaz de
+        able_to: Poderá
         prompt: O aplicativo %{client_name} solicita acesso à sua conta
         title: Autorização necessária
       show:
@@ -79,28 +80,28 @@ pt-BR:
       messages:
         access_denied: O proprietário ou servidor de autorização negou a solicitação.
         credential_flow_not_configured: Cadeira de Credenciais de Senha do Proprietário falhou porque Doorkeeper.configure.resource_owner_from_credentials não foram configuradas.
-        invalid_client: Autenticação do cliente falhou por causa de um cliente desconhecido, nenhum cliente de autenticação incluído ou método de autenticação não suportado.
-        invalid_grant: A garantia de autorização é inválida, expirou, foi revogada, não é equivalente à URI de redirecionamento usada da solicitação de autorização ou foi emitida por outro cliente.
-        invalid_redirect_uri: A URI de redirecionamento incluída não é válida.
-        invalid_request: A solicitação não possui um parâmetro obrigatório, inclui um valor não suportado ou está mal formatada.
+        invalid_client: Autenticação do cliente falhou por causa de um cliente desconhecido, nenhum cliente de autenticação foi incluído ou o método de autenticação não é suportado.
+        invalid_grant: A garantia de autorização está inválida, expirou ou foi revogada, não é equivalente ao link de redirecionamento usado na solicitação de autorização ou foi emitido por outro cliente.
+        invalid_redirect_uri: O link de redirecionamento não é válido.
+        invalid_request: A solicitação não possui um parâmetro obrigatório, inclui um valor não suportado ou está mal formatado.
         invalid_resource_owner: As credenciais do proprietário informadas não são válidas ou o proprietário não pôde ser encontrado
         invalid_scope: A autorização requirida é inválida, desconhecida ou está mal formatada.
         invalid_token:
-          expired: O token de acesso expirou
-          revoked: O token de acesso foi revogado
-          unknown: O token de acesso é inválido
-        resource_owner_authenticator_not_configured: Procura pelo proprietário falhou porque Doorkeeper.configure.resource_owner_authenticator não foi configurado.
+          expired: O código de acesso expirou
+          revoked: O código de acesso foi revogado
+          unknown: O código de acesso é inválido
+        resource_owner_authenticator_not_configured: A procura pelo Proprietário do Recurso falhou porque Doorkeeper.configure.resource_owner_authenticator não foi configurado.
         server_error: O servidor de autorização encontrou uma condição inesperada que preveniu a solicitação de ser respondida.
-        temporarily_unavailable: O servidor de autorização é incapaz de lidar com a solicitação no momento por causa d múltiplas requisições ou manutenção programada.
-        unauthorized_client: O cliente não possui autorização para performar esta solicitação usando este método.
-        unsupported_grant_type: O tipo de garantia de autorização não é suportada pelo servidor de autorização.
+        temporarily_unavailable: O servidor de autorização é incapaz de lidar com a solicitação no momento devido à múltiplas requisições ou manutenção programada.
+        unauthorized_client: O cliente não possui autorização para executar esta solicitação usando este método.
+        unsupported_grant_type: O tipo de garantia de autorização não é suportado pelo servidor de autorização.
         unsupported_response_type: O servidor de autorização não suporta este tipo de resposta.
     flash:
       applications:
         create:
           notice: Aplicativo criado.
         destroy:
-          notice: Aplicativo deletado.
+          notice: Aplicativo excluído.
         update:
           notice: Aplicativo atualizado.
       authorized_applications:
@@ -109,34 +110,42 @@ pt-BR:
     layouts:
       admin:
         nav:
-          applications: Aplicativo
+          applications: Aplicativos
           oauth2_provider: Provedor de OAuth2
       application:
         title: Autorização OAuth obrigatória
     scopes:
-      follow: modificar as relações com outras contas
-      push: receber suas notificações push
+      admin:read: ler todos os dados no servidor
+      admin:read:accounts: ler informações sensíveis de todas as contas
+      admin:read:reports: ler informações sensíveis de todas as denúncias e contas denunciadas
+      admin:write: alterar todos os dados no servidor
+      admin:write:accounts: executar ações de moderação em contas
+      admin:write:reports: executar ações de moderação em denúncias
+      follow: alterar o relacionamento das contas
+      push: receber notificações push
       read: ler todos os dados da sua conta
-      read:accounts: ver as informações da conta
+      read:accounts: ver informações das contas
       read:blocks: ver seus bloqueios
+      read:bookmarks: ver seus salvos
       read:favourites: ver seus favoritos
       read:filters: ver seus filtros
       read:follows: ver quem você segue
       read:lists: ver suas listas
-      read:mutes: ver seus usuários silenciados
+      read:mutes: ver seus silenciamentos
       read:notifications: ver suas notificações
       read:reports: ver suas denúncias
-      read:search: buscar em seu nome
-      read:statuses: ver todos os status
-      write: modificar todos os dados da sua conta
-      write:accounts: modificar seu perfil
+      read:search: pesquisar em seu nome
+      read:statuses: ver todos os toots
+      write: alterar todos os dados da sua conta
+      write:accounts: alterar seu perfil
       write:blocks: bloquear contas e domínios
-      write:favourites: status favoritos
+      write:bookmarks: salvar toots
+      write:favourites: favoritar toots
       write:filters: criar filtros
       write:follows: seguir pessoas
       write:lists: criar listas
       write:media: enviar arquivos de mídia
       write:mutes: silenciar pessoas e conversas
-      write:notifications: limpar suas notificações
-      write:reports: reportar outras pessoas
-      write:statuses: publicar status
+      write:notifications: limpar notificações
+      write:reports: denunciar outras pessoas
+      write:statuses: postar toots

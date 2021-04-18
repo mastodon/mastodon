@@ -1,20 +1,24 @@
 - content_for :page_title do
   = t('filters.index.title')
 
-.table-wrapper
-  %table.table
-    %thead
-      %tr
-        %th= t('simple_form.labels.defaults.phrase')
-        %th= t('simple_form.labels.defaults.context')
-        %th
-    %tbody
-      - @filters.each do |filter|
-        %tr
-          %td= filter.phrase
-          %td= filter.context.map { |context| I18n.t("filters.contexts.#{context}") }.join(', ')
-          %td
-            = table_link_to 'pencil', t('filters.edit.title'), edit_filter_path(filter)
-            = table_link_to 'times', t('filters.index.delete'), filter_path(filter), method: :delete
+- content_for :heading_actions do
+  = link_to t('filters.new.title'), new_filter_path, class: 'button'
 
-= link_to t('filters.new.title'), new_filter_path, class: 'button'
+- if @filters.empty?
+  %div.muted-hint.center-text= t 'filters.index.empty'
+- else
+  .table-wrapper
+    %table.table
+      %thead
+        %tr
+          %th= t('simple_form.labels.defaults.phrase')
+          %th= t('simple_form.labels.defaults.context')
+          %th
+      %tbody
+        - @filters.each do |filter|
+          %tr
+            %td= filter.phrase
+            %td= filter.context.map { |context| I18n.t("filters.contexts.#{context}") }.join(', ')
+            %td
+              = table_link_to 'pencil', t('filters.edit.title'), edit_filter_path(filter)
+              = table_link_to 'times', t('filters.index.delete'), filter_path(filter), method: :delete

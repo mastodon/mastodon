@@ -126,8 +126,8 @@ RSpec.describe Account, type: :model do
       end
 
       it 'sets default avatar, header, avatar_remote_url, and header_remote_url' do
-        expect(account.avatar_remote_url).to eq ''
-        expect(account.header_remote_url).to eq ''
+        expect(account.avatar_remote_url).to eq 'https://remote.test/invalid_avatar'
+        expect(account.header_remote_url).to eq expectation.header_remote_url
         expect(account.avatar_file_name).to  eq nil
         expect(account.header_file_name).to  eq nil
       end
@@ -212,13 +212,6 @@ RSpec.describe Account, type: :model do
     it 'returns an RSA key pair' do
       account = Fabricate(:account)
       expect(account.keypair).to be_instance_of OpenSSL::PKey::RSA
-    end
-  end
-
-  describe '#subscription' do
-    it 'returns an OStatus subscription' do
-      account = Fabricate(:account)
-      expect(account.subscription('')).to be_instance_of OStatus2::Subscription
     end
   end
 
@@ -626,18 +619,18 @@ RSpec.describe Account, type: :model do
     end
 
     context 'when is remote' do
-      it 'is invalid if the username is not unique in case-sensitive comparison among accounts in the same normalized domain' do
+      it 'is invalid if the username is same among accounts in the same normalized domain' do
         Fabricate(:account, domain: 'にゃん', username: 'username')
         account = Fabricate.build(:account, domain: 'xn--r9j5b5b', username: 'username')
         account.valid?
         expect(account).to model_have_error_on_field(:username)
       end
 
-      it 'is valid even if the username is unique only in case-sensitive comparison among accounts in the same normalized domain' do
+      it 'is invalid if the username is not unique in case-insensitive comparison among accounts in the same normalized domain' do
         Fabricate(:account, domain: 'にゃん', username: 'username')
         account = Fabricate.build(:account, domain: 'xn--r9j5b5b', username: 'Username')
         account.valid?
-        expect(account).not_to model_have_error_on_field(:username)
+        expect(account).to model_have_error_on_field(:username)
       end
 
       it 'is valid even if the username contains hyphens' do
@@ -823,4 +816,5 @@ RSpec.describe Account, type: :model do
   end
 
   include_examples 'AccountAvatar', :account
+  include_examples 'AccountHeader', :account
 end

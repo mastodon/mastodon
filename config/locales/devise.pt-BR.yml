@@ -46,6 +46,18 @@ pt-BR:
         extra: Se você não fez esse pedido, por favor ignore esse e-mail. Sua senha não irá mudar até que você acesse o link acima e crie uma nova.
         subject: 'Mastodon: Instruções para mudança de senha'
         title: Redefinir a senha
+      two_factor_disabled:
+        explanation: A autenticação de dois fatores para sua conta foi desativada. Agora é possível acessar apenas com seu endereço de e-mail e senha.
+        subject: 'Mastodon: Autenticação de dois fatores desativada'
+        title: 2FA desativada
+      two_factor_enabled:
+        explanation: A autenticação de dois fatores foi habilitada para sua conta. Um token gerado pelo app TOTP pareado será necessário para o login.
+        subject: 'Mastodon: Autenticação de dois fatores desativada'
+        title: 2FA ativada
+      two_factor_recovery_codes_changed:
+        explanation: Os códigos de recuperação anteriores foram invalidados e novos códigos foram gerados.
+        subject: 'Mastodon: códigos de recuperação de dois fatores gerados novamente'
+        title: Códigos de recuperação de 2FA alterados
       unlock_instructions:
         subject: 'Mastodon: Instruções de desbloqueio'
     omniauth_callbacks:

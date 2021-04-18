@@ -1,1 +1,183 @@
+---
 es-AR:
+  simple_form:
+    hints:
+      account_alias:
+        acct: Especificá el nombredeusuario@dominio de la cuenta desde la que querés mudarte
+      account_migration:
+        acct: Especificá el nombredeusuario@dominio de la cuenta a la que querés mudarte
+      account_warning_preset:
+        text: Podés usar sintaxis de toots, como direcciones web, etiquetas y menciones
+      admin_account_action:
+        include_statuses: El usuario verá qué toots causaron la acción de moderación o advertencia
+        send_email_notification: El usuario recibirá una explicación de lo que sucedió con su cuenta
+        text_html: Opcional. Podés usar sintaxis de toots. Podés <a href="%{path}">agregar preajustes de advertencia</a> para ahorrar tiempo.
+        type_html: Elegí qué hacer con <strong>%{acct}</strong>
+        warning_preset_id: Opcional. Todavía podés agregar texto personalizado al final del preajuste
+      announcement:
+        all_day: Cuando esté seleccionado, sólo se mostrarán las fechas del rango de tiempo
+        ends_at: Opcional. El anuncio desaparecerá automáticamente en este momento
+        scheduled_at: Dejar en blanco para publicar el anuncio inmediatamente
+        starts_at: Opcional. En caso de que tu anuncio esté vinculado a un rango de tiempo específico
+        text: Podés usar la sintaxis de toot. Por favor, tené en cuenta el espacio que ocupará el anuncio en la pantalla del usuario
+      defaults:
+        autofollow: Los usuarios que se registren mediante la invitación te seguirán automáticamente
+        avatar: 'PNG, GIF o JPG. Máximo: %{size}. Será subescalado a %{dimensions} píxeles.'
+        bot: Esta cuenta ejecuta principalmente acciones automatizadas y podría no ser monitorizada
+        context: Uno o múltiples contextos en los que debe aplicarse el filtro
+        current_password: Por razones de seguridad, por favor, ingresá la contraseña de la cuenta actual
+        current_username: Para confirmar, por favor, ingresá el nombre de usuario de la cuenta actual
+        digest: Sólo enviado tras un largo periodo de inactividad, y sólo si has recibiste mensajes personales en tu ausencia
+        discoverable: El directorio del perfil es otra forma en la que tu cuenta puede llegar a un público más amplio
+        email: Se te enviará un correo electrónico de confirmación
+        fields: Podés tener hasta 4 elementos mostrados en una tabla en tu perfil
+        header: 'PNG, GIF o JPG. Máximo: %{size}. Será subescalado a %{dimensions} píxeles.'
+        inbox_url: Copiá la dirección web desde la página principal del relé que querés usar
+        irreversible: Los toots filtrados desaparecerán irreversiblemente, incluso si este filtro es eliminado después
+        locale: El idioma de la interface de usuario, correos electrónicos y notificaciones PuSH
+        locked: Requiere que manualmente aprobés seguidores
+        password: Usá al menos 8 caracteres
+        phrase: Se aplicará sin importar las mayúsculas o las advertencias de contenido de un toot
+        scopes: Qué APIs de la aplicación tendrán acceso. Si seleccionás el alcance de nivel más alto, no necesitás seleccionar las individuales.
+        setting_aggregate_reblogs: No mostrar nuevos retoots de los toots que fueron recientemente retooteados (sólo afecta a los retoots recibidos recientemente)
+        setting_default_sensitive: El contenido de medios sensibles está oculto predeterminadamente y puede ser mostrado con un clic
+        setting_display_media_default: Ocultar medios que están marcados como sensibles
+        setting_display_media_hide_all: Siempre ocultar todos los medios
+        setting_display_media_show_all: Siempre mostrar todos los medios que están marcados como sensibles
+        setting_hide_network: A quiénes seguís y tus seguidores no serán mostrados en tu perfil
+        setting_noindex: Afecta a tu perfil público y páginas de estado
+        setting_show_application: La aplicación que usás para tootear se mostrará en la vista detallada de tus toots
+        setting_use_blurhash: Los gradientes se basan en los colores de las imágenes ocultas pero haciendo borrosos los detalles
+        setting_use_pending_items: Ocultar actualizaciones de la línea temporal detrás de un clic en lugar de desplazar automáticamente el flujo
+        username: Tu nombre de usuario será único en %{domain}
+        whole_word: Cuando la palabra clave o frase es sólo alfanumérica, sólo será aplicado si coincide con toda la palabra
+      domain_allow:
+        domain: Este dominio podrá recolectar datos de este servidor, y los datos entrantes serán procesados y archivados
+      featured_tag:
+        name: 'Puede que quieras usar una de estas:'
+      form_challenge:
+        current_password: Estás ingresando en un área segura
+      imports:
+        data: Archivo CSV exportado desde otro servidor de Mastodon
+      invite_request:
+        text: Esto nos ayudará a revisar tu aplicación
+      sessions:
+        otp: 'Ingresá el código de autenticación de dos factores generado por la aplicación de tu dispositivo móvil, o usá uno de tus códigos de recuperación:'
+      tag:
+        name: Sólo podés cambiar la capitalización de las letras, por ejemplo, para que sea más legible
+      user:
+        chosen_languages: Cuando esté marcado, sólo se mostrarán los toots en los idiomas seleccionados en las líneas temporales públicas
+    labels:
+      account:
+        fields:
+          name: Nombre de campo
+          value: Valor de campo
+      account_alias:
+        acct: Alias de la cuenta antigua
+      account_migration:
+        acct: Alias de la cuenta nueva
+      account_warning_preset:
+        text: Texto predefinido
+      admin_account_action:
+        include_statuses: Incluir en el correo electrónico a los toots denunciados
+        send_email_notification: Notificar al usuario por correo electrónico
+        text: Advertencia personalizada
+        type: Acción
+        types:
+          disable: Deshabilitar inicio de sesión
+          none: No hacer nada
+          silence: Silenciar
+          suspend: Suspender y eliminar de forma irreversible los datos de la cuenta
+        warning_preset_id: Usar un texto predeterminado
+      announcement:
+        all_day: Evento de todo el día
+        ends_at: Fin del evento
+        scheduled_at: Programar publicación
+        starts_at: Comienzo del evento
+        text: Anuncio
+      defaults:
+        autofollow: Invitar para seguir tu cuenta
+        avatar: Avatar
+        bot: Esta es una cuenta bot
+        chosen_languages: Filtrar idiomas
+        confirm_new_password: Confirmar nueva contraseña
+        confirm_password: Confirmar contraseña
+        context: Filtrar contextos
+        current_password: Contraseña actual
+        data: Datos
+        discoverable: Listar esta cuenta en el directorio
+        display_name: Nombre para mostrar
+        email: Dirección de correo electrónico
+        expires_in: Vence después de
+        fields: Metadatos de perfil
+        header: Cabecera
+        inbox_url: Dirección web de la bandeja de entrada del relé
+        irreversible: Dejar en lugar de ocultar
+        locale: Idioma de la interface
+        locked: Hacer privada esta cuenta
+        max_uses: Número máximo de usos
+        new_password: Nueva contraseña
+        note: Biografía
+        otp_attempt: Código de dos factores
+        password: Contraseña
+        phrase: Palabra clave o frase
+        setting_advanced_layout: Habilitar interface web avanzada
+        setting_aggregate_reblogs: Agrupar retoots en las líneas temporales
+        setting_auto_play_gif: Reproducir automáticamente los GIFs animados
+        setting_boost_modal: Mostrar diálogo de confirmación antes de retootear
+        setting_crop_images: Recortar imágenes en toots no expandidos a 16x9
+        setting_default_language: Idioma de tus toots
+        setting_default_privacy: Privacidad de toots
+        setting_default_sensitive: Siempre marcar medios como sensibles
+        setting_delete_modal: Mostrar diálogo de confirmación antes de eliminar un toot
+        setting_display_media: Visualización de medios
+        setting_display_media_default: Predeterminada
+        setting_display_media_hide_all: Ocultar todo
+        setting_display_media_show_all: Mostrar todo
+        setting_expand_spoilers: Siempre expandir los toots marcados con advertencias de contenido
+        setting_hide_network: Ocultar tu red
+        setting_noindex: Excluirse del indexado de motores de búsqueda
+        setting_reduce_motion: Reducir el movimiento de las animaciones
+        setting_show_application: Mostrar aplicación usada para tootear
+        setting_system_font_ui: Utilizar la tipografía predeterminada del sistema
+        setting_theme: Tema del sitio
+        setting_trends: Mostrar las tendencias de hoy
+        setting_unfollow_modal: Mostrar diálogo de confirmación antes de dejar de seguir a alguien
+        setting_use_blurhash: Mostrar gradientes coloridos para medios ocultos
+        setting_use_pending_items: Modo lento
+        severity: Severidad
+        type: Tipo de importación
+        username: Nombre de usuario
+        username_or_email: Nombre de usuario o correo electrónico
+        whole_word: Palabra entera
+      featured_tag:
+        name: Etiqueta
+      interactions:
+        must_be_follower: Bloquear notificaciones de cuentas que no te siguen
+        must_be_following: Bloquear notificaciones de cuentas que no seguís
+        must_be_following_dm: Bloquear mensajes directos de cuentas que no seguís
+      invite:
+        comment: Comentar
+      invite_request:
+        text: "¿Por qué querés unirte?"
+      notification_emails:
+        digest: Enviar correos electrónicos compilatorios
+        favourite: Enviar correo electrónico cuando una cuenta marca como favorito tu estado
+        follow: Enviar correo electrónico cuando una cuenta te siga
+        follow_request: Enviar correo electrónico cuando una cuenta solicita seguirte
+        mention: Enviar correo electrónico cuando una cuenta te mencione
+        pending_account: Enviar correo electrónico cuando una nueva cuenta necesita revisión
+        reblog: Enviar correo electrónico cuando una cuenta retootee tu estado
+        report: Enviar correo electrónico cuando se envíe un nuevo informe
+        trending_tag: Enviar correo electrónico cuando una etiqueta no revisada esté en tendencia
+      tag:
+        listable: Permitir que esta etiqueta aparezca en las búsquedas y en el directorio de perfiles
+        name: Etiqueta
+        trendable: Permitir que esta etiqueta aparezca bajo tendencias
+        usable: Permitir a los toots usar esta etiqueta
+    'no': 'No'
+    recommended: Opción recomendada
+    required:
+      mark: "*"
+      text: obligatorio
+    'yes': Sí

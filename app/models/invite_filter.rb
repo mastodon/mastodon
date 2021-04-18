@@ -1,6 +1,11 @@
 # frozen_string_literal: true
 
 class InviteFilter
+  KEYS = %i(
+    available
+    expired
+  ).freeze
+
   attr_reader :params
 
   def initialize(params)

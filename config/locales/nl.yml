@@ -11,6 +11,7 @@ nl:
     apps: Mobiele apps
     apps_platforms: Gebruik Mastodon op iOS, Android en op andere platformen
     browse_directory: Gebruikersgids doorbladeren en op interesses filteren
+    browse_local_posts: Livestream van openbare berichten op deze server bekijken
     browse_public_posts: Livestream van openbare Mastodonberichten bekijken
     contact: Contact
     contact_missing: Niet ingesteld
@@ -18,7 +19,6 @@ nl:
     discover_users: Gebruikers ontdekken
     documentation: Documentatie
     federation_hint_html: Met een account op %{instance} ben je in staat om mensen die zich op andere Mastodonservers (en op andere plekken) bevinden te volgen.
-    generic_description: "%{domain} is een server in het Mastodonnetwerk"
     get_apps: Mobiele apps
     hosted_on: Mastodon op %{domain}
     instance_actor_flash: 'Dit account is een virtuel actor die wordt gebruikt om de server zelf te vertegenwoordigen en is geen individuele gebruiker. Het wordt voor federatiedoeleinden gebruikt en moet niet worden geblokkeerd, tenzij je de hele server wil blokkeren. In zo''n geval dien je echter een domeinblokkade te gebruiken.
@@ -39,7 +39,7 @@ nl:
     unavailable_content_description:
       domain: Server
       reason: 'Reden:'
-      rejecting_media: Mediabestanden van deze server worden niet verwerkt en er worden geen thumbnails getoond. Je moet handmatig naar deze server doorklikken om de mediabestanden te kunnen bekijken.
+      rejecting_media: 'Mediabestanden van deze server worden niet verwerkt en er worden geen thumbnails getoond. Je moet handmatig naar deze server doorklikken om de mediabestanden te kunnen bekijken:'
       silenced: Toots van deze server worden nergens weergegeven, behalve op jouw eigen starttijdlijn wanneer je het account volgt.
       suspended: Je bent niet in staat om iemand van deze server te volgen, en er worden geen gegevens van deze server verwerkt of opgeslagen, en met deze server uitgewisseld.
     unavailable_content_html: Met Mastodon kun je in het algemeen berichten bekijken van en communiceren met gebruikers van elke andere server in de fediverse. Dit zijn de uitzonderingen die door deze server zijn gemaakt en expliciet alleen hier gelden.
@@ -78,6 +78,7 @@ nl:
     roles:
       admin: Beheerder
       bot: Bot
+      group: Groep
       moderator: Moderator
     unavailable: Profiel niet beschikbaar
     unfollow: Ontvolgen
@@ -118,9 +119,7 @@ nl:
       email_status: E-mailstatus
       enable: Inschakelen
       enabled: Ingeschakeld
-      feed_url: Feed-URL
       followers: Volgers
-      followers_url: Volgers-URL
       follows: Volgt
       header: Omslagfoto
       inbox_url: Inbox-URL
@@ -148,10 +147,8 @@ nl:
       no_account_selected: Er zijn geen accounts veranderd, omdat er geen een was geselecteerd
       no_limits_imposed: Geen limieten ingesteld
       not_subscribed: Niet geabonneerd
-      outbox_url: Outbox-URL
       pending: Moet nog beoordeeld worden
       perform_full_suspension: Opschorten
-      profile_url: Profiel-URL
       promote: Promoveren
       protocol: Protocol
       public: Openbaar
@@ -174,8 +171,8 @@ nl:
         moderator: Moderator
         staff: Medewerkers
         user: Gebruiker
-      salmon_url: Salmon-URL
       search: Zoeken
+      search_same_ip: Andere gebruikers met hetzelfde IP-adres
       shared_inbox_url: Gedeelde inbox-URL
       show:
         created_reports: Aangemaakte rapportages
@@ -201,11 +198,15 @@ nl:
         change_email_user: "%{name} veranderde het e-mailadres van gebruiker %{target}"
         confirm_user: E-mailadres van gebruiker %{target} is door %{name} bevestigd
         create_account_warning: "%{name} verzond een waarschuwing naar %{target}"
+        create_announcement: "%{name} heeft de nieuwe mededeling %{target} aangemaakt"
         create_custom_emoji: Nieuwe emoji %{target} is door %{name} geüpload
+        create_domain_allow: "%{name} heeft het domein %{target} aan de witte lijst toegevoegd"
         create_domain_block: Domein %{target} is door %{name} geblokkeerd
         create_email_domain_block: E-maildomein %{target} is door %{name} op de zwarte lijst geplaatst
         demote_user: Gebruiker %{target} is door %{name} gedegradeerd
+        destroy_announcement: "%{name} heeft de mededeling %{target} verwijderd"
         destroy_custom_emoji: "%{name} verwijderde emoji %{target}"
+        destroy_domain_allow: "%{name} heeft het domein %{target} van de witte lijst verwijderd"
         destroy_domain_block: Domein %{target} is door %{name} gedeblokkeerd
         destroy_email_domain_block: E-maildomein %{target} is door %{name} op de witte lijst geplaatst
         destroy_status: Toot van %{target} is door %{name} verwijderd
@@ -225,10 +226,26 @@ nl:
         unassigned_report: "%{name} heeft het toewijzen van rapportage %{target} ongedaan gemaakt"
         unsilence_account: Negeren van account %{target} is door %{name} opgeheven
         unsuspend_account: Opschorten van account %{target} is door %{name} opgeheven
+        update_announcement: "%{name} heeft de mededeling %{target} bijgewerkt"
         update_custom_emoji: Emoji %{target} is door %{name} bijgewerkt
         update_status: De toots van %{target} zijn door %{name} bijgewerkt
       deleted_status: "(verwijderde toot}"
       title: Auditlog
+    announcements:
+      destroyed_msg: Verwijderen van mededeling geslaagd!
+      edit:
+        title: Mededeling bewerken
+      empty: Geen mededelingen gevonden.
+      live: Live
+      new:
+        create: Mededeling aanmaken
+        title: Nieuwe mededeling
+      published_msg: Publiceren van mededeling geslaagd!
+      scheduled_for: Ingepland voor %{time}
+      scheduled_msg: Mededeling staat ingepland voor publicatie!
+      title: Mededelingen
+      unpublished_msg: Ongedaan maken van gepubliceerde mededeling geslaagd!
+      updated_msg: Bijwerken van mededeling geslaagd!
     custom_emojis:
       assign_category: Categorie toewijzen
       by_domain: Domein
@@ -340,13 +357,11 @@ nl:
       delete: Verwijderen
       destroyed_msg: Deblokkeren e-maildomein geslaagd
       domain: Domein
+      empty: Momenteel staan er geen e-maildomeinen op de zwarte lijst.
       new:
         create: Blokkeren
         title: Nieuw e-maildomein blokkeren
       title: E-maildomeinen blokkeren
-    followers:
-      back_to_account: Terug naar account
-      title: Volgers van %{acct}
     instances:
       by_domain: Domein
       delivery_available: Bezorging is mogelijk
@@ -375,6 +390,8 @@ nl:
       title: Uitnodigingen
     pending_accounts:
       title: Accounts in afwachting (%{count})
+    relationships:
+      title: Relaties van %{acct}
     relays:
       add_new: Nieuwe relayserver toevoegen
       delete: Verwijderen
@@ -396,12 +413,17 @@ nl:
       destroyed_msg: Opmerking bij rapportage succesvol verwijderd!
     reports:
       account:
-        note: opmerking
-        report: rapportage
+        notes:
+          one: "%{count} opmerking"
+          other: "%{count} opmerkingen"
+        reports:
+          one: "%{count} rapportage"
+          other: "%{count} rapportages"
       action_taken_by: Actie uitgevoerd door
       are_you_sure: Weet je het zeker?
       assign_to_self: Aan mij toewijzen
       assigned: Toegewezen moderator
+      by_target_domain: Domein van gerapporteerde account
       comment:
         none: Geen
       created_at: Gerapporteerd op
@@ -447,6 +469,8 @@ nl:
         users: Naar ingelogde lokale gebruikers
       domain_blocks_rationale:
         title: Motivering tonen
+      enable_bootstrap_timeline_accounts:
+        title: Standaard te volgen accounts voor nieuwe gebruikers inschakelen
       hero:
         desc_html: Wordt op de voorpagina getoond. Tenminste 600x100px aanbevolen. Wanneer dit niet is ingesteld wordt de thumbnail van de Mastodonserver getoond
         title: Hero-afbeelding
@@ -479,8 +503,8 @@ nl:
           open: Iedereen kan zich registreren
         title: Registratiemodus
       show_known_fediverse_at_about_page:
-        desc_html: Wanneer ingeschakeld wordt de globale tijdlijn op de voorpagina getoond en wanneer uitgeschakeld de lokale tijdljn.
-        title: De globale tijdlijn op de voorpagina tonen
+        desc_html: Wanneer ingeschakeld wordt de globale tijdlijn op de voorpagina getoond en wanneer uitgeschakeld de lokale tijdlijn
+        title: De globale tijdlijn op de openbare tijdlijnpagina tonen
       show_staff_badge:
         desc_html: Medewerkersbadge op profielpagina tonen
         title: Medewerkersbadge tonen
@@ -504,9 +528,12 @@ nl:
         desc_html: Gebruikt als voorvertoning voor OpenGraph en de API. 1200x630px aanbevolen
         title: Thumbnail Mastodonserver
       timeline_preview:
-        desc_html: Toon een openbare tijdlijn op de voorpagina
-        title: Tijdlijn op de voorpagina tonen
+        desc_html: Toon een link naar de openbare tijdlijnpagina op de voorpagina en geef de API zonder in te loggen toegang tot de openbare tijdlijn
+        title: Toegang tot de openbare tijdlijn zonder in te loggen toestaan
       title: Server-instellingen
+      trendable_by_default:
+        desc_html: Heeft invloed op hashtags die nog niet eerder niet zijn toegestaan
+        title: Hashtags toestaan om trending te worden zonder voorafgaande beoordeling
       trends:
         desc_html: Eerder beoordeelde hashtags die op dit moment trending zijn openbaar tonen
         title: Trending hashtags
@@ -572,7 +599,12 @@ nl:
     animations_and_accessibility: Animaties en toegankelijkheid
     confirmation_dialogs: Bevestigingen
     discovery: Ontdekken
+    localization:
+      body: Mastodon wordt door vrijwilligers vertaald.
+      guide_link: https://crowdin.com/project/mastodon/nl
+      guide_link_text: Iedereen kan bijdragen.
     sensitive_content: Gevoelige inhoud
+    toot_layout: Lay-out van toots
   application_mailer:
     notification_preferences: E-mailvoorkeuren wijzigen
     salutation: "%{name},"
@@ -643,6 +675,9 @@ nl:
     hint_html: "<strong>Tip:</strong> We vragen jou het komende uur niet meer naar jouw wachtwoord."
     invalid_password: Ongeldig wachtwoord
     prompt: Bevestig wachtwoord om door te gaan
+  date:
+    formats:
+      default: "%d %b %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}u"
@@ -709,7 +744,6 @@ nl:
     blocks: Jij blokkeert
     csv: CSV
     domain_blocks: Domeinblokkades
-    follows: Jij volgt
     lists: Lijsten
     mutes: Jij negeert
     storage: Mediaopslag
@@ -720,6 +754,7 @@ nl:
     hint_html: "<strong>Wat zijn uitgelichte hashtags?</strong> Deze worden prominent op jouw openbare profiel getoond en stelt mensen in staat om jouw openbare toots per hashtag te bekijken. Het zijn een goed hulpmiddel om creatieve werkzaamheden of langetermijnprojecten bij te houden."
   filters:
     contexts:
+      account: Profielen
       home: Starttijdlijn
       notifications: Meldingen
       public: Openbare tijdlijnen
@@ -731,6 +766,7 @@ nl:
       invalid_irreversible: Onomkeerbaar filteren werkt alleen met de starttijdlijn en meldingen
     index:
       delete: Verwijderen
+      empty: Je hebt geen filters aangemaakt.
       title: Filters
     new:
       title: Nieuw filter toevoegen
@@ -743,6 +779,7 @@ nl:
     all: Alles
     changes_saved_msg: Wijzigingen succesvol opgeslagen!
     copy: Kopiëren
+    delete: Verwijderen
     no_batch_actions_available: Geen batchacties op deze pagina beschikbaar
     order_by: Sorteer op
     save_changes: Wijzigingen opslaan
@@ -795,7 +832,7 @@ nl:
       '604800': 1 week
       '86400': 1 dag
     expires_in_prompt: Nooit
-    generate: Genereren
+    generate: Uitnodigingslink genereren
     invited_by: 'Jij bent uitgenodigd door:'
     max_uses:
       one: 1 keer
@@ -879,6 +916,10 @@ nl:
       body: 'Jouw toot werd door %{name} geboost:'
       subject: "%{name} boostte jouw toot"
       title: Nieuwe boost
+  notifications:
+    email_events: E-mailmeldingen voor gebeurtenissen
+    email_events_hint: 'Selecteer gebeurtenissen waarvoor je meldingen wilt ontvangen:'
+    other_settings: Andere meldingsinstellingen
   number:
     human:
       decimal_units:
@@ -902,6 +943,7 @@ nl:
       duration_too_long: ligt te ver in de toekomst
       duration_too_short: is te kort van duur
       expired: De poll is al beëindigd
+      invalid_choice: De gekozen poll-optie bestaat niet
       over_character_limit: kan stuk voor stuk niet langer zijn dan %{max} tekens
       too_few_options: moet meer dan één item bevatten
       too_many_options: kan niet meer dan %{max} items bevatten
@@ -909,9 +951,16 @@ nl:
     other: Overig
     posting_defaults: Standaardinstellingen voor posten
     public_timelines: Openbare tijdlijnen
+  reactions:
+    errors:
+      limit_reached: Limiet van verschillende emoji-reacties bereikt
+      unrecognized_emoji: is geen bestaande emoji-reactie
   relationships:
     activity: Accountactiviteit
     dormant: Sluimerend
+    followers: Volgers
+    following: Volgend
+    invited: Uitgenodigd
     last_active: Laatst actief
     most_recent: Recentelijk gevolgd
     moved: Verhuisd
@@ -976,7 +1025,7 @@ nl:
       firefox_os: Firefox OS
       ios: iOS
       linux: Linux
-      mac: Mac
+      mac: macOS
       other: Onbekend platform
       windows: Windows
       windows_mobile: Windows Mobile
@@ -1006,7 +1055,7 @@ nl:
     relationships: Volgers en gevolgden
     two_factor_authentication: Tweestapsverificatie
   spam_check:
-    spam_detected_and_silenced: Dit is een automatisch gegenereerde rapportage. Er is spam gedetecteerd en de verzender hiervan werd automatisch genegeerd. Wanneer dit een vergissing is, kun je het negeren van dit account beter weer ongedaan maken.
+    spam_detected: Dit is een automatisch gegenereerde rapportage. Er is spam gedetecteerd.
   statuses:
     attached:
       description: 'Bijlagen: %{attached}'
@@ -1038,6 +1087,7 @@ nl:
         other: "%{count} stemmen"
       vote: Stemmen
     show_more: Meer tonen
+    show_thread: Gesprek tonen
     sign_in_to_participate: Meld je aan om aan dit gesprek mee te doen
     title: '%{name}: "%{quote}"'
     visibilities:

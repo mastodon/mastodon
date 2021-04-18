@@ -14,14 +14,16 @@ const messages = defineMessages({
   title: { id: 'column.public', defaultMessage: 'Federated timeline' },
 });
 
-const mapStateToProps = (state, { onlyMedia, columnId }) => {
+const mapStateToProps = (state, { columnId }) => {
   const uuid = columnId;
   const columns = state.getIn(['settings', 'columns']);
   const index = columns.findIndex(c => c.get('uuid') === uuid);
+  const onlyMedia = (columnId && index >= 0) ? columns.get(index).getIn(['params', 'other', 'onlyMedia']) : state.getIn(['settings', 'public', 'other', 'onlyMedia']);
+  const timelineState = state.getIn(['timelines', `public${onlyMedia ? ':media' : ''}`]);
 
   return {
-    hasUnread: state.getIn(['timelines', `public${onlyMedia ? ':media' : ''}`, 'unread']) > 0,
-    onlyMedia: (columnId && index >= 0) ? columns.get(index).getIn(['params', 'other', 'onlyMedia']) : state.getIn(['settings', 'public', 'other', 'onlyMedia']),
+    hasUnread: !!timelineState && timelineState.get('unread') > 0,
+    onlyMedia,
   };
 };
 

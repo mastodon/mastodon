@@ -96,6 +96,8 @@ module Mastodon
 
       prompt.warn('Do NOT interrupt this process...')
 
+      Setting.registrations_mode = 'none'
+
       Account.local.without_suspended.find_each do |account|
         payload = ActiveModelSerializers::SerializableResource.new(
           account,

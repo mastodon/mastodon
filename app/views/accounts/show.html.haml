@@ -1,9 +1,7 @@
 - content_for :page_title do
-  = "#{display_name(@account)} (@#{@account.local_username_and_domain})"
+  = "#{display_name(@account)} (#{acct(@account)})"
 
 - content_for :header_tags do
-  %meta{ name: 'description', content: account_description(@account) }/
-
   - if @account.user&.setting_noindex
     %meta{ name: 'robots', content: 'noindex, noarchive' }/
 

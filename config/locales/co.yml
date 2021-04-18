@@ -2,7 +2,7 @@
 co:
   about:
     about_hashtag_html: Quessi sò statuti pubblichi taggati cù <strong>#%{hashtag}</strong>. Pudete interagisce cù elli sì voi avete un contu in qualche parte di u fediverse.
-    about_mastodon_html: Mastodon ghjè una rete suciale custruita incù prutucolli web aperti è lugiziali liberi. Hè decentralizatu cumu l’e-mail.
+    about_mastodon_html: 'A rete suciale di u futuru: micca pubblicità, micca surveglianza, cuncezzione etica, è dicentralizazione! Firmate in cuntrollu di i vostri dati cù Mastodon!'
     about_this: À prupositu
     active_count_after: attivi
     active_footnote: Utilizatori Attivi Mensili (UAM)
@@ -11,14 +11,14 @@ co:
     apps: Applicazione per u telefuninu
     apps_platforms: Utilizà Mastodon dapoi à iOS, Android è altre piattaforme
     browse_directory: Navigà un'annuariu di i prufili è filtra per interessi
-    browse_public_posts: Navigà un flussu di i statuti publichi nant'à Mastodon
+    browse_local_posts: Navigà un flussu di statuti pubblichi da stu servore
+    browse_public_posts: Navigà un flussu di i statuti pubblichi nant'à Mastodon
     contact: Cuntattu
     contact_missing: Mancante
     contact_unavailable: Micca dispunibule
     discover_users: Scopre utilizatori
     documentation: Ducumentazione
     federation_hint_html: Cù un contu nant'à %{instance} puderete siguità ghjente da tutti i servori Mastodon è ancu più d'altri.
-    generic_description: "%{domain} hè un servore di a rete"
     get_apps: Pruvà un'applicazione di telefuninu
     hosted_on: Mastodon allughjatu nant’à %{domain}
     instance_actor_flash: |
@@ -51,7 +51,7 @@ co:
   accounts:
     choices_html: "%{name} ricumanda:"
     endorsements_hint: Pudete appughjà i conti chì siguitate dapoi l'interfaccia web, è saranu mustrati quì.
-    featured_tags_hint: Pudete mette in mostra qualchì hashtag chì saranu affissatu quì.
+    featured_tags_hint: Pudete mette in mostra qualchì hashtag chì saranu affissati quì.
     follow: Siguità
     followers:
       one: Abbunatu·a
@@ -78,6 +78,7 @@ co:
     roles:
       admin: Amministratore
       bot: Bot
+      group: Gruppu
       moderator: Muderatore
     unavailable: Prufile micca dispunibule
     unfollow: Ùn siguità più
@@ -118,9 +119,7 @@ co:
       email_status: Statutu di l’e-mail
       enable: Attivà
       enabled: Attivatu
-      feed_url: URL di u flussu
       followers: Abbunati
-      followers_url: URL di l’abbunati
       follows: Abbunamenti
       header: Intistatura
       inbox_url: URL di l’inbox
@@ -148,10 +147,8 @@ co:
       no_account_selected: Nisun contu hè statu cambiatu postu ch'ùn c'eranu micca selezziunati
       no_limits_imposed: Nisuna limita imposta
       not_subscribed: Micca abbunatu
-      outbox_url: URL di l’outbox
       pending: In attesa di rivista
       perform_full_suspension: Suspende
-      profile_url: URL di u prufile
       promote: Prumove
       protocol: Prutucollu
       public: Pubblicu
@@ -174,8 +171,8 @@ co:
         moderator: Muderatore
         staff: Squadra
         user: Utilizatore
-      salmon_url: URL di Salmon
       search: Cercà
+      search_same_ip: Altri utilizatori cù listessa IP
       shared_inbox_url: URL di l’inbox spartuta
       show:
         created_reports: Signalamenti fatti
@@ -201,11 +198,15 @@ co:
         change_email_user: "%{name} hà cambiatu l’indirizzu e-mail di %{target}"
         confirm_user: "%{name} hà cunfirmatu l’indirizzu e-mail di %{target}"
         create_account_warning: "%{name} hà mandatu un'avertimentu à %{target}"
+        create_announcement: "%{name} hà creatu u novu annunziu %{target}"
         create_custom_emoji: "%{name} hà caricatu una nov’emoji %{target}"
+        create_domain_allow: "%{name} hà messu u duminiu %{target} nant’a lista bianca"
         create_domain_block: "%{name} hà bluccatu u duminiu %{target}"
         create_email_domain_block: "%{name} hà messu u duminiu e-mail %{target} nant’a lista nera"
         demote_user: "%{name} hà ritrugradatu l’utilizatore %{target}"
+        destroy_announcement: "%{name} hà sguassatu u novu annunziu %{target}"
         destroy_custom_emoji: "%{name} hà sguassatu l'emoji %{target}"
+        destroy_domain_allow: "%{name} hà sguassatu u duminiu %{target} da a lista bianca"
         destroy_domain_block: "%{name} hà sbluccatu u duminiu %{target}"
         destroy_email_domain_block: "%{name} hà messu u duminiu e-mail %{target} nant’a lista bianca"
         destroy_status: "%{name} hà toltu u statutu di %{target}"
@@ -225,10 +226,26 @@ co:
         unassigned_report: "%{name} hà disassignatu u signalamentu %{target}"
         unsilence_account: "%{name} hà fattu che u contu di %{target} ùn hè più silenzatu"
         unsuspend_account: "%{name} hà fattu che u contu di %{target} ùn hè più suspesu"
+        update_announcement: "%{name} hà cambiatu u novu annunziu %{target}"
         update_custom_emoji: "%{name} hà messu à ghjornu l’emoji %{target}"
         update_status: "%{name} hà cambiatu u statutu di %{target}"
       deleted_status: "(statutu sguassatu)"
       title: Ghjurnale d’audit
+    announcements:
+      destroyed_msg: Annunziu sguassatu!
+      edit:
+        title: Mudificà annunzii
+      empty: Manc'un annunziu trovu.
+      live: Attivu
+      new:
+        create: Creà un'annunziu
+        title: Novu annunziu
+      published_msg: Annunziu pubblicatu!
+      scheduled_for: Prugrammatu per %{time}
+      scheduled_msg: Annunziu prugrammatu per pubblicazione!
+      title: Annunzii
+      unpublished_msg: Annunziu piattatu!
+      updated_msg: Annunziu mudificatu!
     custom_emojis:
       assign_category: Aghjunghje categuria
       by_domain: Duminiu
@@ -316,7 +333,7 @@ co:
       public_comment_hint: Cummentariu nant'à a limitazione di stu duminiu per u pubblicu generale, s'ella hè attivata a rivelazione di a lista di limitazione di duminiu.
       reject_media: Righjittà i fugliali media
       reject_media_hint: Sguassa tutti i media caricati è ricusa caricamenti futuri. Inutile per una suspensione
-      reject_reports: Righjittà i rapporti
+      reject_reports: Righjittà i riporti
       reject_reports_hint: Ignurà tutti i signalamenti chì venenu d'issu duminiu. Senz'oghjettu pè e suspensione
       rejecting_media: righjettu di i fugliali media
       rejecting_reports: righjettu di i signalamenti
@@ -340,13 +357,11 @@ co:
       delete: Toglie
       destroyed_msg: U blucchime di u duminiu d’e-mail ùn hè più attivu
       domain: Duminiu
+      empty: Ùn c'hè manc'un duminiu d'email in lista nera.
       new:
         create: Creà un blucchime
         title: Nova iscrizzione nant’a lista nera e-mail
       title: Lista nera e-mail
-    followers:
-      back_to_account: Rivene à u Contu
-      title: Abbunati à %{acct}
     instances:
       by_domain: Duminiu
       delivery_available: Rimessa dispunibule
@@ -363,7 +378,7 @@ co:
       total_blocked_by_us: Bluccati da noi
       total_followed_by_them: Siguitati da elli
       total_followed_by_us: Siguitati da noi
-      total_reported: Rapporti nant'à elli
+      total_reported: Riporti nant'à elli
       total_storage: Media aghjunti
     invites:
       deactivate_all: Disattivà tuttu
@@ -375,6 +390,8 @@ co:
       title: Invitazione
     pending_accounts:
       title: Conti in attesa (%{count})
+    relationships:
+      title: Rilazione di %{acct}
     relays:
       add_new: Aghjunghje un ripetitore
       delete: Sguassà
@@ -396,12 +413,17 @@ co:
       destroyed_msg: Nota di signalamentu sguassata!
     reports:
       account:
-        note: nota
-        report: palisà
+        notes:
+          one: "%{count} nota"
+          other: "%{count} note"
+        reports:
+          one: "%{count} riportu"
+          other: "%{count} riporti"
       action_taken_by: Intervenzione di
       are_you_sure: Site sicuru·a?
       assign_to_self: Assignallu à mè
       assigned: Muderatore assignatu
+      by_target_domain: Duminiu di u contu signalatu
       comment:
         none: Nisunu
       created_at: Palisatu
@@ -447,6 +469,8 @@ co:
         users: À l'utilizatori lucali cunnettati
       domain_blocks_rationale:
         title: Vede ragiò
+      enable_bootstrap_timeline_accounts:
+        title: Attivà l'abbunamenti predefiniti per l'utilizatori novi
       hero:
         desc_html: Affissatu nant’a pagina d’accolta. Ricumandemu almenu 600x100px. S’ellu ùn hè micca definiti, a vignetta di u servore sarà usata
         title: Ritrattu di cuprendula
@@ -507,6 +531,9 @@ co:
         desc_html: Vede a linea pubblica nant’a pagina d’accolta
         title: Vista di e linee
       title: Parametri di u situ
+      trendable_by_default:
+        desc_html: Ùn affetta micca quelli chì sò digià stati ricusati
+        title: Auturizà l'hashtag à esse in tindenze senza verificazione
       trends:
         desc_html: Mustrà à u pubblicu i hashtag chì sò stati digià verificati è chì sò in e tendenze avà
         title: Tendenze di hashtag
@@ -572,7 +599,12 @@ co:
     animations_and_accessibility: Animazione è accessibilità
     confirmation_dialogs: Pop-up di cunfirmazione
     discovery: Scuperta
+    localization:
+      body: Mastodon hè tradottu da una squadra di vuluntari.
+      guide_link: https://fr.crowdin.com/project/mastodon
+      guide_link_text: Tuttu u mondu pò participà.
     sensitive_content: Cuntinutu sensibile
+    toot_layout: Urganizazione
   application_mailer:
     notification_preferences: Cambià e priferenze e-mail
     salutation: "%{name},"
@@ -643,6 +675,9 @@ co:
     hint_html: "<strong>Astuzia:</strong> Ùn avemu micca da dumandavvi stu codice per l'ore chì vene."
     invalid_password: Chjave d'accessu micca curretta
     prompt: Cunfirmà a chjave d'accessu per cuntinuvà
+  date:
+    formats:
+      default: "%d %b %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}o"
@@ -709,7 +744,6 @@ co:
     blocks: Bluccate
     csv: CSV
     domain_blocks: Blucchime di duminiu
-    follows: Seguitate
     lists: Liste
     mutes: Piattate
     storage: I vostri media
@@ -720,6 +754,7 @@ co:
     hint_html: "<strong>Quale sò i hashtag in mostra?</strong> Sò messi in vista nant'à u vostru prufile pubblicu è permettenu à a ghjente di vede i vostri statuti ch'annu stu hashtag. Sò una bona manere di mustrà e vostre opere creative o i prughjetti à longu termine."
   filters:
     contexts:
+      account: Prufili
       home: Accolta
       notifications: Nutificazione
       public: Linee pubbliche
@@ -731,6 +766,7 @@ co:
       invalid_irreversible: A filtrazione irreversibile marchja solu per l'accolta è e nutificazione
     index:
       delete: Toglie
+      empty: Ùn avete manc'un filtru.
       title: Filtri
     new:
       title: Aghjunghje un novu filtru
@@ -743,6 +779,7 @@ co:
     all: Tuttu
     changes_saved_msg: Cambiamenti salvati!
     copy: Cupià
+    delete: Sguassà
     no_batch_actions_available: Alcun'azzione di gruppu nant'à sta pagina
     order_by: Urdinà da
     save_changes: Salvà e mudificazione
@@ -879,6 +916,10 @@ co:
       body: 'U vostru statutu hè statu spartutu da %{name}:'
       subject: "%{name} hà spartutu u vostru statutu"
       title: Nova spartera
+  notifications:
+    email_events: Avvenimenti da nutificà cù l'e-mail
+    email_events_hint: 'Selezziunate l''avvenimenti per quelli vulete riceve nutificazione:'
+    other_settings: Altri parametri di nutificazione
   number:
     human:
       decimal_units:
@@ -902,6 +943,7 @@ co:
       duration_too_long: hè troppu luntanu indè u futuru
       duration_too_short: hè troppu prossimu
       expired: U scandagliu hè digià finitu
+      invalid_choice: L'uzzione di votu scelta ùn esista micca
       over_character_limit: ùn ponu micca esse più longhi chè %{max} caratteri
       too_few_options: deve avè più d'un'uzzione
       too_many_options: ùn pò micca avè più di %{max} uzzione
@@ -909,9 +951,16 @@ co:
     other: Altre
     posting_defaults: Paramettri predefiniti
     public_timelines: Linee pubbliche
+  reactions:
+    errors:
+      limit_reached: Limita di reazzione sfarente tocca
+      unrecognized_emoji: ùn hè micca un'emoji ricunisciuta
   relationships:
     activity: Attività di u contu
     dormant: Inattivu
+    followers: Abbunati
+    following: Abbunamenti
+    invited: Invitatu
     last_active: Ultima attività
     most_recent: Più ricente
     moved: Spiazzatu
@@ -940,8 +989,8 @@ co:
       proceed: Cuntinuà per risponde
       prompt: 'Vulete risponde à stu statutu:'
   scheduled_statuses:
-    over_daily_limit: Avete trapassatu a limita di %{limit} statuti planificati per stu ghjornu
-    over_total_limit: Avete trapassatu a limita di %{limit} statuti planificati
+    over_daily_limit: Avete trapassatu a limita di %{limit} statuti pianificati per stu ghjornu
+    over_total_limit: Avete trapassatu a limita di %{limit} statuti pianificati
     too_soon: A data deve esse indè u futuru
   sessions:
     activity: Ultima attività
@@ -1006,7 +1055,7 @@ co:
     relationships: Abbunamenti è abbunati
     two_factor_authentication: Identificazione à dui fattori
   spam_check:
-    spam_detected_and_silenced: Quessu ghjè un signalamente autumaticu. Un spam hè statu ditettatu è u speditore hè statu silenzatu. S'ellu era un sbagliu, pudete annullà l'azzione.
+    spam_detected: Quessu ghjè un riportu automaticu. Un spam hè statu ditettatu.
   statuses:
     attached:
       description: 'Aghjuntu: %{attached}'
@@ -1038,6 +1087,7 @@ co:
         other: "%{count} voti"
       vote: Vutà
     show_more: Vede di più
+    show_thread: Vede u filu
     sign_in_to_participate: Cunnettatevi per participà à a cunversazione
     title: '%{name}: "%{quote}"'
     visibilities:

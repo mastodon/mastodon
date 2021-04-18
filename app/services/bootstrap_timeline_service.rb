@@ -5,7 +5,7 @@ class BootstrapTimelineService < BaseService
     @source_account = source_account
 
     autofollow_inviter!
-    autofollow_bootstrap_timeline_accounts!
+    autofollow_bootstrap_timeline_accounts! if Setting.enable_bootstrap_timeline_accounts
   end
 
   private

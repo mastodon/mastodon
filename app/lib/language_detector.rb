@@ -44,7 +44,7 @@ class LanguageDetector
     words = text.scan(RELIABLE_CHARACTERS_RE)
 
     if words.present?
-      words.reduce(0) { |acc, elem| acc + elem.size }.to_f / text.size.to_f > 0.3
+      words.reduce(0) { |acc, elem| acc + elem.size }.to_f / text.size > 0.3
     else
       false
     end

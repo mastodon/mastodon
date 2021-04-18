@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import Toggle from 'react-toggle';
-import AsyncSelect from 'react-select/lib/Async';
+import AsyncSelect from 'react-select/async';
 
 const messages = defineMessages({
   placeholder: { id: 'hashtag.column_settings.select.placeholder', defaultMessage: 'Enter hashtags…' },

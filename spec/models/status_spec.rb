@@ -96,16 +96,20 @@ RSpec.describe Status, type: :model do
 
     context 'unless destroyed?' do
       context 'if reblog?' do
-        it 'returns "#{account.acct} shared a status by #{reblog.account.acct}"' do
+        it 'returns "#{account.acct} shared #{reblog.account.acct}\'s: #{preview}"' do
           reblog = subject.reblog = other
-          expect(subject.title).to eq "#{account.acct} shared a status by #{reblog.account.acct}"
+          preview = subject.text.slice(0, 10).split("\n")[0]
+          expect(subject.title).to(
+            eq "#{account.acct} shared #{reblog.account.acct}'s: #{preview}"
+          )
         end
       end
 
       context 'unless reblog?' do
-        it 'returns "New status by #{account.acct}"' do
+        it 'returns "#{account.acct}: #{preview}"' do
           subject.reblog = nil
-          expect(subject.title).to eq "New status by #{account.acct}"
+          preview = subject.text.slice(0, 20).split("\n")[0]
+          expect(subject.title).to eq "#{account.acct}: #{preview}"
         end
       end
     end
@@ -293,49 +297,6 @@ RSpec.describe Status, type: :model do
         status = Fabricate(:status, language: nil)
         expect(Status.in_chosen_languages(user.account)).to include status
       end
-    end
-  end
-
-  describe '.as_home_timeline' do
-    let(:account) { Fabricate(:account) }
-    let(:followed) { Fabricate(:account) }
-    let(:not_followed) { Fabricate(:account) }
-
-    before do
-      Fabricate(:follow, account: account, target_account: followed)
-
-      @self_status = Fabricate(:status, account: account, visibility: :public)
-      @self_direct_status = Fabricate(:status, account: account, visibility: :direct)
-      @followed_status = Fabricate(:status, account: followed, visibility: :public)
-      @followed_direct_status = Fabricate(:status, account: followed, visibility: :direct)
-      @not_followed_status = Fabricate(:status, account: not_followed, visibility: :public)
-
-      @results = Status.as_home_timeline(account)
-    end
-
-    it 'includes statuses from self' do
-      expect(@results).to include(@self_status)
-    end
-
-    it 'does not include direct statuses from self' do
-      expect(@results).to_not include(@self_direct_status)
-    end
-
-    it 'includes statuses from followed' do
-      expect(@results).to include(@followed_status)
-    end
-
-    it 'does not include direct statuses mentioning recipient from followed' do
-      Fabricate(:mention, account: account, status: @followed_direct_status)
-      expect(@results).to_not include(@followed_direct_status)
-    end
-
-    it 'does not include direct statuses not mentioning recipient from followed' do
-      expect(@results).not_to include(@followed_direct_status)
-    end
-
-    it 'does not include statuses from non-followed' do
-      expect(@results).not_to include(@not_followed_status)
     end
   end
 

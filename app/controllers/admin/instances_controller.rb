@@ -62,7 +62,7 @@ module Admin
     end
 
     def filter_params
-      params.permit(:limited, :by_domain)
+      params.slice(*InstanceFilter::KEYS).permit(*InstanceFilter::KEYS)
     end
   end
 end

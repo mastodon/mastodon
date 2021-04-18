@@ -2,20 +2,20 @@
 fr:
   devise:
     confirmations:
-      confirmed: Votre compte a été validé.
-      send_instructions: Vous allez recevoir les instructions nécessaires à la confirmation de votre compte dans quelques minutes. Veuillez, dans le cas où vous ne recevriez pas ce message, vérifier votre dossier d’indésirables.
+      confirmed: Votre adresse courriel a été validée.
+      send_instructions: Vous allez recevoir par courriel les instructions nécessaires à la confirmation de votre compte dans quelques minutes. Veuillez, dans le cas où vous ne recevriez pas ce message, vérifier votre dossier d’indésirables.
       send_paranoid_instructions: Si votre adresse électronique existe dans notre base de données, vous allez bientôt recevoir un courriel contenant les instructions de confirmation de votre compte. Veuillez, dans le cas où vous ne recevriez pas ce message, vérifier votre dossier d’indésirables.
     failure:
       already_authenticated: Vous êtes déjà connecté⋅e.
       inactive: Votre compte n’est pas encore activé.
       invalid: "%{authentication_keys} ou mot de passe invalide."
-      last_attempt: Vous avez droit à une tentative avant que votre compte ne soit verrouillé.
+      last_attempt: Vous avez droit à une dernière tentative avant que votre compte ne soit verrouillé.
       locked: Votre compte est verrouillé.
       not_found_in_database: "%{authentication_keys} ou mot de passe invalide."
       pending: Votre compte est toujours en cours d'approbation.
       timeout: Votre session a expiré. Veuillez vous reconnecter pour continuer.
       unauthenticated: Vous devez vous connecter ou vous inscrire pour continuer.
-      unconfirmed: Vous devez valider votre compte pour continuer.
+      unconfirmed: Vous devez valider votre adresse courriel pour continuer.
     mailer:
       confirmation_instructions:
         action: Vérifier l’adresse courriel
@@ -38,7 +38,7 @@ fr:
       reconfirmation_instructions:
         explanation: Confirmez la nouvelle adresse pour changer votre courriel.
         extra: Si ce changement n’a pas été initié par vous, veuillez ignorer ce courriel. L’adresse courriel du compte Mastodon ne changera pas tant que vous n’aurez pas cliqué sur le lien ci-dessus.
-        subject: 'Mastodon : Confirmez l’adresse pour %{instance}'
+        subject: 'Mastodon : Confirmez l’adresse courriel pour %{instance}'
         title: Vérifier l’adresse courriel
       reset_password_instructions:
         action: Modifier le mot de passe
@@ -51,11 +51,11 @@ fr:
         subject: 'Mastodon : authentification à deux facteurs désactivée'
         title: 2FA désactivée
       two_factor_enabled:
-        explanation: L'authentification à deux facteurs a été activée pour votre compte. Un jeton généré par l'application appariée TOTP sera nécessaire pour vous connecter.
+        explanation: L'authentification à deux facteurs a été activée pour votre compte. Un jeton généré par l'application appairée TOTP sera nécessaire pour vous connecter.
         subject: 'Mastodon : authentification à deux facteurs activée'
         title: A2F activée
       two_factor_recovery_codes_changed:
-        explanation: Les codes de récupération précédents ont été invalidés et de nouveaux sont générés.
+        explanation: Les codes de récupération précédents ont été invalidés et de nouveaux ont été générés.
         subject: 'Mastodon : codes de récupération à deux facteurs ré-générés'
         title: Codes de récupération 2FA modifiés
       unlock_instructions:

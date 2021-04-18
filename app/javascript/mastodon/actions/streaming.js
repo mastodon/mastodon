@@ -8,6 +8,12 @@ import {
 } from './timelines';
 import { updateNotifications, expandNotifications } from './notifications';
 import { updateConversations } from './conversations';
+import {
+  fetchAnnouncements,
+  updateAnnouncements,
+  updateReaction as updateAnnouncementsReaction,
+  deleteAnnouncement,
+} from './announcements';
 import { fetchFilters } from './filters';
 import { getLocale } from '../locales';
 
@@ -44,6 +50,15 @@ export function connectTimelineStream (timelineId, path, pollingRefresh = null, 
         case 'filters_changed':
           dispatch(fetchFilters());
           break;
+        case 'announcement':
+          dispatch(updateAnnouncements(JSON.parse(data.payload)));
+          break;
+        case 'announcement.reaction':
+          dispatch(updateAnnouncementsReaction(JSON.parse(data.payload)));
+          break;
+        case 'announcement.delete':
+          dispatch(deleteAnnouncement(data.payload));
+          break;
         }
       },
     };
@@ -51,7 +66,9 @@ export function connectTimelineStream (timelineId, path, pollingRefresh = null, 
 }
 
 const refreshHomeTimelineAndNotification = (dispatch, done) => {
-  dispatch(expandHomeTimeline({}, () => dispatch(expandNotifications({}, done))));
+  dispatch(expandHomeTimeline({}, () =>
+    dispatch(expandNotifications({}, () =>
+      dispatch(fetchAnnouncements(done))))));
 };
 
 export const connectUserStream      = () => connectTimelineStream('home', 'user', refreshHomeTimelineAndNotification);

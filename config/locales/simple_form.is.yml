@@ -1,0 +1,183 @@
+---
+is:
+  simple_form:
+    hints:
+      account_alias:
+        acct: Tilgreindu notandanafn@lén á notandaaðgangnum sem þú vilt flytjast frá
+      account_migration:
+        acct: Tilgreindu notandanafn@lén á notandaaðgangnum sem þú vilt flytjast til
+      account_warning_preset:
+        text: Þú getur notað sömu skilgreiningar og fyrir tíst, svo sem URL-slóðir, myllumerki og tilvísanir
+      admin_account_action:
+        include_statuses: Notandinn mun sjá hvaða tíst hafa valdið viðbrögðum umsjónarmanns eða aðvörun kerfisins
+        send_email_notification: Notandinn mun fá útskýringar á því hvað gerðist með notandaaðganginn hans
+        text_html: Valfrjálst. Þú getur notað sömu skilgreiningar og fyrir tíst. Þú getur <a href="%{path}">bætt inn forstilltum aðvörunum</a> til að spara tíma
+        type_html: Veldu hvað eigi að gera við <strong>%{acct}</strong>
+        warning_preset_id: Valkvætt. Þú getur ennþá bætt sérsniðnum texta við enda forstillinga
+      announcement:
+        all_day: Þegar merkt er við þetta, munu einungis birtast dagsetningar tímarammans
+        ends_at: Valfrjálst. Auglýsing verðut tekin úr birtingu á þessum tíma
+        scheduled_at: Skildu þetta eftir autt til að birta auglýsinguna samstundis
+        starts_at: Valfrjálst. Notað ef auglýsing er bundin við tiltekinn tímaramma
+        text: Þú getur notað sömu skilgreiningar og fyrir tíst. Hafðu í huga það pláss sem auglýsingin mun taka á skjá notandans
+      defaults:
+        autofollow: Fólk sem skráir sig í gegnum boðið mun sjálfkrafa fylgjast með þér
+        avatar: PNG, GIF eða JPG. Mest %{size}. Verður smækkað í %{dimensions}px
+        bot: Þessi aðgangur er aðallega til að framkvæma sjálfvirkar aðgerðir og gæti verið án þess að hann sé vaktaður reglulega
+        context: Eitt eða fleiri samhengi þar sem sían ætti að gilda
+        current_password: Í öryggisskyni skaltu setja inn lykilorðið fyrir þennan notandaaðgang
+        current_username: Til að staðfesta skaltu setja inn notandanafnið fyrir þennan notandaaðgang
+        digest: Er aðeins sent eftir lengri tímabil án virkni og þá aðeins ef þú hefur fengið persónuleg skilaboð á meðan þú hefur ekki verið á línunni
+        discoverable: Persónusniðamappan er önnur leið til að láta notandaaðganginn þinn ná til fleiri lesenda
+        email: Þú munt fá sendan staðfestingarpóst
+        fields: Þú getur birt allt að 4 atriði sem töflu á notandasniðinu þínu
+        header: PNG, GIF eða JPG. Mest %{size}. Verður smækkað í %{dimensions}px
+        inbox_url: Afritaðu slóðina af forsíðu endurvarpans sem þú vilt nota
+        irreversible: Síuð tíst munu hverfa óendurkræft, jafnvel þó sían sé seinna fjarlægð
+        locale: Tungumál notandaviðmótsins, tölvupósts og ýti-tilkynninga
+        locked: Krefst þess að þú samþykkir fylgjendur handvirkt
+        password: Notaðu minnst 8 stafi
+        phrase: Verður notað til samsvörunar burtséð frá stafstöðu texta eða viðvörunar vegna efnis í tísti
+        scopes: Að hvaða API-kerfisviðmótum forritið fær aðgang. Ef þú velur efsta-stigs svið, þarftu ekki að gefa einstakar heimildir.
+        setting_aggregate_reblogs: Ekki sýna nýjar endurbirtingar á tístum sem hafa nýlega verið endurbirt (hefur bara áhrif á ný-mótteknar endurbirtingar)
+        setting_default_sensitive: Viðkvæmt myndefni er sjálfgefið falið og er hægt að birta með smelli
+        setting_display_media_default: Fela myndefni sem merkt er viðkvæmt
+        setting_display_media_hide_all: Alltaf fela allt myndefni
+        setting_display_media_show_all: Alltaf birta myndefni sem merkt er viðkvæmt
+        setting_hide_network: Hverjum þú fylgist með og hverjir fylgjast með þér verður ekki birt á notandasniðinu þínu
+        setting_noindex: Hefur áhrif á opinbera notandasniðið þitt og stöðusíður
+        setting_show_application: Nafnið á forritinu sem þú notar til að tísta mun birtast í ítarlegri sýn á tístunum þínum
+        setting_use_blurhash: Litstiglarnir byggja á litunum í földu myndunum, en gera öll smáatriði óskýr
+        setting_use_pending_items: Fela uppfærslur tímalínu þar til smellt er, í stað þess að hún skruni streyminu sjálfvirkt
+        username: Notandanafnið þitt verður einstakt á %{domain}
+        whole_word: Þegar stikkorð eða frasi er einungis tölur og bókstafir, verður það aðeins notað ef það samsvarar heilu orði
+      domain_allow:
+        domain: Þetta lén mun geta sótt gögn af þessum vefþjóni og tekið verður á móti innsendum gögnum frá léninu til vinnslu og geymslu
+      featured_tag:
+        name: 'Þú gætir viljað nota eitt af þessum:'
+      form_challenge:
+        current_password: Þú ert að fara inn á öryggissvæði
+      imports:
+        data: CSV-skrá sem flutt hefur verið út af öðrum Mastodon-þjóni
+      invite_request:
+        text: Þetta mun hjálpa okkur við að yfirfara umsóknina þína
+      sessions:
+        otp: 'Settu inn tveggja-þátta kóðann sem farsímaforritið útbjó eða notaðu einn af endurheimtukóðunum þínum:'
+      tag:
+        name: Þú getur aðeins breytt stafstöði mill há-/lágstafa, til gæmis til að gera þetta læsilegra
+      user:
+        chosen_languages: Þegar merkt er við þetta, birtast einungis tíst á völdum tungumálum á opinberum tímalínum
+    labels:
+      account:
+        fields:
+          name: Skýring
+          value: Efni
+      account_alias:
+        acct: Auðkenni gamla aðgangsins
+      account_migration:
+        acct: Auðkenni nýja aðgangsins
+      account_warning_preset:
+        text: Forstilltur texti
+      admin_account_action:
+        include_statuses: Innifela kærð tíst í tölvupóstinum
+        send_email_notification: Láta notanda vita með tölvupósti
+        text: Sérsniðin aðvörun
+        type: Aðgerð
+        types:
+          disable: Gera innskráningu óvirka
+          none: Gera ekkert
+          silence: Hylja
+          suspend: Setja í bið og eyða endanlega gögnum notandaaðgangsins
+        warning_preset_id: Nota forstillta aðvörun
+      announcement:
+        all_day: Heilsdags atburður
+        ends_at: Lok atburðar
+        scheduled_at: Áætla birtingu
+        starts_at: Upphaf atburðar
+        text: Auglýsing
+      defaults:
+        autofollow: Bjóða að fylgjast með aðgangnum þínum
+        avatar: Auðkennismynd
+        bot: Þetta er aðgangur fyrir róbót
+        chosen_languages: Sía tungumál
+        confirm_new_password: Staðfestu nýja lykilorðið
+        confirm_password: Staðfestu lykilorðið
+        context: Samhengi síu
+        current_password: Núverandi lykilorð
+        data: Gögn
+        discoverable: Hafa þennan aðgang með í notendaskránni
+        display_name: Birtingarnafn
+        email: Tölvupóstfang
+        expires_in: Rennur út eftir
+        fields: Lýsigögn notandasniðs
+        header: Síðuhaus
+        inbox_url: URL-slóð á innhólf endurvarpa
+        irreversible: Fella niður í staðinn fyrir að fela
+        locale: Tungumál viðmóts
+        locked: Læsa aðgangi
+        max_uses: Hámarksfjöldi afnota
+        new_password: Nýtt lykilorð
+        note: Æviágrip
+        otp_attempt: Teggja-þátta kóði
+        password: Lykilorð
+        phrase: Stikkorð eða frasi
+        setting_advanced_layout: Virkja ítarlegt vefviðmót
+        setting_aggregate_reblogs: Hópa endurbirtingar í tímalínum
+        setting_auto_play_gif: Spila sjálfkrafa GIF-hreyfimyndir
+        setting_boost_modal: Sýna staðfestingarglugga fyrir endurbirtingu
+        setting_crop_images: Utansníða myndir í ekki útfelldum tístum í 16x9
+        setting_default_language: Tungumál sem skrifað er á
+        setting_default_privacy: Gagnaleynd færslna
+        setting_default_sensitive: Alltaf merkja myndefni sem viðkvæmt
+        setting_delete_modal: Birta staðfestingarglugga áður en tísti er eytt
+        setting_display_media: Birting myndefnis
+        setting_display_media_default: Sjálfgefið
+        setting_display_media_hide_all: Fela allt
+        setting_display_media_show_all: Birta allt
+        setting_expand_spoilers: Alltaf útfella tíst sem eru með aðvörun vegna efnisins
+        setting_hide_network: Fela netkerfið þitt
+        setting_noindex: Afþakka atriðaskráningu í leitarvélum
+        setting_reduce_motion: Minnka hreyfingu í hreyfimyndum
+        setting_show_application: Upplýsa um forrit sem er til að senda tíst
+        setting_system_font_ui: Nota sjálfgefið letur kerfisins
+        setting_theme: Þema vefsvæðis
+        setting_trends: Birta það sem er efst á baugi í dag
+        setting_unfollow_modal: Birta staðfestingarglugga áður en hætt er að fylgjast með einhverjum
+        setting_use_blurhash: Sýna skæra litstigla í stað falins myndefnis
+        setting_use_pending_items: Rólegur hamur
+        severity: Mikilvægi
+        type: Tegund innflutnings
+        username: Notandanafn
+        username_or_email: Notandanafn eða tölvupóstfang
+        whole_word: Heil orð
+      featured_tag:
+        name: Myllumerki
+      interactions:
+        must_be_follower: Loka á tilkynningar frá þeim sem ekki eru fylgjendur
+        must_be_following: Loka á tilkynningar frá þeim sem þú fylgist ekki með
+        must_be_following_dm: Loka á bein skilaboð frá þeim sem þú fylgist ekki með
+      invite:
+        comment: Athugasemd
+      invite_request:
+        text: Hvers vegna viltu taka þátt?
+      notification_emails:
+        digest: Senda uppsafnaðan tölvupóst
+        favourite: Einhver setti stöðufærslu þína í eftirlæti
+        follow: Einhver fylgist núna með þér
+        follow_request: Einhver hefur beðið um að fylgjast með þér
+        mention: Einhver minntist á þig
+        pending_account: Nýr notandaaðgangur þarfnast yfirferðar
+        reblog: Einhver endurbirti stöðufærslu þína
+        report: Ný kæra hefur verið send inn
+        trending_tag: Óyfirfarið myllumerki er í umræðunni
+      tag:
+        listable: Leyfa þessu myllumerki að birtast í leitum og í persónusniðamöppunni
+        name: Myllumerki
+        trendable: Leyfa þessu myllumerki að birtast undir tilhneigingum
+        usable: Leyfa tístum að nota þetta myllumerki
+    'no': Nei
+    recommended: Mælt með
+    required:
+      mark: "*"
+      text: nauðsynlegt
+    'yes': Já

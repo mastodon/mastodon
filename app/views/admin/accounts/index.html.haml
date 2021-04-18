@@ -22,7 +22,7 @@
 
 = form_tag admin_accounts_url, method: 'GET', class: 'simple_form' do
   .fields-group
-    - Admin::FilterHelper::ACCOUNT_FILTERS.each do |key|
+    - AccountFilter::KEYS.each do |key|
       - if params[key].present?
         = hidden_field_tag key, params[key]
 

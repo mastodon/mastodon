@@ -17,6 +17,10 @@
       - else
         = custom_emoji.domain
 
+        - if custom_emoji.local_counterpart.present?
+          &bull;
+          = t('admin.accounts.location.local')
+
       %br/
 
       - if custom_emoji.disabled?

@@ -1,0 +1,151 @@
+---
+is:
+  activerecord:
+    attributes:
+      doorkeeper/application:
+        name: Heiti forrits
+        redirect_uri: Slóð endurbeiningar
+        scopes: Gildissvið
+        website: Vefsvæði forrits
+    errors:
+      models:
+        doorkeeper/application:
+          attributes:
+            redirect_uri:
+              fragment_present: má ekki innihalda brot.
+              invalid_uri: verður að vera gild URI-slóð.
+              relative_uri: verður að vera algild URI-slóð.
+              secured_uri: verður að vera HTTPS/SSL URI-slóð.
+  doorkeeper:
+    applications:
+      buttons:
+        authorize: Heimila
+        cancel: Hætta við
+        destroy: Eyðileggja
+        edit: Breyta
+        submit: Senda inn
+      confirmations:
+        destroy: Ertu viss?
+      edit:
+        title: Breyta forriti
+      form:
+        error: Úbbs! Athugaðu með mögulegar villur í útfyllingarreitum
+      help:
+        native_redirect_uri: Notaðu %{native_redirect_uri} fyrir staðværar prófanir
+        redirect_uri: Nota eina línu á hverja URI-slóð
+        scopes: Aðgreindu gildissviðin með bilum. Skildu þetta eftir autt til að nota sjálfgefin gildissvið.
+      index:
+        application: Forrit
+        callback_url: URL-slóð baksvörunar (callback)
+        delete: Eyða
+        empty: Þú ert ekki með nein forrit.
+        name: Heiti
+        new: Nýtt forrit
+        scopes: Gildissvið
+        show: Sýna
+        title: Forritin þín
+      new:
+        title: Nýtt forrit
+      show:
+        actions: Aðgerðir
+        application_id: Lykill biðlara
+        callback_urls: URL-slóðir baksvörunar (callback)
+        scopes: Gildissvið
+        secret: Leynilykill biðlara
+        title: 'Forrit: %{name}'
+    authorizations:
+      buttons:
+        authorize: Heimila
+        deny: Neita
+      error:
+        title: Villa kom upp
+      new:
+        able_to: Það mun geta
+        prompt: Forritið %{client_name} biður um aðgang að notandaaðgangnum þínum
+        title: Auðkenning er nauðsynleg
+      show:
+        title: Afritaðu þennan auðkenningarkóða og límdu hann inn hjá forritinu.
+    authorized_applications:
+      buttons:
+        revoke: Afturkalla
+      confirmations:
+        revoke: Ertu viss?
+      index:
+        application: Forrit
+        created_at: Heimilað
+        date_format: "%Y-%m-%d %H:%M:%S"
+        scopes: Gildissvið
+        title: Heimiluðu forritin þín
+    errors:
+      messages:
+        access_denied: Eigandi tilfangs eða auðkenningarþjónn höfnuðu beininni.
+        credential_flow_not_configured: Flæði á lykilorðsauðkennum eiganda tilfangs (Resource Owner) brást vegna þess að Doorkeeper.configure.resource_owner_from_credentials er óskilgreint.
+        invalid_client: Auðkenning á biðlara brást vegna þess að biðlarinn er óþekktur, að auðkenning biðlarans fylgdi ekki með, eða að notuð var óstudd auðkenningaraðferð.
+        invalid_grant: Uppgefin auðkenningarheimild er ógild, útrunnin, afturkölluð, samsvarar ekki endurbirtingarslóðinni í auðkenningarbeiðninni, eða var gefin út til annars biðlara.
+        invalid_redirect_uri: Endurbeiningarslóðin sem fylgdi er ekki gild.
+        invalid_request: Í beiðnina vantar nauðsynlega færibreytu, hún inniheldur óleyfilegt gildi á færibreytu, eða er gölluð á einhvern annan hátt.
+        invalid_resource_owner: Uppgefin auðkenni eiganda tilfangs eru ekki gild, eða að eigandi tilfangs finnst ekki
+        invalid_scope: Umbeðið gildissvið er ógilt, óþekkt eða rangt uppsett.
+        invalid_token:
+          expired: Auðkenningarteiknið er útrunnið
+          revoked: Auðkenningarteiknið var aturkallað
+          unknown: Auðkenningarteiknið er ógilt
+        resource_owner_authenticator_not_configured: Leit að eiganda tilfangs (Resource Owner) brást vegna þess að Doorkeeper.configure.resource_owner_authenticator er óskilgreint.
+        server_error: Auðkenningarþjónninn rakst á óvænt skilyrði sem kom í veg fyrir að hægt væri að uppfylla beiðnina.
+        temporarily_unavailable: Auðkenningarþjónninn hefur ekki tök á að meðhöndla beiðnina vegna of mikils tímabundins álags eða viðhalds á vefþvóninum.
+        unauthorized_client: Biðlaraforritið hefur ekki heimild til að framkvæma beiðnina með þessari aðferð.
+        unsupported_grant_type: Þessi gerð auðkenningaraðferðar er ekki studd af auðkenningarþjóninum.
+        unsupported_response_type: Auðkenningarþjónninn styður ekki þessa tegund svars.
+    flash:
+      applications:
+        create:
+          notice: Forrit útbúið.
+        destroy:
+          notice: Forriti eytt.
+        update:
+          notice: Forrit uppfært.
+      authorized_applications:
+        destroy:
+          notice: Forrit afturkallað.
+    layouts:
+      admin:
+        nav:
+          applications: Forrit
+          oauth2_provider: OAuth þjónusta
+      application:
+        title: Krafist er OAuth auðkenningar við að
+    scopes:
+      admin:read: lesa öll gögn á netþjóninum
+      admin:read:accounts: lesa viðkvæmar upplýsingar á öllum notendaaðgöngum
+      admin:read:reports: lesa viðkvæmar upplýsingar í öllum skýrslum og kærðum notendaaðgöngum
+      admin:write: breyta öllum gögnum á netþjóninum
+      admin:write:accounts: framkvæma umsjónaraðgerðir á notendaaðganga
+      admin:write:reports: framkvæma umsjónaraðgerðir á kærur
+      follow: breyta venslum aðgangs
+      push: taka á móti ýti-tilkynningum til þín
+      read: lesa öll gögn á notandaaðgangnum þínum
+      read:accounts: sjá upplýsingar í notendaaðgöngum
+      read:blocks: skoða útilokanirnar þínar
+      read:bookmarks: skoða bókamerki
+      read:favourites: skoða eftirlætin þín
+      read:filters: skoða síurnar þínar
+      read:follows: sjá hverjum þú fylgist með
+      read:lists: skoða listana þína
+      read:mutes: skoða hverja þú þaggar
+      read:notifications: sjá tilkynningarnar þínar
+      read:reports: skoða skýrslurnar þína
+      read:search: leita fyrir þína hönd
+      read:statuses: sjá allar stöðufærslur
+      write: breyta öllum gögnum á notandaaðgangnum þínum
+      write:accounts: breyta notandasniðinu þínu
+      write:blocks: útiloka notandaaðganga og lén
+      write:bookmarks: bókamerkja stöðufærslur
+      write:favourites: setja stöðufærslur í eftirlæti
+      write:filters: útbúa síur
+      write:follows: fylgjast með fólki
+      write:lists: búa til lista
+      write:media: senda inn myndefnisskrár
+      write:mutes: þagga niður í fólki og samtölum
+      write:notifications: hreinsa tilkynningarnar þínar
+      write:reports: kæra annað fólk
+      write:statuses: gefa út stöður
