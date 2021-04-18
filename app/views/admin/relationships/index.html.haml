@@ -17,7 +17,7 @@
       %li= filter_link_to t('admin.accounts.location.local'), location: 'local'
       %li= filter_link_to t('admin.accounts.location.remote'), location: 'remote'
 
-  .back-link{ style: 'flex: 1 1 auto; text-align: right' }
+  .back-link
     = link_to admin_account_path(@account.id) do
       = fa_icon 'chevron-left fw'
       = t('admin.statuses.back_to_account')

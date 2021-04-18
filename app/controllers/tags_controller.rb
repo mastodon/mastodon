@@ -10,6 +10,7 @@ class TagsController < ApplicationController
   before_action :require_signature!, if: -> { request.format == :json && authorized_fetch_mode? }
   before_action :authenticate_user!, if: :whitelist_mode?
   before_action :set_tag
+  before_action :set_local
   before_action :set_body_classes
   before_action :set_instance_presenter
 
@@ -24,7 +25,7 @@ class TagsController < ApplicationController
       format.rss do
         expires_in 0, public: true
 
-        @statuses = HashtagQueryService.new.call(@tag, filter_params).limit(PAGE_SIZE)
+        @statuses = HashtagQueryService.new.call(@tag, filter_params, nil, @local).limit(PAGE_SIZE)
         @statuses = cache_collection(@statuses, Status)
 
         render xml: RSS::TagSerializer.render(@tag, @statuses)
@@ -33,7 +34,7 @@ class TagsController < ApplicationController
       format.json do
         expires_in 3.minutes, public: public_fetch_mode?
 
-        @statuses = HashtagQueryService.new.call(@tag, filter_params, current_account, params[:local]).paginate_by_max_id(PAGE_SIZE, params[:max_id])
+        @statuses = HashtagQueryService.new.call(@tag, filter_params, current_account, @local).paginate_by_max_id(PAGE_SIZE, params[:max_id])
         @statuses = cache_collection(@statuses, Status)
 
         render json: collection_presenter, serializer: ActivityPub::CollectionSerializer, adapter: ActivityPub::Adapter, content_type: 'application/activity+json'
@@ -45,6 +46,10 @@ class TagsController < ApplicationController
 
   def set_tag
     @tag = Tag.usable.find_normalized!(params[:id])
+  end
+
+  def set_local
+    @local = truthy_param?(:local)
   end
 
   def set_body_classes

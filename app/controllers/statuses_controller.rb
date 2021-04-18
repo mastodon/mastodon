@@ -46,7 +46,7 @@ class StatusesController < ApplicationController
   end
 
   def embed
-    return not_found if @status.hidden?
+    return not_found if @status.hidden? || @status.reblog?
 
     expires_in 180, public: true
     response.headers['X-Frame-Options'] = 'ALLOWALL'

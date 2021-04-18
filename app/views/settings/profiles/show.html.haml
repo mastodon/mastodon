@@ -9,7 +9,7 @@
 
   .fields-row
     .fields-row__column.fields-group.fields-row__column-6
-      = f.input :display_name, wrapper: :with_label, input_html: { maxlength: 30 }, hint: false
+      = f.input :display_name, wrapper: :with_label, input_html: { maxlength: 30, data: { default: @account.username } }, hint: false
       = f.input :note, wrapper: :with_label, input_html: { maxlength: 500 }, hint: false
 
   .fields-row
@@ -17,9 +17,9 @@
       = render 'application/card', account: @account
 
     .fields-row__column.fields-group.fields-row__column-6
-      = f.input :header, wrapper: :with_label, input_html: { accept: AccountHeader::IMAGE_MIME_TYPES.join(',') }, hint: t('simple_form.hints.defaults.header', dimensions: '1500x500', size: number_to_human_size(AccountHeader::LIMIT))
+      = f.input :header, wrapper: :with_label, input_html: { accept: AccountHeader::IMAGE_MIME_TYPES.join(',') }, hint: picture_hint(t('simple_form.hints.defaults.header', dimensions: '1500x500', size: number_to_human_size(AccountHeader::LIMIT)), @account.header)
 
-      = f.input :avatar, wrapper: :with_label, input_html: { accept: AccountAvatar::IMAGE_MIME_TYPES.join(',') }, hint: t('simple_form.hints.defaults.avatar', dimensions: '400x400', size: number_to_human_size(AccountAvatar::LIMIT))
+      = f.input :avatar, wrapper: :with_label, input_html: { accept: AccountAvatar::IMAGE_MIME_TYPES.join(',') }, hint: picture_hint(t('simple_form.hints.defaults.avatar', dimensions: '400x400', size: number_to_human_size(AccountAvatar::LIMIT)), @account.avatar)
 
   %hr.spacer/
 

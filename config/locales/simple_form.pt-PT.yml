@@ -3,14 +3,14 @@ pt-PT:
   simple_form:
     hints:
       account_alias:
-        acct: Especifique o nome de usuário@domínio da conta de onde você deseja mover
+        acct: Especifique o utilizador@domínio da conta de onde você deseja migrar
       account_migration:
-        acct: Especifique o nome de usuário@domínio da conta para onde você deseja mover
+        acct: Especifique o utilizador@domínio da conta para onde você deseja migrar
       account_warning_preset:
         text: Tu podes usar sintaxe de escrita, como URLs, hashtags e referências
         title: Opcional. Não visível para o destinatário
       admin_account_action:
-        include_statuses: O usuário verá quais ferramentas causaram a ação de moderação ou aviso
+        include_statuses: O utilizador verá quais toots causaram a ação de moderação ou aviso
         send_email_notification: O utilizador receberá uma explicação sobre o que aconteceu com a sua conta
         text_html: Opcional. Tu podes usar sintaxe de escrita. Tu podes <a href="%{path}"> adicionar predefinições de aviso</a> para poupar tempo
         type_html: Escolhe o que fazer com <strong>%{acct}</strong>
@@ -41,10 +41,10 @@ pt-PT:
         phrase: Será correspondido independentemente da capitalização ou do aviso de conteúdo duma publicação
         scopes: Quais as APIs a que será concedido acesso. Se escolheres uma abrangência de nível superior, não precisarás de as seleccionar individualmente.
         setting_aggregate_reblogs: Não mostrar novas partilhas que foram partilhadas recentemente (só afecta as novas partilhas)
-        setting_default_sensitive: Média sensível está oculta por padrão e pode ser revelada com um clique
-        setting_display_media_default: Esconder média marcada como sensível
-        setting_display_media_hide_all: Esconder sempre toda a média
-        setting_display_media_show_all: Mostrar sempre a média marcada como sensível
+        setting_default_sensitive: Media sensível está oculta por padrão e pode ser revelada com um clique
+        setting_display_media_default: Esconder media marcada como sensível
+        setting_display_media_hide_all: Esconder sempre toda a media
+        setting_display_media_show_all: Mostrar sempre a media marcada como sensível
         setting_hide_network: Quem tu segues e quem te segue não será mostrado no teu perfil
         setting_noindex: Afecta o teu perfil público e as páginas das tuas publicações
         setting_show_application: A aplicação que tu usas para publicar será mostrada na vista detalhada das tuas publicações
@@ -53,7 +53,7 @@ pt-PT:
         username: O teu nome de utilizador será único em %{domain}
         whole_word: Quando a palavra-chave ou expressão-chave é somente alfanumérica, ela só será aplicada se corresponder à palavra completa
       domain_allow:
-        domain: Este domínio será capaz de obter dados deste servidor e os dados dele recebidos serão processados e armazenados
+        domain: Este domínio será capaz de obter dados desta instância e os dados dele recebidos serão processados e armazenados
       email_domain_block:
         domain: Este pode ser o nome de domínio que aparece no endereço de email, o registro MX para o qual o domínio resolve, ou o IP do servidor para o qual o registro MX resolve. Estes serão verificados no momento da inscrição do utilizador e a inscrição será rejeitada.
         with_dns_records: Será feita uma tentativa de resolver os registros DNS do domínio em questão e os resultados também serão colocados na lista negra
@@ -62,7 +62,7 @@ pt-PT:
       form_challenge:
         current_password: Está a entrar numa área restrita
       imports:
-        data: Arquivo CSV exportado de outro servidor do Mastodon
+        data: Arquivo CSV exportado de outra instância do Mastodon
       invite_request:
         text: Isto vai ajudar-nos a rever o seu pedido
       sessions:
@@ -133,9 +133,9 @@ pt-PT:
         setting_crop_images: Cortar imagens em toots não expandidos para o formato 16x9
         setting_default_language: Língua de publicação
         setting_default_privacy: Privacidade da publicação
-        setting_default_sensitive: Sempre marcar média como sensível
+        setting_default_sensitive: Sempre marcar media como sensível
         setting_delete_modal: Solicitar confirmação antes de eliminar uma publicação
-        setting_display_media: Exposição de média
+        setting_display_media: Visualização de media
         setting_display_media_default: Pré-definição
         setting_display_media_hide_all: Esconder todos
         setting_display_media_show_all: Mostrar todos
@@ -148,7 +148,7 @@ pt-PT:
         setting_theme: Tema do site
         setting_trends: Mostrar as tendências de hoje
         setting_unfollow_modal: Solicitar confirmação antes de deixar de seguir alguém
-        setting_use_blurhash: Mostrar gradientes coloridos para médias ocultas
+        setting_use_blurhash: Mostrar gradientes coloridos para medias ocultas
         setting_use_pending_items: Modo lento
         severity: Gravidade
         type: Tipo de importação

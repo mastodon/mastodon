@@ -18,3 +18,4 @@
 
   %td
     = table_link_to 'external-link', t('identity_proofs.view_proof'), proof.badge.proof_url if proof.badge.proof_url
+    = table_link_to 'trash', t('identity_proofs.remove'), settings_identity_proof_path(proof), method: :delete, data: { confirm: t('admin.accounts.are_you_sure') }

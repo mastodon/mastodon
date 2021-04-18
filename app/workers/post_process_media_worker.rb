@@ -25,7 +25,7 @@ class PostProcessMediaWorker
     media_attachment = MediaAttachment.find(media_attachment_id)
     media_attachment.processing = :in_progress
     media_attachment.save
-    media_attachment.file.reprocess_original!
+    media_attachment.file.reprocess!(:original)
     media_attachment.processing = :complete
     media_attachment.save
   rescue ActiveRecord::RecordNotFound

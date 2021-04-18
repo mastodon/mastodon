@@ -198,18 +198,6 @@ class Status < ApplicationRecord
     preview_cards.first
   end
 
-  def title
-    if destroyed?
-      "#{account.acct} deleted status"
-    elsif reblog?
-      preview = sensitive ? '<sensitive>' : text.slice(0, 10).split("\n")[0]
-      "#{account.acct} shared #{reblog.account.acct}'s: #{preview}"
-    else
-      preview = sensitive ? '<sensitive>' : text.slice(0, 20).split("\n")[0]
-      "#{account.acct}: #{preview}"
-    end
-  end
-
   def hidden?
     !distributable?
   end
@@ -297,14 +285,14 @@ class Status < ApplicationRecord
     def as_public_timeline(account = nil, local_only = false)
       query = timeline_scope(local_only).without_replies
 
-      apply_timeline_filters(query, account, local_only)
+      apply_timeline_filters(query, account, [:local, true].include?(local_only))
     end
 
     def as_tag_timeline(tag, account = nil, local_only = false)
       if account
-        query = timeline_scope(local_only, false, false).tagged_with(tag)
+        query = timeline_scope(local_only, public_only: false, unlisted_replies: false).tagged_with(tag)
       else
-        query = timeline_scope(local_only, true, false).tagged_with(tag)
+        query = timeline_scope(local_only, public_only: true, unlisted_replies: false).tagged_with(tag)
       end
       apply_timeline_filters(query, account, local_only)
     end
@@ -358,7 +346,7 @@ class Status < ApplicationRecord
 
       if account.nil?
         where(visibility: visibility)
-      elsif target_account.blocking?(account) # get rid of blocked peeps
+      elsif target_account.blocking?(account) || (account.domain.present? && target_account.domain_blocking?(account.domain)) # get rid of blocked peeps
         none
       elsif account.id == target_account.id # author can see own stuff
         all
@@ -392,14 +380,20 @@ class Status < ApplicationRecord
 
     private
 
-    def timeline_scope(local_only = false, public_only = true, unlisted_replies = true)
-      starting_scope = local_only ? Status.local : Status
-      starting_scope = starting_scope.without_reblogs
+    def timeline_scope(scope = false, public_only: true, unlisted_replies: true)
+      starting_scope = case scope
+                       when :local, true
+                         Status.local
+                       when :remote
+                         Status.remote
+                       else
+                         Status
+                       end
 
       if public_only
-        starting_scope.with_public_visibility
+        starting_scope.with_public_visibility.without_reblogs
       else
-        starting_scope.with_public_or_unlisted_visibility(unlisted_replies)
+        starting_scope.with_public_or_unlisted_visibility(unlisted_replies).without_reblogs
       end
     end
 

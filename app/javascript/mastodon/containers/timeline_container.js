@@ -38,7 +38,7 @@ export default class TimelineContainer extends React.PureComponent {
     let timeline;
 
     if (hashtag) {
-      timeline = <HashtagTimeline hashtag={hashtag} />;
+      timeline = <HashtagTimeline hashtag={hashtag} local={local} />;
     } else {
       timeline = <PublicTimeline local={local} />;
     }

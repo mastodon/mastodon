@@ -165,10 +165,47 @@ ta:
       warn: எச்சரி
       whitelisted: அனுமதிப்பட்டியல்
     action_logs:
+      action_types:
+        change_email_user: பயனரின் மின்னஞ்சலை மாற்று
+        confirm_user: பயனரை உறுதி செய்
+        create_account_warning: எச்சரிக்கையை உருவாக்கு
+        create_announcement: அறிவிப்பை உருவாக்கு
+        create_custom_emoji: தனிப்பயனான எமோஜியை உருவாக்கு
+        create_domain_allow: கள அனுமதியை உருவாக்கு
+        create_domain_block: கள முடக்கத்தை உருவாக்கு
+        create_email_domain_block: மின்னஞ்சல் கள முடக்கத்தை உருவாக்கு
+        demote_user: பயனரைப் படியிறக்கு
+        destroy_announcement: அறிவிப்பை நீக்கு
+        destroy_custom_emoji: தனிப்பயனான எமோஜியை நீக்கு
+        destroy_domain_allow: கள அனுமதியை நீக்கு
+        destroy_domain_block: கள முடக்கத்தை நீக்கு
+        destroy_email_domain_block: மின்னஞ்சல் கள முடக்கத்தை நீக்கு
+        destroy_status: பதிவை நீக்கு
+        disable_2fa_user: 2FA-வை முடக்கு
+        disable_custom_emoji: தனிப்பயனான எமோஜியை முடக்கு
+        disable_user: பயனரை முடக்கு
+        enable_custom_emoji: தனிப்பயனான எமோஜியை அனுமதி
+        enable_user: பயனரை அனுமதி
+        memorialize_account: கணக்கை நினைவிடம் ஆக்கு
+        promote_user: பயனரைப் பதவி உயர்த்து
+        remove_avatar_user: சுயவிவரப் படத்தை நீக்கு
+        reopen_report: அறிக்கையை மீண்டும் திற
+        reset_password_user: கடவுச்சொல்லை மீட்டமை
+        resolve_report: புகாரை சரிசெய்
+        silence_account: கணக்கை அமைதியாக்கு
+        suspend_account: கணக்கை இடைநீக்கு
+        unsilence_account: கணக்கிலிருந்து மீண்டும் அறிவிப்பைப் பெறு
+        unsuspend_account: கணக்கின் இடைநீக்கத்தைத் திரும்பப்பெறு
+        update_announcement: அறிவிப்பைப் புதுப்பி
+        update_custom_emoji: தனிப்பயனான எமோஜியைப் புதுப்பி
+        update_status: பதிவைப் புதுப்பி
       actions:
         create_announcement: "%{name} %{target} என்றொரு புதிய அறிவிப்பை உருவாக்கியிருக்கிறார்"
         destroy_announcement: "%{name} %{target} அறிவிப்பை நீக்கிவிட்டார்"
         update_announcement: "%{name} %{target} அறிவிப்பைப் புதுப்பித்துள்ளார்"
+      empty: குறிப்புகள் எவையும் காணப்படவில்லை.
+      filter_by_action: செயலின் அடிப்படையில் வடிகட்டு
+      filter_by_user: பயனரின் அடிப்படையில் வடிகட்டு
     announcements:
       destroyed_msg: அறிவிப்பு வெற்றிகரமாக நீக்கப்பட்டது!
       edit:

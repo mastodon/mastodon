@@ -10,7 +10,7 @@
       - unless whitelist_mode?
         %li= filter_link_to t('admin.instances.moderation.limited'), limited: '1'
 
-  %div{ style: 'flex: 1 1 auto; text-align: right' }
+  %div.special-action-button
     - if whitelist_mode?
       = link_to t('admin.domain_allows.add_new'), new_admin_domain_allow_path, class: 'button'
     - else

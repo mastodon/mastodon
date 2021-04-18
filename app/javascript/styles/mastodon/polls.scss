@@ -19,6 +19,36 @@
     }
   }
 
+  progress {
+    border: 0;
+    display: block;
+    width: 100%;
+    height: 5px;
+    appearance: none;
+    background: transparent;
+
+    &::-webkit-progress-bar {
+      background: transparent;
+    }
+
+    // Those rules need to be entirely separate or they won't work, hence the
+    // duplication
+    &::-moz-progress-bar {
+      border-radius: 4px;
+      background: darken($ui-primary-color, 5%);
+    }
+
+    &::-ms-fill {
+      border-radius: 4px;
+      background: darken($ui-primary-color, 5%);
+    }
+
+    &::-webkit-progress-value {
+      border-radius: 4px;
+      background: darken($ui-primary-color, 5%);
+    }
+  }
+
   &__option {
     position: relative;
     display: flex;

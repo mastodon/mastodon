@@ -24,20 +24,23 @@ class ActivityPub::CollectionsController < ActivityPub::BaseController
   def set_size
     case params[:id]
     when 'featured'
-      @account.pinned_statuses.count
+      @size = @account.pinned_statuses.count
     else
-      raise ActiveRecord::RecordNotFound
+      not_found
     end
   end
 
   def scope_for_collection
     case params[:id]
     when 'featured'
-      return Status.none if @account.blocking?(signed_request_account)
-
-      @account.pinned_statuses
-    else
-      raise ActiveRecord::RecordNotFound
+      # Because in public fetch mode we cache the response, there would be no
+      # benefit from performing the check below, since a blocked account or domain
+      # would likely be served the cache from the reverse proxy anyway
+      if authorized_fetch_mode? && !signed_request_account.nil? && (@account.blocking?(signed_request_account) || (!signed_request_account.domain.nil? && @account.domain_blocking?(signed_request_account.domain)))
+        Status.none
+      else
+        @account.pinned_statuses
+      end
     end
   end
 

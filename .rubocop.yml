@@ -2,7 +2,7 @@ require:
   - rubocop-rails
 
 AllCops:
-  TargetRubyVersion: 2.3
+  TargetRubyVersion: 2.4
   Exclude:
   - 'spec/**/*'
   - 'db/**/*'
@@ -46,7 +46,7 @@ Metrics/ClassLength:
 Metrics/CyclomaticComplexity:
   Max: 25
 
-Metrics/LineLength:
+Layout/LineLength:
   AllowURI: true
   Enabled: false
 

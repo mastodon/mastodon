@@ -14,15 +14,13 @@ module Paperclip
       end
     end
 
-    def reprocess_original!
-      old_original_path = path(:original)
-      reprocess!(:original)
-      new_original_path = path(:original)
+    def storage_schema_version
+      instance_read(:storage_schema_version) || 0
+    end
 
-      if new_original_path != old_original_path
-        @queued_for_delete << old_original_path
-        flush_deletes
-      end
+    def assign_attributes
+      super
+      instance_write(:storage_schema_version, 1)
     end
 
     def variant?(other_filename)

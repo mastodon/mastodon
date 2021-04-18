@@ -635,6 +635,7 @@ fr:
     add_new: Créer un alias
     created_msg: Un nouvel alias a été créé avec succès. Vous pouvez maintenant déménager depuis l'ancien compte.
     deleted_msg: Alias supprimé avec succès. Le déménagement de ce compte vers celui-ci ne sera plus possible.
+    empty: Vous n’avez pas d’alias.
     hint_html: Si vous voulez déménager d’un autre compte vers celui-ci, vous pouvez créer ici un alias, qui est nécessaire avant de pouvoir migrer les abonné·e·s de l’ancien compte vers celui-ci. Cette action en soi est <strong>inoffensive et réversible</strong>. <strong>La migration du compte est initiée à partir de l’ancien compte</strong>.
     remove: Détacher l'alias
   appearance:
@@ -849,6 +850,8 @@ fr:
     inactive: Inactive
     publicize_checkbox: 'Et le poueter :'
     publicize_toot: 'C’est prouvé ! Je suis %{username} sur %{service}: %{url}'
+    remove: Retirer une preuve du compte
+    removed: Preuve retirée du compte avec succès
     status: État de la vérification
     view_proof: Voir la preuve
   imports:
@@ -908,7 +911,7 @@ fr:
       not_found: n'a pas été trouvé
       on_cooldown: Vous êtes soumis·e à un temps de rechargement
     followers_count: Abonné·e·s au moment du déménagement
-    incoming_migrations: Déplacement d'un compte différent
+    incoming_migrations: Déplacement depuis un compte différent
     incoming_migrations_html: Pour déménager d'un autre compte à celui-ci, vous devez d'abord <a href="%{path}">créer un alias de compte</a>.
     moved_msg: Votre compte est maintenant redirigé vers %{acct} et vos abonné·e·s sont en train d'être déplacé·e·s.
     not_redirecting: Votre compte n'est pas redirigé vers un autre compte actuellement.

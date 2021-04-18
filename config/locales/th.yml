@@ -77,6 +77,7 @@ th:
       delete: ลบ
       destroyed_msg: ทำลายหมายเหตุการควบคุมสำเร็จ!
     accounts:
+      add_email_domain_block: ขึ้นบัญชีดำโดเมนอีเมล
       approve: อนุมัติ
       approve_all: อนุมัติทั้งหมด
       are_you_sure: คุณแน่ใจหรือไม่?
@@ -154,6 +155,7 @@ th:
         staff: พนักงาน
         user: ผู้ใช้
       search: ค้นหา
+      search_same_email_domain: ผู้ใช้อื่น ๆ ที่มีโดเมนอีเมลเดียวกัน
       search_same_ip: ผู้ใช้อื่น ๆ ที่มี IP เดียวกัน
       shared_inbox_url: URL กล่องขาเข้าที่แบ่งปัน
       show:
@@ -288,6 +290,7 @@ th:
       overwrite: เขียนทับ
       shortcode: รหัสย่อ
       title: อีโมจิที่กำหนดเอง
+      uncategorized: ไม่มีหมวดหมู่
       unlist: เลิกแสดงรายการ
       unlisted: ไม่อยู่ในรายการ
       update_failed_msg: ไม่สามารถอัปเดตอีโมจินั้น
@@ -305,6 +308,7 @@ th:
       feature_spam_check: การป้องกันสแปม
       feature_timeline_preview: ตัวอย่างเส้นเวลา
       features: คุณลักษณะ
+      hidden_service: การติดต่อกับภายนอกกับบริการที่ซ่อนอยู่
       open_reports: รายงานที่เปิด
       pending_tags: แฮชแท็กที่กำลังรอการตรวจทาน
       pending_users: ผู้ใช้ที่กำลังรอการตรวจทาน
@@ -462,6 +466,7 @@ th:
       mascot:
         title: ภาพมาสคอต
       peers_api_enabled:
+        desc_html: ชื่อโดเมนที่เซิร์ฟเวอร์นี้ได้พบในเฟดิเวิร์ส
         title: เผยแพร่รายการเซิร์ฟเวอร์ที่ค้นพบ
       profile_directory:
         desc_html: อนุญาตให้ผู้ใช้สามารถค้นพบได้
@@ -503,6 +508,9 @@ th:
       title: การตั้งค่าไซต์
       trends:
         title: แฮชแท็กที่กำลังนิยม
+    site_uploads:
+      delete: ลบไฟล์ที่อัปโหลด
+      destroyed_msg: ลบการอัปโหลดไซต์สำเร็จ!
     statuses:
       back_to_account: กลับไปที่หน้าบัญชี
       batch:
@@ -528,6 +536,7 @@ th:
       trending_right_now: กำลังนิยม
       unique_uses_today: "%{count} การโพสต์วันนี้"
       unreviewed: ยังไม่ได้ตรวจทาน
+      updated_msg: อัปเดตการตั้งค่าแฮชแท็กสำเร็จ
     title: การดูแล
     warning_presets:
       add_new: เพิ่มใหม่
@@ -541,6 +550,7 @@ th:
       subject: รายงานใหม่สำหรับ %{instance} (#%{id})
   aliases:
     add_new: สร้างนามแฝง
+    empty: คุณไม่มีนามแฝง
     remove: เลิกเชื่อมโยงนามแฝง
   appearance:
     advanced_web_interface: ส่วนติดต่อเว็บขั้นสูง
@@ -597,6 +607,7 @@ th:
     follow_request: 'คุณได้ส่งคำขอติดตามไปยัง:'
     following: 'สำเร็จ! คุณกำลังติดตาม:'
     post_follow:
+      close: หรือคุณสามารถปิดหน้าต่างนี้
       return: แสดงโปรไฟล์ของผู้ใช้
       web: ไปยังเว็บ
     title: ติดตาม %{acct}
@@ -623,6 +634,7 @@ th:
       x_seconds: "%{count} วินาที"
   deletes:
     challenge_not_passed: ข้อมูลที่คุณป้อนไม่ถูกต้อง
+    confirm_password: ป้อนรหัสผ่านปัจจุบันของคุณเพื่อยืนยันตัวตนของคุณ
     confirm_username: ป้อนชื่อผู้ใช้ของคุณเพื่อยืนยันกระบวนงาน
     proceed: ลบบัญชี
     success_msg: ลบบัญชีของคุณสำเร็จ
@@ -631,6 +643,8 @@ th:
       email_change_html: คุณสามารถ <a href="%{path}">เปลี่ยนที่อยู่อีเมลของคุณ</a> โดยไม่ต้องลบบัญชีของคุณ
       email_reconfirmation_html: หากคุณไม่ได้รับอีเมลยืนยัน คุณสามารถ <a href="%{path}">ขออีเมลอีกครั้ง</a>
       more_details_html: สำหรับรายละเอียดเพิ่มเติม ดู <a href="%{terms_path}">นโยบายความเป็นส่วนตัว</a>
+      username_available: ชื่อผู้ใช้ของคุณจะพร้อมใช้งานอีกครั้ง
+      username_unavailable: ชื่อผู้ใช้ของคุณจะยังคงไม่พร้อมใช้งาน
   directories:
     directory: ไดเรกทอรีโปรไฟล์
     explanation: ค้นพบผู้ใช้ตามความสนใจของเขา
@@ -642,15 +656,16 @@ th:
     '403': คุณไม่มีสิทธิอนุญาตเพื่อดูหน้านี้
     '404': หน้าที่คุณกำลังมองหาไม่ได้อยู่ที่นี่
     '406': This page is not available in the requested format.
-    '410': หน้าที่คุณกำลังมองหาไม่มีอยู่ที่นี่อีกต่อไป
+    '410': ไม่มีหน้าที่คุณกำลังมองหาอยู่ที่นี่อีกต่อไป
     '422':
       content: การตรวจสอบความปลอดภัยล้มเหลว คุณกำลังปิดกั้นคุกกี้หรือไม่?
       title: การตรวจสอบความปลอดภัยล้มเหลว
-    '429': Too many requests
+    '429': คำขอมากเกินไป
     '500':
       title: หน้านี้ไม่ถูกต้อง
     '503': The page could not be served due to a temporary server failure.
   existing_username_validator:
+    not_found: ไม่พบผู้ใช้ในเซิร์ฟเวอร์ที่มีชื่อผู้ใช้นั้น
     not_found_multiple: ไม่พบ %{usernames}
   exports:
     archive_takeout:
@@ -698,13 +713,18 @@ th:
   identity_proofs:
     active: ใช้งานอยู่
     authorize: ใช่ อนุญาต
+    identity: ตัวตน
     inactive: ไม่ได้ใช้งาน
     publicize_checkbox: 'และโพสต์สิ่งนี้:'
+    remove: เอาการพิสูจน์ออกจากบัญชี
+    removed: เอาการพิสูจน์ออกจากบัญชีสำเร็จ
     status: สถานะการตรวจสอบ
   imports:
     modes:
       merge: ผสาน
+      merge_long: เก็บระเบียนที่มีอยู่และเพิ่มระเบียนใหม่
       overwrite: เขียนทับ
+      overwrite_long: แทนที่ระเบียนปัจจุบันด้วยระเบียนใหม่
     types:
       blocking: รายการปิดกั้น
       domain_blocking: รายการปิดกั้นโดเมน
@@ -738,6 +758,7 @@ th:
   migrations:
     acct: ย้ายไปยัง
     cancel: ยกเลิกการเปลี่ยนเส้นทาง
+    cancelled_msg: ยกเลิกการเปลี่ยนเส้นทางสำเร็จ
     errors:
       move_to_self: ไม่สามารถเป็นบัญชีปัจจุบัน
       not_found: ไม่พบ
@@ -751,6 +772,10 @@ th:
     digest:
       action: ดูการแจ้งเตือนทั้งหมด
       mention: "%{name} ได้กล่าวถึงคุณใน:"
+      new_followers_summary:
+        other: นอกจากนี้คุณยังได้รับ %{count} ผู้ติดตามใหม่ขณะที่ไม่อยู่! มหัศจรรย์!
+      subject:
+        other: "%{count} การแจ้งเตือนใหม่นับตั้งแต่การเยี่ยมชมล่าสุดของคุณ \U0001F418"
       title: เมื่อคุณไม่อยู่...
     favourite:
       body: 'สถานะของคุณได้รับการชื่นชอบโดย %{name}:'
@@ -776,6 +801,7 @@ th:
       title: การดันใหม่
   notifications:
     email_events: เหตุการณ์สำหรับการแจ้งเตือนอีเมล
+    email_events_hint: 'เลือกเหตุการณ์ที่คุณต้องการรับการแจ้งเตือน:'
     other_settings: การตั้งค่าการแจ้งเตือนอื่น ๆ
   pagination:
     newer: ใหม่กว่า
@@ -787,6 +813,7 @@ th:
     errors:
       already_voted: คุณได้ลงคะแนนในการสำรวจความคิดเห็นนี้อยู่แล้ว
       duplicate_options: มีรายการที่ซ้ำกัน
+      invalid_choice: ไม่มีตัวเลือกการลงคะแนนที่เลือกอยู่
       too_few_options: ต้องมีมากกว่าหนึ่งรายการ
       too_many_options: ไม่สามารถมีมากกว่า %{max} รายการ
   preferences:
@@ -798,6 +825,7 @@ th:
       unrecognized_emoji: ไม่ใช่อีโมจิที่รู้จัก
   relationships:
     activity: กิจกรรมบัญชี
+    dormant: ไม่เคลื่อนไหว
     followers: ผู้ติดตาม
     following: กำลังติดตาม
     invited: เชิญแล้ว
@@ -870,6 +898,7 @@ th:
   settings:
     account: บัญชี
     account_settings: การตั้งค่าบัญชี
+    aliases: นามแฝงบัญชี
     appearance: ลักษณะที่ปรากฏ
     authorized_apps: แอปที่ได้รับอนุญาต
     back: กลับไปที่ Mastodon
@@ -878,6 +907,7 @@ th:
     edit_profile: แก้ไขโปรไฟล์
     export: การส่งออกข้อมูล
     featured_tags: แฮชแท็กที่แนะนำ
+    identity_proofs: การพิสูจน์ตัวตน
     import: การนำเข้า
     import_and_export: การนำเข้าและการส่งออก
     migrate: การโยกย้ายบัญชี
@@ -886,6 +916,8 @@ th:
     profile: โปรไฟล์
     relationships: การติดตามและผู้ติดตาม
     two_factor_authentication: การรับรองความถูกต้องด้วยสองปัจจัย
+  spam_check:
+    spam_detected: นี่คือรายงานแบบอัตโนมัติ ตรวจพบสแปม
   statuses:
     attached:
       description: 'แนบอยู่: %{attached}'
@@ -936,6 +968,7 @@ th:
       default: "%d %b %Y, %H:%M"
       month: "%b %Y"
   two_factor_authentication:
+    code_hint: ป้อนรหัสที่สร้างโดยแอปตัวรับรองความถูกต้องของคุณเพื่อยืนยัน
     disable: ปิดใช้งาน
     enable: เปิดใช้งาน
     enabled: เปิดใช้งานการรับรองความถูกต้องด้วยสองปัจจัยแล้ว
@@ -957,10 +990,12 @@ th:
       review_preferences_action: เปลี่ยนการกำหนดลักษณะ
       subject: ยินดีต้อนรับสู่ Mastodon
       tips: เคล็ดลับ
+      title: ยินดีต้อนรับ %{name}!
   users:
     follow_limit_reached: คุณไม่สามารถติดตามมากกว่า %{limit} คน
     invalid_email: ที่อยู่อีเมลไม่ถูกต้อง
     invalid_otp_token: รหัสสองปัจจัยไม่ถูกต้อง
+    seamless_external_login: คุณได้เข้าสู่ระบบผ่านบริการภายนอก ดังนั้นจึงไม่มีการตั้งค่ารหัสผ่านและอีเมล
     signed_in_as: 'ลงชื่อเข้าเป็น:'
   verification:
     verification: การตรวจสอบ

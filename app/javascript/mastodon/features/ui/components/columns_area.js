@@ -37,6 +37,7 @@ const componentMap = {
   'HOME': HomeTimeline,
   'NOTIFICATIONS': Notifications,
   'PUBLIC': PublicTimeline,
+  'REMOTE': PublicTimeline,
   'COMMUNITY': CommunityTimeline,
   'HASHTAG': HashtagTimeline,
   'DIRECT': DirectTimeline,
@@ -106,7 +107,7 @@ class ColumnsArea extends ImmutablePureComponent {
     }
   }
 
-  handleChildrenContentChange(prevProps) {
+  handleChildrenContentChange() {
     if (!this.props.singleColumn) {
       const modifier = this.isRtlLayout ? -1 : 1;
       this._interruptScrollAnimation = scrollRight(this.node, (this.node.scrollWidth - window.innerWidth) * modifier);

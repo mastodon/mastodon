@@ -14,7 +14,7 @@
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #  published_at :datetime
-#  status_ids   :bigint           is an Array
+#  status_ids   :bigint(8)        is an Array
 #
 
 class Announcement < ApplicationRecord

@@ -21,7 +21,7 @@ RSpec.describe Api::V1::AccountsController, type: :controller do
 
   describe 'POST #create' do
     let(:app) { Fabricate(:application) }
-    let(:token) { Doorkeeper::AccessToken.find_or_create_for(app, nil, 'read write', nil, false) }
+    let(:token) { Doorkeeper::AccessToken.find_or_create_for(application: app, resource_owner: nil, scopes: 'read write', use_refresh_token: false) }
     let(:agreement) { nil }
 
     before do
