@@ -34,11 +34,11 @@ export function showAlert(title = messages.unexpectedTitle, message = messages.u
   };
 };
 
-export function showAlertForError(error) {
+export function showAlertForError(error, skipNotFound = false) {
   if (error.response) {
     const { data, status, statusText, headers } = error.response;
 
-    if (status === 404 || status === 410) {
+    if (skipNotFound && (status === 404 || status === 410)) {
       // Skip these errors as they are reflected in the UI
       return { type: ALERT_NOOP };
     }

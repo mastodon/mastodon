@@ -8,6 +8,7 @@ hu:
         acct: Add meg a fióknév@domain fiókot, melybe költözni szeretnél
       account_warning_preset:
         text: Használhatod a tülkökben szokásos szintaxist, URL-eket, hashtageket, megemlítéseket
+        title: Opcionális. Címzett számára nem látható
       admin_account_action:
         include_statuses: A felhasználó látni fogja, melyik tülk okozta a moderációt vagy figyelmeztetést
         send_email_notification: A felhasználó magyarázatot kap arra, mi történt a fiókjával
@@ -53,6 +54,9 @@ hu:
         whole_word: Ha a kulcsszó alfanumerikus, csak akkor minősül majd találatnak, ha teljes szóra illeszkedik
       domain_allow:
         domain: Ez a domain adatot kérhet le a szerverünkről és az ettől érkező adatokat feldolgozzuk és mentjük
+      email_domain_block:
+        domain: Lehet domain név, mely az email címben szerepel, MX rekord, amire a domain hivatkozik vagy a szerver IP címe, amire az MX rekord hivatkozik. Ezeket regisztrációkor ellenőrizzük és visszautasítjuk a regisztrációt, ha szükséges.
+        with_dns_records: Megpróbáljuk a megadott domain DNS rekordjait lekérni, és az eredményeket hozzáadjuk a tiltólistához
       featured_tag:
         name: 'Ezeket esetleg használhatod:'
       form_challenge:
@@ -78,6 +82,7 @@ hu:
         acct: Új fiók kezelése
       account_warning_preset:
         text: Figyelmeztető szöveg
+        title: Cím
       admin_account_action:
         include_statuses: Helyezd az e-mailbe a jelentett tülköket
         send_email_notification: Figyelmeztessük a felhasználót e-mailben
@@ -150,6 +155,8 @@ hu:
         username: Felhasználónév
         username_or_email: Felhasználónév vagy E-mail
         whole_word: Teljes szó
+      email_domain_block:
+        with_dns_records: Domain MX rekordjainak és IP címeinek hozzávétele
       featured_tag:
         name: Hashtag
       interactions:

@@ -91,10 +91,6 @@ RSpec.describe ImportService, type: :service do
 
     let(:csv) { attachment_fixture('mute-imports.txt') }
 
-    before do
-      allow(NotificationWorker).to receive(:perform_async)
-    end
-
     describe 'when no accounts are followed' do
       let(:import) { Import.create(account: account, type: 'following', data: csv) }
       it 'follows the listed accounts, including boosts' do
@@ -134,10 +130,6 @@ RSpec.describe ImportService, type: :service do
     subject { ImportService.new }
 
     let(:csv) { attachment_fixture('new-following-imports.txt') }
-
-    before do
-      allow(NotificationWorker).to receive(:perform_async)
-    end
 
     describe 'when no accounts are followed' do
       let(:import) { Import.create(account: account, type: 'following', data: csv) }

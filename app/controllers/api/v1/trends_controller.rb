@@ -3,8 +3,6 @@
 class Api::V1::TrendsController < Api::BaseController
   before_action :set_tags
 
-  respond_to :json
-
   def index
     render json: @tags, each_serializer: REST::TagSerializer
   end

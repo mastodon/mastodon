@@ -4,7 +4,7 @@ class Api::V1::ReportsController < Api::BaseController
   before_action -> { doorkeeper_authorize! :write, :'write:reports' }, only: [:create]
   before_action :require_user!
 
-  respond_to :json
+  override_rate_limit_headers :create, family: :reports
 
   def create
     @report = ReportService.new.call(

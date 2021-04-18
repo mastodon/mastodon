@@ -100,6 +100,7 @@ pl:
       delete: Usuń
       destroyed_msg: Pomyślnie usunięto notatkę moderacyjną!
     accounts:
+      add_email_domain_block: Dodaj domenę e-mail na czarną listę
       approve: Przyjmij
       approve_all: Zatwierdź wszystkie
       are_you_sure: Jesteś tego pewien?
@@ -180,6 +181,7 @@ pl:
         staff: Ekipa
         user: Użytkownik
       search: Szukaj
+      search_same_email_domain: Inni użytkownicy z e-mail w tej domenie
       search_same_ip: Inni użytkownicy z tym samym IP
       shared_inbox_url: Adres udostępnianej skrzynki
       show:
@@ -201,6 +203,42 @@ pl:
       web: Sieć
       whitelisted: Na białej liście
     action_logs:
+      action_types:
+        assigned_to_self_report: Przypisz zgłoszenie
+        change_email_user: Zmień adres e-mail użytkownika
+        confirm_user: Potwierdź użytkownika
+        create_account_warning: Utwórz ostrzeżenie
+        create_announcement: Utwórz ogłoszenie
+        create_custom_emoji: Utwórz niestandardowe emoji
+        create_domain_allow: Utwórz zezwolenie dla domeny
+        create_domain_block: Utwórz blokadę domeny
+        create_email_domain_block: Utwórz blokadę domeny e-mail
+        demote_user: Zdegraduj użytkownika
+        destroy_announcement: Usuń ogłoszenie
+        destroy_custom_emoji: Usuń niestandardowe emoji
+        destroy_domain_allow: Usuń zezwolenie dla domeny
+        destroy_domain_block: Usuń blokadę domeny
+        destroy_email_domain_block: Usuń blokadę domeny e-mail
+        destroy_status: Usuń wpis
+        disable_2fa_user: Wyłącz 2FA
+        disable_custom_emoji: Wyłącz niestandardowe emoji
+        disable_user: Wyłącz użytkownika
+        enable_custom_emoji: Włącz niestandardowe emoji
+        enable_user: Włącz użytkownika
+        memorialize_account: Upamiętnij konto
+        promote_user: Podnieś uprawnienia
+        remove_avatar_user: Usuń awatar
+        reopen_report: Otwórz zgłoszenie ponownie
+        reset_password_user: Resetuj hasło
+        resolve_report: Rozwiąż zgłoszenie
+        silence_account: Wycisz konto
+        suspend_account: Zawieś konto
+        unassigned_report: Cofnij przypisanie zgłoszenia
+        unsilence_account: Cofnij wyciszenie konta
+        unsuspend_account: Cofnij zawieszenie konta
+        update_announcement: Aktualizuj ogłoszenie
+        update_custom_emoji: Aktualizuj niestandardowe emoji
+        update_status: Aktualizuj wpis
       actions:
         assigned_to_self_report: "%{name} przypisał(a) sobie zgłoszenie %{target}"
         change_email_user: "%{name} zmienił(a) adres e-mail użytkownika %{target}"
@@ -238,6 +276,9 @@ pl:
         update_custom_emoji: "%{name} zaktualizował(a) emoji %{target}"
         update_status: "%{name} zaktualizował(a) wpis użytkownika %{target}"
       deleted_status: "(usunięty wpis)"
+      empty: Nie znaleziono aktywności w dzienniku.
+      filter_by_action: Filtruj według działania
+      filter_by_user: Filtruj według użytkownika
       title: Dziennik działań administracyjnych
     announcements:
       destroyed_msg: Pomyślnie usunięto ogłoszenie!
@@ -368,6 +409,7 @@ pl:
       destroyed_msg: Pomyślnie usunięto blokadę domeny e-mail
       domain: Domena
       empty: Żadna domena e-mail nie znajduje się obecnie na czarnej liście.
+      from_html: z %{domain}
       new:
         create: Utwórz blokadę
         title: Nowa blokada domeny e-mail
@@ -424,6 +466,17 @@ pl:
       created_msg: Pomyslnie utworzono notatkę moderacyjną.
       destroyed_msg: Pomyślnie usunięto notatkę moderacyjną.
     reports:
+      account:
+        notes:
+          few: "%{count} notatki"
+          many: "%{count} notatek"
+          one: "%{count} notatka"
+          other: "%{count} notatki"
+        reports:
+          few: "%{count} zgłoszenia"
+          many: "%{count} zgłoszeń"
+          one: "%{count} zgłoszenie"
+          other: "%{count} zgłoszenia"
       action_taken_by: Działanie podjęte przez
       are_you_sure: Czy na pewno?
       assign_to_self: Przypisz do siebie
@@ -464,6 +517,18 @@ pl:
       custom_css:
         desc_html: Modyfikuj wygląd pliku CSS ładowanego na każdej stronie
         title: Niestandardowy CSS
+      default_noindex:
+        desc_html: Wpływa na wszystkich użytkowników, którzy nie zmienili tego ustawienia
+        title: Domyślnie żądaj nieindeksowania użytkowników w wyszukiwarkach
+      domain_blocks:
+        all: Każdemu
+        disabled: Nikomu
+        title: Pokazuj zablokowane domeny
+        users: Zalogowanym lokalnym użytkownikom
+      domain_blocks_rationale:
+        title: Pokaż uzasadnienia
+      enable_bootstrap_timeline_accounts:
+        title: Dodawaj domyślne obserwacje nowym użytkownikom
       hero:
         desc_html: Wyświetlany na stronie głównej. Zalecany jest rozmiar przynajmniej 600x100 pikseli. Jeżeli nie ustawiony, zostanie użyta miniatura serwera
         title: Obraz bohatera
@@ -514,6 +579,9 @@ pl:
         desc_html: Miejsce na własną politykę prywatności, zasady użytkowania i inne unormowania prawne. Możesz korzystać ze znaczników HTML
         title: Niestandardowe zasady użytkowania
       site_title: Nazwa serwera
+      spam_check_enabled:
+        desc_html: Mastodon może automatycznie zgłaszać konta, które wysyłają powtarzające się niechciane wiadomości. Część zgłoszeń może być nieprawidłowa.
+        title: Automatyzacja antyspamu
       thumbnail:
         desc_html: 'Używana w podglądzie przez OpenGraph i API. Zalecany rozmiar: 1200x630 pikseli'
         title: Miniatura serwera
@@ -521,12 +589,22 @@ pl:
         desc_html: Wyświetlaj publiczną oś czasu na stronie widocznej dla niezalogowanych
         title: Podgląd osi czasu
       title: Ustawienia strony
+      trendable_by_default:
+        desc_html: Wpływa na hashtagi, które nie były wcześniej niedozwolone
+        title: Hashtagi mogą pojawiać się w trendach bez wcześniejszego zatwierdzenia
+      trends:
+        desc_html: Wyświetlaj publicznie wcześniej sprawdzone hashtagi, które są obecnie na czasie
+        title: Popularne hashtagi
+    site_uploads:
+      delete: Usuń przesłany plik
+      destroyed_msg: Pomyślnie usunięto przesłany plik!
     statuses:
       back_to_account: Wróć na konto
       batch:
         delete: Usuń
         nsfw_off: Cofnij NSFW
         nsfw_on: Oznacz jako NSFW
+      deleted: Usunięto
       failed_to_execute: Nie udało się wykonać
       media:
         title: Multimedia
@@ -535,13 +613,27 @@ pl:
       title: Wpisy konta
       with_media: Z zawartością multimedialną
     tags:
+      accounts_today: Unikalne wykorzystania dzisiaj
+      accounts_week: Unikalne wykorzystania w tym tygodniu
+      breakdown: Podział dzisiejszego wykorzystania według źródła
+      context: Kontekst
+      directory: W katalogu
+      in_directory: "%{count} w katalogu"
+      last_active: Ostatnia aktywność
+      most_popular: Najpopularniejsze
+      most_recent: Ostatnie
       name: Hasztag
+      review: Stan przeglądu
+      reviewed: Przejrzany
       title: Hashtagi
+      trending_right_now: Obecnie na czasie
+      unique_uses_today: "%{count} opublikowanych dzisiaj"
+      unreviewed: Nie przejrzano
+      updated_msg: Pomyślnie uaktualniono ustawienia hashtagów
     title: Administracja
     warning_presets:
       add_new: Dodaj nowy
       delete: Usuń
-      edit: Edytuj
       edit_preset: Edytuj szablon ostrzeżenia
       title: Zarządzaj szablonami ostrzeżeń
   admin_mailer:
@@ -552,14 +644,27 @@ pl:
       body: Użytkownik %{reporter} zgłosił(a) %{target}
       body_remote: Użytkownik instancji %{domain} zgłosił(a) %{target}
       subject: Nowe zgłoszenie na %{instance} (#%{id})
+    new_trending_tag:
+      body: 'Hashtag #%{name} jest dziś popularny, ale nie został wcześniej zatwierdzony. Nie będzie wyświetlany publicznie zanim na to pozwolisz, możesz też zapisać, że nie chcesz o nim już słyszeć.'
+      subject: Nowy hashtag do zatwierdzenia na %{instance} (#%{name})
   aliases:
     add_new: Utwórz alias
+    created_msg: Pomyślnie utworzono nowy alias. Możesz teraz rozpocząć przenoszenie ze starego konta.
+    deleted_msg: Pomyślnie usunięto alias. Przenoszenie z tamtego konta na to nie będzie dłużej możliwe.
+    hint_html: Jeżeli chcesz przenieść się z innego konta na to, możesz utworzyć alias, który jest wymagany zanim zaczniesz przenoszenie obserwacji z poprzedniego konta na to. To działanie <strong>nie wyrządzi szkód i jest odwracalne</strong>. <strong>Migracja konta jest inicjowana ze starego konta</strong>.
+    remove: Odłącz alias
   appearance:
     advanced_web_interface: Zaawansowany interfejs użytkownika
     advanced_web_interface_hint: Jeśli chcesz użyć pełną szerokość swojego ekranu, zaawansowany interfejs użytkownika pozwala Ci skonfigurować wiele różnych kolumn, by zobaczyć jak najwięcej informacji kiedy tylko chcesz. Strona główna, Powiadomienia, Globalna oś czasu, dowolna ilość list i hasztagów.
     animations_and_accessibility: Animacje i dostępność
     confirmation_dialogs: Dialogi potwierdzenia
+    discovery: Odkrywanie
+    localization:
+      body: Mastodon jest tłumaczony przez wolontariuszy.
+      guide_link: https://pl.crowdin.com/project/mastodon
+      guide_link_text: Każdy może wnieść swój wkład.
     sensitive_content: Wrażliwa zawartość
+    toot_layout: Wygląd wpisów
   application_mailer:
     notification_preferences: Zmień ustawienia e-maili
     salutation: "%{name},"
@@ -579,8 +684,13 @@ pl:
     apply_for_account: Poproś o zaproszenie
     change_password: Hasło
     checkbox_agreement_html: Zgadzam się z <a href="%{rules_path}" target="_blank">regułami serwera</a> i <a href="%{terms_path}" target="_blank">zasadami korzystania z usługi</a>
+    checkbox_agreement_without_rules_html: Akceptuję <a href="%{terms_path}" target="_blank">warunki korzystania z usługi</a>
     delete_account: Usunięcie konta
     delete_account_html: Jeżeli chcesz usunąć konto, <a href="%{path}">przejdź tutaj</a>. Otrzymasz prośbę o potwierdzenie.
+    description:
+      prefix_invited_by_user: "@%{name} zaprasza Cię do dołączenia na ten serwer Mastodona!"
+      prefix_sign_up: Zarejestruj się na Mastodon już dziś!
+      suffix: Mając konto, możesz śledzić ludzi, publikować wpisy i wymieniać się wiadomościami z użytkownikami innych serwerów Mastodona i nie tylko!
     didnt_get_confirmation: Nie otrzymałeś(-aś) instrukcji weryfikacji?
     forgot_password: Nie pamiętasz hasła?
     invalid_reset_password_token: Token do resetowania hasła jest nieprawidłowy lub utracił ważność. Spróbuj uzyskać nowy.
@@ -598,9 +708,20 @@ pl:
     reset_password: Zresetuj hasło
     security: Bezpieczeństwo
     set_new_password: Ustaw nowe hasło
+    setup:
+      email_below_hint_html: Jeżeli poniższy adres e-mail jest nieprawidłowy, możesz zmienić go tutaj i otrzymać nowy e-mail potwierdzający.
+      email_settings_hint_html: E-mail potwierdzający został wysłany na %{email}. Jeżeli adres e-mail nie jest prawidłowy, możesz zmienić go w ustawieniach konta.
+      title: Konfiguracja
+    status:
+      account_status: Stan konta
+      confirming: Oczekiwanie na potwierdzenie adresu e-mail.
+      functional: Twoje konto całkowicie funkcjonuje.
+      pending: Twoje zgłoszenie czeka na zatwierdzenie przez nas. Może to trochę potrwać. Jeżeli zgłoszenie zostanie przyjęte, otrzymasz wiadomość e-mail.
+      redirecting_to: Twoje konto jest nieaktywne, ponieważ obecnie przekierowuje je na %{acct}.
     trouble_logging_in: Masz problem z zalogowaniem się?
   authorize_follow:
     already_following: Już śledzisz to konto
+    already_requested: Już wysłałeś(-aś) prośbę o możliwość śledzenia tego konta
     error: Niestety, podczas sprawdzania zdalnego konta wystąpił błąd
     follow: Śledź
     follow_request: 'Wysłano prośbę o pozwolenie na śledzenie:'
@@ -612,6 +733,12 @@ pl:
     title: Śledź %{acct}
   challenge:
     confirm: Kontynuuj
+    hint_html: "<strong>Informacja:</strong> Nie będziemy prosić Cię o ponowne podanie hasła przez następną godzinę."
+    invalid_password: Nieprawidłowe hasło
+    prompt: Potwierdź hasło, aby kontynuować
+  date:
+    formats:
+      default: "%d. %b %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}g"
@@ -627,18 +754,33 @@ pl:
       x_months: "%{count} miesięcy"
       x_seconds: "%{count}s"
   deletes:
+    challenge_not_passed: Wprowadzone informacje za nieprawidłowe
     confirm_password: Wprowadź aktualne hasło, aby potwierdzić tożsamość
+    confirm_username: Wprowadź swoją nazwę użytkownika aby potwierdzić procedurę
     proceed: Usuń konto
     success_msg: Twoje konto zostało pomyślnie usunięte
+    warning:
+      before: 'Zanim kontynuujesz, przeczytać uważnie te uwagi:'
+      caches: Zawartość obecna w pamięci podręcznej innych serwerów może tam pozostać
+      data_removal: Twoje wpisy i inne dane zostaną bezpowrotnie usunięte
+      email_change_html: Możesz <a href="%{path}">zmienić swój adres e-mail</a> bez usunięcia konta
+      email_contact_html: Jeżeli wciąż nie dotarł, możesz wysłać wiadomość e-mail na <a href="mailto:%{email}">%{email}</a> aby uzyskać pomoc
+      email_reconfirmation_html: Jeżeli nie otrzymujesz potwierdzającego e-maila, możesz <a href="%{path}">poprosić o kolejny</a>
+      irreversible: Nie będziesz móc przywrócić lub reaktywować swojego konta
+      more_details_html: Aby uzyskać więcej szczegółów, przeczytaj naszą <a href="%{terms_path}">politykę prywatności</a>.
+      username_available: Twoja nazwa użytkownika będzie z powrotem dostępna
+      username_unavailable: Twoja nazwa użytkownika pozostanie niedostępna
   directories:
     directory: Katalog profilów
     explanation: Poznaj profile na podstawie zainteresowań
     explore_mastodon: Odkrywaj %{title}
+  domain_validator:
+    invalid_domain: nie jest prawidłową nazwą domeny
   errors:
-    '400': The request you submitted was invalid or malformed.
+    '400': Wysłane zgłoszenie jest nieprawidłowe lub uszkodzone.
     '403': Nie masz uprawnień, aby wyświetlić tę stronę.
     '404': Strona, którą próbujesz odwiedzić, nie istnieje.
-    '406': This page is not available in the requested format.
+    '406': Ta strona nie jest dostępna w zażądanym formacie.
     '410': Strona, którą próbujesz odwiedzić, przestała istnieć.
     '422':
       content: Sprawdzanie bezpieczeństwa nie powiodło się. Czy blokujesz pliki cookie?
@@ -647,7 +789,7 @@ pl:
     '500':
       content: Przepraszamy, coś poszło nie tak, po naszej stronie.
       title: Ta strona jest nieprawidłowa
-    '503': The page could not be served due to a temporary server failure.
+    '503': Strona nie może zostać wyświetlona z powodu tymczasowego niepowodzenia serwera.
     noscript_html: Aby korzystać z aplikacji Mastodon, włącz JavaScript. Możesz też skorzystać z jednej z <a href="%{apps_path}">natywnych aplikacji</a> obsługującej Twoje urządzenie.
   existing_username_validator:
     not_found: nie znaleziono lokalnego użytkownika o tej nazwie
@@ -670,8 +812,10 @@ pl:
     add_new: Dodaj nowy
     errors:
       limit: Już przekroczyłeś(-aś) maksymalną liczbę wyróżnionych hashtagów
+    hint_html: "<strong>Czym są wyróżnione hashtagi?</strong> Są one na stałe wyświetlane na Twoim profilu i pozwalają innym na przeglądanie Twoich wpisów używających tych hashtagów. Są doskonałym narzędziem do śledzenia kreatywnej twórczości czy długoterminowych projektów."
   filters:
     contexts:
+      account: Profile
       home: Strona główna
       notifications: Powiadomienia
       public: Publiczne osie czasu
@@ -683,6 +827,7 @@ pl:
       invalid_irreversible: Nieodwracalne filtrowanie działa tylko na stronie głównej i w powiadomieniach
     index:
       delete: Usuń
+      empty: Nie masz żadnych filtrów.
       title: Filtry
     new:
       title: Dodaj nowy filtr
@@ -690,10 +835,13 @@ pl:
     developers: Dla programistów
     more: Więcej…
     resources: Zasoby
+    trending_now: Obecnie na czasie
   generic:
     all: Wszystkie
     changes_saved_msg: Ustawienia zapisane!
     copy: Kopiuj
+    delete: Usuń
+    no_batch_actions_available: Brak akcji wsadowych dostępnych na tej stronie
     order_by: Uporządkuj według
     save_changes: Zapisz zmiany
     validation_errors:
@@ -766,9 +914,38 @@ pl:
   media_attachments:
     validations:
       images_and_video: Nie możesz załączyć pliku wideo do wpisu, który zawiera już zdjęcia
+      not_ready: Nie można załączyć plików których przetwarzanie nie zostało ukończone. Spróbuj ponownie za chwilę!
       too_many: Nie możesz załączyć więcej niż 4 plików
   migrations:
     acct: nazwa@domena nowego konta
+    cancel: Anuluj przekierowanie
+    cancel_explanation: Anulowanie przekierowania aktywuje Twoje obecne konto ponownie, ale nie przeniesie z powrotem śledzących, których przeniesiono na tamto konto.
+    cancelled_msg: Pomyślnie anulowano przekierowanie.
+    errors:
+      already_moved: jest tym samym kontem, na które już się przeniosłeś(-aś)
+      missing_also_known_as: nie odwołuje się do tego konta
+      move_to_self: nie może być bieżącym kontem
+      not_found: nie mogło zostać odnalezione
+      on_cooldown: Nie możesz teraz przenieść konta
+    followers_count: Śledzący w chwili przenoszenia
+    incoming_migrations: Przenoszenie z innego konta
+    incoming_migrations_html: Aby przenieść się z innego konta na to, musisz najpierw <a href="%{path}">utworzyć alias konta</a>.
+    moved_msg: Twoje konto przekierowuje teraz na %{acct}, a śledzący są przenoszeni.
+    not_redirecting: Twoje konto nie przekierowuje obecnie na żadne inne konto.
+    on_cooldown: Ostatnio przeniosłeś(-aś) swoje konto. Ta funkcja będzie dostępna ponownie za %{count} dni.
+    past_migrations: Poprzednie migracje
+    proceed_with_move: Przenieś obserwujących
+    redirecting_to: Twoje konto przekierowuje na %{acct}.
+    set_redirect: Ustaw przekierowanie
+    warning:
+      backreference_required: Nowe konto musi wcześniej zostać skonfigurowane tak, aby odwoływało się do tego
+      before: 'Zanim kontynuujesz, przeczytaj uważnie te uwagi:'
+      cooldown: Po przeniesieniu się, istnieje okres przez który nie możesz ponownie się przenieść
+      disabled_account: Twoje obecne konto nie będzie później całkowicie użyteczne. Możesz jednak uzyskać dostęp do eksportu danych i ponownie aktywować je.
+      followers: To działanie przeniesie wszystkich Twoich śledzących z obecnego konta na nowe
+      only_redirect_html: Możesz też <a href="%{path}">po prostu skonfigurować przekierowanie na swój profil</a>.
+      other_data: Żadne inne dane nie zostaną automatycznie przeniesione
+      redirect: Twoje obecne konto zostanie uaktualnione o informację o przeniesieniu i wyłączone z wyszukiwania
   moderation:
     title: Moderacja
   notification_mailer:
@@ -809,6 +986,10 @@ pl:
       body: 'Twój wpis został podbity przez %{name}:'
       subject: Twój wpis został podbity przez %{name}
       title: Nowe podbicie
+  notifications:
+    email_events: 'Powiadamiaj e-mailem o:'
+    email_events_hint: 'Wybierz wydarzenia, o których chcesz otrzymywać powiadomienia:'
+    other_settings: Inne ustawienia powiadomień
   number:
     human:
       decimal_units:
@@ -832,6 +1013,7 @@ pl:
       duration_too_long: jest zbyt odległa
       duration_too_short: jest zbyt bliska
       expired: To głosowanie już zakończyło się
+      invalid_choice: Wybrana opcja głosowania nie istnieje
       over_character_limit: nie może zawierać więcej niż %{max} znaków
       too_few_options: musi zawierać przynajmniej dwie opcje
       too_many_options: nie może zawierać więcej niż %{max} opcji
@@ -839,9 +1021,16 @@ pl:
     other: Pozostałe
     posting_defaults: Domyślne ustawienia wpisów
     public_timelines: Publiczne osie czasu
+  reactions:
+    errors:
+      limit_reached: Przekroczono limit różnych reakcji
+      unrecognized_emoji: nie jest znanym emoji
   relationships:
     activity: Aktywność konta
     dormant: Uśpione
+    followers: Śledzący
+    following: Śledzeni
+    invited: Zaproszeni
     last_active: Ostatnia aktywność
     most_recent: Ostatnie
     moved: Przeniesione
@@ -917,6 +1106,7 @@ pl:
   settings:
     account: Konto
     account_settings: Ustawienia konta
+    aliases: Aliasy konta
     appearance: Wygląd
     authorized_apps: Uwierzytelnione aplikacje
     back: Powrót do Mastodona
@@ -934,6 +1124,8 @@ pl:
     profile: Profil
     relationships: Śledzeni i śledzący
     two_factor_authentication: Uwierzytelnianie dwuetapowe
+  spam_check:
+    spam_detected: To zgłoszenie jest automatyczne. Został wykryty spam.
   statuses:
     attached:
       description: 'Załączono: %{attached}'
@@ -954,6 +1146,8 @@ pl:
       many: 'zawiera niedozwolone hashtagi: %{tags}'
       one: 'zawiera niedozwolony hashtag: %{tags}'
       other: 'zawiera niedozwolone hashtagi: %{tags}'
+    errors:
+      in_reply_not_found: Post, na który próbujesz odpowiedzieć, nie istnieje.
     language_detection: Automatycznie wykrywaj język
     open_in_web: Otwórz w przeglądarce
     over_character_limit: limit %{max} znaków przekroczony
@@ -963,6 +1157,11 @@ pl:
       private: Nie możesz przypiąć niepublicznego wpisu
       reblog: Nie możesz przypiąć podbicia wpisu
     poll:
+      total_people:
+        few: "%{count} osoby"
+        many: "%{count} osób"
+        one: "%{count} osoba"
+        other: "%{count} osoby"
       total_votes:
         few: "%{count} głosy"
         many: "%{count} głosy"
@@ -970,6 +1169,7 @@ pl:
         other: "%{count} głosy"
       vote: Głosuj
     show_more: Pokaż więcej
+    show_thread: Pokaż wątek
     sign_in_to_participate: Zaloguj się, aby udzielić się w tej konwersacji
     title: '%{name}: "%{quote}"'
     visibilities:
@@ -983,6 +1183,8 @@ pl:
     pinned: Przypięty wpis
     reblogged: podbił
     sensitive_content: Wrażliwa zawartość
+  tags:
+    does_not_match_previous_name: nie pasuje do poprzedniej nazwy
   terms:
     body_html: |
       <h2>Polityka prywatności</h2>
@@ -1100,7 +1302,9 @@ pl:
         disable: Kiedy Twoje konto jest wyłączone, Twoje dane pozostają na serwerze, ale nie możesz wykonywać żadnych działań, zanim zostanie odblokowane.
         silence: Kiedy Twoje konto jest ograniczone, tylko osoby które je śledzą będą widzieć Twoje wpisy. Może ono też przestać być widoczne na publicznych listach. Inni wciąż mogą zacząć Cię śledzić.
         suspend: Twoje konto zostało zawieszone i wszystkie Twoje wpisy wraz z zawartością multimedialną zostały nieodwracalnie usunięte z tego serwera i serwerów, których użytkownicy śledzili Cię.
+      get_in_touch: Możesz odpowiedzieć na ten e-mail aby pozostać w kontakcie z prowadzącymi %{instance}.
       review_server_policies: Przejrzyj zasady serwera
+      statuses: 'Szczególnie dla:'
       subject:
         disable: Twoje konto %{acct} zostało wyłączone
         none: Ostrzeżenie dla %{acct}

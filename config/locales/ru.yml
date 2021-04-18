@@ -100,6 +100,7 @@ ru:
       delete: Удалить
       destroyed_msg: Заметка модератора успешно удалена!
     accounts:
+      add_email_domain_block: Добавить домен электронной почты в чёрный список
       approve: Подтвердить
       approve_all: Подтвердить все
       are_you_sure: Вы уверены?
@@ -180,6 +181,7 @@ ru:
         staff: Персонал
         user: Пользователь
       search: Поиск
+      search_same_email_domain: Другие пользователи с тем же доменом электронной почты
       search_same_ip: Другие пользователи с таким же IP
       shared_inbox_url: URL общих входящих
       show:
@@ -201,6 +203,39 @@ ru:
       web: Веб
       whitelisted: В белом списке
     action_logs:
+      action_types:
+        assigned_to_self_report: Присвоение жалоб
+        change_email_user: Изменение e-mail пользователей
+        confirm_user: Подтверждение пользователей
+        create_account_warning: Выдача предупреждения
+        create_announcement: Создание объявлений
+        create_custom_emoji: Добавление эмодзи
+        create_domain_block: Блокировка доменов
+        create_email_domain_block: Блокировка e-mail доменов
+        demote_user: Разжалование пользователей
+        destroy_announcement: Удаление объявлений
+        destroy_custom_emoji: Удаление эмодзи
+        destroy_domain_block: Разблокировка доменов
+        destroy_email_domain_block: Разблокировка e-mail доменов
+        destroy_status: Удаление постов
+        disable_2fa_user: Отключение 2FA
+        disable_custom_emoji: Отключение эмодзи
+        disable_user: Заморозка пользователей
+        enable_custom_emoji: Включение эмодзи
+        enable_user: Разморозка пользователей
+        promote_user: Повышение пользователей
+        remove_avatar_user: Удаление аватаров
+        reopen_report: Возобновление жалоб
+        reset_password_user: Сброс пароля пользователей
+        resolve_report: Отметка жалоб «решёнными»
+        silence_account: Скрытие пользователей
+        suspend_account: Блокировка пользователей
+        unassigned_report: Снятие жалоб
+        unsilence_account: Отмена скрытия пользователей
+        unsuspend_account: Разблокировка пользователей
+        update_announcement: Обновление объявлений
+        update_custom_emoji: Обновление эмодзи
+        update_status: Изменение постов
       actions:
         assigned_to_self_report: "%{name} назначил(а) себя для решения жалобы %{target}"
         change_email_user: "%{name} сменил(а) e-mail пользователя %{target}"
@@ -218,7 +253,7 @@ ru:
         destroy_domain_block: "%{name} разблокировал(а) домен %{target}"
         destroy_email_domain_block: "%{name} добавил(а) e-mail домен %{target} в белый список"
         destroy_status: "%{name} удалил(а) пост пользователя %{target}"
-        disable_2fa_user: "%{name} отключил(а) двухэтапную авторизацию у пользователя %{target}"
+        disable_2fa_user: "%{name} отключил(а) требование двухэтапной авторизации для пользователя %{target}"
         disable_custom_emoji: "%{name} отключил(а) эмодзи %{target}"
         disable_user: "%{name} заморозил(а) пользователя %{target}"
         enable_custom_emoji: "%{name} включил(а) эмодзи %{target}"
@@ -238,6 +273,9 @@ ru:
         update_custom_emoji: "%{name} обновил(а) эмодзи %{target}"
         update_status: "%{name} изменил(а) пост пользователя %{target}"
       deleted_status: "(удалённый пост)"
+      empty: Журнал пуст.
+      filter_by_action: Фильтр по действию
+      filter_by_user: Фильтр по пользователю
       title: Журнал событий
     announcements:
       destroyed_msg: Объявление удалено.
@@ -373,6 +411,7 @@ ru:
       destroyed_msg: Домен убран из списка e-mail блокировки
       domain: Домен
       empty: Никакие e-mail домены не блокируются.
+      from_html: с %{domain}
       new:
         create: Создать блокировку
         title: Новая блокировка по домену
@@ -381,9 +420,9 @@ ru:
       by_domain: Домен
       delivery_available: Доставка возможна
       known_accounts:
-        few: "%{count} известных учётных записей"
+        few: "%{count} известные учётные записи"
         many: "%{count} известных учётных записей"
-        one: "%{count} известных учётных записей"
+        one: "%{count} известная учётная запись"
         other: "%{count} известных учётных записей"
       moderation:
         all: Все
@@ -434,12 +473,12 @@ ru:
           few: "%{count} заметки"
           many: "%{count} заметок"
           one: "%{count} заметка"
-          other: "%{count} заметки"
+          other: "%{count} заметок"
         reports:
           few: "%{count} жалобы"
           many: "%{count} жалоб"
           one: "%{count} жалоба"
-          other: "%{count} жалобы"
+          other: "%{count} жалоб"
       action_taken_by: 'Действие предпринято:'
       are_you_sure: Вы уверены?
       assign_to_self: Назначить себе
@@ -558,6 +597,9 @@ ru:
       trends:
         desc_html: Публично отобразить проверенные хэштеги, актуальные на данный момент
         title: Популярные хэштеги
+    site_uploads:
+      delete: Удалить загруженный файл
+      destroyed_msg: Файл успешно удалён.
     statuses:
       back_to_account: Назад к учётной записи
       batch:
@@ -594,7 +636,6 @@ ru:
     warning_presets:
       add_new: Добавить
       delete: Удалить
-      edit: Изменить
       edit_preset: Удалить шаблон предупреждения
       title: Управление шаблонами предупреждений
   admin_mailer:
@@ -678,16 +719,17 @@ ru:
       confirming: Ожидание подтверждения e-mail.
       functional: Ваша учётная запись в полном порядке.
       pending: Ваша заявка ожидает одобрения администраторами, это может занять немного времени. Вы получите письмо, как только заявку одобрят.
-      redirecting_to: Ваша учётная запись признана неактивным, потому что она перенаправляется на %{acct}.
+      redirecting_to: Ваша учётная запись деактивированна, потому что вы настроили перенаправление на %{acct}.
     trouble_logging_in: Не удаётся войти?
   authorize_follow:
     already_following: Вы уже подписаны на эту учётную запись
+    already_requested: Вы уже отправили запрос на подписку на эту учётную запись
     error: К сожалению, при поиске удалённой учётной записи возникла ошибка
     follow: Подписаться
     follow_request: 'Вы отправили запрос на подписку:'
-    following: 'Ура! Теперь Вы подписаны на:'
+    following: 'Готово! Вы подписались на:'
     post_follow:
-      close: Или просто закрыть это окно.
+      close: Или просто закройте это окно.
       return: Вернуться к профилю пользователя
       web: Открыть в веб-версии
     title: Подписаться на %{acct}
@@ -723,7 +765,7 @@ ru:
       before: 'Внимательно прочитайте следующую информацию перед началом:'
       caches: Некоторые данные, обработанные другими узлами, однако, могут храниться ещё какое-то время
       data_removal: Все ваши золотые посты, шикарный профиль и прочие данные будут безвозвратно уничтожены
-      email_change_html: <a href="%{path}">Поменять свой e-mail</a> можно не удаляя учётной записи
+      email_change_html: <a href="%{path}">Поменять свой e-mail</a> можно не удаляя учётную запись
       email_contact_html: Если письмо не приходит, обратитесь за помощю на <a href="mailto:%{email}">%{email}</a>
       email_reconfirmation_html: Если вы не получили письмо с подтверждением, его можно <a href="%{path}">запросить ещё раз</a>
       irreversible: После удаления восстановить или повторно активировать учётную запись не получится
@@ -874,6 +916,7 @@ ru:
   media_attachments:
     validations:
       images_and_video: Нельзя добавить видео к посту с изображениями
+      not_ready: Не удаётся прикрепить файлы, обработка которых не завершена. Повторите попытку чуть позже!
       too_many: Нельзя добавить более 4 файлов
   migrations:
     acct: имя@домен новой учётной записи
@@ -924,8 +967,8 @@ ru:
         other: "%{count} новых уведомлений с вашего последнего захода \U0001F418"
       title: В ваше отсутствие…
     favourite:
-      body: "%{name} добавил ваш пост в избранное:"
-      subject: "%{name} добавил ваш пост в избранное"
+      body: "%{name} добавил(а) ваш пост в избранное:"
+      subject: "%{name} добавил(а) ваш пост в избранное"
       title: Понравившийся статус
     follow:
       body: "%{name} теперь подписан(а) на вас!"
@@ -939,7 +982,7 @@ ru:
     mention:
       action: Ответить
       body: 'Вас упомянул(а) %{name} в:'
-      subject: Вы были упомянуты %{name}
+      subject: "%{name} упомянул(а) вас"
       title: Новое упоминание
     reblog:
       body: 'Ваш пост был продвинут %{name}:'
@@ -1010,7 +1053,7 @@ ru:
   remote_interaction:
     favourite:
       proceed: Добавить в избранное
-      prompt: 'Вы собираетесь поставить отметку "нравится" этому посту:'
+      prompt: 'Вы собираетесь добавить в избранное следующий пост:'
     reblog:
       proceed: Продвинуть пост
       prompt: 'Вы хотите продвинуть этот пост:'
@@ -1105,6 +1148,8 @@ ru:
       many: 'содержались запрещённые хэштеги: %{tags}'
       one: 'содержался запрещённый хэштег: %{tags}'
       other: 'содержались запрещённые хэштеги: %{tags}'
+    errors:
+      in_reply_not_found: Пост, на который вы пытаетесь ответить, не существует или удалён.
     language_detection: Определять язык автоматически
     open_in_web: Открыть в веб-версии
     over_character_limit: превышен лимит символов (%{max})
@@ -1115,7 +1160,7 @@ ru:
       reblog: Нельзя закрепить продвинутый пост
     poll:
       total_people:
-        few: "%{count} человек"
+        few: "%{count} человека"
         many: "%{count} человек"
         one: "%{count} человек"
         other: "%{count} человек"
@@ -1239,7 +1284,7 @@ ru:
     generate_recovery_codes: Сгенерировать коды восстановления
     instructions_html: "<strong>Отсканируйте этот QR-код с помощью Google Authenticator, Яндекс.Ключа или любого другого подобного приложения</strong>. После сканирования и добавления, приложение начнёт генерировать коды, которые потребуется вводить для завершения входа в учётную запись."
     lost_recovery_codes: Коды восстановления позволяются войти в учётную запись в случае утери смартфона. Если вы потеряли свои коды восстановления, вы можете создать новые здесь. Прошлые коды работать перестанут.
-    manual_instructions: 'Если Вы не можете отсканировать QR-код и хотите ввести его вручную, секрет представлен здесь открытым текстом:'
+    manual_instructions: 'Если отсканировать QR-код не получается или не представляется возможным, вы можете ввести его вручную:'
     recovery_codes: Коды восстановления
     recovery_codes_regenerated: Коды восстановления успешно сгенерированы
     recovery_instructions_html: 'Пожалуйста, сохраните коды ниже в надёжном месте: они понадобятся, чтобы войти в учётную запись, если вы потеряете доступ к своему смартфону. Вы можете вручную переписать их, распечатать и спрятать среди важных документов или, например, в любимой книжке. <strong>Каждый код действителен один раз</strong>.'
@@ -1260,8 +1305,8 @@ ru:
       statuses: 'В частности, для:'
       subject:
         disable: Ваша учётная запись %{acct} заморожена
-        none: "%{acct}, вам вынесено предупреждение"
-        silence: На вашу учётную запись, %{acct}, были наложены ограничения
+        none: "%{acct} вынесено предупреждение"
+        silence: На учётную запись %{acct} наложены ограничения
         suspend: Ваша учётная запись %{acct} была заблокирована
       title:
         disable: Учётная запись заморожена

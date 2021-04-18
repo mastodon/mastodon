@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class Api::V1::StreamingController < Api::BaseController
-  respond_to :json
-
   def index
     if Rails.configuration.x.streaming_api_base_url != request.host
       redirect_to streaming_api_url, status: 301

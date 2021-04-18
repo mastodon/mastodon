@@ -3,3 +3,13 @@
     %samp= email_domain_block.domain
   %td
     = table_link_to 'trash', t('admin.email_domain_blocks.delete'), admin_email_domain_block_path(email_domain_block), method: :delete
+
+- email_domain_block.children.each do |child_email_domain_block|
+  %tr
+    %td
+      %samp= child_email_domain_block.domain
+      %span.muted-hint
+        = surround '(', ')' do
+          = t('admin.email_domain_blocks.from_html', domain: content_tag(:samp, email_domain_block.domain))
+    %td
+      = table_link_to 'trash', t('admin.email_domain_blocks.delete'), admin_email_domain_block_path(child_email_domain_block), method: :delete

@@ -7,8 +7,6 @@ class Api::V1::SuggestionsController < Api::BaseController
   before_action :require_user!
   before_action :set_accounts
 
-  respond_to :json
-
   def index
     render json: @accounts, each_serializer: REST::AccountSerializer
   end

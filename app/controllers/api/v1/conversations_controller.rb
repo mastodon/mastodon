@@ -9,8 +9,6 @@ class Api::V1::ConversationsController < Api::BaseController
   before_action :set_conversation, except: :index
   after_action :insert_pagination_headers, only: :index
 
-  respond_to :json
-
   def index
     @conversations = paginated_conversations
     render json: @conversations, each_serializer: REST::ConversationSerializer

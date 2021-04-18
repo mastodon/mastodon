@@ -8,8 +8,11 @@
 #  text       :text             default(""), not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  title      :string           default(""), not null
 #
 
 class AccountWarningPreset < ApplicationRecord
   validates :text, presence: true
+
+  scope :alphabetic, -> { order(title: :asc, text: :asc) }
 end

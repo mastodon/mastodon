@@ -5,8 +5,6 @@ class Api::V1::Timelines::HomeController < Api::BaseController
   before_action :require_user!, only: [:show]
   after_action :insert_pagination_headers, unless: -> { @statuses.empty? }
 
-  respond_to :json
-
   def show
     @statuses = load_statuses
 

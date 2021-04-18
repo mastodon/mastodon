@@ -13,8 +13,8 @@ import { fetchDomainBlocks, expandDomainBlocks } from '../../actions/domain_bloc
 import ScrollableList from '../../components/scrollable_list';
 
 const messages = defineMessages({
-  heading: { id: 'column.domain_blocks', defaultMessage: 'Hidden domains' },
-  unblockDomain: { id: 'account.unblock_domain', defaultMessage: 'Unhide {domain}' },
+  heading: { id: 'column.domain_blocks', defaultMessage: 'Blocked domains' },
+  unblockDomain: { id: 'account.unblock_domain', defaultMessage: 'Unblock domain {domain}' },
 });
 
 const mapStateToProps = state => ({
@@ -55,7 +55,7 @@ class Blocks extends ImmutablePureComponent {
       );
     }
 
-    const emptyMessage = <FormattedMessage id='empty_column.domain_blocks' defaultMessage='There are no hidden domains yet.' />;
+    const emptyMessage = <FormattedMessage id='empty_column.domain_blocks' defaultMessage='There are no blocked domains yet.' />;
 
     return (
       <Column bindToDocument={!multiColumn} icon='minus-circle' heading={intl.formatMessage(messages.heading)}>
@@ -69,7 +69,7 @@ class Blocks extends ImmutablePureComponent {
           bindToDocument={!multiColumn}
         >
           {domains.map(domain =>
-            <DomainContainer key={domain} domain={domain} />
+            <DomainContainer key={domain} domain={domain} />,
           )}
         </ScrollableList>
       </Column>

@@ -6,8 +6,6 @@ class Api::V1::Accounts::StatusesController < Api::BaseController
 
   after_action :insert_pagination_headers, unless: -> { truthy_param?(:pinned) }
 
-  respond_to :json
-
   def index
     @statuses = load_statuses
     render json: @statuses, each_serializer: REST::StatusSerializer, relationships: StatusRelationshipsPresenter.new(@statuses, current_user&.account_id)
