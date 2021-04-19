@@ -314,10 +314,12 @@ hu:
       new:
         create: Közlemény létrehozása
         title: Új közlemény
+      publish: Közzététel
       published_msg: A közlemény sikeresen publikálva!
       scheduled_for: Ekkorra ütemezve %{time}
       scheduled_msg: A közlemény közzétételre beütemezve!
       title: Közlemények
+      unpublish: Közzététel visszavonása
       unpublished_msg: A közlemény közzététele sikeresen visszavonva!
       updated_msg: A közlemény sikeresen frissítve!
     custom_emojis:
@@ -551,7 +553,10 @@ hu:
       updated_at: Frissítve
     rules:
       add_new: Szabály hozzáadása
+      delete: Törlés
+      description_html: Bár a többség azt állítja, hogy elolvasták és egyetértenek a felhasználói feltételekkel, általában ez nem teljesül, amíg egy probléma elő nem jön. <strong>Tedd könnyebbé a szervered szabályinak áttekintését azzal, hogy pontokba foglalod azt egy listába.</strong> Próbáld meg a különálló szabályokat megtartani rövidnek, egyszerűnek, de próbáld meg azt is, hogy nem darabolod fel őket sok különálló kis pontra.
       edit: Szabály szerkesztése
+      empty: Nincsenek még szerver szabályok definiálva.
       title: Szerverszabályzat
     settings:
       activity_api_enabled:
@@ -693,6 +698,7 @@ hu:
       add_new: Új hozzáadása
       delete: Törlés
       edit_preset: Figyelmeztetés szerkesztése
+      empty: Nem definiáltál még egyetlen figyelmeztetést sem.
       title: Figyelmeztetések
   admin_mailer:
     new_pending_account:
