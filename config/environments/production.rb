@@ -90,10 +90,16 @@ Rails.application.configure do
   config.action_mailer.perform_caching = false
 
   # E-mails
+  outgoing_mail_domain = begin
+    Mail::Address.new(ENV['SMTP_FROM_ADDRESS']).domain
+  rescue
+    nil
+  end
+
   config.action_mailer.default_options = {
     from: ENV.fetch('SMTP_FROM_ADDRESS', 'notifications@localhost'),
     reply_to: ENV['SMTP_REPLY_TO'],
-    'Message-ID': -> { "<#{Mail.random_tag}@#{Rails.configuration.x.web_domain}>" },
+    'Message-ID': -> { "<#{Mail.random_tag}@#{outgoing_mail_domain || Rails.configuration.x.web_domain}>" },
   }
 
   config.action_mailer.smtp_settings = {
