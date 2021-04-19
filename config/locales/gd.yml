@@ -322,10 +322,12 @@ gd:
       new:
         create: Cruthaich brath-fios
         title: Brath-fios ùr
+      publish: Foillsich
       published_msg: Chaidh am brath-fios fhoillseachadh!
       scheduled_for: Chaidh a chur air an sgeideal %{time}
       scheduled_msg: Thèid am brath-fios fhoillseachadh a-rèir sgeideil!
       title: Brathan-fios
+      unpublish: Neo-fhoillsich
       unpublished_msg: Chaidh am brath-fios a dhì-fhoillseachadh!
       updated_msg: Chaidh am brath-fios ùrachadh!
     custom_emojis:
@@ -567,7 +569,10 @@ gd:
       updated_at: Air ùrachadh
     rules:
       add_new: Cuir riaghailt ris
+      delete: Sguab às
+      description_html: Ged a dh’innseas a’ mhòrchuid gun do leugh iad teirmichean na seirbheise is gu bheil iad ag aontachadh riutha, ’s ann mar as trice nach lean daoine orra ’gan leughadh gun deireadh nuair a thachras iad ri duilgheadas. <strong>Dèan e nas fhasa dhaibh gun tuig iad riaghailtean an fhrithealaiche ann am priobadh na sùla is tu a’ toirt liosta peilearaichte dhaibh.</strong> Feuch an cùm thu gach riaghailt goirid is sìmplidh ach feuch nach sgaoil thu ann an iomadh nì iad nas motha.
       edit: Deasaich an riaghailt
+      empty: Cha deach riaghailtean an fhrithealaiche a mhìneachadh fhathast.
       title: Riaghailtean an fhrithealaiche
     settings:
       activity_api_enabled:
@@ -709,6 +714,7 @@ gd:
       add_new: Cuir fear ùr ris
       delete: Sguab às
       edit_preset: Deasaich rabhadh ro-shuidhichte
+      empty: Cha do mhìnich thu ro-sheataichean rabhaidhean fhathast.
       title: Stiùirich na rabhaidhean ro-shuidhichte
   admin_mailer:
     new_pending_account:
@@ -1182,11 +1188,33 @@ gd:
       electron: Electron
       firefox: Firefox
       generic: Brabhsair nach aithne dhuinn
+      ie: Internet Explorer
+      micro_messenger: MicroMessenger
+      nokia: Nokia S40 Ovi Browser
+      opera: Opera
+      otter: Otter
+      phantom_js: PhantomJS
+      qq: QQ Browser
+      safari: Safari
+      uc_browser: UCBrowser
+      weibo: Weibo
     current_session: An seisean làithreach
     description: "%{browser} air %{platform}"
     explanation: Seo na bhrabhsairean-lìn a tha clàraichte a-staigh sa chunntas Mastodon agad aig an àm seo.
+    ip: IP
     platforms:
+      adobe_air: Adobe Air
+      android: Android
+      blackberry: Blackberry
+      chrome_os: ChromeOS
+      firefox_os: Firefox OS
+      ios: iOS
+      linux: Linux
+      mac: macOS
       other: ùrlar nach aithne dhuinn
+      windows: Windows
+      windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
     revoke: Cùl-ghairm
     revoke_success: Chaidh an seisean a chùl-ghairm
     title: Seiseanan
@@ -1225,6 +1253,11 @@ gd:
         two: "%{count} dhealbh"
         few: "%{count} dealbhan"
         other: "%{count} dealbh"
+      video:
+        one: "%{count} video"
+        two: "%{count} video"
+        few: "%{count} videothan"
+        other: "%{count} video"
     boosted_from_html: Brosnachadh o %{acct_link}
     content_warning: 'Rabhadh susbainte: %{warning}'
     disallowed_hashtags:
@@ -1284,6 +1317,7 @@ gd:
   time:
     formats:
       default: "%d %b %Y, %H∶%M"
+      month: "%b %Y"
   two_factor_authentication:
     add: Cuir ris
     disable: Cuir an dearbhadh dà-cheumnach à comas
