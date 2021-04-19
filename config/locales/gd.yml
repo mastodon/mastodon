@@ -9,7 +9,7 @@ gd:
     api: API
     apps: Aplacaidean mobile
     apps_platforms: Cleachd Mastodon o iOS, Android ’s ùrlaran eile
-    browse_directory: rùraich eòlaire phròifilean ’s criathraich a-rèir ùidhean
+    browse_directory: Rùraich eòlaire phròifilean ’s criathraich a-rèir ùidhean
     browse_local_posts: Brabhsaich sruth beò de phostaichean poblach on fhrithealaiche seo
     browse_public_posts: Brabhsaich sruth beò de phostaichean poblach air Mastodon
     contact: Fios thugainn
@@ -77,7 +77,7 @@ gd:
     never_active: Chan ann idir
     nothing_here: Chan eil dad an-seo!
     people_followed_by: Daoine air a leanas %{name}
-    people_who_follow: Daoine a tha a’ leantainn air air %{name}
+    people_who_follow: Daoine a tha a’ leantainn air %{name}
     pin_errors:
       following: Feumaidh tu leantainn air neach mus urrainn dhut a bhrosnachadh
     posts:
@@ -365,7 +365,7 @@ gd:
       upload: Luchdaich suas
     dashboard:
       authorized_fetch_mode: Modh tèarainte
-      backlog: An càrn-obrach
+      backlog: an càrn-obrach
       config: Rèiteachadh
       feature_deletions: Cunntasan air an sguabadh às
       feature_invites: Ceanglaichean cuiridh
@@ -416,7 +416,7 @@ gd:
       private_comment: Beachd prìobhaideachd
       private_comment_hint: Beachd mu chuingeachadh na h-àrainne seo nach cleachd ach na maoir.
       public_comment: Beachd poblach
-      public_comment_hint: Beachd poblach mu chuingeachadh na h-àrainne seo ma tha foillseachadh liosta nan cuingeachaidhean àrainne an comas
+      public_comment_hint: Beachd poblach mu chuingeachadh na h-àrainne seo ma tha foillseachadh liosta nan cuingeachaidhean àrainne an comas.
       reject_media: Diùlt faidhlichean meadhain
       reject_media_hint: Bheir seo air falbh na faidhlichean meadhain a chaidh a stòradh agus diùltaidh e luchdadh a-nuas sam bith dhiubh san àm ri teachd. Chan eil buaidh aig seo fo chur à rèim
       reject_reports: Diùlt gearanan
@@ -617,7 +617,7 @@ gd:
         title: Cuir eòlaire nam pròifil an comas
       registrations:
         closed_message:
-          desc_html: Thèid seo a shealltainn air an duilleag-dhachaigh nuair a bhios an clàradh dùinte. ’S urrainn dhut tagaichean HTML a chleachdadh.
+          desc_html: Thèid seo a shealltainn air an duilleag-dhachaigh nuair a bhios an clàradh dùinte. ’S urrainn dhut tagaichean HTML a chleachdadh
           title: Teachdaireachd a’ chlàraidh dhùinte
         deletion:
           desc_html: Leig le neach sa bith an cunntas a sguabadh às
@@ -647,7 +647,7 @@ gd:
         desc_html: Seo deagh àite airson an còd-giùlain, na riaghailtean ’s na comharran-treòrachaidh agad agus do nithean eile a tha sònraichte mun fhrithealaiche agad. ‘S urrainn dhut tagaichean HTML a chleachdadh
         title: Fiosrachadh leudaichte gnàthaichte
       site_short_description:
-        desc_html: Nochdaidh seo air a’ bhàr-taoibh agus sna meata-thagaichean. Mìnich dè th’ ann am Mastodon agus dè tha sònraichte mun fhrithealaiche agad ann an an earrann a-mhàin.
+        desc_html: Nochdaidh seo air a’ bhàr-taoibh agus sna meata-thagaichean. Mìnich dè th’ ann am Mastodon agus dè tha sònraichte mun fhrithealaiche agad ann an aon earrann a-mhàin.
         title: Tuairisgeul goirid an fhrithealaiche
       site_terms:
         desc_html: '’S urrainn dhut am poileasaidh prìobhaideachd no teirmichean na seirbheise agad fhèin no fiosrachadh laghail sa bith eile a sgrìobhadh. ‘S urrainn dhut tagaichean HTML a chleachdadh'
@@ -685,7 +685,7 @@ gd:
       with_media: Le meadhanan riutha
     system_checks:
       database_schema_check:
-        message_html: Tha imrichean stòir-dhàta ri dhèiligeadh ann. Ruith iad a dhèanamh cinnteach gum bi giùlan na h-aplacaid mar a bhiodhte ’n dùil.
+        message_html: Tha imrichean stòir-dhàta ri dhèiligeadh ann. Ruith iad a dhèanamh cinnteach gum bi giùlan na h-aplacaid mar a bhiodhte ’n dùil
       rules_check:
         action: Stiùirich riaghailtean an fhrithealaiche
         message_html: Cha do mhìnich thu riaghailtean an fhrithealaiche fhathast.
@@ -824,8 +824,8 @@ gd:
     prompt: Dearbh am facal-faire airson leantainn air adhart
   crypto:
     errors:
-      invalid_key: Chan e iuchair Ed25519 no Curve25519 dhligheach a th’ ann
-      invalid_signature: Chan e soidhneadh Ed25519 dligheach a th’ ann
+      invalid_key: '– chan e iuchair Ed25519 no Curve25519 dhligheach a th’ ann'
+      invalid_signature: '– chan e soidhneadh Ed25519 dligheach a th’ ann'
   date:
     formats:
       default: "%d %b %Y"
@@ -1161,7 +1161,7 @@ gd:
     missing_resource: Cha do lorg sinn URL ath-stiùiridh riatanach a’ chunntais agad
     no_account_html: Nach eil cunntas agad? ’S urrainn dhut <a href='%{sign_up_path}' target='_blank'>clàradh leinn an-seo</a>
     proceed: Lean air adhart gus leantainn air
-    prompt: 'Bidh thu a’ leantainn air'
+    prompt: 'Bidh thu a’ leantainn air:'
     reason_html: "<strong>Carson a tha feum air a’ cheum seo?</strong> Dh’fhaoidte nach e <code>%{instance}</code> am frithealaiche far an do rinn thu clàradh agus feumaidh sinn d’ ath-stiùireadh dhan fhrithealaiche dachaigh agad an toiseach."
   remote_interaction:
     favourite:
