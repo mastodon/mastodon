@@ -32,7 +32,7 @@ gem 'browser'
 gem 'charlock_holmes', '~> 0.7.7'
 gem 'iso-639'
 gem 'chewy', '~> 5.2'
-gem 'cld3', '~> 3.4.1'
+gem 'cld3', '~> 3.4.2'
 gem 'devise', '~> 4.7'
 gem 'devise-two-factor', '~> 4.0'
 
