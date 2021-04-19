@@ -92,7 +92,8 @@ Rails.application.configure do
   # E-mails
   config.action_mailer.default_options = {
     from: ENV.fetch('SMTP_FROM_ADDRESS', 'notifications@localhost'),
-    reply_to: ENV['SMTP_REPLY_TO']
+    reply_to: ENV['SMTP_REPLY_TO'],
+    'Message-ID': -> { "<#{Mail.random_tag}@#{Rails.configuration.x.web_domain}>" },
   }
 
   config.action_mailer.smtp_settings = {
