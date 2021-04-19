@@ -169,3 +169,7 @@ export function Tesseract () {
 export function Directory () {
   return import(/* webpackChunkName: "features/glitch/async/directory" */'flavours/glitch/features/directory');
 }
+
+export function FollowRecommendations () {
+  return import(/* webpackChunkName: "features/glitch/async/follow_recommendations" */'flavours/glitch/features/follow_recommendations');
+}

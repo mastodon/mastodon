@@ -50,9 +50,11 @@ import {
   Search,
   GettingStartedMisc,
   Directory,
+  FollowRecommendations,
 } from 'flavours/glitch/util/async-components';
 import { HotKeys } from 'react-hotkeys';
 import { me } from 'flavours/glitch/util/initial_state';
+import { closeOnboarding, INTRODUCTION_VERSION } from 'flavours/glitch/actions/onboarding';
 import { defineMessages, FormattedMessage, injectIntl } from 'react-intl';
 
 // Dummy import, to make sure that <Status /> ends up in the application bundle.
@@ -75,6 +77,7 @@ const mapStateToProps = state => ({
   showFaviconBadge: state.getIn(['local_settings', 'notifications', 'favicon_badge']),
   hicolorPrivacyIcons: state.getIn(['local_settings', 'hicolor_privacy_icons']),
   moved: state.getIn(['accounts', me, 'moved']) && state.getIn(['accounts', state.getIn(['accounts', me, 'moved'])]),
+  firstLaunch: state.getIn(['settings', 'introductionVersion'], 0) < INTRODUCTION_VERSION,
 });
 
 const keyMap = {
@@ -207,6 +210,7 @@ class SwitchingColumnsArea extends React.PureComponent {
           <WrappedRoute path='/bookmarks' component={BookmarkedStatuses} content={children} />
           <WrappedRoute path='/pinned' component={PinnedStatuses} content={children} />
 
+          <WrappedRoute path='/start' component={FollowRecommendations} content={children} />
           <WrappedRoute path='/search' component={Search} content={children} />
           <WrappedRoute path='/directory' component={Directory} content={children} componentParams={{ shouldUpdateScroll: this.shouldUpdateScroll }} />
 
@@ -260,6 +264,7 @@ class UI extends React.Component {
     unreadNotifications: PropTypes.number,
     showFaviconBadge: PropTypes.bool,
     moved: PropTypes.map,
+    firstLaunch: PropTypes.bool,
   };
 
   state = {
@@ -377,6 +382,12 @@ class UI extends React.Component {
     }
 
     this.favicon = new Favico({ animation:"none" });
+
+    // On first launch, redirect to the follow recommendations page
+    if (this.props.firstLaunch) {
+      this.context.router.history.replace('/start');
+      this.props.dispatch(closeOnboarding());
+    }
 
     this.props.dispatch(fetchMarkers());
     this.props.dispatch(expandHomeTimeline());

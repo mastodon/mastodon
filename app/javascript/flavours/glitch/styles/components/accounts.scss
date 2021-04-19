@@ -11,6 +11,19 @@
     overflow: hidden;
     text-decoration: none;
     font-size: 14px;
+
+    &--with-note {
+      strong {
+        display: inline;
+      }
+    }
+  }
+
+  &__note {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: $ui-secondary-color;
   }
 
   &.small {
@@ -22,6 +35,16 @@
     & > .display-name {
       height: 24px;
       line-height: 24px;
+    }
+  }
+}
+
+.follow-recommendations-account {
+  .icon-button {
+    color: $ui-primary-color;
+
+    &.active {
+      color: $valid-value-color;
     }
   }
 }
