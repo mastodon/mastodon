@@ -88,7 +88,6 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
 
     resolve_thread(@status)
     fetch_replies(@status)
-    check_for_spam
     distribute(@status)
     forward_for_reply
   end
@@ -496,10 +495,6 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
 
   def tombstone_exists?
     Tombstone.exists?(uri: object_uri)
-  end
-
-  def check_for_spam
-    SpamCheck.perform(@status)
   end
 
   def forward_for_reply

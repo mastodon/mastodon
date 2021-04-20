@@ -51,12 +51,12 @@ class SearchResults extends ImmutablePureComponent {
               <FormattedMessage id='suggestions.header' defaultMessage='You might be interested in…' />
             </div>
 
-            {suggestions && suggestions.map(accountId => (
+            {suggestions && suggestions.map(suggestion => (
               <AccountContainer
-                key={accountId}
-                id={accountId}
-                actionIcon='times'
-                actionTitle={intl.formatMessage(messages.dismissSuggestion)}
+                key={suggestion.get('account')}
+                id={suggestion.get('account')}
+                actionIcon={suggestion.get('source') === 'past_interaction' ? 'times' : null}
+                actionTitle={suggestion.get('source') === 'past_interaction' ? intl.formatMessage(messages.dismissSuggestion) : null}
                 onActionClick={dismissSuggestion}
               />
             ))}

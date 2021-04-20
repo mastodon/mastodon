@@ -53,11 +53,13 @@ Rails.application.config.content_security_policy_nonce_generator = -> request { 
 
 Rails.application.config.content_security_policy_nonce_directives = %w(style-src)
 
-PgHero::HomeController.content_security_policy do |p|
-  p.script_src :self, :unsafe_inline, assets_host
-  p.style_src  :self, :unsafe_inline, assets_host
-end
+Rails.application.reloader.to_prepare do
+  PgHero::HomeController.content_security_policy do |p|
+    p.script_src :self, :unsafe_inline, assets_host
+    p.style_src  :self, :unsafe_inline, assets_host
+  end
 
-PgHero::HomeController.after_action do
-  request.content_security_policy_nonce_generator = nil
+  PgHero::HomeController.after_action do
+    request.content_security_policy_nonce_generator = nil
+  end
 end
