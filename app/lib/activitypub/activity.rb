@@ -144,7 +144,7 @@ class ActivityPub::Activity
   end
 
   def delete_later!(uri)
-    redis.setex("delete_upon_arrival:#{@account.id}:#{uri}", 6.hours.seconds, uri)
+    redis.setex("delete_upon_arrival:#{@account.id}:#{uri}", 6.hours.seconds, true)
   end
 
   def status_from_object
