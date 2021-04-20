@@ -27,13 +27,7 @@ class ActivityPub::Activity::Delete < ActivityPub::Activity
         # database before we try to load it.
         # Without the lock, `delete_later!` could be called after `delete_arrived_first?`
         # and `Status.find` before `Status.create!`
-        RedisLock.acquire(lock_options) do |lock|
-          if lock.acquired?
-            delete_later!(object_uri)
-          else
-            raise Mastodon::RaceConditionError
-          end
-        end
+        lock_or_fail("create:#{object_uri}") { delete_later!(object_uri) }
 
         Tombstone.find_or_create_by(uri: object_uri, account: @account)
       end
@@ -82,9 +76,5 @@ class ActivityPub::Activity::Delete < ActivityPub::Activity
 
   def payload
     @payload ||= Oj.dump(@json)
-  end
-
-  def lock_options
-    { redis: Redis.current, key: "create:#{object_uri}" }
   end
 end

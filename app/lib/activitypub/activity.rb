@@ -216,6 +216,16 @@ class ActivityPub::Activity
     redis.del(key)
   end
 
+  def lock_or_fail(key)
+    RedisLock.acquire({ redis: Redis.current, key: key }) do |lock|
+      if lock.acquired?
+        yield
+      else
+        raise Mastodon::RaceConditionError
+      end
+    end
+  end
+
   def fetch?
     !@options[:delivery]
   end
