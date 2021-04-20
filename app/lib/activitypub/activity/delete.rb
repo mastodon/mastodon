@@ -34,24 +34,14 @@ class ActivityPub::Activity::Delete < ActivityPub::Activity
 
       return if @status.nil?
 
-      if @status.distributable?
-        forward_for_reply
-        forward_for_reblogs
-      end
-
+      forward! if @json['signature'].present? && @status.distributable?
       delete_now!
     end
   end
 
-  def forward_for_reblogs
-    return if @json['signature'].blank?
-
+  def inboxes_for_reblogs
     rebloggers_ids = @status.reblogs.includes(:account).references(:account).merge(Account.local).pluck(:account_id)
-    inboxes        = Account.where(id: ::Follow.where(target_account_id: rebloggers_ids).select(:account_id)).inboxes - [@account.preferred_inbox_url]
-
-    ActivityPub::LowPriorityDeliveryWorker.push_bulk(inboxes) do |inbox_url|
-      [payload, rebloggers_ids.first, inbox_url]
-    end
+    Account.where(id: ::Follow.where(target_account_id: rebloggers_ids).select(:account_id)).inboxes
   end
 
   def replied_to_status
@@ -63,12 +53,16 @@ class ActivityPub::Activity::Delete < ActivityPub::Activity
     !replied_to_status.nil? && replied_to_status.account.local?
   end
 
-  def forward_for_reply
-    return unless @json['signature'].present? && reply_to_local?
+  def inboxes_for_reply
+    replied_to_status.account.followers.inboxes
+  end
 
-    inboxes = replied_to_status.account.followers.inboxes - [@account.preferred_inbox_url]
+  def forward!
+    inboxes = inboxes_for_reblogs
+    inboxes += inboxes_for_reply if reply_to_local?
+    inboxes -= [@account.preferred_inbox_url]
 
-    ActivityPub::LowPriorityDeliveryWorker.push_bulk(inboxes) do |inbox_url|
+    ActivityPub::LowPriorityDeliveryWorker.push_bulk(inboxes.uniq) do |inbox_url|
       [payload, replied_to_status.account_id, inbox_url]
     end
   end
