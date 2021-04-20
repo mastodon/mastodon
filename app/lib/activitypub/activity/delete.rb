@@ -42,8 +42,12 @@ class ActivityPub::Activity::Delete < ActivityPub::Activity
     end
   end
 
+  def rebloggers_ids
+    return @rebloggers_ids if defined?(@rebloggers_ids)
+    @rebloggers_ids = @status.reblogs.includes(:account).references(:account).merge(Account.local).pluck(:account_id)
+  end
+
   def inboxes_for_reblogs
-    rebloggers_ids = @status.reblogs.includes(:account).references(:account).merge(Account.local).pluck(:account_id)
     Account.where(id: ::Follow.where(target_account_id: rebloggers_ids).select(:account_id)).inboxes
   end
 
@@ -65,8 +69,10 @@ class ActivityPub::Activity::Delete < ActivityPub::Activity
     inboxes += inboxes_for_reply if reply_to_local?
     inboxes -= [@account.preferred_inbox_url]
 
+    sender_id = reply_to_local? ? replied_to_status.account_id : rebloggers_ids.first
+
     ActivityPub::LowPriorityDeliveryWorker.push_bulk(inboxes.uniq) do |inbox_url|
-      [payload, replied_to_status.account_id, inbox_url]
+      [payload, sender_id, inbox_url]
     end
   end
 
