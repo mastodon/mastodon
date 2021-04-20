@@ -315,10 +315,12 @@ en:
       new:
         create: Create announcement
         title: New announcement
+      publish: Publish
       published_msg: Announcement successfully published!
       scheduled_for: Scheduled for %{time}
       scheduled_msg: Announcement scheduled for publication!
       title: Announcements
+      unpublish: Unpublish
       unpublished_msg: Announcement successfully unpublished!
       updated_msg: Announcement successfully updated!
     custom_emojis:
@@ -363,7 +365,6 @@ en:
       feature_profile_directory: Profile directory
       feature_registrations: Registrations
       feature_relay: Federation relay
-      feature_spam_check: Anti-spam
       feature_timeline_preview: Timeline preview
       features: Features
       hidden_service: Federation with hidden services
@@ -441,6 +442,14 @@ en:
         create: Add domain
         title: Block new e-mail domain
       title: Blocked e-mail domains
+    follow_recommendations:
+      description_html: "<strong>Follow recommendations help new users quickly find interesting content</strong>. When a user has not interacted with others enough to form personalized follow recommendations, these accounts are recommended instead. They are re-calculated on a daily basis from a mix of accounts with the highest recent engagements and highest local follower counts for a given language."
+      language: For language
+      status: Status
+      suppress: Suppress follow recommendation
+      suppressed: Suppressed
+      title: Follow recommendations
+      unsuppress: Restore follow recommendation
     instances:
       by_domain: Domain
       delivery_available: Delivery is available
@@ -545,8 +554,10 @@ en:
       updated_at: Updated
     rules:
       add_new: Add rule
-      description: While most claim to have read and agree to the terms of service, usually people do not read through until after a problem arises. Make it easier to see your server's rules at a glance by providing them in a flat bullet point list. Try to keep individual rules short and simple, but try not to split them up into many separate items either.
+      delete: Delete
+      description_html: While most claim to have read and agree to the terms of service, usually people do not read through until after a problem arises. <strong>Make it easier to see your server's rules at a glance by providing them in a flat bullet point list.</strong> Try to keep individual rules short and simple, but try not to split them up into many separate items either.
       edit: Edit rule
+      empty: No server rules have been defined yet.
       title: Server rules
     settings:
       activity_api_enabled:
@@ -627,9 +638,6 @@ en:
         desc_html: You can write your own privacy policy, terms of service or other legalese. You can use HTML tags
         title: Custom terms of service
       site_title: Server name
-      spam_check_enabled:
-        desc_html: Mastodon can auto-report accounts that send repeated unsolicited messages. There may be false positives.
-        title: Anti-spam automation
       thumbnail:
         desc_html: Used for previews via OpenGraph and API. 1200x630px recommended
         title: Server thumbnail
@@ -691,6 +699,7 @@ en:
       add_new: Add new
       delete: Delete
       edit_preset: Edit warning preset
+      empty: You haven't defined any warning presets yet.
       title: Manage warning presets
   admin_mailer:
     new_pending_account:
@@ -1209,8 +1218,6 @@ en:
     relationships: Follows and followers
     two_factor_authentication: Two-factor Auth
     webauthn_authentication: Security keys
-  spam_check:
-    spam_detected: This is an automated report. Spam has been detected.
   statuses:
     attached:
       audio:

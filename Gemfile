@@ -32,9 +32,9 @@ gem 'browser'
 gem 'charlock_holmes', '~> 0.7.7'
 gem 'iso-639'
 gem 'chewy', '~> 5.2'
-gem 'cld3', '~> 3.4.1'
+gem 'cld3', '~> 3.4.2'
 gem 'devise', '~> 4.7'
-gem 'devise-two-factor', git: 'https://github.com/ClearlyClaire/devise-two-factor', ref: '594bb8a32e6f94df7e5ba7c9399eaf9ff25bac0d'
+gem 'devise-two-factor', '~> 4.0'
 
 group :pam_authentication, optional: true do
   gem 'devise_pam_authenticatable2', '~> 9.2'
@@ -62,9 +62,8 @@ gem 'idn-ruby', require: 'idn'
 gem 'kaminari', '~> 1.2'
 gem 'link_header', '~> 0.0'
 gem 'mime-types', '~> 3.3.1', require: 'mime/types/columnar'
-gem 'nilsimsa', git: 'https://github.com/witgo/nilsimsa', ref: 'fd184883048b922b176939f851338d0a4971a532'
 gem 'nokogiri', '~> 1.11'
-gem 'nsa', git: 'https://github.com/Gargron/nsa', ref: 'd1079e0cdafdfed7f9f35478d13b9bdaa65965c0'
+gem 'nsa', '~> 0.2'
 gem 'oj', '~> 3.11'
 gem 'ox', '~> 2.14'
 gem 'parslet'
@@ -95,7 +94,7 @@ gem 'tty-prompt', '~> 0.23', require: false
 gem 'twitter-text', '~> 3.1.0'
 gem 'tzinfo-data', '~> 1.2021'
 gem 'webpacker', '~> 5.2'
-gem 'webpush'
+gem 'webpush', '~> 0.3'
 gem 'webauthn', '~> 3.0.0.alpha1'
 
 gem 'json-ld'
@@ -126,7 +125,7 @@ group :test do
   gem 'rspec-sidekiq', '~> 3.1'
   gem 'simplecov', '~> 0.21', require: false
   gem 'webmock', '~> 3.12'
-  gem 'parallel_tests', '~> 3.6'
+  gem 'parallel_tests', '~> 3.7'
   gem 'rspec_junit_formatter', '~> 0.4'
 end
 
@@ -160,4 +159,3 @@ gem 'concurrent-ruby', require: false
 gem 'connection_pool', require: false
 
 gem 'xorcist', '~> 1.1'
-gem 'pluck_each', git: 'https://github.com/nsommer/pluck_each', ref: '73be0947c52fc54bf6d7085378db008358aac5eb'

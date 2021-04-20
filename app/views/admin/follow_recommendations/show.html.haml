@@ -1,0 +1,38 @@
+- content_for :page_title do
+  = t('admin.follow_recommendations.title')
+
+%p= t('admin.follow_recommendations.description_html')
+
+%hr.spacer/
+
+= form_tag admin_follow_recommendations_path, method: 'GET', class: 'simple_form' do
+  .filters
+    .filter-subset.filter-subset--with-select
+      %strong= t('admin.follow_recommendations.language')
+      .input.select.optional
+        = select_tag :language, options_for_select(I18n.available_locales.map { |key| [human_locale(key), key]}, @language)
+
+    .filter-subset
+      %strong= t('admin.follow_recommendations.status')
+      %ul
+        %li= filter_link_to t('admin.accounts.moderation.active'), status: nil
+        %li= filter_link_to t('admin.follow_recommendations.suppressed'), status: 'suppressed'
+
+= form_for(@form, url: admin_follow_recommendations_path, method: :patch) do |f|
+  - RelationshipFilter::KEYS.each do |key|
+    = hidden_field_tag key, params[key] if params[key].present?
+
+  .batch-table
+    .batch-table__toolbar
+      %label.batch-table__toolbar__select.batch-checkbox-all
+        = check_box_tag :batch_checkbox_all, nil, false
+      .batch-table__toolbar__actions
+        - if params[:status].blank? && can?(:suppress, :follow_recommendation)
+          = f.button safe_join([fa_icon('times'), t('admin.follow_recommendations.suppress')]), name: :suppress, class: 'table-action-link', type: :submit, data: { confirm: t('admin.reports.are_you_sure') }
+        - if params[:status] == 'suppressed' && can?(:unsuppress, :follow_recommendation)
+          = f.button safe_join([fa_icon('plus'), t('admin.follow_recommendations.unsuppress')]), name: :unsuppress, class: 'table-action-link', type: :submit
+    .batch-table__body
+      - if @accounts.empty?
+        = nothing_here 'nothing-here--under-tabs'
+      - else
+        = render partial: 'account', collection: @accounts, locals: { f: f }

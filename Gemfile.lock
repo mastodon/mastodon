@@ -1,42 +1,3 @@
-GIT
-  remote: https://github.com/ClearlyClaire/devise-two-factor
-  revision: 594bb8a32e6f94df7e5ba7c9399eaf9ff25bac0d
-  ref: 594bb8a32e6f94df7e5ba7c9399eaf9ff25bac0d
-  specs:
-    devise-two-factor (3.1.0)
-      activesupport (< 7.0)
-      attr_encrypted (>= 1.3, < 4, != 2)
-      devise
-      railties (< 7.0)
-      rotp (~> 6)
-
-GIT
-  remote: https://github.com/Gargron/nsa
-  revision: d1079e0cdafdfed7f9f35478d13b9bdaa65965c0
-  ref: d1079e0cdafdfed7f9f35478d13b9bdaa65965c0
-  specs:
-    nsa (0.2.8)
-      activesupport (>= 4.2, < 7)
-      concurrent-ruby (~> 1.0, >= 1.0.2)
-      sidekiq (>= 3.5)
-      statsd-ruby (~> 1.4, >= 1.4.0)
-
-GIT
-  remote: https://github.com/nsommer/pluck_each
-  revision: 73be0947c52fc54bf6d7085378db008358aac5eb
-  ref: 73be0947c52fc54bf6d7085378db008358aac5eb
-  specs:
-    pluck_each (0.1.3)
-      activerecord (>= 6.1.0)
-      activesupport (>= 6.1.0)
-
-GIT
-  remote: https://github.com/witgo/nilsimsa
-  revision: fd184883048b922b176939f851338d0a4971a532
-  ref: fd184883048b922b176939f851338d0a4971a532
-  specs:
-    nilsimsa (1.1.2)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -120,8 +81,8 @@ GEM
       cocaine (~> 0.5.3)
     awrence (1.1.1)
     aws-eventstream (1.1.1)
-    aws-partitions (1.436.0)
-    aws-sdk-core (3.113.0)
+    aws-partitions (1.445.0)
+    aws-sdk-core (3.114.0)
       aws-eventstream (~> 1, >= 1.0.2)
       aws-partitions (~> 1, >= 1.239.0)
       aws-sigv4 (~> 1.1)
@@ -129,7 +90,7 @@ GEM
     aws-sdk-kms (1.43.0)
       aws-sdk-core (~> 3, >= 3.112.0)
       aws-sigv4 (~> 1.1)
-    aws-sdk-s3 (1.93.0)
+    aws-sdk-s3 (1.93.1)
       aws-sdk-core (~> 3, >= 3.112.0)
       aws-sdk-kms (~> 1)
       aws-sigv4 (~> 1.1)
@@ -192,15 +153,15 @@ GEM
       elasticsearch (>= 2.0.0)
       elasticsearch-dsl
     chunky_png (1.3.15)
-    cld3 (3.4.1)
-      ffi (>= 1.1.0, < 1.15.0)
+    cld3 (3.4.2)
+      ffi (>= 1.1.0, < 1.16.0)
     climate_control (0.2.0)
     cocaine (0.5.8)
       climate_control (>= 0.0.3, < 1.0)
     coderay (1.1.3)
     color_diff (0.1)
     concurrent-ruby (1.1.8)
-    connection_pool (2.2.3)
+    connection_pool (2.2.5)
     cose (1.0.0)
       cbor (~> 0.5.9)
       openssl-signature_algorithm (~> 0.4.0)
@@ -216,6 +177,12 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    devise-two-factor (4.0.0)
+      activesupport (< 6.2)
+      attr_encrypted (>= 1.3, < 4, != 2)
+      devise (~> 4.0)
+      railties (< 6.2)
+      rotp (~> 6.0)
     devise_pam_authenticatable2 (9.2.0)
       devise (>= 4.0.0)
       rpam2 (~> 4.0)
@@ -225,7 +192,7 @@ GEM
     docile (1.3.4)
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
-    doorkeeper (5.5.0)
+    doorkeeper (5.5.1)
       railties (>= 5)
     dotenv (2.7.6)
     dotenv-rails (2.7.6)
@@ -257,7 +224,7 @@ GEM
     faraday-net_http (1.0.1)
     fast_blank (1.0.0)
     fastimage (2.2.3)
-    ffi (1.14.2)
+    ffi (1.15.0)
     ffi-compiler (1.0.1)
       ffi (>= 1.0.0)
       rake
@@ -313,7 +280,7 @@ GEM
     httplog (1.4.3)
       rack (>= 1.0)
       rainbow (>= 2.0.0)
-    i18n (1.8.9)
+    i18n (1.8.10)
       concurrent-ruby (~> 1.0)
     i18n-tasks (0.9.34)
       activesupport (>= 4.0.2)
@@ -369,7 +336,7 @@ GEM
       activesupport (>= 4)
       railties (>= 4)
       request_store (~> 1.0)
-    loofah (2.9.0)
+    loofah (2.9.1)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     mail (2.7.1)
@@ -401,12 +368,17 @@ GEM
       net-ssh (>= 2.6.5, < 7.0.0)
     net-ssh (6.1.0)
     nio4r (2.5.7)
-    nokogiri (1.11.2)
+    nokogiri (1.11.3)
       mini_portile2 (~> 2.5.0)
       racc (~> 1.4)
     nokogumbo (2.0.4)
       nokogiri (~> 1.8, >= 1.8.4)
-    oj (3.11.3)
+    nsa (0.2.8)
+      activesupport (>= 4.2, < 7)
+      concurrent-ruby (~> 1.0, >= 1.0.2)
+      sidekiq (>= 3.5)
+      statsd-ruby (~> 1.4, >= 1.4.0)
+    oj (3.11.5)
     omniauth (1.9.1)
       hashie (>= 3.4.6)
       rack (>= 1.6.2, < 3)
@@ -434,9 +406,9 @@ GEM
       av (~> 0.9.0)
       paperclip (>= 2.5.2)
     parallel (1.20.1)
-    parallel_tests (3.6.0)
+    parallel_tests (3.7.0)
       parallel
-    parser (3.0.0.0)
+    parser (3.0.1.0)
       ast (~> 2.4.1)
     parslet (2.0.0)
     pastel (0.8.0)
@@ -444,7 +416,7 @@ GEM
     pg (1.2.3)
     pghero (2.8.1)
       activerecord (>= 5)
-    pkg-config (1.4.5)
+    pkg-config (1.4.6)
     posix-spawn (0.3.15)
     premailer (1.14.2)
       addressable
@@ -530,7 +502,7 @@ GEM
     responders (3.0.1)
       actionpack (>= 5.0)
       railties (>= 5.0)
-    rexml (3.2.4)
+    rexml (3.2.5)
     rotp (6.2.0)
     rpam2 (4.0.2)
     rqrcode (1.2.0)
@@ -591,7 +563,7 @@ GEM
       railties (>= 4.0.0)
     securecompare (1.0.0)
     semantic_range (2.3.0)
-    sidekiq (6.2.0)
+    sidekiq (6.2.1)
       connection_pool (>= 2.2.2)
       rack (~> 2.0)
       redis (>= 4.2.0)
@@ -604,7 +576,7 @@ GEM
       sidekiq (>= 3)
       thwait
       tilt (>= 1.4.0)
-    sidekiq-unique-jobs (7.0.7)
+    sidekiq-unique-jobs (7.0.8)
       brpoplpush-redis_script (> 0.1.1, <= 2.0.0)
       concurrent-ruby (~> 1.0, >= 1.0.5)
       sidekiq (>= 5.0, < 7.0)
@@ -651,7 +623,7 @@ GEM
       openssl-signature_algorithm (~> 0.4.0)
     tty-color (0.6.0)
     tty-cursor (0.7.1)
-    tty-prompt (0.23.0)
+    tty-prompt (0.23.1)
       pastel (~> 0.8)
       tty-reader (~> 0.8)
     tty-reader (0.9.0)
@@ -728,13 +700,13 @@ DEPENDENCIES
   capybara (~> 3.35)
   charlock_holmes (~> 0.7.7)
   chewy (~> 5.2)
-  cld3 (~> 3.4.1)
+  cld3 (~> 3.4.2)
   climate_control (~> 0.2)
   color_diff (~> 0.1)
   concurrent-ruby
   connection_pool
   devise (~> 4.7)
-  devise-two-factor!
+  devise-two-factor (~> 4.0)
   devise_pam_authenticatable2 (~> 9.2)
   discard (~> 1.2)
   doorkeeper (~> 5.5)
@@ -769,9 +741,8 @@ DEPENDENCIES
   microformats (~> 4.2)
   mime-types (~> 3.3.1)
   net-ldap (~> 0.17)
-  nilsimsa!
   nokogiri (~> 1.11)
-  nsa!
+  nsa (~> 0.2)
   oj (~> 3.11)
   omniauth (~> 1.9)
   omniauth-cas (~> 2.0)
@@ -781,12 +752,11 @@ DEPENDENCIES
   paperclip (~> 6.0)
   paperclip-av-transcoder (~> 0.6)
   parallel (~> 1.20)
-  parallel_tests (~> 3.6)
+  parallel_tests (~> 3.7)
   parslet
   pg (~> 1.2)
   pghero (~> 2.8)
   pkg-config (~> 1.4)
-  pluck_each!
   posix-spawn
   premailer-rails
   private_address_check (~> 0.5)
@@ -834,5 +804,5 @@ DEPENDENCIES
   webauthn (~> 3.0.0.alpha1)
   webmock (~> 3.12)
   webpacker (~> 5.2)
-  webpush
+  webpush (~> 0.3)
   xorcist (~> 1.1)
