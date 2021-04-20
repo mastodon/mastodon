@@ -210,7 +210,7 @@ class ActivityPub::Activity
     end
   end
 
-  def lock_or_return(key, expire_after = 7.days.seconds)
+  def lock_or_return(key, expire_after = 2.hours.seconds)
     yield if redis.set(key, true, nx: true, ex: expire_after)
   ensure
     redis.del(key)

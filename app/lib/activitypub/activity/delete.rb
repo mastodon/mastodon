@@ -20,7 +20,7 @@ class ActivityPub::Activity::Delete < ActivityPub::Activity
   def delete_note
     return if object_uri.nil?
 
-    lock_or_return("delete_status_in_progress:#{object_uri}") do
+    lock_or_return("delete_status_in_progress:#{object_uri}", 5.minutes.seconds) do
       unless invalid_origin?(object_uri)
         # The lock, shared by ActivityPub::Activity::Create, is here to ensuire
         # the status has been either fully `Create`d or won't be processed at all.
