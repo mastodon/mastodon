@@ -20,22 +20,27 @@ class ActivityPub::Activity::Delete < ActivityPub::Activity
   def delete_note
     return if object_uri.nil?
 
-    unless invalid_origin?(object_uri)
-      RedisLock.acquire(lock_options) { |_lock| delete_later!(object_uri) }
-      Tombstone.find_or_create_by(uri: object_uri, account: @account)
+    lock_or_return("delete_status_in_progress:#{object_uri}") do
+      unless invalid_origin?(object_uri)
+        # The lock, shared by ActivityPub::Activity::Create, is here to ensuire
+        # the status has been either fully `Create`d or won't be processed at all.
+        RedisLock.acquire(lock_options) { |_lock| delete_later!(object_uri) }
+
+        Tombstone.find_or_create_by(uri: object_uri, account: @account)
+      end
+
+      @status   = Status.find_by(uri: object_uri, account: @account)
+      @status ||= Status.find_by(uri: @object['atomUri'], account: @account) if @object.is_a?(Hash) && @object['atomUri'].present?
+
+      return if @status.nil?
+
+      if @status.distributable?
+        forward_for_reply
+        forward_for_reblogs
+      end
+
+      delete_now!
     end
-
-    @status   = Status.find_by(uri: object_uri, account: @account)
-    @status ||= Status.find_by(uri: @object['atomUri'], account: @account) if @object.is_a?(Hash) && @object['atomUri'].present?
-
-    return if @status.nil?
-
-    if @status.distributable?
-      forward_for_reply
-      forward_for_reblogs
-    end
-
-    delete_now!
   end
 
   def forward_for_reblogs
