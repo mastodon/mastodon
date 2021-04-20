@@ -22,9 +22,18 @@ class ActivityPub::Activity::Delete < ActivityPub::Activity
 
     lock_or_return("delete_status_in_progress:#{object_uri}", 5.minutes.seconds) do
       unless invalid_origin?(object_uri)
-        # The lock, shared by ActivityPub::Activity::Create, is here to ensuire
-        # the status has been either fully `Create`d or won't be processed at all.
-        RedisLock.acquire(lock_options) { |_lock| delete_later!(object_uri) }
+        # This lock ensures a concurrent `ActivityPub::Activity::Create` either
+        # does not create a status at all, or has finished saving it to the
+        # database before we try to load it.
+        # Without the lock, `delete_later!` could be called after `delete_arrived_first?`
+        # and `Status.find` before `Status.create!`
+        RedisLock.acquire(lock_options) do |lock|
+          if lock.acquired?
+            delete_later!(object_uri)
+          else
+            raise Mastodon::RaceConditionError
+          end
+        end
 
         Tombstone.find_or_create_by(uri: object_uri, account: @account)
       end
