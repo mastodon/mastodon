@@ -26,4 +26,8 @@ Rails.application.configure do
       "ws://#{ENV['REMOTE_DEV'] == 'true' ? host.split(':').first : 'localhost'}:4000"
     end
   end
+
+  config.hosts << host if host.present?
+  config.hosts << web_host if web_host.present?
+  config.hosts << alternate_domains if alternate_domains.present?
 end
