@@ -560,7 +560,7 @@ nl:
     settings:
       activity_api_enabled:
         desc_html: Wekelijks overzicht van de hoeveelheid lokale toots, actieve gebruikers en nieuwe registraties
-        title: Statistieken over gebruikersactiviteit publiceren
+        title: Statistieken over gebruikersactiviteit via de API publiceren
       bootstrap_timeline_accounts:
         desc_html: Meerdere gebruikersnamen met komma's scheiden. Alleen lokale en niet opgeschorte accounts werken. Laat leeg voor alle lokale beheerders.
         title: Standaard te volgen accounts voor nieuwe gebruikers
@@ -591,7 +591,7 @@ nl:
         title: Mascotte-afbeelding
       peers_api_enabled:
         desc_html: Domeinnamen die deze server in de fediverse is tegengekomen
-        title: Lijst van bekende servers publiceren
+        title: Lijst van bekende servers via de API publiceren
       preview_sensitive_media:
         desc_html: Linkvoorvertoningen op andere websites hebben een thumbnail, zelfs als een afbeelding of video als gevoelig is gemarkeerd
         title: Gevoelige afbeeldingen en video's in OpenGraph-voorvertoningen tonen
@@ -1257,6 +1257,7 @@ nl:
     sign_in_to_participate: Meld je aan om aan dit gesprek mee te doen
     title: '%{name}: "%{quote}"'
     visibilities:
+      direct: Direct
       private: Alleen volgers
       private_long: Alleen aan jouw volgers tonen
       public: Openbaar
