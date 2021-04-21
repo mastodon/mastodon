@@ -403,22 +403,26 @@ da:
           suspend: Suspendere
         title: Ny domæneblokering
       obfuscate: Slør domænenavn
+      obfuscate_hint: Slør delvist domænenavnet på listen, hvis annoncering af listen over domænebegrænsninger er aktiveret
       private_comment: Privat kommentar
+      private_comment_hint: Kommentar om denne domænebegrænsning til intern brug for moderatorerne.
       public_comment: Offentlig kommentar
-      reject_media: Afvis medie filer
-      reject_media_hint: Fjerner lokalt lagrede multimedie filer og nægter at hente nogen i fremtiden. Irrelevant for udelukkelser
+      public_comment_hint: Kommentar om denne domænebegrænsning for den brede offentlighed, hvis annoncering af listen over domænebegrænsninger er aktiveret.
+      reject_media: Afvis mediefiler
+      reject_media_hint: Fjerner lokalt lagrede mediefiler og afviser at download nogle fremadrettet. Irrelevant for suspenderinger
       reject_reports: Afvis anmeldelser
+      reject_reports_hint: Ignorér alle anmeldelser fra dette domæne. Irrelevant for suspenderinger
       rejecting_media: afviser mediefiler
       rejecting_reports: afviser anmeldelser
       severity:
-        silence: dæmpet
+        silence: tavsgjort
         suspend: suspenderet
       show:
         affected_accounts:
           one: En konto i databasen påvirket
           other: "%{count} konti i databasen påvirket"
         retroactive:
-          silence: Fjern dæmpningen af alle eksisterende konti fra dette domæne
+          silence: Fjern tavsgøring for eksisterende, berørte konti fra dette domæne
           suspend: Fjern udelukkelsen af alle eksisterende konti fra dette domæne
         title: Annuller domæne blokeringen for domænet %{domain}
         undo: Fortryd
