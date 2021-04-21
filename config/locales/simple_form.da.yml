@@ -5,6 +5,9 @@ da:
       account_warning_preset:
         title: Valgfri. Ikke synlig for modtageren
       admin_account_action:
+        include_statuses: Brugeren ser hvilke trut der har forårsaget moderationen eller advarslen
+        send_email_notification: Brugeren vil modtage en forklaring af hvad der skete med deres konto
+        text_html: Valgfri. Du kan bruge trutsyntaks. Du kan <a href="%{path}">tilføje advarsler</a> for a spare tid
         type_html: Vælg hvad du vil gøre med <strong>%{acct}</strong>
       defaults:
         autofollow: Folk der har oprettet sig gennem invitationen vil automatisk følge dig
@@ -62,6 +65,7 @@ da:
         types:
           disable: Deaktiver
           none: Gør intet
+          sensitive: Følsomt
           silence: Silence
           suspend: Suspendér og slet kontodata uopretteligt
         warning_preset_id: Brug en forudindstillet advarsel
@@ -96,6 +100,7 @@ da:
         password: Adgangskode
         phrase: Nøgleord eller sætning
         setting_advanced_layout: Aktivér avanceret webgrænseflade
+        setting_aggregate_reblogs: Gruppér boosts i tidslinjer
         setting_auto_play_gif: Afspil automatisk animerede GIFs
         setting_boost_modal: Vis bekræftelses dialog før du fremhæver
         setting_default_language: Sprog for opslag
@@ -150,6 +155,8 @@ da:
         reblog: Send e-mail når nogen fremhæver din status
         report: Send email når en ny anmeldelse bliver indsendt
         trending_tag: Send en email når et ikke-gennemset hashtag trender
+      rule:
+        text: Regel
       tag:
         listable: Tillad at dette hashtag vises i søgninger og i bruger oversigten
         name: Hashtag

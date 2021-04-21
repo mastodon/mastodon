@@ -7,15 +7,12 @@ ro:
     active_count_after: activi
     active_footnote: Utilizatori activi lunar (UAL)
     administered_by: 'Administrat de:'
-    api: API
     apps: Aplicații mobile
     apps_platforms: Folosește Mastodon de pe iOS, Android și alte platforme
     browse_directory: Răsfoiți directorul de profil și filtrați după interese
     browse_local_posts: Răsfoiți un flux live al postărilor publice de pe acest server
     browse_public_posts: Răsfoiește un flux live de postări publice pe Mastodon
-    contact: Contact
     contact_missing: Nesetat
-    contact_unavailable: N/A
     discover_users: Descoperă utilizatori
     documentation: Documentație
     federation_hint_html: Cu un cont pe %{instance} vei putea urmări oameni pe orice server de Mastodon sau mai departe.
@@ -38,7 +35,6 @@ ro:
     terms: Termeni de serviciu
     unavailable_content: Conținut indisponibil
     unavailable_content_description:
-      domain: Server
       reason: Motiv
       rejecting_media: 'Fişierele media de pe aceste servere nu vor fi procesate sau stocate şi nici o miniatură nu va fi afişată, necesitând click manual la fişierul original:'
       rejecting_media_title: Fișiere media filtrate
@@ -65,7 +61,6 @@ ro:
     joined: Înscris %{date}
     last_active: ultima activitate
     link_verified_on: Proprietatea acestui link a fost verificată la %{date}
-    media: Media
     moved_html: "%{name} s-a mutat la %{new_profile_link}:"
     network_hidden: Aceste informaţii nu sunt disponibile
     never_active: Niciodată
@@ -80,12 +75,9 @@ ro:
       other: De Postări
     posts_tab_heading: Postări
     posts_with_replies: Postări și răspunsuri
-    reserved_username: Numele de utilizator este rezervat
     roles:
-      admin: Admin
       bot: Robot
       group: Grup
-      moderator: Mod
     unavailable: Profil indisponibil
     unfollow: Nu mai urmării
   admin:
@@ -102,7 +94,6 @@ ro:
       approve: Aprobă
       approve_all: Aprobă toate
       are_you_sure: Ești sigur?
-      avatar: Avatar
       by_domain: Domeniu
       change_email:
         changed_msg: E-mail de cont schimbat cu succes!
@@ -131,11 +122,9 @@ ro:
       header: Antet
       inbox_url: URL mesaje primite
       invited_by: Invitat de
-      ip: IP
       joined: Înscris
       location:
         all: Toate
-        local: Local
         remote: La distanţă
         title: Locaţie
       login_status: Stare conectare
@@ -157,8 +146,6 @@ ro:
       pending: În așteptare
       perform_full_suspension: Suspendate
       promote: Promovează
-      protocol: Protocol
-      public: Public
       push_subscription_expires: Abonamentul PuSH expiră
       redownload: Reîmprospătează profilul
       reject: Respinge
@@ -174,8 +161,6 @@ ro:
       resubscribe: Resubscrie-te
       role: Permisiuni
       roles:
-        admin: Administrator
-        moderator: Moderator
         staff: Personal
         user: Utilizator
       search: Caută
@@ -198,7 +183,6 @@ ro:
       unsubscribe: Dezabonare
       username: Nume
       warn: Avertizează
-      web: Web
       whitelisted: Excluse la blocare
     action_logs:
       action_types:
@@ -246,13 +230,11 @@ ro:
     remove: Deconectare alias
   appearance:
     localization:
-      guide_link: https://crowdin.com/project/mastodon
       guide_link_text: Toată lumea poate contribui.
     sensitive_content: Conținut sensibil
     toot_layout: Aspect postare
   application_mailer:
     notification_preferences: Modifică preferințe e-mail
-    salutation: "%{name},"
     settings: 'Modifică preferințe e-mail: %{link}'
     view: 'Vizualizare:'
     view_profile: Vizualizați profilul
@@ -284,9 +266,6 @@ ro:
     migrate_account: Transfer către un alt cont
     migrate_account_html: Dacă dorești să redirecționezi acest cont către un altul, poți <a href="%{path}">configura asta aici</a>.
     or_log_in_with: Sau conectează-te cu
-    providers:
-      cas: CAS
-      saml: SAML
     register: Înregistrare
     registration_closed: "%{instance} nu acceptă membri noi"
     resend_confirmation: Retrimite instrucțiunile de confirmare
@@ -335,9 +314,7 @@ ro:
       less_than_x_seconds: Chiar acum
       over_x_years: "%{count}ani"
       x_days: "%{count}z"
-      x_minutes: "%{count}m"
       x_months: "%{count}l"
-      x_seconds: "%{count}s"
   deletes:
     challenge_not_passed: Informațiile introduse nu au fost corecte
     confirm_password: Introdu parola curentă pentru a-ți verifica identitatea
@@ -522,14 +499,7 @@ ro:
     activity: Ultima activitate
     browser: Navigator
     browsers:
-      alipay: Alipay
-      blackberry: Blackberry
-      chrome: Chrome
-      edge: Microsoft Edge
-      electron: Electron
-      firefox: Firefox
       generic: Navigator necunoscut
-      ie: Internet Explorer
   settings:
     account: Cont
     back: Înapoi la Mastodon
@@ -543,10 +513,6 @@ ro:
         few: "%{count} imagini"
         one: "%{count} imagine"
         other: "%{count} de imagini"
-      video:
-        few: "%{count} videoclipuri"
-        one: "%{count} video"
-        other: "%{count} de videoclipuri"
     boosted_from_html: Impuls de la %{acct_link}
     content_warning: 'Avertisment privind conținutul: %{warning}'
     disallowed_hashtags:
@@ -576,11 +542,9 @@ ro:
     show_more: Arată mai mult
     show_thread: Arată discuția
     sign_in_to_participate: Conectează-te pentru a participa la conversație
-    title: '%{name}: "%{quote}"'
     visibilities:
       private: Doar urmăritorii
       private_long: Arată doar urmăritorilor
-      public: Public
       public_long: Toată lumea poate vedea
       unlisted: Nelistat
       unlisted_long: Toată lumea poate vedea, dar nu este listată pe fluxurile publice
@@ -730,7 +694,6 @@ ro:
       title: Bine ai venit la bord, %{name}!
   users:
     follow_limit_reached: Nu poți urmări mai mult de %{limit} persoane
-    invalid_email: Adresa de e-mail nu este validă
     invalid_otp_token: Cod doi pași nevalid
     otp_lost_help_html: Dacă ai pierdut accesul la ambele, poți lua legătura cu %{email}
     seamless_external_login: Sunteți autentificat prin intermediul unui serviciu extern, astfel încât parola și setările de e-mail nu sunt disponibile.

@@ -83,7 +83,10 @@ zh-TW:
         invalid_client: 客戶端驗證失敗，可能是因為未知的客戶端程式、未包含客戶端驗證、或使用了不支援的認證方法。
         invalid_grant: 授權申請不正確、逾期、已被取消、與授權請求內的重新導向 URI 不符、或屬於別的客戶端程式。
         invalid_redirect_uri: 包含的重新導向 URI 是不正確的。
-        invalid_request: 請求缺少必要的參數、有不支援的參數、或其他格式錯誤。
+        invalid_request:
+          missing_param: 缺少必要的參數：%{value}.
+          request_not_authorized: 請求必須是已授權的。用於授權的必要參數缺少或無效。
+          unknown: 請求缺少必要的參數、有不支援的參數、或其他格式錯誤。
         invalid_resource_owner: 資源擁有者的登入資訊錯誤，或無法找到該資源擁有者
         invalid_scope: 請求的範圍錯誤、未定義、或格式錯誤。
         invalid_token:

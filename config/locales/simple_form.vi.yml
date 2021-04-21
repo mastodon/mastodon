@@ -14,6 +14,12 @@ vi:
         send_email_notification: Người dùng sẽ nhận được lời giải thích về những gì xảy ra với tài khoản của họ
         text_html: Tùy chọn. Bạn nên dùng <a href="%{path}">cảnh cáo cài sẵn</a> để tiết kiệm thời gian
         type_html: Chọn làm gì với <strong>%{acct}</strong>
+        types:
+          disable: Cấm người này tiếp tục đăng nhập, nhưng không xóa hoặc ẩn tút của họ.
+          none: Sử dụng để gửi cảnh cáo tới tài khoản này, không áp đặt trừng phạt.
+          sensitive: Mọi tập tin của tài khoản này tải lên đều sẽ bị gắn nhãn nhạy cảm.
+          silence: Cấm tài khoản này đăng tút công khai, ẩn tút của họ hiện ra với những người chưa theo dõi họ.
+          suspend: Vô hiệu hóa mọi hoạt động của tài khoản này và xóa sạch dữ liệu. Có thể mở lại trong vòng 30 ngày.
         warning_preset_id: Tùy chọn. Bạn vẫn có thể thêm ghi chú riêng
       announcement:
         all_day: Chỉ có khoảng thời gian được đánh dấu mới hiển thị
@@ -73,6 +79,8 @@ vi:
           no_access: Chặn truy cập từ tất cả IP này
           sign_up_requires_approval: Bạn sẽ phê duyệt những đăng ký mới từ IP này
         severity: Chọn hành động nếu nhận được yêu cầu từ IP này
+      rule:
+        text: Mô tả một quy tắc bắt buộc trên máy chủ này. Nên để ngắn và đơn giản.
       sessions:
         otp: 'Nhập mã xác thực hai bước được tạo bởi ứng dụng điện thoại của bạn hoặc dùng một trong các mã khôi phục của bạn:'
         webauthn: Nếu đây là USB key, hãy cắm vào và thử xoay chiều.
@@ -99,7 +107,7 @@ vi:
         type: Hành động
         types:
           disable: Tạm khóa
-          none: Cấm upload
+          none: Gửi cảnh cáo
           sensitive: Nhạy cảm
           silence: Tạm ẩn
           suspend: Vô hiệu hóa
@@ -197,6 +205,8 @@ vi:
         reblog: Ai đó chia sẻ tút của bạn
         report: Ai đó gửi báo cáo kiểm duyệt
         trending_tag: Một hashtag chưa được phê duyệt đang là xu hướng
+      rule:
+        text: Quy tắc
       tag:
         listable: Cho phép hashtag này xuất hiện trong tìm kiếm và trên tiểu sử cá nhân
         name: Hashtag
