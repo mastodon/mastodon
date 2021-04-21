@@ -380,21 +380,22 @@ da:
       week_interactions: interaktioner denne uge
       week_users_active: aktive denne uge
       week_users_new: brugere denne uge
-      whitelist_mode: Whitelist tilstand
+      whitelist_mode: Begrænset federeringstilstand
     domain_allows:
-      add_new: Whitelist domæne
-      created_msg: Domænet er tilføjet whitelist
-      destroyed_msg: Domænet er fjernet fra whitelist
-      undo: Fjern fra hvidliste
+      add_new: Tillade federering med domæne
+      created_msg: Domæne er blevet tilladt federering
+      destroyed_msg: Domæne er blevet forbudt federering
+      undo: Forbyd federering med domæne
     domain_blocks:
-      add_new: Tilføj ny domain block
-      created_msg: Domæne blokade bliver nu behandlet
-      destroyed_msg: Domæne blokade er blevet annulleret
+      add_new: Tilføj ny domæneblokering
+      created_msg: Domæneblokering under behandling
+      destroyed_msg: Domæneblokering er blevet fjernet
       domain: Domæne
-      edit: Rediger domæne blokering
+      edit: Redigér domæneblokering
+      existing_domain_block_html: Du har allerede pålagt %{name} strengere grænser, du skal <a href="%{unblock_url}">afblokerere</a> det først.
       new:
         create: Opret blokering
-        hint: Domæne blokeringen vil ikke forhindre oprettelse af konto opslag i databasen, men vil retroaktivt og automatisk benytte specifikke moderator metoder på disse konti.
+        hint: Domæneblokeringen vil ikke forhindre oprettelse af kontoposter i databasen, men vil retroaktivt og automatisk benytte specifikke moderationsmetoder på disse konti.
         severity:
           desc_html: "<strong>Dæmp</strong> vil gøre denne kontos opslag usynlige til alle der ikke følger dem. <strong>Udeluk</strong> vil fjerne al kontoens indhold, medie og profildata. Brug <strong>Ingen</strong> hvis du bare ønsker at afvise medie filer."
           noop: Ingen
