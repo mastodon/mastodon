@@ -306,7 +306,7 @@ pt-PT:
       filter_by_user: Filtrar por utilizador
       title: Registo de auditoria
     announcements:
-      destroyed_msg: Anúncio excluído com sucesso!
+      destroyed_msg: Anúncio eliminado com sucesso!
       edit:
         title: Editar anúncio
       empty: Nenhum anúncio encontrado.
@@ -513,7 +513,7 @@ pt-PT:
       title: Retransmissores
     report_notes:
       created_msg: Relatório criado com sucesso!
-      destroyed_msg: Relatório apagado com sucesso!
+      destroyed_msg: Nota de relatório eliminada com sucesso!
     reports:
       account:
         notes:
@@ -604,7 +604,7 @@ pt-PT:
           desc_html: Mostrar na página inicial quando registos estão encerrados<br/>Podes usar tags HTML
           title: Mensagem de registos encerrados
         deletion:
-          desc_html: Permite a qualquer um apagar a conta
+          desc_html: Permitir a qualquer utilizador eliminar a sua conta
           title: Permitir eliminar contas
         min_invite_role:
           disabled: Ninguém
@@ -652,7 +652,7 @@ pt-PT:
         title: Hashtags em destaque
     site_uploads:
       delete: Eliminar arquivo carregado
-      destroyed_msg: Upload do site excluído com sucesso!
+      destroyed_msg: Upload do site eliminado com sucesso!
     statuses:
       back_to_account: Voltar para página da conta
       batch:
@@ -714,7 +714,7 @@ pt-PT:
   aliases:
     add_new: Criar pseudónimo
     created_msg: Criou com sucesso um novo pseudónimo. Pode agora iniciar a migração da conta antiga.
-    deleted_msg: Removido o pseudónimo com sucesso. Migrar dessa conta para esta não será mais possível.
+    deleted_msg: O pseudónimo foi eliminado com sucesso. Migrar dessa conta para esta não será mais possível.
     empty: Não tem pseudónimos.
     hint_html: Se quiser mudar de outra conta para esta, pode criar aqui um pseudónimo, que é necessário antes de poder prosseguir com a migração de seguidores da conta antiga para esta. Esta ação por si só é <strong>inofensiva e reversível</strong>. <strong>A migração da conta é iniciada a partir da conta antiga</strong>.
     remove: Desvincular pseudónimo
@@ -830,14 +830,14 @@ pt-PT:
       x_seconds: "%{count} segundos"
   deletes:
     challenge_not_passed: A informação que introduziu não estava correta
-    confirm_password: Introduz a palavra-passe atual para verificar a tua identidade
+    confirm_password: Introduza a sua palavra-passe atual para verificar a sua identidade
     confirm_username: Introduza o seu nome de utilizador para confirmar o procedimento
     proceed: Eliminar conta
     success_msg: A sua conta foi eliminada com sucesso
     warning:
       before: 'Antes de continuar, por favor leia cuidadosamente estas notas:'
       caches: O conteúdo que foi armazenado em cache por outras instâncias pode persistir
-      data_removal: As suas publicações e outros dados serão removidos permanentemente
+      data_removal: As suas publicações e outros dados serão eliminados permanentemente
       email_change_html: Pode <a href="%{path}">alterar o seu endereço de e-mail</a> sem eliminar a sua conta
       email_contact_html: Se ainda não chegou, pode enviar um e-mail a <a href="mailto:%{email}">%{email}</a> para obter ajuda
       email_reconfirmation_html: Se não recebeu o e-mail de confirmação, pode <a href="%{path}">pedi-lo novamente</a>
@@ -1447,7 +1447,7 @@ pt-PT:
     description_html: Se você ativar a <strong>autenticação com chave de segurança</strong>, para aceder à sua conta será necessário que utilize uma das suas chaves de segurança.
     destroy:
       error: Ocorreu um problema ao remover a sua chave de segurança. Tente novamente.
-      success: A sua chave de segurança foi removida com sucesso.
+      success: A sua chave de segurança foi eliminada com sucesso.
     invalid_credential: Chave de segurança inválida
     nickname_hint: Introduza o apelido da sua nova chave de segurança
     not_enabled: Ainda não ativou o WebAuthn
