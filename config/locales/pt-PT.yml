@@ -314,10 +314,12 @@ pt-PT:
       new:
         create: Criar anúncio
         title: Novo anúncio
+      publish: Publicar
       published_msg: Anúncio publicado com sucesso!
       scheduled_for: Agendado para %{time}
       scheduled_msg: Anúncio agendado para publicação!
       title: Anúncios
+      unpublish: Anular publicação
       unpublished_msg: Anúncio retirado de exibição com sucesso!
       updated_msg: Anúncio atualizado com sucesso!
     custom_emojis:
@@ -439,6 +441,14 @@ pt-PT:
         create: Adicionar domínio
         title: Novo bloqueio de domínio de email
       title: Bloqueio de Domínio de Email
+    follow_recommendations:
+      description_html: "<strong>Recomendações de quem seguir ajudam novos utilizadores a encontrar conteúdo interessante rapidamente.</strong>. Quando um utilizador não interage com outros o suficiente para formar recomendações personalizadas, estas contas são recomendadas. Elas são recalculadas diariamente a partir de uma mistura de contas com mais atividade recente e maior número de seguidores locais para um determinado idioma."
+      language: Para o idioma
+      status: Estado
+      suppress: Suprimir recomendação de contas a seguir
+      suppressed: Suprimida
+      title: Seguir recomendações
+      unsuppress: Restaurar recomendações de contas a seguir
     instances:
       by_domain: Domínio
       delivery_available: Entrega disponível
@@ -543,6 +553,7 @@ pt-PT:
       updated_at: Atualizado
     rules:
       add_new: Adicionar regra
+      delete: Eliminar
       edit: Editar regra
       title: Regras da instância
     settings:
