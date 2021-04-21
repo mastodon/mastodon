@@ -69,10 +69,10 @@
 
   - unless whitelist_mode?
     .fields-group
-      = f.input :activity_api_enabled, as: :boolean, wrapper: :with_label, label: t('admin.settings.activity_api_enabled.title'), hint: t('admin.settings.activity_api_enabled.desc_html')
+      = f.input :activity_api_enabled, as: :boolean, wrapper: :with_label, label: t('admin.settings.activity_api_enabled.title'), hint: t('admin.settings.activity_api_enabled.desc_html'), recommended: true
 
     .fields-group
-      = f.input :peers_api_enabled, as: :boolean, wrapper: :with_label, label: t('admin.settings.peers_api_enabled.title'), hint: t('admin.settings.peers_api_enabled.desc_html')
+      = f.input :peers_api_enabled, as: :boolean, wrapper: :with_label, label: t('admin.settings.peers_api_enabled.title'), hint: t('admin.settings.peers_api_enabled.desc_html'), recommended: true
 
     .fields-group
       = f.input :preview_sensitive_media, as: :boolean, wrapper: :with_label, label: t('admin.settings.preview_sensitive_media.title'), hint: t('admin.settings.preview_sensitive_media.desc_html')

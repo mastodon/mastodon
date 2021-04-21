@@ -12,7 +12,7 @@ export function fetchSuggestions(withRelationships = false) {
   return (dispatch, getState) => {
     dispatch(fetchSuggestionsRequest());
 
-    api(getState).get('/api/v2/suggestions').then(response => {
+    api(getState).get('/api/v2/suggestions', { params: { limit: 20 } }).then(response => {
       dispatch(importFetchedAccounts(response.data.map(x => x.account)));
       dispatch(fetchSuggestionsSuccess(response.data));
 
