@@ -1,4 +1,3 @@
----
 ar:
   devise:
     confirmations:
@@ -8,10 +7,10 @@ ar:
     failure:
       already_authenticated: لقد تم تسجيل دخولك من قبل.
       inactive: لم يتم تنشيط حسابك بعد.
-      invalid: "%{authentication_keys} أو كلمة سر خاطئة."
+      invalid: '%{authentication_keys} أو كلمة سر خاطئة.'
       last_attempt: بإمكانك إعادة المحاولة مرة واحدة قبل أن يتم قفل حسابك.
       locked: إن حسابك مقفل.
-      not_found_in_database: "%{authentication_keys} أو كلمة سر خاطئة."
+      not_found_in_database: '%{authentication_keys} أو كلمة سر خاطئة.'
       pending: إنّ حسابك في انتظار مراجعة.
       timeout: لقد انتهت مدة صلاحية جلستك. قم بتسجيل الدخول من جديد للمواصلة.
       unauthenticated: يجب عليك تسجيل الدخول أو إنشاء حساب قبل المواصلة.
@@ -63,19 +62,19 @@ ar:
       webauthn_credential:
         added:
           explanation: تم إضافة مفتاح الأمان التالي إلى حسابك
-          subject: 'ماستودون: مفتاح أمان جديد'
+          subject: 'ماستدون: مفتاح أمان جديد'
           title: تم إضافة مفتاح أمان جديد
         deleted:
           explanation: تم إزالة مفتاح الأمان التالي من حسابك
-          subject: 'ماستودون: تم حذف مفتاح الأمان'
+          subject: 'ماستدون: تم حذف مفتاح الأمان'
           title: تم حذف أحد مفاتيح الأمان الخاصة بك
       webauthn_disabled:
         explanation: تم تعطيل الاستيثاق مع مفاتيح الأمان لحسابك. تسجيل الدخول الآن ممكن باستخدام الرمز (token) الذي تم إنشاؤه بواسطة تطبيق TOTP المقترن.
-        subject: 'ماستودون: الاستيثاق مع مفاتيح الأمان معطلة'
+        subject: 'ماستدون: الاستيثاق مع مفاتيح الأمان معطلة'
         title: مفاتيح الأمان معطلة
       webauthn_enabled:
         explanation: تم تفعيل استيثاق مفتاح الأمان للحساب الخاص بك. يمكن الآن استخدام مفتاح الأمان الخاص بك لتسجيل الدخول.
-        subject: 'ماستودون: تم تفعيل نظام استيثاق مفتاح الأمان'
+        subject: 'ماستدون: تم تفعيل نظام استيثاق مفتاح الأمان'
         title: مفاتيح الأمان مفعلة
     omniauth_callbacks:
       failure: تعذرت المصادقة من %{kind} بسبب "%{reason}".
@@ -111,9 +110,9 @@ ar:
       not_found: لا يوجد
       not_locked: ليس مقفلاً
       not_saved:
+        zero: "%{count} أخطاء منعت هذا %{resource} من الحفظ:"
+        one: 'خطأ واحد منع هذا %{resource} من الحفظ:'
+        two: "%{count} أخطاء منعت هذا %{resource} من الحفظ:"
         few: "%{count} أخطاء منعت هذا %{resource} من الحفظ:"
         many: "%{count} أخطاء منعت هذا %{resource} من الحفظ:"
-        one: 'خطأ واحد منع هذا %{resource} من الحفظ:'
         other: "%{count} أخطاء منعت هذا %{resource} من الحفظ:"
-        two: "%{count} أخطاء منعت هذا %{resource} من الحفظ:"
-        zero: "%{count} أخطاء منعت هذا %{resource} من الحفظ:"
