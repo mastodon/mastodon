@@ -45,19 +45,15 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   def create_status
     return reject_payload! if unsupported_object_type? || invalid_origin?(object_uri) || tombstone_exists? || !related_to_local_activity?
 
-    RedisLock.acquire(lock_options) do |lock|
-      if lock.acquired?
-        return if delete_arrived_first?(object_uri) || poll_vote? # rubocop:disable Lint/NonLocalExitFromIterator
+    lock_or_fail("create:#{object_uri}") do
+      return if delete_arrived_first?(object_uri) || poll_vote? # rubocop:disable Lint/NonLocalExitFromIterator
 
-        @status = find_existing_status
+      @status = find_existing_status
 
-        if @status.nil?
-          process_status
-        elsif @options[:delivered_to_account_id].present?
-          postprocess_audience_and_deliver
-        end
-      else
-        raise Mastodon::RaceConditionError
+      if @status.nil?
+        process_status
+      elsif @options[:delivered_to_account_id].present?
+        postprocess_audience_and_deliver
       end
     end
 
@@ -313,13 +309,9 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     poll = replied_to_status.preloadable_poll
     already_voted = true
 
-    RedisLock.acquire(poll_lock_options) do |lock|
-      if lock.acquired?
-        already_voted = poll.votes.where(account: @account).exists?
-        poll.votes.create!(account: @account, choice: poll.options.index(@object['name']), uri: object_uri)
-      else
-        raise Mastodon::RaceConditionError
-      end
+    lock_or_fail("vote:#{replied_to_status.poll_id}:#{@account.id}") do
+      already_voted = poll.votes.where(account: @account).exists?
+      poll.votes.create!(account: @account, choice: poll.options.index(@object['name']), uri: object_uri)
     end
 
     increment_voters_count! unless already_voted
@@ -507,13 +499,5 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   rescue ActiveRecord::StaleObjectError
     poll.reload
     retry
-  end
-
-  def lock_options
-    { redis: Redis.current, key: "create:#{object_uri}" }
-  end
-
-  def poll_lock_options
-    { redis: Redis.current, key: "vote:#{replied_to_status.poll_id}:#{@account.id}" }
   end
 end
