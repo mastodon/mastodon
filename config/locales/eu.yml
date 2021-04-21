@@ -313,10 +313,12 @@ eu:
       new:
         create: Sortu iragarpena
         title: Iragarpen berria
+      publish: Argitaratu
       published_msg: Iragarpena ongi argitaratu da!
       scheduled_for: '%{time}-rako programatuta'
       scheduled_msg: Iragarpena argitaratzeko programatuta!
       title: Iragarpenak
+      unpublish: Desargitaratu
       unpublished_msg: Iragarpena ongi desargitaratu da!
       updated_msg: Iragarpena ongi eguneratu da!
     custom_emojis:
@@ -438,6 +440,14 @@ eu:
         create: Gehitu domeinua
         title: Sarrera berria e-mail zerrenda beltzean
       title: E-mail zerrenda beltza
+    follow_recommendations:
+      description_html: "<strong>Jarraitzeko gomendioek erabiltzaile berriei eduki interesgarria azkar aurkitzen laguntzen diete</strong>. Erabiltzaile batek jarraitzeko gomendio pertsonalizatuak jasotzeko adina interakzio izan ez duenean, kontu hauek gomendatzen zaizkio. Egunero birkalkulatzen dira hizkuntza bakoitzerako, azken aldian parte-hartze handiena izan duten eta jarraitzaile lokal gehien dituzten kontuak nahasiz."
+      language: Hizkuntza
+      status: Egoera
+      suppress: Kendu jarraitzeko gomendioa
+      suppressed: Kenduta
+      title: Jarraitzeko gomendioak
+      unsuppress: Berrezarri jarraitzeko gomendioa
     instances:
       by_domain: Domeinua
       delivery_available: Bidalketa eskuragarri dago
@@ -542,7 +552,10 @@ eu:
       updated_at: Eguneratua
     rules:
       add_new: Gehitu araua
+      delete: Ezabatu
+      description_html: Gehienek erabilera baldintzak irakurri eta onartu dituztela baieztatzen badute ere, orokorrean arazoren bat dagoen arte ez dituzte irakurtzen. <strong>Zerbitzariaren arauak begirada batean ikustea errazteko buletadun zerrenda batean bildu.</strong> Saiatu arauak labur eta sinple idazten, baina elementu askotan banatu gabe.
       edit: Editatu araua
+      empty: Ez da zerbitzariko araurik definitu oraindik.
       title: Zerbitzariaren arauak
     settings:
       activity_api_enabled:
@@ -684,6 +697,7 @@ eu:
       add_new: Gehitu berria
       delete: Ezabatu
       edit_preset: Editatu abisu aurre-ezarpena
+      empty: Ez duzu abisu aurrezarpenik definitu oraindik.
       title: Kudeatu abisu aurre-ezarpenak
   admin_mailer:
     new_pending_account:
@@ -1243,6 +1257,7 @@ eu:
     sign_in_to_participate: Eman izena elkarrizketan parte hartzeko
     title: '%{name}: "%{quote}"'
     visibilities:
+      direct: Zuzena
       private: Jarraitzaileak besterik ez
       private_long: Erakutsi jarraitzaileei besterik ez
       public: Publikoa
