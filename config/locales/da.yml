@@ -295,30 +295,36 @@ da:
         unsensitive_account_html: "%{name} afmarkerede %{target}s medier som sensitive"
         unsilence_account_html: "%{name} fjernede tavsgøring af %{target}s konto"
         unsuspend_account_html: "%{name} fjernede suspenderingen af %{target}s konto"
+        update_announcement_html: "%{name} opdaterede bekendtgørelsen %{target}"
+        update_custom_emoji_html: "%{name} opdaterede emoji %{target}"
+        update_domain_block_html: "%{name} opdaterede domæneblokeringen for %{target}"
+        update_status_html: "%{name} opdaterede status for %{target}"
       deleted_status: "(slettet status)"
-      empty: Ingen logs fundet.
-      filter_by_action: Filtrer efter handling
-      filter_by_user: Filtrer efter bruger
+      empty: Ingen logger fundet.
+      filter_by_action: Filtrér efter handling
+      filter_by_user: Filtrér efter bruger
       title: Revisionslog
     announcements:
       destroyed_msg: Bekendtgørelsen blev slettet!
       edit:
-        title: Rediger bekendtgørelse
+        title: Redigér bekendtgørelse
       empty: Ingen bekendtgørelser fundet.
-      live: Direkte
+      live: Live
       new:
         create: Opret bekendtgørelse
         title: Ny bekendtgørelse
       publish: Publicér
-      published_msg: Bekendtgørelsen blev slettet!
+      published_msg: Bekendtgørelsen blev publiceret!
       scheduled_for: Planlagt til %{time}
+      scheduled_msg: Bekendtgørelse planlagt til publicering!
       title: Bekendtgørelser
       unpublish: Afpublicér
+      unpublished_msg: Bekendtgørelsen blev afpubliceret!
       updated_msg: Bekendtgørelsen blev opdateret!
     custom_emojis:
-      assign_category: Vælg kategori
+      assign_category: Tildel kategori
       by_domain: Domæne
-      copied_msg: Succesfuldt oprettede en lokal kopi af humørikonet
+      copied_msg: Lokal kopi af emojien oprettet
       copy: Kopier
       copy_failed_msg: Kunne ikke oprette en lokal kopi af dette humørikon
       create_new_category: Opret ny kategori
