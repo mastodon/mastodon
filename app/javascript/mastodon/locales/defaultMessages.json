@@ -1627,6 +1627,36 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "Follow",
+        "id": "account.follow"
+      },
+      {
+        "defaultMessage": "Unfollow",
+        "id": "account.unfollow"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/follow_recommendations/components/account.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Follow people you'd like to see posts from! Here are some suggestions.",
+        "id": "follow_recommendations.heading"
+      },
+      {
+        "defaultMessage": "Posts from people you follow will show up in chronological order on your home feed. Don't be afraid to make mistakes, you can unfollow people just as easily any time!",
+        "id": "follow_recommendations.lead"
+      },
+      {
+        "defaultMessage": "Done",
+        "id": "follow_recommendations.done"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/follow_recommendations/index.json"
+  },
+  {
+    "descriptors": [
+      {
         "defaultMessage": "Authorize",
         "id": "follow_request.authorize"
       },
@@ -1898,79 +1928,6 @@
       }
     ],
     "path": "app/javascript/mastodon/features/home_timeline/index.json"
-  },
-  {
-    "descriptors": [
-      {
-        "defaultMessage": "First steps",
-        "id": "introduction.welcome.headline"
-      },
-      {
-        "defaultMessage": "Welcome to the fediverse! In a few moments, you'll be able to broadcast messages and talk to your friends across a wide variety of servers. But this server, {domain}, is special—it hosts your profile, so remember its name.",
-        "id": "introduction.welcome.text"
-      },
-      {
-        "defaultMessage": "Let's go!",
-        "id": "introduction.welcome.action"
-      },
-      {
-        "defaultMessage": "Home",
-        "id": "introduction.federation.home.headline"
-      },
-      {
-        "defaultMessage": "Posts from people you follow will appear in your home feed. You can follow anyone on any server!",
-        "id": "introduction.federation.home.text"
-      },
-      {
-        "defaultMessage": "Local",
-        "id": "introduction.federation.local.headline"
-      },
-      {
-        "defaultMessage": "Public posts from people on the same server as you will appear in the local timeline.",
-        "id": "introduction.federation.local.text"
-      },
-      {
-        "defaultMessage": "Federated",
-        "id": "introduction.federation.federated.headline"
-      },
-      {
-        "defaultMessage": "Public posts from other servers of the fediverse will appear in the federated timeline.",
-        "id": "introduction.federation.federated.text"
-      },
-      {
-        "defaultMessage": "Next",
-        "id": "introduction.federation.action"
-      },
-      {
-        "defaultMessage": "Reply",
-        "id": "introduction.interactions.reply.headline"
-      },
-      {
-        "defaultMessage": "You can reply to other people's and your own toots, which will chain them together in a conversation.",
-        "id": "introduction.interactions.reply.text"
-      },
-      {
-        "defaultMessage": "Boost",
-        "id": "introduction.interactions.reblog.headline"
-      },
-      {
-        "defaultMessage": "You can share other people's toots with your followers by boosting them.",
-        "id": "introduction.interactions.reblog.text"
-      },
-      {
-        "defaultMessage": "Favourite",
-        "id": "introduction.interactions.favourite.headline"
-      },
-      {
-        "defaultMessage": "You can save a toot for later, and let the author know that you liked it, by favouriting it.",
-        "id": "introduction.interactions.favourite.text"
-      },
-      {
-        "defaultMessage": "Finish toot-orial!",
-        "id": "introduction.interactions.action"
-      }
-    ],
-    "path": "app/javascript/mastodon/features/introduction/index.json"
   },
   {
     "descriptors": [
@@ -2283,6 +2240,10 @@
       {
         "defaultMessage": "Desktop notifications are unavailable because the required permission has not been granted.",
         "id": "notifications.permission_required"
+      },
+      {
+        "defaultMessage": "Unread notification markers",
+        "id": "notifications.column_settings.unread_markers.category"
       },
       {
         "defaultMessage": "Quick filter bar",
