@@ -114,7 +114,7 @@ pt-PT:
       confirmed: Confirmado
       confirming: A confirmar
       delete: Eliminar dados
-      deleted: Apagada
+      deleted: Eliminada
       demote: Despromoveu
       destroyed_msg: "Os dados de %{username} estão agora em fila de espera para serem eliminados de imediato"
       disable: Desativar
@@ -201,7 +201,7 @@ pt-PT:
       statuses: Status
       subscribe: Inscrever-se
       suspended: Suspensa
-      suspension_irreversible: Os dados desta conta foram eliminados irreversivelmente. Você pode cancelar a suspensão da conta para torná-la utilizável, mas ela não irá recuperar os dados que possuía anteriormente.
+      suspension_irreversible: Os dados desta conta foram eliminados irreversivelmente. Pode cancelar a suspensão da conta para torná-la utilizável, mas ela não irá recuperar os dados que possuía anteriormente.
       suspension_reversible_hint_html: A conta foi suspensa e os dados serão totalmente eliminados em %{date}. Até lá, a conta poderá ser recuperada sem quaisquer efeitos negativos. Se deseja eliminar todos os dados desta conta imediatamente, pode fazê-lo em baixo.
       time_in_queue: Aguardando na fila %{time}
       title: Contas
@@ -230,13 +230,13 @@ pt-PT:
         create_email_domain_block: Criar Bloqueio de Domínio de E-mail
         create_ip_block: Criar regra de IP
         demote_user: Despromover Utilizador
-        destroy_announcement: Remover Anúncio
-        destroy_custom_emoji: Remover Emoji Personalizado
-        destroy_domain_allow: Remover Permissão de Domínio
-        destroy_domain_block: Remover Bloqueio de Domínio
-        destroy_email_domain_block: Remover Bloqueio de Domínio de E-mail
+        destroy_announcement: Eliminar Anúncio
+        destroy_custom_emoji: Eliminar Emoji Personalizado
+        destroy_domain_allow: Eliminar Permissão de Domínio
+        destroy_domain_block: Eliminar Bloqueio de Domínio
+        destroy_email_domain_block: Eliminar Bloqueio de Domínio de E-mail
         destroy_ip_block: Eliminar regra de IP
-        destroy_status: Remover Estado
+        destroy_status: Eliminar Publicação
         disable_2fa_user: Desativar 2FA
         disable_custom_emoji: Desativar Emoji Personalizado
         disable_user: Desativar Utilizador
@@ -300,7 +300,7 @@ pt-PT:
         update_custom_emoji_html: "%{name} atualizou o emoji %{target}"
         update_domain_block_html: "%{name} atualizou o bloqueio de domínio para %{target}"
         update_status_html: "%{name} atualizou o estado de %{target}"
-      deleted_status: "(apagou a publicação)"
+      deleted_status: "(publicação eliminada)"
       empty: Não foram encontrados registos.
       filter_by_action: Filtrar por ação
       filter_by_user: Filtrar por utilizador
@@ -330,7 +330,7 @@ pt-PT:
       copy_failed_msg: Não foi possível criar uma cópia local deste emoji
       create_new_category: Criar nova categoria
       created_msg: Emoji criado com sucesso!
-      delete: Apagar
+      delete: Eliminar
       destroyed_msg: Emoji destruído com sucesso!
       disable: Desativar
       disabled: Desativado
@@ -497,7 +497,7 @@ pt-PT:
       title: "Relações de %{acct}"
     relays:
       add_new: Adicionar novo repetidor
-      delete: Apagar
+      delete: Eliminar
       description_html: Um <strong>repetidor de federação</strong> é um servidor intermediário que troca grandes volumes de publicações públicas entre instâncias que o subscrevem e publicam. <strong>Ele pode ajudar pequenas e medias instâncias a descobrir conteúdo do fediverso</strong> que, de outro modo, exigiria que os utilizadores locais seguissem manualmente outras pessoas em instâncias remotas.
       disable: Desactivar
       disabled: Desactivado
@@ -538,7 +538,7 @@ pt-PT:
         create: Adicionar nota
         create_and_resolve: Resolver com nota
         create_and_unresolve: Reabrir com nota
-        delete: Apagar
+        delete: Eliminar
         placeholder: Descreve as ações que foram tomadas ou quaisquer outras atualizações relacionadas...
       reopen: Reabrir relatório
       report: 'Denúncia #%{id}'
@@ -554,6 +554,7 @@ pt-PT:
     rules:
       add_new: Adicionar regra
       delete: Eliminar
+      description_html: Embora a maioria afirme ter lido e concordado com os termos de serviço, geralmente as pessoas só leem depois de surgir um problema. <strong>Dê uma olhada nas regras do seu servidor fornecendo-as em uma lista de marcadores planos.</strong> Tente manter as regras individuais curtas e simples, mas tente também não dividi-las em muitos itens separados.
       edit: Editar regra
       empty: Nenhuma regra de instância foi ainda definida.
       title: Regras da instância
@@ -650,7 +651,7 @@ pt-PT:
         desc_html: Exibir publicamente hashtags atualmente em destaque que já tenham sido revistas anteriormente
         title: Hashtags em destaque
     site_uploads:
-      delete: Excluir arquivo carregado
+      delete: Eliminar arquivo carregado
       destroyed_msg: Upload do site excluído com sucesso!
     statuses:
       back_to_account: Voltar para página da conta
@@ -658,7 +659,7 @@ pt-PT:
         delete: Eliminar
         nsfw_off: NSFW OFF
         nsfw_on: NSFW ON
-      deleted: Apagado
+      deleted: Eliminado
       failed_to_execute: Falhou ao executar
       media:
         title: Media
@@ -695,7 +696,7 @@ pt-PT:
     title: Administração
     warning_presets:
       add_new: Adicionar novo
-      delete: Apagar
+      delete: Eliminar
       edit_preset: Editar o aviso predefinido
       empty: Ainda não definiu nenhuma predefinição de alerta.
       title: Gerir os avisos predefinidos
@@ -832,7 +833,7 @@ pt-PT:
     confirm_password: Introduz a palavra-passe atual para verificar a tua identidade
     confirm_username: Introduza o seu nome de utilizador para confirmar o procedimento
     proceed: Eliminar conta
-    success_msg: A tua conta foi eliminada com sucesso
+    success_msg: A sua conta foi eliminada com sucesso
     warning:
       before: 'Antes de continuar, por favor leia cuidadosamente estas notas:'
       caches: O conteúdo que foi armazenado em cache por outras instâncias pode persistir
@@ -901,7 +902,7 @@ pt-PT:
       invalid_context: Inválido ou nenhum contexto fornecido
       invalid_irreversible: Filtragem irreversível só funciona no contexto das notificações ou do início
     index:
-      delete: Apagar
+      delete: Eliminar
       empty: Não tem filtros.
       title: Filtros
     new:
@@ -1441,8 +1442,8 @@ pt-PT:
     create:
       error: Ocorreu um problema ao adicionar sua chave de segurança. Tente novamente.
       success: A sua chave de segurança foi adicionada com sucesso.
-    delete: Remover
-    delete_confirmation: Tem a certeza de que pretende remover esta chave de segurança?
+    delete: Eliminar
+    delete_confirmation: Tem a certeza de que pretende eliminar esta chave de segurança?
     description_html: Se você ativar a <strong>autenticação com chave de segurança</strong>, para aceder à sua conta será necessário que utilize uma das suas chaves de segurança.
     destroy:
       error: Ocorreu um problema ao remover a sua chave de segurança. Tente novamente.
