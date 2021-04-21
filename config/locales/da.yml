@@ -397,11 +397,12 @@ da:
         create: Opret blokering
         hint: Domæneblokeringen vil ikke forhindre oprettelse af kontoposter i databasen, men vil retroaktivt og automatisk benytte specifikke moderationsmetoder på disse konti.
         severity:
-          desc_html: "<strong>Dæmp</strong> vil gøre denne kontos opslag usynlige til alle der ikke følger dem. <strong>Udeluk</strong> vil fjerne al kontoens indhold, medie og profildata. Brug <strong>Ingen</strong> hvis du bare ønsker at afvise medie filer."
+          desc_html: "<strong>Tavsgjort</strong> vil gøre kontoens indlæg usynlige for alle, som ikke følger dem. <strong>Suspendering</strong> vil fjerne alt kontoindhold, medier og profildata. Brug <strong>Ingen</strong>, hvis mediefiler blot ønskes afvist."
           noop: Ingen
-          silence: Dæmp
-          suspend: Udeluk
-        title: Ny domæne blokering
+          silence: Tavsgøre
+          suspend: Suspendere
+        title: Ny domæneblokering
+      obfuscate: Slør domænenavn
       private_comment: Privat kommentar
       public_comment: Offentlig kommentar
       reject_media: Afvis medie filer
