@@ -27,7 +27,9 @@ Rails.application.configure do
     end
   end
 
-  config.hosts << host if host.present?
-  config.hosts << web_host if web_host.present?
-  config.hosts << alternate_domains if alternate_domains.present?
+  unless Rails.env.test?
+    config.hosts << host if host.present?
+    config.hosts << web_host if web_host.present?
+    config.hosts << alternate_domains if alternate_domains.present?
+  end
 end
