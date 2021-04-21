@@ -16,6 +16,8 @@ class RemoveStatusService < BaseService
     @account  = status.account
     @options  = options
 
+    @status.discard
+
     RedisLock.acquire(lock_options) do |lock|
       if lock.acquired?
         remove_from_self if @account.local?

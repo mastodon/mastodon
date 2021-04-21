@@ -49,4 +49,24 @@ RSpec.describe ActivityPub::Activity::Delete do
       end
     end
   end
+
+  context 'when the status has been reported' do
+    describe '#perform' do
+      subject { described_class.new(json, sender) }
+      let!(:reporter) { Fabricate(:account) }
+
+      before do
+        reporter.reports.create!(target_account: status.account, status_ids: [status.id], forwarded: false)
+        subject.perform
+      end
+
+      it 'marks the status as deleted' do
+        expect(Status.find_by(id: status.id)).to be_nil
+      end
+
+      it 'actually keeps a copy for inspection' do
+        expect(Status.with_discarded.find_by(id: status.id)).to_not be_nil
+      end
+    end
+  end
 end
