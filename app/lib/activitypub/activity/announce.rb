@@ -16,8 +16,6 @@ class ActivityPub::Activity::Announce < ActivityPub::Activity
       elsif @options[:delivered_to_account_id].present?
         postprocess_audience_and_deliver
       end
-    else
-      raise Mastodon::RaceConditionError
     end
 
     @status
