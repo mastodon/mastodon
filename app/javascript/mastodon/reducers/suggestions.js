@@ -19,18 +19,18 @@ export default function suggestionsReducer(state = initialState, action) {
     return state.set('isLoading', true);
   case SUGGESTIONS_FETCH_SUCCESS:
     return state.withMutations(map => {
-      map.set('items', fromJS(action.accounts.map(x => x.id)));
+      map.set('items', fromJS(action.suggestions.map(x => ({ ...x, account: x.account.id }))));
       map.set('isLoading', false);
     });
   case SUGGESTIONS_FETCH_FAIL:
     return state.set('isLoading', false);
   case SUGGESTIONS_DISMISS:
-    return state.update('items', list => list.filterNot(id => id === action.id));
+    return state.update('items', list => list.filterNot(x => x.account === action.id));
   case ACCOUNT_BLOCK_SUCCESS:
   case ACCOUNT_MUTE_SUCCESS:
-    return state.update('items', list => list.filterNot(id => id === action.relationship.id));
+    return state.update('items', list => list.filterNot(x => x.account === action.relationship.id));
   case DOMAIN_BLOCK_SUCCESS:
-    return state.update('items', list => list.filterNot(id => action.accounts.includes(id)));
+    return state.update('items', list => list.filterNot(x => action.accounts.includes(x.account)));
   default:
     return state;
   }

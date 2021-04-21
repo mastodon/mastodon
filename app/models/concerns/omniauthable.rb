@@ -68,7 +68,6 @@ module Omniauthable
     def user_params_from_auth(email, auth)
       {
         email: email || "#{TEMP_EMAIL_PREFIX}-#{auth.uid}-#{auth.provider}.com",
-        password: Devise.friendly_token[0, 20],
         agreement: true,
         external: true,
         account_attributes: {

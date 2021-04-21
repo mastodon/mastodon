@@ -1,4 +1,10 @@
-module Twitter
+module Twitter::TwitterText
+  class Configuration
+    def emoji_parsing_enabled
+      false
+    end
+  end
+
   class Regex
     REGEXEN[:valid_general_url_path_chars] = /[^\p{White_Space}<>\(\)\?]/iou
     REGEXEN[:valid_url_path_ending_chars] = /[^\p{White_Space}\(\)\?!\*"'「」<>;:=\,\.\$%\[\]~&\|@]|(?:#{REGEXEN[:valid_url_balanced_parens]})/iou
@@ -79,7 +85,7 @@ module Twitter
       return [] unless text && text.index(":")
       urls = []
 
-      text.to_s.scan(Twitter::Regex[:valid_extended_uri]) do
+      text.to_s.scan(Twitter::TwitterText::Regex[:valid_extended_uri]) do
         valid_uri_match_data = $~
 
         start_position = valid_uri_match_data.char_begin(3)

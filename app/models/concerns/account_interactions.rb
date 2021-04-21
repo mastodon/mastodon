@@ -67,7 +67,7 @@ module AccountInteractions
     private
 
     def follow_mapping(query, field)
-      query.pluck(field).each_with_object({}) { |id, mapping| mapping[id] = true }
+      query.pluck(field).index_with(true)
     end
   end
 

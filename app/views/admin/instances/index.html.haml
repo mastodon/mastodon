@@ -36,6 +36,6 @@
   %div.muted-hint.center-text
     = t 'admin.instances.empty'
 - else
-  = render @instances
+  = render partial: 'instance', collection: @instances
 
 = paginate @instances

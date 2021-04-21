@@ -1,6 +1,11 @@
 version = 1
 
-test_patterns = ["/app/javascript/mastodon/**/__tests__/**"]
+test_patterns = ["app/javascript/mastodon/**/__tests__/**"]
+
+exclude_patterns = [
+    "db/migrate/**",
+    "db/post_migrate/**"
+]
 
 [[analyzers]]
 name = "ruby"
@@ -12,7 +17,7 @@ enabled = true
 
   [analyzers.meta]
   environment = [
-    "nodejs",
     "browser",
-    "jest"
+    "jest",
+    "nodejs"
   ]

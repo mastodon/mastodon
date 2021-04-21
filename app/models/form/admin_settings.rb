@@ -29,7 +29,6 @@ class Form::AdminSettings
     thumbnail
     hero
     mascot
-    spam_check_enabled
     trends
     trendable_by_default
     show_domain_blocks
@@ -48,7 +47,6 @@ class Form::AdminSettings
     show_known_fediverse_at_about_page
     preview_sensitive_media
     profile_directory
-    spam_check_enabled
     trends
     trendable_by_default
     noindex

@@ -49,12 +49,12 @@ class Notification < ApplicationRecord
   belongs_to :from_account, class_name: 'Account', optional: true
   belongs_to :activity, polymorphic: true, optional: true
 
-  belongs_to :mention,        foreign_type: 'Mention',       foreign_key: 'activity_id', optional: true
-  belongs_to :status,         foreign_type: 'Status',        foreign_key: 'activity_id', optional: true
-  belongs_to :follow,         foreign_type: 'Follow',        foreign_key: 'activity_id', optional: true
-  belongs_to :follow_request, foreign_type: 'FollowRequest', foreign_key: 'activity_id', optional: true
-  belongs_to :favourite,      foreign_type: 'Favourite',     foreign_key: 'activity_id', optional: true
-  belongs_to :poll,           foreign_type: 'Poll',          foreign_key: 'activity_id', optional: true
+  belongs_to :mention,        foreign_key: 'activity_id', optional: true
+  belongs_to :status,         foreign_key: 'activity_id', optional: true
+  belongs_to :follow,         foreign_key: 'activity_id', optional: true
+  belongs_to :follow_request, foreign_key: 'activity_id', optional: true
+  belongs_to :favourite,      foreign_key: 'activity_id', optional: true
+  belongs_to :poll,           foreign_key: 'activity_id', optional: true
 
   validates :type, inclusion: { in: TYPES }
 

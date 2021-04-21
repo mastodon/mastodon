@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require 'singleton'
-require_relative './sanitize_config'
 
 class Formatter
   include Singleton
@@ -86,7 +85,7 @@ class Formatter
   end
 
   def format_field(account, str, **options)
-    html = account.local? ? encode_and_link_urls(str, me: true) : reformat(str)
+    html = account.local? ? encode_and_link_urls(str, me: true, with_domain: true) : reformat(str)
     html = encode_custom_emojis(html, account.emojis, options[:autoplay]) if options[:custom_emojify]
     html.html_safe # rubocop:disable Rails/OutputSafety
   end
@@ -123,7 +122,7 @@ class Formatter
       elsif entity[:hashtag]
         link_to_hashtag(entity)
       elsif entity[:screen_name]
-        link_to_mention(entity, accounts)
+        link_to_mention(entity, accounts, options)
       end
     end
   end
@@ -158,9 +157,9 @@ class Formatter
           original_url, static_url = emoji
           replacement = begin
             if animate
-              "<img draggable=\"false\" class=\"emojione\" alt=\":#{encode(shortcode)}:\" title=\":#{encode(shortcode)}:\" src=\"#{encode(original_url)}\" />"
+              image_tag(original_url, draggable: false, class: 'emojione', alt: ":#{shortcode}:", title: ":#{shortcode}:")
             else
-              "<img draggable=\"false\" class=\"emojione custom-emoji\" alt=\":#{encode(shortcode)}:\" title=\":#{encode(shortcode)}:\" src=\"#{encode(static_url)}\" data-original=\"#{original_url}\" data-static=\"#{static_url}\" />"
+              image_tag(original_url, draggable: false, class: 'emojione custom-emoji', alt: ":#{shortcode}:", title: ":#{shortcode}:", data: { original: original_url, static: static_url })
             end
           end
           before_html = shortname_start_index.positive? ? html[0..shortname_start_index - 1] : ''
@@ -260,27 +259,42 @@ class Formatter
 
     html_attrs[:rel] = "me #{html_attrs[:rel]}" if options[:me]
 
-    Twitter::Autolink.send(:link_to_text, entity, link_html(entity[:url]), url, html_attrs)
+    Twitter::TwitterText::Autolink.send(:link_to_text, entity, link_html(entity[:url]), url, html_attrs)
   rescue Addressable::URI::InvalidURIError, IDN::Idna::IdnaError
     encode(entity[:url])
   end
 
-  def link_to_mention(entity, linkable_accounts)
+  def link_to_mention(entity, linkable_accounts, options = {})
     acct = entity[:screen_name]
 
-    return link_to_account(acct) unless linkable_accounts
+    return link_to_account(acct, options) unless linkable_accounts
 
-    account = linkable_accounts.find { |item| TagManager.instance.same_acct?(item.acct, acct) }
-    account ? mention_html(account) : "@#{encode(acct)}"
+    same_username_hits = 0
+    account = nil
+    username, domain = acct.split('@')
+    domain = nil if TagManager.instance.local_domain?(domain)
+
+    linkable_accounts.each do |item|
+      same_username = item.username.casecmp(username).zero?
+      same_domain   = item.domain.nil? ? domain.nil? : item.domain.casecmp(domain)&.zero?
+
+      if same_username && !same_domain
+        same_username_hits += 1
+      elsif same_username && same_domain
+        account = item
+      end
+    end
+
+    account ? mention_html(account, with_domain: same_username_hits.positive? || options[:with_domain]) : "@#{encode(acct)}"
   end
 
-  def link_to_account(acct)
+  def link_to_account(acct, options = {})
     username, domain = acct.split('@')
 
     domain  = nil if TagManager.instance.local_domain?(domain)
     account = EntityCache.instance.mention(username, domain)
 
-    account ? mention_html(account) : "@#{encode(acct)}"
+    account ? mention_html(account, with_domain: options[:with_domain]) : "@#{encode(acct)}"
   end
 
   def link_to_hashtag(entity)
@@ -301,7 +315,7 @@ class Formatter
     "<a href=\"#{encode(tag_url(tag))}\" class=\"mention hashtag\" rel=\"tag\">#<span>#{encode(tag)}</span></a>"
   end
 
-  def mention_html(account)
-    "<span class=\"h-card\"><a href=\"#{encode(ActivityPub::TagManager.instance.url_for(account))}\" class=\"u-url mention\">@<span>#{encode(account.username)}</span></a></span>"
+  def mention_html(account, with_domain: false)
+    "<span class=\"h-card\"><a href=\"#{encode(ActivityPub::TagManager.instance.url_for(account))}\" class=\"u-url mention\">@<span>#{encode(with_domain ? account.pretty_acct : account.username)}</span></a></span>"
   end
 end

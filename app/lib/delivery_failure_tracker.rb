@@ -29,7 +29,7 @@ class DeliveryFailureTracker
 
   class << self
     def without_unavailable(urls)
-      unavailable_domains_map = Rails.cache.fetch('unavailable_domains') { UnavailableDomain.pluck(:domain).each_with_object({}) { |domain, hash| hash[domain] = true } }
+      unavailable_domains_map = Rails.cache.fetch('unavailable_domains') { UnavailableDomain.pluck(:domain).index_with(true) }
 
       urls.reject do |url|
         host = Addressable::URI.parse(url).normalized_host

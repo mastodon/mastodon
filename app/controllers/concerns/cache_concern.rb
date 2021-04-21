@@ -31,7 +31,9 @@ module CacheConcern
   def cache_collection(raw, klass)
     return raw unless klass.respond_to?(:with_includes)
 
-    raw                    = raw.cache_ids.to_a if raw.is_a?(ActiveRecord::Relation)
+    raw = raw.cache_ids.to_a if raw.is_a?(ActiveRecord::Relation)
+    return [] if raw.empty?
+
     cached_keys_with_value = Rails.cache.read_multi(*raw).transform_keys(&:id)
     uncached_ids           = raw.map(&:id) - cached_keys_with_value.keys
 

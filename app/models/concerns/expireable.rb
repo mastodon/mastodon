@@ -17,7 +17,7 @@ module Expireable
     end
 
     def expires_in=(interval)
-      self.expires_at = interval.to_i.seconds.from_now if interval.present?
+      self.expires_at = interval.present? ? interval.to_i.seconds.from_now : nil 
       @expires_in     = interval
     end
 
