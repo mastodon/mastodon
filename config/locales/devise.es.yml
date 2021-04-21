@@ -1,3 +1,4 @@
+---
 es:
   devise:
     confirmations:
@@ -7,7 +8,7 @@ es:
     failure:
       already_authenticated: Usted ya está registrado.
       inactive: Su cuenta no ha sido activada aún.
-      invalid: '%{authentication_keys} o contraseña inválida.'
+      invalid: "%{authentication_keys} o contraseña inválida."
       last_attempt: Tiene un intento más antes de que tu cuenta sea bloqueada.
       locked: Tu cuenta está bloqueada.
       not_found_in_database: Incorrecto %{authentication_keys} o contraseña.
