@@ -423,23 +423,23 @@ da:
           other: "%{count} konti i databasen påvirket"
         retroactive:
           silence: Fjern tavsgøring for eksisterende, berørte konti fra dette domæne
-          suspend: Fjern udelukkelsen af alle eksisterende konti fra dette domæne
-        title: Annuller domæne blokeringen for domænet %{domain}
-        undo: Fortryd
-      undo: Fortryd domain block
-      view: Vis domæne blokering
+          suspend: Fjern suspendering for eksisterende, berørte konti fra dette domæne
+        title: Annullér domæneblokering for domænet %{domain}
+        undo: Annullér
+      undo: Annullér domæneblokering
+      view: Vis domæneblokering
     email_domain_blocks:
       add_new: Tilføj ny
-      created_msg: Tilføjede succesfuldt email domænet til sortliste
+      created_msg: E-maildomæne blokeret
       delete: Slet
-      destroyed_msg: Fjernede succesfuldt email domænet fra sortliste
+      destroyed_msg: E-maildomæne afblokeret
       domain: Domæne
-      empty: Ingen e-mail-domæner er i øjeblikket blokeret.
+      empty: Ingen e-maildomæner er pt. blokeret.
       from_html: fra %{domain}
       new:
         create: Tilføj domæne
-        title: Ny email blokade opslag
-      title: Email sortliste
+        title: Blokere nyt e-maildomæne
+      title: Blokerede e-maildomæner
     follow_recommendations:
       description_html: "<strong>Følg-anbefalinger hjælpe nye brugere til hurtigt at finde interessant indhold</strong>. Når en bruger ikke har interageret nok med andre til at danne personlige følg-anbefalinger, anbefales disse konti i stedet. De genberegnes dagligt baseret på en blanding af konti med de fleste nylige engagementer og fleste lokale følger-antal for et givet sprog."
       language: For sprog
