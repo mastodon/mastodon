@@ -62,7 +62,11 @@ class StatusReachFinder
   end
 
   def followers_inboxes
-    @status.account.followers.inboxes
+    if @status.reply? && @status.thread.account.local? && @status.distributable?
+      @status.account.followers.or(@status.thread.account.followers).inboxes
+    else
+      @status.account.followers.inboxes
+    end
   end
 
   def relay_inboxes
