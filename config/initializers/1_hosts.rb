@@ -4,7 +4,7 @@ port     = ENV.fetch('PORT') { 3000 }
 host     = ENV.fetch('LOCAL_DOMAIN') { "localhost:#{port}" }
 web_host = ENV.fetch('WEB_DOMAIN') { host }
 
-alternate_domains = ENV.fetch('ALTERNATE_DOMAINS') { '' }
+alternate_domains = ENV.fetch('ALTERNATE_DOMAINS') { '' }.split(/\s*,\s*/)
 
 Rails.application.configure do
   https = Rails.env.production? || ENV['LOCAL_HTTPS'] == 'true'
@@ -15,7 +15,7 @@ Rails.application.configure do
   config.x.use_s3       = ENV['S3_ENABLED'] == 'true'
   config.x.use_swift    = ENV['SWIFT_ENABLED'] == 'true'
 
-  config.x.alternate_domains = alternate_domains.split(/\s*,\s*/)
+  config.x.alternate_domains = alternate_domains
 
   config.action_mailer.default_url_options = { host: web_host, protocol: https ? 'https://' : 'http://', trailing_slash: false }
 
@@ -30,6 +30,6 @@ Rails.application.configure do
   unless Rails.env.test?
     config.hosts << host if host.present?
     config.hosts << web_host if web_host.present?
-    config.hosts << alternate_domains if alternate_domains.present?
+    config.hosts.concat(alternate_domains) if alternate_domains.present?
   end
 end
