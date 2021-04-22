@@ -2,14 +2,14 @@
 
 class DeliveryPolicy < ApplicationPolicy
   def clear_delivery_errors?
-      admin?
+    admin?
   end
 
   def restart_delivery?
-      admin?
+    admin?
   end
 
   def stop_delivery?
-      admin?
+    admin?
   end
 end

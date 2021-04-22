@@ -30,7 +30,7 @@ class DeliveryFailureTracker
   end
 
   def exhausted_deliveries_days
-    Redis.current.smembers(exhausted_deliveries_key).sort.map { |date| Date.new(date.slice(0,4).to_i, date.slice(4,2).to_i, date.slice(6,2).to_i) }
+    Redis.current.smembers(exhausted_deliveries_key).sort.map { |date| Date.new(date.slice(0, 4).to_i, date.slice(4, 2).to_i, date.slice(6, 2).to_i) }
   end
 
   alias reset! track_success!
@@ -57,11 +57,12 @@ class DeliveryFailureTracker
       domains = Redis.current.keys(exhausted_deliveries_key('*')).map do |key|
         key.delete_prefix(exhausted_deliveries_key(''))
       end
+
       domains - UnavailableDomain.all.pluck(:domain)
     end
 
     def warning_domains_map
-      warning_domains.each_with_object({}) { |domain, hash| hash[domain] = Redis.current.scard(exhausted_deliveries_key(domain)) }
+      warning_domains.index_with { |domain| Redis.current.scard(exhausted_deliveries_key(domain)) }
     end
 
     private
