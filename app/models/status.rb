@@ -24,6 +24,7 @@
 #  poll_id                :bigint(8)
 #  deleted_at             :datetime
 #  local_only             :boolean
+#  activity_pub_type      :string
 #
 
 class Status < ApplicationRecord

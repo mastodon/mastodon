@@ -579,7 +579,7 @@ $small-breakpoint: 960px;
     bottom: 25px;
 
     img {
-      height: 190px;
+      height: 155px;
       width: auto;
     }
   }
@@ -688,6 +688,8 @@ $small-breakpoint: 960px;
     justify-content: center;
     align-items: center;
     padding: 50px;
+    font-family: $font-display, sans-serif;
+    font-weight: bold;
 
     svg {
       fill: $primary-text-color;
@@ -864,6 +866,22 @@ $small-breakpoint: 960px;
 .brand {
   position: relative;
   text-decoration: none;
+  color: $secondary-text-color;
+}
+
+a.brand {
+  color: $primary-text-color;
+}
+
+h1 a.brand {
+  color: $secondary-text-color;
+  font-size: 3.8em;
+}
+
+.originalmascotimg svg {
+  width: 200px;
+  fill: $secondary-text-color;
+  margin-top: -25px;
 }
 
 .brand__tagline {
@@ -883,4 +901,3 @@ $small-breakpoint: 960px;
     color: $dark-text-color;
   }
 }
-

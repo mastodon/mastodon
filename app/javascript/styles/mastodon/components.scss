@@ -406,12 +406,6 @@
       color: $lighter-text-color;
       font-weight: 500;
       text-decoration: underline;
-
-      &:hover,
-      &:active,
-      &:focus {
-        text-decoration: none;
-      }
     }
   }
 
@@ -821,10 +815,6 @@
 
   &.status__content--with-spoiler {
     white-space: normal;
-
-    .status__content__text {
-      white-space: pre-wrap;
-    }
   }
 
   .emojione {
@@ -832,11 +822,82 @@
     height: 20px;
     margin: -3px 0 0;
   }
+  .status__content__text {
+    p,
+    pre,
+    blockquote {
+      margin-bottom: 20px;
+      white-space: pre-wrap;
+      unicode-bidi: plaintext;
 
-  p {
-    margin-bottom: 20px;
-    white-space: pre-wrap;
-    unicode-bidi: plaintext;
+      &:last-child {
+        margin-bottom: 2px;
+      }
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5 {
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-weight: 700;
+      font-size: 22px;
+    }
+
+    h2 {
+      font-weight: 700;
+      font-size: 20px;
+    }
+
+    h3,
+    h4,
+    h5 {
+      font-weight: 500;
+    }
+
+    blockquote {
+      padding-left: 10px;
+      border-left: 3px solid $darker-text-color;
+      color: $darker-text-color;
+      white-space: normal;
+
+      p:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    b,
+    strong {
+      font-weight: 700;
+    }
+
+    em,
+    i {
+      font-style: italic;
+    }
+
+    ul,
+    ol {
+      margin-left: 1em;
+      margin-bottom: 1em;
+
+      p {
+        margin: 0;
+      }
+    }
+
+    ul {
+      list-style-type: disc;
+    }
+
+    ol {
+      list-style-type: decimal;
+    }
 
     &:last-child {
       margin-bottom: 0;
@@ -845,7 +906,7 @@
 
   a {
     color: $secondary-text-color;
-    text-decoration: none;
+    text-decoration: underline;
     unicode-bidi: isolate;
 
     &:hover {
@@ -857,13 +918,9 @@
     }
 
     &.mention {
-      &:hover {
-        text-decoration: none;
-
         span {
           text-decoration: underline;
         }
-      }
     }
 
     .fa {
@@ -900,6 +957,10 @@
     &.status__content__text--visible {
       display: block;
     }
+  }
+
+  .article-type img {
+    max-width: 95%;
   }
 }
 
@@ -1177,6 +1238,7 @@
 .status__action-bar-dropdown {
   height: 23.15px;
   width: 23.15px;
+  margin-right: 18px;
 }
 
 .detailed-status__action-bar-dropdown {
@@ -2027,6 +2089,13 @@ a.account__display-name {
         width: 285px;
         pointer-events: auto;
         height: 100%;
+
+        @media screen and (max-width: 1550px) {
+          overflow-y: scroll;
+          overflow-x: hidden;
+          padding-right: 10px;
+        }
+
       }
     }
 
@@ -2467,6 +2536,12 @@ a.account__display-name {
   height: calc(100% - 10px);
   overflow-y: hidden;
 
+  @media screen and (max-width: 1550px) {
+    height: auto;
+    min-height: calc(100% - 10px);
+    overflow-y: visible;
+  }
+
   .navigation-bar {
     padding-top: 20px;
     padding-bottom: 20px;
@@ -2493,6 +2568,11 @@ a.account__display-name {
     background-color: $white;
     border-radius: 4px 4px 0 0;
     flex: 0 1 auto;
+
+    @media screen and (max-width: 1550px) {
+      overflow-y: visible;
+    }
+
   }
 
   .autosuggest-textarea__textarea {
@@ -2558,12 +2638,12 @@ a.account__display-name {
 }
 
 .drawer__inner__mastodon {
-  background: lighten($ui-base-color, 13%) url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 234.80078 31.757813" width="234.80078" height="31.757812"><path d="M19.599609 0c-1.05 0-2.10039.375-2.90039 1.125L0 16.925781v14.832031h234.80078V17.025391l-16.5-15.900391c-1.6-1.5-4.20078-1.5-5.80078 0l-13.80078 13.099609c-1.6 1.5-4.19883 1.5-5.79883 0L179.09961 1.125c-1.6-1.5-4.19883-1.5-5.79883 0L159.5 14.224609c-1.6 1.5-4.20078 1.5-5.80078 0L139.90039 1.125c-1.6-1.5-4.20078-1.5-5.80078 0l-13.79883 13.099609c-1.6 1.5-4.20078 1.5-5.80078 0L100.69922 1.125c-1.600001-1.5-4.198829-1.5-5.798829 0l-13.59961 13.099609c-1.6 1.5-4.200781 1.5-5.800781 0L61.699219 1.125c-1.6-1.5-4.198828-1.5-5.798828 0L42.099609 14.224609c-1.6 1.5-4.198828 1.5-5.798828 0L22.5 1.125C21.7.375 20.649609 0 19.599609 0z" fill="#{hex-color($ui-base-color)}"/></svg>') no-repeat bottom / 100% auto;
+  background: lighten($ui-base-color, 13%);
   flex: 1;
   min-height: 47px;
   display: none;
 
-  > img {
+  > img, svg {
     display: block;
     object-fit: contain;
     object-position: bottom left;
@@ -2575,7 +2655,7 @@ a.account__display-name {
   }
 
   @media screen and (min-height: 640px) {
-    display: block;
+    display: flex;
   }
 }
 
@@ -2799,6 +2879,15 @@ a.account__display-name {
 .react-toggle--checked .react-toggle-thumb {
   left: 27px;
   border-color: $ui-highlight-color;
+}
+
+label[for="is-exclusive-checkbox"] {
+  margin-left: 20px;
+}
+
+.is-exclusive-checkbox {
+  transform: scale(0.7);
+  transform-origin: bottom;
 }
 
 .column-link {
@@ -3301,7 +3390,7 @@ a.status-card.compact:hover {
   }
 
   &__label {
-    margin-top: 30px;
+    margin-top: 0px;
 
     strong {
       display: block;
@@ -7255,5 +7344,23 @@ noscript {
     color: $darker-text-color;
     margin-bottom: 15px;
     text-align: center;
+  }
+}
+
+.drawer__inner__mastodon svg#hometownlogo {
+  box-sizing: border-box;
+  fill: $secondary-text-color;
+  margin: 0 0 10px 10px;
+  align-self: flex-end;
+}
+
+div.status__content,
+div.status__content--with-action,
+div.status__content--with-spoiler {
+  p {
+    span.show_more_button {
+      display: block;
+      margin: 0.25rem 0 0 0;
+    }
   }
 }

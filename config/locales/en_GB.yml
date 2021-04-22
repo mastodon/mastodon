@@ -1,7 +1,7 @@
 ---
 en_GB:
   about:
-    about_hashtag_html: These are public toots tagged with <strong>#%{hashtag}</strong>. You can interact with them if you have an account anywhere in the fediverse.
+    about_hashtag_html: These are public posts tagged with <strong>#%{hashtag}</strong>. You can interact with them if you have an account anywhere in the fediverse.
     about_mastodon_html: Mastodon is a social network based on open web protocols and free, open-source software. It is decentralized like e-mail.
     about_this: About
     active_count_after: active
@@ -59,10 +59,10 @@ en_GB:
     pin_errors:
       following: You must be already following the person you want to endorse
     posts:
-      one: Toot
-      other: Toots
-    posts_tab_heading: Toots
-    posts_with_replies: Toots and replies
+      one: Post
+      other: Posts
+    posts_tab_heading: Posts
+    posts_with_replies: Posts and replies
     reserved_username: The username is reserved
     roles:
       admin: Admin
@@ -181,11 +181,11 @@ en_GB:
         create_account_warning: "%{name} sent a warning to %{target}"
         create_custom_emoji: "%{name} uploaded new emoji %{target}"
         create_domain_block: "%{name} blocked domain %{target}"
-        create_email_domain_block: "%{name} blacklisted e-mail domain %{target}"
+        create_email_domain_block: "%{name} blocklisted e-mail domain %{target}"
         demote_user: "%{name} demoted user %{target}"
         destroy_custom_emoji: "%{name} destroyed emoji %{target}"
         destroy_domain_block: "%{name} unblocked domain %{target}"
-        destroy_email_domain_block: "%{name} whitelisted e-mail domain %{target}"
+        destroy_email_domain_block: "%{name} allowlisted e-mail domain %{target}"
         destroy_status: "%{name} removed status by %{target}"
         disable_2fa_user: "%{name} disabled two factor requirement for user %{target}"
         disable_custom_emoji: "%{name} disabled emoji %{target}"
@@ -289,14 +289,14 @@ en_GB:
       undo: Undo domain block
     email_domain_blocks:
       add_new: Add new
-      created_msg: Successfully added e-mail domain to blacklist
+      created_msg: Successfully added e-mail domain to blocklist
       delete: Delete
-      destroyed_msg: Successfully deleted e-mail domain from blacklist
+      destroyed_msg: Successfully deleted e-mail domain from blocklist
       domain: Domain
       new:
         create: Add domain
-        title: New e-mail blacklist entry
-      title: E-mail blacklist
+        title: New e-mail blocklist entry
+      title: E-mail blocklist
     followers:
       back_to_account: Back To Account
       title: "%{acct}'s Followers"
@@ -327,11 +327,11 @@ en_GB:
     relays:
       add_new: Add new relay
       delete: Delete
-      description_html: A <strong>federation relay</strong> is an intermediary server that exchanges large volumes of public toots between servers that subscribe and publish to it. <strong>It can help small and medium servers discover content from the fediverse</strong>, which would otherwise require local users manually following other people on remote servers.
+      description_html: A <strong>federation relay</strong> is an intermediary server that exchanges large volumes of public posts between servers that subscribe and publish to it. <strong>It can help small and medium servers discover content from the fediverse</strong>, which would otherwise require local users manually following other people on remote servers.
       disable: Disable
       disabled: Disabled
       enable: Enable
-      enable_hint: Once enabled, your server will subscribe to all public toots from this relay, and will begin sending this server's public toots to it.
+      enable_hint: Once enabled, your server will subscribe to all public posts from this relay, and will begin sending this server's public posts to it.
       enabled: Enabled
       inbox_url: Relay URL
       pending: Waiting for relay's approval
@@ -417,7 +417,7 @@ en_GB:
           open: Anyone can sign up
         title: Registrations mode
       show_known_fediverse_at_about_page:
-        desc_html: When toggled, it will show toots from all the known fediverse on preview. Otherwise it will only show local toots.
+        desc_html: When toggled, it will show posts from all the known fediverse on preview. Otherwise it will only show local posts.
         title: Show known fediverse on timeline preview
       show_staff_badge:
         desc_html: Show a staff badge on a user page
@@ -583,7 +583,7 @@ en_GB:
     archive_takeout:
       date: Date
       download: Download your archive
-      hint_html: You can request an archive of your <strong>toots and uploaded media</strong>. The exported data will be in the ActivityPub format, readable by any compliant software. You can request an archive every 7 days.
+      hint_html: You can request an archive of your <strong>posts and uploaded media</strong>. The exported data will be in the ActivityPub format, readable by any compliant software. You can request an archive every 7 days.
       in_progress: Compiling your archive...
       request: Request your archive
       size: Size
@@ -775,20 +775,20 @@ en_GB:
   remote_interaction:
     favourite:
       proceed: Proceed to favourite
-      prompt: 'You want to favourite this toot:'
+      prompt: 'You want to favourite this post:'
     reblog:
       proceed: Proceed to boost
-      prompt: 'You want to boost this toot:'
+      prompt: 'You want to boost this post:'
     reply:
       proceed: Proceed to reply
-      prompt: 'You want to reply to this toot:'
+      prompt: 'You want to reply to this post:'
   remote_unfollow:
     error: Error
     title: Title
     unfollowed: Unfollowed
   scheduled_statuses:
-    over_daily_limit: You have exceeded the limit of %{limit} scheduled toots for that day
-    over_total_limit: You have exceeded the limit of %{limit} scheduled toots
+    over_daily_limit: You have exceeded the limit of %{limit} scheduled posts for that day
+    over_total_limit: You have exceeded the limit of %{limit} scheduled posts
     too_soon: The scheduled date must be in the future
   sessions:
     activity: Last activity
@@ -833,7 +833,7 @@ en_GB:
     title: Sessions
   settings:
     authorized_apps: Authorized apps
-    back: Back to Mastodon
+    back: Back home
     delete: Account deletion
     development: Development
     edit_profile: Edit profile
@@ -864,9 +864,9 @@ en_GB:
     open_in_web: Open in web
     over_character_limit: character limit of %{max} exceeded
     pin_errors:
-      limit: You have already pinned the maximum number of toots
-      ownership: Someone else's toot cannot be pinned
-      private: Non-public toot cannot be pinned
+      limit: You have already pinned the maximum number of posts
+      ownership: Someone else's post cannot be pinned
+      private: Non-public post cannot be pinned
       reblog: A boost cannot be pinned
     poll:
       total_votes:
@@ -884,7 +884,7 @@ en_GB:
       unlisted: Unlisted
       unlisted_long: Everyone can see, but not listed on public timelines
   stream_entries:
-    pinned: Pinned toot
+    pinned: Pinned post
     reblogged: boosted
     sensitive_content: Sensitive content
   terms:
@@ -1002,8 +1002,8 @@ en_GB:
     warning:
       explanation:
         disable: While your account is frozen, your account data remains intact, but you cannot perform any actions until it is unlocked.
-        silence: While your account is limited, only people who are already following you will see your toots on this server, and you may be excluded from various public listings. However, others may still manually follow you.
-        suspend: Your account has been suspended, and all of your toots and your uploaded media files have been irreversibly removed from this server, and servers where you had followers.
+        silence: While your account is limited, only people who are already following you will see your posts on this server, and you may be excluded from various public listings. However, others may still manually follow you.
+        suspend: Your account has been suspended, and all of your posts and your uploaded media files have been irreversibly removed from this server, and servers where you had followers.
       review_server_policies: Review server policies
       subject:
         disable: Your account %{acct} has been frozen

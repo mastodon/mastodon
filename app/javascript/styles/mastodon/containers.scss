@@ -257,6 +257,29 @@
   }
 }
 
+.originalhero {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    align-content: space-between;
+
+    svg {
+      fill: $secondary-text-color;
+      height: 200px;
+    }
+
+    h1 {
+      flex-grow: 2;
+      text-align: center;
+      white-space: nowrap;
+      font-family: $font-display, sans-serif;
+      font-size: 0.6rem;
+    }
+  }
+
 .public-layout {
   @media screen and (max-width: $no-gap-breakpoint) {
     padding-top: 48px;
@@ -322,6 +345,7 @@
     .brand {
       display: block;
       padding: 15px;
+      white-space: nowrap;
 
       svg {
         display: block;
@@ -476,8 +500,42 @@
         border-radius: 4px 4px 0 0;
       }
 
+      .originalheader {
+          width: 100%;
+          display: flex;
+          flex-direction: row;
+          flex-wrap: nowrap;
+          justify-content: center;
+          align-items: center;
+          align-content: space-between;
+
+          svg {
+            fill: $secondary-text-color;
+            height: 300px;
+          }
+
+          h1 {
+            flex-grow: 2;
+            text-align: center;
+            white-space: nowrap;
+            font-family: $font-display, sans-serif;
+          }
+        }
+
+
+
       @media screen and (max-width: 600px) {
         height: 200px;
+
+        .originalheader {
+          svg {
+            height: 200px;
+          }
+
+          h1 {
+            font-size: 0.5rem;
+          }
+        }
       }
     }
 

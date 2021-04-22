@@ -7,9 +7,9 @@
 
 .landing
   .landing__brand
-    = link_to root_url, class: 'brand' do
-      = svg_logo_full
-      %span.brand__tagline=t 'about.tagline'
+    %h1
+      = link_to root_url, class: 'brand' do
+        = site_title
 
   .landing__grid
     .landing__grid__column.landing__grid__column-registration
@@ -35,22 +35,29 @@
               %h4
                 = fa_icon 'globe fw'
                 = t('about.see_whats_happening')
-                %small= t('about.browse_public_posts')
+                %small= t('about.browse_public_posts', title: site_title)
 
         .directory__tag
           = link_to 'https://joinmastodon.org/apps', target: '_blank', rel: 'noopener noreferrer' do
             %h4
               = fa_icon 'tablet fw'
               = t('about.get_apps')
-              %small= t('about.apps_platforms')
+              %small= t('about.apps_platforms', title: site_title)
 
     .landing__grid__column.landing__grid__column-login
       .box-widget
         = render 'login'
 
       .hero-widget
-        .hero-widget__img
-          = image_tag @instance_presenter.hero&.file&.url || @instance_presenter.thumbnail&.file&.url || asset_pack_path('media/images/preview.jpg'), alt: @instance_presenter.site_title
+        - if @instance_presenter.hero.present? || @instance_presenter.thumbnail.present?
+          .hero-widget__img
+            = image_tag @instance_presenter.hero&.file&.url || @instance_presenter.thumbnail&.file&.url, alt: @instance_presenter.site_title
+        - else
+          %div{:class => ("originalhero")}
+            = svg_logo
+            %h1
+              = link_to root_url, class: 'brand' do
+                = site_title
 
         .hero-widget__text
           %p

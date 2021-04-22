@@ -77,6 +77,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     @mentions = []
     @params   = {}
 
+    process_inline_images if @object['content'].present? && @object['type'] == 'Article'
     process_status_params
     process_tags
     process_audience
@@ -107,7 +108,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
         account: @account,
         text: text_from_content || '',
         language: detected_language,
-        spoiler_text: converted_object_type? ? '' : (text_from_summary || ''),
+        spoiler_text: converted_object_type? ? '' : (text_from_summary || (@object['type'] == 'Article' && text_from_name) || ''),
         created_at: @object['published'],
         override_timestamps: @options[:override_timestamps],
         reply: @object['inReplyTo'].present?,
@@ -117,7 +118,58 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
         conversation: conversation_from_uri(@object['conversation']),
         media_attachment_ids: process_attachments.take(4).map(&:id),
         poll: process_poll,
+        activity_pub_type: @object['type']
       }
+    end
+  end
+
+  class Handler < ::Ox::Sax
+    attr_reader :srcs
+    attr_reader :alts
+    def initialize(block)
+      @stack = []
+      @srcs = []
+      @alts = {}
+    end
+
+    def start_element(element_name)
+      @stack << [element_name, {}]
+    end
+
+    def end_element(element_name)
+      self_name, self_attributes = @stack[-1]
+      if self_name == :img && !self_attributes[:src].nil?
+        @srcs << self_attributes[:src]
+        @alts[self_attributes[:src]] = self_attributes[:alt]
+      end
+      @stack.pop
+    end
+
+    def attr(attribute_name, attribute_value)
+      _name, attributes = @stack.last
+      attributes[attribute_name] = attribute_value
+    end
+  end
+
+  def process_inline_images
+    proc = Proc.new { |name| puts name }
+    handler = Handler.new(proc)
+    Ox.sax_parse(handler, @object['content'])
+    handler.srcs.each do |src|
+      if skip_download?
+        @object['content'].gsub!(src, '')
+        next
+      end
+
+      media_attachment = MediaAttachment.create(account: @account, remote_url: src, description: handler.alts[src], focus: nil)
+      media_attachment.file_remote_url = src
+      media_attachment.save
+      if unsupported_media_type?(media_attachment.file.content_type)
+        @object['content'].gsub!(src, '')
+        media_attachment.delete
+      else
+        @object['content'].gsub!(src, media_attachment.file.url(:small))
+      end
     end
   end
 
@@ -390,6 +442,8 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
 
   def text_from_content
     return Formatter.instance.linkify([[text_from_name, text_from_summary.presence].compact.join("\n\n"), object_url || object_uri].join(' ')) if converted_object_type?
+
+    return Formatter.instance.format_article(@object['content']) if @object['content'].present? && @object['type'] == 'Article'
 
     if @object['content'].present?
       @object['content']

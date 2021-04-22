@@ -61,7 +61,7 @@ import { previewState as previewVideoState } from './components/video_modal';
 import '../../components/status';
 
 const messages = defineMessages({
-  beforeUnload: { id: 'ui.beforeunload', defaultMessage: 'Your draft will be lost if you leave Mastodon.' },
+  beforeUnload: { id: 'ui.beforeunload', defaultMessage: 'Your draft will be lost if you leave.' },
 });
 
 const mapStateToProps = state => ({

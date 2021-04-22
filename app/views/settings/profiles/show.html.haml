@@ -48,7 +48,7 @@
 
     .fields-row__column.fields-group.fields-row__column-6
       %h6= t('verification.verification')
-      %p.hint= t('verification.explanation_html')
+      %p.hint= t('verification.explanation_html', instance: site_hostname)
 
       .input-copy
         .input-copy__wrapper
