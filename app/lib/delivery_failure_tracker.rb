@@ -54,20 +54,20 @@ class DeliveryFailureTracker
     end
 
     def warning_domains
-      domains = Redis.current.keys(exhausted_deliveries_key('*')).map do |key|
-        key.delete_prefix(exhausted_deliveries_key(''))
+      domains = Redis.current.keys(exhausted_deliveries_key_by('*')).map do |key|
+        key.delete_prefix(exhausted_deliveries_key_by(''))
       end
 
       domains - UnavailableDomain.all.pluck(:domain)
     end
 
     def warning_domains_map
-      warning_domains.index_with { |domain| Redis.current.scard(exhausted_deliveries_key(domain)) }
+      warning_domains.index_with { |domain| Redis.current.scard(exhausted_deliveries_key_by(domain)) }
     end
 
     private
 
-    def exhausted_deliveries_key(host)
+    def exhausted_deliveries_key_by(host)
       "exhausted_deliveries:#{host}"
     end
   end
