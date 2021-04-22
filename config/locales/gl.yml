@@ -1,6 +1,6 @@
 gl:
   about:
-    about_hashtag_html: 'Estes son toots públicos etiquetados con <strong>#%{hashtag}</strong>. Podes interactuar con eles se tes unha conta nalgures do fediverso.'
+    about_hashtag_html: 'Estas son publicacións públicas etiquetadas con <strong>#%{hashtag}</strong>. Podes interactuar con elas se tes unha conta nalgures do fediverso.'
     about_mastodon_html: 'A rede social do futuro: Sen publicidade, sen seguimento por empresas, deseño ético e descentralización! En Mastodon ti posúes os teus datos!'
     about_this: Acerca de
     active_count_after: activas
@@ -30,8 +30,8 @@ gl:
     server_stats: 'Estatísticas do servidor:'
     source_code: Código fonte
     status_count_after:
-      one: estado
-      other: estados
+      one: publicación
+      other: publicacións
     status_count_before: Que publicaron
     tagline: Segue ás túas amizades e coñece novas
     terms: Termos do servizo
@@ -74,10 +74,10 @@ gl:
     pin_errors:
       following: Tes que seguir á persoa que queres engadir
     posts:
-      one: Toot
-      other: Toots
-    posts_tab_heading: Toots
-    posts_with_replies: Toots e respostas
+      one: Publicación
+      other: Publicacións
+    posts_tab_heading: Publicacións
+    posts_with_replies: Publicacións e respostas
     roles:
       admin: Administradora
       bot: Bot
@@ -197,7 +197,7 @@ gl:
         targeted_reports: Denuncias feitas por outros
       silence: Silenciar
       silenced: Silenciado
-      statuses: Estados
+      statuses: Publicacións
       subscribe: Subscribirse
       suspended: Suspendida
       suspension_irreversible: Elimináronse de xeito irreversible os datos desta conta. Podes reactivar a conta para facela usable novamente pero non recuperará os datos eliminados.
@@ -235,7 +235,7 @@ gl:
         destroy_domain_block: Eliminar bloqueo de dominio
         destroy_email_domain_block: Eliminar bloqueo de dominio de correo electrónico
         destroy_ip_block: Eliminar regra IP
-        destroy_status: Eliminar estado
+        destroy_status: Eliminar publicación
         disable_2fa_user: Desactivar 2FA
         disable_custom_emoji: Desactivar emoticona personalizada
         disable_user: Desactivar usuaria
@@ -257,7 +257,7 @@ gl:
         update_announcement: Actualizar anuncio
         update_custom_emoji: Actualizar emoticona personalizada
         update_domain_block: Actualizar bloqueo do dominio
-        update_status: Actualizar estado
+        update_status: Actualizar publicación
       actions:
         assigned_to_self_report_html: "%{name} asignou a denuncia %{target} para si mesma"
         change_email_user_html: "%{name} cambiou o enderezo de email da usuaria %{target}"
@@ -276,7 +276,7 @@ gl:
         destroy_domain_block_html: "%{name} desbloqueou o dominio %{target}"
         destroy_email_domain_block_html: "%{name} desbloqueou o dominio de email %{target}"
         destroy_ip_block_html: "%{name} eliminou a regra para o IP %{target}"
-        destroy_status_html: "%{name} eliminou o estado de %{target}"
+        destroy_status_html: "%{name} eliminou a publicación de %{target}"
         disable_2fa_user_html: "%{name} desactivou o requerimento do segundo factor para a usuaria %{target}"
         disable_custom_emoji_html: "%{name} desactivou o emoji %{target}"
         disable_user_html: "%{name} desactivou a conexión para a usuaria %{target}"
@@ -298,8 +298,8 @@ gl:
         update_announcement_html: "%{name} actualizou o anuncio %{target}"
         update_custom_emoji_html: "%{name} actualizou o emoji %{target}"
         update_domain_block_html: "%{name} actualizou o bloqueo do dominio para %{target}"
-        update_status_html: "%{name} actualizou o estado de %{target}"
-      deleted_status: "(estado eliminado)"
+        update_status_html: "%{name} actualizou a publicación de %{target}"
+      deleted_status: "(publicación eliminada)"
       empty: Non se atoparon rexistros.
       filter_by_action: Filtrar por acción
       filter_by_user: Filtrar por usuaria
@@ -497,7 +497,7 @@ gl:
     relays:
       add_new: Engadir un novo repetidor
       delete: Eliminar
-      description_html: Un <strong>repetidor da federación</strong> é un servidor intermedio que intercambia grandes volumes de toots públicos entre servidores que se suscriban e publiquen nel. <strong>Pode axudar a servidores pequenos e medios a descubrir contido no fediverso</strong>, o que de outro xeito precisaría que as usuarias locais seguisen a outra xente en servidores remotos.
+      description_html: Un <strong>repetidor da federación</strong> é un servidor intermedio que intercambia grandes volumes de publicacións públicas entre servidores que se suscriban e publiquen nel. <strong>Pode axudar a servidores pequenos e medios a descubrir contido no fediverso</strong>, o que de outro xeito precisaría que as usuarias locais seguisen a outra xente en servidores remotos.
       disable: Desactivar
       disabled: Desactivado
       enable: Activar
