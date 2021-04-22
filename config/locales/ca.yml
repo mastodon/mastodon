@@ -1,12 +1,12 @@
----
 ca:
   about:
-    about_hashtag_html: Aquests són tuts públics etiquetats amb <strong>#%{hashtag}</strong>. Pots interactuar amb elles si tens un compte a qualsevol lloc del fedivers.
+    about_hashtag_html: 'Aquests són tuts públics etiquetats amb <strong>#%{hashtag}</strong>. Pots interactuar amb elles si tens un compte a qualsevol lloc del fedivers.'
     about_mastodon_html: 'La xarxa social del futur: sense anuncis, sense vigilància corporativa, disseny ètic i descentralització. Posseeix les teves dades amb Mastodon!'
     about_this: Quant a
     active_count_after: actiu
     active_footnote: Usuaris actius mensuals (UAM)
     administered_by: 'Administrat per:'
+    api: API
     apps: Apps mòbils
     apps_platforms: Utilitza Mastodon des de iOS, Android i altres plataformes
     browse_directory: Navega per el directori de perfils i filtra segons interessos
@@ -53,7 +53,7 @@ ca:
     user_count_before: Tenim
     what_is_mastodon: Què és Mastodon?
   accounts:
-    choices_html: 'Eleccions de %{name}:'
+    choices_html: "Eleccions de %{name}:"
     endorsements_hint: Pots recomanar persones que segueixes a l'interfície de web, que apareixeran aquí.
     featured_tags_hint: Pots presentar etiquetes específiques que seràn mostrades aquí.
     follow: Segueix
@@ -81,6 +81,7 @@ ca:
     posts_with_replies: Tuts i respostes
     roles:
       admin: Administrador
+      bot: Bot
       group: Grup
       moderator: Moderador
     unavailable: Perfil inaccessible
@@ -100,6 +101,7 @@ ca:
       approve_all: Aprova'ls tots
       approved_msg: L’aplicació del registre de %{username} s’ha aprovat amb èxit
       are_you_sure: N'estàs segur?
+      avatar: Avatar
       by_domain: Domini
       change_email:
         changed_msg: L'adreça electrònica del compte s'ha canviat correctament!
@@ -114,7 +116,7 @@ ca:
       delete: Esborra les dades
       deleted: Esborrats
       demote: Degrada
-      destroyed_msg: Les dades de %{username} son a la cua per a ser esborrades en breu
+      destroyed_msg: "Les dades de %{username} son a la cua per a ser esborrades en breu"
       disable: Inhabilita
       disable_two_factor_authentication: Desactiva 2FA
       disabled: Inhabilitat
@@ -132,9 +134,11 @@ ca:
       inbox_url: URL de la safata d'entrada
       invite_request_text: Motiu del registre
       invited_by: Convidat per
+      ip: IP
       joined: Unit
       location:
         all: Tot
+        local: Local
         remote: Remot
         title: Localització
       login_status: Estat d'accés
@@ -158,6 +162,7 @@ ca:
       pending: Revisió pendent
       perform_full_suspension: Suspèn
       promote: Promociona
+      protocol: Protocol
       public: Públic
       push_subscription_expires: La subscripció PuSH expira
       redownload: Actualitza el perfil
@@ -210,6 +215,7 @@ ca:
       username: Nom d'usuari
       view_domain: Veure el resumen del domini
       warn: Avís
+      web: Web
       whitelisted: Llista blanca
     action_logs:
       action_types:
@@ -329,6 +335,7 @@ ca:
       disable: Inhabilita
       disabled: Desactivat
       disabled_msg: S'ha inhabilitat l'emoji amb èxit
+      emoji: Emoji
       enable: Habilita
       enabled: Activat
       enabled_msg: S'ha habilitat amb èxit emoji
@@ -487,7 +494,7 @@ ca:
     pending_accounts:
       title: Comptes pendents (%{count})
     relationships:
-      title: relacions del %{acct}
+      title: "relacions del %{acct}"
     relays:
       add_new: Afegiu un nou relay
       delete: Esborra
@@ -503,11 +510,15 @@ ca:
       setup: Configura una connexió de relay
       signatures_not_enabled: Els relays no treballaran correctament mentre estiguin habilitats el mode segur o llista blanca
       status: Estat
+      title: Relays
     report_notes:
       created_msg: La nota del informe s'ha creat correctament!
       destroyed_msg: La nota del informe s'ha esborrat correctament!
     reports:
       account:
+        notes:
+          one: "%{count} nota"
+          other: "%{count} notes"
         reports:
           one: "%{count} informe"
           other: "%{count} informes"
@@ -668,6 +679,7 @@ ca:
       accounts_today: Usos únics actuals
       accounts_week: Usos únics d'aquesta setmana
       breakdown: Desglossament de l’ús actual per origen
+      context: Context
       directory: En el directori
       in_directory: "%{count} en el directori"
       last_active: Darrer actiu
@@ -695,10 +707,10 @@ ca:
     new_report:
       body: "%{reporter} ha informat de %{target}"
       body_remote: Algú des de el domini %{domain} ha informat sobre %{target}
-      subject: Informe nou per a %{instance} (#%{id})
+      subject: 'Informe nou per a %{instance} (#%{id})'
     new_trending_tag:
       body: 'La etiqueta #%{name} està actualment en tendència però no s''ha revisat prèviament. No es mostrarà públicament tret que ho permetis o guardis el formulari tal com està per a no tornar a escoltar res al respecte.'
-      subject: Nova etiqueta pendent de revisió a %{instance} (#%{name})
+      subject: 'Nova etiqueta pendent de revisió a %{instance} (#%{name})'
   aliases:
     add_new: Crea un àlies
     created_msg: Nou àlies creat amb èxit. Ara pots iniciar el moviment des de'l compte vell.
@@ -714,11 +726,13 @@ ca:
     discovery: Descobriment
     localization:
       body: Mastodon és traduït per voluntaris.
+      guide_link: https://crowdin.com/project/mastodon
       guide_link_text: Tothom hi pot contribuir.
     sensitive_content: Contingut sensible
     toot_layout: Disseny del tut
   application_mailer:
     notification_preferences: Canvia les preferències de correu
+    salutation: "%{name},"
     settings: 'Canvia les preferències de correu: %{link}'
     view: 'Visualització:'
     view_profile: Mostra el perfil
@@ -753,6 +767,9 @@ ca:
     migrate_account: Mou a un compte diferent
     migrate_account_html: Si vols redirigir aquest compte a un altre diferent, el pots <a href="%{path}">configurar aquí</a>.
     or_log_in_with: O inicia sessió amb
+    providers:
+      cas: CAS
+      saml: SAML
     register: Registre
     registration_closed: "%{instance} no accepta nous membres"
     resend_confirmation: Torna a enviar el correu de confirmació
@@ -793,6 +810,10 @@ ca:
     errors:
       invalid_key: no és una clau Ed25519 o Curve25519 vàlida
       invalid_signature: no és una signatura Ed25519 vàlida
+  date:
+    formats:
+      default: "%b %d, %Y"
+      with_month_name: "%B %d, %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count} h"
@@ -800,7 +821,7 @@ ca:
       about_x_years: "%{count} anys"
       almost_x_years: "%{count}anys"
       half_a_minute: Ara mateix
-      less_than_x_minutes: fa %{count} minuts
+      less_than_x_minutes: "fa %{count} minuts"
       less_than_x_seconds: Ara mateix
       over_x_years: "%{count} anys"
       x_days: "%{count} dies"
@@ -858,6 +879,7 @@ ca:
       size: Mida
     blocks: Persones que has blocat
     bookmarks: Marcadors
+    csv: CSV
     domain_blocks: Bloquejos de dominis
     lists: Llistes
     mutes: Persones silenciades
@@ -1021,7 +1043,7 @@ ca:
         other: "%{count} notificacions noves des de la darrera visita \U0001F418"
       title: Durant la teva absència…
     favourite:
-      body: "%{name} ha marcat com a favorit el teu estat:"
+      body: '%{name} ha marcat com a favorit el teu estat:'
       subject: "%{name} ha marcat com a favorit el teu estat"
       title: Favorit nou
     follow:
@@ -1035,13 +1057,13 @@ ca:
       title: Nova sol·licitud de seguiment
     mention:
       action: Respon
-      body: "%{name} t'ha mencionat en:"
-      subject: "%{name} t'ha mencionat"
+      body: '%{name} t''ha mencionat en:'
+      subject: '%{name} t''ha mencionat'
       title: Menció nova
     poll:
       subject: Ha finalitzat l'enquesta de %{name}
     reblog:
-      body: "%{name} ha impulsat el teu estat:"
+      body: '%{name} ha impulsat el teu estat:'
       subject: "%{name} ha impulsat el teu estat"
       title: Nou impuls
     status:
@@ -1053,8 +1075,13 @@ ca:
   number:
     human:
       decimal_units:
+        format: "%n%u"
         units:
+          billion: B
+          million: M
+          quadrillion: Q
           thousand: m
+          trillion: T
   otp_authentication:
     code_hint: Introdueix el codi generat per l’aplicació d’autenticació per a confirmar
     description_html: Si actives <strong>l’autenticació de factor doble</strong> usant l’aplicació d’autenticació, l’inici de sessió et requerirá tenir el teu mòbil, que generarà els tokens per a entrar.
@@ -1068,6 +1095,7 @@ ca:
     next: Endavant
     older: Més vell
     prev: Enrere
+    truncate: "&hellip;"
   polls:
     errors:
       already_voted: Ja has votat en aquesta enquesta
@@ -1129,15 +1157,43 @@ ca:
     activity: Última activitat
     browser: Navegador
     browsers:
+      alipay: Alipay
+      blackberry: Blackberry
+      chrome: Chrome
+      edge: Microsoft Edge
+      electron: Electron
+      firefox: Firefox
       generic: Navegador desconegut
+      ie: Internet Explorer
+      micro_messenger: MicroMessenger
+      nokia: Nokia S40 Ovi Browser
+      opera: Opera
+      otter: Otter
+      phantom_js: PhantomJS
+      qq: QQ Browser
+      safari: Safari
+      uc_browser: UCBrowser
+      weibo: Weibo
     current_session: Sessió actual
     description: "%{browser} de %{platform}"
     explanation: Aquests són els navegadors web que actualment han iniciat la sessió amb el teu compte de Mastodon.
+    ip: IP
     platforms:
+      adobe_air: Adobe Air
+      android: Android
+      blackberry: Blackberry
+      chrome_os: ChromeOS
+      firefox_os: Firefox OS
+      ios: iOS
+      linux: Linux
       mac: Mac
       other: plataforma desconeguda
+      windows: Windows
+      windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
     revoke: Revoca
     revoke_success: S'ha revocat la sessió amb èxit
+    title: Sessions
   settings:
     account: Compte
     account_settings: Ajustos del compte
@@ -1200,6 +1256,7 @@ ca:
     show_older: Mostra els més vells
     show_thread: Mostra el fil
     sign_in_to_participate: Inicia la sessió per participar a la conversa
+    title: '%{name}: "%{quote}"'
     visibilities:
       direct: Directe
       private: Només seguidors
@@ -1301,6 +1358,10 @@ ca:
     contrast: Mastodon (alt contrast)
     default: Mastodon (fosc)
     mastodon-light: Mastodon (clar)
+  time:
+    formats:
+      default: "%b %d, %Y, %H:%M"
+      month: "%b %Y"
   two_factor_authentication:
     add: Afegeix
     disable: Desactiva
