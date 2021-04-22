@@ -1,3 +1,4 @@
+---
 th:
   devise:
     confirmations:
@@ -7,10 +8,10 @@ th:
     failure:
       already_authenticated: คุณได้ลงชื่อเข้าอยู่แล้ว
       inactive: ยังไม่ได้เปิดใช้งานบัญชีของคุณ
-      invalid: '%{authentication_keys} หรือรหัสผ่านไม่ถูกต้อง'
+      invalid: "%{authentication_keys} หรือรหัสผ่านไม่ถูกต้อง"
       last_attempt: คุณลองได้อีกหนึ่งครั้งก่อนที่บัญชีของคุณจะถูกล็อค
       locked: มีการล็อคบัญชีของคุณอยู่
-      not_found_in_database: '%{authentication_keys} หรือรหัสผ่านไม่ถูกต้อง'
+      not_found_in_database: "%{authentication_keys} หรือรหัสผ่านไม่ถูกต้อง"
       pending: บัญชีของคุณยังอยู่ระหว่างการตรวจทาน
       timeout: เซสชันของคุณหมดอายุแล้ว โปรดลงชื่อเข้าอีกครั้งเพื่อดำเนินการต่อ
       unauthenticated: คุณต้องลงชื่อเข้าหรือลงทะเบียนก่อนดำเนินการต่อ
