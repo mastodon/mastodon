@@ -1,4 +1,4 @@
-es:
+es-MX:
   devise:
     confirmations:
       confirmed: Su dirección de correo electrónico ha sido confirmada correctamente.
@@ -64,3 +64,51 @@ es:
           explanation: La siguiente clave de seguridad ha sido añadida a su cuenta
           subject: 'Mastodon: Nueva clave de seguridad'
           title: Se ha añadido una nueva clave de seguridad
+        deleted:
+          explanation: La siguiente clave de seguridad ha sido eliminada de su cuenta
+          subject: 'Mastodon: Clave de seguridad eliminada'
+          title: Una de sus claves de seguridad ha sido eliminada
+      webauthn_disabled:
+        explanation: La autenticación con claves de seguridad ha sido desactivada para tu cuenta. El inicio de sesión es ahora posible únicamente utilizando el token generado por la aplicación emparejada TOTP.
+        subject: 'Mastodon: Autenticación con claves de seguridad desactivada'
+        title: Claves de seguridad desactivadas
+      webauthn_enabled:
+        explanation: La autenticación con clave de seguridad ha sido habilitada para su cuenta. Su clave de seguridad ahora puede ser usada para iniciar sesión.
+        subject: 'Mastodon: Autenticación con clave de seguridad activada'
+        title: Claves de seguridad activadas
+    omniauth_callbacks:
+      failure: No podemos autentificarle desde %{kind} debido a "%{reason}".
+      success: Autentificado con éxito desde la cuenta %{kind} .
+    passwords:
+      no_token: No puede acceder a esta página sin provenir desde el correo de reinicio de contraseña. Si viene desde el correo de reinicio de contraseña, por favor asegúrese que está utilizando la dirección completa proporcionada.
+      send_instructions: Recibirá un correo electrónico con instrucciones sobre cómo reiniciar su contraseña en pocos minutos.
+      send_paranoid_instructions: Si su correo electrónico existe en nuestra base de datos, recibirá un enlace de recuperación de contraseña en su dirección de correo en pocos minutos.
+      updated: Su contraseña ha sido cambiada con éxito. Ahora ya está registrado.
+      updated_not_active: Su contraseña ha sido cambiada con éxito.
+    registrations:
+      destroyed: '¡Adios! Su cuenta ha sido cancelada con éxito. Esperamos verle pronto de nuevo.'
+      signed_up: '¡Bienvenido! Se ha registrado con éxito.'
+      signed_up_but_inactive: Se ha registrado con éxito. Sin embargo, no podemos identificarle porque su cuenta no ha sido activada todavía.
+      signed_up_but_locked: Se ha registrado con éxito. Sin embargo, no podemos identificarle porque su cuenta está bloqueada.
+      signed_up_but_pending: Un mensaje con un enlace de confirmacion ha sido enviado a su direccion de email. Luego de clickear el link revisaremos su aplicacion. Seras notificado si es aprovada.
+      signed_up_but_unconfirmed: Un mensaje con un enlace de confirmación ha sido enviado a su correo electrónico. Por favor siga el enlace para activar su cuenta.
+      update_needs_confirmation: Ha actualizado su cuenta con éxito, pero necesitamos verificar su nueva dirección de correo. Por favor compruebe su correo y siga el enlace para confirmar su nueva dirección de correo.
+      updated: su cuenta ha sido actualizada con éxito.
+    sessions:
+      already_signed_out: Cerró sesión con éxito.
+      signed_in: Se registró con éxito.
+      signed_out: Cerró sesión con éxito.
+    unlocks:
+      send_instructions: Recibirá un correo electrónico con instrucciones sobre cómo desbloquear su cuenta en pocos minutos.
+      send_paranoid_instructions: Si su cuenta existe, recibirá un correo electrónico con instrucciones sobre cómo desbloquearla en pocos minutos.
+      unlocked: Su cuenta ha sido desbloqueada con éxito. Por favor inicie sesión para continuar.
+  errors:
+    messages:
+      already_confirmed: ya fue confirmado, por favor intente iniciar sesión
+      confirmation_period_expired: necesita ser confirmado dentro de %{period}, por favor pida una nueva
+      expired: ha expirado, por favor pida una nueva
+      not_found: no encontrado
+      not_locked: no fue bloqueada
+      not_saved:
+        one: '1 error prohibió este %{resource} de ser guardado:'
+        other: "%{count} errores prohibieron este %{resource} de ser guardado:"
