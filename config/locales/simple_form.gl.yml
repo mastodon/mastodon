@@ -52,7 +52,7 @@ gl:
         setting_display_media_show_all: Mostrar sempre os medios marcados como sensibles
         setting_hide_network: Non se mostrará no teu perfil quen te segue e a quen estás a seguir
         setting_noindex: Afecta ao teu perfil público e páxinas de estado
-        setting_show_application: A aplicación que estás a utilizar para enviar toots mostrarase na vista detallada do toot
+        setting_show_application: A aplicación que estás a utilizar para enviar publicacións mostrarase na vista detallada da publicación
         setting_use_blurhash: Os gradientes toman as cores da imaxe oculta pero esborranchando todos os detalles
         setting_use_pending_items: Ocultar as actualizacións da liña temporal tras un click no lugar de desprazar automáticamente os comentarios
         username: O teu nome de usuaria será único en %{domain}
@@ -86,7 +86,7 @@ gl:
       tag:
         name: Só podes cambiar maiús/minúsculas, por exemplo, mellorar a lexibilidade
       user:
-        chosen_languages: Se ten marca, só os toots nos idiomas seleccionados serán mostrados en liñas temporais públicas
+        chosen_languages: Se ten marca, só as publicacións nos idiomas seleccionados serán mostrados en cronoloxías públicas
     labels:
       account:
         fields:
@@ -100,7 +100,7 @@ gl:
         text: Texto preestablecido
         title: Título
       admin_account_action:
-        include_statuses: Incluír toots denunciados no correo
+        include_statuses: Incluír no correo as publicacións denunciadas
         send_email_notification: Notificar a usuaria por correo-e
         text: Aviso personalizado
         type: Acción
@@ -127,7 +127,7 @@ gl:
         context: Contextos do filtro
         current_password: Contrasinal actual
         data: Datos
-        discoverable: Incluír esta conta no directorio
+        discoverable: Suxerir esta conta a outras persoas
         display_name: Nome mostrado
         email: Enderezo de email
         expires_in: Caduca tras
@@ -137,7 +137,7 @@ gl:
         inbox_url: URL da caixa de entrada do repetidor
         irreversible: Soltar en lugar de agochar
         locale: Idioma da interface
-        locked: Protexer conta
+        locked: Requerir aprobar seguimento
         max_uses: Número máximo de usos
         new_password: Novo contrasinal
         note: Acerca de ti
@@ -148,21 +148,21 @@ gl:
         setting_aggregate_reblogs: Agrupar promocións nas liñas temporais
         setting_auto_play_gif: Reprodución automática de GIFs animados
         setting_boost_modal: Pedir confirmación antes de promocionar
-        setting_crop_images: Recortar imaxes a 16x9 en toots non despregados
+        setting_crop_images: Recortar imaxes a 16x9 en publicacións non despregadas
         setting_default_language: Idioma de publicación
         setting_default_privacy: Privacidade da publicación
         setting_default_sensitive: Marcar sempre multimedia como sensible
-        setting_delete_modal: Solicitar confirmación antes de eliminar unha mensaxe
+        setting_delete_modal: Solicitar confirmación antes de eliminar unha publicación
         setting_disable_swiping: Desactivar opcións de desprazamento
         setting_display_media: Mostrar multimedia
         setting_display_media_default: Por omisión
         setting_display_media_hide_all: Ocultar todo
         setting_display_media_show_all: Mostrar todo
-        setting_expand_spoilers: Despregar sempre as mensaxes marcadas con avisos de contido
+        setting_expand_spoilers: Despregar sempre as publicacións marcadas con avisos de contido
         setting_hide_network: Non mostrar contactos
         setting_noindex: Pedir non aparecer nas buscas dos motores de busca
         setting_reduce_motion: Reducir o movemento nas animacións
-        setting_show_application: Mostrar a aplicación utilizada para tootear
+        setting_show_application: Mostrar a aplicación utilizada para publicar
         setting_system_font_ui: Utilizar a tipografía por defecto do sistema
         setting_theme: Decorado da instancia
         setting_trends: Mostrar as tendencias de hoxe
@@ -210,7 +210,7 @@ gl:
         listable: Permitir que este cancelo apareza en buscas e no directorio de perfil
         name: Cancelo
         trendable: Permitir que este cancelo apareza en tendencias
-        usable: Permitir que os toots utilicen este cancelo
+        usable: Permitir que as publicacións utilicen este cancelo
     'no': 'Non'
     recommended: Recomendado
     required:
