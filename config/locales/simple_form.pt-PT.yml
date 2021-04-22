@@ -12,14 +12,14 @@ pt-PT:
       admin_account_action:
         include_statuses: O utilizador verá quais toots causaram a ação de moderação ou aviso
         send_email_notification: O utilizador receberá uma explicação sobre o que aconteceu com a sua conta
-        text_html: Opcional. Tu podes usar sintaxe de escrita. Tu podes <a href="%{path}"> adicionar predefinições de aviso</a> para poupar tempo
+        text_html: Opcional. Pode utilizar sintaxe de escrita. Pode <a href="%{path}">adicionar avisos predefinidos</a> para poupar tempo
         type_html: Escolhe o que fazer com <strong>%{acct}</strong>
         types:
-          disable: Impede o utilizador de usar a sua conta, mas não apaga ou oculta o seu conteúdo.
+          disable: Impede o utilizador de usar a sua conta, mas não elimina ou oculta o seu conteúdo.
           none: Use isto para enviar um aviso ao utilizador, sem acionar nenhuma outra ação.
           sensitive: Força todos os anexos de media deste utilizador a serem sinalizados como sensíveis.
           silence: Impede que o utilizador seja capaz de publicar com visibilidade pública, ocultando as suas publicações e notificações de pessoas que não o seguem.
-          suspend: Evita qualquer interação de ou para esta conta e apaga o seu conteúdo. Reversível num período de 30 dias.
+          suspend: Evita qualquer interação de ou para esta conta e elimina o seu conteúdo. Reversível num período de 30 dias.
         warning_preset_id: Opcional. Tu ainda podes adicionar texto personalizado no fim do predefinido
       announcement:
         all_day: Quando marcado, apenas as datas do intervalo de tempo serão exibidas

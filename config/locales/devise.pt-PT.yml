@@ -21,7 +21,7 @@ pt-PT:
         action: Verificar o endereço de e-mail
         action_with_app: Confirmar e regressar a %{app}
         explanation: Criou uma conta em %{host} com este endereço de e-mail. Está a um clique de activá-la. Se não foi você que fez este registo, por favor ignore esta mensagem.
-        explanation_when_pending: Você solicitou um convite para %{host} com este endereço de e-mail. Logo que confirme o seu endereço de e-mail, iremos rever a sua inscrição. Pode iniciar sessão para alterar os seus dados ou eliminar a sua conta, mas não poderá aceder à maioria das funções até que a sua conta seja aprovada. Se a sua inscrição for rejeitada, os seus dados serão removidos, pelo que não será necessária qualquer acção adicional da sua parte. Se não solicitou este convite, por favor, ignore este e-mail.
+        explanation_when_pending: Você solicitou um convite para %{host} com este endereço de e-mail. Logo que confirme o seu endereço de e-mail, iremos rever a sua inscrição. Pode iniciar sessão para alterar os seus dados ou eliminar a sua conta, mas não poderá aceder à maioria das funções até que a sua conta seja aprovada. Se a sua inscrição for rejeitada, os seus dados serão eliminados, pelo que não será necessária qualquer ação adicional da sua parte. Se não solicitou este convite, por favor, ignore este e-mail.
         extra_html: Por favor leia <a href="%{terms_path}">as regras da instância</a> e os <a href="%{policy_path}"> nossos termos de serviço</a>.
         subject: 'Mastodon: Instruções de confirmação %{instance}'
         title: Verificar o endereço de e-mail
@@ -66,9 +66,9 @@ pt-PT:
           subject: 'Mastodon: Nova chave de segurança'
           title: Foi adicionada uma nova chave de segurança
         deleted:
-          explanation: A seguinte chave de segurança foi removida da sua conta
-          subject: 'Mastodon: Chave de segurança removida'
-          title: Uma das suas chaves de segurança foi removida
+          explanation: A seguinte chave de segurança foi eliminada da sua conta
+          subject: 'Mastodon: Chave de segurança eliminada'
+          title: Uma das suas chaves de segurança foi eliminada
       webauthn_disabled:
         explanation: A autenticação com chave de segurança foi desativada para sua conta. É agora possível aceder à sua conta utilizando apenas o token gerado pelo aplicativo TOTP pareado.
         subject: 'Mastodon: Autenticação com chave de segurança desativada'
