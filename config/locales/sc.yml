@@ -1,6 +1,6 @@
 sc:
   about:
-    about_hashtag_html: 'Custos sunt messàgios pùblicos etichetados cun <strong>#%{hashtag}</strong>. Bi podes intrare in cuntatu si tenes unu contu in cale si siat logu de su fediversu.'
+    about_hashtag_html: 'Custos sunt tuts pùblicos etichetados cun <strong>#%{hashtag}</strong>. Bi podes intrare in cuntatu si tenes unu contu in cale si siat logu de su fediversu.'
     about_mastodon_html: 'Sa rete sotziale de su benidore: sena publitzidade, sena vigilàntzia corporativa, disinnu èticu e detzentralizatzione! Sias mere de is datos tuos cun Mastodon!'
     about_this: Informatziones
     active_count_after: ativu
@@ -30,8 +30,8 @@ sc:
     server_stats: 'Istatìsticas de su serbidore:'
     source_code: Còdighe de orìgine
     status_count_after:
-      one: messàgiu
-      other: messàgios
+      one: istadu
+      other: istados
     status_count_before: Atributzione de
     tagline: Sighi is amistades tuas e iscoberi·nde àteras
     terms: Cunditziones de su servìtziu
@@ -73,10 +73,10 @@ sc:
     pin_errors:
       following: Depes sighire sa persone chi boles promòvere
     posts:
-      one: Messàgiu
-      other: Messàgios
-    posts_tab_heading: Messàgios
-    posts_with_replies: Messàgios e rispostas
+      one: Tut
+      other: Tuts
+    posts_tab_heading: Tuts
+    posts_with_replies: Tuts e rispostas
     roles:
       group: Grupu
       moderator: Moderatzione
@@ -192,7 +192,7 @@ sc:
         targeted_reports: Informes de àtere
       silence: Lìmita
       silenced: Limitadas
-      statuses: Messàgios
+      statuses: Tuts
       subscribe: Sutascrie·ti
       suspended: Suspèndidu
       suspension_irreversible: Is datos de custu contu sunt istados cantzellados in manera irreversìbile. Podes bogare sa suspensione a su contu pro chi si potzat impreare, ma no at a recuperare datu perunu de is chi teniat in antis.
@@ -229,7 +229,7 @@ sc:
         destroy_domain_block: Cantzella su blocu de domìniu
         destroy_email_domain_block: Cantzella su blocu de domìniu de s'indiritzu de posta
         destroy_ip_block: Cantzella sa règula IP
-        destroy_status: Cantzella su messàgiu
+        destroy_status: Cantzella s'istadu
         disable_2fa_user: Disativa 2FA
         disable_custom_emoji: Disativa s'emoji personalizadu
         disable_user: Disativa utente
@@ -376,7 +376,7 @@ sc:
       undo: Iscontza su blocu de domìniu
       view: Bide su blocu de domìniu
     email_domain_blocks:
-      add_new: Agiunghe noa
+      add_new: Agiunghe nou
       created_msg: Domìniu de posta eletrònica blocadu
       delete: Cantzella
       destroyed_msg: Domìniu de posta eletrònica isblocadu
@@ -415,7 +415,7 @@ sc:
       title: Invitos
     ip_blocks:
       add_new: Crea una règula
-      created_msg: As agiuntu una règula IP noa
+      created_msg: Règula IP noa agiunta
       delete: Cantzella
       expires_in:
         '1209600': 2 chidas
@@ -519,7 +519,7 @@ sc:
         title: Immàgine de su personàgiu
       peers_api_enabled:
         desc_html: Is nòmines de domìniu chi custu serbidore at agatadu in su fediversu
-        title: Pùblica sa lista de serbidores iscobertos
+        title: Pùblica sa lista de serbidores iscobertos in s'API
       preview_sensitive_media:
         desc_html: Is previsualizatziones de ligòngios de àteros sitos web ant a ammustrare una miniadura fintzas cando is elementos multimediales siant marcados comente a sensìbiles
         title: Ammustra elementos multimediales sensìbiles in is previsualizatziones de OpenGraph
@@ -549,7 +549,7 @@ sc:
         desc_html: Ammustra un'insigna de personale in sa pàgina de utente
         title: Ammustra insigna de personale
       site_description:
-        desc_html: Paràgrafu de introdutzione a s'API. Descrie ite rendet ispatziale custu serbidore de Mastodon e cale si siat àtera cosa de importu. Podes impreare etichetas HTML, mescamente <code>&lt;a&gt;</code> e <code>&lt;em&gt;</code>.
+        desc_html: Paràgrafu de introdutzione a s'API. Descrie pro ite custu serbidore de Mastodon siat ispetziale e cale si siat àtera cosa de importu. Podes impreare etichetas HTML, mescamente <code>&lt;a&gt;</code> e <code>&lt;em&gt;</code>.
         title: Descritzione de su serbidore
       site_description_extended:
         desc_html: Unu logu adatu pro publicare su còdighe de cumportamentu, règulas, diretivas e àteras caraterìsticas ispetzìficas de su serbidore tuo. Podes impreare etichetas HTML
@@ -558,7 +558,7 @@ sc:
         desc_html: Ammustradu in sa barra laterale e in is meta-etichetas. Descrie ite est Mastodon e pro ite custu serbidore est ispetziale in unu paràgrafu.
         title: Descritzione curtza de su serbidore
       site_terms:
-        desc_html: Podes iscriere sa tua normativa de riservadesa pròpia, cunditziones de servìtziu e àteras normas legales. Podes impreare etichetas HTML
+        desc_html: Podes iscrìere sa normativa de riservadesa tua, cunditziones de servìtziu e àteras normas legales. Podes impreare etichetas HTML
         title: Termes de su servìtziu personalizados
       site_title: Nòmine de su serbidore
       thumbnail:
@@ -635,7 +635,7 @@ sc:
     remove: Disconnete su nomìngiu
   appearance:
     advanced_web_interface: Interfache web avantzada
-    advanced_web_interface_hint: 'Si impreare totu sa largària de s''ischermu, s''interfache web avantzada ti permitit de cunfigurare diversas colunnas pro bìdere meda prus informatzione in contemporànea: printzipale, notìficas, lìnia de tempus federada e cale si siat nùmeru de listas e etichetas.'
+    advanced_web_interface_hint: 'Si boles impreare totu sa largària de s''ischermu, s''interfache web avantzada ti permitit de cunfigurare diversas colunnas pro bìdere meda prus informatzione in contemporànea: printzipale, notìficas, lìnia de tempus federada e cale si siat nùmeru de listas e etichetas.'
     animations_and_accessibility: Animatziones e atzessibilidade
     confirmation_dialogs: Diàlogos de cunfirmatzione
     discovery: Iscoberta
