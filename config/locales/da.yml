@@ -586,12 +586,15 @@ da:
       hero:
         desc_html: Vist på forsiden. Mindst 600x100px anbefales. Hvis ikke sat, benyttes serverminiaturebillede
         title: Heltebillede
+      mascot:
+        desc_html: Vist på forsiden. Mindst 293x205px anbefales. Hvis ikke sat, benyttes standardmaskot
+        title: Maskotbillede
       peers_api_enabled:
-        desc_html: Domæne navne denne server er stødt på i fediverset
-        title: Udgiv liste over opdagede server
+        desc_html: Domænenavne, denne server er stødt på i fediverset
+        title: Udgiv liste over opdagede server i API'en
       preview_sensitive_media:
-        desc_html: Forhåndsvisninger af links på andre websider vil vise et miniaturebillede selv hvis mediet er markeret som følsomt
-        title: Vis følsomt medie i OpenGraph forhåndsvisninger
+        desc_html: Linkforhåndsvisninger fra andre websteder vil vise et miniaturebillede, selv hvis mediet er markeret som sensitivt
+        title: Vis følsomme medier i OpenGraph-forhåndsvisninger
       profile_directory:
         desc_html: Tillad bruger at kunne blive fundet
         title: Aktivér profilmappe
