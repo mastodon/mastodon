@@ -570,15 +570,22 @@ da:
       custom_css:
         desc_html: Ændre udseendet med CSS indlæst på hver side
         title: Tilpasset CSS
+      default_noindex:
+        desc_html: Påvirker alle brugere, som ikke selv har ændret denne indstilling
+        title: Fravælge som standard søgemaskineindekseringer for brugere
       domain_blocks:
         all: Til alle
         disabled: Til ingen
-        title: Vis domæne blokeringer
+        title: Vis domæneblokeringer
+        users: Til indloggede lokale brugere
+      domain_blocks_rationale:
+        title: Vis begrundelse
       enable_bootstrap_timeline_accounts:
-        title: Aktiver standard følger for nye brugere
+        desc_html: Få nye brugere til automatisk at følge opsatte konti, så deres hjemmefeed ikke starte tomt
+        title: Aktivere standardfølgninger for nye brugere
       hero:
-        desc_html: Vist på forsiden. Mindst 600x100px anbefales. Hvis ikke sat, vil dette falde tilbage til billedet fra serveren
-        title: Billede af helt
+        desc_html: Vist på forsiden. Mindst 600x100px anbefales. Hvis ikke sat, benyttes serverminiaturebillede
+        title: Heltebillede
       peers_api_enabled:
         desc_html: Domæne navne denne server er stødt på i fediverset
         title: Udgiv liste over opdagede server
