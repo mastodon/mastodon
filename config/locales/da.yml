@@ -600,22 +600,25 @@ da:
         title: Aktivér profilmappe
       registrations:
         closed_message:
-          desc_html: Vist på forside, når registreringmuligheder er lukket. HTML-tags kan bruges
-          title: Besked for lukkede registreringer
+          desc_html: Vist på forside, når tilmeldingsmuligheder er lukket. HTML-tags kan bruges
+          title: Lukket tilmelding-meddelelse
         deletion:
-          desc_html: Tillad alle at slette deres konto
-          title: Åben konto sletning
+          desc_html: Tillad enhver at slette sin konto
+          title: Åbn kontosletning
         min_invite_role:
           disabled: Ingen
-          title: Tillad invitationer af
+          title: Tillad invitationer fra
+        require_invite_text:
+          desc_html: Når tilmeldnger kræver manuel godkendelse, så gør “Hvorfor ønsker du at deltage?” tekstinput obligatorisk i stedet for valgfri
+          title: Nye brugere afkræves deltagelsesbegrundelse
       registrations_mode:
         modes:
-          approved: Godkendelse påkrævet for tilmelding
+          approved: Godkendelse kræves for tilmelding
           none: Ingen kan tilmelde sig
-          open: Alle kan tilmelde sig
-        title: Tilstand for registreringer
+          open: Enhver kan tilmelde sig
+        title: Tilmeldingstilstand
       show_known_fediverse_at_about_page:
-        desc_html: Når slået til, vil det vise trut fra hele det kendte fedivers på forhåndsvisning. Ellers vil det kun vise lokale trut.
+        desc_html: Når deaktiveret, begrænses den offentlige tidslinje linket fra indgangssiden til kun at vise lokalt indhold
         title: Vis kendte fedivers på tidslinje forhåndsvisning
       show_staff_badge:
         desc_html: Vis personale emblem på en brugerside
