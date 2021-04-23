@@ -633,16 +633,19 @@ da:
         desc_html: Vises på sidebjælke og metatags. Beskriv i et enkelt afsnit, hvad Mastodon er, og hvad der gør denne server speciel.
         title: Kort serverbeskrivelse
       site_terms:
-        desc_html: Du kan skrive din egen privatlivpolitik, servicevilkår, eller lignende. Du kan bruge HTML tags
-        title: Brugerdefineret servicevilkår
-      site_title: Navn af serveren
+        desc_html: Du kan skrive din egen fortrolighedspolitik, tjenestevilkår el.lign. HTML-tags kan bruges
+        title: Tilpasset tjenestevilkår
+      site_title: Servernavn
       thumbnail:
-        desc_html: Brugt til forhåndsvisninger via OpenGraph og API. 1200x630px anbefales
-        title: Miniaturebillede for serveren
+        desc_html: Bruges til forhåndsvisninger via OpenGraph og API. 1200x630px anbefales
+        title: Serverminiaturebillede
       timeline_preview:
-        desc_html: Vis offentlig tidslinje på landingssiden
-        title: Tidslinje forhåndsvisning
-      title: Indstillinger for side
+        desc_html: Vis link til offentlig tidslinje på indgangssiden og lad API'en tilgå den offentlige tidslinje uden godkendelse
+        title: Tillad ikke-godkendt tilgang til offentlig tidslinje
+      title: Webstedsindstillinger
+      trendable_by_default:
+        desc_html: Påvirker hashtags, som ikke tidligere er blevet nægtet
+        title: Tillad hashtags at forme tendens uden forudgående gennemsyn
       trends:
         title: Populære hashtags
     site_uploads:
