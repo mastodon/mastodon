@@ -641,10 +641,10 @@ da:
         title: Tillad ikke-godkendt tilgang til offentlig tidslinje
       title: Webstedsindstillinger
       trendable_by_default:
-        desc_html: Påvirker hashtags, som ikke tidligere er blevet nægtet
+        desc_html: Påvirker hashtags, som ikke blevet nægtet tidligere
         title: Tillad hashtags at forme tendens uden forudgående gennemsyn
       trends:
-        desc_html: Vis tidligere gennemgåede hashtags, som pt. tender
+        desc_html: Vis tidligere gennemgåede hashtags, som pt. trender
         title: Populære hashtags
     site_uploads:
       delete: Slet uploadet fil
@@ -653,19 +653,22 @@ da:
       back_to_account: Tilbage til kontosiden
       batch:
         delete: Slet
-        nsfw_off: Marker som værende ikke følsomt
-        nsfw_on: Marker som værende følsomt
+        nsfw_off: Markér som ikke-sensitivt
+        nsfw_on: Markér som sensitivt
       deleted: Slettet
-      failed_to_execute: Udførelsen kunne ikke lade sig gøre
+      failed_to_execute: Udførelse mislykkedes
       media:
-        title: Multimedier
-      no_media: Ingen multimedier
-      no_status_selected: Ingen statusser blev ændret eller ingen blev valgt
-      title: Konto statusser
-      with_media: Med multimedier
+        title: Medier
+      no_media: Ingen medier
+      no_status_selected: Ingen indlæg ændret, da ingen var valgt
+      title: Kontoindlæg
+      with_media: Med medier
     system_checks:
+      database_schema_check:
+        message_html: Databasemigreringer afventer. Kør dem for at sikre at applikationen opfører sig som forventet
       rules_check:
-        action: Administrer serverregler
+        action: Håndtér serverregler
+        message_html: Ingen serverregler defineret.
     tags:
       accounts_today: Unikke brug i dag
       accounts_week: Unikke brug denne uge
