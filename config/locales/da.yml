@@ -798,11 +798,11 @@ da:
     confirm: Fortsæt
     hint_html: "<strong>Tip:</strong> Du bliver ikke anmodet om din adgangskode igen den næste time."
     invalid_password: Ugyldig adgangskode
-    prompt: Bekræft din adgangskode for at fortsætte
+    prompt: Bekræft adgangskode for at fortsætte
   crypto:
     errors:
-      invalid_key: er ikke en gyldig Ed25519 eller Curve25519 nøgle
-      invalid_signature: er ikke en gylidig Ed25519 signatur
+      invalid_key: er ikke en gyldig Ed25519- eller Curve25519-nøgle
+      invalid_signature: er ikke en gylidig Ed25519-signatur
   date:
     formats:
       default: "%b %d, %Y"
@@ -810,13 +810,17 @@ da:
   datetime:
     distance_in_words:
       about_x_hours: "%{count}t"
-      about_x_months: "%{count} måneder"
-      about_x_years: "%{count}år"
-      almost_x_years: "%{count}år"
-      half_a_minute: Lige nu
-      less_than_x_seconds: Lige nu
-      over_x_years: "%{count}år"
-      x_months: "%{count}md"
+      about_x_months: "%{count} md"
+      about_x_years: "%{count} år"
+      almost_x_years: "%{count} år"
+      half_a_minute: Netop nu
+      less_than_x_minutes: "%{count} m"
+      less_than_x_seconds: Netop nu
+      over_x_years: "%{count} år"
+      x_days: "%{count} d"
+      x_minutes: "%{count} m"
+      x_months: "%{count} md"
+      x_seconds: "%{count} s"
   deletes:
     challenge_not_passed: De oplysninger, du indtastede var ikke korrekte
     confirm_password: Indtast dit nuværende kodeord for at bekræfte din identitet
