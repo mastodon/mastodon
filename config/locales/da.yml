@@ -728,25 +728,28 @@ da:
     salutation: "%{name}"
     settings: 'Skift e-mailpræferencer: %{link}'
     view: 'Se:'
-    view_profile: Se profil
-    view_status: Se status
+    view_profile: Vis profil
+    view_status: Vis status
   applications:
-    created: Applikation blev oprettet
-    destroyed: Applikation er blevet slettet
-    invalid_url: Det angivne URL er ugyldigt
-    regenerate_token: Regenerer adgangs token
-    token_regenerated: Adgangs token blev regenereret
-    warning: Vær meget forsigtig med disse data. Del dem aldrig med nogen!
-    your_token: Din adgangs token
+    created: Applikation oprettet
+    destroyed: Applikation slettet
+    invalid_url: Den angivne URL er ugyldig
+    regenerate_token: Regenerér adgangstoken
+    token_regenerated: Adgangstoken regenereret
+    warning: Vær meget påpasselig med disse data. Del dem aldrig med nogen!
+    your_token: Dit adgangstoken
   auth:
     apply_for_account: Anmod om en invitation
-    change_password: Kodeord
+    change_password: Adgangskode
+    checkbox_agreement_html: Jeg accepterer <a href="%{rules_path}" target="_blank">serverreglerne</a> og <a href="%{terms_path}" target="_blank">tjenestevilkårene</a>
+    checkbox_agreement_without_rules_html: Jeg accepterer <a href="%{terms_path}" target="_blank">tjenestevilkårene</a>
     delete_account: Slet konto
-    delete_account_html: Hvis du ønsker at slette din konto, kan du <a href="%{path}">gøre det her</a>. Du vil blive bedt om bekræftelse.
+    delete_account_html: Ønsker du at slette din konto, kan du <a href="%{path}">gøre dette hér</a>. Du vil blive bedt om bekræftelse.
     description:
-      prefix_invited_by_user: "@%{name} inviterer dig til at deltage i denne Mastodons server!"
+      prefix_invited_by_user: "@%{name} inviterer dig til at deltage på denne Mastodon-server!"
       prefix_sign_up: Tilmeld dig Mastodon i dag!
-    didnt_get_confirmation: Har du endnu ikke modtaget instrukser for bekræftelse?
+      suffix: Med en konto vil du kunne følge personer, indsende opdateringer og udveksle beskeder med brugere fra enhver Mastodon-server, og meget mere!
+    didnt_get_confirmation: Modtog ingen bekræftelsesinstruktioner?
     dont_have_your_security_key: Har du ikke dine sikkerhedsnøgler?
     forgot_password: Glemt dit kodeord?
     invalid_reset_password_token: Adgangskode nulstillings token er ugyldig eller udløbet. Anmod venligst om en ny.
