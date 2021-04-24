@@ -65,6 +65,8 @@ class Account < ApplicationRecord
   include AccountCounters
   include DomainNormalizable
 
+  include Friends::FavouriteTagsExtension
+
   TRUST_LEVELS = {
     untrusted: 0,
     trusted: 1,
