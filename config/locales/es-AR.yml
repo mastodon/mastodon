@@ -1,6 +1,6 @@
 es-AR:
   about:
-    about_hashtag_html: 'Estos son toots públicos etiquetados con <strong>#%{hashtag}</strong>. Si tenés una cuenta en cualquier parte del fediverso, podés interactuar con ellos.'
+    about_hashtag_html: 'Estos son mensajes públicos etiquetados con <strong>#%{hashtag}</strong>. Si tenés una cuenta en cualquier parte del fediverso, podés interactuar con ellos.'
     about_mastodon_html: 'La red social del futuro: ¡sin publicidad, sin vigilancia corporativa, con diseño ético y descentralización! ¡Con Mastodon vos sos el dueño de tus datos!'
     about_this: Acerca de Mastodon
     active_count_after: activo
@@ -10,8 +10,8 @@ es-AR:
     apps: Aplicaciones móviles
     apps_platforms: Usá Mastodon desde iOS, Android y otras plataformas
     browse_directory: Explorá el directorio de perfiles y filtrá por intereses
-    browse_local_posts: Explorá un flujo en tiempo real de toots públicos en este servidor
-    browse_public_posts: Explorá un flujo en tiempo real de toots públicos en Mastodon
+    browse_local_posts: Explorá un flujo en tiempo real de mensajes públicos en este servidor
+    browse_public_posts: Explorá un flujo en tiempo real de mensajes públicos en Mastodon
     contact: Contacto
     contact_missing: No establecido
     contact_unavailable: No disponible
@@ -31,8 +31,8 @@ es-AR:
     server_stats: 'Estadísticas del servidor:'
     source_code: Código fuente
     status_count_after:
-      one: toot
-      other: toots
+      one: mensaje
+      other: mensajes
     status_count_before: Que enviaron
     tagline: Seguí a tus amigos y descubrí nueva gente
     terms: Términos del servicio
@@ -42,7 +42,7 @@ es-AR:
       reason: Motivo
       rejecting_media: 'Los archivos de medios de este servidor no van a ser procesados y no se mostrarán miniaturas, lo que requiere un clic manual hacia el archivo original:'
       rejecting_media_title: Medios filtrados
-      silenced: 'Los toots de estos servidores se ocultarán en las líneas temporales y conversaciones públicas, y no se generarán notificaciones de las interacciones de sus usuarios, a menos que los estés siguiendo:'
+      silenced: 'Los mensajes de estos servidores se ocultarán en las líneas temporales y conversaciones públicas, y no se generarán notificaciones de las interacciones de sus usuarios, a menos que los estés siguiendo:'
       silenced_title: Servidores silenciados
       suspended: 'No se procesarán, almacenarán o intercambiarán datos de estos servidores, haciendo imposible cualquier interacción o comunicación con los usuarios de estos servidores:'
       suspended_title: Servidores suspendidos
@@ -75,10 +75,10 @@ es-AR:
     pin_errors:
       following: Ya tenés que estar siguiendo a la cuenta que querés recomendar
     posts:
-      one: Toot
-      other: Toots
-    posts_tab_heading: Toots
-    posts_with_replies: Toots y respuestas
+      one: Mensaje
+      other: Mensajes
+    posts_tab_heading: Mensajes
+    posts_with_replies: Mensajes y respuestas
     roles:
       admin: Administrador
       bot: Bot
@@ -198,7 +198,7 @@ es-AR:
         targeted_reports: Denunciada por otros
       silence: Limitar
       silenced: Limitadas
-      statuses: Toots
+      statuses: Mensajes
       subscribe: Suscribirse
       suspended: Suspendidas
       suspension_irreversible: Se eliminaron irreversiblemente los datos de esta cuenta. Podés dejar de suspenderla para hacerla utilizable, pero no se recuperarán los datos que tenía anteriormente.
@@ -236,7 +236,7 @@ es-AR:
         destroy_domain_block: Eliminar bloqueo de dominio
         destroy_email_domain_block: Eliminar bloqueo de dominio de correo electrónico
         destroy_ip_block: Eliminar regla de dirección IP
-        destroy_status: Eliminar toot
+        destroy_status: Eliminar mensaje
         disable_2fa_user: Deshabilitar 2FA
         disable_custom_emoji: Deshabilitar emoji personalizado
         disable_user: Deshabilitar usuario
@@ -258,7 +258,7 @@ es-AR:
         update_announcement: Actualizar anuncio
         update_custom_emoji: Actualizar emoji personalizado
         update_domain_block: Actualizar bloque de dominio
-        update_status: Actualizar toot
+        update_status: Actualizar mensaje
       actions:
         assigned_to_self_report_html: "%{name} se asignó la denuncia %{target} a sí"
         change_email_user_html: "%{name} cambió la dirección de correo electrónico del usuario %{target}"
@@ -277,7 +277,7 @@ es-AR:
         destroy_domain_block_html: "%{name} desbloqueó el dominio %{target}"
         destroy_email_domain_block_html: "%{name} desbloqueó el dominio de correo electrónico %{target}"
         destroy_ip_block_html: "%{name} eliminó la regla para la dirección IP %{target}"
-        destroy_status_html: "%{name} eliminó el toot de %{target}"
+        destroy_status_html: "%{name} eliminó el mensaje de %{target}"
         disable_2fa_user_html: "%{name} deshabilitó el requerimiento de dos factores para el usuario %{target}"
         disable_custom_emoji_html: "%{name} deshabilitó el emoji %{target}"
         disable_user_html: "%{name} deshabilitó el inicio de sesión para el usuario %{target}"
@@ -299,8 +299,8 @@ es-AR:
         update_announcement_html: "%{name} actualizó el anuncio %{target}"
         update_custom_emoji_html: "%{name} actualizó el emoji %{target}"
         update_domain_block_html: "%{name} actualizó el bloqueo de dominio para %{target}"
-        update_status_html: "%{name} actualizó el toot de %{target}"
-      deleted_status: "[toot eliminado]"
+        update_status_html: "%{name} actualizó el mensaje de %{target}"
+      deleted_status: "[mensaje eliminado]"
       empty: No se encontraron registros.
       filter_by_action: Filtrar por acción
       filter_by_user: Filtrar por usuario
@@ -398,7 +398,7 @@ es-AR:
         create: Crear bloqueo
         hint: El bloqueo de dominio no va a prevenir la creación de toots de cuenta en la base de datos, pero se aplicarán métodos específicos de moderación en esas cuentas, retroactiva y automáticamente.
         severity:
-          desc_html: "<strong>Silenciar</strong> hará que los toots de la cuenta sean invisibles a quienes no estén siguiendo esa cuenta. <strong>Suspender</strong> quitará todo el contenido, archivos de medio y datos de perfil de la cuenta. Usá <strong>Ninguno</strong> si simplemente querés rechazar archivos de medios."
+          desc_html: "<strong>Silenciar</strong> hará que los mensajes de la cuenta sean invisibles a quienes no estén siguiendo esa cuenta. <strong>Suspender</strong> quitará todo el contenido, archivos de medio y datos de perfil de la cuenta. Usá <strong>Ninguno</strong> si simplemente querés rechazar archivos de medios."
           noop: Ninguno
           silence: Silenciar
           suspend: Suspender
@@ -498,11 +498,11 @@ es-AR:
     relays:
       add_new: Agregar nuevo relé
       delete: Eliminar
-      description_html: Un <strong>relé de federación</strong> es un servidor intermedio que intercambia grandes volúmenes de toots públicos entre servidores que se suscriben y publican en él. <strong>Puede ayudar a servidores chicos y medianos a descubrir contenido del fediverso</strong>, que de otra manera requeriría que los usuarios locales siguiesen manualmente a cuentas de servidores remotos.
+      description_html: Un <strong>relé de federación</strong> es un servidor intermedio que intercambia grandes volúmenes de mensajes públicos entre servidores que se suscriben y publican en él. <strong>Puede ayudar a servidores chicos y medianos a descubrir contenido del fediverso</strong>, que de otra manera requeriría que los usuarios locales siguiesen manualmente a cuentas de servidores remotos.
       disable: Deshabilitar
       disabled: Deshabilitado
       enable: Habilitar
-      enable_hint: Una vez habilitado, tu servidor se suscribirá a todos los toots públicos desde este relé, y comenzará a enviar los toots públicos de este servidor al relé.
+      enable_hint: Una vez habilitado, tu servidor se suscribirá a todos los mensajes públicos desde este relé, y comenzará a enviar los mensajes públicos de este servidor al relé.
       enabled: Habilitado
       inbox_url: Dirección web del relé
       pending: Esperando aprobación del relé
@@ -560,7 +560,7 @@ es-AR:
       title: Reglas del servidor
     settings:
       activity_api_enabled:
-        desc_html: Conteos de toots publicados localmente, usuarios activos y nuevos registros en tandas semanales
+        desc_html: Conteos de mensajes publicados localmente, usuarios activos y nuevos registros en tandas semanales
         title: Publicar estadísticas agregadas sobre la actividad del usuario en la API
       bootstrap_timeline_accounts:
         desc_html: Separar múltiples nombres de usuario con coma. Sólo funcionarán las cuentas locales y desbloqueadas. Predeterminadamente, cuando está vacío se trata de todos los administradores locales.
@@ -664,8 +664,8 @@ es-AR:
       media:
         title: Medios
       no_media: Sin medios
-      no_status_selected: No se cambió ningún toot ya que ninguno fue seleccionado
-      title: Toots de la cuenta
+      no_status_selected: No se cambió ningún mensaje, ya que ninguno fue seleccionado
+      title: Mensajes de la cuenta
       with_media: Con medios
     system_checks:
       database_schema_check:
@@ -690,7 +690,7 @@ es-AR:
       reviewed: Revisado
       title: Etiquetas
       trending_right_now: En tendencia ahora mismo
-      unique_uses_today: "%{count} toots hoy"
+      unique_uses_today: "%{count} mensajes hoy"
       unreviewed: No revisada
       updated_msg: La configuración de la etiqueta se actualizó exitosamente
     title: Administración
@@ -729,14 +729,14 @@ es-AR:
       guide_link: https://es.crowdin.com/project/mastodon
       guide_link_text: Todos pueden contribuir.
     sensitive_content: Contenido sensible
-    toot_layout: Diseño del toot
+    toot_layout: Diseño del mensaje
   application_mailer:
     notification_preferences: Cambiar configuración de correo electrónico
     salutation: "%{name}:"
     settings: 'Cambiar configuración de correo electrónico: %{link}'
     view: 'Vista:'
     view_profile: Ver perfil
-    view_status: Ver toot
+    view_status: Ver mensaje
   applications:
     created: Aplicación creada exitosamente
     destroyed: Aplicación eliminada exitosamente
