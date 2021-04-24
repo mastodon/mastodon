@@ -755,7 +755,7 @@ es-AR:
     description:
       prefix_invited_by_user: "¡@%{name} te invita para que te unás a este servidor de Mastodon!"
       prefix_sign_up: '¡Unite a Mastodon hoy!'
-      suffix: Con una cuenta vas a poder seguir gente, escribir toots e intercambiar mensajes ¡con usuarios de cualquier servidor de Mastodon y más!
+      suffix: Con una cuenta vas a poder seguir a otras cuentas, escribir mensajes e intercambiarlos con usuarios de cualquier servidor de Mastodon, ¡y mucho más!
     didnt_get_confirmation: '¿No recibiste el correo electrónico de confirmación?'
     dont_have_your_security_key: '¿No tenés tu llave de seguridad?'
     forgot_password: '¿Te olvidaste la contraseña?'
@@ -837,7 +837,7 @@ es-AR:
     warning:
       before: 'Antes de proceder, por favor, leé estas notas cuidadosamente:'
       caches: El contenido que fue almacenado en caché por otros servidores puede persistir
-      data_removal: Tus toots y el resto de los datos se eliminarán definitivamente
+      data_removal: Tus mensajes y el resto de los datos se eliminarán definitivamente
       email_change_html: Podés <a href="%{path}">cambiar tu dirección de correo electrónico</a> sin eliminar tu cuenta
       email_contact_html: Si todavía no llegó, podés escribir a <a href="mailto:%{email}">%{email}</a> para pedir ayuda
       email_reconfirmation_html: Si no te llegó el correo de confirmación, podés <a href="%{path}">solicitarlo de nuevo</a>
@@ -873,7 +873,7 @@ es-AR:
     archive_takeout:
       date: Fecha
       download: Descargá tu archivo historial
-      hint_html: Podés solicitar un archivo historial de tus <strong>toots y medios subidos</strong>. Los datos exportados estarán en formato "ActivityPub", legibles por cualquier software compatible. Podés solicitar un archivo historial cada 7 días.
+      hint_html: Podés solicitar un archivo historial de tus <strong>mensajes y medios subidos</strong>. Los datos exportados estarán en formato "ActivityPub", legibles por cualquier software compatible. Podés solicitar un archivo historial cada 7 días.
       in_progress: Compilando tu archivo historial...
       request: Solicitá tu archivo historial
       size: Tamaño
@@ -888,7 +888,7 @@ es-AR:
     add_new: Agregar nueva
     errors:
       limit: Alcanzaste el máximo de etiquetas destacadas
-    hint_html: "<strong>¿Qué son las etiquetas destacadas?</strong> Son etiquetas que se muestran de forma prominente en tu perfil público y permiten a los usuarios navegar por tus toots públicos específicamente bajo esas etiquetas. Son una gran herramienta para hacer un seguimiento de trabajos creativos o proyectos a largo plazo."
+    hint_html: "<strong>¿Qué son las etiquetas destacadas?</strong> Son etiquetas que se muestran de forma permanente en tu perfil público y permiten a los usuarios navegar por tus mensajes públicos que contengan esas etiquetas. Las etiquetas destacadas son una gran herramienta para hacer un seguimiento de trabajos creativos o proyectos a largo plazo."
   filters:
     contexts:
       account: Perfiles
@@ -990,7 +990,7 @@ es-AR:
       limit: Alcanzaste el máximo de listas
   media_attachments:
     validations:
-      images_and_video: No se puede adjuntar un video a un toot que ya contenga imágenes
+      images_and_video: No se puede adjuntar un video a un mensaje que ya contenga imágenes
       not_ready: No se pueden adjuntar archivos que no se han terminado de procesar. ¡Intentá de nuevo en un rato!
       too_many: No se pueden adjuntar más de 4 archivos
   migrations:
@@ -1043,8 +1043,8 @@ es-AR:
         other: "%{count} nuevas notificaciones desde tu última visita \U0001F418"
       title: En tu ausencia...
     favourite:
-      body: 'Tu toot fue marcado como favorito por %{name}:'
-      subject: "%{name} marcó tu toot como favorito"
+      body: 'Tu mensaje fue marcado como favorito por %{name}:'
+      subject: "%{name} marcó tu mensaje como favorito"
       title: Nuevo favorito
     follow:
       body: "¡%{name} te está siguiendo!"
@@ -1063,11 +1063,11 @@ es-AR:
     poll:
       subject: Terminó una encuesta de %{name}
     reblog:
-      body: '%{name} retooteó tu estado:'
-      subject: "%{name} retooteó tu estado"
+      body: '%{name} adhirió a tu mensaje:'
+      subject: "%{name} adhirió a tu mensaje"
       title: Nuevo retoot
     status:
-      subject: "%{name} acaba de publicar"
+      subject: "%{name} acaba de enviar un mensaje"
   notifications:
     email_events: Eventos para notificaciones por correo electrónico
     email_events_hint: 'Seleccioná los eventos para los que querés recibir notificaciones:'
@@ -1109,7 +1109,7 @@ es-AR:
       too_many_options: no puede contener más de %{max} elementos
   preferences:
     other: Otras opciones
-    posting_defaults: Configuración predeterminada de publicaciones
+    posting_defaults: Configuración predeterminada de mensajes
     public_timelines: Líneas temporales públicas
   reactions:
     errors:
@@ -1142,16 +1142,16 @@ es-AR:
   remote_interaction:
     favourite:
       proceed: Proceder para marcar como favorito
-      prompt: 'Vas a marcar este toot como favorito:'
+      prompt: 'Vas a marcar este mensaje como favorito:'
     reblog:
       proceed: Proceder para retootear
-      prompt: 'Vas a retootear este estado:'
+      prompt: 'Vas a adherir a este mensaje:'
     reply:
       proceed: Proceder para responder
-      prompt: 'Vas a responder a este toot:'
+      prompt: 'Vas a responder a este mensaje:'
   scheduled_statuses:
-    over_daily_limit: Superaste el límite de %{limit} toots programados para ese día
-    over_total_limit: Superaste el límite de %{limit} toots programados
+    over_daily_limit: Superaste el límite de %{limit} mensajes programados para ese día
+    over_total_limit: Superaste el límite de %{limit} mensajes programados
     too_soon: La fecha programada debe estar en el futuro
   sessions:
     activity: Última actividad
@@ -1234,14 +1234,14 @@ es-AR:
       one: 'contenía una etiqueta no permitida: %{tags}'
       other: 'contenía las etiquetas no permitidas: %{tags}'
     errors:
-      in_reply_not_found: El toot al que intentás responder no existe.
+      in_reply_not_found: El mensaje al que intentás responder no existe.
     language_detection: Detectar idioma automáticamente
     open_in_web: Abrir en la web
     over_character_limit: se excedió el límite de %{max} caracteres
     pin_errors:
-      limit: Ya fijaste el número máximo de toots
-      ownership: No se puede fijar el toot de otra persona
-      private: Los toots no públicos no se pueden fijar
+      limit: Ya fijaste el número máximo de mensajes
+      ownership: No se puede fijar el mensaje de otra cuenta
+      private: Los mensajes que no son públicos no se pueden fijar
       reblog: No se puede fijar un retoot
     poll:
       total_people:
@@ -1266,7 +1266,7 @@ es-AR:
       unlisted: No listado
       unlisted_long: Todos pueden ver, pero no está listado en las líneas temporales públicas
   stream_entries:
-    pinned: Toot fijado
+    pinned: Mensaje fijado
     reblogged: retooteó
     sensitive_content: Contenido sensible
   tags:
