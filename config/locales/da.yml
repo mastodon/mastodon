@@ -750,29 +750,34 @@ da:
       prefix_sign_up: Tilmeld dig Mastodon i dag!
       suffix: Med en konto vil du kunne følge personer, indsende opdateringer og udveksle beskeder med brugere fra enhver Mastodon-server, og meget mere!
     didnt_get_confirmation: Modtog ingen bekræftelsesinstruktioner?
-    dont_have_your_security_key: Har du ikke dine sikkerhedsnøgler?
-    forgot_password: Glemt dit kodeord?
-    invalid_reset_password_token: Adgangskode nulstillings token er ugyldig eller udløbet. Anmod venligst om en ny.
+    dont_have_your_security_key: Har ikke din sikkerhedsnøgle?
+    forgot_password: Glemt dit adgangskode?
+    invalid_reset_password_token: Adgangskodenulstillingstoken ugyldigt eller udløbet. Anmod om et nyt.
+    link_to_otp: Angiv en tofaktorkode fra din mobil, eller en gendannelseskode
+    link_to_webauth: Brug din sikkerhedsnøgleenhed
     login: Log ind
     logout: Log ud
     migrate_account: Flyt til en anden konto
-    migrate_account_html: Hvis du ønsker at omdirigere denne konto til en anden, kan du <a href="%{path}">gøre det her</a>.
-    or_log_in_with: Eller log in med
+    migrate_account_html: Ønsker du at omdirigere denne konto til en anden, kan du <a href="%{path}">opsætte dette hér</a>.
+    or_log_in_with: Eller log ind med
     providers:
       cas: CAS
       saml: SAML
     register: Opret dig
     registration_closed: "%{instance} accepterer ikke nye medlemmer"
-    resend_confirmation: Gensend bekræftelses instrukser
-    reset_password: Nulstil kodeord
+    resend_confirmation: Gensend bekræftelsesinstruktioner
+    reset_password: Nulstil adgangskode
     security: Sikkerhed
-    set_new_password: Sæt et nyt kodeord
+    set_new_password: Opsæt ny adgangskode
     setup:
-      email_settings_hint_html: Bekræftelsesmailen blev sendt til %{email}. Hvis denne e-mailadresse ikke er korrekt, kan du ændre den i kontoindstillinger.
+      email_below_hint_html: Er nedenstående e-mailadresse forkert, kan du ændre den hér og modtage en ny bekræftelses-e-mail.
+      email_settings_hint_html: Bekræftelsese-mailen er sendt til %{email}. Er denne e-mailadresse forkert, kan du ændre den via kontoindstillingerne.
       title: Opsætning
     status:
       account_status: Kontostatus
-      confirming: Venter på at e-mail bekræftelsen er fuldført.
+      confirming: Afventer gennemførelse af e-mailbekræftelse.
+      functional: Din konto er fuldt operationel.
+      pending: Din ansøgning afventer gennemgang af vores medarbejdere. Dette kan tage noget tid. Du modtager en e-mail, hvis din ansøgning godkendes.
     trouble_logging_in: Har du problemer med at logge på?
     use_security_key: Brug sikkerhedsnøgle
   authorize_follow:
