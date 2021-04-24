@@ -396,7 +396,7 @@ es-AR:
       existing_domain_block_html: Ya le aplicaste límites más estrictos a %{name}, por lo que primero necesitás <a href="%{unblock_url}">desbloquearlo</a>.
       new:
         create: Crear bloqueo
-        hint: El bloqueo de dominio no va a prevenir la creación de toots de cuenta en la base de datos, pero se aplicarán métodos específicos de moderación en esas cuentas, retroactiva y automáticamente.
+        hint: El bloqueo de dominio no va a prevenir la creación de mensajes de cuenta en la base de datos, pero se aplicarán métodos específicos de moderación en esas cuentas, retroactiva y automáticamente.
         severity:
           desc_html: "<strong>Silenciar</strong> hará que los mensajes de la cuenta sean invisibles a quienes no estén siguiendo esa cuenta. <strong>Suspender</strong> quitará todo el contenido, archivos de medio y datos de perfil de la cuenta. Usá <strong>Ninguno</strong> si simplemente querés rechazar archivos de medios."
           noop: Ninguno
@@ -1065,7 +1065,7 @@ es-AR:
     reblog:
       body: '%{name} adhirió a tu mensaje:'
       subject: "%{name} adhirió a tu mensaje"
-      title: Nuevo retoot
+      title: Nueva adhesión
     status:
       subject: "%{name} acaba de enviar un mensaje"
   notifications:
@@ -1144,7 +1144,7 @@ es-AR:
       proceed: Proceder para marcar como favorito
       prompt: 'Vas a marcar este mensaje como favorito:'
     reblog:
-      proceed: Proceder para retootear
+      proceed: Proceder para adherir
       prompt: 'Vas a adherir a este mensaje:'
     reply:
       proceed: Proceder para responder
@@ -1228,7 +1228,7 @@ es-AR:
       video:
         one: "%{count} video"
         other: "%{count} videos"
-    boosted_from_html: Retooteado desde %{acct_link}
+    boosted_from_html: Adherido desde %{acct_link}
     content_warning: 'Advertencia de contenido: %{warning}'
     disallowed_hashtags:
       one: 'contenía una etiqueta no permitida: %{tags}'
@@ -1242,7 +1242,7 @@ es-AR:
       limit: Ya fijaste el número máximo de mensajes
       ownership: No se puede fijar el mensaje de otra cuenta
       private: Los mensajes que no son públicos no se pueden fijar
-      reblog: No se puede fijar un retoot
+      reblog: No se puede fijar una adhesión
     poll:
       total_people:
         one: "%{count} persona"
@@ -1267,7 +1267,7 @@ es-AR:
       unlisted_long: Todos pueden ver, pero no está listado en las líneas temporales públicas
   stream_entries:
     pinned: Mensaje fijado
-    reblogged: retooteó
+    reblogged: adhirió a este mensaje
     sensitive_content: Contenido sensible
   tags:
     does_not_match_previous_name: no coincide con el nombre anterior
