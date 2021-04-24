@@ -1,4 +1,3 @@
----
 es-AR:
   simple_form:
     hints:
@@ -7,12 +6,12 @@ es-AR:
       account_migration:
         acct: Especificá el nombredeusuario@dominio de la cuenta a la que querés mudarte
       account_warning_preset:
-        text: Podés usar sintaxis de toots, como direcciones web, etiquetas y menciones
+        text: Podés usar sintaxis de mensajes, como direcciones web, etiquetas y menciones
         title: Opcional. No visible para el destinatario
       admin_account_action:
-        include_statuses: El usuario verá qué toots causaron la acción de moderación o advertencia
+        include_statuses: El usuario verá qué mensajes causaron la acción de moderación o advertencia
         send_email_notification: El usuario recibirá una explicación de lo que sucedió con su cuenta
-        text_html: Opcional. Podés usar sintaxis de toots. Podés <a href="%{path}">agregar preajustes de advertencia</a> para ahorrar tiempo
+        text_html: Opcional. Podés usar sintaxis de mensajes. Podés <a href="%{path}">agregar preajustes de advertencia</a> para ahorrar tiempo
         type_html: Elegí qué hacer con <strong>%{acct}</strong>
         types:
           disable: Evitar que el usuario use su cuenta, pero no elimina ni oculta sus contenidos.
@@ -187,7 +186,7 @@ es-AR:
       invite:
         comment: Comentar
       invite_request:
-        text: "¿Por qué querés unirte?"
+        text: '¿Por qué querés unirte?'
       ip_block:
         comment: Comentario
         ip: Dirección IP
@@ -220,4 +219,4 @@ es-AR:
     title:
       sessions:
         webauthn: Usá una de tus llaves de seguridad para iniciar sesión
-    'yes': Sí
+    'yes': 'Sí'
