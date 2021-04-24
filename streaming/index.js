@@ -558,6 +558,11 @@ const startWorker = (workerId) => {
       return;
     }
 
+    if (req.accountId) {
+      log.verbose(`timeline:hashtag:${tag.toLowerCase()}:authorized req.accountId: ${req.accountId}`);
+      streamFrom(`timeline:hashtag:${tag.toLowerCase()}:authorized`, req, streamToHttp(req, res), streamHttpEnd(req), true);
+      return
+    }
     streamFrom(`timeline:hashtag:${tag.toLowerCase()}`, req, streamToHttp(req, res), streamHttpEnd(req), true);
   });
 
@@ -569,6 +574,11 @@ const startWorker = (workerId) => {
       return;
     }
 
+    if (req.accountId) {
+      log.verbose(`timeline:hashtag:${tag.toLowerCase()}:authorized:local req.accountId: ${req.accountId}`);
+      streamFrom(`timeline:hashtag:${tag.toLowerCase()}:authorized:local`, req, streamToHttp(req, res), streamHttpEnd(req), true);
+      return
+    }
     streamFrom(`timeline:hashtag:${tag.toLowerCase()}:local`, req, streamToHttp(req, res), streamHttpEnd(req), true);
   });
 
@@ -631,6 +641,11 @@ const startWorker = (workerId) => {
         return;
       }
 
+      if (req.accountId) {
+        log.verbose(`timeline:hashtag:${location.query.tag.toLowerCase()}:authorized req.accountId: ${req.accountId}`);
+        streamFrom(`timeline:hashtag:${location.query.tag.toLowerCase()}:authorized`, req, streamToWs(req, ws), streamWsEnd(req, ws), true);
+        break;
+      }
       streamFrom(`timeline:hashtag:${location.query.tag.toLowerCase()}`, req, streamToWs(req, ws), streamWsEnd(req, ws), true);
       break;
     case 'hashtag:local':
@@ -639,6 +654,11 @@ const startWorker = (workerId) => {
         return;
       }
 
+      if (req.accountId) {
+        log.verbose(`timeline:hashtag:${location.query.tag.toLowerCase()}:authorized:local req.accountId: ${req.accountId}`);
+        streamFrom(`timeline:hashtag:${location.query.tag.toLowerCase()}:authorized:local`, req, streamToWs(req, ws), streamWsEnd(req, ws), true);
+        break;
+      }
       streamFrom(`timeline:hashtag:${location.query.tag.toLowerCase()}:local`, req, streamToWs(req, ws), streamWsEnd(req, ws), true);
       break;
     case 'list':

@@ -90,6 +90,7 @@ class Status < ApplicationRecord
   scope :without_replies, -> { where('statuses.reply = FALSE OR statuses.in_reply_to_account_id = statuses.account_id') }
   scope :without_reblogs, -> { where('statuses.reblog_of_id IS NULL') }
   scope :with_public_visibility, -> { where(visibility: :public) }
+  scope :with_public_or_unlisted_visibility, ->(unlisted_replies = true) { where(visibility: :public).or(unlisted_replies ? where(visibility: :unlisted) : where(visibility: :unlisted).without_replies) }
   scope :tagged_with, ->(tag) { joins(:statuses_tags).where(statuses_tags: { tag_id: tag }) }
   scope :excluding_silenced_accounts, -> { left_outer_joins(:account).where(accounts: { silenced_at: nil }) }
   scope :including_silenced_accounts, -> { left_outer_joins(:account).where.not(accounts: { silenced_at: nil }) }
@@ -288,7 +289,7 @@ class Status < ApplicationRecord
     end
 
     def as_tag_timeline(tag, account = nil, local_only = false)
-      query = timeline_scope(local_only).tagged_with(tag)
+      query = timeline_scope(local_only, public_only: account.blank?, unlisted_replies: false).tagged_with(tag)
 
       apply_timeline_filters(query, account, local_only)
     end
@@ -376,7 +377,7 @@ class Status < ApplicationRecord
 
     private
 
-    def timeline_scope(scope = false)
+    def timeline_scope(scope = false, public_only: true, unlisted_replies: true)
       starting_scope = case scope
                        when :local, true
                          Status.local
@@ -386,9 +387,13 @@ class Status < ApplicationRecord
                          Status
                        end
 
-      starting_scope
-        .with_public_visibility
-        .without_reblogs
+      starting_scope = starting_scope.without_reblogs
+
+      if public_only
+        starting_scope.with_public_visibility
+      else
+        starting_scope.with_public_or_unlisted_visibility(unlisted_replies)
+      end
     end
 
     def apply_timeline_filters(query, account, local_only)
