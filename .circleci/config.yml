@@ -72,6 +72,7 @@ aliases:
         - run:
             name: Set bundler settings
             command: |
+              gem install bundler
               bundle config clean 'true'
               bundle config deployment 'true'
               bundle config with 'pam_authentication'
@@ -99,6 +100,9 @@ aliases:
         - run:
             name: Install FFMPEG
             command: sudo apt-get install -y ffmpeg
+        - run:
+            name: install bundler
+            command: gem install bundler
         - run:
             name: Load database schema
             command: ./bin/rails db:create db:schema:load db:seed
