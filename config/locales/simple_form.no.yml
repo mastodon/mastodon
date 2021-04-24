@@ -1,5 +1,4 @@
----
-'no':
+"no":
   simple_form:
     hints:
       account_alias:
@@ -69,7 +68,7 @@
         severities:
           no_access: Blokker tilgang til alle ressurser
       sessions:
-        otp: Angi tofaktorkoden fra din telefon eller bruk en av dine gjenopprettingskoder.
+        otp: 'Angi tofaktorkoden fra din telefon eller bruk en av dine gjenopprettingskoder.'
       tag:
         name: Du kan bare forandre bruken av store/små bokstaver, f.eks. for å gjøre det mer lesbart
       user:
@@ -112,12 +111,14 @@
         confirm_password: Bekreft passord
         context: Filtersammenhenger
         current_password: Nåværende passord
+        data: Data
         discoverable: Før opp denne kontoen i mappen
         display_name: Visningsnavn
         email: E-postadresse
         expires_in: Utløper etter
         fields: Profilmetadata
         header: Overskrift
+        honeypot: "%{label} (ikke fyll ut)"
         inbox_url: URL til overgangsinnboksen
         irreversible: Forkast i stedet for å skjule
         locale: Språk
@@ -173,6 +174,7 @@
         text: Hvorfor vil du bli med?
       ip_block:
         comment: Kommentere
+        ip: IP
         severities:
           no_access: Blokker tilgang
           sign_up_requires_approval: Begrens påmeldinger
@@ -187,16 +189,19 @@
         reblog: Send e-post når noen fremhever din status
         report: Ny rapport er sendt inn
         trending_tag: En ugjennomgått emneknagg trender
+      rule:
+        text: Regler
       tag:
         listable: Tillat denne emneknaggen å vises i søk og på profilmappen
         name: Emneknagg
         trendable: Tillat denne emneknaggen til å vises under trender
         usable: Tillat tuter å bruke denne emneknaggen
-    'no': Nei
+    'no': 'Nei'
     recommended: Anbefalt
     required:
+      mark: "*"
       text: obligatorisk
     title:
       sessions:
         webauthn: Bruk en av sikkerhetsnøklene dine til å logge på
-    'yes': Ja
+    'yes': 'Ja'
