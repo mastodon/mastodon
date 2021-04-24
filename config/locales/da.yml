@@ -669,13 +669,15 @@ da:
       rules_check:
         action: Håndtér serverregler
         message_html: Ingen serverregler defineret.
+      sidekiq_process_check:
+        message_html: Ingen Sidekiq-proces kører for %{value}-kø(er). Gennemgå din Sidekiq-opsætning
     tags:
-      accounts_today: Unikke brug i dag
-      accounts_week: Unikke brug denne uge
+      accounts_today: Unikke anvendelser i dag
+      accounts_week: Unikke anvendelser denne uge
       context: Kontekst
       directory: I mappe
       in_directory: "%{count} i mappe"
-      last_active: Sidst aktiv
+      last_active: Senest aktiv
       most_popular: Mest populære
       most_recent: Seneste
       name: Hashtag
@@ -684,11 +686,13 @@ da:
       title: Hashtags
       trending_right_now: Populære lige nu
       unique_uses_today: "%{count} indlæg i dag"
-      unreviewed: Ikke gennemlæst
+      unreviewed: Ikke gennemgået
       updated_msg: Hashtag-indstillinger opdateret
+    title: Administration
     warning_presets:
       add_new: Tilføj ny
       delete: Slet
+      edit_preset: Redigér advarselsforvalg
       empty: Du har ikke defineret advarselsmeddelelser endnu.
   admin_mailer:
     new_report:
