@@ -344,16 +344,6 @@ ActiveRecord::Schema.define(version: 2020_05_10_110808) do
     t.index ["domain"], name: "index_email_domain_blocks_on_domain", unique: true
   end
 
-  create_table "favourite_tags", force: :cascade do |t|
-    t.bigint "account_id", null: false
-    t.bigint "tag_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "visibility", default: 0, null: false
-    t.integer "order", default: 0, null: false
-    t.index ["account_id", "tag_id"], name: "index_favourite_tags_on_account_id_and_tag_id", unique: true
-  end
-
   create_table "favourites", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -514,7 +504,6 @@ ActiveRecord::Schema.define(version: 2020_05_10_110808) do
     t.index ["account_id", "activity_id", "activity_type"], name: "account_activity", unique: true
     t.index ["account_id", "id"], name: "index_notifications_on_account_id_and_id", order: { id: :desc }
     t.index ["activity_id", "activity_type"], name: "index_notifications_on_activity_id_and_activity_type"
-    t.index ["activity_type", "id"], name: "index_notifications_on_activity_type_and_id"
     t.index ["from_account_id"], name: "index_notifications_on_from_account_id"
   end
 
@@ -751,7 +740,6 @@ ActiveRecord::Schema.define(version: 2020_05_10_110808) do
     t.index ["in_reply_to_id"], name: "index_statuses_on_in_reply_to_id"
     t.index ["reblog_of_id", "account_id"], name: "index_statuses_on_reblog_of_id_and_account_id"
     t.index ["uri"], name: "index_statuses_on_uri", unique: true
-    t.index ["visibility", "id"], name: "index_statuses_on_visibility_and_id", where: "((local = true) OR (uri IS NULL))"
   end
 
   create_table "statuses_tags", id: false, force: :cascade do |t|
@@ -896,8 +884,6 @@ ActiveRecord::Schema.define(version: 2020_05_10_110808) do
   add_foreign_key "conversation_mutes", "conversations", on_delete: :cascade
   add_foreign_key "custom_filters", "accounts", on_delete: :cascade
   add_foreign_key "email_domain_blocks", "email_domain_blocks", column: "parent_id", on_delete: :cascade
-  add_foreign_key "favourite_tags", "accounts", name: "fk_3dba9ba90d", on_delete: :cascade
-  add_foreign_key "favourite_tags", "tags", name: "fk_cbacfd2c4d", on_delete: :cascade
   add_foreign_key "favourites", "accounts", name: "fk_5eb6c2b873", on_delete: :cascade
   add_foreign_key "favourites", "statuses", name: "fk_b0e856845e", on_delete: :cascade
   add_foreign_key "featured_tags", "accounts", on_delete: :cascade

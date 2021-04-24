@@ -30,7 +30,6 @@ const messages = defineMessages({
   domain_blocks: { id: 'navigation_bar.domain_blocks', defaultMessage: 'Hidden domains' },
   mutes: { id: 'navigation_bar.mutes', defaultMessage: 'Muted users' },
   pins: { id: 'navigation_bar.pins', defaultMessage: 'Pinned toots' },
-  faq: { id: 'navigation_bar.faq', defaultMessage: 'FAQ(Only available in Japanese)' },
   lists: { id: 'navigation_bar.lists', defaultMessage: 'Lists' },
   discover: { id: 'navigation_bar.discover', defaultMessage: 'Discover' },
   personal: { id: 'navigation_bar.personal', defaultMessage: 'Personal' },
@@ -137,13 +136,8 @@ class GettingStarted extends ImmutablePureComponent {
 
     if (myAccount.get('locked') || unreadFollowRequests > 0) {
       navItems.push(<ColumnLink key={i++} icon='user-plus' text={intl.formatMessage(messages.follow_requests)} badge={badgeDisplay(unreadFollowRequests, 40)} to='/follow_requests' />);
-      height += 42;
+      height += 48;
     }
-
-    navItems.push(
-      <ColumnLink key={i++} icon='question' text={intl.formatMessage(messages.faq)} href='https://faq.imastodon.net/getting-started/' targetWindow='_blank' />
-    );
-    height += 42;
 
     if (!multiColumn) {
       navItems.push(
@@ -151,7 +145,7 @@ class GettingStarted extends ImmutablePureComponent {
         <ColumnLink key={i++} icon='gears' text={intl.formatMessage(messages.preferences)} href='/settings/preferences' />,
       );
 
-      height += 34 + 42;
+      height += 34 + 48;
     }
 
     return (

@@ -137,6 +137,10 @@ class PollForm extends ImmutablePureComponent {
     this.props.onChangeSettings(e.target.value, this.props.isMultiple);
   };
 
+  handleToggleMultiple = () => {
+    this.props.onChangeSettings(this.props.expiresIn, !this.props.isMultiple);
+  };
+
   render () {
     const { options, expiresIn, isMultiple, onChangeOption, onRemoveOption, intl, ...other } = this.props;
 

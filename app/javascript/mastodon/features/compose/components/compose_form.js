@@ -6,11 +6,13 @@ import PropTypes from 'prop-types';
 import ReplyIndicatorContainer from '../containers/reply_indicator_container';
 import AutosuggestTextarea from '../../../components/autosuggest_textarea';
 import AutosuggestInput from '../../../components/autosuggest_input';
+import PollButtonContainer from '../containers/poll_button_container';
 import UploadButtonContainer from '../containers/upload_button_container';
 import { defineMessages, injectIntl } from 'react-intl';
 import SpoilerButtonContainer from '../containers/spoiler_button_container';
 import PrivacyDropdownContainer from '../containers/privacy_dropdown_container';
 import EmojiPickerDropdown from '../containers/emoji_picker_dropdown_container';
+import PollFormContainer from '../containers/poll_form_container';
 import UploadFormContainer from '../containers/upload_form_container';
 import WarningContainer from '../containers/warning_container';
 import { isMobile } from '../../../is_mobile';
@@ -145,7 +147,6 @@ class ComposeForm extends ImmutablePureComponent {
       this.autosuggestTextarea.textarea.setSelectionRange(selectionStart, selectionEnd);
       this.autosuggestTextarea.textarea.focus();
     } else if(prevProps.isSubmitting && !this.props.isSubmitting) {
-      this.autosuggestTextarea.textarea.setSelectionRange(0, 0)
       this.autosuggestTextarea.textarea.focus();
     } else if (this.props.spoiler !== prevProps.spoiler) {
       if (this.props.spoiler) {
@@ -231,12 +232,14 @@ class ComposeForm extends ImmutablePureComponent {
           <EmojiPickerDropdown onPickEmoji={this.handleEmojiPick} />
           <div className='compose-form__modifiers'>
             <UploadFormContainer />
+            <PollFormContainer />
           </div>
         </AutosuggestTextarea>
 
         <div className='compose-form__buttons-wrapper'>
           <div className='compose-form__buttons'>
             <UploadButtonContainer />
+            <PollButtonContainer />
             <PrivacyDropdownContainer />
             <SpoilerButtonContainer />
           </div>

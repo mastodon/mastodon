@@ -1,8 +1,6 @@
 import React from 'react';
 import ComposeFormContainer from './containers/compose_form_container';
 import NavigationContainer from './containers/navigation_container';
-import FavouriteTagsContainer from './containers/favourite_tags_container';
-import TrendTagsContainer from './containers/trend_tags_container';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
@@ -129,8 +127,6 @@ class Compose extends React.PureComponent {
             <NavigationContainer onClose={this.onBlur} />
 
             <ComposeFormContainer />
-            <FavouriteTagsContainer />
-            <TrendTagsContainer />
 
             <div className='drawer__inner__mastodon'>
               <img alt='' draggable='false' src={mascot || elephantUIPlane} />

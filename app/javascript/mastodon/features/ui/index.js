@@ -129,7 +129,7 @@ class SwitchingColumnsArea extends React.PureComponent {
 
   componentDidUpdate (prevProps, prevState) {
     if (![this.props.location.pathname, '/'].includes(prevProps.location.pathname)) {
-      this.node.handleChildrenContentChange(prevProps);
+      this.node.handleChildrenContentChange();
     }
 
     if (prevState.mobile !== this.state.mobile && !forceSingleColumn) {
@@ -175,7 +175,7 @@ class SwitchingColumnsArea extends React.PureComponent {
     const { children } = this.props;
     const { mobile } = this.state;
     const singleColumn = forceSingleColumn || mobile;
-    const redirect = singleColumn ? <Redirect from='/' to='/timelines/public/local' exact /> : <Redirect from='/' to='/getting-started' exact />;
+    const redirect = singleColumn ? <Redirect from='/' to='/timelines/home' exact /> : <Redirect from='/' to='/getting-started' exact />;
 
     return (
       <ColumnsAreaContainer ref={this.setRef} singleColumn={singleColumn}>

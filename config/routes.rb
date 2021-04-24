@@ -139,7 +139,6 @@ Rails.application.routes.draw do
     end
 
     resource :delete, only: [:show, :destroy]
-    resources :favourite_tags, only: [:index, :edit, :create, :update, :destroy]
     resource :migration, only: [:show, :create]
 
     namespace :migration do
@@ -415,8 +414,6 @@ Rails.application.routes.draw do
         post :unpin, to: 'accounts/pins#destroy'
       end
 
-      resources :favourite_tags, only: [:index, :create, :destroy], param: :tag
-      resource :trend_tags, only: [:show]
       resources :lists, only: [:index, :create, :show, :update, :destroy] do
         resource :accounts, only: [:show, :create, :destroy], controller: 'lists/accounts'
       end

@@ -1,33 +1,3 @@
-# im@stodon
-
-[![Build Status](https://img.shields.io/travis/imas/mastodon.svg)][travis_imastodon]
-
-[travis_imastodon]: https://travis-ci.org/imas/mastodon
-
-このリポジトリは[Mastodon](https://github.com/tootsuite/mastodon)を元に独自の機能を加え[imastodon.net](https://imastodon.net/about)でサービスを提供しているソフトウェアを、MastodonのAGPLライセンスに基づき公開するリポジトリです。
-
-im@stodon is a variety of Mastodon for [imastodon.net](https://imastodon.net/about).  
-About what is Mastodon, see [tootsuite/mastodon](https://github.com/tootsuite/mastodon).
-
-## 主な独自機能
-- 投稿の添付画像をpngからjpgへ変換し保存
-- 画像サイズ制限をフルHD(長辺1920px)に緩和
-- 未収載タグ付き投稿のタグTLへの表示
-- お気に入りタグ機能
-
-## 開発用docker-composeファイル
-開発に必要なpostgresqlとredisはdocker-composeを用いて1コマンドで起動できるようになっています。
-```
-docker-compose -f docker-compose-dev.yml up -d
-```
-
-また、docker-composeで起動したそれらに接続するために下記の内容を`.env`という名前のファイルとして保存してください。
-```
-DB_HOST=localhost
-DB_USER=mastodon
-DB_PASS=mastodon
-```
-
 ![Mastodon](https://i.imgur.com/NhZc40l.png)
 ========
 

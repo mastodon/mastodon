@@ -566,5 +566,3 @@ class Account < ApplicationRecord
     end
   end
 end
-
-Account.include(Friends::FavouriteTagsExtension)

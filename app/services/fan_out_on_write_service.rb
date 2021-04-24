@@ -18,12 +18,11 @@ class FanOutOnWriteService < BaseService
       deliver_to_lists(status)
     end
 
-    is_reply = (status.reply? && status.in_reply_to_account_id != status.account_id)
-    return if status.account.silenced? || !status.public_visibility? && !(status.unlisted_visibility? && !is_reply) || status.reblog?
+    return if status.account.silenced? || !status.public_visibility? || status.reblog?
 
     deliver_to_hashtags(status)
 
-    return if status.reply? && status.in_reply_to_account_id != status.account_id || status.unlisted_visibility?
+    return if status.reply? && status.in_reply_to_account_id != status.account_id
 
     deliver_to_public(status)
     deliver_to_media(status) if status.media_attachments.any?
@@ -73,11 +72,6 @@ class FanOutOnWriteService < BaseService
     Rails.logger.debug "Delivering status #{status.id} to hashtags"
 
     status.tags.pluck(:name).each do |hashtag|
-      Redis.current.publish("timeline:hashtag:#{hashtag.mb_chars.downcase}:authorized", @payload)
-      Redis.current.publish("timeline:hashtag:#{hashtag.mb_chars.downcase}:authorized:local", @payload) if status.local?
-
-      return unless status.public_visibility?
-
       Redis.current.publish("timeline:hashtag:#{hashtag.mb_chars.downcase}", @payload)
       Redis.current.publish("timeline:hashtag:#{hashtag.mb_chars.downcase}:local", @payload) if status.local?
     end

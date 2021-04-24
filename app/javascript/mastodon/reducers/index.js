@@ -18,8 +18,6 @@ import mutes from './mutes';
 import blocks from './blocks';
 import reports from './reports';
 import contexts from './contexts';
-import favourite_tags from './favourite_tags';
-import trend_tags from './trend_tags';
 import compose from './compose';
 import search from './search';
 import media_attachments from './media_attachments';
@@ -59,8 +57,6 @@ const reducers = {
   blocks,
   reports,
   contexts,
-  favourite_tags,
-  trend_tags,
   compose,
   search,
   media_attachments,

@@ -110,7 +110,6 @@ module Mastodon
       :'zh-CN',
       :'zh-HK',
       :'zh-TW',
-      :'ja-IM',
     ]
 
     config.i18n.default_locale = ENV['DEFAULT_LOCALE']&.to_sym
