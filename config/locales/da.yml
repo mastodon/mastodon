@@ -822,18 +822,24 @@ da:
       x_months: "%{count} md"
       x_seconds: "%{count} s"
   deletes:
-    challenge_not_passed: De oplysninger, du indtastede var ikke korrekte
-    confirm_password: Indtast dit nuværende kodeord for at bekræfte din identitet
-    confirm_username: Indtast dit brugernavn for at bekræfte proceduren
+    challenge_not_passed: De angivne oplysninger er forkerte
+    confirm_password: Angiv din nuværende adgangskode for at bekræfte din identitet
+    confirm_username: Angiv dit brugernavn for at bekræfte proceduren
     proceed: Slet konto
-    success_msg: Din konto er nu blevet slettet
+    success_msg: Din konto er nu slettet
     warning:
-      email_change_html: Du kan <a href="%{path}">ændre din e-mail-adresse</a> uden at slette din konto
+      before: 'Inder der fortsættes, læs venligst disse notater omhyggeligt:'
+      caches: Indhold, cachelagret af andre servere, kan fortsat eksistere
+      data_removal: Dine indlæg og andre data fjernes permanent
+      email_change_html: Du kan <a href="%{path}">skifte e-mailadresse</a> uden at slette din konto
+      email_reconfirmation_html: Modtager du ikke bekræftelsese-mailen, kan du <a href="%{path}">anmode om en ny</a>
+      irreversible: Du vil ikke kunne gendanne/genaktivere din konto
+      more_details_html: For yderligere oplysningerer, tjek <a href="%{terms_path}">fortrolighedspolitikken</a>.
       username_available: Dit brugernavn vil blive tilgængeligt igen
       username_unavailable: Dit brugernavn vil forblive utilgængeligt
   directories:
     directory: Profilliste
-    explanation: Opdag brugere baseret på deres interesser
+    explanation: Find brugere baseret på deres interesser
     explore_mastodon: Uforsk %{title}
   domain_validator:
     invalid_domain: er ikke et gyldigt domænenavn
