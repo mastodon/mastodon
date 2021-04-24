@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class ActivityPub::Activity::Announce < ActivityPub::Activity
+  include ProcessAudience
+
   def perform
     return reject_payload! if delete_arrived_first?(@json['id']) || !related_to_local_activity?
 
