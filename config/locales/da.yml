@@ -844,27 +844,27 @@ da:
   domain_validator:
     invalid_domain: er ikke et gyldigt domænenavn
   errors:
-    '400': The request you submitted was invalid or malformed.
+    '400': Din indsendte anmodning er ugyldig eller fejlbehæftet.
     '403': Du har ikke tilladelse til at se denne side.
     '404': Den side du leder efter findes ikke.
-    '406': Denne side er ikke tilgængelig i det ønskede format.
-    '410': Den side du leder efter findes ikke mere.
+    '406': Denne side er ikke tilgængelig i det anmodede format.
+    '410': Den side, du leder efter, findes ikke mere.
     '422':
       content: Sikkerhedsbekræftelse mislykkedes. Blokerer du cookies?
-      title: Sikkerheds godkendelse mislykkedes
-    '429': Droslet
+      title: Sikkerhedsbekræftelse mislykkedes
+    '429': For mange anmodninger
     '500':
-      content: Beklager men der gik noget galt i vores ende.
-      title: Siden er ikke korrekt
-    '503': Siden kunne ikke serveres på grund af en midlertidig serverfejl.
-    noscript_html: For at bruge Mastodon web applikationen, aktiver JavaScript. Alternativt kan du prøve en af disse <a href="%{apps_path}">apps</a> til Mastodon for din platform.
+      content: Beklager, noget gik galt hos os.
+      title: Denne side er forkert
+    '503': Siden kunne ikke vises grundet en midlertidig serverfejl.
+    noscript_html: For brug af Mastodon-webapplikationen, så aktivér JavaScript. Alternativt, prøv en af disse <a href="%{apps_path}">apps</a> til Mastodon til din platform.
   existing_username_validator:
     not_found: kunne ikke finde en lokal bruger med dette brugenavn
     not_found_multiple: kunne ikke finde %{usernames}
   exports:
     archive_takeout:
       date: Dato
-      download: Hent dit arkiv
+      download: Download dit arkiv
       hint_html: Du kan anmode om et arkiv af dine <strong>trut og oplagt medie</strong>. Den eksporterede data vil være i ActivityPub formattet, læseligt af enhvert kompatibel program. Du kan anmode om et arkiv en gang om ugen.
       in_progress: Udarbejder dit arkiv...
       request: Anmod om dit arkiv
