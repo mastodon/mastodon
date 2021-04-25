@@ -56,6 +56,12 @@
   %hr.spacer/
 
   .fields-group
+    = f.input :enable_auto_follow_bootstrap_timeline_accounts, as: :boolean, wrapper: :with_label, label: t('admin.settings.enable_auto_follow_bootstrap_timeline_accounts.title'), hint: t('admin.settings.enable_auto_follow_bootstrap_timeline_accounts.desc_html')
+
+  .fields-group
+    = f.input :auto_follow_bootstrap_timeline_accounts, wrapper: :with_block_label, label: t('admin.settings.auto_follow_bootstrap_timeline_accounts.title'), hint: t('admin.settings.auto_follow_bootstrap_timeline_accounts.desc_html'), disabled: !Setting.enable_auto_follow_bootstrap_timeline_accounts
+
+  .fields-group
     = f.input :bootstrap_timeline_accounts, wrapper: :with_block_label, label: t('admin.settings.bootstrap_timeline_accounts.title'), hint: t('admin.settings.bootstrap_timeline_accounts.desc_html')
 
   %hr.spacer/

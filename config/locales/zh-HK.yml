@@ -528,6 +528,9 @@ zh-HK:
       activity_api_enabled:
         desc_html: 本站的文章數量、活躍使用者數量、及每週新註冊使用者數量
         title: 公佈使用者活躍度的統計數據
+      auto_follow_bootstrap_timeline_accounts:
+        desc_html: 以半形逗號分隔多個使用者名稱。只能加入來自本站且未開啟保護的帳號。如果留空，則默認關注本站所有管理員。
+        title: 新使用者預設關注的對像
       bootstrap_timeline_accounts:
         desc_html: 以半形逗號分隔多個使用者名稱。只能加入來自本站且未開啟保護的帳號。如果留空，則默認關注本站所有管理員。
         title: 新使用者預設關注的對像
@@ -547,6 +550,12 @@ zh-HK:
         users: 所有已登入的帳號
       domain_blocks_rationale:
         title: 顯示原因予
+      enable_auto_follow_bootstrap_timeline_accounts:
+        desc_html: 自動為新用戶追隨預設的帳號，為他們的首頁動態增加一點色彩
+        title: 啟用「新使用者預設關注」功能
+      enable_bootstrap_timeline_accounts:
+        desc_html: 自動為新用戶追隨預設的帳號，為他們的首頁動態增加一點色彩
+        title: 啟用「新使用者預設關注」功能
       hero:
         desc_html: 在首頁顯示。推薦最小 600x100px。如果留空，就會默認為服務站縮圖
         title: 主題圖片

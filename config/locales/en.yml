@@ -660,6 +660,9 @@ en:
       activity_api_enabled:
         desc_html: Counts of locally published posts, active users, and new registrations in weekly buckets
         title: Publish aggregate statistics about user activity in the API
+      auto_follow_bootstrap_timeline_accounts:
+        desc_html: Separate multiple usernames by comma. Only local and unlocked accounts will work. Default when empty is all local admins.
+        title: Default follows for new users
       bootstrap_timeline_accounts:
         desc_html: Separate multiple usernames by comma. These accounts will be guaranteed to be shown in follow recommendations
         title: Recommend these accounts to new users
@@ -679,6 +682,9 @@ en:
         users: To logged-in local users
       domain_blocks_rationale:
         title: Show rationale
+      enable_auto_follow_bootstrap_timeline_accounts:
+        desc_html: Make new users automatically follow configured accounts so their home feed doesn't start out empty
+        title: Enable default follows for new users
       hero:
         desc_html: Displayed on the frontpage. At least 600x100px recommended. When not set, falls back to server thumbnail
         title: Hero image

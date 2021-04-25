@@ -640,6 +640,9 @@ ja:
       activity_api_enabled:
         desc_html: 週ごとのローカルに投稿された投稿数、アクティブなユーザー数、新規登録者数
         title: ユーザーアクティビティに関する統計を公開する
+      auto_follow_bootstrap_timeline_accounts:
+        desc_html: 複数のユーザー名はコンマで区切ります。ローカルの公開アカウントのみ有効です。指定しない場合は管理者がデフォルトで指定されます。
+        title: 新規ユーザーが自動フォローするアカウント
       bootstrap_timeline_accounts:
         desc_html: 複数のユーザー名を指定する場合コンマで区切ります。おすすめに表示されます。
         title: 新規ユーザーにおすすめするアカウント
@@ -659,6 +662,12 @@ ja:
         users: ログイン済みローカルユーザーのみ許可
       domain_blocks_rationale:
         title: コメントを表示
+      enable_auto_follow_bootstrap_timeline_accounts:
+        desc_html: 新規ユーザーが設定したアカウントを自動的にフォローして、ホームフィードが空にならないようにする
+        title: 新規ユーザーの自動フォローを有効にする
+      enable_bootstrap_timeline_accounts:
+        desc_html: 新規ユーザーが設定したアカウントを自動的にフォローして、ホームフィードが空にならないようにする
+        title: 新規ユーザーの自動フォローを有効にする
       hero:
         desc_html: フロントページに表示されます。サイズは600x100px以上推奨です。未設定の場合、標準のサムネイルが使用されます
         title: ヒーローイメージ

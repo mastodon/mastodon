@@ -645,6 +645,9 @@ zh-TW:
       activity_api_enabled:
         desc_html: 本站使用者發佈的嘟文數量，以及本站的活躍使用者與一週內新使用者數量
         title: 公開使用者活躍度的統計數據
+      auto_follow_bootstrap_timeline_accounts:
+        desc_html: 以半形逗號分隔多個使用者名。只能加入來自本站且未開啟保護的帳戶。如果留空，則預設關注本站所有管理員。
+        title: 新使用者預設關注
       bootstrap_timeline_accounts:
         desc_html: 以半形逗號分隔多個使用者名稱。只能加入來自本站且未開啟保護的帳號。如果留空，則預設跟隨本站所有管理員。
         title: 新使用者預設跟隨
@@ -664,6 +667,12 @@ zh-TW:
         users: 套用至所有登入的本機使用者
       domain_blocks_rationale:
         title: 顯示解釋原因
+      enable_auto_follow_bootstrap_timeline_accounts:
+        desc_html: 使新使用者自動跟隨設定之帳號，所以他們的首頁動態一開始不會空白
+        title: 啟用新使用者的預設追蹤
+      enable_bootstrap_timeline_accounts:
+        desc_html: 使新使用者自動跟隨設定之帳號，所以他們的首頁動態一開始不會空白
+        title: 啟用新使用者的預設追蹤
       hero:
         desc_html: 在首頁顯示。推薦最小 600x100px。如果留空，就會重設回伺服器預覽圖
         title: 主題圖片
