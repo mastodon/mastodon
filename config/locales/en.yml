@@ -1,5 +1,9 @@
 ---
 en:
+  _imastodon:
+    polls:
+      validations:
+        forbidden: Cannot create a poll in this server.
   about:
     about_hashtag_html: These are public toots tagged with <strong>#%{hashtag}</strong>. You can interact with them if you have an account anywhere in the fediverse.
     about_mastodon_html: 'The social network of the future: No ads, no corporate surveillance, ethical design, and decentralization! Own your data with Mastodon!'
@@ -793,6 +797,18 @@ en:
     lists: Lists
     mutes: You mute
     storage: Media storage
+  favourite_tags:
+    delete_it: delete
+    edit:
+      submit: Update favourite tag
+      title: Edit favourite tag
+    edit_it: edit
+    form:
+      hint:
+        order: Display in descending order
+    name_of_tag: Name of tag
+    order: order
+    submit: Create favourite tag
   featured_tags:
     add_new: Add new
     errors:
@@ -1094,6 +1110,7 @@ en:
     development: Development
     edit_profile: Edit profile
     export: Data export
+    favourite_tags: Favourite tags
     featured_tags: Featured hashtags
     identity_proofs: Identity proofs
     import: Import

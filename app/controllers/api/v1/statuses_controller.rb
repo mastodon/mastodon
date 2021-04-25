@@ -35,6 +35,8 @@ class Api::V1::StatusesController < Api::BaseController
   end
 
   def create
+    raise Mastodon::ValidationError, I18n.t('_imastodon.polls.validations.forbidden') if status_params[:poll].present?
+
     @status = PostStatusService.new.call(current_user.account,
                                          text: status_params[:status],
                                          thread: @thread,
