@@ -42,7 +42,7 @@ class Api::V1::Accounts::StatusesController < Api::BaseController
   end
 
   def only_media_scope
-    Status.joins(:media_attachments).merge(@account.media_attachments.reorder(nil)).group(:id)
+    Status.joins(:media_attachments).group(:id)
   end
 
   def pinned_scope
