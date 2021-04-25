@@ -74,6 +74,8 @@ const initialState = ImmutableMap({
     }),
   }),
 
+  tag: ImmutableMap(),
+
   direct: ImmutableMap({
     regex: ImmutableMap({
       body: '',
