@@ -1,0 +1,29 @@
+// Commonly used web colors
+$black: #373d37;            // Black
+$white: #e6e6e6;            // White
+$success-green: #79bd9a;    // Padua
+$error-red: #df405a;        // Cerise
+$warning-red: #ff5050;      // Sunset Orange
+$gold-star: #ca8f04;        // Dark Goldenrod
+
+// Values from the classic Mastodon UI
+$classic-base-color: #1d421f;         // Midnight Express
+$classic-primary-color: #9bc89d;      // Echo Blue
+$classic-secondary-color: #c0e0c0;    // Pattens Blue
+$classic-highlight-color: #129119;    // Summer Sky
+
+// Variables for defaults in UI
+$base-shadow-color: $black !default;
+$base-overlay-background: $black !default;
+$base-border-color: $white !default;
+$simple-background-color: $white !default;
+$primary-text-color: $white !default;
+$valid-value-color: $success-green !default;
+$error-value-color: $error-red !default;
+
+// Tell UI to use selected colors
+$ui-base-color: $classic-base-color !default;                  // Darkest
+$ui-base-lighter-color: lighten($ui-base-color, 26%) !default; // Lighter darkest
+$ui-primary-color: $classic-primary-color !default;            // Lighter
+$ui-secondary-color: $classic-secondary-color !default;        // Lightest
+$ui-highlight-color: $classic-highlight-color !default;        // Vibrant
