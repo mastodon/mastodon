@@ -3,6 +3,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import Avatar from './avatar';
 import AvatarOverlay from './avatar_overlay';
+import AvatarOverlayIcon from './avatar_overlay_icon';
 import AvatarComposite from './avatar_composite';
 import RelativeTimestamp from './relative_timestamp';
 import DisplayName from './display_name';
@@ -408,7 +409,8 @@ class Status extends ImmutablePureComponent {
     if (otherAccounts && otherAccounts.size > 0) {
       statusAvatar = <AvatarComposite accounts={otherAccounts} size={48} />;
     } else if (account === undefined || account === null) {
-      statusAvatar = <Avatar account={status.get('account')} size={48} />;
+      statusAvatar = status.get('visibility') === 'public' ? <Avatar account={status.get('account')} size={48} />
+                                                           : <AvatarOverlayIcon account={status.get('account')} visibility={status.get('visibility')} />
     } else {
       statusAvatar = <AvatarOverlay account={status.get('account')} friend={account} />;
     }
