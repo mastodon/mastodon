@@ -1,0 +1,31 @@
+---
+ja-IM:
+  simple_form:
+    hints:
+      defaults:
+        fields: 名刺に表として4つまでの項目を表示することができます
+        phrase: あふぅの大文字小文字や閲覧注意に関係なく一致
+        setting_aggregate_reblogs: 最近わかるわされたあふぅが新たにわかるわされても表示しません (設定後受信したものにのみ影響)
+        setting_default_language: あふぅの言語は自動的に検出されますが、必ずしも正確とは限りません
+        setting_display_media_default: 早苗さんに見つからないメディアは隠す
+        setting_display_media_hide_all: 全てのメディアを常に早苗さんに見つからないようにする
+        setting_display_media_show_all: 早苗さんに見つからないメディアも常に表示する
+        setting_hide_network: フォローとフォロワーの情報が名刺から見られないようにします
+        setting_noindex: 公開されている名刺および各あふぅページに影響します
+        setting_show_application: あふぅするのに使用したアプリがあふぅの詳細ビューに表示されるようになります
+        username: あなたのプロデューサー名は %{domain} の中で重複していない必要があります
+      user:
+        chosen_languages: 選択すると、選択した言語のあふぅのみが楽屋に表示されるようになります
+    labels:
+      defaults:
+        setting_aggregate_reblogs: わかるわをまとめる
+        setting_boost_modal: わかるわする前に確認ダイアログを表示する
+        setting_default_sensitive: メディアを常に早苗さんに見つからないようにする
+        setting_delete_modal: あふぅを削除する前に確認ダイアログを表示する
+        setting_expand_spoilers: 閲覧注意としてマークされたあふぅを常に展開する
+        setting_show_application: あふぅの送信に使用したアプリを開示する
+      notification_emails:
+        digest: 楽屋からピックアップしてメールで通知する
+        favourite: ティンときた人がいた時にメールで通知する
+        mention: Reあふぅが来た時にメールで通知する
+        reblog: あふぅが同意(わかるわ)された時にメールで通知する

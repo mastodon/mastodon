@@ -35,6 +35,7 @@ module SettingsHelper
     is: 'Íslenska',
     it: 'Italiano',
     ja: '日本語',
+    'ja-IM': '日本語(im@s)',
     ka: 'ქართული',
     kab: 'Taqbaylit',
     kk: 'Қазақша',

@@ -74,6 +74,7 @@ module Mastodon
       :is,
       :it,
       :ja,
+      :'ja-IM',
       :ka,
       :kab,
       :kk,
@@ -117,6 +118,8 @@ module Mastodon
     unless config.i18n.available_locales.include?(config.i18n.default_locale)
       config.i18n.default_locale = :en
     end
+
+    config.i18n.fallbacks = [config.i18n.default_locale, :ja]
 
     # config.paths.add File.join('app', 'api'), glob: File.join('**', '*.rb')
     # config.autoload_paths += Dir[Rails.root.join('app', 'api', '*')]

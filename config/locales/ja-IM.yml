@@ -1,0 +1,136 @@
+---
+ja-IM:
+  about:
+    about_hashtag_html: ハッシュタグ <strong>#%{hashtag}</strong> の付いた公開あふぅです。どこでもいいので、ライブステージに参加しているSNS上にアカウントを作れば会話に参加することができます。
+    status_count_after:
+      one: あふぅ
+      other: あふぅ
+    status_count_before: あふぅした数
+    user_count_before: プロデューサー数
+  accounts:
+    moved_html: "%{name} さんは引っ越しました %{new_profile_link}:"
+    posts:
+      one: あふぅ
+      other: あふぅ
+    posts_tab_heading: あふぅ
+    posts_with_replies: あふぅとReあふぅ
+  admin:
+    accounts:
+      statuses: あふぅした数
+    action_logs:
+      actions:
+        destroy_status: "%{name} さんが %{target} さんのあふぅを削除しました"
+        update_status: "%{name} さんが %{target} さんのあふぅを更新しました"
+    domain_blocks:
+      new:
+        severity:
+          desc_html: "<strong>サイレンス</strong>はアカウントのあふぅをフォローしていない人から隠します。<strong>停止</strong>はそのアカウントのコンテンツ、メディア、プロフィールデータをすべて削除します。メディアファイルを拒否したいだけの場合は<strong>なし</strong>を使います。"
+    relays:
+      description_html: "<strong>連合リレー</strong>とは、登録しているサーバー間の公開あふぅを仲介するサーバーです。<strong>中小規模のサーバーが連合のコンテンツを見つけるのを助けます。</strong>これを使用しない場合、ローカルユーザーがリモートユーザーを手動でフォローする必要があります。"
+      enable_hint: 有効にすると、リレーから全ての公開あふぅを受信するようになり、またこのサーバーの全ての公開あふぅをリレーに送信するようになります。
+    settings:
+      preview_sensitive_media:
+        desc_html: 他のウェブサイトにリンクを貼った際、メディアが早苗さんに見つからないように隠されていてもサムネイルが表示されます
+        title: OpenGraphによるプレビューで早苗さんに見つからないように隠されたメディアも表示する
+      show_known_fediverse_at_about_page:
+        desc_html: チェックを入れるとプレビュー欄に既知のライブステージ全てのあふぅを表示します。外すと楽屋のあふぅだけ表示します。
+        title: タイムラインプレビューにライブステージを表示する
+      timeline_preview:
+        desc_html: ランディングページにライブステージを表示します
+        title: タイムラインプレビュー
+    statuses:
+      title: あふぅ一覧
+  application_mailer:
+    view_status: あふぅを表示
+  exports:
+    archive_takeout:
+      hint_html: "<strong>あふぅとメディア</strong>のアーカイブをリクエストできます。 データはActivityPub形式で、対応しているソフトウェアで読み込むことができます。7日毎にアーカイブをリクエストできます。"
+    mutes: だまっとけ☆
+  favourite_tags:
+    delete_it: 削除
+    edit:
+      submit: お気に入りタグを変更
+      title: お気に入りタグの編集
+    edit_it: 編集
+    form:
+      hint:
+        order: 降順に表示されます
+    name_of_tag: タグ名
+    order: 順序
+    submit: お気に入りタグを登録
+  filters:
+    contexts:
+      home: オフィス
+      notifications: ホワイトボード
+      public: 楽屋
+      thread: 会話
+    edit:
+      title: フィルターを編集
+    errors:
+      invalid_context: 対象がないか無効です
+      invalid_irreversible: この機能は楽屋または通知と一緒に指定する場合のみ機能します
+    index:
+      delete: 削除
+      title: フィルター
+    new:
+      title: 新規フィルターを追加
+  imports:
+    types:
+      muting: だまっとけ☆リストにいるアカウントリスト
+  migrations:
+    currently_redirecting: 'あなたの名刺は引っ越し先が設定されています:'
+  notification_mailer:
+    digest:
+      mention: "%{name} さんがあなたにReあふぅしました:"
+    favourite:
+      body: "%{name} さんの頭にティンときた、あなたのあふぅがあります:"
+      subject: "%{name} さんがあなたのあふぅにティンときたようです"
+      title: 新たなティン
+    mention:
+      action: Reあふぅ
+      body: "%{name} さんからReあふぅがありました:"
+      subject: "%{name} さんにReあふぅされました"
+      title: 新たなReあふぅ
+    reblog:
+      body: "%{name} さんに同意された、あなたのあふぅがあります:"
+      subject: あなたのあふぅが %{name} さんに同意されました。わかるわ
+      title: 新たなわかるわ
+  pagination:
+    newer: 新しいあふぅ
+    next: 次
+    older: 以前のあふぅ
+    prev: 前
+    truncate: "&hellip;"
+  remote_interaction:
+    favourite:
+      proceed: ティンときた！
+      prompt: 'ティンときようとしています:'
+    reblog:
+      proceed: わかるわする
+      prompt: 'わかるわしようとしています:'
+    reply:
+      proceed: Reあふぅ
+      prompt: 'Reあふぅしようとしています:'
+  scheduled_statuses:
+    over_daily_limit: その日予約できるあふぅ数 %{limit} を超えています
+    over_total_limit: 予約できるあふぅ数 %{limit} を超えています
+  statuses:
+    boosted_from_html: "%{acct_link} からわかられました"
+    pin_errors:
+      limit: 固定できるあふぅ数の上限に達しました
+      ownership: 他人のあふぅを固定することはできません
+      private: 非公開のあふぅを固定することはできません
+      reblog: わかるわを固定することはできません
+    visibilities:
+      private: 私的資料
+      private_long: フォロワーにのみ表示されます
+      public: 公開資料
+      public_long: 誰でも見ることができ、かつ楽屋に表示されます
+      unlisted: 社内資料
+      unlisted_long: 誰でも見ることができますが、楽屋には表示されません
+  stream_entries:
+    pinned: 固定されたあふぅ
+    reblogged: さんにわかられました
+  user_mailer:
+    welcome:
+      final_step: 'さあ始めましょう！ たとえフォロワーがいなくても、あなたの公開した投稿はローカルタイムラインやハッシュタグなどで誰かの目に止まるかもしれません。自己紹介をしたい時は #Pの自己紹介 ハッシュタグを使うといいかもしれません。'
