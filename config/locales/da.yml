@@ -927,23 +927,27 @@ da:
       keybase:
         invalid_token: Keybase-tokens er hashes af signaturer og skal udgøre 66 hex tegn
         verification_failed: Keybase genkender ikke dette token som Keybasebruger %{kb_username}s signatur. Forsøg igen fra Keybase.
+      wrong_user: Kan ikke oprette et bevis til %{proving}, når indlogget %{current}. Log ind som %{proving} og forsøg igen.
+    explanation_html: Her kan du kryptografisk forbinde dine andre identiteter fra andre platforme, såsom Keybase. Dette lader andre personer sende dig krypterede beskeder på disse platforme og giver dem mulighed for at stole på, at det indhold, du sender dem, kommer fra dig.
     i_am_html: Jeg er %{username} på %{service}.
     identity: Identitet
     inactive: Inaktiv
-    publicize_checkbox: 'Og toot dette:'
+    publicize_checkbox: 'Og trut dette:'
     publicize_toot: 'Det er bevist! Jeg er %{username} på %{service}: %{url}'
     remove: Fjern bevis fra konto
-    removed: Beviset er fjernet fra kontoen
-    status: Status for verifikation
+    removed: Bevis fjernet fra kontoen
+    status: Verifikationsstatus
     view_proof: Se bevis
   imports:
     errors:
       over_rows_processing_limit: indeholder mere end %{count} rækker
     modes:
       merge: Sammenflet
+      merge_long: Bibehold eksisterende poster og tilføj nye
       overwrite: Overskriv
-    preface: Du kan importere data du har eksporteret fra en anden server, så som en liste over folk du følger eller blokerer.
-    success: Dine data blev succesfuldt uploaded og vil nu blive behandlet hurtigst muligt
+      overwrite_long: Erstat aktuelle poster med de nye
+    preface: Du kan importere data, du har eksporteret fra en anden server, såsom en liste over folk du følger eller blokerer.
+    success: Dine data er uploadet og vil blive behandlet hurtigst muligt
     types:
       blocking: Blokeringsliste
       bookmarks: Bogmærker
