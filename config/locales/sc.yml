@@ -78,6 +78,8 @@ sc:
     posts_tab_heading: Tuts
     posts_with_replies: Tuts e rispostas
     roles:
+      admin: Admin
+      bot: Bot
       group: Grupu
       moderator: Moderatzione
     unavailable: Su profilu no est a disponimentu
@@ -128,7 +130,9 @@ sc:
       follows: Sighende
       header: Intestatzione
       inbox_url: URL de intrada
+      invite_request_text: Resones pro aderire
       invited_by: Invitu dae
+      ip: IP
       joined: At aderidu
       location:
         all: Totus
@@ -209,6 +213,7 @@ sc:
       username: Nòmine utente
       view_domain: Càstia unu resumu pro su domìniu
       warn: Avisu
+      web: Web
       whitelisted: Federatzione permìtida
     action_logs:
       action_types:
@@ -250,7 +255,22 @@ sc:
         unsuspend_account: Boga custu contu de is contos suspèndidos
         update_announcement: Atualiza s'annùntziu
         update_custom_emoji: Atualiza s'emoji personalizadu
+        update_domain_block: Atualiza blocu de domìniu
         update_status: Atualiza s'istadu
+      actions:
+        assigned_to_self_report_html: "%{name} s'est auto-assignadu s'informe %{target}"
+        change_email_user_html: "%{name} at mudadu s'indiritzu de posta eletrònica de s'utente %{target}"
+        confirm_user_html: "%{name} at cunfirmadu s'indiritzu de posta eletrònica de s'utente %{target}"
+        create_account_warning_html: "%{name} at imbiadu un'avisu a %{target}"
+        create_announcement_html: "%{name} at creadu un'annùntziu nou %{target}"
+        create_custom_emoji_html: "%{name} at carrigadu un'emoji nou %{target}"
+        create_domain_allow_html: "%{name} at permìtidu sa federatzione cun su domìniu %{target}"
+        create_domain_block_html: "%{name} at blocadu su domìniu %{target}"
+        create_email_domain_block_html: "%{name} at blocadu su domìniu de posta eletrònica %{target}"
+        create_ip_block_html: "%{name} at creadu una règula pro s'IP %{target}"
+        demote_user_html: "%{name} at degradadu s'utente %{target}"
+        destroy_announcement_html: "%{name} at cantzelladu s'annùntziu %{target}"
+        destroy_custom_emoji_html: "%{name} at cantzelladu s'emoji %{target}"
       deleted_status: "(istadu cantzelladu)"
       empty: Perunu registru agatadu.
       filter_by_action: Filtra pro atzione
