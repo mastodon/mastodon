@@ -271,6 +271,33 @@ sc:
         demote_user_html: "%{name} at degradadu s'utente %{target}"
         destroy_announcement_html: "%{name} at cantzelladu s'annùntziu %{target}"
         destroy_custom_emoji_html: "%{name} at cantzelladu s'emoji %{target}"
+        destroy_domain_allow_html: "%{name} no at permìtidu sa federatzione cun su domìniu %{target}"
+        destroy_domain_block_html: "%{name} at isblocadu su domìniu %{target}"
+        destroy_email_domain_block_html: "%{name} at isblocadu su domìniu de posta eletrònica %{target}"
+        destroy_ip_block_html: "%{name} at cantzelladu sa règula pro s'IP %{target}"
+        destroy_status_html: "%{name} at eliminadu sa publicatzione de %{target}"
+        disable_2fa_user_html: "%{name} at disativadu su rechisitu de duos fatores pro s'utente %{target}"
+        disable_custom_emoji_html: "%{name} at disativadu s'emoji %{target}"
+        disable_user_html: "%{name} at disativadu s'atzessu pro s'utente %{target}"
+        enable_custom_emoji_html: "%{name} at ativadu s'emoji %{target}"
+        enable_user_html: "%{name} at ativadu s'atzessu pro s'utente %{target}"
+        memorialize_account_html: "%{name} at cunvertidu su contu %{target} in una pàgina in memoriam"
+        promote_user_html: "%{name} at promòvidu s'utente %{target}"
+        remove_avatar_user_html: "%{name} at cantzelladu s'immàgine de profilu de %{target}"
+        reopen_report_html: "%{name} at torradu a abèrrere s'informe %{target}"
+        reset_password_user_html: "%{name} at resteadu sa crae de s'utente %{target}"
+        resolve_report_html: "%{name} at isòrvidu s'informe %{target}"
+        sensitive_account_html: "%{name} at marcadu s'elementu multimediale de %{target} comente sensìbile"
+        silence_account_html: "%{name} at postu su contu de %{target} a sa muda"
+        suspend_account_html: "%{name} at suspèndidu su contu de %{target}"
+        unassigned_report_html: "%{name} at bogadu s'assignatzione de s'informe %{target}"
+        unsensitive_account_html: "%{name} at bogadu sa marcadura \"sensìbile\" a s'elementu multimediale de %{target}"
+        unsilence_account_html: "%{name} at ativadu is notìficas pro su contu de %{target}"
+        unsuspend_account_html: "%{name} at bogadu sa suspensione de su contu de %{target}"
+        update_announcement_html: "%{name} at atualizadu s'annùntziu %{target}"
+        update_custom_emoji_html: "%{name} at atualizadu s'emoji %{target}"
+        update_domain_block_html: "%{name} at atualizadu su blocu de domìniu pro %{target}"
+        update_status_html: "%{name} at atualizadu sa publicatzione de %{target}"
       deleted_status: "(istadu cantzelladu)"
       empty: Perunu registru agatadu.
       filter_by_action: Filtra pro atzione
@@ -285,10 +312,12 @@ sc:
       new:
         create: Crea un'annùntziu
         title: Annùntziu nou
+      publish: Pùblica
       published_msg: As publicadu s'annùntziu.
       scheduled_for: Programmadu pro %{time}
       scheduled_msg: As programmadu s'annùntziu pro èssere publicadu!
       title: Annùntzios
+      unpublish: Annulla sa publicatzione
       unpublished_msg: As ritiradu s'annùntziu!
       updated_msg: As atualizadu s'annùntziu.
     custom_emojis:
@@ -304,6 +333,7 @@ sc:
       disable: Disativa
       disabled: Disativadu
       disabled_msg: As disativadu s'emoji
+      emoji: Emoji
       enable: Ativa
       enabled: Ativadu
       enabled_msg: As ativadu s'emoji
@@ -371,6 +401,8 @@ sc:
           silence: A sa muda
           suspend: Suspensione
         title: Blocu de domìniu nou
+      obfuscate: Cua su nòmine de domìniu
+      obfuscate_hint: Cua una parte de su nòmine de domìniu in sa lista si sa visualizatzione de sa lista de domìnios limitados est ativa
       private_comment: Cummentu privadu
       private_comment_hint: Lassa unu cummentu subra de custa limitatzione de domìniu pro impreu internu de s'iscuadra de moderatzione.
       public_comment: Cummentu pùblicu
@@ -409,6 +441,7 @@ sc:
       title: Domìnios de posta eletrònica blocados
     follow_recommendations:
       language: Pro idioma
+      status: Istadu
     instances:
       by_domain: Domìniu
       delivery_available: Sa cunsigna est a disponimentu
