@@ -416,6 +416,7 @@ Rails.application.routes.draw do
       end
 
       resources :favourite_tags, only: [:index, :create, :destroy], param: :tag
+      resource :trend_tags, only: [:show]
       resources :lists, only: [:index, :create, :show, :update, :destroy] do
         resource :accounts, only: [:show, :create, :destroy], controller: 'lists/accounts'
       end

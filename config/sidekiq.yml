@@ -27,6 +27,9 @@
   ip_cleanup_scheduler:
     cron: '<%= Random.rand(0..59) %> <%= Random.rand(3..5) %> * * *'
     class: Scheduler::IpCleanupScheduler
+  trend_tags_update_scheduler:
+    cron: '5-55/10 * * * *'
+    class: Scheduler::TrendTagsUpdateScheduler
   email_scheduler:
     cron: '0 10 * * 2'
     class: Scheduler::EmailScheduler
