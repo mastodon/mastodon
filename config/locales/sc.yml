@@ -660,6 +660,10 @@ sc:
       no_status_selected: Perunu istadu est istadu mudadu dae chi non nd'as seletzionadu
       title: Istados de su contu
       with_media: Cun elementos multimediales
+    system_checks:
+      rules_check:
+        action: Gesti is règulas de su serbidore
+        message_html: No as cunfiguradu peruna règula de su serbidore.
     tags:
       accounts_today: Impreos ùnicos atuales
       accounts_week: Impreos ùnicos de custa chida
@@ -710,11 +714,13 @@ sc:
     discovery: Iscoberta
     localization:
       body: Mastodon est bortadu in manera voluntària.
+      guide_link: https://crowdin.com/project/mastodon
       guide_link_text: Chie si siat podet contribuire.
     sensitive_content: Cuntenutu sensìbile
     toot_layout: Dispositzione de is tuts
   application_mailer:
     notification_preferences: Muda is preferèntzias de posta
+    salutation: "%{name},"
     settings: 'Muda is preferèntzias de posta: %{link}'
     view: 'Visualizatzione:'
     view_profile: Visualiza profilu
@@ -749,6 +755,9 @@ sc:
     migrate_account: Moe a unu contu diferente
     migrate_account_html: Si boles torrare a indiritzare custu contu a un'àteru, ddu as a pòdere <a href="%{path}">fàghere inoghe</a>.
     or_log_in_with: O intra cun
+    providers:
+      cas: CAS
+      saml: SAML
     register: Registru
     registration_closed: "%{instance} no atzetat àteras persones"
     resend_confirmation: Torra a imbiare is istrutziones de cunfirmatzione
@@ -858,6 +867,7 @@ sc:
       size: Mannària
     blocks: Ses blochende
     bookmarks: Sinnalibros
+    csv: CSV
     domain_blocks: Blocos de domìnios
     lists: Listas
     mutes: Ses ponende a sa muda
@@ -924,6 +934,8 @@ sc:
     status: Istadu de verìfica
     view_proof: Ammustra sa proa
   imports:
+    errors:
+      over_rows_processing_limit: cuntenet prus de %{count} filas
     modes:
       merge: Uni
       merge_long: Mantene is registros chi esistint e agiunghe·nde àteros
