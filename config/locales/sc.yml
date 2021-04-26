@@ -440,11 +440,17 @@ sc:
         title: Bloca su domìniu de posta eletrònica nou
       title: Domìnios de posta eletrònica blocados
     follow_recommendations:
+      description_html: "<strong>Is cussìgios de sighiduras agiudant a is persones noas a agatare deretu cuntenutu interessante</strong>. Si una persone at interagidu cun pagu gente e non podet retzire cussìgios de sighiduras personalizados, custos contos ant a èssere ammustrados. Ant a èssere torrados a carculare dae un'ammisturu de contos cun is pertzentuales de cumpromissu prus artos e su nùmeru prus artu de sighiduras pro un'idioma ispetzìficu."
       language: Pro idioma
       status: Istadu
+      suppress: Cantzella su cussìgiu de sighidura
+      suppressed: Cantzelladu
+      title: Cussìgios de sighidura
+      unsuppress: Recùpera su cussìgiu de sighidura
     instances:
       by_domain: Domìniu
       delivery_available: Sa cunsigna est a disponimentu
+      empty: Perunu domìniu agatadu.
       known_accounts:
         one: "%{count} contu connòschidu"
         other: "%{count} contos connòschidos"
@@ -522,6 +528,8 @@ sc:
       comment:
         none: Perunu
       created_at: Sinnaladu
+      forwarded: Torradu a imbiare
+      forwarded_to: Torradu a imbiare a %{domain}
       mark_as_resolved: Marca comente a isòrvidu
       mark_as_unresolved: Marcare comente a non isòrvidu
       notes:
@@ -541,6 +549,12 @@ sc:
       unassign: Boga s'assignatzione
       unresolved: No isòrvidu
       updated_at: Atualizadu
+    rules:
+      add_new: Agiunghe règula
+      delete: Cantzella
+      edit: Modìfica sa règula
+      empty: Peruna règula de serbidore definida ancora.
+      title: Règulas de su serbidore
     settings:
       activity_api_enabled:
         desc_html: Nùmeru de tuts publicados in locale, utentes ativos e registros noos in perìodos chidajolos
@@ -589,6 +603,8 @@ sc:
         min_invite_role:
           disabled: Nemos
           title: Permite invitos de
+        require_invite_text:
+          title: Rechede a is persones noas chi iscriant una resone prima de aderire
       registrations_mode:
         modes:
           approved: Aprovatzione rechesta pro si registrare
