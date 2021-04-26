@@ -983,11 +983,14 @@ da:
       limit: Maks. listeantal nået
   media_attachments:
     validations:
-      images_and_video: Kan ikke vedhæfte en video til en status der allerede har billeder
-      not_ready: Kan ikke vedhæfte filer, der ikke er færdige med behandlingen. Prøv igen om et øjeblik!
-      too_many: Kan ikke vedhæfte mere en 4 filer
+      images_and_video: En video kan ikke vedhæftes et indlæg med billedindhold
+      not_ready: Filer under behandling kan ikke vedhæftes. Forsøg igen senere!
+      too_many: Maks. 4 filer kan vedhæftes
   migrations:
-    acct: username@domain af den nye konto
+    acct: Flyttet til
+    cancel: Afbryd omdirigering
+    cancel_explanation: Afbrydelse af omdirigeringen vil genaktivere din nuværende konto, men bringer ikke følgerne tilbage, som er blevet flyttet til den anden konto.
+    cancelled_msg: Omdirigeringen afbrudt.
     errors:
       missing_also_known_as: er ikke et alias for denne konto
       move_to_self: kan ikke være den nuværende konto
