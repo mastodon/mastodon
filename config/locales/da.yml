@@ -992,16 +992,22 @@ da:
     cancel_explanation: Afbrydelse af omdirigeringen vil genaktivere din nuværende konto, men bringer ikke følgerne tilbage, som er blevet flyttet til den anden konto.
     cancelled_msg: Omdirigeringen afbrudt.
     errors:
+      already_moved: er den samme konto, som du allerede er flyttet til
       missing_also_known_as: er ikke et alias for denne konto
-      move_to_self: kan ikke være den nuværende konto
-      not_found: kunne ikke bive fundet
+      move_to_self: må ikke være den nuværende konto
+      not_found: kunne ikke findes
       on_cooldown: Du er på nedkøling
-    followers_count: Følgere på tidspunktet for flytningen
+    followers_count: Følgere på flytningstidspunktet
     incoming_migrations: Flytter fra en anden konto
-    past_migrations: Tidligere migrationer
+    incoming_migrations_html: For at flytte fra en anden konto til denne skal der først <a href="%{path}">oprettes et kontoalias</a>.
+    moved_msg: Din konto omdirigeres nu til %{acct} og dine følgere overflyttes.
+    not_redirecting: Din konto omdirigerer pt. ikke til nogen anden konto.
+    on_cooldown: Du har for nylig migreret din konto. Denne funktion tilgængeliggøres igen om %{count} dage.
+    past_migrations: Tidligere migreringer
     proceed_with_move: Flyt følgere
     redirected_msg: Din konto omdirigerer nu til %{acct}.
     redirecting_to: Din konto omdirigerer til %{acct}.
+    set_redirect: Opsæt omdirigering
     warning:
       other_data: Ingen andre data vil blive flyttet automatisk
   moderation:
