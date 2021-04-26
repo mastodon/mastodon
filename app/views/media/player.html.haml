@@ -2,8 +2,11 @@
   = render_initial_state
   = javascript_pack_tag 'public', crossorigin: 'anonymous'
 
+:ruby
+  meta = @media_attachment.file.meta || {}
+
 - if @media_attachment.video?
-  = react_component :video, src: @media_attachment.file.url(:original), preview: @media_attachment.thumbnail.present? ? @media_attachment.thumbnail.url : @media_attachment.file.url(:small), frameRate: @media_attachment.file.meta.dig('original', 'frame_rate'), blurhash: @media_attachment.blurhash, width: 670, height: 380, editable: true, detailed: true, inline: true, alt: @media_attachment.description, media: [ActiveModelSerializers::SerializableResource.new(@media_attachment, serializer: REST::MediaAttachmentSerializer)].as_json do
+  = react_component :video, src: @media_attachment.file.url(:original), preview: @media_attachment.thumbnail.present? ? @media_attachment.thumbnail.url : @media_attachment.file.url(:small), frameRate: meta.dig('original', 'frame_rate'), blurhash: @media_attachment.blurhash, width: 670, height: 380, editable: true, detailed: true, inline: true, alt: @media_attachment.description, media: [ActiveModelSerializers::SerializableResource.new(@media_attachment, serializer: REST::MediaAttachmentSerializer)].as_json do
     %video{ controls: 'controls' }
       %source{ src: @media_attachment.file.url(:original) }
 - elsif @media_attachment.gifv?
@@ -11,6 +14,6 @@
     %video{ autoplay: 'autoplay', muted: 'muted', loop: 'loop' }
       %source{ src: @media_attachment.file.url(:original) }
 - elsif @media_attachment.audio?
-  = react_component :audio, src: @media_attachment.file.url(:original), poster: @media_attachment.thumbnail.present? ? @media_attachment.thumbnail.url : @media_attachment.account.avatar_static_url, backgroundColor: @media_attachment.file.meta.dig('colors', 'background'), foregroundColor: @media_attachment.file.meta.dig('colors', 'foreground'), accentColor: @media_attachment.file.meta.dig('colors', 'accent'), width: 670, height: 380, fullscreen: true, alt: @media_attachment.description, duration: @media_attachment.file.meta.dig(:original, :duration) do
+  = react_component :audio, src: @media_attachment.file.url(:original), poster: @media_attachment.thumbnail.present? ? @media_attachment.thumbnail.url : @media_attachment.account.avatar_static_url, backgroundColor: meta.dig('colors', 'background'), foregroundColor: meta.dig('colors', 'foreground'), accentColor: meta.dig('colors', 'accent'), width: 670, height: 380, fullscreen: true, alt: @media_attachment.description, duration: meta.dig(:original, :duration) do
     %audio{ controls: 'controls' }
       %source{ src: @media_attachment.file.url(:original) }
