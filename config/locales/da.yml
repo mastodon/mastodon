@@ -893,31 +893,34 @@ da:
       title: Redigere filter
     errors:
       invalid_context: Ingen eller ugyldig kontekst angivet
-      invalid_irreversible: Uigenkaldelig filtrering virker kun med hjem eller notifikations kontekst
+      invalid_irreversible: Uigenkaldelig filtrering virker kun med hjemme- eller notifikationskontekster
     index:
       delete: Slet
       empty: Du har ingen filtre.
-      title: Filtrer
+      title: Filtre
     new:
       title: Tilføj nyt filter
   footer:
     developers: Udviklere
     more: Mere…
     resources: Ressourcer
-    trending_now: Hot lige nu
+    trending_now: Trender lige nu
   generic:
     all: Alle
-    changes_saved_msg: Ændringerne blev gemt!
+    changes_saved_msg: Ændringerne er gemt!
     copy: Kopier
     delete: Slet
-    order_by: Sorter efter
+    no_batch_actions_available: Ingen multihandlinger tilgængelige på denne side
+    order_by: Sortér efter
     save_changes: Gem ændringer
     validation_errors:
-      one: Der er noget der ikke er helt som det bør være! Tag lige et kig på følgende fejl forneden
-      other: Der er noget der ikke er helt som det bør være! Tag lige et kig på følgende %{count} fejl forneden
+      one: Noget er ikke er helt i vinkel! Tjek fejlen nedenfor
+      other: Noget er ikke er helt i vinkel! Tjek de %{count} fejl nedenfor
+  html_validator:
+    invalid_markup: 'indeholder ugyldig HTML-markup: %{error}'
   identity_proofs:
     active: Aktiv
-    authorize: Ja, tillad
+    authorize: Ja, godkend
     i_am_html: Jeg er %{username} på %{service}.
     identity: Identitet
     inactive: Inaktiv
