@@ -1048,10 +1048,14 @@ sc:
       body: '%{name} t''at mentovadu in:'
       subject: '%{name} t''at mentovadu'
       title: Mèntovu nou
+    poll:
+      subject: Su sondàgiu de %{name} est acabadu
     reblog:
       body: '%{name} at cumpartzidu s''istadu tuo:'
       subject: "%{name} at cumpartzidu s'istadu tuo"
       title: Cumpartzidura noa
+    status:
+      subject: "%{name} at publicadu cosa"
   notifications:
     email_events: Eventos pro notìficas cun posta eletrònica
     email_events_hint: 'Seletziona eventos pro is chi boles retzire notìficas:'
@@ -1059,8 +1063,10 @@ sc:
   number:
     human:
       decimal_units:
+        format: "%n%u"
         units:
           billion: Mrd
+          million: M
           quadrillion: Blr
           thousand: m
           trillion: Bln
@@ -1077,6 +1083,7 @@ sc:
     next: Sighi
     older: Prus betzu
     prev: A coa
+    truncate: "&hellip;"
   polls:
     errors:
       already_voted: As giai votadu in custu sondàgiu
@@ -1138,13 +1145,40 @@ sc:
     activity: Ùrtima atividade
     browser: Navigadore
     browsers:
+      alipay: Alipay
+      blackberry: Blackberry
+      chrome: Chrome
+      edge: Microsoft Edge
+      electron: Electron
+      firefox: Firefox
       generic: Navigadore disconnotu
+      ie: Internet Explorer
+      micro_messenger: MicroMessenger
       nokia: Navigadore Nokia S40 Ovi
+      opera: Opera
+      otter: Otter
+      phantom_js: PhantomJS
+      qq: QQ Browser
+      safari: Safari
+      uc_browser: UCBrowser
+      weibo: Weibo
     current_session: Sessione atuale
     description: "%{browser} de %{platform}"
     explanation: Custos sunt is navigadores web de is chi ses intradu in su contu tuo de Mastodon.
+    ip: IP
     platforms:
+      adobe_air: Adobe Air
+      android: Android
+      blackberry: Blackberry
+      chrome_os: ChromeOS
+      firefox_os: Firefox OS
+      ios: iOS
+      linux: Linux
+      mac: macOS
       other: prataforma disconnota
+      windows: Windows
+      windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
     revoke: Rèvoca
     revoke_success: Sessione revocada
     title: Sessiones
@@ -1210,7 +1244,9 @@ sc:
     show_older: Ammustra is prus betzos
     show_thread: Ammustra su tema
     sign_in_to_participate: Identìfica·ti pro partetzipare in s'arresonada
+    title: '%{name}: "%{quote}"'
     visibilities:
+      direct: Deretu
       private: Isceti pro chie ti sighit
       private_long: Ammustra isceti a chie ti sighit
       public: Pùblicu
@@ -1313,6 +1349,7 @@ sc:
   time:
     formats:
       default: "%d %b %Y, %H:%M"
+      month: "%b %Y"
   two_factor_authentication:
     add: Agiunghe
     disable: Disativa 2FA
