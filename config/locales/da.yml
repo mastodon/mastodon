@@ -1073,8 +1073,13 @@ da:
           billion: mia.
           million: mio.
           quadrillion: kvd.
+          thousand: T
+          trillion: tri.
   otp_authentication:
-    enable: Aktiver
+    code_hint: Angiv koden genereret af din godkendelses-app for at bekræfte
+    description_html: Aktiverer du <strong>tofaktorgodkendelse</strong> vha. af en godkendelses-app, vil du skulle benytte din mobil, der genererer det token, der skal angives ved indlogning.
+    enable: Aktivér
+    instructions_html: "<strong>Skan denne QR-kode i Google Autehnticator eller en lign. TOTP-app på din mobil</strong>. Fra nu af, vil appen generere tokens, som vil skulle angives ifm. indlogning."
     setup: Sæt op
     wrong_code: Den indtastede kode var ugyldig! Er serverens tid og enhedstid korrekt?
   pagination:
