@@ -1026,14 +1026,14 @@ da:
   notification_mailer:
     digest:
       action: Se alle notifikationer
-      body: Her er en kort gennemgang af de beskeder du gik glip af siden dit sidste besøg den %{since}
+      body: Her er et kort resumé af de beskeder, du er gået glip af siden dit seneste besøg d. %{since}
       mention: "%{name} nævnte dig i:"
       new_followers_summary:
-        one: Du har også fået dig en ny følger mens du var væk! Sådan!
-        other: Du har også fået %{count} nye følgere mens du var væk! Fantastisk!
+        one: Du har også fået en ny følger, mens du var væk! Sådan!
+        other: Du har også fået %{count} nye følgere, mens du var væk! Sådan!
       subject:
-        one: "1 ny notifikation siden du sidst var her \U0001F418"
-        other: "%{count} nye notifikationer siden du sidst var her \U0001F418"
+        one: "1 ny notifikation siden dit senest besøg \U0001F418"
+        other: "%{count} nye notifikationer siden dit senest besøg \U0001F418"
       title: Mens du var væk...
     favourite:
       body: 'Din status blev favoriseret af %{name}:'
