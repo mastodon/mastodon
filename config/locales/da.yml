@@ -1015,9 +1015,14 @@ da:
       cooldown: Efter flytningen er der en venteperiode, hvor kontoen ikke kan flyttes igen
       disabled_account: Efterfølgende er din nuværende konto ikke fuldt funktionsdygtig, der er dog adgang til dataeksport samt genaktivering.
       followers: Denne handling vil flytte alle følgere fra den aktuelle konto til den nye ditto
-      other_data: Ingen andre data vil blive flyttet automatisk
+      only_redirect_html: Alternativt kan du <a href="%{path}">oprette en omdirigering for din profil alene</a>.
+      other_data: Ingen øvrige data flyttes automatisk
+      redirect: Din nuværende kontoprofil opdateres med en omdirigeringsnotits og ekskluderes fra søgninger
   moderation:
     title: Moderatering
+  move_handler:
+    carry_blocks_over_text: Denne bruger er flyttet fra %{acct}, som du har haft blokeret.
+    carry_mutes_over_text: Denne bruger er flyttet fra %{acct}, som du har haft tavsgjort.
   notification_mailer:
     digest:
       action: Se alle notifikationer
