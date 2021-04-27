@@ -885,7 +885,7 @@ th:
     title: เชิญผู้คน
   media_attachments:
     validations:
-      images_and_video: ไม่สามารถแนบวิดีโอกับสถานะที่มีภาพอยู่แล้ว
+      images_and_video: ไม่สามารถแนบวิดีโอกับโพสต์ที่มีภาพอยู่แล้ว
       too_many: ไม่สามารถแนบมากกว่า 4 ไฟล์
   migrations:
     acct: ย้ายไปยัง
@@ -920,7 +920,7 @@ th:
       title: เมื่อคุณไม่อยู่...
     favourite:
       body: 'โพสต์ของคุณได้รับการชื่นชอบโดย %{name}:'
-      subject: "%{name} ได้ชื่นชอบสถานะของคุณ"
+      subject: "%{name} ได้ชื่นชอบโพสต์ของคุณ"
       title: รายการโปรดใหม่
     follow:
       body: "%{name} กำลังติดตามคุณ!"
@@ -937,8 +937,8 @@ th:
       subject: คุณได้รับการกล่าวถึงโดย %{name}
       title: การกล่าวถึงใหม่
     reblog:
-      body: 'สถานะของคุณได้รับการดันโดย %{name}:'
-      subject: "%{name} ได้ดันสถานะของคุณ"
+      body: 'โพสต์ของคุณได้รับการดันโดย %{name}:'
+      subject: "%{name} ได้ดันโพสต์ของคุณ"
       title: การดันใหม่
     status:
       subject: "%{name} เพิ่งโพสต์"
