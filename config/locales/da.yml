@@ -1036,32 +1036,35 @@ da:
         other: "%{count} nye notifikationer siden dit senest besøg \U0001F418"
       title: Mens du var væk...
     favourite:
-      body: 'Din status blev favoriseret af %{name}:'
-      subject: "%{name} favoriserede din status"
+      body: 'Dit indlæg blev favoriseret af %{name}:'
+      subject: "%{name} favoriserede dit indlæg"
       title: Ny favorit
     follow:
       body: "%{name} følger dig nu!"
       subject: "%{name} følger dig nu"
       title: Ny følger
     follow_request:
-      action: Håndter følgeranmodninger
+      action: Håndtér følgeanmodninger
       body: "%{name} har anmodet om at følge dig"
-      subject: 'Følger afventer: %{name}'
-      title: Ny følgeranmodning
+      subject: 'Afventende følger: %{name}'
+      title: Ny følgeanmodning
     mention:
-      action: Svar
+      action: Besvar
       body: 'Du blev nævnt af %{name} i:'
       subject: Du blev nævnt af %{name}
       title: Ny omtale
     poll:
-      subject: En afstemning af %{name} er afsluttet
+      subject: En afstemning fra %{name} er afsluttet
     reblog:
-      body: 'Din status blev fremhævet af %{name}:'
-      subject: "%{name} fremhævede din status"
-      title: Ny fremhævelse
+      body: 'Dit indlæg blev boostet af %{name}:'
+      subject: "%{name} boostede dit indlæg"
+      title: Nyt boost
+    status:
+      subject: "%{name} har netop postet"
   notifications:
-    email_events: Begivenheder for e-mail-meddelelser
-    other_settings: Andre indstillinger for notifikationer
+    email_events: Begivenheder for e-mailnotifikationer
+    email_events_hint: 'Vælg begivenheder, som notifikationer skal modtages for:'
+    other_settings: Andre notifikationsindstillinger
   number:
     human:
       decimal_units:
