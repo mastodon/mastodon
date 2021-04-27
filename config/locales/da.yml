@@ -1080,8 +1080,9 @@ da:
     description_html: Aktiverer du <strong>tofaktorgodkendelse</strong> vha. af en godkendelses-app, vil du skulle benytte din mobil, der genererer det token, der skal angives ved indlogning.
     enable: Aktivér
     instructions_html: "<strong>Skan denne QR-kode i Google Autehnticator eller en lign. TOTP-app på din mobil</strong>. Fra nu af, vil appen generere tokens, som vil skulle angives ifm. indlogning."
+    manual_instructions: 'Kan QR-koden ikke skannes, så du er nødt til manuelt at angive den, er her en simplel tekst-hemmelighed:'
     setup: Sæt op
-    wrong_code: Den indtastede kode var ugyldig! Er serverens tid og enhedstid korrekt?
+    wrong_code: Den angivne kode er ugyldig! Er server- og enhedsklokkeslæt korrekte?
   pagination:
     newer: Nyere
     next: Næste
