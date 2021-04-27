@@ -682,7 +682,7 @@ da:
       most_popular: Mest populære
       most_recent: Seneste
       name: Hashtag
-      review: Gennemgå status
+      review: Gennemsynsstatus
       reviewed: Gennemgået
       title: Hashtags
       trending_right_now: Populære lige nu
@@ -699,6 +699,7 @@ da:
   admin_mailer:
     new_pending_account:
       body: Detaljerne for den nye konto fremgår nedenfor. Du kan godkende eller afvise denne ansøgning.
+      subject: Ny konto til gennemgang på %{instance} (%{username})
     new_report:
       body: "%{reporter} har anmeldt %{target}"
       body_remote: Nogen fra %{domain} har anmeldt %{target}
@@ -1023,6 +1024,7 @@ da:
   move_handler:
     carry_blocks_over_text: Denne bruger er flyttet fra %{acct}, som du har haft blokeret.
     carry_mutes_over_text: Denne bruger er flyttet fra %{acct}, som du har haft tavsgjort.
+    copy_account_note_text: 'Denne bruger er flyttet fra %{acct}, her er dine tidligere noter om dem:'
   notification_mailer:
     digest:
       action: Se alle notifikationer
