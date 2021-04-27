@@ -606,6 +606,7 @@ sc:
           disabled: Nemos
           title: Permite invitos de
         require_invite_text:
+          desc_html: Cando is registratziones rechedent s'aprovatzione manuale, faghe chi a incarcare su butone "Pro ite ti cheres iscrìere?" siat obligatòriu e non a praghere
           title: Rechede a is persones noas chi iscriant una resone prima de aderire
       registrations_mode:
         modes:
@@ -663,9 +664,13 @@ sc:
       title: Istados de su contu
       with_media: Cun elementos multimediales
     system_checks:
+      database_schema_check:
+        message_html: B'at tràmudas de base de datos in suspesu. Pone·ddas in esecutzione pro ti segurare chi s'aplicatzione funtzionet comente si tocat
       rules_check:
         action: Gesti is règulas de su serbidore
         message_html: No as cunfiguradu peruna règula de su serbidore.
+      sidekiq_process_check:
+        message_html: Perunu protzessu Sidekiq est in esecutzione pro sa coa(s) %{value}. Revisiona is cunfiguratziones de Sidekiq
     tags:
       accounts_today: Impreos ùnicos atuales
       accounts_week: Impreos ùnicos de custa chida
@@ -689,6 +694,7 @@ sc:
       add_new: Agiunghe noa
       delete: Cantzella
       edit_preset: Modìfica s'avisu predefinidu
+      empty: No as definidu peruna pre-impostatzione ancora.
       title: Gesti is cunfiguratziones predefinidas de is avisos
   admin_mailer:
     new_pending_account:
