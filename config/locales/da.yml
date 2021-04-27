@@ -1216,19 +1216,21 @@ da:
       audio:
         one: "%{count} lyd"
         other: "%{count} lyd"
-      description: 'Vedhæftede: %{attached}'
+      description: 'Vedhæftet: %{attached}'
       image:
         one: "%{count} billede"
         other: "%{count} billeder"
       video:
         one: "%{count} video"
         other: "%{count} videoer"
-    boosted_from_html: Fremhævet fra %{acct_link}
-    content_warning: 'Advarsel om indhold: %{warning}'
+    boosted_from_html: Boostet fra %{acct_link}
+    content_warning: 'Indholdsadvarsel: %{warning}'
     disallowed_hashtags:
       one: 'indeholdte et ikke tilladt hashtag: %{tags}'
       other: 'indeholdte de ikke tilladte hashtags: %{tags}'
-    language_detection: Opfang automatisk sprog
+    errors:
+      in_reply_not_found: Indlægget, du forsøger at besvare, ser ikke ud til at findes.
+    language_detection: Detektér sprog automatisk
     open_in_web: Åbn i browser
     over_character_limit: grænsen på %{max} tegn er overskredet
     pin_errors:
