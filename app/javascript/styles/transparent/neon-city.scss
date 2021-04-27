@@ -16,7 +16,6 @@
  * mouse or touch mode (rather than keyboard) */
 [data-whatinput="mouse"],
 [data-whatinput="touch"] {
-
   .status__content:focus,
   .status:focus,
   .status__wrapper:focus,
@@ -102,7 +101,6 @@
 }
 
 .muted {
-
   .status__content p,
   .status__content a {
     color: lighten($ui-base-color, 35%);
@@ -162,7 +160,6 @@
   margin: auto;
   max-height: 45vh;
 }
-
 
 .landing-page.alternative .grid {
   position: relative;
@@ -232,7 +229,6 @@
 }
 
 .public-layout {
-
   .header,
   .table-of-contents,
   .landing-page__call-to-action,
@@ -322,7 +318,11 @@
   }
 }
 
-.embed .activity-stream .entry .detailed-status.light .button.button-secondary.logo-button {
+.embed
+  .activity-stream
+  .entry
+  .detailed-status.light
+  .button.button-secondary.logo-button {
   color: $ui-primary-color-alt;
 
   svg {
@@ -401,7 +401,7 @@
   background-clip: content-box;
 }
 
-.column>.scrollable {
+.column > .scrollable {
   background-color: transparent;
 }
 
@@ -486,7 +486,6 @@ body,
   border-color: transparent transparent $transparent-light;
 }
 
-
 .search__input {
   background: $transparent-light;
 }
@@ -513,10 +512,10 @@ body,
 
 /*code block*/
 .highlight {
-  background: rgba(45, 45, 45, .5);
+  background: rgba(45, 45, 45, 0.5);
 }
 
-pre.highlight>code {
+pre.highlight > code {
   background-color: transparent;
 }
 
@@ -536,4 +535,18 @@ pre.highlight>code {
 .navigation-bar__profile-account,
 .navigation-bar__profile-edit {
   color: $white !important;
+}
+
+// fixup auth page
+.account-header {
+  background: $transparent-light;
+  border-radius: 4px;
+  padding: 15px;
+  width: 430px;
+}
+.form-container {
+  background: $transparent-light;
+  border-radius: 4px;
+  padding: 15px;
+  width: 400px;
 }
