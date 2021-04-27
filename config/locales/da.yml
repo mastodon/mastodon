@@ -1135,8 +1135,15 @@ da:
     prompt: 'Du er ved at følge:'
     reason_html: "<strong>Hvorfor er dette skridt nødvendigt?</strong> <code>%{instance}</code> er måske ikke den server, hvor du er registreret, så du skal først omdirigeres til din hjemmeserver."
   remote_interaction:
+    favourite:
+      proceed: Fortsæt til favorit
+      prompt: 'Gør dette indlæg til favorit:'
+    reblog:
+      proceed: Fortsæt for at booste
+      prompt: 'Du ønsker at booste dette indlæg:'
     reply:
-      proceed: Fortsæt for at svare
+      proceed: Fortsæt for at besvare
+      prompt: 'Du ønsker at besvare dette indlæg:'
   scheduled_statuses:
     too_soon: Den planlagte dato skal være i fremtiden
   sessions:
