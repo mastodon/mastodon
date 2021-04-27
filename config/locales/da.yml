@@ -1128,9 +1128,10 @@ da:
   remote_follow:
     acct: Angiv dit brugernavn@domæne du vil agere fra
     missing_resource: Nødvendige omdirigerings-URL til din konto ikke fundet
-    no_account_html: Har du ikke en konto? Du kan <a href='%{sign_up_path}' target='_blank'>oprette dig her</a>
+    no_account_html: Har ingen konto? Du kan <a href='%{sign_up_path}' target='_blank'>oprette en hér</a>
     proceed: Fortsæt for at følge
     prompt: 'Du er ved at følge:'
+    reason_html: "<strong>Hvorfor er dette skridt nødvendigt?</strong> <code>%{instance}</code> er måske ikke den server, hvor du er registreret, så du skal først omdirigeres til din hjemmeserver."
   remote_interaction:
     reply:
       proceed: Fortsæt for at svare
