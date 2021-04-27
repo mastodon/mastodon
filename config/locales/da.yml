@@ -1087,21 +1087,22 @@ da:
     newer: Nyere
     next: Næste
     older: Ældre
-    prev: Forrige
-    truncate: "...&hellip;"
+    prev: Foregående
+    truncate: "&hellip;"
   polls:
     errors:
       already_voted: Du har allerede stemt i denne afstemning
-      duplicate_options: indeholder dublerede elementer
+      duplicate_options: indeholder dubletelementer
       duration_too_long: er for langt ude i fremtiden
-      duration_too_short: er for tidligy
+      duration_too_short: er for tidligt
       expired: Denne afstemning er allerede afsluttet
-      invalid_choice: Den valgte stemmeindstilling findes ikke
-      over_character_limit: kan ikke være længere end %{max} tegn hver
-      too_few_options: skal have mere end et element
-      too_many_options: kan ikke indeholde flere end %{max} elementer
+      invalid_choice: Den valgte afstemningsmulighed findes ikke
+      over_character_limit: må maks. udgøre %{max} tegn hver
+      too_few_options: skal have flere end ét element
+      too_many_options: må maks. indeholde %{max} elementer
   preferences:
     other: Andet
+    posting_defaults: Indlægsstandarder
     public_timelines: Offentlige tidslinjer
   reactions:
     errors:
