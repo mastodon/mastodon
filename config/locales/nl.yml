@@ -1080,9 +1080,9 @@ nl:
           trillion: bln.
   otp_authentication:
     code_hint: Voer de code in die door de authenticatie-app werd gegenereerd
-    description_html: Na het instellen van <strong>tweestapsverificatie</strong> met een authenticatie-app, kun je alleen inloggen als je jouw mobiele telefoon bij je hebt. Hiermee genereer je namelijk de in te voeren aanmeldcode.
+    description_html: Na het instellen van <strong>tweestapsverificatie</strong> met een authenticatie-app, kun je alleen inloggen als je jouw mobiele telefoon bij je hebt. Hiermee genereer je namelijk de in te voeren toegangscode.
     enable: Inschakelen
-    instructions_html: "<strong>Scan deze QR-code in Google Authenticator of een soortgelijke app op jouw mobiele telefoon</strong>. Van nu af aan genereert deze app aanmeldcodes die je bij het inloggen moet invoeren."
+    instructions_html: "<strong>Scan deze QR-code in Google Authenticator of een soortgelijke app op jouw mobiele telefoon</strong>. Van nu af aan genereert deze app toegangscodes die je bij het inloggen moet invoeren."
     manual_instructions: 'Voor het geval je de QR-code niet kunt scannen en het handmatig moet invoeren, vind je hieronder de geheime code in platte tekst:'
     setup: Instellen
     wrong_code: De ingevoerde code is ongeldig! Klopt de systeemtijd van de server en die van jouw apparaat?
@@ -1425,7 +1425,7 @@ nl:
   users:
     follow_limit_reached: Je kunt niet meer dan %{limit} accounts volgen
     generic_access_help_html: Problemen met toegang tot je account? Neem dan contact op met %{email} voor assistentie
-    invalid_otp_token: Ongeldige tweestaps-aanmeldcode
+    invalid_otp_token: Ongeldige tweestaps-toegangscode
     invalid_sign_in_token: Ongeldige beveiligingscode
     otp_lost_help_html: Als je toegang tot beiden kwijt bent geraakt, neem dan contact op via %{email}
     seamless_external_login: Je bent ingelogd via een externe dienst, daarom zijn wachtwoorden en e-mailinstellingen niet beschikbaar.
