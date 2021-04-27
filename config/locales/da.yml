@@ -1232,12 +1232,12 @@ da:
       in_reply_not_found: Indlægget, du forsøger at besvare, ser ikke ud til at findes.
     language_detection: Detektér sprog automatisk
     open_in_web: Åbn i browser
-    over_character_limit: grænsen på %{max} tegn er overskredet
+    over_character_limit: grænsen på %{max} tegn er nået
     pin_errors:
-      limit: Du har allerede fastgjort det maksimale antal trut
-      ownership: Du kan ikke fastgøre en anden persons trut
-      private: Ikke offentlige trut kan ikke blive fastgjort
-      reblog: Fremhævede trut kan ikke fastgøres
+      limit: Du har allerede fastgjort det maksimale antal indlæg
+      ownership: Andres indlæg kan ikke fastgøres
+      private: Ikke-offentlige indlæg kan ikke fastgjøres
+      reblog: Et boost kan ikke fastgøres
     poll:
       total_people:
         one: "%{count} person"
@@ -1246,26 +1246,26 @@ da:
         one: "%{count} stemme"
         other: "%{count} stemmer"
       vote: Stem
-    show_more: Vis mere
+    show_more: Vis flere
     show_newer: Vis nyere
     show_older: Vis ældre
     show_thread: Vis tråd
-    sign_in_to_participate: Log ind for at deltage i samtalen
+    sign_in_to_participate: Log ind for at deltage i konversationen
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Direkte
-      private: Kun-følgere
+      private: Kun følgere
       private_long: Vis kun til følgere
       public: Offentlig
       public_long: Alle kan se
-      unlisted: Ikke listet
-      unlisted_long: Alle kan se, men vil ikke være listet på offentlige tidslinjer
+      unlisted: Ulistet
+      unlisted_long: Alle kan se, men er ikke listet på offentlige tidslinjer
   stream_entries:
-    pinned: Fastgjort trut
-    reblogged: fremhævede
-    sensitive_content: Følsomt indhold
+    pinned: Fastgjort indlæg
+    reblogged: boostet
+    sensitive_content: Sensitivt indhold
   tags:
-    does_not_match_previous_name: stemmer ikke overens med det forrige navn
+    does_not_match_previous_name: matcher ikke det foregående navn
   terms:
     body_html: |
       <p><h2> Privatlivspolitik </h2> 
