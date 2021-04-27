@@ -1145,44 +1145,46 @@ da:
       proceed: Fortsæt for at besvare
       prompt: 'Du ønsker at besvare dette indlæg:'
   scheduled_statuses:
-    over_daily_limit: Du har nået dagsbegrænsningen på %{limit} planlagte indlæg
+    over_daily_limit: Du har nået dagsgrænsen på %{limit} planlagte indlæg
+    over_total_limit: Du har nået grænsen på %{limit} planlagte indlæg
     too_soon: Den planlagte dato skal være i fremtiden
   sessions:
-    activity: Sidste aktivitet
+    activity: Seneste aktivitet
+    browser: Browser
     browsers:
-      alipay: Ali-pay
-      blackberry: Blackberry OS
-      chrome: Google Chrome
-      edge: Microsoft edge
-      electron: Elektron
-      firefox: Mozilla Firefox
+      alipay: Alipay
+      blackberry: Blackberry
+      chrome: Chrome
+      edge: Microsoft Edge
+      electron: Electron
+      firefox: Firefox
       generic: Ukendt browser
       ie: IE
-      micro_messenger: Micromessenger
-      nokia: Nokia S40 ovi browser
-      opera: Opera browser
-      otter: Odder
+      micro_messenger: MicroMessenger
+      nokia: Nokia S40 Ovi Browser
+      opera: Opera
+      otter: Otter
       phantom_js: FantomJS
-      qq: QQ browser
-      safari: Apple Safari
+      qq: QQ Browser
+      safari: Safari
       uc_browser: UCbrowser
-      weibo: Weibo browser
-    current_session: Nuværrende session
+      weibo: Weibo
+    current_session: Aktuelle session
     description: "%{browser} på %{platform}"
-    explanation: Disse er de web browsere der på nuværende tidspunkt er logget ind på din Mastodon konto.
+    explanation: Disse er de webbrowsere, som pt. er pålogget din Mastodon-konto.
     ip: IP
     platforms:
-      adobe_air: Adobe air
+      adobe_air: Adobe Air
       android: Android
-      blackberry: Blackberry OS
-      chrome_os: Chromeos
-      firefox_os: Firefox Os
+      blackberry: Blackberry
+      chrome_os: ChromeOS
+      firefox_os: Firefox OS
       ios: iOS
       linux: Linux
-      mac: Mac.
+      mac: macOS
       other: ukendt platform
-      windows: Microsoft windows
-      windows_mobile: Windows mobil
+      windows: Windows
+      windows_mobile: Windows Mobile
       windows_phone: Windows fon
     revoke: Tilbagekald
     revoke_success: Sessionen blev tilbagekaldt
