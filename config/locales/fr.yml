@@ -502,7 +502,7 @@ fr:
       disable: Désactiver
       disabled: Désactivé
       enable: Activer
-      enable_hint: Une fois activé, votre serveur souscrira à tous les pouets publics présents sur ce relais et y enverra ses propres pouets publics.
+      enable_hint: Une fois activé, votre serveur souscrira à tous les messages publics de ce relais et y enverra ses propres messages publics.
       enabled: Activé
       inbox_url: URL du relais
       pending: En attente de l’approbation du relai
@@ -588,7 +588,7 @@ fr:
         desc_html: Affiché sur plusieurs pages. Au moins 293×205px recommandé. Lorsqu’il n’est pas défini, retombe à la mascotte par défaut
         title: Image de la mascotte
       peers_api_enabled:
-        desc_html: Noms des domaines que ce serveur a découvert dans le fediverse
+        desc_html: Noms des domaines que ce serveur a découvert dans le fédiverse
         title: Publier la liste des serveurs découverts
       preview_sensitive_media:
         desc_html: Les aperçus de lien sur les autres sites web afficheront une vignette même si les médias sont marqués comme sensibles
@@ -616,8 +616,8 @@ fr:
           open: N’importe qui peut s’inscrire
         title: Mode d’enregistrement
       show_known_fediverse_at_about_page:
-        desc_html: Lorsque l’option est activée, les pouets provenant de toutes les serveurs connus sont montrés dans la prévisualisation. Sinon, seuls les pouets locaux sont montrés
-        title: Afficher le fediverse connu dans la prévisualisation du fil
+        desc_html: Lorsque désactivée, restreint le fil public accessible via la page d’accueil de l’instance pour ne montrer que le contenu local
+        title: Inclure le contenu fédéré sur la page de fil public sans authentification
       show_staff_badge:
         desc_html: Montrer un badge de responsable sur une page utilisateur·rice
         title: Montrer un badge de responsable
