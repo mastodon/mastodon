@@ -870,7 +870,7 @@ fr:
     archive_takeout:
       date: Date
       download: Télécharger votre archive
-      hint_html: Vous pouvez demander une archive de vos <strong>pouets et médias téléversés</strong>. Les données exportées seront au format ActivityPub, lisible par tout logiciel compatible. Vous pouvez demander une archive tous les 7 jours.
+      hint_html: Vous pouvez demander une archive de vos <strong>messages et médias téléversés</strong>. Les données exportées seront au format ActivityPub, lisible par tout logiciel compatible. Vous pouvez demander une archive tous les 7 jours.
       in_progress: Création de votre archive…
       request: Demandez vos archives
       size: Taille
@@ -1040,8 +1040,8 @@ fr:
         other: "%{count} nouvelles notifications depuis votre dernière visite \U0001F418"
       title: Pendant votre absence…
     favourite:
-      body: '%{name} a ajouté votre pouet à ses favoris :'
-      subject: "%{name} a ajouté votre pouet à ses favoris"
+      body: '%{name} a ajouté votre message à ses favoris :'
+      subject: "%{name} a ajouté votre message à ses favoris"
       title: Nouveau favori
     follow:
       body: "%{name} vous suit !"
@@ -1106,7 +1106,7 @@ fr:
       too_many_options: ne peut contenir plus de %{max} propositions
   preferences:
     other: Autre
-    posting_defaults: Paramètres par défaut des pouets
+    posting_defaults: Paramètres de publication par défaut
     public_timelines: Fils publics
   reactions:
     errors:
@@ -1139,13 +1139,13 @@ fr:
   remote_interaction:
     favourite:
       proceed: Confirmer l’ajout aux favoris
-      prompt: 'Vous souhaitez mettre ce pouet en favori :'
+      prompt: 'Vous souhaitez ajouter ce message à vos favoris :'
     reblog:
       proceed: Confirmer le partage
-      prompt: 'Vous souhaitez partager ce pouet :'
+      prompt: 'Vous souhaitez partager ce message :'
     reply:
       proceed: Confirmer la réponse
-      prompt: 'Vous souhaitez répondre à ce pouet :'
+      prompt: 'Vous souhaitez répondre à ce message :'
   scheduled_statuses:
     over_daily_limit: Vous avez dépassé la limite de %{limit} pouets planifiés pour ce jour
     over_total_limit: Vous avez dépassé la limite de %{limit} pouets planifiés
