@@ -1,17 +1,16 @@
----
 sq:
   devise:
     confirmations:
       confirmed: Adresa juaj email u ripohua me sukses.
       send_instructions: Brenda pak minutash, do të merrni një email me udhëzime se si të ripohoni adresën tuaj email. Ju lutemi, kontrolloni dosjen e mesazheve të padëshiruar, nëse nuk e morët këtë email.
-      send_paranoid_instructions: Nëse adresa juaj email gjendet në bazën tonë të të dhënave, brenda pak minutash, do të merrni një email me udhëzime se si të ripohoni adresën tuaj email. Ju lutemi, kontrolloni dosjen e mesazheve të padëshiruar, nëse nuk e morët këtë email.
+      send_paranoid_instructions: Nëse adresa juaj email gjendet në bazën tonë të të dhënave, brenda pak minutash, do të merrni një email me udhëzime se si të ripohoni adresën tuaj email. Ju lutemi, nëse nuk e morët këtë email, kontrolloni dosjen e mesazheve të padëshiruar.
     failure:
       already_authenticated: Jeni tashmë i futur.
       inactive: Llogaria juaj s’është aktivizuar ende.
-      invalid: "%{authentication_keys} ose fjalëkalim i pavlefshëm."
+      invalid: '%{authentication_keys} ose fjalëkalim i pavlefshëm.'
       last_attempt: Mund të provoni edhe një herë, përpara se llogaria juaj të kyçet.
       locked: Llogaria juaj është e kyçur.
-      not_found_in_database: "%{authentication_keys} ose fjalëkalim i pavlefshëm."
+      not_found_in_database: '%{authentication_keys} ose fjalëkalim i pavlefshëm.'
       pending: Llogaria juaj është ende nën shqyrtim.
       timeout: Sesioni juaj ka skaduar. Ju lutemi, që të vazhdohet, ribëni hyrjen.
       unauthenticated: Përpara se të vazhdohet më tej, lypset të bëni hyrjen ose të regjistroheni.
@@ -112,4 +111,4 @@ sq:
       not_locked: s’qe kyçur
       not_saved:
         one: 'Ruajtjen e këtij %{resource} e pengoi 1 gabim:'
-        other: 'Ruajtjen e këtij %{resource} e penguan %{count} gabime:'
+        other: "Ruajtjen e këtij %{resource} e penguan %{count} gabime:"
