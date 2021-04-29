@@ -1348,27 +1348,29 @@ da:
       <p>Dette dokument er CC-BY-SA, og det blev senest opdateret 7. marts 2018.</p>
 
       <p> Oprindelig tilpasset fra <a href="https://github.com/discourse/discourse"> Discourse' Fortrolighedspolitik</a>.</p>
-    title: "Vilkår og privatlivpolitik for %{instance}"
+    title: "Tjenestevilkår og Fortrolighedspolitik for %{instance}"
   themes:
-    contrast: Mastodon (Høj kontrast)
-    default: Mastodont (Mørk)
-    mastodon-light: Mastodon (Lys)
+    contrast: Mastodon (høj kontrast)
+    default: Mastodont (mørkt)
+    mastodon-light: Mastodon (lyst)
   time:
     formats:
       default: "%b %d, %Y, %H:%M"
       month: "%b %Y"
   two_factor_authentication:
     add: Tilføj
-    disable: Deaktiver
-    edit: Rediger
-    enabled: To-faktor godkendelse er aktiveret
-    enabled_success: To-faktor godkendelse succesfuldt aktiveret
-    generate_recovery_codes: Generer gendannelseskoder
-    lost_recovery_codes: Gendannelseskoder vil lade dig få adgang til din konto hvis du mister din telefon. Hvis du har mistet dine gendannelseskoder, kan du regenerere dem her. Dine gamle gendannelseskoder vil blive ugyldige.
-    methods: To-faktor metoder
-    recovery_codes: Reserve koder
-    recovery_codes_regenerated: Reserve koder blev succesfuldt regenereret
-    recovery_instructions_html: Hvis du nogensinde mister adgang til din telefon, kan du bruge en af genoprettelses koderne forneden for at få adgang til din konto. <strong>Gem gendannelses koderne et sikkert sted</strong>. Foreksempel kan du printe dem ud og gemme dem sammen med andre vigtige dokumenter.
+    disable: Deaktivér 2FA
+    disabled_success: Tofaktorgodkendelse deaktiveret
+    edit: Redigér
+    enabled: Tofaktorgodkendelse aktiveret
+    enabled_success: Tofaktorgodkendelse aktiveret
+    generate_recovery_codes: Generér gendannelseskoder
+    lost_recovery_codes: Gendannelseskoder lader dig opnå adgang til din konto, hvis du mister din mobil. Har du mistet dine gendannelseskoder, kan du regenerere dem her. Dine gamle gendannelseskoder ugyldiggøres.
+    methods: Tofaktormetoder
+    otp: Godkendelses-app
+    recovery_codes: Sikkerhedskopiér koder
+    recovery_codes_regenerated: Gendannelseskoder er regenereret
+    recovery_instructions_html: Mister du nogensinde adgang til din mobil, kan du bruge en af gendannelseskoderne nedenfor til at opnå adgang til din konto. <strong>Opbevar gendannelseskoderne et sikkert sted</strong>. Du kan f.eks. udskrive dem, og gemme dem sammen med andre vigtige dokumenter.
     webauthn: Sikkerhedsnøgler
   user_mailer:
     backup_ready:
