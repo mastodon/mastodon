@@ -5,6 +5,7 @@ import StatusListContainer from '../ui/containers/status_list_container';
 import Column from '../../components/column';
 import ColumnHeader from '../../components/column_header';
 import ColumnSettingsContainer from './containers/column_settings_container';
+import FavouriteToggleContainer from './containers/favourite_toggle_container';
 import { expandHashtagTimeline, clearTimeline } from '../../actions/timelines';
 import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
 import { FormattedMessage } from 'react-intl';
@@ -147,6 +148,9 @@ class HashtagTimeline extends React.PureComponent {
           multiColumn={multiColumn}
           showBackButton
         >
+          <FavouriteToggleContainer
+            tag={id}
+          />
           {columnId && <ColumnSettingsContainer columnId={columnId} />}
         </ColumnHeader>
 
