@@ -43,16 +43,16 @@ fr:
         locale: La langue de l’interface, des courriels et des notifications
         locked: Nécessite que vous approuviez manuellement chaque abonné·e
         password: Utilisez au moins 8 caractères
-        phrase: Sera filtré sans que la casse ou l’avertissement sur le contenu du pouet soit pris en compte
+        phrase: Sera filtré peu importe la casse ou l’avertissement de contenu du message
         scopes: À quelles APIs l’application sera autorisée à accéder. Si vous sélectionnez une permission générale, vous n’avez pas besoin de sélectionner les permissions plus précises.
-        setting_aggregate_reblogs: Ne pas afficher de nouveaux partages pour les pouets qui ont été récemment partagés (n’affecte que les partages nouvellement reçus)
+        setting_aggregate_reblogs: Ne pas afficher les nouveaux partages pour les messages déjà récemment partagés (n’affecte que les partages futurs)
         setting_default_sensitive: Les médias sensibles sont cachés par défaut et peuvent être révélés d’un simple clic
         setting_display_media_default: Masquer les médias marqués comme sensibles
         setting_display_media_hide_all: Toujours masquer les médias
         setting_display_media_show_all: Toujours montrer les médias
         setting_hide_network: Ceux que vous suivez et ceux qui vous suivent ne seront pas affichés sur votre profil
         setting_noindex: Affecte votre profil public ainsi que vos statuts
-        setting_show_application: Le nom de l’application que vous utilisez afin d’envoyer des pouets sera affiché dans la vue détaillée de ceux-ci
+        setting_show_application: Le nom de l’application que vous utilisez pour publier sera affichée dans la vue détaillée de vos messages
         setting_use_blurhash: Les dégradés sont basés sur les couleurs des images cachées mais n’en montrent pas les détails
         setting_use_pending_items: Cacher les mises à jour des fils d’actualités derrière un clic, au lieu de les afficher automatiquement
         username: Votre nom d’utilisateur sera unique sur %{domain}
@@ -86,7 +86,7 @@ fr:
       tag:
         name: Vous ne pouvez modifier que la casse des lettres, par exemple, pour le rendre plus lisible
       user:
-        chosen_languages: Lorsque coché, seuls les pouets dans les langues sélectionnées seront affichés sur les fils publics
+        chosen_languages: Lorsque coché, seuls les messages dans les langues sélectionnées seront affichés sur les fils publics
     labels:
       account:
         fields:
@@ -100,7 +100,7 @@ fr:
         text: Texte de présélection
         title: Titre
       admin_account_action:
-        include_statuses: Inclure les pouets signalés dans le courriel
+        include_statuses: Inclure les messages signalés dans le courriel
         send_email_notification: Notifier l’utilisateur par courriel
         text: Attention personnalisée
         type: Action
@@ -147,18 +147,18 @@ fr:
         setting_advanced_layout: Activer l’interface Web avancée
         setting_aggregate_reblogs: Grouper les partages dans les fils d’actualités
         setting_auto_play_gif: Lire automatiquement les GIFs animés
-        setting_boost_modal: Afficher une fenêtre de confirmation avant de partager un pouet
+        setting_boost_modal: Demander confirmation avant de partager un message
         setting_crop_images: Recadrer les images des pouets non-dépliés en 16x9
         setting_default_language: Langue de publication
         setting_default_privacy: Confidentialité des statuts
         setting_default_sensitive: Toujours marquer les médias comme sensibles
-        setting_delete_modal: Afficher une fenêtre de confirmation avant de supprimer un pouet
+        setting_delete_modal: Demander confirmation avant de supprimer un message
         setting_disable_swiping: Désactiver les actions par glissement
         setting_display_media: Affichage des médias
         setting_display_media_default: Défaut
         setting_display_media_hide_all: Masquer tout
         setting_display_media_show_all: Montrer tout
-        setting_expand_spoilers: Toujours déplier les pouets marqués d’un avertissement sur le contenu
+        setting_expand_spoilers: Toujours déplier les messages marqués d’un avertissement de contenu
         setting_hide_network: Cacher votre réseau
         setting_noindex: Demander aux moteurs de recherche de ne pas indexer vos informations personnelles
         setting_reduce_motion: Réduire la vitesse des animations
