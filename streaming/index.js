@@ -99,11 +99,11 @@ const startMaster = () => {
     log.warn('UNIX domain socket is now supported by using SOCKET. Please migrate from PORT hack.');
   }
 
-  log.info(`Starting streaming API server master with ${numWorkers} workers`);
+  log.warn(`Starting streaming API server master with ${numWorkers} workers`);
 };
 
 const startWorker = (workerId) => {
-  log.info(`Starting worker ${workerId}`);
+  log.warn(`Starting worker ${workerId}`);
 
   const pgConfigs = {
     development: {
@@ -1067,11 +1067,11 @@ const startWorker = (workerId) => {
   }, 30000);
 
   attachServerWithConfig(server, address => {
-    log.info(`Worker ${workerId} now listening on ${address}`);
+    log.warn(`Worker ${workerId} now listening on ${address}`);
   });
 
   const onExit = () => {
-    log.info(`Worker ${workerId} exiting, bye bye`);
+    log.warn(`Worker ${workerId} exiting`);
     server.close();
     process.exit(0);
   };
