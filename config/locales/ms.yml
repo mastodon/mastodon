@@ -50,7 +50,10 @@ ms:
       delete: Padam
       destroyed_msg: Nota kawalan telah berjaya dipadam!
     accounts:
+      approved_msg: Berjaya meluluskan permohonan pendaftaran %{username}
       are_you_sure: Anda pasti?
+      avatar: Avatar
+      by_domain: Domain
       change_email:
         changed_msg: Emel akaun telah berjaya ditukar!
         current_email: Emel Semasa
@@ -61,20 +64,29 @@ ms:
       confirm: Sahkan
       confirmed: Disahkan
       confirming: Mengesahkan
+      delete: Padam data
+      deleted: Dipadam
       demote: Turunkan pangkat
+      destroyed_msg: "Data %{username} sekarang menunggu giliran untuk dipadam sebentar lagi"
       disable: Lumpuhkan
       disable_two_factor_authentication: Lumpuhkan 2FA
       disabled: Dilumpuhkan
       display_name: Nama paparan
+      domain: Domain
       edit: Tukar
       email: Emel
       email_status: Status Emel
       enable: Bolehkan
       enabled: Dibolehkan
+      enabled_msg: Berjaya menyahbekukan akaun %{username}
       followers: Pengikut
       follows: Mengikuti
+      header: Pengepala
       inbox_url: URL mesej masuk
+      invite_request_text: Sebab menyertai
+      invited_by: Dijemput oleh
       ip: Alamat IP
+      joined: Sudah sertai
       location:
         all: Semua
         local: Tempatan
@@ -83,23 +95,36 @@ ms:
       login_status: Status log masuk
       media_attachments: Lampiran media
       memorialize: Tukarkan menjadi akaun peringatan
+      memorialized: Dikenang
+      memorialized_msg: Berjaya mengubah %{username} menjadi akaun kenangan
       moderation:
+        active: Aktif
         all: Semua
+        pending: Menunggu
         silenced: Disenyapkan
         suspended: Digantungkan
         title: Kawalan
       moderation_notes: Nota kawalan
       most_recent_activity: Aktiviti terbaru
       most_recent_ip: IP terbaru
+      no_account_selected: Tiada akaun diubah kerana tiada yang dipilih
       no_limits_imposed: Tiada had dikuatkuasakan
       not_subscribed: Tiada langganan
+      pending: Menunggu penilaian semula
       perform_full_suspension: Gantung
       promote: Naikkan pangkat
       protocol: Protokol
       public: Awam
       push_subscription_expires: Langganan PuSH tamat tempoh
       redownload: Segarkan semula avatar
+      redownloaded_msg: Berjaya memuat semula profil %{username} dari asalnya
+      reject: Tolak
+      reject_all: Tolak semua
+      rejected_msg: Berjaya menolak permohonan pendaftaran %{username}
       remove_avatar: Buang avatar
+      remove_header: Buang pengepala
+      removed_avatar_msg: Berjaya membuang gambar avatar %{username}
+      removed_header_msg: Berjaya membuang gambar pengepala %{username}
       resend_confirmation:
         already_confirmed: Pengguna ini telah disahkan
         send: Hantar semula emel pengesahan
@@ -114,6 +139,10 @@ ms:
         staff: Kakitangan
         user: Pengguna
       search: Cari
+      search_same_email_domain: Pengguna lain dengan domain e-mel yang sama
+      search_same_ip: Pengguna lain dengan IP yang sama
+      sensitive: Sensitif
+      sensitized: tanda sebagai sensitif
       shared_inbox_url: URL Peti Masuk Berkongsi
       show:
         created_reports: Laporan yang dicipta oleh akaun ini
