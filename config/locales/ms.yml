@@ -302,6 +302,7 @@ ms:
           suspend: Gantungkan
         title: Sekatan domain baru
       obfuscate: Nama domain samar-samar
+      obfuscate_hint: Menjadikan nama domain samar-samar dalam senarai jika pengiklanan senarai pembatasan domain didayakan
       private_comment: Komen peribadi
       private_comment_hint: Komen tentang pembatasan domain ini bagi kegunaan dalaman para pengendali.
       public_comment: Komen umum
@@ -310,6 +311,11 @@ ms:
       reject_media_hint: Buang fail media yang disimpan di sini dan menolak sebarang muat turun pada masa depan. Tidak berkaitan dengan penggantungan
       reject_reports: Tolak laporan
       reject_reports_hint: Abaikan semua laporan daripada domain ini. Tidak dikira untuk penggantungan
+      rejecting_media: menolak fail media
+      rejecting_reports: menolak laporan
+      severity:
+        silence: disenyapkan
+        suspend: digantung
       show:
         affected_accounts:
           other: "%{count} akaun dalam pangkalan data menerima kesan"
@@ -319,17 +325,45 @@ ms:
         title: Buang sekatan domain %{domain}
         undo: Buang
       undo: Buang
+      view: Lihat penyekatan domain
     email_domain_blocks:
       add_new: Tambah
       created_msg: Berjaya menambah domain emel ke dalam senarai hitam
       delete: Padam
       destroyed_msg: Berjaya memadam domain emel daripada senarai hitam
+      domain: Domain
+      empty: Tiada domain e-mel sedang disekat.
+      from_html: dari %{domain}
       new:
         create: Tambah domain
         title: Entri senarai hitam emel baru
       title: Senarai hitam emel
+    follow_recommendations:
+      description_html: "<strong>Saranan ikutan membantu pengguna mencari kandungan menarik dengan cepat</strong>. Apabila pengguna belum cukup berhubung dengan akaun lain untuk membentuk saranan ikutan tersendiri, akaun-akaun inilah yang akan disarankan. Ia dinilai semula setiap hari dari gabungan keterlibatan tertinggi terkini dan juga jumlah pengikut tempatan tertinggi mengikut bahasa masing-masing."
+      language: Untuk bahasa
+      status: Status
+      suppress: Hadkan saranan ikutan
+      suppressed: Dihadkan
+      title: Saranan ikutan
+      unsuppress: Tetap semula saranan ikutan
     instances:
+      by_domain: Domain
+      delivery_available: Penghantaran tersedia
+      empty: Tiada domain ditemukan.
+      known_accounts:
+        other: "%{count} akaun dikenali"
+      moderation:
+        all: Semua
+        limited: Terhad
+        title: Penyederhanaan
+      private_comment: Komen peribadi
+      public_comment: Komen umum
       title: Tika diketahui
+      total_blocked_by_us: Disekati kami
+      total_followed_by_them: Diikuti mereka
+      total_followed_by_us: Diikuti kami
+      total_reported: Laporan tentang mereka
+      total_storage: Lampiran media
     invites:
       deactivate_all: Nyahaktifkan semua
       filter:
@@ -338,6 +372,17 @@ ms:
         expired: Tamat tempoh
         title: Tapis
       title: Undangan
+    ip_blocks:
+      add_new: Cipta peraturan
+      created_msg: Berjaya menambah peraturan IP baharu
+      delete: Padam
+      expires_in:
+        '1209600': 2 minggu
+        '15778476': 6 bulan
+        '2629746': 1 bulan
+        '31556952': 1 tahun
+        '86400': 1 hari
+        '94670856': 3 tahun
     relays:
       add_new: Tambah geganti baru
       delete: Padam
