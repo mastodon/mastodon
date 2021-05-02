@@ -66,7 +66,7 @@ ms:
       confirming: Mengesahkan
       delete: Padam data
       deleted: Dipadam
-      demote: Turunkan pangkat
+      demote: Turunkan taraf
       destroyed_msg: "Data %{username} sekarang menunggu giliran untuk dipadam sebentar lagi"
       disable: Lumpuhkan
       disable_two_factor_authentication: Lumpuhkan 2FA
@@ -112,7 +112,7 @@ ms:
       not_subscribed: Tiada langganan
       pending: Menunggu penilaian semula
       perform_full_suspension: Gantung
-      promote: Naikkan pangkat
+      promote: Naikkan taraf
       protocol: Protokol
       public: Awam
       push_subscription_expires: Langganan PuSH tamat tempoh
@@ -180,11 +180,54 @@ ms:
         create_domain_block: Cipta Penyekatan Domain
         create_email_domain_block: Cipta Penyekatan Domain E-mel
         create_ip_block: Cipta peraturan IP
-        demote_user: Turunkan Pangkat Pengguna
+        demote_user: Turunkan Taraf Pengguna
+        destroy_announcement: Padam Pengumuman
+        destroy_custom_emoji: Padam Emoji Tersendiri
+        destroy_domain_allow: Padam Pelepasan Domain
+        destroy_domain_block: Padam Penyekatan Domain
+        destroy_email_domain_block: Padam Penyekatan Domain E-mel
+        destroy_ip_block: Padam Peraturan IP
+        destroy_status: Padam Kiriman
+        disable_2fa_user: Nyahdayakan 2FA
+        disable_custom_emoji: Nyahdayakan Emoji Tersendiri
+        disable_user: Nyahdayakan Pengguna
+        enable_custom_emoji: Dayakan Emoji Tersendiri
+        enable_user: Dayakan Pengguna
+        memorialize_account: Jadikan Akaun Kenangan
+        promote_user: Naikkan Taraf Pengguna
+        remove_avatar_user: Buang Avatar
+        reopen_report: Buka Semula Laporan
+        reset_password_user: Tetap Semula Kata Laluan
+        resolve_report: Buat Keputusan Laporan
+        sensitive_account: Tandakan media di akaun anda sebagai sensitif
+        silence_account: Senyapkan Akaun
+        suspend_account: Gantung Akaun
+        unassigned_report: Batalkan Laporan
+        unsensitive_account: Nyahtanda media di akaun anda sebagai sensitif
+        unsilence_account: Nyahsenyapkan Akaun
+        unsuspend_account: Nyahgantung Akaun
+        update_announcement: Kemas Kini Pengumuman
+        update_custom_emoji: Kemas Kini Emoji Tersendiri
+        update_domain_block: Kemas Kini Penyekatan Domain
+        update_status: Kemas Kini Kiriman
       actions:
+        assigned_to_self_report_html: "%{name} menugaskan laporan %{target} kepada dirinya sendiri"
+        change_email_user_html: "%{name} telah mengubah alamat e-mel pengguna %{target}"
+        confirm_user_html: "%{name} telah mengesahkan alamat e-mel pengguna %{target}"
+        create_account_warning_html: "%{name} telah memberi amaran kepada %{target}"
+        create_announcement_html: "%{name} telah mencipta pengumuman baharu %{target}"
+        create_custom_emoji_html: "%{name} telah memuat naik emoji baharu %{target}"
+        create_domain_allow_html: "%{name} membenarkan persekutuan dengan domain %{target}"
+        create_domain_block_html: "%{name} telah menyekat domain %{target}"
+        create_email_domain_block_html: "%{name} telah menyekat domain e-mel %{target}"
+        create_ip_block_html: "%{name} telah mencipta peraturan IP %{target}"
+        demote_user_html: "%{name} menurunkan taraf pengguna %{target}"
+        destroy_announcement_html: "%{name} memadamkan pengumuman %{target}"
+        destroy_custom_emoji_html: "%{name} memusnahkan emoji %{target}"
         enable_custom_emoji_html: "%{name} mendayakan emoji %{target}"
         enable_user_html: "%{name} mendayakan log masuk untuk pengguna %{target}"
         memorialize_account_html: "%{name} mengubah akaun %{target} menjadi halaman kenangan"
+        promote_user_html: "%{name} menaikkan taraf pengguna %{target}"
       deleted_status: "(status telah dipadam)"
       title: Log audit
     custom_emojis:
