@@ -11,7 +11,7 @@ class RSS::AccountSerializer < RSS::Serializer
     builder.title("#{display_name(account)} (@#{account.local_username_and_domain})")
            .description(account_description(account))
            .link(tag.present? ? short_account_tag_url(account, tag) : short_account_url(account))
-           .logo(full_pack_url('media/images/logo.svg'))
+           .logo(full_pack_url('media/images/logo_imastodon.svg'))
            .accent_color('2b90d9')
 
     builder.image(full_asset_url(account.avatar.url(:original))) if account.avatar?
