@@ -9,10 +9,15 @@ da:
         text: Du kan bruge indlægssyntaks, såsom URL'er, hashtags og omtaler
         title: Valgfri. Ikke synlig for modtageren
       admin_account_action:
-        include_statuses: Brugeren ser hvilke trut der har forårsaget moderationen eller advarslen
-        send_email_notification: Brugeren vil modtage en forklaring af hvad der skete med deres konto
-        text_html: Valgfri. Du kan bruge trutsyntaks. Du kan <a href="%{path}">tilføje advarsler</a> for a spare tid
-        type_html: Vælg hvad du vil gøre med <strong>%{acct}</strong>
+        include_statuses: Brugeren ser, hvilke trut, som har forårsaget modereringen eller advarslen
+        send_email_notification: Brugeren modtager en forklaring på, hvad der skete med deres konto
+        text_html: Valgfri. Du kan bruge indlægssyntaks. Du kan <a href="%{path}">tilføje advarsler</a> for a spare tid
+        type_html: Vælg, hvad du vil gøre med <strong>%{acct}</strong>
+        types:
+          disable: Forhindre brugeren i at bruge sin konto, men slet eller skjul ikke vedkommendes indhold.
+          none: Brug dette til at sende en advarsel til brugeren uden at udløse nogen anden handling.
+          sensitive: Gennemtving sensitivmarkering af alle denne brugers medievedhæftninger.
+          silence: Forhindre brugeren i at kunne skrive offentligt synlige indlæg, skjule deres indlæg og notifikationer fra personer, som ikke følger dem.
       defaults:
         autofollow: Folk der har oprettet sig gennem invitationen vil automatisk følge dig
         avatar: PNG, GIF eller JPG. Højest %{size}. Vil blive skaleret ned til %{dimensions}px
