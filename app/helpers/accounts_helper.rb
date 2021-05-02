@@ -103,6 +103,7 @@ module AccountsHelper
   end
 
   def svg_logo_full
-    content_tag(:svg, tag(:use, 'xlink:href' => '#mastodon-svg-logo-full'), 'viewBox' => '0 0 713.35878 175.8678')
+    # svgタグ埋め込みだと色が反映できないので
+    image_pack_tag 'logo_full_imastodon.svg', class: 'logo', alt: 'iMastodon'
   end
 end
