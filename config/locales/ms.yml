@@ -152,13 +152,39 @@ ms:
       statuses: Status
       subscribe: Langgan
       suspended: Digantung
+      suspension_irreversible: Data akaun ini telah dipadam secara kekal. Anda boleh nyahgantungkannya untuk menggunakannya, tetapi data lama tidak akan diperoleh.
+      suspension_reversible_hint_html: Akaun ini telah digantung, dan datanya akan dibuang pada %{date}. Sebelum tarikh itu, akaun ini boleh diaktif semula tanpa kesan buruk. Jika anda mahu memadamkan data akaun ini serta-merta, anda boleh melakukannya di bawah.
+      time_in_queue: Menunggu giliran %{time}
       title: Akaun
       unconfirmed_email: Emel Belum Disahkan
+      undo_sensitized: Nyahtanda sensitif
       undo_silenced: Buang senyap
       undo_suspension: Buang penggantungan
+      unsilenced_msg: Berjaya menjadikan akaun %{username} tidak terhad
       unsubscribe: Buang langganan
+      unsuspended_msg: Berjaya menyahgantungkan akaun %{username}
       username: Nama pengguna
+      view_domain: Lihat ringkasan domain
+      warn: Beri amaran
+      web: Web
+      whitelisted: Dibenarkan untuk persekutuan
     action_logs:
+      action_types:
+        assigned_to_self_report: Buat Laporan
+        change_email_user: Ubah E-mel untuk Pengguna
+        confirm_user: Sahkan Pengguna
+        create_account_warning: Cipta Amaran
+        create_announcement: Cipta Pengumuman
+        create_custom_emoji: Cipta Emoji Tersendiri
+        create_domain_allow: Cipta Pelepasan Domain
+        create_domain_block: Cipta Penyekatan Domain
+        create_email_domain_block: Cipta Penyekatan Domain E-mel
+        create_ip_block: Cipta peraturan IP
+        demote_user: Turunkan Pangkat Pengguna
+      actions:
+        enable_custom_emoji_html: "%{name} mendayakan emoji %{target}"
+        enable_user_html: "%{name} mendayakan log masuk untuk pengguna %{target}"
+        memorialize_account_html: "%{name} mengubah akaun %{target} menjadi halaman kenangan"
       deleted_status: "(status telah dipadam)"
       title: Log audit
     custom_emojis:
