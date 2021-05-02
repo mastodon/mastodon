@@ -383,6 +383,8 @@ ms:
         '31556952': 1 tahun
         '86400': 1 hari
         '94670856': 3 tahun
+      new:
+        title: Cipta peraturan IP baharu
     relays:
       add_new: Tambah geganti baru
       delete: Padam
@@ -414,6 +416,34 @@ ms:
         create: Tambah nota
         create_and_resolve: Selesaikan dengan nota
         placeholder: Terangkan tindakan apa yang telah diambil, atau sebarang kemas kini lain yang berkaitan...
+    settings:
+      peers_api_enabled:
+        title: Terbitkan senarai pelayan ditemukan dalam aplikasi
+      preview_sensitive_media:
+        desc_html: Pratonton laman sesawang daripada pautan akan terpapar di gambar kecil meski jika media itu ditanda sebagai sensitif
+        title: Papar media sensitif di pratonton OpenGraph
+      profile_directory:
+        desc_html: Benarkan pengguna untuk ditemukan
+        title: Benarkan direktori profil
+      registrations:
+        closed_message:
+          desc_html: Dipaparkan di muka depan apabil pendaftaran ditutup. Anda boleh menggunakan penanda HTML
+          title: Mesej pendaftaran telah ditutup
+        deletion:
+          desc_html: Benarkan sesiapapun memadamkan akaun mereka
+          title: Buka pemadaman akaun
+        min_invite_role:
+          disabled: Tiada sesiapa
+          title: Benarkan jemputan dari
+        require_invite_text:
+          desc_html: Apabila pendaftaran memerlukan kelulusan manual, tandakan input teks "Kenapa anda mahu menyertai?" sebagai wajib, bukan pilihan
+          title: Memerlukan alasan bagi pengguna baru untuk menyertai
+      registrations_mode:
+        modes:
+          approved: Kelulusan diperlukan untuk pendaftaran
+          none: Tiada siapa boleh mendaftar
+          open: Sesiapapun boleh mendaftar
+        title: Mod pendaftaran
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
