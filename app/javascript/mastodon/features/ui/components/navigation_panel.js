@@ -27,6 +27,8 @@ const NavigationPanel = () => (
 
     <a className='column-link column-link--transparent' href='/settings/preferences'><Icon className='column-link__icon' id='cog' fixedWidth /><FormattedMessage id='navigation_bar.preferences' defaultMessage='Preferences' /></a>
     <a className='column-link column-link--transparent' href='/relationships'><Icon className='column-link__icon' id='users' fixedWidth /><FormattedMessage id='navigation_bar.follows_and_followers' defaultMessage='Follows and followers' /></a>
+    <a className='column-link column-link--transparent' target="_blank" rel="noopener external" href='https://faq.imastodon.net/getting-started/'><Icon className='column-link__icon' id='question' fixedWidth /><FormattedMessage id='navigation_bar.faq' defaultMessage='FAQ(Only available in Japanese)' /></a>
+
     <hr />
 
     <TrendTagsContainer />
