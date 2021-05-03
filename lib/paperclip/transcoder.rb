@@ -16,7 +16,7 @@ module Paperclip
     end
 
     def make
-      metadata = FFMPEG::Movie.new(@file.path)
+      metadata = VideoMetadataExtractor.new(@file.path)
 
       unless metadata.valid?
         log("Unsupported file #{@file.path}")

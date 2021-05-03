@@ -388,7 +388,7 @@ class MediaAttachment < ApplicationRecord
   # paths but ultimately the same file, so it makes sense to memoize the
   # result while disregarding the path
   def ffmpeg_data(path = nil)
-    @ffmpeg_data ||= FFMPEG::Movie.new(path)
+    @ffmpeg_data ||= VideoMetadataExtractor.new(path)
   end
 
   def enqueue_processing
