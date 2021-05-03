@@ -7,6 +7,7 @@ import {
   importFetchedStatus,
   importFetchedStatuses,
 } from './importer';
+import { submitMarkers } from './markers';
 import { saveSettings } from './settings';
 import { defineMessages } from 'react-intl';
 import { List as ImmutableList } from 'immutable';
@@ -69,6 +70,8 @@ export function updateNotifications(notification, intlMessages, intlLocale) {
 
       filtered = regex && regex.test(searchIndex);
     }
+
+    dispatch(submitMarkers());
 
     if (showInColumn) {
       dispatch(importFetchedAccount(notification.account));
@@ -157,6 +160,7 @@ export function expandNotifications({ maxId } = {}, done = noOp) {
 
       dispatch(expandNotificationsSuccess(response.data, next ? next.uri : null, isLoadingMore, isLoadingRecent, isLoadingRecent && preferPendingItems));
       fetchRelatedRelationships(dispatch, response.data);
+      dispatch(submitMarkers());
     }).catch(error => {
       dispatch(expandNotificationsFail(error, isLoadingMore));
     }).finally(() => {

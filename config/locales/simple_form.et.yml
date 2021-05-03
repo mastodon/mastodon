@@ -8,6 +8,7 @@ et:
         acct: Sisesta selle konto kasutajanimi@domeen, millele soovite kolida
       account_warning_preset:
         text: Te saate kasutada tuututuse süntaksi, näiteks URLe, silte ja mainimisi
+        title: Valikuline. Ei ole nähtav saajale
       admin_account_action:
         include_statuses: Kasutaja näeb, millised tuututused on põhjustanud selle moderaatori tegevuse või hoiatuse
         send_email_notification: Konto omanik saab selgituse selle kohta, mis juhtus nende kontoga
@@ -53,6 +54,9 @@ et:
         whole_word: Kui võtmesõna või fraas on ainult tähtnumbriline, rakendub see ainult siis, kui see kattub terve sõnaga
       domain_allow:
         domain: See domeen saab tõmmata andmeid sellelt serverilt ning sissetulevad andmed sellelt domeenilt töödeldakse ning salvestatakse
+      email_domain_block:
+        domain: See võib olla domeeninimi, mis esineb e-posti aadressil, MX kirjele vastav domeen või serveri IP. Neid kontrollitakse, kui kasutaja loob konto ning seejärel konto loomine keelatakse.
+        with_dns_records: Proovitakse ka üles vaadata selle domeeni DNS kirjed ning selle vastused samuti keelatakse
       featured_tag:
         name: 'Äkki soovite kasutada mõnda neist:'
       form_challenge:
@@ -78,6 +82,7 @@ et:
         acct: Uue konto täisnimi
       account_warning_preset:
         text: Eelseadistatud tekst
+        title: Pealkiri
       admin_account_action:
         include_statuses: Kaasa teavitatud tuututused selles e-kirjas
         send_email_notification: Teavita kasutajat e-posti teel
@@ -150,6 +155,8 @@ et:
         username: Kasutajanimi
         username_or_email: Kasutajanimi või e-post
         whole_word: Terve sõna
+      email_domain_block:
+        with_dns_records: Kaasa domeeni MX kirjed ning IP aadressid
       featured_tag:
         name: Silt
       interactions:

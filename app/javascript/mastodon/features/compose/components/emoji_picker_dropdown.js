@@ -199,12 +199,13 @@ class EmojiPickerMenu extends React.PureComponent {
     };
   }
 
-  handleClick = emoji => {
+  handleClick = (emoji, event) => {
     if (!emoji.native) {
       emoji.native = emoji.colons;
     }
-
-    this.props.onClose();
+    if (!(event.ctrlKey || event.metaKey)) {
+      this.props.onClose();
+    }
     this.props.onPick(emoji);
   }
 

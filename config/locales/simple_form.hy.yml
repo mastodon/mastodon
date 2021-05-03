@@ -1,1 +1,42 @@
+---
 hy:
+  simple_form:
+    hints:
+      account_alias:
+        acct: նշէք լքուող հաշուի օգտանուն@տիրոյթ֊ը
+      account_migration:
+        acct: նշէք նոր հաշուի օգտանուն@տիրոյթը
+      account_warning_preset:
+        text: կարող էք օգտագործել թթելու ձեւերն, ինչպիսին էն URL֊ներ, պիտակներ եւ նշումներ
+        title: պարտադիր չէ։ չի երեւալու ստացողին։
+      admin_account_action:
+        include_statuses: օգտատէրը տեսնելու ա որ թթերն են առաջացրել մոդերացիայի գործողութիւն կամ զգուշացում։
+        send_email_notification: օգտատէրը կը ստանայ բացատրութիւն այն մասին թէ ինչ է պատահել իրենց հաշուի հետ։
+    labels:
+      account:
+        fields:
+          name: Պիտակ
+          value: Պարունակություն
+      account_warning_preset:
+        title: Վերնագիր
+      admin_account_action:
+        type: Գործողություն
+        types:
+          none: Ոչինչ չանել
+          silence: Լուռ
+      defaults:
+        header: Վերնագիր
+        note: Բիո
+        password: Գաղտնաբառ
+        setting_theme: Կայքի թեման
+        severity: Սրություն
+        sign_in_token_attempt: Անվտանգության կոդ
+        username: Մուտքանուն
+      invite:
+        comment: Մեկնաբանություն
+    'no': Ոչ
+    recommended: Խորհուրդ է տրվում
+    required:
+      mark: "*"
+      text: պարտադիր
+    'yes': Այո

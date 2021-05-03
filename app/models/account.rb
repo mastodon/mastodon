@@ -49,6 +49,7 @@
 #  hide_collections              :boolean
 #  avatar_storage_schema_version :integer
 #  header_storage_schema_version :integer
+#  devices_url                   :string
 #
 
 class Account < ApplicationRecord

@@ -28,6 +28,11 @@ export const COMPOSE_UPLOAD_FAIL     = 'COMPOSE_UPLOAD_FAIL';
 export const COMPOSE_UPLOAD_PROGRESS = 'COMPOSE_UPLOAD_PROGRESS';
 export const COMPOSE_UPLOAD_UNDO     = 'COMPOSE_UPLOAD_UNDO';
 
+export const THUMBNAIL_UPLOAD_REQUEST  = 'THUMBNAIL_UPLOAD_REQUEST';
+export const THUMBNAIL_UPLOAD_SUCCESS  = 'THUMBNAIL_UPLOAD_SUCCESS';
+export const THUMBNAIL_UPLOAD_FAIL     = 'THUMBNAIL_UPLOAD_FAIL';
+export const THUMBNAIL_UPLOAD_PROGRESS = 'THUMBNAIL_UPLOAD_PROGRESS';
+
 export const COMPOSE_SUGGESTIONS_CLEAR = 'COMPOSE_SUGGESTIONS_CLEAR';
 export const COMPOSE_SUGGESTIONS_READY = 'COMPOSE_SUGGESTIONS_READY';
 export const COMPOSE_SUGGESTION_SELECT = 'COMPOSE_SUGGESTION_SELECT';
@@ -158,7 +163,6 @@ export function submitCompose(routerHistory) {
 
       // To make the app more responsive, immediately push the status
       // into the columns
-
       const insertIfOnline = timelineId => {
         const timeline = getState().getIn(['timelines', timelineId]);
 
@@ -174,6 +178,7 @@ export function submitCompose(routerHistory) {
       if (response.data.in_reply_to_id === null && response.data.visibility === 'public') {
         insertIfOnline('community');
         insertIfOnline('public');
+        insertIfOnline(`account:${response.data.account.id}`);
       }
     }).catch(function (error) {
       dispatch(submitComposeFail(error));
@@ -260,6 +265,49 @@ export function uploadCompose(files) {
   };
 };
 
+export const uploadThumbnail = (id, file) => (dispatch, getState) => {
+  dispatch(uploadThumbnailRequest());
+
+  const total = file.size;
+  const data = new FormData();
+
+  data.append('thumbnail', file);
+
+  api(getState).put(`/api/v1/media/${id}`, data, {
+    onUploadProgress: ({ loaded }) => {
+      dispatch(uploadThumbnailProgress(loaded, total));
+    },
+  }).then(({ data }) => {
+    dispatch(uploadThumbnailSuccess(data));
+  }).catch(error => {
+    dispatch(uploadThumbnailFail(id, error));
+  });
+};
+
+export const uploadThumbnailRequest = () => ({
+  type: THUMBNAIL_UPLOAD_REQUEST,
+  skipLoading: true,
+});
+
+export const uploadThumbnailProgress = (loaded, total) => ({
+  type: THUMBNAIL_UPLOAD_PROGRESS,
+  loaded,
+  total,
+  skipLoading: true,
+});
+
+export const uploadThumbnailSuccess = media => ({
+  type: THUMBNAIL_UPLOAD_SUCCESS,
+  media,
+  skipLoading: true,
+});
+
+export const uploadThumbnailFail = error => ({
+  type: THUMBNAIL_UPLOAD_FAIL,
+  error,
+  skipLoading: true,
+});
+
 export function changeUploadCompose(id, params) {
   return (dispatch, getState) => {
     dispatch(changeUploadComposeRequest());
@@ -278,6 +326,7 @@ export function changeUploadComposeRequest() {
     skipLoading: true,
   };
 };
+
 export function changeUploadComposeSuccess(media) {
   return {
     type: COMPOSE_UPLOAD_CHANGE_SUCCESS,

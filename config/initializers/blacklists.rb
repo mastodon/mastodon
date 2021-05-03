@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
 Rails.application.configure do
-  config.x.email_domains_blacklist = ENV.fetch('EMAIL_DOMAIN_BLACKLIST') { 'mvrht.com' }
-  config.x.email_domains_whitelist = ENV.fetch('EMAIL_DOMAIN_WHITELIST') { '' }
+  config.x.email_domains_blacklist = (ENV['EMAIL_DOMAIN_DENYLIST']  || ENV['EMAIL_DOMAIN_BLACKLIST']) || ''
+  config.x.email_domains_whitelist = (ENV['EMAIL_DOMAIN_ALLOWLIST'] || ENV['EMAIL_DOMAIN_WHITELIST']) || ''
 end

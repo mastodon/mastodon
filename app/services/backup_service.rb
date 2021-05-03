@@ -22,7 +22,7 @@ class BackupService < BaseService
 
     account.statuses.with_includes.reorder(nil).find_in_batches do |statuses|
       statuses.each do |status|
-        item = serialize_payload(status, ActivityPub::ActivitySerializer, signer: @account)
+        item = serialize_payload(ActivityPub::ActivityPresenter.from_status(status), ActivityPub::ActivitySerializer, signer: @account)
         item.delete(:'@context')
 
         unless item[:type] == 'Announce' || item[:object][:attachment].blank?

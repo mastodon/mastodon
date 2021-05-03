@@ -3,6 +3,8 @@
 class WebfingerResource
   attr_reader :resource
 
+  class InvalidRequest < StandardError; end
+
   def initialize(resource)
     @resource = resource
   end
@@ -14,7 +16,7 @@ class WebfingerResource
     when /\@/
       username_from_acct
     else
-      raise(ActiveRecord::RecordNotFound)
+      raise InvalidRequest
     end
   end
 
