@@ -5,6 +5,21 @@ RSpec.describe AccountsController, type: :controller do
 
   let(:account) { Fabricate(:user).account }
 
+  shared_examples 'cachable response' do
+    it 'does not set cookies' do
+      expect(response.cookies).to be_empty
+      expect(response.headers['Set-Cookies']).to be nil
+    end
+
+    it 'does not set sessions' do
+      expect(session).to be_empty
+    end
+
+    it 'returns public Cache-Control header' do
+      expect(response.headers['Cache-Control']).to include 'public'
+    end
+  end
+
   describe 'GET #show' do
     let(:format) { 'html' }
 
@@ -323,9 +338,7 @@ RSpec.describe AccountsController, type: :controller do
           expect(response.content_type).to eq 'application/activity+json'
         end
 
-        it 'returns public Cache-Control header' do
-          expect(response.headers['Cache-Control']).to include 'public'
-        end
+        it_behaves_like 'cachable response'
 
         it 'renders account' do
           json = body_as_json
@@ -343,9 +356,7 @@ RSpec.describe AccountsController, type: :controller do
             expect(response.content_type).to eq 'application/activity+json'
           end
 
-          it 'returns public Cache-Control header' do
-            expect(response.headers['Cache-Control']).to include 'public'
-          end
+          it_behaves_like 'cachable response'
 
           it 'returns Vary header with Signature' do
             expect(response.headers['Vary']).to include 'Signature'
@@ -401,9 +412,7 @@ RSpec.describe AccountsController, type: :controller do
           expect(response.content_type).to eq 'application/activity+json'
         end
 
-        it 'returns public Cache-Control header' do
-          expect(response.headers['Cache-Control']).to include 'public'
-        end
+        it_behaves_like 'cachable response'
 
         it 'renders account' do
           json = body_as_json
@@ -447,9 +456,7 @@ RSpec.describe AccountsController, type: :controller do
           expect(response).to have_http_status(200)
         end
 
-        it 'returns public Cache-Control header' do
-          expect(response.headers['Cache-Control']).to include 'public'
-        end
+        it_behaves_like 'cachable response'
       end
 
       context do

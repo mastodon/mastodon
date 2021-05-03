@@ -22,8 +22,8 @@ pt-BR:
     get_apps: Experimente um aplicativo
     hosted_on: Instância Mastodon em %{domain}
     instance_actor_flash: |
-      Esta conta é um ator virtual usado para representar a própria instância.
-      É usado para fins de federação e não deve ser bloqueado a menos que você queira bloquear toda a instância, nesse caso é melhor usar um bloqueador de domínios.
+      Esta conta é um ator virtual usado para representar o próprio servidor e não qualquer usuário individual.
+      É usado para propósitos de federação e não deve ser bloqueado a menos que queira bloquear toda a instância, o que no caso devia usar um bloqueio de domínio.
     learn_more: Saiba mais
     privacy_policy: Política de Privacidade
     see_whats_happening: Veja o que está acontecendo
@@ -40,8 +40,11 @@ pt-BR:
       domain: Instância
       reason: 'Motivo:'
       rejecting_media: 'Arquivos de mídia destas instâncias não serão processados ou armazenados e nenhuma miniatura será exibida, exigindo que o usuário abra o arquivo original manualmente:'
+      rejecting_media_title: Mídia filtrada
       silenced: 'Toots destas instâncias serão ocultos em linhas e conversas públicas, e nenhuma notificação será gerada a partir das interações dos seus usuários, a menos que esteja sendo seguido:'
+      silenced_title: Servidores silenciados
       suspended: 'Você não será capaz de seguir ninguém destas instâncias, e nenhum dado delas será processado, armazenado ou trocado:'
+      suspended_title: Servidores banidos
     unavailable_content_html: Mastodon geralmente permite que você veja o conteúdo e interaja com usuários de qualquer outra instância no fediverso. Estas são as exceções desta instância em específico.
     user_count_after:
       one: usuário
@@ -240,13 +243,13 @@ pt-BR:
         create_custom_emoji: "%{name} enviou o novo emoji %{target}"
         create_domain_allow: "%{name} permitiu %{target}"
         create_domain_block: "%{name} bloqueou %{target}"
-        create_email_domain_block: "%{name} bloqueou o domínio de e-mail %{target}"
+        create_email_domain_block: "%{name} adicionou o domínio de e-mail %{target} à lista negra"
         demote_user: "%{name} rebaixou o usuário %{target}"
         destroy_announcement: "%{name} excluiu o anúncio %{target}"
         destroy_custom_emoji: "%{name} excluiu emoji %{target}"
         destroy_domain_allow: "%{name} bloqueou %{target}"
         destroy_domain_block: "%{name} desbloqueou %{target}"
-        destroy_email_domain_block: "%{name} permitiu domínio de e-mail %{target}"
+        destroy_email_domain_block: "%{name} adicionou domínio de e-mail %{target} à lista branca"
         destroy_status: "%{name} excluiu toot de %{target}"
         disable_2fa_user: "%{name} desativou a exigência de autenticação de dois fatores para o usuário %{target}"
         disable_custom_emoji: "%{name} desativou o emoji %{target}"
@@ -309,6 +312,7 @@ pt-BR:
       listed: Listado
       new:
         title: Adicionar novo emoji personalizado
+      not_permitted: Você não tem permissão para executar esta ação
       overwrite: Sobrescrever
       shortcode: Atalho
       shortcode_hint: Pelo menos 2 caracteres, apenas caracteres alfanuméricos e underlines ("_")
@@ -398,7 +402,7 @@ pt-BR:
       delete: Excluir
       destroyed_msg: Domínio de e-mail excluído da lista negra com sucesso
       domain: Domínio
-      empty: Nenhum domínio de e-mail atualmente na lista negra.
+      empty: Nenhum domínio de e-mail atualmente bloqueado.
       from_html: de %{domain}
       new:
         create: Adicionar domínio
@@ -709,7 +713,7 @@ pt-BR:
     already_requested: Você já enviou uma solicitação para seguir esta conta
     error: Infelizmente, ocorreu um erro ao buscar a conta remota
     follow: Seguir
-    follow_request: 'Você mandou uma solicitação para seguir para:'
+    follow_request: 'Você mandou solicitação para seguir para:'
     following: 'Sucesso! Você agora está seguindo:'
     post_follow:
       close: Ou você pode simplesmente fechar esta janela.
@@ -721,6 +725,10 @@ pt-BR:
     hint_html: "<strong>Dica:</strong> Não pediremos novamente sua senha pela próxima hora."
     invalid_password: Senha inválida
     prompt: Confirme sua senha para continuar
+  crypto:
+    errors:
+      invalid_key: não é uma chave Ed25519 ou Curve25519 válida
+      invalid_signature: não é uma assinatura Ed25519 válida
   date:
     formats:
       default: "%d %b, %Y"
@@ -850,8 +858,8 @@ pt-BR:
     inactive: Inativo
     publicize_checkbox: 'E toote isso:'
     publicize_toot: 'Está provado! Eu sou %{username} no %{service}: %{url}'
-    remove: Remover comprovatido da conta
-    removed: Comprovativo removido da conta com sucesso
+    remove: Remover prova da conta
+    removed: Prova removida da conta com sucesso
     status: Status da verificação
     view_proof: Ver prova
   imports:
@@ -918,6 +926,7 @@ pt-BR:
     on_cooldown: Você migrou recentemente sua conta. Esta função ficará disponível novamente em %{count} dias.
     past_migrations: Migrações passadas
     proceed_with_move: Migrar seguidores
+    redirected_msg: Agora sua conta está redirecionando para %{acct}.
     redirecting_to: Sua conta está redirecionando para %{acct}.
     set_redirect: Definir redirecionamento
     warning:
@@ -931,6 +940,10 @@ pt-BR:
       redirect: O perfil atual da sua conta será atualizado com um aviso de redirecionamento e também será excluído das pesquisas
   moderation:
     title: Moderação
+  move_handler:
+    carry_blocks_over_text: Este usuário mudou de %{acct}, que você havia bloqueado.
+    carry_mutes_over_text: Este usuário mudou de %{acct}, que você havia silenciado.
+    copy_account_note_text: 'Este usuário saiu de %{acct}, aqui estão suas notas anteriores sobre ele:'
   notification_mailer:
     digest:
       action: Ver todas as notificações
@@ -953,9 +966,9 @@ pt-BR:
       title: Novo seguidor
     follow_request:
       action: Gerenciar seguidores pendentes
-      body: "%{name} solicitou autorização para te seguir"
+      body: "%{name} quer te seguir"
       subject: 'Seguidor pendente: %{name}'
-      title: Nova solicitação para seguir
+      title: Novo seguidor pendente
     mention:
       action: Responder
       body: "%{name} te mencionou em:"
@@ -1107,6 +1120,9 @@ pt-BR:
     spam_detected: Esta é uma denúncia automática. Spam foi detectado.
   statuses:
     attached:
+      audio:
+        one: "%{count} áudio"
+        other: "%{count} áudios"
       description: 'Anexado: %{attached}'
       image:
         one: "%{count} imagem"
@@ -1150,7 +1166,7 @@ pt-BR:
       unlisted_long: Não posta em linhas públicas
   stream_entries:
     pinned: Toot fixado
-    reblogged: levou boost
+    reblogged: deu boost
     sensitive_content: Conteúdo sensível
   tags:
     does_not_match_previous_name: não corresponde ao nome anterior
@@ -1266,6 +1282,12 @@ pt-BR:
       explanation: Você pediu um backup completo da sua conta no Mastodon. E agora está pronto para ser baixado!
       subject: Seu arquivo está pronto para ser baixado
       title: Baixar arquivo
+    sign_in_token:
+      details: 'Aqui estão os detalhes da tentativa:'
+      explanation: 'Detectamos uma tentativa de acessar sua conta a partir de um endereço IP não reconhecido. Se for você, insira o código de segurança abaixo na página de desafio:'
+      further_actions: 'Se não foi você, por favor mude sua senha e ative a autenticação de dois fatores em sua conta. Você pode fazê-lo aqui:'
+      subject: Por favor, confirme a tentativa de acesso
+      title: Tentativa de acesso
     warning:
       explanation:
         disable: Enquanto sua conta está congelada, seus dados de conta permanecem intactos, mas você não pode realizar nenhuma ação até que esteja destrancada.
@@ -1303,11 +1325,14 @@ pt-BR:
       title: Boas vindas, %{name}!
   users:
     follow_limit_reached: Você não pode seguir mais de %{limit} pessoas
+    generic_access_help_html: Problemas para acessar sua conta? Você pode entrar em contato com %{email} para obter ajuda
     invalid_email: Endereço de e-mail inválido
     invalid_otp_token: Código de dois fatores inválido
+    invalid_sign_in_token: Cógido de segurança inválido
     otp_lost_help_html: Se você perder o acesso à ambos, você pode entrar em contato com %{email}
     seamless_external_login: Você entrou usando um serviço externo, então configurações de e-mail e senha não estão disponíveis.
     signed_in_as: 'Entrou como:'
+    suspicious_sign_in_confirmation: Parece que você não fez login deste dispositivo antes, e você não fez login por um tempo. Portanto, estamos enviando um código de segurança para o seu endereço de e-mail para confirmar que é você.
   verification:
     explanation_html: 'Você pode <strong>verificar os links nos metadados do seu perfil</strong>. Para isso, o site citado deve conter um link de volta para o seu perfil do Mastodon. O link de volta <strong>deve</strong> conter um atributo <code>rel="me"</code>. O conteúdo ou texto do link não importa. Aqui está um exemplo:'
     verification: Verificação

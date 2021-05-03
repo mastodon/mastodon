@@ -199,6 +199,11 @@ module.exports = {
     'import/no-unresolved': 'error',
     'import/no-webpack-loader-syntax': 'error',
 
-    'promise/catch-or-return': 'error',
+    'promise/catch-or-return': [
+      'error',
+      {
+        allowFinally: true,
+      },
+    ],
   },
 };

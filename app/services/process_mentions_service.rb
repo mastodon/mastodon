@@ -36,7 +36,8 @@ class ProcessMentionsService < BaseService
 
       next match if mention_undeliverable?(mentioned_account) || mentioned_account&.suspended?
 
-      mentions << mentioned_account.mentions.where(status: status).first_or_create(status: status)
+      mention = mentioned_account.mentions.new(status: status)
+      mentions << mention if mention.save
 
       "@#{mentioned_account.acct}"
     end
@@ -65,7 +66,7 @@ class ProcessMentionsService < BaseService
 
   def activitypub_json
     return @activitypub_json if defined?(@activitypub_json)
-    @activitypub_json = Oj.dump(serialize_payload(@status, ActivityPub::ActivitySerializer, signer: @status.account))
+    @activitypub_json = Oj.dump(serialize_payload(ActivityPub::ActivityPresenter.from_status(@status), ActivityPub::ActivitySerializer, signer: @status.account))
   end
 
   def resolve_account_service

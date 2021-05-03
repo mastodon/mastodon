@@ -12,7 +12,7 @@ const mapStateToProps = state => ({
   openedViaKeyboard: state.getIn(['dropdown_menu', 'keyboard']),
 });
 
-const mapDispatchToProps = (dispatch, { status, items }) => ({
+const mapDispatchToProps = (dispatch, { status, items, scrollKey }) => ({
   onOpen(id, onItemClick, dropdownPlacement, keyboard) {
     if (status) {
       dispatch(fetchRelationships([status.getIn(['account', 'id'])]));
@@ -22,7 +22,7 @@ const mapDispatchToProps = (dispatch, { status, items }) => ({
       status,
       actions: items,
       onClick: onItemClick,
-    }) : openDropdownMenu(id, dropdownPlacement, keyboard));
+    }) : openDropdownMenu(id, dropdownPlacement, keyboard, scrollKey));
   },
 
   onClose(id) {

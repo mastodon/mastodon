@@ -16,22 +16,22 @@ module Mastodon
     option :concurrency, type: :numeric, default: 5, aliases: [:c]
     option :verbose, type: :boolean, aliases: [:v]
     option :dry_run, type: :boolean
-    option :whitelist_mode, type: :boolean
+    option :limited_federation_mode, type: :boolean
     desc 'purge [DOMAIN...]', 'Remove accounts from a DOMAIN without a trace'
     long_desc <<-LONG_DESC
       Remove all accounts from a given DOMAIN without leaving behind any
       records. Unlike a suspension, if the DOMAIN still exists in the wild,
       it means the accounts could return if they are resolved again.
 
-      When the --whitelist-mode option is given, instead of purging accounts
-      from a single domain, all accounts from domains that are not whitelisted
+      When the --limited-federation-mode option is given, instead of purging accounts
+      from a single domain, all accounts from domains that have not been explicitly allowed
       are removed from the database.
     LONG_DESC
     def purge(*domains)
       dry_run = options[:dry_run] ? ' (DRY RUN)' : ''
 
       scope = begin
-        if options[:whitelist_mode]
+        if options[:limited_federation_mode]
           Account.remote.where.not(domain: DomainAllow.pluck(:domain))
         elsif !domains.empty?
           Account.remote.where(domain: domains)

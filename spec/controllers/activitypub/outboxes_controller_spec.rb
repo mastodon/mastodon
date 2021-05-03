@@ -3,6 +3,21 @@ require 'rails_helper'
 RSpec.describe ActivityPub::OutboxesController, type: :controller do
   let!(:account) { Fabricate(:account) }
 
+  shared_examples 'cachable response' do
+    it 'does not set cookies' do
+      expect(response.cookies).to be_empty
+      expect(response.headers['Set-Cookies']).to be nil
+    end
+
+    it 'does not set sessions' do
+      expect(session).to be_empty
+    end
+
+    it 'returns public Cache-Control header' do
+      expect(response.headers['Cache-Control']).to include 'public'
+    end
+  end
+
   before do
     Fabricate(:status, account: account, visibility: :public)
     Fabricate(:status, account: account, visibility: :unlisted)
@@ -39,9 +54,7 @@ RSpec.describe ActivityPub::OutboxesController, type: :controller do
           expect(json[:totalItems]).to eq 4
         end
 
-        it 'returns public Cache-Control header' do
-          expect(response.headers['Cache-Control']).to include 'public'
-        end
+        it_behaves_like 'cachable response'
       end
 
       context 'with page requested' do
@@ -62,9 +75,7 @@ RSpec.describe ActivityPub::OutboxesController, type: :controller do
           expect(json[:orderedItems].all? { |item| item[:to].include?(ActivityPub::TagManager::COLLECTIONS[:public]) || item[:cc].include?(ActivityPub::TagManager::COLLECTIONS[:public]) }).to be true
         end
 
-        it 'returns public Cache-Control header' do
-          expect(response.headers['Cache-Control']).to include 'public'
-        end
+        it_behaves_like 'cachable response'
       end
     end
 

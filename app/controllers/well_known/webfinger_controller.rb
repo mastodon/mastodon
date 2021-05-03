@@ -8,7 +8,8 @@ module WellKnown
     before_action :set_account
     before_action :check_account_suspension
 
-    rescue_from ActiveRecord::RecordNotFound, ActionController::ParameterMissing, with: :not_found
+    rescue_from ActiveRecord::RecordNotFound, with: :not_found
+    rescue_from ActionController::ParameterMissing, WebfingerResource::InvalidRequest, with: :bad_request
 
     def show
       expires_in 3.days, public: true
@@ -35,6 +36,10 @@ module WellKnown
 
     def check_account_suspension
       expires_in(3.minutes, public: true) && gone if @account.suspended?
+    end
+
+    def bad_request
+      head 400
     end
 
     def not_found

@@ -60,6 +60,6 @@ class ReblogService < BaseService
   end
 
   def build_json(reblog)
-    Oj.dump(serialize_payload(reblog, ActivityPub::ActivitySerializer, signer: reblog.account))
+    Oj.dump(serialize_payload(ActivityPub::ActivityPresenter.from_status(reblog), ActivityPub::ActivitySerializer, signer: reblog.account))
   end
 end

@@ -6,7 +6,7 @@ class GifReader
   EXTENSION_LABELS = [0xf9, 0x01, 0xff].freeze
   GIF_HEADERS      = %w(GIF87a GIF89a).freeze
 
-  class GifReaderException; end
+  class GifReaderException < StandardError; end
 
   class UnknownImageType < GifReaderException; end
 

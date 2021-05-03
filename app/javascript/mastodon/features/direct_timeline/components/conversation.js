@@ -36,6 +36,7 @@ class Conversation extends ImmutablePureComponent {
     accounts: ImmutablePropTypes.list.isRequired,
     lastStatus: ImmutablePropTypes.map,
     unread:PropTypes.bool.isRequired,
+    scrollKey: PropTypes.string,
     onMoveUp: PropTypes.func,
     onMoveDown: PropTypes.func,
     markRead: PropTypes.func.isRequired,
@@ -127,7 +128,7 @@ class Conversation extends ImmutablePureComponent {
   }
 
   render () {
-    const { accounts, lastStatus, unread, intl } = this.props;
+    const { accounts, lastStatus, unread, scrollKey, intl } = this.props;
 
     if (lastStatus === null) {
       return null;
@@ -194,7 +195,15 @@ class Conversation extends ImmutablePureComponent {
               <IconButton className='status__action-bar-button' title={intl.formatMessage(messages.reply)} icon='reply' onClick={this.handleReply} />
 
               <div className='status__action-bar-dropdown'>
-                <DropdownMenuContainer status={lastStatus} items={menu} icon='ellipsis-h' size={18} direction='right' title={intl.formatMessage(messages.more)} />
+                <DropdownMenuContainer
+                  scrollKey={scrollKey}
+                  status={lastStatus}
+                  items={menu}
+                  icon='ellipsis-h'
+                  size={18}
+                  direction='right'
+                  title={intl.formatMessage(messages.more)}
+                />
               </div>
             </div>
           </div>

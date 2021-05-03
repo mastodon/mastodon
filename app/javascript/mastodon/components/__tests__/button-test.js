@@ -1,4 +1,4 @@
-import { shallow } from 'enzyme';
+import { render, fireEvent, screen } from '@testing-library/react';
 import React from 'react';
 import renderer from 'react-test-renderer';
 import Button from '../button';
@@ -21,16 +21,16 @@ describe('<Button />', () => {
 
   it('handles click events using the given handler', () => {
     const handler = jest.fn();
-    const button  = shallow(<Button onClick={handler} />);
-    button.find('button').simulate('click');
+    render(<Button onClick={handler}>button</Button>);
+    fireEvent.click(screen.getByText('button'));
 
     expect(handler.mock.calls.length).toEqual(1);
   });
 
   it('does not handle click events if props.disabled given', () => {
     const handler = jest.fn();
-    const button  = shallow(<Button onClick={handler} disabled />);
-    button.find('button').simulate('click');
+    render(<Button onClick={handler} disabled>button</Button>);
+    fireEvent.click(screen.getByText('button'));
 
     expect(handler.mock.calls.length).toEqual(0);
   });

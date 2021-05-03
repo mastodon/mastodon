@@ -1,5 +1,11 @@
 #!/usr/bin/env ruby
 APP_PATH = File.expand_path('../config/application', __dir__)
+
 require_relative '../config/boot'
 require_relative '../lib/cli'
-Mastodon::CLI.start(ARGV)
+
+begin
+  Mastodon::CLI.start(ARGV)
+rescue Interrupt
+  exit(130)
+end

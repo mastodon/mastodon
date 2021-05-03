@@ -55,7 +55,7 @@ class ProofProvider::Keybase::ConfigSerializer < ActiveModel::Serializer
   end
 
   def profile_url
-    CGI.unescape(short_account_url('%{username}')) # rubocop:disable Style/FormatStringToken
+    CGI.unescape(short_account_url('%{username}'))
   end
 
   def check_url

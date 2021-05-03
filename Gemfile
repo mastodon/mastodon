@@ -6,10 +6,10 @@ ruby '>= 2.5.0', '< 3.0.0'
 gem 'pkg-config', '~> 1.4'
 
 gem 'puma', '~> 4.3'
-gem 'rails', '~> 5.2.4.2'
+gem 'rails', '~> 5.2.4.3'
 gem 'sprockets', '~> 3.7.2'
 gem 'thor', '~> 0.20'
-gem 'rack', '~> 2.2.2'
+gem 'rack', '~> 2.2.3'
 
 gem 'thwait', '~> 0.1.0'
 gem 'e2mmap', '~> 0.1.0'
@@ -17,10 +17,10 @@ gem 'e2mmap', '~> 0.1.0'
 gem 'hamlit-rails', '~> 0.2'
 gem 'pg', '~> 1.2'
 gem 'makara', '~> 0.4'
-gem 'pghero', '~> 2.4'
+gem 'pghero', '~> 2.5'
 gem 'dotenv-rails', '~> 2.7'
 
-gem 'aws-sdk-s3', '~> 1.64', require: false
+gem 'aws-sdk-s3', '~> 1.73', require: false
 gem 'fog-core', '<= 2.1.0'
 gem 'fog-openstack', '~> 0.3', require: false
 gem 'paperclip', '~> 6.0'
@@ -48,8 +48,10 @@ gem 'omniauth-cas', '~> 1.1'
 gem 'omniauth-saml', '~> 1.10'
 gem 'omniauth', '~> 1.9'
 
+gem 'color_diff', '~> 0.1'
 gem 'discard', '~> 1.2'
 gem 'doorkeeper', '~> 5.4'
+gem 'ed25519', '~> 1.2'
 gem 'fast_blank', '~> 1.0'
 gem 'fastimage'
 gem 'goldfinger', '~> 2.1'
@@ -60,7 +62,7 @@ gem 'htmlentities', '~> 4.3'
 gem 'http', '~> 4.4'
 gem 'http_accept_language', '~> 2.1'
 gem 'http_parser.rb', '~> 0.6', git: 'https://github.com/tmm1/http_parser.rb', ref: '54b17ba8c7d8d20a16dfc65d1775241833219cf2', submodules: true
-gem 'httplog', '~> 1.4.2'
+gem 'httplog', '~> 1.4.3'
 gem 'idn-ruby', require: 'idn'
 gem 'kaminari', '~> 1.2'
 gem 'link_header', '~> 0.0'
@@ -79,11 +81,11 @@ gem 'rack-attack', '~> 6.3'
 gem 'rack-cors', '~> 1.1', require: 'rack/cors'
 gem 'rails-i18n', '~> 5.1'
 gem 'rails-settings-cached', '~> 0.6'
-gem 'redis', '~> 4.1', require: ['redis', 'redis/connection/hiredis']
+gem 'redis', '~> 4.2', require: ['redis', 'redis/connection/hiredis']
 gem 'mario-redis-lock', '~> 1.2', require: 'redis_lock'
 gem 'rqrcode', '~> 1.1'
 gem 'ruby-progressbar', '~> 1.10'
-gem 'sanitize', '~> 5.1'
+gem 'sanitize', '~> 5.2'
 gem 'sidekiq', '~> 6.0'
 gem 'sidekiq-scheduler', '~> 3.0'
 gem 'sidekiq-unique-jobs', '~> 6.0'
@@ -93,7 +95,6 @@ gem 'simple_form', '~> 5.0'
 gem 'sprockets-rails', '~> 3.2', require: 'sprockets/railtie'
 gem 'stoplight', '~> 2.2.0'
 gem 'strong_migrations', '~> 0.6'
-gem 'tty-command', '~> 0.9', require: false
 gem 'tty-prompt', '~> 0.21', require: false
 gem 'twitter-text', '~> 1.14'
 gem 'tzinfo-data', '~> 1.2020'
@@ -118,15 +119,15 @@ group :production, :test do
 end
 
 group :test do
-  gem 'capybara', '~> 3.32'
+  gem 'capybara', '~> 3.33'
   gem 'climate_control', '~> 0.2'
-  gem 'faker', '~> 2.11'
+  gem 'faker', '~> 2.13'
   gem 'microformats', '~> 4.2'
   gem 'rails-controller-testing', '~> 1.0'
-  gem 'rspec-sidekiq', '~> 3.0'
+  gem 'rspec-sidekiq', '~> 3.1'
   gem 'simplecov', '~> 0.18', require: false
   gem 'webmock', '~> 3.8'
-  gem 'parallel_tests', '~> 2.32'
+  gem 'parallel_tests', '~> 3.0'
   gem 'rspec_junit_formatter', '~> 0.4'
 end
 
@@ -139,13 +140,13 @@ group :development do
   gem 'letter_opener', '~> 1.7'
   gem 'letter_opener_web', '~> 1.4'
   gem 'memory_profiler'
-  gem 'rubocop', '~> 0.82', require: false
-  gem 'rubocop-rails', '~> 2.5', require: false
+  gem 'rubocop', '~> 0.86', require: false
+  gem 'rubocop-rails', '~> 2.6', require: false
   gem 'brakeman', '~> 4.8', require: false
-  gem 'bundler-audit', '~> 0.6', require: false
+  gem 'bundler-audit', '~> 0.7', require: false
 
   gem 'capistrano', '~> 3.14'
-  gem 'capistrano-rails', '~> 1.4'
+  gem 'capistrano-rails', '~> 1.5'
   gem 'capistrano-rbenv', '~> 2.1'
   gem 'capistrano-yarn', '~> 2.0'
 

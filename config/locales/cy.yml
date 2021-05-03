@@ -753,6 +753,10 @@ cy:
     hint_html: "<strong>Awgrym:</strong> Ni fyddwn yn gofyn i chi am eich cyfrinair eto am yr awr nesaf."
     invalid_password: Cyfrinair annilys
     prompt: Cadarnhewch gyfrinair i barhau
+  crypto:
+    errors:
+      invalid_key: ddim yn allwedd Ed25519 na Curve25519 dilys
+      invalid_signature: ddim yn llofnod Ed25519 dilys
   date:
     formats:
       default: "%b %d, %Y"
@@ -886,6 +890,8 @@ cy:
     inactive: Anweithgar
     publicize_checkbox: 'A thŵtiwch hon:'
     publicize_toot: 'Wedi profi! Rydw i''n %{username} ar %{service}: %{url}'
+    remove: Tynnu prawf o'r cyfrif
+    removed: Wedi tynnu prawf o'r cyfrif yn llwyddiannus
     status: Statws gwirio
     view_proof: Gweld prawf
   imports:

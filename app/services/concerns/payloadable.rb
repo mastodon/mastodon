@@ -5,8 +5,9 @@ module Payloadable
     signer    = options.delete(:signer)
     sign_with = options.delete(:sign_with)
     payload   = ActiveModelSerializers::SerializableResource.new(record, options.merge(serializer: serializer, adapter: ActivityPub::Adapter)).as_json
+    object    = record.respond_to?(:virtual_object) ? record.virtual_object : record
 
-    if (record.respond_to?(:sign?) && record.sign?) && signer && signing_enabled?
+    if (object.respond_to?(:sign?) && object.sign?) && signer && signing_enabled?
       ActivityPub::LinkedDataSignature.new(payload).sign!(signer, sign_with: sign_with)
     else
       payload
