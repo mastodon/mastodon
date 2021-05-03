@@ -60,7 +60,7 @@ module Paperclip
     private
 
     def prepare_command(destination)
-      command_arguments  = []
+      command_arguments  = ['-nostdin']
       interpolations     = {}
       interpolation_keys = 0
 
