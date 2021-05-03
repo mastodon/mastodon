@@ -12,8 +12,8 @@
       = f.input :setting_theme, collection: Themes.instance.names, label_method: lambda { |theme| I18n.t("themes.#{theme}", default: theme) }, wrapper: :with_label, include_blank: false, hint: false
 
   - unless I18n.locale == :en
-    .flash-message{ style: "text-align: unset; color: unset" }
-      #{t 'appearance.localization.body'} #{content_tag(:a, t('appearance.localization.guide_link_text'), href: t('appearance.localization.guide_link'), target: "_blank", rel: "noopener", style: "text-decoration: underline")}
+    .flash-message.translation-prompt
+      #{t 'appearance.localization.body'} #{content_tag(:a, t('appearance.localization.guide_link_text'), href: t('appearance.localization.guide_link'), target: "_blank", rel: "noopener")}
 
   %h4= t 'appearance.advanced_web_interface'
 

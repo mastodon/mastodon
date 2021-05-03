@@ -10,6 +10,10 @@ Paperclip.options[:log]      = false
 
 module Mastodon
   module CLIHelper
+    def dry_run?
+      options[:dry_run]
+    end
+
     def create_progress_bar(total = nil)
       ProgressBar.create(total: total, format: '%c/%u |%b%i| %e')
     end

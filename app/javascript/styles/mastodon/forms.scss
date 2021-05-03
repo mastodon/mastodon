@@ -142,6 +142,10 @@ code {
     }
   }
 
+  .otp-hint {
+    margin-bottom: 25px;
+  }
+
   .card {
     margin-bottom: 15px;
   }
@@ -283,6 +287,14 @@ code {
       .fields-row__column.fields-group,
       .fields-row__column {
         margin-bottom: 25px;
+      }
+    }
+
+    .fields-group.invited-by {
+      margin-bottom: 30px;
+
+      .hint {
+        text-align: center;
       }
     }
   }
@@ -634,6 +646,15 @@ code {
 
   @media screen and (max-width: 740px) and (min-width: 441px) {
     margin-top: 40px;
+  }
+
+  &.translation-prompt {
+    text-align: unset;
+    color: unset;
+
+    a {
+      text-decoration: underline;
+    }
   }
 }
 

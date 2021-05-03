@@ -103,7 +103,7 @@ module AccountsHelper
   end
 
   def svg_logo_full
-    # svgタグによるを使うと背景色が正しくなくなってしまうためimgタグで表示している
-    image_pack_tag 'logo_full_imastodon.svg', alt: 'iMastodon', style: "display: block; height: 18px"
+    # svgタグ埋め込みだと色が反映できないので
+    image_pack_tag 'logo_full_imastodon.svg', class: 'logo', alt: 'iMastodon'
   end
 end

@@ -74,10 +74,6 @@ export default class Mastodon extends React.PureComponent {
       this.disconnect();
       this.disconnect = null;
     }
-    if (this.commandDisconnect) {
-      this.commandDisconnect();
-      this.commandDisconnect = null;
-    }
   }
 
   render () {

@@ -59,8 +59,12 @@ sq:
           silence: Heshtje
           suspend: Pezulloje dhe fshi në mënyrë të pakthyeshme të dhënat e llogarisë
         warning_preset_id: Përdor një sinjalizim të paracaktuar
+      announcement:
+        starts_at: Fillimi i ngjarjes
+        text: Lajmërim
       defaults:
         autofollow: Ftesë për ndjekje të llogarisë tuaj
+        avatar: Foto profili
         bot: Kjo është një llogari robot
         chosen_languages: Filtro gjuhë
         confirm_new_password: Ripohoni fjalëkalimin e ri
@@ -84,6 +88,7 @@ sq:
         otp_attempt: Kod mirëfilltësimi dyfaktorësh
         password: Fjalëkalim
         phrase: Fjalëkyç ose frazë
+        setting_advanced_layout: Aktivizo ueb interface të avancuar
         setting_aggregate_reblogs: Grupoji përforcimet në rrjedha kohore
         setting_auto_play_gif: Vetëluaji GIF-et e animuar
         setting_boost_modal: Shfaq dialog ripohimi përpara përforcimi
@@ -102,16 +107,23 @@ sq:
         setting_show_application: Tregoje aplikacionin e përdorur për të dërguar mesazhe
         setting_system_font_ui: Përdor shkronja parazgjedhje të sistemit
         setting_theme: Temë sajti
+        setting_trends: Shfaq trendet e sodit
         setting_unfollow_modal: Shfaq dialog ripohimi përpara heqjes së ndjekjes për dikë
+        setting_use_blurhash: Shfaq ngjyra me pjerrësi për media të fshehura
+        setting_use_pending_items: Gjendje e ngadalshme
         severity: Rreptësi
         type: Lloj importimi
         username: Emër përdoruesi
         username_or_email: Emër përdoruesi ose Email
         whole_word: Krejt fjalën
+      featured_tag:
+        name: Hashtag
       interactions:
         must_be_follower: Blloko njoftime nga jo-ndjekës
         must_be_following: Blloko njoftime nga persona që nuk i ndiqni
         must_be_following_dm: Blloko mesazhe të drejtpërdrejt nga persona që nuk i ndiqni
+      invite:
+        comment: Komento
       notification_emails:
         digest: Dërgo email-e përmbledhës
         favourite: Të dërgohet email kur dikush parapëlqen gjendjen tuaj
@@ -120,7 +132,11 @@ sq:
         mention: Të dërgohet email kur dikush ju përmend
         reblog: Dërgo email kur dikush përforcon gjendjen time
         report: Dërgo email kur parashtrohet një raportim i ri
+      tag:
+        name: Hashtag
     'no': Jo
+    recommended: Rekomanduar
     required:
+      mark: "*"
       text: e domosdoshme
     'yes': Po

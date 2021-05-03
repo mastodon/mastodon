@@ -82,7 +82,7 @@ module Omniauthable
       username = starting_username
       i        = 0
 
-      while Account.exists?(username: username)
+      while Account.exists?(username: username, domain: nil)
         i       += 1
         username = "#{starting_username}_#{i}"
       end

@@ -6,7 +6,6 @@ import { profile_directory, showTrends } from 'mastodon/initial_state';
 import NotificationsCounterIcon from './notifications_counter_icon';
 import FollowRequestsNavLink from './follow_requests_nav_link';
 import ListPanel from './list_panel';
-
 import TrendTagsContainer from 'mastodon/features/compose/containers/trend_tags_container';
 
 const NavigationPanel = () => (

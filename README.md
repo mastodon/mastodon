@@ -1,8 +1,6 @@
 # im@stodon
 
-[![Build Status](https://img.shields.io/travis/imas/mastodon.svg)][travis_imastodon]
-
-[travis_imastodon]: https://travis-ci.org/imas/mastodon
+[![Build Status](https://img.shields.io/circleci/project/github/imas/mastodon.svg)][circleci]
 
 このリポジトリは[Mastodon](https://github.com/tootsuite/mastodon)を元に独自の機能を加え[imastodon.net](https://imastodon.net/about)でサービスを提供しているソフトウェアを、MastodonのAGPLライセンスに基づき公開するリポジトリです。
 
@@ -11,7 +9,7 @@ About what is Mastodon, see [tootsuite/mastodon](https://github.com/tootsuite/ma
 
 ## 主な独自機能
 - 投稿の添付画像をpngからjpgへ変換し保存
-- 画像サイズ制限をフルHD(長辺1920px)に緩和
+- 画像サイズ制限を緩和
 - 未収載タグ付き投稿のタグTLへの表示
 - お気に入りタグ機能
 
@@ -110,7 +108,7 @@ A **Vagrant** configuration is included for development purposes.
 
 Mastodon is **free, open-source software** licensed under **AGPLv3**.
 
-You can open issues for bugs you've found or features you think are missing. You can also submit pull requests to this repository, or submit translations using Weblate. To get started, take a look at [CONTRIBUTING.md](CONTRIBUTING.md). If your contributions are accepted into Mastodon, you can request to be paid through [our OpenCollective](https://opencollective.com/mastodon).
+You can open issues for bugs you've found or features you think are missing. You can also submit pull requests to this repository, or submit translations using Crowdin. To get started, take a look at [CONTRIBUTING.md](CONTRIBUTING.md). If your contributions are accepted into Mastodon, you can request to be paid through [our OpenCollective](https://opencollective.com/mastodon).
 
 **IRC channel**: #mastodon on irc.freenode.net
 

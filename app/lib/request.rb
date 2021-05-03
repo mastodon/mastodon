@@ -73,8 +73,6 @@ class Request
       response.body_with_limit if http_client.persistent?
 
       yield response if block_given?
-    rescue => e
-      raise e.class, e.message, e.backtrace[0]
     ensure
       http_client.close unless http_client.persistent?
     end

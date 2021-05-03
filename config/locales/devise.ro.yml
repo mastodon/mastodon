@@ -1,1 +1,99 @@
+---
 ro:
+  devise:
+    confirmations:
+      confirmed: Adresa ta de e-mail a fost confirmată cu succes.
+      send_instructions: Vei primi un e-mail cu instrucțiuni despre cum să confirmi adresa ta de e-mail în câteva minute. Te rugăm să verifici dosarul spam dacă nu ai primit acest e-mail.
+      send_paranoid_instructions: Dacă adresa ta de e-mail există în baza noastră de date, în câteva minute vei primi un e-mail cu instrucțiuni pentru confirmarea adresei tale de e-mail. Te rugăm să verifici dosarul spam dacă nu ai primit acest e-mail.
+    failure:
+      already_authenticated: Ești deja conectat.
+      inactive: Contul tău nu este încă activat.
+      invalid: "%{authentication_keys} sau parolă greșită."
+      last_attempt: Mai ai încă o încercare înainte de a bloca contul.
+      locked: Contul tău este blocat.
+      not_found_in_database: "%{authentication_keys} sau parolă greșită."
+      pending: Contul tău este încă în curs de revizuire.
+      timeout: Sesiunea ta a expirat. Te rugăm să te conectezi din nou pentru a continua.
+      unauthenticated: Trebuie să te conectezi sau să te înregistrezi înainte de a continua.
+      unconfirmed: Trebuie să confirmi adresa ta de e-mail înainte de a continua.
+    mailer:
+      confirmation_instructions:
+        action: Verifică adresa de e-mail
+        action_with_app: Confirmați și reveniți la %{app}
+        explanation: Ai creat un cont pe %{host} cu această adresă de e-mail. Ești la un click distanță de a o activa. Dacă nu ai fost tu, ignoră acest e-mail.
+        explanation_when_pending: Ai solicitat o invitație către %{host} cu această adresă de e-mail. Odată ce îți confirmi adresa de e-mail, îți vom revizui cererea. Te poți autentifica pentru a-ți schimba detaliile sau pentru a-ți șterge contul, dar nu poți accesa majoritatea funcțiilor până când contul tău nu este aprobat. Dacă cererea ta este respinsă, datele tale vor fi șterse, astfel încât nu va fi necesară nicio altă acțiune din partea ta. Dacă nu ai fost tu, ignoră acest e-mail.
+        extra_html: Te rugăm să verifici și <a href="%{terms_path}">regulile serverului</a> și <a href="%{policy_path}">termenii noștri de serviciu</a>.
+        subject: 'Mastodon: Instrucțiuni de confirmare pentru %{instance}'
+        title: Verifică adresa de e-mail
+      email_changed:
+        explanation: 'Adresa de e-mail pentru contul tău este schimbată la:'
+        extra: Dacă nu v-ați schimbat adresa de e-mail, probabil că cineva a obținut acces la contul dvs. Te rugăm să îți schimbi parola imediat sau să contactezi administratorul serverului dacă nu ai acces la contul tău.
+        subject: E-mail schimbat
+        title: Noua adresa de e-mail
+      password_change:
+        explanation: Parola contului tău a fost schimbată.
+        extra: Dacă nu v-ați schimbat parola, este posibil ca cineva să fi obținut acces la contul dvs. Te rugăm să îți schimbi parola imediat sau să contactezi administratorul serverului dacă nu ai acces la contul tău.
+        subject: Parolă schimbată
+        title: Parolă schimbată
+      reconfirmation_instructions:
+        explanation: Confirmă noua adresă pentru a schimba adresa de e-mail.
+        extra: Dacă această modificare nu a fost inițiată de dvs., vă rugăm să ignorați acest e-mail. Adresa de e-mail pentru contul Mastodon nu se va schimba până când nu accesați link-ul de mai sus.
+        subject: 'Mastodon: Confirmați e-mailul pentru %{instance}'
+        title: Verifică adresa de e-mail
+      reset_password_instructions:
+        action: Schimbă parola
+        explanation: Ați solicitat o nouă parolă pentru contul dvs.
+        extra: Dacă nu ați solicitat acest lucru, ignorați acest e-mail. Parola dvs. nu se va schimba până când nu veți accesa link-ul de mai sus și nu veți crea unul nou.
+        subject: Instrucțiuni pentru resetarea parolei
+        title: Resetare parolă
+      two_factor_disabled:
+        explanation: Autentificarea în doi pași pentru contul tău a fost dezactivată. Autentificarea este posibilă acum folosind doar adresa de e-mail și parola.
+        subject: Autentificare cu doi factori dezactivată
+        title: 2FA dezactivat
+      two_factor_enabled:
+        explanation: Autentificarea în doi pași a fost activată pentru contul dvs. Un token generat de aplicația TOTP împerecheată va fi necesar pentru autentificare.
+        subject: Autentificare în doi pași activată
+        title: 2FA activat
+      two_factor_recovery_codes_changed:
+        explanation: Codurile anterioare de recuperare au fost invalidate și unele noi generate.
+        subject: Recuperare în doi factori
+        title: Coduri de recuperare 2FA modificate
+      unlock_instructions:
+        subject: Instrucțiuni de deblocare
+    omniauth_callbacks:
+      failure: Nu te-am putut autentifica de la %{kind} deoarece "%{reason}".
+      success: Autentificat cu succes din contul %{kind}.
+    passwords:
+      no_token: Nu puteți accesa această pagină fără să veniți dintr-un e-mail de resetare a parolei. Dacă vii dintr-un e-mail de resetare a parolei, te rugăm să te asiguri că ai folosit URL-ul complet furnizat.
+      send_instructions: Dacă adresa ta de e-mail există în baza noastră de date, vei primi în câteva minute un link de recuperare a parolei la adresa ta de e-mail. Te rugăm să verifici dosarul spam dacă nu ai primit acest e-mail.
+      send_paranoid_instructions: Dacă adresa ta de e-mail există în baza noastră de date, vei primi în câteva minute un link de recuperare a parolei la adresa ta de e-mail. Te rugăm să verifici dosarul spam dacă nu ai primit acest e-mail.
+      updated: Parola ta a fost schimbată cu succes. Acum ești conectat.
+      updated_not_active: Parola ta a fost schimbată cu succes.
+    registrations:
+      destroyed: La revedere! Contul tău a fost anulat cu succes. Sperăm să te vedem din nou în curând.
+      signed_up: Bine ați venit! V-ați înregistrat cu succes.
+      signed_up_but_inactive: V-ați înregistrat cu succes. Cu toate acestea, nu vă putem conecta deoarece contul dvs. nu este încă activat.
+      signed_up_but_locked: V-ați înregistrat cu succes. Cu toate acestea, nu vă putem conecta deoarece contul dvs. este blocat.
+      signed_up_but_pending: Un mesaj cu un link de confirmare a fost trimis la adresa ta de e-mail. După ce faceți clic pe link, vă vom revizui cererea. Veți fi notificat dacă este aprobat.
+      signed_up_but_unconfirmed: Un mesaj cu un link de confirmare a fost trimis la adresa ta de e-mail. Vă rugăm să urmaţi link-ul pentru a vă activa contul. Vă rugăm să verificaţi folderul spam dacă nu aţi primit acest e-mail.
+      update_needs_confirmation: Ți-ai actualizat contul cu succes, dar trebuie să verificăm noua ta adresă de e-mail. Vă rugăm să verificați adresa de e-mail și să urmați link-ul de confirmare pentru a confirma noua dvs. adresă de e-mail. Te rugăm să verifici dosarul spam dacă nu ai primit acest e-mail.
+      updated: Contul dvs. a fost actualizat cu succes.
+    sessions:
+      already_signed_out: Deconectat cu succes.
+      signed_in: Conectat cu succes.
+      signed_out: Deconectat cu succes.
+    unlocks:
+      send_instructions: Veţi primi un e-mail cu instrucţiuni despre cum să vă deblocaţi contul în câteva minute. Te rugăm să verifici dosarul spam dacă nu ai primit acest e-mail.
+      send_paranoid_instructions: Dacă contul tău există, vei primi un e-mail cu instrucțiuni pentru cum să-l deblochezi în câteva minute. Te rugăm să verifici dosarul spam dacă nu ai primit acest e-mail.
+      unlocked: Contul tău a fost deblocat cu succes. Te rugăm să te autentifici pentru a continua.
+  errors:
+    messages:
+      already_confirmed: a fost deja confirmat, încercați să vă conectați
+      confirmation_period_expired: trebuie să fie confirmat în %{period}, vă rugăm să solicitați unul nou
+      expired: a expirat, vă rugăm să solicitaţi unul nou
+      not_found: nu a fost găsit
+      not_locked: nu a fost blocat
+      not_saved:
+        few: "%{count} erori au împiedicat salvarea acestui %{resource}:"
+        one: 'O eroare a împiedicat salvarea acestui %{resource}:'
+        other: "%{count} de erori au împiedicat salvarea acestui %{resource}:"

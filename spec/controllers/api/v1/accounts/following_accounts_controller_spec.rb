@@ -36,5 +36,28 @@ describe Api::V1::Accounts::FollowingAccountsController do
       expect(body_as_json.size).to eq 1
       expect(body_as_json[0][:id]).to eq alice.id.to_s
     end
+
+    context 'when requesting user is blocked' do
+      before do
+        account.block!(user.account)
+      end
+
+      it 'hides results' do
+        get :index, params: { account_id: account.id, limit: 2 }
+        expect(body_as_json.size).to eq 0
+      end
+    end
+
+    context 'when requesting user is the account owner' do
+      let(:user) { Fabricate(:user, account: account) }
+
+      it 'returns all accounts, including muted accounts' do
+        user.account.mute!(bob)
+        get :index, params: { account_id: account.id, limit: 2 }
+
+        expect(body_as_json.size).to eq 2
+        expect([body_as_json[0][:id], body_as_json[1][:id]]).to match_array([alice.id.to_s, bob.id.to_s])
+      end
+    end
   end
 end

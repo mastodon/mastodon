@@ -3,25 +3,26 @@
 #
 # Table name: preview_cards
 #
-#  id                 :bigint(8)        not null, primary key
-#  url                :string           default(""), not null
-#  title              :string           default(""), not null
-#  description        :string           default(""), not null
-#  image_file_name    :string
-#  image_content_type :string
-#  image_file_size    :integer
-#  image_updated_at   :datetime
-#  type               :integer          default("link"), not null
-#  html               :text             default(""), not null
-#  author_name        :string           default(""), not null
-#  author_url         :string           default(""), not null
-#  provider_name      :string           default(""), not null
-#  provider_url       :string           default(""), not null
-#  width              :integer          default(0), not null
-#  height             :integer          default(0), not null
-#  created_at         :datetime         not null
-#  updated_at         :datetime         not null
-#  embed_url          :string           default(""), not null
+#  id                           :bigint(8)        not null, primary key
+#  url                          :string           default(""), not null
+#  title                        :string           default(""), not null
+#  description                  :string           default(""), not null
+#  image_file_name              :string
+#  image_content_type           :string
+#  image_file_size              :integer
+#  image_updated_at             :datetime
+#  type                         :integer          default("link"), not null
+#  html                         :text             default(""), not null
+#  author_name                  :string           default(""), not null
+#  author_url                   :string           default(""), not null
+#  provider_name                :string           default(""), not null
+#  provider_url                 :string           default(""), not null
+#  width                        :integer          default(0), not null
+#  height                       :integer          default(0), not null
+#  created_at                   :datetime         not null
+#  updated_at                   :datetime         not null
+#  embed_url                    :string           default(""), not null
+#  image_storage_schema_version :integer
 #
 
 class PreviewCard < ApplicationRecord
@@ -46,6 +47,10 @@ class PreviewCard < ApplicationRecord
   scope :cached, -> { where.not(image_file_name: [nil, '']) }
 
   before_save :extract_dimensions, if: :link?
+
+  def local?
+    false
+  end
 
   def missing_image?
     width.present? && height.present? && image_file_name.blank?

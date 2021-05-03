@@ -1,4 +1,4 @@
 Fabricator(:status_pin) do
   account
-  status
+  status { |attrs| Fabricate(:status, account: attrs[:account], visibility: :public) }
 end

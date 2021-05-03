@@ -23,7 +23,11 @@
         %th= t('simple_form.labels.account_alias.acct')
         %th
     %tbody
-      - @aliases.each do |account_alias|
+      - if @aliases.empty?
         %tr
-          %td= account_alias.acct
-          %td= table_link_to 'trash', t('aliases.remove'), settings_alias_path(account_alias), data: { method: :delete }
+          %td.muted-hint{ colspan: 2 }= t('aliases.empty')
+      - else
+        - @aliases.each do |account_alias|
+          %tr
+            %td= account_alias.acct
+            %td= table_link_to 'trash', t('aliases.remove'), settings_alias_path(account_alias), data: { method: :delete }

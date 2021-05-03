@@ -111,6 +111,13 @@ class Auth::SessionsController < Devise::SessionsController
     render :two_factor
   end
 
+  def require_no_authentication
+    super
+    # Delete flash message that isn't entirely useful and may be confusing in
+    # most cases because /web doesn't display/clear flash messages.
+    flash.delete(:alert) if flash[:alert] == I18n.t('devise.failure.already_authenticated')
+  end
+
   private
 
   def set_instance_presenter

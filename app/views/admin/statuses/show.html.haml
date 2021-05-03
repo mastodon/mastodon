@@ -4,7 +4,7 @@
   = "@#{@account.acct}"
 
 .filters
-  .back-link{ style: 'flex: 1 1 auto; text-align: right' }
+  .back-link
     = link_to admin_account_path(@account.id) do
       %i.fa.fa-chevron-left.fa-fw
       = t('admin.statuses.back_to_account')

@@ -100,6 +100,7 @@ cs:
       delete: Smazat
       destroyed_msg: Moderátorská poznámka byla úspěšně zničena!
     accounts:
+      add_email_domain_block: Blokovat e-maily na této doméně
       approve: Schválit
       approve_all: Schválit vše
       are_you_sure: Opravdu?
@@ -180,6 +181,7 @@ cs:
         staff: Člen personálu
         user: Uživatel
       search: Hledat
+      search_same_email_domain: Ostatní uživatelé s e-mailem na stejné doméně
       search_same_ip: Další uživatelé se stejnou IP adresou
       shared_inbox_url: URL sdílené příchozí schránky
       show:
@@ -201,6 +203,36 @@ cs:
       web: Web
       whitelisted: Na bílé listině
     action_logs:
+      action_types:
+        assigned_to_self_report: Přiřadit hlášení
+        change_email_user: Změnit uživateli e-mailovou adresu
+        confirm_user: Potvrdit uživatele
+        create_account_warning: Vytvořit varování
+        create_announcement: Nové oznámení
+        create_custom_emoji: Vytvořit vlastní emoji
+        create_domain_allow: Povolit doménu
+        create_domain_block: Zablokovat doménu
+        create_email_domain_block: Zablokovat e-maily na doméně
+        demote_user: Snížit roli uživatele
+        destroy_announcement: Odstranit oznámení
+        destroy_custom_emoji: Odstranit vlastní emoji
+        destroy_domain_allow: Odstranit povolenou doménu
+        destroy_domain_block: Odstranit blokování domény
+        destroy_email_domain_block: Odstranit blokování e-mailů na doméně
+        destroy_status: Odstranit stav
+        disable_2fa_user: Vypnout 2FA
+        disable_custom_emoji: Zakázat vlastní emoji
+        disable_user: Deaktivovat uživatele
+        enable_custom_emoji: Povolit vlastní emoji
+        enable_user: Povolit uživatele
+        promote_user: Povýšit uživatele
+        reopen_report: Znovu otevřít hlášení
+        reset_password_user: Obnovit heslo
+        resolve_report: Označit hlášení jako vyřešené
+        unassigned_report: Zrušit přiřazení hlášení
+        update_announcement: Aktualizovat oznámení
+        update_custom_emoji: Aktualizovat vlastní emoji
+        update_status: Aktualizovat stav
       actions:
         assigned_to_self_report: Uživatel %{name} si přidělil hlášení %{target}
         change_email_user: Uživatel %{name} změnil e-mailovou adresu uživatele %{target}
@@ -238,6 +270,8 @@ cs:
         update_custom_emoji: Uživatel %{name} aktualizoval emoji %{target}
         update_status: Uživatel %{name} aktualizoval toot uživatele %{target}
       deleted_status: "(smazaný toot)"
+      filter_by_action: Filtrovat podle akce
+      filter_by_user: Filtrovat podle uživatele
       title: Auditovací protokol
     announcements:
       destroyed_msg: Oznámení bylo úspěšně odstraněno
@@ -368,6 +402,7 @@ cs:
       destroyed_msg: E-mailová doména úspěšně odstraněna z černé listiny
       domain: Doména
       empty: Na černé listině aktuálně nejsou žádné e-mailové domény.
+      from_html: z domény %{domain}
       new:
         create: Přidat doménu
         title: Nová položka pro černou listinu e-mailů
@@ -553,6 +588,8 @@ cs:
       trends:
         desc_html: Veřejně zobrazit populární hashtagy, které byly předtím schváleny
         title: Populární hashtagy
+    site_uploads:
+      delete: Odstranit nahraný soubor
     statuses:
       back_to_account: Zpět na stránku účtu
       batch:
@@ -1099,6 +1136,8 @@ cs:
       many: 'obsahoval nepovolené hashtagy: %{tags}'
       one: 'obsahoval nepovolený hashtag: %{tags}'
       other: 'obsahoval nepovolené hashtagy: %{tags}'
+    errors:
+      in_reply_not_found: Stav, na který se pokoušíte odpovědět, neexistuje.
     language_detection: Zjistit jazyk automaticky
     open_in_web: Otevřít na webu
     over_character_limit: byl překročen limit %{max} znaků

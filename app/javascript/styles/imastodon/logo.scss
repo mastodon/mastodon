@@ -1,0 +1,20 @@
+// /aboutのヘッダ
+div.landing a.brand {
+  > img.logo {
+    height: 70px;
+  }
+
+  > .brand__tagline {
+    display: none;
+  }
+}
+
+// /@adminの左上
+nav.header div.nav-left a.brand > img.logo {
+  height: 20px;
+}
+
+// /settings/profileの左上と/auth/sign_in
+div.sidebar-wrapper div.sidebar a img.logo, div.logo-container img.logo {
+  width: 200px;
+}

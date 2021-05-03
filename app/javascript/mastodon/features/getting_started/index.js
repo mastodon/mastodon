@@ -137,13 +137,13 @@ class GettingStarted extends ImmutablePureComponent {
 
     if (myAccount.get('locked') || unreadFollowRequests > 0) {
       navItems.push(<ColumnLink key={i++} icon='user-plus' text={intl.formatMessage(messages.follow_requests)} badge={badgeDisplay(unreadFollowRequests, 40)} to='/follow_requests' />);
-      height += 42;
+      height += 48;
     }
 
     navItems.push(
       <ColumnLink key={i++} icon='question' text={intl.formatMessage(messages.faq)} href='https://faq.imastodon.net/getting-started/' targetWindow='_blank' />
     );
-    height += 42;
+    height += 48;
 
     if (!multiColumn) {
       navItems.push(
@@ -151,7 +151,7 @@ class GettingStarted extends ImmutablePureComponent {
         <ColumnLink key={i++} icon='gears' text={intl.formatMessage(messages.preferences)} href='/settings/preferences' />,
       );
 
-      height += 34 + 42;
+      height += 34 + 48;
     }
 
     return (

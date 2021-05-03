@@ -22,7 +22,12 @@ class ProofProvider::Keybase::ConfigSerializer < ActiveModel::Serializer
   end
 
   def logo
-    { svg_black: full_asset_url(asset_pack_path('media/images/logo_transparent_black.svg')), svg_full: full_asset_url(asset_pack_path('media/images/logo.svg')) }
+    {
+      svg_black: full_asset_url(asset_pack_path('media/images/logo_imastodon_black.svg')),
+      svg_white: full_asset_url(asset_pack_path('media/images/logo_imastodon_white.svg')),
+      svg_full: full_asset_url(asset_pack_path('media/images/logo_imastodon.svg')),
+      svg_full_darkmode: full_asset_url(asset_pack_path('media/images/logo_imastodon.svg')),
+    }
   end
 
   def brand_color

@@ -1,19 +1,32 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
+import { autoPlayGif } from '../initial_state';
+
+const icons = {
+  public: 'globe',
+  unlisted: 'unlock',
+  private: 'lock',
+  direct: 'envelope',
+};
 
 export default class AvatarOverlayIcon extends React.PureComponent {
-
   static propTypes = {
     account: ImmutablePropTypes.map.isRequired,
-    icon: PropTypes.string.isRequired,
+    visibility: PropTypes.string.isRequired,
+    animate: PropTypes.bool,
+  };
+
+  static defaultProps = {
+    animate: autoPlayGif,
   };
 
   render() {
-    const { account, icon } = this.props;
+    const { account, visibility, animate } = this.props;
+    const icon = icons[visibility]
 
     const baseStyle = {
-      backgroundImage: `url(${account.get('avatar_static')})`,
+      backgroundImage: `url(${account.get(animate ? 'avatar' : 'avatar_static')})`,
     };
 
     return (
@@ -23,5 +36,4 @@ export default class AvatarOverlayIcon extends React.PureComponent {
       </div>
     );
   }
-
 }

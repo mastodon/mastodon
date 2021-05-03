@@ -2,607 +2,50 @@
 ja-IM:
   about:
     about_hashtag_html: ハッシュタグ <strong>#%{hashtag}</strong> の付いた公開あふぅです。どこでもいいので、ライブステージに参加しているSNS上にアカウントを作れば会話に参加することができます。
-    about_mastodon_html: Mastodon は、オープンなウェブプロトコルを採用した、自由でオープンソースなソーシャルネットワークです。電子メールのような分散型の仕組みを採っています。
-    about_this: 詳細情報
-    active_count_after: 人アクティブ
-    active_footnote: 月間アクティブユーザー数 (MAU)
-    administered_by: '管理者:'
-    api: API
-    apps: アプリ
-    apps_platforms: iOSやAndroidなど、各種環境から利用できます
-    browse_directory: ディレクトリから気になる人を探しましょう
-    browse_public_posts: Mastodonの公開ライブストリームをご覧ください
-    contact: 連絡先
-    contact_missing: 未設定
-    contact_unavailable: N/A
-    documentation: ドキュメント
-    extended_description_html: |
-      <h3>ルールを書くのに適した場所</h3>
-      <p>詳細説明が設定されていません。</p>
-    federation_hint_html: "%{instance} にアカウントがあればどの互換性のあるサーバーのユーザーでもフォローできるでしょう。"
-    generic_description: "%{domain} は、Mastodon サーバーの一つです"
-    get_apps: モバイルアプリを試す
-    hosted_on: Mastodon hosted on %{domain}
-    learn_more: もっと詳しく
-    privacy_policy: プライバシーポリシー
-    see_whats_happening: やりとりを見てみる
-    server_stats: 'サーバー統計:'
-    source_code: ソースコード
     status_count_after:
       one: あふぅ
       other: あふぅ
     status_count_before: あふぅした数
-    tagline: Follow friends and discover new ones
-    terms: 利用規約
-    user_count_after:
-      one: 人
-      other: 人
     user_count_before: プロデューサー数
-    what_is_mastodon: Mastodon とは？
   accounts:
-    choices_html: "%{name} によるおすすめ:"
-    follow: フォロー
-    followers:
-      one: フォロワー
-      other: フォロワー
-    following: フォロー中
-    joined: "%{date} に登録"
-    last_active: 最後の活動
-    link_verified_on: このリンクの所有権は %{date} に確認されました
-    media: メディア
     moved_html: "%{name} さんは引っ越しました %{new_profile_link}:"
-    network_hidden: この情報は利用できません
-    nothing_here: 何もありません！
-    people_followed_by: "%{name} さんがフォロー中のアカウント"
-    people_who_follow: "%{name} さんをフォロー中のアカウント"
-    pin_errors:
-      following: おすすめしたい人はあなたが既にフォローしている必要があります
     posts:
       one: あふぅ
       other: あふぅ
     posts_tab_heading: あふぅ
     posts_with_replies: あふぅとReあふぅ
-    reserved_username: このユーザー名は予約されています
-    roles:
-      admin: Admin
-      bot: Bot
-      moderator: Mod
-    unavailable: プロフィールは利用できません
-    unfollow: フォロー解除
   admin:
-    account_actions:
-      action: アクションを実行
-      title: "%{acct}さんに対してアクションを実行"
-    account_moderation_notes:
-      create: 書き込む
-      created_msg: モデレーションメモを書き込みました！
-      delete: 削除
-      destroyed_msg: モデレーションメモを削除しました！
     accounts:
-      approve: 承認
-      approve_all: すべて承認
-      are_you_sure: 本当に実行しますか？
-      avatar: アイコン
-      by_domain: ドメイン
-      change_email:
-        changed_msg: メールアドレスの変更に成功しました！
-        current_email: 現在のメールアドレス
-        label: メールアドレスを変更
-        new_email: 新しいメールアドレス
-        submit: メールアドレスの変更
-        title: "%{username} さんのメールアドレスを変更"
-      confirm: 確認
-      confirmed: 確認済み
-      confirming: 確認中
-      deleted: 削除済み
-      demote: 降格
-      disable: 無効化
-      disable_two_factor_authentication: 二段階認証を無効にする
-      disabled: 無効
-      display_name: 表示名
-      domain: ドメイン
-      edit: 編集
-      email: メールアドレス
-      email_status: メールアドレスの状態
-      enable: 有効化
-      enabled: 有効
-      feed_url: フィードURL
-      followers: フォロワー数
-      followers_url: Followers URL
-      follows: フォロー数
-      header: ヘッダー
-      inbox_url: Inbox URL
-      invited_by: 招待した人
-      ip: IP
-      joined: 登録日
-      location:
-        all: すべて
-        local: ローカル
-        remote: リモート
-        title: ロケーション
-      login_status: ログイン
-      media_attachments: 添付されたメディア
-      memorialize: 追悼アカウント化
-      moderation:
-        active: アクティブ
-        all: すべて
-        pending: 承認待ち
-        silenced: サイレンス済み
-        suspended: 停止済み
-        title: モデレーション
-      moderation_notes: モデレーションメモ
-      most_recent_activity: 直近の活動
-      most_recent_ip: 直近のIP
-      no_limits_imposed: 制限なし
-      not_subscribed: 購読していない
-      outbox_url: Outbox URL
-      perform_full_suspension: 活動を完全に停止させる
-      profile_url: プロフィールURL
-      promote: 昇格
-      protocol: プロトコル
-      public: パブリック
-      push_subscription_expires: PuSH購読期限
-      redownload: アバターの更新
-      remove_avatar: アイコンを削除
-      remove_header: ヘッダーを削除
-      resend_confirmation:
-        already_confirmed: メールアドレスは確認済みです
-        send: 確認メールを再送
-        success: 確認メールを再送信しました!
-      reset: リセット
-      reset_password: パスワード再設定
-      resubscribe: 再講読
-      role: 役割
-      roles:
-        admin: 管理者
-        moderator: モデレーター
-        staff: スタッフ
-        user: ユーザー
-      salmon_url: Salmon URL
-      search: 検索
-      shared_inbox_url: Shared inbox URL
-      show:
-        created_reports: このアカウントで作られた通報
-        targeted_reports: このアカウントについての通報
-      silence: サイレンス
-      silenced: サイレンス済み
       statuses: あふぅした数
-      subscribe: 購読する
-      suspended: 停止済み
-      title: アカウント
-      unconfirmed_email: 確認待ちのメールアドレス
-      undo_silenced: サイレンスから戻す
-      undo_suspension: 停止から戻す
-      unsubscribe: 購読の解除
-      username: ユーザー名
-      warn: 警告
-      web: Web
     action_logs:
       actions:
-        assigned_to_self_report: "%{name} さんが通報 %{target} を自身の担当に割り当てました"
-        change_email_user: "%{name} さんが %{target} さんのメールアドレスを変更しました"
-        confirm_user: "%{name} さんが %{target} さんのメールアドレスを確認済みにしました"
-        create_account_warning: "%{name} さんが %{target} さんに警告メールを送信しました"
-        create_custom_emoji: "%{name} さんがカスタム絵文字 %{target} を追加しました"
-        create_domain_block: "%{name} さんがドメイン %{target} をブロックしました"
-        create_email_domain_block: "%{name} さんがドメイン %{target} をメールアドレス用ブラックリストに追加しました"
-        demote_user: "%{name} さんが %{target} さんを降格しました"
-        destroy_custom_emoji: "%{name} さんがカスタム絵文字 %{target} を削除しました"
-        destroy_domain_block: "%{name} さんがドメイン %{target} のブロックを外しました"
-        destroy_email_domain_block: "%{name} さんがドメイン %{target} をメールアドレス用ブラックリストから外しました"
         destroy_status: "%{name} さんが %{target} さんのあふぅを削除しました"
-        disable_2fa_user: "%{name} さんが %{target} さんの二段階認証を無効化しました"
-        disable_custom_emoji: "%{name} さんがカスタム絵文字 %{target} を無効化しました"
-        disable_user: "%{name} さんが %{target} さんのログインを無効化しました"
-        enable_custom_emoji: "%{name} さんがカスタム絵文字 %{target} を有効化しました"
-        enable_user: "%{name} さんが %{target} さんのログインを有効化しました"
-        memorialize_account: "%{name} さんが %{target} さんを追悼アカウントページに登録しました"
-        promote_user: "%{name} さんが %{target} さんを昇格しました"
-        remove_avatar_user: "%{name} さんが %{target} さんのアイコンを削除しました"
-        reopen_report: "%{name} さんが通報 %{target} を再び開きました"
-        reset_password_user: "%{name} さんが %{target} さんのパスワードをリセットしました"
-        resolve_report: "%{name} さんが通報 %{target} を解決済みにしました"
-        silence_account: "%{name} さんが %{target} さんをサイレンスにしました"
-        suspend_account: "%{name} さんが %{target} さんを停止しました"
-        unassigned_report: "%{name} さんが通報 %{target} の担当を外しました"
-        unsilence_account: "%{name} さんが %{target} さんのサイレンスを解除しました"
-        unsuspend_account: "%{name} さんが %{target} さんの停止を解除しました"
-        update_custom_emoji: "%{name} さんがカスタム絵文字 %{target} を更新しました"
         update_status: "%{name} さんが %{target} さんのあふぅを更新しました"
-      deleted_status: "(削除済)"
-      title: 操作履歴
-    custom_emojis:
-      by_domain: ドメイン
-      copied_msg: 絵文字のコピーをローカルに作成しました
-      copy: コピー
-      copy_failed_msg: 絵文字のコピーをローカルに作成できませんでした
-      created_msg: 絵文字の追加に成功しました！
-      delete: 削除
-      destroyed_msg: 絵文字の削除に成功しました！
-      disable: 無効化
-      disabled_msg: 絵文字を無効化しました
-      emoji: 絵文字
-      enable: 有効化
-      enabled_msg: 絵文字を有効化しました
-      image_hint: 50KBまでのPNG画像を利用できます
-      listed: 収載
-      new:
-        title: 新規カスタム絵文字の追加
-      overwrite: 上書き
-      shortcode: ショートコード
-      shortcode_hint: 2文字以上の半角英数字とアンダーバーのみ利用できます
-      title: カスタム絵文字
-      unlisted: 未収載
-      update_failed_msg: 絵文字を更新できませんでした
-      updated_msg: 絵文字の更新に成功しました！
-      upload: アップロード
-    dashboard:
-      backlog: 未処理のジョブ
-      config: 構成
-      feature_deletions: アカウント削除
-      feature_invites: 招待リンク
-      feature_profile_directory: ディレクトリ
-      feature_registrations: 新規登録
-      feature_relay: 連合リレー
-      features: 機能
-      hidden_service: 秘匿サービスとの連合
-      open_reports: 未解決の通報
-      recent_users: 最近登録したユーザー
-      search: 全文検索
-      single_user_mode: シングルユーザーモード
-      software: ソフトウェア
-      space: ディスク使用量
-      title: ダッシュボード
-      total_users: 全ユーザー
-      trends: トレンドタグ
-      week_interactions: 今週交流のあった回数
-      week_users_active: 今週活動した人数
-      week_users_new: 今週登録した人数
     domain_blocks:
-      add_new: ドメインブロックを追加
-      created_msg: ドメインブロック処理を完了しました
-      destroyed_msg: ドメインブロックを外しました
-      domain: ドメイン
       new:
-        create: ブロックを作成
-        hint: ドメインブロックはデータベース中のアカウント項目の作成を妨げませんが、遡って自動的に指定されたモデレーションをそれらのアカウントに適用します。
         severity:
           desc_html: "<strong>サイレンス</strong>はアカウントのあふぅをフォローしていない人から隠します。<strong>停止</strong>はそのアカウントのコンテンツ、メディア、プロフィールデータをすべて削除します。メディアファイルを拒否したいだけの場合は<strong>なし</strong>を使います。"
-          noop: なし
-          silence: サイレンス
-          suspend: 停止
-        title: 新規ドメインブロック
-      reject_media: メディアファイルを拒否
-      reject_media_hint: ローカルに保存されたメディアファイルを削除し、今後のダウンロードを拒否します。停止とは無関係です
-      reject_reports: 通報を拒否
-      reject_reports_hint: このドメインからの通報をすべて無視します。停止とは無関係です
-      rejecting_media: メディアファイルを拒否中
-      rejecting_reports: 通報を拒否中
-      severity:
-        silence: サイレンス中
-        suspend: 停止中
-      show:
-        affected_accounts:
-          one: データベース中の一つのアカウントに影響します
-          other: データベース中の%{count}個のアカウントに影響します
-        retroactive:
-          silence: このドメインからの存在するすべてのアカウントのサイレンスを戻す
-          suspend: このドメインからの存在するすべてのアカウントの停止を戻す
-        title: "%{domain}のドメインブロックを戻す"
-        undo: 元に戻す
-      undo: ドメインブロックを戻す
-    email_domain_blocks:
-      add_new: 新規追加
-      created_msg: ブラックリストに追加しました
-      delete: 消去
-      destroyed_msg: ブラックリストから外しました
-      domain: ドメイン
-      new:
-        create: ドメインを追加
-        title: メールアドレス用ブラックリスト新規追加
-      title: メールブラックリスト
-    followers:
-      back_to_account: 戻る
-      title: "%{acct}さんのフォロワー"
-    instances:
-      delivery_available: 配送可能
-      known_accounts:
-        one: 既知のアカウント数 %{count}
-        other: 既知のアカウント数 %{count}
-      moderation:
-        all: すべて
-        limited: 制限あり
-        title: モデレーション
-      title: 既知のサーバー
-      total_blocked_by_us: ブロック合計
-      total_followed_by_them: 被フォロー合計
-      total_followed_by_us: フォロー合計
-      total_reported: 通報合計
-      total_storage: 添付されたメディア
-    invites:
-      deactivate_all: すべて無効化
-      filter:
-        all: すべて
-        available: 使用可能
-        expired: 期限切れ
-        title: フィルター
-      title: 招待
-    pending_accounts:
-      title: 承認待ちアカウント (%{count})
     relays:
-      add_new: リレーを追加
-      delete: 削除
       description_html: "<strong>連合リレー</strong>とは、登録しているサーバー間の公開あふぅを仲介するサーバーです。<strong>中小規模のサーバーが連合のコンテンツを見つけるのを助けます。</strong>これを使用しない場合、ローカルユーザーがリモートユーザーを手動でフォローする必要があります。"
-      disable: 無効化
-      disabled: 無効
-      enable: 有効化
       enable_hint: 有効にすると、リレーから全ての公開あふぅを受信するようになり、またこのサーバーの全ての公開あふぅをリレーに送信するようになります。
-      enabled: 有効
-      inbox_url: リレーURL
-      pending: リレーサーバーの承認待ちです
-      save_and_enable: 保存して有効にする
-      setup: リレー接続を設定する
-      status: ステータス
-      title: リレー
-    report_notes:
-      created_msg: 通報メモを書き込みました！
-      destroyed_msg: 通報メモを削除しました！
-    reports:
-      account:
-        note: メモ
-        report: 通報
-      action_taken_by: 通報処理者
-      are_you_sure: 本当に実行しますか？
-      assign_to_self: 担当になる
-      assigned: 担当者
-      comment:
-        none: なし
-      created_at: 通報日時
-      mark_as_resolved: 解決済みとしてマーク
-      mark_as_unresolved: 未解決として再び開く
-      notes:
-        create: 書き込む
-        create_and_resolve: 書き込み、解決済みにする
-        create_and_unresolve: 書き込み、未解決として開く
-        delete: 削除
-        placeholder: どのような措置が取られたか、または関連する更新を記述してください…
-      reopen: 再び開く
-      report: 通報#%{id}
-      reported_account: 報告対象アカウント
-      reported_by: 報告者
-      resolved: 解決済み
-      resolved_msg: 通報を解決済みにしました！
-      status: ステータス
-      title: 通報
-      unassign: 担当を外す
-      unresolved: 未解決
-      updated_at: 更新日時
     settings:
-      activity_api_enabled:
-        desc_html: 週ごとのローカルに投稿されたあふぅ数、アクティブなユーザー数、新規登録者数
-        title: ユーザーアクティビティに関する統計を公開する
-      bootstrap_timeline_accounts:
-        desc_html: 複数のユーザー名はコンマで区切ります。ローカルの公開アカウントのみ有効です。指定しない場合は管理者がデフォルトで指定されます。
-        title: 新規ユーザーが自動フォローするアカウント
-      contact_information:
-        email: ビジネスメールアドレス
-        username: 連絡先ユーザー名
-      custom_css:
-        desc_html: 全ページに適用されるCSSの編集
-        title: カスタムCSS
-      hero:
-        desc_html: フロントページに表示されます。サイズは600x100px以上推奨です。未設定の場合、標準のサムネイルが使用されます
-        title: ヒーローイメージ
-      mascot:
-        desc_html: 複数のページに表示されます。サイズは293x205px以上推奨です。未設定の場合、標準のマスコットが使用されます
-        title: マスコットイメージ
-      peers_api_enabled:
-        desc_html: 連合内でこのサーバーが遭遇したドメインの名前
-        title: 接続しているサーバーのリストを公開する
       preview_sensitive_media:
         desc_html: 他のウェブサイトにリンクを貼った際、メディアが早苗さんに見つからないように隠されていてもサムネイルが表示されます
         title: OpenGraphによるプレビューで早苗さんに見つからないように隠されたメディアも表示する
-      profile_directory:
-        desc_html: ユーザーが見つかりやすくできるようになります
-        title: ディレクトリを有効にする
-      registrations:
-        closed_message:
-          desc_html: 新規登録を停止しているときにフロントページに表示されます。HTMLタグが使えます
-          title: 新規登録停止時のメッセージ
-        deletion:
-          desc_html: 誰でも自分のアカウントを削除できるようにします
-          title: アカウント削除を受け付ける
-        min_invite_role:
-          disabled: 誰も許可しない
-          title: 招待の作成を許可
-      registrations_mode:
-        modes:
-          approved: 登録には承認が必要
-          none: 誰も許可しない
-          open: 誰でも登録可
-        title: 新規登録
       show_known_fediverse_at_about_page:
         desc_html: チェックを入れるとプレビュー欄に既知のライブステージ全てのあふぅを表示します。外すと楽屋のあふぅだけ表示します。
         title: タイムラインプレビューにライブステージを表示する
-      show_staff_badge:
-        desc_html: ユーザーページにスタッフのバッジを表示します
-        title: スタッフバッジを表示する
-      site_description:
-        desc_html: フロントページへの表示に使用される紹介文です。このMastodonサーバーを特徴付けることやその他重要なことを記述してください。HTMLタグ、特に<code>&lt;a&gt;</code> と <code>&lt;em&gt;</code>が使えます。
-        title: サーバーの説明
-      site_description_extended:
-        desc_html: あなたのサーバーにおける行動規範やルール、ガイドライン、そのほかの記述をする際に最適な場所です。HTMLタグが使えます
-        title: カスタム詳細説明
-      site_short_description:
-        desc_html: サイドバーと meta タグに表示されます。Mastodon とは何か、そしてこのサーバーの特別な何かを1段落で記述してください。空欄の場合、サーバーの説明が使用されます。
-        title: 短いサーバーの説明
-      site_terms:
-        desc_html: 独自のプライバシーポリシーや利用規約、そのほかの法的根拠を書くことができます。HTMLタグが使えます
-        title: カスタム利用規約
-      site_title: サーバーの名前
-      thumbnail:
-        desc_html: OpenGraphとAPIによるプレビューに使用されます。サイズは1200×630px推奨です
-        title: サーバーのサムネイル
       timeline_preview:
         desc_html: ランディングページにライブステージを表示します
         title: タイムラインプレビュー
-      title: サイト設定
     statuses:
-      back_to_account: アカウントページに戻る
-      batch:
-        delete: 削除
-        nsfw_off: 閲覧注意をはずす
-        nsfw_on: 閲覧注意にする
-      failed_to_execute: 実行に失敗しました
-      media:
-        title: メディア
-      no_media: メディアなし
-      no_status_selected: 何も選択されていないため、変更されていません
       title: あふぅ一覧
-      with_media: メディアあり
-    subscriptions:
-      callback_url: コールバックURL
-      confirmed: 確認済み
-      expires_in: 期限
-      last_delivery: 最終配送
-      title: WebSub
-      topic: トピック
-    tags:
-      accounts: アカウント
-      hidden: 非表示
-      hide: ディレクトリから隠す
-      name: ハッシュタグ
-      title: ハッシュタグ
-      unhide: ディレクトリに表示する
-      visible: 表示
-    title: 管理
-    warning_presets:
-      add_new: 追加
-      delete: 削除
-      edit: 編集
-      edit_preset: プリセット警告文を編集
-      title: プリセット警告文を管理
-  admin_mailer:
-    new_pending_account:
-      body: 新しいアカウントの詳細は以下の通りです。この申請を承認または却下することができます。
-      subject: "%{instance} で新しいアカウント (%{username}) が承認待ちです"
-    new_report:
-      body: "%{reporter} が %{target} を通報しました"
-      body_remote: "%{domain} の誰かが %{target} を通報しました"
-      subject: "%{instance} の新しい通報 (#%{id})"
   application_mailer:
-    notification_preferences: メール設定の変更
-    salutation: "%{name} さん"
-    settings: 'メール設定の変更: %{link}'
-    view: 'リンク:'
-    view_profile: プロフィールを表示
     view_status: あふぅを表示
-  applications:
-    created: アプリが作成されました
-    destroyed: アプリが削除されました
-    invalid_url: URLが無効です
-    regenerate_token: アクセストークンの再生成
-    token_regenerated: アクセストークンが再生成されました
-    warning: このデータは気をつけて取り扱ってください。他の人と共有しないでください！
-    your_token: アクセストークン
-  auth:
-    apply_for_account: 登録を申請する
-    change_password: パスワード
-    checkbox_agreement_html: <a href="%{rules_path}" target="_blank">サーバーのルール</a> と <a href="%{terms_path}" target="_blank">プライバシーポリシー</a> に同意します
-    confirm_email: メールアドレスの確認
-    delete_account: アカウントの削除
-    delete_account_html: アカウントを削除したい場合、<a href="%{path}">こちら</a> から手続きが行えます。削除する前に、確認画面があります。
-    didnt_get_confirmation: 確認メールを受信できませんか？
-    forgot_password: パスワードをお忘れですか？
-    invalid_reset_password_token: パスワードリセットトークンが正しくないか期限切れです。もう一度リクエストしてください。
-    login: ログイン
-    logout: ログアウト
-    migrate_account: 別のアカウントに引っ越す
-    migrate_account_html: 引っ越し先を明記したい場合は<a href="%{path}">こちら</a>で設定できます。
-    or_log_in_with: または次のサービスでログイン
-    providers:
-      cas: CAS
-      saml: SAML
-    register: 登録する
-    registration_closed: "%{instance} は現在、新規登録停止中です"
-    resend_confirmation: 確認メールを再送する
-    reset_password: パスワードを再発行
-    security: セキュリティ
-    set_new_password: 新しいパスワード
-    trouble_logging_in: ログインできませんか？
-  authorize_follow:
-    already_following: あなたは既にこのアカウントをフォローしています
-    error: 残念ながら、リモートアカウント情報の取得中にエラーが発生しました
-    follow: フォロー
-    follow_request: 'あなたは以下のアカウントにフォローリクエストを送信しました:'
-    following: '成功！ あなたは現在以下のアカウントをフォローしています:'
-    post_follow:
-      close: またはこのウィンドウを閉じます。
-      return: ユーザーのプロフィールを見る
-      web: Web を開く
-    title: "%{acct} をフォロー"
-  datetime:
-    distance_in_words:
-      about_x_hours: "%{count}時間"
-      about_x_months: "%{count}月"
-      about_x_years: "%{count}年"
-      almost_x_years: "%{count}年"
-      half_a_minute: 今
-      less_than_x_minutes: "%{count}分"
-      less_than_x_seconds: 今
-      over_x_years: "%{count}年"
-      x_days: "%{count}日"
-      x_minutes: "%{count}分"
-      x_months: "%{count}月"
-      x_seconds: "%{count}秒"
-  deletes:
-    bad_password_msg: パスワードが違います
-    confirm_password: 本人確認のため、現在のパスワードを入力してください
-    description_html: あなたのアカウントに含まれるコンテンツは全て削除され、アカウントは無効化されます。これは恒久的なもので、<strong>取り消すことはできません</strong>。なりすましを防ぐために、同じユーザー名で再度登録することはできなくなります。
-    proceed: アカウントを削除する
-    success_msg: アカウントは正常に削除されました
-    warning_html: 削除が保証されるのはこのサーバー上のコンテンツのみです。他のサーバー等、外部に広く共有されたコンテンツについては痕跡が残ることがあります。また、現在接続できないサーバーや、あなたの更新を受け取らなくなったサーバーに対しては、削除は反映されません。
-    warning_title: 共有されたコンテンツについて
-  directories:
-    directory: ディレクトリ
-    enabled: あなたはディレクトリに掲載されています。
-    enabled_but_waiting: あなたはディレクトリへの掲載を選択しましたが、掲載に必要な最小フォロワー数 (%{min_followers} 人) を満たしていません。
-    explanation: 関心を軸にユーザーを発見しよう
-    explore_mastodon: "%{title}を探索"
-    how_to_enable: あなたはディレクトリへの掲載を選択していません。下記から選択できます。ハッシュタグカラムに掲載するにはプロフィール文にハッシュタグを使用してください。
-    people:
-      one: "%{count} 人"
-      other: "%{count} 人"
-  errors:
-    '403': このページを表示する権限がありません。
-    '404': お探しのページは見つかりませんでした。
-    '410': お探しのページはもう存在しません。
-    '422':
-      content: セキュリティ認証に失敗しました。Cookieをブロックしていませんか？
-      title: セキュリティ認証に失敗
-    '429': リクエストの制限に達しました
-    '500':
-      content: もうしわけありませんが、なにかが間違っています。
-      title: このページは正しくありません
-    noscript_html: Mastodonのウェブアプリケーションを利用する場合はJavaScriptを有効にしてください。またはあなたのプラットフォーム向けの<a href="%{apps_path}">Mastodonネイティブアプリ</a>を探すことができます。
-  existing_username_validator:
-    not_found: そのようなユーザー名はローカルに見つかりませんでした
-    not_found_multiple: "%{usernames} は見つかりませんでした"
   exports:
     archive_takeout:
-      date: 日時
-      download: ダウンロード
       hint_html: "<strong>あふぅとメディア</strong>のアーカイブをリクエストできます。 データはActivityPub形式で、対応しているソフトウェアで読み込むことができます。7日毎にアーカイブをリクエストできます。"
-      in_progress: 準備中...
-      request: アーカイブをリクエスト
-      size: 容量
-    blocks: ブロック
-    csv: CSV
-    domain_blocks: 非表示にしたドメイン
-    follows: フォロー
-    lists: リスト
     mutes: だまっとけ☆
-    storage: メディア
   favourite_tags:
     delete_it: 削除
     edit:
@@ -615,10 +58,6 @@ ja-IM:
     name_of_tag: タグ名
     order: 順序
     submit: お気に入りタグを登録
-  featured_tags:
-    add_new: 追加
-    errors:
-      limit: 注目のハッシュタグの上限に達しました
   filters:
     contexts:
       home: オフィス
@@ -635,115 +74,18 @@ ja-IM:
       title: フィルター
     new:
       title: 新規フィルターを追加
-  footer:
-    developers: 開発者向け
-    more: さらに…
-    resources: リソース
-  generic:
-    all: すべて
-    changes_saved_msg: 正常に変更されました！
-    copy: コピー
-    order_by: 並び順
-    save_changes: 変更を保存
-    validation_errors:
-      one: エラーが発生しました！ 以下のエラーを確認してください
-      other: エラーが発生しました！ 以下の%{count}個のエラーを確認してください
-  html_validator:
-    invalid_markup: '無効なHTMLマークアップが含まれています: %{error}'
-  identity_proofs:
-    active: アクティブ
-    authorize: 許可する
-    authorize_connection_prompt: この暗号化接続を許可しますか？
-    errors:
-      failed: 暗号化接続に失敗しました。%{provider}からもう一度やり直してください。
-      keybase:
-        invalid_token: Keybaseトークンは16進数で66文字のハッシュである必要があります
-        verification_failed: KeybaseはこのトークンをKeybaseユーザー%{kb_username}の署名として認識しませんでした。Keybaseから再試行してください。
-      wrong_user: "%{current}としてログインしている間%{proving}の証明を作成することはできません。%{proving}としてログインし、もう一度やり直してください。"
-    explanation_html: ここではKeybaseのような他のサービスのアカウントと暗号化し関連づけることができます。これにより他の人が暗号化されたメッセージを送信したり、その内容を信用できるようになります。
-    i_am_html: I am %{username} on %{service}.
-    identity: Identity
-    inactive: 非アクティブ
-    publicize_checkbox: 'そしてこれをトゥートしてください:'
-    publicize_toot: 'It is proven! I am %{username} on %{service}: %{url}'
-    status: 認証状態
-    view_proof: 証明を表示
   imports:
-    modes:
-      merge: 統合
-      merge_long: 現在のレコードを保持したまま新しいものを追加します
-      overwrite: 上書き
-      overwrite_long: 現在のレコードを新しいもので置き換えます
-    preface: 他のサーバーでエクスポートされたファイルから、フォロー/ブロックした情報をこのサーバー上のアカウントにインポートできます。
-    success: ファイルは正常にアップロードされ、現在処理中です。しばらくしてから確認してください
     types:
-      blocking: ブロックしたアカウントリスト
-      domain_blocking: 非表示にしたドメインリスト
-      following: フォロー中のアカウントリスト
       muting: だまっとけ☆リストにいるアカウントリスト
-    upload: アップロード
-  in_memoriam_html: 故人を偲んで。
-  invites:
-    delete: 無効化
-    expired: 期限切れ
-    expires_in:
-      '1800': 30 分
-      '21600': 6 時間
-      '3600': 1 時間
-      '43200': 12 時間
-      '604800': 1 週間
-      '86400': 1 日
-    expires_in_prompt: 無期限
-    generate: 作成
-    invited_by: '次の人に招待されました:'
-    max_uses:
-      one: '1'
-      other: "%{count}"
-    max_uses_prompt: 無制限
-    prompt: リンクを生成・共有してこのサーバーへの新規登録を受け付けることができます
-    table:
-      expires_at: 有効期限
-      uses: 使用
-    title: 新規ユーザーの招待
-  lists:
-    errors:
-      limit: リストの上限に達しました
-  media_attachments:
-    validations:
-      images_and_video: 既に画像が追加されているため、動画を追加することはできません
-      too_many: 追加できるファイルは4つまでです
   migrations:
-    acct: 引っ越し先の ユーザー名@ドメイン
     currently_redirecting: 'あなたの名刺は引っ越し先が設定されています:'
-    proceed: 保存
-    updated_msg: アカウントの引っ越し設定を更新しました！
-  moderation:
-    title: モデレーション
   notification_mailer:
     digest:
-      action: 全ての通知を表示
-      body: '最後のログイン（%{since}）からの出来事:'
       mention: "%{name} さんがあなたにReあふぅしました:"
-      new_followers_summary:
-        one: また、離れている間に新たなフォロワーを獲得しました！
-        other: また、離れている間に%{count} 人の新たなフォロワーを獲得しました！
-      subject:
-        one: "新しい1件の通知 \U0001F418"
-        other: "新しい%{count}件の通知 \U0001F418"
-      title: 不在の間に…
     favourite:
       body: "%{name} さんの頭にティンときた、あなたのあふぅがあります:"
       subject: "%{name} さんがあなたのあふぅにティンときたようです"
       title: 新たなティン
-    follow:
-      body: "%{name} さんにフォローされています！"
-      subject: "%{name} さんにフォローされています"
-      title: 新たなフォロワー
-    follow_request:
-      action: フォローリクエストの管理
-      body: "%{name} さんがあなたにフォローをリクエストしました"
-      subject: "%{name} さんからのフォローリクエスト"
-      title: 新たなフォローリクエスト
     mention:
       action: Reあふぅ
       body: "%{name} さんからReあふぅがありました:"
@@ -753,57 +95,12 @@ ja-IM:
       body: "%{name} さんに同意された、あなたのあふぅがあります:"
       subject: あなたのあふぅが %{name} さんに同意されました。わかるわ
       title: 新たなわかるわ
-  number:
-    human:
-      decimal_units:
-        format: "%n%u"
-        units:
-          billion: B
-          million: M
-          quadrillion: Q
-          thousand: K
-          trillion: T
   pagination:
     newer: 新しいあふぅ
     next: 次
     older: 以前のあふぅ
     prev: 前
     truncate: "&hellip;"
-  polls:
-    errors:
-      already_voted: このアンケートには投票済みです
-      duplicate_options: に同じものがあります
-      duration_too_long: が長過ぎます
-      duration_too_short: が短過ぎます
-      expired: アンケートは既に終了しました
-      over_character_limit: は%{max}文字より長くすることはできません
-      too_few_options: は複数必要です
-      too_many_options: は%{max}個までです
-  preferences:
-    languages: 言語
-    other: その他
-    publishing: 投稿
-    web: ウェブ
-  relationships:
-    activity: 活動
-    dormant: 非アクティブ
-    last_active: 最後の活動
-    most_recent: 新着
-    moved: 引っ越し済み
-    mutual: 相互
-    primary: 標準
-    relationship: 関係性
-    remove_selected_domains: 選択したドメインのフォロワーを全て解除
-    remove_selected_followers: 選択したフォロワーを解除
-    remove_selected_follows: 選択したユーザーをフォロー解除
-    status: 状態
-  remote_follow:
-    acct: あなたの ユーザー名@ドメイン を入力してください
-    missing_resource: リダイレクト先が見つかりませんでした
-    no_account_html: アカウントをお持ちではないですか？<a href='%{sign_up_path}' target='_blank'>こちら</a>からサインアップできます
-    proceed: フォローする
-    prompt: 'フォローしようとしています:'
-    reason_html: "<strong>なぜこの手順が必要でしょうか？</strong><code>%{instance}</code>はあなたが登録されているサーバーではないかもしれないので、まずあなたのサーバーに転送する必要があります。"
   remote_interaction:
     favourite:
       proceed: ティンときた！
@@ -814,106 +111,16 @@ ja-IM:
     reply:
       proceed: Reあふぅ
       prompt: 'Reあふぅしようとしています:'
-  remote_unfollow:
-    error: エラー
-    title: タイトル
-    unfollowed: フォロー解除しました
   scheduled_statuses:
     over_daily_limit: その日予約できるあふぅ数 %{limit} を超えています
     over_total_limit: 予約できるあふぅ数 %{limit} を超えています
-    too_soon: より先の時間を指定してください
-  sessions:
-    activity: 最後のアクティビティ
-    browser: ブラウザ
-    browsers:
-      alipay: Alipay
-      blackberry: Blackberry
-      chrome: Chrome
-      edge: Microsoft Edge
-      electron: Electron
-      firefox: Firefox
-      generic: 不明なブラウザ
-      ie: Internet Explorer
-      micro_messenger: MicroMessenger
-      nokia: Nokia S40 Ovi Browser
-      opera: Opera
-      otter: Otter
-      phantom_js: PhantomJS
-      qq: QQ Browser
-      safari: Safari
-      uc_browser: UCBrowser
-      weibo: Weibo
-    current_session: 現在のセッション
-    description: "%{browser} on %{platform}"
-    explanation: あなたのMastodonアカウントに現在ログインしているウェブブラウザの一覧です。
-    ip: IP
-    platforms:
-      adobe_air: Adobe Air
-      android: Android
-      blackberry: Blackberry
-      chrome_os: ChromeOS
-      firefox_os: Firefox OS
-      ios: iOS
-      linux: Linux
-      mac: Mac
-      other: 不明なプラットフォーム
-      windows: Windows
-      windows_mobile: Windows Mobile
-      windows_phone: Windows Phone
-    revoke: 削除
-    revoke_success: セッションを削除しました
-    title: セッション
-  settings:
-    account: アカウント
-    account_settings: セキュリティ
-    appearance: プロフィールを編集
-    authorized_apps: 認証済みアプリ
-    back: Mastodon に戻る
-    delete: アカウントの削除
-    development: 開発
-    edit_profile: プロフィールを編集
-    export: データのエクスポート
-    favourite_tags: お気に入りタグ
-    featured_tags: 注目のハッシュタグ
-    identity_proofs: Identity proofs
-    import: データのインポート
-    import_and_export: インポート・エクスポート
-    migrate: アカウントの引っ越し
-    notifications: 通知
-    preferences: ユーザー設定
-    profile: プロフィール
-    relationships: フォロー・フォロワー
-    two_factor_authentication: 二段階認証
   statuses:
-    attached:
-      description: '添付: %{attached}'
-      image:
-        one: "%{count} 枚の画像"
-        other: "%{count} 枚の画像"
-      video:
-        one: "%{count} 本の動画"
-        other: "%{count} 本の動画"
     boosted_from_html: "%{acct_link} からわかられました"
-    content_warning: '閲覧注意: %{warning}'
-    disallowed_hashtags:
-      one: '許可されていないハッシュタグが含まれています: %{tags}'
-      other: '許可されていないハッシュタグが含まれています: %{tags}'
-    language_detection: 自動検出
-    open_in_web: Webで開く
-    over_character_limit: 上限は %{max}文字までです
     pin_errors:
       limit: 固定できるあふぅ数の上限に達しました
       ownership: 他人のあふぅを固定することはできません
       private: 非公開のあふぅを固定することはできません
       reblog: わかるわを固定することはできません
-    poll:
-      total_votes:
-        one: "%{count}票"
-        other: "%{count}票"
-      vote: 投票
-    show_more: もっと見る
-    sign_in_to_participate: ログインして会話に参加
-    title: '%{name}: "%{quote}"'
     visibilities:
       private: 私的資料
       private_long: フォロワーにのみ表示されます
@@ -924,159 +131,6 @@ ja-IM:
   stream_entries:
     pinned: 固定されたあふぅ
     reblogged: さんにわかられました
-    sensitive_content: 閲覧注意
-  terms:
-    body_html: |
-      <h2>プライバシーポリシー</h2>
-      <h3 id="collect">どのような情報を収集しますか？</h3>
-
-      <ul>
-        <li><em>基本的なアカウント情報</em>: 当サイトに登録すると、ユーザー名・メールアドレス・パスワードの入力を求められることがあります。また表示名や自己紹介・プロフィール画像・ヘッダー画像といった追加のプロフィールを登録できます。ユーザー名・表示名・自己紹介・プロフィール画像・ヘッダー画像は常に公開されます。</li>
-        <li><em>投稿・フォロー・その他公開情報</em>: フォローしているユーザーの一覧は一般公開されます。フォロワーも同様です。メッセージを投稿する際、日時だけでなく投稿に使用したアプリケーション名も記録されます。メッセージには写真や動画といった添付メディアを含むことがあります。「公開」や「未収載」の投稿は一般公開されます。プロフィールに投稿を載せるとそれもまた公開情報となります。投稿はフォロワーに配信されます。場合によっては他のサーバーに配信され、そこにコピーが保存されることを意味します。投稿を削除した場合も同様にフォロワーに配信されます。他の投稿をリブログやお気に入り登録する行動は常に公開されます。</li>
-        <li><em>「ダイレクト」と「フォロワー限定」投稿</em>: すべての投稿はサーバーに保存され、処理されます。「フォロワー限定」投稿はフォロワーと投稿に書かれたユーザーに配信されます。「ダイレクト」投稿は投稿に書かれたユーザーにのみ配信されます。場合によっては他のサーバーに配信され、そこにコピーが保存されることを意味します。私たちはこれらの閲覧を一部の許可された者に限定するよう誠意を持って努めます。しかし他のサーバーにおいても同様に扱われるとは限りません。したがって、相手の所属するサーバーを吟味することが重要です。設定で新しいフォロワーの承認または拒否を手動で行うよう切り替えることもできます。<em>サーバー管理者は「ダイレクト」や「フォロワー限定」投稿も閲覧する可能性があることを忘れないでください。</em>また受信者がスクリーンショットやコピー、もしくは共有する可能性があることを忘れないでください。<em>いかなる危険な情報もMastodon上で共有しないでください。</em></li>
-        <li><em>IPアドレスやその他メタデータ</em>: ログインする際IPアドレスだけでなくブラウザーアプリケーション名を記録します。ログインしたセッションはすべてユーザー設定で見直し、取り消すことができます。使用されている最新のIPアドレスは最大12ヵ月間保存されます。またサーバーへのIPアドレスを含むすべてのリクエストのログを保持することがあります。</li>
-      </ul>
-
-      <hr class="spacer" />
-
-      <h3 id="use">情報を何に使用しますか？</h3>
-
-      <p>収集した情報は次の用途に使用されることがあります:</p>
-
-      <ul>
-        <li>Mastodonのコア機能の提供: ログインしている間にかぎり他の人たちと投稿を通じて交流することができます。例えば自分専用のホームタイムラインで投稿をまとめて読むために他の人たちをフォローできます。</li>
-        <li>コミュニティ維持の補助: 例えばIPアドレスを既知のものと比較し、BAN回避目的の複数登録者やその他違反者を判別します。</li>
-        <li>提供されたメールアドレスはお知らせの送信・投稿に対するリアクションやメッセージ送信の通知・お問い合わせやその他要求や質問への返信に使用されることがあります。</li>
-      </ul>
-
-      <hr class="spacer" />
-
-      <h3 id="protect">情報をどのように保護しますか？</h3>
-
-      <p>私たちはあなたが入力・送信する際や自身の情報にアクセスする際に個人情報を安全に保つため、さまざまなセキュリティ上の対策を実施します。特にブラウザーセッションだけでなくアプリケーションとAPI間の通信もSSLによって保護されます。またパスワードは強力な不可逆アルゴリズムでハッシュ化されます。二段階認証を有効にし、アカウントへのアクセスをさらに安全にすることができます。</p>
-
-      <hr class="spacer" />
-
-      <h3 id="data-retention">データ保持方針はどうなっていますか？</h3>
-
-      <p>私たちは次のように誠意を持って努めます:</p>
-
-      <ul>
-        <li>当サイトへのIPアドレスを含むすべての要求に対するサーバーログを90日以内のできるかぎりの間保持します。</li>
-        <li>登録されたユーザーに関連付けられたIPアドレスを12ヵ月以内の間保持します。</li>
-      </ul>
-
-      <p>あなたは投稿・添付メディア・プロフィール画像・ヘッダー画像を含む自身のデータのアーカイブを要求し、ダウンロードすることができます。</p>
-
-      <p>あなたはいつでもアカウントの削除を要求できます。削除は取り消すことができません。</p>
-
-      <hr class="spacer"/>
-
-      <h3 id="cookies">クッキーを使用していますか？</h3>
-
-      <p>はい。クッキーは (あなたが許可した場合に) WebサイトやサービスがWebブラウザーを介してコンピューターに保存する小さなファイルです。使用することでWebサイトがブラウザーを識別し、登録済みのアカウントがある場合関連付けます。</p>
-
-      <p>私たちはクッキーを将来の訪問のために設定を保存し呼び出す用途に使用します。</p>
-
-      <hr class="spacer" />
-
-      <h3 id="disclose">なんらかの情報を外部に提供していますか？</h3>
-
-      <p>私たちは個人を特定できる情報を外部へ販売・取引・その他方法で渡すことはありません。これには当サイトの運営・業務遂行・サービス提供を行ううえで補助する信頼できる第三者をこの機密情報の保護に同意するかぎり含みません。法令の遵守やサイトポリシーの施行、権利・財産・安全の保護に適切と判断した場合、あなたの情報を公開することがあります。</p>
-
-      <p>あなたの公開情報はネットワーク上の他のサーバーにダウンロードされることがあります。相手が異なるサーバーに所属する場合、「公開」と「フォロワー限定」投稿はフォロワーの所属するサーバーに配信され、「ダイレクト」投稿は受信者の所属するサーバーに配信されます。</p>
-
-      <p>あなたがアカウントの使用をアプリケーションに許可すると、承認した権限の範囲内で公開プロフィール情報・フォローリスト・フォロワー・リスト・すべての投稿・お気に入り登録にアクセスできます。アプリケーションはメールアドレスやパスワードに決してアクセスできません。</p>
-
-      <hr class="spacer" />
-
-      <h3 id="children">児童によるサイト利用について</h3>
-
-      <p>サーバーがEUまたはEEA圏内にある場合: 当サイト・製品・サービスは16歳以上の人を対象としています。あなたが16歳未満の場合、GDPR (<a href="https://en.wikipedia.org/wiki/General_Data_Protection_Regulation">General Data Protection Regulation</a> - EU一般データ保護規則) により当サイトを使用できません。</p>
-
-      <p>サーバーが米国にある場合: 当サイト・製品・サービスは13歳以上の人を対象としています。あなたが13歳未満の場合、COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a> - 児童オンラインプライバシー保護法) により当サイトを使用できません。</p>
-
-      <p>サーバーが別の管轄区域にある場合、法的要件は異なることがあります。</p>
-
-      <hr class="spacer" />
-
-      <h3 id="changes">プライバシーポリシーの変更</h3>
-
-      <p>プライバシーポリシーの変更を決定した場合、このページに変更点を掲載します。</p>
-
-      <p>この文章のライセンスはCC-BY-SAです。最終更新日は2018年3月7日です。</p>
-
-      <p>オリジナルの出典: <a href="https://github.com/discourse/discourse">Discourse privacy policy</a></p>
-    title: "%{instance} 利用規約・プライバシーポリシー"
-  themes:
-    contrast: Mastodon (ハイコントラスト)
-    default: Mastodon (ダーク)
-    mastodon-light: Mastodon (ライト)
-  time:
-    formats:
-      default: "%Y年%m月%d日 %H:%M"
-      month: "%Y年 %b"
-  two_factor_authentication:
-    code_hint: 確認するには認証アプリで表示されたコードを入力してください
-    description_html: "<strong>二段階認証</strong>を有効にするとログイン時、認証アプリからコードを入力する必要があります。"
-    disable: 無効
-    enable: 有効
-    enabled: 二段階認証は有効になっています
-    enabled_success: 二段階認証が有効になりました
-    generate_recovery_codes: リカバリーコードを生成
-    instructions_html: "<strong>Google Authenticatorか、もしくはほかのTOTPアプリでこのQRコードをスキャンしてください。</strong>これ以降、ログインするときはそのアプリで生成されるコードが必要になります。"
-    lost_recovery_codes: リカバリーコードを使用すると携帯電話を紛失した場合でもアカウントにアクセスできるようになります。 リカバリーコードを紛失した場合もここで再生成することができますが、古いリカバリーコードは無効になります。
-    manual_instructions: 'QRコードがスキャンできず、手動での登録を希望の場合はこのシークレットコードを利用してください。:'
-    recovery_codes: リカバリーコード
-    recovery_codes_regenerated: リカバリーコードが再生成されました
-    recovery_instructions_html: 携帯電話を紛失した場合、以下の内どれかのリカバリーコードを使用してアカウントへアクセスすることができます。<strong>リカバリーコードは大切に保全してください。</strong>たとえば印刷してほかの重要な書類と一緒に保管することができます。
-    setup: 初期設定
-    wrong_code: コードが間違っています。サーバー上の時間とデバイス上の時間が一致していますか？
   user_mailer:
-    backup_ready:
-      explanation: Mastodonアカウントのアーカイブを受け付けました。今すぐダウンロードできます！
-      subject: アーカイブの準備ができました
-      title: アーカイブの取り出し
-    warning:
-      explanation:
-        disable: アカウントが凍結されている間、データはそのまま残りますが、凍結が解除されるまでは何の操作もできません。
-        silence: あなたのアカウントは制限されていますが、あなたをフォローしているユーザーのみ、このサーバー上の投稿を見ることができます。そしてあなたは様々な公開リストから除外されるかもしれません。ただし、他のユーザーは手動であなたをフォローすることができます。
-        suspend: あなたのアカウントは停止されています。あなたの投稿とアップロードされたメディアファイルは、このサーバーとあなたのフォロワーが参加していたサーバーから完全に削除されました。
-      review_server_policies: サーバーのポリシーを確認
-      subject:
-        disable: あなたのアカウント %{acct} は凍結されています
-        none: "%{acct} に対する警告"
-        silence: あなたのアカウント %{acct} はサイレンスにされています
-        suspend: あなたのアカウント %{acct} は停止されています
-      title:
-        disable: アカウントが凍結されました
-        none: 警告
-        silence: アカウントがサイレンスにされました
-        suspend: アカウントが停止されました
     welcome:
-      edit_profile_action: プロフィールを設定
-      edit_profile_step: アバター画像やヘッダー画像をアップロードしたり、表示名やその他プロフィールを変更しカスタマイズすることができます。新しいフォロワーからのフォローを許可する前に検討したい場合、アカウントを承認制にすることができます。
-      explanation: 始めるにあたってのアドバイスです
-      final_action: 始めましょう
       final_step: 'さあ始めましょう！ たとえフォロワーがいなくても、あなたの公開した投稿はローカルタイムラインやハッシュタグなどで誰かの目に止まるかもしれません。自己紹介をしたい時は #Pの自己紹介 ハッシュタグを使うといいかもしれません。'
-      full_handle: あなたの正式なユーザー名
-      full_handle_hint: これは別のサーバーからフォローしてもらったりメッセージのやり取りをする際に、友達に伝えるといいでしょう。
-      review_preferences_action: 設定の変更
-      review_preferences_step: 受け取りたいメールや投稿の公開範囲などの設定を必ず行ってください。不快でないならアニメーション GIF の自動再生を有効にすることもできます。
-      subject: Mastodon へようこそ
-      tip_federated_timeline: 連合タイムラインは Mastodon ネットワークの流れを見られるものです。ただしあなたと同じサーバーの人がフォローしている人だけが含まれるので、それが全てではありません。
-      tip_following: 標準では自動でサーバーの管理者をフォローしています。もっと興味のある人たちを見つけるには、ローカルタイムラインと連合タイムラインを確認してください。
-      tip_local_timeline: ローカルタイムラインは %{instance} にいる人々の流れを見られるものです。彼らはあなたと同じサーバーにいる隣人のようなものです！
-      tip_mobile_webapp: もしモバイル端末のブラウザで Mastodon をホーム画面に追加できる場合、プッシュ通知を受け取ることができます。それはまるでネイティブアプリのように動作します！
-      tips: 豆知識
-      title: ようこそ、%{name} ！
-  users:
-    follow_limit_reached: あなたは現在 %{limit} 人以上フォローできません
-    invalid_email: メールアドレスが無効です
-    invalid_otp_token: 二段階認証コードが間違っています
-    otp_lost_help_html: どちらも使用できない場合、%{email} に連絡を取ると解決できるかもしれません
-    seamless_external_login: あなたは外部サービスを介してログインしているため、パスワードとメールアドレスの設定は利用できません。
-    signed_in_as: '下記でログイン中:'
-  verification:
-    explanation_html: <strong>名刺内のリンクの所有者であることを認証することができます</strong>。そのためにはリンクされたウェブサイトにMastodon名刺へのリンクが含まれている必要があります。リンクには<code>rel="me"</code>属性を<strong>必ず</strong>与えなければなりません。リンクのテキストについては重要ではありません。以下は例です：
-    verification: 認証

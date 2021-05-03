@@ -23,13 +23,6 @@ import { displayMedia } from '../initial_state';
 // to use the progress bar to show download progress
 import Bundle from '../features/ui/components/bundle';
 
-const iconList = [
-  { key: 'public', value: 'globe' },
-  { key: 'unlisted', value: 'unlock' },
-  { key: 'private', value: 'lock' },
-  { key: 'direct', value: 'envelope' },
-];
-
 export const textForScreenReader = (intl, status, rebloggedByText = false) => {
   const displayName = status.getIn(['account', 'display_name']);
 
@@ -184,8 +177,8 @@ class Status extends ImmutablePureComponent {
     return <div className='audio-player' style={{ height: '110px' }} />;
   }
 
-  handleOpenVideo = (media, startTime) => {
-    this.props.onOpenVideo(media, startTime);
+  handleOpenVideo = (media, options) => {
+    this.props.onOpenVideo(media, options);
   }
 
   handleHotkeyOpenMedia = e => {
@@ -198,7 +191,7 @@ class Status extends ImmutablePureComponent {
       if (status.getIn(['media_attachments', 0, 'type']) === 'audio') {
         // TODO: toggle play/paused?
       } else if (status.getIn(['media_attachments', 0, 'type']) === 'video') {
-        onOpenVideo(status.getIn(['media_attachments', 0]), 0);
+        onOpenVideo(status.getIn(['media_attachments', 0]), { startTime: 0 });
       } else {
         onOpenMedia(status.get('media_attachments'), 0);
       }
@@ -416,11 +409,8 @@ class Status extends ImmutablePureComponent {
     if (otherAccounts && otherAccounts.size > 0) {
       statusAvatar = <AvatarComposite accounts={otherAccounts} size={48} />;
     } else if (account === undefined || account === null) {
-      if (status.get('visibility') === 'public') {
-        statusAvatar = <Avatar account={status.get('account')} size={48} />;
-      } else {
-        statusAvatar = <AvatarOverlayIcon account={status.get('account')} icon={iconList.find(item => item.key === status.get('visibility')).value} />;
-      }
+      statusAvatar = status.get('visibility') === 'public' ? <Avatar account={status.get('account')} size={48} />
+                                                           : <AvatarOverlayIcon account={status.get('account')} visibility={status.get('visibility')} />
     } else {
       statusAvatar = <AvatarOverlay account={status.get('account')} friend={account} />;
     }
@@ -431,7 +421,7 @@ class Status extends ImmutablePureComponent {
           {prepend}
 
           <div className={classNames('status', `status-${status.get('visibility')}`, { 'status-reply': !!status.get('in_reply_to_id'), muted: this.props.muted, read: unread === false })} data-id={status.get('id')}>
-            <div className='status__expand' onClick={this.handleClick} role='presentation' />
+            <div className='status__expand' onClick={this.handleExpandClick} role='presentation' />
             <div className='status__info'>
               <a href={status.get('url')} className='status__relative-time' target='_blank' rel='noopener noreferrer'><RelativeTimestamp timestamp={status.get('created_at')} /></a>
 

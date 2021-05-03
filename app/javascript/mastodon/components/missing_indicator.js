@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
-import illustration from 'mastodon/../images/elephant_ui_disappointed.svg';
+import illustration from 'mastodon/../images/yukiho_not_found.png';
 import classNames from 'classnames';
 
 const MissingIndicator = ({ fullPage }) => (

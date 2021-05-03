@@ -4,7 +4,7 @@ module Friends
 
     included do
       has_many :favourite_tags
-      after_create :add_default_favourite_tag
+      after_create :add_default_favourite_tag, unless: -> { bot? }
 
       DEFAULT_TAGS = [
         "デレラジ",
