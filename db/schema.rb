@@ -514,6 +514,7 @@ ActiveRecord::Schema.define(version: 2020_05_10_110808) do
     t.index ["account_id", "activity_id", "activity_type"], name: "account_activity", unique: true
     t.index ["account_id", "id"], name: "index_notifications_on_account_id_and_id", order: { id: :desc }
     t.index ["activity_id", "activity_type"], name: "index_notifications_on_activity_id_and_activity_type"
+    t.index ["activity_type", "id"], name: "index_notifications_on_activity_type_and_id"
     t.index ["from_account_id"], name: "index_notifications_on_from_account_id"
   end
 
@@ -751,6 +752,7 @@ ActiveRecord::Schema.define(version: 2020_05_10_110808) do
     t.index ["in_reply_to_id"], name: "index_statuses_on_in_reply_to_id"
     t.index ["reblog_of_id", "account_id"], name: "index_statuses_on_reblog_of_id_and_account_id"
     t.index ["uri"], name: "index_statuses_on_uri", unique: true
+    t.index ["visibility", "id"], name: "index_statuses_on_visibility_and_id", where: "((local = true) OR (uri IS NULL))"
   end
 
   create_table "statuses_tags", id: false, force: :cascade do |t|
