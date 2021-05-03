@@ -851,7 +851,7 @@ const startWorker = (workerId) => {
         reject('No tag for stream provided');
       } else {
         resolve({
-          channelIds: [`timeline:hashtag:${params.tag.toLowerCase()}`],
+          channelIds: [`timeline:hashtag:${params.tag.toLowerCase()}${req.accountId ? ':authorized' : ''}`],
           options: { needsFiltering: true, notificationOnly: false },
         });
       }
@@ -862,7 +862,7 @@ const startWorker = (workerId) => {
         reject('No tag for stream provided');
       } else {
         resolve({
-          channelIds: [`timeline:hashtag:${params.tag.toLowerCase()}:local`],
+          channelIds: [`timeline:hashtag:${params.tag.toLowerCase()}${req.accountId ? ':authorized' : ''}:local`],
           options: { needsFiltering: true, notificationOnly: false },
         });
       }
