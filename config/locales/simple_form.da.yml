@@ -42,13 +42,16 @@ da:
         locale: Brugerfladesprog, e-mails og push-notifikationer
         locked: Godkend manuelt følgeanmodninger for at styre, hvem der følger dig
         password: Brug mindst 8 tegn
-        phrase: Vil blive parret uanset om der er store eller små bogstaver i teksten eller om der er en advarsel om et trut
-        scopes: Hvilke APIs applikationen vil få adgang til. Hvis du vælger et højtlevel omfang, behøver du ikke vælge enkeltstående.
-        setting_display_media_default: Skjul medier markeret som følsomt
-        setting_display_media_hide_all: Skjul altid alle medier
+        phrase: Matches uanset majuskel-/minuskel-brug i teksten eller indholdsadvarsel på et indlæg
+        scopes: Hvilke API'er applikationen vil få adgang til. Vælges en højniveaudstrækning, vil granuleringsvalg være unødvendige.
+        setting_aggregate_reblogs: Vis ikke nye boosts for indlæg boostet for nylig (påvirker kun nyligt modtagne boosts)
+        setting_default_sensitive: Sensitive medier er som standard skjult og kan afsløres med et klik
+        setting_display_media_default: Skjul medier markeret som sensitive
+        setting_display_media_hide_all: Skjul altid medier
         setting_display_media_show_all: Vis altid medier
-        setting_hide_network: Hvem du følger og hvem der følger dig vil ikke blive vist på din profil
-        setting_noindex: Påvirker din offentlige profil og status sider
+        setting_hide_network: Hvem du følger, og hvem som følger dig, skjules på din profil
+        setting_noindex: Påvirker din offentlige profil og statussider
+        setting_show_application: Applikation, hvormed du skrive indlæg, vil fremgå i den detaljerede visning af dine indlæg
         username: Dit brugernavn vil være unikt på %{domain}
         whole_word: Når nøgle ordet eller udtrykket kun er alfanumerisk, vil det kun blive brugt hvis det passer hele ordet
       featured_tag:
