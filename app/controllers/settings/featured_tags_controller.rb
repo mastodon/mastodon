@@ -1,12 +1,9 @@
 # frozen_string_literal: true
 
 class Settings::FeaturedTagsController < Settings::BaseController
-  layout 'admin'
-
-  before_action :authenticate_user!
   before_action :set_featured_tags, only: :index
   before_action :set_featured_tag, except: [:index, :create]
-  before_action :set_most_used_tags, only: :index
+  before_action :set_recently_used_tags, only: :index
 
   def index
     @featured_tag = FeaturedTag.new
@@ -20,7 +17,7 @@ class Settings::FeaturedTagsController < Settings::BaseController
       redirect_to settings_featured_tags_path
     else
       set_featured_tags
-      set_most_used_tags
+      set_recently_used_tags
 
       render :index
     end
@@ -41,8 +38,8 @@ class Settings::FeaturedTagsController < Settings::BaseController
     @featured_tags = current_account.featured_tags.order(statuses_count: :desc).reject(&:new_record?)
   end
 
-  def set_most_used_tags
-    @most_used_tags = Tag.most_used(current_account).where.not(id: @featured_tags.map(&:id)).limit(10)
+  def set_recently_used_tags
+    @recently_used_tags = Tag.recently_used(current_account).where.not(id: @featured_tags.map(&:id)).limit(10)
   end
 
   def featured_tag_params

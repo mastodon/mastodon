@@ -73,4 +73,84 @@ RSpec.describe ActivityPub::ProcessAccountService, type: :service do
       expect(ProofProvider::Keybase::Worker).to have_received(:perform_async)
     end
   end
+
+  context 'when account is not suspended' do
+    let!(:account) { Fabricate(:account, username: 'alice', domain: 'example.com') }
+
+    let(:payload) do
+      {
+        id: 'https://foo.test',
+        type: 'Actor',
+        inbox: 'https://foo.test/inbox',
+        suspended: true,
+      }.with_indifferent_access
+    end
+
+    before do
+      allow(Admin::SuspensionWorker).to receive(:perform_async)
+    end
+
+    subject { described_class.new.call('alice', 'example.com', payload) }
+
+    it 'suspends account remotely' do
+      expect(subject.suspended?).to be true
+      expect(subject.suspension_origin_remote?).to be true
+    end
+
+    it 'queues suspension worker' do
+      subject
+      expect(Admin::SuspensionWorker).to have_received(:perform_async)
+    end
+  end
+
+  context 'when account is suspended' do
+    let!(:account) { Fabricate(:account, username: 'alice', domain: 'example.com', display_name: '') }
+
+    let(:payload) do
+      {
+        id: 'https://foo.test',
+        type: 'Actor',
+        inbox: 'https://foo.test/inbox',
+        suspended: false,
+        name: 'Hoge',
+      }.with_indifferent_access
+    end
+
+    before do
+      allow(Admin::UnsuspensionWorker).to receive(:perform_async)
+
+      account.suspend!(origin: suspension_origin)
+    end
+
+    subject { described_class.new.call('alice', 'example.com', payload) }
+
+    context 'locally' do
+      let(:suspension_origin) { :local }
+
+      it 'does not unsuspend it' do
+        expect(subject.suspended?).to be true
+      end
+
+      it 'does not update any attributes' do
+        expect(subject.display_name).to_not eq 'Hoge'
+      end
+    end
+
+    context 'remotely' do
+      let(:suspension_origin) { :remote }
+
+      it 'unsuspends it' do
+        expect(subject.suspended?).to be false
+      end
+
+      it 'queues unsuspension worker' do
+        subject
+        expect(Admin::UnsuspensionWorker).to have_received(:perform_async)
+      end
+
+      it 'updates attributes' do
+        expect(subject.display_name).to eq 'Hoge'
+      end
+    end
+  end
 end

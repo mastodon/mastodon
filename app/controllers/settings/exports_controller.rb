@@ -3,11 +3,6 @@
 class Settings::ExportsController < Settings::BaseController
   include Authorization
 
-  layout 'admin'
-
-  before_action :authenticate_user!
-  before_action :require_not_suspended!
-
   skip_before_action :require_functional!
 
   def show
@@ -16,8 +11,6 @@ class Settings::ExportsController < Settings::BaseController
   end
 
   def create
-    raise Mastodon::NotPermittedError unless user_signed_in?
-
     backup = nil
 
     RedisLock.acquire(lock_options) do |lock|
@@ -36,9 +29,5 @@ class Settings::ExportsController < Settings::BaseController
 
   def lock_options
     { redis: Redis.current, key: "backup:#{current_user.id}" }
-  end
-
-  def require_not_suspended!
-    forbidden if current_account.suspended?
   end
 end

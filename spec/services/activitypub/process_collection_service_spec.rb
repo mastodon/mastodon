@@ -22,7 +22,48 @@ RSpec.describe ActivityPub::ProcessCollectionService, type: :service do
   subject { described_class.new }
 
   describe '#call' do
-    context 'when actor is the sender'
+    context 'when actor is suspended' do
+      before do
+        actor.suspend!(origin: :remote)
+      end
+
+      %w(Accept Add Announce Block Create Flag Follow Like Move Remove).each do |activity_type|
+        context "with #{activity_type} activity" do
+          let(:payload) do
+            {
+              '@context': 'https://www.w3.org/ns/activitystreams',
+              id: 'foo',
+              type: activity_type,
+              actor: ActivityPub::TagManager.instance.uri_for(actor),
+            }
+          end
+
+          it 'does not process payload' do
+            expect(ActivityPub::Activity).not_to receive(:factory)
+            subject.call(json, actor)
+          end
+        end
+      end
+
+      %w(Delete Reject Undo Update).each do |activity_type|
+        context "with #{activity_type} activity" do
+          let(:payload) do
+            {
+              '@context': 'https://www.w3.org/ns/activitystreams',
+              id: 'foo',
+              type: activity_type,
+              actor: ActivityPub::TagManager.instance.uri_for(actor),
+            }
+          end
+
+          it 'processes the payload' do
+            expect(ActivityPub::Activity).to receive(:factory)
+            subject.call(json, actor)
+          end
+        end
+      end
+    end
+
     context 'when actor differs from sender' do
       let(:forwarder) { Fabricate(:account, domain: 'example.com', uri: 'http://example.com/other_account') }
 

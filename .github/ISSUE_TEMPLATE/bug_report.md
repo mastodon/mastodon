@@ -1,7 +1,7 @@
 ---
 name: Bug Report
 about: If something isn't working as expected
-
+labels: bug
 ---
 
 <!-- Make sure that you are submitting a new bug that was not previously reported or already fixed -->

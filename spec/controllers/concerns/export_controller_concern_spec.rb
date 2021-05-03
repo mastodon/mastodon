@@ -5,6 +5,7 @@ require 'rails_helper'
 describe ApplicationController, type: :controller do
   controller do
     include ExportControllerConcern
+
     def index
       send_export_file
     end

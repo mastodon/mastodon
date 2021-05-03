@@ -39,12 +39,12 @@
             = render partial: 'statuses/status', collection: @pinned_statuses, as: :status, locals: { pinned: true }
 
           - if @newer_url
-            .entry= link_to_more @newer_url
+            .entry= link_to_newer @newer_url
 
           = render partial: 'statuses/status', collection: @statuses, as: :status
 
           - if @older_url
-            .entry= link_to_more @older_url
+            .entry= link_to_older @older_url
 
   .column-1
     - if @account.memorial?

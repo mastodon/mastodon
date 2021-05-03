@@ -4,7 +4,7 @@ image:
   repository: tootsuite/mastodon
   pullPolicy: Always
   # https://hub.docker.com/r/tootsuite/mastodon/tags
-  tag: v3.1.5
+  tag: v3.3.0
   # alternatively, use `latest` for the latest release or `edge` for the image
   # built from the most recent commit
   #
@@ -38,6 +38,12 @@ createAdmin:
 
 # available locales: https://github.com/tootsuite/mastodon/blob/master/config/application.rb#L43
 locale: en
+
+cron:
+  # run `tootctl media remove` every week
+  removeMedia:
+    enabled: true
+    schedule: "0 0 * * 0"
 
 application:
   web:

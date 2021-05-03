@@ -70,6 +70,8 @@ RSpec::Sidekiq.configure do |config|
   config.warn_when_jobs_not_processed_by_sidekiq = false
 end
 
+RSpec::Matchers.define_negated_matcher :not_change, :change
+
 def request_fixture(name)
   File.read(Rails.root.join('spec', 'fixtures', 'requests', name))
 end

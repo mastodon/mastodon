@@ -1,0 +1,17 @@
+- content_for :page_title do
+  = t('settings.webauthn_authentication')
+
+.table-wrapper
+  %table.table
+    %tbody
+      - current_user.webauthn_credentials.each do |credential|
+        %tr
+          %td= credential.nickname
+          %td= t('webauthn_credentials.registered_on', date: l(credential.created_at.to_date, format: :with_month_name))
+          %td
+            = table_link_to 'trash', t('webauthn_credentials.delete'), settings_webauthn_credential_path(credential.id), method: :delete, data: { confirm: t('webauthn_credentials.delete_confirmation') }
+
+%hr.spacer/
+
+.simple_form
+  = link_to t('webauthn_credentials.add'), new_settings_webauthn_credential_path, class: 'block-button'

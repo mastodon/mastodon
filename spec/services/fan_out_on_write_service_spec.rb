@@ -28,10 +28,10 @@ RSpec.describe FanOutOnWriteService, type: :service do
   end
 
   it 'delivers status to hashtag' do
-    expect(Tag.find_by!(name: 'test').statuses.pluck(:id)).to include status.id
+    expect(TagFeed.new(Tag.find_by(name: 'test'), alice).get(20).map(&:id)).to include status.id
   end
 
   it 'delivers status to public timeline' do
-    expect(Status.as_public_timeline(alice).map(&:id)).to include status.id
+    expect(PublicFeed.new(alice).get(20).map(&:id)).to include status.id
   end
 end

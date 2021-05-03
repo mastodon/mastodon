@@ -1,1 +1,115 @@
+---
 sc:
+  devise:
+    confirmations:
+      confirmed: S'indiritzu tuo de posta eletrònica est istadu cunfirmadu.
+      send_instructions: As a retzire unu messàgiu de posta eletrònica cun is istrutziones pro sa cunfirma de s'indiritzu de posta eletrònica tra pagos minutos. Controlla sa cartella de s'arga si no as retzidu custu messàgiu de posta eletrònica.
+      send_paranoid_instructions: Si s'indiritzu de posta eletrònica tuo esistit in sa base de datos nostra, as a retzire unu messàgiu de posta eletrònica cun is istrutziones pro sa cunfirma de s'indiritzu de posta eletrònica tra pagos minutos. Controlla sa cartella de s'àliga si no as retzidu custu messàgiu de posta eletrònica.
+    failure:
+      already_authenticated: Ses giai intradu.
+      inactive: Su contu tuo no est ancora ativadu.
+      invalid: "%{authentication_keys} o crae de intrada non vàlida."
+      last_attempt: Tenes ancora un'àteru tentativu, in antis chi su contu tuo bèngiat blocadu.
+      locked: Su contu tuo est blocadu.
+      not_found_in_database: "%{authentication_keys} o crae de intrada non vàlida."
+      pending: Su contu tuo est ancora in revisione.
+      timeout: Sa sessione tua est iscadida. Torra·bi a intrare pro sighire.
+      unauthenticated: Tocat a ti autenticare o ti registrare prima de sighire.
+      unconfirmed: Deves cunfirmare s'indiritzu tuo de posta eletrònica prima de sighire.
+    mailer:
+      confirmation_instructions:
+        action: Verìfica s'indiritzu de posta eletrònica
+        action_with_app: Cunfirma e torra a %{app}
+        explanation: As creadu unu contu in %{host} cun custu indiritzu de posta eletrònica. T'ammancat unu clic pro s'ativatzione. Si non fias tue, non càrcules custu messàgiu de posta eletrònica.
+        explanation_when_pending: As pedidu un'invitu a %{host} cun custu indiritzu de posta eletrònica. Cunfirmadu s'indiritzu de posta eletrònica, amus a revisionare sa dimanda tua. Podes intrare pro cambiare is detàllios o cantzellare su contu tuo, ma non podes atzèdere a sa majoria de is funtziones finas a chi su contu tuo siat aprovadu. Si sa dimanda tua est refudada, is datos ant a èssere bogados, duncas no t'ant a pedire prus peruna atzione. Si non fias tue, non càrcules custu messàgiu de posta eletrònica.
+        extra_html: Verìfica puru <a href="%{terms_path}">is règulas de su server</a> e <a href="%{policy_path}">is cunditziones de servìtziu nostras</a>.
+        subject: 'Mastodon: Istrutziones de cunfirma pro %{instance}'
+        title: Verìfica s'indiritzu de posta eletrònica
+      email_changed:
+        explanation: 'Custu indiritzu de posta eletrònica pro su contu tuo est istadu mudadu a:'
+        extra: Si no as mudadu indiritzu de posta, forsis un'àtera persone at otentu s'atzessu de su contu tuo. Muda sa crae tua a sa lestra o chistiona cun s'amministratzione de su server si ses blocadu a foras dae su contu tuo.
+        subject: 'Mastodon: Indiritzu de posta mudadu'
+        title: Indiritzu de posta eletrònica nou
+      password_change:
+        explanation: Sa crae de su contu tuo est istada mudada.
+        extra: Si no as mudadu sa crae tua, forsis un'àtera persone at otentu s'atzessu de su contu tuo. Muda sa crae tua a sa lestra o chistiona cun s'amministratzione de su server si ses blocadu a foras dae su contu tuo.
+        subject: 'Mastodon: Crae mudada'
+        title: Crae mudada
+      reconfirmation_instructions:
+        explanation: Cunfirma s'indiritzu nou pro mudare s'indiritzu de posta eletrònica.
+        extra: Si custa muda no dd'as pedida tue, non càrcules custu messàgiu de posta eletrònica. Custu indiritzu de posta eletrònica pro su contu de Mastodon no at a mudare finas a s'atzessu tuo a su ligàmene in subra.
+        subject: 'Mastodon: Cunfirma indiritzu de posta eletrònica pro %{instance}'
+        title: Verìfica s'indiritzu de posta eletrònica
+      reset_password_instructions:
+        action: Muda sa crae
+        explanation: As pedidu una crae noa pro su contu tuo.
+        extra: Si no dd'as pedida tue, non càrcules custu messàgiu de posta eletrònica. Custa crae no at a mudare finas a s'atzessu tuo a su ligàmene in subra pro sa creatzione de una noa.
+        subject: 'Mastodon: Istrutziones pro resetare sa crae'
+        title: Crae resetada
+      two_factor_disabled:
+        explanation: S'autenticatzione a duos fatores est istada disativada pro su contu tuo. Immoe podes intrare impreende isceti indiritzu de posta eletrònica e crae.
+        subject: 'Mastodon: Autenticatzione a duos fatores disativada'
+        title: 2FA disativada
+      two_factor_enabled:
+        explanation: S'autenticatzione a duos fatores est istada ativada pro su contu tuo. Pro s'atzessu at èssere rechèdidu unu còdighe de autorizatzione generadu dae s'aplicatzione TOTP.
+        subject: 'Mastodon: Autenticatzione a duos fatores ativada'
+        title: 2FA ativada
+      two_factor_recovery_codes_changed:
+        explanation: Is còdighes de recùperu betzos sunt istados disativados e àteros noos generados.
+        subject: 'Mastodon: Còdighes de recùperu a duos fatores re-generados'
+        title: còdighes de recùperu 2FA mudados
+      unlock_instructions:
+        subject: 'Mastodon: Istrutziones pro s''isblocu'
+      webauthn_credential:
+        added:
+          explanation: Sa crae de seguresa chi sighit est istada agiunta a su contu tuo
+          subject: 'Mastodon: Crae de seguresa noa'
+          title: Est istada agiunta una crae de seguresa noa
+        deleted:
+          explanation: Sa crae de seguresa chi sighit est istada cantzellada dae su contu tuo
+          subject: 'Mastodon: Crae de seguresa cantzellada'
+          title: Una de is craes de seguresa tuas est istada cantzellada
+      webauthn_disabled:
+        explanation: S'autenticatzione cun craes de seguresa est istada disabilitada pro su contu tuo. S'intrada como est possìbile impreende isceti su getone ingendradu dae s'aplicatzione TOTP ligada.
+        subject: 'Mastodon: Autenticatzione cun craes de seguresa disabilitada'
+        title: Craes de seguresa disabilitadas
+      webauthn_enabled:
+        explanation: S'autenticatzione cun crae de seguresa est istada abilitada pro su contu tuo. Sa crae de seguresa tua como si podet èssere impreare pro intrare.
+        subject: 'Mastodon: Autenticatzione cun sa crae de seguresa ativada'
+        title: Craes de seguresa abilitadas
+    omniauth_callbacks:
+      failure: Autenticatzione dae %{kind} fallida, ca "%{reason}".
+      success: Autenticadu dae su contu de %{kind}.
+    passwords:
+      no_token: No podes intrare a custa pàgina chene passare dae unu messàgiu de posta eletrònica pro resetare sa crae. Si benes dae su messàgiu de posta pro resetare sa crae, faghe in modu de impreare s'URL intreu chi t'ant donadu.
+      send_instructions: Si s'indiritzu de posta eletrònica tuo esistit in sa base de datos nostra, as a retzire una unu ligàmene de recùperu de sa crae a s'indiritzu tuo de posta eletrònica tra pagos minutos. Controlla sa cartella de s'àliga si no as retzidu custu messàgiu de posta eletrònica.
+      send_paranoid_instructions: Si s'indiritzu de posta eletrònica tuo esistit in sa base de datos nostra, as a retzire una unu ligàmene de recùperu de sa crae a s'indiritzu tuo de posta eletrònica tra pagos minutos. Controlla sa cartella de s'àliga si no as retzidu custu messàgiu de posta eletrònica.
+      updated: Sa crae tua est istada mudada. Immoe ses intradu.
+      updated_not_active: Sa crae tua est istada mudada.
+    registrations:
+      destroyed: A si bìdere! Su contu tuo est istadu cantzelladu. Isperamus de ti torrare a bìdere chitzi.
+      signed_up: Registratzione curreta. Ti donamus sa benebènnida!
+      signed_up_but_inactive: Registratzione curreta. Mancari de aici, si no ti faghimus intrare est ca su contu tuo no est ancora ativu.
+      signed_up_but_locked: Registratzione curreta. Mancari de aici, si no ti faghimus intrare est ca su contu tuo est blocadu.
+      signed_up_but_pending: Unu ligàmene de cunfirma est istadu imbiadu a s'indiritzu tuo de posta eletrònica. A pustis chi incarcas in su ligàmene, amus a revisionare sa dimanda tua. Si aprovada, t'at a arribare una notìfica.
+      signed_up_but_unconfirmed: Unu ligàmene de cunfirma est istadu imbiadu a s'indiritzu tuo de posta eletrònica. Sighi su ligàmene pro ativare su contu tuo. Controlla sa cartella de s'arga si no as retzidu custu messàgiu de posta eletrònica.
+      update_needs_confirmation: Su contu tuo est istadu atualizadu, ma devimus verificare s'indiritzu tuo de posta eletrònica nou. Controlla sa posta eletrònica e sighi su ligàmene pro cunfirmare s'indiritzu nou de posta eletrònica. Controlla sa cartella de s'àliga si no as retzidu custu messàgiu de posta eletrònica.
+      updated: Su contu tuo est istadu atualizadu.
+    sessions:
+      already_signed_out: Sessione serrada.
+      signed_in: Atzessu curretu.
+      signed_out: Sessione serrada.
+    unlocks:
+      send_instructions: As a retzire unu messàgiu de posta eletrònica cun is istrutziones pro isblocare su contu tuo tra pagos minutos. Controlla sa cartella de s'arga si no as retzidu custu messàgiu de posta eletrònica.
+      send_paranoid_instructions: Si su contu tuo esistit, as a retzire unu messàgiu de posta eletrònica cun istrutziones pro ddu isblocare tra pagos minutos. Controlla sa cartella de s'arga si no as retzidu custu messàgiu de posta eletrònica.
+      unlocked: Su contu tuo est istadu isblocadu. Intra pro sighire.
+  errors:
+    messages:
+      already_confirmed: fiat giai cunfirmadu, proa a intrare
+      confirmation_period_expired: tocat a ddu cunfirmare intro %{period}, pedi·nde unu nou
+      expired: est iscadidu, pedi·nde unu nou
+      not_found: no agatadu
+      not_locked: no fiat blocadu
+      not_saved:
+        one: '1 faddina at proibidu de sarvare custu %{resource}:'
+        other: "%{count} faddinas ant proibidu de sarvare %{resource}:"

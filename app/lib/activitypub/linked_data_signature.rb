@@ -27,7 +27,7 @@ class ActivityPub::LinkedDataSignature
     document_hash  = hash(@json.without('signature'))
     to_be_verified = options_hash + document_hash
 
-    if creator.keypair.public_key.verify(OpenSSL::Digest::SHA256.new, Base64.decode64(signature), to_be_verified)
+    if creator.keypair.public_key.verify(OpenSSL::Digest.new('SHA256'), Base64.decode64(signature), to_be_verified)
       creator
     end
   end
@@ -44,7 +44,7 @@ class ActivityPub::LinkedDataSignature
     to_be_signed  = options_hash + document_hash
     keypair       = sign_with.present? ? OpenSSL::PKey::RSA.new(sign_with) : creator.keypair
 
-    signature = Base64.strict_encode64(keypair.sign(OpenSSL::Digest::SHA256.new, to_be_signed))
+    signature = Base64.strict_encode64(keypair.sign(OpenSSL::Digest.new('SHA256'), to_be_signed))
 
     @json.merge('signature' => options.merge('signatureValue' => signature))
   end

@@ -40,7 +40,7 @@ class Api::BaseController < ApplicationController
     render json: { error: 'This action is not allowed' }, status: 403
   end
 
-  rescue_from Mastodon::RaceConditionError do
+  rescue_from Mastodon::RaceConditionError, Seahorse::Client::NetworkingError, Stoplight::Error::RedLight do
     render json: { error: 'There was a temporary problem serving your request, please try again' }, status: 503
   end
 
@@ -71,6 +71,7 @@ class Api::BaseController < ApplicationController
 
   def limit_param(default_limit)
     return default_limit unless params[:limit]
+
     [params[:limit].to_i.abs, default_limit * 2].min
   end
 
@@ -95,14 +96,14 @@ class Api::BaseController < ApplicationController
   def require_user!
     if !current_user
       render json: { error: 'This method requires an authenticated user' }, status: 422
-    elsif current_user.disabled?
-      render json: { error: 'Your login is currently disabled' }, status: 403
     elsif !current_user.confirmed?
       render json: { error: 'Your login is missing a confirmed e-mail address' }, status: 403
     elsif !current_user.approved?
       render json: { error: 'Your login is currently pending approval' }, status: 403
+    elsif !current_user.functional?
+      render json: { error: 'Your login is currently disabled' }, status: 403
     else
-      set_user_activity
+      update_user_sign_in
     end
   end
 

@@ -4,13 +4,11 @@ import PropTypes from 'prop-types';
 import Audio from 'mastodon/features/audio';
 import { connect } from 'react-redux';
 import ImmutablePureComponent from 'react-immutable-pure-component';
-import { FormattedMessage } from 'react-intl';
 import { previewState } from './video_modal';
-import classNames from 'classnames';
-import Icon from 'mastodon/components/icon';
+import Footer from 'mastodon/features/picture_in_picture/components/footer';
 
-const mapStateToProps = (state, { status }) => ({
-  account: state.getIn(['accounts', status.get('account')]),
+const mapStateToProps = (state, { statusId }) => ({
+  accountStaticAvatar: state.getIn(['accounts', state.getIn(['statuses', statusId, 'account']), 'avatar_static']),
 });
 
 export default @connect(mapStateToProps)
@@ -18,12 +16,13 @@ class AudioModal extends ImmutablePureComponent {
 
   static propTypes = {
     media: ImmutablePropTypes.map.isRequired,
-    status: ImmutablePropTypes.map,
+    statusId: PropTypes.string.isRequired,
+    accountStaticAvatar: PropTypes.string.isRequired,
     options: PropTypes.shape({
       autoPlay: PropTypes.bool,
     }),
-    account: ImmutablePropTypes.map,
     onClose: PropTypes.func.isRequired,
+    onChangeBackgroundColor: PropTypes.func.isRequired,
   };
 
   static contextTypes = {
@@ -52,15 +51,8 @@ class AudioModal extends ImmutablePureComponent {
     }
   }
 
-  handleStatusClick = e => {
-    if (e.button === 0 && !(e.ctrlKey || e.metaKey)) {
-      e.preventDefault();
-      this.context.router.history.push(`/statuses/${this.props.status.get('id')}`);
-    }
-  }
-
   render () {
-    const { media, status, account } = this.props;
+    const { media, accountStaticAvatar, statusId, onClose } = this.props;
     const options = this.props.options || {};
 
     return (
@@ -71,7 +63,7 @@ class AudioModal extends ImmutablePureComponent {
             alt={media.get('description')}
             duration={media.getIn(['meta', 'original', 'duration'], 0)}
             height={150}
-            poster={media.get('preview_url') || account.get('avatar_static')}
+            poster={media.get('preview_url') || accountStaticAvatar}
             backgroundColor={media.getIn(['meta', 'colors', 'background'])}
             foregroundColor={media.getIn(['meta', 'colors', 'foreground'])}
             accentColor={media.getIn(['meta', 'colors', 'accent'])}
@@ -79,11 +71,9 @@ class AudioModal extends ImmutablePureComponent {
           />
         </div>
 
-        {status && (
-          <div className={classNames('media-modal__meta')}>
-            <a href={status.get('url')} onClick={this.handleStatusClick}><Icon id='comments' /> <FormattedMessage id='lightbox.view_context' defaultMessage='View context' /></a>
-          </div>
-        )}
+        <div className='media-modal__overlay'>
+          {statusId && <Footer statusId={statusId} withOpenButton onClose={onClose} />}
+        </div>
       </div>
     );
   }

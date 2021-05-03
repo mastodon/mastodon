@@ -2,7 +2,7 @@
   = t('admin.custom_emojis.title')
 
 - content_for :header_tags do
-  = javascript_pack_tag 'admin', integrity: true, async: true, crossorigin: 'anonymous'
+  = javascript_pack_tag 'admin', async: true, crossorigin: 'anonymous'
 
 - if can?(:create, :custom_emoji)
   - content_for :heading_actions do

@@ -14,6 +14,7 @@
 #  target_account_id          :bigint(8)        not null
 #  assigned_account_id        :bigint(8)
 #  uri                        :string
+#  forwarded                  :boolean
 #
 
 class Report < ApplicationRecord

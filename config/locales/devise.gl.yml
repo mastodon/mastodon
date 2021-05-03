@@ -19,7 +19,7 @@ gl:
     mailer:
       confirmation_instructions:
         action: Verificar o enderezo de email
-        action_with_app: Confirmar e voltar a %{app}
+        action_with_app: Confirmar e volver a %{app}
         explanation: Creaches unha conta en %{host} con este enderezo de email. Estás a un clic de activala. Se non foches ti o que fixeches este rexisto, por favor ignora esta mensaxe.
         explanation_when_pending: Solicitaches un convite para %{host} con este enderezo de email. Logo de que confirmes o teu enderezo de email, imos revisar a túa inscrición. Podes iniciar sesión para mudar os teus datos ou eliminar a túa conta, mais non poderás aceder á meirande parte das funcións até que a túa conta sexa aprobada. Se a túa inscrición for rexeitada, os teus datos serán eliminados, polo que non será necesaria calquera acción adicional da túa parte. Se non solicitaches este convite, por favor, ignora este correo.
         extra_html: Por favor, le <a href="%{terms_path}">as regras do servidor</a> e os <a href="%{policy_path}">nosos termos do servizo</a>.
@@ -60,6 +60,23 @@ gl:
         title: Códigos de recuperación 2FA mudados
       unlock_instructions:
         subject: 'Mastodon: Instrucións para desbloquear'
+      webauthn_credential:
+        added:
+          explanation: Engadeuse a seguinte chave de seguridade á túa conta
+          subject: 'Mastodon: Nova chave de seguridade'
+          title: Engadeuse unha nova chave de seguridade
+        deleted:
+          explanation: Eliminouse a seguinte chave de seguridade da túa conta
+          subject: 'Mastodon: Chave de seguridade eliminada'
+          title: Eliminouse unha das túas chaves de seguridade
+      webauthn_disabled:
+        explanation: Desactivouse para a túa conta a autenticación con chaves de seguridade. Agora a conexión é posible usando só o token creado pola app TOTP emparellada.
+        subject: 'Mastodon: Desactivouse a autenticación con chave de seguridade'
+        title: Chaves de seguridade desactivadas
+      webauthn_enabled:
+        explanation: Activouse para a conta a autenticación con chave de seguridade. Xa podes usar a chave de seguridade para contectar.
+        subject: 'Mastodon: Autenticación con chave de seguridade activada'
+        title: Chaves de seguridade activas
     omniauth_callbacks:
       failure: Non foi posíbel autenticar %{kind} porque "%{reason}".
       success: Autenticado con éxito na conta %{kind}.

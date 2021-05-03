@@ -11,7 +11,6 @@ module Settings
       @object = object
     end
 
-    # rubocop:disable Style/MethodMissingSuper
     def method_missing(method, *args)
       method_name = method.to_s
       # set a value for a variable
@@ -24,7 +23,6 @@ module Settings
         self[method_name]
       end
     end
-    # rubocop:enable Style/MethodMissingSuper
 
     def respond_to_missing?(*)
       true

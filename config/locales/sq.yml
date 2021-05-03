@@ -60,6 +60,7 @@ sq:
       one: Ndjekës
       other: Ndjekës
     following: Ndjekje
+    instance_actor_flash: Kjo llogari është një aktor virtual, i përdorur për të përfaqësuar vetë shërbyesin dhe jo ndonjë përdorues individual. Përdoret për qëllime federimi dhe s’duhet pezulluar.
     joined: U bë pjesë më %{date}
     last_active: aktiv së fundi
     link_verified_on: Pronësia e kësaj lidhjeje qe kontrolluar më %{date}
@@ -98,6 +99,7 @@ sq:
       add_email_domain_block: Vëre përkatësinë email në listë bllokimesh
       approve: Miratojeni
       approve_all: Miratojini krejt
+      approved_msg: U miratua me sukses aplikimi për regjistrim të %{username}
       are_you_sure: Jeni i sigurt?
       avatar: Avatar
       by_domain: Përkatësi
@@ -111,8 +113,10 @@ sq:
       confirm: Ripohojeni
       confirmed: U ripohua
       confirming: Po ripohohet
+      delete: Fshiji të dhënat
       deleted: U fshi
       demote: Zhgradoje
+      destroyed_msg: Të dhënat e %{username} tani janë vënë në radhë për fshirje të menjëhershme
       disable: Çaktivizoje
       disable_two_factor_authentication: Çaktivizoni 2FA-në
       disabled: E çaktivizuar
@@ -123,10 +127,12 @@ sq:
       email_status: Gjendje email-i
       enable: Aktivizoje
       enabled: E aktivizuar
+      enabled_msg: U hoq me sukses ngrirja për llogarinë e %{username}
       followers: Ndjekës
       follows: Ndjekje
       header: Krye
       inbox_url: URL Mesazhesh të Marrë
+      invite_request_text: Arsye për pjesëmarrje
       invited_by: Ftuar nga
       ip: IP
       joined: U bë pjesë
@@ -138,6 +144,8 @@ sq:
       login_status: Gjendje hyrjeje
       media_attachments: Bashkëngjitje media
       memorialize: Shndërroje në përkujtimore
+      memorialized: U shndërrua në përkujtimore
+      memorialized_msg: "%{username} u kthye me sukses në një llogari përkujtimore"
       moderation:
         active: Aktiv
         all: Krejt
@@ -158,10 +166,14 @@ sq:
       public: Publike
       push_subscription_expires: Pajtimi PuSH skadon më
       redownload: Rifresko profilin
+      redownloaded_msg: Profili i %{username} u rifreskua me sukses prej origjinës
       reject: Hidhe tej
       reject_all: Hidhi krejt tej
+      rejected_msg: Aplikimi për regjistrim i %{username} u hodh poshtë me sukses
       remove_avatar: Hiqe avatarin
       remove_header: Hiqe kryen
+      removed_avatar_msg: U hoq me sukses figura e avatarit të %{username}
+      removed_header_msg: U hoq me sukses figura e kreut për %{username}
       resend_confirmation:
         already_confirmed: Ky përdorues është i ripohuar tashmë
         send: Ridërgo email ripohimi
@@ -178,6 +190,8 @@ sq:
       search: Kërkoni
       search_same_email_domain: Të tjerë përdorues me të njëjtën përkatësi email-i
       search_same_ip: Të tjerë përdorues me të njëjtën IP
+      sensitive: Rezervat
+      sensitized: iu vu shenjë si rezervat
       shared_inbox_url: URL kutie të përbashkët mesazhesh
       show:
         created_reports: Ka bërë raportime
@@ -187,13 +201,19 @@ sq:
       statuses: Gjendje
       subscribe: Pajtomë
       suspended: Të pezulluara
+      suspension_irreversible: Të dhënat e kësaj llogarie janë fshirë në mënyrë të pakthyeshme. Mund ta shpezulloni llogarinë, për ta bërë të përdorshme, por kjo s’do të kthejë ndonjë të dhënë që kihej më parë.
+      suspension_reversible_hint_html: Llogaria është pezulluar, dhe të dhënat do të hiqen plotësisht më %{date}. Deri atëherë, llogaria mund të rikthehet pa ndonjë zarar. Nëse doni të hiqen menjëherë krejt të dhënat e llogarisë, këtë mund ta bëni më poshtë.
       time_in_queue: Pritje në radhë %{time}
       title: Llogari
       unconfirmed_email: Email i paripohuar
+      undo_sensitized: Hiqja shenjën si rezervat
       undo_silenced: Zhbëje heshtjen
       undo_suspension: Zhbëje pezullimin
+      unsilenced_msg: U hoqën me sukses kufizimet për llogarinë e %{username}
       unsubscribe: Shpajtohuni
+      unsuspended_msg: U hoq me sukses pezullimi për llogarinë e %{username}
       username: Emër përdoruesi
+      view_domain: Shihni përmbledhjen për përkatësinë
       warn: Sinjalizoje
       web: Web
       whitelisted: Lejuar për federim
@@ -208,12 +228,14 @@ sq:
         create_domain_allow: Krijo Lejim Përkatësie
         create_domain_block: Krijo Bllokim Përkatësie
         create_email_domain_block: Krijo Bllokim Përkatësie Email-esh
+        create_ip_block: Krijoni Rregull IP
         demote_user: Zhgradoje Përdoruesin
         destroy_announcement: Fshije Lajmërimin
         destroy_custom_emoji: Fshi Emotikon Vetjak
         destroy_domain_allow: Fshi Lejim Përkatësie
         destroy_domain_block: Fshi Bllokim Përkatësie
         destroy_email_domain_block: Fshi bllokim përkatësie email-esh
+        destroy_ip_block: Fshini Rregull IP
         destroy_status: Fshi Gjendje
         disable_2fa_user: Çaktivizo 2FA-në
         disable_custom_emoji: Çaktivizo Emotikon Vetjak
@@ -226,13 +248,16 @@ sq:
         reopen_report: Rihape Raportimin
         reset_password_user: Ricaktoni Fjalëkalimin
         resolve_report: Zgjidhe Raportimin
+        sensitive_account: I vini shenjë si rezervat medias në llogarinë tuaj
         silence_account: Heshtoje Llogarinë
         suspend_account: Pezulloje Llogarinë
         unassigned_report: Hiqe Caktimin e Raportimit
+        unsensitive_account: Hiqjani shenjën si rezervat medias në llogarinë tuaj
         unsilence_account: Hiqe Heshtimin e Llogarisë
         unsuspend_account: Hiqe Pezullimin e Llogarisë
         update_announcement: Përditëso Lajmërimin
         update_custom_emoji: Përditëso Emotikon Vetjak
+        update_domain_block: Përditëso Bllok Përkatësish
         update_status: Përditëso Gjendjen
       actions:
         assigned_to_self_report: "%{name} ia kaloi raportimin %{target} në ngarkim vetvetes"
@@ -244,12 +269,14 @@ sq:
         create_domain_allow: "%{name} kaloi në listë lejimesh përkatësinë %{target}"
         create_domain_block: "%{name} bllokoi përkatësinë %{target}"
         create_email_domain_block: "%{name} shtoi në listë bllokimesh përkatësinë %{target}"
+        create_ip_block: "%{name} krijoi rregull për IP-në %{target}"
         demote_user: "%{name} zhgradoi përdoruesin %{target}"
         destroy_announcement: "%{name} fshiu lajmërimin për %{target}"
         destroy_custom_emoji: "%{name} asgjësoi emotikonin %{target}"
         destroy_domain_allow: "%{name} hoqi përkatësinë %{target} nga listë lejimesh"
         destroy_domain_block: "%{name} zhbllokoi përkatësinë %{target}"
         destroy_email_domain_block: "%{name} e shtoi në listë lejimesh përkatësinë %{target}"
+        destroy_ip_block: "%{name} fshiu rregull për IP-në %{target}"
         destroy_status: "%{name} hoqi gjendje nga %{target}"
         disable_2fa_user: "%{name} çaktivizoi domosdoshmëritë për dyfaktorësh për përdoruesin %{target}"
         disable_custom_emoji: "%{name} çaktivizoi emotikonin %{target}"
@@ -262,13 +289,16 @@ sq:
         reopen_report: "%{name} rihapi raportimin %{target}"
         reset_password_user: "%{name} ricaktoi fjalëkalimi për përdoruesin %{target}"
         resolve_report: "%{name} zgjidhi raportimin %{target}"
+        sensitive_account: "%{name} i vuri shenjë si rezervat medias në %{target}"
         silence_account: "%{name} heshtoi llogarinë e %{target}"
         suspend_account: "%{name} pezulloi llogarinë e %{target}"
         unassigned_report: "%{name} rihapi raportimin %{target}"
+        unsensitive_account: "%{name} ia hoqi shenjën si rezervat medias në %{target}"
         unsilence_account: "%{name} hoqi heshtimin për llogarinë %{target}"
         unsuspend_account: "%{name} hoqi pezullimin për llogarinë e %{target}"
         update_announcement: "%{name} përditësoi lajmërimin %{target}"
         update_custom_emoji: "%{name} përditësoi emotikonin %{target}"
+        update_domain_block: "%{name} përditësoi bllok përkatësish për %{target}"
         update_status: "%{name} përditësoi gjendjen me %{target}"
       deleted_status: "(fshiu gjendjen)"
       empty: S’u gjetën regjistra.
@@ -372,6 +402,8 @@ sq:
           silence: Heshtoji
           suspend: Pezulloje
         title: Bllokim i ri përkatësie
+      obfuscate: Errësoje emrin e përkatësisë
+      obfuscate_hint: Errësoje pjesërisht emrin e përkatësisë te lista, nëse është aktivizuar publikimi i listës së kufizimeve të përkatësive
       private_comment: Koment privat
       private_comment_hint: Koment mbi këtë kufizim përkatësie për përdorim të brendshëm nga moderatorët.
       public_comment: Koment publik
@@ -411,6 +443,7 @@ sq:
     instances:
       by_domain: Përkatësi
       delivery_available: Ka shpërndarje të mundshme
+      empty: S’u gjetën përkatësi.
       known_accounts:
         one: "%{count} llogari e njohur"
         other: "%{count} llogari të njohura"
@@ -434,6 +467,21 @@ sq:
         expired: I skaduar
         title: Filtrim
       title: Ftesa
+    ip_blocks:
+      add_new: Krijoni rregull
+      created_msg: U shtua me sukses rregull i ri IP
+      delete: Fshije
+      expires_in:
+        '1209600': 2 javë
+        '15778476': 6 muaj
+        '2629746': 1 muaj
+        '31556952': 1 vit
+        '86400': 1 ditë
+        '94670856': 3 vjet
+      new:
+        title: Krijoni rregull IP të ri
+      no_ip_block_selected: S’u ndryshua ndonjë rregull IP, ngaqë s’u përzgjodh ndonjë i tillë
+      title: Rregulla IP
     pending_accounts:
       title: Llogari pezull (%{count})
     relationships:
@@ -473,6 +521,8 @@ sq:
       comment:
         none: Asnjë
       created_at: Raportuar më
+      forwarded: U përcoll
+      forwarded_to: U përcoll te %{domain}
       mark_as_resolved: Vëri shenjë si i zgjidhur
       mark_as_unresolved: Vëri shenjë si të pazgjidhur
       notes:
@@ -516,6 +566,7 @@ sq:
       domain_blocks_rationale:
         title: Shfaq arsye
       enable_bootstrap_timeline_accounts:
+        desc_html: Bëj që përdoruesit e rinj automatikisht të ndjekin llogaritë e formësuara, që prurja e tyre bazë të mos nisë e zbrazët
         title: Aktivizo ndjekje parazgjedhje për përdorues të rinj
       hero:
         desc_html: E shfaqur në faqen ballore. Këshillohet të paktën 600x100px. Kur nuk caktohet gjë, përdoret miniaturë e shërbyesit
@@ -542,6 +593,9 @@ sq:
         min_invite_role:
           disabled: Asnjë
           title: Lejo ftesa nga
+        require_invite_text:
+          desc_html: Kur regjistrimet lypin miratim dorazi, tekstin e kërkesës për ftesë “Pse doni të merrni pjesë?” bëje të detyrueshëm, në vend se opsional
+          title: Kërkoju përdoruesve të rinj të plotësojnë doemos një tekst kërkese për ftesë
       registrations_mode:
         modes:
           approved: Për regjistrim, lypset miratimi
@@ -681,8 +735,11 @@ sq:
       prefix_sign_up: Regjistrohuni në Mastodon që sot!
       suffix: Me një llogari, do të jeni në gjendje të ndiqni persona, përditësime postimesh dhe të shkëmbeni mesazhe me përdorues nga cilido shërbyes Mastodon, etj!
     didnt_get_confirmation: S’morët udhëzime ripohimi?
+    dont_have_your_security_key: S’i keni kyçet tuaj të sigurisë?
     forgot_password: Harruat fjalëkalimin tuaj?
     invalid_reset_password_token: Token-i i ricaktimit të fjalëkalimit është i pavlefshëm ose ka skaduar. Ju lutemi, kërkoni një të ri.
+    link_to_otp: Jepni një kod mirëfilltësimi dyfaktorësh prej telefonit tuaj ose një kod rimarrjeje
+    link_to_webauth: Përdorni pajisjen tuaj të kyçeve të sigurisë
     login: Hyni
     logout: Dalje
     migrate_account: Kaloni në një tjetër llogari
@@ -707,7 +764,9 @@ sq:
       functional: Llogaria juaj është tërësisht funksionale.
       pending: Aplikimi juaj është në pritje të shqyrtimit nga stafi ynë. Kjo mund të dojë ca kohë. Nëse aplikimi juaj miratohet, do të merrni një email.
       redirecting_to: Llogaria juaj është joaktive, ngaqë aktualisht ridrejton te %{acct}.
+    too_fast: Formulari u parashtrua shumë shpejt, riprovoni.
     trouble_logging_in: Probleme me hyrjen?
+    use_security_key: Përdor kyç sigurie
   authorize_follow:
     already_following: E ndiqni tashmë këtë llogari
     already_requested: Keni dërguar tashmë një kërkesë ndjekjeje te ajo llogari
@@ -732,6 +791,7 @@ sq:
   date:
     formats:
       default: "%b %d, %Y"
+      with_month_name: "%d %B, %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}o"
@@ -796,6 +856,7 @@ sq:
       request: Kërkoni arkivin tuaj
       size: Madhësi
     blocks: Bllokoni
+    bookmarks: Faqerojtës
     csv: CSV
     domain_blocks: Bllokime përkatësish
     lists: Lista
@@ -863,6 +924,8 @@ sq:
     status: Gjendje verifikimi
     view_proof: Shihni provën
   imports:
+    errors:
+      over_rows_processing_limit: përmban më shumë se %{count} rreshta
     modes:
       merge: Përzieji
       merge_long: Mbaji zërat ekzistues dhe shto të rinjtë
@@ -872,6 +935,7 @@ sq:
     success: Të dhënat tuaja u ngarkuan me sukses dhe tani do të përpunohet në kohë
     types:
       blocking: Listë bllokimesh
+      bookmarks: Faqerojtës
       domain_blocking: Listë bllokimesh përkatësish
       following: Listë ndjekjesh
       muting: Listë heshtimesh
@@ -992,6 +1056,14 @@ sq:
           quadrillion: K
           thousand: M
           trillion: T
+  otp_authentication:
+    code_hint: Që të bëhet ripohimi, jepni kodin e prodhuar nga aplikacioni juaj i mirëfilltësimeve
+    description_html: Nëse aktivizoni <strong>mirëfilltësim dyfaktorësh</strong> duke përdorur një aplikacion mirëfilltësimesh, hyrja do të dojë që të keni telefonin tuaj, i cili do të prodhojë për ju token-ë hyrjesh.
+    enable: Aktivizoje
+    instructions_html: "<strong>Skanoje këtë kod QR me Google Authenticator ose një aplikacion të ngjashëm TOTP në telefonin tuaj</strong>. Tani e tutje, ai aplikacion do të prodhojë token-ë të cilët do t’ju duhet t’i jepni kur bëni hyrje."
+    manual_instructions: 'Nëse nuk skanoni kodin QR dhe ju duhet ta jepni dorazi, ja e fshehta si tekst i thjeshtë:'
+    setup: Ujdiseni
+    wrong_code: Kodi i dhënë është i pavlefshëm! A janë të sakta koha e shërbyesit dhe koha e pajisjes?
   pagination:
     newer: Më të ri
     next: Pasuesi
@@ -1020,6 +1092,7 @@ sq:
   relationships:
     activity: Veprimtari llogarie
     dormant: Në gjumë
+    follow_selected_followers: Ndiq ndjekësit e përzgjedhur
     followers: Ndjekës
     following: Ndjek
     invited: Të ftuar
@@ -1116,6 +1189,7 @@ sq:
     profile: Profil
     relationships: Ndjekje dhe ndjekës
     two_factor_authentication: Mirëfilltësim Dyfaktorësh
+    webauthn_authentication: Kyçe sigurie
   spam_check:
     spam_detected: Ky është një raportim i automatizuar. Është pikasur mesazh i padëshiruar.
   statuses:
@@ -1154,6 +1228,8 @@ sq:
         other: "%{count} vota"
       vote: Votë
     show_more: Shfaq më tepër
+    show_newer: Shfaq më të reja
+    show_older: Shfaq më të vjetra
     show_thread: Shfaq rrjedhën
     sign_in_to_participate: Bëni hyrjen, që të merrni pjesë te biseda
     title: '%{name}: "%{quote}"'
@@ -1262,21 +1338,20 @@ sq:
       default: "%d %b, %Y, %H:%M"
       month: "%b %Y"
   two_factor_authentication:
-    code_hint: Që të bëhet ripohimi, jepni kodin e prodhuar nga aplikacioni juaj i mirëfilltësimeve
-    description_html: Nëse aktivizoni <strong>mirëfilltësimin dyfaktorësh</strong>, hyrja do të kërkojë të jeni në zotërim të telefonit tuaj, i cili do të prodhojë kod që duhet ta jepni.
+    add: Shtoje
     disable: Çaktivizoje
-    enable: Aktivizoje
+    disabled_success: Mirëfilltësimi dyfaktorësh u çaktivizua me sukses
+    edit: Përpunojeni
     enabled: Mirëfilltësimi dyfaktorësh është i aktivizuar
     enabled_success: Mirëfilltësimi dyfaktorësh u aktivizua me sukses
     generate_recovery_codes: Prodho kode rikthimesh
-    instructions_html: "<strong>Skanojeni këtë kod QR me Google Authenticator ose një aplikacion TOTP të ngjashëm në telefonin tuaj</strong>. Tani e tutje, ai aplikacion do të prodhojë kode të cilët duhet t’i jepni kur bëni hyrje."
     lost_recovery_codes: Kodet e rikthimit ju lejojnë të rifitoni hyrje në llogarinë tuaj, nëse humbni telefonin tuaj. Nëse keni humbur kodet tuaj të rikthimit, mund t’i prodhoni sërish këtu. Kodet tuaj të vjetër të rikthimit do të bëhen të pavlefshëm.
-    manual_instructions: 'Nëse nuk skanoni dot kodin QR dhe ju duhet ta jepni dorazi, ja e fshehta si tekst i thjeshtë:'
+    methods: Metoda dyfaktorëshi
+    otp: Aplikacion mirëfilltësimesh
     recovery_codes: Kopjeruani kode rikthimesh
     recovery_codes_regenerated: Kodet e rikthimeve u riprodhuan me sukses
     recovery_instructions_html: Në ndodhtë që të humbni hyrje te telefoni juaj, mund të përdorni një nga kodet e rikthimit më poshtë, që të rifitoni hyrje te llogaria juaj. <strong>Mbajini të parrezikuar kodet e rikthimeve</strong>. Për shembull, mund t’i shtypni dhe t’i ruani tok me dokumente të tjerë të rëndësishëm.
-    setup: Ujdiseni
-    wrong_code: Kodi i dhënë është i pavlefshëm! A janë të sakta koha e shërbyesit dhe koha e pajisjes?
+    webauthn: Kyçe sigurie
   user_mailer:
     backup_ready:
       explanation: Kërkuat një kopjeruajtje të plotë të llogarisë tuaj Mastodon. E keni gati për shkarkim!
@@ -1291,6 +1366,7 @@ sq:
     warning:
       explanation:
         disable: Kur llogaria juaj është e ngrirë, të dhënat në llogarinë tuaj mbeten të paprekura, por s’mund të kryeni ndonjë veprim, para se të shkyçet.
+        sensitive: Kartelat tuaja media të ngarkuara dhe media e lidhur prej jush do të trajtohet si rezervat.
         silence: Kur llogaria juaj është e kufizuar, mesazhet tuaj në këtë shërbyes do t’i shohin vetëm personat që ju ndjekin tashmë. dhe mund të liheni jashtë nga lista të ndryshme publike. Megjithatë, të tjerët prapë mund t’ju ndjekin dorazi.
         suspend: Llogaria juaj është pezulluar, dhe krejt mesazhet tuaja dhe kartelat media të ngarkuara janë hequr në mënyrë të pakthyeshme nga ky shërbyes, dhe nga shërbyesit te të cilët kishit ndjekës.
       get_in_touch: Që të lidheni me ekipin e %{instance}, mund t’i përgjigjeni këtij email-i.
@@ -1299,11 +1375,13 @@ sq:
       subject:
         disable: Llogaria juaj %{acct} është ngrirë
         none: Sinjalizim për %{acct}
+        sensitive: Medias postuar nga llogaria juaj %{acct} i është vënë shenjë si rezervat
         silence: Llogaria juaj %{acct} është kufizuar
         suspend: Llogaria juaj %{acct} është pezulluar
       title:
         disable: Llogari e ngrirë
         none: Sinjalizim
+        sensitive: Medias tuaj i është vënë shenjë si rezervat
         silence: Llogari e kufizuar
         suspend: Llogari e pezulluar
     welcome:
@@ -1324,9 +1402,11 @@ sq:
       tips: Ndihmëza
       title: Mirë se vini, %{name}!
   users:
+    blocked_email_provider: Ky furnizues shërbimi email nuk lejohet
     follow_limit_reached: S’mund të ndiqni më tepër se %{limit} persona
     generic_access_help_html: Problem me hyrjen në llogarinë tuaj? Për asistencë mund të lidheni me %{email}
     invalid_email: Adresa email është e pavlefshme
+    invalid_email_mx: Adresa email s’duket se ekziston
     invalid_otp_token: Kod dyfaktorësh i pavlefshëm
     invalid_sign_in_token: Kod sigurie i pavlefshëm
     otp_lost_help_html: Nëse humbi hyrjen te të dy, mund të lidheni me %{email}
@@ -1336,3 +1416,20 @@ sq:
   verification:
     explanation_html: 'Mundeni <strong>të verifikoni veten si i zoti i lidhjeve te tejtëdhënat e profilit tuaj</strong>. Për këtë, sajti i lidhur duhet të përmbajë një lidhje për te profili juaj Mastodon. Lidhje për te ajo <strong>duhet</strong> të ketë një atribut <code>rel="me"</code>. Lënda tekst e lidhjes nuk ngre peshë. Ja një shembull:'
     verification: Verifikim
+  webauthn_credentials:
+    add: Shton kyç të ri sigurie
+    create:
+      error: Pati një problem me shtimin e kyçeve tuaj të sigurisë. Ju lutemi, riprovoni.
+      success: Kyçi juaj i sigurisë u shtua me sukses.
+    delete: Fshije
+    delete_confirmation: Jeni i sigurt se doni të fshihet ky kyç sigurie?
+    description_html: Nëse aktivizoni <strong>mirëfilltësim me kyç sigurie</strong>, hyrja do të kërkojë që të përdorni një nga kyçet tuaj të sigurisë.
+    destroy:
+      error: Pati një problem me fshirjen e kyçit tuaj të sigurisë. Ju lutemi, riprovoni.
+      success: Kyçi juaj i sigurisë u fshi me sukses.
+    invalid_credential: Kyç i pavlefshëm sigurie
+    nickname_hint: Jepni nofkën e kyçit tuaj të ri të sigurisë
+    not_enabled: S’e keni aktivizuar ende WebAuthn-in
+    not_supported: Ky shfletues nuk mbulon kyçe sigurie
+    otp_required: Që të përdoren kyçe sigurie, ju lutemi, së pari aktivizoni mirëfilltësimin dyfaktorësh.
+    registered_on: Regjistruar më %{date}

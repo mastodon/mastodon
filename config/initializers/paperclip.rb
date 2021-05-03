@@ -62,7 +62,7 @@ if ENV['S3_ENABLED'] == 'true'
     s3_options: {
       signature_version: ENV.fetch('S3_SIGNATURE_VERSION') { 'v4' },
       http_open_timeout: ENV.fetch('S3_OPEN_TIMEOUT'){ '5' }.to_i,
-      http_read_timeout: 5,
+      http_read_timeout: ENV.fetch('S3_READ_TIMEOUT'){ '5' }.to_i,
       http_idle_timeout: 5,
       retry_limit: 0,
     }
@@ -107,10 +107,20 @@ elsif ENV['SWIFT_ENABLED'] == 'true'
 else
   Paperclip::Attachment.default_options.merge!(
     storage: :filesystem,
-    use_timestamp: true,
     path: File.join(ENV.fetch('PAPERCLIP_ROOT_PATH', File.join(':rails_root', 'public', 'system')), ':prefix_path:class', ':attachment', ':id_partition', ':style', ':filename'),
     url: ENV.fetch('PAPERCLIP_ROOT_URL', '/system') + '/:prefix_url:class/:attachment/:id_partition/:style/:filename',
   )
 end
 
 Paperclip.options[:content_type_mappings] = { csv: Import::FILE_TYPES }
+
+# In some places in the code, we rescue this exception, but we don't always
+# load the S3 library, so it may be an undefined constant:
+
+unless defined?(Seahorse)
+  module Seahorse
+    module Client
+      class NetworkingError < StandardError; end
+    end
+  end
+end

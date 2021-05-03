@@ -71,7 +71,15 @@ class ActivityPub::Activity
   end
 
   def object_uri
-    @object_uri ||= value_or_id(@object)
+    @object_uri ||= begin
+      str = value_or_id(@object)
+
+      if str&.start_with?('bear:')
+        Addressable::URI.parse(str).query_values['u']
+      else
+        str
+      end
+    end
   end
 
   def unsupported_object_type?
@@ -110,13 +118,13 @@ class ActivityPub::Activity
   end
 
   def notify_about_reblog(status)
-    NotifyService.new.call(status.reblog.account, status)
+    NotifyService.new.call(status.reblog.account, :reblog, status)
   end
 
   def notify_about_mentions(status)
     status.active_mentions.includes(:account).each do |mention|
       next unless mention.account.local? && audience_includes?(mention.account)
-      NotifyService.new.call(mention.account, mention)
+      NotifyService.new.call(mention.account, :mention, mention)
     end
   end
 
@@ -159,20 +167,20 @@ class ActivityPub::Activity
 
   def dereference_object!
     return unless @object.is_a?(String)
-    return if invalid_origin?(@object)
 
-    object = fetch_resource(@object, true, signed_fetch_account)
-    return unless object.present? && object.is_a?(Hash) && supported_context?(object)
+    dereferencer = ActivityPub::Dereferencer.new(@object, permitted_origin: @account.uri, signature_account: signed_fetch_account)
 
-    @object = object
+    @object = dereferencer.object unless dereferencer.object.nil?
   end
 
   def signed_fetch_account
+    return Account.find(@options[:delivered_to_account_id]) if @options[:delivered_to_account_id].present?
+
     first_mentioned_local_account || first_local_follower
   end
 
   def first_mentioned_local_account
-    audience = (as_array(@json['to']) + as_array(@json['cc'])).uniq
+    audience = (as_array(@json['to']) + as_array(@json['cc'])).map { |x| value_or_id(x) }.uniq
     local_usernames = audience.select { |uri| ActivityPub::TagManager.instance.local_uri?(uri) }
                               .map { |uri| ActivityPub::TagManager.instance.uri_to_local_id(uri, :username) }
 

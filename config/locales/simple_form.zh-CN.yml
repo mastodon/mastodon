@@ -65,8 +65,17 @@ zh-CN:
         data: 从其他 Mastodon 服务器导出的 CSV 文件
       invite_request:
         text: 这会有助于我们处理你的申请
+      ip_block:
+        comment: 可选。请记住为什么您添加了此规则。
+        expires_in: IP 地址是一种有限的资源，它们有时是共享的，并且常常变化。因此，不推荐无限期的 IP 封禁。
+        ip: 输入 IPv4 或 IPv6 地址。您可以使用 CIDR 语法屏蔽整个范围。小心不要屏蔽自己！
+        severities:
+          no_access: 阻止访问所有资源
+          sign_up_requires_approval: 新的注册需要您的批准
+        severity: 选择如何处理来自此 IP 的请求。
       sessions:
         otp: 输入你手机应用上生成的双重认证码，或者任意一个恢复代码：
+        webauthn: 如果是 USB 密钥，请确保将其插入，如有必要，请点击它。
       tag:
         name: 您只能改变字母的大小写，让它更易读
       user:
@@ -91,6 +100,7 @@ zh-CN:
         types:
           disable: 禁用
           none: 忽略
+          sensitive: 敏感内容
           silence: 静音
           suspend: 停用并永久删除账号数据
         warning_preset_id: 使用预置警告
@@ -116,6 +126,7 @@ zh-CN:
         expires_in: 失效时间
         fields: 个人资料附加信息
         header: 个人资料页横幅图片
+        honeypot: "%{label} (请勿填写)"
         inbox_url: 中继站收件箱的 URL
         irreversible: 丢弃而非隐藏
         locale: 界面语言
@@ -135,6 +146,7 @@ zh-CN:
         setting_default_privacy: 嘟文默认可见范围
         setting_default_sensitive: 总是将我发送的媒体文件标记为敏感内容
         setting_delete_modal: 在删除嘟文前询问我
+        setting_disable_swiping: 禁用滑动动作
         setting_display_media: 媒体展示
         setting_display_media_default: 默认
         setting_display_media_hide_all: 隐藏全部
@@ -168,6 +180,13 @@ zh-CN:
         comment: 评论
       invite_request:
         text: 你为什么想要加入？
+      ip_block:
+        comment: 备注
+        ip: IP 地址
+        severities:
+          no_access: 阻止访问
+          sign_up_requires_approval: 限制注册
+        severity: 规则
       notification_emails:
         digest: 发送摘要邮件
         favourite: 当有用户喜欢了我的嘟文时，发送电子邮件提醒我
@@ -188,4 +207,7 @@ zh-CN:
     required:
       mark: "*"
       text: 必填
+    title:
+      sessions:
+        webauthn: 使用您的安全密钥登录
     'yes': 是

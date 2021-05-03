@@ -1,12 +1,9 @@
 # frozen_string_literal: true
 
 class Settings::Migration::RedirectsController < Settings::BaseController
-  layout 'admin'
-
-  before_action :authenticate_user!
-  before_action :require_not_suspended!
-
   skip_before_action :require_functional!
+
+  before_action :require_not_suspended!
 
   def new
     @redirect = Form::Redirect.new
@@ -37,9 +34,5 @@ class Settings::Migration::RedirectsController < Settings::BaseController
 
   def resource_params
     params.require(:form_redirect).permit(:acct, :current_password, :current_username)
-  end
-
-  def require_not_suspended!
-    forbidden if current_account.suspended?
   end
 end

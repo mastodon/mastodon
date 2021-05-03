@@ -45,7 +45,7 @@ class AccountFilter
   def scope_for(key, value)
     case key.to_s
     when 'local'
-      Account.local
+      Account.local.without_instance_actor
     when 'remote'
       Account.remote
     when 'by_domain'

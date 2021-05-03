@@ -60,6 +60,21 @@
         title: 2FA-gjenopprettingskodene ble endret
       unlock_instructions:
         subject: 'Mastodon: Instruksjoner for å gjenåpne konto'
+      webauthn_credential:
+        added:
+          explanation: Følgende sikkerhetsnøkkel har blitt lagt til i kontoen din
+          subject: 'Mastodon: Ny sikkerhetsnøkkel'
+          title: En ny sikkerhetsnøkkel har blitt lagt til
+        deleted:
+          explanation: Følgende sikkerhetsnøkkel har blitt slettet fra kontoen din
+          subject: 'Mastodon: Sikkerhetsnøkkel slettet'
+          title: En av sikkerhetsnøklene dine har blitt slettet
+      webauthn_disabled:
+        subject: 'Mastodon: Autentisering med sikkerhetsnøkler ble skrudd av'
+        title: Sikkerhetsnøkler deaktivert
+      webauthn_enabled:
+        subject: 'Mastodon: Sikkerhetsnøkkelsautentisering ble skrudd på'
+        title: Sikkerhetsnøkler aktivert
     omniauth_callbacks:
       failure: Kunne ikke autentisere deg fra %{kind} fordi "%{reason}".
       success: Vellykket autentisering fra %{kind}.

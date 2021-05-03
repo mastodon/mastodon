@@ -60,6 +60,7 @@ es:
       one: Seguidor
       other: Seguidores
     following: Siguiendo
+    instance_actor_flash: Esta cuenta es un actor virtual utilizado para representar al servidor en sí mismo y no a ningún usuario individual. Se utiliza para propósitos de la federación y no se debe suspender.
     joined: Se unió el %{date}
     last_active: última conexión
     link_verified_on: La propiedad de este vínculo fue verificada el %{date}
@@ -98,6 +99,7 @@ es:
       add_email_domain_block: Poner en lista negra el dominio del correo
       approve: Aprobar
       approve_all: Aprobar todos
+      approved_msg: La solicitud de registro de %{username} ha sido aprobada correctamente
       are_you_sure: "¿Estás seguro?"
       avatar: Avatar
       by_domain: Dominio
@@ -111,8 +113,10 @@ es:
       confirm: Confirmar
       confirmed: Confirmado
       confirming: Confirmando
+      delete: Eliminar datos
       deleted: Borrado
       demote: Degradar
+      destroyed_msg: Los datos de %{username} están ahora en cola para ser eliminados inminentemente
       disable: Deshabilitar
       disable_two_factor_authentication: Desactivar autenticación de dos factores
       disabled: Deshabilitada
@@ -123,10 +127,12 @@ es:
       email_status: E-mail Status
       enable: Habilitar
       enabled: Habilitada
+      enabled_msg: Se ha descongelado correctamente la cuenta de %{username}
       followers: Seguidores
       follows: Sigue
       header: Cabecera
       inbox_url: URL de la bandeja de entrada
+      invite_request_text: Razones para unirse
       invited_by: Invitado por
       ip: IP
       joined: Unido
@@ -138,6 +144,8 @@ es:
       login_status: Estado del login
       media_attachments: Multimedia
       memorialize: Convertir en memorial
+      memorialized: Cuenta conmemorativa
+      memorialized_msg: "%{username} se convirtió con éxito en una cuenta conmemorativa"
       moderation:
         active: Activo
         all: Todos
@@ -158,10 +166,14 @@ es:
       public: Público
       push_subscription_expires: Expiración de la suscripción PuSH
       redownload: Refrescar avatar
+      redownloaded_msg: Se actualizó correctamente el perfil de %{username} desde el origen
       reject: Rechazar
       reject_all: Rechazar todos
+      rejected_msg: La solicitud de registro de %{username} ha sido rechazada con éxito
       remove_avatar: Eliminar el avatar
       remove_header: Eliminar cabecera
+      removed_avatar_msg: Se ha eliminado exitosamente la imagen del avatar de %{username}
+      removed_header_msg: Se ha eliminado con éxito la imagen de cabecera de %{username}
       resend_confirmation:
         already_confirmed: Este usuario ya está confirmado
         send: Reenviar el correo electrónico de confirmación
@@ -178,6 +190,8 @@ es:
       search: Buscar
       search_same_email_domain: Otros usuarios con el mismo dominio de correo
       search_same_ip: Otros usuarios con la misma IP
+      sensitive: Sensible
+      sensitized: marcado como sensible
       shared_inbox_url: URL de bandeja compartida
       show:
         created_reports: Reportes hechos por esta cuenta
@@ -187,13 +201,19 @@ es:
       statuses: Estados
       subscribe: Suscribir
       suspended: Suspendido
+      suspension_irreversible: Los datos de esta cuenta han sido irreversiblemente eliminados. Puedes deshacer la suspensión de la cuenta para hacerla utilizable, pero no recuperará los datos que tenías anteriormente.
+      suspension_reversible_hint_html: La cuenta ha sido suspendida y los datos se eliminarán completamente el %{date}. Hasta entonces, la cuenta puede ser restaurada sin ningún efecto perjudicial. Si desea eliminar todos los datos de la cuenta inmediatamente, puede hacerlo a continuación.
       time_in_queue: Esperando en cola %{time}
       title: Cuentas
       unconfirmed_email: Correo electrónico sin confirmar
+      undo_sensitized: Desmarcar como sensible
       undo_silenced: Des-silenciar
       undo_suspension: Des-suspender
+      unsilenced_msg: Se quitó con éxito el límite de la cuenta %{username}
       unsubscribe: Desuscribir
+      unsuspended_msg: Se quitó con éxito la suspensión de la cuenta de %{username}
       username: Nombre de usuario
+      view_domain: Ver resumen del dominio
       warn: Adevertir
       web: Web
       whitelisted: Añadido a la lista blanca
@@ -208,12 +228,14 @@ es:
         create_domain_allow: Crear Permiso de Dominio
         create_domain_block: Crear Bloqueo de Dominio
         create_email_domain_block: Crear Bloqueo de Dominio de Correo Electrónico
+        create_ip_block: Crear regla IP
         demote_user: Degradar Usuario
         destroy_announcement: Eliminar Anuncio
         destroy_custom_emoji: Eliminar Emoji Personalizado
         destroy_domain_allow: Eliminar Permiso de Dominio
         destroy_domain_block: Eliminar Bloqueo de Dominio
         destroy_email_domain_block: Eliminar Bloqueo de Dominio de Correo Electrónico
+        destroy_ip_block: Eliminar regla IP
         destroy_status: Eliminar Estado
         disable_2fa_user: Deshabilitar 2FA
         disable_custom_emoji: Deshabilitar Emoji Personalizado
@@ -226,13 +248,16 @@ es:
         reopen_report: Reabrir Reporte
         reset_password_user: Restablecer Contraseña
         resolve_report: Resolver Reporte
+        sensitive_account: Marcar multimedia en tu cuenta como sensible
         silence_account: Silenciar Cuenta
         suspend_account: Suspender Cuenta
         unassigned_report: Desasignar Reporte
+        unsensitive_account: Desmarcar multimedia en tu cuenta como sensible
         unsilence_account: Dejar de Silenciar Cuenta
         unsuspend_account: Dejar de Suspender Cuenta
         update_announcement: Actualizar Anuncio
         update_custom_emoji: Actualizar Emoji Personalizado
+        update_domain_block: Actualizar el Bloqueo de Dominio
         update_status: Actualizar Estado
       actions:
         assigned_to_self_report: "%{name} se ha asignado la denuncia %{target} a sí mismo"
@@ -244,12 +269,14 @@ es:
         create_domain_allow: "%{name} ha añadido a la lista blanca el dominio %{target}"
         create_domain_block: "%{name} bloqueó el dominio %{target}"
         create_email_domain_block: "%{name} puso en lista negra el dominio de correos %{target}"
+        create_ip_block: "%{name} creó la regla para la IP %{target}"
         demote_user: "%{name} degradó al usuario %{target}"
         destroy_announcement: "%{name} eliminó el anuncio %{target}"
         destroy_custom_emoji: "%{name} destruyó el emoji %{target}"
         destroy_domain_allow: "%{name} ha eliminado el dominio %{target} de la lista blanca"
         destroy_domain_block: "%{name} desbloqueó el dominio %{target}"
         destroy_email_domain_block: "%{name} puso en lista blanca el dominio de correos %{target}"
+        destroy_ip_block: "%{name} eliminó la regla para la IP %{target}"
         destroy_status: "%{name} eliminó el estado de %{target}"
         disable_2fa_user: "%{name} deshabilitó el requerimiento de dos factores para el usuario %{target}"
         disable_custom_emoji: "%{name} deshabilitó el emoji %{target}"
@@ -262,13 +289,16 @@ es:
         reopen_report: "%{name} ha reabierto la denuncia %{target}"
         reset_password_user: "%{name} restauró la contraseña del usuario %{target}"
         resolve_report: "%{name} ha resuelto la denuncia %{target}"
+        sensitive_account: "%{name} marcó multimedia de %{target} como sensible"
         silence_account: "%{name} silenció la cuenta de %{target}"
         suspend_account: "%{name} suspendió la cuenta de %{target}"
         unassigned_report: "%{name} ha desasignado la denuncia %{target}"
+        unsensitive_account: "%{name} desmarcó multimedia de %{target} como sensible"
         unsilence_account: "%{name} desactivó el silenciado de la cuenta de %{target}"
         unsuspend_account: "%{name} desactivó la suspensión de la cuenta de %{target}"
         update_announcement: "%{name} actualizó el anuncio %{target}"
         update_custom_emoji: "%{name} actualizó el emoji %{target}"
+        update_domain_block: "%{name} actualizó el bloqueo de dominio para %{target}"
         update_status: "%{name} actualizó el estado de %{target}"
       deleted_status: "(estado borrado)"
       empty: No se encontraron registros.
@@ -372,6 +402,8 @@ es:
           silence: Silenciar
           suspend: Suspender
         title: Nuevo bloque de dominio
+      obfuscate: Ocultar nombre de dominio
+      obfuscate_hint: Oculta parcialmente el nombre de dominio en la lista si mostrar la lista de limitaciones de dominio está habilitado
       private_comment: Comentario privado
       private_comment_hint: Comentario sobre esta limitación de dominio para el uso interno por parte de los moderadores.
       public_comment: Comentario público
@@ -411,6 +443,7 @@ es:
     instances:
       by_domain: Dominio
       delivery_available: Entrega disponible
+      empty: No se encontraron dominios.
       known_accounts:
         one: "%{count} cuenta conocida"
         other: "%{count} cuentas conocidas"
@@ -434,6 +467,21 @@ es:
         expired: Expiradas
         title: Filtrar
       title: Invitaciones
+    ip_blocks:
+      add_new: Crear regla
+      created_msg: Nueva regla IP añadida con éxito
+      delete: Eliminar
+      expires_in:
+        '1209600': 2 semanas
+        '15778476': 6 meses
+        '2629746': 1 mes
+        '31556952': 1 año
+        '86400': 1 día
+        '94670856': 3 años
+      new:
+        title: Crear nueva regla IP
+      no_ip_block_selected: No se han cambiado reglas IP ya que no se ha seleccionado ninguna
+      title: Reglas IP
     pending_accounts:
       title: Cuentas pendientes (%{count})
     relationships:
@@ -473,6 +521,8 @@ es:
       comment:
         none: Ninguno
       created_at: Denunciado
+      forwarded: Reenviado
+      forwarded_to: Reenviado a %{domain}
       mark_as_resolved: Marcar como resuelto
       mark_as_unresolved: Marcar como no resuelto
       notes:
@@ -516,6 +566,7 @@ es:
       domain_blocks_rationale:
         title: Mostrar la razón de ser
       enable_bootstrap_timeline_accounts:
+        desc_html: Hacer que los nuevos usuarios sigan automáticamente las cuentas configuradas para que su línea temporal de inicio no comience vacía
         title: Habilitar seguimientos predeterminados para usuarios nuevos
       hero:
         desc_html: Mostrado en la página principal. Recomendable al menos 600x100px. Por defecto se establece a la miniatura de la instancia
@@ -542,6 +593,9 @@ es:
         min_invite_role:
           disabled: Nadie
           title: Permitir invitaciones de
+        require_invite_text:
+          desc_html: Cuando los registros requieren aprobación manual, haga obligatorio en la invitaciones el campo "¿Por qué quieres unirte?" en lugar de opcional
+          title: Requiere a los nuevos usuarios rellenar un texto de solicitud de invitación
       registrations_mode:
         modes:
           approved: Se requiere aprobación para registrarse
@@ -681,8 +735,11 @@ es:
       prefix_sign_up: "¡Únete a Mastodon hoy!"
       suffix: "¡Con una cuenta podrás seguir a gente, publicar novedades e intercambiar mensajes con usuarios de cualquier servidor de Mastodon y más!"
     didnt_get_confirmation: "¿No recibió el correo de confirmación?"
+    dont_have_your_security_key: "¿No tienes tu clave de seguridad?"
     forgot_password: "¿Olvidaste tu contraseña?"
     invalid_reset_password_token: El token de reinicio de contraseña es inválido o expiró. Por favor pide uno nuevo.
+    link_to_otp: Introduce un código de dos factores desde tu teléfono o un código de recuperación
+    link_to_webauth: Utilice su dispositivo de clave de seguridad
     login: Iniciar sesión
     logout: Cerrar sesión
     migrate_account: Mudarse a otra cuenta
@@ -707,7 +764,9 @@ es:
       functional: Su cuenta está totalmente operativa.
       pending: Su solicitud está pendiente de revisión por nuestros administradores. Eso puede tardar algún tiempo. Usted recibirá un correo electrónico si el solicitud sea aprobada.
       redirecting_to: Tu cuenta se encuentra inactiva porque está siendo redirigida a %{acct}.
+    too_fast: Formulario enviado demasiado rápido, inténtelo de nuevo.
     trouble_logging_in: "¿Problemas para iniciar sesión?"
+    use_security_key: Usar la clave de seguridad
   authorize_follow:
     already_following: Ya estás siguiendo a esta cuenta
     already_requested: Ya has enviado una solicitud de seguimiento a esa cuenta
@@ -732,6 +791,7 @@ es:
   date:
     formats:
       default: "%b %d, %Y"
+      with_month_name: "%B %d, %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}h"
@@ -796,6 +856,7 @@ es:
       request: Solicitar tu archivo
       size: Tamaño
     blocks: Personas que has bloqueado
+    bookmarks: Marcadores
     csv: CSV
     domain_blocks: Bloqueos de dominios
     lists: Listas
@@ -863,6 +924,8 @@ es:
     status: Estado de la verificación
     view_proof: Ver prueba
   imports:
+    errors:
+      over_rows_processing_limit: contiene más de %{count} filas
     modes:
       merge: Unir
       merge_long: Mantener registros existentes y añadir nuevos
@@ -872,6 +935,7 @@ es:
     success: Sus datos se han cargado correctamente y serán procesados en brevedad
     types:
       blocking: Lista de bloqueados
+      bookmarks: Marcadores
       domain_blocking: Lista de dominios bloqueados
       following: Lista de seguidos
       muting: Lista de silenciados
@@ -992,6 +1056,14 @@ es:
           quadrillion: Q
           thousand: m
           trillion: T
+  otp_authentication:
+    code_hint: Introduce el código generado por tu aplicación de autentificación para confirmar
+    description_html: Si habilitas <strong>autenticación de dos factores</strong> a través de una aplicación de autenticación, el ingreso requerirá que estés en posesión de tu teléfono, que generará códigos para que ingreses.
+    enable: Activar
+    instructions_html: "<strong>Escanea este código QR desde Google Authenticator o una aplicación similar en tu teléfono</strong>. A partir de ahora, esta aplicación generará códigos que tendrásque ingresar cuando quieras iniciar sesión."
+    manual_instructions: 'Si no puedes escanear el código QR y necesitas introducirlo manualmente, este es el secreto en texto plano:'
+    setup: Configurar
+    wrong_code: "¡El código ingresado es inválido! ¿Es correcta la hora del dispositivo y el servidor?"
   pagination:
     newer: Más nuevo
     next: Próximo
@@ -1020,6 +1092,7 @@ es:
   relationships:
     activity: Actividad de la cuenta
     dormant: Inactivo
+    follow_selected_followers: Seguir a los seguidores seleccionados
     followers: Seguidores
     following: Siguiendo
     invited: Invitado
@@ -1034,7 +1107,7 @@ es:
     remove_selected_follows: Dejar de seguir a los usuarios seleccionados
     status: Estado de la cuenta
   remote_follow:
-    acct: Ingesa tu usuario@dominio desde el que quieres seguir
+    acct: Ingresa tu usuario@dominio desde el que quieres seguir
     missing_resource: No se pudo encontrar la URL de redirección requerida para tu cuenta
     no_account_html: "¿No tienes una cuenta? Puedes <a href='%{sign_up_path}' target='_blank'>registrarte aqui</a>"
     proceed: Proceder a seguir
@@ -1116,6 +1189,7 @@ es:
     profile: Perfil
     relationships: Siguiendo y seguidores
     two_factor_authentication: Autenticación de dos factores
+    webauthn_authentication: Claves de seguridad
   spam_check:
     spam_detected: Este es un informe automatizado. Se ha detectado correo no deseado.
   statuses:
@@ -1154,7 +1228,9 @@ es:
         other: "%{count} votos"
       vote: Vota
     show_more: Mostrar más
-    show_thread: Mostrar hilván
+    show_newer: Mostrar más recientes
+    show_older: Mostrar más antiguos
+    show_thread: Mostrar discusión
     sign_in_to_participate: Regístrate para participar en la conversación
     title: '%{name}: "%{quote}"'
     visibilities:
@@ -1262,21 +1338,20 @@ es:
       default: "%d de %b del %Y, %H:%M"
       month: "%b %Y"
   two_factor_authentication:
-    code_hint: Ingresa el código generado por tu aplicación de autenticación para confirmar
-    description_html: Si habilitas la <strong>autenticación de dos factores</strong>, se requerirá estar en posesión de su teléfono, lo que generará tokens para que usted pueda iniciar sesión.
+    add: Añadir
     disable: Deshabilitar
-    enable: Habilitar
+    disabled_success: Autenticación de doble factor desactivada correctamente
+    edit: Editar
     enabled: La autenticación de dos factores está activada
     enabled_success: Verificación de dos factores activada exitosamente
     generate_recovery_codes: generar códigos de recuperación
-    instructions_html: "<strong>Escanea este código QR desde Google Authenticator o una aplicación similar en su teléfono</strong>. Desde ahora, esta aplicación va a generar tokens que tienes que ingresar cuando quieras iniciar sesión."
     lost_recovery_codes: Los códigos de recuperación te permiten obtener acceso a tu cuenta si pierdes tu teléfono. Si has perdido tus códigos de recuperación, puedes regenerarlos aquí. Tus viejos códigos de recuperación se harán inválidos.
-    manual_instructions: 'Si no puedes escanear el código QR y necesitas introducirlo manualmente, este es el secreto en texto plano:'
+    methods: Métodos de autenticación de doble factor
+    otp: Aplicación de autenticación
     recovery_codes: Hacer copias de seguridad de tus códigos de recuperación
     recovery_codes_regenerated: Códigos de recuperación regenerados con éxito
     recovery_instructions_html: Si pierdes acceso a tu teléfono, puedes usar uno de los siguientes códigos de recuperación para obtener acceso a tu cuenta. <strong>Mantenlos a salvo</strong>. Por ejemplo, puedes imprimirlos y guardarlos con otros documentos importantes.
-    setup: Configurar
-    wrong_code: "¡El código ingresado es inválido! ¿El dispositivo y tiempo del servidor están correctos?"
+    webauthn: Claves de seguridad
   user_mailer:
     backup_ready:
       explanation: Has solicitado una copia completa de tu cuenta de Mastodon. ¡Ya está preparada para descargar!
@@ -1291,6 +1366,7 @@ es:
     warning:
       explanation:
         disable: Mientras su cuenta esté congelada, la información de su cuenta permanecerá intacta, pero no puede realizar ninguna acción hasta que se desbloquee.
+        sensitive: Los archivos multimedia subidos y vinculados serán tratados como sensibles.
         silence: Mientras su cuenta está limitada, sólo las personas que ya le están siguiendo verán sus toots en este servidor, y puede que se le excluya de varios listados públicos. Sin embargo, otros pueden seguirle manualmente.
         suspend: Su cuenta ha sido suspendida, y todos tus toots y tus archivos multimedia subidos han sido irreversiblemente eliminados de este servidor, y de los servidores donde tenías seguidores.
       get_in_touch: Puede responder a esta dirección de correo electrónico para ponerse en contacto con el personal de %{instance}.
@@ -1299,11 +1375,13 @@ es:
       subject:
         disable: Su cuenta %{acct} ha sido congelada
         none: Advertencia para %{acct}
+        sensitive: Tu cuenta %{acct} ha sido marcada como sensible
         silence: Su cuenta %{acct} ha sido limitada
         suspend: Su cuenta %{acct} ha sido suspendida
       title:
         disable: Cuenta congelada
         none: Advertencia
+        sensitive: Tu multimedia ha sido marcado como sensible
         silence: Cuenta limitada
         suspend: Cuenta suspendida
     welcome:
@@ -1324,9 +1402,11 @@ es:
       tips: Consejos
       title: Te damos la bienvenida a bordo, %{name}!
   users:
+    blocked_email_provider: Este proveedor de correo electrónico no está permitido
     follow_limit_reached: No puedes seguir a más de %{limit} personas
     generic_access_help_html: "¿Tienes problemas para acceder a tu cuenta? Puedes ponerte en contacto con %{email} para conseguir ayuda"
     invalid_email: La dirección de correo es incorrecta
+    invalid_email_mx: La dirección de correo electrónico parece inexistente
     invalid_otp_token: Código de dos factores incorrecto
     invalid_sign_in_token: Código de seguridad no válido
     otp_lost_help_html: Si perdiste al acceso a ambos, puedes ponerte en contancto con %{email}
@@ -1336,3 +1416,20 @@ es:
   verification:
     explanation_html: 'Puedes <strong> verificarte a ti mismo como el dueño de los links en los metadatos de tu perfil </strong>. Para eso, el sitio vinculado debe contener un vínculo a tu perfil de Mastodon. El vínculo en tu sitio <strong> debe </strong> tener un atributo <code> rel="me"</code>. El texto del vínculo no importa. Aquí un ejemplo:'
     verification: Verificación
+  webauthn_credentials:
+    add: Agregar nueva clave de seguridad
+    create:
+      error: Hubo un problema al añadir su clave de seguridad. Por favor, inténtalo de nuevo.
+      success: Su clave de seguridad se ha añadido correctamente.
+    delete: Eliminar
+    delete_confirmation: "¿Estás seguro de que quieres eliminar esta clave de seguridad?"
+    description_html: Si habilita la <strong>autenticación de clave de seguridad</strong>, iniciar sesión requerirá que utilice una de sus claves de seguridad.
+    destroy:
+      error: Hubo un problema al añadir su clave de seguridad. Por favor, inténtalo de nuevo.
+      success: Su clave de seguridad se ha eliminado correctamente.
+    invalid_credential: Clave de seguridad no válida
+    nickname_hint: Introduzca el apodo de su nueva clave de seguridad
+    not_enabled: Aún no has activado WebAuthn
+    not_supported: Este navegador no soporta claves de seguridad
+    otp_required: Para usar claves de seguridad, por favor habilite primero la autenticación de doble factor.
+    registered_on: Registrado el %{date}

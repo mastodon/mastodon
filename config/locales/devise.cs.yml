@@ -60,6 +60,19 @@ cs:
         title: Záložní kódy pro 2FA změněny
       unlock_instructions:
         subject: 'Mastodon: Instrukce pro odemčení účtu'
+      webauthn_credential:
+        added:
+          explanation: Následující bezpečnostní klíč byl přidán k vašemu účtu
+          subject: 'Mastodon: Nový bezpečnostní klíč'
+          title: Byl přidán nový bezpečnostní klíč
+        deleted:
+          explanation: Následující bezpečnostní klíč byl odstraněn z vašeho účtu
+          subject: 'Mastodon: Bezpečnostní klíč byl smazán'
+          title: Jeden z vašich bezpečnostních klíčů byl smazán
+      webauthn_disabled:
+        title: Bezpečnostní klíče zakázány
+      webauthn_enabled:
+        title: Bezpečnostní klíče povoleny
     omniauth_callbacks:
       failure: Nelze vás ověřit z %{kind}, protože „%{reason}“.
       success: Úspěšně ověřeno z účtu %{kind}.
