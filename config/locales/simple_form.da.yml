@@ -26,11 +26,12 @@ da:
         scheduled_at: Lad stå tomt for straks at publicere bekendtgørelsen
         starts_at: Valgfri. Såfremt din bekendtgørelse er knyttet til et bestemt tidsinterval
       defaults:
-        autofollow: Folk der har oprettet sig gennem invitationen vil automatisk følge dig
-        avatar: PNG, GIF eller JPG. Højest %{size}. Vil blive skaleret ned til %{dimensions}px
-        bot: Denne konto udfører hovedsageligt automatiserede handlinger og bliver muligvis ikke overvåget
-        context: En eller flere sammenhænge hvor filteret skal være gældende
-        current_username: For at bekræfte, angiv venligst brugernavnet på den aktuelle konto
+        autofollow: Personer, som har tilmeldt sig via invitationen, vil automatisk følge dig
+        avatar: PNG, GIF eller JPG. Maks. %{size}. Auto-nedskaleres til %{dimensions}px
+        bot: Signalér til andre, at denne konto primært udfører automatiserede handlinger og muligvis ikke monitoreres
+        context: En eller flere kontekster, hvor filteret skal være gældende
+        current_password: Angiv af sikkerhedsårsager adgangskoden til den aktuelle konto
+        current_username: For at bekræfte, angiv brugernavnet for den aktuelle konto
         digest: Sendes kun efter en lang periode med inaktivitet og kun hvis du har modtaget nogle personlige beskeder i dit fravær
         email: Du vil få tilsendt en bekræftelses e-mail
         fields: Du kan have op til 4 ting vist som en tabel på din profil
