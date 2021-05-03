@@ -1,3 +1,4 @@
+# frozen_string_literal: false
 # Fix adapted from https://github.com/thoughtbot/terrapin/pull/5
 
 module Terrapin
@@ -26,7 +27,7 @@ module Terrapin
 
       read_fds = [output, error]
 
-      while !read_fds.empty?
+      until read_fds.empty?
         to_read, = IO.select(read_fds)
 
         if to_read.include?(output)
@@ -45,7 +46,7 @@ module Terrapin
       result = ''
 
       begin
-        while partial_result = io.read_nonblock(8192)
+        while (partial_result = io.read_nonblock(8192))
           result << partial_result
         end
       rescue EOFError, Errno::EPIPE
@@ -60,8 +61,3 @@ module Terrapin
 end
 
 Terrapin::CommandLine::MultiPipe.prepend(Terrapin::MultiPipeExtensions)
-
-# And because paperclip-av-transcoder still depends on the version of
-# the gem that was named cocaine...
-
-Cocaine::CommandLine::MultiPipe.prepend(Terrapin::MultiPipeExtensions)
