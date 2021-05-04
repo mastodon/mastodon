@@ -85,28 +85,34 @@ da:
       tag:
         name: Du kan kun ændre bogstavtyperne for eksempelvis at gøre det mere læsbart
       user:
-        chosen_languages: Når markeret, vil kun trut i de valgte sprog blive vist på offentlige tidslinjer
+        chosen_languages: Når markeret, vil kun indlæg på de valgte sprog fremgå på offentlige tidslinjer
     labels:
       account:
         fields:
           name: Etiket
           value: Indhold
+      account_alias:
+        acct: Kaldenavn på den gamle konto
+      account_migration:
+        acct: Kaldenavn på den nye konto
       account_warning_preset:
+        text: Forvalgstekst
         title: Titel
       admin_account_action:
-        include_statuses: Inkluder rapporteret toot i email
-        send_email_notification: Underret brugeren per email
+        include_statuses: Inkludér anmeldte indlæg i e-mailen
+        send_email_notification: Advisér brugeren pr. e-mail
         text: Tilpasset advarsel
         type: Handling
         types:
-          disable: Deaktiver
-          none: Gør intet
-          sensitive: Følsomt
-          silence: Silence
-          suspend: Suspendér og slet kontodata uopretteligt
-        warning_preset_id: Brug en forudindstillet advarsel
+          disable: Frys
+          none: Send en advarsel
+          sensitive: Sensitive
+          silence: Begræns
+          suspend: Suspendér
+        warning_preset_id: Brug en forvalgsadvarsel
       announcement:
-        all_day: Heldags begivenhed
+        all_day: Heldagsbegivenhed
+        ends_at: Slut på begivenhed
         scheduled_at: Planlæg offentliggørelse
         text: Bekendtgørelse
       defaults:
