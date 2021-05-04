@@ -53,7 +53,9 @@ module Mastodon
         index.specification.lock!
       end
 
-      ActiveRecord::Base.configurations[Rails.env]['pool'] = options[:concurrency] + 1
+      configurations = ActiveRecord::Base.configurations.to_h
+      configurations[Rails.env]['pool'] = options[:concurrency] + 1
+      ActiveRecord::Base.configurations = configurations
 
       pool    = Concurrent::FixedThreadPool.new(options[:concurrency])
       added   = Concurrent::AtomicFixnum.new(0)
