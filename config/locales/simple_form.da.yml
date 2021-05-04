@@ -114,37 +114,40 @@ da:
         all_day: Heldagsbegivenhed
         ends_at: Slut på begivenhed
         scheduled_at: Planlæg offentliggørelse
+        starts_at: Start af begivenhed
         text: Bekendtgørelse
       defaults:
-        autofollow: Inviter til at følge din konto
+        autofollow: Invitér til at følge din konto
         avatar: Profilbillede
-        bot: Dette er en robot konto
-        chosen_languages: Filtrer sprog
-        confirm_new_password: Bekræft din nye adgangskode
+        bot: Dette er en bot-konto
+        chosen_languages: Filtrér sprog
+        confirm_new_password: Bekræft ny adgangskode
         confirm_password: Bekræft adgangskode
-        context: Filtrer sammenhænge
-        current_password: Nuværende adgangskode
+        context: Filtrér kontekster
+        current_password: Aktuel adgangskode
         data: Data
-        discoverable: Vis denne konto i oversigten
+        discoverable: Foreslå konto til andre
         display_name: Visningsnavn
-        email: E-mail adresse
-        expires_in: Udløber efter
-        fields: Profil metadata
+        email: E-mailadresse
+        expires_in: Udløb efter
+        fields: Profilmetadata
         header: Overskrift
-        inbox_url: Link til relay indbakken
+        honeypot: "%{label} (udfyld ikke)"
+        inbox_url: URL til videreformidlingsindbakken
         irreversible: Ignorer istedet for at skjule
-        locale: Sprog på interface
-        locked: Lås konto
-        max_uses: Højeste antal benyttelser
+        locale: Grænsefladesprog
+        locked: Kræv følgeanmodninger
+        max_uses: Maks. antal afbenyttelser
         new_password: Ny adgangskode
         note: Biografi
-        otp_attempt: To-faktor kode
+        otp_attempt: Tofaktorkode
         password: Adgangskode
-        phrase: Nøgleord eller sætning
+        phrase: Nøgleord/-sætning
         setting_advanced_layout: Aktivér avanceret webgrænseflade
-        setting_aggregate_reblogs: Gruppér boosts i tidslinjer
-        setting_auto_play_gif: Afspil automatisk animerede GIFs
-        setting_boost_modal: Vis bekræftelses dialog før du fremhæver
+        setting_aggregate_reblogs: Gruppér boosts på tidslinjer
+        setting_auto_play_gif: Autoafspil animerede GIF'er
+        setting_boost_modal: Vis bekræftelsesdialog inden boosting
+        setting_crop_images: Beskær billeder i ikke-ekspanderede indlæg til 16x9
         setting_default_language: Sprog for opslag
         setting_default_privacy: Privatliv
         setting_default_sensitive: Marker altid medier som værende følsomt
