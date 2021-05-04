@@ -30,6 +30,11 @@ class FollowService < BaseService
 
     ActivityTracker.increment('activity:interactions')
 
+    # When an account follows someone for the first time, avoid showing
+    # an empty home feed while the follow request is being processed
+    # and the feeds are being merged
+    mark_home_feed_as_partial! if @source_account.not_following_anyone?
+
     if (@target_account.locked? && !@options[:bypass_locked]) || @source_account.silenced? || @target_account.activitypub?
       request_follow!
     elsif @target_account.local?
@@ -38,6 +43,10 @@ class FollowService < BaseService
   end
 
   private
+
+  def mark_home_feed_as_partial!
+    redis.set("account:#{@source_account.id}:regeneration", true, nx: true, ex: 1.day.seconds)
+  end
 
   def following_not_possible?
     @target_account.nil? || @target_account.id == @source_account.id || @target_account.suspended?
