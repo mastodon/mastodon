@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require_relative '../../lib/sidekiq/middleware/server/resolv_workaround'
+
 namespace    = ENV.fetch('REDIS_NAMESPACE') { nil }
 redis_params = { url: ENV['REDIS_URL'], driver: :hiredis }
 
@@ -12,14 +14,8 @@ Sidekiq.configure_server do |config|
 
   config.server_middleware do |chain|
     chain.add SidekiqErrorHandler
-  end
-
-  config.server_middleware do |chain|
     chain.add SidekiqUniqueJobs::Middleware::Server
-  end
-
-  config.client_middleware do |chain|
-    chain.add SidekiqUniqueJobs::Middleware::Client
+    chain.add Sidekiq::Middleware::Server::ResolvWorkaround
   end
 
   SidekiqUniqueJobs::Server.configure(config)
