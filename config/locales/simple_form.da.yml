@@ -58,18 +58,23 @@ da:
         whole_word: Når nøgleordet/-udtrykket er rent alfanumerisk, bruges det kun, såfremt det matcher hele ordet
       domain_allow:
         domain: Dette domæne vil kunne hente data, og dermed behandle og gemme indgående data, fra denne server
+      email_domain_block:
+        domain: Dette kan være det domænenavn, der vises i e-mailadressen, MX-posten domænet opløser til eller IP'en på den server, som MX-posten opløser til. Disse tjekkes ved brugertilmelding, og tilmeldingen afvises.
+        with_dns_records: Et forsøg på at løse det givne domænes DNS-poster foretages og resultaterne blokeres ligeledes
       featured_tag:
-        name: 'Du kunne måske tænke dig at bruge en af følgende:'
+        name: 'Du vil formentlig ønske at bruge en af flg.:'
       form_challenge:
-        current_password: Du indtræder et sikkert område
+        current_password: Du bevæger dig ind på et sikkert område
       imports:
-        data: CSV fil eksporteret fra en anden Mastodon server
+        data: CSV-fil eksporteret fra anden Mastodon-server
       invite_request:
         text: Dette vil hjælpe os med at gennemgå din ansøgning
       ip_block:
-        comment: Valgfri. Husk hvorfor du har tilføjet denne regel.
+        comment: Valgfri. Husk, hvorfor du tilføjede denne regel.
+        expires_in: IP-adresser er en begrænset ressource, de deles undertiden og skifter ofte hænder. Af denne grund anbefales ubegrænsede IP-blokke ikke.
+        ip: Angiv en IPv4- eller IPv6-adresse. Du kan blokere hele intervaller vha. CIDR-syntaksen. Vær forsigtig med ikke at låse dig ude!
         severities:
-          no_access: Bloker for adgangen til alle ressourcer
+          no_access: Blokér adgang til alle ressourcer
           sign_up_requires_approval: Nye tilmeldinger kræver din godkendelse
       sessions:
         otp: 'Indtast to-faktor koden der generes af appen af appen på din telefon eller brug en af din genoprettelses koder:'
