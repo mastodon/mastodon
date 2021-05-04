@@ -19,10 +19,10 @@ class ExistingUsernameValidator < ActiveModel::EachValidator
       str unless Account.find_remote(username, domain)
     end
 
-    if usernames_with_no_accounts.any? && options[:multiple]
-      record.errors.add(attribute, I18n.t('existing_username_validator.not_found_multiple', usernames: usernames_with_no_accounts.join(', ')))
-    elsif usernames_with_no_accounts.any? || usernames_and_domains.size > 1
-      record.errors.add(attribute, I18n.t('existing_username_validator.not_found'))
+    if options[:multiple]
+      record.errors.add(attribute, I18n.t('existing_username_validator.not_found_multiple', usernames: usernames_with_no_accounts.join(', '))) if usernames_with_no_accounts.any?
+    else
+      record.errors.add(attribute, I18n.t('existing_username_validator.not_found')) if usernames_with_no_accounts.any? || usernames_and_domains.size > 1
     end
   end
 end
