@@ -229,6 +229,7 @@ da:
         create_domain_block: Opret domæneblokering
         create_email_domain_block: Opret e-maildomæneblokering
         create_ip_block: Opret IP-regel
+        create_unavailable_domain: Opret Utilgængeligt Domæne
         demote_user: Degradere bruger
         destroy_announcement: Slet bekendtgørelse
         destroy_custom_emoji: Slet tilpasset emoji
@@ -237,6 +238,7 @@ da:
         destroy_email_domain_block: Slet e-maildomæneblokering
         destroy_ip_block: Slet IP-regel
         destroy_status: Slet status
+        destroy_unavailable_domain: Slet Utilgængeligt Domæne
         disable_2fa_user: Deaktivér 2FA
         disable_custom_emoji: Deaktivér tilpasset emoji
         disable_user: Deaktivér bruger
@@ -270,6 +272,7 @@ da:
         create_domain_block_html: "%{name} blokerede domænet %{target}"
         create_email_domain_block_html: "%{name} blokerede e-maildomænet %{target}"
         create_ip_block_html: "%{name} oprettede en regel for IP %{target}"
+        create_unavailable_domain_html: "%{name} stoppede levering til domænet %{target}"
         demote_user_html: "%{name} degraderede bruger %{target}"
         destroy_announcement_html: "%{name} slettede bekendtgørelsen %{target}"
         destroy_custom_emoji_html: "%{name} fjernede emojien %{target}"
@@ -278,6 +281,7 @@ da:
         destroy_email_domain_block_html: "%{name} afblokerede e-maildomænet %{target}"
         destroy_ip_block_html: "%{name} slettede en regel for IP %{target}"
         destroy_status_html: "%{name} fjernede statussen fra %{target}"
+        destroy_unavailable_domain_html: "%{name} genoptog levering til domænet %{target}"
         disable_2fa_user_html: "%{name} deaktiverede tofaktorkravet for brugeren %{target}"
         disable_custom_emoji_html: "%{name} deaktiverede humørikonet %{target}"
         disable_user_html: "%{name} deaktiverede indlogning for brugeren %{target}"
@@ -449,8 +453,25 @@ da:
       title: Følg-anbefalinger
       unsuppress: Genetablér følg-anbefaling
     instances:
+      back_to_all: Alle
+      back_to_limited: Begrænset
+      back_to_warning: Advarsel
       by_domain: Domæne
+      delivery:
+        all: Alle
+        clear: Ryd leveringsfejl
+        restart: Genstart levering
+        stop: Stop levering
+        title: Levering
+        unavailable: Utilgængelig
+        unavailable_message: Levering utilgængelig
+        warning: Advarsel
+        warning_message:
+          one: Leveringsfejl %{count} dag
+          other: Leveringsfejl %{count} dage
       delivery_available: Levering er tilgængelig
+      delivery_error_days: Leveringsfejldage
+      delivery_error_hint: Er levering ikke mulig i %{count} dage, markeres den automatisk som ikke-leverbar.
       empty: Ingen domæner fundet.
       known_accounts:
         one: "%{count} kendt konto"
