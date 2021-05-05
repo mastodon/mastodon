@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_25_135952) do
+ActiveRecord::Schema.define(version: 2021_05_05_174616) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -1114,30 +1114,34 @@ ActiveRecord::Schema.define(version: 2021_04_25_135952) do
   SQL
   add_index "account_summaries", ["account_id"], name: "index_account_summaries_on_account_id", unique: true
 
-  create_view "follow_recommendations", sql_definition: <<-SQL
+  create_view "follow_recommendations", materialized: true, sql_definition: <<-SQL
       SELECT t0.account_id,
       sum(t0.rank) AS rank,
       array_agg(t0.reason) AS reason
-     FROM ( SELECT accounts.id AS account_id,
+     FROM ( SELECT account_summaries.account_id,
               ((count(follows.id))::numeric / (1.0 + (count(follows.id))::numeric)) AS rank,
               'most_followed'::text AS reason
-             FROM ((follows
-               JOIN accounts ON ((accounts.id = follows.target_account_id)))
+             FROM (((follows
+               JOIN account_summaries ON ((account_summaries.account_id = follows.target_account_id)))
                JOIN users ON ((users.account_id = follows.account_id)))
-            WHERE ((users.current_sign_in_at >= (now() - 'P30D'::interval)) AND (accounts.suspended_at IS NULL) AND (accounts.moved_to_account_id IS NULL) AND (accounts.silenced_at IS NULL) AND (accounts.locked = false) AND (accounts.discoverable = true))
-            GROUP BY accounts.id
+               LEFT JOIN follow_recommendation_suppressions ON ((follow_recommendation_suppressions.account_id = follows.target_account_id)))
+            WHERE ((users.current_sign_in_at >= (now() - 'P30D'::interval)) AND (account_summaries.sensitive = false) AND (follow_recommendation_suppressions.id IS NULL))
+            GROUP BY account_summaries.account_id
            HAVING (count(follows.id) >= 5)
           UNION ALL
-           SELECT accounts.id AS account_id,
+           SELECT account_summaries.account_id,
               (sum((status_stats.reblogs_count + status_stats.favourites_count)) / (1.0 + sum((status_stats.reblogs_count + status_stats.favourites_count)))) AS rank,
               'most_interactions'::text AS reason
-             FROM ((status_stats
+             FROM (((status_stats
                JOIN statuses ON ((statuses.id = status_stats.status_id)))
-               JOIN accounts ON ((accounts.id = statuses.account_id)))
-            WHERE ((statuses.id >= (((date_part('epoch'::text, (now() - 'P30D'::interval)) * (1000)::double precision))::bigint << 16)) AND (accounts.suspended_at IS NULL) AND (accounts.moved_to_account_id IS NULL) AND (accounts.silenced_at IS NULL) AND (accounts.locked = false) AND (accounts.discoverable = true))
-            GROUP BY accounts.id
+               JOIN account_summaries ON ((account_summaries.account_id = statuses.account_id)))
+               LEFT JOIN follow_recommendation_suppressions ON ((follow_recommendation_suppressions.account_id = statuses.account_id)))
+            WHERE ((statuses.id >= (((date_part('epoch'::text, (now() - 'P30D'::interval)) * (1000)::double precision))::bigint << 16)) AND (account_summaries.sensitive = false) AND (follow_recommendation_suppressions.id IS NULL))
+            GROUP BY account_summaries.account_id
            HAVING (sum((status_stats.reblogs_count + status_stats.favourites_count)) >= (5)::numeric)) t0
     GROUP BY t0.account_id
     ORDER BY (sum(t0.rank)) DESC;
   SQL
+  add_index "follow_recommendations", ["account_id"], name: "index_follow_recommendations_on_account_id", unique: true
+
 end

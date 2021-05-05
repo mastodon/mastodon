@@ -14,9 +14,11 @@ class FollowRecommendation < ApplicationRecord
   belongs_to :account_summary, foreign_key: :account_id
   belongs_to :account, foreign_key: :account_id
 
-  scope :safe, -> { joins(:account_summary).merge(AccountSummary.safe) }
   scope :localized, ->(locale) { joins(:account_summary).merge(AccountSummary.localized(locale)) }
-  scope :filtered, -> { joins(:account_summary).merge(AccountSummary.filtered) }
+
+  def self.refresh
+    Scenic.database.refresh_materialized_view(table_name, concurrently: true, cascade: false)
+  end
 
   def readonly?
     true
