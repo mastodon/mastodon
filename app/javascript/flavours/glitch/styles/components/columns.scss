@@ -839,3 +839,19 @@
     width: auto;
   }
 }
+
+.column-list {
+  margin: 0 20px;
+  border: 1px solid lighten($ui-base-color, 8%);
+  background: darken($ui-base-color, 2%);
+  border-radius: 4px;
+
+  &__empty-message {
+    padding: 40px;
+    text-align: center;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 400;
+    color: $darker-text-color;
+  }
+}
