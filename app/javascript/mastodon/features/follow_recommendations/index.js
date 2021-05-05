@@ -75,10 +75,14 @@ class FollowRecommendations extends ImmutablePureComponent {
 
           {!isLoading && (
             <React.Fragment>
-              <div>
-                {suggestions.map(suggestion => (
+              <div className='column-list'>
+                {suggestions.size > 0 ? suggestions.map(suggestion => (
                   <Account key={suggestion.get('account')} id={suggestion.get('account')} />
-                ))}
+                )) : (
+                  <div className='column-list__empty-message'>
+                    <FormattedMessage id='empty_column.follow_recommendations' defaultMessage='Looks like no suggestions could be generated for you. You can try using search to look for people you might know or explore trending hashtags.' />
+                  </div>
+                )}
               </div>
 
               <div className='column-actions'>
