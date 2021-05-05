@@ -230,6 +230,7 @@ en:
         create_domain_block: Create Domain Block
         create_email_domain_block: Create E-mail Domain Block
         create_ip_block: Create IP rule
+        create_unavailable_domain: Create Unavailable Domain
         demote_user: Demote User
         destroy_announcement: Delete Announcement
         destroy_custom_emoji: Delete Custom Emoji
@@ -238,6 +239,7 @@ en:
         destroy_email_domain_block: Delete e-mail domain block
         destroy_ip_block: Delete IP rule
         destroy_status: Delete Post
+        destroy_unavailable_domain: Delete Unavailable Domain
         disable_2fa_user: Disable 2FA
         disable_custom_emoji: Disable Custom Emoji
         disable_user: Disable User
@@ -271,6 +273,7 @@ en:
         create_domain_block_html: "%{name} blocked domain %{target}"
         create_email_domain_block_html: "%{name} blocked e-mail domain %{target}"
         create_ip_block_html: "%{name} created rule for IP %{target}"
+        create_unavailable_domain_html: "%{name} stopped delivery to domain %{target}"
         demote_user_html: "%{name} demoted user %{target}"
         destroy_announcement_html: "%{name} deleted announcement %{target}"
         destroy_custom_emoji_html: "%{name} destroyed emoji %{target}"
@@ -279,6 +282,7 @@ en:
         destroy_email_domain_block_html: "%{name} unblocked e-mail domain %{target}"
         destroy_ip_block_html: "%{name} deleted rule for IP %{target}"
         destroy_status_html: "%{name} removed post by %{target}"
+        destroy_unavailable_domain_html: "%{name} resumed delivery to domain %{target}"
         disable_2fa_user_html: "%{name} disabled two factor requirement for user %{target}"
         disable_custom_emoji_html: "%{name} disabled emoji %{target}"
         disable_user_html: "%{name} disabled login for user %{target}"
@@ -451,8 +455,25 @@ en:
       title: Follow recommendations
       unsuppress: Restore follow recommendation
     instances:
+      back_to_all: All
+      back_to_limited: Limited
+      back_to_warning: Warning
       by_domain: Domain
+      delivery:
+        all: All
+        clear: Clear delivery errors
+        restart: Restart delivery
+        stop: Stop delivery
+        title: Delivery
+        unavailable: Unavailable
+        unavailable_message: Delivery unavailable
+        warning: Warning
+        warning_message:
+          one: Delivery failure %{count} day
+          other: Delivery failure %{count} days
       delivery_available: Delivery is available
+      delivery_error_days: Delivery error days
+      delivery_error_hint: If delivery is not possible for %{count} days, it will be automatically marked as undeliverable.
       empty: No domains found.
       known_accounts:
         one: "%{count} known account"

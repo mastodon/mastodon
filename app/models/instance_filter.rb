@@ -4,6 +4,8 @@ class InstanceFilter
   KEYS = %i(
     limited
     by_domain
+    warning
+    unavailable
   ).freeze
 
   attr_reader :params
@@ -13,7 +15,7 @@ class InstanceFilter
   end
 
   def results
-    scope = Instance.includes(:domain_block, :domain_allow).order(accounts_count: :desc)
+    scope = Instance.includes(:domain_block, :domain_allow, :unavailable_domain).order(accounts_count: :desc)
 
     params.each do |key, value|
       scope.merge!(scope_for(key, value.to_s.strip)) if value.present?
@@ -32,6 +34,10 @@ class InstanceFilter
       Instance.joins(:domain_allow).reorder(Arel.sql('domain_allows.id desc'))
     when 'by_domain'
       Instance.matches_domain(value)
+    when 'warning'
+      Instance.where(domain: DeliveryFailureTracker.warning_domains)
+    when 'unavailable'
+      Instance.joins(:unavailable_domain)
     else
       raise "Unknown filter: #{key}"
     end
