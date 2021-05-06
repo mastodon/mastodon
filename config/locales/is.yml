@@ -270,6 +270,7 @@ is:
         create_domain_block_html: "%{name} útilokaði lénið %{target}"
         create_email_domain_block_html: "%{name} útilokaði póstlénið %{target}"
         create_ip_block_html: "{name} útbjó reglu fyrir IP-vistfangið %{target}"
+        create_unavailable_domain_html: "%{name} stöðvaði afhendingu til lénsins %{target}"
         demote_user_html: "%{name} lækkaði notandann %{target} í tign"
         destroy_announcement_html: "%{name} eyddi tilkynninguni %{target}"
         destroy_custom_emoji_html: "%{name} henti út tjáningartákninu %{target}"
@@ -278,6 +279,7 @@ is:
         destroy_email_domain_block_html: "%{name} aflétti útilokun af póstléninu %{target}"
         destroy_ip_block_html: "{name} eyddi reglu fyrir IP-vistfangið %{target}"
         destroy_status_html: "%{name} fjarlægði stöðufærslu frá %{target}"
+        destroy_unavailable_domain_html: "%{name} hóf aftur afhendingu til lénsins %{target}"
         disable_2fa_user_html: "%{name} gerði kröfu um tveggja-þátta innskráningu óvirka fyrir notandann %{target}"
         disable_custom_emoji_html: "%{name} gerði tjáningartáknið %{target} óvirkt"
         disable_user_html: "%{name} gerði innskráningu óvirka fyrir notandann %{target}"
@@ -450,8 +452,24 @@ is:
       title: Fylgja meðmælum
       unsuppress: Endurheimta að fylgja meðmælum
     instances:
+      back_to_all: Allt
+      back_to_limited: Takmarkað
+      back_to_warning: Aðvörun
       by_domain: Lén
+      delivery:
+        all: Allt
+        clear: Hreinsa afhendingarvillur
+        restart: Endurræsa afhendingu
+        stop: Stöðva afhendingu
+        title: Afhending
+        unavailable: Ekki tiltækt
+        unavailable_message: Afhending ekki möguleg
+        warning: Aðvörun
+        warning_message:
+          one: '%{count} dagur með villum í afhendingu'
+          other: '%{count} dagar með villum í afhendingu'
       delivery_available: Afhending er til taks
+      delivery_error_days: Dagar með villum í afhendingu
       empty: Engin lén fundust.
       known_accounts:
         one: "%{count} þekktur notandaaðgangur"
