@@ -22,6 +22,7 @@ class InitialStateSerializer < ActiveModel::Serializer
       mascot: instance_presenter.mascot&.file&.url,
       profile_directory: Setting.profile_directory,
       trends: Setting.trends,
+      show_staff_badge: Setting.show_staff_badge,
     }
 
     if object.current_account

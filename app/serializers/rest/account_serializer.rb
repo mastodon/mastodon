@@ -5,7 +5,7 @@ class REST::AccountSerializer < ActiveModel::Serializer
 
   attributes :id, :username, :acct, :display_name, :locked, :bot, :discoverable, :group, :created_at,
              :note, :url, :avatar, :avatar_static, :header, :header_static,
-             :followers_count, :following_count, :statuses_count, :last_status_at
+             :followers_count, :following_count, :statuses_count, :last_status_at, :user_staff, :user_admin, :user_moderator
 
   has_one :moved_to_account, key: :moved, serializer: REST::AccountSerializer, if: :moved_and_not_nested?
 
@@ -95,5 +95,17 @@ class REST::AccountSerializer < ActiveModel::Serializer
 
   def moved_and_not_nested?
     object.moved? && object.moved_to_account.moved_to_account_id.nil?
+  end
+
+  def user_staff
+    object.user_staff?
+  end
+
+  def user_admin
+    object.user_admin?
+  end
+
+  def user_moderator
+    object.user_moderator?
   end
 end

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import Button from 'mastodon/components/button';
 import ImmutablePureComponent from 'react-immutable-pure-component';
-import { autoPlayGif, me, isStaff } from 'mastodon/initial_state';
+import { autoPlayGif, me, isStaff, showStaffBadge } from 'mastodon/initial_state';
 import classNames from 'classnames';
 import Icon from 'mastodon/components/icon';
 import IconButton from 'mastodon/components/icon_button';
@@ -260,6 +260,17 @@ class Header extends ImmutablePureComponent {
       badge = null;
     }
 
+    let staffBadge;
+    if(showStaffBadge){
+      if (account.get('user_staff')) {
+        if (account.get('user_admin')){
+          staffBadge = <div className='account-role admin'>Admin</div>;
+        } else if (account.get('user_moderator')){
+          staffBadge = <div className='account-role moderator'>Moderator</div>;
+        }
+      }
+    }
+
     return (
       <div className={classNames('account__header', { inactive: !!account.get('moved') })} onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
         <div className='account__header__image'>
@@ -290,7 +301,7 @@ class Header extends ImmutablePureComponent {
 
           <div className='account__header__tabs__name'>
             <h1>
-              <span dangerouslySetInnerHTML={displayNameHtml} /> {badge}
+              <span dangerouslySetInnerHTML={displayNameHtml} /> {staffBadge} {badge}
               <small>@{acct} {lockedIcon}</small>
             </h1>
           </div>
