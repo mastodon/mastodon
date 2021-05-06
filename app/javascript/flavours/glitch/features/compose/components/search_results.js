@@ -33,6 +33,12 @@ class SearchResults extends ImmutablePureComponent {
     }
   }
 
+  componentDidUpdate () {
+    if (this.props.searchTerm === '') {
+      this.props.fetchSuggestions();
+    }
+  }
+
   handleLoadMoreAccounts = () => this.props.expandSearch('accounts');
 
   handleLoadMoreStatuses = () => this.props.expandSearch('statuses');
@@ -42,7 +48,7 @@ class SearchResults extends ImmutablePureComponent {
   render () {
     const { intl, results, suggestions, dismissSuggestion, searchTerm } = this.props;
 
-    if (results.isEmpty() && !suggestions.isEmpty()) {
+    if (searchTerm === '' && !suggestions.isEmpty()) {
       return (
         <div className='drawer--results'>
           <div className='trends'>
