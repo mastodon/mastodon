@@ -270,6 +270,7 @@ sq:
         create_domain_block_html: "%{name} bllokoi përkatësinë %{target}"
         create_email_domain_block_html: "%{name} bllokoi përkatësinë email %{target}"
         create_ip_block_html: "%{name} krijoi rregull për IP-në %{target}"
+        create_unavailable_domain_html: "%{name} ndali dërgimin drejt përkatësisë %{target}"
         demote_user_html: "%{name} zhgradoi përdoruesin %{target}"
         destroy_announcement_html: "%{name} fshiu lajmërimin për %{target}"
         destroy_custom_emoji_html: "%{name} asgjësoi emoxhin %{target}"
@@ -278,6 +279,7 @@ sq:
         destroy_email_domain_block_html: "%{name} hoqi bllokimin për përkatësinë email %{target}"
         destroy_ip_block_html: "%{name} fshiu rregull për IP-në %{target}"
         destroy_status_html: "%{name} hoqi gjendje nga %{target}"
+        destroy_unavailable_domain_html: "%{name} rinisi dërgimin drejt përkatësisë %{target}"
         disable_2fa_user_html: "%{name} çaktivizoi domosdoshmërinë për dyfaktorësh për përdoruesin %{target}"
         disable_custom_emoji_html: "%{name} çaktivizoi emoxhin %{target}"
         disable_user_html: "%{name} çaktivizoi hyrje për përdoruesin %{target}"
@@ -450,8 +452,23 @@ sq:
       title: Rekomandime ndjekjeje
       unsuppress: Rikthe rekomandime ndjekjeje
     instances:
+      back_to_all: Krejt
+      back_to_limited: E kufizuar
+      back_to_warning: Kujdes
       by_domain: Përkatësi
+      delivery:
+        all: Krejt
+        clear: Spastro gabime dërgimi
+        restart: Rinis dërgimin
+        stop: Ndale dërgimin
+        title: Dërgim
+        warning: Kujdes
+        warning_message:
+          one: Dështim dërgimi %{count} ditë
+          other: Dështim dërgimi %{count} ditë
       delivery_available: Ka shpërndarje të mundshme
+      delivery_error_days: Ditë gabimi dështimi
+      delivery_error_hint: Nëse dërgimi s’është i mundshëm për %{count} ditë, do t’i vihet shenjë automatikisht si i padërgueshëm.
       empty: S’u gjetën përkatësi.
       known_accounts:
         one: "%{count} llogari e njohur"
