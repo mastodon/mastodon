@@ -272,6 +272,7 @@ co:
         create_domain_block_html: "%{name} hà bluccatu u duminiu %{target}"
         create_email_domain_block_html: "%{name} hà messu u duminiu e-mail %{target} nant’a lista nera"
         create_ip_block_html: "%{name} hà creatu a regula IP %{target}"
+        create_unavailable_domain_html: "%{name} hà firmatu a distribuzione à u duminiu %{target}"
         demote_user_html: "%{name} hà ritrugradatu l’utilizatore %{target}"
         destroy_announcement_html: "%{name} hà sguassatu u novu annunziu %{target}"
         destroy_custom_emoji_html: "%{name} hà sguassatu l'emoji %{target}"
@@ -280,6 +281,7 @@ co:
         destroy_email_domain_block_html: "%{name} hà messu u duminiu e-mail %{target} nant’a lista bianca"
         destroy_ip_block_html: "%{name} hà toltu a regula IP %{target}"
         destroy_status_html: "%{name} hà toltu u statutu di %{target}"
+        destroy_unavailable_domain_html: "%{name} hà riprincipiatu a distribuzione à u duminiu %{target}"
         disable_2fa_user_html: "%{name} hà disattivatu l’identificazione à dui fattori per %{target}"
         disable_custom_emoji_html: "%{name} hà disattivatu l’emoji %{target}"
         disable_user_html: "%{name} hà disattivatu a cunnessione per %{target}"
@@ -457,18 +459,19 @@ co:
       by_domain: Duminiu
       delivery:
         all: Tutti
-        clear: Sguassà l'errori di rimessa
-        restart: Riprincipià a rimessa
-        stop: Firmà a rimessa
-        title: Rimessa
+        clear: Sguassà l'errori di distribuzione
+        restart: Riprincipià a distribuzione
+        stop: Firmà a distribuzione
+        title: Distribuzione
         unavailable: Indispunibule
-        unavailable_message: Rimessa micca dispunibule
+        unavailable_message: Distribuzione micca dispunibule
         warning: Avertimentu
         warning_message:
-          one: Errore di rimessa per %{count} ghjornu
-          other: Errore di rimessa per %{count} ghjorni
-      delivery_available: Rimessa dispunibule
-      delivery_error_days: Ghjorni d'errori di a rimessa
+          one: Errore di distribuzione per %{count} ghjornu
+          other: Errore di distribuzione per %{count} ghjorni
+      delivery_available: Distribuzione dispunibule
+      delivery_error_days: Ghjorni d'errori di a distribuzione
+      delivery_error_hint: S'ellu ùn si pò distribuì à u duminiu per %{count} ghjorni, sarà autumaticamente marcatu cum'è indistribuibile.
       empty: Mancun duminiu trovu.
       known_accounts:
         one: "%{count} contu cunnisciutu"
