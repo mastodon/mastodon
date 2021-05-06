@@ -228,6 +228,7 @@ gl:
         create_domain_block: Crear bloqueo de dominio
         create_email_domain_block: Crear bloqueo de dominio de correo electrónico
         create_ip_block: Crear regra IP
+        create_unavailable_domain: Crear dominio Non dispoñible
         demote_user: Degradar usuaria
         destroy_announcement: Eliminar anuncio
         destroy_custom_emoji: Eliminar emoticona personalizada
@@ -236,6 +237,7 @@ gl:
         destroy_email_domain_block: Eliminar bloqueo de dominio de correo electrónico
         destroy_ip_block: Eliminar regra IP
         destroy_status: Eliminar publicación
+        destroy_unavailable_domain: Eliminar dominio Non dispoñible
         disable_2fa_user: Desactivar 2FA
         disable_custom_emoji: Desactivar emoticona personalizada
         disable_user: Desactivar usuaria
@@ -269,6 +271,7 @@ gl:
         create_domain_block_html: "%{name} bloqueou o dominio %{target}"
         create_email_domain_block_html: "%{name} bloqueou o dominio de email %{target}"
         create_ip_block_html: "%{name} creou regra para o IP %{target}"
+        create_unavailable_domain_html: "%{name} deixou de interactuar co dominio %{target}"
         demote_user_html: "%{name} degradou a usuaria %{target}"
         destroy_announcement_html: "%{name} eliminou o anuncio %{target}"
         destroy_custom_emoji_html: "%{name} destruíu o emoji %{target}"
@@ -277,6 +280,7 @@ gl:
         destroy_email_domain_block_html: "%{name} desbloqueou o dominio de email %{target}"
         destroy_ip_block_html: "%{name} eliminou a regra para o IP %{target}"
         destroy_status_html: "%{name} eliminou a publicación de %{target}"
+        destroy_unavailable_domain_html: "%{name} retomou a interacción co dominio %{target}"
         disable_2fa_user_html: "%{name} desactivou o requerimento do segundo factor para a usuaria %{target}"
         disable_custom_emoji_html: "%{name} desactivou o emoji %{target}"
         disable_user_html: "%{name} desactivou a conexión para a usuaria %{target}"
@@ -449,8 +453,25 @@ gl:
       title: Recomendacións de seguimento
       unsuppress: Restablecer recomendación de seguimento
     instances:
+      back_to_all: Todo
+      back_to_limited: Limitado
+      back_to_warning: Aviso
       by_domain: Dominio
+      delivery:
+        all: Todo
+        clear: Eliminar erros na entrega
+        restart: Restablecer a entrega
+        stop: Deter a entrega
+        title: Entrega
+        unavailable: Non dispoñible
+        unavailable_message: Entrega non dispoñible
+        warning: Aviso
+        warning_message:
+          one: Fallou a entrega %{count} día
+          other: Fallou a entrega %{count} días
       delivery_available: Entrega dispoñíbel
+      delivery_error_days: Días de fallo na entrega
+      delivery_error_hint: Se non é posible a entrega durante %{count} días, será automáticamente marcado como non entregable.
       empty: Non se atopan dominios.
       known_accounts:
         one: "%{count} conta coñecida"
