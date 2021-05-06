@@ -225,6 +225,7 @@ vi:
         create_domain_block: Chặn máy chủ
         create_email_domain_block: Chặn tên miền email
         create_ip_block: Chặn IP
+        create_unavailable_domain: Tạo máy chủ không khả dụng
         demote_user: Xóa chức vụ
         destroy_announcement: Xóa thông báo
         destroy_custom_emoji: Xóa Emoji
@@ -451,10 +452,12 @@ vi:
       by_domain: Máy chủ
       delivery:
         all: Toàn bộ
+        clear: Xóa phân phối lỗi
         restart: Khởi động lại phân phối
         stop: Ngưng phân phối
         title: Phân phối
         unavailable: Không khả dụng
+        unavailable_message: Không thể phân phối
         warning: Cảnh báo
         warning_message:
           other: Phân phối thất bại %{count} ngày
