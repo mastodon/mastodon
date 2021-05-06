@@ -467,7 +467,12 @@ es-AR:
         unavailable: No disponible
         unavailable_message: Entrega no disponible
         warning: Advertencia
+        warning_message:
+          one: Falla de entrega %{count} día
+          other: Falla de entrega %{count} días
       delivery_available: La entrega está disponible
+      delivery_error_days: Días de error de entrega
+      delivery_error_hint: Si la entrega no es posible durante %{count} días, se marcará automáticamente como no entregable.
       empty: No se encontraron dominios.
       known_accounts:
         one: "%{count} cuenta conocida"
