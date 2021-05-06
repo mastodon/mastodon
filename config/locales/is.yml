@@ -229,6 +229,7 @@ is:
         create_domain_block: Búa til lén bannað
         create_email_domain_block: Búa til tölvupóstfang bannað
         create_ip_block: Búa til IP-reglu
+        create_unavailable_domain: Útbúa lén sem ekki er tiltækt
         demote_user: Lækka notanda í tign
         destroy_announcement: Eyða tilkynningu
         destroy_custom_emoji: Eyða sérsniðnu tjáningartákni
@@ -237,6 +238,7 @@ is:
         destroy_email_domain_block: Eyða tölvupóstfangi bannað
         destroy_ip_block: Eyða IP-reglu
         destroy_status: Eyða stöðufærslu
+        destroy_unavailable_domain: Eyða léni sem ekki er tiltækt
         disable_2fa_user: Gera tveggja-þátta auðkenningu óvirka
         disable_custom_emoji: Gera sérsniðið tjáningartákn óvirkt
         disable_user: Gera notanda óvirkan
@@ -470,6 +472,7 @@ is:
           other: '%{count} dagar með villum í afhendingu'
       delivery_available: Afhending er til taks
       delivery_error_days: Dagar með villum í afhendingu
+      delivery_error_hint: Ef afhending er ekki möguleg í %{count} daga, verður það sjálfkrafa merkt sem óafhendanlegt.
       empty: Engin lén fundust.
       known_accounts:
         one: "%{count} þekktur notandaaðgangur"
