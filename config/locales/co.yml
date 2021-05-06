@@ -229,6 +229,7 @@ co:
         create_domain_block: Creà Blucchime di Duminiu
         create_email_domain_block: Creà Blucchime di Duminiu E-mail
         create_ip_block: Creà regula IP
+        create_unavailable_domain: Creà duminiu micca dispunibule
         demote_user: Ritrugadà Utilizatore
         destroy_announcement: Toglie Annunziu
         destroy_custom_emoji: Toglie Emoji Persunalizata
@@ -237,6 +238,7 @@ co:
         destroy_email_domain_block: Toglie blucchime di duminiu e-mail
         destroy_ip_block: Toglie regula IP
         destroy_status: Toglie u statutu
+        destroy_unavailable_domain: Toglie duminiu micca dispunibule
         disable_2fa_user: Disattivà l’identificazione à 2 fattori
         disable_custom_emoji: Disattivà Emoji Persunalizata
         disable_user: Disattivà Utilizatore
@@ -444,7 +446,10 @@ co:
     follow_recommendations:
       language: Per a lingua
       status: Statutu
+      suppress: Piattà a ricumandazione d'abbunamentu
+      suppressed: Piattate
       title: Ricumandazione d'abbunamentu
+      unsuppress: Riattivà a ricumandazione d'abbunamentu
     instances:
       back_to_all: Tutti
       back_to_limited: Limitate
@@ -459,6 +464,9 @@ co:
         unavailable: Indispunibule
         unavailable_message: Rimessa micca dispunibule
         warning: Avertimentu
+        warning_message:
+          one: Errore di rimessa per %{count} ghjornu
+          other: Errore di rimessa per %{count} ghjorni
       delivery_available: Rimessa dispunibule
       delivery_error_days: Ghjorni d'errori di a rimessa
       empty: Mancun duminiu trovu.
