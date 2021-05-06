@@ -229,6 +229,7 @@ es-AR:
         create_domain_block: Crear bloqueo de dominio
         create_email_domain_block: Crear bloqueo de dominio de correo electrónico
         create_ip_block: Crear regla de dirección IP
+        create_unavailable_domain: Crear dominio no disponible
         demote_user: Descender usuario
         destroy_announcement: Eliminar anuncio
         destroy_custom_emoji: Eliminar emoji personalizado
@@ -237,6 +238,7 @@ es-AR:
         destroy_email_domain_block: Eliminar bloqueo de dominio de correo electrónico
         destroy_ip_block: Eliminar regla de dirección IP
         destroy_status: Eliminar mensaje
+        destroy_unavailable_domain: Eliminar dominio no disponible
         disable_2fa_user: Deshabilitar 2FA
         disable_custom_emoji: Deshabilitar emoji personalizado
         disable_user: Deshabilitar usuario
@@ -270,6 +272,7 @@ es-AR:
         create_domain_block_html: "%{name} bloqueó el dominio %{target}"
         create_email_domain_block_html: "%{name} bloqueó el dominio de correo electrónico %{target}"
         create_ip_block_html: "%{name} creó la regla para la dirección IP %{target}"
+        create_unavailable_domain_html: "%{name} detuvo la entrega al dominio %{target}"
         demote_user_html: "%{name} bajó de nivel al usuario %{target}"
         destroy_announcement_html: "%{name} eliminó el anuncio %{target}"
         destroy_custom_emoji_html: "%{name} destruyó el emoji %{target}"
@@ -278,6 +281,7 @@ es-AR:
         destroy_email_domain_block_html: "%{name} desbloqueó el dominio de correo electrónico %{target}"
         destroy_ip_block_html: "%{name} eliminó la regla para la dirección IP %{target}"
         destroy_status_html: "%{name} eliminó el mensaje de %{target}"
+        destroy_unavailable_domain_html: "%{name} reanudó la entrega al dominio %{target}"
         disable_2fa_user_html: "%{name} deshabilitó el requerimiento de dos factores para el usuario %{target}"
         disable_custom_emoji_html: "%{name} deshabilitó el emoji %{target}"
         disable_user_html: "%{name} deshabilitó el inicio de sesión para el usuario %{target}"
@@ -450,7 +454,19 @@ es-AR:
       title: Recomendaciones de cuentas para seguir
       unsuppress: Restablecer recomendaciones de cuentas para seguir
     instances:
+      back_to_all: Todos
+      back_to_limited: Limitados
+      back_to_warning: Advertencia
       by_domain: Dominio
+      delivery:
+        all: Todos
+        clear: Limpiar errores de entrega
+        restart: Reiniciar entrega
+        stop: Detener entrega
+        title: Entrega
+        unavailable: No disponible
+        unavailable_message: Entrega no disponible
+        warning: Advertencia
       delivery_available: La entrega está disponible
       empty: No se encontraron dominios.
       known_accounts:
