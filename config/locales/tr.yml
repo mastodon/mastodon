@@ -229,6 +229,7 @@ tr:
         create_domain_block: Engellenen Alan Adı Oluştur
         create_email_domain_block: E-Posta Alan Adı Engeli Oluştur
         create_ip_block: IP kuralı oluştur
+        create_unavailable_domain: Mevcut Olmayan Alan Adı Oluştur
         demote_user: Kullanıcıyı Düşür
         destroy_announcement: Duyuru Sil
         destroy_custom_emoji: Özel İfadeyi Sil
@@ -237,6 +238,7 @@ tr:
         destroy_email_domain_block: E-posta alan adı engelini sil
         destroy_ip_block: IP kuralını sil
         destroy_status: Durumu Sil
+        destroy_unavailable_domain: Mevcut Olmayan Alan Adı Sil
         disable_2fa_user: 2AD Kapat
         disable_custom_emoji: Özel İfadeyi Devre Dışı Bırak
         disable_user: Kullanıcıyı Devre Dışı Bırak
@@ -270,6 +272,7 @@ tr:
         create_domain_block_html: "%{name}, %{target} alan adını engelledi"
         create_email_domain_block_html: "%{name}, %{target} e-posta alan adını engelledi"
         create_ip_block_html: "%{name}, %{target} IP adresi için kural oluşturdu"
+        create_unavailable_domain_html: "%{name}, %{target} alan adına teslimatı durdurdu"
         demote_user_html: "%{name}, %{target} kullanıcısını düşürdü"
         destroy_announcement_html: "%{name}, %{target} duyurusunu sildi"
         destroy_custom_emoji_html: "%{name}, %{target} emojisini yok etti"
@@ -278,6 +281,7 @@ tr:
         destroy_email_domain_block_html: "%{name}, %{target} e-posta alan adı engelini kaldırdı"
         destroy_ip_block_html: "%{name}, %{target} IP adresi kuralını sildi"
         destroy_status_html: "%{name}, %{target} kullanıcısının gönderisini kaldırdı"
+        destroy_unavailable_domain_html: "%{name}, %{target} alan adına teslimatı sürdürdü"
         disable_2fa_user_html: "%{name}, %{target} kullanıcısının iki aşamalı doğrulama gereksinimini kapattı"
         disable_custom_emoji_html: "%{name}, %{target} emojisini devre dışı bıraktı"
         disable_user_html: "%{name}, %{target} kullanıcısı için oturum açmayı devre dışı bıraktı"
@@ -450,7 +454,15 @@ tr:
       title: Takip önerileri
       unsuppress: Takip önerisini geri getir
     instances:
+      back_to_all: Tümü
+      back_to_limited: Sınırlı
+      back_to_warning: Uyarı
       by_domain: Alan adı
+      delivery:
+        all: Tümü
+        clear: Teslimat hatalarını temizle
+        restart: Teslimatı yeniden başlat
+        stop: Teslimatı durdur
       delivery_available: Teslimat mevcut
       empty: Alan adı bulunamadı.
       known_accounts:
