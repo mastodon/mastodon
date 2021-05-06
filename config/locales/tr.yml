@@ -463,7 +463,16 @@ tr:
         clear: Teslimat hatalarını temizle
         restart: Teslimatı yeniden başlat
         stop: Teslimatı durdur
+        title: Teslimat
+        unavailable: Mevcut Değil
+        unavailable_message: Teslimat mevcut değil
+        warning: Uyarı
+        warning_message:
+          one: Teslimat %{count} gündür başarısız
+          other: Teslimat %{count} gündür başarısız
       delivery_available: Teslimat mevcut
+      delivery_error_days: Teslimat hatası günleri
+      delivery_error_hint: Eğer teslimat %{count} gün boyunca mümkün olmazsa, otomatik olarak teslim edilemiyor olarak işaretlenecek.
       empty: Alan adı bulunamadı.
       known_accounts:
         one: "%{count} bilinen hesap"
