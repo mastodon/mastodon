@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_05_174616) do
+ActiveRecord::Schema.define(version: 2021_05_07_001928) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -136,12 +136,8 @@ ActiveRecord::Schema.define(version: 2021_05_05_174616) do
   create_table "accounts", id: :bigint, default: -> { "timestamp_id('accounts'::text)" }, force: :cascade do |t|
     t.string "username", default: "", null: false
     t.string "domain"
-    t.string "secret", default: "", null: false
     t.text "private_key"
     t.text "public_key", default: "", null: false
-    t.string "remote_url", default: "", null: false
-    t.string "salmon_url", default: "", null: false
-    t.string "hub_url", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "note", default: "", null: false
