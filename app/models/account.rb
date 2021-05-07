@@ -6,12 +6,8 @@
 #  id                            :bigint(8)        not null, primary key
 #  username                      :string           default(""), not null
 #  domain                        :string
-#  secret                        :string           default(""), not null
 #  private_key                   :text
 #  public_key                    :text             default(""), not null
-#  remote_url                    :string           default(""), not null
-#  salmon_url                    :string           default(""), not null
-#  hub_url                       :string           default(""), not null
 #  created_at                    :datetime         not null
 #  updated_at                    :datetime         not null
 #  note                          :text             default(""), not null
@@ -49,12 +45,18 @@
 #  avatar_storage_schema_version :integer
 #  header_storage_schema_version :integer
 #  devices_url                   :string
-#  sensitized_at                 :datetime
 #  suspension_origin             :integer
+#  sensitized_at                 :datetime
 #
 
 class Account < ApplicationRecord
-  self.ignored_columns = %w(subscription_expires_at)
+  self.ignored_columns = %w(
+    subscription_expires_at
+    secret
+    remote_url
+    salmon_url
+    hub_url
+  )
 
   USERNAME_RE = /[a-z0-9_]+([a-z0-9_\.-]+[a-z0-9_]+)?/i
   MENTION_RE  = /(?<=^|[^\/[:word:]])@((#{USERNAME_RE})(?:@[[:word:]\.\-]+[a-z0-9]+)?)/i
