@@ -237,6 +237,7 @@ ru:
         create_domain_block: Блокировка доменов
         create_email_domain_block: Блокировка e-mail доменов
         create_ip_block: Создать IP правило
+        create_unavailable_domain: Создать недоступный домен
         demote_user: Разжалование пользователей
         destroy_announcement: Удаление объявлений
         destroy_custom_emoji: Удаление эмодзи
@@ -245,6 +246,7 @@ ru:
         destroy_email_domain_block: Разблокировка e-mail доменов
         destroy_ip_block: Удалить IP правило
         destroy_status: Удаление постов
+        destroy_unavailable_domain: Удалить недоступный домен
         disable_2fa_user: Отключение 2FA
         disable_custom_emoji: Отключение эмодзи
         disable_user: Заморозка пользователей
@@ -278,6 +280,7 @@ ru:
         create_domain_block_html: "%{name} заблокировал(а) домен %{target}"
         create_email_domain_block_html: "%{name} заблокировал(а) e-mail домен %{target}"
         create_ip_block_html: "%{name} создал(а) правило для IP %{target}"
+        create_unavailable_domain_html: "%{name} приостановил доставку на узел %{target}"
         demote_user_html: "%{name} разжаловал(а) пользователя %{target}"
         destroy_announcement_html: "%{name} удалил(а) объявление %{target}"
         destroy_custom_emoji_html: "%{name} удалил(а) эмодзи %{target}"
@@ -286,6 +289,7 @@ ru:
         destroy_email_domain_block_html: "%{name} снял(а) блокировку с e-mail домена %{target}"
         destroy_ip_block_html: "%{name} удалил(а) правило для IP %{target}"
         destroy_status_html: "%{name} удалил(а) пост пользователя %{target}"
+        destroy_unavailable_domain_html: "%{name} возобновил доставку на узел %{target}"
         disable_2fa_user_html: "%{name} отключил(а) требование двухэтапной авторизации для пользователя %{target}"
         disable_custom_emoji_html: "%{name} отключил(а) эмодзи %{target}"
         disable_user_html: "%{name} заморозил(а) пользователя %{target}"
@@ -460,14 +464,26 @@ ru:
       title: Рекомендации подписок
       unsuppress: Восстановить рекомендацию подписок
     instances:
+      back_to_all: Все узлы
+      back_to_limited: Все ограниченные узлы
+      back_to_warning: Все узлы требующие внимания
       by_domain: Домен
       delivery:
+        all: Все
+        clear: Очистить ошибки доставки
         restart: Перезапустить доставку
         stop: Остановить доставку
         title: По доступности
         unavailable: Недоступные
         unavailable_message: Доставка невозможна
+        warning: Требующие внимания
+        warning_message:
+          one: Доставка невозможна %{count} день
+          few: Доставка невозможна %{count} дня
+          many: Доставка невозможна %{count} дней
+          other: Доставка невозможна %{count} дня
       delivery_available: Доставка возможна
+      delivery_error_days: Дней ошибок доставки
       delivery_error_hint: Если доставка доставка не удастся в течение %{count} дней, он будет автоматически отмечен недоступным для доставки.
       empty: Домены не найдены.
       known_accounts:
