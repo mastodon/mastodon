@@ -23,7 +23,9 @@ RSpec.describe BatchedRemoveStatusService, type: :service do
     status1
     status2
 
-    subject.call([status1, status2])
+    statuses = Status.where(id: [status1.id, status2.id])
+
+    subject.call(statuses)
   end
 
   it 'removes statuses' do
