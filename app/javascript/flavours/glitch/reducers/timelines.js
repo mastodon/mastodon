@@ -9,6 +9,7 @@ import {
   TIMELINE_CONNECT,
   TIMELINE_DISCONNECT,
   TIMELINE_LOAD_PENDING,
+  TIMELINE_MARK_AS_PARTIAL,
 } from 'flavours/glitch/actions/timelines';
 import {
   ACCOUNT_BLOCK_SUCCESS,
@@ -172,6 +173,12 @@ export default function timelines(state = initialState, action) {
       action.timeline,
       initialTimeline,
       map => map.set('online', false).update(action.usePendingItems ? 'pendingItems' : 'items', items => items.first() ? items.unshift(null) : items),
+    );
+  case TIMELINE_MARK_AS_PARTIAL:
+    return state.update(
+      action.timeline,
+      initialTimeline,
+      map => map.set('isPartial', true).set('items', ImmutableList()).set('pendingItems', ImmutableList()).set('unread', 0),
     );
   default:
     return state;

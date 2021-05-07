@@ -7,6 +7,7 @@ import { FormattedMessage } from 'react-intl';
 import { fetchSuggestions } from 'flavours/glitch/actions/suggestions';
 import { changeSetting, saveSettings } from 'flavours/glitch/actions/settings';
 import { requestBrowserPermission } from 'flavours/glitch/actions/notifications';
+import { markAsPartial } from 'flavours/glitch/actions/timelines';
 import Column from 'flavours/glitch/features/ui/components/column';
 import Account from './components/account';
 import Logo from 'flavours/glitch/components/logo';
@@ -40,6 +41,15 @@ class FollowRecommendations extends ImmutablePureComponent {
     if (suggestions.size === 0) {
       dispatch(fetchSuggestions(true));
     }
+  }
+
+  componentWillUnmount () {
+    const { dispatch } = this.props;
+
+    // Force the home timeline to be reloaded when the user navigates
+    // to it; if the user is new, it would've been empty before
+
+    dispatch(markAsPartial('home'));
   }
 
   handleDone = () => {

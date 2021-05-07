@@ -20,6 +20,8 @@ export const TIMELINE_LOAD_PENDING = 'TIMELINE_LOAD_PENDING';
 export const TIMELINE_DISCONNECT   = 'TIMELINE_DISCONNECT';
 export const TIMELINE_CONNECT      = 'TIMELINE_CONNECT';
 
+export const TIMELINE_MARK_AS_PARTIAL = 'TIMELINE_MARK_AS_PARTIAL';
+
 export const loadPending = timeline => ({
   type: TIMELINE_LOAD_PENDING,
   timeline,
@@ -28,6 +30,13 @@ export const loadPending = timeline => ({
 export function updateTimeline(timeline, status, accept) {
   return (dispatch, getState) => {
     if (typeof accept === 'function' && !accept(status)) {
+      return;
+    }
+
+    if (getState().getIn(['timelines', timeline, 'isPartial'])) {
+      // Prevent new items from being added to a partial timeline,
+      // since it will be reloaded anyway
+
       return;
     }
 
@@ -197,4 +206,9 @@ export const disconnectTimeline = timeline => ({
   type: TIMELINE_DISCONNECT,
   timeline,
   usePendingItems: preferPendingItems,
+});
+
+export const markAsPartial = timeline => ({
+  type: TIMELINE_MARK_AS_PARTIAL,
+  timeline,
 });
