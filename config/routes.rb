@@ -97,8 +97,6 @@ Rails.application.routes.draw do
   post '/interact/:id', to: 'remote_interaction#create'
 
   get '/explore', to: 'directories#index', as: :explore
-  get '/explore/:id', to: 'directories#show', as: :explore_hashtag
-
   get '/settings', to: redirect('/settings/profile')
 
   namespace :settings do
