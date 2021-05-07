@@ -229,6 +229,7 @@ ca:
         create_domain_block: Crea un bloqueig de domini
         create_email_domain_block: Crea un bloqueig de domini d'adreça de correu
         create_ip_block: Crear regla IP
+        create_unavailable_domain: Crea un domini no disponible
         demote_user: Degrada l'usuari
         destroy_announcement: Esborra l'anunci
         destroy_custom_emoji: Esborra l'emoji personalitzat
@@ -237,6 +238,7 @@ ca:
         destroy_email_domain_block: Esborra el bloqueig de domini de l'adreça de correu
         destroy_ip_block: Eliminar regla IP
         destroy_status: Esborra el tut
+        destroy_unavailable_domain: Esborra domini no disponible
         disable_2fa_user: Desactiva 2FA
         disable_custom_emoji: Desactiva l'emoji personalitzat
         disable_user: Deshabilita l'usuari
@@ -270,6 +272,7 @@ ca:
         create_domain_block_html: "%{name} ha bloquejat el domini %{target}"
         create_email_domain_block_html: "%{name} ha bloquejat el domini de correu electrònic %{target}"
         create_ip_block_html: "%{name} ha creat una regla per a l'IP %{target}"
+        create_unavailable_domain_html: "%{name} ha aturat el lliurament al domini %{target}"
         demote_user_html: "%{name} ha degradat l'usuari %{target}"
         destroy_announcement_html: "%{name} ha eliminat l'anunci %{target}"
         destroy_custom_emoji_html: "%{name} ha destruït l'emoji %{target}"
@@ -278,6 +281,7 @@ ca:
         destroy_email_domain_block_html: "%{name} ha desbloquejat el domini de correu electrònic %{target}"
         destroy_ip_block_html: "%{name} ha esborrat la regla per a l'IP %{target}"
         destroy_status_html: "%{name} ha eliminat el tut de %{target}"
+        destroy_unavailable_domain_html: "%{name} ha représ el lliurament delivery al domini %{target}"
         disable_2fa_user_html: "%{name} ha desactivat el requisit de dos factors per a l'usuari %{target}"
         disable_custom_emoji_html: "%{name} ha desactivat l'emoji %{target}"
         disable_user_html: "%{name} ha desactivat l'accés del usuari %{target}"
@@ -450,7 +454,19 @@ ca:
       title: Seguir les recomanacions
       unsuppress: Restaurar les recomanacions de seguiment
     instances:
+      back_to_all: Totes
+      back_to_limited: Limitades
+      back_to_warning: Avís
       by_domain: Domini
+      delivery:
+        all: Totes
+        clear: Neteja els errors de lliurament
+        restart: Reinicia el lliurament
+        stop: Atura el lliurament
+        title: Lliurament
+        unavailable: No disponible
+        unavailable_message: El lliurament no està disponible
+        warning: Avís
       delivery_available: El lliurament està disponible
       empty: No s'han trobat dominis.
       known_accounts:
