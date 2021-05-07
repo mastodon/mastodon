@@ -2,7 +2,7 @@ import React, { PureComponent, Fragment } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { IntlProvider, addLocaleData } from 'react-intl';
-import { List as ImmutableList, fromJS } from 'immutable';
+import { fromJS } from 'immutable';
 import { getLocale } from 'mastodon/locales';
 import { getScrollbarWidth } from 'flavours/glitch/util/scrollbar';
 import MediaGallery from 'flavours/glitch/components/media_gallery';
@@ -30,6 +30,8 @@ export default class MediaContainer extends PureComponent {
     media: null,
     index: null,
     time: null,
+    backgroundColor: null,
+    options: null,
   };
 
   handleOpenMedia = (media, index) => {
@@ -39,20 +41,32 @@ export default class MediaContainer extends PureComponent {
     this.setState({ media, index });
   }
 
-  handleOpenVideo = (video, time) => {
-    const media = ImmutableList([video]);
+  handleOpenVideo = (options) => {
+    const { components } = this.props;
+    const { media } = JSON.parse(components[options.componetIndex].getAttribute('data-props'));
+    const mediaList = fromJS(media);
 
     document.body.classList.add('with-modals--active');
     document.documentElement.style.marginRight = `${getScrollbarWidth()}px`;
 
-    this.setState({ media, time });
+    this.setState({ media: mediaList, options });
   }
 
   handleCloseMedia = () => {
     document.body.classList.remove('with-modals--active');
     document.documentElement.style.marginRight = 0;
 
-    this.setState({ media: null, index: null, time: null });
+    this.setState({
+      media: null,
+      index: null,
+      time: null,
+      backgroundColor: null,
+      options: null,
+    });
+  }
+
+  setBackgroundColor = color => {
+    this.setState({ backgroundColor: color });
   }
 
   render () {
@@ -73,6 +87,7 @@ export default class MediaContainer extends PureComponent {
               ...(hashtag ? { hashtag: fromJS(hashtag) } : {}),
 
               ...(componentName === 'Video' ? {
+                componetIndex: i,
                 onOpenVideo: this.handleOpenVideo,
               } : {
                 onOpenMedia: this.handleOpenMedia,
@@ -85,13 +100,16 @@ export default class MediaContainer extends PureComponent {
             );
           })}
 
-          <ModalRoot onClose={this.handleCloseMedia}>
+          <ModalRoot backgroundColor={this.state.backgroundColor} onClose={this.handleCloseMedia}>
             {this.state.media && (
               <MediaModal
                 media={this.state.media}
                 index={this.state.index || 0}
-                time={this.state.time}
+                currentTime={this.state.options?.startTime}
+                autoPlay={this.state.options?.autoPlay}
+                volume={this.state.options?.defaultVolume}
                 onClose={this.handleCloseMedia}
+                onChangeBackgroundColor={this.setBackgroundColor}
               />
             )}
           </ModalRoot>

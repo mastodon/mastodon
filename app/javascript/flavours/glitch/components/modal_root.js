@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import 'wicg-inert';
 import { createBrowserHistory } from 'history';
+import { multiply } from 'color-blend';
 
 export default class ModalRoot extends React.PureComponent {
   static contextTypes = {
@@ -11,6 +12,11 @@ export default class ModalRoot extends React.PureComponent {
   static propTypes = {
     children: PropTypes.node,
     onClose: PropTypes.func.isRequired,
+    backgroundColor: PropTypes.shape({
+      r: PropTypes.number,
+      g: PropTypes.number,
+      b: PropTypes.number,
+    }),
     noEsc: PropTypes.bool,
   };
 
@@ -68,9 +74,7 @@ export default class ModalRoot extends React.PureComponent {
       Promise.resolve().then(() => {
         this.activeElement.focus({ preventScroll: true });
         this.activeElement = null;
-      }).catch((error) => {
-        console.error(error);
-      });
+      }).catch(console.error);
 
       this.handleModalClose();
     }
@@ -120,10 +124,16 @@ export default class ModalRoot extends React.PureComponent {
       );
     }
 
+    let backgroundColor = null;
+
+    if (this.props.backgroundColor) {
+      backgroundColor = multiply({ ...this.props.backgroundColor, a: 1 }, { r: 0, g: 0, b: 0, a: 0.7 });
+    }
+
     return (
       <div className='modal-root' ref={this.setRef}>
         <div style={{ pointerEvents: visible ? 'auto' : 'none' }}>
-          <div role='presentation' className='modal-root__overlay' onClick={onClose} />
+          <div role='presentation' className='modal-root__overlay' onClick={onClose} style={{ backgroundColor: backgroundColor ? `rgba(${backgroundColor.r}, ${backgroundColor.g}, ${backgroundColor.b}, 0.7)` : null }} />
           <div role='dialog' className='modal-root__container'>{children}</div>
         </div>
       </div>
