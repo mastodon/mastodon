@@ -459,7 +459,7 @@ nl:
       by_domain: Domein
       delivery:
         all: Alles
-        clear: Bezorgfouten verwijderen
+        clear: Bezorgfouten weghalen
         restart: Bezorging herstarten
         stop: Bezorging beëindigen
         title: Bezorging
@@ -468,8 +468,10 @@ nl:
         warning: Waarschuwing
         warning_message:
           one: Bezorgingsfouten voor %{count} dag
-          other: Bezorgingsfouten voor %{count} dagen
+          other: Bezorgfout voor %{count} dagen
       delivery_available: Bezorging is mogelijk
+      delivery_error_days: Dagen met bezorgfouten
+      delivery_error_hint: Wanneer de bezorging voor %{count} dagen niet mogelijk is, wordt de bezorging automatisch als niet beschikbaar gemarkeerd.
       empty: Geen domeinen gevonden.
       known_accounts:
         one: "%{count} bekend account"
