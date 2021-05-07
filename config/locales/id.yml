@@ -460,7 +460,13 @@ id:
         stop: Setop pengiriman
         title: Pengiriman
         unavailable: Tidak tersedia
+        unavailable_message: Pengiriman tidak tersedia
+        warning: Peringatan
+        warning_message:
+          other: Kegagalan pengiriman %{count} hari
       delivery_available: Pengiriman tersedia
+      delivery_error_days: Lama hari pengiriman galat
+      delivery_error_hint: Jika pengiriman tidak terjadi selama %{count} hari, ia akan ditandai secara otomatis sebagai tidak terkirim.
       empty: Domain tidak ditemukan.
       known_accounts:
         other: "%{count} akun yang dikenal"
