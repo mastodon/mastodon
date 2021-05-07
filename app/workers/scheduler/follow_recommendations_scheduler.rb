@@ -14,13 +14,14 @@ class Scheduler::FollowRecommendationsScheduler
   def perform
     # Maintaining a materialized view speeds-up subsequent queries significantly
     AccountSummary.refresh
+    FollowRecommendation.refresh
 
-    fallback_recommendations = FollowRecommendation.safe.filtered.limit(SET_SIZE).index_by(&:account_id)
+    fallback_recommendations = FollowRecommendation.limit(SET_SIZE).index_by(&:account_id)
 
     I18n.available_locales.each do |locale|
       recommendations = begin
         if AccountSummary.safe.filtered.localized(locale).exists? # We can skip the work if no accounts with that language exist
-          FollowRecommendation.safe.filtered.localized(locale).limit(SET_SIZE).index_by(&:account_id)
+          FollowRecommendation.localized(locale).limit(SET_SIZE).index_by(&:account_id)
         else
           {}
         end

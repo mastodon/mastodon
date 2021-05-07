@@ -78,11 +78,7 @@ class AccountsController < ApplicationController
   end
 
   def only_media_scope
-    Status.where(id: account_media_status_ids)
-  end
-
-  def account_media_status_ids
-    @account.media_attachments.attached.reorder(nil).select(:status_id).group(:status_id)
+    Status.joins(:media_attachments).merge(@account.media_attachments.reorder(nil)).group(:id)
   end
 
   def no_replies_scope

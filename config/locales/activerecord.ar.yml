@@ -5,13 +5,28 @@ ar:
       poll:
         expires_at: آخر أجل
         options: الخيارات
+      user:
+        agreement: اتفاقية الخدمة
+        email: عنوان البريد الإلكتروني
+        locale: محلي
+        password: كلمة المرور
+      user/account:
+        username: اسم المستخدم
+      user/invite_request:
+        text: السبب
     errors:
       models:
         account:
           attributes:
             username:
-              invalid: فقط حروف و أرقام و سطور سفلية
+              invalid: يجب فقط أن يحتوي على حروف، وأرقام، وخطوط سفلية
+              reserved: محجوز
         status:
           attributes:
             reblog:
               taken: المنشور موجود مِن قبل
+        user:
+          attributes:
+            email:
+              blocked: يستخدم مزوّد بريد إلكتروني غير مسموح به
+              unreachable: يبدو أنه لا وجود

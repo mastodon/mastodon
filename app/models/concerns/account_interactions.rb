@@ -184,6 +184,14 @@ module AccountInteractions
     active_relationships.where(target_account: other_account).exists?
   end
 
+  def following_anyone?
+    active_relationships.exists?
+  end
+
+  def not_following_anyone?
+    !following_anyone?
+  end
+
   def blocking?(other_account)
     block_relationships.where(target_account: other_account).exists?
   end

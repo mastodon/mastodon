@@ -5,13 +5,28 @@ co:
       poll:
         expires_at: Fine
         options: Scelte
+      user:
+        agreement: Accordu di serviziu
+        email: Indirizzu e-mail
+        locale: Lingua
+        password: Chjave d’accessu
+      user/account:
+        username: Cugnome
+      user/invite_request:
+        text: Ragione
     errors:
       models:
         account:
           attributes:
             username:
               invalid: solu lettere, numeri è liniette basse
+              reserved: hè riservatu
         status:
           attributes:
             reblog:
               taken: di u statutu esista digià
+        user:
+          attributes:
+            email:
+              blocked: usa un purghjidore d'e-mail pruibitu
+              unreachable: ùn sembra micca esiste

@@ -38,7 +38,7 @@ PrivateMounts=true
 ProtectClock=true
 # System Call Filtering
 SystemCallArchitectures=native
-SystemCallFilter=~@clock @cpu-emulation @debug @keyring @module @mount @obsolete @reboot @resources @setuid @swap
+SystemCallFilter=~@clock @cpu-emulation @debug @keyring @module @mount @obsolete @raw-io @reboot @resources @setuid @swap
 
 [Install]
 WantedBy=multi-user.target

@@ -14,6 +14,12 @@ sq:
         send_email_notification: Përdoruesi do të marrë një shpjegim mbi çfarë ndodhi me llogarinë e tij
         text_html: Opsionale. Mund të përdorni sintaksë mesazhesh. Për të kursyer kohë, mund të <a href="%{path}">shtoni paracaktime sinjalizimesh</a>
         type_html: Zgjidhni ç’të bëhet me <strong>%{acct}</strong>
+        types:
+          disable: Pengoi përdoruesit përdorimin e llogarisë së tij, por mos fshi apo fshih lëndën e tij.
+          none: Përdoreni këtë për t’i dërguar përdoruesit një sinjalizim, pa u kryer ndonjë veprim tjetër.
+          sensitive: Vëru krejt bashkëngjitjeve media të këtij përdoruesi shenjë si rezervat.
+          silence: Pengoji përdoruesit të qenët i aftë të postojë publikisht, fshihja postimet dhe njoftimet e tij personave që nuk i ndjekin ato.
+          suspend: Pengo çfarëdo ndërveprimi nga ose për te kjo llogari dhe fshi lëndën e saj. E prapësueshme brenda 30 ditësh.
         warning_preset_id: Opsionale. Mundeni sërish të shtoni tekst vetjak në fund të paracaktimit
       announcement:
         all_day: Nëse i vihet shenjë, do të shfaqen vetëm datat e intervalit kohor
@@ -73,6 +79,8 @@ sq:
           no_access: Blloko hyrje në krejt burimet
           sign_up_requires_approval: Regjistrime të reja do të duan miratimin tuaj
         severity: Zgjidhni ç’do të ndodhë me kërkesa nga kjo IP
+      rule:
+        text: Përshkruani një rregull ose një domosdoshmëri për përdoruesit në këtë shërbyes. Përpiquni të jetë i shkurtër dhe i thjeshtë
       sessions:
         otp: 'Jepni kodin dyfaktorësh të prodhuar nga aplikacioni i telefonit tuaj ose përdorni një nga kodet tuaj të rikthimeve:'
         webauthn: Nëse është një diskth USB, sigurohuni se e keni futur dhe, në qoftë e nevojshme, prekeni.
@@ -197,6 +205,8 @@ sq:
         reblog: Dikush përforcoi gjendjen tuaj
         report: Parashtrohet raportim i ri
         trending_tag: Një hashtag i pashqyrtuar zë e bëhet popullor
+      rule:
+        text: Rregull
       tag:
         listable: Lejoje këtë hashtag të shfaqet në kërkime dhe në drejtori profilesh
         name: Hashtag
