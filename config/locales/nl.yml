@@ -271,7 +271,7 @@ nl:
         create_domain_block_html: "Domein %{target} is door %{name} geblokkeerd"
         create_email_domain_block_html: "%{name} heeft het e-maildomein %{target} geblokkeerd"
         create_ip_block_html: "%{name} maakte regel aan voor IP %{target}"
-        create_unavailable_domain_html: "%{name} heeft de bezorging naar domein %{target} beëindigd"
+        create_unavailable_domain_html: "%{name} heeft de bezorging voor domein %{target} beëindigd"
         demote_user_html: "Gebruiker %{target} is door %{name} gedegradeerd"
         destroy_announcement_html: "%{name} heeft de mededeling %{target} verwijderd"
         destroy_custom_emoji_html: "%{name} verwijderde emoji %{target}"
@@ -280,7 +280,7 @@ nl:
         destroy_email_domain_block_html: "%{name} heeft het e-maildomein %{target} gedeblokkeerd"
         destroy_ip_block_html: "%{name} verwijderde regel voor IP %{target}"
         destroy_status_html: "Toot van %{target} is door %{name} verwijderd"
-        destroy_unavailable_domain_html: "%{name} heeft de bezorging naar domein %{target} hervat"
+        destroy_unavailable_domain_html: "%{name} heeft de bezorging voor domein %{target} hervat"
         disable_2fa_user_html: "De vereiste tweestapsverificatie voor %{target} is door %{name} uitgeschakeld"
         disable_custom_emoji_html: "Emoji %{target} is door %{name} uitgeschakeld"
         disable_user_html: "Inloggen voor %{target} is door %{name} uitgeschakeld"
@@ -467,7 +467,7 @@ nl:
         unavailable_message: Bezorging is niet beschikbaar
         warning: Waarschuwing
         warning_message:
-          one: Bezorgingsfouten voor %{count} dag
+          one: Bezorgingsfout voor %{count} dag
           other: Bezorgfout voor %{count} dagen
       delivery_available: Bezorging is mogelijk
       delivery_error_days: Dagen met bezorgfouten
