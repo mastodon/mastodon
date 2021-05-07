@@ -228,6 +228,7 @@ nl:
         create_domain_block: Domeinblokkade aanmaken
         create_email_domain_block: E-maildomeinblokkade aanmaken
         create_ip_block: IP-regel aanmaken
+        create_unavailable_domain: Niet beschikbaar domein aanmaken
         demote_user: Gebruiker degraderen
         destroy_announcement: Mededeling verwijderen
         destroy_custom_emoji: Lokale emoji verwijderen
@@ -236,6 +237,7 @@ nl:
         destroy_email_domain_block: E-maildomeinblokkade verwijderen
         destroy_ip_block: IP-regel verwijderen
         destroy_status: Toot verwijderen
+        destroy_unavailable_domain: Niet beschikbaar domein verwijderen
         disable_2fa_user: Tweestapsverificatie uitschakelen
         disable_custom_emoji: Lokale emojij uitschakelen
         disable_user: Gebruiker uitschakelen
@@ -269,6 +271,7 @@ nl:
         create_domain_block_html: "Domein %{target} is door %{name} geblokkeerd"
         create_email_domain_block_html: "%{name} heeft het e-maildomein %{target} geblokkeerd"
         create_ip_block_html: "%{name} maakte regel aan voor IP %{target}"
+        create_unavailable_domain_html: "%{name} heeft de bezorging naar domein %{target} beëindigd"
         demote_user_html: "Gebruiker %{target} is door %{name} gedegradeerd"
         destroy_announcement_html: "%{name} heeft de mededeling %{target} verwijderd"
         destroy_custom_emoji_html: "%{name} verwijderde emoji %{target}"
@@ -277,6 +280,7 @@ nl:
         destroy_email_domain_block_html: "%{name} heeft het e-maildomein %{target} gedeblokkeerd"
         destroy_ip_block_html: "%{name} verwijderde regel voor IP %{target}"
         destroy_status_html: "Toot van %{target} is door %{name} verwijderd"
+        destroy_unavailable_domain_html: "%{name} heeft de bezorging naar domein %{target} hervat"
         disable_2fa_user_html: "De vereiste tweestapsverificatie voor %{target} is door %{name} uitgeschakeld"
         disable_custom_emoji_html: "Emoji %{target} is door %{name} uitgeschakeld"
         disable_user_html: "Inloggen voor %{target} is door %{name} uitgeschakeld"
@@ -449,7 +453,22 @@ nl:
       title: Aanbevolen accounts
       unsuppress: Account weer aanbevelen
     instances:
+      back_to_all: Alles
+      back_to_limited: Beperkt
+      back_to_warning: Waarschuwing
       by_domain: Domein
+      delivery:
+        all: Alles
+        clear: Bezorgfouten verwijderen
+        restart: Bezorging herstarten
+        stop: Bezorging beëindigen
+        title: Bezorging
+        unavailable: Niet beschikbaar
+        unavailable_message: Bezorging is niet beschikbaar
+        warning: Waarschuwing
+        warning_message:
+          one: Bezorgingsfouten voor %{count} dag
+          other: Bezorgingsfouten voor %{count} dagen
       delivery_available: Bezorging is mogelijk
       empty: Geen domeinen gevonden.
       known_accounts:
