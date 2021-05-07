@@ -266,6 +266,7 @@ ja:
         create_domain_block_html: "%{name} さんがドメイン %{target} をブロックしました"
         create_email_domain_block_html: "%{name} さんが %{target} をメールドメインブロックに追加しました"
         create_ip_block_html: "%{name} さんが IP %{target} のルールを作成しました"
+        create_unavailable_domain_html: "%{name} がドメイン %{target} への配信を停止しました"
         demote_user_html: "%{name} さんが %{target} さんを降格しました"
         destroy_announcement_html: "%{name} さんがお知らせ %{target} を削除しました"
         destroy_custom_emoji_html: "%{name} さんがカスタム絵文字 %{target} を削除しました"
@@ -274,6 +275,7 @@ ja:
         destroy_email_domain_block_html: "%{name} さんが %{target} をメールドメインブロックから外しました"
         destroy_ip_block_html: "%{name} さんが IP %{target} のルールを削除しました"
         destroy_status_html: "%{name} さんが %{target} さんの投稿を削除しました"
+        destroy_unavailable_domain_html: "%{name} がドメイン %{target} への配信を再開しました"
         disable_2fa_user_html: "%{name} さんが %{target} さんの二段階認証を無効化しました"
         disable_custom_emoji_html: "%{name} さんがカスタム絵文字 %{target} を無効化しました"
         disable_user_html: "%{name} さんが %{target} さんのログインを無効化しました"
@@ -439,8 +441,23 @@ ja:
     follow_recommendations:
       status: ステータス
     instances:
+      back_to_all: すべて
+      back_to_warning: 警告
       by_domain: ドメイン
+      delivery:
+        all: すべて
+        clear: 配送エラーをクリア
+        restart: 配送を再会
+        stop: 配送を停止
+        title: 配送
+        unavailable: 使用不可
+        unavailable_message: 配送不可
+        warning: 警告
+        warning_message:
+          other: '%{count} 日配送失敗'
       delivery_available: 配送可能
+      delivery_error_days: 配送エラー日数
+      delivery_error_hint: '%{count} 日間配送ができない場合は、自動的に配送不可としてマークされます。'
       empty: ドメインが見つかりませんでした。
       known_accounts:
         other: "既知のアカウント数 %{count}"
