@@ -263,9 +263,9 @@ class Header extends ImmutablePureComponent {
     let staffBadge;
     if (account.get('user_staff')) {
       if (account.get('user_admin')){
-        staffBadge = <div className='account-role admin'>Admin</div>;
+        staffBadge = <div className='account-role admin'><FormattedMessage id='account.badges.admin' defaultMessage='Admin' /></div>;
       } else if (account.get('user_moderator')){
-        staffBadge = <div className='account-role moderator'>Moderator</div>;
+        staffBadge = <div className='account-role moderator'><FormattedMessage id='account.badges.moderator' defaultMessage='Moderator' /></div>;
       }
     }
 
