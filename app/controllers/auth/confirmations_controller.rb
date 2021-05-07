@@ -22,7 +22,9 @@ class Auth::ConfirmationsController < Devise::ConfirmationsController
   end
 
   def require_unconfirmed!
-    redirect_to edit_user_registration_path if user_signed_in? && current_user.confirmed? && current_user.unconfirmed_email.blank?
+    if user_signed_in? && current_user.confirmed? && current_user.unconfirmed_email.blank?
+      redirect_to(current_user.approved? ? root_path : edit_user_registration_path)
+    end
   end
 
   def set_body_classes

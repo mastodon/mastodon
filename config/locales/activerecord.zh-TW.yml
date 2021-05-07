@@ -5,13 +5,28 @@ zh-TW:
       poll:
         expires_at: 截止時間
         options: 選擇
+      user:
+        agreement: 服務同意書
+        email: 電子信箱位址
+        locale: 地區
+        password: 密碼
+      user/account:
+        username: 使用者名稱
+      user/invite_request:
+        text: 原因
     errors:
       models:
         account:
           attributes:
             username:
               invalid: 只能有字母、數字及底線
+              reserved: 是保留關鍵字
         status:
           attributes:
             reblog:
               taken: 嘟文已經存在
+        user:
+          attributes:
+            email:
+              blocked: 使用不被允許的電子信箱供應商
+              unreachable: 似乎不存在

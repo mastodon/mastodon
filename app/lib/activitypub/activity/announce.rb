@@ -22,6 +22,10 @@ class ActivityPub::Activity::Announce < ActivityPub::Activity
         visibility: visibility_from_audience
       )
 
+      original_status.tags.each do |tag|
+        tag.use!(@account)
+      end
+
       distribute(@status)
     end
 

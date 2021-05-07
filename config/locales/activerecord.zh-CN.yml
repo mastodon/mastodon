@@ -5,13 +5,28 @@ zh-CN:
       poll:
         expires_at: 截止时间
         options: 选项
+      user:
+        agreement: 服务协议
+        email: 电子邮箱地址
+        locale: 本地化
+        password: 密码
+      user/account:
+        username: 用户名
+      user/invite_request:
+        text: 理由
     errors:
       models:
         account:
           attributes:
             username:
               invalid: 只能使用字母、数字和下划线
+              reserved: 是保留关键字
         status:
           attributes:
             reblog:
               taken: 已经被转嘟过
+        user:
+          attributes:
+            email:
+              blocked: 使用了被封禁的电子邮件提供商
+              unreachable: 似乎不存在

@@ -14,6 +14,12 @@ es-AR:
         send_email_notification: El usuario recibirá una explicación de lo que sucedió con su cuenta
         text_html: Opcional. Podés usar sintaxis de toots. Podés <a href="%{path}">agregar preajustes de advertencia</a> para ahorrar tiempo
         type_html: Elegí qué hacer con <strong>%{acct}</strong>
+        types:
+          disable: Evitar que el usuario use su cuenta, pero no elimina ni oculta sus contenidos.
+          none: Usá esto para enviarle una advertencia al usuario, sin ejecutar ninguna otra acción.
+          sensitive: Forzar a que todos los adjuntos de medios de este usuario sean marcados como sensibles.
+          silence: Evitar que el usuario pueda publicar toots, ocultando sus publicaciones y notificaciones a personas que no lo siguen.
+          suspend: Evitar cualquier interacción desde o hacia esta cuenta, y eliminar su contenido. Reversible en un plazo de 30 días.
         warning_preset_id: Opcional. Todavía podés agregar texto personalizado al final del preajuste
       announcement:
         all_day: Cuando esté seleccionado, sólo se mostrarán las fechas del rango de tiempo
@@ -29,14 +35,14 @@ es-AR:
         current_password: Por razones de seguridad, por favor, ingresá la contraseña de la cuenta actual
         current_username: Para confirmar, por favor, ingresá el nombre de usuario de la cuenta actual
         digest: Sólo enviado tras un largo periodo de inactividad, y sólo si recibiste mensajes personales en tu ausencia
-        discoverable: El directorio del perfil es otra forma en la que tu cuenta puede llegar a un público más amplio
+        discoverable: Permití que tu cuenta sea descubierta por extraños a través de recomendaciones y otras funciones
         email: Se te enviará un correo electrónico de confirmación
         fields: Podés tener hasta 4 elementos mostrados en una tabla en tu perfil
         header: 'PNG, GIF o JPG. Máximo: %{size}. Será subescalado a %{dimensions} píxeles'
         inbox_url: Copiá la dirección web desde la página principal del relé que querés usar
         irreversible: Los toots filtrados desaparecerán irreversiblemente, incluso si este filtro es eliminado después
         locale: El idioma de la interface de usuario, correos electrónicos y notificaciones push
-        locked: Requiere que manualmente aprobés seguidores
+        locked: Controlá manualmente quién puede seguirte al aprobar solicitudes de seguimiento
         password: Usá al menos 8 caracteres
         phrase: Se aplicará sin importar las mayúsculas o las advertencias de contenido de un toot
         scopes: Qué APIs de la aplicación tendrán acceso. Si seleccionás el alcance de nivel más alto, no necesitás seleccionar las individuales.
@@ -45,7 +51,7 @@ es-AR:
         setting_display_media_default: Ocultar medios marcados como sensibles
         setting_display_media_hide_all: Siempre ocultar todos los medios
         setting_display_media_show_all: Siempre mostrar todos los medios
-        setting_hide_network: A quiénes seguís y tus seguidores no serán mostrados en tu perfil
+        setting_hide_network: Las cuentas que seguís y tus seguidores serán ocultados en tu perfil
         setting_noindex: Afecta a tu perfil público y páginas de estado
         setting_show_application: La aplicación que usás para tootear se mostrará en la vista detallada de tus toots
         setting_use_blurhash: Los gradientes se basan en los colores de las imágenes ocultas pero haciendo borrosos los detalles
@@ -73,6 +79,8 @@ es-AR:
           no_access: Bloquear acceso a todos los recursos
           sign_up_requires_approval: Los nuevos registros requerirán tu aprobación
         severity: Elegí lo que pasará con las solicitudes desde esta dirección IP
+      rule:
+        text: Describí una regla o requisito para los usuarios de este servidor. Intentá hacerla corta y sencilla
       sessions:
         otp: 'Ingresá el código de autenticación de dos factores generado por la aplicación en tu dispositivo, o usá uno de tus códigos de recuperación:'
         webauthn: Si es una llave USB, asegurate de insertarla y, de ser necesario, tocarla.
@@ -120,7 +128,7 @@ es-AR:
         context: Filtrar contextos
         current_password: Contraseña actual
         data: Datos
-        discoverable: Listar esta cuenta en el directorio
+        discoverable: Sugerir cuenta a otros
         display_name: Nombre para mostrar
         email: Dirección de correo electrónico
         expires_in: Vence después de
@@ -130,7 +138,7 @@ es-AR:
         inbox_url: Dirección web de la bandeja de entrada del relé
         irreversible: Dejar en lugar de ocultar
         locale: Idioma de la interface
-        locked: Hacer privada esta cuenta
+        locked: Requerir solicitudes de seguimiento
         max_uses: Número máximo de usos
         new_password: Nueva contraseña
         note: Biografía
@@ -152,7 +160,7 @@ es-AR:
         setting_display_media_hide_all: Ocultar todo
         setting_display_media_show_all: Mostrar todo
         setting_expand_spoilers: Siempre expandir los toots marcados con advertencias de contenido
-        setting_hide_network: Ocultar tu red
+        setting_hide_network: Ocultá tu gráfica social
         setting_noindex: Excluirse del indexado de motores de búsqueda
         setting_reduce_motion: Reducir el movimiento de las animaciones
         setting_show_application: Mostrar aplicación usada para tootear
@@ -197,6 +205,8 @@ es-AR:
         reblog: Una cuenta retootea tu toot
         report: Se envía una nueva denuncia
         trending_tag: Una etiqueta no revisada está en tendencia
+      rule:
+        text: Regla
       tag:
         listable: Permitir que esta etiqueta aparezca en las búsquedas y en el directorio de perfiles
         name: Etiqueta

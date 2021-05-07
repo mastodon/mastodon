@@ -5,13 +5,28 @@ sv:
       poll:
         expires_at: Tidsgräns
         options: Val
+      user:
+        agreement: Serviceavtal
+        email: E-postadress
+        locale: Lokal
+        password: Lösenord
+      user/account:
+        username: Användarnamn
+      user/invite_request:
+        text: Anledning
     errors:
       models:
         account:
           attributes:
             username:
               invalid: endast bokstäver, siffror och understrykning
+              reserved: är reserverat
         status:
           attributes:
             reblog:
               taken: av status finns redan
+        user:
+          attributes:
+            email:
+              blocked: använder en icke tillåten e-postleverantör
+              unreachable: verkar inte existera

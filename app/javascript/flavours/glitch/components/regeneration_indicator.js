@@ -2,7 +2,7 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import illustration from 'flavours/glitch/images/elephant_ui_working.svg';
 
-const MissingIndicator = () => (
+const RegenerationIndicator = () => (
   <div className='regeneration-indicator'>
     <div className='regeneration-indicator__figure'>
       <img src={illustration} alt='' />
@@ -15,4 +15,4 @@ const MissingIndicator = () => (
   </div>
 );
 
-export default MissingIndicator;
+export default RegenerationIndicator;

@@ -3,12 +3,6 @@
 
 .filters
   .filter-subset
-    %strong= t('admin.tags.context')
-    %ul
-      %li= filter_link_to t('generic.all'), directory: nil
-      %li= filter_link_to t('admin.tags.directory'), directory: '1'
-
-  .filter-subset
     %strong= t('admin.tags.review')
     %ul
       %li= filter_link_to t('generic.all'), reviewed: nil, unreviewed: nil, pending_review: nil
@@ -20,8 +14,9 @@
     %strong= t('generic.order_by')
     %ul
       %li= filter_link_to t('admin.tags.most_recent'), popular: nil, active: nil
-      %li= filter_link_to t('admin.tags.most_popular'), popular: '1', active: nil
       %li= filter_link_to t('admin.tags.last_active'), active: '1', popular: nil
+      %li= filter_link_to t('admin.tags.most_popular'), popular: '1', active: nil
+
 
 = form_tag admin_tags_url, method: 'GET', class: 'simple_form' do
   .fields-group

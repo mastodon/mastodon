@@ -19,16 +19,15 @@ class ApplicationController < ActionController::Base
   helper_method :use_seamless_external_login?
   helper_method :whitelist_mode?
 
-  rescue_from ActionController::RoutingError, with: :not_found
-  rescue_from ActionController::InvalidAuthenticityToken, with: :unprocessable_entity
-  rescue_from ActionController::UnknownFormat, with: :not_acceptable
-  rescue_from ActionController::ParameterMissing, with: :bad_request
-  rescue_from Paperclip::AdapterRegistry::NoHandlerError, with: :bad_request
-  rescue_from ActiveRecord::RecordNotFound, with: :not_found
+  rescue_from ActionController::ParameterMissing, Paperclip::AdapterRegistry::NoHandlerError, with: :bad_request
   rescue_from Mastodon::NotPermittedError, with: :forbidden
-  rescue_from HTTP::Error, OpenSSL::SSL::SSLError, with: :internal_server_error
-  rescue_from Mastodon::RaceConditionError, Seahorse::Client::NetworkingError, Stoplight::Error::RedLight, with: :service_unavailable
+  rescue_from ActionController::RoutingError, ActiveRecord::RecordNotFound, with: :not_found
+  rescue_from ActionController::UnknownFormat, with: :not_acceptable
+  rescue_from ActionController::InvalidAuthenticityToken, with: :unprocessable_entity
   rescue_from Mastodon::RateLimitExceededError, with: :too_many_requests
+
+  rescue_from HTTP::Error, OpenSSL::SSL::SSLError, with: :internal_server_error
+  rescue_from Mastodon::RaceConditionError, Seahorse::Client::NetworkingError, Stoplight::Error::RedLight, ActiveRecord::SerializationFailure, with: :service_unavailable
 
   before_action :store_current_location, except: :raise_not_found, unless: :devise_controller?
   before_action :require_functional!, if: :user_signed_in?

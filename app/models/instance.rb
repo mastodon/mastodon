@@ -10,10 +10,13 @@
 class Instance < ApplicationRecord
   self.primary_key = :domain
 
+  attr_accessor :failure_days
+
   has_many :accounts, foreign_key: :domain, primary_key: :domain
 
   belongs_to :domain_block, foreign_key: :domain, primary_key: :domain
   belongs_to :domain_allow, foreign_key: :domain, primary_key: :domain
+  belongs_to :unavailable_domain, foreign_key: :domain, primary_key: :domain # skipcq: RB-RL1031
 
   scope :matches_domain, ->(value) { where(arel_table[:domain].matches("%#{value}%")) }
 

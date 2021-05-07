@@ -1,8 +1,8 @@
 ---
 hu:
   about:
-    about_hashtag_html: Ezek a <strong>#%{hashtag}</strong> hashtag-gel ellátott publikus tülkök. Reagálhatsz rájuk, ha már van felhasználói fiókod valahol a föderációban.
-    about_mastodon_html: A Mastodon egy szabad webes protokollokat használó, nyílt forráskódú szociális háló. Decentralizált, akár az e-mail.
+    about_hashtag_html: Ezek a <strong>#%{hashtag}</strong> hashtaggel ellátott publikus tülkök. Reagálhatsz rájuk, ha már van felhasználói fiókod valahol a föderációban.
+    about_mastodon_html: 'A jövő közösségi hálózata: Hirdetések és céges megfigyelés nélkül, etikus dizájnnal és decentralizációval! Legyél a saját adataid ura a Mastodonnal!'
     about_this: Névjegy
     active_count_after: aktív
     active_footnote: Havonta aktív felhasználók
@@ -26,6 +26,8 @@ hu:
       felhasználót. Föderációs célokra szolgál, nem szabad tehát felfüggeszteni, hacsak nem akarod a teljes szervert kitiltani, mely esetben a domain tiltásának használata javasolt.
     learn_more: Tudj meg többet
     privacy_policy: Adatvédelmi szabályzat
+    rules: Szerverünk szabályai
+    rules_html: 'Alább látod azon követendő szabályok összefoglalóját, melyet be kell tartanod, ha szeretnél fiókot ezen a szerveren:'
     see_whats_happening: Nézd, mi történik
     server_stats: 'Szerver statisztika:'
     source_code: Forráskód
@@ -80,7 +82,6 @@ hu:
       other: Tülk
     posts_tab_heading: Tülkölés
     posts_with_replies: Tülkölés válaszokkal
-    reserved_username: Ez már foglalt felhasználónév
     roles:
       admin: Adminisztrátor
       bot: Bot
@@ -178,7 +179,7 @@ hu:
       removed_header_msg: A %{username} fiók fejlécét sikeresen töröltük
       resend_confirmation:
         already_confirmed: Ezt a felhasználót már megerősítették
-        send: Küldd újra a megerősítő e-mailt
+        send: Megerősítő e-mail újraküldése
         success: A megerősítő e-mail sikeresen elküldve!
       reset: Visszaállítás
       reset_password: Jelszó visszaállítása
@@ -262,46 +263,46 @@ hu:
         update_domain_block: Domain tiltás frissítése
         update_status: Állapot frissítése
       actions:
-        assigned_to_self_report: "%{name} a %{target} bejelentést magához rendelte"
-        change_email_user: "%{name} megváltoztatta %{target} felhasználó e-mail címét"
-        confirm_user: "%{name} megerősítette e-mail címét: %{target}"
-        create_account_warning: "%{name} figyelmeztetést küldött %{target} felhasználónak"
-        create_announcement: "%{name} új közleményt hozott létre %{target}"
-        create_custom_emoji: "%{name} új emodzsit töltött fel: %{target}"
-        create_domain_allow: "%{name} engedélyező listára vette %{target} domaint"
-        create_domain_block: "%{name} letiltotta az alábbi domaint: %{target}"
-        create_email_domain_block: "%{name} letiltotta az e-mail domaint: %{target}"
-        create_ip_block: "%{name} létrehozott egy szabályt a %{target} IP-vel kapcsolatban"
-        demote_user: "%{name} lefokozta az alábbi felhasználót: %{target}"
-        destroy_announcement: "%{name} törölte a közleményt %{target}"
-        destroy_custom_emoji: "%{name} törölte az emodzsit: %{target}"
-        destroy_domain_allow: "%{name} leszedte %{target} domaint az engedélyező listáról"
-        destroy_domain_block: "%{name} engedélyezte az alábbi domaint: %{target}"
-        destroy_email_domain_block: "%{name} engedélyezte az e-mail domaint: %{target}"
-        destroy_ip_block: "%{name} törölt egy szabályt a %{target} IP-vel kapcsolatban"
-        destroy_status: "%{name} eltávolította az alábbi felhasználó tülkjét: %{target}"
-        disable_2fa_user: "%{name} kikapcsolta a kétlépcsős azonosítást %{target} felhasználó fiókján"
-        disable_custom_emoji: "%{name} letiltotta az alábbi emodzsit: %{target}"
-        disable_user: "%{name} letiltotta az alábbi felhasználó bejelentkezését: %{target}"
-        enable_custom_emoji: "%{name} engedélyezte az alábbi emodzsit: %{target}"
-        enable_user: "%{name} engedélyezte az alábbi felhasználó bejelentkezését: %{target}"
-        memorialize_account: "%{name} emléket állított az alábbi felhasználónak: %{target}"
-        promote_user: "%{name} előléptette az alábbi felhasználót: %{target}"
-        remove_avatar_user: "%{name} törölte %{target} profilképét"
-        reopen_report: "%{name} újranyitotta a bejelentést: %{target}"
-        reset_password_user: "%{name} visszaállította az alábbi felhasználó jelszavát: %{target}"
-        resolve_report: "%{name} megoldotta alábbi bejelentést: %{target}"
-        sensitive_account: "%{name} szenzitívnek jelölte %{target} médiatartalmát"
-        silence_account: "%{name} lenémította %{target} felhasználói fiókját"
-        suspend_account: "%{name} felfüggesztette %{target} felhasználói fiókját"
-        unassigned_report: "%{name} törölte a %{target} bejelentés hozzárendelését"
-        unsensitive_account: "%{name} levette a szenzitív jelölést %{target} médiatartalmáról"
-        unsilence_account: "%{name} feloldotta a némítást %{target} felhasználói fiókján"
-        unsuspend_account: "%{name} feloldotta %{target} felhasználói fiókjának felfüggesztését"
-        update_announcement: "%{name} frissítette a közleményt %{target}"
-        update_custom_emoji: "%{name} frissítette az alábbi emodzsit: %{target}"
-        update_domain_block: "%{name} frissítette a %{target} domain tiltását"
-        update_status: "%{name} frissítette %{target} felhasználó tülkjét"
+        assigned_to_self_report_html: "%{name} a %{target} bejelentést magához rendelte"
+        change_email_user_html: "%{name} megváltoztatta %{target} felhasználó e-mail címét"
+        confirm_user_html: "%{name} megerősítette %{target} e-mail-címét"
+        create_account_warning_html: "%{name} figyelmeztetést küldött %{target} számára"
+        create_announcement_html: "%{name} új közleményt hozott létre: %{target}"
+        create_custom_emoji_html: "%{name} új emodzsit töltött fel: %{target}"
+        create_domain_allow_html: "%{name} engedélyezte a föderációt %{target} domainnel"
+        create_domain_block_html: "%{name} letiltotta a %{target} domaint"
+        create_email_domain_block_html: "%{name} letiltotta a %{target} e-mail domaint"
+        create_ip_block_html: "%{name} létrehozott egy szabályt a %{target} IP-vel kapcsolatban"
+        demote_user_html: "%{name} lefokozta %{target} felhasználót"
+        destroy_announcement_html: "%{name} törölte a %{target} közleményt"
+        destroy_custom_emoji_html: "%{name} törölte a %{target} emodzsit"
+        destroy_domain_allow_html: "%{name} letiltotta a föderációt a %{target} domainnel"
+        destroy_domain_block_html: "%{name} engedélyezte a %{target} domaint"
+        destroy_email_domain_block_html: "%{name} engedélyezte a %{target} e-mail domaint"
+        destroy_ip_block_html: "%{name} törölt egy szabályt a %{target} IP-vel kapcsolatban"
+        destroy_status_html: "%{name} eltávolította az alábbi felhasználó tülkjét: %{target}"
+        disable_2fa_user_html: "%{name} kikapcsolta a kétlépcsős azonosítást %{target} felhasználó fiókján"
+        disable_custom_emoji_html: "%{name} letiltotta a %{target} emodzsit"
+        disable_user_html: "%{name} letiltotta %{target} felhasználó bejelentkezését"
+        enable_custom_emoji_html: "%{name} engedélyezte a %{target} emodzsit"
+        enable_user_html: "%{name} engedélyezte %{target} felhasználó bejelentkezését"
+        memorialize_account_html: "%{name} emléket állított %{target} felhasználónak"
+        promote_user_html: "%{name} előléptette %{target} felhasználót"
+        remove_avatar_user_html: "%{name} törölte %{target} profilképét"
+        reopen_report_html: "%{name} újranyitotta a %{target} bejelentést"
+        reset_password_user_html: "%{name} visszaállította %{target} felhasználó jelszavát"
+        resolve_report_html: "%{name} megoldotta a %{target} bejelentést"
+        sensitive_account_html: "%{name} szenzitívnek jelölte %{target} médiatartalmát"
+        silence_account_html: "%{name} lenémította %{target} felhasználói fiókját"
+        suspend_account_html: "%{name} felfüggesztette %{target} felhasználói fiókját"
+        unassigned_report_html: "%{name} törölte a %{target} bejelentés hozzárendelését"
+        unsensitive_account_html: "%{name} levette a szenzitív jelölést %{target} médiatartalmáról"
+        unsilence_account_html: "%{name} feloldotta a némítást %{target} felhasználói fiókján"
+        unsuspend_account_html: "%{name} feloldotta %{target} felhasználói fiókjának felfüggesztését"
+        update_announcement_html: "%{name} frissítette a %{target} közleményt"
+        update_custom_emoji_html: "%{name} frissítette a %{target} emodzsit"
+        update_domain_block_html: "%{name} frissítette a %{target} domain tiltását"
+        update_status_html: "%{name} frissítette %{target} felhasználó tülkjét"
       deleted_status: "(törölt tülk)"
       empty: Nem található napló.
       filter_by_action: Szűrés művelet alapján
@@ -316,10 +317,12 @@ hu:
       new:
         create: Közlemény létrehozása
         title: Új közlemény
+      publish: Közzététel
       published_msg: A közlemény sikeresen publikálva!
       scheduled_for: Ekkorra ütemezve %{time}
       scheduled_msg: A közlemény közzétételre beütemezve!
       title: Közlemények
+      unpublish: Közzététel visszavonása
       unpublished_msg: A közlemény közzététele sikeresen visszavonva!
       updated_msg: A közlemény sikeresen frissítve!
     custom_emojis:
@@ -364,7 +367,6 @@ hu:
       feature_profile_directory: Profil adatbázis
       feature_registrations: Regisztráció
       feature_relay: Föderációs relé
-      feature_spam_check: Anti-spam
       feature_timeline_preview: Idővonal betekintő
       features: Funkciók
       hidden_service: Föderáció rejtett szolgáltatásokkal
@@ -442,6 +444,14 @@ hu:
         create: Domain hozzáadása
         title: Új e-mail domain tiltása
       title: Tiltott e-mail domainek
+    follow_recommendations:
+      description_html: "<strong>A követési ajánlatok segítik az új felhasználókat az érdekes tartalmak gyors megtalálásában</strong>. Ha egy felhasználó még nem érintkezett eleget másokkal ahhoz, hogy személyre szabott ajánlatokat kapjon, ezeket a fiókokat ajánljuk helyette. Ezeket naponta újraszámítjuk a nemrég legtöbb embert foglalkoztató, illetve legtöbb helyi követővel rendelkező fiókok alapján."
+      language: Ezen a nyelven
+      status: Állapot
+      suppress: Követési ajánlatok elnémítása
+      suppressed: Elnémítva
+      title: Követési ajánlatok
+      unsuppress: Követési ajánlatok visszaállítása
     instances:
       by_domain: Domain
       delivery_available: Kézbesítés elérhető
@@ -544,6 +554,13 @@ hu:
       unassign: Hozzárendelés törlése
       unresolved: Megoldatlan
       updated_at: Frissítve
+    rules:
+      add_new: Szabály hozzáadása
+      delete: Törlés
+      description_html: Bár a többség azt állítja, hogy elolvasták és egyetértenek a felhasználói feltételekkel, általában ez nem teljesül, amíg egy probléma elő nem jön. <strong>Tedd könnyebbé a szervered szabályinak áttekintését azzal, hogy pontokba foglalod azt egy listába.</strong> Próbáld meg a különálló szabályokat megtartani rövidnek, egyszerűnek, de próbáld meg azt is, hogy nem darabolod fel őket sok különálló kis pontra.
+      edit: Szabály szerkesztése
+      empty: Nincsenek még szerver szabályok definiálva.
+      title: Szerverszabályzat
     settings:
       activity_api_enabled:
         desc_html: Helyi tülkök, aktív felhasználók és új regisztrációk száma heti bontásban
@@ -623,9 +640,6 @@ hu:
         desc_html: Megírhatod saját adatkezelési szabályzatodat, felhasználási feltételeidet vagy más hasonló jellegű dokumentumodat. HTML-tageket is használhatsz
         title: Egyedi felhasználási feltételek
       site_title: A szerver neve
-      spam_check_enabled:
-        desc_html: A Mastodon automatikusan elnémíthatja és bejelentheti azokat a fiókokat, akik rendszeresen kéretlen üzeneteket küldenek. Persze lehetnek tévedések is.
-        title: Automatikus anti-spam
       thumbnail:
         desc_html: OpenGraph-os és API-s előnézetekben használjuk. Ajánlott mérete 1200x630 pixel
         title: A szerver bélyegképe
@@ -656,6 +670,14 @@ hu:
       no_status_selected: Nem változtattunk meg semmit, mert semmi sem volt kiválasztva
       title: Felhasználó tülkjei
       with_media: Médiafájlokkal
+    system_checks:
+      database_schema_check:
+        message_html: Vannak elintézetlen adatbázis migrációink. Kérlek, futtasd őket, hogy biztosítsd, az alkalmazás megfelelően működik
+      rules_check:
+        action: Szerver szabályok menedzselése
+        message_html: Még nem definiáltál egy szerver szabályt sem.
+      sidekiq_process_check:
+        message_html: Nincs Sidekiq folyamat, mely a %{value} sorhoz van rendelve. Kérlek, nézd át a Sidekiq beállításait
     tags:
       accounts_today: Egyedi használat a mai napon
       accounts_week: Egyedi használat ezen a héten
@@ -679,6 +701,7 @@ hu:
       add_new: Új hozzáadása
       delete: Törlés
       edit_preset: Figyelmeztetés szerkesztése
+      empty: Nem definiáltál még egyetlen figyelmeztetést sem.
       title: Figyelmeztetések
   admin_mailer:
     new_pending_account:
@@ -942,7 +965,7 @@ hu:
       following: Követettjeid listája
       muting: Némított felhasználók listája
     upload: Feltöltés
-  in_memoriam_html: In Memoriam.
+  in_memoriam_html: Emlékünkben.
   invites:
     delete: Visszavonás
     expired: Lejárt
@@ -1040,10 +1063,14 @@ hu:
       body: "%{name} megemlített téged:"
       subject: "%{name} megemlített téged"
       title: Új említés
+    poll:
+      subject: "%{name} szavazása véget ért"
     reblog:
       body: 'A tülködet %{name} megtolta:'
       subject: "%{name} megtolta a tülködet"
       title: Új megtolás
+    status:
+      subject: "%{name} tülkölt egyet"
   notifications:
     email_events: Események email értesítésekhez
     email_events_hint: 'Válaszd ki azokat az eseményeket, melyekről értesítést szeretnél:'
@@ -1192,13 +1219,11 @@ hu:
     relationships: Követések és követők
     two_factor_authentication: Kétlépcsős hitelesítés
     webauthn_authentication: Biztonsági kulcsok
-  spam_check:
-    spam_detected: Ez egy automatikus jelentés. Spamet érzékeltünk.
   statuses:
     attached:
       audio:
         one: "%{count} audio"
-        other: "%{count} audio"
+        other: "%{count} hang"
       description: 'Csatolva: %{attached}'
       image:
         one: "%{count} kép"
@@ -1234,8 +1259,9 @@ hu:
     show_older: Régebbiek mutatása
     show_thread: Szál mutatása
     sign_in_to_participate: Jelentkezz be, hogy részt vehess a beszélgetésben
-    title: '%{name}: "%{quote}"'
+    title: "%{name}: „%{quote}”"
     visibilities:
+      direct: Közvetlen
       private: Csak követőknek
       private_long: A tülk csak követőidnek jelenik meg
       public: Nyilvános
@@ -1404,11 +1430,8 @@ hu:
       tips: Tippek
       title: Üdv a fedélzeten, %{name}!
   users:
-    blocked_email_provider: Ez az email szolgáltató nem engedélyezett
     follow_limit_reached: Nem követhetsz több, mint %{limit} embert
     generic_access_help_html: Nem tudod elérni a fiókodat? Segítségért lépj kapcsolatba velünk ezen %{email}
-    invalid_email: A megadott e-mail cím helytelen
-    invalid_email_mx: Az email cím nem tűnik létezőnek
     invalid_otp_token: Érvénytelen ellenőrző kód
     invalid_sign_in_token: Érvénytelen biztonsági kód
     otp_lost_help_html: Ha mindkettőt elvesztetted, kérhetsz segítséget itt %{email}

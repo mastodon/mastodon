@@ -83,7 +83,10 @@ zh-CN:
         invalid_client: 由于应用信息未知、未提交认证信息或使用了不支持的认证方式，认证失败
         invalid_grant: 授权方式无效、过期或已被撤销、与授权请求中的回调地址不一致，或使用了其他应用的回调地址
         invalid_redirect_uri: 无效的登录回调地址
-        invalid_request: 请求缺少必要的参数，或者参数值、格式不正确
+        invalid_request:
+          missing_param: 缺少必需的参数：%{value}
+          request_not_authorized: 请求需要被授权。授权请求所需的参数缺失或无效。
+          unknown: 该请求缺少一个必要的参数，包括一个不支持的参数值，或者其他格式错误。
         invalid_resource_owner: 资源所有者认证无效，或找不到所有者
         invalid_scope: 请求的权限范围无效、未知或格式不正确
         invalid_token:

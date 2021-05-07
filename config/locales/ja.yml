@@ -21,11 +21,11 @@ ja:
     federation_hint_html: "%{instance} のアカウントひとつでどんなMastodon互換サーバーのユーザーでもフォローできるでしょう。"
     get_apps: モバイルアプリを試す
     hosted_on: Mastodon hosted on %{domain}
-    instance_actor_flash: 'このアカウントはサーバーそのものを示す仮想的なもので、特定のユーザーを示すものではありません。これはサーバーの連合のために使用されます。サーバー全体をブロックするときは、このアカウントをブロックせずに、ドメインブロックを使用してください。
-
-'
+    instance_actor_flash: "このアカウントはサーバーそのものを示す仮想的なもので、特定のユーザーを示すものではありません。これはサーバーの連合のために使用されます。サーバー全体をブロックするときは、このアカウントをブロックせずに、ドメインブロックを使用してください。 \n"
     learn_more: もっと詳しく
     privacy_policy: プライバシーポリシー
+    rules: サーバーのルール
+    rules_html: 'このMastodonサーバーにアカウントをお持ちの場合は、以下のルールの概要を確認してください:'
     see_whats_happening: やりとりを見てみる
     server_stats: 'サーバー統計:'
     source_code: ソースコード
@@ -74,12 +74,11 @@ ja:
       other: トゥート
     posts_tab_heading: トゥート
     posts_with_replies: トゥートと返信
-    reserved_username: このユーザー名は予約されています
     roles:
       admin: Admin
       bot: Bot
-      group: Group
-      moderator: Mod
+      group: グループ
+      moderator: モデレーター
     unavailable: プロフィールは利用できません
     unfollow: フォロー解除
   admin:
@@ -188,7 +187,7 @@ ja:
       search_same_ip: 同じ IP のユーザーを検索
       sensitive: 閲覧注意
       sensitized: 閲覧注意済み
-      shared_inbox_url: Shared inbox URL
+      shared_inbox_url: 共有 inbox URL
       show:
         created_reports: このアカウントで作られた通報
         targeted_reports: このアカウントについての通報
@@ -241,7 +240,7 @@ ja:
         memorialize_account: 追悼アカウント化
         promote_user: ユーザーを昇格
         remove_avatar_user: アイコンを削除
-        reopen_report: 通報を再度開く
+        reopen_report: 未解決に戻す
         reset_password_user: パスワードをリセット
         resolve_report: 通報を解決済みにする
         sensitive_account: アカウントのメディアを閲覧注意にマーク
@@ -256,46 +255,46 @@ ja:
         update_domain_block: ドメインブロックを更新
         update_status: トゥートを更新
       actions:
-        assigned_to_self_report: "%{name} さんが通報 %{target} を自身の担当に割り当てました"
-        change_email_user: "%{name} さんが %{target} さんのメールアドレスを変更しました"
-        confirm_user: "%{name} さんが %{target} さんのメールアドレスを確認済みにしました"
-        create_account_warning: "%{name} さんが %{target} さんに警告メールを送信しました"
-        create_announcement: "%{name} さんが新しいお知らせ %{target} を作成しました"
-        create_custom_emoji: "%{name} さんがカスタム絵文字 %{target} を追加しました"
-        create_domain_allow: "%{name} さんが %{target} の連合を許可しました"
-        create_domain_block: "%{name} さんがドメイン %{target} をブロックしました"
-        create_email_domain_block: "%{name} さんが %{target} をメールドメインブロックに追加しました"
-        create_ip_block: "%{name} さんが IP %{target} のルールを作成しました"
-        demote_user: "%{name} さんが %{target} さんを降格しました"
-        destroy_announcement: "%{name} さんがお知らせ %{target} を削除しました"
-        destroy_custom_emoji: "%{name} さんがカスタム絵文字 %{target} を削除しました"
-        destroy_domain_allow: "%{name} さんが %{target} の連合許可を外しました"
-        destroy_domain_block: "%{name} さんがドメイン %{target} のブロックを外しました"
-        destroy_email_domain_block: "%{name} さんが %{target} をメールドメインブロックから外しました"
-        destroy_ip_block: "%{name} さんが IP %{target} のルールを削除しました"
-        destroy_status: "%{name} さんが %{target} さんのトゥートを削除しました"
-        disable_2fa_user: "%{name} さんが %{target} さんの二段階認証を無効化しました"
-        disable_custom_emoji: "%{name} さんがカスタム絵文字 %{target} を無効化しました"
-        disable_user: "%{name} さんが %{target} さんのログインを無効化しました"
-        enable_custom_emoji: "%{name} さんがカスタム絵文字 %{target} を有効化しました"
-        enable_user: "%{name} さんが %{target} さんのログインを有効化しました"
-        memorialize_account: "%{name} さんが %{target} さんを追悼アカウントページに登録しました"
-        promote_user: "%{name} さんが %{target} さんを昇格しました"
-        remove_avatar_user: "%{name} さんが %{target} さんのアイコンを削除しました"
-        reopen_report: "%{name} さんが通報 %{target} を再び開きました"
-        reset_password_user: "%{name} さんが %{target} さんのパスワードをリセットしました"
-        resolve_report: "%{name} さんが通報 %{target} を解決済みにしました"
-        sensitive_account: "%{name} さんが %{target} さんのメディアを閲覧注意にマークしました"
-        silence_account: "%{name} さんが %{target} さんをサイレンスにしました"
-        suspend_account: "%{name} さんが %{target} さんを停止しました"
-        unassigned_report: "%{name} さんが通報 %{target} の担当を外しました"
-        unsensitive_account: "%{name} さんが %{target} さんのメディアの閲覧注意を解除しました"
-        unsilence_account: "%{name} さんが %{target} さんのサイレンスを解除しました"
-        unsuspend_account: "%{name} さんが %{target} さんの停止を解除しました"
-        update_announcement: "%{name} さんがお知らせ %{target} を更新しました"
-        update_custom_emoji: "%{name} さんがカスタム絵文字 %{target} を更新しました"
-        update_domain_block: "%{name} が %{target} のドメインブロックを更新しました"
-        update_status: "%{name} さんが %{target} さんのトゥートを更新しました"
+        assigned_to_self_report_html: "%{name} さんが通報 %{target} を自身の担当に割り当てました"
+        change_email_user_html: "%{name} さんが %{target} さんのメールアドレスを変更しました"
+        confirm_user_html: "%{name} さんが %{target} さんのメールアドレスを確認済みにしました"
+        create_account_warning_html: "%{name} さんが %{target} さんに警告メールを送信しました"
+        create_announcement_html: "%{name} さんが新しいお知らせ %{target} を作成しました"
+        create_custom_emoji_html: "%{name} さんがカスタム絵文字 %{target} を追加しました"
+        create_domain_allow_html: "%{name} さんが %{target} の連合を許可しました"
+        create_domain_block_html: "%{name} さんがドメイン %{target} をブロックしました"
+        create_email_domain_block_html: "%{name} さんが %{target} をメールドメインブロックに追加しました"
+        create_ip_block_html: "%{name} さんが IP %{target} のルールを作成しました"
+        demote_user_html: "%{name} さんが %{target} さんを降格しました"
+        destroy_announcement_html: "%{name} さんがお知らせ %{target} を削除しました"
+        destroy_custom_emoji_html: "%{name} さんがカスタム絵文字 %{target} を削除しました"
+        destroy_domain_allow_html: "%{name} さんが %{target} の連合許可を外しました"
+        destroy_domain_block_html: "%{name} さんがドメイン %{target} のブロックを外しました"
+        destroy_email_domain_block_html: "%{name} さんが %{target} をメールドメインブロックから外しました"
+        destroy_ip_block_html: "%{name} さんが IP %{target} のルールを削除しました"
+        destroy_status_html: "%{name} さんが %{target} さんのトゥートを削除しました"
+        disable_2fa_user_html: "%{name} さんが %{target} さんの二段階認証を無効化しました"
+        disable_custom_emoji_html: "%{name} さんがカスタム絵文字 %{target} を無効化しました"
+        disable_user_html: "%{name} さんが %{target} さんのログインを無効化しました"
+        enable_custom_emoji_html: "%{name} さんがカスタム絵文字 %{target} を有効化しました"
+        enable_user_html: "%{name} さんが %{target} さんのログインを有効化しました"
+        memorialize_account_html: "%{name} さんが %{target} さんを追悼アカウントページに登録しました"
+        promote_user_html: "%{name} さんが %{target} さんを昇格しました"
+        remove_avatar_user_html: "%{name} さんが %{target} さんのアイコンを削除しました"
+        reopen_report_html: "%{name} さんが通報 %{target} を未解決に戻しました"
+        reset_password_user_html: "%{name} さんが %{target} さんのパスワードをリセットしました"
+        resolve_report_html: "%{name} さんが通報 %{target} を解決済みにしました"
+        sensitive_account_html: "%{name} さんが %{target} さんのメディアを閲覧注意にマークしました"
+        silence_account_html: "%{name} さんが %{target} さんをサイレンスにしました"
+        suspend_account_html: "%{name} さんが %{target} さんを停止しました"
+        unassigned_report_html: "%{name} さんが通報 %{target} の担当を外しました"
+        unsensitive_account_html: "%{name} さんが %{target} さんのメディアの閲覧注意を解除しました"
+        unsilence_account_html: "%{name} さんが %{target} さんのサイレンスを解除しました"
+        unsuspend_account_html: "%{name} さんが %{target} さんの停止を解除しました"
+        update_announcement_html: "%{name} さんがお知らせ %{target} を更新しました"
+        update_custom_emoji_html: "%{name} さんがカスタム絵文字 %{target} を更新しました"
+        update_domain_block_html: "%{name} が %{target} のドメインブロックを更新しました"
+        update_status_html: "%{name} さんが %{target} さんのトゥートを更新しました"
       deleted_status: "(削除済)"
       empty: ログが見つかりませんでした
       filter_by_action: アクションでフィルター
@@ -310,10 +309,12 @@ ja:
       new:
         create: お知らせを作成
         title: お知らせを追加
+      publish: 公開する
       published_msg: お知らせを掲載しました
       scheduled_for: "%{time} に予約"
       scheduled_msg: お知らせの掲載を予約しました
       title: お知らせ
+      unpublish: 非公開にする
       unpublished_msg: お知らせを非掲載にしました
       updated_msg: お知らせを更新しました
     custom_emojis:
@@ -358,7 +359,6 @@ ja:
       feature_profile_directory: ディレクトリ
       feature_registrations: 新規登録
       feature_relay: 連合リレー
-      feature_spam_check: スパム対策
       feature_timeline_preview: タイムラインプレビュー
       features: 機能
       hidden_service: 秘匿サービスとの連合
@@ -516,14 +516,14 @@ ja:
       forwarded: 転送済み
       forwarded_to: "%{domain} に転送されました"
       mark_as_resolved: 解決済みとしてマーク
-      mark_as_unresolved: 未解決として再び開く
+      mark_as_unresolved: 未解決に戻す
       notes:
         create: 書き込む
         create_and_resolve: 書き込み、解決済みにする
-        create_and_unresolve: 書き込み、未解決として開く
+        create_and_unresolve: 書き込み、未解決に戻す
         delete: 削除
         placeholder: どのような措置が取られたか、または関連する更新を記述してください…
-      reopen: 再び開く
+      reopen: 未解決に戻す
       report: 通報#%{id}
       reported_account: 報告対象アカウント
       reported_by: 報告者
@@ -534,6 +534,13 @@ ja:
       unassign: 担当を外す
       unresolved: 未解決
       updated_at: 更新日時
+    rules:
+      add_new: ルールを追加
+      delete: 削除
+      description_html: ほとんどの人が利用規約を読んで同意したと主張しますが、通常は問題が発生するまで読みません。<strong>箇条書きにして、サーバーのルールが一目で分かるようにしましょう</strong>。個々のルールは短くシンプルなものにし、多くの項目に分割しないようにしましょう。
+      edit: ルールを編集
+      empty: サーバーのルールが定義されていません。
+      title: サーバーのルール
     settings:
       activity_api_enabled:
         desc_html: 週ごとのローカルに投稿されたトゥート数、アクティブなユーザー数、新規登録者数
@@ -613,9 +620,6 @@ ja:
         desc_html: 独自のプライバシーポリシーや利用規約、その他の法的根拠を記述できます。HTMLタグが使えます
         title: カスタム利用規約
       site_title: サーバーの名前
-      spam_check_enabled:
-        desc_html: 迷惑なメッセージを繰り返し送信するアカウントを自動で通報することができます。誤検知を含む可能性があります。
-        title: スパム対策を有効にする
       thumbnail:
         desc_html: OpenGraphとAPIによるプレビューに使用されます。サイズは1200×630px推奨です
         title: サーバーのサムネイル
@@ -646,6 +650,14 @@ ja:
       no_status_selected: 何も選択されていないため、変更されていません
       title: トゥート一覧
       with_media: メディアあり
+    system_checks:
+      database_schema_check:
+        message_html: 未実行のデータベースマイグレーションがあります。実行して正常に動作するようにしてください。
+      rules_check:
+        action: サーバーのルールを管理
+        message_html: サーバーのルールを定義していません。
+      sidekiq_process_check:
+        message_html: "%{value} キューに対応するSidekiq プロセスがありません。Sidekiq の設定を確認してください。"
     tags:
       accounts_today: 本日使用した人数
       accounts_week: 今週使用した人数
@@ -669,6 +681,7 @@ ja:
       add_new: 追加
       delete: 削除
       edit_preset: プリセット警告文を編集
+      empty: まだプリセット警告文が作成されていません。
       title: プリセット警告文を管理
   admin_mailer:
     new_pending_account:
@@ -905,11 +918,11 @@ ja:
         verification_failed: KeybaseはこのトークンをKeybaseユーザー%{kb_username}の署名として認識しませんでした。Keybaseから再試行してください。
       wrong_user: "%{current}としてログインしている間%{proving}の証明を作成することはできません。%{proving}としてログインし、もう一度やり直してください。"
     explanation_html: ここではKeybaseのような他のサービスのアカウントと暗号化し関連づけることができます。これによりそれらのサービス上で他の人が暗号化されたメッセージを送信したり、あなたの送信した内容があなたからのものであると信用できるようになります。
-    i_am_html: I am %{username} on %{service}.
-    identity: Identity
+    i_am_html: 私は %{service} の %{username} です。
+    identity: 所属
     inactive: 非アクティブ
     publicize_checkbox: 'そしてこれをトゥートします:'
-    publicize_toot: 'It is proven! I am %{username} on %{service}: %{url}'
+    publicize_toot: '証明されました！私は %{service} の %{username} です: %{url}'
     remove: アカウントから証明書を削除
     removed: アカウントから証明書を削除することに成功しました
     status: 認証状態
@@ -1026,10 +1039,14 @@ ja:
       body: "%{name} さんから返信がありました:"
       subject: "%{name} さんに返信されました"
       title: 新たな返信
+    poll:
+      subject: "%{name}  さんの投票が終了しました"
     reblog:
       body: "%{name} さんにブーストされた、あなたのトゥートがあります:"
       subject: "%{name} さんにブーストされました"
       title: 新たなブースト
+    status:
+      subject: "%{name} さんがトゥートしました"
   notifications:
     email_events: メールによる通知
     email_events_hint: '受信する通知を選択:'
@@ -1178,8 +1195,6 @@ ja:
     relationships: フォロー・フォロワー
     two_factor_authentication: 二段階認証
     webauthn_authentication: セキュリティキー
-  spam_check:
-    spam_detected: これは自動的に作成された通報です。スパムが検出されています。
   statuses:
     attached:
       audio:
@@ -1384,11 +1399,8 @@ ja:
       tips: 豆知識
       title: ようこそ、%{name}！
   users:
-    blocked_email_provider: このメールプロバイダは許可されていません
     follow_limit_reached: あなたは現在 %{limit} 人以上フォローできません
     generic_access_help_html: アクセスできませんか？ %{email} に問い合わせることができます。
-    invalid_email: メールアドレスが無効です
-    invalid_email_mx: メールアドレスが存在しないようです
     invalid_otp_token: 二段階認証コードが間違っています
     invalid_sign_in_token: 無効なセキュリティコードです
     otp_lost_help_html: どちらも使用できない場合、%{email} に連絡を取ると解決できるかもしれません

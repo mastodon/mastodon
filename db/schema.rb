@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_16_200740) do
+ActiveRecord::Schema.define(version: 2021_05_05_174616) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -113,15 +113,6 @@ ActiveRecord::Schema.define(version: 2021_04_16_200740) do
     t.datetime "last_status_at"
     t.integer "lock_version", default: 0, null: false
     t.index ["account_id"], name: "index_account_stats_on_account_id", unique: true
-  end
-
-  create_table "account_tag_stats", force: :cascade do |t|
-    t.bigint "tag_id", null: false
-    t.bigint "accounts_count", default: 0, null: false
-    t.boolean "hidden", default: false, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["tag_id"], name: "index_account_tag_stats_on_tag_id", unique: true
   end
 
   create_table "account_warning_presets", force: :cascade do |t|
@@ -541,7 +532,7 @@ ActiveRecord::Schema.define(version: 2021_04_16_200740) do
     t.integer "thumbnail_file_size"
     t.datetime "thumbnail_updated_at"
     t.string "thumbnail_remote_url"
-    t.index ["account_id"], name: "index_media_attachments_on_account_id"
+    t.index ["account_id", "status_id"], name: "index_media_attachments_on_account_id_and_status_id", order: { status_id: :desc }
     t.index ["scheduled_status_id"], name: "index_media_attachments_on_scheduled_status_id"
     t.index ["shortcode"], name: "index_media_attachments_on_shortcode", unique: true
     t.index ["status_id"], name: "index_media_attachments_on_status_id"
@@ -864,7 +855,7 @@ ActiveRecord::Schema.define(version: 2021_04_16_200740) do
     t.datetime "last_status_at"
     t.float "max_score"
     t.datetime "max_score_at"
-    t.index "lower((name)::text)", name: "index_tags_on_name_lower", unique: true
+    t.index "lower((name)::text) text_pattern_ops", name: "index_tags_on_name_lower_btree", unique: true
   end
 
   create_table "tombstones", force: :cascade do |t|
@@ -987,7 +978,6 @@ ActiveRecord::Schema.define(version: 2021_04_16_200740) do
   add_foreign_key "account_pins", "accounts", column: "target_account_id", on_delete: :cascade
   add_foreign_key "account_pins", "accounts", on_delete: :cascade
   add_foreign_key "account_stats", "accounts", on_delete: :cascade
-  add_foreign_key "account_tag_stats", "tags", on_delete: :cascade
   add_foreign_key "account_warnings", "accounts", column: "target_account_id", on_delete: :cascade
   add_foreign_key "account_warnings", "accounts", on_delete: :nullify
   add_foreign_key "accounts", "accounts", column: "moved_to_account_id", on_delete: :nullify
@@ -1116,30 +1106,34 @@ ActiveRecord::Schema.define(version: 2021_04_16_200740) do
   SQL
   add_index "account_summaries", ["account_id"], name: "index_account_summaries_on_account_id", unique: true
 
-  create_view "follow_recommendations", sql_definition: <<-SQL
+  create_view "follow_recommendations", materialized: true, sql_definition: <<-SQL
       SELECT t0.account_id,
       sum(t0.rank) AS rank,
       array_agg(t0.reason) AS reason
-     FROM ( SELECT accounts.id AS account_id,
+     FROM ( SELECT account_summaries.account_id,
               ((count(follows.id))::numeric / (1.0 + (count(follows.id))::numeric)) AS rank,
               'most_followed'::text AS reason
-             FROM ((follows
-               JOIN accounts ON ((accounts.id = follows.target_account_id)))
+             FROM (((follows
+               JOIN account_summaries ON ((account_summaries.account_id = follows.target_account_id)))
                JOIN users ON ((users.account_id = follows.account_id)))
-            WHERE ((users.current_sign_in_at >= (now() - 'P30D'::interval)) AND (accounts.suspended_at IS NULL) AND (accounts.moved_to_account_id IS NULL) AND (accounts.silenced_at IS NULL) AND (accounts.locked = false) AND (accounts.discoverable = true))
-            GROUP BY accounts.id
+               LEFT JOIN follow_recommendation_suppressions ON ((follow_recommendation_suppressions.account_id = follows.target_account_id)))
+            WHERE ((users.current_sign_in_at >= (now() - 'P30D'::interval)) AND (account_summaries.sensitive = false) AND (follow_recommendation_suppressions.id IS NULL))
+            GROUP BY account_summaries.account_id
            HAVING (count(follows.id) >= 5)
           UNION ALL
-           SELECT accounts.id AS account_id,
+           SELECT account_summaries.account_id,
               (sum((status_stats.reblogs_count + status_stats.favourites_count)) / (1.0 + sum((status_stats.reblogs_count + status_stats.favourites_count)))) AS rank,
               'most_interactions'::text AS reason
-             FROM ((status_stats
+             FROM (((status_stats
                JOIN statuses ON ((statuses.id = status_stats.status_id)))
-               JOIN accounts ON ((accounts.id = statuses.account_id)))
-            WHERE ((statuses.id >= (((date_part('epoch'::text, (now() - 'P30D'::interval)) * (1000)::double precision))::bigint << 16)) AND (accounts.suspended_at IS NULL) AND (accounts.moved_to_account_id IS NULL) AND (accounts.silenced_at IS NULL) AND (accounts.locked = false) AND (accounts.discoverable = true))
-            GROUP BY accounts.id
+               JOIN account_summaries ON ((account_summaries.account_id = statuses.account_id)))
+               LEFT JOIN follow_recommendation_suppressions ON ((follow_recommendation_suppressions.account_id = statuses.account_id)))
+            WHERE ((statuses.id >= (((date_part('epoch'::text, (now() - 'P30D'::interval)) * (1000)::double precision))::bigint << 16)) AND (account_summaries.sensitive = false) AND (follow_recommendation_suppressions.id IS NULL))
+            GROUP BY account_summaries.account_id
            HAVING (sum((status_stats.reblogs_count + status_stats.favourites_count)) >= (5)::numeric)) t0
     GROUP BY t0.account_id
     ORDER BY (sum(t0.rank)) DESC;
   SQL
+  add_index "follow_recommendations", ["account_id"], name: "index_follow_recommendations_on_account_id", unique: true
+
 end

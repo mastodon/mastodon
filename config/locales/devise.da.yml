@@ -3,8 +3,8 @@ da:
   devise:
     confirmations:
       confirmed: Din e-mail er nu bekræftet.
-      send_instructions: Du vil modtage en mail med instrukser for hvordan du bekræfter din email adresse om få minutter. Tjek venligst din spam mappe hvis du ikke har modtaget denne email.
-      send_paranoid_instructions: Hvis din email adresse allerede findes i vores database, vil du modtage en email med instrukser for hvordan du bekræfter din email adresse om få minutter. Tjek gerne din spam mappe hvis du ikke modtager denne email.
+      send_instructions: Du vil om få minutter modtage en e-mailvejledning til, hvordan du bekræfter din e-mailadresse. Tjek din spammappe, hvis du modtager denne e-mail.
+      send_paranoid_instructions: Findes din e-mailadresse allerede i vores database, vil du om få minutter modtage en e-mailvejledning til, hvordan du bekræfter din e-mailadresse. Tjek din spammappe, hvis du ikke modtager denne e-mail.
     failure:
       already_authenticated: Du er allerede logget ind.
       inactive: Din konto er endnu ikke aktiveret.
@@ -13,97 +13,103 @@ da:
       locked: Din konto er låst.
       not_found_in_database: Ugyldig %{authentication_keys} eller adgangskode.
       pending: Din konto er stadig under bedømmelse.
-      timeout: Din session er udløbet. Log venligst ind igen for at fortsætte.
-      unauthenticated: Du er nødt til at logge ind eller oprette dig for at fortsætte.
-      unconfirmed: Du er nødt til at bekræfte din email adresse for at fortsætte.
+      timeout: Din session udløb. Log ind igen for at fortsætte.
+      unauthenticated: Du skal logge ind eller tilmelde dig for at fortsætte.
+      unconfirmed: Du skal bekræfte din e-mailadresse for at fortsætte.
     mailer:
       confirmation_instructions:
-        action: Bekræft email adresse
-        action_with_app: Bekræft og vend tilbage til %{app}
-        explanation: Du har oprettet en konto på %{host} med denne email adresse. Du er et klik fra at aktivere din konto. Hvis du ikke har oprettet dig, ignorer venligst denne email.
-        explanation_when_pending: Du har ansøgt om en invitation til %{host} med denne mailadresse. Når du bekræfter din mailadresse vil vi bedømme din ansøgning. Indtil da kan du ikke logge ind. Din data slettes hvis din ansøgning bliver afvist så du behøver ikke foretage yderligere handlinger. Hvis dette ikke var dig kan du ignorere denne mail.
-        extra_html: Tjek også <a href="%{terms_path}">reglerne for serveren</a> og <a href="%{policy_path}">vores betingelser</a>.
-        subject: 'Mastodon: Bekræftelses instrukser for %{instance}'
-        title: Bekræft email adresse
+        action: Bekræft e-mailadresse
+        action_with_app: Bekræft og returnér til %{app}
+        explanation: Du har oprettet en konto på %{host} med denne e-mailadresse og er nu et klik fra at aktivere din konto. Har du ikke oprettet dig, så ignorér blot denne e-mail.
+        explanation_when_pending: Du ansøgte om en invitation til %{host} med denne e-mailadresse. Når du har bekræftet din e-mailadresse, gennemgår vi din ansøgning. Du kan logge ind for at ændre dine oplysninger eller slette din konto, men du kan ikke tilgå de fleste af funktionerne, før din konto er godkendt. Afvises din ansøgning, fjernes dine data, så ingen yderligere handling fra dig er nødvendig. Har du ikke ansøgt, så ignorér blot denne e-mail.
+        extra_html: Tjek også <a href="%{terms_path}">reglerne for serveren</a> samt <a href="%{policy_path}">vores tjenestevilkår</a>.
+        subject: 'Mastodon: Bekræftelsesinstrukser for %{instance}'
+        title: Bekræft e-mailadresse
       email_changed:
-        explanation: 'Email adressen for din konto bliver ændret til:'
-        extra: Hvis du ikke har ændret din email adresse er det muligt, at nogen har fået adgang til din konto. Venligst ændre dit kodeord med det samme eller kontakt administratoren på serveren hvis du er låst ude af din konto.
-        subject: 'Mastodon: Email ændret'
-        title: Ny email adresse
+        explanation: 'Din kontos e-mailadressen ændres til:'
+        extra: Har du ikke selv skiftet din e-mailadresse, er det muligt, at nogen har fået adgang til din konto. Skift venligst din adgangskode med det samme eller kontakt serveradministratoren, hvis du er låst ude af din konto.
+        subject: 'Mastodon: E-mail skiftet'
+        title: Ny e-mailadresse
       password_change:
-        explanation: Kodeordet for din konto er blevet ændret.
-        extra: Hvis du ikke har ændret dit kodeord er det muligt, at nogen har fået adgang til din konto. Venligst ændre dit kodeord med det samme eller kontakt administratoren på serveren hvis du er låst ude af din konto.
-        subject: 'Mastodon: Kodeord ændret'
-        title: Kodeordet er blevet ændret
+        explanation: Din kontoadgangskode er skiftet.
+        extra: Har du ikke selv ændret dim adgangskode, er det muligt, at nogen har fået adgang til din konto. Skift venligst din adgangskode med det samme eller kontakt serveradministratoren, hvis du er låst ude af din konto.
+        subject: 'Mastodon: Adgangskode skiftet'
+        title: Adgangskode skiftet
       reconfirmation_instructions:
-        explanation: Bekræft den nye adresse for at ændre din email.
-        extra: Hvis denne ændring ikke blev foretaget af dig, ignorer denne email. Email adressen for denne Mastodon konto vil ikke blive ændret før du følger linket foroven.
-        subject: 'Mastodon: Bekræft email for %{instance}'
-        title: Bekræft email adresse
+        explanation: Bekræft den nye adresse for at skifte din e-mail.
+        extra: Er denne ændring ikke iværksat af dig, så ignorér denne e-mail. E-mailadressen til Mastodon-kontoen ændres ikke, før du tilgår linket ovenfor.
+        subject: 'Mastodon: Bekræft e-mail for %{instance}'
+        title: Bekræft e-mailadresse
       reset_password_instructions:
-        action: Ændre kodeord
-        explanation: Du anmodede om en ny adgangskode for din konto.
-        extra: Hvis du ikke har anmodet om dette, ignorer denne email. Din adgangskode vil ikke blive ændret før du har fulgt linket foroven og oprettet en ny.
-        subject: 'Mastodon: Instrukser for nulstilling af adgangskode'
-        title: Kodeordet er blevet nulstillet
+        action: Skift adgangskode
+        explanation: Du har anmodet om en ny kontoadgangskode.
+        extra: Har du ikke anmodet om dette, så ignorér denne e-mail. Din adgangskode skiftes først, når du via linket ovenfor har oprettet en ny.
+        subject: 'Mastodon: Nulstil adgangskode-instruktioner'
+        title: Adgangskode nulstillet
       two_factor_disabled:
-        explanation: To-trins godkendelse for din konto er blevet deaktiveret. Det nu kun muligt at logge ind med email og kodeord.
-        subject: 'Mastodon: To-trins godkendelse er deaktiveret'
+        explanation: Tofaktorgodkendelse for din konto er blevet deaktiveret. Indlogning er nu kun mulig via email og adgangskode.
+        subject: 'Mastodon: Tofaktorgodkendelse deaktiveret'
         title: 2FA deaktiveret
       two_factor_enabled:
-        explanation: To-trins godkendelse er blevet aktiveret for din konto. En token fra den parrede TOTP app vil være påkrævet for at logge ind.
-        subject: 'Mastodon: To-trins godkendelse er nu aktiveret'
+        explanation: Tofaktorgodkendelse er blevet aktiveret for din konto. Et token genereret af den parrede TOTP-app vil være nødvendig for at logge ind.
+        subject: 'Mastodon: Tofaktorgodkendelse aktiveret'
         title: 2FA aktiveret
       two_factor_recovery_codes_changed:
-        explanation: De tidligere gendannelseskoder er ugyldige og nye genereret.
-        subject: 'Mastodan: To-trins gendannelseskoder er fornyet'
-        title: 2FA gendannelseskoder er ændret
+        explanation: De tidligere gendannelseskoder er ugyldiggjorte og nye er genereret.
+        subject: 'Mastodan: Tofaktorgendannelseskoder genereret igen'
+        title: 2FA gendannelseskoder skiftet
       unlock_instructions:
-        subject: 'Mastodon: Instruktioner for oplåsning'
+        subject: 'Mastodon: Oplåsningsinstruktioner'
       webauthn_credential:
         added:
+          explanation: Flg. sikkerhedsnøgle er tilføjet din konto
           subject: 'Mastodon: Ny sikkerhedsnøgle'
-          title: En ny sikkerhedsnøgle er blevet tilføjet
+          title: En ny sikkerhedsnøgle er tilføjet
         deleted:
+          explanation: Flg. sikkerhedsnøgle er slettet din konto
           subject: 'Mastodon: Sikkerhedsnøgle slettet'
           title: En af dine sikkerhedsnøgler er blevet slettet
       webauthn_disabled:
+        explanation: Godkendelse med sikkerhedsnøgler er blevet deaktiveret for din konto. Indlogning er nu kun mulig via token genereret af den parrede TOTP-app.
+        subject: 'Mastodon: Godkendelse med sikkerhedsnøgler deaktiveret'
         title: Sikkerhedsnøgler deaktiveret
       webauthn_enabled:
+        explanation: Sikkerhedsnøglegodkendelse er aktiveret for din konto. Din sikkerhedsnøgle kan nu bruges til indlogning.
+        subject: 'Mastodon: Sikkerhedsnøglegodkendelse aktiveret'
         title: Sikkerhedsnøgler aktiveret
     omniauth_callbacks:
       failure: Kunne ikke godkende dig fra %{kind} fordi "%{reason}".
-      success: Godkendelse fra %{kind} konto lykkedes.
+      success: Godkendt fra %{kind}-konto.
     passwords:
-      no_token: Du kan ikke tilgå denne side uden at komme fra en email om nulstilling af adgangskode. Hvis du kommer fra en email om nulstilling af adgangskode, tjek om du brugte det fulde link der blev angivet.
-      send_instructions: Hvis din email adresse allerede findes i vores database, vil du modtage et link til nulstilling af adgangskode til din email adresse om få minutter. Tjek din spam mappe hvis du ikke har modtaget denne email.
-      send_paranoid_instructions: Hvis din email adresse allerede findes i vores database, vil du modtage et link til nulstilling af adgangskode til din email adresse om få minutter. Tjek din spam mappe hvis du ikke har modtaget denne email.
-      updated: Din adgangskode er nu blevet ændret. Du er nu logget ind.
-      updated_not_active: Din adgangskode blev ændret.
+      no_token: Du kan kun tilgå denne side via linket fra en adgangskodenulstillings e-mail. Kommer du fra en sådan e-mail, så sørg for at benytte den angivne, komplette URL.
+      send_instructions: Er din e-mail-adresse allerede registreret, e-mailer vi dig et link til adgangskodenulstilling. Tjek din spammappe, hvis du ikke ser e-mailen i din indbakke indenfor få minutter.
+      send_paranoid_instructions: Er din e-mail-adresse allerede registreret, e-mailer vi dig et link til adgangskodegendannelse. Tjek din spammappe, hvis du ikke ser e-mailen i din indbakke indenfor få minutter.
+      updated: Din adgangskode er skiftet, og du er nu logget ind.
+      updated_not_active: Din adgangskode er skiftet.
     registrations:
       destroyed: Farvel! Din konto er nu annulleret. Vi håber snart at se dig igen.
       signed_up: Velkommen! Du har nu tilmeldt dig.
-      signed_up_but_inactive: Du har nu oprettet dig. Vi kunne dog ikke logge dig ind da din konto endnu ikke er aktiveret.
-      signed_up_but_locked: Du har nu oprettet dig. Vi kunne dog ikke logge dig ind da din konto er låst.
-      signed_up_but_pending: En besked med et bekræftelseslink er blevet sendt til din mailadresse. Vi vil behandle din ansøgning når du har trykket på dette link. Du får en meddelelse hvis din ansøgning bliver accepteret.
-      signed_up_but_unconfirmed: En besked med et bekræftelses link er nu blevet sendt til din email adresse. Følg linket for at aktivere din konti. Tjek din spam mappe hvis du ikke har modtaget denne email.
-      update_needs_confirmation: Du har succesfuldt opdateret din konto, men vi er nødt til at bekræfte din email adresse. Tjek venligst din email og følg bekræftelses linket for at bekræfte din nye email adresse. Tjek venligst din spam mappe hvis du ikke har modtaget denne email.
-      updated: Din konto er nu blevet opdateret.
+      signed_up_but_inactive: Du har nu oprettet dig. Da din konto endnu ikke er aktiveret, kan du dog pt. ikke logge ind.
+      signed_up_but_locked: Du har nu oprettet dig. Da din konto er låst, kan du pt. ikke logge ind.
+      signed_up_but_pending: En besked med et bekræftelseslink er e-mailet til dig. Når du har klikket på linket, gennemgår vi din ansøgning, og du får besked, hvis den godkendes.
+      signed_up_but_unconfirmed: En besked med et bekræftelseslink er e-mailet til dig. Følg linket for at aktivere din konto. Tjek din spammappe, hvis du ikke ser denne e-mail i din indbakke.
+      update_needs_confirmation: Du har opdateret din konto. Din nye e-mailadresse skal dog bekræftes. For at gøre dette, tjek din e-mail og følg bekræftelseslinket. Tjek din spammappe, hvis du ikke ser denne e-mail i din indbakke indenfor få minutter.
+      updated: Din konto er nu opdateret.
     sessions:
       already_signed_out: Du er nu logget ud.
       signed_in: Du er nu logget ind.
       signed_out: Du er nu logget ud.
     unlocks:
-      send_instructions: Du vil modtage en email med instrukser for hvordan du låser op for din konto om nogle få minutter. Venligst tjek din spam mappe hvis du ikke har modtaget denne email.
-      send_paranoid_instructions: Hvis din konto findes, vil du modtage en email med instrukser for hvordan du låser op for den om få minutter. Tjek venligst din spam mappe hvis du ikke har modtaget denne mail.
-      unlocked: Din konto er succesfuldt blevet låst op. Log venligst ind for at fortsætte.
+      send_instructions: Instruktioner mailes til dig om, hvordan du oplåser din konto. Er denne e-mail ikke er i din indbakke inden for få minutter, så tjek spammappe.
+      send_paranoid_instructions: Findes din konto, mailes du instrukser om, hvordan du oplåser den. Ser du ikke denne e-mail i din indbakke undenfor få minutter, så tjek spammappen.
+      unlocked: Din konto er nu oplåst. Log ind for at fortsætte.
   errors:
     messages:
-      already_confirmed: er allerede blevet bekræftet, prøv venligst at logge ind
-      confirmation_period_expired: skal bekræftes indenfor %{period}, anmod venligst om en ny
-      expired: er udløbet, anmod venligst en ny
+      already_confirmed: er allerede bekræftet. Prøv at logge ind
+      confirmation_period_expired: skal bekræftes indenfor %{period}. Anmod om en ny
+      expired: er udløbet. Anmod en ny
       not_found: ikke fundet
       not_locked: blev ikke låst
       not_saved:
-        one: '1 fejl forhindrede denne %{resource} fra at blive gemt:'
-        other: "%{count} fejl forhindrede denne %{resource} fra at blive gemt:"
+        one: '1 fejl forhindrede denne %{resource} i at blive gemt:'
+        other: "%{count} fejl forhindrede denne %{resource} i at blive gemt:"

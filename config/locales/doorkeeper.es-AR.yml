@@ -83,7 +83,10 @@ es-AR:
         invalid_client: La autenticación del cliente falló debido a que es un cliente desconocido, o no está incluída la autenticación del cliente, o el método de autenticación no está soportado.
         invalid_grant: La concesión de autorización ofrecida no es válida, venció, se revocó, no coincide con la dirección web de redireccionamiento usada en la petición de autorización, o fue emitida para otro cliente.
         invalid_redirect_uri: La dirección web de redireccionamiento incluida no es válida.
-        invalid_request: En la solicitud falta un parámetro requerido, o incluye un valor de parámetro no soportado, o está corrompida.
+        invalid_request:
+          missing_param: 'Falta el parámetro requerido: %{value}.'
+          request_not_authorized: La solicitud necesita ser autorizada. El parámetro requerido para la autorización de la solicitud está ausente o no es válido.
+          unknown: En la solicitud falta un parámetro requerido, o incluye un valor de parámetro no soportado, o está corrompido.
         invalid_resource_owner: Las credenciales proporcionadas del propietario del recurso no son válidas, o no se puede encontrar al propietario del recurso
         invalid_scope: El ámbito solicitado no es válido, o conocido, o está corrompido.
         invalid_token:
@@ -120,7 +123,7 @@ es-AR:
       admin:read:reports: leer información sensible de todos los informes y cuentas denunciadas
       admin:write: modificar todos los datos en el servidor
       admin:write:accounts: ejecutar acciones de moderación en cuentas
-      admin:write:reports: ejecutar acciones de moderación en informes
+      admin:write:reports: ejecutar acciones de moderación en denuncias
       follow: modificar relaciones de cuenta
       push: recibir tus notificaciones push
       read: leer todos los datos de tu cuenta
@@ -145,7 +148,7 @@ es-AR:
       write:follows: seguir cuentas
       write:lists: crear listas
       write:media: subir archivos de medios
-      write:mutes: silenciar usuarios y conversaciones
+      write:mutes: silenciar cuentas y conversaciones
       write:notifications: limpiar tus notificaciones
       write:reports: denunciar otras cuentas
       write:statuses: publicar toots
