@@ -2,13 +2,13 @@
   .p-author.h-card
     = link_to ActivityPub::TagManager.instance.url_for(status.account), class: 'detailed-status__display-name u-url', target: stream_link_target, rel: 'noopener' do
       .detailed-status__display-avatar
-        - if current_account&.user&.setting_auto_play_gif || autoplay
+        - if prefers_autoplay?
           = image_tag status.account.avatar_original_url, alt: '', class: 'account__avatar u-photo'
         - else
           = image_tag status.account.avatar_static_url, alt: '', class: 'account__avatar u-photo'
       %span.display-name
         %bdi
-          %strong.display-name__html.p-name.emojify= display_name(status.account, custom_emojify: true, autoplay: autoplay)
+          %strong.display-name__html.p-name.emojify= display_name(status.account, custom_emojify: true, autoplay: prefers_autoplay?)
         %span.display-name__account
           = acct(status.account)
           = fa_icon('lock') if status.account.locked?
@@ -18,28 +18,22 @@
   .status__content.emojify{ :data => ({ spoiler: current_account&.user&.setting_expand_spoilers ? 'expanded' : 'folded' } if status.spoiler_text?) }<
     - if status.spoiler_text?
       %p<
-        %span.p-summary> #{Formatter.instance.format_spoiler(status, autoplay: autoplay)}&nbsp;
+        %span.p-summary> #{Formatter.instance.format_spoiler(status, autoplay: prefers_autoplay?)}&nbsp;
         %button.status__content__spoiler-link= t('statuses.show_more')
     .e-content
-      = Formatter.instance.format(status, custom_emojify: true, autoplay: autoplay)
+      = Formatter.instance.format(status, custom_emojify: true, autoplay: prefers_autoplay?)
       - if status.preloadable_poll
-        = react_component :poll, disabled: true, poll: ActiveModelSerializers::SerializableResource.new(status.preloadable_poll, serializer: REST::PollSerializer, scope: current_user, scope_name: :current_user).as_json do
-          = render partial: 'statuses/poll', locals: { status: status, poll: status.preloadable_poll, autoplay: autoplay }
+        = render_poll_component(status)
 
   - if !status.media_attachments.empty?
     - if status.media_attachments.first.video?
-      - video = status.media_attachments.first
-      = react_component :video, src: full_asset_url(video.file.url(:original)), preview: full_asset_url(video.thumbnail.present? ? video.thumbnail.url : video.file.url(:small)), frameRate: video.file.meta.dig('original', 'frame_rate'), blurhash: video.blurhash, sensitive: sensitized?(status, current_account), width: 670, height: 380, detailed: true, inline: true, alt: video.description, media: [ActiveModelSerializers::SerializableResource.new(video, serializer: REST::MediaAttachmentSerializer)].as_json do
-        = render partial: 'statuses/attachment_list', locals: { attachments: status.media_attachments }
+      = render_video_component(status, width: 670, height: 380, detailed: true)
     - elsif status.media_attachments.first.audio?
-      - audio = status.media_attachments.first
-      = react_component :audio, src: full_asset_url(audio.file.url(:original)), poster: full_asset_url(audio.thumbnail.present? ? audio.thumbnail.url : status.account.avatar_static_url), backgroundColor: audio.file.meta.dig('colors', 'background'), foregroundColor: audio.file.meta.dig('colors', 'foreground'), accentColor: audio.file.meta.dig('colors', 'accent'), width: 670, height: 380, alt: audio.description, duration: audio.file.meta.dig('original', 'duration') do
-        = render partial: 'statuses/attachment_list', locals: { attachments: status.media_attachments }
+      = render_audio_component(status, width: 670, height: 380)
     - else
-      = react_component :media_gallery, height: 380, sensitive: sensitized?(status, current_account), standalone: true, autoplay: autoplay, media: status.media_attachments.map { |a| ActiveModelSerializers::SerializableResource.new(a, serializer: REST::MediaAttachmentSerializer).as_json } do
-        = render partial: 'statuses/attachment_list', locals: { attachments: status.media_attachments }
+      = render_media_gallery_component(status, height: 380, standalone: true)
   - elsif status.preview_card
-    = react_component :card, sensitive: sensitized?(status, current_account), 'maxDescription': 160, card: ActiveModelSerializers::SerializableResource.new(status.preview_card, serializer: REST::PreviewCardSerializer).as_json
+    = render_card_component(status)
 
   .detailed-status__meta
     %data.dt-published{ value: status.created_at.to_time.iso8601 }

@@ -20,7 +20,7 @@ class ActivityPub::OutboxesController < ActivityPub::BaseController
   def outbox_presenter
     if page_requested?
       ActivityPub::CollectionPresenter.new(
-        id: outbox_url(page_params),
+        id: outbox_url(**page_params),
         type: :ordered,
         part_of: outbox_url,
         prev: prev_page,

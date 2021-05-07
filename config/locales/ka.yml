@@ -33,7 +33,6 @@ ka:
     pin_errors:
       following: იმ ადამიანს, ვინც მოგწონთ, უკვე უნდა მიჰყვებოდეთ
     posts_with_replies: ტუტები და პასუხები
-    reserved_username: მომხმარებელი რეზერვირებულია
     roles:
       admin: ადმინისტრატორი
       bot: ბოტი
@@ -127,35 +126,6 @@ ka:
       username: მომხმარებლის სახელი
       web: ვები
     action_logs:
-      actions:
-        assigned_to_self_report: "%{name}-მა დანიშნა რეპორტი %{target} საკუთარ თავზე"
-        change_email_user: "%{name}-მა შეცვალა %{target} მომხმარებლის ელ-ფოსტის მისამართი"
-        confirm_user: "%{name}-მა დაამოწმა %{target} მომხმარებლის ელ-ფოსტის მისამართი"
-        create_custom_emoji: "%{name}-მა ატვირთა ახალი ემოჯი %{target}"
-        create_domain_block: "%{name}-მა დაბლოკა დომენი %{target}"
-        create_email_domain_block: "%{name}-მა შავ სიაში მოაქცია დომენი %{target}"
-        demote_user: "%{name}-მა დააქვეითა მომხმარებელი %{target}"
-        destroy_domain_block: "%{name}-მა ბლოკი მოხსნა დომენს %{target}"
-        destroy_email_domain_block: "%{name} თეთრ სიაში მოაქცია დომენი %{target}"
-        destroy_status: "%{name}-მა გააუქმა სტატუსი %{target}-ზე"
-        disable_2fa_user: "%{name} გათიშა მეორე ფაქტორის მოთხოვნილება მომხმარებელზე %{target}"
-        disable_custom_emoji: "%{name}-მა გათისა ემოჯი %{target}"
-        disable_user: "%{name}-მა გათიშა ლოგინი მომხმარებლისთვის %{target}"
-        enable_custom_emoji: "%{name}-მა ჩართო ემოჯი %{target}"
-        enable_user: "%{name}-მა ჩართო ლოგინი მომხმარებლისთვის %{target}"
-        memorialize_account: "%{name}-მა აქცია ანგარიში %{target} მემორანდუმის გვერდად"
-        promote_user: "%{name}-მა დააწინაურა მომხმარებელი %{target}"
-        remove_avatar_user: "%{name}-მა გააუქმა %{target} მომხმარებლის ავატარი"
-        reopen_report: "%{name}-მა ხელახლა გახსნა რეპორტი %{target}"
-        reset_password_user: "%{name} გადატვირთა მომხმარებლის %{target} პაროლი"
-        resolve_report: "%{name}-მა მოაგვარა %{target} მომხმარებლის რეპორტი"
-        silence_account: "%{name}-მა გააჩუმა %{target} ანგარიში"
-        suspend_account: "%{name} შეაჩერა %{target} ანგარიში"
-        unassigned_report: "%{name}-მა მოაშორა რეპორტი %{target}"
-        unsilence_account: "%{name}-მა მოაშორა გაჩუმება %{target} ანგარიშს"
-        unsuspend_account: "%{name}-მა მოაშორა შეჩერება %{target} ანგარიშს"
-        update_custom_emoji: "%{name}-მა განაახლა ემოჯი %{target}"
-        update_status: "%{name}-მა განაახლა სტატუსი %{target}-ით"
       deleted_status: "(გაუქმებული სტატუსი)"
       title: აუდიტის ლოგი
     custom_emojis:
@@ -783,7 +753,6 @@ ka:
       tips: რჩევები
       title: კეთილი იყოს თქვენი მობრძანება, %{name}!
   users:
-    invalid_email: ელ-ფოსტის მისამართი არაა მართებული
     invalid_otp_token: არასწორი მეორე ფაქტორის კოდი
     otp_lost_help_html: თუ დაკარგეთ წვდომა ორივეზე, შესაძლოა დაუკავშირდეთ %{email}-ს
     seamless_external_login: შესული ხართ გარე სერვისით, აქედან გამომდინარე პაროლი და ელ-ფოსტის მისამართი არაა ხელმისაწვდომი.

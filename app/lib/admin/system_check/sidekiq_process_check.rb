@@ -7,7 +7,6 @@ class Admin::SystemCheck::SidekiqProcessCheck < Admin::SystemCheck::BaseCheck
     mailers
     pull
     scheduler
-    ingress
   ).freeze
 
   def pass?

@@ -21,11 +21,11 @@ zh-CN:
     federation_hint_html: 在%{instance} 上拥有账号后，你可以关注任何 Mastodon 服务器或其他服务器上的人。
     get_apps: 尝试移动应用
     hosted_on: 一个在 %{domain} 上运行的 Mastodon 实例
-    instance_actor_flash: '这个账号是个虚拟帐号，不代表任何用户，只用来代表服务器本身。它用于和其它服务器互通，所以不应该被封禁，除非你想封禁整个实例。但是想封禁整个实例的时候，你应该用域名封禁。
-
-'
+    instance_actor_flash: "这个账号是个虚拟帐号，不代表任何用户，只用来代表服务器本身。它用于和其它服务器互通，所以不应该被封禁，除非你想封禁整个实例。但是想封禁整个实例的时候，你应该用域名封禁。 \n"
     learn_more: 了解详情
     privacy_policy: 隐私政策
+    rules: 服务器规则
+    rules_html: 如果您想要在此Mastodon服务器上拥有一个账户，您必须遵守相应的规则，摘要如下：
     see_whats_happening: 看一看现在在发生什么
     server_stats: 服务器统计数据：
     source_code: 源代码
@@ -74,7 +74,6 @@ zh-CN:
       other: 嘟文
     posts_tab_heading: 嘟文
     posts_with_replies: 嘟文和回复
-    reserved_username: 此用户名已被保留
     roles:
       admin: 管理员
       bot: 机器人
@@ -256,46 +255,46 @@ zh-CN:
         update_domain_block: 更新域名屏蔽
         update_status: 更新嘟文
       actions:
-        assigned_to_self_report: "%{name} 接管了举报 %{target}"
-        change_email_user: "%{name} 更改了用户 %{target} 的电子邮件地址"
-        confirm_user: "%{name} 确认了用户 %{target} 的电子邮件地址"
-        create_account_warning: "%{name} 向 %{target} 发送了警告"
-        create_announcement: "%{name} 创建了新公告 %{target}"
-        create_custom_emoji: "%{name} 添加了新的自定义表情 %{target}"
-        create_domain_allow: "%{name} 允许了和域名 %{target} 的跨站交互"
-        create_domain_block: "%{name} 屏蔽了域名 %{target}"
-        create_email_domain_block: "%{name} 屏蔽了电子邮件域名 %{target}"
-        create_ip_block: "%{name} 为 IP %{target} 创建了规则"
-        demote_user: "%{name} 对用户 %{target} 进行了降任操作"
-        destroy_announcement: "%{name} 删除了公告 %{target}"
-        destroy_custom_emoji: "%{name} 销毁了自定义表情 %{target}"
-        destroy_domain_allow: "%{name} 拒绝了和 %{target} 跨站交互"
-        destroy_domain_block: "%{name} 解除了对域名 %{target} 的屏蔽"
-        destroy_email_domain_block: "%{name} 解除了对电子邮件域名 %{target} 的屏蔽"
-        destroy_ip_block: "%{name} 删除了 IP %{target} 的规则"
-        destroy_status: "%{name} 删除了 %{target} 的嘟文"
-        disable_2fa_user: "%{name} 停用了用户 %{target} 的双重认证"
-        disable_custom_emoji: "%{name} 停用了自定义表情 %{target}"
-        disable_user: "%{name} 将用户 %{target} 设置为禁止登录"
-        enable_custom_emoji: "%{name} 启用了自定义表情 %{target}"
-        enable_user: "%{name} 将用户 %{target} 设置为允许登录"
-        memorialize_account: "%{name} 将 %{target} 设置为追悼帐户"
-        promote_user: "%{name} 对用户 %{target} 进行了升任操作"
-        remove_avatar_user: "%{name} 删除了 %{target} 的头像"
-        reopen_report: "%{name} 重开了举报 %{target}"
-        reset_password_user: "%{name} 重置了用户 %{target} 的密码"
-        resolve_report: "%{name} 处理了举报 %{target}"
-        sensitive_account: "%{name} 将 %{target} 的媒体标记为敏感内容"
-        silence_account: "%{name} 隐藏了用户 %{target}"
-        suspend_account: "%{name} 封禁了用户 %{target}"
-        unassigned_report: "%{name} 放弃了举报 %{target} 的接管"
-        unsensitive_account: "%{name} 去除了 %{target} 媒体的敏感内容标记"
-        unsilence_account: "%{name} 解除了用户 %{target} 的隐藏状态"
-        unsuspend_account: "%{name} 解除了用户 %{target} 的封禁状态"
-        update_announcement: "%{name} 更新了公告 %{target}"
-        update_custom_emoji: "%{name} 更新了自定义表情 %{target}"
-        update_domain_block: "%{name} 更新了对 %{target} 的域名屏蔽"
-        update_status: "%{name} 刷新了 %{target} 的嘟文"
+        assigned_to_self_report_html: "%{name} 接管了举报 %{target}"
+        change_email_user_html: "%{name} 更改了用户 %{target} 的电子邮件地址"
+        confirm_user_html: "%{name} 确认了用户 %{target} 的电子邮件地址"
+        create_account_warning_html: "%{name} 向 %{target} 发送了警告"
+        create_announcement_html: "%{name} 创建了新公告 %{target}"
+        create_custom_emoji_html: "%{name} 添加了新的自定义表情 %{target}"
+        create_domain_allow_html: "%{name} 允许了和域名 %{target} 的跨站交互"
+        create_domain_block_html: "%{name} 屏蔽了域名 %{target}"
+        create_email_domain_block_html: "%{name} 屏蔽了电子邮件域名 %{target}"
+        create_ip_block_html: "%{name} 为 IP %{target} 创建了规则"
+        demote_user_html: "%{name} 对用户 %{target} 进行了降任操作"
+        destroy_announcement_html: "%{name} 删除了公告 %{target}"
+        destroy_custom_emoji_html: "%{name} 销毁了自定义表情 %{target}"
+        destroy_domain_allow_html: "%{name} 拒绝了和 %{target} 跨站交互"
+        destroy_domain_block_html: "%{name} 解除了对域名 %{target} 的屏蔽"
+        destroy_email_domain_block_html: "%{name} 解除了对电子邮件域名 %{target} 的屏蔽"
+        destroy_ip_block_html: "%{name} 删除了 IP %{target} 的规则"
+        destroy_status_html: "%{name} 删除了 %{target} 的嘟文"
+        disable_2fa_user_html: "%{name} 停用了用户 %{target} 的双重认证"
+        disable_custom_emoji_html: "%{name} 停用了自定义表情 %{target}"
+        disable_user_html: "%{name} 将用户 %{target} 设置为禁止登录"
+        enable_custom_emoji_html: "%{name} 启用了自定义表情 %{target}"
+        enable_user_html: "%{name} 将用户 %{target} 设置为允许登录"
+        memorialize_account_html: "%{name} 将 %{target} 设置为追悼帐户"
+        promote_user_html: "%{name} 对用户 %{target} 进行了升任操作"
+        remove_avatar_user_html: "%{name} 删除了 %{target} 的头像"
+        reopen_report_html: "%{name} 重开了举报 %{target}"
+        reset_password_user_html: "%{name} 重置了用户 %{target} 的密码"
+        resolve_report_html: "%{name} 处理了举报 %{target}"
+        sensitive_account_html: "%{name} 将 %{target} 的媒体标记为敏感内容"
+        silence_account_html: "%{name} 隐藏了用户 %{target}"
+        suspend_account_html: "%{name} 封禁了用户 %{target}"
+        unassigned_report_html: "%{name} 放弃接管举报 %{target}"
+        unsensitive_account_html: "%{name} 去除了 %{target} 的媒体的敏感内容标记"
+        unsilence_account_html: "%{name} 解除了用户 %{target} 的隐藏状态"
+        unsuspend_account_html: "%{name} 解除了用户 %{target} 的封禁状态"
+        update_announcement_html: "%{name} 更新了公告 %{target}"
+        update_custom_emoji_html: "%{name} 更新了自定义表情 %{target}"
+        update_domain_block_html: "%{name} 更新了对 %{target} 的域名屏蔽"
+        update_status_html: "%{name} 刷新了 %{target} 的嘟文"
       deleted_status: "（嘟文已删除）"
       empty: 没有找到日志
       filter_by_action: 根据行为过滤
@@ -310,10 +309,12 @@ zh-CN:
       new:
         create: 创建公告
         title: 新公告
+      publish: 发布
       published_msg: 公告已发布！
       scheduled_for: 定时在 %{time}
       scheduled_msg: 定时公告已创建！
       title: 公告
+      unpublish: 取消发布
       unpublished_msg: 公告已取消发布！
       updated_msg: 公告已成功更新！
     custom_emojis:
@@ -358,7 +359,6 @@ zh-CN:
       feature_profile_directory: 用户目录
       feature_registrations: 公开注册
       feature_relay: 联邦中继站
-      feature_spam_check: 反垃圾
       feature_timeline_preview: 时间轴预览
       features: 功能
       hidden_service: 匿名服务连通性
@@ -435,6 +435,14 @@ zh-CN:
         create: 添加域名
         title: 添加电子邮件域名屏蔽
       title: 电子邮件域名屏蔽
+    follow_recommendations:
+      description_html: "<strong>“关注推荐”帮助新用户快速找到有趣的内容</strong>。 当用户与他人的互动不足以形成个性化的建议时，就会推荐关注这些账户。每日都会更新推荐，基于选定语言的近期最高互动数和最多本站关注者数综合评估得出。"
+      language: 选择语言
+      status: 嘟文
+      suppress: 禁用推荐关注
+      suppressed: 已禁用
+      title: 推荐关注
+      unsuppress: 恢复推荐关注
     instances:
       by_domain: 域名
       delivery_available: 可投递
@@ -534,6 +542,13 @@ zh-CN:
       unassign: 取消接管
       unresolved: 未处理
       updated_at: 更新时间
+    rules:
+      add_new: 添加规则
+      delete: 删除
+      description_html: 虽然大多数人都声称已经阅读并同意服务条款，但通常人们只有在出现问题后才会阅读。所以写一个简单的要点列表吧，能让大家一目了然。每条规则要尽量简单明了，但也别分出太多条目来。
+      edit: 编辑规则
+      empty: 尚未定义提供商。
+      title: 实例规则
     settings:
       activity_api_enabled:
         desc_html: 本站一周内的嘟文数、活跃用户数以及新用户数
@@ -613,9 +628,6 @@ zh-CN:
         desc_html: 可以填写自己的隐私权政策、使用条款或其他法律文本。可以使用 HTML 标签
         title: 自定义使用条款
       site_title: 本站名称
-      spam_check_enabled:
-        desc_html: Mastodon可以自动隐藏和举报重复发送垃圾消息的帐号。但是本功能有可能误伤无辜。
-        title: 自动反垃圾
       thumbnail:
         desc_html: 用于在 OpenGraph 和 API 中显示预览图。推荐分辨率 1200×630px
         title: 本站缩略图
@@ -646,6 +658,14 @@ zh-CN:
       no_status_selected: 因为没有嘟文被选中，所以没有更改
       title: 帐户嘟文
       with_media: 含有媒体文件
+    system_checks:
+      database_schema_check:
+        message_html: 有待处理的数据库迁移。请运行它们以确保应用程序正常运行。
+      rules_check:
+        action: 管理服务器规则
+        message_html: 你没有定义任何服务器规则。
+      sidekiq_process_check:
+        message_html: 没有运行 %{value} 队列的 Sidekiq 进程。请检查您的 Sidekiq 配置
     tags:
       accounts_today: 今日活跃用户
       accounts_week: 本周活跃用户
@@ -669,6 +689,7 @@ zh-CN:
       add_new: 添加新条目
       delete: 删除
       edit_preset: 编辑预置警告
+      empty: 您还没有添加任何兴趣。
       title: 管理预设警告
   admin_mailer:
     new_pending_account:
@@ -1026,10 +1047,14 @@ zh-CN:
       body: "%{name} 在嘟文中提到了你："
       subject: "%{name} 提到了你"
       title: 新的提及
+    poll:
+      subject: "%{name} 创建的一个投票已经结束"
     reblog:
       body: 你的嘟文被 %{name} 转嘟了：
       subject: "%{name} 转嘟了你的嘟文"
       title: 新的转嘟
+    status:
+      subject: "%{name} 刚刚发嘟"
   notifications:
     email_events: 电子邮件通知事件
     email_events_hint: 选择你想要收到通知的事件：
@@ -1144,7 +1169,7 @@ zh-CN:
       adobe_air: Adobe Air
       android: Android
       blackberry: 黑莓
-      chrome_os: ChromeOS
+      chrome_os: Chrome OS
       firefox_os: Firefox OS
       ios: iOS
       linux: Linux
@@ -1178,8 +1203,6 @@ zh-CN:
     relationships: 关注管理
     two_factor_authentication: 双重认证
     webauthn_authentication: 安全密钥
-  spam_check:
-    spam_detected: 这是一个自动报告。已检测到垃圾信息。
   statuses:
     attached:
       audio:
@@ -1384,11 +1407,8 @@ zh-CN:
       tips: 小贴士
       title: "%{name}，欢迎你的加入！"
   users:
-    blocked_email_provider: 您不能使用来自此提供商的邮箱
     follow_limit_reached: 您不能关注超过 %{limit} 个人
     generic_access_help_html: 登录账号出现问题？你可以向 %{email} 寻求帮助
-    invalid_email: 输入的电子邮件地址无效
-    invalid_email_mx: 用戶邮箱似乎不存在
     invalid_otp_token: 输入的双重认证代码无效
     invalid_sign_in_token: 无效安全码
     otp_lost_help_html: 如果你不慎丢失了所有的代码，请联系 %{email} 寻求帮助

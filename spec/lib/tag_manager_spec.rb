@@ -83,40 +83,4 @@ RSpec.describe TagManager do
       expect(TagManager.instance.local_url?('https://domainn.test/')).to eq false
     end
   end
-
-  describe '#same_acct?' do
-    # The following comparisons MUST be case-insensitive.
-
-    it 'returns true if the needle has a correct username and domain for remote user' do
-      expect(TagManager.instance.same_acct?('username@domain.test', 'UsErNaMe@DoMaIn.Test')).to eq true
-    end
-
-    it 'returns false if the needle is missing a domain for remote user' do
-      expect(TagManager.instance.same_acct?('username@domain.test', 'UsErNaMe')).to eq false
-    end
-
-    it 'returns false if the needle has an incorrect domain for remote user' do
-      expect(TagManager.instance.same_acct?('username@domain.test', 'UsErNaMe@incorrect.test')).to eq false
-    end
-
-    it 'returns false if the needle has an incorrect username for remote user' do
-      expect(TagManager.instance.same_acct?('username@domain.test', 'incorrect@DoMaIn.test')).to eq false
-    end
-
-    it 'returns true if the needle has a correct username and domain for local user' do
-      expect(TagManager.instance.same_acct?('username', 'UsErNaMe@Cb6E6126.nGrOk.Io')).to eq true
-    end
-
-    it 'returns true if the needle is missing a domain for local user' do
-      expect(TagManager.instance.same_acct?('username', 'UsErNaMe')).to eq true
-    end
-
-    it 'returns false if the needle has an incorrect username for local user' do
-      expect(TagManager.instance.same_acct?('username', 'UsErNaM@Cb6E6126.nGrOk.Io')).to eq false
-    end
-
-    it 'returns false if the needle has an incorrect domain for local user' do
-      expect(TagManager.instance.same_acct?('username', 'incorrect@Cb6E6126.nGrOk.Io')).to eq false
-    end
-  end
 end

@@ -12,6 +12,12 @@ zh-TW:
         send_email_notification: 使用者將收到帳戶發生之事情的解釋
         text_html: 選用。您能使用嘟文語法。您可 <a href="%{path}">新增警告預設</a> 來節省時間
         type_html: 設定要使用 <strong>%{acct}</strong> 做的事
+        types:
+          disable: 禁止該使用者使用他們的帳號，但是不刪除或隱藏他們的內容。
+          none: 使用這個寄送警告給該使用者，而不進行其他動作。
+          sensitive: 強制標記此使用者所有媒體為敏感內容。
+          silence: 禁止該使用者發公開嘟文，從無跟隨他們的帳號中隱藏嘟文和通知。
+          suspend: 禁止所有對該帳號任何互動，並且刪除其內容。三十日內可以撤回。
         warning_preset_id: 選用。您仍可在預設的結尾新增自訂文字
       announcement:
         all_day: 核取後，只會顯示出時間範圍中的日期部分
@@ -53,6 +59,8 @@ zh-TW:
         data: 從其他 Mastodon 伺服器匯出的 CSV 檔案
       invite_request:
         text: 這會協助我們審核您的應用程式
+      rule:
+        text: 說明使用者在此伺服器上需遵守的規則或條款。試著維持各項條款簡短而明瞭。
       sessions:
         otp: 請輸入產生自您手機 App 的兩步驟驗證碼，或輸入其中一個復原代碼：
       tag:
@@ -164,6 +172,8 @@ zh-TW:
         pending_account: 需要審核的新帳戶
         reblog: 當有使用者轉嘟你的嘟文時，傳送電子信件通知
         report: 當提交新檢舉時傳送電子郵件
+      rule:
+        text: 規則
       tag:
         listable: 允許此主題標籤在搜尋及個人檔案目錄中顯示
         name: 主題標籤
@@ -172,7 +182,6 @@ zh-TW:
     'no': 否
     recommended: 建議
     required:
-      mark: "*"
       text: 必須填寫
     title:
       sessions:

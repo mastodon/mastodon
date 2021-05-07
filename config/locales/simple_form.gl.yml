@@ -14,16 +14,22 @@ gl:
         send_email_notification: A usuaria recibirá unha explicación sobre o que lle aconteceu a súa conta
         text_html: Optativo. Podes utilizar formato no toot. Podes <a href="%{path}">engadir avisos preestablecidos</a> para aforrar tempo
         type_html: Escolle que facer con <strong>%{acct}</strong>
+        types:
+          disable: Evitar que a usuaria utilice a súa conta, mais non eliminala ou agochar o seu contido.
+          none: Utiliza esto para darlle un aviso á usuaria, se activar ningunha outra acción.
+          sensitive: Forzar que tódolos ficheiros multimedia das usuarias sexan marcadas como sensibles.
+          silence: Evitar que a usuaria poida publicar toots públicos, agocha os seus toots e notificacións para a xente que non a segue.
+          suspend: Evita calquera interacción con ou desta conta e elimina os seus contidos. Reversible durante 30 días.
         warning_preset_id: Optativo. Poderás engadir texto personalizado ao final do preestablecido
       announcement:
         all_day: Cando se marca, só serán amosadas as datas do intre de tempo
         ends_at: Opcional. O anuncio non se publicará de xeito automático neste intre
         scheduled_at: Déixao baleiro para publicar o anuncio de xeito inmediato
         starts_at: Opcional. No caso de que o teu anuncio estea vinculado a un intre de tempo específico
-        text: Podes empregar a sintaxe do toot. Ten en conta o espazo que ocupará o anuncio na pantalla do usuario
+        text: Podes empregar a sintaxe do toot. Ten en conta o espazo que ocupará o anuncio na pantalla da usuaria
       defaults:
         autofollow: As persoas que se conectaron a través dun convite seguirante automáticamente
-        avatar: PNG, GIF ou JPG.  Máximo %{size}. Será reducida a %{dimensions}px
+        avatar: PNG, GIF ou JPG. Máximo %{size}. Será reducida a %{dimensions}px
         bot: Esta conta realiza principalmente accións automatizadas e podería non estar monitorizada
         context: Un ou varios contextos onde se debería aplicar o filtro
         current_password: Por razóns de seguridade, introduce o contrasinal da conta actual
@@ -73,6 +79,8 @@ gl:
           no_access: Bloquear acceso a tódolos recursos
           sign_up_requires_approval: Os novos rexistros requerirán a túa aprobación
         severity: Escolle que acontecerá coas peticións desde este IP
+      rule:
+        text: Describe unha regra ou requerimento para as usuarias deste servidor. Intenta que sexa curta e simple
       sessions:
         otp: 'Introduce o código do segundo factor creado pola aplicación do teu móbil ou usa un dos códigos de recuperación:'
         webauthn: Se é unha chave USB asegúrate de que está conectada e preme o botón.
@@ -197,6 +205,8 @@ gl:
         reblog: Enviar un correo cando alguén promociona a tua mensaxe
         report: Enviar un correo cando se envíe unha denuncia
         trending_tag: Un cancelo ser revisar está sendo tendencia
+      rule:
+        text: Regra
       tag:
         listable: Permitir que este cancelo apareza en buscas e no directorio de perfil
         name: Cancelo

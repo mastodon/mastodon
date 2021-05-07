@@ -6,12 +6,8 @@
 #  id                            :bigint(8)        not null, primary key
 #  username                      :string           default(""), not null
 #  domain                        :string
-#  secret                        :string           default(""), not null
 #  private_key                   :text
 #  public_key                    :text             default(""), not null
-#  remote_url                    :string           default(""), not null
-#  salmon_url                    :string           default(""), not null
-#  hub_url                       :string           default(""), not null
 #  created_at                    :datetime         not null
 #  updated_at                    :datetime         not null
 #  note                          :text             default(""), not null
@@ -49,12 +45,18 @@
 #  avatar_storage_schema_version :integer
 #  header_storage_schema_version :integer
 #  devices_url                   :string
-#  sensitized_at                 :datetime
 #  suspension_origin             :integer
+#  sensitized_at                 :datetime
 #
 
 class Account < ApplicationRecord
-  self.ignored_columns = %w(subscription_expires_at)
+  self.ignored_columns = %w(
+    subscription_expires_at
+    secret
+    remote_url
+    salmon_url
+    hub_url
+  )
 
   USERNAME_RE = /[a-z0-9_]+([a-z0-9_\.-]+[a-z0-9_]+)?/i
   MENTION_RE  = /(?<=^|[^\/[:word:]])@((#{USERNAME_RE})(?:@[[:word:]\.\-]+[a-z0-9]+)?)/i
@@ -110,7 +112,7 @@ class Account < ApplicationRecord
   scope :matches_domain, ->(value) { where(arel_table[:domain].matches("%#{value}%")) }
   scope :searchable, -> { without_suspended.where(moved_to_account_id: nil) }
   scope :discoverable, -> { searchable.without_silenced.where(discoverable: true).left_outer_joins(:account_stat) }
-  scope :tagged_with, ->(tag) { joins(:accounts_tags).where(accounts_tags: { tag_id: tag }) }
+  scope :followable_by, ->(account) { joins(arel_table.join(Follow.arel_table, Arel::Nodes::OuterJoin).on(arel_table[:id].eq(Follow.arel_table[:target_account_id]).and(Follow.arel_table[:account_id].eq(account.id))).join_sources).where(Follow.arel_table[:id].eq(nil)).joins(arel_table.join(FollowRequest.arel_table, Arel::Nodes::OuterJoin).on(arel_table[:id].eq(FollowRequest.arel_table[:target_account_id]).and(FollowRequest.arel_table[:account_id].eq(account.id))).join_sources).where(FollowRequest.arel_table[:id].eq(nil)) }
   scope :by_recent_status, -> { order(Arel.sql('(case when account_stats.last_status_at is null then 1 else 0 end) asc, account_stats.last_status_at desc, accounts.id desc')) }
   scope :by_recent_sign_in, -> { order(Arel.sql('(case when users.current_sign_in_at is null then 1 else 0 end) asc, users.current_sign_in_at desc, accounts.id desc')) }
   scope :popular, -> { order('account_stats.followers_count desc') }
@@ -234,6 +236,7 @@ class Account < ApplicationRecord
     transaction do
       create_deletion_request!
       update!(suspended_at: date, suspension_origin: origin)
+      create_canonical_email_block!
     end
   end
 
@@ -241,6 +244,7 @@ class Account < ApplicationRecord
     transaction do
       deletion_request&.destroy!
       update!(suspended_at: nil, suspension_origin: nil)
+      destroy_canonical_email_block!
     end
   end
 
@@ -276,19 +280,13 @@ class Account < ApplicationRecord
       if hashtags_map.key?(tag.name)
         hashtags_map.delete(tag.name)
       else
-        transaction do
-          tags.delete(tag)
-          tag.decrement_count!(:accounts_count)
-        end
+        tags.delete(tag)
       end
     end
 
     # Add hashtags that were so far missing
     hashtags_map.each_value do |tag|
-      transaction do
-        tags << tag
-        tag.increment_count!(:accounts_count)
-      end
+      tags << tag
     end
   end
 
@@ -363,7 +361,7 @@ class Account < ApplicationRecord
   end
 
   def excluded_from_timeline_account_ids
-    Rails.cache.fetch("exclude_account_ids_for:#{id}") { blocking.pluck(:target_account_id) + blocked_by.pluck(:account_id) + muting.pluck(:target_account_id) }
+    Rails.cache.fetch("exclude_account_ids_for:#{id}") { block_relationships.pluck(:target_account_id) + blocked_by_relationships.pluck(:account_id) + mute_relationships.pluck(:target_account_id) }
   end
 
   def excluded_from_timeline_domains
@@ -567,5 +565,17 @@ class Account < ApplicationRecord
 
   def clean_feed_manager
     FeedManager.instance.clean_feeds!(:home, [id])
+  end
+
+  def create_canonical_email_block!
+    return unless local? && user_email.present?
+
+    CanonicalEmailBlock.create(reference_account: self, email: user_email)
+  end
+
+  def destroy_canonical_email_block!
+    return unless local?
+
+    CanonicalEmailBlock.where(reference_account: self).delete_all
   end
 end

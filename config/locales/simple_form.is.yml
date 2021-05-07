@@ -14,6 +14,12 @@ is:
         send_email_notification: Notandinn mun fá útskýringar á því hvað gerðist með notandaaðganginn hans
         text_html: Valfrjálst. Þú getur notað sömu skilgreiningar og fyrir tíst. Þú getur <a href="%{path}">bætt inn forstilltum aðvörunum</a> til að spara tíma
         type_html: Veldu hvað eigi að gera við <strong>%{acct}</strong>
+        types:
+          disable: Koma í veg fyrir að notandinn noti aðganginn sinn, en ekki eyða eða fela efnið þeirra.
+          none: Nota þetta til að senda aðvörun til notandans, án þess að setja neina aðra aðgerð í gang.
+          sensitive: Þvinga fram að öll myndefnisviðhengi þessa notanda verði flögguð sem viðkvæmt efni.
+          silence: Koma í veg fyrir að notandinn geti birt færslur opinberlega, fela færslur þeirra og tilkynningar fyrir fólki sem ekki er að fylgjast með notandanum.
+          suspend: Koma í veg fyrir öll samskipti til eða frá þessum aðgangi og eyða öllu efni hans. Afturkallanlegt innan 30 daga.
         warning_preset_id: Valkvætt. Þú getur ennþá bætt sérsniðnum texta við enda forstillinga
       announcement:
         all_day: Þegar merkt er við þetta, munu einungis birtast dagsetningar tímarammans
@@ -73,6 +79,8 @@ is:
           no_access: Loka á aðgang að öllum tilföngum
           sign_up_requires_approval: Nýskráningar munu þurfa samþykki þitt
         severity: Veldu hvað munir gerast við beiðnir frá þessu IP-vistfangi
+      rule:
+        text: Lýstu reglum eða kröfum sem gerðar eru til notenda á þessum netþjóni. Reyndu að hafa þetta skýrt og skorinort
       sessions:
         otp: 'Settu inn tveggja-þátta kóðann sem farsímaforritið útbjó eða notaðu einn af endurheimtukóðunum þínum:'
         webauthn: Ef þetta er USB-lykill, gakktu úr skugga um að honum sé stungið í samband og ef þörf þykir að ýta á hann.
@@ -197,6 +205,8 @@ is:
         reblog: Einhver endurbirti stöðufærslu þína
         report: Ný kæra hefur verið send inn
         trending_tag: Óyfirfarið myllumerki er í umræðunni
+      rule:
+        text: Regla
       tag:
         listable: Leyfa þessu myllumerki að birtast í leitum og í persónusniðamöppunni
         name: Myllumerki

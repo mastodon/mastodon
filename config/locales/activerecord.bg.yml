@@ -5,3 +5,24 @@ bg:
       poll:
         expires_at: Краен срок
         options: Избори
+      user:
+        agreement: Споразумение за обслужване
+        email: Имейл адрес
+        locale: Локално
+        password: Парола
+      user/account:
+        username: Потребителско име
+      user/invite_request:
+        text: Причина
+    errors:
+      models:
+        account:
+          attributes:
+            username:
+              invalid: само букви, цифри и долни черти
+              reserved: е запазено
+        user:
+          attributes:
+            email:
+              blocked: използва се непозволен имейл доставчик
+              unreachable: изглежда, че не съществува

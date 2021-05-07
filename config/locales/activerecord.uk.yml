@@ -5,13 +5,28 @@ uk:
       poll:
         expires_at: Кінцевий термін
         options: Варіанти вибору
+      user:
+        agreement: Угода про надання послуг
+        email: E-mail адреса
+        locale: Локаль
+        password: Пароль
+      user/account:
+        username: Ім'я користувача
+      user/invite_request:
+        text: Причина
     errors:
       models:
         account:
           attributes:
             username:
               invalid: тільки літери, цифри та підкреслення
+              reserved: зарезервовано
         status:
           attributes:
             reblog:
               taken: статусу вже існує
+        user:
+          attributes:
+            email:
+              blocked: використовує не дозволенного постачальника електронної пошти
+              unreachable: не існує

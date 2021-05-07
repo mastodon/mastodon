@@ -5,13 +5,28 @@ vi:
       poll:
         expires_at: Hạn chót
         options: Lựa chọn
+      user:
+        agreement: Đồng ý quy tắc
+        email: Địa chỉ email
+        locale: Quốc gia
+        password: Mật khẩu
+      user/account:
+        username: Tên người dùng
+      user/invite_request:
+        text: Lý do
     errors:
       models:
         account:
           attributes:
             username:
               invalid: chỉ chấp nhận ký tự, số và dấu gạch dưới
+              reserved: bị cấm sử dụng
         status:
           attributes:
             reblog:
               taken: của tút đã tồn tại
+        user:
+          attributes:
+            email:
+              blocked: sử dụng dịch vụ email bị cấm
+              unreachable: không tồn tại

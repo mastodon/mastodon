@@ -100,7 +100,8 @@ end
 
 module Paperclip
   # This transcoder is only to be used for the MediaAttachment model
-  # to convert animated gifs to webm
+  # to convert animated GIFs to videos
+
   class GifTranscoder < Paperclip::Processor
     def make
       return File.open(@file.path) unless needs_convert?

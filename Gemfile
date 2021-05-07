@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 source 'https://rubygems.org'
-ruby '>= 2.5.0', '< 3.0.0'
+ruby '>= 2.5.0', '< 3.1.0'
 
 gem 'pkg-config', '~> 1.4'
 
@@ -17,12 +17,10 @@ gem 'makara', '~> 0.5'
 gem 'pghero', '~> 2.8'
 gem 'dotenv-rails', '~> 2.7'
 
-gem 'aws-sdk-s3', '~> 1.93', require: false
+gem 'aws-sdk-s3', '~> 1.94', require: false
 gem 'fog-core', '<= 2.1.0'
 gem 'fog-openstack', '~> 0.3', require: false
 gem 'paperclip', '~> 6.0'
-gem 'paperclip-av-transcoder', '~> 0.6'
-gem 'streamio-ffmpeg', '~> 3.0'
 gem 'blurhash', '~> 0.1'
 
 gem 'active_model_serializers', '~> 0.10'
@@ -32,9 +30,9 @@ gem 'browser'
 gem 'charlock_holmes', '~> 0.7.7'
 gem 'iso-639'
 gem 'chewy', '~> 5.2'
-gem 'cld3', '~> 3.4.1'
-gem 'devise', '~> 4.7'
-gem 'devise-two-factor', git: 'https://github.com/ClearlyClaire/devise-two-factor', ref: '594bb8a32e6f94df7e5ba7c9399eaf9ff25bac0d'
+gem 'cld3', '~> 3.4.2'
+gem 'devise', '~> 4.8'
+gem 'devise-two-factor', '~> 4.0'
 
 group :pam_authentication, optional: true do
   gem 'devise_pam_authenticatable2', '~> 9.2'
@@ -62,9 +60,8 @@ gem 'idn-ruby', require: 'idn'
 gem 'kaminari', '~> 1.2'
 gem 'link_header', '~> 0.0'
 gem 'mime-types', '~> 3.3.1', require: 'mime/types/columnar'
-gem 'nilsimsa', git: 'https://github.com/witgo/nilsimsa', ref: 'fd184883048b922b176939f851338d0a4971a532'
 gem 'nokogiri', '~> 1.11'
-gem 'nsa', git: 'https://github.com/Gargron/nsa', ref: 'd1079e0cdafdfed7f9f35478d13b9bdaa65965c0'
+gem 'nsa', '~> 0.2'
 gem 'oj', '~> 3.11'
 gem 'ox', '~> 2.14'
 gem 'parslet'
@@ -94,8 +91,8 @@ gem 'strong_migrations', '~> 0.7'
 gem 'tty-prompt', '~> 0.23', require: false
 gem 'twitter-text', '~> 3.1.0'
 gem 'tzinfo-data', '~> 1.2021'
-gem 'webpacker', '~> 5.2'
-gem 'webpush'
+gem 'webpacker', '~> 5.3'
+gem 'webpush', '~> 0.3'
 gem 'webauthn', '~> 3.0.0.alpha1'
 
 gem 'json-ld'
@@ -124,7 +121,7 @@ group :test do
   gem 'rspec-sidekiq', '~> 3.1'
   gem 'simplecov', '~> 0.21', require: false
   gem 'webmock', '~> 3.12'
-  gem 'parallel_tests', '~> 3.6'
+  gem 'parallel_tests', '~> 3.7'
   gem 'rspec_junit_formatter', '~> 0.4'
 end
 
@@ -137,7 +134,7 @@ group :development do
   gem 'letter_opener', '~> 1.7'
   gem 'letter_opener_web', '~> 1.4'
   gem 'memory_profiler'
-  gem 'rubocop', '~> 1.12', require: false
+  gem 'rubocop', '~> 1.13', require: false
   gem 'rubocop-rails', '~> 2.9', require: false
   gem 'brakeman', '~> 5.0', require: false
   gem 'bundler-audit', '~> 0.8', require: false
@@ -158,4 +155,5 @@ gem 'concurrent-ruby', require: false
 gem 'connection_pool', require: false
 
 gem 'xorcist', '~> 1.1'
-gem 'pluck_each', git: 'https://github.com/nsommer/pluck_each', ref: '73be0947c52fc54bf6d7085378db008358aac5eb'
+
+gem 'resolv', '~> 0.1.0'

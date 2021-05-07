@@ -3,8 +3,6 @@
 require 'sidekiq_unique_jobs/web'
 require 'sidekiq-scheduler/web'
 
-Sidekiq::Web.set :session_secret, Rails.application.secrets[:secret_key_base]
-
 Rails.application.routes.draw do
   root 'home#index'
 
@@ -99,8 +97,6 @@ Rails.application.routes.draw do
   post '/interact/:id', to: 'remote_interaction#create'
 
   get '/explore', to: 'directories#index', as: :explore
-  get '/explore/:id', to: 'directories#show', as: :explore_hashtag
-
   get '/settings', to: redirect('/settings/profile')
 
   namespace :settings do
@@ -219,7 +215,14 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :instances, only: [:index, :show], constraints: { id: /[^\/]+/ }
+    resources :instances, only: [:index, :show], constraints: { id: /[^\/]+/ } do
+      member do
+        post :clear_delivery_errors
+        post :restart_delivery
+        post :stop_delivery
+      end
+    end
+  
     resources :rules
 
     resources :reports, only: [:index, :show] do
@@ -294,6 +297,7 @@ Rails.application.routes.draw do
     end
 
     resources :account_moderation_notes, only: [:create, :destroy]
+    resource :follow_recommendations, only: [:show, :update]
 
     resources :tags, only: [:index, :show, :update] do
       collection do
@@ -509,6 +513,7 @@ Rails.application.routes.draw do
     namespace :v2 do
       resources :media, only: [:create]
       get '/search', to: 'search#index', as: :search
+      resources :suggestions, only: [:index]
     end
 
     namespace :web do

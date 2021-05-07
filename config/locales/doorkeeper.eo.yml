@@ -83,7 +83,10 @@ eo:
         invalid_client: Klienta aŭtentigo malsukcesa pro nekonata kliento, neniu klienta aŭtentigo inkluzivita, aŭ nesubtenata aŭtentiga metodo.
         invalid_grant: La rajtiga konsento ne estas valida, ne plu estas valida, estis forigita, ne kongruas kun la plusenda URI uzita en la aŭtentiga peto, aŭ estis sendita al alia kliento.
         invalid_redirect_uri: La plusenda URI uzita ne estas valida.
-        invalid_request: Mankis al la peto nepra parametro, enhavas nesubtenatan parametran valoron, aŭ la peto simple estas misformita.
+        invalid_request:
+          missing_param: 'Mankas bezonata parametro: %{value}.'
+          request_not_authorized: Request need to be authorized. Required parameter for authorizing request is missing or invalid.
+          unknown: Mankis al la peto nepra parametro, enhavas nesubtenatan parametran valoron, aŭ la peto simple estas misformita.
         invalid_resource_owner: La donitaj identigiloj pri la posedanto de la rimedo ne estas validaj, aŭ tiu lasta ne povas esti trovita
         invalid_scope: La petita amplekso estas nevalida, nekonata, aŭ misformita.
         invalid_token:
