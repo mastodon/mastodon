@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 source 'https://rubygems.org'
-ruby '>= 2.5.0', '< 3.0.0'
+ruby '>= 2.5.0', '< 3.1.0'
 
 gem 'pkg-config', '~> 1.4'
 
@@ -31,7 +31,7 @@ gem 'charlock_holmes', '~> 0.7.7'
 gem 'iso-639'
 gem 'chewy', '~> 5.2'
 gem 'cld3', '~> 3.4.2'
-gem 'devise', '~> 4.7'
+gem 'devise', '~> 4.8'
 gem 'devise-two-factor', '~> 4.0'
 
 group :pam_authentication, optional: true do
@@ -91,7 +91,7 @@ gem 'strong_migrations', '~> 0.7'
 gem 'tty-prompt', '~> 0.23', require: false
 gem 'twitter-text', '~> 3.1.0'
 gem 'tzinfo-data', '~> 1.2021'
-gem 'webpacker', '~> 5.2'
+gem 'webpacker', '~> 5.3'
 gem 'webpush', '~> 0.3'
 gem 'webauthn', '~> 3.0.0.alpha1'
 
