@@ -328,6 +328,8 @@ class Header extends ImmutablePureComponent {
                 )}
 
                 {account.get('note').length > 0 && account.get('note') !== '<p></p>' && <div className='account__header__content translate' dangerouslySetInnerHTML={content} />}
+
+                <div className='account__header__joined'><FormattedMessage id='account.joined' defaultMessage='Joined {date}' values={{ date: intl.formatDate(account.get('created_at'), { year: 'numeric', month: 'short', day: '2-digit' }) }} /></div>
               </div>
             </div>
           )}
