@@ -909,6 +909,10 @@
       {
         "defaultMessage": "Group",
         "id": "account.badges.group"
+      },
+      {
+        "defaultMessage": "Joined {date}",
+        "id": "account.joined"
       }
     ],
     "path": "app/javascript/mastodon/features/account/components/header.json"
@@ -1919,12 +1923,12 @@
         "id": "home.hide_announcements"
       },
       {
-        "defaultMessage": "Your home timeline is empty! Visit {public} or use search to get started and meet other users.",
+        "defaultMessage": "Your home timeline is empty! Follow more people to fill it up. {suggestions}",
         "id": "empty_column.home"
       },
       {
-        "defaultMessage": "the public timeline",
-        "id": "empty_column.home.public_timeline"
+        "defaultMessage": "See some suggestions",
+        "id": "empty_column.home.suggestions"
       }
     ],
     "path": "app/javascript/mastodon/features/home_timeline/index.json"
@@ -2417,7 +2421,7 @@
         "id": "notifications.mark_as_read"
       },
       {
-        "defaultMessage": "You don't have any notifications yet. Interact with others to start the conversation.",
+        "defaultMessage": "You don't have any notifications yet. When other people interact with you, you will see it here.",
         "id": "empty_column.notifications"
       }
     ],
