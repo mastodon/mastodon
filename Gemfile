@@ -91,7 +91,7 @@ gem 'strong_migrations', '~> 0.7'
 gem 'tty-prompt', '~> 0.23', require: false
 gem 'twitter-text', '~> 3.1.0'
 gem 'tzinfo-data', '~> 1.2021'
-gem 'webpacker', '~> 5.2'
+gem 'webpacker', '~> 5.3'
 gem 'webpush', '~> 0.3'
 gem 'webauthn', '~> 3.0.0.alpha1'
 
