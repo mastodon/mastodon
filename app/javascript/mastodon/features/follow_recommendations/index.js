@@ -7,6 +7,7 @@ import { FormattedMessage } from 'react-intl';
 import { fetchSuggestions } from 'mastodon/actions/suggestions';
 import { changeSetting, saveSettings } from 'mastodon/actions/settings';
 import { requestBrowserPermission } from 'mastodon/actions/notifications';
+import { markAsPartial } from 'mastodon/actions/timelines';
 import Column from 'mastodon/features/ui/components/column';
 import Account from './components/account';
 import Logo from 'mastodon/components/logo';
@@ -40,6 +41,15 @@ class FollowRecommendations extends ImmutablePureComponent {
     if (suggestions.size === 0) {
       dispatch(fetchSuggestions(true));
     }
+  }
+
+  componentWillUnmount () {
+    const { dispatch } = this.props;
+
+    // Force the home timeline to be reloaded when the user navigates
+    // to it; if the user is new, it would've been empty before
+
+    dispatch(markAsPartial('home'));
   }
 
   handleDone = () => {
