@@ -225,6 +225,7 @@ zh-CN:
         create_domain_block: 封禁新域名
         create_email_domain_block: 封禁电子邮箱域名
         create_ip_block: 新建 IP 规则
+        create_unavailable_domain: 创建不可用域名
         demote_user: 给用户降职
         destroy_announcement: 删除公告
         destroy_custom_emoji: 删除自定义表情符号
@@ -233,6 +234,7 @@ zh-CN:
         destroy_email_domain_block: 解除电子邮箱域名封禁
         destroy_ip_block: 删除 IP 规则
         destroy_status: 删除嘟文
+        destroy_unavailable_domain: 删除不可用域名
         disable_2fa_user: 禁用双重认证
         disable_custom_emoji: 禁用自定义表情符号
         disable_user: 禁用用户
@@ -266,6 +268,7 @@ zh-CN:
         create_domain_block_html: "%{name} 屏蔽了域名 %{target}"
         create_email_domain_block_html: "%{name} 屏蔽了电子邮件域名 %{target}"
         create_ip_block_html: "%{name} 为 IP %{target} 创建了规则"
+        create_unavailable_domain_html: "%{name} 停止了向域名 %{target} 的投递"
         demote_user_html: "%{name} 对用户 %{target} 进行了降任操作"
         destroy_announcement_html: "%{name} 删除了公告 %{target}"
         destroy_custom_emoji_html: "%{name} 销毁了自定义表情 %{target}"
@@ -274,6 +277,7 @@ zh-CN:
         destroy_email_domain_block_html: "%{name} 解除了对电子邮件域名 %{target} 的屏蔽"
         destroy_ip_block_html: "%{name} 删除了 IP %{target} 的规则"
         destroy_status_html: "%{name} 删除了 %{target} 的嘟文"
+        destroy_unavailable_domain_html: "%{name} 恢复了向域名 %{target} 的投递"
         disable_2fa_user_html: "%{name} 停用了用户 %{target} 的双重认证"
         disable_custom_emoji_html: "%{name} 停用了自定义表情 %{target}"
         disable_user_html: "%{name} 将用户 %{target} 设置为禁止登录"
@@ -445,8 +449,23 @@ zh-CN:
       title: 推荐关注
       unsuppress: 恢复推荐关注
     instances:
+      back_to_all: 全部
+      back_to_limited: 已隐藏
+      back_to_warning: 警告
       by_domain: 域名
+      delivery:
+        all: 全部
+        clear: 清除投递错误
+        restart: 重新投递
+        stop: 停止投递
+        title: 投递
+        unavailable: 不可用
+        unavailable_message: 投递不可用
+        warning: 警告
+        warning_message:
+          other: 投递已失败 %{count} 天
       delivery_available: 可投递
+      delivery_error_days: 投递错误天数
       empty: 暂无域名。
       known_accounts:
         other: "%{count} 个已知帐户"
