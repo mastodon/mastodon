@@ -73,7 +73,7 @@ class HomeTimeline extends React.PureComponent {
   }
 
   componentDidMount () {
-    this.props.dispatch(fetchAnnouncements());
+    setTimeout(() => this.props.dispatch(fetchAnnouncements()), 700);
     this._checkIfReloadNeeded(false, this.props.isPartial);
   }
 
@@ -153,7 +153,7 @@ class HomeTimeline extends React.PureComponent {
           scrollKey={`home_timeline-${columnId}`}
           onLoadMore={this.handleLoadMore}
           timelineId='home'
-          emptyMessage={<FormattedMessage id='empty_column.home' defaultMessage='Your home timeline is empty! Visit {public} or use search to get started and meet other users.' values={{ public: <Link to='/timelines/public'><FormattedMessage id='empty_column.home.public_timeline' defaultMessage='the public timeline' /></Link> }} />}
+          emptyMessage={<FormattedMessage id='empty_column.home' defaultMessage='Your home timeline is empty! Follow more people to fill it up. {suggestions}' values={{ suggestions: <Link to='/start'><FormattedMessage id='empty_column.home.suggestions' defaultMessage='See some suggestions' /></Link> }} />}
           shouldUpdateScroll={shouldUpdateScroll}
           bindToDocument={!multiColumn}
         />

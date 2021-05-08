@@ -12,6 +12,10 @@ class ActivityPub::TagManager
     public: 'https://www.w3.org/ns/activitystreams#Public',
   }.freeze
 
+  def public_collection?(uri)
+    uri == COLLECTIONS[:public] || uri == 'as:Public' || uri == 'Public'
+  end
+
   def url_for(target)
     return target.url if target.respond_to?(:local?) && !target.local?
 

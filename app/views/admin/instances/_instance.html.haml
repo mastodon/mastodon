@@ -22,4 +22,12 @@
           = t('admin.accounts.whitelisted')
         - else
           = t('admin.accounts.no_limits_imposed')
+        - if instance.failure_days
+          = ' / '
+          %span.negative-hint
+            = t('admin.instances.delivery.warning_message', count: instance.failure_days)
+        - if instance.unavailable_domain
+          = ' / '
+          %span.negative-hint
+            = t('admin.instances.delivery.unavailable_message')
     .trends__item__current{ title: t('admin.instances.known_accounts', count: instance.accounts_count) }= number_to_human instance.accounts_count, strip_insignificant_zeros: true

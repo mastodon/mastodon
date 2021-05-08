@@ -187,9 +187,10 @@ class ActionBar extends React.PureComponent {
   render () {
     const { status, relationship, intl } = this.props;
 
-    const publicStatus = ['public', 'unlisted'].includes(status.get('visibility'));
+    const publicStatus       = ['public', 'unlisted'].includes(status.get('visibility'));
     const mutingConversation = status.get('muted');
     const account            = status.get('account');
+    const writtenByMe        = status.getIn(['account', 'id']) === me;
 
     let menu = [];
 
@@ -199,12 +200,12 @@ class ActionBar extends React.PureComponent {
       menu.push(null);
     }
 
-    if (me === status.getIn(['account', 'id'])) {
+    if (writtenByMe) {
       if (publicStatus) {
         menu.push({ text: intl.formatMessage(status.get('pinned') ? messages.unpin : messages.pin), action: this.handlePinClick });
+        menu.push(null);
       }
 
-      menu.push(null);
       menu.push({ text: intl.formatMessage(mutingConversation ? messages.unmuteConversation : messages.muteConversation), action: this.handleConversationMuteClick });
       menu.push(null);
       menu.push({ text: intl.formatMessage(messages.delete), action: this.handleDeleteClick });

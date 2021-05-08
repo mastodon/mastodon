@@ -604,6 +604,12 @@ code {
     color: $valid-value-color;
   }
 
+  &.warning {
+    border: 1px solid rgba($gold-star, 0.5);
+    background: rgba($gold-star, 0.25);
+    color: $gold-star;
+  }
+
   &.alert {
     border: 1px solid rgba($error-value-color, 0.5);
     background: rgba($error-value-color, 0.1);
@@ -622,6 +628,19 @@ code {
     &:hover {
       color: $primary-text-color;
       text-decoration: underline;
+    }
+  }
+
+  &.warning a {
+    font-weight: 700;
+    color: inherit;
+    text-decoration: underline;
+
+    &:hover,
+    &:focus,
+    &:active {
+      text-decoration: none;
+      color: inherit;
     }
   }
 
@@ -677,6 +696,29 @@ code {
 
     a {
       text-decoration: underline;
+    }
+  }
+}
+
+.flash-message-stack {
+  margin-bottom: 30px;
+
+  .flash-message {
+    border-radius: 0;
+    margin-bottom: 0;
+    border-top-width: 0;
+
+    &:first-child {
+      border-radius: 4px 4px 0 0;
+      border-top-width: 1px;
+    }
+
+    &:last-child {
+      border-radius: 0 0 4px 4px;
+
+      &:first-child {
+        border-radius: 4px;
+      }
     }
   }
 }

@@ -62,6 +62,7 @@ sv:
         subject: 'Mastodon: Lås upp instruktioner'
       webauthn_credential:
         added:
+          explanation: Följande säkerhetsnyckel har lagts till i ditt konto
           subject: 'Mastodon: Ny säkerhetsnyckel'
           title: En ny säkerhetsnyckel har lagts till
         deleted:
@@ -69,8 +70,12 @@ sv:
           subject: 'Mastodon: Säkerhetsnyckeln borttagen'
           title: En av dina säkerhetsnycklar har tagits bort
       webauthn_disabled:
+        explanation: Autentisering med säkerhetsnycklar till ditt konto har inaktiverats. Inloggning är nu endast möjligt med den token som genereras av den sammankopplade TOTP-appen.
+        subject: 'Mastodon: Autentisering med säkerhetsnycklar är inaktiverat'
         title: Säkerhetsnycklar inaktiverade
       webauthn_enabled:
+        explanation: Autentisering med säkerhetsnyckel till ditt konto har aktiverats. Din säkerhetsnyckel kan nu användas för inloggning.
+        subject: 'Mastodon: Autentisering med säkerhetsnyckel är aktiverat'
         title: Säkerhetsnycklar aktiverade
     omniauth_callbacks:
       failure: Det gick inte att autentisera dig från %{kind} för "%{reason}".

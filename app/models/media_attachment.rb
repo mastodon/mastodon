@@ -290,7 +290,7 @@ class MediaAttachment < ApplicationRecord
       elsif instance.file_content_type == 'image/png'
         [:img_converter, :lazy_thumbnail, :blurhash_transcoder]
       elsif VIDEO_MIME_TYPES.include?(instance.file_content_type)
-        [:video_transcoder, :blurhash_transcoder, :type_corrector]
+        [:transcoder, :blurhash_transcoder, :type_corrector]
       elsif AUDIO_MIME_TYPES.include?(instance.file_content_type)
         [:image_extractor, :transcoder, :type_corrector]
       else
@@ -391,7 +391,7 @@ class MediaAttachment < ApplicationRecord
   # paths but ultimately the same file, so it makes sense to memoize the
   # result while disregarding the path
   def ffmpeg_data(path = nil)
-    @ffmpeg_data ||= FFMPEG::Movie.new(path)
+    @ffmpeg_data ||= VideoMetadataExtractor.new(path)
   end
 
   def enqueue_processing

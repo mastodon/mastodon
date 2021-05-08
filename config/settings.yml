@@ -63,12 +63,10 @@ defaults: &defaults
     - mod
     - moderator
   disallowed_hashtags: # space separated string or list of hashtags without the hash
-  enable_bootstrap_timeline_accounts: true
   bootstrap_timeline_accounts: ''
   activity_api_enabled: true
   peers_api_enabled: true
   show_known_fediverse_at_about_page: true
-  spam_check_enabled: true
   show_domain_blocks: 'disabled'
   show_domain_blocks_rationale: 'disabled'
   require_invite_text: false

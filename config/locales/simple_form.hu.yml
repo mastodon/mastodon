@@ -14,6 +14,12 @@ hu:
         send_email_notification: A felhasználó magyarázatot kap arra, mi történt a fiókjával
         text_html: Opcionális. A tülk szintaxis használható. Egyszerűsítés végett létre is hozhatsz <a href="%{path}">figyelmeztetéseket</a>
         type_html: Megmondhatod, mi legyen vele <strong>%{acct}</strong>
+        types:
+          disable: A felhasználó nem fogja tudni használni a fiókját, de ettől még nem töröljük azt vagy rejtjük el a tartalmait.
+          none: Ezt használd ahhoz, hogy a felhasználónak figyelmeztetést küldj bármilyen más következmény nélkül.
+          sensitive: Ennek a felhasználónak minden médiatartalmát jelöljük meg szenzitívként.
+          silence: Megakadályozzuk, hogy ez a felhasználó nyilvános láthatóságú tülköt tegyen közzé, elrejtjük a tülkjeit és értesítéseit azok elől, akik nem közvetlen követői.
+          suspend: Minden interakciót megakadályozunk ezzel a fiókkal és töröljük a tartalmát. 30 napon belül még visszacsinálható.
         warning_preset_id: Opcionális. A figyelmeztetés végére saját szöveget is írhatsz
       announcement:
         all_day: Bejelölve csak a dátumok számítanak majd a megadott intervallumból
@@ -73,6 +79,8 @@ hu:
           no_access: Elérés tiltása minden erőforráshoz
           sign_up_requires_approval: Új regisztrációk csak a jóváhagyásoddal történhetnek majd meg
         severity: Válaszd ki, mi történjen a kérésekkel erről az IP-ről
+      rule:
+        text: Írd le, mi a szabály vagy elvárás ezen a szerveren a felhasználók felé. Próbálj röviden, egyszerűen fogalmazni
       sessions:
         otp: 'Add meg a telefonodon generált kétlépcsős azonosító kódodat vagy használd az egyik tartalék bejelentkező kódot:'
         webauthn: Ha ez egy USB kulcs, ellenőrizd, hogy csatlakoztattad és ha szükséges, aktiváltad is.
@@ -197,6 +205,8 @@ hu:
         reblog: E-mail küldése, amikor valaki megtolja a tülködet
         report: E-mail küldése, ha új bejelentés érkezett
         trending_tag: E-mail küldése, ha egy még nem látott hashtag trendi lett
+      rule:
+        text: Szabály
       tag:
         listable: A hashtag megjelenhet a profiladatbázisban
         name: Hashtag

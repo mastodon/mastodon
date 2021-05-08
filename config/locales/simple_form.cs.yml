@@ -14,6 +14,12 @@ cs:
         send_email_notification: Uživatel obdrží vysvětlení toho, co se stalo s jeho účtem
         text_html: Volitelné. Můžete používat syntaxi tootů. Pro ušetření času si můžete <a href="%{path}">přidat předlohy pro varování</a>
         type_html: Vyberte, co chcete s účtem <strong>%{acct}</strong> udělat
+        types:
+          disable: Zabránit uživateli používat svůj účet, ale nemazat ani neskrývat jejich obsah.
+          none: Toto použijte pro zaslání varování uživateli, bez vyvolání jakékoliv další akce.
+          sensitive: Vynutit označení všech mediálních příloh tohoto uživatele jako citlivých.
+          silence: Zamezit uživateli odesílat příspěvky s veřejnou viditelností, schovat jejich příspěvky a notifikace před lidmi, kteří je nesledují.
+          suspend: Zamezit jakékoliv interakci z nebo do tohoto účtu a smazat jeho obsah. Vratné do 30 dnů.
         warning_preset_id: Volitelné. Na konec předlohy můžete stále vložit vlastní text
       announcement:
         all_day: Po vybrání budou zobrazeny jenom dny z časového období
@@ -65,8 +71,19 @@ cs:
         data: Soubor CSV exportovaný z jiného serveru Mastodon
       invite_request:
         text: To nám pomůže posoudit vaši žádost
+      ip_block:
+        comment: Nepovinné. Poznamenejte si, proč jste přidali toto pravidlo.
+        expires_in: IP adresy jsou omezeným zdrojem, občas jsou sdílené a často mění majitele. Proto se jejich časově neomezené blokování nedoporučuje.
+        ip: Zadejte IPv4 nebo IPv6 adresu. Můžete blokovat celé rozsahy použitím CIDR notace. Dejte pozor, ať neodříznete přístup sami sobě!
+        severities:
+          no_access: Blokovat přístup ke všem zdrojům
+          sign_up_requires_approval: Nové registrace budou vyžadovat schválení
+        severity: Zvolte, jak naložit s požadavky z dané IP
+      rule:
+        text: Popište pravidlo nebo požadavek uživatelům tohoto serveru. Snažte se ho držet krátký a jednoduchý
       sessions:
         otp: 'Zadejte kód pro dvoufázové ověření vygenerovaný vaší mobilní aplikací, nebo použijte jeden z vašich záložních kódů:'
+        webauthn: Pokud jde o USB klíč, vložte jej a případně se dotkněte jeho tlačítka.
       tag:
         name: Můžete měnit pouze velikost písmen, například kvůli lepší čitelnosti
       user:
@@ -91,6 +108,7 @@ cs:
         types:
           disable: Deaktivovat přihlašování
           none: Nic nedělat
+          sensitive: Citlivý
           silence: Ztišit
           suspend: Pozastavit účet a nenávratně smazat jeho data
         warning_preset_id: Použít předlohu pro varování
@@ -116,6 +134,7 @@ cs:
         expires_in: Vypršet za
         fields: Metadata profilu
         header: Záhlaví
+        honeypot: "%{label} (nevyplňovat)"
         inbox_url: URL příchozí schránky mostu
         irreversible: Zahodit místo skrytí
         locale: Jazyk rozhraní
@@ -135,6 +154,7 @@ cs:
         setting_default_privacy: Soukromí příspěvků
         setting_default_sensitive: Vždy označovat média jako citlivá
         setting_delete_modal: Před smazáním tootu zobrazovat potvrzovací okno
+        setting_disable_swiping: Vypnout gesta přejetí prsty
         setting_display_media: Zobrazování médií
         setting_display_media_default: Výchozí
         setting_display_media_hide_all: Skrýt vše
@@ -168,6 +188,13 @@ cs:
         comment: Komentář
       invite_request:
         text: Proč se chcete připojit?
+      ip_block:
+        comment: Komentář
+        ip: IP
+        severities:
+          no_access: Blokovat přístup
+          sign_up_requires_approval: Omezit registrace
+        severity: Pravidlo
       notification_emails:
         digest: Posílat e-maily s přehledem
         favourite: Poslat e-mail, když si někdo oblíbí váš toot
@@ -178,6 +205,8 @@ cs:
         reblog: Poslat e-mail, když někdo boostne váš toot
         report: Poslat e-mail, je-li nahlášeno něco nového
         trending_tag: Poslat e-mail, když se neschválený hashtag stane populárním
+      rule:
+        text: Pravidlo
       tag:
         listable: Povolit tento hashtag ve výsledcích vyhledávání a v adresáři profilů
         name: Hashtag
@@ -188,4 +217,7 @@ cs:
     required:
       mark: "*"
       text: vyžadováno
+    title:
+      sessions:
+        webauthn: K přihlášení použijte jeden z Vašich bezpečnostních klíčů
     'yes': Ano

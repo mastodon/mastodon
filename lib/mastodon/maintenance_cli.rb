@@ -14,7 +14,7 @@ module Mastodon
     end
 
     MIN_SUPPORTED_VERSION = 2019_10_01_213028
-    MAX_SUPPORTED_VERSION = 2020_12_18_054746
+    MAX_SUPPORTED_VERSION = 2021_03_08_133107
 
     # Stubs to enjoy ActiveRecord queries while not depending on a particular
     # version of the code/database
@@ -142,7 +142,6 @@ module Mastodon
       @prompt.warn 'Please make sure to stop Mastodon and have a backup.'
       exit(1) unless @prompt.yes?('Continue?')
 
-      deduplicate_accounts!
       deduplicate_users!
       deduplicate_account_domain_blocks!
       deduplicate_account_identity_proofs!
@@ -157,9 +156,11 @@ module Mastodon
       deduplicate_media_attachments!
       deduplicate_preview_cards!
       deduplicate_statuses!
+      deduplicate_accounts!
       deduplicate_tags!
       deduplicate_webauthn_credentials!
 
+      Scenic.database.refresh_materialized_view('instances', concurrently: true, cascade: false) if ActiveRecord::Migrator.current_version >= 2020_12_06_004238
       Rails.cache.clear
 
       @prompt.say 'Finished!'
@@ -188,6 +189,11 @@ module Mastodon
       else
         ActiveRecord::Base.connection.add_index :accounts, "lower (username), COALESCE(lower(domain), '')", name: 'index_accounts_on_username_and_domain_lower', unique: true
       end
+
+      @prompt.say 'Reindexing textual indexes on accounts…'
+      ActiveRecord::Base.connection.execute('REINDEX INDEX search_index;')
+      ActiveRecord::Base.connection.execute('REINDEX INDEX index_accounts_on_uri;')
+      ActiveRecord::Base.connection.execute('REINDEX INDEX index_accounts_on_url;')
     end
 
     def deduplicate_users!
