@@ -7,6 +7,7 @@ import { FormattedMessage } from 'react-intl';
 import { fetchSuggestions } from 'mastodon/actions/suggestions';
 import { changeSetting, saveSettings } from 'mastodon/actions/settings';
 import { requestBrowserPermission } from 'mastodon/actions/notifications';
+import { markAsPartial } from 'mastodon/actions/timelines';
 import Column from 'mastodon/features/ui/components/column';
 import Account from './components/account';
 import Logo from 'mastodon/components/logo';
@@ -42,6 +43,15 @@ class FollowRecommendations extends ImmutablePureComponent {
     }
   }
 
+  componentWillUnmount () {
+    const { dispatch } = this.props;
+
+    // Force the home timeline to be reloaded when the user navigates
+    // to it; if the user is new, it would've been empty before
+
+    dispatch(markAsPartial('home'));
+  }
+
   handleDone = () => {
     const { dispatch } = this.props;
     const { router } = this.context;
@@ -75,10 +85,14 @@ class FollowRecommendations extends ImmutablePureComponent {
 
           {!isLoading && (
             <React.Fragment>
-              <div>
-                {suggestions.map(suggestion => (
+              <div className='column-list'>
+                {suggestions.size > 0 ? suggestions.map(suggestion => (
                   <Account key={suggestion.get('account')} id={suggestion.get('account')} />
-                ))}
+                )) : (
+                  <div className='column-list__empty-message'>
+                    <FormattedMessage id='empty_column.follow_recommendations' defaultMessage='Looks like no suggestions could be generated for you. You can try using search to look for people you might know or explore trending hashtags.' />
+                  </div>
+                )}
               </div>
 
               <div className='column-actions'>

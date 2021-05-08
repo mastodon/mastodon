@@ -87,6 +87,7 @@ class ActivityPub::ProcessAccountService < BaseService
     @account.url                     = url || @uri
     @account.uri                     = @uri
     @account.actor_type              = actor_type
+    @account.created_at              = @json['published'] if @json['published'].present?
   end
 
   def set_immediate_attributes!
@@ -101,7 +102,7 @@ class ActivityPub::ProcessAccountService < BaseService
   end
 
   def set_fetchable_key!
-    @account.public_key        = public_key || ''
+    @account.public_key = public_key || ''
   end
 
   def set_fetchable_attributes!

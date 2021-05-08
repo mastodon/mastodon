@@ -170,10 +170,6 @@ export default class StatusContent extends React.PureComponent {
   render () {
     const { status } = this.props;
 
-    if (status.get('content').length === 0) {
-      return null;
-    }
-
     const hidden = this.props.onExpandedToggle ? !this.props.expanded : this.state.hidden;
     const renderReadMore = this.props.onClick && status.get('collapsed');
     const renderViewThread = this.props.showThread && status.get('in_reply_to_id') && status.get('in_reply_to_account_id') === status.getIn(['account', 'id']);

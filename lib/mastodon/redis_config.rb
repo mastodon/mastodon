@@ -28,7 +28,7 @@ cache_namespace = namespace ? namespace + '_cache' : 'cache'
 
 REDIS_CACHE_PARAMS = {
   driver: :hiredis,
-  url: ENV['REDIS_URL'],
+  url: ENV['CACHE_REDIS_URL'],
   expires_in: 10.minutes,
   namespace: cache_namespace,
 }.freeze

@@ -122,7 +122,7 @@ class ResolveAccountService < BaseService
     return false if @options[:check_delivery_availability] && !DeliveryFailureTracker.available?(@domain)
     return false if @options[:skip_webfinger]
 
-    @account.nil? || (@account.ostatus? && @account.possibly_stale?)
+    @account.nil? || @account.possibly_stale?
   end
 
   def activitypub_ready?

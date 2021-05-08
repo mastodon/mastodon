@@ -6,12 +6,8 @@
 #  id                            :bigint(8)        not null, primary key
 #  username                      :string           default(""), not null
 #  domain                        :string
-#  secret                        :string           default(""), not null
 #  private_key                   :text
 #  public_key                    :text             default(""), not null
-#  remote_url                    :string           default(""), not null
-#  salmon_url                    :string           default(""), not null
-#  hub_url                       :string           default(""), not null
 #  created_at                    :datetime         not null
 #  updated_at                    :datetime         not null
 #  note                          :text             default(""), not null
@@ -49,12 +45,18 @@
 #  avatar_storage_schema_version :integer
 #  header_storage_schema_version :integer
 #  devices_url                   :string
-#  sensitized_at                 :datetime
 #  suspension_origin             :integer
+#  sensitized_at                 :datetime
 #
 
 class Account < ApplicationRecord
-  self.ignored_columns = %w(subscription_expires_at)
+  self.ignored_columns = %w(
+    subscription_expires_at
+    secret
+    remote_url
+    salmon_url
+    hub_url
+  )
 
   USERNAME_RE = /[a-z0-9_]+([a-z0-9_\.-]+[a-z0-9_]+)?/i
   MENTION_RE  = /(?<=^|[^\/[:word:]])@((#{USERNAME_RE})(?:@[[:word:]\.\-]+[a-z0-9]+)?)/i
@@ -111,7 +113,6 @@ class Account < ApplicationRecord
   scope :searchable, -> { without_suspended.where(moved_to_account_id: nil) }
   scope :discoverable, -> { searchable.without_silenced.where(discoverable: true).left_outer_joins(:account_stat) }
   scope :followable_by, ->(account) { joins(arel_table.join(Follow.arel_table, Arel::Nodes::OuterJoin).on(arel_table[:id].eq(Follow.arel_table[:target_account_id]).and(Follow.arel_table[:account_id].eq(account.id))).join_sources).where(Follow.arel_table[:id].eq(nil)).joins(arel_table.join(FollowRequest.arel_table, Arel::Nodes::OuterJoin).on(arel_table[:id].eq(FollowRequest.arel_table[:target_account_id]).and(FollowRequest.arel_table[:account_id].eq(account.id))).join_sources).where(FollowRequest.arel_table[:id].eq(nil)) }
-  scope :tagged_with, ->(tag) { joins(:accounts_tags).where(accounts_tags: { tag_id: tag }) }
   scope :by_recent_status, -> { order(Arel.sql('(case when account_stats.last_status_at is null then 1 else 0 end) asc, account_stats.last_status_at desc, accounts.id desc')) }
   scope :by_recent_sign_in, -> { order(Arel.sql('(case when users.current_sign_in_at is null then 1 else 0 end) asc, users.current_sign_in_at desc, accounts.id desc')) }
   scope :popular, -> { order('account_stats.followers_count desc') }
@@ -279,19 +280,13 @@ class Account < ApplicationRecord
       if hashtags_map.key?(tag.name)
         hashtags_map.delete(tag.name)
       else
-        transaction do
-          tags.delete(tag)
-          tag.decrement_count!(:accounts_count)
-        end
+        tags.delete(tag)
       end
     end
 
     # Add hashtags that were so far missing
     hashtags_map.each_value do |tag|
-      transaction do
-        tags << tag
-        tag.increment_count!(:accounts_count)
-      end
+      tags << tag
     end
   end
 

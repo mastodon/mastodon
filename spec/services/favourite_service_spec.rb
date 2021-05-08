@@ -18,20 +18,6 @@ RSpec.describe FavouriteService, type: :service do
     end
   end
 
-  describe 'remote OStatus' do
-    let(:bob)    { Fabricate(:user, email: 'bob@example.com', account: Fabricate(:account, username: 'bob', protocol: :ostatus, domain: 'example.com', salmon_url: 'http://salmon.example.com')).account }
-    let(:status) { Fabricate(:status, account: bob, uri: 'tag:example.com:blahblah') }
-
-    before do
-      stub_request(:post, "http://salmon.example.com/").to_return(:status => 200, :body => "", :headers => {})
-      subject.call(sender, status)
-    end
-
-    it 'creates a favourite' do
-      expect(status.favourites.first).to_not be_nil
-    end
-  end
-
   describe 'remote ActivityPub' do
     let(:bob)    { Fabricate(:user, email: 'bob@example.com', account: Fabricate(:account, protocol: :activitypub, username: 'bob', domain: 'example.com', inbox_url: 'http://example.com/inbox')).account }
     let(:status) { Fabricate(:status, account: bob) }
