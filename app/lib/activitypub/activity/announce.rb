@@ -37,6 +37,10 @@ class ActivityPub::Activity::Announce < ActivityPub::Activity
       attach_mentions(@status)
     end
 
+    @original_status.tags.each do |tag|
+      tag.use!(@account)
+    end
+
     distribute(@status)
   end
 
