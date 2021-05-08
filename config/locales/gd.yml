@@ -1,7 +1,7 @@
 ---
 gd:
   about:
-    about_hashtag_html: Seo dùdan poblach le taga <strong>#%{hashtag}</strong> riutha. ’S urrainn dhut eadar-ghnìomh a ghabhail leotha ma tha cunntas agad àite sam bith sa cho-shaoghal.
+    about_hashtag_html: Seo postaichean poblach le taga <strong>#%{hashtag}</strong> riutha. ’S urrainn dhut eadar-ghnìomh a ghabhail leotha ma tha cunntas agad àite sam bith sa cho-shaoghal.
     about_mastodon_html: 'An lìonra sòisealta dhan àm ri teachd: Gun sanasachd, gun chaithris corporra, dealbhadh beusail agus dì-mheadhanachadh! Gabh sealbh air an dàta agad fhèin le Mastodon!'
     about_this: Mu dhèidhinn
     active_count_after: gnìomhach
@@ -32,10 +32,10 @@ gd:
     server_stats: 'Stadastaireachd an fhrithealaiche:'
     source_code: Bun-tùs
     status_count_after:
-      few: staidean
-      one: staid
-      other: staid
-      two: staid
+      few: postaichean
+      one: phost
+      other: post
+      two: phost
     status_count_before: A sgrìobh
     tagline: Lean air caraidean ’s lorg feadhainn ùra
     terms: Teirmichean na seirbheise
@@ -82,12 +82,12 @@ gd:
     pin_errors:
       following: Feumaidh tu leantainn air neach mus urrainn dhut a bhrosnachadh
     posts:
-      few: Dùdan
-      one: Dùd
-      other: Dùd
-      two: Dhùd
-    posts_tab_heading: Dùdan
-    posts_with_replies: Dùdan ’s freagairtean
+      few: Postaichean
+      one: Post
+      other: Postaichean
+      two: Postaichean
+    posts_tab_heading: Postaichean
+    posts_with_replies: Postaichean ’s freagairtean
     roles:
       admin: Rianaire
       bot: Bot
@@ -207,7 +207,7 @@ gd:
         targeted_reports: Gearanan le càch
       silence: Crìoch
       silenced: Cuingichte
-      statuses: Staidean
+      statuses: Postaichean
       subscribe: Fo-sgrìobh
       suspended: À rèim
       suspension_irreversible: Chaidh dàta a’ chunntais seo a sguabadh às gu buan. ’S urrainn an cunntas a chur ann an rèim a-rithist ach an gabh a chleachdadh ach chan fhaigh thu gin dhen dàta air ais a b’ àbhaist a bhith aige.
@@ -245,7 +245,7 @@ gd:
         destroy_domain_block: Sguab às bacadh na h-àrainne
         destroy_email_domain_block: Sguab às bacadh na h-àrainne puist-d
         destroy_ip_block: Sguab às an riaghailt IP
-        destroy_status: Sguab às an staid
+        destroy_status: Sguab às am post
         disable_2fa_user: Cuir an dearbhadh dà-cheumnach à comas
         disable_custom_emoji: Cuir an t-Emoji gnàthaichte à comas
         disable_user: Cuir an cleachdaiche à comas
@@ -267,7 +267,7 @@ gd:
         update_announcement: Ùraich am brath-fios
         update_custom_emoji: Ùraich an t-Emoji gnàthaichte
         update_domain_block: Ùraich bacadh na h-àrainne
-        update_status: Ùraich an staid
+        update_status: Ùraich am post
       actions:
         assigned_to_self_report_html: Dh’iomruin %{name} an gearan %{target} dhaibh fhèin
         change_email_user_html: Dh’atharraich %{name} seòladh puist-d a’ chleachdaiche %{target}
@@ -286,7 +286,7 @@ gd:
         destroy_domain_block_html: Dì-bhac %{name} an àrainn %{target}
         destroy_email_domain_block_html: Dì-bhac %{name} an àrainn puist-d %{target}
         destroy_ip_block_html: Sguab %{name} às riaghailt dhan IP %{target}
-        destroy_status_html: Thug %{name} staid aig %{target} air falbh
+        destroy_status_html: Thug %{name} post aig %{target} air falbh
         disable_2fa_user_html: Chuir %{name} riatanas an dearbhaidh dà-cheumnaich à comas dhan chleachdaiche %{target}
         disable_custom_emoji_html: Chuir %{name} an Emoji %{target} à comas
         disable_user_html: Chuir %{name} an clàradh a-steach à comas dhan chleachdaiche %{target}
@@ -308,8 +308,8 @@ gd:
         update_announcement_html: Dh’ùraich %{name} am brath-fios %{target}
         update_custom_emoji_html: Dh’ùraich %{name} an Emoji %{target}
         update_domain_block_html: Dh’ùraich %{name} bacadh na h-àrainne %{target}
-        update_status_html: Dh’ùraich %{name} staid le %{target}
-      deleted_status: "(staid air a sguabadh às)"
+        update_status_html: Dh’ùraich %{name} post le %{target}
+      deleted_status: "(post air a sguabadh às)"
       empty: Cha deach loga a lorg.
       filter_by_action: Criathraich a-rèir gnìomha
       filter_by_user: Criathraich a-rèir cleachdaiche
@@ -515,7 +515,7 @@ gd:
       disable: Cuir à comas
       disabled: Chaidh a chur à comas
       enable: Cuir an comas
-      enable_hint: Nuair a bhios seo air a chur an comas, nì am frithealaiche agad fo-sgrìobhadh air a h-uile dùd poblach on ath-sheachadan seo agus tòisichidh e air dùdan poblach an fhrithealaiche seo a chur a-null dha.
+      enable_hint: Nuair a bhios seo air a chur an comas, nì am frithealaiche agad fo-sgrìobhadh air a h-uile post poblach on ath-sheachadan seo agus tòisichidh e air postaichean poblach an fhrithealaiche seo a chur a-null dha.
       enabled: Chaidh a chur an comas
       inbox_url: URL an ath-sheachadain
       pending: A’ feitheamh ri aontachadh an ath-sheachadain
@@ -577,7 +577,7 @@ gd:
       title: Riaghailtean an fhrithealaiche
     settings:
       activity_api_enabled:
-        desc_html: Cunntasan nan staidean a chaidh a phostadh gu h-ionadail, nan cleachdaichean gnìomhach ’s nan clàraidhean ùra an am bucaidean seachdaineil
+        desc_html: Cunntasan nam postaichean a chaidh fhoillseachadh gu h-ionadail, nan cleachdaichean gnìomhach ’s nan clàraidhean ùra an am bucaidean seachdaineil
         title: Foillsich agragaid dhen stadastaireachd mu ghnìomhachd nan cleachdaichean
       bootstrap_timeline_accounts:
         desc_html: Sgar iomadh ainm cleachdaiche le cromag. Chan obraich ach cunntasan ionadail ’s gun ghlas orra. ’S e na rianairean ionadail uile a tha sa bhun-roghainn nuair a bhios seo falamh.
@@ -598,9 +598,6 @@ gd:
         users: Dhan luchd-chleachdaidh a clàraich a-steach gu h-ionadail
       domain_blocks_rationale:
         title: Seall an t-adhbhar
-      enable_bootstrap_timeline_accounts:
-        desc_html: Thoir air cleachdaichean ùra gun lean iad air na cunntasan rèitichte gu fèin-obrachail ach nach tòisich loidhne-ama an dachaigh gu falamh
-        title: Cuir an comas leantainn tùsail nan cleachdaichean ùra
       hero:
         desc_html: Thèid seo a shealltainn air a’ phrìomh-dhuilleag. Mholamaid 600x100px air a char as lugha. Mura dèid seo a shuidheachadh, thèid dealbhag an fhrithealaiche a shealltainn ’na àite
         title: Dealbh gaisgich
@@ -681,8 +678,8 @@ gd:
       media:
         title: Meadhanan
       no_media: Chan eil meadhanan ann
-      no_status_selected: Cha deach staid sam bith atharrachadh o nach deach gin dhiubh a thaghadh
-      title: Staidean chunntasan
+      no_status_selected: Cha deach post sam bith atharrachadh o nach deach gin dhiubh a thaghadh
+      title: Postaichean a’ chunntais
       with_media: Le meadhanan riutha
     system_checks:
       database_schema_check:
@@ -696,9 +693,6 @@ gd:
       accounts_today: Cleachdaidhean fa leth an-diugh
       accounts_week: Cleachdaidhean fa leth an t-seachdain seo
       breakdown: Seall an cleachdadh an-diugh a-rèir tùis
-      context: Co-theacsa
-      directory: San eòlaire
-      in_directory: Tha %{count} san eòlaire
       last_active: Gnìomhach an turas mu dheireadh
       most_popular: Na tha fèill mhòr air
       most_recent: As ùire
@@ -746,14 +740,14 @@ gd:
       guide_link: https://crowdin.com/project/mastodon
       guide_link_text: "’S urrainn do dhuine sam bith cuideachadh."
     sensitive_content: Susbaint fhrionasach
-    toot_layout: Co-dhealbhachd nan dùd
+    toot_layout: Co-dhealbhachd nam postaichean
   application_mailer:
     notification_preferences: Atharraich roghainnean a’ phuist-d
     salutation: "%{name},"
     settings: 'Atharraich roghainnean a’ phuist-d: %{link}'
     view: 'Seall:'
     view_profile: Seall a’ phròifil
-    view_status: Seall an staid
+    view_status: Seall am post
   applications:
     created: Chaidh an t-iarrtas a chruthachadh
     destroyed: Chaidh an t-iarrtas a sguabadh às
@@ -890,7 +884,7 @@ gd:
     archive_takeout:
       date: Ceann-latha
       download: Luchdaich a-nuas an tasg-lann agad
-      hint_html: "’S urrainn dhut tasg-lann iarraidh dhe <strong>na dùdan agad is meadhanan a luchdaich thu suas</strong>. Thèid an dàta às-phortadh san fhòrmat ActivityPub a ghabhas leughadh le bathar-bog co-chòrdail sam bith. ’S urrainn dhut tasg-lann iarraidh gach 7 làithean."
+      hint_html: "’S urrainn dhut tasg-lann iarraidh dhe <strong>na postaichean agad is meadhanan a luchdaich thu suas</strong>. Thèid an dàta às-phortadh san fhòrmat ActivityPub a ghabhas leughadh le bathar-bog co-chòrdail sam bith. ’S urrainn dhut tasg-lann iarraidh gach 7 làithean."
       in_progress: A’ cruinneachadh na tasg-lainn agad…
       request: Iarr an tasg-lann agad
       size: Meud
@@ -1011,7 +1005,7 @@ gd:
       limit: Ràinig thu na tha ceadaichte dhut de liostaichean
   media_attachments:
     validations:
-      images_and_video: Chan urrainn dhut video a cheangal ri staid sa bheil dealbh mu thràth
+      images_and_video: Chan urrainn dhut video a cheangal ri post sa bheil dealbh mu thràth
       not_ready: Chan urrainn dhuinn faidhlichean a cheangal ris nach eil air am pròiseasadh fhathast. Feuch ris a-rithist an ceann greis!
       too_many: Chan urrainn dhut barrachd air 4 faidhlichean a ceangal ris
   migrations:
@@ -1068,8 +1062,8 @@ gd:
         two: "%{count} bhrath ùr on tadhal mu dheireadh agad \U0001F418"
       title: Fhad ’s a bha thu air falbh…
     favourite:
-      body: 'Is annsa le %{name} an staid agad:'
-      subject: Is annsa le %{name} an staid agad
+      body: 'Is annsa le %{name} am post agad:'
+      subject: Is annsa le %{name} am post agad
       title: Annsachd ùr
     follow:
       body: Tha %{name} a’ leantainn ort a-nis!
@@ -1088,8 +1082,8 @@ gd:
     poll:
       subject: Thàinig cunntas-bheachd le %{name} gu crìoch
     reblog:
-      body: 'Chaidh an staid agad a bhrosnachadh le %{name}:'
-      subject: Bhrosnaich %{name} an staid agad
+      body: 'Chaidh am post agad a bhrosnachadh le %{name}:'
+      subject: Bhrosnaich %{name} am post agad
       title: Brosnachadh ùr
     status:
       subject: Tha %{name} air post a sgrìobhadh
@@ -1167,16 +1161,16 @@ gd:
   remote_interaction:
     favourite:
       proceed: Lean air adhart gus a chur ris na h-annsachdan
-      prompt: 'Tha thu airson an dùd seo a chur ris na h-annsachdan:'
+      prompt: 'Tha thu airson am post seo a chur ris na h-annsachdan:'
     reblog:
       proceed: Lean air adhart gus a bhrosnachadh
-      prompt: 'Tha thu airson an dùd seo a bhrosnachadh:'
+      prompt: 'Tha thu airson am post seo a bhrosnachadh:'
     reply:
       proceed: Lean air adhart gus freagairt
-      prompt: 'Tha thu airson freagairt dhan dùd seo:'
+      prompt: 'Tha thu airson freagairt dhan phost seo:'
   scheduled_statuses:
-    over_daily_limit: Chaidh thu thar na crìoch de %{limit} dùd(an) sgeidealaichte dhan latha ud
-    over_total_limit: Chaidh thu thar na crìoch de %{limit} dùd(an) sgeidealaichte
+    over_daily_limit: Chaidh thu thar na crìoch de %{limit} post(aichean) sgeidealaichte dhan latha ud
+    over_total_limit: Chaidh thu thar na crìoch de %{limit} post(aichean) sgeidealaichte
     too_soon: Feumaidh ceann-latha an sgeideil a bhith san àm ri teachd
   sessions:
     activity: A’ ghnìomhachd mu dheireadh
@@ -1267,14 +1261,14 @@ gd:
       other: "– bha na tagaichean hais toirmisgte seo ann: %{tags}"
       two: "– bha na tagaichean hais toirmisgte seo ann: %{tags}"
     errors:
-      in_reply_not_found: Tha coltas nach eil an staid dhan a tha thu airson freagairt ann.
+      in_reply_not_found: Tha coltas nach eil am post dhan a tha thu airson freagairt ann.
     language_detection: Mothaich dhan chànan gu fèin-obrachail
     open_in_web: Fosgail air an lìon
     over_character_limit: chaidh thu thar crìoch charactaran de %{max}
     pin_errors:
       limit: Tha an àireamh as motha de dhùdan prìnichte agad a tha ceadaichte
-      ownership: Chan urrainn dhut dùdan càich a phrìneachadh
-      private: Chan urrainn dhut dùd neo-phoblach a phrìneachadh
+      ownership: Chan urrainn dhut post càich a phrìneachadh
+      private: Chan urrainn dhut post neo-phoblach a phrìneachadh
       reblog: Chan urrainn dhut brosnachadh a phrìneachadh
     poll:
       total_people:
@@ -1303,15 +1297,15 @@ gd:
       unlisted: Falaichte o liostaichean
       unlisted_long: Chì a h-uile duine seo ach cha nochd e air loidhnichean-ama poblach
   stream_entries:
-    pinned: Dùd prìnichte
+    pinned: Post prìnichte
     reblogged: "’ga bhrosnachadh"
     sensitive_content: Susbaint fhrionasach
   tags:
     does_not_match_previous_name: "– chan eil seo a-rèir an ainm roimhe"
   terms:
-    body_html: '<h2>Poileasaidh prìobhaideachd</h2> <h3 id="collect">Dè am fiosrachadh a chruinnicheas sinn?</h3> <ul> <li><em>Fiosrachadh bunasach a’ cunntais</em>: Ma chlàraicheas tu leis an fhrithealaiche seo, dh’fhaoidte gun dèid iarraidh ort gun cuir thu a-steach ainm-cleachdaiche, seòladh puist-d agus facal-faire. Faodaidh tu barrachd fiosrachaidh a chur ris a’ phròifil agad ma thogras tu, can ainm-taisbeanaidh agus teacsa mu do dhèidhinn agus dealbhan pròifile ’s banna-chinn a luchdadh suas. Thèid an t-ainm-cleachdaiche, an t-ainm-taisbeanaidh, an teacsa mu do dhèidhinn agus dealbhan na pròifile ’s a bhanna-chinn a shealltainn gu poblach an-còmhnaidh.</li> <li><em>Postaichean, luchd-leantainn agus fiosrachadh poblach eile</em>: Tha liosta nan daoine air a leanas tu poblach mar a tha i dhan luchd-leantainn agad. Nuair a chuireas tu a-null teachdaireachd, thèid an t-àm ’s an ceann-latha a stòradh cho math ris an aplacaid leis an do chuir thu am foirm a-null. Faodaidh ceanglachain meadhain a bhith am broinn teachdaireachdan, can dealbhan no videothan. Tha postaichean poblach agus postaichean falaichte o liostaichean ri ’m faighinn gu poblach. Nuair a bhrosnaicheas tu post air a’ phròifil agad, ’s e fiosrachadh poblach a tha sin cuideachd. Thèid na postaichean agad a lìbhrigeadh dhan luchd-leantainn agad agus is ciall dha seo gun dèid an lìbhrigeadh gu frithealaichean eile aig amannan is gun dèid lethbhreacan dhiubh a stòradh thall. Nuair a sguabas tu às post, thèid sin a lìbhrigeadh dhan luchd-leantainn agad cuideachd. Tha ath-bhlogachadh no dèanamh annsachd de phost eile poblach an-còmhnaidh.</li> <li><em>Postaichean dìreach is dhan luchd-leantainn a-mhàin</em>: Thèid a h-uile post a stòradh ’s a phròiseasadh air an fhrithealaiche. Thèid na postaichean dhan luchd-leantainn a-mhàin a lìbhrigeadh dhan luchd-leantainn agad agus dhan luchd-chleachdaidh a chaidh iomradh a dhèanamh orra sa phost. Thèid postaichean dìreach a lìbhrigeadh dhan luchd-chleachdaidh a chaidh iomradh a dhèanamh orra sa phost a-mhàin. Is ciall dha seo gun dèid an lìbhrigeadh gu frithealaichean eile aig amannan is gun dèid lethbhreacan dhiubh a stòradh thall. Nì sinn ar dìcheall gun cuingich sinn an t-inntrigeadh dha na postaichean air na daoine a fhuair ùghdarrachadh dhaibh ach dh’fhaoidte nach dèan frithealaichean eile seo. Mar sin dheth, tha e cudromach gun doir thu sùil air na frithealaichean dhan a bhuineas an luchd-leantainn agad. Faodaidh tu roghainn a chur air no dheth a leigeas leat aontachadh ri luchd-leantainn ùra no an diùltadh a làimh. <em>Thoir an aire gum faic rianairean an fhrithealaiche agus frithealaiche sam bith a gheibh am fiosrachadh na teachdaireachdan dhen leithid</em> agus gur urrainn dha na faightearan glacaidhean-sgrìn no lethbhreacan dhiubh a dhèanamh no an cho-roinneadh air dòighean eile. <em>Na co-roinn fiosrachadh cunnartach air Mastodon idir.</em></li> <li><em>IPan is meata-dàta eile</em>: Nuair a nì thu clàradh a-steach, clàraidh sinn an seòladh IP on a rinn thu clàradh a-steach cuide ri ainm aplacaid a’ bhrabhsair agad. Bidh a h-uile seisean clàraidh a-steach ri làimh dhut airson an lèirmheas agus an cùl-ghairm sna roghainnean. Thèid an seòladh IP as ùire a chleachd thu a stòradh suas ri 12 mhìos. Faodaidh sinn cuideachd logaichean an fhrithealaiche a chumail a ghabhas a-steach seòladh IP aig a h-uile iarrtas dhan fhrithealaiche againn.</li> </ul> <hr class="spacer" /> <h3 id="use">Dè na h-adhbharan air an cleachd sinn am fiosrachadh agad?</h3> <p>Seo na dòighean air an cleachd sinn fiosrachadh sam bith a chruinnich sinn uat ma dh’fhaoidte:</p> <ul> <li>Airson bun-ghleusan Mhastodon a lìbhrigeadh. Chan urrainn dhut eadar-ghnìomh a ghabhail le susbaint càich no an t-susbaint agad fhèin a phostadh ach nuair a bhios tu air do chlàradh a-steach. Mar eisimpleir, faodaidh tu leantainn air càch ach am faic thu na postaichean aca còmhla air loidhne-ama pearsanaichte na dachaigh agad.</li> <li>Airson cuideachadh le maorsainneachd na coimhearsnachd, can airson coimeas a dhèanamh eadar an seòladh IP agad ri feadhainn eile feuch am mothaich sinn do sheachnadh toirmisg no briseadh eile nan riaghailtean.</li> <li>Faodaidh sinn an seòladh puist-d agad a chleachdadh airson fiosrachadh no brathan mu eadar-ghnìomhan a ghabh càch leis an t-susbaint agad no teachdaireachdan a chur thugad, airson freagairt ri ceasnachaidhean agus/no iarrtasan no ceistean eile.</li> </ul> <hr class="spacer" /> <h3 id="protect">Ciamar a dhìonas sinn am fiosrachadh agad?</h3> <p>Cuiridh sinn iomadh gleus tèarainteachd an sàs ach an glèidheadh sinn sàbhailteachd an fhiosrachaidh phearsanta agad nuair a chuireas tu gin a-steach, nuair a chuireas tu a-null e no nuair a nì thu inntrigeadh air. Am measg gleusan eile, thèid seisean a’ bhrabhsair agad cuide ris an trafaig eadar na h-aplacaidean agad ’s an API a dhìon le SSL agus thèid hais a dhèanamh dhen fhacal-fhaire agad le algairim aon-shligheach làidir. Faodaidh tu dearbhadh dà-cheumnach a chur an comas airson barrachd tèarainteachd a chur ris an inntrigeadh dhan chunntas agad.</p> <hr class="spacer" /> <h3 id="data-retention">Dè am poileasaidh cumail dàta againn?</h3> <p>Nì sinn ar dìcheall:</p> <ul> <li>Nach cùm sinn logaidhean an fhrithealaiche sa bheil seòlaidhean IP nan iarrtasan uile dhan fhrithealaiche seo nas fhaide na 90 latha ma chumas sinn logaichean dhen leithid idir.</li> <li>Nach cùm sinn na seòlaidhean IP a tha co-cheangailte ri cleachdaichean clàraichte nas fhaide na 12 mhìos.</li> </ul> <p>’S urrainn dhut tasg-lann iarraidh dhen t-susbaint agad ’s a luchdadh a-nuas is gabhaidh seo a-staigh na postaichean, na ceanglachain meadhain, dealbh na pròifil agus dealbh a’ bhanna-chinn agad.</p> <p>’S urrainn dhut an cunntas agad a sguabadh às gu buan uair sam bith.</p> <hr class="spacer"/> <h3 id="cookies">An cleachd sinn briosgaidhean?</h3> <p>Cleachdaidh. ’S e faidhlichean beaga a tha sna briosgaidean a thar-chuireas làrach no solaraiche seirbheise gu clàr-cruaidh a’ choimpiutair agad leis a’ bhrabhsair-lìn agad (ma cheadaicheas tu sin). Bheir na briosgaidean sin comas dhan làrach gun aithnich i am brabhsair agad agus ma tha cunntas clàraichte agad, gun co-cheangail i ris a’ chunntas chlàraichte agad e.</p> <p>Cleachdaidh sinn briosgaidean airson na roghainnean agad a thuigsinn ’s a ghlèidheadh gus an tadhail thu oirnn san àm ri teachd.</p> <hr class="spacer" /> <h3 id="disclose">Am foillsich sinn fiosrachadh sam bith gu pàrtaidhean air an taobh a-muigh?</h3> <p>Cha reic, malairt no tar-chuir sinn fiosrachadh air a dh’aithnichear thu fhèin gu pàrtaidh sam bith air an taobh a-muigh. Cha ghabh seo a-staigh treas-phàrtaidhean earbsach a chuidicheas leinn le ruith na làraich againn, le obrachadh a’ ghnìomhachais againn no gus an t-seirbheis a thoirt leat cho fada ’s a dh’aontaicheas na treas-phàrtaidhean sin gun cùm iad am fiosrachadh dìomhair. Faodaidh sinn am fiosrachadh agad fhoillseachadh cuideachd nuair a bhios sinn dhen bheachd gu bheil am foillseachadh sin iomchaidh airson gèilleadh dhan lagh, poileasaidhean na làraich againn èigneachadh no na còraichean, an sealbh no an t-sàbhailteachd againn fhèin no aig càch a dhìon.</p> <p>Dh’fhaoidte gun dèid an t-susbaint phoblach agad a luchdadh a-nuas le frithealaichean eile san lìonra. Thèid na postaichean poblach agad ’s an fheadhainn dhan luchd-leantainn a-mhàin a lìbhrigeadh dha na frithealaichean far a bheil an luchd-leantainn agad a’ còmhnaidh agus thèid na teachdaireachdan dìreach a lìbhrigeadh gu frithealaichean nam faightearan nuair a bhios iad a’ còmhnaidh air frithealaiche eile.</p> <p>Nuair a dh’ùghdarraicheas tu aplacaid gun cleachd i an cunntas agad, a-rèir sgòp nan ceadan a dh’aontaicheas tu riutha, faodaidh i fiosrachadh poblach na pròifil agad, liosta na feadhna air a bhios tu a’ leantainn, an luchd-leantainn agad, na liostaichean agad, na postaichean agad uile ’s na h-annsachdan agad inntrigeadh. Chan urrainn do dh’aplacaidean an seòladh puist-d no am facal-faire agad inntrigeadh idir.</p> <hr class="spacer" /> <h3 id="children">Cleachdadh na làraich leis a’ chloinn</h3> <p>Ma tha am frithealaiche seo san Aonadh Eòrpach (AE) no san Roinn Eaconomach na h-Eòrpa (EEA): Tha an làrach, na batharan agus na seirbheisean againn uile ag amas air an fheadhainn a tha co-dhiù 16 bliadhnaichean a dh’aois. Ma tha thu nas òige na 16 bliadhnaichean a dh’aois, tha e riatanach fon GDPR (<a href="https://en.wikipedia.org/wiki/General_Data_Protection_Regulation">General Data Protection Regulation</a>) nach cleachd thu an làrach seo.</p> <p>Ma tha am frithealaiche seo sna Stàitean Aonaichte (SAA): Tha an làrach, na batharan agus na seirbheisean againn uile ag amas air an fheadhainn a tha co-dhiù 13 bliadhnaichean a dh’aois. Ma tha thu nas òige na 16 bliadhnaichean a dh’aois, tha e riatanach fon COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children''s Online Privacy Protection Act</a>) nach cleachd thu an làrach seo.</p> <p>Dh’fhaoidte gu bheil am frithealaiche seo fo riatanasan lagha eile ma tha e ann an uachdranas laghail eile.</p> <hr class="spacer" /> <h3 id="changes">Atharraichean air a’ phoileasaidh phrìobhaideachd againn</h3> <p>Ma chuireas sinn romhainn am poileasaidh prìobhaideachd againn atharrachadh, postaichidh sinn na h-atharraichean dhan duilleag seo.</p> <p>Tha an sgrìobhainn seo fo cheadachas CC-BY-SA. Chaidh ùrachadh an turas mu dheireadh an t-7mh dhen Mhart 2018.</p> <p>Chaidh a fhreagarrachadh o thùs o <a href="https://github.com/discourse/discourse">phoileasaidh prìobhaideachd Discourse</a>.</p>
+    body_html: '<h2>Poileasaidh prìobhaideachd</h2> <h3 id="collect">Dè am fiosrachadh a chruinnicheas sinn?</h3> <ul> <li><em>Fiosrachadh bunasach a’ cunntais</em>: Ma chlàraicheas tu leis an fhrithealaiche seo, dh’fhaoidte gun dèid iarraidh ort gun cuir thu a-steach ainm-cleachdaiche, seòladh puist-d agus facal-faire. Faodaidh tu barrachd fiosrachaidh a chur ris a’ phròifil agad ma thogras tu, can ainm-taisbeanaidh agus teacsa mu do dhèidhinn agus dealbhan pròifile ’s banna-chinn a luchdadh suas. Thèid an t-ainm-cleachdaiche, an t-ainm-taisbeanaidh, an teacsa mu do dhèidhinn agus dealbhan na pròifile ’s a bhanna-chinn a shealltainn gu poblach an-còmhnaidh.</li> <li><em>Postaichean, luchd-leantainn agus fiosrachadh poblach eile</em>: Tha liosta nan daoine air a leanas tu poblach mar a tha i dhan luchd-leantainn agad. Nuair a chuireas tu a-null teachdaireachd, thèid an t-àm ’s an ceann-latha a stòradh cho math ris an aplacaid leis an do chuir thu am foirm a-null. Faodaidh ceanglachain meadhain a bhith am broinn teachdaireachdan, can dealbhan no videothan. Tha postaichean poblach agus postaichean falaichte o liostaichean ri ’m faighinn gu poblach. Nuair a bhrosnaicheas tu post air a’ phròifil agad, ’s e fiosrachadh poblach a tha sin cuideachd. Thèid na postaichean agad a lìbhrigeadh dhan luchd-leantainn agad agus is ciall dha seo gun dèid an lìbhrigeadh gu frithealaichean eile aig amannan is gun dèid lethbhreacan dhiubh a stòradh thall. Nuair a sguabas tu às post, thèid sin a lìbhrigeadh dhan luchd-leantainn agad cuideachd. Tha ath-bhlogachadh no dèanamh annsachd de phost eile poblach an-còmhnaidh.</li> <li><em>Postaichean dìreach is dhan luchd-leantainn a-mhàin</em>: Thèid a h-uile post a stòradh ’s a phròiseasadh air an fhrithealaiche. Thèid na postaichean dhan luchd-leantainn a-mhàin a lìbhrigeadh dhan luchd-leantainn agad agus dhan luchd-chleachdaidh a chaidh iomradh a dhèanamh orra sa phost. Thèid postaichean dìreach a lìbhrigeadh dhan luchd-chleachdaidh a chaidh iomradh a dhèanamh orra sa phost a-mhàin. Is ciall dha seo gun dèid an lìbhrigeadh gu frithealaichean eile aig amannan is gun dèid lethbhreacan dhiubh a stòradh thall. Nì sinn ar dìcheall gun cuingich sinn an t-inntrigeadh dha na postaichean air na daoine a fhuair ùghdarrachadh dhaibh ach dh’fhaoidte nach dèan frithealaichean eile seo. Mar sin dheth, tha e cudromach gun doir thu sùil air na frithealaichean dhan a bhuineas an luchd-leantainn agad. Faodaidh tu roghainn a chur air no dheth a leigeas leat aontachadh ri luchd-leantainn ùra no an diùltadh a làimh. <em>Thoir an aire gum faic rianairean an fhrithealaiche agus frithealaiche sam bith a gheibh am fiosrachadh na teachdaireachdan dhen leithid</em> agus gur urrainn dha na faightearan glacaidhean-sgrìn no lethbhreacan dhiubh a dhèanamh no an cho-roinneadh air dòighean eile. <em>Na co-roinn fiosrachadh cunnartach air Mastodon idir.</em></li> <li><em>IPan is meata-dàta eile</em>: Nuair a nì thu clàradh a-steach, clàraidh sinn an seòladh IP on a rinn thu clàradh a-steach cuide ri ainm aplacaid a’ bhrabhsair agad. Bidh a h-uile seisean clàraidh a-steach ri làimh dhut airson an lèirmheas agus an cùl-ghairm sna roghainnean. Thèid an seòladh IP as ùire a chleachd thu a stòradh suas ri 12 mhìos. Faodaidh sinn cuideachd logaichean an fhrithealaiche a chumail a ghabhas a-steach seòladh IP aig a h-uile iarrtas dhan fhrithealaiche againn.</li> </ul> <hr class="spacer" /> <h3 id="use">Dè na h-adhbharan air an cleachd sinn am fiosrachadh agad?</h3> <p>Seo na dòighean air an cleachd sinn fiosrachadh sam bith a chruinnich sinn uat ma dh’fhaoidte:</p> <ul> <li>Airson bun-ghleusan Mhastodon a lìbhrigeadh. Chan urrainn dhut eadar-ghnìomh a ghabhail le susbaint càich no an t-susbaint agad fhèin a phostadh ach nuair a bhios tu air do chlàradh a-steach. Mar eisimpleir, faodaidh tu leantainn air càch ach am faic thu na postaichean aca còmhla air loidhne-ama pearsanaichte na dachaigh agad.</li> <li>Airson cuideachadh le maorsainneachd na coimhearsnachd, can airson coimeas a dhèanamh eadar an seòladh IP agad ri feadhainn eile feuch am mothaich sinn do sheachnadh toirmisg no briseadh eile nan riaghailtean.</li> <li>Faodaidh sinn an seòladh puist-d agad a chleachdadh airson fiosrachadh no brathan mu eadar-ghnìomhan a ghabh càch leis an t-susbaint agad no teachdaireachdan a chur thugad, airson freagairt ri ceasnachaidhean agus/no iarrtasan no ceistean eile.</li> </ul> <hr class="spacer" /> <h3 id="protect">Ciamar a dhìonas sinn am fiosrachadh agad?</h3> <p>Cuiridh sinn iomadh gleus tèarainteachd an sàs ach an glèidheadh sinn sàbhailteachd an fhiosrachaidh phearsanta agad nuair a chuireas tu gin a-steach, nuair a chuireas tu a-null e no nuair a nì thu inntrigeadh air. Am measg gleusan eile, thèid seisean a’ bhrabhsair agad cuide ris an trafaig eadar na h-aplacaidean agad ’s an API a dhìon le SSL agus thèid hais a dhèanamh dhen fhacal-fhaire agad le algairim aon-shligheach làidir. Faodaidh tu dearbhadh dà-cheumnach a chur an comas airson barrachd tèarainteachd a chur ris an inntrigeadh dhan chunntas agad.</p> <hr class="spacer" /> <h3 id="data-retention">Dè am poileasaidh cumail dàta againn?</h3> <p>Nì sinn ar dìcheall:</p> <ul> <li>Nach cùm sinn logaidhean an fhrithealaiche sa bheil seòlaidhean IP nan iarrtasan uile dhan fhrithealaiche seo nas fhaide na 90 latha ma chumas sinn logaichean dhen leithid idir.</li> <li>Nach cùm sinn na seòlaidhean IP a tha co-cheangailte ri cleachdaichean clàraichte nas fhaide na 12 mhìos.</li> </ul> <p>’S urrainn dhut tasg-lann iarraidh dhen t-susbaint agad ’s a luchdadh a-nuas is gabhaidh seo a-staigh na postaichean, na ceanglachain meadhain, dealbh na pròifil agus dealbh a’ bhanna-chinn agad.</p> <p>’S urrainn dhut an cunntas agad a sguabadh às gu buan uair sam bith.</p> <hr class="spacer"/> <h3 id="cookies">An cleachd sinn briosgaidhean?</h3> <p>Cleachdaidh. ’S e faidhlichean beaga a tha sna briosgaidean a thar-chuireas làrach no solaraiche seirbheise gu clàr-cruaidh a’ choimpiutair agad leis a’ bhrabhsair-lìn agad (ma cheadaicheas tu sin). Bheir na briosgaidean sin comas dhan làrach gun aithnich i am brabhsair agad agus ma tha cunntas clàraichte agad, gun co-cheangail i ris a’ chunntas chlàraichte agad e.</p> <p>Cleachdaidh sinn briosgaidean airson na roghainnean agad a thuigsinn ’s a ghlèidheadh gus an tadhail thu oirnn san àm ri teachd.</p> <hr class="spacer" /> <h3 id="disclose">Am foillsich sinn fiosrachadh sam bith gu pàrtaidhean air an taobh a-muigh?</h3> <p>Cha reic, malairt no tar-chuir sinn fiosrachadh air a dh’aithnichear thu fhèin gu pàrtaidh sam bith air an taobh a-muigh. Cha ghabh seo a-staigh treas-phàrtaidhean earbsach a chuidicheas leinn le ruith na làraich againn, le obrachadh a’ ghnìomhachais againn no gus an t-seirbheis a thoirt leat cho fada ’s a dh’aontaicheas na treas-phàrtaidhean sin gun cùm iad am fiosrachadh dìomhair. Faodaidh sinn am fiosrachadh agad fhoillseachadh cuideachd nuair a bhios sinn dhen bheachd gu bheil am foillseachadh sin iomchaidh airson gèilleadh dhan lagh, poileasaidhean na làraich againn èigneachadh no na còraichean, an sealbh no an t-sàbhailteachd againn fhèin no aig càch a dhìon.</p> <p>Dh’fhaoidte gun dèid an t-susbaint phoblach agad a luchdadh a-nuas le frithealaichean eile san lìonra. Thèid na postaichean poblach agad ’s an fheadhainn dhan luchd-leantainn a-mhàin a lìbhrigeadh dha na frithealaichean far a bheil an luchd-leantainn agad a’ còmhnaidh agus thèid na teachdaireachdan dìreach a lìbhrigeadh gu frithealaichean nam faightearan nuair a bhios iad a’ còmhnaidh air frithealaiche eile.</p> <p>Nuair a dh’ùghdarraicheas tu aplacaid gun cleachd i an cunntas agad, a-rèir sgòp nan ceadan a dh’aontaicheas tu riutha, faodaidh i fiosrachadh poblach na pròifil agad, liosta na feadhna air a bhios tu a’ leantainn, an luchd-leantainn agad, na liostaichean agad, na postaichean agad uile ’s na h-annsachdan agad inntrigeadh. Chan urrainn do dh’aplacaidean an seòladh puist-d no am facal-faire agad inntrigeadh idir.</p> <hr class="spacer" /> <h3 id="children">Cleachdadh na làraich leis a’ chloinn</h3> <p>Ma tha am frithealaiche seo san Aonadh Eòrpach (AE) no san Roinn Eaconomach na h-Eòrpa (EEA): Tha an làrach, na batharan agus na seirbheisean againn uile ag amas air an fheadhainn a tha co-dhiù 16 bliadhnaichean a dh’aois. Ma tha thu nas òige na 16 bliadhnaichean a dh’aois, tha e riatanach fon GDPR (<a href="https://en.wikipedia.org/wiki/General_Data_Protection_Regulation">General Data Protection Regulation</a>) nach cleachd thu an làrach seo.</p> <p>Ma tha am frithealaiche seo sna Stàitean Aonaichte (SAA): Tha an làrach, na batharan agus na seirbheisean againn uile ag amas air an fheadhainn a tha co-dhiù 13 bliadhnaichean a dh’aois. Ma tha thu nas òige na 16 bliadhnaichean a dh’aois, tha e riatanach fon COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children''s Online Privacy Protection Act</a>)ha an làrach, na batharan agus na seirbheisean againn uile ag amas air an fheadhainn a tha co-dhiù 16 bliadhnaichean a dh’aois. Ma tha thu nas òige na 16 bliadhnaichean a dh’aois, tha e riatanach fon GDPR (<a href="https://en.wikipedia.org/wiki/General_Data_Protection_Regulation">General Data Protection Regulation</a>) nach cleachd thu an làrach seo.</p> <p>Ma tha am frithealaiche seo sna Stàitean Aonaichte (SAA): Tha an làrach, na batharan agus na seirbheisean againn uile ag amas air an fheadhainn a tha co-dhiù 13 bliadhnaichean a dh’aois. Ma tha thu nas òige na 16 bliadhnaichean a dh’aois, tha e riatanach fon COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children''s Online Privacy Protection Act</a>) nach cleachd thu an làrach seo.</p> <p>Dh’fhaoidte gu bheil am frithealaiche seo fo riatanasan lagha eile ma tha e ann an uachdranas laghail eile.</p> <hr class="spacer" /> <h3 id="changes">Atharraichean air a’ phoileasaidh phrìobhaideachd againn</h3> <p>Ma chuireas sinn romhainn am poileasaidh prìobhaideachd againn atharrachadh, postaichidh sinn na h-atharraichean dhan duilleag seo.</p> <p>Tha an sgrìobhainn seo fo cheadachas CC-BY-SA. Chaidh ùrachadh an turas mu dheireadh an t-7mh dhen Mhart 2018.</p> <p>Chaidh a fhreagarrachadh o thùs o <a href="https://github.com/discourse/discourse">phoileasaidh prìobhaideachd Discourse</a>.</p> nach cleachd thu an làrach seo.</p> <p>Dh’fhaoidte gu bheil am frithealaiche seo fo riatanasan lagha eile ma tha e ann an uachdranas laghail eile.</p> <hr class="spacer" /> <h3 id="changes">Atharraichean air a’ phoileasaidh phrìobhaideachd againn</h3> <p>Ma chuireas sinn romhainn am poileasaidh prìobhaideachd againn atharrachadh, postaichidh sinn na h-atharraichean dhan duilleag seo.</p> <p>Tha an sgrìobhainn seo fo cheadachas CC-BY-SA. Chaidh ùrachadh an turas mu dheireadh an t-7mh dhen Mhart 2018.</p> <p>Chaidh a fhreagarrachadh o thùs o <a href="https://github.com/discourse/discourse">phoileasaidh prìobhaideachd Discourse</a>.</p>
 
-'
+      '
     title: Teirmichean na seirbheise ⁊ poileasaidh prìobhaideachd %{instance}
   themes:
     contrast: Mastodon (iomsgaradh àrd)
@@ -1351,7 +1345,7 @@ gd:
       explanation:
         disable: Chan urrainn dhut clàradh a-steach dhan chunntas agad tuilleadh no a chleachdadh ann an dòigh sam bith eile ach mairidh a’ phròifil ’s an dàta eile agad.
         sensitive: Thèid dèiligeadh ris na faidhlichean meadhain is na meadhanan ceangailte agad mar fheadhainn fhrionasach.
-        silence: "’S urrainn dhut an cunntas agad a chleachdadh fhathast ach chan fhaic ach na daoine a tha a’ leantainn ort mu thràth na dùdan agad air an fhrithealaiche seo agus dh’fhaoidte gun dèid d’ às-dhùnadh o iomadh liosta phoblach. Gidheadh, faodaidh càch leantainn ort a làimh fhathast."
+        silence: "’S urrainn dhut an cunntas agad a chleachdadh fhathast ach chan fhaic ach na daoine a tha a’ leantainn ort mu thràth na postaichean agad air an fhrithealaiche seo agus dh’fhaoidte gun dèid d’ às-dhùnadh o iomadh liosta phoblach. Gidheadh, faodaidh càch leantainn ort a làimh fhathast."
         suspend: Chan urrainn dhut an cunntas agad a chleachdadh tuilleadh agus chan fhaigh thu grèim air a’ phròifil no air an dàta eile agad. ’S urrainn dhut clàradh a-steach fhathast airson lethbhreac-glèidhidh dhen dàta agad iarraidh mur dèid an dàta a thoirt air falbh gu slàn ach cumaidh sinn cuid dhen dàta ach nach seachain thu an cur à rèim.
       get_in_touch: "’S urrainn dhut freagairt dhan phost-d seo no conaltradh ris an sgioba aig %{instance}."
       review_server_policies: Thoir sùil air riaghailtean an fhrithealaiche
