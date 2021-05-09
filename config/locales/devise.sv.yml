@@ -1,10 +1,9 @@
----
 sv:
   devise:
     confirmations:
-      confirmed: Din e-postadress har bekräftats.
-      send_instructions: Du kommer att få ett mail med instruktioner för hur du bekräftar din e-postadress om några minuter. Kontrollera din spammapp om du inte fick det här e-postmeddelandet.
-      send_paranoid_instructions: Om din e-postadress finns i vår databas får du ett mail med instruktioner för hur du bekräftar din e-postadress inom några minuter. Kontrollera din spammapp om du inte fick det här e-postmeddelandet.
+      confirmed: Din e-postadress har framgångsfullt bekräftats.
+      send_instructions: Du kommer att få ett mail med instruktioner för hur du bekräftar din e-postadress om några minuter. Kontrollera din spammapp om du inte fick det e-postmeddelandet.
+      send_paranoid_instructions: Om din e-postadress finns i vår databas får du ett mail med instruktioner för hur du bekräftar din e-postadress inom några minuter. Kontrollera din spammapp om du inte fick det e-postmeddelandet.
     failure:
       already_authenticated: Du är redan inloggad.
       inactive: Ditt konto är inte aktiverat än..
@@ -56,7 +55,7 @@ sv:
         title: 2FA aktiverad
       two_factor_recovery_codes_changed:
         explanation: De tidigare återställningskoderna har ogiltigförklarats och nya har genererats.
-        subject: Mastodon Tvåfaktors-återställningskoder genererades på nytt
+        subject: 'Mastodon Tvåfaktors-återställningskoder genererades på nytt'
         title: 2FA-återställningskoder ändrades
       unlock_instructions:
         subject: 'Mastodon: Lås upp instruktioner'
