@@ -222,6 +222,7 @@ es:
         create_domain_block: Crear Bloqueo de Dominio
         create_email_domain_block: Crear Bloqueo de Dominio de Correo Electrónico
         create_ip_block: Crear regla IP
+        create_unavailable_domain: Crear Dominio No Disponible
         demote_user: Degradar Usuario
         destroy_announcement: Eliminar Anuncio
         destroy_custom_emoji: Eliminar Emoji Personalizado
@@ -230,6 +231,7 @@ es:
         destroy_email_domain_block: Eliminar Bloqueo de Dominio de Correo Electrónico
         destroy_ip_block: Eliminar regla IP
         destroy_status: Eliminar Estado
+        destroy_unavailable_domain: Eliminar Dominio No Disponible
         disable_2fa_user: Deshabilitar 2FA
         disable_custom_emoji: Deshabilitar Emoji Personalizado
         disable_user: Deshabilitar Usuario
@@ -263,6 +265,7 @@ es:
         create_domain_block_html: "%{name} bloqueó el dominio %{target}"
         create_email_domain_block_html: "%{name} bloqueó el dominio de correo electrónico %{target}"
         create_ip_block_html: "%{name} creó una regla para la IP %{target}"
+        create_unavailable_domain_html: "%{name} detuvo las entregas al dominio %{target}"
         demote_user_html: "%{name} degradó al usuario %{target}"
         destroy_announcement_html: "%{name} eliminó el anuncio %{target}"
         destroy_custom_emoji_html: "%{name} destruyó emoji %{target}"
@@ -271,6 +274,7 @@ es:
         destroy_email_domain_block_html: "%{name} desbloqueó el dominio de correo electrónico %{target}"
         destroy_ip_block_html: "%{name} eliminó una regla para la IP %{target}"
         destroy_status_html: "%{name} eliminó el estado por %{target}"
+        destroy_unavailable_domain_html: "%{name} reanudó las entregas al dominio %{target}"
         disable_2fa_user_html: "%{name} desactivó el requisito de dos factores para el usuario %{target}"
         disable_custom_emoji_html: "%{name} desactivó el emoji %{target}"
         disable_user_html: "%{name} deshabilitó el inicio de sesión para el usuario %{target}"
@@ -441,7 +445,19 @@ es:
       title: Recomendaciones de cuentas
       unsuppress: Restaurar recomendaciones de cuentas
     instances:
+      back_to_all: Todos
+      back_to_limited: Limitados
+      back_to_warning: Advertencia
       by_domain: Dominio
+      delivery:
+        all: Todos
+        clear: Crear errores de entrega
+        restart: Reiniciar entrega
+        stop: Detener entrega
+        title: Entrega
+        unavailable: No disponible
+        unavailable_message: Entrega no disponible
+        warning: Advertencia
       delivery_available: Entrega disponible
       empty: No se encontraron dominios.
       known_accounts:
