@@ -230,6 +230,7 @@ it:
         create_domain_block: Crea blocco di dominio
         create_email_domain_block: Crea blocco dominio e-mail
         create_ip_block: Crea regola IP
+        create_unavailable_domain: Crea dominio non disponibile
         demote_user: Degrada l'utente
         destroy_announcement: Cancella annuncio
         destroy_custom_emoji: Cancella emoji personalizzata
@@ -238,6 +239,7 @@ it:
         destroy_email_domain_block: Cancella blocco dominio e-mail
         destroy_ip_block: Elimina regola IP
         destroy_status: Cancella stato
+        destroy_unavailable_domain: Elimina dominio non disponibile
         disable_2fa_user: Disabilita l'autenticazione a due fattori
         disable_custom_emoji: Disabilita emoji personalizzata
         disable_user: Disabilita utente
@@ -271,6 +273,7 @@ it:
         create_domain_block_html: "%{name} ha bloccato dominio %{target}"
         create_email_domain_block_html: "%{name} ha bloccato dominio e-mail %{target}"
         create_ip_block_html: "%{name} ha creato una regola per l'IP %{target}"
+        create_unavailable_domain_html: "%{name} ha interrotto la consegna al dominio %{target}"
         demote_user_html: "%{name} ha retrocesso l'utente %{target}"
         destroy_announcement_html: "%{name} ha eliminato l'annuncio %{target}"
         destroy_custom_emoji_html: "%{name} ha eliminato emoji %{target}"
@@ -279,6 +282,7 @@ it:
         destroy_email_domain_block_html: "%{name} ha sbloccato il dominio e-mail %{target}"
         destroy_ip_block_html: "%{name} ha eliminato la regola per l'IP %{target}"
         destroy_status_html: "%{name} ha eliminato lo status di %{target}"
+        destroy_unavailable_domain_html: "%{name} ha ripreso la consegna al dominio %{target}"
         disable_2fa_user_html: "%{name} ha disabilitato l'autenticazione a due fattori per l'utente %{target}"
         disable_custom_emoji_html: "%{name} ha disabilitato emoji %{target}"
         disable_user_html: "%{name} ha disabilitato il login per l'utente %{target}"
@@ -451,8 +455,24 @@ it:
       title: Consigli su chi seguire
       unsuppress: Ripristina consigli su chi seguire
     instances:
+      back_to_all: Tutto
+      back_to_limited: Limitato
+      back_to_warning: Avviso
       by_domain: Dominio
+      delivery:
+        all: Tutto
+        clear: Cancella errori di consegna
+        restart: Riavvia la consegna
+        stop: Interrompi consegna
+        title: Consegna
+        unavailable: Non disponibile
+        unavailable_message: Consegna non disponibile
+        warning: Avviso
+        warning_message:
+          one: Errore di consegna %{count} giorno
+          other: Errori di consegna %{count} giorni
       delivery_available: Distribuzione disponibile
+      delivery_error_hint: Se la consegna non è possibile per %{count} giorni, sarà automaticamente contrassegnata come non consegnabile.
       empty: Nessun dominio trovato.
       known_accounts:
         one: "%{count} account noto"
@@ -582,9 +602,6 @@ it:
         users: Agli utenti locali connessi
       domain_blocks_rationale:
         title: Mostra motivazione
-      enable_bootstrap_timeline_accounts:
-        desc_html: I nuovi utenti seguiranno automaticamente gli account configurati, in modo che il loro home feed all'inizio non sia vuoto
-        title: Abilita seguiti predefiniti per i nuovi utenti
       hero:
         desc_html: Mostrata nella pagina iniziale. Almeno 600x100 px consigliati. Se non impostata, sarà usato il thumbnail del server
         title: Immagine dell'eroe
@@ -680,9 +697,6 @@ it:
       accounts_today: Usi unici oggi
       accounts_week: Usi unici questa settimana
       breakdown: Suddivisione dell'utilizzo di oggi per fonte
-      context: Contesto
-      directory: Nella directory
-      in_directory: "%{count} nella directory"
       last_active: Ultima attività
       most_popular: Più popolari
       most_recent: Più recenti
@@ -711,7 +725,7 @@ it:
       subject: Nuova segnalazione per %{instance} (#%{id})
     new_trending_tag:
       body: 'L''hashtag #%{name} oggi è di tendenza, ma non è stato mai controllato. Non sarà visualizzato pubblicamente se non lo permetti; se salvi il form senza modifiche non lo vedrai mai più.'
-      subject: Nuovo hashtag pronto per essere controllato su %{instance} (%{name})
+      subject: Nuovo hashtag pronto per essere controllato su %{instance} (#%{name})
   aliases:
     add_new: Crea alias
     created_msg: Hai creato un nuovo alias. Ora puoi iniziare lo spostamento dal vecchio account.
@@ -1261,6 +1275,7 @@ it:
     sign_in_to_participate: Accedi per partecipare alla conversazione
     title: '%{name}: "%{quote}"'
     visibilities:
+      direct: Diretto
       private: Mostra solo ai tuoi seguaci
       private_long: Mostra solo ai seguaci
       public: Pubblico

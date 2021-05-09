@@ -7,6 +7,7 @@ ca:
     active_count_after: actiu
     active_footnote: Usuaris actius mensuals (UAM)
     administered_by: 'Administrat per:'
+    api: API
     apps: Apps mòbils
     apps_platforms: Utilitza Mastodon des de iOS, Android i altres plataformes
     browse_directory: Navega per el directori de perfils i filtra segons interessos
@@ -81,6 +82,7 @@ ca:
     posts_with_replies: Tuts i respostes
     roles:
       admin: Administrador
+      bot: Bot
       group: Grup
       moderator: Moderador
     unavailable: Perfil inaccessible
@@ -100,6 +102,7 @@ ca:
       approve_all: Aprova'ls tots
       approved_msg: L’aplicació del registre de %{username} s’ha aprovat amb èxit
       are_you_sure: N'estàs segur?
+      avatar: Avatar
       by_domain: Domini
       change_email:
         changed_msg: L'adreça electrònica del compte s'ha canviat correctament!
@@ -132,9 +135,11 @@ ca:
       inbox_url: URL de la safata d'entrada
       invite_request_text: Motiu del registre
       invited_by: Convidat per
+      ip: IP
       joined: Unit
       location:
         all: Tot
+        local: Local
         remote: Remot
         title: Localització
       login_status: Estat d'accés
@@ -158,6 +163,7 @@ ca:
       pending: Revisió pendent
       perform_full_suspension: Suspèn
       promote: Promociona
+      protocol: Protocol
       public: Públic
       push_subscription_expires: La subscripció PuSH expira
       redownload: Actualitza el perfil
@@ -210,6 +216,7 @@ ca:
       username: Nom d'usuari
       view_domain: Veure el resumen del domini
       warn: Avís
+      web: Web
       whitelisted: Llista blanca
     action_logs:
       action_types:
@@ -223,6 +230,7 @@ ca:
         create_domain_block: Crea un bloqueig de domini
         create_email_domain_block: Crea un bloqueig de domini d'adreça de correu
         create_ip_block: Crear regla IP
+        create_unavailable_domain: Crea un domini no disponible
         demote_user: Degrada l'usuari
         destroy_announcement: Esborra l'anunci
         destroy_custom_emoji: Esborra l'emoji personalitzat
@@ -231,6 +239,7 @@ ca:
         destroy_email_domain_block: Esborra el bloqueig de domini de l'adreça de correu
         destroy_ip_block: Eliminar regla IP
         destroy_status: Esborra el tut
+        destroy_unavailable_domain: Esborra domini no disponible
         disable_2fa_user: Desactiva 2FA
         disable_custom_emoji: Desactiva l'emoji personalitzat
         disable_user: Deshabilita l'usuari
@@ -264,6 +273,7 @@ ca:
         create_domain_block_html: "%{name} ha bloquejat el domini %{target}"
         create_email_domain_block_html: "%{name} ha bloquejat el domini de correu electrònic %{target}"
         create_ip_block_html: "%{name} ha creat una regla per a l'IP %{target}"
+        create_unavailable_domain_html: "%{name} ha aturat el lliurament al domini %{target}"
         demote_user_html: "%{name} ha degradat l'usuari %{target}"
         destroy_announcement_html: "%{name} ha eliminat l'anunci %{target}"
         destroy_custom_emoji_html: "%{name} ha destruït l'emoji %{target}"
@@ -272,6 +282,7 @@ ca:
         destroy_email_domain_block_html: "%{name} ha desbloquejat el domini de correu electrònic %{target}"
         destroy_ip_block_html: "%{name} ha esborrat la regla per a l'IP %{target}"
         destroy_status_html: "%{name} ha eliminat el tut de %{target}"
+        destroy_unavailable_domain_html: "%{name} ha représ el lliurament delivery al domini %{target}"
         disable_2fa_user_html: "%{name} ha desactivat el requisit de dos factors per a l'usuari %{target}"
         disable_custom_emoji_html: "%{name} ha desactivat l'emoji %{target}"
         disable_user_html: "%{name} ha desactivat l'accés del usuari %{target}"
@@ -329,6 +340,7 @@ ca:
       disable: Inhabilita
       disabled: Desactivat
       disabled_msg: S'ha inhabilitat l'emoji amb èxit
+      emoji: Emoji
       enable: Habilita
       enabled: Activat
       enabled_msg: S'ha habilitat amb èxit emoji
@@ -443,8 +455,22 @@ ca:
       title: Seguir les recomanacions
       unsuppress: Restaurar les recomanacions de seguiment
     instances:
+      back_to_all: Totes
+      back_to_limited: Limitades
+      back_to_warning: Avís
       by_domain: Domini
+      delivery:
+        all: Totes
+        clear: Neteja els errors de lliurament
+        restart: Reinicia el lliurament
+        stop: Atura el lliurament
+        title: Lliurament
+        unavailable: No disponible
+        unavailable_message: El lliurament no està disponible
+        warning: Avís
       delivery_available: El lliurament està disponible
+      delivery_error_days: Dies de fallades de lliurament
+      delivery_error_hint: Si el lliurament no és possible per %{count} dies, serà automàticament marcat com a no lliurable.
       empty: No s'han trobat dominis.
       known_accounts:
         one: "%{count} compte conegut"
@@ -503,11 +529,15 @@ ca:
       setup: Configura una connexió de relay
       signatures_not_enabled: Els relays no treballaran correctament mentre estiguin habilitats el mode segur o llista blanca
       status: Estat
+      title: Relays
     report_notes:
       created_msg: La nota del informe s'ha creat correctament!
       destroyed_msg: La nota del informe s'ha esborrat correctament!
     reports:
       account:
+        notes:
+          one: "%{count} nota"
+          other: "%{count} notes"
         reports:
           one: "%{count} informe"
           other: "%{count} informes"
@@ -570,9 +600,6 @@ ca:
         users: Per als usuaris locals en línia
       domain_blocks_rationale:
         title: Mostra el raonament
-      enable_bootstrap_timeline_accounts:
-        desc_html: Fer que els nous usuaris segueixin automàticament als comptes configurats i la seva línia de temps no arrenqui buida
-        title: Activa els seguiments per defecte per els usuaris nous
       hero:
         desc_html: Es mostra en pàgina frontal. Recomanat al menys 600x100px. Si no es configura es mostrarà el del servidor
         title: Imatge d’heroi
@@ -668,8 +695,6 @@ ca:
       accounts_today: Usos únics actuals
       accounts_week: Usos únics d'aquesta setmana
       breakdown: Desglossament de l’ús actual per origen
-      directory: En el directori
-      in_directory: "%{count} en el directori"
       last_active: Darrer actiu
       most_popular: Més populars
       most_recent: Més recent
@@ -714,11 +739,13 @@ ca:
     discovery: Descobriment
     localization:
       body: Mastodon és traduït per voluntaris.
+      guide_link: https://crowdin.com/project/mastodon
       guide_link_text: Tothom hi pot contribuir.
     sensitive_content: Contingut sensible
     toot_layout: Disseny del tut
   application_mailer:
     notification_preferences: Canvia les preferències de correu
+    salutation: "%{name},"
     settings: 'Canvia les preferències de correu: %{link}'
     view: 'Visualització:'
     view_profile: Mostra el perfil
@@ -753,6 +780,9 @@ ca:
     migrate_account: Mou a un compte diferent
     migrate_account_html: Si vols redirigir aquest compte a un altre diferent, el pots <a href="%{path}">configurar aquí</a>.
     or_log_in_with: O inicia sessió amb
+    providers:
+      cas: CAS
+      saml: SAML
     register: Registre
     registration_closed: "%{instance} no accepta nous membres"
     resend_confirmation: Torna a enviar el correu de confirmació
@@ -793,6 +823,10 @@ ca:
     errors:
       invalid_key: no és una clau Ed25519 o Curve25519 vàlida
       invalid_signature: no és una signatura Ed25519 vàlida
+  date:
+    formats:
+      default: "%b %d, %Y"
+      with_month_name: "%B %d, %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count} h"
@@ -858,6 +892,7 @@ ca:
       size: Mida
     blocks: Persones que has blocat
     bookmarks: Marcadors
+    csv: CSV
     domain_blocks: Bloquejos de dominis
     lists: Llistes
     mutes: Persones silenciades
@@ -1053,8 +1088,13 @@ ca:
   number:
     human:
       decimal_units:
+        format: "%n%u"
         units:
+          billion: B
+          million: M
+          quadrillion: Q
           thousand: m
+          trillion: T
   otp_authentication:
     code_hint: Introdueix el codi generat per l’aplicació d’autenticació per a confirmar
     description_html: Si actives <strong>l’autenticació de factor doble</strong> usant l’aplicació d’autenticació, l’inici de sessió et requerirá tenir el teu mòbil, que generarà els tokens per a entrar.
@@ -1068,6 +1108,7 @@ ca:
     next: Endavant
     older: Més vell
     prev: Enrere
+    truncate: "&hellip;"
   polls:
     errors:
       already_voted: Ja has votat en aquesta enquesta
@@ -1129,15 +1170,43 @@ ca:
     activity: Última activitat
     browser: Navegador
     browsers:
+      alipay: Alipay
+      blackberry: Blackberry
+      chrome: Chrome
+      edge: Microsoft Edge
+      electron: Electron
+      firefox: Firefox
       generic: Navegador desconegut
+      ie: Internet Explorer
+      micro_messenger: MicroMessenger
+      nokia: Nokia S40 Ovi Browser
+      opera: Opera
+      otter: Otter
+      phantom_js: PhantomJS
+      qq: QQ Browser
+      safari: Safari
+      uc_browser: UCBrowser
+      weibo: Weibo
     current_session: Sessió actual
     description: "%{browser} de %{platform}"
     explanation: Aquests són els navegadors web que actualment han iniciat la sessió amb el teu compte de Mastodon.
+    ip: IP
     platforms:
+      adobe_air: Adobe Air
+      android: Android
+      blackberry: Blackberry
+      chrome_os: ChromeOS
+      firefox_os: Firefox OS
+      ios: iOS
+      linux: Linux
       mac: Mac
       other: plataforma desconeguda
+      windows: Windows
+      windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
     revoke: Revoca
     revoke_success: S'ha revocat la sessió amb èxit
+    title: Sessions
   settings:
     account: Compte
     account_settings: Ajustos del compte
@@ -1200,6 +1269,7 @@ ca:
     show_older: Mostra els més vells
     show_thread: Mostra el fil
     sign_in_to_participate: Inicia la sessió per participar a la conversa
+    title: '%{name}: "%{quote}"'
     visibilities:
       direct: Directe
       private: Només seguidors
@@ -1301,6 +1371,10 @@ ca:
     contrast: Mastodon (alt contrast)
     default: Mastodon (fosc)
     mastodon-light: Mastodon (clar)
+  time:
+    formats:
+      default: "%b %d, %Y, %H:%M"
+      month: "%b %Y"
   two_factor_authentication:
     add: Afegeix
     disable: Desactiva

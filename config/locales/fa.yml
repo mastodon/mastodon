@@ -421,6 +421,11 @@ fa:
         create: ساختن مسدودسازی
         title: مسدودسازی دامین ایمیل تازه
       title: مسدودسازی دامین‌های ایمیل
+    follow_recommendations:
+      language: برای زبان
+      status: وضعیت
+      title: پیشنهادهای پی‌گیری
+      unsuppress: بازگردانی پیشنهادهای پی‌گیری
     instances:
       by_domain: دامین
       delivery_available: پیام آماده است
@@ -552,9 +557,6 @@ fa:
         users: برای کاربران محلی واردشده
       domain_blocks_rationale:
         title: دیدن دلیل
-      enable_bootstrap_timeline_accounts:
-        desc_html: کاربران جدید به صورت خودکار حساب‌های پیکربندی‌شده را دنبال کنند تا خوراک خانگیشان خالی نباشد
-        title: به کار انداختن پیگیری‌های پیش‌گزیده برای کاربران تازه
       hero:
         desc_html: در صفحهٔ آغازین نمایش می‌یابد. دست‌کم ۶۰۰×۱۰۰ پیکسل توصیه می‌شود. اگر تعیین نشود، با تصویر بندانگشتی سرور جایگزین خواهد شد
         title: تصویر سربرگ
@@ -646,9 +648,6 @@ fa:
       accounts_today: کاربرد یکتا در امروز
       accounts_week: کاربرد یکتا در این هفته
       breakdown: کاربردهای امروز به تفکیک منبع
-      context: زمینه
-      directory: در فهرست
-      in_directory: "%{count} در فهرست"
       last_active: آخرین فعالیت
       most_popular: محبوب‌ترین
       most_recent: تازه‌ترین
@@ -1224,6 +1223,7 @@ fa:
     sign_in_to_participate: برای شرکت در گفتگو وارد حساب خود شوید
     title: "%{name}: «%{quote}»"
     visibilities:
+      direct: مستقیم
       private: خصوصی
       private_long: تنها پیگیران شما می‌بینند
       public: عمومی

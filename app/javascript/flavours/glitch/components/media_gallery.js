@@ -24,7 +24,7 @@ const messages = defineMessages({
     id: 'status.sensitive_toggle',
   },
   toggle_visible: {
-    defaultMessage: 'Hide {number, plural, one {image} other {images}}',
+    defaultMessage: '{number, plural, one {Hide image} other {Hide images}}',
     id: 'media_gallery.toggle_visible',
   },
   warning: {

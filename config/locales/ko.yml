@@ -226,6 +226,7 @@ ko:
         create_domain_block: 도메인 차단 추가
         create_email_domain_block: 이메일 도메인 차단 생성
         create_ip_block: IP 규칙 만들기
+        create_unavailable_domain: 사용 불가능한 도메인 생성
         demote_user: 사용자 강등
         destroy_announcement: 공지사항 삭제
         destroy_custom_emoji: 커스텀 에모지 삭제
@@ -234,6 +235,7 @@ ko:
         destroy_email_domain_block: 이메일 도메인 차단 삭제
         destroy_ip_block: IP 규칙 삭제
         destroy_status: 게시물 삭제
+        destroy_unavailable_domain: 사용 불가능한 도메인 제거
         disable_2fa_user: 2단계 인증 비활성화
         disable_custom_emoji: 커스텀 에모지 비활성화
         disable_user: 사용자 비활성화
@@ -267,6 +269,7 @@ ko:
         create_domain_block_html: "%{name} 님이 도메인 %{target}를 차단했습니다"
         create_email_domain_block_html: "%{name} 님이 이메일 도메인 %{target}를 차단했습니다"
         create_ip_block_html: "%{name} 님이 IP 규칙 %{target}을 만들었습니다"
+        create_unavailable_domain_html: "%{name} 님이 도메인 %{target}에 대한 전달을 중지"
         demote_user_html: "%{name} 님이 사용자 %{target} 님을 강등했습니다"
         destroy_announcement_html: "%{name} 님이 공지 %{target}을 삭제했습니다"
         destroy_custom_emoji_html: "%{name} 님이 %{target} 에모지를 삭제했습니다"
@@ -275,6 +278,7 @@ ko:
         destroy_email_domain_block_html: "%{name} 님이 이메일 도메인 %{target}을 차단 해제하였습니다"
         destroy_ip_block_html: "%{name} 님이 IP 규칙 %{target}을 삭제하였습니다"
         destroy_status_html: "%{name} 님이 %{target}의 게시물을 삭제했습니다"
+        destroy_unavailable_domain_html: "%{name} 님이 도메인 %{target}에 대한 전달을 재개"
         disable_2fa_user_html: "%{name} 님이 사용자 %{target}의 2FA를 비활성화 했습니다"
         disable_custom_emoji_html: "%{name} 님이 에모지 %{target}를 비활성화 했습니다"
         disable_user_html: "%{name} 님이 사용자 %{target}의 로그인을 비활성화 했습니다"
@@ -448,8 +452,24 @@ ko:
       title: 팔로우 추천
       unsuppress: 팔로우 추천 복원
     instances:
+      back_to_all: 전체
+      back_to_limited: 제한됨
+      back_to_warning: 경고
       by_domain: 도메인
+      delivery:
+        all: 전체
+        clear: 전달 에러 초기화
+        restart: 전달 재시작
+        stop: 전달 중지
+        title: 전달
+        unavailable: 사용불가
+        unavailable_message: 전달 불가
+        warning: 경고
+        warning_message:
+          other: 전달 실패 %{count}일
       delivery_available: 전송 가능
+      delivery_error_days: 전달 에러 일
+      delivery_error_hint: 만약 %{count}일동안 전달이 불가능하다면, 자동으로 전달불가로 표시됩니다.
       empty: 도메인이 하나도 없습니다.
       known_accounts:
         other: 알려진 계정 %{count}개
@@ -576,9 +596,6 @@ ko:
         users: 로그인 한 유저에게
       domain_blocks_rationale:
         title: 사유 보여주기
-      enable_bootstrap_timeline_accounts:
-        desc_html: 새 사용자들이 자동으로 설정 된 계정들을 팔로우 하도록 해서 그들의 홈 피드가 빈 상태로 시작하지 않도록 합니다
-        title: 새 유저가 팔로우할 계정을 보여주기
       hero:
         desc_html: 프론트페이지에 표시 됩니다. 최소 600x100픽셀을 권장합니다. 만약 설정되지 않았다면, 서버의 썸네일이 사용 됩니다
         title: 히어로 이미지
@@ -674,9 +691,6 @@ ko:
       accounts_today: 오늘의 순 사용자
       accounts_week: 금주의 순 사용자
       breakdown: 소스별 오늘의 사용량 분석
-      context: 문맥
-      directory: 책자에 있음
-      in_directory: 디렉토리에 %{count}개 있음
       last_active: 최근 활동
       most_popular: 최고 인기
       most_recent: 최신

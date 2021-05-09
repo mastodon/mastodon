@@ -56,7 +56,7 @@ class REST::AccountSerializer < ActiveModel::Serializer
   end
 
   def created_at
-    object.created_at.midnight.iso8601
+    object.created_at.midnight.as_json
   end
 
   def last_status_at
