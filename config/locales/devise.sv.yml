@@ -5,10 +5,10 @@ sv:
       send_instructions: Du kommer att få ett mail med instruktioner för hur du bekräftar din e-postadress om några minuter. Kontrollera din spammapp om du inte fick det e-postmeddelandet.
       send_paranoid_instructions: Om din e-postadress finns i vår databas får du ett mail med instruktioner för hur du bekräftar din e-postadress inom några minuter. Kontrollera din spammapp om du inte fick det e-postmeddelandet.
     failure:
-      already_authenticated: Du är redan inloggad.
-      inactive: Ditt konto är inte aktiverat än..
-      invalid: Ogiltigt %{authentication_keys} eller lösenord.
-      last_attempt: Du har ytterligare ett försök innan ditt konto blir låst.
+      already_authenticated: Du har redan loggat in.
+      inactive: Ditt konto är ännu inte aktiverat.
+      invalid: Ogiltig %{authentication_keys} eller lösenord.
+      last_attempt: Du har ytterligare ett försök innan ditt konto är låst.
       locked: Ditt konto är låst.
       not_found_in_database: Ogiltigt %{authentication_keys} eller lösenord.
       pending: Ditt konto granskas fortfarande.
