@@ -402,7 +402,7 @@ eu:
         create: Sortu blokeoa
         hint: Domeinuaren blokeoak ez du eragotziko kontuen sarrerak sortzea datu-basean, baina automatikoki ezarriko zaizkie moderazio metodo bereziak iraganeko mezuetan ere.
         severity:
-          desc_html: "<strong>Isilarazi</strong>-k kontuko mezuak jarraitzaileek besterik ez ikustea eragingo du. <strong>Kanporatu</strong>-k kontuaren edukia, multimedia eta profileko datuak ezabatuko ditu. <strong>Bat ere ez</strong> nahi duzun guztia multimedia fitxategiak ukatzea bada."
+          desc_html: "<strong>Isilarazi</strong>-k kontuko bidalketak jarraitzaileek besterik ez ikustea eragingo du. <strong>Kanporatu</strong>-k kontuaren edukia, multimedia eta profileko datuak ezabatuko ditu. <strong>Bat ere ez</strong> nahi duzun guztia multimedia fitxategiak ukatzea bada."
           noop: Bat ere ez
           silence: Isilarazi
           suspend: Kanporatu
@@ -519,11 +519,11 @@ eu:
     relays:
       add_new: Gehitu hari errelea
       delete: Ezabatu
-      description_html: <strong>Federazio errele</strong> bat zerbitzari tartekari bat da, bertara harpidetutako eta bertan argitaratzen duten zerbitzarien artean toot publiko kopuru handiak banatzen ditu. <strong>Zerbitzari txiki eta ertainei Fedibertsoko edukia aurkitzen laguntzen die</strong>, bestela erabiltzaile lokalek eskuz jarraitu beharko lituzkete urruneko zerbitzarietako erabiltzaileak.
+      description_html: <strong>Federazio errele</strong> bat zerbitzari tartekari bat da, bertara harpidetutako eta bertan argitaratzen duten zerbitzarien artean bidalketa publiko kopuru handiak banatzen ditu. <strong>Zerbitzari txiki eta ertainei Fedibertsoko edukia aurkitzen laguntzen die</strong>, bestela erabiltzaile lokalek eskuz jarraitu beharko lituzkete urruneko zerbitzarietako erabiltzaileak.
       disable: Desgaitu
       disabled: Desgaituta
       enable: Gaitu
-      enable_hint: Behin gaituta, zure zerbitzaria errele honetako toot publiko guztietara harpidetuko da, eta zerbitzari honetako toot publikoak errelera bidaltzen hasiko da.
+      enable_hint: Behin gaituta, zure zerbitzaria errele honetako bidalketa publiko guztietara harpidetuko da, eta zerbitzari honetako bidalketa publikoak errelera bidaltzen hasiko da.
       enabled: Gaituta
       inbox_url: Errelearen URLa
       pending: Erreleak onartzearen zain
@@ -581,7 +581,7 @@ eu:
       title: Zerbitzariaren arauak
     settings:
       activity_api_enabled:
-        desc_html: Lokalki bidalitako mezu kopurua, erabiltzaile aktiboak, eta izen emate berriak asteko
+        desc_html: Lokalki argitaratutako bidalketa kopurua, erabiltzaile aktiboak, eta izen emate berriak asteko
         title: Argitaratu erabiltzaile-jardueraren estatistikak
       bootstrap_timeline_accounts:
         desc_html: Banandu erabiltzaile-izenak koma bitartez. Giltzapetu gabeko kontu lokalekin dabil bakarrik. Hutsik dagoenean lehenetsitakoa admin lokal guztiak da.
@@ -682,8 +682,8 @@ eu:
       media:
         title: Multimedia
       no_media: Multimediarik ez
-      no_status_selected: Ez da mezurik aldatu ez delako mezurik aukeratu
-      title: Kontuaren mezuak
+      no_status_selected: Ez da bidalketarik aldatu ez delako bidalketarik aukeratu
+      title: Kontuaren bidalketak
       with_media: Multimediarekin
     system_checks:
       database_schema_check:
@@ -705,7 +705,7 @@ eu:
       reviewed: Berrikusita
       title: Traolak
       trending_right_now: Joera orain
-      unique_uses_today: "%{count} idazten gaur"
+      unique_uses_today: "%{count} bidalketa gaur"
       unreviewed: Berrikusi gabe
       updated_msg: Traola-ezarpenak ongi eguneratu dira
     title: Administrazioa
@@ -744,14 +744,14 @@ eu:
       guide_link: https://crowdin.com/project/mastodon
       guide_link_text: Edonork lagundu dezake.
     sensitive_content: Eduki hunkigarria
-    toot_layout: Toot disposizioa
+    toot_layout: Bidalketen diseinua
   application_mailer:
     notification_preferences: Aldatu e-mail hobespenak
     salutation: "%{name},"
     settings: 'Aldatu e-mail hobespenak: %{link}'
     view: 'Ikusi:'
     view_profile: Ikusi profila
-    view_status: Ikusi mezua
+    view_status: Ikusi bidalketa
   applications:
     created: Aplikazioa ongi sortu da
     destroyed: Aplikazioa ongi ezabatu da
@@ -770,7 +770,7 @@ eu:
     description:
       prefix_invited_by_user: "@%{name} erabiltzaileak Mastodon zerbitzari honetara elkartzera gonbidatzen zaitu!"
       prefix_sign_up: Eman izena Mastodon-en!
-      suffix: Kontu bat baduzu, jendea jarraitu ahal izango duzu, mezuak bidali eta Mastodon zein kanpoko zerbitzarietako erabiltzaileekin elkarrizketan aritu!
+      suffix: Kontu bat baduzu, jendea jarraitu ahal izango duzu, bidalketak sortu eta Mastodon zein kanpoko zerbitzarietako erabiltzaileekin elkarrizketan aritu!
     didnt_get_confirmation: Ez dituzu berresteko argibideak jaso?
     dont_have_your_security_key: Ez daukazu zure segurtasun gakoa?
     forgot_password: Pasahitza ahaztu duzu?
@@ -852,7 +852,7 @@ eu:
     warning:
       before: 'Jarraitu aurretik, irakurri adi ohar hauek:'
       caches: Beste zerbitzariek cachean duten edukia mantentzea gerta daiteke
-      data_removal: Zure mezuak eta beste datuak behin betiko ezabatuko dira
+      data_removal: Zure bidalketak eta beste datuak behin betiko ezabatuko dira
       email_change_html: <a href="%{path}">Zure e-mail helbidea aldatu dezakezu</a> kontua ezabatu gabe
       email_contact_html: Oraindik heltzen ez bada, e-mail bai bidali dezakezu <a href="mailto:%{email}">%{email}</a> helbidera laguntza eskatzeko
       email_reconfirmation_html: Ez baduzu baieztamen e-maila jasotzen, <a href="%{path}">berriro eskatu</a> dezakezu
@@ -888,7 +888,7 @@ eu:
     archive_takeout:
       date: Data
       download: Deskargatu zure artxiboa
-      hint_html: Zure <strong>toot eta igotako multimedia</strong>ren artxibo bat eskatu dezakezu. Esportatutako datuak ActivityPub formatua izango dute, bateragarria den edozein programarekin irakurtzeko. Artxiboa 7 egunetan behin eska dezakezu.
+      hint_html: Zure <strong>bidalketa eta igotako multimedia</strong>ren artxibo bat eskatu dezakezu. Esportatutako datuak ActivityPub formatua izango dute, bateragarria den edozein programarekin irakurtzeko. Artxiboa 7 egunean behin eska dezakezu.
       in_progress: Zure artxiboa biltzen...
       request: Eskatu zure artxiboa
       size: Tamaina
@@ -903,7 +903,7 @@ eu:
     add_new: Gehitu berria
     errors:
       limit: Gehienezko traola kopurua nabarmendu duzu jada
-    hint_html: "<strong>Zer dira nabarmendutako traolak?</strong> Zure profilean toki nabarmendu batean agertzen dira eta jendeari traola hau daukaten mezu publikoak arakatzea ahalbidetzen diote. Sormen lana edo epe luzerako proiektuak jarraitzeko primerakoak dira."
+    hint_html: "<strong>Zer dira nabarmendutako traolak?</strong> Zure profilean toki nabarmendu batean agertzen dira eta jendeari traola hau daukaten bidalketa publikoak arakatzea ahalbidetzen diote. Sormen lana edo epe luzerako proiektuak jarraitzeko primerakoak dira."
   filters:
     contexts:
       account: Profilak
@@ -1005,7 +1005,7 @@ eu:
       limit: Gehieneko zerrenda kopurura heldu zara
   media_attachments:
     validations:
-      images_and_video: Ezin da irudiak dituen mezu batean bideo bat erantsi
+      images_and_video: Ezin da irudiak dituen bidalketa batean bideo bat erantsi
       not_ready: Ezin dira prozesatzen amaitu gabeko fitxategiak erantsi. Saiatu geroago!
       too_many: Ezin dira 4 fitxategi baino gehiago erantsi
   migrations:
@@ -1058,8 +1058,8 @@ eu:
         other: "%{count} jakinarazpen berri azken bisitatik \U0001F418"
       title: Kanpoan zeundela...
     favourite:
-      body: '%{name}(e)k zure mezua gogoko du:'
-      subject: "%{name}(e)k zure mezua gogoko du"
+      body: '%{name}(e)k zure bidalketa gogoko du:'
+      subject: "%{name}(e)k zure bidalketa gogoko du"
       title: Gogoko berria
     follow:
       body: "%{name}(e)k jarraitzen zaitu!"
@@ -1078,8 +1078,8 @@ eu:
     poll:
       subject: '%{name} erabiltzailearen inkesta bat amaitu da'
     reblog:
-      body: '%{name}(e)k bultzada eman dio zure mezuari:'
-      subject: "%{name}(e)k bultzada eman dio zure mezuari"
+      body: '%{name}(e)k bultzada eman dio zure bidalketari:'
+      subject: "%{name}(e)k bultzada eman dio zure bidalketari"
       title: Bultzada berria
     status:
       subject: "%{name} erabiltzaileak bidalketa egin berri du"
@@ -1157,16 +1157,16 @@ eu:
   remote_interaction:
     favourite:
       proceed: Bihurtu gogoko
-      prompt: 'Toot hau gogoko bihurtu nahi duzu:'
+      prompt: 'Bidalketa hau gogoko bihurtu nahi duzu:'
     reblog:
       proceed: Eman bultzada
-      prompt: 'Toot honi bultzada eman nahi diozu:'
+      prompt: 'Bidalketa honi bultzada eman nahi diozu:'
     reply:
       proceed: Ekin erantzuteari
-      prompt: 'Toot honi erantzun nahi diozu:'
+      prompt: 'Bidalketa honi erantzun nahi diozu:'
   scheduled_statuses:
-    over_daily_limit: Egun horretarako programatutako toot kopuruaren muga gainditu duzu (%{limit})
-    over_total_limit: Programatutako toot kopuruaren muga gainditu duzu (%{limit})
+    over_daily_limit: 'Egun horretarako programatutako bidalketa kopuruaren muga gainditu duzu: %{limit}'
+    over_total_limit: 'Programatutako bidalketa kopuruaren muga gainditu duzu: %{limit}'
     too_soon: Programatutako data etorkizunean egon behar du
   sessions:
     activity: Azken jarduera
@@ -1249,14 +1249,14 @@ eu:
       one: 'debekatutako traola bat zuen: %{tags}'
       other: 'debekatutako traola hauek zituen: %{tags}'
     errors:
-      in_reply_not_found: Erantzuten saiatu zaren mezua antza ez da existitzen.
+      in_reply_not_found: Erantzuten saiatu zaren bidalketa antza ez da existitzen.
     language_detection: Antzeman hizkuntza automatikoki
     open_in_web: Ireki web-ean
     over_character_limit: '%{max}eko karaktere muga gaindituta'
     pin_errors:
-      limit: Gehienez finkatu daitekeen toot kopurua finkatu duzu jada
-      ownership: Ezin duzu beste norbaiten toot bat finkatu
-      private: Ezin dira publikoak ez diren tootak finkatu
+      limit: Gehienez finkatu daitekeen bidalketa kopurua finkatu duzu jada
+      ownership: Ezin duzu beste norbaiten bidalketa bat finkatu
+      private: Ezin dira publikoak ez diren bidalketak finkatu
       reblog: Bultzada bat ezin da finkatu
     poll:
       total_people:
@@ -1281,7 +1281,7 @@ eu:
       unlisted: Zerrendatu gabea
       unlisted_long: Edonork ikusi dezake, baina ez da denbora-lerro publikoetan agertzen
   stream_entries:
-    pinned: Finkatutako toota
+    pinned: Finkatutako bidalketa
     reblogged: (r)en bultzada
     sensitive_content: 'Kontuz: Eduki hunkigarria'
   tags:
