@@ -27,6 +27,7 @@ module.exports = {
     'jsx-a11y',
     'import',
     'promise',
+    '@typescript-eslint',
   ],
 
   parserOptions: {
@@ -96,7 +97,8 @@ module.exports = {
     'no-self-assign': 'off',
     'no-trailing-spaces': 'warn',
     'no-unused-expressions': 'error',
-    'no-unused-vars': [
+    'no-unused-vars': 'off',
+    '@typescript-eslint/no-unused-vars': [
       'error',
       {
         vars: 'all',
