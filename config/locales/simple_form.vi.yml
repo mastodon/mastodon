@@ -30,12 +30,12 @@ vi:
       defaults:
         autofollow: Những người đăng ký sẽ tự động theo dõi bạn
         avatar: PNG, GIF hoặc JPG. Kích cỡ tối đa %{size}. Sẽ bị nén xuống %{dimensions}px
-        bot: Tài khoản này tự động thực hiện các hành động và không cần thiết theo dõi
+        bot: Tài khoản này tự động thực hiện các hành động và không được quản lý bởi người thật
         context: Chọn một hoặc nhiều nơi mà bộ lọc sẽ áp dụng
         current_password: Vì mục đích bảo mật, vui lòng nhập mật khẩu của tài khoản hiện tại
         current_username: Để xác nhận, vui lòng nhập tên người dùng của tài khoản hiện tại
         digest: Chỉ gửi sau một thời gian dài không hoạt động hoặc khi bạn nhận được tin nhắn (trong thời gian vắng mặt)
-        discoverable: Mọi người sẽ có thể tìm thấy bạn dễ dàng hơn
+        discoverable: Cho phép tài khoản của bạn xuất hiện trong gợi ý theo dõi và những tính năng khác
         email: Bạn sẽ được gửi một email xác nhận
         fields: Được phép tạo tối đa 4 mục trên trang cá nhân của bạn
         header: PNG, GIF hoặc JPG. Kích cỡ tối đa %{size}. Sẽ bị nén xuống %{dimensions}px
@@ -111,7 +111,7 @@ vi:
           sensitive: Nhạy cảm
           silence: Tạm ẩn
           suspend: Vô hiệu hóa
-        warning_preset_id: Dùng cảnh cáo cài sẵn
+        warning_preset_id: Dùng mẫu có sẵn
       announcement:
         all_day: Sự kiện diễn ra hằng ngày
         ends_at: Kết thúc sự kiện
@@ -208,7 +208,7 @@ vi:
       rule:
         text: Quy tắc
       tag:
-        listable: Cho phép hashtag này xuất hiện trong tìm kiếm và trên tiểu sử cá nhân
+        listable: Cho phép hashtag này xuất hiện trong tìm kiếm và đề xuất
         name: Hashtag
         trendable: Cho phép hashtag này xuất hiện trong xu hướng
         usable: Cho phép dùng hashtag này trong tút

@@ -28,8 +28,8 @@ th:
     server_stats: 'สถิติเซิร์ฟเวอร์:'
     source_code: โค้ดต้นฉบับ
     status_count_after:
-      other: สถานะ
-    status_count_before: ผู้สร้าง
+      other: โพสต์
+    status_count_before: ผู้เผยแพร่
     tagline: ติดตามเพื่อน ๆ และค้นพบเพื่อนใหม่ ๆ
     terms: เงื่อนไขการให้บริการ
     unavailable_content: เซิร์ฟเวอร์ที่มีการควบคุม
@@ -181,7 +181,7 @@ th:
         targeted_reports: รายงานโดยผู้อื่น
       silence: จำกัด
       silenced: จำกัดอยู่
-      statuses: สถานะ
+      statuses: โพสต์
       subscribe: บอกรับ
       suspended: ระงับอยู่
       time_in_queue: กำลังรออยู่ในคิว %{time}
@@ -216,7 +216,7 @@ th:
         destroy_domain_block: ลบการปิดกั้นโดเมน
         destroy_email_domain_block: ลบการปิดกั้นโดเมนอีเมล
         destroy_ip_block: ลบกฎ IP
-        destroy_status: ลบสถานะ
+        destroy_status: ลบโพสต์
         disable_2fa_user: ปิดใช้งาน 2FA
         disable_custom_emoji: ปิดใช้งานอีโมจิที่กำหนดเอง
         disable_user: ปิดใช้งานผู้ใช้
@@ -238,7 +238,7 @@ th:
         update_announcement: อัปเดตประกาศ
         update_custom_emoji: อัปเดตอีโมจิที่กำหนดเอง
         update_domain_block: อัปเดตการปิดกั้นโดเมน
-        update_status: อัปเดตสถานะ
+        update_status: อัปเดตโพสต์
       actions:
         assigned_to_self_report_html: "%{name} ได้มอบหมายรายงาน %{target} ให้กับตนเอง"
         change_email_user_html: "%{name} ได้เปลี่ยนที่อยู่อีเมลของผู้ใช้ %{target}"
@@ -257,7 +257,7 @@ th:
         destroy_domain_block_html: "%{name} ได้เลิกปิดกั้นโดเมน %{target}"
         destroy_email_domain_block_html: "%{name} ได้เลิกปิดกั้นโดเมนอีเมล %{target}"
         destroy_ip_block_html: "%{name} ได้ลบกฎสำหรับ IP %{target}"
-        destroy_status_html: "%{name} ได้เอาสถานะโดย %{target} ออก"
+        destroy_status_html: "%{name} ได้เอาโพสต์โดย %{target} ออก"
         disable_2fa_user_html: "%{name} ได้ปิดใช้งานความต้องการสองปัจจัยสำหรับผู้ใช้ %{target}"
         disable_custom_emoji_html: "%{name} ได้ปิดใช้งานอีโมจิ %{target}"
         disable_user_html: "%{name} ได้ปิดใช้งานการเข้าสู่ระบบสำหรับผู้ใช้ %{target}"
@@ -279,8 +279,8 @@ th:
         update_announcement_html: "%{name} ได้อัปเดตประกาศ %{target}"
         update_custom_emoji_html: "%{name} ได้อัปเดตอีโมจิ %{target}"
         update_domain_block_html: "%{name} ได้อัปเดตการปิดกั้นโดเมนสำหรับ %{target}"
-        update_status_html: "%{name} ได้อัปเดตสถานะโดย %{target}"
-      deleted_status: "(สถานะที่ลบแล้ว)"
+        update_status_html: "%{name} ได้อัปเดตโพสต์โดย %{target}"
+      deleted_status: "(โพสต์ที่ลบแล้ว)"
       empty: ไม่พบรายการบันทึก
       filter_by_action: กรองตามการกระทำ
       filter_by_user: กรองตามผู้ใช้
@@ -520,7 +520,7 @@ th:
       title: กฎของเซิร์ฟเวอร์
     settings:
       bootstrap_timeline_accounts:
-        title: การติดตามเริ่มต้นสำหรับผู้ใช้ใหม่
+        title: แนะนำบัญชีเหล่านี้ให้กับผู้ใช้ใหม่
       contact_information:
         email: อีเมลธุรกิจ
         username: ชื่อผู้ใช้ในการติดต่อ
@@ -536,8 +536,6 @@ th:
         users: ให้กับผู้ใช้ในเซิร์ฟเวอร์ที่เข้าสู่ระบบ
       domain_blocks_rationale:
         title: แสดงคำชี้แจงเหตุผล
-      enable_bootstrap_timeline_accounts:
-        title: เปิดใช้งานการติดตามเริ่มต้นสำหรับผู้ใช้ใหม่
       hero:
         desc_html: แสดงในหน้าแรก อย่างน้อย 600x100px ที่แนะนำ เมื่อไม่ได้ตั้ง กลับไปใช้ภาพขนาดย่อเซิร์ฟเวอร์
         title: ภาพแบนเนอร์หลัก
@@ -546,7 +544,7 @@ th:
         title: ภาพมาสคอต
       peers_api_enabled:
         desc_html: ชื่อโดเมนที่เซิร์ฟเวอร์นี้ได้พบในเฟดิเวิร์ส
-        title: เผยแพร่รายการเซิร์ฟเวอร์ที่ค้นพบ
+        title: เผยแพร่รายการเซิร์ฟเวอร์ที่ค้นพบใน API
       preview_sensitive_media:
         title: แสดงสื่อที่ละเอียดอ่อนในตัวอย่าง OpenGraph
       profile_directory:
@@ -611,7 +609,7 @@ th:
       media:
         title: สื่อ
       no_media: ไม่มีสื่อ
-      title: สถานะบัญชี
+      title: โพสต์ของบัญชี
       with_media: มีสื่อ
     system_checks:
       rules_check:
@@ -620,9 +618,6 @@ th:
     tags:
       accounts_today: การใช้งานที่ไม่ซ้ำกันในวันนี้
       accounts_week: การใช้งานที่ไม่ซ้ำกันในสัปดาห์นี้
-      context: บริบท
-      directory: ในไดเรกทอรี
-      in_directory: "%{count} ในไดเรกทอรี"
       last_active: ใช้งานล่าสุด
       most_popular: ยอดนิยม
       most_recent: ล่าสุด
@@ -668,7 +663,7 @@ th:
     settings: 'เปลี่ยนการกำหนดลักษณะอีเมล: %{link}'
     view: 'มุมมอง:'
     view_profile: ดูโปรไฟล์
-    view_status: ดูสถานะ
+    view_status: ดูโพสต์
   applications:
     created: สร้างแอปพลิเคชันสำเร็จ
     destroyed: ลบแอปพลิเคชันสำเร็จ
@@ -888,7 +883,7 @@ th:
     title: เชิญผู้คน
   media_attachments:
     validations:
-      images_and_video: ไม่สามารถแนบวิดีโอกับสถานะที่มีภาพอยู่แล้ว
+      images_and_video: ไม่สามารถแนบวิดีโอกับโพสต์ที่มีภาพอยู่แล้ว
       too_many: ไม่สามารถแนบมากกว่า 4 ไฟล์
   migrations:
     acct: ย้ายไปยัง
@@ -922,8 +917,8 @@ th:
         other: "%{count} การแจ้งเตือนใหม่นับตั้งแต่การเยี่ยมชมล่าสุดของคุณ \U0001F418"
       title: เมื่อคุณไม่อยู่...
     favourite:
-      body: 'สถานะของคุณได้รับการชื่นชอบโดย %{name}:'
-      subject: "%{name} ได้ชื่นชอบสถานะของคุณ"
+      body: 'โพสต์ของคุณได้รับการชื่นชอบโดย %{name}:'
+      subject: "%{name} ได้ชื่นชอบโพสต์ของคุณ"
       title: รายการโปรดใหม่
     follow:
       body: "%{name} กำลังติดตามคุณ!"
@@ -940,8 +935,8 @@ th:
       subject: คุณได้รับการกล่าวถึงโดย %{name}
       title: การกล่าวถึงใหม่
     reblog:
-      body: 'สถานะของคุณได้รับการดันโดย %{name}:'
-      subject: "%{name} ได้ดันสถานะของคุณ"
+      body: 'โพสต์ของคุณได้รับการดันโดย %{name}:'
+      subject: "%{name} ได้ดันโพสต์ของคุณ"
       title: การดันใหม่
     status:
       subject: "%{name} เพิ่งโพสต์"
@@ -1093,6 +1088,7 @@ th:
     sign_in_to_participate: ลงชื่อเข้าเพื่อเข้าร่วมการสนทนา
     title: '%{name}: "%{quote}"'
     visibilities:
+      direct: โดยตรง
       private: ผู้ติดตามเท่านั้น
       private_long: แสดงแก่ผู้ติดตามเท่านั้น
       public: สาธารณะ

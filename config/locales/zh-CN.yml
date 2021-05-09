@@ -112,17 +112,17 @@ zh-CN:
       deleted: 已删除
       demote: 降任
       destroyed_msg: "%{username} 的数据已进入等待队列，即将被删除"
-      disable: 停用
+      disable: 冻结
       disable_two_factor_authentication: 停用双重认证
-      disabled: 已停用
+      disabled: 已冻结
       display_name: 昵称
       domain: 域名
       edit: 编辑
       email: 电子邮件地址
       email_status: 电子邮件地址状态
-      enable: 启用
+      enable: 解冻
       enabled: 已启用
-      enabled_msg: 成功启用 %{username} 的帐号
+      enabled_msg: 成功解冻 %{username} 的帐号
       followers: 关注者
       follows: 正在关注
       header: 个人资料页横幅图片
@@ -189,8 +189,8 @@ zh-CN:
       sensitized: 已标记为敏感内容
       shared_inbox_url: 公用收件箱（Shared Inbox）URL
       show:
-        created_reports: 这个帐户提交的举报
-        targeted_reports: 针对这个帐户的举报
+        created_reports: 这个帐户提交的报告
+        targeted_reports: 针对这个帐户的报告
       silence: 隐藏
       silenced: 已隐藏
       statuses: 嘟文
@@ -214,7 +214,7 @@ zh-CN:
       whitelisted: 允许跨站交互
     action_logs:
       action_types:
-        assigned_to_self_report: 指派举报
+        assigned_to_self_report: 指派报告
         change_email_user: 为用户修改邮箱地址
         confirm_user: 确认用户
         create_account_warning: 创建警告
@@ -224,6 +224,7 @@ zh-CN:
         create_domain_block: 封禁新域名
         create_email_domain_block: 封禁电子邮箱域名
         create_ip_block: 新建 IP 规则
+        create_unavailable_domain: 创建不可用域名
         demote_user: 给用户降职
         destroy_announcement: 删除公告
         destroy_custom_emoji: 删除自定义表情符号
@@ -232,6 +233,7 @@ zh-CN:
         destroy_email_domain_block: 解除电子邮箱域名封禁
         destroy_ip_block: 删除 IP 规则
         destroy_status: 删除嘟文
+        destroy_unavailable_domain: 删除不可用域名
         disable_2fa_user: 禁用双重认证
         disable_custom_emoji: 禁用自定义表情符号
         disable_user: 禁用用户
@@ -240,13 +242,13 @@ zh-CN:
         memorialize_account: 将账户设为追悼模式
         promote_user: 给用户升任
         remove_avatar_user: 移除头像
-        reopen_report: 重开举报
+        reopen_report: 重开报告
         reset_password_user: 重置密码
-        resolve_report: 处理举报
+        resolve_report: 处理报告
         sensitive_account: 将你帐号中的媒体标记为敏感内容
         silence_account: 隐藏用户
         suspend_account: 封禁用户
-        unassigned_report: 取消举报的指派
+        unassigned_report: 取消举报的报告
         unsensitive_account: 去除你帐号中媒体的敏感内容标记
         unsilence_account: 解除账号隐藏
         unsuspend_account: 解除账号封禁
@@ -255,7 +257,7 @@ zh-CN:
         update_domain_block: 更新域名屏蔽
         update_status: 更新嘟文
       actions:
-        assigned_to_self_report_html: "%{name} 接管了举报 %{target}"
+        assigned_to_self_report_html: "%{name} 接管了报告 %{target}"
         change_email_user_html: "%{name} 更改了用户 %{target} 的电子邮件地址"
         confirm_user_html: "%{name} 确认了用户 %{target} 的电子邮件地址"
         create_account_warning_html: "%{name} 向 %{target} 发送了警告"
@@ -265,6 +267,7 @@ zh-CN:
         create_domain_block_html: "%{name} 屏蔽了域名 %{target}"
         create_email_domain_block_html: "%{name} 屏蔽了电子邮件域名 %{target}"
         create_ip_block_html: "%{name} 为 IP %{target} 创建了规则"
+        create_unavailable_domain_html: "%{name} 停止了向域名 %{target} 的投递"
         demote_user_html: "%{name} 对用户 %{target} 进行了降任操作"
         destroy_announcement_html: "%{name} 删除了公告 %{target}"
         destroy_custom_emoji_html: "%{name} 销毁了自定义表情 %{target}"
@@ -273,6 +276,7 @@ zh-CN:
         destroy_email_domain_block_html: "%{name} 解除了对电子邮件域名 %{target} 的屏蔽"
         destroy_ip_block_html: "%{name} 删除了 IP %{target} 的规则"
         destroy_status_html: "%{name} 删除了 %{target} 的嘟文"
+        destroy_unavailable_domain_html: "%{name} 恢复了向域名 %{target} 的投递"
         disable_2fa_user_html: "%{name} 停用了用户 %{target} 的双重认证"
         disable_custom_emoji_html: "%{name} 停用了自定义表情 %{target}"
         disable_user_html: "%{name} 将用户 %{target} 设置为禁止登录"
@@ -281,13 +285,13 @@ zh-CN:
         memorialize_account_html: "%{name} 将 %{target} 设置为追悼帐户"
         promote_user_html: "%{name} 对用户 %{target} 进行了升任操作"
         remove_avatar_user_html: "%{name} 删除了 %{target} 的头像"
-        reopen_report_html: "%{name} 重开了举报 %{target}"
+        reopen_report_html: "%{name} 重开了报告 %{target}"
         reset_password_user_html: "%{name} 重置了用户 %{target} 的密码"
-        resolve_report_html: "%{name} 处理了举报 %{target}"
+        resolve_report_html: "%{name} 处理了报告 %{target}"
         sensitive_account_html: "%{name} 将 %{target} 的媒体标记为敏感内容"
         silence_account_html: "%{name} 隐藏了用户 %{target}"
         suspend_account_html: "%{name} 封禁了用户 %{target}"
-        unassigned_report_html: "%{name} 放弃接管举报 %{target}"
+        unassigned_report_html: "%{name} 放弃接管报告 %{target}"
         unsensitive_account_html: "%{name} 去除了 %{target} 的媒体的敏感内容标记"
         unsilence_account_html: "%{name} 解除了用户 %{target} 的隐藏状态"
         unsuspend_account_html: "%{name} 解除了用户 %{target} 的封禁状态"
@@ -362,7 +366,7 @@ zh-CN:
       feature_timeline_preview: 时间轴预览
       features: 功能
       hidden_service: 匿名服务连通性
-      open_reports: 待处理举报数
+      open_reports: 待处理报告数
       pending_tags: 等待审核的标签
       pending_users: 等待审核的用户
       recent_users: 新用户
@@ -406,10 +410,10 @@ zh-CN:
       public_comment_hint: 给这一域名限制添加公开的评论，如果你推广你的域名限制列表的话，这些评论就会显示出来。
       reject_media: 拒绝接收媒体文件
       reject_media_hint: 删除本站已缓存的媒体文件，并且不再接收来自该域名的任何媒体文件。此选项不影响封禁
-      reject_reports: 拒绝接收举报
-      reject_reports_hint: 忽略来自此域名的所有举报。这和封禁无关。
+      reject_reports: 拒绝接收报告
+      reject_reports_hint: 忽略来自此域名的所有报告。这和封禁无关。
       rejecting_media: 拒绝接收媒体文件
-      rejecting_reports: 拒绝接收举报
+      rejecting_reports: 拒绝接收报告
       severity:
         silence: 已隐藏
         suspend: 已封禁
@@ -444,8 +448,24 @@ zh-CN:
       title: 推荐关注
       unsuppress: 恢复推荐关注
     instances:
+      back_to_all: 全部
+      back_to_limited: 隐藏
+      back_to_warning: 警告
       by_domain: 域名
+      delivery:
+        all: 全部
+        clear: 清除投递错误
+        restart: 重新投递
+        stop: 停止投递
+        title: 投递
+        unavailable: 不可用
+        unavailable_message: 投递不可用
+        warning: 警告
+        warning_message:
+          other: 投递已失败 %{count} 天
       delivery_available: 可投递
+      delivery_error_days: 投递错误天数
+      delivery_error_hint: 如果投递已不可用 %{count} 天，它将被自动标记为无法投递。
       empty: 暂无域名。
       known_accounts:
         other: "%{count} 个已知帐户"
@@ -459,7 +479,7 @@ zh-CN:
       total_blocked_by_us: 被我站屏蔽的
       total_followed_by_them: 被对方关注的
       total_followed_by_us: 被我站关注的
-      total_reported: 关于对方的举报
+      total_reported: 关于对方的报告
       total_storage: 媒体文件
     invites:
       deactivate_all: 撤销所有邀请链接
@@ -505,8 +525,8 @@ zh-CN:
       status: 状态
       title: 中继站
     report_notes:
-      created_msg: 举报记录建立成功！
-      destroyed_msg: 举报记录删除成功！
+      created_msg: 报告记录建立成功！
+      destroyed_msg: 报告记录删除成功！
     reports:
       account:
         notes:
@@ -517,10 +537,10 @@ zh-CN:
       are_you_sure: 你确定吗？
       assign_to_self: 接管
       assigned: 已接管的监察员
-      by_target_domain: 被举报账户的域名
+      by_target_domain: 被报告账户的域名
       comment:
         none: 没有
-      created_at: 举报时间
+      created_at: 报告时间
       forwarded: 已转发
       forwarded_to: 转发举报至 %{domain}
       mark_as_resolved: 标记为“已处理”
@@ -531,14 +551,14 @@ zh-CN:
         create_and_unresolve: 添加记录并重开
         delete: 删除
         placeholder: 描述已经执行的操作，或其他任何相关的跟进情况…
-      reopen: 重开举报
-      report: '举报 #%{id}'
-      reported_account: 举报用户
-      reported_by: 举报人
+      reopen: 重开报告
+      report: '报告 #%{id}'
+      reported_account: 报告用户
+      reported_by: 报告人
       resolved: 已处理
-      resolved_msg: 举报处理成功！
+      resolved_msg: 报告处理成功！
       status: 状态
-      title: 举报
+      title: 报告
       unassign: 取消接管
       unresolved: 未处理
       updated_at: 更新时间
@@ -572,9 +592,6 @@ zh-CN:
         users: 对本地已登录用户
       domain_blocks_rationale:
         title: 显示理由
-      enable_bootstrap_timeline_accounts:
-        desc_html: 让新用户自动关注指定用户，这样，他们的主页时间线就不会在一开始的时候空空荡荡
-        title: 开启新用户默认关注功能
       hero:
         desc_html: 将用于在首页展示。推荐使用分辨率 600×100px 以上的图片。如未设置，将默认使用本站缩略图。
         title: 主题图片
@@ -670,9 +687,6 @@ zh-CN:
       accounts_today: 今日活跃用户
       accounts_week: 本周活跃用户
       breakdown: 按来源分类今天的使用情况
-      context: 上下文
-      directory: 在目录中
-      in_directory: 目录中 %{count} 条
       last_active: 最近活动
       most_popular: 最热门的
       most_recent: 最近的
@@ -696,9 +710,9 @@ zh-CN:
       body: 新帐户的详细信息如下。您可以批准或拒绝此申请。
       subject: 在 %{instance} 上有新帐号 ( %{username}) 需要审核
     new_report:
-      body: "%{reporter} 举报了用户 %{target}"
-      body_remote: 来自 %{domain} 的用户举报了用户 %{target}
-      subject: 来自 %{instance} 的用户举报（#%{id}）
+      body: "%{reporter} 报告了用户 %{target}"
+      body_remote: 来自 %{domain} 的用户报告了用户 %{target}
+      subject: 来自 %{instance} 的用户报告（#%{id}）
     new_trending_tag:
       body: '今日的热门话题 #%{name} 之前未经审核。直到你允许之前这个话题将不会公开显示，或者就保持原样让它石沉大海。'
       subject: 在 %{instance} 有新话题 (#%{name}) 待审核
@@ -1239,6 +1253,7 @@ zh-CN:
     sign_in_to_participate: 登录以加入对话
     title: "%{name}：“%{quote}”"
     visibilities:
+      direct: 私信
       private: 仅关注者
       private_long: 只有关注你的用户能看到
       public: 公开

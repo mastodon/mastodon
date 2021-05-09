@@ -238,6 +238,7 @@ pl:
         create_domain_block: Utwórz blokadę domeny
         create_email_domain_block: Utwórz blokadę domeny e-mail
         create_ip_block: Utwórz regułę IP
+        create_unavailable_domain: Utwórz niedostępną domenę
         demote_user: Zdegraduj użytkownika
         destroy_announcement: Usuń ogłoszenie
         destroy_custom_emoji: Usuń niestandardowe emoji
@@ -246,6 +247,7 @@ pl:
         destroy_email_domain_block: Usuń blokadę domeny e-mail
         destroy_ip_block: Usuń regułę IP
         destroy_status: Usuń wpis
+        destroy_unavailable_domain: Usuń niedostępną domenę
         disable_2fa_user: Wyłącz 2FA
         disable_custom_emoji: Wyłącz niestandardowe emoji
         disable_user: Wyłącz użytkownika
@@ -279,6 +281,7 @@ pl:
         create_domain_block_html: "%{name} zablokował(a) domenę %{target}"
         create_email_domain_block_html: "%{name} dodał(a) domenę e-mail %{target} na czarną listę"
         create_ip_block_html: "%{name} stworzył(a) regułę dla IP %{target}"
+        create_unavailable_domain_html: "%{name} przestał(a) doręczać na domenę %{target}"
         demote_user_html: "%{name} zdegradował(a) użytkownika %{target}"
         destroy_announcement_html: "%{name} usunął(-ęła) ogłoszenie %{target}"
         destroy_custom_emoji_html: "%{name} usunął(-ęła) emoji %{target}"
@@ -287,6 +290,7 @@ pl:
         destroy_email_domain_block_html: "%{name} usunął(-ęła) domenę e-mail %{target} z czarnej listy"
         destroy_ip_block_html: "%{name} usunął(-ęła) regułę dla IP %{target}"
         destroy_status_html: "%{name} usunął(-ęła) wpis użytkownika %{target}"
+        destroy_unavailable_domain_html: "%{name} wznowił(a) doręczanie do domeny %{target}"
         disable_2fa_user_html: "%{name} wyłączył(a) uwierzytelnianie dwustopniowe użytkownikowi %{target}"
         disable_custom_emoji_html: "%{name} wyłączył(a) emoji %{target}"
         disable_user_html: "%{name} zablokował(a) możliwość logowania użytkownikowi %{target}"
@@ -455,9 +459,27 @@ pl:
     follow_recommendations:
       language: Dla języka
       status: Stan
+      suppress: Usuń polecenie śledzenia
+      suppressed: Usunięto
+      title: Polecane konta
+      unsuppress: Przywróć polecenie śledzenia konta
     instances:
+      back_to_all: Wszystkie
+      back_to_limited: Ograniczone
+      back_to_warning: Ostrzeżenie
       by_domain: Domena
+      delivery:
+        all: Wszystkie
+        clear: Wyczyść błędy w doręczaniu
+        restart: Uruchom ponownie doręczenie
+        stop: Zatrzymaj doręczanie
+        title: Doręczanie
+        unavailable: Niedostępne
+        unavailable_message: Doręczaniei niedostępne
+        warning: Ostrzeżenie
       delivery_available: Doręczanie jest dostępne
+      delivery_error_days: Dni błędów doręczenia
+      delivery_error_hint: Jeżeli doręczanie nie będzie możliwe przez %{count} dni, zostanie automatycznie oznaczona jako nie do doręczania.
       empty: Nie znaleziono domen.
       known_accounts:
         few: "%{count} znane konta"
@@ -593,9 +615,6 @@ pl:
         users: Zalogowanym lokalnym użytkownikom
       domain_blocks_rationale:
         title: Pokaż uzasadnienia
-      enable_bootstrap_timeline_accounts:
-        desc_html: Niech nowi użytkownicy automatycznie śledzą ustawione konta, aby ich główna oś czasu nie był początkowo pusta
-        title: Dodawaj domyślne obserwacje nowym użytkownikom
       hero:
         desc_html: Wyświetlany na stronie głównej. Zalecany jest rozmiar przynajmniej 600x100 pikseli. Jeżeli nie ustawiony, zostanie użyta miniatura serwera
         title: Obraz bohatera
@@ -691,9 +710,6 @@ pl:
       accounts_today: Unikalne wykorzystania dzisiaj
       accounts_week: Unikalne wykorzystania w tym tygodniu
       breakdown: Podział dzisiejszego wykorzystania według źródła
-      context: Kontekst
-      directory: W katalogu
-      in_directory: "%{count} w katalogu"
       last_active: Ostatnia aktywność
       most_popular: Najpopularniejsze
       most_recent: Ostatnie
@@ -1290,6 +1306,7 @@ pl:
     sign_in_to_participate: Zaloguj się, aby udzielić się w tej konwersacji
     title: '%{name}: "%{quote}"'
     visibilities:
+      direct: Bezpośredni
       private: Tylko dla śledzących
       private_long: Widoczne tylko dla osób, które Cię śledzą
       public: Publiczne

@@ -236,6 +236,7 @@ uk:
         create_domain_block: Створити блокування домену
         create_email_domain_block: Створити блокування поштового домену
         create_ip_block: Створити правило IP
+        create_unavailable_domain: Створити недоступний домен
         demote_user: Понизити користувача
         destroy_announcement: Видалити оголошення
         destroy_custom_emoji: Видалити користувацьке емодзі
@@ -244,6 +245,7 @@ uk:
         destroy_email_domain_block: Видалити блокування поштового домену
         destroy_ip_block: Видалити правило IP
         destroy_status: Видалити пост
+        destroy_unavailable_domain: Видалити недоступний домен
         disable_2fa_user: Вимкнути 2FA
         disable_custom_emoji: Вимкнути користувацькі емодзі
         disable_user: Відключити користувача
@@ -277,6 +279,7 @@ uk:
         create_domain_block_html: "%{name} блокує домен %{target}"
         create_email_domain_block_html: "%{name} блокує домен електронної пошти %{target}"
         create_ip_block_html: "%{name} створює правило для IP %{target}"
+        create_unavailable_domain_html: "%{name} зупиняє доставляння на домен %{target}"
         demote_user_html: "%{name} понижує користувача %{target}"
         destroy_announcement_html: "%{name} видаляє оголошення %{target}"
         destroy_custom_emoji_html: "%{name} знищує емодзі %{target}"
@@ -285,6 +288,7 @@ uk:
         destroy_email_domain_block_html: "%{name} розблоковує домен електронної пошти %{target}"
         destroy_ip_block_html: "%{name} видаляє правило для IP %{target}"
         destroy_status_html: "%{name} видаляє статус %{target}"
+        destroy_unavailable_domain_html: "%{name} відновлює доставляння на домен %{target}"
         disable_2fa_user_html: "%{name} вимикає двоетапну перевірку для користувача %{target}"
         disable_custom_emoji_html: "%{name} вимикає емодзі %{target}"
         disable_user_html: "%{name} вимикає вхід для користувача %{target}"
@@ -459,8 +463,27 @@ uk:
       title: Поради щодо підписок
       unsuppress: Відновити поради щодо підписок
     instances:
+      back_to_all: Усі
+      back_to_limited: Обмежені
+      back_to_warning: Попередження
       by_domain: Домен
+      delivery:
+        all: Усі
+        clear: Очистити помилки доставляння
+        restart: Перезапустити доставляння
+        stop: Припинити доставляння
+        title: Доставляння
+        unavailable: Недоступно
+        unavailable_message: Доставлення недоступне
+        warning: Попередження
+        warning_message:
+          few: Збій доставляння %{count} дні
+          many: Збій доставляння %{count} днів
+          one: Збій доставляння %{count} день
+          other: Збій доставляння %{count} днів
       delivery_available: Доставлення доступне
+      delivery_error_days: Днів помилок доставляння
+      delivery_error_hint: Якщо доставляння неможливе впродовж %{count} днів, воно автоматично позначиться недоставленим.
       empty: Доменів не знайдено.
       known_accounts:
         few: "%{count} відомих облікових записів"
@@ -596,9 +619,6 @@ uk:
         users: Для авторизованих локальних користувачів
       domain_blocks_rationale:
         title: Обґрунтування
-      enable_bootstrap_timeline_accounts:
-        desc_html: Автоматично підписувати нових користувачів на встановлені облікові записи, щоб їхня початкова стрічка не була порожньою
-        title: Увімкнути підписки за замовчуванням для нових користувачів
       hero:
         desc_html: Відображається на головній сторінці. Рекомендовано як мінімум 600x100 пікселів. Якщо не вказано, буде використано передпоказ інстанції
         title: Банер інстанції
@@ -696,9 +716,6 @@ uk:
       accounts_today: Унікальних використань за сьогодні
       accounts_week: Унікальних використань за тиждень
       breakdown: Аналіз використання за сьогодні за джерелом
-      context: Контекст
-      directory: У каталозі
-      in_directory: "%{count} у каталозі"
       last_active: За активністю
       most_popular: За популярністю
       most_recent: За часом створення

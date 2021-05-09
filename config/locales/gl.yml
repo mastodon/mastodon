@@ -1,7 +1,7 @@
 ---
 gl:
   about:
-    about_hashtag_html: Estes son toots públicos etiquetados con <strong>#%{hashtag}</strong>. Podes interactuar con eles se tes unha conta nalgures do fediverso.
+    about_hashtag_html: Estas son publicacións públicas etiquetadas con <strong>#%{hashtag}</strong>. Podes interactuar con elas se tes unha conta nalgures do fediverso.
     about_mastodon_html: 'A rede social do futuro: Sen publicidade, sen seguimento por empresas, deseño ético e descentralización! En Mastodon ti posúes os teus datos!'
     about_this: Acerca de
     active_count_after: activas
@@ -23,7 +23,7 @@ gl:
     hosted_on: Mastodon aloxado en %{domain}
     instance_actor_flash: 'Esta conta é un actor virtual utilizado para representar ao servidor e non a unha usuaria individual. Utilízase para propósitos de federación e non debería estar bloqueada a menos que queiras bloquear a toda a instancia, en tal caso deberías utilizar o bloqueo do dominio.
 
-'
+      '
     learn_more: Saber máis
     privacy_policy: Política de privacidade
     rules: Regras do servidor
@@ -32,8 +32,8 @@ gl:
     server_stats: 'Estatísticas do servidor:'
     source_code: Código fonte
     status_count_after:
-      one: estado
-      other: estados
+      one: publicación
+      other: publicacións
     status_count_before: Que publicaron
     tagline: Segue ás túas amizades e coñece novas
     terms: Termos do servizo
@@ -76,10 +76,10 @@ gl:
     pin_errors:
       following: Tes que seguir á persoa que queres engadir
     posts:
-      one: Toot
-      other: Toots
-    posts_tab_heading: Toots
-    posts_with_replies: Toots e respostas
+      one: Publicación
+      other: Publicacións
+    posts_tab_heading: Publicacións
+    posts_with_replies: Publicacións e respostas
     roles:
       admin: Administradora
       bot: Bot
@@ -199,7 +199,7 @@ gl:
         targeted_reports: Denuncias feitas por outros
       silence: Silenciar
       silenced: Silenciado
-      statuses: Estados
+      statuses: Publicacións
       subscribe: Subscribirse
       suspended: Suspendida
       suspension_irreversible: Elimináronse de xeito irreversible os datos desta conta. Podes reactivar a conta para facela usable novamente pero non recuperará os datos eliminados.
@@ -230,6 +230,7 @@ gl:
         create_domain_block: Crear bloqueo de dominio
         create_email_domain_block: Crear bloqueo de dominio de correo electrónico
         create_ip_block: Crear regra IP
+        create_unavailable_domain: Crear dominio Non dispoñible
         demote_user: Degradar usuaria
         destroy_announcement: Eliminar anuncio
         destroy_custom_emoji: Eliminar emoticona personalizada
@@ -237,7 +238,8 @@ gl:
         destroy_domain_block: Eliminar bloqueo de dominio
         destroy_email_domain_block: Eliminar bloqueo de dominio de correo electrónico
         destroy_ip_block: Eliminar regra IP
-        destroy_status: Eliminar estado
+        destroy_status: Eliminar publicación
+        destroy_unavailable_domain: Eliminar dominio Non dispoñible
         disable_2fa_user: Desactivar 2FA
         disable_custom_emoji: Desactivar emoticona personalizada
         disable_user: Desactivar usuaria
@@ -259,7 +261,7 @@ gl:
         update_announcement: Actualizar anuncio
         update_custom_emoji: Actualizar emoticona personalizada
         update_domain_block: Actualizar bloqueo do dominio
-        update_status: Actualizar estado
+        update_status: Actualizar publicación
       actions:
         assigned_to_self_report_html: "%{name} asignou a denuncia %{target} para si mesma"
         change_email_user_html: "%{name} cambiou o enderezo de email da usuaria %{target}"
@@ -271,6 +273,7 @@ gl:
         create_domain_block_html: "%{name} bloqueou o dominio %{target}"
         create_email_domain_block_html: "%{name} bloqueou o dominio de email %{target}"
         create_ip_block_html: "%{name} creou regra para o IP %{target}"
+        create_unavailable_domain_html: "%{name} deixou de interactuar co dominio %{target}"
         demote_user_html: "%{name} degradou a usuaria %{target}"
         destroy_announcement_html: "%{name} eliminou o anuncio %{target}"
         destroy_custom_emoji_html: "%{name} destruíu o emoji %{target}"
@@ -278,7 +281,8 @@ gl:
         destroy_domain_block_html: "%{name} desbloqueou o dominio %{target}"
         destroy_email_domain_block_html: "%{name} desbloqueou o dominio de email %{target}"
         destroy_ip_block_html: "%{name} eliminou a regra para o IP %{target}"
-        destroy_status_html: "%{name} eliminou o estado de %{target}"
+        destroy_status_html: "%{name} eliminou a publicación de %{target}"
+        destroy_unavailable_domain_html: "%{name} retomou a interacción co dominio %{target}"
         disable_2fa_user_html: "%{name} desactivou o requerimento do segundo factor para a usuaria %{target}"
         disable_custom_emoji_html: "%{name} desactivou o emoji %{target}"
         disable_user_html: "%{name} desactivou a conexión para a usuaria %{target}"
@@ -300,8 +304,8 @@ gl:
         update_announcement_html: "%{name} actualizou o anuncio %{target}"
         update_custom_emoji_html: "%{name} actualizou o emoji %{target}"
         update_domain_block_html: "%{name} actualizou o bloqueo do dominio para %{target}"
-        update_status_html: "%{name} actualizou o estado de %{target}"
-      deleted_status: "(estado eliminado)"
+        update_status_html: "%{name} actualizou a publicación de %{target}"
+      deleted_status: "(publicación eliminada)"
       empty: Non se atoparon rexistros.
       filter_by_action: Filtrar por acción
       filter_by_user: Filtrar por usuaria
@@ -451,8 +455,25 @@ gl:
       title: Recomendacións de seguimento
       unsuppress: Restablecer recomendación de seguimento
     instances:
+      back_to_all: Todo
+      back_to_limited: Limitado
+      back_to_warning: Aviso
       by_domain: Dominio
+      delivery:
+        all: Todo
+        clear: Eliminar erros na entrega
+        restart: Restablecer a entrega
+        stop: Deter a entrega
+        title: Entrega
+        unavailable: Non dispoñible
+        unavailable_message: Entrega non dispoñible
+        warning: Aviso
+        warning_message:
+          one: Fallou a entrega %{count} día
+          other: Fallou a entrega %{count} días
       delivery_available: Entrega dispoñíbel
+      delivery_error_days: Días de fallo na entrega
+      delivery_error_hint: Se non é posible a entrega durante %{count} días, será automáticamente marcado como non entregable.
       empty: Non se atopan dominios.
       known_accounts:
         one: "%{count} conta coñecida"
@@ -499,11 +520,11 @@ gl:
     relays:
       add_new: Engadir un novo repetidor
       delete: Eliminar
-      description_html: Un <strong>repetidor da federación</strong> é un servidor intermedio que intercambia grandes volumes de toots públicos entre servidores que se suscriban e publiquen nel. <strong>Pode axudar a servidores pequenos e medios a descubrir contido no fediverso</strong>, o que de outro xeito precisaría que as usuarias locais seguisen a outra xente en servidores remotos.
+      description_html: Un <strong>repetidor da federación</strong> é un servidor intermedio que intercambia grandes volumes de publicacións públicas entre servidores que se suscriban e publiquen nel. <strong>Pode axudar a servidores pequenos e medios a descubrir contido no fediverso</strong>, o que de outro xeito precisaría que as usuarias locais seguisen a outra xente en servidores remotos.
       disable: Desactivar
       disabled: Desactivado
       enable: Activar
-      enable_hint: Unha vez activado, o teu servidor subscribirase a todos os toots públicos deste repetidor, e tamén comezará a enviar a el os toots públicos do servidor.
+      enable_hint: Unha vez activado, o teu servidor subscribirase a todas as publicacións públicas deste repetidor, e tamén comezará a enviar a el as publicacións públicas do servidor.
       enabled: Activado
       inbox_url: URL do repetidor
       pending: Agardando pola aprobación do repetidor
@@ -562,10 +583,10 @@ gl:
     settings:
       activity_api_enabled:
         desc_html: Conta de estados publicados de xeito local, usuarias activas, e novos rexistros en períodos semanais
-        title: Publicar estatísticas agregadas sobre a actividade da usuaria
+        title: Publicar na API estatísticas acumuladas sobre a actividade da usuaria
       bootstrap_timeline_accounts:
-        desc_html: Separar os múltiples nomes de usuaria con vírgulas. Só funcionarán as contas locais non bloqueadas. Se fica baleiro, serán todos os administradores locais.
-        title: Seguimentos por defecto para novas contas
+        desc_html: Separar os múltiples nomes de usuaria con vírgulas. Estas contas teñen garantido aparecer nas recomendacións de seguimento
+        title: Recoméndalle estas contas ás novas usuarias
       contact_information:
         email: Email de negocios
         username: Nome de usuaria de contacto
@@ -582,9 +603,6 @@ gl:
         users: Para usuarias locais conectadas
       domain_blocks_rationale:
         title: Amosar motivo
-      enable_bootstrap_timeline_accounts:
-        desc_html: Facer que as novas usuarias sigan automáticamente certas contas para que así a cronoloxía inicial non esté baleira
-        title: Activar seguimentos por omisión para novas usuarias
       hero:
         desc_html: Amosado na páxina principal. Polo menos 600x100px recomendados. Se non está definido, estará por defecto a miniatura do servidor
         title: Imaxe do heroe
@@ -593,7 +611,7 @@ gl:
         title: Imaxe da mascota
       peers_api_enabled:
         desc_html: Nomes de dominio que este servidor atopou no fediverso
-        title: Publicar listaxe de servidores descobertos
+        title: Publicar na API listaxe de servidores descobertos
       preview_sensitive_media:
         desc_html: A vista previa de ligazóns de outros sitios web mostrará unha imaxe incluso si os medios están marcados como sensibles
         title: Mostrar medios sensibles con vista previa OpenGraph
@@ -665,8 +683,8 @@ gl:
       media:
         title: Medios
       no_media: Sen medios
-      no_status_selected: Non se cambiou ningún estado xa que ningún foi seleccionado
-      title: Estados da conta
+      no_status_selected: Non se cambiou ningunha publicación xa que ningunha foi seleccionada
+      title: Publicacións da conta
       with_media: con medios
     system_checks:
       database_schema_check:
@@ -680,9 +698,6 @@ gl:
       accounts_today: Usos únicos hoxe
       accounts_week: Usos únicos esta semana
       breakdown: Consumo do uso diario por fonte
-      context: Contexto
-      directory: No directorio
-      in_directory: "%{count} no directorio"
       last_active: Úlimo activo
       most_popular: Máis popular
       most_recent: Máis recente
@@ -730,14 +745,14 @@ gl:
       guide_link: https://crowdin.com/project/mastodon
       guide_link_text: Todas podemos contribuír.
     sensitive_content: Contido sensible
-    toot_layout: Disposición do toot
+    toot_layout: Disposición da publicación
   application_mailer:
     notification_preferences: Cambiar os axustes de correo-e
     salutation: "%{name},"
     settings: 'Mudar as preferencias de e-mail: %{link}'
     view: 'Vista:'
     view_profile: Ver perfil
-    view_status: Ver estado
+    view_status: Ver publicación
   applications:
     created: Creouse con éxito este aplicativo
     destroyed: Eliminouse con éxito o aplicativo
@@ -874,7 +889,7 @@ gl:
     archive_takeout:
       date: Data
       download: Descargue o seu ficheiro
-      hint_html: Pode solicitar un ficheiro cos <strong>seus toots e ficheiros de medios</strong>. Os datos estarán en formato ActivityPub e son compatibles con calquer software que o siga. Pode solicitar un ficheiro cada 7 días.
+      hint_html: Pode solicitar un ficheiro coas <strong>súas publicacións e ficheiros de medios</strong>. Os datos estarán en formato ActivityPub e son compatibles con calquera software que o siga. Podes solicitar un ficheiro cada 7 días.
       in_progress: Xerando o seu ficheiro...
       request: Solicite o ficheiro
       size: Tamaño
@@ -991,7 +1006,7 @@ gl:
       limit: Acadou o número máximo de listas
   media_attachments:
     validations:
-      images_and_video: Non pode anexar un vídeo a un estado que xa contén imaxes
+      images_and_video: Non podes anexar un vídeo a unha publicación que xa contén imaxes
       not_ready: Non se poden anexar ficheiros que aínda se están a procesar. Agarda un intre!
       too_many: Non pode anexar máis de 4 ficheiros
   migrations:
@@ -1044,8 +1059,8 @@ gl:
         other: "%{count} novas notificacións desde a súa última visita \U0001F418"
       title: Na súa ausencia...
     favourite:
-      body: 'O seu estado foi marcado favorito por %{name}:'
-      subject: "%{name} marcou favorito o teu estado"
+      body: 'A túa publicación foi marcada como favorita por %{name}:'
+      subject: "%{name} marcou como favorita a túa publicación"
       title: Nova favorita
     follow:
       body: Agora %{name} séguete!
@@ -1064,8 +1079,8 @@ gl:
     poll:
       subject: A enquisa de %{name} rematou
     reblog:
-      body: 'O seu estado foi promocionado por %{name}:'
-      subject: "%{name} promoveu o teu estado"
+      body: 'A túa publicación promovida por %{name}:'
+      subject: "%{name} promoveu a túa publicación"
       title: Nova promoción
     status:
       subject: "%{name} publicou"
@@ -1143,16 +1158,16 @@ gl:
   remote_interaction:
     favourite:
       proceed: Darlle a favorito
-      prompt: 'Vas marcar favorito este toot:'
+      prompt: 'Vas marcar favorita esta publicación:'
     reblog:
       proceed: Darlle a promocionar
-      prompt: 'Vas promocionar este toot:'
+      prompt: 'Vas promover esta publicación:'
     reply:
       proceed: Respostar
-      prompt: 'Vas responder a este toot:'
+      prompt: 'Vas responder a esta publicación:'
   scheduled_statuses:
-    over_daily_limit: Excedeu o límite de %{limit} toots programados para ese día
-    over_total_limit: Excedeu o límite de %{limit} toots programados
+    over_daily_limit: Excedeches o límite de %{limit} publicacións programadas para ese día
+    over_total_limit: Excedeches o límite de %{limit} publicacións programadas
     too_soon: A data de programación debe estar no futuro
   sessions:
     activity: Última actividade
@@ -1235,14 +1250,14 @@ gl:
       one: 'contiña un cancelo non permitido: %{tags}'
       other: 'contiña uns cancelos non permitidos: %{tags}'
     errors:
-      in_reply_not_found: O estado ó cal tentas respostar semella que non existe.
+      in_reply_not_found: A publicación á que tentas respostar semella que non existe.
     language_detection: Detección automática do idioma
     open_in_web: Abrir na web
     over_character_limit: Excedeu o límite de caracteres %{max}
     pin_errors:
-      limit: Xa fixou o número máximo permitido de mensaxes
-      ownership: Non pode fixar a mensaxe de outra usuaria
-      private: As mensaxes non-públicas non poden ser fixadas
+      limit: Xa fixaches o número máximo permitido de publicacións
+      ownership: Non podes fixar a publicación doutra usuaria
+      private: As publicacións non-públicas non poden ser fixadas
       reblog: Non se poden fixar as mensaxes promovidas
     poll:
       total_people:
@@ -1259,6 +1274,7 @@ gl:
     sign_in_to_participate: Conéctese para participar na conversa
     title: '%{name}: "%{quote}"'
     visibilities:
+      direct: Directa
       private: Só seguidoras
       private_long: Mostrar só as seguidoras
       public: Público
@@ -1266,7 +1282,7 @@ gl:
       unlisted: Non listado
       unlisted_long: Visible para calquera, pero non listado en liñas de tempo públicas
   stream_entries:
-    pinned: Mensaxe fixada
+    pinned: Publicación fixada
     reblogged: promovido
     sensitive_content: Contido sensible
   tags:
@@ -1392,7 +1408,7 @@ gl:
       explanation:
         disable: Cando a súa conta está conxelada, os datos permanecen intactos, pero non pode levar a fin accións ate que se desbloquea.
         sensitive: Os teus ficheiros e ligazóns a multimedia serán tratados como sensibles.
-        silence: Mentras a conta está limitada, só a xente que actualmente te segue verá os teus toots en este servidor, e poderías estar excluída de varias listaxes públicas. Porén, outras persoas poderíante seguir de xeito manual.
+        silence: Mentras a conta está limitada, só a xente que actualmente te segue verá as publicacións neste servidor, e poderías estar excluída de varias listaxes públicas. Porén, outras persoas poderíante seguir de xeito manual.
         suspend: A súa conta foi suspendida, e todos os seus toots e medios subidos foron eliminados de este servidor de xeito irreversible, e dos servidores onde tivese seguidoras.
       get_in_touch: Pode responder a este correo para contactar coa administración de %{instance}.
       review_server_policies: Revisar políticas do servidor

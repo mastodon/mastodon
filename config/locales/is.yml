@@ -230,6 +230,7 @@ is:
         create_domain_block: Búa til lén bannað
         create_email_domain_block: Búa til tölvupóstfang bannað
         create_ip_block: Búa til IP-reglu
+        create_unavailable_domain: Útbúa lén sem ekki er tiltækt
         demote_user: Lækka notanda í tign
         destroy_announcement: Eyða tilkynningu
         destroy_custom_emoji: Eyða sérsniðnu tjáningartákni
@@ -238,6 +239,7 @@ is:
         destroy_email_domain_block: Eyða tölvupóstfangi bannað
         destroy_ip_block: Eyða IP-reglu
         destroy_status: Eyða stöðufærslu
+        destroy_unavailable_domain: Eyða léni sem ekki er tiltækt
         disable_2fa_user: Gera tveggja-þátta auðkenningu óvirka
         disable_custom_emoji: Gera sérsniðið tjáningartákn óvirkt
         disable_user: Gera notanda óvirkan
@@ -270,15 +272,17 @@ is:
         create_domain_allow_html: "%{name} leyfði skýjasamband með léninu %{target}"
         create_domain_block_html: "%{name} útilokaði lénið %{target}"
         create_email_domain_block_html: "%{name} útilokaði póstlénið %{target}"
-        create_ip_block_html: "%{name} útbjó reglu fyrir IP-vistfangið %{target}"
+        create_ip_block_html: "{name} útbjó reglu fyrir IP-vistfangið %{target}"
+        create_unavailable_domain_html: "%{name} stöðvaði afhendingu til lénsins %{target}"
         demote_user_html: "%{name} lækkaði notandann %{target} í tign"
         destroy_announcement_html: "%{name} eyddi tilkynninguni %{target}"
         destroy_custom_emoji_html: "%{name} henti út tjáningartákninu %{target}"
         destroy_domain_allow_html: "%{name} bannaði skýjasamband með léninu %{target}"
         destroy_domain_block_html: "%{name} aflétti útilokun af léninu %{target}"
         destroy_email_domain_block_html: "%{name} aflétti útilokun af póstléninu %{target}"
-        destroy_ip_block_html: "%{name} eyddi reglu fyrir IP-vistfangið %{target}"
+        destroy_ip_block_html: "{name} eyddi reglu fyrir IP-vistfangið %{target}"
         destroy_status_html: "%{name} fjarlægði stöðufærslu frá %{target}"
+        destroy_unavailable_domain_html: "%{name} hóf aftur afhendingu til lénsins %{target}"
         disable_2fa_user_html: "%{name} gerði kröfu um tveggja-þátta innskráningu óvirka fyrir notandann %{target}"
         disable_custom_emoji_html: "%{name} gerði tjáningartáknið %{target} óvirkt"
         disable_user_html: "%{name} gerði innskráningu óvirka fyrir notandann %{target}"
@@ -286,7 +290,7 @@ is:
         enable_user_html: "%{name} gerði innskráningu virka fyrir notandann %{target}"
         memorialize_account_html: "%{name} breytti notandaaðgangnum %{target} í minningargreinarsíðu"
         promote_user_html: "%{name} hækkaði notandann %{target} í tign"
-        remove_avatar_user_html: "%{name} fjarlægði auðkennismynd af %{target}"
+        remove_avatar_user_html: "{name} fjarlægði auðkennismynd af %{target}"
         reopen_report_html: "%{name} enduropnaði kæru %{target}"
         reset_password_user_html: "%{name} endurstillti lykilorð fyrir notandann %{target}"
         resolve_report_html: "%{name} leysti kæru %{target}"
@@ -296,7 +300,7 @@ is:
         unassigned_report_html: "%{name} fjarlægði úthlutun af kæru %{target}"
         unsensitive_account_html: "%{name} tók merkinguna viðkvæmt af myndefni frá %{target}"
         unsilence_account_html: "%{name} hætti að hylja notandaaðganginn %{target}"
-        unsuspend_account_html: "%{name} tók notandaaðganginn %{target} úr bið"
+        unsuspend_account_html: "%{name} tók notandaaðganginn {target} úr bið"
         update_announcement_html: "%{name} uppfærði tilkynningu %{target}"
         update_custom_emoji_html: "%{name} uppfærði tjáningartáknið %{target}"
         update_domain_block_html: "%{name} uppfærði lénalás fyrir %{target}"
@@ -451,8 +455,25 @@ is:
       title: Fylgja meðmælum
       unsuppress: Endurheimta að fylgja meðmælum
     instances:
+      back_to_all: Allt
+      back_to_limited: Takmarkað
+      back_to_warning: Aðvörun
       by_domain: Lén
+      delivery:
+        all: Allt
+        clear: Hreinsa afhendingarvillur
+        restart: Endurræsa afhendingu
+        stop: Stöðva afhendingu
+        title: Afhending
+        unavailable: Ekki tiltækt
+        unavailable_message: Afhending ekki möguleg
+        warning: Aðvörun
+        warning_message:
+          one: "%{count} dagur með villum í afhendingu"
+          other: "%{count} dagar með villum í afhendingu"
       delivery_available: Afhending er til taks
+      delivery_error_days: Dagar með villum í afhendingu
+      delivery_error_hint: Ef afhending er ekki möguleg í %{count} daga, verður það sjálfkrafa merkt sem óafhendanlegt.
       empty: Engin lén fundust.
       known_accounts:
         one: "%{count} þekktur notandaaðgangur"
@@ -582,9 +603,6 @@ is:
         users: Til innskráðra staðværra notenda
       domain_blocks_rationale:
         title: Birta röksemdafærslu
-      enable_bootstrap_timeline_accounts:
-        desc_html: Láta nýja notendur sjálfkrafa fylgjast með uppsettum aðgöngum svo að heimastreymi þeirra byrji ekki autt
-        title: Virkja sjálfgefnar fylgnistillingar fyrir nýja notendur
       hero:
         desc_html: Birt á forsíðunni. Mælt með að hún sé a.m.k. 600×100 mynddílar. Þegar þetta er ekki stillt, er notuð smámynd netþjónsins
         title: Aðalmynd
@@ -680,9 +698,6 @@ is:
       accounts_today: Einstök afnot í dag
       accounts_week: Einstök afnot í þessari viku
       breakdown: Samantekt á notkun dagsins eftir uppruna
-      context: Samhengi
-      directory: Í möppunni
-      in_directory: "%{count} í möppunni"
       last_active: Síðasta virkni
       most_popular: Vinsælast
       most_recent: Nýjast

@@ -242,7 +242,7 @@
   {
     "descriptors": [
       {
-        "defaultMessage": "Hide {number, plural, one {image} other {images}}",
+        "defaultMessage": "{number, plural, one {Hide image} other {Hide images}}",
         "id": "media_gallery.toggle_visible"
       },
       {
@@ -1650,6 +1650,10 @@
       {
         "defaultMessage": "Posts from people you follow will show up in chronological order on your home feed. Don't be afraid to make mistakes, you can unfollow people just as easily any time!",
         "id": "follow_recommendations.lead"
+      },
+      {
+        "defaultMessage": "Looks like no suggestions could be generated for you. You can try using search to look for people you might know or explore trending hashtags.",
+        "id": "empty_column.follow_recommendations"
       },
       {
         "defaultMessage": "Done",
