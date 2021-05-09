@@ -439,10 +439,17 @@ ja:
         title: 新規メールドメインブロック
       title: メールドメインブロック
     follow_recommendations:
+      description_html: "<strong>おすすめフォローは、新規ユーザーが興味のあるコンテンツをすばやく見つけるのに役立ちます。</strong>ユーザーが他のユーザーとの交流を十分にしていない場合、パーソナライズされたおすすめフォローを生成する代わりに、これらのアカウントが表示されます。最近のエンゲージメントが最も高いアカウントと、特定の言語のローカルフォロワー数が最も多いアカウントを組み合わせて､毎日再計算されます。"
+      language: 言語
       status: ステータス
+      suppress: おすすめフォローに表示しない
+      suppressed: 非表示
+      title: おすすめフォロー
+      unsuppress: おすすめフォローを復元
     instances:
       back_to_all: すべて
-      back_to_warning: 警告
+      back_to_limited: 制限あり
+      back_to_warning: 警告あり
       by_domain: ドメイン
       delivery:
         all: すべて
@@ -452,7 +459,7 @@ ja:
         title: 配送
         unavailable: 使用不可
         unavailable_message: 配送不可
-        warning: 警告
+        warning: 警告あり
         warning_message:
           other: '%{count} 日配送失敗'
       delivery_available: 配送可能
