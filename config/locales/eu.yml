@@ -1,7 +1,7 @@
 eu:
   about:
-    about_hashtag_html: 'Hauek  <strong>#%{hashtag}</strong> traola duten toot publikoak dira. Fedibertsoko edozein kontu baduzu harremanetan jarri zaitezke.'
-    about_mastodon_html: 'Mastodon web protokolo ireki eta libreak darabiltzan gizarte sare bat da. E-mail sarea bezala deszentralizatua da.'
+    about_hashtag_html: 'Hauek <strong>#%{hashtag}</strong> traola duten bidalketa publikoak dira. Fedibertsoko edozein kontu baduzu harremanetan jarri zaitezke.'
+    about_mastodon_html: 'Etorkizuneko sare soziala: ez iragarkirik eta ez zelatatze korporatiborik, diseinu etikoa eta deszentralizazioa! Izan zure datuen jabea Mastodonekin!'
     about_this: Honi buruz
     active_count_after: aktibo
     active_footnote: Hilabeteko erabiltzaile aktiboak (HEA)
@@ -10,8 +10,8 @@ eu:
     apps: Aplikazio mugikorrak
     apps_platforms: Erabili Mastodon, iOS, Android eta beste plataformetatik
     browse_directory: Arakatu profilen direktorio bat eta iragazi interesen arabera
-    browse_local_posts: Ikusi zerbitzari honetako mezu publikoen zuzeneko jario bat
-    browse_public_posts: Arakatu Mastodoneko mezu publikoen zuzeneko jario bat
+    browse_local_posts: Arakatu zerbitzari honetako bidalketa publikoen zuzeneko jario bat
+    browse_public_posts: Arakatu Mastodoneko bidalketa publikoen zuzeneko jario bat
     contact: Kontaktua
     contact_missing: Ezarri gabe
     contact_unavailable: E/E
@@ -31,8 +31,8 @@ eu:
     server_stats: 'Zerbitzariaren estatistikak:'
     source_code: Iturburu kodea
     status_count_after:
-      one: mezu
-      other: mezu
+      one: bidalketa
+      other: bidalketa
     status_count_before: Hauek
     tagline: Jarraitu lagunak eta egin berriak
     terms: Erabilera baldintzak
@@ -42,7 +42,7 @@ eu:
       reason: Arrazoia
       rejecting_media: 'Zerbitzari hauetako multimedia fitxategiak ez dira prozesatuko ez gordeko, eta ez dira iruditxoak bistaratuko, jatorrizko irudira joan behar izango da klik eginez:'
       rejecting_media_title: Iragazitako multimedia
-      silenced: 'Zerbitzari hauetako mezuak denbora-lerro eta elkarrizketa publikoetan ezkutatuko dira, eta bere erabiltzaileen interakzioek ez dute jakinarazpenik sortuko ez badituzu jarraitzen:'
+      silenced: 'Zerbitzari hauetako bidalketak denbora-lerro eta elkarrizketa publikoetan ezkutatuko dira, eta bere erabiltzaileen interakzioek ez dute jakinarazpenik sortuko ez badituzu jarraitzen:'
       silenced_title: Isilarazitako zerbitzariak
       suspended: 'Ez da zerbitzari hauetako daturik prozesatuko, gordeko, edo partekatuko, zerbitzari hauetako erabiltzaileekin komunikatzea ezinezkoa eginez:'
       suspended_title: Kanporatutako zerbitzariak
@@ -75,10 +75,10 @@ eu:
     pin_errors:
       following: Onetsi nahi duzun pertsona aurretik jarraitu behar duzu
     posts:
-      one: Toot
-      other: Toot
-    posts_tab_heading: Tootak
-    posts_with_replies: Tootak eta erantzunak
+      one: Bidalketa
+      other: Bidalketa
+    posts_tab_heading: Bidalketa
+    posts_with_replies: Bidalketak eta erantzunak
     roles:
       admin: Administratzailea
       bot: Bot-a
@@ -198,7 +198,7 @@ eu:
         targeted_reports: Besteen salaketak
       silence: Isilarazi
       silenced: Isilarazita
-      statuses: Mezuak
+      statuses: Bidalketa
       subscribe: Harpidetu
       suspended: Kanporatuta
       suspension_irreversible: Kontu honen datuak behin betiko ezabatu dira. Kontua kanporatzea atzera bota dezakezu, berriz erabilgarri izan dadin, baina datuak ezingo dira berreskuratu.
@@ -237,7 +237,7 @@ eu:
         destroy_domain_block: Ezabatu domeinu blokeoa
         destroy_email_domain_block: Ezabatu e-mail domeinu blokeoa
         destroy_ip_block: Ezabatu IP araua
-        destroy_status: Ezabatu mezua
+        destroy_status: Ezabatu bidalketa
         destroy_unavailable_domain: Ezabatu eskuragarri ez dagoen domeinua
         disable_2fa_user: Desgaitu 2FA
         disable_custom_emoji: Desgaitu emoji pertsonalizatua
@@ -260,7 +260,7 @@ eu:
         update_announcement: Eguneratu iragarpena
         update_custom_emoji: Eguneratu emoji pertsonalizatua
         update_domain_block: Eguneratu domeinu-blokeoa
-        update_status: Eguneratu egoera
+        update_status: Eguneratu bidalketa
       actions:
         assigned_to_self_report_html: "%{name} erabiltzaileak %{target} salaketa bere buruari esleitu dio"
         change_email_user_html: "%{name} erabiltzaileak %{target} erabiltzailearen e-posta helbidea aldatu du"
@@ -280,7 +280,8 @@ eu:
         destroy_domain_block_html: "%{name} erabiltzaileak %{target} domeinua desblokeatu du"
         destroy_email_domain_block_html: "%{name} erabiltzaileak %{target} e-posta helbideen domeinua desblokeatu du"
         destroy_ip_block_html: "%{name} erabiltzaileak %{target} IParen araua ezabatu du"
-        destroy_status_html: "%{name} erabiltzaileak %{target} erabiltzailearen egoera kendu du"
+        destroy_status_html: "%{name} erabiltzaileak %{target} erabiltzailearen bidalketa kendu du"
+        destroy_unavailable_domain_html: "%{name}(e)k %{target} domeinurako banaketari berrekin dio"
         disable_2fa_user_html: "%{name} erabiltzaileak %{target} erabiltzailearen bi faktoreko autentifikazioa desgaitu du"
         disable_custom_emoji_html: "%{name} erabiltzaileak %{target} emoji-a desgaitu du"
         disable_user_html: "%{name} erabiltzaileak %{target} erabiltzailearen saioa desgaitu du"
@@ -302,8 +303,8 @@ eu:
         update_announcement_html: "%{name} erabiltzaileak %{target} iragarpena eguneratu du"
         update_custom_emoji_html: "%{name} erabiltzaileak %{target} emoji-a eguneratu du"
         update_domain_block_html: "%{name} erabiltzaileak %{target} domeinu-blokeoa eguneratu du"
-        update_status_html: "%{name} erabiltzaileak %{target} erabiltzailearen egoera eguneratu du"
-      deleted_status: "(ezabatutako mezua)"
+        update_status_html: "%{name} erabiltzaileak %{target} erabiltzailearen bidalketa eguneratu du"
+      deleted_status: "(ezabatutako bidalketa)"
       empty: Ez da egunkaririk aurkitu.
       filter_by_action: Iragazi ekintzen arabera
       filter_by_user: Iragazi erabiltzaileen arabera
@@ -453,8 +454,25 @@ eu:
       title: Jarraitzeko gomendioak
       unsuppress: Berrezarri jarraitzeko gomendioa
     instances:
+      back_to_all: Guztiak
+      back_to_limited: Mugatua
+      back_to_warning: Abisua
       by_domain: Domeinua
+      delivery:
+        all: Guztiak
+        clear: Garbitu banaketa erroreak
+        restart: Berrabiarazi banaketa
+        stop: Gelditu banaketa
+        title: Banaketa
+        unavailable: Eskuraezina
+        unavailable_message: Banaketa ez dago eskuragarri
+        warning: Abisua
+        warning_message:
+          one: Banaketa hutsegitea egun %{count}
+          other: Banaketa hutsegitea %{count} egun
       delivery_available: Bidalketa eskuragarri dago
+      delivery_error_days: Banaketa errore egunak
+      delivery_error_hint: Banaketa ezin bada %{count} egunean egin, banaezin bezala markatuko da automatikoki.
       empty: Ez da domeinurik aurkitu.
       known_accounts:
         one: "Kontu ezagun %{count}"
