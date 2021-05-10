@@ -464,12 +464,26 @@ cs:
       title: Doporučená sledování
       unsuppress: Obnovit doporučení sledování
     instances:
+      back_to_all: Vše
+      back_to_limited: Omezený
+      back_to_warning: Varování
       by_domain: Doména
       delivery:
+        all: Vše
         clear: Vymazat chyby doručení
         restart: Restartovat doručování
+        stop: Zastavit doručování
         title: Doručování
+        unavailable: Nedostupný
+        unavailable_message: Doručování nedostupné
+        warning: Varování
+        warning_message:
+          one: Doručení selhává %{count} den
+          few: Doručení selhává %{count} dny
+          many: Doručení selhává %{count} dnů
+          other: Doručení selhává %{count} dnů
       delivery_available: Doručení je k dispozici
+      delivery_error_days: Dny chybného doručování
       delivery_error_hint: Není-li možné doručení po dobu %{count} dnů, bude automaticky označen za nedoručitelný.
       empty: Nebyly nalezeny žádné domény.
       known_accounts:
