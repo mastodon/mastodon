@@ -1,0 +1,11 @@
+.announcements-list__item
+  = link_to edit_admin_rule_path(rule), class: 'announcements-list__item__title' do
+    = "#{rule_counter + 1}."
+    = truncate(rule.text)
+
+  .announcements-list__item__action-bar
+    .announcements-list__item__meta
+      = rule.text
+
+    %div
+      = table_link_to 'trash', t('admin.rules.delete'), admin_rule_path(rule), method: :delete, data: { confirm: t('admin.accounts.are_you_sure') } if can?(:destroy, rule)

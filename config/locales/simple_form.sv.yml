@@ -14,11 +14,14 @@ sv:
         send_email_notification: Användaren kommer att få en förklaring av vad som hände med sitt konto
         text_html: Extra. Du kan använda toot syntax. Du kan <a href="%{path}">lägga till förvalda varningar</a> för att spara tid
         type_html: Välj vad du vill göra med <strong>%{acct}</strong>
+        types:
+          disable: Förhindra användaren från att använda sitt konto, men ta inte bort eller dölj innehållet.
         warning_preset_id: Extra. Du kan lägga till valfri text i slutet av förinställningen
       announcement:
         all_day: När det är markerat visas endast datum för tidsintervallet
         ends_at: Frivillig. Meddelandet kommer automatiskt att publiceras just nu
         scheduled_at: Lämna tomt för att publicera meddelandet omedelbart
+        starts_at: Valfritt. Om ditt meddelande är bundet till ett visst tidsintervall
       defaults:
         autofollow: Användarkonton som skapas genom din inbjudan kommer automatiskt följa dig
         avatar: PNG, GIF eller JPG. Högst %{size}. Kommer att skalas ner till %{dimensions}px
@@ -41,6 +44,8 @@ sv:
         name: 'Du kan vilja använda en av dessa:'
       imports:
         data: CSV-fil som exporteras från en annan Mastodon-instans
+      rule:
+        text: Beskriv en kort och enkel regel för användare på denna server
       sessions:
         otp: 'Ange tvåfaktorkoden genererad från din telefonapp eller använd någon av dina återställningskoder:'
       user:
@@ -50,16 +55,31 @@ sv:
         fields:
           name: Etikett
           value: Innehåll
+      account_alias:
+        acct: Namnet på det gamla kontot
+      account_migration:
+        acct: Namnet på det nya kontot
       account_warning_preset:
         title: Rubrik
       admin_account_action:
+        send_email_notification: Meddela användaren via e-post
         text: Anpassad varning
+        type: Åtgärd
         types:
           disable: Inaktivera inloggning
           none: Gör ingenting
+          sensitive: Känslig
           silence: Tysta
+          suspend: Stäng av
+      announcement:
+        all_day: Heldagsevenemang
+        ends_at: Evenemangets slut
+        scheduled_at: Schemalägg publicering
+        starts_at: Evenemangets början
+        text: Kungörelse
       defaults:
         autofollow: Bjud in till att följa ditt konto
+        avatar: Profilbild
         bot: Detta är ett botkonto
         chosen_languages: Filtrera språk
         confirm_new_password: Bekräfta nytt lösenord
@@ -74,6 +94,8 @@ sv:
         fields: Profil-metadata
         header: Bakgrundsbild
         honeypot: "%{label} (fyll inte i)"
+        inbox_url: URL för reläinkorg
+        irreversible: Släng istället för att dölja
         locale: Språk
         locked: Lås konto
         max_uses: Högst antal  användningar
@@ -83,8 +105,10 @@ sv:
         password: Lösenord
         phrase: Nyckelord eller fras
         setting_advanced_layout: Aktivera avancerat webbgränssnitt
+        setting_aggregate_reblogs: Gruppera knuffar i tidslinjer
         setting_auto_play_gif: Spela upp animerade GIF-bilder automatiskt
         setting_boost_modal: Visa bekräftelsedialog innan du knuffar
+        setting_crop_images: Beskär bilder i icke-utökade tutningar till 16x9
         setting_default_language: Språk
         setting_default_privacy: Postintegritet
         setting_default_sensitive: Markera alltid media som känsligt
@@ -94,17 +118,27 @@ sv:
         setting_display_media_default: Standard
         setting_display_media_hide_all: Dölj alla
         setting_display_media_show_all: Visa alla
+        setting_expand_spoilers: Utöka alltid tutningar markerade med innehållsvarningar
         setting_hide_network: Göm ditt nätverk
         setting_noindex: Uteslutning av sökmotorindexering
         setting_reduce_motion: Minska rörelser i animationer
+        setting_show_application: Visa programmet som används för att skicka tutningar
         setting_system_font_ui: Använd systemets standardfont
         setting_theme: Sidans tema
         setting_trends: Visa dagens trender
         setting_unfollow_modal: Visa bekräftelse innan du slutar följa någon
+        setting_use_blurhash: Visa färgglada gradienter för dold media
+        setting_use_pending_items: Långsamt läge
         severity: Strikthet
+        sign_in_token_attempt: Säkerhetskod
         type: Importtyp
         username: Användarnamn
         username_or_email: Användarnamn eller e-mail
+        whole_word: Hela ord
+      email_domain_block:
+        with_dns_records: Inkludera MX-poster och IP-adresser för domänen
+      featured_tag:
+        name: Hashtag
       interactions:
         must_be_follower: Blockera aviseringar från icke-följare
         must_be_following: Blockera aviseringar från personer du inte följer
@@ -113,16 +147,36 @@ sv:
         comment: Kommentar
       invite_request:
         text: Varför vill du gå med?
+      ip_block:
+        comment: Kommentar
+        ip: IP
+        severities:
+          no_access: Blockera åtkomst
+          sign_up_requires_approval: Begränsa registreringar
+        severity: Regel
       notification_emails:
         digest: Skicka sammandrag via e-post
         favourite: Skicka e-post när någon favoriserar din status
         follow: Skicka e-post när någon följer dig
         follow_request: Skicka e-post när någon begär att följa dig
         mention: Skicka e-post när någon nämner dig
+        pending_account: Nytt konto behöver granskas
         reblog: Skicka e-post när någon knuffar din status
+        report: Ny rapport har skickats
+        trending_tag: En ogranskad hashtag trendar
+      rule:
+        text: Regel
+      tag:
+        listable: Tillåt att denna hashtag visas i sökningar och förslag
+        name: Hashtag
+        trendable: Tillåt att denna hashtag visas under trender
+        usable: Tillåt tutningar att använda denna hashtag
     'no': Nej
     recommended: Rekommenderad
     required:
       mark: "*"
       text: obligatorisk
+    title:
+      sessions:
+        webauthn: Använd en av dina säkerhetsnycklar för att logga in
     'yes': Ja

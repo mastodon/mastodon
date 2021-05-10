@@ -13,7 +13,7 @@ class ActivityPub::ActorSerializer < ActivityPub::Serializer
              :inbox, :outbox, :featured, :featured_tags,
              :preferred_username, :name, :summary,
              :url, :manually_approves_followers,
-             :discoverable
+             :discoverable, :published
 
   has_one :public_key, serializer: ActivityPub::PublicKeySerializer
 
@@ -156,6 +156,10 @@ class ActivityPub::ActorSerializer < ActivityPub::Serializer
 
   def also_known_as?
     !object.suspended? && !object.also_known_as.empty?
+  end
+
+  def published
+    object.created_at.midnight.iso8601
   end
 
   class CustomEmojiSerializer < ActivityPub::EmojiSerializer

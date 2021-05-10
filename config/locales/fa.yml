@@ -26,6 +26,7 @@ fa:
       این حساب برای مقاصد خودگردانی به کار می‌رفته و نباید مسدود شود؛ مگر این که بخواهید کل نمونه را مسدود کنید که در آن صورت نیز باید از انسداد دامنه استفاده کنید.
     learn_more: بیشتر بدانید
     privacy_policy: سیاست رازداری
+    rules: قوانین کارساز
     see_whats_happening: ببینید چه خبر است
     server_stats: 'آمار کارساز:'
     source_code: کدهای منبع
@@ -80,7 +81,6 @@ fa:
       other: بوق
     posts_tab_heading: بوق‌ها
     posts_with_replies: بوق‌ها و پاسخ‌ها
-    reserved_username: این نام کاربری در دسترس نیست
     roles:
       admin: مدیر
       bot: ربات
@@ -136,7 +136,7 @@ fa:
       inbox_url: نشانی صندوق ورودی
       invite_request_text: دلایل‌تان برای پیوستن
       invited_by: دعوت‌شده از طرف
-      ip: IP
+      ip: آی‌پی
       joined: عضو شده در
       location:
         all: همه
@@ -262,46 +262,24 @@ fa:
         update_domain_block: به‌روزرسانی مسدودسازی دامنه
         update_status: به‌روز رسانی وضعیت
       actions:
-        assigned_to_self_report: "%{name} رسیدگی به گزارش %{target} را به عهده گرفت"
-        change_email_user: "%{name} نشانی ایمیل کاربر %{target} را تغییر داد"
-        confirm_user: "%{name} نشانی ایمیل کاربر %{target} را تأیید کرد"
-        create_account_warning: "%{name} هشداری برای %{target} فرستاد"
-        create_announcement: "%{name} اعلامیه‌ای جدید ایجاد کرد %{target}"
-        create_custom_emoji: "%{name} شکلک تازهٔ %{target} را بارگذاشت"
-        create_domain_allow: "%{name} دامنهٔ %{target} را مجاز کرد"
-        create_domain_block: "%{name} دامین %{target} را مسدود کرد"
-        create_email_domain_block: "%{name} دامین ایمیل %{target} را مسدود کرد"
-        create_ip_block: "%{name} برای آی‌پی %{target} قاعده‌ای ایجاد کرد"
-        demote_user: "%{name} مقام کاربر %{target} را تنزل داد"
-        destroy_announcement: "%{name} اعلامیهٔ %{target} را حذف کرد"
-        destroy_custom_emoji: "%{name} اموجی %{target} را نابود کرد"
-        destroy_domain_allow: "%{name} دامنهٔ %{target} را از فهرست مجاز برداشت"
-        destroy_domain_block: "%{name} انسداد دامنهٔ %{target} را رفع کرد"
-        destroy_email_domain_block: "%{name} دامنهٔ ایمیل %{target} را به فهرست مجاز افزود"
-        destroy_ip_block: "%{name} قاعده‌ای را از آی‌پی %{target} حذف کرد"
-        destroy_status: "%{name} نوشتهٔ %{target} را پاک کرد"
-        disable_2fa_user: "%{name} اجبار ورود دومرحله‌ای را برای کاربر %{target} غیرفعال کرد"
-        disable_custom_emoji: "%{name} شکلک %{target} را غیرفعال کرد"
-        disable_user: "%{name} ورود را برای کاربر %{target} غیرفعال کرد"
-        enable_custom_emoji: "%{name} شکلک %{target} را فعال کرد"
-        enable_user: "%{name} ورود را برای کاربر %{target} فعال کرد"
-        memorialize_account: "%{name} حساب کاربر %{target} را تبدیل به صفحهٔ یادمان کرد"
-        promote_user: "%{name} کاربر %{target} را ترفیع داد"
-        remove_avatar_user: "%{name} تصویر نمایهٔ کاربر %{target} را حذف کرد"
-        reopen_report: "%{name} گزارش %{target} را دوباره به جریان انداخت"
-        reset_password_user: "%{name} رمز کاربر %{target} را بازنشاند"
-        resolve_report: "%{name} گزارش %{target} را رفع کرد"
-        sensitive_account: "%{name} رسانهٔ %{target} را به عنوان حساس علامت‌گذاری کرد"
-        silence_account: "%{name} حساب کاربر %{target} را خاموش (بی‌صدا) کرد"
-        suspend_account: "%{name} حساب کاربر %{target} را تعلیق کرد"
-        unassigned_report: "%{name} بررسی گزارش %{target} را متوقف کرد"
-        unsensitive_account: "%{name} علامت حساس رسانهٔ %{target} را برداشت"
-        unsilence_account: "%{name} حساب کاربر %{target} را روشن (باصدا) کرد"
-        unsuspend_account: "%{name} حساب کاربر %{target} را از تعلیق خارج کرد"
-        update_announcement: "%{name} اعلامیهٔ %{target} را به‌روز کرد"
-        update_custom_emoji: "%{name} شکلک %{target} را به‌روز کرد"
-        update_domain_block: "%{name} مسدودسازی دامنه را برای %{target} به‌روزرسانی کرد"
-        update_status: "%{name} نوشتهٔ %{target} را به‌روز کرد"
+        assigned_to_self_report_html: "%{name} رسیدگی به گزارش %{target} را به عهده گرفت"
+        change_email_user_html: "%{name} نشانی رایانامهٔ کاربر %{target} را عوض کرد"
+        confirm_user_html: "%{name} نشانی رایانامهٔ کاربر %{target} را تأیید کرد"
+        create_account_warning_html: "%{name} هشداری برای %{target} فرستاد"
+        create_announcement_html: "%{name} اعلامیه‌ای جدید ایجاد کرد %{target}"
+        create_custom_emoji_html: "%{name} اموجی تازهٔ %{target} را بارگذاشت"
+        create_domain_allow_html: "%{name} دامنهٔ %{target} را مجاز کرد"
+        create_domain_block_html: "%{name} دامنهٔ %{target} را مسدود کرد"
+        create_email_domain_block_html: "%{name} دامنهٔ رایانامهٔ %{target} را مسدود کرد"
+        create_ip_block_html: "%{name} برای آی‌پی %{target} قانونی ایجاد کرد"
+        demote_user_html: "%{name} کاربر %{target} را تنزل داد"
+        destroy_announcement_html: "%{name} اعلامیهٔ %{target} را حذف کرد"
+        destroy_custom_emoji_html: "%{name} اموجی %{target} را نابود کرد"
+        destroy_domain_allow_html: "%{name} دامنهٔ %{target} را از فهرست مجاز برداشت"
+        destroy_domain_block_html: "%{name} انسداد دامنهٔ %{target} را رفع کرد"
+        destroy_email_domain_block_html: "%{name} انسداد دامنهٔ رایانامهٔ %{target} را برداشت"
+        destroy_ip_block_html: "%{name} قاعدهٔ آی‌پی %{target} را حذف کرد"
+        destroy_status_html: "%{name} وضعیت %{target} را برداشت"
       deleted_status: "(نوشتهٔ پاک‌شده)"
       empty: هیچ گزارشی پیدا نشد.
       filter_by_action: پالایش بر اساس کنش
@@ -316,10 +294,12 @@ fa:
       new:
         create: ساختن اعلامیه
         title: اعلامیهٔ تازه
+      publish: انتشار
       published_msg: اعلامیه با موفقیت منتشر شد!
       scheduled_for: زمان‌بسته برای %{time}
       scheduled_msg: اعلامیه برای نشر، زمان‌بندی شد!
       title: اعلامیه‌ها
+      unpublish: عدم انتشار
       unpublished_msg: انتشار اعلامیه با موفقیت لغو شد!
       updated_msg: اعلامیه با موفقیت به‌روز شد!
     custom_emojis:
@@ -364,7 +344,6 @@ fa:
       feature_profile_directory: فهرست گزیدهٔ کاربران
       feature_registrations: ثبت‌نام‌ها
       feature_relay: رله
-      feature_spam_check: ضدهرزنامه
       feature_timeline_preview: پیش‌نمایش نوشته‌ها
       features: ویژگی‌ها
       hidden_service: ارتباط میان‌سروری با سرویس‌های نهفته
@@ -404,6 +383,8 @@ fa:
           silence: خموشاندن
           suspend: تعلیق
         title: مسدودسازی دامین تازه
+      obfuscate: مبهم‌سازی نام دامنهٔ
+      obfuscate_hint: در صورت به کار افتاده بودن اعلام فهرست محدودیت‌های دامنه، نام دامنه در فهرست را به صورت جزیی مبهم می‌کند
       private_comment: یادداشت خصوصی
       private_comment_hint: یادداشتی دربارهٔ محدودیت روی این دامین برای سایر ناظمان.
       public_comment: یادداشت عمومی
@@ -440,7 +421,13 @@ fa:
         create: ساختن مسدودسازی
         title: مسدودسازی دامین ایمیل تازه
       title: مسدودسازی دامین‌های ایمیل
+    follow_recommendations:
+      language: برای زبان
+      status: وضعیت
+      title: پیشنهادهای پی‌گیری
+      unsuppress: بازگردانی پیشنهادهای پی‌گیری
     instances:
+      back_to_all: همه
       by_domain: دامین
       delivery_available: پیام آماده است
       empty: هیج دامنه‌ای پیدا نشد.
@@ -542,6 +529,12 @@ fa:
       unassign: پس‌گرفتن مسئولیت
       unresolved: حل‌نشده
       updated_at: به‌روز شد
+    rules:
+      add_new: افزودن قانون
+      delete: حذف
+      edit: ویرایش قانون
+      empty: هنوز هیچ قانونی برای کارساز تعریف نشده.
+      title: قوانین کارساز
     settings:
       activity_api_enabled:
         desc_html: تعداد بوق‌های محلی، کاربران فعال، و کاربران تازه در هر هفته
@@ -565,8 +558,6 @@ fa:
         users: برای کاربران محلی واردشده
       domain_blocks_rationale:
         title: دیدن دلیل
-      enable_bootstrap_timeline_accounts:
-        title: به کار انداختن پیگیری‌های پیش‌گزیده برای کاربران تازه
       hero:
         desc_html: در صفحهٔ آغازین نمایش می‌یابد. دست‌کم ۶۰۰×۱۰۰ پیکسل توصیه می‌شود. اگر تعیین نشود، با تصویر بندانگشتی سرور جایگزین خواهد شد
         title: تصویر سربرگ
@@ -620,9 +611,6 @@ fa:
         desc_html: می‌توانید سیاست رازداری، شرایط استفاده، یا سایر مسائل قانونی را به دلخواه خود بنویسید. تگ‌های HTML هم مجاز است
         title: شرایط استفادهٔ سفارشی
       site_title: نام سرور
-      spam_check_enabled:
-        desc_html: ماستدون می‌تواند حساب‌ها را به طور خودکار بی‌صدا کند یا گزارش دهد. این کار بر اساس سنجه‌هایی از قبیل شناسایی پیغام‌های ناخواستهٔ تکراری انجام می‌شود و ممکن است گاهی اشتباه باشد.
-        title: ضدهرزنامه
       thumbnail:
         desc_html: برای دیدن با OpenGraph و رابط برنامه‌نویسی. وضوح پیشنهادی ۱۲۰۰×۶۳۰ پیکسل
         title: تصویر کوچک سرور
@@ -653,13 +641,14 @@ fa:
       no_status_selected: هیچ بوقی تغییری نکرد زیرا هیچ‌کدام از آن‌ها انتخاب نشده بودند
       title: نوشته‌های حساب
       with_media: دارای عکس یا ویدیو
+    system_checks:
+      rules_check:
+        action: مدیریت قانون‌های کارساز
+        message_html: هیچ قانون کارسازی تعریف نکرده‌اید.
     tags:
       accounts_today: کاربرد یکتا در امروز
       accounts_week: کاربرد یکتا در این هفته
       breakdown: کاربردهای امروز به تفکیک منبع
-      context: زمینه
-      directory: در فهرست
-      in_directory: "%{count} در فهرست"
       last_active: آخرین فعالیت
       most_popular: محبوب‌ترین
       most_recent: تازه‌ترین
@@ -923,6 +912,8 @@ fa:
     status: وضعیت تأیید
     view_proof: دیدن مدرک
   imports:
+    errors:
+      over_rows_processing_limit: دارای بیش از %{count} ردیف
     modes:
       merge: ادغام
       merge_long: داده‌های فعلی را داشته باشید و داده‌های تازه‌ای بیفزایید
@@ -1035,10 +1026,14 @@ fa:
       body: "%{name} در این‌جا از شما نام برد:"
       subject: "%{name} از شما نام برد"
       title: نام‌برده‌شدن تازه
+    poll:
+      subject: نظرسنجی‌ای از %{name} پایان یافت
     reblog:
       body: "%{name} نوشتهٔ شما را بازبوقید:"
       subject: "%{name} نوشتهٔ شما را بازبوقید"
       title: بازبوق تازه
+    status:
+      subject: "%{name} چیزی فرستاد"
   notifications:
     email_events: رویدادها برای اعلان‌های ایمیلی
     email_events_hint: 'رویدادهایی که می‌خواهید برایشان اعلانی دریافت کنید را برگزینید:'
@@ -1048,11 +1043,11 @@ fa:
       decimal_units:
         format: "%n%u"
         units:
-          billion: B
-          million: M
-          quadrillion: Q
-          thousand: K
-          trillion: T
+          billion: ب
+          million: م
+          quadrillion: ک
+          thousand: ه
+          trillion: ت
   otp_authentication:
     code_hint: برای تأیید، کدی را که برنامهٔ تأییدکننده ساخته است وارد کنید
     description_html: اگر <strong>ورود دومرحله‌ای</strong> را با استفاده از از یک کارهٔ تأییدکننده به کار بیندازید، لازم است برای ورود، به تلفن خود که برایتان یک ژتون خواهد ساخت دسترسی داشته باشید.
@@ -1066,7 +1061,7 @@ fa:
     next: بعدی
     older: قدیمی‌تر
     prev: قبلی
-    truncate: "&hellip;"
+    truncate: "…"
   polls:
     errors:
       already_voted: شما قبلاً در این نظرسنجی رأی داده‌اید
@@ -1128,7 +1123,7 @@ fa:
     activity: آخرین فعالیت
     browser: مرورگر
     browsers:
-      alipay: Alipay
+      alipay: علی‌پی
       blackberry: بلک‌بری
       chrome: کروم
       edge: مایکروسافت اج
@@ -1137,31 +1132,31 @@ fa:
       generic: مرورگر ناشناخته
       ie: اینترنت اکسپلورر
       micro_messenger: مایکرومسنجر
-      nokia: Nokia S40 Ovi Browser
+      nokia: مرورگر اوی نوکیا اس۴۰
       opera: اپرا
-      otter: Otter
-      phantom_js: PhantomJS
-      qq: QQ Browser
+      otter: دیگر
+      phantom_js: فنتوم‌جی‌اس
+      qq: مرورگر کیوکیو
       safari: سافاری
-      uc_browser: UCBrowser
-      weibo: Weibo
+      uc_browser: مرورگر یوسی
+      weibo: وبیو
     current_session: نشست فعلی
     description: "%{browser} روی %{platform}"
     explanation: مرورگرهای زیر هم‌اینک به حساب شما وارد شده‌اند.
-    ip: IP
+    ip: آی‌پی
     platforms:
-      adobe_air: Adobe Air
+      adobe_air: ایر ادوبی
       android: اندروید
       blackberry: بلک‌بری
-      chrome_os: ChromeOS
-      firefox_os: Firefox OS
-      ios: iOS
+      chrome_os: سیستم‌عامل کروم
+      firefox_os: سیستم‌عامل فایرفاکس
+      ios: آی‌اواس
       linux: لینوکس
       mac: مک
       other: سیستم ناشناخته
       windows: ویندوز
-      windows_mobile: Windows Mobile
-      windows_phone: Windows Phone
+      windows_mobile: ویندوز همراه
+      windows_phone: تلفن ویندوزی
     revoke: لغو کردن
     revoke_success: نشست با موفقیت لغو شد
     title: نشست‌ها
@@ -1187,8 +1182,6 @@ fa:
     relationships: پیگیری‌ها و پیگیران
     two_factor_authentication: ورود دومرحله‌ای
     webauthn_authentication: کلیدهای امنیتی
-  spam_check:
-    spam_detected: این یک گزارش خودکار برای تشخیص هرزنامه است.
   statuses:
     attached:
       audio:
@@ -1229,8 +1222,9 @@ fa:
     show_older: نمایش قدیمی‌تر
     show_thread: نمایش رشته
     sign_in_to_participate: برای شرکت در گفتگو وارد حساب خود شوید
-    title: '%{name}: "%{quote}"'
+    title: "%{name}: «%{quote}»"
     visibilities:
+      direct: مستقیم
       private: خصوصی
       private_long: تنها پیگیران شما می‌بینند
       public: عمومی
@@ -1333,7 +1327,7 @@ fa:
   time:
     formats:
       default: "%d %b %Y, %H:%M"
-      month: "%b %Y"
+      month: "%Ob %Y"
   two_factor_authentication:
     add: افزودن
     disable: غیرفعال‌کردن
@@ -1399,11 +1393,8 @@ fa:
       tips: نکته‌ها
       title: خوش آمدید، کاربر %{name}!
   users:
-    blocked_email_provider: فراهم‌کنندهٔ رایانامه مجاز نیست
     follow_limit_reached: شما نمی‌توانید بیش از %{limit} نفر را پی بگیرید
     generic_access_help_html: مشکل در دسترسی به حسابتان؟ می‌توانید برای کمک با %{email} تکاس بگیرید
-    invalid_email: نشانی ایمیل نامعتبر است
-    invalid_email_mx: به نظر نمی‌رسد نشانی رایانامه وجود داشته باشد
     invalid_otp_token: کد ورود دومرحله‌ای نامعتبر است
     invalid_sign_in_token: کد امنیتی نادرست
     otp_lost_help_html: اگر شما دسترسی به هیچ‌کدامشان ندارید، باید با ایمیل %{email} تماس بگیرید

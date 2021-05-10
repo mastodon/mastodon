@@ -8,7 +8,7 @@ class UserMailer < Devise::Mailer
   helper :instance
   helper :statuses
 
-  add_template_helper RoutingHelper
+  helper RoutingHelper
 
   def confirmation_instructions(user, token, **)
     @resource = user

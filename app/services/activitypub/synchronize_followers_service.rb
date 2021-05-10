@@ -14,7 +14,7 @@ class ActivityPub::SynchronizeFollowersService < BaseService
     # should never happen in practice, since in almost all cases we keep an
     # Account record, and should we not do that, we should have sent a Delete.
     # In any case there is not much we can do if that occurs.
-    @expected_followers = items.map { |uri| ActivityPub::TagManager.instance.uri_to_resource(uri, Account) }.compact
+    @expected_followers = items.filter_map { |uri| ActivityPub::TagManager.instance.uri_to_resource(uri, Account) }
 
     remove_unexpected_local_followers!
     handle_unexpected_outgoing_follows!

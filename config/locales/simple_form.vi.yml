@@ -14,6 +14,12 @@ vi:
         send_email_notification: Người dùng sẽ nhận được lời giải thích về những gì xảy ra với tài khoản của họ
         text_html: Tùy chọn. Bạn nên dùng <a href="%{path}">cảnh cáo cài sẵn</a> để tiết kiệm thời gian
         type_html: Chọn làm gì với <strong>%{acct}</strong>
+        types:
+          disable: Cấm người này tiếp tục đăng nhập, nhưng không xóa hoặc ẩn tút của họ.
+          none: Sử dụng để gửi cảnh cáo tới tài khoản này, không áp đặt trừng phạt.
+          sensitive: Mọi tập tin của tài khoản này tải lên đều sẽ bị gắn nhãn nhạy cảm.
+          silence: Cấm tài khoản này đăng tút công khai, ẩn tút của họ hiện ra với những người chưa theo dõi họ.
+          suspend: Vô hiệu hóa mọi hoạt động của tài khoản này và xóa sạch dữ liệu. Có thể mở lại trong vòng 30 ngày.
         warning_preset_id: Tùy chọn. Bạn vẫn có thể thêm ghi chú riêng
       announcement:
         all_day: Chỉ có khoảng thời gian được đánh dấu mới hiển thị
@@ -24,12 +30,12 @@ vi:
       defaults:
         autofollow: Những người đăng ký sẽ tự động theo dõi bạn
         avatar: PNG, GIF hoặc JPG. Kích cỡ tối đa %{size}. Sẽ bị nén xuống %{dimensions}px
-        bot: Tài khoản này tự động thực hiện các hành động và không cần thiết theo dõi
+        bot: Tài khoản này tự động thực hiện các hành động và không được quản lý bởi người thật
         context: Chọn một hoặc nhiều nơi mà bộ lọc sẽ áp dụng
         current_password: Vì mục đích bảo mật, vui lòng nhập mật khẩu của tài khoản hiện tại
         current_username: Để xác nhận, vui lòng nhập tên người dùng của tài khoản hiện tại
         digest: Chỉ gửi sau một thời gian dài không hoạt động hoặc khi bạn nhận được tin nhắn (trong thời gian vắng mặt)
-        discoverable: Mọi người sẽ có thể tìm thấy bạn dễ dàng hơn
+        discoverable: Cho phép tài khoản của bạn xuất hiện trong gợi ý theo dõi và những tính năng khác
         email: Bạn sẽ được gửi một email xác nhận
         fields: Được phép tạo tối đa 4 mục trên trang cá nhân của bạn
         header: PNG, GIF hoặc JPG. Kích cỡ tối đa %{size}. Sẽ bị nén xuống %{dimensions}px
@@ -73,6 +79,8 @@ vi:
           no_access: Chặn truy cập từ tất cả IP này
           sign_up_requires_approval: Bạn sẽ phê duyệt những đăng ký mới từ IP này
         severity: Chọn hành động nếu nhận được yêu cầu từ IP này
+      rule:
+        text: Mô tả một quy tắc bắt buộc trên máy chủ này. Nên để ngắn và đơn giản.
       sessions:
         otp: 'Nhập mã xác thực hai bước được tạo bởi ứng dụng điện thoại của bạn hoặc dùng một trong các mã khôi phục của bạn:'
         webauthn: Nếu đây là USB key, hãy cắm vào và thử xoay chiều.
@@ -99,11 +107,11 @@ vi:
         type: Hành động
         types:
           disable: Tạm khóa
-          none: Cấm upload
+          none: Gửi cảnh cáo
           sensitive: Nhạy cảm
           silence: Tạm ẩn
           suspend: Vô hiệu hóa
-        warning_preset_id: Dùng cảnh cáo cài sẵn
+        warning_preset_id: Dùng mẫu có sẵn
       announcement:
         all_day: Sự kiện diễn ra hằng ngày
         ends_at: Kết thúc sự kiện
@@ -197,8 +205,10 @@ vi:
         reblog: Ai đó chia sẻ tút của bạn
         report: Ai đó gửi báo cáo kiểm duyệt
         trending_tag: Một hashtag chưa được phê duyệt đang là xu hướng
+      rule:
+        text: Quy tắc
       tag:
-        listable: Cho phép hashtag này xuất hiện trong tìm kiếm và trên tiểu sử cá nhân
+        listable: Cho phép hashtag này xuất hiện trong tìm kiếm và đề xuất
         name: Hashtag
         trendable: Cho phép hashtag này xuất hiện trong xu hướng
         usable: Cho phép dùng hashtag này trong tút
