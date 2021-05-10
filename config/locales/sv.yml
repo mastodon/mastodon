@@ -212,9 +212,9 @@ sv:
         create_domain_block: Skapa blockerad domän
         create_ip_block: Skapa IP-regel
         demote_user: Degradera användare
-        destroy_announcement: Radera anslag
+        destroy_announcement: Ta bort anslag
         destroy_custom_emoji: Radera egen emoji
-        destroy_domain_allow: Radera tillåten domän
+        destroy_domain_allow: Ta bort tillåten domän
         destroy_domain_block: Ta bort blockerad domän
         destroy_ip_block: Ta bort IP-regel
         destroy_status: Ta bort status
@@ -385,6 +385,7 @@ sv:
         title: Filtrera
       title: Inbjudningar
     ip_blocks:
+      delete: Ta bort
       expires_in:
         '1209600': 2 veckor
         '15778476': 6 månader
@@ -440,6 +441,7 @@ sv:
       updated_at: Uppdaterad
     rules:
       add_new: Lägg till regel
+      delete: Ta bort
       edit: Ändra regel
       title: Serverns regler
     settings:
@@ -509,6 +511,8 @@ sv:
         desc_html: Visa offentlig tidslinje på landingsidan
         title: Förhandsgranska tidslinje
       title: Sidans inställningar
+      trends:
+        title: Trendande hashtaggar
     site_uploads:
       delete: Radera uppladdad fil
     statuses:
@@ -526,6 +530,10 @@ sv:
       accounts_today: Unika användare idag
       accounts_week: Unika användare den här veckan
       last_active: Senast aktiv
+      name: Hashtag
+      title: Hashtaggar
+      unreviewed: Ej granskad
+    title: Administration
     warning_presets:
       add_new: Lägg till ny
       delete: Radera
@@ -547,6 +555,7 @@ sv:
     sensitive_content: Känsligt innehåll
   application_mailer:
     notification_preferences: Ändra e-postinställningar
+    salutation: "%{name},"
     settings: 'Ändra e-postinställningar: %{link}'
     view: 'Granska:'
     view_profile: Visa profil
@@ -560,9 +569,12 @@ sv:
     warning: Var mycket försiktig med denna data. Dela aldrig den med någon!
     your_token: Din access token
   auth:
+    apply_for_account: Be om en inbjudan
     change_password: Lösenord
     delete_account: Ta bort konto
     delete_account_html: Om du vill radera ditt konto kan du <a href="%{path}">fortsätta här</a>. Du kommer att bli ombedd att bekräfta.
+    description:
+      prefix_invited_by_user: "@%{name} bjuder in dig att gå med i en Mastodon-server!"
     didnt_get_confirmation: Fick du inte instruktioner om bekräftelse?
     forgot_password: Glömt ditt lösenord?
     invalid_reset_password_token: Lösenordsåterställningstoken är ogiltig eller utgått. Vänligen be om en ny.
@@ -571,6 +583,9 @@ sv:
     migrate_account: Flytta till ett annat konto
     migrate_account_html: Om du vill omdirigera detta konto till ett annat, kan du <a href="%{path}">konfigurera det här</a>.
     or_log_in_with: Eller logga in med
+    providers:
+      cas: CAS
+      saml: SAML
     register: Registrera
     resend_confirmation: Skicka instruktionerna om bekräftelse igen
     reset_password: Återställ lösenord
@@ -648,6 +663,7 @@ sv:
       size: Storlek
     blocks: Du blockerar
     bookmarks: Bokmärken
+    csv: CSV
     lists: Listor
     mutes: Du tystar
     storage: Medialagring
@@ -655,6 +671,7 @@ sv:
     add_new: Lägg till ny
   filters:
     contexts:
+      account: Profiler
       notifications: Aviseringar
       thread: Konversationer
     edit:
@@ -671,12 +688,17 @@ sv:
   generic:
     all: Alla
     changes_saved_msg: Ändringar sparades framgångsrikt!
+    copy: Kopiera
+    delete: Ta bort
+    order_by: Sortera efter
     save_changes: Spara ändringar
     validation_errors:
       one: Något är inte riktigt rätt ännu! Kontrollera felet nedan
       other: Något är inte riktigt rätt ännu! Kontrollera dom %{count} felen nedan
   identity_proofs:
     active: Aktiv
+    i_am_html: Jag är %{username} på %{service}.
+    identity: Identitet
     inactive: Inaktiv
   imports:
     errors:
@@ -779,6 +801,7 @@ sv:
     follow_selected_followers: Följ valda personer
     followers: Följare
     following: Följer
+    invited: Inbjuden
     last_active: Senast aktiv
     status: Kontostatus
   remote_follow:
@@ -975,3 +998,8 @@ sv:
     otp_lost_help_html: Om du förlorat åtkomst till båda kan du komma i kontakt med %{email}
     seamless_external_login: Du är inloggad via en extern tjänst, så lösenord och e-postinställningar är inte tillgängliga.
     signed_in_as: 'Inloggad som:'
+  webauthn_credentials:
+    delete: Ta bort
+    delete_confirmation: Är du säker på att du vill ta bort denna säkerhetsnyckel?
+    destroy:
+      success: Din säkerhetsnyckel har tagits bort.
