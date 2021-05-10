@@ -73,10 +73,10 @@ es:
     pin_errors:
       following: Debes estar siguiendo a la persona a la que quieres aprobar
     posts:
-      one: Toot
+      one: Publicación
       other: Publicaciones
     posts_tab_heading: Publicaciones
-    posts_with_replies: Toots con respuestas
+    posts_with_replies: Publicaciones y respuestas
     roles:
       admin: Administrador
       group: Grupo
@@ -510,11 +510,11 @@ es:
     relays:
       add_new: Añadir un nuevo relés
       delete: Borrar
-      description_html: Un <strong>relés de federation</strong> es un servidor intermedio que intercambia grandes volúmenes de toots públicos entre servidores que se suscriben y publican en él. <strong>Puede ayudar a servidores pequeños y medianos a descubir contenido del fediverso</strong>, que de otra manera requeriría que los usuarios locales siguiesen manialmente a personas de servidores remotos.
+      description_html: Un <strong>relé de federación</strong> es un servidor intermedio que intercambia grandes volúmenes de publicaciones públicas entre servidores que se suscriben y publican en él. <strong>Puede ayudar a servidores pequeños y medianos a descubrir contenido del fediverso</strong>, que de otra manera requeriría que los usuarios locales siguiesen manualmente a personas de servidores remotos.
       disable: Deshabilitar
       disabled: Deshabilitado
       enable: Hablitar
-      enable_hint: Una vez conectado, tu servidor se suscribirá a todos los toots públicos de este relés, y comenzará a enviar los toots públicos de este servidor hacia él.
+      enable_hint: Una vez conectado, tu servidor se suscribirá a todos las publicaciones públicas de este relé, y comenzará a enviar las publicaciones públicas de este servidor hacia él.
       enabled: Habilitado
       inbox_url: URL del relés
       pending: Esperando la aprobación del relés
@@ -628,7 +628,7 @@ es:
           open: Cualquiera puede registrarse
         title: Modo de registros
       show_known_fediverse_at_about_page:
-        desc_html: Cuando esté activado, se mostrarán toots de todo el fediverso conocido en la vista previa. En otro caso, se mostrarán solamente toots locales.
+        desc_html: Cuando esté desactivado, se mostrarán solamente publicaciones locales en la línea temporal pública
         title: Mostrar fediverso conocido en la vista previa de la historia
       show_staff_badge:
         desc_html: Mostrar un parche de staff en la página de un usuario
@@ -865,7 +865,7 @@ es:
     archive_takeout:
       date: Fecha
       download: Descargar tu archivo
-      hint_html: Puedes solicitar un archivo de tus <strong>toots y archivos multimedia subidos</strong>. Los datos exportados estarán en formato ActivityPub, legibles por cualquier software compatible.
+      hint_html: Puedes solicitar un archivo de tus <strong>publicaciones y archivos multimedia subidos</strong>. Los datos exportados estarán en formato ActivityPub, legibles por cualquier software compatible.
       in_progress: Recopilando tu archivo...
       request: Solicitar tu archivo
       size: Tamaño
@@ -1054,8 +1054,8 @@ es:
     poll:
       subject: Una encuesta de %{name} ha terminado
     reblog:
-      body: '%{name} ha retooteado tu estado:'
-      subject: "%{name} ha retooteado tu estado"
+      body: '%{name} ha retooteado tu publicación:'
+      subject: "%{name} ha retooteado tu publicación"
       title: Nueva difusión
     status:
       subject: "%{name} acaba de publicar"
@@ -1127,7 +1127,7 @@ es:
   remote_interaction:
     favourite:
       proceed: Proceder a marcar como favorito
-      prompt: 'Quieres marcar como favorito este toot:'
+      prompt: 'Quieres marcar como favorita esta publicación:'
     reblog:
       proceed: Proceder a retootear
       prompt: 'Quieres retootear este toot:'
