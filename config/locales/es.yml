@@ -1130,13 +1130,13 @@ es:
       prompt: 'Quieres marcar como favorita esta publicación:'
     reblog:
       proceed: Proceder a retootear
-      prompt: 'Quieres retootear este toot:'
+      prompt: 'Quieres retootear esta publicación:'
     reply:
       proceed: Proceder a responder
-      prompt: 'Quieres responder a este toot:'
+      prompt: 'Quieres responder a esta publicación:'
   scheduled_statuses:
-    over_daily_limit: Ha superado el límite de %{limit} toots programados para ese día
-    over_total_limit: Ha superado el límite de %{limit} toots programados
+    over_daily_limit: Ha superado el límite de %{limit} publicaciones programadas para ese día
+    over_total_limit: Ha superado el límite de %{limit} publicaciones programadas
     too_soon: La fecha programada debe estar en el futuro
   sessions:
     activity: Última actividad
@@ -1197,8 +1197,8 @@ es:
     over_character_limit: Límite de caracteres de %{max} superado
     pin_errors:
       limit: Ya has fijado el número máximo de publicaciones
-      ownership: El toot de alguien más no puede fijarse
-      private: Los toots no-públicos no pueden fijarse
+      ownership: La publicación de otra persona no puede fijarse
+      private: Las publicaciones no públicas no pueden fijarse
       reblog: Un boost no puede fijarse
     poll:
       total_people:
@@ -1222,7 +1222,7 @@ es:
       unlisted: Público, pero no mostrar en la historia federada
       unlisted_long: Todos pueden ver, pero no está listado en las líneas de tiempo públicas
   stream_entries:
-    pinned: Toot fijado
+    pinned: Publicación fijada
     reblogged: retooteado
     sensitive_content: Contenido sensible
   tags:
@@ -1347,8 +1347,8 @@ es:
       explanation:
         disable: Mientras su cuenta esté congelada, la información de su cuenta permanecerá intacta, pero no puede realizar ninguna acción hasta que se desbloquee.
         sensitive: Los archivos multimedia subidos y vinculados serán tratados como sensibles.
-        silence: Mientras su cuenta está limitada, sólo las personas que ya le están siguiendo verán sus toots en este servidor, y puede que se le excluya de varios listados públicos. Sin embargo, otros pueden seguirle manualmente.
-        suspend: Su cuenta ha sido suspendida, y todos tus toots y tus archivos multimedia subidos han sido irreversiblemente eliminados de este servidor, y de los servidores donde tenías seguidores.
+        silence: Mientras su cuenta está limitada, sólo las personas que ya te están siguiendo verán tus publicaciones en este servidor, y puede que se te excluya de varios listados públicos. Sin embargo, otros pueden seguirte manualmente.
+        suspend: Su cuenta ha sido suspendida, y todas tus publicaciones y tus archivos multimedia subidos han sido irreversiblemente eliminados de este servidor, y de los servidores donde tenías seguidores.
       get_in_touch: Puede responder a esta dirección de correo electrónico para ponerse en contacto con el personal de %{instance}.
       review_server_policies: Revisar las políticas del servidor
       statuses: 'Específicamente, para:'
