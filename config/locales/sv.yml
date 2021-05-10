@@ -92,7 +92,7 @@ sv:
     account_moderation_notes:
       create: Lämna kommentar
       created_msg: Modereringsnotering skapad utan problem!
-      delete: Ta bort
+      delete: Radera
       destroyed_msg: Modereringsnotering borttagen utan problem!
     accounts:
       add_email_domain_block: Blockera e-postdomän
@@ -211,9 +211,10 @@ sv:
         create_domain_allow: Skapa tillåten domän
         create_domain_block: Skapa blockerad domän
         create_ip_block: Skapa IP-regel
-        destroy_announcement: Ta bort anslag
-        destroy_custom_emoji: Ta bort egen emoji
-        destroy_domain_allow: Ta bort tillåten domän
+        demote_user: Degradera användare
+        destroy_announcement: Radera anslag
+        destroy_custom_emoji: Radera egen emoji
+        destroy_domain_allow: Radera tillåten domän
         destroy_domain_block: Ta bort blockerad domän
         destroy_ip_block: Ta bort IP-regel
         destroy_status: Ta bort status
@@ -354,8 +355,16 @@ sv:
         create: Skapa domän
         title: Ny E-postdomänblocklistningsinmatning
       title: E-postdomänblock
+    follow_recommendations:
+      status: Status
     instances:
+      back_to_all: Alla
+      back_to_warning: Varning
       by_domain: Domän
+      delivery:
+        all: Alla
+        unavailable: Ej tillgänglig
+        warning: Varning
       empty: Inga domäner hittades.
       moderation:
         all: Alla
@@ -375,6 +384,17 @@ sv:
         expired: Utgångna
         title: Filtrera
       title: Inbjudningar
+    ip_blocks:
+      expires_in:
+        '1209600': 2 veckor
+        '15778476': 6 månader
+        '2629746': 1 månad
+        '31556952': 1 år
+        '86400': 1 dag
+        '94670856': 3 år
+      new:
+        title: Skapa ny IP-regel
+      title: IP-regler
     pending_accounts:
       title: Väntande konton (%{count})
     relays:
@@ -385,6 +405,7 @@ sv:
       enable_hint: När den är aktiverad kommer din server att prenumerera på alla publika toots från detta relay, och kommer att börja skicka serverns publika toots till den.
       enabled: Aktivera
       save_and_enable: Spara och aktivera
+      status: Status
     report_notes:
       created_msg: Anmälningsanteckning har skapats!
       destroyed_msg: Anmälningsanteckning har raderats!
