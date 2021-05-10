@@ -14,6 +14,8 @@ sv:
         send_email_notification: Användaren kommer att få en förklaring av vad som hände med sitt konto
         text_html: Extra. Du kan använda toot syntax. Du kan <a href="%{path}">lägga till förvalda varningar</a> för att spara tid
         type_html: Välj vad du vill göra med <strong>%{acct}</strong>
+        types:
+          disable: Förhindra användaren från att använda sitt konto, men ta inte bort eller dölj innehållet.
         warning_preset_id: Extra. Du kan lägga till valfri text i slutet av förinställningen
       announcement:
         all_day: När det är markerat visas endast datum för tidsintervallet
@@ -53,9 +55,14 @@ sv:
         fields:
           name: Etikett
           value: Innehåll
+      account_alias:
+        acct: Namnet på det gamla kontot
+      account_migration:
+        acct: Namnet på det nya kontot
       account_warning_preset:
         title: Rubrik
       admin_account_action:
+        send_email_notification: Meddela användaren via e-post
         text: Anpassad varning
         type: Åtgärd
         types:
@@ -68,6 +75,7 @@ sv:
         all_day: Heldagsevenemang
         ends_at: Evenemangets slut
         scheduled_at: Schemalägg publicering
+        starts_at: Evenemangets början
         text: Kungörelse
       defaults:
         autofollow: Bjud in till att följa ditt konto
@@ -126,6 +134,11 @@ sv:
         type: Importtyp
         username: Användarnamn
         username_or_email: Användarnamn eller e-mail
+        whole_word: Hela ord
+      email_domain_block:
+        with_dns_records: Inkludera MX-poster och IP-adresser för domänen
+      featured_tag:
+        name: Hashtag
       interactions:
         must_be_follower: Blockera aviseringar från icke-följare
         must_be_following: Blockera aviseringar från personer du inte följer
@@ -135,20 +148,26 @@ sv:
       invite_request:
         text: Varför vill du gå med?
       ip_block:
+        comment: Kommentar
         ip: IP
         severities:
           no_access: Blockera åtkomst
           sign_up_requires_approval: Begränsa registreringar
+        severity: Regel
       notification_emails:
         digest: Skicka sammandrag via e-post
         favourite: Skicka e-post när någon favoriserar din status
         follow: Skicka e-post när någon följer dig
         follow_request: Skicka e-post när någon begär att följa dig
         mention: Skicka e-post när någon nämner dig
+        pending_account: Nytt konto behöver granskas
         reblog: Skicka e-post när någon knuffar din status
+        report: Ny rapport har skickats
+        trending_tag: En ogranskad hashtag trendar
       rule:
         text: Regel
       tag:
+        listable: Tillåt att denna hashtag visas i sökningar och förslag
         name: Hashtag
         trendable: Tillåt att denna hashtag visas under trender
         usable: Tillåt tutningar att använda denna hashtag

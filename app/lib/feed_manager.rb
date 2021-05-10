@@ -219,6 +219,36 @@ class FeedManager
     end
   end
 
+  # Clear all statuses from or mentioning target_account from a list feed
+  # @param [List] list
+  # @param [Account] target_account
+  # @return [void]
+  def clear_from_list(list, target_account)
+    timeline_key        = key(:list, list.id)
+    timeline_status_ids = redis.zrange(timeline_key, 0, -1)
+    statuses            = Status.where(id: timeline_status_ids).select(:id, :reblog_of_id, :account_id).to_a
+    reblogged_ids       = Status.where(id: statuses.map(&:reblog_of_id).compact, account: target_account).pluck(:id)
+    with_mentions_ids   = Mention.active.where(status_id: statuses.flat_map { |s| [s.id, s.reblog_of_id] }.compact, account: target_account).pluck(:status_id)
+
+    target_statuses = statuses.select do |status|
+      status.account_id == target_account.id || reblogged_ids.include?(status.reblog_of_id) || with_mentions_ids.include?(status.id) || with_mentions_ids.include?(status.reblog_of_id)
+    end
+
+    target_statuses.each do |status|
+      unpush_from_list(list, status)
+    end
+  end
+
+  # Clear all statuses from or mentioning target_account from an account's lists
+  # @param [Account] account
+  # @param [Account] target_account
+  # @return [void]
+  def clear_from_lists(account, target_account)
+    List.where(account: account).each do |list|
+      clear_from_list(list, target_account)
+    end
+  end
+
   # Populate home feed of account from scratch
   # @param [Account] account
   # @return [void]
