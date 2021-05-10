@@ -69,7 +69,7 @@ cs:
       other: Sledujících
     following: Sledovaní
     instance_actor_flash: Tento účet je virtuální aktér, který představuje server samotný, nikoliv jednotlivého uživatele. Používá se pro účely federace a neměl by být pozastaven.
-    joined: Uživatelem od %{date}
+    joined: Založen %{date}
     last_active: naposledy aktivní
     link_verified_on: Vlastnictví tohoto odkazu bylo zkontrolováno %{date}
     media: Média
@@ -144,7 +144,7 @@ cs:
       invite_request_text: Důvody založení
       invited_by: Pozván/a uživatelem
       ip: IP adresa
-      joined: Uživatelem od
+      joined: Založen
       location:
         all: Všechny
         local: Místní
@@ -238,6 +238,7 @@ cs:
         create_domain_block: Zablokovat doménu
         create_email_domain_block: Zablokovat e-maily na doméně
         create_ip_block: Vytvořit IP pravidlo
+        create_unavailable_domain: Vytvořit nedostupnou doménu
         demote_user: Snížit roli uživatele
         destroy_announcement: Odstranit oznámení
         destroy_custom_emoji: Odstranit vlastní emoji
@@ -246,6 +247,7 @@ cs:
         destroy_email_domain_block: Odstranit blokování e-mailů na doméně
         destroy_ip_block: Smazat IP pravidlo
         destroy_status: Odstranit stav
+        destroy_unavailable_domain: Smazat nedostupnou doménu
         disable_2fa_user: Vypnout 2FA
         disable_custom_emoji: Zakázat vlastní emoji
         disable_user: Deaktivovat uživatele
@@ -279,6 +281,7 @@ cs:
         create_domain_block_html: Uživatel %{name} zablokoval doménu %{target}
         create_email_domain_block_html: Uživatel %{name} přidal e-mailovou doménu %{target} na černou listinu
         create_ip_block_html: "%{name} vytvořil pravidlo pro IP %{target}"
+        create_unavailable_domain_html: "%{name} zastavil doručování na doménu %{target}"
         demote_user_html: Uživatel %{name} degradoval uživatele %{target}
         destroy_announcement_html: Uživatel %{name} odstranil oznámení %{target}
         destroy_custom_emoji_html: Uživatel %{name} zničil emoji %{target}
@@ -463,6 +466,7 @@ cs:
     instances:
       by_domain: Doména
       delivery_available: Doručení je k dispozici
+      delivery_error_hint: Není-li možné doručení po dobu %{count} dnů, bude automaticky označen za nedoručitelný.
       empty: Nebyly nalezeny žádné domény.
       known_accounts:
         few: "%{count} známé účty"

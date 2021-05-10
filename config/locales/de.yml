@@ -230,6 +230,7 @@ de:
         create_domain_block: Domain blockieren
         create_email_domain_block: E-Mail-Domain-Block erstellen
         create_ip_block: IP-Regel erstellen
+        create_unavailable_domain: Nicht verfügbare Domain erstellen
         demote_user: Benutzer degradieren
         destroy_announcement: Ankündigung löschen
         destroy_custom_emoji: Eigene Emoji löschen
@@ -238,6 +239,7 @@ de:
         destroy_email_domain_block: E-Mail-Domain-Blockade löschen
         destroy_ip_block: IP-Regel löschen
         destroy_status: Beitrag löschen
+        destroy_unavailable_domain: Nicht verfügbare Domain löschen
         disable_2fa_user: 2FA deaktivieren
         disable_custom_emoji: Benutzerdefiniertes Emoji deaktivieren
         disable_user: Benutzer deaktivieren
@@ -271,6 +273,7 @@ de:
         create_domain_block_html: "%{name} hat die Domain %{target} blockiert"
         create_email_domain_block_html: "%{name} hat die E-Mail-Domain %{target} geblacklistet"
         create_ip_block_html: "%{name} hat eine Regel für IP %{target} erstellt"
+        create_unavailable_domain_html: "%{name} hat die Lieferung an die Domain %{target} eingestellt"
         demote_user_html: "%{name} stufte Benutzer_in %{target} herunter"
         destroy_announcement_html: "%{name} hat die neue Ankündigung %{target} gelöscht"
         destroy_custom_emoji_html: "%{name} zerstörte Emoji %{target}"
@@ -279,6 +282,7 @@ de:
         destroy_email_domain_block_html: "%{name} hat die E-Mail-Domain %{target} gewhitelistet"
         destroy_ip_block_html: "%{name} hat eine Regel für IP %{target} gelöscht"
         destroy_status_html: "%{name} hat einen Beitrag von %{target} entfernt"
+        destroy_unavailable_domain_html: "%{name} setzte die Lieferung an die Domain %{target} fort"
         disable_2fa_user_html: "%{name} hat Zwei-Faktor-Anforderung für Benutzer_in %{target} deaktiviert"
         disable_custom_emoji_html: "%{name} hat das %{target} Emoji deaktiviert"
         disable_user_html: "%{name} hat Zugang von Benutzer_in %{target} deaktiviert"
@@ -448,11 +452,28 @@ de:
       status: Status
       suppress: Folgeempfehlungen unterdrücken
       suppressed: Unterdrückt
-      title: Titel
+      title: Folgeempfehlungen
       unsuppress: Nicht mehr unterdrücken
     instances:
+      back_to_all: Alle
+      back_to_limited: Beschränkt
+      back_to_warning: Warnung
       by_domain: Domain
+      delivery:
+        all: Alle
+        clear: Zustellfehler löschen
+        restart: Lieferung neu starten
+        stop: Lieferung stoppen
+        title: Zustellung
+        unavailable: Nicht verfügbar
+        unavailable_message: Zustellung funktioniert nicht
+        warning: Warnung
+        warning_message:
+          one: Zustellfehler seit %{count} Tag
+          other: Zustellfehler seit %{count} Tagen
       delivery_available: Zustellung funktioniert
+      delivery_error_days: Tage seitdem die Zustellung nicht funktioniert
+      delivery_error_hint: Wenn eine Lieferung für %{count} Tage nicht möglich ist, wird sie automatisch als nicht lieferbar markiert.
       empty: Keine Domains gefunden.
       known_accounts:
         one: "%{count} bekanntes Konto"

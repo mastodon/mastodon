@@ -5,7 +5,7 @@ ruby '>= 2.5.0', '< 3.1.0'
 
 gem 'pkg-config', '~> 1.4'
 
-gem 'puma', '~> 5.2'
+gem 'puma', '~> 5.3'
 gem 'rails', '~> 6.1.3'
 gem 'sprockets', '~> 3.7.2'
 gem 'thor', '~> 1.1'
@@ -75,7 +75,7 @@ gem 'rails-i18n', '~> 6.0'
 gem 'rails-settings-cached', '~> 0.6'
 gem 'redis', '~> 4.2', require: ['redis', 'redis/connection/hiredis']
 gem 'mario-redis-lock', '~> 1.2', require: 'redis_lock'
-gem 'rqrcode', '~> 1.2'
+gem 'rqrcode', '~> 2.0'
 gem 'ruby-progressbar', '~> 1.11'
 gem 'sanitize', '~> 5.2'
 gem 'scenic', '~> 1.5'
@@ -136,8 +136,8 @@ group :development do
   gem 'letter_opener', '~> 1.7'
   gem 'letter_opener_web', '~> 1.4'
   gem 'memory_profiler'
-  gem 'rubocop', '~> 1.13', require: false
-  gem 'rubocop-rails', '~> 2.9', require: false
+  gem 'rubocop', '~> 1.14', require: false
+  gem 'rubocop-rails', '~> 2.10', require: false
   gem 'brakeman', '~> 5.0', require: false
   gem 'bundler-audit', '~> 0.8', require: false
 
