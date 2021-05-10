@@ -24,6 +24,7 @@ zh-TW:
         current_password: 因安全因素，請輸入目前帳戶的密碼
         current_username: 請輸入目前帳戶的使用者名稱以確認
         digest: 僅在你長時間未登入且在未登入期間收到私訊時傳送
+        discoverable: 加入個人資料目錄能接觸更多閱聽眾
         email: 您將收到一封確認電子郵件
         fields: 您可在個人資料上有至多 4 個以表格形式顯示的項目
         header: 支援 PNG, GIF 或 JPG 圖片，檔案最大為 %{size}，會按比例縮小成 %{dimensions} 像素
@@ -74,6 +75,7 @@ zh-TW:
         types:
           disable: 停用
           none: 什麼也不做
+          sensitive: 有雷小心
           silence: 安靜
           suspend: 停權並不可逆的刪除帳戶資料
         warning_preset_id: 使用警告預設
@@ -146,6 +148,13 @@ zh-TW:
         comment: 備註
       invite_request:
         text: 加入的原因
+      ip_block:
+        comment: 備註
+        ip: IP 位址
+        severities:
+          no_access: 封鎖
+          sign_up_requires_approval: 限制註冊
+        severity: 規則
       notification_emails:
         digest: 傳送摘要信件
         favourite: 當有使用者喜歡你的嘟文時，傳送電子信件通知
@@ -165,4 +174,7 @@ zh-TW:
     required:
       mark: "*"
       text: 必須填寫
+    title:
+      sessions:
+        webauthn: 使用您的安全金鑰來登入
     'yes': 是

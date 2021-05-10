@@ -36,17 +36,18 @@ class AccountConversation < ApplicationRecord
   end
 
   class << self
-    def paginate_by_id(limit, options = {})
+    def to_a_paginated_by_id(limit, options = {})
       if options[:min_id]
-        paginate_by_min_id(limit, options[:min_id]).reverse
+        paginate_by_min_id(limit, options[:min_id], options[:max_id]).reverse
       else
-        paginate_by_max_id(limit, options[:max_id], options[:since_id])
+        paginate_by_max_id(limit, options[:max_id], options[:since_id]).to_a
       end
     end
 
-    def paginate_by_min_id(limit, min_id = nil)
+    def paginate_by_min_id(limit, min_id = nil, max_id = nil)
       query = order(arel_table[:last_status_id].asc).limit(limit)
       query = query.where(arel_table[:last_status_id].gt(min_id)) if min_id.present?
+      query = query.where(arel_table[:last_status_id].lt(max_id)) if max_id.present?
       query
     end
 

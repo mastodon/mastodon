@@ -5,7 +5,7 @@ import IconButton from '../../../components/icon_button';
 import Overlay from 'react-overlays/lib/Overlay';
 import Motion from '../../ui/util/optional_motion';
 import spring from 'react-motion/lib/spring';
-import detectPassiveEvents from 'detect-passive-events';
+import { supportsPassiveEvents } from 'detect-passive-events';
 import classNames from 'classnames';
 import Icon from 'mastodon/components/icon';
 
@@ -21,7 +21,7 @@ const messages = defineMessages({
   change_privacy: { id: 'privacy.change', defaultMessage: 'Adjust status privacy' },
 });
 
-const listenerOptions = detectPassiveEvents.hasSupport ? { passive: true } : false;
+const listenerOptions = supportsPassiveEvents ? { passive: true } : false;
 
 class PrivacyDropdownMenu extends React.PureComponent {
 
@@ -179,7 +179,7 @@ class PrivacyDropdown extends React.PureComponent {
     } else {
       const { top } = target.getBoundingClientRect();
       if (this.state.open && this.activeElement) {
-        this.activeElement.focus();
+        this.activeElement.focus({ preventScroll: true });
       }
       this.setState({ placement: top * 2 < innerHeight ? 'bottom' : 'top' });
       this.setState({ open: !this.state.open });
@@ -220,7 +220,7 @@ class PrivacyDropdown extends React.PureComponent {
 
   handleClose = () => {
     if (this.state.open && this.activeElement) {
-      this.activeElement.focus();
+      this.activeElement.focus({ preventScroll: true });
     }
     this.setState({ open: false });
   }

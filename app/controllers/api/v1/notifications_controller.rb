@@ -14,7 +14,7 @@ class Api::V1::NotificationsController < Api::BaseController
   end
 
   def show
-    @notification = current_account.notifications.find(params[:id])
+    @notification = current_account.notifications.without_suspended.find(params[:id])
     render json: @notification, serializer: REST::NotificationSerializer
   end
 
@@ -31,18 +31,16 @@ class Api::V1::NotificationsController < Api::BaseController
   private
 
   def load_notifications
-    cache_collection paginated_notifications, Notification
-  end
-
-  def paginated_notifications
-    browserable_account_notifications.paginate_by_id(
+    cache_collection_paginated_by_id(
+      browserable_account_notifications,
+      Notification,
       limit_param(DEFAULT_NOTIFICATIONS_LIMIT),
       params_slice(:max_id, :since_id, :min_id)
     )
   end
 
   def browserable_account_notifications
-    current_account.notifications.browserable(exclude_types, from_account)
+    current_account.notifications.without_suspended.browserable(exclude_types, from_account)
   end
 
   def target_statuses_from_notifications

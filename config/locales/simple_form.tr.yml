@@ -3,15 +3,15 @@ tr:
   simple_form:
     hints:
       account_alias:
-        acct: Taşımak istediğiniz hesabın kullanıcı-adı@alan-adını belirtin
+        acct: Taşımak istediğiniz hesabın kullanıcıadı@alanadını belirtin
       account_migration:
-        acct: Taşınmak istediğiniz hesabın kullanıcı-adı@alan-adını belirtin
+        acct: Taşımak istediğiniz hesabın kullanıcıadı@alanadını belirtin
       account_warning_preset:
-        text: URL'ler, etiketler ve bahsetmeler gibi toot sözdizimleri kullanabilirsiniz
-        title: İsteğe bağlı. Alıcı tarafından görülemez
+        text: URL'ler, etiketler ve bahsedenler gibi toot sözdizimini kullanabilirsiniz
+        title: İsteğe bağlı. Alıcıya görünmez
       admin_account_action:
         include_statuses: Kullanıcı hangi tootların denetleme eylemi ya da uyarısına neden olduğunu görecektir
-        send_email_notification: Kullanıcı, hesabına ne olduğu hakkında bir bildirim alacak
+        send_email_notification: Kullanıcı, hesabına ne olduğuna dair bir açıklama alacak
         text_html: İsteğe bağlı. Toot sözdizimleri kullanabilirsiniz. Zamandan kazanmak için <a href="%{path}">uyarı ön-ayarları ekleyebilirsiniz</a>
         type_html: "<strong>%{acct}</strong> ile ne yapılacağını seçin"
         warning_preset_id: İsteğe bağlı. Hazır ayarın sonuna hala özel metin ekleyebilirsiniz
@@ -28,11 +28,11 @@ tr:
         context: Filtrenin geçerli olması gereken bir veya daha fazla içerik
         current_password: Güvenlik nedeniyle lütfen şu anki hesabın parolasını girin
         current_username: Onaylamak için lütfen şu anki hesabın kullanıcı adını girin
-        digest: Yalnızca uzun süre kullanılmadığında ve yalnızca yokluğunda kişisel mesajlar aldıysanız gönderilir
+        digest: Sadece uzun bir süre hareketsiz kaldıktan sonra ve yalnızca yokluğunuzda herhangi bir kişisel mesaj aldıysanız gönderilir
         discoverable: Profil dizini, hesabınızın daha geniş bir kitleye ulaşmasının başka bir yoludur
         email: Onay e-postası gönderilecek
         fields: Profilinizde tablo olarak görüntülenen en fazla 4 ögeye sahip olabilirsiniz
-        header: En fazla %{size} olacak şekilde PNG, GIF veya JPG formatında yükleyiniz. %{dimensions}px büyüklüğüne indirgenecektir.
+        header: PNG, GIF ya da JPG. En fazla %{size}. %{dimensions}px boyutuna küçültülecek
         inbox_url: Kullanmak istediğiniz aktarıcının ön sayfasından URL'yi kopyalayın
         irreversible: Filtre uygulanmış tootlar, filtre daha sonra çıkartılsa bile geri dönüşümsüz biçimde kaybolur
         locale: Kullanıcı arayüzünün dili, e-postalar ve push bildirimleri
@@ -40,20 +40,23 @@ tr:
         password: En az 8 karakter kullanın
         phrase: Metnin büyük/küçük harf durumundan veya tootun içerik uyarısından bağımsız olarak eşleştirilecek
         scopes: Uygulamanın erişmesine izin verilen API'ler. Üst seviye bir kapsam seçtiyseniz, bireysel kapsam seçmenize gerek yoktur.
-        setting_aggregate_reblogs: Yakın zamanda yinelenmiş tootlar için yeni yinelemeler gösterme (yalnızca yeni alınan yinelemeleri etkiler)
-        setting_default_sensitive: Hassas medya varsayılan olarak gizlenir ve bir tıklama ile görüntülenebilir
+        setting_aggregate_reblogs: Yakın zamanda boostlanmış tootlar için yeni boostları göstermeyin (yalnızca yeni alınan boostları etkiler)
+        setting_default_sensitive: Hassas medya varsayılan olarak gizlidir ve bir tıklama ile gösterilebilir
         setting_display_media_default: Hassas olarak işaretlenmiş medyayı gizle
-        setting_display_media_hide_all: Tüm medyayı gizle
-        setting_display_media_show_all: Hassas olarak işaretlenmiş medyayı göster
-        setting_hide_network: Takip edilenler ve takipçiler profilinizde gösterilmeyecek
+        setting_display_media_hide_all: Medyayı her zaman gizle
+        setting_display_media_show_all: Medyayı her zaman göster
+        setting_hide_network: Takip ettiğiniz ve sizi takip eden kişiler profilinizde gösterilmeyecek
         setting_noindex: Herkese açık profilinizi ve durum sayfalarınızı etkiler
         setting_show_application: Tootlamak için kullandığınız uygulama, tootlarınızın detaylı görünümünde gösterilecektir
         setting_use_blurhash: Gradyenler gizli görsellerin renklerine dayanır, ancak detayları gizler
-        setting_use_pending_items: Zaman çizelgesi güncellemelerini, akışı otomatik olarak kaydırmak yerine bir tıklamanın arkasına gizleyin
+        setting_use_pending_items: Akışı otomatik olarak kaydırmak yerine, zaman çizelgesi güncellemelerini tek bir tıklamayla gizleyin
         username: Kullanıcı adınız %{domain} alanında benzersiz olacak
         whole_word: Anahtar kelime veya kelime öbeği yalnızca alfasayısal olduğunda, yalnızca tüm sözcükle eşleşirse uygulanır
       domain_allow:
         domain: Bu alan adı, bu sunucudan veri alabilecek ve ondan gelen veri işlenecek ve saklanacaktır
+      email_domain_block:
+        domain: Bu, e-posta adresinde görünen etki alanı adı, etki alanının çözümlediği MX kaydı veya MX kaydının çözümlediği sunucunun IP'si olabilir. Bunlar kullanıcı kaydı ile kontrol edilecek ve kayıt reddedilecektir.
+        with_dns_records: Belirli bir alanın DNS kayıtlarını çözmeyi deneyecek ve sonuçlar kara listeye eklenecek
       featured_tag:
         name: 'Bunlardan birini kullanmak isteyebilirsiniz:'
       form_challenge:
@@ -62,8 +65,17 @@ tr:
         data: Diğer Mastodon sunucusundan dışarı aktardığınız CSV dosyası
       invite_request:
         text: Bu, başvurunuzu gözden geçirmemize yardımcı olacaktır
+      ip_block:
+        comment: İsteğe bağlı. Bu kuralı neden eklediğinizi hatırlayın.
+        expires_in: IP adresleri sınırlı bir kaynaktır, bazen paylaşılırlar ve sıklıkla el değiştirirler. Bu nedenle, belirsiz IP blokları önerilmez.
+        ip: Bir IPv4 veya IPv6 adresi girin. CIDR sözdizimini kullanarak tüm aralıkları engelleyebilirsiniz. Kendinizi dışarıda bırakmamaya dikkat edin!
+        severities:
+          no_access: Tüm kaynaklara erişimi engelle
+          sign_up_requires_approval: Yeni kayıt onayınızı gerektirir
+        severity: Bu IP'den gelen isteklere ne olacağını seçin
       sessions:
         otp: Telefonunuzdaki two-factor kodunuzu giriniz veya kurtarma kodlarınızdan birini giriniz.
+        webauthn: Bir USB anahtarıysa, taktığınızdan ve gerekirse üzerine tıkladığınızdan emin olun.
       tag:
         name: Harflerin, örneğin daha okunabilir yapmak için, sadece büyük/küçük harf durumlarını değiştirebilirsiniz
       user:
@@ -78,111 +90,124 @@ tr:
       account_migration:
         acct: Yeni hesabın tanıtıcısı
       account_warning_preset:
-        text: Ön-ayar metni
+        text: Ön ayarlı metin
         title: Başlık
       admin_account_action:
-        include_statuses: Birdirilen tootları e-postaya dahil et
-        send_email_notification: E-postayla kullanıcıyı bilgilendir
+        include_statuses: Bildirilen tootları e-postaya dahil et
+        send_email_notification: Kullanıcıyı e-posta ile bilgilendir
         text: Özel uyarı
         type: Eylem
         types:
-          disable: Devre dışı
+          disable: Dondur
           none: Hiç birşey
-          silence: Sessiz
+          sensitive: Hassas
+          silence: Limit
           suspend: Hesap verilerini askıya alın ve geri alınamaz şekilde silin
-        warning_preset_id: Bir uyarı ön-ayarı kullan
+        warning_preset_id: Bir uyarı ön ayarı kullan
       announcement:
         all_day: Tüm gün etkinliği
-        ends_at: Etkinlik sonu
+        ends_at: Etkinliğin sonu
         scheduled_at: Yayınlamayı zamanla
-        starts_at: Etkinlik başlangıcı
+        starts_at: Etkinliğin başlangıcı
         text: Duyuru
       defaults:
         autofollow: Hesabınızı takip etmeye davet edin
         avatar: Profil resmi
         bot: Bu bir bot hesabı
         chosen_languages: Dilleri filtrele
-        confirm_new_password: Yeni parolanız (tekrar)
-        confirm_password: Parolanız (tekrar)
+        confirm_new_password: Yeni şifreyi onayla
+        confirm_password: Şifreyi onayla
         context: İçeriği filtrele
-        current_password: Mevcut parolanız
-        data: Dosya
+        current_password: Geçerli şifre
+        data: Veri
         discoverable: Bu hesabı dizinde listele
-        display_name: Görünen adınız
-        email: E-posta adresiniz
+        display_name: Görünen isim
+        email: E-posta adresi
         expires_in: Bitiş tarihi
-        fields: Profil Metaverisi
+        fields: Profil meta verisi
         header: Kapak resmi
+        honeypot: "%{label} (doldurmayın)"
         inbox_url: Aktarıcı gelen kutusunun URL'si
         irreversible: Gizlemek yerine bırak
-        locale: Dil
-        locked: Hesabımı kilitle
+        locale: Arayüz dili
+        locked: Hesabı kilitle
         max_uses: Maksimum kullanım sayısı
-        new_password: Yeni parolanız
+        new_password: Yeni şifre
         note: Kişisel bilgiler
-        otp_attempt: İki-faktörlü kod
-        password: Parolanız
+        otp_attempt: İki adımlı doğrulama kodu
+        password: Şifre
         phrase: Anahtar kelime veya kelime öbeği
         setting_advanced_layout: Gelişmiş web arayüzünü etkinleştir
-        setting_aggregate_reblogs: Zaman çizelgesindeki grup yinelemeleri
-        setting_auto_play_gif: GIF'leri otomatik oynatt
-        setting_boost_modal: Boost etmeden önce onay diyaloğu göster
+        setting_aggregate_reblogs: Zaman çizelgesinde grup boostları
+        setting_auto_play_gif: Hareketli GIF'leri otomatik oynat
+        setting_boost_modal: Boostlamadan önce onay iletişim kutusu göster
         setting_crop_images: Genişletilmemiş tootlardaki resimleri 16x9 olarak kırp
         setting_default_language: Gönderi dili
         setting_default_privacy: Gönderi gizliliği
-        setting_default_sensitive: Her zaman hassas medya olarak işaretle
-        setting_delete_modal: Bir tootu silmeden önce onay iletişim kutusunu göster
-        setting_display_media: Medya görünümü
+        setting_default_sensitive: Medyayı her zaman hassas olarak işaretle
+        setting_delete_modal: Bir tootu silmeden önce onay iletişim kutusu göster
+        setting_disable_swiping: Kaydırma hareketlerini devre dışı bırak
+        setting_display_media: Medya görüntüleme
         setting_display_media_default: Varsayılan
         setting_display_media_hide_all: Tümünü gizle
         setting_display_media_show_all: Tümünü göster
         setting_expand_spoilers: İçerik uyarılarıyla işaretli tootları her zaman genişlet
-        setting_hide_network: Ağını gizle
-        setting_noindex: Arama motoru endekslemesini iptal et
+        setting_hide_network: Ağınızı gizleyin
+        setting_noindex: Arama motoru dizinine eklemeyi iptal et
         setting_reduce_motion: Animasyonlarda hareketi azalt
-        setting_show_application: Toot göndermek için kullanılan uygulamayı belirt
+        setting_show_application: Tootları göndermek için kullanılan uygulamayı belirt
         setting_system_font_ui: Sistemin varsayılan yazı tipini kullan
         setting_theme: Site teması
-        setting_trends: Bugünün trendlerini göster
-        setting_unfollow_modal: Birini takip etmeden önce onay iletişim kutusunu göster
-        setting_use_blurhash: Gizli ortamlar için renkli gradyen göster
+        setting_trends: Bugünün gündemini göster
+        setting_unfollow_modal: Birini takip etmeden önce onay iletişim kutusu göster
+        setting_use_blurhash: Gizli medya için renkli gradyanlar göster
         setting_use_pending_items: Yavaş mod
-        severity: Zorluk
+        severity: Önem derecesi
         sign_in_token_attempt: Güvenlik kodu
-        type: Dosya türü
-        username: Kullanıcı adınız
-        username_or_email: Kullanıcı adı ya da email
-        whole_word: Tüm dünya
+        type: İçeri aktarma türü
+        username: Kullanıcı adı
+        username_or_email: Kullanıcı adı ya da e-posta
+        whole_word: Tam sözcük
       email_domain_block:
         with_dns_records: Alan adının MX kayıtlarını ve IP'lerini ekleyin
       featured_tag:
-        name: Hashtag
+        name: Etiket
       interactions:
         must_be_follower: Takipçim olmayan kişilerden gelen bildirimleri engelle
         must_be_following: Takip etmediğim kişilerden gelen bildirimleri engelle
-        must_be_following_dm: Takip etmediğiniz kişilerin doğrudan ileti göndermesini engelle
+        must_be_following_dm: Takip etmediğiniz kişilerden gelen direkt mesajları engelle
       invite:
         comment: Yorum
       invite_request:
         text: Neden katılmak istiyorsun?
+      ip_block:
+        comment: Yorum
+        ip: IP
+        severities:
+          no_access: Erişimi engelle
+          sign_up_requires_approval: Kayıtları sınırla
+        severity: Kural
       notification_emails:
         digest: Özet e-postaları gönder
-        favourite: Biri durumumu favorilerine eklediginde bana e-posta gönder
-        follow: Biri beni takip ettiğinde bana e-posta gönder
-        follow_request: Biri bana takip isteği gönderdiğinde, bana e-posta gönder
-        mention: Biri benden bahsettiğinde, bana e-posta gönder
-        pending_account: Yeni bir hesap incelemesi gerektiğinde e-posta gönder
-        reblog: Biri durumumu paylaştığında, bana e-posta gönder
-        report: Yeni bir rapor gönderildiğinde e-posta gönder
-        trending_tag: İncelenmemiş bir hashtag trend olduğunda e-posta gönder
+        favourite: Birisi durumunuzu beğendi
+        follow: Biri seni takip etti
+        follow_request: Biri seni takip etmek istedi
+        mention: Biri senden bahsetti
+        pending_account: Yeni hesabın incelenmesi gerekiyor
+        reblog: Biri durumunuzu boostladı
+        report: Yeni rapor gönderildi
+        trending_tag: İncelenmemiş bir etiket gündem oluyor
       tag:
         listable: Bu etiketin aramalarda ve profil dizininde görünmesine izin ver
-        name: Hashtag
-        trendable: Bu etiketin trendlerin altında görünmesine izin ver
+        name: Etiket
+        trendable: Bu etiketin gündem altında görünmesine izin ver
         usable: Tootların bu etiketi kullanmasına izin ver
     'no': Hayır
     recommended: Önerilen
     required:
       mark: "*"
       text: gerekli
+    title:
+      sessions:
+        webauthn: Oturum açmak için güvenlik anahtarlarınızdan birini kullanın
     'yes': Evet

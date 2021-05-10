@@ -70,14 +70,6 @@ bg:
       blocking: Списък на блокираните
       following: Списък на последователите
     upload: Качване
-  invites:
-    expires_in:
-      '1800': 30 minutes
-      '21600': 6 hours
-      '3600': 1 hour
-      '43200': 12 hours
-      '604800': 1 week
-      '86400': 1 day
   media_attachments:
     validations:
       images_and_video: Не мога да прикача видеоклип към публикация, която вече съдържа изображения
@@ -138,10 +130,7 @@ bg:
     formats:
       default: "%d %b, %Y, %H:%M"
   two_factor_authentication:
-    description_html: При активация на <strong>двустепенно удостоверяване</strong>, за да влезеш в приложението, ще трябва да използваш телефона си. През него ще се генерира код, който да въвеждаш при влизане.
     disable: Деактивирай
-    enable: Активирай
-    instructions_html: "<strong>Сканирай този QR код с Google Authenticator или подобно приложение от своя телефон</strong>. Oтсега нататък, това приложение ще генерира код, който ще трябва да въвеждаш при всяко влизане."
   users:
     invalid_email: E-mail адресът е невалиден
     invalid_otp_token: Невалиден код

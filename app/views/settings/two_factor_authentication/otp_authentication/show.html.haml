@@ -1,0 +1,9 @@
+- content_for :page_title do
+  = t('settings.two_factor_authentication')
+
+.simple_form
+  %p.hint= t('otp_authentication.description_html')
+
+  %hr.spacer/
+
+  = link_to t('otp_authentication.setup'), settings_otp_authentication_path, data: { method: :post }, class: 'block-button'

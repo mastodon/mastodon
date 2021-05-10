@@ -60,6 +60,23 @@ pt-BR:
         title: Códigos de recuperação de dois fatores alterados
       unlock_instructions:
         subject: 'Mastodon: Instruções de desbloqueio'
+      webauthn_credential:
+        added:
+          explanation: A seguinte chave de segurança foi adicionada à sua conta
+          subject: 'Mastodon: Nova chave de segurança'
+          title: Uma nova chave de segurança foi adicionada
+        deleted:
+          explanation: A seguinte chave de segurança foi excluída da sua conta
+          subject: 'Mastodon: Chave de segurança excluída'
+          title: Uma das suas chaves de segurança foi excluída
+      webauthn_disabled:
+        explanation: A autenticação por chaves de segurança foi desabilitada para a sua conta. O login agora é possível usando apenas o token gerado pelo aplicativo TOTP pareado.
+        subject: 'Mastodon: Autenticação por chaves de segurança desabilitada'
+        title: Chaves de segurança desabilitadas
+      webauthn_enabled:
+        explanation: A autenticação por chave de segurança foi habilitada para a sua conta. Sua chave de segurança agora pode ser usada para fazer login.
+        subject: 'Mastodon: Autenticação por chave de segurança habilitada'
+        title: Chaves de segurança habilitadas
     omniauth_callbacks:
       failure: Não foi possível entrar como %{kind} porque "%{reason}".
       success: Entrou como %{kind}.

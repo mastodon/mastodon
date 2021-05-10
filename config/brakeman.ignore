@@ -103,6 +103,37 @@
       "note": ""
     },
     {
+      "warning_type": "Dynamic Render Path",
+      "warning_code": 15,
+      "fingerprint": "4704e8093e3e0561bf705f892e8fc6780419f8255f4440b1c0afd09339bd6446",
+      "check_name": "Render",
+      "message": "Render path contains parameter value",
+      "file": "app/views/admin/instances/index.html.haml",
+      "line": 39,
+      "link": "https://brakemanscanner.org/docs/warning_types/dynamic_render_path/",
+      "code": "render(action => filtered_instances.page(params[:page]), {})",
+      "render_path": [
+        {
+          "type": "controller",
+          "class": "Admin::InstancesController",
+          "method": "index",
+          "line": 10,
+          "file": "app/controllers/admin/instances_controller.rb",
+          "rendered": {
+            "name": "admin/instances/index",
+            "file": "app/views/admin/instances/index.html.haml"
+          }
+        }
+      ],
+      "location": {
+        "type": "template",
+        "template": "admin/instances/index"
+      },
+      "user_input": "params[:page]",
+      "confidence": "Weak",
+      "note": ""
+    },
+    {
       "warning_type": "Redirect",
       "warning_code": 18,
       "fingerprint": "5fad11cd67f905fab9b1d5739d01384a1748ebe78c5af5ac31518201925265a7",
@@ -120,6 +151,26 @@
       },
       "user_input": "RemoteFollow.new(resource_params).interact_address_for(Status.find(params[:id]))",
       "confidence": "High",
+      "note": ""
+    },
+    {
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
+      "fingerprint": "6e4051854bb62e2ddbc671f82d6c2328892e1134b8b28105ecba9b0122540714",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "app/models/account.rb",
+      "line": 491,
+      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "find_by_sql([\"          WITH first_degree AS (\\n            SELECT target_account_id\\n            FROM follows\\n            WHERE account_id = ?\\n            UNION ALL\\n            SELECT ?\\n          )\\n          SELECT\\n            accounts.*,\\n            (count(f.id) + 1) * ts_rank_cd(#{textsearch}, #{query}, 32) AS rank\\n          FROM accounts\\n          LEFT OUTER JOIN follows AS f ON (accounts.id = f.account_id AND f.target_account_id = ?)\\n          WHERE accounts.id IN (SELECT * FROM first_degree)\\n            AND #{query} @@ #{textsearch}\\n            AND accounts.suspended_at IS NULL\\n            AND accounts.moved_to_account_id IS NULL\\n          GROUP BY accounts.id\\n          ORDER BY rank DESC\\n          LIMIT ? OFFSET ?\\n\".squish, account.id, account.id, account.id, limit, offset])",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Account",
+        "method": "advanced_search_for"
+      },
+      "user_input": "textsearch",
+      "confidence": "Medium",
       "note": ""
     },
     {
@@ -163,23 +214,23 @@
       "note": ""
     },
     {
-      "warning_type": "Mass Assignment",
-      "warning_code": 105,
-      "fingerprint": "8f63dec68951d9bcf7eddb15af9392b2e1333003089c41fb76688dfd3579f394",
-      "check_name": "PermitAttributes",
-      "message": "Potentially dangerous key allowed for mass assignment",
-      "file": "app/controllers/api/v1/crypto/deliveries_controller.rb",
-      "line": 23,
-      "link": "https://brakemanscanner.org/docs/warning_types/mass_assignment/",
-      "code": "params.require(:device).permit(:account_id, :device_id, :type, :body, :hmac)",
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
+      "fingerprint": "9251d682c4e2840e1b2fea91e7d758efe2097ecb7f6255c065e3750d25eb178c",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "app/models/account.rb",
+      "line": 460,
+      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "find_by_sql([\"        SELECT\\n          accounts.*,\\n          ts_rank_cd(#{textsearch}, #{query}, 32) AS rank\\n        FROM accounts\\n        WHERE #{query} @@ #{textsearch}\\n          AND accounts.suspended_at IS NULL\\n          AND accounts.moved_to_account_id IS NULL\\n        ORDER BY rank DESC\\n        LIMIT ? OFFSET ?\\n\".squish, limit, offset])",
       "render_path": null,
       "location": {
         "type": "method",
-        "class": "Api::V1::Crypto::DeliveriesController",
-        "method": "resource_params"
+        "class": "Account",
+        "method": "search_for"
       },
-      "user_input": ":account_id",
-      "confidence": "High",
+      "user_input": "textsearch",
+      "confidence": "Medium",
       "note": ""
     },
     {
@@ -274,6 +325,26 @@
       "note": ""
     },
     {
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
+      "fingerprint": "e21d8fee7a5805761679877ca35ed1029c64c45ef3b4012a30262623e1ba8bb9",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "app/models/account.rb",
+      "line": 507,
+      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "find_by_sql([\"          SELECT\\n            accounts.*,\\n            (count(f.id) + 1) * ts_rank_cd(#{textsearch}, #{query}, 32) AS rank\\n          FROM accounts\\n          LEFT OUTER JOIN follows AS f ON (accounts.id = f.account_id AND f.target_account_id = ?) OR (accounts.id = f.target_account_id AND f.account_id = ?)\\n          WHERE #{query} @@ #{textsearch}\\n            AND accounts.suspended_at IS NULL\\n            AND accounts.moved_to_account_id IS NULL\\n          GROUP BY accounts.id\\n          ORDER BY rank DESC\\n          LIMIT ? OFFSET ?\\n\".squish, account.id, account.id, limit, offset])",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Account",
+        "method": "advanced_search_for"
+      },
+      "user_input": "textsearch",
+      "confidence": "Medium",
+      "note": ""
+    },
+    {
       "warning_type": "Mass Assignment",
       "warning_code": 105,
       "fingerprint": "e867661b2c9812bc8b75a5df12b28e2a53ab97015de0638b4e732fe442561b28",
@@ -294,6 +365,6 @@
       "note": ""
     }
   ],
-  "updated": "2020-06-01 18:18:02 +0200",
-  "brakeman_version": "4.8.0"
+  "updated": "2020-12-07 01:17:13 +0100",
+  "brakeman_version": "4.10.0"
 }

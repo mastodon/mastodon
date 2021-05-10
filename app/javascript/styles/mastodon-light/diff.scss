@@ -256,14 +256,6 @@ html {
   background: $ui-base-color;
 }
 
-.status.status-direct {
-  background: lighten($ui-base-color, 4%);
-}
-
-.focusable:focus .status.status-direct {
-  background: lighten($ui-base-color, 8%);
-}
-
 .detailed-status,
 .detailed-status__action-bar {
   background: $white;
@@ -363,9 +355,43 @@ html {
 .error-modal,
 .onboarding-modal,
 .report-modal__comment .setting-text__wrapper,
-.report-modal__comment .setting-text {
+.report-modal__comment .setting-text,
+.announcements,
+.picture-in-picture__header,
+.picture-in-picture__footer,
+.reactions-bar__item {
   background: $white;
   border: 1px solid lighten($ui-base-color, 8%);
+}
+
+.reactions-bar__item {
+  &:hover,
+  &:focus,
+  &:active {
+    background-color: $ui-base-color;
+  }
+}
+
+.reactions-bar__item.active {
+  background-color: mix($white, $ui-highlight-color, 80%);
+  border-color: mix(lighten($ui-base-color, 8%), $ui-highlight-color, 80%);
+}
+
+.media-modal__overlay .picture-in-picture__footer {
+  border: 0;
+}
+
+.picture-in-picture__header {
+  border-bottom: 0;
+}
+
+.announcements,
+.picture-in-picture__footer {
+  border-top: 0;
+}
+
+.icon-with-badge__badge {
+  border-color: $white;
 }
 
 .report-modal__comment {
@@ -518,6 +544,12 @@ html {
   @media screen and (max-width: $no-gap-breakpoint) {
     border: 0;
   }
+}
+
+.picture-in-picture-placeholder {
+  background: $white;
+  border-color: lighten($ui-base-color, 8%);
+  color: lighten($ui-base-color, 8%);
 }
 
 .brand__tagline {
@@ -766,4 +798,9 @@ html {
 .page-header,
 .compose-form .compose-form__warning {
   box-shadow: none;
+}
+
+.mute-modal select {
+  border: 1px solid lighten($ui-base-color, 8%);
+  background: $simple-background-color url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14.933 18.467' height='19.698' width='15.929'><path d='M3.467 14.967l-3.393-3.5H14.86l-3.392 3.5c-1.866 1.925-3.666 3.5-4 3.5-.335 0-2.135-1.575-4-3.5zm.266-11.234L7.467 0 11.2 3.733l3.733 3.734H0l3.733-3.734z' fill='#{hex-color(lighten($ui-base-color, 8%))}'/></svg>") no-repeat right 8px center / auto 16px;
 }

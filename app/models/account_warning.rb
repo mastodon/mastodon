@@ -13,7 +13,7 @@
 #
 
 class AccountWarning < ApplicationRecord
-  enum action: %i(none disable silence suspend), _suffix: :action
+  enum action: %i(none disable sensitive silence suspend), _suffix: :action
 
   belongs_to :account, inverse_of: :account_warnings
   belongs_to :target_account, class_name: 'Account', inverse_of: :targeted_account_warnings

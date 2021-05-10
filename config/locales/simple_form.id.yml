@@ -65,8 +65,17 @@ id:
         data: File CSV yang diexpor dari server Mastodon lain
       invite_request:
         text: Ini akan membantu kami meninjau aplikasi Anda
+      ip_block:
+        comment: Opsional. Harap ingat alasan Anda menambahkan peraturan ini.
+        expires_in: Alamat IP terbatas, kadang-kadang dibagikan dan dipindah tangan. Oleh karena itu, blok IP tidak terbatas tidak disarankan.
+        ip: Masukkan alamat IPv4 atau IPv6. Anda dapat memblokir seluruh rentang dengan sintaks CIDR. Hati-hati, jangan mengunci Anda sendiri!
+        severities:
+          no_access: Blokir akses ke seluruh sumber daya
+          sign_up_requires_approval: Pendaftaran baru memerlukan persetujuan Anda
+        severity: Pilih apa yang akan dilakukan dengan permintaan dari IP ini
       sessions:
         otp: Masukkan kode dua-faktor dari handphone atau gunakan kode pemulihan anda.
+        webauthn: Jika ini kunci USB pastikan dalam keadaan tercolok dan, jika perlu, ketuk.
       tag:
         name: Anda hanya dapat mengubahnya ke huruf kecil/besar, misalnya, agar lebih mudah dibaca
       user:
@@ -91,6 +100,7 @@ id:
         types:
           disable: Matikan
           none: Biarkan
+          sensitive: Sensitif
           silence: Diamkan
           suspend: Tangguhkan dan hapus data akun scr permanen
         warning_preset_id: Gunakan preset peringatan
@@ -116,6 +126,7 @@ id:
         expires_in: Kedaluwarsa setelah
         fields: Metadata profil
         header: Tajuk
+        honeypot: "%{label} (jangan diisi)"
         inbox_url: URL kotak relai
         irreversible: Hapus alih-alih sembunyikan
         locale: Bahasa
@@ -135,6 +146,7 @@ id:
         setting_default_privacy: Privasi postingan
         setting_default_sensitive: Selalu tandai media sebagai sensitif
         setting_delete_modal: Tampilkan dialog konfirmasi sebelum hapus toot
+        setting_disable_swiping: Nonaktifkan gerak usap
         setting_display_media: Tampilan media
         setting_display_media_default: Bawaan
         setting_display_media_hide_all: Sembunyikan semua
@@ -151,6 +163,7 @@ id:
         setting_use_blurhash: Tampilkan gradien penuh warna utk media tersembunyi
         setting_use_pending_items: Mode pelan
         severity: Keparahan
+        sign_in_token_attempt: Kode keamanan
         type: Tipe impor
         username: Nama pengguna
         username_or_email: Nama pengguna atau Surel
@@ -167,6 +180,13 @@ id:
         comment: Komentar
       invite_request:
         text: Mengapa Anda ingin gabung?
+      ip_block:
+        comment: Komentar
+        ip: IP
+        severities:
+          no_access: Blok akses
+          sign_up_requires_approval: Batasi pendaftaran
+        severity: Aturan
       notification_emails:
         digest: Kirim email berisi rangkuman
         favourite: Kirim email saat seseorang menyukai status anda
@@ -187,4 +207,7 @@ id:
     required:
       mark: "*"
       text: wajib
+    title:
+      sessions:
+        webauthn: Gunakan salah satu kunci keamanan untuk masuk
     'yes': Ya

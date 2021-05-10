@@ -152,9 +152,7 @@ export function submitCompose(routerHistory) {
         'Idempotency-Key': getState().getIn(['compose', 'idempotencyKey']),
       },
     }).then(function (response) {
-      if (response.data.visibility === 'direct' && getState().getIn(['conversations', 'mounted']) <= 0 && routerHistory) {
-        routerHistory.push('/timelines/direct');
-      } else if (routerHistory && routerHistory.location.pathname === '/statuses/new' && window.history.state) {
+      if (routerHistory && routerHistory.location.pathname === '/statuses/new' && window.history.state) {
         routerHistory.goBack();
       }
 

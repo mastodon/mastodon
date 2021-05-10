@@ -55,7 +55,7 @@ pt-BR:
       domain_allow:
         domain: Este domínio poderá obter dados deste servidor e os dados recebidos dele serão processados e armazenados
       email_domain_block:
-        domain: Este pode ser o nome de domínio que aparece no endereço de e-mail, o registro MX para o qual o domínio resolve, ou o IP do servidor para o qual o registro MX resolve. Esses vão ser verificados no momento da cadastro do usuário e o cadastro será rejeitado.
+        domain: Este pode ser o nome de domínio que aparece no endereço de e-mail, o registro MX para o qual o domínio resolve, ou o IP do servidor para o qual o registro MX resolve. Esses vão ser verificados no momento de registro do usuário e o registro será rejeitado.
         with_dns_records: Será feita uma tentativa de resolver os registros DNS do domínio em questão e os resultados também serão colocados na lista negra
       featured_tag:
         name: 'Você pode querer usar um destes:'
@@ -64,9 +64,18 @@ pt-BR:
       imports:
         data: Arquivo CSV exportado de outra instância Mastodon
       invite_request:
-        text: Isso nos ajudará a revisar seu aplicativo
+        text: Isso vai nos ajudar a revisar sua aplicação
+      ip_block:
+        comment: Opcional. Lembrar de por que você adicionou esta regra.
+        expires_in: Endereços IP são um recurso limitado, algumas vezes são compartilhados e muitas vezes mudam de mãos. Por esse motivo, blocos de IP indefinidos não são recomendados.
+        ip: Digite um endereço IPv4 ou IPv6. Você pode bloquear intervalos inteiros usando a sintaxe CIDR. Tenha cuidado para não bloquear a si mesmo!
+        severities:
+          no_access: Bloquear o acesso a todos os recursos
+          sign_up_requires_approval: Novos registros exigirão sua aprovação
+        severity: Escolha o que acontecerá com as solicitações deste IP
       sessions:
         otp: 'Digite o código de dois fatores gerado pelo aplicativo no seu celular ou use um dos códigos de recuperação:'
+        webauthn: Se for uma chave USB tenha certeza de inseri-la e, se necessário, tocar nela.
       tag:
         name: Você pode mudar a capitalização das letras, por exemplo, para torná-la mais legível
       user:
@@ -89,8 +98,9 @@ pt-BR:
         text: Aviso personalizado
         type: Ação
         types:
-          disable: Bloquear conta
+          disable: Congelar
           none: Não fazer nada
+          sensitive: Sensível
           silence: Silenciar
           suspend: Banir e excluir irreversivelmente dados da conta
         warning_preset_id: Usar um aviso pré-definido
@@ -116,6 +126,7 @@ pt-BR:
         expires_in: Expira em
         fields: Metadados do perfil
         header: Cabeçalho
+        honeypot: "%{label} (não preencher)"
         inbox_url: Link da caixa de entrada do repetidor
         irreversible: Ignorar ao invés de ocultar
         locale: Idioma da interface
@@ -135,6 +146,7 @@ pt-BR:
         setting_default_privacy: Privacidade dos toots
         setting_default_sensitive: Sempre marcar mídia como sensível
         setting_delete_modal: Solicitar confirmação antes de excluir toot
+        setting_disable_swiping: Desabilitar movimentos deslizantes
         setting_display_media: Exibição das mídias
         setting_display_media_default: Padrão
         setting_display_media_hide_all: Ocultar tudo
@@ -168,6 +180,13 @@ pt-BR:
         comment: Comentário
       invite_request:
         text: Por que você deseja criar uma conta aqui?
+      ip_block:
+        comment: Comentário
+        ip: IP
+        severities:
+          no_access: Bloquear acesso
+          sign_up_requires_approval: Limitar registros
+        severity: Regra
       notification_emails:
         digest: Enviar e-mails de resumo
         favourite: Enviar e-mail quando alguém favoritar seus toots
@@ -188,4 +207,7 @@ pt-BR:
     required:
       mark: "*"
       text: obrigatório
+    title:
+      sessions:
+        webauthn: Utilize uma das suas chaves de segurança para entrar
     'yes': Sim

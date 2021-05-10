@@ -3,17 +3,20 @@
 #
 # Table name: lists
 #
-#  id         :bigint(8)        not null, primary key
-#  account_id :bigint(8)        not null
-#  title      :string           default(""), not null
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id             :bigint(8)        not null, primary key
+#  account_id     :bigint(8)        not null
+#  title          :string           default(""), not null
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  replies_policy :integer          default("list"), not null
 #
 
 class List < ApplicationRecord
   include Paginable
 
   PER_ACCOUNT_LIMIT = 50
+
+  enum replies_policy: [:list, :followed, :none], _prefix: :show
 
   belongs_to :account, optional: true
 
@@ -31,17 +34,6 @@ class List < ApplicationRecord
   private
 
   def clean_feed_manager
-    reblog_key       = FeedManager.instance.key(:list, id, 'reblogs')
-    reblogged_id_set = Redis.current.zrange(reblog_key, 0, -1)
-
-    Redis.current.pipelined do
-      Redis.current.del(FeedManager.instance.key(:list, id))
-      Redis.current.del(reblog_key)
-
-      reblogged_id_set.each do |reblogged_id|
-        reblog_set_key = FeedManager.instance.key(:list, id, "reblogs:#{reblogged_id}")
-        Redis.current.del(reblog_set_key)
-      end
-    end
+    FeedManager.instance.clean_feeds!(:list, [id])
   end
 end

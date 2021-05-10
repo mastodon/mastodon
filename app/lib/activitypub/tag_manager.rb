@@ -40,6 +40,10 @@ class ActivityPub::TagManager
     end
   end
 
+  def uri_for_username(username)
+    account_url(username: username)
+  end
+
   def generate_uri_for(_target)
     URI.join(root_url, 'payloads', SecureRandom.uuid)
   end

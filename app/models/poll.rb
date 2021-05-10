@@ -25,7 +25,7 @@ class Poll < ApplicationRecord
   belongs_to :account
   belongs_to :status
 
-  has_many :votes, class_name: 'PollVote', inverse_of: :poll, dependent: :destroy
+  has_many :votes, class_name: 'PollVote', inverse_of: :poll, dependent: :delete_all
 
   has_many :notifications, as: :activity, dependent: :destroy
 

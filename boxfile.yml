@@ -110,6 +110,7 @@ worker.sidekiq:
     mailers: bundle exec sidekiq -c 5 -q mailers -L /app/log/sidekiq.log
     pull: bundle exec sidekiq -c 5 -q pull -L /app/log/sidekiq.log
     push: bundle exec sidekiq -c 5 -q push -L /app/log/sidekiq.log
+    scheduler: bundle exec sidekiq -c 5 -q scheduler -L /app/log/sidekiq.log
 
   writable_dirs:
     - tmp

@@ -1,9 +1,6 @@
 # frozen_string_literal: true
 
 class Settings::IdentityProofsController < Settings::BaseController
-  layout 'admin'
-
-  before_action :authenticate_user!
   before_action :check_required_params, only: :new
 
   def index

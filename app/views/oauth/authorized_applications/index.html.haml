@@ -20,5 +20,5 @@
           %th!= application.scopes.map { |scope| t(scope, scope: [:doorkeeper, :scopes]) }.join(', ')
           %td= l application.created_at
           %td
-            - unless application.superapp?
+            - unless application.superapp? || current_account.suspended?
               = table_link_to 'times', t('doorkeeper.authorized_applications.buttons.revoke'), oauth_authorized_application_path(application), method: :delete, data: { confirm: t('doorkeeper.authorized_applications.confirmations.revoke') }

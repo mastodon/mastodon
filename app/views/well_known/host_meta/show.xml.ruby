@@ -5,7 +5,6 @@ doc << Ox::Element.new('XRD').tap do |xrd|
 
   xrd << Ox::Element.new('Link').tap do |link|
     link['rel']      = 'lrdd'
-    link['type']     = 'application/xrd+xml'
     link['template'] = @webfinger_template
   end
 end

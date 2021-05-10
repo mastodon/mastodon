@@ -65,6 +65,10 @@ nl:
         data: CSV-bestand dat op een andere Mastodonserver werd geëxporteerd
       invite_request:
         text: Dit helpt ons om jouw aanvraag te beoordelen
+      ip_block:
+        comment: Optioneel. Vergeet niet te onthouden waarom je deze regel hebt toegevoegd.
+        severities:
+          sign_up_requires_approval: Nieuwe registraties vereisen jouw goedkeuring
       sessions:
         otp: 'Voer de tweestaps-aanmeldcode vanaf jouw mobiele telefoon in of gebruik een van jouw herstelcodes:'
       tag:
@@ -89,9 +93,10 @@ nl:
         text: Aangepaste waarschuwing
         type: Actie
         types:
-          disable: Inloggen uitschakelen
-          none: Niets doen
-          silence: Negeren
+          disable: Bevriezen
+          none: Waarschuwing sturen
+          sensitive: Gevoelig
+          silence: Beperken
           suspend: Opschorten en onomkeerbaar accountgegevens verwijderen
         warning_preset_id: Gebruik een voorinstelling van een waarschuwing
       announcement:
@@ -116,6 +121,7 @@ nl:
         expires_in: Vervalt na
         fields: Metadata profiel
         header: Omslagfoto
+        honeypot: "%{label} (niet invullen)"
         inbox_url: Inbox-URL van de relayserver
         irreversible: Verwijderen in plaats van verbergen
         locale: Taal van de gebruikersomgeving
@@ -135,6 +141,7 @@ nl:
         setting_default_privacy: Standaardzichtbaarheid van jouw toots
         setting_default_sensitive: Media altijd als gevoelig markeren
         setting_delete_modal: Vraag voor het verwijderen van een toot een bevestiging
+        setting_disable_swiping: Swipebewegingen uitschakelen
         setting_display_media: Mediaweergave
         setting_display_media_default: Standaard
         setting_display_media_hide_all: Alles verbergen
@@ -167,7 +174,14 @@ nl:
       invite:
         comment: Opmerking
       invite_request:
-        text: Waarom wil jij je aanmelden?
+        text: Waarom wil je je hier registreren?
+      ip_block:
+        comment: Opmerking
+        ip: IP
+        severities:
+          no_access: Toegang blokkeren
+          sign_up_requires_approval: Registraties beperken
+        severity: Regel
       notification_emails:
         digest: Periodiek e-mails met een samenvatting versturen
         favourite: Wanneer iemand jouw toot aan hun favorieten heeft toegevoegd
@@ -188,4 +202,7 @@ nl:
     required:
       mark: "*"
       text: vereist
+    title:
+      sessions:
+        webauthn: Gebruik een van uw beveiligingssleutels om in te loggen
     'yes': Ja

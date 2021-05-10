@@ -33,6 +33,28 @@ class UserMailerPreview < ActionMailer::Preview
     UserMailer.two_factor_recovery_codes_changed(User.first)
   end
 
+  # Preview this email at http://localhost:3000/rails/mailers/user_mailer/webauthn_enabled
+  def webauthn_enabled
+    UserMailer.webauthn_enabled(User.first)
+  end
+
+  # Preview this email at http://localhost:3000/rails/mailers/user_mailer/webauthn_disabled
+  def webauthn_disabled
+    UserMailer.webauthn_disabled(User.first)
+  end
+
+  # Preview this email at http://localhost:3000/rails/mailers/user_mailer/webauthn_credential_added
+  def webauthn_credential_added
+    webauthn_credential = WebauthnCredential.new(nickname: 'USB Key')
+    UserMailer.webauthn_credential_added(User.first, webauthn_credential)
+  end
+
+  # Preview this email at http://localhost:3000/rails/mailers/user_mailer/webauthn_credential_deleted
+  def webauthn_credential_deleted
+    webauthn_credential = WebauthnCredential.new(nickname: 'USB Key')
+    UserMailer.webauthn_credential_deleted(User.first, webauthn_credential)
+  end
+
   # Preview this email at http://localhost:3000/rails/mailers/user_mailer/reconfirmation_instructions
   def reconfirmation_instructions
     user = User.first

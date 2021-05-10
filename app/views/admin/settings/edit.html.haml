@@ -1,5 +1,5 @@
 - content_for :header_tags do
-  = javascript_pack_tag 'admin', integrity: true, async: true, crossorigin: 'anonymous'
+  = javascript_pack_tag 'admin', async: true, crossorigin: 'anonymous'
 
 - content_for :page_title do
   = t('admin.settings.title')
@@ -44,7 +44,14 @@
   %hr.spacer/
 
   .fields-group
-    = f.input :enable_bootstrap_timeline_accounts, as: :boolean, wrapper: :with_label, label: t('admin.settings.enable_bootstrap_timeline_accounts.title')
+    = f.input :require_invite_text, as: :boolean, wrapper: :with_label, label: t('admin.settings.registrations.require_invite_text.title'), hint: t('admin.settings.registrations.require_invite_text.desc_html'), disabled: !approved_registrations?
+  .fields-group
+
+  %hr.spacer/
+
+  .fields-group
+    = f.input :enable_bootstrap_timeline_accounts, as: :boolean, wrapper: :with_label, label: t('admin.settings.enable_bootstrap_timeline_accounts.title'), hint: t('admin.settings.enable_bootstrap_timeline_accounts.desc_html')
+
   .fields-group
     = f.input :bootstrap_timeline_accounts, wrapper: :with_block_label, label: t('admin.settings.bootstrap_timeline_accounts.title'), hint: t('admin.settings.bootstrap_timeline_accounts.desc_html'), disabled: !Setting.enable_bootstrap_timeline_accounts
 

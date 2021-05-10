@@ -21,7 +21,9 @@ zh-CN:
     federation_hint_html: 在%{instance} 上拥有账号后，你可以关注任何 Mastodon 服务器或其他服务器上的人。
     get_apps: 尝试移动应用
     hosted_on: 一个在 %{domain} 上运行的 Mastodon 实例
-    instance_actor_flash: 这个账号是个虚拟帐号，不代表任何用户，只用来代表服务器本身。它用于和其它服务器互通，所以不应该被封禁，除非你想封禁整个实例。但是想封禁整个实例的时候，你应该用域名封禁。
+    instance_actor_flash: '这个账号是个虚拟帐号，不代表任何用户，只用来代表服务器本身。它用于和其它服务器互通，所以不应该被封禁，除非你想封禁整个实例。但是想封禁整个实例的时候，你应该用域名封禁。
+
+'
     learn_more: 了解详情
     privacy_policy: 隐私政策
     see_whats_happening: 看一看现在在发生什么
@@ -55,6 +57,7 @@ zh-CN:
     followers:
       other: 关注者
     following: 正在关注
+    instance_actor_flash: 这个账户是虚拟账户，用来代表服务器自身，不代表任何实际用户。它用于互通功能，不应该封禁。
     joined: 加入于 %{date}
     last_active: 最近活动
     link_verified_on: 此链接的所有权已在 %{date} 检查
@@ -92,6 +95,7 @@ zh-CN:
       add_email_domain_block: 封禁电子邮箱域名
       approve: 批准
       approve_all: 批准全部
+      approved_msg: 成功批准 %{username} 的注册申请
       are_you_sure: 你确定吗？
       avatar: 头像
       by_domain: 域名
@@ -105,8 +109,10 @@ zh-CN:
       confirm: 确认
       confirmed: 已确认
       confirming: 确认中
+      delete: 删除数据
       deleted: 已删除
       demote: 降任
+      destroyed_msg: "%{username} 的数据已进入等待队列，即将被删除"
       disable: 停用
       disable_two_factor_authentication: 停用双重认证
       disabled: 已停用
@@ -117,10 +123,12 @@ zh-CN:
       email_status: 电子邮件地址状态
       enable: 启用
       enabled: 已启用
+      enabled_msg: 成功启用 %{username} 的帐号
       followers: 关注者
       follows: 正在关注
       header: 个人资料页横幅图片
       inbox_url: 收件箱（Inbox）URL
+      invite_request_text: 加入理由
       invited_by: 邀请者为
       ip: IP 地址
       joined: 加入于
@@ -132,17 +140,19 @@ zh-CN:
       login_status: 登录状态
       media_attachments: 媒体文件
       memorialize: 设置为追悼帐户
+      memorialized: 被悼念
+      memorialized_msg: 成功将 %{username} 转换为悼念帐号
       moderation:
         active: 活跃
         all: 全部
         pending: 待审核
         silenced: 已隐藏
         suspended: 已封禁
-        title: 帐户状态
+        title: 管理
       moderation_notes: 管理员备注
       most_recent_activity: 最后一次活跃的时间
       most_recent_ip: 最后一次活跃的 IP 地址
-      no_account_selected: 没有选中帐号，所以无更改
+      no_account_selected: 因为没有选中任何帐号，所以没有更改
       no_limits_imposed: 无限制
       not_subscribed: 未订阅
       pending: 待审核
@@ -152,10 +162,14 @@ zh-CN:
       public: 公开页面
       push_subscription_expires: PuSH 订阅过期时间
       redownload: 刷新个人资料
+      redownloaded_msg: 成功从来源处刷新 %{username} 的用户资料
       reject: 拒绝
       reject_all: 拒绝全部
+      rejected_msg: 成功拒绝 %{username} 的注册申请
       remove_avatar: 删除头像
       remove_header: 删除横幅图片
+      removed_avatar_msg: 成功删除 %{username} 的头像
+      removed_header_msg: 成功删除了 %{username} 的横幅图片
       resend_confirmation:
         already_confirmed: 该用户已被确认
         send: 重发确认邮件
@@ -172,6 +186,8 @@ zh-CN:
       search: 搜索
       search_same_email_domain: 其他具有相同电子邮箱域名的用户
       search_same_ip: 具有相同IP的其他用户
+      sensitive: 敏感内容
+      sensitized: 已标记为敏感内容
       shared_inbox_url: 公用收件箱（Shared Inbox）URL
       show:
         created_reports: 这个帐户提交的举报
@@ -181,13 +197,19 @@ zh-CN:
       statuses: 嘟文
       subscribe: 订阅
       suspended: 已封禁
+      suspension_irreversible: 该帐号的数据已被不可逆转地删除。您可以取消暂停该帐号以使其可用，但它不会恢复以前拥有的任何数据。
+      suspension_reversible_hint_html: 帐号已封禁，数据将在 %{date} 完全删除。 在此之前，帐号仍可恢复，并且没有任何不良影响。 如果您想立即移除该帐号的所有数据，可以在下面进行。
       time_in_queue: 已经等待了 %{time}
       title: 用户
       unconfirmed_email: 待验证的电子邮件地址
+      undo_sensitized: 去除敏感内容标记
       undo_silenced: 解除隐藏
       undo_suspension: 解除封禁
+      unsilenced_msg: 成功解除 %{username} 的帐号限制
       unsubscribe: 取消订阅
+      unsuspended_msg: 已成功取消封禁 %{username} 的帐号
       username: 用户名
+      view_domain: 查看域名摘要
       warn: 警告
       web: 站内页面
       whitelisted: 允许跨站交互
@@ -202,12 +224,14 @@ zh-CN:
         create_domain_allow: 允许新域名
         create_domain_block: 封禁新域名
         create_email_domain_block: 封禁电子邮箱域名
+        create_ip_block: 新建 IP 规则
         demote_user: 给用户降职
         destroy_announcement: 删除公告
         destroy_custom_emoji: 删除自定义表情符号
         destroy_domain_allow: 解除域名允许
         destroy_domain_block: 解除域名封禁
         destroy_email_domain_block: 解除电子邮箱域名封禁
+        destroy_ip_block: 删除 IP 规则
         destroy_status: 删除嘟文
         disable_2fa_user: 禁用双重认证
         disable_custom_emoji: 禁用自定义表情符号
@@ -220,13 +244,16 @@ zh-CN:
         reopen_report: 重开举报
         reset_password_user: 重置密码
         resolve_report: 处理举报
+        sensitive_account: 将你帐号中的媒体标记为敏感内容
         silence_account: 隐藏用户
         suspend_account: 封禁用户
         unassigned_report: 取消举报的指派
+        unsensitive_account: 去除你帐号中媒体的敏感内容标记
         unsilence_account: 解除账号隐藏
         unsuspend_account: 解除账号封禁
         update_announcement: 更新公告
         update_custom_emoji: 更新自定义表情符号
+        update_domain_block: 更新域名屏蔽
         update_status: 更新嘟文
       actions:
         assigned_to_self_report: "%{name} 接管了举报 %{target}"
@@ -238,12 +265,14 @@ zh-CN:
         create_domain_allow: "%{name} 允许了和域名 %{target} 的跨站交互"
         create_domain_block: "%{name} 屏蔽了域名 %{target}"
         create_email_domain_block: "%{name} 屏蔽了电子邮件域名 %{target}"
+        create_ip_block: "%{name} 为 IP %{target} 创建了规则"
         demote_user: "%{name} 对用户 %{target} 进行了降任操作"
         destroy_announcement: "%{name} 删除了公告 %{target}"
         destroy_custom_emoji: "%{name} 销毁了自定义表情 %{target}"
         destroy_domain_allow: "%{name} 拒绝了和 %{target} 跨站交互"
         destroy_domain_block: "%{name} 解除了对域名 %{target} 的屏蔽"
         destroy_email_domain_block: "%{name} 解除了对电子邮件域名 %{target} 的屏蔽"
+        destroy_ip_block: "%{name} 删除了 IP %{target} 的规则"
         destroy_status: "%{name} 删除了 %{target} 的嘟文"
         disable_2fa_user: "%{name} 停用了用户 %{target} 的双重认证"
         disable_custom_emoji: "%{name} 停用了自定义表情 %{target}"
@@ -256,13 +285,16 @@ zh-CN:
         reopen_report: "%{name} 重开了举报 %{target}"
         reset_password_user: "%{name} 重置了用户 %{target} 的密码"
         resolve_report: "%{name} 处理了举报 %{target}"
+        sensitive_account: "%{name} 将 %{target} 的媒体标记为敏感内容"
         silence_account: "%{name} 隐藏了用户 %{target}"
         suspend_account: "%{name} 封禁了用户 %{target}"
         unassigned_report: "%{name} 放弃了举报 %{target} 的接管"
+        unsensitive_account: "%{name} 去除了 %{target} 媒体的敏感内容标记"
         unsilence_account: "%{name} 解除了用户 %{target} 的隐藏状态"
         unsuspend_account: "%{name} 解除了用户 %{target} 的封禁状态"
         update_announcement: "%{name} 更新了公告 %{target}"
         update_custom_emoji: "%{name} 更新了自定义表情 %{target}"
+        update_domain_block: "%{name} 更新了对 %{target} 的域名屏蔽"
         update_status: "%{name} 刷新了 %{target} 的嘟文"
       deleted_status: "（嘟文已删除）"
       empty: 没有找到日志
@@ -366,6 +398,8 @@ zh-CN:
           silence: 自动隐藏
           suspend: 自动封禁
         title: 新增域名屏蔽
+      obfuscate: 混淆域名
+      obfuscate_hint: 如果启用了域名列表公开限制，就部分混淆列表中的域名
       private_comment: 私密评论
       private_comment_hint: 给这一域名限制添加备注，供监察员内部使用
       public_comment: 公开评论
@@ -404,11 +438,12 @@ zh-CN:
     instances:
       by_domain: 域名
       delivery_available: 可投递
+      empty: 暂无域名。
       known_accounts:
         other: "%{count} 个已知帐户"
       moderation:
         all: 全部
-        limited: 部分
+        limited: 受限的
         title: 运营
       private_comment: 私密评论
       public_comment: 公开评论
@@ -426,6 +461,21 @@ zh-CN:
         expired: 已失效
         title: 筛选
       title: 邀请用户
+    ip_blocks:
+      add_new: 新建规则
+      created_msg: 成功添加新 IP 规则
+      delete: 删除
+      expires_in:
+        '1209600': 两周
+        '15778476': 6个月
+        '2629746': 1个月
+        '31556952': 1年
+        '86400': 1天
+        '94670856': 3年
+      new:
+        title: 创建新 IP 规则
+      no_ip_block_selected: 因为没有 IP 规则被选中，所以没有更改
+      title: IP 规则
     pending_accounts:
       title: 待处理的帐户 (%{count})
     relationships:
@@ -463,6 +513,8 @@ zh-CN:
       comment:
         none: 没有
       created_at: 举报时间
+      forwarded: 已转发
+      forwarded_to: 转发举报至 %{domain}
       mark_as_resolved: 标记为“已处理”
       mark_as_unresolved: 标记为“未处理”
       notes:
@@ -506,6 +558,7 @@ zh-CN:
       domain_blocks_rationale:
         title: 显示理由
       enable_bootstrap_timeline_accounts:
+        desc_html: 让新用户自动关注指定用户，这样，他们的主页时间线就不会在一开始的时候空空荡荡
         title: 开启新用户默认关注功能
       hero:
         desc_html: 将用于在首页展示。推荐使用分辨率 600×100px 以上的图片。如未设置，将默认使用本站缩略图。
@@ -532,6 +585,9 @@ zh-CN:
         min_invite_role:
           disabled: 没有人
           title: 允许发送邀请的用户组
+        require_invite_text:
+          desc_html: 当注册需要手动批准时，将“你为什么想要加入？”设为必填项
+          title: 要求新用户填写申请注册的原因
       registrations_mode:
         modes:
           approved: 注册时需要批准
@@ -623,7 +679,7 @@ zh-CN:
       body_remote: 来自 %{domain} 的用户举报了用户 %{target}
       subject: 来自 %{instance} 的用户举报（#%{id}）
     new_trending_tag:
-      body: '今日的热门话题 #%{name} 之前未经审核。直到你允许之前这个话题将不会公开显示，活着就保持原样让它石沉大海。'
+      body: '今日的热门话题 #%{name} 之前未经审核。直到你允许之前这个话题将不会公开显示，或者就保持原样让它石沉大海。'
       subject: 在 %{instance} 有新话题 (#%{name}) 待审核
   aliases:
     add_new: 创建别名
@@ -671,8 +727,11 @@ zh-CN:
       prefix_sign_up: 现在就注册 Mastodon！
       suffix: 注册一个帐号，你就可以关注别人、发布嘟文、并和其它任何Mastodon服务器上的用户交流，而且还有其它更多功能！
     didnt_get_confirmation: 没有收到确认邮件？
+    dont_have_your_security_key: 没有您的安全密钥？
     forgot_password: 忘记密码？
     invalid_reset_password_token: 密码重置令牌无效或已过期。请重新发起重置密码请求。
+    link_to_otp: 输入从手机中获得的两步验证代码或恢复代码
+    link_to_webauth: 使用您的安全密钥设备
     login: 登录
     logout: 登出
     migrate_account: 迁移到另一个帐户
@@ -697,7 +756,9 @@ zh-CN:
       functional: 您的帐号可以正常使用了。
       pending: 工作人员正在审核您的申请。这需要花点时间。在申请被批准后，您将收到一封电子邮件。
       redirecting_to: 您的帐户无效，因为它已被设置为跳转到 %{acct}
+    too_fast: 表单提交过快，请重试。
     trouble_logging_in: 登录有问题？
+    use_security_key: 使用安全密钥
   authorize_follow:
     already_following: 你已经在关注此用户了
     already_requested: 你已经向那个账户发送过关注请求了
@@ -722,6 +783,7 @@ zh-CN:
   date:
     formats:
       default: "%Y年%m月%d日"
+      with_month_name: "%Y年%m月%d日"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}时"
@@ -786,6 +848,7 @@ zh-CN:
       request: 请求你的存档
       size: 大小
     blocks: 屏蔽的用户
+    bookmarks: 书签
     csv: CSV
     domain_blocks: 域名屏蔽
     lists: 列表
@@ -852,6 +915,8 @@ zh-CN:
     status: 验证状态
     view_proof: 查看证明
   imports:
+    errors:
+      over_rows_processing_limit: 包含行数超过了 %{count}
     modes:
       merge: 合并
       merge_long: 保留现有记录并添加新的记录
@@ -861,6 +926,7 @@ zh-CN:
     success: 数据上传成功，正在处理中
     types:
       blocking: 屏蔽列表
+      bookmarks: 书签
       domain_blocking: 域名屏蔽列表
       following: 关注列表
       muting: 隐藏列表
@@ -978,6 +1044,14 @@ zh-CN:
           quadrillion: Q
           thousand: K
           trillion: T
+  otp_authentication:
+    code_hint: 输入认证应用生成的代码以确认操作
+    description_html: 如果您使用身份验证应用启用了 <strong>双重身份验证</strong>， 登录将需要用到您的手机，它将生成您需要的令牌。
+    enable: 启用
+    instructions_html: "<strong>请使用 Google 身份验证器或其他的TOTP双重认证手机应用扫描此处的二维码</strong>。启用双重认证后，在登录时，你需要输入该应用生成的代码。"
+    manual_instructions: 如果你无法扫描二维码，请手动输入下列文本：
+    setup: 设置
+    wrong_code: 输入的认证码无效！请确认服务器时间与设备时间是否正确？
   pagination:
     newer: 更新
     next: 下一页
@@ -1006,6 +1080,7 @@ zh-CN:
   relationships:
     activity: 帐号活动
     dormant: 休眠
+    follow_selected_followers: 关注选中的关注者
     followers: 关注者
     following: 正在关注
     invited: 已邀请
@@ -1102,6 +1177,7 @@ zh-CN:
     profile: 个人资料
     relationships: 关注管理
     two_factor_authentication: 双重认证
+    webauthn_authentication: 安全密钥
   spam_check:
     spam_detected: 这是一个自动报告。已检测到垃圾信息。
   statuses:
@@ -1134,6 +1210,8 @@ zh-CN:
         other: "%{count} 票"
       vote: 投票
     show_more: 显示更多
+    show_newer: 显示更新内容
+    show_older: 显示更早内容
     show_thread: 显示全部对话
     sign_in_to_participate: 登录以加入对话
     title: "%{name}：“%{quote}”"
@@ -1239,24 +1317,23 @@ zh-CN:
     mastodon-light: Mastodon（亮色主题）
   time:
     formats:
-      default: "%Y年%-m月%d日 %H:%M"
-      month: "%Y 年 %B"
+      default: "%Y年%m月%d日 %H:%M"
+      month: "%Y年%m月"
   two_factor_authentication:
-    code_hint: 输入认证器生成的代码以确认操作
-    description_html: 启用<strong>双重认证</strong>后，你需要输入手机认证器生成的代码才能登录.
+    add: 添加
     disable: 停用
-    enable: 启用
+    disabled_success: 双重身份验证成功禁用
+    edit: 编辑
     enabled: 双重认证已启用
     enabled_success: 双重认证启用成功
     generate_recovery_codes: 生成恢复代码
-    instructions_html: "<strong>请使用 Google 身份验证器或其他 TOTP 双重认证手机应用扫描此处的二维码</strong>。启用双重认证后，你需要输入该应用生成的代码来登录你的帐户。"
     lost_recovery_codes: 如果你的手机不慎丢失，你可以使用恢复代码来重新获得对帐户的访问权。如果你遗失了恢复代码，可以在此处重新生成。之前使用的恢复代码将会失效。
-    manual_instructions: 如果你无法扫描二维码，请手动输入下列文本：
+    methods: 双重认证
+    otp: 身份验证应用
     recovery_codes: 备份恢复代码
     recovery_codes_regenerated: 恢复代码重新生成成功
     recovery_instructions_html: 如果你的手机无法使用，你可以使用下列任意一个恢复代码来重新获得对帐户的访问权。<strong>请妥善保管好你的恢复代码</strong>（例如，你可以将它们打印出来，然后和其他重要的文件放在一起）。
-    setup: 设置
-    wrong_code: 输入的认证码无效！请确认服务器时间与设备时间是否正确？
+    webauthn: 安全密钥
   user_mailer:
     backup_ready:
       explanation: 你请求了一份 Mastodon 帐户的完整备份。现在你可以下载了！
@@ -1271,6 +1348,7 @@ zh-CN:
     warning:
       explanation:
         disable: 虽然您的帐户被冻结，您的帐户数据仍然完整；但是您无法在解锁前执行任何操作。
+        sensitive: 你上传的媒体文件和媒体链接将被视作敏感内容。
         silence: 当您的帐户受限时，只有已经关注过你的人才会这台服务器上看到你的嘟文，并且您会被排除在各种公共列表之外。但是，其他人仍然可以手动关注你。
         suspend: 您的帐户已被封禁，所有的嘟文和您上传的媒体文件都已经从该服务器和您的关注者的服务器上删除并且不可恢复。
       get_in_touch: 您可回复该邮件以联系 %{instance} 的工作人员。
@@ -1279,11 +1357,13 @@ zh-CN:
       subject:
         disable: 您的帐户 %{acct} 已被冻结
         none: 对 %{acct} 的警告
+        sensitive: 你的帐号 %{acct} 所发布的媒体已被标记为敏感内容
         silence: 您的帐户 %{acct} 已经受限
         suspend: 您的帐户 %{acct} 已被封禁。
       title:
         disable: 账号已冻结
         none: 警示
+        sensitive: 你的媒体被标记为敏感内容
         silence: 帐户受限
         suspend: 账号被封禁
     welcome:
@@ -1304,9 +1384,11 @@ zh-CN:
       tips: 小贴士
       title: "%{name}，欢迎你的加入！"
   users:
+    blocked_email_provider: 您不能使用来自此提供商的邮箱
     follow_limit_reached: 您不能关注超过 %{limit} 个人
     generic_access_help_html: 登录账号出现问题？你可以向 %{email} 寻求帮助
     invalid_email: 输入的电子邮件地址无效
+    invalid_email_mx: 用戶邮箱似乎不存在
     invalid_otp_token: 输入的双重认证代码无效
     invalid_sign_in_token: 无效安全码
     otp_lost_help_html: 如果你不慎丢失了所有的代码，请联系 %{email} 寻求帮助
@@ -1316,3 +1398,20 @@ zh-CN:
   verification:
     explanation_html: 您可以 <strong>验证自己是个人资料元数据中的某个链接的所有者</strong>。 为此，被链接网站必须包含一个到您的 Mastodon 主页的链接。链接中 <strong>必须</strong> 包括 <code>rel="me"</code> 属性。链接的文本内容可以随意填写。例如：
     verification: 验证
+  webauthn_credentials:
+    add: 添加新的安全密钥
+    create:
+      error: 添加您的安全密钥时出错。请重试。
+      success: 您的安全密钥已成功添加。
+    delete: 删除
+    delete_confirmation: 您确认要删除这个安全密钥吗？
+    description_html: 如果您启用 <strong>安全密钥身份验证</strong>，登录将需要您使用您的安全密钥。
+    destroy:
+      error: 删除您的安全密钥时出错。请重试。
+      success: 您的安全密钥已成功删除。
+    invalid_credential: 无效的安全密钥
+    nickname_hint: 输入您新安全密钥的昵称
+    not_enabled: 您尚未启用 WebAuthn
+    not_supported: 此浏览器不支持安全密钥
+    otp_required: 要使用安全密钥，请先启用两步验证。
+    registered_on: 注册于 %{date}

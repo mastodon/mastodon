@@ -16,6 +16,8 @@ class ActivityPub::CollectionSerializer < ActivityPub::Serializer
       ActivityPub::NoteSerializer
     when 'Device'
       ActivityPub::DeviceSerializer
+    when 'FeaturedTag'
+      ActivityPub::HashtagSerializer
     when 'ActivityPub::CollectionPresenter'
       ActivityPub::CollectionSerializer
     when 'String'

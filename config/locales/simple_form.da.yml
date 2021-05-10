@@ -2,6 +2,8 @@
 da:
   simple_form:
     hints:
+      account_warning_preset:
+        title: Valgfri. Ikke synlig for modtageren
       admin_account_action:
         type_html: Vælg hvad du vil gøre med <strong>%{acct}</strong>
       defaults:
@@ -9,6 +11,7 @@ da:
         avatar: PNG, GIF eller JPG. Højest %{size}. Vil blive skaleret ned til %{dimensions}px
         bot: Denne konto udfører hovedsageligt automatiserede handlinger og bliver muligvis ikke overvåget
         context: En eller flere sammenhænge hvor filteret skal være gældende
+        current_username: For at bekræfte, angiv venligst brugernavnet på den aktuelle konto
         digest: Sendes kun efter en lang periode med inaktivitet og kun hvis du har modtaget nogle personlige beskeder i dit fravær
         email: Du vil få tilsendt en bekræftelses e-mail
         fields: Du kan have op til 4 ting vist som en tabel på din profil
@@ -22,14 +25,24 @@ da:
         scopes: Hvilke APIs applikationen vil få adgang til. Hvis du vælger et højtlevel omfang, behøver du ikke vælge enkeltstående.
         setting_display_media_default: Skjul medier markeret som følsomt
         setting_display_media_hide_all: Skjul altid alle medier
+        setting_display_media_show_all: Vis altid medier
         setting_hide_network: Hvem du følger og hvem der følger dig vil ikke blive vist på din profil
         setting_noindex: Påvirker din offentlige profil og status sider
         username: Dit brugernavn vil være unikt på %{domain}
         whole_word: Når nøgle ordet eller udtrykket kun er alfanumerisk, vil det kun blive brugt hvis det passer hele ordet
       featured_tag:
         name: 'Du kunne måske tænke dig at bruge en af følgende:'
+      form_challenge:
+        current_password: Du indtræder et sikkert område
       imports:
         data: CSV fil eksporteret fra en anden Mastodon server
+      invite_request:
+        text: Dette vil hjælpe os med at gennemgå din ansøgning
+      ip_block:
+        comment: Valgfri. Husk hvorfor du har tilføjet denne regel.
+        severities:
+          no_access: Bloker for adgangen til alle ressourcer
+          sign_up_requires_approval: Nye tilmeldinger kræver din godkendelse
       sessions:
         otp: 'Indtast to-faktor koden der generes af appen af appen på din telefon eller brug en af din genoprettelses koder:'
       user:
@@ -52,6 +65,10 @@ da:
           silence: Silence
           suspend: Suspendér og slet kontodata uopretteligt
         warning_preset_id: Brug en forudindstillet advarsel
+      announcement:
+        all_day: Heldags begivenhed
+        scheduled_at: Planlæg offentliggørelse
+        text: Bekendtgørelse
       defaults:
         autofollow: Inviter til at følge din konto
         avatar: Profilbillede
@@ -99,10 +116,13 @@ da:
         setting_unfollow_modal: Vis bekræftelses dialog før du stopper med at følge nogen
         setting_use_pending_items: Langsom tilstand
         severity: Omfang
+        sign_in_token_attempt: Sikkerhedskode
         type: Importtype
         username: Brugernavn
         username_or_email: Brugernavn eller Email
         whole_word: Helt ord
+      email_domain_block:
+        with_dns_records: Inkluder MX-optegnelser og IP'er for domænet
       featured_tag:
         name: Hashtag
       interactions:
@@ -113,6 +133,13 @@ da:
         comment: Kommentar
       invite_request:
         text: Hvorfor ønsker du at tilmelde dig?
+      ip_block:
+        comment: Kommentar
+        ip: IP
+        severities:
+          no_access: Bloker adgang
+          sign_up_requires_approval: Begræns tilmeldinger
+        severity: Regel
       notification_emails:
         digest: Send sammendrag via emails
         favourite: Send email når nogen favoriserer din status
@@ -133,4 +160,7 @@ da:
     required:
       mark: "*"
       text: påkrævet
+    title:
+      sessions:
+        webauthn: Log på ved brug af en af dine sikkerhedskoder
     'yes': Ja

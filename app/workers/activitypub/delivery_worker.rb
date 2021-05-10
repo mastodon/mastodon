@@ -2,6 +2,7 @@
 
 class ActivityPub::DeliveryWorker
   include Sidekiq::Worker
+  include RoutingHelper
   include JsonLdHelper
 
   STOPLIGHT_FAILURE_THRESHOLD = 10
@@ -38,7 +39,16 @@ class ActivityPub::DeliveryWorker
     Request.new(:post, @inbox_url, body: @json, http_client: http_client).tap do |request|
       request.on_behalf_of(@source_account, :uri, sign_with: @options[:sign_with])
       request.add_headers(HEADERS)
+      request.add_headers({ 'Collection-Synchronization' => synchronization_header }) if ENV['DISABLE_FOLLOWERS_SYNCHRONIZATION'] != 'true' && @options[:synchronize_followers]
     end
+  end
+
+  def synchronization_header
+    "collectionId=\"#{account_followers_url(@source_account)}\", digest=\"#{@source_account.remote_followers_hash(inbox_url_prefix)}\", url=\"#{account_followers_synchronization_url(@source_account)}\""
+  end
+
+  def inbox_url_prefix
+    @inbox_url[/http(s?):\/\/[^\/]+\//]
   end
 
   def perform_request

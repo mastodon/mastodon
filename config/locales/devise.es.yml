@@ -60,6 +60,23 @@ es:
         title: Códigos de recuperación 2FA cambiados
       unlock_instructions:
         subject: 'Mastodon: Instrucciones para desbloquear'
+      webauthn_credential:
+        added:
+          explanation: La siguiente clave de seguridad ha sido añadida a su cuenta
+          subject: 'Mastodon: Nueva clave de seguridad'
+          title: Se agregó una nueva clave de seguridad
+        deleted:
+          explanation: La siguiente clave de seguridad ha sido eliminada de su cuenta
+          subject: 'Mastodon: Clave de seguridad eliminada'
+          title: Una de sus claves de seguridad ha sido eliminada
+      webauthn_disabled:
+        explanation: La autenticación con claves de seguridad ha sido desactivada para tu cuenta. El inicio de sesión es ahora posible únicamente utilizando el token generado por la aplicación emparejada TOTP.
+        subject: 'Mastodon: Autenticación con claves de seguridad desactivada'
+        title: Claves de seguridad desactivadas
+      webauthn_enabled:
+        explanation: La autenticación con clave de seguridad ha sido habilitada para su cuenta. Su clave de seguridad ahora puede ser usada para iniciar sesión.
+        subject: 'Mastodon: Autenticación con clave de seguridad activada'
+        title: Claves de seguridad activadas
     omniauth_callbacks:
       failure: No podemos autentificarle desde %{kind} debido a "%{reason}".
       success: Autentificado con éxito desde la cuenta %{kind} .

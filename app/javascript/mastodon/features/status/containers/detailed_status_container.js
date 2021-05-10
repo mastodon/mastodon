@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import DetailedStatus from '../components/detailed_status';
-import { makeGetStatus } from '../../../selectors';
+import { makeGetStatus, makeGetPictureInPicture } from '../../../selectors';
 import {
   replyCompose,
   mentionCompose,
@@ -40,10 +40,12 @@ const messages = defineMessages({
 
 const makeMapStateToProps = () => {
   const getStatus = makeGetStatus();
+  const getPictureInPicture = makeGetPictureInPicture();
 
   const mapStateToProps = (state, props) => ({
     status: getStatus(state, props),
     domain: state.getIn(['meta', 'domain']),
+    pictureInPicture: getPictureInPicture(state, props),
   });
 
   return mapStateToProps;

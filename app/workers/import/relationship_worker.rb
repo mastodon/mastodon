@@ -15,7 +15,11 @@ class Import::RelationshipWorker
 
     case relationship
     when 'follow'
-      FollowService.new.call(from_account, target_account, options)
+      begin
+        FollowService.new.call(from_account, target_account, options)
+      rescue ActiveRecord::RecordInvalid
+        raise if FollowLimitValidator.limit_for_account(from_account) < from_account.following_count
+      end
     when 'unfollow'
       UnfollowService.new.call(from_account, target_account)
     when 'block'

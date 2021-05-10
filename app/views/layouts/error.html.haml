@@ -5,10 +5,10 @@
     %meta{ charset: 'utf-8' }/
     %title= safe_join([yield(:page_title), Setting.default_settings['site_title']], ' - ')
     %meta{ content: 'width=device-width,initial-scale=1', name: 'viewport' }/
-    = stylesheet_pack_tag 'common', media: 'all'
-    = stylesheet_pack_tag Setting.default_settings['theme'], media: 'all'
-    = javascript_pack_tag 'common', integrity: true, crossorigin: 'anonymous'
-    = javascript_pack_tag 'error', integrity: true, crossorigin: 'anonymous'
+    = stylesheet_pack_tag 'common', media: 'all', crossorigin: 'anonymous'
+    = stylesheet_pack_tag Setting.default_settings['theme'], media: 'all', crossorigin: 'anonymous'
+    = javascript_pack_tag 'common', crossorigin: 'anonymous'
+    = javascript_pack_tag 'error', crossorigin: 'anonymous'
   %body.error
     .dialog
       .dialog__illustration

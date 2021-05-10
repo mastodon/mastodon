@@ -17,7 +17,7 @@ RSpec.describe BlacklistedEmailValidator, type: :validator do
       let(:blocked_email) { true }
 
       it 'calls errors.add' do
-        expect(errors).to have_received(:add).with(:email, I18n.t('users.invalid_email'))
+        expect(errors).to have_received(:add).with(:email, I18n.t('users.blocked_email_provider'))
       end
     end
 
@@ -25,7 +25,7 @@ RSpec.describe BlacklistedEmailValidator, type: :validator do
       let(:blocked_email) { false }
 
       it 'not calls errors.add' do
-        expect(errors).not_to have_received(:add).with(:email, I18n.t('users.invalid_email'))
+        expect(errors).not_to have_received(:add).with(:email, I18n.t('users.blocked_email_provider'))
       end
     end
   end

@@ -5,7 +5,7 @@ describe AccountFilter do
     it 'defaults to recent local not-suspended account list' do
       filter = described_class.new({})
 
-      expect(filter.results).to eq Account.local.recent.without_suspended
+      expect(filter.results).to eq Account.local.without_instance_actor.recent.without_suspended
     end
   end
 

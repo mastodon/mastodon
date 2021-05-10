@@ -1,27 +1,32 @@
-import detectPassiveEvents from 'detect-passive-events';
+import { supportsPassiveEvents } from 'detect-passive-events';
+import { forceSingleColumn } from 'mastodon/initial_state';
 
 const LAYOUT_BREAKPOINT = 630;
 
-export function isMobile(width) {
-  return width <= LAYOUT_BREAKPOINT;
+export const isMobile = width => width <= LAYOUT_BREAKPOINT;
+
+export const layoutFromWindow = () => {
+  if (isMobile(window.innerWidth)) {
+    return 'mobile';
+  } else if (forceSingleColumn) {
+    return 'single-column';
+  } else {
+    return 'multi-column';
+  }
 };
 
 const iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
 
 let userTouching = false;
-let listenerOptions = detectPassiveEvents.hasSupport ? { passive: true } : false;
+let listenerOptions = supportsPassiveEvents ? { passive: true } : false;
 
-function touchListener() {
+const touchListener = () => {
   userTouching = true;
   window.removeEventListener('touchstart', touchListener, listenerOptions);
-}
+};
 
 window.addEventListener('touchstart', touchListener, listenerOptions);
 
-export function isUserTouching() {
-  return userTouching;
-}
+export const isUserTouching = () => userTouching;
 
-export function isIOS() {
-  return iOS;
-};
+export const isIOS = () => iOS;

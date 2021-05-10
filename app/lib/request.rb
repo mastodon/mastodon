@@ -114,7 +114,7 @@ class Request
 
   def signature
     algorithm = 'rsa-sha256'
-    signature = Base64.strict_encode64(@keypair.sign(OpenSSL::Digest::SHA256.new, signed_string))
+    signature = Base64.strict_encode64(@keypair.sign(OpenSSL::Digest.new('SHA256'), signed_string))
 
     "keyId=\"#{key_id}\",algorithm=\"#{algorithm}\",headers=\"#{signed_headers.keys.join(' ').downcase}\",signature=\"#{signature}\""
   end
@@ -253,7 +253,15 @@ class Request
       alias new open
 
       def check_private_address(address)
-        raise Mastodon::HostValidationError if PrivateAddressCheck.private_address?(IPAddr.new(address.to_s))
+        addr = IPAddr.new(address.to_s)
+        return if private_address_exceptions.any? { |range| range.include?(addr) }
+        raise Mastodon::HostValidationError if PrivateAddressCheck.private_address?(addr)
+      end
+
+      def private_address_exceptions
+        @private_address_exceptions = begin
+          (ENV['ALLOWED_PRIVATE_ADDRESSES'] || '').split(',').map { |addr| IPAddr.new(addr) }
+        end
       end
     end
   end

@@ -16,8 +16,8 @@ describe Scheduler::FeedCleanupScheduler do
 
     expect(Redis.current.zcard(feed_key_for(inactive_user))).to eq 0
     expect(Redis.current.zcard(feed_key_for(active_user))).to eq 1
-    expect(Redis.current.exists(feed_key_for(inactive_user, 'reblogs'))).to be false
-    expect(Redis.current.exists(feed_key_for(inactive_user, 'reblogs:2'))).to be false
+    expect(Redis.current.exists?(feed_key_for(inactive_user, 'reblogs'))).to be false
+    expect(Redis.current.exists?(feed_key_for(inactive_user, 'reblogs:2'))).to be false
   end
 
   def feed_key_for(user, subtype = nil)

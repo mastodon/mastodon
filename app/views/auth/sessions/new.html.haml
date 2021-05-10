@@ -22,7 +22,6 @@
 
     .actions
       - resource_class.omniauth_providers.each do |provider|
-        = link_to omniauth_authorize_path(resource_name, provider), class: "button button-#{provider}" do
-          = t("auth.providers.#{provider}", default: provider.to_s.chomp("_oauth2").capitalize)
+        = link_to t("auth.providers.#{provider}", default: provider.to_s.chomp("_oauth2").capitalize), omniauth_authorize_path(resource_name, provider), class: "button button-#{provider}", method: :post
 
 .form-footer= render 'auth/shared/links'
