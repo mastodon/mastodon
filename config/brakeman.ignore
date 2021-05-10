@@ -41,99 +41,6 @@
       "note": ""
     },
     {
-      "warning_type": "Dynamic Render Path",
-      "warning_code": 15,
-      "fingerprint": "20a660939f2bbf8c665e69f2844031c0564524689a9570a0091ed94846212020",
-      "check_name": "Render",
-      "message": "Render path contains parameter value",
-      "file": "app/views/admin/action_logs/index.html.haml",
-      "line": 26,
-      "link": "https://brakemanscanner.org/docs/warning_types/dynamic_render_path/",
-      "code": "render(action => Admin::ActionLogFilter.new(filter_params).results.page(params[:page]), {})",
-      "render_path": [
-        {
-          "type": "controller",
-          "class": "Admin::ActionLogsController",
-          "method": "index",
-          "line": 8,
-          "file": "app/controllers/admin/action_logs_controller.rb",
-          "rendered": {
-            "name": "admin/action_logs/index",
-            "file": "app/views/admin/action_logs/index.html.haml"
-          }
-        }
-      ],
-      "location": {
-        "type": "template",
-        "template": "admin/action_logs/index"
-      },
-      "user_input": "params[:page]",
-      "confidence": "Weak",
-      "note": ""
-    },
-    {
-      "warning_type": "Dynamic Render Path",
-      "warning_code": 15,
-      "fingerprint": "371fe16dc4c9d6ab08a20437d65be4825776107a67c38f6d4780a9c703cd44a5",
-      "check_name": "Render",
-      "message": "Render path contains parameter value",
-      "file": "app/views/admin/email_domain_blocks/index.html.haml",
-      "line": 17,
-      "link": "https://brakemanscanner.org/docs/warning_types/dynamic_render_path/",
-      "code": "render(action => EmailDomainBlock.where(:parent_id => nil).includes(:children).order(:id => :desc).page(params[:page]), {})",
-      "render_path": [
-        {
-          "type": "controller",
-          "class": "Admin::EmailDomainBlocksController",
-          "method": "index",
-          "line": 10,
-          "file": "app/controllers/admin/email_domain_blocks_controller.rb",
-          "rendered": {
-            "name": "admin/email_domain_blocks/index",
-            "file": "app/views/admin/email_domain_blocks/index.html.haml"
-          }
-        }
-      ],
-      "location": {
-        "type": "template",
-        "template": "admin/email_domain_blocks/index"
-      },
-      "user_input": "params[:page]",
-      "confidence": "Weak",
-      "note": ""
-    },
-    {
-      "warning_type": "Dynamic Render Path",
-      "warning_code": 15,
-      "fingerprint": "4704e8093e3e0561bf705f892e8fc6780419f8255f4440b1c0afd09339bd6446",
-      "check_name": "Render",
-      "message": "Render path contains parameter value",
-      "file": "app/views/admin/instances/index.html.haml",
-      "line": 39,
-      "link": "https://brakemanscanner.org/docs/warning_types/dynamic_render_path/",
-      "code": "render(action => filtered_instances.page(params[:page]), {})",
-      "render_path": [
-        {
-          "type": "controller",
-          "class": "Admin::InstancesController",
-          "method": "index",
-          "line": 10,
-          "file": "app/controllers/admin/instances_controller.rb",
-          "rendered": {
-            "name": "admin/instances/index",
-            "file": "app/views/admin/instances/index.html.haml"
-          }
-        }
-      ],
-      "location": {
-        "type": "template",
-        "template": "admin/instances/index"
-      },
-      "user_input": "params[:page]",
-      "confidence": "Weak",
-      "note": ""
-    },
-    {
       "warning_type": "Redirect",
       "warning_code": 18,
       "fingerprint": "5fad11cd67f905fab9b1d5739d01384a1748ebe78c5af5ac31518201925265a7",
@@ -251,37 +158,6 @@
       },
       "user_input": "SecureRandom.hex(16)",
       "confidence": "Medium",
-      "note": ""
-    },
-    {
-      "warning_type": "Dynamic Render Path",
-      "warning_code": 15,
-      "fingerprint": "9f31d941f3910dba2e9bfcd81aef4513249bd24c02d0f98e13ad44fdeeccd0e8",
-      "check_name": "Render",
-      "message": "Render path contains parameter value",
-      "file": "app/views/admin/accounts/index.html.haml",
-      "line": 54,
-      "link": "https://brakemanscanner.org/docs/warning_types/dynamic_render_path/",
-      "code": "render(action => filtered_accounts.page(params[:page]), {})",
-      "render_path": [
-        {
-          "type": "controller",
-          "class": "Admin::AccountsController",
-          "method": "index",
-          "line": 12,
-          "file": "app/controllers/admin/accounts_controller.rb",
-          "rendered": {
-            "name": "admin/accounts/index",
-            "file": "app/views/admin/accounts/index.html.haml"
-          }
-        }
-      ],
-      "location": {
-        "type": "template",
-        "template": "admin/accounts/index"
-      },
-      "user_input": "params[:page]",
-      "confidence": "Weak",
       "note": ""
     },
     {

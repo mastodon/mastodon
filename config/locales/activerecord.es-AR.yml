@@ -5,13 +5,28 @@ es-AR:
       poll:
         expires_at: Fecha límite
         options: Opciones
+      user:
+        agreement: Acuerdo del servicio
+        email: Dirección de correo electrónico
+        locale: Localidad
+        password: Contraseña
+      user/account:
+        username: Nombre de usuario
+      user/invite_request:
+        text: Motivo
     errors:
       models:
         account:
           attributes:
             username:
               invalid: sólo letras, números y subguiones ("_")
+              reserved: está reservado
         status:
           attributes:
             reblog:
               taken: del estado ya existe
+        user:
+          attributes:
+            email:
+              blocked: usa un proveedor de correo electrónico no permitido
+              unreachable: no parece existir

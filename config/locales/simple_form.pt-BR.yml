@@ -14,6 +14,9 @@ pt-BR:
         send_email_notification: O usuário receberá uma explicação do que aconteceu com a própria conta
         text_html: Opcional. Você pode usar a sintaxe do toot e também pode <a href="%{path}">adicionar avisos pré-definidos</a> para poupar tempo
         type_html: Decida o que fazer com <strong>%{acct}</strong>
+        types:
+          disable: Impedir o usuário de usar sua conta, porém sem deletá-la ou escondê-la.
+          none: Use isto para enviar uma advertência ao usuário, sem nenhuma outra ação.
         warning_preset_id: Opcional. Você ainda pode adicionar texto personalizado no final do aviso pré-definido
       announcement:
         all_day: Quando marcada, apenas as datas do período serão mostradas
@@ -73,6 +76,8 @@ pt-BR:
           no_access: Bloquear o acesso a todos os recursos
           sign_up_requires_approval: Novos registros exigirão sua aprovação
         severity: Escolha o que acontecerá com as solicitações deste IP
+      rule:
+        text: Descreva uma regra ou requisito para os usuários neste servidor. Tente mantê-la curta e simples.
       sessions:
         otp: 'Digite o código de dois fatores gerado pelo aplicativo no seu celular ou use um dos códigos de recuperação:'
         webauthn: Se for uma chave USB tenha certeza de inseri-la e, se necessário, tocar nela.
@@ -170,8 +175,6 @@ pt-BR:
         whole_word: Palavra inteira
       email_domain_block:
         with_dns_records: Incluir registros MX e IPs do domínio
-      featured_tag:
-        name: Hashtag
       interactions:
         must_be_follower: Bloquear notificações de não-seguidores
         must_be_following: Bloquear notificações de pessoas que você não segue
@@ -182,7 +185,6 @@ pt-BR:
         text: Por que você deseja criar uma conta aqui?
       ip_block:
         comment: Comentário
-        ip: IP
         severities:
           no_access: Bloquear acesso
           sign_up_requires_approval: Limitar registros
@@ -197,15 +199,15 @@ pt-BR:
         reblog: Enviar e-mail quando alguém der boost nos seus toots
         report: Enviar e-mail quando uma nova denúncia for enviada
         trending_tag: Uma hashtag não-revisada está em alta
+      rule:
+        text: Regra
       tag:
         listable: Permitir que esta hashtag apareça em pesquisas e no diretório de perfis
-        name: Hashtag
         trendable: Permitir que esta hashtag fique em alta
         usable: Permitir que toots usem esta hashtag
     'no': Não
     recommended: Recomendado
     required:
-      mark: "*"
       text: obrigatório
     title:
       sessions:

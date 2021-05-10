@@ -21,6 +21,14 @@ RSpec.describe Formatter do
       end
     end
 
+    context 'given a stand-alone URL with a newer TLD' do
+      let(:text) { 'http://example.gay' }
+
+      it 'matches the full URL' do
+        is_expected.to include 'href="http://example.gay"'
+      end
+    end
+
     context 'given a stand-alone IDN URL' do
       let(:text) { 'https://nic.みんな/' }
 

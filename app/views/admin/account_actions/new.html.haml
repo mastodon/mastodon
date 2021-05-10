@@ -5,7 +5,7 @@
   = f.input :report_id, as: :hidden
 
   .fields-group
-    = f.input :type, collection: Admin::AccountAction.types_for_account(@account), include_blank: false, wrapper: :with_block_label, label_method: ->(type) { I18n.t("simple_form.labels.admin_account_action.types.#{type}")}, hint: t('simple_form.hints.admin_account_action.type_html', acct: @account.acct)
+    = f.input :type, as: :radio_buttons, collection: Admin::AccountAction.types_for_account(@account), include_blank: false, wrapper: :with_block_label, label_method: ->(type) { safe_join([I18n.t("simple_form.labels.admin_account_action.types.#{type}"), content_tag(:span, I18n.t("simple_form.hints.admin_account_action.types.#{type}"), class: 'hint')])}, hint: t('simple_form.hints.admin_account_action.type_html', acct: @account.acct)
 
   - if @account.local?
     %hr.spacer/

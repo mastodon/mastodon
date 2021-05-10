@@ -1,6 +1,7 @@
 {{- if .Values.ingress.enabled -}}
 {{- $fullName := include "mastodon.fullname" . -}}
-{{- $svcPort := .Values.service.port -}}
+{{- $webPort := .Values.mastodon.web.port -}}
+{{- $streamingPort := .Values.mastodon.streaming.port -}}
 {{- if semverCompare ">=1.14-0" .Capabilities.KubeVersion.GitVersion -}}
 apiVersion: networking.k8s.io/v1beta1
 {{- else -}}
@@ -27,15 +28,19 @@ spec:
     {{- end }}
   {{- end }}
   rules:
-    - host: {{ .Values.ingress.hostname | quote }}
+    {{- range .Values.ingress.hosts }}
+    - host: {{ .host | quote }}
       http:
         paths:
-          - path: '/'
+          {{- range .paths }}
+          - path: {{ .path }}
             backend:
               serviceName: {{ $fullName }}-web
-              servicePort: {{ $svcPort }}
-          - path: '/api/v1/streaming'
+              servicePort: {{ $webPort }}
+          - path: {{ .path }}api/v1/streaming
             backend:
               serviceName: {{ $fullName }}-streaming
-              servicePort: {{ .Values.application.streaming.port }}
+              servicePort: {{ $streamingPort }}
+          {{- end }}
+    {{- end }}
 {{- end }}

@@ -46,7 +46,7 @@ RSpec.describe ActivityPub::OutboxesController, type: :controller do
         end
 
         it 'returns application/activity+json' do
-          expect(response.content_type).to eq 'application/activity+json'
+          expect(response.media_type).to eq 'application/activity+json'
         end
 
         it 'returns totalItems' do
@@ -85,7 +85,7 @@ RSpec.describe ActivityPub::OutboxesController, type: :controller do
         end
 
         it 'returns application/activity+json' do
-          expect(response.content_type).to eq 'application/activity+json'
+          expect(response.media_type).to eq 'application/activity+json'
         end
 
         it 'returns orderedItems with public or unlisted statuses' do
@@ -133,7 +133,7 @@ RSpec.describe ActivityPub::OutboxesController, type: :controller do
         end
 
         it 'returns application/activity+json' do
-          expect(response.content_type).to eq 'application/activity+json'
+          expect(response.media_type).to eq 'application/activity+json'
         end
 
         it 'returns orderedItems with public or unlisted statuses' do
@@ -159,7 +159,7 @@ RSpec.describe ActivityPub::OutboxesController, type: :controller do
         end
 
         it 'returns application/activity+json' do
-          expect(response.content_type).to eq 'application/activity+json'
+          expect(response.media_type).to eq 'application/activity+json'
         end
 
         it 'returns orderedItems with private statuses' do
@@ -185,7 +185,7 @@ RSpec.describe ActivityPub::OutboxesController, type: :controller do
         end
 
         it 'returns application/activity+json' do
-          expect(response.content_type).to eq 'application/activity+json'
+          expect(response.media_type).to eq 'application/activity+json'
         end
 
         it 'returns empty orderedItems' do
@@ -210,7 +210,7 @@ RSpec.describe ActivityPub::OutboxesController, type: :controller do
         end
 
         it 'returns application/activity+json' do
-          expect(response.content_type).to eq 'application/activity+json'
+          expect(response.media_type).to eq 'application/activity+json'
         end
 
         it 'returns empty orderedItems' do

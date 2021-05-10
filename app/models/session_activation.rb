@@ -44,7 +44,7 @@ class SessionActivation < ApplicationRecord
     end
 
     def activate(**options)
-      activation = create!(options)
+      activation = create!(**options)
       purge_old
       activation
     end

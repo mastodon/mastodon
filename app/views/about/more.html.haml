@@ -43,11 +43,21 @@
   .column-3
     = render 'application/flashes'
 
-    - if @contents.blank? && (!display_blocks? || @blocks&.empty?)
+    - if @contents.blank? && @rules.empty? && (!display_blocks? || @blocks&.empty?)
       = nothing_here
     - else
       .box-widget
         .rich-formatting
+          - unless @rules.empty?
+            %h2#rules= t('about.rules')
+
+            %p= t('about.rules_html')
+
+            %ol.rules-list
+              - @rules.each do |rule|
+                %li
+                  .rules-list__text= rule.text
+
           = @contents.html_safe
 
           - if display_blocks? && !@blocks.empty?
@@ -70,6 +80,9 @@
 
   .column-4
     %ul.table-of-contents
+      - unless @rules.empty?
+        %li= link_to t('about.rules'), '#rules'
+
       - @table_of_contents.each do |item|
         %li
           = link_to item.title, "##{item.anchor}"

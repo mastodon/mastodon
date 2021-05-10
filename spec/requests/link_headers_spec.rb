@@ -25,7 +25,7 @@ describe 'Link headers' do
     end
 
     def link_header_with_type(type)
-      response.headers['Link'].links.find do |link|
+      LinkHeader.parse(response.headers['Link'].to_s).links.find do |link|
         link.attr_pairs.any? { |pair| pair == ['type', type] }
       end
     end

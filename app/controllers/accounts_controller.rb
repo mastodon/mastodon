@@ -77,11 +77,7 @@ class AccountsController < ApplicationController
   end
 
   def only_media_scope
-    Status.where(id: account_media_status_ids)
-  end
-
-  def account_media_status_ids
-    @account.media_attachments.attached.reorder(nil).select(:status_id).group(:status_id)
+    Status.joins(:media_attachments).merge(@account.media_attachments.reorder(nil)).group(:id)
   end
 
   def no_replies_scope
@@ -135,15 +131,15 @@ class AccountsController < ApplicationController
   end
 
   def media_requested?
-    request.path.split('.').first.ends_with?('/media') && !tag_requested?
+    request.path.split('.').first.end_with?('/media') && !tag_requested?
   end
 
   def replies_requested?
-    request.path.split('.').first.ends_with?('/with_replies') && !tag_requested?
+    request.path.split('.').first.end_with?('/with_replies') && !tag_requested?
   end
 
   def tag_requested?
-    request.path.split('.').first.ends_with?(Addressable::URI.parse("/tagged/#{params[:tag]}").normalize)
+    request.path.split('.').first.end_with?(Addressable::URI.parse("/tagged/#{params[:tag]}").normalize)
   end
 
   def cached_filtered_status_page

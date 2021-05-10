@@ -5,13 +5,28 @@ el:
       poll:
         expires_at: Προθεσμία
         options: Επιλογές
+      user:
+        agreement: Σύμβαση παροχής υπηρεσιών
+        email: Διεύθυνση email
+        locale: Γλώσσα
+        password: Συνθηματικό
+      user/account:
+        username: Όνομα χρήστη
+      user/invite_request:
+        text: Αιτιολογία
     errors:
       models:
         account:
           attributes:
             username:
               invalid: μόνο γράμματα, αριθμοί και κάτω παύλες
+              reserved: είναι δεσμευμένο
         status:
           attributes:
             reblog:
               taken: της κατάστασης ήδη υπάρχει
+        user:
+          attributes:
+            email:
+              blocked: χρησιμοποιεί μη επιτρεπόμενο πάροχο e-mail
+              unreachable: δεν φαίνεται να υπάρχει
