@@ -55,6 +55,7 @@ sv:
       account_warning_preset:
         title: Rubrik
       admin_account_action:
+        send_email_notification: Meddela användaren via e-post
         text: Anpassad varning
         type: Åtgärd
         types:
@@ -125,6 +126,9 @@ sv:
         type: Importtyp
         username: Användarnamn
         username_or_email: Användarnamn eller e-mail
+        whole_word: Hela ord
+      featured_tag:
+        name: Hashtag
       interactions:
         must_be_follower: Blockera aviseringar från icke-följare
         must_be_following: Blockera aviseringar från personer du inte följer
@@ -134,10 +138,12 @@ sv:
       invite_request:
         text: Varför vill du gå med?
       ip_block:
+        comment: Kommentar
         ip: IP
         severities:
           no_access: Blockera åtkomst
           sign_up_requires_approval: Begränsa registreringar
+        severity: Regel
       notification_emails:
         digest: Skicka sammandrag via e-post
         favourite: Skicka e-post när någon favoriserar din status
@@ -145,9 +151,11 @@ sv:
         follow_request: Skicka e-post när någon begär att följa dig
         mention: Skicka e-post när någon nämner dig
         reblog: Skicka e-post när någon knuffar din status
+        trending_tag: En ogranskad hashtag trendar
       rule:
         text: Regel
       tag:
+        listable: Tillåt att denna hashtag visas i sökningar och förslag
         name: Hashtag
         trendable: Tillåt att denna hashtag visas under trender
         usable: Tillåt tutningar att använda denna hashtag
