@@ -1,4 +1,3 @@
----
 hu:
   simple_form:
     hints:
@@ -7,18 +6,18 @@ hu:
       account_migration:
         acct: Add meg a fióknév@domain fiókot, melybe költözni szeretnél
       account_warning_preset:
-        text: Használhatod a tülkökben szokásos szintaxist, URL-eket, hashtageket, megemlítéseket
+        text: Használhatod a bejegyzésekben szokásos szintaxist, URL-eket, hashtageket, megemlítéseket
         title: Opcionális. Címzett számára nem látható
       admin_account_action:
-        include_statuses: A felhasználó látni fogja, melyik tülk okozta a moderációt vagy figyelmeztetést
+        include_statuses: A felhasználó látni fogja, melyik bejegyzés okozta a moderációs műveletet vagy figyelmeztetést
         send_email_notification: A felhasználó magyarázatot kap arra, mi történt a fiókjával
-        text_html: Opcionális. A tülk szintaxis használható. Egyszerűsítés végett létre is hozhatsz <a href="%{path}">figyelmeztetéseket</a>
+        text_html: Opcionális. A bejegyzések szintaxisa használható. Időmegtakarítás végett létre is hozhatsz <a href="%{path}">figyelmeztetéseket</a>
         type_html: Megmondhatod, mi legyen vele <strong>%{acct}</strong>
         types:
           disable: A felhasználó nem fogja tudni használni a fiókját, de ettől még nem töröljük azt vagy rejtjük el a tartalmait.
           none: Ezt használd ahhoz, hogy a felhasználónak figyelmeztetést küldj bármilyen más következmény nélkül.
           sensitive: Ennek a felhasználónak minden médiatartalmát jelöljük meg szenzitívként.
-          silence: Megakadályozzuk, hogy ez a felhasználó nyilvános láthatóságú tülköt tegyen közzé, elrejtjük a tülkjeit és értesítéseit azok elől, akik nem közvetlen követői.
+          silence: Megakadályozzuk, hogy ez a felhasználó nyilvános láthatóságú bejegyzést tegyen közzé, elrejtjük a bejegyzéseit és a róla szóló értesítéseket azok elől, akik nem közvetlen követői.
           suspend: Minden interakciót megakadályozunk ezzel a fiókkal és töröljük a tartalmát. 30 napon belül még visszacsinálható.
         warning_preset_id: Opcionális. A figyelmeztetés végére saját szöveget is írhatsz
       announcement:
@@ -26,7 +25,7 @@ hu:
         ends_at: Opcionális. A közleményt ekkor automatikusan levesszük
         scheduled_at: Hagyd üresen, hogy a közleményt azonnal közzétegyük
         starts_at: Opcionális. Akkor használd, ha a közleményed adott időintervallumra vonatkozik
-        text: Használhatod a tülkök szintaxisát. Ügyelj arra, mennyi helyet foglal el majd a közlemény a felhasználó képernyőjén
+        text: Használhatod a bejegyzések szintaxisát. Ügyelj arra, hogy mennyi helyet foglal el majd a közlemény a felhasználó képernyőjén
       defaults:
         autofollow: Akik meghívón keresztül regisztrálnak, automatikusan követni fognak téged
         avatar: PNG, GIF vagy JPG. Maximum %{size}. Átméretezzük %{dimensions} pixelre
@@ -40,7 +39,7 @@ hu:
         fields: A profilodon legfeljebb 4 bejegyzés szerepelhet táblázatos formában
         header: PNG, GIF vagy JPG. Maximum %{size}. Átméretezzük %{dimensions} pixelre
         inbox_url: Másold ki a használandó relé szerver kezdőoldalának URL-jét
-        irreversible: A kiszűrt tülkök visszafordíthatatlanul eltűnnek, a szűrő későbbi törlése esetén is
+        irreversible: A kiszűrt bejegyzések visszafordíthatatlanul eltűnnek, a szűrő későbbi törlése esetén is
         locale: A felhasználói felület, e-mailek, push üzenetek nyelve
         locked: Egyenként engedélyezned kell a követőidet
         password: Legalább 8 karakter
@@ -212,7 +211,7 @@ hu:
         name: Hashtag
         trendable: A hashtag megjelenhet a trendek között
         usable: Tülkök használhatják ezt a hashtaget
-    'no': Nem
+    'no': 'Nem'
     recommended: Ajánlott
     required:
       mark: "*"
@@ -220,4 +219,4 @@ hu:
     title:
       sessions:
         webauthn: Használd valamelyik biztonsági kulcsodat a bejelentkezéshez
-    'yes': Igen
+    'yes': 'Igen'
