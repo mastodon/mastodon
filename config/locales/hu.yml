@@ -31,8 +31,8 @@ hu:
     server_stats: 'Szerver statisztika:'
     source_code: Forráskód
     status_count_after:
-      one: tülköt küldött
-      other: tülköt küldött
+      one: bejegyzést írt
+      other: bejegyzést írt
     status_count_before: eddig
     tagline: Kövess barátokat és találj újakat
     terms: Felhasználási feltételek
@@ -42,7 +42,7 @@ hu:
       reason: 'Indok:'
       rejecting_media: 'A szerverről származó médiafájlok nem kerülnek feldolgozásra, és nem jelennek meg miniatűrök, amelyek kézi átkattintást igényelnek a másik szerverre.'
       rejecting_media_title: Kiszűrt média
-      silenced: 'A szerver hozzászólásai csak a saját hírvonalon jelennek meg, ha követik a szerzőt.'
+      silenced: 'Az ezen szerverekről származó bejegyzéseket elrejtjük a nyilvános idővonalakról és beszélgetésekből, a rajtuk lévő felhasználók műveleteiről nem küldünk értesítéseket, hacsak nem követed őket:'
       silenced_title: Elnémított szerverek
       suspended: 'Nem fogsz tudni követni senkit ebből a szerverből, és nem kerül feldolgozásra vagy tárolásra a tőle származó adat, és nincs adatcsere.'
       suspended_title: Felfüggesztett szerverek
@@ -198,7 +198,7 @@ hu:
         targeted_reports: Jelentések ezzel kapcsolatban
       silence: Némítás
       silenced: Némított
-      statuses: Tülkök
+      statuses: Bejegyzés
       subscribe: Feliratkozás
       suspended: Felfüggesztett
       suspension_irreversible: Ennek a fióknak az adatait visszaállíthatatlanul törölték. Visszavonhatod a fiók felfüggesztését, hogy újra használható legyen, de a régi adatok ettől még nem fognak visszatérni.
@@ -237,7 +237,7 @@ hu:
         destroy_domain_block: Domain tiltás törlése
         destroy_email_domain_block: E-mail domain tiltás törlése
         destroy_ip_block: IP szabály törlése
-        destroy_status: Állapot törlése
+        destroy_status: Bejegyzés törlése
         destroy_unavailable_domain: Elérhetetlen domain törlése
         disable_2fa_user: Kétlépcsős hitelesítés letiltása
         disable_custom_emoji: Egyéni emodzsi letiltása
@@ -260,7 +260,7 @@ hu:
         update_announcement: Közlemény frissítése
         update_custom_emoji: Egyéni emodzsi frissítése
         update_domain_block: Domain tiltás frissítése
-        update_status: Állapot frissítése
+        update_status: Bejegyzés frissítése
       actions:
         assigned_to_self_report_html: "%{name} a %{target} bejelentést magához rendelte"
         change_email_user_html: "%{name} megváltoztatta %{target} felhasználó e-mail címét"
@@ -280,7 +280,7 @@ hu:
         destroy_domain_block_html: "%{name} engedélyezte a %{target} domaint"
         destroy_email_domain_block_html: "%{name} engedélyezte a %{target} e-mail domaint"
         destroy_ip_block_html: "%{name} törölt egy szabályt a %{target} IP-vel kapcsolatban"
-        destroy_status_html: "%{name} eltávolította az alábbi felhasználó tülkjét: %{target}"
+        destroy_status_html: "%{name} eltávolította %{target} felhasználó bejegyzését"
         destroy_unavailable_domain_html: "%{name} újraindította a kézbesítést a %{target} domainbe"
         disable_2fa_user_html: "%{name} kikapcsolta a kétlépcsős azonosítást %{target} felhasználó fiókján"
         disable_custom_emoji_html: "%{name} letiltotta a %{target} emodzsit"
@@ -303,8 +303,8 @@ hu:
         update_announcement_html: "%{name} frissítette a %{target} közleményt"
         update_custom_emoji_html: "%{name} frissítette a %{target} emodzsit"
         update_domain_block_html: "%{name} frissítette a %{target} domain tiltását"
-        update_status_html: "%{name} frissítette %{target} felhasználó tülkjét"
-      deleted_status: "(törölt tülk)"
+        update_status_html: "%{name} frissítette %{target} felhasználó bejegyzését"
+      deleted_status: "(törölt bejegyzés)"
       empty: Nem található napló.
       filter_by_action: Szűrés művelet alapján
       filter_by_user: Szűrés felhasználó alapján
@@ -402,7 +402,7 @@ hu:
         create: Tiltás létrehozása
         hint: A domain tiltása nem gátolja meg az új fiókok hozzáadását az abatbázishoz, de visszamenőlegesen és automatikusan aktivál bizonyos moderációs szabályokat ezen fiókok esetében.
         severity:
-          desc_html: "A <strong>Némítás</strong> elrejti az adott felhasználó tülkjeit mindenki elől, aki nem követi az adott felhasználót. A <strong>Felfüggesztés</strong> eltávolítja az adott felhasználó által létrehozott minden tartalmat, ide értve a médiafájlokat és a fiókadatokat is. Válaszd az <strong>Egyik sem</strong> opciót, ha csupán a médiafájlokat szeretnéd elutasítani."
+          desc_html: "A <strong>Némítás</strong> elrejti az adott felhasználó bejegyzéseit mindenki elől, aki nem követi őt. A <strong>Felfüggesztés</strong> eltávolítja az adott felhasználó által létrehozott minden tartalmat, ide értve a médiafájlokat és a fiókadatokat is. Válaszd az <strong>Egyik sem</strong> opciót, ha csupán a médiafájlokat szeretnéd elutasítani."
           noop: Egyik sem
           silence: Némítás
           suspend: Felfüggesztés
