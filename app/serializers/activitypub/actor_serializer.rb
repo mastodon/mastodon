@@ -177,7 +177,7 @@ class ActivityPub::ActorSerializer < ActivityPub::Serializer
     end
 
     def href
-      explore_hashtag_url(object)
+      tag_url(object)
     end
 
     def name
