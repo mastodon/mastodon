@@ -4,7 +4,6 @@ class Auth::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   skip_before_action :verify_authenticity_token
 
   def self.provides_callback_for(provider)
-    provider_id = provider.to_s.chomp '_oauth2'
 
     define_method provider do
       @user = User.find_for_oauth(request.env['omniauth.auth'], current_user)
