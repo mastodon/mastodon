@@ -189,6 +189,10 @@ class Account < ApplicationRecord
     Follow.where(target_account_id: id).count
   end
 
+  def locked?
+    true
+  end
+
   def to_webfinger_s
     "acct:#{local_username_and_domain}"
   end
