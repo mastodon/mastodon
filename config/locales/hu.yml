@@ -458,7 +458,21 @@ hu:
       back_to_limited: Korlátozott
       back_to_warning: Figyelmeztetés
       by_domain: Domain
+      delivery:
+        all: Mind
+        clear: Kézbesítési hibák törlése
+        restart: Kézbesítés újraindítása
+        stop: Kézbesítés leállítása
+        title: Kézbesítés
+        unavailable: Nem elérhető
+        unavailable_message: Kézbesítés nem elérhető
+        warning: Figyelmeztetés
+        warning_message:
+          one: Kézbesítés sikertelen %{count} napja
+          other: Kézbesítés sikertelen %{count} napja
       delivery_available: Kézbesítés elérhető
+      delivery_error_days: Kézbesítési hiba időtartama
+      delivery_error_hint: Ha a kézbesítés lehetetlen %{count} napig, automatikusan kézbesíthetetlennek lesz megjelölve.
       empty: Nem található domain.
       known_accounts:
         one: "%{count} ismert fiók"
