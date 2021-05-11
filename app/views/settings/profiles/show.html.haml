@@ -24,7 +24,7 @@
   %hr.spacer/
 
   .fields-group
-    = f.input :locked, as: :boolean, wrapper: :with_label, hint: t('simple_form.hints.defaults.locked')
+    = f.input :locked, disabled: true, as: :boolean, wrapper: :with_label, hint: t('simple_form.hints.defaults.locked')
 
   .fields-group
     = f.input :bot, as: :boolean, wrapper: :with_label, hint: t('simple_form.hints.defaults.bot')
