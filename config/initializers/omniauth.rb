@@ -69,9 +69,8 @@ Devise.setup do |config|
   # OpenID Connect Strategy
   if ENV['OIDC_ENABLED'] == 'true'
     oidc_options = {}
-    oidc_options[:redirect_at_sign_in] = ENV['OAUTH_REDIRECT_AT_SIGN_IN'] == 'true'
+    oidc_options[:redirect_at_sign_in] = ENV['OAUTH_REDIRECT_AT_SIGN_IN'] == 'true' #OPTIONAL
     oidc_options[:display_name] = ENV['OIDC_DISPLAY_NAME'] || 'openid_connect' #OPTIONAL
-    oidc_options[:name] = ENV['OIDC_PROVIDER_NAME'] if ENV['OIDC_PROVIDER_NAME'] #OPTIONAL (default: openid_connect)
     oidc_options[:issuer] = ENV['OIDC_ISSUER'] if ENV['OIDC_ISSUER'] #NEED
     oidc_options[:discovery] = ENV['OIDC_DISCOVERY'] == 'true' if ENV['OIDC_DISCOVERY'] #OPTIONAL (default: false)
     oidc_options[:client_auth_method] =  ENV['OIDC_CLIENT_AUTH_METHOD'] if ENV['OIDC_CLIENT_AUTH_METHOD'] #OPTIONAL (default: basic)
@@ -99,7 +98,7 @@ Devise.setup do |config|
     oidc_options[:client_options][:jwks_uri] = ENV['OIDC_JWKS_URI'] if ENV['OIDC_JWKS_URI'] #NEED when discovery != true
     oidc_options[:client_options][:end_session_endpoint] = ENV['OIDC_END_SESSION_ENDPOINT'] if ENV['OIDC_END_SESSION_ENDPOINT'] #OPTIONAL
     oidc_options[:security] = {}
-    oidc_options[:security][:assume_email_is_verified] = ENV['OIDC_SECURITY_ASSUME_EMAIL_IS_VERIFIED'] == 'true'
+    oidc_options[:security][:assume_email_is_verified] = ENV['OIDC_SECURITY_ASSUME_EMAIL_IS_VERIFIED'] == 'true' #OPTIONAL
     config.omniauth :openid_connect, oidc_options
   end
 end
