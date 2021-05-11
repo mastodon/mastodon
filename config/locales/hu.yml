@@ -813,7 +813,7 @@ hu:
     following: 'Siker! Mostantól követed az alábbi felhasználót:'
     post_follow:
       close: Akár be is zárhatod ezt az ablakot.
-      return: Visszatérés a felhasználó profiloldalára
+      return: A felhasználó profiljának mutatása
       web: Megtekintés a weben
     title: '%{acct} követése'
   challenge:
@@ -1079,10 +1079,10 @@ hu:
       subject: '%{name} szavazása véget ért'
     reblog:
       body: 'A bejegyzésedet %{name} megtolta:'
-      subject: "%{name} megtolta a tülködet"
+      subject: "%{name} megtolta a bejegyzésedet"
       title: Új megtolás
     status:
-      subject: "%{name} tülkölt egyet"
+      subject: "%{name} bejegyzést írt"
   notifications:
     email_events: Események email értesítésekhez
     email_events_hint: 'Válaszd ki azokat az eseményeket, melyekről értesítést szeretnél:'
@@ -1157,16 +1157,16 @@ hu:
   remote_interaction:
     favourite:
       proceed: Jelöljük kedvencnek
-      prompt: 'Ezt a tülköt szeretnéd kedvencnek jelölni:'
+      prompt: 'Ezt a bejegyzést szeretnéd kedvencnek jelölni:'
     reblog:
       proceed: Megtolás
-      prompt: 'Ezt a tülköt szeretnéd megtolni:'
+      prompt: 'Ezt a bejegyzést szeretnéd megtolni:'
     reply:
       proceed: Válaszadás
-      prompt: 'Erre a tülkre szeretnél válaszolni:'
+      prompt: 'Erre a bejegyzésre szeretnél válaszolni:'
   scheduled_statuses:
-    over_daily_limit: Túllépted az időzített tülkökre vonatkozó napi limitet (%{limit})
-    over_total_limit: Túllépted az időzített tülkökre vonatkozó limitet (%{limit})
+    over_daily_limit: Túllépted az időzített bejegyzésekre vonatkozó %{limit} db-os napi limitet
+    over_total_limit: Túllépted az időzített bejegyzésekre vonatkozó %{limit} db-os limitet
     too_soon: Az időzítéshez jövőbeni időpont kell
   sessions:
     activity: Legutóbbi tevékenység
@@ -1249,14 +1249,14 @@ hu:
       one: 'tiltott hashtaget tartalmaz: %{tags}'
       other: 'tiltott hashtageket tartalmaz: %{tags}'
     errors:
-      in_reply_not_found: Már nem létezik az a tülk, melyre válaszolni szeretnél.
+      in_reply_not_found: Már nem létezik az a bejegyzés, melyre válaszolni szeretnél.
     language_detection: Nyelv automatikus felismerése
     open_in_web: Megnyitás a weben
     over_character_limit: Túllépted a maximális %{max} karakteres keretet
     pin_errors:
-      limit: Elérted a kitűzhető tülkök maximális számát
-      ownership: Nem tűzheted ki valaki más tülkjét
-      private: Csak nyilvános tülköt tűzhetsz ki
+      limit: Elérted a kitűzhető bejegyzések maximális számát
+      ownership: Nem tűzheted ki valaki más bejegyzését
+      private: Nem nyilvános bejegyzéseket nem tűzhetsz ki
       reblog: Megtolt tülköt nem tudsz kitűzni
     poll:
       total_people:
@@ -1281,7 +1281,7 @@ hu:
       unlisted: Listázatlan
       unlisted_long: Mindenki látja, de a nyilvános idővonalakon nem jelenik meg
   stream_entries:
-    pinned: Kitűzött tülk
+    pinned: Kitűzött bejegyzés
     reblogged: megtolta
     sensitive_content: Szenzitív tartalom
   tags:
@@ -1428,7 +1428,7 @@ hu:
       edit_profile_action: Készítsd el profilod
       edit_profile_step: 'Itt tudod egyedivé tenni a profilod: feltölthetsz profil- és borítóképet, megváltoztathatod a megjelenített neved és így tovább. Ha jóvá szeretnéd hagyni követőidet, mielőtt láthatják a tülkjeid, itt tudod a fiókodat zárttá tenni.'
       explanation: Néhány tipp a kezdeti lépésekhez
-      final_action: Kezdj tülkölni
+      final_action: Kezdj bejegyzéseket írni
       final_step: 'Kezdj tülkölni! Publikus üzeneteid még követők híján is megjelennek másoknak, például a helyi idővonalon és a hashtageknél. Kezdd például azzal, hogy bemutatkozol: használd a #bemutatkozas vagy az #introductions hashtaget a tülködben.'
       full_handle: Teljes felhasználóneved
       full_handle_hint: Ez az, amit megadhatsz másoknak, hogy üzenhessenek neked vagy követhessenek téged más szerverekről.
