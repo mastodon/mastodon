@@ -3555,6 +3555,10 @@ a.status-card.compact:hover {
   }
 }
 
+.column-header__collapsible__extra + .column-header__setting-btn {
+  padding-top: 5px;
+}
+
 .column-header__permission-btn {
   display: inline;
   font-weight: inherit;
@@ -3565,10 +3569,15 @@ a.status-card.compact:hover {
   float: right;
 
   .column-header__setting-btn {
-    padding: 0 10px;
+    padding: 5px;
+
+    &:first-child {
+      padding-right: 7px;
+    }
 
     &:last-child {
-      padding-right: 0;
+      padding-left: 7px;
+      margin-left: 5px;
     }
   }
 }
