@@ -40,7 +40,7 @@ module Omniauthable
     end
 
     def create_for_oauth(auth)
-      # Check if the user exists with provided email. If no email was provided, 
+      # Check if the user exists with provided email. If no email was provided,
       # we assign a temporary email and ask the user to verify it on
       # the next step via Auth::SetupController.show
 
