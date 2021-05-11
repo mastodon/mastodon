@@ -141,8 +141,8 @@ class ColumnHeader extends React.PureComponent {
     ];
 
     if (multiColumn) {
-      collapsedContent.push(moveButtons);
       collapsedContent.push(pinButton);
+      collapsedContent.push(moveButtons);
     }
 
     if (children || (multiColumn && this.props.onPin)) {
