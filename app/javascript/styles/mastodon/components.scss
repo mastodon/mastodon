@@ -2822,7 +2822,7 @@ a.account__display-name {
   transition: background-color 0.2s ease;
 }
 
-.react-toggle:hover:not(.react-toggle--disabled) .react-toggle-track {
+.react-toggle:is(:hover, :focus-within):not(.react-toggle--disabled) .react-toggle-track {
   background-color: darken($ui-base-color, 10%);
 }
 
@@ -2830,7 +2830,7 @@ a.account__display-name {
   background-color: $ui-highlight-color;
 }
 
-.react-toggle--checked:hover:not(.react-toggle--disabled) .react-toggle-track {
+.react-toggle--checked:is(:hover, :focus-within):not(.react-toggle--disabled) .react-toggle-track {
   background-color: lighten($ui-highlight-color, 10%);
 }
 
@@ -3548,7 +3548,8 @@ a.status-card.compact:hover {
 }
 
 .column-header__setting-btn {
-  &:hover {
+  &:hover,
+  &:focus {
     color: $darker-text-color;
     text-decoration: underline;
   }
