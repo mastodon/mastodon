@@ -674,7 +674,7 @@ ja:
         title: メディア
       no_media: メディアなし
       no_status_selected: 何も選択されていないため、変更されていません
-      title: トゥート一覧
+      title: 投稿一覧
       with_media: メディアあり
     system_checks:
       database_schema_check:
@@ -696,7 +696,7 @@ ja:
       reviewed: 審査済み
       title: ハッシュタグ
       trending_right_now: 現在のトレンド
-      unique_uses_today: "本日 %{count} 人がトゥートに使用"
+      unique_uses_today: "本日 %{count} 人が投稿に使用"
       unreviewed: 未審査
       updated_msg: ハッシュタグ設定が更新されました
     title: 管理
@@ -879,7 +879,7 @@ ja:
     archive_takeout:
       date: 日時
       download: ダウンロード
-      hint_html: <strong>トゥートとメディア</strong>のアーカイブをリクエストできます。 データはActivityPub形式で、対応しているソフトウェアで読み込むことができます。7日毎にアーカイブをリクエストできます。
+      hint_html: <strong>投稿本文とメディア</strong>のアーカイブをリクエストできます。 データはActivityPub形式で、対応しているソフトウェアで読み込むことができます。7日毎にアーカイブをリクエストできます。
       in_progress: 準備中...
       request: アーカイブをリクエスト
       size: 容量
@@ -1045,7 +1045,7 @@ ja:
         other: "新しい%{count}件の通知 \U0001F418"
       title: 不在の間に…
     favourite:
-      body: '%{name} さんにお気に入り登録された、あなたのトゥートがあります:'
+      body: '%{name} さんにお気に入り登録された、あなたの投稿があります:'
       subject: "%{name} さんにお気に入りに登録されました"
       title: 新たなお気に入り登録
     follow:
@@ -1065,7 +1065,7 @@ ja:
     poll:
       subject: '%{name}  さんの投票が終了しました'
     reblog:
-      body: '%{name} さんにブーストされた、あなたのトゥートがあります:'
+      body: '%{name} さんにブーストされた、あなたの投稿があります:'
       subject: "%{name} さんにブーストされました"
       title: 新たなブースト
     status:
@@ -1232,14 +1232,14 @@ ja:
     disallowed_hashtags:
       other: '許可されていないハッシュタグが含まれています: %{tags}'
     errors:
-      in_reply_not_found: あなたが返信しようとしているトゥートは存在しないようです。
+      in_reply_not_found: あなたが返信しようとしている投稿は存在しないようです。
     language_detection: 自動検出
     open_in_web: Webで開く
     over_character_limit: 上限は %{max}文字までです
     pin_errors:
-      limit: 固定できるトゥート数の上限に達しました
-      ownership: 他人のトゥートを固定することはできません
-      private: 非公開のトゥートを固定することはできません
+      limit: 固定できる投稿数の上限に達しました
+      ownership: 他人の投稿を固定することはできません
+      private: 非公開の投稿を固定することはできません
       reblog: ブーストを固定することはできません
     poll:
       total_people:
@@ -1262,7 +1262,7 @@ ja:
       unlisted: 未収載
       unlisted_long: 誰でも見ることができますが、公開タイムラインには表示されません
   stream_entries:
-    pinned: 固定されたトゥート
+    pinned: 固定された投稿
     reblogged: さんがブースト
     sensitive_content: 閲覧注意
   tags:
@@ -1388,7 +1388,7 @@ ja:
       explanation:
         disable: あなたのアカウントはログインが禁止され使用できなくなりました。しかしアカウントのデータはそのまま残っています。
         sensitive: あなたのアップロードしたメディアファイルとリンク先のメディアは、閲覧注意として扱われます。
-        silence: あなたのアカウントは制限されましたがそのまま使用できます。ただし既にフォローしている人はあなたのトゥートを見ることができますが、様々な公開タイムラインには表示されない場合があります。また他のユーザーは今後も手動であなたをフォローすることができます。
+        silence: あなたのアカウントは制限されましたがそのまま使用できます。ただし既にフォローしている人はあなたの投稿を見ることができますが、様々な公開タイムラインには表示されない場合があります。また他のユーザーは今後も手動であなたをフォローすることができます。
         suspend: あなたのアカウントは使用できなくなりプロフィールやその他データにアクセスできなくなりました。アカウントが完全に削除されるまではログインしてデータのエクスポートをリクエストできます。証拠隠滅を防ぐため一部のデータは削除されず残ります。
       get_in_touch: このメールに返信することで %{instance} のスタッフと連絡を取ることができます。
       review_server_policies: サーバーのポリシーを確認
