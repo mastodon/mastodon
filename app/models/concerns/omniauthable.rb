@@ -50,8 +50,6 @@ module Omniauthable
       email_is_verified = auth.info.verified || auth.info.verified_email || auth.info.email_verified || assume_verified
       email             = auth.info.verified_email || auth.info.email
 
-      puts "HERE"
-      puts auth.info.email_verified
       user = User.find_by(email: email) if email_is_verified
 
       return user unless user.nil?
