@@ -4,7 +4,6 @@ class Auth::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   skip_before_action :verify_authenticity_token
 
   def self.provides_callback_for(provider)
-
     define_method provider do
       @user = User.find_for_oauth(request.env['omniauth.auth'], current_user)
 
@@ -23,7 +22,7 @@ class Auth::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   end
 
   def after_sign_in_path_for(resource)
-    if resource.email_verified?
+    if resource.email_present?
       root_path
     else
       auth_setup_path(missing_email: '1')

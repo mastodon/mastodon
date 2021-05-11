@@ -13,7 +13,7 @@ module Omniauthable
       Devise.omniauth_configs.keys
     end
 
-    def email_verified?
+    def email_present?
       email && email !~ TEMP_EMAIL_REGEX
     end
   end
@@ -40,9 +40,8 @@ module Omniauthable
     end
 
     def create_for_oauth(auth)
-      # Check if the user exists with provided email if the provider gives us a
-      # verified email.  If no verified email was provided or the user already
-      # exists, we assign a temporary email and ask the user to verify it on
+      # Check if the user exists with provided email. If no email was provided, 
+      # we assign a temporary email and ask the user to verify it on
       # the next step via Auth::SetupController.show
 
       strategy          = Devise.omniauth_configs[auth.provider.to_sym].strategy
@@ -91,7 +90,7 @@ module Omniauthable
     def ensure_valid_username(starting_username)
       starting_username = starting_username.split('@')[0]
       temp_username = starting_username.match(/\A[a-z0-9_]+\z/i) ? starting_username : starting_username.gsub(/[^a-z0-9_]+/i, '')
-      validated_username = temp_username.truncate(30, :omission => "")
+      validated_username = temp_username.truncate(30, omission: '')
       validated_username
     end
   end
