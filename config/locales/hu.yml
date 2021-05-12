@@ -190,8 +190,8 @@ hu:
       search: Keresés
       search_same_email_domain: Felhasználók ugyanezzel az email domainnel
       search_same_ip: Más felhasználók ugyanezzel az IP-vel
-      sensitive: Érzékeny
-      sensitized: érzékenynek jelölve
+      sensitive: Kényes
+      sensitized: kényesnek jelölve
       shared_inbox_url: Megosztott bejövő üzenetek URL
       show:
         created_reports: Létrehozott jelentések
@@ -206,7 +206,7 @@ hu:
       time_in_queue: Várakozás a sorban %{time}
       title: Fiókok
       unconfirmed_email: Nem megerősített e-mail
-      undo_sensitized: Érzékenynek jelölés visszavonása
+      undo_sensitized: Kényesnek jelölés visszavonása
       undo_silenced: Némítás visszavonása
       undo_suspension: Felfüggesztés visszavonása
       unsilenced_msg: A %{username} fiók korlátozásait sikeresen levettük
@@ -250,11 +250,11 @@ hu:
         reopen_report: Jelentés újranyitása
         reset_password_user: Jelszó visszaállítása
         resolve_report: Jelentés megoldása
-        sensitive_account: A fiókodban minden média érzékenynek jelölése
+        sensitive_account: A fiókodban minden média kényesnek jelölése
         silence_account: Fiók némítása
         suspend_account: Fiók felfüggesztése
         unassigned_report: Jelentés hozzárendelésének megszüntetése
-        unsensitive_account: A fiókodban minden média érzékenyként jelölésének törlése
+        unsensitive_account: A fiókodban minden média kényesként jelölésének törlése
         unsilence_account: Fiók némításának feloldása
         unsuspend_account: Fiók felfüggesztésének feloldása
         update_announcement: Közlemény frissítése
@@ -293,11 +293,11 @@ hu:
         reopen_report_html: "%{name} újranyitotta a %{target} bejelentést"
         reset_password_user_html: "%{name} visszaállította %{target} felhasználó jelszavát"
         resolve_report_html: "%{name} megoldotta a %{target} bejelentést"
-        sensitive_account_html: "%{name} érzékenynek jelölte %{target} médiatartalmát"
+        sensitive_account_html: "%{name} kényesnek jelölte %{target} médiatartalmát"
         silence_account_html: "%{name} lenémította %{target} felhasználói fiókját"
         suspend_account_html: "%{name} felfüggesztette %{target} felhasználói fiókját"
         unassigned_report_html: "%{name} törölte a %{target} bejelentés hozzárendelését"
-        unsensitive_account_html: "%{name} levette az érzékenyknek jelölést %{target} médiatartalmáról"
+        unsensitive_account_html: "%{name} levette a kényesnek jelölést %{target} médiatartalmáról"
         unsilence_account_html: "%{name} feloldotta a némítást %{target} felhasználói fiókján"
         unsuspend_account_html: "%{name} feloldotta %{target} felhasználói fiókjának felfüggesztését"
         update_announcement_html: "%{name} frissítette a %{target} közleményt"
@@ -612,8 +612,8 @@ hu:
         desc_html: Domainek, amelyekkel ez a szerver kapcsolatban áll
         title: Szerverek listájának közzététele, melyekkel ez a szerver kapcsolatban áll
       preview_sensitive_media:
-        desc_html: Más weboldalakon linkelt tartalmaink előnézetében mindenképp benne lesz egy bélyegkép még akkor is, ha a médiát érzékenynek jelölték meg
-        title: Érzékeny média mutatása OpenGraph előnézetben
+        desc_html: Más weboldalakon linkelt tartalmaink előnézetében mindenképp benne lesz egy bélyegkép még akkor is, ha a médiát kényesnek jelölték meg
+        title: Kényes média mutatása OpenGraph előnézetben
       profile_directory:
         desc_html: Lehetővé teszi, hogy a felhasználóinkat megtalálják
         title: Profil adatbázis engedélyezése
@@ -675,8 +675,8 @@ hu:
       back_to_account: Vissza a fiók oldalára
       batch:
         delete: Törlés
-        nsfw_off: Érzékenynek jelölés törlése
-        nsfw_on: Megjelölés érzékeny tartalomként
+        nsfw_off: Kényesnek jelölés törlése
+        nsfw_on: Megjelölés kényes tartalomként
       deleted: Törölve
       failed_to_execute: Végrehajtás sikertelen
       media:
@@ -743,7 +743,7 @@ hu:
       body: A Mastodont önkéntesek fordítják.
       guide_link: https://crowdin.com/project/mastodon
       guide_link_text: Bárki közreműködhet.
-    sensitive_content: Érzékeny tartalom
+    sensitive_content: Kényes tartalom
     toot_layout: Bejegyzések elrendezése
   application_mailer:
     notification_preferences: E-mail beállítások módosítása
@@ -1283,7 +1283,7 @@ hu:
   stream_entries:
     pinned: Kitűzött bejegyzés
     reblogged: megtolta
-    sensitive_content: Érzékeny tartalom
+    sensitive_content: Kényes tartalom
   tags:
     does_not_match_previous_name: nem illeszkedik az előző névvel
   terms:
@@ -1406,7 +1406,7 @@ hu:
     warning:
       explanation:
         disable: A fiókod befagyasztott állapotban megtartja minden adatát, de feloldásig nem csinálhatsz vele semmit.
-        sensitive: A feltöltött és hivatkozott médiatartalmaidat érzékenyként kezeljük.
+        sensitive: A feltöltött és hivatkozott médiatartalmaidat kényesként kezeljük.
         silence: A fiókodat így is használhatod, de csak a követőid láthatják a bejegyzéseidet ezen a szerveren, valamint kimaradhatsz a nyilvános idővonalakról is. Ugyanakkor ettől még mások manuálisan bekövethetnek.
         suspend: Többé nem használhatod a fiókodat, a profilod és más adataid többé nem elérhetőek. Még be tudsz jelentkezni, hogy lementsd az adataidat addig, amíg azokat teljesen le nem töröljük, bár néhány adatot megtartunk, hogy a jövőben ne tudd elkerülni a felfüggesztést.
       get_in_touch: Válaszolhatsz erre az emailre, hogy kapcsolatba lépj a %{instance} csapatával.
@@ -1415,13 +1415,13 @@ hu:
       subject:
         disable: A fiókodat %{acct} befagyasztották
         none: Figyelmeztetés a %{acct} fióknak
-        sensitive: A %{acct} fiókod médiatartalmait érzékenynek jelölték
+        sensitive: A %{acct} fiókod médiatartalmait kényesnek jelölték
         silence: A fiókodat %{acct} korlátozták
         suspend: A fiókodat %{acct} felfüggesztették
       title:
         disable: Befagyasztott fiók
         none: Figyelem
-        sensitive: Médiatartalmadat érzékenynek jelölték
+        sensitive: Médiatartalmadat kényesnek jelölték
         silence: Lekorlátozott fiók
         suspend: Felfüggesztett fiók
     welcome:
