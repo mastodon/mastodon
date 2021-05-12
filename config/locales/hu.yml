@@ -190,8 +190,8 @@ hu:
       search: Keresés
       search_same_email_domain: Felhasználók ugyanezzel az email domainnel
       search_same_ip: Más felhasználók ugyanezzel az IP-vel
-      sensitive: Szenzitív
-      sensitized: szenzitívnek jelölve
+      sensitive: Érzékeny
+      sensitized: érzékenynek jelölve
       shared_inbox_url: Megosztott bejövő üzenetek URL
       show:
         created_reports: Létrehozott jelentések
@@ -206,7 +206,7 @@ hu:
       time_in_queue: Várakozás a sorban %{time}
       title: Fiókok
       unconfirmed_email: Nem megerősített e-mail
-      undo_sensitized: Szenzitív jelölés levétele
+      undo_sensitized: Érzékenynek jelölés visszavonása
       undo_silenced: Némítás visszavonása
       undo_suspension: Felfüggesztés visszavonása
       unsilenced_msg: A %{username} fiók korlátozásait sikeresen levettük
@@ -250,11 +250,11 @@ hu:
         reopen_report: Jelentés újranyitása
         reset_password_user: Jelszó visszaállítása
         resolve_report: Jelentés megoldása
-        sensitive_account: A fiókodban minden média szenzitívnek jelölése
+        sensitive_account: A fiókodban minden média érzékenynek jelölése
         silence_account: Fiók némítása
         suspend_account: Fiók felfüggesztése
         unassigned_report: Jelentés hozzárendelésének megszüntetése
-        unsensitive_account: A fiókodban minden média szenzitív állapotának törlése
+        unsensitive_account: A fiókodban minden média érzékenyként jelölésének törlése
         unsilence_account: Fiók némításának feloldása
         unsuspend_account: Fiók felfüggesztésének feloldása
         update_announcement: Közlemény frissítése
@@ -293,11 +293,11 @@ hu:
         reopen_report_html: "%{name} újranyitotta a %{target} bejelentést"
         reset_password_user_html: "%{name} visszaállította %{target} felhasználó jelszavát"
         resolve_report_html: "%{name} megoldotta a %{target} bejelentést"
-        sensitive_account_html: "%{name} szenzitívnek jelölte %{target} médiatartalmát"
+        sensitive_account_html: "%{name} érzékenynek jelölte %{target} médiatartalmát"
         silence_account_html: "%{name} lenémította %{target} felhasználói fiókját"
         suspend_account_html: "%{name} felfüggesztette %{target} felhasználói fiókját"
         unassigned_report_html: "%{name} törölte a %{target} bejelentés hozzárendelését"
-        unsensitive_account_html: "%{name} levette a szenzitív jelölést %{target} médiatartalmáról"
+        unsensitive_account_html: "%{name} levette az érzékenyknek jelölést %{target} médiatartalmáról"
         unsilence_account_html: "%{name} feloldotta a némítást %{target} felhasználói fiókján"
         unsuspend_account_html: "%{name} feloldotta %{target} felhasználói fiókjának felfüggesztését"
         update_announcement_html: "%{name} frissítette a %{target} közleményt"
@@ -612,8 +612,8 @@ hu:
         desc_html: Domainek, amelyekkel ez a szerver kapcsolatban áll
         title: Szerverek listájának közzététele, melyekkel ez a szerver kapcsolatban áll
       preview_sensitive_media:
-        desc_html: Más weboldalakon linkelt tartalmaink előnézetében mindenképp benne lesz egy bélyegkép még akkor is, ha a médiát szenzitívnek jelölték meg
-        title: Szenzitív média mutatása OpenGraph előnézetben
+        desc_html: Más weboldalakon linkelt tartalmaink előnézetében mindenképp benne lesz egy bélyegkép még akkor is, ha a médiát érzékenynek jelölték meg
+        title: Érzékeny média mutatása OpenGraph előnézetben
       profile_directory:
         desc_html: Lehetővé teszi, hogy a felhasználóinkat megtalálják
         title: Profil adatbázis engedélyezése
@@ -743,7 +743,7 @@ hu:
       body: A Mastodont önkéntesek fordítják.
       guide_link: https://crowdin.com/project/mastodon
       guide_link_text: Bárki közreműködhet.
-    sensitive_content: Szenzitív tartalom
+    sensitive_content: Érzékeny tartalom
     toot_layout: Bejegyzések elrendezése
   application_mailer:
     notification_preferences: E-mail beállítások módosítása
@@ -1159,7 +1159,7 @@ hu:
       proceed: Jelöljük kedvencnek
       prompt: 'Ezt a bejegyzést szeretnéd kedvencnek jelölni:'
     reblog:
-      proceed: Megtolás
+      proceed: Tovább a megtoláshoz
       prompt: 'Ezt a bejegyzést szeretnéd megtolni:'
     reply:
       proceed: Válaszadás
@@ -1283,7 +1283,7 @@ hu:
   stream_entries:
     pinned: Kitűzött bejegyzés
     reblogged: megtolta
-    sensitive_content: Szenzitív tartalom
+    sensitive_content: Érzékeny tartalom
   tags:
     does_not_match_previous_name: nem illeszkedik az előző névvel
   terms:
@@ -1406,9 +1406,9 @@ hu:
     warning:
       explanation:
         disable: A fiókod befagyasztott állapotban megtartja minden adatát, de feloldásig nem csinálhatsz vele semmit.
-        sensitive: A feltöltött és hivatkozott médiatartalmaidat szenzitívként kezeljük.
+        sensitive: A feltöltött és hivatkozott médiatartalmaidat érzékenyként kezeljük.
         silence: A fiókodat így is használhatod, de csak a követőid láthatják a bejegyzéseidet ezen a szerveren, valamint kimaradhatsz a nyilvános idővonalakról is. Ugyanakkor ettől még mások manuálisan bekövethetnek.
-        suspend: A fiókodat felfüggesztették, így minden tülköd és feltöltött fájlod menthetetlenül elveszett erről a szerverről és minden olyanról is, ahol voltak követőid.
+        suspend: Többé nem használhatod a fiókodat, a profilod és más adataid többé nem elérhetőek. Még be tudsz jelentkezni, hogy lementsd az adataidat addig, amíg azokat teljesen le nem töröljük, bár néhány adatot megtartunk, hogy a jövőben ne tudd elkerülni a felfüggesztést.
       get_in_touch: Válaszolhatsz erre az emailre, hogy kapcsolatba lépj a %{instance} csapatával.
       review_server_policies: Szerver szabályzat átnézése
       statuses: 'Különösen hozzá:'
@@ -1421,12 +1421,12 @@ hu:
       title:
         disable: Befagyasztott fiók
         none: Figyelem
-        sensitive: Médiatartalmadat szenzitívnek jelölték
+        sensitive: Médiatartalmadat érzékenynek jelölték
         silence: Lekorlátozott fiók
         suspend: Felfüggesztett fiók
     welcome:
       edit_profile_action: Készítsd el profilod
-      edit_profile_step: 'Itt tudod egyedivé tenni a profilod: feltölthetsz profil- és borítóképet, megváltoztathatod a megjelenített neved és így tovább. Ha jóvá szeretnéd hagyni követőidet, mielőtt láthatják a tülkjeid, itt tudod a fiókodat zárttá tenni.'
+      edit_profile_step: 'Itt tudod egyedivé tenni a profilod: feltölthetsz profil- és borítóképet, megváltoztathatod a megjelenített neved és így tovább. Ha jóvá szeretnéd hagyni követőidet, mielőtt követhetnek, itt tudod a fiókodat zárttá tenni.'
       explanation: Néhány tipp a kezdeti lépésekhez
       final_action: Kezdj bejegyzéseket írni
       final_step: 'Kezdj tülkölni! Nyilvános üzeneteid még követők híján is megjelennek másoknak, például a helyi idővonalon és a hashtageknél. Kezdd azzal, hogy bemutatkozol a #bemutatkozas vagy az #introductions hashtag használatával.'
@@ -1435,7 +1435,7 @@ hu:
       review_preferences_action: Beállítások módosítása
       review_preferences_step: Tekintsd át a beállításaidat, például hogy milyen értesítéseket kérsz e-mailben, vagy hogy alapértelmezettként mi legyen a bejegyzéseid láthatósága. Ha nem vagy szédülős alkat, GIF-ek automatikus lejátszását is engedélyezheted.
       subject: Üdvözöl a Mastodon
-      tip_federated_timeline: A nyilvános idővonal a Mastodon ütőere, ahol minden tülkölés összefolyik. Nem teljes ugyan, mert csak azokat az embereket fogod látni, akiket a szervered többi felhasználója közül valaki követ.
+      tip_federated_timeline: A föderációs idővonal a Mastodon hálózat ütőere. Nem teljes, mivel csak azokat az embereket fogod látni, akiket a szervered többi felhasználója közül valaki már követ.
       tip_following: Alapértelmezettként szervered adminisztrátorait követed. Látogasd meg a helyi és a nyilvános idővonalat, hogy más érdekes emberekre is rátalálj.
       tip_local_timeline: A helyi idővonal a saját szervered (%{instance}) ütőere. Ezek a kedves emberek itt mind a szomszédaid!
       tip_mobile_webapp: Ha a böngésződ lehetővé teszi, hogy a kezdőképernyődhöz add a Mastodont, még értesítéseket is fogsz kapni, akárcsak egy igazi alkalmazás esetében!
