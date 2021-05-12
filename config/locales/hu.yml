@@ -1252,12 +1252,12 @@ hu:
       in_reply_not_found: Már nem létezik az a bejegyzés, melyre válaszolni szeretnél.
     language_detection: Nyelv automatikus felismerése
     open_in_web: Megnyitás a weben
-    over_character_limit: Túllépted a maximális %{max} karakteres keretet
+    over_character_limit: túllépted a maximális %{max} karakteres keretet
     pin_errors:
       limit: Elérted a kitűzhető bejegyzések maximális számát
       ownership: Nem tűzheted ki valaki más bejegyzését
       private: Nem nyilvános bejegyzéseket nem tűzhetsz ki
-      reblog: Megtolt tülköt nem tudsz kitűzni
+      reblog: Megtolt bejegyzést nem tudsz kitűzni
     poll:
       total_people:
         one: "%{count} személy"
@@ -1275,9 +1275,9 @@ hu:
     visibilities:
       direct: Közvetlen
       private: Csak követőknek
-      private_long: A tülk csak követőidnek jelenik meg
+      private_long: Csak a követőidnek jelenik meg
       public: Nyilvános
-      public_long: Bárki láthatja a tülköt
+      public_long: Bárki láthatja
       unlisted: Listázatlan
       unlisted_long: Mindenki látja, de a nyilvános idővonalakon nem jelenik meg
   stream_entries:
@@ -1407,7 +1407,7 @@ hu:
       explanation:
         disable: A fiókod befagyasztott állapotban megtartja minden adatát, de feloldásig nem csinálhatsz vele semmit.
         sensitive: A feltöltött és hivatkozott médiatartalmaidat szenzitívként kezeljük.
-        silence: A fiókod korlátozott állapotában csak a követőid láthatják a tülkjeidet, valamint nem kerülsz rá nyilvános idővonalakra. Ugyanakkor mások manuálisan még követhetnek.
+        silence: A fiókodat így is használhatod, de csak a követőid láthatják a bejegyzéseidet ezen a szerveren, valamint kimaradhatsz a nyilvános idővonalakról is. Ugyanakkor ettől még mások manuálisan bekövethetnek.
         suspend: A fiókodat felfüggesztették, így minden tülköd és feltöltött fájlod menthetetlenül elveszett erről a szerverről és minden olyanról is, ahol voltak követőid.
       get_in_touch: Válaszolhatsz erre az emailre, hogy kapcsolatba lépj a %{instance} csapatával.
       review_server_policies: Szerver szabályzat átnézése
@@ -1415,7 +1415,7 @@ hu:
       subject:
         disable: A fiókodat %{acct} befagyasztották
         none: Figyelmeztetés a %{acct} fióknak
-        sensitive: A %{acct} fiókod médiatartalmait szenzitívnek jelölték
+        sensitive: A %{acct} fiókod médiatartalmait érzékenynek jelölték
         silence: A fiókodat %{acct} korlátozták
         suspend: A fiókodat %{acct} felfüggesztették
       title:
