@@ -16,7 +16,7 @@ hu:
         types:
           disable: A felhasználó nem fogja tudni használni a fiókját, de ettől még nem töröljük azt vagy rejtjük el a tartalmait.
           none: Ezt használd ahhoz, hogy a felhasználónak figyelmeztetést küldj bármilyen más következmény nélkül.
-          sensitive: Ennek a felhasználónak minden médiatartalmát jelöljük meg érzékenynek.
+          sensitive: Ennek a felhasználónak minden médiatartalmát jelöljük meg kényesként.
           silence: Megakadályozzuk, hogy ez a felhasználó nyilvános láthatóságú bejegyzést tegyen közzé, elrejtjük a bejegyzéseit és a róla szóló értesítéseket azok elől, akik nem közvetlen követői.
           suspend: Minden interakciót megakadályozunk ezzel a fiókkal és töröljük a tartalmát. 30 napon belül még visszacsinálható.
         warning_preset_id: Opcionális. A figyelmeztetés végére saját szöveget is írhatsz
@@ -46,8 +46,8 @@ hu:
         phrase: Illeszkedni fog kis/nagybetű függetlenül, és tartalom-figyelmeztetések mögött is
         scopes: Mely API-kat érheti el az alkalmazás. Ha felső szintű hatáskört választasz, nem kell egyesével kiválasztanod az alatta lévőeket.
         setting_aggregate_reblogs: Ne mutassunk megtolásokat olyan bejegyzésekhez, melyeket nemrég toltak meg (csak új megtolásokra lép életbe)
-        setting_default_sensitive: Az érzékeny médiát alapesetben elrejtjük, de egyetlen kattintással előhozható
-        setting_display_media_default: Érzékeny tartalomnak jelölt média elrejtése
+        setting_default_sensitive: A kényes médiatartalmat alapesetben elrejtjük, de egyetlen kattintással előhozható
+        setting_display_media_default: Kényes tartalomnak jelölt média elrejtése
         setting_display_media_hide_all: Mindig minden média elrejtése
         setting_display_media_show_all: Mindig mutasd a szenzitív tartalomként jelölt médiát
         setting_hide_network: Nem látszik majd a profilodon, kik követnek és te kiket követsz
@@ -107,7 +107,7 @@ hu:
         types:
           disable: Letiltás
           none: Ne csinálj semmit
-          sensitive: Érzékeny
+          sensitive: Kényes
           silence: Elnémítás
           suspend: Fiók felfüggesztése, adatok törlése visszaállíthatatlanul
         warning_preset_id: Figyelmeztetés használata
@@ -151,7 +151,7 @@ hu:
         setting_crop_images: Képek 16x9-re vágása nem kinyitott bejegyzéseknél
         setting_default_language: Bejegyzések nyelve
         setting_default_privacy: Bejegyzések láthatósága
-        setting_default_sensitive: Minden médiafájl megjelölése érzékenyként
+        setting_default_sensitive: Minden médiafájl megjelölése kényesként
         setting_delete_modal: Megerősítés kérése bejegyzés törlése előtt
         setting_disable_swiping: Elhúzás művelet kikapcsolása
         setting_display_media: Média megjelenítése
