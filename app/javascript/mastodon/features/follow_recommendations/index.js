@@ -76,7 +76,7 @@ class FollowRecommendations extends ImmutablePureComponent {
 
     return (
       <Column>
-        <div className='scrollable'>
+        <div className='scrollable follow-recommendations-container'>
           <div className='column-title'>
             <Logo />
             <h3><FormattedMessage id='follow_recommendations.heading' defaultMessage="Follow people you'd like to see posts from! Here are some suggestions." /></h3>

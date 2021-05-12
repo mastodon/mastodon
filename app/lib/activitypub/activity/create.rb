@@ -46,7 +46,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     return reject_payload! if unsupported_object_type? || invalid_origin?(object_uri) || tombstone_exists? || !related_to_local_activity?
 
     lock_or_fail("create:#{object_uri}") do
-      return if delete_arrived_first?(object_uri) || poll_vote? # rubocop:disable Lint/NonLocalExitFromIterator
+      return if delete_arrived_first?(object_uri) || poll_vote?
 
       @status = find_existing_status
 

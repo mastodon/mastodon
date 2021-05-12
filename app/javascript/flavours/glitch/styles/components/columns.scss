@@ -823,13 +823,20 @@
   }
 }
 
+.follow-recommendations-container {
+  display: flex;
+  flex-direction: column;
+}
+
 .column-actions {
   display: flex;
-  align-items: center;
+  align-items: start;
   justify-content: center;
   padding: 40px;
   padding-top: 40px;
   padding-bottom: 200px;
+  flex-grow: 1;
+  position: relative;
 
   &__background {
     position: absolute;
