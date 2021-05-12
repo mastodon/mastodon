@@ -675,16 +675,16 @@ hu:
       back_to_account: Vissza a fiók oldalára
       batch:
         delete: Törlés
-        nsfw_off: Szenzitív megjelölés törlése
-        nsfw_on: Megjelölés szenzitív tartalomként
+        nsfw_off: Érzékenynek jelölés törlése
+        nsfw_on: Megjelölés érzékeny tartalomként
       deleted: Törölve
       failed_to_execute: Végrehajtás sikertelen
       media:
         title: Média
-      no_media: Nem található médiafájl
+      no_media: Nincs média
       no_status_selected: Nem változtattunk meg egy bejegyzést sem, mert semmi sem volt kiválasztva
       title: Fiók bejegyzései
-      with_media: Médiafájlokkal
+      with_media: Médiával
     system_checks:
       database_schema_check:
         message_html: Vannak elintézetlen adatbázis migrációink. Kérlek, futtasd őket, hogy biztosítsd, az alkalmazás megfelelően működik
@@ -797,9 +797,9 @@ hu:
       title: Beállítás
     status:
       account_status: Fiók állapota
-      confirming: Várakozás a visszaigazolásra.
+      confirming: Várakozás az e-mailes visszaigazolásra.
       functional: A fiókod teljesen működőképes.
-      pending: A jelentkezésed engedélyezésre vár. Ez eltarthat egy ideig. Kapsz egy e-mailt, ha az elbírálás megtörtént.
+      pending: A jelentkezésed engedélyezésre vár. Ez eltarthat egy ideig. Kapsz egy e-mailt, ha a kérelmedet jóváhagyták.
       redirecting_to: A fiókod inaktív, mert jelenleg ide %{acct} van átirányítva.
     too_fast: Túl gyorsan küldted el az űrlapot, próbáld később.
     trouble_logging_in: Problémád van a bejelentkezéssel?
@@ -1167,7 +1167,7 @@ hu:
   scheduled_statuses:
     over_daily_limit: Túllépted az időzített bejegyzésekre vonatkozó %{limit} db-os napi limitet
     over_total_limit: Túllépted az időzített bejegyzésekre vonatkozó %{limit} db-os limitet
-    too_soon: Az időzítéshez jövőbeni időpont kell
+    too_soon: Az időzített időpontnak a jövőben kell lennie
   sessions:
     activity: Legutóbbi tevékenység
     browser: Böngésző
@@ -1234,7 +1234,7 @@ hu:
   statuses:
     attached:
       audio:
-        one: "%{count} audio"
+        one: "%{count} hang"
         other: "%{count} hang"
       description: 'Csatolva: %{attached}'
       image:
