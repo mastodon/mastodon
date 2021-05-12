@@ -383,7 +383,7 @@ export default function compose(state = initialState, action) {
       map.set('privacy', privacyPreference(action.status.get('visibility'), state.get('default_privacy')));
       map.update(
         'advanced_options',
-        map => map.merge(new ImmutableMap({ do_not_federate: action.status.get('local_only') }))
+        map => map.merge(new ImmutableMap({ do_not_federate: !!action.status.get('local_only') }))
       );
       map.set('focusDate', new Date());
       map.set('caretPosition', null);
@@ -501,7 +501,7 @@ export default function compose(state = initialState, action) {
   case COMPOSE_DOODLE_SET:
     return state.mergeIn(['doodle'], action.options);
   case REDRAFT:
-    const do_not_federate = action.status.get('local_only', false);
+    const do_not_federate = !!action.status.get('local_only');
     let text = action.raw_text || unescapeHTML(expandMentions(action.status));
     if (do_not_federate) text = text.replace(/ ?👁\ufe0f?\u200b?$/, '');
     return state.withMutations(map => {
