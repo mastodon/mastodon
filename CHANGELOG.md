@@ -6,7 +6,7 @@ All notable changes to this project will be documented in this file.
 ## Unreleased
 ### Added
 
-- **Add follow recommendations for onboarding** ([Gargron](https://github.com/tootsuite/mastodon/pull/15945), [Gargron](https://github.com/tootsuite/mastodon/pull/16161), [Gargron](https://github.com/tootsuite/mastodon/pull/16060), [Gargron](https://github.com/tootsuite/mastodon/pull/16077), [Gargron](https://github.com/tootsuite/mastodon/pull/16078), [Gargron](https://github.com/tootsuite/mastodon/pull/16160), [Gargron](https://github.com/tootsuite/mastodon/pull/16079), [noellabo](https://github.com/tootsuite/mastodon/pull/16044), [noellabo](https://github.com/tootsuite/mastodon/pull/16045), [Gargron](https://github.com/tootsuite/mastodon/pull/16152), [Gargron](https://github.com/tootsuite/mastodon/pull/16153), [ClearlyClaire](https://github.com/tootsuite/mastodon/pull/16082), [ClearlyClaire](https://github.com/tootsuite/mastodon/pull/16173), [ClearlyClaire](https://github.com/tootsuite/mastodon/pull/16159))
+- **Add follow recommendations for onboarding** ([Gargron](https://github.com/tootsuite/mastodon/pull/15945), [Gargron](https://github.com/tootsuite/mastodon/pull/16161), [Gargron](https://github.com/tootsuite/mastodon/pull/16060), [Gargron](https://github.com/tootsuite/mastodon/pull/16077), [Gargron](https://github.com/tootsuite/mastodon/pull/16078), [Gargron](https://github.com/tootsuite/mastodon/pull/16160), [Gargron](https://github.com/tootsuite/mastodon/pull/16079), [noellabo](https://github.com/tootsuite/mastodon/pull/16044), [noellabo](https://github.com/tootsuite/mastodon/pull/16045), [Gargron](https://github.com/tootsuite/mastodon/pull/16152), [Gargron](https://github.com/tootsuite/mastodon/pull/16153), [ClearlyClaire](https://github.com/tootsuite/mastodon/pull/16082), [ClearlyClaire](https://github.com/tootsuite/mastodon/pull/16173), [ClearlyClaire](https://github.com/tootsuite/mastodon/pull/16159), [ClearlyClaire](https://github.com/tootsuite/mastodon/pull/16189))
   - Tutorial on first web UI launch has been replaced with follow suggestions
   - Follow suggestions take user locale into account and are a mix of accounts most followed by currently active local users, and accounts that wrote the most shared/favourited posts in the last 30 days
   - Only accounts that have opted-in to being discoverable from their profile settings, and that do not require follow requests, will be suggested
@@ -23,7 +23,7 @@ All notable changes to this project will be documented in this file.
   - The dashboard will now warn you if you some Sidekiq queues are not being processed, if you have not defined any server rules, or if you forgot to run database migrations from the latest Mastodon upgrade
 - Add inline description of moderation actions in admin UI ([ClearlyClaire](https://github.com/tootsuite/mastodon/pull/15792))
 - Add "recommended" label to activity/peers API toggles in admin UI ([Gargron](https://github.com/tootsuite/mastodon/pull/16081))
-- Add joined date to profiles in web UI ([Gargron](https://github.com/tootsuite/mastodon/pull/16169))
+- Add joined date to profiles in web UI ([Gargron](https://github.com/tootsuite/mastodon/pull/16169), [rinsuki](https://github.com/tootsuite/mastodon/pull/16186))
 - Add transition to media modal background in web UI ([mkljczk](https://github.com/tootsuite/mastodon/pull/15843))
 - Add option to opt-out of unread notification markers in web UI ([ClearlyClaire](https://github.com/tootsuite/mastodon/pull/15842))
 - Add borders to 📱, 🚲, and 📲 emojis in web UI ([ClearlyClaire](https://github.com/tootsuite/mastodon/pull/15794), [ClearlyClaire](https://github.com/tootsuite/mastodon/pull/16035))
@@ -44,6 +44,7 @@ All notable changes to this project will be documented in this file.
   - This param allows an app to control from whom notifications should be delivered as push notifications to the app
 - Add `details` to error response for `POST /api/v1/accounts` in REST API ([Gargron](https://github.com/tootsuite/mastodon/pull/15803))
   - This attribute allows an app to display more helpful information to the user about why the sign-up did not succeed
+- Add `SIDEKIQ_REDIS_URL` and related environment variables to optionally use a separate Redis server for Sidekiq ([noellabo](https://github.com/tootsuite/mastodon/pull/16188))
 
 ### Changed
 
@@ -120,6 +121,7 @@ All notable changes to this project will be documented in this file.
 - Fix trying to fetch key from empty URI when verifying HTTP signature ([Gargron](https://github.com/tootsuite/mastodon/pull/16100))
 - Fix `tootctl maintenance fix-duplicates` failures ([ClearlyClaire](https://github.com/tootsuite/mastodon/pull/15923), [ClearlyClaire](https://github.com/tootsuite/mastodon/pull/15515))
 - Fix error when removing status caused by race condition ([Gargron](https://github.com/tootsuite/mastodon/pull/16099))
+- Fix blocking someone not clearing up list feeds ([ClearlyClaire](https://github.com/tootsuite/mastodon/pull/16205))
 - Fix misspelled URLs character counting ([ClearlyClaire](https://github.com/tootsuite/mastodon/pull/15382))
 - Fix Sidekiq hanging forever due to a Resolv bug in Ruby 2.7.3 ([ClearlyClaire](https://github.com/tootsuite/mastodon/pull/16157))
 - Fix edge case where follow limit interferes with accepting a follow ([ClearlyClaire](https://github.com/tootsuite/mastodon/pull/16098))

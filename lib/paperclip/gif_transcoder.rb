@@ -108,9 +108,11 @@ module Paperclip
 
       final_file = Paperclip::Transcoder.make(file, options, attachment)
 
-      attachment.instance.file_file_name    = File.basename(attachment.instance.file_file_name, '.*') + '.mp4'
-      attachment.instance.file_content_type = 'video/mp4'
-      attachment.instance.type              = MediaAttachment.types[:gifv]
+      if options[:style] == :original
+        attachment.instance.file_file_name    = File.basename(attachment.instance.file_file_name, '.*') + '.mp4'
+        attachment.instance.file_content_type = 'video/mp4'
+        attachment.instance.type              = MediaAttachment.types[:gifv]
+      end
 
       final_file
     end
@@ -118,7 +120,7 @@ module Paperclip
     private
 
     def needs_convert?
-      options[:style] == :original && GifReader.animated?(file.path)
+      GifReader.animated?(file.path)
     end
   end
 end
