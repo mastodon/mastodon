@@ -637,7 +637,7 @@ hu:
           open: Bárki regisztrálhat
         title: Regisztrációs mód
       show_known_fediverse_at_about_page:
-        desc_html: Ha aktív, az előnézetben minden tülk megjelenik a velünk kapcsolatban álló szerverekről, egyébként csak helyi tülköket mutatunk.
+        desc_html: Ha le van tiltva, a nyilvános, főoldalról elérhető idővonalon csak helyi tartalmak jelennek meg
         title: Mutassuk az általunk ismert föderációt az idővonal előnézetben
       show_staff_badge:
         desc_html: Stáb-jelvény megjelenítése a felhasználó oldalán
@@ -687,7 +687,7 @@ hu:
       with_media: Médiával
     system_checks:
       database_schema_check:
-        message_html: Vannak elintézetlen adatbázis migrációink. Kérlek, futtasd őket, hogy biztosítsd, az alkalmazás megfelelően működik
+        message_html: Vannak esedékes adatbázis migrációink. Kérlek, futtasd őket, hogy biztosítsd, hogy az alkalmazás megfelelően működjön
       rules_check:
         action: Szerver szabályok menedzselése
         message_html: Még nem definiáltál egy szerver szabályt sem.
@@ -1007,7 +1007,7 @@ hu:
     validations:
       images_and_video: Nem csatolhatsz videót olyan bejegyzéshez, amelyhez már csatoltál képet
       not_ready: Nem lehet olyan fájlt csatolni, melynek még nem fejeződött be a feldolgozása. Próbáld kicsit később!
-      too_many: Maximum négy fájlt csatolhatsz a tülkhöz
+      too_many: Maximum négy fájlt csatolhatsz
   migrations:
     acct: Az új fiók felhasznalonev@domain formátumban
     cancel: Átirányítás törlése
@@ -1292,10 +1292,10 @@ hu:
       <h3 id="collect">Milyen adatokat gyűjtünk?</h3>
 
       <ul>
-      <li><em>Alapvető fiókadatok</em>: Ha regisztrálsz ezen a szerveren, kérhetünk tőled felhasználói nevet, e-mail címet és jelszót is. Megadhatsz magadról egyéb profil információt, megjelenítendő nevet, bemutatkozást, feltölthetsz profilképet, háttérképet. A felhasználói neved, megjelenítendő neved, bemutatkozásod, profil képed és háttér képed mindig nyilvánosak mindenki számára.</li>
-      <li><em>Tülkök (posztok), követések, más nyilvános adatok</em>: Az általad követett emberek listája nyilvános. Ugyanez igaz a te követőidre is. Ha küldesz egy üzenetet, ennek az idejét eltároljuk azzal az alkalmazással együtt, melyből az üzenetet küldted. Az üzenetek tartalmazhatnak média csatolmányt, képeket, videókat. A nyilvános tülkök (posztok) bárki számára elérhetőek. Ha egy tülköt kiemelsz a profilodon, az is nyilvánossá válik. Amikor a tülkjeidet a követőidnek továbbítjuk, a poszt más szerverekre is átkerülhet, melyeken így másolatok képződhetnek. Ha törölsz tülköket, ez is továbbítódik a követőid felé. A megtolás (reblog) és kedvencnek jelölés művelete is mindig nyilvános.</li>
-      <li><em>Közvetlen üzenetek és csak követőknek szánt tülkök</em>: Minden tülk a szerveren tárolódik. A csak követőknek szánt tülköket a követőidnek és az ezekben megemlítetteknek továbbítjuk, míg a közvetlen üzeneteket kizárólag az ebben megemlítettek kapják. Néhány esetben ez azt jelenti, hogy ezek más szerverekre is továbbítódnak, így ott másolatok keletkezhetnek. Jóhiszeműen feltételezzük, hogy más szerverek is hasonlóan járnak el, mikor ezeket az üzeneteket csak az arra jogosultaknak mutatják meg. Ugyanakkor ez nem feltétlenül igaz. Érdemes ezért megvizsgálni azokat a szervereket, melyeken követőid vannak. Be tudod állítani, hogy minden követési kérelmet jóvá kelljen hagynod. <em>Tartsd észben, hogy a szerver üzemeltetői láthatják az üzeneteket</em>, illetve a fogadók képernyőképet, másolatot készíthetnek belőlük, vagy újraoszthatják őket. <em>Ne ossz meg veszélyes információt a Mastodon hálózaton!</em></li>
-      <li><em>IP címek és egyéb metaadatok</em>: Bejelentkezéskor letároljuk a használt böngésződet és IP címedet. Minden rögzített munkamenet elérhető és visszavonható a beállítások között. Az utoljára rögzített IP címet maximum 12 hónapig tároljuk. Egyéb szerver logokat is megtarthatunk, melyek HTTP kérésenként is tárolhatják az IP címedet.</li>
+      <li><em>Alapvető fiókadatok</em>: Ha regisztrálsz ezen a szerveren, kérhetünk tőled felhasználói nevet, e-mail címet és jelszót is. Megadhatsz magadról egyéb profil információt, megjelenítendő nevet, bemutatkozást, feltölthetsz profilképet, háttérképet. A felhasználói neved, megjelenítendő neved, bemutatkozásod, profil képed és háttér képed mindig nyilvános mindenki számára.</li>
+      <li><em>Bejegyzések, követések, más nyilvános adatok</em>: Az általad követett emberek listája nyilvános. Ugyanez igaz a te követőidre is. Ha küldesz egy üzenetet, ennek az idejét eltároljuk azzal az alkalmazással együtt, melyből az üzenetet küldted. Az üzenetek tartalmazhatnak média csatolmányt, képeket, videókat. A nyilvános és nem listázott bejegyzések bárki számára elérhetőek. Ha egy bejegyzést kiemelsz a profilodon, az is nyilvánossá válik. Amikor a bejegyzéseidet a követőidnek továbbítjuk, a bejegyzés más szerverekre is átkerülhet, melyeken így másolatok keletkezhetnek. Ha törölsz egy bejegyzést, ez is továbbítódik a követőid felé. A megtolás (reblog) és kedvencnek jelölés művelete is mindig nyilvános.</li>
+      <li><em>Közvetlen és csak követőknek szánt bejegyzések</em>: Minden bejegyzés a szerveren tárolódik. A csak követőknek szánt bejegyzéseidet a követőidnek és az ezekben megemlítetteknek továbbítjuk, míg a közvetlen üzeneteket kizárólag az ebben megemlítettek kapják. Néhány esetben ez azt jelenti, hogy ezek más szerverekre is továbbítódnak, így ott másolatok keletkezhetnek. Jóhiszeműen feltételezzük, hogy más szerverek is hasonlóan járnak el, mikor ezeket az üzeneteket csak az arra jogosultaknak mutatják meg. Ugyanakkor ez nem feltétlenül igaz. Érdemes ezért megvizsgálni azokat a szervereket, melyeken követőid vannak. Be tudod állítani, hogy minden követési kérelmet jóvá kelljen hagynod. <em>Tartsd észben, hogy a ennek és más szervereknek az üzemeltetői láthatják az ilyen üzeneteket</em>, illetve a fogadók képernyőképet, másolatot készíthetnek belőlük, vagy újraoszthatják őket. <em>Ne ossz meg semmilyen veszélyes információt a Mastodon hálózaton!</em></li>
+      <li><em>IP címek és egyéb metaadatok</em>: Bejelentkezéskor eltároljuk a használt böngésződet és IP címedet. Minden rögzített munkamenet elérhető és visszavonható a beállítások között. Az utoljára rögzített IP címet maximum 12 hónapig tároljuk. Egyéb szerver logokat is megtarthatunk, melyek HTTP kérésenként is tárolhatják az IP címedet.</li>
       </ul>
 
       <hr class="spacer" />
@@ -1327,7 +1327,7 @@ hu:
       <li>A regisztrált felhasználókat IP címeikkel összekötő adatokat maximum 12 hónapig tartsuk meg.</li>
       </ul>
 
-      <p>Kérhetsz mentést minden tárolt adatodról, tülködről, média fájlodról, profil- és háttér képedről.</p>
+      <p>Kérhetsz mentést minden tárolt adatodról, bejegyzésedről, média fájlodról, profil- és háttér képedről.</p>
 
       <p>Bármikor visszaállíthatatlanul le is törölheted a fiókodat.</p>
 
@@ -1337,7 +1337,7 @@ hu:
 
       <p>Igen. A sütik pici állományok, melyeket az oldalunk a böngésződön keresztül a háttértáradra rak, ha engedélyezed ezt. Ezek a sütik teszik lehetővé, hogy az oldalunk felismerje a böngésződet, és ha regisztráltál, hozzá tudjon kötni a fiókodhoz.</p>
 
-      <p>Arra is használjuk a sütiket, hogy elmenthessük a beállításaidat egy következő látogatás céljából.</p>
+      <p>Arra is használjuk a sütiket, hogy elmenthessük a beállításaidat egy következő látogatás alkalmára.</p>
 
       <hr class="spacer" />
 
@@ -1345,9 +1345,9 @@ hu:
 
       <p>Az azonosításodra alkalmazható adatokat nem adjuk el, nem kereskedünk vele, nem adjuk át külső szereplőnek. Ez nem foglalja magában azon harmadik személyeket, aki az üzemeltetésben, felhasználók kiszolgálásban és a tevékenységünkben segítenek, de csak addig, amíg ők is elfogadják, hogy ezeket az adatokat bizalmasan kezelik. Akkor is átadhatjuk ezeket az adatokat, ha erre hitünk szerint törvény kötelez minket, ha betartatjuk az oldalunk szabályzatát vagy megvédjük a saját vagy mások személyiségi jogait, tulajdonát, biztonságát.</p>
 
-      <p>A nyilvános tartalmaidat más hálózatban lévő szerverek letölthetik. A nyilvános és csak követőknek szánt tülkjeid olyan szerverekre is elküldődnek, melyeken követőid vannak. A közvetlen üzenetek is átkerülnek a címzettek szervereire, ha ők más szerveren regisztráltak.</p>
+      <p>A nyilvános tartalmaidat más hálózatban lévő szerverek letölthetik. A nyilvános és csak követőknek szánt bejegyzéseid olyan szerverekre is elküldődnek, melyeken követőid vannak. A közvetlen üzenetek is átkerülnek a címzettek szervereire, ha ők más szerveren regisztráltak.</p>
 
-      <p>Ha felhatalmazol egy alkalmazást, hogy használja a fiókodat, a jóváhagyott hatásköröktől függően ez elérheti a nyilvános profiladataidat, a követettjeid listáját, a követőidet, listáidat, tülkjeidet és kedvenceidet is. Ezek az alkalmazások ugyanakkor sosem érhetik el a jelszavadat és e-mail címedet.</p>
+      <p>Ha felhatalmazol egy alkalmazást, hogy használja a fiókodat, a jóváhagyott hatásköröktől függően ez elérheti a nyilvános profiladataidat, a követettjeid listáját, a követőidet, listáidat, bejegyzéseidet és kedvenceidet is. Ezek az alkalmazások ugyanakkor sosem érhetik el a jelszavadat és e-mail címedet.</p>
 
       <hr class="spacer" />
 
