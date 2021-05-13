@@ -205,7 +205,7 @@ zh-CN:
       undo_sensitized: 去除敏感内容标记
       undo_silenced: 解除隐藏
       undo_suspension: 解除封禁
-      unsilenced_msg: 成功解除 %{username} 的帐号限制
+      unsilenced_msg: 成功解除对 %{username} 的隐藏
       unsubscribe: 取消订阅
       unsuspended_msg: 已成功取消封禁 %{username} 的帐号
       username: 用户名
@@ -398,10 +398,10 @@ zh-CN:
         create: 添加屏蔽
         hint: 域名屏蔽不会阻止该域名下的帐户进入本站的数据库，但是会对来自这个域名的帐户自动进行预先设置的管理操作。
         severity:
-          desc_html: "选择<strong>自动隐藏</strong>会将该域名下帐户发送的嘟文设置为仅关注者可见；选择<strong>自动封禁</strong>会将该域名下帐户发送的嘟文、媒体文件以及个人资料数据从本实例上删除；如果你只是想拒绝接收来自该域名的任何媒体文件，请选择<strong>无</strong>。"
+          desc_html: "选择<strong>隐藏</strong>会将该域名下帐户发送的嘟文设置为仅关注者可见；选择<strong>封禁</strong>会将该域名下帐户发送的嘟文、媒体文件以及个人资料数据从本实例上删除；如果你只是想拒绝接收来自该域名的任何媒体文件，请选择<strong>无</strong>。"
           noop: 无
-          silence: 自动隐藏
-          suspend: 自动封禁
+          silence: 隐藏
+          suspend: 封禁
         title: 新增域名屏蔽
       obfuscate: 混淆域名
       obfuscate_hint: 如果启用了域名列表公开限制，就部分混淆列表中的域名
@@ -888,7 +888,7 @@ zh-CN:
     csv: CSV
     domain_blocks: 域名屏蔽
     lists: 列表
-    mutes: 隐藏的用户
+    mutes: 你静音的用户
     storage: 媒体文件存储
   featured_tags:
     add_new: 添加新条目
@@ -1032,7 +1032,7 @@ zh-CN:
     title: 运营
   move_handler:
     carry_blocks_over_text: 这个用户迁移自你屏蔽过的 %{acct}
-    carry_mutes_over_text: 这个用户迁移自你隐藏过的 %{acct}
+    carry_mutes_over_text: 这个用户迁移自你静音过的 %{acct}
     copy_account_note_text: '这个用户迁移自 %{acct}，你曾为其添加备注：'
   notification_mailer:
     digest:
@@ -1388,7 +1388,7 @@ zh-CN:
       explanation:
         disable: 虽然您的帐户被冻结，您的帐户数据仍然完整；但是您无法在解锁前执行任何操作。
         sensitive: 你上传的媒体文件和媒体链接将被视作敏感内容。
-        silence: 当您的帐户受限时，只有已经关注过你的人才会这台服务器上看到你的嘟文，并且您会被排除在各种公共列表之外。但是，其他人仍然可以手动关注你。
+        silence: 当你的帐户被隐藏时，只有已经关注你的人才会这台服务器上看到你的嘟文，并且你会被排除在各种公共列表之外。但是，其他人仍然可以手动关注你。
         suspend: 您的帐户已被封禁，所有的嘟文和您上传的媒体文件都已经从该服务器和您的关注者的服务器上删除并且不可恢复。
       get_in_touch: 您可回复该邮件以联系 %{instance} 的工作人员。
       review_server_policies: 查看服务器政策
@@ -1397,13 +1397,13 @@ zh-CN:
         disable: 您的帐户 %{acct} 已被冻结
         none: 对 %{acct} 的警告
         sensitive: 你的帐号 %{acct} 所发布的媒体已被标记为敏感内容
-        silence: 您的帐户 %{acct} 已经受限
+        silence: 你的帐户 %{acct} 已被隐藏
         suspend: 您的帐户 %{acct} 已被封禁。
       title:
         disable: 账号已冻结
         none: 警示
         sensitive: 你的媒体被标记为敏感内容
-        silence: 帐户受限
+        silence: 帐户被隐藏
         suspend: 账号被封禁
     welcome:
       edit_profile_action: 设置个人资料
