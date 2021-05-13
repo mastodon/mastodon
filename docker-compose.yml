@@ -6,14 +6,18 @@ services:
     image: postgres:9.6-alpine
     shm_size: 256mb
     env_file: .env.production
+    command: ["postgres"]
+    entrypoint:
+      - bash
+      - -c
+      - "POSTGRES_USER=$$DB_USER POSTGRES_DB=$$DB_NAME docker-entrypoint.sh $$@"
+      - "--"
     environment:
-      POSTGRES_USER: ${DB_USER}
-      POSTGRES_DB: ${DB_NAME}
       POSTGRES_HOST_AUTH_METHOD: trust
     networks:
       - internal_network
     healthcheck:
-      test: ["CMD", "pg_isready", "-U", "${DB_NAME}"]
+      test: ["CMD", "bash", "-c", "pg_isready -U $$DB_USER $$DB_NAME"]
     volumes:
       - ./postgres:/var/lib/postgresql/data
 
