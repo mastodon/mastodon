@@ -26,7 +26,7 @@ zh-CN:
     learn_more: 了解详情
     privacy_policy: 隐私政策
     rules: 服务器规则
-    rules_html: '如果您想要在此Mastodon服务器上拥有一个账户，您必须遵守相应的规则，摘要如下：'
+    rules_html: '如果您想要在此 Mastodon 服务器上拥有一个账户，您必须遵守相应的规则，摘要如下：'
     see_whats_happening: 看一看现在在发生什么
     server_stats: '服务器统计数据：'
     source_code: 源代码
@@ -446,7 +446,7 @@ zh-CN:
       status: 嘟文
       suppress: 禁用推荐关注
       suppressed: 已禁用
-      title: 推荐关注
+      title: 关注推荐
       unsuppress: 恢复推荐关注
     instances:
       back_to_all: 全部
@@ -566,7 +566,7 @@ zh-CN:
     rules:
       add_new: 添加规则
       delete: 删除
-      description_html: 虽然大多数人都声称已经阅读并同意服务条款，但通常人们只有在出现问题后才会阅读。所以写一个简单的要点列表吧，能让大家一目了然。每条规则要尽量简单明了，但也别分出太多条目来。
+      description_html: 虽然大多数人都声称已经阅读并同意服务条款，但通常人们只有在出现问题后才会阅读。<strong>所以写一个简单的要点列表吧，能让大家一目了然。</strong>试着让每条规则尽量简单明了，但也别分出太多条目来。
       edit: 编辑规则
       empty: 尚未定义服务器规则。
       title: 实例规则
@@ -683,7 +683,7 @@ zh-CN:
         action: 管理服务器规则
         message_html: 你没有定义任何服务器规则。
       sidekiq_process_check:
-        message_html: 没有运行 %{value} 队列的 Sidekiq 进程。请检查您的 Sidekiq 配置
+        message_html: '%{value} 队列未运行任何 Sidekiq 进程。请检查你的 Sidekiq 配置'
     tags:
       accounts_today: 今日活跃用户
       accounts_week: 本周活跃用户
