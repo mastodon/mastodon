@@ -9,11 +9,11 @@ hu:
       inactive: A fiókod még nincs aktiválva.
       invalid: Helytelen %{authentication_keys} vagy jelszó.
       last_attempt: Már csak egy próbálkozásod maradt, mielőtt a fiókodat zároljuk.
-      locked: Fiókod le van zárva.
+      locked: A fiókodat zároltuk.
       not_found_in_database: Helytelen %{authentication_keys} vagy jelszó.
-      pending: Fiókod még engedélyezés alatt áll.
-      timeout: A munkamenet lejárt. Jelentkezz be újra a folytatáshoz.
-      unauthenticated: A folytatás előtt be kell jelentkezned.
+      pending: A fiókod még felülvizsgálat alatt áll.
+      timeout: A munkameneted lejárt. Kérjük, a folytatáshoz jelentkezz be újra.
+      unauthenticated: A folytatás előtt be kell jelentkezned vagy regisztrálnod kell.
       unconfirmed: A folytatás előtt meg kell erősítened az e-mail címed.
     mailer:
       confirmation_instructions:
@@ -22,11 +22,11 @@ hu:
         explanation: Ezzel az e-mail címmel kezdeményeztek regisztrációt a(z) %{host} oldalon. Csak egy kattintás, és a felhasználói fiókodat aktiváljuk. Ha a regisztrációt nem te kezdeményezted, kérjük tekintsd ezt az e-mailt tárgytalannak.
         explanation_when_pending: Ezzel az e-mail címmel meghívást kértél a(z) %{host} oldalon. Ahogy megerősíted az e-mail címed, átnézzük a jelentkezésedet. Ennek ideje alatt nem tudsz belépni. Ha a jelentkezésed elutasítjuk, az adataidat töröljük, más teendőd nincs. Ha a kérelmet nem te kezdeményezted, kérjük tekintsd ezt az e-mailt tárgytalannak.
         extra_html: Kérjük tekintsd át a <a href="%{terms_path}">a szerver szabályzatát</a> és <a href="%{policy_path}">a felhasználási feltételeket</a>.
-        subject: 'Mastodon: Megerősítési lépések %{instance}'
+        subject: 'Mastodon: Megerősítési lépések ehhez az instancehez: %{instance}'
         title: E-mail cím megerősítése
       email_changed:
-        explanation: 'A fiókodhoz tartozó e-mail címet az alábbira módosítod:'
-        extra: Ha nem te kezdeményezted a fiókodhoz tartozó e-mail cím módosítását, valaki hozzáférhetett a fiókodhoz. Legjobb, ha azonnal megváltoztatod a jelszavadat; ha nem férsz hozzá a fiókodhoz, vedd fel a kapcsolatot a szervered adminisztrátorával.
+        explanation: 'A fiókodhoz tartozó e-mail cím a következőre változik:'
+        extra: Ha nem változtattad meg az e-mail címed, akkor valószínű, hogy valaki hozzáférhetett a fiókodhoz. Kérjük, azonnal változtasd meg a jelszavadat, vagy lépj kapcsolatba a szerver adminisztrátorával, ha ki vagy zárva a fiókodból.
         subject: 'Mastodon: a fiókodhoz tartozó e-mail címet megváltoztattuk'
         title: Új e-mail cím
       password_change:
@@ -46,11 +46,11 @@ hu:
         subject: 'Mastodon: Jelszó visszaállítási lépések'
         title: Jelszó visszaállítása
       two_factor_disabled:
-        explanation: A fiókod kétlépcsős hitelesítését letiltottuk. A bejelentkezés most már csak e-mail címmel és jelszóval lehetséges.
-        subject: 'Kétlépcsős azonosítás letiltva'
-        title: Kétlépcsős hitelesítés engedélyezve
+        explanation: A fiókod kétfaktoros hitelesítését kikapcsoltuk. A bejelentkezés mostantól csak az e-mail cím és a jelszó használatával lesz lehetséges.
+        subject: 'Kétlépcsős azonosítás kikapcsolva'
+        title: Kétlépcsős hitelesítés kikapcsolva
       two_factor_enabled:
-        explanation: Kétlépcsős hitelesítés engedélyezve van a fiókodban. Bejelentkezéshez a párosított TOTP alkalmazás által létrehozott tokenre lesz szükség.
+        explanation: A kétlépcsős hitelesítést engedélyeztük a fiókodban. A bejelentkezéshez a párosított TOTP alkalmazás által generált tokenre lesz szükség.
         subject: 'Kétlépcsős azonosítás engedélyezve'
         title: Kétlépcsős hitelesítés engedélyezve
       two_factor_recovery_codes_changed:
