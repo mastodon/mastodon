@@ -701,7 +701,7 @@ cs:
         title: Média
       no_media: Žádná média
       no_status_selected: Nebyly změněny žádné příspěvky, neboť žádné nebyly vybrány
-      title: Tooty účtu
+      title: Příspěvky účtu
       with_media: S médii
     system_checks:
       database_schema_check:
@@ -769,7 +769,7 @@ cs:
     settings: 'Změnit předvolby e-mailů: %{link}'
     view: 'Zobrazit:'
     view_profile: Zobrazit profil
-    view_status: Zobrazit toot
+    view_status: Zobrazit příspěvek
   applications:
     created: Aplikace úspěšně vytvořena
     destroyed: Aplikace úspěšně smazána
@@ -906,7 +906,7 @@ cs:
     archive_takeout:
       date: Datum
       download: Stáhnout váš archiv
-      hint_html: Můžete si vyžádat archiv vašich <strong>tootů a nahraných médií</strong>. Exportovaná data budou ve formátu ActivityPub a budou čitelná kterýmkoliv kompatibilním softwarem. Archiv si můžete vyžádat každých 7 dní.
+      hint_html: Můžete si vyžádat archiv vašich <strong>příspěvků a nahraných médií</strong>. Exportovaná data budou ve formátu ActivityPub a budou čitelná kterýmkoliv kompatibilním softwarem. Archiv si můžete vyžádat každých 7 dní.
       in_progress: Kompiluji váš archiv…
       request: Vyžádat váš archiv
       size: Velikost
@@ -1027,7 +1027,7 @@ cs:
       limit: Dosáhli jste maximálního počtu seznamů
   media_attachments:
     validations:
-      images_and_video: K tootu, který již obsahuje obrázky, nelze připojit video
+      images_and_video: K příspěvku, který již obsahuje obrázky, nelze připojit video
       not_ready: Nelze připojit soubory před jejich zpracováním. Zkuste to znovu za chvíli.
       too_many: Nelze připojit více než 4 soubory
   migrations:
@@ -1084,8 +1084,8 @@ cs:
         other: "%{count} nových oznámení od vaší poslední návštěvy \U0001F418"
       title: Ve vaší nepřítomnosti…
     favourite:
-      body: 'Váš toot si oblíbil uživatel %{name}:'
-      subject: "Uživatel %{name} si oblíbil váš toot"
+      body: 'Váš příspěvek si oblíbil uživatel %{name}:'
+      subject: "Uživatel %{name} si oblíbil váš příspěvek"
       title: Nové oblíbení
     follow:
       body: "Uživatel %{name} vás nyní sleduje!"
@@ -1104,11 +1104,11 @@ cs:
     poll:
       subject: Anketa od %{name} skončila
     reblog:
-      body: 'Uživatel %{name} boostnul váš toot:'
-      subject: "Uživatel %{name} boostnul váš toot"
+      body: 'Uživatel %{name} boostnul váš příspěvek:'
+      subject: "Uživatel %{name} boostnul váš příspěvek"
       title: Nový boost
     status:
-      subject: "Nový toot od %{name}"
+      subject: "Nový příspěvek od %{name}"
   notifications:
     email_events: Události pro e-mailová oznámení
     email_events_hint: 'Vyberte události, pro které chcete dostávat oznámení:'
@@ -1183,16 +1183,16 @@ cs:
   remote_interaction:
     favourite:
       proceed: Pokračovat k oblíbení
-      prompt: 'Chcete si oblíbit tento toot:'
+      prompt: 'Chcete si oblíbit tento příspěvek:'
     reblog:
       proceed: Pokračovat k boostnutí
-      prompt: 'Chcete boostnout tento toot:'
+      prompt: 'Chcete boostnout tento příspěvek:'
     reply:
       proceed: Pokračovat k odpovědi
-      prompt: 'Chcete odpovědět na tento toot:'
+      prompt: 'Chcete odpovědět na tento příspěvek:'
   scheduled_statuses:
-    over_daily_limit: Překročili jste limit %{limit} tootů naplánovaných na tento den
-    over_total_limit: Překročili jste limit %{limit} naplánovaných tootů
+    over_daily_limit: Překročili jste limit %{limit} příspěvků naplánovaných na tento den
+    over_total_limit: Překročili jste limit %{limit} naplánovaných příspěvků
     too_soon: Plánované datum musí být v budoucnosti
   sessions:
     activity: Nejnovější aktivita
@@ -1288,9 +1288,9 @@ cs:
     open_in_web: Otevřít na webu
     over_character_limit: byl překročen limit %{max} znaků
     pin_errors:
-      limit: Už jste si připnuli maximální počet tootů
-      ownership: Nelze připnout toot někoho jiného
-      private: Neveřejné tooty nelze připnout
+      limit: Už jste si připnuli maximální počet příspěvků
+      ownership: Nelze připnout příspěvek někoho jiného
+      private: Neveřejné příspěvky nelze připnout
       reblog: Boosty nelze připnout
     poll:
       total_people:
@@ -1319,7 +1319,7 @@ cs:
       unlisted: Neuvedené
       unlisted_long: Uvidí kdokoliv, ale nebude zahrnut ve veřejných časových osách
   stream_entries:
-    pinned: Připnutý toot
+    pinned: Připnutý příspěvek
     reblogged: boostnul/a
     sensitive_content: Citlivý obsah
   tags:
@@ -1445,8 +1445,8 @@ cs:
       explanation:
         disable: Zatímco je váš účet zmrazen, zůstávají data vašeho účtu nedotčena. Dokud ale nebude odemčen, nemůžete vykonávat žádné akce.
         sensitive: Vámi nahrané a odkazované mediální soubory budou považovány za citlivé.
-        silence: Zatímco je váš účet omezen, mohou vaše tooty na tomto serveru vidět pouze lidé, kteří váš již sledují, a můžete být vyloučeni z různých veřejných seznamů. Ostatní vás však pořád mohou manuálně sledovat.
-        suspend: Váš účet byl pozastaven a všechny vaše tooty a nahrané mediální soubory byly nenávratně odstraněny z tohoto serveru a serverů, na kterých jste měli sledující.
+        silence: Zatímco je váš účet omezen, mohou vaše příspěvky na tomto serveru vidět pouze lidé, kteří váš již sledují, a můžete být vyloučeni z různých veřejných seznamů. Ostatní vás však pořád mohou manuálně sledovat.
+        suspend: Váš účet byl pozastaven a všechny vaše příspěvky a nahrané mediální soubory byly nenávratně odstraněny z tohoto serveru a serverů, na kterých jste měli sledující.
       get_in_touch: Můžete odpovědět na tento e-mail a spojit se s personálem serveru %{instance}.
       review_server_policies: Zkontrolujte pravidla serveru
       statuses: 'Konkrétně kvůli:'
