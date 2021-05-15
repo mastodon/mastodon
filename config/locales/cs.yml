@@ -1,6 +1,6 @@
 cs:
   about:
-    about_hashtag_html: 'Tohle jsou veřejné tooty označené hashtagem <strong>#%{hashtag}</strong>. Pokud máte účet kdekoliv ve fedivesmíru, můžete s nimi interagovat.'
+    about_hashtag_html: 'Tohle jsou veřejné příspěvky označené hashtagem <strong>#%{hashtag}</strong>. Pokud máte účet kdekoliv ve fedivesmíru, můžete s nimi interagovat.'
     about_mastodon_html: 'Sociální síť budoucnosti: žádné reklamy, žádné korporátní sledování, etický design a decentralizace! S Mastodonem vlastníte svoje data!'
     about_this: O tomto serveru
     active_count_after: aktivních
@@ -31,10 +31,10 @@ cs:
     server_stats: 'Statistika serveru:'
     source_code: Zdrojový kód
     status_count_after:
-      one: toot
-      few: tooty
-      many: tootů
-      other: tootů
+      one: příspěvek
+      few: příspěvky
+      many: příspěvků
+      other: příspěvků
     status_count_before: Kteří napsali
     tagline: Sledujte své přátele a objevujte nové
     terms: Podmínky používání
@@ -81,12 +81,12 @@ cs:
     pin_errors:
       following: Osobu, kterou chcete podpořit, už musíte sledovat
     posts:
-      one: Toot
-      few: Tooty
-      many: Tootů
-      other: Tootů
-    posts_tab_heading: Tooty
-    posts_with_replies: Tooty a odpovědi
+      one: Příspěvek
+      few: Příspěvky
+      many: Příspěvků
+      other: Příspěvků
+    posts_tab_heading: Příspěvky
+    posts_with_replies: Příspěvky a odpovědi
     roles:
       admin: Administrátor
       bot: Robot
@@ -206,7 +206,7 @@ cs:
         targeted_reports: Nahlášeni ostatními
       silence: Ztišit
       silenced: Uživatel ztišen
-      statuses: Tooty
+      statuses: Příspěvky
       subscribe: Odebírat
       suspended: Uživatel pozastaven
       suspension_irreversible: Data tohoto účtu byla nevratně smazána. Účet můžete obnovit, aby byl použitelný, ale nebudou obnovena žádná jeho dřívější data.
@@ -288,7 +288,7 @@ cs:
         destroy_domain_block_html: "Uživatel %{name} odblokoval doménu %{target}"
         destroy_email_domain_block_html: "Uživatel %{name} odebral e-mailovou doménu %{target} z černé listiny"
         destroy_ip_block_html: "%{name} odstranil pravidlo pro IP %{target}"
-        destroy_status_html: "Uživatel %{name} odstranil toot uživatele %{target}"
+        destroy_status_html: "Uživatel %{name} odstranil příspěvek uživatele %{target}"
         destroy_unavailable_domain_html: "%{name} obnovil doručování na doménu %{target}"
         disable_2fa_user_html: "Uživatel %{name} vypnul dvoufázové ověřování pro uživatele %{target}"
         disable_custom_emoji_html: "Uživatel %{name} zakázal emoji %{target}"
@@ -311,8 +311,8 @@ cs:
         update_announcement_html: "Uživatel %{name} aktualizoval oznámení %{target}"
         update_custom_emoji_html: "Uživatel %{name} aktualizoval emoji %{target}"
         update_domain_block_html: "%{name} aktualizoval blokaci domény %{target}"
-        update_status_html: "Uživatel %{name} aktualizoval toot uživatele %{target}"
-      deleted_status: "(smazaný toot)"
+        update_status_html: "Uživatel %{name} aktualizoval příspěvek uživatele %{target}"
+      deleted_status: "(smazaný příspěvek)"
       empty: Nebyly nalezeny žádné záznamy.
       filter_by_action: Filtrovat podle akce
       filter_by_user: Filtrovat podle uživatele
@@ -533,11 +533,11 @@ cs:
     relays:
       add_new: Přidat nový most
       delete: Smazat
-      description_html: <strong>Federovací most</strong> je přechodový server, který vyměňuje velká množství veřejných tootů mezi servery, které je z něj odebírají a publikují na něj. <strong>Může pomoci malým a středně velkým serverům objevovat obsah z fedivesmíru</strong>, což by jinak vyžadovalo, aby místní uživatelé manuálně sledovali jiné lidi na vzdálených serverech.
+      description_html: <strong>Federovací most</strong> je zprostředkující server, který vyměňuje velké objemy veřejných příspěvků mezi servery, které je z něj odebírají a publikují na něj. <strong>Může pomoci malým a středně velkým serverům objevovat obsah z fedivesmíru</strong>, což by jinak vyžadovalo, aby místní uživatelé ručně začali sledovat jiné lidi na vzdálených serverech.
       disable: Zakázat
       disabled: Zakázáno
       enable: Povolit
-      enable_hint: Po zapnutí začne váš server odebírat všechny veřejné tooty z tohoto mostu a odesílat na něj své vlastní veřejné tooty.
+      enable_hint: Po zapnutí začne váš server odebírat všechny veřejné příspěvky z tohoto mostu a odesílat na něj své vlastní veřejné příspěvky.
       enabled: Povoleno
       inbox_url: URL mostu
       pending: Čeká na souhlas mostu
@@ -599,7 +599,7 @@ cs:
       title: Pravidla serveru
     settings:
       activity_api_enabled:
-        desc_html: Počty lokálně publikovaných tootů, aktivních uživatelů a nových registrací, v týdenních intervalech
+        desc_html: Počty lokálně publikovaných příspěvků, aktivních uživatelů a nových registrací, v týdenních intervalech
         title: Publikovat hromadné statistiky o uživatelské aktivitě v API
       bootstrap_timeline_accounts:
         desc_html: Je-li uživatelských jmen více, oddělte je čárkami. Lze zadat pouze místní a odemčené účty. Je-li seznam prázdný, jsou výchozí hodnotou všichni místní administrátoři.
@@ -700,7 +700,7 @@ cs:
       media:
         title: Média
       no_media: Žádná média
-      no_status_selected: Nebyly změněny žádné tooty, neboť žádné nebyly vybrány
+      no_status_selected: Nebyly změněny žádné příspěvky, neboť žádné nebyly vybrány
       title: Tooty účtu
       with_media: S médii
     system_checks:
@@ -762,7 +762,7 @@ cs:
       guide_link: https://cs.crowdin.com/project/mastodon
       guide_link_text: Každý může pomoci.
     sensitive_content: Citlivý obsah
-    toot_layout: Rozložení tootů
+    toot_layout: Rozložení příspěvků
   application_mailer:
     notification_preferences: Změnit předvolby e-mailů
     salutation: "%{name},"
