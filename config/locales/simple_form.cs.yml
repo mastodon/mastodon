@@ -6,12 +6,12 @@ cs:
       account_migration:
         acct: Zadejte svůj účet, na který se chcete přesunout, ve formátu přezdívka@doména
       account_warning_preset:
-        text: Můžete používat syntaxi tootů, jako například URL, hashtagy a zmínky
+        text: Můžete použít syntax příspěvku, jako jsou URL, hashtagy nebo zmínky
         title: Nepovinné. Není viditelné pro příjemce
       admin_account_action:
-        include_statuses: Uživatel uvidí, které tooty způsobily moderátorskou akci nebo varování
+        include_statuses: Uživatel uvidí, které příspěvky způsobily moderátorskou akci nebo varování
         send_email_notification: Uživatel obdrží vysvětlení toho, co se stalo s jeho účtem
-        text_html: Volitelné. Můžete používat syntaxi tootů. Pro ušetření času si můžete <a href="%{path}">přidat předlohy pro varování</a>
+        text_html: Volitelné. Můžete používat syntax příspěvků. Pro ušetření času můžete <a href="%{path}">přidat předlohy varování</a>
         type_html: Vyberte, co chcete s účtem <strong>%{acct}</strong> udělat
         types:
           disable: Zabránit uživateli používat svůj účet, ale nemazat ani neskrývat jejich obsah.
@@ -25,7 +25,7 @@ cs:
         ends_at: Volitelné. Zveřejněné oznámení bude v uvedený čas skryto.
         scheduled_at: Pro okamžité zveřejnění ponechte prázdné
         starts_at: Volitelné. Jen pokud je oznámení vázáno na konkrétní časové období
-        text: Můžete použít stejnou syntax jako pro tooty. Myslete ale na to, že oznámení zabere uživatelům na obrazovce nějaký prostor.
+        text: Můžete použít syntax příspěvků. Mějte prosím na paměti, kolik prostoru oznámení zabere na obrazovce uživatele
       defaults:
         autofollow: Lidé, kteří se zaregistrují na základě pozvánky, vás budou automaticky sledovat
         avatar: PNG, GIF či JPG. Maximálně %{size}. Bude zmenšen na %{dimensions} px
@@ -197,9 +197,9 @@ cs:
       notification_emails:
         digest: Posílat e-maily s přehledem
         favourite: Někdo si oblíbil váš status
-        follow: Poslat e-mail, když vás někdo začne sledovat
-        follow_request: Poslat e-mail, když vás někdo požádá o sledování
-        mention: Poslat e-mail, když vás někdo zmíní
+        follow: Někdo vás začal sledovat
+        follow_request: Někdo požádal o možnost vás sledovat
+        mention: Někdo vás zmínil
         pending_account: Poslat e-mail, když je třeba posoudit nový účet
         reblog: Někdo boostnul váš status
         report: Poslat e-mail, je-li nahlášeno něco nového
