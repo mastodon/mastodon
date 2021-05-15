@@ -845,7 +845,7 @@ cs:
       invalid_signature: není platný podpis typu Ed25519
   date:
     formats:
-      default: "%-d. %b %Y"
+      default: "%d. %b %Y"
       with_month_name: "%d. %B %Y"
   datetime:
     distance_in_words:
@@ -1028,7 +1028,7 @@ cs:
   media_attachments:
     validations:
       images_and_video: K příspěvku, který již obsahuje obrázky, nelze připojit video
-      not_ready: Nelze připojit soubory před jejich zpracováním. Zkuste to znovu za chvíli.
+      not_ready: Nelze připojit soubory před jejich zpracováním. Zkuste to znovu za chvíli!
       too_many: Nelze připojit více než 4 soubory
   migrations:
     acct: Přesunuto na
@@ -1227,7 +1227,7 @@ cs:
       firefox_os: Firefox OS
       ios: iOS
       linux: Linux
-      mac: Mac
+      mac: macOS
       other: neznámá platforma
       windows: Windows
       windows_mobile: Windows Mobile
@@ -1481,7 +1481,7 @@ cs:
       title: Vítejte na palubě, %{name}!
   users:
     follow_limit_reached: Nemůžete sledovat více než %{limit} lidí
-    generic_access_help_html: Máte potíže s přístupem ke svému účtu? Napište nám o pomoc na %{email}.
+    generic_access_help_html: Máte potíže s přístupem ke svému účtu? Můžete nás kontaktovat pro pomoc na %{email}
     invalid_otp_token: Neplatný kód pro dvoufázové ověřování
     invalid_sign_in_token: Neplatný bezpečnostní kód
     otp_lost_help_html: Pokud jste ztratili přístup k oběma, spojte se s %{email}
