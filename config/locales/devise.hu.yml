@@ -1,14 +1,14 @@
 hu:
   devise:
     confirmations:
-      confirmed: Az e-mail címed sikeresen megerősítésre került.
-      send_instructions: Pár percen belül kapni fogsz egy e-mailt az e-mail címed megerősítéséhez szükséges lépésekről.
-      send_paranoid_instructions: Ha az e-mail címed létezik az adatbázisunkban, pár percen belül kapni fogsz egy e-mailt az e-mail címed megerősítéséhez szükséges lépésekről.
+      confirmed: Az e-mail címedet sikeresen megerősítettük.
+      send_instructions: Néhány percen belül kapni fogsz egy levelet az e-mail cím megerősítésére vonatkozó utasításokkal. Kérjük, ellenőrizd a spam mappádat, ha nem látod az e-mailt a beérkezett e-mailek közt.
+      send_paranoid_instructions: Ha az e-mail címed már szerepel az adatbázisunkban, néhány percen belül kapsz egy levelet az e-mail cím megerősítésére vonatkozó utasításokkal. Kérjük, ellenőrizd a spam mappád, ha nem látod az e-mailt.
     failure:
-      already_authenticated: Már bejelentkeztél.
-      inactive: Fiókodat még nem aktiválták.
+      already_authenticated: Már be van jelentkezve.
+      inactive: A fiókod még nincs aktiválva.
       invalid: Helytelen %{authentication_keys} vagy jelszó.
-      last_attempt: Már csak egy próbálkozásod maradt mielőtt a fiókodat lezárjuk.
+      last_attempt: Már csak egy próbálkozásod maradt, mielőtt a fiókodat zároljuk.
       locked: Fiókod le van zárva.
       not_found_in_database: Helytelen %{authentication_keys} vagy jelszó.
       pending: Fiókod még engedélyezés alatt áll.
