@@ -57,7 +57,7 @@ cs:
     user_count_before: Domov
     what_is_mastodon: Co je Mastodon?
   accounts:
-    choices_html: "Volby uživatele %{name}:"
+    choices_html: "Volby %{name}:"
     endorsements_hint: Z webového rozhraní můžete podpořit lidi, které sledujete. Ti se poté zobrazí zde.
     featured_tags_hint: Můžete vybrat konkrétní hashtagy, které se zobrazí zde.
     follow: Sledovat
@@ -72,12 +72,12 @@ cs:
     last_active: naposledy aktivní
     link_verified_on: Vlastnictví tohoto odkazu bylo zkontrolováno %{date}
     media: Média
-    moved_html: "%{name} se přesunul/a na %{new_profile_link}:"
+    moved_html: "%{name} se přesunul a na %{new_profile_link}:"
     network_hidden: Tato informace není k dispozici
     never_active: Nikdy
     nothing_here: Nic tu není!
     people_followed_by: Lidé, které sleduje %{name}
-    people_who_follow: Lidé, kteří sledují uživatele %{name}
+    people_who_follow: Lidé, kteří sledují %{name}
     pin_errors:
       following: Osobu, kterou chcete podpořit, už musíte sledovat
     posts:
@@ -141,7 +141,7 @@ cs:
       header: Záhlaví
       inbox_url: URL příchozí schránky
       invite_request_text: Důvody založení
-      invited_by: Pozván/a uživatelem
+      invited_by: Pozván uživatelem
       ip: IP adresa
       joined: Založen
       location:
@@ -196,7 +196,7 @@ cs:
         staff: Člen personálu
         user: Uživatel
       search: Hledat
-      search_same_email_domain: Ostatní uživatelé s e-mailem na stejné doméně
+      search_same_email_domain: Ostatní uživatelé se stejnou e-mailovou doménou
       search_same_ip: Další uživatelé se stejnou IP adresou
       sensitive: Citlivý
       sensitized: označen jako citlivý
@@ -235,7 +235,7 @@ cs:
         create_custom_emoji: Vytvořit vlastní emoji
         create_domain_allow: Povolit doménu
         create_domain_block: Zablokovat doménu
-        create_email_domain_block: Zablokovat e-maily na doméně
+        create_email_domain_block: Zablokovat e-mailovou doménu
         create_ip_block: Vytvořit IP pravidlo
         create_unavailable_domain: Vytvořit nedostupnou doménu
         demote_user: Snížit roli uživatele
@@ -243,7 +243,7 @@ cs:
         destroy_custom_emoji: Odstranit vlastní emoji
         destroy_domain_allow: Odstranit povolenou doménu
         destroy_domain_block: Odstranit blokování domény
-        destroy_email_domain_block: Odstranit blokování e-mailů na doméně
+        destroy_email_domain_block: Smazat blokaci e-mailové domény
         destroy_ip_block: Smazat IP pravidlo
         destroy_status: Odstranit Příspěvek
         destroy_unavailable_domain: Smazat nedostupnou doménu
@@ -453,7 +453,7 @@ cs:
       from_html: z domény %{domain}
       new:
         create: Přidat doménu
-        title: Nová položka pro černou listinu e-mailů
+        title: Blokovat novou e-mailovou doménu
       title: Blokované e-mailové domény
     follow_recommendations:
       description_html: "<strong>Doporučená sledování pomáhají novým uživatelům rychle najít zajímavý obsah</strong>. Pokud uživatel neinteragoval s ostatními natolik, aby mu byla vytvořena doporučená sledování na míru, jsou použity tyto účty. Jsou přepočítávány na denní bázi ze směsi účtů s největším nedávným zapojením a nejvyšším počtem místních sledovatelů pro daný jazyk."
@@ -1320,7 +1320,7 @@ cs:
       unlisted_long: Uvidí kdokoliv, ale nebude zahrnut ve veřejných časových osách
   stream_entries:
     pinned: Připnutý příspěvek
-    reblogged: boostnul/a
+    reblogged: boostnul
     sensitive_content: Citlivý obsah
   tags:
     does_not_match_previous_name: se neshoduje s předchozím názvem
