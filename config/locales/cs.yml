@@ -970,7 +970,7 @@ cs:
         invalid_token: Keybase tokeny jsou hashe podpisů a musí být dlouhé 66 hexadecimálních znaků
         verification_failed: Keybase nerozpoznává tento token jako podpis uživatele %{kb_username} na Keybase. Zkuste to prosím znovu z Keybase.
       wrong_user: Nelze vytvořit důkaz pro %{proving}, zatímco jste přihlášeni jako %{current}. Přihlaste se jako %{proving} a zkuste to znovu.
-    explanation_html: Zde můžete kryptograficky připojit vaše ostatní identity, například profil Keybase. To dovolí jiným lidem vám posílat šifrované zprávy a důvěřovat obsahu, který jim pošlete.
+    explanation_html: Zde můžete kryptograficky propojit další své identity z jiných platforem, jako například Keybase. To umožňuje jiným lidem poslat vám šifrované zprávy na těchto platformách a důvěřovat, že obsah, který jim posíláte, pochází od vás.
     i_am_html: Na %{service} jsem %{username}.
     identity: Identita
     inactive: Neaktivní
@@ -1037,7 +1037,7 @@ cs:
     cancelled_msg: Přesměrování bylo úspěšně zrušeno.
     errors:
       already_moved: je stejný účet, na který jste se již přesunuli
-      missing_also_known_as: neodkazuje na tento účet
+      missing_also_known_as: není aliasem tohoto účtu
       move_to_self: nemůže být aktuální účet
       not_found: nebyl nalezen
       on_cooldown: Probíhá období odpočinku
