@@ -372,7 +372,7 @@ cs:
       backlog: nevyřízené úlohy
       config: Konfigurace
       feature_deletions: Smazání účtů
-      feature_invites: Odkazy pozvánek
+      feature_invites: Zvací odkazy
       feature_profile_directory: Adresář profilů
       feature_registrations: Registrace
       feature_relay: Federovací most
@@ -655,8 +655,8 @@ cs:
           open: Kdokoliv se může registrovat
         title: Režim registrací
       show_known_fediverse_at_about_page:
-        desc_html: Je-li tohle vypnuto, bude veřejná časová osa, na kterou odkazuje hlavní stránka serveru, omezena pouze na místní obsah
-        title: Zobrazit na nepřihlášené stránce časové osy federovaný obsah
+        desc_html: Je-li vypnuto, bude veřejná časová osa, na kterou odkazuje hlavní stránka serveru, omezena pouze na místní obsah
+        title: Zahrnout federovaný obsah na neautentizované stránce veřejné časové osy
       show_staff_badge:
         desc_html: Zobrazit na stránce uživatele odznak člena personálu
         title: Zobrazit odznak personálu
@@ -1009,7 +1009,7 @@ cs:
       '604800': 1 týden
       '86400': 1 den
     expires_in_prompt: Nikdy
-    generate: Vygenerovat pozvánku
+    generate: Vygenerovat zvací odkaz
     invited_by: 'Pozval váš uživatel:'
     max_uses:
       one: 1 použití
@@ -1017,7 +1017,7 @@ cs:
       many: "%{count} použití"
       other: "%{count} použití"
     max_uses_prompt: Bez omezení
-    prompt: Vygenerujte a sdílejte s ostatními odkazy a umožněte jim přístup na tento server
+    prompt: Generujte a sdílejte s ostatními odkazy umožňující jim přístup na tento server
     table:
       expires_at: Vyprší
       uses: Použití
