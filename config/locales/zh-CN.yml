@@ -18,14 +18,14 @@ zh-CN:
     contact_unavailable: 未公开
     discover_users: 发现用户
     documentation: 文档
-    federation_hint_html: 在%{instance} 上拥有账号后，你可以关注任何 Mastodon 服务器或其他服务器上的人。
+    federation_hint_html: 在 %{instance} 上拥有账号后，你可以关注任何兼容 Mastodon 服务器上的人。
     get_apps: 尝试移动应用
     hosted_on: 一个在 %{domain} 上运行的 Mastodon 实例
     instance_actor_flash: "这个账号是个虚拟帐号，不代表任何用户，只用来代表服务器本身。它用于和其它服务器互通，所以不应该被封禁，除非你想封禁整个实例。但是想封禁整个实例的时候，你应该用域名封禁。 \n"
     learn_more: 了解详情
     privacy_policy: 隐私政策
     rules: 服务器规则
-    rules_html: 如果您想要在此Mastodon服务器上拥有一个账户，您必须遵守相应的规则，摘要如下：
+    rules_html: 如果您想要在此 Mastodon 服务器上拥有一个账户，您必须遵守相应的规则，摘要如下：
     see_whats_happening: 看一看现在在发生什么
     server_stats: 服务器统计数据：
     source_code: 源代码
@@ -51,7 +51,7 @@ zh-CN:
     what_is_mastodon: Mastodon 是什么？
   accounts:
     choices_html: "%{name} 的推荐："
-    endorsements_hint: 您可以在web界面上推荐你关注的人，他们会出现在这里。
+    endorsements_hint: 你可以在 Web 界面上推荐你关注的人，他们会显示在这里。
     featured_tags_hint: 您可以精选一些话题标签展示在这里。
     follow: 关注
     followers:
@@ -204,7 +204,7 @@ zh-CN:
       undo_sensitized: 去除敏感内容标记
       undo_silenced: 解除隐藏
       undo_suspension: 解除封禁
-      unsilenced_msg: 成功解除 %{username} 的帐号限制
+      unsilenced_msg: 成功解除对 %{username} 的隐藏
       unsubscribe: 取消订阅
       unsuspended_msg: 已成功取消封禁 %{username} 的帐号
       username: 用户名
@@ -248,7 +248,7 @@ zh-CN:
         sensitive_account: 将你帐号中的媒体标记为敏感内容
         silence_account: 隐藏用户
         suspend_account: 封禁用户
-        unassigned_report: 取消举报的报告
+        unassigned_report: 取消报告的指派
         unsensitive_account: 去除你帐号中媒体的敏感内容标记
         unsilence_account: 解除账号隐藏
         unsuspend_account: 解除账号封禁
@@ -397,10 +397,10 @@ zh-CN:
         create: 添加屏蔽
         hint: 域名屏蔽不会阻止该域名下的帐户进入本站的数据库，但是会对来自这个域名的帐户自动进行预先设置的管理操作。
         severity:
-          desc_html: 选择<strong>自动隐藏</strong>会将该域名下帐户发送的嘟文设置为仅关注者可见；选择<strong>自动封禁</strong>会将该域名下帐户发送的嘟文、媒体文件以及个人资料数据从本实例上删除；如果你只是想拒绝接收来自该域名的任何媒体文件，请选择<strong>无</strong>。
+          desc_html: 选择<strong>隐藏</strong>会将该域名下帐户发送的嘟文设置为仅关注者可见；选择<strong>封禁</strong>会将该域名下帐户发送的嘟文、媒体文件以及个人资料数据从本实例上删除；如果你只是想拒绝接收来自该域名的任何媒体文件，请选择<strong>无</strong>。
           noop: 无
-          silence: 自动隐藏
-          suspend: 自动封禁
+          silence: 隐藏
+          suspend: 封禁
         title: 新增域名屏蔽
       obfuscate: 混淆域名
       obfuscate_hint: 如果启用了域名列表公开限制，就部分混淆列表中的域名
@@ -445,7 +445,7 @@ zh-CN:
       status: 嘟文
       suppress: 禁用推荐关注
       suppressed: 已禁用
-      title: 推荐关注
+      title: 关注推荐
       unsuppress: 恢复推荐关注
     instances:
       back_to_all: 全部
@@ -565,9 +565,9 @@ zh-CN:
     rules:
       add_new: 添加规则
       delete: 删除
-      description_html: 虽然大多数人都声称已经阅读并同意服务条款，但通常人们只有在出现问题后才会阅读。所以写一个简单的要点列表吧，能让大家一目了然。每条规则要尽量简单明了，但也别分出太多条目来。
+      description_html: 虽然大多数人都声称已经阅读并同意服务条款，但通常人们只有在出现问题后才会阅读。<strong>所以写一个简单的要点列表吧，能让大家一目了然。</strong>试着让每条规则尽量简单明了，但也别分出太多条目来。
       edit: 编辑规则
-      empty: 尚未定义提供商。
+      empty: 尚未定义服务器规则。
       title: 实例规则
     settings:
       activity_api_enabled:
@@ -682,7 +682,7 @@ zh-CN:
         action: 管理服务器规则
         message_html: 你没有定义任何服务器规则。
       sidekiq_process_check:
-        message_html: 没有运行 %{value} 队列的 Sidekiq 进程。请检查您的 Sidekiq 配置
+        message_html: "%{value} 队列未运行任何 Sidekiq 进程。请检查你的 Sidekiq 配置"
     tags:
       accounts_today: 今日活跃用户
       accounts_week: 本周活跃用户
@@ -703,7 +703,7 @@ zh-CN:
       add_new: 添加新条目
       delete: 删除
       edit_preset: 编辑预置警告
-      empty: 您还没有添加任何兴趣。
+      empty: 你尚未定义任何警告预设。
       title: 管理预设警告
   admin_mailer:
     new_pending_account:
@@ -724,8 +724,8 @@ zh-CN:
     hint_html: 如果你想把另一个帐号迁移到这里，你可以先在这里创建一个别名。如果你想把关注者迁移过来，这一步是必须的。设置别名的操作时<strong>无害而且可以恢复的</strong>。<strong>帐号迁移的操作会从旧帐号开始</strong>。
     remove: 取消关联别名
   appearance:
-    advanced_web_interface: 高级 web 界面
-    advanced_web_interface_hint: 如果你想使用整个屏幕宽度，高级 web 界面允许您配置多个不同的栏目，可以同时看到更多的信息：主页、通知、跨站时间轴、任意数量的列表和话题标签。
+    advanced_web_interface: 高级 Web 界面
+    advanced_web_interface_hint: 如果你想使用整个屏幕宽度，高级 Web 界面允许你配置多个不同的栏目，可以同时看到更多的信息：主页、通知、跨站时间轴、任意数量的列表和话题标签。
     animations_and_accessibility: 动画和访问选项
     confirmation_dialogs: 确认对话框
     discovery: 发现
@@ -887,7 +887,7 @@ zh-CN:
     csv: CSV
     domain_blocks: 域名屏蔽
     lists: 列表
-    mutes: 隐藏的用户
+    mutes: 你静音的用户
     storage: 媒体文件存储
   featured_tags:
     add_new: 添加新条目
@@ -1031,7 +1031,7 @@ zh-CN:
     title: 运营
   move_handler:
     carry_blocks_over_text: 这个用户迁移自你屏蔽过的 %{acct}
-    carry_mutes_over_text: 这个用户迁移自你隐藏过的 %{acct}
+    carry_mutes_over_text: 这个用户迁移自你静音过的 %{acct}
     copy_account_note_text: 这个用户迁移自 %{acct}，你曾为其添加备注：
   notification_mailer:
     digest:
@@ -1387,7 +1387,7 @@ zh-CN:
       explanation:
         disable: 虽然您的帐户被冻结，您的帐户数据仍然完整；但是您无法在解锁前执行任何操作。
         sensitive: 你上传的媒体文件和媒体链接将被视作敏感内容。
-        silence: 当您的帐户受限时，只有已经关注过你的人才会这台服务器上看到你的嘟文，并且您会被排除在各种公共列表之外。但是，其他人仍然可以手动关注你。
+        silence: 当你的帐户被隐藏时，只有已经关注你的人才会这台服务器上看到你的嘟文，并且你会被排除在各种公共列表之外。但是，其他人仍然可以手动关注你。
         suspend: 您的帐户已被封禁，所有的嘟文和您上传的媒体文件都已经从该服务器和您的关注者的服务器上删除并且不可恢复。
       get_in_touch: 您可回复该邮件以联系 %{instance} 的工作人员。
       review_server_policies: 查看服务器政策
@@ -1396,13 +1396,13 @@ zh-CN:
         disable: 您的帐户 %{acct} 已被冻结
         none: 对 %{acct} 的警告
         sensitive: 你的帐号 %{acct} 所发布的媒体已被标记为敏感内容
-        silence: 您的帐户 %{acct} 已经受限
+        silence: 你的帐户 %{acct} 已被隐藏
         suspend: 您的帐户 %{acct} 已被封禁。
       title:
         disable: 账号已冻结
         none: 警示
         sensitive: 你的媒体被标记为敏感内容
-        silence: 帐户受限
+        silence: 帐户被隐藏
         suspend: 账号被封禁
     welcome:
       edit_profile_action: 设置个人资料

@@ -1,7 +1,7 @@
 ---
 cs:
   about:
-    about_hashtag_html: Tohle jsou veřejné tooty označené hashtagem <strong>#%{hashtag}</strong>. Pokud máte účet kdekoliv ve fedivesmíru, můžete s nimi interagovat.
+    about_hashtag_html: Tohle jsou veřejné příspěvky označené hashtagem <strong>#%{hashtag}</strong>. Pokud máte účet kdekoliv ve fedivesmíru, můžete s nimi interagovat.
     about_mastodon_html: 'Sociální síť budoucnosti: žádné reklamy, žádné korporátní sledování, etický design a decentralizace! S Mastodonem vlastníte svoje data!'
     about_this: O tomto serveru
     active_count_after: aktivních
@@ -32,10 +32,10 @@ cs:
     server_stats: 'Statistika serveru:'
     source_code: Zdrojový kód
     status_count_after:
-      few: tooty
-      many: tootů
-      one: toot
-      other: tootů
+      few: příspěvky
+      many: příspěvků
+      one: příspěvek
+      other: příspěvků
     status_count_before: Kteří napsali
     tagline: Sledujte své přátele a objevujte nové
     terms: Podmínky používání
@@ -82,12 +82,12 @@ cs:
     pin_errors:
       following: Osobu, kterou chcete podpořit, už musíte sledovat
     posts:
-      few: Tooty
-      many: Tootů
-      one: Toot
-      other: Tootů
-    posts_tab_heading: Tooty
-    posts_with_replies: Tooty a odpovědi
+      few: Příspěvky
+      many: Příspěvků
+      one: Příspěvek
+      other: Příspěvků
+    posts_tab_heading: Příspěvky
+    posts_with_replies: Příspěvky a odpovědi
     roles:
       admin: Administrátor
       bot: Robot
@@ -126,15 +126,15 @@ cs:
       deleted: Smazáno
       demote: Degradovat
       destroyed_msg: Data účtu %{username} jsou nyní ve frontě k okamžitému smazání
-      disable: Zablokovat
+      disable: Zmrazit
       disable_two_factor_authentication: Vypnout 2FA
-      disabled: Blokováno
+      disabled: Zmrazen
       display_name: Zobrazované jméno
       domain: Doména
       edit: Upravit
       email: E-mail
       email_status: Stav e-mailu
-      enable: Povolit
+      enable: Rozmrazit
       enabled: Povoleno
       enabled_msg: Účet %{username} byl úspěšně rozmrazen
       followers: Sledující
@@ -205,9 +205,9 @@ cs:
       show:
         created_reports: Vytvořená hlášení
         targeted_reports: Nahlášeni ostatními
-      silence: Ztišit
-      silenced: Uživatel ztišen
-      statuses: Tooty
+      silence: Omezit
+      silenced: Omezen
+      statuses: Příspěvky
       subscribe: Odebírat
       suspended: Uživatel pozastaven
       suspension_irreversible: Data tohoto účtu byla nevratně smazána. Účet můžete obnovit, aby byl použitelný, ale nebudou obnovena žádná jeho dřívější data.
@@ -246,7 +246,7 @@ cs:
         destroy_domain_block: Odstranit blokování domény
         destroy_email_domain_block: Odstranit blokování e-mailů na doméně
         destroy_ip_block: Smazat IP pravidlo
-        destroy_status: Odstranit stav
+        destroy_status: Odstranit Příspěvek
         destroy_unavailable_domain: Smazat nedostupnou doménu
         disable_2fa_user: Vypnout 2FA
         disable_custom_emoji: Zakázat vlastní emoji
@@ -269,7 +269,7 @@ cs:
         update_announcement: Aktualizovat oznámení
         update_custom_emoji: Aktualizovat vlastní emoji
         update_domain_block: Změnit blokaci domény
-        update_status: Aktualizovat stav
+        update_status: Aktualizovat Příspěvek
       actions:
         assigned_to_self_report_html: Uživatel %{name} si přidělil hlášení %{target}
         change_email_user_html: Uživatel %{name} změnil e-mailovou adresu uživatele %{target}
@@ -289,7 +289,8 @@ cs:
         destroy_domain_block_html: Uživatel %{name} odblokoval doménu %{target}
         destroy_email_domain_block_html: Uživatel %{name} odebral e-mailovou doménu %{target} z černé listiny
         destroy_ip_block_html: "%{name} odstranil pravidlo pro IP %{target}"
-        destroy_status_html: Uživatel %{name} odstranil toot uživatele %{target}
+        destroy_status_html: Uživatel %{name} odstranil příspěvek uživatele %{target}
+        destroy_unavailable_domain_html: "%{name} obnovil doručování na doménu %{target}"
         disable_2fa_user_html: Uživatel %{name} vypnul dvoufázové ověřování pro uživatele %{target}
         disable_custom_emoji_html: Uživatel %{name} zakázal emoji %{target}
         disable_user_html: Uživatel %{name} zakázal přihlašování pro uživatele %{target}
@@ -311,14 +312,14 @@ cs:
         update_announcement_html: Uživatel %{name} aktualizoval oznámení %{target}
         update_custom_emoji_html: Uživatel %{name} aktualizoval emoji %{target}
         update_domain_block_html: "%{name} aktualizoval blokaci domény %{target}"
-        update_status_html: Uživatel %{name} aktualizoval toot uživatele %{target}
-      deleted_status: "(smazaný toot)"
+        update_status_html: Uživatel %{name} aktualizoval příspěvek uživatele %{target}
+      deleted_status: "(smazaný příspěvek)"
       empty: Nebyly nalezeny žádné záznamy.
       filter_by_action: Filtrovat podle akce
       filter_by_user: Filtrovat podle uživatele
       title: Auditovací protokol
     announcements:
-      destroyed_msg: Oznámení bylo úspěšně odstraněno
+      destroyed_msg: Oznámení bylo úspěšně odstraněno!
       edit:
         title: Upravit oznámení
       empty: Nebyla nalezena žádná oznámení.
@@ -327,13 +328,13 @@ cs:
         create: Vytvořit oznámení
         title: Nové oznámení
       publish: Zveřejnit
-      published_msg: Oznámení bylo úspěšně zveřejněno
+      published_msg: Oznámení bylo úspěšně zveřejněno!
       scheduled_for: Naplánováno na %{time}
-      scheduled_msg: Zveřejnění oznámení bylo naplánováno
+      scheduled_msg: Zveřejnění oznámení bylo naplánováno!
       title: Oznámení
       unpublish: Skrýt
-      unpublished_msg: Zveřejněné oznámení bylo skryto
-      updated_msg: Oznámení bylo úspěšně aktualizováno
+      unpublished_msg: Zveřejněné oznámení bylo úspěšně skryto!
+      updated_msg: Oznámení bylo úspěšně aktualizováno!
     custom_emojis:
       assign_category: Přiřadit kategorii
       by_domain: Doména
@@ -393,7 +394,7 @@ cs:
       week_interactions: interakcí tento týden
       week_users_active: aktivních tento týden
       week_users_new: uživatelů tento týden
-      whitelist_mode: Režim bílé listiny
+      whitelist_mode: Omezený režim federace
     domain_allows:
       add_new: Přidat doménu na bílou listinu
       created_msg: Doména byla úspěšně přidána na bílou listinu
@@ -464,8 +465,26 @@ cs:
       title: Doporučená sledování
       unsuppress: Obnovit doporučení sledování
     instances:
+      back_to_all: Vše
+      back_to_limited: Omezený
+      back_to_warning: Varování
       by_domain: Doména
+      delivery:
+        all: Vše
+        clear: Vymazat chyby doručení
+        restart: Restartovat doručování
+        stop: Zastavit doručování
+        title: Doručování
+        unavailable: Nedostupný
+        unavailable_message: Doručování nedostupné
+        warning: Varování
+        warning_message:
+          few: Doručení selhává %{count} dny
+          many: Doručení selhává %{count} dnů
+          one: Doručení selhává %{count} den
+          other: Doručení selhává %{count} dnů
       delivery_available: Doručení je k dispozici
+      delivery_error_days: Dny chybného doručování
       delivery_error_hint: Není-li možné doručení po dobu %{count} dnů, bude automaticky označen za nedoručitelný.
       empty: Nebyly nalezeny žádné domény.
       known_accounts:
@@ -475,7 +494,7 @@ cs:
         other: "%{count} známých účtů"
       moderation:
         all: Všechny
-        limited: Omezené
+        limited: Omezený
         title: Moderování
       private_comment: Soukromý komentář
       public_comment: Veřejný komentář
@@ -515,11 +534,11 @@ cs:
     relays:
       add_new: Přidat nový most
       delete: Smazat
-      description_html: "<strong>Federovací most</strong> je přechodový server, který vyměňuje velká množství veřejných tootů mezi servery, které je z něj odebírají a publikují na něj. <strong>Může pomoci malým a středně velkým serverům objevovat obsah z fedivesmíru</strong>, což by jinak vyžadovalo, aby místní uživatelé manuálně sledovali jiné lidi na vzdálených serverech."
+      description_html: "<strong>Federovací most</strong> je zprostředkující server, který vyměňuje velké objemy veřejných příspěvků mezi servery, které je z něj odebírají a publikují na něj. <strong>Může pomoci malým a středně velkým serverům objevovat obsah z fedivesmíru</strong>, což by jinak vyžadovalo, aby místní uživatelé ručně začali sledovat jiné lidi na vzdálených serverech."
       disable: Zakázat
       disabled: Zakázáno
       enable: Povolit
-      enable_hint: Po zapnutí začne váš server odebírat všechny veřejné tooty z tohoto mostu a odesílat na něj své vlastní veřejné tooty.
+      enable_hint: Po zapnutí začne váš server odebírat všechny veřejné příspěvky z tohoto mostu a odesílat na něj své vlastní veřejné příspěvky.
       enabled: Povoleno
       inbox_url: URL mostu
       pending: Čeká na souhlas mostu
@@ -581,11 +600,11 @@ cs:
       title: Pravidla serveru
     settings:
       activity_api_enabled:
-        desc_html: Počty lokálně publikovaných tootů, aktivních uživatelů a nových registrací, v týdenních intervalech
+        desc_html: Počty lokálně publikovaných příspěvků, aktivních uživatelů a nových registrací, v týdenních intervalech
         title: Publikovat hromadné statistiky o uživatelské aktivitě v API
       bootstrap_timeline_accounts:
-        desc_html: Je-li uživatelských jmen více, oddělte je čárkami. Lze zadat pouze místní a odemčené účty. Je-li seznam prázdný, jsou výchozí hodnotou všichni místní administrátoři.
-        title: Výchozí sledovaní pro nové uživatele
+        desc_html: Více uživatelských jmen oddělte čárkou. U těchto účtů bude zaručeno, že budou vždy zobrazeny mezi doporučenými sledováními
+        title: Doporučit tyto účty novým uživatelům
       contact_information:
         email: Pracovní e-mail
         username: Uživatelské jméno pro kontaktování
@@ -682,8 +701,8 @@ cs:
       media:
         title: Média
       no_media: Žádná média
-      no_status_selected: Nebyly změněny žádné tooty, neboť žádné nebyly vybrány
-      title: Tooty účtu
+      no_status_selected: Nebyly změněny žádné příspěvky, neboť žádné nebyly vybrány
+      title: Příspěvky účtu
       with_media: S médii
     system_checks:
       database_schema_check:
@@ -697,14 +716,14 @@ cs:
       accounts_today: Dnešní jedinečná použití
       accounts_week: Jedinečná použití tento týden
       breakdown: Přehled dnešního používání podle zdroje
-      last_active: Naposledy aktivní
+      last_active: Nedávno použité
       most_popular: Nejpopulárnější
-      most_recent: Nejnovější
+      most_recent: Nedávno vytvořené
       name: Hashtag
       review: Stav schválení
       reviewed: Schválen
       title: Hashtagy
-      trending_right_now: Právě je trendy
+      trending_right_now: Populární právě teď
       unique_uses_today: Dnes použilo %{count} uživatelů
       unreviewed: Nezkontrolováno
       updated_msg: Nastavení hashtagů bylo úspěšně aktualizováno
@@ -744,14 +763,14 @@ cs:
       guide_link: https://cs.crowdin.com/project/mastodon
       guide_link_text: Každý může pomoci.
     sensitive_content: Citlivý obsah
-    toot_layout: Rozložení tootů
+    toot_layout: Rozložení příspěvků
   application_mailer:
     notification_preferences: Změnit předvolby e-mailů
     salutation: "%{name},"
     settings: 'Změnit předvolby e-mailů: %{link}'
     view: 'Zobrazit:'
     view_profile: Zobrazit profil
-    view_status: Zobrazit toot
+    view_status: Zobrazit příspěvek
   applications:
     created: Aplikace úspěšně vytvořena
     destroyed: Aplikace úspěšně smazána
@@ -827,7 +846,7 @@ cs:
       invalid_signature: není platný podpis typu Ed25519
   date:
     formats:
-      default: "%-d. %b %Y"
+      default: "%d. %b %Y"
       with_month_name: "%d. %B %Y"
   datetime:
     distance_in_words:
@@ -888,7 +907,7 @@ cs:
     archive_takeout:
       date: Datum
       download: Stáhnout váš archiv
-      hint_html: Můžete si vyžádat archiv vašich <strong>tootů a nahraných médií</strong>. Exportovaná data budou ve formátu ActivityPub a budou čitelná kterýmkoliv kompatibilním softwarem. Archiv si můžete vyžádat každých 7 dní.
+      hint_html: Můžete si vyžádat archiv vašich <strong>příspěvků a nahraných médií</strong>. Exportovaná data budou ve formátu ActivityPub a budou čitelná kterýmkoliv kompatibilním softwarem. Archiv si můžete vyžádat každých 7 dní.
       in_progress: Kompiluji váš archiv…
       request: Vyžádat váš archiv
       size: Velikost
@@ -907,7 +926,7 @@ cs:
   filters:
     contexts:
       account: Profily
-      home: Domovská časová osa
+      home: Domovská časová osa a seznamy
       notifications: Oznámení
       public: Veřejné časové osy
       thread: Konverzace
@@ -926,7 +945,7 @@ cs:
     developers: Vývojáři
     more: Více…
     resources: Zdroje
-    trending_now: Aktuální trendy
+    trending_now: Právě populární
   generic:
     all: Všechny
     changes_saved_msg: Změny byly úspěšně uloženy!
@@ -956,7 +975,7 @@ cs:
     i_am_html: Na %{service} jsem %{username}.
     identity: Identita
     inactive: Neaktivní
-    publicize_checkbox: 'A tootnout tohle:'
+    publicize_checkbox: 'A odeslat tohle:'
     publicize_toot: 'Je to dokázáno! Na %{service} jsem %{username}: %{url}'
     remove: Odstranit důkaz z účtu
     removed: Úspěšně odstraněn důkaz z účtu
@@ -1009,8 +1028,8 @@ cs:
       limit: Dosáhli jste maximálního počtu seznamů
   media_attachments:
     validations:
-      images_and_video: K tootu, který již obsahuje obrázky, nelze připojit video
-      not_ready: Nelze připojit soubory před jejich zpracováním. Zkuste to znovu za chvíli.
+      images_and_video: K příspěvku, který již obsahuje obrázky, nelze připojit video
+      not_ready: Nelze připojit soubory před jejich zpracováním. Zkuste to znovu za chvíli!
       too_many: Nelze připojit více než 4 soubory
   migrations:
     acct: Přesunuto na
@@ -1066,8 +1085,8 @@ cs:
         other: "%{count} nových oznámení od vaší poslední návštěvy \U0001F418"
       title: Ve vaší nepřítomnosti…
     favourite:
-      body: 'Váš toot si oblíbil uživatel %{name}:'
-      subject: Uživatel %{name} si oblíbil váš toot
+      body: 'Váš příspěvek si oblíbil uživatel %{name}:'
+      subject: Uživatel %{name} si oblíbil váš příspěvek
       title: Nové oblíbení
     follow:
       body: Uživatel %{name} vás nyní sleduje!
@@ -1086,11 +1105,11 @@ cs:
     poll:
       subject: Anketa od %{name} skončila
     reblog:
-      body: 'Uživatel %{name} boostnul váš toot:'
-      subject: Uživatel %{name} boostnul váš toot
+      body: 'Uživatel %{name} boostnul váš příspěvek:'
+      subject: Uživatel %{name} boostnul váš příspěvek
       title: Nový boost
     status:
-      subject: Nový toot od %{name}
+      subject: Nový příspěvek od %{name}
   notifications:
     email_events: Události pro e-mailová oznámení
     email_events_hint: 'Vyberte události, pro které chcete dostávat oznámení:'
@@ -1165,16 +1184,16 @@ cs:
   remote_interaction:
     favourite:
       proceed: Pokračovat k oblíbení
-      prompt: 'Chcete si oblíbit tento toot:'
+      prompt: 'Chcete si oblíbit tento příspěvek:'
     reblog:
       proceed: Pokračovat k boostnutí
-      prompt: 'Chcete boostnout tento toot:'
+      prompt: 'Chcete boostnout tento příspěvek:'
     reply:
       proceed: Pokračovat k odpovědi
-      prompt: 'Chcete odpovědět na tento toot:'
+      prompt: 'Chcete odpovědět na tento příspěvek:'
   scheduled_statuses:
-    over_daily_limit: Překročili jste limit %{limit} tootů naplánovaných na tento den
-    over_total_limit: Překročili jste limit %{limit} naplánovaných tootů
+    over_daily_limit: Překročili jste limit %{limit} příspěvků naplánovaných na tento den
+    over_total_limit: Překročili jste limit %{limit} naplánovaných příspěvků
     too_soon: Plánované datum musí být v budoucnosti
   sessions:
     activity: Nejnovější aktivita
@@ -1209,7 +1228,7 @@ cs:
       firefox_os: Firefox OS
       ios: iOS
       linux: Linux
-      mac: Mac
+      mac: macOS
       other: neznámá platforma
       windows: Windows
       windows_mobile: Windows Mobile
@@ -1265,14 +1284,14 @@ cs:
       one: 'obsahoval nepovolený hashtag: %{tags}'
       other: 'obsahoval nepovolené hashtagy: %{tags}'
     errors:
-      in_reply_not_found: Stav, na který se pokoušíte odpovědět, neexistuje.
+      in_reply_not_found: Příspěvek, na který se pokoušíte odpovědět, neexistuje.
     language_detection: Zjistit jazyk automaticky
     open_in_web: Otevřít na webu
     over_character_limit: byl překročen limit %{max} znaků
     pin_errors:
-      limit: Už jste si připnuli maximální počet tootů
-      ownership: Nelze připnout toot někoho jiného
-      private: Neveřejné tooty nelze připnout
+      limit: Už jste si připnuli maximální počet příspěvků
+      ownership: Nelze připnout příspěvek někoho jiného
+      private: Neveřejné příspěvky nelze připnout
       reblog: Boosty nelze připnout
     poll:
       total_people:
@@ -1301,7 +1320,7 @@ cs:
       unlisted: Neuvedené
       unlisted_long: Uvidí kdokoliv, ale nebude zahrnut ve veřejných časových osách
   stream_entries:
-    pinned: Připnutý toot
+    pinned: Připnutý příspěvek
     reblogged: boostnul/a
     sensitive_content: Citlivý obsah
   tags:
@@ -1399,7 +1418,7 @@ cs:
       month: "%b %Y"
   two_factor_authentication:
     add: Přidat
-    disable: Vypnout
+    disable: Vypnout 2FA
     disabled_success: Dvoufázové ověření bylo úspěšně vypnuto
     edit: Upravit
     enabled: Dvoufázové ověřování je zapnuto
@@ -1425,10 +1444,10 @@ cs:
       title: Pokus o přihlášení
     warning:
       explanation:
-        disable: Zatímco je váš účet zmrazen, zůstávají data vašeho účtu nedotčena. Dokud ale nebude odemčen, nemůžete vykonávat žádné akce.
+        disable: Nemůžete se přihlásit do svého účtu nebo ho jakkoliv jinak používat, ale váš profil a ostatní data zůstávají nedotčeny.
         sensitive: Vámi nahrané a odkazované mediální soubory budou považovány za citlivé.
-        silence: Zatímco je váš účet omezen, mohou vaše tooty na tomto serveru vidět pouze lidé, kteří váš již sledují, a můžete být vyloučeni z různých veřejných seznamů. Ostatní vás však pořád mohou manuálně sledovat.
-        suspend: Váš účet byl pozastaven a všechny vaše tooty a nahrané mediální soubory byly nenávratně odstraněny z tohoto serveru a serverů, na kterých jste měli sledující.
+        silence: Nadále můžete používat svůj účet, ale pouze lidé, kteří vás již sledovali, uvidí vaše příspěvky na tomto serveru a můžete být vyjmuti z různých veřejných seznamů. Ostatní vás však stále mohou ručně začít sledovat.
+        suspend: Nemůžete už používat svůj účet a váš profil a ostatní data již nejsou dostupná. Stále se můžete přihlásit pro vyžádání zálohy svých dat, dokud nebudou zcela smazána, ale ponecháme si některé údaje, abychom vám zabránili ve vyhýbání se pozastavení.
       get_in_touch: Můžete odpovědět na tento e-mail a spojit se s personálem serveru %{instance}.
       review_server_policies: Zkontrolujte pravidla serveru
       statuses: 'Konkrétně kvůli:'
@@ -1463,7 +1482,7 @@ cs:
       title: Vítejte na palubě, %{name}!
   users:
     follow_limit_reached: Nemůžete sledovat více než %{limit} lidí
-    generic_access_help_html: Máte potíže s přístupem ke svému účtu? Napište nám o pomoc na %{email}.
+    generic_access_help_html: Máte potíže s přístupem ke svému účtu? Můžete nás kontaktovat pro pomoc na %{email}
     invalid_otp_token: Neplatný kód pro dvoufázové ověřování
     invalid_sign_in_token: Neplatný bezpečnostní kód
     otp_lost_help_html: Pokud jste ztratili přístup k oběma, spojte se s %{email}

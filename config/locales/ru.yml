@@ -259,7 +259,7 @@ ru:
         reopen_report: Возобновление жалоб
         reset_password_user: Сброс пароля пользователей
         resolve_report: Отметка жалоб «решёнными»
-        sensitive_account: Присвоение пользователя отметки «деликатного содержания»
+        sensitive_account: Присвоение пользователям отметки «деликатного содержания»
         silence_account: Скрытие пользователей
         suspend_account: Блокировка пользователей
         unassigned_report: Снятие жалоб
@@ -302,11 +302,11 @@ ru:
         reopen_report_html: "%{name} повторно открыл(а) жалобу %{target}"
         reset_password_user_html: "%{name} сбросил(а) пароль пользователя %{target}"
         resolve_report_html: "%{name} решил(а) жалобу %{target}"
-        sensitive_account_html: "%{name} установил(а) отметку файлов %{target} как «деликатных»"
+        sensitive_account_html: "%{name} установил(а) отметку файлов %{target} как «деликатного характера»"
         silence_account_html: "%{name} наложил(а) ограничения на видимость постов пользователя %{target}"
         suspend_account_html: "%{name} заблокировал(а) учётную запись %{target}"
         unassigned_report_html: "%{name} снял(а) назначение жалобы %{target}"
-        unsensitive_account_html: "%{name} снял(а) отметку файлов %{target} как «деликатных»"
+        unsensitive_account_html: "%{name} снял(а) отметку файлов %{target} как «деликатного характера»"
         unsilence_account_html: "%{name} снял(а) ограничения видимости постов пользователя %{target}"
         unsuspend_account_html: "%{name} снял(а) блокировку с пользователя %{target}"
         update_announcement_html: "%{name} обновил(а) объявление %{target}"
@@ -767,7 +767,7 @@ ru:
       body: Mastodon переводится добровольцами.
       guide_link: https://sasha-sorokin.gitlab.io/mastodon-ru/
       guide_link_text: Каждый может внести свой вклад.
-    sensitive_content: Содержимое «деликатного характера»
+    sensitive_content: Содержимое деликатного характера
     toot_layout: Структура постов
   application_mailer:
     notification_preferences: Настроить уведомления можно здесь
@@ -1327,7 +1327,7 @@ ru:
   stream_entries:
     pinned: Закреплённый пост
     reblogged: продвинул(а)
-    sensitive_content: Содержимое «деликатного характера»
+    sensitive_content: Содержимое деликатного характера
   tags:
     does_not_match_previous_name: не совпадает с предыдущим именем
   terms:
@@ -1455,7 +1455,7 @@ ru:
       subject:
         disable: Ваша учётная запись %{acct} заморожена
         none: "%{acct} вынесено предупреждение"
-        sensitive: Ваша учётная запись %{acct} была отмечена как «деликатного характера»
+        sensitive: Ваша учётная запись %{acct} была отмечена как «деликатного содержания»
         silence: На учётную запись %{acct} наложены ограничения
         suspend: Ваша учётная запись %{acct} была заблокирована
       title:
