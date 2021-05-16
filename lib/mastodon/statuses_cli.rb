@@ -12,6 +12,21 @@ module Mastodon
       true
     end
 
+    desc 'purge', 'Remove statuses that is removed from origin server'
+    long_desc <<~LONG_DESC
+      Sometimes statuses can be inserted into timeline even if they are in Tombstone.
+      That caused by race condition with media processing.
+
+      This command will remove ghost statuses that already in tombstone.
+    LONG_DESC
+    def purge
+      ghost_statuses = Status.where(uri: Tombstone.select(:uri))
+      count = ghost_statuses.count
+      ghost_statuses.destroy_all
+
+      say("Removed #{count} statuses", :green)
+    end
+
     option :days, type: :numeric, default: 90
     option :clean_followed, type: :boolean
     option :skip_media_remove, type: :boolean
