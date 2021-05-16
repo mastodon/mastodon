@@ -39,7 +39,7 @@ cs:
     status_count_before: Kteří napsali
     tagline: Sledujte své přátele a objevujte nové
     terms: Podmínky používání
-    unavailable_content: Nedostupný obsah
+    unavailable_content: Moderované servery
     unavailable_content_description:
       domain: Server
       reason: Důvod
@@ -58,7 +58,7 @@ cs:
     user_count_before: Domov
     what_is_mastodon: Co je Mastodon?
   accounts:
-    choices_html: 'Volby uživatele %{name}:'
+    choices_html: 'Volby %{name}:'
     endorsements_hint: Z webového rozhraní můžete podpořit lidi, které sledujete. Ti se poté zobrazí zde.
     featured_tags_hint: Můžete vybrat konkrétní hashtagy, které se zobrazí zde.
     follow: Sledovat
@@ -69,16 +69,16 @@ cs:
       other: Sledujících
     following: Sledovaní
     instance_actor_flash: Tento účet je virtuální aktér, který představuje server samotný, nikoliv jednotlivého uživatele. Používá se pro účely federace a neměl by být pozastaven.
-    joined: Založen %{date}
+    joined: Uživatelem od %{date}
     last_active: naposledy aktivní
     link_verified_on: Vlastnictví tohoto odkazu bylo zkontrolováno %{date}
     media: Média
-    moved_html: "%{name} se přesunul/a na %{new_profile_link}:"
+    moved_html: "%{name} se přesunul a na %{new_profile_link}:"
     network_hidden: Tato informace není k dispozici
     never_active: Nikdy
     nothing_here: Nic tu není!
     people_followed_by: Lidé, které sleduje %{name}
-    people_who_follow: Lidé, kteří sledují uživatele %{name}
+    people_who_follow: Lidé, kteří sledují %{name}
     pin_errors:
       following: Osobu, kterou chcete podpořit, už musíte sledovat
     posts:
@@ -105,7 +105,7 @@ cs:
       delete: Smazat
       destroyed_msg: Moderátorská poznámka byla úspěšně zničena!
     accounts:
-      add_email_domain_block: Blokovat e-maily na této doméně
+      add_email_domain_block: Blokovat e-mailovou doménu
       approve: Schválit
       approve_all: Schválit vše
       approved_msg: Žádost o registraci uživatele %{username} úspěšně schválena
@@ -142,9 +142,9 @@ cs:
       header: Záhlaví
       inbox_url: URL příchozí schránky
       invite_request_text: Důvody založení
-      invited_by: Pozván/a uživatelem
+      invited_by: Pozván uživatelem
       ip: IP adresa
-      joined: Založen
+      joined: Uživatel založen
       location:
         all: Všechny
         local: Místní
@@ -197,7 +197,7 @@ cs:
         staff: Člen personálu
         user: Uživatel
       search: Hledat
-      search_same_email_domain: Ostatní uživatelé s e-mailem na stejné doméně
+      search_same_email_domain: Ostatní uživatelé se stejnou e-mailovou doménou
       search_same_ip: Další uživatelé se stejnou IP adresou
       sensitive: Citlivý
       sensitized: označen jako citlivý
@@ -225,7 +225,7 @@ cs:
       view_domain: Zobrazit souhrn domény
       warn: Varovat
       web: Web
-      whitelisted: Na bílé listině
+      whitelisted: Povoleno federovat
     action_logs:
       action_types:
         assigned_to_self_report: Přiřadit hlášení
@@ -236,7 +236,7 @@ cs:
         create_custom_emoji: Vytvořit vlastní emoji
         create_domain_allow: Povolit doménu
         create_domain_block: Zablokovat doménu
-        create_email_domain_block: Zablokovat e-maily na doméně
+        create_email_domain_block: Zablokovat e-mailovou doménu
         create_ip_block: Vytvořit IP pravidlo
         create_unavailable_domain: Vytvořit nedostupnou doménu
         demote_user: Snížit roli uživatele
@@ -244,7 +244,7 @@ cs:
         destroy_custom_emoji: Odstranit vlastní emoji
         destroy_domain_allow: Odstranit povolenou doménu
         destroy_domain_block: Odstranit blokování domény
-        destroy_email_domain_block: Odstranit blokování e-mailů na doméně
+        destroy_email_domain_block: Smazat blokaci e-mailové domény
         destroy_ip_block: Smazat IP pravidlo
         destroy_status: Odstranit Příspěvek
         destroy_unavailable_domain: Smazat nedostupnou doménu
@@ -277,17 +277,17 @@ cs:
         create_account_warning_html: Uživatel %{name} poslal varování uživateli %{target}
         create_announcement_html: Uživatel %{name} vytvořil nové oznámení %{target}
         create_custom_emoji_html: Uživatel %{name} nahrál nové emoji %{target}
-        create_domain_allow_html: Uživatel %{name} přidal doménu %{target} na bílou listinu
+        create_domain_allow_html: Uživatel %{name} povolil federaci s doménou %{target}
         create_domain_block_html: Uživatel %{name} zablokoval doménu %{target}
-        create_email_domain_block_html: Uživatel %{name} přidal e-mailovou doménu %{target} na černou listinu
+        create_email_domain_block_html: Uživatel %{name} zablokoval e-mailovou doménu %{target}
         create_ip_block_html: "%{name} vytvořil pravidlo pro IP %{target}"
         create_unavailable_domain_html: "%{name} zastavil doručování na doménu %{target}"
         demote_user_html: Uživatel %{name} degradoval uživatele %{target}
         destroy_announcement_html: Uživatel %{name} odstranil oznámení %{target}
         destroy_custom_emoji_html: Uživatel %{name} zničil emoji %{target}
-        destroy_domain_allow_html: Uživatel %{name} odebral doménu %{target} z bílé listiny
+        destroy_domain_allow_html: Uživatel %{name} zakázal federaci s doménou %{target}
         destroy_domain_block_html: Uživatel %{name} odblokoval doménu %{target}
-        destroy_email_domain_block_html: Uživatel %{name} odebral e-mailovou doménu %{target} z černé listiny
+        destroy_email_domain_block_html: Uživatel %{name} odblokoval e-mailovou doménu %{target}
         destroy_ip_block_html: "%{name} odstranil pravidlo pro IP %{target}"
         destroy_status_html: Uživatel %{name} odstranil příspěvek uživatele %{target}
         destroy_unavailable_domain_html: "%{name} obnovil doručování na doménu %{target}"
@@ -373,7 +373,7 @@ cs:
       backlog: nevyřízené úlohy
       config: Konfigurace
       feature_deletions: Smazání účtů
-      feature_invites: Odkazy pozvánek
+      feature_invites: Zvací odkazy
       feature_profile_directory: Adresář profilů
       feature_registrations: Registrace
       feature_relay: Federovací most
@@ -390,16 +390,16 @@ cs:
       space: Využití prostoru
       title: Přehled
       total_users: uživatelů celkem
-      trends: Trendy
+      trends: Populární hashtagy
       week_interactions: interakcí tento týden
       week_users_active: aktivních tento týden
       week_users_new: uživatelů tento týden
-      whitelist_mode: Omezený režim federace
+      whitelist_mode: Režim omezené federace
     domain_allows:
-      add_new: Přidat doménu na bílou listinu
-      created_msg: Doména byla úspěšně přidána na bílou listinu
-      destroyed_msg: Doména byla odstraněna z bílé listiny
-      undo: Odstranit z bílé listiny
+      add_new: Povolit federaci s doménou
+      created_msg: S doménou byla úspěšně povolena federace
+      destroyed_msg: S doménou byla zakázána federace
+      undo: Zakázat federaci s doménou
     domain_blocks:
       add_new: Přidat novou blokaci domény
       created_msg: Blokace domény se právě vyřizuje
@@ -446,16 +446,16 @@ cs:
       view: Zobrazit blokaci domény
     email_domain_blocks:
       add_new: Přidat
-      created_msg: E-mailová doména úspěšně přidána na černou listinu
+      created_msg: E-mailová doména úspěšně zablokována
       delete: Smazat
-      destroyed_msg: E-mailová doména úspěšně odstraněna z černé listiny
+      destroyed_msg: E-mailová doména úspěšně odblokována
       domain: Doména
-      empty: Na černé listině aktuálně nejsou žádné e-mailové domény.
+      empty: Žádné e-mailové domény nejsou aktuálně blokovány.
       from_html: z domény %{domain}
       new:
         create: Přidat doménu
-        title: Nová položka pro černou listinu e-mailů
-      title: Černá listina e-mailů
+        title: Blokovat novou e-mailovou doménu
+      title: Blokované e-mailové domény
     follow_recommendations:
       description_html: "<strong>Doporučená sledování pomáhají novým uživatelům rychle najít zajímavý obsah</strong>. Pokud uživatel neinteragoval s ostatními natolik, aby mu byla vytvořena doporučená sledování na míru, jsou použity tyto účty. Jsou přepočítávány na denní bázi ze směsi účtů s největším nedávným zapojením a nejvyšším počtem místních sledovatelů pro daný jazyk."
       language: Pro jazyk
@@ -544,7 +544,7 @@ cs:
       pending: Čeká na souhlas mostu
       save_and_enable: Uložit a povolit
       setup: Nastavit připojení k mostu
-      signatures_not_enabled: Dokud je povolen zabezpečený režim nebo režim bílé listiny, nebudou mosty správně fungovat
+      signatures_not_enabled: Dokud je povolen zabezpečený režim nebo režim omezené federace, nebudou mosty fungovat správně
       status: Stav
       title: Mosty
     report_notes:
@@ -656,8 +656,8 @@ cs:
           open: Kdokoliv se může registrovat
         title: Režim registrací
       show_known_fediverse_at_about_page:
-        desc_html: Je-li tohle vypnuto, bude veřejná časová osa, na kterou odkazuje hlavní stránka serveru, omezena pouze na místní obsah
-        title: Zobrazit na nepřihlášené stránce časové osy federovaný obsah
+        desc_html: Je-li vypnuto, bude veřejná časová osa, na kterou odkazuje hlavní stránka serveru, omezena pouze na místní obsah
+        title: Zahrnout federovaný obsah na neautentizované stránce veřejné časové osy
       show_staff_badge:
         desc_html: Zobrazit na stránce uživatele odznak člena personálu
         title: Zobrazit odznak personálu
@@ -683,9 +683,9 @@ cs:
       title: Nastavení stránky
       trendable_by_default:
         desc_html: Ovlivňuje hashtagy, které nebyly dříve zakázány
-        title: Povolit zobrazení hashtagů v trendech i bez předchozího posouzení
+        title: Povolit zobrazení hashtagů mezi populárními i bez předchozího posouzení
       trends:
-        desc_html: Veřejně zobrazit populární hashtagy, které byly předtím schváleny
+        desc_html: Veřejně zobrazit dříve schválené hashtagy, které jsou zrovna populární
         title: Populární hashtagy
     site_uploads:
       delete: Odstranit nahraný soubor
@@ -743,7 +743,7 @@ cs:
       body_remote: Někdo z domény %{domain} nahlásil uživatele %{target}
       subject: Nové hlášení pro %{instance} (#%{id})
     new_trending_tag:
-      body: 'Hashtag #%{name} je dnes populární, ale nebyl dříve schválen. Pokud to nedovolíte, nebude veřejně zobrazen. Pokud tento formulář uložíte jak je, už o něm opět neuslyšíte.'
+      body: 'Hashtag #%{name} je dnes populární, ale nebyl dříve schválen. Pokud to nedovolíte, nebude veřejně zobrazen. Nebo pouze uložte formulář tak, jak je, a už o něm neuslyšíte.'
       subject: Nový hashtag ke schválení na %{instance} (#%{name})
   aliases:
     add_new: Vytvořit alias
@@ -834,7 +834,7 @@ cs:
       close: Nebo můžete toto okno klidně zavřít.
       return: Zobrazit profil uživatele
       web: Přejít na web
-    title: Sledovat uživatele %{acct}
+    title: Sledovat %{acct}
   challenge:
     confirm: Pokračovat
     hint_html: "<strong>Tip:</strong> Po dobu jedné hodiny vás o heslo nebudeme znovu žádat."
@@ -970,8 +970,8 @@ cs:
       keybase:
         invalid_token: Keybase tokeny jsou hashe podpisů a musí být dlouhé 66 hexadecimálních znaků
         verification_failed: Keybase nerozpoznává tento token jako podpis uživatele %{kb_username} na Keybase. Zkuste to prosím znovu z Keybase.
-      wrong_user: Nelze vytvořit důkaz pro uživatele %{proving}, zatímco jste přihlášeni jako %{current}. Přihlaste se jako %{proving} a zkuste to znovu.
-    explanation_html: Zde můžete kryptograficky připojit vaše ostatní identity, například profil Keybase. To dovolí jiným lidem vám posílat šifrované zprávy a důvěřovat obsahu, který jim pošlete.
+      wrong_user: Nelze vytvořit důkaz pro %{proving}, zatímco jste přihlášeni jako %{current}. Přihlaste se jako %{proving} a zkuste to znovu.
+    explanation_html: Zde můžete kryptograficky propojit další své identity z jiných platforem, jako například Keybase. To umožňuje jiným lidem poslat vám šifrované zprávy na těchto platformách a důvěřovat, že obsah, který jim posíláte, pochází od vás.
     i_am_html: Na %{service} jsem %{username}.
     identity: Identita
     inactive: Neaktivní
@@ -1010,7 +1010,7 @@ cs:
       '604800': 1 týden
       '86400': 1 den
     expires_in_prompt: Nikdy
-    generate: Vygenerovat pozvánku
+    generate: Vygenerovat zvací odkaz
     invited_by: 'Pozval váš uživatel:'
     max_uses:
       few: "%{count} použití"
@@ -1018,7 +1018,7 @@ cs:
       one: 1 použití
       other: "%{count} použití"
     max_uses_prompt: Bez omezení
-    prompt: Vygenerujte a sdílejte s ostatními odkazy a umožněte jim přístup na tento server
+    prompt: Generujte a sdílejte s ostatními odkazy umožňující jim přístup na tento server
     table:
       expires_at: Vyprší
       uses: Použití
@@ -1038,7 +1038,7 @@ cs:
     cancelled_msg: Přesměrování bylo úspěšně zrušeno.
     errors:
       already_moved: je stejný účet, na který jste se již přesunuli
-      missing_also_known_as: neodkazuje na tento účet
+      missing_also_known_as: není aliasem tohoto účtu
       move_to_self: nemůže být aktuální účet
       not_found: nebyl nalezen
       on_cooldown: Probíhá období odpočinku
@@ -1089,8 +1089,8 @@ cs:
       subject: Uživatel %{name} si oblíbil váš příspěvek
       title: Nové oblíbení
     follow:
-      body: Uživatel %{name} vás nyní sleduje!
-      subject: Uživatel %{name} vás nyní sleduje
+      body: "%{name} vás nyní sleduje!"
+      subject: "%{name} vás nyní sleduje"
       title: Nový sledující
     follow_request:
       action: Spravovat žádosti o sledování
@@ -1321,7 +1321,7 @@ cs:
       unlisted_long: Uvidí kdokoliv, ale nebude zahrnut ve veřejných časových osách
   stream_entries:
     pinned: Připnutý příspěvek
-    reblogged: boostnul/a
+    reblogged: boostnul
     sensitive_content: Citlivý obsah
   tags:
     does_not_match_previous_name: se neshoduje s předchozím názvem
@@ -1453,7 +1453,7 @@ cs:
       statuses: 'Konkrétně kvůli:'
       subject:
         disable: Váš účet %{acct} byl zmrazen
-        none: Varování pro uživatele %{acct}
+        none: Varování pro %{acct}
         sensitive: Média z Vašeho účtu %{acct} byla označena za citlivá
         silence: Váš účet %{acct} byl omezen
         suspend: Váš účet %{acct} byl pozastaven
