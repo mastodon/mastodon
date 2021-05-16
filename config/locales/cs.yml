@@ -143,7 +143,7 @@ cs:
       invite_request_text: Důvody založení
       invited_by: Pozván uživatelem
       ip: IP adresa
-      joined: Účet založen
+      joined: Uživatel založen
       location:
         all: Všechny
         local: Místní
@@ -969,7 +969,7 @@ cs:
       keybase:
         invalid_token: Keybase tokeny jsou hashe podpisů a musí být dlouhé 66 hexadecimálních znaků
         verification_failed: Keybase nerozpoznává tento token jako podpis uživatele %{kb_username} na Keybase. Zkuste to prosím znovu z Keybase.
-      wrong_user: Nelze vytvořit důkaz pro uživatele %{proving}, zatímco jste přihlášeni jako %{current}. Přihlaste se jako %{proving} a zkuste to znovu.
+      wrong_user: Nelze vytvořit důkaz pro %{proving}, zatímco jste přihlášeni jako %{current}. Přihlaste se jako %{proving} a zkuste to znovu.
     explanation_html: Zde můžete kryptograficky připojit vaše ostatní identity, například profil Keybase. To dovolí jiným lidem vám posílat šifrované zprávy a důvěřovat obsahu, který jim pošlete.
     i_am_html: Na %{service} jsem %{username}.
     identity: Identita
@@ -1088,8 +1088,8 @@ cs:
       subject: "Uživatel %{name} si oblíbil váš příspěvek"
       title: Nové oblíbení
     follow:
-      body: "Uživatel %{name} vás nyní sleduje!"
-      subject: "Uživatel %{name} vás nyní sleduje"
+      body: "%{name} vás nyní sleduje!"
+      subject: "%{name} vás nyní sleduje"
       title: Nový sledující
     follow_request:
       action: Spravovat žádosti o sledování
@@ -1452,7 +1452,7 @@ cs:
       statuses: 'Konkrétně kvůli:'
       subject:
         disable: Váš účet %{acct} byl zmrazen
-        none: Varování pro uživatele %{acct}
+        none: Varování pro %{acct}
         sensitive: Média z Vašeho účtu %{acct} byla označena za citlivá
         silence: Váš účet %{acct} byl omezen
         suspend: Váš účet %{acct} byl pozastaven
