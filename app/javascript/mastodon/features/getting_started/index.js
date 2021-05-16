@@ -34,7 +34,7 @@ const messages = defineMessages({
   discover: { id: 'navigation_bar.discover', defaultMessage: 'Discover' },
   personal: { id: 'navigation_bar.personal', defaultMessage: 'Personal' },
   security: { id: 'navigation_bar.security', defaultMessage: 'Security' },
-  profile_directory: { id: 'navigation_bar.recommendations', defaultMessage: 'Recommendations' },
+  recommendations: { id: 'navigation_bar.recommendations', defaultMessage: 'Recommendations' },
   menu: { id: 'getting_started.heading', defaultMessage: 'Getting started' },
   profile_directory: { id: 'getting_started.directory', defaultMessage: 'Profile directory' },
 });
