@@ -1,7 +1,7 @@
 ---
 ja:
   about:
-    about_hashtag_html: ハッシュタグ <strong>#%{hashtag}</strong> の付いた公開トゥートです。どこでもいいので、連合に参加しているSNS上にアカウントを作れば会話に参加することができます。
+    about_hashtag_html: ハッシュタグ <strong>#%{hashtag}</strong> の付いた公開投稿です。どこでもいいので、連合に参加しているSNS上にアカウントを作れば会話に参加することができます。
     about_mastodon_html: Mastodon は、オープンなウェブプロトコルを採用した、自由でオープンソースなソーシャルネットワークです。電子メールのような分散型の仕組みを採っています。
     about_this: 詳細情報
     active_count_after: 人アクティブ
@@ -30,8 +30,8 @@ ja:
     server_stats: 'サーバー統計:'
     source_code: ソースコード
     status_count_after:
-      other: トゥート
-    status_count_before: トゥート数
+      other: 投稿
+    status_count_before: 投稿数
     tagline: Follow friends and discover new ones
     terms: 利用規約
     unavailable_content: 制限中のサーバー
@@ -71,9 +71,9 @@ ja:
     pin_errors:
       following: おすすめしたい人はあなたが既にフォローしている必要があります
     posts:
-      other: トゥート
-    posts_tab_heading: トゥート
-    posts_with_replies: トゥートと返信
+      other: 投稿
+    posts_tab_heading: 投稿
+    posts_with_replies: 投稿と返信
     roles:
       admin: Admin
       bot: Bot
@@ -193,7 +193,7 @@ ja:
         targeted_reports: このアカウントについての通報
       silence: サイレンス
       silenced: サイレンス済み
-      statuses: トゥート数
+      statuses: 投稿数
       subscribe: 購読する
       suspended: 停止済み
       suspension_irreversible: このアカウントのデータは削除され元に戻せなくなります。後日アカウントの凍結を解除することはできますがデータは元に戻せません。
@@ -224,7 +224,7 @@ ja:
         create_domain_block: ドメインブロックを作成
         create_email_domain_block: メールドメインブロックを作成
         create_ip_block: IPルールを作成
-        create_unavailable_domain: 利用できないドメインを作成
+        create_unavailable_domain: 配送できないドメインを作成
         demote_user: ユーザーを降格
         destroy_announcement: お知らせを削除
         destroy_custom_emoji: カスタム絵文字を削除
@@ -232,8 +232,8 @@ ja:
         destroy_domain_block: ドメインブロックを削除
         destroy_email_domain_block: メールドメインブロックを削除
         destroy_ip_block: IPルールを削除
-        destroy_status: トゥートを削除
-        destroy_unavailable_domain: 使用できないドメインを削除
+        destroy_status: 投稿を削除
+        destroy_unavailable_domain: 配送できないドメインを削除
         disable_2fa_user: 二段階認証を無効化
         disable_custom_emoji: カスタム絵文字を無効化
         disable_user: ユーザーを無効化
@@ -255,7 +255,7 @@ ja:
         update_announcement: お知らせを更新
         update_custom_emoji: カスタム絵文字を更新
         update_domain_block: ドメインブロックを更新
-        update_status: トゥートを更新
+        update_status: 投稿を更新
       actions:
         assigned_to_self_report_html: "%{name} さんが通報 %{target} を自身の担当に割り当てました"
         change_email_user_html: "%{name} さんが %{target} さんのメールアドレスを変更しました"
@@ -397,7 +397,7 @@ ja:
         create: ブロックを作成
         hint: ドメインブロックはデータベース中のアカウント項目の作成を妨げませんが、遡って自動的に指定されたモデレーションをそれらのアカウントに適用します。
         severity:
-          desc_html: "<strong>サイレンス</strong>はアカウントのトゥートをフォローしていない人から隠します。<strong>停止</strong>はそのアカウントのコンテンツ、メディア、プロフィールデータをすべて削除します。メディアファイルを拒否したいだけの場合は<strong>なし</strong>を使います。"
+          desc_html: "<strong>サイレンス</strong>はアカウントの投稿をフォローしていない人から隠します。<strong>停止</strong>はそのアカウントのコンテンツ、メディア、プロフィールデータをすべて削除します。メディアファイルを拒否したいだけの場合は<strong>なし</strong>を使います。"
           noop: なし
           silence: サイレンス
           suspend: 停止
@@ -458,13 +458,13 @@ ja:
         restart: 配送を再開
         stop: 配送を停止
         title: 配送
-        unavailable: 使用不可
+        unavailable: 配送不可
         unavailable_message: 配送不可
         warning: 警告あり
         warning_message:
           other: "%{count} 日配送失敗"
       delivery_available: 配送可能
-      delivery_error_days: 配送エラー日数
+      delivery_error_days: 配送エラー発生日
       delivery_error_hint: "%{count} 日間配送ができない場合は、自動的に配送不可としてマークされます。"
       empty: ドメインが見つかりませんでした。
       known_accounts:
@@ -511,11 +511,11 @@ ja:
     relays:
       add_new: リレーを追加
       delete: 削除
-      description_html: "<strong>連合リレー</strong>とは、登録しているサーバー間の公開トゥートを仲介するサーバーです。<strong>中小規模のサーバーが連合のコンテンツを見つけるのを助けます。</strong>これを使用しない場合、ローカルユーザーがリモートユーザーを手動でフォローする必要があります。"
+      description_html: "<strong>連合リレー</strong>とは、登録しているサーバー間の公開投稿を仲介するサーバーです。<strong>中小規模のサーバーが連合のコンテンツを見つけるのを助けます。</strong>これを使用しない場合、ローカルユーザーがリモートユーザーを手動でフォローする必要があります。"
       disable: 無効化
       disabled: 無効
       enable: 有効化
-      enable_hint: 有効にすると、リレーから全ての公開トゥートを受信するようになり、またこのサーバーの全ての公開トゥートをリレーに送信するようになります。
+      enable_hint: 有効にすると、リレーから全ての公開投稿を受信するようになり、またこのサーバーの全ての公開投稿をリレーに送信するようになります。
       enabled: 有効
       inbox_url: リレーURL
       pending: リレーサーバーの承認待ちです
@@ -565,17 +565,17 @@ ja:
     rules:
       add_new: ルールを追加
       delete: 削除
-      description_html: ほとんどの人が利用規約を読んで同意したと主張しますが、通常は問題が発生するまで読みません。<strong>箇条書きにして、サーバーのルールが一目で分かるようにしましょう</strong>。個々のルールは短くシンプルなものにし、多くの項目に分割しないようにしましょう。
+      description_html: たいていの人が利用規約を読んで同意したと言いますが、普通は問題が発生するまで読みません。<strong>箇条書きにして、サーバーのルールが一目で分かるようにしましょう</strong>。個々のルールは短くシンプルなものにし、多くの項目に分割しないようにしましょう。
       edit: ルールを編集
       empty: サーバーのルールが定義されていません。
       title: サーバーのルール
     settings:
       activity_api_enabled:
-        desc_html: 週ごとのローカルに投稿されたトゥート数、アクティブなユーザー数、新規登録者数
+        desc_html: 週ごとのローカルに投稿された投稿数、アクティブなユーザー数、新規登録者数
         title: ユーザーアクティビティに関する統計を公開する
       bootstrap_timeline_accounts:
-        desc_html: 複数のユーザー名はコンマで区切ります。ローカルの公開アカウントのみ有効です。指定しない場合は管理者がデフォルトで指定されます。
-        title: 新規ユーザーが自動フォローするアカウント
+        desc_html: 複数のユーザー名を指定する場合コンマで区切ります。おすすめに表示されます。
+        title: 新規ユーザーにおすすめするアカウント
       contact_information:
         email: ビジネスメールアドレス
         username: 連絡先ユーザー名
@@ -627,7 +627,7 @@ ja:
           open: 誰でも登録可
         title: 新規登録
       show_known_fediverse_at_about_page:
-        desc_html: チェックを外すと、ランディングページからリンクされた公開タイムラインにローカルの公開トゥートのみ表示します。
+        desc_html: チェックを外すと、ランディングページからリンクされた公開タイムラインにローカルの公開投稿のみ表示します。
         title: 公開タイムラインに連合先のコンテンツも表示する
       show_staff_badge:
         desc_html: ユーザーページにスタッフのバッジを表示します
@@ -673,7 +673,7 @@ ja:
         title: メディア
       no_media: メディアなし
       no_status_selected: 何も選択されていないため、変更されていません
-      title: トゥート一覧
+      title: 投稿一覧
       with_media: メディアあり
     system_checks:
       database_schema_check:
@@ -695,7 +695,7 @@ ja:
       reviewed: 審査済み
       title: ハッシュタグ
       trending_right_now: 現在のトレンド
-      unique_uses_today: 本日 %{count} 人がトゥートに使用
+      unique_uses_today: 本日 %{count} 人が投稿に使用
       unreviewed: 未審査
       updated_msg: ハッシュタグ設定が更新されました
     title: 管理
@@ -734,14 +734,14 @@ ja:
       guide_link: https://ja.crowdin.com/project/mastodon
       guide_link_text: 誰でも参加することができます。
     sensitive_content: 閲覧注意コンテンツ
-    toot_layout: トゥートレイアウト
+    toot_layout: 投稿のレイアウト
   application_mailer:
     notification_preferences: メール設定の変更
     salutation: "%{name} さん"
     settings: 'メール設定の変更: %{link}'
     view: 'リンク:'
     view_profile: プロフィールを表示
-    view_status: トゥートを表示
+    view_status: 投稿を表示
   applications:
     created: アプリが作成されました
     destroyed: アプリが削除されました
@@ -878,7 +878,7 @@ ja:
     archive_takeout:
       date: 日時
       download: ダウンロード
-      hint_html: "<strong>トゥートとメディア</strong>のアーカイブをリクエストできます。 データはActivityPub形式で、対応しているソフトウェアで読み込むことができます。7日毎にアーカイブをリクエストできます。"
+      hint_html: "<strong>投稿本文とメディア</strong>のアーカイブをリクエストできます。 データはActivityPub形式で、対応しているソフトウェアで読み込むことができます。7日毎にアーカイブをリクエストできます。"
       in_progress: 準備中...
       request: アーカイブをリクエスト
       size: 容量
@@ -1044,7 +1044,7 @@ ja:
         other: "新しい%{count}件の通知 \U0001F418"
       title: 不在の間に…
     favourite:
-      body: "%{name} さんにお気に入り登録された、あなたのトゥートがあります:"
+      body: "%{name} さんにお気に入り登録された、あなたの投稿があります:"
       subject: "%{name} さんにお気に入りに登録されました"
       title: 新たなお気に入り登録
     follow:
@@ -1064,7 +1064,7 @@ ja:
     poll:
       subject: "%{name}  さんの投票が終了しました"
     reblog:
-      body: "%{name} さんにブーストされた、あなたのトゥートがあります:"
+      body: "%{name} さんにブーストされた、あなたの投稿があります:"
       subject: "%{name} さんにブーストされました"
       title: 新たなブースト
     status:
@@ -1092,9 +1092,9 @@ ja:
     setup: セットアップ
     wrong_code: コードが間違っています。サーバーとデバイスの時計にずれがあるかもしれません。
   pagination:
-    newer: 新しいトゥート
+    newer: 新しい投稿
     next: 次
-    older: 以前のトゥート
+    older: 以前の投稿
     prev: 前
     truncate: "&hellip;"
   polls:
@@ -1231,14 +1231,14 @@ ja:
     disallowed_hashtags:
       other: '許可されていないハッシュタグが含まれています: %{tags}'
     errors:
-      in_reply_not_found: あなたが返信しようとしているトゥートは存在しないようです。
+      in_reply_not_found: あなたが返信しようとしている投稿は存在しないようです。
     language_detection: 自動検出
     open_in_web: Webで開く
     over_character_limit: 上限は %{max}文字までです
     pin_errors:
-      limit: 固定できるトゥート数の上限に達しました
-      ownership: 他人のトゥートを固定することはできません
-      private: 非公開のトゥートを固定することはできません
+      limit: 固定できる投稿数の上限に達しました
+      ownership: 他人の投稿を固定することはできません
+      private: 非公開の投稿を固定することはできません
       reblog: ブーストを固定することはできません
     poll:
       total_people:
@@ -1261,7 +1261,7 @@ ja:
       unlisted: 未収載
       unlisted_long: 誰でも見ることができますが、公開タイムラインには表示されません
   stream_entries:
-    pinned: 固定されたトゥート
+    pinned: 固定された投稿
     reblogged: さんがブースト
     sensitive_content: 閲覧注意
   tags:
@@ -1387,11 +1387,11 @@ ja:
       explanation:
         disable: あなたのアカウントはログインが禁止され使用できなくなりました。しかしアカウントのデータはそのまま残っています。
         sensitive: あなたのアップロードしたメディアファイルとリンク先のメディアは、閲覧注意として扱われます。
-        silence: あなたのアカウントは制限されましたがそのまま使用できます。ただし既にフォローしている人はあなたのトゥートを見ることができますが、様々な公開タイムラインには表示されない場合があります。また他のユーザーは今後も手動であなたをフォローすることができます。
+        silence: あなたのアカウントは制限されましたがそのまま使用できます。ただし既にフォローしている人はあなたの投稿を見ることができますが、様々な公開タイムラインには表示されない場合があります。また他のユーザーは今後も手動であなたをフォローすることができます。
         suspend: あなたのアカウントは使用できなくなりプロフィールやその他データにアクセスできなくなりました。アカウントが完全に削除されるまではログインしてデータのエクスポートをリクエストできます。証拠隠滅を防ぐため一部のデータは削除されず残ります。
       get_in_touch: このメールに返信することで %{instance} のスタッフと連絡を取ることができます。
       review_server_policies: サーバーのポリシーを確認
-      statuses: '特に次のトゥート:'
+      statuses: '特に次の投稿:'
       subject:
         disable: あなたのアカウント %{acct} は凍結されました
         none: "%{acct} に対する警告"
