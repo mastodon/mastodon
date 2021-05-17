@@ -1,4 +1,3 @@
----
 es:
   devise:
     confirmations:
@@ -8,7 +7,7 @@ es:
     failure:
       already_authenticated: Usted ya está registrado.
       inactive: Su cuenta no ha sido activada aún.
-      invalid: "%{authentication_keys} o contraseña inválida."
+      invalid: '%{authentication_keys} o contraseña inválida.'
       last_attempt: Tiene un intento más antes de que tu cuenta sea bloqueada.
       locked: Tu cuenta está bloqueada.
       not_found_in_database: Incorrecto %{authentication_keys} o contraseña.
@@ -65,3 +64,15 @@ es:
           explanation: La siguiente clave de seguridad ha sido añadida a su cuenta
           subject: 'Mastodon: Nueva clave de seguridad'
           title: Se ha añadido una nueva clave de seguridad
+        deleted:
+          explanation: La siguiente clave de seguridad ha sido eliminada de tu cuenta
+          subject: 'Mastodon: Clave de seguridad eliminada'
+          title: Una de tus claves de seguridad ha sido eliminada
+      webauthn_disabled:
+        explanation: La autenticación con claves de seguridad ha sido deshabilitada para tu cuenta. Ahora el inicio de sesión solo es posible utilizando el token generado por la aplicación TOTP emparejada.
+        subject: 'Mastodon: Autenticación con claves de seguridad deshabilitada'
+        title: Claves de seguridad deshabilitadas
+      webauthn_enabled:
+        explanation: La autenticación con clave de seguridad ha sido habilitada para tu cuenta. Ahora tu clave de seguridad puede ser utilizada para iniciar sesión.
+        subject: 'Mastodon: Autenticación de clave de seguridad habilitada'
+        title: Claves de seguridad habilitadas
