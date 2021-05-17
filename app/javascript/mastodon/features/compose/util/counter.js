@@ -1,6 +1,6 @@
 import { urlRegex } from './url_regex';
 
-const urlPlaceholder = 'xxxxxxxxxxxxxxxxxxxxxxx';
+const urlPlaceholder = '$2xxxxxxxxxxxxxxxxxxxxxxx';
 
 export function countableText(inputText) {
   return inputText

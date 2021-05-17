@@ -83,7 +83,10 @@ eu:
         invalid_client: Bezeroaren autentifikazioak huts egin du bezero ezezaguna delako, ez delako bezero autentifikazioa txertatu, edo autentifikazio metodoa ez delako onartzen.
         invalid_grant: Emandako autorizatzea baliogabea da, iraungitu da, indargabetu da. ez dator bat autorizatze eskarian erabilitako URI-arekin, edo beste bezero batek sortu du.
         invalid_redirect_uri: Sartutako birbideratze URI-a baliogabea da.
-        invalid_request: Eskaerak beharrezkoa den parametro bat falta du, onartu gabeko parametro-balio bat du, edo beste moduren batean gaizki osatua dago.
+        invalid_request:
+          missing_param: 'Beharrezko parametroa falta da: %{value}.'
+          request_not_authorized: Eskaera baimendu behar da. Eskaera baimentzeko beharrezko parametroa falta da edo baliogabea da.
+          unknown: Eskaerak beharrezkoa den parametro bat falta du, onartu gabeko parametro-balio bat du, edo beste moduren batean gaizki osatua dago.
         invalid_resource_owner: Emandako baliabidearen jabearen kredentzialak baliogabeak dira, edo baliabidearen jabea ez da aurkitu
         invalid_scope: Eskatutako esparrua baliogabea da, ezezaguna, edo gaizki osatua dago.
         invalid_token:

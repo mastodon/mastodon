@@ -23,6 +23,6 @@
     = t 'admin.action_logs.empty'
 - else
   .announcements-list
-    = render @action_logs
+    = render partial: 'action_log', collection: @action_logs
 
 = paginate @action_logs

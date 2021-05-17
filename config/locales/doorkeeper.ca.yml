@@ -83,7 +83,10 @@ ca:
         invalid_client: La autentificació del client ha fallat perquè és un client desconegut o no està inclòs l'autentificació del client o el mètode d'autenticació no està confirmat.
         invalid_grant: La concessió d'autorizació oferida és invàlida, ha vençut, s'ha revocat, no coincideix amb l'URI de redirecció utilizada en la petició d'autorizació, o fou emesa per a un altre client.
         invalid_redirect_uri: L'URI de redirecció inclòs no és vàlid.
-        invalid_request: En la petició manca un paràmetre necessari o inclou un valor de paràmetre no suportat o te un altre tipus de format incorrecte.
+        invalid_request:
+          missing_param: 'Falta paràmetre requerit: %{value}.'
+          request_not_authorized: La petició ha de ser autoritzada. Falta o és invàlid un paràmetre requerit per l'autorització de la petició.
+          unknown: En la petició manca un paràmetre necessari o inclou un valor de paràmetre no suportat o te un altre tipus de format incorrecte.
         invalid_resource_owner: Les credencials del propietari del recurs proporcionat no son vàlides, o el propietari del recurs no pot ser trobat
         invalid_scope: L'àmbit demanat és invàlid, desconegut o erroni.
         invalid_token:

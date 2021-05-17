@@ -56,7 +56,7 @@ class ReplyIndicator extends ImmutablePureComponent {
           </a>
         </div>
 
-        <div className='reply-indicator__content' dangerouslySetInnerHTML={content} />
+        <div className='reply-indicator__content translate' dangerouslySetInnerHTML={content} />
 
         {status.get('media_attachments').size > 0 && (
           <AttachmentList

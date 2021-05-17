@@ -2,7 +2,8 @@ require:
   - rubocop-rails
 
 AllCops:
-  TargetRubyVersion: 2.4
+  TargetRubyVersion: 2.5
+  NewCops: disable
   Exclude:
   - 'spec/**/*'
   - 'db/**/*'

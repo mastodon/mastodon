@@ -59,7 +59,7 @@ class ColumnSettings extends React.PureComponent {
           {this.modeLabel(mode)}
         </span>
 
-        <NonceProvider nonce={document.querySelector('meta[name=style-nonce]').content}>
+        <NonceProvider nonce={document.querySelector('meta[name=style-nonce]').content} cacheKey='tags'>
           <AsyncSelect
             isMulti
             autoFocus

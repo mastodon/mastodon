@@ -7,8 +7,10 @@ class Keys::QueryService < BaseService
     attributes :account, :devices
 
     def initialize(account, devices)
-      @account = account
-      @devices = devices || []
+      super(
+        account: account,
+        devices: devices || [],
+      )
     end
 
     def find(device_id)
@@ -20,11 +22,13 @@ class Keys::QueryService < BaseService
     attributes :device_id, :name, :identity_key, :fingerprint_key
 
     def initialize(attributes = {})
-      @device_id       = attributes[:device_id]
-      @name            = attributes[:name]
-      @identity_key    = attributes[:identity_key]
-      @fingerprint_key = attributes[:fingerprint_key]
-      @claim_url       = attributes[:claim_url]
+      super(
+        device_id:       attributes[:device_id],
+        name:            attributes[:name],
+        identity_key:    attributes[:identity_key],
+        fingerprint_key: attributes[:fingerprint_key],
+      )
+      @claim_url = attributes[:claim_url]
     end
 
     def valid_claim_url?

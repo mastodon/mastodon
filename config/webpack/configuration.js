@@ -2,14 +2,14 @@
 
 const { resolve } = require('path');
 const { env } = require('process');
-const { safeLoad } = require('js-yaml');
+const { load } = require('js-yaml');
 const { readFileSync } = require('fs');
 
 const configPath = resolve('config', 'webpacker.yml');
-const settings = safeLoad(readFileSync(configPath), 'utf8')[env.RAILS_ENV || env.NODE_ENV];
+const settings = load(readFileSync(configPath), 'utf8')[env.RAILS_ENV || env.NODE_ENV];
 
 const themePath = resolve('config', 'themes.yml');
-const themes = safeLoad(readFileSync(themePath), 'utf8');
+const themes = load(readFileSync(themePath), 'utf8');
 
 const output = {
   path: resolve('public', settings.public_output_path),

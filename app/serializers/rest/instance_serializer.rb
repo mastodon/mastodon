@@ -9,7 +9,9 @@ class REST::InstanceSerializer < ActiveModel::Serializer
 
   has_one :contact_account, serializer: REST::AccountSerializer
 
-  delegate :contact_account, to: :instance_presenter
+  has_many :rules, serializer: REST::RuleSerializer
+
+  delegate :contact_account, :rules, to: :instance_presenter
 
   def uri
     Rails.configuration.x.local_domain

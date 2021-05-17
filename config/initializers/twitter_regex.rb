@@ -1,4 +1,10 @@
-module Twitter
+module Twitter::TwitterText
+  class Configuration
+    def emoji_parsing_enabled
+      false
+    end
+  end
+
   class Regex
     REGEXEN[:valid_general_url_path_chars] = /[^\p{White_Space}<>\(\)\?]/iou
     REGEXEN[:valid_url_path_ending_chars] = /[^\p{White_Space}\(\)\?!\*"'「」<>;:=\,\.\$%\[\]~&\|@]|(?:#{REGEXEN[:valid_url_balanced_parens]})/iou
@@ -75,11 +81,11 @@ module Twitter
     # XMPP or magnet URIs an empty array will be returned.
     #
     # If a block is given then it will be called for each XMPP URI.
-    def extract_extra_uris_with_indices(text, options = {}) # :yields: uri, start, end
+    def extract_extra_uris_with_indices(text, _options = {}) # :yields: uri, start, end
       return [] unless text && text.index(":")
       urls = []
 
-      text.to_s.scan(Twitter::Regex[:valid_extended_uri]) do
+      text.to_s.scan(Twitter::TwitterText::Regex[:valid_extended_uri]) do
         valid_uri_match_data = $~
 
         start_position = valid_uri_match_data.char_begin(3)

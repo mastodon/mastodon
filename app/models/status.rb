@@ -117,7 +117,7 @@ class Status < ApplicationRecord
                    :tags,
                    :preview_cards,
                    :preloadable_poll,
-                   account: :account_stat,
+                   account: [:account_stat, :user],
                    active_mentions: { account: :account_stat },
                    reblog: [
                      :application,
@@ -127,7 +127,7 @@ class Status < ApplicationRecord
                      :conversation,
                      :status_stat,
                      :preloadable_poll,
-                     account: :account_stat,
+                     account: [:account_stat, :user],
                      active_mentions: { account: :account_stat },
                    ],
                    thread: { account: :account_stat }
@@ -166,6 +166,10 @@ class Status < ApplicationRecord
 
   def local_only?
     local_only
+  end
+
+  def in_reply_to_local_account?
+    reply? && thread&.account&.local?
   end
 
   def reblog?
@@ -310,7 +314,7 @@ class Status < ApplicationRecord
 
       return if account_ids.empty?
 
-      accounts = Account.where(id: account_ids).includes(:account_stat).each_with_object({}) { |a, h| h[a.id] = a }
+      accounts = Account.where(id: account_ids).includes(:account_stat, :user).index_by(&:id)
 
       cached_items.each do |item|
         item.account = accounts[item.account_id]
@@ -343,7 +347,7 @@ class Status < ApplicationRecord
     def from_text(text)
       return [] if text.blank?
 
-      text.scan(FetchLinkCardService::URL_PATTERN).map(&:first).uniq.map do |url|
+      text.scan(FetchLinkCardService::URL_PATTERN).map(&:first).uniq.filter_map do |url|
         status = begin
           if TagManager.instance.local_url?(url)
             ActivityPub::TagManager.instance.uri_to_resource(url, Status)
@@ -352,7 +356,7 @@ class Status < ApplicationRecord
           end
         end
         status&.distributable? ? status : nil
-      end.compact
+      end
     end
   end
 

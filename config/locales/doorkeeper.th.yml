@@ -28,6 +28,8 @@ th:
         destroy: คุณแน่ใจหรือไม่?
       edit:
         title: แก้ไขแอปพลิเคชัน
+      form:
+        error: อ๊ะ! ตรวจสอบแบบฟอร์มของคุณสำหรับข้อผิดพลาดที่อาจเกิดขึ้น
       help:
         native_redirect_uri: ใช้ %{native_redirect_uri} สำหรับการทดสอบในเซิร์ฟเวอร์
         redirect_uri: ใช้หนึ่งบรรทัดต่อ URI
@@ -71,12 +73,14 @@ th:
       index:
         application: แอปพลิเคชัน
         created_at: อนุญาตเมื่อ
-        date_format: "%Y-%m-%d %H:%M:%S"
+        date_format: "%d/%m/%Y %H:%M:%S"
         scopes: ขอบเขต
         title: แอปพลิเคชันที่ได้รับอนุญาตของคุณ
     errors:
       messages:
         access_denied: เจ้าของทรัพยากรหรือเซิร์ฟเวอร์การอนุญาตปฏิเสธคำขอ
+        invalid_request:
+          missing_param: 'พารามิเตอร์ที่จำเป็นขาดหายไป: %{value}'
         invalid_token:
           expired: โทเคนการเข้าถึงหมดอายุแล้ว
           revoked: เพิกถอนโทเคนการเข้าถึงแล้ว

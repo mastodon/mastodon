@@ -28,12 +28,47 @@ ml:
         title: അപ്ലിക്കേഷൻ എഡിറ്റുചെയ്യുക
       form:
         error: ക്ഷമിക്കണം! സാധ്യമായ പിശകുകൾക്കായി നിങ്ങളുടെ ഫോം പരിശോധിക്കുക
+      help:
+        redirect_uri: ഒരു യു‌ആർ‌ഐക്ക് ഒരു വരി ഉപയോഗിക്കുക
       index:
         application: അപ്ലിക്കേഷന്‍
         delete: മായ്ക്കുക
+        empty: നിങ്ങൾക്ക് അപ്ലിക്കേഷനുകളൊന്നുമില്ല.
         name: പേര്
+        new: പുതിയ അപ്ലിക്കേഷൻ
+        show: കാണിക്കുക
+        title: നിങ്ങളുടെ അപ്ലിക്കേഷനുകൾ
+      new:
+        title: പുതിയ അപ്ലിക്കേഷൻ
+      show:
+        actions: പ്രവർത്തനങ്ങൾ
+        title: 'അപ്ലിക്കേഷൻ: %{name}'
+    authorizations:
+      buttons:
+        authorize: അംഗീകരിക്കുക
+        deny: നിരസിക്കുക
+      error:
+        title: ഒരു പിഴവ് സംഭവിച്ചിരിക്കുന്നു
+      new:
+        title: അംഗീകാരം ആവശ്യമാണ്
+      show:
+        title: ഈ അംഗീകാര കോഡ് പകർത്തി അപ്ലിക്കേഷനിൽ ഒട്ടിക്കുക.
     authorized_applications:
       buttons:
         revoke: പിൻവലിക്കുക
       confirmations:
         revoke: നിങ്ങൾക്ക് ഉറപ്പാണോ?
+      index:
+        application: അപ്ലിക്കേഷന്‍
+        created_at: അംഗീകാരപ്പെടുത്തിയത്
+        date_format: "%Y-%m-%d %H:%M:%S"
+        title: നിങ്ങളുടെ അംഗീകൃത അപ്ലിക്കേഷനുകൾ
+    errors:
+      messages:
+        access_denied: റിസോഴ്സ് ഉടമയോ അംഗീകാര സെർവറോ അഭ്യർത്ഥന നിരസിച്ചു.
+        credential_flow_not_configured: Doorkeeper.configure.resource_owner_from_credentials ക്രമീകരിക്കാത്തതിനാൽ റിസോഴ്സ് ഉടമ പാസ്‌വേഡ് ക്രെഡൻഷ്യലുകളുടെ ഒഴുക്ക് പരാജയപ്പെട്ടു.
+        invalid_client: അജ്ഞാത ക്ലയന്റ്, ക്ലയന്റ് പ്രാമാണീകരണം ഉൾപ്പെടുത്തിയിട്ടില്ല, അല്ലെങ്കിൽ പിന്തുണയ്‌ക്കാത്ത പ്രാമാണീകരണ രീതി എന്നിവ കാരണം ക്ലയൻറ് പ്രാമാണീകരണം പരാജയപ്പെട്ടു.
+        invalid_token:
+          expired: പ്രവേശന ടോക്കൺ കാലഹരണപ്പെട്ടു
+          revoked: പ്രവേശന ടോക്കൺ അസാധുവാക്കി
+          unknown: പ്രവേശന ടോക്കൺ അസാധുവാണ്

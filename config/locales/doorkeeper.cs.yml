@@ -83,7 +83,10 @@ cs:
         invalid_client: Ověření klienta selhalo kvůli neznámému klientovi, chybějící klientské autentizaci či nepodporované autentizační metodě.
         invalid_grant: Poskytnuté oprávnění je neplatné, vypršela jeho platnost, bylo zamítnuto, neshoduje se s URI přesměrování použitým v požadavku o autorizaci, nebo bylo uděleno jinému klientu.
         invalid_redirect_uri: URI pro přesměrování není platné.
-        invalid_request: Požadavku chybí povinný parametr, obsahuje nepodporovanou hodnotu parametru, či je jinak špatné formulovaný.
+        invalid_request:
+          missing_param: 'Chybí potřebný parametr: %{value}.'
+          request_not_authorized: Požadavek musí být autorizován. Potřebný parametr pro autorizaci požadavku chybí nebo není platný.
+          unknown: Požadavku chybí potřebný parametr, obsahuje nepodporovanou hodnotu parametru nebo je jinak špatně formulován.
         invalid_resource_owner: Poskytnuté přihlašovací údaje vlastníka zdroje nejsou platné, nebo vlastník zdroje nemůže být nalezen
         invalid_scope: Požadovaný rozsah je neplatný, neznámý, nebo špatně formulovaný.
         invalid_token:
@@ -135,12 +138,12 @@ cs:
       read:notifications: vidět vaše oznámení
       read:reports: vidět vaše hlášení
       read:search: vyhledávat za vás
-      read:statuses: vidět všechny tooty
+      read:statuses: vidět všechny příspěvky
       write: měnit všechna data vašeho účtu
       write:accounts: měnit váš profil
       write:blocks: blokovat účty a domény
-      write:bookmarks: přidávat tooty do záložek
-      write:favourites: označovat tooty jako oblíbené
+      write:bookmarks: přidávat příspěvky do záložek
+      write:favourites: oblibovat si příspěvky
       write:filters: vytvářet filtry
       write:follows: sledovat lidi
       write:lists: vytvářet seznamy
@@ -148,4 +151,4 @@ cs:
       write:mutes: skrývat lidi a konverzace
       write:notifications: mazat vaše oznámení
       write:reports: nahlašovat jiné uživatele
-      write:statuses: zveřejňovat tooty
+      write:statuses: zveřejňovat příspěvky
