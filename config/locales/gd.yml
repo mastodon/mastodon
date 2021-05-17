@@ -70,7 +70,7 @@ gd:
     following: A’ leantainn
     instance_actor_flash: "’S e actar biortail a tha sa chunntas seo a riochdaicheas am frithealaiche fhèin seach cleachdaiche sònraichte. Tha e ’ga chleachdadh a chùm co-nasgaidh agus cha bu chòir dhut a chur à rèim."
     joined: Air ballrachd fhaighinn %{date}
-    last_active: gnìomhach an turas mu dheireadh
+    last_active: an gnìomh mu dheireadh
     link_verified_on: Chaidh dearbhadh cò leis a tha an ceangal seo %{date}
     media: Meadhanan
     moved_html: 'Chaidh %{name} imrich gu %{new_profile_link}:'
@@ -238,6 +238,7 @@ gd:
         create_domain_block: Cruthaich bacadh àrainne
         create_email_domain_block: Cruthaich bacadh àrainne puist-d
         create_ip_block: Cruthaich riaghailt IP
+        create_unavailable_domain: Cruthaich àrainn nach eil ri fhaighinn
         demote_user: Ìslich an cleachdaiche
         destroy_announcement: Sguab às am brath-fios
         destroy_custom_emoji: Sguab às an t-Emoji gnàthaichte
@@ -246,6 +247,7 @@ gd:
         destroy_email_domain_block: Sguab às bacadh na h-àrainne puist-d
         destroy_ip_block: Sguab às an riaghailt IP
         destroy_status: Sguab às am post
+        destroy_unavailable_domain: Sguab às àrainn nach eil ri fhaighinn
         disable_2fa_user: Cuir an dearbhadh dà-cheumnach à comas
         disable_custom_emoji: Cuir an t-Emoji gnàthaichte à comas
         disable_user: Cuir an cleachdaiche à comas
@@ -279,6 +281,7 @@ gd:
         create_domain_block_html: Bhac %{name} an àrainn %{target}
         create_email_domain_block_html: Bhac %{name} an àrainn puist-d %{target}
         create_ip_block_html: Chruthaich %{name} riaghailt dhan IP %{target}
+        create_unavailable_domain_html: Sguir %{name} ris an lìbhrigeadh dhan àrainn %{target}
         demote_user_html: Dh’ìslich %{name} an cleachdaiche %{target}
         destroy_announcement_html: Sguab %{name} às am brath-fios %{target}
         destroy_custom_emoji_html: Mhill %{name} an Emoji %{target}
@@ -287,6 +290,7 @@ gd:
         destroy_email_domain_block_html: Dì-bhac %{name} an àrainn puist-d %{target}
         destroy_ip_block_html: Sguab %{name} às riaghailt dhan IP %{target}
         destroy_status_html: Thug %{name} post aig %{target} air falbh
+        destroy_unavailable_domain_html: Lean %{name} air adhart leis an lìbhrigeadh dhan àrainn %{target}
         disable_2fa_user_html: Chuir %{name} riatanas an dearbhaidh dà-cheumnaich à comas dhan chleachdaiche %{target}
         disable_custom_emoji_html: Chuir %{name} an Emoji %{target} à comas
         disable_user_html: Chuir %{name} an clàradh a-steach à comas dhan chleachdaiche %{target}
@@ -461,8 +465,27 @@ gd:
       title: Molaidhean leantainn
       unsuppress: Aisig am moladh leantainn
     instances:
+      back_to_all: Na h-uile
+      back_to_limited: Cuingichte
+      back_to_warning: Rabhadh
       by_domain: Àrainn
+      delivery:
+        all: Na h-uile
+        clear: Falamhaich na mearachdan lìbhrigidh
+        restart: Ath-thòisich air an lìbhrigeadh
+        stop: Cuir stad air an lìbhrigeadh
+        title: Lìbhrigeadh
+        unavailable: Chan eil e ri làimh
+        unavailable_message: Chan eil lìbhrigeadh ri fhaighinn
+        warning: Rabhadh
+        warning_message:
+          few: Dh’fhàillig leis an lìbhrigeadh fad %{count} làithean
+          one: Dh’fhàillig leis an lìbhrigeadh fad %{count} latha
+          other: Dh’fhàillig leis an lìbhrigeadh fad %{count} latha
+          two: Dh’fhàillig leis an lìbhrigeadh fad %{count} latha
       delivery_available: Tha lìbhrigeadh ri fhaighinn
+      delivery_error_days: Làithean le mearachd lìbhrigidh
+      delivery_error_hint: Mura gabh a lìbhrigeadh fad %{count} là(ithean), thèid comharra a chur ris gu fèin-obrachail a dh’innseas nach gabh a lìbhrigeadh.
       empty: Cha deach àrainn a lorg.
       known_accounts:
         few: "%{count} cunntasan as aithne dhuinn"
@@ -1141,7 +1164,7 @@ gd:
     followers: Luchd-leantainn
     following: A’ leantainn
     invited: Air cuireadh fhaighinn
-    last_active: Gnìomhach an turas mu dheireadh
+    last_active: An gnìomh mu dheireadh
     most_recent: As ùire
     moved: Air imrich
     mutual: Co-dhàimh

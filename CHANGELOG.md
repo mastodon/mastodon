@@ -3,7 +3,7 @@ Changelog
 
 All notable changes to this project will be documented in this file.
 
-## Unreleased
+## [3.4.0] - 2021-05-16
 ### Added
 
 - **Add follow recommendations for onboarding** ([Gargron](https://github.com/tootsuite/mastodon/pull/15945), [Gargron](https://github.com/tootsuite/mastodon/pull/16161), [Gargron](https://github.com/tootsuite/mastodon/pull/16060), [Gargron](https://github.com/tootsuite/mastodon/pull/16077), [Gargron](https://github.com/tootsuite/mastodon/pull/16078), [Gargron](https://github.com/tootsuite/mastodon/pull/16160), [Gargron](https://github.com/tootsuite/mastodon/pull/16079), [noellabo](https://github.com/tootsuite/mastodon/pull/16044), [noellabo](https://github.com/tootsuite/mastodon/pull/16045), [Gargron](https://github.com/tootsuite/mastodon/pull/16152), [Gargron](https://github.com/tootsuite/mastodon/pull/16153), [ClearlyClaire](https://github.com/tootsuite/mastodon/pull/16082), [ClearlyClaire](https://github.com/tootsuite/mastodon/pull/16173), [ClearlyClaire](https://github.com/tootsuite/mastodon/pull/16159), [ClearlyClaire](https://github.com/tootsuite/mastodon/pull/16189))
