@@ -31,6 +31,6 @@ Rails.application.configure do
     config.hosts << host if host.present?
     config.hosts << web_host if web_host.present?
     config.hosts.concat(alternate_domains) if alternate_domains.present?
-    config.hosts_authorization = { exclude: ->(request) { request.path == '/health' } }
+    config.host_authorization = { exclude: ->(request) { request.path == '/health' } }
   end
 end
