@@ -1092,7 +1092,11 @@ es:
       decimal_units:
         format: "%n %u"
         units:
+          billion: MM
+          million: M
+          quadrillion: MB
           thousand: m
+          trillion: B
   otp_authentication:
     code_hint: Introduce el código generado por tu aplicación de autentificación para confirmar
     description_html: Si habilitas <strong>autenticación de dos factores</strong> a través de una aplicación de autenticación, el ingreso requerirá que estés en posesión de tu teléfono, que generará códigos para que ingreses.
@@ -1106,6 +1110,7 @@ es:
     next: Próximo
     older: Más antiguo
     prev: Anterior
+    truncate: "&hellip;"
   polls:
     errors:
       already_voted: Ya has votado en esta encuesta
@@ -1167,15 +1172,40 @@ es:
     activity: Última actividad
     browser: Navegador
     browsers:
+      alipay: Alipay
+      blackberry: Blackberry
+      chrome: Chrome
+      edge: Microsoft Edge
+      electron: Electron
+      firefox: Firefox
       generic: Desconocido
+      ie: Internet Explorer
+      micro_messenger: MicroMessenger
       nokia: Navegador de Nokia S40 Ovi
+      opera: Opera
+      otter: Otter
+      phantom_js: PhantomJS
       qq: Navegador QQ
+      safari: Safari
+      uc_browser: UCBrowser
+      weibo: Weibo
     current_session: Sesión actual
     description: "%{browser} en %{platform}"
     explanation: Estos son los navegadores web conectados actualmente en tu cuenta de Mastodon.
+    ip: IP
     platforms:
+      adobe_air: Adobe Air
+      android: Android
+      blackberry: Blackberry
+      chrome_os: ChromeOS
+      firefox_os: Firefox OS
+      ios: iOS
+      linux: GNU Linux
       mac: Mac
       other: Desconocido
+      windows: Windows
+      windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
     revoke: Revocar
     revoke_success: Sesión revocada exitosamente
     title: Sesiones
@@ -1203,6 +1233,9 @@ es:
     webauthn_authentication: Claves de seguridad
   statuses:
     attached:
+      audio:
+        one: "%{count} audio"
+        other: "%{count} audios"
       description: 'Adjunto: %{attached}'
       image:
         one: "%{count} imagen"
@@ -1238,6 +1271,7 @@ es:
     show_older: Mostrar más antiguos
     show_thread: Mostrar discusión
     sign_in_to_participate: Regístrate para participar en la conversación
+    title: '%{name}: «%{quote}»'
     visibilities:
       direct: Directa
       private: Sólo mostrar a seguidores
@@ -1342,6 +1376,7 @@ es:
   time:
     formats:
       default: "%d de %b del %Y, %H:%M"
+      month: "%b %Y"
   two_factor_authentication:
     add: Añadir
     disable: Deshabilitar
