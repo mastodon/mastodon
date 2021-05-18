@@ -245,7 +245,7 @@ class User < ApplicationRecord
   end
 
   def setting_default_privacy
-    'private'
+    settings.default_privacy || 'private'
   end
 
   def allows_digest_emails?

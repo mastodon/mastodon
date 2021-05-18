@@ -5,7 +5,7 @@ require 'rails_helper'
 describe Api::V1::Timelines::TagController do
   render_views
 
-  let(:user) { Fabricate(:user, account: Fabricate(:account, username: 'alice')) }
+  let(:user) { Fabricate(:user, account: Fabricate(:account, username: 'alice', locked: false)) }
 
   before do
     allow(controller).to receive(:doorkeeper_token) { token }
@@ -16,7 +16,7 @@ describe Api::V1::Timelines::TagController do
 
     describe 'GET #show' do
       before do
-        PostStatusService.new.call(user.account, text: 'It is a #test')
+        PostStatusService.new.call(user.account, text: 'It is a #test', visibility: 'public')
       end
 
       it 'returns http success' do

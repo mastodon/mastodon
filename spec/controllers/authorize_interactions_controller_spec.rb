@@ -94,7 +94,7 @@ describe AuthorizeInteractionsController do
       end
 
       it 'follows account when found' do
-        target_account = Fabricate(:account)
+        target_account = Fabricate(:account, locked: false)
         service = double
 
         allow(ResolveAccountService).to receive(:new).and_return(service)

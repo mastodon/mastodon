@@ -97,7 +97,7 @@ RSpec.describe FollowService, type: :service do
     end
 
     describe 'already followed account, turning reblogs off' do
-      let(:bob) { Fabricate(:user, email: 'bob@example.com', account: Fabricate(:account, username: 'bob'), locked: false).account }
+      let(:bob) { Fabricate(:user, email: 'bob@example.com', account: Fabricate(:account, username: 'bob', locked: false)).account }
 
       before do
         sender.follow!(bob, reblogs: true)
@@ -124,7 +124,7 @@ RSpec.describe FollowService, type: :service do
   end
 
   context 'remote ActivityPub account' do
-    let(:bob) { Fabricate(:user, account: Fabricate(:account, username: 'bob', domain: 'example.com', protocol: :activitypub, inbox_url: 'http://example.com/inbox')).account }
+    let(:bob) { Fabricate(:user, account: Fabricate(:account, username: 'bob', locked: false, domain: 'example.com', protocol: :activitypub, inbox_url: 'http://example.com/inbox')).account }
 
     before do
       stub_request(:post, "http://example.com/inbox").to_return(:status => 200, :body => "", :headers => {})

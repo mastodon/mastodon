@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe ActivityPub::Activity::Follow do
   let(:sender)    { Fabricate(:account, locked: false) }
-  let(:recipient) { Fabricate(:account) }
+  let(:recipient) { Fabricate(:account, locked: false) }
 
   let(:json) do
     {

@@ -5,8 +5,8 @@ RSpec.describe Api::V1::NotificationsController, type: :controller do
 
   let(:user)  { Fabricate(:user, account: Fabricate(:account, username: 'alice', locked: false)) }
   let(:token) { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
-  let(:other) { Fabricate(:user, account: Fabricate(:account, username: 'bob')) }
-  let(:third) { Fabricate(:user, account: Fabricate(:account, username: 'carol')) }
+  let(:other) { Fabricate(:user, account: Fabricate(:account, username: 'bob', locked: false)) }
+  let(:third) { Fabricate(:user, account: Fabricate(:account, username: 'carol', locked: false)) }
 
   before do
     allow(controller).to receive(:doorkeeper_token) { token }
@@ -51,7 +51,7 @@ RSpec.describe Api::V1::NotificationsController, type: :controller do
     let(:scopes) { 'read:notifications' }
 
     before do
-      first_status = PostStatusService.new.call(user.account, text: 'Test')
+      first_status = PostStatusService.new.call(user.account, text: 'Test', visibility: 'public')
       @reblog_of_first_status = ReblogService.new.call(other.account, first_status)
       mentioning_status = PostStatusService.new.call(other.account, text: 'Hello @alice')
       @mention_from_status = mentioning_status.mentions.first
