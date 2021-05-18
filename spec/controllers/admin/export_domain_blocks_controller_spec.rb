@@ -16,7 +16,7 @@ RSpec.describe Admin::ExportDomainBlocksController, type: :controller do
 
       get :export, params: { format: :csv }
       expect(response).to have_http_status(200)
-      expect(response.body).to eq(IO.read(File.join(self.class.fixture_path, 'files/domain_blocks.csv')))
+      expect(response.body).to eq(IO.read(File.join(file_fixture_path, 'domain_blocks.csv')))
     end
   end
 
@@ -24,7 +24,7 @@ RSpec.describe Admin::ExportDomainBlocksController, type: :controller do
     it 'blocks imported domains' do
       allow(DomainBlockWorker).to receive(:perform_async).and_return(true)
 
-      post :import, params: { admin_import: { data: fixture_file_upload('files/domain_blocks.csv') } }
+      post :import, params: { admin_import: { data: fixture_file_upload('domain_blocks.csv') } }
 
       expect(response).to redirect_to(admin_instances_path(limited: '1'))
       expect(DomainBlockWorker).to have_received(:perform_async).exactly(3).times
@@ -35,7 +35,7 @@ RSpec.describe Admin::ExportDomainBlocksController, type: :controller do
       # Domains should now be added
       get :export, params: { format: :csv }
       expect(response).to have_http_status(200)
-      expect(response.body).to eq(IO.read(File.join(self.class.fixture_path, 'files/domain_blocks.csv')))
+      expect(response.body).to eq(IO.read(File.join(file_fixture_path, 'domain_blocks.csv')))
     end
   end
 
