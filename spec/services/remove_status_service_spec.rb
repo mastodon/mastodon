@@ -4,7 +4,7 @@ RSpec.describe RemoveStatusService, type: :service do
   subject { RemoveStatusService.new }
 
   let!(:alice)  { Fabricate(:account, user: Fabricate(:user)) }
-  let!(:bob)    { Fabricate(:account, username: 'bob', domain: 'example.com', salmon_url: 'http://example.com/salmon') }
+  let!(:bob)    { Fabricate(:account, username: 'bob', domain: 'example.com') }
   let!(:jeff)   { Fabricate(:account) }
   let!(:hank)   { Fabricate(:account, username: 'hank', protocol: :activitypub, domain: 'example.com', inbox_url: 'http://example.com/inbox') }
   let!(:bill)   { Fabricate(:account, username: 'bill', protocol: :activitypub, domain: 'example2.com', inbox_url: 'http://example2.com/inbox') }

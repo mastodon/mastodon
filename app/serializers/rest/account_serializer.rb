@@ -55,6 +55,10 @@ class REST::AccountSerializer < ActiveModel::Serializer
     full_asset_url(object.suspended? ? object.header.default_url : object.header_static_url)
   end
 
+  def created_at
+    object.created_at.midnight.as_json
+  end
+
   def last_status_at
     object.last_status_at&.to_date&.iso8601
   end

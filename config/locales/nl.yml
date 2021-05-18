@@ -228,6 +228,7 @@ nl:
         create_domain_block: Domeinblokkade aanmaken
         create_email_domain_block: E-maildomeinblokkade aanmaken
         create_ip_block: IP-regel aanmaken
+        create_unavailable_domain: Niet beschikbaar domein aanmaken
         demote_user: Gebruiker degraderen
         destroy_announcement: Mededeling verwijderen
         destroy_custom_emoji: Lokale emoji verwijderen
@@ -236,6 +237,7 @@ nl:
         destroy_email_domain_block: E-maildomeinblokkade verwijderen
         destroy_ip_block: IP-regel verwijderen
         destroy_status: Toot verwijderen
+        destroy_unavailable_domain: Niet beschikbaar domein verwijderen
         disable_2fa_user: Tweestapsverificatie uitschakelen
         disable_custom_emoji: Lokale emojij uitschakelen
         disable_user: Gebruiker uitschakelen
@@ -269,6 +271,7 @@ nl:
         create_domain_block_html: Domein %{target} is door %{name} geblokkeerd
         create_email_domain_block_html: "%{name} heeft het e-maildomein %{target} geblokkeerd"
         create_ip_block_html: "%{name} maakte regel aan voor IP %{target}"
+        create_unavailable_domain_html: "%{name} heeft de bezorging voor domein %{target} beëindigd"
         demote_user_html: Gebruiker %{target} is door %{name} gedegradeerd
         destroy_announcement_html: "%{name} heeft de mededeling %{target} verwijderd"
         destroy_custom_emoji_html: "%{name} verwijderde emoji %{target}"
@@ -277,6 +280,7 @@ nl:
         destroy_email_domain_block_html: "%{name} heeft het e-maildomein %{target} gedeblokkeerd"
         destroy_ip_block_html: "%{name} verwijderde regel voor IP %{target}"
         destroy_status_html: Toot van %{target} is door %{name} verwijderd
+        destroy_unavailable_domain_html: "%{name} heeft de bezorging voor domein %{target} hervat"
         disable_2fa_user_html: De vereiste tweestapsverificatie voor %{target} is door %{name} uitgeschakeld
         disable_custom_emoji_html: Emoji %{target} is door %{name} uitgeschakeld
         disable_user_html: Inloggen voor %{target} is door %{name} uitgeschakeld
@@ -449,8 +453,25 @@ nl:
       title: Aanbevolen accounts
       unsuppress: Account weer aanbevelen
     instances:
+      back_to_all: Alles
+      back_to_limited: Beperkt
+      back_to_warning: Waarschuwing
       by_domain: Domein
+      delivery:
+        all: Alles
+        clear: Bezorgfouten weghalen
+        restart: Bezorging herstarten
+        stop: Bezorging beëindigen
+        title: Bezorging
+        unavailable: Niet beschikbaar
+        unavailable_message: Bezorging is niet beschikbaar
+        warning: Waarschuwing
+        warning_message:
+          one: Bezorgingsfout voor %{count} dag
+          other: Bezorgfout voor %{count} dagen
       delivery_available: Bezorging is mogelijk
+      delivery_error_days: Dagen met bezorgfouten
+      delivery_error_hint: Wanneer de bezorging voor %{count} dagen niet mogelijk is, wordt de bezorging automatisch als niet beschikbaar gemarkeerd.
       empty: Geen domeinen gevonden.
       known_accounts:
         one: "%{count} bekend account"
@@ -562,8 +583,8 @@ nl:
         desc_html: Wekelijks overzicht van de hoeveelheid lokale toots, actieve gebruikers en nieuwe registraties
         title: Statistieken over gebruikersactiviteit via de API publiceren
       bootstrap_timeline_accounts:
-        desc_html: Meerdere gebruikersnamen met komma's scheiden. Alleen lokale en niet opgeschorte accounts werken. Laat leeg voor alle lokale beheerders.
-        title: Standaard te volgen accounts voor nieuwe gebruikers
+        desc_html: Meerdere gebruikersnamen met komma's scheiden. Deze accounts worden in ieder geval aan nieuwe gebruikers aanbevolen
+        title: Aanbevolen accounts voor nieuwe gebruikers
       contact_information:
         email: Vul een openbaar gebruikt e-mailadres in
         username: Vul een gebruikersnaam in
@@ -580,9 +601,6 @@ nl:
         users: Aan ingelogde lokale gebruikers
       domain_blocks_rationale:
         title: Motivering tonen
-      enable_bootstrap_timeline_accounts:
-        desc_html: Laat nieuwe gebruikers automatisch geconfigureerde accounts volgen, zodat hun start-tijdlijn niet leeg begint
-        title: Standaard te volgen accounts voor nieuwe gebruikers inschakelen
       hero:
         desc_html: Wordt op de voorpagina getoond. Tenminste 600x100px aanbevolen. Wanneer dit niet is ingesteld wordt de thumbnail van de Mastodonserver getoond
         title: Hero-afbeelding
@@ -678,9 +696,6 @@ nl:
       accounts_today: Aantal verschillende keren vandaag gebruikt
       accounts_week: Aantal verschillende keren deze week gebruikt
       breakdown: Uitsplitsing van het gebruik van vandaag naar bron
-      context: Context
-      directory: In de gebruikersgids
-      in_directory: "%{count} keer in de gebruikersgids"
       last_active: Laatst actief
       most_popular: Meest populair
       most_recent: Meest recent
@@ -735,7 +750,7 @@ nl:
     settings: 'E-mailvoorkeuren wijzigen: %{link}'
     view: 'Bekijk:'
     view_profile: Profiel bekijken
-    view_status: Status bekijken
+    view_status: Toot bekijken
   applications:
     created: Aanmaken toepassing geslaagd
     destroyed: Verwijderen toepassing geslaagd
@@ -1083,9 +1098,9 @@ nl:
           trillion: bln.
   otp_authentication:
     code_hint: Voer de code in die door de authenticatie-app werd gegenereerd
-    description_html: Na het instellen van <strong>tweestapsverificatie</strong> met een authenticatie-app, kun je alleen inloggen als je jouw mobiele telefoon bij je hebt. Hiermee genereer je namelijk de in te voeren aanmeldcode.
+    description_html: Na het instellen van <strong>tweestapsverificatie</strong> met een authenticatie-app, kun je alleen inloggen als je jouw mobiele telefoon bij je hebt. Hiermee genereer je namelijk de in te voeren toegangscode.
     enable: Inschakelen
-    instructions_html: "<strong>Scan deze QR-code in Google Authenticator of een soortgelijke app op jouw mobiele telefoon</strong>. Van nu af aan genereert deze app aanmeldcodes die je bij het inloggen moet invoeren."
+    instructions_html: "<strong>Scan deze QR-code in Google Authenticator of een soortgelijke app op jouw mobiele telefoon</strong>. Van nu af aan genereert deze app toegangscodes die je bij het inloggen moet invoeren."
     manual_instructions: 'Voor het geval je de QR-code niet kunt scannen en het handmatig moet invoeren, vind je hieronder de geheime code in platte tekst:'
     setup: Instellen
     wrong_code: De ingevoerde code is ongeldig! Klopt de systeemtijd van de server en die van jouw apparaat?
@@ -1228,7 +1243,7 @@ nl:
         one: "%{count} video"
         other: "%{count} video's"
     boosted_from_html: Geboost van %{acct_link}
-    content_warning: 'Tekstwaarschuwing: %{warning}'
+    content_warning: 'Inhoudswaarschuwing: %{warning}'
     disallowed_hashtags:
       one: 'bevatte een niet toegestane hashtag: %{tags}'
       other: 'bevatte niet toegestane hashtags: %{tags}'
@@ -1428,7 +1443,7 @@ nl:
   users:
     follow_limit_reached: Je kunt niet meer dan %{limit} accounts volgen
     generic_access_help_html: Problemen met toegang tot je account? Neem dan contact op met %{email} voor assistentie
-    invalid_otp_token: Ongeldige tweestaps-aanmeldcode
+    invalid_otp_token: Ongeldige tweestaps-toegangscode
     invalid_sign_in_token: Ongeldige beveiligingscode
     otp_lost_help_html: Als je toegang tot beiden kwijt bent geraakt, neem dan contact op via %{email}
     seamless_external_login: Je bent ingelogd via een externe dienst, daarom zijn wachtwoorden en e-mailinstellingen niet beschikbaar.

@@ -7,12 +7,12 @@ gd:
       account_migration:
         acct: Sònraich ainm-cleachdaiche@àrainn dhen chunntas dhan a tha thu airson imrich
       account_warning_preset:
-        text: "’S urrainn dhut co-chàradh dùid a chleachdadh, can URLaichean, tagaichean hais is iomraidhean"
+        text: "’S urrainn dhut co-chàradh puist a chleachdadh, can URLaichean, tagaichean hais is iomraidhean"
         title: Roghainneil. Chan fhaic am faightear seo
       admin_account_action:
-        include_statuses: Chì an cleachdaiche dè na dùdan a dh’adhbharaich gnìomh na maorsainneachd no an rabhadh
+        include_statuses: Chì an cleachdaiche dè na postaichean a dh’adhbharaich gnìomh na maorsainneachd no an rabhadh
         send_email_notification: Ghaibh am faightear mìneachadh air dè thachair leis a’ chunntas aca
-        text_html: Roghainneil. Faodaidh tu co-chàradh dùid a chleachdadh. ’S urrainn dhut <a href="%{path}">rabhaidhean ro-shuidhichte a chur ris</a> airson ùine a chaomhnadh
+        text_html: Roghainneil. Faodaidh tu co-chàradh puist a chleachdadh. ’S urrainn dhut <a href="%{path}">rabhaidhean ro-shuidhichte a chur ris</a> airson ùine a chaomhnadh
         type_html: Tagh dè nì thu le <strong>%{acct}</strong>
         types:
           disable: Bac an cleachdaiche o chleachdadh a’ chunntais aca ach na sguab às no falaich an t-susbaint aca.
@@ -26,7 +26,7 @@ gd:
         ends_at: Roghainneil. Thèid am brath-fios a neo-fhoillseachadh gu fèin-obrachail aig an àm ud
         scheduled_at: Fàg seo bàn airson am brath-fios fhoillseachadh sa bhad
         starts_at: Roghainnean. Cleachd seo airson am brath-fios a chuingeachadh rè ama shònraichte
-        text: "’S urrainn dhut co-chàradh dùid a chleachdadh. Thoir an aire air am meud a chaitheas am brath-fios air sgrìn an luchd-chleachdaidh"
+        text: "’S urrainn dhut co-chàradh puist a chleachdadh. Thoir an aire air am meud a chaitheas am brath-fios air sgrìn an luchd-chleachdaidh"
       defaults:
         autofollow: Leanaidh na daoine a chlàraicheas leis a cuireadh ort gu fèin-obrachail
         avatar: PNG, GIF or JPG. %{size} air a char as motha. Thèid a sgèileadh sìos gu %{dimensions}px
@@ -40,11 +40,11 @@ gd:
         fields: Faodaidh tu suas ri 4 nithean a shealltainn mar chlàr air a’ phròifil agad
         header: PNG, GIF or JPG. %{size} air a char as motha. Thèid a sgèileadh sìos gu %{dimensions}px
         inbox_url: Dèan lethbhreac dhen URL o phrìomh-dhuilleag an ath-sheachadain a bu mhiann leat cleachdadh
-        irreversible: Thèid dùdan criathraichte a-mach à sealladh gu buan fiù ’s ma bheir thu a’ chriathrag air falbh uaireigin eile
+        irreversible: Thèid postaichean criathraichte a-mach à sealladh gu buan fiù ’s ma bheir thu a’ chriathrag air falbh uaireigin eile
         locale: Cànan eadar-aghaidh a’ chleachdaiche, nam post-d ’s nam brathan putaidh
         locked: Feumaidh tu gabhail ri luchd-leantainn ùr a làimh
         password: Cleachd co-dhiù 8 caractaran
-        phrase: Thèid a mhaidseadh gun aire air litrichean mòra ’s beaga no air rabhadh susbainte dùid
+        phrase: Thèid a mhaidseadh gun aire air litrichean mòra ’s beaga no air rabhadh susbainte puist
         scopes: Na APIan a dh’fhaodas an aplacaid inntrigeadh. Ma thaghas tu sgòp air ìre as àirde, cha leig thu leas sgòpaichean fa leth a thaghadh.
         setting_aggregate_reblogs: Na seall brosnachaidhean ùra do dhùdan a chaidh a bhrosnachadh o chionn ghoirid (cha doir seo buaidh ach air brosnachaidhean ùra o seo a-mach)
         setting_default_sensitive: Thèid meadhanan frionasach fhalach o thùs is gabhaidh an nochdadh le briogadh orra
@@ -53,7 +53,7 @@ gd:
         setting_display_media_show_all: Seall na meadhanan an-còmhnaidh
         setting_hide_network: Cha nochd cò a tha thu a’ leantainn orra no an luchd-leantainn agad fhèin air a’ phròifil agad
         setting_noindex: Bheir seo buaidh air a’ phròifil phoblach ’s air duilleagan nan staidean agad
-        setting_show_application: Chithear cò an aplacaid a chleachd thu airson dùd a sgrìobhadh ann an seallaidhean mionaideach nan dùdan agad
+        setting_show_application: Chithear cò an aplacaid a chleachd thu airson post a sgrìobhadh ann an seallaidhean mionaideach nam postaichean agad
         setting_use_blurhash: Tha caiseadan stèidhichte air dathan nan nithean lèirsinneach a chaidh fhalach ach chan fhaicear am mion-fhiosrachadh
         setting_use_pending_items: Falaich ùrachaidhean na loidhne-ama air cùlaibh briogaidh seach a bhith a’ sgroladh an inbhir gu fèin-obrachail
         username: Bidh ainm-cleachdaiche àraidh agad air %{domain}
@@ -87,7 +87,7 @@ gd:
       tag:
         name: Mar eisimpleir, ’s urrainn dhut measgachadh de litrichean mòra ’s beaga a chleachdadh ach an gabh a leughadh nas fhasa
       user:
-        chosen_languages: Nuair a bhios cromag ris, cha nochd ach dùdan sna cànain a thagh thu air loidhnichean-ama poblach
+        chosen_languages: Nuair a bhios cromag ris, cha nochd ach postaichean sna cànain a thagh thu air loidhnichean-ama poblach
     labels:
       account:
         fields:
@@ -101,7 +101,7 @@ gd:
         text: Teacsa ro-shocraichte
         title: Tiotal
       admin_account_action:
-        include_statuses: Gabh a-steach na dùdan a chaidh gearan a dhèanamh mun dèidhinn sa phost-d
+        include_statuses: Gabh a-steach na postaichean a chaidh gearan a dhèanamh mun dèidhinn sa phost-d
         send_email_notification: Cuir fios gun chleachdaiche air a’ phost-d
         text: Rabhadh gnàthaichte
         type: Gnìomh
@@ -149,21 +149,21 @@ gd:
         setting_aggregate_reblogs: Buidhnich na brosnachaidhean air an loidhne-ama
         setting_auto_play_gif: Cluich GIFs beòthaichte gu fèin-obrachail
         setting_boost_modal: Seall còmhradh dearbhaidh mus dèan thu brosnachadh
-        setting_crop_images: Beàrr na dealbhan sna dùdan gun leudachadh air 16x9
+        setting_crop_images: Beàrr na dealbhan sna postaichean gun leudachadh air 16x9
         setting_default_language: Cànan postaidh
         setting_default_privacy: Prìobhaideachd postaidh
         setting_default_sensitive: Cuir comharra ri meadhanan an-còmhnaidh gu bheil iad frionasach
-        setting_delete_modal: Seall còmhradh dearbhaidh mus sguab thu às dùd
+        setting_delete_modal: Seall còmhradh dearbhaidh mus sguab thu às post
         setting_disable_swiping: Cuir gluasadan grad-shlaighdidh à comas
         setting_display_media: Sealltainn nam meadhanan
         setting_display_media_default: Tùsail
         setting_display_media_hide_all: Falaich na h-uile
         setting_display_media_show_all: Seall na h-uile
-        setting_expand_spoilers: Leudaich dùdan ris a bheil rabhadh susbainte an-còmhnaidh
+        setting_expand_spoilers: Leudaich postaichean ris a bheil rabhadh susbainte an-còmhnaidh
         setting_hide_network: Falaich an lìonra agad
         setting_noindex: Thoir air falbh an ro-aonta air inneacsadh le einnseanan-luirg
         setting_reduce_motion: Ìslich an gluasad sna beòthachaidhean
-        setting_show_application: Foillsich dè an aplacaid a chleachdas tu airson dùdan a chur
+        setting_show_application: Foillsich dè an aplacaid a chleachdas tu airson postaichean a chur
         setting_system_font_ui: Cleachd cruth-clò tùsail an t-siostaim
         setting_theme: Ùrlar na làraich
         setting_trends: Seall na treandaichean an-diugh
@@ -197,12 +197,12 @@ gd:
         severity: Riaghailt
       notification_emails:
         digest: Cuir puist-d le geàrr-chunntas
-        favourite: Is annsa le cuideigin an staid agad
+        favourite: Is annsa le cuideigin am post agad
         follow: Lean cuideigin ort
         follow_request: Dh’iarr cuideigin leantainn ort
         mention: Thug cuideigin iomradh ort
         pending_account: Tha cunntas ùr feumach air lèirmheas
-        reblog: Bhrosnaich cuideigin an staid agad
+        reblog: Bhrosnaich cuideigin am post agad
         report: Chaidh gearan ùr a chur a-null
         trending_tag: Tha taga hais gun lèirmheas a’ treandadh
       rule:
@@ -211,7 +211,7 @@ gd:
         listable: Leig leis an taga hais seo gun nochd e ann an toraidhean luirg ’s air eòlaire nam pròifil
         name: Taga hais
         trendable: Leig leis an taga hais seo gun nochd e am measg nan treandaichean
-        usable: Leig le dùdan an taga hais seo a chleachdadh
+        usable: Leig le postaichean an taga hais seo a chleachdadh
     'no': Chan eil
     recommended: Molta
     required:

@@ -44,7 +44,7 @@ nl:
         locale: De taal van de gebruikersomgeving, e-mails en pushmeldingen
         locked: Door het goedkeuren van volgers handmatig bepalen wie jou mag volgen
         password: Gebruik tenminste 8 tekens
-        phrase: Komt overeen ongeacht hoofd-/kleine letters of tekstwaarschuwingen
+        phrase: Komt overeen ongeacht hoofd-/kleine letters of een inhoudswaarschuwing
         scopes: Tot welke API's heeft de toepassing toegang. Wanneer je een toestemming van het bovenste niveau kiest, hoef je geen individuele toestemmingen meer te kiezen.
         setting_aggregate_reblogs: Geen nieuwe boosts tonen voor toots die recentelijk nog zijn geboost (heeft alleen effect op nieuw ontvangen boosts)
         setting_default_sensitive: Gevoelige media wordt standaard verborgen en kan met één klik worden getoond
@@ -82,7 +82,7 @@ nl:
       rule:
         text: Omschrijf een regel of vereiste voor gebruikers op deze server. Probeer het kort en simpel te houden
       sessions:
-        otp: 'Voer de tweestaps-aanmeldcode vanaf jouw mobiele telefoon in of gebruik een van jouw herstelcodes:'
+        otp: 'Voer de tweestaps-toegangscode vanaf jouw mobiele telefoon in of gebruik een van jouw herstelcodes:'
         webauthn: Wanneer het een USB-sleutel is, zorg er dan voor dat je deze in de computer steekt en, wanneer nodig, activeert.
       tag:
         name: Je kunt elk woord met een hoofdletter beginnen, om zo bijvoorbeeld de tekst leesbaarder te maken
@@ -142,14 +142,14 @@ nl:
         max_uses: Max. aantal keer te gebruiken
         new_password: Nieuwe wachtwoord
         note: Bio
-        otp_attempt: Tweestaps-aanmeldcode
+        otp_attempt: Tweestaps-toegangscode
         password: Wachtwoord
         phrase: Trefwoord of zinsdeel
         setting_advanced_layout: Geavanceerde webomgeving inschakelen
         setting_aggregate_reblogs: Boosts in tijdlijnen groeperen
         setting_auto_play_gif: Speel geanimeerde GIF's automatisch af
         setting_boost_modal: Vraag voor het boosten van een toot een bevestiging
-        setting_crop_images: Afbeeldingen tot 16x9 besnijden in niet uitgebreide toots
+        setting_crop_images: Afbeeldingen bijsnijden tot 16x9 in toots op tijdlijnen
         setting_default_language: Taal van jouw toots
         setting_default_privacy: Standaardzichtbaarheid van jouw toots
         setting_default_sensitive: Media altijd als gevoelig markeren
@@ -159,7 +159,7 @@ nl:
         setting_display_media_default: Standaard
         setting_display_media_hide_all: Alles verbergen
         setting_display_media_show_all: Alles tonen
-        setting_expand_spoilers: Altijd toots met tekstwaarschuwingen uitklappen
+        setting_expand_spoilers: Altijd toots met inhoudswaarschuwingen uitklappen
         setting_hide_network: Jouw volgers en wie je volgt verbergen
         setting_noindex: Jouw toots niet door zoekmachines laten indexeren
         setting_reduce_motion: Langzamere animaties
@@ -208,7 +208,7 @@ nl:
       rule:
         text: Regel
       tag:
-        listable: Toestaan dat deze hashtag in zoekopdrachten en in de gebruikersgids te zien valt
+        listable: Toestaan dat deze hashtag in zoekopdrachten en aanbevelingen te zien valt
         name: Hashtag
         trendable: Toestaan dat deze hashtag onder trends te zien valt
         usable: Toestaan dat deze hashtag in toots gebruikt mag worden

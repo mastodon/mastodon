@@ -7,6 +7,7 @@ import { FormattedMessage } from 'react-intl';
 import { fetchSuggestions } from 'mastodon/actions/suggestions';
 import { changeSetting, saveSettings } from 'mastodon/actions/settings';
 import { requestBrowserPermission } from 'mastodon/actions/notifications';
+import { markAsPartial } from 'mastodon/actions/timelines';
 import Column from 'mastodon/features/ui/components/column';
 import Account from './components/account';
 import Logo from 'mastodon/components/logo';
@@ -42,6 +43,15 @@ class FollowRecommendations extends ImmutablePureComponent {
     }
   }
 
+  componentWillUnmount () {
+    const { dispatch } = this.props;
+
+    // Force the home timeline to be reloaded when the user navigates
+    // to it; if the user is new, it would've been empty before
+
+    dispatch(markAsPartial('home'));
+  }
+
   handleDone = () => {
     const { dispatch } = this.props;
     const { router } = this.context;
@@ -66,7 +76,7 @@ class FollowRecommendations extends ImmutablePureComponent {
 
     return (
       <Column>
-        <div className='scrollable'>
+        <div className='scrollable follow-recommendations-container'>
           <div className='column-title'>
             <Logo />
             <h3><FormattedMessage id='follow_recommendations.heading' defaultMessage="Follow people you'd like to see posts from! Here are some suggestions." /></h3>

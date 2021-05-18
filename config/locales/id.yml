@@ -118,7 +118,7 @@ id:
       display_name: Nama
       domain: Domain
       edit: Ubah
-      email: E-mail
+      email: Email
       email_status: Status Email
       enable: Aktifkan
       enabled: Diaktifkan
@@ -224,6 +224,7 @@ id:
         create_domain_block: Buat Blokir Domain
         create_email_domain_block: Buat Email Blokir Domain
         create_ip_block: Buat aturan IP
+        create_unavailable_domain: Buat Domain yang Tidak Tersedia
         demote_user: Turunkan Pengguna
         destroy_announcement: Hapus Pengumuman
         destroy_custom_emoji: Hapus Emoji Khusus
@@ -232,6 +233,7 @@ id:
         destroy_email_domain_block: Hapus email blokir domain
         destroy_ip_block: Hapus aturan IP
         destroy_status: Hapus Status
+        destroy_unavailable_domain: Hapus Domain yang Tidak Tersedia
         disable_2fa_user: Nonaktifkan 2FA
         disable_custom_emoji: Nonaktifkan Emoji Khusus
         disable_user: Nonaktifkan Pengguna
@@ -265,6 +267,7 @@ id:
         create_domain_block_html: "%{name} memblokir domain %{target}"
         create_email_domain_block_html: "%{name} memblokir domain email %{target}"
         create_ip_block_html: "%{name} membuat aturan untuk IP %{target}"
+        create_unavailable_domain_html: "%{name} menghentikan pengiriman ke domain %{target}"
         demote_user_html: "%{name} menurunkan pengguna %{target}"
         destroy_announcement_html: "%{name} menghapus pengumuman %{target}"
         destroy_custom_emoji_html: "%{name} menghapus emoji %{target}"
@@ -273,6 +276,7 @@ id:
         destroy_email_domain_block_html: "%{name} membuka blokir domain email %{target}"
         destroy_ip_block_html: "%{name} menghapus aturan untuk IP %{target}"
         destroy_status_html: "%{name} menghapus status %{target}"
+        destroy_unavailable_domain_html: "%{name} melanjutkan pengiriman ke domain %{target}"
         disable_2fa_user_html: "%{name} mematikan syarat dua faktor utk pengguna %{target}"
         disable_custom_emoji_html: "%{name} mematikan emoji %{target}"
         disable_user_html: "%{name} mematikan login untuk pengguna %{target}"
@@ -444,8 +448,24 @@ id:
       title: Rekomendasi untuk diikuti
       unsuppress: Kembalikan rekomendasi untuk diikuti
     instances:
+      back_to_all: Semua
+      back_to_limited: Terbatas
+      back_to_warning: Peringatan
       by_domain: Domain
+      delivery:
+        all: Semua
+        clear: Hapus galat pengiriman
+        restart: Mulai ulang pengiriman
+        stop: Setop pengiriman
+        title: Pengiriman
+        unavailable: Tidak tersedia
+        unavailable_message: Pengiriman tidak tersedia
+        warning: Peringatan
+        warning_message:
+          other: Kegagalan pengiriman %{count} hari
       delivery_available: Pengiriman tersedia
+      delivery_error_days: Lama hari pengiriman galat
+      delivery_error_hint: Jika pengiriman tidak terjadi selama %{count} hari, ia akan ditandai secara otomatis sebagai tidak terkirim.
       empty: Domain tidak ditemukan.
       known_accounts:
         other: "%{count} akun yang dikenal"
@@ -572,9 +592,6 @@ id:
         users: Ke pengguna lokal yang sudah login
       domain_blocks_rationale:
         title: Tampilkan alasan
-      enable_bootstrap_timeline_accounts:
-        desc_html: Buat pengguna baru mengikuti akun yang sudah dipilih agar beranda mereka tidak kosong
-        title: Aktifkan opsi ikuti otomatis untuk pengguna baru
       hero:
         desc_html: Ditampilkan di halaman depan. Direkomendasikan minimal 600x100px. Jika tidak diatur, kembali ke server gambar kecil
         title: Gambar pertama
@@ -670,9 +687,6 @@ id:
       accounts_today: Penggunaan unik hari ini
       accounts_week: Penggunaan unik minggu ini
       breakdown: Rinci penggunaan hari ini berdasar sumber
-      context: Konteks
-      directory: Di direktori
-      in_directory: "%{count} di direktori"
       last_active: Terakhir aktif
       most_popular: Paling populer
       most_recent: Terkini
@@ -1239,6 +1253,7 @@ id:
     sign_in_to_participate: Masuk untuk mengikuti percakapan
     title: '%{name}: "%{quote}"'
     visibilities:
+      direct: Langsung
       private: Khusus pengikut
       private_long: Hanya tampilkan ke pengikut
       public: Publik
