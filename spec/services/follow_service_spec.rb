@@ -31,7 +31,7 @@ RSpec.describe FollowService, type: :service do
     end
 
     describe 'unlocked account, from silenced account' do
-      let(:bob) { Fabricate(:user, email: 'bob@example.com', account: Fabricate(:account, username: 'bob')).account }
+      let(:bob) { Fabricate(:user, email: 'bob@example.com', account: Fabricate(:account, username: 'bob', locked: false)).account }
 
       before do
         sender.touch(:silenced_at)
@@ -44,7 +44,7 @@ RSpec.describe FollowService, type: :service do
     end
 
     describe 'unlocked account, from a muted account' do
-      let(:bob) { Fabricate(:user, email: 'bob@example.com', account: Fabricate(:account, username: 'bob')).account }
+      let(:bob) { Fabricate(:user, email: 'bob@example.com', account: Fabricate(:account, username: 'bob', locked: false)).account }
 
       before do
         bob.mute!(sender)
@@ -58,7 +58,7 @@ RSpec.describe FollowService, type: :service do
     end
 
     describe 'unlocked account' do
-      let(:bob) { Fabricate(:user, email: 'bob@example.com', account: Fabricate(:account, username: 'bob')).account }
+      let(:bob) { Fabricate(:user, email: 'bob@example.com', account: Fabricate(:account, username: 'bob', locked: false)).account }
 
       before do
         subject.call(sender, bob)
@@ -71,7 +71,7 @@ RSpec.describe FollowService, type: :service do
     end
 
     describe 'unlocked account, no reblogs' do
-      let(:bob) { Fabricate(:user, email: 'bob@example.com', account: Fabricate(:account, username: 'bob')).account }
+      let(:bob) { Fabricate(:user, email: 'bob@example.com', account: Fabricate(:account, username: 'bob', locked: false)).account }
 
       before do
         subject.call(sender, bob, reblogs: false)
@@ -84,7 +84,7 @@ RSpec.describe FollowService, type: :service do
     end
 
     describe 'already followed account' do
-      let(:bob) { Fabricate(:user, email: 'bob@example.com', account: Fabricate(:account, username: 'bob')).account }
+      let(:bob) { Fabricate(:user, email: 'bob@example.com', account: Fabricate(:account, username: 'bob', locked: false)).account }
 
       before do
         sender.follow!(bob)
@@ -97,7 +97,7 @@ RSpec.describe FollowService, type: :service do
     end
 
     describe 'already followed account, turning reblogs off' do
-      let(:bob) { Fabricate(:user, email: 'bob@example.com', account: Fabricate(:account, username: 'bob')).account }
+      let(:bob) { Fabricate(:user, email: 'bob@example.com', account: Fabricate(:account, username: 'bob'), locked: false).account }
 
       before do
         sender.follow!(bob, reblogs: true)
@@ -110,7 +110,7 @@ RSpec.describe FollowService, type: :service do
     end
 
     describe 'already followed account, turning reblogs on' do
-      let(:bob) { Fabricate(:user, email: 'bob@example.com', account: Fabricate(:account, username: 'bob')).account }
+      let(:bob) { Fabricate(:user, email: 'bob@example.com', account: Fabricate(:account, username: 'bob', locked: false)).account }
 
       before do
         sender.follow!(bob, reblogs: false)

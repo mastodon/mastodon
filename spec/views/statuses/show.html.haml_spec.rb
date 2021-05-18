@@ -16,7 +16,7 @@ describe 'statuses/show.html.haml', without_verify_partial_doubles: true do
   end
 
   it 'has valid author h-card and basic data for a detailed_status' do
-    alice  =  Fabricate(:account, username: 'alice', display_name: 'Alice')
+    alice  =  Fabricate(:account, username: 'alice', display_name: 'Alice', locked: false)
     bob    =  Fabricate(:account, username: 'bob', display_name: 'Bob')
     status =  Fabricate(:status, account: alice, text: 'Hello World')
     reply  =  Fabricate(:status, account: bob, thread: status, text: 'Hello Alice')

@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Api::V1::NotificationsController, type: :controller do
   render_views
 
-  let(:user)  { Fabricate(:user, account: Fabricate(:account, username: 'alice')) }
+  let(:user)  { Fabricate(:user, account: Fabricate(:account, username: 'alice', locked: false)) }
   let(:token) { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
   let(:other) { Fabricate(:user, account: Fabricate(:account, username: 'bob')) }
   let(:third) { Fabricate(:user, account: Fabricate(:account, username: 'carol')) }
