@@ -146,6 +146,6 @@ class ResolveAccountService < BaseService
   end
 
   def lock_options
-    { redis: Redis.current, key: "resolve:#{@username}@#{@domain}" }
+    { redis: Redis.current, key: "resolve:#{@username}@#{@domain}", autorelease: 15.minutes.seconds }
   end
 end
