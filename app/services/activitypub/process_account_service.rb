@@ -281,7 +281,7 @@ class ActivityPub::ProcessAccountService < BaseService
   end
 
   def lock_options
-    { redis: Redis.current, key: "process_account:#{@uri}" }
+    { redis: Redis.current, key: "process_account:#{@uri}", autorelease: 15.minutes.seconds }
   end
 
   def process_tags
