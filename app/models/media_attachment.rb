@@ -81,8 +81,8 @@ class MediaAttachment < ApplicationRecord
         'vf' => 'scale=\'trunc(iw/2)*2:trunc(ih/2)*2\'',
         'vsync' => 'cfr',
         'c:v' => 'h264',
-        'maxrate' => '1300K',
-        'bufsize' => '1300K',
+        'maxrate' => '3000K',
+        'bufsize' => '3000K',
         'frames:v' => 60 * 60 * 3,
         'crf' => 18,
         'map_metadata' => '-1',
@@ -150,8 +150,8 @@ class MediaAttachment < ApplicationRecord
     all: '-quality 90 -strip +set modify-date +set create-date',
   }.freeze
 
-  IMAGE_LIMIT = 10.megabytes
-  VIDEO_LIMIT = 40.megabytes
+  IMAGE_LIMIT = 50.megabytes
+  VIDEO_LIMIT = 100.megabytes
 
   MAX_VIDEO_MATRIX_LIMIT = 2_304_000 # 1920x1200px
   MAX_VIDEO_FRAME_RATE   = 60
