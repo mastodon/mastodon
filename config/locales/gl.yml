@@ -43,7 +43,7 @@ gl:
       reason: Razón
       rejecting_media: 'Os ficheiros multimedia deste servidor non serán procesados e non se amosarán miniaturas, o que require un clic manual no ficheiro orixinal:'
       rejecting_media_title: Multimedia filtrado
-      silenced: 'As publicacións deste servidor non se amosarán en conversas e liñas temporais, nin terás notificacións das súas usuarias agás que as sigas:'
+      silenced: 'As publicacións destes servidores non se amosarán en conversas e cronoloxías públicas, nin terás notificacións xeradas polas interaccións das usuarias, a menos que as estés a seguir:'
       silenced_title: Servidores acalados
       suspended: 'Non se procesarán, almacenarán nin intercambiarán datos destes servidores, o que fai imposíbel calquera interacción ou comunicación coas usuarias dende estes servidores:'
       suspended_title: Servidores suspendidos
@@ -639,7 +639,7 @@ gl:
         title: Estado do rexistro
       show_known_fediverse_at_about_page:
         desc_html: Si activado, mostraralle os toots de todo o fediverso coñecido nunha vista previa. Si non só mostrará os toots locais.
-        title: Mostrar vista previa do fediverso na liña temporal
+        title: Incluír contido federado na páxina da cronoloxía pública sen autenticación
       show_staff_badge:
         desc_html: Mostrar unha insignia de membresía nunha páxina de usuaria
         title: Mostrar insigna de membresía
@@ -660,8 +660,8 @@ gl:
         desc_html: Utilizado para vistas previsas vía OpenGraph e API. Recoméndase 1200x630px
         title: Icona do servidor
       timeline_preview:
-        desc_html: Mostrar liña de tempo pública na páxina de inicio
-        title: vista previa da liña temporal
+        desc_html: Mostrar ligazón á cronoloxía pública na páxina de benvida e permitir o acceso API á cronoloxía pública sen ter autenticación
+        title: Permitir acceso á cronoloxía pública sen autenticación
       title: Axustes do sitio
       trendable_by_default:
         desc_html: Afecta ós cancelos que non foron rexeitados de xeito previo
@@ -908,9 +908,9 @@ gl:
   filters:
     contexts:
       account: Perfís
-      home: Liña temporal inicial
+      home: Inicio e listaxes
       notifications: Avisos
-      public: Liñas temporais públicas
+      public: Cronoloxías públicas
       thread: Conversas
     edit:
       title: Editar filtro
@@ -1126,7 +1126,7 @@ gl:
   preferences:
     other: Outro
     posting_defaults: Valores por omisión
-    public_timelines: Liñas temporais públicas
+    public_timelines: Cronoloxías públicas
   reactions:
     errors:
       limit_reached: Acadouse o límite das diferentes reaccións
@@ -1280,7 +1280,7 @@ gl:
       public: Público
       public_long: Visible para calquera
       unlisted: Non listado
-      unlisted_long: Visible para calquera, pero non listado en liñas de tempo públicas
+      unlisted_long: Visible para calquera, pero non en cronoloxías públicas
   stream_entries:
     pinned: Publicación fixada
     reblogged: promovido
@@ -1430,15 +1430,15 @@ gl:
       edit_profile_step: Podes personalizar o teu perfil subindo un avatar, cabeceira, cambiar o nome público e aínda máis. Se restrinxes a túa conta podes revisar a conta das persoas que solicitan seguirte antes de permitirlles o acceso aos teus toots.
       explanation: Aquí ten alunhas endereitas para ir aprendendo
       final_action: Comece a publicar
-      final_step: 'Publica! Incluso sen seguidoras as túas mensaxes serán vistas por outras, por exemplo na liña temporal local e nos cancelos. Poderías presentarte ao #fediverso utilizando o cancelo #introductions.'
+      final_step: 'Publica! Incluso sen seguidoras as túas mensaxes públicas serán vistas por outras, por exemplo na cronoloxía local e nos cancelos. Poderías presentarte ao #fediverso utilizando o cancelo #introductions.'
       full_handle: O seu alcume completo
       full_handle_hint: Esto é o que lle dirá aos seus amigos para que poidan seguila ou enviarlle mensaxes desde outro servidor.
       review_preferences_action: Cambiar preferencias
       review_preferences_step: Lembre establecer as preferencias, tales como qué correos-e lle querería recibir, ou o nivel de intimidade por omisión para as súas mensaxes. Se non lle molestan as imaxes con movemento, pode escoller que os GIF se reproduzan automáticamente.
       subject: Benvida a Mastodon
-      tip_federated_timeline: A liña temporal federada é unha visión reducida da rede Mastodon. Inclúe xente a que segue xente que ti segues, así que non é completa.
-      tip_following: Por omisión segues a Admin(s) no teu servidor. Para atopar máis xente interesante, mira nas liñas temporais local e federada.
-      tip_local_timeline: A liña temporal local é unha ollada xeral sobre a xente en %{instance}. Son as súas veciñas máis próximas!
+      tip_federated_timeline: A cronoloxía federada é unha visión reducida da rede Mastodon. Inclúe xente a que segue xente que ti segues, así que non é completa.
+      tip_following: Por defecto segues a Admin(s) no teu servidor. Para atopar máis xente interesante, mira nas cronoloxías local e federada.
+      tip_local_timeline: A cronoloxía local é unha ollada xeral sobre a xente en %{instance}. Son as súas veciñas máis próximas!
       tip_mobile_webapp: Si o navegador móbil lle ofrece engadir Mastodon a pantalla de inicio, pode recibir notificacións push. En moitos aspectos comportarase como un aplicativo nativo!
       tips: Consellos
       title: Benvida, %{name}!
