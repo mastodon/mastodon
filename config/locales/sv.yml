@@ -159,7 +159,7 @@ sv:
       protocol: Protokoll
       public: Offentlig
       push_subscription_expires: PuSH-prenumerationen löper ut
-      redownload: Uppdatera avatar
+      redownload: Uppdatera profil
       reject: Förkasta
       reject_all: Förkasta allt / Avvisa alla
       remove_avatar: Ta bort avatar
@@ -903,6 +903,7 @@ sv:
         other: "%{count} röster"
     show_more: Visa mer
     show_thread: Visa tråd
+    title: '%{name}: "%{quote}"'
     visibilities:
       private: Endast följare
       private_long: Visa endast till följare
@@ -1002,7 +1003,9 @@ sv:
     default: Mastodon
     mastodon-light: Mastodon (ljust)
   two_factor_authentication:
+    add: Lägg till
     disable: Inaktivera
+    edit: Redigera
     enabled: Tvåfaktorsautentisering är aktiverad
     enabled_success: Tvåfaktorsautentisering aktiverad
     generate_recovery_codes: Generera återställningskoder
@@ -1010,6 +1013,7 @@ sv:
     recovery_codes: Backup återställningskod
     recovery_codes_regenerated: Återställningskoder genererades på nytt
     recovery_instructions_html: Om du någonsin tappar åtkomst till din telefon kan du använda någon av återställningskoderna nedan för att återställa åtkomst till ditt konto. <strong> Håll återställningskoderna säkra </strong>. Du kan till exempel skriva ut dem och lagra dem med andra viktiga dokument.
+    webauthn: Säkerhetsnycklar
   user_mailer:
     backup_ready:
       explanation: Du begärde en fullständig säkerhetskopiering av ditt Mastodon-konto. Det är nu klart för nedladdning!
@@ -1032,6 +1036,7 @@ sv:
       tip_mobile_webapp: Om din mobila webbläsare erbjuder dig att lägga till Mastodon på din hemskärm kan du få push-aviseringar. Det fungerar som en inbyggd app på många sätt!
       title: Välkommen ombord, %{name}!
   users:
+    follow_limit_reached: Du kan inte följa fler än %{limit} personer
     invalid_otp_token: Ogiltig tvåfaktorskod
     otp_lost_help_html: Om du förlorat åtkomst till båda kan du komma i kontakt med %{email}
     seamless_external_login: Du är inloggad via en extern tjänst, så lösenord och e-postinställningar är inte tillgängliga.
@@ -1041,3 +1046,4 @@ sv:
     delete_confirmation: Är du säker på att du vill ta bort denna säkerhetsnyckel?
     destroy:
       success: Din säkerhetsnyckel har tagits bort.
+    not_enabled: Du har inte aktiverat WebAuthn än
