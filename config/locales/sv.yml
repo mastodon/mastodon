@@ -761,6 +761,7 @@ sv:
     acct: användarnamn@domän av det nya kontot
     cancel_explanation: Avstängning av omdirigeringen kommer att återaktivera ditt nuvarande konto, men kommer inte att återskapa följare som har flyttats till det kontot.
     incoming_migrations: Flyttar från ett annat konto
+    proceed_with_move: Flytta följare
     redirected_msg: Ditt konto dirigeras om till %{acct}.
   moderation:
     title: Moderera
@@ -802,11 +803,14 @@ sv:
       subject: "%{name} publicerade nyss"
   notifications:
     other_settings: Andra aviseringsinställningar
+  otp_authentication:
+    enable: Aktivera
   pagination:
     newer: Nyare
     next: Nästa
     older: Äldre
     prev: Tidigare
+    truncate: "&hellip;"
   polls:
     errors:
       invalid_choice: Det valda röstalternativet finns inte
@@ -830,13 +834,23 @@ sv:
     activity: Senaste aktivitet
     browser: Webbläsare
     browsers:
+      alipay: Alipay
+      blackberry: Blackberry
+      chrome: Chrome
+      edge: Microsoft Edge
       generic: Okänd browser
+      safari: Safari
     current_session: Nuvarande session
     description: "%{browser} på %{platform}"
     explanation: Detta är inloggade webbläsare på Mastodon just nu.
     platforms:
+      android: Android
+      blackberry: Blackberry
+      ios: iOS
+      linux: Linux
       mac: Mac
       other: okänd plattform
+      windows: Windows
     revoke: Återkalla
     revoke_success: Sessionen återkallas framgångsrikt
     title: Sessioner
@@ -858,6 +872,7 @@ sv:
     profile: Profil
     relationships: Följer och följare
     two_factor_authentication: Tvåfaktorsautentisering
+    webauthn_authentication: Säkerhetsnycklar
   statuses:
     attached:
       description: 'Bifogad: %{attached}'
@@ -879,6 +894,13 @@ sv:
       ownership: Någon annans toot kan inte fästas
       private: Icke-offentliga toot kan inte fästas
       reblog: Knuffar kan inte fästas
+    poll:
+      total_people:
+        one: "%{count} person"
+        other: "%{count} personer"
+      total_votes:
+        one: "%{count} röst"
+        other: "%{count} röster"
     show_more: Visa mer
     show_thread: Visa tråd
     visibilities:
