@@ -534,7 +534,7 @@ gd:
     relays:
       add_new: Cuir ath-sheachadan ùr ris
       delete: Sguab às
-      description_html: "’S e frithealaiche eadar-mheadhanach a th’ ann an <strong>ath-sheachadan co-nasgaidh</strong> a nì iomlaid air grunnan mòra de dhùdan poblach eadar na frithealaichean a dh’fho-sgrìobhas ’s a dh’fhoillsicheas dha. <strong>’S urrainn dha cuideachadh a thoirt do dh’fhrithealaichean beaga is meadhanach mòr ach an lorg iad susbaint sa cho-shaoghal</strong> agus às an aonais, bhiodh aig cleachdaichean ionadail leantainn air daoine eile air frithealaichean cèine a làimh."
+      description_html: "’S e frithealaiche eadar-mheadhanach a th’ ann an <strong>ath-sheachadan co-nasgaidh</strong> a nì iomlaid air grunnan mòra de phostaichean poblach eadar na frithealaichean a dh’fho-sgrìobhas ’s a dh’fhoillsicheas dha. <strong>’S urrainn dha cuideachadh a thoirt do dh’fhrithealaichean beaga is meadhanach mòr ach an lorg iad susbaint sa cho-shaoghal</strong> agus às an aonais, bhiodh aig cleachdaichean ionadail leantainn air daoine eile air frithealaichean cèine a làimh."
       disable: Cuir à comas
       disabled: Chaidh a chur à comas
       enable: Cuir an comas
@@ -750,18 +750,18 @@ gd:
     created_msg: Chaidh an t-alias ùr a chruthachadh. ’S urrainn dhut tòiseachadh air imrich on seann-chunntas a-nis.
     deleted_msg: Chaidh an t-alias a thoirt air falbh. Chan urrainn dhut imrich on chunntas ud chan fhear seo tuilleadh.
     empty: Chan eil alias agad.
-    hint_html: Nam bu mhiann leat imrich o chunntas eile dhan fhear seo, ’s urrainn dhut alias a chruthachadh an-seo agus feumaidh tu sin a dhèanamh mus urrainn dhut tòiseachadh air an luchd-leantainn agad imrich on seann-chunntas dhan fhear seo. Tha an gnìomh seo fhèin <strong>neo-chronail is can eil e buan</strong>. <strong>Tòisichidh tu air imrich a’ chunntais on t-seann-chunntas</strong>.
+    hint_html: Nam bu mhiann leat imrich o chunntas eile dhan fhear seo, ’s urrainn dhut alias a chruthachadh an-seo agus feumaidh tu sin a dhèanamh mus urrainn dhut tòiseachadh air an luchd-leantainn agad imrich on seann-chunntas dhan fhear seo. Tha an gnìomh seo fhèin <strong>neo-chronail is chan eil e buan</strong>. <strong>Tòisichidh tu air imrich a’ chunntais on t-seann-chunntas</strong>.
     remove: Dì-cheangail an t-alias
   appearance:
     advanced_web_interface: Eadar-aghaidh-lìn adhartach
-    advanced_web_interface_hint: 'Ma tha thu airson leud gu lèir na sgrìn agad a chleachdadh, leigidh an eadar-aghaidh-lìn adhartach leat gun rèitich thu mòran cholbhan eadar-dhealaichte ach a faic thu na thogras tu de dh’fhiosrachadh aig an aon àm: Dachaigh, brathan, loidhne-ama cho-naisgte, na thogras tu de liostaichean is tagaichean hais.'
+    advanced_web_interface_hint: 'Ma tha thu airson leud gu lèir na sgrìn agad a chleachdadh, leigidh an eadar-aghaidh-lìn adhartach leat gun rèitich thu mòran cholbhan eadar-dhealaichte ach am faic thu na thogras tu de dh’fhiosrachadh aig an aon àm: Dachaigh, brathan, loidhne-ama cho-naisgte, na thogras tu de liostaichean is tagaichean hais.'
     animations_and_accessibility: Beòthachaidhean agus so-ruigsinneachd
     confirmation_dialogs: Còmhraidhean dearbhaidh
     discovery: Lorg
     localization:
       body: Tha Mastodon ’ga eadar-theangachadh le saor-thoilich.
       guide_link: https://crowdin.com/project/mastodon
-      guide_link_text: "’S urrainn do dhuine sam bith cuideachadh."
+      guide_link_text: "’S urrainn do neach sam bith cuideachadh."
     sensitive_content: Susbaint fhrionasach
     toot_layout: Co-dhealbhachd nam postaichean
   application_mailer:
@@ -785,7 +785,7 @@ gd:
     checkbox_agreement_html: Gabhaidh mi ri <a href="%{rules_path}" target="_blank">riaghailtean an fhrithealaiche</a> ’s <a href="%{terms_path}" target="_blank">teirmichean a’ chleachdaidh</a>
     checkbox_agreement_without_rules_html: Gabhaidh mi ri <a href="%{terms_path}" target="_blank">teirmichean a’ chleachdaidh</a>
     delete_account: Sguab às an cunntas
-    delete_account_html: Nam bu mhiann leat an cunntas agad a sguabadh às, <a href="%{path}">Nì thu an-seo e</a>. Thèid dearbhadh iarraidh ort.
+    delete_account_html: Nam bu mhiann leat an cunntas agad a sguabadh às, <a href="%{path}">nì thu an-seo e</a>. Thèid dearbhadh iarraidh ort.
     description:
       prefix_invited_by_user: Thug @%{name} cuireadh dhut ach am faigh thu ballrachd air an fhrithealaiche seo de Mhastodon!
       prefix_sign_up: Clàraich le Mastodon an-diugh!
@@ -1043,7 +1043,7 @@ gd:
       not_found: "– cha deach seo a lorg"
       on_cooldown: Tha àm socrachaidh ort
     followers_count: Luchd-leantainn aig àm na h-imrich
-    incoming_migrations: Ag imrich o chunntas eile
+    incoming_migrations: Imrich o chunntas eile
     incoming_migrations_html: Airson imrich o chunntas eile dhan fhear seo, feumaidh tu <a href="%{path}">alias cunntais a chruthachadh</a> an toiseach.
     moved_msg: Tha an cunntas agad ’ga ath-stiùireadh gu %{acct} a-nis ’s an luchd-leantainn agad ’gan imrich.
     not_redirecting: Chan eil an cunntas agad ’ga ath-stiùireadh gu cunntas sam bith eile aig an àm seo.
@@ -1249,8 +1249,8 @@ gd:
     export: Às-phortadh dàta
     featured_tags: Tagaichean hais brosnaichte
     identity_proofs: Dearbhaidhean na dearbh-aithne
-    import: Ion-phortaich
-    import_and_export: Ion-phortaich is às-phortaich
+    import: Ion-phortadh
+    import_and_export: Ion-phortadh ⁊ às-phortadh
     migrate: Imrich cunntais
     notifications: Brathan
     preferences: Roghainnean
@@ -1289,7 +1289,7 @@ gd:
     open_in_web: Fosgail air an lìon
     over_character_limit: chaidh thu thar crìoch charactaran de %{max}
     pin_errors:
-      limit: Tha an àireamh as motha de dhùdan prìnichte agad a tha ceadaichte
+      limit: Tha an àireamh as motha de phostaichean prìnichte agad a tha ceadaichte
       ownership: Chan urrainn dhut post càich a phrìneachadh
       private: Chan urrainn dhut post neo-phoblach a phrìneachadh
       reblog: Chan urrainn dhut brosnachadh a phrìneachadh

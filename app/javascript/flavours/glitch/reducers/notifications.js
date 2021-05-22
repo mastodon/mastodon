@@ -112,7 +112,7 @@ const expandNormalizedNotifications = (state, notifications, next, isLoadingRece
     }
 
     if (shouldCountUnreadNotifications(state)) {
-      mutable.update('unread', unread => unread + items.count(item => compareId(item.get('id'), lastReadId) > 0));
+      mutable.set('unread', mutable.get('pendingItems').count(item => item !== null) + mutable.get('items').count(item => item && compareId(item.get('id'), lastReadId) > 0));
     } else {
       const mostRecent = items.find(item => item !== null);
       if (mostRecent && compareId(lastReadId, mostRecent.get('id')) < 0) {

@@ -149,6 +149,6 @@ class RemoveStatusService < BaseService
   end
 
   def lock_options
-    { redis: Redis.current, key: "distribute:#{@status.id}" }
+    { redis: Redis.current, key: "distribute:#{@status.id}", autorelease: 5.minutes.seconds }
   end
 end

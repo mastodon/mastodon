@@ -7,6 +7,7 @@ es:
     active_count_after: activo
     active_footnote: Usuarios Activos Mensuales (UAM)
     administered_by: 'Administrado por:'
+    api: API
     apps: Aplicaciones móviles
     apps_platforms: Utiliza Mastodon desde iOS, Android y otras plataformas
     browse_directory: Navega por el directorio de perfiles y filtra por intereses
@@ -14,6 +15,7 @@ es:
     browse_public_posts: Navega por un transmisión en vivo de publicaciones públicas en Mastodon
     contact: Contacto
     contact_missing: No especificado
+    contact_unavailable: No disponible
     discover_users: Descubrir usuarios
     documentation: Documentación
     federation_hint_html: Con una cuenta en %{instance} usted podrá seguir a las personas en cualquier servidor de Mastodon y más allá.
@@ -80,6 +82,7 @@ es:
     posts_with_replies: Publicaciones y respuestas
     roles:
       admin: Administrador
+      bot: Bot
       group: Grupo
       moderator: Moderador
     unavailable: Perfil no disponible
@@ -99,6 +102,7 @@ es:
       approve_all: Aprobar todos
       approved_msg: La solicitud de registro de %{username} ha sido aprobada correctamente
       are_you_sure: "¿Estás seguro?"
+      avatar: Avatar
       by_domain: Dominio
       change_email:
         changed_msg: "¡El correo electrónico se ha actualizado correctamente!"
@@ -131,9 +135,11 @@ es:
       inbox_url: URL de la bandeja de entrada
       invite_request_text: Razones para unirse
       invited_by: Invitado por
+      ip: IP
       joined: Unido
       location:
         all: Todos
+        local: Local
         remote: Remoto
         title: Localización
       login_status: Estado del login
@@ -210,6 +216,7 @@ es:
       username: Nombre de usuario
       view_domain: Ver resumen del dominio
       warn: Adevertir
+      web: Web
       whitelisted: Añadido a la lista blanca
     action_logs:
       action_types:
@@ -333,6 +340,7 @@ es:
       disable: Deshabilitar
       disabled: Desactivado
       disabled_msg: Se deshabilitó con éxito ese emoji
+      emoji: Emoji
       enable: Habilitar
       enabled: Activado
       enabled_msg: Se habilitó con éxito ese emoji
@@ -370,6 +378,7 @@ es:
       recent_users: Usuarios recientes
       search: Búsqueda por texto completo
       single_user_mode: Modo único usuario
+      software: Software
       space: Uso de almacenamiento
       title: Tablero
       total_users: usuarios en total
@@ -692,6 +701,7 @@ es:
       last_active: Última actividad
       most_popular: Más popular
       most_recent: Más reciente
+      name: Hashtag
       review: Estado de revisión
       reviewed: Revisado
       title: Etiquetas
@@ -738,6 +748,7 @@ es:
     toot_layout: Diseño de las publicaciones
   application_mailer:
     notification_preferences: Cambiar preferencias de correo electrónico
+    salutation: "%{name}:"
     settings: 'Cambiar preferencias de correo: %{link}'
     view: 'Vista:'
     view_profile: Ver perfil
@@ -772,6 +783,9 @@ es:
     migrate_account: Mudarse a otra cuenta
     migrate_account_html: Si deseas redireccionar esta cuenta a otra distinta, puedes <a href="%{path}">configurarlo aquí</a>.
     or_log_in_with: O inicia sesión con
+    providers:
+      cas: CAS
+      saml: SAML
     register: Registrarse
     registration_closed: "%{instance} no está aceptando nuevos miembros"
     resend_confirmation: Volver a enviar el correo de confirmación
@@ -812,15 +826,24 @@ es:
     errors:
       invalid_key: no es una clave Ed25519 o Curve25519 válida
       invalid_signature: no es una firma Ed25519 válida
+  date:
+    formats:
+      default: "%d %b %Y"
+      with_month_name: "%d %B %Y"
   datetime:
     distance_in_words:
+      about_x_hours: "%{count} h"
       about_x_months: "%{count}m"
       about_x_years: "%{count}a"
       almost_x_years: "%{count}a"
       half_a_minute: Justo ahora
+      less_than_x_minutes: "%{count} m"
       less_than_x_seconds: Justo ahora
       over_x_years: "%{count}a"
+      x_days: "%{count} d"
+      x_minutes: "%{count} m"
       x_months: "%{count}m"
+      x_seconds: "%{count} s"
   deletes:
     challenge_not_passed: Los datos introducidos son incorrectos
     confirm_password: Ingresa tu contraseña actual para demostrar tu identidad
@@ -872,6 +895,7 @@ es:
       size: Tamaño
     blocks: Personas que has bloqueado
     bookmarks: Marcadores
+    csv: CSV
     domain_blocks: Bloqueos de dominios
     lists: Listas
     mutes: Tienes en silencio
@@ -1067,8 +1091,13 @@ es:
   number:
     human:
       decimal_units:
+        format: "%n %u"
         units:
+          billion: MM
+          million: M
+          quadrillion: MB
           thousand: m
+          trillion: B
   otp_authentication:
     code_hint: Introduce el código generado por tu aplicación de autentificación para confirmar
     description_html: Si habilitas <strong>autenticación de dos factores</strong> a través de una aplicación de autenticación, el ingreso requerirá que estés en posesión de tu teléfono, que generará códigos para que ingreses.
@@ -1082,6 +1111,7 @@ es:
     next: Próximo
     older: Más antiguo
     prev: Anterior
+    truncate: "&hellip;"
   polls:
     errors:
       already_voted: Ya has votado en esta encuesta
@@ -1143,15 +1173,40 @@ es:
     activity: Última actividad
     browser: Navegador
     browsers:
+      alipay: Alipay
+      blackberry: Blackberry
+      chrome: Chrome
+      edge: Microsoft Edge
+      electron: Electron
+      firefox: Firefox
       generic: Desconocido
+      ie: Internet Explorer
+      micro_messenger: MicroMessenger
       nokia: Navegador de Nokia S40 Ovi
+      opera: Opera
+      otter: Otter
+      phantom_js: PhantomJS
       qq: Navegador QQ
+      safari: Safari
+      uc_browser: UCBrowser
+      weibo: Weibo
     current_session: Sesión actual
     description: "%{browser} en %{platform}"
     explanation: Estos son los navegadores web conectados actualmente en tu cuenta de Mastodon.
+    ip: IP
     platforms:
+      adobe_air: Adobe Air
+      android: Android
+      blackberry: Blackberry
+      chrome_os: ChromeOS
+      firefox_os: Firefox OS
+      ios: iOS
+      linux: GNU Linux
       mac: Mac
       other: Desconocido
+      windows: Windows
+      windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
     revoke: Revocar
     revoke_success: Sesión revocada exitosamente
     title: Sesiones
@@ -1179,6 +1234,9 @@ es:
     webauthn_authentication: Claves de seguridad
   statuses:
     attached:
+      audio:
+        one: "%{count} audio"
+        other: "%{count} audios"
       description: 'Adjunto: %{attached}'
       image:
         one: "%{count} imagen"
@@ -1214,6 +1272,7 @@ es:
     show_older: Mostrar más antiguos
     show_thread: Mostrar discusión
     sign_in_to_participate: Regístrate para participar en la conversación
+    title: "%{name}: «%{quote}»"
     visibilities:
       direct: Directa
       private: Sólo mostrar a seguidores
@@ -1318,6 +1377,7 @@ es:
   time:
     formats:
       default: "%d de %b del %Y, %H:%M"
+      month: "%b %Y"
   two_factor_authentication:
     add: Añadir
     disable: Deshabilitar
