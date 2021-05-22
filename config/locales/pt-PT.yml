@@ -230,6 +230,7 @@ pt-PT:
         create_domain_block: Criar Bloqueio de Domínio
         create_email_domain_block: Criar Bloqueio de Domínio de E-mail
         create_ip_block: Criar regra de IP
+        create_unavailable_domain: Criar Domínio Indisponível
         demote_user: Despromover Utilizador
         destroy_announcement: Eliminar Anúncio
         destroy_custom_emoji: Eliminar Emoji Personalizado
@@ -238,6 +239,7 @@ pt-PT:
         destroy_email_domain_block: Eliminar Bloqueio de Domínio de E-mail
         destroy_ip_block: Eliminar regra de IP
         destroy_status: Eliminar Publicação
+        destroy_unavailable_domain: Eliminar Domínio Indisponível
         disable_2fa_user: Desativar 2FA
         disable_custom_emoji: Desativar Emoji Personalizado
         disable_user: Desativar Utilizador
@@ -271,6 +273,7 @@ pt-PT:
         create_domain_block_html: "%{name} bloqueou o domínio %{target}"
         create_email_domain_block_html: "%{name} bloqueou o domínio de e-mail %{target}"
         create_ip_block_html: "%{name} criou regra para o IP %{target}"
+        create_unavailable_domain_html: "%{name} parou a entrega ao domínio %{target}"
         demote_user_html: "%{name} despromoveu o utilizador %{target}"
         destroy_announcement_html: "%{name} eliminou o anúncio %{target}"
         destroy_custom_emoji_html: "%{name} destruiu o emoji %{target}"
@@ -279,6 +282,7 @@ pt-PT:
         destroy_email_domain_block_html: "%{name} desbloqueou o domínio de e-mail %{target}"
         destroy_ip_block_html: "%{name} eliminou regra para o IP %{target}"
         destroy_status_html: "%{name} removeu a publicação de %{target}"
+        destroy_unavailable_domain_html: "%{name} retomou a entrega ao domínio %{target}"
         disable_2fa_user_html: "%{name} desativou o requerimento de autenticação em dois passos para o utilizador %{target}"
         disable_custom_emoji_html: "%{name} desabilitou o emoji %{target}"
         disable_user_html: "%{name} desativou o acesso para o utilizador %{target}"
@@ -451,8 +455,25 @@ pt-PT:
       title: Seguir recomendações
       unsuppress: Restaurar recomendações de contas a seguir
     instances:
+      back_to_all: Todas
+      back_to_limited: Limitadas
+      back_to_warning: Aviso
       by_domain: Domínio
+      delivery:
+        all: Todas
+        clear: Limpar erros de entrega
+        restart: Reiniciar entrega
+        stop: Parar entrega
+        title: Entrega
+        unavailable: Indisponível
+        unavailable_message: Entrega indisponível
+        warning: Aviso
+        warning_message:
+          one: Falhou entrega %{count} dia
+          other: Falhou entrega %{count} dias
       delivery_available: Entrega disponível
+      delivery_error_days: Dias de erro de entrega
+      delivery_error_hint: Se a entrega não for possível durante %{count} dias, será automaticamente marcada como não realizável.
       empty: Não foram encontrados domínios.
       known_accounts:
         one: "%{count} conta conhecida"
