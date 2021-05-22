@@ -389,6 +389,7 @@ sv:
         title: Filtrera
       title: Inbjudningar
     ip_blocks:
+      add_new: Skapa regel
       delete: Ta bort
       expires_in:
         '1209600': 2 veckor
@@ -415,6 +416,10 @@ sv:
       created_msg: Anmälningsanteckning har skapats!
       destroyed_msg: Anmälningsanteckning har raderats!
     reports:
+      account:
+        reports:
+          one: "%{count} rapport"
+          other: "%{count} rapporter"
       action_taken_by: Åtgärder vidtagna av
       are_you_sure: Är du säker?
       assign_to_self: Tilldela till mig
@@ -536,6 +541,7 @@ sv:
       last_active: Senast aktiv
       name: Hashtag
       title: Hashtaggar
+      trending_right_now: Trenderar just nu
       unreviewed: Ej granskad
     title: Administration
     warning_presets:
@@ -555,6 +561,7 @@ sv:
     discovery: Upptäck
     localization:
       body: Mastodon översätts av volontärer.
+      guide_link: https://crowdin.com/project/mastodon
       guide_link_text: Alla kan bidra.
     sensitive_content: Känsligt innehåll
   application_mailer:
@@ -579,6 +586,7 @@ sv:
     delete_account_html: Om du vill radera ditt konto kan du <a href="%{path}">fortsätta här</a>. Du kommer att bli ombedd att bekräfta.
     description:
       prefix_invited_by_user: "@%{name} bjuder in dig att gå med i en Mastodon-server!"
+      prefix_sign_up: Registrera dig på Mastodon idag!
     didnt_get_confirmation: Fick du inte instruktioner om bekräftelse?
     forgot_password: Glömt ditt lösenord?
     invalid_reset_password_token: Lösenordsåterställningstoken är ogiltig eller utgått. Vänligen be om en ny.
@@ -639,7 +647,10 @@ sv:
     proceed: Ta bort konto
     success_msg: Ditt konto har raderats
     warning:
+      email_change_html: Du kan <a href="%{path}">ändra din e-postadress</a> utan att radera ditt konto
       irreversible: Du kan inte återställa eller återaktivera ditt konto
+  directories:
+    explore_mastodon: Utforska %{title}
   domain_validator:
     invalid_domain: är inte ett giltigt domännamn
   errors:
@@ -689,6 +700,7 @@ sv:
   footer:
     developers: Utvecklare
     more: Mer…
+    trending_now: Trendar nu
   generic:
     all: Alla
     changes_saved_msg: Ändringar sparades framgångsrikt!
