@@ -843,6 +843,8 @@ sv:
       edge: Microsoft Edge
       firefox: Firefox
       generic: Okänd browser
+      ie: Internet Explorer
+      opera: Opera
       safari: Safari
     current_session: Nuvarande session
     description: "%{browser} på %{platform}"
@@ -905,8 +907,10 @@ sv:
       total_votes:
         one: "%{count} röst"
         other: "%{count} röster"
+      vote: Rösta
     show_more: Visa mer
     show_thread: Visa tråd
+    sign_in_to_participate: Logga in för att delta i konversationen
     title: '%{name}: "%{quote}"'
     visibilities:
       private: Endast följare
@@ -1023,6 +1027,9 @@ sv:
       explanation: Du begärde en fullständig säkerhetskopiering av ditt Mastodon-konto. Det är nu klart för nedladdning!
       subject: Ditt arkiv är klart för nedladdning
       title: Arkivuttagning
+    warning:
+      title:
+        none: Varning
     welcome:
       edit_profile_action: Profilinställning
       edit_profile_step: Du kan anpassa din profil genom att ladda upp en avatar, bakgrundsbild, ändra ditt visningsnamn och mer. Om du vill granska nya följare innan de får följa dig kan du låsa ditt konto.
@@ -1046,6 +1053,7 @@ sv:
     seamless_external_login: Du är inloggad via en extern tjänst, så lösenord och e-postinställningar är inte tillgängliga.
     signed_in_as: 'Inloggad som:'
   webauthn_credentials:
+    add: Lägg till ny säkerhetsnyckel
     delete: Radera
     delete_confirmation: Är du säker på att du vill ta bort denna säkerhetsnyckel?
     destroy:
