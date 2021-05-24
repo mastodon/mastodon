@@ -281,6 +281,7 @@ fr:
         destroy_email_domain_block_html: "%{name} a débloqué le domaine de courriel %{target}"
         destroy_ip_block_html: "%{name} a supprimé la règle pour l'IP %{target}"
         destroy_status_html: "%{name} a supprimé le statut de %{target}"
+        destroy_unavailable_domain_html: "%{name} a repris la livraison au domaine %{target}"
         disable_2fa_user_html: "%{name} a désactivé l'authentification à deux facteurs pour l'utilisateur·rice %{target}"
         disable_custom_emoji_html: "%{name} a désactivé l'émoji %{target}"
         disable_user_html: "%{name} a désactivé la connexion de l'utilisateur·rice %{target}"
@@ -453,9 +454,12 @@ fr:
       title: Recommandations d'abonnement
       unsuppress: Rétablir les recommandations d'abonnement
     instances:
+      back_to_all: Tout
+      back_to_limited: Limité
       back_to_warning: Avertissement
       by_domain: Domaine
       delivery:
+        all: Tout
         unavailable: Indisponible
         warning: Avertissement
       delivery_available: Livraison disponible
