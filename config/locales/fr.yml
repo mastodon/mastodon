@@ -460,9 +460,19 @@ fr:
       by_domain: Domaine
       delivery:
         all: Tout
+        clear: Effacer les erreurs de livraison
+        restart: Redémarrer la livraison
+        stop: Arrêter la livraison
+        title: Livraison
         unavailable: Indisponible
+        unavailable_message: Livraison indisponible
         warning: Avertissement
+        warning_message:
+          one: Échec de livraison %{count} jour
+          other: Échec de livraison %{count} jours
       delivery_available: Livraison disponible
+      delivery_error_days: Jours d'erreur de livraison
+      delivery_error_hint: Si la livraison n'est pas possible pendant %{count} jours, elle sera automatiquement marquée comme non livrable.
       empty: Aucun domaine trouvé.
       known_accounts:
         one: "%{count} compte connu"
