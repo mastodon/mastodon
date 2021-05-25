@@ -146,10 +146,10 @@ class ComposeForm extends ImmutablePureComponent {
     //     - Replying to zero or one users, places the cursor at the end of the textbox.
     //     - Replying to more than one user, selects any usernames past the first;
     //       this provides a convenient shortcut to drop everyone else from the conversation.
-    if (this.props.focusDate !== prevProps.focusDate) {
+    if (this.props.focusDate.getTime() !== prevProps.focusDate.getTime()) {
       let selectionEnd, selectionStart;
 
-      if (this.props.preselectDate !== prevProps.preselectDate) {
+      if (this.props.preselectDate.getTime() !== prevProps.preselectDate.getTime()) {
         selectionEnd   = this.props.text.length;
         selectionStart = this.props.text.search(/\s/) + 1;
       } else if (typeof this.props.caretPosition === 'number') {
