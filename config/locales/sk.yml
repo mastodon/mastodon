@@ -7,7 +7,6 @@ sk:
     active_count_after: aktívni
     active_footnote: Mesačne aktívnych užívateľov (MAU)
     administered_by: 'Správcom je:'
-    api: API
     apps: Aplikácie
     apps_platforms: Užívaj Mastodon z iOSu, Androidu, a iných platforiem
     browse_directory: Prehľadávaj databázu profilov, a filtruj podľa záujmov
@@ -39,7 +38,6 @@ sk:
     terms: Podmienky užitia
     unavailable_content: Nedostupný obsah
     unavailable_content_description:
-      domain: Server
       reason: 'Dôvod:'
       rejecting_media: 'Mediálne súbory z týchto serverov nebudú spracované, alebo ukladané, a nebudú z nich zobrazované žiadne náhľady, vyžadujúc ručné prekliknutie priamo až k pôvodnému súboru:'
       rejecting_media_title: Triedené médiá
@@ -83,10 +81,8 @@ sk:
       other: Príspevkov
     posts_tab_heading: Príspevky
     posts_with_replies: Príspevky s odpoveďami
-    reserved_username: Prihlasovacie meno je vyhradené
     roles:
       admin: Správca
-      bot: Bot
       group: Skupina
       moderator: Moderátor
     unavailable: Profil nieje dostupný
@@ -125,7 +121,6 @@ sk:
       display_name: Ukáž meno
       domain: Doména
       edit: Uprav
-      email: Email
       email_status: Stav emailu
       enable: Povoľ
       enabled: Povolený
@@ -201,7 +196,6 @@ sk:
       unsubscribe: Prestaň odoberať
       username: Prezývka
       warn: Varuj
-      web: Web
       whitelisted: Na bielej listine
     action_logs:
       action_types:
@@ -226,39 +220,6 @@ sk:
         silence_account: Utíš účet
         suspend_account: Vylúč účet
         update_status: Aktualizuj stav
-      actions:
-        assigned_to_self_report: "%{name} pridelil/a hlásenie užívateľa %{target} sebe"
-        change_email_user: "%{name} zmenil/a emailovú adresu užívateľa %{target}"
-        confirm_user: "%{name} potvrdil emailovú adresu používateľa %{target}"
-        create_account_warning: "%{name} poslal/a varovanie užívateľovi %{target}"
-        create_custom_emoji: "%{name} nahral nový emoji %{target}"
-        create_domain_allow: "%{name} pridal/a doménu %{target} na zoznam povolených"
-        create_domain_block: "%{name} zablokoval doménu %{target}"
-        create_email_domain_block: "%{name} pridal e-mailovú doménu %{target} na zoznam zakázaných"
-        demote_user: "%{name} degradoval používateľa %{target}"
-        destroy_custom_emoji: "%{name} zničil/a %{target} emoji"
-        destroy_domain_allow: "%{name} odstránil/a doménu %{target} zo zoznamu povolených"
-        destroy_domain_block: "%{name} povolil doménu %{target}"
-        destroy_email_domain_block: "%{name} pridal e-mailovú doménu %{target} na zoznam povolených"
-        destroy_status: "%{name} zmazal status %{target}"
-        disable_2fa_user: "%{name} vypol požiadavku 2FA pre používateľa %{target}"
-        disable_custom_emoji: "%{name} zakázal emoji %{target}"
-        disable_user: "%{name} zakázal prihlásenie pre používateľa %{target}"
-        enable_custom_emoji: "%{name} povolil emoji %{target}"
-        enable_user: "%{name} povolil prihlásenie pre používateľa %{target}"
-        memorialize_account: "%{name} zmenil účet %{target} na pamätnú stránku"
-        promote_user: "%{name} vyzdvihli užívateľa %{target}"
-        remove_avatar_user: "%{name} odstránil/a %{target}ov avatár"
-        reopen_report: "%{name} znovu otvoril/a hlásenie užívateľa %{target}"
-        reset_password_user: "%{name} resetoval/a heslo pre používateľa %{target}"
-        resolve_report: "%{name} vyriešili nahlásenie užívateľa %{target}"
-        silence_account: "%{name} utíšil/a účet %{target}"
-        suspend_account: "%{name} zablokoval/a účet používateľa %{target}"
-        unassigned_report: "%{name} odobral/a report od %{target}"
-        unsilence_account: "%{name} zrušil/a stíšenie účtu používateľa %{target}"
-        unsuspend_account: "%{name} zrušil/a blokovanie účtu používateľa %{target}"
-        update_custom_emoji: "%{name} aktualizoval/a emoji %{target}"
-        update_status: "%{name} aktualizoval/a status pre %{target}"
       deleted_status: "(zmazaný príspevok)"
       filter_by_action: Filtruj podľa úkonu
       filter_by_user: Trieď podľa užívateľa
@@ -317,7 +278,6 @@ sk:
       feature_profile_directory: Katalóg profilov
       feature_registrations: Registrácie
       feature_relay: Federovací mostík
-      feature_spam_check: Proti spamu
       feature_timeline_preview: Náhľad časovej osi
       features: Vymoženosti
       hidden_service: Federácia so skrytými službami
@@ -502,8 +462,6 @@ sk:
         users: Prihláseným, miestnym užívateľom
       domain_blocks_rationale:
         title: Ukáž zdôvodnenie
-      enable_bootstrap_timeline_accounts:
-        title: Novým užívateľom povoľ východiskové následovania
       hero:
         desc_html: Zobrazuje sa na hlavnej stránke. Doporučené je rozlišenie aspoň 600x100px. Pokiaľ nič nieje dodané, bude nastavený základný orázok serveru.
         title: Obrázok hrdinu
@@ -554,9 +512,6 @@ sk:
         desc_html: Môžeš si napísať svoje vlastné pravidla o súkromí, prevádzke, alebo aj iné legality. Môžeš tu používať HTML kód
         title: Vlastné pravidlá prevádzky
       site_title: Názov servera
-      spam_check_enabled:
-        desc_html: Mastodon môže sám stíšiť, a nahlásiť účty v závislosti od rozpoznania parametrov ako napríklad opakované rozosielanie nevyžiadanej komunikácie. Môže dôjsť aj k nesprávnej identifikácii.
-        title: Proti spamu
       thumbnail:
         desc_html: Používané pre náhľady cez OpenGraph a API. Doporučuje sa rozlišenie 1200x630px
         title: Miniatúra servera
@@ -591,9 +546,6 @@ sk:
       accounts_today: Jedinečných užívateľov za dnešok
       accounts_week: Jedinečných užívateľov tento týždeň
       breakdown: Rozpis dnešného využitia podľa zdroja
-      context: Súvis
-      directory: V zozname
-      in_directory: "%{count} v zozname"
       last_active: Naposledy aktívny
       most_popular: Najpopulárnejšie
       most_recent: Najnovšie
@@ -639,7 +591,6 @@ sk:
     toot_layout: Rozloženie príspevkov
   application_mailer:
     notification_preferences: Zmeň emailové voľby
-    salutation: "%{name},"
     settings: 'Zmeň emailové voľby: %{link}'
     view: 'Zobraziť:'
     view_profile: Zobraz profil
@@ -768,7 +719,6 @@ sk:
       request: Vyžiadaj si tvoj archív
       size: Veľkosť
     blocks: Blokujete
-    csv: CSV
     domain_blocks: Blokované domény
     lists: Zoznamy
     mutes: Stíšil/a si
@@ -1064,8 +1014,6 @@ sk:
     profile: Profil
     relationships: Sledovania a následovatelia
     two_factor_authentication: Dvojfázové overenie
-  spam_check:
-    spam_detected: Toto je automatizované hlásenie. Bol odhalený spam.
   statuses:
     attached:
       description: 'Priložené: %{attached}'
@@ -1074,11 +1022,6 @@ sk:
         many: "%{count} obrázkov"
         one: "%{count} obrázok"
         other: "%{count} obrázky"
-      video:
-        few: "%{count} videí"
-        many: "%{count} videí"
-        one: "%{count} video"
-        other: "%{count} videá"
     boosted_from_html: Vyzdvihnuté od %{acct_link}
     content_warning: 'Varovanie o obsahu: %{warning}'
     disallowed_hashtags:
@@ -1214,7 +1157,6 @@ sk:
       title: Vitaj na palube, %{name}!
   users:
     follow_limit_reached: Nemôžeš následovať viac ako %{limit} ľudí
-    invalid_email: Emailová adresa je neplatná
     invalid_otp_token: Neplatný kód pre dvojfaktorovú autentikáciu
     otp_lost_help_html: Pokiaľ si stratil/a prístup k obom, môžeš dať vedieť %{email}
     seamless_external_login: Si prihlásená/ý cez externú službu, takže nastavenia hesla a emailu ti niesú prístupné.

@@ -32,6 +32,52 @@ describe Auth::ConfirmationsController, type: :controller do
       end
     end
 
+    context 'when user is unconfirmed and unapproved' do
+      let!(:user) { Fabricate(:user, confirmation_token: 'foobar', confirmed_at: nil, approved: false) }
+
+      before do
+        allow(BootstrapTimelineWorker).to receive(:perform_async)
+        @request.env['devise.mapping'] = Devise.mappings[:user]
+        get :show, params: { confirmation_token: 'foobar' }
+      end
+
+      it 'redirects to login' do
+        expect(response).to redirect_to(new_user_session_path)
+      end
+    end
+
+    context 'when user is already confirmed' do
+      let!(:user) { Fabricate(:user) }
+
+      before do
+        allow(BootstrapTimelineWorker).to receive(:perform_async)
+        @request.env['devise.mapping'] = Devise.mappings[:user]
+        sign_in(user, scope: :user)
+        get :show, params: { confirmation_token: 'foobar' }
+      end
+
+      it 'redirects to root path' do
+        expect(response).to redirect_to(root_path)
+      end
+    end
+
+    context 'when user is already confirmed but unapproved' do
+      let!(:user) { Fabricate(:user, approved: false) }
+
+      before do
+        allow(BootstrapTimelineWorker).to receive(:perform_async)
+        @request.env['devise.mapping'] = Devise.mappings[:user]
+        user.approved = false
+        user.save!
+        sign_in(user, scope: :user)
+        get :show, params: { confirmation_token: 'foobar' }
+      end
+
+      it 'redirects to settings' do
+        expect(response).to redirect_to(edit_user_registration_path)
+      end
+    end
+
     context 'when user is updating email' do
       let!(:user) { Fabricate(:user, confirmation_token: 'foobar', unconfirmed_email: 'new-email@example.com') }
 

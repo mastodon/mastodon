@@ -8,7 +8,7 @@ id:
     active_footnote: Pengguna Aktif Bulanan (PAB)
     administered_by: 'Dikelola oleh:'
     api: API
-    apps: Aplikasi hp
+    apps: Aplikasi mobile
     apps_platforms: Gunakan Mastodon dari iOS, Android, dan platform lain
     browse_directory: Jelajahi direktori profil dan saring sesuai minat
     browse_local_posts: Jelajahi siaran langsung dari pos publik server ini
@@ -21,11 +21,11 @@ id:
     federation_hint_html: Dengan akun di %{instance} Anda dapat mengikuti orang di server Mastodon mana pun dan di luarnya.
     get_apps: Coba aplikasi mobile
     hosted_on: Mastodon dihosting di %{domain}
-    instance_actor_flash: 'Akun ini adalah aktor virtual yang dipakai untuk merepresentasikan server, bukan pengguna individu. Ini dipakai untuk tujuan federasi dan jangan diblokir kecuali Anda ingin memblokir seluruh instansi, yang seharusnya Anda pakai blokir domain.
-
-'
+    instance_actor_flash: "Akun ini adalah aktor virtual yang dipakai untuk merepresentasikan server, bukan pengguna individu. Ini dipakai untuk tujuan federasi dan jangan diblokir kecuali Anda ingin memblokir seluruh instansi, yang seharusnya Anda pakai blokir domain. \n"
     learn_more: Pelajari selengkapnya
     privacy_policy: Kebijakan Privasi
+    rules: Aturan server
+    rules_html: 'Di bawah ini adalah ringkasan aturan yang perlu Anda ikuti jika Anda ingin memiliki akun di server Mastodon ini:'
     see_whats_happening: Lihat apa yang sedang terjadi
     server_stats: 'Statistik server:'
     source_code: Kode sumber
@@ -74,7 +74,6 @@ id:
       other: Toot
     posts_tab_heading: Toot
     posts_with_replies: Toot dan balasan
-    reserved_username: Nama pengguna telah dipesan
     roles:
       admin: Admin
       bot: Bot
@@ -119,7 +118,7 @@ id:
       display_name: Nama
       domain: Domain
       edit: Ubah
-      email: E-mail
+      email: Email
       email_status: Status Email
       enable: Aktifkan
       enabled: Diaktifkan
@@ -174,7 +173,7 @@ id:
         already_confirmed: Pengguna ini sudah dikonfirmasi
         send: Kirim ulang email konfirmasi
         success: Email konfirmasi berhasil dikirim!
-      reset: Reset
+      reset: Atur ulang
       reset_password: Reset kata sandi
       resubscribe: Langganan ulang
       role: Hak akses
@@ -225,6 +224,7 @@ id:
         create_domain_block: Buat Blokir Domain
         create_email_domain_block: Buat Email Blokir Domain
         create_ip_block: Buat aturan IP
+        create_unavailable_domain: Buat Domain yang Tidak Tersedia
         demote_user: Turunkan Pengguna
         destroy_announcement: Hapus Pengumuman
         destroy_custom_emoji: Hapus Emoji Khusus
@@ -233,6 +233,7 @@ id:
         destroy_email_domain_block: Hapus email blokir domain
         destroy_ip_block: Hapus aturan IP
         destroy_status: Hapus Status
+        destroy_unavailable_domain: Hapus Domain yang Tidak Tersedia
         disable_2fa_user: Nonaktifkan 2FA
         disable_custom_emoji: Nonaktifkan Emoji Khusus
         disable_user: Nonaktifkan Pengguna
@@ -256,46 +257,48 @@ id:
         update_domain_block: Perbarui Blokir Domain
         update_status: Perbarui Status
       actions:
-        assigned_to_self_report: "%{name} menugaskan laporan %{target} kpd dirinya sendiri"
-        change_email_user: "%{name} mengubah alamat email pengguna %{target}"
-        confirm_user: "%{name} mengonfirmasi alamat email pengguna %{target}"
-        create_account_warning: "%{name} mengirim peringatan untuk %{target}"
-        create_announcement: "%{name} membuat pengumuman baru %{target}"
-        create_custom_emoji: "%{name} mengunggah emoji baru %{target}"
-        create_domain_allow: "%{name} memasukkan ke daftar putih domain %{target}"
-        create_domain_block: "%{name} memblokir domain %{target}"
-        create_email_domain_block: "%{name} memblokir domain email %{target}"
-        create_ip_block: "%{name} membuat aturan untuk IP %{target}"
-        demote_user: "%{name} menurunkan pengguna %{target}"
-        destroy_announcement: "%{name} menghapus pengumuman %{target}"
-        destroy_custom_emoji: "%{name} menghapus emoji %{target}"
-        destroy_domain_allow: "%{name} menghapus domain %{target} dari daftar putih"
-        destroy_domain_block: "%{name} membuka blokir domain %{target}"
-        destroy_email_domain_block: "%{name} membuka blokir domain email %{target}"
-        destroy_ip_block: "%{name} menghapus aturan untuk IP %{target}"
-        destroy_status: "%{name} menghapus status %{target}"
-        disable_2fa_user: "%{name} mematikan syarat dua faktor utk pengguna %{target}"
-        disable_custom_emoji: "%{name} mematikan emoji %{target}"
-        disable_user: "%{name} mematikan login untuk pengguna %{target}"
-        enable_custom_emoji: "%{name} mengaktifkan emoji %{target}"
-        enable_user: "%{name} mengaktifkan login untuk pengguna %{target}"
-        memorialize_account: "%{name} mengubah akun %{target} jadi halaman memorial"
-        promote_user: "%{name} mempromosikan pengguna %{target}"
-        remove_avatar_user: "%{name} menghapus avatar %{target}"
-        reopen_report: "%{name} membuka ulang laporan %{target}"
-        reset_password_user: "%{name} mereset kata sandi pengguna %{target}"
-        resolve_report: "%{name} menyelesaikan laporan %{target}"
-        sensitive_account: "%{name} menandai media %{target} sebagai sensitif"
-        silence_account: "%{name} membungkam akun %{target}"
-        suspend_account: "%{name} menangguhkan akun %{target}"
-        unassigned_report: "%{name} tidak menugaskan laporan %{target}"
-        unsensitive_account: "%{name} membatalkan tanda media %{target} sebagai sensitif"
-        unsilence_account: "%{name} menghapus bungkaman akun %{target}"
-        unsuspend_account: "%{name} menghapus penangguhan akun %{target}"
-        update_announcement: "%{name} memperbarui pengumuman %{target}"
-        update_custom_emoji: "%{name} memperbarui emoji %{target}"
-        update_domain_block: "%{name} memperbarui blokir domain untuk %{target}"
-        update_status: "%{name} memperbarui status %{target}"
+        assigned_to_self_report_html: "%{name} menugaskan laporan %{target} ke dirinya sendiri"
+        change_email_user_html: "%{name} mengubah alamat email pengguna %{target}"
+        confirm_user_html: "%{name} mengonfirmasi alamat email pengguna %{target}"
+        create_account_warning_html: "%{name} mengirim peringatan untuk %{target}"
+        create_announcement_html: "%{name} membuat pengumuman baru %{target}"
+        create_custom_emoji_html: "%{name} mengunggah emoji baru %{target}"
+        create_domain_allow_html: "%{name} mengizinkan penggabungan dengan domain %{target}"
+        create_domain_block_html: "%{name} memblokir domain %{target}"
+        create_email_domain_block_html: "%{name} memblokir domain email %{target}"
+        create_ip_block_html: "%{name} membuat aturan untuk IP %{target}"
+        create_unavailable_domain_html: "%{name} menghentikan pengiriman ke domain %{target}"
+        demote_user_html: "%{name} menurunkan pengguna %{target}"
+        destroy_announcement_html: "%{name} menghapus pengumuman %{target}"
+        destroy_custom_emoji_html: "%{name} menghapus emoji %{target}"
+        destroy_domain_allow_html: "%{name} membatalkan izin penggabungan dengan domain %{target}"
+        destroy_domain_block_html: "%{name} membuka blokir domain %{target}"
+        destroy_email_domain_block_html: "%{name} membuka blokir domain email %{target}"
+        destroy_ip_block_html: "%{name} menghapus aturan untuk IP %{target}"
+        destroy_status_html: "%{name} menghapus status %{target}"
+        destroy_unavailable_domain_html: "%{name} melanjutkan pengiriman ke domain %{target}"
+        disable_2fa_user_html: "%{name} mematikan syarat dua faktor utk pengguna %{target}"
+        disable_custom_emoji_html: "%{name} mematikan emoji %{target}"
+        disable_user_html: "%{name} mematikan login untuk pengguna %{target}"
+        enable_custom_emoji_html: "%{name} mengaktifkan emoji %{target}"
+        enable_user_html: "%{name} mengaktifkan login untuk pengguna %{target}"
+        memorialize_account_html: "%{name} mengubah akun %{target} jadi halaman memorial"
+        promote_user_html: "%{name} mempromosikan pengguna %{target}"
+        remove_avatar_user_html: "%{name} menghapus avatar %{target}"
+        reopen_report_html: "%{name} membuka ulang laporan %{target}"
+        reset_password_user_html: "%{name} mereset kata sandi pengguna %{target}"
+        resolve_report_html: "%{name} menyelesaikan laporan %{target}"
+        sensitive_account_html: "%{name} menandai media %{target} sebagai sensitif"
+        silence_account_html: "%{name} membisukan akun %{target}"
+        suspend_account_html: "%{name} menangguhkan akun %{target}"
+        unassigned_report_html: "%{name} membatalkan penugasan laporan %{target}"
+        unsensitive_account_html: "%{name} membatalkan tanda media %{target} sebagai sensitif"
+        unsilence_account_html: "%{name} membunyikan akun %{target}"
+        unsuspend_account_html: "%{name} membatalkan penangguhan akun %{target}"
+        update_announcement_html: "%{name} memperbarui pengumuman %{target}"
+        update_custom_emoji_html: "%{name} memperbarui emoji %{target}"
+        update_domain_block_html: "%{name} memperbarui blokir domain untuk %{target}"
+        update_status_html: "%{name} memperbarui status %{target}"
       deleted_status: "(status dihapus)"
       empty: Log tidak ditemukan.
       filter_by_action: Filter berdasarkan tindakan
@@ -310,10 +313,12 @@ id:
       new:
         create: Buat pengumuman
         title: Pengumuman baru
+      publish: Terbitkan
       published_msg: Pengumuman berhasil diterbitkan!
       scheduled_for: Dijadwalkan untuk %{time}
       scheduled_msg: Pengumuman dijadwalkan untuk publikasi!
       title: Pengumuman
+      unpublish: Batal terbitkan
       unpublished_msg: Pengumuman berhasil ditarik!
       updated_msg: Pengumuman berhasil diperbarui!
     custom_emojis:
@@ -358,7 +363,6 @@ id:
       feature_profile_directory: Direktori profil
       feature_registrations: Registrasi
       feature_relay: Relai federasi
-      feature_spam_check: Anti-spam
       feature_timeline_preview: Pratinjau linimasa
       features: Fitur
       hidden_service: Federasi dengan layanan tersembunyi
@@ -398,6 +402,8 @@ id:
           silence: Pendiaman
           suspend: Suspen
         title: Pemblokiran domain baru
+      obfuscate: Nama domain kabur
+      obfuscate_hint: Mengaburkan nama domain sebagian di daftar jika pengiklanan batasan daftar domain diaktifkan
       private_comment: Komentar pribadi
       private_comment_hint: Komentar tentang pembatasan domain ini untuk penggunaan internal oleh moderator.
       public_comment: Komentar publik
@@ -433,9 +439,33 @@ id:
         create: Tambah domain
         title: Blokir domain email baru
       title: Domain email terblokir
+    follow_recommendations:
+      description_html: <strong>"Rekomendasi untuk diikuti" membantu pengguna baru untuk secara cepat menemukan konten yang menarik</strong>. Ketika pengguna belum cukup berinteraksi dengan lainnya sehingga belum memunculkan rekomendasi, akun-akun ini akan direkomendasikan. Mereka dihitung ulang secara harian dari campuran akun-akun dengan keterlibatan tertinggi baru-baru ini dan jumlah pengikut lokal tertinggi untuk bahasa tertentu.
+      language: Untuk bahasa
+      status: Status
+      suppress: Hapus akun yang direkomendasikan untuk diikuti
+      suppressed: Dihapus
+      title: Rekomendasi untuk diikuti
+      unsuppress: Kembalikan rekomendasi untuk diikuti
     instances:
+      back_to_all: Semua
+      back_to_limited: Terbatas
+      back_to_warning: Peringatan
       by_domain: Domain
+      delivery:
+        all: Semua
+        clear: Hapus galat pengiriman
+        restart: Mulai ulang pengiriman
+        stop: Setop pengiriman
+        title: Pengiriman
+        unavailable: Tidak tersedia
+        unavailable_message: Pengiriman tidak tersedia
+        warning: Peringatan
+        warning_message:
+          other: Kegagalan pengiriman %{count} hari
       delivery_available: Pengiriman tersedia
+      delivery_error_days: Lama hari pengiriman galat
+      delivery_error_hint: Jika pengiriman tidak terjadi selama %{count} hari, ia akan ditandai secara otomatis sebagai tidak terkirim.
       empty: Domain tidak ditemukan.
       known_accounts:
         other: "%{count} akun yang dikenal"
@@ -532,6 +562,13 @@ id:
       unassign: Bebas Tugas
       unresolved: Belum Terseleseikan
       updated_at: Diperbarui
+    rules:
+      add_new: Tambah aturan
+      delete: Hapus
+      description_html: Saat kebanyakan mengklaim sudah membaca dan menyetujui ketentuan layanan, biasanya orang-orang tidak membacanya sampai masalah muncul. <strong>Lebih mudah melihat sepintas aturan server Anda dengan menampilkannya dalam daftar bulatan</strong>. Coba buat aturan individu sependek dan sesederhana mungkin, tapi coba jangan memisahkannya ke dalam item terpisah yang sangat banyak.
+      edit: Edit aturan
+      empty: Belum ada aturan server yang didefinisikan.
+      title: Aturan server
     settings:
       activity_api_enabled:
         desc_html: Hitung status yang dipos scr lokal, pengguna aktif, dan registrasi baru dlm keranjang bulanan
@@ -555,9 +592,6 @@ id:
         users: Ke pengguna lokal yang sudah login
       domain_blocks_rationale:
         title: Tampilkan alasan
-      enable_bootstrap_timeline_accounts:
-        desc_html: Buat pengguna baru mengikuti akun yang sudah dipilih agar beranda mereka tidak kosong
-        title: Aktifkan opsi ikuti otomatis untuk pengguna baru
       hero:
         desc_html: Ditampilkan di halaman depan. Direkomendasikan minimal 600x100px. Jika tidak diatur, kembali ke server gambar kecil
         title: Gambar pertama
@@ -611,9 +645,6 @@ id:
         desc_html: Anda dapat menulis kebijakan privasi, ketentuan layanan, atau hal legal lainnya sendiri. Anda dapat menggunakan tag HTML
         title: Ketentuan layanan kustom
       site_title: Judul Situs
-      spam_check_enabled:
-        desc_html: Mastodon dapat melaporkan secara otomatis akun yang mengirimkan pesan berulang tanpa diminta. Ini mungkin ada kesalahan.
-        title: Automasi anti-spam
       thumbnail:
         desc_html: Dipakai sebagai pratinjau via OpenGraph dan API. Direkomendasikan 1200x630px
         title: Server gambar kecil
@@ -644,13 +675,18 @@ id:
       no_status_selected: Tak ada status yang berubah karena tak ada yang dipilih
       title: Status akun
       with_media: Dengan media
+    system_checks:
+      database_schema_check:
+        message_html: Ada proses migrasi basis data tertunda. Silakan jalankan untuk memastikan aplikasi bekerja seperti yang diharapkan
+      rules_check:
+        action: Kelola aturan server
+        message_html: Anda belum menentukan aturan server apapun.
+      sidekiq_process_check:
+        message_html: Tidak ada proses Sidekiq yang berjalan untuk %{value} antrian. Silakan tinjau konfigurasi Sidekiq Anda
     tags:
       accounts_today: Penggunaan unik hari ini
       accounts_week: Penggunaan unik minggu ini
       breakdown: Rinci penggunaan hari ini berdasar sumber
-      context: Konteks
-      directory: Di direktori
-      in_directory: "%{count} di direktori"
       last_active: Terakhir aktif
       most_popular: Paling populer
       most_recent: Terkini
@@ -667,6 +703,7 @@ id:
       add_new: Tambah baru
       delete: Hapus
       edit_preset: Sunting preset peringatan
+      empty: Anda belum mendefinisikan peringatan apapun.
       title: Kelola preset peringatan
   admin_mailer:
     new_pending_account:
@@ -1024,10 +1061,14 @@ id:
       body: 'Anda disebut oleh %{name} pada:'
       subject: Anda disebut oleh %{name}
       title: Sebutan baru
+    poll:
+      subject: Japat oleh %{name} telah berakhir
     reblog:
       body: 'Status anda di-boost oleh %{name}:'
       subject: "%{name} mem-boost status anda"
       title: Boost baru
+    status:
+      subject: "%{name} baru saja memposting"
   notifications:
     email_events: Event untuk notifikasi email
     email_events_hint: 'Pilih event yang ingin Anda terima notifikasinya:'
@@ -1176,8 +1217,6 @@ id:
     relationships: Ikuti dan pengikut
     two_factor_authentication: Autentikasi Two-factor
     webauthn_authentication: Kunci keamanan
-  spam_check:
-    spam_detected: Ini adalah laporan otomatis. Spam terdeteksi.
   statuses:
     attached:
       audio:
@@ -1214,6 +1253,7 @@ id:
     sign_in_to_participate: Masuk untuk mengikuti percakapan
     title: '%{name}: "%{quote}"'
     visibilities:
+      direct: Langsung
       private: Khusus pengikut
       private_long: Hanya tampilkan ke pengikut
       public: Publik
@@ -1382,11 +1422,8 @@ id:
       tips: Tips
       title: Selamat datang, %{name}!
   users:
-    blocked_email_provider: Layanan email ini tidak diizinkan
     follow_limit_reached: Anda tidak dapat mengikuti lebih dari %{limit} orang
     generic_access_help_html: Mengalami masalah saat akses akun? Anda mungkin perlu menghubungi %{email} untuk mencari bantuan
-    invalid_email: Alamat email tidak cocok
-    invalid_email_mx: Alamat email ini sepertinya tidak ada
     invalid_otp_token: Kode dua faktor tidak cocok
     invalid_sign_in_token: Kode keamanan tidak valid
     otp_lost_help_html: Jika Anda kehilangan akses keduanya, Anda dapat menghubungi %{email}

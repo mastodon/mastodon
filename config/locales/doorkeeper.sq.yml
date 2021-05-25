@@ -81,9 +81,12 @@ sq:
         access_denied: I zoti i burimit ose shërbyesi i autorizimit e hodhi poshtë kërkesën.
         credential_flow_not_configured: Rrjedha për Kredenciale Fjalëkalimi të të Zotit të Burimit dështoi për shkak se Doorkeeper.configure.resource_owner_from_credentials është i paformësuar.
         invalid_client: Mirëfilltësimi i klientit dështoi për shkak klienti të panjohur, mospërfshirjeje mirëfilltësimi klienti, ose metode të pambuluar mirëfilltësimi.
-        invalid_grant: Autorizimi i dhënë është i pavlefshëm, ka skaduar, është shfuqizuar, nuk përputhet me URI-n e ridrejtimit të përdorur te kërkesa e autorizimit, ose është emetuar për klient tjetër.
+        invalid_grant: Autorizimi i dhënë është i pavlefshëm, ka skaduar, është shfuqizuar, s’përputhet me URI-n e ridrejtimit të përdorur te kërkesa e autorizimit, ose është emetuar për klient tjetër.
         invalid_redirect_uri: URI e ridrejtimit s’është e vlefshme.
-        invalid_request: Kërkesës i mungon një parametër i domosdoshëm, përfshin një vlerë të pambuluar parametri, ose përndryshe është e keqformuar.
+        invalid_request:
+          missing_param: 'Mungon parametër i domosdoshëm: %{value}.'
+          request_not_authorized: Kërkesa duhet autorizuar. Një parametër i domosdoshëm për autorizimin e kërkesës mungon ose është i pavlefshëm.
+          unknown: Kërkesës i mungon një parametër i domosdoshëm, përfshin një vlerë parametri që nuk mbulohet, ose përndryshe është formuar keq.
         invalid_resource_owner: Kredencialet e dhëna për të zotin e burimit s’janë të vlefshme, ose s’gjendet i zoti i burimit
         invalid_scope: Fushëveprimi i kërkuar është i pavlefshëm, i panjohur ose i keqformuar.
         invalid_token:
@@ -94,7 +97,7 @@ sq:
         server_error: Shërbyesi i autorizimit hasi një kusht të papritur, i cili e pengoi të plotësonte kërkesën.
         temporarily_unavailable: Shërbyesi i mirëfilltësimeve hëpërhë s’është në gjendje të trajtojë kërkesën, për shkak të një mbingarkese të përkohshme ose ndonjë mirëmbajtjeje të shërbyesit.
         unauthorized_client: Klienti s’është i autorizuar të kryejë këtë kërkesë duke përdorur këtë metodë.
-        unsupported_grant_type: Lloji i autorizimit të dhënë nuk mbulohet nga shërbyesi i autorizimeve.
+        unsupported_grant_type: Lloji i dhënë i autorizimeve nuk mbulohet nga shërbyesi i autorizimeve.
         unsupported_response_type: Shërbyesi i autorizimeve nuk e mbulon këtë lloj përgjigjeje.
     flash:
       applications:

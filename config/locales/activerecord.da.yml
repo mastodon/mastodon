@@ -3,15 +3,30 @@ da:
   activerecord:
     attributes:
       poll:
-        expires_at: Deadline
+        expires_at: Tidsfrist
         options: Valgmuligheder
+      user:
+        agreement: Tjenesteaftale
+        email: E-mailadresse
+        locale: Landestandard
+        password: Adgangskode
+      user/account:
+        username: Brugernavn
+      user/invite_request:
+        text: Årsag
     errors:
       models:
         account:
           attributes:
             username:
-              invalid: kun tal, bogstaver og understreger
+              invalid: må kun indeholde cifre, bogstaver og understreger
+              reserved: er reserveret
         status:
           attributes:
             reblog:
               taken: af allerede eksisterende status
+        user:
+          attributes:
+            email:
+              blocked: bruger en ikke-tilladt e-mailudbyder
+              unreachable: synes ikke at findes

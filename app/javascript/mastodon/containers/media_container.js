@@ -2,7 +2,7 @@ import React, { PureComponent, Fragment } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { IntlProvider, addLocaleData } from 'react-intl';
-import { List as ImmutableList, fromJS } from 'immutable';
+import { fromJS } from 'immutable';
 import { getLocale } from 'mastodon/locales';
 import { getScrollbarWidth } from 'mastodon/utils/scrollbar';
 import MediaGallery from 'mastodon/components/media_gallery';
@@ -31,6 +31,7 @@ export default class MediaContainer extends PureComponent {
     index: null,
     time: null,
     backgroundColor: null,
+    options: null,
   };
 
   handleOpenMedia = (media, index) => {
@@ -40,13 +41,15 @@ export default class MediaContainer extends PureComponent {
     this.setState({ media, index });
   }
 
-  handleOpenVideo = (video, time) => {
-    const media = ImmutableList([video]);
+  handleOpenVideo = (options) => {
+    const { components } = this.props;
+    const { media } = JSON.parse(components[options.componetIndex].getAttribute('data-props'));
+    const mediaList = fromJS(media);
 
     document.body.classList.add('with-modals--active');
     document.documentElement.style.marginRight = `${getScrollbarWidth()}px`;
 
-    this.setState({ media, time });
+    this.setState({ media: mediaList, options });
   }
 
   handleCloseMedia = () => {
@@ -58,6 +61,7 @@ export default class MediaContainer extends PureComponent {
       index: null,
       time: null,
       backgroundColor: null,
+      options: null,
     });
   }
 
@@ -83,6 +87,7 @@ export default class MediaContainer extends PureComponent {
               ...(hashtag ? { hashtag: fromJS(hashtag) } : {}),
 
               ...(componentName === 'Video' ? {
+                componetIndex: i,
                 onOpenVideo: this.handleOpenVideo,
               } : {
                 onOpenMedia: this.handleOpenMedia,
@@ -100,7 +105,9 @@ export default class MediaContainer extends PureComponent {
               <MediaModal
                 media={this.state.media}
                 index={this.state.index || 0}
-                time={this.state.time}
+                currentTime={this.state.options?.startTime}
+                autoPlay={this.state.options?.autoPlay}
+                volume={this.state.options?.defaultVolume}
                 onClose={this.handleCloseMedia}
                 onChangeBackgroundColor={this.setBackgroundColor}
               />

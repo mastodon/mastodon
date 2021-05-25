@@ -26,6 +26,8 @@ zh-HK:
       此帳戶是為聯盟協定而設。除非你想封鎖整個伺服器的話，否則請不要封鎖這個帳戶。如果你想封鎖伺服器，請使用網域封鎖以達到相同效果。
     learn_more: 了解更多
     privacy_policy: 隱私權政策
+    rules: 系統規則
+    rules_html: 如果你想要在本站開一個新帳戶，以下是你需要遵守的規則：
     see_whats_happening: 看看發生什麼事
     server_stats: 伺服器統計：
     source_code: 源代碼
@@ -74,7 +76,6 @@ zh-HK:
       other: 文章
     posts_tab_heading: 文章
     posts_with_replies: 包含回覆的文章
-    reserved_username: 這個使用者名稱已被保留
     roles:
       admin: 管理員
       bot: 機械人
@@ -255,47 +256,6 @@ zh-HK:
         update_custom_emoji: 更新自定的 Emoji 表情符號
         update_domain_block: 更新域名阻隔
         update_status: 更新文章
-      actions:
-        assigned_to_self_report: "%{name} 指派了 %{target} 的舉報給自己"
-        change_email_user: "%{name} 改變了使用者 %{target} 的電郵地址"
-        confirm_user: "%{name} 確認了使用者 %{target} 的電郵地址"
-        create_account_warning: "%{name} 已警告了 %{target}"
-        create_announcement: "%{name} 新增了公告 %{target}"
-        create_custom_emoji: "%{name} 加入了新的 Emoji %{target}"
-        create_domain_allow: "%{name} 和 %{target} 網域結盟了"
-        create_domain_block: "%{name} 封鎖了網域 %{target}"
-        create_email_domain_block: "%{name} 封鎖了電郵網域 %{target}"
-        create_ip_block: "%{name} 已經設定了針對 IP %{target} 的規則"
-        demote_user: "%{name} 把使用者 %{target} 降權"
-        destroy_announcement: "%{name} 刪除了公告 %{target}"
-        destroy_custom_emoji: "%{name} 刪除了 Emoji %{target}"
-        destroy_domain_allow: "%{name} 禁止了與 %{target} 網域進行訊息聯網"
-        destroy_domain_block: "%{name} 取消了對網域 %{target} 的封鎖"
-        destroy_email_domain_block: "%{name} 取消了對電郵網域 %{target} 的封鎖"
-        destroy_ip_block: "%{name} 已經刪除了 IP %{target} 的規則"
-        destroy_status: "%{name} 刪除了 %{target} 的文章"
-        disable_2fa_user: "%{name} 停用了使用者 %{target} 的雙重認證"
-        disable_custom_emoji: "%{name} 停用了 Emoji %{target}"
-        disable_user: "%{name} 把使用者 %{target} 設定為禁止登入"
-        enable_custom_emoji: "%{name} 啟用了 Emoji %{target}"
-        enable_user: "%{name} 把使用者 %{target} 設定為允許登入"
-        memorialize_account: "%{name} 把 %{target} 設定為追悼帳戶"
-        promote_user: "%{name} 對提升了使用者 %{target} 的權限"
-        remove_avatar_user: "%{name} 取消了 %{target} 的頭像"
-        reopen_report: "%{name} 重開 %{target} 的舉報個案"
-        reset_password_user: "%{name} 重設了使用者 %{target} 的密碼"
-        resolve_report: "%{name} 處理了 %{target} 的舉報個案"
-        sensitive_account: "%{name} 將 %{target} 的媒體檔案列為敏感"
-        silence_account: "%{name} 靜音了帳號 %{target}"
-        suspend_account: "%{name} 將帳號 %{target} 停權"
-        unassigned_report: "%{name} 取消指派 %{target} 的舉報"
-        unsensitive_account: "%{name} 取消將 %{target} 的媒體檔案的設為敏感"
-        unsilence_account: "%{name} 取消了用戶 %{target} 的靜音狀態"
-        unsuspend_account: "%{name} 取消了帳號 %{target} 的停權狀態"
-        update_announcement: "%{name} 更新了公告 %{target}"
-        update_custom_emoji: "%{name} 更新了 Emoji 表情符號 %{target}"
-        update_domain_block: "%{name} 更新了對 %{target} 的域名阻隔"
-        update_status: "%{name} 更新了 %{target} 的文章"
       deleted_status: "（已刪除文章）"
       empty: 找不到任何日誌。
       filter_by_action: 按動作篩選
@@ -358,7 +318,6 @@ zh-HK:
       feature_profile_directory: 個人資料目錄
       feature_registrations: 註冊
       feature_relay: 聯網中繼站
-      feature_spam_check: 防垃圾訊息
       feature_timeline_preview: 時間軸預覽
       features: 功能
       hidden_service: 與隱密服務互連
@@ -534,6 +493,10 @@ zh-HK:
       unassign: 取消指派
       unresolved: 未處理
       updated_at: 更新
+    rules:
+      add_new: 新增規則
+      edit: 編輯規則
+      title: 伺服器守則
     settings:
       activity_api_enabled:
         desc_html: 本站的文章數量、活躍使用者數量、及每週新註冊使用者數量
@@ -557,9 +520,6 @@ zh-HK:
         users: 所有已登入的帳號
       domain_blocks_rationale:
         title: 顯示原因予
-      enable_bootstrap_timeline_accounts:
-        desc_html: 自動為新用戶追隨預設的帳號，為他們的首頁動態增加一點色彩
-        title: 啟用「新使用者預設關注」功能
       hero:
         desc_html: 在首頁顯示。推薦最小 600x100px。如果留空，就會默認為服務站縮圖
         title: 主題圖片
@@ -607,15 +567,12 @@ zh-HK:
         desc_html: 本站詳細資訊頁的內文<br/>你可以在此使用 HTML
         title: 本站詳細資訊
       site_short_description:
-        desc_html: "顯示在側邊欄和網頁標籤(meta tags)。以一句話描述Mastodon是甚麼，有甚麼令這個伺服器脫\U000294D9而出。"
+        desc_html: 顯示在側邊欄和網頁標籤(meta tags)。以一句話描述Mastodon是甚麼，有甚麼令這個伺服器脫\U000294D9而出。
         title: 伺服器短描述
       site_terms:
         desc_html: 可以填寫自己的隱私權政策、使用條款或其他法律文本。可以使用 HTML 標籤
         title: 自訂使用條款
       site_title: 本站名稱
-      spam_check_enabled:
-        desc_html: Mastodon可以自動舉報產生重複的垃圾內容的帳號，不過未必準確。
-        title: 自動防廣告訊息
       thumbnail:
         desc_html: 用於在 OpenGraph 和 API 中顯示預覽圖。推薦大小 1200×630px
         title: 本站縮圖
@@ -650,9 +607,6 @@ zh-HK:
       accounts_today: 今日特殊使用
       accounts_week: 今週特殊使用
       breakdown: 根據來源剖析是日用量
-      context: 上下文
-      directory: 在目錄中
-      in_directory: 目錄中有 %{count} 個
       last_active: 上次活躍
       most_popular: 最熱門
       most_recent: 最近
@@ -783,7 +737,7 @@ zh-HK:
   date:
     formats:
       default: "%Y年%b月%d日"
-      with_month_name: "%B %d, %Y"
+      with_month_name: "%Y年%B月%d日"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}小時前"
@@ -1178,8 +1132,6 @@ zh-HK:
     relationships: 關注及追隨者
     two_factor_authentication: 雙重認證
     webauthn_authentication: 安全鑰匙
-  spam_check:
-    spam_detected: 此為系統的自動報告：已發現垃圾訊息。
   statuses:
     attached:
       audio:
@@ -1384,11 +1336,8 @@ zh-HK:
       tips: 小貼士
       title: 歡迎 %{name} 加入！
   users:
-    blocked_email_provider: 此電郵提供商並不被允許
     follow_limit_reached: 你不能關注多於%{limit} 人
     generic_access_help_html: 不能登入？你可以寄電郵至 %{email} 尋求協助
-    invalid_email: 電郵地址格式不正確
-    invalid_email_mx: 此電郵地址不存在
     invalid_otp_token: 雙重認證碼不正確
     invalid_sign_in_token: 無效的安全碼
     otp_lost_help_html: 如果這兩者你均無法登入，你可以聯繫 %{email}

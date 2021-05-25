@@ -2,41 +2,41 @@
 sv:
   devise:
     confirmations:
-      confirmed: Din e-postadress har bekräftats.
-      send_instructions: Du kommer att få ett mail med instruktioner för hur du bekräftar din e-postadress om några minuter. Kontrollera din spammapp om du inte fick det här e-postmeddelandet.
-      send_paranoid_instructions: Om din e-postadress finns i vår databas får du ett mail med instruktioner för hur du bekräftar din e-postadress inom några minuter. Kontrollera din spammapp om du inte fick det här e-postmeddelandet.
+      confirmed: Din e-postadress har framgångsfullt bekräftats.
+      send_instructions: Du kommer att få ett mail med instruktioner för hur du bekräftar din e-postadress om några minuter. Kontrollera din spammapp om du inte fick det e-postmeddelandet.
+      send_paranoid_instructions: Om din e-postadress finns i vår databas får du ett mail med instruktioner för hur du bekräftar din e-postadress inom några minuter. Kontrollera din spammapp om du inte fick det e-postmeddelandet.
     failure:
-      already_authenticated: Du är redan inloggad.
-      inactive: Ditt konto är inte aktiverat än..
-      invalid: Ogiltigt %{authentication_keys} eller lösenord.
-      last_attempt: Du har ytterligare ett försök innan ditt konto blir låst.
+      already_authenticated: Du har redan loggat in.
+      inactive: Ditt konto är ännu inte aktiverat.
+      invalid: Ogiltig %{authentication_keys} eller lösenord.
+      last_attempt: Du har ytterligare ett försök innan ditt konto är låst.
       locked: Ditt konto är låst.
       not_found_in_database: Ogiltigt %{authentication_keys} eller lösenord.
       pending: Ditt konto granskas fortfarande.
-      timeout: Din session löpte ut. Vänligen logga in igen för att fortsätta.
+      timeout: Din session har avslutats. Vänligen logga in igen för att fortsätta.
       unauthenticated: Du måste logga in eller registrera dig innan du fortsätter.
       unconfirmed: Du måste bekräfta din e-postadress innan du fortsätter.
     mailer:
       confirmation_instructions:
-        action: Verifiera e-postadress
+        action: Verifiera e-post adressen
         action_with_app: Bekräfta och återgå till %{app}
-        explanation: Du har skapat ett konto på %{host} med den här e-postadressen. Du är ett klick bort från att aktivera det. Om det inte var du ignorerar det här e-postmeddelandet.
-        explanation_when_pending: Du ansökte om en inbjudan till %{host} med denna e-postadress. När du har bekräftat din e-postadress kommer vi att granska din ansökan. Du kan logga in för att ändra dina uppgifter eller ta bort ditt konto, men du kan inte komma åt de flesta funktionerna förrän ditt konto har godkänts. Om din ansökan avvisas kommer dina uppgifter att tas bort, så ingen ytterligare åtgärd kommer att krävas av dig. Om detta inte var du, vänligen ignorera detta mail.
-        extra_html: Kolla gärna också <a href="%{terms_path}">instansens regler</a> och <a href="%{policy_path}">våra användarvillkor</a>.
-        subject: 'Mastodon: Bekräftelsesinstruktioner för %{instance}'
-        title: Verifiera e-postadress
+        explanation: Du har skapat ett konto på %{host} med den här e-post adressen. Du är ett klick från att aktivera det. Om det inte var du, ignorera det här e-post meddelandet.
+        explanation_when_pending: Du ansökte om en inbjudan till %{host} med denna e-post adress. När du har bekräftat din e-post adress kommer vi att granska din ansökan. Du kan logga in för att ändra dina uppgifter eller ta bort ditt konto, men du kan inte komma åt de flesta funktionerna förrän ditt konto har godkänts. Om din ansökan avvisas kommer dina uppgifter att tas bort, så ingen ytterligare åtgärd kommer att krävas av dig. Om detta inte var du, vänligen ignorera detta mail.
+        extra_html: Vänligen observera <a href="%{terms_path}"> systemets regler</a> och <a href="%{policy_path}">våra användarvillkor</a>.
+        subject: 'Mastodon: Bekräftelse instruktioner för %{instance}'
+        title: Verifiera e-post adress
       email_changed:
-        explanation: 'E-postadressen för ditt konto ändras till:'
-        extra: Om du inte ändrade din e-post är det troligt att någon har fått tillgång till ditt konto. Vänligen ändra ditt lösenord omedelbart eller kontakta instansadministratören om du är låst ur ditt konto.
-        subject: 'Mastodon: E-post ändrad'
-        title: Ny e-postadress
+        explanation: 'E-post adressen för ditt konto ändras till:'
+        extra: Om du inte ändrade din e-post är det troligt att någon har fått tillgång till ditt konto. Vänligen ändra ditt lösenord omedelbart eller kontakta dataserver administratören om du är utelåst från ditt konto.
+        subject: 'Mastodon: e-post ändrad'
+        title: Ny e-post adress
       password_change:
         explanation: Lösenordet för ditt konto har ändrats.
-        extra: Om du inte ändrade ditt lösenord är det troligt att någon har fått tillgång till ditt konto. Vänligen ändra ditt lösenord omedelbart eller kontakta instansadministratören om du är utelåst från ditt konto.
-        subject: 'Mastodon: Lösenord ändrat'
-        title: lösenordet ändrat
+        extra: Om du inte ändrade ditt lösenord är det troligt att någon har fått tillgång till ditt konto. Vänligen ändra ditt lösenord omedelbart eller kontakta server administratören om du är utelåst från ditt konto.
+        subject: 'Mastodon: Lösenordet har ändrats'
+        title: Lösenordet har ändrats
       reconfirmation_instructions:
-        explanation: Bekräfta den nya adressen för att ändra din e-postadress.
+        explanation: Bekräfta den nya adressen för att ändra din e-post adress.
         extra: Om den här ändringen inte initierades av dig kan du ignorerar det här e-postmeddelandet. E-postadressen för Mastodon-kontot ändras inte förrän du kommer åt länken ovan.
         subject: 'Mastodon: Bekräfta e-post för %{instance}'
         title: Verifiera e-postadress
@@ -62,6 +62,7 @@ sv:
         subject: 'Mastodon: Lås upp instruktioner'
       webauthn_credential:
         added:
+          explanation: Följande säkerhetsnyckel har lagts till i ditt konto
           subject: 'Mastodon: Ny säkerhetsnyckel'
           title: En ny säkerhetsnyckel har lagts till
         deleted:
@@ -69,8 +70,12 @@ sv:
           subject: 'Mastodon: Säkerhetsnyckeln borttagen'
           title: En av dina säkerhetsnycklar har tagits bort
       webauthn_disabled:
+        explanation: Autentisering med säkerhetsnycklar till ditt konto har inaktiverats. Inloggning är nu endast möjligt med den token som genereras av den sammankopplade TOTP-appen.
+        subject: 'Mastodon: Autentisering med säkerhetsnycklar är inaktiverat'
         title: Säkerhetsnycklar inaktiverade
       webauthn_enabled:
+        explanation: Autentisering med säkerhetsnyckel till ditt konto har aktiverats. Din säkerhetsnyckel kan nu användas för inloggning.
+        subject: 'Mastodon: Autentisering med säkerhetsnyckel är aktiverat'
         title: Säkerhetsnycklar aktiverade
     omniauth_callbacks:
       failure: Det gick inte att autentisera dig från %{kind} för "%{reason}".

@@ -5,13 +5,28 @@ nl:
       poll:
         expires_at: Deadline
         options: Keuzes
+      user:
+        agreement: Servicevoorwaarden
+        email: E-mailadres
+        locale: Taal
+        password: Wachtwoord
+      user/account:
+        username: Gebruikersnaam
+      user/invite_request:
+        text: Reden
     errors:
       models:
         account:
           attributes:
             username:
               invalid: alleen letters, nummers en underscores
+              reserved: gereserveerd
         status:
           attributes:
             reblog:
               taken: van toot bestaat al
+        user:
+          attributes:
+            email:
+              blocked: gebruikt een niet toegestane e-mailprovider
+              unreachable: schijnt niet te bestaan

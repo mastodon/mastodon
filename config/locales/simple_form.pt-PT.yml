@@ -12,8 +12,14 @@ pt-PT:
       admin_account_action:
         include_statuses: O utilizador verá quais toots causaram a ação de moderação ou aviso
         send_email_notification: O utilizador receberá uma explicação sobre o que aconteceu com a sua conta
-        text_html: Opcional. Tu podes usar sintaxe de escrita. Tu podes <a href="%{path}"> adicionar predefinições de aviso</a> para poupar tempo
+        text_html: Opcional. Pode utilizar sintaxe de escrita. Pode <a href="%{path}">adicionar avisos predefinidos</a> para poupar tempo
         type_html: Escolhe o que fazer com <strong>%{acct}</strong>
+        types:
+          disable: Impede o utilizador de usar a sua conta, mas não elimina ou oculta o seu conteúdo.
+          none: Use isto para enviar um aviso ao utilizador, sem acionar nenhuma outra ação.
+          sensitive: Força todos os anexos de media deste utilizador a serem sinalizados como sensíveis.
+          silence: Impede que o utilizador seja capaz de publicar com visibilidade pública, ocultando as suas publicações e notificações de pessoas que não o seguem.
+          suspend: Evita qualquer interação de ou para esta conta e elimina o seu conteúdo. Reversível num período de 30 dias.
         warning_preset_id: Opcional. Tu ainda podes adicionar texto personalizado no fim do predefinido
       announcement:
         all_day: Quando marcado, apenas as datas do intervalo de tempo serão exibidas
@@ -24,14 +30,14 @@ pt-PT:
       defaults:
         autofollow: As pessoas que aderem através do convite seguir-te-ão automaticamente
         avatar: PNG, GIF or JPG. Arquivos até %{size}. Vão ser reduzidos para %{dimensions}px
-        bot: Esta conta executa essencialmente acções automáticas e pode não poder ser monitorizada
+        bot: Esta conta executa essencialmente ações automatizadas e pode não ser monitorizada
         context: Um ou múltiplos contextos nos quais o filtro deve ser aplicado
         current_password: Para fins de segurança, por favor, digite a senha da conta atual
         current_username: Para confirmar, por favor, introduza o nome de utilizador da conta atual
         digest: Enviado após um longo período de inatividade e apenas se foste mencionado na tua ausência
         discoverable: O diretório de perfis é outra maneira da sua conta alcançar um público mais vasto
         email: Será enviado um e-mail de confirmação
-        fields: Podes ter até 4 itens expostos, em forma de tabela, no teu perfil
+        fields: Pode ter até 4 itens expostos, em forma de tabela, no seu perfil
         header: PNG, GIF or JPG. Arquivos até %{size}. Vão ser reduzidos para %{dimensions}px
         inbox_url: Copia a URL da página inicial do repetidor que queres usar
         irreversible: Publicações filtradas irão desaparecer irremediavelmente, mesmo que o filtro seja removido posteriormente
@@ -73,6 +79,8 @@ pt-PT:
           no_access: Bloquear o acesso a todos os recursos
           sign_up_requires_approval: Novas inscrições requererão a sua aprovação
         severity: Escolha o que acontecerá com as solicitações deste IP
+      rule:
+        text: Descreva uma regra ou requisito para os utilizadores nesta instância. Tente mantê-la curta e simples
       sessions:
         otp: 'Insere o código de autenticação em dois passos gerado pelo teu telemóvel ou usa um dos teus códigos de recuperação:'
         webauthn: Se for uma chave USB tenha certeza de inseri-la e, se necessário, toque nela.
@@ -120,11 +128,11 @@ pt-PT:
         context: Filtrar contextos
         current_password: Palavra-passe actual
         data: Dados
-        discoverable: Listar esta conta no directório
+        discoverable: Permitir sugerir esta conta a outros
         display_name: Nome Público
         email: Endereço de e-mail
         expires_in: Expira em
-        fields: Meta-dados de perfil
+        fields: Metadados de perfil
         header: Cabeçalho
         honeypot: "%{label} (não preencher)"
         inbox_url: URL da caixa de entrada do repetidor
@@ -175,7 +183,7 @@ pt-PT:
       interactions:
         must_be_follower: Bloquear notificações de não-seguidores
         must_be_following: Bloquear notificações de pessoas que não segues
-        must_be_following_dm: Bloquear mensagens directas de pessoas que tu não segues
+        must_be_following_dm: Bloquear mensagens diretas de pessoas que não segue
       invite:
         comment: Comentário
       invite_request:
@@ -197,6 +205,8 @@ pt-PT:
         reblog: Enviar e-mail quando alguém partilha uma publicação tua
         report: Enviar um e-mail quando um novo relatório é submetido
         trending_tag: Enviar e-mail quando uma hashtag não aprovada anteriormente estiver em destaque
+      rule:
+        text: Regra
       tag:
         listable: Permitir que esta hashtag apareça em pesquisas e no diretório de perfis
         name: Hashtag

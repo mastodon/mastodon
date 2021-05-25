@@ -43,7 +43,7 @@ RSpec.describe ActivityPub::CollectionsController, type: :controller do
         end
 
         it 'returns application/activity+json' do
-          expect(response.content_type).to eq 'application/activity+json'
+          expect(response.media_type).to eq 'application/activity+json'
         end
 
         it_behaves_like 'cachable response'
@@ -88,7 +88,7 @@ RSpec.describe ActivityPub::CollectionsController, type: :controller do
           end
 
           it 'returns application/activity+json' do
-            expect(response.content_type).to eq 'application/activity+json'
+            expect(response.media_type).to eq 'application/activity+json'
           end
 
           it_behaves_like 'cachable response'
@@ -116,7 +116,7 @@ RSpec.describe ActivityPub::CollectionsController, type: :controller do
             end
 
             it 'returns application/activity+json' do
-              expect(response.content_type).to eq 'application/activity+json'
+              expect(response.media_type).to eq 'application/activity+json'
             end
 
             it 'returns private Cache-Control header' do
@@ -141,7 +141,7 @@ RSpec.describe ActivityPub::CollectionsController, type: :controller do
             end
 
             it 'returns application/activity+json' do
-              expect(response.content_type).to eq 'application/activity+json'
+              expect(response.media_type).to eq 'application/activity+json'
             end
 
             it 'returns private Cache-Control header' do

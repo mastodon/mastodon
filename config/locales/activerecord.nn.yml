@@ -5,12 +5,20 @@ nn:
       poll:
         expires_at: Frist
         options: Val
+      user:
+        email: E-mail address
+        password: Passord
+      user/account:
+        username: Brukernavn
+      user/invite_request:
+        text: Grunn
     errors:
       models:
         account:
           attributes:
             username:
               invalid: bare bokstaver, tall og understreker
+              reserved: er reservert
         status:
           attributes:
             reblog:

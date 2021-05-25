@@ -30,7 +30,7 @@ module Settings
 
     def all_as_records
       vars = thing_scoped
-      records = vars.each_with_object({}) { |r, h| h[r.var] = r }
+      records = vars.index_by(&:var)
 
       Setting.default_settings.each do |key, default_value|
         next if records.key?(key) || default_value.is_a?(Hash)
@@ -63,7 +63,7 @@ module Settings
 
     class << self
       def default_settings
-        defaulting = DEFAULTING_TO_UNSCOPED.each_with_object({}) { |k, h| h[k] = Setting[k] }
+        defaulting = DEFAULTING_TO_UNSCOPED.index_with { |k| Setting[k] }
         Setting.default_settings.merge!(defaulting)
       end
     end

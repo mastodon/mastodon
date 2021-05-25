@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
@@ -10,7 +11,9 @@ import DisplayName from '../../../components/display_name';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import Icon from 'mastodon/components/icon';
 import AttachmentList from 'mastodon/components/attachment_list';
+import PrivacyDropdown from 'mastodon/features/compose/components/privacy_dropdown';
 import classNames from 'classnames';
+import { changeBoostPrivacy } from 'mastodon/actions/boosts';
 
 const messages = defineMessages({
   cancel_reblog: { id: 'status.cancel_reblog_private', defaultMessage: 'Unboost' },
@@ -21,7 +24,22 @@ const messages = defineMessages({
   direct_short: { id: 'privacy.direct.short', defaultMessage: 'Direct' },
 });
 
-export default @injectIntl
+const mapStateToProps = state => {
+  return {
+    privacy: state.getIn(['boosts', 'new', 'privacy']),
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onChangeBoostPrivacy(value) {
+      dispatch(changeBoostPrivacy(value));
+    },
+  };
+};
+
+export default @connect(mapStateToProps, mapDispatchToProps)
+@injectIntl
 class BoostModal extends ImmutablePureComponent {
 
   static contextTypes = {
@@ -32,6 +50,8 @@ class BoostModal extends ImmutablePureComponent {
     status: ImmutablePropTypes.map.isRequired,
     onReblog: PropTypes.func.isRequired,
     onClose: PropTypes.func.isRequired,
+    onChangeBoostPrivacy: PropTypes.func.isRequired,
+    privacy: PropTypes.string.isRequired,
     intl: PropTypes.object.isRequired,
   };
 
@@ -40,7 +60,7 @@ class BoostModal extends ImmutablePureComponent {
   }
 
   handleReblog = () => {
-    this.props.onReblog(this.props.status);
+    this.props.onReblog(this.props.status, this.props.privacy);
     this.props.onClose();
   }
 
@@ -52,12 +72,16 @@ class BoostModal extends ImmutablePureComponent {
     }
   }
 
+  _findContainer = () => {
+    return document.getElementsByClassName('modal-root__container')[0];
+  };
+
   setRef = (c) => {
     this.button = c;
   }
 
   render () {
-    const { status, intl } = this.props;
+    const { status, privacy, intl } = this.props;
     const buttonText = status.get('reblogged') ? messages.cancel_reblog : messages.reblog;
 
     const visibilityIconInfo = {
@@ -102,6 +126,14 @@ class BoostModal extends ImmutablePureComponent {
 
         <div className='boost-modal__action-bar'>
           <div><FormattedMessage id='boost_modal.combo' defaultMessage='You can press {combo} to skip this next time' values={{ combo: <span>Shift + <Icon id='retweet' /></span> }} /></div>
+          {status.get('visibility') !== 'private' && !status.get('reblogged') && (
+            <PrivacyDropdown
+              noDirect
+              value={privacy}
+              container={this._findContainer}
+              onChange={this.props.onChangeBoostPrivacy}
+            />
+          )}
           <Button text={intl.formatMessage(buttonText)} onClick={this.handleReblog} ref={this.setRef} />
         </div>
       </div>

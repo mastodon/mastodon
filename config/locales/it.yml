@@ -26,6 +26,8 @@ it:
       È utilizzato per scopi di federazione e non dovrebbe essere bloccato a meno che non si voglia bloccare l'intera istanza: in questo caso si dovrebbe utilizzare un blocco di dominio.
     learn_more: Scopri altro
     privacy_policy: Politica della privacy
+    rules: Regole del server
+    rules_html: 'Di seguito è riportato un riassunto delle regole che devi seguire se vuoi avere un account su questo server di Mastodon:'
     see_whats_happening: Guarda cosa succede
     server_stats: 'Statistiche del server:'
     source_code: Codice sorgente
@@ -35,7 +37,7 @@ it:
     status_count_before: Che hanno pubblicato
     tagline: Segui amici e trovane di nuovi
     terms: Termini di Servizio
-    unavailable_content: Contenuto non disponibile
+    unavailable_content: Server moderati
     unavailable_content_description:
       domain: Server
       reason: 'Motivo:'
@@ -78,7 +80,6 @@ it:
       other: Toot
     posts_tab_heading: Toot
     posts_with_replies: Toot e risposte
-    reserved_username: Questo nome utente è già stato preso
     roles:
       admin: Amministratore
       bot: Bot
@@ -229,6 +230,7 @@ it:
         create_domain_block: Crea blocco di dominio
         create_email_domain_block: Crea blocco dominio e-mail
         create_ip_block: Crea regola IP
+        create_unavailable_domain: Crea dominio non disponibile
         demote_user: Degrada l'utente
         destroy_announcement: Cancella annuncio
         destroy_custom_emoji: Cancella emoji personalizzata
@@ -237,6 +239,7 @@ it:
         destroy_email_domain_block: Cancella blocco dominio e-mail
         destroy_ip_block: Elimina regola IP
         destroy_status: Cancella stato
+        destroy_unavailable_domain: Elimina dominio non disponibile
         disable_2fa_user: Disabilita l'autenticazione a due fattori
         disable_custom_emoji: Disabilita emoji personalizzata
         disable_user: Disabilita utente
@@ -260,46 +263,48 @@ it:
         update_domain_block: Aggiorna blocco di dominio
         update_status: Aggiorna stato
       actions:
-        assigned_to_self_report: "%{name} ha assegnato il rapporto %{target} a se stesso"
-        change_email_user: "%{name} ha cambiato l'indirizzo email per l'utente %{target}"
-        confirm_user: "%{name} ha confermato l'indirizzo email per l'utente %{target}"
-        create_account_warning: "%{name} ha mandato un avvertimento a %{target}"
-        create_announcement: "%{name} ha creato un nuovo annuncio %{target}"
-        create_custom_emoji: "%{name} ha caricato un nuovo emoji %{target}"
-        create_domain_allow: "%{name} ha messo il dominio %{target} nella whitelist"
-        create_domain_block: "%{name} ha bloccato il dominio %{target}"
-        create_email_domain_block: "%{name} ha messo il dominio email %{target} nella blacklist"
-        create_ip_block: "%{name} ha creato la regola per l'IP %{target}"
-        demote_user: "%{name} ha degradato l'utente %{target}"
-        destroy_announcement: "%{name} ha eliminato l'annuncio %{target}"
-        destroy_custom_emoji: "%{name} ha distrutto l'emoji %{target}"
-        destroy_domain_allow: "%{name} ha tolto il dominio %{target} dalla whitelist"
-        destroy_domain_block: "%{name} ha sbloccato il dominio %{target}"
-        destroy_email_domain_block: "%{name}ha messo il dominio email %{target} nella whitelist"
-        destroy_ip_block: "%{name} ha eliminato la regola per l'IP %{target}"
-        destroy_status: "%{name} ha eliminato lo status di %{target}"
-        disable_2fa_user: "%{name} ha disabilitato l'obbligo dei due fattori per l'utente %{target}"
-        disable_custom_emoji: "%{name} ha disabilitato l'emoji %{target}"
-        disable_user: "%{name} ha disabilitato il login per l'utente %{target}"
-        enable_custom_emoji: "%{name} ha abilitato l'emoji %{target}"
-        enable_user: "%{name} ha abilitato il login per l'utente %{target}"
-        memorialize_account: "%{name} ha trasformato l'account di %{target} in una pagina in memoriam"
-        promote_user: "%{name} ha promosso l'utente %{target}"
-        remove_avatar_user: "%{name} ha eliminato l'avatar di %{target}"
-        reopen_report: "%{name} ha riaperto il rapporto %{target}"
-        reset_password_user: "%{name} ha reimpostato la password dell'utente %{target}"
-        resolve_report: "%{name} ha risolto il rapporto %{target}"
-        sensitive_account: "%{name} ha contrassegnato il media di %{target} come sensibile"
-        silence_account: "%{name} ha silenziato l'account di %{target}"
-        suspend_account: "%{name} ha sospeso l'account di %{target}"
-        unassigned_report: "%{name} report non assegnato %{target}"
-        unsensitive_account: "%{name} ha deselezionato il media di %{target} come sensibile"
-        unsilence_account: "%{name} ha de-silenziato l'account di %{target}"
-        unsuspend_account: "%{name} ha annullato la sospensione dell'account di %{target}"
-        update_announcement: "%{name} ha aggiornato l'annuncio %{target}"
-        update_custom_emoji: "%{name} ha aggiornato l'emoji %{target}"
-        update_domain_block: "%{name} ha aggiornato il blocco di dominio per %{target}"
-        update_status: "%{name} stato aggiornato da %{target}"
+        assigned_to_self_report_html: "%{name} ha assegnato il rapporto %{target} a se stesso"
+        change_email_user_html: "%{name} ha cambiato l'indirizzo e-mail dell'utente %{target}"
+        confirm_user_html: "%{name} ha confermato l'indirizzo e-mail dell'utente %{target}"
+        create_account_warning_html: "%{name} ha inviato un avviso a %{target}"
+        create_announcement_html: "%{name} ha creato un nuovo annuncio %{target}"
+        create_custom_emoji_html: "%{name} ha caricato una nuova emoji %{target}"
+        create_domain_allow_html: "%{name} ha consentito alla federazione col dominio %{target}"
+        create_domain_block_html: "%{name} ha bloccato dominio %{target}"
+        create_email_domain_block_html: "%{name} ha bloccato dominio e-mail %{target}"
+        create_ip_block_html: "%{name} ha creato una regola per l'IP %{target}"
+        create_unavailable_domain_html: "%{name} ha interrotto la consegna al dominio %{target}"
+        demote_user_html: "%{name} ha retrocesso l'utente %{target}"
+        destroy_announcement_html: "%{name} ha eliminato l'annuncio %{target}"
+        destroy_custom_emoji_html: "%{name} ha eliminato emoji %{target}"
+        destroy_domain_allow_html: "%{name} ha negato la federazione al dominio %{target}"
+        destroy_domain_block_html: "%{name} ha sbloccato dominio %{target}"
+        destroy_email_domain_block_html: "%{name} ha sbloccato il dominio e-mail %{target}"
+        destroy_ip_block_html: "%{name} ha eliminato la regola per l'IP %{target}"
+        destroy_status_html: "%{name} ha eliminato lo status di %{target}"
+        destroy_unavailable_domain_html: "%{name} ha ripreso la consegna al dominio %{target}"
+        disable_2fa_user_html: "%{name} ha disabilitato l'autenticazione a due fattori per l'utente %{target}"
+        disable_custom_emoji_html: "%{name} ha disabilitato emoji %{target}"
+        disable_user_html: "%{name} ha disabilitato il login per l'utente %{target}"
+        enable_custom_emoji_html: "%{name} ha abilitato emoji %{target}"
+        enable_user_html: "%{name} ha abilitato il login per l'utente %{target}"
+        memorialize_account_html: "%{name} ha trasformato l'account di %{target} in una pagina in memoriam"
+        promote_user_html: "%{name} ha promosso l'utente %{target}"
+        remove_avatar_user_html: "%{name} ha rimosso l'immagine profilo di %{target}"
+        reopen_report_html: "%{name} ha riaperto il rapporto %{target}"
+        reset_password_user_html: "%{name} ha reimpostato la password dell'utente %{target}"
+        resolve_report_html: "%{name} ha risolto il rapporto %{target}"
+        sensitive_account_html: "%{name} ha segnato il media di %{target} come sensibile"
+        silence_account_html: "%{name} ha silenziato l'account di %{target}"
+        suspend_account_html: "%{name} ha sospeso l'account di %{target}"
+        unassigned_report_html: "%{name} ha disassegnato il rapporto %{target}"
+        unsensitive_account_html: "%{name} ha annullato il segnare il media di %{target} come sensibile"
+        unsilence_account_html: "%{name} ha riattivato l'account di %{target}"
+        unsuspend_account_html: "%{name} ha annullato la sospensione dell'account di %{target}"
+        update_announcement_html: "%{name} ha aggiornato l'annuncio %{target}"
+        update_custom_emoji_html: "%{name} ha aggiornato emoji %{target}"
+        update_domain_block_html: "%{name} ha aggiornato il blocco dominio per %{target}"
+        update_status_html: "%{name} ha aggiornato lo status di %{target}"
       deleted_status: "(stato cancellato)"
       empty: Nessun log trovato.
       filter_by_action: Filtra per azione
@@ -314,10 +319,12 @@ it:
       new:
         create: Crea annuncio
         title: Nuovo annuncio
+      publish: Pubblica
       published_msg: Annuncio pubblicato!
       scheduled_for: Programmato per %{time}
       scheduled_msg: Annuncio programmato per la pubblicazione!
       title: Annunci
+      unpublish: Annulla la pubblicazione
       unpublished_msg: Annuncio ritirato!
       updated_msg: Annuncio aggiornato!
     custom_emojis:
@@ -362,7 +369,6 @@ it:
       feature_profile_directory: Directory dei profili
       feature_registrations: Registrazioni
       feature_relay: Ripetitore di federazione
-      feature_spam_check: Anti-spam
       feature_timeline_preview: Anteprima timeline
       features: Funzionalità
       hidden_service: Federazione con servizi nascosti
@@ -440,9 +446,34 @@ it:
         create: Aggiungi dominio
         title: Nuova voce della lista nera delle email
       title: Lista nera email
+    follow_recommendations:
+      description_html: "<strong>I consigli su chi seguire aiutano i nuovi utenti a trovare rapidamente dei contenuti interessanti</strong>. Quando un utente non ha interagito abbastanza con altri per avere dei consigli personalizzati, vengono consigliati questi account. Sono ricalcolati ogni giorno da un misto di account con le più alte interazioni recenti e con il maggior numero di seguaci locali per una data lingua."
+      language: Per lingua
+      status: Stato
+      suppress: Nascondi consigli su chi seguire
+      suppressed: Nascosti
+      title: Consigli su chi seguire
+      unsuppress: Ripristina consigli su chi seguire
     instances:
+      back_to_all: Tutto
+      back_to_limited: Limitato
+      back_to_warning: Avviso
       by_domain: Dominio
+      delivery:
+        all: Tutto
+        clear: Cancella errori di consegna
+        restart: Riavvia la consegna
+        stop: Interrompi consegna
+        title: Consegna
+        unavailable: Non disponibile
+        unavailable_message: Consegna non disponibile
+        warning: Avviso
+        warning_message:
+          one: Errore di consegna %{count} giorno
+          other: Errori di consegna %{count} giorni
       delivery_available: Distribuzione disponibile
+      delivery_error_days: Giorni con errori di consegna
+      delivery_error_hint: Se la consegna non è possibile per %{count} giorni, sarà automaticamente contrassegnata come non consegnabile.
       empty: Nessun dominio trovato.
       known_accounts:
         one: "%{count} account noto"
@@ -542,6 +573,13 @@ it:
       unassign: Non assegnare
       unresolved: Non risolto
       updated_at: Aggiornato
+    rules:
+      add_new: Aggiungi regola
+      delete: Cancella
+      description_html: Mentre la maggior parte degli utenti sostiene di aver letto e accettato i termini di servizio, di solito non li leggono fino a quando sorge un problema. <strong>Rendi più facile vedere le regole del server, fornendole in un semplice elenco</strong>. Cerca di mantenere le singole regole brevi e semplici, ma cerca anche di non dividerle in molti elementi separati.
+      edit: Modifica regola
+      empty: Non sono ancora state definite regole del server.
+      title: Regole del server
     settings:
       activity_api_enabled:
         desc_html: Conteggi degli status pubblicati localmente, degli utenti attivi e delle nuove registrazioni in gruppi settimanali
@@ -565,9 +603,6 @@ it:
         users: Agli utenti locali connessi
       domain_blocks_rationale:
         title: Mostra motivazione
-      enable_bootstrap_timeline_accounts:
-        desc_html: I nuovi utenti seguiranno automaticamente gli account configurati, in modo che il loro home feed all'inizio non sia vuoto
-        title: Abilita seguiti predefiniti per i nuovi utenti
       hero:
         desc_html: Mostrata nella pagina iniziale. Almeno 600x100 px consigliati. Se non impostata, sarà usato il thumbnail del server
         title: Immagine dell'eroe
@@ -621,9 +656,6 @@ it:
         desc_html: Potete scrivere la vostra politica sulla privacy, condizioni del servizio o altre informazioni legali. Potete usare tag HTML
         title: Termini di servizio personalizzati
       site_title: Nome del server
-      spam_check_enabled:
-        desc_html: Mastodon può silenziare e segnalare automaticamente account che inviano ripetutamente messaggi non richiesti. Potrebbero esserci falsi positivi.
-        title: Automazione anti-spam
       thumbnail:
         desc_html: Usato per anteprime tramite OpenGraph e API. 1200x630px consigliati
         title: Thumbnail del server
@@ -654,13 +686,18 @@ it:
       no_status_selected: Nessun status è stato modificato perché nessuno era stato selezionato
       title: Gli status dell'account
       with_media: con media
+    system_checks:
+      database_schema_check:
+        message_html: Ci sono migrazioni del database in attesa. Sei pregato di eseguirle per assicurarti che l'applicazione si comporti come previsto
+      rules_check:
+        action: Gestisci regole del server
+        message_html: Non hai definito alcuna regola del server.
+      sidekiq_process_check:
+        message_html: Nessun processo di Sidekiq in esecuzione per le code di %{value}. Sei pregato di revisionare la tua configurazione di Sidekiq
     tags:
       accounts_today: Usi unici oggi
       accounts_week: Usi unici questa settimana
       breakdown: Suddivisione dell'utilizzo di oggi per fonte
-      context: Contesto
-      directory: Nella directory
-      in_directory: "%{count} nella directory"
       last_active: Ultima attività
       most_popular: Più popolari
       most_recent: Più recenti
@@ -677,6 +714,7 @@ it:
       add_new: Aggiungi nuovo
       delete: Cancella
       edit_preset: Modifica avviso predefinito
+      empty: Non hai ancora definito alcun avviso preimpostato.
       title: Gestisci avvisi predefiniti
   admin_mailer:
     new_pending_account:
@@ -688,7 +726,7 @@ it:
       subject: Nuova segnalazione per %{instance} (#%{id})
     new_trending_tag:
       body: 'L''hashtag #%{name} oggi è di tendenza, ma non è stato mai controllato. Non sarà visualizzato pubblicamente se non lo permetti; se salvi il form senza modifiche non lo vedrai mai più.'
-      subject: Nuovo hashtag pronto per essere controllato su %{instance} (%{name})
+      subject: Nuovo hashtag pronto per essere controllato su %{instance} (#%{name})
   aliases:
     add_new: Crea alias
     created_msg: Hai creato un nuovo alias. Ora puoi iniziare lo spostamento dal vecchio account.
@@ -1040,10 +1078,14 @@ it:
       body: 'Sei stato menzionato da %{name} su:'
       subject: Sei stato menzionato da %{name}
       title: Nuova menzione
+    poll:
+      subject: Un sondaggio da %{name} è terminato
     reblog:
       body: 'Il tuo status è stato condiviso da %{name}:'
       subject: "%{name} ha condiviso il tuo status"
       title: Nuova condivisione
+    status:
+      subject: "%{name} ha appena pubblicato un post"
   notifications:
     email_events: Eventi per notifiche via email
     email_events_hint: 'Seleziona gli eventi per i quali vuoi ricevere le notifiche:'
@@ -1192,8 +1234,6 @@ it:
     relationships: Follows e followers
     two_factor_authentication: Autenticazione a due fattori
     webauthn_authentication: Chiavi di sicurezza
-  spam_check:
-    spam_detected: Questo è un rapporto automatico. È stato rilevato dello spam.
   statuses:
     attached:
       audio:
@@ -1236,6 +1276,7 @@ it:
     sign_in_to_participate: Accedi per partecipare alla conversazione
     title: '%{name}: "%{quote}"'
     visibilities:
+      direct: Diretto
       private: Mostra solo ai tuoi seguaci
       private_long: Mostra solo ai seguaci
       public: Pubblico
@@ -1340,7 +1381,7 @@ it:
     mastodon-light: Mastodon (chiaro)
   time:
     formats:
-      default: "%b %d, %Y, %H:%M"
+      default: "%d %b %Y, %H:%M"
       month: "%b %Y"
   two_factor_authentication:
     add: Aggiungi
@@ -1407,11 +1448,8 @@ it:
       tips: Suggerimenti
       title: Benvenuto a bordo, %{name}!
   users:
-    blocked_email_provider: Questo provider di posta non è consentito
     follow_limit_reached: Non puoi seguire più di %{limit} persone
     generic_access_help_html: Problemi nell'accesso al tuo account? Puoi contattare %{email} per assistenza
-    invalid_email: L'indirizzo email inserito non è valido
-    invalid_email_mx: L'indirizzo e-mail non sembra esistere
     invalid_otp_token: Codice d'accesso non valido
     invalid_sign_in_token: Codice di sicurezza non valido
     otp_lost_help_html: Se perdessi l'accesso ad entrambi, puoi entrare in contatto con %{email}

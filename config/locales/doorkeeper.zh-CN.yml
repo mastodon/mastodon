@@ -38,7 +38,7 @@ zh-CN:
         application: 应用
         callback_url: 回调 URL
         delete: 删除
-        empty: 您没有申请。
+        empty: 你没有申请。
         name: 名称
         new: 创建新应用
         scopes: 权限范围
@@ -83,7 +83,10 @@ zh-CN:
         invalid_client: 由于应用信息未知、未提交认证信息或使用了不支持的认证方式，认证失败
         invalid_grant: 授权方式无效、过期或已被撤销、与授权请求中的回调地址不一致，或使用了其他应用的回调地址
         invalid_redirect_uri: 无效的登录回调地址
-        invalid_request: 请求缺少必要的参数，或者参数值、格式不正确
+        invalid_request:
+          missing_param: 缺少必需的参数：%{value}
+          request_not_authorized: 请求需要被授权。授权请求所需的参数缺失或无效。
+          unknown: 该请求缺少一个必要的参数，包括一个不支持的参数值，或者其他格式错误。
         invalid_resource_owner: 资源所有者认证无效，或找不到所有者
         invalid_scope: 请求的权限范围无效、未知或格式不正确
         invalid_token:
@@ -117,23 +120,23 @@ zh-CN:
     scopes:
       admin:read: 读取服务器上的所有数据
       admin:read:accounts: 读取所有帐号的敏感信息
-      admin:read:reports: 读取所有举报和被举报帐号的敏感信息
+      admin:read:reports: 读取所有报告和被报告帐号的敏感信息
       admin:write: 修改服务器上的所有数据
       admin:write:accounts: 对帐号执行管理操作
-      admin:write:reports: 对举报执行管理操作
+      admin:write:reports: 对报告执行管理操作
       follow: 关注或屏蔽用户
       push: 接收你的帐户的推送通知
       read: 读取你的帐户数据
       read:accounts: 查看账号信息
       read:blocks: 查看你的屏蔽列表
-      read:bookmarks: 查看您的书签
+      read:bookmarks: 查看你的书签
       read:favourites: 查看喜欢的嘟文
       read:filters: 查看你的过滤器
       read:follows: 查看你的关注
       read:lists: 查看你的列表
-      read:mutes: 查看你的隐藏列表
+      read:mutes: 查看你的静音列表
       read:notifications: 查看你的通知
-      read:reports: 查看你的举报
+      read:reports: 查看你的报告
       read:search: 以你的身份搜索
       read:statuses: 查看所有嘟文
       write: 修改你的账号数据
@@ -145,7 +148,7 @@ zh-CN:
       write:follows: 关注其他人
       write:lists: 创建列表
       write:media: 上传媒体文件
-      write:mutes: 隐藏用户和对话
+      write:mutes: 静音用户和对话
       write:notifications: 清除你的通知
-      write:reports: 举报他人
+      write:reports: 报告他人
       write:statuses: 发表嘟文

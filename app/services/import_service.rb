@@ -45,7 +45,7 @@ class ImportService < BaseService
     items = @data.take(ROWS_PROCESSING_LIMIT).map { |row| row['#domain'].strip }
 
     if @import.overwrite?
-      presence_hash = items.each_with_object({}) { |id, mapping| mapping[id] = true }
+      presence_hash = items.index_with(true)
 
       @account.domain_blocks.find_each do |domain_block|
         if presence_hash[domain_block.domain]
@@ -96,7 +96,7 @@ class ImportService < BaseService
     items = @data.take(ROWS_PROCESSING_LIMIT).map { |row| row['#uri'].strip }
 
     if @import.overwrite?
-      presence_hash = items.each_with_object({}) { |id, mapping| mapping[id] = true }
+      presence_hash = items.index_with(true)
 
       @account.bookmarks.find_each do |bookmark|
         if presence_hash[bookmark.status.uri]
@@ -107,12 +107,12 @@ class ImportService < BaseService
       end
     end
 
-    statuses = items.map do |uri|
+    statuses = items.filter_map do |uri|
       status = ActivityPub::TagManager.instance.uri_to_resource(uri, Status)
       next if status.nil? && ActivityPub::TagManager.instance.local_uri?(uri)
 
       status || ActivityPub::FetchRemoteStatusService.new.call(uri)
-    end.compact
+    end
 
     account_ids         = statuses.map(&:account_id)
     preloaded_relations = relations_map_for_account(@account, account_ids)

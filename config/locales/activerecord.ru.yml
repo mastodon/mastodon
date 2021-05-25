@@ -5,13 +5,28 @@ ru:
       poll:
         expires_at: Крайний срок
         options: Варианты
+      user:
+        agreement: Соглашение с условиями сервиса
+        email: Адрес эл. почты
+        locale: Язык
+        password: Пароль
+      user/account:
+        username: Имя пользователя
+      user/invite_request:
+        text: Причина
     errors:
       models:
         account:
           attributes:
             username:
               invalid: только буквы, цифры и символ подчёркивания
+              reserved: зарезервировано
         status:
           attributes:
             reblog:
               taken: поста уже существует
+        user:
+          attributes:
+            email:
+              blocked: использует запрещённого провайдера эл. почты
+              unreachable: не существует

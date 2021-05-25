@@ -2,6 +2,10 @@
 
 module Paperclip
   module AttachmentExtensions
+    def meta
+      instance_read(:meta)
+    end
+
     # We overwrite this method to support delayed processing in
     # Sidekiq. Since we process the original file to reduce disk
     # usage, and we still want to generate thumbnails straight
@@ -27,7 +31,7 @@ module Paperclip
       return true  if original_filename == other_filename
       return false if original_filename.nil?
 
-      formats = styles.values.map(&:format).compact
+      formats = styles.values.filter_map(&:format)
 
       return false if formats.empty?
 

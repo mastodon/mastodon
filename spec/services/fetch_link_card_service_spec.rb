@@ -77,6 +77,14 @@ RSpec.describe FetchLinkCardService, type: :service do
         expect(a_request(:get, 'http://example.com/test-')).to have_been_made.at_least_once
       end
     end
+
+    context do
+      let(:status) { Fabricate(:status, text: 'testhttp://example.com/sjis') }
+
+      it 'does not fetch URLs with not isolated from their surroundings' do
+        expect(a_request(:get, 'http://example.com/sjis')).to_not have_been_made
+      end
+    end
   end
 
   context 'in a remote status' do

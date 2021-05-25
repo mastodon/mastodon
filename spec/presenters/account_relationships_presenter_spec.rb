@@ -13,7 +13,7 @@ RSpec.describe AccountRelationshipsPresenter do
       allow(Account).to receive(:domain_blocking_map).with(account_ids, current_account_id).and_return(default_map)
     end
 
-    let(:presenter)          { AccountRelationshipsPresenter.new(account_ids, current_account_id, options) }
+    let(:presenter)          { AccountRelationshipsPresenter.new(account_ids, current_account_id, **options) }
     let(:current_account_id) { Fabricate(:account).id }
     let(:account_ids)        { [Fabricate(:account).id] }
     let(:default_map)        { { 1 => true } }

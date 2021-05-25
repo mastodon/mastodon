@@ -83,7 +83,10 @@ is:
         invalid_client: Auðkenning á biðlara brást vegna þess að biðlarinn er óþekktur, að auðkenning biðlarans fylgdi ekki með, eða að notuð var óstudd auðkenningaraðferð.
         invalid_grant: Uppgefin auðkenningarheimild er ógild, útrunnin, afturkölluð, samsvarar ekki endurbirtingarslóðinni í auðkenningarbeiðninni, eða var gefin út til annars biðlara.
         invalid_redirect_uri: Endurbeiningarslóðin sem fylgdi er ekki gild.
-        invalid_request: Í beiðnina vantar nauðsynlega færibreytu, hún inniheldur óleyfilegt gildi á færibreytu, eða er gölluð á einhvern annan hátt.
+        invalid_request:
+          missing_param: 'Vantar nauðsynlega færibreytu: %{value}.'
+          request_not_authorized: Beiðnina þarf að heimila. Nauðsynlega færibreytu svo hægt sé að heimila hana vantar eða að hún er gölluð.
+          unknown: Í beiðnina vantar nauðsynlega færibreytu, hún inniheldur óleyfilegt gildi á færibreytu, eða er gölluð á einhvern annan hátt.
         invalid_resource_owner: Uppgefin auðkenni eiganda tilfangs eru ekki gild, eða að eigandi tilfangs finnst ekki
         invalid_scope: Umbeðið gildissvið er ógilt, óþekkt eða rangt uppsett.
         invalid_token:

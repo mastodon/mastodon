@@ -14,6 +14,6 @@
           %th= t('admin.email_domain_blocks.domain')
           %th
       %tbody
-        = render @email_domain_blocks
+        = render partial: 'email_domain_block', collection: @email_domain_blocks
 
 = paginate @email_domain_blocks

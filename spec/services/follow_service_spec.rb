@@ -10,7 +10,7 @@ RSpec.describe FollowService, type: :service do
       let(:bob) { Fabricate(:user, email: 'bob@example.com', account: Fabricate(:account, locked: true, username: 'bob')).account }
 
       before do
-        subject.call(sender, bob.acct)
+        subject.call(sender, bob)
       end
 
       it 'creates a follow request with reblogs' do
@@ -22,7 +22,7 @@ RSpec.describe FollowService, type: :service do
       let(:bob) { Fabricate(:user, email: 'bob@example.com', account: Fabricate(:account, locked: true, username: 'bob')).account }
 
       before do
-        subject.call(sender, bob.acct, reblogs: false)
+        subject.call(sender, bob, reblogs: false)
       end
 
       it 'creates a follow request without reblogs' do
@@ -35,7 +35,7 @@ RSpec.describe FollowService, type: :service do
 
       before do
         sender.touch(:silenced_at)
-        subject.call(sender, bob.acct)
+        subject.call(sender, bob)
       end
 
       it 'creates a follow request with reblogs' do
@@ -48,7 +48,7 @@ RSpec.describe FollowService, type: :service do
 
       before do
         bob.mute!(sender)
-        subject.call(sender, bob.acct)
+        subject.call(sender, bob)
       end
 
       it 'creates a following relation with reblogs' do
@@ -61,7 +61,7 @@ RSpec.describe FollowService, type: :service do
       let(:bob) { Fabricate(:user, email: 'bob@example.com', account: Fabricate(:account, username: 'bob')).account }
 
       before do
-        subject.call(sender, bob.acct)
+        subject.call(sender, bob)
       end
 
       it 'creates a following relation with reblogs' do
@@ -74,7 +74,7 @@ RSpec.describe FollowService, type: :service do
       let(:bob) { Fabricate(:user, email: 'bob@example.com', account: Fabricate(:account, username: 'bob')).account }
 
       before do
-        subject.call(sender, bob.acct, reblogs: false)
+        subject.call(sender, bob, reblogs: false)
       end
 
       it 'creates a following relation without reblogs' do
@@ -88,7 +88,7 @@ RSpec.describe FollowService, type: :service do
 
       before do
         sender.follow!(bob)
-        subject.call(sender, bob.acct)
+        subject.call(sender, bob)
       end
 
       it 'keeps a following relation' do
@@ -101,7 +101,7 @@ RSpec.describe FollowService, type: :service do
 
       before do
         sender.follow!(bob, reblogs: true)
-        subject.call(sender, bob.acct, reblogs: false)
+        subject.call(sender, bob, reblogs: false)
       end
 
       it 'disables reblogs' do
@@ -114,7 +114,7 @@ RSpec.describe FollowService, type: :service do
 
       before do
         sender.follow!(bob, reblogs: false)
-        subject.call(sender, bob.acct, reblogs: true)
+        subject.call(sender, bob, reblogs: true)
       end
 
       it 'disables reblogs' do
@@ -128,7 +128,7 @@ RSpec.describe FollowService, type: :service do
 
     before do
       stub_request(:post, "http://example.com/inbox").to_return(:status => 200, :body => "", :headers => {})
-      subject.call(sender, bob.acct)
+      subject.call(sender, bob)
     end
 
     it 'creates follow request' do

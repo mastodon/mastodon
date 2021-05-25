@@ -31,9 +31,10 @@ spec:
       serviceAccountName: {{ include "mastodon.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      {{- if (not .Values.mastodon.s3.enabled) }}
       # ensure we run on the same node as the other rails components; only
       # required when using PVCs that are ReadWriteOnce
-      {{- if or (eq "ReadWriteOnce" .Values.persistence.assets.accessMode) (eq "ReadWriteOnce" .Values.persistence.system.accessMode) }}
+      {{- if or (eq "ReadWriteOnce" .Values.mastodon.persistence.assets.accessMode) (eq "ReadWriteOnce" .Values.mastodon.persistence.system.accessMode) }}
       affinity:
         podAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
@@ -52,6 +53,7 @@ spec:
         - name: system
           persistentVolumeClaim:
             claimName: {{ template "mastodon.fullname" . }}-system
+      {{- end }}
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
@@ -63,7 +65,7 @@ spec:
             - exec
             - sidekiq
             - -c
-            - {{ .Values.application.sidekiq.concurrency | quote }}
+            - {{ .Values.mastodon.sidekiq.concurrency | quote }}
           envFrom:
             - configMapRef:
                 name: {{ include "mastodon.fullname" . }}-env
@@ -73,18 +75,24 @@ spec:
             - name: "DB_PASS"
               valueFrom:
                 secretKeyRef:
+                  {{- if .Values.postgresql.enabled }}
                   name: {{ .Release.Name }}-postgresql
+                  {{- else }}
+                  name: {{ template "mastodon.fullname" . }}
+                  {{- end }}
                   key: postgresql-password
             - name: "REDIS_PASSWORD"
               valueFrom:
                 secretKeyRef:
                   name: {{ .Release.Name }}-redis
                   key: redis-password
+          {{- if (not .Values.mastodon.s3.enabled) }}
           volumeMounts:
             - name: assets
               mountPath: /opt/mastodon/public/assets
             - name: system
               mountPath: /opt/mastodon/public/system
+          {{- end }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}

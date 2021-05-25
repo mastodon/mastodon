@@ -83,7 +83,10 @@ id:
         invalid_client: Perizinan klien gagal karena klien tidak diketahui, tidak ada klien yang diizinkan, atau metode perizinan tidak didukung.
         invalid_grant: Pemberian izin yang diberikan tidak valid, kadaluarsa, telah dicabut, atau tidak cocok dengan URI pengalihan yang digunakan pada permintaan izin, atau telah diberikan pada klien lain.
         invalid_redirect_uri: Uri pengalihan tidak valid.
-        invalid_request: Permintaan ini tidak mempunyai parameter yang dibutuhkan, mengandung parameter yang tidak didukung, atau mungkin strukturnya tidak benar.
+        invalid_request:
+          missing_param: 'Kehilangan parameter yang diperlukan: %{value}.'
+          request_not_authorized: Permintaan perlu diotorisasi. Parameter yang diperlukan untuk otorisasi hilang atau tidak valid.
+          unknown: Permintaan ini kehilangan parameter yang dibutuhkan, termasuk parameter yang tidak didukung, atau mungkin format tidak benar.
         invalid_resource_owner: Identitas pemilik data yang diberikan tidak valid, atau pemilik data tidak ditemukan
         invalid_scope: Scope yang diminta tidak valid, tidak diketahui, atau struktur tidak benar.
         invalid_token:

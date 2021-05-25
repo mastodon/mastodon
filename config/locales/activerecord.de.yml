@@ -5,13 +5,28 @@ de:
       poll:
         expires_at: Frist
         options: Wahlmöglichkeiten
+      user:
+        agreement: Service-Vereinbarung
+        email: E-Mail-Adresse
+        locale: Sprache
+        password: Passwort
+      user/account:
+        username: Benutzername
+      user/invite_request:
+        text: Grund
     errors:
       models:
         account:
           attributes:
             username:
               invalid: nur Buchstaben, Ziffern und Unterstriche
+              reserved: ist reserviert
         status:
           attributes:
             reblog:
               taken: des Beitrags existiert schon
+        user:
+          attributes:
+            email:
+              blocked: verwendet einen nicht erlaubten E-Mail-Anbieter
+              unreachable: scheint nicht zu existieren

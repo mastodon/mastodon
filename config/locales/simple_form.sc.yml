@@ -5,41 +5,47 @@ sc:
       account_alias:
         acct: Dislinda su nòmineutente@domìniu de su contu dae su cale ti boles mòere
       account_migration:
-        acct: Dislinda su nòmineutente@domìniu de su contu cara a su cale ti boles mòere
+        acct: Dislinda su nòmineutente@domìniu de su contu conca a su cale ti boles mòere
       account_warning_preset:
-        text: Podes impreare sa sintassi de is tuts, che a is URL, is etichetas e is mentovos
+        text: Podes impreare sintassi in is tuts, che a URL, etichetas e mentovos
         title: Optzionale. Invisìbile a s'àtera persone
       admin_account_action:
         include_statuses: S'utente at a bìdere is tuts chi ant causadu s'atzione o s'avisu de moderatzione
         send_email_notification: S'utente at a retzire un'ispiegatzione de su chi siat sutzèdidu in su contu suo
-        text_html: Optzionale. Podes impreare sa sintassi de is tuts. Podes <a href="%{path}">agiùnghere avisos pre-impostados</a> pro risparmiare tempus
-        type_html: Sèbera ite fàghere cun <strong>%{acct}</strong>
+        text_html: Optzionale. Podes impreare sintassi in is tuts. Podes <a href="%{path}">agiùnghere avisos predefinidos</a> pro istraviare tempus
+        type_html: Sèbera ite si depet fàghere cun <strong>%{acct}</strong>
+        types:
+          disable: Impedi a s'utente de impreare su contu suo, ma non de cantzellare o cuare is cuntenutos.
+          none: Imprea custu pro imbiare un'avisu a s'utente, sena pedire peruna àtera atzione.
+          sensitive: Custringhe totu is alligongiados multimediales de custu utente a èssere marcados comente sensìbiles.
+          silence: Impedi a s'utente de publicare messàgios cun visibilidade pùblica, e de cuare messàgios e notìficas a persones chi non ddos sighint.
+          suspend: Impedi cale si siat cuntatu dae o cun custu contu e cantzella is cuntenutos. Si podet annullare intro de 30 dies.
         warning_preset_id: Optzionale. Podes ancora agiùnghere testu personalizadu a s'acabu de cussu predefinidu
       announcement:
         all_day: Si est marcadu, ant a èssere ammustradas isceti is datas de s'intervallu de tempus
         ends_at: Optzionale. S'annùntziu at a acabbare de abarrare publicadu in custu momentu
         scheduled_at: Lassa bòidu pro publicare s'annùntziu immediatamente
         starts_at: Optzionale. S'in casu chi s'annùntziu tuo siat ligadu a un'intervallu de tempus ispetzìficu
-        text: Podes impreare sa sintassi de is tuts. Dae cara a su tretu chi s'annùntziu at a pigare in s'ischermu de s'utente
+        text: Podes impreare sintassi in is tuts. Dae cara a su tretu chi s'annùntziu at a pigare in s'ischermu de s'utente
       defaults:
         autofollow: Is persones chi s'ant a registrare pro mèdiu de s'invitu t'ant a sighire in manera automàtica
         avatar: PNG, GIF o JPG. Màssimu %{size}. Ant a èssere iscaladas a %{dimensions}px
-        bot: Custu contu faghet pro su prus atziones automatizadas e diat pòdere no èssere monitoradu
+        bot: Sinnala a àtere chi custu contu faghet pro su prus atziones automatizadas e diat pòdere no èssere monitoradu
         context: Unu o prus cuntestos in ue su filtru si diat dèpere aplicare
         current_password: Pro chistiones de seguresa inserta sa crae de intrada de su contu atuale
         current_username: Pro cunfirmare inserta su nòmine utente de su contu atuale
-        digest: Imbiadu isceti a pustis de unu perìodu longu de inatividade, e isceti si as retzidu carchi messàgiu personale cando non bi fias
-        discoverable: Sa cartella de is profilos est un'àtera manera pro fàghere otènnere unu pùblicu prus mannu a su contu tuo
-        email: T'amus a mandare unu messàgiu eletrònicu de cunfirma
+        digest: Imbiadu isceti a pustis de unu perìodu longu de inatividade, e isceti si as retzidu calicunu messàgiu personale cando non bi fias
+        discoverable: Permite chi su contu tuo potzat èssere iscobertu dae persones disconnotas pro mèdiu de cussìgios e àteras optziones
+        email: As a retzire unu messàgiu eletrònicu de cunfirma
         fields: Podes tènnere finas a 4 elementos ammustrados in una tabella in su profilu tuo
         header: PNG, GIF o JPG. Màssimu %{size}. Ant a èssere iscaladas a %{dimensions}px
         inbox_url: Còpia s'URL dae sa pàgina printzipale de su ripetidore chi boles impreare
         irreversible: Is tuts filtrados ant a isparèssere in manera irreversìbile, fintzas si prus a tardu s'at a bogare su filtru
-        locale: Sa limba de s'interfache de s'utente, de is lìteras de posta eletrònica e de is notìficas push
-        locked: Tenet bisòngiu chi aproves a manu is sighiduras
+        locale: S'idioma de s'interfache de s'utente, de is messàgios de posta eletrònica e de is notìficas push
+        locked: Gesti a manu chie ti podet sighire aprovende a manu is sighiduras
         password: Imprea a su mancu 8 caràteres
-        phrase: Su cunfrontu s'at a fàghere chena pigare in cunsideru si su testu de sa publicatzione est minùsculu o majùsculu o si tenet un'avisu de cuntenutu
-        scopes: A ite API s'aplicatzione at a pòdere atzèdere. Si seletziones un'àmbitu de livellu artu no tenes bisòngiu de nde seletzionare de sìngulos.
+        phrase: At a cuncordare sena cunsiderare is minùsculas e is majùsculas o is avisos de cuntenutu
+        scopes: A ite API s'aplicatzione at a pòdere atzèdere. Si seletzionas un'àmbitu de su livellu prus artu, non serbit a nde seletzionare de sìngulos.
         setting_aggregate_reblogs: No ammustres cumpartziduras noas pro tuts chi sunt istados cumpartzidos dae pagu (tenet efetu isceti pro is cumpartziduras retzidas noas)
         setting_default_sensitive: Is elementos multimediales sensìbiles benint cuados dae is cunfiguratziones predefinidas e si podent rivelare cun un'incarcu
         setting_display_media_default: Cua elementos multimediales marcados comente sensìbiles
@@ -48,14 +54,14 @@ sc:
         setting_hide_network: Sa gente chi sighis o chi ti sighit no at a èssere ammustrada in su profilu tuo
         setting_noindex: Tenet efetu in su profilu pùblicu tuo e in is pàginas de is istados
         setting_show_application: S'aplicatzione chi impreas pro publicare tuts at a èssere ammustrada in sa visualizatzione de detàlliu de is tuts
-        setting_use_blurhash: Is gradientes sunt basados in subra de is colores de is immàgines cuadas ma imbelant totu is minujas
+        setting_use_blurhash: Is gradientes sunt basados in subra de is colores de is immàgines cuadas ma imbelant totu is detàllios
         setting_use_pending_items: Cua is atualizatziones in segus de un'incarcu imbetzes de iscùrrere in automàticu su flussu de publicatziones
         username: Su nòmine de utente tuo at a èssere ùnicu in %{domain}
-        whole_word: Cando sa paràula o sa fràsia crae est alfanumèrica ebbia s'at a aplicare isceti si currispondet a sa paràula intrea
+        whole_word: Cando sa crae (faeddu o fràsia) siat isceti alfanumèrica, s'at a aplicare isceti si currispondet a su faeddu intreu
       domain_allow:
         domain: Custu domìniu at a pòdere recuperare datos dae custu serbidore e is datos in intrada dae cue ant a èssere protzessados e archiviados
       email_domain_block:
-        domain: Custu podet èssere su nòmine de domìniu chi benit ammustradu in s'indiritzu de posta eletrònica, in su registru MX in ue si risolvet su domìniu o s'IP de su serbidore in ue si risolvet su registru MX. Custos ant a èssere verificados a pustis de sa registratzione e sa registratzione at a èssere refudada.
+        domain: Custu podet èssere su nòmine de domìniu chi benit ammustradu in s'indiritzu de posta eletrònica, in su registru MX in ue si risolvet su domìniu o s'IP de su serbidore in ue si risolvet su registru MX. Ant a èssere verificados cun sa registratzione de s'utente e sa registratzione at a èssere refudada.
         with_dns_records: S'at a fàghere unu tentativu de risòlvere is registros DNS de su domìniu e fintzas is risultados ant a èssere blocados
       featured_tag:
         name: 'Forsis boles impreare unu de custos:'
@@ -64,22 +70,24 @@ sc:
       imports:
         data: Archìviu CSV esportadu dae un'àteru serbidore de Mastodon
       invite_request:
-        text: Custu si at a agiudare a revisionare sa dimanda tua
+        text: Custu at a agiudare a revisionare sa dimanda tua
       ip_block:
         comment: Optzionale. Regorda pro ite as agiuntu custa règula.
-        expires_in: Is indiritzos IP sunt una risursa limitada, fatu-fatu benint cumpartzidos e podent mudare de mere. Pro custa resone is blocos indefinidos de indiritzos IP non sunt racumandados.
+        expires_in: Is indiritzos IP sunt una risursa limitada, fatu-fatu benint cumpartzidos e podent mudare de mere. Pro custa resone is blocos indefinidos de indiritzos IP non sunt cussigiados.
         ip: Inserta un'indiritzu IPv4 o IPv6. Podes blocare intervallos intreos impreende sa sintassi CIDR. Dae cara e non ti bloches a sa sola!
         severities:
           no_access: Bloca s'atzessu a totu is resursas
           sign_up_requires_approval: As a dèpere aprovare is iscritziones noas
         severity: Sèbera ite at a sutzèdere cun is rechestas de custa IP
+      rule:
+        text: Descrie una règula o unu rechisitu pro utentes de custu serbidore. Chirca de dda fàghere curtza e simpre
       sessions:
         otp: 'Inserta su còdighe de atzessu in duos passos generadu dae s''aplicatzione mòbile tua o imprea unu de custos còdighes de recùperu:'
-        webauthn: Si est una crae USB assegura·ti de l'insertare e, si serbit, de la tocare.
+        webauthn: Si est unu dispositivu USB, assegura·ti de ddu insertare e, si serbit, toca inoghe.
       tag:
-        name: Podes isceti cambiare su minùsculu/maiùsculu de is lìteras, a esèmpiu, pro fàghere in manera chi siant prus fàtziles de lèghere
+        name: Podes isceti cambiare sa minùscula/maiùscula de is lìteras, pro esèmpiu, pro fàghere in manera chi siant prus fàtziles de lèghere
       user:
-        chosen_languages: Cando est incarcadu, isceti is tuts in is limbas ischertadas ant a èssere ammustrados in is lìnias de tempus pùblicas
+        chosen_languages: Cando est ativadu, isceti is tuts in is idiomas seberados ant a èssere ammustrados in is lìnias de tempus pùblicas
     labels:
       account:
         fields:
@@ -98,7 +106,7 @@ sc:
         text: Avisu personalizadu
         type: Atzione
         types:
-          disable: Disativa
+          disable: Cungela
           none: Imbia un'avisu
           sensitive: Sensìbile
           silence: A sa muda
@@ -114,13 +122,13 @@ sc:
         autofollow: Invita a sighire su contu tuo
         avatar: Immàgine de profilu
         bot: Custu contu est unu bot
-        chosen_languages: Filtra limbas
+        chosen_languages: Filtra idiomas
         confirm_new_password: Cunfirma sa crae noa
         confirm_password: Cunfirma sa crae
         context: Filtra cuntestos
         current_password: Crae atuale
         data: Data
-        discoverable: Ammustra custu contu in su diretòriu
+        discoverable: Cussìgia custu contu a àtere
         display_name: Nòmine visìbile
         email: Indiritzu de posta eletrònica
         expires_in: Iscadit a pustis de
@@ -129,24 +137,24 @@ sc:
         honeypot: "%{label} (non compiles)"
         inbox_url: URL de sa cartella de intrada de su ripetidore
         irreversible: Cantzella imbetzes de cuare
-        locale: Limba de s'interfache
-        locked: Bloca su contu
+        locale: Idioma de s'interfache
+        locked: Rechede rechestas de sighidura
         max_uses: Nùmeru màssimu de impreos
         new_password: Crae noa
         note: Biografia
         otp_attempt: Còdighe in duos fatores
         password: Crae
-        phrase: Paràula o fràsia crae
-        setting_advanced_layout: Abìlita s'interfache web avantzada
+        phrase: Crae (faeddu o fràsia)
+        setting_advanced_layout: Ativa s'interfache web avantzada
         setting_aggregate_reblogs: Agrupa is cumpartziduras in is lìnias de tempus
-        setting_auto_play_gif: Riprodui is GIFs animadas in manera automàtica
-        setting_boost_modal: Ammustra una ventanedda de diàlogu de cunfirma in antis de cumpartzire
-        setting_crop_images: Retàllia is immàgines in is tuts no ismanniados a 16x9
-        setting_default_language: Limba de publicatzione
-        setting_default_privacy: Riservadesa de publicatzione
+        setting_auto_play_gif: Riprodui is GIF animadas in automàticu
+        setting_boost_modal: Ammustra unu diàlogu de cunfirma in antis de cumpartzire
+        setting_crop_images: Retàllia a 16x9 is immàgines de is tuts no ismanniados
+        setting_default_language: Idioma de publicatzione
+        setting_default_privacy: Riservadesa de is publicatziones
         setting_default_sensitive: Marca semper is elementos multimediales comente sensìbiles
-        setting_delete_modal: Ammustra una ventanedda de diàlogu de cunfirma in antis de cantzellare unu tut
-        setting_disable_swiping: Disabìlita is movimentos de trisinadura
+        setting_delete_modal: Ammustra unu diàlogu de cunfirma in antis de cantzellare unu tut
+        setting_disable_swiping: Disativa animatziones
         setting_display_media: Visualizatzione de is elementos multimediales
         setting_display_media_default: Predefinida
         setting_display_media_hide_all: Cua totu
@@ -156,10 +164,10 @@ sc:
         setting_noindex: Pedi de non ti fàghere inditzizare dae is motores de chirca
         setting_reduce_motion: Mìnima su movimentu in is animatziones
         setting_show_application: Rivela s'aplicatzione impreada pro imbiare tuts
-        setting_system_font_ui: Imprea su caràtere predefinidu de su sistema
+        setting_system_font_ui: Imprea sa tipografia predefinida de su sistema
         setting_theme: Tema de su situ
         setting_trends: Ammustra is tendèntzias de oe
-        setting_unfollow_modal: Ammustra una ventanedda de diàlogu de cunfirma in antis de acabbare de sighire a calicunu
+        setting_unfollow_modal: Ammustra unu diàlogu de cunfirma in antis de acabbare de sighire una persone
         setting_use_blurhash: Ammustra gradientes colorados pro is elementos multimediales cuados
         setting_use_pending_items: Modalidade lenta
         severity: Severidade
@@ -167,19 +175,19 @@ sc:
         type: Casta de importatzione
         username: Nòmine utente
         username_or_email: Nòmine utente o indiritzu de posta eletrònica
-        whole_word: Paràula intrea
+        whole_word: Faeddu intreu
       email_domain_block:
         with_dns_records: Include registros MX e indiritzos IP de su domìniu
       featured_tag:
         name: Eticheta
       interactions:
         must_be_follower: Bloca is notìficas dae chie non ti sighit
-        must_be_following: Bloca is notìficas dae persones chi non sighis
-        must_be_following_dm: Bloca is messàgios diretos dae persones chi non sighis
+        must_be_following: Bloca is notìficas dae gente chi non sighis
+        must_be_following_dm: Bloca is messàgios diretos dae gente chi non sighis
       invite:
         comment: Cummenta
       invite_request:
-        text: Proite ti cheres iscrìere?
+        text: Pro ite boles aderire?
       ip_block:
         comment: Cummentu
         ip: IP
@@ -189,24 +197,26 @@ sc:
         severity: Règula
       notification_emails:
         digest: Imbia lìteras eletrònicas de resumu
-        favourite: Calicunu at postu s'istadu tuo in is preferidos suos
-        follow: Calicunu at incumentzadu a ti sighire
-        follow_request: Calicunu at pedidu de ti sighire
-        mention: Calicunu t'at mentovadu
-        pending_account: Unu contu nou bisòngiat de una revisione
-        reblog: Calicunu at cumpartzidu s'istadu tuo
-        report: Est istadu imbiadu unu raportu nou
+        favourite: Una persone at postu s'istadu tuo in is preferidos suos
+        follow: Una persone t'at incumentzadu a sighire
+        follow_request: Una persone at pedidu de ti sighire
+        mention: Una persone t'at mentovadu
+        pending_account: Unu contu nou tenet bisòngiu de una revisione
+        reblog: Una persone at cumpartzidu s'istadu tuo
+        report: Imbiu de un'informe nou
         trending_tag: Un'eticheta non revisionada est in tendèntzia
+      rule:
+        text: Règula
       tag:
-        listable: Permite a cust'eticheta de apàrrere in is chircas e in sa cartella de is profilos
+        listable: Permite a custa eticheta de apàrrere in is chircas e in sa cartella de is profilos
         name: Eticheta
-        trendable: Permite a cust'eticheta de apàrrere in is tendèntzias
-        usable: Permite a is tuts de impreare cust'eticheta
+        trendable: Permite a custa eticheta de apàrrere in is tendèntzias
+        usable: Permite a is tuts de impreare custa eticheta
     'no': Nono
-    recommended: Racumandadu
+    recommended: Cussigiadu
     required:
       mark: "*"
-      text: netzessàriu
+      text: obligatòriu
     title:
       sessions:
         webauthn: Imprea una de is craes de seguresa tuas pro intrare

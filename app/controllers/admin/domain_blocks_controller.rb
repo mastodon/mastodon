@@ -22,7 +22,7 @@ module Admin
       if existing_domain_block.present? && !@domain_block.stricter_than?(existing_domain_block)
         @domain_block.save
         flash.now[:alert] = I18n.t('admin.domain_blocks.existing_domain_block_html', name: existing_domain_block.domain, unblock_url: admin_domain_block_path(existing_domain_block)).html_safe # rubocop:disable Rails/OutputSafety
-        @domain_block.errors[:domain].clear
+        @domain_block.errors.delete(:domain)
         render :new
       else
         if existing_domain_block.present?

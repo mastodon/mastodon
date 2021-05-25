@@ -2,7 +2,6 @@
 
 class ListFeed < Feed
   def initialize(list)
-    @type    = :list
-    @id      = list.id
+    super(:list, list.id)
   end
 end

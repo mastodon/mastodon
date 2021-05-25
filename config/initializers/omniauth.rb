@@ -60,6 +60,7 @@ Devise.setup do |config|
     saml_options[:attribute_statements][:verified] = [ENV['SAML_ATTRIBUTES_STATEMENTS_VERIFIED']] if ENV['SAML_ATTRIBUTES_STATEMENTS_VERIFIED']
     saml_options[:attribute_statements][:verified_email] = [ENV['SAML_ATTRIBUTES_STATEMENTS_VERIFIED_EMAIL']] if ENV['SAML_ATTRIBUTES_STATEMENTS_VERIFIED_EMAIL']
     saml_options[:uid_attribute] = ENV['SAML_UID_ATTRIBUTE'] if ENV['SAML_UID_ATTRIBUTE']
+    saml_options[:allowed_clock_drift] = ENV['SAML_ALLOWED_CLOCK_DRIFT'] if ENV['SAML_ALLOWED_CLOCK_DRIFT']
     config.omniauth :saml, saml_options
   end
 end

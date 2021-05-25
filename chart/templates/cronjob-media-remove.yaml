@@ -1,4 +1,4 @@
-{{ if .Values.cron.removeMedia.enabled }}
+{{ if .Values.mastodon.cron.removeMedia.enabled }}
 apiVersion: batch/v1beta1
 kind: CronJob
 metadata:
@@ -6,7 +6,7 @@ metadata:
   labels:
     {{- include "mastodon.labels" . | nindent 4 }}
 spec:
-  schedule: {{ .Values.cron.removeMedia.schedule }}
+  schedule: {{ .Values.mastodon.cron.removeMedia.schedule }}
   jobTemplate:
     spec:
       template:
@@ -14,9 +14,10 @@ spec:
           name: {{ include "mastodon.fullname" . }}-media-remove
         spec:
           restartPolicy: OnFailure
+          {{- if (not .Values.mastodon.s3.enabled) }}
           # ensure we run on the same node as the other rails components; only
           # required when using PVCs that are ReadWriteOnce
-          {{- if or (eq "ReadWriteOnce" .Values.persistence.assets.accessMode) (eq "ReadWriteOnce" .Values.persistence.system.accessMode) }}
+          {{- if or (eq "ReadWriteOnce" .Values.mastodon.persistence.assets.accessMode) (eq "ReadWriteOnce" .Values.mastodon.persistence.system.accessMode) }}
           affinity:
             podAffinity:
               requiredDuringSchedulingIgnoredDuringExecution:
@@ -35,6 +36,7 @@ spec:
             - name: system
               persistentVolumeClaim:
                 claimName: {{ template "mastodon.fullname" . }}-system
+          {{- end }}
           containers:
             - name: {{ include "mastodon.fullname" . }}-media-remove
               image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
@@ -55,7 +57,7 @@ spec:
                       {{- if .Values.postgresql.enabled }}
                       name: {{ .Release.Name }}-postgresql
                       {{- else }}
-                      name: {{ template "mastodon.fullname" . }}-postgresql
+                      name: {{ template "mastodon.fullname" . }}
                       {{- end }}
                       key: postgresql-password
                 - name: "REDIS_PASSWORD"
@@ -64,10 +66,12 @@ spec:
                       name: {{ .Release.Name }}-redis
                       key: redis-password
                 - name: "PORT"
-                  value: {{ .Values.application.web.port | quote }}
+                  value: {{ .Values.mastodon.web.port | quote }}
+              {{- if (not .Values.mastodon.s3.enabled) }}
               volumeMounts:
                 - name: assets
                   mountPath: /opt/mastodon/public/assets
                 - name: system
                   mountPath: /opt/mastodon/public/system
+              {{- end }}
 {{- end }}

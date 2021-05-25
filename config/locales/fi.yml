@@ -6,7 +6,6 @@ fi:
     about_this: Tietoja tästä palvelimesta
     active_count_after: aktiivinen
     administered_by: 'Ylläpitäjä:'
-    api: API
     apps: Mobiili sovellukset
     apps_platforms: Käytä Mastodonia iOS:llä, Androidilla tai muilla alustoilla
     browse_directory: Selaa profiilihakemistoa ja suodata kiinnostuksen kohteiden mukaan
@@ -51,7 +50,6 @@ fi:
     joined: Liittynyt %{date}
     last_active: viimeksi aktiivinen
     link_verified_on: Tämän linkin omistus on tarkastettu %{date}
-    media: Media
     moved_html: "%{name} on muuttanut osoitteeseen %{new_profile_link}:"
     network_hidden: Nämä tiedot eivät ole käytettävissä
     never_active: Ei koskaan
@@ -65,7 +63,6 @@ fi:
       other: Tuuttaukset
     posts_tab_heading: Tuuttaukset
     posts_with_replies: Tuuttaukset ja vastaukset
-    reserved_username: Käyttäjänimi on varattu
     roles:
       admin: Ylläpitäjä
       bot: Botti
@@ -114,7 +111,6 @@ fi:
       header: Otsakekuva
       inbox_url: Saapuvan postilaatikon osoite
       invited_by: Kutsuja
-      ip: IP
       joined: Liittynyt
       location:
         all: Kaikki
@@ -197,34 +193,6 @@ fi:
         promote_user: Käyttäjä ylennetty
         remove_avatar_user: Profiilikuvan poisto
         silence_account: Hiljennä tili
-      actions:
-        assigned_to_self_report: "%{name} otti raportin %{target} tehtäväkseen"
-        change_email_user: "%{name} vaihtoi käyttäjän %{target} sähköpostiosoitteen"
-        confirm_user: "%{name} vahvisti käyttäjän %{target} sähköpostiosoitteen"
-        create_custom_emoji: "%{name} lähetti uuden emojin %{target}"
-        create_domain_block: "%{name} esti verkkotunnuksen %{target}"
-        create_email_domain_block: "%{name} lisäsi sähköpostiverkkotunnuksen %{target} estolistalle"
-        demote_user: "%{name} alensi käyttäjän %{target}"
-        destroy_domain_block: "%{name} poisti verkkotunnuksen %{target} eston"
-        destroy_email_domain_block: "%{name} lisäsi sähköpostiverkkotunnuksen %{target} sallittujen listalle"
-        destroy_status: "%{name} poisti käyttäjän %{target} tilan"
-        disable_2fa_user: "%{name} poisti käyttäjältä %{target} kaksivaiheisen todentamisen vaatimuksen"
-        disable_custom_emoji: "%{name} poisti emojin %{target} käytöstä"
-        disable_user: "%{name} poisti sisäänkirjautumisen käytöstä käyttäjältä %{target}"
-        enable_custom_emoji: "%{name} salli emojin %{target} käyttöön"
-        enable_user: "%{name} salli sisäänkirjautumisen käyttäjälle %{target}"
-        memorialize_account: "%{name} muutti käyttäjän %{target} tilin muistosivuksi"
-        promote_user: "%{name} ylensi käyttäjän %{target}"
-        remove_avatar_user: "%{name} poisti käyttäjän %{target} profiilikuvan"
-        reopen_report: "%{name} avasi uudelleen raportin %{target}"
-        reset_password_user: "%{name} palautti käyttäjän %{target} salasanan"
-        resolve_report: "%{name} hylkäsi raportin %{target}"
-        silence_account: "%{name} hiljensi käyttäjän %{target}"
-        suspend_account: "%{name} siirsi käyttäjän %{target} jäähylle"
-        unsilence_account: "%{name} poisti käyttäjän %{target} hiljennyksen"
-        unsuspend_account: "%{name} perui käyttäjän %{target} jäähyn"
-        update_custom_emoji: "%{name} päivitti emojin %{target}"
-        update_status: "%{name} päivitti käyttäjän %{target} tilan"
       deleted_status: "(poistettu tilapäivitys)"
       empty: Lokeja ei löytynyt.
       filter_by_action: Suodata tapahtuman mukaan
@@ -253,7 +221,6 @@ fi:
       disable: Poista käytöstä
       disabled: Ei käytössä
       disabled_msg: Emojin poisto käytöstä onnistui
-      emoji: Emoji
       enable: Ota käyttöön
       enabled: Käytössä
       enabled_msg: Emojin käyttöönotto onnistui
@@ -280,7 +247,6 @@ fi:
       feature_invites: Kutsulinkit
       feature_profile_directory: Profiilihakemisto
       feature_registrations: Rekisteröitymiset
-      feature_spam_check: Roskapostin esto
       feature_timeline_preview: Aikajanan esikatselu
       features: Ominaisuudet
       recent_users: Viimeaikaiset käyttäjät
@@ -407,8 +373,6 @@ fi:
         title: Näytä domainestot
       domain_blocks_rationale:
         title: Näytä syy
-      enable_bootstrap_timeline_accounts:
-        title: Uudet käyttäjät seuraavat oletuksena tilejä
       hero:
         desc_html: Näytetään etusivulla. Suosituskoko vähintään 600x100 pikseliä. Jos kuvaa ei aseteta, käytetään instanssin pikkukuvaa
         title: Sankarin kuva
@@ -469,13 +433,10 @@ fi:
         nsfw_on: NSFW PÄÄLLÄ
       deleted: Poistettu
       failed_to_execute: Suoritus epäonnistui
-      media:
-        title: Media
       no_media: Ei mediaa
       title: Tilin tilat
       with_media: Sisältää mediaa
     tags:
-      context: Konteksti
       last_active: Aktiivinen viimeksi
       most_popular: Suosituimmat
       most_recent: Viimeisimmät
@@ -503,7 +464,6 @@ fi:
     sensitive_content: Arkaluontoista sisältöä
   application_mailer:
     notification_preferences: Muuta sähköpostiasetuksia
-    salutation: "%{name},"
     settings: 'Muuta sähköpostiasetuksia: %{link}'
     view: 'Näytä:'
     view_profile: Näytä profiili
@@ -735,7 +695,6 @@ fi:
         format: "%n %u"
         units:
           billion: Mrd
-          million: M
           quadrillion: Brd
           thousand: k
           trillion: B
@@ -769,40 +728,14 @@ fi:
     activity: Viimeisin toiminta
     browser: Selain
     browsers:
-      alipay: Alipay
-      blackberry: Blackberry
-      chrome: Chrome
-      edge: Microsoft Edge
-      electron: Electron
-      firefox: Firefox
       generic: Tuntematon selain
-      ie: Internet Explorer
-      micro_messenger: MicroMessenger
       nokia: Nokia S40 Ovi -selain
-      opera: Opera
-      otter: Otter
-      phantom_js: PhantomJS
-      qq: QQ Browser
-      safari: Safari
-      uc_browser: UCBrowser
-      weibo: Weibo
     current_session: Nykyinen istunto
     description: "%{browser}, %{platform}"
     explanation: Nämä verkkoselaimet ovat tällä hetkellä kirjautuneet Mastodon-tilillesi.
     ip: IP-osoite
     platforms:
-      adobe_air: Adobe Air
-      android: Android
-      blackberry: Blackberry
-      chrome_os: ChromeOS
-      firefox_os: Firefox OS
-      ios: iOS
-      linux: Linux
-      mac: macOS
       other: tuntematon järjestelmä
-      windows: Windows
-      windows_mobile: Windows Mobile
-      windows_phone: Windows Phone
     revoke: Hylkää
     revoke_success: Istunnon hylkäys onnistui
     title: Istunnot
@@ -906,7 +839,6 @@ fi:
       tips: Vinkkejä
       title: Tervetuloa mukaan, %{name}!
   users:
-    invalid_email: Virheellinen sähköpostiosoite
     invalid_otp_token: Virheellinen kaksivaiheisen todentamisen koodi
     otp_lost_help_html: Jos sinulla ei ole pääsyä kumpaankaan, voit ottaa yhteyttä osoitteeseen %{email}
     seamless_external_login: Olet kirjautunut ulkoisen palvelun kautta, joten salasana- ja sähköpostiasetukset eivät ole käytettävissä.
