@@ -67,7 +67,7 @@ fr:
         title: Copiez ce code d’autorisation et collez-le dans l’application.
     authorized_applications:
       buttons:
-        revoke: Annuler
+        revoke: Révoquer
       confirmations:
         revoke: Voulez-vous vraiment faire ça ?
       index:
@@ -81,7 +81,7 @@ fr:
         access_denied: Le propriétaire de la ressource ou le serveur d’autorisation a refusé la requête.
         credential_flow_not_configured: Le flux des identifiants du mot de passe du propriétaire de la ressource a échoué car Doorkeeper.configure.resource_owner_from_credentials n’est pas configuré.
         invalid_client: L’authentification du client a échoué à cause d’un client inconnu, d’aucune authentification de client incluse ou d’une méthode d’authentification non prise en charge.
-        invalid_grant: Le consentement d’autorisation accordé n’est pas valide, a expiré, est annulé, ne concorde pas avec l’URL de redirection utilisée dans la requête d’autorisation ou a été émis à un autre client.
+        invalid_grant: L’autorisation accordée est invalide, expirée, annulée, ne concorde pas avec l’URL de redirection utilisée dans la requête d’autorisation, ou a été délivrée à un autre client.
         invalid_redirect_uri: L’URL de redirection n’est pas valide.
         invalid_request:
           missing_param: 'Parramètre requis manquant: %{value}.'
@@ -109,7 +109,7 @@ fr:
           notice: Application mise à jour.
       authorized_applications:
         destroy:
-          notice: Application annulée.
+          notice: Application révoquée.
     layouts:
       admin:
         nav:

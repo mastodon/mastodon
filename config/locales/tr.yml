@@ -230,6 +230,7 @@ tr:
         create_domain_block: Engellenen Alan Adı Oluştur
         create_email_domain_block: E-Posta Alan Adı Engeli Oluştur
         create_ip_block: IP kuralı oluştur
+        create_unavailable_domain: Mevcut Olmayan Alan Adı Oluştur
         demote_user: Kullanıcıyı Düşür
         destroy_announcement: Duyuru Sil
         destroy_custom_emoji: Özel İfadeyi Sil
@@ -238,6 +239,7 @@ tr:
         destroy_email_domain_block: E-posta alan adı engelini sil
         destroy_ip_block: IP kuralını sil
         destroy_status: Durumu Sil
+        destroy_unavailable_domain: Mevcut Olmayan Alan Adı Sil
         disable_2fa_user: 2AD Kapat
         disable_custom_emoji: Özel İfadeyi Devre Dışı Bırak
         disable_user: Kullanıcıyı Devre Dışı Bırak
@@ -267,6 +269,42 @@ tr:
         create_account_warning_html: "%{name} %{target} 'a bir uyarı gönderdi"
         create_announcement_html: "%{name}, yeni %{target} duyurusunu oluşturdu"
         create_custom_emoji_html: "%{name} yeni %{target} ifadesini yükledi"
+        create_domain_allow_html: "%{name}, %{target} alan adıyla birliğe izin verdi"
+        create_domain_block_html: "%{name}, %{target} alan adını engelledi"
+        create_email_domain_block_html: "%{name}, %{target} e-posta alan adını engelledi"
+        create_ip_block_html: "%{name}, %{target} IP adresi için kural oluşturdu"
+        create_unavailable_domain_html: "%{name}, %{target} alan adına teslimatı durdurdu"
+        demote_user_html: "%{name}, %{target} kullanıcısını düşürdü"
+        destroy_announcement_html: "%{name}, %{target} duyurusunu sildi"
+        destroy_custom_emoji_html: "%{name}, %{target} emojisini yok etti"
+        destroy_domain_allow_html: "%{name}, %{target} alan adıyla birlik iznini kaldırdı"
+        destroy_domain_block_html: "%{name}, %{target} alan adı engelini kaldırdı"
+        destroy_email_domain_block_html: "%{name}, %{target} e-posta alan adı engelini kaldırdı"
+        destroy_ip_block_html: "%{name}, %{target} IP adresi kuralını sildi"
+        destroy_status_html: "%{name}, %{target} kullanıcısının gönderisini kaldırdı"
+        destroy_unavailable_domain_html: "%{name}, %{target} alan adına teslimatı sürdürdü"
+        disable_2fa_user_html: "%{name}, %{target} kullanıcısının iki aşamalı doğrulama gereksinimini kapattı"
+        disable_custom_emoji_html: "%{name}, %{target} emojisini devre dışı bıraktı"
+        disable_user_html: "%{name}, %{target} kullanıcısı için oturum açmayı devre dışı bıraktı"
+        enable_custom_emoji_html: "%{name}, %{target} emojisini etkinleştirdi"
+        enable_user_html: "%{name}, %{target} kullanıcısı için oturum açmayı etkinleştirdi"
+        memorialize_account_html: "%{name}, %{target} kullanıcısının hesabını bir anıt sayfaya dönüştürdü"
+        promote_user_html: "%{name}, %{target} kullanıcısını yükseltti"
+        remove_avatar_user_html: "%{name}, %{target} kullanıcısının avatarını kaldırdı"
+        reopen_report_html: "%{name}, %{target} şikayetini yeniden açtı"
+        reset_password_user_html: "%{name}, %{target} kullanıcısının parolasını sıfırladı"
+        resolve_report_html: "%{name}, %{target} şikayetini çözdü"
+        sensitive_account_html: "%{name}, %{target} kullanıcısının medyasını hassas olarak işaretledi"
+        silence_account_html: "%{name}, %{target} kullanıcısının hesabını sessize aldı"
+        suspend_account_html: "%{name}, %{target} kullanıcısının hesabını askıya aldı"
+        unassigned_report_html: "%{name}, %{target} şikayetinin atamasını kaldırdı"
+        unsensitive_account_html: "%{name}, %{target} kullanıcısının medyasının hassas işaretini kaldırdı"
+        unsilence_account_html: "%{name}, %{target} kullanıcısının hesabının sessizliğini kaldırdı"
+        unsuspend_account_html: "%{name}, %{target} kullanıcısının hesabının askı durumunu kaldırdı"
+        update_announcement_html: "%{name}, %{target} duyurusunu güncelledi"
+        update_custom_emoji_html: "%{name}, %{target} emojisini güncelledi"
+        update_domain_block_html: "%{name}, %{target} alan adının engelini güncelledi"
+        update_status_html: "%{name}, %{target} kullanıcısının gönderisini güncelledi"
       deleted_status: "(silinmiş durum)"
       empty: Kayıt bulunamadı.
       filter_by_action: Eyleme göre filtre
@@ -417,8 +455,25 @@ tr:
       title: Takip önerileri
       unsuppress: Takip önerisini geri getir
     instances:
+      back_to_all: Tümü
+      back_to_limited: Sınırlı
+      back_to_warning: Uyarı
       by_domain: Alan adı
+      delivery:
+        all: Tümü
+        clear: Teslimat hatalarını temizle
+        restart: Teslimatı yeniden başlat
+        stop: Teslimatı durdur
+        title: Teslimat
+        unavailable: Mevcut Değil
+        unavailable_message: Teslimat mevcut değil
+        warning: Uyarı
+        warning_message:
+          one: Teslimat %{count} gündür başarısız
+          other: Teslimat %{count} gündür başarısız
       delivery_available: Teslimat mevcut
+      delivery_error_days: Teslimat hatası günleri
+      delivery_error_hint: Eğer teslimat %{count} gün boyunca mümkün olmazsa, otomatik olarak teslim edilemiyor olarak işaretlenecek.
       empty: Alan adı bulunamadı.
       known_accounts:
         one: "%{count} bilinen hesap"
@@ -548,9 +603,6 @@ tr:
         users: Oturum açan yerel kullanıcılara
       domain_blocks_rationale:
         title: Gerekçeyi göster
-      enable_bootstrap_timeline_accounts:
-        desc_html: Yeni kullanıcıları otomatik olarak yapılandırılmış hesapları izleyecek şekilde ayarla, böylece anasayfa akışları boş başlamayacaktır
-        title: Yeni kullanıcılar için varsayılan takipleri etkinleştir
       hero:
         desc_html: Önsayfada görüntülenir. En az 600x100px önerilir. Ayarlanmadığında, sunucu küçük resmi kullanılır
         title: Kahraman görseli
@@ -646,9 +698,6 @@ tr:
       accounts_today: Bugünkü eşsiz kullanımlar
       accounts_week: Bu haftaki eşsiz kullanımlar
       breakdown: Bugünkü kullanımın kaynağa göre dağılımı
-      context: İçerik
-      directory: Dizinde
-      in_directory: Dizinde %{count}
       last_active: Son etkinlik
       most_popular: En popüler
       most_recent: En yeni

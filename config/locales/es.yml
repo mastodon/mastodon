@@ -1,7 +1,7 @@
 ---
 es:
   about:
-    about_hashtag_html: Estos son toots públicos etiquetados con <strong>#%{hashtag}</strong>. Puedes interactuar con ellos si tienes una cuenta en cualquier parte del fediverso.
+    about_hashtag_html: Estos son publicaciones públicas etiquetadas con <strong>#%{hashtag}</strong>. Puedes interactuar con ellas si tienes una cuenta en cualquier parte del fediverso.
     about_mastodon_html: 'La red social del futuro: ¡Sin anuncios, sin vigilancia corporativa, diseño ético, y descentralización! ¡Sé dueño de tu información con Mastodon!'
     about_this: Información
     active_count_after: activo
@@ -15,7 +15,7 @@ es:
     browse_public_posts: Navega por un transmisión en vivo de publicaciones públicas en Mastodon
     contact: Contacto
     contact_missing: No especificado
-    contact_unavailable: N/A
+    contact_unavailable: No disponible
     discover_users: Descubrir usuarios
     documentation: Documentación
     federation_hint_html: Con una cuenta en %{instance} usted podrá seguir a las personas en cualquier servidor de Mastodon y más allá.
@@ -26,6 +26,8 @@ es:
       Se usa para fines federativos y no debe ser bloqueado a menos que usted quiera bloquear toda la instancia, en cuyo caso se debe utilizar un bloque de dominio.
     learn_more: Aprende más
     privacy_policy: Política de privacidad
+    rules: Normas del servidor
+    rules_html: 'A continuación hay un resumen de las normas que debes seguir si quieres tener una cuenta en este servidor de Mastodon:'
     see_whats_happening: Ver lo que está pasando
     server_stats: 'Datos del servidor:'
     source_code: Código fuente
@@ -74,11 +76,10 @@ es:
     pin_errors:
       following: Debes estar siguiendo a la persona a la que quieres aprobar
     posts:
-      one: Toot
-      other: Toots
-    posts_tab_heading: Toots
-    posts_with_replies: Toots con respuestas
-    reserved_username: El nombre de usuario está reservado
+      one: Publicación
+      other: Publicaciones
+    posts_tab_heading: Publicaciones
+    posts_with_replies: Publicaciones y respuestas
     roles:
       admin: Administrador
       bot: Bot
@@ -229,6 +230,7 @@ es:
         create_domain_block: Crear Bloqueo de Dominio
         create_email_domain_block: Crear Bloqueo de Dominio de Correo Electrónico
         create_ip_block: Crear regla IP
+        create_unavailable_domain: Crear Dominio No Disponible
         demote_user: Degradar Usuario
         destroy_announcement: Eliminar Anuncio
         destroy_custom_emoji: Eliminar Emoji Personalizado
@@ -237,6 +239,7 @@ es:
         destroy_email_domain_block: Eliminar Bloqueo de Dominio de Correo Electrónico
         destroy_ip_block: Eliminar regla IP
         destroy_status: Eliminar Estado
+        destroy_unavailable_domain: Eliminar Dominio No Disponible
         disable_2fa_user: Deshabilitar 2FA
         disable_custom_emoji: Deshabilitar Emoji Personalizado
         disable_user: Deshabilitar Usuario
@@ -260,46 +263,48 @@ es:
         update_domain_block: Actualizar el Bloqueo de Dominio
         update_status: Actualizar Estado
       actions:
-        assigned_to_self_report: "%{name} se ha asignado la denuncia %{target} a sí mismo"
-        change_email_user: "%{name} ha cambiado la dirección de correo del usuario %{target}"
-        confirm_user: "%{name} confirmó la dirección de correo del usuario %{target}"
-        create_account_warning: "%{name} envió una advertencia a %{target}"
-        create_announcement: "%{name} creó el nuevo anuncio %{target}"
-        create_custom_emoji: "%{name} subió un nuevo emoji %{target}"
-        create_domain_allow: "%{name} ha añadido a la lista blanca el dominio %{target}"
-        create_domain_block: "%{name} bloqueó el dominio %{target}"
-        create_email_domain_block: "%{name} puso en lista negra el dominio de correos %{target}"
-        create_ip_block: "%{name} creó la regla para la IP %{target}"
-        demote_user: "%{name} degradó al usuario %{target}"
-        destroy_announcement: "%{name} eliminó el anuncio %{target}"
-        destroy_custom_emoji: "%{name} destruyó el emoji %{target}"
-        destroy_domain_allow: "%{name} ha eliminado el dominio %{target} de la lista blanca"
-        destroy_domain_block: "%{name} desbloqueó el dominio %{target}"
-        destroy_email_domain_block: "%{name} puso en lista blanca el dominio de correos %{target}"
-        destroy_ip_block: "%{name} eliminó la regla para la IP %{target}"
-        destroy_status: "%{name} eliminó el estado de %{target}"
-        disable_2fa_user: "%{name} deshabilitó el requerimiento de dos factores para el usuario %{target}"
-        disable_custom_emoji: "%{name} deshabilitó el emoji %{target}"
-        disable_user: "%{name} deshabilitó el acceso del usuario %{target}"
-        enable_custom_emoji: "%{name} habilitó el emoji %{target}"
-        enable_user: "%{name} habilitó el acceso del usuario %{target}"
-        memorialize_account: "%{name} convirtió la cuenta de %{target} en una página de memorial"
-        promote_user: "%{name} promoción al usuario %{target}"
-        remove_avatar_user: "%{name} ha eliminado el avatar de %{target}"
-        reopen_report: "%{name} ha reabierto la denuncia %{target}"
-        reset_password_user: "%{name} restauró la contraseña del usuario %{target}"
-        resolve_report: "%{name} ha resuelto la denuncia %{target}"
-        sensitive_account: "%{name} marcó multimedia de %{target} como sensible"
-        silence_account: "%{name} silenció la cuenta de %{target}"
-        suspend_account: "%{name} suspendió la cuenta de %{target}"
-        unassigned_report: "%{name} ha desasignado la denuncia %{target}"
-        unsensitive_account: "%{name} desmarcó multimedia de %{target} como sensible"
-        unsilence_account: "%{name} desactivó el silenciado de la cuenta de %{target}"
-        unsuspend_account: "%{name} desactivó la suspensión de la cuenta de %{target}"
-        update_announcement: "%{name} actualizó el anuncio %{target}"
-        update_custom_emoji: "%{name} actualizó el emoji %{target}"
-        update_domain_block: "%{name} actualizó el bloqueo de dominio para %{target}"
-        update_status: "%{name} actualizó el estado de %{target}"
+        assigned_to_self_report_html: "%{name} asignó el informe %{target} a sí mismo"
+        change_email_user_html: "%{name} cambió la dirección de correo electrónico del usuario %{target}"
+        confirm_user_html: "%{name} confirmó la dirección de correo electrónico del usuario %{target}"
+        create_account_warning_html: "%{name} envió una advertencia a %{target}"
+        create_announcement_html: "%{name} ha creado un nuevo anuncio %{target}"
+        create_custom_emoji_html: "%{name} subió un nuevo emoji %{target}"
+        create_domain_allow_html: "%{name} permitió la federación con el dominio %{target}"
+        create_domain_block_html: "%{name} bloqueó el dominio %{target}"
+        create_email_domain_block_html: "%{name} bloqueó el dominio de correo electrónico %{target}"
+        create_ip_block_html: "%{name} creó una regla para la IP %{target}"
+        create_unavailable_domain_html: "%{name} detuvo las entregas al dominio %{target}"
+        demote_user_html: "%{name} degradó al usuario %{target}"
+        destroy_announcement_html: "%{name} eliminó el anuncio %{target}"
+        destroy_custom_emoji_html: "%{name} destruyó emoji %{target}"
+        destroy_domain_allow_html: "%{name} bloqueó la federación con el dominio %{target}"
+        destroy_domain_block_html: "%{name} desbloqueó el dominio %{target}"
+        destroy_email_domain_block_html: "%{name} desbloqueó el dominio de correo electrónico %{target}"
+        destroy_ip_block_html: "%{name} eliminó una regla para la IP %{target}"
+        destroy_status_html: "%{name} eliminó el estado por %{target}"
+        destroy_unavailable_domain_html: "%{name} reanudó las entregas al dominio %{target}"
+        disable_2fa_user_html: "%{name} desactivó el requisito de dos factores para el usuario %{target}"
+        disable_custom_emoji_html: "%{name} desactivó el emoji %{target}"
+        disable_user_html: "%{name} deshabilitó el inicio de sesión para el usuario %{target}"
+        enable_custom_emoji_html: "%{name} activó el emoji %{target}"
+        enable_user_html: "%{name} habilitó el inicio de sesión para el usuario %{target}"
+        memorialize_account_html: "%{name} convirtió la cuenta de %{target} en una página in memoriam"
+        promote_user_html: "%{name} promoción al usuario %{target}"
+        remove_avatar_user_html: "%{name} eliminó el avatar de %{target}"
+        reopen_report_html: "%{name} reabrió el informe %{target}"
+        reset_password_user_html: "%{name} reinició la contraseña del usuario %{target}"
+        resolve_report_html: "%{name} resolvió el informe %{target}"
+        sensitive_account_html: "%{name} marcó la multimedia de %{target} como sensible"
+        silence_account_html: "%{name} silenció la cuenta de %{target}"
+        suspend_account_html: "%{name} suspendió la cuenta de %{target}"
+        unassigned_report_html: "%{name} des-asignó el informe %{target}"
+        unsensitive_account_html: "%{name} desmarcó la multimedia de %{target} como sensible"
+        unsilence_account_html: "%{name} desilenció la cuenta de %{target}"
+        unsuspend_account_html: "%{name} reactivó la cuenta de %{target}"
+        update_announcement_html: "%{name} actualizó el anuncio %{target}"
+        update_custom_emoji_html: "%{name} actualizó el emoji %{target}"
+        update_domain_block_html: "%{name} actualizó el bloqueo de dominio para %{target}"
+        update_status_html: "%{name} actualizó el estado de %{target}"
       deleted_status: "(estado borrado)"
       empty: No se encontraron registros.
       filter_by_action: Filtrar por acción
@@ -314,10 +319,12 @@ es:
       new:
         create: Crear anuncio
         title: Nuevo anuncio
+      publish: Publicar
       published_msg: "¡Anuncio publicado con éxito!"
       scheduled_for: Programado para %{time}
       scheduled_msg: "¡Anuncio programado para su publicación!"
       title: Anuncios
+      unpublish: Retirar publicación
       unpublished_msg: "¡Anuncio despublicado con éxito!"
       updated_msg: "¡Anuncio actualizado con éxito!"
     custom_emojis:
@@ -362,7 +369,6 @@ es:
       feature_profile_directory: Directorio de perfil
       feature_registrations: Registros
       feature_relay: Relés de federación
-      feature_spam_check: Contra-spam
       feature_timeline_preview: Vista previa de la línea de tiempo
       features: Características
       hidden_service: Federación con servicios ocultos
@@ -440,9 +446,34 @@ es:
         create: Añadir dominio
         title: Nueva entrada en la lista negra de correo
       title: Lista negra de correo
+    follow_recommendations:
+      description_html: "<strong>Las recomendaciones de cuentas ayudan a los nuevos usuarios a encontrar rápidamente contenido interesante</strong>. Cuando un usuario no ha interactuado con otros lo suficiente como para suscitar recomendaciones personalizadas de cuentas a las que seguir, en su lugar se le recomiendan estas cuentas. Se recalculan diariamente a partir de una mezcla de cuentas con el mayor número de interacciones recientes y con el mayor número de seguidores locales con un idioma determinado."
+      language: Para el idioma
+      status: Estado
+      suppress: Suprimir recomendación de cuentas
+      suppressed: Suprimida
+      title: Recomendaciones de cuentas
+      unsuppress: Restaurar recomendaciones de cuentas
     instances:
+      back_to_all: Todos
+      back_to_limited: Limitados
+      back_to_warning: Advertencia
       by_domain: Dominio
+      delivery:
+        all: Todos
+        clear: Limpiar errores de entrega
+        restart: Reiniciar entrega
+        stop: Detener entrega
+        title: Entrega
+        unavailable: No disponible
+        unavailable_message: Entrega no disponible
+        warning: Advertencia
+        warning_message:
+          one: Fallo de entrega %{count} día
+          other: Fallo de entrega %{count} días
       delivery_available: Entrega disponible
+      delivery_error_days: Días de error de entrega
+      delivery_error_hint: Si la entrega no es posible a lo largo de %{count} días, se marcará automáticamente como no entregable.
       empty: No se encontraron dominios.
       known_accounts:
         one: "%{count} cuenta conocida"
@@ -489,11 +520,11 @@ es:
     relays:
       add_new: Añadir un nuevo relés
       delete: Borrar
-      description_html: Un <strong>relés de federation</strong> es un servidor intermedio que intercambia grandes volúmenes de toots públicos entre servidores que se suscriben y publican en él. <strong>Puede ayudar a servidores pequeños y medianos a descubir contenido del fediverso</strong>, que de otra manera requeriría que los usuarios locales siguiesen manialmente a personas de servidores remotos.
+      description_html: Un <strong>relé de federación</strong> es un servidor intermedio que intercambia grandes volúmenes de publicaciones públicas entre servidores que se suscriben y publican en él. <strong>Puede ayudar a servidores pequeños y medianos a descubrir contenido del fediverso</strong>, que de otra manera requeriría que los usuarios locales siguiesen manualmente a personas de servidores remotos.
       disable: Deshabilitar
       disabled: Deshabilitado
       enable: Hablitar
-      enable_hint: Una vez conectado, tu servidor se suscribirá a todos los toots públicos de este relés, y comenzará a enviar los toots públicos de este servidor hacia él.
+      enable_hint: Una vez conectado, tu servidor se suscribirá a todos las publicaciones públicas de este relé, y comenzará a enviar las publicaciones públicas de este servidor hacia él.
       enabled: Habilitado
       inbox_url: URL del relés
       pending: Esperando la aprobación del relés
@@ -542,6 +573,13 @@ es:
       unassign: Desasignar
       unresolved: No resuelto
       updated_at: Actualizado
+    rules:
+      add_new: Añadir norma
+      delete: Eliminar
+      description_html: Aunque la mayoría afirma haber leído y estar de acuerdo con los términos de servicio, la gente normalmente no los lee hasta después de que surja algún problema. <strong>Haz que sea más fácil ver las normas de tu servidor de un vistazo estipulándolas en una lista de puntos.</strong> Intenta que cada norma sea corta y sencilla, pero sin estar divididas en muchos puntos.
+      edit: Editar norma
+      empty: Aún no se han definido las normas del servidor.
+      title: Normas del servidor
     settings:
       activity_api_enabled:
         desc_html: Conteo de estados publicados localmente, usuarios activos, y nuevos registros en  periodos semanales
@@ -565,9 +603,6 @@ es:
         users: Para los usuarios locales que han iniciado sesión
       domain_blocks_rationale:
         title: Mostrar la razón de ser
-      enable_bootstrap_timeline_accounts:
-        desc_html: Hacer que los nuevos usuarios sigan automáticamente las cuentas configuradas para que su línea temporal de inicio no comience vacía
-        title: Habilitar seguimientos predeterminados para usuarios nuevos
       hero:
         desc_html: Mostrado en la página principal. Recomendable al menos 600x100px. Por defecto se establece a la miniatura de la instancia
         title: Imagen de portada
@@ -603,7 +638,7 @@ es:
           open: Cualquiera puede registrarse
         title: Modo de registros
       show_known_fediverse_at_about_page:
-        desc_html: Cuando esté activado, se mostrarán toots de todo el fediverso conocido en la vista previa. En otro caso, se mostrarán solamente toots locales.
+        desc_html: Cuando esté desactivado, se mostrarán solamente publicaciones locales en la línea temporal pública
         title: Mostrar fediverso conocido en la vista previa de la historia
       show_staff_badge:
         desc_html: Mostrar un parche de staff en la página de un usuario
@@ -621,9 +656,6 @@ es:
         desc_html: Puedes escribir tus propias políticas de privacidad, términos de servicio u otras legalidades. Puedes usar tags HTML
         title: Términos de servicio personalizados
       site_title: Nombre de instancia
-      spam_check_enabled:
-        desc_html: Mastodon puede silenciar y reportar cuentas automáticamente usando medidas como detectar cuentas que envían mensajes no solicitados repetidos. Puede que haya falsos positivos.
-        title: Contra-spam
       thumbnail:
         desc_html: Se usa para muestras con OpenGraph y APIs. Se recomienda 1200x630px
         title: Portada de instancia
@@ -654,13 +686,18 @@ es:
       no_status_selected: No se cambió ningún estado al no seleccionar ninguno
       title: Estado de las cuentas
       with_media: Con multimedia
+    system_checks:
+      database_schema_check:
+        message_html: Hay migraciones pendientes de la base de datos. Por favor, ejecútalas para asegurarte de que la aplicación funciona como debería
+      rules_check:
+        action: Administrar reglas del servidor
+        message_html: No ha definido ninguna regla del servidor.
+      sidekiq_process_check:
+        message_html: No hay ningún proceso Sidekiq en ejecución para la(s) cola(s) %{value}. Por favor, revise su configuración de Sidekiq
     tags:
       accounts_today: Usos únicos de hoy
       accounts_week: Usos únicos esta semana
       breakdown: Desglose del consumo actual por fuentes
-      context: Contexto
-      directory: En el directorio
-      in_directory: "%{count} en el directorio"
       last_active: Última actividad
       most_popular: Más popular
       most_recent: Más reciente
@@ -677,6 +714,7 @@ es:
       add_new: Añadir nuevo
       delete: Borrar
       edit_preset: Editar aviso predeterminado
+      empty: Aún no has definido ningún preajuste de advertencia.
       title: Editar configuración predeterminada de avisos
   admin_mailer:
     new_pending_account:
@@ -707,10 +745,10 @@ es:
       guide_link: https://es.crowdin.com/project/mastodon
       guide_link_text: Todos pueden contribuir.
     sensitive_content: Contenido sensible
-    toot_layout: Diseño de los toots
+    toot_layout: Diseño de las publicaciones
   application_mailer:
     notification_preferences: Cambiar preferencias de correo electrónico
-    salutation: "%{name},"
+    salutation: "%{name}:"
     settings: 'Cambiar preferencias de correo: %{link}'
     view: 'Vista:'
     view_profile: Ver perfil
@@ -790,22 +828,22 @@ es:
       invalid_signature: no es una firma Ed25519 válida
   date:
     formats:
-      default: "%b %d, %Y"
-      with_month_name: "%B %d, %Y"
+      default: "%d %b %Y"
+      with_month_name: "%d %B %Y"
   datetime:
     distance_in_words:
-      about_x_hours: "%{count}h"
+      about_x_hours: "%{count} h"
       about_x_months: "%{count}m"
       about_x_years: "%{count}a"
       almost_x_years: "%{count}a"
       half_a_minute: Justo ahora
-      less_than_x_minutes: "%{count}m"
+      less_than_x_minutes: "%{count} m"
       less_than_x_seconds: Justo ahora
       over_x_years: "%{count}a"
-      x_days: "%{count}d"
-      x_minutes: "%{count}m"
+      x_days: "%{count} d"
+      x_minutes: "%{count} m"
       x_months: "%{count}m"
-      x_seconds: "%{count}s"
+      x_seconds: "%{count} s"
   deletes:
     challenge_not_passed: Los datos introducidos son incorrectos
     confirm_password: Ingresa tu contraseña actual para demostrar tu identidad
@@ -851,7 +889,7 @@ es:
     archive_takeout:
       date: Fecha
       download: Descargar tu archivo
-      hint_html: Puedes solicitar un archivo de tus <strong>toots y archivos multimedia subidos</strong>. Los datos exportados estarán en formato ActivityPub, legibles por cualquier software compatible.
+      hint_html: Puedes solicitar un archivo de tus <strong>publicaciones y archivos multimedia subidos</strong>. Los datos exportados estarán en formato ActivityPub, legibles por cualquier software compatible.
       in_progress: Recopilando tu archivo...
       request: Solicitar tu archivo
       size: Tamaño
@@ -1038,10 +1076,14 @@ es:
       body: 'Fuiste mencionado por %{name} en:'
       subject: Fuiste mencionado por %{name}
       title: Nueva mención
+    poll:
+      subject: Una encuesta de %{name} ha terminado
     reblog:
-      body: "%{name} ha retooteado tu estado:"
-      subject: "%{name} ha retooteado tu estado"
+      body: "%{name} ha retooteado tu publicación:"
+      subject: "%{name} ha retooteado tu publicación"
       title: Nueva difusión
+    status:
+      subject: "%{name} acaba de publicar"
   notifications:
     email_events: Eventos para notificaciones por correo electrónico
     email_events_hint: 'Selecciona los eventos para los que deseas recibir notificaciones:'
@@ -1049,13 +1091,13 @@ es:
   number:
     human:
       decimal_units:
-        format: "%n%u"
+        format: "%n %u"
         units:
-          billion: B
+          billion: MM
           million: M
-          quadrillion: Q
+          quadrillion: MB
           thousand: m
-          trillion: T
+          trillion: B
   otp_authentication:
     code_hint: Introduce el código generado por tu aplicación de autentificación para confirmar
     description_html: Si habilitas <strong>autenticación de dos factores</strong> a través de una aplicación de autenticación, el ingreso requerirá que estés en posesión de tu teléfono, que generará códigos para que ingreses.
@@ -1116,16 +1158,16 @@ es:
   remote_interaction:
     favourite:
       proceed: Proceder a marcar como favorito
-      prompt: 'Quieres marcar como favorito este toot:'
+      prompt: 'Quieres marcar como favorita esta publicación:'
     reblog:
       proceed: Proceder a retootear
-      prompt: 'Quieres retootear este toot:'
+      prompt: 'Quieres retootear esta publicación:'
     reply:
       proceed: Proceder a responder
-      prompt: 'Quieres responder a este toot:'
+      prompt: 'Quieres responder a esta publicación:'
   scheduled_statuses:
-    over_daily_limit: Ha superado el límite de %{limit} toots programados para ese día
-    over_total_limit: Ha superado el límite de %{limit} toots programados
+    over_daily_limit: Ha superado el límite de %{limit} publicaciones programadas para ese día
+    over_total_limit: Ha superado el límite de %{limit} publicaciones programadas
     too_soon: La fecha programada debe estar en el futuro
   sessions:
     activity: Última actividad
@@ -1159,7 +1201,7 @@ es:
       chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
-      linux: Linux
+      linux: GNU Linux
       mac: Mac
       other: Desconocido
       windows: Windows
@@ -1190,13 +1232,11 @@ es:
     relationships: Siguiendo y seguidores
     two_factor_authentication: Autenticación de dos factores
     webauthn_authentication: Claves de seguridad
-  spam_check:
-    spam_detected: Este es un informe automatizado. Se ha detectado correo no deseado.
   statuses:
     attached:
       audio:
         one: "%{count} audio"
-        other: "%{count} audio"
+        other: "%{count} audios"
       description: 'Adjunto: %{attached}'
       image:
         one: "%{count} imagen"
@@ -1216,8 +1256,8 @@ es:
     over_character_limit: Límite de caracteres de %{max} superado
     pin_errors:
       limit: Ya has fijado el número máximo de publicaciones
-      ownership: El toot de alguien más no puede fijarse
-      private: Los toots no-públicos no pueden fijarse
+      ownership: La publicación de otra persona no puede fijarse
+      private: Las publicaciones no públicas no pueden fijarse
       reblog: Un boost no puede fijarse
     poll:
       total_people:
@@ -1232,8 +1272,9 @@ es:
     show_older: Mostrar más antiguos
     show_thread: Mostrar discusión
     sign_in_to_participate: Regístrate para participar en la conversación
-    title: '%{name}: "%{quote}"'
+    title: "%{name}: «%{quote}»"
     visibilities:
+      direct: Directa
       private: Sólo mostrar a seguidores
       private_long: Solo mostrar a tus seguidores
       public: Público
@@ -1241,7 +1282,7 @@ es:
       unlisted: Público, pero no mostrar en la historia federada
       unlisted_long: Todos pueden ver, pero no está listado en las líneas de tiempo públicas
   stream_entries:
-    pinned: Toot fijado
+    pinned: Publicación fijada
     reblogged: retooteado
     sensitive_content: Contenido sensible
   tags:
@@ -1367,8 +1408,8 @@ es:
       explanation:
         disable: Mientras su cuenta esté congelada, la información de su cuenta permanecerá intacta, pero no puede realizar ninguna acción hasta que se desbloquee.
         sensitive: Los archivos multimedia subidos y vinculados serán tratados como sensibles.
-        silence: Mientras su cuenta está limitada, sólo las personas que ya le están siguiendo verán sus toots en este servidor, y puede que se le excluya de varios listados públicos. Sin embargo, otros pueden seguirle manualmente.
-        suspend: Su cuenta ha sido suspendida, y todos tus toots y tus archivos multimedia subidos han sido irreversiblemente eliminados de este servidor, y de los servidores donde tenías seguidores.
+        silence: Mientras su cuenta está limitada, sólo las personas que ya te están siguiendo verán tus publicaciones en este servidor, y puede que se te excluya de varios listados públicos. Sin embargo, otros pueden seguirte manualmente.
+        suspend: Su cuenta ha sido suspendida, y todas tus publicaciones y tus archivos multimedia subidos han sido irreversiblemente eliminados de este servidor, y de los servidores donde tenías seguidores.
       get_in_touch: Puede responder a esta dirección de correo electrónico para ponerse en contacto con el personal de %{instance}.
       review_server_policies: Revisar las políticas del servidor
       statuses: 'Específicamente, para:'
@@ -1402,11 +1443,8 @@ es:
       tips: Consejos
       title: Te damos la bienvenida a bordo, %{name}!
   users:
-    blocked_email_provider: Este proveedor de correo electrónico no está permitido
     follow_limit_reached: No puedes seguir a más de %{limit} personas
     generic_access_help_html: "¿Tienes problemas para acceder a tu cuenta? Puedes ponerte en contacto con %{email} para conseguir ayuda"
-    invalid_email: La dirección de correo es incorrecta
-    invalid_email_mx: La dirección de correo electrónico parece inexistente
     invalid_otp_token: Código de dos factores incorrecto
     invalid_sign_in_token: Código de seguridad no válido
     otp_lost_help_html: Si perdiste al acceso a ambos, puedes ponerte en contancto con %{email}

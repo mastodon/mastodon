@@ -129,6 +129,13 @@ jobs:
         environment: *ruby_environment
     <<: *install_ruby_dependencies
 
+  install-ruby3.0:
+    <<: *defaults
+    docker:
+      - image: circleci/ruby:3.0-buster-node
+        environment: *ruby_environment
+    <<: *install_ruby_dependencies
+
   build:
     <<: *defaults
     steps:
@@ -187,6 +194,18 @@ jobs:
       - image: circleci/redis:5-alpine
     <<: *test_steps
 
+  test-ruby3.0:
+    <<: *defaults
+    docker:
+      - image: circleci/ruby:3.0-buster-node
+        environment: *ruby_environment
+      - image: circleci/postgres:12.2
+        environment:
+          POSTGRES_USER: root
+          POSTGRES_HOST_AUTH_METHOD: trust
+      - image: circleci/redis:5-alpine
+    <<: *test_steps
+
   test-webui:
     <<: *defaults
     docker:
@@ -197,24 +216,6 @@ jobs:
           name: Run jest
           command: yarn test:jest
 
-  check-i18n:
-    <<: *defaults
-    steps:
-      - *attach_workspace
-      - *install_system_dependencies
-      - run:
-          name: Check locale file normalization
-          command: bundle exec i18n-tasks check-normalized
-      - run:
-          name: Check for unused strings
-          command: bundle exec i18n-tasks unused -l en
-      - run:
-          name: Check for wrong string interpolations
-          command: bundle exec i18n-tasks check-consistent-interpolations
-      - run:
-          name: Check that all required locale files exist
-          command: bundle exec rake repo:check_locales_files
-
 workflows:
   version: 2
   build-and-test:
@@ -224,6 +225,10 @@ workflows:
           requires:
             - install
       - install-ruby2.6:
+          requires:
+            - install
+            - install-ruby2.7
+      - install-ruby3.0:
           requires:
             - install
             - install-ruby2.7
@@ -241,9 +246,10 @@ workflows:
           requires:
             - install-ruby2.6
             - build
+      - test-ruby3.0:
+          requires:
+            - install-ruby3.0
+            - build
       - test-webui:
           requires:
             - install
-      - check-i18n:
-          requires:
-            - install-ruby2.7

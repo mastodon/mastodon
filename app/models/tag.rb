@@ -20,10 +20,8 @@
 class Tag < ApplicationRecord
   has_and_belongs_to_many :statuses
   has_and_belongs_to_many :accounts
-  has_and_belongs_to_many :sample_accounts, -> { local.discoverable.popular.limit(3) }, class_name: 'Account'
 
   has_many :featured_tags, dependent: :destroy, inverse_of: :tag
-  has_one :account_tag_stat, dependent: :destroy
 
   HASHTAG_SEPARATORS = "_\u00B7\u200c"
   HASHTAG_NAME_RE    = "([[:word:]_][[:word:]#{HASHTAG_SEPARATORS}]*[[:alpha:]#{HASHTAG_SEPARATORS}][[:word:]#{HASHTAG_SEPARATORS}]*[[:word:]_])|([[:word:]_]*[[:alpha:]][[:word:]_]*)"
@@ -38,28 +36,10 @@ class Tag < ApplicationRecord
   scope :usable, -> { where(usable: [true, nil]) }
   scope :listable, -> { where(listable: [true, nil]) }
   scope :trendable, -> { Setting.trendable_by_default ? where(trendable: [true, nil]) : where(trendable: true) }
-  scope :discoverable, -> { listable.joins(:account_tag_stat).where(AccountTagStat.arel_table[:accounts_count].gt(0)).order(Arel.sql('account_tag_stats.accounts_count desc')) }
   scope :recently_used, ->(account) { joins(:statuses).where(statuses: { id: account.statuses.select(:id).limit(1000) }).group(:id).order(Arel.sql('count(*) desc')) }
-  # Search with case-sensitive to use B-tree index.
-  scope :matches_name, ->(term) { where(arel_table[:name].lower.matches(arel_table.lower("#{sanitize_sql_like(Tag.normalize(term))}%"), nil, true)) }
-
-  delegate :accounts_count,
-           :accounts_count=,
-           :increment_count!,
-           :decrement_count!,
-           to: :account_tag_stat
-
-  after_save :save_account_tag_stat
+  scope :matches_name, ->(term) { where(arel_table[:name].lower.matches(arel_table.lower("#{sanitize_sql_like(Tag.normalize(term))}%"), nil, true)) } # Search with case-sensitive to use B-tree index
 
   update_index('tags#tag', :self)
-
-  def account_tag_stat
-    super || build_account_tag_stat
-  end
-
-  def cached_sample_accounts
-    Rails.cache.fetch("#{cache_key}/sample_accounts", expires_in: 12.hours) { sample_accounts }
-  end
 
   def to_param
     name
@@ -95,6 +75,10 @@ class Tag < ApplicationRecord
     requested_review_at.present?
   end
 
+  def use!(account, status: nil, at_time: Time.now.utc)
+    TrendingTags.record_use!(self, account, status: status, at_time: at_time)
+  end
+
   def trending?
     TrendingTags.trending?(self)
   end
@@ -127,9 +111,10 @@ class Tag < ApplicationRecord
     end
 
     def search_for(term, limit = 5, offset = 0, options = {})
-      striped_term = term.strip
-      query = Tag.listable.matches_name(striped_term)
-      query = query.merge(matching_name(striped_term).or(where.not(reviewed_at: nil))) if options[:exclude_unreviewed]
+      stripped_term = term.strip
+
+      query = Tag.listable.matches_name(stripped_term)
+      query = query.merge(matching_name(stripped_term).or(where.not(reviewed_at: nil))) if options[:exclude_unreviewed]
 
       query.order(Arel.sql('length(name) ASC, name ASC'))
            .limit(limit)
@@ -160,11 +145,6 @@ class Tag < ApplicationRecord
   end
 
   private
-
-  def save_account_tag_stat
-    return unless account_tag_stat&.changed?
-    account_tag_stat.save
-  end
 
   def validate_name_change
     errors.add(:name, I18n.t('tags.does_not_match_previous_name')) unless name_was.mb_chars.casecmp(name.mb_chars).zero?

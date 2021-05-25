@@ -10,8 +10,6 @@
         = tag.name
 
         %small
-          = t('admin.tags.in_directory', count: tag.accounts_count)
-          &bull;
           = t('admin.tags.unique_uses_today', count: tag.history.first[:accounts])
 
           - if tag.trending?

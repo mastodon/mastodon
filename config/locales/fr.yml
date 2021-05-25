@@ -1,7 +1,7 @@
 ---
 fr:
   about:
-    about_hashtag_html: Ce sont des pouets tagués avec <strong>#%{hashtag}</strong>. Vous pouvez interagir si vous avez un compte n’importe où dans le Fédiverse.
+    about_hashtag_html: Voici des messages publics tagués avec <strong>#%{hashtag}</strong>. Vous pouvez interagir avec si vous avez un compte n’importe où dans le fédiverse.
     about_mastodon_html: 'Le réseau social de l''avenir : pas de publicité, pas de surveillance institutionnelle, conception éthique et décentralisation ! Gardez le contrôle de vos données avec Mastodon !'
     about_this: À propos
     active_count_after: actif·ve·s
@@ -76,10 +76,10 @@ fr:
     pin_errors:
       following: Vous devez être déjà abonné·e à la personne que vous désirez recommander
     posts:
-      one: Pouet
-      other: Pouets
-    posts_tab_heading: Pouets
-    posts_with_replies: Pouets & réponses
+      one: Message
+      other: Messages
+    posts_tab_heading: Messages
+    posts_with_replies: Messages et réponses
     roles:
       admin: Admin
       bot: Robot
@@ -230,6 +230,7 @@ fr:
         create_domain_block: Créer un blocage de domaine
         create_email_domain_block: Créer un blocage de domaine de courriel
         create_ip_block: Créer une règle IP
+        create_unavailable_domain: Créer un domaine indisponible
         demote_user: Rétrograder l’utilisateur·ice
         destroy_announcement: Supprimer l’annonce
         destroy_custom_emoji: Supprimer des émojis personnalisés
@@ -238,6 +239,7 @@ fr:
         destroy_email_domain_block: Supprimer le blocage de domaine de courriel
         destroy_ip_block: Supprimer la règle IP
         destroy_status: Supprimer le statut
+        destroy_unavailable_domain: Supprimer le domaine indisponible
         disable_2fa_user: Désactiver l’A2F
         disable_custom_emoji: Désactiver les émojis personnalisés
         disable_user: Désactiver l’utilisateur·ice
@@ -284,7 +286,7 @@ fr:
         disable_user_html: "%{name} a désactivé la connexion de l'utilisateur·rice %{target}"
         enable_custom_emoji_html: "%{name} a activé l'émoji %{target}"
         enable_user_html: "%{name} a activé la connexion de l'utilisateur·rice %{target}"
-        memorialize_account_html: "%{name} a transformé le compte de %{target} en une page de commémoration"
+        memorialize_account_html: "%{name} a converti le compte de %{target} en un mémorial"
         promote_user_html: "%{name} a promu l'utilisateur·rice %{target}"
         remove_avatar_user_html: "%{name} a supprimé l'avatar de %{target}"
         reopen_report_html: "%{name} a rouvert le signalement %{target}"
@@ -443,15 +445,17 @@ fr:
         title: Nouveau blocage de domaine de courriel
       title: Blocage de domaines de courriel
     follow_recommendations:
-      description_html: "<strong>Les recommandations d'abonnement aident les nouveaux utilisateur·rice·s à trouver rapidement du contenu intéressant</strong>. Lorsqu'un·e utilisateur·rice n'a pas suffisamment interagi avec les autres pour émettre des recommandations d'abonnement personnalisées, ces comptes sont alors recommandés. La sélection est mise à jour quotidiennement au sein d'un mélange de comptes comptabilisant le plus d'interactions récentes et le plus grand nombre d'abonné·e·s locaux pour une langue donnée."
+      description_html: "<strong>Les recommandations d'abonnement aident les nouvelles personnes à trouver rapidement du contenu intéressant</strong>. Si un·e utilisateur·rice n'a pas assez interagi avec les autres pour avoir des recommandations personnalisées, ces comptes sont alors recommandés. La sélection est mise à jour quotidiennement depuis un mélange de comptes ayant le plus d'interactions récentes et le plus grand nombre d'abonné·e·s locaux pour une langue donnée."
       language: Pour la langue
       status: État
       suppress: Supprimer les recommandations d'abonnement
-      suppressed: Supprimé
+      suppressed: Supprimée
       title: Recommandations d'abonnement
       unsuppress: Rétablir les recommandations d'abonnement
     instances:
       by_domain: Domaine
+      delivery:
+        unavailable: Indisponible
       delivery_available: Livraison disponible
       empty: Aucun domaine trouvé.
       known_accounts:
@@ -499,11 +503,11 @@ fr:
     relays:
       add_new: Ajouter un nouveau relais
       delete: Supprimer
-      description_html: Un <strong>relai de fédération</strong> est un serveur intermédiaire qui échange de grandes quantités de pouets publics entre les serveurs qui publient dessus et ceux qui y sont abonnés. <strong>Il peut aider les petits et moyen serveurs à découvrir du contenu sur le fediverse</strong>, ce qui normalement nécessiterait que les membres locaux suivent des gens inscrits sur des serveurs distants.
+      description_html: Un <strong>relai de fédération</strong> est un serveur intermédiaire qui échange de grandes quantités de messages publics entre les serveurs qui s’inscrivent et ceux qui publient dessus. <strong>Il peut aider les petits et moyens serveurs à découvrir du contenu sur le fediverse</strong>, ce qui normalement nécessiterait que leurs membres suivent des gens inscrits sur d’autres serveurs.
       disable: Désactiver
       disabled: Désactivé
       enable: Activer
-      enable_hint: Une fois activé, votre serveur souscrira à tous les pouets publics présents sur ce relais et y enverra ses propres pouets publics.
+      enable_hint: Une fois activé, votre serveur souscrira à tous les messages publics de ce relais et y enverra ses propres messages publics.
       enabled: Activé
       inbox_url: URL du relais
       pending: En attente de l’approbation du relai
@@ -582,9 +586,6 @@ fr:
         users: Aux utilisateur·rice·s connecté·e·s localement
       domain_blocks_rationale:
         title: Montrer la raison
-      enable_bootstrap_timeline_accounts:
-        desc_html: Faire suivre automatiquement les comptes configurés aux nouveaux·lles utilisateurs·rices afin que leur flux personnel ne démarre pas vide
-        title: Activer les abonnements par défaut pour les nouveaux·elles utilisateur·rice·s
       hero:
         desc_html: Affichée sur la page d’accueil. Au moins 600x100px recommandé. Lorsqu’elle n’est pas définie, se rabat sur la vignette du serveur
         title: Image d’en-tête
@@ -592,7 +593,7 @@ fr:
         desc_html: Affiché sur plusieurs pages. Au moins 293×205px recommandé. Lorsqu’il n’est pas défini, retombe à la mascotte par défaut
         title: Image de la mascotte
       peers_api_enabled:
-        desc_html: Noms des domaines que ce serveur a découvert dans le fediverse
+        desc_html: Noms des domaines que ce serveur a découvert dans le fédiverse
         title: Publier la liste des serveurs découverts
       preview_sensitive_media:
         desc_html: Les aperçus de lien sur les autres sites web afficheront une vignette même si les médias sont marqués comme sensibles
@@ -620,8 +621,8 @@ fr:
           open: N’importe qui peut s’inscrire
         title: Mode d’enregistrement
       show_known_fediverse_at_about_page:
-        desc_html: Lorsque l’option est activée, les pouets provenant de toutes les serveurs connus sont montrés dans la prévisualisation. Sinon, seuls les pouets locaux sont montrés
-        title: Afficher le fediverse connu dans la prévisualisation du fil
+        desc_html: Lorsque désactivée, restreint le fil public accessible via la page d’accueil de l’instance pour ne montrer que le contenu local
+        title: Inclure le contenu fédéré sur la page de fil public sans authentification
       show_staff_badge:
         desc_html: Montrer un badge de responsable sur une page utilisateur·rice
         title: Montrer un badge de responsable
@@ -680,9 +681,6 @@ fr:
       accounts_today: Utilisations uniques aujourd'hui
       accounts_week: Utilisation unique cette semaine
       breakdown: Répartition de l’utilisation actuelle par source
-      context: Contexte
-      directory: Dans l’annuaire
-      in_directory: "%{count} dans l’annuaire"
       last_active: Dernière activité
       most_popular: Plus populaire
       most_recent: Plus récent
@@ -691,7 +689,7 @@ fr:
       reviewed: Traité
       title: Hashtags
       trending_right_now: Populaire en ce moment
-      unique_uses_today: "%{count} posts aujourd'hui"
+      unique_uses_today: "%{count} publications aujourd'hui"
       unreviewed: Non traité
       updated_msg: Paramètres du hashtag mis à jour avec succès
     title: Administration
@@ -730,7 +728,7 @@ fr:
       guide_link: https://fr.crowdin.com/project/mastodon
       guide_link_text: Tout le monde peut y contribuer.
     sensitive_content: Contenu sensible
-    toot_layout: Agencement du pouet
+    toot_layout: Agencement des messages
   application_mailer:
     notification_preferences: Modifier les préférences de courriel
     salutation: "%{name},"
@@ -772,7 +770,7 @@ fr:
       cas: CAS
       saml: SAML
     register: S’inscrire
-    registration_closed: "%{instance} n’accepte pas de nouveaux membres"
+    registration_closed: "%{instance} a désactivé les inscriptions"
     resend_confirmation: Envoyer à nouveau les consignes de confirmation
     reset_password: Réinitialiser le mot de passe
     security: Sécurité
@@ -874,7 +872,7 @@ fr:
     archive_takeout:
       date: Date
       download: Télécharger votre archive
-      hint_html: Vous pouvez demander une archive de vos <strong>pouets et médias téléversés</strong>. Les données exportées seront au format ActivityPub, lisible par tout logiciel compatible. Vous pouvez demander une archive tous les 7 jours.
+      hint_html: Vous pouvez demander une archive de vos <strong>messages et médias téléversés</strong>. Les données exportées seront au format ActivityPub, lisible par tout logiciel compatible. Vous pouvez demander une archive tous les 7 jours.
       in_progress: Création de votre archive…
       request: Demandez vos archives
       size: Taille
@@ -940,7 +938,7 @@ fr:
     i_am_html: Je suis %{username} sur %{service}.
     identity: Identité
     inactive: Inactive
-    publicize_checkbox: 'Et le poueter :'
+    publicize_checkbox: 'Et publier ceci :'
     publicize_toot: 'C’est prouvé ! Je suis %{username} sur %{service}: %{url}'
     remove: Retirer la preuve du compte
     removed: Preuve retirée du compte avec succès
@@ -1019,10 +1017,10 @@ fr:
     warning:
       backreference_required: Le nouveau compte doit d'abord être configuré pour faire référence à celui-ci en définissant un alias
       before: 'Avant de procéder, veuillez lire attentivement ces notes :'
-      cooldown: Après le déménagement, il y a une période de gel pendant laquelle vous ne pourrez plus re-déménager
+      cooldown: Après le déménagement, il y a une période d’attente pendant laquelle vous ne pourrez pas re-déménager
       disabled_account: Votre compte actuel ne sera pas entièrement utilisable par la suite. Cependant, vous aurez accès à l'exportation de données et à la ré-activation.
       followers: Cette action va déménager tou·te·s les abonné·e·s du compte actuel vers le nouveau compte
-      only_redirect_html: Alternativement, vous pouvez <a href="%{path}">seulement appliquer une redirection sur votre profil</a>.
+      only_redirect_html: Alternativement, vous pouvez <a href="%{path}">seulement afficher une redirection sur votre profil</a>.
       other_data: Aucune autre donnée ne sera déplacée automatiquement
       redirect: Le profil de votre compte actuel sera mis à jour avec un avis de redirection et sera exclu des recherches
   moderation:
@@ -1044,8 +1042,8 @@ fr:
         other: "%{count} nouvelles notifications depuis votre dernière visite \U0001F418"
       title: Pendant votre absence…
     favourite:
-      body: "%{name} a ajouté votre pouet à ses favoris :"
-      subject: "%{name} a ajouté votre pouet à ses favoris"
+      body: "%{name} a ajouté votre message à ses favoris :"
+      subject: "%{name} a ajouté votre message à ses favoris"
       title: Nouveau favori
     follow:
       body: "%{name} vous suit !"
@@ -1064,8 +1062,8 @@ fr:
     poll:
       subject: Un sondage de %{name} est terminé
     reblog:
-      body: "%{name} a partagé votre statut :"
-      subject: "%{name} a partagé votre statut"
+      body: 'Votre message été partagé par %{name} :'
+      subject: "%{name} a partagé votre message"
       title: Nouveau partage
     status:
       subject: "%{name} vient de publier"
@@ -1110,7 +1108,7 @@ fr:
       too_many_options: ne peut contenir plus de %{max} propositions
   preferences:
     other: Autre
-    posting_defaults: Paramètres par défaut des pouets
+    posting_defaults: Paramètres de publication par défaut
     public_timelines: Fils publics
   reactions:
     errors:
@@ -1131,7 +1129,7 @@ fr:
     relationship: Relation
     remove_selected_domains: Supprimer tous les abonné·e·s des domaines sélectionnés
     remove_selected_followers: Supprimer les abonné·e·s sélectionnés
-    remove_selected_follows: Cesser de suivre les utilisateur·rice·s sélectionné·e·s
+    remove_selected_follows: Cesser de suivre les comptes sélectionnés
     status: État du compte
   remote_follow:
     acct: Entrez l’adresse profil@serveur depuis laquelle vous voulez effectuer cette action
@@ -1143,16 +1141,16 @@ fr:
   remote_interaction:
     favourite:
       proceed: Confirmer l’ajout aux favoris
-      prompt: 'Vous souhaitez mettre ce pouet en favori :'
+      prompt: 'Vous souhaitez ajouter ce message à vos favoris :'
     reblog:
       proceed: Confirmer le partage
-      prompt: 'Vous souhaitez partager ce pouet :'
+      prompt: 'Vous souhaitez partager ce message :'
     reply:
       proceed: Confirmer la réponse
-      prompt: 'Vous souhaitez répondre à ce pouet :'
+      prompt: 'Vous souhaitez répondre à ce message :'
   scheduled_statuses:
-    over_daily_limit: Vous avez dépassé la limite de %{limit} pouets planifiés pour ce jour
-    over_total_limit: Vous avez dépassé la limite de %{limit} pouets planifiés
+    over_daily_limit: Vous avez dépassé la limite de %{limit} messages planifiés par jour
+    over_total_limit: Vous avez dépassé la limite de %{limit} messages planifiés
     too_soon: La date planifiée doit être dans le futur
   sessions:
     activity: Dernière activité
@@ -1267,7 +1265,7 @@ fr:
       unlisted: Public sans être affiché sur le fil public
       unlisted_long: Tout le monde peut voir vos statuts mais ils ne seront pas listés sur les fils publics
   stream_entries:
-    pinned: Pouet épinglé
+    pinned: Message épinglé
     reblogged: a partagé
     sensitive_content: Contenu sensible
   tags:
@@ -1393,15 +1391,15 @@ fr:
       explanation:
         disable: Lorsque votre compte est gelé, les données de votre compte demeurent intactes, mais vous ne pouvez effectuer aucune action jusqu’à ce qu’il soit débloqué.
         sensitive: Vos fichiers médias téléversés et vos médias liés seront traités comme sensibles.
-        silence: Lorsque votre compte est limité, seul·e·s les utilisateur·rice·s qui vous suivent déjà verront vos pouets sur ce serveur, et vous pourriez être exclu de plusieurs listes publiques. Néanmoins, d’autres utilisateur·rice·s peuvent vous suivre manuellement.
-        suspend: Votre compte a été suspendu, et tous vos pouets et vos fichiers multimédia téléversés ont été supprimés irréversiblement de ce serveur, et des serveurs où vous aviez des abonné·e·s.
+        silence: Vous pouvez encore utiliser votre compte, mais seuls les comptes qui vous suivent déjà verront vos messages sur ce serveur, et vous pouvez être exclu de plusieurs listes publiques. Néanmoins, il est encore possible de vous suivre manuellement.
+        suspend: Votre ne pouvez plus utiliser votre compte, et votre profil ainsi que d’autres données ne sont plus accessibles. Vous pouvez vous connecter pour demander une sauvegarde de vos données avant qu’elles ne soient complètement supprimées, mais nous gardons certaines données pour vous empêcher d’échapper à la suspension.
       get_in_touch: Vous pouvez répondre à cette adresse pour entrer en contact avec l’équipe de %{instance}.
       review_server_policies: Passer en revue les politiques du serveur
       statuses: 'Spécialement, pour :'
       subject:
         disable: Votre compte %{acct} a été gelé
         none: Avertissement pour %{acct}
-        sensitive: Les médias publiés depuis votre compte %{acct} ont été marqués comme étant sensibles
+        sensitive: Les médias de votre compte %{acct} ont été marqués comme sensibles
         silence: Votre compte %{acct} a été limité
         suspend: Votre compte %{acct} a été suspendu
       title:
@@ -1414,8 +1412,8 @@ fr:
       edit_profile_action: Configuration du profil
       edit_profile_step: Vous pouvez personnaliser votre profil en téléchargeant un avatar, une image d’en-tête, en changeant votre pseudo et plus encore. Si vous souhaitez examiner les nouveaux·lles abonné·e·s avant qu’il·elle·s ne soient autorisé·e·s à vous suivre, vous pouvez verrouiller votre compte.
       explanation: Voici quelques conseils pour vous aider à démarrer
-      final_action: Commencer à publier
-      final_step: 'Commencez à poster ! Même sans abonné·e·s, vos messages publics peuvent être vus par d’autres, par exemple sur le fil public local et dans les hashtags. Vous pouvez vous présenter sur le hashtag #introductions.'
+      final_action: Commencez à publier
+      final_step: 'Commencez à publier ! Même sans abonné·e·s, vos messages publics peuvent être vus par d’autres, par exemple sur le fil public local et dans les hashtags. Vous pouvez vous présenter sur le hashtag #introductions.'
       full_handle: Votre identifiant complet
       full_handle_hint: C’est ce que vous diriez à vos ami·e·s pour leur permettre de vous envoyer un message ou vous suivre à partir d’un autre serveur.
       review_preferences_action: Modifier les préférences

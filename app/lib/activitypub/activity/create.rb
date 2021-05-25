@@ -46,7 +46,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     return reject_payload! if unsupported_object_type? || invalid_origin?(object_uri) || tombstone_exists? || !related_to_local_activity?
 
     lock_or_fail("create:#{object_uri}") do
-      return if delete_arrived_first?(object_uri) || poll_vote? # rubocop:disable Lint/NonLocalExitFromIterator
+      return if delete_arrived_first?(object_uri) || poll_vote?
 
       @status = find_existing_status
 
@@ -164,7 +164,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   def attach_tags(status)
     @tags.each do |tag|
       status.tags << tag
-      TrendingTags.record_use!(tag, status.account, status.created_at) if status.public_visibility?
+      tag.use!(@account, status: status, at_time: status.created_at) if status.public_visibility?
     end
 
     @mentions.each do |mention|

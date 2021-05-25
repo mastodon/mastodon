@@ -36,11 +36,7 @@ describe RelationshipsController do
   end
 
   describe 'PATCH #update' do
-    let(:poopfeast) { Fabricate(:account, username: 'poopfeast', domain: 'example.com', salmon_url: 'http://example.com/salmon') }
-
-    before do
-      stub_request(:post, 'http://example.com/salmon').to_return(status: 200)
-    end
+    let(:poopfeast) { Fabricate(:account, username: 'poopfeast', domain: 'example.com') }
 
     shared_examples 'redirects back to followers page' do
       it 'redirects back to followers page' do

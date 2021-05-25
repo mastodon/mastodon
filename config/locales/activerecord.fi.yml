@@ -5,9 +5,28 @@ fi:
       poll:
         expires_at: Määräaika
         options: Vaihtoehdot
+      user:
+        agreement: Palvelusopimus
+        email: Sähköpostiosoite
+        locale: Paikallinen
+        password: Salasana
+      user/account:
+        username: Käyttäjätunnus
+      user/invite_request:
+        text: Syy
     errors:
       models:
         account:
           attributes:
             username:
-              invalid: vain kirjaimia, numeroita ja alaviivoja
+              invalid: saa sisältää vain kirjaimia, numeroita ja alaviivoja
+              reserved: on varattu
+        status:
+          attributes:
+            reblog:
+              taken: tila on jo olemassa
+        user:
+          attributes:
+            email:
+              blocked: käyttää kiellettyä sähköpostipalvelun tarjoajaa
+              unreachable: ei näytä olevan olemassa

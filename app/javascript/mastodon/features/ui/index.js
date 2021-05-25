@@ -364,7 +364,6 @@ class UI extends React.PureComponent {
     this.props.dispatch(fetchMarkers());
     this.props.dispatch(expandHomeTimeline());
     this.props.dispatch(expandNotifications());
-
     setTimeout(() => this.props.dispatch(fetchFilters()), 500);
 
     this.hotkeys.__mousetrap__.stopCallback = (e, element) => {

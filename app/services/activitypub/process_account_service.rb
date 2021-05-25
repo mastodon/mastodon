@@ -87,6 +87,7 @@ class ActivityPub::ProcessAccountService < BaseService
     @account.url                     = url || @uri
     @account.uri                     = @uri
     @account.actor_type              = actor_type
+    @account.created_at              = @json['published'] if @json['published'].present?
   end
 
   def set_immediate_attributes!
@@ -101,12 +102,20 @@ class ActivityPub::ProcessAccountService < BaseService
   end
 
   def set_fetchable_key!
-    @account.public_key        = public_key || ''
+    @account.public_key = public_key || ''
   end
 
   def set_fetchable_attributes!
-    @account.avatar_remote_url = image_url('icon')  || '' unless skip_download?
-    @account.header_remote_url = image_url('image') || '' unless skip_download?
+    begin
+      @account.avatar_remote_url = image_url('icon') || '' unless skip_download?
+    rescue Mastodon::UnexpectedResponseError, HTTP::TimeoutError, HTTP::ConnectionError, OpenSSL::SSL::SSLError
+      RedownloadAvatarWorker.perform_in(rand(30..600).seconds, @account.id)
+    end
+    begin
+      @account.header_remote_url = image_url('image') || '' unless skip_download?
+    rescue Mastodon::UnexpectedResponseError, HTTP::TimeoutError, HTTP::ConnectionError, OpenSSL::SSL::SSLError
+      RedownloadHeaderWorker.perform_in(rand(30..600).seconds, @account.id)
+    end
     @account.statuses_count    = outbox_total_items    if outbox_total_items.present?
     @account.following_count   = following_total_items if following_total_items.present?
     @account.followers_count   = followers_total_items if followers_total_items.present?
@@ -281,7 +290,7 @@ class ActivityPub::ProcessAccountService < BaseService
   end
 
   def lock_options
-    { redis: Redis.current, key: "process_account:#{@uri}" }
+    { redis: Redis.current, key: "process_account:#{@uri}", autorelease: 15.minutes.seconds }
   end
 
   def process_tags
