@@ -21,6 +21,7 @@ class AddFixedLowercaseIndexToAccounts < ActiveRecord::Migration[5.2]
     begin
       add_index :accounts, "lower (username), COALESCE(lower(domain), '')", name: 'index_accounts_on_username_and_domain_lower', unique: true, algorithm: :concurrently
     rescue ActiveRecord::RecordNotUnique
+      remove_index :accounts, name: 'index_accounts_on_username_and_domain_lower'
       raise CorruptionError, 'Migration failed because of index corruption, see https://docs.joinmastodon.org/admin/troubleshooting/index-corruption/#fixing'
     end
 
