@@ -15,7 +15,13 @@ class AddCaseInsensitiveIndexToTags < ActiveRecord::Migration[5.2]
       Tag.where(id: redundant_tag_ids).in_batches.delete_all
     end
 
-    safety_assured { execute 'CREATE UNIQUE INDEX CONCURRENTLY index_tags_on_name_lower ON tags (lower(name))' }
+    begin
+      safety_assured { execute 'CREATE UNIQUE INDEX CONCURRENTLY index_tags_on_name_lower ON tags (lower(name))' }
+    rescue ActiveRecord::StatementInvalid
+      remove_index :tags, name: 'index_tags_on_name_lower'
+      raise
+    end
+
     remove_index :tags, name: 'index_tags_on_name'
     remove_index :tags, name: 'hashtag_search_index'
   end
