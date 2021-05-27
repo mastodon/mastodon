@@ -216,24 +216,6 @@ jobs:
           name: Run jest
           command: yarn test:jest
 
-  check-i18n:
-    <<: *defaults
-    steps:
-      - *attach_workspace
-      - *install_system_dependencies
-      - run:
-          name: Check locale file normalization
-          command: bundle exec i18n-tasks check-normalized
-      - run:
-          name: Check for unused strings
-          command: bundle exec i18n-tasks unused -l en
-      - run:
-          name: Check for wrong string interpolations
-          command: bundle exec i18n-tasks check-consistent-interpolations
-      - run:
-          name: Check that all required locale files exist
-          command: bundle exec rake repo:check_locales_files
-
 workflows:
   version: 2
   build-and-test:
@@ -271,6 +253,3 @@ workflows:
       - test-webui:
           requires:
             - install
-      - check-i18n:
-          requires:
-            - install-ruby2.7

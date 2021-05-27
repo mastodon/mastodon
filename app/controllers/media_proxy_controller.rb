@@ -45,7 +45,7 @@ class MediaProxyController < ApplicationController
   end
 
   def lock_options
-    { redis: Redis.current, key: "media_download:#{params[:id]}" }
+    { redis: Redis.current, key: "media_download:#{params[:id]}", autorelease: 15.minutes.seconds }
   end
 
   def reject_media?
