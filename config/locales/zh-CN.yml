@@ -191,7 +191,7 @@ zh-CN:
       shared_inbox_url: 公用收件箱（Shared Inbox）URL
       show:
         created_reports: 这个帐户提交的举报
-        targeted_reports: 针对这个帐户的报告
+        targeted_reports: 针对这个帐户的举报
       silence: 隐藏
       silenced: 已隐藏
       statuses: 嘟文
@@ -215,7 +215,7 @@ zh-CN:
       whitelisted: 允许跨站交互
     action_logs:
       action_types:
-        assigned_to_self_report: 指派报告
+        assigned_to_self_report: 指派举报
         change_email_user: 为用户修改邮箱地址
         confirm_user: 确认用户
         create_account_warning: 创建警告
@@ -243,13 +243,13 @@ zh-CN:
         memorialize_account: 将账户设为追悼模式
         promote_user: 给用户升任
         remove_avatar_user: 移除头像
-        reopen_report: 重开报告
+        reopen_report: 重开举报
         reset_password_user: 重置密码
-        resolve_report: 处理报告
+        resolve_report: 处理举报
         sensitive_account: 将你帐号中的媒体标记为敏感内容
         silence_account: 隐藏用户
         suspend_account: 封禁用户
-        unassigned_report: 取消报告的指派
+        unassigned_report: 取消举报的指派
         unsensitive_account: 去除你帐号中媒体的敏感内容标记
         unsilence_account: 解除账号隐藏
         unsuspend_account: 解除账号封禁
@@ -258,7 +258,7 @@ zh-CN:
         update_domain_block: 更新域名屏蔽
         update_status: 更新嘟文
       actions:
-        assigned_to_self_report_html: "%{name} 接管了报告 %{target}"
+        assigned_to_self_report_html: "%{name} 接管了举报 %{target}"
         change_email_user_html: "%{name} 更改了用户 %{target} 的电子邮件地址"
         confirm_user_html: "%{name} 确认了用户 %{target} 的电子邮件地址"
         create_account_warning_html: "%{name} 向 %{target} 发送了警告"
@@ -286,13 +286,13 @@ zh-CN:
         memorialize_account_html: "%{name} 将 %{target} 设置为追悼帐户"
         promote_user_html: "%{name} 对用户 %{target} 进行了升任操作"
         remove_avatar_user_html: "%{name} 删除了 %{target} 的头像"
-        reopen_report_html: "%{name} 重开了报告 %{target}"
+        reopen_report_html: "%{name} 重开了举报 %{target}"
         reset_password_user_html: "%{name} 重置了用户 %{target} 的密码"
-        resolve_report_html: "%{name} 处理了报告 %{target}"
+        resolve_report_html: "%{name} 处理了举报 %{target}"
         sensitive_account_html: "%{name} 将 %{target} 的媒体标记为敏感内容"
         silence_account_html: "%{name} 隐藏了用户 %{target}"
         suspend_account_html: "%{name} 封禁了用户 %{target}"
-        unassigned_report_html: "%{name} 放弃接管报告 %{target}"
+        unassigned_report_html: "%{name} 放弃接管举报 %{target}"
         unsensitive_account_html: "%{name} 去除了 %{target} 的媒体的敏感内容标记"
         unsilence_account_html: "%{name} 解除了用户 %{target} 的隐藏状态"
         unsuspend_account_html: "%{name} 解除了用户 %{target} 的封禁状态"
@@ -538,10 +538,10 @@ zh-CN:
       are_you_sure: 你确定吗？
       assign_to_self: 接管
       assigned: 已接管的监察员
-      by_target_domain: 被报告账户的域名
+      by_target_domain: 被举报账户的域名
       comment:
         none: 没有
-      created_at: 报告时间
+      created_at: 举报时间
       forwarded: 已转发
       forwarded_to: 转发举报至 %{domain}
       mark_as_resolved: 标记为“已处理”
@@ -552,14 +552,14 @@ zh-CN:
         create_and_unresolve: 添加记录并重开
         delete: 删除
         placeholder: 描述已经执行的操作，或其他任何相关的跟进情况…
-      reopen: 重开报告
-      report: '报告 #%{id}'
-      reported_account: 报告用户
-      reported_by: 报告人
+      reopen: 重开举报
+      report: '举报 #%{id}'
+      reported_account: 举报用户
+      reported_by: 举报人
       resolved: 已处理
-      resolved_msg: 报告处理成功！
+      resolved_msg: 举报处理成功！
       status: 状态
-      title: 报告
+      title: 举报
       unassign: 取消接管
       unresolved: 未处理
       updated_at: 更新时间
@@ -711,9 +711,9 @@ zh-CN:
       body: 新帐户的详细信息如下。你可以批准或拒绝此申请。
       subject: 在 %{instance} 上有新帐号 ( %{username}) 需要审核
     new_report:
-      body: "%{reporter} 报告了用户 %{target}"
-      body_remote: 来自 %{domain} 的用户报告了用户 %{target}
-      subject: '来自 %{instance} 的用户报告（#%{id}）'
+      body: "%{reporter} 举报了用户 %{target}"
+      body_remote: 来自 %{domain} 的用户举报了用户 %{target}
+      subject: '来自 %{instance} 的用户举报（#%{id}）'
     new_trending_tag:
       body: '今日的热门话题 #%{name} 之前未经审核。直到你允许之前这个话题将不会公开显示，或者就保持原样让它石沉大海。'
       subject: '在 %{instance} 有新话题 (#%{name}) 待审核'
@@ -725,7 +725,7 @@ zh-CN:
     hint_html: 如果你想把另一个帐号迁移到这里，你可以先在这里创建一个别名。如果你想把关注者迁移过来，这一步是必须的。设置别名的操作时<strong>无害而且可以恢复的</strong>。<strong>帐号迁移的操作会从旧帐号开始</strong>。
     remove: 取消关联别名
   appearance:
-    advanced_web_interface: 高级 Web 界面
+    advanced_web_interface: 高级web界面
     advanced_web_interface_hint: '如果你想使用整个屏幕宽度，高级 web 界面允许您配置多个不同的栏目，可以同时看到更多的信息：主页、通知、跨站时间轴、任意数量的列表和话题标签。'
     animations_and_accessibility: 动画和访问选项
     confirmation_dialogs: 确认对话框
@@ -888,7 +888,7 @@ zh-CN:
     csv: CSV
     domain_blocks: 域名屏蔽
     lists: 列表
-    mutes: 你静音的用户
+    mutes: 你隐藏的用户
     storage: 媒体文件存储
   featured_tags:
     add_new: 添加新条目
@@ -1446,8 +1446,8 @@ zh-CN:
       error: 删除你的安全密钥时出错。请重试。
       success: 你的安全密钥已成功删除。
     invalid_credential: 无效的安全密钥
-    nickname_hint: 输入你新安全密钥的昵称
-    not_enabled: 你尚未启用 WebAuthn
+    nickname_hint: 输入你的新安全密钥的昵称
+    not_enabled: 你尚未启用WebAuthn
     not_supported: 此浏览器不支持安全密钥
     otp_required: 要使用安全密钥，请先启用两步验证。
     registered_on: 注册于 %{date}
