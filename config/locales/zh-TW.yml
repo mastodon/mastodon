@@ -394,7 +394,12 @@ zh-TW:
         title: 新增電子信箱黑名單項目
       title: 電子信箱黑名單
     instances:
+      back_to_all: 所有
+      back_to_warning: 警告
       by_domain: 站台
+      delivery:
+        all: 所有
+        warning: 警告
       delivery_available: 可傳送
       empty: 找不到網域
       known_accounts:
@@ -494,6 +499,7 @@ zh-TW:
       updated_at: 更新
     rules:
       add_new: 新增規則
+      delete: 刪除
       edit: 編輯規則
       title: 伺服器規則
     settings:
@@ -937,6 +943,7 @@ zh-TW:
     incoming_migrations: 自另一個帳號轉移
     proceed_with_move: 移動關注者
     redirected_msg: 您的帳號現在指向 %{acct}
+    set_redirect: 設定重新導向
   moderation:
     title: 營運
   notification_mailer:
@@ -976,6 +983,11 @@ zh-TW:
     next: 下一頁
     older: 較舊
     prev: 上一頁
+  preferences:
+    other: 其他
+  relationships:
+    moved: 已轉移
+    status: 帳號狀態
   remote_follow:
     acct: 請輸入您的使用者名稱@站點網域
     missing_resource: 無法找到資源
@@ -1007,7 +1019,16 @@ zh-TW:
     explanation: 這些是現在正登入於你的 Mastodon 帳戶的瀏覽器。
     ip: IP 位址
     platforms:
+      adobe_air: Adobe Air
+      android: Android
+      blackberry: 黑莓機 （Blackberry）
+      chrome_os: Chrome OS
+      firefox_os: Firefox OS
+      ios: iOS
+      linux: Linux
       mac: Mac
+      other: 不明平台
+      windows: Windows
     revoke: 取消
     revoke_success: Session 取消成功
     title: 作業階段
