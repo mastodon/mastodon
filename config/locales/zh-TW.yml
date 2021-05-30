@@ -26,7 +26,7 @@ zh-TW:
     learn_more: 了解詳細
     privacy_policy: 隱私權政策
     rules: 伺服器規則
-    rules_html: '以下是您若想在此 Mastodon 伺服器建立帳號必須遵守的規則總結：'
+    rules_html: '以下是您若想在此 Mastodon 伺服器建立帳戶必須遵守的規則總結：'
     see_whats_happening: 看看發生什麼事
     server_stats: '伺服器統計：'
     source_code: 原始碼
@@ -58,7 +58,7 @@ zh-TW:
     followers:
       other: 關注者
     following: 正在關注
-    instance_actor_flash: 這個帳號是一個用來代表此伺服器的虛擬執行者，而非真實使用者。它用途為站點聯盟且不應被停權。
+    instance_actor_flash: 這個帳戶是一個用來代表此伺服器的虛擬執行者，而非真實使用者。它用途為站點聯盟且不應被停權。
     joined: 加入於 %{date}
     last_active: 上次活躍時間
     link_verified_on: 此連結的所有權已在 %{date} 檢查過
@@ -100,12 +100,12 @@ zh-TW:
       avatar: 頭像
       by_domain: 站點
       change_email:
-        changed_msg: 已成功變更帳戶電子信箱位址！
-        current_email: 目前的電子信箱位址
-        label: 變更電子信箱位址
-        new_email: 新的電子信箱位址
-        submit: 變更電子信箱位址
-        title: 為 %{username} 變更電子信箱位址
+        changed_msg: 已成功變更帳戶電子信箱地址！
+        current_email: 目前的電子信箱地址
+        label: 變更電子信箱地址
+        new_email: 新的電子信箱地址
+        submit: 變更電子信箱地址
+        title: 為 %{username} 變更電子信箱地址
       confirm: 確定
       confirmed: 已確定
       confirming: 確定
@@ -119,7 +119,7 @@ zh-TW:
       display_name: 暱稱
       domain: 站點
       edit: 編輯
-      email: 電子信箱位址
+      email: 電子信箱地址
       email_status: 電子信箱狀態
       enable: 啟用
       enabled: 已啟用
@@ -141,7 +141,7 @@ zh-TW:
       media_attachments: 多媒體附件
       memorialize: 設定為追悼帳戶
       memorialized: 被悼念的
-      memorialized_msg: 成功將%{username} 的帳號變為紀念帳號
+      memorialized_msg: 成功將%{username} 的帳戶變為紀念帳戶
       moderation:
         active: 活躍
         all: 全部
@@ -152,7 +152,7 @@ zh-TW:
       moderation_notes: 管理備忘
       most_recent_activity: 最近活動
       most_recent_ip: 最近 IP 位址
-      no_account_selected: 未選取任何帳號，因此未變更
+      no_account_selected: 未選取任何帳戶，因此未變更
       no_limits_imposed: 未受限制
       not_subscribed: 未訂閱
       pending: 等待審核中
@@ -165,7 +165,7 @@ zh-TW:
       redownloaded_msg: 成功重新載入%{username} 的個人資料頁面
       reject: 拒絕
       reject_all: 全部拒絕
-      rejected_msg: 成功拒絕了%{username} 的新帳號申請
+      rejected_msg: 成功拒絕了%{username} 的新帳戶申請
       remove_avatar: 取消頭像
       remove_header: 移除開頭
       removed_avatar_msg: 成功刪除了 %{username} 的頭像
@@ -201,7 +201,7 @@ zh-TW:
       suspension_reversible_hint_html: 這個帳戶已被暫停，所有數據將會在 %{date} 被刪除。在此之前，您可以完全回復您的帳戶。如果您想即時刪除這個帳戶的數據，您可以在下面進行操作。
       time_in_queue: 正在佇列等待 %{time}
       title: 帳戶
-      unconfirmed_email: 未確認的電子信箱位址
+      unconfirmed_email: 未確認的電子信箱地址
       undo_sensitized: 取消敏感狀態
       undo_silenced: 取消靜音
       undo_suspension: 取消停權
@@ -216,7 +216,7 @@ zh-TW:
     action_logs:
       action_types:
         assigned_to_self_report: 指派回報
-        change_email_user: 變更使用者的電子信箱位址
+        change_email_user: 變更使用者的電子信箱地址
         confirm_user: 確認使用者
         create_account_warning: 建立警告
         create_announcement: 建立公告
@@ -238,17 +238,17 @@ zh-TW:
         disable_user: 停用帳戶
         enable_custom_emoji: 啓用自訂顏文字
         enable_user: 啓用帳戶
-        memorialize_account: 設定成紀念帳號
+        memorialize_account: 設定成紀念帳戶
         promote_user: 把用戶升級
         remove_avatar_user: 刪除大頭貼
         reopen_report: 重開舉報
         reset_password_user: 重設密碼
         resolve_report: 消除舉報
-        sensitive_account: 把您的帳號的媒體標記為敏感內容
+        sensitive_account: 把您的帳戶的媒體標記為敏感內容
         silence_account: 靜音用戶
         suspend_account: 暫停用戶
         unassigned_report: 取消指派舉報
-        unsensitive_account: 取消把您的帳號的媒體設定為敏感內容
+        unsensitive_account: 取消把您的帳戶的媒體設定為敏感內容
         unsilence_account: 取消用戶的靜音狀態
         unsuspend_account: 取消用戶的暫停狀態
         update_announcement: 更新公告
@@ -472,7 +472,7 @@ zh-TW:
       are_you_sure: 你確定嗎?
       assign_to_self: 指派給自己
       assigned: 指派負責人
-      by_target_domain: 檢舉帳號之網域
+      by_target_domain: 檢舉帳戶之網域
       comment:
         none: 無
       created_at: 日期
@@ -510,7 +510,7 @@ zh-TW:
         desc_html: 以半形逗號分隔多個使用者名。只能加入來自本站且未開啟保護的帳戶。如果留空，則預設關注本站所有管理員。
         title: 新使用者預設關注
       contact_information:
-        email: 用於聯絡的公開電子信箱位址
+        email: 用於聯絡的公開電子信箱地址
         username: 請輸入使用者名稱
       custom_css:
         desc_html: 透過於每個頁面都載入的 CSS 調整外觀
@@ -639,8 +639,8 @@ zh-TW:
       title: 管理預設警告
   admin_mailer:
     new_pending_account:
-      body: 以下是新帳號的詳細資訊。您可以同意或拒絕這項申請。
-      subject: '%{instance} 上有新帳號 (%{username}) 待審核'
+      body: 以下是新帳戶的詳細資訊。您可以同意或拒絕這項申請。
+      subject: '%{instance} 上有新帳戶 (%{username}) 待審核'
     new_report:
       body: "%{reporter} 檢舉了使用者 %{target}"
       body_remote: 來自 %{domain} 的使用者檢舉了使用者 %{target}
@@ -650,8 +650,8 @@ zh-TW:
       subject: '%{instance} 上有待審核的主題標籤 (#%{name})'
   aliases:
     add_new: 建立別名
-    created_msg: 成功建立別名。您可以自舊帳號開始轉移。
-    deleted_msg: 成功移除別名。您將無法再由舊帳號轉移到當前帳號。
+    created_msg: 成功建立別名。您可以自舊帳戶開始轉移。
+    deleted_msg: 成功移除別名。您將無法再由舊帳戶轉移到目前的帳戶。
     empty: 您目前沒有任何別名。
     hint_html: 如果想由其他帳號轉移到此帳號，您可以在此處創建別名，稍後系統將容許您把關注者由舊帳號轉移至此。此項作業是<strong>無害且可復原的</strong>。 <strong>帳號的遷移程序需要在舊帳號啟動</strong>。
     remove: 取消連結別名
@@ -1029,10 +1029,15 @@ zh-TW:
       mac: Mac
       other: 不明平台
       windows: Windows
+      windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
     revoke: 取消
     revoke_success: Session 取消成功
     title: 作業階段
   settings:
+    account: 帳號
+    account_settings: 帳號設定
+    aliases: 帳號別名
     appearance: 外觀設定
     authorized_apps: 已授權應用程式
     back: 回到 Mastodon
@@ -1041,7 +1046,9 @@ zh-TW:
     edit_profile: 編輯使用者資訊
     export: 匯出
     featured_tags: 推薦標籤
+    identity_proofs: 身分驗證
     import: 匯入
+    import_and_export: 匯入及匯出
     migrate: 帳戶搬遷
     notifications: 通知
     preferences: 偏好設定
