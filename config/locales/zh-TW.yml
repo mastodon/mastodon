@@ -715,14 +715,14 @@ zh-TW:
     set_new_password: 設定新密碼
     setup:
       email_below_hint_html: 如果此電子郵件地址不正確，您可於此修改並接收郵件進行認證。
-      email_settings_hint_html: 請確認 e-mail 是否傳送到 %{email} 。如果不對的話，可以從帳號設定修改。
+      email_settings_hint_html: 請確認電子信件是否寄至 %{email} 。如果不對的話，可以在帳戶設定裡變更。
       title: 設定
     status:
-      account_status: 帳號狀態
+      account_status: 帳戶狀態
       confirming: 等待電子郵件確認完成。
-      functional: 您的帳號可以正常使用了。
+      functional: 您的帳戶可以正常使用了。
       pending: 管管們正在處理您的申請，這可能需要一點時間處理。我們將在申請通過後以電子郵件方式通知您。
-      redirecting_to: 您的帳號因目前重定向至 %{acct} 而被停用。
+      redirecting_to: 您的帳戶因目前重新導向至 %{acct} 而被停用。
     too_fast: 送出表單的速度太快跟不上，請稍後再試。
     trouble_logging_in: 登錄時遇到困難？
     use_security_key: 使用安全金鑰
@@ -775,10 +775,10 @@ zh-TW:
       before: '在進行下一步驟之前，請詳細閱讀以下説明：'
       caches: 已被其他節點快取的內容可能會殘留其中
       data_removal: 您的嘟文和其他資料將會被永久刪除
-      email_change_html: 你可以在不刪除帳號的情況下<a href="%{path}">變更你的電子郵件地址</a>
+      email_change_html: 你可以在不刪除帳戶的情況下<a href="%{path}">變更你的電子郵件地址</a>
       email_contact_html: 如果你仍然沒有收到郵件，請寄信到 <a href="mailto:%{email}">%{email}</a> 以獲得協助
       email_reconfirmation_html: 如果你沒有收到確認郵件，你可以<a href="%{path}">請求再次發送</a>
-      irreversible: 你將無法復原或重新啟用你的帳號
+      irreversible: 你將無法復原或重新啟用你的帳戶
       more_details_html: 更多詳細資訊，請參閲<a href="%{terms_path}">隱私政策</a>。
       username_available: 你的使用者名稱將會釋出供他人使用
       username_unavailable: 你的使用者名稱將會保留並不予他人使用
@@ -877,8 +877,8 @@ zh-TW:
     inactive: 非活躍
     publicize_checkbox: '並發嘟：'
     publicize_toot: '驗證成功！我在是住在 %{service} 的 %{username} ： %{url}'
-    remove: 移除帳號證明
-    removed: 成功移除帳號證明
+    remove: 移除帳戶證明
+    removed: 成功移除帳戶證明
     status: 驗證狀態
     view_proof: 檢視證明
   imports:
@@ -931,18 +931,18 @@ zh-TW:
   migrations:
     acct: 新帳戶的 使用者名稱@站點網域
     cancel: 取消重導向
-    cancel_explanation: 取消重導向將會重新啓用目前帳號，但不會還原已移至該帳號的關注者。
+    cancel_explanation: 取消重新導向將會重新啟用目前帳戶，但不會還原已移至該帳號的關注者。
     cancelled_msg: 成功取消重導向。
     errors:
       already_moved: 與已經重導向的帳戶相同
-      missing_also_known_as: 不是這個帳號的別名
-      move_to_self: 不能是目前帳號
+      missing_also_known_as: 不是這個帳戶的別名
+      move_to_self: 不能是目前帳戶
       not_found: 找不到
       on_cooldown: 你正在處於冷卻（CD）狀態
     followers_count: 轉移時的追隨者
-    incoming_migrations: 自另一個帳號轉移
+    incoming_migrations: 自另一個帳戶轉移
     proceed_with_move: 移動關注者
-    redirected_msg: 您的帳號現在指向 %{acct}
+    redirected_msg: 您的帳戶現在指向 %{acct}
     set_redirect: 設定重新導向
   moderation:
     title: 營運
@@ -987,7 +987,7 @@ zh-TW:
     other: 其他
   relationships:
     moved: 已轉移
-    status: 帳號狀態
+    status: 帳戶狀態
   remote_follow:
     acct: 請輸入您的使用者名稱@站點網域
     missing_resource: 無法找到資源
@@ -1035,9 +1035,9 @@ zh-TW:
     revoke_success: Session 取消成功
     title: 作業階段
   settings:
-    account: 帳號
-    account_settings: 帳號設定
-    aliases: 帳號別名
+    account: 帳戶
+    account_settings: 帳戶設定
+    aliases: 帳戶別名
     appearance: 外觀設定
     authorized_apps: 已授權應用程式
     back: 回到 Mastodon
