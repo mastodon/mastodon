@@ -1,4 +1,3 @@
----
 zh-TW:
   simple_form:
     hints:
@@ -7,7 +6,7 @@ zh-TW:
       account_migration:
         acct: 指定欲移動至之帳戶的 使用者名稱@站台
       account_warning_preset:
-        text: 您可使用嘟文語法，例如網址、「#」標籤和提及功能
+        text: '您可使用嘟文語法，例如網址、「#」標籤和提及功能'
         title: 可選。不會向收件者顯示
       admin_account_action:
         include_statuses: 使用者可看到導致檢舉或警告的嘟文
@@ -54,7 +53,7 @@ zh-TW:
         username: 您的使用者名稱將在 %{domain} 是獨一無二的
         whole_word: 如果關鍵字或詞組僅有字母與數字，則其將只在符合整個單字的時候才會套用
       featured_tag:
-        name: 您可能想使用其中一個：
+        name: '您可能想使用其中一個：'
       form_challenge:
         current_password: 您正要進入安全區域
       imports:
@@ -64,7 +63,7 @@ zh-TW:
       rule:
         text: 說明使用者在此伺服器上需遵守的規則或條款。試著維持各項條款簡短而明瞭。
       sessions:
-        otp: 請輸入產生自您手機 App 的兩步驟驗證碼，或輸入其中一個復原代碼：
+        otp: '請輸入產生自您手機 App 的兩步驟驗證碼，或輸入其中一個復原代碼：'
       tag:
         name: 您只能變更大小寫，例如，以使其更易讀。
       user:
@@ -107,7 +106,7 @@ zh-TW:
         data: 資料
         discoverable: 在目錄列出此帳戶
         display_name: 顯示名稱
-        email: 電子信箱位址
+        email: 電子信箱地址
         expires_in: 失效時間
         fields: 個人資料中繼資料
         header: 頁面頂端
@@ -129,6 +128,7 @@ zh-TW:
         setting_default_privacy: 嘟文可見範圍
         setting_default_sensitive: 總是將媒體標記為敏感內容
         setting_delete_modal: 刪除嘟文前先詢問我
+        setting_disable_swiping: 停用滑動手勢
         setting_display_media: 媒體顯示
         setting_display_media_default: 預設
         setting_display_media_hide_all: 全部隱藏
@@ -142,14 +142,18 @@ zh-TW:
         setting_theme: 站點主題
         setting_trends: 顯示本日趨勢
         setting_unfollow_modal: 取消關注某人前先詢問我
+        setting_use_blurhash: 將隱藏媒體以彩色漸變圖樣表示
         setting_use_pending_items: 限速模式
         severity: 優先級
+        sign_in_token_attempt: 安全代碼
         type: 匯入類型
         username: 使用者名稱
-        username_or_email: 使用者名稱或電子信箱位址
+        username_or_email: 使用者名稱或電子信箱地址
         whole_word: 整個詞彙
+      email_domain_block:
+        with_dns_records: 包括網域的 MX 記錄和 IP 位址
       featured_tag:
-        name: "「#」標籤"
+        name: '「#」標籤'
       interactions:
         must_be_follower: 封鎖非關注者的通知
         must_be_following: 封鎖您未關注之使用者的通知
@@ -181,11 +185,11 @@ zh-TW:
         name: 主題標籤
         trendable: 允許此主題標籤在趨勢下顯示
         usable: 允許嘟文使用此主題標籤
-    'no': 否
+    'no': '否'
     recommended: 建議
     required:
       text: 必須填寫
     title:
       sessions:
         webauthn: 使用您的安全金鑰來登入
-    'yes': 是
+    'yes': '是'
