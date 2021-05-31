@@ -7,7 +7,7 @@ class ActivityPub::FetchRemoteKeyService < BaseService
 
   # Returns account that owns the key
   def call(uri, id: true, prefetched_body: nil, suppress_errors: true)
-    raise Error, "No key URI given" if uri.blank?
+    raise Error, 'No key URI given' if uri.blank?
 
     if prefetched_body.nil?
       if id

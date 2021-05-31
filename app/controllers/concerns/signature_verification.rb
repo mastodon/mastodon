@@ -147,7 +147,17 @@ module SignatureVerification
     digests = request.headers['Digest'].split(',').map { |digest| digest.split('=', 2) }.map { |key, value| [key.downcase, value] }
     sha256  = digests.assoc('sha-256')
     raise SignatureVerificationError, "Mastodon only supports SHA-256 in Digest header. Offered algorithms: #{digests.map(&:first).join(', ')}" if sha256.nil?
-    raise SignatureVerificationError, "Invalid Digest value. Computed SHA-256 digest: #{body_digest}; given: #{sha256[1]}" if body_digest != sha256[1]
+
+    return if body_digest == sha256[1]
+
+    digest_size = begin
+      Base64.strict_decode64(sha256[1].strip).length
+    rescue ArgumentError
+      raise SignatureVerificationError, "Invalid Digest value. The provided Digest value is not a valid base64 string. Given digest: #{sha256[1]}"
+    end
+
+    raise SignatureVerificationError, "Invalid Digest value. The provided Digest value is not a SHA-256 digest. Given digest: #{sha256[1]}" if digest_size != 32
+    raise SignatureVerificationError, "Invalid Digest value. Computed SHA-256 digest: #{body_digest}; given: #{sha256[1]}"
   end
 
   def verify_signature(account, signature, compare_signed_string)
