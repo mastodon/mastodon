@@ -354,17 +354,22 @@ GEM
       nokogiri (~> 1)
       rake
     mini_mime (1.0.3)
-    mini_portile2 (2.5.1)
+    mini_portile2 (2.5.2)
+      net-ftp (~> 0.1)
     minitest (5.14.4)
     msgpack (1.4.2)
     multi_json (1.15.0)
     multipart-post (2.1.1)
+    net-ftp (0.1.2)
+      net-protocol
+      time
     net-ldap (0.17.0)
+    net-protocol (0.1.0)
     net-scp (3.0.0)
       net-ssh (>= 2.6.5, < 7.0.0)
     net-ssh (6.1.0)
     nio4r (2.5.7)
-    nokogiri (1.11.5)
+    nokogiri (1.11.6)
       mini_portile2 (~> 2.5.0)
       racc (~> 1.4)
     nokogumbo (2.0.4)
@@ -609,6 +614,7 @@ GEM
     thwait (0.2.0)
       e2mmap
     tilt (2.0.10)
+    time (0.1.0)
     tpm-key_attestation (0.9.0)
       bindata (~> 2.4)
       openssl-signature_algorithm (~> 0.4.0)
