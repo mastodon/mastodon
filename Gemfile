@@ -55,7 +55,7 @@ gem 'redis-namespace', '~> 1.8'
 gem 'htmlentities', '~> 4.3'
 gem 'http', '~> 4.4'
 gem 'http_accept_language', '~> 2.1'
-gem 'httplog', '~> 1.4.3'
+gem 'httplog', '~> 1.5.0'
 gem 'idn-ruby', require: 'idn'
 gem 'kaminari', '~> 1.2'
 gem 'link_header', '~> 0.0'
@@ -136,7 +136,7 @@ group :development do
   gem 'letter_opener', '~> 1.7'
   gem 'letter_opener_web', '~> 1.4'
   gem 'memory_profiler'
-  gem 'rubocop', '~> 1.14', require: false
+  gem 'rubocop', '~> 1.15', require: false
   gem 'rubocop-rails', '~> 2.10', require: false
   gem 'brakeman', '~> 5.0', require: false
   gem 'bundler-audit', '~> 0.8', require: false
