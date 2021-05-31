@@ -27,7 +27,7 @@ class ActivityPub::FetchRemoteAccountService < BaseService
     raise Error, "Error fetching actor JSON at #{uri}" if @json.nil?
     raise Error, "Unsupported JSON-LD context for document #{uri}" unless supported_context?
     raise Error, "Unexpected object type for actor #{uri} (expected any of: #{SUPPORTED_TYPES})" unless expected_type?
-    raise Error, "Actor #{uri} has moved to #{@json['movedTo']}" if (break_on_redirect && @json['movedTo'].present?)
+    raise Error, "Actor #{uri} has moved to #{@json['movedTo']}" if break_on_redirect && @json['movedTo'].present?
 
     @uri      = @json['id']
     @username = @json['preferredUsername']
