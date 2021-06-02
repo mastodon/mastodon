@@ -1,22 +1,16 @@
+require Rails.root.join('lib', 'mastodon', 'migration_helpers')
+
 class AddCaseInsensitiveBtreeIndexToTags < ActiveRecord::Migration[5.2]
+  include Mastodon::MigrationHelpers
+
   disable_ddl_transaction!
-
-  class CorruptionError < StandardError
-    def cause
-      nil
-    end
-
-    def backtrace
-      []
-    end
-  end
 
   def up
     begin
       safety_assured { execute 'CREATE UNIQUE INDEX CONCURRENTLY index_tags_on_name_lower_btree ON tags (lower(name) text_pattern_ops)' }
     rescue ActiveRecord::StatementInvalid => e
       remove_index :tags, name: 'index_tags_on_name_lower_btree'
-      e = CorruptionError.new('Migration failed because of index corruption, see https://docs.joinmastodon.org/admin/troubleshooting/index-corruption/#fixing') if e.is_a?(ActiveRecord::RecordNotUnique)
+      raise CorruptionError if e.is_a?(ActiveRecord::RecordNotUnique)
       raise e
     end
 
