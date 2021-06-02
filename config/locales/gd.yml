@@ -35,7 +35,7 @@ gd:
       two: phost
       few: postaichean
       other: post
-    status_count_before: A sgrìobh
+    status_count_before: A dh’fhoillsich
     tagline: Lean air caraidean ’s lorg feadhainn ùra
     terms: Teirmichean na seirbheise
     unavailable_content: Frithealaichean fo mhaorsainneachd
@@ -600,10 +600,10 @@ gd:
     settings:
       activity_api_enabled:
         desc_html: Cunntasan nam postaichean a chaidh fhoillseachadh gu h-ionadail, nan cleachdaichean gnìomhach ’s nan clàraidhean ùra an am bucaidean seachdaineil
-        title: Foillsich agragaid dhen stadastaireachd mu ghnìomhachd nan cleachdaichean
+        title: Foillsich agragaid dhen stadastaireachd mu ghnìomhachd nan cleachdaichean san API
       bootstrap_timeline_accounts:
-        desc_html: Sgar iomadh ainm cleachdaiche le cromag. Chan obraich ach cunntasan ionadail ’s gun ghlas orra. ’S e na rianairean ionadail uile a tha sa bhun-roghainn nuair a bhios seo falamh.
-        title: Leantainn tùsail nan cleachdaichean ùra
+        desc_html: Sgar iomadh ainm cleachdaiche le cromag. Cuiridh sinn geall gun nochd na cunntasan seo am measg nam molaidhean leantainn
+        title: Mol na cunntasan seo do chleachdaichean ùra
       contact_information:
         email: Post-d gnìomhachais
         username: Ainm cleachdaiche a’ chonaltraidh
@@ -628,7 +628,7 @@ gd:
         title: Dealbh suaichnein
       peers_api_enabled:
         desc_html: Ainmean àrainne air an do thachair am frithealaiche seo sa cho-shaoghal
-        title: Foillsich liosta nam frithealaichean a chaidh a lorg
+        title: Foillsich liosta nam frithealaichean a chaidh a lorg san API
       preview_sensitive_media:
         desc_html: Ro-sheallaidh ceanglaichean dealbhag fhiù ’s ma chaidh comharradh gu bheil am meadhan frionasach
         title: Seall meadhanan frionasach ann an ro-sheallaidhean OpenGraph
@@ -715,9 +715,9 @@ gd:
       accounts_today: Cleachdaidhean fa leth an-diugh
       accounts_week: Cleachdaidhean fa leth an t-seachdain seo
       breakdown: Seall an cleachdadh an-diugh a-rèir tùis
-      last_active: Gnìomhach an turas mu dheireadh
+      last_active: Air a chleachdadh o chionn ghoirid
       most_popular: Na tha fèill mhòr air
-      most_recent: As ùire
+      most_recent: Air a chruthachadh o chionn ghoirid
       name: Taga hais
       review: Dèan lèirmheas air an staid
       reviewed: Chaidh lèirmheas a dhèanamh air
@@ -1055,7 +1055,7 @@ gd:
     warning:
       backreference_required: Feumaidh tu an cunntas ùr a rèiteachadh an toiseach ach an tomh e air ais dhan fhear seo
       before: 'Mus lean thu air adhart, leugh na nòtaichean seo gu cùramach:'
-      cooldown: Às dèidh imrich, tha àm socrachaidh ann rè nach urrainn dhut imrich eile a dhèanamh
+      cooldown: Às dèidh imrich, tha greis feitheimh ann rè nach urrainn dhut imrich eile a dhèanamh
       disabled_account: Cha ghabh an cunntas làithreach agad a chleachdadh gu slàn às a dhèidh. Gidheadh, bidh an dà chuid às-phortadh an dàta is ath-ghnìomhachadh ri fhaighinn dhut.
       followers: Imrichidh an gnìomh seo a h-uile neach-leantainn on chunntas làithreach dhan chunntas ùr
       only_redirect_html: Mar roghainn eile, ’s urrainn dhut <a href="%{path}">ath-stiùireadh a-mhàin a chur air a’ phròifil agad</a>.
@@ -1191,7 +1191,7 @@ gd:
       proceed: Lean air adhart gus freagairt
       prompt: 'Tha thu airson freagairt dhan phost seo:'
   scheduled_statuses:
-    over_daily_limit: Chaidh thu thar na crìoch de %{limit} post(aichean) sgeidealaichte dhan latha ud
+    over_daily_limit: Chaidh thu thar na crìoch de %{limit} post(aichean) sgeidealaichte an-diugh
     over_total_limit: Chaidh thu thar na crìoch de %{limit} post(aichean) sgeidealaichte
     too_soon: Feumaidh ceann-latha an sgeideil a bhith san àm ri teachd
   sessions:
