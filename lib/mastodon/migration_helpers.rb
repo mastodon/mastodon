@@ -41,6 +41,20 @@
 
 module Mastodon
   module MigrationHelpers
+    class CorruptionError < StandardError
+      def initialize(message = nil)
+        super(message.presence || 'Migration failed because of index corruption, see https://docs.joinmastodon.org/admin/troubleshooting/index-corruption/#fixing')
+      end
+
+      def cause
+        nil
+      end
+
+      def backtrace
+        []
+      end
+    end
+
     # Stub for Database.postgresql? from GitLab
     def self.postgresql?
       ActiveRecord::Base.configurations[Rails.env]['adapter'].casecmp('postgresql').zero?
