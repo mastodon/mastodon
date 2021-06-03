@@ -29,7 +29,7 @@ class ActivityPub::OutboxesController < ActivityPub::BaseController
       )
     else
       ActivityPub::CollectionPresenter.new(
-        id: account_outbox_url(@account),
+        id: outbox_url,
         type: :ordered,
         size: @account.statuses_count,
         first: outbox_url(page: true),
@@ -47,11 +47,11 @@ class ActivityPub::OutboxesController < ActivityPub::BaseController
   end
 
   def next_page
-    account_outbox_url(@account, page: true, max_id: @statuses.last.id) if @statuses.size == LIMIT
+    outbox_url(page: true, max_id: @statuses.last.id) if @statuses.size == LIMIT
   end
 
   def prev_page
-    account_outbox_url(@account, page: true, min_id: @statuses.first.id) unless @statuses.empty?
+    outbox_url(page: true, min_id: @statuses.first.id) unless @statuses.empty?
   end
 
   def set_statuses

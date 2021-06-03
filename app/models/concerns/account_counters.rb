@@ -49,7 +49,6 @@ module AccountCounters
               ON CONFLICT (account_id) DO UPDATE
               SET #{key} = account_stats.#{key} + :value,
                   last_status_at = now(),
-                  lock_version = account_stats.lock_version + 1,
                   updated_at = now()
               RETURNING id;
             SQL
@@ -59,7 +58,6 @@ module AccountCounters
                 VALUES (:account_id, :default_value, now(), now())
               ON CONFLICT (account_id) DO UPDATE
               SET #{key} = account_stats.#{key} + :value,
-                  lock_version = account_stats.lock_version + 1,
                   updated_at = now()
               RETURNING id;
             SQL
