@@ -3,6 +3,25 @@ Changelog
 
 All notable changes to this project will be documented in this file.
 
+## [3.4.1] - 2021-06-03
+### Added
+
+- Add new emoji assets from Twemoji 13.1.0 ([Gargron](https://github.com/tootsuite/mastodon/pull/16345))
+
+### Fixed
+
+- Fix some ActivityPub identifiers in server actor outbox ([ClearlyClaire](https://github.com/tootsuite/mastodon/pull/16343))
+- Fix custom CSS path setting cookies and being uncacheable due to it ([tribela](https://github.com/tootsuite/mastodon/pull/16314))
+- Fix unread notification count when polling in web UI ([ClearlyClaire](https://github.com/tootsuite/mastodon/pull/16272))
+- Fix health check not being accessible through localhost ([ClearlyClaire](https://github.com/tootsuite/mastodon/pull/16270))
+- Fix some redis locks auto-releasing too fast ([ClearlyClaire](https://github.com/tootsuite/mastodon/pull/16276), [ClearlyClaire](https://github.com/tootsuite/mastodon/pull/16291))
+- Fix e-mail confirmations API not working correctly ([Gargron](https://github.com/tootsuite/mastodon/pull/16348))
+- Fix migration script not being able to run if it fails midway ([ClearlyClaire](https://github.com/tootsuite/mastodon/pull/16312))
+- Fix account deletion sometimes failing because of optimistic locks ([ClearlyClaire](https://github.com/tootsuite/mastodon/pull/16317))
+- Fix deprecated slash as division in SASS files ([ClearlyClaire](https://github.com/tootsuite/mastodon/pull/16347))
+- Fix `tootctl search deploy` compatibility error on Ruby 3 ([ClearlyClaire](https://github.com/tootsuite/mastodon/pull/16346))
+- Fix mailer jobs for deleted notifications erroring out ([ClearlyClaire](https://github.com/tootsuite/mastodon/pull/16294))
+
 ## [3.4.0] - 2021-05-16
 ### Added
 
