@@ -21,7 +21,9 @@ gl:
     federation_hint_html: Cunha conta en %{instance} poderás seguir ás persoas en calquera servidor do Mastodon e alén.
     get_apps: Probar unha aplicación móbil
     hosted_on: Mastodon aloxado en %{domain}
-    instance_actor_flash: Esta conta é un actor virtual utilizado para representar ao servidor e non a unha usuaria individual. Utilízase para propósitos de federación e non debería estar bloqueada a menos que queiras bloquear a toda a instancia, en tal caso deberías utilizar o bloqueo do dominio.
+    instance_actor_flash: 'Esta conta é un actor virtual utilizado para representar ao servidor e non a unha usuaria individual. Utilízase para propósitos de federación e non debería estar bloqueada a menos que queiras bloquear a toda a instancia, en tal caso deberías utilizar o bloqueo do dominio.
+
+      '
     learn_more: Saber máis
     privacy_policy: Política de privacidade
     rules: Regras do servidor
@@ -1384,12 +1386,12 @@ gl:
     enabled: A autenticación de dobre-factor está activada
     enabled_success: Activouse con éxito a autenticación de dobre-factor
     generate_recovery_codes: Xerar códigos de recuperación
-    lost_recovery_codes: Os códigos de recuperación permítenlle recuperar o acceso a súa conta si perde o teléfono. Si perde os códigos de recuperación, pode restauralos aquí. Os seus códigos de recuperación anteriores serán invalidados.
+    lost_recovery_codes: Os códigos de recuperación permítenche recuperar o acceso a túa conta se perdes o teléfono. Se perdes os códigos de recuperación, podes restauralos aquí. Os teus códigos de recuperación anteriores serán invalidados.
     methods: Métodos para o segundo factor
     otp: App autenticadora
     recovery_codes: Códigos de recuperación do respaldo
     recovery_codes_regenerated: Códigos de recuperación xerados correctamente
-    recovery_instructions_html: Si perdese o acceso ao seu teléfono, pode utilizar un dos códigos inferiores de recuperación para recuperar o acceso a súa conta. <strong>Garde os códigos en lugar seguro</strong>. Por exemplo, pode imprimilos e gardalos xunto con outros documentos importantes.
+    recovery_instructions_html: Se perdeses o acceso ao teu teléfono, podes utilizar un dos códigos de recuperación inferiores para recuperar o acceso á conta. <strong>Garda os códigos nun lugar seguro</strong>. Por exemplo, podes imprimilos e gardalos xunto con outros documentos importantes.
     webauthn: Chaves de seguridade
   user_mailer:
     backup_ready:
@@ -1445,7 +1447,7 @@ gl:
     generic_access_help_html: Problemas para acceder a conta? Podes contactar con %{email} para obter axuda
     invalid_otp_token: O código do segundo factor non é válido
     invalid_sign_in_token: Código de seguridade non válido
-    otp_lost_help_html: Si perde o acceso a ambos, pode contactar con %{email}
+    otp_lost_help_html: Se perdes o acceso a ambos, podes contactar con %{email}
     seamless_external_login: Está conectado a través de un servizo externo, polo que os axustes de contrasinal e correo-e non están dispoñibles.
     signed_in_as: 'Rexistrada como:'
     suspicious_sign_in_confirmation: Semella que non te conectaches antes desde este dispositivo, e hai tempo que non te conectas, así que ímosche enviar un código de seguridade ao teu enderezo de email para confirmar que es ti.

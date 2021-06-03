@@ -7,30 +7,38 @@
 
 const { unicodeToFilename } = require('./unicode_to_filename');
 const { unicodeToUnifiedName } = require('./unicode_to_unified_name');
-const emojiMap         = require('./emoji_map.json');
+const emojiMap = require('./emoji_map.json');
 const { emojiIndex } = require('emoji-mart');
 const { uncompress: emojiMartUncompress } = require('emoji-mart/dist/utils/data');
+
 let data = require('emoji-mart/data/all.json');
 
 if(data.compressed) {
   data = emojiMartUncompress(data);
 }
+
 const emojiMartData = data;
 
-
 const excluded       = ['®', '©', '™'];
-const skins          = ['🏻', '🏼', '🏽', '🏾', '🏿'];
+const skinTones      = ['🏻', '🏼', '🏽', '🏾', '🏿'];
 const shortcodeMap   = {};
 
 const shortCodesToEmojiData = {};
 const emojisWithoutShortCodes = [];
 
 Object.keys(emojiIndex.emojis).forEach(key => {
-  shortcodeMap[emojiIndex.emojis[key].native] = emojiIndex.emojis[key].id;
+  let emoji = emojiIndex.emojis[key];
+
+  // Emojis with skin tone modifiers are stored like this
+  if (Object.prototype.hasOwnProperty.call(emoji, '1')) {
+    emoji = emoji['1'];
+  }
+
+  shortcodeMap[emoji.native] = emoji.id;
 });
 
 const stripModifiers = unicode => {
-  skins.forEach(tone => {
+  skinTones.forEach(tone => {
     unicode = unicode.replace(tone, '');
   });
 
@@ -65,13 +73,22 @@ Object.keys(emojiMap).forEach(key => {
     if (!Array.isArray(shortCodesToEmojiData[shortcode])) {
       shortCodesToEmojiData[shortcode] = [[]];
     }
+
     shortCodesToEmojiData[shortcode][0].push(filenameData);
   }
 });
 
 Object.keys(emojiIndex.emojis).forEach(key => {
-  const { native } = emojiIndex.emojis[key];
+  let emoji = emojiIndex.emojis[key];
+
+  // Emojis with skin tone modifiers are stored like this
+  if (Object.prototype.hasOwnProperty.call(emoji, '1')) {
+    emoji = emoji['1'];
+  }
+
+  const { native } = emoji;
   let { short_names, search, unified } = emojiMartData.emojis[key];
+
   if (short_names[0] !== key) {
     throw new Error('The compresser expects the first short_code to be the ' +
       'key. It may need to be rewritten if the emoji change such that this ' +
@@ -81,9 +98,14 @@ Object.keys(emojiIndex.emojis).forEach(key => {
   short_names = short_names.slice(1); // first short name can be inferred from the key
 
   const searchData = [native, short_names, search];
+
   if (unicodeToUnifiedName(native) !== unified) {
     // unified name can't be derived from unicodeToUnifiedName
     searchData.push(unified);
+  }
+
+  if (!Array.isArray(shortCodesToEmojiData[key])) {
+    shortCodesToEmojiData[key] = [[]];
   }
 
   shortCodesToEmojiData[key].push(searchData);

@@ -30,19 +30,19 @@ gd:
       defaults:
         autofollow: Leanaidh na daoine a chlàraicheas leis a cuireadh ort gu fèin-obrachail
         avatar: PNG, GIF or JPG. %{size} air a char as motha. Thèid a sgèileadh sìos gu %{dimensions}px
-        bot: Tha an cunntas seo ri gnìomhan fèin-obrachail gu h-àraidh is dh’fhaoidte nach doir duine sam bith sùil air idir
+        bot: Comharraich do chàch gu bheil an cunntas seo ri gnìomhan fèin-obrachail gu h-àraidh is dh’fhaoidte nach doir duine sam bith sùil air idir
         context: Na co-theacsaichean air am bi a’ chriathrag an sàs
         current_password: A chùm tèarainteachd, cuir a-steach facal-faire a’ chunntais làithrich
         current_username: Airson seo a dhearbhadh, cuir a-steach ainm-cleachdaiche a’ chunntais làithrich
         digest: Cha dèid seo a chur ach nuair a bhios tu air ùine mhòr gun ghnìomh a ghabhail agus ma fhuair thu teachdaireachd phearsanta fhad ’s a bha thu air falbh
-        discoverable: "’S e dòigh eile a th’ ann an eòlaire nam pròifil leis an ruig an cunntas agad èisteachd nas fharsainge"
+        discoverable: Ceadaich gun lorg coigrich an cunntas agad le taic o mholaidhean is gleusan eile
         email: Thèid post-d dearbhaidh a chur thugad
         fields: Faodaidh tu suas ri 4 nithean a shealltainn mar chlàr air a’ phròifil agad
         header: PNG, GIF or JPG. %{size} air a char as motha. Thèid a sgèileadh sìos gu %{dimensions}px
         inbox_url: Dèan lethbhreac dhen URL o phrìomh-dhuilleag an ath-sheachadain a bu mhiann leat cleachdadh
         irreversible: Thèid postaichean criathraichte a-mach à sealladh gu buan fiù ’s ma bheir thu a’ chriathrag air falbh uaireigin eile
         locale: Cànan eadar-aghaidh a’ chleachdaiche, nam post-d ’s nam brathan putaidh
-        locked: Feumaidh tu gabhail ri luchd-leantainn ùr a làimh
+        locked: Stiùirich cò dh’fhaodas leantainn ort le gabhail ri iarrtasan leantainn a làimh
         password: Cleachd co-dhiù 8 caractaran
         phrase: Thèid a mhaidseadh gun aire air litrichean mòra ’s beaga no air rabhadh susbainte puist
         scopes: Na APIan a dh’fhaodas an aplacaid inntrigeadh. Ma thaghas tu sgòp air ìre as àirde, cha leig thu leas sgòpaichean fa leth a thaghadh.
@@ -51,7 +51,7 @@ gd:
         setting_display_media_default: Falaich meadhanan ris a bheil comharra gu bheil iad frionasach
         setting_display_media_hide_all: Falaich na meadhanan an-còmhnaidh
         setting_display_media_show_all: Seall na meadhanan an-còmhnaidh
-        setting_hide_network: Cha nochd cò a tha thu a’ leantainn orra no an luchd-leantainn agad fhèin air a’ phròifil agad
+        setting_hide_network: Thèid cò a tha thu a’ leantainn orra ’s an luchd-leantainn agad fhèin a chur am falach air a’ phròifil agad
         setting_noindex: Bheir seo buaidh air a’ phròifil phoblach ’s air duilleagan nam postaichean agad
         setting_show_application: Chithear cò an aplacaid a chleachd thu airson post a sgrìobhadh ann an seallaidhean mionaideach nam postaichean agad
         setting_use_blurhash: Tha caiseadan stèidhichte air dathan nan nithean lèirsinneach a chaidh fhalach ach chan fhaicear am mion-fhiosrachadh
@@ -128,7 +128,7 @@ gd:
         context: Co-theacsaichean na criathraige
         current_password: Am facal-faire làithreach
         data: Dàta
-        discoverable: Seall an cunntas seo san eòlaire
+        discoverable: Mol an cunntas do chàch
         display_name: Ainm-taisbeanaidh
         email: Seòladh puist-d
         expires_in: Falbhaidh an ùine air às dèidh
@@ -138,7 +138,7 @@ gd:
         inbox_url: URL bogsa a-steach an ath-sheachadain
         irreversible: Leig seachad seach falach
         locale: Cànan na h-eadar-aghaidh
-        locked: Glais an cunntas
+        locked: Iarr iarrtasan leantainn
         max_uses: An àireamh as motha de chleachdaidhean
         new_password: Facal-faire ùr
         note: Mu mo dhèidhinn
@@ -160,7 +160,7 @@ gd:
         setting_display_media_hide_all: Falaich na h-uile
         setting_display_media_show_all: Seall na h-uile
         setting_expand_spoilers: Leudaich postaichean ris a bheil rabhadh susbainte an-còmhnaidh
-        setting_hide_network: Falaich an lìonra agad
+        setting_hide_network: Falaich an graf sòisealta agad
         setting_noindex: Thoir air falbh an ro-aonta air inneacsadh le einnseanan-luirg
         setting_reduce_motion: Ìslich an gluasad sna beòthachaidhean
         setting_show_application: Foillsich dè an aplacaid a chleachdas tu airson postaichean a chur
@@ -208,7 +208,7 @@ gd:
       rule:
         text: Riaghailt
       tag:
-        listable: Leig leis an taga hais seo gun nochd e ann an toraidhean luirg ’s air eòlaire nam pròifil
+        listable: Leig leis an taga hais seo gun nochd e ann an toraidhean luirg ’s am measg nam molaidhean
         name: Taga hais
         trendable: Leig leis an taga hais seo gun nochd e am measg nan treandaichean
         usable: Leig le postaichean an taga hais seo a chleachdadh

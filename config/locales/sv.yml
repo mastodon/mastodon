@@ -158,7 +158,7 @@ sv:
       protocol: Protokoll
       public: Offentlig
       push_subscription_expires: PuSH-prenumerationen löper ut
-      redownload: Uppdatera avatar
+      redownload: Uppdatera profil
       reject: Förkasta
       reject_all: Förkasta allt / Avvisa alla
       remove_avatar: Ta bort avatar
@@ -173,6 +173,7 @@ sv:
       role: Behörigheter
       roles:
         admin: Administratör
+        moderator: Moderator
         staff: Personal
         user: Användare
       search: Sök
@@ -215,7 +216,7 @@ sv:
         destroy_custom_emoji: Radera egen emoji
         destroy_domain_allow: Ta bort tillåten domän
         destroy_domain_block: Ta bort blockerad domän
-        destroy_ip_block: Ta bort IP-regel
+        destroy_ip_block: Radera IP-regel
         destroy_status: Ta bort status
         disable_2fa_user: Inaktivera 2FA
         disable_custom_emoji: Inaktivera egna emojis
@@ -238,12 +239,15 @@ sv:
         update_status: Uppdatera status
       deleted_status: "(raderad status)"
       empty: Inga loggar hittades.
+      filter_by_action: Filtrera efter åtgärd
+      filter_by_user: Filtrera efter användare
       title: Revisionslogg
     announcements:
       live: Direkt
+      publish: Publicera
       scheduled_for: Schemalagd för %{time}
     custom_emojis:
-      assign_category: Ange kategori
+      assign_category: Tilldela kategori
       by_domain: Domän
       copied_msg: Skapade en lokal kopia av emoji utan problem
       copy: Kopia
@@ -255,6 +259,7 @@ sv:
       disable: Inaktivera
       disabled: Inaktiverad
       disabled_msg: Inaktiverade emoji utan problem
+      emoji: Emoji
       enable: Aktivera
       enabled: Aktiverad
       enabled_msg: Aktiverade den emoji utan problem
@@ -384,7 +389,8 @@ sv:
         title: Filtrera
       title: Inbjudningar
     ip_blocks:
-      delete: Ta bort
+      add_new: Skapa regel
+      delete: Radera
       expires_in:
         '1209600': 2 veckor
         '15778476': 6 månader
@@ -410,6 +416,10 @@ sv:
       created_msg: Anmälningsanteckning har skapats!
       destroyed_msg: Anmälningsanteckning har raderats!
     reports:
+      account:
+        reports:
+          one: "%{count} rapport"
+          other: "%{count} rapporter"
       action_taken_by: Åtgärder vidtagna av
       are_you_sure: Är du säker?
       assign_to_self: Tilldela till mig
@@ -440,7 +450,7 @@ sv:
       updated_at: Uppdaterad
     rules:
       add_new: Lägg till regel
-      delete: Ta bort
+      delete: Radera
       edit: Ändra regel
       title: Serverns regler
     settings:
@@ -479,7 +489,7 @@ sv:
           desc_html: Visas på framsidan när registreringen är stängd. Du kan använda HTML-taggar
           title: Stängt registreringsmeddelande
         deletion:
-          desc_html: Tillåt alla att ta bort sitt konto
+          desc_html: Tillåt vem som helst att radera sitt konto
           title: Öppen kontoradering
         min_invite_role:
           disabled: Ingen
@@ -531,6 +541,7 @@ sv:
       last_active: Senast aktiv
       name: Hashtag
       title: Hashtaggar
+      trending_right_now: Trenderar just nu
       unreviewed: Ej granskad
     title: Administration
     warning_presets:
@@ -550,6 +561,7 @@ sv:
     discovery: Upptäck
     localization:
       body: Mastodon översätts av volontärer.
+      guide_link: https://crowdin.com/project/mastodon
       guide_link_text: Alla kan bidra.
     sensitive_content: Känsligt innehåll
   application_mailer:
@@ -570,10 +582,11 @@ sv:
   auth:
     apply_for_account: Be om en inbjudan
     change_password: Lösenord
-    delete_account: Ta bort konto
+    delete_account: Radera konto
     delete_account_html: Om du vill radera ditt konto kan du <a href="%{path}">fortsätta här</a>. Du kommer att bli ombedd att bekräfta.
     description:
       prefix_invited_by_user: "@%{name} bjuder in dig att gå med i en Mastodon-server!"
+      prefix_sign_up: Registrera dig på Mastodon idag!
     didnt_get_confirmation: Fick du inte instruktioner om bekräftelse?
     forgot_password: Glömt ditt lösenord?
     invalid_reset_password_token: Lösenordsåterställningstoken är ogiltig eller utgått. Vänligen be om en ny.
@@ -631,10 +644,13 @@ sv:
       x_seconds: "%{count}sek"
   deletes:
     confirm_password: Ange ditt lösenord för att verifiera din identitet
-    proceed: Ta bort konto
+    proceed: Radera konto
     success_msg: Ditt konto har raderats
     warning:
+      email_change_html: Du kan <a href="%{path}">ändra din e-postadress</a> utan att radera ditt konto
       irreversible: Du kan inte återställa eller återaktivera ditt konto
+  directories:
+    explore_mastodon: Utforska %{title}
   domain_validator:
     invalid_domain: är inte ett giltigt domännamn
   errors:
@@ -684,11 +700,13 @@ sv:
   footer:
     developers: Utvecklare
     more: Mer…
+    resources: Resurser
+    trending_now: Trendar nu
   generic:
     all: Alla
     changes_saved_msg: Ändringar sparades framgångsrikt!
     copy: Kopiera
-    delete: Ta bort
+    delete: Radera
     order_by: Sortera efter
     save_changes: Spara ändringar
     validation_errors:
@@ -744,6 +762,7 @@ sv:
     acct: användarnamn@domän av det nya kontot
     cancel_explanation: Avstängning av omdirigeringen kommer att återaktivera ditt nuvarande konto, men kommer inte att återskapa följare som har flyttats till det kontot.
     incoming_migrations: Flyttar från ett annat konto
+    proceed_with_move: Flytta följare
     redirected_msg: Ditt konto dirigeras om till %{acct}.
   moderation:
     title: Moderera
@@ -785,11 +804,14 @@ sv:
       subject: "%{name} publicerade nyss"
   notifications:
     other_settings: Andra aviseringsinställningar
+  otp_authentication:
+    enable: Aktivera
   pagination:
     newer: Nyare
     next: Nästa
     older: Äldre
     prev: Tidigare
+    truncate: "&hellip;"
   polls:
     errors:
       invalid_choice: Det valda röstalternativet finns inte
@@ -806,6 +828,7 @@ sv:
   remote_follow:
     acct: Ange ditt användarnamn@domän du vill följa från
     missing_resource: Det gick inte att hitta den begärda omdirigeringsadressen för ditt konto
+    no_account_html: Har du inget konto? Du kan <a href='%{sign_up_path}' target='_blank'>registrera dig här</a>
     proceed: Fortsätt för att följa
     prompt: 'Du kommer att följa:'
     reason_html: "<strong>Varför är det här steget nödvändigt?</strong> <code>%{instance}</code> är kanske inte den server du är registrerad vid, så vi behöver dirigera dig till din hemserver först."
@@ -813,13 +836,29 @@ sv:
     activity: Senaste aktivitet
     browser: Webbläsare
     browsers:
+      alipay: Alipay
+      blackberry: Blackberry
+      chrome: Chrome
+      edge: Microsoft Edge
+      electron: Electron
+      firefox: Firefox
       generic: Okänd browser
+      ie: Internet Explorer
+      opera: Opera
+      safari: Safari
     current_session: Nuvarande session
     description: "%{browser} på %{platform}"
     explanation: Detta är inloggade webbläsare på Mastodon just nu.
     platforms:
+      android: Android
+      blackberry: Blackberry
+      chrome_os: Chrome OS
+      firefox_os: Firefox OS
+      ios: iOS
+      linux: Linux
       mac: Mac
       other: okänd plattform
+      windows: Windows
     revoke: Återkalla
     revoke_success: Sessionen återkallas framgångsrikt
     title: Sessioner
@@ -841,6 +880,7 @@ sv:
     profile: Profil
     relationships: Följer och följare
     two_factor_authentication: Tvåfaktorsautentisering
+    webauthn_authentication: Säkerhetsnycklar
   statuses:
     attached:
       description: 'Bifogad: %{attached}'
@@ -862,8 +902,18 @@ sv:
       ownership: Någon annans toot kan inte fästas
       private: Icke-offentliga toot kan inte fästas
       reblog: Knuffar kan inte fästas
+    poll:
+      total_people:
+        one: "%{count} person"
+        other: "%{count} personer"
+      total_votes:
+        one: "%{count} röst"
+        other: "%{count} röster"
+      vote: Rösta
     show_more: Visa mer
     show_thread: Visa tråd
+    sign_in_to_participate: Logga in för att delta i konversationen
+    title: '%{name}: "%{quote}"'
     visibilities:
       private: Endast följare
       private_long: Visa endast till följare
@@ -963,7 +1013,9 @@ sv:
     default: Mastodon
     mastodon-light: Mastodon (ljust)
   two_factor_authentication:
+    add: Lägg till
     disable: Inaktivera
+    edit: Redigera
     enabled: Tvåfaktorsautentisering är aktiverad
     enabled_success: Tvåfaktorsautentisering aktiverad
     generate_recovery_codes: Generera återställningskoder
@@ -971,11 +1023,15 @@ sv:
     recovery_codes: Backup återställningskod
     recovery_codes_regenerated: Återställningskoder genererades på nytt
     recovery_instructions_html: Om du någonsin tappar åtkomst till din telefon kan du använda någon av återställningskoderna nedan för att återställa åtkomst till ditt konto. <strong> Håll återställningskoderna säkra </strong>. Du kan till exempel skriva ut dem och lagra dem med andra viktiga dokument.
+    webauthn: Säkerhetsnycklar
   user_mailer:
     backup_ready:
       explanation: Du begärde en fullständig säkerhetskopiering av ditt Mastodon-konto. Det är nu klart för nedladdning!
       subject: Ditt arkiv är klart för nedladdning
       title: Arkivuttagning
+    warning:
+      title:
+        none: Varning
     welcome:
       edit_profile_action: Profilinställning
       edit_profile_step: Du kan anpassa din profil genom att ladda upp en avatar, bakgrundsbild, ändra ditt visningsnamn och mer. Om du vill granska nya följare innan de får följa dig kan du låsa ditt konto.
@@ -993,12 +1049,15 @@ sv:
       tip_mobile_webapp: Om din mobila webbläsare erbjuder dig att lägga till Mastodon på din hemskärm kan du få push-aviseringar. Det fungerar som en inbyggd app på många sätt!
       title: Välkommen ombord, %{name}!
   users:
+    follow_limit_reached: Du kan inte följa fler än %{limit} personer
     invalid_otp_token: Ogiltig tvåfaktorskod
     otp_lost_help_html: Om du förlorat åtkomst till båda kan du komma i kontakt med %{email}
     seamless_external_login: Du är inloggad via en extern tjänst, så lösenord och e-postinställningar är inte tillgängliga.
     signed_in_as: 'Inloggad som:'
   webauthn_credentials:
-    delete: Ta bort
+    add: Lägg till ny säkerhetsnyckel
+    delete: Radera
     delete_confirmation: Är du säker på att du vill ta bort denna säkerhetsnyckel?
     destroy:
-      success: Din säkerhetsnyckel har tagits bort.
+      success: Din säkerhetsnyckel har raderats.
+    not_enabled: Du har inte aktiverat WebAuthn än

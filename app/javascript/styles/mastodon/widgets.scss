@@ -1,3 +1,5 @@
+@use "sass:math";
+
 .hero-widget {
   margin-bottom: 10px;
   box-shadow: 0 0 15px rgba($base-shadow-color, 0.2);
@@ -498,10 +500,10 @@ $fluid-breakpoint: $maximum-width + 20px;
   }
 
   &__item {
-    width: (960px - 20px) / 3;
+    width: math.div(960px - 20px, 3);
 
     @media screen and (max-width: $fluid-breakpoint) {
-      width: (940px - 20px) / 3;
+      width: math.div(940px - 20px, 3);
     }
 
     @media screen and (max-width: 640px) {

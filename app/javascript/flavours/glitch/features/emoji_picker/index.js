@@ -5,7 +5,7 @@ import { Map as ImmutableMap } from 'immutable';
 import { useEmoji } from 'flavours/glitch/actions/emojis';
 import React from 'react';
 import PropTypes from 'prop-types';
-import { defineMessages, injectIntl } from 'react-intl';
+import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import { EmojiPicker as EmojiPickerAsync } from 'flavours/glitch/util/async-components';
 import Overlay from 'react-overlays/lib/Overlay';
 import classNames from 'classnames';
@@ -18,7 +18,6 @@ import { assetHost } from 'flavours/glitch/util/config';
 const messages = defineMessages({
   emoji: { id: 'emoji_button.label', defaultMessage: 'Insert emoji' },
   emoji_search: { id: 'emoji_button.search', defaultMessage: 'Search...' },
-  emoji_not_found: { id: 'emoji_button.not_found', defaultMessage: 'No emojos!! (╯°□°）╯︵ ┻━┻' },
   custom: { id: 'emoji_button.custom', defaultMessage: 'Custom' },
   recent: { id: 'emoji_button.recent', defaultMessage: 'Frequently used' },
   search_results: { id: 'emoji_button.search_results', defaultMessage: 'Search results' },
@@ -108,8 +107,25 @@ const mapDispatchToProps = (dispatch, { onPickEmoji }) => ({
 
 let EmojiPicker, Emoji; // load asynchronously
 
-const backgroundImageFn = () => `${assetHost}/emoji/sheet_10.png`;
 const listenerOptions = supportsPassiveEvents ? { passive: true } : false;
+
+const backgroundImageFn = () => `${assetHost}/emoji/sheet_13.png`;
+
+const notFoundFn = () => (
+  <div className='emoji-mart-no-results'>
+    <Emoji
+      emoji='sleuth_or_spy'
+      set='twitter'
+      size={32}
+      sheetSize={32}
+      backgroundImageFn={backgroundImageFn}
+    />
+
+    <div className='emoji-mart-no-results-label'>
+      <FormattedMessage id='emoji_button.not_found' defaultMessage='No matching emojis found' />
+    </div>
+  </div>
+);
 
 class ModifierPickerMenu extends React.PureComponent {
 
@@ -262,7 +278,6 @@ class EmojiPickerMenu extends React.PureComponent {
 
     return {
       search: intl.formatMessage(messages.emoji_search),
-      notfound: intl.formatMessage(messages.emoji_not_found),
       categories: {
         search: intl.formatMessage(messages.search_results),
         recent: intl.formatMessage(messages.recent),
@@ -343,7 +358,9 @@ class EmojiPickerMenu extends React.PureComponent {
           recent={frequentlyUsedEmojis}
           skin={skinTone}
           showPreview={false}
+          showSkinTones={false}
           backgroundImageFn={backgroundImageFn}
+          notFound={notFoundFn}
           autoFocus
           emojiTooltip
           native={useSystemEmojiFont}
