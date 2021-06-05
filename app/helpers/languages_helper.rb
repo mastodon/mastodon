@@ -63,6 +63,7 @@ module LanguagesHelper
     ru: 'Русский',
     sa: 'संस्कृतम्',
     sc: 'Sardu',
+    sgs: 'Žemaitėškā',
     si: 'සිංහල',
     sk: 'Slovenčina',
     sl: 'Slovenščina',
