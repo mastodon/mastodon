@@ -273,6 +273,7 @@ fr:
         create_domain_block_html: "%{name} a bloqué le domaine %{target}"
         create_email_domain_block_html: "%{name} a bloqué de domaine de courriel %{target}"
         create_ip_block_html: "%{name} a créé une règle pour l'IP %{target}"
+        create_unavailable_domain_html: "%{name} a arrêté la livraison vers le domaine %{target}"
         demote_user_html: "%{name} a rétrogradé l'utilisateur·rice %{target}"
         destroy_announcement_html: "%{name} a supprimé l'annonce %{target}"
         destroy_custom_emoji_html: "%{name} a détruit l'émoji %{target}"
@@ -281,6 +282,7 @@ fr:
         destroy_email_domain_block_html: "%{name} a débloqué le domaine de courriel %{target}"
         destroy_ip_block_html: "%{name} a supprimé la règle pour l'IP %{target}"
         destroy_status_html: "%{name} a supprimé le statut de %{target}"
+        destroy_unavailable_domain_html: "%{name} a repris la livraison au domaine %{target}"
         disable_2fa_user_html: "%{name} a désactivé l'authentification à deux facteurs pour l'utilisateur·rice %{target}"
         disable_custom_emoji_html: "%{name} a désactivé l'émoji %{target}"
         disable_user_html: "%{name} a désactivé la connexion de l'utilisateur·rice %{target}"
@@ -453,10 +455,25 @@ fr:
       title: Recommandations d'abonnement
       unsuppress: Rétablir les recommandations d'abonnement
     instances:
+      back_to_all: Tout
+      back_to_limited: Limité
+      back_to_warning: Avertissement
       by_domain: Domaine
       delivery:
+        all: Tout
+        clear: Effacer les erreurs de livraison
+        restart: Redémarrer la livraison
+        stop: Arrêter la livraison
+        title: Livraison
         unavailable: Indisponible
+        unavailable_message: Livraison indisponible
+        warning: Avertissement
+        warning_message:
+          one: Échec de livraison %{count} jour
+          other: Échec de livraison %{count} jours
       delivery_available: Livraison disponible
+      delivery_error_days: Jours d'erreur de livraison
+      delivery_error_hint: Si la livraison n'est pas possible pendant %{count} jours, elle sera automatiquement marquée comme non livrable.
       empty: Aucun domaine trouvé.
       known_accounts:
         one: "%{count} compte connu"
@@ -636,7 +653,7 @@ fr:
         desc_html: Affichée dans la barre latérale et dans les méta-tags. Décrivez ce qui rend spécifique ce serveur Mastodon en un seul paragraphe. Si laissée vide, la description du serveur sera affiché par défaut.
         title: Description courte du serveur
       site_terms:
-        desc_html: Affichée sur la page des conditions d’utilisation du site. Vous pouvez utiliser des balises HTML
+        desc_html: Vous pouvez écrire votre propre politique de confidentialité, conditions d’utilisation ou autre jargon juridique. Vous pouvez utiliser des balises HTML
         title: Politique de confidentialité
       site_title: Nom du serveur
       thumbnail:
@@ -1352,7 +1369,7 @@ fr:
       <p>Ce document est publié sous licence CC-BY-SA. Il a été mis à jour pour la dernière fois le 7 mars 2018.</p>
 
       <p>Originellement adapté de la <a href="https://github.com/discourse/discourse">politique de confidentialité de Discourse</a>.</p>
-    title: "%{instance} Conditions d’utilisation et politique de confidentialité"
+    title: Conditions d’utilisation et politique de confidentialité de %{instance}
   themes:
     contrast: Mastodon (Contraste élevé)
     default: Mastodon (Sombre)

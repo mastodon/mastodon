@@ -73,6 +73,7 @@ module Mastodon
       :eo,
       :es,
       :'es-AR',
+      :'es-MX',
       :et,
       :eu,
       :fa,

@@ -102,7 +102,7 @@ module Mastodon
 
                   ActiveRecord::Base.connection_pool.with_connection do
                     grouped_records = type.adapter.send(:grouped_objects, records)
-                    bulk_body       = Chewy::Type::Import::BulkBuilder.new(type, grouped_records).bulk_body
+                    bulk_body       = Chewy::Type::Import::BulkBuilder.new(type, **grouped_records).bulk_body
                   end
 
                   index_count  = grouped_records[:index].size  if grouped_records.key?(:index)
