@@ -484,9 +484,18 @@ ar:
         restart: إعادة تشغيل التوصيل
         stop: إيقاف التوصيل
         title: التوصيل
-        unavailable: غير متاح
+        unavailable: غير متوفر
         unavailable_message: التوصيل غير متوفر
+        warning: تحذير
+        warning_message:
+          zero: فشل التوصيل لـ%{count} يوم
+          one: فشل التوصيل لـ%{count} يوم
+          two: فشل التوصيل لـ%{count} يوم
+          few: فشل التوصيل لـ%{count} أيام
+          many: فشل التوصيل لـ%{count} يوم
+          other: فشل التوصيل لـ%{count} يوم
       delivery_available: التسليم متوفر
+      delivery_error_days: أيام أخطاء التوصيل
       empty: لم يتم العثور على نطاقات.
       known_accounts:
         zero: "%{count} حسابات معروفة"
