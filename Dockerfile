@@ -17,47 +17,47 @@ RUN ARCH= && \
     *) echo "unsupported architecture"; exit 1 ;; \
   esac && \
     echo "Etc/UTC" > /etc/localtime && \
-	apt-get update && \
-	apt-get install -y --no-install-recommends ca-certificates wget python && \
-	cd ~ && \
-	wget -q https://nodejs.org/download/release/v$NODE_VER/node-v$NODE_VER-linux-$ARCH.tar.gz && \
-	tar xf node-v$NODE_VER-linux-$ARCH.tar.gz && \
-	rm node-v$NODE_VER-linux-$ARCH.tar.gz && \
-	mv node-v$NODE_VER-linux-$ARCH /opt/node
+  apt-get update && \
+  apt-get install -y --no-install-recommends ca-certificates wget python && \
+  cd ~ && \
+  wget -q https://nodejs.org/download/release/v$NODE_VER/node-v$NODE_VER-linux-$ARCH.tar.gz && \
+  tar xf node-v$NODE_VER-linux-$ARCH.tar.gz && \
+  rm node-v$NODE_VER-linux-$ARCH.tar.gz && \
+  mv node-v$NODE_VER-linux-$ARCH /opt/node
 
 # Install Ruby
 ENV RUBY_VER="2.7.2"
 RUN apt-get update && \
   apt-get install -y --no-install-recommends build-essential \
     bison libyaml-dev libgdbm-dev libreadline-dev libjemalloc-dev \
-		libncurses5-dev libffi-dev zlib1g-dev libssl-dev && \
-	cd ~ && \
-	wget https://cache.ruby-lang.org/pub/ruby/${RUBY_VER%.*}/ruby-$RUBY_VER.tar.gz && \
-	tar xf ruby-$RUBY_VER.tar.gz && \
-	cd ruby-$RUBY_VER && \
-	./configure --prefix=/opt/ruby \
-	  --with-jemalloc \
-	  --with-shared \
-	  --disable-install-doc && \
-	make -j"$(nproc)" > /dev/null && \
-	make install && \
-	rm -rf ../ruby-$RUBY_VER.tar.gz ../ruby-$RUBY_VER
+    libncurses5-dev libffi-dev zlib1g-dev libssl-dev && \
+  cd ~ && \
+  wget https://cache.ruby-lang.org/pub/ruby/${RUBY_VER%.*}/ruby-$RUBY_VER.tar.gz && \
+  tar xf ruby-$RUBY_VER.tar.gz && \
+  cd ruby-$RUBY_VER && \
+    ./configure --prefix=/opt/ruby \
+    --with-jemalloc \
+    --with-shared \
+    --disable-install-doc && \
+  make -j"$(nproc)" > /dev/null && \
+  make install && \
+  rm -rf ../ruby-$RUBY_VER.tar.gz ../ruby-$RUBY_VER
 
 ENV PATH="${PATH}:/opt/ruby/bin:/opt/node/bin"
 
 RUN npm install -g yarn && \
-	gem install bundler && \
-	apt-get update && \
-	apt-get install -y --no-install-recommends git libicu-dev libidn11-dev \
-	libpq-dev libprotobuf-dev protobuf-compiler shared-mime-info
+  gem install bundler && \
+  apt-get update && \
+  apt-get install -y --no-install-recommends git libicu-dev libidn11-dev \
+  libpq-dev libprotobuf-dev protobuf-compiler shared-mime-info
 
 COPY Gemfile* package.json yarn.lock /opt/mastodon/
 
 RUN cd /opt/mastodon && \
   bundle config set deployment 'true' && \
   bundle config set without 'development test' && \
-	bundle install -j"$(nproc)" && \
-	yarn install --pure-lockfile
+  bundle install -j"$(nproc)" && \
+  yarn install --pure-lockfile
 
 FROM ubuntu:20.04
 
@@ -73,23 +73,23 @@ ARG UID=991
 ARG GID=991
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 RUN apt-get update && \
-	echo "Etc/UTC" > /etc/localtime && \
-	apt-get install -y --no-install-recommends whois wget && \
-	addgroup --gid $GID mastodon && \
-	useradd -m -u $UID -g $GID -d /opt/mastodon mastodon && \
-	echo "mastodon:$(head /dev/urandom | tr -dc A-Za-z0-9 | head -c 24 | mkpasswd -s -m sha-256)" | chpasswd && \
-	rm -rf /var/lib/apt/lists/*
+  echo "Etc/UTC" > /etc/localtime && \
+  apt-get install -y --no-install-recommends whois wget && \
+  addgroup --gid $GID mastodon && \
+  useradd -m -u $UID -g $GID -d /opt/mastodon mastodon && \
+  echo "mastodon:$(head /dev/urandom | tr -dc A-Za-z0-9 | head -c 24 | mkpasswd -s -m sha-256)" | chpasswd && \
+  rm -rf /var/lib/apt/lists/*
 
 # Install mastodon runtime deps
 RUN apt-get update && \
   apt-get -y --no-install-recommends install \
-	  libssl1.1 libpq5 imagemagick ffmpeg libjemalloc2 \
-	  libicu66 libprotobuf17 libidn11 libyaml-0-2 \
-	  file ca-certificates tzdata libreadline8 gcc tini && \
-	ln -s /opt/mastodon /mastodon && \
-	gem install bundler && \
-	rm -rf /var/cache && \
-	rm -rf /var/lib/apt/lists/*
+    libssl1.1 libpq5 imagemagick ffmpeg libjemalloc2 \
+    libicu66 libprotobuf17 libidn11 libyaml-0-2 \
+    file ca-certificates tzdata libreadline8 gcc tini && \
+  ln -s /opt/mastodon /mastodon && \
+  gem install bundler && \
+  rm -rf /var/cache && \
+  rm -rf /var/lib/apt/lists/*
 
 # Copy over mastodon source, and dependencies from building, and set permissions
 COPY --chown=mastodon:mastodon . /opt/mastodon
@@ -108,8 +108,8 @@ USER mastodon
 
 # Precompile assets
 RUN cd ~ && \
-	OTP_SECRET=precompile_placeholder SECRET_KEY_BASE=precompile_placeholder rails assets:precompile && \
-	yarn cache clean
+  OTP_SECRET=precompile_placeholder SECRET_KEY_BASE=precompile_placeholder rails assets:precompile && \
+  yarn cache clean
 
 # Set the work dir and the container entry point
 WORKDIR /opt/mastodon
