@@ -18,7 +18,7 @@ es-MX:
           disable: Evitar que el usuario utilice su cuenta, pero no eliminar ni ocultar sus contenidos.
           none: Utilizar esto para enviar una advertencia al usuario, sin poner en marcha ninguna otra acción.
           sensitive: Forzar que todos los archivos multimedia de este usuario sean marcados como sensibles.
-          silence: Evitar que el usuario pueda tootear con visibilidad pública, ocultar sus publicaciones y notificaciones a personas que no lo siguen.
+          silence: Evitar que el usuario pueda publicar con visibilidad pública, oculta sus mensajes y notificaciones a personas que no lo siguen.
           suspend: Evitar cualquier interacción desde o hacia esta cuenta y eliminar su contenido. Reversible en un plazo de 30 días.
         warning_preset_id: Opcional. Aún puede añadir texto personalizado al final de la configuración predefinida
       announcement:
@@ -120,6 +120,7 @@ es-MX:
         text: Anuncio
       defaults:
         autofollow: Invitar a seguir tu cuenta
+        avatar: Avatar
         bot: Esta es una cuenta bot
         chosen_languages: Filtrar idiomas
         confirm_new_password: Confirmar nueva contraseña
@@ -189,6 +190,7 @@ es-MX:
         text: "¿Por qué quiere unirse usted?"
       ip_block:
         comment: Comentario
+        ip: IP
         severities:
           no_access: Bloquear acceso
           sign_up_requires_approval: Limitar registros
@@ -210,8 +212,10 @@ es-MX:
         name: Etiqueta
         trendable: Permitir que esta etiqueta aparezca bajo tendencias
         usable: Permitir a los toots usar esta etiqueta
+    'no': 'No'
     recommended: Recomendado
     required:
+      mark: "*"
       text: necesario
     title:
       sessions:
