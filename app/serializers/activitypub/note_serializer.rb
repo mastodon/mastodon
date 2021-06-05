@@ -170,6 +170,8 @@ class ActivityPub::NoteSerializer < ActivityPub::Serializer
 
     attributes :type, :media_type, :url, :name, :blurhash
     attribute :focal_point, if: :focal_point?
+    attribute :width, if: :width?
+    attribute :height, if: :height?
 
     has_one :icon, serializer: ActivityPub::ImageSerializer, if: :thumbnail?
 
@@ -203,6 +205,22 @@ class ActivityPub::NoteSerializer < ActivityPub::Serializer
 
     def thumbnail?
       object.thumbnail.present?
+    end
+
+    def width?
+      object.file.meta&.dig('original', 'width').present?
+    end
+
+    def height?
+      object.file.meta&.dig('original', 'height').present?
+    end
+
+    def width
+      object.file.meta.dig('original', 'width')
+    end
+
+    def height
+      object.file.meta.dig('original', 'height')
     end
   end
 

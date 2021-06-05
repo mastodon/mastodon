@@ -21,7 +21,7 @@ module AccountAvatar
     has_attached_file :avatar, styles: ->(f) { avatar_styles(f) }, convert_options: { all: '-strip' }, processors: [:lazy_thumbnail]
     validates_attachment_content_type :avatar, content_type: IMAGE_MIME_TYPES
     validates_attachment_size :avatar, less_than: LIMIT
-    remotable_attachment :avatar, LIMIT
+    remotable_attachment :avatar, LIMIT, suppress_errors: false
   end
 
   def avatar_original_url

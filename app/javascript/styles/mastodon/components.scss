@@ -2508,13 +2508,20 @@ a.account__display-name {
   }
 }
 
+.follow-recommendations-container {
+  display: flex;
+  flex-direction: column;
+}
+
 .column-actions {
   display: flex;
-  align-items: center;
+  align-items: start;
   justify-content: center;
   padding: 40px;
   padding-top: 40px;
   padding-bottom: 200px;
+  flex-grow: 1;
+  position: relative;
 
   &__background {
     position: absolute;
@@ -5297,9 +5304,10 @@ a.status-card.compact:hover {
 .report-modal__target {
   padding: 15px;
 
-  .media-modal__close {
-    top: 14px;
-    right: 15px;
+  .report-modal__close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
   }
 }
 

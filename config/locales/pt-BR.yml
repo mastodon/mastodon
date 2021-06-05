@@ -84,6 +84,7 @@ pt-BR:
       admin: Admin
       bot: Robô
       group: Grupo
+      moderator: Moderador
     unavailable: Perfil indisponível
     unfollow: Deixar de seguir
   admin:
@@ -134,6 +135,7 @@ pt-BR:
       inbox_url: URL da caixa de entrada
       invite_request_text: Motivos para entrar
       invited_by: Convidado por
+      ip: IP
       joined: Entrou
       location:
         all: Todos
@@ -213,6 +215,7 @@ pt-BR:
       username: Nome de usuário
       view_domain: Ver resumo para o domínio
       warn: Notificar
+      web: Web
       whitelisted: Permitido
     action_logs:
       action_types:
@@ -256,6 +259,10 @@ pt-BR:
         update_custom_emoji: Editar Emoji Personalizado
         update_domain_block: Atualizar bloqueio de domínio
         update_status: Editar Status
+      actions:
+        create_account_warning_html: "%{name} enviou um aviso para %{target}"
+        create_domain_block_html: "%{name} bloqueou o domínio %{target}"
+        create_email_domain_block_html: "%{name} bloqueou do domínio de e-mail %{target}"
       deleted_status: "(status excluído)"
       empty: Nenhum registro encontrado.
       filter_by_action: Filtrar por ação
@@ -270,10 +277,12 @@ pt-BR:
       new:
         create: Criar anúncio
         title: Novo anúncio
+      publish: Publicar
       published_msg: Anúncio publicado com sucesso!
       scheduled_for: Agendado para %{time}
       scheduled_msg: Anúncio agendado para publicação!
       title: Anúncios
+      unpublish: Cancelar publicação
       unpublished_msg: Anúncio despublicado com sucesso!
       updated_msg: Anúncio atualizado com sucesso!
     custom_emojis:
@@ -394,6 +403,7 @@ pt-BR:
         title: Nova entrada de lista negra de e-mail
       title: Lista de negra de e-mail
     instances:
+      back_to_warning: Aviso
       by_domain: Domínio
       delivery_available: Envio disponível
       empty: Nenhum domínio encontrado.
@@ -495,7 +505,10 @@ pt-BR:
       updated_at: Atualizado
     rules:
       add_new: Adicionar regra
+      delete: Deletar
+      description_html: Embora a maioria afirme ter lido e concordado com os termos de serviço, geralmente as pessoas só leem depois de surgir um problema. <strong>Faça com que seja mais fácil ver as regras do seu servidor rapidamente fornecendo-as em uma lista.</strong> Tente manter cada regra curta e simples, mas também tente não dividi-las em muitos itens separados.
       edit: Editar regra
+      empty: Nenhuma regra do servidor foi definida.
       title: Regras do servidor
     settings:
       activity_api_enabled:
@@ -603,6 +616,9 @@ pt-BR:
       no_status_selected: Nenhum status foi modificado porque nenhum estava selecionado
       title: Toots da conta
       with_media: Com mídia
+    system_checks:
+      rules_check:
+        message_html: Você não definiu nenhuma regra de servidor.
     tags:
       accounts_today: Usos únicos de hoje
       accounts_week: Usos únicos desta semana
