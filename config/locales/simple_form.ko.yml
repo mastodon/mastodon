@@ -7,12 +7,12 @@ ko:
       account_migration:
         acct: 이동하고자 하는 목적지 계정의 사용자이름@도메인을 설정하세요
       account_warning_preset:
-        text: URL, 해시태그, 멘션과 같은 툿 문법을 사용할 수 있습니다
+        text: URL, 해시태그, 멘션과 같은 게시물 문법을 사용할 수 있습니다
         title: 선택사항. 수신자에게는 보이지 않습니다
       admin_account_action:
-        include_statuses: 사용자는 어떤 툿에 대해 경고나 조치가 취해졌는지 볼 수 있게 됩니다
+        include_statuses: 사용자는 어떤 게시물에 대해 경고나 조치가 취해졌는지 볼 수 있게 됩니다
         send_email_notification: 유저는 어떤 일이 일어났는 지에 대한 설명을 받게 됩니다
-        text_html: 선택사항. 툿 문법을 사용할 수 있습니다. <a href="%{path}">경고 틀을 추가</a>하여 시간을 절약할 수 있습니다
+        text_html: 선택사항. 게시물 문법을 사용할 수 있습니다. <a href="%{path}">경고 틀을 추가</a>하여 시간을 절약할 수 있습니다
         type_html: "<strong>%{acct}</strong>에 대해 취할 행동 선택"
         types:
           disable: 사용자가 계정을 사용하는 것을 막지만, 그들의 게시물을 삭제하거나 숨기지는 않습니다.
@@ -26,7 +26,7 @@ ko:
         ends_at: 옵션입니다. 공지사항이 이 시간에 자동으로 발행 중지 됩니다
         scheduled_at: 공백으로 두면 공지사항이 곧바로 발행 됩니다
         starts_at: 공지사항이 특정한 시간에 종속 될 때를 위한 옵션입니다
-        text: 툿 문법을 사용할 수 있습니다. 공지사항은 사용자의 화면 상단 공간을 차지한다는 것을 명심하세요
+        text: 게시물 문법을 사용할 수 있습니다. 공지사항은 사용자의 화면 상단 공간을 차지한다는 것을 명심하세요
       defaults:
         autofollow: 이 초대를 통해 가입하는 사람은 당신을 자동으로 팔로우 하게 됩니다
         avatar: PNG, GIF 혹은 JPG. 최대 %{size}. %{dimensions}px로 축소 됨
@@ -40,20 +40,20 @@ ko:
         fields: 당신의 프로파일에 최대 4개까지 표 형식으로 나타낼 수 있습니다
         header: PNG, GIF 혹은 JPG. 최대 %{size}. %{dimensions}px로 축소 됨
         inbox_url: 사용 할 릴레이 서버의 프론트페이지에서 URL을 복사합니다
-        irreversible: 필터링 된 툿은 나중에 필터가 사라지더라도 돌아오지 않게 됩니다
+        irreversible: 필터링 된 게시물은 나중에 필터가 사라지더라도 돌아오지 않게 됩니다
         locale: 유저 인터페이스, 이메일, 푸시 알림 언어
         locked: 팔로우 요청을 승인함으로써 누가 당신을 팔로우 할 수 있는지를 수동으로 제어합니다.
         password: 최소 8글자
-        phrase: 툿 내용이나 CW 내용 안에서 대소문자 구분 없이 매칭 됩니다
+        phrase: 게시물 내용이나 열람주의 내용 안에서 대소문자 구분 없이 매칭 됩니다
         scopes: 애플리케이션에 허용할 API들입니다. 최상위 스코프를 선택하면 개별적인 것은 선택하지 않아도 됩니다.
-        setting_aggregate_reblogs: 내가 부스트 했던 툿은 새로 부스트 되어도 보여주지 않습니다
+        setting_aggregate_reblogs: 최근에 부스트 됐던 게시물은 새로 부스트 되어도 보여주지 않기 (새로 받은 부스트에만 적용됩니다)
         setting_default_sensitive: 민감한 미디어는 기본적으로 가려져 있으며 클릭해서 볼 수 있습니다
         setting_display_media_default: 민감함으로 설정 된 미디어 가리기
         setting_display_media_hide_all: 항상 모든 미디어를 가리기
         setting_display_media_show_all: 민감함으로 설정 된 미디어를 항상 보이기
         setting_hide_network: 나를 팔로우 하는 사람들과 내가 팔로우 하는 사람들을 내 프로필에서 숨깁니다
         setting_noindex: 공개 프로필 및 각 툿페이지에 영향을 미칩니다
-        setting_show_application: 당신이 툿을 작성하는데에 사용한 앱이 툿의 상세정보에 표시 됩니다
+        setting_show_application: 당신이 게시물을 작성하는데에 사용한 앱이 툿의 상세정보에 표시 됩니다
         setting_use_blurhash: 그라디언트는 숨겨진 내용의 색상을 기반으로 하지만 상세 내용은 보이지 않게 합니다
         setting_use_pending_items: 타임라인의 새 게시물을 자동으로 보여 주는 대신, 클릭해서 나타내도록 합니다
         username: 당신의 유저네임은 %{domain} 안에서 유일해야 합니다
@@ -87,7 +87,7 @@ ko:
       tag:
         name: 읽기 쉽게하기 위한 글자의 대소문자만 변경할 수 있습니다.
       user:
-        chosen_languages: 체크하면, 선택 된 언어들만 공개 타임라인에 보여집니다
+        chosen_languages: 체크하면, 선택 된 언어로 작성된 게시물들만 공개 타임라인에 보여집니다
     labels:
       account:
         fields:
@@ -101,7 +101,7 @@ ko:
         text: 프리셋 텍스트
         title: 제목
       admin_account_action:
-        include_statuses: 신고된 툿을 이메일에 포함
+        include_statuses: 신고된 게시물을 이메일에 포함
         send_email_notification: 이메일로 유저에게 알리기
         text: 커스텀 경고
         type: 조치
@@ -149,11 +149,11 @@ ko:
         setting_aggregate_reblogs: 타임라인의 부스트를 그룹화
         setting_auto_play_gif: 애니메이션 GIF를 자동 재생
         setting_boost_modal: 부스트 전 확인 창을 표시
-        setting_crop_images: 확장되지 않은 툿의 이미지를 16x9로 자르기
+        setting_crop_images: 확장되지 않은 게시물의 이미지를 16x9로 자르기
         setting_default_language: 게시물 언어
         setting_default_privacy: 툿 프라이버시
         setting_default_sensitive: 미디어를 언제나 민감한 컨텐츠로 설정
-        setting_delete_modal: 툿 삭제 전 확인 창을 표시
+        setting_delete_modal: 게시물 삭제 전 확인 창을 표시
         setting_disable_swiping: 스와이프 모션 비활성화
         setting_display_media: 미디어 표시
         setting_display_media_default: 기본
@@ -211,7 +211,7 @@ ko:
         listable: 이 해시태그가 검색과 추천에 보여지도록 허용
         name: 해시태그
         trendable: 이 해시태그가 유행에 보여지도록 허용
-        usable: 이 해시태그를 툿에 사용 가능하도록 허용
+        usable: 이 해시태그를 게시물에 사용 가능하도록 허용
     'no': 아니오
     recommended: 추천함
     required:

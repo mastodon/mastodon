@@ -44,7 +44,7 @@ vi:
       silenced_title: Những máy chủ bị ẩn
       suspended: 'Những máy chủ sau sẽ không được xử lý, lưu trữ hoặc trao đổi nội dung. Mọi tương tác hoặc giao tiếp với người dùng từ các máy chủ này đều bị cấm:'
       suspended_title: Những máy chủ bị vô hiệu hóa
-    unavailable_content_html: Mastodon cho phép bạn xem nội dung và tương tác với người dùng từ bất kỳ máy chủ nào khác trong mạng liên hợp. Còn máy chủ này có những ngoại lệ riêng.
+    unavailable_content_html: Mastodon cho phép bạn tương tác nội dung và giao tiếp với người dùng từ bất kỳ máy chủ nào khác trong mạng liên hợp. Còn máy chủ này có những ngoại lệ riêng.
     user_count_after:
       other: người dùng
     user_count_before: Nhà của
@@ -86,8 +86,8 @@ vi:
       action: Thực hiện hành động
       title: Áp đặt kiểm duyệt với %{acct}
     account_moderation_notes:
-      create: Gửi tin nhắn kiểm duyệt
-      created_msg: Gửi tin nhắn kiểm duyệt thành công!
+      create: Thêm ghi chú
+      created_msg: Thêm ghi chú kiểm duyệt thành công!
       delete: Xóa bỏ
       destroyed_msg: Đã xóa ghi chú kiểm duyệt!
     accounts:
@@ -440,7 +440,7 @@ vi:
         title: Chặn tên miền email mới
       title: Tên miền email đã chặn
     follow_recommendations:
-      description_html: "<strong>Gợi ý theo dõi là cách giúp những người dùng mới nhanh chóng tìm thấy những nội dung thú vị</strong>. Khi một người dùng chưa tương tác đủ với những người khác để hình thành các đề xuất theo dõi được cá nhân hóa, thì những tài khoản này sẽ được đề xuất. Nó bao gồm các tài khoản có số lượt tương tác gần đây cao nhất và số lượng người theo dõi cao nhất cho một ngôn ngữ nhất định trong máy chủ."
+      description_html: "<strong>Gợi ý theo dõi là cách giúp những người dùng mới nhanh chóng tìm thấy những nội dung thú vị</strong>. Khi một người dùng chưa đủ tương tác với những người khác để hình thành các đề xuất theo dõi được cá nhân hóa, thì những tài khoản này sẽ được đề xuất. Nó bao gồm các tài khoản có số lượt tương tác gần đây cao nhất và số lượng người theo dõi cao nhất cho một ngôn ngữ nhất định trong máy chủ."
       language: Theo ngôn ngữ
       status: Trạng thái
       suppress: Tắt gợi ý theo dõi
@@ -821,17 +821,17 @@ vi:
       with_month_name: "%B %d, %Y"
   datetime:
     distance_in_words:
-      about_x_hours: "%{count}h"
-      about_x_months: "%{count}th"
-      about_x_years: "%{count}y"
-      almost_x_years: "%{count}y"
+      about_x_hours: "%{count} giờ"
+      about_x_months: "%{count} tháng"
+      about_x_years: "%{count} năm"
+      almost_x_years: "%{count} năm"
       half_a_minute: Vừa xong
-      less_than_x_minutes: "%{count}p"
+      less_than_x_minutes: "%{count} phút"
       less_than_x_seconds: Vừa xong
-      over_x_years: "%{count}y"
-      x_days: "%{count}d"
-      x_minutes: "%{count}p"
-      x_months: "%{count}th"
+      over_x_years: "%{count} năm"
+      x_days: "%{count} ngày"
+      x_minutes: "%{count} phút"
+      x_months: "%{count} tháng"
       x_seconds: "%{count}s"
   deletes:
     challenge_not_passed: Thông tin bạn nhập không chính xác
@@ -847,7 +847,7 @@ vi:
       email_contact_html: Nếu vẫn không nhận được, bạn có thể liên hệ <a href="mailto:%{email}">%{email}</a> để được giúp đỡ
       email_reconfirmation_html: Nếu bạn không nhận được email xác nhận, hãy thử <a href="%{path}">yêu cầu lại</a>
       irreversible: Bạn sẽ không thể khôi phục hoặc kích hoạt lại tài khoản của mình
-      more_details_html: Để biết thêm chi tiết, xem <a href="%{terms_path}">chính sách bảo mật</a>.
+      more_details_html: Đọc <a href="%{terms_path}">chính sách bảo mật</a> để biết thêm chi tiết.
       username_available: Tên người dùng của bạn sẽ có thể đăng ký lại
       username_unavailable: Tên người dùng của bạn sẽ không thể đăng ký mới
   directories:
@@ -1003,13 +1003,13 @@ vi:
     cancelled_msg: Đã hủy chuyển hướng xong.
     errors:
       already_moved: là tài khoản bạn đã dời sang rồi
-      missing_also_known_as: không phải tham chiếu của tài khoản này
+      missing_also_known_as: chưa kết nối với tài khoản này
       move_to_self: không thể là tài khoản hiện tại
       not_found: không thể tìm thấy
       on_cooldown: Bạn đang trong thời gian chiêu hồi
     followers_count: Số người theo dõi tại thời điểm chuyển hướng
     incoming_migrations: Chuyển từ một tài khoản khác
-    incoming_migrations_html: Để chuyển từ tài khoản khác sang tài khoản này, trước tiên bạn cần <a href="%{path}">tạo tham chiếu tài khoản</a>.
+    incoming_migrations_html: Để chuyển từ tài khoản khác sang tài khoản này, trước tiên bạn cần <a href="%{path}">kết nối tài khoản</a>.
     moved_msg: Tài khoản của bạn hiện đang chuyển hướng đến %{acct} và những người theo dõi bạn cũng sẽ được chuyển đi.
     not_redirecting: Tài khoản của bạn hiện không chuyển hướng đến bất kỳ tài khoản nào khác.
     on_cooldown: Bạn vừa mới chuyển tài khoản của bạn đi nơi khác. Chỉ có thể sử dụng tiếp tính năng này sau %{count} ngày.
@@ -1110,15 +1110,15 @@ vi:
       too_many_options: tối đa %{max} lựa chọn
   preferences:
     other: Khác
-    posting_defaults: Trạng thái tút mặc định
-    public_timelines: Bảng tin công khai
+    posting_defaults: Mặc định cho tút
+    public_timelines: Bảng tin máy chủ
   reactions:
     errors:
       limit_reached: Bạn không nên thao tác liên tục
       unrecognized_emoji: không phải là emoji
   relationships:
-    activity: Hoạt động tài khoản
-    dormant: Chưa tương tác
+    activity: Tương tác
+    dormant: Chưa
     follow_selected_followers: Theo dõi những người đã chọn
     followers: Người theo dõi
     following: Đang theo dõi
@@ -1255,7 +1255,7 @@ vi:
     visibilities:
       direct: Nhắn tin
       private: Người theo dõi
-      private_long: Chỉ người theo dõi mới xem được tút
+      private_long: Chỉ người theo dõi mới được xem
       public: Công khai
       public_long: Ai cũng có thể thấy
       unlisted: Riêng tư
@@ -1272,9 +1272,9 @@ vi:
       <h3 id="collect">Chúng tôi thu thập những thông tin gì?</h3>
 
       <ul>
-      <li><em>Thông tin tài khoản cơ bản</em>: Nếu bạn đăng ký trên máy chủ này, bạn phải cung cấp tên người dùng, địa chỉ email và mật khẩu. Bạn cũng có thể tùy chọn bổ sung tên hiển thị, mô tả, ảnh đại diện, ảnh bìa. Tên người dùng, tên hiển thị, mô tả, ảnh hồ sơ và ảnh bìa luôn được hiển thị công khai.</li>
+      <li><em>Thông tin tài khoản cơ bản</em>: Nếu bạn đăng ký trên máy chủ này, bạn phải cung cấp tên người dùng, địa chỉ email và mật khẩu. Bạn cũng có thể tùy chọn bổ sung tên hiển thị, tiểu sử, ảnh đại diện, ảnh bìa. Tên người dùng, tên hiển thị, tiểu sử, ảnh hồ sơ và ảnh bìa luôn được hiển thị công khai.</li>
       <li><em>Tút, lượt theo dõi và nội dung công khai khác</em>: Danh sách những người bạn theo dõi được liệt kê công khai, cũng tương tự như danh sách những người theo dõi bạn. Khi bạn đăng tút, ngày giờ và ứng dụng sử dụng được lưu trữ. Tút có thể chứa tệp đính kèm hình ảnh và video. Tút công khai và tút mở sẽ hiển thị công khai. Khi bạn đăng một tút trên trang cá nhân của bạn, đó là nội dung công khai. Tút của bạn sẽ gửi đến những người theo dõi của bạn, đồng nghĩa với việc sẽ có các bản sao được lưu trữ ở máy chủ của họ. Khi bạn xóa bài viết, bản sao từ những người theo dõi của bạn cũng bị xóa theo. Hành động chia sẻ hoặc thích một tút luôn luôn là công khai.</li>
-      <li><em>Tin nhắn và tút dành cho người theo dõi</em>: Tất cả tút được lưu trữ và xử lý trên máy chủ. Các tút dành cho người theo dõi được gửi đến những người theo dõi và những người được gắn thẻ trong tút. Còn các tin nhắn chỉ được gửi đến cho người nhận. Điều đó có nghĩa là chúng được gửi đến các máy chủ khác nhau và có các bản sao được lưu trữ ở đó. Chúng tôi đề nghị chỉ cho những người được ủy quyền truy cập vào đó, nhưng không phải máy chủ nào cũng làm như vậy. Do đó, điều quan trọng là phải xem xét kỹ máy chủ của người theo dõi của bạn. Bạn có thể thiết lập tự mình phê duyệt và từ chối người theo dõi mới trong cài đặt. <em>Xin lưu ý rằng quản trị viên máy chủ của bạn và bất kỳ máy chủ của người nhận nào cũng có thể xem các tin nhắn</em>. Người nhận tin nhắn có thể chụp màn hình, sao chép hoặc chia sẻ lại chúng. <em>Không nên chia sẻ bất kỳ thông tin rủi ro nào trên Mastodon.</em></li>
+      <li><em>Tin nhắn và tút dành cho người theo dõi</em>: Toàn bộ tút được lưu trữ và xử lý trên máy chủ. Các tút dành cho người theo dõi được gửi đến những người theo dõi và những người được gắn thẻ trong tút. Còn các tin nhắn chỉ được gửi đến cho người nhận. Điều đó có nghĩa là chúng được gửi đến các máy chủ khác nhau và có các bản sao được lưu trữ ở đó. Chúng tôi đề nghị chỉ cho những người được ủy quyền truy cập vào đó, nhưng không phải máy chủ nào cũng làm như vậy. Do đó, điều quan trọng là phải xem xét kỹ máy chủ của người theo dõi của bạn. Bạn có thể thiết lập tự mình phê duyệt và từ chối người theo dõi mới trong cài đặt. <em>Xin lưu ý rằng quản trị viên máy chủ của bạn và bất kỳ máy chủ của người nhận nào cũng có thể xem các tin nhắn</em>. Người nhận tin nhắn có thể chụp màn hình, sao chép hoặc chia sẻ lại chúng. <em>Không nên chia sẻ bất kỳ thông tin rủi ro nào trên Mastodon.</em></li>
       <li> <em>Địa chỉ IP và siêu dữ liệu khác</em>: Khi bạn đăng nhập, chúng tôi ghi nhớ địa chỉ IP đăng nhập cũng như tên trình duyệt của bạn. Tất cả các phiên đăng nhập sẽ để bạn xem xét và hủy bỏ trong phần cài đặt. Địa chỉ IP sử dụng được lưu trữ tối đa 12 tháng. Chúng tôi cũng có thể giữ lại nhật ký máy chủ bao gồm địa chỉ IP của những lượt đăng ký tài khoản trên máy chủ của chúng tôi. </li>
       </ul><hr class="spacer" />
       <h3 id="use"> Chúng tôi sử dụng thông tin của bạn để làm gì? </h3>
@@ -1294,12 +1294,12 @@ vi:
       <li>Giữ lại nhật ký máy chủ chứa địa chỉ IP của tất cả các yêu cầu đến máy chủ này, cho đến khi các nhật ký đó bị xóa đi trong vòng 90 ngày.</li>
       <li>Giữ lại các địa chỉ IP được liên kết với người dùng đã đăng ký trong vòng 12 tháng.</li>
       </ul>
-      <p>Bạn có thể tải xuống một bản sao lưu trữ nội dung của bạn, bao gồm các tút, tệp đính kèm phương tiện, ảnh đại diện và ảnh bìa.</p>
+      <p>Bạn có thể tải xuống một bản sao lưu trữ nội dung của bạn, bao gồm các tút, tập tin đính kèm, ảnh đại diện và ảnh bìa.</p>
       <p> Bạn có thể xóa tài khoản của mình bất cứ lúc nào.</p>
       <hr class="spacer"/>
       <h3 id="cookies">Chúng tôi có sử dụng cookie không?</h3>
       <p>Có. Cookie là các tệp nhỏ mà một trang web hoặc nhà cung cấp dịch vụ internet chuyển vào ổ cứng máy tính của bạn thông qua trình duyệt Web (nếu bạn cho phép). Những cookie này cho phép trang web nhận ra trình duyệt của bạn và nếu bạn có tài khoản đã đăng ký, nó sẽ liên kết với tài khoản đã đăng ký của bạn.</p>
-      <p> Chúng tôi sử dụng cookie để hiểu và lưu các tùy chọn của bạn cho các lần truy cập trong tương lai.</p>
+      <p> Chúng tôi sử dụng cookie để hiểu và lưu các tùy chọn của bạn cho các lần truy cập trong tiếp theo.</p>
       <hr class="spacer" />
       <h3 id="disclose">Chúng tôi có tiết lộ bất cứ thông tin nào ra ngoài không?</h3>
       <p>Chúng tôi không bán, trao đổi hoặc chuyển nhượng thông tin nhận dạng cá nhân của bạn cho bên thứ ba. Trừ khi bên thứ ba đó đang hỗ trợ chúng tôi điều hành Mastodon, tiến hành kinh doanh hoặc phục vụ bạn, miễn là các bên đó đồng ý giữ bí mật thông tin này. Chúng tôi cũng có thể tiết lộ thông tin của bạn nếu việc công bố là để tuân thủ luật pháp, thực thi quy tắc máy chủ của chúng tôi hoặc bảo vệ quyền, tài sản hợp pháp hoặc sự an toàn của chúng tôi hoặc bất kỳ ai.</p>
@@ -1307,15 +1307,15 @@ vi:
       <p>Nếu bạn cho phép một ứng dụng sử dụng tài khoản của mình, tùy thuộc vào phạm vi quyền bạn phê duyệt, ứng dụng có thể truy cập thông tin trang cá nhân, danh sách người theo dõi, danh sách của bạn, tất cả tút và lượt thích của bạn. Các ứng dụng không bao giờ có thể truy cập địa chỉ e-mail hoặc mật khẩu của bạn.</p>
       <hr class="spacer" />
       <h3 id="children">Cấm trẻ em sử dụng</h3>
-      <p>Nếu máy chủ này ở EU hoặc EEA: Trang web của chúng tôi, các sản phẩm và dịch vụ đều hướng đến những người trên 16 tuổi. Nếu bạn dưới 16 tuổi, theo yêu cầu của GDPR (<a href="https://en.wikipedia.org/wiki/General_Data_Protection_Regulation">Quy định bảo vệ dữ liệu chung</a>) thì không được sử dụng trang web này. </p>
-      <p>Nếu máy chủ này ở Hoa Kỳ: Trang web của chúng tôi, các sản phẩm và dịch vụ đều hướng đến những người trên 13 tuổi. Nếu bạn dưới 13 tuổi, theo yêu cầu của COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Đạo luật bảo vệ quyền riêng tư trực tuyến của trẻ em</a>) thì không được sử dụng trang web này.</p>
+      <p>Nếu máy chủ này ở EU hoặc EEA: Trang web của chúng tôi, các sản phẩm và dịch vụ đều dành cho những người trên 16 tuổi. Nếu bạn dưới 16 tuổi, xét theo GDPR (<a href="https://en.wikipedia.org/wiki/General_Data_Protection_Regulation">Quy định bảo vệ dữ liệu chung</a>) thì không được sử dụng trang web này. </p>
+      <p>Nếu máy chủ này ở Hoa Kỳ: Trang web của chúng tôi, các sản phẩm và dịch vụ đều dành cho những người trên 13 tuổi. Nếu bạn dưới 13 tuổi, xét theo COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Đạo luật bảo vệ quyền riêng tư trực tuyến của trẻ em</a>) thì không được sử dụng trang web này.</p>
       <p>Quy định pháp luật có thể khác biệt nếu máy chủ này ở khu vực địa lý khác.</p>
       <hr class="spacer" />
       <h3 id="changes">Cập nhật thay đổi</h3>
       <p>Nếu có thay đổi chính sách bảo mật, chúng tôi sẽ đăng những thay đổi đó ở mục này.</p>
       <p>Tài liệu này phát hành dưới hình thức CC-BY-SA và được cập nhật lần cuối vào ngày 7 tháng 3 năm 2018.</p>
       <p>Chỉnh sửa và hoàn thiện từ <a href="https://github.com/discourse/discourse">Discourse</a>.</p>
-    title: "%{instance} Điều khoản dịch vụ và chính sách bảo mật"
+    title: Quy tắc của %{instance}
   themes:
     contrast: Mastodon (Độ tương phản cao)
     default: Mastodon (Tối)
@@ -1378,7 +1378,7 @@ vi:
       final_action: Viết tút mới
       final_step: 'Viết tút mới! Ngay cả khi chưa có người theo dõi, người khác vẫn có thể xem tút công khai của bạn trên bảng tin máy chủ và trong hashtag. Hãy giới thiệu bản thân với hashtag #introduction.'
       full_handle: Tên đầy đủ của bạn
-      full_handle_hint: Đây cũng là địa chỉ được dùng để tương tác với tất cả mọi người.
+      full_handle_hint: Đây cũng là địa chỉ được dùng để giao tiếp với tất cả mọi người.
       review_preferences_action: Tùy chỉnh giao diện
       review_preferences_step: Tùy chỉnh mọi thứ! Chẳng hạn như chọn loại email nào bạn muốn nhận hoặc trạng thái đăng tút mặc định mà bạn muốn dùng. Hãy tắt tự động phát GIF nếu bạn dễ bị chóng mặt.
       subject: Chào mừng đến với Mastodon
@@ -1398,7 +1398,7 @@ vi:
     signed_in_as: 'Đăng nhập với tư cách là:'
     suspicious_sign_in_confirmation: Đây là lần đầu tiên bạn đăng nhập trên thiết bị này. Vì vậy, chúng tôi sẽ gửi một mã an toàn đến email của bạn để xác thực danh tính.
   verification:
-    explanation_html: 'Bạn có thể <strong>xác minh mình là chủ sở hữu của các trang web ở đầu trang cá nhân của bạn</strong>. Để xác minh, trang web <strong>phải</strong> chèn mã <code>rel="me"</code>. Nội dung văn bản của liên kết không quan trọng. Đây là một ví dụ:'
+    explanation_html: 'Bạn có thể <strong>xác minh mình là chủ sở hữu của các trang web</strong> ở đầu trang cá nhân của bạn. Để xác minh, trang web <strong>phải chèn mã</strong> <code>rel="me"</code>. Văn bản thay thế cho liên kết không quan trọng. Đây là một ví dụ:'
     verification: Xác minh
   webauthn_credentials:
     add: Thêm khóa bảo mật mới
