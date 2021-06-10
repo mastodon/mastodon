@@ -22,13 +22,20 @@ export const PICTURE_IN_PICTURE_REMOVE = 'PICTURE_IN_PICTURE_REMOVE';
  * @param {MediaProps} props
  * @return {object}
  */
-export const deployPictureInPicture = (statusId, accountId, playerType, props) => ({
-  type: PICTURE_IN_PICTURE_DEPLOY,
-  statusId,
-  accountId,
-  playerType,
-  props,
-});
+export const deployPictureInPicture = (statusId, accountId, playerType, props) => {
+  return (dispatch, getState) => {
+    // Do not open a player for a toot that does not exist
+    if (getState().hasIn(['statuses', statusId])) {
+      dispatch({
+        type: PICTURE_IN_PICTURE_DEPLOY,
+        statusId,
+        accountId,
+        playerType,
+        props,
+      });
+    }
+  };
+};
 
 /*
  * @return {object}
