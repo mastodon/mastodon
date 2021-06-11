@@ -1,7 +1,6 @@
----
 th:
   about:
-    about_hashtag_html: มีการแท็กโพสต์สาธารณะเหล่านี้ด้วย <strong>#%{hashtag}</strong> คุณสามารถโต้ตอบกับโพสต์หากคุณมีบัญชีที่ใดก็ตามในเฟดิเวิร์ส
+    about_hashtag_html: 'มีการแท็กโพสต์สาธารณะเหล่านี้ด้วย <strong>#%{hashtag}</strong> คุณสามารถโต้ตอบกับโพสต์หากคุณมีบัญชีที่ใดก็ตามในเฟดิเวิร์ส'
     about_mastodon_html: 'เครือข่ายสังคมแห่งอนาคต: ไม่มีโฆษณา ไม่มีการสอดแนมโดยองค์กร การออกแบบตามหลักจริยธรรม และการกระจายศูนย์! เป็นเจ้าของข้อมูลของคุณด้วย Mastodon!'
     about_this: เกี่ยวกับ
     active_count_after: ใช้งานอยู่
@@ -47,7 +46,7 @@ th:
     user_count_before: บ้านของ
     what_is_mastodon: Mastodon คืออะไร?
   accounts:
-    choices_html: 'ตัวเลือกของ %{name}:'
+    choices_html: "ตัวเลือกของ %{name}:"
     follow: ติดตาม
     followers:
       other: ผู้ติดตาม
@@ -394,7 +393,7 @@ th:
         suspend: ระงับอยู่
       show:
         affected_accounts:
-          other: มีผลต่อ %{count} บัญชีในฐานข้อมูล
+          other: "มีผลต่อ %{count} บัญชีในฐานข้อมูล"
         retroactive:
           silence: เลิกทำให้บัญชีที่มีอยู่ทั้งหมดจากโดเมนนี้เงียบ
           suspend: เลิกระงับบัญชีที่มีอยู่ทั้งหมดจากโดเมนนี้
@@ -422,6 +421,9 @@ th:
       title: คำแนะนำการติดตาม
       unsuppress: คืนค่าคำแนะนำการติดตาม
     instances:
+      back_to_all: ทั้งหมด
+      back_to_limited: จำกัดอยู่
+      back_to_warning: คำเตือน
       by_domain: โดเมน
       empty: ไม่พบโดเมน
       known_accounts:
@@ -463,13 +465,14 @@ th:
     pending_accounts:
       title: บัญชีที่รอดำเนินการ (%{count})
     relationships:
-      title: ความสัมพันธ์ของ %{acct}
+      title: "ความสัมพันธ์ของ %{acct}"
     relays:
       add_new: เพิ่มรีเลย์ใหม่
       delete: ลบ
       disable: ปิดใช้งาน
       disabled: ปิดใช้งานอยู่
       enable: เปิดใช้งาน
+      enable_hint: เมื่อเปิดใช้งาน เซิร์ฟเวอร์ของคุณจะบอกรับโพสต์สาธารณะทั้งหมดจากรีเลย์นี้ และจะเริ่มส่งโพสต์สาธารณะของเซิร์ฟเวอร์นี้ไปยังรีเลย์
       enabled: เปิดใช้งานอยู่
       inbox_url: URL รีเลย์
       pending: กำลังรอการอนุมัติของรีเลย์
@@ -641,7 +644,7 @@ th:
     new_report:
       body: "%{reporter} ได้รายงาน %{target}"
       body_remote: ใครสักคนจาก %{domain} ได้รายงาน %{target}
-      subject: รายงานใหม่สำหรับ %{instance} (#%{id})
+      subject: 'รายงานใหม่สำหรับ %{instance} (#%{id})'
   aliases:
     add_new: สร้างนามแฝง
     deleted_msg: เอานามแฝงออกสำเร็จ จะไม่สามารถย้ายจากบัญชีนั้นไปยังบัญชีนี้ได้อีกต่อไป
@@ -947,6 +950,7 @@ th:
   otp_authentication:
     code_hint: ป้อนรหัสที่สร้างโดยแอปตัวรับรองความถูกต้องของคุณเพื่อยืนยัน
     enable: เปิดใช้งาน
+    setup: ตั้งค่า
     wrong_code: รหัสที่ป้อนไม่ถูกต้อง! เวลาเซิร์ฟเวอร์และเวลาอุปกรณ์ถูกต้องหรือไม่?
   pagination:
     newer: ใหม่กว่า
@@ -1014,7 +1018,10 @@ th:
       firefox: Firefox
       generic: เบราว์เซอร์ที่ไม่รู้จัก
       ie: Internet Explorer
+      micro_messenger: MicroMessenger
       opera: Opera
+      otter: Otter
+      phantom_js: PhantomJS
       safari: Safari
       weibo: Weibo
     current_session: เซสชันปัจจุบัน
@@ -1098,11 +1105,12 @@ th:
       unlisted_long: ทุกคนสามารถเห็น แต่ไม่แสดงรายการในเส้นเวลาสาธารณะ
   stream_entries:
     pinned: โพสต์ที่ปักหมุด
+    reblogged: ดันแล้ว
     sensitive_content: เนื้อหาที่ละเอียดอ่อน
   tags:
     does_not_match_previous_name: ไม่ตรงกับชื่อก่อนหน้า
   terms:
-    title: เงื่อนไขการให้บริการและนโยบายความเป็นส่วนตัวของ %{instance}
+    title: "เงื่อนไขการให้บริการและนโยบายความเป็นส่วนตัวของ %{instance}"
   themes:
     contrast: Mastodon (ความคมชัดสูง)
     default: Mastodon (มืด)
@@ -1144,6 +1152,7 @@ th:
         suspend: ระงับบัญชีอยู่
     welcome:
       edit_profile_action: ตั้งค่าโปรไฟล์
+      final_action: เริ่มโพสต์
       review_preferences_action: เปลี่ยนการกำหนดลักษณะ
       subject: ยินดีต้อนรับสู่ Mastodon
       tip_following: คุณติดตามผู้ดูแลเซิร์ฟเวอร์ของคุณเป็นค่าเริ่มต้น เพื่อค้นหาผู้คนที่น่าสนใจเพิ่มเติม ตรวจสอบเส้นเวลาในเซิร์ฟเวอร์และที่ติดต่อกับภายนอก
