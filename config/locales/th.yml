@@ -208,6 +208,7 @@ th:
         create_domain_block: สร้างการปิดกั้นโดเมน
         create_email_domain_block: สร้างการปิดกั้นโดเมนอีเมล
         create_ip_block: สร้างกฎ IP
+        create_unavailable_domain: สร้างโดเมนที่ไม่พร้อมใช้งาน
         demote_user: ลดขั้นผู้ใช้
         destroy_announcement: ลบประกาศ
         destroy_custom_emoji: ลบอีโมจิที่กำหนดเอง
@@ -216,6 +217,7 @@ th:
         destroy_email_domain_block: ลบการปิดกั้นโดเมนอีเมล
         destroy_ip_block: ลบกฎ IP
         destroy_status: ลบโพสต์
+        destroy_unavailable_domain: ลบโดเมนที่ไม่พร้อมใช้งาน
         disable_2fa_user: ปิดใช้งาน 2FA
         disable_custom_emoji: ปิดใช้งานอีโมจิที่กำหนดเอง
         disable_user: ปิดใช้งานผู้ใช้
@@ -951,6 +953,14 @@ th:
     email_events: เหตุการณ์สำหรับการแจ้งเตือนอีเมล
     email_events_hint: 'เลือกเหตุการณ์ที่คุณต้องการรับการแจ้งเตือน:'
     other_settings: การตั้งค่าการแจ้งเตือนอื่น ๆ
+  number:
+    human:
+      decimal_units:
+        format: "%n %u"
+        units:
+          billion: พันล้าน
+          million: ล้าน
+          thousand: พัน
   otp_authentication:
     code_hint: ป้อนรหัสที่สร้างโดยแอปตัวรับรองความถูกต้องของคุณเพื่อยืนยัน
     enable: เปิดใช้งาน
