@@ -47,9 +47,9 @@ class MoveWorker
 
       new_note = AccountNote.find_by(account: note.account, target_account: @target_account)
       if new_note.nil?
-        AccountNote.create!(account: note.account, target_account: @target_account, comment: [text, note.comment].join('\n'))
+        AccountNote.create!(account: note.account, target_account: @target_account, comment: [text, note.comment].join("\n"))
       else
-        new_note.update!(comment: [text, note.comment, '\n', new_note.comment].join('\n'))
+        new_note.update!(comment: [text, note.comment, "\n", new_note.comment].join("\n"))
       end
     end
   end
