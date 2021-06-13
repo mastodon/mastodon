@@ -251,6 +251,7 @@ th:
         create_domain_block_html: "%{name} ได้ปิดกั้นโดเมน %{target}"
         create_email_domain_block_html: "%{name} ได้ปิดกั้นโดเมนอีเมล %{target}"
         create_ip_block_html: "%{name} ได้สร้างกฎสำหรับ IP %{target}"
+        create_unavailable_domain_html: "%{name} ได้หยุดการจัดส่งไปยังโดเมน %{target}"
         demote_user_html: "%{name} ได้ลดขั้นผู้ใช้ %{target}"
         destroy_announcement_html: "%{name} ได้ลบประกาศ %{target}"
         destroy_custom_emoji_html: "%{name} ได้ทำลายอีโมจิ %{target}"
@@ -430,14 +431,15 @@ th:
       by_domain: โดเมน
       delivery:
         all: ทั้งหมด
-        clear: ล้างข้อผิดพลาดการนำส่ง
-        restart: เริ่มการนำส่งใหม่
-        stop: หยุดการนำส่ง
-        title: การนำส่ง
+        clear: ล้างข้อผิดพลาดการจัดส่ง
+        restart: เริ่มการจัดส่งใหม่
+        stop: หยุดการจัดส่ง
+        title: การจัดส่ง
         unavailable: ไม่พร้อมใช้งาน
-        unavailable_message: การนำส่งไม่พร้อมใช้งาน
+        unavailable_message: การจัดส่งไม่พร้อมใช้งาน
         warning: คำเตือน
-      delivery_error_days: วันที่มีข้อผิดพลาดการนำส่ง
+      delivery_available: มีการจัดส่ง
+      delivery_error_days: วันที่มีข้อผิดพลาดการจัดส่ง
       empty: ไม่พบโดเมน
       known_accounts:
         other: "%{count} บัญชีที่รู้จัก"
