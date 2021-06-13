@@ -629,6 +629,8 @@ th:
       rules_check:
         action: จัดการกฎของเซิร์ฟเวอร์
         message_html: คุณไม่ได้กำหนดกฎของเซิร์ฟเวอร์ใด ๆ
+      sidekiq_process_check:
+        message_html: ไม่มีกระบวนการ Sidekiq ที่กำลังทำงานสำหรับคิว %{value} โปรดตรวจทานการกำหนดค่า Sidekiq ของคุณ
     tags:
       accounts_today: การใช้งานที่ไม่ซ้ำกันในวันนี้
       accounts_week: การใช้งานที่ไม่ซ้ำกันในสัปดาห์นี้
