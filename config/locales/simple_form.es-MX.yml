@@ -1,4 +1,3 @@
----
 es-MX:
   simple_form:
     hints:
@@ -15,11 +14,11 @@ es-MX:
         text_html: Opcional. Puede usar sintaxis de toots. Puede añadir <a href="%{path}">configuraciones predefinidas de advertencia</a> para ahorrar tiempo
         type_html: Elige qué hacer con <strong>%{acct}</strong>
         types:
-          disable: Evitar que el usuario utilice su cuenta, pero no eliminar ni ocultar sus contenidos.
-          none: Utilizar esto para enviar una advertencia al usuario, sin poner en marcha ninguna otra acción.
+          disable: Evite que el usuario utilice su cuenta, pero no elimine ni oculte su contenido.
+          none: Usar esto para enviar una advertencia a el usuario, sin activar alguna otra acción.
           sensitive: Forzar que todos los archivos multimedia de este usuario sean marcados como sensibles.
-          silence: Evitar que el usuario pueda publicar con visibilidad pública, oculta sus mensajes y notificaciones a personas que no lo siguen.
-          suspend: Evitar cualquier interacción desde o hacia esta cuenta y eliminar su contenido. Reversible en un plazo de 30 días.
+          silence: Evitar que el usuario publique contenido con visibilidad pública, ocultar sus publicaciones y notificaciones de gente que no lo sigue.
+          suspend: Evitar alguna interacción desde o hacia esta cuenta y eliminar su contenido. Reversible en un plazo de 30 días.
         warning_preset_id: Opcional. Aún puede añadir texto personalizado al final de la configuración predefinida
       announcement:
         all_day: Cuando está seleccionado solo se mostrarán las fechas del rango de tiempo
@@ -80,7 +79,7 @@ es-MX:
           sign_up_requires_approval: Nuevos registros requerirán su aprobación
         severity: Elegir lo que pasará con las peticiones desde esta IP
       rule:
-        text: Describe una norma o requisito para los usuarios de este servidor. Intenta hacerla corta y sencilla
+        text: Describa una norma o requisito para los usuarios de este servidor. Intente que sea corta y sencilla
       sessions:
         otp: 'Introduce el código de autenticación de dos factores generado por tu aplicación de teléfono o usa uno de tus códigos de recuperación:'
         webauthn: Si es una tecla USB, asegúrese de insertarla y, si es necesario, púlsela.
@@ -120,7 +119,7 @@ es-MX:
         text: Anuncio
       defaults:
         autofollow: Invitar a seguir tu cuenta
-        avatar: Avatar
+        avatar: Foto de perfil
         bot: Esta es una cuenta bot
         chosen_languages: Filtrar idiomas
         confirm_new_password: Confirmar nueva contraseña
@@ -187,7 +186,7 @@ es-MX:
       invite:
         comment: Comentar
       invite_request:
-        text: "¿Por qué quiere unirse usted?"
+        text: '¿Por qué quiere unirse usted?'
       ip_block:
         comment: Comentario
         ip: IP
@@ -220,4 +219,4 @@ es-MX:
     title:
       sessions:
         webauthn: Utilice una de sus claves de seguridad para iniciar sesión
-    'yes': Sí
+    'yes': 'Sí'
