@@ -219,6 +219,10 @@ class FocalPointModal extends ImmutablePureComponent {
   }
 
   handleTextDetection = () => {
+    this._detectText();
+  }
+
+  _detectText = (refreshCache = false) => {
     const { media } = this.props;
 
     this.setState({ detecting: true });
@@ -235,6 +239,7 @@ class FocalPointModal extends ImmutablePureComponent {
             this.setState({ ocrStatus: 'preparing', progress });
           }
         },
+        cacheMethod: refreshCache ? 'refresh' : 'write',
       });
 
       let media_url = media.get('url');
@@ -247,14 +252,20 @@ class FocalPointModal extends ImmutablePureComponent {
         }
       }
 
-      (async () => {
+      return (async () => {
         await worker.load();
         await worker.loadLanguage('eng');
         await worker.initialize('eng');
         const { data: { text } } = await worker.recognize(media_url);
         this.setState({ description: removeExtraLineBreaks(text), dirty: true, detecting: false });
         await worker.terminate();
-      })();
+      })().catch((e) => {
+        if (refreshCache) {
+          throw e;
+        } else {
+          this._detectText(true);
+        }
+      });
     }).catch((e) => {
       console.error(e);
       this.setState({ detecting: false });
