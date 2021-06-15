@@ -293,13 +293,13 @@ es-MX:
         reopen_report_html: "%{name} reabrió el reporte %{target}"
         reset_password_user_html: "%{name} restableció la contraseña del usuario %{target}"
         resolve_report_html: "%{name} resolvió el reporte %{target}"
-        sensitive_account_html: "%{name} marcó la multimedia de %{target} como sensible"
+        sensitive_account_html: "%{name} marcó el contenido de %{target} como contenido sensible"
         silence_account_html: "%{name} silenció la cuenta de %{target}"
         suspend_account_html: "%{name} suspendió la cuenta de %{target}"
-        unassigned_report_html: "%{name} des-asignó el informe %{target}"
-        unsensitive_account_html: "%{name} desmarcó la multimedia de %{target} como sensible"
+        unassigned_report_html: "%{name} reporte desasignado %{target}"
+        unsensitive_account_html: "%{name} desmarcó el contenido de %{target} como sensible"
         unsilence_account_html: "%{name} desilenció la cuenta de %{target}"
-        unsuspend_account_html: "%{name} reactivó la cuenta de %{target}"
+        unsuspend_account_html: "%{name} desactivó la suspención de la cuenta %{target}"
         update_announcement_html: "%{name} actualizó el anuncio %{target}"
         update_custom_emoji_html: "%{name} actualizó el emoji %{target}"
         update_domain_block_html: "%{name} actualizó el bloqueo de dominio para %{target}"
@@ -1076,7 +1076,7 @@ es-MX:
       subject: Fuiste mencionado por %{name}
       title: Nueva mención
     poll:
-      subject: Una encuesta de %{name} ha terminado
+      subject: Una encuesta por %{name} ha finalizado
     reblog:
       body: '%{name} ha retooteado tu estado:'
       subject: "%{name} ha retooteado tu estado"
@@ -1090,7 +1090,7 @@ es-MX:
   number:
     human:
       decimal_units:
-        format: "%n %u"
+        format: "%n%u"
         units:
           billion: MM
           million: M
