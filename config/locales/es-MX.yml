@@ -303,7 +303,7 @@ es-MX:
         update_announcement_html: "%{name} actualizó el anuncio %{target}"
         update_custom_emoji_html: "%{name} actualizó el emoji %{target}"
         update_domain_block_html: "%{name} actualizó el bloqueo de dominio para %{target}"
-        update_status_html: "%{name} actualizó el estado de %{target}"
+        update_status_html: "%{name} actualizó la publicación de %{target}"
       deleted_status: "(estado borrado)"
       empty: No se encontraron registros.
       filter_by_action: Filtrar por acción
@@ -323,7 +323,7 @@ es-MX:
       scheduled_for: Programado para %{time}
       scheduled_msg: '¡Anuncio programado para su publicación!'
       title: Anuncios
-      unpublish: Retirar publicación
+      unpublish: Cancela publicación
       unpublished_msg: '¡Anuncio despublicado con éxito!'
       updated_msg: '¡Anuncio actualizado con éxito!'
     custom_emojis:
@@ -1092,11 +1092,11 @@ es-MX:
       decimal_units:
         format: "%n%u"
         units:
-          billion: MM
+          billion: B
           million: M
-          quadrillion: MB
+          quadrillion: Q
           thousand: m
-          trillion: B
+          trillion: T
   otp_authentication:
     code_hint: Introduce el código generado por tu aplicación de autentificación para confirmar
     description_html: Si habilitas <strong>autenticación de dos factores</strong> a través de una aplicación de autenticación, el ingreso requerirá que estés en posesión de tu teléfono, que generará códigos para que ingreses.
@@ -1197,10 +1197,10 @@ es-MX:
       adobe_air: Adobe Air
       android: Android
       blackberry: Blackberry
-      chrome_os: ChromeOS
+      chrome_os: Chrome OS
       firefox_os: Firefox OS
       ios: iOS
-      linux: GNU Linux
+      linux: Linux
       mac: Mac
       other: Desconocido
       windows: Windows
@@ -1273,7 +1273,7 @@ es-MX:
     sign_in_to_participate: Regístrate para participar en la conversación
     title: '%{name}: «%{quote}»'
     visibilities:
-      direct: Directa
+      direct: Directo
       private: Sólo mostrar a seguidores
       private_long: Solo mostrar a tus seguidores
       public: Público
