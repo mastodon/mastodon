@@ -17,7 +17,7 @@ gem 'makara', '~> 0.5'
 gem 'pghero', '~> 2.8'
 gem 'dotenv-rails', '~> 2.7'
 
-gem 'aws-sdk-s3', '~> 1.95', require: false
+gem 'aws-sdk-s3', '~> 1.96', require: false
 gem 'fog-core', '<= 2.1.0'
 gem 'fog-openstack', '~> 0.3', require: false
 gem 'paperclip', '~> 6.0'
@@ -73,14 +73,14 @@ gem 'rack-attack', '~> 6.5'
 gem 'rack-cors', '~> 1.1', require: 'rack/cors'
 gem 'rails-i18n', '~> 6.0'
 gem 'rails-settings-cached', '~> 0.6'
-gem 'redis', '~> 4.2', require: ['redis', 'redis/connection/hiredis']
+gem 'redis', '~> 4.3', require: ['redis', 'redis/connection/hiredis']
 gem 'mario-redis-lock', '~> 1.2', require: 'redis_lock'
 gem 'rqrcode', '~> 2.0'
 gem 'ruby-progressbar', '~> 1.11'
 gem 'sanitize', '~> 5.2'
 gem 'scenic', '~> 1.5'
 gem 'sidekiq', '~> 6.2'
-gem 'sidekiq-scheduler', '~> 3.0'
+gem 'sidekiq-scheduler', '~> 3.1'
 gem 'sidekiq-unique-jobs', '~> 7.0'
 gem 'sidekiq-bulk', '~>0.2.0'
 gem 'simple-navigation', '~> 4.3'
@@ -136,7 +136,7 @@ group :development do
   gem 'letter_opener', '~> 1.7'
   gem 'letter_opener_web', '~> 1.4'
   gem 'memory_profiler'
-  gem 'rubocop', '~> 1.15', require: false
+  gem 'rubocop', '~> 1.16', require: false
   gem 'rubocop-rails', '~> 2.10', require: false
   gem 'brakeman', '~> 5.0', require: false
   gem 'bundler-audit', '~> 0.8', require: false
