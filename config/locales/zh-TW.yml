@@ -285,6 +285,21 @@ zh-TW:
         enable_user_html: "%{name} 將使用者 %{target} 設定為允許登入"
         memorialize_account_html: "%{name} 將 %{target} 設定為追悼帳戶"
         promote_user_html: "%{name} 對使用者 %{target} 進行了晉級操作"
+        remove_avatar_user_html: "%{name} 移除了 %{target} 的大頭貼"
+        reopen_report_html: "%{name} 重新開啟 %{target} 的檢舉"
+        reset_password_user_html: "%{name} 重新設定了使用者 %{target} 的密碼"
+        resolve_report_html: "%{name} 處理了 %{target} 的檢舉"
+        sensitive_account_html: "%{name} 將 %{target} 的媒體檔案標記為敏感內容"
+        silence_account_html: "%{name} 靜音了使用者 %{target}"
+        suspend_account_html: "%{name} 停權了使用者 %{target}"
+        unassigned_report_html: "%{name} 取消指派 %{target} 的檢舉"
+        unsensitive_account_html: "%{name} 將 %{target} 的媒體檔案的敏感狀態取消"
+        unsilence_account_html: "%{name} 取消了使用者 %{target} 的靜音狀態"
+        unsuspend_account_html: "%{name} 取消了使用者 %{target} 的停權狀態"
+        update_announcement_html: "%{name} 更新了公告 %{target}"
+        update_custom_emoji_html: "%{name} 更新了自訂表情符號 %{target}"
+        update_domain_block_html: "%{name} 更新了 %{target} 之網域封鎖"
+        update_status_html: "%{name} 更新了 %{target} 的嘟文"
       deleted_status: "（已刪除嘟文）"
       empty: 找不到 log
       filter_by_action: 按動作篩選
@@ -299,10 +314,12 @@ zh-TW:
       new:
         create: 建立公告
         title: 新增公告
+      publish: 發佈
       published_msg: 成功發布公告！
       scheduled_for: 排定 %{time}
       scheduled_msg: 公告已排定公開！
       title: 公告
+      unpublish: 取消發佈
       unpublished_msg: 成功取消發布公告！
       updated_msg: 成功更新公告！
     custom_emojis:
@@ -423,6 +440,13 @@ zh-TW:
         create: 新增站點
         title: 新增電子信箱黑名單項目
       title: 電子信箱黑名單
+    follow_recommendations:
+      description_html: "<strong>跟隨建議幫助新使用者們快速找到有趣的內容</strong>. 當使用者沒有與其他帳號有足夠多的互動以建立個人化跟隨建議時，這些帳號將會被推荐。這些帳號將基於某選定語言之高互動和高本地跟隨者數量帳號而\n每日重新更新。"
+      language: 對於語言
+      status: 狀態
+      suppress: 取消跟隨建議
+      suppressed: 取消
+      title: 跟隨建議
     instances:
       back_to_all: 所有
       back_to_warning: 警告
@@ -1013,6 +1037,12 @@ zh-TW:
     next: 下一頁
     older: 較舊
     prev: 上一頁
+  polls:
+    errors:
+      duplicate_options: 包含重複項目
+      duration_too_long: 太久了！
+      duration_too_short: 車速太快了！
+      expired: 投票已結束
   preferences:
     other: 其他
   relationships:
