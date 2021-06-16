@@ -257,6 +257,34 @@ zh-TW:
         update_custom_emoji: 更新自訂顏文字
         update_domain_block: 更新封鎖網域
         update_status: 更新狀態
+      actions:
+        assigned_to_self_report_html: "%{name} 將報告 %{target} 指派給自己"
+        change_email_user_html: "%{name} 變更了使用者 %{target} 的電子信箱地址"
+        confirm_user_html: "%{name} 確認了使用者 %{target} 的電子信箱位址"
+        create_account_warning_html: "%{name} 已對 %{target} 送出警告"
+        create_announcement_html: "%{name} 新增了公告 %{target}"
+        create_custom_emoji_html: "%{name} 上傳了新自訂表情符號 %{target}"
+        create_domain_allow_html: "%{name} 允許 %{target} 網域加入站點聯盟"
+        create_domain_block_html: "%{name} 封鎖了網域 %{target}"
+        create_email_domain_block_html: "%{name} 封鎖了電子信箱網域 %{target}"
+        create_ip_block_html: "%{name} 已經設定了IP %{target} 的規則"
+        create_unavailable_domain_html: "%{name} 停止發送至網域 %{target}"
+        demote_user_html: "%{name} 將使用者 %{target} 降級"
+        destroy_announcement_html: "%{name} 刪除了公告 %{target}"
+        destroy_custom_emoji_html: "%{name} 停用了自訂表情符號 %{target}"
+        destroy_domain_allow_html: "%{name} 不允許與網域 %{target} 加入站點聯盟"
+        destroy_domain_block_html: "%{name} 取消了對網域 %{target} 的封鎖"
+        destroy_email_domain_block_html: "%{name} 取消了對電子信箱網域 %{target} 的封鎖"
+        destroy_ip_block_html: "%{name} 刪除了 IP %{target} 的規則"
+        destroy_status_html: "%{name} 刪除了 %{target} 的嘟文"
+        destroy_unavailable_domain_html: "%{name} 恢復了對網域 %{target} 的發送"
+        disable_2fa_user_html: "%{name} 停用了使用者 %{target} 的兩階段認證"
+        disable_custom_emoji_html: "%{name} 停用了自訂表情符號 %{target}"
+        disable_user_html: "%{name} 將使用者 %{target} 設定為禁止登入"
+        enable_custom_emoji_html: "%{name} 啟用了自訂表情符號 %{target}"
+        enable_user_html: "%{name} 將使用者 %{target} 設定為允許登入"
+        memorialize_account_html: "%{name} 將 %{target} 設定為追悼帳戶"
+        promote_user_html: "%{name} 對使用者 %{target} 進行了晉級操作"
       deleted_status: "（已刪除嘟文）"
       empty: 找不到 log
       filter_by_action: 按動作篩選
