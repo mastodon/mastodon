@@ -1043,16 +1043,56 @@ zh-TW:
       duration_too_long: 太久了！
       duration_too_short: 車速太快了！
       expired: 投票已結束
+      invalid_choice: 您所選的投票選項並不存在
+      over_character_limit: 不能多於 %{max} 個字元
+      too_few_options: 必須包含至少一個項目
+      too_many_options: 不能包含多於 %{max} 個項目
   preferences:
     other: 其他
+    posting_defaults: 嘟文預設值
+    public_timelines: 公開時間軸
+  reactions:
+    errors:
+      limit_reached: 達到可回應之上限
+      unrecognized_emoji: 並非一個可識別的 emoji
   relationships:
+    activity: 帳號動態
+    dormant: 潛水中
+    follow_selected_followers: 跟隨所選的跟隨者
+    followers: 跟隨者
+    following: 跟隨中
+    invited: 已邀請
+    last_active: 最後上線
+    most_recent: 最近
     moved: 已轉移
+    mutual: 共同
+    primary: 主要
+    relationship: 關係
+    remove_selected_domains: 從所選網域中移除所有追隨者
+    remove_selected_followers: 移除所選的跟隨者
+    remove_selected_follows: 取消跟隨所選使用者
     status: 帳戶狀態
   remote_follow:
     acct: 請輸入您的使用者名稱@站點網域
     missing_resource: 無法找到資源
+    no_account_html: 還沒有帳號？您可以<a href='%{sign_up_path}' target='_blank'>於這裡註冊</a>
     proceed: 下一步
     prompt: '您希望關注:'
+    reason_html: "<strong>為什麼要經過這個步驟？</strong>因為<code>%{instance}</code>未必是您註冊的伺服器，我們需要先將您帶回您駐在的伺服器。"
+  remote_interaction:
+    favourite:
+      proceed: 加入到最愛
+      prompt: '您欲將此嘟文加入最愛'
+    reblog:
+      proceed: 確認轉嘟
+      prompt: '您想轉嘟此嘟文：'
+    reply:
+      proceed: 確認回覆
+      prompt: '您想回覆此嘟文'
+  scheduled_statuses:
+    over_daily_limit: 您已經超過了本日排定發嘟的限額 (%{limit})
+    over_total_limit: 您已經超過了排定發嘟的限額 (%{limit})
+    too_soon: 嘟文不可以改變過去哦，只能預定未來 (咦)
   sessions:
     activity: 最近活動
     browser: 瀏覽器
@@ -1113,12 +1153,22 @@ zh-TW:
     notifications: 通知
     preferences: 偏好設定
     profile: 使用者資訊
+    relationships: 跟隨中與跟隨者
     two_factor_authentication: 兩階段認證
+    webauthn_authentication: 安全金鑰
   statuses:
     attached:
+      audio:
+        other: "%{count} 則音訊"
       description: '附件： %{attached}'
+      image:
+        other: "%{count} 張圖片"
+      video:
+        other: "%{count} 段影片"
     boosted_from_html: 轉嘟自 %{acct_link}
     content_warning: '內容警告： %{warning}'
+    disallowed_hashtags:
+      other: '含有不得使用的標籤： %{tags}'
     errors:
       in_reply_not_found: 您嘗試回覆的嘟文看起來不存在。
     language_detection: 自動偵測語言
@@ -1130,8 +1180,17 @@ zh-TW:
       private: 不能置頂非公開的嘟文
       reblog: 不能置頂轉嘟
     poll:
+      total_people:
+        other: "%{count} 個人"
+      total_votes:
+        other: "%{count} 票"
       vote: 投票
     show_more: 顯示更多
+    show_newer: 顯示較新嘟文
+    show_older: 顯示較舊嘟文
+    show_thread: 顯示討論串
+    sign_in_to_participate: 登入以加入討論
+    title: '%{name}：「%{quote}」'
     visibilities:
       private: 僅關注者
       private_long: 只有關注你的人能看到
