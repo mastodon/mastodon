@@ -400,7 +400,7 @@ RSpec.describe Auth::SessionsController, type: :controller do
     end
 
     context 'when 2FA is disabled and IP is unfamiliar' do
-      let!(:user) { Fabricate(:user, email: 'x@y.com', password: 'abcdefgh', current_sign_in_at: 3.weeks.ago, current_sign_in_ip: '0.0.0.0') }
+      let!(:user) { Fabricate(:user, email: 'x@y.com', password: 'abcdefgh', current_sign_in_at: 3.weeks.ago) }
 
       before do
         request.remote_ip  = '10.10.10.10'
