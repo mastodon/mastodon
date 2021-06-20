@@ -194,7 +194,7 @@ ko:
         targeted_reports: 이 계정에 대한 신고
       silence: 침묵
       silenced: 침묵 됨
-      statuses: 게시물 수
+      statuses: 게시물
       subscribe: 구독하기
       suspended: 정지 됨
       suspension_irreversible: 이 계정의 데이터는 복구할 수 없도록 삭제되었습니다. 계정을 정지 해제함으로서 계정을 다시 사용 가능하게 할 수 있지만 이전에 삭제한 어떤 데이터도 복구되지 않습니다.
@@ -398,7 +398,7 @@ ko:
         create: 차단 추가
         hint: 도메인 차단은 내부 데이터베이스에 계정이 생성되는 것까지는 막을 수 없지만, 그 도메인에서 생성된 계정에 자동적으로 특정한 중재 규칙을 적용하게 할 수 있습니다.
         severity:
-          desc_html: "<strong>침묵</strong>은 계정을 팔로우 하지 않고 있는 사람들에겐 계정의 툿을 보이지 않게 합니다. <strong>정지</strong>는 계정의 컨텐츠, 미디어, 프로필 데이터를 삭제합니다.\n미디어 파일만을 거부하고 싶다면 <strong>없음</strong>으로 두세요."
+          desc_html: "<strong>침묵</strong>은 계정을 팔로우 하지 않고 있는 사람들에겐 계정의 게시물을 보이지 않게 합니다. <strong>정지</strong>는 계정의 컨텐츠, 미디어, 프로필 데이터를 삭제합니다.\n미디어 파일만을 거부하고 싶다면 <strong>없음</strong>으로 두세요."
           noop: 없음
           silence: 침묵
           suspend: 정지
@@ -516,7 +516,7 @@ ko:
       disable: 비활성화
       disabled: 비활성화 됨
       enable: 활성화
-      enable_hint: 활성화 되면, 이 릴레이의 모든 공개 게시물을 구독하고 이 서버의 공개 툿을 전송하게 됩니다.
+      enable_hint: 활성화 되면, 이 릴레이의 모든 공개 게시물을 구독하고 이 서버의 공개 게시물을 전송하게 됩니다.
       enabled: 활성화 됨
       inbox_url: 릴레이 URL
       pending: 릴레이의 승인 대기중
@@ -628,7 +628,7 @@ ko:
           open: 누구나 가입 할 수 있음
         title: 가입 모드
       show_known_fediverse_at_about_page:
-        desc_html: 활성화 되면 프리뷰 페이지에서 페디버스의 모든 툿을 표시합니다. 비활성화시 로컬에 있는 툿만 표시 됩니다.
+        desc_html: 활성화 되면 프리뷰 페이지에서 페디버스의 모든 게시물을 표시합니다. 비활성화시 로컬에 있는 게시물만 표시 됩니다.
         title: 타임라인 프리뷰에 알려진 페디버스 표시하기
       show_staff_badge:
         desc_html: 유저 페이지에 스태프 배지를 표시합니다
@@ -944,7 +944,7 @@ ko:
     i_am_html: 나는 %{service}의 %{username} 입니다.
     identity: 신원
     inactive: 비활성
-    publicize_checkbox: '그리고 이것을 툿 하세요:'
+    publicize_checkbox: '그리고 이것을 게시하세요:'
     publicize_toot: '증명되었습니다! 저는 %{service}에 있는 %{username}입니다: %{url}'
     remove: 계정증명 삭제
     removed: 성공적으로 계정증명을 삭제했습니다
@@ -1045,7 +1045,7 @@ ko:
         other: "%{count}건의 새로운 알림 \U0001F418"
       title: 당신이 없는 동안에...
     favourite:
-      body: '%{name} 님이 내 게시물을 즐겨찾기에 등록했습니다:'
+      body: '당신의 게시물을 %{name} 님이 즐겨찾기에 등록했습니다:'
       subject: "%{name} 님이 내 게시물을 즐겨찾기에 등록했습니다"
       title: 새 즐겨찾기
     follow:
@@ -1065,7 +1065,7 @@ ko:
     poll:
       subject: '%{name}의 투표가 종료되었습니다'
     reblog:
-      body: '%{name} 님이 내 게시물을 부스트 했습니다:'
+      body: '당신의 게시물을 %{name} 님이 부스트 했습니다:'
       subject: "%{name} 님이 내 게시물을 부스트 했습니다"
       title: 새 부스트
     status:
@@ -1389,7 +1389,7 @@ ko:
         disable: 당신의 계정이 동결 된 동안 당신의 계정은 유지 됩니다. 하지만 잠금이 풀릴 때까지 당신은 아무 것도 할 수 없습니다.
         sensitive: 당신의 업로드 한 미디어 파일들과 링크된 미디어들은 민감함으로 취급됩니다.
         silence: 당신의 계정이 제한 된 동안엔 당신의 팔로워 이외엔 게시물을 받아 볼 수 없고 공개 리스팅에서 제외 됩니다. 하지만 다른 사람들은 여전히 당신을 팔로우 가능합니다.
-        suspend: 당신의 계정은 정지 되었으며, 모든 툿과 업로드 한 미디어가 서버에서 삭제 되어 되돌릴 수 없습니다.
+        suspend: 당신의 계정은 정지 되었으며, 모든 게시물과 업로드 한 미디어가 서버에서 삭제 되어 되돌릴 수 없습니다.
       get_in_touch: 이 메일에 대해 답장해서 %{instance}의 스태프와 연락 할 수 있습니다.
       review_server_policies: 서버 정책 검토하기
       statuses: '구체적으로:'
