@@ -1,17 +1,16 @@
----
 pt-BR:
   devise:
     confirmations:
       confirmed: O seu endereço de e-mail foi confirmado.
-      send_instructions: Você receberá um e-mail com instruções sobre como confirmar o endereço de e-mail dentro de alguns minutos. Por favor, verifique sua pasta de spam caso ainda não o tenha recebido.
+      send_instructions: Você receberá um e-mail com instruções sobre como confirmá-lo dentro de alguns minutos. Por favor, verifique sua pasta de spam caso ainda não o tenha recebido.
       send_paranoid_instructions: Se o seu endereço de e-mail já existir em nosso banco de dados, você receberá um e-mail com instruções para confirmá-lo dentro de alguns minutos. Por favor, verifique sua pasta de spam caso ainda não o tenha recebido.
     failure:
       already_authenticated: Você entrou na sua conta.
       inactive: Sua conta não foi confirmada ainda.
-      invalid: "%{authentication_keys} ou senha inválida."
-      last_attempt: Você tem mais uma tentativa antes de sua conta ser trancada.
-      locked: Sua conta está trancada.
-      not_found_in_database: "%{authentication_keys} ou senha inválida."
+      invalid: '%{authentication_keys} ou senha inválida.'
+      last_attempt: Você tem mais uma tentativa antes de sua conta ser bloqueada.
+      locked: Sua conta está bloqueada.
+      not_found_in_database: '%{authentication_keys} ou senha inválida.'
       pending: Sua conta está sendo revisada.
       timeout: Você saiu de sua conta. Por favor, entre novamente para continuar.
       unauthenticated: Você precisa entrar ou criar uma conta antes de continuar.
@@ -21,18 +20,18 @@ pt-BR:
         action: Confirmar endereço de e-mail
         action_with_app: Confirmar e voltar para %{app}
         explanation: Você criou uma conta em %{host} com esse endereço de e-mail. Se não foi você, por favor, ignore este e-mail.
-        explanation_when_pending: Você solicitou um convite para %{host} com esse endereço de e-mail. Após você confirmar o seu endereço de e-mail, espere o resultado da revisão de sua solicitação. Se sua conta por vetada, seus dados serão excluídos e nenhuma ação será necessária de sua parte. Se você não solicitou nada, por favor, ignore este e-mail.
+        explanation_when_pending: Você solicitou um convite para %{host} com esse endereço de e-mail. Após você confirmar o seu e-mail, espere o resultado da revisão de sua solicitação. Se sua conta for recusada, seus dados serão excluídos e nenhuma ação será necessária de sua parte. Se você não solicitou nada, por favor, ignore este e-mail.
         extra_html: Por favor confira também <a href="%{terms_path}">as regras da instância</a> e <a href="%{policy_path}">nossos termos de serviço</a>.
         subject: 'Mastodon: Instruções de confirmação para %{instance}'
         title: Confirme o endereço de e-mail
       email_changed:
         explanation: 'O e-mail vinculado à sua conta será alterado para:'
-        extra: Se você não alterou seu email, é provável que alguém tenha ganhado acesso a sua conta. Por favor altere sua senha imediatamente ou entre em contato com o administrador do servidor se você está trancado fora de sua conta.
+        extra: Se você não alterou seu e-mail, é possível que alguém tenha ganhado acesso à sua conta. Altere sua senha imediatamente ou entre em contato com a administração da instância se você está sem acesso à ela.
         subject: 'Mastodon: Endereço de e-mail alterado'
         title: Novo endereço de e-mail
       password_change:
         explanation: A senha da sua conta foi alterada.
-        extra: Se você não alterou sua senha, é provável que alguém tenha ganhado acesso a sua conta. Por favor altere sua senha imediatamente ou entre em contato com o administrador do servidor se você está trancado fora de sua conta.
+        extra: Se você não alterou sua senha, é possível que alguém tenha ganhado acesso à sua conta. Altere sua senha imediatamente ou entre em contato com a administração da instância se você está sem acesso à ela.
         subject: 'Mastodon: Senha alterada'
         title: Senha alterada
       reconfirmation_instructions:
