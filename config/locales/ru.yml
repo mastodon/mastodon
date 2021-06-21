@@ -1027,9 +1027,11 @@ ru:
       limit: Вы достигли максимального числа списков
   login_activities:
     authentication_methods:
-      password: пароля
-      sign_in_token: кода из e-mail 
-      webauthn: ключей безопасности
+      otp: приложение двухфакторной аутентификации
+      password: пароль
+      sign_in_token: код безопасности из e-mail
+      webauthn: ключи безопасности
+    description_html: Если вы видите неопознанное действие, смените пароль и/или включите двухфакторную авторизацию.
     empty: Нет доступной истории входов
     failed_sign_in_html: Неудачная попытка входа используя %{method} через %{browser} (%{ip})
     successful_sign_in_html: Успешный вход используя %{method} через %{browser} (%{ip})
@@ -1244,6 +1246,7 @@ ru:
     revoke: Завершить
     revoke_success: Сессия завершена
     title: Сессии
+    view_authentication_history: Посмотреть историю входов с учётной записью
   settings:
     account: Учётная запись
     account_settings: Управление учётной записью
