@@ -1003,6 +1003,17 @@ tr:
   lists:
     errors:
       limit: En yüksek liste sayısına ulaştınız
+  login_activities:
+    authentication_methods:
+      otp: iki aşamalı kimlik doğrulama uygulaması
+      password: parola
+      sign_in_token: e-posta güvenlik kodu
+      webauthn: güvenlik anahtarları
+    description_html: Eğer tanımadığınız bir faaliyet görüyorsanız, parolanızı değiştirmeyi ve iki aşamalı kimlik doğrulamayı etkinleştirmeyi düşünün.
+    empty: Kimlik doğrulama geçmişi yok
+    failed_sign_in_html: '%{method} yöntemiyle %{ip} (%{browser}) adresinden başarısız oturum açma girişimi'
+    successful_sign_in_html: '%{method} yöntemiyle %{ip} (%{browser}) adresinden başarılı oturum açma'
+    title: Kimlik doğrulama geçmişi
   media_attachments:
     validations:
       images_and_video: Zaten resim içeren bir duruma video eklenemez
@@ -1209,6 +1220,7 @@ tr:
     revoke: İptal Et
     revoke_success: Oturum başarıyla iptal edildi
     title: Oturumlar
+    view_authentication_history: Hesabınızın kimlik doğrulama geçmişini görüntüle
   settings:
     account: Hesap
     account_settings: Hesap ayarları
