@@ -1003,6 +1003,12 @@ is:
   lists:
     errors:
       limit: Þú hefur náð hámarksfjölda lista
+  login_activities:
+    authentication_methods:
+      password: lykilorð
+      webauthn: öryggislyklar
+    failed_sign_in_html: Misheppnuð tilraun til innskráningar með %{method} frá %{ip} (%{browser})
+    successful_sign_in_html: Vel heppnuð tilraun til innskráningar með %{method} frá %{ip} (%{browser})
   media_attachments:
     validations:
       images_and_video: Ekki er hægt að hengja myndskeið við stöðufærslu sem þegar inniheldur myndir
