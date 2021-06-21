@@ -1025,6 +1025,14 @@ pl:
   lists:
     errors:
       limit: Przekroczyłeś maksymalną liczbę utworzonych list
+  login_activities:
+    authentication_methods:
+      otp: aplikacja weryfikacji dwuetapowej
+      password: hasło
+      sign_in_token: kod bezpieczeństwa e-mail
+      webauthn: klucze bezpieczeństwa
+    description_html: Jeśli widzisz aktywność, której nie rozpoznajesz, rozważ zmianę hasła i włączenie weryfikacji dwuetapowej.
+    empty: Brak historii uwierzytelniania
   media_attachments:
     validations:
       images_and_video: Nie możesz załączyć pliku wideo do wpisu, który zawiera już zdjęcia
