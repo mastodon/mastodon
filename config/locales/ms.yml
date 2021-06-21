@@ -449,8 +449,24 @@ ms:
       title: Saranan ikutan
       unsuppress: Tetap semula saranan ikutan
     instances:
+      back_to_all: Semua
+      back_to_limited: Terhad
+      back_to_warning: Amaran
       by_domain: Domain
+      delivery:
+        all: Semua
+        clear: Buang ralat penghantaran
+        restart: Mulakan semula penghantaran
+        stop: Hentikan penghantaran
+        title: Penghantaran
+        unavailable: Tidak tersedia
+        unavailable_message: Penghantaran tidak tersedia
+        warning: Amaran
+        warning_message:
+          other: Penghantaran gagal selama %{count} hari
       delivery_available: Penghantaran tersedia
+      delivery_error_days: Hari ralat penghantaran
+      delivery_error_hint: Jika penghantaran tidak berjaya selama %{count} hari, ia akan ditanda sebagai tidak boleh dihantar.
       empty: Tiada domain ditemukan.
       known_accounts:
         other: "%{count} akaun dikenali"
