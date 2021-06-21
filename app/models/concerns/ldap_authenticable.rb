@@ -15,10 +15,10 @@ module LdapAuthenticable
 
     def ldap_get_user(attributes = {})
       safe_username = attributes[Devise.ldap_uid.to_sym].first
+
       if Devise.ldap_uid_conversion_enabled
         keys = Regexp.union(Devise.ldap_uid_conversion_search.chars)
         replacement = Devise.ldap_uid_conversion_replace
-
         safe_username = safe_username.gsub(keys, replacement)
       end
 
