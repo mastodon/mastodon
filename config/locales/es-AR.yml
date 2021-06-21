@@ -1003,6 +1003,14 @@ es-AR:
   lists:
     errors:
       limit: Alcanzaste el máximo de listas
+  login_activities:
+    authentication_methods:
+      otp: aplicación de autenticación de dos factores
+      password: contraseña
+      sign_in_token: código de seguridad por correo electrónico
+      webauthn: llaves de seguridad
+    description_html: Si ves actividad que no reconocés, considerá cambiar tu contraseña y habilitar la autenticación de dos factores.
+    empty: No hay historial de autenticación disponible
   media_attachments:
     validations:
       images_and_video: No se puede adjuntar un video a un mensaje que ya contenga imágenes
