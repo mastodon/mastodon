@@ -1007,6 +1007,13 @@ fr:
     authentication_methods:
       otp: application d'authentification à deux facteurs
       password: mot de passe
+      sign_in_token: code de sécurité par courriel
+      webauthn: clés de sécurité
+    description_html: Si vous voyez une activité que vous ne reconnaissez pas, envisagez de changer votre mot de passe et d'activer l'authentification à deux facteurs.
+    empty: Aucun historique d'authentification disponible
+    failed_sign_in_html: Tentative de connexion échouée avec %{method} de %{ip} (%{browser})
+    successful_sign_in_html: Connexion réussie avec %{method} de %{ip} (%{browser})
+    title: Historique d'authentification
   media_attachments:
     validations:
       images_and_video: Impossible de joindre une vidéo à un statut contenant déjà des images
@@ -1213,6 +1220,7 @@ fr:
     revoke: Révoquer
     revoke_success: Session révoquée avec succès
     title: Sessions
+    view_authentication_history: Voir l'historique d'authentification de votre compte
   settings:
     account: Compte
     account_settings: Paramètres du compte
