@@ -507,38 +507,65 @@ ms:
       title: Peraturan alamat IP
     pending_accounts:
       title: Akaun sedang menunggu (%{count})
+    relationships:
+      title: "Hubungan %{acct}"
     relays:
-      add_new: Tambah geganti baru
+      add_new: Tambah geganti baharu
       delete: Padam
-      description_html: <strong>Geganti persekutuan</strong> ialah pelayan perantara yang saling menukar toot awam dalam jumlah yang banyak di antara pelayan yang melanggan ia dan menerbitkan kepada ia. <strong>Ia boleh bantu pelayan kecil dan sederhana untuk menemui kandungan daripada dunia persekutuan Mastodon</strong>, yang mana jika tidak digunakan akan memerlukan pengguna tempatan mengikut orang lain di pelayan jarak jauh secara manual.
-      disable: Lumpuhkan
-      disabled: Dilumpuhkan
-      enable: Bolehkan
-      enable_hint: Apabila dibolehkan, pelayan anda akan melanggan kesemua toot awam daripada geganti ini, dan akan mula menghantar toot awam pelayan ini kepada ia.
-      enabled: Dibolehkan
+      description_html: <strong>Geganti persekutuan</strong> ialah pelayan perantara yang saling menukar hantaran awam dalam jumlah yang banyak di antara pelayan yang melanggan ia dan menerbitkan kepadanya. <strong>Ia boleh bantu pelayan kecil dan sederhana untuk menemui kandungan daripada dunia persekutuan</strong>, yang mana jika tidak digunakan akan memerlukan pengguna tempatan mengikut orang lain di pelayan jarak jauh secara manual.
+      disable: Nyahdayakan
+      disabled: Dinyahdayakan
+      enable: Dayakan
+      enable_hint: Apabila didayakan, pelayan anda akan melanggan kesemua hantaran awam daripada geganti ini, dan akan mula menghantar hantaran awam pelayan ini kepadanya.
+      enabled: Didayakan
       inbox_url: URL geganti
-      pending: Menunggu persetujuan geganti
-      save_and_enable: Simpan dan bolehkan
+      pending: Menunggu kelulusan geganti
+      save_and_enable: Simpan dan dayakan
       setup: Tetapkan sambungan geganti
+      signatures_not_enabled: Geganti tidak akan berfungsi dengan betul apabila mod selamat atau mod persekutuan terhad didayakan
+      status: Status
       title: Geganti
     report_notes:
-      created_msg: Nota laporan berjaya dicipta!
-      destroyed_msg: Nota laporan berjaya dipadam!
+      created_msg: Catatan laporan telah berjaya dicipta!
+      destroyed_msg: Catatan laporan telah berjaya dipadam!
     reports:
-      action_taken_by: Tindakan oleh
-      are_you_sure: Anda pasti?
+      account:
+        notes:
+          other: "%{count} catatan"
+        reports:
+          other: "%{count} laporan"
+      action_taken_by: Tindakan diambil oleh
+      are_you_sure: Adakah anda pasti?
       assign_to_self: Menugaskan kepada saya
       assigned: Penyederhana yang ditugaskan
+      by_target_domain: Domain bagi akaun yang dilaporkan
       comment:
         none: Tiada
       created_at: Dilaporkan
+      forwarded: Dipanjangkan
+      forwarded_to: Dipanjangkan ke %{domain}
       mark_as_resolved: Tanda sebagai sudah selesai
       mark_as_unresolved: Tanda sebagai belum selesai
       notes:
-        create: Tambah nota
-        create_and_resolve: Selesaikan dengan nota
+        create: Tambah catatan
+        create_and_resolve: Selesaikan dengan catatan
+        create_and_unresolve: Buka semula dengan catatan
+        delete: Padam
         placeholder: Terangkan tindakan apa yang telah diambil, atau sebarang kemas kini lain yang berkaitan...
+      reopen: Buka semula laporan
+      report: 'Laporan #%{id}'
+      reported_account: Akaun yang dilaporkan
+      reported_by: Dilaporkan oleh
+      resolved: Diselesaikan
+      resolved_msg: Laporan berjaya diselesaikan!
+      status: Status
+      title: Laporan
       unassign: Nyahtugaskan
+      unresolved: Nyahselesaikan
+      updated_at: Dikemaskini
+    rules:
+      add_new: Tambah peraturan
+      delete: Padam
     settings:
       peers_api_enabled:
         title: Terbitkan senarai pelayan ditemukan dalam aplikasi
