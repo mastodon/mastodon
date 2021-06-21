@@ -1032,6 +1032,10 @@ uk:
       sign_in_token: код безпеки е-поштою
       webauthn: ключі безпеки
     description_html: Якщо ви помітили невідомі вам дії, тоді подумайте про зміну свого пароля та можливість увімкнення двофакторної автентифікації.
+    empty: Немає історії входів
+    failed_sign_in_html: Не вдалося увійти з %{method} з %{ip} (%{browser})
+    successful_sign_in_html: Успішний вхід з %{method} з %{ip} (%{browser})
+    title: Історія входів
   media_attachments:
     validations:
       images_and_video: Не можна додати відео до статусу з зображеннями
@@ -1242,6 +1246,7 @@ uk:
     revoke: Закінчити
     revoke_success: Сесія успішно закінчена
     title: Сесії
+    view_authentication_history: Переглянути історію входів вашого облікового запису
   settings:
     account: Обліковий запис
     account_settings: Налаштування облікового запису
