@@ -2,7 +2,7 @@ ms:
   about:
     about_hashtag_html: 'Ini semua hantaran awam yang ditandakan dengan <strong>#%{hashtag}</strong>. Anda boleh berinteraksi dengan mereka jika anda mempunyai akaun di mana-mana dunia persekutuan.'
     about_mastodon_html: 'Rangkaian sosial masa hadapan: Tiada iklan, tiada pengawasan korporat, reka bentuk beretika, dan desentralisasi! Miliki data anda dengan Mastodon!'
-    about_this: Mengenai Kami
+    about_this: Perihal
     active_count_after: aktif
     active_footnote: Pengguna Aktif Bulanan (MAU)
     administered_by: 'Ditadbir oleh:'
@@ -21,7 +21,7 @@ ms:
     get_apps: Cuba aplikasi mudah alih
     hosted_on: Mastodon dihoskan di %{domain}
     instance_actor_flash: |
-      Akaun ini ialah pelaku maya yang digunakan untuk mewakili pelayan ini sendiri dan bukannya mana-mana pengguna individu.
+      Akaun ini ialah pelaku maya yang digunakan untuk mewakili pelayan itu sendiri dan bukannya mana-mana pengguna individu.
       Ia digunakan untuk tujuan persekutuan dan tidak patut disekat melainkan anda ingin menyekat keseluruhan tika, yang mana anda sepatutnya gunakan sekatan domain.
     learn_more: Ketahui lebih lanjut
     privacy_policy: Polisi privasi
@@ -52,70 +52,86 @@ ms:
     what_is_mastodon: Apakah itu Mastodon?
   accounts:
     choices_html: "Pilihan %{name}:"
+    endorsements_hint: Anda boleh syorkan orang yang anda ikuti menggunakan antara muka sesawang, dan mereka akan ditunjukkan di sini.
+    featured_tags_hint: Anda boleh mempromosikan tanda pagar khusus yang akan dipaparkan di sini.
     follow: Ikut
     followers:
       other: Pengikut
     following: Mengikuti
+    instance_actor_flash: Akaun ini ialah pelaku maya yang digunakan untuk mewakili pelayan itu sendiri dan bukan mana-mana pengguna individu. Ia digunakan untuk tujuan persekutuan dan tidak patut digantung.
     joined: Sertai pada %{date}
+    last_active: aktif terakhir
     link_verified_on: Pemilikan pautan ini diperiksa pada %{date}
+    media: Media
     moved_html: "%{name} telah berpindah ke %{new_profile_link}:"
     network_hidden: Maklumat ini tidak tersedia
+    never_active: Belum pernah
     nothing_here: Tiada apa-apa di sini!
     people_followed_by: Orang yang %{name} ikuti
     people_who_follow: Orang yang mengikut %{name}
     pin_errors:
       following: Anda mestilah sudah mengikuti orang yang anda ingin syorkan
     posts:
-      other: Toot
-    posts_tab_heading: Toot
-    posts_with_replies: Toot dan maklum balas
+      other: Hantaran
+    posts_tab_heading: Hantaran
+    posts_with_replies: Hantaran dan balasan
     roles:
-      moderator: Pengawal
+      admin: Pentadbir
+      bot: Bot
+      group: Kumpulan
+      moderator: Penyederhana
+    unavailable: Profil tidak tersedia
     unfollow: Nyahikut
   admin:
+    account_actions:
+      action: Ambil tindakan
+      title: Ambil tindakan penyederhanaan ke atas %{acct}
     account_moderation_notes:
-      create: Tinggalkan nota
-      created_msg: Nota kawalan telah berjaya dicipta!
+      create: Tinggalkan catatan
+      created_msg: Catatan penyederhanaan telah berjaya dicipta!
       delete: Padam
-      destroyed_msg: Nota kawalan telah berjaya dipadam!
+      destroyed_msg: Catatan penyederhanaan telah berjaya dipadam!
     accounts:
+      add_email_domain_block: Sekat domain e-mel
+      approve: Luluskan
+      approve_all: Luluskan semua
       approved_msg: Berjaya meluluskan permohonan pendaftaran %{username}
-      are_you_sure: Anda pasti?
+      are_you_sure: Adakah anda pasti?
       avatar: Avatar
       by_domain: Domain
       change_email:
-        changed_msg: Emel akaun telah berjaya ditukar!
-        current_email: Emel Semasa
-        label: Tukar Emel
-        new_email: Emel Baru
-        submit: Tukar Emel
-        title: Tukar Emel untuk %{username}
+        changed_msg: E-mel akaun telah berjaya ditukar!
+        current_email: E-mel semasa
+        label: Ubah e-mel
+        new_email: E-mel baharu
+        submit: Ubah e-mel
+        title: Ubah e-mel untuk %{username}
       confirm: Sahkan
       confirmed: Disahkan
       confirming: Mengesahkan
       delete: Padam data
-      deleted: Dipadam
+      deleted: Dipadamkan
       demote: Turunkan taraf
-      destroyed_msg: "Data %{username} sekarang menunggu giliran untuk dipadam sebentar lagi"
-      disable: Lumpuhkan
+      destroyed_msg: "Data %{username} kini menunggu giliran untuk dipadam sebentar lagi"
+      disable: Bekukan
       disable_two_factor_authentication: Lumpuhkan 2FA
-      disabled: Dilumpuhkan
+      disabled: Dibekukan
       display_name: Nama paparan
       domain: Domain
-      edit: Tukar
-      email: Emel
-      email_status: Status Emel
-      enable: Bolehkan
-      enabled: Dibolehkan
+      edit: Sunting
+      email: E-mel
+      email_status: Status e-mel
+      enable: Nyahbekukan
+      enabled: Didayakan
       enabled_msg: Berjaya menyahbekukan akaun %{username}
       followers: Pengikut
       follows: Mengikuti
       header: Pengepala
       inbox_url: URL mesej masuk
-      invite_request_text: Sebab menyertai
-      invited_by: Dijemput oleh
+      invite_request_text: Sebab untuk menyertai
+      invited_by: Diundang oleh
       ip: Alamat IP
-      joined: Sudah sertai
+      joined: Sertai pada
       location:
         all: Semua
         local: Tempatan
