@@ -1003,6 +1003,17 @@ da:
   lists:
     errors:
       limit: Maks. listeantal nået
+  login_activities:
+    authentication_methods:
+      otp: tofaktorgodkendelses-app
+      password: adgangskode
+      sign_in_token: e-mailsikkerhedskode
+      webauthn: sikkerhedsnøgler
+    description_html: Bliver der observeret ukendt aktivitet, så overvej at skifte adgangskode samt aktivere tofaktorgodkendelse.
+    empty: Ingen tilgængelig godkendelseshistorik
+    failed_sign_in_html: Mislykket indlogning med %{method} fra %{ip} (%{browser})
+    successful_sign_in_html: Gennemført indlogning med %{method} fra %{ip} (%{browser})
+    title: Godkendelseshistorik
   media_attachments:
     validations:
       images_and_video: En video kan ikke vedhæftes et indlæg med billedindhold
@@ -1209,6 +1220,7 @@ da:
     revoke: Tilbagekald
     revoke_success: Session tilbagekaldt
     title: Sessioner
+    view_authentication_history: Vis godkendelseshistorik for din konto
   settings:
     account: Konto
     account_settings: Kontoindstillinger
