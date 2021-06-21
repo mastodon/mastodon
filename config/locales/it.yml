@@ -1003,6 +1003,17 @@ it:
   lists:
     errors:
       limit: Hai raggiunto il numero massimo di liste
+  login_activities:
+    authentication_methods:
+      otp: app per autenticazione a due fattori
+      password: password
+      sign_in_token: codice di sicurezza via e-mail
+      webauthn: chiavi di sicurezza
+    description_html: Se vedi attività non riconosciuta, considera di cambiare la tua password e di abilitare l'autenticazione a due fattori.
+    empty: Cronologia di autenticazione non disponibile
+    failed_sign_in_html: Tentativo di accesso fallito con %{method} da %{ip} (%{browser})
+    successful_sign_in_html: Accesso riuscito con %{method} da %{ip} (%{browser})
+    title: Cronologia delle autenticazioni
   media_attachments:
     validations:
       images_and_video: Impossibile allegare video a un post che contiene già immagini
@@ -1209,6 +1220,7 @@ it:
     revoke: Revoca
     revoke_success: Sessione revocata con successo
     title: Sessioni
+    view_authentication_history: Visualizza la cronologia di autenticazione del tuo account
   settings:
     account: Account
     account_settings: Impostazioni dell'account
