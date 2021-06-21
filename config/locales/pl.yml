@@ -1033,6 +1033,9 @@ pl:
       webauthn: klucze bezpieczeństwa
     description_html: Jeśli widzisz aktywność, której nie rozpoznajesz, rozważ zmianę hasła i włączenie weryfikacji dwuetapowej.
     empty: Brak historii uwierzytelniania
+    failed_sign_in_html: Próba logowania zakończona niepowodzeniem przy pomocy %{method} z %{ip} (%{browser})
+    successful_sign_in_html: Pomyślne logowanie przy pomocy %{method} z %{ip} (%{browser})
+    title: Historia uwierzytelniania
   media_attachments:
     validations:
       images_and_video: Nie możesz załączyć pliku wideo do wpisu, który zawiera już zdjęcia
@@ -1243,6 +1246,7 @@ pl:
     revoke: Unieważnij
     revoke_success: Pomyślnie unieważniono sesję
     title: Sesje
+    view_authentication_history: Zobacz historię uwierzytelniania swojego konta
   settings:
     account: Konto
     account_settings: Ustawienia konta
