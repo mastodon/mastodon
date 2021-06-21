@@ -1025,6 +1025,11 @@ ru:
   lists:
     errors:
       limit: Вы достигли максимального числа списков
+  login_activities:
+    empty: Нет доступной истории входов
+    failed_sign_in_html: 'Неудачная попытка входа с помощью %{method} в приложении %{browser} (IP: %{ip})'
+    successful_sign_in_html: 'Успешная авторизация с помощью %{method} в приложении %{browser} (IP: %{ip})'
+    title: История входов
   media_attachments:
     validations:
       images_and_video: Нельзя добавить видео к посту с изображениями
