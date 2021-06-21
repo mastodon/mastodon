@@ -81,32 +81,32 @@ pt-BR:
       success: Entrou como %{kind}.
     passwords:
       no_token: Você não pode acessar esta página sem vir de um e-mail de alteração de senha. Se este for o caso, por favor, verifique se o link fornecido está completo.
-      send_instructions: Se o seu endereço de e-mail já existir em nosso banco de dados, você receberá um e-mail com instruções para alterar a senha dentro de alguns minutos. Por favor, verifique sua pasta de spam caso ainda não o tenha recebido.
-      send_paranoid_instructions: Se o seu endereço de e-mail já existir em nosso banco de dados, você receberá um e-mail com instruções para alterar a senha dentro de alguns minutos. Por favor, verifique sua pasta de spam caso ainda não o tenha recebido.
+      send_instructions: Se o seu endereço de e-mail já existir em nosso banco de dados, você receberá um e-mail com instruções para alterar a senha dentro de alguns minutos. Verifique sua pasta de spam caso ainda não o tenha recebido.
+      send_paranoid_instructions: Se o seu endereço de e-mail já existir em nosso banco de dados, você receberá um e-mail com instruções para alterar a senha dentro de alguns minutos. Verifique sua pasta de spam caso ainda não o tenha recebido.
       updated: Sua senha foi alterada e você entrou na sua conta.
       updated_not_active: Sua senha foi alterada com sucesso.
     registrations:
       destroyed: Adeus! Sua conta foi cancelada. Talvez um dia possamos nos ver de novo.
       signed_up: Boas vindas! Conta criada.
       signed_up_but_inactive: Conta criada! Agora você deve confirmá-la.
-      signed_up_but_locked: Você se cadastrou com sucesso. Contudo, não pudemos fazer login porque sua conta está trancada.
+      signed_up_but_locked: Você se cadastrou com sucesso. Contudo, não pudemos entrar na sua conta porque ela está bloqueada.
       signed_up_but_pending: Um e-mail com um link de confirmação foi enviado para o seu endereço de e-mail. Após você entrar no link, revisaremos sua solicitação e você será notificado caso seja aprovado.
-      signed_up_but_unconfirmed: Um e-mail com instruções para confirmar o seu endereço de e-mail foi enviado. Por favor, verifique sua pasta de spam caso ainda não o tenha recebido.
-      update_needs_confirmation: Você alterou seu endereço de e-mail ou sua senha, porém é preciso confirmar a alteração. Por favor, entre no link que foi enviado para o seu novo endereço de e-mail e verifique sua pasta de spam caso ainda não o tenha recebido.
+      signed_up_but_unconfirmed: Um e-mail com instruções para confirmar o seu endereço de e-mail foi enviado. Verifique sua pasta de spam caso ainda não o tenha recebido.
+      update_needs_confirmation: Você alterou seu endereço de e-mail ou sua senha, porém é preciso confirmar a alteração. Entre no link que foi enviado para o seu novo endereço de e-mail e verifique sua pasta de spam caso ainda não o tenha recebido.
       updated: Sua conta foi alterada com sucesso.
     sessions:
       already_signed_out: Você saiu de sua conta.
       signed_in: Você entrou na sua conta.
       signed_out: Você saiu de sua conta.
     unlocks:
-      send_instructions: Você receberá um email com instruções para destrancar a sua conta em alguns minutos. Por favor verifique sua pasta de spam se não recebeu este email.
-      send_paranoid_instructions: Se a sua conta existe, você vai reveber um email com instruções para destrancá-la em alguns minutos. Por favor verifique sua pasta de spam se você não recebeu este email.
-      unlocked: Sua conta foi destrancada com sucesso. Por favor entre na sua conta para continuar.
+      send_instructions: Você receberá um e-mail com instruções para desbloquear sua conta em alguns minutos. Verifique sua pasta de spam se não recebeu este e-mail.
+      send_paranoid_instructions: Se a sua conta existe, você receberá um e-mail com instruções para desbloqueá-la em alguns minutos. Verifique sua pasta de spam se você não recebeu este e-mail.
+      unlocked: Sua conta foi desbloqueada com sucesso! Entre na sua conta para continuar.
   errors:
     messages:
       already_confirmed: confirmado, agora tente entrar na sua conta
-      confirmation_period_expired: precisa ser confirmada em até %{period}, por favor, solicite novo link de confirmação
-      expired: expirou, por favor solicite uma nova
+      confirmation_period_expired: precisa ser confirmada em até %{period}, solicite um novo link de confirmação
+      expired: expirou, solicite uma nova
       not_found: não encontrado
       not_locked: não foi bloqueada
       not_saved:
