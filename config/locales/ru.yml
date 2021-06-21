@@ -1026,9 +1026,13 @@ ru:
     errors:
       limit: Вы достигли максимального числа списков
   login_activities:
+    authentication_methods:
+      password: пароля
+      sign_in_token: кода из e-mail 
+      webauthn: ключей безопасности
     empty: Нет доступной истории входов
-    failed_sign_in_html: 'Неудачная попытка входа с помощью %{method} в приложении %{browser} (IP: %{ip})'
-    successful_sign_in_html: 'Успешная авторизация с помощью %{method} в приложении %{browser} (IP: %{ip})'
+    failed_sign_in_html: Неудачная попытка входа используя %{method} через %{browser} (%{ip})
+    successful_sign_in_html: Успешный вход используя %{method} через %{browser} (%{ip})
     title: История входов
   media_attachments:
     validations:
