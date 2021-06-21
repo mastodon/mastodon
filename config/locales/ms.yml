@@ -185,33 +185,33 @@ ms:
         user: Pengguna
       search: Cari
       search_same_email_domain: Pengguna lain dengan domain e-mel yang sama
-      search_same_ip: Pengguna lain dengan IP yang sama
+      search_same_ip: Pengguna lain dengan alamat IP yang sama
       sensitive: Sensitif
-      sensitized: tanda sebagai sensitif
-      shared_inbox_url: URL Peti Masuk Berkongsi
+      sensitized: ditandakan sebagai sensitif
+      shared_inbox_url: URL peti masuk berkongsi
       show:
-        created_reports: Laporan yang dicipta oleh akaun ini
-        targeted_reports: Laporan yang dicipta berkaitan akaun ini
-      silence: Senyap
-      silenced: Disenyapkan
-      statuses: Status
+        created_reports: Laporan dicipta oleh akaun ini
+        targeted_reports: Laporan dicipta berkaitan akaun ini
+      silence: Hadkan
+      silenced: Dihadkan
+      statuses: Hantaran
       subscribe: Langgan
       suspended: Digantung
-      suspension_irreversible: Data akaun ini telah dipadam secara kekal. Anda boleh nyahgantungkannya untuk menggunakannya, tetapi data lama tidak akan diperoleh.
-      suspension_reversible_hint_html: Akaun ini telah digantung, dan datanya akan dibuang pada %{date}. Sebelum tarikh itu, akaun ini boleh diaktif semula tanpa kesan buruk. Jika anda mahu memadamkan data akaun ini serta-merta, anda boleh melakukannya di bawah.
+      suspension_irreversible: Data akaun ini telah dipadam secara kekal. Anda boleh nyahgantungkannya untuk membuatkan akaun ini boleh digunakan semula tetapi data lama tidak akan diperolehi.
+      suspension_reversible_hint_html: Akaun ini telah digantung, dan datanya akan dibuang pada %{date}. Sebelum tarikh itu, akaun ini boleh diperoleh semula tanpa kesan buruk. Jika anda mahu memadamkan kesemua data akaun ini serta-merta, anda boleh melakukannya di bawah.
       time_in_queue: Menunggu giliran %{time}
       title: Akaun
-      unconfirmed_email: Emel Belum Disahkan
+      unconfirmed_email: E-mel belum disahkan
       undo_sensitized: Nyahtanda sensitif
-      undo_silenced: Buang senyap
-      undo_suspension: Buang penggantungan
+      undo_silenced: Nyahdiamkan
+      undo_suspension: Nyahgantungkan
       unsilenced_msg: Berjaya menjadikan akaun %{username} tidak terhad
       unsubscribe: Buang langganan
       unsuspended_msg: Berjaya menyahgantungkan akaun %{username}
       username: Nama pengguna
-      view_domain: Lihat ringkasan domain
+      view_domain: Lihat ringkasan untuk domain
       warn: Beri amaran
-      web: Web
+      web: Sesawang
       whitelisted: Dibenarkan untuk persekutuan
     action_logs:
       action_types:
@@ -224,15 +224,17 @@ ms:
         create_domain_allow: Cipta Pelepasan Domain
         create_domain_block: Cipta Penyekatan Domain
         create_email_domain_block: Cipta Penyekatan Domain E-mel
-        create_ip_block: Cipta peraturan IP
+        create_ip_block: Cipta peraturan alamat IP
+        create_unavailable_domain: Cipta Domain Tidak Tersedia
         demote_user: Turunkan Taraf Pengguna
         destroy_announcement: Padam Pengumuman
         destroy_custom_emoji: Padam Emoji Tersendiri
         destroy_domain_allow: Padam Pelepasan Domain
         destroy_domain_block: Padam Penyekatan Domain
-        destroy_email_domain_block: Padam Penyekatan Domain E-mel
-        destroy_ip_block: Padam Peraturan IP
-        destroy_status: Padam Kiriman
+        destroy_email_domain_block: Padam penyekatan domain e-mel
+        destroy_ip_block: Padam peraturan alamat IP
+        destroy_status: Padam Hantaran
+        destroy_unavailable_domain: Padam Domain Tidak Tersedia
         disable_2fa_user: Nyahdayakan 2FA
         disable_custom_emoji: Nyahdayakan Emoji Tersendiri
         disable_user: Nyahdayakan Pengguna
