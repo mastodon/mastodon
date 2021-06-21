@@ -1005,10 +1005,14 @@ is:
       limit: Þú hefur náð hámarksfjölda lista
   login_activities:
     authentication_methods:
+      otp: tveggja-þátta auðkenningarforrit
       password: lykilorð
+      sign_in_token: öryggiskóði í tölvupósti
       webauthn: öryggislyklar
+    empty: Enginn aðkenningarferill tiltækur
     failed_sign_in_html: Misheppnuð tilraun til innskráningar með %{method} frá %{ip} (%{browser})
     successful_sign_in_html: Vel heppnuð tilraun til innskráningar með %{method} frá %{ip} (%{browser})
+    title: Auðkenningarferill
   media_attachments:
     validations:
       images_and_video: Ekki er hægt að hengja myndskeið við stöðufærslu sem þegar inniheldur myndir
@@ -1215,6 +1219,7 @@ is:
     revoke: Afturkalla
     revoke_success: Tókst að afturkalla setu
     title: Setur
+    view_authentication_history: Skoða aðkenningarferil aðgangsins þíns
   settings:
     account: Notandaaðgangur
     account_settings: Stillingar notandaaðgangs
