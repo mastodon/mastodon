@@ -1047,6 +1047,17 @@ ar:
   lists:
     errors:
       limit: لقد بلغت الحد الأقصى للقوائم
+  login_activities:
+    authentication_methods:
+      otp: تطبيق المصادقة الثنائية
+      password: كلمة المرور
+      sign_in_token: رمز الأمان للبريد الإلكتروني
+      webauthn: مفاتيح الأمان
+    description_html: إذا رأيت النشاط الذي لا تتعرف عليه، فكر في تغيير كلمة المرور الخاصة بك وتفعيل المصادقة ذات العاملين.
+    empty: لا يوجد سجل مصادقة متاح
+    failed_sign_in_html: فشل محاولة تسجيل الدخول مع %{method} من %{ip} (%{browser})
+    successful_sign_in_html: تم تسجيل الدخول بنجاح مع %{method} من %{ip} (%{browser})
+    title: تاريخ المصادقة
   media_attachments:
     validations:
       images_and_video: ليس بالإمكان إرفاق فيديو في منشور يحتوي مسبقا على صور
@@ -1261,6 +1272,7 @@ ar:
     revoke: إبطال
     revoke_success: تم إبطال الجلسة بنجاح
     title: الجلسات
+    view_authentication_history: عرض سجل المصادقة لحسابك
   settings:
     account: الحساب
     account_settings: إعدادات الحساب
