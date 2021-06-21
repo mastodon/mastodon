@@ -244,19 +244,19 @@ ms:
         promote_user: Naikkan Taraf Pengguna
         remove_avatar_user: Buang Avatar
         reopen_report: Buka Semula Laporan
-        reset_password_user: Tetap Semula Kata Laluan
+        reset_password_user: Tetapkan Semula Kata Laluan
         resolve_report: Buat Keputusan Laporan
         sensitive_account: Tandakan media di akaun anda sebagai sensitif
-        silence_account: Senyapkan Akaun
-        suspend_account: Gantung Akaun
-        unassigned_report: Batalkan Laporan
+        silence_account: Diamkan Akaun
+        suspend_account: Gantungkan Akaun
+        unassigned_report: Menyahtugaskan Laporan
         unsensitive_account: Nyahtanda media di akaun anda sebagai sensitif
-        unsilence_account: Nyahsenyapkan Akaun
-        unsuspend_account: Nyahgantung Akaun
+        unsilence_account: Nyahdiamkan Akaun
+        unsuspend_account: Nyahgantungkan Akaun
         update_announcement: Kemas Kini Pengumuman
         update_custom_emoji: Kemas Kini Emoji Tersendiri
         update_domain_block: Kemas Kini Penyekatan Domain
-        update_status: Kemas Kini Kiriman
+        update_status: Kemas Kini Hantaran
       actions:
         assigned_to_self_report_html: "%{name} menugaskan laporan %{target} kepada dirinya sendiri"
         change_email_user_html: "%{name} telah mengubah alamat e-mel pengguna %{target}"
@@ -267,57 +267,109 @@ ms:
         create_domain_allow_html: "%{name} membenarkan persekutuan dengan domain %{target}"
         create_domain_block_html: "%{name} telah menyekat domain %{target}"
         create_email_domain_block_html: "%{name} telah menyekat domain e-mel %{target}"
-        create_ip_block_html: "%{name} telah mencipta peraturan IP %{target}"
-        demote_user_html: "%{name} menurunkan taraf pengguna %{target}"
-        destroy_announcement_html: "%{name} memadamkan pengumuman %{target}"
-        destroy_custom_emoji_html: "%{name} memusnahkan emoji %{target}"
-        destroy_domain_allow_html: "%{name} membuang keizinan persekutuan dengan domain %{target}"
+        create_ip_block_html: "%{name} telah mencipta peraturan alamat IP %{target}"
+        create_unavailable_domain_html: "%{name} telah menghentikan penghantaran ke domain %{target}"
+        demote_user_html: "%{name} telah menurunkan taraf pengguna %{target}"
+        destroy_announcement_html: "%{name} telah memadamkan pengumuman %{target}"
+        destroy_custom_emoji_html: "%{name} telah memusnahkan emoji %{target}"
+        destroy_domain_allow_html: "%{name} telah membuang kebenaran persekutuan dengan domain %{target}"
         destroy_domain_block_html: "%{name} telah menyahsekat domain %{target}"
         destroy_email_domain_block_html: "%{name} telah menyahsekat domain e-mel %{target}"
-        destroy_ip_block_html: "%{name} memadamkan peraturan untuk IP %{target}"
-        destroy_status_html: "%{name} membuang kiriman oleh %{target}"
+        destroy_ip_block_html: "%{name} telah memadamkan peraturan untuk alamat IP %{target}"
+        destroy_status_html: "%{name} telah membuang hantaran oleh %{target}"
+        destroy_unavailable_domain_html: "%{name} telah menyambung penghantaran ke domain %{target}"
         disable_2fa_user_html: "%{name} menyahdayakan keperluan dua faktor bagi pengguna %{target}"
-        disable_custom_emoji_html: "%{name} menyahdayakan emoji %{target}"
-        disable_user_html: "%{name} menyahdayakan log masuk bagi pengguna %{target}"
-        enable_custom_emoji_html: "%{name} mendayakan emoji %{target}"
-        enable_user_html: "%{name} mendayakan log masuk untuk pengguna %{target}"
-        memorialize_account_html: "%{name} mengubah akaun %{target} menjadi halaman kenangan"
-        promote_user_html: "%{name} menaikkan taraf pengguna %{target}"
-      deleted_status: "(status telah dipadam)"
+        disable_custom_emoji_html: "%{name} telah menyahdayakan emoji %{target}"
+        disable_user_html: "%{name} telah menyahdayakan log masuk bagi pengguna %{target}"
+        enable_custom_emoji_html: "%{name} telah mendayakan emoji %{target}"
+        enable_user_html: "%{name} telah mendayakan log masuk untuk pengguna %{target}"
+        memorialize_account_html: "%{name} telah mengubah akaun %{target} menjadi halaman kenangan"
+        promote_user_html: "%{name} telah menaikkan taraf pengguna %{target}"
+        remove_avatar_user_html: "%{name} telah membuang avatar %{target}"
+        reopen_report_html: "%{name} telah membuka semula laporan %{target}"
+        reset_password_user_html: "%{name} telah menetapkan semula kata laluan pengguna %{target}"
+        resolve_report_html: "%{name} telah menyelesaikan laporan %{target}"
+        sensitive_account_html: "%{name} telah menanda media %{target} sebagai sensitif"
+        silence_account_html: "%{name} telah mendiamkan akaun %{target}"
+        suspend_account_html: "%{name} telah menggantung akaun %{target}"
+        unassigned_report_html: "%{name} telah menyahtugaskan laporan %{target}"
+        unsensitive_account_html: "%{name} telah menyahtanda media %{target} sebagai sensitif"
+        unsilence_account_html: "%{name} telah menyahdiamkan akaun %{target}"
+        unsuspend_account_html: "%{name} telah menyahgantungkan akaun %{target}"
+        update_announcement_html: "%{name} telah mengemaskini pengumuman %{target}"
+        update_custom_emoji_html: "%{name} telah mengemaskini emoji %{target}"
+        update_domain_block_html: "%{name} telah mengemaskini penyekatan domain untuk %{target}"
+        update_status_html: "%{name} telah mengemaskini hantaran oleh %{target}"
+      deleted_status: "(hantaran telah dipadam)"
+      empty: Tiada log dijumpai.
+      filter_by_action: Tapis mengikut tindakan
+      filter_by_user: Tapis mengikut pengguna
       title: Log audit
+    announcements:
+      destroyed_msg: Pengumuman berjaya dipadam!
+      edit:
+        title: Sunting pengumuman
+      empty: Tiada pengumuman dijumpai.
+      live: Langsung
+      new:
+        create: Cipta pengumuman
+        title: Pengumuman baharu
+      publish: Terbitkan
+      published_msg: Pengumuman berjaya diterbitkan!
+      scheduled_for: Dijadualkan untuk %{time}
+      scheduled_msg: Pengumuman dijadualkan untuk terbitan!
+      title: Pengumuman
+      unpublish: Nyahterbit
+      unpublished_msg: Pengumuman berjaya dinyahterbitkan!
+      updated_msg: Pengumuman berjaya dikemaskini!
     custom_emojis:
+      assign_category: Menugaskan kategori
+      by_domain: Domain
       copied_msg: Telah berjaya mencipta salinan tempatan emoji
       copy: Salin
       copy_failed_msg: Tidak dapat membuat salinan tempatan emoji tersebut
+      create_new_category: Cipta kategori baharu
       created_msg: Emoji berjaya dicipta!
       delete: Padam
-      destroyed_msg: Emoji berjaya dipadam!
-      disable: Lumpuhkan
-      disabled_msg: Emoji tersebut berjaya dilumpuhkan
-      enable: Bolehkan
-      enabled_msg: Emoji tersebut berjaya dibolehkan
+      destroyed_msg: Emoji berjaya dimusnahkan!
+      disable: Nyahdayakan
+      disabled: Dinyahdayakan
+      disabled_msg: Emoji tersebut berjaya dinyahdayakan
+      emoji: Emoji
+      enable: Dayakan
+      enabled: Didayakan
+      enabled_msg: Emoji tersebut berjaya didayakan
       image_hint: PNG, maksimum 50KB
+      list: Senarai
       listed: Disenaraikan
       new:
-        title: Tambah emoji sendiri baru
+        title: Tambah emoji sendiri baharu
+      not_permitted: Anda tidak dibenarkan untuk membuat tindakan ini
       overwrite: Tulis ganti
       shortcode: Kod pendek
       shortcode_hint: Sekurang-kurangnya 2 aksara, hanya aksara angka abjad dan garis bawah
       title: Emoji sendiri
-      unlisted: Tidak disenaraikan
+      uncategorized: Tidak dikategorikan
+      unlist: Nyahsenaraikan
+      unlisted: Dinyahsenaraikan
       update_failed_msg: Tidak boleh mengemaskini emoji tersebut
       updated_msg: Emoji berjaya dikemaskini!
       upload: Muat naik
     dashboard:
+      authorized_fetch_mode: Mod selamat
       backlog: tugasan tunggakan
       config: Tatarajah
       feature_deletions: Pemadaman akaun
       feature_invites: Pautan undangan
+      feature_profile_directory: Direktori profil
       feature_registrations: Pendaftaran
       feature_relay: Geganti persekutuan
+      feature_timeline_preview: Pratonton garis masa
       features: Ciri-ciri
       hidden_service: Persekutuan dengan perkhidmatan tersembunyi
       open_reports: laporan belum selesai
+      pending_tags: tanda pagar menunggu semakan
+      pending_users: pengguna menunggu semakan
       recent_users: Pengguna terbaru
       search: Carian teks penuh
       single_user_mode: Mod pengguna tunggal
@@ -452,8 +504,8 @@ ms:
     reports:
       action_taken_by: Tindakan oleh
       are_you_sure: Anda pasti?
-      assign_to_self: Berikan pada saya
-      assigned: Pengawal yang menerima
+      assign_to_self: Menugaskan kepada saya
+      assigned: Penyederhana yang ditugaskan
       comment:
         none: Tiada
       created_at: Dilaporkan
@@ -463,6 +515,7 @@ ms:
         create: Tambah nota
         create_and_resolve: Selesaikan dengan nota
         placeholder: Terangkan tindakan apa yang telah diambil, atau sebarang kemas kini lain yang berkaitan...
+      unassign: Nyahtugaskan
     settings:
       peers_api_enabled:
         title: Terbitkan senarai pelayan ditemukan dalam aplikasi
