@@ -999,6 +999,10 @@ id:
       sign_in_token: kode keamanan email
       webauthn: kunci keamanan
     description_html: Jika Anda melihat aktivitas tidak dikenal, pertimbangkan untuk mengubah kata sandi dan mengaktifkan otentikasi dua-faktor.
+    empty: Riwayat otentikasi tidak tersedia
+    failed_sign_in_html: Upaya gagal masuk dengan %{method} dari %{ip} (%{browser})
+    successful_sign_in_html: Berhasil masuk dengan %{method} dari %{ip} (%{browser})
+    title: Riwayat otentikasi
   media_attachments:
     validations:
       images_and_video: Tidak bisa melampirkan video pada status yang telah memiliki gambar
@@ -1203,6 +1207,7 @@ id:
     revoke: Cabut izin
     revoke_success: Sesi berhasil dicabut
     title: Sesi
+    view_authentication_history: Lihat riwayat otentikasi akun Anda
   settings:
     account: Akun
     account_settings: Pengaturan akun
