@@ -1027,8 +1027,10 @@ cs:
       limit: Dosáhli jste maximálního počtu seznamů
   login_activities:
     authentication_methods:
-      password: heslo
-      webauthn: bezpečnostní klíče
+      password: heslem
+      sign_in_token: e-mailovým bezpečnostním kódem
+      webauthn: bezpečnostními klíči
+    successful_sign_in_html: Úspěšné přihlášení %{method} z %{ip} (%{browser})
   media_attachments:
     validations:
       images_and_video: K příspěvku, který již obsahuje obrázky, nelze připojit video
