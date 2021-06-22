@@ -1027,10 +1027,15 @@ cs:
       limit: Dosáhli jste maximálního počtu seznamů
   login_activities:
     authentication_methods:
+      otp: aplikací pro dvoufaktorové ověření
       password: heslem
       sign_in_token: e-mailovým bezpečnostním kódem
       webauthn: bezpečnostními klíči
+    description_html: Pokud vidíte aktivitu, kterou nepoznáváte, zvažte změnu hesla a zapnutí dvoufaktorového ověřování.
+    empty: Není k dispozici žádná historie přihlášení
+    failed_sign_in_html: Neúspěšný pokus o přihlášení %{method} z %{ip} (%{browser})
     successful_sign_in_html: Úspěšné přihlášení %{method} z %{ip} (%{browser})
+    title: Historie přihlášení
   media_attachments:
     validations:
       images_and_video: K příspěvku, který již obsahuje obrázky, nelze připojit video
@@ -1241,6 +1246,7 @@ cs:
     revoke: Zrušit
     revoke_success: Relace úspěšně zrušena
     title: Relace
+    view_authentication_history: Zobrazit historii přihlášení do vašeho účtu
   settings:
     account: Účet
     account_settings: Nastavení účtu
