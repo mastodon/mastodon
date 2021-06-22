@@ -999,6 +999,17 @@ sq:
   lists:
     errors:
       limit: Keni mbërritur në numrin maksimum të sasisë së listave
+  login_activities:
+    authentication_methods:
+      otp: aplikacion mirëfilltësimi dyfaktorësh
+      password: fjalëkalim
+      sign_in_token: kod sigurie përmes email-i
+      webauthn: kyçe sigurie
+    description_html: Nëse shihni veprimtari që nuk e njihni, shihni mundësinë e ndryshimit të fjalëkalimit tuaj dhe të aktivizimit të mirëfilltësimit dyfaktorësh.
+    empty: S’ka historik mirëfilltësimesh
+    failed_sign_in_html: Dështoi përpjekje hyrjeje me %{method} nga %{ip} (%{browser})
+    successful_sign_in_html: Hyrje e suksesshme me %{method} nga %{ip} (%{browser})
+    title: Historik mirëfilltësimesh
   media_attachments:
     validations:
       images_and_video: S’mund të bashkëngjitet video te një gjendje që përmban figura tashmë
@@ -1205,6 +1216,7 @@ sq:
     revoke: Shfuqizoje
     revoke_success: Sesioni u shfuqizua me sukses
     title: Sesione
+    view_authentication_history: Shihni historik mirëfilltësimesh të llogarisë tuaj
   settings:
     account: Llogari
     account_settings: Rregullime llogarie
