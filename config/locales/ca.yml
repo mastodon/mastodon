@@ -1006,6 +1006,11 @@ ca:
       password: contrasenya
       sign_in_token: codi de seguretat per correu electrònic
       webauthn: claus de seguretat
+    description_html: Si veus activitat que no reconeixes, considera canviar la teva contrasenya i activar l'autenticació de dos factors.
+    empty: Historial d'autenticació no disponible
+    failed_sign_in_html: Intent d'inici de sessió errat amb %{method} des-de %{ip} (%{browser})
+    successful_sign_in_html: Inici de sessió exitós amb %{method} des-de %{ip} (%{browser})
+    title: Historial d'autenticació
   media_attachments:
     validations:
       images_and_video: No es pot adjuntar un vídeo a una publicació que ja contingui imatges
@@ -1212,6 +1217,7 @@ ca:
     revoke: Revoca
     revoke_success: S'ha revocat la sessió amb èxit
     title: Sessions
+    view_authentication_history: Veure l'historial d'autenticació del teu compte
   settings:
     account: Compte
     account_settings: Ajustos del compte
