@@ -998,6 +998,11 @@ vi:
       password: mật khẩu
       sign_in_token: mã an toàn email
       webauthn: khóa bảo mật
+    description_html: Nếu có lần đăng nhập đáng ngờ, hãy đổi ngay mật khẩu và bật xác thực hai bước.
+    empty: Không có lịch sử đăng nhập
+    failed_sign_in_html: Đăng nhập thất bại bằng %{method} từ %{ip} (%{browser})
+    successful_sign_in_html: Đăng nhập thành công bằng %{method} từ %{ip} (%{browser})
+    title: Lịch sử đăng nhập
   media_attachments:
     validations:
       images_and_video: Không thể đính kèm video vào tút đã chứa hình ảnh
@@ -1202,6 +1207,7 @@ vi:
     revoke: Gỡ
     revoke_success: Gỡ phiên thành công
     title: Phiên
+    view_authentication_history: Xem lại lịch sử đăng nhập tài khoản của bạn
   settings:
     account: Bảo mật
     account_settings: Cài đặt tài khoản
