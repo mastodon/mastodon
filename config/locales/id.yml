@@ -992,6 +992,13 @@ id:
   lists:
     errors:
       limit: Daftar Anda telah mencapai jumlah maksimum
+  login_activities:
+    authentication_methods:
+      otp: aplikasi otentikasi dua-faktor
+      password: kata sandi
+      sign_in_token: kode keamanan email
+      webauthn: kunci keamanan
+    description_html: Jika Anda melihat aktivitas tidak dikenal, pertimbangkan untuk mengubah kata sandi dan mengaktifkan otentikasi dua-faktor.
   media_attachments:
     validations:
       images_and_video: Tidak bisa melampirkan video pada status yang telah memiliki gambar
