@@ -992,6 +992,17 @@ zh-CN:
   lists:
     errors:
       limit: 你所建立的列表数量已经达到上限
+  login_activities:
+    authentication_methods:
+      otp: 双因素认证应用
+      password: 密码
+      sign_in_token: 电子邮件安全代码
+      webauthn: 安全密钥
+    description_html: 如有您无法识别的活动，请考虑更改密码并启用双因素认证。
+    empty: 没有可用的认证记录
+    failed_sign_in_html: 失败的 %{method} 登录尝试，来自 %{ip} (%{browser})
+    successful_sign_in_html: 通过 %{method} 成功登录，来自 %{ip} (%{browser})
+    title: 认证历史
   media_attachments:
     validations:
       images_and_video: 无法在嘟文中同时插入视频和图片
@@ -1196,6 +1207,7 @@ zh-CN:
     revoke: 注销
     revoke_success: 会话注销成功
     title: 会话
+    view_authentication_history: 查看账户的认证历史
   settings:
     account: 帐号
     account_settings: 帐户设置
