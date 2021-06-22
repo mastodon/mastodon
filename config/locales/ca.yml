@@ -1000,6 +1000,12 @@ ca:
   lists:
     errors:
       limit: Has assolit la quantitat màxima de llistes
+  login_activities:
+    authentication_methods:
+      otp: aplicació d'autenticació de dos factors
+      password: contrasenya
+      sign_in_token: codi de seguretat per correu electrònic
+      webauthn: claus de seguretat
   media_attachments:
     validations:
       images_and_video: No es pot adjuntar un vídeo a una publicació que ja contingui imatges
