@@ -55,7 +55,7 @@ pt-BR:
     authorizations:
       buttons:
         authorize: Autorizar
-        deny: Negar
+        deny: Recusar
       error:
         title: Ocorreu um erro
       new:
@@ -77,11 +77,11 @@ pt-BR:
         title: Aplicativos autorizados
     errors:
       messages:
-        access_denied: O proprietário ou servidor de autorização negou a solicitação.
-        credential_flow_not_configured: Cadeira de Credenciais de Senha do Proprietário falhou porque Doorkeeper.configure.resource_owner_from_credentials não foram configuradas.
+        access_denied: O proprietário ou servidor de autorização recusou a solicitação.
+        credential_flow_not_configured: Fluxo das Credenciais de Senha do Proprietário falhou porque Doorkeeper.configure.resource_owner_from_credentials não foi configurado.
         invalid_client: Autenticação do cliente falhou por causa de um cliente desconhecido, nenhum cliente de autenticação foi incluído ou o método de autenticação não é suportado.
         invalid_grant: A garantia de autorização está inválida, expirou ou foi revogada, não é equivalente ao link de redirecionamento usado na solicitação de autorização ou foi emitido por outro cliente.
-        invalid_redirect_uri: O link de redirecionamento não é válido.
+        invalid_redirect_uri: O link de redirecionamento é inválido.
         invalid_request:
           missing_param: 'Parâmetro obrigatório faltando: %{value}.'
         invalid_resource_owner: As credenciais do proprietário informadas não são válidas ou o proprietário não pôde ser encontrado
