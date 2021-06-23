@@ -1,6 +1,6 @@
 - method_str = content_tag(:span, login_activity.omniauth? ? t(login_activity.provider, scope: 'auth.providers') : t(login_activity.authentication_method, scope: 'login_activities.authentication_methods'), class: 'target')
 - ip_str = content_tag(:span, login_activity.ip, class: 'target')
-- browser_str = content_tag(:span, t('sessions.description', browser: t("sessions.browsers.#{login_activity.browser}", default: "#{login_activity.browser}"), platform: t("sessions.platforms.#{login_activity.platform}", default: "#{login_activity.platform}")), class: 'target')
+- browser_str = content_tag(:span, t('sessions.description', browser: t("sessions.browsers.#{login_activity.browser}", default: "#{login_activity.browser}"), platform: t("sessions.platforms.#{login_activity.platform}", default: "#{login_activity.platform}")), class: 'target', title: login_activity.user_agent)
 
 .log-entry
   .log-entry__header
@@ -14,4 +14,4 @@
         - else
           = t('login_activities.failed_sign_in_html', method: method_str, ip: ip_str, browser: browser_str)
       .log-entry__timestamp
-        %time.formatted{ datetime: login_activity.created_at.iso8601 }
+        %time.formatted{ datetime: login_activity.created_at.iso8601 }= l(login_activity.created_at)
