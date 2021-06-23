@@ -11,6 +11,24 @@ code {
   margin: 0 auto;
 }
 
+.indicator-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  color: $primary-text-color;
+
+  &.success {
+    background: $success-green;
+  }
+
+  &.failure {
+    background: $error-red;
+  }
+}
+
 .simple_form {
   &.hidden {
     display: none;
