@@ -1007,7 +1007,13 @@ pt-PT:
     authentication_methods:
       otp: aplicação de autenticação em duas etapas
       password: palavra-passe
+      sign_in_token: código de segurança por e-mail
+      webauthn: chaves de segurança
     description_html: Se vê atividade que não reconhece, considere alterar a sua palavra-passe e ativar a autenticação em duas etapas.
+    empty: Sem histórico de autenticação disponível
+    failed_sign_in_html: Tentativa falhada de início de sessão com %{method} de %{ip} (%{browser})
+    successful_sign_in_html: Iniciada sessão com sucesso com %{method} de %{ip} (%{browser})
+    title: Histórico de autenticação
   media_attachments:
     validations:
       images_and_video: Não é possível anexar um vídeo a uma publicação que já contém imagens
@@ -1214,6 +1220,7 @@ pt-PT:
     revoke: Revogar
     revoke_success: Sessão revogada com sucesso
     title: Sessões
+    view_authentication_history: Ver histórico de autenticação da sua conta
   settings:
     account: Conta
     account_settings: Definições da conta
