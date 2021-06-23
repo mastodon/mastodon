@@ -1006,6 +1006,7 @@ pt-PT:
   login_activities:
     authentication_methods:
       otp: aplicação de autenticação em duas etapas
+    description_html: Se vê atividade que não reconhece, considere alterar a sua senha e ativar a autenticação em duas etapas.
   media_attachments:
     validations:
       images_and_video: Não é possível anexar um vídeo a uma publicação que já contém imagens
@@ -1232,7 +1233,7 @@ pt-PT:
     preferences: Preferências
     profile: Perfil
     relationships: Seguindo e seguidores
-    two_factor_authentication: Autenticação em dois passos
+    two_factor_authentication: Autenticação em duas etapas
     webauthn_authentication: Chaves de segurança
   statuses:
     attached:
@@ -1385,11 +1386,11 @@ pt-PT:
     disable: Desativar
     disabled_success: Autenticação em duas etapas desativada com sucesso
     edit: Editar
-    enabled: A autenticação em dois passos está ativada
-    enabled_success: Autenticação em dois passos ativada com sucesso
+    enabled: A autenticação em duas etapas está ativada
+    enabled_success: Autenticação em duas etapas ativada com sucesso
     generate_recovery_codes: Gerar códigos para recuperar conta
     lost_recovery_codes: Códigos de recuperação permite que você recupere o acesso a sua conta se você perder seu telefone. Se você perder os códigos de recuperação, você pode regera-los aqui. Seus códigos antigos serão invalidados.
-    methods: Métodos de duas etapas
+    methods: Métodos de autenticação em duas etapas
     otp: Aplicação de autenticação
     recovery_codes: Cópia de segurança dos códigos de recuperação
     recovery_codes_regenerated: Códigos de recuperação foram gerados com sucesso
@@ -1403,7 +1404,7 @@ pt-PT:
     sign_in_token:
       details: 'Aqui estão os detalhes da tentativa:'
       explanation: 'Detectamos uma tentativa de entrar na sua conta a partir de um endereço IP não reconhecido. Se é você, por favor, insira o código de segurança abaixo na página de acesso:'
-      further_actions: 'Se não foi você, por favor altere sua senha e ative a autenticação de dois fatores na sua conta. Pode fazê-lo aqui:'
+      further_actions: 'Se não foi você, por favor altere a sua senha e ative a autenticação em duas etapas na sua conta. Pode fazê-lo aqui:'
       subject: Por favor, confirme a tentativa de acesso
       title: Tentativa de acesso
     warning:
@@ -1471,5 +1472,5 @@ pt-PT:
     nickname_hint: Introduza o apelido da sua nova chave de segurança
     not_enabled: Ainda não ativou o WebAuthn
     not_supported: Este navegador não suporta chaves de segurança
-    otp_required: Para usar chaves de segurança, por favor ative primeiro a autenticação de duas etapas.
+    otp_required: Para usar chaves de segurança, por favor ative primeiro a autenticação em duas etapas.
     registered_on: Registado em %{date}
