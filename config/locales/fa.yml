@@ -957,6 +957,17 @@ fa:
   lists:
     errors:
       limit: از این بیشتر نمی‌شود فهرست داشت
+  login_activities:
+    authentication_methods:
+      otp: کارهٔ تأیید هویت دوعاملی
+      password: گذرواژه
+      sign_in_token: کد امنیتی رایانامه‌ای
+      webauthn: کلیدهای امنیتی
+    description_html: اگر فعالیتی می‌بینید که تشخیصش نمی‌دهید، تغییر گذرواژه و به کار انداختن تأیید هویت دوعاملی را در نظر داشته باشید.
+    empty: هیچ تاریخچه‌ای از تأییدهویت موجود نیست
+    failed_sign_in_html: تلاش‌های شکست‌خوردهٔ ورود با %{method} از %{ip} (%{browser})
+    successful_sign_in_html: ورودهای موفق با %{method} از %{ip} (%{browser})
+    title: تاریخچهٔ تأیید هویت
   media_attachments:
     validations:
       images_and_video: نمی‌توان برای نوشته‌ای که تصویر دارد ویدیو بارگذاری کرد
@@ -1163,6 +1174,7 @@ fa:
     revoke: لغو کردن
     revoke_success: نشست با موفقیت لغو شد
     title: نشست‌ها
+    view_authentication_history: دیدن تاریخچهٔ تأییدهویت حسابتان
   settings:
     account: حساب
     account_settings: تنظیمات حساب
