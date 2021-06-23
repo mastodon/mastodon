@@ -1,4 +1,3 @@
----
 pt-PT:
   devise:
     confirmations:
@@ -8,10 +7,10 @@ pt-PT:
     failure:
       already_authenticated: A tua sessão já está aberta.
       inactive: A tua conta ainda não está ativada.
-      invalid: "%{authentication_keys} ou palavra-passe inválida."
+      invalid: '%{authentication_keys} ou palavra-passe inválida.'
       last_attempt: Tens mais uma tentativa antes de a tua conta ser bloqueada.
       locked: A tua conta está bloqueada.
-      not_found_in_database: "%{authentication_keys} ou palavra-passe inválida."
+      not_found_in_database: '%{authentication_keys} ou palavra-passe inválida.'
       pending: A sua conta está ainda a aguardar revisão.
       timeout: A tua sessão expirou. Por favor, entra de novo para continuares.
       unauthenticated: Precisas de entrar na tua conta ou de te registares antes de continuar.
@@ -47,11 +46,11 @@ pt-PT:
         subject: 'Mastodon: Instruções para alterar a palavra-passe'
         title: Solicitar nova palavra-passe
       two_factor_disabled:
-        explanation: A autenticação de dois fatores para sua conta foi desativada. É agora possível aceder apenas com seu endereço de e-mail e senha.
-        subject: 'Mastodon: Autenticação de dois fatores desativada'
+        explanation: A autenticação em duas etapas para a sua conta foi desativada. É agora possível aceder apenas com o seu endereço de e-mail e senha.
+        subject: 'Mastodon: Autenticação de duas etapas desativada'
         title: 2FA desativado
       two_factor_enabled:
-        explanation: A autenticação de dois fatores foi ativada para sua conta. Um token, gerado pela aplicação TOTP emparelhada, será necessário para aceder.
+        explanation: A autenticação em duas etapas foi ativada para a sua conta. Um token, gerado pela aplicação TOTP emparelhada, será necessário para aceder.
         subject: 'Mastodon: Autenticação de dois fatores ativada'
         title: 2FA ativado
       two_factor_recovery_codes_changed:
