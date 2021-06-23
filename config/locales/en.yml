@@ -1004,6 +1004,17 @@ en:
   lists:
     errors:
       limit: You have reached the maximum amount of lists
+  login_activities:
+    authentication_methods:
+      otp: two-factor authentication app
+      password: password
+      sign_in_token: e-mail security code
+      webauthn: security keys
+    description_html: If you see activity that you don't recognize, consider changing your password and enabling two-factor authentication.
+    empty: No authentication history available
+    failed_sign_in_html: Failed sign-in attempt with %{method} from %{ip} (%{browser})
+    successful_sign_in_html: Successful sign-in with %{method} from %{ip} (%{browser})
+    title: Authentication history
   media_attachments:
     validations:
       images_and_video: Cannot attach a video to a post that already contains images
@@ -1211,6 +1222,7 @@ en:
     revoke: Revoke
     revoke_success: Session successfully revoked
     title: Sessions
+    view_authentication_history: View authentication history of your account
   settings:
     account: Account
     account_settings: Account settings

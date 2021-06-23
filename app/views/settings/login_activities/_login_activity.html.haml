@@ -1,0 +1,17 @@
+- method_str = content_tag(:span, login_activity.omniauth? ? t(login_activity.provider, scope: 'auth.providers') : t(login_activity.authentication_method, scope: 'login_activities.authentication_methods'), class: 'target')
+- ip_str = content_tag(:span, login_activity.ip, class: 'target')
+- browser_str = content_tag(:span, t('sessions.description', browser: t("sessions.browsers.#{login_activity.browser}", default: "#{login_activity.browser}"), platform: t("sessions.platforms.#{login_activity.platform}", default: "#{login_activity.platform}")), class: 'target')
+
+.log-entry
+  .log-entry__header
+    .log-entry__avatar
+      .indicator-icon{ class: login_activity.success? ? 'success' : 'failure' }
+        = fa_icon login_activity.success? ? 'check' : 'times'
+    .log-entry__content
+      .log-entry__title
+        - if login_activity.success?
+          = t('login_activities.successful_sign_in_html', method: method_str, ip: ip_str, browser: browser_str)
+        - else
+          = t('login_activities.failed_sign_in_html', method: method_str, ip: ip_str, browser: browser_str)
+      .log-entry__timestamp
+        %time.formatted{ datetime: login_activity.created_at.iso8601 }

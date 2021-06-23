@@ -86,7 +86,7 @@ class FollowerAccountsController < ApplicationController
     if page_requested? || !@account.user_hides_network?
       # Return all fields
     else
-      %i(id type totalItems)
+      %i(id type total_items)
     end
   end
 end
