@@ -196,7 +196,7 @@ module Mastodon
       @force  = options[:force]
 
       @prompt.say "Start fixing the remote_url of #{@types.join ', '} on the remote server \"#{@domain}\" from \"#{@from}\" to \"#{@to}\"."
-      raise 'User canceled' unless @prompt.yes?('Continue?')
+      exit(1) unless @prompt.yes?('Continue?')
 
       fix_accounts_remote_url!
       fix_custom_emojis_remote_url!
