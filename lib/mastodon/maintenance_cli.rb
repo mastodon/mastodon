@@ -216,9 +216,8 @@ module Mastodon
 
       unless @force
         accounts_avatar_remote_url = ::Account.where(domain: @domain).where('avatar_remote_url like ?', "#{@from}%").reorder(avatar_updated_at: :desc).first&.avatar_remote_url&.sub(/^#{@from}/, @to)
-
-        return @prompt.warn  'There is no corresponding remote avatar image, so skip it.'      unless accounts_avatar_remote_url
-        return @prompt.error 'The remote avatar image cannot be reached with the changed URL.' unless reachable_url?(accounts_avatar_remote_url)
+        return @prompt.warn  'Skipping because no corresponding remote avatar image could be found.' unless accounts_avatar_remote_url
+        return @prompt.error 'The remote avatar image cannot be reached with the changed URL.'       unless reachable_url?(accounts_avatar_remote_url)
       end
 
       fixed_avatars = ActiveRecord::Base.connection.exec_update(<<-SQL.squish, 'SQL', [[nil, @domain], [nil, @from], [nil, @to], [nil, "#{@from}%"]])
@@ -270,8 +269,8 @@ module Mastodon
       unless @force
         custom_emojis_image_remote_url = ::CustomEmoji.where(domain: @domain).where('image_remote_url like ?', "#{@from}%").reorder(image_updated_at: :desc).first&.image_remote_url&.sub(/^#{@from}/, @to)
 
-        return @prompt.warn  'There is no corresponding remote custom emoji, so skip it.'       unless custom_emojis_image_remote_url
-        return @prompt.error 'The remote custom emoji cannot be reached with the modified URL.' unless reachable_url?(custom_emojis_image_remote_url)
+        return @prompt.warn  'Skipping because no corresponding remote custom emoji could be found.' unless custom_emojis_image_remote_url
+        return @prompt.error 'The remote custom emoji cannot be reached with the modified URL.'      unless reachable_url?(custom_emojis_image_remote_url)
       end
 
       fixed_emojis = ActiveRecord::Base.connection.exec_update(<<-SQL.squish, 'SQL', [[nil, @domain], [nil, @from], [nil, @to], [nil, "#{@from}%"]])
@@ -304,8 +303,8 @@ module Mastodon
       unless @force
         attatchments_remote_url = ::MediaAttachment.joins(status: :account).where(statuses: { accounts: { domain: @domain } }).where('remote_url like ?', "#{@from}%").reorder(file_updated_at: :desc).first&.remote_url&.sub(/^#{@from}/, @to)
 
-        return @prompt.warn  'There is no corresponding remote media attachment, so skip it.'       unless attatchments_remote_url
-        return @prompt.error 'The remote media attachment cannot be reached with the modified URL.' unless reachable_url?(attatchments_remote_url)
+        return @prompt.warn  'Skipping because no corresponding remote media attachment could be found.' unless attatchments_remote_url
+        return @prompt.error 'The remote media attachment cannot be reached with the modified URL.'      unless reachable_url?(attatchments_remote_url)
       end
 
       fixed_attachments = ActiveRecord::Base.connection.exec_update(<<-SQL.squish, 'SQL', [[nil, @domain], [nil, @from], [nil, @to], [nil, "#{@from}%"]])
