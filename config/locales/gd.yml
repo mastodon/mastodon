@@ -1025,6 +1025,17 @@ gd:
   lists:
     errors:
       limit: Ràinig thu na tha ceadaichte dhut de liostaichean
+  login_activities:
+    authentication_methods:
+      otp: aplacaid dearbhaidh dhà-cheumnaich
+      password: facal-faire
+      sign_in_token: cuir còd tèarainteachd air a’ phost-d
+      webauthn: iuchraichean tèarainteachd
+    description_html: Ma chì thu gnìomhachd nach aithnich thu, mholamaid gun atharraich thu am facal-faire agad ’s gun cuir thu an dearbhadh dà-cheumnach an comas.
+    empty: Chan eil eachdraidh an dearbhaidh ri fhaighinn
+    failed_sign_in_html: Oidhirp clàraidh a-steach nach deach leis le %{method} o %{ip} (%{browser})
+    successful_sign_in_html: Oidhirp clàraidh a-steach a shoirbhich leis le %{method} o %{ip} (%{browser})
+    title: Eachdraidh an dearbhaidh
   media_attachments:
     validations:
       images_and_video: Chan urrainn dhut video a cheangal ri post sa bheil dealbh mu thràth
