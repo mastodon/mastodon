@@ -4732,6 +4732,13 @@ a.status-card.compact:hover {
           background: rgba($gold-star, 0.3);
         }
       }
+
+      &.disabled {
+        color: $white;
+        background-color: transparent;
+        cursor: default;
+        opacity: 0.4;
+      }
     }
   }
 }
