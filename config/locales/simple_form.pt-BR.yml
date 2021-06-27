@@ -9,14 +9,16 @@ pt-BR:
         text: Você pode usar a sintaxe do toot, como links, hashtags e menções
         title: Opcional. Não visível para o destinatário
       admin_account_action:
-        include_statuses: O usuário verá quais toots causaram o aviso ou ação da moderação
+        include_statuses: O usuário verá quais toots causaram a advertência ou ação da moderação
         send_email_notification: O usuário receberá uma explicação do que aconteceu com a própria conta
-        text_html: Opcional. Você pode usar a sintaxe do toot e também pode <a href="%{path}">adicionar avisos pré-definidos</a> para poupar tempo
+        text_html: Opcional. Você pode usar a sintaxe do toot ou pode poupar tempo <a href="%{path}">adicionando advertências pré-definidas</a>
         type_html: Decida o que fazer com <strong>%{acct}</strong>
         types:
-          disable: Impedir o usuário de usar sua conta, porém sem deletá-la ou escondê-la.
+          disable: Impede o usuário de usar a conta, porém sem excluí-la ou suspendê-la.
           none: Use isto para enviar uma advertência ao usuário, sem nenhuma outra ação.
-          suspend: Impedir interações e excluir conteúdo da conta. Reversível apenas dentro de 30 dias.
+          sensitive: Marca todas as mídias do usuário como sensível.
+          silence: Impede o usuário de tootar publicamente, e oculta toots e notificações dos que não o seguem.
+          suspend: Impede interações e exclui conteúdo da conta. Reversível apenas dentro de 30 dias.
         warning_preset_id: Opcional. Você ainda pode adicionar texto personalizado no final do aviso pré-definido
       announcement:
         all_day: Quando marcada, apenas as datas do período serão mostradas
