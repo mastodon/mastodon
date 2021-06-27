@@ -2,9 +2,9 @@ pt-BR:
   simple_form:
     hints:
       account_alias:
-        acct: Especifique o usuário@domínio da conta da qual você deseja se mudar
+        acct: Especifique o usuário@domínio de onde veio
       account_migration:
-        acct: Especifique o usuário@domínio da conta para a qual você deseja se mudar
+        acct: Especifique o usuário@domínio para onde vai
       account_warning_preset:
         text: Você pode usar a sintaxe do toot, como links, hashtags e menções
         title: Opcional. Não visível para o destinatário
@@ -16,6 +16,7 @@ pt-BR:
         types:
           disable: Impedir o usuário de usar sua conta, porém sem deletá-la ou escondê-la.
           none: Use isto para enviar uma advertência ao usuário, sem nenhuma outra ação.
+          suspend: Impedir interações e excluir conteúdo da conta. Reversível apenas dentro de 30 dias.
         warning_preset_id: Opcional. Você ainda pode adicionar texto personalizado no final do aviso pré-definido
       announcement:
         all_day: Quando marcada, apenas as datas do período serão mostradas
