@@ -1011,6 +1011,9 @@ eu:
       webauthn: segurtasun gakoak
     description_html: Ezagutzen ez duzun aktibitatea ikusten baduzu, pasahitza aldatu eta bi faktoreko autentifikazioa gaitzea gomendatzen dizugu.
     empty: Ez dago autentifikazio historiarik eskuragarri
+    failed_sign_in_html: Huts egindako saioa hasteko saiakera %{method} erabiliz %{ip} IPtik (%{browser})
+    successful_sign_in_html: Saioa hasiera arrakastatsua %{method} erabiliz %{ip} IPtik (%{browser})
+    title: Autentifikazioen historia
   media_attachments:
     validations:
       images_and_video: Ezin da irudiak dituen bidalketa batean bideo bat erantsi
@@ -1217,6 +1220,7 @@ eu:
     revoke: Indargabetu
     revoke_success: Saioa ongi indargabetu da
     title: Saioak
+    view_authentication_history: Ikusi zure kontuaren autentifikazioen historia
   settings:
     account: Kontua
     account_settings: Kontuaren ezarpenak
