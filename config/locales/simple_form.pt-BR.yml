@@ -19,13 +19,13 @@ pt-BR:
           sensitive: Marca todas as mídias do usuário como sensível.
           silence: Impede o usuário de tootar publicamente, e oculta toots e notificações dos que não o seguem.
           suspend: Impede interações e exclui conteúdo da conta. Reversível apenas dentro de 30 dias.
-        warning_preset_id: Opcional. Você ainda pode adicionar texto personalizado no final do aviso pré-definido
+        warning_preset_id: Opcional. Você pode adicionar texto personalizado no final da advertência pré-definida
       announcement:
         all_day: Quando marcada, apenas as datas do período serão mostradas
-        ends_at: Opcional. O anúncio será automaticamente não publicado no momento
-        scheduled_at: Deixe em branco para publicar o anúncio imediatamente
-        starts_at: Opcional. Caso seu anúncio esteja vinculado a um período específico
-        text: Você pode usar a sintaxe toot. Esteja ciente do espaço que o anúncio ocupará na tela do usuário
+        ends_at: Opcional. O comunicado sairá do ar automaticamente
+        scheduled_at: Deixe em branco para publicar o comunicado agora
+        starts_at: Opcional. Caso o comunicado esteja vinculado a um período específico
+        text: Você pode usar a sintaxe do toot. Considere o espaço que o comunicado ocupará na tela do usuário
       defaults:
         autofollow: Pessoas que criarem conta através de seu convite te seguirão automaticamente
         avatar: PNG, GIF or JPG. Arquivos de até %{size}. Serão redimensionados para %{dimensions}px
@@ -108,15 +108,15 @@ pt-BR:
           disable: Congelar
           none: Não fazer nada
           sensitive: Sensível
-          silence: Silenciar
-          suspend: Banir e excluir irreversivelmente dados da conta
+          silence: Suspender
+          suspend: Banir e excluir conta
         warning_preset_id: Usar um aviso pré-definido
       announcement:
         all_day: Evento o dia inteiro
         ends_at: Fim do evento
         scheduled_at: Agendar publicação
         starts_at: Início do evento
-        text: Anúncio
+        text: Comunicados
       defaults:
         autofollow: Convite para seguir a sua conta
         avatar: Imagem de perfil
