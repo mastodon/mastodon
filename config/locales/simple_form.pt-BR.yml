@@ -43,7 +43,7 @@ pt-BR:
         locale: O idioma da interface do usuário, e-mails e notificações
         locked: Requer aprovação manual de seguidores
         password: Use pelo menos 8 caracteres
-        phrase: Corresponderá independente de maiúsculas ou minúsculas, no texto ou no aviso de conteúdo de um toot
+        phrase: Corresponderá independente de maiúsculas ou minúsculas, no texto ou no Aviso de Conteúdo de um toot
         scopes: Quais APIs o aplicativo vai ter permissão de acessar. Se você selecionar uma autorização de alto nível, você não precisa selecionar individualmente os outros.
         setting_aggregate_reblogs: Não mostra novos boosts para toots que receberam boost recentemente (afeta somente os boosts mais recentes)
         setting_default_sensitive: Mídia sensível está oculta por padrão e pode ser revelada com um clique
@@ -97,12 +97,12 @@ pt-BR:
       account_migration:
         acct: Nome de usuário da nova conta
       account_warning_preset:
-        text: Aviso pré-definido
+        text: Advertência pré-definida
         title: Título
       admin_account_action:
         include_statuses: Incluir toots denunciados no e-mail
         send_email_notification: Notificar o usuário por e-mail
-        text: Aviso personalizado
+        text: Advertência personalizada
         type: Ação
         types:
           disable: Congelar
@@ -110,7 +110,7 @@ pt-BR:
           sensitive: Sensível
           silence: Suspender
           suspend: Banir e excluir conta
-        warning_preset_id: Usar um aviso pré-definido
+        warning_preset_id: Usar advertência pré-definida
       announcement:
         all_day: Evento o dia inteiro
         ends_at: Fim do evento
@@ -181,8 +181,8 @@ pt-BR:
         name: Hashtag
       interactions:
         must_be_follower: Bloquear notificações de não-seguidores
-        must_be_following: Bloquear notificações de pessoas que você não segue
-        must_be_following_dm: Bloquear mensagens diretas de pessoas que você não segue
+        must_be_following: Bloquear notificações de não-seguidos
+        must_be_following_dm: Bloquear toots diretos de não-seguidos
       invite:
         comment: Comentário
       invite_request:
@@ -192,7 +192,7 @@ pt-BR:
         ip: IP
         severities:
           no_access: Bloquear acesso
-          sign_up_requires_approval: Limitar registros
+          sign_up_requires_approval: Limitar novas contas
         severity: Regra
       notification_emails:
         digest: Enviar e-mails de resumo
@@ -200,14 +200,14 @@ pt-BR:
         follow: Enviar e-mail quando alguém te seguir
         follow_request: Enviar e-mail quando alguém quiser te seguir
         mention: Enviar e-mail quando alguém te mencionar
-        pending_account: Enviar e-mail quando uma nova conta precisar ser revisada
+        pending_account: Enviar e-mail quando uma nova conta precisa ser revisada
         reblog: Enviar e-mail quando alguém der boost nos teus toots
         report: Enviar e-mail quando uma nova denúncia for enviada
-        trending_tag: Uma hashtag não-revisada está em alta
+        trending_tag: Enviar e-mail quando uma hashtag não-revisada está em alta
       rule:
         text: Regra
       tag:
-        listable: Permitir que esta hashtag apareça em pesquisas e no diretório de perfis
+        listable: Permitir que esta hashtag apareça em pesquisas e sugestões
         name: Hashtag
         trendable: Permitir que esta hashtag fique em alta
         usable: Permitir que toots usem esta hashtag
