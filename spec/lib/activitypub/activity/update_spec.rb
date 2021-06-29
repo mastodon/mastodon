@@ -13,7 +13,7 @@ RSpec.describe ActivityPub::Activity::Update do
   end
 
   let(:modified_sender) do
-    sender.dup.tap do |modified_sender|
+    sender.tap do |modified_sender|
       modified_sender.display_name = 'Totally modified now'
     end
   end

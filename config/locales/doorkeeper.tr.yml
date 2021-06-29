@@ -36,7 +36,7 @@ tr:
         scopes: Kapsamları boşluklarla ayırın. Varsayılan kapsamları kullanmak için boş bırakın.
       index:
         application: Uygulama
-        callback_url: Callback URL
+        callback_url: Geri Dönüş URL
         delete: Sil
         empty: Hiç uygulamanız yok.
         name: İsim
@@ -48,10 +48,10 @@ tr:
         title: Yeni uygulama
       show:
         actions: Eylemler
-        application_id: Client key
+        application_id: İstemci anahtarı
         callback_urls: Callback URL
         scopes: Kapsamlar
-        secret: Client secret
+        secret: İstemci gizli anahtarı
         title: 'Uygulama: %{name}'
     authorizations:
       buttons:
@@ -73,7 +73,7 @@ tr:
       index:
         application: Uygulama
         created_at: Yetkili
-        date_format: "%Y-%m-%d %H:%M:%S"
+        date_format: "%m-%d-%Y %H:%M:%S"
         scopes: Kapsamlar
         title: Yetkili uygulamalarınız
     errors:
@@ -83,7 +83,10 @@ tr:
         invalid_client: İstemcinin kimlik doğrulaması bilinmeyen istemci, istemci kimlik doğrulamasının dahil olmaması veya desteklenmeyen kimlik doğrulama yöntemi nedeniyle başarısız oldu.
         invalid_grant: Sağlanan yetkilendirme izni geçersiz, süresi dolmuş, iptal edilmiş, yetkilendirme isteğinde kullanılan yönlendirme URL'siyle eşleşmiyor veya başka bir istemciye verilmiş.
         invalid_redirect_uri: Dahil edilmiş yönlendirme URL'si geçersiz.
-        invalid_request: İstekte gerekli bir parametre eksik, desteklenmeyen bir parametre değeri içeriyor veya başka türlü hatalı biçimlendirilmiş.
+        invalid_request:
+          missing_param: 'Gerekli parametre eksik: %{value}.'
+          request_not_authorized: İsteğin yetkilendirilmesi gerekiyor. İsteği yetkilendirmek için gereken parametre eksik veya geçersiz.
+          unknown: İstekte gerekli bir parametre eksik, desteklenmeyen bir parametre değeri içeriyor veya aksi durumda hatalı biçimlendirilmiş.
         invalid_resource_owner: Sağlanan kaynak sahibi kimlik bilgileri geçerli değil veya kaynak sahibi bulunamıyor
         invalid_scope: İstenen kapsam geçersiz, bilinmeyen veya hatalı biçimlendirilmiş olabilir.
         invalid_token:

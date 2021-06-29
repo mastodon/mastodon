@@ -7,20 +7,26 @@ hu:
       account_migration:
         acct: Add meg a fióknév@domain fiókot, melybe költözni szeretnél
       account_warning_preset:
-        text: Használhatod a tülkökben szokásos szintaxist, URL-eket, hashtageket, megemlítéseket
+        text: Használhatod a bejegyzésekben szokásos szintaxist, URL-eket, hashtageket, megemlítéseket
         title: Opcionális. Címzett számára nem látható
       admin_account_action:
-        include_statuses: A felhasználó látni fogja, melyik tülk okozta a moderációt vagy figyelmeztetést
+        include_statuses: A felhasználó látni fogja, melyik bejegyzés okozta a moderációs műveletet vagy figyelmeztetést
         send_email_notification: A felhasználó magyarázatot kap arra, mi történt a fiókjával
-        text_html: Opcionális. A tülk szintaxis használható. Egyszerűsítés végett létre is hozhatsz <a href="%{path}">figyelmeztetéseket</a>
+        text_html: Opcionális. A bejegyzések szintaxisa használható. Időmegtakarítás végett létre is hozhatsz <a href="%{path}">figyelmeztetéseket</a>
         type_html: Megmondhatod, mi legyen vele <strong>%{acct}</strong>
+        types:
+          disable: A felhasználó nem fogja tudni használni a fiókját, de ettől még nem töröljük azt vagy rejtjük el a tartalmait.
+          none: Ezt használd ahhoz, hogy a felhasználónak figyelmeztetést küldj bármilyen más következmény nélkül.
+          sensitive: Ennek a felhasználónak minden médiatartalmát jelöljük meg kényesként.
+          silence: Megakadályozzuk, hogy ez a felhasználó nyilvános láthatóságú bejegyzést tegyen közzé, elrejtjük a bejegyzéseit és a róla szóló értesítéseket azok elől, akik nem közvetlen követői.
+          suspend: Minden interakciót megakadályozunk ezzel a fiókkal és töröljük a tartalmát. 30 napon belül még visszacsinálható.
         warning_preset_id: Opcionális. A figyelmeztetés végére saját szöveget is írhatsz
       announcement:
         all_day: Bejelölve csak a dátumok számítanak majd a megadott intervallumból
         ends_at: Opcionális. A közleményt ekkor automatikusan levesszük
         scheduled_at: Hagyd üresen, hogy a közleményt azonnal közzétegyük
         starts_at: Opcionális. Akkor használd, ha a közleményed adott időintervallumra vonatkozik
-        text: Használhatod a tülkök szintaxisát. Ügyelj arra, mennyi helyet foglal el majd a közlemény a felhasználó képernyőjén
+        text: Használhatod a bejegyzések szintaxisát. Ügyelj arra, hogy mennyi helyet foglal el majd a közlemény a felhasználó képernyőjén
       defaults:
         autofollow: Akik meghívón keresztül regisztrálnak, automatikusan követni fognak téged
         avatar: PNG, GIF vagy JPG. Maximum %{size}. Átméretezzük %{dimensions} pixelre
@@ -34,20 +40,20 @@ hu:
         fields: A profilodon legfeljebb 4 bejegyzés szerepelhet táblázatos formában
         header: PNG, GIF vagy JPG. Maximum %{size}. Átméretezzük %{dimensions} pixelre
         inbox_url: Másold ki a használandó relé szerver kezdőoldalának URL-jét
-        irreversible: A kiszűrt tülkök visszafordíthatatlanul eltűnnek, a szűrő későbbi törlése esetén is
+        irreversible: A kiszűrt bejegyzések visszafordíthatatlanul eltűnnek, a szűrő későbbi törlése esetén is
         locale: A felhasználói felület, e-mailek, push üzenetek nyelve
         locked: Egyenként engedélyezned kell a követőidet
         password: Legalább 8 karakter
         phrase: Illeszkedni fog kis/nagybetű függetlenül, és tartalom-figyelmeztetések mögött is
         scopes: Mely API-kat érheti el az alkalmazás. Ha felső szintű hatáskört választasz, nem kell egyesével kiválasztanod az alatta lévőeket.
-        setting_aggregate_reblogs: Ne mutassunk megtolásokat olyan tülkökhöz, melyeket nemrég toltak meg (csak új megtolásokra lép életbe)
-        setting_default_sensitive: A szenzitív médiát alapesetben elrejtjük, de egyetlen kattintással előhozható
-        setting_display_media_default: Szenzitív tartalomként jelölt média elrejtése
+        setting_aggregate_reblogs: Ne mutassunk megtolásokat olyan bejegyzésekhez, melyeket nemrég toltak meg (csak új megtolásokra lép életbe)
+        setting_default_sensitive: A kényes médiatartalmat alapesetben elrejtjük, de egyetlen kattintással előhozható
+        setting_display_media_default: Kényes tartalomnak jelölt média elrejtése
         setting_display_media_hide_all: Mindig minden média elrejtése
         setting_display_media_show_all: Mindig mutasd a szenzitív tartalomként jelölt médiát
         setting_hide_network: Nem látszik majd a profilodon, kik követnek és te kiket követsz
-        setting_noindex: A nyilvános profilodra és a tülkjeidre vonatkozik
-        setting_show_application: A tülkök részletes nézetében látszani fog, milyen alkalmazást használtál a tülköléshez
+        setting_noindex: A nyilvános profilodra és a bejegyzéseidre vonatkozik
+        setting_show_application: A bejegyzések részletes nézetében látszani fog, milyen alkalmazást használtál a bejegyzés közzétételéhez
         setting_use_blurhash: A kihomályosítás az eredeti képből történik, de minden részletet elrejt
         setting_use_pending_items: Idővonal frissítése csak kattintásra automatikus görgetés helyett
         username: A felhasználói neved egyedi lesz a %{domain} domainen
@@ -73,13 +79,15 @@ hu:
           no_access: Elérés tiltása minden erőforráshoz
           sign_up_requires_approval: Új regisztrációk csak a jóváhagyásoddal történhetnek majd meg
         severity: Válaszd ki, mi történjen a kérésekkel erről az IP-ről
+      rule:
+        text: Írd le, mi a szabály vagy elvárás ezen a szerveren a felhasználók felé. Próbálj röviden, egyszerűen fogalmazni
       sessions:
         otp: 'Add meg a telefonodon generált kétlépcsős azonosító kódodat vagy használd az egyik tartalék bejelentkező kódot:'
         webauthn: Ha ez egy USB kulcs, ellenőrizd, hogy csatlakoztattad és ha szükséges, aktiváltad is.
       tag:
         name: Csak a kis/nagybetűséget változtathatod meg, pl. hogy olvashatóbb legyen
       user:
-        chosen_languages: Ha aktív, csak a kiválasztott nyelvű tülkök jelennek majd meg a nyilvános idővonalon
+        chosen_languages: Ha aktív, csak a kiválasztott nyelvű bejegyzések jelennek majd meg a nyilvános idővonalon
     labels:
       account:
         fields:
@@ -93,14 +101,14 @@ hu:
         text: Figyelmeztető szöveg
         title: Cím
       admin_account_action:
-        include_statuses: Helyezd az e-mailbe a jelentett tülköket
+        include_statuses: Tedd az e-mailbe a bejelentett bejegyzéseket
         send_email_notification: Figyelmeztessük a felhasználót e-mailben
         text: Egyedi figyelmeztetés
         type: Művelet
         types:
           disable: Letiltás
           none: Ne csinálj semmit
-          sensitive: Szenzitív
+          sensitive: Kényes
           silence: Elnémítás
           suspend: Fiók felfüggesztése, adatok törlése visszaállíthatatlanul
         warning_preset_id: Figyelmeztetés használata
@@ -141,21 +149,21 @@ hu:
         setting_aggregate_reblogs: Megtolások csoportosítása az idővonalakon
         setting_auto_play_gif: GIF-ek automatikus lejátszása
         setting_boost_modal: Megerősítés kérése megtolás előtt
-        setting_crop_images: Képek 16x9-re vágása nem kinyitott tülköknél
-        setting_default_language: Tülkölés nyelve
-        setting_default_privacy: Tülkök alapértelmezett láthatósága
-        setting_default_sensitive: Minden médiafájl megjelölése szenzitívként
-        setting_delete_modal: Megerősítés kérése tülk törlése előtt
+        setting_crop_images: Képek 16x9-re vágása nem kinyitott bejegyzéseknél
+        setting_default_language: Bejegyzések nyelve
+        setting_default_privacy: Bejegyzések láthatósága
+        setting_default_sensitive: Minden médiafájl megjelölése kényesként
+        setting_delete_modal: Megerősítés kérése bejegyzés törlése előtt
         setting_disable_swiping: Elhúzás művelet kikapcsolása
         setting_display_media: Média megjelenítése
         setting_display_media_default: Alapértelmezés
         setting_display_media_hide_all: Mindent elrejt
         setting_display_media_show_all: Mindent mutat
-        setting_expand_spoilers: Tartalom figyelmeztetéssel ellátott tülkök automatikus kinyitása
+        setting_expand_spoilers: Tartalom figyelmeztetéssel ellátott bejegyzések automatikus kinyitása
         setting_hide_network: Hálózatod elrejtése
-        setting_noindex: Megtiltom a keresőmotoroknak, hogy indexeljék a tülkjeimet
+        setting_noindex: Megtiltom a keresőmotoroknak, hogy indexeljék a tartalmaimat
         setting_reduce_motion: Animációk mozgásának csökkentése
-        setting_show_application: A tülkölésre használt alkalmazás feltüntetése
+        setting_show_application: Bejegyzések küldésére használt alkalmazás feltüntetése
         setting_system_font_ui: Rendszer betűtípusának használata
         setting_theme: Megjelenítési sablon
         setting_trends: Mai trend mutatása
@@ -189,19 +197,21 @@ hu:
         severity: Szabály
       notification_emails:
         digest: Összevont e-mailek küldése
-        favourite: E-mail küldése, amikor valaki kedvencnek jelöli a tülködet
+        favourite: Valaki kedvencnek jelölte a bejegyzésedet
         follow: E-mail küldése, amikor valaki követni kezd téged
         follow_request: E-mail küldése, amikor valaki követni szeretne téged
         mention: E-mail küldése, amikor valaki megemlít téged
         pending_account: E-mail küldése, ha új fiókot kell engedélyezni
-        reblog: E-mail küldése, amikor valaki megtolja a tülködet
+        reblog: Valaki megtolta a bejegyzésedet
         report: E-mail küldése, ha új bejelentés érkezett
         trending_tag: E-mail küldése, ha egy még nem látott hashtag trendi lett
+      rule:
+        text: Szabály
       tag:
         listable: A hashtag megjelenhet a profiladatbázisban
         name: Hashtag
         trendable: A hashtag megjelenhet a trendek között
-        usable: Tülkök használhatják ezt a hashtaget
+        usable: Bejegyzések használhatják ezt a hashtaget
     'no': Nem
     recommended: Ajánlott
     required:

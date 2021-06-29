@@ -4,11 +4,25 @@ class ExistingUsernameValidator < ActiveModel::EachValidator
   def validate_each(record, attribute, value)
     return if value.blank?
 
+    usernames_and_domains = begin
+      value.split(',').map do |str|
+        username, domain = str.strip.gsub(/\A@/, '').split('@')
+        domain = nil if TagManager.instance.local_domain?(domain)
+
+        next if username.blank?
+
+        [str, username, domain]
+      end.compact
+    end
+
+    usernames_with_no_accounts = usernames_and_domains.filter_map do |(str, username, domain)|
+      str unless Account.find_remote(username, domain)
+    end
+
     if options[:multiple]
-      missing_usernames = value.split(',').map { |username| username.strip.gsub(/\A@/, '') }.map { |username| username unless Account.find_local(username) }.compact
-      record.errors.add(attribute, I18n.t('existing_username_validator.not_found_multiple', usernames: missing_usernames.join(', '))) if missing_usernames.any?
+      record.errors.add(attribute, I18n.t('existing_username_validator.not_found_multiple', usernames: usernames_with_no_accounts.join(', '))) if usernames_with_no_accounts.any?
     else
-      record.errors.add(attribute, I18n.t('existing_username_validator.not_found')) unless Account.find_local(value.strip.gsub(/\A@/, ''))
+      record.errors.add(attribute, I18n.t('existing_username_validator.not_found')) if usernames_with_no_accounts.any? || usernames_and_domains.size > 1
     end
   end
 end

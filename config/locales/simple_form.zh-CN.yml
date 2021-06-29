@@ -3,24 +3,30 @@ zh-CN:
   simple_form:
     hints:
       account_alias:
-        acct: 指定您想要迁移过来的帐号的 用户名@站点域名
+        acct: 指定你想要迁移过来的原帐号：用户名@站点域名
       account_migration:
-        acct: 指定你想迁移过去的帐号的 用户名@站点域名
+        acct: 指定你想迁移过去的目标帐号：用户名@站点域名
       account_warning_preset:
         text: 你可以使用嘟文格式，例如加入 URL、话题标签和“@”
         title: 可选。对接收者不可见
       admin_account_action:
         include_statuses: 用户将会看到哪些嘟文导致了审核行为或警告
-        send_email_notification: 用户将收到对其账号上发生的事的解释
+        send_email_notification: 用户将收到关于其账号异动的解释
         text_html: 可选。你可以使用嘟文格式。你可以<a href="%{path}">预置警告</a>以节省时间
         type_html: 用<strong>%{acct}</strong>选择做什么
+        types:
+          disable: 禁止用户使用账户，但不会删除或隐藏账户内容。
+          none: 用它来向用户发送警告，不会触发其他操作。
+          sensitive: 强制将此用户的所有媒体文件标记为敏感内容。
+          silence: 阻止用户发送公开嘟文，除了关注者以外，其他人都无法看到他的嘟文和通知。
+          suspend: 阻止此账户的任何交互并删除其内容。30天内可以撤销操作。
         warning_preset_id: 可选。你可以在预置文本末尾添加自定义文本
       announcement:
         all_day: 如果选中，只有该时间段内的日期会显示。
         ends_at: 可选。公告会在该时间点自动取消发布
         scheduled_at: 留空的话，公告会立即发布。
         starts_at: 可选。你可以让你的公告只在特定时间段显示。
-        text: 你可以使用嘟文格式。但是请注意不要让公告占据太多用户屏幕上的空间。
+        text: 你可以使用嘟文格式。但请注意不要让公告占据用户太多屏幕空间。
       defaults:
         autofollow: 通过邀请链接注册的用户将会自动关注你
         avatar: 文件大小限制 %{size}，只支持 PNG、GIF 或 JPG 格式。图片分辨率将会压缩至 %{dimensions}px
@@ -29,7 +35,7 @@ zh-CN:
         current_password: 为了安全起见，请输入当前账号的密码
         current_username: 请输入当前账号的用户名以确认
         digest: 仅在你长时间未登录，且收到了私信时发送
-        discoverable: 用户目录能够让您的帐号广为人知
+        discoverable: 用户目录能够让你的帐号广为人知
         email: 我们会向你发送一封确认邮件
         fields: 这将会在个人资料页上以表格的形式展示，最多 4 个项目
         header: 文件大小限制 %{size}，只支持 PNG、GIF 或 JPG 格式。图片分辨率将会压缩至 %{dimensions}px
@@ -38,46 +44,48 @@ zh-CN:
         locale: 用户界面、电子邮件和推送通知中使用的语言
         locked: 你需要手动审核所有关注请求
         password: 至少需要8个字符
-        phrase: 匹配将无视大小写和嘟文的内容警告
-        scopes: 哪些 API 被允许使用。如果你选中了更高一级的范围，就不能单个选中了。
-        setting_aggregate_reblogs: 请不要显示最近已经被转嘟过的转嘟（只会影响新收到的转嘟）
+        phrase: 匹配将忽略嘟文或内容警告里的字母大小写
+        scopes: 哪些 API 被允许使用。如果你勾选了更高一级的范围，就不用单独选中子项目了。
+        setting_aggregate_reblogs: 不显示最近已经被转嘟过的嘟文(只会影响新收到的转嘟)
         setting_default_sensitive: 敏感内容默认隐藏，并在点击后显示
         setting_display_media_default: 隐藏被标记为敏感内容的媒体
-        setting_display_media_hide_all: 总是隐藏所有媒体
-        setting_display_media_show_all: 总是显示被标记为敏感内容的媒体
-        setting_hide_network: 你关注的人和关注你的人将不会在你的个人资料页上展示
+        setting_display_media_hide_all: 隐藏所有媒体
+        setting_display_media_show_all: 显示所有的媒体
+        setting_hide_network: 你的关注者和你关注的人将不会在你的个人资料页上展示
         setting_noindex: 此设置会影响到你的公开个人资料以及嘟文页面
         setting_show_application: 你用来发表嘟文的应用程序将会在你嘟文的详细内容中显示
         setting_use_blurhash: 渐变是基于模糊后的隐藏内容生成的
         setting_use_pending_items: 关闭自动滚动更新，时间轴会在点击后更新
-        username: 你的用户名在 %{domain} 上是独特的
-        whole_word: 如果关键词只包含字母和数字，就只会在整个词被匹配时才会套用
+        username: 你的用户名在 %{domain} 上是唯一的
+        whole_word: 如果关键词只包含字母和数字，将只在词语完全匹配时才会应用
       domain_allow:
-        domain: 该站点将能够从该服务器上拉取数据，并且从那里发过来的数据也会被处理和存储。
+        domain: 该站点将能够从该服务器上拉取数据，并处理和存储收到的数据。
       email_domain_block:
         domain: 这里可以是邮箱地址中的域名部分、域名解析到的 MX 记录，或者 MX 记录解析到的域名。这些检查会在用户注册时进行，如果邮箱域名被封禁，那么注册会被拒绝。
         with_dns_records: Mastodon 会尝试解析所给域名的 DNS 记录，然后把解析结果一并封禁
       featured_tag:
         name: 你可能想要使用以下之一：
       form_challenge:
-        current_password: 您正在进入安全区域
+        current_password: 你正在进入安全区域
       imports:
         data: 从其他 Mastodon 服务器导出的 CSV 文件
       invite_request:
         text: 这会有助于我们处理你的申请
       ip_block:
-        comment: 可选。请记住为什么您添加了此规则。
+        comment: 可选。请记住为什么你添加了此规则。
         expires_in: IP 地址是一种有限的资源，它们有时是共享的，并且常常变化。因此，不推荐无限期的 IP 封禁。
-        ip: 输入 IPv4 或 IPv6 地址。您可以使用 CIDR 语法屏蔽整个范围。小心不要屏蔽自己！
+        ip: 输入 IPv4 或 IPv6 地址。你可以使用CIDR语法屏蔽IP段。小心不要屏蔽自己！
         severities:
           no_access: 阻止访问所有资源
-          sign_up_requires_approval: 新的注册需要您的批准
+          sign_up_requires_approval: 新注册需要你的批准
         severity: 选择如何处理来自此 IP 的请求。
+      rule:
+        text: 描述这个服务器上的用户规则或要求。尽量确保简洁、清晰易懂
       sessions:
         otp: 输入你手机应用上生成的双重认证码，或者任意一个恢复代码：
         webauthn: 如果是 USB 密钥，请确保将其插入，如有必要，请点击它。
       tag:
-        name: 您只能改变字母的大小写，让它更易读
+        name: 你只能改变字母的大小写，让它更易读
       user:
         chosen_languages: 仅选中语言的嘟文会出现在公共时间轴上（全不选则显示所有语言的嘟文）
     labels:
@@ -98,10 +106,10 @@ zh-CN:
         text: 内容警告
         type: 动作
         types:
-          disable: 禁用
+          disable: 冻结
           none: 忽略
           sensitive: 敏感内容
-          silence: 静音
+          silence: 隐藏
           suspend: 停用并永久删除账号数据
         warning_preset_id: 使用预置警告
       announcement:
@@ -137,7 +145,7 @@ zh-CN:
         otp_attempt: 双重认证代码
         password: 密码
         phrase: 关键词
-        setting_advanced_layout: 启用高级 web 界面
+        setting_advanced_layout: 启用高级web界面
         setting_aggregate_reblogs: 在时间轴中合并转嘟
         setting_auto_play_gif: 自动播放 GIF 动画
         setting_boost_modal: 在转嘟前询问我
@@ -197,6 +205,8 @@ zh-CN:
         reblog: 当有用户转嘟了我的嘟文时，发送电子邮件提醒我
         report: 在提交新举报时，发送电子邮件提醒我
         trending_tag: 当未经审核的话题成为当前热门时发邮件提醒
+      rule:
+        text: 规则
       tag:
         listable: 允许这个话题标签在用户目录中显示
         name: 话题标签
@@ -209,5 +219,5 @@ zh-CN:
       text: 必填
     title:
       sessions:
-        webauthn: 使用您的安全密钥登录
+        webauthn: 使用你的安全密钥登录
     'yes': 是

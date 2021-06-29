@@ -14,6 +14,12 @@ de:
         send_email_notification: Benutzer_in wird Bescheid gegeben, was mit dem Konto geschehen ist
         text_html: Optional. Du kannst Beitragssyntax nutzen. Du kannst <a href="%{path}">Warnungsvorlagen</a> benutzen um Zeit zu sparen
         type_html: Wähle aus, was du mit <strong>%{acct}</strong> machen möchtest
+        types:
+          disable: Den Benutzer daran hindern, sein Konto zu verwenden, aber seinen Inhalt nicht löschen oder ausblenden.
+          none: Verwende dies, um eine Warnung an den Benutzer zu senden, ohne eine andere Aktion auszulösen.
+          sensitive: Erzwinge, dass alle Medienanhänge des Benutzers als NSFW markiert werden.
+          silence: Verhindern, dass der Benutzer in der Lage ist, mit der öffentlichen Sichtbarkeit zu posten und seine Beiträge und Benachrichtigungen von Personen zu verstecken, die ihm nicht folgen.
+          suspend: Verhindert jegliche Interaktion von oder zu diesem Konto und löscht dessen Inhalt. Kann innerhalb von 30 Tagen rückgängig gemacht werden.
         warning_preset_id: Optional. Du kannst immer noch eigenen Text an das Ende der Vorlage hinzufügen
       announcement:
         all_day: Wenn aktiviert werden nur die Daten des Zeitraums angezeigt
@@ -73,6 +79,8 @@ de:
           no_access: Zugriff auf alle Ressourcen blockieren
           sign_up_requires_approval: Neue Anmeldungen erfordern deine Zustimmung
         severity: Wähle aus, was mit Anfragen aus dieser IP passiert
+      rule:
+        text: Beschreibe eine Regel oder Anforderung für Benutzer auf diesem Server. Versuche es kurz und einfach zu halten
       sessions:
         otp: 'Gib die Zwei-Faktor-Authentifizierung von deinem Telefon ein oder benutze einen deiner Wiederherstellungscodes:'
         webauthn: Wenn es sich um einen USB-Schlüssel handelt, stelle sicher, dass du ihn einsteckst und ihn antippst.
@@ -197,6 +205,8 @@ de:
         reblog: E-Mail senden, wenn jemand meinen Beitrag teilt
         report: E-Mail senden, wenn ein neuer Bericht vorliegt
         trending_tag: E-Mail senden, wenn ein ausstehender Hashtag angesagt ist
+      rule:
+        text: Regel
       tag:
         listable: Erlaube diesem Hashtag im Profilverzeichnis zu erscheinen
         name: Hashtag

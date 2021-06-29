@@ -14,6 +14,12 @@ zh-HK:
         send_email_notification: 使用者將收到帳戶發生之事情的解釋
         text_html: 選用。你能使用 toot 語法。你可 <a href="%{path}">新增警告預設</a> 來節省時間
         type_html: 設定要使用 <strong>%{acct}</strong> 做的事
+        types:
+          disable: 禁止該使用者使用他們的帳號，但是不刪除或隱藏他們的內容。
+          none: 用這個來警告該使用者，而不進行其他操作。
+          sensitive: 強制標記此用戶的所有媒體附件為敏感內容。
+          silence: 禁止該使用者發表公開嘟文，沒有跟隨他們的帳號不會看到來自該用戶的嘟文和通知。
+          suspend: 禁止該帳號的所有互動並刪除其內容。此操作在三十日內可以被復原。
         warning_preset_id: 選用。你仍可在預設訊息的結尾加入自訂文字
       announcement:
         all_day: 勾選後，只會顯示出時間範圍中的日期部分
@@ -73,6 +79,8 @@ zh-HK:
           no_access: 封鎖所有資源存取
           sign_up_requires_approval: 新登記申請正等候你審批
         severity: 請設定伺服器將如何處理來自這個 IP 位址的請求
+      rule:
+        text: 請描述在此伺服器上用戶需要遵守的規則或要求。請盡量保持簡短易明。
       sessions:
         otp: 輸入你手機上生成的雙重認證碼，或者任意一個恢復代碼：
         webauthn: 如果它是 USB 安全鑰匙的話，請先插入電腦。如鑰匙設計有需要，請按鍵啟用。
@@ -197,6 +205,8 @@ zh-HK:
         reblog: 當有人轉推你的文章時
         report: 收到新檢舉時
         trending_tag: 當未審核的標籤成為當前熱門時
+      rule:
+        text: 規則
       tag:
         listable: 允許此主題標籤在搜尋及個人檔案目錄中顯示
         name: 主題標籤

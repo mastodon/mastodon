@@ -93,7 +93,7 @@ module Mastodon
 
       work_unit = ->(domain) do
         next if stats.key?(domain)
-        next if options[:exclude_suspended] && domain.match(blocked_domains)
+        next if options[:exclude_suspended] && domain.match?(blocked_domains)
 
         stats[domain] = nil
 

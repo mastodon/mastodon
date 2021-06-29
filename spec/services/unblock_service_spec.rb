@@ -18,20 +18,6 @@ RSpec.describe UnblockService, type: :service do
     end
   end
 
-  describe 'remote OStatus' do
-    let(:bob) { Fabricate(:user, email: 'bob@example.com', account: Fabricate(:account, username: 'bob', domain: 'example.com', salmon_url: 'http://salmon.example.com')).account }
-
-    before do
-      sender.block!(bob)
-      stub_request(:post, "http://salmon.example.com/").to_return(:status => 200, :body => "", :headers => {})
-      subject.call(sender, bob)
-    end
-
-    it 'destroys the blocking relation' do
-      expect(sender.blocking?(bob)).to be false
-    end
-  end
-
   describe 'remote ActivityPub' do
     let(:bob) { Fabricate(:user, email: 'bob@example.com', account: Fabricate(:account, username: 'bob', protocol: :activitypub, domain: 'example.com', inbox_url: 'http://example.com/inbox')).account }
 

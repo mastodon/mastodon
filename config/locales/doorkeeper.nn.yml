@@ -73,7 +73,6 @@ nn:
       index:
         application: Applikasjon
         created_at: Autorisert
-        date_format: "%Y-%m-%d %H:%M:%S"
         scopes: Skop
         title: Dine autoriserte applikasjonar
     errors:
@@ -83,7 +82,6 @@ nn:
         invalid_client: Klientautentisering feilet på grunn av ukjent klient, ingen autentisering inkludert, eller autentiseringsmetode er ikke støttet.
         invalid_grant: Autoriseringen er ugyldig, utløpt, opphevet, stemmer ikke overens med omdirigerings-URIen eller var utstedt til en annen klient.
         invalid_redirect_uri: Omdirigerings-URLen er ikkje gyldig.
-        invalid_request: Forespørslen mangler en eller flere parametere, inkluderte en parameter som ikke støttes eller har feil struktur.
         invalid_resource_owner: Ressurseierens detaljer er ikke gyldige, eller så er det ikke mulig å finne eieren
         invalid_scope: Det etterspurte omfanget er ugyldig, ukjent eller har feil struktur.
         invalid_token:

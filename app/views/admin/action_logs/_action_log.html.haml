@@ -4,6 +4,6 @@
       = image_tag action_log.account.avatar.url(:original), alt: '', width: 40, height: 40, class: 'avatar'
     .log-entry__content
       .log-entry__title
-        = t("admin.action_logs.actions.#{action_log.action}_#{action_log.target_type.underscore}", name: content_tag(:span, action_log.account.username, class: 'username'), target: content_tag(:span, log_target(action_log), class: 'target')).html_safe
+        = t("admin.action_logs.actions.#{action_log.action}_#{action_log.target_type.underscore}_html", name: content_tag(:span, action_log.account.username, class: 'username'), target: content_tag(:span, log_target(action_log), class: 'target'))
       .log-entry__timestamp
         %time.formatted{ datetime: action_log.created_at.iso8601 }

@@ -134,18 +134,6 @@ RSpec.describe Account, type: :model do
     end
   end
 
-  describe '#subscribed?' do
-    it 'returns false when no subscription expiration information is present' do
-      account = Fabricate(:account, subscription_expires_at: nil)
-      expect(account.subscribed?).to be false
-    end
-
-    it 'returns true when subscription expiration has been set' do
-      account = Fabricate(:account, subscription_expires_at: 30.days.from_now)
-      expect(account.subscribed?).to be true
-    end
-  end
-
   describe '#possibly_stale?' do
     let(:account) { Fabricate(:account, last_webfingered_at: last_webfingered_at) }
 
@@ -704,21 +692,6 @@ RSpec.describe Account, type: :model do
       it 'does not return partially matching domains' do
         account = Fabricate(:account, domain: 'grexample.com')
         expect(Account.by_domain_and_subdomains('example.com')).to_not eq [account]
-      end
-    end
-
-    describe 'expiring' do
-      it 'returns remote accounts with followers whose subscription expiration date is past or not given' do
-        local = Fabricate(:account, domain: nil)
-        matches = [
-          { domain: 'remote', subscription_expires_at: '2000-01-01T00:00:00Z' },
-        ].map(&method(:Fabricate).curry(2).call(:account))
-        matches.each(&local.method(:follow!))
-        Fabricate(:account, domain: 'remote', subscription_expires_at: nil)
-        local.follow!(Fabricate(:account, domain: 'remote', subscription_expires_at: '2000-01-03T00:00:00Z'))
-        local.follow!(Fabricate(:account, domain: nil, subscription_expires_at: nil))
-
-        expect(Account.expiring('2000-01-02T00:00:00Z').recent).to eq matches.reverse
       end
     end
 

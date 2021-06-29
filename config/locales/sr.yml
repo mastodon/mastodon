@@ -50,7 +50,6 @@ sr:
       other: Трубе
     posts_tab_heading: Трубе
     posts_with_replies: Трубе и одговори
-    reserved_username: Корисничко име је резервисано
     roles:
       admin: Администратор
       bot: Бот
@@ -156,37 +155,6 @@ sr:
       warn: Упозори
       web: Веб
     action_logs:
-      actions:
-        assigned_to_self_report: "%{name} је доделио/ла извештај %{target} себи"
-        change_email_user: "%{name} је променио/ла адресу Е-поште коисника/це %{target}"
-        confirm_user: "%{name} је потврдио адресу е-поште корисника %{target}"
-        create_account_warning: "%{name} је послао пријаву %{target}"
-        create_custom_emoji: "%{name} је отпремио нови емоџи %{target}"
-        create_domain_block: "%{name} је блокирао домен %{target}"
-        create_email_domain_block: "%{name} је ставио на црну листу домен е-поште %{target}"
-        demote_user: "%{name} је ражаловао корисника %{target}"
-        destroy_custom_emoji: "%{name} је уништио емоџи %{target}"
-        destroy_domain_block: "%{name} је одблокирао домен %{target}"
-        destroy_email_domain_block: "%{name} је ставио на белу листу домен е-поште %{target}"
-        destroy_status: "%{name} је уклонио статус корисника %{target}"
-        disable_2fa_user: "%{name} је искључио обавезну двофакторску идентификацију за корисника %{target}"
-        disable_custom_emoji: "%{name} је онемогућио емотикон %{target}"
-        disable_user: "%{name} је онемогућио пријављивање кориснику %{target}"
-        enable_custom_emoji: "%{name} је омогућио емотикон %{target}"
-        enable_user: "%{name} је омогућио пријављивање за корисника %{target}"
-        memorialize_account: "%{name} је претворио страну налога %{target} као in memoriam страну"
-        promote_user: "%{name} је унапредио корисника %{target}"
-        remove_avatar_user: "%{name} је уклонио/ла %{target}'s аватар"
-        reopen_report: "%{name} је поново отворио/ла извештај %{target}"
-        reset_password_user: "%{name} је ресетовао лозинку кориснику %{target}"
-        resolve_report: "%{name} је одбацио пријаву %{target}"
-        silence_account: "%{name} је ућуткао налог %{target}"
-        suspend_account: "%{name} је суспендовао налог %{target}"
-        unassigned_report: "%{name} недодељен извештај %{target}"
-        unsilence_account: "%{name} је укинуо ћутање налогу %{target}"
-        unsuspend_account: "%{name} је укинуо суспензију налогу %{target}"
-        update_custom_emoji: "%{name} је изменио емотикон %{target}"
-        update_status: "%{name} је изменио статус корисника %{target}"
       deleted_status: "(обрисан статус)"
       title: Записник
     custom_emojis:
@@ -805,7 +773,6 @@ sr:
       title: Добродошли, %{name}!
   users:
     follow_limit_reached: Не можете пратити више од %{limit} људи
-    invalid_email: Адреса Е-поште није исправна
     invalid_otp_token: Неисправни двофакторски код
     otp_lost_help_html: Ако изгубите приступ за оба, можете ступити у контакт са %{email}
     seamless_external_login: Пријављени сте путем спољашње услуге, тако да лозинка и подешавања Е-поште нису доступни.

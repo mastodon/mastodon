@@ -6,7 +6,7 @@ describe "The catch all route" do
       get "/test"
 
       expect(response.status).to eq 404
-      expect(response.content_type).to eq "text/html"
+      expect(response.media_type).to eq "text/html"
     end
   end
 
@@ -15,7 +15,7 @@ describe "The catch all route" do
       get "/test.test"
 
       expect(response.status).to eq 404
-      expect(response.content_type).to eq "text/html"
+      expect(response.media_type).to eq "text/html"
     end
   end
 end

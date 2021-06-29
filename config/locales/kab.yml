@@ -7,7 +7,6 @@ kab:
     active_count_after: d urmid
     active_footnote: Imseqdacen yekkren s wayyur (MAU)
     administered_by: 'Yettwadbel sɣur:'
-    api: API
     apps: Isnasen izirazen
     apps_platforms: Seqdec Maṣṭudun deg iOS, Android d tɣeṛγṛin-nniḍen
     browse_directory: Qelleb deg ukaram n imaɣnuten teǧǧeḍ-d gar-asen widak tebɣiḍ
@@ -63,7 +62,6 @@ kab:
       other: Tijewwiqin
     posts_tab_heading: Tijewwiqin
     posts_with_replies: Tijewwaqin akked tririyin
-    reserved_username: Isem-agi n umseqdac yettwaṭṭef yakan
     roles:
       admin: Anedbal
       bot: Aṛubut
@@ -172,7 +170,6 @@ kab:
       undo_silenced: Kkes asgugem
       unsubscribe: Ur ṭafar ara
       username: Isem n useqdac
-      web: Web
       whitelisted: Deg tebdert tamellalt
     action_logs:
       action_types:
@@ -187,40 +184,6 @@ kab:
         reset_password_user: Ales awennez n wawal n uffir
         silence_account: Sgugem amiḍan
         update_domain_block: Leqqem iḥder n taɣult
-      actions:
-        assigned_to_self_report: "%{name} imudd aneqqis %{target} i yiman-nsen"
-        change_email_user: "%{name} ibeddel imayl n umseqdac %{target}"
-        confirm_user: "%{name} isentem tansa imayl n umseqdac %{target}"
-        create_account_warning: "%{name} yuzen alɣu i %{target}"
-        create_announcement: "%{name} yerna taselɣut tamaynut %{target}"
-        create_custom_emoji: "%{name} yessuli-d imujiten imaynuten %{target}"
-        create_domain_allow: "%{name} yerna taɣult %{target} ɣer tebdart tamellalt"
-        create_domain_block: "%{name} yesseḥbes taɣult %{target}"
-        create_email_domain_block: "%{name} yerna taɣult n imayl %{target} ɣer tebdart taberkant"
-        create_ip_block: "%{name} rnu alugen i IP %{target}"
-        demote_user: "%{name} iṣubb-d deg usellun aseqdac %{target}"
-        destroy_announcement: "%{name} yekkes taselɣut %{target}"
-        destroy_custom_emoji: "%{name} ihudd imuji %{target}"
-        destroy_domain_allow: "%{name} yekkes taɣult %{target} seg tebdart tamellalt"
-        destroy_domain_block: "%{name} yekkes aseḥbes n taɣult %{target}"
-        destroy_email_domain_block: "%{name} yerna taɣult n imayl %{target} ɣer tebdart tamellalt"
-        destroy_ip_block: "%{name} kkes alugen i IP %{target}"
-        destroy_status: "%{name} yekkes tasuffeɣt n %{target}"
-        disable_custom_emoji: "%{name} yessens imuji %{target}"
-        disable_user: "%{name} yessens tuqqna i umseqdac %{target}"
-        enable_custom_emoji: "%{name} yermed imuji %{target}"
-        enable_user: "%{name} yermed tuqqna i umseqdac %{target}"
-        memorialize_account: "%{name} yerra amiḍan n %{target} d asebter n usmekti"
-        promote_user: "%{name} yerna deg usellun n useqdac %{target}"
-        remove_avatar_user: "%{name} yekkes avaṭar n %{target}"
-        reset_password_user: "%{name} iwennez awal uffir n useqdac %{target}"
-        resolve_report: "%{name} yefra aneqqis %{target}"
-        silence_account: "%{name} yesgugem amiḍan n %{target}"
-        unsilence_account: "%{name} yekkes asgugem n umiḍan n %{target}"
-        update_announcement: "%{name} ileqqem taselɣut %{target}"
-        update_custom_emoji: "%{name} yelqem imuji %{target}"
-        update_domain_block: "%{name} ileqqem iḥder n taɣult i %{target}"
-        update_status: "%{name} yelqem tasuffeɣt n %{target}"
       deleted_status: "(tasuffeɣt tettwakkes)"
       empty: Ulac iɣmisen i yellan.
       filter_by_user: Sizdeg s useqdac
@@ -416,9 +379,6 @@ kab:
       title: Tisuffiγin n umiḍan
       with_media: S taγwalt
     tags:
-      context: Asatal
-      directory: Deg ukaram
-      in_directory: "%{count} deg ukaram"
       last_active: Armud aneggaru
       most_popular: Ittwasnen aṭas
       most_recent: Melmi kan
@@ -437,11 +397,9 @@ kab:
   appearance:
     discovery: Asnirem
     localization:
-      guide_link: https://crowdin.com/project/mastodon
       guide_link_text: Yal yiwen·t y·tezmer a ttekki.
     sensitive_content: Agbur amḥulfu
   application_mailer:
-    salutation: "%{name},"
     view: 'Ẓaṛ:'
     view_profile: Ssken-d amaɣnu
     view_status: Ssken-d tasuffiɣt
@@ -461,9 +419,6 @@ kab:
     logout: Ffeγ
     migrate_account: Gujj γer umiḍan nniḍen
     or_log_in_with: Neγ eqqen s
-    providers:
-      cas: CAS
-      saml: SAML
     register: Jerred
     registration_closed: "%{instance} ur yeqbil ara imttekkiyen imaynuten"
     reset_password: Wennez awal uffir
@@ -491,7 +446,6 @@ kab:
   date:
     formats:
       default: "%d %b %Y"
-      with_month_name: "%B %d, %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}isr"
@@ -531,7 +485,6 @@ kab:
     archive_takeout:
       date: Azemz
       size: Teγzi
-    csv: CSV
     lists: Tibdarin
     mutes: Wid tesgugmeḍ
   featured_tags:
@@ -625,11 +578,9 @@ kab:
   number:
     human:
       decimal_units:
-        format: "%n%u"
         units:
           billion: AṬ
           million: A
-          thousand: K
           trillion: Am
   otp_authentication:
     enable: Rmed
@@ -639,7 +590,6 @@ kab:
     next: Wayed
     older: Aqbuṛ
     prev: Win iɛeddan
-    truncate: "&hellip;"
   preferences:
     other: Wiyaḍ
   relationships:
@@ -667,37 +617,10 @@ kab:
     activity: Armud aneggaru
     browser: Iminig
     browsers:
-      alipay: Alipay
-      blackberry: Blackberry
-      chrome: Chrome
-      edge: Microsoft Edge
-      electron: Electron
-      firefox: Firefox
       generic: Iminig arusin
-      ie: Internet Explorer
-      micro_messenger: MicroMessenger
-      nokia: Nokia S40 Ovi Browser
-      opera: Opera
-      otter: Otter
-      phantom_js: PhantomJS
-      qq: QQ Browser
-      safari: Safari
-      uc_browser: UCBrowser
-      weibo: Weibo
     current_session: Tiγimit tamirant
     description: "%{browser} s %{platform}"
-    ip: IP
     platforms:
-      adobe_air: Adobe Air
-      android: Android
-      blackberry: Blackberry
-      chrome_os: ChromeOS
-      firefox_os: Firefox OS
-      ios: iOS
-      linux: Linux
-      mac: macOS
-      windows: Windows
-      windows_mobile: Windows Mobile
       windows_phone: Tiliγri Windows Phone
     revoke: Ḥwi
     title: Tiɣimiyin
@@ -743,7 +666,6 @@ kab:
     show_more: Ssken-d ugar
     show_thread: Ssken-d lxiḍ
     sign_in_to_participate: Qqen i waken ad tzeddiḍ deg udiwenni
-    title: '%{name}: "%{quote}"'
     visibilities:
       private: Imeḍfaṛen kan
       private_long: Ssken i ymeḍfaṛen kan
@@ -759,10 +681,6 @@ kab:
     contrast: Maṣṭudun (agnil awriran)
     default: Maṣṭudun (Aberkan)
     mastodon-light: Maṣṭudun (Aceɛlal)
-  time:
-    formats:
-      default: "%b %d, %Y, %H:%M"
-      month: "%b %Y"
   two_factor_authentication:
     add: Rnu
     disable: Gdel

@@ -1307,6 +1307,29 @@
     overflow: hidden;
     text-decoration: none;
     font-size: 14px;
+
+    &--with-note {
+      strong {
+        display: inline;
+      }
+    }
+  }
+
+  &__note {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: $ui-secondary-color;
+  }
+}
+
+.follow-recommendations-account {
+  .icon-button {
+    color: $ui-primary-color;
+
+    &.active {
+      color: $valid-value-color;
+    }
   }
 }
 
@@ -2459,6 +2482,72 @@ a.account__display-name {
   border-color: darken($ui-base-color, 8%);
 }
 
+.column-title {
+  text-align: center;
+  padding: 40px;
+
+  .logo {
+    fill: $primary-text-color;
+    width: 50px;
+    margin: 0 auto;
+    margin-bottom: 40px;
+  }
+
+  h3 {
+    font-size: 24px;
+    line-height: 1.5;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+
+  p {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 400;
+    color: $darker-text-color;
+  }
+}
+
+.follow-recommendations-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.column-actions {
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  padding: 40px;
+  padding-top: 40px;
+  padding-bottom: 200px;
+  flex-grow: 1;
+  position: relative;
+
+  &__background {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 220px;
+    width: auto;
+  }
+}
+
+.column-list {
+  margin: 0 20px;
+  border: 1px solid lighten($ui-base-color, 8%);
+  background: darken($ui-base-color, 2%);
+  border-radius: 4px;
+
+  &__empty-message {
+    padding: 40px;
+    text-align: center;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 400;
+    color: $darker-text-color;
+  }
+}
+
 .compose-panel {
   width: 285px;
   margin-top: 10px;
@@ -2884,6 +2973,7 @@ a.account__display-name {
     flex: 0 0 auto;
     padding: 10px;
     padding-top: 20px;
+    z-index: 1;
 
     ul {
       margin-bottom: 10px;
@@ -3521,7 +3611,6 @@ a.status-card.compact:hover {
   span {
     display: block;
     float: left;
-    margin-left: 50%;
     transform: translateX(-50%);
     margin: 82px 0 0 50%;
     white-space: nowrap;
@@ -4208,6 +4297,7 @@ a.status-card.compact:hover {
   border-radius: 4px;
   margin-left: 40px;
   overflow: hidden;
+  z-index: 2;
 
   &.top {
     transform-origin: 50% 100%;
@@ -4216,6 +4306,15 @@ a.status-card.compact:hover {
   &.bottom {
     transform-origin: 50% 0;
   }
+}
+
+.modal-root__container .privacy-dropdown {
+  flex-grow: 0;
+}
+
+.modal-root__container .privacy-dropdown__dropdown {
+  pointer-events: auto;
+  z-index: 9999;
 }
 
 .privacy-dropdown__option {
@@ -4461,6 +4560,7 @@ a.status-card.compact:hover {
   right: 0;
   bottom: 0;
   background: rgba($base-overlay-background, 0.7);
+  transition: background 0.5s;
 }
 
 .modal-root__container {
@@ -5203,9 +5303,10 @@ a.status-card.compact:hover {
 .report-modal__target {
   padding: 15px;
 
-  .media-modal__close {
-    top: 14px;
-    right: 15px;
+  .report-modal__close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
   }
 }
 
@@ -6668,6 +6769,17 @@ noscript {
       padding: 20px 15px;
       padding-bottom: 5px;
       color: $primary-text-color;
+
+      .columns-area--mobile & {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+    }
+
+    .account__header__joined {
+      font-size: 14px;
+      padding: 5px 15px;
+      color: $darker-text-color;
 
       .columns-area--mobile & {
         padding-left: 20px;

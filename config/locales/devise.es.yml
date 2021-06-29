@@ -2,27 +2,27 @@
 es:
   devise:
     confirmations:
-      confirmed: Su direccion de email ha sido confirmada con exito.
-      send_instructions: Recibirá un correo electrónico con instrucciones sobre cómo confirmar su dirección de correo en pocos minutos.
+      confirmed: Su dirección de correo electrónico ha sido confirmada correctamente.
+      send_instructions: Recibirás un correo electrónico con instrucciones para confirmar tu dirección de correo electrónico en unos minutos. Por favor, comprueba tu carpeta de spam si no recibiste este correo electrónico.
       send_paranoid_instructions: Si su dirección de correo electrónico existe en nuestra base de datos, recibirá un correo electrónico con instrucciones sobre cómo confirmar su dirección de correo en pocos minutos.
     failure:
       already_authenticated: Usted ya está registrado.
-      inactive: Su cuenta todavía no está activa.
-      invalid: Inválido %{authentication_keys} o contraseña.
-      last_attempt: Tiene un intento más antes de que su cuenta sea bloqueada.
-      locked: Su cuenta está bloqueada.
-      not_found_in_database: Inválido %{authentication_keys} o contraseña.
+      inactive: Su cuenta no ha sido activada aún.
+      invalid: "%{authentication_keys} o contraseña inválida."
+      last_attempt: Tiene un intento más antes de que tu cuenta sea bloqueada.
+      locked: Tu cuenta está bloqueada.
+      not_found_in_database: Incorrecto %{authentication_keys} o contraseña.
       pending: Su cuenta aun se encuentra bajo revisión.
       timeout: Su sesión ha expirado. Por favor inicie sesión de nuevo para continuar.
       unauthenticated: Necesita iniciar sesión o registrarse antes de continuar.
       unconfirmed: Tiene que confirmar su dirección de correo electrónico antes de continuar.
     mailer:
       confirmation_instructions:
-        action: Verificar dirección de correo electrónico
-        action_with_app: Confirmar y regresar a %{app}
-        explanation: Has creado una cuenta en %{host} con esta dirección de correo electrónico. Estas a un clic de activarla. Si no fue usted, por favor ignore este correo electrónico.
-        explanation_when_pending: Usted ha solicitado una invitación a %{host} con esta dirección de correo electrónico. Una vez que confirme su dirección de correo electrónico, revisaremos su aplicación. No puede iniciar sesión hasta que su aplicación sea revisada. Si su solicitud está rechazada, sus datos serán eliminados, así que no será necesaria ninguna acción adicional por ti. Si no fuera usted, por favor ignore este correo electrónico.
-        extra_html: Por favor revise <a href="%{terms_path}">las reglas de la instancia</a> y <a href="%{policy_path}">nuestros términos de servicio</a>.
+        action: Verifica tu dirección de correo electrónico
+        action_with_app: Confirmar y volver a %{app}
+        explanation: Has creado una cuenta en %{host} con esta dirección de correo electrónico. Estás a un solo clic de activarlo. Si no fuiste tú, por favor ignora este correo electrónico.
+        explanation_when_pending: Has solicitado una invitación a %{host} con esta dirección de correo electrónico. Una vez que confirmes tu dirección de correo electrónico, revisaremos tu solicitud. Puedes iniciar sesión para cambiar tus datos o eliminar tu cuenta, pero no puedes acceder a la mayoría de las funciones hasta que tu cuenta sea aprobada. Si su solicitud es rechazada, sus datos serán eliminados, por lo que no será necesaria ninguna acción adicional por su parte. Si no fuiste tú, por favor ignora este correo electrónico.
+        extra_html: Por favor, revisa <a href="%{terms_path}">las reglas del servidor</a> y <a href="%{policy_path}">nuestros términos de servicio</a>.
         subject: 'Mastodon: Instrucciones de confirmación para %{instance}'
         title: Verificar dirección de correo electrónico
       email_changed:
@@ -64,52 +64,52 @@ es:
         added:
           explanation: La siguiente clave de seguridad ha sido añadida a su cuenta
           subject: 'Mastodon: Nueva clave de seguridad'
-          title: Se agregó una nueva clave de seguridad
+          title: Se ha añadido una nueva clave de seguridad
         deleted:
-          explanation: La siguiente clave de seguridad ha sido eliminada de su cuenta
+          explanation: La siguiente clave de seguridad ha sido eliminada de tu cuenta
           subject: 'Mastodon: Clave de seguridad eliminada'
-          title: Una de sus claves de seguridad ha sido eliminada
+          title: Una de tus claves de seguridad ha sido eliminada
       webauthn_disabled:
-        explanation: La autenticación con claves de seguridad ha sido desactivada para tu cuenta. El inicio de sesión es ahora posible únicamente utilizando el token generado por la aplicación emparejada TOTP.
-        subject: 'Mastodon: Autenticación con claves de seguridad desactivada'
-        title: Claves de seguridad desactivadas
+        explanation: La autenticación con claves de seguridad ha sido deshabilitada para tu cuenta. Ahora el inicio de sesión solo es posible utilizando el token generado por la aplicación TOTP emparejada.
+        subject: 'Mastodon: Autenticación con claves de seguridad deshabilitada'
+        title: Claves de seguridad deshabilitadas
       webauthn_enabled:
-        explanation: La autenticación con clave de seguridad ha sido habilitada para su cuenta. Su clave de seguridad ahora puede ser usada para iniciar sesión.
-        subject: 'Mastodon: Autenticación con clave de seguridad activada'
-        title: Claves de seguridad activadas
+        explanation: La autenticación con clave de seguridad ha sido habilitada para tu cuenta. Ahora tu clave de seguridad puede ser utilizada para iniciar sesión.
+        subject: 'Mastodon: Autenticación de clave de seguridad habilitada'
+        title: Claves de seguridad habilitadas
     omniauth_callbacks:
-      failure: No podemos autentificarle desde %{kind} debido a "%{reason}".
-      success: Autentificado con éxito desde la cuenta %{kind} .
+      failure: No se te pudo autenticar desde %{kind} porque “%{reason}”.
+      success: Autenticado correctamente desde la cuenta de %{kind}.
     passwords:
-      no_token: No puede acceder a esta página sin provenir desde el correo de reinicio de contraseña. Si viene desde el correo de reinicio de contraseña, por favor asegúrese que está utilizando la dirección completa proporcionada.
-      send_instructions: Recibirá un correo electrónico con instrucciones sobre cómo reiniciar su contraseña en pocos minutos.
-      send_paranoid_instructions: Si su correo electrónico existe en nuestra base de datos, recibirá un enlace de recuperación de contraseña en su dirección de correo en pocos minutos.
-      updated: Su contraseña ha sido cambiada con éxito. Ahora ya está registrado.
-      updated_not_active: Su contraseña ha sido cambiada con éxito.
+      no_token: No puedes acceder a esta página si no vienes desde un correo electrónico de restablecimiento de contraseña. Si vienes desde un correo electrónico de restablecimiento de contraseña, por favor asegúrate de utilizar la URL completa proporcionada.
+      send_instructions: Si tu dirección de correo electrónico existe en nuestra base de datos, recibirás un enlace de recuperación de contraseña en tu dirección de correo electrónico en pocos minutos. Por favor, comprueba tu carpeta de correo no deseado si no recibes dicho correo electrónico.
+      send_paranoid_instructions: Si tu dirección de correo electrónico existe en nuestra base de datos, recibirás un enlace de recuperación de contraseña en tu dirección de correo electrónico en pocos minutos. Por favor, comprueba tu carpeta de correo no deseado si no recibes dicho correo electrónico.
+      updated: Tu contraseña ha sido cambiada con éxito. Has iniciado sesión.
+      updated_not_active: Tu contraseña se ha cambiado con éxito.
     registrations:
-      destroyed: "¡Adios! Su cuenta ha sido cancelada con éxito. Esperamos verle pronto de nuevo."
-      signed_up: "¡Bienvenido! Se ha registrado con éxito."
-      signed_up_but_inactive: Se ha registrado con éxito. Sin embargo, no podemos identificarle porque su cuenta no ha sido activada todavía.
-      signed_up_but_locked: Se ha registrado con éxito. Sin embargo, no podemos identificarle porque su cuenta está bloqueada.
-      signed_up_but_pending: Un mensaje con un enlace de confirmacion ha sido enviado a su direccion de email. Luego de clickear el link revisaremos su aplicacion. Seras notificado si es aprovada.
-      signed_up_but_unconfirmed: Un mensaje con un enlace de confirmación ha sido enviado a su correo electrónico. Por favor siga el enlace para activar su cuenta.
-      update_needs_confirmation: Ha actualizado su cuenta con éxito, pero necesitamos verificar su nueva dirección de correo. Por favor compruebe su correo y siga el enlace para confirmar su nueva dirección de correo.
-      updated: su cuenta ha sido actualizada con éxito.
+      destroyed: "¡Hasta otra! Tu cuenta ha sido cancelada con éxito. Esperamos verte de nuevo pronto."
+      signed_up: "¡Bienvenido! Te has registrado correctamente."
+      signed_up_but_inactive: Te has registrado con éxito. Sin embargo, no se ha podido iniciar sesión porque tu cuenta aún no está activada.
+      signed_up_but_locked: Te has registrado con éxito. Sin embargo, no se ha podido iniciar sesión porque tu cuenta está bloqueada.
+      signed_up_but_pending: Un mensaje con un enlace de confirmación ha sido enviado a tu dirección de correo electrónico. Después de hacer clic en el enlace, revisaremos tu solicitud. Serás notificado si se aprueba.
+      signed_up_but_unconfirmed: Un mensaje con un enlace de confirmación ha sido enviado a tu dirección de correo electrónico. Por favor, sigue el enlace para activar tu cuenta. Por favor, comprueba tu carpeta de correo no deseado si no recibes dicho correo electrónico.
+      update_needs_confirmation: Has actualizado tu cuenta con éxito, pero necesitamos verificar tu nueva dirección de correo electrónico. Por favor, comprueba tu correo electrónico y sigue el enlace de confirmación para confirmar tu nueva dirección de correo electrónico. Por favor, comprueba tu carpeta de correo no deseado si no recibes dicho correo electrónico.
+      updated: Tu cuenta se ha actualizado con éxito.
     sessions:
-      already_signed_out: Cerró sesión con éxito.
-      signed_in: Se registró con éxito.
-      signed_out: Cerró sesión con éxito.
+      already_signed_out: Sesión cerrada con éxito.
+      signed_in: Sesión iniciada con éxito.
+      signed_out: Sesión cerrada con éxito.
     unlocks:
-      send_instructions: Recibirá un correo electrónico con instrucciones sobre cómo desbloquear su cuenta en pocos minutos.
-      send_paranoid_instructions: Si su cuenta existe, recibirá un correo electrónico con instrucciones sobre cómo desbloquearla en pocos minutos.
-      unlocked: Su cuenta ha sido desbloqueada con éxito. Por favor inicie sesión para continuar.
+      send_instructions: En unos minutos recibirás un correo electrónico con instrucciones para desbloquear tu cuenta. Por favor, comprueba tu carpeta de correo no deseado si no recibes dicho correo electrónico.
+      send_paranoid_instructions: Si tu cuenta existe, en unos minutos recibirás un correo electrónico con instrucciones para desbloquearla. Por favor, revisa tu carpeta de correo no deseado si no recibes dicho correo electrónico.
+      unlocked: Tu cuenta ha sido desbloqueada con éxito. Por favor, inicia sesión para continuar.
   errors:
     messages:
-      already_confirmed: ya fue confirmado, por favor intente iniciar sesión
-      confirmation_period_expired: necesita ser confirmado dentro de %{period}, por favor pida una nueva
-      expired: ha expirado, por favor pida una nueva
+      already_confirmed: ya estaba confirmada, por favor intenta iniciar sesión
+      confirmation_period_expired: necesita confirmarse dentro de %{period}, por favor, solicita una nueva
+      expired: ha caducado, por favor solicita una nueva
       not_found: no encontrado
-      not_locked: no fue bloqueada
+      not_locked: no estaba bloqueada
       not_saved:
-        one: '1 error prohibió este %{resource} de ser guardado:'
-        other: "%{count} errores prohibieron este %{resource} de ser guardado:"
+        one: '1 error impidió que este %{resource} se guardase:'
+        other: "%{count} errores impidieron que este %{resource} se guardase:"

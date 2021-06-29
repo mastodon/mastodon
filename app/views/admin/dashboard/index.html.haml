@@ -1,6 +1,14 @@
 - content_for :page_title do
   = t('admin.dashboard.title')
 
+- unless @system_checks.empty?
+  .flash-message-stack
+    - @system_checks.each do |message|
+      .flash-message.warning
+        = t("admin.system_checks.#{message.key}.message_html", value: message.value ? content_tag(:strong, message.value) : nil)
+        - if message.action
+          = link_to t("admin.system_checks.#{message.key}.action"), message.action
+
 .dashboard__counters
   %div
     = link_to admin_accounts_url(local: 1, recent: 1) do
@@ -69,8 +77,6 @@
           = feature_hint(link_to(t('admin.dashboard.trends'), edit_admin_settings_path), @trends_enabled)
         %li
           = feature_hint(link_to(t('admin.dashboard.feature_relay'), admin_relays_path), @relay_enabled)
-        %li
-          = feature_hint(link_to(t('admin.dashboard.feature_spam_check'), edit_admin_settings_path), @spam_check_enabled)
 
   .dashboard__widgets__versions
     %div

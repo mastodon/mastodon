@@ -26,6 +26,8 @@ pl:
       Jest używane w celu federowania i nie powinno być blokowane, chyba że chcesz zablokować całą instację, w takim przypadku użyj blokady domeny.
     learn_more: Dowiedz się więcej
     privacy_policy: Polityka prywatności
+    rules: Regulamin serwera
+    rules_html: 'Poniżej znajduje się podsumowanie zasad, których musisz przestrzegać, jeśli chcesz mieć konto na tym serwerze Mastodona:'
     see_whats_happening: Zobacz co się dzieje
     server_stats: 'Statystyki serwera:'
     source_code: Kod źródłowy
@@ -86,7 +88,6 @@ pl:
       other: Wpisów
     posts_tab_heading: Wpisy
     posts_with_replies: Wpisy z odpowiedziami
-    reserved_username: Ta nazwa użytkownika jest zarezerwowana
     roles:
       admin: Administrator
       bot: Bot
@@ -237,6 +238,7 @@ pl:
         create_domain_block: Utwórz blokadę domeny
         create_email_domain_block: Utwórz blokadę domeny e-mail
         create_ip_block: Utwórz regułę IP
+        create_unavailable_domain: Utwórz niedostępną domenę
         demote_user: Zdegraduj użytkownika
         destroy_announcement: Usuń ogłoszenie
         destroy_custom_emoji: Usuń niestandardowe emoji
@@ -245,6 +247,7 @@ pl:
         destroy_email_domain_block: Usuń blokadę domeny e-mail
         destroy_ip_block: Usuń regułę IP
         destroy_status: Usuń wpis
+        destroy_unavailable_domain: Usuń niedostępną domenę
         disable_2fa_user: Wyłącz 2FA
         disable_custom_emoji: Wyłącz niestandardowe emoji
         disable_user: Wyłącz użytkownika
@@ -268,46 +271,48 @@ pl:
         update_domain_block: Zaktualizuj blokadę domeny
         update_status: Aktualizuj wpis
       actions:
-        assigned_to_self_report: "%{name} przypisał(a) sobie zgłoszenie %{target}"
-        change_email_user: "%{name} zmienił(a) adres e-mail użytkownika %{target}"
-        confirm_user: "%{name} potwierdził(a) adres e-mail użytkownika %{target}"
-        create_account_warning: "%{name} wysłał(a) ostrzeżenie do %{target}"
-        create_announcement: "%{name} utworzył(a) nowe ogłoszenie %{target}"
-        create_custom_emoji: "%{name} dodał(a) nowe emoji %{target}"
-        create_domain_allow: "%{name} dodał(a) na białą listę domenę %{target}"
-        create_domain_block: "%{name} zablokował(a) domenę %{target}"
-        create_email_domain_block: "%{name} dodał(a) domenę e-mail %{target} na czarną listę"
-        create_ip_block: "%{name} stworzył dla IP %{target}"
-        demote_user: "%{name} zdegradował(a) użytkownika %{target}"
-        destroy_announcement: "%{name} usunął(-ęła) ogłoszenie %{target}"
-        destroy_custom_emoji: "%{name} usunął(-ęła) emoji %{target}"
-        destroy_domain_allow: "%{name} usunął(-ęła) domenę %{target} z białej listy"
-        destroy_domain_block: "%{name} odblokował(a) domenę %{target}"
-        destroy_email_domain_block: "%{name} usunął(-ęła) domenę e-mail %{target} z czarnej listy"
-        destroy_ip_block: "%{name} usunął regułę dla IP %{target}"
-        destroy_status: "%{name} usunął(-ęła) wpis użytkownika %{target}"
-        disable_2fa_user: "%{name} wyłączył(a) uwierzytelnianie dwustopniowe użytkownikowi %{target}"
-        disable_custom_emoji: "%{name} wyłączył(a) emoji %{target}"
-        disable_user: "%{name} zablokował(a) możliwość logowania użytkownikowi %{target}"
-        enable_custom_emoji: "%{name} włączył(a) emoji %{target}"
-        enable_user: "%{name} przywrócił(a) możliwość logowania użytkownikowi %{target}"
-        memorialize_account: "%{name} nadał(a) kontu %{target} status in memoriam"
-        promote_user: "%{name} podniósł(a) uprawnienia użytkownikowi %{target}"
-        remove_avatar_user: "%{name} usunął(-ęła) awatar użytkownikowi %{target}"
-        reopen_report: "%{name} otworzył(a) ponownie zgłoszenie %{target}"
-        reset_password_user: "%{name} przywrócił(a) hasło użytkownikowi %{target}"
-        resolve_report: "%{name} rozwiązał(a) zgłoszenie %{target}"
-        sensitive_account: "%{name} oznaczył(a) zawartość multimedialną %{target} jako wrażliwą"
-        silence_account: "%{name} wyciszył(a) konto %{target}"
-        suspend_account: "%{name} zawiesił(a) konto %{target}"
-        unassigned_report: "%{name} cofnął(-ęła) przypisanie zgłoszenia %{target}"
-        unsensitive_account: "%{name} cofnął(-ęła) oznaczenie zawartości multimedialnej %{target} jako wrażliwą"
-        unsilence_account: "%{name} cofnął(-ęła) wyciszenie konta %{target}"
-        unsuspend_account: "%{name} cofnął(-ęła) zawieszenie konta %{target}"
-        update_announcement: "%{name} zaktualizował(-a) ogłoszenie %{target}"
-        update_custom_emoji: "%{name} zaktualizował(a) emoji %{target}"
-        update_domain_block: "%{name} zaktualizował(-a) blokadę domeny dla %{target}"
-        update_status: "%{name} zaktualizował(a) wpis użytkownika %{target}"
+        assigned_to_self_report_html: "%{name} przypisał(a) sobie zgłoszenie %{target}"
+        change_email_user_html: "%{name} zmienił(a) adres e-mail użytkownika %{target}"
+        confirm_user_html: "%{name} potwierdził(a) adres e-mail użytkownika %{target}"
+        create_account_warning_html: "%{name} wysłał(a) ostrzeżenie do %{target}"
+        create_announcement_html: "%{name} utworzył(a) nowe ogłoszenie %{target}"
+        create_custom_emoji_html: "%{name} dodał(a) nowe emoji %{target}"
+        create_domain_allow_html: "%{name} dodał(a) na białą listę domenę %{target}"
+        create_domain_block_html: "%{name} zablokował(a) domenę %{target}"
+        create_email_domain_block_html: "%{name} dodał(a) domenę e-mail %{target} na czarną listę"
+        create_ip_block_html: "%{name} stworzył(a) regułę dla IP %{target}"
+        create_unavailable_domain_html: "%{name} przestał(a) doręczać na domenę %{target}"
+        demote_user_html: "%{name} zdegradował(a) użytkownika %{target}"
+        destroy_announcement_html: "%{name} usunął(-ęła) ogłoszenie %{target}"
+        destroy_custom_emoji_html: "%{name} usunął(-ęła) emoji %{target}"
+        destroy_domain_allow_html: "%{name} usunął(-ęła) domenę %{target} z białej listy"
+        destroy_domain_block_html: "%{name} odblokował(a) domenę %{target}"
+        destroy_email_domain_block_html: "%{name} usunął(-ęła) domenę e-mail %{target} z czarnej listy"
+        destroy_ip_block_html: "%{name} usunął(-ęła) regułę dla IP %{target}"
+        destroy_status_html: "%{name} usunął(-ęła) wpis użytkownika %{target}"
+        destroy_unavailable_domain_html: "%{name} wznowił(a) doręczanie do domeny %{target}"
+        disable_2fa_user_html: "%{name} wyłączył(a) uwierzytelnianie dwustopniowe użytkownikowi %{target}"
+        disable_custom_emoji_html: "%{name} wyłączył(a) emoji %{target}"
+        disable_user_html: "%{name} zablokował(a) możliwość logowania użytkownikowi %{target}"
+        enable_custom_emoji_html: "%{name} włączył(a) emoji %{target}"
+        enable_user_html: "%{name} przywrócił(a) możliwość logowania użytkownikowi %{target}"
+        memorialize_account_html: "%{name} nadał(a) kontu %{target} status in memoriam"
+        promote_user_html: "%{name} podniósł(a) uprawnienia użytkownikowi %{target}"
+        remove_avatar_user_html: "%{name} usunął(-ęła) awatar użytkownikowi %{target}"
+        reopen_report_html: "%{name} otworzył(a) ponownie zgłoszenie %{target}"
+        reset_password_user_html: "%{name} przywrócił(a) hasło użytkownikowi %{target}"
+        resolve_report_html: "%{name} rozwiązał(a) zgłoszenie %{target}"
+        sensitive_account_html: "%{name} oznaczył(a) zawartość multimedialną %{target} jako wrażliwą"
+        silence_account_html: "%{name} wyciszył(a) konto %{target}"
+        suspend_account_html: "%{name} zawiesił(a) konto %{target}"
+        unassigned_report_html: "%{name} cofnął(-ęła) przypisanie zgłoszenia %{target}"
+        unsensitive_account_html: "%{name} cofnął(-ęła) oznaczenie zawartości multimedialnej %{target} jako wrażliwą"
+        unsilence_account_html: "%{name} cofnął(-ęła) wyciszenie konta %{target}"
+        unsuspend_account_html: "%{name} cofnął(-ęła) zawieszenie konta %{target}"
+        update_announcement_html: "%{name} zaktualizował(a) ogłoszenie %{target}"
+        update_custom_emoji_html: "%{name} zaktualizował(a) emoji %{target}"
+        update_domain_block_html: "%{name} zaktualizował(a) blokadę domeny dla %{target}"
+        update_status_html: "%{name} zaktualizował(a) wpis użytkownika %{target}"
       deleted_status: "(usunięty wpis)"
       empty: Nie znaleziono aktywności w dzienniku.
       filter_by_action: Filtruj według działania
@@ -322,10 +327,12 @@ pl:
       new:
         create: Utwórz ogłoszenie
         title: Nowe ogłoszenie
+      publish: Opublikuj
       published_msg: Pomyślnie opublikowano ogłoszenie!
       scheduled_for: Zaplanowano na %{time}
       scheduled_msg: Zaplanowano publikację ogłoszenia!
       title: Ogłoszenia
+      unpublish: Cofnij publikację
       unpublished_msg: Pomyślnie wycofano publikację ogłoszenia!
       updated_msg: Pomyślnie zaktualizowano ogłoszenie!
     custom_emojis:
@@ -370,7 +377,6 @@ pl:
       feature_profile_directory: Katalog profilów
       feature_registrations: Rejestracja
       feature_relay: Przekazywanie federacji
-      feature_spam_check: Anty-spam
       feature_timeline_preview: Podgląd osi czasu
       features: Możliwości
       hidden_service: Federowanie z ukrytymi usługami
@@ -450,9 +456,36 @@ pl:
         create: Utwórz blokadę
         title: Nowa blokada domeny e-mail
       title: Blokowanie domen e-mail
+    follow_recommendations:
+      description_html: "<strong>Polecane śledzenia pomagają nowym użytkownikom szybko odnaleźć interesujące treści</strong>. Jeżeli użytkownik nie wchodził w interakcje z innymi wystarczająco często, aby powstały spersonalizowane rekomendacje, polecane są te konta. Są one obliczane każdego dnia na podstawie kombinacji kont o największej liczbie niedawnej aktywności i największej liczbie lokalnych obserwatorów dla danego języka."
+      language: Dla języka
+      status: Stan
+      suppress: Usuń polecenie śledzenia
+      suppressed: Usunięto
+      title: Polecane konta
+      unsuppress: Przywróć polecenie śledzenia konta
     instances:
+      back_to_all: Wszystkie
+      back_to_limited: Ograniczone
+      back_to_warning: Ostrzeżenie
       by_domain: Domena
+      delivery:
+        all: Wszystkie
+        clear: Wyczyść błędy w doręczaniu
+        restart: Uruchom ponownie doręczenie
+        stop: Zatrzymaj doręczanie
+        title: Doręczanie
+        unavailable: Niedostępne
+        unavailable_message: Doręczaniei niedostępne
+        warning: Ostrzeżenie
+        warning_message:
+          few: "%{count} dni niepowodzenia doręczenia"
+          many: "%{count} dni niepowodzenia doręczenia"
+          one: "%{count} dzień niepowodzenia doręczenia"
+          other: "%{count} dni niepowodzenia doręczenia"
       delivery_available: Doręczanie jest dostępne
+      delivery_error_days: Dni błędów doręczenia
+      delivery_error_hint: Jeżeli doręczanie nie będzie możliwe przez %{count} dni, zostanie automatycznie oznaczona jako nie do doręczania.
       empty: Nie znaleziono domen.
       known_accounts:
         few: "%{count} znane konta"
@@ -558,6 +591,13 @@ pl:
       unassign: Cofnij przypisanie
       unresolved: Nierozwiązane
       updated_at: Zaktualizowano
+    rules:
+      add_new: Dodaj zasadę
+      delete: Usuń
+      description_html: Chociaż większość twierdzi, że przeczytała i zgadza się z warunkami korzystania z usługi, zwykle ludzie nie czytają ich, dopóki nie pojawi się problem. <strong>Ułatw użytkownikom szybkie przejrzenie zasad serwera, umieszczając je na prostej liście punktowanej.</strong> Postaraj się, aby poszczególne zasady były krótkie i proste, ale staraj się też nie dzielić ich na wiele oddzielnych elementów.
+      edit: Edytuj zasadę
+      empty: Jeszcze nie zdefiniowano zasad serwera.
+      title: Regulamin serwera
     settings:
       activity_api_enabled:
         desc_html: Liczy publikowane lokalnie wpisy, aktywnych użytkowników i nowe rejestracje w ciągu danego tygodnia
@@ -581,9 +621,6 @@ pl:
         users: Zalogowanym lokalnym użytkownikom
       domain_blocks_rationale:
         title: Pokaż uzasadnienia
-      enable_bootstrap_timeline_accounts:
-        desc_html: Niech nowi użytkownicy automatycznie śledzą ustawione konta, aby ich główna oś czasu nie był początkowo pusta
-        title: Dodawaj domyślne obserwacje nowym użytkownikom
       hero:
         desc_html: Wyświetlany na stronie głównej. Zalecany jest rozmiar przynajmniej 600x100 pikseli. Jeżeli nie ustawiony, zostanie użyta miniatura serwera
         title: Obraz bohatera
@@ -637,9 +674,6 @@ pl:
         desc_html: Miejsce na własną politykę prywatności, zasady użytkowania i inne unormowania prawne. Możesz korzystać ze znaczników HTML
         title: Niestandardowe zasady użytkowania
       site_title: Nazwa serwera
-      spam_check_enabled:
-        desc_html: Mastodon może automatycznie zgłaszać konta, które wysyłają powtarzające się niechciane wiadomości. Część zgłoszeń może być nieprawidłowa.
-        title: Automatyzacja antyspamu
       thumbnail:
         desc_html: 'Używana w podglądzie przez OpenGraph i API. Zalecany rozmiar: 1200x630 pikseli'
         title: Miniatura serwera
@@ -670,13 +704,18 @@ pl:
       no_status_selected: Żaden wpis nie został zmieniony, bo żaden nie został wybrany
       title: Wpisy konta
       with_media: Z zawartością multimedialną
+    system_checks:
+      database_schema_check:
+        message_html: Istnieją oczekujące migracje bazy danych. Uruchom je, aby upewnić się, że aplikacja działa tak, jak powinna
+      rules_check:
+        action: Zarządzaj regułami serwera
+        message_html: Nie zdefiniowano żadnych reguł serwera.
+      sidekiq_process_check:
+        message_html: Brak uruchomionego procesu Sidekiq dla kolejki(-ek) %{value}. Sprawdź konfigurację Sidekiq
     tags:
       accounts_today: Unikalne wykorzystania dzisiaj
       accounts_week: Unikalne wykorzystania w tym tygodniu
       breakdown: Podział dzisiejszego wykorzystania według źródła
-      context: Kontekst
-      directory: W katalogu
-      in_directory: "%{count} w katalogu"
       last_active: Ostatnia aktywność
       most_popular: Najpopularniejsze
       most_recent: Ostatnie
@@ -693,6 +732,7 @@ pl:
       add_new: Dodaj nowy
       delete: Usuń
       edit_preset: Edytuj szablon ostrzeżenia
+      empty: Nie zdefiniowano jeszcze żadnych szablonów ostrzegawczych.
       title: Zarządzaj szablonami ostrzeżeń
   admin_mailer:
     new_pending_account:
@@ -821,7 +861,7 @@ pl:
       x_days: "%{count} dni"
       x_minutes: "%{count}min"
       x_months: "%{count} miesięcy"
-      x_seconds: "%{count}s"
+      x_seconds: "%{count} s"
   deletes:
     challenge_not_passed: Wprowadzone informacje za nieprawidłowe
     confirm_password: Wprowadź aktualne hasło, aby potwierdzić tożsamość
@@ -1062,10 +1102,14 @@ pl:
       body: "%{name} wspomniał(a) o Tobie w:"
       subject: "%{name} wspomniał(a) o Tobie"
       title: Nowe wspomnienie o Tobie
+    poll:
+      subject: Ankieta %{name} zakończyła się
     reblog:
       body: 'Twój wpis został podbity przez %{name}:'
       subject: Twój wpis został podbity przez %{name}
       title: Nowe podbicie
+    status:
+      subject: "%{name} właśnie opublikował(a) wpis"
   notifications:
     email_events: 'Powiadamiaj e-mailem o:'
     email_events_hint: 'Wybierz wydarzenia, o których chcesz otrzymywać powiadomienia:'
@@ -1164,7 +1208,7 @@ pl:
       generic: nieznana przeglądarka
       ie: Internet Explorer
       micro_messenger: MicroMessenger
-      nokia: Nokia S40 Ovi Browser
+      nokia: Przeglądarka Nokia S40 Ovi
       opera: Opera
       otter: Przeglądarka Otter
       phantom_js: PhantomJS
@@ -1214,8 +1258,6 @@ pl:
     relationships: Śledzeni i śledzący
     two_factor_authentication: Uwierzytelnianie dwuetapowe
     webauthn_authentication: Klucze bezpieczeństwa
-  spam_check:
-    spam_detected: To zgłoszenie jest automatyczne. Został wykryty spam.
   statuses:
     attached:
       audio:
@@ -1270,6 +1312,7 @@ pl:
     sign_in_to_participate: Zaloguj się, aby udzielić się w tej konwersacji
     title: '%{name}: "%{quote}"'
     visibilities:
+      direct: Bezpośredni
       private: Tylko dla śledzących
       private_long: Widoczne tylko dla osób, które Cię śledzą
       public: Publiczne
@@ -1438,11 +1481,8 @@ pl:
       tips: Wskazówki
       title: Witaj na pokładzie, %{name}!
   users:
-    blocked_email_provider: Ten dostawca e-mail jest niedozwolony
     follow_limit_reached: Nie możesz śledzić więcej niż %{limit} osób
     generic_access_help_html: Nie możesz uzyskać dostępu do konta? Skontaktuj się z %{email} aby uzyskać pomoc
-    invalid_email: Adres e-mail jest niepoprawny
-    invalid_email_mx: Ten adres e-mail wydaje się nie istnieć
     invalid_otp_token: Kod uwierzytelniający jest niepoprawny
     invalid_sign_in_token: Nieprawidłowy kod zabezpieczający
     otp_lost_help_html: Jeżeli utracisz dostęp do obu, możesz skontaktować się z %{email}

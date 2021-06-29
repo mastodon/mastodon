@@ -1,0 +1,223 @@
+---
+gd:
+  simple_form:
+    hints:
+      account_alias:
+        acct: Sònraich ainm-cleachdaiche@àrainn dhen chunntas a tha thu airson imrich uaithe
+      account_migration:
+        acct: Sònraich ainm-cleachdaiche@àrainn dhen chunntas dhan a tha thu airson imrich
+      account_warning_preset:
+        text: "’S urrainn dhut co-chàradh puist a chleachdadh, can URLaichean, tagaichean hais is iomraidhean"
+        title: Roghainneil. Chan fhaic am faightear seo
+      admin_account_action:
+        include_statuses: Chì an cleachdaiche dè na postaichean a dh’adhbharaich gnìomh na maorsainneachd no an rabhadh
+        send_email_notification: Ghaibh am faightear mìneachadh air dè thachair leis a’ chunntas aca
+        text_html: Roghainneil. Faodaidh tu co-chàradh puist a chleachdadh. ’S urrainn dhut <a href="%{path}">rabhaidhean ro-shuidhichte a chur ris</a> airson ùine a chaomhnadh
+        type_html: Tagh dè nì thu le <strong>%{acct}</strong>
+        types:
+          disable: Bac an cleachdaiche o chleachdadh a’ chunntais aca ach na sguab às no falaich an t-susbaint aca.
+          none: Cleachd seo airson rabhadh a chur dhan chleachdaiche gun ghnìomh eile a ghabhail.
+          sensitive: Èignich comharra gu bheil e frionasach air a h-uile ceanglachan meadhain a’ chleachdaiche seo.
+          silence: Bac an cleachdaiche o phostadh le faicsinneachd poblach, falaich na postaichean is brathan aca o na daoine nach eil a’ leantainn air.
+          suspend: Bac eadar-ghnìomh sam bith leis a’ chunntas seo agus sguab às an t-susbaint aige. Gabhaidh seo a neo-dhèanamh am broinn 30 latha.
+        warning_preset_id: Roghainneil. ’S urrainn dhut teacsa gnàthaichte a chur ri deireadh an ro-sheata fhathast
+      announcement:
+        all_day: Nuair a bhios cromag ris, cha nochd ach cinn-latha na rainse-ama
+        ends_at: Roghainneil. Thèid am brath-fios a neo-fhoillseachadh gu fèin-obrachail aig an àm ud
+        scheduled_at: Fàg seo bàn airson am brath-fios fhoillseachadh sa bhad
+        starts_at: Roghainnean. Cleachd seo airson am brath-fios a chuingeachadh rè ama shònraichte
+        text: "’S urrainn dhut co-chàradh puist a chleachdadh. Thoir an aire air am meud a chaitheas am brath-fios air sgrìn an luchd-chleachdaidh"
+      defaults:
+        autofollow: Leanaidh na daoine a chlàraicheas leis a cuireadh ort gu fèin-obrachail
+        avatar: PNG, GIF or JPG. %{size} air a char as motha. Thèid a sgèileadh sìos gu %{dimensions}px
+        bot: Comharraich do chàch gu bheil an cunntas seo ri gnìomhan fèin-obrachail gu h-àraidh is dh’fhaoidte nach doir duine sam bith sùil air idir
+        context: Na co-theacsaichean air am bi a’ chriathrag an sàs
+        current_password: A chùm tèarainteachd, cuir a-steach facal-faire a’ chunntais làithrich
+        current_username: Airson seo a dhearbhadh, cuir a-steach ainm-cleachdaiche a’ chunntais làithrich
+        digest: Cha dèid seo a chur ach nuair a bhios tu air ùine mhòr gun ghnìomh a ghabhail agus ma fhuair thu teachdaireachd phearsanta fhad ’s a bha thu air falbh
+        discoverable: Ceadaich gun lorg coigrich an cunntas agad le taic o mholaidhean is gleusan eile
+        email: Thèid post-d dearbhaidh a chur thugad
+        fields: Faodaidh tu suas ri 4 nithean a shealltainn mar chlàr air a’ phròifil agad
+        header: PNG, GIF or JPG. %{size} air a char as motha. Thèid a sgèileadh sìos gu %{dimensions}px
+        inbox_url: Dèan lethbhreac dhen URL o phrìomh-dhuilleag an ath-sheachadain a bu mhiann leat cleachdadh
+        irreversible: Thèid postaichean criathraichte a-mach à sealladh gu buan fiù ’s ma bheir thu a’ chriathrag air falbh uaireigin eile
+        locale: Cànan eadar-aghaidh a’ chleachdaiche, nam post-d ’s nam brathan putaidh
+        locked: Stiùirich cò dh’fhaodas leantainn ort le gabhail ri iarrtasan leantainn a làimh
+        password: Cleachd co-dhiù 8 caractaran
+        phrase: Thèid a mhaidseadh gun aire air litrichean mòra ’s beaga no air rabhadh susbainte puist
+        scopes: Na APIan a dh’fhaodas an aplacaid inntrigeadh. Ma thaghas tu sgòp air ìre as àirde, cha leig thu leas sgòpaichean fa leth a thaghadh.
+        setting_aggregate_reblogs: Na seall brosnachaidhean ùra do phostaichean a chaidh a bhrosnachadh o chionn ghoirid (cha doir seo buaidh ach air brosnachaidhean ùra o seo a-mach)
+        setting_default_sensitive: Thèid meadhanan frionasach fhalach o thùs is gabhaidh an nochdadh le briogadh orra
+        setting_display_media_default: Falaich meadhanan ris a bheil comharra gu bheil iad frionasach
+        setting_display_media_hide_all: Falaich na meadhanan an-còmhnaidh
+        setting_display_media_show_all: Seall na meadhanan an-còmhnaidh
+        setting_hide_network: Thèid cò a tha thu a’ leantainn orra ’s an luchd-leantainn agad fhèin a chur am falach air a’ phròifil agad
+        setting_noindex: Bheir seo buaidh air a’ phròifil phoblach ’s air duilleagan nam postaichean agad
+        setting_show_application: Chithear cò an aplacaid a chleachd thu airson post a sgrìobhadh ann an seallaidhean mionaideach nam postaichean agad
+        setting_use_blurhash: Tha caiseadan stèidhichte air dathan nan nithean lèirsinneach a chaidh fhalach ach chan fhaicear am mion-fhiosrachadh
+        setting_use_pending_items: Falaich ùrachaidhean na loidhne-ama air cùlaibh briogaidh seach a bhith a’ sgroladh an inbhir gu fèin-obrachail
+        username: Bidh ainm-cleachdaiche àraidh agad air %{domain}
+        whole_word: Mur eil ach litrichean is àireamhan san fhacal-luirg, cha dèid a chur an sàs ach ma bhios e a’ maidseadh an fhacail shlàin
+      domain_allow:
+        domain: "’S urrainn dhan àrainn seo dàta fhaighinn on fhrithealaiche seo agus thèid an dàta a thig a-steach uaithe a phròiseasadh ’s a stòradh"
+      email_domain_block:
+        domain: Gabhaidh an t-ainm àrainne a nochdas san t-seòladh puist-d a chleachdadh no an clàr MX dhan dèid an àrainn fhuasgladh no IP an fhrithealaiche dhan dèid an clàr MX fuasgladh. Thèid an dearbhadh nuair a chlàraicheas cleachdaiche ùr leinn is thèid an clàradh a dhiùltadh.
+        with_dns_records: Thèid oidhirp a dhèanamh air fuasgladh clàran DNS na h-àrainne a chaidh a thoirt seachad agus thèid na toraidhean a bhacadh cuideachd
+      featured_tag:
+        name: 'Mholamaid fear dhe na tagaichean seo:'
+      form_challenge:
+        current_password: Tha thu a’ tighinn a-steach gu raon tèarainte
+      imports:
+        data: Faidhle CSV a chaidh às-phortadh o fhrithealaiche Mastodon eile
+      invite_request:
+        text: Bidh e nas fhasa dhuinn lèirmheas a dhèanamh air d’ iarrtas
+      ip_block:
+        comment: Roghainneil. Cùm an cuimhne carson an do chuir thu an riaghailt seo ris.
+        expires_in: Tha an uiread de sheòlaidhean IP cuingichte is thèid an co-roinneadh aig amannan agus an gluasad do chuideigin eile gu tric. Air an adhbhar seo, cha mholamaid bacadh IP gun chrìoch.
+        ip: Cuir a-steach seòladh IPv4 no IPv6. ’S urrainn dhut rainsean gu lèir a bhacadh le co-chàradh CIDR. Thoir an aire nach gluais thu thu fhèin a-mach!
+        severities:
+          no_access: Bac inntrigeadh dha na goireasan uile
+          sign_up_requires_approval: Bidh cleachdaichean air an ùr-chlàradh feumach air d’ aonta
+        severity: Tagh na thachras le iarrtasan on IP seo
+      rule:
+        text: Mìnich riaghailt no riatanas do chleachdaichean an fhrithealaiche seo. Feuch an cùm thu sìmplidh goirid e
+      sessions:
+        otp: 'Cuir a-steach an còd dà-cheumnach a ghin aplacaid an fhòn agad no cleachd fear dhe na còdan aisig agad:'
+        webauthn: Mas e iuchair USB a th’ ann, dèan cinnteach gun cuir thu a-steach e is gun doir thu gnogag air ma bhios feum air sin.
+      tag:
+        name: Mar eisimpleir, ’s urrainn dhut measgachadh de litrichean mòra ’s beaga a chleachdadh ach an gabh a leughadh nas fhasa
+      user:
+        chosen_languages: Nuair a bhios cromag ris, cha nochd ach postaichean sna cànain a thagh thu air loidhnichean-ama poblach
+    labels:
+      account:
+        fields:
+          name: Leubail
+          value: Susbaint
+      account_alias:
+        acct: Ainm-cleachdaiche an t-seann-chunntais
+      account_migration:
+        acct: Ainm-cleachdaiche a’ chunntais ùir
+      account_warning_preset:
+        text: Teacsa ro-shocraichte
+        title: Tiotal
+      admin_account_action:
+        include_statuses: Gabh a-steach na postaichean a chaidh gearan a dhèanamh mun dèidhinn sa phost-d
+        send_email_notification: Cuir fios gun chleachdaiche air a’ phost-d
+        text: Rabhadh gnàthaichte
+        type: Gnìomh
+        types:
+          disable: Reòth
+          none: Cuir rabhadh
+          sensitive: Frionasach
+          silence: Crìoch
+          suspend: Cuir à rèim
+        warning_preset_id: Cleachd rabhadh ro-shuidhichte
+      announcement:
+        all_day: Tachartas fad an latha
+        ends_at: Deireadh an tachartais
+        scheduled_at: Cuir foillseachadh air an sgeideal
+        starts_at: Toiseach an tachartais
+        text: Brath-fios
+      defaults:
+        autofollow: Thoir cuireadh dhaibh airson leantainn air a’ chunntas agad
+        avatar: Avatar
+        bot: Seo cunntas bot
+        chosen_languages: Criathraich na cànain
+        confirm_new_password: Dearbh am facal-faire ùr
+        confirm_password: Dearbh am facal-faire
+        context: Co-theacsaichean na criathraige
+        current_password: Am facal-faire làithreach
+        data: Dàta
+        discoverable: Mol an cunntas do chàch
+        display_name: Ainm-taisbeanaidh
+        email: Seòladh puist-d
+        expires_in: Falbhaidh an ùine air às dèidh
+        fields: Meata-dàta na pròifile
+        header: Bann-cinn
+        honeypot: "%{label} (na lìon seo)"
+        inbox_url: URL bogsa a-steach an ath-sheachadain
+        irreversible: Leig seachad seach falach
+        locale: Cànan na h-eadar-aghaidh
+        locked: Iarr iarrtasan leantainn
+        max_uses: An àireamh as motha de chleachdaidhean
+        new_password: Facal-faire ùr
+        note: Mu mo dhèidhinn
+        otp_attempt: Còd dà-cheumnach
+        password: Facal-faire
+        phrase: Facal no abairt-luirg
+        setting_advanced_layout: Cuir an comas an eadar-aghaidh-lìn adhartach
+        setting_aggregate_reblogs: Buidhnich na brosnachaidhean air an loidhne-ama
+        setting_auto_play_gif: Cluich GIFs beòthaichte gu fèin-obrachail
+        setting_boost_modal: Seall còmhradh dearbhaidh mus dèan thu brosnachadh
+        setting_crop_images: Beàrr na dealbhan sna postaichean gun leudachadh air 16x9
+        setting_default_language: Cànan postaidh
+        setting_default_privacy: Prìobhaideachd postaidh
+        setting_default_sensitive: Cuir comharra ri meadhanan an-còmhnaidh gu bheil iad frionasach
+        setting_delete_modal: Seall còmhradh dearbhaidh mus sguab thu às post
+        setting_disable_swiping: Cuir gluasadan grad-shlaighdidh à comas
+        setting_display_media: Sealltainn nam meadhanan
+        setting_display_media_default: Tùsail
+        setting_display_media_hide_all: Falaich na h-uile
+        setting_display_media_show_all: Seall na h-uile
+        setting_expand_spoilers: Leudaich postaichean ris a bheil rabhadh susbainte an-còmhnaidh
+        setting_hide_network: Falaich an graf sòisealta agad
+        setting_noindex: Thoir air falbh an ro-aonta air inneacsadh le einnseanan-luirg
+        setting_reduce_motion: Ìslich an gluasad sna beòthachaidhean
+        setting_show_application: Foillsich dè an aplacaid a chleachdas tu airson postaichean a chur
+        setting_system_font_ui: Cleachd cruth-clò tùsail an t-siostaim
+        setting_theme: Ùrlar na làraich
+        setting_trends: Seall na treandaichean an-diugh
+        setting_unfollow_modal: Seall còmhradh dearbhaidh mus sguir thu de leantainn air cuideigin
+        setting_use_blurhash: Seall caiseadan dathte an àite meadhanan falaichte
+        setting_use_pending_items: Am modh slaodach
+        severity: Donad
+        sign_in_token_attempt: Còd-tèarainteachd
+        type: Seòrsa an ion-phortaidh
+        username: Ainm-cleachdaiche
+        username_or_email: Ainm-cleachdaiche no post-d
+        whole_word: Facal slàn
+      email_domain_block:
+        with_dns_records: Gabh a-steach clàran MX agus IPan na h-àrainne
+      featured_tag:
+        name: Taga hais
+      interactions:
+        must_be_follower: Mùch na brathan nach eil o luchd-leantainn
+        must_be_following: Mùch na brathan o dhaoine air nach lean thu
+        must_be_following_dm: Bac teachdaireachdan dìreach o dhaoine air nach lean thu
+      invite:
+        comment: Beachd
+      invite_request:
+        text: Carson a bu mhiann leat ballrachd fhaighinn?
+      ip_block:
+        comment: Beachd
+        ip: IP
+        severities:
+          no_access: Bac inntrigeadh
+          sign_up_requires_approval: Cuingich clàraidhean ùra
+        severity: Riaghailt
+      notification_emails:
+        digest: Cuir puist-d le geàrr-chunntas
+        favourite: Is annsa le cuideigin am post agad
+        follow: Lean cuideigin ort
+        follow_request: Dh’iarr cuideigin leantainn ort
+        mention: Thug cuideigin iomradh ort
+        pending_account: Tha cunntas ùr feumach air lèirmheas
+        reblog: Bhrosnaich cuideigin am post agad
+        report: Chaidh gearan ùr a chur a-null
+        trending_tag: Tha taga hais gun lèirmheas a’ treandadh
+      rule:
+        text: Riaghailt
+      tag:
+        listable: Leig leis an taga hais seo gun nochd e ann an toraidhean luirg ’s am measg nam molaidhean
+        name: Taga hais
+        trendable: Leig leis an taga hais seo gun nochd e am measg nan treandaichean
+        usable: Leig le postaichean an taga hais seo a chleachdadh
+    'no': Chan eil
+    recommended: Molta
+    required:
+      mark: "*"
+      text: riatanach
+    title:
+      sessions:
+        webauthn: Cleachd tè dhe na h-iuchraichean tèarainteachd agad airson clàradh a-steach
+    'yes': Tha

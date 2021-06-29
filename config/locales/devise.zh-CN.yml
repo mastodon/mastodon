@@ -13,9 +13,9 @@ zh-CN:
       locked: 你的帐户已被锁定。
       not_found_in_database: "%{authentication_keys}或密码错误。"
       pending: 你的帐号仍在审核中。
-      timeout: 您的会话已过期。请重新登录再继续操作。
+      timeout: 你的会话已过期。请重新登录再继续操作。
       unauthenticated: 继续操作前请注册或者登录。
-      unconfirmed: 您必须先确认您的电子邮件地址才能继续。
+      unconfirmed: 你必须先确认你的电子邮件地址才能继续。
     mailer:
       confirmation_instructions:
         action: 验证电子邮件地址
@@ -62,19 +62,19 @@ zh-CN:
         subject: Mastodon：帐户解锁信息
       webauthn_credential:
         added:
-          explanation: 以下安全密钥已添加到您的帐户
+          explanation: 以下安全密钥已添加到你的帐户
           subject: Mastodon：新的安全密钥
           title: 已添加一个新的安全密钥
         deleted:
-          explanation: 以下安全密钥已从您的账户中删除
+          explanation: 以下安全密钥已从你的账户中删除
           subject: Mastodon：安全密钥已删除
-          title: 您的安全密钥之一已被删除
+          title: 你的安全密钥之一已被删除
       webauthn_disabled:
-        explanation: 您的帐户已禁用安全密钥认证。现在只能使用配对的 TOTP 应用程序生成的令牌登录。
+        explanation: 你的帐户已禁用安全密钥认证。现在只能使用配对的 TOTP 应用程序生成的令牌登录。
         subject: Mastodon：安全密钥认证已禁用
         title: 安全密钥已禁用
       webauthn_enabled:
-        explanation: 您的帐户已启用安全密钥身份验证。您的安全密钥现在可以用于登录。
+        explanation: 你的帐户已启用安全密钥身份验证。你的安全密钥现在可以用于登录。
         subject: Mastodon：安全密钥认证已启用
         title: 已启用安全密钥
     omniauth_callbacks:

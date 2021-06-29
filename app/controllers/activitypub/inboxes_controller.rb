@@ -5,7 +5,7 @@ class ActivityPub::InboxesController < ActivityPub::BaseController
   include JsonLdHelper
   include AccountOwnedConcern
 
-  before_action :skip_unknown_actor_delete
+  before_action :skip_unknown_actor_activity
   before_action :require_signature!
   skip_before_action :authenticate_user!
 
@@ -18,13 +18,13 @@ class ActivityPub::InboxesController < ActivityPub::BaseController
 
   private
 
-  def skip_unknown_actor_delete
-    head 202 if unknown_deleted_account?
+  def skip_unknown_actor_activity
+    head 202 if unknown_affected_account?
   end
 
-  def unknown_deleted_account?
+  def unknown_affected_account?
     json = Oj.load(body, mode: :strict)
-    json.is_a?(Hash) && json['type'] == 'Delete' && json['actor'].present? && json['actor'] == value_or_id(json['object']) && !Account.where(uri: json['actor']).exists?
+    json.is_a?(Hash) && %w(Delete Update).include?(json['type']) && json['actor'].present? && json['actor'] == value_or_id(json['object']) && !Account.where(uri: json['actor']).exists?
   rescue Oj::ParseError
     false
   end

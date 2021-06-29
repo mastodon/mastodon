@@ -42,7 +42,13 @@ class SuspendAccountService < BaseService
   end
 
   def distribute_update_actor!
-    ActivityPub::UpdateDistributionWorker.perform_async(@account.id) if @account.local?
+    return unless @account.local?
+
+    account_reach_finder = AccountReachFinder.new(@account)
+
+    ActivityPub::DeliveryWorker.push_bulk(account_reach_finder.inboxes) do |inbox_url|
+      [signed_activity_json, @account.id, inbox_url]
+    end
   end
 
   def unmerge_from_home_timelines!
@@ -89,5 +95,9 @@ class SuspendAccountService < BaseService
         end
       end
     end
+  end
+
+  def signed_activity_json
+    @signed_activity_json ||= Oj.dump(serialize_payload(@account, ActivityPub::UpdateSerializer, signer: @account))
   end
 end

@@ -25,6 +25,10 @@
     cron: '<%= Random.rand(0..59) %> <%= Random.rand(0..2) %> * * *'
     class: Scheduler::FeedCleanupScheduler
     queue: scheduler
+  follow_recommendations_scheduler:
+    cron: '<%= Random.rand(0..59) %> <%= Random.rand(6..9) %> * * *'
+    class: Scheduler::FollowRecommendationsScheduler
+    queue: scheduler
   doorkeeper_cleanup_scheduler:
     cron: '<%= Random.rand(0..59) %> <%= Random.rand(0..2) %> * * 0'
     class: Scheduler::DoorkeeperCleanupScheduler

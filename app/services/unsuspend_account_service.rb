@@ -12,6 +12,7 @@ class UnsuspendAccountService < BaseService
     merge_into_home_timelines!
     merge_into_list_timelines!
     publish_media_attachments!
+    distribute_update_actor!
   end
 
   private
@@ -34,6 +35,16 @@ class UnsuspendAccountService < BaseService
     # Worth noting that it is possible that the remote has not only
     # been suspended, but deleted permanently, in which case
     # @account would now be nil.
+  end
+
+  def distribute_update_actor!
+    return unless @account.local?
+
+    account_reach_finder = AccountReachFinder.new(@account)
+
+    ActivityPub::DeliveryWorker.push_bulk(account_reach_finder.inboxes) do |inbox_url|
+      [signed_activity_json, @account.id, inbox_url]
+    end
   end
 
   def merge_into_home_timelines!
@@ -80,5 +91,9 @@ class UnsuspendAccountService < BaseService
         end
       end
     end
+  end
+
+  def signed_activity_json
+    @signed_activity_json ||= Oj.dump(serialize_payload(@account, ActivityPub::UpdateSerializer, signer: @account))
   end
 end

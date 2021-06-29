@@ -35,7 +35,7 @@ class ActivityPub::DistributionWorker
     # Deliver the status to all followers.
     # If the status is a reply to another local status, also forward it to that
     # status' authors' followers.
-    @inboxes ||= if @status.reply? && @status.thread.account.local? && @status.distributable?
+    @inboxes ||= if @status.in_reply_to_local_account? && @status.distributable?
                    @account.followers.or(@status.thread.account.followers).inboxes
                  else
                    @account.followers.inboxes

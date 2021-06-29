@@ -26,6 +26,8 @@ ru:
       Используется для целей федерации и не должен быть заблокирован, если вы не хотите заблокировать всю инстанцию, вместо этого лучше использовать доменную блокировку.
     learn_more: Узнать больше
     privacy_policy: Политика конфиденциальности
+    rules: Правила сервера
+    rules_html: 'Ниже приведена сводка правил, которых вам нужно придерживаться, если вы хотите иметь учётную запись на этом сервере Мастодона:'
     see_whats_happening: Узнайте, что происходит вокруг
     server_stats: 'Статистика сервера:'
     source_code: Исходный код
@@ -86,7 +88,6 @@ ru:
       other: статусов
     posts_tab_heading: Посты
     posts_with_replies: Посты с ответами
-    reserved_username: Имя пользователя зарезервировано
     roles:
       admin: Администратор
       bot: Бот
@@ -150,7 +151,7 @@ ru:
         remote: Удаленные
         title: Размещение
       login_status: Статус учётной записи
-      media_attachments: Файлы мультимедиа
+      media_attachments: Медиафайлы
       memorialize: Сделать мемориалом
       memorialized: Превращён в памятник
       memorialized_msg: "%{username} успешно превращён в памятник"
@@ -198,8 +199,8 @@ ru:
       search: Поиск
       search_same_email_domain: Другие пользователи с тем же доменом электронной почты
       search_same_ip: Другие пользователи с таким же IP
-      sensitive: Деликатный
-      sensitized: отмечено как деликатный контент
+      sensitive: Отметить как «деликатного содержания»
+      sensitized: отмечено как «деликатного характера»
       shared_inbox_url: URL общих входящих
       show:
         created_reports: Жалобы, отправленные с этой учётной записи
@@ -214,7 +215,7 @@ ru:
       time_in_queue: Ожидание в очереди %{time}
       title: Учётные записи
       unconfirmed_email: Неподтверждённый e-mail
-      undo_sensitized: Снять отметку "деликатный"
+      undo_sensitized: Убрать отметку «деликатного содержания»
       undo_silenced: Отменить скрытие
       undo_suspension: Снять блокировку
       unsilenced_msg: Ограничения с учётной записи %{username} сняты успешно
@@ -233,81 +234,85 @@ ru:
         create_account_warning: Выдача предупреждения
         create_announcement: Создание объявлений
         create_custom_emoji: Добавление эмодзи
-        create_domain_allow: Создать разрешение для домена
+        create_domain_allow: Разрешение доменов
         create_domain_block: Блокировка доменов
         create_email_domain_block: Блокировка e-mail доменов
-        create_ip_block: Создать IP правило
+        create_ip_block: Создание правил для IP-адресов
+        create_unavailable_domain: Добавление домена в список недоступных
         demote_user: Разжалование пользователей
         destroy_announcement: Удаление объявлений
         destroy_custom_emoji: Удаление эмодзи
-        destroy_domain_allow: Удалить разрешение для домена
+        destroy_domain_allow: Отзыв разрешений для доменов
         destroy_domain_block: Разблокировка доменов
         destroy_email_domain_block: Разблокировка e-mail доменов
-        destroy_ip_block: Удалить IP правило
+        destroy_ip_block: Удаление правил для IP-адресов
         destroy_status: Удаление постов
+        destroy_unavailable_domain: Исключение доменов из списка недоступных
         disable_2fa_user: Отключение 2FA
         disable_custom_emoji: Отключение эмодзи
         disable_user: Заморозка пользователей
         enable_custom_emoji: Включение эмодзи
         enable_user: Разморозка пользователей
-        memorialize_account: Сделать мемориалом
+        memorialize_account: Присвоение пользователям статуса «мемориала»
         promote_user: Повышение пользователей
         remove_avatar_user: Удаление аватаров
         reopen_report: Возобновление жалоб
         reset_password_user: Сброс пароля пользователей
         resolve_report: Отметка жалоб «решёнными»
-        sensitive_account: Отметить все медиафайлы в вашей учётной записи как деликатные
+        sensitive_account: Присвоение пользователям отметки «деликатного содержания»
         silence_account: Скрытие пользователей
         suspend_account: Блокировка пользователей
         unassigned_report: Снятие жалоб
-        unsensitive_account: Снять отметку "деликатный" с медиафайлов вашей учётной записи
+        unsensitive_account: Снятие с пользователей отметки «деликатного содержания»
         unsilence_account: Отмена скрытия пользователей
         unsuspend_account: Разблокировка пользователей
         update_announcement: Обновление объявлений
         update_custom_emoji: Обновление эмодзи
-        update_domain_block: Изменить блокировку домена
+        update_domain_block: Изменение блокировки домена
         update_status: Изменение постов
       actions:
-        assigned_to_self_report: "%{name} назначил(а) себя для решения жалобы %{target}"
-        change_email_user: "%{name} сменил(а) e-mail пользователя %{target}"
-        confirm_user: "%{name} подтвердил(а) e-mail адрес пользователя %{target}"
-        create_account_warning: "%{name} выдал(а) предупреждение %{target}"
-        create_announcement: "%{name} создал(а) новое объявление %{target}"
-        create_custom_emoji: "%{name} загрузил(а) новый эмодзи %{target}"
-        create_domain_allow: "%{name} внес(ла) домен %{target} в белый список"
-        create_domain_block: "%{name} заблокировал(а) домен %{target}"
-        create_email_domain_block: "%{name} добавил(а) e-mail домен %{target} в чёрный список"
-        create_ip_block: "%{name} создал правило для IP %{target}"
-        demote_user: "%{name} разжаловал(а) пользователя %{target}"
-        destroy_announcement: "%{name} удалил объявление %{target}"
-        destroy_custom_emoji: "%{name} измельчил(а) эмодзи %{target} в пыль"
-        destroy_domain_allow: "%{name} убрал домен %{target} из белого списка"
-        destroy_domain_block: "%{name} разблокировал(а) домен %{target}"
-        destroy_email_domain_block: "%{name} добавил(а) e-mail домен %{target} в белый список"
-        destroy_ip_block: "%{name} удалил правило для IP %{target}"
-        destroy_status: "%{name} удалил(а) пост пользователя %{target}"
-        disable_2fa_user: "%{name} отключил(а) требование двухэтапной авторизации для пользователя %{target}"
-        disable_custom_emoji: "%{name} отключил(а) эмодзи %{target}"
-        disable_user: "%{name} заморозил(а) пользователя %{target}"
-        enable_custom_emoji: "%{name} включил(а) эмодзи %{target}"
-        enable_user: "%{name} разморозил(а) пользователя %{target}"
-        memorialize_account: "%{name} перевел(а) учётную запись пользователя %{target} в режим памятника"
-        promote_user: "%{name} повысил(а) пользователя %{target}"
-        remove_avatar_user: "%{name} убрал(а) аватарку пользователя %{target}"
-        reopen_report: "%{name} переоткрыл(а) жалобу %{target}"
-        reset_password_user: "%{name} сбросил(а) пароль пользователя %{target}"
-        resolve_report: "%{name} решил(а) жалобу %{target}"
-        sensitive_account: "%{name} пометил медиа %{target} как деликатное"
-        silence_account: "%{name} наложил(а) ограничения на видимость постов учётной записи %{target}"
-        suspend_account: "%{name} заблокировал(а) учётную запись %{target}"
-        unassigned_report: "%{name} сняла назначение жалобы %{target}"
-        unsensitive_account: '%{name} снял отметку "деликатное" с медиа %{target}'
-        unsilence_account: "%{name} снял ограничения видимости постов пользователя %{target}"
-        unsuspend_account: "%{name} снял(а) блокировку с пользователя %{target}"
-        update_announcement: "%{name} обновил объявление %{target}"
-        update_custom_emoji: "%{name} обновил(а) эмодзи %{target}"
-        update_domain_block: "%{name} обновил блокировку домена для %{target}"
-        update_status: "%{name} изменил(а) пост пользователя %{target}"
+        assigned_to_self_report_html: "%{name} назначил(а) себя для решения жалобы %{target}"
+        change_email_user_html: "%{name} сменил(а) e-mail пользователя %{target}"
+        confirm_user_html: "%{name} подтвердил(а) e-mail адрес пользователя %{target}"
+        create_account_warning_html: "%{name} выдал(а) предупреждение %{target}"
+        create_announcement_html: "%{name} создал(а) новое объявление %{target}"
+        create_custom_emoji_html: "%{name} загрузил(а) новый эмодзи %{target}"
+        create_domain_allow_html: "%{name} разрешил(а) федерацию с доменом %{target}"
+        create_domain_block_html: "%{name} заблокировал(а) домен %{target}"
+        create_email_domain_block_html: "%{name} заблокировал(а) e-mail домен %{target}"
+        create_ip_block_html: "%{name} создал(а) правило для IP %{target}"
+        create_unavailable_domain_html: "%{name} приостановил доставку на узел %{target}"
+        demote_user_html: "%{name} разжаловал(а) пользователя %{target}"
+        destroy_announcement_html: "%{name} удалил(а) объявление %{target}"
+        destroy_custom_emoji_html: "%{name} удалил(а) эмодзи %{target}"
+        destroy_domain_allow_html: "%{name} запретил(а) федерацию с доменом %{target}"
+        destroy_domain_block_html: "%{name} снял(а) блокировку с домена %{target}"
+        destroy_email_domain_block_html: "%{name} снял(а) блокировку с e-mail домена %{target}"
+        destroy_ip_block_html: "%{name} удалил(а) правило для IP %{target}"
+        destroy_status_html: "%{name} удалил(а) пост пользователя %{target}"
+        destroy_unavailable_domain_html: "%{name} возобновил доставку на узел %{target}"
+        disable_2fa_user_html: "%{name} отключил(а) требование двухэтапной авторизации для пользователя %{target}"
+        disable_custom_emoji_html: "%{name} отключил(а) эмодзи %{target}"
+        disable_user_html: "%{name} заморозил(а) пользователя %{target}"
+        enable_custom_emoji_html: "%{name} включил(а) эмодзи %{target}"
+        enable_user_html: "%{name} разморозил(а) пользователя %{target}"
+        memorialize_account_html: "%{name} перевел(а) учётную запись пользователя %{target} в статус памятника"
+        promote_user_html: "%{name} повысил(а) пользователя %{target}"
+        remove_avatar_user_html: "%{name} убрал(а) аватарку пользователя %{target}"
+        reopen_report_html: "%{name} повторно открыл(а) жалобу %{target}"
+        reset_password_user_html: "%{name} сбросил(а) пароль пользователя %{target}"
+        resolve_report_html: "%{name} решил(а) жалобу %{target}"
+        sensitive_account_html: "%{name} установил(а) отметку файлов %{target} как «деликатного характера»"
+        silence_account_html: "%{name} наложил(а) ограничения на видимость постов пользователя %{target}"
+        suspend_account_html: "%{name} заблокировал(а) учётную запись %{target}"
+        unassigned_report_html: "%{name} снял(а) назначение жалобы %{target}"
+        unsensitive_account_html: "%{name} снял(а) отметку файлов %{target} как «деликатного характера»"
+        unsilence_account_html: "%{name} снял(а) ограничения видимости постов пользователя %{target}"
+        unsuspend_account_html: "%{name} снял(а) блокировку с пользователя %{target}"
+        update_announcement_html: "%{name} обновил(а) объявление %{target}"
+        update_custom_emoji_html: "%{name} обновил(а) эмодзи %{target}"
+        update_domain_block_html: "%{name} обновил(а) блокировку домена для %{target}"
+        update_status_html: "%{name} изменил(а) пост пользователя %{target}"
       deleted_status: "(удалённый пост)"
       empty: Журнал пуст.
       filter_by_action: Фильтр по действию
@@ -322,10 +327,12 @@ ru:
       new:
         create: Создать объявление
         title: Новое объявление
+      publish: Опубликовать
       published_msg: Объявление опубликовано.
       scheduled_for: Запланировано на %{time}
       scheduled_msg: Объявление добавлено в очередь публикации.
       title: Объявления
+      unpublish: Отменить публикацию
       unpublished_msg: Объявление скрыто.
       updated_msg: Объявление обновлено.
     custom_emojis:
@@ -370,7 +377,6 @@ ru:
       feature_profile_directory: Каталог профилей
       feature_registrations: Регистрация
       feature_relay: Ретрансляторы
-      feature_spam_check: Анти-спам
       feature_timeline_preview: Предпросмотр ленты
       features: Возможности
       hidden_service: Федерация со скрытыми сервисами
@@ -415,6 +421,8 @@ ru:
           silence: Скрытие
           suspend: Блокировка
         title: Новая блокировка e-mail домена
+      obfuscate: Скрыть доменное имя
+      obfuscate_hint: Частично скрыть доменное имя в списке, если включена публикация списка ограничений домена
       private_comment: Приватный комментарий
       private_comment_hint: Комментарий к доменной блокировке для внутреннего использования модераторами.
       public_comment: Публичный комментарий
@@ -453,9 +461,36 @@ ru:
         create: Создать блокировку
         title: Новая блокировка по домену
       title: Блокировка e-mail доменов
+    follow_recommendations:
+      description_html: "<strong>Следуйте рекомендациям, чтобы помочь новым пользователям быстро находить интересный контент</strong>. Если пользователь не взаимодействовал с другими в достаточной степени, чтобы сформировать персонализированные рекомендации, вместо этого рекомендуется использовать эти учетные записи. Они пересчитываются на ежедневной основе на основе комбинации аккаунтов с наибольшим количеством недавних взаимодействий и наибольшим количеством местных подписчиков для данного языка."
+      language: Для языка
+      status: Статус
+      suppress: Скрыть рекомендацию
+      suppressed: Скрыта
+      title: Рекомендации подписок
+      unsuppress: Восстановить рекомендацию
     instances:
+      back_to_all: Все узлы
+      back_to_limited: Все ограниченные узлы
+      back_to_warning: Все узлы требующие внимания
       by_domain: Домен
+      delivery:
+        all: Все
+        clear: Очистить ошибки доставки
+        restart: Перезапустить доставку
+        stop: Остановить доставку
+        title: По доступности
+        unavailable: Недоступные
+        unavailable_message: Доставка невозможна
+        warning: Требующие внимания
+        warning_message:
+          few: Доставка невозможна %{count} дня
+          many: Доставка невозможна %{count} дней
+          one: Доставка невозможна %{count} день
+          other: Доставка невозможна %{count} дня
       delivery_available: Доставка возможна
+      delivery_error_days: Дней ошибок доставки
+      delivery_error_hint: Если доставка доставка не удастся в течение %{count} дней, он будет автоматически отмечен недоступным для доставки.
       empty: Домены не найдены.
       known_accounts:
         few: "%{count} известные учётные записи"
@@ -561,6 +596,13 @@ ru:
       unassign: Снять назначение
       unresolved: Нерешённые
       updated_at: Обновлена
+    rules:
+      add_new: Добавить правило
+      delete: Удалить
+      description_html: Хотя большинство утверждает, что прочитали и согласны с условиями обслуживания, обычно люди не читают их до тех пор, пока не возникнет проблема. <strong>Упростите просмотр правил вашего сервера с первого взгляда, предоставив их в виде простого маркированного списка.</strong> Старайтесь, чтобы отдельные правила были краткими и простыми, но старайтесь не разбивать их на множество отдельных элементов.
+      edit: Редактировать правило
+      empty: Правила сервера еще не определены.
+      title: Правила сервера
     settings:
       activity_api_enabled:
         desc_html: Подсчёт количества локальных постов, активных пользователей и новых регистраций на еженедельной основе
@@ -584,8 +626,6 @@ ru:
         users: Залогиненным локальным пользователям
       domain_blocks_rationale:
         title: Показать обоснование
-      enable_bootstrap_timeline_accounts:
-        title: Включить подписки по умолчанию для новых пользователей
       hero:
         desc_html: Отображается на главной странице. Рекомендуется разрешение не менее 600х100px. Если не установлено, используется изображение узла
         title: Баннер узла
@@ -596,8 +636,8 @@ ru:
         desc_html: Домены, которые были замечены этим узлом среди всей федерации
         title: Публикация списка обнаруженных узлов
       preview_sensitive_media:
-        desc_html: Предпросмотр для ссылок будет отображать миниатюры даже для содержимого, помеченного как деликатное
-        title: Показывать деликатные медиафайлы в превью OpenGraph
+        desc_html: Предпросмотр для ссылок будет показывать миниатюры даже для содержимого, помеченного как «деликатного характера»
+        title: Показывать медиафайлы «деликатного характера» в превью OpenGraph
       profile_directory:
         desc_html: Позволять находить пользователей
         title: Включить каталог профилей
@@ -639,9 +679,6 @@ ru:
         desc_html: Вы можете добавить сюда собственную политику конфиденциальности, пользовательское соглашение и другие документы. Можно использовать теги HTML
         title: Условия использования
       site_title: Название сайта
-      spam_check_enabled:
-        desc_html: Мастодон может автоматически сообщать об учётных записях, отправляющих повторяющиеся нежелательные сообщения. Возможны ложные срабатывания.
-        title: Анти-спам
       thumbnail:
         desc_html: Используется для предпросмотра с помощью OpenGraph и API. Рекомендуется разрешение 1200x630px
         title: Картинка узла
@@ -662,8 +699,8 @@ ru:
       back_to_account: Назад к учётной записи
       batch:
         delete: Удалить
-        nsfw_off: Снять отметку «деликатного»
-        nsfw_on: Отметить как «деликатное»
+        nsfw_off: Снять отметку «деликатного характера»
+        nsfw_on: Отметить как «деликатного характера»
       deleted: Удалено
       failed_to_execute: Не удалось выполнить
       media:
@@ -672,13 +709,18 @@ ru:
       no_status_selected: Ничего не изменилось, так как ни один пост не был выделен
       title: Посты пользователя
       with_media: С файлами
+    system_checks:
+      database_schema_check:
+        message_html: Есть отложенные миграции базы данных. Запустите их, чтобы убедиться, что приложение работает должным образом
+      rules_check:
+        action: Управление правилами сервера
+        message_html: Вы не определили правила сервера.
+      sidekiq_process_check:
+        message_html: Ни один Sidekiq не запущен для %{value} очереди(-ей). Пожалуйста, просмотрите настройки Sidekiq
     tags:
       accounts_today: Уникальных использований за сегодня
       accounts_week: Уникальных использований за эту неделю
       breakdown: Разбивка сегодняшнего использования по источникам
-      context: Контекст
-      directory: В каталоге
-      in_directory: "%{count} в каталоге"
       last_active: Последняя активность
       most_popular: Самые популярные
       most_recent: Последние
@@ -695,6 +737,7 @@ ru:
       add_new: Добавить
       delete: Удалить
       edit_preset: Удалить шаблон предупреждения
+      empty: Вы еще не определили пресеты предупреждений.
       title: Управление шаблонами предупреждений
   admin_mailer:
     new_pending_account:
@@ -716,7 +759,7 @@ ru:
     remove: Отвязать псевдоним
   appearance:
     advanced_web_interface: Многоколоночный интерфейс
-    advanced_web_interface_hint: 'Если вы хотите использовать всю ширину экрана, расширенный веб-интерфейс позволяет настроить множество различных столбцов, чтобы увидеть столько информации, сколько вы хотите: главную ленту, уведомления, глобальную ленту, любое количество списков и хэштегов.'
+    advanced_web_interface_hint: 'Если вы хотите использовать всю ширину экрана, многоколоночный веб-интерфейс позволяет настроить множество различных столбцов и видеть столько информации, сколько вы захотите: главную ленту, уведомления, глобальную ленту, неограниченное количество списков и хэштегов.'
     animations_and_accessibility: Анимации и доступность
     confirmation_dialogs: Окна подтверждений
     discovery: Обзор
@@ -724,7 +767,7 @@ ru:
       body: Mastodon переводится добровольцами.
       guide_link: https://sasha-sorokin.gitlab.io/mastodon-ru/
       guide_link_text: Каждый может внести свой вклад.
-    sensitive_content: Деликатное содержимое
+    sensitive_content: Содержимое деликатного характера
     toot_layout: Структура постов
   application_mailer:
     notification_preferences: Настроить уведомления можно здесь
@@ -944,6 +987,8 @@ ru:
     status: Статус
     view_proof: Посмотреть подтверждение
   imports:
+    errors:
+      over_rows_processing_limit: содержит более %{count} строк
     modes:
       merge: Объединить
       merge_long: Сохранить имеющиеся данные и добавить новые.
@@ -1062,10 +1107,14 @@ ru:
       body: 'Вас упомянул(а) %{name} в:'
       subject: "%{name} упомянул(а) вас"
       title: Новое упоминание
+    poll:
+      subject: Опрос %{name} завершился
     reblog:
       body: 'Ваш пост был продвинут %{name}:'
       subject: "%{name} продвинул(а) ваш пост"
       title: Новое продвижение
+    status:
+      subject: "%{name} только что запостил(а)"
   notifications:
     email_events: События для e-mail уведомлений
     email_events_hint: 'Выберите события, для которых вы хотели бы получать уведомления:'
@@ -1082,11 +1131,11 @@ ru:
           trillion: трлн
   otp_authentication:
     code_hint: Для подтверждения введите код, сгенерированный приложением-аутентификатором
-    description_html: Если вы включите <strong>двухфакторную аутентификацию</strong> с помощью приложения-аутентификатора, Вход в систему потребует от вас наличия вашего телефона, который будет генерировать токены для входа в систему.
+    description_html: Подключив <strong>двуфакторную авторизацию</strong>, для входа в свою учётную запись вам будет необходим смартфон и приложение-аутентификатор на нём, которое будет генерировать специальные временные коды. Без этих кодов войти в учётную запись не получиться, даже если все данные верны, что существенно увеличивает безопасность вашей учётной записи.
     enable: Включить
-    instructions_html: "<strong>Отсканируйте этот QR-код в Google Authenticator или аналогичном приложении TOTP на вашем телефоне</strong>. С этого момента приложение будет генерировать токены, которые вам придется вводить при входе."
-    manual_instructions: 'Если вы не можете отсканировать QR-код и ввести его вручную, то вот секретный текст:'
-    setup: Создан
+    instructions_html: "<strong>Отсканируйте этот QR-код с помощью приложения-аутентификатора</strong>, такого как Google Authenticator, Яндекс.Ключ или andOTP. После сканирования и добавления, приложение начнёт генерировать коды, которые потребуется вводить для завершения входа в учётную запись."
+    manual_instructions: 'Если отсканировать QR-код не получается или не представляется возможным, вы можете ввести ключ настройки вручную:'
+    setup: Настроить
     wrong_code: Введенный код недействителен! Время сервера и время устройства правильно?
   pagination:
     newer: Новее
@@ -1174,7 +1223,7 @@ ru:
       weibo: Weibo
     current_session: Текущая сессия
     description: "%{browser} на %{platform}"
-    explanation: Здесь отображаются все веб-браузеры, в которых выполнен вход в вашу учётную запись. Авторизованные приложения отображаются в другой секции.
+    explanation: Здесь отображаются все браузеры, с которых выполнен вход в вашу учётную запись. Авторизованные приложения находятся в секции «Приложения».
     ip: IP
     platforms:
       adobe_air: Adobe Air
@@ -1214,8 +1263,6 @@ ru:
     relationships: Подписки и подписчики
     two_factor_authentication: Подтверждение входа
     webauthn_authentication: Ключи безопасности
-  spam_check:
-    spam_detected: Это автоматический отчет. Обнаружен спам.
   statuses:
     attached:
       audio:
@@ -1270,6 +1317,7 @@ ru:
     sign_in_to_participate: Войдите, чтобы принять участие в дискуссии
     title: '%{name}: "%{quote}"'
     visibilities:
+      direct: Адресованный
       private: Для подписчиков
       private_long: Показывать только подписчикам
       public: Для всех
@@ -1279,7 +1327,7 @@ ru:
   stream_entries:
     pinned: Закреплённый пост
     reblogged: продвинул(а)
-    sensitive_content: Деликатное содержимое
+    sensitive_content: Содержимое деликатного характера
   tags:
     does_not_match_previous_name: не совпадает с предыдущим именем
   terms:
@@ -1382,7 +1430,7 @@ ru:
     otp: Приложение для проверки подлинности
     recovery_codes: Коды восстановления
     recovery_codes_regenerated: Коды восстановления успешно сгенерированы
-    recovery_instructions_html: 'Пожалуйста, сохраните коды ниже в надёжном месте: они понадобятся, чтобы войти в учётную запись, если вы потеряете доступ к своему смартфону. Вы можете вручную переписать их, распечатать и спрятать среди важных документов или, например, в любимой книжке. <strong>Каждый код действителен один раз</strong>.'
+    recovery_instructions_html: 'Пожалуйста, сохраните коды ниже в надёжном месте: они понадобятся, чтобы войти в учётную запись, если вы потеряете доступ к своему смартфону. Вы можете вручную переписать их, распечатать и спрятать среди важных документов или, например, в любимой книжке. <strong>Каждый код действителен только один раз</strong>.'
     webauthn: Ключи безопасности
   user_mailer:
     backup_ready:
@@ -1398,7 +1446,7 @@ ru:
     warning:
       explanation:
         disable: Пока ваша учётная запись заморожена, ваши данные остаются нетронутыми, но вы не можете производить никаких действий до разблокировки.
-        sensitive: Ваши загруженные медиа-файлы и связанные с ними медиа будут рассматриваться как деликатные.
+        sensitive: Все загружаемые и прикреплённые вами медиафайлы будут расцениваться как «деликатного характера».
         silence: Пока действуют данные ограничения, публикуемые вами посты будут видеть исключительно люди, которые на вас уже подписаны на этом узле, вы также можете быть исключены из различных публичных лент. Несмотря на это, остальные пользователи по-прежнему могут подписаться на вас, чтобы читать новые посты.
         suspend: Ваша учётная запись заблокирована и все ваши посты и загруженные медиафайлы безвозвратно удалены с этого сервера и других серверов, где у вас были подписчики.
       get_in_touch: Вы можете ответить на это письмо, чтобы связаться с сотрудниками %{instance}.
@@ -1407,13 +1455,13 @@ ru:
       subject:
         disable: Ваша учётная запись %{acct} заморожена
         none: "%{acct} вынесено предупреждение"
-        sensitive: Ваша учётная запись %{acct} помечена как деликатная
+        sensitive: Ваша учётная запись %{acct} была отмечена как «деликатного содержания»
         silence: На учётную запись %{acct} наложены ограничения
         suspend: Ваша учётная запись %{acct} была заблокирована
       title:
         disable: Учётная запись заморожена
         none: Предупреждение
-        sensitive: Ваш медиафайл был отмечен как деликатный
+        sensitive: Ваши медиафайлы отмечены как «деликатного характера»
         silence: На учётную запись наложены ограничения
         suspend: Учётная запись заблокирована
     welcome:
@@ -1434,11 +1482,8 @@ ru:
       tips: Советы
       title: Добро пожаловать на борт, %{name}!
   users:
-    blocked_email_provider: Этот почтовый провайдер не разрешен
     follow_limit_reached: Вы не можете подписаться больше, чем на %{limit} человек
     generic_access_help_html: Не можете войти в свою учётную запись? Свяжитесь с %{email} для помощи
-    invalid_email: Введенный e-mail неверен
-    invalid_email_mx: Адрес электронной почты не существует
     invalid_otp_token: Введен неверный код двухфакторной аутентификации
     invalid_sign_in_token: Неверный код безопасности
     otp_lost_help_html: Если Вы потеряли доступ к обоим, свяжитесь с %{email}
@@ -1447,7 +1492,7 @@ ru:
     suspicious_sign_in_confirmation: Похоже, вы раньше не входили с этого устройства, и давно не осуществляли вход, поэтому мы отправили вам код безопасности на почту, чтобы подтвердить, что это действительно вы.
   verification:
     explanation_html: 'Владение ссылками в профиле <strong>можно подтвердить</strong>. Для этого на указанном сайте должна содержаться ссылка на ваш профиль Mastodon, а у самой ссылки <strong>должен</strong> быть атрибут <code>rel="me"</code>. Что внутри ссылки — значения не имеет. Вот вам пример ссылки:'
-    verification: Подтверждение
+    verification: Верификация ссылок
   webauthn_credentials:
     add: Добавить новый ключ безопасности
     create:

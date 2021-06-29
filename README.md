@@ -70,7 +70,7 @@ Mastodon acts as an OAuth2 provider so 3rd party apps can use the REST and Strea
 - **PostgreSQL** 9.5+
 - **Redis** 4+
 - **Ruby** 2.5+
-- **Node.js** 10.13+
+- **Node.js** 12+
 
 The repository includes deployment configurations for **Docker and docker-compose**, but also a few specific platforms like **Heroku**, **Scalingo**, and **Nanobox**. The [**stand-alone** installation guide](https://docs.joinmastodon.org/admin/install/) is available in the documentation.
 
@@ -82,11 +82,11 @@ Mastodon is **free, open-source software** licensed under **AGPLv3**.
 
 You can open issues for bugs you've found or features you think are missing. You can also submit pull requests to this repository, or submit translations using Crowdin. To get started, take a look at [CONTRIBUTING.md](CONTRIBUTING.md). If your contributions are accepted into Mastodon, you can request to be paid through [our OpenCollective](https://opencollective.com/mastodon).
 
-**IRC channel**: #mastodon on irc.freenode.net
+**IRC channel**: #mastodon on irc.libera.chat
 
 ## License
 
-Copyright (C) 2016-2020 Eugen Rochko & other Mastodon contributors (see [AUTHORS.md](AUTHORS.md))
+Copyright (C) 2016-2021 Eugen Rochko & other Mastodon contributors (see [AUTHORS.md](AUTHORS.md))
 
 This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 

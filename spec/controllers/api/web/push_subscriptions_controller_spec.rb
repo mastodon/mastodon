@@ -22,11 +22,16 @@ describe Api::Web::PushSubscriptionsController do
   let(:alerts_payload) do
     {
       data: {
+        policy: 'all',
+
         alerts: {
           follow: true,
+          follow_request: false,
           favourite: false,
           reblog: true,
           mention: false,
+          poll: true,
+          status: false,
         }
       }
     }
@@ -59,10 +64,11 @@ describe Api::Web::PushSubscriptionsController do
 
         push_subscription = Web::PushSubscription.find_by(endpoint: create_payload[:subscription][:endpoint])
 
-        expect(push_subscription.data['alerts']['follow']).to eq(alerts_payload[:data][:alerts][:follow].to_s)
-        expect(push_subscription.data['alerts']['favourite']).to eq(alerts_payload[:data][:alerts][:favourite].to_s)
-        expect(push_subscription.data['alerts']['reblog']).to eq(alerts_payload[:data][:alerts][:reblog].to_s)
-        expect(push_subscription.data['alerts']['mention']).to eq(alerts_payload[:data][:alerts][:mention].to_s)
+        expect(push_subscription.data['policy']).to eq 'all'
+
+        %w(follow follow_request favourite reblog mention poll status).each do |type|
+          expect(push_subscription.data['alerts'][type]).to eq(alerts_payload[:data][:alerts][type.to_sym].to_s)
+        end
       end
     end
   end
@@ -81,10 +87,11 @@ describe Api::Web::PushSubscriptionsController do
 
       push_subscription = Web::PushSubscription.find_by(endpoint: create_payload[:subscription][:endpoint])
 
-      expect(push_subscription.data['alerts']['follow']).to eq(alerts_payload[:data][:alerts][:follow].to_s)
-      expect(push_subscription.data['alerts']['favourite']).to eq(alerts_payload[:data][:alerts][:favourite].to_s)
-      expect(push_subscription.data['alerts']['reblog']).to eq(alerts_payload[:data][:alerts][:reblog].to_s)
-      expect(push_subscription.data['alerts']['mention']).to eq(alerts_payload[:data][:alerts][:mention].to_s)
+      expect(push_subscription.data['policy']).to eq 'all'
+
+      %w(follow follow_request favourite reblog mention poll status).each do |type|
+        expect(push_subscription.data['alerts'][type]).to eq(alerts_payload[:data][:alerts][type.to_sym].to_s)
+      end
     end
   end
 end

@@ -10,15 +10,6 @@
     %div
       .dashboard__counters__num= number_with_delimiter @accounts_week
       .dashboard__counters__label= t 'admin.tags.accounts_week'
-  %div
-    - if @tag.accounts_count > 0
-      = link_to explore_hashtag_path(@tag) do
-        .dashboard__counters__num= number_with_delimiter @tag.accounts_count
-        .dashboard__counters__label= t 'admin.tags.directory'
-    - else
-      %div
-        .dashboard__counters__num= number_with_delimiter @tag.accounts_count
-        .dashboard__counters__label= t 'admin.tags.directory'
 
 %hr.spacer/
 
@@ -30,8 +21,8 @@
 
   .fields-group
     = f.input :usable, as: :boolean, wrapper: :with_label
-    = f.input :trendable, as: :boolean, wrapper: :with_label, disabled: !Setting.trends
-    = f.input :listable, as: :boolean, wrapper: :with_label, disabled: !Setting.profile_directory
+    = f.input :trendable, as: :boolean, wrapper: :with_label
+    = f.input :listable, as: :boolean, wrapper: :with_label
 
   .actions
     = f.button :button, t('generic.save_changes'), type: :submit

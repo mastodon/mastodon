@@ -15,7 +15,7 @@ module AccountMerging
       Status, StatusPin, MediaAttachment, Poll, Report, Tombstone, Favourite,
       Follow, FollowRequest, Block, Mute, AccountIdentityProof,
       AccountModerationNote, AccountPin, AccountStat, ListAccount,
-      PollVote, Mention, AccountDeletionRequest, AccountNote
+      PollVote, Mention, AccountDeletionRequest, AccountNote, FollowRecommendationSuppression
     ]
 
     owned_classes.each do |klass|
@@ -41,6 +41,10 @@ module AccountMerging
           next
         end
       end
+    end
+
+    CanonicalEmailBlock.where(reference_account_id: other_account.id).find_each do |record|
+      record.update_attribute(:reference_account_id, id)
     end
 
     # Some follow relationships have moved, so the cache is stale

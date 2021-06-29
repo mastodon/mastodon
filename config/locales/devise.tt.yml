@@ -1,1 +1,15 @@
+---
 tt:
+  devise:
+    confirmations:
+      confirmed: Сезнең э. почта адресыгыз уңышлы расланган.
+    mailer:
+      reset_password_instructions:
+        action: Серсүзне үзгәртү
+        title: Серсүзне алыштыру
+      webauthn_credential:
+        deleted:
+          subject: 'Mastodon: Иминлек ачкычы бетерелгән'
+  errors:
+    messages:
+      not_found: табылмады

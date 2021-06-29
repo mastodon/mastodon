@@ -25,7 +25,7 @@ describe WellKnown::WebfingerController, type: :controller do
       end
 
       it 'returns application/jrd+json' do
-        expect(response.content_type).to eq 'application/jrd+json'
+        expect(response.media_type).to eq 'application/jrd+json'
       end
 
       it 'returns links for the account' do

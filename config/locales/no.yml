@@ -7,7 +7,6 @@
     active_count_after: aktive
     active_footnote: Månedlige aktive brukere (MAU)
     administered_by: 'Administrert av:'
-    api: API
     apps: Mobilapper
     apps_platforms: Bruk Mastodon gjennom iOS, Android og andre plattformer
     browse_directory: Bla gjennom en profilmappe og filtrer etter interesser
@@ -21,17 +20,12 @@
     federation_hint_html: Med en konto på %{instance} vil du kunne følge folk på enhver Mastodon-tjener, og mer til.
     get_apps: Prøv en mobilapp
     hosted_on: Mastodon driftet på %{domain}
-    instance_actor_flash: 'Denne brukeren er en virtuell aktør brukt til å representere selve serveren og ingen individuell bruker. Det brukes til foreningsformål og bør ikke blokkeres med mindre du vil blokkere hele instansen, hvor domeneblokkering bør brukes i stedet.
-
-'
+    instance_actor_flash: "Denne brukeren er en virtuell aktør brukt til å representere selve serveren og ingen individuell bruker. Det brukes til foreningsformål og bør ikke blokkeres med mindre du vil blokkere hele instansen, hvor domeneblokkering bør brukes i stedet. \n"
     learn_more: Lær mer
     privacy_policy: Privatlivsretningslinjer
     see_whats_happening: Se hva som skjer
     server_stats: 'Tjenerstatistikker:'
     source_code: Kildekode
-    status_count_after:
-      one: status
-      other: statuser
     status_count_before: Som skrev
     tagline: Følg venner og oppdag nye
     terms: Bruksvilkår
@@ -63,7 +57,6 @@
     joined: Ble med den %{date}
     last_active: sist aktiv
     link_verified_on: Eierskap av denne lenken ble sjekket %{date}
-    media: Media
     moved_html: "%{name} har flyttet til %{new_profile_link}:"
     network_hidden: Denne informasjonen er ikke tilgjengelig
     never_active: Aldri
@@ -77,10 +70,8 @@
       other: Tuter
     posts_tab_heading: Tuter
     posts_with_replies: Tuter med svar
-    reserved_username: Brukernavnet er reservert
     roles:
       admin: Administrator
-      bot: Bot
       group: Gruppe
       moderator: Moderere
     unavailable: Profilen er utilgjengelig
@@ -172,8 +163,6 @@
       resubscribe: Abonner på nytt
       role: Rettigheter
       roles:
-        admin: Administrator
-        moderator: Moderator
         staff: Personale
         user: Bruker
       search: Søk
@@ -234,44 +223,6 @@
         update_announcement: Oppdater kunngjøringen
         update_custom_emoji: Oppdater tilpasset Emoji
         update_status: Oppdater statusen
-      actions:
-        assigned_to_self_report: "%{name} tilegnet rapport %{target} til seg selv"
-        change_email_user: "%{name} forandret e-postadressen for bruker %{target}"
-        confirm_user: "%{name} bekreftet e-postadresse for bruker %{target}"
-        create_account_warning: "%{name} sendte en advarsel til %{target}"
-        create_announcement: "%{name} laget en ny kunngjøring %{target}"
-        create_custom_emoji: "%{name} lastet opp ny emoji %{target}"
-        create_domain_allow: "%{name} hvitelistet domenet %{target}"
-        create_domain_block: "%{name} blokkerte domenet %{target}"
-        create_email_domain_block: "%{name} svartelistet e-postdomenet %{target}"
-        create_ip_block: "%{name} opprettet en regel for IP-en %{target}"
-        demote_user: "%{name} degraderte bruker %{target}"
-        destroy_announcement: "%{name} slettet kunngjøring %{target}"
-        destroy_custom_emoji: "%{name} ødela emojien %{target}"
-        destroy_domain_allow: "%{name} fjernet domenet %{target} fra hvitelisten"
-        destroy_domain_block: "%{name} fjernet blokkeringen av domenet %{target}"
-        destroy_email_domain_block: "%{name} hvitelistet e-postdomenet %{target}"
-        destroy_ip_block: "%{name} slettet en regel for IP-en %{target}"
-        destroy_status: "%{name} fjernet status av %{target}"
-        disable_2fa_user: "%{name} deaktiverte tofaktor-autentiseringskravet for bruker %{target}"
-        disable_custom_emoji: "%{name} deaktiverte emoji %{target}"
-        disable_user: "%{name} deaktiverte innlogging for bruker %{target}"
-        enable_custom_emoji: "%{name} aktiverte emoji %{target}"
-        enable_user: "%{name} aktiverte innlogging for bruker %{target}"
-        memorialize_account: "%{name} endret %{target}s konto til en minneside"
-        promote_user: "%{name} oppgraderte bruker %{target}"
-        remove_avatar_user: "%{name} fjernet %{target} sitt profilbilde"
-        reopen_report: "%{name} gjenåpnet rapporten %{target}"
-        reset_password_user: "%{name} nullstilte passordet til bruker %{target}"
-        resolve_report: "%{name} avviste rapporten %{target}"
-        silence_account: "%{name} forstummet %{target}s konto"
-        suspend_account: "%{name} suspendert %{target}s konto"
-        unassigned_report: "%{name} avtilegnet rapport %{target}"
-        unsilence_account: "%{name} fjernet forstummingen av %{target}s konto"
-        unsuspend_account: "%{name} opphevde suspenderingen av %{target}s konto"
-        update_announcement: "%{name} oppdaterte kunngjøring %{target}"
-        update_custom_emoji: "%{name} oppdaterte emoji %{target}"
-        update_status: "%{name} oppdaterte status for %{target}"
       deleted_status: "(statusen er slettet)"
       empty: Ingen loggføringer ble funnet.
       filter_by_action: Sorter etter handling
@@ -305,7 +256,6 @@
       disable: Deaktivere
       disabled: Skrudd av
       disabled_msg: Deaktiverte emoji uten problem
-      emoji: Emoji
       enable: Aktivere
       enabled: Skrudd på
       enabled_msg: Aktiverte emojien uten problem
@@ -334,7 +284,6 @@
       feature_profile_directory: Profilmappe
       feature_registrations: Registreringer
       feature_relay: Føderasjonsoverganger
-      feature_spam_check: Anti-spam
       feature_timeline_preview: Tidslinje-forhåndsvisning
       features: Egenskaper
       hidden_service: Føderering med skjulte tjenester
@@ -468,7 +417,6 @@
       save_and_enable: Lagre og skru på
       setup: Sett opp en overgangsforbindelse
       signatures_not_enabled: Overganger vil ikke fungere riktig mens sikkermodus eller hvitelistingsmodus er skrudd på
-      status: Status
       title: Overganger
     report_notes:
       created_msg: Rapportnotat opprettet!
@@ -503,7 +451,6 @@
       reported_by: Rapportert av
       resolved: Løst
       resolved_msg: Rapport løst!
-      status: Status
       title: Rapporter
       unassign: Fjern tilegning
       unresolved: Uløst
@@ -577,9 +524,6 @@
         desc_html: Du kan skrive din egen personverns-strategi, bruksviklår og andre regler. Du kan bruke HTML tagger
         title: Skreddersydde bruksvilkår
       site_title: Nettstedstittel
-      spam_check_enabled:
-        desc_html: Mastodon kan auto-rapportere kontoer som sender gjentatte uforespurte meldinger. Det kan oppstå falske positive treff.
-        title: Anti-spam-automatisering
       thumbnail:
         desc_html: Brukes ved forhandsvisning via OpenGraph og API. 1200x630px anbefales
         title: Miniatyrbilde for instans
@@ -599,8 +543,6 @@
         nsfw_on: NSFW PÅ
       deleted: Slettet
       failed_to_execute: Utføring mislyktes
-      media:
-        title: Media
       no_media: Ingen media
       no_status_selected: Ingen statuser ble endret da ingen ble valgt
       title: Kontostatuser
@@ -608,9 +550,6 @@
     tags:
       accounts_today: Ulike brukere i dag
       accounts_week: Unike brukstilfeller denne uken
-      context: Sammenheng
-      directory: I mappen
-      in_directory: "%{count} i mappen"
       last_active: Senest aktiv
       most_popular: Mest populært
       most_recent: Nyligst
@@ -648,13 +587,11 @@
     discovery: Oppdagelse
     localization:
       body: Mastodon er oversatt av frivillige.
-      guide_link: https://crowdin.com/project/mastodon
       guide_link_text: Alle kan bidra.
     sensitive_content: Sensitivt innhold
     toot_layout: Tut-utseende
   application_mailer:
     notification_preferences: Endre E-postinnstillingene
-    salutation: "%{name},"
     settings: 'Endre foretrukne e-postinnstillinger: %{link}'
     view: 'Se:'
     view_profile: Vis Profil
@@ -689,9 +626,6 @@
     migrate_account: Flytt til en annen konto
     migrate_account_html: Hvis du ønsker å henvise denne kontoen til en annen, kan du <a href="%{path}">konfigurere det her</a>.
     or_log_in_with: Eller logg på med
-    providers:
-      cas: CAS
-      saml: SAML
     register: Bli med
     registration_closed: "%{instance} godtar ikke nye medlemmer"
     resend_confirmation: Send bekreftelsesinstruksjoner på nytt
@@ -730,9 +664,6 @@
     errors:
       invalid_key: er ikke en gyldig Ed25519- eller Curve25519-nøkkel
       invalid_signature: er ikke en gyldig Ed25519-signatur
-  date:
-    formats:
-      default: "%b %d, %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count} timer"
@@ -797,7 +728,6 @@
       request: Be om ditt arkiv
       size: Størrelse
     blocks: Du blokkerer
-    csv: CSV
     domain_blocks: Domeneblokkeringer
     lists: Lister
     mutes: Du demper
@@ -992,7 +922,6 @@
     next: Neste
     older: Eldre
     prev: Forrige
-    truncate: "&hellip;"
   polls:
     errors:
       already_voted: Du har allerede stemt i denne avstemningen
@@ -1055,38 +984,17 @@
     browsers:
       alipay: AliPay
       blackberry: BlackBerry
-      chrome: Chrome
-      edge: Microsoft Edge
-      electron: Electron
-      firefox: Firefox
       generic: Ukjent nettleser
-      ie: Internet Explorer
-      micro_messenger: MicroMessenger
       nokia: Nokia S40 Ovi-nettleser
-      opera: Opera
-      otter: Otter
-      phantom_js: PhantomJS
-      qq: QQ Browser
-      safari: Safari
       uc_browser: UC Browser
-      weibo: Weibo
     current_session: Nåværende økt
     description: "%{browser} på %{platform}"
     explanation: Dette er nettlesere som er pålogget på din Mastodon-konto akkurat nå.
     ip: IP-adresse
     platforms:
-      adobe_air: Adobe Air
-      android: Android
       blackberry: BlackBerry
       chrome_os: Chrome OS
-      firefox_os: Firefox OS
-      ios: iOS
-      linux: Linux
-      mac: macOS
       other: ukjent plattform
-      windows: Windows
-      windows_mobile: Windows Mobile
-      windows_phone: Windows Phone
     revoke: Tilbakekall
     revoke_success: Økt tilbakekalt
     title: Økter
@@ -1112,8 +1020,6 @@
     relationships: Følginger og følgere
     two_factor_authentication: Tofaktorautentisering
     webauthn_authentication: Sikkerhetsnøkler
-  spam_check:
-    spam_detected: Dette er en automatisert rapport. Spam har blitt oppdaget.
   statuses:
     attached:
       audio:
@@ -1123,9 +1029,6 @@
       image:
         one: "%{count} bilde"
         other: "%{count} bilder"
-      video:
-        one: "%{count} video"
-        other: "%{count} videoer"
     content_warning: 'Innholdsadvarsel: %{warning}'
     language_detection: Oppdag språk automatisk
     open_in_web: Åpne i nettleser
@@ -1136,9 +1039,6 @@
       private: Kun offentlige tuter kan festes
       reblog: En fremheving kan ikke festes
     poll:
-      total_people:
-        one: "%{count} person"
-        other: "%{count} personer"
       total_votes:
         one: "%{count} stemme"
         other: "%{count} stemmer"
@@ -1250,7 +1150,6 @@
   time:
     formats:
       default: "%-d. %b %Y, %H:%M"
-      month: "%b %Y"
   two_factor_authentication:
     add: Legg til
     disable: Skru av
@@ -1306,12 +1205,9 @@
       tip_following: Du følger din tjeners administrator(er) som standard. For å finne mer interessante personer, sjekk den lokale og forente tidslinjen.
       tip_local_timeline: Den lokale tidslinjen blir kontant matet med meldinger fra personer på %{instance}. Dette er dine nærmeste naboer!
       tip_mobile_webapp: Hvis din mobile nettleser tilbyr deg å legge Mastadon til din hjemmeskjerm kan du motta push-varslinger. Det er nesten som en integrert app på mange måter!
-      tips: Tips
       title: Velkommen ombord, %{name}!
   users:
-    blocked_email_provider: Denne E-postleverandøren er ikke tillatt
     follow_limit_reached: Du kan ikke følge mer enn %{limit} personer
-    invalid_email: E-postaddressen er ugyldig
     invalid_otp_token: Ugyldig to-faktorkode
     invalid_sign_in_token: Ugyldig sikkerhetskode
     otp_lost_help_html: Hvis du mistet tilgangen til begge deler, kan du komme i kontakt med %{email}

@@ -5,13 +5,28 @@ ko:
       poll:
         expires_at: 마감 기한
         options: 선택
+      user:
+        agreement: 이용약관
+        email: 이메일 주소
+        locale: 언어
+        password: 암호
+      user/account:
+        username: 사용자명
+      user/invite_request:
+        text: 이유
     errors:
       models:
         account:
           attributes:
             username:
               invalid: 영문자, 숫자, _만 사용 가능
+              reserved: 이미 예약되어 있습니다
         status:
           attributes:
             reblog:
               taken: 이미 게시물이 존재합니다
+        user:
+          attributes:
+            email:
+              blocked: 허용되지 않은 이메일 제공자입니다
+              unreachable: 존재하지 않는 것 같습니다

@@ -53,7 +53,9 @@ module Mastodon
         index.specification.lock!
       end
 
-      ActiveRecord::Base.configurations[Rails.env]['pool'] = options[:concurrency] + 1
+      db_config = ActiveRecord::Base.configurations[Rails.env].dup
+      db_config['pool'] = options[:concurrency] + 1
+      ActiveRecord::Base.establish_connection(db_config)
 
       pool    = Concurrent::FixedThreadPool.new(options[:concurrency])
       added   = Concurrent::AtomicFixnum.new(0)
@@ -100,7 +102,7 @@ module Mastodon
 
                   ActiveRecord::Base.connection_pool.with_connection do
                     grouped_records = type.adapter.send(:grouped_objects, records)
-                    bulk_body       = Chewy::Type::Import::BulkBuilder.new(type, grouped_records).bulk_body
+                    bulk_body       = Chewy::Type::Import::BulkBuilder.new(type, **grouped_records).bulk_body
                   end
 
                   index_count  = grouped_records[:index].size  if grouped_records.key?(:index)

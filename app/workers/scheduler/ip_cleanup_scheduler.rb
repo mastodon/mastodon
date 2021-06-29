@@ -5,7 +5,7 @@ class Scheduler::IpCleanupScheduler
 
   IP_RETENTION_PERIOD = 1.year.freeze
 
-  sidekiq_options lock: :until_executed, retry: 0
+  sidekiq_options retry: 0
 
   def perform
     clean_ip_columns!

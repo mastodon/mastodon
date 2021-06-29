@@ -14,6 +14,12 @@ it:
         send_email_notification: L'utente riceverà una spiegazione di ciò che è successo con suo account
         text_html: Opzionale. Puoi usare la sintassi dei toot. Puoi <a href="%{path}">aggiungere avvisi preimpostati</a> per risparmiare tempo
         type_html: Decidi cosa fare con <strong>%{acct}</strong>
+        types:
+          disable: Impedisce all'utente di utilizzare il suo account, ma non elimina o nasconde i suoi contenuti.
+          none: Usa questo per inviare un avviso all'utente, senza eseguire altre azioni.
+          sensitive: Forza tutti gli allegati multimediali di questo utente ad essere contrassegnati come sensibili.
+          silence: Impedisce all'utente di poter pubblicare con visibilità pubblica, nasconde i suoi post e notifiche a persone che non lo seguono.
+          suspend: Impedisce qualsiasi interazione da o per questo account ed elimina i suoi contenuti. Annullabile entro 30 giorni.
         warning_preset_id: Opzionale. Puoi aggiungere un testo personalizzato alla fine di quello preimpostato
       announcement:
         all_day: Se selezionato, verranno visualizzate solo le date dell'intervallo di tempo
@@ -73,6 +79,8 @@ it:
           no_access: Blocca l'accesso a tutte le risorse
           sign_up_requires_approval: Le nuove iscrizioni richiederanno la tua approvazione
         severity: Scegli cosa accadrà con le richieste da questo IP
+      rule:
+        text: Descrivi una regola o un requisito per gli utenti su questo server. Prova a mantenerla breve e semplice
       sessions:
         otp: 'Inserisci il codice a due fattori generato dall''app del tuo telefono o usa uno dei codici di recupero:'
         webauthn: Se si tratta di una chiavetta USB assicurati di inserirla e, se necessario, toccarla.
@@ -119,7 +127,7 @@ it:
         confirm_password: Conferma password
         context: Contesti del filtro
         current_password: Password corrente
-        data: Data
+        data: Dati
         discoverable: Inserisci questo account nella directory
         display_name: Nome visualizzato
         email: Indirizzo email
@@ -197,6 +205,8 @@ it:
         reblog: Invia email quando qualcuno condivide un tuo toot
         report: Manda una mail quando viene inviato un nuovo rapporto
         trending_tag: Invia e-mail quando un hashtag non controllato è in tendenza
+      rule:
+        text: Regola
       tag:
         listable: Permetti a questo hashtag di apparire nella directory dei profili
         name: Hashtag

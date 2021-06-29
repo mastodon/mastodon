@@ -40,7 +40,7 @@ RSpec.describe ActivityPub::FollowersSynchronizationsController, type: :controll
       end
 
       it 'returns application/activity+json' do
-        expect(response.content_type).to eq 'application/activity+json'
+        expect(response.media_type).to eq 'application/activity+json'
       end
 
       it 'returns orderedItems with followers from example.com' do

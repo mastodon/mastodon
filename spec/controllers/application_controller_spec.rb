@@ -42,20 +42,6 @@ describe ApplicationController, type: :controller do
     include_examples 'respond_with_error', 422
   end
 
-  it "does not force ssl if Rails.env.production? is not 'true'" do
-    routes.draw { get 'success' => 'anonymous#success' }
-    allow(Rails.env).to receive(:production?).and_return(false)
-    get 'success'
-    expect(response).to have_http_status(200)
-  end
-
-  it "forces ssl if Rails.env.production? is 'true'" do
-    routes.draw { get 'success' => 'anonymous#success' }
-    allow(Rails.env).to receive(:production?).and_return(true)
-    get 'success'
-    expect(response).to redirect_to('https://test.host/success')
-  end
-
   describe 'helper_method :current_account' do
     it 'returns nil if not signed in' do
       expect(controller.view_context.current_account).to be_nil
@@ -347,10 +333,6 @@ describe ApplicationController, type: :controller do
     it 'returns raw unless class responds to :with_includes' do
       raw = Object.new
       expect(C.new.cache_collection(raw, Object)).to eq raw
-    end
-
-    context 'Notification' do
-      include_examples 'cacheable', :notification, Notification
     end
 
     context 'Status' do

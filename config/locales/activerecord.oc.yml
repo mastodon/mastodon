@@ -5,13 +5,28 @@ oc:
       poll:
         expires_at: Data limita
         options: Opcions
+      user:
+        agreement: Acòrd de servici
+        email: Corrièl
+        locale: Lenga
+        password: Senhal
+      user/account:
+        username: Nom d’utilizaire
+      user/invite_request:
+        text: Motiu
     errors:
       models:
         account:
           attributes:
             username:
               invalid: solament letras, nombres e tirets basses
+              reserved: es reservat
         status:
           attributes:
             reblog:
               taken: de l’estatut existís ja
+        user:
+          attributes:
+            email:
+              blocked: utilizar un provesidor d’email pas autorizat
+              unreachable: semblar pas existir

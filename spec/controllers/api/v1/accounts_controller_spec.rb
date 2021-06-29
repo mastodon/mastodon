@@ -268,6 +268,34 @@ RSpec.describe Api::V1::AccountsController, type: :controller do
     it_behaves_like 'forbidden for wrong scope', 'read:accounts'
   end
 
+  describe 'POST #mute with nonzero duration set' do
+    let(:scopes) { 'write:mutes' }
+    let(:other_account) { Fabricate(:user, email: 'bob@example.com', account: Fabricate(:account, username: 'bob')).account }
+
+    before do
+      user.account.follow!(other_account)
+      post :mute, params: { id: other_account.id, duration: 300 }
+    end
+
+    it 'returns http success' do
+      expect(response).to have_http_status(200)
+    end
+
+    it 'does not remove the following relation between user and target user' do
+      expect(user.account.following?(other_account)).to be true
+    end
+
+    it 'creates a muting relation' do
+      expect(user.account.muting?(other_account)).to be true
+    end
+
+    it 'mutes notifications' do
+      expect(user.account.muting_notifications?(other_account)).to be true
+    end
+
+    it_behaves_like 'forbidden for wrong scope', 'read:accounts'
+  end
+
   describe 'POST #unmute' do
     let(:scopes) { 'write:mutes' }
     let(:other_account) { Fabricate(:user, email: 'bob@example.com', account: Fabricate(:account, username: 'bob')).account }

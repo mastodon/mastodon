@@ -8,7 +8,7 @@ class StatusesController < ApplicationController
 
   layout 'public'
 
-  before_action :require_signature!, only: :show, if: -> { request.format == :json && authorized_fetch_mode? }
+  before_action :require_signature!, only: [:show, :activity], if: -> { request.format == :json && authorized_fetch_mode? }
   before_action :set_status
   before_action :set_instance_presenter
   before_action :set_link_headers
@@ -16,7 +16,6 @@ class StatusesController < ApplicationController
   before_action :set_referrer_policy_header, only: :show
   before_action :set_cache_headers
   before_action :set_body_classes
-  before_action :set_autoplay, only: :embed
 
   skip_around_action :set_locale, if: -> { request.format == :json }
   skip_before_action :require_functional!, only: [:show, :embed], unless: :whitelist_mode?
@@ -81,9 +80,5 @@ class StatusesController < ApplicationController
 
   def set_referrer_policy_header
     response.headers['Referrer-Policy'] = 'origin' unless @status.distributable?
-  end
-
-  def set_autoplay
-    @autoplay = truthy_param?(:autoplay)
   end
 end

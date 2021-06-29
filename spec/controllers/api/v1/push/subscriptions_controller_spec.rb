@@ -27,20 +27,27 @@ describe Api::V1::Push::SubscriptionsController do
   let(:alerts_payload) do
     {
       data: {
+        policy: 'all',
+
         alerts: {
           follow: true,
+          follow_request: true,
           favourite: false,
           reblog: true,
           mention: false,
+          poll: true,
+          status: false,
         }
       }
     }.with_indifferent_access
   end
 
   describe 'POST #create' do
-    it 'saves push subscriptions' do
+    before do
       post :create, params: create_payload
+    end
 
+    it 'saves push subscriptions' do
       push_subscription = Web::PushSubscription.find_by(endpoint: create_payload[:subscription][:endpoint])
 
       expect(push_subscription.endpoint).to eq(create_payload[:subscription][:endpoint])
@@ -52,31 +59,34 @@ describe Api::V1::Push::SubscriptionsController do
 
     it 'replaces old subscription on repeat calls' do
       post :create, params: create_payload
-      post :create, params: create_payload
-
       expect(Web::PushSubscription.where(endpoint: create_payload[:subscription][:endpoint]).count).to eq 1
     end
   end
 
   describe 'PUT #update' do
-    it 'changes alert settings' do
+    before do
       post :create, params: create_payload
       put :update, params: alerts_payload
+    end
 
+    it 'changes alert settings' do
       push_subscription = Web::PushSubscription.find_by(endpoint: create_payload[:subscription][:endpoint])
 
-      expect(push_subscription.data.dig('alerts', 'follow')).to eq(alerts_payload[:data][:alerts][:follow].to_s)
-      expect(push_subscription.data.dig('alerts', 'favourite')).to eq(alerts_payload[:data][:alerts][:favourite].to_s)
-      expect(push_subscription.data.dig('alerts', 'reblog')).to eq(alerts_payload[:data][:alerts][:reblog].to_s)
-      expect(push_subscription.data.dig('alerts', 'mention')).to eq(alerts_payload[:data][:alerts][:mention].to_s)
+      expect(push_subscription.data['policy']).to eq(alerts_payload[:data][:policy])
+
+      %w(follow follow_request favourite reblog mention poll status).each do |type|
+        expect(push_subscription.data['alerts'][type]).to eq(alerts_payload[:data][:alerts][type.to_sym].to_s)
+      end
     end
   end
 
   describe 'DELETE #destroy' do
-    it 'removes the subscription' do
+    before do
       post :create, params: create_payload
       delete :destroy
+    end
 
+    it 'removes the subscription' do
       expect(Web::PushSubscription.find_by(endpoint: create_payload[:subscription][:endpoint])).to be_nil
     end
   end

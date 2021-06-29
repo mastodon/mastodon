@@ -37,7 +37,7 @@ class MediaProxyController < ApplicationController
   end
 
   def version
-    if request.path.ends_with?('/small')
+    if request.path.end_with?('/small')
       :small
     else
       :original
@@ -45,7 +45,7 @@ class MediaProxyController < ApplicationController
   end
 
   def lock_options
-    { redis: Redis.current, key: "media_download:#{params[:id]}" }
+    { redis: Redis.current, key: "media_download:#{params[:id]}", autorelease: 15.minutes.seconds }
   end
 
   def reject_media?

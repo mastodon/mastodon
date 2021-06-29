@@ -86,7 +86,7 @@ class ComposeForm extends ImmutablePureComponent {
     const fulltext = this.getFulltextForCharacterCounting();
     const isOnlyWhitespace = fulltext.length !== 0 && fulltext.trim().length === 0;
 
-    return !(isSubmitting || isUploading || isChangingUpload || length(fulltext) > 1500 || (isOnlyWhitespace && !anyMedia));
+    return !(isSubmitting || isUploading || isChangingUpload || length(fulltext) > 500 || (isOnlyWhitespace && !anyMedia));
   }
 
   handleSubmit = () => {
@@ -132,7 +132,15 @@ class ComposeForm extends ImmutablePureComponent {
     }
   }
 
+  componentDidMount () {
+    this._updateFocusAndSelection({ });
+  }
+
   componentDidUpdate (prevProps) {
+    this._updateFocusAndSelection(prevProps);
+  }
+
+  _updateFocusAndSelection = (prevProps) => {
     // This statement does several things:
     // - If we're beginning a reply, and,
     //     - Replying to zero or one users, places the cursor at the end of the textbox.
@@ -249,7 +257,7 @@ class ComposeForm extends ImmutablePureComponent {
             <PrivacyDropdownContainer />
             <SpoilerButtonContainer />
           </div>
-          <div className='character-counter__wrapper'><CharacterCounter max={1500} text={this.getFulltextForCharacterCounting()} /></div>
+          <div className='character-counter__wrapper'><CharacterCounter max={500} text={this.getFulltextForCharacterCounting()} /></div>
         </div>
 
         <div className='compose-form__publish'>

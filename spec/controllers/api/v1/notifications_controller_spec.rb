@@ -57,7 +57,7 @@ RSpec.describe Api::V1::NotificationsController, type: :controller do
       @mention_from_status = mentioning_status.mentions.first
       @favourite = FavouriteService.new.call(other.account, first_status)
       @second_favourite = FavouriteService.new.call(third.account, first_status)
-      @follow = FollowService.new.call(other.account, 'alice')
+      @follow = FollowService.new.call(other.account, user.account)
     end
 
     describe 'with no options' do

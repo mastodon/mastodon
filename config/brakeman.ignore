@@ -7,7 +7,7 @@
       "check_name": "SQL",
       "message": "Possible SQL injection",
       "file": "app/models/report.rb",
-      "line": 112,
+      "line": 113,
       "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
       "code": "Admin::ActionLog.from(\"(#{[Admin::ActionLog.where(:target_type => \"Report\", :target_id => id, :created_at => ((created_at..updated_at))).unscope(:order), Admin::ActionLog.where(:target_type => \"Account\", :target_id => target_account_id, :created_at => ((created_at..updated_at))).unscope(:order), Admin::ActionLog.where(:target_type => \"Status\", :target_id => status_ids, :created_at => ((created_at..updated_at))).unscope(:order)].map do\n \"(#{query.to_sql})\"\n end.join(\" UNION ALL \")}) AS admin_action_logs\")",
       "render_path": null,
@@ -41,99 +41,6 @@
       "note": ""
     },
     {
-      "warning_type": "Dynamic Render Path",
-      "warning_code": 15,
-      "fingerprint": "20a660939f2bbf8c665e69f2844031c0564524689a9570a0091ed94846212020",
-      "check_name": "Render",
-      "message": "Render path contains parameter value",
-      "file": "app/views/admin/action_logs/index.html.haml",
-      "line": 26,
-      "link": "https://brakemanscanner.org/docs/warning_types/dynamic_render_path/",
-      "code": "render(action => Admin::ActionLogFilter.new(filter_params).results.page(params[:page]), {})",
-      "render_path": [
-        {
-          "type": "controller",
-          "class": "Admin::ActionLogsController",
-          "method": "index",
-          "line": 8,
-          "file": "app/controllers/admin/action_logs_controller.rb",
-          "rendered": {
-            "name": "admin/action_logs/index",
-            "file": "app/views/admin/action_logs/index.html.haml"
-          }
-        }
-      ],
-      "location": {
-        "type": "template",
-        "template": "admin/action_logs/index"
-      },
-      "user_input": "params[:page]",
-      "confidence": "Weak",
-      "note": ""
-    },
-    {
-      "warning_type": "Dynamic Render Path",
-      "warning_code": 15,
-      "fingerprint": "371fe16dc4c9d6ab08a20437d65be4825776107a67c38f6d4780a9c703cd44a5",
-      "check_name": "Render",
-      "message": "Render path contains parameter value",
-      "file": "app/views/admin/email_domain_blocks/index.html.haml",
-      "line": 17,
-      "link": "https://brakemanscanner.org/docs/warning_types/dynamic_render_path/",
-      "code": "render(action => EmailDomainBlock.where(:parent_id => nil).includes(:children).order(:id => :desc).page(params[:page]), {})",
-      "render_path": [
-        {
-          "type": "controller",
-          "class": "Admin::EmailDomainBlocksController",
-          "method": "index",
-          "line": 10,
-          "file": "app/controllers/admin/email_domain_blocks_controller.rb",
-          "rendered": {
-            "name": "admin/email_domain_blocks/index",
-            "file": "app/views/admin/email_domain_blocks/index.html.haml"
-          }
-        }
-      ],
-      "location": {
-        "type": "template",
-        "template": "admin/email_domain_blocks/index"
-      },
-      "user_input": "params[:page]",
-      "confidence": "Weak",
-      "note": ""
-    },
-    {
-      "warning_type": "Dynamic Render Path",
-      "warning_code": 15,
-      "fingerprint": "4704e8093e3e0561bf705f892e8fc6780419f8255f4440b1c0afd09339bd6446",
-      "check_name": "Render",
-      "message": "Render path contains parameter value",
-      "file": "app/views/admin/instances/index.html.haml",
-      "line": 39,
-      "link": "https://brakemanscanner.org/docs/warning_types/dynamic_render_path/",
-      "code": "render(action => filtered_instances.page(params[:page]), {})",
-      "render_path": [
-        {
-          "type": "controller",
-          "class": "Admin::InstancesController",
-          "method": "index",
-          "line": 10,
-          "file": "app/controllers/admin/instances_controller.rb",
-          "rendered": {
-            "name": "admin/instances/index",
-            "file": "app/views/admin/instances/index.html.haml"
-          }
-        }
-      ],
-      "location": {
-        "type": "template",
-        "template": "admin/instances/index"
-      },
-      "user_input": "params[:page]",
-      "confidence": "Weak",
-      "note": ""
-    },
-    {
       "warning_type": "Redirect",
       "warning_code": 18,
       "fingerprint": "5fad11cd67f905fab9b1d5739d01384a1748ebe78c5af5ac31518201925265a7",
@@ -160,7 +67,7 @@
       "check_name": "SQL",
       "message": "Possible SQL injection",
       "file": "app/models/account.rb",
-      "line": 491,
+      "line": 479,
       "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
       "code": "find_by_sql([\"          WITH first_degree AS (\\n            SELECT target_account_id\\n            FROM follows\\n            WHERE account_id = ?\\n            UNION ALL\\n            SELECT ?\\n          )\\n          SELECT\\n            accounts.*,\\n            (count(f.id) + 1) * ts_rank_cd(#{textsearch}, #{query}, 32) AS rank\\n          FROM accounts\\n          LEFT OUTER JOIN follows AS f ON (accounts.id = f.account_id AND f.target_account_id = ?)\\n          WHERE accounts.id IN (SELECT * FROM first_degree)\\n            AND #{query} @@ #{textsearch}\\n            AND accounts.suspended_at IS NULL\\n            AND accounts.moved_to_account_id IS NULL\\n          GROUP BY accounts.id\\n          ORDER BY rank DESC\\n          LIMIT ? OFFSET ?\\n\".squish, account.id, account.id, account.id, limit, offset])",
       "render_path": null,
@@ -214,13 +121,33 @@
       "note": ""
     },
     {
+      "warning_type": "Mass Assignment",
+      "warning_code": 105,
+      "fingerprint": "874be88fedf4c680926845e9a588d3197765a6ccbfdd76466b44cc00151c612e",
+      "check_name": "PermitAttributes",
+      "message": "Potentially dangerous key allowed for mass assignment",
+      "file": "app/controllers/api/v1/admin/reports_controller.rb",
+      "line": 78,
+      "link": "https://brakemanscanner.org/docs/warning_types/mass_assignment/",
+      "code": "params.permit(:resolved, :account_id, :target_account_id)",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Api::V1::Admin::ReportsController",
+        "method": "filter_params"
+      },
+      "user_input": ":account_id",
+      "confidence": "High",
+      "note": ""
+    },
+    {
       "warning_type": "SQL Injection",
       "warning_code": 0,
       "fingerprint": "9251d682c4e2840e1b2fea91e7d758efe2097ecb7f6255c065e3750d25eb178c",
       "check_name": "SQL",
       "message": "Possible SQL injection",
       "file": "app/models/account.rb",
-      "line": 460,
+      "line": 448,
       "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
       "code": "find_by_sql([\"        SELECT\\n          accounts.*,\\n          ts_rank_cd(#{textsearch}, #{query}, 32) AS rank\\n        FROM accounts\\n        WHERE #{query} @@ #{textsearch}\\n          AND accounts.suspended_at IS NULL\\n          AND accounts.moved_to_account_id IS NULL\\n        ORDER BY rank DESC\\n        LIMIT ? OFFSET ?\\n\".squish, limit, offset])",
       "render_path": null,
@@ -251,37 +178,6 @@
       },
       "user_input": "SecureRandom.hex(16)",
       "confidence": "Medium",
-      "note": ""
-    },
-    {
-      "warning_type": "Dynamic Render Path",
-      "warning_code": 15,
-      "fingerprint": "9f31d941f3910dba2e9bfcd81aef4513249bd24c02d0f98e13ad44fdeeccd0e8",
-      "check_name": "Render",
-      "message": "Render path contains parameter value",
-      "file": "app/views/admin/accounts/index.html.haml",
-      "line": 54,
-      "link": "https://brakemanscanner.org/docs/warning_types/dynamic_render_path/",
-      "code": "render(action => filtered_accounts.page(params[:page]), {})",
-      "render_path": [
-        {
-          "type": "controller",
-          "class": "Admin::AccountsController",
-          "method": "index",
-          "line": 12,
-          "file": "app/controllers/admin/accounts_controller.rb",
-          "rendered": {
-            "name": "admin/accounts/index",
-            "file": "app/views/admin/accounts/index.html.haml"
-          }
-        }
-      ],
-      "location": {
-        "type": "template",
-        "template": "admin/accounts/index"
-      },
-      "user_input": "params[:page]",
-      "confidence": "Weak",
       "note": ""
     },
     {
@@ -331,7 +227,7 @@
       "check_name": "SQL",
       "message": "Possible SQL injection",
       "file": "app/models/account.rb",
-      "line": 507,
+      "line": 495,
       "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
       "code": "find_by_sql([\"          SELECT\\n            accounts.*,\\n            (count(f.id) + 1) * ts_rank_cd(#{textsearch}, #{query}, 32) AS rank\\n          FROM accounts\\n          LEFT OUTER JOIN follows AS f ON (accounts.id = f.account_id AND f.target_account_id = ?) OR (accounts.id = f.target_account_id AND f.account_id = ?)\\n          WHERE #{query} @@ #{textsearch}\\n            AND accounts.suspended_at IS NULL\\n            AND accounts.moved_to_account_id IS NULL\\n          GROUP BY accounts.id\\n          ORDER BY rank DESC\\n          LIMIT ? OFFSET ?\\n\".squish, account.id, account.id, limit, offset])",
       "render_path": null,
@@ -365,6 +261,6 @@
       "note": ""
     }
   ],
-  "updated": "2020-12-07 01:17:13 +0100",
-  "brakeman_version": "4.10.0"
+  "updated": "2021-05-11 20:22:27 +0900",
+  "brakeman_version": "5.0.1"
 }

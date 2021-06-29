@@ -1,0 +1,34 @@
+name: Check i18n
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+env:
+  RAILS_ENV: test
+
+jobs:
+  check-i18n:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install system dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y libicu-dev libidn11-dev libprotobuf-dev protobuf-compiler
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: '2.7'
+        bundler-cache: true
+    - name: Check locale file normalization
+      run: bundle exec i18n-tasks check-normalized
+    - name: Check for unused strings
+      run: bundle exec i18n-tasks unused -l en
+    - name: Check for wrong string interpolations
+      run: bundle exec i18n-tasks check-consistent-interpolations
+    - name: Check that all required locale files exist
+      run: bundle exec rake repo:check_locales_files

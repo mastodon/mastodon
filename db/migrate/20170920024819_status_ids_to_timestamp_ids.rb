@@ -1,7 +1,7 @@
 class StatusIdsToTimestampIds < ActiveRecord::Migration[5.1]
   def up
     # Prepare the function we will use to generate IDs.
-    Rake::Task['db:define_timestamp_id'].execute
+    Mastodon::Snowflake.define_timestamp_id
 
     # Set up the statuses.id column to use our timestamp-based IDs.
     ActiveRecord::Base.connection.execute(<<~SQL)
@@ -11,7 +11,7 @@ class StatusIdsToTimestampIds < ActiveRecord::Migration[5.1]
     SQL
 
     # Make sure we have a sequence to use.
-    Rake::Task['db:ensure_id_sequences_exist'].execute
+    Mastodon::Snowflake.ensure_id_sequences_exist
   end
 
   def down

@@ -50,10 +50,7 @@
   %hr.spacer/
 
   .fields-group
-    = f.input :enable_bootstrap_timeline_accounts, as: :boolean, wrapper: :with_label, label: t('admin.settings.enable_bootstrap_timeline_accounts.title'), hint: t('admin.settings.enable_bootstrap_timeline_accounts.desc_html')
-
-  .fields-group
-    = f.input :bootstrap_timeline_accounts, wrapper: :with_block_label, label: t('admin.settings.bootstrap_timeline_accounts.title'), hint: t('admin.settings.bootstrap_timeline_accounts.desc_html'), disabled: !Setting.enable_bootstrap_timeline_accounts
+    = f.input :bootstrap_timeline_accounts, wrapper: :with_block_label, label: t('admin.settings.bootstrap_timeline_accounts.title'), hint: t('admin.settings.bootstrap_timeline_accounts.desc_html')
 
   %hr.spacer/
 
@@ -72,10 +69,10 @@
 
   - unless whitelist_mode?
     .fields-group
-      = f.input :activity_api_enabled, as: :boolean, wrapper: :with_label, label: t('admin.settings.activity_api_enabled.title'), hint: t('admin.settings.activity_api_enabled.desc_html')
+      = f.input :activity_api_enabled, as: :boolean, wrapper: :with_label, label: t('admin.settings.activity_api_enabled.title'), hint: t('admin.settings.activity_api_enabled.desc_html'), recommended: true
 
     .fields-group
-      = f.input :peers_api_enabled, as: :boolean, wrapper: :with_label, label: t('admin.settings.peers_api_enabled.title'), hint: t('admin.settings.peers_api_enabled.desc_html')
+      = f.input :peers_api_enabled, as: :boolean, wrapper: :with_label, label: t('admin.settings.peers_api_enabled.title'), hint: t('admin.settings.peers_api_enabled.desc_html'), recommended: true
 
     .fields-group
       = f.input :preview_sensitive_media, as: :boolean, wrapper: :with_label, label: t('admin.settings.preview_sensitive_media.title'), hint: t('admin.settings.preview_sensitive_media.desc_html')
@@ -91,9 +88,6 @@
 
     .fields-group
       = f.input :noindex, as: :boolean, wrapper: :with_label, label: t('admin.settings.default_noindex.title'), hint: t('admin.settings.default_noindex.desc_html')
-
-  .fields-group
-    = f.input :spam_check_enabled, as: :boolean, wrapper: :with_label, label: t('admin.settings.spam_check_enabled.title'), hint: t('admin.settings.spam_check_enabled.desc_html')
 
   %hr.spacer/
 

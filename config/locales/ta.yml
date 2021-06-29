@@ -63,7 +63,6 @@ ta:
       following: தாங்கள் அங்கீகரிக்க விரும்பும் நபரை தாங்கள் ஏற்கனவே பின்தொடரந்து கொண்டு இருக்க வேண்டும்
     posts_tab_heading: பிளிறல்கள்
     posts_with_replies: பிளிறல்கள் மற்றும் மறுமொழிகள்
-    reserved_username: பயனர்பெயர் முன்பதிவு செய்யப்பட்டுள்ளது
     roles:
       admin: நிர்வாகி
       bot: பொறி
@@ -202,10 +201,6 @@ ta:
         update_announcement: அறிவிப்பைப் புதுப்பி
         update_custom_emoji: தனிப்பயனான எமோஜியைப் புதுப்பி
         update_status: பதிவைப் புதுப்பி
-      actions:
-        create_announcement: "%{name} %{target} என்றொரு புதிய அறிவிப்பை உருவாக்கியிருக்கிறார்"
-        destroy_announcement: "%{name} %{target} அறிவிப்பை நீக்கிவிட்டார்"
-        update_announcement: "%{name} %{target} அறிவிப்பைப் புதுப்பித்துள்ளார்"
       empty: குறிப்புகள் எவையும் காணப்படவில்லை.
       filter_by_action: செயலின் அடிப்படையில் வடிகட்டு
       filter_by_user: பயனரின் அடிப்படையில் வடிகட்டு
@@ -280,9 +275,6 @@ ta:
     errors:
       invalid_key: ஒரு முறையான Ed25519 அல்லது Curve25519 key அல்ல
       invalid_signature: ஒரு முறையான Ed25519 அடையாளம் அல்ல
-  date:
-    formats:
-      default: "%b %d, %Y"
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.

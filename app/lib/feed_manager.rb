@@ -194,6 +194,36 @@ class FeedManager
     end
   end
 
+  # Clear all statuses from or mentioning target_account from a list feed
+  # @param [List] list
+  # @param [Account] target_account
+  # @return [void]
+  def clear_from_list(list, target_account)
+    timeline_key        = key(:list, list.id)
+    timeline_status_ids = redis.zrange(timeline_key, 0, -1)
+    statuses            = Status.where(id: timeline_status_ids).select(:id, :reblog_of_id, :account_id).to_a
+    reblogged_ids       = Status.where(id: statuses.map(&:reblog_of_id).compact, account: target_account).pluck(:id)
+    with_mentions_ids   = Mention.active.where(status_id: statuses.flat_map { |s| [s.id, s.reblog_of_id] }.compact, account: target_account).pluck(:status_id)
+
+    target_statuses = statuses.select do |status|
+      status.account_id == target_account.id || reblogged_ids.include?(status.reblog_of_id) || with_mentions_ids.include?(status.id) || with_mentions_ids.include?(status.reblog_of_id)
+    end
+
+    target_statuses.each do |status|
+      unpush_from_list(list, status)
+    end
+  end
+
+  # Clear all statuses from or mentioning target_account from an account's lists
+  # @param [Account] account
+  # @param [Account] target_account
+  # @return [void]
+  def clear_from_lists(account, target_account)
+    List.where(account: account).each do |list|
+      clear_from_list(list, target_account)
+    end
+  end
+
   # Populate home feed of account from scratch
   # @param [Account] account
   # @return [void]
@@ -396,8 +426,8 @@ class FeedManager
 
     active_filters.map! do |filter|
       if filter.whole_word
-        sb = filter.phrase =~ /\A[[:word:]]/ ? '\b' : ''
-        eb = filter.phrase =~ /[[:word:]]\z/ ? '\b' : ''
+        sb = /\A[[:word:]]/.match?(filter.phrase) ? '\b' : ''
+        eb = /[[:word:]]\z/.match?(filter.phrase) ? '\b' : ''
 
         /(?mix:#{sb}#{Regexp.escape(filter.phrase)}#{eb})/
       else
@@ -417,7 +447,7 @@ class FeedManager
       status.media_attachments.map(&:description).join("\n\n"),
     ].compact.join("\n\n")
 
-    !combined_regex.match(combined_text).nil?
+    combined_regex.match?(combined_text)
   end
 
   # Adds a status to an account's feed, returning true if a status was
@@ -533,12 +563,12 @@ class FeedManager
       arr
     end
 
-    crutches[:following]       = Follow.where(account_id: receiver_id, target_account_id: statuses.map(&:in_reply_to_account_id).compact).pluck(:target_account_id).each_with_object({}) { |id, mapping| mapping[id] = true }
-    crutches[:hiding_reblogs]  = Follow.where(account_id: receiver_id, target_account_id: statuses.map { |s| s.account_id if s.reblog? }.compact, show_reblogs: false).pluck(:target_account_id).each_with_object({}) { |id, mapping| mapping[id] = true }
-    crutches[:blocking]        = Block.where(account_id: receiver_id, target_account_id: check_for_blocks).pluck(:target_account_id).each_with_object({}) { |id, mapping| mapping[id] = true }
-    crutches[:muting]          = Mute.where(account_id: receiver_id, target_account_id: check_for_blocks).pluck(:target_account_id).each_with_object({}) { |id, mapping| mapping[id] = true }
-    crutches[:domain_blocking] = AccountDomainBlock.where(account_id: receiver_id, domain: statuses.map { |s| s.reblog&.account&.domain }.compact).pluck(:domain).each_with_object({}) { |domain, mapping| mapping[domain] = true }
-    crutches[:blocked_by]      = Block.where(target_account_id: receiver_id, account_id: statuses.map { |s| s.reblog&.account_id }.compact).pluck(:account_id).each_with_object({}) { |id, mapping| mapping[id] = true }
+    crutches[:following]       = Follow.where(account_id: receiver_id, target_account_id: statuses.map(&:in_reply_to_account_id).compact).pluck(:target_account_id).index_with(true)
+    crutches[:hiding_reblogs]  = Follow.where(account_id: receiver_id, target_account_id: statuses.map { |s| s.account_id if s.reblog? }.compact, show_reblogs: false).pluck(:target_account_id).index_with(true)
+    crutches[:blocking]        = Block.where(account_id: receiver_id, target_account_id: check_for_blocks).pluck(:target_account_id).index_with(true)
+    crutches[:muting]          = Mute.where(account_id: receiver_id, target_account_id: check_for_blocks).pluck(:target_account_id).index_with(true)
+    crutches[:domain_blocking] = AccountDomainBlock.where(account_id: receiver_id, domain: statuses.map { |s| s.reblog&.account&.domain }.compact).pluck(:domain).index_with(true)
+    crutches[:blocked_by]      = Block.where(target_account_id: receiver_id, account_id: statuses.map { |s| s.reblog&.account_id }.compact).pluck(:account_id).index_with(true)
 
     crutches
   end

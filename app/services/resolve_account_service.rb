@@ -10,7 +10,7 @@ class ResolveAccountService < BaseService
   # @param [String, Account] uri URI in the username@domain format or account record
   # @param [Hash] options
   # @option options [Boolean] :redirected Do not follow further Webfinger redirects
-  # @option options [Boolean] :skip_webfinger Do not attempt to refresh account data
+  # @option options [Boolean] :skip_webfinger Do not attempt any webfinger query or refreshing account data
   # @return [Account]
   def call(uri, options = {})
     return if uri.blank?
@@ -120,8 +120,9 @@ class ResolveAccountService < BaseService
 
   def webfinger_update_due?
     return false if @options[:check_delivery_availability] && !DeliveryFailureTracker.available?(@domain)
+    return false if @options[:skip_webfinger]
 
-    @account.nil? || ((!@options[:skip_webfinger] || @account.ostatus?) && @account.possibly_stale?)
+    @account.nil? || @account.possibly_stale?
   end
 
   def activitypub_ready?
@@ -145,6 +146,6 @@ class ResolveAccountService < BaseService
   end
 
   def lock_options
-    { redis: Redis.current, key: "resolve:#{@username}@#{@domain}" }
+    { redis: Redis.current, key: "resolve:#{@username}@#{@domain}", autorelease: 15.minutes.seconds }
   end
 end

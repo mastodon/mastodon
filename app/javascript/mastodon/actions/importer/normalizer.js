@@ -24,6 +24,7 @@ export function normalizeAccount(account) {
 
   account.display_name_html = emojify(escapeTextContentForBrowser(displayName), emojiMap);
   account.note_emojified = emojify(account.note, emojiMap);
+  account.note_plain = unescapeHTML(account.note);
 
   if (account.fields) {
     account.fields = account.fields.map(pair => ({
@@ -59,8 +60,16 @@ export function normalizeStatus(status, normalOldStatus) {
     normalStatus.search_index = normalOldStatus.get('search_index');
     normalStatus.contentHtml = normalOldStatus.get('contentHtml');
     normalStatus.spoilerHtml = normalOldStatus.get('spoilerHtml');
+    normalStatus.spoiler_text = normalOldStatus.get('spoiler_text');
     normalStatus.hidden = normalOldStatus.get('hidden');
   } else {
+    // If the status has a CW but no contents, treat the CW as if it were the
+    // status' contents, to avoid having a CW toggle with seemingly no effect.
+    if (normalStatus.spoiler_text && !normalStatus.content) {
+      normalStatus.content = normalStatus.spoiler_text;
+      normalStatus.spoiler_text = '';
+    }
+
     const spoilerText   = normalStatus.spoiler_text || '';
     const searchContent = ([spoilerText, status.content].concat((status.poll && status.poll.options) ? status.poll.options.map(option => option.title) : [])).join('\n\n').replace(/<br\s*\/?>/g, '\n').replace(/<\/p><p>/g, '\n\n');
     const emojiMap      = makeEmojiMap(normalStatus);

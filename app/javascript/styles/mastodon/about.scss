@@ -322,7 +322,6 @@ $small-breakpoint: 960px;
     font-family: $font-sans-serif, sans-serif;
     font-size: 16px;
     font-weight: 400;
-    font-size: 16px;
     line-height: 30px;
     margin-bottom: 12px;
     color: $darker-text-color;
@@ -884,3 +883,24 @@ $small-breakpoint: 960px;
   }
 }
 
+.rules-list {
+  background: darken($ui-base-color, 2%);
+  border: 1px solid darken($ui-base-color, 8%);
+  border-radius: 4px;
+  padding: 0.5em 2.5em !important;
+  margin-top: 1.85em !important;
+
+  li {
+    border-bottom: 1px solid lighten($ui-base-color, 4%);
+    color: $dark-text-color;
+    padding: 1em;
+
+    &:last-child {
+      border-bottom: 0;
+    }
+  }
+
+  &__text {
+    color: $primary-text-color;
+  }
+}

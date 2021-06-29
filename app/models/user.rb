@@ -152,7 +152,7 @@ class User < ApplicationRecord
 
   def confirm
     new_user      = !confirmed?
-    self.approved = true if open_registrations?
+    self.approved = true if open_registrations? && !sign_up_from_ip_requires_approval?
 
     super
 
@@ -370,15 +370,20 @@ class User < ApplicationRecord
 
   protected
 
-  def send_devise_notification(notification, *args)
+  def send_devise_notification(notification, *args, **kwargs)
     # This method can be called in `after_update` and `after_commit` hooks,
     # but we must make sure the mailer is actually called *after* commit,
     # otherwise it may work on stale data. To do this, figure out if we are
     # within a transaction.
+
+    # It seems like devise sends keyword arguments as a hash in the last
+    # positional argument
+    kwargs = args.pop if args.last.is_a?(Hash) && kwargs.empty?
+
     if ActiveRecord::Base.connection.current_transaction.try(:records)&.include?(self)
-      pending_devise_notifications << [notification, args]
+      pending_devise_notifications << [notification, args, kwargs]
     else
-      render_and_send_devise_message(notification, *args)
+      render_and_send_devise_message(notification, *args, **kwargs)
     end
   end
 
@@ -389,8 +394,8 @@ class User < ApplicationRecord
   end
 
   def send_pending_devise_notifications
-    pending_devise_notifications.each do |notification, args|
-      render_and_send_devise_message(notification, *args)
+    pending_devise_notifications.each do |notification, args, kwargs|
+      render_and_send_devise_message(notification, *args, **kwargs)
     end
 
     # Empty the pending notifications array because the
@@ -403,8 +408,8 @@ class User < ApplicationRecord
     @pending_devise_notifications ||= []
   end
 
-  def render_and_send_devise_message(notification, *args)
-    devise_mailer.send(notification, self, *args).deliver_later
+  def render_and_send_devise_message(notification, *args, **kwargs)
+    devise_mailer.send(notification, self, *args, **kwargs).deliver_later
   end
 
   def set_approved
@@ -458,9 +463,7 @@ class User < ApplicationRecord
   end
 
   def regenerate_feed!
-    return unless Redis.current.setnx("account:#{account_id}:regeneration", true)
-    Redis.current.expire("account:#{account_id}:regeneration", 1.day.seconds)
-    RegenerationWorker.perform_async(account_id)
+    RegenerationWorker.perform_async(account_id) if Redis.current.set("account:#{account_id}:regeneration", true, nx: true, ex: 1.day.seconds)
   end
 
   def needs_feed_update?
@@ -468,7 +471,7 @@ class User < ApplicationRecord
   end
 
   def validate_email_dns?
-    email_changed? && !(Rails.env.test? || Rails.env.development?)
+    email_changed? && !external? && !(Rails.env.test? || Rails.env.development?)
   end
 
   def invite_text_required?

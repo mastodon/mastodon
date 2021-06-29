@@ -2,19 +2,19 @@
 hu:
   devise:
     confirmations:
-      confirmed: Az e-mail címed sikeresen megerősítésre került.
-      send_instructions: Pár percen belül kapni fogsz egy e-mailt az e-mail címed megerősítéséhez szükséges lépésekről.
-      send_paranoid_instructions: Ha az e-mail címed létezik az adatbázisunkban, pár percen belül kapni fogsz egy e-mailt az e-mail címed megerősítéséhez szükséges lépésekről.
+      confirmed: Az e-mail címedet sikeresen megerősítettük.
+      send_instructions: Néhány percen belül kapni fogsz egy levelet az e-mail cím megerősítésére vonatkozó utasításokkal. Kérjük, ellenőrizd a spam mappádat, ha nem látod az e-mailt a beérkezett e-mailek közt.
+      send_paranoid_instructions: Ha az e-mail címed már szerepel az adatbázisunkban, néhány percen belül kapsz egy levelet az e-mail cím megerősítésére vonatkozó utasításokkal. Kérjük, ellenőrizd a spam mappád, ha nem látod az e-mailt.
     failure:
       already_authenticated: Már bejelentkeztél.
-      inactive: Fiókodat még nem aktiválták.
+      inactive: A fiókod még nincs aktiválva.
       invalid: Helytelen %{authentication_keys} vagy jelszó.
-      last_attempt: Már csak egy próbálkozásod maradt mielőtt a fiókodat lezárjuk.
-      locked: Fiókod le van zárva.
+      last_attempt: Már csak egy próbálkozásod maradt, mielőtt a fiókodat zároljuk.
+      locked: A fiókodat zároltuk.
       not_found_in_database: Helytelen %{authentication_keys} vagy jelszó.
-      pending: Fiókod még engedélyezés alatt áll.
-      timeout: A munkamenet lejárt. Jelentkezz be újra a folytatáshoz.
-      unauthenticated: A folytatás előtt be kell jelentkezned.
+      pending: A fiókod még felülvizsgálat alatt áll.
+      timeout: A munkameneted lejárt. Kérjük, a folytatáshoz jelentkezz be újra.
+      unauthenticated: A folytatás előtt be kell jelentkezned vagy regisztrálnod kell.
       unconfirmed: A folytatás előtt meg kell erősítened az e-mail címed.
     mailer:
       confirmation_instructions:
@@ -23,11 +23,11 @@ hu:
         explanation: Ezzel az e-mail címmel kezdeményeztek regisztrációt a(z) %{host} oldalon. Csak egy kattintás, és a felhasználói fiókodat aktiváljuk. Ha a regisztrációt nem te kezdeményezted, kérjük tekintsd ezt az e-mailt tárgytalannak.
         explanation_when_pending: Ezzel az e-mail címmel meghívást kértél a(z) %{host} oldalon. Ahogy megerősíted az e-mail címed, átnézzük a jelentkezésedet. Ennek ideje alatt nem tudsz belépni. Ha a jelentkezésed elutasítjuk, az adataidat töröljük, más teendőd nincs. Ha a kérelmet nem te kezdeményezted, kérjük tekintsd ezt az e-mailt tárgytalannak.
         extra_html: Kérjük tekintsd át a <a href="%{terms_path}">a szerver szabályzatát</a> és <a href="%{policy_path}">a felhasználási feltételeket</a>.
-        subject: 'Mastodon: Megerősítési lépések %{instance}'
+        subject: 'Mastodon: Megerősítési lépések ehhez az instancehez: %{instance}'
         title: E-mail cím megerősítése
       email_changed:
-        explanation: 'A fiókodhoz tartozó e-mail címet az alábbira módosítod:'
-        extra: Ha nem te kezdeményezted a fiókodhoz tartozó e-mail cím módosítását, valaki hozzáférhetett a fiókodhoz. Legjobb, ha azonnal megváltoztatod a jelszavadat; ha nem férsz hozzá a fiókodhoz, vedd fel a kapcsolatot a szervered adminisztrátorával.
+        explanation: 'A fiókodhoz tartozó e-mail cím a következőre változik:'
+        extra: Ha nem változtattad meg az e-mail címed, akkor valószínű, hogy valaki hozzáférhetett a fiókodhoz. Kérjük, azonnal változtasd meg a jelszavadat, vagy lépj kapcsolatba a szerver adminisztrátorával, ha ki vagy zárva a fiókodból.
         subject: 'Mastodon: a fiókodhoz tartozó e-mail címet megváltoztattuk'
         title: Új e-mail cím
       password_change:
@@ -47,11 +47,11 @@ hu:
         subject: 'Mastodon: Jelszó visszaállítási lépések'
         title: Jelszó visszaállítása
       two_factor_disabled:
-        explanation: A fiókod kétlépcsős hitelesítését letiltottuk. A bejelentkezés most már csak e-mail címmel és jelszóval lehetséges.
-        subject: Kétlépcsős azonosítás letiltva
-        title: Kétlépcsős hitelesítés engedélyezve
+        explanation: A fiókod kétlépcsős hitelesítését kikapcsoltuk. A bejelentkezés mostantól csak az e-mail cím és a jelszó használatával lesz lehetséges.
+        subject: Kétlépcsős azonosítás kikapcsolva
+        title: Kétlépcsős hitelesítés kikapcsolva
       two_factor_enabled:
-        explanation: Kétlépcsős hitelesítés engedélyezve van a fiókodban. Bejelentkezéshez a párosított TOTP alkalmazás által létrehozott tokenre lesz szükség.
+        explanation: A kétlépcsős hitelesítést engedélyeztük a fiókodban. A bejelentkezéshez a párosított TOTP alkalmazás által generált tokenre lesz szükség.
         subject: Kétlépcsős azonosítás engedélyezve
         title: Kétlépcsős hitelesítés engedélyezve
       two_factor_recovery_codes_changed:
@@ -91,8 +91,8 @@ hu:
       signed_up: Üdvözlünk! Sikeresen regisztráltál.
       signed_up_but_inactive: Sikeresen regisztráltál. Ennek ellenére nem tudunk beléptetni, ugyanis a fiókodat még nem aktiválták.
       signed_up_but_locked: Sikeresen regisztráltál. Ennek ellenére nem tudunk beléptetni, ugyanis a fiókod le van zárva.
-      signed_up_but_pending: Egy üzenetet a megerősítési linkkel kiküldtünk az e-mail címedre. Ha kattintasz a linkre, átnézzük a kérelmedet. Értesítünk, ha jóváhagytuk.
-      signed_up_but_unconfirmed: Egy üzenetet a megerősítési linkkel kiküldtünk az e-mail címedre. Kérjük használd a linket a fiókod aktiválásához.
+      signed_up_but_pending: Egy megerősítési hivatkozással ellátott üzenetet kiküldtünk az e-mail címedre. Ha kattintasz a hivatkozásra, átnézzük a kérelmedet. Értesítünk, ha jóváhagytuk.
+      signed_up_but_unconfirmed: Egy megerősítési hivatkozással ellátott üzenetet kiküldtünk az e-mail címedre. Kérjük használd a hivatkozást a fiókod aktiválásához. Ellenőrizd a spam mappádat, ha nem kaptad meg ezt a levelet.
       update_needs_confirmation: Sikeresen frissítetted a fiókodat, de szükségünk van az e-mail címed megerősítésére. Kérlek ellenőrizd az e-mailedet és kövesd a levélben szereplő megerősítési linket az e-mail címed megerősítéséhez. Ellenőrizd a levélszemét mappád, ha nem kaptál volna ilyen levelet.
       updated: Fiókod frissítése sikeres.
     sessions:

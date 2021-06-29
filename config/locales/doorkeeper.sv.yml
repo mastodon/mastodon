@@ -37,7 +37,7 @@ sv:
       index:
         application: Applikation
         callback_url: Återkalls URL
-        delete: Ta bort
+        delete: Radera
         empty: Du har inga program.
         name: Namn
         new: Ny applikation
@@ -83,7 +83,10 @@ sv:
         invalid_client: Klientautentisering misslyckades på grund av okänd klient, ingen klientautentisering inkluderad eller icke godkänd autentiseringsmetod.
         invalid_grant: Det beviljade godkännandetillskottet är ogiltigt, upphört, återkallat, matchar inte den omdirigering URI som användes i auktorisationsförfrågan eller har utfärdats till en annan klient.
         invalid_redirect_uri: Den omdirigerade uri är inte giltig.
-        invalid_request: Förfrågan saknar en obligatorisk parameter, innehåller ett icke-stödt parametervärde eller är annars felaktigt.
+        invalid_request:
+          missing_param: 'Nödvändig parameter saknas: %{value}.'
+          request_not_authorized: Begäran måste godkännas. Den nödvändiga parametern för att godkänna begärandet saknas eller är ogiltig.
+          unknown: Förfrågningen saknar en nödvändig parameter, inkluderar en ett parametervärde som inte stöds, eller är annars felaktigt utformad.
         invalid_resource_owner: De angivna resursägarnas referenser är inte giltiga, eller resursägare kan inte hittas
         invalid_scope: Det begärda räckvidden är ogiltigt, okänt eller felaktigt.
         invalid_token:

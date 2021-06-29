@@ -11,7 +11,7 @@ import { debounce } from 'lodash';
 import Blurhash from 'mastodon/components/blurhash';
 
 const messages = defineMessages({
-  toggle_visible: { id: 'media_gallery.toggle_visible', defaultMessage: 'Hide {number, plural, one {image} other {images}}' },
+  toggle_visible: { id: 'media_gallery.toggle_visible', defaultMessage: '{number, plural, one {Hide image} other {Hide images}}' },
 });
 
 class Item extends React.PureComponent {

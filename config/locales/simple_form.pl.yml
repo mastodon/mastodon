@@ -14,6 +14,12 @@ pl:
         send_email_notification: Użytkownik otrzyma informację, co stało się z jego kontem
         text_html: Możesz używać składni której używasz we wpisach. Możesz <a href="%{path}">dodać szablon ostrzeżenia</a> aby zaoszczędzić czas
         type_html: Wybierz co chcesz zrobić z <strong>%{acct}</strong>
+        types:
+          disable: Nie pozwalaj użytkownikowi na korzystanie ze swojego konta, ale nie usuwaj ani nie ukrywaj jego zawartości.
+          none: Użyj tego, aby wysłać użytkownikowi ostrzeżenie, nie wywołując żadnego innego działania.
+          sensitive: Wymuś oznaczanie wszystkich załączników multimedialnych tego użytkownika jako wrażliwe.
+          silence: Zablokuj użytkownikowi możliwość publikowania z widocznością publiczną, ukrywaj jego wpisy i powiadomienia przed osobami, które go nie obserwują.
+          suspend: Zapobiegaj wszelkim interakcjom z tym kontem i usuń jego zawartość. Odwracalne w ciągu 30 dni.
         warning_preset_id: Nieobowiązkowe. Możesz dodać niestandardowy tekst do końcowki szablonu
       announcement:
         all_day: Jeżeli zaznaczone, tylko daty z przedziału czasu będą wyświetlane
@@ -73,6 +79,8 @@ pl:
           no_access: Zablokuj dostęp do wszystkich zasobów
           sign_up_requires_approval: Nowe rejestracje będą wymagać twojej zgody
         severity: Wybierz co ma się stać z żadaniami z tego adresu IP
+      rule:
+        text: Opisz wymóg lub regułę dla użytkowników na tym serwerze. Postaraj się, aby była krótka i prosta
       sessions:
         otp: 'Wprowadź kod weryfikacji dwuetapowej z telefonu lub wykorzystaj jeden z kodów zapasowych:'
         webauthn: Jeżeli jest to klucz USB, upewnij się, że go włożyłeś i, jeśli to konieczne, naciśnij go.
@@ -197,6 +205,8 @@ pl:
         reblog: Powiadamiaj mnie e-mailem, gdy ktoś podbije mój wpis
         report: Powiadamiaj mnie e-mailem, gdy zostanie utworzone nowe zgłoszenie
         trending_tag: Nieprzejrzany hashtag jest na czasie
+      rule:
+        text: Zasada
       tag:
         listable: Pozwól, aby ten hashtag pojawiał się w wynikach wyszukiwania i katalogu profilów
         name: Hashtag

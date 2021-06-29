@@ -1,0 +1,115 @@
+---
+es-MX:
+  devise:
+    confirmations:
+      confirmed: Su dirección de correo electrónico ha sido confirmada correctamente.
+      send_instructions: Recibirás un correo electrónico con instrucciones para confirmar tu dirección de correo electrónico en unos minutos. Por favor, comprueba tu carpeta de spam si no recibiste este correo electrónico.
+      send_paranoid_instructions: Si su dirección de correo electrónico existe en nuestra base de datos, recibirá un correo electrónico con instrucciones sobre cómo confirmar su dirección de correo en pocos minutos.
+    failure:
+      already_authenticated: Usted ya está registrado.
+      inactive: Su cuenta no ha sido activada aún.
+      invalid: "%{authentication_keys} o contraseña inválida."
+      last_attempt: Tiene un intento más antes de que tu cuenta sea bloqueada.
+      locked: Tu cuenta está bloqueada.
+      not_found_in_database: Incorrecto %{authentication_keys} o contraseña.
+      pending: Su cuenta aun se encuentra bajo revisión.
+      timeout: Su sesión ha expirado. Por favor inicie sesión de nuevo para continuar.
+      unauthenticated: Necesita iniciar sesión o registrarse antes de continuar.
+      unconfirmed: Tiene que confirmar su dirección de correo electrónico antes de continuar.
+    mailer:
+      confirmation_instructions:
+        action: Verifica tu dirección de correo electrónico
+        action_with_app: Confirmar y volver a %{app}
+        explanation: Has creado una cuenta en %{host} con esta dirección de correo electrónico. Estás a un solo clic de activarlo. Si no fuiste tú, por favor ignora este correo electrónico.
+        explanation_when_pending: Has solicitado una invitación a %{host} con esta dirección de correo electrónico. Una vez que confirmes tu dirección de correo electrónico, revisaremos tu solicitud. Puedes iniciar sesión para cambiar tus datos o eliminar tu cuenta, pero no puedes acceder a la mayoría de las funciones hasta que tu cuenta sea aprobada. Si su solicitud es rechazada, sus datos serán eliminados, por lo que no será necesaria ninguna acción adicional por su parte. Si no fuiste tú, por favor ignora este correo electrónico.
+        extra_html: Por favor, revisa <a href="%{terms_path}">las reglas del servidor</a> y <a href="%{policy_path}">nuestros términos de servicio</a>.
+        subject: 'Mastodon: Instrucciones de confirmación para %{instance}'
+        title: Verificar dirección de correo electrónico
+      email_changed:
+        explanation: 'El correo electrónico para su cuenta esta siendo cambiada a:'
+        extra: Si usted no ha cambiado su correo electrónico, es probable que alguien haya conseguido acceso a su cuenta. Por favor cambie su contraseña inmediatamente o contacte al administrador de la instancia si usted no puede iniciar sesión.
+        subject: 'Mastodon: Correo electrónico cambiado'
+        title: Nueva dirección de correo electrónico
+      password_change:
+        explanation: La contraseña de su cuenta a sido cambiada.
+        extra: Si usted no a cambiado su contraseña. es probable que alguien a conseguido acceso a su cuenta. Por favor cambie su contraseña inmediatamente o contacte a el administrador de la instancia si usted esta bloqueado de su cuenta.
+        subject: 'Mastodon: Contraseña cambiada'
+        title: Contraseña cambiada
+      reconfirmation_instructions:
+        explanation: Confirme la nueva dirección para cambiar su coreo electrónico.
+        extra: Si no iniciaste este cambio, por favor ignora este correo. Esta dirección de correo para la cuenta de Mastodon no cambiará hasta que accedas al vinculo arriba.
+        subject: 'Mastodon: Confirme correo electrónico para %{instance}'
+        title: Verifique dirección de correo electrónico
+      reset_password_instructions:
+        action: Cambiar contraseña
+        explanation: Solicitaste una nueva contraseña para tu cuenta.
+        extra: Si no solicitaste esto, por favor ignora este correo. Tu contraseña no cambiará hasta que tu accedas al vinculo arriba y crees una nueva.
+        subject: 'Mastodon: Instrucciones para reiniciar contraseña'
+        title: Reiniciar contraseña
+      two_factor_disabled:
+        explanation: La autenticación de dos factores para tu cuenta ha sido deshabilitada. Ahora puedes conectarte solamente usando la dirección de correo electrónico y la contraseña.
+        subject: 'Mastodon: La autenticación de dos factores está deshabilitada'
+        title: 2FA desactivada
+      two_factor_enabled:
+        explanation: La autenticación de dos factores para tu cuenta ha sido habilitada. Se requiere un token generado por la aplicación TOTP emparejada para ingresar.
+        subject: 'Mastodon: La autenticación de dos factores está habilitada'
+        title: 2FA activada
+      two_factor_recovery_codes_changed:
+        explanation: Los códigos de recuperación previos han sido invalidados y se generaron códigos nuevos.
+        subject: 'Mastodon: Los códigos de recuperación de dos factores fueron regenerados'
+        title: Códigos de recuperación 2FA cambiados
+      unlock_instructions:
+        subject: 'Mastodon: Instrucciones para desbloquear'
+      webauthn_credential:
+        added:
+          explanation: La siguiente clave de seguridad ha sido añadida a su cuenta
+          subject: 'Mastodon: Nueva clave de seguridad'
+          title: Se ha añadido una nueva clave de seguridad
+        deleted:
+          explanation: La siguiente clave de seguridad ha sido eliminada de su cuenta
+          subject: 'Mastodon: Clave de seguridad eliminada'
+          title: Una de sus claves de seguridad ha sido eliminada
+      webauthn_disabled:
+        explanation: La autenticación con claves de seguridad ha sido desactivada para tu cuenta. El inicio de sesión es ahora posible únicamente utilizando el token generado por la aplicación emparejada TOTP.
+        subject: 'Mastodon: Autenticación con claves de seguridad desactivada'
+        title: Claves de seguridad desactivadas
+      webauthn_enabled:
+        explanation: La autenticación con clave de seguridad ha sido habilitada para su cuenta. Su clave de seguridad ahora puede ser usada para iniciar sesión.
+        subject: 'Mastodon: Autenticación con clave de seguridad activada'
+        title: Claves de seguridad activadas
+    omniauth_callbacks:
+      failure: No podemos autentificarle desde %{kind} debido a "%{reason}".
+      success: Autentificado con éxito desde la cuenta %{kind} .
+    passwords:
+      no_token: No puede acceder a esta página sin provenir desde el correo de reinicio de contraseña. Si viene desde el correo de reinicio de contraseña, por favor asegúrese que está utilizando la dirección completa proporcionada.
+      send_instructions: Recibirá un correo electrónico con instrucciones sobre cómo reiniciar su contraseña en pocos minutos.
+      send_paranoid_instructions: Si su correo electrónico existe en nuestra base de datos, recibirá un enlace de recuperación de contraseña en su dirección de correo en pocos minutos.
+      updated: Su contraseña ha sido cambiada con éxito. Ahora ya está registrado.
+      updated_not_active: Su contraseña ha sido cambiada con éxito.
+    registrations:
+      destroyed: "¡Adios! Su cuenta ha sido cancelada con éxito. Esperamos verle pronto de nuevo."
+      signed_up: "¡Bienvenido! Se ha registrado con éxito."
+      signed_up_but_inactive: Se ha registrado con éxito. Sin embargo, no podemos identificarle porque su cuenta no ha sido activada todavía.
+      signed_up_but_locked: Se ha registrado con éxito. Sin embargo, no podemos identificarle porque su cuenta está bloqueada.
+      signed_up_but_pending: Un mensaje con un enlace de confirmacion ha sido enviado a su direccion de email. Luego de clickear el link revisaremos su aplicacion. Seras notificado si es aprovada.
+      signed_up_but_unconfirmed: Un mensaje con un enlace de confirmación ha sido enviado a su correo electrónico. Por favor siga el enlace para activar su cuenta.
+      update_needs_confirmation: Ha actualizado su cuenta con éxito, pero necesitamos verificar su nueva dirección de correo. Por favor compruebe su correo y siga el enlace para confirmar su nueva dirección de correo.
+      updated: su cuenta ha sido actualizada con éxito.
+    sessions:
+      already_signed_out: Cerró sesión con éxito.
+      signed_in: Se registró con éxito.
+      signed_out: Cerró sesión con éxito.
+    unlocks:
+      send_instructions: Recibirá un correo electrónico con instrucciones sobre cómo desbloquear su cuenta en pocos minutos.
+      send_paranoid_instructions: Si su cuenta existe, recibirá un correo electrónico con instrucciones sobre cómo desbloquearla en pocos minutos.
+      unlocked: Su cuenta ha sido desbloqueada con éxito. Por favor inicie sesión para continuar.
+  errors:
+    messages:
+      already_confirmed: ya fue confirmado, por favor intente iniciar sesión
+      confirmation_period_expired: necesita ser confirmado dentro de %{period}, por favor pida una nueva
+      expired: ha expirado, por favor pida una nueva
+      not_found: no encontrado
+      not_locked: no fue bloqueada
+      not_saved:
+        one: '1 error prohibió este %{resource} de ser guardado:'
+        other: "%{count} errores prohibieron este %{resource} de ser guardado:"

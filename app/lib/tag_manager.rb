@@ -22,14 +22,6 @@ class TagManager
     uri.normalized_host
   end
 
-  def same_acct?(canonical, needle)
-    return true if canonical.casecmp(needle).zero?
-
-    username, domain = needle.split('@')
-
-    local_domain?(domain) && canonical.casecmp(username).zero?
-  end
-
   def local_url?(url)
     uri    = Addressable::URI.parse(url).normalize
     domain = uri.host + (uri.port ? ":#{uri.port}" : '')

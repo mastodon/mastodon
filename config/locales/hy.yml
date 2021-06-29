@@ -21,11 +21,11 @@ hy:
     federation_hint_html: "%{instance} հանգոյցում հաշիւ բացելով կարող ես հետեւել այլ մարդկանց Մաստադոնի ցանկացած հանգոյցից և ոչ միայն։"
     get_apps: Փորձեք բջջային հավելվածը
     hosted_on: Մաստոդոնը տեղակայուած է %{domain}ում
-    instance_actor_flash: 'Այս հաշիւ վիրտուալ դերասան է, օգտագործուում է սպասարկիչը, այլ ոչ անհատ օգտատիրոջը ներկայացնելու, համար։ Օգտագործուում է ֆեդերացիայի նպատակով, ու չպէտք է արգելափակուի, եթէ չէք ցանկանում արգելափակել ողջ հանգոյցը, որի դէպքում պէտք է օգտագործէք տիրոյթի արգելափակումը։
-
-'
+    instance_actor_flash: "Այս հաշիւ վիրտուալ դերասան է, օգտագործուում է սպասարկիչը, այլ ոչ անհատ օգտատիրոջը ներկայացնելու, համար։ Օգտագործուում է ֆեդերացիայի նպատակով, ու չպէտք է արգելափակուի, եթէ չէք ցանկանում արգելափակել ողջ հանգոյցը, որի դէպքում պէտք է օգտագործէք տիրոյթի արգելափակումը։ \n"
     learn_more: Իմանալ ավելին
     privacy_policy: Գաղտնիության քաղաքականություն
+    rules: Սերվերի կանոնները
+    rules_html: Ներքևում կանոնների ամփոփագիր է, որին պետք է հետևեք, եթե ցանկանում եք այս սերվերում ունենան Mastodon-ի հաշիվ
     see_whats_happening: Տես ինչ ա կատարվում
     server_stats: Սերվերի վիճակը․
     source_code: Ելատեքստ
@@ -78,7 +78,6 @@ hy:
       other: Թութերից
     posts_tab_heading: Թթեր
     posts_with_replies: Թթեր եւ պատասխաններ
-    reserved_username: Ծածկանունն արդէն վերցուած է
     roles:
       admin: Ադմինիստրատոր
       bot: Բոտ
@@ -259,47 +258,6 @@ hy:
         update_custom_emoji: Թարմացնել սեփական էմոջիները
         update_domain_block: Թարմացնել տիրոյթի արգելափակումը
         update_status: Թարմացնել գրառումը
-      actions:
-        assigned_to_self_report: "%{name} բողոքել է %{target} իրենց համար"
-        change_email_user: "%{name} փոփոխել է %{target} օգտատիրոջ էլ․ հասցէն"
-        confirm_user: "%{name} հաստատել է %{target} օգտատիրոջ էլ․ հասցէն"
-        create_account_warning: "%{name} զգուշացրել է %{target}ին"
-        create_announcement: "%{name} ստեղծեց նոր յայտարարութիւն %{target}"
-        create_custom_emoji: "%{name} վերբեռնել է նոր էմոջի՝ %{target}"
-        create_domain_allow: "%{name} թոյլատրել ֆեդերացիան %{target} տիրոյթի հետ"
-        create_domain_block: "%{name} արգելափակեց %{target} տիրոյթը"
-        create_email_domain_block: "%{name} արգելափակեց էլ․ փոստի տիրոյթ %{target}"
-        create_ip_block: "%{name} ստեղծեց կանոն %{target} IP֊ի համար"
-        demote_user: "%{name} աստիճանազրկեց օգտատիրոջ %{target}"
-        destroy_announcement: "%{name} ջնջեց յայտարարութիւն %{target}"
-        destroy_custom_emoji: "%{name} ջնջել է %{target} էմոջին"
-        destroy_domain_allow: "%{name} չթոյլատրեց ֆեդերացիան %{target} տիրոյթի հետ"
-        destroy_domain_block: "%{name} ապաարգելափակեց տիրոյթ %{target}"
-        destroy_email_domain_block: "%{name} ապաարգելափակեց էլ․ փոստի տիրոյթ %{target}"
-        destroy_ip_block: "%{name} ջնջեց կանոնը %{target} IP֊ի համար"
-        destroy_status: "%{name} ջնջեց %{target}ի գրառում"
-        disable_2fa_user: "%{name}ը կասեցրեց 2F պահանջը %{target} օգտատիրոջ համար"
-        disable_custom_emoji: "%{name} ապակտիւացրել է %{target} էմոջին"
-        disable_user: "%{name} անջատել է մուտքը %{target} օգտատիրոջ համար"
-        enable_custom_emoji: "%{name} ակտիվացրել է %{target} էմոջին"
-        enable_user: "%{name} թոյլատրեց մուտք %{target} օգտատիրոջ համար"
-        memorialize_account: "%{name} դարձրեց %{target}ի հաշիւը յիշատակի էջ"
-        promote_user: "%{name} աջակցեց օգտատիրոջը %{target}"
-        remove_avatar_user: "%{name} հեռացրեց %{target}ի աւատարը"
-        reopen_report: "%{name} վերաբացեց բողոք %{target}"
-        reset_password_user: "%{name} վերականգնեց օգտատիրոջ գաղտնաբառը %{target}"
-        resolve_report: "%{name} լուծարեց բողոքը %{target}"
-        sensitive_account: "%{name}ը նշեց %{target}ի մեդիան որպէս զգայուն"
-        silence_account: "%{name} լռեցրեց %{target}ի հաշիւը"
-        suspend_account: "%{name} լռեցրեց %{target}ի հաշիւը"
-        unassigned_report: "%{name} չսահմանուած բողոք %{target}"
-        unsensitive_account: "%{name}ը հեռացրեց %{target}֊ի մեդիայի զգայուն նշումը"
-        unsilence_account: "%{name}֊ը հանեց լռեցումը %{target}֊ի հաշուից"
-        unsuspend_account: "%{name}ը ապակասեցրեց %{target}ի հաշիւը"
-        update_announcement: "%{name}ը թարմացրեց %{target}ի յայտարարութիւնը"
-        update_custom_emoji: "%{name} թարմացրել է %{target} էմոջին"
-        update_domain_block: "%{name}ը թարմացրեց %{target}ի տիրոյթի արգելափակումը"
-        update_status: "%{name}ը թարմացրեց %{target}ի կարգավիճակը"
       deleted_status: "(ջնջուած գրառում)"
       empty: Ոչ մի գրառում չկայ։
       filter_by_action: Զտել ըստ գործողութեան
@@ -361,7 +319,6 @@ hy:
       feature_profile_directory: Օգտատիրոջ մատեան
       feature_registrations: Գրանցումներ
       feature_relay: Ֆեդերացիայի շերտ
-      feature_spam_check: Հակա-սպամ
       feature_timeline_preview: Հոսքի նախադիտում
       features: Յատկանիշներ
       hidden_service: Ֆեդերացիա թաքնուած ծառայութիւնների հետ
@@ -569,7 +526,6 @@ hy:
       title: Օգտատիրոջ գրառումները
       with_media: Մեդիայի հետ
     tags:
-      context: Համատեքստ
       last_active: Վերջին ակտիւութիւնը
       most_popular: Ամէնայայտնի
       most_recent: Վերջին
@@ -595,11 +551,9 @@ hy:
     discovery: Բացայայտում
     localization:
       body: Մաստոդոնը թարգմանուում է կամաւորների կողմից։
-      guide_link: https://crowdin.com/project/mastodon
       guide_link_text: Աջակցել կարող են բոլորը։
     sensitive_content: Զգայուն բովանդակութիւն
   application_mailer:
-    salutation: "%{name},"
     view: Նայել․
     view_profile: Նայել անձնական էջը
     view_status: Նայել գրառումը
@@ -619,9 +573,6 @@ hy:
     logout: Դուրս գալ
     migrate_account: Տեղափոխուել այլ հաշիւ
     or_log_in_with: Կամ մուտք գործել օգտագործելով՝
-    providers:
-      cas: CAS
-      saml: SAML
     register: Գրանցվել
     registration_closed: "%{instance}ը չի ընդունում նոր անդամներ"
     reset_password: Վերականգնել գաղտանաբառը
@@ -650,7 +601,6 @@ hy:
       invalid_signature: անվաւեր Ed25519 բանալի
   date:
     formats:
-      default: "%b %d, %Y"
       with_month_name: "%d %B %Y"
   datetime:
     distance_in_words:
@@ -698,7 +648,6 @@ hy:
       size: Չափը
     blocks: Արգելափակել
     bookmarks: Էջանիշեր
-    csv: CSV
     domain_blocks: Տիրոյթի արգելափակումներ
     lists: Ցանկեր
     mutes: Լռեցրել ես
@@ -823,7 +772,6 @@ hy:
     next: Հաջորդ
     older: Ավելի հին
     prev: Նախորդ
-    truncate: "&hellip;"
   polls:
     errors:
       duration_too_short: շատ կարճ է
@@ -852,38 +800,12 @@ hy:
     activity: Վերջին թութը
     browser: Դիտարկիչ
     browsers:
-      alipay: Alipay
-      blackberry: Blackberry
-      chrome: Chrome
-      edge: Microsoft Edge
-      electron: Electron
-      firefox: Firefox
       generic: Անհայտ դիտարկիչ
-      ie: Internet Explorer
-      micro_messenger: MicroMessenger
-      nokia: Nokia S40 Ovi Browser
-      opera: Opera
-      otter: Otter
-      phantom_js: PhantomJS
-      qq: QQ Browser
-      safari: Safari
-      uc_browser: UCBrowser
-      weibo: Weibo
     description: "%{browser}, %{platform}"
-    ip: IP
     platforms:
-      adobe_air: Adobe Air
       android: Անդրոիդ
-      blackberry: Blackberry
-      chrome_os: ChromeOS
-      firefox_os: Firefox OS
-      ios: iOS
       linux: Լինուքս
-      mac: macOS
       other: անհայտ հարթակ
-      windows: Windows
-      windows_mobile: Windows Mobile
-      windows_phone: Windows Phone
     revoke: Չեղարկել
     title: Սեսսիա
   settings:
@@ -931,7 +853,6 @@ hy:
     show_more: Աւելին
     show_thread: Բացել շղթան
     sign_in_to_participate: Մուտք գործէք՝ զրոյցին միանալու համար
-    title: '%{name}: "%{quote}"'
     visibilities:
       private: Միայն հետեւողներին
       private_long: Հասանելի միայն հետեւորդներին
@@ -1032,10 +953,6 @@ hy:
     contrast: Mastodon (բարձր կոնտրաստով)
     default: Mastodon (Մուգ)
     mastodon-light: Mastodon (Լուսավոր)
-  time:
-    formats:
-      default: "%b %d, %Y, %H:%M"
-      month: "%b %Y"
   two_factor_authentication:
     add: Ավելացնել
     disable: Անջատել
@@ -1071,9 +988,6 @@ hy:
       tip_local_timeline: Տեղական հոսքում երևում են %{instance} հանգոյցի օգտատերի գրառումները։ Նրանք քո հանգոյցի հարևաններն են։
       tips: Հուշումներ
   users:
-    blocked_email_provider: Սույն էլփոստի տրամադրողը արգելված է
-    invalid_email: Էլ․ հասցէն անվաւեր է
-    invalid_email_mx: Այս հասցէն կարծես թէ գոյութիւն չունի
     invalid_otp_token: Անվաւեր 2F կոդ
     invalid_sign_in_token: Անվաւեր անվտանգութեան կոդ
     signed_in_as: Մոտք գործել որպէս․

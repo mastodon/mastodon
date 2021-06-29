@@ -21,7 +21,7 @@ cs:
         action: Potvrdit e-mailovou adresu
         action_with_app: Potvrdit a vrátit se do %{app}
         explanation: S touto e-mailovou adresou jste si již účet na serveru %{host} vytvořili. K jeho aktivaci vám zbývá jedno kliknutí. Pokud jste to nebyli vy, považujte tento e-mail za bezpředmětný.
-        explanation_when_pending: S touto e-mailovou adresou jste si již pozvánku na server %{host} vyžádali. Jakmile svou e-mailovou adresu potvrdíte, vaši žádost posoudíme. Můžete se přihlásit, změnit podrobnosti svého účtu nebo ho smazat, ale do schválení účtu nebudete mít k většině funkcí přístup. Pokud bude vaše žádost zamítnuta, vaše data budou odstraněna, a nebude od vás vyžadována žádná další akce. Pokud jste to nebyli vy, považujte tento e-mail za bezpředmětný.
+        explanation_when_pending: Pro tuto e-mailovou adresu bylo požádáno o pozvánku na %{host}. Jakmile svou e-mailovou adresu potvrdíte, vaši žádost posoudíme. Můžete se přihlásit, změnit podrobnosti svého účtu nebo ho smazat, ale do schválení účtu nebudete mít k většině funkcí přístup. Pokud bude vaše žádost zamítnuta, vaše data budou odstraněna, a nebude od vás vyžadována žádná další akce. Pokud jste to nebyli vy, považujte tento e-mail za bezpředmětný.
         extra_html: Přečtěte si prosím také <a href="%{terms_path}">pravidla tohoto serveru</a> a <a href="%{policy_path}">naše podmínky používání</a>.
         subject: 'Mastodon: Potvrzení účtu na serveru %{instance}'
         title: Potvrďte e-mailovou adresu
@@ -70,8 +70,12 @@ cs:
           subject: 'Mastodon: Bezpečnostní klíč byl smazán'
           title: Jeden z vašich bezpečnostních klíčů byl smazán
       webauthn_disabled:
+        explanation: Pro váš účet bylo vypnuto ověření bezpečnostními klíči. Přihlášení je nyní možné pouze s tokenem vygenerovaným spárovanou TOTP aplikací.
+        subject: 'Mastodon: Přihlašování bezpečnostními klíči vypnuto'
         title: Bezpečnostní klíče zakázány
       webauthn_enabled:
+        explanation: Pro váš účet bylo povoleno ověření bezpečnostními klíči. Nyní můžete svůj bezpečnostní klíč použít pro přihlášení.
+        subject: 'Mastodon: Přihlašování bezpečnostními klíči povoleno'
         title: Bezpečnostní klíče povoleny
     omniauth_callbacks:
       failure: Nelze vás ověřit z %{kind}, protože „%{reason}“.

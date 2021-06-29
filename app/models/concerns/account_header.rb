@@ -22,7 +22,7 @@ module AccountHeader
     has_attached_file :header, styles: ->(f) { header_styles(f) }, convert_options: { all: '-strip' }, processors: [:lazy_thumbnail]
     validates_attachment_content_type :header, content_type: IMAGE_MIME_TYPES
     validates_attachment_size :header, less_than: LIMIT
-    remotable_attachment :header, LIMIT
+    remotable_attachment :header, LIMIT, suppress_errors: false
   end
 
   def header_original_url

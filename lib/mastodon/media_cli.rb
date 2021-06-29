@@ -326,7 +326,7 @@ module Mastodon
       end
 
       preload_map.each_with_object({}) do |(model_name, record_ids), model_map|
-        model_map[model_name] = model_name.constantize.where(id: record_ids).each_with_object({}) { |record, record_map| record_map[record.id] = record }
+        model_map[model_name] = model_name.constantize.where(id: record_ids).index_by(&:id)
       end
     end
   end

@@ -1,5 +1,146 @@
 ---
 tt:
+  about:
+    about_this: Хакында
+    api: API
+    contact_unavailable: Юк
+    privacy_policy: Хосусыйлык сәясәте
+    unavailable_content_description:
+      domain: Сервер
+    user_count_after:
+      other: кулланучы
+  accounts:
+    follow: Языл
+    following: Язылгансыз
+    media: Медиа
+    never_active: Беркайчан да
+    roles:
+      admin: Админ
+      bot: Бот
+      group: Törkem
+    unfollow: Язылынмау
+  admin:
+    account_moderation_notes:
+      delete: Бетерү
+    accounts:
+      avatar: Аватар
+      by_domain: Домен
+      change_email:
+        label: Emailны үзгәртү
+        submit: Emailны үзгәртү
+      confirm: Раслау
+      deleted: Бетерелде
+      domain: Домен
+      edit: Үзгәртү
+      email: Эл. почта
+      header: Башлам
+      ip: ІР
+      location:
+        all: Бөтенесе
+        local: Җирле
+        title: Урын
+      moderation:
+        all: Бөтенесе
+      perform_full_suspension: Искә алмау
+      reset: Ташлату
+      role: Рөхсәтләр
+      roles:
+        user: Кулланучы
+      search: Эзләү
+      sensitive: Sizmäle
+      username: Кулланучы исеме
+      web: Веб
+    custom_emojis:
+      by_domain: Домен
+      copy: Күчереп алу
+      delete: Бетерү
+      disable: Cүндерү
+      disabled: Cүндерелгән
+      enable: Кабызу
+      list: Исемлек
+      upload: Йөкләү
+    dashboard:
+      features: Үзенчәлекләр
+    domain_blocks:
+      domain: Домен
+      new:
+        severity:
+          noop: Бернинди дә
+          suspend: Искә алмау
+      show:
+        undo: Кире алу
+    email_domain_blocks:
+      delete: Бетерү
+      domain: Домен
+    instances:
+      by_domain: Домен
+      moderation:
+        all: Бөтенесе
+    invites:
+      filter:
+        all: Бөтенесе
+        expired: Гамәлдән чыкты
+        title: Sözgeç
+    ip_blocks:
+      delete: Бетерү
+      expires_in:
+        '1209600': 2 атна
+        '15778476': 6 months
+        '2629746': 1 ай
+        '31556952': 1 ел
+        '86400': 1 көн
+        '94670856': 3 ел
+    relays:
+      delete: Бетерү
+      disable: Cүндерү
+      disabled: Cүндерелгән
+      enable: Кабызу
+      status: Халәт
+    reports:
+      comment:
+        none: Бернинди дә
+      notes:
+        create: Язу кушу
+        delete: Бетерү
+      status: Халәт
+      updated_at: Яңартылды
+    statuses:
+      batch:
+        delete: Бетерү
+      deleted: Бетерелде
+      media:
+        title: Медиа
+    warning_presets:
+      delete: Бетерү
+  application_mailer:
+    salutation: "%{name},"
+  auth:
+    change_password: Парол
+    login: Керү
+    providers:
+      cas: САS
+      saml: SАML
+    register: Теркәлү
+    security: Хәвефсезлек
+  authorize_follow:
+    follow: Язылу
+  challenge:
+    confirm: Дәвам итү
+  date:
+    formats:
+      default: "%d %b %Y"
+      with_month_name: "%d %B %Y"
+  datetime:
+    distance_in_words:
+      about_x_hours: "%{count}сәг"
+      about_x_months: "%{count}ай"
+      half_a_minute: Хәзер генә
+      less_than_x_minutes: "%{count}м"
+      less_than_x_seconds: Хәзер генә
+      x_days: "%{count}к"
+      x_minutes: "%{count}м"
+      x_months: "%{count}ай"
+      x_seconds: "%{count}сек"
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
@@ -10,3 +151,107 @@ tt:
     '429': Too many requests
     '500': 
     '503': The page could not be served due to a temporary server failure.
+  exports:
+    archive_takeout:
+      date: Көне
+      size: Olılıq
+    bookmarks: Кыстыргычлар
+    csv: СSV
+  filters:
+    contexts:
+      thread: Әңгәмәләр
+    index:
+      delete: Бетерү
+      title: Сөзгечләр
+  footer:
+    more: Тагы…
+  generic:
+    all: Бөтенесе
+    copy: Күчереп алу
+    delete: Бетерү
+  imports:
+    types:
+      bookmarks: Кыстыргычлар
+    upload: Йөкләү
+  invites:
+    expired: Гамәлдән чыкты
+    expires_in:
+      '1800': 30 минут
+      '21600': 6 сәгать
+      '3600': 1 сәгать
+      '43200': 12 сәгать
+      '604800': 1 атна
+      '86400': 1 көн
+    expires_in_prompt: Беркайчан да
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+  otp_authentication:
+    enable: Кабызу
+  pagination:
+    next: Киләсе
+    prev: Алдыгы
+    truncate: "&hellip;"
+  preferences:
+    other: Башка
+  relationships:
+    following: Язылгансыз
+  sessions:
+    browser: Браузер
+    browsers:
+      alipay: Аlipay
+      blackberry: Blаckberry
+      chrome: Chrоme
+      edge: Microsоft Edge
+      electron: Electrоn
+      firefox: Firеfox
+      ie: Internet Explоrer
+      micro_messenger: MicroMеssenger
+      nokia: Nokia S40 Ovi Brоwser
+      opera: Opеra
+      otter: Ottеr
+      phantom_js: PhаntomJS
+      qq: QQ Brоwser
+      safari: Safаri
+      uc_browser: UCBrоwser
+      weibo: Weibо
+    description: "%{browser} - %{platform}"
+    ip: ІР
+    platforms:
+      adobe_air: Adobе Air
+      android: Andrоid
+      chrome_os: ChromеOS
+      firefox_os: Firеfox OS
+      ios: iОS
+      linux: Lіnux
+      mac: macOS
+      windows: Windоws
+      windows_mobile: Windows Mоbile
+      windows_phone: Windоws Phone
+  settings:
+    account: Хисап язмасы
+    appearance: Küreneş
+    development: Эшләнмә
+    edit_profile: Профильны үзгәртү
+    import: Импортлау
+    preferences: Caylaw
+    profile: Профиль
+  statuses:
+    attached:
+      video:
+        other: "%{count} видео"
+    title: '%{name}: "%{quote}"'
+  time:
+    formats:
+      default: "%d %b %Y, %H:%M"
+      month: "%b %Y"
+  two_factor_authentication:
+    add: Өстәү
+    edit: Үзгәртү
+  user_mailer:
+    warning:
+      title:
+        none: Игътибар
+  webauthn_credentials:
+    delete: Бетерү

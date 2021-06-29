@@ -1,9 +1,9 @@
 .public-account-header{:class => ("inactive" if account.moved?)}
   .public-account-header__image
-    = image_tag (current_account&.user&.setting_auto_play_gif ? account.header_original_url : account.header_static_url), class: 'parallax'
+    = image_tag (prefers_autoplay? ? account.header_original_url : account.header_static_url), class: 'parallax'
   .public-account-header__bar
     = link_to short_account_url(account), class: 'avatar' do
-      = image_tag (current_account&.user&.setting_auto_play_gif ? account.avatar_original_url : account.avatar_static_url), id: 'profile_page_avatar', data: {original: full_asset_url(account.avatar_original_url), static: full_asset_url(account.avatar_static_url), autoplay: current_account&.user&.setting_auto_play_gif}
+      = image_tag (prefers_autoplay? ? account.avatar_original_url : account.avatar_static_url), id: 'profile_page_avatar', data: { original: full_asset_url(account.avatar_original_url), static: full_asset_url(account.avatar_static_url), autoplay: prefers_autoplay? }
     .public-account-header__tabs
       .public-account-header__tabs__name
         %h1
