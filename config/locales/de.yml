@@ -1003,6 +1003,17 @@ de:
   lists:
     errors:
       limit: Du hast die maximale Anzahl an Listen erreicht
+  login_activities:
+    authentication_methods:
+      otp: Zwei-Faktor-Authentifizierung-App
+      password: Passwort
+      sign_in_token: E-Mail Sicherheitscode
+      webauthn: Sicherheitsschlüssel
+    description_html: Wenn du Aktivitäten siehst, die du nicht erkennst, solltest du dein Passwort ändern und die Zwei-Faktor-Authentifizierung aktivieren.
+    empty: Kein Authentifizierungsverlauf verfügbar
+    failed_sign_in_html: Fehler beim Anmeldeversuch mit %{method} von %{ip} (%{browser})
+    successful_sign_in_html: Erfolgreiche Anmeldung mit %{method} von %{ip} (%{browser})
+    title: Authentifizierungsverlauf
   media_attachments:
     validations:
       images_and_video: Es kann kein Video an einen Beitrag, der bereits Bilder enthält, angehängt werden
@@ -1209,6 +1220,7 @@ de:
     revoke: Schließen
     revoke_success: Sitzung erfolgreich geschlossen
     title: Sitzungen
+    view_authentication_history: Authentifizierungsverlauf deines Kontos anzeigen
   settings:
     account: Konto
     account_settings: Konto & Sicherheit
