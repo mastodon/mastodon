@@ -569,7 +569,7 @@ GEM
       sidekiq (>= 3)
       thwait
       tilt (>= 1.4.0)
-    sidekiq-unique-jobs (7.0.12)
+    sidekiq-unique-jobs (7.1.1)
       brpoplpush-redis_script (> 0.1.1, <= 2.0.0)
       concurrent-ruby (~> 1.0, >= 1.0.5)
       sidekiq (>= 5.0, < 7.0)
@@ -777,7 +777,7 @@ DEPENDENCIES
   sidekiq (~> 6.2)
   sidekiq-bulk (~> 0.2.0)
   sidekiq-scheduler (~> 3.1)
-  sidekiq-unique-jobs (~> 7.0)
+  sidekiq-unique-jobs (~> 7.1)
   simple-navigation (~> 4.3)
   simple_form (~> 5.1)
   simplecov (~> 0.21)
