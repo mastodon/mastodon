@@ -627,16 +627,6 @@ module Mastodon
       ActiveRecord::Base.connection.select_all("SELECT string_agg(id::text, ',') AS ids FROM accounts GROUP BY lower(username), COALESCE(lower(domain), '') HAVING count(*) > 1")
     end
 
-    desc 'mark-media-missing', 'Clears references to locally-stored remote media.'
-    long_desc <<~LONG_DESC
-      Clears references to file and thumbnails stored locally that originated remotely.
-
-      This is useful if you are restoring a backup without the cache and need Mastodon to fetch remote media again.
-    LONG_DESC
-    def mark_media_missing
-     MediaAttachment.cached.where.not(remote_url: '').each { |f| f.file.destroy; f.thumbnail.destroy; f.save }
-    end
-
     def remove_index_if_exists!(table, name)
       ActiveRecord::Base.connection.remove_index(table, name: name)
     rescue ArgumentError
