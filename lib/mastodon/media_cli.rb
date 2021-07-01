@@ -184,6 +184,16 @@ module Mastodon
       say("Removed #{removed} orphans (approx. #{number_to_human_size(reclaimed_bytes)})#{dry_run}", :green, true)
     end
 
+    desc 'mark-media-missing', 'Clears references to remote media which has been stored locally'
+    long_desc <<~DESC
+      Clears references to file and thumbnails stored locally that originated remotely.
+
+      This is useful if you are restoring a backup without the cache and need Mastodon to fetch remote media again.
+    DESC
+    def mark_media_missing
+     MediaAttachment.cached.where.not(remote_url: '').each { |f| f.file.destroy; f.thumbnail.destroy; f.save }
+    end
+
     option :account, type: :string
     option :domain, type: :string
     option :status, type: :numeric
@@ -328,16 +338,6 @@ module Mastodon
       preload_map.each_with_object({}) do |(model_name, record_ids), model_map|
         model_map[model_name] = model_name.constantize.where(id: record_ids).index_by(&:id)
       end
-    end
-
-    desc 'mark-media-missing', 'Clears references to remote media which has been stored locally'
-    long_desc <<~LONG_DESC
-      Clears references to file and thumbnails stored locally that originated remotely.
-
-      This is useful if you are restoring a backup without the cache and need Mastodon to fetch remote media again.
-    LONG_DESC
-    def mark_media_missing
-     MediaAttachment.cached.where.not(remote_url: '').each { |f| f.file.destroy; f.thumbnail.destroy; f.save }
     end
 
   end
