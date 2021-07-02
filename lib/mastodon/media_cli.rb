@@ -339,6 +339,5 @@ module Mastodon
         model_map[model_name] = model_name.constantize.where(id: record_ids).index_by(&:id)
       end
     end
-
   end
 end
