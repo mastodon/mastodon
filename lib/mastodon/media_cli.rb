@@ -191,7 +191,7 @@ module Mastodon
       This is useful if you are restoring a backup without the cache and need Mastodon to fetch remote media again.
     DESC
     def mark_media_missing
-      MediaAttachment.cached.where.not(remote_url: '').each do |attachment| 
+      MediaAttachment.cached.where.not(remote_url: '').each do |attachment|
         attachment.file.destroy
         attachment.thumbnail.destroy
         attachment.save
