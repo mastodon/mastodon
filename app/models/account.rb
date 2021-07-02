@@ -572,7 +572,11 @@ class Account < ApplicationRecord
   def create_canonical_email_block!
     return unless local? && user_email.present?
 
-    CanonicalEmailBlock.create(reference_account: self, email: user_email)
+    begin
+      CanonicalEmailBlock.create(reference_account: self, email: user_email)
+    rescue ActiveRecord::RecordNotUnique
+      # A canonical e-mail block may already exist for the same e-mail
+    end
   end
 
   def destroy_canonical_email_block!
