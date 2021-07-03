@@ -1129,6 +1129,20 @@
   resolved "https://registry.yarnpkg.com/@github/webauthn-json/-/webauthn-json-0.5.7.tgz#143bc67f6e0f75f8d188e565741507bb08c31214"
   integrity sha512-SUYsttDxFSvWvvJssJpwzjmRCqYfdfqC9VCmAHQYfdKCVelyJteCHo9/lK1CB72mx/jrl6cFNY08aua4J2jIyg==
 
+"@humanwhocodes/config-array@^0.5.0":
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/@humanwhocodes/config-array/-/config-array-0.5.0.tgz#1407967d4c6eecd7388f83acf1eaf4d0c6e58ef9"
+  integrity sha512-FagtKFz74XrTl7y6HCzQpwDfXP0yhxe9lHLD1UZxjvZIcbyRz8zTFF/yYNfSfzU414eDwZ1SrO0Qvtyf+wFMQg==
+  dependencies:
+    "@humanwhocodes/object-schema" "^1.2.0"
+    debug "^4.1.1"
+    minimatch "^3.0.4"
+
+"@humanwhocodes/object-schema@^1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@humanwhocodes/object-schema/-/object-schema-1.2.0.tgz#87de7af9c231826fdd68ac7258f77c429e0e5fcf"
+  integrity sha512-wdppn25U8z/2yiaT6YGquE6X8sSv7hNMWSXYSSU1jGv/yd6XqjXgTDJ8KP4NgjTXfJ3GbRjeeb8RTV7a/VpM+w==
+
 "@istanbuljs/load-nyc-config@^1.0.0":
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/@istanbuljs/load-nyc-config/-/load-nyc-config-1.1.0.tgz#fd3db1d59ecf7cf121e80650bb86712f9b55eced"
@@ -1370,10 +1384,10 @@
   resolved "https://registry.yarnpkg.com/@polka/url/-/url-1.0.0-next.11.tgz#aeb16f50649a91af79dbe36574b66d0f9e4d9f71"
   integrity sha512-3NsZsJIA/22P3QUyrEDNA2D133H4j224twJrdipXN38dpnIOzAbUDtOwkcJ5pXmn75w7LSQDjA4tO9dm1XlqlA==
 
-"@rails/ujs@^6.1.3":
-  version "6.1.3"
-  resolved "https://registry.yarnpkg.com/@rails/ujs/-/ujs-6.1.3.tgz#90ef26caa0925492b1a3b1495db09cfbe49e745e"
-  integrity sha512-9mip5o+LVouWAqLMNJWhxda+D5uP+4RziNECgOGJlL6k3rc5SC/ljCHpV9Cym4i3oeGZkpZJ2tu4frCwt84kzQ==
+"@rails/ujs@^6.1.4":
+  version "6.1.4"
+  resolved "https://registry.yarnpkg.com/@rails/ujs/-/ujs-6.1.4.tgz#093d5341595a02089ed309dec40f3c37da7b1b10"
+  integrity sha512-O3lEzL5DYbxppMdsFSw36e4BHIlfz/xusynwXGv3l2lhSlvah41qviRpsoAlKXxl37nZAqK+UUF5cnGGK45Mfw==
 
 "@sinonjs/commons@^1.7.0":
   version "1.8.1"
@@ -4436,13 +4450,14 @@ eslint@^2.7.0:
     text-table "~0.2.0"
     user-home "^2.0.0"
 
-eslint@^7.29.0:
-  version "7.29.0"
-  resolved "https://registry.yarnpkg.com/eslint/-/eslint-7.29.0.tgz#ee2a7648f2e729485e4d0bd6383ec1deabc8b3c0"
-  integrity sha512-82G/JToB9qIy/ArBzIWG9xvvwL3R86AlCjtGw+A29OMZDqhTybz/MByORSukGxeI+YPCR4coYyITKk8BFH9nDA==
+eslint@^7.30.0:
+  version "7.30.0"
+  resolved "https://registry.yarnpkg.com/eslint/-/eslint-7.30.0.tgz#6d34ab51aaa56112fd97166226c9a97f505474f8"
+  integrity sha512-VLqz80i3as3NdloY44BQSJpFw534L9Oh+6zJOUaViV4JPd+DaHwutqP7tcpkW3YiXbK6s05RZl7yl7cQn+lijg==
   dependencies:
     "@babel/code-frame" "7.12.11"
     "@eslint/eslintrc" "^0.4.2"
+    "@humanwhocodes/config-array" "^0.5.0"
     ajv "^6.10.0"
     chalk "^4.0.0"
     cross-spawn "^7.0.2"
