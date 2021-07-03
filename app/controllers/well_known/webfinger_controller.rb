@@ -38,10 +38,12 @@ module WellKnown
     end
 
     def bad_request
+      expires_in(3.minutes, public: true)
       head 400
     end
 
     def not_found
+      expires_in(3.minutes, public: true)
       head 404
     end
 
