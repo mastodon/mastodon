@@ -504,7 +504,7 @@ export function selectComposeSuggestion(position, token, suggestion, path) {
     }
 
     // We don't want to replace hashtags that vary only in case due to accessibility, but we need to fire off an event so that
-      // the suggestions are dismissed and the cursor moves forward.
+    // the suggestions are dismissed and the cursor moves forward.
     if (suggestion.type !== 'hashtag' || token.slice(1).localeCompare(suggestion.name, undefined, { sensitivity: 'accent' }) !== 0) {
       dispatch({
         type: COMPOSE_SUGGESTION_SELECT,
@@ -514,13 +514,10 @@ export function selectComposeSuggestion(position, token, suggestion, path) {
         path,
       });
     } else {
-      console.log("sending ignore");
       dispatch({
         type: COMPOSE_SUGGESTION_IGNORE,
         position: startPosition,
         token,
-        completion,
-        path,
       });
     }
   };

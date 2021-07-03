@@ -156,7 +156,7 @@ const insertSuggestion = (state, position, token, completion, path) => {
   });
 };
 
-const ignoreSuggestion = (state, position, token, completion, path) => {
+const ignoreSuggestion = (state, position, token) => {
   return state.withMutations(map => {
     map.set('suggestion_token', null);
     map.set('suggestions', ImmutableList());
