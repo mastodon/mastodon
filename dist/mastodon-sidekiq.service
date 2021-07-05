@@ -9,6 +9,7 @@ WorkingDirectory=/home/mastodon/live
 Environment="RAILS_ENV=production"
 Environment="DB_POOL=25"
 Environment="MALLOC_ARENA_MAX=2"
+Environment="LD_PRELOAD=libjemalloc.so"
 ExecStart=/home/mastodon/.rbenv/shims/bundle exec sidekiq -c 25
 TimeoutSec=15
 Restart=always
