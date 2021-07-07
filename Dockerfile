@@ -26,7 +26,7 @@ RUN ARCH= && \
 	mv node-v$NODE_VER-linux-$ARCH /opt/node
 
 # Install Ruby
-ENV RUBY_VER="2.7.2"
+ENV RUBY_VER="2.7.4"
 RUN apt-get update && \
   apt-get install -y --no-install-recommends build-essential \
     bison libyaml-dev libgdbm-dev libreadline-dev libjemalloc-dev \
