@@ -118,6 +118,7 @@ is:
       demote: Lækka í tign
       destroyed_msg: "Gögn notandans %{username} eru núna í bið eftir að vera endanlega eytt"
       disable: Gera óvirkt
+      disable_sign_in_token_auth: Gera óvirka auðkenningu með teikni í tölvupósti
       disable_two_factor_authentication: Gera tveggja-þátta auðkenningu óvirka
       disabled: Óvirkt
       display_name: Birtingarnafn
@@ -126,6 +127,7 @@ is:
       email: Tölvupóstfang
       email_status: Staða tölvupósts
       enable: Virkja
+      enable_sign_in_token_auth: Virkja auðkenningu með teikni í tölvupósti
       enabled: Virkt
       enabled_msg: Tókst að affrysta aðgang notandans %{username}
       followers: Fylgjendur
@@ -190,6 +192,10 @@ is:
       search: Leita
       search_same_email_domain: Aðra notendur með sama tölvupóstlén
       search_same_ip: Aðrir notendur með sama IP-vistfang
+      security_measures:
+        only_password: Aðeins lykilorð
+        password_and_2fa: Lykilorð og 2-þátta auðkenning
+        password_and_sign_in_token: Lykilorð og teikn í tölvupósti
       sensitive: Viðkvæmt
       sensitized: merkt sem viðkvæmt
       shared_inbox_url: Slóð á sameiginlegt innhólf
@@ -241,8 +247,10 @@ is:
         destroy_unavailable_domain: Eyða léni sem ekki er tiltækt
         disable_2fa_user: Gera tveggja-þátta auðkenningu óvirka
         disable_custom_emoji: Gera sérsniðið tjáningartákn óvirkt
+        disable_sign_in_token_auth_user: Gera óvirka auðkenningu með teikni í tölvupósti fyrir notandann
         disable_user: Gera notanda óvirkan
         enable_custom_emoji: Virkja sérsniðið tjáningartákn
+        enable_sign_in_token_auth_user: Gera virka auðkenningu með teikni í tölvupósti fyrir notandann
         enable_user: Virkja notanda
         memorialize_account: Gera aðgang að minningargrein
         promote_user: Hækka notanda í tign
@@ -284,8 +292,10 @@ is:
         destroy_unavailable_domain_html: "%{name} hóf aftur afhendingu til lénsins %{target}"
         disable_2fa_user_html: "%{name} gerði kröfu um tveggja-þátta innskráningu óvirka fyrir notandann %{target}"
         disable_custom_emoji_html: "%{name} gerði tjáningartáknið %{target} óvirkt"
+        disable_sign_in_token_auth_user_html: "%{name} gerði óvirka auðkenningu með teikni í tölvupósti fyrir %{target}"
         disable_user_html: "%{name} gerði innskráningu óvirka fyrir notandann %{target}"
         enable_custom_emoji_html: "%{name} gerði tjáningartáknið %{target} virkt"
+        enable_sign_in_token_auth_user_html: "%{name} gerði virka auðkenningu með teikni í tölvupósti fyrir %{target}"
         enable_user_html: "%{name} gerði innskráningu virka fyrir notandann %{target}"
         memorialize_account_html: "%{name} breytti notandaaðgangnum %{target} í minningargreinarsíðu"
         promote_user_html: "%{name} hækkaði notandann %{target} í tign"
