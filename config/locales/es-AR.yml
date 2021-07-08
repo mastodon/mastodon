@@ -118,6 +118,7 @@ es-AR:
       demote: Bajar de nivel
       destroyed_msg: "Los datos de %{username} están ahora en cola para ser eliminados inminentemente"
       disable: Congelar
+      disable_sign_in_token_auth: Deshabilitar autenticación de token por correo electrónico
       disable_two_factor_authentication: Deshabilitar 2FA
       disabled: Congelada
       display_name: Nombre para mostrar
@@ -126,6 +127,7 @@ es-AR:
       email: Correo electrónico
       email_status: Estado del correo
       enable: Descongelar
+      enable_sign_in_token_auth: Habilitar autenticación de token por correo electrónico
       enabled: Habilitada
       enabled_msg: Se descongeló exitosamente la cuenta de %{username}
       followers: Seguidores
@@ -190,6 +192,10 @@ es-AR:
       search: Buscar
       search_same_email_domain: Otros usuarios con el mismo dominio de correo electrónico
       search_same_ip: Otros usuarios con la misma dirección IP
+      security_measures:
+        only_password: Sólo contraseña
+        password_and_2fa: Contraseña y 2FA
+        password_and_sign_in_token: Contraseña y token por correo electrónico
       sensitive: Sensible
       sensitized: marcado como sensible
       shared_inbox_url: Dirección web de la bandeja de entrada compartida
@@ -241,8 +247,10 @@ es-AR:
         destroy_unavailable_domain: Eliminar dominio no disponible
         disable_2fa_user: Deshabilitar 2FA
         disable_custom_emoji: Deshabilitar emoji personalizado
+        disable_sign_in_token_auth_user: Deshabilitar autenticación de token por correo electrónico para el usuario
         disable_user: Deshabilitar usuario
         enable_custom_emoji: Habilitar emoji personalizado
+        enable_sign_in_token_auth_user: Habilitar autenticación de token por correo electrónico para el usuario
         enable_user: Habilitar usuario
         memorialize_account: Convertir en cuenta conmemorativa
         promote_user: Promover usuario
