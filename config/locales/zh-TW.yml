@@ -465,10 +465,18 @@ zh-TW:
       by_domain: 站台
       delivery:
         all: 所有
-        clear: 清除傳送錯誤
-        restart: 重新啟動傳送
+        clear: 清除遞送錯誤
+        restart: 重新啟動遞送
+        stop: 停止遞送
+        title: 遞送
+        unavailable: 無法使用
+        unavailable_message: 無法使用遞送
         warning: 警告
+        warning_message:
+          other: 遞送失敗 %{count} 天
       delivery_available: 可傳送
+      delivery_error_days: 遞送失敗天數
+      delivery_error_hint: 若 %{count} 日皆無法遞送 ，則會自動標記無法遞送。
       empty: 找不到網域
       known_accounts:
         other: "%{count} 已知的帳戶"
@@ -568,7 +576,9 @@ zh-TW:
     rules:
       add_new: 新增規則
       delete: 刪除
+      description_html: 雖然大多數人皆宣稱已閱讀並同意服務條款，通常直到某些問題發生時人們從未讀過。<strong>以透過提供條列式規則的方式讓您的伺服器規則可以一目了然。</strong>試著維持各項條款簡短而明瞭，但也試著不要將條款切割為許多分開的項目。
       edit: 編輯規則
+      empty: 未曾定義任何伺服器規則
       title: 伺服器規則
     settings:
       activity_api_enabled:
@@ -704,6 +714,7 @@ zh-TW:
       add_new: 新增
       delete: 刪除
       edit_preset: 編輯預設警告
+      empty: 您未曾定義任何預設警告
       title: 管理預設警告
   admin_mailer:
     new_pending_account:
@@ -1206,6 +1217,7 @@ zh-TW:
     sign_in_to_participate: 登入以加入討論
     title: '%{name}：「%{quote}」'
     visibilities:
+      direct: 私訊
       private: 僅關注者
       private_long: 只有關注你的人能看到
       public: 公開
