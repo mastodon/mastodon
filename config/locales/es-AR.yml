@@ -43,7 +43,7 @@ es-AR:
       rejecting_media: 'Los archivos de medios de este servidor no van a ser procesados y no se mostrarán miniaturas, lo que requiere un clic manual hacia el archivo original:'
       rejecting_media_title: Medios filtrados
       silenced: 'Los mensajes de estos servidores se ocultarán en las líneas temporales y conversaciones públicas, y no se generarán notificaciones de las interacciones de sus usuarios, a menos que los estés siguiendo:'
-      silenced_title: Servidores silenciados
+      silenced_title: Servidores limitados
       suspended: 'No se procesarán, almacenarán o intercambiarán datos de estos servidores, haciendo imposible cualquier interacción o comunicación con los usuarios de estos servidores:'
       suspended_title: Servidores suspendidos
     unavailable_content_html: Mastodon generalmente te permite ver contenido e interactuar con usuarios de cualquier otro servidor en el fediverso. Estas son las excepciones que se hicieron en este servidor en particular.
@@ -152,7 +152,7 @@ es-AR:
         active: Activas
         all: Todas
         pending: Pendientes
-        silenced: Silenciadas
+        silenced: Limitadas
         suspended: Suspendidas
         title: Moderación
       moderation_notes: Notas de moderación
@@ -196,8 +196,8 @@ es-AR:
         only_password: Sólo contraseña
         password_and_2fa: Contraseña y 2FA
         password_and_sign_in_token: Contraseña y token por correo electrónico
-      sensitive: Sensible
-      sensitized: marcado como sensible
+      sensitive: Forzar como sensible
+      sensitized: Marcado como sensible
       shared_inbox_url: Dirección web de la bandeja de entrada compartida
       show:
         created_reports: Denuncias hechas
@@ -212,8 +212,8 @@ es-AR:
       time_in_queue: Esperando en cola %{time}
       title: Cuentas
       unconfirmed_email: Correo electrónico sin confirmar
-      undo_sensitized: Deshacer marcado como sensible
-      undo_silenced: Deshacer silenciado
+      undo_sensitized: Deshacer Forzar como sensible
+      undo_silenced: Deshacer límite
       undo_suspension: Deshacer suspensión
       unsilenced_msg: Se quitó exitosamente el límite de la cuenta de %{username}
       unsubscribe: Desuscribirse
@@ -258,12 +258,12 @@ es-AR:
         reopen_report: Reabrir denuncia
         reset_password_user: Cambiar contraseña
         resolve_report: Resolver denuncia
-        sensitive_account: Marcar los medios en tu cuenta como sensibles
-        silence_account: Silenciar cuenta
+        sensitive_account: Forzar cuenta como sensible
+        silence_account: Limitar cuenta
         suspend_account: Suspender cuenta
         unassigned_report: Desasignar denuncia
-        unsensitive_account: Desmarcar los medios en tu cuenta como sensibles
-        unsilence_account: Dejar de silenciar cuenta
+        unsensitive_account: Desmarcar Forzar cuenta como sensible
+        unsilence_account: Deshacer Limitar cuenta
         unsuspend_account: Dejar de suspender cuenta
         update_announcement: Actualizar anuncio
         update_custom_emoji: Actualizar emoji personalizado
@@ -292,8 +292,10 @@ es-AR:
         destroy_unavailable_domain_html: "%{name} reanudó la entrega al dominio %{target}"
         disable_2fa_user_html: "%{name} deshabilitó el requerimiento de dos factores para el usuario %{target}"
         disable_custom_emoji_html: "%{name} deshabilitó el emoji %{target}"
+        disable_sign_in_token_auth_user_html: "%{name} deshabilitó la autenticación de token por correo electrónico para %{target}"
         disable_user_html: "%{name} deshabilitó el inicio de sesión para el usuario %{target}"
         enable_custom_emoji_html: "%{name} habilitó el emoji %{target}"
+        enable_sign_in_token_auth_user_html: "%{name} habilitó la autenticación de token por correo electrónico para %{target}"
         enable_user_html: "%{name} habilitó el inicio de sesión para el usuario %{target}"
         memorialize_account_html: "%{name} convirtió la cuenta de %{target} en una cuenta conmemorativa"
         promote_user_html: "%{name} promovió al usuario %{target}"
@@ -302,11 +304,11 @@ es-AR:
         reset_password_user_html: "%{name} cambió la contraseña del usuario %{target}"
         resolve_report_html: "%{name} resolvió la denuncia %{target}"
         sensitive_account_html: "%{name} marcó los medios de %{target} como sensibles"
-        silence_account_html: "%{name} silenció la cuenta de %{target}"
+        silence_account_html: "%{name} limitó la cuenta de %{target}"
         suspend_account_html: "%{name} suspendió la cuenta de %{target}"
         unassigned_report_html: "%{name} desasignó la denuncia %{target}"
         unsensitive_account_html: "%{name} desmarcó los medios de %{target} como sensibles"
-        unsilence_account_html: "%{name} quitó el silenciado de la cuenta de %{target}"
+        unsilence_account_html: "%{name} quitó el límite de la cuenta de %{target}"
         unsuspend_account_html: "%{name} quitó la suspensión de la cuenta de %{target}"
         update_announcement_html: "%{name} actualizó el anuncio %{target}"
         update_custom_emoji_html: "%{name} actualizó el emoji %{target}"
@@ -428,14 +430,14 @@ es-AR:
       rejecting_media: rechazo de archivos de medios
       rejecting_reports: rechazo de denuncias
       severity:
-        silence: silenciados
+        silence: limitados
         suspend: suspendidos
       show:
         affected_accounts:
           one: Una cuenta afectada en la base de datos
           other: "%{count} cuentas afectadas en la base de datos"
         retroactive:
-          silence: Quitar silenciado de las cuentas existentes afectadas de este dominio
+          silence: Quitar límite de las cuentas existentes afectadas de este dominio
           suspend: Quitar suspensión de las cuentas existentes afectadas de este dominio
         title: Deshacer el bloqueo de dominio para %{domain}
         undo: Deshacer
