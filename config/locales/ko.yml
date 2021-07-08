@@ -992,6 +992,17 @@ ko:
   lists:
     errors:
       limit: 리스트 최대치에 도달했습니다
+  login_activities:
+    authentication_methods:
+      otp: 2단계 인증 앱
+      password: 암호
+      sign_in_token: 이메일 보안 코드
+      webauthn: 보안 키
+    description_html: 확인되지 않은 활동이 보인다면, 암호를 바꾸거나 2단계 인증을 활성화 하는 것을 고려해 보세요.
+    empty: 인증 이력이 존재하지 않습니다
+    failed_sign_in_html: 실패한 로그인 시도 %{method} %{ip} (%{browser})
+    successful_sign_in_html: 성공한 로그인 시도 %{method} %{ip} (%{browser})
+    title: 인증 이력
   media_attachments:
     validations:
       images_and_video: 이미 사진이 첨부 된 게시물엔 동영상을 첨부 할 수 없습니다
@@ -1196,6 +1207,7 @@ ko:
     revoke: 삭제
     revoke_success: 세션이 성공적으로 삭제되었습니다
     title: 세션
+    view_authentication_history: 내 계정에 대한 인증 이력 보기
   settings:
     account: 계정
     account_settings: 계정 설정
