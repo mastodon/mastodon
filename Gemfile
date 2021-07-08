@@ -24,7 +24,7 @@ gem 'paperclip', '~> 6.0'
 gem 'blurhash', '~> 0.1'
 
 gem 'active_model_serializers', '~> 0.10'
-gem 'addressable', '~> 2.7'
+gem 'addressable', '~> 2.8'
 gem 'bootsnap', '~> 1.6.0', require: false
 gem 'browser'
 gem 'charlock_holmes', '~> 0.7.7'
