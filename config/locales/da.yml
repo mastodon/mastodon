@@ -118,6 +118,7 @@ da:
       demote: Degradér
       destroyed_msg: "%{username}s data er nu i kø til straks at blive slettet"
       disable: Frys
+      disable_sign_in_token_auth: Deaktivér e-mailtokengodkendelse
       disable_two_factor_authentication: Deaktivér 2FA
       disabled: Frosset
       display_name: Visningsnavn
@@ -126,6 +127,7 @@ da:
       email: E-mail
       email_status: E-mailstatus
       enable: Optø
+      enable_sign_in_token_auth: Aktivér e-mailtokengodkendelse
       enabled: Aktiveret
       enabled_msg: '%{username}s konto er optøet'
       followers: Følgere
@@ -190,6 +192,10 @@ da:
       search: Søg
       search_same_email_domain: Andre brugere med det samme e-maildomæne
       search_same_ip: Andre brugere med den samme IP
+      security_measures:
+        only_password: Kun adgangskode
+        password_and_2fa: Adgangskode og 2FA
+        password_and_sign_in_token: Adgangskode og e-mailtoken
       sensitive: Sensitivt
       sensitized: markeret som sensitivt
       shared_inbox_url: Delt indbakke-URL
@@ -241,8 +247,10 @@ da:
         destroy_unavailable_domain: Slet Utilgængeligt Domæne
         disable_2fa_user: Deaktivér 2FA
         disable_custom_emoji: Deaktivér tilpasset emoji
+        disable_sign_in_token_auth_user: Deaktivér e-mailtokengodkendelse for bruger
         disable_user: Deaktivér bruger
         enable_custom_emoji: Aktivér tilpasset emoji
+        enable_sign_in_token_auth_user: Aktivér e-mailtokengodkendelse for bruger
         enable_user: Aktivér brugeren
         memorialize_account: Gør til mindekonto
         promote_user: Promovér bruger
@@ -284,8 +292,10 @@ da:
         destroy_unavailable_domain_html: "%{name} genoptog levering til domænet %{target}"
         disable_2fa_user_html: "%{name} deaktiverede tofaktorkravet for brugeren %{target}"
         disable_custom_emoji_html: "%{name} deaktiverede humørikonet %{target}"
+        disable_sign_in_token_auth_user_html: "%{name} deaktiverede e-mailtokengodkendelse for %{target}"
         disable_user_html: "%{name} deaktiverede indlogning for brugeren %{target}"
         enable_custom_emoji_html: "%{name} aktiverede humørikonet %{target}"
+        enable_sign_in_token_auth_user_html: "%{name} aktiverede e-mailtokengodkendelse for %{target}"
         enable_user_html: "%{name} aktiverede indlogning for brugeren %{target}"
         memorialize_account_html: "%{name} gjorde %{target}s konto til en mindeside"
         promote_user_html: "%{name} forfremmede brugeren %{target}"
