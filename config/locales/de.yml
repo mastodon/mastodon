@@ -118,6 +118,7 @@ de:
       demote: Degradieren
       destroyed_msg: "%{username}'s Daten wurden zum Löschen in die Warteschlange eingereiht"
       disable: Ausschalten
+      disable_sign_in_token_auth: Deaktiviere die Zwei-Faktor-Authentifizierung per E-Mail
       disable_two_factor_authentication: 2FA abschalten
       disabled: Ausgeschaltet
       display_name: Anzeigename
@@ -126,6 +127,7 @@ de:
       email: E-Mail
       email_status: E-Mail-Status
       enable: Freischalten
+      enable_sign_in_token_auth: Aktiviere die Zwei-Faktor-Authentifizierung per E-Mail
       enabled: Freigegeben
       enabled_msg: '%{username}''s Konto erfolgreich freigegeben'
       followers: Folgende
@@ -190,6 +192,10 @@ de:
       search: Suche
       search_same_email_domain: Andere Benutzer mit der gleichen E-Mail-Domain
       search_same_ip: Andere Benutzer mit derselben IP
+      security_measures:
+        only_password: Nur Passwort
+        password_and_2fa: Passwort und 2FA
+        password_and_sign_in_token: Passwort und E-Mail-Token
       sensitive: NSFW
       sensitized: Als NSFW markieren
       shared_inbox_url: Geteilte Posteingang-URL
@@ -241,8 +247,10 @@ de:
         destroy_unavailable_domain: Nicht verfügbare Domain löschen
         disable_2fa_user: 2FA deaktivieren
         disable_custom_emoji: Benutzerdefiniertes Emoji deaktivieren
+        disable_sign_in_token_auth_user: Zwei-Faktor-Authentifizierung per E-Mail für den Nutzer deaktiviert
         disable_user: Benutzer deaktivieren
         enable_custom_emoji: Benutzerdefiniertes Emoji aktivieren
+        enable_sign_in_token_auth_user: Zwei-Faktor-Authentifizierung per E-Mail für den Nutzer aktiviert
         enable_user: Benutzer aktivieren
         memorialize_account: Account deaktivieren
         promote_user: Benutzer befördern
@@ -284,8 +292,10 @@ de:
         destroy_unavailable_domain_html: "%{name} setzte die Lieferung an die Domain %{target} fort"
         disable_2fa_user_html: "%{name} hat Zwei-Faktor-Anforderung für Benutzer_in %{target} deaktiviert"
         disable_custom_emoji_html: "%{name} hat das %{target} Emoji deaktiviert"
+        disable_sign_in_token_auth_user_html: "%{name} hat die E-Mail-Token Authentifizierung für %{target} deaktiviert"
         disable_user_html: "%{name} hat Zugang von Benutzer_in %{target} deaktiviert"
         enable_custom_emoji_html: "%{name} hat das %{target} Emoji aktiviert"
+        enable_sign_in_token_auth_user_html: "%{name} hat die E-Mail-Token Authentifizierung für %{target} aktiviert"
         enable_user_html: "%{name} hat Zugang von Benutzer_in %{target} aktiviert"
         memorialize_account_html: "%{name} hat das Konto von %{target} in eine Gedenkseite umgewandelt"
         promote_user_html: "%{name} hat %{target} befördert"
