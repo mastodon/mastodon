@@ -15,12 +15,12 @@ describe Admin::TwoFactorAuthenticationsController do
         user.update(otp_required_for_login: true)
       end
 
-      it 'redirects to admin accounts page' do
+      it 'redirects to admin account page' do
         delete :destroy, params: { user_id: user.id }
 
         user.reload
         expect(user.otp_enabled?).to eq false
-        expect(response).to redirect_to(admin_accounts_path)
+        expect(response).to redirect_to(admin_account_path(user.account_id))
       end
     end
 
@@ -38,13 +38,13 @@ describe Admin::TwoFactorAuthenticationsController do
                   nickname: 'Security Key')
       end
 
-      it 'redirects to admin accounts page' do
+      it 'redirects to admin account page' do
         delete :destroy, params: { user_id: user.id }
 
         user.reload
         expect(user.otp_enabled?).to eq false
         expect(user.webauthn_enabled?).to eq false
-        expect(response).to redirect_to(admin_accounts_path)
+        expect(response).to redirect_to(admin_account_path(user.account_id))
       end
     end
   end
