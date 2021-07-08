@@ -118,6 +118,7 @@ hu:
       demote: Lefokozás
       destroyed_msg: "A %{username} fiók adatai bekerültek a végleges törlése váró sorba"
       disable: Kikapcsolás
+      disable_sign_in_token_auth: Tokenes e-mail hitelesítés letiltása
       disable_two_factor_authentication: Kétlépcsős hitelesítés kikapcsolása
       disabled: Kikapcsolva
       display_name: Megjelenített név
@@ -126,6 +127,7 @@ hu:
       email: E-mail
       email_status: E-mail állapot
       enable: Bekapcsolás
+      enable_sign_in_token_auth: Tokenes e-mail hitelesítés engedélyezése
       enabled: Bekapcsolva
       enabled_msg: A %{username} fiók fagyasztását sikeresen visszavontuk
       followers: Követő
@@ -190,6 +192,10 @@ hu:
       search: Keresés
       search_same_email_domain: Felhasználók ugyanezzel az email domainnel
       search_same_ip: Más felhasználók ugyanezzel az IP-vel
+      security_measures:
+        only_password: Csak jelszó
+        password_and_2fa: Jelszó és kétlépcsős hitelesítés
+        password_and_sign_in_token: Jelszó és e-mail token
       sensitive: Kényes
       sensitized: kényesnek jelölve
       shared_inbox_url: Megosztott bejövő üzenetek URL
@@ -241,8 +247,10 @@ hu:
         destroy_unavailable_domain: Elérhetetlen domain törlése
         disable_2fa_user: Kétlépcsős hitelesítés letiltása
         disable_custom_emoji: Egyéni emodzsi letiltása
+        disable_sign_in_token_auth_user: A felhasználó tokenes e-mail hitelesítésének letiltása
         disable_user: Felhasználói letiltása
         enable_custom_emoji: Egyéni emodzsi engedélyezése
+        enable_sign_in_token_auth_user: A felhasználó tokenes e-mail hitelesítésének engedélyezése
         enable_user: Felhasználó engedélyezése
         memorialize_account: Fiók emlékké nyilvánítása
         promote_user: Felhasználó előléptetése
@@ -284,8 +292,10 @@ hu:
         destroy_unavailable_domain_html: "%{name} újraindította a kézbesítést a %{target} domainbe"
         disable_2fa_user_html: "%{name} kikapcsolta a kétlépcsős azonosítást %{target} felhasználó fiókján"
         disable_custom_emoji_html: "%{name} letiltotta a %{target} emodzsit"
+        disable_sign_in_token_auth_user_html: "%{name} letiltotta a tokenes e-mail hitelesítést %{target} felhasználóra"
         disable_user_html: "%{name} letiltotta %{target} felhasználó bejelentkezését"
         enable_custom_emoji_html: "%{name} engedélyezte a %{target} emodzsit"
+        enable_sign_in_token_auth_user_html: "%{name} engedélyezte a tokenes e-mail hitelesítést %{target} felhasználóra"
         enable_user_html: "%{name} engedélyezte %{target} felhasználó bejelentkezését"
         memorialize_account_html: "%{name} emléket állított %{target} felhasználónak"
         promote_user_html: "%{name} előléptette %{target} felhasználót"
@@ -1003,6 +1013,16 @@ hu:
   lists:
     errors:
       limit: Elérted a hozzáadható listák maximális számát
+  login_activities:
+    authentication_methods:
+      otp: kétlépcsős azonosító alkalmazás
+      password: jelszó
+      sign_in_token: e-mail biztonsági kód
+      webauthn: biztonsági kulcsok
+    description_html: Ha olyan aktivitást látsz, melyet nem ismersz fel, fontold meg, hogy megváltoztatod a jelszavad és engedélyezed a kétlépcsős hitelesítést.
+    empty: Nem érhető el hitelesítési történet
+    failed_sign_in_html: Bejelentkezés meghiúsult ezzel %{method} innen %{ip} (%{browser})
+    successful_sign_in_html: Sikeres bejelentkezés ezzel %{method} innen %{ip} (%{browser})
   media_attachments:
     validations:
       images_and_video: Nem csatolhatsz videót olyan bejegyzéshez, amelyhez már csatoltál képet
