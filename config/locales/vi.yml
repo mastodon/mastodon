@@ -114,6 +114,7 @@ vi:
       demote: Xóa chức vụ
       destroyed_msg: "Dữ liệu %{username} sẽ được lên lịch xóa ngay bây giờ"
       disable: Tạm khóa
+      disable_sign_in_token_auth: Tắt xác thực bằng email
       disable_two_factor_authentication: Vô hiệu hóa xác thực hai bước
       disabled: Đã vô hiệu hóa
       display_name: Tên hiển thị
@@ -122,6 +123,7 @@ vi:
       email: Email
       email_status: Trạng thái
       enable: Mở lại
+      enable_sign_in_token_auth: Bật xác thực bằng email
       enabled: Đã duyệt
       enabled_msg: Đã kích hoạt lại tài khoản %{username} thành công
       followers: Người theo dõi
@@ -186,6 +188,10 @@ vi:
       search: Tìm kiếm
       search_same_email_domain: Tra cứu email
       search_same_ip: Tra cứu IP
+      security_measures:
+        only_password: Chỉ mật khẩu
+        password_and_2fa: Mật khẩu và 2FA
+        password_and_sign_in_token: Mật khẩu và email
       sensitive: Nhạy cảm
       sensitized: đánh dấu nhạy cảm
       shared_inbox_url: Hộp thư của máy chủ người này
@@ -237,8 +243,10 @@ vi:
         destroy_unavailable_domain: Xóa máy chủ không khả dụng
         disable_2fa_user: Vô hiệu hóa 2FA
         disable_custom_emoji: Vô hiệu hóa emoji
+        disable_sign_in_token_auth_user: Tắt xác thực bằng email cho người dùng
         disable_user: Tạm khóa người dùng
         enable_custom_emoji: Kích hoạt Emoji
+        enable_sign_in_token_auth_user: Bật xác thực bằng email cho người dùng
         enable_user: Kích hoạt lại người dùng
         memorialize_account: Đánh dấu tưởng niệm
         promote_user: Chỉ định chức vụ
@@ -280,8 +288,10 @@ vi:
         destroy_unavailable_domain_html: "%{name} tiếp tục phân phối với máy chủ %{target}"
         disable_2fa_user_html: "%{name} vô hiệu hóa 2FA của %{target}"
         disable_custom_emoji_html: "%{name} vô hiệu hóa emoji %{target}"
+        disable_sign_in_token_auth_user_html: "%{name} tắt xác thực email của %{target}"
         disable_user_html: "%{name} tắt 2FA của %{target}"
         enable_custom_emoji_html: "%{name} cho phép Emoji %{target}"
+        enable_sign_in_token_auth_user_html: "%{name} bật xác thực email của %{target}"
         enable_user_html: "%{name} mở khóa cho người dùng %{target}"
         memorialize_account_html: "%{name} đã biến tài khoản %{target} thành một trang tưởng niệm"
         promote_user_html: "%{name} chỉ định chức vụ cho %{target}"
