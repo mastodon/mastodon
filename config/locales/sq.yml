@@ -118,6 +118,7 @@ sq:
       demote: Zhgradoje
       destroyed_msg: "Të dhënat e %{username} tani janë vënë në radhë për fshirje të menjëhershme"
       disable: Çaktivizoje
+      disable_sign_in_token_auth: Çaktivizo mirëfilltësim me token email-i
       disable_two_factor_authentication: Çaktivizoni 2FA-në
       disabled: E çaktivizuar
       display_name: Emër në ekran
@@ -126,6 +127,7 @@ sq:
       email: Email
       email_status: Gjendje email-i
       enable: Shkrije
+      enable_sign_in_token_auth: Aktivizo mirëfilltësim me token email-i
       enabled: E aktivizuar
       enabled_msg: U hoq me sukses ngrirja për llogarinë e %{username}
       followers: Ndjekës
@@ -190,6 +192,10 @@ sq:
       search: Kërkoni
       search_same_email_domain: Të tjerë përdorues me të njëjtën përkatësi email-i
       search_same_ip: Të tjerë përdorues me të njëjtën IP
+      security_measures:
+        only_password: Vetëm fjalëkalim
+        password_and_2fa: Fjalëkalim dhe 2FA
+        password_and_sign_in_token: Fjalëkalim dhe token email-i
       sensitive: Rezervat
       sensitized: iu vu shenjë si rezervat
       shared_inbox_url: URL kutie të përbashkët mesazhesh
@@ -229,6 +235,7 @@ sq:
         create_domain_block: Krijo Bllokim Përkatësie
         create_email_domain_block: Krijo Bllokim Përkatësie Email-esh
         create_ip_block: Krijoni Rregull IP
+        create_unavailable_domain: Krijo Përkatësi të Papërdorshme
         demote_user: Zhgradoje Përdoruesin
         destroy_announcement: Fshije Lajmërimin
         destroy_custom_emoji: Fshi Emotikon Vetjak
@@ -237,10 +244,13 @@ sq:
         destroy_email_domain_block: Fshi bllokim përkatësie email-esh
         destroy_ip_block: Fshini Rregull IP
         destroy_status: Fshi Gjendje
+        destroy_unavailable_domain: Fshi Përkatësi të Papërdorshme
         disable_2fa_user: Çaktivizo 2FA-në
         disable_custom_emoji: Çaktivizo Emotikon Vetjak
+        disable_sign_in_token_auth_user: Çaktivizo Mirëfilltësim me Token Email-i për Përdoruesin
         disable_user: Çaktivizo Përdorues
         enable_custom_emoji: Aktivizo Emotikon Vetjak
+        enable_sign_in_token_auth_user: Aktivizo Mirëfilltësim me Token Email-i për Përdoruesin
         enable_user: Aktivizo Përdorues
         memorialize_account: Bëje Llogari Përkujtimore
         promote_user: Promovojeni Përdoruesin
@@ -282,8 +292,10 @@ sq:
         destroy_unavailable_domain_html: "%{name} rinisi dërgimin drejt përkatësisë %{target}"
         disable_2fa_user_html: "%{name} çaktivizoi domosdoshmërinë për dyfaktorësh për përdoruesin %{target}"
         disable_custom_emoji_html: "%{name} çaktivizoi emoxhin %{target}"
+        disable_sign_in_token_auth_user_html: "%{name} çaktivizo mirëfilltësim me token email-i për %{target}"
         disable_user_html: "%{name} çaktivizoi hyrje për përdoruesin %{target}"
         enable_custom_emoji_html: "%{name} aktivizoi emoxhin %{target}"
+        enable_sign_in_token_auth_user_html: "%{name} aktivizo mirëfilltësim me token email-i përdoruesi për %{target}"
         enable_user_html: "%{name} aktivizoi hyrje për përdoruesin %{target}"
         memorialize_account_html: "%{name} e shndërroi llogarinë e %{target} në një faqe përkujtimore"
         promote_user_html: "%{name} gradoi përdoruesin %{target}"
@@ -462,6 +474,8 @@ sq:
         restart: Rinis dërgimin
         stop: Ndale dërgimin
         title: Dërgim
+        unavailable: Jo i passhëm
+        unavailable_message: Dërgim jo i passhëm
         warning: Kujdes
         warning_message:
           one: Dështim dërgimi %{count} ditë
