@@ -126,6 +126,7 @@ cs:
       demote: Degradovat
       destroyed_msg: "Data účtu %{username} jsou nyní ve frontě k okamžitému smazání"
       disable: Zmrazit
+      disable_sign_in_token_auth: Zrušit ověřování e-mailovým tokenem
       disable_two_factor_authentication: Vypnout 2FA
       disabled: Zmrazen
       display_name: Zobrazované jméno
@@ -134,6 +135,7 @@ cs:
       email: E-mail
       email_status: Stav e-mailu
       enable: Rozmrazit
+      enable_sign_in_token_auth: Povolit ověřování e-mailovým tokenem
       enabled: Povoleno
       enabled_msg: Účet %{username} byl úspěšně rozmrazen
       followers: Sledující
@@ -198,6 +200,10 @@ cs:
       search: Hledat
       search_same_email_domain: Ostatní uživatelé se stejnou e-mailovou doménou
       search_same_ip: Další uživatelé se stejnou IP adresou
+      security_measures:
+        only_password: Pouze heslo
+        password_and_2fa: Heslo a 2FA
+        password_and_sign_in_token: Heslo a e-mailový token
       sensitive: Citlivý
       sensitized: označen jako citlivý
       shared_inbox_url: URL sdílené příchozí schránky
@@ -249,8 +255,10 @@ cs:
         destroy_unavailable_domain: Smazat nedostupnou doménu
         disable_2fa_user: Vypnout 2FA
         disable_custom_emoji: Zakázat vlastní emoji
+        disable_sign_in_token_auth_user: Zrušit uživatelovo ověřování e-mailovým tokenem
         disable_user: Deaktivovat uživatele
         enable_custom_emoji: Povolit vlastní emoji
+        enable_sign_in_token_auth_user: Povolit uživatelovo ověřování e-mailovým tokenem
         enable_user: Povolit uživatele
         memorialize_account: Změna na „in memoriam“
         promote_user: Povýšit uživatele
@@ -292,6 +300,7 @@ cs:
         destroy_unavailable_domain_html: "%{name} obnovil doručování na doménu %{target}"
         disable_2fa_user_html: "Uživatel %{name} vypnul dvoufázové ověřování pro uživatele %{target}"
         disable_custom_emoji_html: "Uživatel %{name} zakázal emoji %{target}"
+        disable_sign_in_token_auth_user_html: "Uživatel %{name} zrušil ověřování e-mailovým tokenem pro %{target}"
         disable_user_html: "Uživatel %{name} zakázal přihlašování pro uživatele %{target}"
         enable_custom_emoji_html: "Uživatel %{name} povolil emoji %{target}"
         enable_sign_in_token_auth_user_html: "Uživatel %{name} povolil ověřování e-mailovým tokenem pro %{target}"
