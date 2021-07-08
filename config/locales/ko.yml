@@ -114,6 +114,7 @@ ko:
       demote: 강등
       destroyed_msg: "%{username}의 데이터는 곧 삭제되도록 큐에 들어갔습니다"
       disable: 비활성화
+      disable_sign_in_token_auth: 이메일 토큰 인증 비활성화
       disable_two_factor_authentication: 2단계 인증을 비활성화
       disabled: 비활성화된
       display_name: 이름
@@ -122,6 +123,7 @@ ko:
       email: 이메일
       email_status: 이메일 상태
       enable: 활성화
+      enable_sign_in_token_auth: 이메일 토큰 인증 활성화
       enabled: 활성
       enabled_msg: '%{username}의 계정을 성공적으로 얼리기 해제하였습니다'
       followers: 팔로워 수
@@ -186,6 +188,10 @@ ko:
       search: 검색
       search_same_email_domain: 같은 이메일 도메인을 가진 다른 사용자들
       search_same_ip: 같은 IP의 다른 사용자들
+      security_measures:
+        only_password: 암호만
+        password_and_2fa: 암호와 2단계 인증
+        password_and_sign_in_token: 암호와 이메일 토큰
       sensitive: 민감함
       sensitized: 민감함으로 설정됨
       shared_inbox_url: 공유된 inbox URL
@@ -237,8 +243,10 @@ ko:
         destroy_unavailable_domain: 사용 불가능한 도메인 제거
         disable_2fa_user: 2단계 인증 비활성화
         disable_custom_emoji: 커스텀 에모지 비활성화
+        disable_sign_in_token_auth_user: 사용자에 대한 이메일 토큰 인증 비활성화
         disable_user: 사용자 비활성화
         enable_custom_emoji: 커스텀 에모지 활성화
+        enable_sign_in_token_auth_user: 사용자에 대한 이메일 토큰 인증 활성화
         enable_user: 사용자 활성화
         memorialize_account: 계정을 장기 저장
         promote_user: 사용자 승급
@@ -280,8 +288,10 @@ ko:
         destroy_unavailable_domain_html: "%{name} 님이 도메인 %{target}에 대한 전달을 재개"
         disable_2fa_user_html: "%{name} 님이 사용자 %{target}의 2FA를 비활성화 했습니다"
         disable_custom_emoji_html: "%{name} 님이 에모지 %{target}를 비활성화 했습니다"
+        disable_sign_in_token_auth_user_html: "%{name} 님이 %{target} 님의 이메일 토큰 인증을 비활성화 했습니다"
         disable_user_html: "%{name} 님이 사용자 %{target}의 로그인을 비활성화 했습니다"
         enable_custom_emoji_html: "%{name} 님이 에모지 %{target}를 활성화 했습니다"
+        enable_sign_in_token_auth_user_html: "%{name} 님이 %{target} 님의 이메일 토큰 인증을 활성화 했습니다"
         enable_user_html: "%{name} 님이 사용자 %{target}의 로그인을 활성화 했습니다"
         memorialize_account_html: "%{name} 님이 %{target}의 계정을 기념비 페이지로 전환했습니다"
         promote_user_html: "%{name} 님이 사용자 %{target}를 승급시켰습니다"
