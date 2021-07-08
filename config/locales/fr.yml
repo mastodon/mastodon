@@ -118,6 +118,7 @@ fr:
       demote: Rétrograder
       destroyed_msg: "Les données de %{username} sont maintenant en file d’attente pour être supprimées imminemment"
       disable: Désactiver
+      disable_sign_in_token_auth: Désactiver l'authentification basée sur les jetons envoyés par courriel
       disable_two_factor_authentication: Désactiver l’authentification à deux facteurs
       disabled: Désactivé
       display_name: Nom affiché
@@ -126,6 +127,7 @@ fr:
       email: Courriel
       email_status: État du courriel
       enable: Activer
+      enable_sign_in_token_auth: Activer l'authentification basée sur les jetons envoyés par courriel
       enabled: Activé
       enabled_msg: Le compte de %{username} a été débloqué avec succès
       followers: Abonné·e·s
@@ -190,6 +192,10 @@ fr:
       search: Rechercher
       search_same_email_domain: Autres utilisateurs·trices avec le même domaine de courriel
       search_same_ip: Autres utilisateur·rice·s avec la même IP
+      security_measures:
+        only_password: Mot de passe uniquement
+        password_and_2fa: Mot de passe et 2FA
+        password_and_sign_in_token: Mot de passe et jeton par courriel
       sensitive: Sensible
       sensitized: marqué comme sensible
       shared_inbox_url: URL de la boite de réception partagée
@@ -241,8 +247,10 @@ fr:
         destroy_unavailable_domain: Supprimer le domaine indisponible
         disable_2fa_user: Désactiver l’A2F
         disable_custom_emoji: Désactiver les émojis personnalisés
+        disable_sign_in_token_auth_user: Désactiver l'authentification basée sur les jetons envoyés par courriel pour l'utilisateur·rice
         disable_user: Désactiver l’utilisateur·ice
         enable_custom_emoji: Activer les émojis personnalisées
+        enable_sign_in_token_auth_user: Activer l'authentification basée sur les jetons envoyés par courriel pour l'utilisateur·rice
         enable_user: Activer l’utilisateur
         memorialize_account: Mémorialiser le compte
         promote_user: Promouvoir l’utilisateur
