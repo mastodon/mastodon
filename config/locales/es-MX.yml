@@ -1003,6 +1003,17 @@ es-MX:
   lists:
     errors:
       limit: Has alcanzado la cantidad máxima de listas
+  login_activities:
+    authentication_methods:
+      otp: aplicación de autenticación en dos pasos
+      password: contraseña
+      sign_in_token: código de seguridad por correo electrónico
+      webauthn: claves de seguridad
+    description_html: Si ve una actividad que no reconoce, considere cambiar su contraseña y habilitar la autenticación de dos factores.
+    empty: No hay historial de autenticación disponible
+    failed_sign_in_html: Intento de inicio de sesión fallido con %{method} de %{ip} (%{browser})
+    successful_sign_in_html: Inicio de sesión exitoso con %{method} desde %{ip} (%{browser})
+    title: Historial de autenticación
   media_attachments:
     validations:
       images_and_video: No se puede adjuntar un video a un estado que ya contenga imágenes
@@ -1209,6 +1220,7 @@ es-MX:
     revoke: Revocar
     revoke_success: Sesión revocada exitosamente
     title: Sesiones
+    view_authentication_history: Ver historial de autenticación de tu cuenta
   settings:
     account: Cuenta
     account_settings: Ajustes de la cuenta
