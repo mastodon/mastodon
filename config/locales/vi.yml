@@ -42,7 +42,7 @@ vi:
       rejecting_media: 'Ảnh và video từ những máy chủ sau sẽ không được xử lý, lưu trữ và hiển thị hình thu nhỏ. Bắt buộc nhấp thủ công vào tệp gốc để xem:'
       rejecting_media_title: Ảnh và video
       silenced: 'Tút từ những máy chủ sau sẽ bị ẩn trên bảng tin, trong tin nhắn và không có thông báo nào được tạo từ các tương tác của người dùng của họ, trừ khi bạn có theo dõi người dùng của họ:'
-      silenced_title: Những máy chủ bị ẩn
+      silenced_title: Những máy chủ bị hạn chế
       suspended: 'Những máy chủ sau sẽ không được xử lý, lưu trữ hoặc trao đổi nội dung. Mọi tương tác hoặc giao tiếp với người dùng từ các máy chủ này đều bị cấm:'
       suspended_title: Những máy chủ bị vô hiệu hóa
     unavailable_content_html: Mastodon cho phép bạn tương tác nội dung và giao tiếp với người dùng từ bất kỳ máy chủ nào khác trong mạng liên hợp. Còn máy chủ này có những ngoại lệ riêng.
@@ -148,7 +148,7 @@ vi:
         active: Hoạt động
         all: Toàn bộ
         pending: Chờ xử lý
-        silenced: Tạm ẩn
+        silenced: Hạn chế
         suspended: Vô hiệu hóa
         title: Trạng thái
       moderation_notes: Nhật ký kiểm duyệt
@@ -193,13 +193,13 @@ vi:
         password_and_2fa: Mật khẩu và 2FA
         password_and_sign_in_token: Mật khẩu và email
       sensitive: Nhạy cảm
-      sensitized: đánh dấu nhạy cảm
+      sensitized: Đánh dấu nhạy cảm
       shared_inbox_url: Hộp thư của máy chủ người này
       show:
         created_reports: Lượt báo cáo
         targeted_reports: Báo cáo bởi người khác
       silence: Ẩn
-      silenced: Ẩn
+      silenced: Hạn chế
       statuses: Tút
       subscribe: Đăng ký
       suspended: Vô hiệu hóa
@@ -209,9 +209,9 @@ vi:
       title: Tài khoản
       unconfirmed_email: Email chưa được xác thực
       undo_sensitized: Đánh dấu bình thường
-      undo_silenced: Bỏ ẩn
+      undo_silenced: Bỏ hạn chế
       undo_suspension: Bỏ vô hiệu hóa
-      unsilenced_msg: Bỏ ẩn %{username} thành công
+      unsilenced_msg: Bỏ hạn chế %{username} thành công
       unsubscribe: Hủy đăng ký
       unsuspended_msg: Đã kích hoạt lại %{username} thành công
       username: Tài khoản
@@ -255,11 +255,11 @@ vi:
         reset_password_user: Đặt lại mật khẩu
         resolve_report: Xử lý báo cáo
         sensitive_account: Đánh dấu nhạy cảm
-        silence_account: Đánh dấu ẩn
+        silence_account: Đánh dấu hạn chế
         suspend_account: Đánh dấu vô hiệu hóa
         unassigned_report: Báo cáo chưa xử lý
         unsensitive_account: 'Bỏ nhạy cảm'
-        unsilence_account: Bỏ ẩn
+        unsilence_account: Bỏ hạn chế
         unsuspend_account: Bỏ vô hiệu hóa
         update_announcement: Cập nhật thông báo
         update_custom_emoji: Cập nhật Emoji mới
@@ -300,11 +300,11 @@ vi:
         reset_password_user_html: "%{name} đặt lại mật khẩu của %{target}"
         resolve_report_html: "%{name} xử lý báo cáo %{target}"
         sensitive_account_html: "%{name} đánh dấu nội dung nhạy cảm %{target}"
-        silence_account_html: "%{name} ẩn %{target}"
+        silence_account_html: "%{name} hạn chế %{target}"
         suspend_account_html: "%{name} vô hiệu hóa %{target}"
         unassigned_report_html: "%{name} tự xử lý báo cáo %{target}"
         unsensitive_account_html: "%{name} bỏ đánh dấu nội dung nhạy cảm %{target}"
-        unsilence_account_html: "%{name} bỏ ẩn %{target}"
+        unsilence_account_html: "%{name} bỏ hạn chế %{target}"
         unsuspend_account_html: "%{name} bỏ vô hiệu hóa %{target}"
         update_announcement_html: "%{name} cập nhật thông báo %{target}"
         update_custom_emoji_html: "%{name} cập nhật emoji %{target}"
@@ -426,13 +426,13 @@ vi:
       rejecting_media: từ chối các tập tin phương tiện truyền thông
       rejecting_reports: từ chối báo cáo
       severity:
-        silence: bị ẩn
+        silence: bị hạn chế
         suspend: bị vô hiệu hóa
       show:
         affected_accounts:
           other: "%{count} tài khoản trong cơ sở dữ liệu bị ảnh hưởng"
         retroactive:
-          silence: Những tài khoản bị ẩn ở máy chủ này
+          silence: Bỏ hạn chế những tài khoản ở máy chủ này
           suspend: Ngưng vô hiệu hóa các tài khoản ở máy chủ này
         title: Hủy chặn máy chủ %{domain}
         undo: Hủy bỏ
@@ -1386,13 +1386,13 @@ vi:
         disable: Tài khoản %{acct} của bạn đã bị vô hiệu hóa
         none: Cảnh báo cho %{acct}
         sensitive: Ảnh và video tải lên của %{acct} sẽ bị đánh dấu là nhạy cảm
-        silence: Tài khoản %{acct} của bạn đã bị tạm ẩn
+        silence: Tài khoản %{acct} của bạn đã bị hạn chế
         suspend: Tài khoản %{acct} của bạn đã bị vô hiệu hóa
       title:
         disable: Tài khoản bị đóng băng
         none: Cảnh báo
         sensitive: Ảnh và video của bạn sẽ bị đánh dấu nhạy cảm
-        silence: Tài khoản bị tạm ẩn
+        silence: Tài khoản bị hạn chế
         suspend: Toài khoản bị vô hiệu hóa
     welcome:
       edit_profile_action: Cài đặt trang cá nhân
