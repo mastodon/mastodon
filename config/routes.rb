@@ -283,6 +283,7 @@ Rails.application.routes.draw do
 
     resources :users, only: [] do
       resource :two_factor_authentication, only: [:destroy]
+      resource :sign_in_token_authentication, only: [:create, :destroy]
     end
 
     resources :custom_emojis, only: [:index, :new, :create] do

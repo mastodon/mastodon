@@ -129,6 +129,27 @@
               - else
                 = t('admin.accounts.confirming')
             %td= table_link_to 'refresh', t('admin.accounts.resend_confirmation.send'), resend_admin_account_confirmation_path(@account.id), method: :post if can?(:confirm, @account.user)
+          %tr
+            %th{ rowspan: can?(:reset_password, @account.user) ? 2 : 1 }= t('admin.accounts.security')
+            %td{ rowspan: can?(:reset_password, @account.user) ? 2 : 1 }
+              - if @account.user&.two_factor_enabled?
+                = t 'admin.accounts.security_measures.password_and_2fa'
+              - elsif @account.user&.skip_sign_in_token?
+                = t 'admin.accounts.security_measures.only_password'
+              - else
+                = t 'admin.accounts.security_measures.password_and_sign_in_token'
+            %td
+              - if @account.user&.two_factor_enabled?
+                = table_link_to 'unlock', t('admin.accounts.disable_two_factor_authentication'), admin_user_two_factor_authentication_path(@account.user.id), method: :delete if can?(:disable_2fa, @account.user)
+              - elsif @account.user&.skip_sign_in_token?
+                = table_link_to 'lock', t('admin.accounts.enable_sign_in_token_auth'), admin_user_sign_in_token_authentication_path(@account.user.id), method: :post if can?(:enable_sign_in_token_auth, @account.user)
+              - else
+                = table_link_to 'unlock', t('admin.accounts.disable_sign_in_token_auth'), admin_user_sign_in_token_authentication_path(@account.user.id), method: :delete if can?(:disable_sign_in_token_auth, @account.user)
+
+          - if can?(:reset_password, @account.user)
+            %tr
+              %td
+                = table_link_to 'key', t('admin.accounts.reset_password'), admin_account_reset_path(@account.id), method: :create, data: { confirm: t('admin.accounts.are_you_sure') }
 
           %tr
             %th= t('simple_form.labels.defaults.locale')
@@ -221,9 +242,6 @@
 
       %div
         - if @account.local?
-          = link_to t('admin.accounts.reset_password'), admin_account_reset_path(@account.id), method: :create, class: 'button' if can?(:reset_password, @account.user)
-          - if @account.user&.otp_required_for_login?
-            = link_to t('admin.accounts.disable_two_factor_authentication'), admin_user_two_factor_authentication_path(@account.user.id), method: :delete, class: 'button' if can?(:disable_2fa, @account.user)
           - if !@account.memorial? && @account.user_approved?
             = link_to t('admin.accounts.memorialize'), memorialize_admin_account_path(@account.id), method: :post, data: { confirm: t('admin.accounts.are_you_sure') }, class: 'button button--destructive' if can?(:memorialize, @account)
         - else

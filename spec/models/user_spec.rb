@@ -344,6 +344,34 @@ RSpec.describe User, type: :model do
     end
   end
 
+  describe '#reset_password!' do
+    subject(:user) { Fabricate(:user, password: 'foobar12345') }
+
+    let!(:session_activation) { Fabricate(:session_activation, user: user) }
+    let!(:access_token) { Fabricate(:access_token, resource_owner_id: user.id) }
+    let!(:web_push_subscription) { Fabricate(:web_push_subscription, access_token: access_token) }
+
+    before do
+      user.reset_password!
+    end
+
+    it 'changes the password immediately' do
+      expect(user.external_or_valid_password?('foobar12345')).to be false
+    end
+
+    it 'deactivates all sessions' do
+      expect(user.session_activations.count).to eq 0
+    end
+
+    it 'revokes all access tokens' do
+      expect(Doorkeeper::AccessToken.active_for(user).count).to eq 0
+    end
+
+    it 'removes push subscriptions' do
+      expect(Web::PushSubscription.where(user: user).or(Web::PushSubscription.where(access_token: access_token)).count).to eq 0
+    end
+  end
+
   describe '#confirm!' do
     subject(:user) { Fabricate(:user, confirmed_at: confirmed_at) }
 

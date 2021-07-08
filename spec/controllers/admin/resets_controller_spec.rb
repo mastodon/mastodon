@@ -16,7 +16,7 @@ describe Admin::ResetsController do
 
       post :create, params: { account_id: account.id }
 
-      expect(response).to redirect_to(admin_accounts_path)
+      expect(response).to redirect_to(admin_account_path(account.id))
     end
   end
 end
