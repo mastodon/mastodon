@@ -118,6 +118,7 @@ it:
       demote: Declassa
       destroyed_msg: "I dati di %{username} sono ora in coda per essere eliminati tra poco"
       disable: Disabilita
+      disable_sign_in_token_auth: Disabilita autenticazione con codice via email
       disable_two_factor_authentication: Disabilita l'autenticazione a due fattori
       disabled: Disabilitato
       display_name: Nome visualizzato
@@ -126,6 +127,7 @@ it:
       email: Email
       email_status: Stato email
       enable: Abilita
+      enable_sign_in_token_auth: Abilita autenticazione con codice via email
       enabled: Abilitato
       enabled_msg: L'account di %{username} è stato scongelato
       followers: Follower
@@ -193,6 +195,7 @@ it:
       security_measures:
         only_password: Solo password
         password_and_2fa: Password e autenticazione a due fattori
+        password_and_sign_in_token: Password e codice via email
       sensitive: Sensibile
       sensitized: contrassegnato come sensibile
       shared_inbox_url: URL Inbox Condiviso
@@ -244,8 +247,10 @@ it:
         destroy_unavailable_domain: Elimina dominio non disponibile
         disable_2fa_user: Disabilita l'autenticazione a due fattori
         disable_custom_emoji: Disabilita emoji personalizzata
+        disable_sign_in_token_auth_user: Disabilita autenticazione con codice via email per l'utente
         disable_user: Disabilita utente
         enable_custom_emoji: Abilita emoji personalizzata
+        enable_sign_in_token_auth_user: Abilita autenticazione con codice via email per l'utente
         enable_user: Abilita utente
         memorialize_account: Trasforma in account commemorativo
         promote_user: Promuovi utente
@@ -287,8 +292,10 @@ it:
         destroy_unavailable_domain_html: "%{name} ha ripreso la consegna al dominio %{target}"
         disable_2fa_user_html: "%{name} ha disabilitato l'autenticazione a due fattori per l'utente %{target}"
         disable_custom_emoji_html: "%{name} ha disabilitato emoji %{target}"
+        disable_sign_in_token_auth_user_html: "%{name} ha disabilitato l'autenticazione con codice via email per %{target}"
         disable_user_html: "%{name} ha disabilitato il login per l'utente %{target}"
         enable_custom_emoji_html: "%{name} ha abilitato emoji %{target}"
+        enable_sign_in_token_auth_user_html: "%{name} ha abilitato l'autenticazione con codice via email per %{target}"
         enable_user_html: "%{name} ha abilitato il login per l'utente %{target}"
         memorialize_account_html: "%{name} ha trasformato l'account di %{target} in una pagina in memoriam"
         promote_user_html: "%{name} ha promosso l'utente %{target}"
