@@ -114,6 +114,7 @@ id:
       demote: Turunkan
       destroyed_msg: "Data %{username} masuk antrean untuk dihapus segera"
       disable: Nonaktifkan
+      disable_sign_in_token_auth: Nonaktifkan otentikasi token email
       disable_two_factor_authentication: Nonaktifkan 2FA
       disabled: Dinonaktifkan
       display_name: Nama
@@ -122,6 +123,7 @@ id:
       email: Email
       email_status: Status Email
       enable: Aktifkan
+      enable_sign_in_token_auth: Aktifkan otentikasi token email
       enabled: Diaktifkan
       enabled_msg: Berhasil mencairkan akun %{username}
       followers: Pengikut
@@ -186,6 +188,10 @@ id:
       search: Cari
       search_same_email_domain: Pengguna lain dengan domain email yang sama
       search_same_ip: Pengguna lain dengan IP yang sama
+      security_measures:
+        only_password: Hanya kata sandi
+        password_and_2fa: Kata sandi dan 2FA
+        password_and_sign_in_token: Kata sandi dan token email
       sensitive: Sensitif
       sensitized: ditandai sebagai sensitif
       shared_inbox_url: URL kotak masuk bersama
@@ -237,8 +243,10 @@ id:
         destroy_unavailable_domain: Hapus Domain yang Tidak Tersedia
         disable_2fa_user: Nonaktifkan 2FA
         disable_custom_emoji: Nonaktifkan Emoji Khusus
+        disable_sign_in_token_auth_user: Nonaktifkan Otentikasi Token Email untuk Pengguna
         disable_user: Nonaktifkan Pengguna
         enable_custom_emoji: Aktifkan Emoji Khusus
+        enable_sign_in_token_auth_user: Aktifkan Otentikasi Token Email untuk Pengguna
         enable_user: Aktifkan Pengguna
         memorialize_account: Kenang Akun
         promote_user: Promosikan Pengguna
@@ -280,6 +288,7 @@ id:
         destroy_unavailable_domain_html: "%{name} melanjutkan pengiriman ke domain %{target}"
         disable_2fa_user_html: "%{name} mematikan syarat dua faktor utk pengguna %{target}"
         disable_custom_emoji_html: "%{name} mematikan emoji %{target}"
+        disable_sign_in_token_auth_user_html: "%{name} menonaktifkan otentikasi token email untuk %{target}"
         disable_user_html: "%{name} mematikan login untuk pengguna %{target}"
         enable_custom_emoji_html: "%{name} mengaktifkan emoji %{target}"
         enable_user_html: "%{name} mengaktifkan login untuk pengguna %{target}"
