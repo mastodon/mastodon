@@ -114,6 +114,7 @@ zh-TW:
       demote: 降級
       destroyed_msg: "即將刪除 %{username} 的數據"
       disable: 停用
+      disable_sign_in_token_auth: 停用電子信箱 token 驗證
       disable_two_factor_authentication: 停用兩階段認證
       disabled: 已停用
       display_name: 暱稱
@@ -122,6 +123,7 @@ zh-TW:
       email: 電子信箱地址
       email_status: 電子信箱狀態
       enable: 啟用
+      enable_sign_in_token_auth: 啟用電子信箱 token 驗證
       enabled: 已啟用
       enabled_msg: 成功解除 %{username} 帳戶的凍結
       followers: 關注者
@@ -186,6 +188,10 @@ zh-TW:
       search: 搜尋
       search_same_email_domain: 其他有同個電子郵件網域的使用者
       search_same_ip: 其他有同個 IP 的使用者
+      security_measures:
+        only_password: 僅使用密碼
+        password_and_2fa: 密碼及二重因素驗證
+        password_and_sign_in_token: 密碼及電子信箱 token 驗證
       sensitive: 敏感内容
       sensitized: 已標記為敏感內容
       shared_inbox_url: 共享收件箱網址
@@ -237,8 +243,10 @@ zh-TW:
         destroy_unavailable_domain: 刪除無法存取的網域
         disable_2fa_user: 停用兩階段認證
         disable_custom_emoji: 停用自訂顏文字
+        disable_sign_in_token_auth_user: 停用使用者電子信箱 token 驗證
         disable_user: 停用帳戶
         enable_custom_emoji: 啓用自訂顏文字
+        enable_sign_in_token_auth_user: 啟用使用者電子信箱 token 驗證
         enable_user: 啓用帳戶
         memorialize_account: 設定成紀念帳戶
         promote_user: 把用戶升級
@@ -280,8 +288,10 @@ zh-TW:
         destroy_unavailable_domain_html: "%{name} 恢復了對網域 %{target} 的發送"
         disable_2fa_user_html: "%{name} 停用了使用者 %{target} 的兩階段認證"
         disable_custom_emoji_html: "%{name} 停用了自訂表情符號 %{target}"
+        disable_sign_in_token_auth_user_html: "%{name} 停用了 %{target} 之使用者電子信箱 token 驗證"
         disable_user_html: "%{name} 將使用者 %{target} 設定為禁止登入"
         enable_custom_emoji_html: "%{name} 啟用了自訂表情符號 %{target}"
+        enable_sign_in_token_auth_user_html: "%{name} 啟用了 %{target} 之使用者電子信箱 token 驗證"
         enable_user_html: "%{name} 將使用者 %{target} 設定為允許登入"
         memorialize_account_html: "%{name} 將 %{target} 設定為追悼帳戶"
         promote_user_html: "%{name} 對使用者 %{target} 進行了晉級操作"
@@ -447,12 +457,16 @@ zh-TW:
       suppress: 取消跟隨建議
       suppressed: 取消
       title: 跟隨建議
+      unsuppress: 回復跟隨建議
     instances:
       back_to_all: 所有
+      back_to_limited: 受限制的
       back_to_warning: 警告
       by_domain: 站台
       delivery:
         all: 所有
+        clear: 清除傳送錯誤
+        restart: 重新啟動傳送
         warning: 警告
       delivery_available: 可傳送
       empty: 找不到網域
