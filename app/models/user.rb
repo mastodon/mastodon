@@ -42,6 +42,7 @@
 #  sign_in_token_sent_at     :datetime
 #  webauthn_id               :string
 #  sign_up_ip                :inet
+#  skip_sign_in_token        :boolean
 #
 
 class User < ApplicationRecord
@@ -200,7 +201,7 @@ class User < ApplicationRecord
   end
 
   def suspicious_sign_in?(ip)
-    !otp_required_for_login? && current_sign_in_at.present? && current_sign_in_at < 2.weeks.ago && !recent_ip?(ip)
+    !otp_required_for_login? && !skip_sign_in_token? && current_sign_in_at.present? && !recent_ip?(ip)
   end
 
   def functional?
@@ -329,10 +330,30 @@ class User < ApplicationRecord
     super
   end
 
-  def reset_password!(new_password, new_password_confirmation)
+  def reset_password(new_password, new_password_confirmation)
     return false if encrypted_password.blank?
 
     super
+  end
+
+  def reset_password!
+    # First, change password to something random, invalidate the remember-me token,
+    # and deactivate all sessions
+    transaction do
+      update(remember_token: nil, remember_created_at: nil, password: SecureRandom.hex)
+      session_activations.destroy_all
+    end
+
+    # Then, remove all authorized applications and connected push subscriptions
+    Doorkeeper::AccessGrant.by_resource_owner(self).in_batches.update_all(revoked_at: Time.now.utc)
+
+    Doorkeeper::AccessToken.by_resource_owner(self).in_batches do |batch|
+      batch.update_all(revoked_at: Time.now.utc)
+      Web::PushSubscription.where(access_token_id: batch).delete_all
+    end
+
+    # Finally, send a reset password prompt to the user
+    send_reset_password_instructions
   end
 
   def show_all_media?

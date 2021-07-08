@@ -6,7 +6,7 @@ ruby '>= 2.5.0', '< 3.1.0'
 gem 'pkg-config', '~> 1.4'
 
 gem 'puma', '~> 5.3'
-gem 'rails', '~> 6.1.3'
+gem 'rails', '~> 6.1.4'
 gem 'sprockets', '~> 3.7.2'
 gem 'thor', '~> 1.1'
 gem 'rack', '~> 2.2.3'
@@ -24,7 +24,7 @@ gem 'paperclip', '~> 6.0'
 gem 'blurhash', '~> 0.1'
 
 gem 'active_model_serializers', '~> 0.10'
-gem 'addressable', '~> 2.7'
+gem 'addressable', '~> 2.8'
 gem 'bootsnap', '~> 1.6.0', require: false
 gem 'browser'
 gem 'charlock_holmes', '~> 0.7.7'
