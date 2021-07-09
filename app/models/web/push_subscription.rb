@@ -12,7 +12,7 @@
 #  updated_at      :datetime         not null
 #  access_token_id :bigint(8)
 #  user_id         :bigint(8)
-#  expo            :boolean          default(FALSE), not null
+#  expo            :string
 #
 
 class Web::PushSubscription < ApplicationRecord

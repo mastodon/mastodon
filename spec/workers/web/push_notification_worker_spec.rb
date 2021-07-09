@@ -45,8 +45,9 @@ describe Web::PushNotificationWorker do
       }, body: "+\xB8\xDBT}\u0013\xB6\xDD.\xF9\xB0\xA7\xC8Ҁ\xFD\x99#\xF7\xAC\x83\xA4\xDB,\u001F\xB5\xB9w\x85>\xF7\xADr")).to have_been_made
     end
 
-    it 'calls the relevant service with the correct headers when it is an expo subscription' do
+    it 'calls the relevant service with the correct headers and body when it is an expo subscription' do
       allow_any_instance_of(subscription.class).to receive(:expo?).and_return(true)
+      allow_any_instance_of(subscription.class).to receive(:expo).and_return('ExpoToken1234')
       subject.perform(subscription.id, notification.id)
 
       expect(a_request(:post, endpoint).with(headers: {
@@ -56,7 +57,7 @@ describe Web::PushNotificationWorker do
         'Host' => 'exp.host',
         'Ttl' => '172800',
         'Urgency' => 'normal',
-      }, body: "+\xB8\xDBT}\u0013\xB6\xDD.\xF9\xB0\xA7\xC8Ҁ\xFD\x99#\xF7\xAC\x83\xA4\xDB,\u001F\xB5\xB9w\x85>\xF7\xADr")).to have_been_made
+      }, body: { to: 'ExpoToken1234', title: be_an_instance_of(String), body: be_an_instance_of(String), icon: be_an_instance_of(String)})).to have_been_made
     end
   end
 end

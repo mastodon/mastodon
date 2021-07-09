@@ -16,31 +16,22 @@ class Web::PushNotificationWorker
     # in the meantime, so we have to double-check before proceeding
     return unless @notification.activity.present? && @subscription.pushable?(@notification)
 
-    payload = @subscription.encrypt(push_notification_json)
+    return expo_send if @subscription.expo?
 
+    payload = @subscription.encrypt(push_notification_json)
+     
     request_pool.with(@subscription.audience) do |http_client|
       request = Request.new(:post, @subscription.endpoint, body: payload.fetch(:ciphertext), http_client: http_client)
 
-      if (@subscription.expo?)
-        request.add_headers(
-          'Content-Type'     => 'application/json',
-          'Accept' => 'application/json',
-          'Accept-Encoding' => 'gzip, deflate',
-          'Host' => 'exp.host',
-          'Ttl'              => TTL,
-          'Urgency'          => URGENCY,
-        )
-      else
-        request.add_headers(
-          'Content-Type'     => 'application/octet-stream',
-          'Ttl'              => TTL,
-          'Urgency'          => URGENCY,
-          'Content-Encoding' => 'aesgcm',
-          'Encryption'       => "salt=#{Webpush.encode64(payload.fetch(:salt)).delete('=')}",
-          'Crypto-Key'       => "dh=#{Webpush.encode64(payload.fetch(:server_public_key)).delete('=')};#{@subscription.crypto_key_header}",
-          'Authorization'    => @subscription.authorization_header
-        )
-      end
+      request.add_headers(
+        'Content-Type'     => 'application/octet-stream',
+        'Ttl'              => TTL,
+        'Urgency'          => URGENCY,
+        'Content-Encoding' => 'aesgcm',
+        'Encryption'       => "salt=#{Webpush.encode64(payload.fetch(:salt)).delete('=')}",
+        'Crypto-Key'       => "dh=#{Webpush.encode64(payload.fetch(:server_public_key)).delete('=')};#{@subscription.crypto_key_header}",
+        'Authorization'    => @subscription.authorization_header
+      )
 
       request.perform do |response|
         # If the server responds with an error in the 4xx range
@@ -61,6 +52,36 @@ class Web::PushNotificationWorker
 
   private
 
+  def expo_send
+    request_pool.with(@subscription.audience) do |http_client|
+      body = push_notification_json
+      
+      request = Request.new(:post, @subscription.endpoint, body: body, http_client: http_client)
+
+      request.add_headers(
+        'Content-Type'     => 'application/json',
+        'Accept' => 'application/json',
+        'Accept-Encoding' => 'gzip, deflate',
+        'Host' => 'exp.host',
+        'Ttl'              => TTL,
+        'Urgency'          => URGENCY,
+      )
+
+      request.perform do |response|
+        # If the server responds with an error in the 4xx range
+        # that isn't about rate-limiting or timeouts, we can
+        # assume that the subscription is invalid or expired
+        # and must be removed
+
+        if (400..499).cover?(response.code) && ![408, 429].include?(response.code)
+          @subscription.destroy!
+        elsif !(200...300).cover?(response.code)
+          raise Mastodon::UnexpectedResponseError, response
+        end
+      end
+    end
+  end
+
   def push_notification_json
     json = I18n.with_locale(@subscription.locale || I18n.default_locale) do
       ActiveModelSerializers::SerializableResource.new(
@@ -69,6 +90,15 @@ class Web::PushNotificationWorker
         scope: @subscription,
         scope_name: :current_push_subscription
       ).as_json
+    end
+
+    if (@subscription.expo?)
+      json.delete :access_token
+      json.delete :preferred_locale
+      json.delete :notification_id
+      json.delete :notification_type
+
+      json[:to] = @subscription.expo
     end
 
     Oj.dump(json)

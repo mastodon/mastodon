@@ -944,7 +944,7 @@ ActiveRecord::Schema.define(version: 2021_07_08_211904) do
     t.datetime "updated_at", null: false
     t.bigint "access_token_id"
     t.bigint "user_id"
-    t.boolean "expo", default: false, null: false
+    t.string "expo"
     t.index ["access_token_id"], name: "index_web_push_subscriptions_on_access_token_id"
     t.index ["user_id"], name: "index_web_push_subscriptions_on_user_id"
   end
