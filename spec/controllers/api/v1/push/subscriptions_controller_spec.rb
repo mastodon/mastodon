@@ -20,6 +20,7 @@ describe Api::V1::Push::SubscriptionsController do
           p256dh: 'BEm_a0bdPDhf0SOsrnB2-ategf1hHoCnpXgQsFj5JCkcoMrMt2WHoPfEYOYPzOIs9mZE8ZUaD7VA5vouy0kEkr8=',
           auth: 'eH_C8rq2raXqlcBVDa1gLg==',
         },
+        expo: true
       }
     }.with_indifferent_access
   end
@@ -53,6 +54,7 @@ describe Api::V1::Push::SubscriptionsController do
       expect(push_subscription.endpoint).to eq(create_payload[:subscription][:endpoint])
       expect(push_subscription.key_p256dh).to eq(create_payload[:subscription][:keys][:p256dh])
       expect(push_subscription.key_auth).to eq(create_payload[:subscription][:keys][:auth])
+      expect(push_subscription.expo).to eq(create_payload[:subscription][:expo])
       expect(push_subscription.user_id).to eq user.id
       expect(push_subscription.access_token_id).to eq token.id
     end
