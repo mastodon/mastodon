@@ -21,15 +21,26 @@ class Web::PushNotificationWorker
     request_pool.with(@subscription.audience) do |http_client|
       request = Request.new(:post, @subscription.endpoint, body: payload.fetch(:ciphertext), http_client: http_client)
 
-      request.add_headers(
-        'Content-Type'     => 'application/octet-stream',
-        'Ttl'              => TTL,
-        'Urgency'          => URGENCY,
-        'Content-Encoding' => 'aesgcm',
-        'Encryption'       => "salt=#{Webpush.encode64(payload.fetch(:salt)).delete('=')}",
-        'Crypto-Key'       => "dh=#{Webpush.encode64(payload.fetch(:server_public_key)).delete('=')};#{@subscription.crypto_key_header}",
-        'Authorization'    => @subscription.authorization_header
-      )
+      if (@subscription.expo?)
+        request.add_headers(
+          'Content-Type'     => 'application/json',
+          'Accept' => 'application/json',
+          'Accept-Encoding' => 'gzip, deflate',
+          'Host' => 'exp.host',
+          'Ttl'              => TTL,
+          'Urgency'          => URGENCY,
+        )
+      else
+        request.add_headers(
+          'Content-Type'     => 'application/octet-stream',
+          'Ttl'              => TTL,
+          'Urgency'          => URGENCY,
+          'Content-Encoding' => 'aesgcm',
+          'Encryption'       => "salt=#{Webpush.encode64(payload.fetch(:salt)).delete('=')}",
+          'Crypto-Key'       => "dh=#{Webpush.encode64(payload.fetch(:server_public_key)).delete('=')};#{@subscription.crypto_key_header}",
+          'Authorization'    => @subscription.authorization_header
+        )
+      end
 
       request.perform do |response|
         # If the server responds with an error in the 4xx range
