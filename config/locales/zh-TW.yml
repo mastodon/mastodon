@@ -1002,6 +1002,17 @@ zh-TW:
   lists:
     errors:
       limit: 你所建立的列表數量已經達到上限
+  login_activities:
+    authentication_methods:
+      otp: 兩步驟驗證應用程式
+      password: 密碼
+      sign_in_token: 電子郵件安全碼
+      webauthn: 安全金鑰
+    description_html: 若您看到您不認識的活動，請考慮變更您的密碼或啟用兩步驟驗證。
+    empty: 沒有可用的驗證歷史紀錄
+    failed_sign_in_html: 使用來自 %{ip} (%{browser}) 的 %{method} 登入嘗試失敗
+    successful_sign_in_html: 使用來自 %{ip} (%{browser}) 的 %{method} 登入成功
+    title: 認證歷史紀錄
   media_attachments:
     validations:
       images_and_video: 無法在已有圖片的文章上加入影片
@@ -1020,6 +1031,7 @@ zh-TW:
       on_cooldown: 你正在處於冷卻（CD）狀態
     followers_count: 轉移時的追隨者
     incoming_migrations: 自另一個帳戶轉移
+    incoming_migrations_html: 要從其他帳號移動到此帳號的話，首先您必須<a href="%{path}">建立帳號別名</a>。
     proceed_with_move: 移動關注者
     redirected_msg: 您的帳戶現在指向 %{acct}
     set_redirect: 設定重新導向
