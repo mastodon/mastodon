@@ -1032,16 +1032,36 @@ zh-TW:
     followers_count: 轉移時的追隨者
     incoming_migrations: 自另一個帳戶轉移
     incoming_migrations_html: 要從其他帳號移動到此帳號的話，首先您必須<a href="%{path}">建立帳號別名</a>。
+    moved_msg: 您的帳號正被重新導向到 %{acct}，您的追蹤者也會同步轉移至該帳號。
+    not_redirecting: 您的帳號目前尚未重新導向到任何其他帳號。
+    on_cooldown: 您最近已轉移過您的帳號。此功能將在 %{count} 天後可再度使用。
+    past_migrations: 以往的轉移紀錄
     proceed_with_move: 移動關注者
     redirected_msg: 您的帳戶現在指向 %{acct}
+    redirecting_to: 您的帳號目前正被重新導向到 %{acct}
     set_redirect: 設定重新導向
+    warning:
+      backreference_required: 新的帳號必須先設定為反向參照到目前帳號
+      before: '在進行下一步驟之前，請詳細閱讀以下説明：'
+      cooldown: 在轉移帳號後會有一段等待時間，在等待時間內您將無法再次轉移
+      disabled_account: 之後您的目前帳號將完全無法使用。但您可以存取資料匯出與重新啟用。
+      followers: 此動作將會把目前帳號的所有追蹤者轉移至新帳號
+      only_redirect_html: 或者，您也可以<a href="%{path}">僅在您的個人資料中放置重新導向</a>。
+      other_data: 其他資料並不會自動轉移
+      redirect: 您目前的帳號將會在個人資料頁面新增重新導向公告，並會被排除在搜尋結果之外
   moderation:
     title: 營運
+  move_handler:
+    carry_blocks_over_text: 此使用者轉移自被您封鎖的 %{acct}。
+    carry_mutes_over_text: 此使用者轉移自被您靜音的 %{acct}。
+    copy_account_note_text: '此使用者轉移自 %{acct}，以下是您之前關於他們的備註：'
   notification_mailer:
     digest:
       action: 閱覽所有通知
       body: 以下是自%{since}你最後一次登入以來錯過的訊息摘要
       mention: "%{name} 在此提及了你:"
+      new_followers_summary:
+        other: 此外，您在離開時獲得了 %{count} 位新的追蹤者！超棒的！
       title: 你不在的時候...
     favourite:
       body: '你的嘟文被 %{name} 加入了最愛:'
