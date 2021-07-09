@@ -2,8 +2,8 @@ pt-PT:
   devise:
     confirmations:
       confirmed: O teu endereço de e-mail foi confirmado com sucesso.
-      send_instructions: Vais receber um email com as instruções para confirmar o teu endereço de email dentro de alguns minutos. Por favor, verifica a caixa de spam se não recebeste o e-mail.
-      send_paranoid_instructions: Se o teu endereço de email já existir na nossa base de dados, vais receber um email com as instruções de confirmação dentro de alguns minutos. Por favor, verifica a caixa de spam se não recebeste o e-mail.
+      send_instructions: Vais receber um e-mail com as instruções para confirmar o teu endereço de e-mail dentro de alguns minutos. Por favor, verifica a caixa de spam se não recebeu o e-mail.
+      send_paranoid_instructions: Se o teu endereço de e-mail já existir na nossa base de dados, vais receber um e-mail com as instruções de confirmação dentro de alguns minutos. Por favor, verifica a caixa de spam se não recebeu o e-mail.
     failure:
       already_authenticated: A tua sessão já está aberta.
       inactive: A tua conta ainda não está ativada.
@@ -14,7 +14,7 @@ pt-PT:
       pending: A sua conta está ainda a aguardar revisão.
       timeout: A tua sessão expirou. Por favor, entra de novo para continuares.
       unauthenticated: Precisas de entrar na tua conta ou de te registares antes de continuar.
-      unconfirmed: Tens de confirmar o teu endereço de email antes de continuar.
+      unconfirmed: Tens de confirmar o teu endereço de e-mail antes de continuar.
     mailer:
       confirmation_instructions:
         action: Verificar o endereço de e-mail
@@ -25,9 +25,9 @@ pt-PT:
         subject: 'Mastodon: Instruções de confirmação %{instance}'
         title: Verificar o endereço de e-mail
       email_changed:
-        explanation: 'O e-mail associado à tua conta será alterado para:'
-        extra: Se não alterou o seu email, é possível que alguém tenha conseguido aceder à sua conta. Por favor altere a sua palavra-passe imediatamente ou entra em contacto com um administrador da instância se tiver ficado sem acesso à sua conta.
-        subject: 'Mastodon: Email alterado'
+        explanation: 'O e-mail associado à sua conta será alterado para:'
+        extra: Se não alterou o seu e-mail, é possível que alguém tenha conseguido aceder à sua conta. Por favor altere a sua palavra-passe imediatamente ou entra em contacto com um administrador da instância se tiver ficado sem acesso à sua conta.
+        subject: 'Mastodon: E-mail alterado'
         title: Novo endereço de e-mail
       password_change:
         explanation: A palavra-passe da tua conta foi alterada.
@@ -80,9 +80,9 @@ pt-PT:
       failure: Não foi possível autenticar %{kind} porque "%{reason}".
       success: Autenticado com sucesso na conta %{kind}.
     passwords:
-      no_token: Não pode aceder a esta página se não vier através do link enviado por email para alteração da sua palavra-passe. Se usaste esse link para chegar aqui, por favor verifica que o endereço URL actual é o mesmo do que foi enviado no email.
-      send_instructions: Vais receber um email com instruções para alterar a palavra-passe dentro de algns minutos.
-      send_paranoid_instructions: Se o teu endereço de email existe na nossa base de dados, vais receber um link para recuperar a palavra-passe dentro de alguns minutos.
+      no_token: Não pode aceder a esta página se não vier através do link enviado por e-mail para alteração da sua palavra-passe. Se usou esse link para chegar aqui, por favor verifique que o endereço URL atual é igual ao que foi enviado no e-mail.
+      send_instructions: Vai receber um e-mail com instruções para alterar a palavra-passe dentro de alguns minutos.
+      send_paranoid_instructions: Se o seu endereço de e-mail existir na nossa base de dados, vai receber um link para recuperar a palavra-passe dentro de alguns minutos.
       updated: A tua palavra-passe foi alterada. Estás agora autenticado na tua conta.
       updated_not_active: A tua palavra-passe foi alterada.
     registrations:
@@ -91,16 +91,16 @@ pt-PT:
       signed_up_but_inactive: A tua conta foi registada. No entanto ainda não está activa.
       signed_up_but_locked: A sua conta foi registada com sucesso. No entanto, não pudemos iniciar a sua sessão porque a conta está bloqueada.
       signed_up_but_pending: Uma mensagem com um link de confirmação foi enviada para o seu endereço de e-mail. Depois de clicar no link, iremos rever a sua inscrição. Será notificado se a sua conta é aprovada.
-      signed_up_but_unconfirmed: Uma mensagem com um link de confirmação foi enviada para o teu email. Por favor segue esse link para activar a tua conta.
-      update_needs_confirmation: Alteraste o teu endereço de email ou palavra-passe, mas é necessário confirmar essa alteração. Por favor vai ao teu email e segue link que te enviámos.
+      signed_up_but_unconfirmed: Uma mensagem com um link de confirmação foi enviada para o seu e-mail. Por favor utilize esse link para ativar a sua conta.
+      update_needs_confirmation: Alteraste o teu endereço de e-mail ou palavra-passe, mas é necessário confirmar essa alteração. Por favor vá ao seu e-mail e utilize o link que lhe enviámos.
       updated: A tua conta foi actualizada com sucesso.
     sessions:
       already_signed_out: Sessão encerrada.
       signed_in: Sessão iniciada.
       signed_out: Sessão encerrada.
     unlocks:
-      send_instructions: Vais receber um email com instruções para desbloquear a tua conta dentro de alguns minutos.
-      send_paranoid_instructions: Se a tua conta existe, vais receber um email com instruções a detalhar como a desbloquear dentro de alguns minutos.
+      send_instructions: Vai receber um e-mail com instruções para desbloquear a sua conta dentro de alguns minutos.
+      send_paranoid_instructions: Se a sua conta existe, vais receber um e-mail com instruções a detalhar como a desbloquear dentro de alguns minutos.
       unlocked: A sua conta foi desbloqueada com sucessos. Por favor, inicie uma nova sessão para continuar.
   errors:
     messages:
