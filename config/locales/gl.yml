@@ -117,6 +117,7 @@ gl:
       demote: Rebaixar
       destroyed_msg: "Os datos de %{username} están na cola para ser eliminados axiña"
       disable: Desactivar
+      disable_sign_in_token_auth: Desactivar a autenticación por token nun email
       disable_two_factor_authentication: Desactivar 2FA
       disabled: Desactivado
       display_name: Nome a amosar
@@ -125,6 +126,7 @@ gl:
       email: Email
       email_status: Estado do email
       enable: Activar
+      enable_sign_in_token_auth: Activar autenticación cun token no email
       enabled: Activado
       enabled_msg: Desbloqueada a conta de %{username}
       followers: Seguidoras
@@ -189,6 +191,10 @@ gl:
       search: Procurar
       search_same_email_domain: Outras usuarias co mesmo dominio de email
       search_same_ip: Outras usuarias co mesmo IP
+      security_measures:
+        only_password: Só contrasinal
+        password_and_2fa: Contrasinal e 2FA
+        password_and_sign_in_token: Contrasinal e token nun email
       sensitive: Sensible
       sensitized: marcado como sensible
       shared_inbox_url: URL da caixa de entrada compartida
@@ -240,8 +246,10 @@ gl:
         destroy_unavailable_domain: Eliminar dominio Non dispoñible
         disable_2fa_user: Desactivar 2FA
         disable_custom_emoji: Desactivar emoticona personalizada
+        disable_sign_in_token_auth_user: Desactivar Autenticación por token no email para Usuaria
         disable_user: Desactivar usuaria
         enable_custom_emoji: Activar emoticona personalizada
+        enable_sign_in_token_auth_user: Activar Autenticación con token no email para Usuaria
         enable_user: Activar usuaria
         memorialize_account: Transformar en conta conmemorativa
         promote_user: Promover usuaria
@@ -283,8 +291,10 @@ gl:
         destroy_unavailable_domain_html: "%{name} retomou a interacción co dominio %{target}"
         disable_2fa_user_html: "%{name} desactivou o requerimento do segundo factor para a usuaria %{target}"
         disable_custom_emoji_html: "%{name} desactivou o emoji %{target}"
+        disable_sign_in_token_auth_user_html: "%{name} desactivou a autenticación por token no email para %{target}"
         disable_user_html: "%{name} desactivou a conexión para a usuaria %{target}"
         enable_custom_emoji_html: "%{name} activou o emoji %{target}"
+        enable_sign_in_token_auth_user_html: "%{name} activou a autenticación con token no email para %{target}"
         enable_user_html: "%{name} activou a conexión para a usuaria %{target}"
         memorialize_account_html: "%{name} convertiu a conta de %{target} nunha páxina para o recordo"
         promote_user_html: "%{name} promocionou a usuaria %{target}"
