@@ -105,7 +105,7 @@ pt-PT:
       by_domain: Domínio
       change_email:
         changed_msg: E-mail da conta alterado com sucesso!
-        current_email: E-mail actual
+        current_email: E-mail atual
         label: Alterar e-mail
         new_email: Novo e-mail
         submit: Alterar e-mail
@@ -117,7 +117,8 @@ pt-PT:
       deleted: Eliminada
       demote: Despromoveu
       destroyed_msg: "Os dados de %{username} estão agora em fila de espera para serem eliminados de imediato"
-      disable: Desativar
+      disable: Congelar
+      disable_sign_in_token_auth: Desativar token de autenticação por e-mail
       disable_two_factor_authentication: Desativar 2FA
       disabled: Congelada
       display_name: Nome a mostrar
@@ -125,7 +126,8 @@ pt-PT:
       edit: Editar
       email: E-mail
       email_status: Estado do e-mail
-      enable: Ativar
+      enable: Descongelar
+      enable_sign_in_token_auth: Ativar token de autenticação por e-mail
       enabled: Ativado
       enabled_msg: Descongelou com sucesso a conta %{username}
       followers: Seguidores
@@ -176,8 +178,8 @@ pt-PT:
       removed_header_msg: Imagem de cabeçalho de %{username} removida com sucesso
       resend_confirmation:
         already_confirmed: Este utilizador já está confirmado
-        send: Reenviar um email de confirmação
-        success: Email de confirmação enviado com sucesso!
+        send: Reenviar um e-mail de confirmação
+        success: E-mail de confirmação enviado com sucesso!
       reset: Restaurar
       reset_password: Reset palavra-passe
       resubscribe: Reinscrever
@@ -190,6 +192,10 @@ pt-PT:
       search: Pesquisar
       search_same_email_domain: Outros utilizadores com o mesmo domínio de email
       search_same_ip: Outros utilizadores com o mesmo IP
+      security_measures:
+        only_password: Apenas palavra-passe
+        password_and_2fa: Palavra-passe e 2FA
+        password_and_sign_in_token: Palavra-passe e token por e-mail
       sensitive: Marcar como sensível
       sensitized: marcada como sensível
       shared_inbox_url: URL da caixa de entrada compartilhada
@@ -241,8 +247,10 @@ pt-PT:
         destroy_unavailable_domain: Eliminar Domínio Indisponível
         disable_2fa_user: Desativar 2FA
         disable_custom_emoji: Desativar Emoji Personalizado
+        disable_sign_in_token_auth_user: Desativar token de autenticação por e-mail para Utilizador
         disable_user: Desativar Utilizador
         enable_custom_emoji: Ativar Emoji Personalizado
+        enable_sign_in_token_auth_user: Ativar token de autenticação por e-mail para Utilizador
         enable_user: Ativar Utilizador
         memorialize_account: Memorizar Conta
         promote_user: Promover Utilizador
@@ -284,8 +292,10 @@ pt-PT:
         destroy_unavailable_domain_html: "%{name} retomou a entrega ao domínio %{target}"
         disable_2fa_user_html: "%{name} desativou o requerimento de autenticação em dois passos para o utilizador %{target}"
         disable_custom_emoji_html: "%{name} desabilitou o emoji %{target}"
+        disable_sign_in_token_auth_user_html: "%{name} desativou token de autenticação por e-mail para %{target}"
         disable_user_html: "%{name} desativou o acesso para o utilizador %{target}"
         enable_custom_emoji_html: "%{name} habilitou o emoji %{target}"
+        enable_sign_in_token_auth_user_html: "%{name} ativou token de autenticação por e-mail para %{target}"
         enable_user_html: "%{name} ativou o acesso para o utilizador %{target}"
         memorialize_account_html: "%{name} transformou a conta de %{target} em um memorial"
         promote_user_html: "%{name} promoveu o utilizador %{target}"
@@ -490,7 +500,7 @@ pt-PT:
       total_reported: Relatórios sobre eles
       total_storage: Anexos de media
     invites:
-      deactivate_all: Desactivar todos
+      deactivate_all: Desativar todos
       filter:
         all: Todos
         available: Disponíveis
@@ -520,7 +530,7 @@ pt-PT:
       add_new: Adicionar novo repetidor
       delete: Eliminar
       description_html: Um <strong>repetidor de federação</strong> é um servidor intermediário que troca grandes volumes de publicações públicas entre instâncias que o subscrevem e publicam. <strong>Ele pode ajudar pequenas e medias instâncias a descobrir conteúdo do fediverso</strong> que, de outro modo, exigiria que os utilizadores locais seguissem manualmente outras pessoas em instâncias remotas.
-      disable: Desactivar
+      disable: Desativar
       disabled: Desactivado
       enable: Activar
       enable_hint: Uma vez ativado, a tua instância irá subscrever a todas as publicações deste repetidor e irá começar a enviar as suas publicações públicas para ele.
@@ -594,7 +604,7 @@ pt-PT:
         title: CSS personalizado
       default_noindex:
         desc_html: Afeta todos os utilizadores que não alteraram esta configuração
-        title: Desactivar, por omissão, a indexação de utilizadores por parte dos motores de pesquisa
+        title: Desativar, por omissão, a indexação de utilizadores por parte dos motores de pesquisa
       domain_blocks:
         all: Para toda a gente
         disabled: Para ninguém
@@ -793,7 +803,7 @@ pt-PT:
     set_new_password: Editar palavra-passe
     setup:
       email_below_hint_html: Se o endereço de e-mail abaixo estiver incorreto, pode alterá-lo aqui e receber um novo e-mail de confirmação.
-      email_settings_hint_html: O e-mail de confirmação foi enviado para %{email}. Se esse endereço de e-mail não estiver correcto, pode alterá-lo nas definições da conta.
+      email_settings_hint_html: O e-mail de confirmação foi enviado para %{email}. Se esse endereço de e-mail não estiver correto, pode alterá-lo nas definições da conta.
       title: Configuração
     status:
       account_status: Estado da conta
