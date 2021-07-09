@@ -96,7 +96,7 @@ pt-PT:
       delete: Eliminar
       destroyed_msg: Nota de moderação excluída com sucesso!
     accounts:
-      add_email_domain_block: Adicionar o domínio de email à lista negra
+      add_email_domain_block: Adicionar o domínio de e-mail à lista negra
       approve: Aprovar
       approve_all: Aprovar todos
       approved_msg: Inscrição de %{username} aprovada com sucesso
@@ -190,7 +190,7 @@ pt-PT:
         staff: Equipa
         user: Utilizador
       search: Pesquisar
-      search_same_email_domain: Outros utilizadores com o mesmo domínio de email
+      search_same_email_domain: Outros utilizadores com o mesmo domínio de e-mail
       search_same_ip: Outros utilizadores com o mesmo IP
       security_measures:
         only_password: Apenas palavra-passe
@@ -445,16 +445,16 @@ pt-PT:
       view: Ver domínios bloqueados
     email_domain_blocks:
       add_new: Adicionar novo
-      created_msg: Bloqueio de domínio de email criado com sucesso
+      created_msg: Bloqueio de domínio de e-mail criado com sucesso
       delete: Eliminar
-      destroyed_msg: Bloqueio de domínio de email excluído com sucesso
+      destroyed_msg: Bloqueio de domínio de e-mail excluído com sucesso
       domain: Domínio
       empty: Nenhum domínio de e-mail atualmente na lista negra.
       from_html: de %{domain}
       new:
         create: Adicionar domínio
-        title: Novo bloqueio de domínio de email
-      title: Bloqueio de Domínio de Email
+        title: Novo bloqueio de domínio de e-mail
+      title: Domínios de e-mail bloqueados
     follow_recommendations:
       description_html: "<strong>Recomendações de quem seguir ajudam novos utilizadores a encontrar conteúdo interessante rapidamente.</strong>. Quando um utilizador não interage com outros o suficiente para formar recomendações personalizadas, estas contas são recomendadas. Elas são recalculadas diariamente a partir de uma mistura de contas com mais atividade recente e maior número de seguidores locais para um determinado idioma."
       language: Para o idioma
@@ -597,7 +597,7 @@ pt-PT:
         desc_html: Separa os nomes de utilizadores por vírgulas. Funciona apenas com contas locais e desbloqueadas. O padrão quando vazio são todos os administradores locais.
         title: Seguidores predefinidos para novas contas
       contact_information:
-        email: Inserir um endereço de email para tornar público
+        email: Inserir um endereço de e-mail para tornar público
         username: Insira um nome de utilizador
       custom_css:
         desc_html: Modificar a aparência com CSS carregado em cada página
@@ -758,7 +758,7 @@ pt-PT:
   application_mailer:
     notification_preferences: Alterar preferências de e-mail
     salutation: "%{name},"
-    settings: 'Alterar preferências de email: %{link}'
+    settings: 'Alterar preferências de e-mail: %{link}'
     view: 'Ver:'
     view_profile: Ver perfil
     view_status: Ver publicação
@@ -781,7 +781,7 @@ pt-PT:
       prefix_invited_by_user: "@%{name} convidou-o a juntar-se a esta instância do Mastodon!"
       prefix_sign_up: Inscreva-se hoje no Mastodon!
       suffix: Com uma conta, poderá seguir pessoas, publicar atualizações e trocar mensagens com utilizadores de qualquer instância Mastodon e muito mais!
-    didnt_get_confirmation: Não recebeu o email de confirmação?
+    didnt_get_confirmation: Não recebeu o e-mail de confirmação?
     dont_have_your_security_key: Não tem a sua chave de segurança?
     forgot_password: Esqueceste a palavra-passe?
     invalid_reset_password_token: Token de modificação da palavra-passe é inválido ou expirou. Por favor, solicita um novo.
@@ -1455,7 +1455,7 @@ pt-PT:
       full_handle: O teu nome completo
       full_handle_hint: Isto é o que você diria aos seus amigos para que eles lhe possam enviar mensagens ou seguir a partir de outra instância.
       review_preferences_action: Alterar preferências
-      review_preferences_step: Certifica-te de configurar as tuas preferências, tais como os e-mails que gostarias de receber ou o nível de privacidade que desejas que as tuas publicações tenham por defeito. Se não sofres de enjoo, podes ativar a opção de auto-iniciar GIFs.
+      review_preferences_step: Certifique-se de configurar as suas preferências, tais como os e-mails que gostaria de receber ou o nível de privacidade que deseja que as suas publicações tenham por defeito. Se não sofres de enjoo, podes ativar a opção de auto-iniciar GIFs.
       subject: Bem-vindo ao Mastodon
       tip_federated_timeline: A cronologia federativa é uma visão global da rede Mastodon. Mas só inclui pessoas que os teus vizinhos subscrevem, por isso não é uma visão completa.
       tip_following: Segues o(s) administrador(es) do teu servidor por defeito. Para encontrar mais pessoas interessantes, procura nas cronologias local e federada.
@@ -1468,7 +1468,7 @@ pt-PT:
     generic_access_help_html: Problemas para aceder à sua conta? Pode entrar em contacto com %{email} para obter ajuda
     invalid_otp_token: Código de autenticação inválido
     invalid_sign_in_token: Cógido de segurança inválido
-    otp_lost_help_html: Se tu perdeste acesso a ambos, tu podes entrar em contacto com %{email}
+    otp_lost_help_html: Se perdeu acesso a ambos, pode entrar em contacto com %{email}
     seamless_external_login: Tu estás ligado via um serviço externo. Por isso, as configurações da palavra-passe e do e-mail não estão disponíveis.
     signed_in_as: 'Registado como:'
     suspicious_sign_in_confirmation: Parece que não iniciou sessão através deste dispositivo antes, e não acede à sua conta há algum tempo. Portanto, enviámos um código de segurança para o seu endereço de e-mail para confirmar que é você.
