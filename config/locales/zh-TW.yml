@@ -1325,6 +1325,27 @@ zh-TW:
       further_actions: '如果這不是你，請立即到這裡變更你的密碼，並啟用兩步驟驗證：'
       subject: 請確認登入嘗試
       title: 登入嘗試
+    warning:
+      explanation:
+        disable: 您將無法以任何方式登入或使用您的帳號，但您的個人資料頁面和其他資料仍保持完整。
+        sensitive: 您上傳的媒體檔案或連結的媒體將會被標記為敏感。
+        silence: 您仍然可以使用您的帳號，但僅有已追蹤您的人才能看到您在此伺服器的貼文，您也可能會從公開清單中被排除。但其他人仍可手動追蹤您。
+        suspend: 您將不能使用您的帳號，您的個人資料頁面及其他資料將不再能被取得。您仍可在資料被完全刪除前要求下載你的資料，但我們仍會保留一部份資料，以防止有人規避停權處罰。
+      get_in_touch: 您可以回覆此電子郵件並與 %{instance} 的工作人員們聯絡。
+      review_server_policies: 檢視伺服器政策
+      statuses: '特別是：'
+      subject:
+        disable: 您的帳號 %{acct} 已被凍結
+        none: 對 %{acct} 的警告
+        sensitive: 您帳號 %{acct} 張貼的媒體已被標記為敏感內容
+        silence: 您的帳號 %{acct} 已被限制
+        suspend: 您的帳號 %{acct} 已被停權
+      title:
+        disable: 帳號已被涷結
+        none: 警告
+        sensitive: 您的媒體已被標記為敏感內容
+        silence: 帳號已被限制
+        suspend: 帳號己被停用
     welcome:
       edit_profile_action: 設定個人資料
       edit_profile_step: 你可以設定你的個人資料，包括上傳頭像、橫幅圖片、變更顯示名稱等等。如果你想在新的關注者關注你之前對他們進行審核，你也可以選擇為你的帳戶設為「私人」。
@@ -1343,12 +1364,31 @@ zh-TW:
       tips: 小幫手
       title: '%{name} 歡迎你的加入！'
   users:
+    follow_limit_reached: 您無法追蹤多於 %{limit} 個人
+    generic_access_help_html: 存取您的帳號時遇到困難？您可以透過 %{email} 取得協助
     invalid_otp_token: 兩階段認證碼不正確
+    invalid_sign_in_token: 安全碼無效
     otp_lost_help_html: 如果你無法訪問這兩者，可以通過 %{email} 與我們聯繫
     seamless_external_login: 由於你是從外部系統登入，所以不能設定密碼與電子郵件。
     signed_in_as: '目前登入的帳戶：'
+    suspicious_sign_in_confirmation: 您之前似乎未從此裝置登入過，再加上您也有一段時間沒有登入了，因此我們剛剛傳送了安全碼到您的電子郵件地址以確認真的是您。
   verification:
     explanation_html: '您在 Mastodon 個人資料頁上所列出的連結，可以用此方式<strong>驗證您確實掌控該連結網頁的內容</strong>。您可以在連結的網頁上加上一個連回 Mastodon 個人資料頁的連結，該連結的原始碼 <strong>必須</strong>包含<code>rel="me"</code>屬性。連結的顯示文字可自由發揮，以下為範例：'
     verification: 驗證連結
   webauthn_credentials:
+    add: 新增安全金鑰
+    create:
+      error: 新增安全金鑰時出現了問題。請再試一次。
+      success: 你已成功加入安全金鑰。
+    delete: 刪除
+    delete_confirmation: 您確定要移除這把安全金鑰嗎？
+    description_html: 如果您啟用<strong>安全金鑰驗證</strong>的話，您將在登入時需要使用其中一把安全金鑰。
+    destroy:
+      error: 移除安全金鑰時出現了問題。請再試一次。
+      success: 您已成功將安全金鑰移除。
+    invalid_credential: 無效的安全金鑰
+    nickname_hint: 輸入您新安全金鑰的暱稱
+    not_enabled: 您尚未啟用 WebAuthn
+    not_supported: 此瀏覽器並不支援安全金鑰
+    otp_required: 請先啟用兩步驟驗證以使用安全金鑰。
     registered_on: 註冊於 %{date}
