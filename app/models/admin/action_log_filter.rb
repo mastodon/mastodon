@@ -22,6 +22,7 @@ class Admin::ActionLogFilter
     create_domain_block: { target_type: 'DomainBlock', action: 'create' }.freeze,
     create_email_domain_block: { target_type: 'EmailDomainBlock', action: 'create' }.freeze,
     create_unavailable_domain: { target_type: 'UnavailableDomain', action: 'create' }.freeze,
+    create_registration_filter: { target_type: 'RegistrationFilter', action: 'create' }.freeze,
     demote_user: { target_type: 'User', action: 'demote' }.freeze,
     destroy_announcement: { target_type: 'Announcement', action: 'destroy' }.freeze,
     destroy_custom_emoji: { target_type: 'CustomEmoji', action: 'destroy' }.freeze,
@@ -30,6 +31,7 @@ class Admin::ActionLogFilter
     destroy_email_domain_block: { target_type: 'EmailDomainBlock', action: 'destroy' }.freeze,
     destroy_instance: { target_type: 'Instance', action: 'destroy' }.freeze,
     destroy_unavailable_domain: { target_type: 'UnavailableDomain', action: 'destroy' }.freeze,
+    destroy_registration_filter: { target_type: 'RegistrationFilter', action: 'destroy' }.freeze,
     destroy_status: { target_type: 'Status', action: 'destroy' }.freeze,
     disable_2fa_user: { target_type: 'User', action: 'disable' }.freeze,
     disable_custom_emoji: { target_type: 'CustomEmoji', action: 'disable' }.freeze,
@@ -53,6 +55,7 @@ class Admin::ActionLogFilter
     update_custom_emoji: { target_type: 'CustomEmoji', action: 'update' }.freeze,
     update_status: { target_type: 'Status', action: 'update' }.freeze,
     unblock_email_account: { target_type: 'Account', action: 'unblock_email' }.freeze,
+    update_registration_filter: { target_type: 'RegistrationFilter', action: 'update' }.freeze,
   }.freeze
 
   attr_reader :params

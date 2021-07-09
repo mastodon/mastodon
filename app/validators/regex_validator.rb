@@ -6,6 +6,6 @@ class RegexValidator < ActiveModel::EachValidator
 
     _ = Regexp.new(value)
   rescue RegexpError => e
-    record.errors.add(attribute, I18n.t('regex_validator.invalid_regexp', error: e.to_s)) unless errors.empty?
+    record.errors.add(attribute, I18n.t('regex_validator.invalid_regexp', error: e.to_s))
   end
 end

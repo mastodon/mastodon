@@ -757,6 +757,14 @@ ActiveRecord::Schema.define(version: 2022_07_14_171049) do
     t.index ["status_id", "preview_card_id"], name: "index_preview_cards_statuses_on_status_id_and_preview_card_id"
   end
 
+  create_table "registration_filters", force: :cascade do |t|
+    t.text "phrase", default: "", null: false
+    t.integer "type", default: 0, null: false
+    t.boolean "whole_word", default: true, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "relays", force: :cascade do |t|
     t.string "inbox_url", default: "", null: false
     t.string "follow_activity_id"
