@@ -462,47 +462,7 @@ class Account < ApplicationRecord
 
     def advanced_search_for(terms, account, limit = 10, following = false, offset = 0)
       tsquery = generate_query_for_search(terms)
-
-      sql = begin
-        if following
-          <<-SQL.squish
-            WITH first_degree AS (
-              SELECT target_account_id
-              FROM follows
-              WHERE account_id = :id
-              UNION ALL
-              SELECT :id
-            )
-            SELECT
-              accounts.*,
-              (count(f.id) + 1) * ts_rank_cd(#{TEXTSEARCH}, to_tsquery('simple', :tsquery), 32) AS rank
-            FROM accounts
-            LEFT OUTER JOIN follows AS f ON (accounts.id = f.account_id AND f.target_account_id = :id)
-            WHERE accounts.id IN (SELECT * FROM first_degree)
-              AND to_tsquery('simple', :tsquery) @@ #{TEXTSEARCH}
-              AND accounts.suspended_at IS NULL
-              AND accounts.moved_to_account_id IS NULL
-            GROUP BY accounts.id
-            ORDER BY rank DESC
-            LIMIT :limit OFFSET :offset
-          SQL
-        else
-          <<-SQL.squish
-            SELECT
-              accounts.*,
-              (count(f.id) + 1) * ts_rank_cd(#{TEXTSEARCH}, to_tsquery('simple', :tsquery), 32) AS rank
-            FROM accounts
-            LEFT OUTER JOIN follows AS f ON (accounts.id = f.account_id AND f.target_account_id = :id) OR (accounts.id = f.target_account_id AND f.account_id = :id)
-            WHERE to_tsquery('simple', :tsquery) @@ #{TEXTSEARCH}
-              AND accounts.suspended_at IS NULL
-              AND accounts.moved_to_account_id IS NULL
-            GROUP BY accounts.id
-            ORDER BY rank DESC
-            LIMIT :limit OFFSET :offset
-          SQL
-        end
-      end
-
+      sql = advanced_search_for_sql_template(following)
       records = find_by_sql([sql, id: account.id, limit: limit, offset: offset, tsquery: tsquery])
       ActiveRecord::Associations::Preloader.new.preload(records, :account_stat)
       records
@@ -530,6 +490,46 @@ class Account < ApplicationRecord
 
       # The final ":*" is for prefix search.
       "'#{terms}':*"
+    end
+
+    def advanced_search_for_sql_template(following)
+      if following
+        <<-SQL.squish
+          WITH first_degree AS (
+            SELECT target_account_id
+            FROM follows
+            WHERE account_id = :id
+            UNION ALL
+            SELECT :id
+          )
+          SELECT
+            accounts.*,
+            (count(f.id) + 1) * ts_rank_cd(#{TEXTSEARCH}, to_tsquery('simple', :tsquery), 32) AS rank
+          FROM accounts
+          LEFT OUTER JOIN follows AS f ON (accounts.id = f.account_id AND f.target_account_id = :id)
+          WHERE accounts.id IN (SELECT * FROM first_degree)
+            AND to_tsquery('simple', :tsquery) @@ #{TEXTSEARCH}
+            AND accounts.suspended_at IS NULL
+            AND accounts.moved_to_account_id IS NULL
+          GROUP BY accounts.id
+          ORDER BY rank DESC
+          LIMIT :limit OFFSET :offset
+        SQL
+      else
+        <<-SQL.squish
+          SELECT
+            accounts.*,
+            (count(f.id) + 1) * ts_rank_cd(#{TEXTSEARCH}, to_tsquery('simple', :tsquery), 32) AS rank
+          FROM accounts
+          LEFT OUTER JOIN follows AS f ON (accounts.id = f.account_id AND f.target_account_id = :id) OR (accounts.id = f.target_account_id AND f.account_id = :id)
+          WHERE to_tsquery('simple', :tsquery) @@ #{TEXTSEARCH}
+            AND accounts.suspended_at IS NULL
+            AND accounts.moved_to_account_id IS NULL
+          GROUP BY accounts.id
+          ORDER BY rank DESC
+          LIMIT :limit OFFSET :offset
+        SQL
+      end
     end
   end
 
