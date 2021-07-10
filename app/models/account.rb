@@ -463,48 +463,47 @@ class Account < ApplicationRecord
     def advanced_search_for(terms, account, limit = 10, following = false, offset = 0)
       tsquery = generate_query_for_search(terms)
 
-      if following
-        sql = <<-SQL.squish
-          WITH first_degree AS (
-            SELECT target_account_id
-            FROM follows
-            WHERE account_id = :id
-            UNION ALL
-            SELECT :id
-          )
-          SELECT
-            accounts.*,
-            (count(f.id) + 1) * ts_rank_cd(#{TEXTSEARCH}, to_tsquery('simple', :tsquery), 32) AS rank
-          FROM accounts
-          LEFT OUTER JOIN follows AS f ON (accounts.id = f.account_id AND f.target_account_id = :id)
-          WHERE accounts.id IN (SELECT * FROM first_degree)
-            AND to_tsquery('simple', :tsquery) @@ #{TEXTSEARCH}
-            AND accounts.suspended_at IS NULL
-            AND accounts.moved_to_account_id IS NULL
-          GROUP BY accounts.id
-          ORDER BY rank DESC
-          LIMIT :limit OFFSET :offset
-        SQL
-
-        records = find_by_sql([sql, id: account.id, limit: limit, offset: offset, tsquery: tsquery])
-      else
-        sql = <<-SQL.squish
-          SELECT
-            accounts.*,
-            (count(f.id) + 1) * ts_rank_cd(#{TEXTSEARCH}, to_tsquery('simple', :tsquery), 32) AS rank
-          FROM accounts
-          LEFT OUTER JOIN follows AS f ON (accounts.id = f.account_id AND f.target_account_id = :id) OR (accounts.id = f.target_account_id AND f.account_id = :id)
-          WHERE to_tsquery('simple', :tsquery) @@ #{TEXTSEARCH}
-            AND accounts.suspended_at IS NULL
-            AND accounts.moved_to_account_id IS NULL
-          GROUP BY accounts.id
-          ORDER BY rank DESC
-          LIMIT :limit OFFSET :offset
-        SQL
-
-        records = find_by_sql([sql, id: account.id, limit: limit, offset: offset, tsquery: tsquery])
+      sql = begin
+        if following
+          <<-SQL.squish
+            WITH first_degree AS (
+              SELECT target_account_id
+              FROM follows
+              WHERE account_id = :id
+              UNION ALL
+              SELECT :id
+            )
+            SELECT
+              accounts.*,
+              (count(f.id) + 1) * ts_rank_cd(#{TEXTSEARCH}, to_tsquery('simple', :tsquery), 32) AS rank
+            FROM accounts
+            LEFT OUTER JOIN follows AS f ON (accounts.id = f.account_id AND f.target_account_id = :id)
+            WHERE accounts.id IN (SELECT * FROM first_degree)
+              AND to_tsquery('simple', :tsquery) @@ #{TEXTSEARCH}
+              AND accounts.suspended_at IS NULL
+              AND accounts.moved_to_account_id IS NULL
+            GROUP BY accounts.id
+            ORDER BY rank DESC
+            LIMIT :limit OFFSET :offset
+          SQL
+        else
+          <<-SQL.squish
+            SELECT
+              accounts.*,
+              (count(f.id) + 1) * ts_rank_cd(#{TEXTSEARCH}, to_tsquery('simple', :tsquery), 32) AS rank
+            FROM accounts
+            LEFT OUTER JOIN follows AS f ON (accounts.id = f.account_id AND f.target_account_id = :id) OR (accounts.id = f.target_account_id AND f.account_id = :id)
+            WHERE to_tsquery('simple', :tsquery) @@ #{TEXTSEARCH}
+              AND accounts.suspended_at IS NULL
+              AND accounts.moved_to_account_id IS NULL
+            GROUP BY accounts.id
+            ORDER BY rank DESC
+            LIMIT :limit OFFSET :offset
+          SQL
+        end
       end
 
+      records = find_by_sql([sql, id: account.id, limit: limit, offset: offset, tsquery: tsquery])
       ActiveRecord::Associations::Preloader.new.preload(records, :account_stat)
       records
     end
