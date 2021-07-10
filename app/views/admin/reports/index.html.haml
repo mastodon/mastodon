@@ -7,6 +7,12 @@
     %ul
       %li= filter_link_to t('admin.reports.unresolved'), resolved: nil
       %li= filter_link_to t('admin.reports.resolved'), resolved: '1'
+  .filter-subset
+    %strong= t('admin.reports.target_origin')
+    %ul
+      %li= filter_link_to t('admin.accounts.location.all'), target_origin: nil
+      %li= filter_link_to t('admin.accounts.location.local'), target_origin: 'local'
+      %li= filter_link_to t('admin.accounts.location.remote'), target_origin: 'remote'
 
 = form_tag admin_reports_url, method: 'GET', class: 'simple_form' do
   .fields-group
