@@ -103,6 +103,7 @@ th:
       deleted: ลบแล้ว
       demote: ลดขั้น
       disable: อายัด
+      disable_sign_in_token_auth: ปิดใช้งานการรับรองความถูกต้องด้วยโทเคนอีเมล
       disable_two_factor_authentication: ปิดใช้งาน 2FA
       disabled: อายัดอยู่
       display_name: ชื่อที่แสดง
@@ -111,6 +112,7 @@ th:
       email: อีเมล
       email_status: สถานะอีเมล
       enable: เลิกอายัด
+      enable_sign_in_token_auth: เปิดใช้งานการรับรองความถูกต้องด้วยโทเคนอีเมล
       enabled: เปิดใช้งานอยู่
       enabled_msg: เลิกอายัดบัญชีของ %{username} สำเร็จ
       followers: ผู้ติดตาม
@@ -220,8 +222,10 @@ th:
         destroy_unavailable_domain: ลบโดเมนที่ไม่พร้อมใช้งาน
         disable_2fa_user: ปิดใช้งาน 2FA
         disable_custom_emoji: ปิดใช้งานอีโมจิที่กำหนดเอง
+        disable_sign_in_token_auth_user: ปิดใช้งานการรับรองความถูกต้องด้วยโทเคนอีเมลสำหรับผู้ใช้
         disable_user: ปิดใช้งานผู้ใช้
         enable_custom_emoji: เปิดใช้งานอีโมจิที่กำหนดเอง
+        enable_sign_in_token_auth_user: เปิดใช้งานการรับรองความถูกต้องด้วยโทเคนอีเมลสำหรับผู้ใช้
         enable_user: เปิดใช้งานผู้ใช้
         memorialize_account: ทำให้บัญชีเป็นอนุสรณ์
         promote_user: เลื่อนขั้นผู้ใช้
@@ -262,8 +266,10 @@ th:
         destroy_status_html: "%{name} ได้เอาโพสต์โดย %{target} ออก"
         disable_2fa_user_html: "%{name} ได้ปิดใช้งานความต้องการสองปัจจัยสำหรับผู้ใช้ %{target}"
         disable_custom_emoji_html: "%{name} ได้ปิดใช้งานอีโมจิ %{target}"
+        disable_sign_in_token_auth_user_html: "%{name} ได้ปิดใช้งานการรับรองความถูกต้องด้วยโทเคนอีเมลสำหรับ %{target}"
         disable_user_html: "%{name} ได้ปิดใช้งานการเข้าสู่ระบบสำหรับผู้ใช้ %{target}"
         enable_custom_emoji_html: "%{name} ได้เปิดใช้งานอีโมจิ %{target}"
+        enable_sign_in_token_auth_user_html: "%{name} ได้เปิดใช้งานการรับรองความถูกต้องด้วยโทเคนอีเมลสำหรับ %{target}"
         enable_user_html: "%{name} ได้เปิดใช้งานการเข้าสู่ระบบสำหรับผู้ใช้ %{target}"
         memorialize_account_html: "%{name} ได้เปลี่ยนบัญชีของ %{target} เป็นหน้าอนุสรณ์"
         promote_user_html: "%{name} ได้เลื่อนขั้นผู้ใช้ %{target}"
