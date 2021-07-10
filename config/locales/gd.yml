@@ -126,6 +126,7 @@ gd:
       demote: Ìslich
       destroyed_msg: "Chaidh an dàta aig %{username} a chur air a’ chiutha ach an dèid a sguabadh às an ceann greis bheag"
       disable: Reòth
+      disable_sign_in_token_auth: Cuir à comas dearbhadh le tòcan puist-d
       disable_two_factor_authentication: Cuir an dearbhadh dà-cheumnach à comas
       disabled: Reòthte
       display_name: Ainm-taisbeanaidh
@@ -134,6 +135,7 @@ gd:
       email: Post-d
       email_status: Staid a’ phuist-d
       enable: Dì-reòth
+      enable_sign_in_token_auth: Cuir an comas dearbhadh le tòcan puist-d
       enabled: An comas
       enabled_msg: Chaidh an cunntas aig %{username} a dhì-reòthadh
       followers: Luchd-leantainn
@@ -198,6 +200,10 @@ gd:
       search: Lorg
       search_same_email_domain: Cleachdaichean eile aig a bheil an aon àrainn puist-d
       search_same_ip: Cleachdaichean eile aig a bheil an t-aon IP
+      security_measures:
+        only_password: Facal-faire a-mhàin
+        password_and_2fa: Facal-faire ’s dà-cheumnach
+        password_and_sign_in_token: Facal-faire ’s tòcan puist-d
       sensitive: Frionasach
       sensitized: chaidh comharradh gu bheil e frionasach
       shared_inbox_url: URL a’ bhogsa a-steach cho-roinnte
@@ -249,8 +255,10 @@ gd:
         destroy_unavailable_domain: Sguab às àrainn nach eil ri fhaighinn
         disable_2fa_user: Cuir an dearbhadh dà-cheumnach à comas
         disable_custom_emoji: Cuir an t-Emoji gnàthaichte à comas
+        disable_sign_in_token_auth_user: Cuir à comas dearbhadh le tòcan puist-d dhan chleachdaiche
         disable_user: Cuir an cleachdaiche à comas
         enable_custom_emoji: Cuir an t-Emoji gnàthaichte an comas
+        enable_sign_in_token_auth_user: Cuir an comas dearbhadh le tòcan puist-d dhan chleachdaiche
         enable_user: Cuir an cleachdaiche an comas
         memorialize_account: Dèan cuimhneachan dhen chunntas
         promote_user: Àrdaich an cleachdaiche
@@ -292,8 +300,10 @@ gd:
         destroy_unavailable_domain_html: "Lean %{name} air adhart leis an lìbhrigeadh dhan àrainn %{target}"
         disable_2fa_user_html: "Chuir %{name} riatanas an dearbhaidh dà-cheumnaich à comas dhan chleachdaiche %{target}"
         disable_custom_emoji_html: "Chuir %{name} an Emoji %{target} à comas"
+        disable_sign_in_token_auth_user_html: "Chuir %{name} à comas dearbhadh le tòcan puist-d dha %{target}"
         disable_user_html: "Chuir %{name} an clàradh a-steach à comas dhan chleachdaiche %{target}"
         enable_custom_emoji_html: "Chuir %{name} an Emoji %{target} an comas"
+        enable_sign_in_token_auth_user_html: "Chuir %{name} an comas dearbhadh le tòcan puist-d dha %{target}"
         enable_user_html: "Chuir %{name} an clàradh a-steach an comas dhan chleachdaiche %{target}"
         memorialize_account_html: "Rinn %{name} duilleag cuimhneachain dhen chunntas aig %{target}"
         promote_user_html: "Dh’àrdaich %{name} an cleachdaiche %{target}"
@@ -382,7 +392,7 @@ gd:
       open_reports: gearanan fosgailte
       pending_tags: tagaichean hais a’ feitheamh air lèirmheas
       pending_users: cleachdaichean a’ feitheamh air lèirmheas
-      recent_users: Cleachdaichean o chionn ghoirid
+      recent_users: Cleachdaichean o chionn goirid
       search: Lorg làn-teacsa
       single_user_mode: Modh a’ chleachdaiche shingilte
       software: Bathar-bog
@@ -715,9 +725,9 @@ gd:
       accounts_today: Cleachdaidhean fa leth an-diugh
       accounts_week: Cleachdaidhean fa leth an t-seachdain seo
       breakdown: Seall an cleachdadh an-diugh a-rèir tùis
-      last_active: Air a chleachdadh o chionn ghoirid
+      last_active: Air a chleachdadh o chionn goirid
       most_popular: Na tha fèill mhòr air
-      most_recent: Air a chruthachadh o chionn ghoirid
+      most_recent: Air a chruthachadh o chionn goirid
       name: Taga hais
       review: Dèan lèirmheas air an staid
       reviewed: Chaidh lèirmheas a dhèanamh air
@@ -1057,7 +1067,7 @@ gd:
     incoming_migrations_html: Airson imrich o chunntas eile dhan fhear seo, feumaidh tu <a href="%{path}">alias cunntais a chruthachadh</a> an toiseach.
     moved_msg: Tha an cunntas agad ’ga ath-stiùireadh gu %{acct} a-nis ’s an luchd-leantainn agad ’gan imrich.
     not_redirecting: Chan eil an cunntas agad ’ga ath-stiùireadh gu cunntas sam bith eile aig an àm seo.
-    on_cooldown: Rinn thu imrich air a’ chunntas agad o chionn ghoirid. Bidh an gleus seo ri làimh dhut a-rithist an ceann %{count} là(ithean).
+    on_cooldown: Rinn thu imrich air a’ chunntas agad o chionn goirid. Bidh an gleus seo ri làimh dhut a-rithist an ceann %{count} là(ithean).
     past_migrations: Imrichean roimhpe
     proceed_with_move: Imrich an luchd-leantainn
     redirected_msg: Tha an cunntas agad ’ga ath-stiùireadh gu %{acct} a-nis.
