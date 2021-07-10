@@ -178,7 +178,7 @@ th:
         only_password: รหัสผ่านเท่านั้น
         password_and_2fa: รหัสผ่านและ 2FA
         password_and_sign_in_token: รหัสผ่านและโทเคนอีเมล
-      sensitive: ละเอียดอ่อน
+      sensitive: บังคับให้ละเอียดอ่อน
       sensitized: ทำเครื่องหมายว่าละเอียดอ่อนแล้ว
       shared_inbox_url: URL กล่องขาเข้าที่แบ่งปัน
       show:
@@ -192,7 +192,7 @@ th:
       time_in_queue: กำลังรออยู่ในคิว %{time}
       title: บัญชี
       unconfirmed_email: อีเมลที่ยังไม่ได้ยืนยัน
-      undo_sensitized: เลิกทำการละเอียดอ่อน
+      undo_sensitized: เลิกทำการบังคับให้ละเอียดอ่อน
       undo_silenced: เลิกทำการจำกัด
       undo_suspension: เลิกทำการระงับ
       unsilenced_msg: เลิกจำกัดบัญชีของ %{username} สำเร็จ
@@ -237,11 +237,11 @@ th:
         reopen_report: เปิดรายงานใหม่
         reset_password_user: ตั้งรหัสผ่านใหม่
         resolve_report: แก้ปัญหารายงาน
-        sensitive_account: ทำเครื่องหมายสื่อในบัญชีของคุณว่าละเอียดอ่อน
+        sensitive_account: บังคับให้บัญชีละเอียดอ่อน
         silence_account: จำกัดบัญชี
         suspend_account: ระงับบัญชี
         unassigned_report: เลิกมอบหมายรายงาน
-        unsensitive_account: เลิกทำเครื่องหมายสื่อในบัญชีของคุณว่าละเอียดอ่อน
+        unsensitive_account: เลิกทำการบังคับให้บัญชีละเอียดอ่อน
         unsilence_account: เลิกทำการจำกัดบัญชี
         unsuspend_account: เลิกระงับบัญชี
         update_announcement: อัปเดตประกาศ
@@ -1112,6 +1112,7 @@ th:
     revoke: เพิกถอน
     revoke_success: เพิกถอนเซสชันสำเร็จ
     title: เซสชัน
+    view_authentication_history: ดูประวัติการรับรองความถูกต้องของบัญชีของคุณ
   settings:
     account: บัญชี
     account_settings: การตั้งค่าบัญชี
