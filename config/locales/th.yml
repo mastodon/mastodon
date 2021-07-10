@@ -38,7 +38,7 @@ th:
       rejecting_media: 'จะไม่ประมวลผลหรือจัดเก็บไฟล์สื่อจากเซิร์ฟเวอร์เหล่านี้ และจะไม่แสดงภาพขนาดย่อ ต้องมีการคลิกไปยังไฟล์ต้นฉบับด้วยตนเอง:'
       rejecting_media_title: สื่อที่กรองอยู่
       silenced: 'จะซ่อนโพสต์จากเซิร์ฟเวอร์เหล่านี้ในเส้นเวลาสาธารณะและการสนทนา และจะไม่สร้างการแจ้งเตือนจากการโต้ตอบของผู้ใช้ เว้นแต่คุณกำลังติดตามผู้ใช้:'
-      silenced_title: เซิร์ฟเวอร์ที่เงียบอยู่
+      silenced_title: เซิร์ฟเวอร์ที่จำกัดอยู่
       suspended: 'จะไม่ประมวลผล จัดเก็บ หรือแลกเปลี่ยนข้อมูลจากเซิร์ฟเวอร์เหล่านี้ ทำให้การโต้ตอบหรือการสื่อสารใด ๆ กับผู้ใช้จากเซิร์ฟเวอร์เหล่านี้เป็นไปไม่ได้:'
       suspended_title: เซิร์ฟเวอร์ที่ระงับอยู่
     user_count_after:
@@ -137,7 +137,7 @@ th:
         active: ใช้งานอยู่
         all: ทั้งหมด
         pending: รอดำเนินการ
-        silenced: เงียบอยู่
+        silenced: จำกัดอยู่
         suspended: ระงับอยู่
         title: การควบคุม
       moderation_notes: หมายเหตุการควบคุม
@@ -193,7 +193,7 @@ th:
       title: บัญชี
       unconfirmed_email: อีเมลที่ยังไม่ได้ยืนยัน
       undo_sensitized: เลิกทำการละเอียดอ่อน
-      undo_silenced: เลิกทำการทำให้เงียบ
+      undo_silenced: เลิกทำการจำกัด
       undo_suspension: เลิกทำการระงับ
       unsilenced_msg: เลิกจำกัดบัญชีของ %{username} สำเร็จ
       unsubscribe: เลิกบอกรับ
@@ -238,11 +238,11 @@ th:
         reset_password_user: ตั้งรหัสผ่านใหม่
         resolve_report: แก้ปัญหารายงาน
         sensitive_account: ทำเครื่องหมายสื่อในบัญชีของคุณว่าละเอียดอ่อน
-        silence_account: ทำให้บัญชีเงียบ
+        silence_account: จำกัดบัญชี
         suspend_account: ระงับบัญชี
         unassigned_report: เลิกมอบหมายรายงาน
         unsensitive_account: เลิกทำเครื่องหมายสื่อในบัญชีของคุณว่าละเอียดอ่อน
-        unsilence_account: เลิกทำให้บัญชีเงียบ
+        unsilence_account: เลิกทำการจำกัดบัญชี
         unsuspend_account: เลิกระงับบัญชี
         update_announcement: อัปเดตประกาศ
         update_custom_emoji: อัปเดตอีโมจิที่กำหนดเอง
@@ -282,11 +282,11 @@ th:
         reset_password_user_html: "%{name} ได้ตั้งรหัสผ่านของผู้ใช้ %{target} ใหม่"
         resolve_report_html: "%{name} ได้แก้ปัญหารายงาน %{target}"
         sensitive_account_html: "%{name} ได้ทำเครื่องหมายสื่อของ %{target} ว่าละเอียดอ่อน"
-        silence_account_html: "%{name} ได้ทำให้บัญชีของ %{target} เงียบ"
+        silence_account_html: "%{name} ได้จำกัดบัญชีของ %{target}"
         suspend_account_html: "%{name} ได้ระงับบัญชีของ %{target}"
         unassigned_report_html: "%{name} ได้เลิกมอบหมายรายงาน %{target}"
         unsensitive_account_html: "%{name} ได้เลิกทำเครื่องหมายสื่อของ %{target} ว่าละเอียดอ่อน"
-        unsilence_account_html: "%{name} ได้เลิกทำให้บัญชีของ %{target} เงียบ"
+        unsilence_account_html: "%{name} ได้เลิกจำกัดบัญชีของ %{target}"
         unsuspend_account_html: "%{name} ได้เลิกระงับบัญชีของ %{target}"
         update_announcement_html: "%{name} ได้อัปเดตประกาศ %{target}"
         update_custom_emoji_html: "%{name} ได้อัปเดตอีโมจิ %{target}"
@@ -403,7 +403,7 @@ th:
       rejecting_media: กำลังปฏิเสธไฟล์สื่อ
       rejecting_reports: กำลังปฏิเสธรายงาน
       severity:
-        silence: เงียบอยู่
+        silence: จำกัดอยู่
         suspend: ระงับอยู่
       show:
         affected_accounts:
