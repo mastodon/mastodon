@@ -174,6 +174,10 @@ th:
       search: ค้นหา
       search_same_email_domain: ผู้ใช้อื่น ๆ ที่มีโดเมนอีเมลเดียวกัน
       search_same_ip: ผู้ใช้อื่น ๆ ที่มี IP เดียวกัน
+      security_measures:
+        only_password: รหัสผ่านเท่านั้น
+        password_and_2fa: รหัสผ่านและ 2FA
+        password_and_sign_in_token: รหัสผ่านและโทเคนอีเมล
       sensitive: ละเอียดอ่อน
       sensitized: ทำเครื่องหมายว่าละเอียดอ่อนแล้ว
       shared_inbox_url: URL กล่องขาเข้าที่แบ่งปัน
@@ -926,6 +930,7 @@ th:
     title: เชิญผู้คน
   login_activities:
     authentication_methods:
+      otp: แอปการรับรองความถูกต้องด้วยสองปัจจัย
       password: รหัสผ่าน
       webauthn: กุญแจความปลอดภัย
   media_attachments:
