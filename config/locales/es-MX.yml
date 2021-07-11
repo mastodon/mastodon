@@ -118,6 +118,7 @@ es-MX:
       demote: Degradar
       destroyed_msg: "Los datos de %{username} están ahora en cola para ser eliminados inminentemente"
       disable: Deshabilitar
+      disable_sign_in_token_auth: Deshabilitar la autenticación por token de correo electrónico
       disable_two_factor_authentication: Desactivar autenticación de dos factores
       disabled: Deshabilitada
       display_name: Nombre
@@ -126,6 +127,7 @@ es-MX:
       email: E-mail
       email_status: E-mail Status
       enable: Habilitar
+      enable_sign_in_token_auth: Habilitar la autenticación por token de correo electrónico
       enabled: Habilitada
       enabled_msg: Se ha descongelado correctamente la cuenta de %{username}
       followers: Seguidores
@@ -190,6 +192,10 @@ es-MX:
       search: Buscar
       search_same_email_domain: Otros usuarios con el mismo dominio de correo
       search_same_ip: Otros usuarios con la misma IP
+      security_measures:
+        only_password: Sólo contraseña
+        password_and_2fa: Contraseña y 2FA
+        password_and_sign_in_token: Contraseña y token de correo electrónico
       sensitive: Sensible
       sensitized: marcado como sensible
       shared_inbox_url: URL de bandeja compartida
@@ -241,8 +247,10 @@ es-MX:
         destroy_unavailable_domain: Eliminar Dominio No Disponible
         disable_2fa_user: Deshabilitar 2FA
         disable_custom_emoji: Deshabilitar Emoji Personalizado
+        disable_sign_in_token_auth_user: Deshabilitar la Autenticación por Token de Correo Electrónico para el Usuario
         disable_user: Deshabilitar Usuario
         enable_custom_emoji: Habilitar Emoji Personalizado
+        enable_sign_in_token_auth_user: Habilitar la Autenticación por Token de Correo Electrónico para el Usuario
         enable_user: Habilitar Usuario
         memorialize_account: Transformar en Cuenta Conmemorativa
         promote_user: Promover Usuario
@@ -284,8 +292,10 @@ es-MX:
         destroy_unavailable_domain_html: "%{name} reanudó la entrega al dominio %{target}"
         disable_2fa_user_html: "%{name} deshabilitó el requisito de dos factores para el usuario %{target}"
         disable_custom_emoji_html: "%{name} deshabilitó el emoji %{target}"
+        disable_sign_in_token_auth_user_html: "%{name} ha deshabilitado la autenticación por token de correo electrónico para %{target}"
         disable_user_html: "%{name} deshabilitó el inicio de sesión para el usuario %{target}"
         enable_custom_emoji_html: "%{name} habilitó el emoji %{target}"
+        enable_sign_in_token_auth_user_html: "%{name} ha habilitado la autenticación por token de correo electrónico para %{target}"
         enable_user_html: "%{name} habilitó el inicio de sesión para el usuario %{target}"
         memorialize_account_html: "%{name} convirtió la cuenta de %{target} en una página memoriam"
         promote_user_html: "%{name} promovió al usuario %{target}"
