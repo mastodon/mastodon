@@ -1,4 +1,3 @@
----
 sk:
   devise:
     confirmations:
@@ -74,7 +73,7 @@ sk:
       signed_up_but_inactive: Registrácia bola úspešná. Avšak, účet ešte nebol aktivovaný, takže ťa nemožno prihlásiť.
       signed_up_but_locked: Registroval/a si sa úspešné. Avšak, tvoj účet je zamknutý, takže ťa nemožno prihlásiť.
       signed_up_but_pending: Na tvoj email bola odoslaná správa s odkazom na potvrdenie. Po tom, čo naňho klikneš, bude tvoje uchádzanie posúdené. Budeš informovaný, ak sa tvoja požiadavka schváli.
-      signed_up_but_unconfirmed: Správa s odkazom na potvrdenie registrácie bola odoslaná na tvoj email. Pre aktváciu účtu, následuj prosím daný odkaz. Takisto ale skontroluj aj svoju spam zložku, pokiaľ sa ti zdá, že si tento email nedostal/a.
+      signed_up_but_unconfirmed: Správa s odkazom na potvrdenie registrácie bola odoslaná na tvoj email. Pre aktváciu účtu, nasleduj prosím daný odkaz. Takisto ale skontroluj aj svoju spamovú zložku, pokiaľ sa ti zdá, že si tento email nedostal/a.
       update_needs_confirmation: Účet bol úspešne pozmenený, ale ešte potrebujeme overiť tvoju novú emailovú adresu. Pre overenie prosím klikni na link v správe ktorú si dostal/a na email. Takisto ale skontroluj aj svoju spam zložku, ak sa ti zdá, že si tento email nedostal/a.
       updated: Tvoj účet bol úspešne aktualizovaný.
     sessions:
@@ -93,7 +92,7 @@ sk:
       not_found: nenájdený
       not_locked: nebol zamknutý
       not_saved:
+        one: '1 chyba zabránila uloženiu tohto %{resource}:'
         few: "%{count} chýb zabránilo uloženiu tohto %{resource}:"
         many: "%{count} chýb zabránilo uloženiu tohto %{resource}:"
-        one: '1 chyba zabránila uloženiu tohto %{resource}:'
         other: "%{count} chyby zabránili uloženiu tohto %{resource}:"
