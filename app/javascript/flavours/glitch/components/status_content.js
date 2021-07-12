@@ -224,8 +224,8 @@ export default class StatusContent extends React.PureComponent {
     const [ deltaX, deltaY ] = [Math.abs(e.clientX - startX), Math.abs(e.clientY - startY)];
 
     let element = e.target;
-    while (element) {
-      if (['button', 'video', 'a', 'label', 'canvas'].includes(element.localName)) {
+    while (element !== e.currentTarget) {
+      if (['button', 'video', 'a', 'label', 'canvas'].includes(element.localName) || element.getAttribute('role') === 'button') {
         return;
       }
       element = element.parentNode;
