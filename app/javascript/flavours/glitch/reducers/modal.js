@@ -1,19 +1,15 @@
 import { MODAL_OPEN, MODAL_CLOSE } from 'flavours/glitch/actions/modal';
 import { TIMELINE_DELETE } from 'flavours/glitch/actions/timelines';
+import { Stack as ImmutableStack, Map as ImmutableMap } from 'immutable';
 
-const initialState = {
-  modalType: null,
-  modalProps: {},
-};
-
-export default function modal(state = initialState, action) {
+export default function modal(state = ImmutableStack(), action) {
   switch(action.type) {
   case MODAL_OPEN:
-    return { modalType: action.modalType, modalProps: action.modalProps };
+    return state.unshift(ImmutableMap({ modalType: action.modalType, modalProps: action.modalProps }));
   case MODAL_CLOSE:
-    return (action.modalType === undefined || action.modalType === state.modalType) ? initialState : state;
+    return (action.modalType === undefined || action.modalType === state.getIn([0, 'modalType'])) ? state.shift() : state;
   case TIMELINE_DELETE:
-    return (state.modalProps.statusId === action.id) ? initialState : state;
+    return state.filterNot((modal) => modal.get('modalProps').statusId === action.id);
   default:
     return state;
   }
