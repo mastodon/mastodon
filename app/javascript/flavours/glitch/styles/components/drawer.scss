@@ -120,20 +120,22 @@
 }
 
 .drawer--results {
-  background: $ui-base-color;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  flex: 1 1 auto;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
 
-  & > header {
-    color: $dark-text-color;
-    background: lighten($ui-base-color, 2%);
+.search-results__section {
+  margin-bottom: 5px;
+
+  h5 {
+    background: darken($ui-base-color, 4%);
+    border-bottom: 1px solid lighten($ui-base-color, 8%);
+    cursor: default;
+    display: flex;
     padding: 15px;
     font-weight: 500;
     font-size: 16px;
-    cursor: default;
-    flex: 0 0 auto;
+    color: $dark-text-color;
 
     .fa {
       display: inline-block;
@@ -141,48 +143,22 @@
     }
   }
 
-  & > .search-results__contents {
-    overflow-x: hidden;
-    overflow-y: scroll;
-    flex: 1 1 auto;
+  .account:last-child,
+  & > div:last-child .status {
+    border-bottom: 0;
+  }
 
-    & > section {
-      margin-bottom: 5px;
+  & > .hashtag {
+    display: block;
+    padding: 10px;
+    color: $secondary-text-color;
+    text-decoration: none;
 
-      h5 {
-        background: darken($ui-base-color, 4%);
-        border-bottom: 1px solid lighten($ui-base-color, 8%);
-        cursor: default;
-        display: flex;
-        padding: 15px;
-        font-weight: 500;
-        font-size: 16px;
-        color: $dark-text-color;
-
-        .fa {
-          display: inline-block;
-          margin-right: 5px;
-        }
-      }
-
-      .account:last-child,
-      & > div:last-child .status {
-        border-bottom: 0;
-      }
-
-      & > .hashtag {
-        display: block;
-        padding: 10px;
-        color: $secondary-text-color;
-        text-decoration: none;
-
-        &:hover,
-        &:active,
-        &:focus {
-          color: lighten($secondary-text-color, 4%);
-          text-decoration: underline;
-        }
-      }
+    &:hover,
+    &:active,
+    &:focus {
+      color: lighten($secondary-text-color, 4%);
+      text-decoration: underline;
     }
   }
 }

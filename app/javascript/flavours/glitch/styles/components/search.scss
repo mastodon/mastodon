@@ -94,10 +94,15 @@
 .search-results__header {
   color: $dark-text-color;
   background: lighten($ui-base-color, 2%);
-  border-bottom: 1px solid darken($ui-base-color, 4%);
-  padding: 15px 10px;
-  font-size: 14px;
+  padding: 15px;
   font-weight: 500;
+  font-size: 16px;
+  cursor: default;
+
+  .fa {
+    display: inline-block;
+    margin-right: 5px;
+  }
 }
 
 .search-results__info {
