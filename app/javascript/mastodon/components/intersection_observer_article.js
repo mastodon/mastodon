@@ -93,7 +93,7 @@ export default class IntersectionObserverArticle extends React.Component {
     // When the browser gets a chance, test if we're still not intersecting,
     // and if so, set our isHidden to true to trigger an unrender. The point of
     // this is to save DOM nodes and avoid using up too much memory.
-    // See: https://github.com/tootsuite/mastodon/issues/2900
+    // See: https://github.com/mastodon/mastodon/issues/2900
     this.setState((prevState) => ({ isHidden: !prevState.isIntersecting }));
   }
 
