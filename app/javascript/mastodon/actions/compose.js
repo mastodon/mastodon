@@ -519,7 +519,7 @@ export function selectComposeSuggestion(position, token, suggestion, path) {
         position: startPosition,
         token,
         completion,
-        path
+        path,
       });
     }
   };
