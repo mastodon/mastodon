@@ -105,8 +105,7 @@ class AccountGallery extends ImmutablePureComponent {
   }
 
   shouldUpdateScroll = (prevRouterProps, { location }) => {
-    if ((((prevRouterProps || {}).location || {}).state || {}).mastodonModalOpen) return false;
-    return !(location.state && location.state.mastodonModalOpen);
+    return !(prevRouterProps?.location?.state?.mastodonModalKey || location.state?.mastodonModalKey);
   }
 
   setColumnRef = c => {

@@ -41,7 +41,7 @@ export default class Mastodon extends React.PureComponent {
   }
 
   shouldUpdateScroll (_, { location }) {
-    return !(location.state && location.state.mastodonModalOpen);
+    return !(location.state?.mastodonModalKey);
   }
 
   render () {
