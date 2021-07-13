@@ -12,7 +12,7 @@ import AccountCard from './components/account_card';
 import RadioButton from 'flavours/glitch/components/radio_button';
 import classNames from 'classnames';
 import LoadMore from 'flavours/glitch/components/load_more';
-import { ScrollContainer } from 'react-router-scroll-4';
+import ScrollContainer from 'flavours/glitch/containers/scroll_container';
 
 const messages = defineMessages({
   title: { id: 'column.directory', defaultMessage: 'Browse profiles' },
@@ -40,7 +40,6 @@ class Directory extends React.PureComponent {
     isLoading: PropTypes.bool,
     accountIds: ImmutablePropTypes.list.isRequired,
     dispatch: PropTypes.func.isRequired,
-    shouldUpdateScroll: PropTypes.func,
     columnId: PropTypes.string,
     intl: PropTypes.object.isRequired,
     multiColumn: PropTypes.bool,
@@ -125,7 +124,7 @@ class Directory extends React.PureComponent {
   }
 
   render () {
-    const { isLoading, accountIds, intl, columnId, multiColumn, domain, shouldUpdateScroll } = this.props;
+    const { isLoading, accountIds, intl, columnId, multiColumn, domain } = this.props;
     const { order, local }  = this.getParams(this.props, this.state);
     const pinned = !!columnId;
 
@@ -163,7 +162,7 @@ class Directory extends React.PureComponent {
           multiColumn={multiColumn}
         />
 
-        {multiColumn && !pinned ? <ScrollContainer scrollKey='directory' shouldUpdateScroll={shouldUpdateScroll}>{scrollableArea}</ScrollContainer> : scrollableArea}
+        {multiColumn && !pinned ? <ScrollContainer scrollKey='directory'>{scrollableArea}</ScrollContainer> : scrollableArea}
       </Column>
     );
   }

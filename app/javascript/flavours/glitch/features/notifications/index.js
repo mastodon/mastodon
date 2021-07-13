@@ -99,7 +99,6 @@ class Notifications extends React.PureComponent {
     notifications: ImmutablePropTypes.list.isRequired,
     showFilterBar: PropTypes.bool.isRequired,
     dispatch: PropTypes.func.isRequired,
-    shouldUpdateScroll: PropTypes.func,
     intl: PropTypes.object.isRequired,
     isLoading: PropTypes.bool,
     isUnread: PropTypes.bool,
@@ -220,7 +219,7 @@ class Notifications extends React.PureComponent {
   }
 
   render () {
-    const { intl, notifications, shouldUpdateScroll, isLoading, isUnread, columnId, multiColumn, hasMore, numPending, showFilterBar, lastReadId, canMarkAsRead, needsNotificationPermission } = this.props;
+    const { intl, notifications, isLoading, isUnread, columnId, multiColumn, hasMore, numPending, showFilterBar, lastReadId, canMarkAsRead, needsNotificationPermission } = this.props;
     const { notifCleaning, notifCleaningActive } = this.props;
     const { animatingNCD } = this.state;
     const pinned = !!columnId;
@@ -273,7 +272,6 @@ class Notifications extends React.PureComponent {
         onLoadPending={this.handleLoadPending}
         onScrollToTop={this.handleScrollToTop}
         onScroll={this.handleScroll}
-        shouldUpdateScroll={shouldUpdateScroll}
         bindToDocument={!multiColumn}
       >
         {scrollableContent}

@@ -3,8 +3,8 @@ import { closeModal } from 'flavours/glitch/actions/modal';
 import ModalRoot from '../components/modal_root';
 
 const mapStateToProps = state => ({
-  type: state.get('modal').modalType,
-  props: state.get('modal').modalProps,
+  type: state.getIn(['modal', 0, 'modalType'], null),
+  props: state.getIn(['modal', 0, 'modalProps'], {}),
 });
 
 const mapDispatchToProps = dispatch => ({

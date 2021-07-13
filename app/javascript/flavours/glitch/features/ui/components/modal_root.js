@@ -59,12 +59,8 @@ export default class ModalRoot extends React.PureComponent {
     backgroundColor: null,
   };
 
-  getSnapshotBeforeUpdate () {
-    return { visible: !!this.props.type };
-  }
-
-  componentDidUpdate (prevProps, prevState, { visible }) {
-    if (visible) {
+  componentDidUpdate () {
+    if (!!this.props.type) {
       document.body.classList.add('with-modals--active');
       document.documentElement.style.marginRight = `${getScrollbarWidth()}px`;
     } else {

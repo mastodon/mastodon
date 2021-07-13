@@ -76,10 +76,13 @@ export default class ModalRoot extends React.PureComponent {
         this.activeElement = null;
       }).catch(console.error);
 
-      this.handleModalClose();
+      this._handleModalClose();
     }
     if (this.props.children && !prevProps.children) {
-      this.handleModalOpen();
+      this._handleModalOpen();
+    }
+    if (this.props.children) {
+      this._ensureHistoryBuffer();
     }
   }
 
@@ -88,22 +91,29 @@ export default class ModalRoot extends React.PureComponent {
     window.removeEventListener('keydown', this.handleKeyDown);
   }
 
-  handleModalClose () {
+  _handleModalOpen () {
+    this._modalHistoryKey = Date.now();
+    this.unlistenHistory = this.history.listen((_, action) => {
+      if (action === 'POP') {
+        this.props.onClose();
+      }
+    });
+  }
+
+  _handleModalClose () {
     this.unlistenHistory();
 
-    const state = this.history.location.state;
-    if (state && state.mastodonModalOpen) {
+    const { state } = this.history.location;
+    if (state && state.mastodonModalKey === this._modalHistoryKey) {
       this.history.goBack();
     }
   }
 
-  handleModalOpen () {
-    const history = this.history;
-    const state   = {...history.location.state, mastodonModalOpen: true};
-    history.push(history.location.pathname, state);
-    this.unlistenHistory = history.listen(() => {
-      this.props.onClose();
-    });
+  _ensureHistoryBuffer () {
+    const { pathname, state } = this.history.location;
+    if (!state || state.mastodonModalKey !== this._modalHistoryKey) {
+      this.history.push(pathname, { ...state, mastodonModalKey: this._modalHistoryKey });
+    }
   }
 
   getSiblings = () => {

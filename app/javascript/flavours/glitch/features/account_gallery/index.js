@@ -11,7 +11,7 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import { getAccountGallery } from 'flavours/glitch/selectors';
 import MediaItem from './components/media_item';
 import HeaderContainer from 'flavours/glitch/features/account_timeline/containers/header_container';
-import { ScrollContainer } from 'react-router-scroll-4';
+import ScrollContainer from 'flavours/glitch/containers/scroll_container';
 import LoadMore from 'flavours/glitch/components/load_more';
 import MissingIndicator from 'flavours/glitch/components/missing_indicator';
 import { openModal } from 'flavours/glitch/actions/modal';
@@ -104,11 +104,6 @@ class AccountGallery extends ImmutablePureComponent {
     this.handleScrollToBottom();
   }
 
-  shouldUpdateScroll = (prevRouterProps, { location }) => {
-    if ((((prevRouterProps || {}).location || {}).state || {}).mastodonModalOpen) return false;
-    return !(location.state && location.state.mastodonModalOpen);
-  }
-
   setColumnRef = c => {
     this.column = c;
   }
@@ -165,7 +160,7 @@ class AccountGallery extends ImmutablePureComponent {
       <Column ref={this.setColumnRef}>
         <ProfileColumnHeader onClick={this.handleHeaderClick} multiColumn={multiColumn} />
 
-        <ScrollContainer scrollKey='account_gallery' shouldUpdateScroll={this.shouldUpdateScroll}>
+        <ScrollContainer scrollKey='account_gallery'>
           <div className='scrollable scrollable--flex' onScroll={this.handleScroll}>
             <HeaderContainer accountId={this.props.params.accountId} />
 
