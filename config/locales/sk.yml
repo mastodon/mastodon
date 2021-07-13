@@ -33,14 +33,14 @@ sk:
       many: príspevkov
       other: príspevky
     status_count_before: Ktorí napísali
-    tagline: Nasleduj kamarátov a objavuj nových
+    tagline: Nasleduj kamarátov, a objavuj nových
     terms: Podmienky užitia
     unavailable_content: Nedostupný obsah
     unavailable_content_description:
       reason: 'Dôvod:'
       rejecting_media: 'Mediálne súbory z týchto serverov nebudú spracované, alebo ukladané, a nebudú z nich zobrazované žiadne náhľady, vyžadujúc ručné prekliknutie priamo až k pôvodnému súboru:'
       rejecting_media_title: Triedené médiá
-      silenced: 'Príspevky z týchto serverov budú skryté z verejných osí a z konverzácií, a nebudú vytvorené žiadné oboznámena ohľadom aktivity ich užívateľov, pokiaľ ich nenasleduješ:'
+      silenced: 'Príspevky z týchto serverov budú skryté z verejných osí a z konverzácií, a nebudú vytvorené žiadné oboznámena ohľadom aktivity ich užívateľov, pokiaľ ich nenásleduješ:'
       silenced_title: Utíšené servery
     unavailable_content_html: Vo všeobecnosti, Mastodon ti dovoľuje vidieť obsah, a komunikovať s užívateľmi akéhokoľvek iného serveru v rámci fediversa. Toto sú výnimky, ktoré boli vytvorené na tomto konkrétnom serveri.
     user_count_after:
@@ -54,13 +54,13 @@ sk:
     choices_html: "%{name}vé voľby:"
     endorsements_hint: Môžeš ukázať sledovaných užívateľov, s ktorými si spriaznený/á cez webové rozhranie, a tí tu budú zobrazení.
     featured_tags_hint: Môžeš zvýrazniť určité haštagy, ktoré tu budú zobrazené.
-    follow: Nasleduj
+    follow: Následuj
     followers:
       one: Sledujúci
       few: Sledovateľov
       many: Sledovateľov
       other: Sledovatelia
-    following: Nasledujem
+    following: Následujem
     joined: Pridal/a sa v %{date}
     last_active: naposledy aktívny
     link_verified_on: Vlastníctvo tohto odkazu bolo skontrolované %{date}
@@ -311,7 +311,7 @@ sk:
         create: Vytvor blokovanie domény
         hint: Blokovanie domény stále dovolí vytvárať nové účty v databázi, ale tieto budú spätne automaticky moderované.
         severity:
-          desc_html: "<strong>Stíšenie</strong> urobí všetky príspevky daného účtu neviditeľné pre všetkých ktorí nenasledujú tento účet. <strong>Vylúčenie</strong> zmaže všetky príspevky, médiá a profilové informácie. Použi <strong>Žiadne</strong>, ak chceš iba neprijímať súbory médií."
+          desc_html: "<strong>Stíšenie</strong> urobí všetky príspevky daného účtu neviditeľné pre všetkých ktorí nenásledujú tento účet. <strong>Vylúčenie</strong> zmaže všetky príspevky, médiá a profilové informácie. Použi <strong>Žiadne</strong>, ak chceš iba neprijímať súbory médií."
           noop: Nič
           silence: Stíš
           suspend: Vylúč
@@ -352,7 +352,7 @@ sk:
       new:
         create: Pridaj doménu
         title: Nový email na zablokovanie
-      title: Zakázané emailové adresy
+      title: Blokované emailové adresy
     instances:
       by_domain: Doména
       delivery_available: Je v dosahu doručovania
@@ -368,7 +368,7 @@ sk:
       private_comment: Súkromný komentár
       public_comment: Verejný komentár
       title: Federácia
-      total_blocked_by_us: Nami zakázané
+      total_blocked_by_us: Nami blokované
       total_followed_by_them: Nimi sledované
       total_followed_by_us: Nami sledované
       total_reported: Nahlásenia o nich
@@ -457,7 +457,7 @@ sk:
       domain_blocks:
         all: Všetkým
         disabled: Nikomu
-        title: Ukáž zakázané domény
+        title: Ukáž blokované domény
         users: Prihláseným, miestnym užívateľom
       domain_blocks_rationale:
         title: Ukáž zdôvodnenie
@@ -639,16 +639,16 @@ sk:
       redirecting_to: Tvoj účet je neaktívny, lebo v súčasnosti presmerováva na %{acct}.
     trouble_logging_in: Problém s prihlásením?
   authorize_follow:
-    already_following: Tento účet už nasleduješ
+    already_following: Tento účet už následuješ
     error: Naneštastie nastala chyba pri hľadaní vzdialeného účtu
     follow: Nasleduj
     follow_request: 'Poslal/a si žiadosť následovať užívateľa:'
-    following: 'Podarilo sa! Teraz následuješ užívateľa:'
+    following: 'Podarilo sa! Teraz nasleduješ užívateľa:'
     post_follow:
       close: Alebo môžeš iba zatvoriť toto okno.
       return: Ukáž užívateľov profil
       web: Prejdi do siete
-    title: Nasleduj %{acct}
+    title: Následuj %{acct}
   challenge:
     confirm: Pokračuj
     hint_html: "<strong>Tip:</strong> Hodinu nebudeme znovu vyžadovať tvoje heslo."
@@ -718,7 +718,7 @@ sk:
       request: Vyžiadaj si tvoj archív
       size: Veľkosť
     blocks: Blokujete
-    domain_blocks: Zakázané domény
+    domain_blocks: Blokované domény
     lists: Zoznamy
     mutes: Stíšil/a si
     storage: Úložisko médií
@@ -881,7 +881,7 @@ sk:
       subject: "%{name} si obľúbil/a tvoj príspevok"
       title: Nové obľúbené
     follow:
-      body: "%{name} ťa teraz nasleduje!"
+      body: "%{name} ťa teraz následuje!"
       subject: "%{name} ťa teraz nasleduje"
       title: Nový sledovateľ
     follow_request:
@@ -1120,7 +1120,7 @@ sk:
     warning:
       explanation:
         disable: Pokiaľ je tvoj účet zamrazený, tvoje dáta zostávajú nedoknuté, ale nemôžeš v rámci neho nič robiť, až kým nebude odomknutý.
-        silence: Kým máš účet obmedzený, tvoje príspevky na tomto serveri uvidia iba tí ľudia, ktorí ťa už nasledujú, a môžeš byť vylúčený/á z rôznych verejných záznamov. Ostatní ťa však stále budú môcť začať nasledovať ručne.
+        silence: Kým máš účet obmedzený, tvoje príspevky na tomto serveri uvidia iba tí ľudia, ktorí ťa už následujú, a môžeš byť vylúčený/á z rôznych verejných záznamov. Ostatní ťa však stále budú môcť následovať manuálne.
         suspend: Tvoj účet bol vylúčený, a všetky tvoje príspevky a nahraté médiálné súbory boli nenávratne zmazané z tohto serveru, a zo serverov na ktorých si mal následovateľov.
       get_in_touch: Môžeš na tento email odpovedať, pre skontaktovanie sa s tímom %{instance}.
       review_server_policies: Prehodnoť pravidlá servera
@@ -1147,7 +1147,7 @@ sk:
       review_preferences_step: Daj si záležať na svojích nastaveniach, napríklad že aké emailové notifikácie chceš dostávať, alebo pod aký level súkromia sa tvoje príspevky majú sami automaticky zaradiť. Pokiaľ nemáš malátnosť z pohybu, môžeš si zvoliť aj automatické spúšťanie GIF animácií.
       subject: Vitaj na Mastodone
       tip_federated_timeline: Federovaná os zobrazuje sieť Mastodonu až po jej hranice. Ale zahŕňa iba ľúdí ktorých ostatní okolo teba sledujú, takže predsa nieje úplne celistvá.
-      tip_following: Správcu/ov servera následuješ automaticky. Aby si našiel zaujímavejších ľudí, prezri tak miestnu, ako aj globálne federovanú osu.
+      tip_following: Správcu servera následuješ automaticky. Môžeš ale nájsť mnoho iných zaujímavých ľudí ak prezrieš tak lokálnu, ako aj globálne federovanú os.
       tip_local_timeline: Miestna časová os je celkový pohľad na aktivitu užívateľov %{instance}. Toto sú tvoji najbližší susedia!
       tip_mobile_webapp: Pokiaľ ti prehliadač ponúkne možnosť pridať Mastodon na tvoju obrazovku, môžeš potom dostávať notifikácie skoro ako z natívnej aplikácie!
       tips: Tipy
