@@ -2,7 +2,7 @@ es-MX:
   activerecord:
     attributes:
       poll:
-        expires_at: Fecha límite
+        expires_at: Vencimiento
         options: Opciones
       user:
         agreement: Contrato de servicio
@@ -18,12 +18,12 @@ es-MX:
         account:
           attributes:
             username:
-              invalid: debe contener sólo letras, números y guiones bajos
+              invalid: solo puede contener letras, números y guiones bajos
               reserved: está reservado
         status:
           attributes:
             reblog:
-              taken: de la publicación ya existe
+              taken: del estado ya existe
         user:
           attributes:
             email:
