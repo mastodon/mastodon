@@ -29,7 +29,7 @@ zh-CN:
     rules_html: '如果你想要在此Mastodon服务器上拥有一个账户，你必须遵守相应的规则，摘要如下：'
     see_whats_happening: 看一看现在在发生什么
     server_stats: '服务器统计数据：'
-    source_code: 源代码
+    source_code: 源码
     status_count_after:
       other: 条嘟文
     status_count_before: 他们共嘟出了
@@ -78,7 +78,7 @@ zh-CN:
     roles:
       admin: 管理员
       bot: 机器人
-      group: 群组
+      group: 组
       moderator: 监察员
     unavailable: 个人资料不可用
     unfollow: 取消关注
@@ -114,6 +114,7 @@ zh-CN:
       demote: 降任
       destroyed_msg: "%{username} 的数据已进入等待队列，即将被删除"
       disable: 冻结
+      disable_sign_in_token_auth: 禁用电子邮件令牌认证
       disable_two_factor_authentication: 停用双重认证
       disabled: 已冻结
       display_name: 昵称
@@ -122,6 +123,7 @@ zh-CN:
       email: 电子邮件地址
       email_status: 电子邮件地址状态
       enable: 解冻
+      enable_sign_in_token_auth: 启用电子邮件令牌认证
       enabled: 已启用
       enabled_msg: 成功解冻 %{username} 的帐号
       followers: 关注者
@@ -186,6 +188,10 @@ zh-CN:
       search: 搜索
       search_same_email_domain: 其他具有相同电子邮箱域名的用户
       search_same_ip: 具有相同IP的其他用户
+      security_measures:
+        only_password: 仅密码
+        password_and_2fa: 密码和双因素认证
+        password_and_sign_in_token: 密码和电子邮件令牌
       sensitive: 敏感内容
       sensitized: 已标记为敏感内容
       shared_inbox_url: 公用收件箱（Shared Inbox）URL
@@ -237,8 +243,10 @@ zh-CN:
         destroy_unavailable_domain: 删除不可用域名
         disable_2fa_user: 禁用双重认证
         disable_custom_emoji: 禁用自定义表情符号
+        disable_sign_in_token_auth_user: 为用户禁用电子邮件令牌认证
         disable_user: 禁用用户
         enable_custom_emoji: 启用自定义表情符号
+        enable_sign_in_token_auth_user: 为用户启用电子邮件令牌认证
         enable_user: 启用用户
         memorialize_account: 将账户设为追悼模式
         promote_user: 给用户升任
@@ -280,8 +288,10 @@ zh-CN:
         destroy_unavailable_domain_html: "%{name} 恢复了向域名 %{target} 的投递"
         disable_2fa_user_html: "%{name} 停用了用户 %{target} 的双重认证"
         disable_custom_emoji_html: "%{name} 停用了自定义表情 %{target}"
+        disable_sign_in_token_auth_user_html: "%{name} 已为 %{target} 禁用电子邮件令牌认证"
         disable_user_html: "%{name} 将用户 %{target} 设置为禁止登录"
         enable_custom_emoji_html: "%{name} 启用了自定义表情 %{target}"
+        enable_sign_in_token_auth_user_html: "%{name} 已为 %{target} 启用电子邮件令牌认证"
         enable_user_html: "%{name} 将用户 %{target} 设置为允许登录"
         memorialize_account_html: "%{name} 将 %{target} 设置为追悼帐户"
         promote_user_html: "%{name} 对用户 %{target} 进行了升任操作"
@@ -559,6 +569,7 @@ zh-CN:
       resolved: 已处理
       resolved_msg: 举报处理成功！
       status: 状态
+      target_origin: 被报告账户的来源
       title: 举报
       unassign: 取消接管
       unresolved: 未处理
