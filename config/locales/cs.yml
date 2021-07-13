@@ -72,7 +72,7 @@ cs:
     last_active: naposledy aktivní
     link_verified_on: Vlastnictví tohoto odkazu bylo zkontrolováno %{date}
     media: Média
-    moved_html: "Uživatel %{name} se přesunul na %{new_profile_link}:"
+    moved_html: "%{name} se přesunul a na %{new_profile_link}:"
     network_hidden: Tato informace není k dispozici
     never_active: Nikdy
     nothing_here: Nic tu není!
@@ -204,8 +204,8 @@ cs:
         only_password: Pouze heslo
         password_and_2fa: Heslo a 2FA
         password_and_sign_in_token: Heslo a e-mailový token
-      sensitive: Vynutit citlivost
-      sensitized: Označen jako citlivý
+      sensitive: Citlivý
+      sensitized: označen jako citlivý
       shared_inbox_url: URL sdílené příchozí schránky
       show:
         created_reports: Vytvořená hlášení
@@ -220,10 +220,10 @@ cs:
       time_in_queue: Čeká ve frontě %{time}
       title: Účty
       unconfirmed_email: Nepotvrzený e-mail
-      undo_sensitized: Zrušit vynucení citlivosti
+      undo_sensitized: Vrátit zpět citlivost
       undo_silenced: Zrušit omezení
       undo_suspension: Zrušit pozastavení
-      unsilenced_msg: Omezení účtu %{username} úspěšně zrušeno
+      unsilenced_msg: Omezení účtu %{username} úspěšně odstraněno
       unsubscribe: Přestat odebírat
       unsuspended_msg: Úspěšně obnoven účet %{username}
       username: Uživatelské jméno
@@ -266,11 +266,11 @@ cs:
         reopen_report: Znovu otevřít hlášení
         reset_password_user: Obnovit heslo
         resolve_report: Označit hlášení jako vyřešené
-        sensitive_account: Vynucení citlivosti účtu
+        sensitive_account: Označit média ve vašem účtu jako citlivá
         silence_account: Omezit účet
         suspend_account: Pozastavit účet
         unassigned_report: Zrušit přiřazení hlášení
-        unsensitive_account: Zrušit vynucení citlivosti účtu
+        unsensitive_account: Zrušit označení médií ve vašem účtu jako citlivých
         unsilence_account: Zrušit omezení účtu
         unsuspend_account: Zrušit pozastavení účtu
         update_announcement: Aktualizovat oznámení
@@ -312,11 +312,11 @@ cs:
         reset_password_user_html: "Uživatel %{name} obnovil heslo uživatele %{target}"
         resolve_report_html: "Uživatel %{name} vyřešil hlášení %{target}"
         sensitive_account_html: "%{name} označil média účtu %{target} jako citlivá"
-        silence_account_html: "Uživatel %{name} omezil účet %{target}"
+        silence_account_html: "Uživatel %{name} ztišil uživatele %{target}"
         suspend_account_html: "Uživatel %{name} pozastavil účet uživatele %{target}"
         unassigned_report_html: "Uživatel %{name} odebral hlášení %{target}"
         unsensitive_account_html: "%{name} zrušil označení médií účtu %{target} jako citlivých"
-        unsilence_account_html: "Uživatel %{name} zrušil omezení účtu %{target}"
+        unsilence_account_html: "Uživatel %{name} zrušil ztišení uživatele %{target}"
         unsuspend_account_html: "Uživatel %{name} zrušil pozastavení účtu uživatele %{target}"
         update_announcement_html: "Uživatel %{name} aktualizoval oznámení %{target}"
         update_custom_emoji_html: "Uživatel %{name} aktualizoval emoji %{target}"
@@ -1149,7 +1149,7 @@ cs:
     code_hint: Pro potvrzení zadejte kód vygenerovaný Vaší ověřovací aplikací
     description_html: Zapnete-li <strong>dvoufázové ověřování</strong> pomocí ověřovací aplikace, k přihlášení budete u sebe muset mít svůj mobil, který pro Vás bude generovat kódy k opsání.
     enable: Zapnout
-    instructions_html: "<strong>Naskenujte tento QR kód do Google Authenticator nebo podobné TOTP aplikace na svém telefonu</strong>. Následně bude tato aplikace generovat kódy, které budete zadávat při přihlašování."
+    instructions_html: "<strong>Naskenujte tento QR kód do Google Authenticator nebo podobné TOTP aplikace na Vašem telefonu</strong>. Následně bude tato aplikace generovat kódy, které budete zadávat při přihlašování."
     manual_instructions: 'Nemůžete-li načíst QR kód a potřebujete ho zadat ručně, zde je tajemství v textové podobě:'
     setup: Nastavit
     wrong_code: Zadaný kód je neplatný! Je čas na serveru i zařízení generujícím kód správný?
@@ -1213,7 +1213,7 @@ cs:
       proceed: Pokračovat k odpovědi
       prompt: 'Chcete odpovědět na tento příspěvek:'
   scheduled_statuses:
-    over_daily_limit: Pro dnešek jste překročili limit %{limit} naplánovaných příspěvků
+    over_daily_limit: Překročili jste limit %{limit} příspěvků naplánovaných na tento den
     over_total_limit: Překročili jste limit %{limit} naplánovaných příspěvků
     too_soon: Plánované datum musí být v budoucnosti
   sessions:
