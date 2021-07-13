@@ -156,8 +156,9 @@ const insertSuggestion = (state, position, token, completion, path) => {
   });
 };
 
-const ignoreSuggestion = (state, position, token) => {
+const ignoreSuggestion = (state, position, token, completion, path) => {
   return state.withMutations(map => {
+    map.updateIn(path, oldText => `${oldText.slice(0, position + token.length)} ${oldText.slice(position + token.length)}`);
     map.set('suggestion_token', null);
     map.set('suggestions', ImmutableList());
     map.set('focusDate', new Date());

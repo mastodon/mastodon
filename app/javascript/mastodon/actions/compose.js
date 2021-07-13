@@ -518,6 +518,8 @@ export function selectComposeSuggestion(position, token, suggestion, path) {
         type: COMPOSE_SUGGESTION_IGNORE,
         position: startPosition,
         token,
+        completion,
+        path
       });
     }
   };
