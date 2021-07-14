@@ -232,11 +232,11 @@ class Account < ApplicationRecord
     suspended? && deletion_request.present?
   end
 
-  def suspend!(date: Time.now.utc, origin: :local)
+  def suspend!(date: Time.now.utc, origin: :local, block_email: true)
     transaction do
       create_deletion_request!
       update!(suspended_at: date, suspension_origin: origin)
-      create_canonical_email_block!
+      create_canonical_email_block! if block_email
     end
   end
 
