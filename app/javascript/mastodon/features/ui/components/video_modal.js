@@ -21,7 +21,7 @@ export default class VideoModal extends ImmutablePureComponent {
   };
 
   componentDidMount () {
-    const { media, onChangeBackgroundColor, onClose } = this.props;
+    const { media, onChangeBackgroundColor } = this.props;
 
     const backgroundColor = getAverageFromBlurhash(media.get('blurhash'));
 
