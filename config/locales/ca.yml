@@ -477,6 +477,9 @@ ca:
         unavailable: No disponible
         unavailable_message: El lliurament no està disponible
         warning: Avís
+        warning_message:
+          one: Fallada de lliurament %{count} dia
+          other: Fallada de lliurament %{count} dies
       delivery_available: El lliurament està disponible
       delivery_error_days: Dies de fallades de lliurament
       delivery_error_hint: Si el lliurament no és possible per %{count} dies, serà automàticament marcat com a no lliurable.
@@ -575,6 +578,7 @@ ca:
       resolved: Resolt
       resolved_msg: Informe resolt amb èxit!
       status: Estat
+      target_origin: Origen del compte reportat
       title: Informes
       unassign: Treu l'assignació
       unresolved: No resolt
