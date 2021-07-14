@@ -40,7 +40,7 @@ class Web::PushNotificationWorker
         # and must be removed
 
         if (400..499).cover?(response.code) && ![408, 429].include?(response.code)
-          @subscription.destroy!
+          raise Mastodon::UnexpectedResponseError, response
         elsif !(200...300).cover?(response.code)
           raise Mastodon::UnexpectedResponseError, response
         end
@@ -68,14 +68,7 @@ class Web::PushNotificationWorker
       )
 
       request.perform do |response|
-        # If the server responds with an error in the 4xx range
-        # that isn't about rate-limiting or timeouts, we can
-        # assume that the subscription is invalid or expired
-        # and must be removed
-
-        if (400..499).cover?(response.code) && ![408, 429].include?(response.code)
-          @subscription.destroy!
-        elsif !(200...300).cover?(response.code)
+        if !(200...300).cover?(response.code)
           raise Mastodon::UnexpectedResponseError, response
         end
       end
