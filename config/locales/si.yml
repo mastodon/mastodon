@@ -79,7 +79,11 @@ si:
       action_types:
         create_ip_block: අ.ජා. කෙ. (IP) නීතියක් සාදන්න
         enable_user: පරිශීලක සබල කරන්න
+        reopen_report: වාර්තාව නැවත විවෘත කරන්න
+        suspend_account: ගිණුම අත්හිටුවන්න
     announcements:
+      edit:
+        title: නිවේදනය සංස්කරණය
       live: සජීවී
       new:
         create: නිවේදනය සාදන්න
@@ -90,11 +94,17 @@ si:
       by_domain: වසම
       copy: පිටපත්
       create_new_category: නව ප්‍රවර්ගයක් සාදන්න
+      disabled: අබල කර ඇත
+      enable: සබල කරන්න
+      enabled: සබල කර ඇත
       list: ලැයිස්තුව
       upload: උඩුගත කරන්න
     dashboard:
+      config: වින්‍යාසය
+      feature_invites: ඇරයුම් සබැඳි
       features: විශේෂාංග
       open_reports: වාර්තා විවෘත කරන්න
+      recent_users: මෑත පරිශීලකයින්
       software: මෘදුකාංගය
       title: උපකරණ පුවරුව
     domain_blocks:
@@ -116,33 +126,65 @@ si:
       new:
         create: වසම එකතු කරන්න
       title: අවහිර කළ වි-තැපැල් වසම්
+    follow_recommendations:
+      language: භාෂාව සඳහා
+      status: තත්වය
     instances:
+      back_to_all: සියල්ල
+      back_to_warning: අවවාදයයි
       by_domain: වසම
+      delivery:
+        all: සියල්ල
+        warning: අවවාදයයි
       moderation:
         all: සියල්ල
       private_comment: පුද්ගලික අදහස
       public_comment: ප්‍රසිද්ධ අදහස
+    invites:
+      filter:
+        all: සියල්ල
+        expired: කල් ඉකුත් වී ඇත
+        title: පෙරහන
+      title: ඇරයුම්
     ip_blocks:
       title: අ.ජා. කෙ. (IP) නීති
     relays:
       disable: අබල කරන්න
+      disabled: අබල කර ඇත
       enable: සබල කරන්න
       enabled: සබල කර ඇත
       status: තත්වය
     reports:
       are_you_sure: ඔබට විශ්වාසද?
       by_target_domain: වාර්තා කළ ගිණුමෙහි වසම
+      comment:
+        none: කිසිවක් නැත
       notes:
         create: සටහන එකතු කරන්න
+      reopen: වාර්තාව නැවත විවෘත කරන්න
       report: '@%{id} වාර්තා කරන්න'
       reported_account: වාර්තා කළ ගිණුම
       status: තත්වය
       title: වාර්තා
+    rules:
+      add_new: නීතිය එකතු කරන්න
+      edit: නීතිය සංස්කරණය කරන්න
+      title: සේවාදායකයේ නීති
     settings:
+      contact_information:
+        email: ව්‍යාපාරික වි-තැපෑල
+      site_description:
+        title: සේවාදායකයේ සවිස්තරය
+      site_short_description:
+        title: සේවාදායකයේ කෙටි සවිස්තරය
       site_title: සේවාදායකයේ නම
+      title: අඩවියේ සැකසුම්
     statuses:
+      back_to_account: ගිණුම් පිටුවට ආපසු යන්න
       media:
         title: මාධ්‍යය
+      no_media: මාධ්‍ය නැත
+      with_media: මාධ්‍ය සමඟ
   application_mailer:
     salutation: "%{name},"
   auth:
