@@ -185,16 +185,26 @@ si:
         title: මාධ්‍යය
       no_media: මාධ්‍ය නැත
       with_media: මාධ්‍ය සමඟ
+    title: පරිපාලනය
+  appearance:
+    advanced_web_interface: උසස් වියමන අතුරුමුහුණත
+    localization:
+      guide_link: https://crowdin.com/project/mastodon
+    sensitive_content: සංවේදී අන්තර්ගතයකි
   application_mailer:
     salutation: "%{name},"
   auth:
     change_password: මුර පදය
     login: පිවිසෙන්න
     logout: නික්මෙන්න
+    or_log_in_with: හෝ සමඟ පිවිසෙන්න
+    security: ආරක්ෂාව
     status:
       account_status: ගිණුමේ තත්වය
   authorize_follow:
     post_follow:
+      close: හෝ ඔබට මෙම කවුළුව වසාදැමිය හැකිය.
+      return: පරිශීලකගේ පැතිකඩ පෙන්වන්න
       web: වියමන ට යන්න
   date:
     formats:
@@ -216,13 +226,16 @@ si:
   exports:
     archive_takeout:
       date: දිනය
+      download: ඔබගේ සංරක්ෂිතය බාගන්න
       size: ප්‍රමාණය
+    bookmarks: පොත් යොමු
     lists: ලැයිස්තු
     storage: මාධ්‍ය ගබඩාව
   filters:
     contexts:
       account: පැතිකඩයන්
       notifications: දැනුම්දීම්
+      thread: සංවාද
     edit:
       title: පෙරහන සංස්කරණය
     index:
@@ -233,9 +246,16 @@ si:
     developers: සංවර්ධකයින්
     more: තව…
     resources: සම්පත්
+  generic:
+    all: සියල්ල
+    copy: පිටපත්
+    save_changes: වෙනස්කම් සුරකින්න
   identity_proofs:
+    active: ක්‍රියාත්මකයි
     identity: අනන්‍යතාව
   imports:
+    types:
+      bookmarks: පොත් යොමු
     upload: උඩුගත කරන්න
   invites:
     expires_in:
@@ -245,6 +265,28 @@ si:
       '43200': හෝරා 12
       '604800': සති 1
       '86400': දින 1
+    title: මිනිසුන්ට ආරාධනා කරන්න
+  login_activities:
+    authentication_methods:
+      password: මුර පදය
+  notification_mailer:
+    mention:
+      action: පිළිතුර
+      title: නව සඳැහුම
+  notifications:
+    other_settings: වෙනත් දැනුම්දීම් සැකසුම්
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+  otp_authentication:
+    enable: සබල කරන්න
+  pagination:
+    next: ඊළඟ
+    truncate: "&hellip;"
+  relationships:
+    activity: ගිණුමේ ක්‍රියාකාරකම්
+    status: ගිණුමේ තත්වය
   sessions:
     browser: අතිරික්සුව
     browsers:
@@ -259,7 +301,9 @@ si:
       micro_messenger: මයික්‍රොමැසෙන්ජර්
       opera: ඔපෙරා
       otter: ඔටර්
+      qq: කියුකියු අතිරික්සුව
       safari: සෆාරි
+      uc_browser: යූසී අතිරික්සුව
       weibo: වෙයිබො
     ip: අ.ජා. කෙ. (IP)
     platforms:
@@ -277,6 +321,17 @@ si:
   settings:
     account: ගිණුම
     account_settings: ගිණුමේ සැකසුම්
+    edit_profile: පැතිකඩ සංස්කරණය
+    export: දත්ත නිර්යාත
+    import: ආයාත කරන්න
+    import_and_export: ආයාත සහ නිර්යාත
+    notifications: දැනුම්දීම්
+    profile: පැතිකඩ
+  statuses:
+    show_more: තව පෙන්වන්න
+    title: '%{name}: "%{quote}"'
+    visibilities:
+      public: ප්‍රසිද්ධ
   two_factor_authentication:
     edit: සංස්කරණය
     webauthn: ආරක්ෂිත යතුරු
