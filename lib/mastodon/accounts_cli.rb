@@ -293,9 +293,7 @@ module Mastodon
       skip_domains   = Concurrent::Set.new
 
       query = Account.remote.where(protocol: :activitypub)
-      if !domains.empty?
-        query = query.where(domain: domains)
-      end
+      query = query.where(domain: domains) unless domains.empty?
 
       processed, culled = parallelize_with_progress(query.partitioned) do |account|
         next if account.updated_at >= skip_threshold || (account.last_webfingered_at.present? && account.last_webfingered_at >= skip_threshold) || skip_domains.include?(account.domain)
