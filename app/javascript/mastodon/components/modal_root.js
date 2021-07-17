@@ -6,6 +6,10 @@ import { multiply } from 'color-blend';
 
 export default class ModalRoot extends React.PureComponent {
 
+  static contextTypes = {
+    router: PropTypes.object,
+  };
+
   static propTypes = {
     children: PropTypes.node,
     onClose: PropTypes.func.isRequired,
