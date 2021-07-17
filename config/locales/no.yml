@@ -6,6 +6,7 @@
     active_count_after: aktive
     active_footnote: Månedlige aktive brukere (MAU)
     administered_by: 'Administrert av:'
+    api: API
     apps: Mobilapper
     apps_platforms: Bruk Mastodon gjennom iOS, Android og andre plattformer
     browse_directory: Bla gjennom en profilmappe og filtrer etter interesser
@@ -27,6 +28,9 @@
     see_whats_happening: Se hva som skjer
     server_stats: 'Tjenerstatistikker:'
     source_code: Kildekode
+    status_count_after:
+      one: innlegg
+      other: statuser
     status_count_before: Som skrev
     tagline: Følg venner og oppdag nye
     terms: Bruksvilkår
@@ -58,6 +62,7 @@
     joined: Ble med den %{date}
     last_active: sist aktiv
     link_verified_on: Eierskap av denne lenken ble sjekket %{date}
+    media: Media
     moved_html: "%{name} har flyttet til %{new_profile_link}:"
     network_hidden: Denne informasjonen er ikke tilgjengelig
     never_active: Aldri
@@ -73,6 +78,7 @@
     posts_with_replies: Tuter med svar
     roles:
       admin: Administrator
+      bot: Bot
       group: Gruppe
       moderator: Moderere
     unavailable: Profilen er utilgjengelig
@@ -164,6 +170,8 @@
       resubscribe: Abonner på nytt
       role: Rettigheter
       roles:
+        admin: Administrator
+        moderator: Ordstyrer
         staff: Personale
         user: Bruker
       search: Søk
@@ -238,6 +246,7 @@
       new:
         create: Lag kunngjøring
         title: Ny kunngjøring
+      publish: Publiser
       published_msg: Kunngjøring publisert!
       scheduled_for: Planlagt for %{time}
       scheduled_msg: Kunngjøring planlagt for publisering!
@@ -257,6 +266,7 @@
       disable: Deaktivere
       disabled: Skrudd av
       disabled_msg: Deaktiverte emoji uten problem
+      emoji: Emoji
       enable: Aktivere
       enabled: Skrudd på
       enabled_msg: Aktiverte emojien uten problem
@@ -360,8 +370,19 @@
         create: Legg til domene
         title: Ny blokkeringsoppføring av e-postdomene
       title: Blokkering av e-postdomene
+    follow_recommendations:
+      language: For språk
+      status: Status
     instances:
+      back_to_all: All
+      back_to_limited: Begrenset
+      back_to_warning: Advarsel
       by_domain: Domene
+      delivery:
+        all: All
+        title: Levering
+        unavailable: Ikke tilgjengelig
+        warning: Advarsel
       delivery_available: Levering er tilgjengelig
       known_accounts:
         one: "%{count} kjent konto"
@@ -418,6 +439,7 @@
       save_and_enable: Lagre og skru på
       setup: Sett opp en overgangsforbindelse
       signatures_not_enabled: Overganger vil ikke fungere riktig mens sikkermodus eller hvitelistingsmodus er skrudd på
+      status: Status
       title: Overganger
     report_notes:
       created_msg: Rapportnotat opprettet!
@@ -452,10 +474,14 @@
       reported_by: Rapportert av
       resolved: Løst
       resolved_msg: Rapport løst!
+      status: Status
       title: Rapporter
       unassign: Fjern tilegning
       unresolved: Uløst
       updated_at: Oppdatert
+    rules:
+      add_new: Legg til et filter
+      delete: Slett
     settings:
       activity_api_enabled:
         desc_html: Antall lokale statusposter, aktive brukere og nye registreringer i ukentlige oppdelinger
@@ -544,6 +570,8 @@
         nsfw_on: NSFW PÅ
       deleted: Slettet
       failed_to_execute: Utføring mislyktes
+      media:
+        title: Media
       no_media: Ingen media
       no_status_selected: Ingen statuser ble endret da ingen ble valgt
       title: Kontostatuser
@@ -593,6 +621,7 @@
     toot_layout: Tut-utseende
   application_mailer:
     notification_preferences: Endre E-postinnstillingene
+    salutation: "%{name},"
     settings: 'Endre foretrukne e-postinnstillinger: %{link}'
     view: 'Se:'
     view_profile: Vis Profil
@@ -627,6 +656,9 @@
     migrate_account: Flytt til en annen konto
     migrate_account_html: Hvis du ønsker å henvise denne kontoen til en annen, kan du <a href="%{path}">konfigurere det her</a>.
     or_log_in_with: Eller logg på med
+    providers:
+      cas: CAS
+      saml: SAML
     register: Bli med
     registration_closed: "%{instance} godtar ikke nye medlemmer"
     resend_confirmation: Send bekreftelsesinstruksjoner på nytt
@@ -729,6 +761,8 @@
       request: Be om ditt arkiv
       size: Størrelse
     blocks: Du blokkerer
+    bookmarks: Bokmerker
+    csv: CSV
     domain_blocks: Domeneblokkeringer
     lists: Lister
     mutes: Du demper
@@ -791,6 +825,7 @@
     success: Dine data ble mottatt og vil bli behandlet så fort som mulig
     types:
       blocking: Blokkeringsliste
+      bookmarks: Bokmerker
       domain_blocking: Domeneblokkeringsliste
       following: Følgeliste
       muting: Dempeliste
@@ -821,6 +856,10 @@
   lists:
     errors:
       limit: Du har nådd det maksimale antall lister
+  login_activities:
+    authentication_methods:
+      password: passord
+    title: Autentiseringshistorikk
   media_attachments:
     validations:
       images_and_video: Kan ikke legge ved video på en status som allerede inneholder bilder
@@ -923,6 +962,7 @@
     next: Neste
     older: Eldre
     prev: Forrige
+    truncate: "&hellip;"
   polls:
     errors:
       already_voted: Du har allerede stemt i denne avstemningen
@@ -985,17 +1025,37 @@
     browsers:
       alipay: AliPay
       blackberry: BlackBerry
+      chrome: Chrome
+      edge: Microsoft Edge
+      electron: Electron
+      firefox: Firefox
       generic: Ukjent nettleser
+      ie: Internet Explorer
+      micro_messenger: MicroMessenger
       nokia: Nokia S40 Ovi-nettleser
+      opera: Opera
+      phantom_js: PhantomJS
+      qq: QQ Browser
+      safari: Safari
       uc_browser: UC Browser
+      weibo: Weibo
     current_session: Nåværende økt
     description: "%{browser} på %{platform}"
     explanation: Dette er nettlesere som er pålogget på din Mastodon-konto akkurat nå.
     ip: IP-adresse
     platforms:
+      adobe_air: Adobe Air
+      android: Android
       blackberry: BlackBerry
       chrome_os: Chrome OS
+      firefox_os: Firefox OS
+      ios: iOS
+      linux: Linux
+      mac: macOS
       other: ukjent plattform
+      windows: Windows
+      windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
     revoke: Tilbakekall
     revoke_success: Økt tilbakekalt
     title: Økter
@@ -1030,6 +1090,9 @@
       image:
         one: "%{count} bilde"
         other: "%{count} bilder"
+      video:
+        one: "%{count} video"
+        other: "%{count} videoer"
     content_warning: 'Innholdsadvarsel: %{warning}'
     language_detection: Oppdag språk automatisk
     open_in_web: Åpne i nettleser
@@ -1040,15 +1103,21 @@
       private: Kun offentlige tuter kan festes
       reblog: En fremheving kan ikke festes
     poll:
+      total_people:
+        one: "%{count} person"
+        other: "%{count} personer"
       total_votes:
         one: "%{count} stemme"
         other: "%{count} stemmer"
       vote: Stem
     show_more: Vis mer
+    show_newer: Vis nyere
+    show_older: Vis eldre
     show_thread: Vis tråden
     sign_in_to_participate: Logg på for å delta i samtalen
     title: '%{name}: «%{quote}»'
     visibilities:
+      direct: Direkte
       private: Privat
       private_long: Synlig kun for følgere
       public: Offentlig
@@ -1206,6 +1275,7 @@
       tip_following: Du følger din tjeners administrator(er) som standard. For å finne mer interessante personer, sjekk den lokale og forente tidslinjen.
       tip_local_timeline: Den lokale tidslinjen blir kontant matet med meldinger fra personer på %{instance}. Dette er dine nærmeste naboer!
       tip_mobile_webapp: Hvis din mobile nettleser tilbyr deg å legge Mastadon til din hjemmeskjerm kan du motta push-varslinger. Det er nesten som en integrert app på mange måter!
+      tips: Tips
       title: Velkommen ombord, %{name}!
   users:
     follow_limit_reached: Du kan ikke følge mer enn %{limit} personer
