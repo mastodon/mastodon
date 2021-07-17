@@ -48,7 +48,7 @@ class Circles extends ImmutablePureComponent {
   }
 
   render () {
-    const { intl, shouldUpdateScroll, circles, multiColumn } = this.props;
+    const { intl, circles, multiColumn } = this.props;
 
     if (!circles) {
       return (
@@ -68,7 +68,6 @@ class Circles extends ImmutablePureComponent {
 
         <ScrollableList
           scrollKey='circles'
-          shouldUpdateScroll={shouldUpdateScroll}
           emptyMessage={emptyMessage}
           prepend={<ColumnSubheading text={intl.formatMessage(messages.subheading)} />}
           bindToDocument={!multiColumn}

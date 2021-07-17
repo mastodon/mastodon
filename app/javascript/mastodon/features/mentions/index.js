@@ -22,7 +22,6 @@ class Mentions extends ImmutablePureComponent {
   static propTypes = {
     params: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired,
-    shouldUpdateScroll: PropTypes.func,
     accountIds: ImmutablePropTypes.list,
     multiColumn: PropTypes.bool,
     intl: PropTypes.object.isRequired,
@@ -41,7 +40,7 @@ class Mentions extends ImmutablePureComponent {
   }
 
   render () {
-    const { shouldUpdateScroll, accountIds, multiColumn } = this.props;
+    const { accountIds, multiColumn } = this.props;
 
     if (!accountIds) {
       return (
@@ -62,7 +61,6 @@ class Mentions extends ImmutablePureComponent {
 
         <ScrollableList
           scrollKey='mentions'
-          shouldUpdateScroll={shouldUpdateScroll}
           emptyMessage={emptyMessage}
           bindToDocument={!multiColumn}
         >

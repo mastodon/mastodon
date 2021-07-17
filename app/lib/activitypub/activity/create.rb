@@ -362,8 +362,9 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
 
     return conversation if @object['context'].nil?
 
-    uri            = value_or_id(@object['context'])
-    conversation ||= ActivityPub::TagManager.instance.uri_to_resource(uri, Conversation)
+    uri                  = value_or_id(@object['context'])
+    context_conversation = ActivityPub::TagManager.instance.uri_to_resource(uri, Conversation)
+    conversation       ||= context_conversation
 
     return conversation if (conversation.present? && (conversation.local? || conversation.uri == uri)) || !uri.start_with?('https://')
 
@@ -377,6 +378,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
 
     return conversation if conversation_json.blank?
 
+    conversation = context_conversation if context_conversation.present?
     conversation ||= Conversation.new
     conversation.uri = uri
     conversation.inbox_url = conversation_json['inbox']
