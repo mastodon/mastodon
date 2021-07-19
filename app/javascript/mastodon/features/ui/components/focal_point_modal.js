@@ -29,6 +29,8 @@ const messages = defineMessages({
   apply: { id: 'upload_modal.apply', defaultMessage: 'Apply' },
   placeholder: { id: 'upload_modal.description_placeholder', defaultMessage: 'A quick brown fox jumps over the lazy dog' },
   chooseImage: { id: 'upload_modal.choose_image', defaultMessage: 'Choose image' },
+  discardMessage: { id: 'confirmations.discard_edit_media.message', defaultMessage: 'You have unsaved changes to the media description or preview, discard them anyway?' },
+  discardConfirm: { id: 'confirmations.discard_edit_media.confirm', defaultMessage: 'Discard' },
 });
 
 const mapStateToProps = (state, { id }) => ({
@@ -83,8 +85,8 @@ class ImageLoader extends React.PureComponent {
 
 }
 
-export default @connect(mapStateToProps, mapDispatchToProps)
-@injectIntl
+export default @connect(mapStateToProps, mapDispatchToProps, null, { forwardRef: true })
+@(component => injectIntl(component, { forwardRef: true }))
 class FocalPointModal extends ImmutablePureComponent {
 
   static propTypes = {
@@ -212,6 +214,19 @@ class FocalPointModal extends ImmutablePureComponent {
   handleSubmit = () => {
     this.props.onSave(this.state.description, this.state.focusX, this.state.focusY);
     this.props.onClose();
+  }
+
+  getCloseConfirmationMessage = () => {
+    const { intl } = this.props;
+
+    if (this.state.dirty) {
+      return {
+        message: intl.formatMessage(messages.discardMessage),
+        confirm: intl.formatMessage(messages.discardConfirm),
+      };
+    } else {
+      return null;
+    }
   }
 
   setRef = c => {
