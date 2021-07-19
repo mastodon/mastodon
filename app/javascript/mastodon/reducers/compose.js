@@ -331,7 +331,7 @@ export default function compose(state = initialState, action) {
   case COMPOSE_SUBMIT_REQUEST:
     return state.set('is_submitting', true);
   case COMPOSE_UPLOAD_CHANGE_REQUEST:
-    return state.set('is_changing_upload', true).setIn(['media_modal', 'dirty'], false);
+    return state.set('is_changing_upload', true);
   case COMPOSE_SUBMIT_SUCCESS:
     return clearAll(state);
   case COMPOSE_SUBMIT_FAIL:
@@ -413,6 +413,7 @@ export default function compose(state = initialState, action) {
   case COMPOSE_UPLOAD_CHANGE_SUCCESS:
     return state
       .set('is_changing_upload', false)
+      .setIn(['media_modal', 'dirty'], false)
       .update('media_attachments', list => list.map(item => {
         if (item.get('id') === action.media.id) {
           return fromJS(action.media);

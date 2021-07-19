@@ -27,6 +27,7 @@ import { assetHost } from 'mastodon/utils/config';
 const messages = defineMessages({
   close: { id: 'lightbox.close', defaultMessage: 'Close' },
   apply: { id: 'upload_modal.apply', defaultMessage: 'Apply' },
+  applying: { id: 'upload_modal.applying', defaultMessage: 'Applying…' },
   placeholder: { id: 'upload_modal.description_placeholder', defaultMessage: 'A quick brown fox jumps over the lazy dog' },
   chooseImage: { id: 'upload_modal.choose_image', defaultMessage: 'Choose image' },
   discardMessage: { id: 'confirmations.discard_edit_media.message', defaultMessage: 'You have unsaved changes to the media description or preview, discard them anyway?' },
@@ -41,6 +42,7 @@ const mapStateToProps = (state, { id }) => ({
   focusX: state.getIn(['compose', 'media_modal', 'focusX']),
   focusY: state.getIn(['compose', 'media_modal', 'focusY']),
   dirty: state.getIn(['compose', 'media_modal', 'dirty']),
+  is_changing_upload: state.getIn(['compose', 'is_changing_upload']),
 });
 
 const mapDispatchToProps = (dispatch, { id }) => ({
@@ -183,7 +185,6 @@ class FocalPointModal extends ImmutablePureComponent {
 
   handleSubmit = () => {
     this.props.onSave(this.props.description, this.props.focusX, this.props.focusY);
-    this.props.onClose();
   }
 
   getCloseConfirmationMessage = () => {
@@ -273,7 +274,7 @@ class FocalPointModal extends ImmutablePureComponent {
   }
 
   render () {
-    const { media, intl, account, onClose, isUploadingThumbnail, description, focusX, focusY, dirty } = this.props;
+    const { media, intl, account, onClose, isUploadingThumbnail, description, focusX, focusY, dirty, is_changing_upload } = this.props;
     const { dragging, detecting, progress, ocrStatus } = this.state;
     const x = (focusX /  2) + .5;
     const y = (focusY / -2) + .5;
@@ -331,7 +332,7 @@ class FocalPointModal extends ImmutablePureComponent {
                     accept='image/png,image/jpeg'
                     onChange={this.handleThumbnailChange}
                     style={{ display: 'none' }}
-                    disabled={isUploadingThumbnail}
+                    disabled={isUploadingThumbnail || is_changing_upload}
                   />
                 </label>
 
@@ -350,7 +351,7 @@ class FocalPointModal extends ImmutablePureComponent {
                 value={detecting ? '…' : description}
                 onChange={this.handleChange}
                 onKeyDown={this.handleKeyDown}
-                disabled={detecting}
+                disabled={detecting || is_changing_upload}
                 autoFocus
               />
 
@@ -360,11 +361,11 @@ class FocalPointModal extends ImmutablePureComponent {
             </div>
 
             <div className='setting-text__toolbar'>
-              <button disabled={detecting || media.get('type') !== 'image'} className='link-button' onClick={this.handleTextDetection}><FormattedMessage id='upload_modal.detect_text' defaultMessage='Detect text from picture' /></button>
+              <button disabled={detecting || media.get('type') !== 'image' || is_changing_upload} className='link-button' onClick={this.handleTextDetection}><FormattedMessage id='upload_modal.detect_text' defaultMessage='Detect text from picture' /></button>
               <CharacterCounter max={1500} text={detecting ? '' : description} />
             </div>
 
-            <Button disabled={!dirty || detecting || isUploadingThumbnail || length(description) > 1500} text={intl.formatMessage(messages.apply)} onClick={this.handleSubmit} />
+            <Button disabled={!dirty || detecting || isUploadingThumbnail || length(description) > 1500 || is_changing_upload} text={intl.formatMessage(is_changing_upload ? messages.applying : messages.apply)} onClick={this.handleSubmit} />
           </div>
 
           <div className='focal-point-modal__content'>
