@@ -51,7 +51,10 @@ si:
       email: විද්‍යුත් තැපෑල
       email_status: වි-තැපෑලෙහි තත්වය
       enabled: සබල කර ඇත
+      header: ශීර්ෂය
+      invite_request_text: එක්වීම සඳහා හේතුව
       ip: අ.ජා. කෙ. (IP)
+      joined: එක් වී ඇත
       location:
         all: සියල්ල
         local: ස්ථානීය
@@ -63,10 +66,13 @@ si:
         active: සක්‍රීයයි
         all: සියල්ල
         suspended: අත්හිටුවන ලදි
+      most_recent_ip: වඩා මෑත අ.ජා.කෙ.(IP)
       perform_full_suspension: අත්හිටුවන්න
       protocol: කෙටුම්පත
       public: ප්‍රසිද්ධ
+      redownload: පැතිකඩ නැවුම්කරන්න
       reject: ප්‍රතික්ෂේප
+      remove_header: ශීර්ෂය ඉවත්කරන්න
       role: අවසරයන්
       roles:
         admin: පරිපාලක
@@ -81,9 +87,15 @@ si:
       suspended: අත්හිටුවන ලදි
       title: ගිණුම්
       username: පරිශීලක නාමය
+      warn: අවවාද
       web: වියමන
     action_logs:
       action_types:
+        change_email_user: පරිශීලකට වි-තැපෑල වෙනස් කරන්න
+        create_account_warning: අවවාදයක් සාදන්න
+        create_announcement: නිවේදනය සාදන්න
+        create_domain_allow: වසම් ඉඩදීමක් සාදන්න
+        create_domain_block: වසම් අවහිරයක් සාදන්න
         create_ip_block: අ.ජා. කෙ. (IP) නීතියක් සාදන්න
         enable_user: පරිශීලක සබල කරන්න
         reopen_report: වාර්තාව නැවත විවෘත කරන්න
