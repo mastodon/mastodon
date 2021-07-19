@@ -100,7 +100,7 @@ class ImageLoader extends React.PureComponent {
 }
 
 export default @connect(mapStateToProps, mapDispatchToProps, null, { forwardRef: true })
-@(component => injectIntl(component, { forwardRef: true }))
+@(component => injectIntl(component, { withRef: true }))
 class FocalPointModal extends ImmutablePureComponent {
 
   static propTypes = {

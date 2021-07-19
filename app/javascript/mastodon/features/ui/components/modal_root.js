@@ -79,7 +79,15 @@ export default class ModalRoot extends React.PureComponent {
 
   handleClose = () => {
     const { onClose } = this.props;
-    onClose(this._modal?.getCloseConfirmationMessage?.());
+    let message = null;
+    try {
+      message = this._modal?.getWrappedInstance?.().getCloseConfirmationMessage?.();
+    } catch (_) {
+      // injectIntl defines `getWrappedInstance` but errors out if `withRef`
+      // isn't set.
+      // This would be much smoother with react-intl 3+ and `forwardRef`.
+    }
+    onClose(message);
   }
 
   setModalRef = (c) => {
