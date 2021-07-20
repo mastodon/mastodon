@@ -126,6 +126,7 @@ ru:
       demote: Разжаловать
       destroyed_msg: "Данные %{username} поставлены в очередь на удаление"
       disable: Заморозка
+      disable_sign_in_token_auth: Отключить аутентификацию по e-mail кодам
       disable_two_factor_authentication: Отключить 2FA
       disabled: Отключено
       display_name: Отображаемое имя
@@ -134,6 +135,7 @@ ru:
       email: E-mail
       email_status: Статус e-mail
       enable: Включить
+      enable_sign_in_token_auth: Включить аутентификацию по e-mail кодам
       enabled: Включен
       enabled_msg: Учётная запись %{username} успешно разморожена
       followers: Подписчики
@@ -201,6 +203,7 @@ ru:
       security_measures:
         only_password: Только пароль
         password_and_2fa: Пароль и 2FA
+        password_and_sign_in_token: Пароль и e-mail код
       sensitive: Отметить как «деликатного содержания»
       sensitized: отмечено как «деликатного характера»
       shared_inbox_url: URL общих входящих
@@ -252,8 +255,10 @@ ru:
         destroy_unavailable_domain: Исключение доменов из списка недоступных
         disable_2fa_user: Отключение 2FA
         disable_custom_emoji: Отключение эмодзи
+        disable_sign_in_token_auth_user: Отключение аутентификации по e-mail кодам у пользователей
         disable_user: Заморозка пользователей
         enable_custom_emoji: Включение эмодзи
+        enable_sign_in_token_auth_user: Включение аутентификации по e-mail кодам у пользователей
         enable_user: Разморозка пользователей
         memorialize_account: Присвоение пользователям статуса «мемориала»
         promote_user: Повышение пользователей
@@ -792,7 +797,7 @@ ru:
     description:
       prefix_invited_by_user: "@%{name} приглашает вас присоединиться к этому узлу Mastodon."
       prefix_sign_up: Зарегистрируйтесь в Mastodon уже сегодня!
-      suffix: Имея учётную запись, вы можете подписываться на людей, постить обновления, обмениваться сообщениями с пользователями любых узлов Mastodon и не только!
+      suffix: С учётной записью вы сможете подписываться на людей, публиковать обновления, обмениваться сообщениями с пользователями любых сообществ Mastodon и не только!
     didnt_get_confirmation: Не получили инструкцию для подтверждения?
     dont_have_your_security_key: У вас нет ключа безопасности?
     forgot_password: Забыли пароль?
