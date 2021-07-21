@@ -43,7 +43,6 @@ class SearchQueryTransformer < Parslet::Transform
     end
   end
 
-
   class Operator
     class << self
       def symbol(str)
@@ -84,10 +83,10 @@ class SearchQueryTransformer < Parslet::Transform
   class PrefixClause
     attr_reader :filter, :operator, :term
 
-    def initialize(prefix, operator, term)
+    def initialize(prefix, term)
       @operator = :filter
       case prefix
-      when "by"
+      when 'by'
         @filter = :account_id
         username, domain = term.split('@')
         account = Account.find_remote(username, domain)
@@ -106,7 +105,7 @@ class SearchQueryTransformer < Parslet::Transform
     operator = clause[:operator]&.to_s
 
     if clause[:prefix]
-      PrefixClause.new(prefix, operator, clause[:term].to_s)
+      PrefixClause.new(prefix, clause[:term].to_s)
     elsif clause[:term]
       TermClause.new(prefix, operator, clause[:term].to_s)
     elsif clause[:shortcode]
