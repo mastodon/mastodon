@@ -16,17 +16,6 @@ class Api::V2::SearchController < Api::BaseController
   private
 
   def search_results
-    unless params[:account_id]
-      by_regex = /\bby:(\w+)(?:@(\S+))?\b/
-      query = params[:q]
-
-      query.match(by_regex) do |m|
-        params[:q] = query.delete(m.to_s)
-        by = m.captures
-        params[:account_id] = Account.find_remote(by[0], by[1])&.id
-      end
-    end
-
     SearchService.new.call(
       params[:q],
       current_account,
