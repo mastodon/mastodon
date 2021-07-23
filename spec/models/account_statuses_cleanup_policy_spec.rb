@@ -161,6 +161,44 @@ RSpec.describe AccountStatusesCleanupPolicy, type: :model do
 
     subject { account_statuses_cleanup_policy.statuses_to_delete }
 
+    context 'when passed a max_id' do
+      let!(:old_status)               { Fabricate(:status, created_at: 1.year.ago, account: account) }
+      let!(:slightly_less_old_status) { Fabricate(:status, created_at: 6.months.ago, account: account) }
+
+      subject { account_statuses_cleanup_policy.statuses_to_delete(50, old_status.id) }
+
+      it 'returns statuses including max_id' do
+        expect(subject).to include(old_status.id)
+      end
+
+      it 'returns statuses including older than max_id' do
+        expect(subject).to include(very_old_status.id)
+      end
+
+      it 'does not return statuses newer than max_id' do
+        expect(subject).to_not include(slightly_less_old_status.id)
+      end
+    end
+
+    context 'when passed a min_id' do
+      let!(:old_status)               { Fabricate(:status, created_at: 1.year.ago, account: account) }
+      let!(:slightly_less_old_status) { Fabricate(:status, created_at: 6.months.ago, account: account) }
+
+      subject { account_statuses_cleanup_policy.statuses_to_delete(50, recent_status.id, old_status.id) }
+
+      it 'returns statuses including min_id' do
+        expect(subject).to include(old_status.id)
+      end
+
+      it 'returns statuses including newer than max_id' do
+        expect(subject).to include(slightly_less_old_status.id)
+      end
+
+      it 'does not return statuses older than min_id' do
+        expect(subject).to_not include(very_old_status.id)
+      end
+    end
+
     context 'when passed a low limit' do
       it 'only returns the limited number of items' do
         expect(account_statuses_cleanup_policy.statuses_to_delete(1).count).to eq 1
