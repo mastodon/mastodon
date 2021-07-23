@@ -252,7 +252,7 @@ class DetailedStatus extends ImmutablePureComponent {
       }
     } else if (quote_muted) {
       quote = (
-        <div className={classNames('quote-status', { muted: this.props.muted })} data-id={quote_status.get('id')} dataurl={quote_status.get('url')}>
+        <div className={classNames('quote-status', { muted: this.props.muted })}>
           <div className={classNames('status__content muted-quote', { 'status__content--with-action': this.context.router })}>
             <FormattedMessage id='status.muted_quote' defaultMessage='Muted quote' />
           </div>

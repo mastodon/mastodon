@@ -25,9 +25,13 @@ const importStatus = (state, status) => state.set(status.id, fromJS(status));
 const importStatuses = (state, statuses) =>
   state.withMutations(mutable => statuses.forEach(status => importStatus(mutable, status)));
 
-const deleteStatus = (state, id, references) => {
+const deleteStatus = (state, id, references, quotes) => {
   references.forEach(ref => {
     state = deleteStatus(state, ref, []);
+  });
+
+  quotes.forEach(ref => {
+    state = state.setIn([ref, 'quote_id'], null).setIn([ref, 'quote'], null)
   });
 
   return state.delete(id);
@@ -86,7 +90,7 @@ export default function statuses(state = initialState, action) {
       action.ids.forEach(id => map.setIn([id, 'quote_hidden'], true));
     });
   case TIMELINE_DELETE:
-    return deleteStatus(state, action.id, action.references);
+    return deleteStatus(state, action.id, action.references, action.quotes);
   default:
     return state;
   }
