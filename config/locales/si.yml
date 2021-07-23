@@ -18,12 +18,14 @@ si:
     unavailable_content_description:
       domain: සේවාදායකය
       reason: හේතුව
+      silenced_title: සීමාසහිත සේවාදායක
       suspended_title: අත්හිටවූ සේවාදායකයන්
     user_count_after:
       one: පරිශීලක
       other: පරිශීලකයින්
     what_is_mastodon: මාස්ටඩන් යනු කුමක්ද?
   accounts:
+    joined: '%{date} එක් වී ඇත'
     media: මාධ්‍යය
     nothing_here: මෙහි කිසිත් නැත!
     roles:
@@ -65,6 +67,7 @@ si:
       moderation:
         active: සක්‍රීයයි
         all: සියල්ල
+        silenced: සීමාසහිත
         suspended: අත්හිටුවන ලදි
       most_recent_ip: වඩා මෑත අ.ජා.කෙ.(IP)
       perform_full_suspension: අත්හිටුවන්න
@@ -83,6 +86,7 @@ si:
         only_password: මුරපදය පමණි
       sensitive: සංවේදී
       silence: සීමාව
+      silenced: සීමාසහිත
       statuses: තත්වයන්
       suspended: අත්හිටුවන ලදි
       title: ගිණුම්
@@ -97,6 +101,7 @@ si:
         create_domain_allow: වසම් ඉඩදීමක් සාදන්න
         create_domain_block: වසම් අවහිරයක් සාදන්න
         create_ip_block: අ.ජා. කෙ. (IP) නීතියක් සාදන්න
+        disable_user: පරිශීලක අබල කරන්න
         enable_user: පරිශීලක සබල කරන්න
         reopen_report: වාර්තාව නැවත විවෘත කරන්න
         suspend_account: ගිණුම අත්හිටුවන්න
