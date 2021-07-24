@@ -14,6 +14,8 @@
 #  keep_media         :boolean          default(FALSE), not null
 #  keep_self_fav      :boolean          default(TRUE), not null
 #  keep_self_bookmark :boolean          default(TRUE), not null
+#  min_favs           :integer
+#  min_reblogs        :integer
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
 #
@@ -26,6 +28,8 @@ class AccountStatusesCleanupPolicy < ApplicationRecord
   belongs_to :account
 
   validates :min_status_age, inclusion: { in: ALLOWED_MIN_STATUS_AGE }
+  validates :min_favs, numericality: { greater_than_or_equal_to: 1, allow_nil: true }
+  validates :min_reblogs, numericality: { greater_than_or_equal_to: 1, allow_nil: true }
   validate :validate_local_account
 
   before_save :update_last_inspected
@@ -34,6 +38,7 @@ class AccountStatusesCleanupPolicy < ApplicationRecord
     scope = account.statuses
     scope.merge!(old_enough_scope(max_id))
     scope = scope.where(Status.arel_table[:id].gteq(min_id)) if min_id.present?
+    scope.merge!(without_popular_scope) unless min_favs.nil? && min_reblogs.nil?
     scope.merge!(without_direct_scope) if keep_direct?
     scope.merge!(without_pinned_scope) if keep_pinned?
     scope.merge!(without_poll_scope) if keep_polls?
@@ -92,6 +97,9 @@ class AccountStatusesCleanupPolicy < ApplicationRecord
       # may need to be deleted, so we'll have to start again.
       redis.del("account_cleanup:#{account.id}")
     end
+    if %w(min_favs min_reblogs).map { |name| attribute_change_to_be_saved(name) }.compact.any? { |old, new| old.present? && (new.nil? || new > old) }
+      redis.del("account_cleanup:#{account.id}")
+    end
   end
 
   def validate_local_account
@@ -128,5 +136,12 @@ class AccountStatusesCleanupPolicy < ApplicationRecord
 
   def without_poll_scope
     Status.where(poll_id: nil)
+  end
+
+  def without_popular_scope
+    scope = Status.left_joins(:status_stat)
+    scope = scope.where('COALESCE(status_stats.reblogs_count, 0) <= ?', min_reblogs) unless min_reblogs.nil?
+    scope = scope.where('COALESCE(status_stats.favourites_count, 0) <= ?', min_favs) unless min_favs.nil?
+    scope
   end
 end

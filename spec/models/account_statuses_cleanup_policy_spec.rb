@@ -151,6 +151,10 @@ RSpec.describe AccountStatusesCleanupPolicy, type: :model do
     let!(:self_bookmarked)   { Fabricate(:status, created_at: 1.year.ago, account: account) }
     let!(:status_with_poll)  { Fabricate(:status, created_at: 1.year.ago, account: account, poll_attributes: { account: account, voters_count: 0, options: ['a', 'b'], expires_in: 2.days }) }
     let!(:status_with_media) { Fabricate(:status, created_at: 1.year.ago, account: account) }
+    let!(:faved4)            { Fabricate(:status, created_at: 1.year.ago, account: account) }
+    let!(:faved5)            { Fabricate(:status, created_at: 1.year.ago, account: account) }
+    let!(:reblogged4)        { Fabricate(:status, created_at: 1.year.ago, account: account) }
+    let!(:reblogged5)        { Fabricate(:status, created_at: 1.year.ago, account: account) }
     let!(:recent_status)     { Fabricate(:status, created_at: 2.days.ago, account: account) }
 
     let!(:media_attachment)  { Fabricate(:media_attachment, account: account, status: status_with_media) }
@@ -161,6 +165,13 @@ RSpec.describe AccountStatusesCleanupPolicy, type: :model do
     let(:account_statuses_cleanup_policy) { Fabricate(:account_statuses_cleanup_policy, account: account) }
 
     subject { account_statuses_cleanup_policy.statuses_to_delete }
+
+    before do
+      4.times { faved4.increment_count!(:favourites_count) }
+      5.times { faved5.increment_count!(:favourites_count) }
+      4.times { reblogged4.increment_count!(:reblogs_count) }
+      5.times { reblogged5.increment_count!(:reblogs_count) }
+    end
 
     context 'when passed a max_id' do
       let!(:old_status)               { Fabricate(:status, created_at: 1.year.ago, account: account) }
@@ -235,7 +246,7 @@ RSpec.describe AccountStatusesCleanupPolicy, type: :model do
       end
 
       it 'returns every other old status for deletion' do
-        expect(subject.pluck(:id)).to include(very_old_status.id, pinned_status.id, self_faved.id, self_bookmarked.id, status_with_poll.id, status_with_media.id)
+        expect(subject.pluck(:id)).to include(very_old_status.id, pinned_status.id, self_faved.id, self_bookmarked.id, status_with_poll.id, status_with_media.id, faved4.id, faved5.id, reblogged4.id, reblogged5.id)
       end
     end
 
@@ -254,7 +265,7 @@ RSpec.describe AccountStatusesCleanupPolicy, type: :model do
       end
 
       it 'returns every other old status for deletion' do
-        expect(subject.pluck(:id)).to include(direct_message.id, very_old_status.id, pinned_status.id, self_faved.id, status_with_poll.id, status_with_media.id)
+        expect(subject.pluck(:id)).to include(direct_message.id, very_old_status.id, pinned_status.id, self_faved.id, status_with_poll.id, status_with_media.id, faved4.id, faved5.id, reblogged4.id, reblogged5.id)
       end
     end
 
@@ -273,7 +284,7 @@ RSpec.describe AccountStatusesCleanupPolicy, type: :model do
       end
 
       it 'returns every other old status for deletion' do
-        expect(subject.pluck(:id)).to include(direct_message.id, very_old_status.id, pinned_status.id, self_bookmarked.id, status_with_poll.id, status_with_media.id)
+        expect(subject.pluck(:id)).to include(direct_message.id, very_old_status.id, pinned_status.id, self_bookmarked.id, status_with_poll.id, status_with_media.id, faved4.id, faved5.id, reblogged4.id, reblogged5.id)
       end
     end
 
@@ -292,7 +303,7 @@ RSpec.describe AccountStatusesCleanupPolicy, type: :model do
       end
 
       it 'returns every other old status for deletion' do
-        expect(subject.pluck(:id)).to include(direct_message.id, very_old_status.id, pinned_status.id, self_faved.id, self_bookmarked.id, status_with_poll.id)
+        expect(subject.pluck(:id)).to include(direct_message.id, very_old_status.id, pinned_status.id, self_faved.id, self_bookmarked.id, status_with_poll.id, faved4.id, faved5.id, reblogged4.id, reblogged5.id)
       end
     end
 
@@ -311,7 +322,7 @@ RSpec.describe AccountStatusesCleanupPolicy, type: :model do
       end
 
       it 'returns every other old status for deletion' do
-        expect(subject.pluck(:id)).to include(direct_message.id, very_old_status.id, pinned_status.id, self_faved.id, self_bookmarked.id, status_with_media.id)
+        expect(subject.pluck(:id)).to include(direct_message.id, very_old_status.id, pinned_status.id, self_faved.id, self_bookmarked.id, status_with_media.id, faved4.id, faved5.id, reblogged4.id, reblogged5.id)
       end
     end
 
@@ -330,7 +341,7 @@ RSpec.describe AccountStatusesCleanupPolicy, type: :model do
       end
 
       it 'returns every other old status for deletion' do
-        expect(subject.pluck(:id)).to include(direct_message.id, very_old_status.id, self_faved.id, self_bookmarked.id, status_with_poll.id, status_with_media.id)
+        expect(subject.pluck(:id)).to include(direct_message.id, very_old_status.id, self_faved.id, self_bookmarked.id, status_with_poll.id, status_with_media.id, faved4.id, faved5.id, reblogged4.id, reblogged5.id)
       end
     end
 
@@ -353,7 +364,7 @@ RSpec.describe AccountStatusesCleanupPolicy, type: :model do
       end
 
       it 'returns every other old status for deletion' do
-        expect(subject.pluck(:id)).to include(direct_message.id, very_old_status.id, pinned_status.id, self_faved.id, self_bookmarked.id, status_with_poll.id, status_with_media.id)
+        expect(subject.pluck(:id)).to include(direct_message.id, very_old_status.id, pinned_status.id, self_faved.id, self_bookmarked.id, status_with_poll.id, status_with_media.id, faved4.id, faved5.id, reblogged4.id, reblogged5.id)
       end
     end
 
@@ -371,8 +382,52 @@ RSpec.describe AccountStatusesCleanupPolicy, type: :model do
         expect(subject.pluck(:id)).to_not include(unrelated_status.id)
       end
 
-      it 'returns only oldest status for deletion' do
-        expect(subject.pluck(:id)).to eq [very_old_status.id]
+      it 'returns only normal statuses for deletion' do
+        expect(subject.pluck(:id).sort).to eq [very_old_status.id, faved4.id, faved5.id, reblogged4.id, reblogged5.id].sort
+      end
+    end
+
+    context 'when policy is to keep statuses with more than 4 boosts' do
+      before do
+        account_statuses_cleanup_policy.min_reblogs = 4
+      end
+
+      it 'does not return the recent toot' do
+        expect(subject.pluck(:id)).to_not include(recent_status.id)
+      end
+
+      it 'does not return the toot reblogged 5 times' do
+        expect(subject.pluck(:id)).to_not include(reblogged5.id)
+      end
+
+      it 'does not return the unrelated toot' do
+        expect(subject.pluck(:id)).to_not include(unrelated_status.id)
+      end
+
+      it 'returns old statuses not reblogged as much' do
+        expect(subject.pluck(:id)).to include(very_old_status.id, faved4.id, faved5.id, reblogged4.id)
+      end
+    end
+
+    context 'when policy is to keep statuses with more than 4 favs' do
+      before do
+        account_statuses_cleanup_policy.min_favs = 4
+      end
+
+      it 'does not return the recent toot' do
+        expect(subject.pluck(:id)).to_not include(recent_status.id)
+      end
+
+      it 'does not return the toot faved 5 times' do
+        expect(subject.pluck(:id)).to_not include(faved5.id)
+      end
+
+      it 'does not return the unrelated toot' do
+        expect(subject.pluck(:id)).to_not include(unrelated_status.id)
+      end
+
+      it 'returns old statuses not faved as much' do
+        expect(subject.pluck(:id)).to include(very_old_status.id, faved4.id, reblogged4.id, reblogged5.id)
       end
     end
   end

@@ -10,6 +10,8 @@ class CreateAccountStatusesCleanupPolicies < ActiveRecord::Migration[6.1]
       t.boolean :keep_media, null: false, default: false
       t.boolean :keep_self_fav, null: false, default: true
       t.boolean :keep_self_bookmark, null: false, default: true
+      t.integer :min_favs, null: true
+      t.integer :min_reblogs, null: true
 
       t.timestamps
     end

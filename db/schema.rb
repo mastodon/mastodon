@@ -124,6 +124,8 @@ ActiveRecord::Schema.define(version: 2021_08_08_071221) do
     t.boolean "keep_media", default: false, null: false
     t.boolean "keep_self_fav", default: true, null: false
     t.boolean "keep_self_bookmark", default: true, null: false
+    t.integer "min_favs"
+    t.integer "min_reblogs"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["account_id"], name: "index_account_statuses_cleanup_policies_on_account_id"
