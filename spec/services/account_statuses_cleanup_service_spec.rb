@@ -34,7 +34,10 @@ describe AccountStatusesCleanupService, type: :service do
           expect(account_policy.last_inspected).to eq [old_status.id, another_old_status.id].max
         end
 
-        #TODO: it actually deletes statuses
+        it 'actually deletes the statuses' do
+          subject.call(account_policy, 10)
+          expect(Status.find_by(id: [very_old_status.id, old_status.id, another_old_status.id])).to be_nil
+        end
       end
 
       context 'when called repeatedly with a budget of 2' do
@@ -43,18 +46,37 @@ describe AccountStatusesCleanupService, type: :service do
          expect(subject.call(account_policy, 2)).to eq 1
         end
 
-        #TODO: it actually deletes statuses
+        it 'actually deletes the statuses in the expected order' do
+          subject.call(account_policy, 2)
+          expect(Status.find_by(id: very_old_status.id)).to be_nil
+          subject.call(account_policy, 2)
+          expect(Status.find_by(id: [very_old_status.id, old_status.id, another_old_status.id])).to be_nil
+        end
+      end
+
+      context 'when a self-faved toot is unfaved' do
+        let!(:self_faved) { Fabricate(:status, created_at: 6.months.ago, account: account) }
+        let!(:favourite)  { Fabricate(:favourite, account: account, status: self_faved) }
+
+        it 'deletes it once unfaved' do
+          expect(subject.call(account_policy, 20)).to eq 3
+          expect(Status.find_by(id: self_faved.id)).to_not be_nil
+          expect(subject.call(account_policy, 20)).to eq 0
+          favourite.destroy!
+          expect(subject.call(account_policy, 20)).to eq 1
+          expect(Status.find_by(id: self_faved.id)).to be_nil
+        end
       end
 
       context 'when there are more un-deletable old toots than the early search cutoff' do
         before do
           stub_const 'AccountStatusesCleanupPolicy::EARLY_SEARCH_CUTOFF', 5
           # Old statuses that should be cut-off
-          for _ in (1..10)
+          10.times do
             Fabricate(:status, created_at: 4.years.ago, visibility: :direct, account: account)
           end
           # New statuses that prevent cut-off id to reach the last status
-          for _ in (1..10)
+          10.times do
             Fabricate(:status, created_at: 4.seconds.ago, visibility: :direct, account: account)
           end
         end
