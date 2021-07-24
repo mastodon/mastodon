@@ -145,6 +145,12 @@ module Mastodon::Snowflake
       id
     end
 
+    def id_at_start(timestamp)
+      id = timestamp.to_i * 1000
+      id = id << 16
+      id
+    end
+
     private
 
     def already_defined?

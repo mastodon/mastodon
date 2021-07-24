@@ -127,10 +127,11 @@ RSpec.describe AccountStatusesCleanupPolicy, type: :model do
 
     context 'when the account has posted multiple toots' do
       let!(:very_old_status)   { Fabricate(:status, created_at: 3.years.ago, account: account) }
+      let!(:old_status)        { Fabricate(:status, created_at: 3.weeks.ago, account: account) }
       let!(:recent_status)     { Fabricate(:status, created_at: 2.days.ago, account: account) }
 
-      it 'returns the most recent id' do
-        expect(subject).to eq recent_status.id
+      it 'returns the most recent id that is still below policy age' do
+        expect(subject).to eq old_status.id
       end
     end
 
@@ -165,7 +166,7 @@ RSpec.describe AccountStatusesCleanupPolicy, type: :model do
       let!(:old_status)               { Fabricate(:status, created_at: 1.year.ago, account: account) }
       let!(:slightly_less_old_status) { Fabricate(:status, created_at: 6.months.ago, account: account) }
 
-      subject { account_statuses_cleanup_policy.statuses_to_delete(50, old_status.id) }
+      subject { account_statuses_cleanup_policy.statuses_to_delete(50, old_status.id).pluck(:id) }
 
       it 'returns statuses including max_id' do
         expect(subject).to include(old_status.id)
@@ -184,7 +185,7 @@ RSpec.describe AccountStatusesCleanupPolicy, type: :model do
       let!(:old_status)               { Fabricate(:status, created_at: 1.year.ago, account: account) }
       let!(:slightly_less_old_status) { Fabricate(:status, created_at: 6.months.ago, account: account) }
 
-      subject { account_statuses_cleanup_policy.statuses_to_delete(50, recent_status.id, old_status.id) }
+      subject { account_statuses_cleanup_policy.statuses_to_delete(50, recent_status.id, old_status.id).pluck(:id) }
 
       it 'returns statuses including min_id' do
         expect(subject).to include(old_status.id)

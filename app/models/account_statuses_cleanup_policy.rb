@@ -44,12 +44,22 @@ class AccountStatusesCleanupPolicy < ApplicationRecord
     scope.reorder(id: :asc).limit(limit)
   end
 
+  # This computes a toot id such that:
+  # - the toot would be old enough to be candidate for deletion
+  # - there are at most EARLY_SEARCH_CUTOFF toots between the last inspected toot and this one
+  #
+  # The idea is to limit expensive SQL queries when an account has lots of toots excluded from
+  # deletion, while not starting anew on each run.
   def compute_cutoff_id
-    max_id = last_inspected || 0
-    subquery = account.statuses.select(:id).where(Status.arel_table[:id].gt(max_id)).reorder(id: :asc).limit(EARLY_SEARCH_CUTOFF).to_sql
-    Status.connection.execute("SELECT MAX(id) FROM (#{subquery}) t").values.first.first
+    min_id = last_inspected || 0
+    max_id = Mastodon::Snowflake.id_at_start(min_status_age.seconds.ago)
+    subquery = account.statuses.where(Status.arel_table[:id].gteq(min_id)).where(Status.arel_table[:id].lteq(max_id))
+    subquery = subquery.select(:id).reorder(id: :asc).limit(EARLY_SEARCH_CUTOFF)
+    Status.connection.execute("SELECT MAX(id) FROM (#{subquery.to_sql}) t").values.first.first
   end
 
+  # The most important thing about `last_inspected` is that any toot older than it is guaranteed
+  # not to be kept by the policy regardless of its age.
   def record_last_inspected(last_id)
     redis.set("account_cleanup:#{account.id}", last_id, ex: 3.days.seconds)
   end
@@ -77,9 +87,11 @@ class AccountStatusesCleanupPolicy < ApplicationRecord
   private
 
   def update_last_inspected
-    changed_booleans = %w(keep_direct keep_pinned keep_polls keep_media keep_self_fav keep_self_bookmark).map { |name| attribute_change_to_be_saved(name) }.compact
-    age_change = attribute_change_to_be_saved(:min_status_age)
-    redis.del("account_cleanup:#{account.id}") if (age_change.present? && age_change[0] > age_change[1]) || changed_booleans.include?([true, false])
+    if %w(keep_direct keep_pinned keep_polls keep_media keep_self_fav keep_self_bookmark).map { |name| attribute_change_to_be_saved(name) }.compact.include?([true, false])
+      # Policy has been widened in such a way that any previously-inspected status
+      # may need to be deleted, so we'll have to start again.
+      redis.del("account_cleanup:#{account.id}")
+    end
   end
 
   def validate_local_account
@@ -94,7 +106,7 @@ class AccountStatusesCleanupPolicy < ApplicationRecord
     # Filtering on `id` rather than `min_status_age` ago will treat
     # non-snowflake statuses as older than they really are, but Mastodon
     # has switched to snowflake IDs significantly over 2 years ago anyway.
-    max_id = [max_id, Mastodon::Snowflake.id_at(min_status_age.seconds.ago)].compact.min
+    max_id = [max_id, Mastodon::Snowflake.id_at_start(min_status_age.seconds.ago)].compact.min
     Status.where(Status.arel_table[:id].lteq(max_id))
   end
 

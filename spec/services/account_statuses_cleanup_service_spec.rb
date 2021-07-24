@@ -16,6 +16,7 @@ describe AccountStatusesCleanupService, type: :service do
       let!(:very_old_status)    { Fabricate(:status, created_at: 3.years.ago, account: account) }
       let!(:old_status)         { Fabricate(:status, created_at: 1.year.ago, account: account) }
       let!(:another_old_status) { Fabricate(:status, created_at: 1.year.ago, account: account) }
+      let!(:recent_status)      { Fabricate(:status, created_at: 1.day.ago, account: account) }
 
       context 'given a budget of 1' do
         it 'reports 1 deleted toot' do
@@ -48,15 +49,29 @@ describe AccountStatusesCleanupService, type: :service do
       context 'when there are more un-deletable old toots than the early search cutoff' do
         before do
           stub_const 'AccountStatusesCleanupPolicy::EARLY_SEARCH_CUTOFF', 5
+          # Old statuses that should be cut-off
           for _ in (1..10)
             Fabricate(:status, created_at: 4.years.ago, visibility: :direct, account: account)
           end
+          # New statuses that prevent cut-off id to reach the last status
+          for _ in (1..10)
+            Fabricate(:status, created_at: 4.seconds.ago, visibility: :direct, account: account)
+          end
         end
 
-        it 'reports 0 deleted statuses then 0 then 3' do
+        it 'reports 0 deleted statuses then 0 then 3 then 0 again' do
           expect(subject.call(account_policy, 10)).to eq 0
           expect(subject.call(account_policy, 10)).to eq 0
           expect(subject.call(account_policy, 10)).to eq 3
+          expect(subject.call(account_policy, 10)).to eq 0
+        end
+
+        it 'never causes the recorded id to get higher than oldest deletable toot' do
+          subject.call(account_policy, 10)
+          subject.call(account_policy, 10)
+          subject.call(account_policy, 10)
+          subject.call(account_policy, 10)
+          expect(account_policy.last_inspected).to be < Mastodon::Snowflake.id_at_start(account_policy.min_status_age.seconds.ago)
         end
       end
     end
