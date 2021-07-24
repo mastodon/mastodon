@@ -1254,6 +1254,7 @@ en:
     preferences: Preferences
     profile: Profile
     relationships: Follows and followers
+    statuses_cleanup: Automated post cleaning
     two_factor_authentication: Two-factor Auth
     webauthn_authentication: Security keys
   statuses:
@@ -1305,6 +1306,31 @@ en:
       public_long: Everyone can see
       unlisted: Unlisted
       unlisted_long: Everyone can see, but not listed on public timelines
+  statuses_cleanup:
+    enabled: Automatically clean up old posts
+    enabled_hint: When this feature is enabled, Mastodon will do its best to automatically delete your posts when they get older than a specified age. Since deleting posts is an expensive operation, this is done in the background and there is no guarantee your posts will be deleted as soon as they reach the age threshold.
+    min_age:
+      '1209600': 2 weeks
+      '15778476': 6 months
+      '2629746': 1 month
+      '31556952': 1 year
+      '5259492': 2 months
+      '63113904': 2 years
+      '7889238': 3 months
+    min_age_label: Age threshold
+    min_age_hint: Posts older than this age threshold will be considered for deletion
+    keep_direct: Keep direct messages
+    keep_direct_hint: Don't delete any of your direct messages, even if they are older than the specified age threshold
+    keep_pinned: Keep pinned posts
+    keep_pinned_hint: Don't delete any of your pinned posts, even if they are older than the specified age threshold
+    keep_self_fav: Keep posts you favourited
+    keep_self_fav_hint: Don't delete your own posts if you have favourited them, even if they are older than the specified age threshold
+    keep_self_bookmark: Keep posts you bookmarked
+    keep_self_bookmark_hint: Don't delete your own posts if you have bookmarked them, even if they are older than the specified age threshold
+    keep_polls: Keep polls
+    keep_polls_hint: Don't delete any of your polls, even if they are older than the specified age threshold
+    keep_media: Keep posts with media attachments
+    keep_media_hint: Don't delete any of your posts that have media attachments, even if they are older than the specified age threshold
   stream_entries:
     pinned: Pinned post
     reblogged: boosted
