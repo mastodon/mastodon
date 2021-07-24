@@ -25,13 +25,9 @@ class Scheduler::AccountsStatusesCleanupScheduler
   sidekiq_options retry: 0, lock: :until_executed
 
   def perform
-    default_queue = Sidekiq::Queue.new('default')
-    push_queue = Sidekiq::Queue.new('push')
-    return if default_queue.size > MAX_DEFAULT_SIZE || push_queue.size > MAX_PUSH_SIZE || default_queue.latency > MAX_DEFAULT_LATENCY || push_queue.latency > MAX_PUSH_LATENCY
+    return if under_load?
 
-    available_threads = Sidekiq::ProcessSet.new.filter { |x| x['queues'].include?('push') }.map { |x| x['concurrency'] }.sum
-
-    budget = [PER_THREAD_BUDGET * available_threads, MAX_BUDGET].min
+    budget = compute_budget
     first_policy_id = last_processed_id
 
     loop do
@@ -54,6 +50,17 @@ class Scheduler::AccountsStatusesCleanupScheduler
       break if budget.zero? || (nb_processed_accounts.zero? && first_policy_id.nil?)
       first_policy_id = nil
     end
+  end
+
+  def compute_budget
+    threads = Sidekiq::ProcessSet.new.filter { |x| x['queues'].include?('push') }.map { |x| x['concurrency'] }.sum
+    [PER_THREAD_BUDGET * threads, MAX_BUDGET].min
+  end
+
+  def under_load?
+    default_queue = Sidekiq::Queue.new('default')
+    push_queue = Sidekiq::Queue.new('push')
+    default_queue.size > MAX_DEFAULT_SIZE || push_queue.size > MAX_PUSH_SIZE || default_queue.latency > MAX_DEFAULT_LATENCY || push_queue.latency > MAX_PUSH_LATENCY
   end
 
   private
