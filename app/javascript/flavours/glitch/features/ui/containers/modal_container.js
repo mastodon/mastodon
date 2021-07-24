@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { closeModal } from 'flavours/glitch/actions/modal';
+import { openModal, closeModal } from 'flavours/glitch/actions/modal';
 import ModalRoot from '../components/modal_root';
 
 const mapStateToProps = state => ({
@@ -8,8 +8,18 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  onClose () {
-    dispatch(closeModal());
+  onClose (confirmationMessage) {
+    if (confirmationMessage) {
+      dispatch(
+        openModal('CONFIRM', {
+          message: confirmationMessage.message,
+          confirm: confirmationMessage.confirm,
+          onConfirm: () => dispatch(closeModal()),
+        }),
+      );
+    } else {
+      dispatch(closeModal());
+    }
   },
 });
 
