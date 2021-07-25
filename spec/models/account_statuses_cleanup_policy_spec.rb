@@ -12,6 +12,118 @@ RSpec.describe AccountStatusesCleanupPolicy, type: :model do
     end
   end
 
+  describe 'save hooks' do
+    context 'when widening a policy' do
+      let!(:account_statuses_cleanup_policy) do
+        Fabricate(:account_statuses_cleanup_policy,
+          account: account,
+          keep_direct: true,
+          keep_pinned: true,
+          keep_polls: true,
+          keep_media: true,
+          keep_self_fav: true,
+          keep_self_bookmark: true,
+          min_favs: 1,
+          min_reblogs: 1
+        )
+      end
+
+      before do
+        account_statuses_cleanup_policy.record_last_inspected(42)
+      end
+
+      it 'invalidates last_inspected when widened because of keep_direct' do
+        account_statuses_cleanup_policy.keep_direct = false
+        account_statuses_cleanup_policy.save
+        expect(account_statuses_cleanup_policy.last_inspected).to be nil
+      end
+
+      it 'invalidates last_inspected when widened because of keep_pinned' do
+        account_statuses_cleanup_policy.keep_pinned = false
+        account_statuses_cleanup_policy.save
+        expect(account_statuses_cleanup_policy.last_inspected).to be nil
+      end
+
+      it 'invalidates last_inspected when widened because of keep_polls' do
+        account_statuses_cleanup_policy.keep_polls = false
+        account_statuses_cleanup_policy.save
+        expect(account_statuses_cleanup_policy.last_inspected).to be nil
+      end
+
+      it 'invalidates last_inspected when widened because of keep_media' do
+        account_statuses_cleanup_policy.keep_media = false
+        account_statuses_cleanup_policy.save
+        expect(account_statuses_cleanup_policy.last_inspected).to be nil
+      end
+
+      it 'invalidates last_inspected when widened because of keep_self_fav' do
+        account_statuses_cleanup_policy.keep_self_fav = false
+        account_statuses_cleanup_policy.save
+        expect(account_statuses_cleanup_policy.last_inspected).to be nil
+      end
+
+      it 'invalidates last_inspected when widened because of keep_self_bookmark' do
+        account_statuses_cleanup_policy.keep_self_bookmark = false
+        account_statuses_cleanup_policy.save
+        expect(account_statuses_cleanup_policy.last_inspected).to be nil
+      end
+
+      it 'invalidates last_inspected when widened because of higher min_favs' do
+        account_statuses_cleanup_policy.min_favs = 5
+        account_statuses_cleanup_policy.save
+        expect(account_statuses_cleanup_policy.last_inspected).to be nil
+      end
+
+      it 'invalidates last_inspected when widened because of disabled min_favs' do
+        account_statuses_cleanup_policy.min_favs = nil
+        account_statuses_cleanup_policy.save
+        expect(account_statuses_cleanup_policy.last_inspected).to be nil
+      end
+
+      it 'invalidates last_inspected when widened because of higher min_reblogs' do
+        account_statuses_cleanup_policy.min_reblogs = 5
+        account_statuses_cleanup_policy.save
+        expect(account_statuses_cleanup_policy.last_inspected).to be nil
+      end
+
+      it 'invalidates last_inspected when widened because of disable min_reblogs' do
+        account_statuses_cleanup_policy.min_reblogs = nil
+        account_statuses_cleanup_policy.save
+        expect(account_statuses_cleanup_policy.last_inspected).to be nil
+      end
+    end
+
+    context 'when narrowing a policy' do
+      let!(:account_statuses_cleanup_policy) do
+        Fabricate(:account_statuses_cleanup_policy,
+          account: account,
+          keep_direct: false,
+          keep_pinned: false,
+          keep_polls: false,
+          keep_media: false,
+          keep_self_fav: false,
+          keep_self_bookmark: false,
+          min_favs: nil,
+          min_reblogs: nil
+        )
+      end
+
+      it 'does not unnecessarily invalidate last_inspected' do
+        account_statuses_cleanup_policy.record_last_inspected(42)
+        account_statuses_cleanup_policy.keep_direct = true
+        account_statuses_cleanup_policy.keep_pinned = true
+        account_statuses_cleanup_policy.keep_polls = true
+        account_statuses_cleanup_policy.keep_media = true
+        account_statuses_cleanup_policy.keep_self_fav = true
+        account_statuses_cleanup_policy.keep_self_bookmark = true
+        account_statuses_cleanup_policy.min_favs = 5
+        account_statuses_cleanup_policy.min_reblogs = 5
+        account_statuses_cleanup_policy.save
+        expect(account_statuses_cleanup_policy.last_inspected).to eq 42
+      end
+    end
+  end
+
   describe '#record_last_inspected' do
     let(:account_statuses_cleanup_policy) { Fabricate(:account_statuses_cleanup_policy, account: account) }
 
