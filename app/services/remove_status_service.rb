@@ -104,7 +104,7 @@ class RemoveStatusService < BaseService
     # because once original status is gone, reblogs will disappear
     # without us being able to do all the fancy stuff
 
-    @status.reblogs.includes(:account).find_each do |reblog|
+    @status.reblogs.includes(:account).reorder(nil).find_each do |reblog|
       RemoveStatusService.new.call(reblog, original_removed: true)
     end
   end
