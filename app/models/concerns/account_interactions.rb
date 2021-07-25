@@ -255,7 +255,7 @@ module AccountInteractions
   end
 
   def remote_followers_hash(url)
-    url_prefix = url[/\Ahttp(s?):\/\/[^\/]+/]
+    url_prefix = url[Account::URL_PREFIX_RE]
     return if url_prefix.blank?
 
     Rails.cache.fetch("followers_hash:#{id}:#{url_prefix}/") do
