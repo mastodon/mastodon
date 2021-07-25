@@ -6,15 +6,13 @@
 
 = simple_form_for @policy, url: statuses_cleanup_path, method: :put, html: { id: 'edit_policy' } do |f|
 
-  %h3= t('statuses_cleanup.title')
-
-  %p.hint= t('statuses_cleanup.preface')
-
   .fields-row
     .fields-row__column.fields-row__column-6.fields-group
       = f.input :enabled, as: :boolean, wrapper: :with_label, label: t('statuses_cleanup.enabled'), hint: t('statuses_cleanup.enabled_hint')
     .fields-row__column.fields-row__column-6.fields-group
-      = f.input :min_status_age, wrapper: :with_label, label: t('statuses_cleanup.min_age_label'), collection: AccountStatusesCleanupPolicy::ALLOWED_MIN_STATUS_AGE.map(&:to_i), label_method: lambda { |i| t("statuses_cleanup.min_age.#{i}") }, include_blank: false, hint: t('statuses_cleanup.min_age_hint')
+      = f.input :min_status_age, wrapper: :with_label, label: t('statuses_cleanup.min_age_label'), collection: AccountStatusesCleanupPolicy::ALLOWED_MIN_STATUS_AGE.map(&:to_i), label_method: lambda { |i| t("statuses_cleanup.min_age.#{i}") }, include_blank: false, hint: false
+
+  .flash-message= t('statuses_cleanup.explanation')
 
   %h4= t('statuses_cleanup.exceptions')
 
@@ -38,10 +36,10 @@
 
   %h4= t('statuses_cleanup.interaction_exceptions')
 
-  %p.hint= t('statuses_cleanup.interaction_exceptions_preface')
-
   .fields-row
     .fields-row__column.fields-row__column-6.fields-group
       = f.input :min_favs, wrapper: :with_label, label: t('statuses_cleanup.min_favs'), hint: t('statuses_cleanup.min_favs_hint'), input_html: { min: 1, placeholder: t('statuses_cleanup.ignore_favs') }
     .fields-row__column.fields-row__column-6.fields-group
       = f.input :min_reblogs, wrapper: :with_label, label: t('statuses_cleanup.min_reblogs'), hint: t('statuses_cleanup.min_reblogs_hint'), input_html: { min: 1, placeholder: t('statuses_cleanup.ignore_reblogs') }
+
+  .flash-message= t('statuses_cleanup.interaction_exceptions_explanation')
