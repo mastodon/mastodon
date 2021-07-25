@@ -93,7 +93,7 @@ describe AccountStatusesCleanupService, type: :service do
           subject.call(account_policy, 10)
           subject.call(account_policy, 10)
           subject.call(account_policy, 10)
-          expect(account_policy.last_inspected).to be < Mastodon::Snowflake.id_at_start(account_policy.min_status_age.seconds.ago)
+          expect(account_policy.last_inspected).to be < Mastodon::Snowflake.id_at(account_policy.min_status_age.seconds.ago, with_random: false)
         end
       end
     end

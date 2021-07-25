@@ -78,7 +78,7 @@ class AccountStatusesCleanupPolicy < ApplicationRecord
   # deletion, while not starting anew on each run.
   def compute_cutoff_id
     min_id = last_inspected || 0
-    max_id = Mastodon::Snowflake.id_at_start(min_status_age.seconds.ago)
+    max_id = Mastodon::Snowflake.id_at(min_status_age.seconds.ago, with_random: false)
     subquery = account.statuses.where(Status.arel_table[:id].gteq(min_id)).where(Status.arel_table[:id].lteq(max_id))
     subquery = subquery.select(:id).reorder(id: :asc).limit(EARLY_SEARCH_CUTOFF)
 
@@ -138,7 +138,7 @@ class AccountStatusesCleanupPolicy < ApplicationRecord
     # Filtering on `id` rather than `min_status_age` ago will treat
     # non-snowflake statuses as older than they really are, but Mastodon
     # has switched to snowflake IDs significantly over 2 years ago anyway.
-    max_id = [max_id, Mastodon::Snowflake.id_at_start(min_status_age.seconds.ago)].compact.min
+    max_id = [max_id, Mastodon::Snowflake.id_at(min_status_age.seconds.ago, with_random: false)].compact.min
     Status.where(Status.arel_table[:id].lteq(max_id))
   end
 
