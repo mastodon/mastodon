@@ -31,14 +31,14 @@ class Scheduler::AccountsStatusesCleanupScheduler
     first_policy_id = last_processed_id
 
     loop do
-      nb_processed_accounts = 0
+      num_processed_accounts = 0
 
       scope = AccountStatusesCleanupPolicy.where(enabled: true)
       scope.where(Account.arel_table[:id].gt(first_policy_id)) if first_policy_id.present?
       scope.find_each(order: :asc) do |policy|
-        nb_deleted = AccountStatusesCleanupService.new.call(policy, [budget, PER_ACCOUNT_BUDGET].min)
-        nb_processed_accounts += 1 unless nb_deleted.zero?
-        budget -= nb_deleted
+        num_deleted = AccountStatusesCleanupService.new.call(policy, [budget, PER_ACCOUNT_BUDGET].min)
+        num_processed_accounts += 1 unless num_deleted.zero?
+        budget -= num_deleted
         if budget.zero?
           save_last_processed_id(policy.id)
           return
@@ -47,7 +47,7 @@ class Scheduler::AccountsStatusesCleanupScheduler
 
       # The idea here is to loop through all policies at least once until the budget is exhausted
       # and start back after the last processed account otherwise
-      break if budget.zero? || (nb_processed_accounts.zero? && first_policy_id.nil?)
+      break if budget.zero? || (num_processed_accounts.zero? && first_policy_id.nil?)
       first_policy_id = nil
     end
   end

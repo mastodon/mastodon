@@ -22,8 +22,29 @@
 class AccountStatusesCleanupPolicy < ApplicationRecord
   include Redisable
 
-  ALLOWED_MIN_STATUS_AGE = [2.weeks.seconds, 1.month.seconds, 2.months.seconds, 3.months.seconds, 6.months.seconds, 1.year.seconds, 2.years.seconds].freeze
-  EARLY_SEARCH_CUTOFF    = 5000
+  ALLOWED_MIN_STATUS_AGE = [
+    2.weeks.seconds,
+    1.month.seconds,
+    2.months.seconds,
+    3.months.seconds,
+    6.months.seconds,
+    1.year.seconds,
+    2.years.seconds,
+  ].freeze
+
+  EXCEPTION_BOOLS      = %w(keep_direct keep_pinned keep_polls keep_media keep_self_fav keep_self_bookmark).freeze
+  EXCEPTION_THRESHOLDS = %w(min_favs min_reblogs).freeze
+
+  # Depending on the cleanup policy, the query to discover the next
+  # statuses to delete my get expensive if the account has a lot of old
+  # statuses otherwise excluded from deletion by the other exceptions.
+  #
+  # Therefore, `EARLY_SEARCH_CUTOFF` is meant to be the maximum number of
+  # old statuses to be considered for deletion prior to checking exceptions.
+  #
+  # This is used in `compute_cutoff_id` to provide a `max_id` to
+  # `statuses_to_delete`.
+  EARLY_SEARCH_CUTOFF = 5000
 
   belongs_to :account
 
@@ -60,6 +81,9 @@ class AccountStatusesCleanupPolicy < ApplicationRecord
     max_id = Mastodon::Snowflake.id_at_start(min_status_age.seconds.ago)
     subquery = account.statuses.where(Status.arel_table[:id].gteq(min_id)).where(Status.arel_table[:id].lteq(max_id))
     subquery = subquery.select(:id).reorder(id: :asc).limit(EARLY_SEARCH_CUTOFF)
+
+    # We're textually interpolating a subquery here as ActiveRecord seem to not provide
+    # a way to apply the limit to the subquery
     Status.connection.execute("SELECT MAX(id) FROM (#{subquery.to_sql}) t").values.first.first
   end
 
@@ -92,12 +116,12 @@ class AccountStatusesCleanupPolicy < ApplicationRecord
   private
 
   def update_last_inspected
-    if %w(keep_direct keep_pinned keep_polls keep_media keep_self_fav keep_self_bookmark).map { |name| attribute_change_to_be_saved(name) }.compact.include?([true, false])
+    if EXCEPTION_BOOLS.map { |name| attribute_change_to_be_saved(name) }.compact.include?([true, false])
       # Policy has been widened in such a way that any previously-inspected status
       # may need to be deleted, so we'll have to start again.
       redis.del("account_cleanup:#{account.id}")
     end
-    if %w(min_favs min_reblogs).map { |name| attribute_change_to_be_saved(name) }.compact.any? { |old, new| old.present? && (new.nil? || new > old) }
+    if EXCEPTION_THRESHOLDS.map { |name| attribute_change_to_be_saved(name) }.compact.any? { |old, new| old.present? && (new.nil? || new > old) }
       redis.del("account_cleanup:#{account.id}")
     end
   end
