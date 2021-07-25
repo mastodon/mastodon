@@ -543,9 +543,8 @@ class Status extends ImmutablePureComponent {
       return (
         <HotKeys handlers={handlers}>
           <div ref={this.handleRef} className='status focusable' tabIndex='0'>
-            {status.getIn(['account', 'display_name']) || status.getIn(['account', 'username'])}
-            {' '}
-            {status.get('content')}
+            <span>{status.getIn(['account', 'display_name']) || status.getIn(['account', 'username'])}</span>
+            <span>{status.get('content')}</span>
           </div>
         </HotKeys>
       );

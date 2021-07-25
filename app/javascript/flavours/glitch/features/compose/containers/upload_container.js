@@ -1,7 +1,6 @@
 import { connect } from 'react-redux';
 import Upload from '../components/upload';
-import { undoUploadCompose } from 'flavours/glitch/actions/compose';
-import { openModal } from 'flavours/glitch/actions/modal';
+import { undoUploadCompose, initMediaEditModal } from 'flavours/glitch/actions/compose';
 import { submitCompose } from 'flavours/glitch/actions/compose';
 
 const mapStateToProps = (state, { id }) => ({
@@ -15,7 +14,7 @@ const mapDispatchToProps = dispatch => ({
   },
 
   onOpenFocalPoint: id => {
-    dispatch(openModal('FOCAL_POINT', { id }));
+    dispatch(initMediaEditModal(id));
   },
 
   onSubmit (router) {
