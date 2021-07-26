@@ -18,9 +18,22 @@ class Scheduler::AccountsStatusesCleanupScheduler
 
   # Those avoid loading an instance that is already under load
   MAX_DEFAULT_SIZE    = 2
+  MAX_DEFAULT_LATENCY = 5
   MAX_PUSH_SIZE       = 5
-  MAX_DEFAULT_LATENCY = 2
   MAX_PUSH_LATENCY    = 10
+  # 'pull' queue has lower priority jobs, and it's unlikely that pushing
+  # deletes would cause much issues with this queue if it didn't cause issues
+  # with default and push. Yet, do not enqueue deletes if the instance is
+  # lagging behind too much.
+  MAX_PULL_SIZE       = 500
+  MAX_PULL_LATENCY    = 300
+
+  # This is less of an issue in general, but deleting old statuses is likely
+  # to cause delivery errors, and thus increase the number of jobs to be retried.
+  # This doesn't directly translate to load, but connection errors and a high
+  # number of dead instances may lead to this spiraling out of control if
+  # unchecked.
+  MAX_RETRY_SIZE = 50_000
 
   sidekiq_options retry: 0, lock: :until_executed
 
@@ -58,12 +71,16 @@ class Scheduler::AccountsStatusesCleanupScheduler
   end
 
   def under_load?
-    default_queue = Sidekiq::Queue.new('default')
-    push_queue = Sidekiq::Queue.new('push')
-    default_queue.size > MAX_DEFAULT_SIZE || push_queue.size > MAX_PUSH_SIZE || default_queue.latency > MAX_DEFAULT_LATENCY || push_queue.latency > MAX_PUSH_LATENCY
+    return true if Sidekiq::Stats.new.retry_size > MAX_RETRY_SIZE
+    queue_under_load?('default', MAX_DEFAULT_SIZE, MAX_DEFAULT_LATENCY) || queue_under_load?('push', MAX_PUSH_SIZE, MAX_PUSH_LATENCY) || queue_under_load?('pull', MAX_PULL_SIZE, MAX_PULL_LATENCY)
   end
 
   private
+
+  def queue_under_load?(name, max_size, max_latency)
+    queue = Sidekiq::Queue.new(name)
+    queue.size > max_size || queue.latency > max_latency
+  end
 
   def last_processed_id
     Redis.current.get('account_statuses_cleanup_scheduler:last_account_id')
