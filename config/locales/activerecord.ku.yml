@@ -5,6 +5,7 @@ kmr-TR:
         expires_at: Dîroka dawîbûnê
         options: Hilbijark
       user:
+        agreement: Peymana karûbar
         email: Navnîşana E-nameyê
         locale: Herêm
         password: Pêborîn
@@ -14,7 +15,17 @@ kmr-TR:
         text: Sedem
     errors:
       models:
+        account:
+          attributes:
+            username:
+              invalid: pêdivî ye ku tenê tîp, hejmar û xêzikên jêrîn hebin
+              reserved: hatiye bikaranîn
+        status:
+          attributes:
+            reblog:
+              taken: ev nivîs berê heye jixwe
         user:
           attributes:
             email:
+              blocked: dabînkerê e-nameya qedexe bi kar tîne
               unreachable: xuya ye ku tune ye
