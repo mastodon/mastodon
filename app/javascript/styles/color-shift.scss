@@ -1,0 +1,20 @@
+@use "sass:color";
+
+/*
+
+Shift the Dark, Light and High Contrast Themes there in the Hue and Saturation Space
+
+Similar in outcome to these CCS Global Ateration but with out effecting the Share Content
+
+html {
+    filter: hue-rotate(102deg);
+}
+
+body {
+    filter: saturate(0.6);  
+}
+*/
+
+@function theme-color-shift($c) {
+    @return color.scale(adjust-hue( $c,  102), $saturation: -60%);
+}
