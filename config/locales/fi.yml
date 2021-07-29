@@ -52,6 +52,7 @@ fi:
   accounts:
     choices_html: "%{name} valinnat:"
     endorsements_hint: Voit suositella seuraamiasi henkilöitä web käyttöliittymän kautta, ne tulevat näkymään tähän.
+    featured_tags_hint: Voit käyttää tiettyjä aihesanoja, jotka näytetään täällä.
     follow: Seuraa
     followers:
       one: Seuraaja
@@ -60,6 +61,7 @@ fi:
     joined: Liittynyt %{date}
     last_active: viimeksi aktiivinen
     link_verified_on: Tämän linkin omistus on tarkastettu %{date}
+    media: Media
     moved_html: "%{name} on muuttanut osoitteeseen %{new_profile_link}:"
     network_hidden: Nämä tiedot eivät ole käytettävissä
     never_active: Ei koskaan
@@ -83,14 +85,17 @@ fi:
   admin:
     account_actions:
       action: Suorita toimenpide
+      title: Suorita moderointitoiminto %{acct}
     account_moderation_notes:
       create: Jätä muistiinpano
       created_msg: Moderointimerkinnän luonti onnistui!
       delete: Poista
       destroyed_msg: Moderointimerkinnän poisto onnistui!
     accounts:
+      add_email_domain_block: Estä sähköpostidomain
       approve: Hyväksy
       approve_all: Hyväksy kaikki
+      approved_msg: Käyttäjän %{username} liittymishakemus hyväksyttiin
       are_you_sure: Oletko varma?
       avatar: Profiilikuva
       by_domain: Verkkotunnus
@@ -104,9 +109,12 @@ fi:
       confirm: Vahvista
       confirmed: Vahvistettu
       confirming: Vahvistetaan
+      delete: Poista tiedot
       deleted: Poistettu
       demote: Alenna
+      destroyed_msg: "Käyttäjän %{username} tiedot ovat nyt jonossa poistettavaksi välittömästi"
       disable: Poista käytöstä
+      disable_sign_in_token_auth: Poista sähköpostitunnuksen todennus käytöstä
       disable_two_factor_authentication: Poista 2FA käytöstä
       disabled: Poistettu käytöstä
       display_name: Nimimerkki
@@ -115,12 +123,16 @@ fi:
       email: Sähköposti
       email_status: Sähköpostin tila
       enable: Ota käyttöön
+      enable_sign_in_token_auth: Ota sähköpostitunnuksen todennus käyttöön
       enabled: Käytössä
+      enabled_msg: Käyttäjän %{username} tili palautettu onnistuneesti käyttöön
       followers: Seuraajat
       follows: Seuraa
       header: Otsakekuva
       inbox_url: Saapuvan postilaatikon osoite
+      invite_request_text: Syitä liittymiseen
       invited_by: Kutsuja
+      ip: IP
       joined: Liittynyt
       location:
         all: Kaikki
