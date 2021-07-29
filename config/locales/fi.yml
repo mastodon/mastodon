@@ -10,15 +10,20 @@ fi:
     apps: Mobiili sovellukset
     apps_platforms: Käytä Mastodonia iOS:llä, Androidilla tai muilla alustoilla
     browse_directory: Selaa profiilihakemistoa ja suodata kiinnostuksen kohteiden mukaan
+    browse_local_posts: Selaa suoratoistoja julkisista viesteistä tältä palvelimelta
+    browse_public_posts: Selaa suoratoistoja julkisista viesteistä Mastodonissa
     contact: Ota yhteyttä
     contact_missing: Ei asetettu
     contact_unavailable: Ei saatavilla
     discover_users: Löydä käyttäjiä
     documentation: Dokumentaatio
+    federation_hint_html: Tilillä %{instance}:ssa voit seurata ihmisiä millä tahansa Mastodon-palvelimella ja sen ulkopuolella.
     get_apps: Kokeile mobiilisovellusta
     hosted_on: Mastodon palvelimella %{domain}
     learn_more: Lisätietoja
     privacy_policy: Tietosuojaseloste
+    rules: Palvelimen säännöt
+    rules_html: 'Alla on yhteenveto säännöistä, joita sinun on noudatettava, jos haluat olla tili tällä Mastodonin palvelimella:'
     see_whats_happening: Näe mitä tapahtuu
     server_stats: 'Palvelimen tilastot:'
     source_code: Lähdekoodi
@@ -28,13 +33,17 @@ fi:
     status_count_before: He ovat luoneet
     tagline: Seuraa ja löydä uusia kavereita
     terms: Käyttöehdot
+    unavailable_content: Moderoidut palvelimet
     unavailable_content_description:
       domain: Palvelin
       reason: Syy
+      rejecting_media: 'Näiden palvelimien mediatiedostoja ei käsitellä tai tallenneta eikä pikkukuvia näytetä, mikä edellyttää manuaalista klikkausta alkuperäiseen tiedostoon:'
       rejecting_media_title: Media suodatettu
       silenced: 'Julkaisut näiltä palvelimilta piilotetaan julkisilta aikajanoilta ja keskusteluista, ilmoituksia ei luoda näiden käyttäjien tekemistä toiminnoista, jos et seuraa heitä:'
       silenced_title: Hiljennetyt palvelimet
       suspended: 'Dataa näiltä palvelimilta ei tulla käsittelemään, tallentamaan tai jakamaan. Tämä tekee kommunikoinnin näiden käyttäjien kanssa mahdottomaksi:'
+      suspended_title: Keskeytetyt palvelimet
+    unavailable_content_html: Mastodonin avulla voit yleensä tarkastella sisältöä ja olla vuorovaikutuksessa käyttäjien kanssa millä tahansa muulla palvelimella fediversessä. Nämä ovat poikkeuksia, jotka on tehty tälle palvelimelle.
     user_count_after:
       one: käyttäjä
       other: käyttäjät
