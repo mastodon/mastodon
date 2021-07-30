@@ -754,10 +754,18 @@ fi:
       not_found: ei voitu löytää
       on_cooldown: Sinä olet jäähyllä
     followers_count: Seuraajat muuton aikana
+    incoming_migrations: Siirtyminen toiselta tililtä
+    incoming_migrations_html: Siirtääksesi toisesta tilistä tähän tiliin, sinun täytyy ensin <a href="%{path}">luoda tilin alias</a>.
+    moved_msg: Tilisi ohjaa nyt kohteeseen %{acct} ja seuraajiasi siirretään.
+    not_redirecting: Tilisi ei ohjaa tällä hetkellä mihinkään muuhun tiliin.
+    on_cooldown: Olet siirtänyt tilisi äskettäin. Tämä toiminto tulee saataville uudelleen %{count} päivän kuluttua.
     past_migrations: Edelliset migraatiot
     proceed_with_move: Siirrä seuraajat
+    redirected_msg: 'Tilisi uudelleenohjaa nyt kohteeseen: %{acct}.'
+    redirecting_to: 'Tilisi uudelleenohjaa nyt kohteeseen: %{acct}.'
     set_redirect: Aseta uudelleenohjaus
     warning:
+      backreference_required: Uusi tili on ensin määritettävä viittaamaan tähän tiliin
       before: 'Ennen jatkamista, lue nämä huomautukset huolellisesti:'
   moderation:
     title: Moderointi
