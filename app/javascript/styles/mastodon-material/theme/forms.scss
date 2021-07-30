@@ -1,0 +1,166 @@
+.simple_form {
+    .fields-row {
+        padding-top: 8px;
+        margin: 0 -8px 28px;
+    
+        &__column { padding: 0 8px }
+    }
+
+    .fields-group {
+        padding: 16px;
+        margin-bottom: 0;
+    }
+
+    .input {
+        margin-bottom: 16px;
+
+        &.with_label .label_input>label,
+        &.with_block_label>label,
+        &.with_floating_label .label_input>label { color: $ui-text-color }
+
+        &.with_block_label .hint { margin-bottom: 16px }
+
+        &.boolean {
+            .recommended { margin: 0 8px }
+
+            .label_input>label { padding-top: 3px }
+        }
+
+        &.radio_buttons .radio {
+            margin-bottom: 16px;
+
+            label {
+                margin-bottom: 0;
+                color: $ui-text-color;
+            }
+        }
+    }
+
+    .label_input {
+        &__wrapper {
+            border-radius: $card-radius;
+    
+            &:hover { background: $dropdown-field-bg-hover-color }
+    
+            &:active,
+            &:focus { background: $dropdown-field-bg-active-color }
+        }
+
+        &__append {
+            padding: 16px;
+            color: $ui-text-color;
+
+            &::after { background-image: none }
+        }
+    }
+
+    .card { margin-bottom: 16px }
+
+    .row .input { padding: 0 4px }
+
+    .hint {
+        color: $ui-text-color;
+
+        code {
+            border-radius: 2px;
+            background: $contained-chip-color;
+            color: $ui-text-color;
+        }
+    }
+
+    .actions { padding: 16px }
+
+    .check_boxes .checkbox label {
+        color: $primary-text-color;
+        padding-top: 8px;
+    }
+
+    p.hint {
+        padding: 16px;
+        margin-bottom: 0;
+        color: $ui-text-color;
+
+        &.subtle-hint { margin-top: 16px }
+    }
+
+    select {
+        color: $ui-text-color;
+        background-color: $dropdown-field-bg-color;
+        border: none;
+        border-radius: $menu-radius $menu-radius 0 0;
+        padding-left: 16px;
+        padding-right: 40px;
+        height: 40px;
+
+        option { background-color: $menu-bg-color }
+
+        &:hover { background-color: $dropdown-field-bg-hover-color }
+
+        &:active,
+        &:focus { background-color: $dropdown-field-bg-active-color }
+    }
+
+    h4 { margin-bottom: 0 !important }
+
+    input[type=email],
+    input[type=number],
+    input[type=password],
+    input[type=text],
+    input[type=url],
+    textarea {
+        @include text-area-border($other-text-area-border);
+        color: $text-field-color;
+        background: $text-field-bg-color;
+        padding: 16px;
+
+        &:active,
+        &:focus { background: $text-field-bg-color }
+
+        &::placeholder { color: $tips-text-color }
+    }
+
+    input[type=email],
+    input[type=number],
+    input[type=password],
+    input[type=text] {
+        &:focus:invalid:not(:placeholder-shown),
+        &:required:invalid:not(:placeholder-shown) { border-color: $error-color }
+    }
+}
+
+.flash-message {
+    @include shadow-1dp;
+    background: $card-bg-color;
+    color: $ui-text-color;
+    border-radius: $card-radius;
+    padding: 16px;
+    margin: 0 16px 32px;
+
+    a {
+        color: $link-text-color;
+
+        &:hover { color: $link-text-color }
+    }
+
+    &.translation-prompt { color: $ui-text-color }
+}
+
+.form-footer a { color: $ui-text-color }
+
+.follow-prompt,
+.oauth-prompt {
+    margin-bottom: 32px;
+    color: $ui-text-color;
+}
+
+.input-copy {
+    background: $bg-color;
+    padding-right: 8px;
+    border: 0;
+}
+
+input {
+    &#account_header.file.optional,
+    &#account_avatar.file.optional,
+    &#import_data.file.optional { color: $ui-text-color }
+}

@@ -1,0 +1,50 @@
+.landing-page {
+    &__call-to-action {
+        @include shadow-2dp;
+        background: $card-bg-color;
+        border-radius: $card-radius;
+        padding: 24px 36px;
+
+        .row__information-board {
+            .information-board__section {
+                padding: 0 16px;
+                color: $primary-text-color;
+            }
+        }
+    }
+}
+
+.landing {
+    .simple_form p.lead {
+        color: $ui-text-color;
+        padding: 16px;
+        margin-bottom: 0;
+    }
+
+    .directory { margin-top: 16px }
+
+    .hero-widget {
+        .account { padding: 16px 0 }
+
+        h4 { color: $ui-text-color }
+
+        &__footer {
+            background: $card-bg-color;
+            padding: 16px;
+            border-radius: 0 0 $card-radius $card-radius;
+        }
+
+        &__counter {
+            color: $primary-text-color;
+            padding: 8px;
+
+            span { color: $ui-text-color }
+        }
+    }
+
+    &__grid { grid-gap: 16px }
+
+    &__brand svg { fill: $ui-text-color }
+}
+
+.information-board__section span:last-child { color: $ui-text-color }

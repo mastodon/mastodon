@@ -1,0 +1,163 @@
+.hero-widget {
+    @include shadow-2dp;
+    margin-bottom: 16px;
+
+    &__img {
+        border-radius: $card-radius $card-radius 0 0;
+        background: $card-bg-color;
+
+        img { border-radius: $card-radius $card-radius 0 0 }
+    }
+
+    &__text {
+        background: $card-bg-color;
+        padding: 16px;
+        color: $primary-text-color;
+        border-radius: 0 0 $card-radius $card-radius;
+
+        a { color: $link-text-color }
+    }
+}
+
+.endorsements-widget {
+    padding-bottom: 8px;
+    margin-bottom: 8px;
+
+    h4 {
+        padding: 12px 16px;
+        color: $section-text-color;
+    }
+
+    .account { padding: 8px 16px }
+}
+
+.trends-widget h4 { color: $section-text-color }
+
+.placeholder-widget {
+    border-radius: 0;
+    border: none;
+    color: $tips-text-color;
+    margin-bottom: 16px;
+}
+
+.directory__tag {
+    margin-bottom: 16px;
+
+    &>a,
+    &>div {
+        @include shadow-2dp;
+        background: $card-bg-color;
+        border-radius: $card-radius;
+        padding: 16px;
+
+        &:active,
+        &:focus,
+        &:hover { background: $card-bg-color }
+    }
+
+    h4 {
+        color: $primary-text-color;
+
+        .fa { color: $icon-color }
+
+        small { color: $info-text-color }
+    }
+}
+
+.contact-widget {
+    color: $ui-text-color;
+
+    h4 { color: $ui-text-color }
+
+    .account { padding: 4px 0 8px }
+
+    &>a {
+        padding: 0 8px 4px;
+        color: $primary-text-color;
+    }
+}
+
+.box-widget {
+    @include shadow-2dp;
+    padding: 16px;
+    border-radius: $card-radius;
+    background: $card-bg-color;
+}
+
+.rich-formatting {
+    color: $ui-text-color;
+
+    h1, h2, h3, h4, h5, h6 { color: $primary-text-color }
+
+    a { color: $link-text-color }
+
+    li, p { color: $ui-text-color }
+
+    strong { color: $primary-text-color }
+
+    table {
+        border-radius: 4px;
+        border: 1px solid $border-color;
+
+        thead tr,
+        tbody tr {
+            color: $ui-text-color;
+            border-bottom: 1px solid $border-color;
+        } 
+    }
+}
+
+.table-of-contents {
+    background: $bg-color;
+    border-radius: 0;
+
+    li {
+        ul {
+            padding-left: 16px;
+            border-bottom: 1px solid $border-color;
+        }
+
+        a {
+            padding: 16px;
+            color: $ui-text-color;
+            border-bottom: 1px solid $border-color;
+        }
+    }
+}
+
+.page-header {
+    background: $card-bg-color;
+    padding: 42px 16px;
+    margin: 16px 0;
+
+    h1 {
+        color: $primary-text-color;
+        margin-bottom: 8px;
+    }
+
+    p { color: $ui-text-color }
+}
+
+.memoriam-widget,
+.page-header {
+    @include shadow-4dp;
+    border-radius: $card-radius;
+}
+
+.accounts-table {
+    tbody td { padding: 16px 8px }
+
+    .fa.active,
+    .fa.active.passive { color: $icon-color }
+
+    &__count {
+        color: $ui-text-color;
+    
+        small { color: $secondary-text-color }
+    }
+}
+
+.statuses-grid .detailed-status {
+    @include shadow-1dp;
+    border-radius: $card-radius;
+}

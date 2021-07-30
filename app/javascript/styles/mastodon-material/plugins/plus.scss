@@ -1,0 +1,30 @@
+.status__action-bar-button {
+    background: #eeeeee;
+    width: 28px !important;
+    height: 28px !important;
+
+    .fa { vertical-align: bottom }
+}
+
+// exception
+.media-modal__overlay .picture-in-picture__footer .icon-button,
+.status__action-bar-button.icon-button--with-counter { background: transparent }
+
+// favorite icon
+.star-icon.active,
+.star-icon.icon-button.active.activate,
+.notification__favourite-icon-wrapper .star-icon { background: #db4437 }
+
+.notification__favourite-icon-wrapper {
+    left: -34px;
+
+    .star-icon {
+        border-radius: 50%;
+        width: 28px;
+        height: 28px;
+        vertical-align: baseline;
+        font-size: 18px;
+
+        &.fa-fw::before { vertical-align: middle }
+    }
+}

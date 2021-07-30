@@ -1,0 +1,23 @@
+body,
+body.embed,
+body.admin,
+body.lighter { background: $bg-color }
+
+.focusable:focus { background: transparent }
+
+// Chrome & Safari scroll bar
+::-webkit-scrollbar-thumb {
+    background: $scroll-bar-thumb-color;
+
+    &:hover { background: $scroll-bar-thumb-hover-color }
+    &:active { background: $scroll-bar-thumb-active-color }
+}
+
+::-webkit-scrollbar-track,
+::-webkit-scrollbar-track:hover,
+::-webkit-scrollbar-track:active {
+    background: transparent !important;
+}
+
+// Firefox scroll bar
+html { scrollbar-color: $scroll-bar-thumb-color transparent }

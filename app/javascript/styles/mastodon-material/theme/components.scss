@@ -1,0 +1,719 @@
+.modal-root {
+    transition: opacity .25s cubic-bezier(0.0,0.0,0.2,1);
+
+    &__overlay { background-color: rgba(0,0,0,.7) !important }
+}
+
+.modal-layout { background-color: $bg-color }
+
+.drawer {
+    &__header {
+        @include shadow-4dp;
+        background: $top-bar-color;
+        border-radius: $nav-bar-radius;
+        justify-content: space-around;
+        opacity: $bar-transparency;
+    
+        a { transition: none }
+    
+        a:hover {
+            background: $icon-bg-hover-color;
+            border-radius: 50%;
+        }
+    }
+
+    &__tab {
+        color: $top-bar-icon-color;
+        font-size: 20px;
+        margin: 10px auto 10px;
+        padding: 8px;
+        flex: none;
+        height: 20px;
+        width: 20px;
+        border-bottom: none;
+        text-align: justify;
+    
+        &:hover { color: $top-bar-icon-hover-color }
+    }
+
+    &__pager {
+        @include shadow-1dp;
+        border-radius: $card-radius;
+    }
+
+    &__inner {
+        background: $card-bg-color;
+        opacity: $column-transparency;
+
+        &.darker {
+            background: $card-bg-color;
+            position: inherit;
+        }
+
+        &__mastodon { background: $card-bg-color }
+
+        &:hover,
+        &:active,
+        &:focus { opacity: 1.0 }
+    }
+}
+
+.search {
+    &__input {
+        background: $search-bar-color;
+        color: $tips-text-color;
+        border-radius: $search-bar-radius;
+        padding: 12px 12px 12px 40px;
+        opacity: $bar-transparency;
+
+        &:focus {
+            @include shadow-2dp;
+            background: $search-bar-focus-color;
+            color: $search-bar-text-color;
+        }
+
+        &:hover { @include search-bar-hover }
+
+        &::placeholder { color: $tips-text-color }
+    }
+
+    &__icon {
+        .fa {
+            color: $icon-color;
+            font-size: 20px;
+            top: 12px;
+            right: unset;
+            left: 12px;
+            height: 6px;
+            transition: none;
+
+            &.active { opacity: 1 }
+
+            &-search {
+                transform: none;
+                opacity: 1;
+            }
+            &-times-circle.active {
+                right: 16px;
+                left: unset;
+                transform: none;
+            }
+        }
+    }
+}
+
+.search-popout {
+    @include shadow-2dp;
+    background: $search-bar-focus-color;
+    border-radius: 0px $bar-radius;
+    border-top: 1px solid $border-color;
+    margin-top: 0;
+    color: $tips-text-color;
+
+    h4 { color: $secondary-text-color }
+
+    em { color: $search-bar-text-color }
+}
+
+.search-results {
+    &__header {
+        color: $secondary-text-color;
+        background-color: $card-bg-color;
+        padding: 16px;
+
+        .fa { margin-right: 16px }
+    }
+
+    &__section {
+        h5 {
+            background: $card-bg-color;
+            border-bottom: 1px solid $border-color;
+            padding: 16px;
+            color: $section-text-color;
+
+            .fa { margin-right: 8px }
+        }
+    }
+}
+
+.navigation-bar {
+    color: $secondary-text-color;
+    padding: 14px;
+
+    strong {
+        color: $ui-text-color;
+    }
+
+    .navigation-bar__actions .compose__action-bar .icon-button {
+        width: 36px !important;
+        height: 36px !important;
+        padding: 8px;
+
+        &.active {
+            color: $icon-hover-color;
+            background: $icon-bg-active-color;
+        }
+    }
+}
+
+.navigation-panel hr {
+    border-top: 1px solid $border-color;
+    margin: 8px 0;
+}
+
+.flex-spacer { margin: 8px 0 }
+
+.dropdown-menu {
+    @include shadow-8dp;
+    background: $menu-bg-color;
+    padding: 8px 0;
+    border-radius: $menu-radius;
+
+    &__arrow { visibility: hidden }
+
+    &__item a {
+        font-size: 14px;
+        padding: 8px 16px;
+        background: $menu-bg-color;
+        color: $menu-text-color;
+
+        &:hover, &:active {
+            background: $menu-bg-hover-color;
+            color: $menu-text-color;
+        }
+    }
+
+    &__separator {
+        margin: 8px 0;
+        border-bottom: 1px solid $border-color;
+    }
+}
+
+.compose-form {
+    .autosuggest-textarea {
+        &__textarea {
+            @include text-area-border($compose-area-border);
+            padding: 8px 42px 8px 16px;
+
+            @if $compose-area-border == outlined {
+                &:focus { padding: 7px 41px 7px 15px }
+            }
+    
+            &::placeholder { color: $tips-text-color }
+        }
+
+        &__suggestions {
+            @include shadow-1dp;
+            background: $menu-bg-color;
+            color: $ui-text-color;
+            border-radius: $card-radius;
+            font-size: 16px;
+            padding: 8px 0;
+
+            &__item {
+                padding: 8px;
+                border-radius: 0;
+
+                &:hover { background: $menu-bg-hover-color }
+
+                &.selected,
+                &:focus,
+                &:active { background: $menu-bg-active-color }
+            }
+        }
+    }
+
+    .spoiler-input {
+        &.spoiler-input--visible { margin-bottom: 16px }
+
+        &__input {
+            @include text-area-border($cw-area-border);
+            padding: 8px 16px;
+
+            @if $cw-area-border == outlined {
+                &:focus { padding: 7px 15px }
+            }
+
+            &::placeholder { color: $tips-text-color }
+        }
+    }
+
+    .compose-form {
+        &__warning {
+            color: $secondary-text-color;
+            background: $card-bg-color;
+            padding: 16px;
+            border: 1px solid $border-color;
+            border-radius: $card-radius;
+            box-shadow: none;
+
+            a { color: $link-text-color }
+        }
+
+        &__modifiers {
+            background: $card-bg-color;
+            color: $tips-text-color;
+
+            .compose-form {
+                &__upload-thumbnail { border-radius: 0 }
+
+                &__upload__actions {
+                    @include material-transition;
+
+                    .icon-button {
+                        color: $media-icon-color;
+                        font-size: 16px;
+
+                        &:hover { background-color: transparent }
+                    }
+                }
+            }
+        }
+
+        &__buttons-wrapper {
+            background: $card-bg-color;
+            color: $tips-text-color;
+            padding: 8px;
+
+            .icon-button {
+                @include icon-button;
+                padding: 8px;
+                margin: 0 2px;
+            }
+
+            .text-icon-button {
+                width: 20px !important;
+                height: 20px !important;
+                padding: 8px;
+                margin: 0 2px;
+                line-height: 20px !important;
+            }
+        }
+
+        &__poll-wrapper {
+            @if $compose-area-border == none {
+                border-top: 1px solid $border-color;
+            } @else { border-top: none }
+
+            ul { padding: 16px 12px 16px 0 }
+
+            select {
+                color: $ui-text-color;
+                background-color: $dropdown-field-bg-color;
+                border: 0;
+
+                option { background: $list-bg-color }
+
+                &:focus { border-color: $border-hover-color }
+            }
+
+            .button.button-secondary { @include button-type($button-on-status) }
+
+            .poll__footer { border-top: none }
+        }
+
+        &__publish .compose-form__publish-button-wrapper { box-shadow: none }
+    }
+}
+
+.no-reduce-motion .spoiler-input { transition-duration: .2s, .2s }
+
+
+.poll {
+    margin-top: 8px;
+
+    .button { margin-right: 8px }
+
+    li { margin-bottom: 8px }
+
+    &__input {
+        border: none;
+        width: 20px;
+        height: 20px;
+        flex: 0 0 20px;
+        padding: 18px;
+        margin: 0 2px;
+        background: radial-gradient(circle, transparent, transparent 7px, $control-border-color 8px, $control-border-color 9px, transparent 10px, transparent);
+        
+        &:hover { background: radial-gradient(circle, $control-border-hover-color, $control-border-hover-color 7px, $control-border-color 8px, $control-border-color 9px, $control-border-hover-color 10px, $control-border-hover-color)}
+
+        &.active { background: radial-gradient(circle, $control-border-active-color, $control-border-active-color 4px, transparent 5px, transparent 7px, $control-border-active-color 8px, $control-border-active-color 9px, transparent 10px, transparent) }
+
+        &.active:hover { background: radial-gradient(circle, $control-border-active-color, $control-border-active-color 4px, $control-border-hover-color 5px, $control-border-hover-color 7px, $control-border-active-color 8px, $control-border-active-color 9px, $control-border-hover-color 10px, $control-border-hover-color) }
+
+        &.checkbox {
+            border-radius: 2px;
+            border: 2px solid $control-border-color;
+            padding: 8px;
+            margin: 8px 10px;
+            background: none;
+
+            &.active {
+                height: 50%;
+                padding: 5px 0;
+                transform: rotate(-45deg);
+                border: 3px solid $control-border-active-color;
+                border-top-style: none;
+                border-right-style: none;
+
+                &:hover { background: none }
+            }
+        }
+    }
+
+    &__text input[type=text] {
+        color: $ui-text-color;
+        background: $text-field-bg-color;
+        border: 1px solid $border-color;
+        padding: 8px 12px;
+    
+        &:focus { border-color: $border-hover-color }
+    }
+
+    &__option {
+        padding: 4px;
+        
+        input[type=text] {
+            color: $primary-text-color;
+            background: $text-field-bg-color;
+            border: none;
+            border-radius: 2px;
+            padding: 8px 16px;
+        }
+
+        &__text { line-height: 36px }
+    }
+
+    &__chart {
+        border-radius: 0;
+        background: $progress-indicator-track-color;
+    
+        &.leading { background: $progress-indicator-color }
+    }
+
+    &__footer {
+        padding-top: 8px;
+        padding-bottom: 0;
+        color: $ui-text-color;
+    }
+
+    &__link { color: $ui-text-color }
+
+    &__number { line-height: 36px }
+}
+
+.privacy-dropdown {
+    &.active .privacy-dropdown__value.active {
+        background: $icon-bg-hover-color;
+        border-radius: 50%;
+        box-shadow: none;
+
+        .icon-button { color: $icon-button-active-color }
+    }
+
+    &__dropdown {
+        @include shadow-8dp;
+        background: $menu-bg-color;
+        border-radius: $dialog-radius;
+    }
+
+    &__option {
+        color: $icon-color;
+        padding: 8px 16px;
+
+        &__icon {
+            font-size: 20px;
+            margin-right: 12px;
+        }
+
+        &__content {
+            color: $secondary-text-color;
+
+            strong { color: $ui-text-color }
+        }
+
+        &.active {
+            background: $menu-bg-active-color;
+            color: $icon-hover-color;
+
+            .privacy-dropdown__option__content {
+                color: $secondary-text-color;
+
+                strong { color: $ui-text-color }
+            }
+
+            &:hover {
+                background: $menu-bg-active-color;
+                
+                .privacy-dropdown__option__content {
+                    color: $secondary-text-color;
+
+                    strong { color: $ui-text-color }
+                }
+            }
+        }
+
+        &:hover {
+            background: $menu-bg-hover-color;
+            color: $icon-hover-color;
+
+            .privacy-dropdown__option__content {
+                color: $secondary-text-color;
+
+                strong { color: $ui-text-color }
+            }
+        }
+    }
+}
+
+.character-counter { color: $secondary-text-color }
+
+.reply-indicator {
+    box-shadow: none;
+    border: 1px solid $border-color;
+    border-radius: $card-radius;
+    background: $card-bg-color;
+    padding: 16px;
+
+    &__header { margin-bottom: 4px }
+
+    &__display {
+        &-name {
+            color: $primary-text-color;
+            padding-right: 24px;
+        }
+
+        &-avatar { margin-right: 8px }
+    }
+
+    &__content {
+        color: $primary-text-color;
+
+        p { margin-bottom: 16px }
+    }
+}
+
+.attachment-list {
+    &__list a { color: $secondary-text-color }
+
+    &.compact .fa { color: $icon-color }
+}
+
+.block-modal {
+    @include shadow-24dp;
+    background: $card-bg-color;
+    color: $ui-text-color;
+    border-radius: $card-radius;
+
+    &__container { padding: 24px }
+
+    &__action-bar {
+        background: $card-bg-color;
+        padding: 8px;
+        justify-content: flex-end;
+    }
+
+    &__cancel-button {
+        box-shadow: none !important;
+        color: $text-button-color;
+        background: transparent;
+
+        &:hover {
+            color: $text-button-color;
+            background-color: $text-button-hover-color;
+        }
+
+        &:focus,
+        &:active {
+            color: $text-button-color;
+            background-color: $text-button-focus-color;
+        }
+    }
+}
+
+.load-more {
+    color: $ui-text-color;
+
+    &:hover { background: transparent }
+}
+
+.autosuggest-hashtag {
+    &__name { color: $menu-text-color }
+}
+
+.filter-form {
+    background: $bg-color;
+    color: $ui-text-color;
+
+    &__column { padding: 8px 16px }
+}
+
+.directory {
+    &__card {
+        @include shadow-1dp;
+        border-radius: $card-radius;
+        margin-bottom: 16px;
+
+        &__img { border-radius: $card-radius $card-radius 0 0 }
+
+        &__bar {
+            background: $card-bg-color;
+            padding: 8px 16px;
+
+            &__relationship { width: auto }
+
+            .display-name {
+                margin-left: 16px;
+
+                strong {
+                    font-size: 16px;
+                    color: $primary-text-color;
+                }
+
+                span { color: $secondary-text-color }
+            }
+        }
+
+        &__extra {
+            background: $card-bg-color;
+            border-radius: 0 0 $card-radius $card-radius;
+
+            .account__header__content {
+                padding: 8px 16px;
+                border-bottom: 1px solid $border-color;
+            }
+
+            .accounts-table__count { padding: 16px 0 }
+        }
+    }
+
+    &__list {
+        @include material-transition;
+        margin: 16px 0;
+    }
+}
+
+.mute-modal {
+    @include shadow-24dp;
+    background: $card-bg-color;
+    color: $ui-text-color;
+    border-radius: $card-radius;
+
+    &__container { padding: 24px }
+
+    &__explanation { margin-top: 16px }
+
+    &__action-bar {
+        background: $card-bg-color;
+        padding: 8px;
+        justify-content: flex-end;
+    }
+
+    &__cancel-button {
+        box-shadow: none !important;
+        color: $text-button-color;
+        background: transparent;
+        margin: 0 8px;
+
+        &:hover {
+            color: $text-button-color;
+            background-color: $text-button-hover-color;
+        }
+
+        &:focus,
+        &:active {
+            color: $text-button-color;
+            background-color: $text-button-focus-color;
+        }
+    }
+
+    .setting-toggle {
+        margin-top: 16px;
+        margin-bottom: 16px;
+
+        &__label {
+            color: $ui-text-color;
+            margin: 0 0 0 12px;
+        }
+    }
+}
+
+.domain {
+    padding: 16px;
+    border-bottom: 1px solid $border-color;
+
+    .domain__domain-name { color: $primary-text-color }
+
+    &__buttons .icon-button {
+        @include icon-button;
+        padding: 8px;
+    }
+}
+
+.upload-progress {
+    color: $ui-text-color;
+    
+    &__backdrop {
+        border-radius: 0;
+        background: $progress-indicator-track-color;
+        margin-top: 6px;
+    }
+
+    &__tracker {
+        border-radius: 0;
+        background: $progress-indicator-color;
+    }
+}
+
+.emoji-button { padding: 8px }
+
+.focusable:focus .detailed-status,
+.focusable:focus .detailed-status__action-bar { background: transparent }
+
+.no-reduce-motion .loading-indicator {
+    display: inline-block;
+    position: relative;
+    color: transparent;
+    width: 80px;
+    height: 80px;
+
+    &__figure {
+        box-sizing: border-box;
+        display: block;
+        position: absolute;
+        width: 48px;
+        height: 48px;
+        top: 10%;
+        left: 10%;
+        margin: 8px;
+        border: 4px solid transparent;
+        border-radius: 50%;
+        animation: loading-indicator 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+        border-color: $loading-indicator-color transparent transparent transparent;
+
+        &:nth-child(1) {
+            animation-delay: -0.45s;
+        }
+
+        &:nth-child(2) {
+            animation-delay: -0.3s;
+        }
+
+        &:nth-child(3) {
+            animation-delay: -0.15s;
+        }
+    }
+}
+@keyframes loading-indicator {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+}
+
+.loading-bar {
+    background-color: $loading-indicator-color;
+    height: 4px;
+}

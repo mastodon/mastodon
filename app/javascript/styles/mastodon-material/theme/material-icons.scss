@@ -1,0 +1,289 @@
+@include icon-font;
+
+.fa-fw {
+    width: 20px;
+    height: 20px;
+    font-size: 20px;
+}
+
+.fa {
+    &.fa-bars, &.fa-navicon, &.fa-reorder,
+    &.fa-globe,
+    &.fa-cog, &.fa-cogs, &.fa-gears,
+    &.fa-sign-out,
+    &.fa-search,
+    &.fa-times, &.fa-times-circle, &.fa-close, &.fa-remove,
+    &.fa-chevron-down, &.fa-ellipsis-v,
+    &.fa-paperclip,
+    &.fa-tasks,
+    &.fa-plus,
+    &.fa-unlock,
+    &.fa-lock,
+    &.fa-envelope,
+    &.fa-home,
+    &.fa-bullhorn,
+    &.fa-sliders,
+    &.fa-chevron-left,
+    &.fa-chevron-right,
+    &.fa-arrow-right,
+    &.fa-reply,
+    &.fa-reply-all,
+    &.fa-share-alt,
+    &.fa-star,
+    &.fa-bookmark,
+    &.fa-ellipsis-h,
+    &.fa-bell,
+    &.fa-bell-o,
+    &.fa-eraser,
+    &.fa-users,
+    &.fa-file-text,
+    &.fa-user-plus,
+    &.fa-address-book, &.fa-address-book-o,
+    &.fa-list, &.fa-list-ul,
+    &.fa-eye,
+    &.fa-eye-slash,
+    &.fa-pencil,
+    &.fa-trash,
+    &.fa-play,
+    &.fa-external-link,
+    &.fa-retweet,
+    &.fa-link,
+    &.fa-pause,
+    &.fa-volume-up,
+    &.fa-volume-off,
+    &.fa-expand,
+    &.fa-download,
+    &.fa-arrows-alt,
+    &.fa-compress,
+    &.fa-user-times,
+    &.fa-check,
+    &.fa-quote-right,
+    &.fa-upload,
+    &.fa-comments,
+    &.fa-angle-right,
+    &.fa-thumb-tack,
+    &.fa-hashtag,
+    &.fa-expand,
+    &.fa-refresh,
+    &.fa-user,
+    &.fa-desktop,
+    &.fa-exchange,
+    &.fa-cloud-upload,
+    &.fa-cloud-download,
+    &.fa-mobile-phone, &.fa-mobile,
+    &.fa-tablet {
+        @include icon-font-style;
+        line-height: 1;
+        letter-spacing: normal;
+        text-transform: none;
+        display: inline-block;
+        white-space: nowrap;
+        word-wrap: normal;
+        direction: ltr;
+        font-feature-settings: 'liga';
+        -webkit-font-smoothing: antialiased;
+    }
+}
+
+.fa {
+    &.fa-bars::before, &.fa-navicon::before,&.fa-reorder::before { content: "menu" }
+    &.fa-globe::before { content: "public" }
+    &.fa-cog::before, &.fa-cogs::before, &.fa-gears::before { content: "settings" }
+    &.fa-sign-out::before { content: "exit_to_app" }
+    &.fa-search::before { content: "search" }
+    &.fa-times::before, &.fa-times-circle::before, &.fa-close::before, &.fa-remove::before { content: "close" }
+    &.fa-chevron-down::before, &.fa-ellipsis-v::before { content: "more_vert" }
+    &.fa-paperclip::before { content: "attach_file" }
+    &.fa-tasks::before { content: "poll" }
+    &.fa-plus::before { content: "add" }
+    &.fa-unlock::before { content: "lock_open" }
+    &.fa-lock::before { content: "lock" }
+    &.fa-envelope::before { content: "mail" }
+    &.fa-home::before { content: "home" }
+    &.fa-bullhorn::before { content: "announcement" }
+    &.fa-sliders::before { content: "tune" }
+    &.fa-chevron-left::before { content: "arrow_back" }
+    &.fa-chevron-right::before { content: "arrow_forward" }
+    &.fa-arrow-right::before { content: "arrow_forward" }
+    &.fa-reply::before { content: $reply-icon }
+    &.fa-reply-all::before { content: "reply_all" }
+    &.fa-share-alt::before { content: "share" }
+    &.fa-star::before { content: $favorite-icon }
+    &.fa-bookmark::before { content: "bookmark" }
+    &.fa-ellipsis-h::before { content: "more_horiz" }
+    &.fa-bell::before { content: "notifications" }
+    &.fa-bell-o::before { content: "notifications" }
+    &.fa-eraser::before { content: "clear_all" }
+    &.fa-users::before { content: "people" }
+    &.fa-file-text::before { content: "web" }
+    &.fa-user-plus::before { content: "person_add" }
+    &.fa-address-book::before, &.fa-address-book-o::before { content: "explore" }
+    &.fa-list::before, &.fa-list-ul::before { content: "list" }
+    &.fa-eye::before { content: "visibility" }
+    &.fa-eye-slash::before { content : "visibility_off" }
+    &.fa-pencil::before { content: "create" }
+    &.fa-trash::before { content: "delete" }
+    &.fa-play::before { content: "play_arrow" }
+    &.fa-external-link::before { content: "open_in_new" }
+    &.fa-retweet::before { content: "repeat" }
+    &.fa-link::before { content: "link" }
+    &.fa-pause::before { content: "pause" }
+    &.fa-volume-up::before { content: "volume_up" }
+    &.fa-volume-off::before { content: "volume_off" }
+    &.fa-expand::before { content: "web_asset" }
+    &.fa-download::before { content: "file_download" }
+    &.fa-arrows-alt::before { content: "fullscreen" }
+    &.fa-compress::before { content: "fullscreen_exit" }
+    &.fa-user-times::before { content: "person_remove" }
+    &.fa-check::before { content: "check" }
+    &.fa-quote-right::before { content: "format_quote" }
+    &.fa-upload::before { content: "file_upload" }
+    &.fa-comments::before { content: "forum" }
+    &.fa-angle-right::before { content: "chevron_right" }
+    &.fa-thumb-tack::before { content: "push_pin" }
+    &.fa-hashtag::before { content: "tag" }
+    &.fa-expand::before { content: "open_in_full" }
+    &.fa-refresh::before { content: "refresh" }
+    &.fa-user::before { content: "person" }
+    &.fa-desktop::before { content: "web_asset" }
+    &.fa-exchange::before { content: "sync_alt" }
+    &.fa-cloud-upload::before { content: "cloud_upload" }
+    &.fa-cloud-download::before { content: "cloud_download" }
+    &.fa-mobile-phone::before, &.fa-mobile::before { content: "smartphone" }
+    &.fa-tablet::before { content: "tablet" }
+}
+
+// bookmark icon
+.status__action-bar-button.icon-button,
+.bookmark-icon.icon-button {
+    .fa.fa-bookmark::before { content: "bookmark_border" }
+    &.active .fa.fa-bookmark::before { content: "bookmark" }
+}
+
+// favorite icon
+.status__action-bar-button.star-icon.icon-button,
+.star-icon.icon-button {
+    .fa.fa-star::before { content: $favorite-icon-border }
+
+    &.active,
+    &.active.activate {
+        .fa.fa-star::before { content: $favorite-icon }
+    }
+}
+
+// favorite icon color
+.star-icon.active,
+.star-icon.icon-button.active.active,
+.notification__favourite-icon-wrapper .star-icon,
+.status__action-bar-button.star-icon.icon-button.active,
+.media-modal__overlay .picture-in-picture__footer .icon-button.star-icon.active { color: $favorite-icon-color }
+
+// boost icon
+button.icon-button i.fa-retweet {
+    height: 20px;
+    width: 20px;
+    transition: none;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" id="svg4" version="1.1" viewBox="0 0 24 48" height="40px" width="20px"><path d="M 7,7 H 17 V 10 l 4,-4 -4,-4 v 3 H 5 V 11 h 2 z M 17,17 H 7 V 14 L 3,18 7,22 V 19 H 19 v -6 h -2 z" fill="#{svg-color($icon-button-color)}" stroke-width="0"/><path d="m 7,31 h 10 v 3 l 4,-4 -4,-4 v 3 H 5 v 6 H 7 Z M 17,41 H 7 v -3 l -4,4 4,4 v -3 h 12 v -6 h -2 z" fill="#{svg-color($boost-icon-color)}" stroke-width="0"/></svg>');
+}
+
+.media-modal__overlay .picture-in-picture__footer button.icon-button i.fa-retweet /* in media view */ { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" id="svg4" version="1.1" viewBox="0 0 24 48" height="40px" width="20px"><path d="M 7,7 H 17 V 10 l 4,-4 -4,-4 v 3 H 5 V 11 h 2 z M 17,17 H 7 V 14 L 3,18 7,22 V 19 H 19 v -6 h -2 z" fill="#{$media-icon-color}" stroke-width="0"/><path d="m 7,31 h 10 v 3 l 4,-4 -4,-4 v 3 H 5 v 6 H 7 Z M 17,41 H 7 v -3 l -4,4 4,4 v -3 h 12 v -6 h -2 z" fill="#{svg-color($boost-icon-color)}" stroke-width="0"/></svg>') }
+
+button.icon-button i.fa-retweet:hover,
+button.icon-button:hover i.fa-retweet /* v3.3.0 or above */ {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" id="svg4" version="1.1" viewBox="0 0 24 48" height="40px" width="20px"><path d="M 7,7 H 17 V 10 l 4,-4 -4,-4 v 3 H 5 V 11 h 2 z M 17,17 H 7 V 14 L 3,18 7,22 V 19 H 19 v -6 h -2 z" fill="#{svg-color($icon-button-hover-color)}" stroke-width="0"/><path d="m 7,31 h 10 v 3 l 4,-4 -4,-4 v 3 H 5 v 6 H 7 Z M 17,41 H 7 v -3 l -4,4 4,4 v -3 h 12 v -6 h -2 z" fill="#{svg-color($boost-icon-color)}" stroke-width="0"/></svg>');
+}
+
+button.icon-button.disabled i.fa-retweet,
+button.icon-button.disabled i.fa-retweet:hover,
+button.icon-button.disabled:hover i.fa-retweet  /* v3.3.0 or above */ {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#{svg-color($disabled-icon-color)}" width="20px" height="20px"><path d="M0 0h24v24H0z" fill="none"/><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8 0-1.85.63-3.55 1.69-4.9L16.9 18.31C15.55 19.37 13.85 20 12 20zm6.31-3.1L7.1 5.69C8.45 4.63 10.15 4 12 4c4.42 0 8 3.58 8 8 0 1.85-.63 3.55-1.69 4.9z"/></svg>');
+}
+
+// dropdown icon
+.compose-form__poll-wrapper select,
+.simple_form select {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#{svg-color($icon-color)}" width="24px" height="24px"><path d="M0 0h24v24H0z" fill="none"/><path d="M7 10l5 5 5-5z"/></svg>');
+}
+
+// icon in tab settings
+.text-btn.column-header__setting-btn {
+    .fa {
+        vertical-align: middle;
+
+        &.fa-eraser { margin-right: 8px } // clear notification
+    }
+}
+
+// top bar icons align
+.fa.fa-bell.column-header__icon.fa-fw,
+.fa.fa-home.column-header__icon.fa-fw,
+.fa.fa-users.column-header__icon.fa-fw,
+.fa.fa-globe.column-header__icon.fa-fw,
+.fa.fa-bars.column-header__icon.fa-fw,
+.fa.fa-bookmark.column-header__icon.fa-fw,
+.fa.fa-address-book-o.column-header__icon.fa-fw,
+.fa.fa-envelope.column-header__icon.fa-fw,
+.fa.fa-star.column-header__icon.fa-fw { vertical-align: text-bottom }
+
+// top bar icons in single column mode
+.tabs-bar__link .fa {
+    &.fa-home,
+    &.fa-bell,
+    &.fa-users,
+    &.fa-globe,
+    &.fa-search {
+        &.fa-fw { vertical-align: text-bottom }
+    }
+}
+
+// getting-started and side bar icons
+.column-link .fa,
+.column-link--transparent .fa { vertical-align: text-bottom }
+
+// uploaded media icons align
+.compose-form .compose-form__modifiers .compose-form__upload__actions .icon-button .fa {
+    font-size: 20px;
+    vertical-align: text-bottom;
+}
+
+// search results icons align
+.search-results__header .fa { vertical-align: text-bottom }
+
+// read more icon
+.status__content__read-more-button .fa { vertical-align: bottom }
+
+// Attachment icon
+.attachment-list__list a .fa { vertical-align: middle }
+
+// verified icon
+.verified__mark { vertical-align: middle }
+
+// tag icon
+.directory__tag h4 .fa { vertical-align: bottom }
+
+// status detail icon
+.detailed-status .fa {
+    font-size: 16px;
+    vertical-align: text-bottom;
+}
+
+// Icons in lists or tables
+tbody tr td span .fa {
+    color: $icon-color;
+    vertical-align: bottom;
+}
+a.table-action-link i.fa,
+button.table-action-link i.fa {
+    font-size: 16px;
+    vertical-align: bottom;
+}
+
+// status scope
+.status__visibility-icon .fa,
+.account__header__tabs__name .fa {
+    font-size: 16px;
+    vertical-align: text-bottom;
+}
+
+// sidebar icon in settings
+.admin-wrapper .sidebar ul a i.fa { vertical-align: text-bottom }

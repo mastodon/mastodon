@@ -1,0 +1,90 @@
+.emoji-picker-dropdown {
+    &__menu {
+        @include shadow-8dp;
+        background: $menu-bg-color;
+        border-radius: $menu-radius;
+        margin-top: 0;
+
+        // bubble
+        // unable to fit the position
+        /*&::before {
+            @include shadow-8dp;
+            content: "";
+            position: absolute;
+            background: $menu-bg-color;
+            top: -6px;
+            width: 12px;
+            height: 12px;
+            transform: rotate(45deg);
+            z-index: -1;
+        }*/
+    }
+
+    &__modifiers__menu {
+        @include shadow-8dp;
+        background: $menu-bg-color;
+        border-radius: $menu-radius;
+
+        button {
+            padding: 8px;
+        }
+    }
+}
+
+.emoji-mart {
+    width: 388px !important;
+    font-size: 14px;
+    color: $menu-text-color;
+
+    &-bar {
+        border: 0 solid $border-color;
+
+        &:first-child { background: $menu-bg-color }
+    }
+
+    &-anchor {
+        color: $text-tab-indicator-color;
+        padding: 10px 4px;
+
+        &-bar { background-color: $icon-tab-indicator-active-color }
+
+        &-selected { color: $icon-tab-indicator-hover-color }
+
+        &:hover { color: $icon-tab-indicator-hover-color }
+    }
+
+    &-search {
+        background: $menu-bg-color;
+
+        input {
+            outline: none;
+            padding: 8px;
+            background: $search-bar-color;
+            color: $ui-text-color;
+            border: 0;
+            border-radius: $search-bar-radius;
+
+            &:focus {
+                @include shadow-2dp;
+                background: $search-bar-focus-color;
+                color: $search-bar-text-color;
+            }
+        }
+    }
+
+    &-scroll {
+        padding: 0 8px 8px;
+        background: $menu-bg-color;
+    }
+
+    &-category {
+        &-label span {
+            padding: 4px 6px;
+            background: $menu-bg-color;
+        }
+
+        .emoji-mart-emoji:hover::before { background-color: $icon-bg-hover-color }
+    }
+
+    &-no-results { color: $secondary-text-color }
+}

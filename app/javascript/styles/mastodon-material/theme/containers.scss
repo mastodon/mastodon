@@ -1,0 +1,185 @@
+.public-layout {
+    .header {
+        @include shadow-4dp;
+        background: $top-bar-color;
+        border-radius: $nav-bar-radius;
+        margin: 16px 0;
+
+        .brand {
+            svg { fill: $top-bar-text-color }
+
+            &:hover,
+            &:focus,
+            &:active { background: $tab-indicator-bg-hover-color }
+        }
+
+        .nav-link,
+        .nav-link.optional {
+            color: $top-bar-text-color;
+
+            &:hover {
+                color: $top-bar-text-color;
+                background: $tab-indicator-bg-hover-color;
+                text-decoration: none;
+            }
+        }
+
+        .nav-button {
+            background: transparent;
+            margin: 0;
+            border-radius: 0;
+
+            &:hover { background: $tab-indicator-bg-hover-color }
+        }
+
+        .detailed-status__meta { margin-top: 16px }
+    }
+
+    .detailed-status { padding: 16px }
+
+    .footer {
+        padding-top: 16px;
+        padding-bottom: 64px;
+        color: $ui-text-color;
+
+        h4 { color: $ui-text-color }
+
+        ul a { color: $secondary-text-color }
+
+        .grid .column-2 h4 a { color: $ui-text-color }
+
+        .brand {
+            svg { fill: $icon-color }
+
+            &:hover svg { fill: $icon-hover-color }
+        }
+    }
+
+    .account__section-headline {
+        @include shadow-1dp;
+        border-radius: $card-radius $card-radius 0 0;
+    }
+
+    .public-account-header {
+        @include shadow-2dp;
+        margin-bottom: 16px;
+
+        &__image {
+            border-radius: $card-radius $card-radius 0 0;
+            background: $card-bg-color;
+
+            &::after { box-shadow: none }
+
+            img { border-radius: $card-radius $card-radius 0 0 }
+        }
+
+        &__bar {
+            background: linear-gradient(0deg, transparent, transparent 60px, rgba(0, 0, 0, 0.5) 60px, rgba(0, 0, 0, 0.2) 80%, transparent);
+
+            &::before {
+                background: $text-tab-bg-color;
+                border-radius: 0 0 $card-radius $card-radius;
+            }
+
+            .avatar img {
+                border-radius: $avatar-radius;
+                border: 2px solid $border-color;
+                background: $card-bg-color;
+            }
+        }
+
+        &__tabs {
+            margin-left: 24px;
+
+            &__name {
+                h1 {
+                    color: $primary-text-on-shadow-color;
+                    text-shadow: none;
+
+                    small { color: $primary-text-on-shadow-color }
+                }
+            }
+
+            &__tabs {
+                .counter {
+                    color: $secondary-text-color;
+                    padding: 8px 16px;
+                    border-right: none;
+
+                    &.active {
+                        &::after { border-bottom: 4px solid $text-tab-indicator-active-color }
+                    }
+
+                    &::after {
+                        border-bottom: none;
+                        opacity: 1;
+                    }
+
+                    &:hover { background: $text-tab-indicator-bg-hover-color }
+
+                    .counter-number {
+                        color: $ui-text-color;
+                        margin-bottom: 6px;
+                    }
+                }
+            }
+        }
+
+        &__extra {
+            .public-account-bio .account__header__fields { border-top: 1px solid $border-color }
+
+            &__links {
+                color: $ui-text-color;
+
+                a {
+                    color: $ui-text-color;
+                    padding: 16px;
+
+                    strong { color: $primary-text-color }
+                }
+            }
+        }
+
+        &--no-bar .public-account-header {
+            &__image,
+            &__image img { border-radius: $card-radius }
+        }
+    }
+
+    .public-account-bio {
+        @include shadow-2dp;
+        background: $card-bg-color;
+        border-radius: $card-radius;
+        margin-bottom: 16px;
+
+        &__extra,
+        .roles {
+            padding: 16px;
+            color: $info-text-color;
+        }
+
+        .account__header {
+            &__content {
+                padding: 16px 16px 0;
+                color: $primary-text-color;
+            }
+
+            &__fields {
+                a,
+                .verified a { color: $primary-text-color }
+
+                dl:first-child .verified { border-radius: 0 $card-radius 0 0 }
+            }
+        }
+    }
+
+    .directory__list { grid-gap: 16px }
+
+    .grid { grid-gap: 16px }
+}
+
+.brand__tagline { color: $ui-text-color }
+
+.logo-container h1 svg { fill: $ui-text-color }
+
+.grid-4 { grid-gap: 16px }

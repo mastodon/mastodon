@@ -1,0 +1,153 @@
+@charset "UTF-8";
+
+
+$color-scheme: dark;
+
+// Base color
+$primary-color: #4285f4;
+$secondary-color: #db4437;
+$error-color: #B00020;
+$verified-color: #4caf50;
+
+// Text color
+$primary-text-color: #ffffff;
+$secondary-text-color: #9aa0a6;
+$ui-text-color: #e8eaed;
+$inverted-text-color: #000000;
+$section-text-color: $primary-color;
+$info-text-color: #9aa0a6;
+$tips-text-color: #c0c0c0;
+$disabled-text-color: rgba(0,0,0,.54);
+$link-text-color: #4285f4;
+$menu-text-color: $ui-text-color;
+$top-bar-text-color: $ui-text-color;
+$search-bar-text-color: $inverted-text-color;
+$contained-button-text-color: #ffffff;
+$primary-text-on-shadow-color: #ffffff;
+$text-field-color: $ui-text-color;
+
+// Background-color
+$bg-color: #303030;
+$menu-bg-color: #424242;
+$menu-bg-hover-color: lighten($menu-bg-color, 6%);
+$menu-bg-active-color: lighten($menu-bg-color, 10%);
+$menu-bg-active-hover-color: lighten($menu-bg-color, 16%);
+$card-bg-color: #424242;
+$card-bg-hover-color: lighten($card-bg-color, 6%);
+$list-bg-color: #424242;
+$list-bg-hover-color: lighten($list-bg-color, 6%);
+$list-bg-active-color: lighten($list-bg-color, 10%);
+$list-bg-active-hover-color: lighten($list-bg-color, 16%);
+$list-bg-inactive-color: lighten($list-bg-color, 10%);
+$text-field-bg-color: $card-bg-color;
+$dropdown-field-bg-color: lighten($bg-color, 6%);
+$dropdown-field-bg-hover-color: lighten($dropdown-field-bg-color, 6%);
+$dropdown-field-bg-active-color: lighten($dropdown-field-bg-color, 10%);
+$verified-bg-color: darken($verified-color, 20%);
+$unread-bg-color: transparentize($primary-color, 0.8);
+
+// Chip color
+$contained-chip-color: #2e2e2e;
+$chip-selected-text-color: $primary-color;
+$contained-chip-hover-color: lighten($contained-chip-color, 6%);
+$contained-chip-selected-color: transparentize($chip-selected-text-color, 0.7);
+$outlined-chip-color: #1e1e1e;
+$outlined-chip-hover-color: lighten($outlined-chip-color, 6%);
+$outlined-chip-selected-color: transparentize($chip-selected-text-color, 0.8);
+$outlined-chip-selected-border-color: transparentize($chip-selected-text-color, 0.7);
+
+// Relationship tag color
+$relationship-tag-color: transparentize(#2e2e2e, 0.2);
+
+// Badge color
+$badge-color: $primary-color;
+//$badge-color: $secondary-color;
+
+// Icon color
+$icon-color: #e2e2e3;
+$icon-hover-color: #ffffff;
+$icon-bg-hover-color: transparentize(#ffffff, 0.8);
+$icon-bg-active-color: transparentize(#ffffff, 0.7);
+$disabled-icon-color: darken($icon-color, 16%);
+$top-bar-icon-color: #ffffff;
+$top-bar-icon-hover-color: lighten($top-bar-icon-color, 10%);
+$top-bar-icon-active-color: lighten($top-bar-icon-color, 18%);
+$media-icon-color: transparentize(#ffffff, 0.4);
+$media-icon-hover-color: transparentize(#ffffff, 0.2);
+$media-icon-bg-color: transparentize(#000000, 0.5);
+$media-icon-bg-hover-color: transparentize(#000000, 0.8);
+
+// Control color
+$control-border-color: $icon-color;
+$control-border-active-color: $primary-color;
+$control-border-hover-color: transparentize($control-border-active-color, 0.8);
+
+// Button color
+$icon-button-color: $icon-color;
+$icon-button-hover-color: $icon-hover-color;
+$icon-button-active-color: $primary-color;
+$icon-button-active-hover-color: lighten($icon-button-active-color, 10%);
+$contained-button-color: $primary-color;
+$contained-button-hover-color: lighten($contained-button-color, 10%);
+$outlined-button-color: $primary-color;
+$outlined-button-hover-color: transparentize($outlined-button-color, 0.8);
+$outlined-button-active-color: transparentize($outlined-button-color, 0.7);
+$text-button-color: $primary-color;
+$text-button-hover-color: transparentize($text-button-color, 0.8);
+$text-button-focus-color: transparentize($text-button-color, 0.7);
+$disabled-button-color: #cccccc;
+$floating-action-button-color: $primary-color;
+$floating-action-button-hover-color: lighten($floating-action-button-color, 6%);
+$floating-action-button-active-color: lighten($floating-action-button-color, 10%);
+$floating-action-button-icon-color: #ffffff;
+
+// Toggle color
+$toggle-thumb-color: #ffffff;
+$toggle-track-color: darken($toggle-thumb-color, 18%);
+$toggle-thumb-active-color: #1a73e8;
+$toggle-track-active-color: lighten($toggle-thumb-active-color, 18%);
+
+// Border color
+$border-color: #2e2e2e;
+$border-hover-color: lighten($border-color, 30%);
+$border-active-color: $primary-color;
+
+// Scroll bar color
+$scroll-bar-thumb-color: lighten($bg-color, 20%);
+$scroll-bar-thumb-hover-color: lighten($bg-color, 30%);
+$scroll-bar-thumb-active-color: lighten($bg-color, 38%);
+
+// App bar color
+$top-bar-color: #1565C0;
+$search-bar-color: lighten($bg-color, 6%);
+$search-bar-focus-color: #ffffff;
+
+// Tab color
+$tab-indicator-color: $top-bar-icon-color;
+$tab-indicator-active-color: $top-bar-icon-color;
+$tab-bg-color: $top-bar-color;
+$tab-indicator-bg-hover-color: transparentize($tab-indicator-active-color, 0.9);
+$tab-indicator-bg-focus-color: transparentize($tab-indicator-active-color, 0.8);
+$text-tab-indicator-color: $secondary-text-color;
+$text-tab-indicator-active-color: $top-bar-color;
+$text-tab-bg-color: #424242;
+$text-tab-indicator-bg-hover-color: transparentize($text-tab-indicator-active-color, 0.9);
+$text-tab-indicator-bg-focus-color: transparentize($text-tab-indicator-active-color, 0.8);
+$icon-tab-indicator-active-color: $primary-color;
+$icon-tab-indicator-hover-color: $icon-hover-color;
+
+// Media indicator color
+$media-page-indicator-color: #9e9e9e;
+$media-page-indicator-active-color: #e6e6e6;
+
+// Progress indicator color
+$progress-indicator-color: $primary-color;
+$progress-indicator-track-color: lighten($progress-indicator-color, 30%);
+$loading-indicator-color: $primary-color;
+
+// Contents color in read status
+$read-primary-text-color: transparentize($primary-text-color, 0.3);
+$read-secondary-text-color: transparentize($secondary-text-color, 0.3);
+$read-ui-text-color: transparentize($ui-text-color, 0.3);
+$read-poll-bar-leading-color: transparentize($progress-indicator-color, 0.3);
+$read-poll-bar-color: transparentize($progress-indicator-track-color, 0.3);

@@ -1,0 +1,31 @@
+.column {
+    box-shadow: none !important;
+    margin: 2px 0 !important;
+    padding: 8px !important;
+
+    > .scrollable { background: $bg-color }
+}
+
+.status {
+    border-bottom: 0;
+    border-radius: $card-radius;
+    background: $card-bg-color;
+
+    &__prepend { padding: 8px 8px 2px 0 }
+}
+
+.account { border-bottom: 0 !important }
+
+.status__wrapper.status__wrapper,
+.notification.notification {
+    @include shadow-1dp;
+    margin: 8px 2px;
+    border-radius: $card-radius;
+    background: $card-bg-color;
+}
+
+.notification .status__wrapper.status__wrapper { box-shadow: none !important }
+
+.notification__filter-bar {
+    @include non-overflow-shadow-4dp;
+}

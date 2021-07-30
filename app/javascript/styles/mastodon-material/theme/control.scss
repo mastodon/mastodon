@@ -1,0 +1,64 @@
+.react-toggle {
+    width: 36px;
+    height: 16px;
+    border-radius: 15px;
+
+    &-track {
+        background-color: $toggle-track-color;
+        margin: 4px;
+        width: 36px;
+        height: 16px;
+
+        &-check { visibility: hidden }
+        &-x { visibility: hidden }
+    }
+
+    &-thumb {
+        @include shadow-1dp;
+        width: 20px;
+        height: 20px;
+        border: 0;
+        background-color: $toggle-thumb-color;
+    }
+
+    &--checked {
+        .react-toggle{
+            &-track { background-color: $toggle-track-active-color }
+
+            &-thumb {
+                background-color: $toggle-thumb-active-color;
+                left: 22px;
+            }
+        }
+
+        &:hover:not(.react-toggle--disabled) .react-toggle-track { background-color: $toggle-track-active-color !important }
+
+    }
+
+    &:hover:not(.react-toggle--disabled) .react-toggle-track { background-color: $toggle-track-color }
+}
+
+.radio-button {
+    padding: 8px 0;
+
+    &__input {
+        border: 2px solid $control-border-color;
+
+        &.checked {
+            border-color: $control-border-active-color;
+            background: $control-border-active-color;
+            padding: 3px;
+            background-clip: content-box;
+        }
+    }
+}
+
+.compose-form__sensitive-button .checkbox {
+    border: 2px solid $control-border-color;
+    border-radius: 2px;
+
+    &.active {
+        border-color: $primary-color;
+        background: $primary-color;
+    }
+}

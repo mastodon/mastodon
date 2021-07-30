@@ -1,0 +1,267 @@
+.account {
+    border-bottom: 1px solid $border-color;
+    padding: 16px;
+
+    .account__display-name,
+    .account__display-name strong { color: $primary-text-color }
+
+    &__avatar {
+        border-radius: $avatar-radius;
+        width: 40px;
+        height: 40px;
+
+        &-overlay {
+            &-base {
+                border-radius: $avatar-radius;
+                width: 44px;
+                height: 44px;
+                background-size: 44px;
+            }
+
+            &-overlay { border-radius: $avatar-radius }
+        }
+    }
+
+    &__avatar-wrapper {
+        margin-left: 0;
+        margin-right: 16px;
+    }
+
+    &__header {
+        &__bar {
+            background: $card-bg-color;
+            padding: 8px;
+            border-bottom: none;
+
+            .avatar .account__avatar { border: none }
+        }
+
+        &__tabs {
+            padding: 8px;
+
+            &__name {
+                padding: 8px;
+
+                h1 {
+                    color: $primary-text-color;
+
+                    small { color: $secondary-text-color }
+                }
+            }
+
+            &__buttons {
+                .icon-button {
+                    @include icon-button;
+                    border: none;
+                    border-radius: 50%;
+                    padding: 8px;
+                    margin-left: 8px;
+                    margin-right: 0;
+                }
+            }
+        }
+
+        &__extra {
+            margin-top: 0;
+
+            &__links {
+                color: $secondary-text-color;
+                padding: 8px 0;
+
+                a {
+                    color: $secondary-text-color;
+                    padding: 4px 12px;
+
+                    strong { color: $ui-text-color }
+                }
+            }
+        }
+
+        &__bio {
+            margin: 0;
+
+            .account__header {
+                &__content {
+                    color: $primary-text-color;
+                    padding: 8px;
+                }
+
+                &__fields {
+                    border: 1px solid $border-color;
+                    border-radius: 4px;
+
+                    .verified {
+                        border: none;
+                        background: $verified-bg-color;
+
+                        a,
+                        &__mark { color: $primary-text-color }
+                    }
+
+                    dl {
+                        border-bottom: 1px solid $border-color;
+
+                        &:first-child .verified { border-radius: 0 }
+
+                        &:last-child { border-bottom: 0 }
+                    }
+
+                    dt {
+                        color: $primary-text-color;
+                        background: $list-bg-inactive-color;
+                    }
+
+                    dd { color: $primary-text-color }
+                }
+            }
+        }
+
+        &__account-note {
+            padding: 8px 16px;
+            border-bottom: 1px solid $border-color;
+
+            label {
+                color: $ui-text-color;
+                margin-bottom: 8px;
+            }
+
+            textarea {
+                color: $primary-text-color;
+                padding: 8px 16px;
+                border-radius: 0;
+
+                &:focus { background: transparent }
+
+                &::placeholder { color: $tips-text-color }
+            }
+        }
+
+        &__content { color: $secondary-text-color }
+
+        &__fields {
+            border-color: $border-color;
+
+            dl { border-bottom: 1px solid $border-color }
+
+            dt {
+                color: $primary-text-color;
+                background: $list-bg-inactive-color;
+            }
+
+            dd { color: $primary-text-color }
+
+            .verified {
+                border: none;
+                background: $verified-bg-color;
+
+                &__mark { color: $primary-text-color }
+            }
+        }
+    }
+
+    &__section-headline {
+        background: $text-tab-bg-color;
+        border-bottom: 1px solid $border-color;
+
+        a {
+            padding: 16px 0;
+            color: $text-tab-indicator-color;
+
+            &.active {
+                color: $text-tab-indicator-active-color;
+                border-bottom: 4px solid $text-tab-indicator-active-color;
+
+                &::before,
+                &:after { border: none }
+
+                &:focus { background: $text-tab-indicator-bg-focus-color }
+            }
+
+            &:hover { background: $text-tab-indicator-bg-hover-color }
+        }
+    }
+
+    &__relationship {
+        padding: 8px;
+
+        .icon-button {
+            @include icon-button;
+            padding: 8px;
+            box-sizing: content-box;
+        }
+    }
+}
+
+.account-role,
+.simple_form .recommended {
+    padding: 4px 8px;
+    border-radius: 17px;
+    color: $ui-text-color;
+    background-color: $contained-chip-color;
+}
+
+.account-gallery {
+    &__item { border-radius: 0 }
+}
+
+.card {
+    &>a {
+        @include shadow-1dp;
+        
+        &:active .card__bar,
+        &:focus .card__bar,
+        &:hover .card__bar { background: $card-bg-color }
+    }
+
+    &__img {
+        background: $card-bg-color;
+        border-radius: $card-radius $card-radius 0 0;
+
+        img { border-radius: $card-radius $card-radius 0 0 }
+    }
+
+    &__bar {
+        padding: 16px;
+        background: $card-bg-color;
+        border-radius: 0 0 $card-radius $card-radius;
+
+        .avatar {
+            padding-top: 0;
+
+            img {
+                border-radius: $avatar-radius;
+                background: $card-bg-color;
+            }
+        }
+
+        .display-name {
+            margin-left: 16px;
+
+            strong { color: $primary-text-color }
+
+            span { color: $secondary-text-color }
+        }
+    }
+}
+
+.pagination {
+    padding: 28px;
+
+    .gap,
+    .newer,
+    .older,
+    .page,
+    a {
+        color: $ui-text-color;
+        padding: 8px;
+    }
+
+    .current {
+        background: $contained-chip-color;
+        color: $ui-text-color;
+        margin: 0 8px;
+        border-radius: 50%;
+        width: 16px;
+        height: 16px;
+    }
+}

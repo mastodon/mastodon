@@ -1,0 +1,97 @@
+.drawer {
+    &__header { height: 48px }
+
+    &__tab { margin: 6px auto 6px }
+}
+
+.column { margin: 10px 5px }
+
+.column-header {
+    height: 48px;
+
+    > button { padding: 12px 16px }
+    
+    &__buttons { height: 48px }
+
+    &__button { margin: 6px }
+
+    &__back-button { margin: 6px }
+}
+
+.column-subheading { padding: 8px 16px }
+
+.column-link { padding: 12px 16px }
+
+.tabs-bar__link { padding: 12px 16px 8px 16px }
+
+.notification__filter-bar button { padding: 12px 0 }
+
+.getting-started__footer {
+    padding: 12px 16px;
+
+    p { margin-bottom: 12px }
+}
+
+.compose-form {
+    .compose-form {
+        &__publish { padding-top: 8px }
+
+        &__buttons-wrapper {
+            .icon-button,
+            .text-icon-button { padding: 4px }
+        }
+    }
+}
+
+.status {
+    padding: 8px 8px 4px 66px;
+
+    &__expand { width: 66px }
+
+    &__info { padding-right: 0 }
+
+    &__avatar {
+        left: 8px;
+        top: 10px;
+    }
+
+    &__content {
+        padding-top: 2px;
+
+        &__spoiler-link {
+            height: auto;
+            padding: 4px 8px;
+        }
+
+        &__read-more-button {
+            height: auto;
+            padding: 4px 8px;
+        }
+    }
+
+    &__action-bar-button {
+        margin: 0 4px;
+
+        &.icon-button { padding: 4px }
+    }
+
+    &__action-bar-dropdown {
+        width: 28px !important;
+        height: 28px !important;
+        margin: 0 4px;
+
+        .icon-button { padding: 4px }
+    }
+}
+
+.detailed-status {
+    padding: 14px;
+
+    &__meta { margin-top: 14px }
+
+    &__action-bar { padding: 10px 0 }
+}
+
+.reply-indicator { padding: 8px }
+
+.button.button--block { margin: 6px 0 }

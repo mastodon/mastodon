@@ -1,0 +1,162 @@
+@include button-shadow;
+
+.icon-button {
+    @include material-transition;
+    color: $icon-button-color;
+    border-radius: 50%;
+
+    &.active {
+        color: $icon-button-active-color;
+
+        &:hover { color: $icon-button-active-hover-color }
+    }
+
+    &.disabled { color: $disabled-icon-color }
+
+    &.inverted {
+        color: $icon-button-color;
+
+        &.active,
+        &:active { color: $icon-button-active-color }
+
+        &:focus {
+            color: $icon-button-active-color;
+            background-color: transparent;
+        }
+
+        &:hover {
+            color: $icon-button-hover-color;
+            background-color: $icon-bg-hover-color;
+        }
+    }
+
+    &.overlayed {
+        @include icon-button;
+        border-radius: 50%;
+        background: $media-icon-bg-color;
+        color: $media-icon-color;
+        padding: 4px;
+        line-height: 20px !important;
+    
+        &:hover {
+            background: $media-icon-bg-color;
+            color: $media-icon-hover-color;
+        }
+    }
+
+    &__counter {
+        width: 16px;
+        margin-left: 8px;
+    }
+
+    &:active,
+    &:focus { color: $icon-button-active-color }
+
+    &:focus { background-color: transparent }
+
+    &:hover {
+        @include material-transition;
+        color: $icon-button-hover-color;
+        background-color: $icon-bg-hover-color;
+    }
+}
+
+// Checkbox with label
+label.icon-button {
+    &.active {
+        color: $ui-text-color;
+        background-color: transparent;
+    }
+
+    &:hover {
+        @include material-transition;
+        background-color: transparent;
+    }
+}
+
+.text-icon-button {
+    color: $icon-button-color;
+    border-radius: 50%;
+    font-size: 14px;
+
+    &.active {
+        background-color: $icon-bg-hover-color;
+        color: $icon-button-active-color;
+    }
+
+    &:hover {
+        background-color: $icon-bg-hover-color;
+        color: $icon-button-hover-color;
+    }
+}
+
+.button {
+    background-color: $contained-button-color;
+    border-radius: $button-radius;
+
+    &:active,
+    &:focus {
+        background-color: $contained-button-color;
+        border-radius: $button-radius;
+    }
+
+    &:hover {
+        @include shadow-2dp;
+        background-color: $contained-button-hover-color;
+    }
+
+    &.logo-button {
+        background: $contained-button-color;
+        margin: 2px;
+    
+        &:hover { background: $contained-button-hover-color }
+    
+        .button--destructive:hover { background: $contained-button-hover-color }
+    }
+
+    &:disabled,
+    &.disabled { background-color: $disabled-button-color }
+
+    &.button--block { margin: 8px 0 }
+
+    &.button-secondary { @include button-type($button-on-status) }
+
+    &.confirmation-modal__cancel-button {
+        box-shadow: none;
+        background-color: transparent;
+        margin: 0 8px;
+        color: $text-button-color;
+    
+        &:hover { background: $text-button-hover-color }
+    
+        &:focus { background: $text-button-focus-color }
+    }
+}
+
+.spoiler-button__overlay__label {
+    background: $media-icon-bg-color;
+    border-radius: $button-radius;
+    color: $media-icon-color;
+}
+
+.simple_form {
+    .block-button, .block-button:last-child,
+    .button, .button:last-child,
+    button, button:last-child {
+        display: inline-block;
+        border-radius: $button-radius;
+        background: $contained-button-color;
+        color: $contained-button-text-color;
+        width: auto;
+        height: 36px;
+        padding: 10px 16px;
+        margin-left: auto;
+        font-size: 14px;
+        line-height: 15px;
+
+        &:hover { background: $contained-button-hover-color }
+
+        &:disabled,
+        &:disabled:hover { background-color: $disabled-button-color }
+    }
+}

@@ -1,0 +1,83 @@
+.batch-table {
+    border: 1px solid $border-color;
+    border-radius: 4px;
+
+    &__toolbar {
+        border: none;
+        border-bottom: 1px solid $border-color;
+        background: $list-bg-color;
+        border-radius: 4px 4px 0 0;
+
+        &__actions { padding-right: 16px }
+    }
+
+    &__row {
+        border: none;
+        border-bottom: 1px solid $border-color;
+        background: $list-bg-color;
+
+        &:nth-child(2n) {
+            background: $list-bg-color;
+
+            &:hover { background: $list-bg-hover-color }
+        }
+
+        &:last-child {
+            border-bottom: none;
+            border-radius: 0 0 4px 4px;
+        }
+
+        &:hover { background: $list-bg-hover-color }
+    }
+}
+
+a.table-action-link,
+button.table-action-link {
+    padding: 4px 8px;
+    margin-right: 0;
+    color: $text-button-color;
+    border-radius: $button-radius;
+
+    i.fa { margin-right: 8px }
+
+    &:hover {
+        color: $text-button-color;
+        background: $text-button-hover-color;
+    }
+
+    &:first-child { padding-left: 8px }
+}
+
+.table-wrapper {
+    margin-bottom: 24px;
+    border-radius: 2px;
+}
+
+.table {
+    border: 1px solid $border-color;
+
+    td,
+    th {
+        background: $list-bg-color;
+        border-top: 1px solid $border-color;
+    }
+
+    &>thead {
+        color: $ui-text-color;
+
+        &>tr>th { border-bottom: 1px solid $border-color }
+    }
+
+    &>tbody {
+        color: $ui-text-color;
+
+        &>tr {
+            &>td { vertical-align: middle }
+            
+            &:nth-child(odd) {
+                &>td,
+                &>th { background: transparent }
+            }
+        }
+    }
+}

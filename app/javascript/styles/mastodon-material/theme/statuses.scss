@@ -1,0 +1,277 @@
+.status {
+    padding: 12px 12px 4px 70px;
+    border-bottom: 1px solid $border-color;
+
+    &__expand { width: 70px }
+
+    &__info {
+        font-size: $name-font-size;
+        padding-right: 4px;
+    }
+
+    &__relative-time { color: $info-text-color }
+
+    &__display-name {
+        color: $secondary-text-color;
+
+        strong { color: $primary-text-color }
+    }
+
+    &__avatar {
+        left: 12px;
+        top: 12px;
+    }
+
+    &__content {
+        font-size: $status-font-size;
+        padding-top: 4px;
+        color: $primary-text-color;
+
+        a {
+            color: $link-text-color;
+
+            &.unhandled-link { color: $link-text-color }
+        }
+
+        p { margin-bottom: 16px }
+
+        .status__content__spoiler-link { @include button-type($button-on-status) }
+
+        // show more button
+        &__spoiler-link {
+            border: 0;
+            font-size: 15px;
+            height: 36px;
+            padding: 0 16px;
+            margin: 4px;
+            color: $text-button-color;
+        }
+
+        // show thread button
+        &__read-more-button {
+            @include button-type($button-on-status);
+            height: 36px;
+            padding: 0 16px;
+            margin: 4px;
+
+            &:hover { text-decoration: none }
+        }
+    }
+
+    &__action-bar {
+        margin-top: 4px;
+
+        &__counter {
+            margin-right: 6px;
+
+            &__label {
+                font-size: 14px;
+                color: $info-text-color;
+            }
+        }
+    }
+
+    &__action-bar-button {
+        margin-right: 4px;
+
+        &.icon-button {
+            @include icon-button;
+            padding: 8px;
+            box-sizing: content-box;
+
+            &--with-counter {
+                margin-right: 4px;
+                width: auto !important;
+
+                &:hover { background: transparent }
+            }
+        }
+    }
+
+    &__action-bar-dropdown {
+        width: 36px !important;
+        height: 36px !important;
+        box-sizing: content-box;
+
+        .icon-button {
+            @include icon-button;
+            padding: 8px;
+            box-sizing: content-box;
+
+            &.active {
+                color: $icon-hover-color;
+                background: $icon-bg-active-color;
+            }
+
+            &:hover {
+                color:$icon-hover-color;
+                background: $icon-bg-hover-color;
+            }
+        }
+    }
+
+    &__prepend {
+        color: $secondary-text-color;
+        margin-left: 64px;
+
+        .status__display-name strong { color: $secondary-text-color }
+    }
+
+    &.status-direct:not(.read) {
+        background: transparent;
+        border-bottom-color: $border-color;
+    }
+
+    &__visibility-icon { color: $icon-color }
+}
+
+.status-card {
+    color: $icon-color;
+    border-color: $border-color;
+    outline: none;
+    margin-top: 16px;
+
+    &__image {
+        background: transparent;
+
+        &>.fa {
+            font-size: 26px;
+        }
+    }
+
+    &__title {
+        color: $primary-text-color;
+        margin-bottom: 6px;
+    }
+
+    &__description { color: $secondary-text-color }
+
+    &__actions {
+        &>div {
+            background: $media-icon-bg-color;
+            border-radius: $button-radius;
+        }
+
+        button,
+        a {
+            color: $media-icon-color;
+            font-size: 20px;
+        }
+
+        a { bottom: auto }
+    }
+
+    &.compact {
+        border-color: $border-color;
+        outline: none;
+        background: transparent;
+        
+        .status-card {
+            &__content { padding: 12px }
+            &__image { flex: 0 0 64px }
+        }
+
+        &:hover { background-color: transparent !important }
+    }
+
+    &.horizontal {
+        border-radius: 0;
+        
+        .status-card {
+            &__image-preview { border-radius: 0 }
+
+            &__image-image { border-radius: 0 }
+        }
+    }
+}
+
+a.status-card {
+    &:hover { background-color: $card-bg-color }
+}
+
+.embed .status,
+.public-layout .status { padding: 16px 16px 16px 80px }
+
+// Detailed status in mobile
+.status.light {
+    .status {
+        &__display-name { color: $primary-text-color }
+        &__relative-time { color: $info-text-color }
+        &__content { color: $primary-text-color }
+    }
+
+    .display-name { color: $secondary-text-color }
+    .display-name strong { color: $primary-text-color }
+}
+
+.detailed-status {
+    background: $card-bg-color;
+    padding: 16px;
+
+    &.detailed-status--flex.detailed-status-public { border-radius: $card-radius }
+
+    &__display-name {
+        color: $secondary-text-color;
+
+        strong { color: $primary-text-color }
+    }
+
+    &__meta {
+        margin-top: 16px;
+        color: $info-text-color;
+    }
+
+    &__action-bar {
+        background: $card-bg-color;
+        border-top: none;
+        border-bottom: 1px solid $border-color;
+        padding: 8px 0;
+    }
+
+    &__action-bar-dropdown {
+        .icon-button {
+            @include icon-button;
+            padding: 8px;
+            box-sizing: content-box;
+
+            &.active {
+                color: $icon-hover-color;
+                background: $icon-bg-active-color;
+            }
+        }
+    }
+
+    &__button {
+        .icon-button {
+            @include icon-button;
+            padding: 8px;
+            box-sizing: content-box;
+        }
+    }
+
+    .button.logo-button { margin-bottom: 16px }
+}
+
+// search user trends
+.display-name {
+    &__html { color: $primary-text-color }
+    &__account { color: $secondary-text-color }
+}
+
+.activity-stream {
+    @include shadow-1dp;
+    margin-bottom: 16px;
+    border-radius: $card-radius;
+
+    .entry {
+        background: $card-bg-color;
+
+        &:first-child {
+            .detailed-status,
+            .load-more,
+            .status { border-radius: $card-radius $card-radius 0 0 }
+        }
+    }
+}
+
+.entry.h-cite.p-comment.entry-successor { border-top: 1px solid $border-color }

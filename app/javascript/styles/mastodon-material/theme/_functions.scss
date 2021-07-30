@@ -1,0 +1,7 @@
+@use "sass:string";
+
+
+// convert hex color code to svg styled ascii color code
+@function svg-color($color) {
+    @return '%23' + string.slice(inspect($color), 2, 7);
+}

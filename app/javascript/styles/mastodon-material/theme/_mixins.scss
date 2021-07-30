@@ -1,0 +1,267 @@
+$shadow-color-1: rgba(0,0,0,.2);
+$shadow-color-2: rgba(0,0,0,.14);
+$shadow-color-3: rgba(0,0,0,.12);
+
+@mixin shadow-1dp { box-shadow: 0 2px 1px -1px $shadow-color-1, 0 1px 1px 0 $shadow-color-2, 0 1px 3px 0 $shadow-color-3 }
+@mixin shadow-2dp { box-shadow: 0 3px 1px -2px $shadow-color-1, 0 2px 2px 0 $shadow-color-2, 0 1px 5px 0 $shadow-color-3 }
+@mixin shadow-3dp { box-shadow: 0 3px 3px -2px $shadow-color-1, 0 3px 4px 0 $shadow-color-2, 0 1px 8px 0 $shadow-color-3 }
+@mixin shadow-4dp { box-shadow: 0 2px 4px -1px $shadow-color-1, 0 4px 5px 0 $shadow-color-2, 0 1px 10px 0 $shadow-color-3 }
+@mixin shadow-5dp { box-shadow: 0 3px 5px -1px $shadow-color-1, 0 5px 8px 0 $shadow-color-2, 0 1px 14px 0 $shadow-color-3 }
+@mixin shadow-6dp { box-shadow: 0 3px 5px -1px $shadow-color-1, 0 6px 10px 0 $shadow-color-2, 0 1px 18px 0 $shadow-color-3 }
+@mixin shadow-7dp { box-shadow: 0 4px 5px -2px $shadow-color-1, 0 7px 10px 1px $shadow-color-2, 0 2px 16px 1px $shadow-color-3 }
+@mixin shadow-8dp { box-shadow: 0 5px 5px -3px $shadow-color-1, 0 8px 10px 1px $shadow-color-2, 0 3px 14px 2px $shadow-color-3 }
+@mixin shadow-9dp { box-shadow: 0 5px 6px -3px $shadow-color-1, 0 9px 12px 1px $shadow-color-2, 0 3px 16px 2px $shadow-color-3 }
+@mixin shadow-10dp { box-shadow: 0 6px 6px -3px $shadow-color-1, 0 10px 14px 1px $shadow-color-2, 0 4px 18px 3px $shadow-color-3 }
+@mixin shadow-11dp { box-shadow: 0 6px 7px -4px $shadow-color-1, 0 11px 15px 1px $shadow-color-2, 0 4px 20px 3px $shadow-color-3 }
+@mixin shadow-12dp { box-shadow: 0 7px 8px -4px $shadow-color-1, 0 12px 17px 2px $shadow-color-2, 0 5px 22px 4px $shadow-color-3 }
+@mixin shadow-13dp { box-shadow: 0 7px 8px -4px $shadow-color-1, 0 13px 19px 2px $shadow-color-2, 0 5px 24px 4px $shadow-color-3 }
+@mixin shadow-14dp { box-shadow: 0 7px 9px -4px $shadow-color-1, 0 14px 21px 2px $shadow-color-2, 0 5px 26px 4px $shadow-color-3 }
+@mixin shadow-15dp { box-shadow: 0 8px 9px -5px $shadow-color-1, 0 15px 22px 2px $shadow-color-2, 0 6px 28px 5px $shadow-color-3 }
+@mixin shadow-16dp { box-shadow: 0 8px 10px -5px $shadow-color-1, 0 16px 24px 2px $shadow-color-2, 0 6px 30px 5px $shadow-color-3 }
+@mixin shadow-17dp { box-shadow: 0 8px 11px -5px $shadow-color-1, 0 17px 26px 2px $shadow-color-2, 0 6px 32px 5px $shadow-color-3 }
+@mixin shadow-18dp { box-shadow: 0 9px 11px -5px $shadow-color-1, 0 18px 28px 2px $shadow-color-2, 0 7px 34px 6px $shadow-color-3 }
+@mixin shadow-19dp { box-shadow: 0 9px 12px -6px $shadow-color-1, 0 19px 29px 2px $shadow-color-2, 0 7px 36px 6px $shadow-color-3 }
+@mixin shadow-20dp { box-shadow: 0 10px 13px -6px $shadow-color-1, 0 20px 31px 3px $shadow-color-2, 0 8px 38px 7px $shadow-color-3 }
+@mixin shadow-21dp { box-shadow: 0 10px 13px -6px $shadow-color-1, 0 21px 33px 3px $shadow-color-2, 0 8px 40px 7px $shadow-color-3 }
+@mixin shadow-22dp { box-shadow: 0 10px 14px -6px $shadow-color-1, 0 22px 35px 3px $shadow-color-2, 0 8px 42px 7px $shadow-color-3 }
+@mixin shadow-23dp { box-shadow: 0 11px 14px -7px $shadow-color-1, 0 23px 36px 3px $shadow-color-2, 0 9px 44px 8px $shadow-color-3 }
+@mixin shadow-24dp { box-shadow: 0 11px 15px -7px $shadow-color-1, 0 24px 38px 3px $shadow-color-2, 0 9px 46px 8px $shadow-color-3 }
+
+@mixin non-overflow-shadow-4dp { box-shadow: 0 2px 4px -1px $shadow-color-1, 0 4px 5px -1px $shadow-color-2}
+
+@mixin material-transition { transition: .25s cubic-bezier(0,0,0.2,1) }
+
+@mixin search-bar-hover {
+    @if $search-bar-hover {
+        @include shadow-2dp;
+        background: $search-bar-focus-color;
+    }
+}
+
+@mixin chip-type($chip-type) {
+    @if $chip-type == contained {
+        background: $contained-chip-color;
+
+        &.active { background-color: $contained-chip-selected-color }
+
+        &:hover { background-color: $contained-chip-selected-color }
+    }
+
+    @if $chip-type == outlined {
+        background: $outlined-chip-color;
+        border: 1px solid $outlined-chip-selected-border-color;
+    
+        &.active { background-color: $outlined-chip-selected-color }
+    
+        &:hover { background: $outlined-chip-hover-color }
+    }
+}
+
+@mixin button-type($button-type) {
+    border-radius: $button-radius;
+    display: inline-block;
+    font-weight: 500;
+    
+    @if $button-type == contained {
+        @if $button-shadow { @include shadow-1dp }
+        background: $contained-button-color;
+        color: $contained-button-text-color;
+
+        &:hover { background: $contained-button-hover-color }
+
+        &:focus { background: $contained-button-color }
+    }
+
+    @if $button-type == outlined {
+        box-shadow: none;
+        background: transparent;
+        color: $outlined-button-color;
+        border: 1px solid $outlined-button-color;
+
+        &:hover { background: $outlined-button-hover-color }
+
+        &:focus { background: $outlined-button-hover-color }
+    }
+
+    @if $button-type == text {
+        box-shadow: none;
+        background: transparent;
+
+        &:hover { background: $text-button-hover-color }
+
+        &:focus { background: $text-button-focus-color }
+    }
+}
+
+@mixin button-shadow {
+    @if $button-shadow {
+        button.btn,
+        .button,
+        .block-button,
+        .input-copy button,
+        .compose-form .compose-form__publish-button-wrapper { @include shadow-2dp }
+    }
+}
+
+@mixin text-area-border($text-area-border) {
+    background: $text-field-bg-color;
+    color: $text-field-color;
+
+    &:hover { border-color: $border-hover-color }
+
+    @if $text-area-border == underlined {
+        border-radius: $card-radius $card-radius 0 0;
+        border: 0;
+        border-bottom: 1px solid $border-color;
+
+        &:active,
+        &:focus { border-bottom: 2px solid $border-active-color }
+    }
+
+    @if $text-area-border == outlined {
+        border-radius: $card-radius;
+        border: 1px solid $border-color;
+
+        &:active,
+        &:focus {
+            border: 2px solid $border-active-color;
+        }
+    }
+}
+
+@mixin icon-button {
+    width: 20px !important;
+    height: 20px !important;
+    font-size: 20px !important;
+}
+
+// check background-image value
+@mixin bg-image {
+    @if $bg-image == none {        
+    } @else { background-image: url($bg-image) }
+}
+
+
+@mixin icon-font-style {
+    @if $icon-font-style == filled { font-family: "Material Icons" }
+    @if $icon-font-style == outlined { font-family: "Material Icons Outlined" }
+    @if $icon-font-style == round { font-family: "Material Icons Round" }
+    @if $icon-font-style == sharp { font-family: "Material Icons Sharp" }
+    @if $icon-font-style == two-tone { font-family: "Material Icons Two Tone" }
+}
+
+@mixin icon-font {
+    @if $icon-font-source == github {
+        @if $icon-font-style == filled {
+            @font-face {
+                font-family: "Material Icons";
+                src: local("Material Icons"),
+                     url("https://raw.githubusercontent.com/google/material-design-icons/raw/master/font/MaterialIcons-Regular.ttf") format('truetype');
+            }
+        }
+        @if $icon-font-style == outlined {
+            @font-face {
+                font-family: "Material Icons Outlined";
+                src: local("Material Icons Outlined"),
+                     url("https://raw.githubusercontent.com/google/material-design-icons/master/font/MaterialIconsOutlined-Regular.otf") format('opentype');
+            }
+        }
+        @if $icon-font-style == round {
+            @font-face {
+                font-family: "Material Icons Round";
+                src: local("Material Icons Round"),
+                     url("https://raw.githubusercontent.com/google/material-design-icons/master/font/MaterialIconsRound-Regular.otf") format('opentype');
+            }
+        }
+        @if $icon-font-style == sharp {
+            @font-face {
+                font-family: "Material Icons Sharp";
+                src: local("Material Icons Sharp"),
+                     url("https://raw.githubusercontent.com/google/material-design-icons/master/font/MaterialIconsSharp-Regular.otf") format('opentype');
+            }
+        }
+        @if $icon-font-style == two-tone {
+            @font-face {
+                font-family: "Material Icons Two Tone";
+                src: local("Material Icons Two Tone"),
+                     url("https://raw.githubusercontent.com/google/material-design-icons/master/font/MaterialIconsTwoTone-Regular.otf") format('opentype');
+            }
+        }
+    }
+
+    @if $icon-font-source == google {
+        @if $icon-font-style == filled {
+            @font-face {
+                font-family: "Material Icons";
+                src: local("Material Icons"),
+                     url("https://fonts.gstatic.com/s/materialicons/v55/flUhRq6tzZclQEJ-Vdg-IuiaDsNc.woff2") format('woff2');
+            }
+        }
+        @if $icon-font-style == outlined {
+            @font-face {
+                font-family: "Material Icons Outlined";
+                src: local("Material Icons Outlined"),
+                     url("https://fonts.gstatic.com/s/materialiconsoutlined/v25/gok-H7zzDkdnRel8-DQ6KAXJ69wP1tGnf4ZGhUce.woff2") format('woff2');
+            }
+        }
+        @if $icon-font-style == round {
+            @font-face {
+                font-family: "Material Icons Round";
+                src: local("Material Icons Round"),
+                     url("https://fonts.gstatic.com/s/materialiconsround/v24/LDItaoyNOAY6Uewc665JcIzCKsKc_M9flwmP.woff2") format('woff2');
+            }
+        }
+        @if $icon-font-style == sharp {
+            @font-face {
+                font-family: "Material Icons Sharp";
+                src: local("Material Icons Sharp"),
+                     url("https://fonts.gstatic.com/s/materialiconssharp/v25/oPWQ_lt5nv4pWNJpghLP75WiFR4kLh3kvmvR.woff2") format('woff2');
+            }
+        }
+        @if $icon-font-style == two-tone {
+            @font-face {
+                font-family: "Material Icons Two Tone";
+                src: local("Material Icons Two Tone"),
+                     url("https://fonts.gstatic.com/s/materialiconstwotone/v23/hESh6WRmNCxEqUmNyh3JDeGxjVVyMg4tHGctNCu0.woff2") format('woff2');
+            }
+        }
+    }
+
+    @if $icon-font-source == self {
+        @if $icon-font-style == filled {
+            @font-face {
+                font-family: "Material Icons";
+                src: local("Material Icons"),
+                     url("../fonts/MaterialIcons-Regular.ttf") format('truetype');
+            }
+        }
+        @if $icon-font-style == outlined {
+            @font-face {
+                font-family: "Material Icons Outlined";
+                src: local("Material Icons Outlined"),
+                     url("../fonts/MaterialIconsOutlined-Regular.otf") format('opentype');
+            }
+        }
+        @if $icon-font-style == round {
+            @font-face {
+                font-family: "Material Icons Round";
+                src: local("Material Icons"),
+                     url("../fonts/MaterialIconsRound-Regular.otf") format('opentype');
+            }
+        }
+        @if $icon-font-style == sharp {
+            @font-face {
+                font-family: "Material Icons Sharp";
+                src: local("Material Icons Sharp"),
+                     url("../fonts/MaterialIconsSharp-Regular.otf") format('opentype');
+            }
+        }
+        @if $icon-font-style == two-tone {
+            @font-face {
+                font-family: "Material Icons Two Tone";
+                src: local("Material Icons Two Tone"),
+                     url("../fonts/MaterialIconsTwoTone-Regular.otf") format('opentype');
+            }
+        }
+    }
+}

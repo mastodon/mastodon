@@ -1,0 +1,19 @@
+.fa.fa-users.column-link,
+.fa.fa-globe.column-link,
+.fa.fa-address-book.column-link,
+.fa.fa-bullhorn.column-link,
+.fa.fa-envelope.column-link,
+.fa.fa-bookmark.column-link,
+.fa.fa-star.column-link,
+.fa.fa-list-ul.column-link {
+    &__icon.fa-fw { color: $icon-color }
+}
+
+.fa.fa-lock { text-transform: none }
+
+.icon-with-badge__badge {
+    background: $badge-color;
+    border: none;
+    padding: 2px 6px;
+    border-radius: 12px;
+}

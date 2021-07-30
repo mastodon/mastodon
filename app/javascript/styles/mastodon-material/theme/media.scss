@@ -1,0 +1,128 @@
+.media-gallery {
+    border-radius: $media-radius;
+
+    &__item { border-radius: $media-radius }
+}
+
+.media-modal {
+    &__nav {
+        background: $media-icon-bg-color;
+        color: $media-icon-color;
+        height: 48px;
+        width: 48px;
+        margin: auto 16px;
+        padding: 8px;
+        border-radius: 50%;
+    
+        .fa { width: 32px }
+    }
+
+    &__button {
+        background-color: $media-page-indicator-color;
+
+        &--active { background-color: $media-page-indicator-active-color }
+    }
+
+    &__close,
+    &__zoom-button {
+        &.icon-button {
+            background: transparent;
+            color: $media-icon-color;
+            font-size: 24px !important;
+            width: 24px !important;
+            height: 24px !important;
+            padding: 8px;
+            box-sizing: content-box;
+            line-height: normal !important;
+    
+            &:hover {
+                background: $media-icon-bg-hover-color;
+                color: $media-icon-hover-color;
+            }
+    
+            .fa-fw {
+                width: 24px;
+                height: 24px;
+            }
+        }
+    }
+
+    &__meta {
+        bottom: 24px;
+
+        a { color: $media-icon-color }
+    }
+
+    &__overlay {
+        .picture-in-picture__footer .icon-button {
+            color: $media-icon-color;
+
+            &:active,
+            &:focus,
+            &:hover {
+                color: $media-icon-hover-color;
+                background-color: transparent;
+            }
+
+            &.star-icon.active {
+                &:active,
+                &:focus,
+                &:hover { background: transparent }
+            }
+        }
+    }
+}
+
+.video-player {
+    border-radius: 0;
+
+    &__controls {
+        background: linear-gradient(0deg,rgba(0,0,0,.5),rgba(0,0,0,.2) 60%,transparent);
+        padding: 0 12px;
+    }
+
+    &__seek {
+        &::before {
+            background: rgba(255,255,255,.2);
+            border-radius: 0;
+        }
+
+        &__buffer {
+            background: rgba(255,255,255,.4);
+            border-radius: 0;
+        }
+
+        &__progress {
+            background: $primary-color;
+            border-radius: 0;
+        }
+
+        &__handle {
+            @include material-transition;
+            background-color: $primary-color;
+            box-shadow: none;
+        }
+    }
+
+    &__volume {
+        &::before {
+            background: rgba(255,255,255,.4);
+            border-radius: 0;
+        }
+
+        &__current {
+            background: $primary-color;
+            border-radius: 0;
+        }
+
+        &__handle {
+            @include material-transition;
+            background-color: $primary-color;
+            box-shadow: none;
+        }
+    }
+
+    &__time-current { margin-left: 68px }
+
+    &__buttons button { font-size: 20px }
+}

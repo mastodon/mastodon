@@ -1,0 +1,516 @@
+.column {
+    @include shadow-1dp;
+    padding: 0;
+    margin: 10px 8px;
+    border-radius: $card-radius;
+
+    &>.scrollable {
+        background: $list-bg-color;
+        opacity: $column-transparency;
+    }
+
+    &:last-child { box-shadow: none }
+}
+
+.column-header {
+    background: $top-bar-color;
+    border-radius: $bar-radius;
+    height: 56px;
+
+    > button {
+        padding: 16px;
+        color: $top-bar-text-color;
+    }
+
+    &>.column-header__back-button { color: $top-bar-icon-color }
+
+    &.active {
+        .column-header__icon {
+            color: $top-bar-unread-icon-color;
+            text-shadow: none;
+        }
+    }
+
+    &__icon {
+        margin-right: 16px;
+        color: $top-bar-icon-color;
+        font-size: 20px;
+    }
+
+    &__buttons { height: 56px }
+
+    &__button {
+        @include icon-button;
+        background: $top-bar-color;
+        color: $top-bar-icon-color;
+        padding: 8px;
+        margin: 10px;
+        border-radius: 50%;
+        box-sizing: content-box;
+
+        &.active {
+            color: $top-bar-icon-active-color;
+            background: $icon-bg-active-color;
+
+            &:hover {
+                color: $top-bar-icon-hover-color;
+                background: $icon-bg-hover-color;
+            }
+        }
+
+        &:hover {
+            color: $top-bar-icon-hover-color;
+            background: $icon-bg-hover-color;
+        }
+    }
+
+    &__setting-btn {
+        color: $icon-button-color;
+        padding: 8px 0;
+
+        &:hover {
+            color: $icon-button-hover-color;
+            text-decoration: none;
+        }
+
+        .fa { font-size: 20px }
+
+        span { vertical-align: middle }
+    }
+
+    &__setting-arrows {
+        font-size: 16px;
+        border-bottom: 8px;
+
+        .column-header__setting-btn {
+            padding: 8px;
+            margin: 0 8px;
+            border-radius: 50%;
+
+            &:last-child { padding-right: 8px }
+        }
+    }
+
+    &__wrapper {
+        @include shadow-4dp;
+        border-radius: $bar-radius;
+        opacity: $bar-transparency;
+
+        .announcements { border-top: 1px solid $border-color }
+
+        &.active {
+            @include shadow-4dp;
+
+            &::before { background: transparent }
+        }
+    }
+
+    &__collapsible {
+        transition: .25s cubic-bezier(0.0,0.0,0.2,1), .25s cubic-bezier(1,0.2,0,0);
+        color: $ui-text-color;
+        background: $card-bg-color;
+        border-top: 1px solid $border-color;
+
+        &-inner {
+            background: $card-bg-color;
+            padding: 16px;
+        }
+
+        &.collapsed {
+            opacity: 1;
+            border-top: none;
+        }
+    }
+
+    &__back-button {
+        background: $top-bar-color;
+        color: $top-bar-icon-color;
+        margin: 10px;
+        padding: 8px;
+        font-size: 20px;
+
+        span { display: none }
+    }
+}
+
+.column-subheading {
+    color: $section-text-color;
+    background: $bg-color;
+    padding: 12px 16px;
+    margin-top: 8px;
+    border-top: 1px solid $border-color;
+
+    &:first-child { border-top: none }
+}
+
+.column-link {
+    color: $ui-text-color;
+    background: $bg-color;
+    padding: 16px;
+    border-radius: $nav-drawer-item-radius;
+
+    &:hover { background: $list-bg-hover-color }
+
+    &:active,
+    &:focus { background: $list-bg-active-color }
+
+    &__icon {
+        margin-right: 32px;
+        font-size: 20px;
+    }
+
+    &--transparent {
+        &.active {
+            color: $ui-text-color;
+            background: $menu-bg-active-color;
+
+            &:hover { background: $menu-bg-active-hover-color }
+    
+            .fa { color: $icon-color }
+        }
+
+        &:hover {
+            color: $ui-text-color;
+
+            .fa { color: $icon-color }
+        }
+    }
+
+    .fa { color: $icon-color }
+}
+
+.column-settings {
+    &__section {
+        color: $section-text-color;
+        margin: 16px 0 8px;
+    }
+
+    &__row .text-btn { margin-bottom: 0 }
+}
+
+.column-back-button {
+    @include shadow-4dp;
+    background: $top-bar-color;
+    color: $top-bar-icon-color;
+    padding: 16px;
+
+    span { visibility: hidden }  // hide "back" string
+
+    &--slim-button { top: -54px }
+}
+
+.column-inline-form {
+    padding: 16px 0 16px 16px;
+    background: $card-bg-color;
+
+    .icon-button {
+        width: 36px !important;
+        height: 36px !important;
+        padding: 8px;
+        margin: 0 16px;
+    }
+}
+
+.columns-area {
+    @include bg-image;
+    background-size: contain;
+}
+
+.setting-text {
+    color: $primary-text-color;
+    background: $text-field-bg-color;
+    border-radius: $bar-radius;
+
+    &::placeholder { color: $tips-text-color }
+}
+
+.empty-column-indicator {
+    color: $secondary-text-color;
+    background: $card-bg-color;
+    font-size: 16px;
+    contain: initial;  // padding fix
+}
+
+.conversation {
+    border-bottom: 1px solid $border-color;
+    padding: 12px;
+    background: $list-bg-inactive-color;
+
+    &--unread {
+        background: $list-bg-color;
+
+        .conversation__content__relative-time { color: $info-text-color }
+    }
+
+    &__unread { background: $primary-color }
+
+    &__avatar { padding: 0 16px 0 0 }
+
+    &__content {
+        padding: 0;
+
+        &__relative-time {
+            font-size: 14px;
+            color: $info-text-color;
+        }
+
+        &__names,
+        &__names a {
+            color: $primary-text-color;
+            font-size: 16px;
+        }
+    }
+}
+
+// read status in notification column
+.muted {
+    .status {
+        &__content {
+            color: $read-primary-text-color !important;
+    
+            p { color: $read-primary-text-color !important }
+    
+            a { color: $read-secondary-text-color !important }
+        }
+
+        &__display-name strong { color: $read-primary-text-color }
+    }
+
+    .poll {
+        color: $read-primary-text-color;
+
+        &__chart {
+            background: $read-poll-bar-color;
+    
+            &.leading { background: $read-poll-bar-leading-color }
+        }
+
+        &__footer,
+        &__link { color: $read-ui-text-color }
+    }
+}
+
+.load-gap { border-bottom: 1px solid $border-color }
+
+.load-more {
+    color: $icon-color;
+    padding: 16px;
+
+    &:hover { background: $menu-bg-hover-color }
+}
+
+.getting-started {
+    background: $bg-color;
+    color: $ui-text-color;
+    opacity: $column-transparency;
+
+    &__wrapper {
+        background: $bg-color;
+        height: auto !important;
+        padding-bottom: 8px;
+        border-bottom: 1px solid $border-color;
+    }
+
+    &__footer {
+        padding: 16px;
+        
+        p {
+            color: $secondary-text-color;
+            font-size: 12px;
+            margin-bottom: 16px;
+        }
+
+        a { color: $ui-text-color }
+
+        p a { color: $link-text-color }
+    }
+
+    &__trends {
+        background: $bg-color;
+        margin-bottom: 0;
+        opacity: $column-transparency;
+
+        h4 {
+            color: $section-text-color;
+            padding: 12px 16px;
+            margin-top: 8px;
+            border-top: 1px solid $border-color;
+            border-bottom: none;
+        }
+    }
+}
+
+.trends {
+    &__header {
+        color: $section-text-color;
+        background: transparent;
+        border-bottom: 1px solid $border-color;
+        padding: 16px;
+
+        .fa { margin-right: 8px }
+    }
+
+    &__item {
+        padding: 16px;
+        border-bottom: none;
+    
+        &__name {
+            color: $secondary-text-color;
+            font-size: 12px;
+    
+            a { color: $primary-text-color }
+        }
+    
+        &__current {
+            padding-right: 16px;
+            margin-left: 4px;
+            color: $secondary-text-color;
+        }
+    
+        &__sparkline path {
+            stroke: $primary-color;
+            fill: $primary-color;
+            fill-opacity: 0.5;
+        }
+    }
+}
+
+.setting-toggle {
+    &__label {
+        color: $ui-text-color;
+        margin: 8px 8px 8px 14px;
+    }
+}
+
+.announcements {
+    background: $card-bg-color;
+    padding: 0 8px;
+
+    &__container { color: $primary-text-color }
+
+    &__item {
+        padding: 16px 8px;
+        font-size: 16px;
+
+        &__unread { background: $badge-color }
+
+        &__range {
+            margin-bottom: 8px;
+            padding-right: 16px;
+        }
+    }
+
+    &__pagination {
+        color: $ui-text-color;
+        padding: 0 8px 16px;
+        bottom: 0;
+        position: initial;
+        float: right;
+
+        .icon-button {
+            @include icon-button;
+            padding: 8px;
+            margin: 0 8px;
+            line-height: normal !important;
+            box-sizing: content-box;
+        }
+
+        span { vertical-align: super }
+    }
+}
+
+.reactions-bar {
+    margin-top: 16px;
+    width: auto;
+
+    .emoji-button {
+        color: $icon-button-color;
+        font-size: 20px;
+
+        &:hover { color: $icon-button-hover-color }
+
+        &:active { color: $icon-button-active-color }
+    }
+
+    &__item {
+        @include chip-type($chip-type);
+        border-radius: 17px;
+        margin: 2px 4px;
+
+        &.active .reactions-bar__item__count { color: $chip-selected-text-color }
+
+        &__emoji {
+            width: 24px;
+            height: 24px;
+            margin: 4px 0 4px 2px;
+        }
+
+        &__count {
+            font-size: 16px;
+            margin: 0 12px 0 8px;
+            color: $secondary-text-color;
+        }
+
+        &:hover { background: $contained-chip-hover-color }
+    }
+}
+
+.notification {
+    &__filter-bar {
+        background: $tab-bg-color;
+        border-bottom: 1px solid $border-color;
+        z-index: 1;
+        opacity: $bar-transparency;
+    
+        button {
+            background: $tab-bg-color;
+            color: $tab-indicator-color;
+            font-size: 16px;
+
+            span { font-size: 14px }
+    
+            &.active {
+                color: $tab-indicator-active-color;
+                border-bottom: 4px solid $tab-indicator-active-color;
+                padding: 12px 0 8px;
+    
+                &::before,
+                &:after { border: none }
+
+                &:focus { background: $tab-indicator-bg-focus-color }
+            }
+
+            &:hover { background: $tab-indicator-bg-hover-color }
+        }
+    }
+
+    &__message {
+        color: $secondary-text-color;
+        margin: 0 16px 0 70px;
+        font-size: 16px;
+
+        .fa { color: $icon-button-color }
+    }
+
+    &__display-name:hover { color: inherit }
+}
+
+.notification-favourite .status.status-direct {
+    .icon-button.disabled { color: $disabled-icon-color }
+}
+
+.relationship-tag {
+    color: $ui-text-color;
+    background-color: $relationship-tag-color;
+    font-size: 12px;
+    border-radius: 17px;
+    padding: 4px 8px;
+    opacity: 1;
+}
+
+.attachment-list__list a { color: $secondary-text-color }
+
+// unread notification
+.notification.unread:before, .status__wrapper.unread:before { border-left: none }
+
+.notification.unread, .status__wrapper.unread { background-color: $unread-bg-color }

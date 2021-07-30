@@ -1,0 +1,87 @@
+@charset "UTF-8";
+@import '../theme/mixins';
+
+
+// Navigation bar radius
+$nav-bar-radius: 8px;
+//$nav-bar-radius: 28px;  // full radius
+
+
+// Search bar radius
+$search-bar-radius: 8px;
+//$search-bar-radius: 21px;  // full rounded
+
+
+// Bar radius settings
+$bar-radius: 0;
+//$bar-radius: 8px;
+
+
+// Button radius settings
+$button-radius: 8px;
+
+
+// Card radius settings
+$card-radius: 8px;
+
+
+// Dialog radius settings
+$dialog-radius: 8px;
+
+
+// Menu radius settings
+$menu-radius: 8px;
+
+
+// Media radius settings
+$media-radius: 0;
+//$media-radius: 2px;
+
+
+// Navigation drawer item settings
+$nav-drawer-item-radius: 8px;  // corner rounded
+//$nav-drawer-item-radius: 32px;  // full rounded
+//$nav-drawer-item-radius: 32px 0 0 32px;  // left rounded
+
+
+// Avatar cropping settings
+$avatar-radius: 50%;  // Rounded cropping
+//$avatar-radius: $card-radius  // Fit to card radius
+//$avatar-radius: 2px  // Material v1 square
+//$avatar-radius: 8px  // Material v2 square
+
+
+// Chip settings
+$chip-type: outlined;  // Material v2 styled outlined chip
+//$outlined-chip: contained;  // Material v1 styled contained chip
+
+
+// Button on statuses
+$button-on-status: text;  // Material v1 styled text button
+//$button-on-status: outlined;  // Material v2 styled outlined button
+
+
+// Button shadow
+$button-shadow: true;  // Material v1 styled colored button with shadow
+//$button-shadow: false;  // Material v2 styled colored button without shadow
+
+
+// Floating Action Button size
+$fab-size: 56px;  // Regular
+//$fab-size: 40px;  // Mini
+
+
+// CW text field border
+$cw-area-border: none;
+//$cw-area-border: underlined;
+//$cw-area-border: outlined;
+
+// Compose text field border
+$compose-area-border: none;
+//$compose-area-border: underlined;
+//$compose-area-border: outlined;
+
+// Other text field border
+$other-text-area-border: underlined;
+//$other-text-area-border: outlined;
+//$other-text-area-border: none;
