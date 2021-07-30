@@ -7,7 +7,8 @@ class Auth::RegistrationsController < Devise::RegistrationsController
   layout :determine_layout
 
   before_action :set_invite, only: [:new, :create]
-  before_action :check_enabled_registrations, only: [:new, :create]
+  before_action :check_enabled_registrations, only: [:new]
+  before_action :check_enabled_registrations_for_create, only: [:create]
   before_action :configure_sign_up_params, only: [:create]
   before_action :set_sessions, only: [:edit, :update]
   before_action :set_instance_presenter, only: [:new, :create, :update]
@@ -87,9 +88,12 @@ class Auth::RegistrationsController < Devise::RegistrationsController
     redirect_to root_path if single_user_mode? || !allowed_registrations?
   end
 
+  def check_enabled_registrations_for_create
+    redirect_to root_path if single_user_mode? || !allowed_registrations? || !is_human?
+  end
+
   def allowed_registrations?
-#    Setting.registrations_mode != 'none' || @invite&.valid_for_use?
-    (Setting.registrations_mode != 'none' || @invite&.valid_for_use?) && is_human?
+    Setting.registrations_mode != 'none' || @invite&.valid_for_use?
   end
 
   def invite_code
