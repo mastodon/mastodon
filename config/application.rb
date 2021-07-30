@@ -95,6 +95,7 @@ module Mastodon
       :ka,
       :kab,
       :kk,
+      :kmr,
       :kn,
       :ko,
       :ku,
