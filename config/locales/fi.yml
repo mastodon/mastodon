@@ -623,10 +623,16 @@ fi:
       x_months: "%{count} kk"
       x_seconds: "%{count} s"
   deletes:
+    challenge_not_passed: Antamasi tiedot eivät olleet oikeat
     confirm_password: Tunnistaudu syöttämällä nykyinen salasanasi
+    confirm_username: Vahvista toimenpide antamalla käyttäjänimesi
     proceed: Poista tili
     success_msg: Tilin poisto onnistui
     warning:
+      before: 'Ennen kuin jatkat, lue nämä huomautukset huolellisesti:'
+      caches: Muiden palvelimien välimuistiin tallentamaa sisältöä voi vielä löytyä
+      data_removal: Viestit ja muut tiedot poistetaan pysyvästi
+      email_change_html: Voit <a href="%{path}">muuttaa sähköpostiosoitettasi</a> poistamatta tiliäsi
       more_details_html: Lisätietoja saat <a href="%{terms_path}">tietosuojakäytännöstämme</a>.
       username_available: Käyttäjänimesi tulee saataville uudestaan
       username_unavailable: Käyttäjänimesi ei tule saataville enää uudestaan
@@ -734,10 +740,16 @@ fi:
   media_attachments:
     validations:
       images_and_video: Videota ei voi liittää tilapäivitykseen, jossa on jo kuvia
+      not_ready: Ei voi liittää tiedostoja, joiden käsittely on kesken. Yritä hetken kuluttua uudelleen!
       too_many: Tiedostoja voi liittää enintään 4
   migrations:
     acct: uuden tilin käyttäjätunnus@verkkotunnus
+    cancel: Peruuta uudelleenohjaus
+    cancel_explanation: Uudelleenohjauksen peruuttaminen aktivoi uudelleen nykyisen tilisi, mutta ei palauta seuraajia, jotka on siirretty kyseiselle tilille.
+    cancelled_msg: Uudelleenohjaus peruttu onnistuneesti.
     errors:
+      already_moved: on sama tili, jonka olet jo siirtänyt
+      missing_also_known_as: ei ole tämän tilin alias
       move_to_self: ei voi olla nykyinen tili
       not_found: ei voitu löytää
       on_cooldown: Sinä olet jäähyllä
