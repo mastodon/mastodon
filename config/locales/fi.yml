@@ -502,17 +502,31 @@ fi:
       body: "%{reporter} on raportoinut kohteen %{target}"
       body_remote: Joku osoitteesta %{domain} on raportoinut kohteen %{target}
       subject: Uusi raportti instanssista %{instance} (nro %{id})
+    new_trending_tag:
+      body: 'Aihetunniste #%{name} on nousussa tänään, mutta sitä ei ole aiemmin tarkistettu. Sitä ei näytetä julkisesti, ellet salli sitä. Siitä ei ilmoiteta uudelleen, jos pelkästään tallennat lomakkeen sellaisenaan.'
+      subject: 'Uusi aihetunniste tarkistettavaksi %{instance} (#%{name})'
   aliases:
     add_new: Luo alias
+    created_msg: Uusi alias luotiin onnistuneesti. Voit nyt aloittaa siirron vanhasta tilistä.
+    deleted_msg: Alias poistettiin onnistuneesti. Siirtyminen tuolta tililtä tähän ei ole enää mahdollista.
     empty: Sinulla ei ole aliaksia.
+    hint_html: Jos haluat siirtyä toisesta tilistä tähän tiliin, voit luoda aliasin, joka on pakollinen, ennen kuin voit siirtää seuraajia vanhasta tilistä tähän tiliin. Tämä toiminto on itsessään <strong>vaaraton ja palautuva</strong>. <strong>Tilin siirtyminen aloitetaan vanhalta tililtä</strong>.
     remove: Poista aliaksen linkitys
   appearance:
+    advanced_web_interface: Edistynyt web-käyttöliittymä
+    advanced_web_interface_hint: 'Jos haluat käyttää koko näytön leveyttä, edistyneen web-käyttöliittymän avulla voit määrittää useita eri sarakkeita näyttämään niin paljon tietoa samanaikaisesti kuin haluat: Koti, ilmoitukset, yhdistetty aikajana, mikä tahansa määrä luetteloita ja aihetunnisteita.'
+    animations_and_accessibility: Animaatiot ja saavutettavuus
+    confirmation_dialogs: Vahvistusvalinnat
+    discovery: Löytö
     localization:
       body: Mastodonin ovat kääntäneet vapaaehtoiset.
+      guide_link: https://crowdin.com/project/mastodon
       guide_link_text: Kaikki voivat osallistua.
     sensitive_content: Arkaluontoista sisältöä
+    toot_layout: Viestin asettelu
   application_mailer:
     notification_preferences: Muuta sähköpostiasetuksia
+    salutation: "%{name},"
     settings: 'Muuta sähköpostiasetuksia: %{link}'
     view: 'Näytä:'
     view_profile: Näytä profiili
@@ -528,14 +542,19 @@ fi:
   auth:
     apply_for_account: Pyydä kutsu
     change_password: Salasana
+    checkbox_agreement_html: Hyväksyn <a href="%{rules_path}" target="_blank">palvelinsäännöt</a> ja <a href="%{terms_path}" target="_blank">käyttöehdot</a>
+    checkbox_agreement_without_rules_html: Hyväksyn <a href="%{terms_path}" target="_blank">käyttöehdot</a>
     delete_account: Poista tili
     delete_account_html: Jos haluat poistaa tilisi, <a href="%{path}">paina tästä</a>. Poisto on vahvistettava.
     description:
+      prefix_invited_by_user: "@%{name} kutsuu sinut liittymään tälle Mastodonin palvelimelle!"
       prefix_sign_up: Liity Mastodoniin tänään!
       suffix: Tilillä voit seurata ihmisiä, julkaista päivityksiä ja lähetellä viestejä muille käyttäjille miltä palvelimelta tahansa ja paljon muuta!
     didnt_get_confirmation: Etkö saanut vahvistusohjeita?
+    dont_have_your_security_key: Eikö sinulla ole suojausavainta?
     forgot_password: Unohditko salasanasi?
     invalid_reset_password_token: Salasananpalautustunnus on virheellinen tai vanhentunut. Pyydä uusi.
+    link_to_otp: Syötä puhelimesi kaksivaiheinen koodi tai palautuskoodi
     login: Kirjaudu sisään
     logout: Kirjaudu ulos
     migrate_account: Muuta toiseen tiliin
