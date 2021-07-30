@@ -196,7 +196,7 @@ fi:
         only_password: Vain salasana
         password_and_2fa: Salasana ja kaksivaiheinen tunnistautuminen
         password_and_sign_in_token: Salasana ja sähköpostitunnus
-      sensitive: Voimaherkkä
+      sensitive: Pakotus arkaluontoiseksi
       sensitized: Merkitty arkaluontoiseksi
       shared_inbox_url: Jaetun saapuvan postilaatikon osoite
       show:
@@ -212,7 +212,7 @@ fi:
       time_in_queue: Odottaa jonossa %{time}
       title: Tilit
       unconfirmed_email: Sähköpostia ei vahvistettu
-      undo_sensitized: Kumoa voimaherkkä
+      undo_sensitized: Kumoa pakotus arkaluontoiseksi tiliksi
       undo_silenced: Peru hiljennys
       undo_suspension: Peru jäähy
       unsilenced_msg: '%{username} -tilin rajoituksen kumoaminen onnistui'
@@ -258,7 +258,15 @@ fi:
         reopen_report: Uudelleenavaa raportti
         reset_password_user: Nollaa salasana
         resolve_report: Selvitä raportti
+        sensitive_account: Pakotus arkaluontoiseksi tiliksi
         silence_account: Hiljennä tili
+        suspend_account: Jäädytä tili
+        unassigned_report: Peruuta raportin määritys
+        unsensitive_account: Kumoa pakotus arkaluontoiseksi tiliksi
+        unsilence_account: Peruuta tilin rajoitus
+        unsuspend_account: Peruuta tilin jäädytys
+        update_announcement: Päivitä ilmoitus
+        update_custom_emoji: Päivitä muokattu emoji
       deleted_status: "(poistettu tilapäivitys)"
       empty: Lokeja ei löytynyt.
       filter_by_action: Suodata tapahtuman mukaan
