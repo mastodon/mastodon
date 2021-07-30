@@ -20,6 +20,9 @@ fi:
     federation_hint_html: Tilillä %{instance}:ssa voit seurata ihmisiä millä tahansa Mastodon-palvelimella ja sen ulkopuolella.
     get_apps: Kokeile mobiilisovellusta
     hosted_on: Mastodon palvelimella %{domain}
+    instance_actor_flash: |
+      Tämä on virtuaalitili, joka edustaa itse palvelinta eikä yksittäistä käyttäjää.
+      Sitä käytetään yhdistämistarkoituksiin, eikä sitä saa estää, ellet halua estää koko palvelinta, jolloin sinun on käytettävä verkkotunnuksen estoa.
     learn_more: Lisätietoja
     privacy_policy: Tietosuojaseloste
     rules: Palvelimen säännöt
@@ -58,6 +61,7 @@ fi:
       one: Seuraaja
       other: Seuraajat
     following: Seuratut
+    instance_actor_flash: Tämä on virtuaalitili, jota käytetään edustamaan itse palvelinta eikä yksittäistä käyttäjää. Sitä käytetään yhdistämistarkoituksiin, eikä sitä tule keskeyttää.
     joined: Liittynyt %{date}
     last_active: viimeksi aktiivinen
     link_verified_on: Tämän linkin omistus on tarkastettu %{date}
@@ -191,6 +195,8 @@ fi:
       security_measures:
         only_password: Vain salasana
         password_and_2fa: Salasana ja kaksivaiheinen tunnistautuminen
+        password_and_sign_in_token: Salasana ja sähköpostitunnus
+      sensitive: Voimaherkkä
       sensitized: Merkitty arkaluontoiseksi
       shared_inbox_url: Jaetun saapuvan postilaatikon osoite
       show:
@@ -201,17 +207,25 @@ fi:
       statuses: Tilat
       subscribe: Tilaa
       suspended: Jäähyllä
+      suspension_irreversible: Tämän tilin tiedot on poistettu peruuttamattomasti. Voit peruuttaa tilin jäädyttämisen, jolloin siitä tulee käyttökelpoinen, mutta toiminto ei palauta sillä aiemmin olleita tietoja.
+      suspension_reversible_hint_html: Tili on jäädytetty, ja tiedot poistetaan kokonaan %{date}. Siihen asti tili voidaan palauttaa ilman haitallisia vaikutuksia. Jos haluat poistaa kaikki tilin tiedot välittömästi, voit tehdä sen alla.
       time_in_queue: Odottaa jonossa %{time}
       title: Tilit
       unconfirmed_email: Sähköpostia ei vahvistettu
+      undo_sensitized: Kumoa voimaherkkä
       undo_silenced: Peru hiljennys
       undo_suspension: Peru jäähy
+      unsilenced_msg: '%{username} -tilin rajoituksen kumoaminen onnistui'
       unsubscribe: Lopeta tilaus
+      unsuspended_msg: '%{username} -tilin keskeytyksen kumoaminen onnistui'
       username: Käyttäjänimi
+      view_domain: Näytä verkkotunnuksen yhteenveto
       warn: Varoita
       web: Verkko
+      whitelisted: Sallittu liittämiselle
     action_logs:
       action_types:
+        assigned_to_self_report: Määritä raportti
         change_email_user: Vaihda sähköposti käyttäjälle
         confirm_user: Vahvista käyttäjä
         create_account_warning: Luo varoitus
@@ -221,15 +235,18 @@ fi:
         create_domain_block: Estä palvelin
         create_email_domain_block: Estä sähköpostipalvelin
         create_ip_block: Luo IP-sääntö
+        create_unavailable_domain: Luo ei-saatavilla oleva verkkotunnus
         demote_user: Alenna käyttäjä
         destroy_announcement: Poista ilmoitus
         destroy_custom_emoji: Poista mukautettu emoji
+        destroy_domain_allow: Salli verkkotunnuksen poisto
         destroy_domain_block: Poista verkkotunnuksen esto
         destroy_email_domain_block: Poista sähköpostipalvelimen esto
         destroy_ip_block: Poista IP-sääntö
         destroy_status: Poista tilapäivitys
         destroy_unavailable_domain: Poista ei-saatavilla oleva verkkotunnus
         disable_2fa_user: Poista kaksivaiheinen tunnistautuminen käytöstä
+        disable_custom_emoji: Estä mukautettu emoji
         disable_user: Tili poistettu käytöstä
         enable_custom_emoji: Käytä mukautettuja emojeita
         enable_user: Tili otettu käyttöön
