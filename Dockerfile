@@ -4,7 +4,7 @@ FROM ubuntu:20.04 as build-dep
 SHELL ["/bin/bash", "-c"]
 
 # Install Node v14 (LTS)
-ENV NODE_VER="14.17.0"
+ENV NODE_VER="14.17.4"
 RUN ARCH= && \
     dpkgArch="$(dpkg --print-architecture)" && \
   case "${dpkgArch##*-}" in \
@@ -26,7 +26,7 @@ RUN ARCH= && \
 	mv node-v$NODE_VER-linux-$ARCH /opt/node
 
 # Install Ruby
-ENV RUBY_VER="2.7.2"
+ENV RUBY_VER="2.7.4"
 RUN apt-get update && \
   apt-get install -y --no-install-recommends build-essential \
     bison libyaml-dev libgdbm-dev libreadline-dev libjemalloc-dev \
