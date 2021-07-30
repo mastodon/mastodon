@@ -42,7 +42,7 @@
     - if ENV['RECAPTCHA_ENABLED'] == 'true'
       %script(src='https://www.google.com/recaptcha/api.js')
       %div{class: 'g-recaptcha',data: {sitekey: ENV['RECAPTCHA_SITE_KEY'], callback: 'on_submit_new_user'}}
-      = f.button :button, sign_up_message, type: :submit, id: 'registration-form', disabled: 'true'
+      = f.button :button, @invite.present? ? t('auth.register') : sign_up_message, type: :submit, id: 'registration-form', disabled: 'true'
       :javascript
         function on_submit_new_user(token) {
           document.getElementById("registration-form").disabled = false;
