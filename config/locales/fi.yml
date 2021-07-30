@@ -491,7 +491,13 @@ fi:
     warning_presets:
       add_new: Lisää uusi
       delete: Poista
+      edit_preset: Muokkaa varoituksen esiasetusta
+      empty: Et ole vielä määrittänyt yhtään varoitusesiasetusta.
+      title: Hallinnoi varoitusesiasetuksia
   admin_mailer:
+    new_pending_account:
+      body: Uuden tilin tiedot ovat alla. Voit hyväksyä tai hylätä tämän hakemuksen.
+      subject: Uusi tili tarkastettavana %{instance} (%{username})
     new_report:
       body: "%{reporter} on raportoinut kohteen %{target}"
       body_remote: Joku osoitteesta %{domain} on raportoinut kohteen %{target}
