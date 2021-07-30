@@ -555,22 +555,37 @@ fi:
     forgot_password: Unohditko salasanasi?
     invalid_reset_password_token: Salasananpalautustunnus on virheellinen tai vanhentunut. Pyydä uusi.
     link_to_otp: Syötä puhelimesi kaksivaiheinen koodi tai palautuskoodi
+    link_to_webauth: Käytä suojausavaintasi
     login: Kirjaudu sisään
     logout: Kirjaudu ulos
     migrate_account: Muuta toiseen tiliin
     migrate_account_html: Jos haluat ohjata tämän tilin toiseen tiliin, voit <a href="%{path}">asettaa toisen tilin tästä</a>.
     or_log_in_with: Tai käytä kirjautumiseen
+    providers:
+      cas: CAS
+      saml: SAML
     register: Rekisteröidy
+    registration_closed: "%{instance} ei hyväksy uusia jäseniä"
     resend_confirmation: Lähetä vahvistusohjeet uudestaan
     reset_password: Palauta salasana
     security: Tunnukset
     set_new_password: Aseta uusi salasana
+    setup:
+      email_below_hint_html: Jos alla oleva sähköpostiosoite on virheellinen, voit muuttaa sitä täällä ja tilata uuden vahvistussähköpostiviestin.
+      email_settings_hint_html: Vahvistussähköposti lähetettiin osoitteeseen %{email}. Jos sähköpostiosoite ei ole oikea, voit muuttaa sitä tiliasetuksissa.
+      title: Asetukset
     status:
       account_status: Tilin tila
+      confirming: Odotetaan sähköpostivahvistuksen valmistumista.
       functional: Tilisi on täysin toimiva.
+      pending: Hakemuksesi odottaa henkilökuntamme tarkastusta. Tämä voi kestää jonkin aikaa. Saat sähköpostiviestin, jos hakemuksesi on hyväksytty.
+      redirecting_to: Tilisi ei ole aktiivinen, koska se ohjaa tällä hetkellä kohteeseen %{acct}.
+    too_fast: Lomake lähetettiin liian nopeasti, yritä uudelleen.
     trouble_logging_in: Ongelmia kirjautumisessa?
+    use_security_key: Käytä suojausavainta
   authorize_follow:
     already_following: Sinä seuraat jo tätä tiliä
+    already_requested: Olet jo lähettänyt seurantapyynnön tälle tilille
     error: Valitettavasti etätilin haussa tapahtui virhe
     follow: Seuraa
     follow_request: 'Olet lähettänyt seuraamispyynnön käyttäjälle:'
@@ -582,6 +597,17 @@ fi:
     title: Seuraa käyttäjää %{acct}
   challenge:
     confirm: Jatka
+    hint_html: "<strong>Vihje:</strong> Emme pyydä sinulta salasanaa uudelleen seuraavan tunnin aikana."
+    invalid_password: Virheellinen salasana
+    prompt: Vahvista salasanasi jatkaaksesi
+  crypto:
+    errors:
+      invalid_key: ei ole kelvollinen Ed25519- tai Curve25519 -avain
+      invalid_signature: ei ole kelvollinen Ed25519-allekirjoitus
+  date:
+    formats:
+      default: "%b %d, %Y"
+      with_month_name: "%B %d, %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count} h"
