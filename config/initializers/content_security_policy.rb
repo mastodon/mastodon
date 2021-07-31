@@ -15,12 +15,14 @@ media_host   = host_to_url(ENV['S3_ALIAS_HOST'])
 media_host ||= host_to_url(ENV['S3_CLOUDFRONT_HOST'])
 media_host ||= host_to_url(ENV['S3_HOSTNAME']) if ENV['S3_ENABLED'] == 'true'
 media_host ||= assets_host
+# custom host
+google_fonts_host = "https://fonts.gstatic.com" # Google Fonts
 
 Rails.application.config.content_security_policy do |p|
   p.base_uri        :none
   p.default_src     :none
   p.frame_ancestors :none
-  p.font_src        :self, assets_host
++ p.font_src :self, assets_host, google_fonts_host
   p.img_src         :self, :https, :data, :blob, assets_host
   p.style_src       :self, assets_host
   p.media_src       :self, :https, :data, assets_host
