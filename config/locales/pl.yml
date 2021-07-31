@@ -126,6 +126,7 @@ pl:
       demote: Degraduj
       destroyed_msg: "Dane %{username} są teraz w kolejce do natychmiastowego usunięcia"
       disable: Dezaktywuj
+      disable_sign_in_token_auth: Wyłącz uwierzytelnianie tokenu e-mail
       disable_two_factor_authentication: Wyłącz uwierzytelnianie dwuetapowe
       disabled: Dezaktywowano
       display_name: Wyświetlana nazwa
@@ -134,6 +135,7 @@ pl:
       email: Adres e-mail
       email_status: Stan e-maila
       enable: Aktywuj
+      enable_sign_in_token_auth: Włącz uwierzytelnianie tokenu e-mail
       enabled: Aktywowano
       enabled_msg: Pomyślnie odblokowano konto %{username}
       followers: Śledzący
@@ -198,6 +200,10 @@ pl:
       search: Szukaj
       search_same_email_domain: Inni użytkownicy z e-mail w tej domenie
       search_same_ip: Inni użytkownicy z tym samym IP
+      security_measures:
+        only_password: Tylko hasło
+        password_and_2fa: Hasło i 2FA
+        password_and_sign_in_token: Hasło i token e-mail
       sensitive: Wrażliwe
       sensitized: oznaczono jako wrażliwe
       shared_inbox_url: Adres udostępnianej skrzynki
@@ -249,8 +255,10 @@ pl:
         destroy_unavailable_domain: Usuń niedostępną domenę
         disable_2fa_user: Wyłącz 2FA
         disable_custom_emoji: Wyłącz niestandardowe emoji
+        disable_sign_in_token_auth_user: Wyłącz uwierzytelnianie tokenu e-mail dla użytkownika
         disable_user: Wyłącz użytkownika
         enable_custom_emoji: Włącz niestandardowe emoji
+        enable_sign_in_token_auth_user: Włącz uwierzytelnianie tokenu e-mail dla użytkownika
         enable_user: Włącz użytkownika
         memorialize_account: Upamiętnij konto
         promote_user: Podnieś uprawnienia
