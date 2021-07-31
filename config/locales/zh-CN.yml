@@ -1,8 +1,8 @@
 ---
 zh-CN:
   about:
-    about_hashtag_html: 这里展示的是带有话题标签 <strong>#%{hashtag}</strong> 的公开动态。如果你想与他们互动，你需要在任意一个 PUB.PM 站点或与其兼容的网站上拥有一个帐户。
-    about_mastodon_html: PUB.PM 是一个建立在开放式网络协议和自由、开源软件之上的社交网络，有着类似于电子邮件的分布式设计。
+    about_hashtag_html: 这里展示的是带有话题标签 <strong>#%{hashtag}</strong> 的公开动态。如果你想与他们互动，你需要在任意一个 ActivityPub 站点或与其兼容的网站上拥有一个帐户。
+    about_mastodon_html: Mastodon 是一个建立在开放式网络协议和自由、开源软件之上的社交网络，有着类似于电子邮件的分布式设计。
     about_this: 关于本站
     active_count_after: 活跃
     active_footnote: 每月活跃用户
@@ -20,18 +20,18 @@ zh-CN:
     documentation: 文档
     federation_hint_html: 在 %{instance} 上拥有账号后，你可以关注任何兼容ActivityPub的服务器上的人。
     get_apps: 尝试移动应用
-    hosted_on: 一个在 %{domain} 上运行的 Mastodon 实例
+    hosted_on: 一个在 %{domain} 上运行的实例
     instance_actor_flash: "这个账号是个虚拟帐号，不代表任何用户，只用来代表服务器本身。它用于和其它服务器互通，所以不应该被封禁，除非你想封禁整个实例。但是想封禁整个实例的时候，你应该用域名封禁。 \n"
     learn_more: 了解详情
     privacy_policy: 隐私政策
     rules: 服务器规则
-    rules_html: 如果你想要在此Mastodon服务器PUB.PM上拥有一个账户，你必须遵守相应的规则，摘要如下：
+    rules_html: 如果你想要在 PUB.PM 上拥有一个账户，你必须遵守相应的规则，摘要如下：
     see_whats_happening: 看一看现在在发生什么
     server_stats: 服务器统计数据：
     source_code: 源代码
     status_count_after:
       other: 条动态
-    status_count_before: 他们共发出了
+    status_count_before: 他们共发布了
     tagline: 关注并发现新朋友
     terms: 使用条款
     unavailable_content: 被限制的服务器
@@ -362,7 +362,7 @@ zh-CN:
       feature_invites: 邀请链接
       feature_profile_directory: 用户目录
       feature_registrations: 公开注册
-      feature_relay: 联盟中继站
+      feature_relay: 联邦中继站
       feature_timeline_preview: 时间轴预览
       features: 功能
       hidden_service: 匿名服务连通性
@@ -633,13 +633,13 @@ zh-CN:
         desc_html: 在个人资料页上显示管理人员标志
         title: 显示管理人员标志
       site_description:
-        desc_html: 首页上的介绍文字。 描述一下本 Mastodon 实例 PUB.PM 的特殊之处以及其他重要信息。可以使用 HTML 标签，包括 <code>&lt;a&gt;</code> 和 <code>&lt;em&gt;</code> 。
+        desc_html: 首页上的介绍文字。 描述一下本 Mastodon 实例的特殊之处以及其他重要信息。可以使用 HTML 标签，包括 <code>&lt;a&gt;</code> 和 <code>&lt;em&gt;</code> 。
         title: 本站简介
       site_description_extended:
         desc_html: 可以填写行为守则、规定、指南或其他本站特有的内容。可以使用 HTML 标签
         title: 本站详细介绍
       site_short_description:
-        desc_html: 会在在侧栏和元数据标签中显示。可以用一小段话描述 PUB.PM 是什么，以及本服务器的特点。
+        desc_html: 会在在侧栏和元数据标签中显示。可以用一小段话描述 Mastodon 是什么，以及本服务器的特点。
         title: 服务器一句话介绍
       site_terms:
         desc_html: 可以填写自己的隐私权政策、使用条款或其他法律文本。可以使用 HTML 标签
@@ -736,9 +736,9 @@ zh-CN:
     sensitive_content: 敏感内容
     toot_layout: 动态布局
   application_mailer:
-    notification_preferences: 更改电子邮件首选项
+    notification_preferences: 更改电子邮件偏好设定
     salutation: "%{name}："
-    settings: 使用此链接更改你的电子邮件首选项：%{link}
+    settings: 使用此链接更改你的电子邮件偏好设定：%{link}
     view: 点此链接查看详情：
     view_profile: 查看个人资料页
     view_status: 查看动态
@@ -758,7 +758,7 @@ zh-CN:
     delete_account: 删除帐户
     delete_account_html: 如果你想删除你的帐户，请<a href="%{path}">点击这里继续</a>。你需要确认你的操作。
     description:
-      prefix_invited_by_user: "@%{name} 邀请你加入这个Mastodon服务器 PUB.PM！"
+      prefix_invited_by_user: "@%{name} 邀请你加入PUB.PM！"
       prefix_sign_up: 现在就注册 PUB.PM！
       suffix: 注册一个帐号，你就可以关注别人、发布动态、并和其它任何ActivityPub服务器上的用户交流，而且还有其它更多功能！
     didnt_get_confirmation: 没有收到确认邮件？
@@ -870,7 +870,7 @@ zh-CN:
       content: 抱歉，我们的后台出错了。
       title: 这个页面有问题
     '503': 服务暂时不可用，无法请求该页面。
-    noscript_html: 使用 PUB.PM 网页版应用需要启用 JavaScript。你也可以选择适用于你的平台的 <a href="%{apps_path}">Mastodon 应用</a>。
+    noscript_html: 使用 PUB.PM 网页版应用需要启用 JavaScript。你也可以选择适用于你的平台的 <a href="%{apps_path}">应用</a>。
   existing_username_validator:
     not_found: 在本站找不到此用户
     not_found_multiple: 找不到 %{usernames}
@@ -1044,7 +1044,7 @@ zh-CN:
         other: "自从上次访问后，有 %{count} 条新通知 \U0001F418"
       title: 在你不在的这段时间……
     favourite:
-      body: 你的动态被 %{name} 点赞：
+      body: 你的动态被 %{name} 点赞了：
       subject: "%{name} 点赞了你的动态"
       title: 新的点赞
     follow:
@@ -1068,7 +1068,7 @@ zh-CN:
       subject: "%{name} 转发了你的动态"
       title: 新的转发
     status:
-      subject: "%{name} 刚刚发布"
+      subject: "%{name} 刚刚更新动态"
   notifications:
     email_events: 电子邮件通知事件
     email_events_hint: 选择你想要收到通知的事件：
@@ -1142,14 +1142,14 @@ zh-CN:
     reason_html: "<strong>为什么需要这个步骤？</strong> <code>%{instance}</code> 可能不是你所注册的服务器，所以我们需要先跳转到你所在的服务器。"
   remote_interaction:
     favourite:
-      proceed: 确认点赞
-      prompt: 你想要点赞此动态：
+      proceed: 确认标记为点赞
+      prompt: 你想要标记此动态为点赞：
     reblog:
       proceed: 确认转发
-      prompt: 你想要转发此条：
+      prompt: 你想要转发：
     reply:
       proceed: 确认回复
-      prompt: 你想要回复此动态：
+      prompt: 你想要回复：
   scheduled_statuses:
     over_daily_limit: 你已超出每日定时动态的上限（%{limit} 条）
     over_total_limit: 你已超出定时动态的上限（%{limit} 条）
@@ -1212,7 +1212,7 @@ zh-CN:
     import_and_export: 导入和导出
     migrate: 帐户迁移
     notifications: 通知
-    preferences: 首选项
+    preferences: 偏好设定
     profile: 个人资料
     relationships: 关注管理
     two_factor_authentication: 双重认证
@@ -1239,7 +1239,7 @@ zh-CN:
       limit: 你所置顶的动态数量已经达到上限
       ownership: 不能置顶别人的动态
       private: 不能置顶非公开的动态
-      reblog: 不能置顶转发动态
+      reblog: 不能置顶转发
     poll:
       total_people:
         other: "%{count} 人"
@@ -1285,7 +1285,7 @@ zh-CN:
       <p>我们向你收集的任何信息均可通过以下方式使用：</p>
 
       <ul>
-      <li>提供PUB.PM的核心功能。 你只能在登录时与其他人的内容进行互动并发布你自己的内容。例如，你可以关注其他人在你自己的个性化家庭时间轴中查看他们的组合帖子。</li>
+      <li>提供Mastodon的核心功能。 你只能在登录时与其他人的内容进行互动并发布你自己的内容。例如，你可以关注其他人在你自己的个性化家庭时间轴中查看他们的组合帖子。</li>
       <li>为了帮助社区适度，例如将你的IP地址与其他已知的IP地址进行比较，以确定禁止逃税或其他违规行为。</li>
       <li>你提供的电子邮件地址可能用于向你发送信息，有关其他人与你的内容交互或向你发送消息的通知，以及回复查询和/或其他请求或问题。</li>
       </ul>
@@ -1353,9 +1353,6 @@ zh-CN:
     contrast: Mastodon（高对比度）
     default: Mastodon（暗色主题）
     mastodon-light: Mastodon（亮色主题）
-
-     # Added theme
- mastodon-material: Mastodon Material（材质主题）
   time:
     formats:
       default: "%Y年%m月%d日 %H:%M"
@@ -1415,10 +1412,10 @@ zh-CN:
       final_step: '发布动态吧！即便你现在没有关注者，其他人仍然能在本站时间轴或者话题标签等地方看到你的公开动态。试着用 #自我介绍 这个话题标签介绍一下自己吧。'
       full_handle: 你的完整用户地址
       full_handle_hint: 你需要把这个告诉你的朋友们，这样他们就能从另一台服务器向你发送信息或者关注你。
-      review_preferences_action: 更改首选项
+      review_preferences_action: 更改偏好设定
       review_preferences_step: 记得调整你的偏好设置，比如你想接收什么类型的邮件，或者你想把你的动态可见范围默认设置为什么级别。如果你没有晕动病的话，考虑一下启用“自动播放 GIF 动画”这个选项吧。
       subject: 欢迎来到 PUB.PM
-      tip_federated_timeline: 联盟网络公共时间轴可以让你一窥更广阔的 PUB.PM 网络。不过，由于它只显示你的邻居们所订阅的内容，所以并不是全部。
+      tip_federated_timeline: 联盟网络公共时间轴可以让你一窥更广阔的 Mastodon 网络。不过，由于它只显示你的邻居们所订阅的内容，所以并不是全部。
       tip_following: 默认情况下，你会自动关注你所在服务器的管理员。想结交更多有趣的人的话，记得多逛逛本站时间轴和联盟网络公共时间轴哦。
       tip_local_timeline: 本站时间轴可以让你一窥 %{instance} 上的用户。他们就是离你最近的邻居！
       tip_mobile_webapp: 如果你的移动设备浏览器允许你将 PUB.PM 添加到主屏幕，你就能够接收推送消息。它就像本地应用一样好使！
