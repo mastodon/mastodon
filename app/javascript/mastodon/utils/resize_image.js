@@ -1,6 +1,6 @@
 import EXIF from 'exif-js';
 
-const MAX_IMAGE_PIXELS = 2073600; // 1920x1080px
+const MAX_IMAGE_PIXELS = 8294400; // 3840×2160px
 
 const _browser_quirks = {};
 
