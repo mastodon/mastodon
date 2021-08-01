@@ -49,10 +49,16 @@ module ApplicationHelper
     Setting.registrations_mode == 'none'
   end
 
+  # def available_sign_up_path
+  #   if closed_registrations?
+  #     'https://joinmastodon.org/#getting-started'
+  #   else
+  #     new_user_registration_path
+  #   end
+  # end
+
   def available_sign_up_path
-    if closed_registrations?
-      'https://joinmastodon.org/#getting-started'
-    else
+    if !closed_registrations?
       new_user_registration_path
     end
   end
