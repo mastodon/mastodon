@@ -10,4 +10,12 @@
   .actions
     = f.button :button, t('auth.login'), type: :submit, class: 'button button-primary'
 
-  %p.hint.subtle-hint= link_to t('auth.trouble_logging_in'), new_user_password_path
+- if Devise.mappings[:user].omniauthable? and User.omniauth_providers.any?
+  .simple_form.alternative-login
+    %h4= t('auth.or_log_in_with')
+
+    .actions
+      - User.omniauth_providers.each do |provider|
+        = link_to t("auth.providers.#{Devise.omniauth_configs[provider].strategy.display_name}", default: Devise.omniauth_configs[provider].strategy.display_name.to_s.chomp("_oauth2").capitalize), omniauth_authorize_path(:user, provider), class: "button button-#{Devise.omniauth_configs[provider].strategy.display_name}", method: :post
+
+%p.hint.subtle-hint= link_to t('auth.trouble_logging_in'), new_user_password_path
