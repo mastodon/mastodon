@@ -16,6 +16,6 @@
 
     .actions
       - User.omniauth_providers.each do |provider|
-        = link_to t("auth.providers.#{Devise.omniauth_configs[provider].strategy.display_name}", default: Devise.omniauth_configs[provider].strategy.display_name.to_s.chomp("_oauth2").capitalize), omniauth_authorize_path(:user, provider), class: "button button-#{Devise.omniauth_configs[provider].strategy.display_name}", method: :post
+        = link_to t("auth.providers.#{Devise.omniauth_configs[provider].strategy.display_name}", default: Devise.omniauth_configs[provider].strategy.display_name.capitalize), omniauth_authorize_path(:user, provider), class: "button button-#{Devise.omniauth_configs[provider].strategy.display_name}", method: :post
 
 %p.hint.subtle-hint= link_to t('auth.trouble_logging_in'), new_user_password_path
