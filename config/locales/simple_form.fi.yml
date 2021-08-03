@@ -14,7 +14,13 @@ fi:
         type_html: Valitse mitä teet käyttäjälle <strong>%{acct}</strong>
         types:
           disable: Estä käyttäjää käyttämästä tiliään, mutta älä poista tai piilota sen sisältöä.
+          none: Käytä tätä lähettääksesi varoituksen käyttäjälle käynnistämättä mitään muita toimintoja.
+          sensitive: Pakota kaikki tämän käyttäjän mediatiedostot arkaluontoisiksi.
+          silence: Estä käyttäjää pystymästä julkaisemaan julkisessa näkyvyydessä, piilota käyttäjän viestit ja ilmoitukset ihmisiltä, jotka eivät seuraa käyttäjää.
+          suspend: Estä vuorovaikutus tililtä tai tilille ja poista sen sisältö. Palautettavissa 30 päivän kuluessa.
+        warning_preset_id: Valinnainen. Voit silti lisätä mukautetun tekstin esiasetuksen loppuun
       announcement:
+        all_day: Kun valittu, vain valittu aikaväli näytetään
         scheduled_at: Jätä tyhjäksi julkaistaksesi ilmoituksen välittömästi
       defaults:
         avatar: PNG, GIF tai JPG. Enintään %{size}. Skaalataan kokoon %{dimensions} px
