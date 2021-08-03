@@ -10,7 +10,10 @@ fi:
       admin_account_action:
         include_statuses: Käyttäjä näkee mitkä viestit johtivat toimenpiteeseen tai varoitukseen
         send_email_notification: Käyttäjä saa selityksen mitä tapahtui hänen tililleen
+        text_html: Valinnainen. Voit käyttää julkaisun syntaksia. Voit <a href="%{path}">lisätä varoitusasetuksia</a> säästääksesi aikaa
         type_html: Valitse mitä teet käyttäjälle <strong>%{acct}</strong>
+        types:
+          disable: Estä käyttäjää käyttämästä tiliään, mutta älä poista tai piilota sen sisältöä.
       announcement:
         scheduled_at: Jätä tyhjäksi julkaistaksesi ilmoituksen välittömästi
       defaults:
