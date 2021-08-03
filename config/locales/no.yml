@@ -255,6 +255,11 @@
         update_custom_emoji: Oppdater tilpasset Emoji
         update_status: Oppdater statusen
       actions:
+        create_custom_emoji_html: "%{name} lastet opp ny emoji %{target}"
+        create_domain_allow_html: "%{name} tillatt føderasjon med domenet %{target}"
+        create_domain_block_html: "%{name} blokkert domene %{target}"
+        create_email_domain_block_html: "%{name} blokkert e-post domene %{target}"
+        create_ip_block_html: "%{name} opprettet regel for IP %{target}"
         silence_account_html: "%{name} begrenset %{target} sin konto"
       deleted_status: "(statusen er slettet)"
       empty: Ingen loggføringer ble funnet.
@@ -607,10 +612,14 @@
         desc_html: Vis offentlig tidslinje på landingssiden
         title: Forhandsvis tidslinjen
       title: Nettstedsinnstillinger
+      trendable_by_default:
+        desc_html: Påvirker hashtags som ikke har blitt nektet tidligere
+        title: Tillat hashtags for trend uten foregående vurdering
       trends:
         title: Trendende emneknagger
     site_uploads:
       delete: Slett den opplastede filen
+      destroyed_msg: Vellykket sletting av sideopplasting!
     statuses:
       back_to_account: Tilbake til kontosiden
       batch:
@@ -625,6 +634,12 @@
       no_status_selected: Ingen statuser ble endret da ingen ble valgt
       title: Kontostatuser
       with_media: Med media
+    system_checks:
+      database_schema_check:
+        message_html: Det venter på databaseoverføringer. Vennligst kjør disse for å sikre at applikasjonen oppfører seg som forventet
+      rules_check:
+        action: Behandle serverregler
+        message_html: Du har ikke definert noen serverregler.
     tags:
       accounts_today: Ulike brukere i dag
       accounts_week: Unike brukstilfeller denne uken
@@ -984,6 +999,8 @@
       body: 'Din status ble fremhevd av %{name}:'
       subject: "%{name} fremhevde din status"
       title: Ny fremheving
+    status:
+      subject: "%{name} postet nettopp"
   notifications:
     email_events: E-postvarslinger for hendelser
     email_events_hint: 'Velg hendelser som du vil motta varslinger for:'
@@ -1034,6 +1051,7 @@
   relationships:
     activity: Kontoaktivitet
     dormant: Dormende
+    follow_selected_followers: Følg valgte tilhengere
     followers: Følgere
     following: Følginger
     invited: Invitert
@@ -1083,6 +1101,7 @@
       micro_messenger: MicroMessenger
       nokia: Nokia S40 Ovi-nettleser
       opera: Opera
+      otter: Otter
       phantom_js: PhantomJS
       qq: QQ Browser
       safari: Safari
@@ -1108,6 +1127,7 @@
     revoke: Tilbakekall
     revoke_success: Økt tilbakekalt
     title: Økter
+    view_authentication_history: Vis autentiseringshistorikk for kontoen din
   settings:
     account: Konto
     account_settings: Kontoinnstillinger
@@ -1142,7 +1162,10 @@
       video:
         one: "%{count} video"
         other: "%{count} videoer"
+    boosted_from_html: Boostet fra %{acct_link}
     content_warning: 'Innholdsadvarsel: %{warning}'
+    errors:
+      in_reply_not_found: Posten du prøver å svare ser ikke ut til eksisterer.
     language_detection: Oppdag språk automatisk
     open_in_web: Åpne i nettleser
     over_character_limit: grense på %{max} tegn overskredet
@@ -1269,6 +1292,7 @@
   time:
     formats:
       default: "%-d. %b %Y, %H:%M"
+      month: "%b %Y"
   two_factor_authentication:
     add: Legg til
     disable: Skru av
@@ -1290,10 +1314,14 @@
       subject: Arkivet ditt er klart til å lastes ned
     sign_in_token:
       details: 'Her er detaljene om forsøket:'
+      explanation: 'Vi oppdaget et forsøk på å logge på kontoen fra en ukjent IP-adresse. Hvis dette er deg, vennligst skriv inn sikkerhetskoden nedenfor på påloggingssiden:'
+      further_actions: 'Hvis dette ikke var deg, vennligst endre passordet ditt og aktivere to-faktor autentisering på kontoen din. Du kan gjøre det her:'
+      subject: Bekreft forsøk på å logge inn
       title: Påloggingsforsøk
     warning:
       explanation:
         disable: Mens kontoen din er fryst, forblir dine kontodata intakt, men du kan ikke utføre noen handlinger før den har blitt tint opp.
+        sensitive: De opplastede mediefilene og linket vil bli behandlet som sensitive.
         silence: Mens kontoen din er begrenset, vil bare folk som allerede følger deg se dine tuter på denne tjeneren, og du kan bli ekskludert fra diverse offentlige oppføringer. Men andre kan fortsatt følge deg manuelt.
         suspend: Kontoen din har blitt suspendert, og alle dine tuter og opplastede media har blitt ugjenkallelig fjernet fra denne tjeneren, og fra tjenere der du hadde følgere.
       get_in_touch: Du kan svare på denne E-posten for å komme i kontakt med styret i %{instance}.
@@ -1302,11 +1330,13 @@
       subject:
         disable: Kontoen din, %{acct}, har blitt fryst
         none: Advarsel for %{acct}
+        sensitive: Din konto %{acct} medier har blitt merket som følsom
         silence: Kontoen din, %{acct}, har blitt begrenset
         suspend: Kontoen din, %{acct}, har blitt suspendert
       title:
         disable: Kontoen er fryst
         none: Advarsel
+        sensitive: Mediet ditt er markert som følsom
         silence: Kontoen er begrenset
         suspend: Kontoen er suspendert
     welcome:
@@ -1328,10 +1358,13 @@
       title: Velkommen ombord, %{name}!
   users:
     follow_limit_reached: Du kan ikke følge mer enn %{limit} personer
+    generic_access_help_html: Problemer med å få tilgang til din konto? Du kan kontakte %{email} for assistanse
     invalid_otp_token: Ugyldig to-faktorkode
     invalid_sign_in_token: Ugyldig sikkerhetskode
     otp_lost_help_html: Hvis du mistet tilgangen til begge deler, kan du komme i kontakt med %{email}
+    seamless_external_login: Du er logget inn via en ekstern tjeneste, så passord og e-post innstillinger er ikke tilgjengelige.
     signed_in_as: 'Innlogget som:'
+    suspicious_sign_in_confirmation: Du ser ikke ut til å ha logget inn fra denne enheten før, og du har ikke logget inn en stund, så vi sender en sikkerhetskode til din e-postadresse for å bekrefte at det er deg.
   verification:
     explanation_html: 'Du kan <strong>bekrefte at du selv er eieren av lenkene i din profilmetadata</strong>. For å gjøre det, må det tillenkede nettstedet inneholde en lenke som fører tilbake til Mastodon-profilen din. Lenken tilbake <strong>må</strong> ha en <code>rel="me"</code>-attributt. Tekstinnholdet til lenken er irrelevant. Her er et eksempel:'
     verification: Bekreftelse
@@ -1342,7 +1375,11 @@
     delete: Slett
     delete_confirmation: Er du sikker på at du vil slette denne sikkerhetsnøkkelen?
     destroy:
+      error: Det oppsto et problem med å slette sikkerhetsnøkkelen. Prøv igjen.
       success: Sikkerhetsnøkkelen din ble vellykket slettet.
     invalid_credential: Ugyldig sikkerhetsnøkkel
+    nickname_hint: Skriv inn kallenavnet til din nye sikkerhetsnøkkel
+    not_enabled: Du har ikke aktivert WebAuthn ennå
     not_supported: Denne nettleseren støtter ikke sikkerhetsnøkler
+    otp_required: For å bruke sikkerhetsnøkler, må du først aktivere to-faktor autentisering.
     registered_on: Registrert den %{date}
