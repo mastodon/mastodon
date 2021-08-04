@@ -39,10 +39,10 @@
 
         .directory__card__extra
           .accounts-table__count
-            = number_to_human account.statuses_count, strip_insignificant_zeros: true
+            = friendly_number_to_human account.statuses_count
             %small= t('accounts.posts', count: account.statuses_count).downcase
           .accounts-table__count
-            = number_to_human account.followers_count, strip_insignificant_zeros: true
+            = friendly_number_to_human account.followers_count
             %small= t('accounts.followers', count: account.followers_count).downcase
           .accounts-table__count
             - if account.last_status_at.present?

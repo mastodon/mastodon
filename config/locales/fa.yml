@@ -64,7 +64,7 @@ fa:
       other: پیگیر
     following: پی می‌گیرد
     instance_actor_flash: این حساب یک عامل مجازی است که به نمایندگی از خود کارساز استفاده می‌شود و نه هیچ یکی از کاربران. این حساب به منظور اتصال به فدراسیون استفاده می‌شود و نباید معلق شود.
-    joined: کاربر از %{date}
+    joined: پیوسته از %{date}
     last_active: آخرین فعالیت
     link_verified_on: مالکیت این پیوند در %{date} بررسی شد
     media: عکس و ویدیو
@@ -428,7 +428,13 @@ fa:
       unsuppress: بازگردانی پیشنهادهای پی‌گیری
     instances:
       back_to_all: همه
+      back_to_limited: محدود
+      back_to_warning: هشدار
       by_domain: دامین
+      delivery:
+        all: همه
+        unavailable: ناموجود
+        warning: هشدار
       delivery_available: پیام آماده است
       empty: هیج دامنه‌ای پیدا نشد.
       known_accounts:
@@ -1327,7 +1333,6 @@ fa:
   time:
     formats:
       default: "%d %b %Y, %H:%M"
-      month: "%Ob %Y"
   two_factor_authentication:
     add: افزودن
     disable: غیرفعال‌کردن

@@ -214,39 +214,10 @@ class Formatter
     result.flatten.join
   end
 
-  UNICODE_ESCAPE_BLACKLIST_RE = /\p{Z}|\p{P}/
-
   def utf8_friendly_extractor(text, options = {})
-    old_to_new_index = [0]
-
-    escaped = text.chars.map do |c|
-      output = begin
-        if c.ord.to_s(16).length > 2 && !UNICODE_ESCAPE_BLACKLIST_RE.match?(c)
-          CGI.escape(c)
-        else
-          c
-        end
-      end
-
-      old_to_new_index << old_to_new_index.last + output.length
-
-      output
-    end.join
-
     # Note: I couldn't obtain list_slug with @user/list-name format
     # for mention so this requires additional check
-    special = Extractor.extract_urls_with_indices(escaped, options).map do |extract|
-      new_indices = [
-        old_to_new_index.find_index(extract[:indices].first),
-        old_to_new_index.find_index(extract[:indices].last),
-      ]
-
-      next extract.merge(
-        indices: new_indices,
-        url: text[new_indices.first..new_indices.last - 1]
-      )
-    end
-
+    special = Extractor.extract_urls_with_indices(text, options)
     standard = Extractor.extract_entities_with_indices(text, options)
     extra = Extractor.extract_extra_uris_with_indices(text, options)
 
