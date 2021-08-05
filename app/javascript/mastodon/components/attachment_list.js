@@ -2,6 +2,7 @@ import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import ImmutablePureComponent from 'react-immutable-pure-component';
+import { FormattedMessage } from 'react-intl';
 import classNames from 'classnames';
 import Icon from 'mastodon/components/icon';
 
@@ -33,7 +34,7 @@ export default class AttachmentList extends ImmutablePureComponent {
               <li key={attachment.get('id')}>
                 <a href={displayUrl} target='_blank' rel='noopener noreferrer'>
                   {compact && <Icon id='link' />}
-                  {filename(displayUrl)}
+                  {displayUrl ? filename(displayUrl) : <FormattedMessage id='attachments_list.unprocessed' defaultMessage='(unprocessed)' />}
                 </a>
               </li>
             );
