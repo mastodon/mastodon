@@ -977,13 +977,13 @@
     }
 
     @media screen and (max-height: 810px) {
-      .trends__item:nth-child(3) {
+      .trends__item:nth-of-type(3) {
         display: none;
       }
     }
 
     @media screen and (max-height: 720px) {
-      .trends__item:nth-child(2) {
+      .trends__item:nth-of-type(2) {
         display: none;
       }
     }
