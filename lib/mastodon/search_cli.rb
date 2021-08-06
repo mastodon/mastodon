@@ -99,7 +99,7 @@ module Mastodon
 
                 ActiveRecord::Base.connection_pool.with_connection do
                   grouped_records = index.adapter.send(:grouped_objects, records)
-                  grouped_records = {to_index: grouped_records[:index] || [], delete: grouped_records[:delete] || []} unless grouped_records.has_key?(:to_index) && grouped_records.has_key?(:delete)
+                  grouped_records = { to_index: grouped_records[:index] || [], delete: grouped_records[:delete] || [] } unless grouped_records.key?(:to_index) && grouped_records.key?(:delete)
                   bulk_body       = Chewy::Index::Import::BulkBuilder.new(index, **grouped_records).bulk_body
                 end
 
