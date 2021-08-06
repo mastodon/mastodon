@@ -68,6 +68,15 @@ class DetailedStatus extends ImmutablePureComponent {
     e.stopPropagation();
   }
 
+  handleQuoteAccountClick = (e) => {
+    if (e.button === 0 && !(e.ctrlKey || e.metaKey) && this.context.router) {
+      e.preventDefault();
+      this.context.router.history.push(`/accounts/${this.props.status.get('quote').getIn(['account', 'id'])}`);
+    }
+
+    e.stopPropagation();
+  }
+
   handleOpenVideo = (options) => {
     this.props.onOpenVideo(this.props.status.getIn(['media_attachments', 0]), options);
   }
@@ -209,7 +218,7 @@ class DetailedStatus extends ImmutablePureComponent {
 
       quote = (
         <div className='quote-status'>
-          <a href={quote_status.getIn(['account', 'url'])} onClick={this.handleAccountClick} className='detailed-status__display-name'>
+          <a href={quote_status.getIn(['account', 'url'])} onClick={this.handleQuoteAccountClick} className='detailed-status__display-name'>
             <div className='detailed-status__display-avatar'><Avatar account={quote_status.get('account')} size={18} /></div>
             <DisplayName account={quote_status.get('account')} localDomain={this.props.domain} />
           </a>
