@@ -26,6 +26,11 @@ RSpec.describe FeedManager do
     let(:jeff)  { Fabricate(:account, username: 'jeff') }
 
     context 'for home feed' do
+      it 'returns true for own status' do
+        status = Fabricate(:status, text: 'Hello world', account: alice)
+        expect(FeedManager.instance.filter?(:home, status, alice)).to be true
+      end
+
       it 'returns false for followee\'s status' do
         status = Fabricate(:status, text: 'Hello world', account: alice)
         bob.follow!(alice)

@@ -346,7 +346,7 @@ class FeedManager
   # @param [Hash] crutches
   # @return [Boolean]
   def filter_from_home?(status, receiver_id, crutches)
-    return false if receiver_id == status.account_id
+    return true if receiver_id == status.account_id
     return true  if status.reply?
     return true  if phrase_filtered?(status, receiver_id, :home)
 
