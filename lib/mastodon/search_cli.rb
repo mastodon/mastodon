@@ -100,7 +100,7 @@ module Mastodon
                     index.adapter.send(:delete_from_index?, record) ? :delete : :to_index
                   end
 
-                  bulk_body       = Chewy::Index::Import::BulkBuilder.new(index, **grouped_records).bulk_body
+                  bulk_body = Chewy::Index::Import::BulkBuilder.new(index, **grouped_records).bulk_body
                 end
 
                 index_count  = grouped_records[:to_index].size  if grouped_records.key?(:to_index)
