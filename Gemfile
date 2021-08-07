@@ -73,7 +73,7 @@ gem 'rack-attack', '~> 6.5'
 gem 'rack-cors', '~> 1.1', require: 'rack/cors'
 gem 'rails-i18n', '~> 6.0'
 gem 'rails-settings-cached', '~> 0.6'
-gem 'redis', '~> 4.3', require: ['redis', 'redis/connection/hiredis']
+gem 'redis', '~> 4.4', require: ['redis', 'redis/connection/hiredis']
 gem 'mario-redis-lock', '~> 1.2', require: 'redis_lock'
 gem 'rqrcode', '~> 2.0'
 gem 'ruby-progressbar', '~> 1.11'
