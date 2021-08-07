@@ -232,10 +232,6 @@ class FeedManager
     aggregate    = account.user&.aggregates_reblogs?
     timeline_key = key(:home, account.id)
 
-    account.statuses.limit(limit).each do |status|
-      add_to_feed(:home, account.id, status, aggregate)
-    end
-
     account.following.includes(:account_stat).find_each do |target_account|
       if redis.zcard(timeline_key) >= limit
         oldest_home_score = redis.zrange(timeline_key, 0, 0, with_scores: true).first.last.to_i
