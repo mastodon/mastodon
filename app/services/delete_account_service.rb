@@ -4,6 +4,7 @@ class DeleteAccountService < BaseService
   include Payloadable
 
   ASSOCIATIONS_ON_SUSPEND = %w(
+    account_notes
     account_pins
     active_relationships
     aliases
@@ -34,6 +35,7 @@ class DeleteAccountService < BaseService
   # by foreign keys, making them safe to delete without loading
   # into memory
   ASSOCIATIONS_WITHOUT_SIDE_EFFECTS = %w(
+    account_notes
     account_pins
     aliases
     conversation_mutes
