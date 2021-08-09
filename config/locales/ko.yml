@@ -1239,6 +1239,7 @@ ko:
     preferences: 사용자 설정
     profile: 프로필
     relationships: 팔로잉과 팔로워
+    statuses_cleanup: 게시물 자동 삭제
     two_factor_authentication: 2단계 인증
     webauthn_authentication: 보안 키
   statuses:
@@ -1286,23 +1287,24 @@ ko:
       unlisted_long: 누구나 볼 수 있지만, 공개 타임라인에는 표시되지 않습니다
   statuses_cleanup:
     enabled: 오래된 게시물 자동 삭제
-    enabled_hint: 예외 목록에 등록한게 아니라면 명시된 기간 이후 당신의 게시물을 자동으로 삭제합니다
+    enabled_hint: 예외 목록에 등록한게 아니라면 명시된 기한 이후 당신의 게시물을 자동으로 삭제합니다
     exceptions: 예외
     explanation: 게시물 삭제는 많은 성능이 필요하기 때문에, 서버에서 바쁘지 않을 때 시간을 들여서 천천히 진행합니다. 이런 이유로, 당신의 게시물은 아마도 정해진 기간 이후에 삭제될 것입니다.
     ignore_favs: 즐겨찾기 무시
     ignore_reblogs: 부스트 무시
+    interaction_exceptions_explanation: 즐겨찾기나 부스트 수가 설정한 값을 넘은 후 다시 낮아진 경우에는 게시물이 삭제되지 않을 수 있습니다.
     keep_direct: 다이렉트 메시지 유지
     keep_direct_hint: 다이렉트 메시지를 삭제하지 않습니다
-    keep_media: 미디어가 있는 글 유지
-    keep_media_hint: 미디어가 첨부된 글을 삭제하지 않습니다
-    keep_pinned: 고정 포스트 유지
-    keep_pinned_hint: 고정 포스트를 삭제하지 않습니다
+    keep_media: 미디어가 있는 게시물 유지
+    keep_media_hint: 미디어가 첨부된 게시물을 삭제하지 않습니다
+    keep_pinned: 고정 게시물 유지
+    keep_pinned_hint: 고정 게시물을 삭제하지 않습니다
     keep_polls: 투표 유지
     keep_polls_hint: 투표를 삭제하지 않습니다
-    keep_self_bookmark: 북마크한 글 유지
-    keep_self_bookmark_hint: 북마크한 본인의 글을 삭제하지 않습니다
-    keep_self_fav: 즐겨찾기한 포스트 유지
-    keep_self_fav_hint: 즐겨찾기한 본인의 글을 삭제하지 않습니다
+    keep_self_bookmark: 북마크한 게시물 유지
+    keep_self_bookmark_hint: 북마크한 본인의 게시물을 삭제하지 않습니다
+    keep_self_fav: 즐겨찾기한 게시물 유지
+    keep_self_fav_hint: 즐겨찾기한 본인의 게시물을 삭제하지 않습니다
     min_age:
       '1209600': 2 주
       '15778476': 6 개월
@@ -1312,7 +1314,10 @@ ko:
       '63113904': 2 년
       '7889238': 3 개월
     min_age_label: 기한
-    min_favs: 해당 숫자 이상 즐겨찾기한 글 유지
+    min_favs: 해당 숫자 이상 즐겨찾기한 게시물 유지
+    min_favs_hint: 해당 숫자 이상의 즐겨찾기가 된 게시물은 삭제하지 않습니다. 즐겨찾기 수와 관계없이 게시물을 지우고 싶다면 공백으로 두세요.
+    min_reblogs: 해당 숫자 이상 즐겨찾기한 게시물 유지
+    min_reblogs_hint: 해당 숫자 이상의 부스트가 된 게시물은 삭제하지 않습니다. 즐겨찾기 수와 관계없이 게시물을 지우고 싶다면 공백으로 두세요.
   stream_entries:
     pinned: 고정된 게시물
     reblogged: 님이 부스트 했습니다
