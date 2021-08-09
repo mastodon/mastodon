@@ -1252,6 +1252,7 @@ de:
     preferences: Einstellungen
     profile: Profil
     relationships: Folgende und Gefolgte
+    statuses_cleanup: Automatisches Beitraglöschen
     two_factor_authentication: Zwei-Faktor-Auth
     webauthn_authentication: Sicherheitsschlüssel
   statuses:
@@ -1303,6 +1304,31 @@ de:
       public_long: Für alle sichtbar
       unlisted: Nicht gelistet
       unlisted_long: Für alle sichtbar, aber nicht in öffentlichen Zeitleisten aufgelistet
+  statuses_cleanup:
+    enabled: Automatisch alte Beiträge löschen
+    exceptions: Ausnahmen
+    ignore_favs: Favoriten ignorieren
+    ignore_reblogs: Boosts ignorieren
+    interaction_exceptions: Ausnahmen basierend auf Interaktionen
+    keep_direct: Direktnachrichten behalten
+    keep_direct_hint: Löscht keine deiner Direktnachrichten
+    keep_media: Beiträge mit Medienanhängen behalten
+    keep_media_hint: Löscht keine Ihrer Beiträge mit Medienanhängen
+    keep_pinned: Angeheftete Beiträge behalten
+    keep_pinned_hint: Löscht keine deiner angehefteten Beiträge
+    keep_polls: Umfragen behalten
+    keep_polls_hint: Löscht keine deiner Umfragen
+    keep_self_bookmark: Als Lesezeichen markierte Beiträge behalten
+    keep_self_bookmark_hint: Löscht nicht deine eigenen Beiträge, wenn du sie als Lesezeichen markiert hast
+    keep_self_fav: Behalte die von dir favorisierten Beiträge
+    min_age:
+      '1209600': 2 Wochen
+      '15778476': 6 Monate
+      '2629746': 1 Monat
+      '31556952': 1 Jahr
+      '5259492': 2 Monate
+      '63113904': 2 Jahre
+      '7889238': 3 Monate
   stream_entries:
     pinned: Angehefteter Beitrag
     reblogged: teilte
