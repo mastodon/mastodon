@@ -1252,6 +1252,7 @@ fr:
     preferences: Préférences
     profile: Profil
     relationships: Abonnements et abonné·e·s
+    statuses_cleanup: Suppression automatique de la publication
     two_factor_authentication: Identification à deux facteurs
     webauthn_authentication: Clés de sécurité
   statuses:
@@ -1303,6 +1304,22 @@ fr:
       public_long: Tout le monde peut voir vos statuts
       unlisted: Public sans être affiché sur le fil public
       unlisted_long: Tout le monde peut voir vos statuts mais ils ne seront pas listés sur les fils publics
+  statuses_cleanup:
+    enabled: Supprimer automatiquement les anciennes publications
+    enabled_hint: Supprime automatiquement vos publications une fois qu'ils ont atteint un seuil d'âge spécifié, à moins qu'ils ne correspondent à l'une des exceptions ci-dessous
+    exceptions: Exceptions
+    explanation: Parce que la suppression de messages est une opération coûteuse, cela se fait lentement au fil du temps lorsque le serveur n'est pas autrement occupé. Pour cette raison, vos messages peuvent être supprimés un peu après avoir atteint le seuil d'âge.
+    ignore_favs: Ignorer les favoris
+    ignore_reblogs: Ignorer les partages
+    interaction_exceptions: Exceptions basées sur les interactions
+    interaction_exceptions_explanation: Notez qu'il n'est pas garanti que les messages soient supprimés s'ils passent sous le seuil des favoris ou des partages une fois qu'ils les ont dépassés.
+    keep_direct: Conserver les messages directs
+    keep_direct_hint: Ne supprime aucun de vos messages directs
+    keep_media: Conserver les publications avec des fichiers médias joints
+    keep_media_hint: Ne supprime pas les publications contenant des fichiers médias joints
+    keep_pinned: Conserver les publications épinglées
+    keep_pinned_hint: Ne supprime aucune de vos publications épinglées
+    keep_polls: Conserver les sondages
   stream_entries:
     pinned: Message épinglé
     reblogged: a partagé
