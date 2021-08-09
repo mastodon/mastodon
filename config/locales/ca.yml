@@ -1252,6 +1252,7 @@ ca:
     preferences: Preferències
     profile: Perfil
     relationships: Seguits i seguidors
+    statuses_cleanup: Borrat automàtic de publicacions
     two_factor_authentication: Autenticació de dos factors
     webauthn_authentication: Claus de seguretat
   statuses:
@@ -1303,6 +1304,11 @@ ca:
       public_long: Tothom pot veure-ho
       unlisted: No llistat
       unlisted_long: Tothom ho pot veure, però no es mostra en les línies de temps públiques
+  statuses_cleanup:
+    enabled: Esborra automàtic publicacions velles
+    enabled_hint: Suprimeix automàticament les teves publicacions quan arribin a un llindar d’edat especificat, tret que coincideixin amb una de les excepcions següents
+    exceptions: Excepcions
+    explanation: Com que suprimir publicacions és una operació cara, es fa lentament amb el pas del temps quan el servidor no està ocupat. Per aquest motiu, és possible que les teves publicacions se suprimeixin un temps després d’assolir el llindar d’edat.
   stream_entries:
     pinned: Tut fixat
     reblogged: ha impulsat
