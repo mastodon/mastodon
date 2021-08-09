@@ -5,7 +5,7 @@ ruby '>= 2.5.0', '< 3.1.0'
 
 gem 'pkg-config', '~> 1.4'
 
-gem 'puma', '~> 5.3'
+gem 'puma', '~> 5.4'
 gem 'rails', '~> 6.1.4'
 gem 'sprockets', '~> 3.7.2'
 gem 'thor', '~> 1.1'
@@ -17,7 +17,7 @@ gem 'makara', '~> 0.5'
 gem 'pghero', '~> 2.8'
 gem 'dotenv-rails', '~> 2.7'
 
-gem 'aws-sdk-s3', '~> 1.96', require: false
+gem 'aws-sdk-s3', '~> 1.98', require: false
 gem 'fog-core', '<= 2.1.0'
 gem 'fog-openstack', '~> 0.3', require: false
 gem 'paperclip', '~> 6.0'
@@ -60,7 +60,7 @@ gem 'idn-ruby', require: 'idn'
 gem 'kaminari', '~> 1.2'
 gem 'link_header', '~> 0.0'
 gem 'mime-types', '~> 3.3.1', require: 'mime/types/columnar'
-gem 'nokogiri', '~> 1.11'
+gem 'nokogiri', '~> 1.12'
 gem 'nsa', '~> 0.2'
 gem 'oj', '~> 3.12'
 gem 'ox', '~> 2.14'
@@ -73,7 +73,7 @@ gem 'rack-attack', '~> 6.5'
 gem 'rack-cors', '~> 1.1', require: 'rack/cors'
 gem 'rails-i18n', '~> 6.0'
 gem 'rails-settings-cached', '~> 0.6'
-gem 'redis', '~> 4.3', require: ['redis', 'redis/connection/hiredis']
+gem 'redis', '~> 4.4', require: ['redis', 'redis/connection/hiredis']
 gem 'mario-redis-lock', '~> 1.2', require: 'redis_lock'
 gem 'rqrcode', '~> 2.0'
 gem 'ruby-progressbar', '~> 1.11'
