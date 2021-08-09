@@ -54,7 +54,7 @@ class Scheduler::AccountsStatusesCleanupScheduler
         budget -= num_deleted
         if budget.zero?
           save_last_processed_id(policy.id)
-          return
+          break
         end
       end
 
