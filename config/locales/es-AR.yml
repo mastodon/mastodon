@@ -1252,6 +1252,7 @@ es-AR:
     preferences: Configuración
     profile: Perfil
     relationships: Seguimientos
+    statuses_cleanup: Eliminación automática de mensajes
     two_factor_authentication: Autenticación de dos factores
     webauthn_authentication: Llaves de seguridad
   statuses:
@@ -1303,6 +1304,27 @@ es-AR:
       public_long: Todos pueden ver
       unlisted: No listado
       unlisted_long: Todos pueden ver, pero no está listado en las líneas temporales públicas
+  statuses_cleanup:
+    enabled: Borrar automáticamente mensajes antiguos
+    enabled_hint: Elimina automáticamente tus mensajes una vez que alcancen un umbral de edad especificado, a menos que coincidan con una de las excepciones a continuación
+    exceptions: Exepciones
+    explanation: Debido a que la eliminación de mensajes es una operación costosa, esto se hace lentamente con el tiempo cuando el servidor no está ocupado. Por esta razón, tus mensajes pueden ser borrados un poco después de que alcancen el umbral de edad.
+    ignore_favs: Ignorar mensajes marcados como favoritos
+    ignore_reblogs: Ignorar adhesiones
+    interaction_exceptions: Excepciones basadas en interacciones
+    interaction_exceptions_explanation: Tené en cuenta que no hay garantía de que los mensajes se eliminen si van por debajo del umbral de los mensajes marcados como favorito o de las adhesiones después de haberlos superado una vez.
+    keep_direct: Conservar mensajes directos
+    keep_direct_hint: No elimina ninguno de tus mensajes directos
+    keep_media: Conservar mensajes con archivos adjuntos
+    keep_media_hint: No elimina ninguno de tus mensajes con archivos adjuntos
+    keep_pinned: Conservar mensajes fijados
+    keep_pinned_hint: No elimina ninguno de tus mensajes fijados
+    keep_polls: Conservar encuestas
+    keep_polls_hint: No elimina ninguna de tus encuestas
+    keep_self_bookmark: Conservar mensajes que marcaste como favoritos
+    keep_self_bookmark_hint: No elimina tus propios mensajes si los marcaste como favoritos
+    keep_self_fav: Conservar mensajes marcados como favoritos
+    keep_self_fav_hint: No elimina tus propios mensajes si los marcaste como favoritos
   stream_entries:
     pinned: Mensaje fijado
     reblogged: adhirió a este mensaje
