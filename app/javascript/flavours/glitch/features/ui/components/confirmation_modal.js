@@ -13,8 +13,13 @@ class ConfirmationModal extends React.PureComponent {
     onConfirm: PropTypes.func.isRequired,
     secondary: PropTypes.string,
     onSecondary: PropTypes.func,
+    closeWhenConfirm: PropTypes.bool,
     onDoNotAsk: PropTypes.func,
     intl: PropTypes.object.isRequired,
+  };
+
+  static defaultProps = {
+    closeWhenConfirm: true,
   };
 
   componentDidMount() {
@@ -22,7 +27,9 @@ class ConfirmationModal extends React.PureComponent {
   }
 
   handleClick = () => {
-    this.props.onClose();
+    if (this.props.closeWhenConfirm) {
+      this.props.onClose();
+    }
     this.props.onConfirm();
     if (this.props.onDoNotAsk && this.doNotAskCheckbox.checked) {
       this.props.onDoNotAsk();

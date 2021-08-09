@@ -18,6 +18,7 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
     dispatch(openModal('CONFIRM', {
       message: intl.formatMessage(messages.logoutMessage),
       confirm: intl.formatMessage(messages.logoutConfirm),
+      closeWhenConfirm: false,
       onConfirm: () => logOut(),
     }));
   },
