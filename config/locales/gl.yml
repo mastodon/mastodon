@@ -1251,6 +1251,7 @@ gl:
     preferences: Preferencias
     profile: Perfil
     relationships: Seguindo e seguidoras
+    statuses_cleanup: Borrado automático da publicación
     two_factor_authentication: Validar Dobre Factor
     webauthn_authentication: Chaves de seguridade
   statuses:
@@ -1302,6 +1303,17 @@ gl:
       public_long: Visible para calquera
       unlisted: Non listado
       unlisted_long: Visible para calquera, pero non en cronoloxías públicas
+  statuses_cleanup:
+    enabled: Borrar automáticamente publicacións antigas
+    enabled_hint: Borra automáticamente as túas publicacións unha vez acadan certa lonxevidade, a menos que cumpran algunha destas excepcións
+    exceptions: Excepcións
+    explanation: Como o borrado de publicacións consume moitos recursos, este faise lentamente cando o servidor non ten moita carga de traballo. Así, a eliminación das túas publicacións podería ser lixeiramente posterior a cando lle correspondería por idade.
+    ignore_favs: Ignorar favoritas
+    ignore_reblogs: Ignorar promocións
+    interaction_exceptions: Excepcións baseadas en interaccións
+    keep_direct: Manter mensaxes directas
+    keep_direct_hint: Non borrar ningunha das túas mensaxes directas
+    keep_media: Manter publicacións que conteñen multimedia
   stream_entries:
     pinned: Publicación fixada
     reblogged: promovido
