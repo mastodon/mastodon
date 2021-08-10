@@ -1287,24 +1287,25 @@ ko:
       unlisted_long: 누구나 볼 수 있지만, 공개 타임라인에는 표시되지 않습니다
   statuses_cleanup:
     enabled: 오래된 게시물 자동 삭제
-    enabled_hint: 예외 목록에 등록한게 아니라면 명시된 기한 이후 당신의 게시물을 자동으로 삭제합니다
+    enabled_hint: 아래의 예외 목록에 해당하지 않는다면, 명시된 기한 이후 당신의 게시물을 자동으로 삭제합니다
     exceptions: 예외
     explanation: 게시물 삭제는 많은 성능이 필요하기 때문에, 서버에서 바쁘지 않을 때 시간을 들여서 천천히 진행합니다. 이런 이유로, 당신의 게시물은 아마도 정해진 기간 이후에 삭제될 것입니다.
     ignore_favs: 즐겨찾기 무시
     ignore_reblogs: 부스트 무시
+    interaction_exceptions: 상호반응에 기반한 예외들
     interaction_exceptions_explanation: 즐겨찾기나 부스트 수가 설정한 값을 넘은 후 다시 낮아진 경우에는 게시물이 삭제되지 않을 수 있습니다.
     keep_direct: 다이렉트 메시지 유지
     keep_direct_hint: 다이렉트 메시지를 삭제하지 않습니다
     keep_media: 미디어가 있는 게시물 유지
     keep_media_hint: 미디어가 첨부된 게시물을 삭제하지 않습니다
-    keep_pinned: 고정 게시물 유지
+    keep_pinned: 고정된 게시물 유지
     keep_pinned_hint: 고정 게시물을 삭제하지 않습니다
     keep_polls: 투표 유지
     keep_polls_hint: 투표를 삭제하지 않습니다
-    keep_self_bookmark: 북마크한 게시물 유지
-    keep_self_bookmark_hint: 북마크한 본인의 게시물을 삭제하지 않습니다
+    keep_self_bookmark: 북마크된 게시물 유지
+    keep_self_bookmark_hint: 내 스스로 북마크한 본인의 게시물을 삭제하지 않습니다
     keep_self_fav: 즐겨찾기한 게시물 유지
-    keep_self_fav_hint: 즐겨찾기한 본인의 게시물을 삭제하지 않습니다
+    keep_self_fav_hint: 내 스스로 즐겨찾기한 본인의 게시물을 삭제하지 않습니다
     min_age:
       '1209600': 2 주
       '15778476': 6 개월
