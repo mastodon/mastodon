@@ -1252,6 +1252,7 @@ es:
     preferences: Preferencias
     profile: Perfil
     relationships: Siguiendo y seguidores
+    statuses_cleanup: Eliminación automática de mensajes
     two_factor_authentication: Autenticación de dos factores
     webauthn_authentication: Claves de seguridad
   statuses:
@@ -1303,6 +1304,40 @@ es:
       public_long: Todos pueden ver
       unlisted: Público, pero no mostrar en la historia federada
       unlisted_long: Todos pueden ver, pero no está listado en las líneas de tiempo públicas
+  statuses_cleanup:
+    enabled: Borrar automáticamente mensajes antiguos
+    enabled_hint: Elimina automáticamente tus mensajes una vez que alcancen la fecha especificada, a menos que coincidan con una de las excepciones a continuación
+    exceptions: Excepciones
+    explanation: Debido a que la eliminación de mensajes es una operación costosa, esto se hace lentamente con el tiempo cuando el servidor no está ocupado. Por esta razón, sus mensajes pueden ser borrados un poco después de que alcancen la fecha especificada.
+    ignore_favs: Ignorar favoritos
+    ignore_reblogs: Ignorar reblogs
+    interaction_exceptions: Excepciones basadas en interacciones
+    interaction_exceptions_explanation: Tenga en cuenta que no hay garantía de que los mensajes se eliminen si van por debajo favorito o si se rebloguea después de haberlos superado una vez.
+    keep_direct: Mantener mensajes directos
+    keep_direct_hint: No eliminar ninguno de tus mensajes directos
+    keep_media: Mantener publicaciones con archivos adjuntos
+    keep_media_hint: No borrar ninguno de tus mensajes con archivos adjuntos
+    keep_pinned: Mantener mensajes anclados
+    keep_pinned_hint: No eliminar ninguno de tus mensajes anclados
+    keep_polls: Mantener encuestas
+    keep_polls_hint: No borrar ninguna de tus encuestas
+    keep_self_bookmark: Mantener mensajes marcados
+    keep_self_bookmark_hint: No borrar tus propios mensajes si los has marcado
+    keep_self_fav: Mantener mensajes favoritos
+    keep_self_fav_hint: No borrar tus propios mensajes si los has marcado como favoritos
+    min_age:
+      '1209600': 2 semanas
+      '15778476': 6 meses
+      '2629746': 1 mes
+      '31556952': 1 año
+      '5259492': 2 meses
+      '63113904': 2 años
+      '7889238': 3 meses
+    min_age_label: Fecha límite
+    min_favs: Mantener mensajes favoritos más que
+    min_favs_hint: No borrar ninguno de tus mensajes que hayas recibido más de esta cantidad de favoritos. Dejar en blanco para eliminar mensajes independientemente de su número de favoritos
+    min_reblogs: Mantener mensajes reblogueados más de
+    min_reblogs_hint: No borrar ninguno de tus mensajes que hayan sido reblogueados más que este número de veces. Dejar en blanco para eliminar mensajes sin importar el número de reblogs
   stream_entries:
     pinned: Publicación fijada
     reblogged: retooteado
