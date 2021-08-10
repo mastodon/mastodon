@@ -1305,7 +1305,7 @@ es-AR:
       unlisted: No listado
       unlisted_long: Todos pueden ver, pero no está listado en las líneas temporales públicas
   statuses_cleanup:
-    enabled: Borrar automáticamente mensajes antiguos
+    enabled: Eliminar automáticamente mensajes antiguos
     enabled_hint: Elimina automáticamente tus mensajes una vez que alcancen un umbral de edad especificado, a menos que coincidan con una de las excepciones a continuación
     exceptions: Exepciones
     explanation: Debido a que la eliminación de mensajes es una operación costosa, esto se hace lentamente con el tiempo cuando el servidor no está ocupado. Por esta razón, tus mensajes pueden ser borrados un poco después de que alcancen el umbral de edad.
@@ -1325,6 +1325,19 @@ es-AR:
     keep_self_bookmark_hint: No elimina tus propios mensajes si los marcaste como favoritos
     keep_self_fav: Conservar mensajes marcados como favoritos
     keep_self_fav_hint: No elimina tus propios mensajes si los marcaste como favoritos
+    min_age:
+      '1209600': 2 semanas
+      '15778476': 6 meses
+      '2629746': 1 mes
+      '31556952': 1 año
+      '5259492': 2 meses
+      '63113904': 2 años
+      '7889238': 3 meses
+    min_age_label: Umbral de edad
+    min_favs: Conservar mensajes marcados como favoritos de hace más de
+    min_favs_hint: No elimina ninguno de tus mensajes que haya recibido más de esta cantidad de favoritos. Dejá en blanco para eliminar mensajes independientemente de su número de favoritos
+    min_reblogs: Conservar adhesiones de hace más de
+    min_reblogs_hint: No elimina ninguno de tus mensajes que haya recibido más de esta cantidad de adhesiones. Dejá en blanco para eliminar mensajes independientemente de su número de adhesiones
   stream_entries:
     pinned: Mensaje fijado
     reblogged: adhirió a este mensaje
