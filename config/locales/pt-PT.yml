@@ -1252,6 +1252,7 @@ pt-PT:
     preferences: Preferências
     profile: Perfil
     relationships: Seguindo e seguidores
+    statuses_cleanup: Remoção automática da publicação
     two_factor_authentication: Autenticação em duas etapas
     webauthn_authentication: Chaves de segurança
   statuses:
@@ -1305,6 +1306,37 @@ pt-PT:
       unlisted_long: Todos podem ver, porém não será postado nas timelines públicas
   statuses_cleanup:
     enabled: Apagar publicações antigas automaticamente
+    enabled_hint: Apaga automaticamente as suas publicações assim que atingirem um limite de idade específico, a não ser que correspondam a uma das exceções abaixo
+    exceptions: Exceções
+    explanation: Como excluir publicações é uma operação cara, isto é realizado lentamente ao longo do tempo, quando o servidor não está ocupado de outra forma. Por esta razão, as suas publicações podem ser apagadas um pouco depois de atingirem o limite de idade.
+    ignore_favs: Ignorar favoritos
+    ignore_reblogs: Ignorar partilhas
+    interaction_exceptions: Exceções baseadas em interações
+    interaction_exceptions_explanation: Note que não há garantia de que as publicações sejam excluídas se ficarem abaixo do limite de favoritos ou partilhas após as ter verificado uma vez.
+    keep_direct: Manter mensagens diretas
+    keep_direct_hint: Não apaga nenhuma das suas mensagens diretas
+    keep_media: Manter publicações com anexos de multimédia
+    keep_media_hint: Não exclui nenhuma das suas publicações com multimédia anexada
+    keep_pinned: Manter publicações fixadas
+    keep_pinned_hint: Não apagar nenhuma das suas publicações fixadas
+    keep_polls: Manter enquetes
+    keep_polls_hint: Não apaga nenhuma das suas enquetes
+    keep_self_bookmark: Manter as publicações que guardou
+    keep_self_bookmark_hint: Não apaga as suas próprias publicações se as tiver guardado
+    keep_self_fav: Manter as publicações que gostou
+    keep_self_fav_hint: Não apaga as suas próprias publicações se tiver gostado delas
+    min_age:
+      '1209600': 2 semanas
+      '15778476': 6 meses
+      '2629746': 1 mês
+      '31556952': 1 ano
+      '5259492': 2 meses
+      '63113904': 2 anos
+      '7889238': 3 meses
+    min_age_label: Limite de idade
+    min_favs: Manter as publicações favoritas mais de
+    min_favs_hint: Não apaga nenhuma das suas publicações que tenha recebido mais do que esta quantidade de favoritos. Deixe em branco para apagar as publicações, independentemente do número de favoritos
+    min_reblogs: Manter as publicações partilhadas mais de
   stream_entries:
     pinned: Toot fixado
     reblogged: partilhado
