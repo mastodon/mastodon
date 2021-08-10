@@ -1344,6 +1344,9 @@ cs:
       unlisted_long: Uvidí kdokoliv, ale nebude zahrnut ve veřejných časových osách
   statuses_cleanup:
     enabled: Automaticky mazat staré příspěvky
+    enabled_hint: Automaticky maže vaše příspěvky poté, co dosáhnou stanoveného stáří, nesplňují-li některou z výjimek níže
+    exceptions: Výjimky
+    explanation: Protože je mazání příspěvků nákladná operace, je prováděno pomalu v čase, kdy server není zaneprázdněn ničím jiným. Z tohoto důvodu mohou být vaše příspěvky smazány delší dobu po dosažení stanoveného stáří.
   stream_entries:
     pinned: Připnutý příspěvek
     reblogged: boostnul
