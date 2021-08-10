@@ -1278,6 +1278,7 @@ gd:
     preferences: Roghainnean
     profile: Pròifil
     relationships: Dàimhean leantainn
+    statuses_cleanup: Sguabadh às fèin-obrachail phostaichean
     two_factor_authentication: Dearbhadh dà-cheumnach
     webauthn_authentication: Iuchraichean tèarainteachd
   statuses:
@@ -1341,6 +1342,40 @@ gd:
       public_long: Chì a h-uile duine seo
       unlisted: Falaichte o liostaichean
       unlisted_long: Chì a h-uile duine seo ach cha nochd e air loidhnichean-ama poblach
+  statuses_cleanup:
+    enabled: Sguab às seann-phostaichean gu fèin-obrachail
+    enabled_hint: Sguabaidh seo às na seann-phostaichean agad gu fèin-obrachail nuair a ruigeas iad stairsneach aoise sònraichte ach ma fhreagras iad ri gin dhe na h-eisgeachdan gu h-ìosal
+    exceptions: Eisgeachdan
+    explanation: On a tha sguabadh às phostaichean ’na ghnìomh cosgail, thèid seo a dhèanamh gu slaodach thar ùine nuair nach eil am frithealaiche dripeil le nithean eile. Air an adhbhar sin, dh’fhaoidte gum mair na postaichean agad greiseag fhathast nuair a ruigeas iad stairsneach na h-aoise.
+    ignore_favs: Leig seachad na h-annsachdan
+    ignore_reblogs: Leig seachad na brosnachaidhean
+    interaction_exceptions: Eisgeachdan stèidhichte air eadar-ghnìomhan
+    interaction_exceptions_explanation: Thoir an aire nach doir sinn barantas gun dèid postaichean a sguabadh às nuair a thèid iad fo stairsneach nan annsachdan no brosnachaidhean ma bha iad os a chionn uair.
+    keep_direct: Cùm na teachdaireachdan dìreach
+    keep_direct_hint: Cha dèid gin dhe na teachdaireachdan dìreach agad a sguabadh às
+    keep_media: Cùm postaichean le ceanglachan meadhain
+    keep_media_hint: Cha dèid gin dhe na postaichean agad ris a bheil ceanglachan meadhain a sguabadh às
+    keep_pinned: Cùm na postaichean prìnichte
+    keep_pinned_hint: Cha dèid gin dhe na postaichean prìnichte agad a sguabadh às
+    keep_polls: Cùm na cunntasan-bheachd
+    keep_polls_hint: Cha dèid gin dhe na cunntasan-bheachd agad a sguabadh às
+    keep_self_bookmark: Cùm na chuir thu ris comharran-lìn
+    keep_self_bookmark_hint: Cha dèid gin dhe na postaichean agad fhèin a chuir thu ris na comharran-lìn agad a sguabadh às
+    keep_self_fav: Cùm na chuir thu ris na h-annsachdan
+    keep_self_fav_hint: Cha dèid gin dhe na postaichean agad fhèin a chuir thu ris na h-annsachdan agad a sguabadh às
+    min_age:
+      '1209600': 2 sheachdain
+      '15778476': Leth-bhliadhna
+      '2629746': Mìos
+      '31556952': Bliadhna
+      '5259492': 2 mhìos
+      '63113904': 2 bhliadhna
+      '7889238': 3 mìosan
+    min_age_label: Stairsneach aoise
+    min_favs: Cùm na tha ’na annsachd aig còrr is
+    min_favs_hint: Cha dèid gin dhe na postaichean agad a sguabadh às a tha ’nan annsachd aig barrachd daoine na an t-uiread seo. Fàg seo bàn airson postaichean a sguabadh às ge b’ e co mheud neach a chur ris na h-annsachdan iad
+    min_reblogs: Cùm na tha ’ga bhrosnachadh le còrr is
+    min_reblogs_hint: Cha dèid gin dhe na postaichean agad a sguabadh às a tha ’gam brosnachadh le barrachd daoine na an t-uiread seo. Fàg seo bàn airson postaichean a sguabadh às ge b’ e co mheud neach a tha ’gam brosnachadh
   stream_entries:
     pinned: Post prìnichte
     reblogged: '’ga bhrosnachadh'
