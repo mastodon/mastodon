@@ -1252,6 +1252,7 @@ hu:
     preferences: Beállítások
     profile: Profil
     relationships: Követések és követők
+    statuses_cleanup: Bejegyzések automatikus törlése
     two_factor_authentication: Kétlépcsős hitelesítés
     webauthn_authentication: Biztonsági kulcsok
   statuses:
@@ -1303,6 +1304,38 @@ hu:
       public_long: Bárki láthatja
       unlisted: Listázatlan
       unlisted_long: Mindenki látja, de a nyilvános idővonalakon nem jelenik meg
+  statuses_cleanup:
+    enabled: Régi bejegyzések automatikus törlése
+    enabled_hint: Automatikusan törli a bejegyzéseidet, ahogy azok elérik a megadott korhatárt, kivéve azokat, melyek illeszkednek valamely alábbi kivételre
+    exceptions: Kivételek
+    explanation: Mivel a bejegyzések törlése drága művelet, ezt időben elnyújtva tesszük meg, amikor a szerver éppen nem elfoglalt. Ezért lehetséges, hogy a bejegyzéseidet valamivel később töröljük, mint ahogy azok elérik a korhatárukat.
+    ignore_favs: Kedvencek kihagyása
+    ignore_reblogs: Megtolások kihagyása
+    interaction_exceptions: Interakció alapú kivételek
+    keep_direct: Közvetlen üzenetek megtartása
+    keep_direct_hint: Nem törli egyetlen közvetlen üzenetedet sem
+    keep_media: Médiacsatolmánnyal ellátott bejegyzések megtartása
+    keep_media_hint: Egyetlen bejegyzésedet sem törli, melyeknek van médiacsatolmánya
+    keep_pinned: Kitűzött bejegyzések megtartása
+    keep_pinned_hint: Egyetlen kitűzött bejegyzésedet sem törli
+    keep_polls: Szavazások megtartása
+    keep_polls_hint: Egyetlen szavazásodat sem törli
+    keep_self_bookmark: Általad könyvjelzőzött bejegyzések megtartása
+    keep_self_bookmark_hint: Egyetlen olyan bejegyzésedet sem törli, melyet könyvjelzővel láttál el
+    keep_self_fav: Kedvenc bejegyzések megtartása
+    keep_self_fav_hint: Nem törli azon bejegyzéseidet, melyeket kedvencnek jelöltél
+    min_age:
+      '1209600': 2 hét
+      '15778476': 6 hónap
+      '2629746': 1 hónap
+      '31556952': 1 év
+      '5259492': 2 hónap
+      '63113904': 2 év
+      '7889238': 3 hónap
+    min_age_label: Korhatár
+    min_favs: Bejegyzések megtartása, melyeket többször jelöltek kedvencnek, mint
+    min_favs_hint: Nem törli egyetlen olyan bejegyzésedet sem, melyeket ennél többször jelöltek kedvencnek. Hagyd üresen, hogy a kedvencnek jelölések számától függetlenül töröljük őket
+    min_reblogs: Bejegyzések megtartása, melyeket többször toltak meg, mint
   stream_entries:
     pinned: Kitűzött bejegyzés
     reblogged: megtolta
