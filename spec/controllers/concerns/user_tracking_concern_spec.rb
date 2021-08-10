@@ -79,7 +79,7 @@ describe ApplicationController, type: :controller do
         get :show
 
         expect_updated_sign_in_at(user)
-        expect(Redis.current.zcard(FeedManager.instance.key(:home, user.account_id))).to eq 3
+        expect(Redis.current.zcard(FeedManager.instance.key(:home, user.account_id))).to eq 2
         expect(Redis.current.get("account:#{user.account_id}:regeneration")).to be_nil
       end
     end

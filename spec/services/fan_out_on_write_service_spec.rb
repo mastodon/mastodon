@@ -18,8 +18,8 @@ RSpec.describe FanOutOnWriteService, type: :service do
     subject.call(status)
   end
 
-  it 'delivers status to home timeline' do
-    expect(HomeFeed.new(author).get(10).map(&:id)).to include status.id
+  it 'does not deliver own status to home timeline' do
+    expect(HomeFeed.new(author).get(10).map(&:id)).not_to include status.id
   end
 
   it 'delivers status to local followers' do
