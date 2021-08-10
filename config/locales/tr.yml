@@ -1304,6 +1304,17 @@ tr:
       public_long: Herkese açık zaman tüneline gönder
       unlisted: Listelenmemiş
       unlisted_long: Herkes görebilir fakat herkese açık zaman tünellerinde listelenmez
+  statuses_cleanup:
+    enabled: Eski gönderileri otomatik olarak sil
+    enabled_hint: Belirli bir ömre ulaştığında eski gönderilerinizi, aşağıdaki istisnalara uymadıkları sürece otomatik olarak siler
+    exceptions: İstisnalar
+    explanation: Gönderi silme maliyetli bir iş olduğu için, sunucu çok yoğun olmadığında yavaş yavaş yapılmaktadır. Bu nedenle, gönderilerinizin ömrünü tamamladığında silinmesi belirli bir süre alabilir.
+    ignore_favs: Beğenileri yoksay
+    ignore_reblogs: Teşvikleri yoksay
+    interaction_exceptions: Etkileşimlere dayalı istisnalar
+    keep_direct: Doğrudan iletileri sakla
+    keep_direct_hint: Herhangi bir doğrudan iletinizi silmez
+    keep_media: Görüntü eki olan gönderileri sakla
   stream_entries:
     pinned: Sabitlenmiş toot
     reblogged: boostladı
