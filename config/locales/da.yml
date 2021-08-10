@@ -1252,6 +1252,7 @@ da:
     preferences: Præferencer
     profile: Profil
     relationships: Følger og følgere
+    statuses_cleanup: Automatiseret indlægssletning
     two_factor_authentication: Tofaktorgodkendelse
     webauthn_authentication: Sikkerhedsnøgler
   statuses:
@@ -1303,6 +1304,10 @@ da:
       public_long: Alle kan se
       unlisted: Ulistet
       unlisted_long: Alle kan se, men er ikke listet på offentlige tidslinjer
+  statuses_cleanup:
+    enabled: Slet automatisk gamle indlæg
+    enabled_hint: Sletter automatisk dine indlæg, når disse når en bestemt alder, medmindre de matcher en af undtagelserne nedenfor
+    exceptions: Undtagelser
   stream_entries:
     pinned: Fastgjort indlæg
     reblogged: boostet
