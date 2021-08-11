@@ -18,6 +18,7 @@
     %meta{ name: 'msapplication-config', content: '/browserconfig.xml' }/
     %meta{ name: 'theme-color', content: '#282c37' }/
     %meta{ name: 'apple-mobile-web-app-capable', content: 'yes' }/
+    %meta{ name: 'apple-itunes-app', content: 'app-id=1571998974' }/
 
     %title= content_for?(:page_title) ? safe_join([yield(:page_title).chomp.html_safe, title], ' - ') : title
 
