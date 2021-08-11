@@ -1252,7 +1252,7 @@ es:
     preferences: Preferencias
     profile: Perfil
     relationships: Siguiendo y seguidores
-    statuses_cleanup: Eliminación automática de mensajes
+    statuses_cleanup: Eliminación automática de publicaciones
     two_factor_authentication: Autenticación de dos factores
     webauthn_authentication: Claves de seguridad
   statuses:
@@ -1305,24 +1305,24 @@ es:
       unlisted: Público, pero no mostrar en la historia federada
       unlisted_long: Todos pueden ver, pero no está listado en las líneas de tiempo públicas
   statuses_cleanup:
-    enabled: Borrar automáticamente mensajes antiguos
-    enabled_hint: Elimina automáticamente tus mensajes una vez que alcancen la fecha especificada, a menos que coincidan con una de las excepciones a continuación
+    enabled: Borrar automáticamente publicaciones antiguas
+    enabled_hint: Elimina automáticamente tus publicaciones una vez que alcancen un umbral de tiempo especificado, a menos que coincidan con alguna de las excepciones detalladas debajo
     exceptions: Excepciones
-    explanation: Debido a que la eliminación de mensajes es una operación costosa, esto se hace lentamente con el tiempo cuando el servidor no está ocupado. Por esta razón, sus mensajes pueden ser borrados un poco después de que alcancen la fecha especificada.
+    explanation: Debido a que la eliminación de mensajes es una operación costosa, esto se hace lentamente, a lo largo de un tiempo, cuando el servidor no está ocupado. Por este motivo, puede que tus publicaciones sean borradas algo después de que alcancen el umbral de tiempo especificado.
     ignore_favs: Ignorar favoritos
-    ignore_reblogs: Ignorar reblogs
+    ignore_reblogs: Ignorar reblogueos
     interaction_exceptions: Excepciones basadas en interacciones
-    interaction_exceptions_explanation: Tenga en cuenta que no hay garantía de que los mensajes se eliminen si van por debajo favorito o si se rebloguea después de haberlos superado una vez.
+    interaction_exceptions_explanation: Ten en cuenta que no hay garantía de que se eliminen las publicaciones que están por debajo de los umbrales de favoritos o de reblogueos si los han superado en algún momento.
     keep_direct: Mantener mensajes directos
-    keep_direct_hint: No eliminar ninguno de tus mensajes directos
-    keep_media: Mantener publicaciones con archivos adjuntos
-    keep_media_hint: No borrar ninguno de tus mensajes con archivos adjuntos
-    keep_pinned: Mantener mensajes anclados
-    keep_pinned_hint: No eliminar ninguno de tus mensajes anclados
+    keep_direct_hint: No elimina ninguno de tus mensajes directos
+    keep_media: Mantener publicaciones con multimedia adjunto
+    keep_media_hint: No borra ninguna de tus publicaciones con multimedia adjunto
+    keep_pinned: Mantener publicaciones fijadas
+    keep_pinned_hint: No borra ninguna de tus publicaciones fijadas
     keep_polls: Mantener encuestas
-    keep_polls_hint: No borrar ninguna de tus encuestas
-    keep_self_bookmark: Mantener mensajes marcados
-    keep_self_bookmark_hint: No borrar tus propios mensajes si los has marcado
+    keep_polls_hint: No borra ninguna de tus encuestas
+    keep_self_bookmark: Mantener publicaciones a las que has añadido un marcador
+    keep_self_bookmark_hint: No borra tus propias publicaciones si les has añadido un marcador
     keep_self_fav: Mantener publicaciones que marcaste como favoritas
     keep_self_fav_hint: No borra publicaciones tuyas que hayas marcado como favoritas
     min_age:
