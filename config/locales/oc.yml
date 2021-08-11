@@ -239,10 +239,12 @@ oc:
       new:
         create: Crear una anóncia
         title: Anóncia novèla
+      publish: Publicar
       published_msg: Anóncia corrèctament publicada !
       scheduled_for: Programada per %{time}
       scheduled_msg: Anóncia programada per publicacion !
       title: Anóncias
+      unpublish: Despublicar
       unpublished_msg: Anóncia corrèctament tirada !
       updated_msg: Anóncia corrèctament actualizada !
     custom_emojis:
@@ -360,6 +362,9 @@ oc:
         create: Crear un blocatge
         title: Nòu blocatge de domeni de corrièl
       title: Blocatge de domeni de corrièl
+    follow_recommendations:
+      language: Per lenga
+      status: Estat
     instances:
       by_domain: Domeni
       delivery_available: Liurason disponibla
@@ -900,6 +905,8 @@ oc:
       body: '%{name} a tornat partejar vòstre estatut :'
       subject: "%{name} a tornat partejar vòstre estatut"
       title: Novèl partatge
+    status:
+      subject: "%{name} ven de publicar"
   notifications:
     email_events: Eveniments per las notificacions per corrièl
     email_events_hint: 'Seleccionatz los eveniments que volètz recebre :'
@@ -1081,6 +1088,11 @@ oc:
       public_long: Tot lo monde pòt veire
       unlisted: Pas listat
       unlisted_long: Tot lo monde pòt veire mai serà pas visible sul flux public
+  statuses_cleanup:
+    enabled: Supression automatica de publicacions ancianas
+    keep_direct: Gardar los messatges dirèctes
+    keep_media: Gardar las publicacions amb pèça-junta
+    keep_pinned: Gardar las publicacions penjadas
   stream_entries:
     pinned: Tut penjat
     reblogged: a partejat
