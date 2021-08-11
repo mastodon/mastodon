@@ -1138,6 +1138,7 @@ th:
     preferences: การกำหนดลักษณะ
     profile: โปรไฟล์
     relationships: การติดตามและผู้ติดตาม
+    statuses_cleanup: การลบโพสต์แบบอัตโนมัติ
     two_factor_authentication: การรับรองความถูกต้องด้วยสองปัจจัย
     webauthn_authentication: กุญแจความปลอดภัย
   statuses:
@@ -1180,6 +1181,7 @@ th:
       unlisted: ไม่อยู่ในรายการ
       unlisted_long: ทุกคนสามารถเห็น แต่ไม่แสดงรายการในเส้นเวลาสาธารณะ
   statuses_cleanup:
+    enabled: ลบโพสต์เก่าโดยอัตโนมัติ
     exceptions: ข้อยกเว้น
     keep_direct_hint: ไม่ลบข้อความโดยตรงใดก็ตามของคุณ
     keep_media_hint: ไม่ลบโพสต์ที่มีไฟล์แนบสื่อใดก็ตามของคุณ
