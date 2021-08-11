@@ -1252,6 +1252,7 @@ it:
     preferences: Preferenze
     profile: Profilo
     relationships: Follows e followers
+    statuses_cleanup: Cancellazione automatica dei post
     two_factor_authentication: Autenticazione a due fattori
     webauthn_authentication: Chiavi di sicurezza
   statuses:
@@ -1303,6 +1304,10 @@ it:
       public_long: Tutti lo possono vedere
       unlisted: Pubblico, ma non visibile sulla timeline pubblica
       unlisted_long: Tutti lo possono vedere, ma non compare nelle timeline pubbliche
+  statuses_cleanup:
+    enabled: Cancella automaticamente i vecchi post
+    enabled_hint: Cancella automaticamente i tuoi post quando diventano più vecchi di una soglia di età specificata, a meno che non corrispondano a una delle eccezioni sotto
+    exceptions: Eccezioni
   stream_entries:
     pinned: Toot fissato in cima
     reblogged: condiviso
