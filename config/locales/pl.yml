@@ -1278,6 +1278,7 @@ pl:
     preferences: Preferencje
     profile: Profil
     relationships: Śledzeni i śledzący
+    statuses_cleanup: Automatyczne usuwanie posta
     two_factor_authentication: Uwierzytelnianie dwuetapowe
     webauthn_authentication: Klucze bezpieczeństwa
   statuses:
@@ -1341,6 +1342,14 @@ pl:
       public_long: Widoczne dla wszystkich użytkowników
       unlisted: Niewypisane
       unlisted_long: Widoczne dla wszystkich, ale nie wyświetlane na publicznych osiach czasu
+  statuses_cleanup:
+    enabled: Automatycznie usuwaj stare wiadomości
+    enabled_hint: Automatycznie usuwa Twoje posty, gdy osiągną określony próg wiekowy, chyba że spełniają jeden z poniższych wyjątków
+    exceptions: Wyjątki
+    explanation: Ponieważ usuwanie postów jest kosztowną operacją, odbywa się to powoli, gdy serwer nie jest zajęty. Z tego powodu Twoje posty mogą zostać usunięte po pewnym czasie po osiągnięciu progu wiekowego.
+    ignore_favs: Ignoruj ulubione
+    ignore_reblogs: Ignoruj podbicia
+    interaction_exceptions: Wyjątki oparte na interakcjach
   stream_entries:
     pinned: Przypięty wpis
     reblogged: podbił
