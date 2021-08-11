@@ -1289,6 +1289,10 @@ id:
     enabled: Otomatis hapus kiriman lama
     enabled_hint: "Otomatis menghapus kiriman Anda saat sudah mencapai batasan usia, kecuali yang cocok \nsesuai di bawah ini"
     exceptions: Pengecualian
+    explanation: Karena menghapus kiriman adalah operasi dengan sumber daya besar, ini akan dilakukan perlahan ketika server tidak sedang sibuk. Karena alasan ini, kiriman akan dihapus setelah mencapai batas waktu.
+    ignore_favs: Abaikan favorit
+    ignore_reblogs: Abaikan boost
+    interaction_exceptions: Pengecualian berdasar interaksi
   stream_entries:
     pinned: Toot tersemat
     reblogged: di-boost-kan
