@@ -152,6 +152,7 @@ th:
       public: สาธารณะ
       push_subscription_expires: การบอกรับ PuSH หมดอายุเมื่อ
       redownload: รีเฟรชโปรไฟล์
+      redownloaded_msg: รีเฟรชโปรไฟล์ของ %{username} จากจุดเริ่มต้นสำเร็จ
       reject: ปฏิเสธ
       reject_all: ปฏิเสธทั้งหมด
       rejected_msg: ปฏิเสธใบสมัครลงทะเบียนของ %{username} สำเร็จ
@@ -596,6 +597,8 @@ th:
         min_invite_role:
           disabled: ไม่มีใคร
           title: อนุญาตคำเชิญโดย
+        require_invite_text:
+          title: ต้องให้ผู้ใช้ใหม่ป้อนเหตุผลที่จะเข้าร่วม
       registrations_mode:
         modes:
           approved: ต้องมีการอนุมัติสำหรับการลงทะเบียน
