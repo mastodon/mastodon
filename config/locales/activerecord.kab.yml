@@ -4,12 +4,22 @@ kab:
       poll:
         expires_at: Azemz n taggara
         options: Tifranin
+      user:
+        agreement: Amtawa n umeẓlu
+        email: Tansa imayl
+        locale: Tutlayt
+        password: Awal uffir
+      user/account:
+        username: Isem n useqdac
+      user/invite_request:
+        text: Taɣzent
     errors:
       models:
         account:
           attributes:
             username:
               invalid: isekkilen, uṭṭunen d yijerriden n wadda kan
+              reserved: yettwaṭṭef
         status:
           attributes:
             reblog:
