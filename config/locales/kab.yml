@@ -208,8 +208,8 @@ kab:
         create_announcement_html: "%{name} yerna taselɣut tamaynut %{target}"
         create_custom_emoji_html: "%{name} yessuli-d imujiten imaynuten %{target}"
         create_domain_allow_html: "%{name} yerna taɣult %{target} ɣer tebdart tamellalt"
-        create_domain_block_html: "%{name} yesseḥbes taɣult %{target}"
-        create_email_domain_block_html: "%{name} yerna taɣult n imayl %{target} ɣer tebdart taberkant"
+        create_domain_block_html: "%{name} yessewḥel taɣult %{target}"
+        create_email_domain_block_html: "%{name} yessewḥel taɣult n yimayl %{target}"
         create_ip_block_html: "%{name} yerna alugen i IP %{target}"
         demote_user_html: "%{name} iṣubb-d deg usellun aseqdac %{target}"
         destroy_announcement_html: "%{name} yekkes taselɣut %{target}"
@@ -219,6 +219,11 @@ kab:
         destroy_email_domain_block_html: "%{name} yekkes asewḥel i taɣult n imayl %{target}"
         destroy_ip_block_html: "%{name} yekkes alugen i IP %{target}"
         destroy_status_html: "%{name} yekkes tasufeɣt n %{target}"
+        disable_2fa_user_html: "%{name} yssens asesteb s snat n tarrayin i useqdac %{target}"
+        disable_custom_emoji_html: "%{name} yessens imuji %{target}"
+        disable_user_html: "%{name} yessens tuqqna i useqdac %{target}"
+        enable_custom_emoji_html: "%{name} yermed imuji %{target}"
+        enable_user_html: "%{name} yermed tuqqna i useqdac %{target}"
       deleted_status: "(tasuffeɣt tettwakkes)"
       empty: Ulac iɣmisen i yellan.
       filter_by_action: Fren s tigawt
