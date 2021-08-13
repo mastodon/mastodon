@@ -20,6 +20,7 @@ kab:
     hosted_on: Maṣṭudun yersen deg %{domain}
     learn_more: Issin ugar
     privacy_policy: Tasertit tabaḍnit
+    rules: Ilugan n uqeddac
     see_whats_happening: Ẓer d acu i iḍerrun
     server_stats: 'Tidaddanin n uqeddac:'
     source_code: Tangalt Taɣbalut
@@ -76,6 +77,7 @@ kab:
       create: Eǧǧ tazmilt
       delete: Kkes
     accounts:
+      add_email_domain_block: Sewḥel taɣult n yimayl
       approve: Qbel
       approve_all: Qbel kullec
       are_you_sure: Tetḥeqqeḍ?
@@ -118,6 +120,7 @@ kab:
         remote: Ameccaq
         title: Amḍiq
       login_status: Addad n tuqqna
+      media_attachments: Imeddayen n umidya
       memorialize: Err amiḍan d asebter n usmekti
       moderation:
         active: Yermed
@@ -181,17 +184,41 @@ kab:
         confirm_user: Sentem aseqdac
         create_custom_emoji: Rnu imujit udmawan
         create_ip_block: Rnu alugen n IP
+        destroy_announcement: Kkes ulɣu
+        destroy_custom_emoji: Kkes imujit udmawan
+        destroy_domain_allow: Kkes taɣult yettusirgen
         destroy_ip_block: Kkes alugen n IP
         destroy_status: Kkes tasufeɣt
         destroy_unavailable_domain: Kkes taɣult ur nelli ara
         disable_2fa_user: Gdel 2FA
         disable_custom_emoji: Sens imujit udmawan
+        disable_user: Sens aseqdac
+        enable_custom_emoji: Rmed imujit udmawan
         enable_user: Rmed aseqdac
         promote_user: Aseqdac anmeggag
         remove_avatar_user: Kkes avaṭar
         reset_password_user: Ales awennez n wawal n uffir
         silence_account: Sgugem amiḍan
         update_domain_block: Leqqem iḥder n taɣult
+        update_status: Leqqem tasufeɣt
+      actions:
+        change_email_user_html: "%{name} ibeddel tansa imayl n useqdac %{target}"
+        confirm_user_html: "%{name} isentem tansa imayl n useqdac %{target}"
+        create_account_warning_html: "%{name} yuzen alɣu i %{target}"
+        create_announcement_html: "%{name} yerna taselɣut tamaynut %{target}"
+        create_custom_emoji_html: "%{name} yessuli-d imujiten imaynuten %{target}"
+        create_domain_allow_html: "%{name} yerna taɣult %{target} ɣer tebdart tamellalt"
+        create_domain_block_html: "%{name} yesseḥbes taɣult %{target}"
+        create_email_domain_block_html: "%{name} yerna taɣult n imayl %{target} ɣer tebdart taberkant"
+        create_ip_block_html: "%{name} yerna alugen i IP %{target}"
+        demote_user_html: "%{name} iṣubb-d deg usellun aseqdac %{target}"
+        destroy_announcement_html: "%{name} yekkes taselɣut %{target}"
+        destroy_custom_emoji_html: "%{name} ihudd imuji %{target}"
+        destroy_domain_allow_html: "%{name} yekkes taɣult %{target} seg tebdart tamellalt"
+        destroy_domain_block_html: "%{name} yekkes aseḥbes n taɣult %{target}"
+        destroy_email_domain_block_html: "%{name} yekkes asewḥel i taɣult n imayl %{target}"
+        destroy_ip_block_html: "%{name} yekkes alugen i IP %{target}"
+        destroy_status_html: "%{name} yekkes tasufeɣt n %{target}"
       deleted_status: "(tasuffeɣt tettwakkes)"
       empty: Ulac iɣmisen i yellan.
       filter_by_action: Fren s tigawt
