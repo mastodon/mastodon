@@ -650,10 +650,38 @@ kab:
     activity: Armud aneggaru
     browser: Iminig
     browsers:
+      alipay: Alipay
+      blackberry: Blackberry
+      chrome: Chrome
+      edge: Microsoft Edge
+      electron: Electron
+      firefox: Firefox
       generic: Iminig arusin
+      ie: Internet Explorer
+      micro_messenger: MicroMessenger
+      nokia: Iminig Nokia S40 Ovi
+      opera: Opera
+      otter: Otter
+      phantom_js: PhantomJS
+      qq: Iminig QQ
+      safari: Safari
+      uc_browser: UCBrowser
+      weibo: Weibo
     current_session: Tiγimit tamirant
     description: "%{browser} s %{platform}"
+    ip: IP
     platforms:
+      adobe_air: Adobe Air
+      android: Android
+      blackberry: Blackberry
+      chrome_os: Chrome OS
+      firefox_os: Firefox OS
+      ios: iOS
+      linux: Linux
+      mac: macOS
+      other: anagraw arussin
+      windows: Windows
+      windows_mobile: Windows Mobile
       windows_phone: Tiliγri Windows Phone
     revoke: Ḥwi
     title: Tiɣimiyin
@@ -674,6 +702,7 @@ kab:
     preferences: Imenyafen
     profile: Ameγnu
     relationships: Imeḍfaṛen akked wid i teṭṭafaṛeḍ
+    two_factor_authentication: Asesteb s snat n tarrayin
     webauthn_authentication: Tisura n teɣlist
   statuses:
     attached:
@@ -705,6 +734,15 @@ kab:
       public: Azayez
       public_long: Yal yiwen·t yezmer at iwali
       unlisted: War tabdert
+  statuses_cleanup:
+    min_age:
+      '1209600': 2 n yimalasen
+      '15778476': 6 n wayyuren
+      '2629746': 1 n wayyur
+      '31556952': 1 n useggas
+      '5259492': 2 n wayyuren
+      '63113904': 2 n yiseggasen
+      '7889238': 3 n wayyuren
   stream_entries:
     pinned: Tijewwiqt yettwasentḍen
     sensitive_content: Agbur amḥulfu
@@ -719,6 +757,8 @@ kab:
     disable: Gdel
     disabled_success: Asesteb s snat n tarrayin yensa akken iwata
     edit: Ẓreg
+    enabled: Asesteb s snat n tarrayin yermed
+    enabled_success: Asesteb s snat n tarrayin yermed akken iwata
     otp: Asnas n usesteb
     webauthn: Tisura n teɣlist
   user_mailer:
