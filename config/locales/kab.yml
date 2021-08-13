@@ -6,6 +6,7 @@ kab:
     active_count_after: d urmid
     active_footnote: Imseqdacen yekkren s wayyur (MAU)
     administered_by: 'Yettwadbel sɣur:'
+    api: API
     apps: Isnasen izirazen
     apps_platforms: Seqdec Maṣṭudun deg iOS, Android d tɣeṛγṛin-nniḍen
     browse_directory: Qelleb deg ukaram n imaɣnuten teǧǧeḍ-d gar-asen widak tebɣiḍ
@@ -154,6 +155,9 @@ kab:
         user: Amseqdac
       search: Nadi
       search_same_ip: Imseqdacen-nniḍen s tansa IP am tinn-ik
+      security_measures:
+        only_password: Awal uffir kan
+        password_and_2fa: Awal uffir d 2FA
       shared_inbox_url: Bḍu URL n tbewwaḍt
       show:
         created_reports: Eg ineqqisen
@@ -169,6 +173,7 @@ kab:
       undo_silenced: Kkes asgugem
       unsubscribe: Ur ṭafar ara
       username: Isem n useqdac
+      web: Web
       whitelisted: Deg tebdert tamellalt
     action_logs:
       action_types:
@@ -177,14 +182,19 @@ kab:
         create_custom_emoji: Rnu imujit udmawan
         create_ip_block: Rnu alugen n IP
         destroy_ip_block: Kkes alugen n IP
+        destroy_status: Kkes tasufeɣt
+        destroy_unavailable_domain: Kkes taɣult ur nelli ara
         disable_2fa_user: Gdel 2FA
+        disable_custom_emoji: Sens imujit udmawan
         enable_user: Rmed aseqdac
+        promote_user: Aseqdac anmeggag
         remove_avatar_user: Kkes avaṭar
         reset_password_user: Ales awennez n wawal n uffir
         silence_account: Sgugem amiḍan
         update_domain_block: Leqqem iḥder n taɣult
       deleted_status: "(tasuffeɣt tettwakkes)"
       empty: Ulac iɣmisen i yellan.
+      filter_by_action: Fren s tigawt
       filter_by_user: Sizdeg s useqdac
       title: Aɣmis n usenqed
     announcements:
@@ -224,6 +234,7 @@ kab:
       update_failed_msg: Ur izmir ara ad-issali umuji-a
       upload: Sali
     dashboard:
+      authorized_fetch_mode: Askar aɣellsan
       config: Tawila
       feature_deletions: Imiḍan yettwaksen
       feature_invites: Iseɣwan n iɛaṛuḍen
@@ -234,7 +245,9 @@ kab:
       open_reports: yeldin d ineqqisen
       pending_users: imseqdacen ttrajun aɛiwed n tmuɣli
       recent_users: Iseqdacen n memli kan
+      single_user_mode: Askar n ykwen n useqdac
       software: Aseɣẓan
+      space: Tallunt yettwasqedcen
       title: Tafelwit
       total_users: igellan akk d iseqdacen
       week_users_active: urmiden deg yimalas-agi
@@ -254,6 +267,7 @@ kab:
           suspend: Ḥbes di leεḍil
       private_comment: Awennit uslig
       public_comment: Awennit azayez
+      reject_reports: Agi ineqqisen
       severity:
         silence: yettwasgugem
         suspend: yeḥbes
