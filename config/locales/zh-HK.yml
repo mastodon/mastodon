@@ -187,6 +187,7 @@ zh-HK:
       search_same_email_domain: 其他有相同電郵網域的使用者
       search_same_ip: 其他有相同 IP 位址的使用者
       security_measures:
+        only_password: 僅密碼
         password_and_2fa: 密碼和兩步認證
       sensitive: 敏感内容
       sensitized: 已標記為敏感內容
@@ -227,6 +228,7 @@ zh-HK:
         create_domain_block: 封鎖域名
         create_email_domain_block: 封鎖電郵域名
         create_ip_block: 新增IP規則
+        create_unavailable_domain: 創建無效域名
         demote_user: 將帳號降級
         destroy_announcement: 刪除公告
         destroy_custom_emoji: 刪除自定的 Emoji 表情符號
@@ -258,6 +260,18 @@ zh-HK:
         update_custom_emoji: 更新自定的 Emoji 表情符號
         update_domain_block: 更新域名阻隔
         update_status: 更新文章
+      actions:
+        create_account_warning_html: "%{name} 已警告了 %{target}"
+        create_custom_emoji_html: "%{name} 加入了新的 Emoji %{target}"
+        create_domain_block_html: "%{name} 封鎖了網域 %{target}"
+        create_ip_block_html: "%{name} 已經設定了針對 IP %{target} 的規則"
+        demote_user_html: "%{name} 降權了 %{target}"
+        destroy_announcement_html: "%{name} 刪除了公告 %{target}"
+        destroy_custom_emoji_html: "%{name} 刪除了 Emoji %{target}"
+        destroy_ip_block_html: "%{name} 已經刪除了 IP %{target} 的規則"
+        disable_custom_emoji_html: "%{name} 停用了 Emoji %{target}"
+        enable_custom_emoji_html: "%{name} 啟用了 Emoji %{target}"
+        enable_user_html: "%{name} 把使用者 %{target} 設定為允許登入"
       deleted_status: "（已刪除文章）"
       empty: 找不到任何日誌。
       filter_by_action: 按動作篩選
@@ -399,6 +413,7 @@ zh-HK:
         title: 新增電郵網域阻隔
       title: 電郵網域阻隔
     follow_recommendations:
+      language: 按語言
       status: 狀態
     instances:
       back_to_all: 全部
@@ -926,9 +941,11 @@ zh-HK:
       limit: 你所建立的列表數量已經達到上限
   login_activities:
     authentication_methods:
+      otp: 兩步認證軟體
       password: 密碼
       sign_in_token: 電子郵件安全碼
       webauthn: 安全密鑰
+    title: 驗證操作歷史
   media_attachments:
     validations:
       images_and_video: 不能在已有圖片的文章上加入影片
@@ -1195,6 +1212,16 @@ zh-HK:
       public_long: 所有人都能看到
       unlisted: 公開，但不在公共時間軸顯示
       unlisted_long: 所有人都能看到，但不在公共時間軸（本站時間軸、跨站時間軸）顯示
+  statuses_cleanup:
+    min_age:
+      '1209600': 2 週
+      '15778476': 6 個月
+      '2629746': 1 個月
+      '31556952': 1 年
+      '5259492': 2 個月
+      '63113904': 2 年
+      '7889238': 3 個月
+    min_age_label: 年齡限制
   stream_entries:
     pinned: 置頂文章
     reblogged: 轉推
