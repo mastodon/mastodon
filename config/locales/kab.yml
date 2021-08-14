@@ -106,6 +106,7 @@ kab:
       email: Imayl
       email_status: Addad n imayl
       enable: Rmed
+      enable_sign_in_token_auth: Rmed asesteb yebnan ɣef ujiṭun s yimayl
       enabled: Yermed
       followers: Imeḍfaṛen
       follows: Yeṭafaṛ
@@ -158,10 +159,12 @@ kab:
         staff: Tarbaɛt
         user: Amseqdac
       search: Nadi
+      search_same_email_domain: Iseqdacen-nniḍen s yiwet n taɣult n yimayl
       search_same_ip: Imseqdacen-nniḍen s tansa IP am tinn-ik
       security_measures:
         only_password: Awal uffir kan
         password_and_2fa: Awal uffir d 2FA
+        password_and_sign_in_token: Ajiṭun n wawal uffir d yimayl
       shared_inbox_url: Bḍu URL n tbewwaḍt
       show:
         created_reports: Eg ineqqisen
@@ -177,32 +180,46 @@ kab:
       undo_silenced: Kkes asgugem
       unsubscribe: Ur ṭafar ara
       username: Isem n useqdac
+      view_domain: Sken-d agzul n taɣult
+      warn: Alɣu
       web: Web
       whitelisted: Deg tebdert tamellalt
     action_logs:
       action_types:
         change_email_user: Beddel imayl i useqdac
         confirm_user: Sentem aseqdac
+        create_announcement: Rnu-d ulɣu
         create_custom_emoji: Rnu imujit udmawan
+        create_domain_allow: Rnu-d taɣult yettusirgen
+        create_domain_block: Rnu-d asewḥel n taɣult
+        create_email_domain_block: Rnu-d asewḥel n taɣult n yimayl
         create_ip_block: Rnu alugen n IP
+        create_unavailable_domain: Rnu-d taɣult ur nelli ara
         destroy_announcement: Kkes ulɣu
         destroy_custom_emoji: Kkes imujit udmawan
         destroy_domain_allow: Kkes taɣult yettusirgen
+        destroy_domain_block: Kkes asewḥel n taɣult
+        destroy_email_domain_block: Kkes asewḥel n taɣult n yimayl
         destroy_ip_block: Kkes alugen n IP
         destroy_status: Kkes tasufeɣt
         destroy_unavailable_domain: Kkes taɣult ur nelli ara
         disable_2fa_user: Gdel 2FA
         disable_custom_emoji: Sens imujit udmawan
+        disable_sign_in_token_auth_user: Sens asesteb yebnan ɣef ujiṭun s yimayl i useqdac
         disable_user: Sens aseqdac
         enable_custom_emoji: Rmed imujit udmawan
+        enable_sign_in_token_auth_user: Rmed asesteb yebnan ɣef ujiṭun s yimayl i useqdac
         enable_user: Rmed aseqdac
         promote_user: Aseqdac anmeggag
         remove_avatar_user: Kkes avaṭar
         reset_password_user: Ales awennez n wawal n uffir
         silence_account: Sgugem amiḍan
+        update_announcement: Leqqem ulɣu
+        update_custom_emoji: Leqqem imuji udmawan
         update_domain_block: Leqqem iḥder n taɣult
         update_status: Leqqem tasufeɣt
       actions:
+        assigned_to_self_report_html: "%{name} imudd aneqqis %{target} i yiman-nsen"
         change_email_user_html: "%{name} ibeddel tansa imayl n useqdac %{target}"
         confirm_user_html: "%{name} isentem tansa imayl n useqdac %{target}"
         create_account_warning_html: "%{name} yuzen alɣu i %{target}"
@@ -212,6 +229,7 @@ kab:
         create_domain_block_html: "%{name} yessewḥel taɣult %{target}"
         create_email_domain_block_html: "%{name} yessewḥel taɣult n yimayl %{target}"
         create_ip_block_html: "%{name} yerna alugen i IP %{target}"
+        create_unavailable_domain_html: "%{name} iseḥbes asiweḍ ɣer taɣult %{target}"
         demote_user_html: "%{name} iṣubb-d deg usellun aseqdac %{target}"
         destroy_announcement_html: "%{name} yekkes taselɣut %{target}"
         destroy_custom_emoji_html: "%{name} ihudd imuji %{target}"
