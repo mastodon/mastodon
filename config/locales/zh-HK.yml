@@ -186,6 +186,8 @@ zh-HK:
       search: 搜尋
       search_same_email_domain: 其他有相同電郵網域的使用者
       search_same_ip: 其他有相同 IP 位址的使用者
+      security_measures:
+        password_and_2fa: 密碼和兩步認證
       sensitive: 敏感内容
       sensitized: 已標記為敏感內容
       shared_inbox_url: 公共收件箱（Shared Inbox）URL
@@ -233,6 +235,7 @@ zh-HK:
         destroy_email_domain_block: 刪除已封鎖的電郵城名
         destroy_ip_block: 刪除 IP 規則
         destroy_status: 刪除文章
+        destroy_unavailable_domain: 刪除無效域名
         disable_2fa_user: 停用兩步驟驗證
         disable_custom_emoji: 停用自定的 Emoji 表情符號
         disable_user: 停用帳號
@@ -269,10 +272,12 @@ zh-HK:
       new:
         create: 建立公告
         title: 新增公告
+      publish: 已發佈
       published_msg: 成功發布公告！
       scheduled_for: 排定 %{time}
       scheduled_msg: 公告已排程！
       title: 公告
+      unpublish: 未發佈
       unpublished_msg: 成功取消發布公告！
       updated_msg: 成功更新公告！
     custom_emojis:
@@ -393,8 +398,16 @@ zh-HK:
         create: 新增網域
         title: 新增電郵網域阻隔
       title: 電郵網域阻隔
+    follow_recommendations:
+      status: 狀態
     instances:
+      back_to_all: 全部
+      back_to_limited: 已靜音
+      back_to_warning: 警告
       by_domain: 域名
+      delivery:
+        all: 全部
+        warning: 警告
       delivery_available: 可傳送
       empty: 找不到域名。
       known_accounts:
@@ -495,6 +508,7 @@ zh-HK:
       updated_at: 更新
     rules:
       add_new: 新增規則
+      delete: 刪除
       edit: 編輯規則
       title: 伺服器守則
     settings:
@@ -910,6 +924,11 @@ zh-HK:
   lists:
     errors:
       limit: 你所建立的列表數量已經達到上限
+  login_activities:
+    authentication_methods:
+      password: 密碼
+      sign_in_token: 電子郵件安全碼
+      webauthn: 安全密鑰
   media_attachments:
     validations:
       images_and_video: 不能在已有圖片的文章上加入影片
@@ -984,6 +1003,8 @@ zh-HK:
       body: '你的文章被 %{name} 轉推：'
       subject: "%{name} 轉推了你的文章"
       title: 新的轉推
+    status:
+      subject: "%{name} 剛發表了文章"
   notifications:
     email_events: 電郵通知活動
     email_events_hint: '選擇你想接收通知的活動：'
