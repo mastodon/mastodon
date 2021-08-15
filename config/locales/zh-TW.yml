@@ -1293,6 +1293,19 @@ zh-TW:
     ignore_favs: 忽略最愛
     ignore_reblogs: 忽略轉嘟
     interaction_exceptions: 以互動為基礎的例外
+    interaction_exceptions_explanation: 請注意嘟文是無法保證被刪除的，如果在一次處理過後嘟文低於最愛或轉嘟的門檻。
+    keep_direct: 保留私訊
+    keep_direct_hint: 不會刪除任何您的私訊
+    keep_media: 保留包含媒體內容的嘟文
+    keep_media_hint: 不會刪除您包含媒體內容的嘟文
+    keep_pinned: 保留釘選嘟文
+    keep_pinned_hint: 不會刪除您的釘選嘟文
+    keep_polls: 保留投票
+    keep_polls_hint: 不會刪除您的投票
+    keep_self_bookmark: 保留您已標記為書簽之嘟文
+    keep_self_bookmark_hint: 不會刪除您已標記為書簽之嘟文
+    keep_self_fav: 保留您已標記為最愛之嘟文
+    keep_self_fav_hint: 不會刪除您已標記為最愛之嘟文
     min_age:
       '1209600': 2 週
       '15778476': 6 個月
@@ -1302,6 +1315,10 @@ zh-TW:
       '63113904': 2 年
       '7889238': 3 個月
     min_age_label: 年齡限制
+    min_favs: 保留超過嘟文最愛門檻
+    min_favs_hint: 如果您嘟文已收到超過最愛門檻則不會刪除。留白表示不論最愛數量皆刪除嘟文。
+    min_reblogs: 保留超過嘟文轉嘟門檻
+    min_reblogs_hint: 如果您嘟文已收到超過轉嘟門檻則不會刪除。留白表示不論轉嘟數量皆刪除嘟文。
   stream_entries:
     pinned: 置頂嘟文
     reblogged: 轉嘟
