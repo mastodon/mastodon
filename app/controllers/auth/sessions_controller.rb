@@ -58,13 +58,13 @@ class Auth::SessionsController < Devise::SessionsController
   protected
 
   def find_user
-    if session[:attempt_user_id]
-      User.find_by(id: session[:attempt_user_id])
-    else
+    if user_params[:email].present?
       user   = User.authenticate_with_ldap(user_params) if Devise.ldap_authentication
       user ||= User.authenticate_with_pam(user_params) if Devise.pam_authentication
       user ||= User.find_for_authentication(email: user_params[:email])
       user
+    elsif session[:attempt_user_id]
+      User.find_by(id: session[:attempt_user_id])
     end
   end
 

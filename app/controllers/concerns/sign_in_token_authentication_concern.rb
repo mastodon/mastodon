@@ -18,11 +18,13 @@ module SignInTokenAuthenticationConcern
   def authenticate_with_sign_in_token
     user = self.resource = find_user
 
-    if user.present? && session[:attempt_user_id].present? && session[:attempt_user_updated_at] != user.updated_at.to_s
+    return if user.nil?
+
+    if session[:attempt_user_id].present? && session[:attempt_user_updated_at] != user.updated_at.to_s
       restart_session
-    elsif user_params.key?(:sign_in_token_attempt) && session[:attempt_user_id]
+    elsif user_params.key?(:sign_in_token_attempt) && session[:attempt_user_id] == user.id
       authenticate_with_sign_in_token_attempt(user)
-    elsif user.present? && user.external_or_valid_password?(user_params[:password])
+    elsif user.external_or_valid_password?(user_params[:password])
       prompt_for_sign_in_token(user)
     end
   end
