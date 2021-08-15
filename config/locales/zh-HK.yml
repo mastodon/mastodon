@@ -300,10 +300,16 @@ zh-HK:
         reset_password_user_html: "%{name} 重設了使用者 %{target} 的密碼"
         resolve_report_html: "%{name} 處理了 %{target} 的檢舉案例"
         sensitive_account_html: "%{name} 將 %{target} 的媒體標記為敏感內容"
-        silence_account_html: "%{name} 靜音了帳號 %{target}"
+        silence_account_html: "%{name} 限制了帳號 %{target}"
         suspend_account_html: "%{name} 將帳號 %{target} 停權"
         unassigned_report_html: "%{name} 取消指派 %{target} 的檢舉"
         unsensitive_account_html: "%{name} 將 %{target} 的媒體取消標記為敏感內容"
+        unsilence_account_html: "%{name} 取消了用戶 %{target} 的限制狀態"
+        unsuspend_account_html: "%{name} 將帳號 %{target} 解除停權"
+        update_announcement_html: "%{name} 更新了公告 %{target}"
+        update_custom_emoji_html: "%{name} 更新了 Emoji 表情符號 %{target}"
+        update_domain_block_html: "%{name} 更新了對 %{target} 的網域封鎖"
+        update_status_html: "%{name} 更新了 %{target} 的嘟文"
       deleted_status: "（已刪除文章）"
       empty: 找不到任何日誌。
       filter_by_action: 按動作篩選
@@ -445,8 +451,13 @@ zh-HK:
         title: 新增電郵網域阻隔
       title: 電郵網域阻隔
     follow_recommendations:
+      description_html: "<strong>跟隨建議幫助新使用者快速找到有趣內容。</strong> 當使用者尚未和其他帳號足夠多的互動以產生個人化建議時，以下帳號將被推荐。這些是一句指定語言的近期參與度和本地粉絲數最高之帳戶組合每日重新計算。"
       language: 按語言
       status: 狀態
+      suppress: 隱藏跟隨建議
+      suppressed: 已隱藏
+      title: 跟隨建議
+      unsuppress: 還原跟隨建議
     instances:
       back_to_all: 全部
       back_to_limited: 已靜音
@@ -454,6 +465,12 @@ zh-HK:
       by_domain: 域名
       delivery:
         all: 全部
+        clear: 清除遞送錯誤
+        restart: 重新啟動遞送
+        stop: 停止遞送
+        title: 遞送
+        unavailable: 離線
+        unavailable_message: 無法遞送
         warning: 警告
       delivery_available: 可傳送
       empty: 找不到域名。
