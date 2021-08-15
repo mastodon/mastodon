@@ -472,7 +472,11 @@ zh-HK:
         unavailable: 離線
         unavailable_message: 無法遞送
         warning: 警告
+        warning_message:
+          other: 遞送失敗 %{count} 天
       delivery_available: 可傳送
+      delivery_error_days: 遞送失敗天數
+      delivery_error_hint: 若 %{count} 天皆無法達成遞送，將會被自動標記為離線。
       empty: 找不到域名。
       known_accounts:
         other: "%{count} 已知的帳號"
@@ -573,7 +577,9 @@ zh-HK:
     rules:
       add_new: 新增規則
       delete: 刪除
+      description_html: 通常大部份宣稱已經閱讀並同意服務條款的人，在出現事故之前都沒有仔細閱讀條款內文。<strong>為了讓人方便閱讀服務條款，請以條列的形式將伺服器規則盡可能地寫得簡短一點</strong>。嘗試把每一項規則寫得簡短易明，但又不要把它們拆得過份瑣碎。
       edit: 編輯規則
+      empty: 尚未定義伺服器規則
       title: 伺服器守則
     settings:
       activity_api_enabled:
@@ -681,6 +687,14 @@ zh-HK:
       no_status_selected: 因未選擇嘟文而未變更。
       title: 帳戶文章
       with_media: 含有媒體檔案
+    system_checks:
+      database_schema_check:
+        message_html: 有待處理的資料庫轉移 (database migration) 。請執行以確保應用程式行為合乎預期
+      rules_check:
+        action: 管理伺服器規則
+        message_html: 您尚未定義任何伺服器規則
+      sidekiq_process_check:
+        message_html: 沒有 %{value} 佇列的 Sidekiq 處理程序。請檢查 Sidekiq 設定檔案
     tags:
       accounts_today: 今日特殊使用
       accounts_week: 今週特殊使用
@@ -701,6 +715,7 @@ zh-HK:
       add_new: 新增
       delete: 刪除
       edit_preset: 設定警告預設
+      empty: 您尚未定義任何預設警告
       title: 管理警告預設
   admin_mailer:
     new_pending_account:
