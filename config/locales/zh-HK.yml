@@ -1009,6 +1009,10 @@ zh-HK:
       password: 密碼
       sign_in_token: 電子郵件安全碼
       webauthn: 安全密鑰
+    description_html: 若發現有無法辨識的帳號動態，請考慮更改密碼以及啟用雙重階段驗證。
+    empty: 沒有驗證歷史
+    failed_sign_in_html: 以 %{method} 從 %{ip} (%{browser}) 登入失敗
+    successful_sign_in_html: 以 %{method} 從 %{ip} (%{browser}) 成功登入
     title: 驗證操作歷史
   media_attachments:
     validations:
@@ -1080,6 +1084,8 @@ zh-HK:
       body: '%{name} 在文章中提及你︰'
       subject: '%{name} 在文章中提及你'
       title: 新的提及
+    poll:
+      subject: '%{name} 發起的投票已截止'
     reblog:
       body: '你的文章被 %{name} 轉推：'
       subject: "%{name} 轉推了你的文章"
@@ -1212,6 +1218,7 @@ zh-HK:
     revoke: 取消
     revoke_success: 作業階段成功取消
     title: 作業階段
+    view_authentication_history: 檢視帳號驗證紀錄
   settings:
     account: 帳戶
     account_settings: 帳戶設定
@@ -1271,6 +1278,7 @@ zh-HK:
     sign_in_to_participate: 登入以加入討論
     title: '%{name}：「%{quote}」'
     visibilities:
+      direct: 私人訊息
       private: 關注者觀看
       private_long: 只有關注你的人能看到
       public: 公開
