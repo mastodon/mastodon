@@ -1,8 +1,8 @@
 zh-HK:
   about:
     about_hashtag_html: '這些是包含「<strong>#%{hashtag}</strong>」標籤的公開文章。只要你是任何聯盟網站的用戶，便可以與他們互動。'
-    about_mastodon_html: 'Mastodon（萬象）是屬於未來的社交網絡︰無廣告煩擾、無企業監控、設計講道義、分散無大台！立即重奪個人資料的控制權，使用 Mastodon 吧！'
-    about_this: 關於本服務站
+    about_mastodon_html: 'Mastodon（萬象）是屬於未來的社交網路︰無廣告煩擾、無企業監控、設計講道義、分散無大台！立即重奪個人資料的控制權，使用 Mastodon 吧！'
+    about_this: 關於本伺服器
     active_count_after: 活躍
     active_footnote: 每月活躍使用者 (MAU)
     administered_by: '管理者：'
@@ -268,17 +268,42 @@ zh-HK:
       actions:
         assigned_to_self_report_html: "%{name} 指派了 %{target} 的檢舉給自己"
         change_email_user_html: "%{name} 更改了使用者 %{target} 的 e-mail 地址"
+        confirm_user_html: "%{name} 已確認使用者 %{target} 的 e-mail 地址"
         create_account_warning_html: "%{name} 已警告了 %{target}"
+        create_announcement_html: "%{name} 新增了公告 %{target}"
         create_custom_emoji_html: "%{name} 加入了新的 Emoji %{target}"
+        create_domain_allow_html: "%{name} 允許網域 %{target} 加入聯邦宇宙"
         create_domain_block_html: "%{name} 封鎖了網域 %{target}"
+        create_email_domain_block_html: "%{name} 封鎖了 e-mail 網域 %{target}"
         create_ip_block_html: "%{name} 已經設定了針對 IP %{target} 的規則"
+        create_unavailable_domain_html: "%{name} 停止了對網域 %{target} 的更新通知"
         demote_user_html: "%{name} 降權了 %{target}"
         destroy_announcement_html: "%{name} 刪除了公告 %{target}"
         destroy_custom_emoji_html: "%{name} 刪除了 Emoji %{target}"
+        destroy_domain_allow_html: "%{name} 禁止網域 %{target} 加入聯邦宇宙"
+        destroy_domain_block_html: "%{name} 封鎖了網域 %{target}"
+        destroy_email_domain_block_html: "%{name} 解除封鎖 e-mail 網域 %{target}"
         destroy_ip_block_html: "%{name} 已經刪除了 IP %{target} 的規則"
+        destroy_status_html: "%{name} 刪除了 %{target} 的嘟文"
+        destroy_unavailable_domain_html: "%{name} 恢復了對網域 %{target} 的更新通知"
+        disable_2fa_user_html: "%{name} 停用了使用者 %{target} 的雙重認證"
         disable_custom_emoji_html: "%{name} 停用了 Emoji %{target}"
+        disable_sign_in_token_auth_user_html: "%{name} 停用了使用者 %{target} 的 e-mail 驗證碼"
+        disable_user_html: "%{name} 把使用者 %{target} 設定為禁止登入"
         enable_custom_emoji_html: "%{name} 啟用了 Emoji %{target}"
+        enable_sign_in_token_auth_user_html: "%{name} 啟用了使用者 %{target} 的 e-mail 驗證碼"
         enable_user_html: "%{name} 把使用者 %{target} 設定為允許登入"
+        memorialize_account_html: "%{name} 把 %{target} 設定為追悼帳號"
+        promote_user_html: "%{name} 提升了使用者 %{target} 的權限"
+        remove_avatar_user_html: "%{name} 移除了 %{target} 的大頭貼"
+        reopen_report_html: "%{name} 重新開啟 %{target} 的檢舉案例"
+        reset_password_user_html: "%{name} 重設了使用者 %{target} 的密碼"
+        resolve_report_html: "%{name} 處理了 %{target} 的檢舉案例"
+        sensitive_account_html: "%{name} 將 %{target} 的媒體標記為敏感內容"
+        silence_account_html: "%{name} 靜音了帳號 %{target}"
+        suspend_account_html: "%{name} 將帳號 %{target} 停權"
+        unassigned_report_html: "%{name} 取消指派 %{target} 的檢舉"
+        unsensitive_account_html: "%{name} 將 %{target} 的媒體取消標記為敏感內容"
       deleted_status: "（已刪除文章）"
       empty: 找不到任何日誌。
       filter_by_action: 按動作篩選
