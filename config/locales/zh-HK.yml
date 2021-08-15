@@ -114,6 +114,7 @@ zh-HK:
       demote: 降權
       destroyed_msg: "即將刪除 %{username} 的數據"
       disable: 停用
+      disable_sign_in_token_auth: 停用 e-mail 驗證碼
       disable_two_factor_authentication: 關閉雙重認證
       disabled: 已凍結
       display_name: 顯示名稱
@@ -122,6 +123,7 @@ zh-HK:
       email: 電郵地址
       email_status: 電郵狀態
       enable: 解除凍結
+      enable_sign_in_token_auth: 啟用 e-mail 驗證碼
       enabled: 已啟用
       enabled_msg: 成功解除 %{username} 帳號的凍結
       followers: 關注者
@@ -189,6 +191,7 @@ zh-HK:
       security_measures:
         only_password: 僅密碼
         password_and_2fa: 密碼和兩步認證
+        password_and_sign_in_token: 密碼與 e-mail 驗證碼
       sensitive: 敏感内容
       sensitized: 已標記為敏感內容
       shared_inbox_url: 公共收件箱（Shared Inbox）URL
@@ -240,8 +243,10 @@ zh-HK:
         destroy_unavailable_domain: 刪除無效域名
         disable_2fa_user: 停用兩步驟驗證
         disable_custom_emoji: 停用自定的 Emoji 表情符號
+        disable_sign_in_token_auth_user: 停用該使用者之 e-mail 驗證碼
         disable_user: 停用帳號
         enable_custom_emoji: 啟用自定的 Emoji 表情符號
+        enable_sign_in_token_auth_user: 啟用該使用者之 e-mail 驗證碼
         enable_user: 啟用帳號
         memorialize_account: 把帳號設定為悼念帳號
         promote_user: 提升帳號權限
@@ -261,6 +266,8 @@ zh-HK:
         update_domain_block: 更新域名阻隔
         update_status: 更新文章
       actions:
+        assigned_to_self_report_html: "%{name} 指派了 %{target} 的檢舉給自己"
+        change_email_user_html: "%{name} 更改了使用者 %{target} 的 e-mail 地址"
         create_account_warning_html: "%{name} 已警告了 %{target}"
         create_custom_emoji_html: "%{name} 加入了新的 Emoji %{target}"
         create_domain_block_html: "%{name} 封鎖了網域 %{target}"
@@ -1230,6 +1237,10 @@ zh-HK:
     keep_pinned_hint: 不會刪除您的釘選嘟文
     keep_polls: 保留投票
     keep_polls_hint: 不會刪除您的投票
+    keep_self_bookmark: 保留您已標記為書簽之嘟文
+    keep_self_bookmark_hint: 不會刪除您已標記為書簽之嘟文
+    keep_self_fav: 保留您已標記為最愛之嘟文
+    keep_self_fav_hint: 不會刪除您已標記為最愛之嘟文
     min_age:
       '1209600': 2 週
       '15778476': 6 個月
@@ -1239,6 +1250,10 @@ zh-HK:
       '63113904': 2 年
       '7889238': 3 個月
     min_age_label: 年齡限制
+    min_favs: 保留超過嘟文最愛門檻
+    min_favs_hint: 如果您嘟文已收到超過最愛門檻則不會刪除。留白表示不論最愛數量皆刪除嘟文。
+    min_reblogs: 保留超過嘟文轉嘟門檻
+    min_reblogs_hint: 如果您嘟文已收到超過轉嘟門檻則不會刪除。留白表示不論轉嘟數量皆刪除嘟文。
   stream_entries:
     pinned: 置頂文章
     reblogged: 轉推
