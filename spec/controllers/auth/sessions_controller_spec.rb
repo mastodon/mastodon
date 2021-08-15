@@ -263,6 +263,21 @@ RSpec.describe Auth::SessionsController, type: :controller do
           end
         end
 
+        context 'using a valid OTP, attempting to leverage previous half-login to bypass password auth' do
+          let!(:other_user) do
+            Fabricate(:user, email: 'z@y.com', password: 'abcdefgh', otp_required_for_login: false, current_sign_in_at: 1.month.ago)
+          end
+
+          before do
+            post :create, params: { user: { email: other_user.email, password: other_user.password } }
+            post :create, params: { user: { email: user.email, otp_attempt: user.current_otp } }, session: { attempt_user_updated_at: user.updated_at.to_s }
+          end
+
+          it "doesn't log the user in" do
+            expect(controller.current_user).to be_nil
+          end
+        end
+
         context 'when the server has an decryption error' do
           before do
             allow_any_instance_of(User).to receive(:validate_and_consume_otp!).and_raise(OpenSSL::Cipher::CipherError)
@@ -470,6 +485,22 @@ RSpec.describe Auth::SessionsController, type: :controller do
 
         it 'logs the user in' do
           expect(controller.current_user).to eq user
+        end
+      end
+
+      context 'using a valid sign in token, attempting to leverage previous half-login to bypass password auth' do
+        let!(:other_user) do
+          Fabricate(:user, email: 'z@y.com', password: 'abcdefgh', otp_required_for_login: false, current_sign_in_at: 1.month.ago)
+        end
+
+        before do
+          user.generate_sign_in_token && user.save
+          post :create, params: { user: { email: other_user.email, password: other_user.password } }
+          post :create, params: { user: { email: user.email, sign_in_token_attempt: user.sign_in_token } }, session: { attempt_user_updated_at: user.updated_at.to_s }
+        end
+
+        it "doesn't log the user in" do
+          expect(controller.current_user).to be_nil
         end
       end
 
