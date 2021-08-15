@@ -206,6 +206,38 @@ RSpec.describe Auth::SessionsController, type: :controller do
           end
         end
 
+        context 'using email and password after an unfinished log-in attempt to a 2FA-protected account' do
+          let!(:other_user) do
+            Fabricate(:user, email: 'z@y.com', password: 'abcdefgh', otp_required_for_login: true, otp_secret: User.generate_otp_secret(32))
+          end
+
+          before do
+            post :create, params: { user: { email: other_user.email, password: other_user.password } }
+            post :create, params: { user: { email: user.email, password: user.password } }
+          end
+
+          it 'renders two factor authentication page' do
+            expect(controller).to render_template("two_factor")
+            expect(controller).to render_template(partial: "_otp_authentication_form")
+          end
+        end
+
+        context 'using email and password after an unfinished log-in attempt with a sign-in token challenge' do
+          let!(:other_user) do
+            Fabricate(:user, email: 'z@y.com', password: 'abcdefgh', otp_required_for_login: false, current_sign_in_at: 1.month.ago)
+          end
+
+          before do
+            post :create, params: { user: { email: other_user.email, password: other_user.password } }
+            post :create, params: { user: { email: user.email, password: user.password } }
+          end
+
+          it 'renders two factor authentication page' do
+            expect(controller).to render_template("two_factor")
+            expect(controller).to render_template(partial: "_otp_authentication_form")
+          end
+        end
+
         context 'using upcase email and password' do
           before do
             post :create, params: { user: { email: user.email.upcase, password: user.password } }
@@ -377,6 +409,52 @@ RSpec.describe Auth::SessionsController, type: :controller do
 
         it 'sends sign in token e-mail' do
           expect(UserMailer).to have_received(:sign_in_token)
+        end
+      end
+
+      context 'using email and password after an unfinished log-in attempt to a 2FA-protected account' do
+        let!(:other_user) do
+          Fabricate(:user, email: 'z@y.com', password: 'abcdefgh', otp_required_for_login: true, otp_secret: User.generate_otp_secret(32))
+        end
+
+        before do
+          post :create, params: { user: { email: other_user.email, password: other_user.password } }
+          post :create, params: { user: { email: user.email, password: user.password } }
+        end
+
+        it 'renders sign in token authentication page' do
+          expect(controller).to render_template("sign_in_token")
+        end
+
+        it 'generates sign in token' do
+          expect(user.reload.sign_in_token).to_not be_nil
+        end
+
+        it 'sends sign in token e-mail' do
+          expect(UserMailer).to have_received(:sign_in_token)
+        end
+      end
+
+      context 'using email and password after an unfinished log-in attempt with a sign-in token challenge' do
+        let!(:other_user) do
+          Fabricate(:user, email: 'z@y.com', password: 'abcdefgh', otp_required_for_login: false, current_sign_in_at: 1.month.ago)
+        end
+
+        before do
+          post :create, params: { user: { email: other_user.email, password: other_user.password } }
+          post :create, params: { user: { email: user.email, password: user.password } }
+        end
+
+        it 'renders sign in token authentication page' do
+          expect(controller).to render_template("sign_in_token")
+        end
+
+        it 'generates sign in token' do
+          expect(user.reload.sign_in_token).to_not be_nil
+        end
+
+        it 'sends sign in token e-mail' do
+          expect(UserMailer).to have_received(:sign_in_token).with(user, any_args)
         end
       end
 
