@@ -185,6 +185,8 @@ ja:
       search: 検索
       search_same_email_domain: 同じドメインのメールアドレスを使用しているユーザー
       search_same_ip: 同じ IP のユーザーを検索
+      security_measures:
+        password_and_2fa: パスワードと 2FA
       sensitive: 閲覧注意
       sensitized: 閲覧注意済み
       shared_inbox_url: Shared inbox URL
@@ -991,6 +993,11 @@ ja:
   lists:
     errors:
       limit: リストの上限に達しました
+  login_activities:
+    authentication_methods:
+      password: パスワード
+      sign_in_token: 電子メールセキュリティコード
+      webauthn: セキュリティキー
   media_attachments:
     validations:
       images_and_video: 既に画像が追加されているため、動画を追加することはできません
