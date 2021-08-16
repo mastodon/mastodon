@@ -6,6 +6,13 @@ kmr-TR:
         redirect_uri: URL ya beralî
         scopes: Berfirehî
         website: Malpera sepanê
+    errors:
+      models:
+        doorkeeper/application:
+          attributes:
+            redirect_uri:
+              fragment_present: Perçe tê de tinne
+              invalid_uri: ger ev URL derbasdar be.
   doorkeeper:
     applications:
       buttons:
