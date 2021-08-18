@@ -1306,10 +1306,13 @@ is:
       unlisted_long: Allir geta skoðað, en er ekki talið upp á opinberum tímalínum
   statuses_cleanup:
     enabled: Sjálfkrafa eyða eldri færslum
+    enabled_hint: Eyðir sjálfkrafa færslum þínum um leið og þær ná tilteknum aldursmörkum, nema ef þær samsvara einni af undantekningunum hér fyrir neðan
     exceptions: Undantekningar
+    explanation: Þar sem eyðing færslna gerir talsverðar kröfur til kerfisins, er þetta gert smátt og smátt þegar netþjónninn er ekki upptekinn við annað. Að þessum sökum má vera að færslunum þínum sé eytt einhverjum tíma eftir að þær ná skilgreindum aldursmörkum.
     ignore_favs: Hunsa eftirlæti
     ignore_reblogs: Hunsa endurbirtingar
     interaction_exceptions: Undantekningar byggðar á gagnvirkni
+    interaction_exceptions_explanation: Athugaðu að ekki er öruggt að færslum sé eytt við að fara niður fyrir skilgreind mörk eftirlæta eða endurbirtinga ef þær hafa einu sinni farið upp fyrir þessi mörk.
     keep_direct: Halda beinum skilaboðum
     keep_direct_hint: Eyðir ekki neinum af beinu skilaboðunum þínum
     keep_media: Halda færslum með myndaviðhengjum
