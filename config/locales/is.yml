@@ -1311,11 +1311,17 @@ is:
     ignore_reblogs: Hunsa endurbirtingar
     interaction_exceptions: Undantekningar byggðar á gagnvirkni
     keep_direct: Halda beinum skilaboðum
+    keep_direct_hint: Eyðir ekki neinum af beinu skilaboðunum þínum
     keep_media: Halda færslum með myndaviðhengjum
+    keep_media_hint: Eyðir ekki neinum af færslunum þínum sem eru með myndaviðhengi
     keep_pinned: Halda festum færslum
+    keep_pinned_hint: Eyðir ekki neinum af festu færslunum þínum
     keep_polls: Halda könnunum
+    keep_polls_hint: Eyðir ekki neinum af könnununum þínum
     keep_self_bookmark: Halda bókamerktum færslum
+    keep_self_bookmark_hint: Eyðir ekki þínum eigin færslum ef þú hefur bókamerkt þær
     keep_self_fav: Halda eftirlætisfærslum
+    keep_self_fav_hint: Eyðir ekki þínum eigin færslum ef þú hefur sett þær í eftirlæti
     min_age:
       '1209600': 2 vikur
       '15778476': 6 mánuðir
@@ -1326,7 +1332,9 @@ is:
       '7889238': 3 mánuðir
     min_age_label: Aldursmörk
     min_favs: Halda færslum sem eru í eftirlætum oftar en
+    min_favs_hint: Eyðir ekki þínum eigin færslum sem settar hafa verið í eftirlæti þetta oft. Skildu þetta eftir autt til að eyða færslum burtséð frá fjölda eftirlæta
     min_reblogs: Halda færslum sem eru endurbirtar oftar en
+    min_reblogs_hint: Eyðir ekki þínum eigin færslum sem endurbirtar hafa verið þetta oft. Skildu þetta eftir autt til að eyða færslum burtséð frá fjölda endurbirtinga
   stream_entries:
     pinned: Fest tíst
     reblogged: endurbirt
