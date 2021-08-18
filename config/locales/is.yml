@@ -1252,6 +1252,7 @@ is:
     preferences: Kjörstillingar
     profile: Notandasnið
     relationships: Fylgist með og fylgjendur
+    statuses_cleanup: Sjálfvirk eyðing færslna
     two_factor_authentication: Tveggja-þátta auðkenning
     webauthn_authentication: Öryggislyklar
   statuses:
@@ -1303,6 +1304,29 @@ is:
       public_long: Allir geta séð
       unlisted: Óskráð
       unlisted_long: Allir geta skoðað, en er ekki talið upp á opinberum tímalínum
+  statuses_cleanup:
+    enabled: Sjálfkrafa eyða eldri færslum
+    exceptions: Undantekningar
+    ignore_favs: Hunsa eftirlæti
+    ignore_reblogs: Hunsa endurbirtingar
+    interaction_exceptions: Undantekningar byggðar á gagnvirkni
+    keep_direct: Halda beinum skilaboðum
+    keep_media: Halda færslum með myndaviðhengjum
+    keep_pinned: Halda festum færslum
+    keep_polls: Halda könnunum
+    keep_self_bookmark: Halda bókamerktum færslum
+    keep_self_fav: Halda eftirlætisfærslum
+    min_age:
+      '1209600': 2 vikur
+      '15778476': 6 mánuðir
+      '2629746': 1 mánuður
+      '31556952': 1 ár
+      '5259492': 2 mánuðir
+      '63113904': 2 ár
+      '7889238': 3 mánuðir
+    min_age_label: Aldursmörk
+    min_favs: Halda færslum sem eru í eftirlætum oftar en
+    min_reblogs: Halda færslum sem eru endurbirtar oftar en
   stream_entries:
     pinned: Fest tíst
     reblogged: endurbirt
