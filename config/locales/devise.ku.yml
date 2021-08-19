@@ -22,6 +22,21 @@ kmr-TR:
         explanation: Te li ser %{host} ajimêrek çê kiriye bi navnîşana vê e-nameyê re. Tu ji çalakkirina wê bi tikandinekê dûr î. Heke ev ne tu bûya, ji kerema xwe guh nede vê e-nameyê.
         extra_html: Jkx vê jî kontrol bike <a href="%{terms_path}"> rêbazên rajekar</a> û <a href="%{policy_path}">mercên me yên karûbaran</a>.
         title: Navnîşana e-nameyê piştrast bike
+      email_changed:
+        explanation: 'Navnîşana e-nameyê ajimêra te hate guhertin bo:'
+        extra: Heke te ajimêra xwe ne guhertiye. Ew tê wateya ku kesek ketiye ajimêrê te. Jkx pêborîna xwe zû biguherîne an jî bi rêveberiya rajekar re têkeve têkiliyê heke tu êdî nikare ajimêra xwe bi kar bînî.
+        subject: 'Mastodon: E-name hate guhertin'
+        title: Navnîşana e-nameya nû
+      password_change:
+        explanation: Pêborîna ajimêra te hate guhertin.
+        extra: Heke te ajimêra xwe ne guhertiye. Ew tê wateya ku kesek ketiye ajimêrê te. Jkx pêborîna xwe zû biguherîne an jî bi rêveberiya rajekar re têkeve têkiliyê heke tu êdî nikare ajimêra xwe bi kar bînî.
+        subject: 'Mastodon: pêborîn hate guhertin'
+        title: Pêborîn hate guhertin
+      reconfirmation_instructions:
+        explanation: Navnîşana nû piştrast bike da ku tu e-nameya xwe biguherînî.
+        extra: "Heke ev daxwaz ji aliyê te de nehate pêkanîn, jkx guh nede vê e-nameyê\n Navnîşana e-nameyê bo ajimêra Mastodon wê tu guhertin pêk neyîne heya ku tu li girêdana Jêrin bitikînî."
+        subject: 'Mastodon: E-nameyê piştrast bike bo %{instance}'
+        title: Navnîşana e-nameyê piştrast bike
       reset_password_instructions:
         action: Pêborînê biguherîne
         explanation: Te ji bo ajimêra xwe daxwaza pêborîneke nû kiriye.
