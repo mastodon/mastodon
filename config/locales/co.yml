@@ -118,14 +118,16 @@ co:
       demote: Ritrugradà
       destroyed_msg: "I dati di %{username} sò avà in fila d'attesa per esse tolti da quì à pocu"
       disable: Disattivà
+      disable_sign_in_token_auth: Disattivà l'autentificazione à codice e-mail
       disable_two_factor_authentication: Disattivà l’identificazione à 2 fattori
-      disabled: Disattivatu
+      disabled: Ghjacciatu
       display_name: Nome pubblicu
       domain: Duminiu
       edit: Mudificà
       email: E-mail
       email_status: Statutu di l’e-mail
       enable: Riattivà
+      enable_sign_in_token_auth: Attivà l'autentificazione à codice e-mail
       enabled: Attivatu
       enabled_msg: U contu di %{username} hè statu riattivatu
       followers: Abbunati
@@ -191,7 +193,9 @@ co:
       search_same_email_domain: Altri utilizatori cù listessu duminiu d'e-mail
       search_same_ip: Altri utilizatori cù listessa IP
       security_measures:
+        only_password: Solu a chjave d'accessu
         password_and_2fa: Chjave d’accessu è A2F
+        password_and_sign_in_token: Chjave d’accessu è codice da l'e-mail
       sensitive: Sensibile
       sensitized: indicatu cum’è sensibile
       shared_inbox_url: URL di l’inbox spartuta
@@ -1281,6 +1285,7 @@ co:
       unlisted: Micca listatu
       unlisted_long: Tuttu u mondu pò vede, mà micca indè e linee pubbliche
   statuses_cleanup:
+    keep_polls: Cunservà i scandagli
     min_age:
       '1209600': 2 settimane
       '15778476': 6 mesi
