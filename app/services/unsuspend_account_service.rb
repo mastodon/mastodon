@@ -8,7 +8,7 @@ class UnsuspendAccountService < BaseService
     unsuspend!
     refresh_remote_account!
 
-    return if @account.nil?
+    return if @account.nil? || @account.suspended?
 
     merge_into_home_timelines!
     merge_into_list_timelines!
