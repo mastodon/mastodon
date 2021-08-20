@@ -65,7 +65,6 @@
 
         h4 {
             color: $section-text-color;
-            border-top: 1px solid $border-color;
             border-bottom: none;
             padding: 12px 16px;
         }
@@ -82,6 +81,8 @@
         }
 
         .positive-hint { color: $verified-color }
+
+        .neutral-hint { color: $tips-text-color }
 
         .directory__tag h4 { color: $ui-text-color }
 
@@ -104,6 +105,31 @@
     }
 }
 
+.admin-account-bio {
+    margin: 16px 0 0;
+
+    .account__header {
+        &__content {
+            padding: 16px;
+            color: $primary-text-color;
+        }
+
+        &__content,
+        &__fields {
+            @include shadow-1dp;
+            background: $list-bg-color;
+            border-radius: $table-radius;
+    
+            a { color: $link-text-color }
+        }
+    }
+
+    &>div {
+        padding: 0 8px;
+        margin-bottom: 16px;
+    }
+}
+
 .filters .filter-subset {
     padding: 0 16px;
     margin: 0 0 16px;
@@ -118,23 +144,23 @@
     }
 
     a {
-        color: $text-tab-indicator-color;
+        color: $tab-item-color;
         border-bottom: 2px solid transparent;
         padding: 8px;
 
         &.selected {
-            color: $text-tab-indicator-active-color;
-            border-bottom: 2px solid $text-tab-indicator-active-color;
+            color: $tab-item-active-color;
+            border-bottom: 2px solid $tab-item-active-color;
 
             &:hover {
-                color: $text-tab-indicator-active-color;
-                border-bottom: 2px solid $text-tab-indicator-active-color;
+                color: $tab-item-active-color;
+                border-bottom: 2px solid $tab-item-active-color;
             }
         }
 
         &:hover {
-            color: $text-tab-indicator-color;
-            background: $text-tab-indicator-bg-hover-color;
+            color: $tab-item-color;
+            background: $tab-bg-hover-color;
             border-bottom: 2px solid transparent;
         }
     }
@@ -148,4 +174,116 @@ body {
     
         a { color: $link-text-color }
     }
+
+    .neutral-hint { color: $tips-text-color }
 }
+
+.report-card {
+    @include shadow-1dp;
+    background: $card-bg-color;
+    border-radius: $card-radius;
+    margin-bottom: 16px;
+
+    &__profile {
+        padding: 16px;
+
+        &__stats {
+            color: $info-text-color;
+
+            .red { color: $error-color }
+        }
+    }
+
+    &__summary__item {
+        border-top: 1px solid $border-color;
+
+        &:hover { background: $card-bg-color }
+
+        &__assigned,
+        &__reported-by { color: $ui-text-color }
+
+        &__content {
+            a {
+                padding: 16px;
+                color: $primary-text-color;
+            }
+
+            &__icon {
+                color: $icon-color;
+                margin-right: 8px;
+            }
+        }
+    }
+}
+
+
+.log-entry {
+    padding: 16px 0;
+    background: $list-bg-color;
+    border-bottom: 1px solid $border-color;
+
+    &:first-child { border-radius: $table-radius $table-radius 0 0 }
+
+    &:last-child { border-radius: 0 0 $table-radius $table-radius }
+
+    &__header {
+        color: $ui-text-color;
+        padding: 0 16px;
+    }
+
+    &__avatar { margin-right: 16px }
+
+    &__timestamp { color: $info-text-color }
+
+    .target,
+    .username,
+    a { color: $primary-text-color }
+}
+
+.dashboard {
+    &__counters {
+        margin: 0 0 16px;
+
+        &__num,
+        &__text {
+            color: $secondary-text-color;
+            margin-bottom: 16px;
+        }
+
+        &__label { color: $ui-text-color }
+
+        &>div {
+            padding: 0 8px;
+            margin-bottom: 16px;
+
+            &>div,
+            &>a {
+                @include shadow-1dp;
+                padding: 16px;
+                background: $card-bg-color;
+                border-radius: $card-radius;
+
+                &:active,
+                &:focus,
+                &:hover { background: $card-bg-hover-color }
+            }
+        }
+
+        &.admin-account-counters { margin-top: 16px }
+    }
+
+    &__widgets {
+        &>div {
+            margin-bottom: 16px;
+
+            &>div { padding: 0 8px }
+        }
+
+        a:not(.name-tag) { color: $ui-text-color }
+    }
+}
+
+.inline-name-tag,
+.name-tag,
+a.inline-name-tag,
+a.name-tag { color: $ui-text-color }

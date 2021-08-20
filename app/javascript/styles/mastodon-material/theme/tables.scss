@@ -1,12 +1,12 @@
 .batch-table {
     border: 1px solid $border-color;
-    border-radius: 4px;
+    border-radius: $table-radius;
 
     &__toolbar {
         border: none;
         border-bottom: 1px solid $border-color;
         background: $list-bg-color;
-        border-radius: 4px 4px 0 0;
+        border-radius: $table-radius $table-radius 0 0;
 
         &__actions { padding-right: 16px }
     }
@@ -16,6 +16,12 @@
         border-bottom: 1px solid $border-color;
         background: $list-bg-color;
 
+        &__content {
+            padding-top: 16px;
+
+            &__extra { color: $info-text-color }
+        }
+
         &:nth-child(2n) {
             background: $list-bg-color;
 
@@ -24,11 +30,18 @@
 
         &:last-child {
             border-bottom: none;
-            border-radius: 0 0 4px 4px;
+            border-radius: 0 0 $table-radius $table-radius;
         }
 
         &:hover { background: $list-bg-hover-color }
     }
+
+    &__form {
+        border: 1px solid $border-color;
+        background: $list-bg-color;
+    }
+    
+    .nothing-here { border: none }
 }
 
 a.table-action-link,
@@ -50,11 +63,12 @@ button.table-action-link {
 
 .table-wrapper {
     margin-bottom: 24px;
-    border-radius: 2px;
+    border: 1px solid $border-color;
+    border-radius: $table-radius;
 }
 
 .table {
-    border: 1px solid $border-color;
+    border-radius: $table-radius;
 
     td,
     th {

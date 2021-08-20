@@ -43,7 +43,14 @@
         color: $ui-text-color;
         font-size: 16px;
 
-        &:hover {
+        &.active,
+        &.active button,
+        &:active,
+        &:active button,
+        &:focus,
+        &:focus button,
+        &:hover,
+        &:hover button {
             background: $card-bg-hover-color;
             color: $ui-text-color;
         }
@@ -54,15 +61,10 @@
     .status {
         background: $card-bg-color;
         border-bottom-color: $border-color;
-        padding-top: 12px;
-        padding-bottom: 12px;
-
-        &__avatar {
-            left: 12px;
-            top: 12px;
-        }
     }
 }
+
+.boost-modai__status-header { padding-left: 56px }
 
 .report-modal {
     @include shadow-24dp;

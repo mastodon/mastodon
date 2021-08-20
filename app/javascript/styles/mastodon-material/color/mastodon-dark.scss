@@ -34,6 +34,7 @@ $menu-bg-active-color: lighten($menu-bg-color, 10%);
 $menu-bg-active-hover-color: lighten($menu-bg-color, 16%);
 $card-bg-color: #313543;
 $card-bg-hover-color: lighten($card-bg-color, 6%);
+$succeeded-card-bg-color: lighten($verified-color, 36%);
 $list-bg-color: #282c37;
 $list-bg-hover-color: lighten($list-bg-color, 6%);
 $list-bg-active-color: lighten($list-bg-color, 10%);
@@ -89,7 +90,8 @@ $icon-button-hover-color: $icon-hover-color;
 $icon-button-active-color: $primary-color;
 $icon-button-active-hover-color: lighten($icon-button-active-color, 10%);
 $contained-button-color: $primary-color;
-$contained-button-hover-color: lighten($contained-button-color, 10%);
+$contained-button-hover-color: lighten($contained-button-color, 6%);
+$contained-button-active-color: lighten($contained-button-color, 10%);
 $outlined-button-color: $primary-color;
 $outlined-button-hover-color: transparentize($outlined-button-color, 0.8);
 $outlined-button-active-color: transparentize($outlined-button-color, 0.7);
@@ -124,18 +126,11 @@ $search-bar-color: lighten($top-bar-color, 6%);
 $search-bar-focus-color: #ffffff;
 
 // Tab color
-$tab-indicator-color: #d9e1e8;
-$tab-indicator-active-color: $top-bar-icon-color;
+$tab-item-color: #d9e1e8;
+$tab-item-active-color: $primary-color;
 $tab-bg-color: #1f232b;
-$tab-indicator-bg-hover-color: transparentize($tab-indicator-active-color, 0.9);
-$tab-indicator-bg-focus-color: transparentize($tab-indicator-active-color, 0.8);
-$text-tab-indicator-color: $tab-indicator-color;
-$text-tab-indicator-active-color: $tab-indicator-active-color;
-$text-tab-bg-color: $tab-bg-color;
-$text-tab-indicator-bg-hover-color: transparentize($text-tab-indicator-active-color, 0.9);
-$text-tab-indicator-bg-focus-color: transparentize($text-tab-indicator-active-color, 0.8);
-$icon-tab-indicator-active-color: $primary-color;
-$icon-tab-indicator-hover-color: $icon-hover-color;
+$tab-bg-hover-color: transparentize($tab-item-active-color, 0.9);
+$tab-bg-focus-color: transparentize($tab-item-active-color, 0.8);
 
 // Media indicator color
 $media-page-indicator-color: #9e9e9e;

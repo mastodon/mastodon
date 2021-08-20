@@ -3,12 +3,12 @@
 
     &__link {
         padding: 16px 16px 12px 16px;
-        color: $top-bar-icon-color;
-        border-bottom: 4px solid transparent;
+        color: $tab-item-color;
+        border-bottom: 2px solid transparent;
 
         &.active {
-            border-bottom: 4px solid $tab-indicator-active-color;
-            color: $tab-indicator-active-color;
+            border-bottom: 2px solid $tab-item-active-color;
+            color: $tab-item-active-color;
         }
 
         .fa { font-size: 20px }
@@ -61,11 +61,24 @@
 
         .fa-times-circle.active { left: unset }
     }
+
+    .directory {
+        &__list {
+            grid-gap: 16px;
+            margin: 16px;
+        }
+
+        &__card { margin-bottom: 16px }
+    }
 }
 
 // small size screen
 @media screen and (max-width: 415px) {
-    .public-layout { padding-top: 64px }
+    .public-layout {
+        padding-top: 64px;
+
+        .header { margin: 0 }
+    }
 }
 
 // middle size screen
@@ -90,27 +103,30 @@
     }
 }
 
-//single column mode
-@media screen and (min-width: 631px) {
-    .column:first-child,
-    .drawer:first-child { padding-left: 8px }
-
-    .column:last-child,
-    .drawer:last-child { padding-right: 8px }
-
+// single column mode
+@media screen and (min-width: 630px) {
     .tabs-bar__link {
         &:hover {
-            background: $tab-indicator-bg-hover-color;
+            background: $tab-bg-hover-color;
             border-bottom-color: transparent;
         }
 
         &:active,
         &:focus {
-            background: $tab-indicator-bg-focus-color;
+            background: $tab-bg-focus-color;
             border-bottom-color: $tab-bg-color;
         }
 
-        &.active { border-bottom-color: $tab-indicator-active-color }
+        &.active { border-bottom-color: $tab-item-active-color }
+    }
+
+    .columns-area--mobile .status {
+        padding: 16px 16px 16px 80px;
+
+        &__prepend {
+            margin-left: 80px;
+            padding-top: 16px;
+        }
     }
 }
 
@@ -131,10 +147,14 @@
     .public-layout .public-account-header {
         &__bar { background: $card-bg-color }
 
-        &__tabs__name h1 {
-            color: $primary-text-color;
+        &__tabs {
+            margin-left: 16px;
 
-            small { color: $secondary-text-color }
+            &__name h1 {
+                color: $primary-text-color;
+    
+                small { color: $secondary-text-color }
+            }
         }
     }
 }

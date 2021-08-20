@@ -10,7 +10,7 @@
 
             &:hover,
             &:focus,
-            &:active { background: $tab-indicator-bg-hover-color }
+            &:active { background: $tab-bg-hover-color }
         }
 
         .nav-link,
@@ -19,7 +19,7 @@
 
             &:hover {
                 color: $top-bar-text-color;
-                background: $tab-indicator-bg-hover-color;
+                background: $tab-bg-hover-color;
                 text-decoration: none;
             }
         }
@@ -29,7 +29,7 @@
             margin: 0;
             border-radius: 0;
 
-            &:hover { background: $tab-indicator-bg-hover-color }
+            &:hover { background: $tab-bg-hover-color }
         }
 
         .detailed-status__meta { margin-top: 16px }
@@ -38,7 +38,7 @@
     .detailed-status { padding: 16px }
 
     .footer {
-        padding-top: 16px;
+        padding-top: 32px;
         padding-bottom: 64px;
         color: $ui-text-color;
 
@@ -77,7 +77,7 @@
             background: linear-gradient(0deg, transparent, transparent 60px, rgba(0, 0, 0, 0.5) 60px, rgba(0, 0, 0, 0.2) 80%, transparent);
 
             &::before {
-                background: $text-tab-bg-color;
+                background: $tab-bg-color;
                 border-radius: 0 0 $card-radius $card-radius;
             }
 
@@ -107,7 +107,7 @@
                     border-right: none;
 
                     &.active {
-                        &::after { border-bottom: 4px solid $text-tab-indicator-active-color }
+                        &::after { border-bottom: 4px solid $tab-item-active-color }
                     }
 
                     &::after {
@@ -115,7 +115,7 @@
                         opacity: 1;
                     }
 
-                    &:hover { background: $text-tab-indicator-bg-hover-color }
+                    &:hover { background: $tab-bg-hover-color }
 
                     .counter-number {
                         color: $ui-text-color;
@@ -177,6 +177,8 @@
 
     .grid { grid-gap: 16px }
 }
+
+.account-header .name { color: $ui-text-color }
 
 .brand__tagline { color: $ui-text-color }
 

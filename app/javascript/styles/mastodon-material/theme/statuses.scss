@@ -1,15 +1,19 @@
 .status {
-    padding: 12px 12px 4px 70px;
+    padding: 16px 16px 8px 72px;
     border-bottom: 1px solid $border-color;
 
-    &__expand { width: 70px }
+    &__expand { width: 72px }
 
     &__info {
         font-size: $name-font-size;
-        padding-right: 4px;
+
+        .status__display-name { padding-right: 24px }
     }
 
-    &__relative-time { color: $info-text-color }
+    &__relative-time {
+        color: $info-text-color;
+        padding-bottom: 0;
+    }
 
     &__display-name {
         color: $secondary-text-color;
@@ -18,13 +22,13 @@
     }
 
     &__avatar {
-        left: 12px;
-        top: 12px;
+        left: 16px;
+        top: 16px;
     }
 
     &__content {
         font-size: $status-font-size;
-        padding-top: 4px;
+        padding-top: 8px;
         color: $primary-text-color;
 
         a {
@@ -37,22 +41,20 @@
 
         .status__content__spoiler-link { @include button-type($button-on-status) }
 
-        // show more button
         &__spoiler-link {
             border: 0;
             font-size: 15px;
             height: 36px;
             padding: 0 16px;
-            margin: 4px;
+            margin: 8px;
             color: $text-button-color;
         }
 
-        // show thread button
         &__read-more-button {
             @include button-type($button-on-status);
             height: 36px;
             padding: 0 16px;
-            margin: 4px;
+            margin: 8px 0;
 
             &:hover { text-decoration: none }
         }
@@ -128,8 +130,9 @@
 .status-card {
     color: $icon-color;
     border-color: $border-color;
+    border-radius: $card-radius;
     outline: none;
-    margin-top: 16px;
+    margin: 8px 0;
 
     &__image {
         background: transparent;
@@ -137,6 +140,8 @@
         &>.fa {
             font-size: 26px;
         }
+
+        &-image { border-radius: $card-radius 0 0 $card-radius }
     }
 
     &__title {
@@ -159,6 +164,11 @@
         }
 
         a { bottom: auto }
+    }
+
+    &__host {
+        margin-top: 6px;
+        color: $secondary-text-color;
     }
 
     &.compact {
@@ -201,6 +211,7 @@ a.status-card {
     }
 
     .display-name { color: $secondary-text-color }
+    
     .display-name strong { color: $primary-text-color }
 }
 
@@ -274,4 +285,4 @@ a.status-card {
     }
 }
 
-.entry.h-cite.p-comment.entry-successor { border-top: 1px solid $border-color }
+.entry.h-cite.p-comment.entry-successor:first-child { border-top: 1px solid $border-color }

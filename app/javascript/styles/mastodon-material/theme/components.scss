@@ -190,6 +190,8 @@
 }
 
 .compose-form {
+    padding: 16px;
+
     .autosuggest-textarea {
         &__textarea {
             @include text-area-border($compose-area-border);
@@ -316,6 +318,20 @@
     }
 }
 
+// compose-panel in single column mode
+.compose-panel {
+    overflow: visible;
+    border-radius: $card-radius;
+
+    .compose-form {
+        @include shadow-1dp;
+        background: $card-bg-color;
+        padding-bottom: 16px;
+        margin-bottom: 0;
+        border-radius: $card-radius;
+    }
+}
+
 .no-reduce-motion .spoiler-input { transition-duration: .2s, .2s }
 
 
@@ -343,7 +359,7 @@
 
         &.checkbox {
             border-radius: 2px;
-            border: 2px solid $control-border-color;
+            border: 2px solid $control-border-active-color;
             padding: 8px;
             margin: 8px 10px;
             background: none;
@@ -352,7 +368,7 @@
                 height: 50%;
                 padding: 5px 0;
                 transform: rotate(-45deg);
-                border: 3px solid $control-border-active-color;
+                border: 2px solid $control-border-active-color;
                 border-top-style: none;
                 border-right-style: none;
 
@@ -372,7 +388,7 @@
 
     &__option {
         padding: 4px;
-        
+
         input[type=text] {
             color: $primary-text-color;
             background: $text-field-bg-color;
@@ -381,7 +397,7 @@
             padding: 8px 16px;
         }
 
-        &__text { line-height: 36px }
+        &__text { padding: 8px 0 }
     }
 
     &__chart {
@@ -398,11 +414,10 @@
     }
 
     &__link { color: $ui-text-color }
-
-    &__number { line-height: 36px }
 }
 
 .privacy-dropdown {
+    &.active .privacy-dropdown__value,
     &.active .privacy-dropdown__value.active {
         background: $icon-bg-hover-color;
         border-radius: 50%;
@@ -469,10 +484,7 @@
 .character-counter { color: $secondary-text-color }
 
 .reply-indicator {
-    box-shadow: none;
-    border: 1px solid $border-color;
-    border-radius: $card-radius;
-    background: $card-bg-color;
+    @include card-elevation(false);
     padding: 16px;
 
     &__header { margin-bottom: 4px }
@@ -590,6 +602,7 @@
     &__list {
         @include material-transition;
         margin: 16px 0;
+        width: auto;
     }
 }
 
@@ -716,4 +729,26 @@
 .loading-bar {
     background-color: $loading-indicator-color;
     height: 4px;
+}
+
+.regeneration-indicator {
+    color: $ui-text-color;
+    background: $bg-color;
+    padding: 16px;
+
+    &__label {
+        margin-top: 32px;
+
+        strong {
+            margin-bottom: 16px;
+            color: $secondary-text-color;
+        }
+    }
+}
+
+.timeline-hint {
+    color: $ui-text-color;
+    padding: 16px;
+
+    a { color: $link-text-color }
 }

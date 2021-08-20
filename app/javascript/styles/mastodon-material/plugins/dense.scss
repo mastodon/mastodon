@@ -1,3 +1,5 @@
+$dense: true;
+
 .drawer {
     &__header { height: 48px }
 
@@ -48,8 +50,6 @@
 
     &__expand { width: 66px }
 
-    &__info { padding-right: 0 }
-
     &__avatar {
         left: 8px;
         top: 10px;
@@ -58,11 +58,7 @@
     &__content {
         padding-top: 2px;
 
-        &__spoiler-link {
-            height: auto;
-            padding: 4px 8px;
-        }
-
+        &__spoiler-link,
         &__read-more-button {
             height: auto;
             padding: 4px 8px;
@@ -82,6 +78,10 @@
 
         .icon-button { padding: 4px }
     }
+}
+
+@media screen and (min-width: 630px) {
+    .columns-area--mobile .status { padding: 8px 8px 8px 78px }
 }
 
 .detailed-status {

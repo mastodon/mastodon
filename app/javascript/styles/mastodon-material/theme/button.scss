@@ -11,7 +11,11 @@
         &:hover { color: $icon-button-active-hover-color }
     }
 
-    &.disabled { color: $disabled-icon-color }
+    &.disabled {
+        color: $disabled-icon-color;
+
+        &:hover { color: $disabled-icon-color }
+    }
 
     &.inverted {
         color: $icon-button-color;
@@ -109,8 +113,9 @@ label.icon-button {
         background: $contained-button-color;
         margin: 2px;
     
-        &:hover { background: $contained-button-hover-color }
-    
+        &:active,
+        &:focus,
+        &:hover,
         .button--destructive:hover { background: $contained-button-hover-color }
     }
 
@@ -119,7 +124,23 @@ label.icon-button {
 
     &.button--block { margin: 8px 0 }
 
-    &.button-secondary { @include button-type($button-on-status) }
+    &.button-secondary {
+        @include button-type($button-on-status);
+
+        &:disabled {
+            color: $disabled-button-color;
+            border: 1px solid $disabled-button-color;
+            opacity: 1;
+
+            &:hover,
+            &:focus,
+            &:active { @include button-type($button-on-status) }
+        }
+
+        &:hover,
+        &:focus,
+        &:active { @include button-type($button-on-status) }
+    }
 
     &.confirmation-modal__cancel-button {
         box-shadow: none;
@@ -155,6 +176,12 @@ label.icon-button {
         line-height: 15px;
 
         &:hover { background: $contained-button-hover-color }
+
+        &:active,
+        &:focus { background: $contained-button-active-color }
+
+        &.negative:active,
+        &.negative:focus { background: $error-color }
 
         &:disabled,
         &:disabled:hover { background-color: $disabled-button-color }

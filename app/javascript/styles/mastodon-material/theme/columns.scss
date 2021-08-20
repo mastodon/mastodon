@@ -152,7 +152,10 @@
     &:hover { background: $list-bg-hover-color }
 
     &:active,
-    &:focus { background: $list-bg-active-color }
+    &:focus {
+        color: $ui-text-color;
+        background: $list-bg-active-color;
+    }
 
     &__icon {
         margin-right: 32px;
@@ -193,6 +196,7 @@
     background: $top-bar-color;
     color: $top-bar-icon-color;
     padding: 16px;
+    height: 48px;
 
     span { visibility: hidden }  // hide "back" string
 
@@ -214,6 +218,8 @@
 .columns-area {
     @include bg-image;
     background-size: contain;
+
+    &__panels__pane { overflow: visible }
 }
 
 .setting-text {
@@ -229,7 +235,12 @@
     background: $card-bg-color;
     font-size: 16px;
     contain: initial;  // padding fix
+
+    a { color: $link-text-color }
 }
+
+.error-column a,
+.follow_requests-unlocked_explanation a { color: $link-text-color }
 
 .conversation {
     border-bottom: 1px solid $border-color;
@@ -266,11 +277,11 @@
 .muted {
     .status {
         &__content {
-            color: $read-primary-text-color !important;
+            color: $read-primary-text-color;
     
-            p { color: $read-primary-text-color !important }
+            p { color: $read-primary-text-color }
     
-            a { color: $read-secondary-text-color !important }
+            a { color: $read-secondary-text-color }
         }
 
         &__display-name strong { color: $read-primary-text-color }
@@ -323,6 +334,8 @@
         a { color: $ui-text-color }
 
         p a { color: $link-text-color }
+
+        ul { margin-bottom: 16px }
     }
 
     &__trends {
@@ -419,6 +432,41 @@
     }
 }
 
+.announcements-list {
+    border: 1px solid $border-color;
+    border-radius: $table-radius;
+
+    &__item {
+        padding: 16px 0;
+        background: $list-bg-color;
+        border-bottom: 1px solid $border-color;
+
+        &:first-child { border-radius: $table-radius $table-radius 0 0 }
+
+        &:last-child { border-radius: 0 0 $table-radius $table-radius }
+
+        &__title {
+            padding: 0 16px;
+            color: $primary-text-color;
+            margin-bottom: 8px;
+
+            &:active,
+            &:focus,
+            &:hover { color: $primary-text-color }
+        }
+
+        &__meta {
+            padding: 0 16px;
+            color: $info-text-color;
+        }
+
+        &:hover { background: $list-bg-hover-color }
+
+        &:active,
+        &:focus { background: $list-bg-active-color }
+    }
+}
+
 .reactions-bar {
     margin-top: 16px;
     width: auto;
@@ -464,23 +512,24 @@
     
         button {
             background: $tab-bg-color;
-            color: $tab-indicator-color;
+            color: $tab-item-color;
             font-size: 16px;
+            border-bottom: $tab-indicator-thickness solid transparent;
+            padding: 12px 0 10px;
 
             span { font-size: 14px }
     
             &.active {
-                color: $tab-indicator-active-color;
-                border-bottom: 4px solid $tab-indicator-active-color;
-                padding: 12px 0 8px;
+                color: $tab-item-active-color;
+                border-bottom: $tab-indicator-thickness solid $tab-item-active-color;
     
                 &::before,
                 &:after { border: none }
 
-                &:focus { background: $tab-indicator-bg-focus-color }
+                &:focus { background: $tab-bg-focus-color }
             }
 
-            &:hover { background: $tab-indicator-bg-hover-color }
+            &:hover { background: $tab-bg-hover-color }
         }
     }
 
@@ -493,6 +542,11 @@
     }
 
     &__display-name:hover { color: inherit }
+
+    &__relative_time {
+        color: $info-text-color;
+        padding-bottom: 0;
+    }
 }
 
 .notification-favourite .status.status-direct {

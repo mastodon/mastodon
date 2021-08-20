@@ -1,7 +1,7 @@
 .simple_form {
     .fields-row {
         padding-top: 8px;
-        margin: 0 -8px 28px;
+        margin: 0 0 16px;
     
         &__column { padding: 0 8px }
     }
@@ -68,7 +68,10 @@
         }
     }
 
-    .actions { padding: 16px }
+    .actions {
+        padding: 16px;
+        margin-top: 0;
+    }
 
     .check_boxes .checkbox label {
         color: $primary-text-color;
@@ -92,7 +95,10 @@
         padding-right: 40px;
         height: 40px;
 
-        option { background-color: $menu-bg-color }
+        option {
+            color: $menu-text-color;
+            background-color: $menu-bg-color;
+        }
 
         &:hover { background-color: $dropdown-field-bg-hover-color }
 
@@ -109,12 +115,13 @@
     input[type=url],
     textarea {
         @include text-area-border($other-text-area-border);
-        color: $text-field-color;
-        background: $text-field-bg-color;
         padding: 16px;
 
         &:active,
-        &:focus { background: $text-field-bg-color }
+        &:focus {
+            background: $text-field-bg-color;
+            padding: 16px 16px 15px;
+        }
 
         &::placeholder { color: $tips-text-color }
     }
@@ -143,6 +150,12 @@
     }
 
     &.translation-prompt { color: $ui-text-color }
+
+    &.notice {
+        border: none;
+        background: $succeeded-card-bg-color;
+        color: $verified-color;
+    }
 }
 
 .form-footer a { color: $ui-text-color }
@@ -151,6 +164,8 @@
 .oauth-prompt {
     margin-bottom: 32px;
     color: $ui-text-color;
+
+    strong { color: $primary-text-color }
 }
 
 .input-copy {

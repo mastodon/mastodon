@@ -34,6 +34,7 @@ $menu-bg-active-color: darken($menu-bg-color, 10%);
 $menu-bg-active-hover-color: darken($menu-bg-color, 16%);
 $card-bg-color: $bg-color;
 $card-bg-hover-color: darken($card-bg-color, 6%);
+$succeeded-card-bg-color: lighten($verified-color, 36%);
 $list-bg-color: $bg-color;
 $list-bg-hover-color: darken($list-bg-color, 6%);
 $list-bg-active-color: darken($list-bg-color, 10%);
@@ -89,7 +90,8 @@ $icon-button-hover-color: $icon-hover-color;
 $icon-button-active-color: $primary-color;
 $icon-button-active-hover-color: lighten($icon-button-active-color, 10%);
 $contained-button-color: $primary-color;
-$contained-button-hover-color: lighten($contained-button-color, 10%);
+$contained-button-hover-color: lighten($contained-button-color, 6%);
+$contained-button-active-color: lighten($contained-button-color, 10%);
 $outlined-button-color: $primary-color;
 $outlined-button-hover-color: transparentize($outlined-button-color, 0.8);
 $outlined-button-active-color: transparentize($outlined-button-color, 0.7);
@@ -124,18 +126,11 @@ $search-bar-color: darken($bg-color, 6%);
 $search-bar-focus-color: $bg-color;
 
 // Tab color
-$tab-indicator-color: $top-bar-icon-color;
-$tab-indicator-active-color: $top-bar-icon-color;
+$tab-item-color: transparentize(#000000, 0.5);
+$tab-item-active-color: $primary-color;
 $tab-bg-color: $top-bar-color;
-$tab-indicator-bg-hover-color: transparentize($tab-indicator-active-color, 0.9);
-$tab-indicator-bg-focus-color: transparentize($tab-indicator-active-color, 0.8);
-$text-tab-indicator-color: $secondary-text-color;
-$text-tab-indicator-active-color: $ui-text-color;
-$text-tab-bg-color: #ffffff;
-$text-tab-indicator-bg-hover-color: transparentize($text-tab-indicator-active-color, 0.9);
-$text-tab-indicator-bg-focus-color: transparentize($text-tab-indicator-active-color, 0.8);
-$icon-tab-indicator-active-color: $primary-color;
-$icon-tab-indicator-hover-color: $icon-hover-color;
+$tab-bg-hover-color: transparentize($tab-item-active-color, 0.9);
+$tab-bg-focus-color: transparentize($tab-item-active-color, 0.8);
 
 // Media indicator color
 $media-page-indicator-color: #9e9e9e;

@@ -4,20 +4,6 @@
         background: $menu-bg-color;
         border-radius: $menu-radius;
         margin-top: 0;
-
-        // bubble
-        // unable to fit the position
-        /*&::before {
-            @include shadow-8dp;
-            content: "";
-            position: absolute;
-            background: $menu-bg-color;
-            top: -6px;
-            width: 12px;
-            height: 12px;
-            transform: rotate(45deg);
-            z-index: -1;
-        }*/
     }
 
     &__modifiers__menu {
@@ -32,33 +18,50 @@
 }
 
 .emoji-mart {
-    width: 388px !important;
     font-size: 14px;
     color: $menu-text-color;
 
     &-bar {
         border: 0 solid $border-color;
 
-        &:first-child { background: $menu-bg-color }
+        &:first-child {
+            background: $tab-bg-color;
+            border-radius: $card-radius $card-radius 0 0;
+        }
     }
 
     &-anchor {
-        color: $text-tab-indicator-color;
+        color: $tab-item-color;
         padding: 10px 4px;
+        border-radius: 0;
 
-        &-bar { background-color: $icon-tab-indicator-active-color }
+        &-bar { background-color: $tab-item-active-color }
 
-        &-selected { color: $icon-tab-indicator-hover-color }
+        &-selected {
+            color: $tab-item-active-color;
 
-        &:hover { color: $icon-tab-indicator-hover-color }
+            &:hover { color: $tab-item-active-color }
+        }
+
+        &:hover { color: $tab-item-active-color }
     }
 
     &-search {
         background: $menu-bg-color;
 
+        &-icon {
+            right: auto;
+            left: 16px;
+            padding: 2px 6px;
+
+            svg { fill: $icon-color }
+
+            &:disabled { opacity: 1 }
+        }
+
         input {
             outline: none;
-            padding: 8px;
+            padding: 8px 8px 8px 33px;
             background: $search-bar-color;
             color: $ui-text-color;
             border: 0;
@@ -69,6 +72,8 @@
                 background: $search-bar-focus-color;
                 color: $search-bar-text-color;
             }
+
+            &::placeholder { color: $tips-text-color }
         }
     }
 

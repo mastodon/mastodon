@@ -1,7 +1,11 @@
 body,
 body.embed,
 body.admin,
-body.lighter { background: $bg-color }
+body.lighter,
+body.error {
+    background: $bg-color;
+    color: $ui-text-color;
+}
 
 .focusable:focus { background: transparent }
 

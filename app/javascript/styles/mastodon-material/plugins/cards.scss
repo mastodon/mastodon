@@ -6,6 +6,20 @@
     > .scrollable { background: $bg-color }
 }
 
+@media screen and (min-width: 415px) {
+    .notification.notification,
+    .status {
+        border-radius: 0;
+
+        &__wrapper.status__wrapper {
+            margin: 8px 0;
+            border-radius: 0;
+        }
+    }
+
+    .columns-area__panels__main { box-shadow: none }
+}
+
 .status {
     border-bottom: 0;
     border-radius: $card-radius;
@@ -24,8 +38,8 @@
     background: $card-bg-color;
 }
 
-.notification .status__wrapper.status__wrapper { box-shadow: none !important }
+.notification {
+    .status__wrapper.status__wrapper { box-shadow: none !important }
 
-.notification__filter-bar {
-    @include non-overflow-shadow-4dp;
+    &__filter-bar { @include non-overflow-shadow-4dp }
 }

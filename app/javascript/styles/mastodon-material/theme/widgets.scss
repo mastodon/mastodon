@@ -66,13 +66,17 @@
 
 .contact-widget {
     color: $ui-text-color;
+    padding: 8px;
 
-    h4 { color: $ui-text-color }
+    h4 {
+        color: $ui-text-color;
+        padding: 0 0 8px;
+    }
 
-    .account { padding: 4px 0 8px }
+    .account { padding: 8px 0 }
 
     &>a {
-        padding: 0 8px 4px;
+        padding: 8px 0;
         color: $primary-text-color;
     }
 }

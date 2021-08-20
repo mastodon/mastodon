@@ -7,16 +7,9 @@
 
     &__avatar {
         border-radius: $avatar-radius;
-        width: 40px;
-        height: 40px;
 
         &-overlay {
-            &-base {
-                border-radius: $avatar-radius;
-                width: 44px;
-                height: 44px;
-                background-size: 44px;
-            }
+            &-base { border-radius: $avatar-radius }
 
             &-overlay { border-radius: $avatar-radius }
         }
@@ -26,6 +19,8 @@
         margin-left: 0;
         margin-right: 16px;
     }
+
+    &__action-bar { width: 40px }
 
     &__header {
         &__bar {
@@ -88,7 +83,7 @@
 
                 &__fields {
                     border: 1px solid $border-color;
-                    border-radius: 4px;
+                    border-radius: $table-radius;
 
                     .verified {
                         border: none;
@@ -101,17 +96,30 @@
                     dl {
                         border-bottom: 1px solid $border-color;
 
-                        &:first-child .verified { border-radius: 0 }
+                        &:first-child,
+                        &:first-child .verified { border-radius: $table-radius $table-radius 0 0 }
 
-                        &:last-child { border-bottom: 0 }
+                        &:last-child,
+                        &:last-child .verified {
+                            border-radius: 0 0 $table-radius $table-radius;
+                            border-bottom: 0;
+                        }
                     }
 
+                    dd,
                     dt {
                         color: $primary-text-color;
-                        background: $list-bg-inactive-color;
+                        padding: 16px;
                     }
 
                     dd { color: $primary-text-color }
+
+                    dt { background: $list-bg-inactive-color }
+                }
+
+                &__joined {
+                    padding: 8px;
+                    color: $info-text-color;
                 }
             }
         }
@@ -160,24 +168,25 @@
     }
 
     &__section-headline {
-        background: $text-tab-bg-color;
+        background: $tab-bg-color;
         border-bottom: 1px solid $border-color;
 
         a {
             padding: 16px 0;
-            color: $text-tab-indicator-color;
+            color: $tab-item-color;
+            border-bottom: $tab-indicator-thickness solid transparent;
 
             &.active {
-                color: $text-tab-indicator-active-color;
-                border-bottom: 4px solid $text-tab-indicator-active-color;
+                color: $tab-item-active-color;
+                border-bottom: $tab-indicator-thickness solid $tab-item-active-color;
 
                 &::before,
                 &:after { border: none }
 
-                &:focus { background: $text-tab-indicator-bg-focus-color }
+                &:focus { background: $tab-bg-focus-color }
             }
 
-            &:hover { background: $text-tab-indicator-bg-hover-color }
+            &:hover { background: $tab-bg-hover-color }
         }
     }
 
@@ -264,4 +273,12 @@
         width: 16px;
         height: 16px;
     }
+}
+
+.nothing-here {
+    background: $card-bg-color;
+    color: $ui-text-color;
+    padding: 16px;
+
+    &--under-tabs { border-radius: 0 0 $card-radius $card-radius }
 }
