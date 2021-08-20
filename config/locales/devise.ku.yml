@@ -2,7 +2,7 @@ kmr-TR:
   devise:
     confirmations:
       confirmed: Navnîşana te ya e-nameyê bi awayekî serkeftî hat piştrastkirin.
-      send_instructions: Çend xulek şûnde ji bo navnîşana e-name ya te çawa were pejirandinê, tu yê e-name yek hildî. Heke ev e-name yê hilnedî ji kerema xwe re peldanka nexwestî binêrin.
+      send_instructions: Çend xulek şûnde ji bo navnîşana e-name ya te çawa were pejirandinê, tu yê e-name yek hildî. Heke ev e-name yê hilnedî ji kerema xwe re peldanka nexwestî binêre.
       send_paranoid_instructions: Heger navnîşana e-name ya te danegeha me de hebe çend xulek şûnde ji bo navnîşana e-name ya te çawa were pejirandinê, tu yê e-name yek hildî. Heke ev e-name yê hilnedî ji kerema xwe re peldanka nexwestî binêrin.
     failure:
       already_authenticated: Jixwe te berê têketin kiriye.
@@ -58,3 +58,16 @@ kmr-TR:
         title: Kodê 2FA ya rizgarkirinê hatine guhertin
       unlock_instructions:
         subject: 'Mastodon: kilîdê rêwerzan veke'
+    registrations:
+      update_needs_confirmation: Te ajimêra xwe bi awayekî serkeftî rojane kir, lê pêdiviya me bi kontrolkirina navnîşana e -nameya te ya nû heye. Ji kerema xwe e -nameya xwe kontrol bike û girêdana piştrastkirinê bişopîne da ku navnîşana e -nameya xwe ya nû piştrast bikî. Ji kerema xwe heke te ev e -name nestand peldanka spama xwe kontrol bike.
+      updated: Ajimêra te bi awayekî serkeftî hate rojanekirin.
+    sessions:
+      already_signed_out: Derketina te serkeftî bû.
+      signed_in: Têketina te serkeftî bû.
+      signed_out: Derketina te serkeftî bû.
+    unlocks:
+      send_instructions: Çend xulek şûnde ji bo navnîşana e-name ya te çawa were pejirandinê, tu yê e-name yek hildî. Heke ev e-name yê hilnedî ji kerema xwe re peldanka nexwestî binêrin.
+  errors:
+    messages:
+      not_found: nehate dîtin
+      not_locked: ne girtî bû
