@@ -1,0 +1,77 @@
+$name: "Quote";
+$plugin-version: "1.0.0";
+$target-version: "1.0.0";
+$website: "";
+@include version-check($name, $plugin-version, $target-version, $website);
+
+.quote-indicator,
+.reply-indicator {
+    @include card-elevation(false);
+    margin-bottom: 16px;
+    padding: 16px;
+
+    &__header { margin-bottom: 4px }
+
+    &__display-avatar {
+        margin-right: 8px;
+
+        .account__avatar {
+            width: 40px !important;
+            height: 40px !important;
+            background-size: 40px !important;
+        }
+    }
+
+    &__content {
+        padding-top: 4px;
+        color: $primary-text-color;
+    }
+}
+
+.quote-status {
+    @include card-elevation(false);
+    background: none;
+    padding: 16px 16px 16px 72px;
+
+    .detailed-status__display-avatar,
+    .status__avatar {
+        top: 16px !important;
+        left: 16px !important;
+        width: 40px !important;
+        height: 40px !important;
+
+        &>div {
+            width: 40px !important;
+            height: 40px !important;
+            background-size: 40px !important;
+        }
+    }
+
+    .status__content { padding-top: 8px }
+
+    .detailed-status__display-name {
+        span,
+        strong { display: block }
+    }
+
+    .display-name {
+        padding-left: 0;
+        
+        &__account { color: $secondary-text-color }
+    }
+
+    &>.unlisted-quote>button { color: $ui-text-color }
+}
+
+@if $dense {
+    .quote-status {
+        padding: 8px 8px 8px 58px;
+        margin-top: 4px;
+
+        .detailed-status__display-avatar,
+        .status__avatar {
+            top: 8px !important;
+            left: 8px !important;
+        }
+    }
+}
