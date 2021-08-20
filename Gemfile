@@ -17,7 +17,7 @@ gem 'makara', '~> 0.5'
 gem 'pghero', '~> 2.8'
 gem 'dotenv-rails', '~> 2.7'
 
-gem 'aws-sdk-s3', '~> 1.98', require: false
+gem 'aws-sdk-s3', '~> 1.99', require: false
 gem 'fog-core', '<= 2.1.0'
 gem 'fog-openstack', '~> 0.3', require: false
 gem 'paperclip', '~> 6.0'
@@ -62,7 +62,7 @@ gem 'link_header', '~> 0.0'
 gem 'mime-types', '~> 3.3.1', require: 'mime/types/columnar'
 gem 'nokogiri', '~> 1.12'
 gem 'nsa', '~> 0.2'
-gem 'oj', '~> 3.12'
+gem 'oj', '~> 3.13'
 gem 'ox', '~> 2.14'
 gem 'parslet'
 gem 'parallel', '~> 1.20'
@@ -122,7 +122,7 @@ group :test do
   gem 'rails-controller-testing', '~> 1.0'
   gem 'rspec-sidekiq', '~> 3.1'
   gem 'simplecov', '~> 0.21', require: false
-  gem 'webmock', '~> 3.13'
+  gem 'webmock', '~> 3.14'
   gem 'parallel_tests', '~> 3.7'
   gem 'rspec_junit_formatter', '~> 0.4'
 end
@@ -136,7 +136,7 @@ group :development do
   gem 'letter_opener', '~> 1.7'
   gem 'letter_opener_web', '~> 1.4'
   gem 'memory_profiler'
-  gem 'rubocop', '~> 1.18', require: false
+  gem 'rubocop', '~> 1.19', require: false
   gem 'rubocop-rails', '~> 2.11', require: false
   gem 'brakeman', '~> 5.1', require: false
   gem 'bundler-audit', '~> 0.8', require: false

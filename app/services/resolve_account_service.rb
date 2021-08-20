@@ -142,6 +142,7 @@ class ResolveAccountService < BaseService
   end
 
   def queue_deletion!
+    @account.suspend!(origin: :remote)
     AccountDeletionWorker.perform_async(@account.id, reserve_username: false, skip_activitypub: true)
   end
 
