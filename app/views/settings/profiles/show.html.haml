@@ -29,9 +29,8 @@
   .fields-group
     = f.input :bot, as: :boolean, wrapper: :with_label, hint: t('simple_form.hints.defaults.bot')
 
-  - if Setting.profile_directory
-    .fields-group
-      = f.input :discoverable, as: :boolean, wrapper: :with_label, hint: t('simple_form.hints.defaults.discoverable'), recommended: true
+  .fields-group
+    = f.input :discoverable, as: :boolean, wrapper: :with_label, hint: t(Setting.profile_directory ? 'simple_form.hints.defaults.discoverable' : 'simple_form.hints.defaults.discoverable_no_directory'), recommended: true
 
   %hr.spacer/
 
