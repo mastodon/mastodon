@@ -1,0 +1,35 @@
+.status.quote-status{ dataurl:  ActivityPub::TagManager.instance.url_for(status) }
+  = link_to ActivityPub::TagManager.instance.url_for(status.account), class: 'status__display-name u-url', target: stream_link_target, rel: 'noopener' do
+    .status__avatar
+      %div
+        = image_tag status.account.avatar_static_url, width: 18, height: 18, alt: '', class: 'u-photo account__avatar'
+    %span.display-name
+      %bdi
+        %strong.display-name__html.p-name.emojify= display_name(status.account, custom_emojify: true)
+      &nbsp;
+      %span.display-name__account
+        = acct(status.account)
+        = fa_icon('lock') if status.account.locked?
+
+  .status__content.emojify<
+    - if status.spoiler_text?
+      %p{ :style => ('margin-bottom: 0' unless current_account&.user&.setting_expand_spoilers) }<
+        %span.p-summary> #{Formatter.instance.format_spoiler(status)}&nbsp;
+        %button.status__content__spoiler-link= t('statuses.show_more')
+    .e-content{ lang: status.language, style: "display: #{!current_account&.user&.setting_expand_spoilers && status.spoiler_text? ? 'none' : 'block'}" }
+      = Formatter.instance.format_in_quote(status, custom_emojify: true)
+  
+  - if !status.media_attachments.empty?
+    - if status.media_attachments.first.video?
+      - video = status.media_attachments.first
+      = react_component :video, src: video.file.url(:original), preview: video.file.url(:small), frameRate: video.file.meta.dig('original', 'frame_rate'), blurhash: video.blurhash, sensitive: !current_account&.user&.show_all_media? && status.sensitive? || current_account&.user&.hide_all_media?, width: 610, height: 343, inline: true, alt: video.description, media: [ActiveModelSerializers::SerializableResource.new(video, serializer: REST::MediaAttachmentSerializer)].as_json, quote: true do
+        = render partial: 'statuses/attachment_list', locals: { attachments: status.media_attachments }
+    - elsif status.media_attachments.first.audio?
+      - audio = status.media_attachments.first
+      = react_component :audio, src: audio.file.url(:original), height: 60, alt: audio.description, duration: audio.file.meta.dig(:original, :duration) do
+        = render partial: 'statuses/attachment_list', locals: { attachments: status.media_attachments }
+    - else
+      = react_component :media_gallery, height: 343, sensitive: !current_account&.user&.show_all_media? && status.sensitive? || current_account&.user&.hide_all_media?, 'autoPlayGif': current_account&.user&.setting_auto_play_gif, media: status.media_attachments.map { |a| ActiveModelSerializers::SerializableResource.new(a, serializer: REST::MediaAttachmentSerializer).as_json }, quote: true do
+        = render partial: 'statuses/attachment_list', locals: { attachments: status.media_attachments }
+  - elsif status.preview_card
+    = react_component :card, maxDescription: 10, card: ActiveModelSerializers::SerializableResource.new(status.preview_card, serializer: REST::PreviewCardSerializer).as_json, quote: true

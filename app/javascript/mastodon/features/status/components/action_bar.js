@@ -17,7 +17,9 @@ const messages = defineMessages({
   reblog: { id: 'status.reblog', defaultMessage: 'Boost' },
   reblog_private: { id: 'status.reblog_private', defaultMessage: 'Boost with original visibility' },
   cancel_reblog_private: { id: 'status.cancel_reblog_private', defaultMessage: 'Unboost' },
+  cannot_quote: { id: 'status.cannot_quote', defaultMessage: 'This post cannot be quoted' },
   cannot_reblog: { id: 'status.cannot_reblog', defaultMessage: 'This post cannot be boosted' },
+  quote: { id: 'status.quote', defaultMessage: 'Quote' },
   favourite: { id: 'status.favourite', defaultMessage: 'Favourite' },
   bookmark: { id: 'status.bookmark', defaultMessage: 'Bookmark' },
   more: { id: 'status.more', defaultMessage: 'More' },
@@ -56,6 +58,7 @@ class ActionBar extends React.PureComponent {
     relationship: ImmutablePropTypes.map,
     onReply: PropTypes.func.isRequired,
     onReblog: PropTypes.func.isRequired,
+    onQuote: PropTypes.func.isRequired,
     onFavourite: PropTypes.func.isRequired,
     onBookmark: PropTypes.func.isRequired,
     onDelete: PropTypes.func.isRequired,
@@ -80,6 +83,10 @@ class ActionBar extends React.PureComponent {
 
   handleReblogClick = (e) => {
     this.props.onReblog(this.props.status, e);
+  }
+
+  handleQuoteClick = () => {
+    this.props.onQuote(this.props.status, this.context.router.history);
   }
 
   handleFavouriteClick = () => {
@@ -277,6 +284,7 @@ class ActionBar extends React.PureComponent {
         <div className='detailed-status__button'><IconButton title={intl.formatMessage(messages.reply)} icon={status.get('in_reply_to_account_id') === status.getIn(['account', 'id']) ? 'reply' : replyIcon} onClick={this.handleReplyClick} /></div>
         <div className='detailed-status__button' ><IconButton className={classNames({ reblogPrivate })} disabled={!publicStatus && !reblogPrivate} active={status.get('reblogged')} title={reblogTitle} icon='retweet' onClick={this.handleReblogClick} /></div>
         <div className='detailed-status__button'><IconButton className='star-icon' animate active={status.get('favourited')} title={intl.formatMessage(messages.favourite)} icon='star' onClick={this.handleFavouriteClick} /></div>
+        <div className='detailed-status__button'><IconButton disabled={!publicStatus} title={!publicStatus ? intl.formatMessage(messages.cannot_quote) : intl.formatMessage(messages.quote)} icon='quote-right' onClick={this.handleQuoteClick} /></div>
         {shareButton}
         <div className='detailed-status__button'><IconButton className='bookmark-icon' active={status.get('bookmarked')} title={intl.formatMessage(messages.bookmark)} icon='bookmark' onClick={this.handleBookmarkClick} /></div>
 

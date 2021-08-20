@@ -151,7 +151,7 @@ export default function timelines(state = initialState, action) {
   case TIMELINE_UPDATE:
     return updateTimeline(state, action.timeline, fromJS(action.status), action.usePendingItems);
   case TIMELINE_DELETE:
-    return deleteStatus(state, action.id, action.references, action.reblogOf);
+    return deleteStatus(state, action.id, action.references);
   case TIMELINE_CLEAR:
     return clearTimeline(state, action.timeline);
   case ACCOUNT_BLOCK_SUCCESS:

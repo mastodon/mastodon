@@ -73,6 +73,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     @mentions = []
     @params   = {}
 
+    process_quote
     process_status_params
     process_tags
     process_audience
@@ -112,6 +113,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
         conversation: conversation_from_uri(@object['conversation']),
         media_attachment_ids: process_attachments.take(4).map(&:id),
         poll: process_poll,
+        quote: quote,
       }
     end
   end
@@ -382,7 +384,9 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   def text_from_content
     return Formatter.instance.linkify([[text_from_name, text_from_summary.presence].compact.join("\n\n"), object_url || object_uri].join(' ')) if converted_object_type?
 
-    if @object['content'].present?
+    if @object['quoteUrl'].blank? && @object['_misskey_quote'].present?
+      Formatter.instance.linkify(@object['_misskey_content'])
+    elsif @object['content'].present?
       @object['content']
     elsif content_language_map?
       @object['contentMap'].values.first
@@ -503,5 +507,25 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   rescue ActiveRecord::StaleObjectError
     poll.reload
     retry
+  end
+
+  def quote
+    @quote ||= quote_from_url(@object['quoteUrl'] || @object['_misskey_quote'])
+  end
+
+  def process_quote
+    if quote.nil? && md = @object['content']&.match(/QT:\s*\[<a href=\"([^\"]+).*?\]/)
+      @quote = quote_from_url(md[1])
+      @object['content'] = @object['content'].sub(/QT:\s*\[.*?\]/, '<span class="quote-inline"><br/>\1</span>')
+    end
+  end
+
+  def quote_from_url(url)
+    return nil if url.nil?
+
+    quote = ResolveURLService.new.call(url)
+    status_from_uri(quote.uri) if quote
+  rescue
+    nil
   end
 end

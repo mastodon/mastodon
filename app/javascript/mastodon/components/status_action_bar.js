@@ -23,7 +23,9 @@ const messages = defineMessages({
   reblog: { id: 'status.reblog', defaultMessage: 'Boost' },
   reblog_private: { id: 'status.reblog_private', defaultMessage: 'Boost with original visibility' },
   cancel_reblog_private: { id: 'status.cancel_reblog_private', defaultMessage: 'Unboost' },
+  cannot_quote: { id: 'status.cannot_quote', defaultMessage: 'This post cannot be quoted' },
   cannot_reblog: { id: 'status.cannot_reblog', defaultMessage: 'This post cannot be boosted' },
+  quote: { id: 'status.quote', defaultMessage: 'Quote' },
   favourite: { id: 'status.favourite', defaultMessage: 'Favourite' },
   bookmark: { id: 'status.bookmark', defaultMessage: 'Bookmark' },
   removeBookmark: { id: 'status.remove_bookmark', defaultMessage: 'Remove bookmark' },
@@ -61,6 +63,7 @@ class StatusActionBar extends ImmutablePureComponent {
     onReply: PropTypes.func,
     onFavourite: PropTypes.func,
     onReblog: PropTypes.func,
+    onQuote: PropTypes.func,
     onDelete: PropTypes.func,
     onDirect: PropTypes.func,
     onMention: PropTypes.func,
@@ -127,6 +130,10 @@ class StatusActionBar extends ImmutablePureComponent {
 
   handleBookmarkClick = () => {
     this.props.onBookmark(this.props.status);
+  }
+
+  handleQuoteClick = () => {
+    this.props.onQuote(this.props.status, this.context.router.history);
   }
 
   handleDeleteClick = () => {
@@ -326,7 +333,7 @@ class StatusActionBar extends ImmutablePureComponent {
         <IconButton className='status__action-bar-button' title={replyTitle} icon={status.get('in_reply_to_account_id') === status.getIn(['account', 'id']) ? 'reply' : replyIcon} onClick={this.handleReplyClick} counter={status.get('replies_count')} obfuscateCount />
         <IconButton className={classNames('status__action-bar-button', { reblogPrivate })} disabled={!publicStatus && !reblogPrivate}  active={status.get('reblogged')} pressed={status.get('reblogged')} title={reblogTitle} icon='retweet' onClick={this.handleReblogClick} />
         <IconButton className='status__action-bar-button star-icon' animate active={status.get('favourited')} pressed={status.get('favourited')} title={intl.formatMessage(messages.favourite)} icon='star' onClick={this.handleFavouriteClick} />
-
+        <IconButton className='status__action-bar-button' disabled={anonymousAccess || !publicStatus} title={!publicStatus ? intl.formatMessage(messages.cannot_quote) : intl.formatMessage(messages.quote)} icon='quote-right' onClick={this.handleQuoteClick} />
         {shareButton}
 
         <div className='status__action-bar-dropdown'>

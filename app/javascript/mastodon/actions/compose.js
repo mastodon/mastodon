@@ -21,6 +21,8 @@ export const COMPOSE_SUBMIT_FAIL     = 'COMPOSE_SUBMIT_FAIL';
 export const COMPOSE_REPLY           = 'COMPOSE_REPLY';
 export const COMPOSE_REPLY_CANCEL    = 'COMPOSE_REPLY_CANCEL';
 export const COMPOSE_DIRECT          = 'COMPOSE_DIRECT';
+export const COMPOSE_QUOTE           = 'COMPOSE_QUOTE';
+export const COMPOSE_QUOTE_CANCEL    = 'COMPOSE_QUOTE_CANCEL';
 export const COMPOSE_MENTION         = 'COMPOSE_MENTION';
 export const COMPOSE_RESET           = 'COMPOSE_RESET';
 export const COMPOSE_UPLOAD_REQUEST  = 'COMPOSE_UPLOAD_REQUEST';
@@ -106,6 +108,23 @@ export function cancelReplyCompose() {
   };
 };
 
+export function quoteCompose(status, routerHistory) {
+  return (dispatch, getState) => {
+    dispatch({
+      type: COMPOSE_QUOTE,
+      status: status,
+    });
+
+    ensureComposeIsVisible(getState, routerHistory);
+  };
+};
+
+export function cancelQuoteCompose() {
+  return {
+    type: COMPOSE_QUOTE_CANCEL,
+  };
+};
+
 export function resetCompose() {
   return {
     type: COMPOSE_RESET,
@@ -153,6 +172,7 @@ export function submitCompose(routerHistory) {
       spoiler_text: getState().getIn(['compose', 'spoiler']) ? getState().getIn(['compose', 'spoiler_text'], '') : '',
       visibility: getState().getIn(['compose', 'privacy']),
       poll: getState().getIn(['compose', 'poll'], null),
+      quote_id: getState().getIn(['compose', 'quote_from'], null),
     }, {
       headers: {
         'Idempotency-Key': getState().getIn(['compose', 'idempotencyKey']),

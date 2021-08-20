@@ -30,8 +30,9 @@ class Api::V1::StatusesController < Api::BaseController
 
     @context = Context.new(ancestors: loaded_ancestors, descendants: loaded_descendants)
     statuses = [@status] + @context.ancestors + @context.descendants
+    accountIds = statuses.filter(&:quote?).map { |status| status.quote.account_id }.uniq
 
-    render json: @context, serializer: REST::ContextSerializer, relationships: StatusRelationshipsPresenter.new(statuses, current_user&.account_id)
+    render json: @context, serializer: REST::ContextSerializer, relationships: StatusRelationshipsPresenter.new(statuses, current_user&.account_id), account_relationships: AccountRelationshipsPresenter.new(accountIds, current_user&.account_id)
   end
 
   def create
@@ -46,7 +47,8 @@ class Api::V1::StatusesController < Api::BaseController
                                          application: doorkeeper_token.application,
                                          poll: status_params[:poll],
                                          idempotency: request.headers['Idempotency-Key'],
-                                         with_rate_limit: true)
+                                         with_rate_limit: true,
+                                         quote_id: status_params[:quote_id].presence)
 
     render json: @status, serializer: @status.is_a?(ScheduledStatus) ? REST::ScheduledStatusSerializer : REST::StatusSerializer
   end
@@ -85,6 +87,7 @@ class Api::V1::StatusesController < Api::BaseController
       :spoiler_text,
       :visibility,
       :scheduled_at,
+      :quote_id,
       media_ids: [],
       poll: [
         :multiple,

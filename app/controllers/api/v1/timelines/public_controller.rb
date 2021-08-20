@@ -5,8 +5,10 @@ class Api::V1::Timelines::PublicController < Api::BaseController
   after_action :insert_pagination_headers, unless: -> { @statuses.empty? }
 
   def show
-    @statuses = load_statuses
-    render json: @statuses, each_serializer: REST::StatusSerializer, relationships: StatusRelationshipsPresenter.new(@statuses, current_user&.account_id)
+    @statuses  = load_statuses
+    accountIds = @statuses.filter(&:quote?).map { |status| status.quote.account_id }.uniq
+
+    render json: @statuses, each_serializer: REST::StatusSerializer, relationships: StatusRelationshipsPresenter.new(@statuses, current_user&.account_id), account_relationships: AccountRelationshipsPresenter.new(accountIds, current_user&.account_id)
   end
 
   private

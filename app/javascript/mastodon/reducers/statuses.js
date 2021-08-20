@@ -13,6 +13,8 @@ import {
   STATUS_REVEAL,
   STATUS_HIDE,
   STATUS_COLLAPSE,
+  QUOTE_REVEAL,
+  QUOTE_HIDE,
 } from '../actions/statuses';
 import { TIMELINE_DELETE } from '../actions/timelines';
 import { STATUS_IMPORT, STATUSES_IMPORT } from '../actions/importer';
@@ -23,9 +25,13 @@ const importStatus = (state, status) => state.set(status.id, fromJS(status));
 const importStatuses = (state, statuses) =>
   state.withMutations(mutable => statuses.forEach(status => importStatus(mutable, status)));
 
-const deleteStatus = (state, id, references) => {
+const deleteStatus = (state, id, references, quotes) => {
   references.forEach(ref => {
     state = deleteStatus(state, ref, []);
+  });
+
+  quotes.forEach(ref => {
+    state = state.setIn([ref, 'quote_id'], null).setIn([ref, 'quote'], null)
   });
 
   return state.delete(id);
@@ -75,8 +81,16 @@ export default function statuses(state = initialState, action) {
     });
   case STATUS_COLLAPSE:
     return state.setIn([action.id, 'collapsed'], action.isCollapsed);
+  case QUOTE_REVEAL:
+    return state.withMutations(map => {
+      action.ids.forEach(id => map.setIn([id, 'quote_hidden'], false));
+    });
+  case QUOTE_HIDE:
+    return state.withMutations(map => {
+      action.ids.forEach(id => map.setIn([id, 'quote_hidden'], true));
+    });
   case TIMELINE_DELETE:
-    return deleteStatus(state, action.id, action.references);
+    return deleteStatus(state, action.id, action.references, action.quotes);
   default:
     return state;
   }
