@@ -69,9 +69,11 @@ kmr-TR:
           subject: 'Mastodon: Kilîta ewlehiyê hate jêbirin'
           title: Yek ji kilîta ewlehiyê yên te hate jêbirin
       webauthn_disabled:
+        explanation: Rastandina kilîta ewlehiyê hate çalakkirin bo ajimêra te. kilîta te ya ewlehiyê niha bo têketinê dikarê bê karanîn. Têketin niha gengaz e ku mirov tenê nîşana ku ji hêla sepana cotkirî ya TOTP ve hatî avakirin bi kar bîne.
         subject: 'Mastodon: Rastandin bi kilîta ewlehiyê re nehate çalakirin'
         title: Kilîta ewlehiyê neçalak e
       webauthn_enabled:
+        explanation: Rastandina kilîta ewlehiyê hate çalakkirin bo ajimêra te. kilîta te ya ewlehiyê niha bo têketinê dikarê bê karanîn.
         subject: 'Mastodon: Rastandina kilîta ewlehiyê hate çalakkirin'
         title: Kilîta ewlehiyê çalak e
     omniauth_callbacks:
@@ -79,6 +81,8 @@ kmr-TR:
       success: Ji ajimêra %{kind} bi serkeftî hate rastandin.
     passwords:
       no_token: Tu nikarî xwe bigihînî vê rûpelê bêyî ku tu ji e-nameya ji nû ve sazkirina pêborînê wernegerî. Heke tu ji e-nameya ji nû ve sazkirina pêborînê tê, ji kerema xwe pê ewle be ku tu girêdanê ya tevahî bi kar tînî.
+      send_instructions: Heke navnîşana te ya e-nameyê di danegeha me da hebê, tu yê di navnîşana xwe ya e-nameyê da girêdana rizgarkirina pêborînê bistînî. Heke te ev e-name wernegirtibe, ji kerema xwe peldanka xwe ya spamê kontrol bike.
+      send_paranoid_instructions: Heke navnîşana te ya e-nameyê di danegeha me da hebê, tu yê di navnîşana xwe ya e-nameyê da girêdana rizgarkirina pêborînê bistînî di hundir çend xulkan de. Heke te ev e-name wernegirtibe, ji kerema xwe peldanka xwe ya spamê kontrol bike.
       updated: Pêborîna te bi serkeftî hate guhertin. Niha tu têketî ye.
       updated_not_active: Pêborîna te bi serkeftî hate guhertin.
     registrations:
