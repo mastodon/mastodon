@@ -68,6 +68,7 @@ kmr-TR:
       signed_up_but_inactive: Te bi serkeftî tomarkirin kir. lê piştî ku tu çalak bikî em dikarin ku tu têketinê bikî.
       signed_up_but_locked: Te bi serkeftî tomarkirin kir. lê ajimêra te girtiye ber wê tu nikarî ku têketinê bikî.
       signed_up_but_pending: Peyamek bi girêda pejirandinê ji navnîşana e-nameya te re hate şandin. Piştî ku tu girêdanê bitikînî, em ê serlêdana te binirxînin. Heke werê pejirandin tu yê bê agahdarkirin.
+      signed_up_but_unconfirmed: Peyamek bi girêda pejirandinê ji navnîşana e-nameya te re hate şandin. Ji kerema xwe girêdanê bişopîne da ku tu ajimêra xwe çalak bikî. Ji kerema xwe heke te ev e-name nestand peldanka spama xwe kontrol bike.
       update_needs_confirmation: Te ajimêra xwe bi awayekî serkeftî rojane kir, lê pêdiviya me bi kontrolkirina navnîşana e -nameya te ya nû heye. Ji kerema xwe e -nameya xwe kontrol bike û girêdana piştrastkirinê bişopîne da ku navnîşana e -nameya xwe ya nû piştrast bikî. Ji kerema xwe heke te ev e -name nestand peldanka spama xwe kontrol bike.
       updated: Ajimêra te bi awayekî serkeftî hate rojanekirin.
     sessions:
@@ -76,7 +77,15 @@ kmr-TR:
       signed_out: Derketina te serkeftî bû.
     unlocks:
       send_instructions: Çend xulek şûnde ji bo navnîşana e-name ya te çawa were pejirandinê, tu yê e-name yek hildî. Heke ev e-name yê hilnedî ji kerema xwe re peldanka nexwestî binêrin.
+      send_paranoid_instructions: Hek ajimêra te hebe, tu yê e-nameyeke bi zanyariyan bistînî ka mirov çawa di çend xulekan de ajimêr vedikê. Ji kerema xwe heke te ev e-name nestand peldanka spama xwe kontrol bike.
+      unlocked: Ajimêra te bi serkeftî vebû. Ji kerema xwe têkeve da ku tu bidomînî.
   errors:
     messages:
+      already_confirmed: jixwe hate pejirandin, ji kerema xwe têketinê biceribîne
+      confirmation_period_expired: pêdivî ye ku di nav %{period} de werê pejirandin, ji kerema xwe yeka nû bixwaze
+      expired: qediya ye, ji kerema xwe yeka nû bixwaze
       not_found: nehate dîtin
       not_locked: ne girtî bû
+      not_saved:
+        one: '1 çewtî nehişt ku %{resource} werê tomarkirin:'
+        other: "%{count} çewtî nehişt ku %{resource} werê tomarkirin:"
