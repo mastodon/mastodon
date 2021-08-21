@@ -78,6 +78,11 @@ kmr-TR:
     errors:
       messages:
         access_denied: Xwedîyê çavkanîyê an jî destûrmendê rajeker daxwazî red kirin.
+        invalid_redirect_uri: Girêdan beralîkirî ya di nav da ne derbasdar e.
+        invalid_token:
+          expired: Dema nîşana gihîştinê qediya
+          revoked: Nîşana gihîştin hatibû pûçkirin
+          unknown: Nîşana gihîştinê derbasdar e
         resource_owner_authenticator_not_configured: Xwedîyê çavkanîyê, ji ber ku nehatîye sazkirin bi ser neket di Doorkeeper.configure.resource_owner_authenticator de.
     flash:
       applications:
@@ -101,6 +106,7 @@ kmr-TR:
       "admin:read": hemû daneyên li ser rajekar bixwîne
       "admin:read:accounts": zanyariyên hestiyar yên hemû ajimêran li ser rajekar bixwîne
       "admin:read:reports": zanyariyên hestiyar yên hemû gilîyan û ajimêrên gilêkirî li ser rajekar bixwîne
+      read: hemû daneyên ajimêra xwe bixwîne
       "read:accounts": zanyariyên ajimêran bibîne
       "read:blocks": ajimêran ku te astenkiriye bibîne
       "read:bookmarks": şûnpelên xwe bibîne
