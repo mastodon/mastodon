@@ -208,6 +208,10 @@ ar:
       search: البحث
       search_same_email_domain: مستخدمون آخرون لديهم نفس نطاق البريد الإلكتروني
       search_same_ip: مستخدِمون آخرون بنفس الـ IP
+      security_measures:
+        only_password: كلمة المرور فقط
+        password_and_2fa: كلمة المرور و 2FA
+        password_and_sign_in_token: كلمة المرور ورمز البريد الإلكتروني
       sensitive: حساس
       sensitized: مُعَين كمنشور حساس
       shared_inbox_url: رابط الصندوق المُشترَك للبريد الوارد
@@ -259,8 +263,10 @@ ar:
         destroy_unavailable_domain: حذف نطاق غير متوفر
         disable_2fa_user: تعطيل 2FA
         disable_custom_emoji: تعطيل الإيموجي المخصص
+        disable_sign_in_token_auth_user: تعطيل مصادقة رمز البريد الإلكتروني للمستخدم
         disable_user: تعطيل المستخدم
         enable_custom_emoji: تفعيل الإيموجي المخصص
+        enable_sign_in_token_auth_user: تمكين مصادقة رمز البريد الإلكتروني للمستخدم
         enable_user: تفعيل المستخدم
         memorialize_account: جعل الحساب تذكاريا
         promote_user: ترقية المستخدم
@@ -302,8 +308,10 @@ ar:
         destroy_unavailable_domain_html: "قام %{name} باستئناف التوصيل للنطاق %{target}"
         disable_2fa_user_html: "قام %{name} بتعطيل المصادقة بخطوتين للمستخدم %{target}"
         disable_custom_emoji_html: "قام %{name} بتعطيل الإيموجي %{target}"
+        disable_sign_in_token_auth_user_html: "%{name} تعطيل مصادقة رمز البريد الإلكتروني لـ %{target}"
         disable_user_html: "قام %{name} بتعطيل تسجيل الدخول للمستخدم %{target}"
         enable_custom_emoji_html: "قام %{name} بتنشيط الإيموجي %{target}"
+        enable_sign_in_token_auth_user_html: "%{name} تمكين مصادقة رمز البريد الإلكتروني لـ %{target}"
         enable_user_html: "قام %{name} بتنشيط تسجيل الدخول للمستخدم %{target}"
         memorialize_account_html: "قام %{name} بتحويل حساب %{target} إلى صفحة تذكارية"
         promote_user_html: "قام %{name} بترويج المستخدم %{target}"
@@ -606,6 +614,7 @@ ar:
       resolved: معالجة
       resolved_msg: تم حل تقرير بنجاح!
       status: الحالة
+      target_origin: مصدر الحساب المبلغ عنه
       title: الشكاوى
       unassign: إلغاء تعيين
       unresolved: غير معالجة
@@ -1295,6 +1304,7 @@ ar:
     preferences: التفضيلات
     profile: الملف التعريفي
     relationships: المتابِعون والمتابَعون
+    statuses_cleanup: حذف المنشور الآلي
     two_factor_authentication: المُصادقة بخُطوَتَيْن
     webauthn_authentication: مفاتيح الأمان
   statuses:
@@ -1370,6 +1380,40 @@ ar:
       public_long: يمكن للجميع رؤيته
       unlisted: غير مُدرَج
       unlisted_long: يُمكن لأيٍ كان رُؤيتَه و لكن لن يُعرَض على الخيوط العامة
+  statuses_cleanup:
+    enabled: حذف المشاركات القديمة تلقائياً
+    enabled_hint: حذف منشوراتك تلقائياً بمجرد أن تصل إلى عتبة عمرية محددة، إلا إذا كانت مطابقة لأحد الاستثناءات أدناه
+    exceptions: الاستثناءات
+    explanation: لأن حذف المشاركات عملية مكلفة، يتم ذلك ببطء مع مرور الوقت عندما يكون الخادم غير مشغول. لهذا السبب، يمكن حذف مشاركاتك بعد فترة من بلوغها عتبة السن.
+    ignore_favs: تجاهل المفضلة
+    ignore_reblogs: تجاهل التعزيزات
+    interaction_exceptions: الاستثناءات المبنية على التفاعلات
+    interaction_exceptions_explanation: لاحظ أنه لا يوجد ضمان لحذف الوظائف إذا كانت أقل من عتبة التعزيز المفضلة بعد أن تكون قد ذهبت إليها.
+    keep_direct: الاحتفاظ بالرسائل المباشرة
+    keep_direct_hint: لم تقوم بحذف أي من رسائلك المباشرة
+    keep_media: الاحتفاظ بالمشاركات مع مرفقات الوسائط
+    keep_media_hint: لم تقوم بحذف أي من المشاركات الخاصة بك التي تحتوي على مرفقات الوسائط
+    keep_pinned: الاحتفاظ بالمشاركات المثبتة
+    keep_pinned_hint: لم تقوم بحذف أي من مشاركتك المثبتة
+    keep_polls: الاحتفاظ باستطلاعات الرأي
+    keep_polls_hint: لم تقم بحذف أي من استطلاعاتك
+    keep_self_bookmark: احتفظ بالمشاركات التي أدرجتها حجزا
+    keep_self_bookmark_hint: لم تقم بحذف مشاركاتك الخاصة إذا قمت بوضع علامة مرجعية عليها
+    keep_self_fav: احتفظ بالمشاركات التي تفضلها
+    keep_self_fav_hint: لم تقم بحذف مشاركاتك الخاصة إذا كنت قد فضلتهم
+    min_age:
+      '1209600': أسبوعان
+      '15778476': 6 أشهر
+      '2629746': شهر واحد
+      '31556952': سنة واحدة
+      '5259492': شهران
+      '63113904': أسبوعان
+      '7889238': 3 أشهر
+    min_age_label: عتبة العمر
+    min_favs: إبقاء المشاركات المفضلة أكثر من
+    min_favs_hint: لم تقوم بحذف أي من المشاركات الخاصة بك التي حصلت على أكثر من هذه الكمية من المفضلة. اتركه فارغاً لحذف المشاركات بغض النظر عن عدد المفضلات لديها
+    min_reblogs: إبقاء المشاركات المعززة أكثر من
+    min_reblogs_hint: لم تقم بحذف أي من مشاركاتك التي تم تعزيزها أكثر من هذا العدد من المرات. اتركه فارغاً لحذف المشاركات بغض النظر عن عدد تعزيزاتها
   stream_entries:
     pinned: تبويق مثبّت
     reblogged: رقّاه
