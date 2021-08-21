@@ -59,6 +59,21 @@ kmr-TR:
         title: Kodê 2FA ya rizgarkirinê hatine guhertin
       unlock_instructions:
         subject: 'Mastodon: kilîdê rêwerzan veke'
+      webauthn_credential:
+        added:
+          explanation: Kilîta ewlehiyê jêrîn li ajimêra te hate tevlîkirin
+          subject: 'Kilîta ewlehiyê ya nû'
+          title: Kilîta ewlehiyê ya nû hate tevlîkirin
+        deleted:
+          explanation: Kilîta ewlehiyê jêrîn li ajimêra te hate jêbirin
+          subject: 'Mastodon: Kilîta ewlehiyê hate jêbirin'
+          title: Yek ji kilîta ewlehiyê yên te hate jêbirin
+      webauthn_disabled:
+        title: Kilîta ewlehiyê neçalak e
+      webauthn_enabled:
+        title: Kilîta ewlehiyê çalak e
+    omniauth_callbacks:
+      failure: Nikare ji %{kind} rastandinê bikê ji bo " %{reason}".
     passwords:
       updated: Pêborîna te bi serkeftî hate guhertin. Niha tu têketî ye.
       updated_not_active: Pêborîna te bi serkeftî hate guhertin.
