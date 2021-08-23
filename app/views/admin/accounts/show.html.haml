@@ -79,7 +79,9 @@
           = t('admin.accounts.no_limits_imposed')
       .dashboard__counters__label= t 'admin.accounts.login_status'
 
-- unless @account.local? && @account.user.nil?
+- if @account.local? && @account.user.nil?
+  = link_to t('admin.accounts.unblock_email'), unblock_email_admin_account_path(@account.id), method: :post, class: 'button' if can?(:unblock_email, @account) && CanonicalEmailBlock.where(reference_account_id: @account.id).exists?
+- else
   .table-wrapper
     %table.table.inline-table
       %tbody

@@ -252,6 +252,7 @@ Rails.application.routes.draw do
         post :memorialize
         post :approve
         post :reject
+        post :unblock_email
       end
 
       resource :change_email, only: [:show, :update]

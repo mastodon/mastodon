@@ -47,6 +47,7 @@ class Admin::ActionLogFilter
     update_announcement: { target_type: 'Announcement', action: 'update' }.freeze,
     update_custom_emoji: { target_type: 'CustomEmoji', action: 'update' }.freeze,
     update_status: { target_type: 'Status', action: 'update' }.freeze,
+    unblock_email_account: { target_type: 'Account', action: 'unblock_email' }.freeze,
   }.freeze
 
   attr_reader :params

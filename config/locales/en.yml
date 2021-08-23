@@ -212,6 +212,8 @@ en:
       suspension_reversible_hint_html: The account has been suspended, and the data will be fully removed on %{date}. Until then, the account can be restored without any ill effects. If you wish to remove all of the account's data immediately, you can do so below.
       time_in_queue: Waiting in queue %{time}
       title: Accounts
+      unblock_email: Unblock email address
+      unblocked_email_msg: Successfully unblocked %{username}'s email address
       unconfirmed_email: Unconfirmed email
       undo_sensitized: Undo force-sensitive
       undo_silenced: Undo limit
@@ -263,6 +265,7 @@ en:
         silence_account: Limit Account
         suspend_account: Suspend Account
         unassigned_report: Unassign Report
+        unblock_email_account: Unblock email address
         unsensitive_account: Undo Force-Sensitive Account
         unsilence_account: Undo Limit Account
         unsuspend_account: Unsuspend Account
@@ -308,6 +311,7 @@ en:
         silence_account_html: "%{name} limited %{target}'s account"
         suspend_account_html: "%{name} suspended %{target}'s account"
         unassigned_report_html: "%{name} unassigned report %{target}"
+        unblock_email_account_html: "%{name} unblocked %{target}'s email address"
         unsensitive_account_html: "%{name} unmarked %{target}'s media as sensitive"
         unsilence_account_html: "%{name} undid limit of %{target}'s account"
         unsuspend_account_html: "%{name} unsuspended %{target}'s account"
