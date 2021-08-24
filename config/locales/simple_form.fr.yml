@@ -10,15 +10,15 @@ fr:
         text: Vous pouvez utiliser la syntaxe des messages, comme les URL, les hashtags et les mentions
         title: Facultatif. Invisible pour le destinataire
       admin_account_action:
-        include_statuses: L’utilisateur·rice verra quels messages sont la source de l’action de modération ou de l’avertissement
+        include_statuses: L’utilisateur verra quels messages sont la source de l’action de modération ou de l’avertissement
         send_email_notification: L’utilisateur recevra une explication de ce qu’il s’est passé avec son compte
         text_html: Optionnel. Vous pouvez utilisez la syntaxe des messages. Vous pouvez <a href="%{path}">ajouter des modèles d’avertissement</a> pour économiser du temps
         type_html: Choisir que faire avec <strong>%{acct}</strong>
         types:
-          disable: Empêcher l’utilisateur·rice d’utiliser son compte, mais ne pas supprimer ou masquer son contenu.
-          none: Utilisez ceci pour envoyer un avertissement à l’utilisateur·rice, sans déclencher aucune autre action.
-          sensitive: Forcer toutes les pièces jointes de cet·te utilisateur·rice à être signalées comme sensibles.
-          silence: Empêcher l’utilisateur·rice de poster avec une visibilité publique, cacher ses messages et ses notifications aux personnes qui ne les suivent pas.
+          disable: Empêcher l’utilisateur d’utiliser son compte, mais ne pas supprimer ou masquer son contenu.
+          none: Utilisez ceci pour envoyer un avertissement à l’utilisateur, sans déclencher aucune autre action.
+          sensitive: Forcer toutes les pièces jointes de cet utilisateur à être signalées comme sensibles.
+          silence: Empêcher l’utilisateur de poster avec une visibilité publique, cacher ses messages et ses notifications aux personnes qui ne les suivent pas.
           suspend: Empêcher toute interaction depuis ou vers ce compte et supprimer son contenu. Réversible dans les 30 jours.
         warning_preset_id: Optionnel. Vous pouvez toujours ajouter un texte personnalisé à la fin de la présélection
       announcement:
@@ -42,7 +42,7 @@ fr:
         inbox_url: Copiez l’URL depuis la page d’accueil du relais que vous souhaitez utiliser
         irreversible: Les messages filtrés disparaîtront pour toujours, même si le filtre est supprimé plus tard
         locale: La langue de l’interface, des courriels et des notifications
-        locked: Nécessite que vous approuviez manuellement chaque abonné·e
+        locked: Nécessite que vous approuviez manuellement chaque abonné
         password: Utilisez au moins 8 caractères
         phrase: Sera filtré peu importe la casse ou l’avertissement de contenu du message
         scopes: À quelles APIs l’application sera autorisée à accéder. Si vous sélectionnez une permission générale, vous n’avez pas besoin de sélectionner les permissions plus précises.
@@ -174,7 +174,7 @@ fr:
         sign_in_token_attempt: Code de sécurité
         type: Type d’import
         username: Identifiant
-        username_or_email: Nom d’utilisateur·rice ou courriel
+        username_or_email: Nom d’utilisateur ou courriel
         whole_word: Mot entier
       email_domain_block:
         with_dns_records: Inclure les enregistrements MX et IP du domaine
