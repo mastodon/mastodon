@@ -241,6 +241,8 @@ kmr-TR:
       over_x_years: "%{count}sal"
       x_days: "%{count}roj"
       x_minutes: "%{count}xulek"
+      x_months: "%{count}meh"
+      x_seconds: "%{count}çirke"
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
@@ -251,3 +253,63 @@ kmr-TR:
     '429': Too many requests
     '500':
     '503': The page could not be served due to a temporary server failure.
+  exports:
+    archive_takeout:
+      date: Dem
+      download: Arşîva xwe daxîne
+      size: Mezinahî
+    csv: CSV
+  filters:
+    contexts:
+      account: Profîl
+    index:
+      delete: Jê bibe
+      title: Parzûn
+  footer:
+    developers: Pêşdebir
+    more: Bêhtir…
+    resources: Çavkanî
+  generic:
+    all: Hemû
+    copy: Jê bigire
+    delete: Jê bibe
+  identity_proofs:
+    identity: Nasname
+    inactive: Neçalak e
+  invites:
+    delete: Neçalak bike
+    expires_in:
+      '1800': 30 xulek
+      '21600': 6 demjimêr
+      '3600': 1 demjimêr
+      '43200': 12 demjimêr
+      '604800': 1 hefte
+      '86400': 1 roj
+    expires_in_prompt: Tu car
+  login_activities:
+    authentication_methods:
+      password: pêborîn
+      sign_in_token: koda ewlehiyê bo e-nameyê
+      webauthn: kilîtên ewlehiyê
+  notification_mailer:
+    mention:
+      action: Bersivê bide
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          quadrillion: Q
+          thousand: Hezar
+          trillion: Trîlyon
+  otp_authentication:
+    setup: Saz bike
+  pagination:
+    newer: Nûtir
+    next: Pêş
+    older: Kevntir
+    prev: Paş
+  relationships:
+    followers: Şopîner
+    following: Dişopîne
+    invited: Vexwendî
