@@ -30,6 +30,8 @@ Devise.setup do |config|
     cas_options[:location_key] = ENV['CAS_LOCATION_KEY'] || 'location'
     cas_options[:image_key] = ENV['CAS_IMAGE_KEY'] || 'image'
     cas_options[:phone_key] = ENV['CAS_PHONE_KEY'] || 'phone'
+    cas_options[:security] = {}
+    cas_options[:security][:assume_email_is_verified] = ENV['CAS_SECURITY_ASSUME_EMAIL_IS_VERIFIED'] == 'true'
     config.omniauth :cas, cas_options
   end
 
