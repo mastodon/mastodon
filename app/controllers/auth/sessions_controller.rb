@@ -45,7 +45,10 @@ class Auth::SessionsController < Devise::SessionsController
     user = find_user
 
     if user&.webauthn_enabled?
-      options_for_get = WebAuthn::Credential.options_for_get(allow: user.webauthn_credentials.pluck(:external_id))
+      options_for_get = WebAuthn::Credential.options_for_get(
+        allow: user.webauthn_credentials.pluck(:external_id),
+        user_verification: 'discouraged'
+      )
 
       session[:webauthn_challenge] = options_for_get.challenge
 
