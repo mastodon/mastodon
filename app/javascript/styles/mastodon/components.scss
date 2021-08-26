@@ -2554,7 +2554,7 @@ a.account__display-name {
   display: flex;
   flex-direction: column;
   height: calc(100% - 10px);
-  overflow-y: hidden;
+  justify-content: space-between;
 
   .navigation-bar {
     padding-top: 20px;
@@ -2572,9 +2572,7 @@ a.account__display-name {
     overflow-y: hidden;
     display: flex;
     flex-direction: column;
-    min-height: 310px;
-    padding-bottom: 71px;
-    margin-bottom: -71px;
+    min-height: 0;
   }
 
   .compose-form__autosuggest-wrapper {

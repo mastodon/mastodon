@@ -25,9 +25,11 @@ class ComposePanel extends React.PureComponent {
   render() {
     return (
       <div className='compose-panel' onFocus={this.onFocus}>
-        <SearchContainer openInRoute />
-        <NavigationContainer onClose={this.onBlur} />
-        <ComposeFormContainer singleColumn />
+        <div className='compose-ui'>
+          <SearchContainer openInRoute />
+          <NavigationContainer onClose={this.onBlur} />
+          <ComposeFormContainer singleColumn />
+        </div>
         <LinkFooter withHotkeys />
       </div>
     );
