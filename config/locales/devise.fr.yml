@@ -5,7 +5,7 @@ fr:
       send_instructions: Vous allez recevoir par courriel les instructions nécessaires à la confirmation de votre compte dans quelques minutes. Veuillez, dans le cas où vous ne recevriez pas ce message, vérifier votre dossier d’indésirables.
       send_paranoid_instructions: Si votre adresse électronique existe dans notre base de données, vous allez bientôt recevoir un courriel contenant les instructions de confirmation de votre compte. Veuillez, dans le cas où vous ne recevriez pas ce message, vérifier votre dossier d’indésirables.
     failure:
-      already_authenticated: Vous êtes déjà connecté⋅e.
+      already_authenticated: Vous êtes déjà connecté.
       inactive: Votre compte n’est pas encore activé.
       invalid: '%{authentication_keys} ou mot de passe invalide.'
       last_attempt: Vous avez droit à une dernière tentative avant que votre compte ne soit verrouillé.
@@ -23,15 +23,15 @@ fr:
         explanation_when_pending: Vous avez demandé à vous inscrire à %{host} avec cette adresse de courriel. Une fois que vous aurez confirmé cette adresse, nous étudierons votre demande. Vous ne pourrez pas vous connecter d’ici-là. Si votre demande est refusée, vos données seront supprimées du serveur, aucune action supplémentaire de votre part n’est donc requise. Si vous n’êtes pas à l’origine de cette demande, veuillez ignorer ce message.
         extra_html: Merci de consultez également <a href="%{terms_path}">les règles du serveur</a> et <a href="%{policy_path}">nos conditions d’utilisation</a>.
         subject: 'Mastodon : Merci de confirmer votre inscription sur %{instance}'
-        title: Vérifier l’adresse courriel
+        title: Vérifiez l’adresse courriel
       email_changed:
         explanation: 'L’adresse courriel de votre compte est en cours de modification pour devenir :'
-        extra: Si vous n’avez pas changé votre adresse courriel, il est probable que quelqu’un ait eu accès à votre compte. Veuillez changer votre mot de passe immédiatement ou contacter l’administrateur·rice du serveur si vous êtes bloqué·e hors de votre compte.
+        extra: Si vous n’avez pas changé votre adresse courriel, il est probable que quelqu’un ait eu accès à votre compte. Veuillez changer votre mot de passe immédiatement ou contacter l’administrateur du serveur si vous êtes bloqué hors de votre compte.
         subject: 'Mastodon : Courriel modifié'
         title: Nouvelle adresse courriel
       password_change:
         explanation: Le mot de passe de votre compte a été changé.
-        extra: Si vous n’avez pas changé votre mot de passe, il est probable que quelqu’un ait eu accès à votre compte. Veuillez changer votre mot de passe immédiatement ou contacter l’administrateur·rice du serveur si vous êtes bloqué·e hors de votre compte.
+        extra: Si vous n’avez pas changé votre mot de passe, il est probable que quelqu’un ait eu accès à votre compte. Veuillez changer votre mot de passe immédiatement ou contacter l’administrateur du serveur si vous êtes bloqué hors de votre compte.
         subject: 'Mastodon : Votre mot de passe a été modifié avec succès'
         title: Mot de passe modifié
       reconfirmation_instructions:
@@ -55,7 +55,7 @@ fr:
         title: A2F activée
       two_factor_recovery_codes_changed:
         explanation: Les codes de récupération précédents ont été invalidés et de nouveaux ont été générés.
-        subject: 'Mastodon : codes de récupération à deux facteurs ré-générés'
+        subject: 'Mastodon : codes de récupération à deux facteurs régénérés'
         title: Codes de récupération 2FA modifiés
       unlock_instructions:
         subject: 'Mastodon : Instructions pour déverrouiller votre compte'
@@ -88,16 +88,16 @@ fr:
     registrations:
       destroyed: Au revoir ! Votre compte a été supprimé avec succès. Nous espérons vous revoir bientôt.
       signed_up: Bienvenue ! Vous êtes connecté·e.
-      signed_up_but_inactive: Vous êtes bien enregistré·e. Vous ne pouvez cependant pas vous connecter car votre compte n’est pas encore activé.
-      signed_up_but_locked: Vous êtes bien enregistré·e. Vous ne pouvez cependant pas vous connecter car votre compte est verrouillé.
-      signed_up_but_pending: Un message avec un lien de confirmation a été envoyé à votre adresse courriel. Après avoir cliqué sur le lien, nous examinerons votre demande. Vous serez informé·e si elle a été approuvée.
+      signed_up_but_inactive: Vous êtes bien enregistré. Vous ne pouvez cependant pas vous connecter car votre compte n’est pas encore activé.
+      signed_up_but_locked: Vous êtes bien enregistré. Vous ne pouvez cependant pas vous connecter car votre compte est verrouillé.
+      signed_up_but_pending: Un message avec un lien de confirmation a été envoyé à votre adresse courriel. Après avoir cliqué sur le lien, nous examinerons votre demande. Vous serez informé si elle a été approuvée.
       signed_up_but_unconfirmed: Un message contenant un lien de confirmation a été envoyé à votre adresse courriel. Ouvrez ce lien pour activer votre compte. Veuillez vérifier votre dossier d'indésirables si vous ne recevez pas le courriel.
       update_needs_confirmation: Votre compte a bien été mis à jour, mais nous devons vérifier votre nouvelle adresse courriel. Merci de vérifier vos courriels et de cliquer sur le lien de confirmation pour finaliser la validation de votre nouvelle adresse. Si vous n'avez pas reçu le courriel, vérifiez votre dossier de spams.
       updated: Votre compte a été modifié avec succès.
     sessions:
       already_signed_out: Déconnecté·e.
-      signed_in: Connecté·e.
-      signed_out: Déconnecté·e.
+      signed_in: Connecté.
+      signed_out: Déconnecté.
     unlocks:
       send_instructions: Vous allez recevoir les instructions nécessaires au déverrouillage de votre compte dans quelques instants. Veuillez, dans le cas où vous ne recevriez pas ce message, vérifier votre dossier d’indésirables.
       send_paranoid_instructions: Si votre compte existe, vous allez bientôt recevoir un courriel contenant les instructions pour le déverrouiller. Veuillez, dans le cas où vous ne recevriez pas ce message, vérifier votre dossier d’indésirables.
@@ -108,7 +108,7 @@ fr:
       confirmation_period_expired: à confirmer dans les %{period}, merci de faire une nouvelle demande
       expired: a expiré, merci d’en faire une nouvelle demande
       not_found: n’a pas été trouvé·e
-      not_locked: n’était pas verrouillé·e
+      not_locked: n’était pas verrouillé
       not_saved:
-        one: 'Une erreur a empêché ce·tte %{resource} d’être sauvegardé·e :'
-        other: "%{count} erreurs ont empêché %{resource} d’être sauvegardé⋅e :"
+        one: 'Une erreur a empêché cette %{resource} d’être sauvegardé :'
+        other: "%{count} erreurs ont empêché %{resource} d’être sauvegardé :"
