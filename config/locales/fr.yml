@@ -146,10 +146,10 @@ fr:
       login_status: Statut de connexion
       media_attachments: Fichiers médias
       memorialize: Convertir en mémorial
-      memorialized: Mémorialisé
+      memorialized: Mis en mémoire
       memorialized_msg: Transformation réussie de %{username} en un compte mémorial
       moderation:
-        active: Actif·ve·s
+        active: Actifs
         all: Tous
         pending: En cours de traitement
         silenced: Masqués
@@ -177,7 +177,7 @@ fr:
       removed_avatar_msg: L’avatar de %{username} a été supprimé avec succès
       removed_header_msg: L’image d’en-tête de %{username} a été supprimée avec succès
       resend_confirmation:
-        already_confirmed: Cet·te utilisateur·rice est déjà confirmé·e
+        already_confirmed: Cet utilisateur est déjà confirmé
         send: Renvoyer un courriel de confirmation
         success: Courriel de confirmation envoyé avec succès !
       reset: Réinitialiser
@@ -190,8 +190,8 @@ fr:
         staff: Équipe
         user: Utilisateur
       search: Rechercher
-      search_same_email_domain: Autres utilisateurs·trices avec le même domaine de courriel
-      search_same_ip: Autres utilisateur·rice·s avec la même IP
+      search_same_email_domain: Autres utilisateurs avec le même domaine de courriel
+      search_same_ip: Autres utilisateurs avec la même IP
       security_measures:
         only_password: Mot de passe uniquement
         password_and_2fa: Mot de passe et 2FA
@@ -217,8 +217,8 @@ fr:
       undo_suspension: Annuler la suspension
       unsilenced_msg: Le compte de %{username} a été illimité avec succès
       unsubscribe: Se désabonner
-      unsuspended_msg: Le compte de %{username} a été désuspendu avec succès
-      username: Nom d’utilisateur·ice
+      unsuspended_msg: Le compte de %{username} a été réactivé avec succès
+      username: Nom d’utilisateur
       view_domain: Voir le résumé du domaine
       warn: Avertissement
       web: Web
@@ -236,7 +236,7 @@ fr:
         create_email_domain_block: Créer un blocage de domaine de courriel
         create_ip_block: Créer une règle IP
         create_unavailable_domain: Créer un domaine indisponible
-        demote_user: Rétrograder l’utilisateur·ice
+        demote_user: Rétrograder l’utilisateur
         destroy_announcement: Supprimer l’annonce
         destroy_custom_emoji: Supprimer des émojis personnalisés
         destroy_domain_allow: Supprimer le domaine autorisé
@@ -248,11 +248,11 @@ fr:
         disable_2fa_user: Désactiver l’A2F
         disable_custom_emoji: Désactiver les émojis personnalisés
         disable_sign_in_token_auth_user: Désactiver l'authentification basée sur les jetons envoyés par courriel pour l'utilisateur·rice
-        disable_user: Désactiver l’utilisateur·ice
+        disable_user: Désactiver l’utilisateur
         enable_custom_emoji: Activer les émojis personnalisées
-        enable_sign_in_token_auth_user: Activer l'authentification basée sur les jetons envoyés par courriel pour l'utilisateur·rice
+        enable_sign_in_token_auth_user: Activer l'authentification basée sur les jetons envoyés par courriel pour l'utilisateur
         enable_user: Activer l’utilisateur
-        memorialize_account: Mémorialiser le compte
+        memorialize_account: Se souvenir du compte
         promote_user: Promouvoir l’utilisateur
         remove_avatar_user: Supprimer l’avatar
         reopen_report: Rouvrir le signalement
@@ -270,8 +270,8 @@ fr:
         update_domain_block: Mettre à jour le blocage de domaine
         update_status: Mettre à jour le statut
       actions:
-        assigned_to_self_report_html: "%{name} s’est assigné·e le signalement de %{target}"
-        change_email_user_html: "%{name} a modifié l'adresse de courriel de l'utilisateur·rice %{target}"
+        assigned_to_self_report_html: "%{name} s’est assigné le signalement de %{target}"
+        change_email_user_html: "%{name} a modifié l'adresse de courriel de l'utilisateur %{target}"
         confirm_user_html: "%{name} a confirmé l'adresse courriel de l'utilisateur·rice %{target}"
         create_account_warning_html: "%{name} a envoyé un avertissement à %{target}"
         create_announcement_html: "%{name} a créé une nouvelle annonce %{target}"
@@ -281,7 +281,7 @@ fr:
         create_email_domain_block_html: "%{name} a bloqué de domaine de courriel %{target}"
         create_ip_block_html: "%{name} a créé une règle pour l'IP %{target}"
         create_unavailable_domain_html: "%{name} a arrêté la livraison vers le domaine %{target}"
-        demote_user_html: "%{name} a rétrogradé l'utilisateur·rice %{target}"
+        demote_user_html: "%{name} a rétrogradé l'utilisateur %{target}"
         destroy_announcement_html: "%{name} a supprimé l'annonce %{target}"
         destroy_custom_emoji_html: "%{name} a détruit l'émoji %{target}"
         destroy_domain_allow_html: "%{name} a rejeté la fédération avec le domaine %{target}"
@@ -290,18 +290,18 @@ fr:
         destroy_ip_block_html: "%{name} a supprimé la règle pour l'IP %{target}"
         destroy_status_html: "%{name} a supprimé le statut de %{target}"
         destroy_unavailable_domain_html: "%{name} a repris la livraison au domaine %{target}"
-        disable_2fa_user_html: "%{name} a désactivé l'authentification à deux facteurs pour l'utilisateur·rice %{target}"
+        disable_2fa_user_html: "%{name} a désactivé l'authentification à deux facteurs pour l'utilisateur %{target}"
         disable_custom_emoji_html: "%{name} a désactivé l'émoji %{target}"
         disable_sign_in_token_auth_user_html: "%{name} a désactivé l'authentification basée sur les jetons envoyés par courriel pour %{target}"
-        disable_user_html: "%{name} a désactivé la connexion de l'utilisateur·rice %{target}"
+        disable_user_html: "%{name} a désactivé la connexion de l'utilisateur %{target}"
         enable_custom_emoji_html: "%{name} a activé l'émoji %{target}"
         enable_sign_in_token_auth_user_html: "%{name} a activé l'authentification basée sur les jetons envoyés par courriel pour %{target}"
-        enable_user_html: "%{name} a activé la connexion de l'utilisateur·rice %{target}"
+        enable_user_html: "%{name} a activé la connexion de l'utilisateur %{target}"
         memorialize_account_html: "%{name} a converti le compte de %{target} en un mémorial"
-        promote_user_html: "%{name} a promu l'utilisateur·rice %{target}"
+        promote_user_html: "%{name} a promu l'utilisateur %{target}"
         remove_avatar_user_html: "%{name} a supprimé l'avatar de %{target}"
         reopen_report_html: "%{name} a rouvert le signalement %{target}"
-        reset_password_user_html: "%{name} a réinitialisé le mot de passe de l'utilisateur·rice %{target}"
+        reset_password_user_html: "%{name} a réinitialisé le mot de passe de l'utilisateur %{target}"
         resolve_report_html: "%{name} a résolu le signalement %{target}"
         sensitive_account_html: "%{name} a marqué le média de %{target} comme sensible"
         silence_account_html: "%{name} a masqué le compte de %{target}"
@@ -317,10 +317,10 @@ fr:
       deleted_status: "(statut supprimé)"
       empty: Aucun journal trouvé.
       filter_by_action: Filtrer par action
-      filter_by_user: Filtrer par utilisateur·ice
+      filter_by_user: Filtrer par utilisateur
       title: Journal d’audit
     announcements:
-      destroyed_msg: Annonce supprimée avec succès !
+      destroyed_msg: Annonce supprimée avec succès!
       edit:
         title: Modifier l’annonce
       empty: Aucune annonce trouvée.
@@ -331,24 +331,24 @@ fr:
       publish: Publier
       published_msg: Annonce publiée avec succès !
       scheduled_for: Planifiée pour %{time}
-      scheduled_msg: Annonce planifiée pour publication !
+      scheduled_msg: Annonce planifiée pour publication!
       title: Annonces
       unpublish: Supprimer la publication
-      unpublished_msg: L’annonce a été dépubliée avec succès !
-      updated_msg: L’annonce a été mise à jour avec succès !
+      unpublished_msg: L’annonce a été dépubliée avec succès!
+      updated_msg: L’annonce a été mise à jour avec succès!
     custom_emojis:
       assign_category: Attribuer une catégorie
       by_domain: Domaine
-      copied_msg: Copie locale de l’émoji créée avec succès !
+      copied_msg: Copie locale de l’émoji créée avec succès
       copy: Copier
       copy_failed_msg: Impossible de faire une copie locale de cet émoji
       create_new_category: Créer une nouvelle catégorie
-      created_msg: Émoji créé avec succès !
+      created_msg: Émoji créé avec succès!
       delete: Supprimer
-      destroyed_msg: Émoji supprimé avec succès !
+      destroyed_msg: Émoji supprimé avec succès!
       disable: Désactiver
       disabled: Désactivé
-      disabled_msg: Émoji désactivé avec succès !
+      disabled_msg: Émoji désactivé avec succès
       emoji: Émoji
       enable: Activer
       enabled: Activé
@@ -367,7 +367,7 @@ fr:
       unlist: Délister
       unlisted: Délisté
       update_failed_msg: Cet émoji n'a pas pu être mis à jour
-      updated_msg: Émoji mis à jour avec succès !
+      updated_msg: Émoji mis à jour avec succès!
       upload: Téléverser
     dashboard:
       authorized_fetch_mode: Mode de récupération autorisé
@@ -383,14 +383,14 @@ fr:
       hidden_service: Fédération avec des services cachés
       open_reports: signalements non résolus
       pending_tags: hashtags en attente d’approbation
-      pending_users: utilisateur·rice·s en attente d’approbation
-      recent_users: Utilisateur·rice·s récent·e·s
+      pending_users: utilisateurs en attente d’approbation
+      recent_users: Utilisateurs récents
       search: Recherche plein texte
-      single_user_mode: Mode utilisateur·rice unique
+      single_user_mode: Mode utilisateur unique
       software: Logiciel
       space: Espace utilisé
       title: Tableau de bord
-      total_users: utilisateur·rice·s au total
+      total_users: utilisateurs au total
       trends: Tendances
       week_interactions: interactions cette semaine
       week_users_active: actif·ve·s cette semaine
@@ -456,7 +456,7 @@ fr:
         title: Nouveau blocage de domaine de courriel
       title: Blocage de domaines de courriel
     follow_recommendations:
-      description_html: "<strong>Les recommandations d'abonnement aident les nouvelles personnes à trouver rapidement du contenu intéressant</strong>. Si un·e utilisateur·rice n'a pas assez interagi avec les autres pour avoir des recommandations personnalisées, ces comptes sont alors recommandés. La sélection est mise à jour quotidiennement depuis un mélange de comptes ayant le plus d'interactions récentes et le plus grand nombre d'abonné·e·s locaux pour une langue donnée."
+      description_html: "<strong>Les recommandations d'abonnement aident les nouvelles personnes à trouver rapidement du contenu intéressant</strong>. Si un utilisateur n'a pas assez interagi avec les autres pour avoir des recommandations personnalisées, ces comptes sont alors recommandés. La sélection est mise à jour quotidiennement depuis un mélange de comptes ayant le plus d'interactions récentes et le plus grand nombre d'abonnés locaux pour une langue donnée."
       language: Pour la langue
       status: État
       suppress: Supprimer les recommandations d'abonnement
@@ -586,17 +586,17 @@ fr:
     rules:
       add_new: Ajouter une règle
       delete: Supprimer
-      description_html: Bien que la plupart des gens prétende avoir lu les conditions d'utilisation avant de les accepter, généralement les utilisateur·rice·s ne les lisent vraiment que lorsque un problème apparaît. <strong>Pour faciliter la visualisation des règles de votre serveur en un seul coup d’œil, présentez-les sous la forme d'une liste à puces !</strong> Essayez de garder chacune des règles simple et concise, mais faites attention à ne pas non plus les diviser en de trop nombreux éléments distincts.
+      description_html: Bien que la plupart des gens prétende avoir lu les conditions d'utilisation avant de les accepter, généralement les utilisateurs ne les lisent vraiment que lorsque un problème apparaît. <strong>Pour faciliter la visualisation des règles de votre serveur en un seul coup d’œil, présentez-les sous la forme d'une liste à puces !</strong> Essayez de garder chacune des règles simple et concise, mais faites attention à ne pas non plus les diviser en de trop nombreux éléments distincts.
       edit: Modifier la règle
       empty: Aucune règle de serveur n'a été définie pour l'instant.
       title: Règles du serveur
     settings:
       activity_api_enabled:
-        desc_html: Nombre de statuts affichés localement, de comptes actifs et de nouvelles inscriptions regroupé·e·s par semaine
-        title: Publier des statistiques agrégées sur l’activité des utilisateur·rice·s
+        desc_html: Nombre de statuts affichés localement, de comptes actifs et de nouvelles inscriptions regroupés par semaine
+        title: Publier des statistiques agrégées sur l’activité des utilisateurs
       bootstrap_timeline_accounts:
-        desc_html: Séparez les noms d’utilisateur·rice·s par des virgules. Ne fonctionne qu’avec des comptes locaux et non verrouillés. Si laissé vide, tous les administrateur·rice·s locaux sont sélectionné⋅e⋅s.
-        title: Abonnements par défaut pour les nouveaux·elles utilisateur·rice·s
+        desc_html: Séparez les noms d’utilisateurs par des virgules. Ne fonctionne qu’avec des comptes locaux et non verrouillés. Si laissé vide, tous les administrateurs locaux sont sélectionnés
+        title: Abonnements par défaut pour les nouveaux utilisateurs
       contact_information:
         email: Entrez une adresse courriel publique
         username: Entrez un nom d’utilisateur·ice
@@ -610,7 +610,7 @@ fr:
         all: À tout le monde
         disabled: À personne
         title: Afficher les bloqueurs de domaines
-        users: Aux utilisateur·rice·s connecté·e·s localement
+        users: Aux utilisateurs connectés localement
       domain_blocks_rationale:
         title: Montrer la raison
       hero:
@@ -626,14 +626,14 @@ fr:
         desc_html: Les aperçus de lien sur les autres sites web afficheront une vignette même si les médias sont marqués comme sensibles
         title: Montrer les médias sensibles dans les prévisualisations OpenGraph
       profile_directory:
-        desc_html: Permettre aux utilisateur·ice·s d’être découvert·e·s
+        desc_html: Permettre aux utilisateurs d’être découverts
         title: Activer l’annuaire des profils
       registrations:
         closed_message:
           desc_html: Affiché sur la page d’accueil lorsque les inscriptions sont fermées. Vous pouvez utiliser des balises HTML
           title: Message de fermeture des inscriptions
         deletion:
-          desc_html: Permettre à tou·te·s les utilisateur·rice·s de supprimer leur compte
+          desc_html: Permettre à tous les utilisateurs de supprimer leur compte
           title: Autoriser les suppressions de compte
         min_invite_role:
           disabled: Personne
@@ -651,7 +651,7 @@ fr:
         desc_html: Lorsque désactivée, restreint le fil public accessible via la page d’accueil de l’instance pour ne montrer que le contenu local
         title: Inclure le contenu fédéré sur la page de fil public sans authentification
       show_staff_badge:
-        desc_html: Montrer un badge de responsable sur une page utilisateur·rice
+        desc_html: Montrer un badge de responsable sur une page utilisateur
         title: Montrer un badge de responsable
       site_description:
         desc_html: Paragraphe introductif sur la page d’accueil. Décrivez ce qui rend spécifique ce serveur Mastodon et toute autre chose importante. Vous pouvez utiliser des balises HTML, en particulier <code>&lt;a&gt;</code> et <code>&lt;em&gt;</code>.
@@ -781,7 +781,7 @@ fr:
     description:
       prefix_invited_by_user: "@%{name} vous invite à rejoindre ce serveur Mastodon !"
       prefix_sign_up: Inscrivez-vous aujourd’hui sur Mastodon !
-      suffix: Avec un compte, vous pourrez suivre des gens, publier des statuts et échanger des messages avec les utilisateur·rice·s de n'importe quel serveur Mastodon et bien plus !
+      suffix: Avec un compte, vous pourrez suivre des gens, publier des statuts et échanger des messages avec les utilisateurs de n'importe quel serveur Mastodon et bien plus !
     didnt_get_confirmation: Vous n’avez pas reçu les consignes de confirmation ?
     dont_have_your_security_key: Vous n'avez pas votre clé de sécurité?
     forgot_password: Mot de passe oublié ?
@@ -824,7 +824,7 @@ fr:
     following: 'Youpi ! Vous suivez maintenant  :'
     post_follow:
       close: Ou bien, vous pouvez fermer cette fenêtre.
-      return: Afficher le profil de l’utilisateur·ice
+      return: Afficher le profil de l’utilisateur
       web: Retour à l’interface web
     title: Suivre %{acct}
   challenge:
@@ -869,11 +869,11 @@ fr:
       email_reconfirmation_html: Si vous ne recevez pas le courriel de confirmation, vous pouvez le <a href="%{path}">demander à nouveau</a>
       irreversible: Vous ne pourrez pas restaurer ou réactiver votre compte
       more_details_html: Pour plus de détails, voir la <a href="%{terms_path}">politique de confidentialité</a>.
-      username_available: Votre nom d’utilisateur·rice sera à nouveau disponible
-      username_unavailable: Votre nom d’utilisateur·rice restera indisponible
+      username_available: Votre nom d’utilisateur sera à nouveau disponible
+      username_unavailable: Votre nom d’utilisateur restera indisponible
   directories:
     directory: Annuaire des profils
-    explanation: Découvrir des utilisateur·rice·s en selon leurs centres d’intérêt
+    explanation: Découvrir des utilisateurs en selon leurs centres d’intérêt
     explore_mastodon: Explorer %{title}
   domain_validator:
     invalid_domain: n’est pas un nom de domaine valide
