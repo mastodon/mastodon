@@ -33,12 +33,33 @@ kmr-TR:
       account_warning_preset:
         title: Sernav
       defaults:
+        data: Dane
         email: Navnîşana E-nameyê
         header: Jormalper
         honeypot: "%{label} (tijî neke)"
         password: Pêborîn
+        setting_display_media_default: Berdest
+        setting_display_media_hide_all: Hemûyan veşêre
+        setting_display_media_show_all: Hemûyan nîşan bide
+        setting_theme: Rûkarê malperê
+        username: Navê bikarhêneriyê
+        username_or_email: Navê bikarhêner an jî e-name
+      featured_tag:
+        name: Hashtag
+      invite:
+        comment: Şîrove
       ip_block:
+        comment: Şîrove
         ip: IP
         severities:
           no_access: Gihîştinê asteng bike
         severity: Rêbaz
+      notification_emails:
+        follow: Kesekî te şopand
+      rule:
+        text: Rêbaz
+      tag:
+        name: Hashtag
+    'no': 'Na'
+    required:
+      mark: "*"
