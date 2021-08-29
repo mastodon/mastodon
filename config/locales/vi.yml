@@ -63,7 +63,7 @@ vi:
     last_active: online
     link_verified_on: Liên kết này đã được xác thực quyền sở hữu vào %{date}
     media: Media
-    moved_html: "%{name} đã dời sang %{new_profile_link}:"
+    moved_html: "%{name} đã đổi thành %{new_profile_link}:"
     network_hidden: Dữ liệu đã bị ẩn
     never_active: Chưa có
     nothing_here: Trống trơn!
@@ -1025,7 +1025,7 @@ vi:
     cancel_explanation: Hủy chuyển hướng sẽ kích hoạt lại tài khoản hiện tại của bạn, nhưng sẽ không chuyển được những người theo dõi ở tài khoản mới.
     cancelled_msg: Đã hủy chuyển hướng xong.
     errors:
-      already_moved: là tài khoản bạn đã dời sang rồi
+      already_moved: là tài khoản bạn đã chuyển sang rồi
       missing_also_known_as: chưa kết nối với tài khoản này
       move_to_self: không thể là tài khoản hiện tại
       not_found: không thể tìm thấy
@@ -1239,6 +1239,7 @@ vi:
     preferences: Chung
     profile: Trang cá nhân
     relationships: Quan hệ
+    statuses_cleanup: Tự động xóa tút cũ
     two_factor_authentication: Xác thực hai bước
     webauthn_authentication: Khóa bảo mật
   statuses:
@@ -1285,7 +1286,10 @@ vi:
       unlisted: Hạn chế
       unlisted_long: Không hiện trên bảng tin máy chủ
   statuses_cleanup:
+    enabled: Tự động xóa những tút cũ
+    enabled_hint: Tự động xóa các tút của bạn khi chúng tới thời điểm nhất định, trừ những trường hợp ngoại lệ bên dưới
     exceptions: Ngoại trừ
+    explanation: Việc xóa tút rất tốn thời gian vì tút của bạn sẽ tăng dần theo năm tháng. Bởi lý do này, bạn nên xóa những tút cũ khi chúng đã đạt tới thời điểm nhất định.
     ignore_favs: Bỏ qua số luợt thích
     ignore_reblogs: Bỏ qua số lượt chia sẻ
     interaction_exceptions: Ngoại lệ dựa trên tương tác
@@ -1310,7 +1314,7 @@ vi:
       '5259492': 2 tháng
       '63113904': 2 năm
       '7889238': 3 tháng
-    min_age_label: Ngưỡng mức
+    min_age_label: Thời điểm
     min_favs: Giữ những tút yêu thích lâu hơn
     min_favs_hint: Những tút có lượt thích nhiều hơn số này sẽ không bị xóa. Để trống nếu bạn muốn xoá hết
     min_reblogs: Giữ những tút đã chia sẻ lâu hơn
