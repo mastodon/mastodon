@@ -1285,6 +1285,12 @@ vi:
       unlisted: Hạn chế
       unlisted_long: Không hiện trên bảng tin máy chủ
   statuses_cleanup:
+    exceptions: Ngoại trừ
+    ignore_favs: Bỏ qua số luợt thích
+    ignore_reblogs: Bỏ qua số lượt chia sẻ
+    interaction_exceptions: Ngoại lệ dựa trên tương tác
+    keep_direct: Giữ lại tin nhắn
+    keep_direct_hint: Không xóa tin nhắn của bạn
     min_age:
       '1209600': 2 tuần
       '15778476': 6 tháng
@@ -1293,8 +1299,11 @@ vi:
       '5259492': 2 tháng
       '63113904': 2 năm
       '7889238': 3 tháng
+    min_age_label: Điểm chọn
     min_favs: Giữ những tút yêu thích lâu hơn
+    min_favs_hint: Những tút có lượt thích nhiều hơn số này sẽ không bị xóa. Để trống nếu bạn muốn xoá hết
     min_reblogs: Giữ những tút đã chia sẻ lâu hơn
+    min_reblogs_hint: Những tút mà bạn đã chia sẻ lâu hơn thời điểm này sẽ không bị xóa. Để trống nếu bạn muốn xoá hết
   stream_entries:
     pinned: Tút được ghim
     reblogged: chia sẻ
