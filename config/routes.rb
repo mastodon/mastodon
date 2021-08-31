@@ -217,7 +217,7 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :instances, only: [:index, :show], constraints: { id: /[^\/]+/ } do
+    resources :instances, only: [:index, :show, :destroy], constraints: { id: /[^\/]+/ } do
       member do
         post :clear_delivery_errors
         post :restart_delivery
