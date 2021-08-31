@@ -611,7 +611,10 @@ hy:
       pending: Դիմումը պէտք է քննուի մեր անձնակազմի կողմից, ինչը կարող է մի փոքր ժամանակ խլել։ Դիմումի հաստատուելու դէպքում, կտեղեկացնենք նամակով։
     trouble_logging_in: Մուտք գործելու խնդիրնե՞ր կան։
   authorize_follow:
+    already_following: Դու արդէն հետեւում ես այս հաշուին
+    already_requested: Դու արդէն ուղարկել ես հետեւմանն յայտ այս հաշուին
     follow: Հետևել
+    follow_request: 'Դու ուղարկել ես հետեւելու հայց՝'
     following: 'Յաջողութի՜ւն։ Դու այժմ հետեւում ես․'
     post_follow:
       close: Կամ, կարող ես պարզապէս փակել այս պատուհանը։
@@ -646,8 +649,11 @@ hy:
   deletes:
     challenge_not_passed: Մուտքագրուած տեղեկութիւնը ստոյգ չէ
     confirm_password: Նոյնականացման համար մուտքագրիր ծածկագիրդ
+    confirm_username: Մուտքագրիր օգտանունդ գործողութիւնը հաստատելու համար
     proceed: Ջնջել հաշիվը
     success_msg: Հաշիւդ բարեյաջող ջնջուեց
+    warning:
+      username_available: Քո օգտանունը կրկին հասանելի կը դառնայ
   directories:
     directory: Հաշուի մատեան
     explore_mastodon: Բացայայտել %{title}
@@ -692,6 +698,7 @@ hy:
       title: Խմբագրել զտիչը
     index:
       delete: Ջնջել
+      empty: Դու ֆիլտրեր չունես։
       title: Ֆիլտրեր
     new:
       title: Ավելացնել ֆիլտր
@@ -731,6 +738,7 @@ hy:
       bookmarks: Էջանիշեր
       domain_blocking: Տիրոյթի արգելափակումների ցուցակ
       following: Հետեւումների ցանկ
+      muting: Լռեցման ցանկ
     upload: Վերբեռնել
   invites:
     delete: Ապաակտիւացնել
@@ -744,6 +752,7 @@ hy:
       '86400': 1 օր
     expires_in_prompt: Երբեք
     generate: Գեներացնել հրաւէրի յղում
+    invited_by: 'Ձեզ հրաւիրել է՝'
     max_uses:
       one: '%{count} կիրառում'
       other: "%{count} կիրառում"
@@ -752,12 +761,18 @@ hy:
       expires_at: Սպառւում է
       uses: Կիրառում
     title: Հրաւիրել մարդկանց
+  login_activities:
+    authentication_methods:
+      otp: երկքայլ նոյնականացման յաւելուած
+      password: գաղտնաբառ
   media_attachments:
     validations:
       too_many: 4-ից աւել ֆայլ չի կարող կցուել
   migrations:
     acct: Տեղափոխել դեպի
+    cancel: Չեղարկել վերահասցեաորումը
     errors:
+      move_to_self: չի կարող լինել ներկայիս հաշիւը
       not_found: չգտնուեց
     past_migrations: Նախոդ միգրացիաները
     proceed_with_move: Տեղափոխել հետեւորդներին
@@ -768,17 +783,30 @@ hy:
     title: Մոդերացիա
   notification_mailer:
     digest:
+      action: Դիտել բոլոր ծանուցումները
       title: Երբ բացակայ էիր...
     favourite:
+      body: 'Քո գրառումը հաւանել է %{name}-ը։'
+      subject: "%{name} հաւանեց գրառումդ"
       title: Նոր հաւանում
     follow:
       body: "%{name}ը հետեւում է քեզ!"
       subject: "%{name}ը հետեւում է քեզ"
       title: Նոր հետևորդներ
     follow_request:
+      subject: '%{name} ցանկանում է հետեւել ձեզ'
       title: Նոր հետեւելու հայցեր
     mention:
       action: Պատասխանել
+      body: '%{name} յիշատակել է ձեզ գրառման մէջ՝'
+      subject: Ձեզ յիշատակել է %{name}
+      title: Նոր յիշատակում
+    reblog:
+      body: 'Քո գրառումը տարածել է %{name}-ը։'
+      subject: "%{name} տարածեց գրառումդ"
+      title: Նոր տարածում
+    status:
+      subject: "%{name}-ը հենց նոր գրառում արեց"
   notifications:
     other_settings: Ծանուցումների այլ կարգաւորումներ
   number:
@@ -820,7 +848,10 @@ hy:
     relationship: Կապ
     remove_selected_domains: Հեռացնել բոլոր հետեւորդներին նշուած դոմեյններից
     remove_selected_followers: Հեռացնել նշուած հետեւորդներին
+    remove_selected_follows: Ապահետեւել նշուած օգտատէրերին
     status: Հաշուի կարգավիճակ
+  remote_follow:
+    prompt: 'Դու պատրաստուում ես հետևել՝'
   scheduled_statuses:
     too_soon: Նախադրուած ամսաթիւը պէտք է լինի ապագայում
   sessions:
@@ -828,17 +859,38 @@ hy:
     browser: Դիտարկիչ
     browsers:
       generic: Անհայտ դիտարկիչ
+      micro_messenger: MicroMessenger
+      nokia: Nokia S40 Ovi Browser
+      opera: Opera
+      otter: Otter
+      phantom_js: PhantomJS
+      qq: QQ Browser
+      safari: Safari
+      uc_browser: UCBrowser
+      weibo: Weibo
+    current_session: Ընթացիկ սեսսիա
     description: "%{browser}, %{platform}"
+    ip: IP
     platforms:
+      adobe_air: Adobe Air
       android: Անդրոիդ
+      blackberry: Blackberry
+      chrome_os: Chrome OS
+      firefox_os: Firefox OS
+      ios: iOS
       linux: Լինուքս
+      mac: macOS
       other: անհայտ հարթակ
+      windows: Windows
+      windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
     revoke: Չեղարկել
     title: Սեսսիա
   settings:
     account: Հաշիվ
     account_settings: Հաշուի կարգաւորումներ
     appearance: Տեսք
+    authorized_apps: Լիազօրուած յաւելուածներ
     back: Ետ գնալ մաստադոն
     delete: Հաշուի ջնջում
     development: Ծրագրավորում
@@ -878,9 +930,13 @@ hy:
         other: "%{count} ձայներ"
       vote: Քուէարկել
     show_more: Աւելին
+    show_newer: Ցուցադրել նորերը
+    show_older: Ցուցադրել հները
     show_thread: Բացել շղթան
     sign_in_to_participate: Մուտք գործէք՝ զրոյցին միանալու համար
+    title: '%{name}: "%{quote}"'
     visibilities:
+      direct: Հասցէագրուած
       private: Միայն հետեւողներին
       private_long: Հասանելի միայն հետեւորդներին
       public: Հրապարակային
