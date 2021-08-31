@@ -482,6 +482,9 @@ hy:
       unresolved: Չլուծուած
       updated_at: Թարմացուած
     rules:
+      add_new: Աւելացնել կանոն
+      delete: Ջնջել
+      edit: Խմբագրել կանոնը
       title: Սերուերի կանոնները
     settings:
       contact_information:
@@ -631,6 +634,7 @@ hy:
       invalid_signature: անվաւեր Ed25519 բանալի
   date:
     formats:
+      default: "%b %d, %Y"
       with_month_name: "%d %B %Y"
   datetime:
     distance_in_words:
@@ -794,6 +798,7 @@ hy:
       subject: "%{name}ը հետեւում է քեզ"
       title: Նոր հետևորդներ
     follow_request:
+      action: Կառավարել հետեւելու հայցերը
       subject: '%{name} ցանկանում է հետեւել ձեզ'
       title: Նոր հետեւելու հայցեր
     mention:
@@ -808,6 +813,7 @@ hy:
     status:
       subject: "%{name}-ը հենց նոր գրառում արեց"
   notifications:
+    email_events_hint: 'Ընտրիր իրադարձութիւնները, որոնց վերաբերեալ ցանկանում ես ստանալ ծանուցումներ․'
     other_settings: Ծանուցումների այլ կարգաւորումներ
   number:
     human:
@@ -820,6 +826,8 @@ hy:
           thousand: Հազ
           trillion: Տրլ
   otp_authentication:
+    code_hint: Մուտքագրիր քո նոյնականացման յաւելուածով գեներացուած կոդը՝ հաստատման համար
+    description_html: Եթէ միացնես <strong>2F նոյնականացումը</strong>՝ օգտագործելով նոյնականացնող յաւելուած, մուտք գործելիս կը պահանջուի հեռախօս, որով կը ստեղծես մուտքագրման կտրոններ։
     enable: Միացնել
     setup: Կարգաւորել
   pagination:
@@ -829,6 +837,8 @@ hy:
     prev: Նախորդ
   polls:
     errors:
+      already_voted: Դու արդէն մասնակցել ես այս հարցմանը
+      duplicate_options: պարունակում է կրկնուող ընտրանքներ
       duration_too_short: շատ կարճ է
   preferences:
     other: Այլ
@@ -837,6 +847,7 @@ hy:
   relationships:
     activity: Հաշուի ակտիւութիւնը
     dormant: Չգօրծող
+    follow_selected_followers: Հետեւել նշուած հետեւորդներին
     followers: Հետեւորդներ
     following: Հետեւում ես
     invited: Հրաւիրուած է
@@ -851,6 +862,7 @@ hy:
     remove_selected_follows: Ապահետեւել նշուած օգտատէրերին
     status: Հաշուի կարգավիճակ
   remote_follow:
+    acct: Մուտքագրիր քո օգտանուն@տիրոյթ, որի անունից ցանկանում ես գործել
     prompt: 'Դու պատրաստուում ես հետևել՝'
   scheduled_statuses:
     too_soon: Նախադրուած ամսաթիւը պէտք է լինի ապագայում
@@ -858,7 +870,14 @@ hy:
     activity: Վերջին Ակտիւութիւնը
     browser: Դիտարկիչ
     browsers:
+      alipay: Alipay
+      blackberry: Blackberry
+      chrome: Chrome
+      edge: Microsoft Edge
+      electron: Electron
+      firefox: Firefox
       generic: Անհայտ դիտարկիչ
+      ie: Internet Explorer
       micro_messenger: MicroMessenger
       nokia: Nokia S40 Ovi Browser
       opera: Opera
@@ -918,6 +937,7 @@ hy:
       video:
         one: "%{count} վիդեո"
         other: "%{count} վիդեո"
+    content_warning: 'Նախազգուշացում։ %{warning}'
     language_detection: Ինքնուրոյն ճանաչել լեզուն
     open_in_web: Բացել վէբում
     over_character_limit: '%{max} նիշի սահմանը գերազանցուած է'
@@ -944,6 +964,7 @@ hy:
       unlisted: Ծածուկ
       unlisted_long: Տեսանելի է բոլորին, բայց չի յայտնւում հանրային հոսքերում
   statuses_cleanup:
+    exceptions: Բացառություններ
     min_age:
       '1209600': 2 շաբաթ
       '15778476': 6 ամիս
@@ -1065,9 +1086,14 @@ hy:
     warning:
       get_in_touch: Կարող էք կապուել %{instance} հանգոյցի անձնակազմի հետ պատասխանելով այս նամակին։
       statuses: 'Մասնաւորապէս, միայն՝'
+      subject:
+        disable: Քո %{acct} հաշիւը սառեցուել է
+        none: Նախազգուշացուեմ %{acct}-ին
       title:
+        disable: Հաշիւը սառեցուած է
         none: Զգուշացում
         sensitive: Մեդիաֆայլը պիտակուել է որպէս զգայուն։
+        silence: Հաշիւը սահմանափակուած է
         suspend: Հաշիւը արգելափակուած է
     welcome:
       edit_profile_action: Կարգաւորել հաշիւը
@@ -1079,6 +1105,7 @@ hy:
       tip_following: Դու հետեւում էս քո հանգոյցի ադմին(ներ)ին լռելայն։ Այլ հետաքրքիր անձանց գտնելու համար՝ թերթիր տեղական և դաշնային հոսքերը։
       tip_local_timeline: Տեղական հոսքում երևում են %{instance} հանգոյցի օգտատերի գրառումները։ Նրանք քո հանգոյցի հարևաններն են։
       tips: Հուշումներ
+      title: Բարի գալուստ նաւամատոյց, %{name}
   users:
     invalid_otp_token: Անվաւեր 2F կոդ
     invalid_sign_in_token: Անվաւեր անվտանգութեան կոդ
