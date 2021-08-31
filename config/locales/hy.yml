@@ -485,6 +485,7 @@ hy:
       add_new: Աւելացնել կանոն
       delete: Ջնջել
       edit: Խմբագրել կանոնը
+      empty: Սերուերի կանոնները դեռեւս սահմանուած չեն։ 
       title: Սերուերի կանոնները
     settings:
       contact_information:
@@ -783,6 +784,8 @@ hy:
     redirecting_to: Քո հաշիւը վերահասցեաորում է %{acct}-ին
     warning:
       followers: Այս քայլով քո բոլոր հետեւորդներին այս հաշուից կը տեղափոխես դէպի նորը
+      only_redirect_html: Որպէս այլընտրանք, կարող ես ուղղակի <a href="%{path}">վերահասցէաւորել քո հաշիւը</a>
+      other_data: Մնացեալ տուեալները ինքնուրոյն չեն փոխադրուի
   moderation:
     title: Մոդերացիա
   notification_mailer:
@@ -840,10 +843,16 @@ hy:
       already_voted: Դու արդէն մասնակցել ես այս հարցմանը
       duplicate_options: պարունակում է կրկնուող ընտրանքներ
       duration_too_short: շատ կարճ է
+      expired: Հարցումն արդէն աւարտուել է
+      too_few_options: ընտրանքները պէտք է լինեն մէկից աւել
+      too_many_options: չի կարող պարունակել աւելի քան %{max} ընտրանք
   preferences:
     other: Այլ
     posting_defaults: Կանխադիր կարգաւորումներ
     public_timelines: Հանրային հոսք
+  reactions:
+    errors:
+      unrecognized_emoji: ճանաչուած էմոջի չէ
   relationships:
     activity: Հաշուի ակտիւութիւնը
     dormant: Չգօրծող
@@ -1066,6 +1075,10 @@ hy:
     contrast: Mastodon (բարձր կոնտրաստով)
     default: Mastodon (Մուգ)
     mastodon-light: Mastodon (Լուսավոր)
+  time:
+    formats:
+      default: "%b %d, %Y, %H:%M"
+      month: "%b %Y"
   two_factor_authentication:
     add: Ավելացնել
     disable: Անջատել
@@ -1116,4 +1129,5 @@ hy:
   webauthn_credentials:
     delete: Ջնջել
     not_enabled: WebAuthn-ը դեռ միացուած չէ
+    not_supported: Այս դիտարկիչը չի աջակցում անվտանգութեան բանալիներ
     registered_on: Գրանցուել է %{date}
