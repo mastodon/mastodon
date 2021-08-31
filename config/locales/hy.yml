@@ -25,8 +25,8 @@ hy:
 
     learn_more: Իմանալ ավելին
     privacy_policy: Գաղտնիության քաղաքականություն
-    rules: Սերվերի կանոնները
-    rules_html: 'Ներքևում կանոնների ամփոփագիր է, որին պետք է հետևեք, եթե ցանկանում եք այս սերվերում ունենան Mastodon-ի հաշիվ'
+    rules: Սերուերի կանոնները
+    rules_html: 'Այս սերուերում հաշիւ ունենալու համար անհրաժեշտ է պահպանել ստորեւ նշուած կանոնները։'
     see_whats_happening: Տես ինչ ա կատարվում
     server_stats: 'Սերվերի վիճակը․'
     source_code: Ելատեքստ
@@ -277,10 +277,12 @@ hy:
       new:
         create: Ստեղծել յայտարարութիւն
         title: Նոր յայտարարութիւն
+      publish: Հրապարակել
       published_msg: Յայտարարութիւնը բարեյաջող հրապարակուեց
       scheduled_for: Պլանաւորուած է %{time}ին
       scheduled_msg: Յայտարարութիւնը նախապատրաստուեց հրապարակման
       title: Յայտարարութիւններ
+      unpublish: Ապահրապարակել
       unpublished_msg: Յայտարարութիւնը բարեյաջող ապահրապարակուեց
       updated_msg: Յայտարարութիւնը բարեյաջող թարմացուեց
     custom_emojis:
@@ -385,8 +387,18 @@ hy:
         create: Ավելացնել դոմեն
         title: Արգելափակել էլ․ փոստի նոր տիրոյթ
       title: էլ․ փոստի արգելափակուած տիրոյթներ
+    follow_recommendations:
+      language: Լեզուի համար
+      status: Կարգավիճակ
     instances:
+      back_to_all: Բոլորը
+      back_to_limited: Սահամանփակ
+      back_to_warning: Զգուշացում
       by_domain: Դոմեն
+      delivery:
+        all: Բոլորը
+        unavailable: Անհասանելի է
+        warning: Զգուշացում
       empty: Դոմեյնները չեն գտնուել
       known_accounts:
         one: "%{count} յայտնի հաշիւ"
@@ -469,6 +481,8 @@ hy:
       unassign: Չնշանակել
       unresolved: Չլուծուած
       updated_at: Թարմացուած
+    rules:
+      title: Սերուերի կանոնները
     settings:
       contact_information:
         email: Գործնական էլփոստ
@@ -509,6 +523,7 @@ hy:
         title: Կայքի հակիրճ նկարագրութիւն
       site_terms:
         desc_html: Դու կարող ես գրել քո սեփական գաղտնիութեան քաղաքականութիւնը, օգտագործման պայմանները եւ այլ կանոններ։ Կարող ես օգտագործել HTML թեգեր
+        title: Սեփական օգտագործման կանոնները
       site_title: Սպասարկչի անուն
       thumbnail:
         title: Հանգոյցի նկարը
@@ -522,6 +537,7 @@ hy:
       back_to_account: Վերադառնալ անձնական էջ
       batch:
         delete: Ջնջել
+        nsfw_off: Նշել որպէս ոչ դիւրազգաց
         nsfw_on: Նշել որպէս դիւրազգաց
       deleted: Ջնջված է
       failed_to_execute: Կատարումը ձախողուեց
@@ -559,11 +575,14 @@ hy:
       guide_link_text: Աջակցել կարող են բոլորը։
     sensitive_content: Զգայուն բովանդակութիւն
   application_mailer:
+    notification_preferences: Փոխել փոստային կարգաւորումները
+    salutation: "%{name}"
     view: 'Նայել․'
     view_profile: Նայել անձնական էջը
     view_status: Նայել գրառումը
   applications:
     invalid_url: Տրամադրուած URL անվաւեր է
+    regenerate_token: Ստեղծել նոր հասանելիութեան կտրոն
     your_token: Քո մուտքի բանալին
   auth:
     apply_for_account: Հրաւէրի հարցում
@@ -573,6 +592,8 @@ hy:
     delete_account: Ջնջել հաշիվը
     description:
       prefix_sign_up: Գրանցուի՛ր Մաստոդոնում հենց այսօր
+    didnt_get_confirmation: Չե՞ս ստացել հաստատման ուղեցոյց։
+    dont_have_your_security_key: Չունե՞ս անվտանգութեան բանալի։
     forgot_password: Մոռացե՞լ ես գաղտնաբառդ
     login: Մտնել
     logout: Դուրս գալ
@@ -588,6 +609,7 @@ hy:
     status:
       account_status: Հաշուի կարգավիճակ
       pending: Դիմումը պէտք է քննուի մեր անձնակազմի կողմից, ինչը կարող է մի փոքր ժամանակ խլել։ Դիմումի հաստատուելու դէպքում, կտեղեկացնենք նամակով։
+    trouble_logging_in: Մուտք գործելու խնդիրնե՞ր կան։
   authorize_follow:
     follow: Հետևել
     following: 'Յաջողութի՜ւն։ Դու այժմ հետեւում ես․'
