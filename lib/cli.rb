@@ -94,11 +94,13 @@ module Mastodon
 
       exit(1) unless prompt.ask('Type in the domain of the server to confirm:', required: true) == Rails.configuration.x.local_domain
 
-      prompt.warn('This operation WILL NOT be reversible. It can also take a long time.')
-      prompt.warn('While the data won\'t be erased locally, the server will be in a BROKEN STATE afterwards.')
-      prompt.warn('A running Sidekiq process is required. Do not shut it down until queues clear.')
+      unless options[:dry_run]
+        prompt.warn('This operation WILL NOT be reversible. It can also take a long time.')
+        prompt.warn('While the data won\'t be erased locally, the server will be in a BROKEN STATE afterwards.')
+        prompt.warn('A running Sidekiq process is required. Do not shut it down until queues clear.')
 
-      exit(1) if prompt.no?('Are you sure you want to proceed?')
+        exit(1) if prompt.no?('Are you sure you want to proceed?')
+      end
 
       inboxes   = Account.inboxes
       processed = 0
