@@ -128,7 +128,7 @@ module Mastodon
             [json, account.id, inbox_url]
           end
 
-          account.suspend!
+          account.suspend!(block_email: false)
         end
 
         processed += 1
