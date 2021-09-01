@@ -104,6 +104,8 @@ module Mastodon
       processed = 0
       dry_run   = options[:dry_run] ? ' (DRY RUN)' : ''
 
+      Setting.registrations_mode = 'none' unless options[:dry_run]
+
       if inboxes.empty?
         prompt.ok('It seems like your server has not federated with anything')
         prompt.ok('You can shut it down and delete it any time')
@@ -111,8 +113,6 @@ module Mastodon
       end
 
       prompt.warn('Do NOT interrupt this process...')
-
-      Setting.registrations_mode = 'none' unless options[:dry_run]
 
       Account.local.without_suspended.find_each do |account|
         payload = ActiveModelSerializers::SerializableResource.new(
