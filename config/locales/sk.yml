@@ -404,11 +404,13 @@ sk:
       delete: Vymaž
       expires_in:
         '1209600': 2 týždne
-        '15778476': 6 months
-        '2629746': 1 month
-        '31556952': 1 year
-        '86400': 1 day
-        '94670856': 3 years
+        '15778476': 6 mesiacov
+        '2629746': 1 mesiac
+        '31556952': 1 rok
+        '86400': 1 deň
+        '94670856': 3 roky
+      new:
+        title: Vytvor nové IP pravidlo
     pending_accounts:
       title: Čakajúcich účtov (%{count})
     relationships:
@@ -666,6 +668,7 @@ sk:
       pending: Tvoja žiadosť čaká na schvílenie od nášho týmu. Môže to chviľu potrvať. Ak bude tvoja žiadosť schválená, dostaneš o tom email.
       redirecting_to: Tvoj účet je neaktívny, lebo v súčasnosti presmerováva na %{acct}.
     trouble_logging_in: Problém s prihlásením?
+    use_security_key: Použi bezpečnostný kľúč
   authorize_follow:
     already_following: Tento účet už následuješ
     error: Naneštastie nastala chyba pri hľadaní vzdialeného účtu
@@ -746,6 +749,7 @@ sk:
       request: Vyžiadaj si tvoj archív
       size: Veľkosť
     blocks: Blokujete
+    bookmarks: Záložky
     domain_blocks: Blokované domény
     lists: Zoznamy
     mutes: Stíšil/a si
@@ -808,9 +812,13 @@ sk:
     inactive: Neaktívne
     publicize_checkbox: 'A poslať toto:'
     publicize_toot: 'Je to dokázané! Na %{service} som %{username}: %{url}'
+    remove: Odstrániť z účtu dôkaz
+    removed: Dôkaz z účtu úspešne odstránený
     status: Stav overenia
     view_proof: Ukáž overenie
   imports:
+    errors:
+      over_rows_processing_limit: obsahuje viac než %{count} riadkov
     modes:
       merge: Spoj dohromady
       merge_long: Ponechaj existujúce záznamy a pridaj k nim nové
@@ -820,6 +828,7 @@ sk:
     success: Tvoje dáta boli nahraté úspešne, a teraz budú spracované v danom čase
     types:
       blocking: Zoznam blokovaných
+      bookmarks: Záložky
       domain_blocking: Zoznam blokovaných domén
       following: Zoznam sledovaných
       muting: Zoznam ignorovaných
@@ -852,6 +861,11 @@ sk:
   lists:
     errors:
       limit: Dosiahli ste maximálny možný počet zoznamov
+  login_activities:
+    authentication_methods:
+      password: heslom
+      sign_in_token: emailovým bezpečtnostným kódom
+      webauthn: bezpečnostnými kľúčmi
   media_attachments:
     validations:
       images_and_video: K príspevku ktorý už obsahuje obrázky nemôžeš priložiť video
