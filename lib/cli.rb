@@ -114,7 +114,7 @@ module Mastodon
 
       prompt.warn('Do NOT interrupt this process...')
 
-      Account.local.without_suspended.find_each do |account|
+      delete_account = ->(account) do
         payload = ActiveModelSerializers::SerializableResource.new(
           account,
           serializer: ActivityPub::DeleteActorSerializer,
@@ -133,6 +133,9 @@ module Mastodon
 
         processed += 1
       end
+
+      Account.local.without_suspended.find_each { |account| delete_account.call(account) }
+      Account.local.suspended.joins(:deletion_request).find_each { |account| delete_account.call(account) }
 
       prompt.ok("Queued #{inboxes.size * processed} items into Sidekiq for #{processed} accounts#{dry_run}")
       prompt.ok('Wait until Sidekiq processes all items, then you can shut everything down and delete the data')
