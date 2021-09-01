@@ -107,6 +107,7 @@ module Mastodon
       Setting.registrations_mode = 'none' unless options[:dry_run]
 
       if inboxes.empty?
+        Account.local.without_suspended.in_batches.update_all(suspended_at: Time.now.utc, suspension_origin: :local) unless options[:dry_run]
         prompt.ok('It seems like your server has not federated with anything')
         prompt.ok('You can shut it down and delete it any time')
         return
