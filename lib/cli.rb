@@ -112,7 +112,7 @@ module Mastodon
 
       prompt.warn('Do NOT interrupt this process...')
 
-      Setting.registrations_mode = 'none'
+      Setting.registrations_mode = 'none' unless options[:dry_run]
 
       Account.local.without_suspended.find_each do |account|
         payload = ActiveModelSerializers::SerializableResource.new(
