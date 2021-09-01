@@ -218,8 +218,11 @@ sk:
         destroy_announcement: Vymaž oboznámenie
         destroy_domain_allow: Zmaž povolenie pre doménu
         destroy_domain_block: Zruš blokovanie domény
+        destroy_ip_block: Vymaž IP pravidlo
         destroy_status: Vymaž príspevok
+        destroy_unavailable_domain: Vymaž nedostupnú doménu
         disable_2fa_user: Vypni dvoj-faktorové overovanie
+        disable_custom_emoji: Vypni vlastné emotikony
         disable_user: Deaktivuj užívateľa
         enable_user: Povoľ užívateľa
         remove_avatar_user: Vymaž avatar
@@ -242,6 +245,7 @@ sk:
       new:
         create: Vytvor oznam
         title: Nové oznámenie
+      publish: Zverejni
       published_msg: Oboznámenie úspešne zverejnené!
       scheduled_for: Načasované na %{time}
       scheduled_msg: Oboznámenie bolo naplánované na zverejnenie!
@@ -363,8 +367,12 @@ sk:
         create: Pridaj doménu
         title: Nový email na zablokovanie
       title: Blokované emailové adresy
+    follow_recommendations:
+      status: Stav
     instances:
       by_domain: Doména
+      delivery:
+        warning: Upozornenie
       delivery_available: Je v dosahu doručovania
       known_accounts:
         one: "%{count} známy účet"
@@ -391,6 +399,16 @@ sk:
         expired: Vypršalo
         title: Filtruj
       title: Pozvánky
+    ip_blocks:
+      add_new: Vytvor pravidlo
+      delete: Vymaž
+      expires_in:
+        '1209600': 2 týždne
+        '15778476': 6 months
+        '2629746': 1 month
+        '31556952': 1 year
+        '86400': 1 day
+        '94670856': 3 years
     pending_accounts:
       title: Čakajúcich účtov (%{count})
     relationships:
