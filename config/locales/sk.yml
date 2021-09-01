@@ -213,7 +213,9 @@ sk:
         create_account_warning: Vytvor výstrahu
         create_announcement: Vytvor oboznámenie
         create_domain_allow: Vytvor povolenie pre doménu
-        create_domain_block: Vytvor doménovú blokádu
+        create_domain_block: Vytvor zákaz domény
+        create_email_domain_block: Vytvor zákaz emailovej domény
+        create_ip_block: Vytvor IP pravidlo
         demote_user: Zniž užívateľskú rolu
         destroy_announcement: Vymaž oboznámenie
         destroy_domain_allow: Zmaž povolenie pre doménu
@@ -571,6 +573,10 @@ sk:
       no_status_selected: Žiadne príspevky neboli zmenené, keďže si žiadne nemal/a zvolené
       title: Príspevky na účte
       with_media: S médiami
+    system_checks:
+      rules_check:
+        action: Spravuj serverové pravidlá
+        message_html: Neurčil/a si žiadne serverové pravidlá.
     tags:
       accounts_today: Jedinečných užívateľov za dnešok
       accounts_week: Jedinečných užívateľov tento týždeň
@@ -866,6 +872,7 @@ sk:
       password: heslom
       sign_in_token: emailovým bezpečtnostným kódom
       webauthn: bezpečnostnými kľúčmi
+    title: História overení
   media_attachments:
     validations:
       images_and_video: K príspevku ktorý už obsahuje obrázky nemôžeš priložiť video
@@ -889,6 +896,7 @@ sk:
     on_cooldown: Účet si si presunul/a len nedávno. Táto vymoženosť bude znovu sprístupnená za %{count} dní.
     past_migrations: Predošlé presuny
     proceed_with_move: Presuň sledovateľov
+    redirected_msg: Tvoj účet teraz presmerováva na %{acct}.
     redirecting_to: Tvoj účet presmerováva na %{acct}.
     set_redirect: Nastav presmerovanie
     warning:
@@ -902,6 +910,9 @@ sk:
       redirect: Tvoj súčastný účet bude aktualizovaný s oznamom o presunutí a bude vylúčený z vyhľadávania
   moderation:
     title: Moderovanie
+  move_handler:
+    carry_blocks_over_text: Tento užívateľ sa presunul z účtu %{acct}, ktorý si mal/a zablokovaný.
+    carry_mutes_over_text: Tento užívateľ sa presunul z účtu %{acct}, ktorý si mal/a stíšený.
   notification_mailer:
     digest:
       action: Zobraziť všetky notifikácie
@@ -936,10 +947,14 @@ sk:
       body: '%{name} ťa spomenul/a v:'
       subject: Bol/a si spomenutý/á užívateľom %{name}
       title: Novo spomenutý/á
+    poll:
+      subject: Anketa od %{name} skončila
     reblog:
       body: 'Tvoj príspevok bol vyzdvihnutý užívateľom %{name}:'
       subject: "%{name} vyzdvihli tvoj príspevok"
       title: Novo vyzdvyhnuté
+    status:
+      subject: "%{name} práve prispel/a"
   notifications:
     email_events: Udalosti oznamované emailom
     email_events_hint: 'Vyber si udalosti, pre ktoré chceš dostávať oboznámenia:'
