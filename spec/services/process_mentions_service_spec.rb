@@ -42,6 +42,24 @@ RSpec.describe ProcessMentionsService, type: :service do
         expect(a_request(:post, remote_user.inbox_url)).to have_been_made.once
       end
     end
+
+    context 'with an IDN TLD' do
+      let(:remote_user) { Fabricate(:account, username: 'foo', protocol: :activitypub, domain: 'xn--y9a3aq.xn--y9a3aq', inbox_url: 'http://example.com/inbox') }
+      let(:status) { Fabricate(:status, account: account, text: "Hello @foo@հայ.հայ") }
+
+      before do
+        stub_request(:post, remote_user.inbox_url)
+        subject.call(status)
+      end
+
+      it 'creates a mention' do
+        expect(remote_user.mentions.where(status: status).count).to eq 1
+      end
+
+      it 'sends activity to the inbox' do
+        expect(a_request(:post, remote_user.inbox_url)).to have_been_made.once
+      end
+    end
   end
 
   context 'Temporarily-unreachable ActivityPub user' do
