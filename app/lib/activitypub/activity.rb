@@ -98,7 +98,6 @@ class ActivityPub::Activity
     crawl_links(status)
 
     notify_about_reblog(status) if reblog_of_local_account?(status) && !reblog_by_following_group_account?(status)
-    notify_about_mentions(status)
 
     # Only continue if the status is supposed to have arrived in real-time.
     # Note that if @options[:override_timestamps] isn't set, the status
@@ -119,13 +118,6 @@ class ActivityPub::Activity
 
   def notify_about_reblog(status)
     NotifyService.new.call(status.reblog.account, :reblog, status)
-  end
-
-  def notify_about_mentions(status)
-    status.active_mentions.includes(:account).each do |mention|
-      next unless mention.account.local? && audience_includes?(mention.account)
-      NotifyService.new.call(mention.account, :mention, mention)
-    end
   end
 
   def crawl_links(status)
