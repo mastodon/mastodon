@@ -212,6 +212,7 @@ kmr-TR:
         disable_user: Bikarhêner neçalak bike
         remove_avatar_user: Avatarê rake
         reopen_report: Ragihandina ji nû ve veke
+        reset_password_user: Pêborînê ji nû ve saz bike
         sensitive_account: Ajimêra hêz-hestiyar
         suspend_account: Ajimêr rawestîne
         update_status: Şandiyê rojane bike
@@ -245,11 +246,14 @@ kmr-TR:
       updated_msg: Daxûyanî bi awayekî serkeftî hate rojanekirin!
     custom_emojis:
       assign_category: Dabeşkirina kategorîyê
+      by_domain: Navper
       copied_msg: Jêgirtiyê emojî ya herêmî bi serkeftî hate afirandin
       copy: Jê bigire
       copy_failed_msg: Jêgirtiyêke emojî ya herêmî nehate afirandin
       create_new_category: Beşêke nû biafirîne
       delete: Jê bibe
+      disable: Neçalak bike
+      disabled: Neçalakkirî
       emoji: Emoji
       enable: Çalak bike
       enabled: Çalakkirî
@@ -259,6 +263,10 @@ kmr-TR:
       update_failed_msg: Ev hestok nehate rojanekirin
       upload: Bar bike
     dashboard:
+      feature_deletions: Jêbirina ajimêr
+      feature_invites: Girêdana vexwandinê
+      feature_profile_directory: Rêgeha profîlê
+      feature_registrations: Tomar
       features: Taybetmendî
       software: Nermalav
       space: Bikaranîna cîh
@@ -271,6 +279,7 @@ kmr-TR:
     domain_blocks:
       domain: Navper
     email_domain_blocks:
+      add_new: Nû tevlî bike
       delete: Jê bibe
       domain: Navper
     follow_recommendations:
@@ -292,8 +301,11 @@ kmr-TR:
     invites:
       filter:
         all: Hemû
+        available: Heye
         title: Parzûn
+      title: Vexwendin
     ip_blocks:
+      add_new: Rêbaz çê bike
       delete: Jê bibe
       expires_in:
         '1209600': 2 hefte
@@ -302,22 +314,34 @@ kmr-TR:
         '31556952': 1 sal
         '86400': 1 roj
         '94670856': 3 sal
+      title: Rêbazên IP
+    relationships:
+      title: "Têkiliyên %{acct}"
     relays:
       delete: Jê bibe
       disable: Neçalak bike
       disabled: Neçalakkirî
       enable: Çalak bike
       enabled: Çalakkirî
+      save_and_enable: Tomar û çalak bike
       status: Rewş
     reports:
       are_you_sure: Gelo tu bawerî?
       notes:
+        create: Nîşe tevlî bike
         delete: Jê bibe
       report: '@%{id} Ragihîne'
+      resolved: Çareserkirî
       status: Rewş
     rules:
       delete: Jê bibe
+      edit: Rêbazê serrast bike
     settings:
+      contact_information:
+        email: E-nameya karsazî
+        username: Bi bikarhêner re têkeve têkiliyê
+      domain_blocks:
+        all: Bo herkesî
       registrations:
         min_invite_role:
           disabled: Ne yek
