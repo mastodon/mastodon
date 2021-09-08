@@ -14,7 +14,7 @@
     "test:lint": "${npm_execpath} run test:lint:js && ${npm_execpath} run test:lint:sass",
     "test:lint:js": "eslint --ext=js . --cache",
     "test:lint:sass": "sass-lint -v",
-    "test:jest": "cross-env NODE_ENV=test jest --coverage"
+    "test:jest": "cross-env NODE_ENV=test jest"
   },
   "repository": {
     "type": "git",
@@ -27,6 +27,7 @@
     "not dead"
   ],
   "jest": {
+    "testEnvironment": "jsdom",
     "projects": [
       "<rootDir>/app/javascript/mastodon"
     ],
@@ -154,7 +155,7 @@
     "requestidlecallback": "^0.3.0",
     "reselect": "^4.0.0",
     "rimraf": "^3.0.2",
-    "sass": "^1.38.0",
+    "sass": "^1.38.2",
     "sass-loader": "^10.2.0",
     "stacktrace-js": "^2.0.2",
     "stringz": "^2.1.0",
@@ -171,19 +172,19 @@
     "webpack-cli": "^3.3.12",
     "webpack-merge": "^5.8.0",
     "wicg-inert": "^3.1.1",
-    "ws": "^8.2.0"
+    "ws": "^8.2.1"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^12.0.0",
     "babel-eslint": "^10.1.0",
-    "babel-jest": "^27.0.6",
+    "babel-jest": "^27.1.0",
     "eslint": "^7.32.0",
-    "eslint-plugin-import": "~2.24.1",
+    "eslint-plugin-import": "~2.24.2",
     "eslint-plugin-jsx-a11y": "~6.4.1",
     "eslint-plugin-promise": "~5.1.0",
-    "eslint-plugin-react": "~7.24.0",
-    "jest": "^26.6.3",
+    "eslint-plugin-react": "~7.25.1",
+    "jest": "^27.1.0",
     "raf": "^3.4.1",
     "react-intl-translations-manager": "^5.0.3",
     "react-test-renderer": "^16.14.0",
