@@ -69,7 +69,7 @@ export default class StatusContent extends React.PureComponent {
     expanded: PropTypes.bool,
     collapsed: PropTypes.bool,
     onExpandedToggle: PropTypes.func,
-    media: PropTypes.element,
+    media: PropTypes.node,
     mediaIcon: PropTypes.string,
     parseClick: PropTypes.func,
     disabled: PropTypes.bool,
@@ -286,28 +286,35 @@ export default class StatusContent extends React.PureComponent {
         </Permalink>
       )).reduce((aggregate, item) => [...aggregate, item, ' '], []);
 
-      const toggleText = hidden ? [
-        <FormattedMessage
-          id='status.show_more'
-          defaultMessage='Show more'
-          key='0'
-        />,
-        mediaIcon ? (
-          <Icon
-            fixedWidth
-            className='status__content__spoiler-icon'
-            id={mediaIcon}
-            aria-hidden='true'
-            key='1'
+      let toggleText = null;
+      if (hidden) {
+        toggleText = [
+          <FormattedMessage
+            id='status.show_more'
+            defaultMessage='Show more'
+            key='0'
+          />,
+        ];
+        if (mediaIcon) {
+          toggleText.push(
+            <Icon
+              fixedWidth
+              className='status__content__spoiler-icon'
+              id={mediaIcon}
+              aria-hidden='true'
+              key='1'
+            />,
+          );
+        }
+      } else {
+        toggleText = (
+          <FormattedMessage
+            id='status.show_less'
+            defaultMessage='Show less'
+            key='0'
           />
-        ) : null,
-      ] : [
-        <FormattedMessage
-          id='status.show_less'
-          defaultMessage='Show less'
-          key='0'
-        />,
-      ];
+        );
+      }
 
       if (hidden) {
         mentionsPlaceholder = <div>{mentionLinks}</div>;

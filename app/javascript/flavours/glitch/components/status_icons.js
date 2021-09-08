@@ -27,7 +27,7 @@ class StatusIcons extends React.PureComponent {
 
   static propTypes = {
     status: ImmutablePropTypes.map.isRequired,
-    mediaIcon: PropTypes.string,
+    mediaIcons: PropTypes.arrayOf(PropTypes.string),
     collapsible: PropTypes.bool,
     collapsed: PropTypes.bool,
     directMessage: PropTypes.bool,
@@ -44,8 +44,8 @@ class StatusIcons extends React.PureComponent {
     }
   }
 
-  mediaIconTitleText () {
-    const { intl, mediaIcon } = this.props;
+  mediaIconTitleText (mediaIcon) {
+    const { intl } = this.props;
 
     switch (mediaIcon) {
       case 'link':
@@ -61,11 +61,24 @@ class StatusIcons extends React.PureComponent {
     }
   }
 
+  renderIcon (mediaIcon) {
+    return (
+      <Icon
+        fixedWidth
+        className='status__media-icon'
+        key={`media-icon--${mediaIcon}`}
+        id={mediaIcon}
+        aria-hidden='true'
+        title={this.mediaIconTitleText(mediaIcon)}
+      />
+    );
+  }
+
   //  Rendering.
   render () {
     const {
       status,
-      mediaIcon,
+      mediaIcons,
       collapsible,
       collapsed,
       directMessage,
@@ -90,15 +103,7 @@ class StatusIcons extends React.PureComponent {
             aria-hidden='true'
             title={intl.formatMessage(messages.localOnly)}
           />}
-        {mediaIcon ? (
-          <Icon
-            fixedWidth
-            className='status__media-icon'
-            id={mediaIcon}
-            aria-hidden='true'
-            title={this.mediaIconTitleText()}
-          />
-        ) : null}
+        { !!mediaIcons && mediaIcons.map(icon => this.renderIcon(icon)) }
         {!directMessage && <VisibilityIcon visibility={status.get('visibility')} />}
         {collapsible ? (
           <IconButton
