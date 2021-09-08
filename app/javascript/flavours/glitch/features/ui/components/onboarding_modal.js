@@ -10,7 +10,7 @@ import ComposeForm from 'flavours/glitch/features/compose/components/compose_for
 import DrawerAccount from 'flavours/glitch/features/compose/components/navigation_bar';
 import Search from 'flavours/glitch/features/compose/components/search';
 import ColumnHeader from './column_header';
-import { me } from 'flavours/glitch/util/initial_state';
+import { me, source_url } from 'flavours/glitch/util/initial_state';
 
 const noop = () => { };
 
@@ -141,7 +141,18 @@ const PageSix = ({ admin, domain }) => {
     <div className='onboarding-modal__page onboarding-modal__page-six'>
       <h1><FormattedMessage id='onboarding.page_six.almost_done' defaultMessage='Almost done...' /></h1>
       {adminSection}
-      <p><FormattedMessage id='onboarding.page_six.github' defaultMessage='{domain} runs on Glitchsoc. Glitchsoc is a friendly {fork} of {Mastodon}. Glitchsoc is fully compatible with all Mastodon apps and instances. Glitchsoc is free open-source software. You can report bugs, request features, or contribute to the code on {github}.' values={{ domain, fork: <a href='https://en.wikipedia.org/wiki/Fork_(software_development)' target='_blank' rel='noopener'>fork</a>, Mastodon: <a href='https://github.com/tootsuite/mastodon' target='_blank' rel='noopener'>Mastodon</a>, github: <a href='https://github.com/glitch-soc/mastodon' target='_blank' rel='noopener'>GitHub</a> }} /></p>
+      <p>
+        <FormattedMessage
+          id='onboarding.page_six.github'
+          defaultMessage='{domain} runs on Glitchsoc. Glitchsoc is a friendly {fork} of {Mastodon}. Glitchsoc is fully compatible with all Mastodon apps and instances. Glitchsoc is free open-source software. You can report bugs, request features, or contribute to the code on {github}.'
+          values={{
+            domain,
+            fork: <a href='https://en.wikipedia.org/wiki/Fork_(software_development)' target='_blank' rel='noopener'>fork</a>,
+            Mastodon: <a href='https://github.com/tootsuite/mastodon' target='_blank' rel='noopener'>Mastodon</a>,
+            github: <a href={source_url} target='_blank' rel='noopener'>GitHub</a>,
+          }}
+        />
+      </p>
       <p><FormattedMessage id='onboarding.page_six.apps_available' defaultMessage='There are {apps} available for iOS, Android and other platforms.' values={{ domain, apps: <a href='https://joinmastodon.org/apps' target='_blank' rel='noopener'><FormattedMessage id='onboarding.page_six.various_app' defaultMessage='mobile apps' /></a> }} /></p>
       <p><em><FormattedMessage id='onboarding.page_six.appetoot' defaultMessage='Bon Appetoot!' /></em></p>
     </div>
