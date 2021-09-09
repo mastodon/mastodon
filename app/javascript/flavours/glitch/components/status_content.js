@@ -70,7 +70,7 @@ export default class StatusContent extends React.PureComponent {
     collapsed: PropTypes.bool,
     onExpandedToggle: PropTypes.func,
     media: PropTypes.node,
-    mediaIcon: PropTypes.string,
+    mediaIcons: PropTypes.arrayOf(PropTypes.string),
     parseClick: PropTypes.func,
     disabled: PropTypes.bool,
     onUpdate: PropTypes.func,
@@ -256,7 +256,7 @@ export default class StatusContent extends React.PureComponent {
     const {
       status,
       media,
-      mediaIcon,
+      mediaIcons,
       parseClick,
       disabled,
       tagLinks,
@@ -295,16 +295,18 @@ export default class StatusContent extends React.PureComponent {
             key='0'
           />,
         ];
-        if (mediaIcon) {
-          toggleText.push(
-            <Icon
-              fixedWidth
-              className='status__content__spoiler-icon'
-              id={mediaIcon}
-              aria-hidden='true'
-              key='1'
-            />,
-          );
+        if (mediaIcons) {
+          mediaIcons.forEach((mediaIcon, idx) => {
+            toggleText.push(
+              <Icon
+                fixedWidth
+                className='status__content__spoiler-icon'
+                id={mediaIcon}
+                aria-hidden='true'
+                key={`icon-${idx}`}
+              />,
+            );
+          });
         }
       } else {
         toggleText = (
