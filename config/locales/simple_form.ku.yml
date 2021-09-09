@@ -57,6 +57,8 @@ kmr-TR:
         name: 'Belkî tu yekê bi kar bînî çi van:'
       form_challenge:
         current_password: Tu dikevî qadeke ewledar
+      imports:
+        data: Pelê CSV-ê ji rajekareke din a Mastodon hate derxistin
       invite_request:
         text: Ev ê alikariya me bikê bo nirxandina sepanê te
       ip_block:
@@ -123,6 +125,7 @@ kmr-TR:
         setting_boost_modal: Gotûbêja pejirandinê nîşan bide berî ku şandî werê bilindkirin
         setting_default_language: Zimanê weşanê
         setting_default_privacy: Ewlehiya weşanê
+        setting_default_sensitive: Her dem medya wek hestyar bide nîşan
         setting_delete_modal: Berî ku peyamek were jêbirin, gotûbêja pejirandinê nîşan bide
         setting_display_media: Nîşandana medyayê
         setting_display_media_default: Berdest
@@ -144,6 +147,8 @@ kmr-TR:
         name: Hashtag
       interactions:
         must_be_follower: Danezanên ji kesên ku ne şopînerên min tên asteng bike
+        must_be_following: Agahdariyan asteng bike ji kesên ku tu wan naşopînî
+        must_be_following_dm: Peyamên rasterast asteng bike ji kesên ku tu wan naşopînî
       invite:
         comment: Şîrove
       invite_request:
