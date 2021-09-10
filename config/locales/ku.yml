@@ -640,6 +640,7 @@ kmr-TR:
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
     title: Danîştin
+    view_authentication_history: Dîroka rastekirina ajimêra xwe bibîne
   settings:
     account: Ajimêr
     account_settings: Sazkariyên ajimêr
@@ -653,7 +654,29 @@ kmr-TR:
     notifications: Agahdarî
     profile: Profîl
   statuses:
+    attached:
+      audio:
+        one: "%{count} deng"
+        other: "%{count} deng"
+      description: 'Pêvek: %{attached}'
+      image:
+        one: "%{count} wêne"
+        other: "%{count} wêne"
+      video:
+        one: "%{count} vîdyo"
+        other: "%{count} vîdyo"
+    boosted_from_html: Bilindkirî ji alî %{acct_link} ve
+    content_warning: 'Hişyariya naverokê: %{warning}'
+    errors:
+      in_reply_not_found: Ew şandiya ku tu dikî nakî bersivê bide xuya nake an jî hatiye jêbirin.
+    language_detection: Bi xweberî ziman nas bike
     open_in_web: Di tevnê de veke
+    poll:
+      vote: Deng bide
+    show_more: Bêhtir nîşan bide
+    show_newer: Nûtirîn nîşan bide
+    show_older: Kevntirîn nîşan bide
+    show_thread: Mijarê nîşan bide
   statuses_cleanup:
     min_age:
       '1209600': 2 hefte
