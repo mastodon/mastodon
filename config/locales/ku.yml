@@ -576,6 +576,13 @@ kmr-TR:
       sign_in_token: koda ewlehiyê bo e-nameyê
       webauthn: kilîtên ewlehiyê
   notification_mailer:
+    digest:
+      action: Hemû agahdariyan nîşan bide
+    follow:
+      title: Şopînereke nû
+    follow_request:
+      action: Daxwazên şopandinê bi rê ve bibe
+      body: "%{name} daxwaza şopandina te kir"
     mention:
       action: Bersivê bide
   number:
@@ -589,6 +596,7 @@ kmr-TR:
           thousand: Hezar
           trillion: Trîlyon
   otp_authentication:
+    enable: Çalak bike
     setup: Saz bike
   pagination:
     newer: Nûtir
@@ -596,6 +604,9 @@ kmr-TR:
     older: Kevntir
     prev: Paş
     truncate: "&hellip;"
+  polls:
+    errors:
+      duration_too_short: gelek zû ye
   preferences:
     other: Yên din
   relationships:
@@ -677,6 +688,13 @@ kmr-TR:
     show_newer: Nûtirîn nîşan bide
     show_older: Kevntirîn nîşan bide
     show_thread: Mijarê nîşan bide
+    visibilities:
+      direct: Rasterast
+      private: Tenê şopîneran
+      private_long: Tenê bo şopîneran nîşan bide
+      public: Gelemperî
+      public_long: Herkes dikare bibîne
+      unlisted: Nerêzokkirî
   statuses_cleanup:
     min_age:
       '1209600': 2 hefte
@@ -686,6 +704,13 @@ kmr-TR:
       '5259492': 2 meh
       '63113904': 2 sal
       '7889238': 3 meh
+  time:
+    formats:
+      default: "%b %d, %Y, %H:%M"
+      month: "%b %Y"
+  two_factor_authentication:
+    add: Tevlî bike
+    disable: 2FA neçalak bike
   user_mailer:
     warning:
       title:
@@ -696,6 +721,9 @@ kmr-TR:
       explanation: Li vir çend serişte hene ku tu dest pê bike
       final_action: Dest bi weşandinê bike
       subject: Tu bi xêr hatî Mastodon
+  verification:
+    verification: Piştrastkirin
   webauthn_credentials:
+    add: Kilîteke ewlehiyê nû tevlî bike
     delete: Jê bibe
     delete_confirmation: Ma tu bi rastî dixwazî ku ev kilîta ewlehiyê jê bibe?
