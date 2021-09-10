@@ -396,11 +396,16 @@ kmr-TR:
       domain: Navper
       edit: Astengkirina navperê serrast bike
       new:
+        create: Astengkirinekê çê bike
         severity:
+          noop: Ne yek
           silence: Bêdengî
           suspend: Dur bike
         title: Astengkirina navpera nû
       obfuscate: Navê navperê biveşêre
+      private_comment: Şîroveya taybet
+      public_comment: Şîroveya gelemperî
+      reject_reports: Ragihandinan red bike
       show:
         undo: Vegerîne
     email_domain_blocks:
@@ -416,6 +421,7 @@ kmr-TR:
     follow_recommendations:
       language: Bo zimanê
       status: Rewş
+      title: Pêşniyarên şopandinê
       unsuppress: Pêşniyara şopandinê paşve vegerîne
     instances:
       back_to_all: Hemû
@@ -437,6 +443,7 @@ kmr-TR:
         title: Çavdêrî
       private_comment: Şîroveya taybet
       public_comment: Şîroveya ji hemû kesî re vekirî
+      title: Yekbûyî
       total_blocked_by_us: Ji aliyê me ve hatiye astengkirin
       total_followed_by_them: Ji aliyê wan ve hatiye şopandin
       total_followed_by_us: Ji aliyê ve me hate şopandin
@@ -482,6 +489,10 @@ kmr-TR:
       setup: Girêdanekê guhêrker saz bike
       status: Rewş
     reports:
+      account:
+        notes:
+          one: "%{count} nîşe"
+          other: "%{count} nîşe"
       are_you_sure: Gelo tu bawerî?
       notes:
         create: Nîşe tevlî bike
