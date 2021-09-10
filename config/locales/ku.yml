@@ -539,6 +539,8 @@ kmr-TR:
     bookmarks: Şûnpel
     csv: CSV
     lists: Rêzok
+  featured_tags:
+    add_new: Yeka nû tevlî bike
   filters:
     contexts:
       account: Profîl
@@ -570,11 +572,14 @@ kmr-TR:
       '604800': 1 hefte
       '86400': 1 roj
     expires_in_prompt: Tu car
+    title: Mirovan vexwîne
   login_activities:
     authentication_methods:
       password: pêborîn
       sign_in_token: koda ewlehiyê bo e-nameyê
       webauthn: kilîtên ewlehiyê
+  moderation:
+    title: Çavdêrî
   notification_mailer:
     digest:
       action: Hemû agahdariyan nîşan bide
@@ -610,9 +615,13 @@ kmr-TR:
   preferences:
     other: Yên din
   relationships:
+    follow_selected_followers: Şopînerên hilbijartî bişopîne
     followers: Şopîner
     following: Dişopîne
     invited: Vexwendî
+    last_active: Çalakiya dawî
+    most_recent: Herî dawî
+    moved: Barkirî
   sessions:
     browser: Gerok
     browsers:
@@ -712,6 +721,8 @@ kmr-TR:
     add: Tevlî bike
     disable: 2FA neçalak bike
   user_mailer:
+    backup_ready:
+      subject: Arşîva te amede ye bo daxistinê
     warning:
       title:
         none: Hişyarî
