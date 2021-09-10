@@ -598,6 +598,8 @@ kmr-TR:
     follow: Bişopîne
   challenge:
     confirm: Bidomîne
+    invalid_password: Pêborîna nederbasdar
+    prompt: Ji bo bidomî lêborînê bipejirîne
   date:
     formats:
       default: "%b%d%Y"
@@ -617,8 +619,11 @@ kmr-TR:
       x_months: "%{count}meh"
       x_seconds: "%{count}çirke"
   deletes:
+    confirm_username: Navê bikarhêneriyê xwe binivîse da ku prosedurê piştrast bike
     proceed: Ajimêr jê bibe
+    success_msg: Ajimêra te bi serkeftî hate jêbirin
     warning:
+      email_change_html: Tu dikarî navnîşana <a href="%{path}"> e-nameya xwe biguherînî </a> bêyî ku tu ajimêra xwe jê bibî
       username_available: Navê bikarhêneriyê te wê dîsa peyda bibe
       username_unavailable: Navê bikarhêneriyê ye wê tuneyî bimîne
   directories:
@@ -654,6 +659,7 @@ kmr-TR:
   filters:
     contexts:
       account: Profîl
+      notifications: Agahdarî
     index:
       delete: Jê bibe
       title: Parzûn
@@ -666,6 +672,7 @@ kmr-TR:
     copy: Jê bigire
     delete: Jê bibe
   identity_proofs:
+    active: Çalak
     identity: Nasname
     inactive: Neçalak e
   imports:
@@ -732,7 +739,9 @@ kmr-TR:
     last_active: Çalakiya dawî
     most_recent: Herî dawî
     moved: Barkirî
+    status: Rewşa ajimêr
   sessions:
+    activity: Çalakiya dawî
     browser: Gerok
     browsers:
       alipay: Alipay
@@ -830,10 +839,14 @@ kmr-TR:
   two_factor_authentication:
     add: Tevlî bike
     disable: 2FA neçalak bike
+    edit: Serrast bike
   user_mailer:
     backup_ready:
       subject: Arşîva te amede ye bo daxistinê
     warning:
+      subject:
+        none: Hişyarî bo %{acct}
+        sensitive: Ajimêra te %{acct} medyaya ku wek hestyar hatiye nîşandin weşandiye
       title:
         none: Hişyarî
     welcome:
@@ -842,6 +855,7 @@ kmr-TR:
       explanation: Li vir çend serişte hene ku tu dest pê bike
       final_action: Dest bi weşandinê bike
       subject: Tu bi xêr hatî Mastodon
+      title: Bi xêr hatî, %{name}!
   verification:
     verification: Piştrastkirin
   webauthn_credentials:
