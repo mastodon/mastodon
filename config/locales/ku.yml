@@ -493,20 +493,41 @@ kmr-TR:
         notes:
           one: "%{count} nîşe"
           other: "%{count} nîşe"
+        reports:
+          one: "%{count} gilî"
+          other: "%{count} gilî"
+      action_taken_by: Çalakî hate kirin ji aliyê
       are_you_sure: Gelo tu bawerî?
+      comment:
+        none: Ne yek
+      created_at: Hate ragihandin
+      mark_as_resolved: Wekî çareserkirî nîşan bide
+      mark_as_unresolved: Wekî neçareserkirî nîşan bide
       notes:
         create: Nîşe tevlî bike
+        create_and_resolve: Bi nîşe re çareser bike
+        create_and_unresolve: Bi nîşe re dîsa veke
         delete: Jê bibe
+        placeholder: Bide nasîn ka çi çalakî hatine kirin, an jî heman rojanekirinên din ên têkildar...
+      reopen: Ragihandina ji nû ve veke
       report: '@%{id} Ragihîne'
+      reported_account: Ajimêra ragihandî
+      reported_by: Ragihandî ji aliyê
       resolved: Çareserkirî
+      resolved_msg: Ragihandin bi awayekî serkeftî hate çareserkirin!
       status: Rewş
+      unresolved: Neçareserkirî
+      updated_at: Rojanekirî
     rules:
+      add_new: Rêbazekê tevlî bike
       delete: Jê bibe
       edit: Rêbazê serrast bike
     settings:
       contact_information:
         email: E-nameya karsazî
         username: Bi bikarhêner re têkeve têkiliyê
+      custom_css:
+        title: CSS a kesanekirî
       domain_blocks:
         all: Bo herkesî
         disabled: Bo tu kesî
@@ -521,6 +542,8 @@ kmr-TR:
         title: Danasîna rajekar
       site_title: Navê rajekar
       title: Sazkariyên malperê
+      trends:
+        title: Hashtagên rojevê
     site_uploads:
       delete: Pela barkirî jê bibe
     statuses:
@@ -533,6 +556,7 @@ kmr-TR:
       media:
         title: Medya
       no_media: Medya nîne
+      title: Şandiyên ajimêr
       with_media: Bi medya yê re
     tags:
       name: Hashtag
