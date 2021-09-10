@@ -508,15 +508,27 @@ kmr-TR:
       x_seconds: "%{count}çirke"
   deletes:
     proceed: Ajimêr jê bibe
+    warning:
+      username_available: Navê bikarhêneriyê te wê dîsa peyda bibe
+      username_unavailable: Navê bikarhêneriyê ye wê tuneyî bimîne
+  directories:
+    directory: Rêgeha profîlê
+    explanation: Bikarhêneran li gorî berjewendiyên wan bibîne
+  domain_validator:
+    invalid_domain: ne naveke navper a derbasdar e
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
-    '404': The page you are looking for isn't here.
-    '406': This page is not available in the requested format.
-    '410': The page you were looking for doesn't exist here anymore.
+    '404': Rûpela ku tu lê digerî ne li vir e.
+    '406': Ev rûpel di awayê ku tê xwestin de peyda nabe.
+    '410': Ew rûpela ku tu lê digeriya êdî li vir nîne.
     '422':
-    '429': Too many requests
+      content: Rastekirina ewlehiyê têk çû. Ma tu kiloran asteng dikî?
+      title: Rastekirina ewlehiyê têk çû
+    '429': Gelek daxwazî
     '500':
+      content: Em xemgîn in, lê tiştek di aliyê me de şaş çû.
+      title: Ev rûpel ne rast e
     '503': The page could not be served due to a temporary server failure.
   exports:
     archive_takeout:
@@ -663,3 +675,4 @@ kmr-TR:
       subject: Tu bi xêr hatî Mastodon
   webauthn_credentials:
     delete: Jê bibe
+    delete_confirmation: Ma tu bi rastî dixwazî ku ev kilîta ewlehiyê jê bibe?
