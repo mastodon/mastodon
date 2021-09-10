@@ -316,6 +316,12 @@ GEM
       activerecord
       kaminari-core (= 1.2.1)
     kaminari-core (1.2.1)
+    kt-paperclip (7.0.0)
+      activemodel (>= 4.2.0)
+      activesupport (>= 4.2.0)
+      marcel (~> 1.0.1)
+      mime-types
+      terrapin (~> 0.6.0)
     launchy (2.5.0)
       addressable (~> 2.7)
     letter_opener (1.7.0)
@@ -351,9 +357,6 @@ GEM
     mime-types (3.3.1)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2020.0512)
-    mimemagic (0.3.10)
-      nokogiri (~> 1)
-      rake
     mini_mime (1.1.1)
     mini_portile2 (2.6.1)
     minitest (5.14.4)
@@ -391,12 +394,6 @@ GEM
     openssl-signature_algorithm (0.4.0)
     orm_adapter (0.5.0)
     ox (2.14.5)
-    paperclip (6.0.0)
-      activemodel (>= 4.2.0)
-      activesupport (>= 4.2.0)
-      mime-types
-      mimemagic (~> 0.3.0)
-      terrapin (~> 0.6.0)
     parallel (1.21.0)
     parallel_tests (3.7.1)
       parallel
@@ -720,6 +717,7 @@ DEPENDENCIES
   json-ld
   json-ld-preloaded (~> 3.1)
   kaminari (~> 1.2)
+  kt-paperclip (~> 7.0)
   letter_opener (~> 1.7)
   letter_opener_web (~> 1.4)
   link_header (~> 0.0)
@@ -738,7 +736,6 @@ DEPENDENCIES
   omniauth-rails_csrf_protection (~> 0.1)
   omniauth-saml (~> 1.10)
   ox (~> 2.14)
-  paperclip (~> 6.0)
   parallel (~> 1.21)
   parallel_tests (~> 3.7)
   parslet
