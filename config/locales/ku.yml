@@ -623,8 +623,13 @@ kmr-TR:
     title: Bişopîne %{acct}
   challenge:
     confirm: Bidomîne
+    hint_html: "<strong>Nîşe:</strong>Ji bo demjimêreke din em ê pêborîna te careke din ji te nexwazin."
     invalid_password: Pêborîna nederbasdar
     prompt: Ji bo bidomî lêborînê bipejirîne
+  crypto:
+    errors:
+      invalid_key: ed25519 ne derbasdare ne jî Curve25519 kilîta
+      invalid_signature: Ed25519 ne îmzeyek derbasdar e
   date:
     formats:
       default: "%b%d%Y"
