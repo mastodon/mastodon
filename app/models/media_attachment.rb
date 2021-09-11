@@ -31,6 +31,8 @@
 class MediaAttachment < ApplicationRecord
   self.inheritance_column = nil
 
+  include Attachmentable
+
   enum type: [:image, :gifv, :video, :unknown, :audio]
   enum processing: [:queued, :in_progress, :complete, :failed], _prefix: true
 
@@ -181,8 +183,6 @@ class MediaAttachment < ApplicationRecord
   validates_attachment_content_type :thumbnail, content_type: IMAGE_MIME_TYPES
   validates_attachment_size :thumbnail, less_than: IMAGE_LIMIT
   remotable_attachment :thumbnail, IMAGE_LIMIT, suppress_errors: true, download_on_assign: false
-
-  include Attachmentable
 
   validates :account, presence: true
   validates :description, length: { maximum: MAX_DESCRIPTION_LENGTH }, if: :local?

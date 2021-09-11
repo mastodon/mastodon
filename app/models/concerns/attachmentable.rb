@@ -20,45 +20,41 @@ module Attachmentable
   ).freeze
 
   included do
-    before_post_process :obfuscate_file_name
-    before_post_process :set_file_extensions
-    before_post_process :check_image_dimensions
-    before_post_process :set_file_content_type
+    def self.has_attached_file(name, options = {})
+      options = { validate_media_type: false }.merge(options)
+      super(name, options)
+      self.send(:"before_#{name}_post_process") do
+        attachment = send(name)
+        check_image_dimension(attachment)
+        set_file_content_type(attachment)
+        obfuscate_file_name(attachment)
+        set_file_extension(attachment)
+        Paperclip::Validators::MediaTypeSpoofDetectionValidator.new(attributes: [name]).validate(self)
+      end
+    end
   end
 
   private
 
-  def set_file_content_type
-    self.class.attachment_definitions.each_key do |attachment_name|
-      attachment = send(attachment_name)
+  def set_file_content_type(attachment)
+    return if attachment.blank? || attachment.queued_for_write[:original].blank? || !INCORRECT_CONTENT_TYPES.include?(attachment.instance_read(:content_type))
 
-      next if attachment.blank? || attachment.queued_for_write[:original].blank? || !INCORRECT_CONTENT_TYPES.include?(attachment.instance_read(:content_type))
-
-      attachment.instance_write :content_type, calculated_content_type(attachment)
-    end
+    attachment.instance_write :content_type, calculated_content_type(attachment)
   end
 
-  def set_file_extensions
-    self.class.attachment_definitions.each_key do |attachment_name|
-      attachment = send(attachment_name)
+  def set_file_extension(attachment)
+    return if attachment.blank?
 
-      next if attachment.blank?
-
-      attachment.instance_write :file_name, [Paperclip::Interpolations.basename(attachment, :original), appropriate_extension(attachment)].delete_if(&:blank?).join('.')
-    end
+    attachment.instance_write :file_name, [Paperclip::Interpolations.basename(attachment, :original), appropriate_extension(attachment)].delete_if(&:blank?).join('.')
   end
 
-  def check_image_dimensions
-    self.class.attachment_definitions.each_key do |attachment_name|
-      attachment = send(attachment_name)
+  def check_image_dimension(attachment)
+    return if attachment.blank? || !/image.*/.match?(attachment.content_type) || attachment.queued_for_write[:original].blank?
 
-      next if attachment.blank? || !/image.*/.match?(attachment.content_type) || attachment.queued_for_write[:original].blank?
+    width, height = FastImage.size(attachment.queued_for_write[:original].path)
+    matrix_limit  = attachment.content_type == 'image/gif' ? GIF_MATRIX_LIMIT : MAX_MATRIX_LIMIT
 
-      width, height = FastImage.size(attachment.queued_for_write[:original].path)
-      matrix_limit  = attachment.content_type == 'image/gif' ? GIF_MATRIX_LIMIT : MAX_MATRIX_LIMIT
-
-      raise Mastodon::DimensionsValidationError, "#{width}x#{height} images are not supported" if width.present? && height.present? && (width * height > matrix_limit)
-    end
+    raise Mastodon::DimensionsValidationError, "#{width}x#{height} images are not supported" if width.present? && height.present? && (width * height > matrix_limit)
   end
 
   def appropriate_extension(attachment)
@@ -79,13 +75,9 @@ module Attachmentable
     ''
   end
 
-  def obfuscate_file_name
-    self.class.attachment_definitions.each_key do |attachment_name|
-      attachment = send(attachment_name)
+  def obfuscate_file_name(attachment)
+    return if attachment.blank? || attachment.queued_for_write[:original].blank? || attachment.options[:preserve_files]
 
-      next if attachment.blank? || attachment.queued_for_write[:original].blank? || attachment.options[:preserve_files]
-
-      attachment.instance_write :file_name, SecureRandom.hex(8) + File.extname(attachment.instance_read(:file_name))
-    end
+    attachment.instance_write :file_name, SecureRandom.hex(8) + File.extname(attachment.instance_read(:file_name))
   end
 end
