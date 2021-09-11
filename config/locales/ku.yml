@@ -888,6 +888,7 @@ kmr-TR:
     backup_ready:
       subject: Arşîva te amede ye bo daxistinê
     warning:
+      statuses: 'Bi taybetî, ji bo wê:'
       subject:
         none: Hişyarî bo %{acct}
         sensitive: Ajimêra te %{acct} medyaya ku wek hestyar hatiye nîşandin weşandiye
@@ -898,8 +899,12 @@ kmr-TR:
       edit_profile_step: Tu dikarî profîla xwe bi barkirina wêne, sernav, guherandina navê xuyangê xwe û bêhtir ve xweş bikî. Heke tu dixwazî şagirtên nû binirxînî berî ku mafê bidî ku ew te bişopînê, tu dikarî ajimêra xwe kilît bike.
       explanation: Li vir çend serişte hene ku tu dest pê bike
       final_action: Dest bi weşandinê bike
+      review_preferences_action: Bijartinan biguherîne
       subject: Tu bi xêr hatî Mastodon
+      tips: Serbend
       title: Bi xêr hatî, %{name}!
+  users:
+    invalid_sign_in_token: Kilîda ewlehiyê a nelê
   verification:
     verification: Piştrastkirin
   webauthn_credentials:
