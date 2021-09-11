@@ -291,6 +291,18 @@ fi:
         destroy_unavailable_domain_html: "%{name} jatkoi toimitusta verkkotunnukseen %{target}"
         disable_2fa_user_html: "%{name} poisti käyttäjältä %{target} vaatimuksen kaksivaiheisen todentamiseen"
         disable_custom_emoji_html: "%{name} poisti emojin %{target}"
+        disable_sign_in_token_auth_user_html: "%{name} poisti sähköpostitunnuksen %{target} todennuksen käytöstä"
+        disable_user_html: "%{name} poisti kirjautumisen käyttäjältä %{target}"
+        enable_custom_emoji_html: "%{name} salli emojin %{target}"
+        enable_sign_in_token_auth_user_html: "%{name} aktivoi sähköpostitunnuksen käyttäjälle %{target}"
+        enable_user_html: "%{name} salli kirjautumisen käyttäjälle %{target}"
+        memorialize_account_html: "%{name} muutti käyttäjän %{target} tilin muistosivuksi"
+        promote_user_html: "%{name} ylensi käyttäjän %{target}"
+        remove_avatar_user_html: "%{name} poisti käyttäjän %{target} profiilikuvan"
+        reopen_report_html: "%{name} avasi uudelleen raportin %{target}"
+        reset_password_user_html: "%{name} palautti käyttäjän %{target} salasanan"
+        resolve_report_html: "%{name} ratkaisi raportin %{target}"
+        silence_account_html: "%{name} rajoitti %{target} tilin"
       deleted_status: "(poistettu tilapäivitys)"
       empty: Lokeja ei löytynyt.
       filter_by_action: Suodata tapahtuman mukaan
