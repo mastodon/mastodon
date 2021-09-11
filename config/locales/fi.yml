@@ -303,6 +303,11 @@ fi:
         reset_password_user_html: "%{name} palautti käyttäjän %{target} salasanan"
         resolve_report_html: "%{name} ratkaisi raportin %{target}"
         silence_account_html: "%{name} rajoitti %{target} tilin"
+        suspend_account_html: "%{name} siirsi käyttäjän %{target} jäähylle"
+        unassigned_report_html: "%{name} peruutti raportin määrityksen %{target}"
+        unsuspend_account_html: "%{name} perui käyttäjän %{target} jäähyn"
+        update_custom_emoji_html: "%{name} päivitti emojin %{target}"
+        update_status_html: "%{name} päivitti viestin %{target}"
       deleted_status: "(poistettu tilapäivitys)"
       empty: Lokeja ei löytynyt.
       filter_by_action: Suodata tapahtuman mukaan
@@ -313,10 +318,13 @@ fi:
       edit:
         title: Muokkaa ilmoitusta
       empty: Yhtään ilmoitusta ei löytynyt.
+      live: Suora
       new:
         create: Luo ilmoitus
         title: Uusi ilmoitus
+      publish: Julkaise
       published_msg: Ilmoitus julkaistu onnistuneesti!
+      scheduled_for: Ajastettu %{time}
       title: Ilmoitukset
     custom_emojis:
       assign_category: Aseta kategoria
