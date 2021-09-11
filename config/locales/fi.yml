@@ -282,6 +282,15 @@ fi:
         create_ip_block_html: "%{name} luonut IP-säännön %{target}"
         demote_user_html: "%{name} alensi käyttäjän %{target}"
         destroy_announcement_html: "%{name} poisti ilmoituksen %{target}"
+        destroy_custom_emoji_html: "%{name} poisti emojin %{target}"
+        destroy_domain_allow_html: "%{name} esti yhdistämisen verkkotunnuksella %{target}"
+        destroy_domain_block_html: "%{name} poisti verkkotunnuksen %{target} eston"
+        destroy_email_domain_block_html: "%{name} poisti verkkotunnuksen %{target} eston"
+        destroy_ip_block_html: "%{name} poisti IP-säännön %{target}"
+        destroy_status_html: "%{name} poisti viestin %{target}"
+        destroy_unavailable_domain_html: "%{name} jatkoi toimitusta verkkotunnukseen %{target}"
+        disable_2fa_user_html: "%{name} poisti käyttäjältä %{target} vaatimuksen kaksivaiheisen todentamiseen"
+        disable_custom_emoji_html: "%{name} poisti emojin %{target}"
       deleted_status: "(poistettu tilapäivitys)"
       empty: Lokeja ei löytynyt.
       filter_by_action: Suodata tapahtuman mukaan
