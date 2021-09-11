@@ -15,6 +15,7 @@ module Attachmentable
   # those files, it is necessary to use the output of the
   # `file` utility instead
   INCORRECT_CONTENT_TYPES = %w(
+    audio/vorbis
     video/ogg
     video/webm
   ).freeze
