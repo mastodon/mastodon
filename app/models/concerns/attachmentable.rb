@@ -20,10 +20,10 @@ module Attachmentable
   ).freeze
 
   included do
-    def self.has_attached_file(name, options = {})
+    def self.has_attached_file(name, options = {}) # rubocop:disable Naming/PredicateName
       options = { validate_media_type: false }.merge(options)
       super(name, options)
-      self.send(:"before_#{name}_post_process") do
+      send(:"before_#{name}_post_process") do
         attachment = send(name)
         check_image_dimension(attachment)
         set_file_content_type(attachment)
@@ -36,13 +36,13 @@ module Attachmentable
 
   private
 
-  def set_file_content_type(attachment)
+  def set_file_content_type(attachment) # rubocop:disable Naming/AccessorMethodName
     return if attachment.blank? || attachment.queued_for_write[:original].blank? || !INCORRECT_CONTENT_TYPES.include?(attachment.instance_read(:content_type))
 
     attachment.instance_write :content_type, calculated_content_type(attachment)
   end
 
-  def set_file_extension(attachment)
+  def set_file_extension(attachment) # rubocop:disable Naming/AccessorMethodName
     return if attachment.blank?
 
     attachment.instance_write :file_name, [Paperclip::Interpolations.basename(attachment, :original), appropriate_extension(attachment)].delete_if(&:blank?).join('.')
