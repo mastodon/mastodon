@@ -203,6 +203,7 @@ kmr-TR:
       statuses: Şandî
       subscribe: Bibe kiryar
       suspended: Hatiye rawestandin
+      suspension_irreversible: Daneyên vê ajimêrê bêveger hatine jêbirin. Tu dikarî ajimêra xwe ji rawestandinê vegerinî da ku ew bi kar bînî lê ew ê tu daneya ku berê hebû venegere.
       time_in_queue: Di dorê de sekinandin %{time}
       title: Ajimêr
       unconfirmed_email: E-nameya nepejirandî
@@ -412,6 +413,7 @@ kmr-TR:
       private_comment: Şîroveya taybet
       public_comment: Şîroveya gelemperî
       reject_media: Pelên medyayê red bike
+      reject_media_hint: Pelên medyayê herêmî hatine tomarkirin radike û di pêşerojê de daxistinê red dike. Ji bo rawstandinê ne girîng e
       reject_reports: Ragihandinan red bike
       reject_reports_hint: Ragihandinên ku ji vê navperê tê paşguh bike. Ji bo dûrbûnê re ne guncav e
       rejecting_media: pelên medyayê red bike
@@ -420,6 +422,9 @@ kmr-TR:
         silence: sînorkirî
         suspend: hatiye rawestandin
       show:
+        affected_accounts:
+          one: Yek ajimêr di danegehê de bandor kir
+          other: "%{count} ajimêr di danegehê de bandor kir"
         title: Ji bo navperê %{domain} asteng kirinê hilde
         undo: Vegerîne
       undo: Astengkirina navperê vegerîne
@@ -448,6 +453,7 @@ kmr-TR:
       by_domain: Navper
       delivery:
         all: Hemû
+        clear: Çewtiyên gihandinê paqij bike
         stop: Gehandinê rawestîne
         title: Gihiştin
         unavailable: Nederbasdar
@@ -639,6 +645,7 @@ kmr-TR:
     view_profile: Profîlê nîşan bide
     view_status: Şandiyê nîşan bide
   applications:
+    destroyed: Sepan bi awayekî serkeftî hat jêbirin
     your_token: Nîşana gihîştina te
   auth:
     change_password: Pêborîn
@@ -797,6 +804,9 @@ kmr-TR:
       password: pêborîn
       sign_in_token: koda ewlehiyê bo e-nameyê
       webauthn: kilîtên ewlehiyê
+  migrations:
+    errors:
+      not_found: nehate dîtin
   moderation:
     title: Çavdêrî
   notification_mailer:
@@ -967,6 +977,7 @@ kmr-TR:
     warning:
       explanation:
         disable: Tu êdî nikarî têkevî ajimêra xwe an wê bi rengeke din bi kar bînî, lê profîla te û daneyên din saxlem dimînin.
+        suspend: Tu êdî nikarî têkevî ajimêra xwe, û profîla te û daneyên din êdî nayên gihîştin. Dîsa jî tu dikarî têkevî da ku hilanîna daneyên xwe daxwaz bikî heya ku dane bi tevahî werin rakirin, lê em ê hin daneyan biparêzin da ku tu ji rawestandinê rizgar bikin.
       get_in_touch: Ji bo bi xebatkarên %{instance} têkilî deynî tu dikarî vê e-nameyê bibersivînî.
       review_server_policies: Rêbazên rajeker lêkolîn bike
       statuses: 'Bi taybetî, ji bo wê:'
@@ -975,6 +986,7 @@ kmr-TR:
         none: Hişyarî bo %{acct}
         sensitive: Ajimêra te %{acct} medyaya ku wek hestyar hatiye nîşandin weşandiye
         silence: Ajimêra te ya %{acct} hate bisînorkirin
+        suspend: Ajimêra te %{acct} hate rawestandin
       title:
         disable: Ajimêr hate qerisandin
         none: Hişyarî
