@@ -454,13 +454,16 @@ kmr-TR:
       delivery:
         all: Hemû
         clear: Çewtiyên gihandinê paqij bike
+        restart: Gihandinê nû va bike
         stop: Gehandinê rawestîne
         title: Gihiştin
         unavailable: Nederbasdar
+        unavailable_message: Gihandin berdest nîne
         warning: Hişyarî
         warning_message:
           one: Sernekeftina radestkirinê %{count} roj
           other: Sernekeftina radestkirinê %{count} roj
+      delivery_available: Gihandin berdest e
       delivery_error_days: Rojên çewtiyên gehandinê
       delivery_error_hint: Ger gehandin %{count} rojan ne pêkan be ewê wek bixweber wê nayê gehandin were nîşandan.
       empty: Tu navper nehatine dîtin.
@@ -555,6 +558,7 @@ kmr-TR:
       resolved: Çareserkirî
       resolved_msg: Ragihandin bi awayekî serkeftî hate çareserkirin!
       status: Rewş
+      title: Ragihandinên
       unassign: Diyar neke
       unresolved: Neçareserkirî
       updated_at: Rojanekirî
@@ -805,8 +809,10 @@ kmr-TR:
       sign_in_token: koda ewlehiyê bo e-nameyê
       webauthn: kilîtên ewlehiyê
   migrations:
+    cancelled_msg: Beralîkirin bi serkeftî hate betal kirin.
     errors:
       not_found: nehate dîtin
+    followers_count: Di dema tevgerê de şopîner
   moderation:
     title: Çavdêrî
   notification_mailer:
