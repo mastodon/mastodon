@@ -536,6 +536,7 @@ kmr-TR:
       add_new: Rêbazekê tevlî bike
       delete: Jê bibe
       edit: Rêbazê serrast bike
+      title: Rêbazên rajekar
     settings:
       activity_api_enabled:
         desc_html: Hejmara şandiyên weşandî yên herêmî, bikarhênerên çalak, û tomarkirin ên nû heftane
@@ -552,6 +553,8 @@ kmr-TR:
         title: Sedemê nîşan bike
       hero:
         title: Wêneya lehengê
+      mascot:
+        title: Wêneya maskot
       registrations:
         min_invite_role:
           disabled: Ne yek
@@ -580,8 +583,12 @@ kmr-TR:
       title: Şandiyên ajimêr
       with_media: Bi medya yê re
     tags:
+      last_active: Çalakiyên dawî
       most_popular: Herî navdar
+      most_recent: Çalakiyên herî nû
       name: Hashtag
+      review: Binêre rewşê
+      reviewed: Hate vekolandin
       title: Hashtag
       updated_msg: Sazkariyên hashtag bi awayekî serkeftî hate rojanekirin
     title: Rêvebirî
@@ -589,6 +596,9 @@ kmr-TR:
       add_new: Yeka nû tevlî bike
       delete: Jê bibe
       edit_preset: Hişyariyên pêşsazkirî serrast bike
+  admin_mailer:
+    new_report:
+      body: "%{reporter} ji %{target} ê ragihand"
   appearance:
     discovery: Vedîtin
     sensitive_content: Naveroka hestiyarî
@@ -756,8 +766,17 @@ kmr-TR:
     follow_request:
       action: Daxwazên şopandinê bi rê ve bibe
       body: "%{name} daxwaza şopandina te kir"
+      title: Daxwazeke şopandinê ya nû
     mention:
       action: Bersivê bide
+    reblog:
+      title: Bilindkirinên nû
+    status:
+      subject: "%{name} niha şand"
+  notifications:
+    email_events: Bûyer bo agahdariyên e-nameyê
+    email_events_hint: 'Bûyera ku tu dixwazî agahdariyan jê wergerî hilbijêre:'
+    other_settings: Sazkariya agahdariyên din
   number:
     human:
       decimal_units:
@@ -790,6 +809,7 @@ kmr-TR:
     last_active: Çalakiya dawî
     most_recent: Herî dawî
     moved: Barkirî
+    mutual: Hevpar
     status: Rewşa ajimêr
   sessions:
     activity: Çalakiya dawî
