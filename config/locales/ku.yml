@@ -599,6 +599,8 @@ kmr-TR:
   admin_mailer:
     new_report:
       body: "%{reporter} ji %{target} ê ragihand"
+      body_remote: Kesekî bi navê %{domain} ji %{target} ê ragihand
+      subject: 'Ragihandinek nû ji bo %{instance} (#%{id})'
   appearance:
     discovery: Vedîtin
     sensitive_content: Naveroka hestiyarî
@@ -633,6 +635,7 @@ kmr-TR:
       title: Damezirandin
     status:
       account_status: Rewşa ajimêr
+    too_fast: Form pir zû hat şandin, dîsa biceribîne.
   authorize_follow:
     follow: Bişopîne
     post_follow:
