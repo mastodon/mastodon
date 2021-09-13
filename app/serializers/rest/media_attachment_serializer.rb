@@ -40,7 +40,7 @@ class REST::MediaAttachmentSerializer < ActiveModel::Serializer
   end
 
   def text_url
-    object.local? ? medium_url(object) : nil
+    object.local? && object.shortcode.present? ? medium_url(object) : nil
   end
 
   def meta
