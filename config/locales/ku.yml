@@ -884,7 +884,17 @@ kmr-TR:
     moved: Barkirî
     mutual: Hevpar
     relationship: Pêwendî
+    remove_selected_domains: Hemû şopînerên ji navpera hilbijartî rake
+    remove_selected_followers: Şopînerên hilbijartî rake
+    remove_selected_follows: Bikarhênerên hilbijartî neşopîne
     status: Rewşa ajimêr
+  remote_follow:
+    acct: Navnîşana ajimêra xwe username@domain yê ku tu yê jê çalakî bikî binvsîne
+    no_account_html: Ajimêra te tune? Tu dikarî<a href='%{sign_up_path}' target='_blank'>li vir tomar bibe</a>
+    proceed: Şopandinê bidomîne
+  remote_interaction:
+    reply:
+      proceed: Bersivandinê bidomîne
   sessions:
     activity: Çalakiya dawî
     browser: Gerok
@@ -958,11 +968,18 @@ kmr-TR:
     language_detection: Bi xweberî ziman nas bike
     open_in_web: Di tevnê de veke
     poll:
+      total_people:
+        one: "%{count} kes"
+        other: "%{count} kes"
+      total_votes:
+        one: "%{count} deng"
+        other: "%{count} deng"
       vote: Deng bide
     show_more: Bêhtir nîşan bide
     show_newer: Nûtirîn nîşan bide
     show_older: Kevntirîn nîşan bide
     show_thread: Mijarê nîşan bide
+    title: '%{name}%{quote}'
     visibilities:
       direct: Rasterast
       private: Tenê şopîneran
@@ -971,6 +988,7 @@ kmr-TR:
       public_long: Herkes dikare bibîne
       unlisted: Nerêzokkirî
   statuses_cleanup:
+    exceptions: Awarte
     min_age:
       '1209600': 2 hefte
       '15778476': 6 meh
