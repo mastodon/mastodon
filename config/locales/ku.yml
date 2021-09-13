@@ -422,9 +422,13 @@ kmr-TR:
       show:
         title: Ji bo navperê %{domain} asteng kirinê hilde
         undo: Vegerîne
+      undo: Astengkirina navperê vegerîne
+      view: Astengkirina navperê nîşan bike
     email_domain_blocks:
       add_new: Nû tevlî bike
+      created_msg: Bi serkeftî navpera e-name hat asteng kirin
       delete: Jê bibe
+      destroyed_msg: Bi serkeftî navpera e-name yê ji asteng kirinê derket
       domain: Navper
       empty: Tu navperên e-nameyê astengkirî bo niha tune ne.
       from_html: ji %{domain}
@@ -961,6 +965,8 @@ kmr-TR:
       subject: Ji kerema xwe re hewldanên têketinê piştrast bike
       title: Hewldanên têketinê
     warning:
+      explanation:
+        disable: Tu êdî nikarî têkevî ajimêra xwe an wê bi rengeke din bi kar bînî, lê profîla te û daneyên din saxlem dimînin.
       get_in_touch: Ji bo bi xebatkarên %{instance} têkilî deynî tu dikarî vê e-nameyê bibersivînî.
       review_server_policies: Rêbazên rajeker lêkolîn bike
       statuses: 'Bi taybetî, ji bo wê:'
@@ -977,6 +983,7 @@ kmr-TR:
       edit_profile_step: Tu dikarî profîla xwe bi barkirina wêne, sernav, guherandina navê xuyangê xwe û bêhtir ve xweş bikî. Heke tu dixwazî şagirtên nû binirxînî berî ku mafê bidî ku ew te bişopînê, tu dikarî ajimêra xwe kilît bike.
       explanation: Li vir çend serişte hene ku tu dest pê bike
       final_action: Dest bi weşandinê bike
+      final_step: 'Dest bi weşandinê bike! Bêyî şopîneran jî dibe ku şandiyên te yên gelemperî ji hêla kesên din ve werin dîtin, mînakî li ser demjimêra herêmî û di hashtagan de. Dibe ku tu bixwazî xwe li ser hashtagê #nasname bidî nasandin.'
       review_preferences_action: Bijartinan biguherîne
       subject: Tu bi xêr hatî Mastodon
       tips: Serbend
@@ -985,6 +992,7 @@ kmr-TR:
     invalid_otp_token: Koda du-gavî ya nelê
     invalid_sign_in_token: Kilîda ewlehiyê a nelê
     signed_in_as: 'Têketin wekî:'
+    suspicious_sign_in_confirmation: Xuya dike ku te berê têketin ji vê amûrê nekiriye, ji ber vê yekê em kodeke ewlehiyê ji navnîşana e-nameya te re dişînin da ku piştrast bikî ku tu ye an na.
   verification:
     verification: Piştrastkirin
   webauthn_credentials:
@@ -1000,4 +1008,5 @@ kmr-TR:
     invalid_credential: Kilîda ewlehiyê a nelê
     nickname_hint: Bernavka kilîda te ya ewlehiyê a nû têkevê
     not_enabled: Te hê WebAuthn çalak nekiriye
+    not_supported: Ev gerok piştgiriya kilîtên ewlehiyê nakê
     registered_on: Di %{date} dîrokê de tomar bû
