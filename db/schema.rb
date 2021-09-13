@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_08_071221) do
+ActiveRecord::Schema.define(version: 2021_09_13_164325) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -849,7 +849,7 @@ ActiveRecord::Schema.define(version: 2021_08_08_071221) do
     t.index ["in_reply_to_account_id"], name: "index_statuses_on_in_reply_to_account_id"
     t.index ["in_reply_to_id"], name: "index_statuses_on_in_reply_to_id"
     t.index ["reblog_of_id", "account_id"], name: "index_statuses_on_reblog_of_id_and_account_id"
-    t.index ["uri"], name: "index_statuses_on_uri", unique: true
+    t.index ["uri"], name: "index_statuses_on_uri_btree", unique: true, opclass: :text_pattern_ops
   end
 
   create_table "statuses_tags", id: false, force: :cascade do |t|
