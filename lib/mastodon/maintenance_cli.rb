@@ -14,7 +14,7 @@ module Mastodon
     end
 
     MIN_SUPPORTED_VERSION = 2019_10_01_213028
-    MAX_SUPPORTED_VERSION = 2021_09_13_164325
+    MAX_SUPPORTED_VERSION = 2021_09_13_171005
 
     # Stubs to enjoy ActiveRecord queries while not depending on a particular
     # version of the code/database
@@ -300,6 +300,7 @@ module Mastodon
     end
 
     def deduplicate_conversations!
+      return if ActiveRecord::Base.connection.index_exists?(:conversations, :uri, name: 'index_conversations_on_uri_btree')
       remove_index_if_exists!(:conversations, 'index_conversations_on_uri')
 
       @prompt.say 'Deduplicating conversations…'
