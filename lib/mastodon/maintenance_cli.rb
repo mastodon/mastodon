@@ -290,7 +290,7 @@ module Mastodon
 
       remove_index_if_exists!(:announcement_reactions, 'index_announcement_reactions_on_account_id_and_announcement_id')
 
-      @prompt.say 'Removing duplicate account identity proofs…'
+      @prompt.say 'Removing duplicate announcement reactions…'
       ActiveRecord::Base.connection.select_all("SELECT string_agg(id::text, ',') AS ids FROM announcement_reactions GROUP BY account_id, announcement_id, name HAVING count(*) > 1").each do |row|
         AnnouncementReaction.where(id: row['ids'].split(',')).sort_by(&:id).reverse.drop(1).each(&:destroy)
       end
