@@ -56,6 +56,9 @@ kmr-TR:
     endorsements_hint: Tu dikarî kesên ku di navrûyê wep de dişopînî bipejirînî û ew li vir were nîşan kirin.
     featured_tags_hint: Tu dikarî hashtagên teybetî li vir tê nîşan kirin di pê de derxî.
     follow: Bişopîne
+    followers:
+      one: Şopîner
+      other: Şopîner
     following: Dişopîne
     joined: Di %{date} de tevlî bû
     last_active: çalakiya dawî
@@ -417,6 +420,7 @@ kmr-TR:
         silence: sînorkirî
         suspend: hatiye rawestandin
       show:
+        title: Ji bo navperê %{domain} asteng kirinê hilde
         undo: Vegerîne
     email_domain_blocks:
       add_new: Nû tevlî bike
@@ -444,6 +448,9 @@ kmr-TR:
         title: Gihiştin
         unavailable: Nederbasdar
         warning: Hişyarî
+        warning_message:
+          one: Sernekeftina radestkirinê %{count} roj
+          other: Sernekeftina radestkirinê %{count} roj
       delivery_error_days: Rojên çewtiyên gehandinê
       delivery_error_hint: Ger gehandin %{count} rojan ne pêkan be ewê wek bixweber wê nayê gehandin were nîşandan.
       empty: Tu navper nehatine dîtin.
@@ -977,6 +984,7 @@ kmr-TR:
   users:
     invalid_otp_token: Koda du-gavî ya nelê
     invalid_sign_in_token: Kilîda ewlehiyê a nelê
+    signed_in_as: 'Têketin wekî:'
   verification:
     verification: Piştrastkirin
   webauthn_credentials:
