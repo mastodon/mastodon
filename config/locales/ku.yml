@@ -567,7 +567,9 @@ kmr-TR:
     rules:
       add_new: Rêbazekê tevlî bike
       delete: Jê bibe
+      description_html: Dema ku piranîya dibêjin ku wan merçên karanînê xwendine û dipejirînin jî, bi gelemperî mirov heta ku pirsgirêkek dernekeve holê naxwîne. <strong> Bi peydakirina wan di navnîşek xala guleya rast de hêsantir bike ku tu rêbazên rajekera xwe li ser çavekî bibîne.</strong> Hewl bide ku rêbazênn yekkesî kurt û hêsan bihêlî, lê hewl bide ku wan tênexî gelek hêmanên cuda jî.
       edit: Rêbazê serrast bike
+      empty: Tu rêbazên rajekar hê nehatine dîyarkirin.
       title: Rêbazên rajekar
     settings:
       activity_api_enabled:
@@ -636,6 +638,7 @@ kmr-TR:
       review: Binêre rewşê
       reviewed: Hate vekolandin
       title: Hashtag
+      unique_uses_today: "%{count} şandiyên îro"
       unreviewed: Nehatiye nirxandin
       updated_msg: Sazkariyên hashtag bi awayekî serkeftî hate rojanekirin
     title: Rêvebirî
@@ -650,6 +653,8 @@ kmr-TR:
       body: "%{reporter} ji %{target} ê ragihand"
       body_remote: Kesekî bi navê %{domain} ji %{target} ê ragihand
       subject: 'Ragihandinek nû ji bo %{instance} (#%{id})'
+  aliases:
+    add_new: Naveke sexte çê bike
   appearance:
     discovery: Vedîtin
     sensitive_content: Naveroka hestiyarî
@@ -663,7 +668,10 @@ kmr-TR:
     your_token: Nîşana gihîştina te
   auth:
     change_password: Pêborîn
+    checkbox_agreement_html: Ez <a href="%{rules_path}" target="_blank">rêbazên rajeker</a> û <a href="%{terms_path}" target="_blank">hêmanên karûbaran</a> dipejirînim
+    checkbox_agreement_without_rules_html: Ez <a href="%{terms_path}" target="_blank">hêmanên karûbaran</a> rêbazên rajeker dipejirînim
     delete_account: Ajimêr jê bibe
+    delete_account_html: Heke tu dixwazî ajimêra xwe jê bibe, tu dikarî <a href="%{path}">li vir bidomîne</a>. Ji te tê xwestin ku were pejirandin.
     description:
       prefix_invited_by_user: "@%{name} te vedixwîne ku tu beşdarî vê rajekara Mastodon-ê bibî!"
       prefix_sign_up: Îro li Mastodonê tomar bibe!
