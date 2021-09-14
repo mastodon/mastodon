@@ -664,10 +664,14 @@ kmr-TR:
       empty: Te hin tu hişyariyên pêşsazkirî destnîşan nekirine.
       title: Hişyariyên pêşsazkirî bi rêve bibe
   admin_mailer:
+    new_pending_account:
+      subject: (%{username}) ajimêrê nû ji bo vekolandina li ser %{instance}
     new_report:
       body: "%{reporter} ji %{target} ê ragihand"
       body_remote: Kesekî bi navê %{domain} ji %{target} ê ragihand
       subject: 'Ragihandinek nû ji bo %{instance} (#%{id})'
+    new_trending_tag:
+      subject: '(#%{name}) Hashtagek nû ji bo vekolandina li ser%{instance}'
   aliases:
     add_new: Naveke sexte çê bike
   appearance:
