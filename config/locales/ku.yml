@@ -692,11 +692,16 @@ kmr-TR:
   application_mailer:
     notification_preferences: Hevyazên e-name yê biguherîne
     salutation: "%{name},"
+    settings: 'Hevyazên e-name yê biguherîne: %{link}'
     view: 'Nîşan bide:'
     view_profile: Profîlê nîşan bide
     view_status: Şandiyê nîşan bide
   applications:
+    created: Sepan bi awayekî serkeftî hat çêkirin
     destroyed: Sepan bi awayekî serkeftî hat jêbirin
+    invalid_url: URL ya hatiye dayîn ne derbasdar e
+    regenerate_token: Nîşandera gihandinê bi nûve çêbike
+    token_regenerated: Nîşandera gihandinê bi serkeftî nû ve hat çêkirin
     warning: Bi van daneyan re pir baldar be. Tu caran bi kesî re parve neke!
     your_token: Nîşana gihîştina te
   auth:
