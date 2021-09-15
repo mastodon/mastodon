@@ -646,6 +646,9 @@ kmr-TR:
         action: Rêzikên rajekara bi rê ve bibe
         message_html: Te qet rêzikên rajekara diyar nekiriye.
     tags:
+      accounts_today: Bikaranînên bêhempa yên îro
+      accounts_week: Bikaranînên bêhempa yên vê heftê
+      breakdown: Dabeşkirina bikaranîn yên îro li gorî çavkaniyan ve
       last_active: Çalakiyên dawî
       most_popular: Herî navdar
       most_recent: Çalakiyên herî nû
@@ -653,6 +656,7 @@ kmr-TR:
       review: Binêre rewşê
       reviewed: Hate vekolandin
       title: Hashtag
+      trending_right_now: Niha di rojevê de
       unique_uses_today: "%{count} şandiyên îro"
       unreviewed: Nehatiye nirxandin
       updated_msg: Sazkariyên hashtag bi awayekî serkeftî hate rojanekirin
@@ -719,22 +723,28 @@ kmr-TR:
     dont_have_your_security_key: Kilîda te ya ewlehiyê tune ye?
     forgot_password: Te pêborîna xwe jibîrkir?
     invalid_reset_password_token: Ji nû ve sazkirina pêborînê nederbasdar e an jî qediya ye. Jkx daxwaza yeka nû bike.
+    link_to_webauth: Amûra kilîta ewlehiya xwe bi kar bîne
     login: Têkeve
     logout: Derkeve
     migrate_account: Derbasî ajimêreke din bibe
+    migrate_account_html: Heke tu dixwazî ev ajimêr li ajimêreke cuda beralî bikî, tu dikarî <a href="%{path}">ji vir de saz bike</a>.
     or_log_in_with: An têketinê bike bi riya
     providers:
       cas: CAS
       saml: SAML
     register: Tomar bibe
     registration_closed: "%{instance} endamên nû napejirîne"
+    resend_confirmation: Rêwerên pejirandinê ji nû ve bişîne
     reset_password: Pêborînê ji nû ve saz bike
     security: Ewlehî
     set_new_password: Pêborîneke nû ji nû ve saz bike
     setup:
+      email_below_hint_html: Heke navnîşana e-nameya jêrîn ne rast be, tu dikarî wê li vir biguherîne û e-nameyeke pejirandinê ya nû bistîne.
+      email_settings_hint_html: E-nameya pejirandinê ji %{email} re hate şandin. Heke ew navnîşana e-nameyê ne rast be, tu dikarî wê di sazkariyên ajimêr de biguherîne.
       title: Damezirandin
     status:
       account_status: Rewşa ajimêr
+      confirming: Li benda pejirandina e-nameyê ne da ku biqedê.
     too_fast: Form pir zû hat şandin, dîsa biceribîne.
     trouble_logging_in: Têketina te de pirsgirêk çêdibe?
     use_security_key: Kilîteke ewlehiyê bikar bîne
