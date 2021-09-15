@@ -744,7 +744,8 @@ kmr-TR:
       title: Damezirandin
     status:
       account_status: Rewşa ajimêr
-      confirming: Li benda pejirandina e-nameyê ne da ku biqedê.
+      confirming: Li benda pejirandina e-nameyê ne da ku biqede.
+      functional: Ajimêra te êdî amade ye.
     too_fast: Form pir zû hat şandin, dîsa biceribîne.
     trouble_logging_in: Têketina te de pirsgirêk çêdibe?
     use_security_key: Kilîteke ewlehiyê bikar bîne
@@ -855,6 +856,7 @@ kmr-TR:
     delete: Jê bibe
   identity_proofs:
     active: Çalak
+    i_am_html: Ez %{username} li ser %{service}.
     identity: Nasname
     inactive: Neçalak e
   imports:
@@ -871,6 +873,12 @@ kmr-TR:
       '604800': 1 hefte
       '86400': 1 roj
     expires_in_prompt: Tu car
+    max_uses:
+      one: 1 bikaranîn
+      other: "%{count} bikaranîn"
+    max_uses_prompt: Bê sînor
+    table:
+      uses: Bikaranîn
     title: Mirovan vexwîne
   lists:
     errors:
@@ -884,16 +892,21 @@ kmr-TR:
     validations:
       too_many: Zedetirî 4 pelan nayê tevlêkirin
   migrations:
+    acct: Hate lîvandin bo
     cancel: Beralîkirinê red bike
     cancelled_msg: Beralîkirin bi serkeftî hate betal kirin.
     errors:
       not_found: nehate dîtin
     followers_count: Di dema tevgerê de şopîner
+    set_redirect: Beralîkirin saz bike
   moderation:
     title: Çavdêrî
   notification_mailer:
     digest:
       action: Hemû agahdariyan nîşan bide
+      subject:
+        one: "1 agahdarî ji serdana te ya herî dawî ji \U0001F418"
+        other: "%{count} agahdarî ji serdana te ya herî dawî ji \U0001F418"
     follow:
       body: "%{name} niha te dişopîne!"
       subject: "%{name} niha te dişopîne"
@@ -904,7 +917,13 @@ kmr-TR:
       title: Daxwazeke şopandinê ya nû
     mention:
       action: Bersivê bide
+      subject: Tu hatiye qalkirin ji aliyê %{name}
+      title: Qalkirina nû
+    poll:
+      subject: Rapirsî ji hêla %{name} ve qediya
     reblog:
+      body: 'Şandiye te hate bilindkirin ji hêla %{name} ve:'
+      subject: "%{name} şandiya te bilind kir"
       title: Bilindkirinên nû
     status:
       subject: "%{name} niha şand"
@@ -1005,6 +1024,7 @@ kmr-TR:
     appearance: Xuyang
     back: Vegere bo Mastodon
     delete: Jêbirina ajimêr
+    development: Pêşdebir
     edit_profile: Profîlê serrast bike
     export: Derxistinê daneyan
     import: Têxistin
