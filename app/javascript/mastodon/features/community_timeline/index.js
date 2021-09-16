@@ -10,9 +10,9 @@ import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
 import ColumnSettingsContainer from './containers/column_settings_container';
 import { connectCommunityStream } from '../../actions/streaming';
 
-const messages = defineMessages({
-  title: { id: 'column.community', defaultMessage: 'Local timeline' },
-});
+// const messages = defineMessages({
+//   title: { id: 'column.community', defaultMessage: 'Local timeline' },
+// });
 
 const mapStateToProps = (state, { columnId }) => {
   const uuid = columnId;
