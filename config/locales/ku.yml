@@ -807,10 +807,11 @@ kmr-TR:
   directories:
     directory: Rêgeha profîlê
     explanation: Bikarhêneran li gorî berjewendiyên wan bibîne
+    explore_mastodon: Vekole %{title}
   domain_validator:
     invalid_domain: ne naveke navper a derbasdar e
   errors:
-    '400': The request you submitted was invalid or malformed.
+    '400': Daxwaza ku te şand nederbasdar an çewt bû.
     '403': Ji bo dîtina vê rûpelê mafê te nîn e.
     '404': Rûpela ku tu lê digerî ne li vir e.
     '406': Ev rûpel di awayê ku tê xwestin de peyda nabe.
@@ -822,8 +823,10 @@ kmr-TR:
     '500':
       content: Em xemgîn in, lê tiştek di aliyê me de şaş çû.
       title: Ev rûpel ne rast e
-    '503': The page could not be served due to a temporary server failure.
+    '503': Ji ber têkçûna rajekar a demkî rûpel nayê bikaranîn.
+    noscript_html: Ji bo ku tu sepanaa Mastodon a tevnê bi kar bîne, jkx JavaScript-ê çalak bike. Wekî din, yek ji <a href="%{apps_path}">sepanên xwemalî</a> ji bo Mastodon ji bo platforma xwe biceribîne.
   existing_username_validator:
+    not_found: nikaribû bikarhênerek herêmî bi wê navê bikarhêner bibîne
     not_found_multiple: '%{usernames} nehat dîtin'
   exports:
     archive_takeout:
