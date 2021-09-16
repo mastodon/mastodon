@@ -1209,7 +1209,8 @@ kmr-TR:
     enabled: Nasnameya du-gavî bi serfirazî hate çalak kirin
     enabled_success: Nasnameya du-gavî bi serfirazî hate çalak kirin
     methods: Rêbazên du-gavî
-    recovery_codes: Kilîta rizgarbûna hilanînê
+    recovery_codes: Kilîtên rizgarbûna hilanînê
+    recovery_codes_regenerated: Kilîtên rizgarbûna bi serkeftî hate nûvkirin
     webauthn: Kilîdên ewlehiyê
   user_mailer:
     backup_ready:
@@ -1235,6 +1236,9 @@ kmr-TR:
       title:
         disable: Ajimêr hate qerisandin
         none: Hişyarî
+        sensitive: Medyayê te wekî hestyar hate nîşandan
+        silence: Ajimêr sînor kiriye
+        suspend: Ajimêr hatiye rawestandin
     welcome:
       edit_profile_action: Profîlê saz bike
       edit_profile_step: Tu dikarî profîla xwe bi barkirina wêne, sernav, guherandina navê xuyangê xwe û bêhtir ve xweş bikî. Heke tu dixwazî şagirtên nû binirxînî berî ku mafê bidî ku ew te bişopînê, tu dikarî ajimêra xwe kilît bike.
@@ -1247,8 +1251,10 @@ kmr-TR:
       tips: Serbend
       title: Bi xêr hatî, %{name}!
   users:
+    generic_access_help_html: Di gihîştina ajimêrê te de pirsgirêk heye? Tu dikarî ji bo alîkariyê bi %{email} re têkilî deyne
     invalid_otp_token: Koda du-gavî ya nelê
     invalid_sign_in_token: Kilîda ewlehiyê a nelê
+    otp_lost_help_html: Heke te gihîştina herduyan ji dest da, dibe ku tu bi %{email} re têkilî deyne
     signed_in_as: 'Têketin wekî:'
     suspicious_sign_in_confirmation: Xuya dike ku te berê têketin ji vê amûrê nekiriye, ji ber vê yekê em kodeke ewlehiyê ji navnîşana e-nameya te re dişînin da ku piştrast bikî ku tu ye an na.
   verification:
