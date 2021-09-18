@@ -74,7 +74,15 @@ Mastodon acts as an OAuth2 provider so 3rd party apps can use the REST and Strea
 
 The repository includes deployment configurations for **Docker and docker-compose**, but also a few specific platforms like **Heroku**, **Scalingo**, and **Nanobox**. The [**stand-alone** installation guide](https://docs.joinmastodon.org/admin/install/) is available in the documentation.
 
+## Development
+
 A **Vagrant** configuration is included for development purposes.
+
+We also include a docker and docker-compose environment for development.  You can start this with
+
+```
+docker-compose -f docker-compose.dev.yml up
+```
 
 ## Contributing
 
