@@ -627,6 +627,7 @@ kmr-TR:
         title: Hashtagên rojevê
     site_uploads:
       delete: Pela barkirî jê bibe
+      destroyed_msg: Barkirina malperê bi serkeftî hate jêbirin!
     statuses:
       back_to_account: Vegere bo rûpela ajimêr
       batch:
@@ -748,6 +749,7 @@ kmr-TR:
       account_status: Rewşa ajimêr
       confirming: Li benda pejirandina e-nameyê ne da ku biqede.
       functional: Ajimêra te êdî amade ye.
+      redirecting_to: Ajimêra te neçalak e ji ber ku niha ber bi %{acct} ve tê beralîkirin.
     too_fast: Form pir zû hat şandin, dîsa biceribîne.
     trouble_logging_in: Têketina te de pirsgirêk çêdibe?
     use_security_key: Kilîteke ewlehiyê bikar bîne
@@ -870,8 +872,10 @@ kmr-TR:
     copy: Jê bigire
     delete: Jê bibe
     no_batch_actions_available: Di vê rûpelê da tu çalakîyên tevahî tune ne
+    save_changes: Guhertinan tomar bike
   identity_proofs:
     active: Çalak
+    authorize: Erê, bide rastandin
     i_am_html: Ez %{username} li ser %{service}.
     identity: Nasname
     inactive: Neçalak e
@@ -999,6 +1003,9 @@ kmr-TR:
     prompt: 'Tu yê bişopînî:'
     reason_html: "<strong>Ev gav ji bona çi pêwîst e?</strong><code>%{instance}</code>rajekerên ku tu tomarkiriyî dibe ku tunebe, ji bona vê divê pêşî te beralîyê rajekera te bi xwe bikin."
   remote_interaction:
+    favourite:
+      proceed: Ber bi bijarê ve biçe
+      prompt: 'Tu dixwazî vê şandiyê bibijêrî:'
     reply:
       proceed: Bersivandinê bidomîne
   sessions:
