@@ -137,7 +137,7 @@ group :development do
   gem 'rubocop', '~> 1.21', require: false
   gem 'rubocop-rails', '~> 2.12', require: false
   gem 'brakeman', '~> 5.1', require: false
-  gem 'bundler-audit', '~> 0.8', require: false
+  gem 'bundler-audit', '~> 0.9', require: false
 
   gem 'capistrano', '~> 3.16'
   gem 'capistrano-rails', '~> 1.6'
