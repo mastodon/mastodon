@@ -25,7 +25,7 @@ gem 'blurhash', '~> 0.1'
 
 gem 'active_model_serializers', '~> 0.10'
 gem 'addressable', '~> 2.8'
-gem 'bootsnap', '~> 1.6.0', require: false
+gem 'bootsnap', '~> 1.8.1', require: false
 gem 'browser'
 gem 'charlock_holmes', '~> 0.7.7'
 gem 'iso-639'
@@ -65,7 +65,7 @@ gem 'nsa', '~> 0.2'
 gem 'oj', '~> 3.13'
 gem 'ox', '~> 2.14'
 gem 'parslet'
-gem 'parallel', '~> 1.20'
+gem 'parallel', '~> 1.21'
 gem 'posix-spawn'
 gem 'pundit', '~> 2.1'
 gem 'premailer-rails'
@@ -137,7 +137,7 @@ group :development do
   gem 'rubocop', '~> 1.21', require: false
   gem 'rubocop-rails', '~> 2.12', require: false
   gem 'brakeman', '~> 5.1', require: false
-  gem 'bundler-audit', '~> 0.8', require: false
+  gem 'bundler-audit', '~> 0.9', require: false
 
   gem 'capistrano', '~> 3.16'
   gem 'capistrano-rails', '~> 1.6'
