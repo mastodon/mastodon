@@ -17,7 +17,7 @@ services:
     networks:
       - internal_network
     healthcheck:
-      test: ["CMD", "bash", "-c", "pg_isready -U $$DB_USER $$DB_NAME"]
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER} -d ${DB_NAME}"]
     volumes:
       - ./postgres:/var/lib/postgresql/data
 
