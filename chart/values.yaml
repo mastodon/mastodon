@@ -60,7 +60,7 @@ mastodon:
     concurrency: 25
   smtp:
     auth_method: plain
-    ca_file:
+    ca_file: /etc/ssl/certs/ca-certificates.crt
     delivery_method: smtp
     domain:
     enable_starttls_auto: true
