@@ -809,6 +809,7 @@ kmr-TR:
     warning:
       before: 'Berî ku tu pêşve biçî, jkx nvan nîşeyan bi baldarî bixwîne:'
       email_change_html: Tu dikarî navnîşana <a href="%{path}"> e-nameya xwe biguherînî </a> bêyî ku tu ajimêra xwe jê bibî
+      email_contact_html: Heke ew hîn jî negihîştiye, tu dikarî ji bo alîkariyê <a href="mailto:%{email}">%{email}</a> e-nameyê bişînî
       email_reconfirmation_html: Heke te e-nameya pejirandinê nesitand, tu dikarî <a href="%{path}">dîsa daxwaz bike</a>
       irreversible: Tu yê nikaribe ajimêra xwe serrast bike an ji nû ve çalak bike
       more_details_html: Bo bêhtir zanyarî, <a href="%{terms_path}">polîtika nihêniyê</a> binêre.
@@ -842,6 +843,7 @@ kmr-TR:
     archive_takeout:
       date: Dem
       download: Arşîva xwe daxîne
+      hint_html: Tu dikarî arşîvek ji <strong> weşanên xwe û medyayên barkirî </strong> re bixwaze. Daneyên derxistî dê di forma ActivityPub de bin, ku ji hêla nermalava ku vê formê ve têne xwendin. Tu dikarî her 7 rojan arşîvekê bixwaze.
       in_progress: Arşîve te tê berhev kirin...
       request: Daxwaza arşîva ajimêra xwe bike
       size: Mezinahî
@@ -893,6 +895,9 @@ kmr-TR:
     identity: Nasname
     inactive: Neçalak e
   imports:
+    modes:
+      overwrite: Bi ser de binivsîne
+      overwrite_long: Tomarkirinên heyî bi yên nû re biguherîne
     types:
       blocking: Rêzoka astengkirinê
       bookmarks: Şûnpel
@@ -919,6 +924,7 @@ kmr-TR:
       other: "%{count} bikaranîn"
     max_uses_prompt: Bê sînor
     table:
+      expires_at: Diqede
       uses: Bikaranîn
     title: Mirovan vexwîne
   lists:
@@ -947,6 +953,7 @@ kmr-TR:
   moderation:
     title: Çavdêrî
   move_handler:
+    carry_blocks_over_text: Ev bikarhêner ji %{acct}, ku te astengkirî bû.
     carry_mutes_over_text: Ev bikarhêner ji %{acct}, ku te bê deng kirbû, bar kir.
   notification_mailer:
     digest:
