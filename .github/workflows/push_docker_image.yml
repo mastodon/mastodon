@@ -1,0 +1,38 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Push our docker image
+on:
+  push:
+    branches: [ hota/master ]
+  pull_request:
+    branches: [ hota/master ]
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  push_to_hub:
+    name: Push Docker image to Docker Registry
+    runs-on: ubuntu-latest
+    steps:
+      -
+        name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+      -
+        name: Login to Docker Registry
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.REGISTRY_USERNAME }}
+          password: ${{ secrets.REGISTRY_TOKEN }}
+      -
+        name: Checkout akane-blue/mastodon:hota/master
+        uses: actions/checkout@v2
+        with:
+          repository: akane-blue/mastodon
+          path: mastodon
+      -
+        name: Build and push to Docker Registry
+        uses: docker/build-push-action@v2
+        with:
+          context: mastodon
+          push: true
+          tags: ${{ secrets.REGISTRY_USERNAME }}/${{ secrets.REGISTRY_REPO }}:${{ secrets.REGISTRY_TAG }}
