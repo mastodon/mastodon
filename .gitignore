@@ -67,4 +67,6 @@ yarn-debug.log
 docker-compose.override.yml
 
 # This is forked repository, no need to use dependabot
-.github/
+/.github/*
+# but we want to use GitHub Actions
+!/.github/workflows/
