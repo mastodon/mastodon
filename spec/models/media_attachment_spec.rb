@@ -62,11 +62,23 @@ RSpec.describe MediaAttachment, type: :model do
   end
 
   describe '#to_param' do
-    let(:media_attachment) { Fabricate(:media_attachment) }
-    let(:shortcode)        { media_attachment.shortcode }
+    let(:media_attachment) { Fabricate(:media_attachment, shortcode: shortcode) }
+    let(:shortcode)        { nil }
 
-    it 'returns shortcode' do
-      expect(media_attachment.to_param).to eq shortcode
+    context 'when media attachment has a shortcode' do
+      let(:shortcode) { 'foo' }
+
+      it 'returns shortcode' do
+        expect(media_attachment.to_param).to eq shortcode
+      end
+    end
+
+    context 'when media attachment does not have a shortcode' do
+      let(:shortcode) { nil }
+
+      it 'returns string representation of id' do
+        expect(media_attachment.to_param).to eq media_attachment.id.to_s
+      end
     end
   end
 
