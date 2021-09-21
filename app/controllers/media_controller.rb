@@ -27,7 +27,14 @@ class MediaController < ApplicationController
   private
 
   def set_media_attachment
-    @media_attachment = MediaAttachment.attached.find_by!(shortcode: params[:id] || params[:medium_id])
+    id = params[:id] || params[:medium_id]
+    if id.nil?
+      return
+    elsif id.size == 19 # SecureRandom.url_safe(14)
+      @media_attachment = MediaAttachment.local.attached.find_by!(shortcode: id)
+    else
+      @media_attachment = MediaAttachment.local.attached.find_by!(id: id)
+    end
   end
 
   def verify_permitted_status!
