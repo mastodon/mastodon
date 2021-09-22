@@ -3022,13 +3022,13 @@ a.account__display-name {
     }
 
     @media screen and (max-height: 810px) {
-      .trends__item:nth-child(3) {
+      .trends__item:nth-of-type(3) {
         display: none;
       }
     }
 
     @media screen and (max-height: 720px) {
-      .trends__item:nth-child(2) {
+      .trends__item:nth-of-type(2) {
         display: none;
       }
     }
@@ -4732,6 +4732,13 @@ a.status-card.compact:hover {
           background: rgba($gold-star, 0.3);
         }
       }
+
+      &.disabled {
+        color: $white;
+        background-color: transparent;
+        cursor: default;
+        opacity: 0.4;
+      }
     }
   }
 }
@@ -5535,7 +5542,8 @@ a.status-card.compact:hover {
     opacity: 0.2;
   }
 
-  .video-player__buttons button {
+  .video-player__buttons button,
+  .video-player__buttons a {
     color: currentColor;
     opacity: 0.75;
 
@@ -7284,6 +7292,7 @@ noscript {
     &__account {
       display: flex;
       text-decoration: none;
+      overflow: hidden;
     }
 
     .account__avatar {

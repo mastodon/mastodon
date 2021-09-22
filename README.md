@@ -1,15 +1,15 @@
 ![Mastodon](https://i.imgur.com/NhZc40l.png)
 ========
 
-[![GitHub release](https://img.shields.io/github/release/tootsuite/mastodon.svg)][releases]
-[![Build Status](https://img.shields.io/circleci/project/github/tootsuite/mastodon.svg)][circleci]
-[![Code Climate](https://img.shields.io/codeclimate/maintainability/tootsuite/mastodon.svg)][code_climate]
+[![GitHub release](https://img.shields.io/github/release/mastodon/mastodon.svg)][releases]
+[![Build Status](https://img.shields.io/circleci/project/github/mastodon/mastodon.svg)][circleci]
+[![Code Climate](https://img.shields.io/codeclimate/maintainability/mastodon/mastodon.svg)][code_climate]
 [![Crowdin](https://d322cqt584bo4o.cloudfront.net/mastodon/localized.svg)][crowdin]
 [![Docker Pulls](https://img.shields.io/docker/pulls/tootsuite/mastodon.svg)][docker]
 
-[releases]: https://github.com/tootsuite/mastodon/releases
-[circleci]: https://circleci.com/gh/tootsuite/mastodon
-[code_climate]: https://codeclimate.com/github/tootsuite/mastodon
+[releases]: https://github.com/mastodon/mastodon/releases
+[circleci]: https://circleci.com/gh/mastodon/mastodon
+[code_climate]: https://codeclimate.com/github/mastodon/mastodon
 [crowdin]: https://crowdin.com/project/mastodon
 [docker]: https://hub.docker.com/r/tootsuite/mastodon/
 
@@ -82,7 +82,7 @@ Mastodon is **free, open-source software** licensed under **AGPLv3**.
 
 You can open issues for bugs you've found or features you think are missing. You can also submit pull requests to this repository, or submit translations using Crowdin. To get started, take a look at [CONTRIBUTING.md](CONTRIBUTING.md). If your contributions are accepted into Mastodon, you can request to be paid through [our OpenCollective](https://opencollective.com/mastodon).
 
-**IRC channel**: #mastodon on irc.freenode.net
+**IRC channel**: #mastodon on irc.libera.chat
 
 ## License
 

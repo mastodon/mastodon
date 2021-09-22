@@ -255,7 +255,7 @@ class MediaAttachment < ApplicationRecord
   after_commit :reset_parent_cache, on: :update
 
   before_create :prepare_description, unless: :local?
-  before_create :set_shortcode
+  before_create :set_unknown_type
   before_create :set_processing
 
   after_post_process :set_meta
@@ -301,15 +301,8 @@ class MediaAttachment < ApplicationRecord
 
   private
 
-  def set_shortcode
+  def set_unknown_type
     self.type = :unknown if file.blank? && !type_changed?
-
-    return unless local?
-
-    loop do
-      self.shortcode = SecureRandom.urlsafe_base64(14)
-      break if MediaAttachment.find_by(shortcode: shortcode).nil?
-    end
   end
 
   def prepare_description

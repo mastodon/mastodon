@@ -164,6 +164,7 @@ Rails.application.routes.draw do
     resources :aliases, only: [:index, :create, :destroy]
     resources :sessions, only: [:destroy]
     resources :featured_tags, only: [:index, :create, :destroy]
+    resources :login_activities, only: [:index]
   end
 
   resources :media, only: [:show] do
@@ -175,6 +176,7 @@ Rails.application.routes.draw do
   resources :invites, only: [:index, :create, :destroy]
   resources :filters, except: [:show]
   resource :relationships, only: [:show, :update]
+  resource :statuses_cleanup, controller: :statuses_cleanup, only: [:show, :update]
 
   get '/public', to: 'public_timelines#show', as: :public_timeline
   get '/media_proxy/:id/(*any)', to: 'media_proxy#show', as: :media_proxy
@@ -222,7 +224,7 @@ Rails.application.routes.draw do
         post :stop_delivery
       end
     end
-  
+
     resources :rules
 
     resources :reports, only: [:index, :show] do
@@ -282,6 +284,7 @@ Rails.application.routes.draw do
 
     resources :users, only: [] do
       resource :two_factor_authentication, only: [:destroy]
+      resource :sign_in_token_authentication, only: [:create, :destroy]
     end
 
     resources :custom_emojis, only: [:index, :new, :create] do

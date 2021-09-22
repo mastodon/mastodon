@@ -12,8 +12,6 @@ Bootsnap.setup(
   cache_dir:            File.expand_path('../tmp/cache', __dir__),
   development_mode:     ENV.fetch('RAILS_ENV', 'development') == 'development',
   load_path_cache:      true,
-  autoload_paths_cache: true,
-  disable_trace:        false,
   compile_cache_iseq:   false,
   compile_cache_yaml:   false
 )

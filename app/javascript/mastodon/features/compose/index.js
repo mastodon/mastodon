@@ -75,6 +75,7 @@ class Compose extends React.PureComponent {
     dispatch(openModal('CONFIRM', {
       message: intl.formatMessage(messages.logoutMessage),
       confirm: intl.formatMessage(messages.logoutConfirm),
+      closeWhenConfirm: false,
       onConfirm: () => logOut(),
     }));
 

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-REPOSITORY_NAME = 'tootsuite/mastodon'
+REPOSITORY_NAME = 'mastodon/mastodon'
 
 namespace :repo do
   desc 'Generate the AUTHORS.md file'
@@ -34,7 +34,7 @@ namespace :repo do
 
     file << <<~FOOTER
 
-      This document is provided for informational purposes only. Since it is only updated once per release, the version you are looking at may be currently out of date. To see the full list of contributors, consider looking at the [git history](https://github.com/tootsuite/mastodon/graphs/contributors) instead.
+      This document is provided for informational purposes only. Since it is only updated once per release, the version you are looking at may be currently out of date. To see the full list of contributors, consider looking at the [git history](https://github.com/mastodon/mastodon/graphs/contributors) instead.
     FOOTER
   end
 

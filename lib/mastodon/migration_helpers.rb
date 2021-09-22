@@ -41,6 +41,20 @@
 
 module Mastodon
   module MigrationHelpers
+    class CorruptionError < StandardError
+      def initialize(message = nil)
+        super(message.presence || 'Migration failed because of index corruption, see https://docs.joinmastodon.org/admin/troubleshooting/index-corruption/#fixing')
+      end
+
+      def cause
+        nil
+      end
+
+      def backtrace
+        []
+      end
+    end
+
     # Model that can be used for querying permissions of a SQL user.
     class Grant < ActiveRecord::Base
       self.table_name = 'information_schema.role_table_grants'
