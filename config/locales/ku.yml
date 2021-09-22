@@ -898,10 +898,17 @@ kmr-TR:
     publicize_toot: 'Hat eşkerekirin! Ez %{username} li ser %{service}: %{url}'
     remove: Di ajimêrê de delîla rabike
     removed: Delîl di ajimêrê de bi serkeftî hat rakirin
+    status: Piştrastkirina rewşê
+    view_proof: Delîlan nîşan bike
   imports:
+    errors:
+      over_rows_processing_limit: ji %{count} zêdetir rêzok hene
     modes:
+      merge: Bi hev re bike
+      merge_long: Tomarên heyî bigire û yên nû lê zêde bike
       overwrite: Bi ser de binivsîne
       overwrite_long: Tomarkirinên heyî bi yên nû re biguherîne
+    success: Daneyên te bi serkeftî hat barkirin û di dema xwe de were pêvajotin
     types:
       blocking: Rêzoka astengkirinê
       bookmarks: Şûnpel
@@ -936,9 +943,11 @@ kmr-TR:
       limit: Tu gihîştî hejmara rêzika a herî zêde
   login_activities:
     authentication_methods:
+      otp: sepana rastandina du-gavî
       password: pêborîn
       sign_in_token: koda ewlehiyê bo e-nameyê
       webauthn: kilîtên ewlehiyê
+    empty: Dîroka piştrastkirinê tune ye
   media_attachments:
     validations:
       too_many: Zedetirî 4 pelan nayê tevlêkirin
