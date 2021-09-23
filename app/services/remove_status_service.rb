@@ -7,7 +7,6 @@ class RemoveStatusService < BaseService
   # Delete a status
   # @param   [Status] status
   # @param   [Hash] options
-  # @option  [Boolean] :redraft
   # @option  [Boolean] :immediate
   # @option  [Boolean] :original_removed
   def call(status, **options)
@@ -135,7 +134,7 @@ class RemoveStatusService < BaseService
   end
 
   def remove_media
-    return if @options[:redraft] || (!@options[:immediate] && @status.reported?)
+    return if !@options[:immediate] && @status.reported?
 
     @status.media_attachments.destroy_all
   end

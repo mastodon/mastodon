@@ -45,7 +45,6 @@ import {
 } from '../actions/compose';
 import { TIMELINE_DELETE } from '../actions/timelines';
 import { STORE_HYDRATE } from '../actions/store';
-import { REDRAFT } from '../actions/statuses';
 import { Map as ImmutableMap, List as ImmutableList, OrderedSet as ImmutableOrderedSet, fromJS } from 'immutable';
 import uuid from '../uuid';
 import { me } from '../initial_state';
@@ -421,33 +420,6 @@ export default function compose(state = initialState, action) {
 
         return item;
       }));
-  case REDRAFT:
-    return state.withMutations(map => {
-      map.set('text', action.raw_text || unescapeHTML(expandMentions(action.status)));
-      map.set('in_reply_to', action.status.get('in_reply_to_id'));
-      map.set('privacy', action.status.get('visibility'));
-      map.set('media_attachments', action.status.get('media_attachments'));
-      map.set('focusDate', new Date());
-      map.set('caretPosition', null);
-      map.set('idempotencyKey', uuid());
-      map.set('sensitive', action.status.get('sensitive'));
-
-      if (action.status.get('spoiler_text').length > 0) {
-        map.set('spoiler', true);
-        map.set('spoiler_text', action.status.get('spoiler_text'));
-      } else {
-        map.set('spoiler', false);
-        map.set('spoiler_text', '');
-      }
-
-      if (action.status.get('poll')) {
-        map.set('poll', ImmutableMap({
-          options: action.status.getIn(['poll', 'options']).map(x => x.get('title')),
-          multiple: action.status.getIn(['poll', 'multiple']),
-          expires_in: expiresInFromExpiresAt(action.status.getIn(['poll', 'expires_at'])),
-        }));
-      }
-    });
   case COMPOSE_POLL_ADD:
     return state.set('poll', initialPoll);
   case COMPOSE_POLL_REMOVE:
