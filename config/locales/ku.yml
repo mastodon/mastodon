@@ -930,6 +930,7 @@ kmr-TR:
       merge_long: Tomarên heyî bigire û yên nû lê zêde bike
       overwrite: Bi ser de binivsîne
       overwrite_long: Tomarkirinên heyî bi yên nû re biguherîne
+    preface: Tu dikarî têxistin ê daneyên bike ku te ji rajekareke din derxistî ye wek rêzoka kesên ku tu dişopîne an jî asteng dike.
     success: Daneyên te bi serkeftî hat barkirin û di dema xwe de were pêvajotin
     types:
       blocking: Rêzoka astengkirinê
@@ -956,6 +957,7 @@ kmr-TR:
       one: 1 bikaranîn
       other: "%{count} bikaranîn"
     max_uses_prompt: Bê sînor
+    prompt: Girêdanan bi kesên din re çê bike û parve bike da ku bigihîjin vê rajekarê
     table:
       expires_at: Diqede
       uses: Bikaranîn
@@ -999,14 +1001,17 @@ kmr-TR:
       disabled_account: Ajimêra te ya heyî dê paşê bi tevahî neyê bikaranîn. Lê belê, tu dikarî bigihîje derxistinê daneyan û hem jî ji nû ve çalakkirinê.
       followers: Ev çalakî dê hemî şopînerên ji ajimêra heyî bar bike ajimêra nû
       only_redirect_html: Wekî din, tu dikarî <a href="%{path}"> tenê beralîkirinekê li ser profîla xwe bicîh bike </a>.
+      redirect: Profîla ajimêra te ya heyî dê bi nîşeyeke beralîkirinê were nûve kirin û ji lêgerînan were bi dûrxistin
   moderation:
     title: Çavdêrî
   move_handler:
     carry_blocks_over_text: Ev bikarhêner ji %{acct}, ku te astengkirî bû, bar kir.
     carry_mutes_over_text: Ev bikarhêner ji %{acct}, ku te bê deng kirbû, bar kir.
+    copy_account_note_text: 'Ev bikarhêner ji %{acct} livî ye, li vir nîşeyên te yên berê ku te di derbarê wî/ê de nivîsandiye:'
   notification_mailer:
     digest:
       action: Hemû agahdariyan nîşan bide
+      body: Li vir kurteyeke peyamên ku li te derbasbûnd ji serdana te ya dawîn di %{since} de
       mention: "%{name} behsa te kir:"
       new_followers_summary:
         one: Herwiha, dema tu dûr bûyî te şopînerek nû bi dest xist! Bijî!
