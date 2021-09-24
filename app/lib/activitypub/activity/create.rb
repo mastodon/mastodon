@@ -490,7 +490,16 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   def forward_for_reply
     return unless @status.distributable? && @json['signature'].present? && reply_to_local?
 
-    ActivityPub::RawDistributionWorker.perform_async(Oj.dump(@json), replied_to_status.account_id, [@account.preferred_inbox_url])
+    # If the status is replying to a local status, we should forward it
+    # everywhere where that local status was distributed
+
+    status_reach_finder = StatusReachFinder.new(@status)
+    sender_id           = replied_to_status.account_id
+    exclude_inboxes     = [@options[:relayed_through_account], @account].compact.map(&:preferred_inbox_url)
+
+    ActivityPub::LowPriorityDeliveryWorker.push_bulk(status_reach_finder.inboxes - exclude_inboxes) do |inbox_url|
+      [payload, sender_id, inbox_url]
+    end
   end
 
   def increment_voters_count!

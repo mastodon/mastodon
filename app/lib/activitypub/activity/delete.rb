@@ -37,22 +37,14 @@ class ActivityPub::Activity::Delete < ActivityPub::Activity
 
       return if @status.nil?
 
-      forward! if @json['signature'].present? && @status.distributable?
+      forward!
       delete_now!
     end
   end
 
-  def rebloggers_ids
-    return @rebloggers_ids if defined?(@rebloggers_ids)
-    @rebloggers_ids = @status.reblogs.includes(:account).references(:account).merge(Account.local).pluck(:account_id)
-  end
-
-  def inboxes_for_reblogs
-    Account.where(id: ::Follow.where(target_account_id: rebloggers_ids).select(:account_id)).inboxes
-  end
-
   def replied_to_status
     return @replied_to_status if defined?(@replied_to_status)
+
     @replied_to_status = @status.thread
   end
 
@@ -60,18 +52,19 @@ class ActivityPub::Activity::Delete < ActivityPub::Activity
     !replied_to_status.nil? && replied_to_status.account.local?
   end
 
-  def inboxes_for_reply
-    replied_to_status.account.followers.inboxes
-  end
-
   def forward!
-    inboxes = inboxes_for_reblogs
-    inboxes += inboxes_for_reply if reply_to_local?
-    inboxes -= [@account.preferred_inbox_url]
+    return unless @json['signature'].present? && @status.distributable?
 
-    sender_id = reply_to_local? ? replied_to_status.account_id : rebloggers_ids.first
+    # A remote status is being deleted. We could have local users that
+    # have reblogged it, who have remote followers. And if it's a reply
+    # to a local status, the parent would have forwarded it to
+    # lots of places
 
-    ActivityPub::LowPriorityDeliveryWorker.push_bulk(inboxes.uniq) do |inbox_url|
+    status_reach_finder = StatusReachFinder.new(@status)
+    sender_id           = Account.representative.id
+    exclude_inboxes     = [@options[:relayed_through_account], @account].compact.map(&:preferred_inbox_url)
+
+    ActivityPub::LowPriorityDeliveryWorker.push_bulk(status_reach_finder.inboxes - exclude_inboxes) do |inbox_url|
       [payload, sender_id, inbox_url]
     end
   end

@@ -1,33 +1,25 @@
 # frozen_string_literal: true
 
-class ActivityPub::MoveDistributionWorker
-  include Sidekiq::Worker
-  include Payloadable
-
-  sidekiq_options queue: 'push'
-
+class ActivityPub::MoveDistributionWorker < ActivityPub::UpdateDistributionWorker
+  # Distribute a move activity to all servers that might have a copy of the
+  # account in question, including places that blocked the account, so that
+  # they have a chance to re-block the new account too
   def perform(migration_id)
     @migration = AccountMigration.find(migration_id)
     @account   = @migration.account
 
-    ActivityPub::DeliveryWorker.push_bulk(inboxes) do |inbox_url|
-      [signed_payload, @account.id, inbox_url]
-    end
-
-    ActivityPub::DeliveryWorker.push_bulk(Relay.enabled.pluck(:inbox_url)) do |inbox_url|
-      [signed_payload, @account.id, inbox_url]
-    end
+    distribute!
   rescue ActiveRecord::RecordNotFound
     true
   end
 
-  private
+  protected
 
   def inboxes
-    @inboxes ||= (@migration.account.followers.inboxes + @migration.account.blocked_by.inboxes).uniq
+    @inboxes ||= AccountReachFinder.new(@account, with_blocking_accounts: true).inboxes
   end
 
-  def signed_payload
-    @signed_payload ||= Oj.dump(serialize_payload(@migration, ActivityPub::MoveSerializer, signer: @account))
+  def payload
+    @payload ||= Oj.dump(serialize_payload(@migration, ActivityPub::MoveSerializer, signer: @account))
   end
 end
