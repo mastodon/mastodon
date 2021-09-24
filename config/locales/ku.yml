@@ -697,6 +697,7 @@ kmr-TR:
       title: Hişyariyên pêşsazkirî bi rêve bibe
   admin_mailer:
     new_pending_account:
+      body: Zanyariyênn ajimêra nû li jêr in. Tu dikarî vê serîlêdanê bipejirîne an pûç bike.
       subject: (%{username}) ajimêrê nû ji bo vekolandina li ser %{instance}
     new_report:
       body: "%{reporter} ji %{target} ê ragihand"
@@ -753,6 +754,7 @@ kmr-TR:
     dont_have_your_security_key: Kilîda te ya ewlehiyê tune ye?
     forgot_password: Te pêborîna xwe jibîrkir?
     invalid_reset_password_token: Ji nû ve sazkirina pêborînê nederbasdar e an jî qediya ye. Jkx daxwaza yeka nû bike.
+    link_to_otp: Ji têlefona xwe an jî ji kodeke rizgarkirinê kodeke du-gavî binivîsine
     link_to_webauth: Amûra kilîta ewlehiya xwe bi kar bîne
     login: Têkeve
     logout: Derkeve
@@ -776,6 +778,7 @@ kmr-TR:
       account_status: Rewşa ajimêr
       confirming: Li benda pejirandina e-nameyê ne da ku biqede.
       functional: Ajimêra te êdî amade ye.
+      pending: Daxwaza te li benda vekolînê ji hêla xebatkarên me ye. Ev dibe ku hinek dem bigire. Heke daxwaza te were pejirandin tu yê e-nameyekê bistîne.
       redirecting_to: Ajimêra te neçalak e ji ber ku niha ber bi %{acct} ve tê beralîkirin.
     too_fast: Form pir zû hat şandin, dîsa biceribîne.
     trouble_logging_in: Têketina te de pirsgirêk çêdibe?
@@ -827,6 +830,7 @@ kmr-TR:
     success_msg: Ajimêra te bi serkeftî hate jêbirin
     warning:
       before: 'Berî ku tu pêşve biçî, jkx nvan nîşeyan bi baldarî bixwîne:'
+      caches: Naveroka ku ji hêla rajekarên din ve hatiye pêşbîrkirin dibe ku bimîne
       email_change_html: Tu dikarî navnîşana <a href="%{path}"> e-nameya xwe biguherînî </a> bêyî ku tu ajimêra xwe jê bibî
       email_contact_html: Heke ew hîn jî negihîştiye, tu dikarî ji bo alîkariyê <a href="mailto:%{email}">%{email}</a> e-nameyê bişînî
       email_reconfirmation_html: Heke te e-nameya pejirandinê nesitand, tu dikarî <a href="%{path}">dîsa daxwaz bike</a>
@@ -912,6 +916,7 @@ kmr-TR:
     active: Çalak
     authorize: Erê, bide rastandin
     errors:
+      failed: Girêdana şîfrekirinê têk çû. Ji kerema xwe dîsa biceribîne ji%{provider}.
       wrong_user: Dema ku wekî %{current} têketin dikî, ji bo %{proving} delîl nayê çêkirin. Wekî %{proving} têkeve û dîsa biceribîne.
     i_am_html: Ez %{username} li ser %{service}.
     identity: Nasname
@@ -1002,6 +1007,7 @@ kmr-TR:
       disabled_account: Ajimêra te ya heyî dê paşê bi tevahî neyê bikaranîn. Lê belê, tu dikarî bigihîje derxistinê daneyan û hem jî ji nû ve çalakkirinê.
       followers: Ev çalakî dê hemî şopînerên ji ajimêra heyî bar bike ajimêra nû
       only_redirect_html: Wekî din, tu dikarî <a href="%{path}"> tenê beralîkirinekê li ser profîla xwe bicîh bike </a>.
+      other_data: Daneyên din dê bi xweberî neyên livandin
       redirect: Profîla ajimêra te ya heyî dê bi nîşeyeke beralîkirinê were nûve kirin û ji lêgerînan were bi dûrxistin
   moderation:
     title: Çavdêrî
