@@ -44,7 +44,7 @@ en:
       rejecting_media: 'Media files from these servers will not be processed or stored, and no thumbnails will be displayed, requiring manual click-through to the original file:'
       rejecting_media_title: Filtered media
       silenced: 'Posts from these servers will be hidden in public timelines and conversations, and no notifications will be generated from their users interactions, unless you are following them:'
-      silenced_title: Silenced servers
+      silenced_title: Limited servers
       suspended: 'No data from these servers will be processed, stored or exchanged, making any interaction or communication with users from these servers impossible:'
       suspended_title: Suspended servers
     unavailable_content_html: Mastodon generally allows you to view content from and interact with users from any other server in the fediverse. These are the exceptions that have been made on this particular server.
@@ -119,6 +119,7 @@ en:
       demote: Demote
       destroyed_msg: "%{username}'s data is now queued to be deleted imminently"
       disable: Freeze
+      disable_sign_in_token_auth: Disable e-mail token authentication
       disable_two_factor_authentication: Disable 2FA
       disabled: Frozen
       display_name: Display name
@@ -127,6 +128,7 @@ en:
       email: Email
       email_status: Email status
       enable: Unfreeze
+      enable_sign_in_token_auth: Enable e-mail token authentication
       enabled: Enabled
       enabled_msg: Successfully unfroze %{username}'s account
       followers: Followers
@@ -151,7 +153,7 @@ en:
         active: Active
         all: All
         pending: Pending
-        silenced: Silenced
+        silenced: Limited
         suspended: Suspended
         title: Moderation
       moderation_notes: Moderation notes
@@ -191,8 +193,12 @@ en:
       search: Search
       search_same_email_domain: Other users with the same e-mail domain
       search_same_ip: Other users with the same IP
-      sensitive: Sensitive
-      sensitized: marked as sensitive
+      security_measures:
+        only_password: Only password
+        password_and_2fa: Password and 2FA
+        password_and_sign_in_token: Password and e-mail token
+      sensitive: Force-sensitive
+      sensitized: Marked as sensitive
       shared_inbox_url: Shared inbox URL
       show:
         created_reports: Made reports
@@ -207,10 +213,10 @@ en:
       time_in_queue: Waiting in queue %{time}
       title: Accounts
       unconfirmed_email: Unconfirmed email
-      undo_sensitized: Undo sensitive
-      undo_silenced: Undo silence
+      undo_sensitized: Undo force-sensitive
+      undo_silenced: Undo limit
       undo_suspension: Undo suspension
-      unsilenced_msg: Successfully unlimited %{username}'s account
+      unsilenced_msg: Successfully undid limit of %{username}'s account
       unsubscribe: Unsubscribe
       unsuspended_msg: Successfully unsuspended %{username}'s account
       username: Username
@@ -236,14 +242,16 @@ en:
         destroy_custom_emoji: Delete Custom Emoji
         destroy_domain_allow: Delete Domain Allow
         destroy_domain_block: Delete Domain Block
-        destroy_email_domain_block: Delete e-mail domain block
+        destroy_email_domain_block: Delete E-mail Domain Block
         destroy_ip_block: Delete IP rule
         destroy_status: Delete Post
         destroy_unavailable_domain: Delete Unavailable Domain
         disable_2fa_user: Disable 2FA
         disable_custom_emoji: Disable Custom Emoji
+        disable_sign_in_token_auth_user: Disable E-mail Token Authentication for User
         disable_user: Disable User
         enable_custom_emoji: Enable Custom Emoji
+        enable_sign_in_token_auth_user: Enable E-mail Token Authentication for User
         enable_user: Enable User
         memorialize_account: Memorialize Account
         promote_user: Promote User
@@ -251,12 +259,12 @@ en:
         reopen_report: Reopen Report
         reset_password_user: Reset Password
         resolve_report: Resolve Report
-        sensitive_account: Mark the media in your account as sensitive
-        silence_account: Silence Account
+        sensitive_account: Force-Sensitive Account
+        silence_account: Limit Account
         suspend_account: Suspend Account
         unassigned_report: Unassign Report
-        unsensitive_account: Unmark the media in your account as sensitive
-        unsilence_account: Unsilence Account
+        unsensitive_account: Undo Force-Sensitive Account
+        unsilence_account: Undo Limit Account
         unsuspend_account: Unsuspend Account
         update_announcement: Update Announcement
         update_custom_emoji: Update Custom Emoji
@@ -285,8 +293,10 @@ en:
         destroy_unavailable_domain_html: "%{name} resumed delivery to domain %{target}"
         disable_2fa_user_html: "%{name} disabled two factor requirement for user %{target}"
         disable_custom_emoji_html: "%{name} disabled emoji %{target}"
+        disable_sign_in_token_auth_user_html: "%{name} disabled e-mail token authentication for %{target}"
         disable_user_html: "%{name} disabled login for user %{target}"
         enable_custom_emoji_html: "%{name} enabled emoji %{target}"
+        enable_sign_in_token_auth_user_html: "%{name} enabled e-mail token authentication for %{target}"
         enable_user_html: "%{name} enabled login for user %{target}"
         memorialize_account_html: "%{name} turned %{target}'s account into a memoriam page"
         promote_user_html: "%{name} promoted user %{target}"
@@ -295,11 +305,11 @@ en:
         reset_password_user_html: "%{name} reset password of user %{target}"
         resolve_report_html: "%{name} resolved report %{target}"
         sensitive_account_html: "%{name} marked %{target}'s media as sensitive"
-        silence_account_html: "%{name} silenced %{target}'s account"
+        silence_account_html: "%{name} limited %{target}'s account"
         suspend_account_html: "%{name} suspended %{target}'s account"
         unassigned_report_html: "%{name} unassigned report %{target}"
         unsensitive_account_html: "%{name} unmarked %{target}'s media as sensitive"
-        unsilence_account_html: "%{name} unsilenced %{target}'s account"
+        unsilence_account_html: "%{name} undid limit of %{target}'s account"
         unsuspend_account_html: "%{name} unsuspended %{target}'s account"
         update_announcement_html: "%{name} updated announcement %{target}"
         update_custom_emoji_html: "%{name} updated emoji %{target}"
@@ -421,14 +431,14 @@ en:
       rejecting_media: rejecting media files
       rejecting_reports: rejecting reports
       severity:
-        silence: silenced
+        silence: limited
         suspend: suspended
       show:
         affected_accounts:
           one: One account in the database affected
           other: "%{count} accounts in the database affected"
         retroactive:
-          silence: Unsilence existing affected accounts from this domain
+          silence: Undo limit of existing affected accounts from this domain
           suspend: Unsuspend existing affected accounts from this domain
         title: Undo domain block for %{domain}
         undo: Undo
@@ -569,6 +579,7 @@ en:
       resolved: Resolved
       resolved_msg: Report successfully resolved!
       status: Status
+      target_origin: Origin of reported account
       title: Reports
       unassign: Unassign
       unresolved: Unresolved
@@ -1243,6 +1254,7 @@ en:
     preferences: Preferences
     profile: Profile
     relationships: Follows and followers
+    statuses_cleanup: Automated post deletion
     two_factor_authentication: Two-factor Auth
     webauthn_authentication: Security keys
   statuses:
@@ -1294,6 +1306,40 @@ en:
       public_long: Everyone can see
       unlisted: Unlisted
       unlisted_long: Everyone can see, but not listed on public timelines
+  statuses_cleanup:
+    enabled: Automatically delete old posts
+    enabled_hint: Automatically deletes your posts once they reach a specified age threshold, unless they match one of the exceptions below
+    exceptions: Exceptions
+    explanation: Because deleting posts is an expensive operation, this is done slowly over time when the server is not otherwise busy. For this reason, your posts may be deleted a while after they reach the age threshold.
+    ignore_favs: Ignore favourites
+    ignore_reblogs: Ignore boosts
+    interaction_exceptions: Exceptions based on interactions
+    interaction_exceptions_explanation: Note that there is no guarantee for posts to be deleted if they go below the favourite or boost threshold after having once gone over them.
+    keep_direct: Keep direct messages
+    keep_direct_hint: Doesn't delete any of your direct messages
+    keep_media: Keep posts with media attachments
+    keep_media_hint: Doesn't delete any of your posts that have media attachments
+    keep_pinned: Keep pinned posts
+    keep_pinned_hint: Doesn't delete any of your pinned posts
+    keep_polls: Keep polls
+    keep_polls_hint: Doesn't delete any of your polls
+    keep_self_bookmark: Keep posts you bookmarked
+    keep_self_bookmark_hint: Doesn't delete your own posts if you have bookmarked them
+    keep_self_fav: Keep posts you favourited
+    keep_self_fav_hint: Doesn't delete your own posts if you have favourited them
+    min_age:
+      '1209600': 2 weeks
+      '15778476': 6 months
+      '2629746': 1 month
+      '31556952': 1 year
+      '5259492': 2 months
+      '63113904': 2 years
+      '7889238': 3 months
+    min_age_label: Age threshold
+    min_favs: Keep posts favourited more than
+    min_favs_hint: Doesn't delete any of your posts that has received more than this amount of favourites. Leave blank to delete posts regardless of their number of favourites
+    min_reblogs: Keep posts boosted more than
+    min_reblogs_hint: Doesn't delete any of your posts that has been boosted more than this number of times. Leave blank to delete posts regardless of their number of boosts
   stream_entries:
     pinned: Pinned post
     reblogged: boosted
@@ -1463,7 +1509,7 @@ en:
     otp_lost_help_html: If you lost access to both, you may get in touch with %{email}
     seamless_external_login: You are logged in via an external service, so password and e-mail settings are not available.
     signed_in_as: 'Signed in as:'
-    suspicious_sign_in_confirmation: You appear to not have logged in from this device before, and you haven't logged in for a while, so we're sending a security code to your e-mail address to confirm that it's you.
+    suspicious_sign_in_confirmation: You appear to not have logged in from this device before, so we're sending a security code to your e-mail address to confirm that it's you.
   verification:
     explanation_html: 'You can <strong>verify yourself as the owner of the links in your profile metadata</strong>. For that, the linked website must contain a link back to your Mastodon profile. The link back <strong>must</strong> have a <code>rel="me"</code> attribute. The text content of the link does not matter. Here is an example:'
     verification: Verification

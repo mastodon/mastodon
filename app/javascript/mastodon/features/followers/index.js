@@ -43,7 +43,6 @@ class Followers extends ImmutablePureComponent {
   static propTypes = {
     params: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired,
-    shouldUpdateScroll: PropTypes.func,
     accountIds: ImmutablePropTypes.list,
     hasMore: PropTypes.bool,
     isLoading: PropTypes.bool,
@@ -73,7 +72,7 @@ class Followers extends ImmutablePureComponent {
   }, 300, { leading: true });
 
   render () {
-    const { shouldUpdateScroll, accountIds, hasMore, blockedBy, isAccount, multiColumn, isLoading, remote, remoteUrl } = this.props;
+    const { accountIds, hasMore, blockedBy, isAccount, multiColumn, isLoading, remote, remoteUrl } = this.props;
 
     if (!isAccount) {
       return (
@@ -112,7 +111,6 @@ class Followers extends ImmutablePureComponent {
           hasMore={hasMore}
           isLoading={isLoading}
           onLoadMore={this.handleLoadMore}
-          shouldUpdateScroll={shouldUpdateScroll}
           prepend={<HeaderContainer accountId={this.props.params.accountId} hideTabs />}
           alwaysPrepend
           append={remoteMessage}

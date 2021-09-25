@@ -14,7 +14,7 @@ services:
 
   redis:
     restart: always
-    image: redis:6.2-alpine
+    image: redis:6-alpine
     networks:
       - internal_network
     healthcheck:
