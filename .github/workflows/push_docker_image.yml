@@ -1,11 +1,8 @@
-# This is a basic workflow to help you get started with Actions
-
 name: Push our docker image
 on:
   push:
-    branches: [ hota/master ]
-  pull_request:
-    branches: [ hota/master ]
+    branches:
+      - hota/**
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
@@ -24,15 +21,24 @@ jobs:
           username: ${{ secrets.REGISTRY_USERNAME }}
           password: ${{ secrets.REGISTRY_TOKEN }}
       -
-        name: Checkout akane-blue/mastodon:hota/master
+        name: Checkout akane-blue/mastodon
         uses: actions/checkout@v2
         with:
           repository: akane-blue/mastodon
           path: mastodon
+      -
+        name: Get latest branch name
+        id: set_tag
+        run: |
+          cd mastodon
+          DOCKER_TAG="$(echo ${GITHUB_REF} | sed -e 's/.*\///g' -e 's/-/_/g')"
+          # Use Docker `latest` tag convention
+          [ "$DOCKER_TAG" == "master" ] && DOCKER_TAG=latest
+          echo "::set-output name=docker_tag::${DOCKER_TAG}"
       -
         name: Build and push to Docker Registry
         uses: docker/build-push-action@v2
         with:
           context: mastodon
           push: true
-          tags: ${{ secrets.REGISTRY_USERNAME }}/${{ secrets.REGISTRY_REPO }}:${{ secrets.REGISTRY_TAG }}
+          tags: ${{ secrets.REGISTRY_USERNAME }}/${{ secrets.REGISTRY_REPO }}:${{steps.set_tag.outputs.docker_tag}}
