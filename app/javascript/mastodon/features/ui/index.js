@@ -158,8 +158,8 @@ class SwitchingColumnsArea extends React.PureComponent {
           <WrappedRoute path={['/public', '/timelines/public']} exact component={PublicTimeline} content={children} />
           <WrappedRoute path={['/public/local', '/timelines/public/local']} exact component={CommunityTimeline} content={children} />
           <WrappedRoute path={['/conversations', '/timelines/direct']} component={DirectTimeline} content={children} />
-          <WrappedRoute path={['/tags/:id', '/timelines/tag/:id']} component={HashtagTimeline} content={children} />
-          <WrappedRoute path={['/lists/:id', '/timelines/list/:id']} component={ListTimeline} content={children} />
+          <WrappedRoute path='/tags/:id' component={HashtagTimeline} content={children} />
+          <WrappedRoute path='/lists/:id' component={ListTimeline} content={children} />
           <WrappedRoute path='/notifications' component={Notifications} content={children} />
           <WrappedRoute path='/favourites' component={FavouritedStatuses} content={children} />
 
@@ -176,9 +176,16 @@ class SwitchingColumnsArea extends React.PureComponent {
           <WrappedRoute path={['/@:acct/followers', '/accounts/:id/followers']} component={Followers} content={children} />
           <WrappedRoute path={['/@:acct/following', '/accounts/:id/following']} component={Following} content={children} />
           <WrappedRoute path={['/@:acct/media', '/accounts/:id/media']} component={AccountGallery} content={children} />
-          <WrappedRoute path={['/@:acct/:statusId', '/statuses/:statusId']} exact component={Status} content={children} />
-          <WrappedRoute path={['/@:acct/:statusId/reblogs', '/statuses/:statusId/reblogs']} component={Reblogs} content={children} />
-          <WrappedRoute path={['/@:acct/:statusId/favourites', '/statuses/:statusId/favourites']} component={Favourites} content={children} />
+          <WrappedRoute path='/@:acct/:statusId' exact component={Status} content={children} />
+          <WrappedRoute path='/@:acct/:statusId/reblogs' component={Reblogs} content={children} />
+          <WrappedRoute path='/@:acct/:statusId/favourites' component={Favourites} content={children} />
+
+          {/* Legacy routes, cannot be easily factored with other routes because they share a param name */}
+          <WrappedRoute path='/timelines/tag/:id' component={HashtagTimeline} content={children} />
+          <WrappedRoute path='/timelines/list/:id' component={ListTimeline} content={children} />
+          <WrappedRoute path='/statuses/:statusId' exact component={Status} content={children} />
+          <WrappedRoute path='/statuses/:statusId/reblogs' component={Reblogs} content={children} />
+          <WrappedRoute path='/statuses/:statusId/favourites' component={Favourites} content={children} />
 
           <WrappedRoute path='/follow_requests' component={FollowRequests} content={children} />
           <WrappedRoute path='/blocks' component={Blocks} content={children} />
