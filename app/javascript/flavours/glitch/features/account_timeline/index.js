@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
-import { fetchAccount } from 'flavours/glitch/actions/accounts';
+import { lookupAccount, fetchAccount } from 'flavours/glitch/actions/accounts';
 import { expandAccountFeaturedTimeline, expandAccountTimeline } from 'flavours/glitch/actions/timelines';
 import StatusList from '../../components/status_list';
 import LoadingIndicator from '../../components/loading_indicator';
@@ -19,10 +19,19 @@ import TimelineHint from 'flavours/glitch/components/timeline_hint';
 
 const emptyList = ImmutableList();
 
-const mapStateToProps = (state, { params: { accountId }, withReplies = false }) => {
+const mapStateToProps = (state, { params: { acct }, withReplies = false }) => {
+  const accountId = state.getIn(['accounts_map', acct]);
+
+  if (!accountId) {
+    return {
+      isLoading: true,
+    };
+  }
+
   const path = withReplies ? `${accountId}:with_replies` : accountId;
 
   return {
+    accountId,
     remote: !!(state.getIn(['accounts', accountId, 'acct']) !== state.getIn(['accounts', accountId, 'username'])),
     remoteUrl: state.getIn(['accounts', accountId, 'url']),
     isAccount: !!state.getIn(['accounts', accountId]),
@@ -46,7 +55,10 @@ export default @connect(mapStateToProps)
 class AccountTimeline extends ImmutablePureComponent {
 
   static propTypes = {
-    params: PropTypes.object.isRequired,
+    params: PropTypes.shape({
+      acct: PropTypes.string.isRequired,
+    }).isRequired,
+    accountId: PropTypes.string,
     dispatch: PropTypes.func.isRequired,
     statusIds: ImmutablePropTypes.list,
     featuredStatusIds: ImmutablePropTypes.list,
@@ -60,25 +72,47 @@ class AccountTimeline extends ImmutablePureComponent {
     multiColumn: PropTypes.bool,
   };
 
-  componentWillMount () {
-    const { params: { accountId }, withReplies } = this.props;
+  _load () {
+    const { accountId, withReplies, dispatch } = this.props;
 
-    this.props.dispatch(fetchAccount(accountId));
-    this.props.dispatch(fetchAccountIdentityProofs(accountId));
+    dispatch(fetchAccount(accountId));
+    dispatch(fetchAccountIdentityProofs(accountId));
     if (!withReplies) {
-      this.props.dispatch(expandAccountFeaturedTimeline(accountId));
+      dispatch(expandAccountFeaturedTimeline(accountId));
     }
-    this.props.dispatch(expandAccountTimeline(accountId, { withReplies }));
+    dispatch(expandAccountTimeline(accountId, { withReplies }));
+  }
+
+  componentDidMount () {
+    const { params: { acct }, accountId, dispatch } = this.props;
+ 
+    if (accountId) {
+      this._load();
+    } else {
+      dispatch(lookupAccount(acct));
+    }
+  }
+
+  componentDidUpdate (prevProps) {
+    const { params: { acct }, accountId, dispatch } = this.props;
+
+    if (prevProps.accountId !== accountId && accountId) {
+      this._load();
+    } else if (prevProps.params.acct !== acct) {
+      dispatch(lookupAccount(acct));
+    }
   }
 
   componentWillReceiveProps (nextProps) {
+    const { dispatch } = this.props;
+
     if ((nextProps.params.accountId !== this.props.params.accountId && nextProps.params.accountId) || nextProps.withReplies !== this.props.withReplies) {
-      this.props.dispatch(fetchAccount(nextProps.params.accountId));
-      this.props.dispatch(fetchAccountIdentityProofs(nextProps.params.accountId));
+      dispatch(fetchAccount(nextProps.params.accountId));
+      dispatch(fetchAccountIdentityProofs(nextProps.params.accountId));
       if (!nextProps.withReplies) {
-        this.props.dispatch(expandAccountFeaturedTimeline(nextProps.params.accountId));
+        dispatch(expandAccountFeaturedTimeline(nextProps.params.accountId));
       }
-      this.props.dispatch(expandAccountTimeline(nextProps.params.accountId, { withReplies: nextProps.params.withReplies }));
+      dispatch(expandAccountTimeline(nextProps.params.accountId, { withReplies: nextProps.params.withReplies }));
     }
   }
 
@@ -87,7 +121,7 @@ class AccountTimeline extends ImmutablePureComponent {
   }
 
   handleLoadMore = maxId => {
-    this.props.dispatch(expandAccountTimeline(this.props.params.accountId, { maxId, withReplies: this.props.withReplies }));
+    this.props.dispatch(expandAccountTimeline(this.props.accountId, { maxId, withReplies: this.props.withReplies }));
   }
 
   setRef = c => {
@@ -131,7 +165,7 @@ class AccountTimeline extends ImmutablePureComponent {
         <ProfileColumnHeader onClick={this.handleHeaderClick} multiColumn={multiColumn} />
 
         <StatusList
-          prepend={<HeaderContainer accountId={this.props.params.accountId} />}
+          prepend={<HeaderContainer accountId={this.props.accountId} />}
           alwaysPrepend
           append={remoteMessage}
           scrollKey='account_timeline'

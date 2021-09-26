@@ -346,7 +346,9 @@ class Status extends ImmutablePureComponent {
         return;
       } else {
         if (destination === undefined) {
-          destination = `/statuses/${
+          destination = `/@${
+            status.getIn(['reblog', 'account', 'acct'], status.getIn(['account', 'acct']))
+          }/${
             status.getIn(['reblog', 'id'], status.get('id'))
           }`;
         }
@@ -360,16 +362,6 @@ class Status extends ImmutablePureComponent {
 
   handleToggleMediaVisibility = () => {
     this.setState({ showMedia: !this.state.showMedia });
-  }
-
-  handleAccountClick = (e) => {
-    if (this.context.router && e.button === 0) {
-      const id = e.currentTarget.getAttribute('data-id');
-      e.preventDefault();
-      let state = {...this.context.router.history.location.state};
-      state.mastodonBackSteps = (state.mastodonBackSteps || 0) + 1;
-      this.context.router.history.push(`/accounts/${id}`, state);
-    }
   }
 
   handleExpandedToggle = () => {
@@ -433,13 +425,13 @@ class Status extends ImmutablePureComponent {
   handleHotkeyOpen = () => {
     let state = {...this.context.router.history.location.state};
     state.mastodonBackSteps = (state.mastodonBackSteps || 0) + 1;
-    this.context.router.history.push(`/statuses/${this.props.status.get('id')}`, state);
+    this.context.router.history.push(`/@${status.getIn(['account', 'acct'])}/${status.get('id')}`, state);
   }
 
   handleHotkeyOpenProfile = () => {
     let state = {...this.context.router.history.location.state};
     state.mastodonBackSteps = (state.mastodonBackSteps || 0) + 1;
-    this.context.router.history.push(`/accounts/${this.props.status.getIn(['account', 'id'])}`, state);
+    this.context.router.history.push(`/@${this.props.status.getIn(['account', 'acct'])}`, state);
   }
 
   handleHotkeyMoveUp = e => {

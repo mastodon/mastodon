@@ -78,6 +78,7 @@ const mapStateToProps = state => ({
   hicolorPrivacyIcons: state.getIn(['local_settings', 'hicolor_privacy_icons']),
   moved: state.getIn(['accounts', me, 'moved']) && state.getIn(['accounts', state.getIn(['accounts', me, 'moved'])]),
   firstLaunch: state.getIn(['settings', 'introductionVersion'], 0) < INTRODUCTION_VERSION,
+  username: state.getIn(['accounts', me, 'username']),
 });
 
 const keyMap = {
@@ -190,7 +191,7 @@ class SwitchingColumnsArea extends React.PureComponent {
   render () {
     const { children, navbarUnder } = this.props;
     const singleColumn = this.state.mobile;
-    const redirect = singleColumn ? <Redirect from='/' to='/timelines/home' exact /> : <Redirect from='/' to='/getting-started' exact />;
+    const redirect = singleColumn ? <Redirect from='/' to='/home' exact /> : <Redirect from='/' to='/getting-started' exact />;
 
     return (
       <ColumnsAreaContainer ref={this.setRef} singleColumn={singleColumn} navbarUnder={navbarUnder}>
@@ -198,32 +199,32 @@ class SwitchingColumnsArea extends React.PureComponent {
           {redirect}
           <WrappedRoute path='/getting-started' component={GettingStarted} content={children} />
           <WrappedRoute path='/keyboard-shortcuts' component={KeyboardShortcuts} content={children} />
-          <WrappedRoute path='/timelines/home' component={HomeTimeline} content={children} />
-          <WrappedRoute path='/timelines/public' exact component={PublicTimeline} content={children} />
-          <WrappedRoute path='/timelines/public/local' exact component={CommunityTimeline} content={children} />
-          <WrappedRoute path='/timelines/direct' component={DirectTimeline} content={children} />
-          <WrappedRoute path='/timelines/tag/:id' component={HashtagTimeline} content={children} />
-          <WrappedRoute path='/timelines/list/:id' component={ListTimeline} content={children} />
 
+          <WrappedRoute path='/home' component={HomeTimeline} content={children} />
+          <WrappedRoute path='/public' exact component={PublicTimeline} content={children} />
+          <WrappedRoute path='/public/local' exact component={CommunityTimeline} content={children} />
+          <WrappedRoute path='/conversations' component={DirectTimeline} content={children} />
+          <WrappedRoute path='/tags/:id' component={HashtagTimeline} content={children} />
+          <WrappedRoute path='/lists/:id' component={ListTimeline} content={children} />
           <WrappedRoute path='/notifications' component={Notifications} content={children} />
           <WrappedRoute path='/favourites' component={FavouritedStatuses} content={children} />
+
           <WrappedRoute path='/bookmarks' component={BookmarkedStatuses} content={children} />
           <WrappedRoute path='/pinned' component={PinnedStatuses} content={children} />
 
           <WrappedRoute path='/start' component={FollowRecommendations} content={children} />
           <WrappedRoute path='/search' component={Search} content={children} />
           <WrappedRoute path='/directory' component={Directory} content={children} />
+          <WrappedRoute path='/publish' component={Compose} content={children} />
 
-          <WrappedRoute path='/statuses/new' component={Compose} content={children} />
-          <WrappedRoute path='/statuses/:statusId' exact component={Status} content={children} />
-          <WrappedRoute path='/statuses/:statusId/reblogs' component={Reblogs} content={children} />
-          <WrappedRoute path='/statuses/:statusId/favourites' component={Favourites} content={children} />
-
-          <WrappedRoute path='/accounts/:accountId' exact component={AccountTimeline} content={children} />
-          <WrappedRoute path='/accounts/:accountId/with_replies' component={AccountTimeline} content={children} componentParams={{ withReplies: true }} />
-          <WrappedRoute path='/accounts/:accountId/followers' component={Followers} content={children} />
-          <WrappedRoute path='/accounts/:accountId/following' component={Following} content={children} />
-          <WrappedRoute path='/accounts/:accountId/media' component={AccountGallery} content={children} />
+          <WrappedRoute path='/@:acct' exact component={AccountTimeline} content={children} />
+          <WrappedRoute path='/@:acct/with_replies' component={AccountTimeline} content={children} componentParams={{ withReplies: true }} />
+          <WrappedRoute path='/@:acct/followers' component={Followers} content={children} />
+          <WrappedRoute path='/@:acct/following' component={Following} content={children} />
+          <WrappedRoute path='/@:acct/media' component={AccountGallery} content={children} />
+          <WrappedRoute path='/@:acct/:statusId' exact component={Status} content={children} />
+          <WrappedRoute path='/@:acct/:statusId/reblogs' component={Reblogs} content={children} />
+          <WrappedRoute path='/@:acct/:statusId/favourites' component={Favourites} content={children} />
 
           <WrappedRoute path='/follow_requests' component={FollowRequests} content={children} />
           <WrappedRoute path='/blocks' component={Blocks} content={children} />
@@ -265,6 +266,7 @@ class UI extends React.Component {
     showFaviconBadge: PropTypes.bool,
     moved: PropTypes.map,
     firstLaunch: PropTypes.bool,
+    username: PropTypes.string,
   };
 
   state = {
@@ -517,7 +519,7 @@ class UI extends React.Component {
   }
 
   handleHotkeyGoToHome = () => {
-    this.props.history.push('/timelines/home');
+    this.props.history.push('/home');
   }
 
   handleHotkeyGoToNotifications = () => {
@@ -525,15 +527,15 @@ class UI extends React.Component {
   }
 
   handleHotkeyGoToLocal = () => {
-    this.props.history.push('/timelines/public/local');
+    this.props.history.push('/public/local');
   }
 
   handleHotkeyGoToFederated = () => {
-    this.props.history.push('/timelines/public');
+    this.props.history.push('/public');
   }
 
   handleHotkeyGoToDirect = () => {
-    this.props.history.push('/timelines/direct');
+    this.props.history.push('/conversations');
   }
 
   handleHotkeyGoToStart = () => {
@@ -549,7 +551,7 @@ class UI extends React.Component {
   }
 
   handleHotkeyGoToProfile = () => {
-    this.props.history.push(`/accounts/${me}`);
+    this.props.history.push(`/@${this.props.username}`);
   }
 
   handleHotkeyGoToBlocked = () => {
@@ -616,7 +618,7 @@ class UI extends React.Component {
               id='moved_to_warning'
               defaultMessage='This account is marked as moved to {moved_to_link}, and may thus not accept new follows.'
               values={{ moved_to_link: (
-                <PermaLink href={moved.get('url')} to={`/accounts/${moved.get('id')}`}>
+                <PermaLink href={moved.get('url')} to={`/@${moved.get('acct')}`}>
                   @{moved.get('acct')}
                 </PermaLink>
               )}}

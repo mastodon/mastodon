@@ -23,7 +23,7 @@ export default class MovedNote extends ImmutablePureComponent {
       e.preventDefault();
       let state = {...this.context.router.history.location.state};
       state.mastodonBackSteps = (state.mastodonBackSteps || 0) + 1;
-      this.context.router.history.push(`/accounts/${this.props.to.get('id')}`, state);
+      this.context.router.history.push(`/@${this.props.to.get('acct')}`, state);
     }
 
     e.stopPropagation();

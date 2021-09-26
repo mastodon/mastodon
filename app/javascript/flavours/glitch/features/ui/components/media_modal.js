@@ -112,15 +112,6 @@ class MediaModal extends ImmutablePureComponent {
     }));
   };
 
-  handleStatusClick = e => {
-    if (e.button === 0 && !(e.ctrlKey || e.metaKey)) {
-      e.preventDefault();
-      this.context.router.history.push(`/statuses/${this.props.statusId}`);
-    }
-
-    this._sendBackgroundColor();
-  }
-
   componentDidUpdate (prevProps, prevState) {
     if (prevState.index !== this.state.index) {
       this._sendBackgroundColor();

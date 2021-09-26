@@ -45,7 +45,7 @@ class FollowRequest extends ImmutablePureComponent {
 
   handleOpenProfile = () => {
     const { notification } = this.props;
-    this.context.router.history.push(`/accounts/${notification.getIn(['account', 'id'])}`);
+    this.context.router.history.push(`/@${notification.getIn(['account', 'acct'])}`);
   }
 
   handleMention = e => {
@@ -89,7 +89,7 @@ class FollowRequest extends ImmutablePureComponent {
         className='notification__display-name'
         href={account.get('url')}
         title={account.get('acct')}
-        to={`/accounts/${account.get('id')}`}
+        to={`/@${account.get('acct')}`}
         dangerouslySetInnerHTML={{ __html: displayName }}
       /></bdi>
     );
@@ -111,7 +111,7 @@ class FollowRequest extends ImmutablePureComponent {
 
           <div className='account'>
             <div className='account__wrapper'>
-              <Permalink key={account.get('id')} className='account__display-name' title={account.get('acct')} href={account.get('url')} to={`/accounts/${account.get('id')}`}>
+              <Permalink key={account.get('id')} className='account__display-name' title={account.get('acct')} href={account.get('url')} to={`/@${account.get('acct')}`}>
                 <div className='account__avatar-wrapper'><Avatar account={account} size={36} /></div>
                 <DisplayName account={account} />
               </Permalink>

@@ -40,6 +40,7 @@ import announcements from './announcements';
 import markers from './markers';
 import account_notes from './account_notes';
 import picture_in_picture from './picture_in_picture';
+import accounts_map from './accounts_map';
 
 const reducers = {
   announcements,
@@ -54,6 +55,7 @@ const reducers = {
   status_lists,
   accounts,
   accounts_counters,
+  accounts_map,
   statuses,
   relationships,
   settings,

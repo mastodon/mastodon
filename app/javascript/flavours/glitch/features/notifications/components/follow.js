@@ -39,7 +39,7 @@ export default class NotificationFollow extends ImmutablePureComponent {
 
   handleOpenProfile = () => {
     const { notification } = this.props;
-    this.context.router.history.push(`/accounts/${notification.getIn(['account', 'id'])}`);
+    this.context.router.history.push(`/@${notification.getIn(['account', 'acct'])}`);
   }
 
   handleMention = e => {
@@ -70,7 +70,7 @@ export default class NotificationFollow extends ImmutablePureComponent {
         className='notification__display-name'
         href={account.get('url')}
         title={account.get('acct')}
-        to={`/accounts/${account.get('id')}`}
+        to={`/@${account.get('acct')}`}
         dangerouslySetInnerHTML={{ __html: displayName }}
       /></bdi>
     );

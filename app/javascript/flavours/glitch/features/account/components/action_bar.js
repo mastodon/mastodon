@@ -62,17 +62,17 @@ class ActionBar extends React.PureComponent {
 
         <div className='account__action-bar'>
           <div className='account__action-bar-links'>
-            <NavLink isActive={this.isStatusesPageActive} activeClassName='active' className='account__action-bar__tab' to={`/accounts/${account.get('id')}`}>
+            <NavLink isActive={this.isStatusesPageActive} activeClassName='active' className='account__action-bar__tab' to={`/@${account.get('acct')}`}>
               <FormattedMessage id='account.posts' defaultMessage='Posts' />
               <strong><FormattedNumber value={account.get('statuses_count')} /></strong>
             </NavLink>
 
-            <NavLink exact activeClassName='active' className='account__action-bar__tab' to={`/accounts/${account.get('id')}/following`}>
+            <NavLink exact activeClassName='active' className='account__action-bar__tab' to={`/@${account.get('acct')}/following`}>
               <FormattedMessage id='account.follows' defaultMessage='Follows' />
               <strong><FormattedNumber value={account.get('following_count')} /></strong>
             </NavLink>
 
-            <NavLink exact activeClassName='active' className='account__action-bar__tab' to={`/accounts/${account.get('id')}/followers`}>
+            <NavLink exact activeClassName='active' className='account__action-bar__tab' to={`/@${account.get('acct')}/followers`}>
               <FormattedMessage id='account.followers' defaultMessage='Followers' />
               <strong>{ account.get('followers_count') < 0 ? '-' : <FormattedNumber value={account.get('followers_count')} /> }</strong>
             </NavLink>
