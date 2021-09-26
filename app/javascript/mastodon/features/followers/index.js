@@ -7,6 +7,7 @@ import { debounce } from 'lodash';
 import LoadingIndicator from '../../components/loading_indicator';
 import {
   lookupAccount,
+  fetchAccount,
   fetchFollowers,
   expandFollowers,
 } from '../../actions/accounts';
@@ -69,8 +70,9 @@ class Followers extends ImmutablePureComponent {
   };
 
   _load () {
-    const { accountId, dispatch } = this.props;
+    const { accountId, isAccount, dispatch } = this.props;
 
+    if (!isAccount) dispatch(fetchAccount(accountId));
     dispatch(fetchFollowers(accountId));
   }
 

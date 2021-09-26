@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
-import { lookupAccount } from 'mastodon/actions/accounts';
+import { lookupAccount, fetchAccount } from 'mastodon/actions/accounts';
 import { expandAccountMediaTimeline } from '../../actions/timelines';
 import LoadingIndicator from 'mastodon/components/loading_indicator';
 import Column from '../ui/components/column';
@@ -83,8 +83,9 @@ class AccountGallery extends ImmutablePureComponent {
   };
 
   _load () {
-    const { accountId, dispatch } = this.props;
+    const { accountId, isAccount, dispatch } = this.props;
 
+    if (!isAccount) dispatch(fetchAccount(accountId));
     dispatch(expandAccountMediaTimeline(accountId));
   }
 
