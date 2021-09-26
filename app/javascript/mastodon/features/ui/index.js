@@ -171,11 +171,11 @@ class SwitchingColumnsArea extends React.PureComponent {
           <WrappedRoute path='/directory' component={Directory} content={children} />
           <WrappedRoute path={['/publish', '/statuses/new']} component={Compose} content={children} />
 
-          <WrappedRoute path='/@:acct' exact component={AccountTimeline} content={children} />
-          <WrappedRoute path='/@:acct/with_replies' component={AccountTimeline} content={children} componentParams={{ withReplies: true }} />
-          <WrappedRoute path='/@:acct/followers' component={Followers} content={children} />
-          <WrappedRoute path='/@:acct/following' component={Following} content={children} />
-          <WrappedRoute path='/@:acct/media' component={AccountGallery} content={children} />
+          <WrappedRoute path={['/@:acct', '/accounts/:id']} exact component={AccountTimeline} content={children} />
+          <WrappedRoute path={['/@:acct/with_replies', '/accounts/:id/with_replies']} component={AccountTimeline} content={children} componentParams={{ withReplies: true }} />
+          <WrappedRoute path={['/@:acct/followers', '/accounts/:id/followers']} component={Followers} content={children} />
+          <WrappedRoute path={['/@:acct/following', '/accounts/:id/following']} component={Following} content={children} />
+          <WrappedRoute path={['/@:acct/media', '/accounts/:id/media']} component={AccountGallery} content={children} />
           <WrappedRoute path={['/@:acct/:statusId', '/statuses/:statusId']} exact component={Status} content={children} />
           <WrappedRoute path={['/@:acct/:statusId/reblogs', '/statuses/:statusId/reblogs']} component={Reblogs} content={children} />
           <WrappedRoute path={['/@:acct/:statusId/favourites', '/statuses/:statusId/favourites']} component={Favourites} content={children} />

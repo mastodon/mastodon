@@ -19,8 +19,8 @@ import ScrollableList from '../../components/scrollable_list';
 import MissingIndicator from 'mastodon/components/missing_indicator';
 import TimelineHint from 'mastodon/components/timeline_hint';
 
-const mapStateToProps = (state, { params: { acct } }) => {
-  const accountId = state.getIn(['accounts_map', acct]);
+const mapStateToProps = (state, { params: { acct, id } }) => {
+  const accountId = id || state.getIn(['accounts_map', acct]);
 
   if (!accountId) {
     return {
@@ -53,7 +53,8 @@ class Followers extends ImmutablePureComponent {
 
   static propTypes = {
     params: PropTypes.shape({
-      acct: PropTypes.string.isRequired,
+      acct: PropTypes.string,
+      id: PropTypes.string,
     }).isRequired,
     accountId: PropTypes.string,
     dispatch: PropTypes.func.isRequired,
