@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
-import { fetchAccount } from 'flavours/glitch/actions/accounts';
+import { lookupAccount, fetchAccount } from 'flavours/glitch/actions/accounts';
 import { expandAccountMediaTimeline } from 'flavours/glitch/actions/timelines';
 import LoadingIndicator from 'flavours/glitch/components/loading_indicator';
 import Column from 'flavours/glitch/features/ui/components/column';
@@ -16,8 +16,8 @@ import LoadMore from 'flavours/glitch/components/load_more';
 import MissingIndicator from 'flavours/glitch/components/missing_indicator';
 import { openModal } from 'flavours/glitch/actions/modal';
 
-const mapStateToProps = (state, { params: { acct } }) => {
-  const accountId = state.getIn(['accounts_map', acct]);
+const mapStateToProps = (state, { params: { acct, id } }) => {
+  const accountId = id || state.getIn(['accounts_map', acct]);
 
   if (!accountId) {
     return {
@@ -62,7 +62,8 @@ class AccountGallery extends ImmutablePureComponent {
 
   static propTypes = {
     params: PropTypes.shape({
-      acct: PropTypes.string.isRequired,
+      acct: PropTypes.string,
+      id: PropTypes.string,
     }).isRequired,
     accountId: PropTypes.string,
     dispatch: PropTypes.func.isRequired,
@@ -79,8 +80,9 @@ class AccountGallery extends ImmutablePureComponent {
   };
 
   _load () {
-    const { accountId, dispatch } = this.props;
+    const { accountId, isAccount, dispatch } = this.props;
 
+    if (!isAccount) dispatch(fetchAccount(accountId));
     dispatch(expandAccountMediaTimeline(accountId));
   }
 

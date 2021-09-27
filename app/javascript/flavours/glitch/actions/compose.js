@@ -177,7 +177,7 @@ export function submitCompose(routerHistory) {
       },
     }).then(function (response) {
       if (routerHistory
-          && routerHistory.location.pathname === '/publish'
+          && (routerHistory.location.pathname === '/publish' || routerHistory.location.pathname === '/statuses/new')
           && window.history.state
           && !getState().getIn(['compose', 'advanced_options', 'threaded_mode'])) {
         routerHistory.goBack();
