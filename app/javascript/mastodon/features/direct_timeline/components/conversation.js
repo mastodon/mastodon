@@ -81,7 +81,7 @@ class Conversation extends ImmutablePureComponent {
       markRead();
     }
 
-    this.context.router.history.push(`/statuses/${lastStatus.get('id')}`);
+    this.context.router.history.push(`/@${lastStatus.getIn(['account', 'acct'])}/${lastStatus.get('id')}`);
   }
 
   handleMarkAsRead = () => {
