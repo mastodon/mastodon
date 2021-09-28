@@ -20,8 +20,8 @@ import { connectTimeline, disconnectTimeline } from 'mastodon/actions/timelines'
 
 const emptyList = ImmutableList();
 
-const mapStateToProps = (state, { params: { acct }, withReplies = false }) => {
-  const accountId = state.getIn(['accounts_map', acct]);
+const mapStateToProps = (state, { params: { acct, id }, withReplies = false }) => {
+  const accountId = id || state.getIn(['accounts_map', acct]);
 
   if (!accountId) {
     return {
@@ -58,7 +58,8 @@ class AccountTimeline extends ImmutablePureComponent {
 
   static propTypes = {
     params: PropTypes.shape({
-      acct: PropTypes.string.isRequired,
+      acct: PropTypes.string,
+      id: PropTypes.string,
     }).isRequired,
     accountId: PropTypes.string,
     dispatch: PropTypes.func.isRequired,

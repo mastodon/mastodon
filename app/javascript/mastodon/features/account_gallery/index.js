@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
-import { lookupAccount } from 'mastodon/actions/accounts';
+import { lookupAccount, fetchAccount } from 'mastodon/actions/accounts';
 import { expandAccountMediaTimeline } from '../../actions/timelines';
 import LoadingIndicator from 'mastodon/components/loading_indicator';
 import Column from '../ui/components/column';
@@ -17,8 +17,8 @@ import MissingIndicator from 'mastodon/components/missing_indicator';
 import { openModal } from 'mastodon/actions/modal';
 import { FormattedMessage } from 'react-intl';
 
-const mapStateToProps = (state, { params: { acct } }) => {
-  const accountId = state.getIn(['accounts_map', acct]);
+const mapStateToProps = (state, { params: { acct, id } }) => {
+  const accountId = id || state.getIn(['accounts_map', acct]);
 
   if (!accountId) {
     return {
@@ -64,7 +64,8 @@ class AccountGallery extends ImmutablePureComponent {
 
   static propTypes = {
     params: PropTypes.shape({
-      acct: PropTypes.string.isRequired,
+      acct: PropTypes.string,
+      id: PropTypes.string,
     }).isRequired,
     accountId: PropTypes.string,
     dispatch: PropTypes.func.isRequired,
@@ -82,8 +83,9 @@ class AccountGallery extends ImmutablePureComponent {
   };
 
   _load () {
-    const { accountId, dispatch } = this.props;
+    const { accountId, isAccount, dispatch } = this.props;
 
+    if (!isAccount) dispatch(fetchAccount(accountId));
     dispatch(expandAccountMediaTimeline(accountId));
   }
 
