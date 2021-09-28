@@ -86,7 +86,7 @@ class AccountTimeline extends ImmutablePureComponent {
 
   componentDidMount () {
     const { params: { acct }, accountId, dispatch } = this.props;
- 
+
     if (accountId) {
       this._load();
     } else {
