@@ -946,7 +946,11 @@ kmr-TR:
     authorize_connection_prompt: Tu dixwazî ev girêdana şîfrekirinê bidî rastandin?
     errors:
       failed: Girêdana şîfrekirinê têk çû. Ji kerema xwe dîsa biceribîne ji%{provider}.
+      keybase:
+        invalid_token: Nîşanên Keybase beşek ji îmzeyan in û divê 66 tîpên hex bin
+        verification_failed: Keybase vê wekî îmzeya bikarhênerê %{kb_username} nas nake. Ji kerema xwe ji Keybase dîsa biceribîne.
       wrong_user: Dema ku wekî %{current} têketin dikî, ji bo %{proving} delîl nayê çêkirin. Wekî %{proving} têkeve û dîsa biceribîne.
+    explanation_html: Li vir tu dikarî nasnameyên xwe yên din ji platformên din, wek Keybase, bi şîfrekî ve girê bidî. Ev dihêle mirovên din ji te re peyamên şîfrekirî li ser wan platforman bişînin û dihêle ew pê bawer bin ku naveroka ku tu ji wan re dişînin ji te tê.
     i_am_html: Ez %{username} li ser %{service}.
     identity: Nasname
     inactive: Neçalak e
@@ -1012,6 +1016,7 @@ kmr-TR:
     title: Dîroka piştrastkirinê
   media_attachments:
     validations:
+      images_and_video: Nikare vîdyoyekê tevlî şandiyê ku berê wêne tê de heye bike
       too_many: Zedetirî 4 pelan nayê tevlêkirin
   migrations:
     acct: Hate lîvandin bo
@@ -1167,6 +1172,8 @@ kmr-TR:
       proceed: Bersivandinê bidomîne
       prompt: 'Tu dixwazî bersiva vê şandiyê bidî:'
   scheduled_statuses:
+    over_daily_limit: Te sînorê %{limit} şandiyên demsazkirî yên ji bo îro derbas kir
+    over_total_limit: Te sînorê %{limit} şandiyên demsazkirî derbas kir
     too_soon: Dîroka bernamesazkirinê divê dîrokeke ji îro pêşvetir be
   sessions:
     activity: Çalakiya dawî
