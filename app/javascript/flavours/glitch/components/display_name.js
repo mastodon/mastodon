@@ -61,7 +61,7 @@ export default class DisplayName extends React.PureComponent {
         <a
           href={a.get('url')}
           target='_blank'
-          onClick={(e) => onAccountClick(a.get('id'), e)}
+          onClick={(e) => onAccountClick(a.get('acct'), e)}
           title={`@${a.get('acct')}`}
           rel='noopener noreferrer'
         >
@@ -76,7 +76,7 @@ export default class DisplayName extends React.PureComponent {
       }
 
       suffix = (
-        <a href={account.get('url')} target='_blank' onClick={(e) => onAccountClick(account.get('id'), e)} rel='noopener noreferrer'>
+        <a href={account.get('url')} target='_blank' onClick={(e) => onAccountClick(account.get('acct'), e)} rel='noopener noreferrer'>
           <span className='display-name__account'>@{acct}</span>
         </a>
       );

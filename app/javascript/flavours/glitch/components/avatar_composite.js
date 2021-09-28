@@ -82,7 +82,7 @@ export default class AvatarComposite extends React.PureComponent {
       <a
         href={account.get('url')}
         target='_blank'
-        onClick={(e) => this.props.onAccountClick(account.get('id'), e)}
+        onClick={(e) => this.props.onAccountClick(account.get('acct'), e)}
         title={`@${account.get('acct')}`}
         key={account.get('id')}
       >

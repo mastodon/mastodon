@@ -15,13 +15,13 @@ export default class NavigationBar extends ImmutablePureComponent {
   render () {
     return (
       <div className='drawer--account'>
-        <Permalink className='avatar' href={this.props.account.get('url')} to={`/accounts/${this.props.account.get('id')}`}>
+        <Permalink className='avatar' href={this.props.account.get('url')} to={`/@${this.props.account.get('acct')}`}>
           <span style={{ display: 'none' }}>{this.props.account.get('acct')}</span>
           <Avatar account={this.props.account} size={48} />
         </Permalink>
 
         <div className='navigation-bar__profile'>
-          <Permalink className='acct' href={this.props.account.get('url')} to={`/accounts/${this.props.account.get('id')}`}>
+          <Permalink className='acct' href={this.props.account.get('url')} to={`/@${this.props.account.get('acct')}`}>
             <strong>@{this.props.account.get('acct')}</strong>
           </Permalink>
 

@@ -19,14 +19,14 @@ export default class StatusHeader extends React.PureComponent {
   };
 
   //  Handles clicks on account name/image
-  handleClick = (id, e) => {
+  handleClick = (acct, e) => {
     const { parseClick } = this.props;
-    parseClick(e, `/accounts/${id}`);
+    parseClick(e, `/@${acct}`);
   }
 
   handleAccountClick = (e) => {
     const { status } = this.props;
-    this.handleClick(status.getIn(['account', 'id']), e);
+    this.handleClick(status.getIn(['account', 'acct']), e);
   }
 
   //  Rendering.

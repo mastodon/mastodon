@@ -69,7 +69,7 @@ class BoostModal extends ImmutablePureComponent {
       this.props.onClose();
       let state = {...this.context.router.history.location.state};
       state.mastodonBackSteps = (state.mastodonBackSteps || 0) + 1;
-      this.context.router.history.push(`/accounts/${this.props.status.getIn(['account', 'id'])}`, state);
+      this.context.router.history.push(`/@${this.props.status.getIn(['account', 'acct'])}`, state);
     }
   }
 

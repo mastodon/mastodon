@@ -197,7 +197,7 @@ export default class StatusContent extends React.PureComponent {
 
   onMentionClick = (mention, e) => {
     if (this.props.parseClick) {
-      this.props.parseClick(e, `/accounts/${mention.get('id')}`);
+      this.props.parseClick(e, `/@${mention.get('acct')}`);
     }
   }
 
@@ -205,7 +205,7 @@ export default class StatusContent extends React.PureComponent {
     hashtag = hashtag.replace(/^#/, '');
 
     if (this.props.parseClick) {
-      this.props.parseClick(e, `/timelines/tag/${hashtag}`);
+      this.props.parseClick(e, `/tags/${hashtag}`);
     }
   }
 
@@ -277,7 +277,7 @@ export default class StatusContent extends React.PureComponent {
 
       const mentionLinks = status.get('mentions').map(item => (
         <Permalink
-          to={`/accounts/${item.get('id')}`}
+          to={`/@${item.get('acct')}`}
           href={item.get('url')}
           key={item.get('id')}
           className='mention'

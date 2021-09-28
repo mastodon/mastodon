@@ -23,14 +23,38 @@ store.dispatch(hydrateAction);
 // load custom emojis
 store.dispatch(fetchCustomEmojis());
 
+const createIdentityContext = state => ({
+  signedIn: !!state.meta.me,
+  accountId: state.meta.me,
+  accessToken: state.meta.access_token,
+});
+
 export default class Mastodon extends React.PureComponent {
 
   static propTypes = {
     locale: PropTypes.string.isRequired,
   };
 
+  static childContextTypes = {
+    identity: PropTypes.shape({
+      signedIn: PropTypes.bool.isRequired,
+      accountId: PropTypes.string,
+      accessToken: PropTypes.string,
+    }).isRequired,
+  };
+
+  identity = createIdentityContext(initialState);
+
+  getChildContext() {
+    return {
+      identity: this.identity,
+    };
+  }
+
   componentDidMount() {
-    this.disconnect = store.dispatch(connectUserStream());
+    if (this.identity.signedIn) {
+      this.disconnect = store.dispatch(connectUserStream());
+    }
   }
 
   componentWillUnmount () {
