@@ -62,12 +62,12 @@ class Account < ApplicationRecord
   MENTION_RE    = /(?<=^|[^\/[:word:]])@((#{USERNAME_RE})(?:@[[:word:]\.\-]+[[:word:]]+)?)/i
   URL_PREFIX_RE = /\Ahttp(s?):\/\/[^\/]+/
 
+  include Attachmentable
   include AccountAssociations
   include AccountAvatar
   include AccountFinderConcern
   include AccountHeader
   include AccountInteractions
-  include Attachmentable
   include Paginable
   include AccountCounters
   include DomainNormalizable
