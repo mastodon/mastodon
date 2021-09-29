@@ -114,6 +114,30 @@ RSpec.describe MediaAttachment, type: :model do
     end
   end
 
+  describe 'ogg with cover art' do
+    let(:media) { MediaAttachment.create(account: Fabricate(:account), file: attachment_fixture('boop.ogg')) }
+
+    it 'detects it as an audio file' do
+      expect(media.type).to eq 'audio'
+    end
+
+    it 'sets meta for the duration' do
+      expect(media.file.meta['original']['duration']).to be_within(0.05).of(0.235102)
+    end
+
+    it 'extracts thumbnail' do
+      expect(media.thumbnail.present?).to eq true
+    end
+
+    it 'extracts colors from thumbnail' do
+      expect(media.file.meta['colors']['background']).to eq '#3088d4'
+    end
+
+    it 'gives the file a random name' do
+      expect(media.file_file_name).to_not eq 'boop.ogg'
+    end
+  end
+
   describe 'jpeg' do
     let(:media) { MediaAttachment.create(account: Fabricate(:account), file: attachment_fixture('attachment.jpg')) }
 
