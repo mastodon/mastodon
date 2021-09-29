@@ -647,6 +647,7 @@ kmr-TR:
           open: Herkes dikare tomar bibe
         title: Awayê tomarkirinê
       show_known_fediverse_at_about_page:
+        desc_html: Dema ku neçalak be, demnameya gerdûnî ya ku ji rûpela zeviyê ve hatî girêdan tenê bi nîşandana naveroka herêmî tên sînorkirin
         title: Li ser rûpela demnameya ne naskirî naveroka giştî nîşan bide
       show_staff_badge:
         desc_html: Di rûpela bikarhêner da rozeta xebatkaran nîşan bike
@@ -695,9 +696,13 @@ kmr-TR:
       title: Şandiyên ajimêr
       with_media: Bi medya yê re
     system_checks:
+      database_schema_check:
+        message_html: Koçberiyên databasê yên li bendê hene. Ji kerema xwe wan bişopîne da ku bicîh bikî ku sepan wekî ku tê hêvî kirin tevbigere
       rules_check:
         action: Rêzikên rajekara bi rê ve bibe
         message_html: Te qet rêzikên rajekara diyar nekiriye.
+      sidekiq_process_check:
+        message_html: Pêvajoyên Sidekiq ên heyî ji bo %{value} di rêz (an) de tune ne. Ji kerema xwe sazkariyên Sidekiq a xwe binirxîne
     tags:
       accounts_today: Bikaranînên bêhempa yên îro
       accounts_week: Bikaranînên bêhempa yên vê heftê
