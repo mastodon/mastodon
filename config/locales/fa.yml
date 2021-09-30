@@ -307,6 +307,11 @@ fa:
         unassigned_report_html: "%{name} گزارش %{target} را از حالت محول شده خارج کرد"
         unsensitive_account_html: "%{name} علامت حساس رسانهٔ %{target} را برداشت"
         unsilence_account_html: "%{name} محدودیت حساب %{target} را برداشت"
+        unsuspend_account_html: "%{name} حساب %{target} را از تعلیق خارج کرد"
+        update_announcement_html: "%{name} اعلامیهٔ %{target} را به‌روز کرد"
+        update_custom_emoji_html: "%{name} شکلک %{target} را به‌روز کرد"
+        update_domain_block_html: "%{name} مسدودسازی دامنه را برای %{target} به‌روزرسانی کرد"
+        update_status_html: "%{name} نوشتهٔ %{target} را به‌روز کرد"
       deleted_status: "(نوشتهٔ پاک‌شده)"
       empty: هیچ گزارشی پیدا نشد.
       filter_by_action: پالایش بر اساس کنش
@@ -449,6 +454,7 @@ fa:
         title: مسدودسازی دامین ایمیل تازه
       title: مسدودسازی دامین‌های ایمیل
     follow_recommendations:
+      description_html: "<strong>پیشنهادات پیگیری به کاربران جدید کک می‌کند تا سریع‌تر محتوای جالب را پیدا کنند</strong>. زمانی که کاربری هنوز به اندازه کافی با دیگران تعامل نداشته است تا پیشنهادات پیگیری شخصی‌سازی‌شده دریافت کند، این حساب‌ها را به جای آن فهرست مشاهده خواهد کرد. این حساب‌ها به صورت روزانه و در ترکیب با بیشتری تعاملات و بالاترین دنبال‌کنندگان محلی برای یک زبان مشخص بازمحاسبه می‌شوند."
       language: برای زبان
       status: وضعیت
       title: پیشنهادهای پی‌گیری
@@ -460,7 +466,12 @@ fa:
       by_domain: دامین
       delivery:
         all: همه
+        clear: پاک کردن خطاهای تحول محتوا
+        restart: بازراه‌اندازی تحویل محتوا
+        stop: متوقف‌کردن تحویل محتوا
+        title: تحویل محتوا
         unavailable: ناموجود
+        unavailable_message: تحویل محتوا در دسترس نیست
         warning: هشدار
       delivery_available: پیام آماده است
       empty: هیج دامنه‌ای پیدا نشد.
