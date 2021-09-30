@@ -401,6 +401,8 @@ sv:
       total_blocked_by_us: Blockerad av oss
       total_followed_by_them: Följs av dem
       total_followed_by_us: Följs av oss
+      total_reported: Rapporter om dem
+      total_storage: Media-bilagor
     invites:
       deactivate_all: Inaktivera alla
       filter:
@@ -411,6 +413,7 @@ sv:
       title: Inbjudningar
     ip_blocks:
       add_new: Skapa regel
+      created_msg: Ny IP-regel lades framgångsrikt till
       delete: Radera
       expires_in:
         '1209600': 2 veckor
@@ -424,7 +427,10 @@ sv:
       title: IP-regler
     pending_accounts:
       title: Väntande konton (%{count})
+    relationships:
+      title: "%{acct}'s relationer"
     relays:
+      add_new: Lägg till nytt relä
       delete: Radera
       disable: Inaktivera
       disabled: Inaktiverad
@@ -433,11 +439,15 @@ sv:
       enabled: Aktivera
       save_and_enable: Spara och aktivera
       status: Status
+      title: Relä
     report_notes:
       created_msg: Anmälningsanteckning har skapats!
       destroyed_msg: Anmälningsanteckning har raderats!
     reports:
       account:
+        notes:
+          one: "%{count} anteckning"
+          other: "%{count} anteckningar"
         reports:
           one: "%{count} rapport"
           other: "%{count} rapporter"
@@ -465,6 +475,7 @@ sv:
       reported_by: Anmäld av
       resolved: Löst
       resolved_msg: Anmälan har lösts framgångsrikt!
+      status: Status
       target_origin: Ursprung för anmält konto
       title: Anmälningar
       unassign: Otilldela
@@ -506,6 +517,9 @@ sv:
       peers_api_enabled:
         desc_html: Domännamn denna instans har påträffat i fediverse
         title: Publicera lista över upptäckta instanser
+      profile_directory:
+        desc_html: Tillåt användare att upptäckas
+        title: Aktivera profil-mapp
       registrations:
         closed_message:
           desc_html: Visas på framsidan när registreringen är stängd. Du kan använda HTML-taggar
@@ -519,6 +533,8 @@ sv:
         require_invite_text:
           desc_html: När nyregistrering kräver manuellt godkännande, gör det obligatoriskt att fylla i text i fältet "Varför vill du gå med?"
           title: Kräv att nya användare fyller i en inbjudningsförfrågan
+      registrations_mode:
+        title: Registreringsläge
       show_known_fediverse_at_about_page:
         desc_html: När den växlas, kommer toots från hela fediverse visas på förhandsvisning. Annars visas bara lokala toots.
         title: Visa det kända fediverse på tidslinjens förhandsgranskning
