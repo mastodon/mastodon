@@ -519,4 +519,33 @@ RSpec.describe Auth::SessionsController, type: :controller do
       end
     end
   end
+
+  describe 'GET #webauthn_options' do
+    context 'with WebAuthn and OTP enabled as second factor' do
+      let(:domain) { "#{Rails.configuration.x.use_https ? 'https' : 'http' }://#{Rails.configuration.x.web_domain}" }
+
+      let(:fake_client) { WebAuthn::FakeClient.new(domain) }
+
+      let!(:user) do
+        Fabricate(:user, email: 'x@y.com', password: 'abcdefgh', otp_required_for_login: true, otp_secret: User.generate_otp_secret(32))
+      end
+
+      before do
+        user.update(webauthn_id: WebAuthn.generate_user_id)
+        public_key_credential = WebAuthn::Credential.from_create(fake_client.create)
+        user.webauthn_credentials.create(
+          nickname: 'SecurityKeyNickname',
+          external_id: public_key_credential.id,
+          public_key: public_key_credential.public_key,
+          sign_count: '1000'
+        )
+        post :create, params: { user: { email: user.email, password: user.password } }
+      end
+
+      it 'returns http success' do
+        get :webauthn_options
+        expect(response).to have_http_status :ok
+      end
+    end
+  end
 end
