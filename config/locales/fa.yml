@@ -292,8 +292,10 @@ fa:
         destroy_unavailable_domain_html: "%{name} تحویل محتوا به دامنه %{target} را از سر گرفت"
         disable_2fa_user_html: "%{name} ضرورت ورود دو مرحله‌ای را برای کاربر %{target} غیر فعال کرد"
         disable_custom_emoji_html: "%{name} شکلک %{target} را غیرفعال کرد"
+        disable_sign_in_token_auth_user_html: "%{name}، احراز هویت با توکن رایانامه را برای %{target} غیرفعال کرد"
         disable_user_html: "%{name} ورود را برای کاربر %{target} غیرفعال کرد"
         enable_custom_emoji_html: "%{name} شکلک %{target} را فعال کرد"
+        enable_sign_in_token_auth_user_html: "%{name}، احراز هویت با توکن رایانامه را برای %{target} فعال کرد"
         enable_user_html: "%{name} ورود را برای کاربر %{target} فعال کرد"
         memorialize_account_html: "%{name} حساب %{target} را تبدیل به صفحهٔ یادمان کرد"
         promote_user_html: "%{name} کاربر %{target} را ترفیع داد"
@@ -474,6 +476,8 @@ fa:
         unavailable_message: تحویل محتوا در دسترس نیست
         warning: هشدار
       delivery_available: پیام آماده است
+      delivery_error_days: زورهای خطای تحویل محتوا
+      delivery_error_hint: اگر تحویل محتوا به مدت %{count} روز ممکن نباشد، به طور خودکار به عنوان تحویل‌ناشونده علامت‌گذاری خواهد شد.
       empty: هیج دامنه‌ای پیدا نشد.
       known_accounts:
         one: "%{count} حساب شناخته‌شده"
@@ -577,6 +581,7 @@ fa:
     rules:
       add_new: افزودن قانون
       delete: حذف
+      description_html: در حالی که اکثر افراد ادعا می‌کنند که شرایط استفاده را خوانده و پذیرفته‌اند، افراد معمولا تا پیش از بروز مشکل این متن را مطالعه نمی‌کنند. <strong>پیدا کردن قوانین کارساز‌تان را با تبدیل‌شان به صورت فهرست برای کاربران تسهیل کنید.</strong> سعی کنید هر قانون را کوتاه و ساده نگاه دارید اما از آن طرف هم تلاش نکنید که آن‌ها به تعداد زیادی مورد جدا از هم تقسیم کنید.
       edit: ویرایش قانون
       empty: هنوز هیچ قانونی برای کارساز تعریف نشده.
       title: قوانین کارساز
@@ -687,9 +692,13 @@ fa:
       title: نوشته‌های حساب
       with_media: دارای عکس یا ویدیو
     system_checks:
+      database_schema_check:
+        message_html: تعداد مهاجرت پایگاه داده در انتظار انجام هستند. لطفا آن‌ها را اجرا کنید تا اطمینان یابید که برنامه مطابق انتظار رفتار خواهد کرد
       rules_check:
         action: مدیریت قانون‌های کارساز
         message_html: هیچ قانون کارسازی تعریف نکرده‌اید.
+      sidekiq_process_check:
+        message_html: صف(های) %{value} فاقد هیچونه فرایند Sidekiq هستند. لطفا تنظیمات Sidekiq خود را بازبینی کنید
     tags:
       accounts_today: کاربرد یکتا در امروز
       accounts_week: کاربرد یکتا در این هفته
@@ -710,6 +719,7 @@ fa:
       add_new: افزودن تازه
       delete: زدودن
       edit_preset: ویرایش هشدار پیش‌فرض
+      empty: هنز هیچ پیش‌تنظیم هشداری را تعریف نکرده‌اید.
       title: مدیریت هشدارهای پیش‌فرض
   admin_mailer:
     new_pending_account:
@@ -1419,6 +1429,7 @@ fa:
   time:
     formats:
       default: "%d %b %Y, %H:%M"
+      month: "%b %Y"
   two_factor_authentication:
     add: افزودن
     disable: غیرفعال‌کردن
