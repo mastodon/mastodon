@@ -49,6 +49,13 @@ module Attachmentable
     attachment.instance_write :file_name, [Paperclip::Interpolations.basename(attachment, :original), appropriate_extension(attachment)].delete_if(&:blank?).join('.')
   end
 
+  def set_file_extensions
+    self.class.attachment_definitions.each_key do |attachment_name|
+      attachment = send(attachment_name)
+      set_file_extension(attachment)
+    end
+  end
+
   def check_image_dimension(attachment)
     return if attachment.blank? || !/image.*/.match?(attachment.content_type) || attachment.queued_for_write[:original].blank?
 
