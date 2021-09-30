@@ -250,9 +250,17 @@ sv:
       filter_by_user: Filtrera efter användare
       title: Revisionslogg
     announcements:
+      edit:
+        title: Redigera tillkännagivande
+      empty: Inga tillkännagivanden hittades.
       live: Direkt
+      new:
+        create: Skapa tillkännagivande
+        title: Nytt tillkännagivande
       publish: Publicera
       scheduled_for: Schemalagd för %{time}
+      title: Tillkännagivanden
+      unpublish: Avpublicera
     custom_emojis:
       assign_category: Tilldela kategori
       by_domain: Domän
@@ -341,6 +349,10 @@ sv:
       public_comment: Offentlig kommentar
       reject_media: Avvisa mediafiler
       reject_media_hint: Raderar lokalt lagrade mediefiler och förhindrar möjligheten att ladda ner något i framtiden. Irrelevant för suspensioner
+      reject_reports: Avvisa rapporter
+      reject_reports_hint: Ignorera alla rapporter som kommer från den här domänen. Gäller inte för avstängningar
+      rejecting_media: avvisar media-filer
+      rejecting_reports: avvisar rapporter
       severity:
         silence: tystad
         suspend: avstängd
@@ -354,6 +366,7 @@ sv:
         title: Ångra domänblockering för %{domain}
         undo: Ångra
       undo: Ångra
+      view: Visa domänblock
     email_domain_blocks:
       add_new: Lägg till ny
       created_msg: E-postdomän har lagts till i domänblockslistan utan problem
@@ -367,6 +380,7 @@ sv:
         title: Ny E-postdomänblocklistningsinmatning
       title: E-postdomänblock
     follow_recommendations:
+      language: För språket
       status: Status
     instances:
       back_to_all: Alla
