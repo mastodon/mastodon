@@ -1,13 +1,12 @@
 # frozen_string_literal: true
 
 class HomeController < ApplicationController
+  include WebAppControllerConcern
+
   before_action :redirect_unauthenticated_to_permalinks!
   before_action :authenticate_user!
-  before_action :set_referrer_policy_header
 
-  def index
-    @body_classes = 'app-body'
-  end
+  def index; end
 
   private
 
@@ -25,9 +24,5 @@ class HomeController < ApplicationController
     else
       about_path
     end
-  end
-
-  def set_referrer_policy_header
-    response.headers['Referrer-Policy'] = 'origin'
   end
 end

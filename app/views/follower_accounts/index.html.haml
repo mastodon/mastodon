@@ -5,16 +5,4 @@
   %meta{ name: 'robots', content: 'noindex' }/
   = render 'accounts/og', account: @account, url: account_followers_url(@account, only_path: false)
 
-= render 'accounts/header', account: @account
-
-- if @account.user_hides_network?
-  .nothing-here= t('accounts.network_hidden')
-- elsif user_signed_in? && @account.blocking?(current_account)
-  .nothing-here= t('accounts.unavailable')
-- elsif @follows.empty?
-  = nothing_here
-- else
-  .card-grid
-    = render partial: 'application/card', collection: @follows.map(&:account), as: :account
-
-  = paginate @follows
+= render 'shared/web_app'

@@ -19,7 +19,7 @@
       .directory
         - if Setting.profile_directory
           .directory__tag
-            = optional_link_to Setting.profile_directory, explore_path do
+            = optional_link_to Setting.profile_directory, directory_path do
               %h4
                 = fa_icon 'address-book fw'
                 = t('about.discover_users')
