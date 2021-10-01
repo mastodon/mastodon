@@ -554,6 +554,9 @@ sv:
           desc_html: När nyregistrering kräver manuellt godkännande, gör det obligatoriskt att fylla i text i fältet "Varför vill du gå med?"
           title: Kräv att nya användare fyller i en inbjudningsförfrågan
       registrations_mode:
+        modes:
+          none: Ingen kan registrera
+          open: Alla kan registrera
         title: Registreringsläge
       show_known_fediverse_at_about_page:
         desc_html: När den växlas, kommer toots från hela fediverse visas på förhandsvisning. Annars visas bara lokala toots.
@@ -658,8 +661,10 @@ sv:
       prefix_invited_by_user: "@%{name} bjuder in dig att gå med i en Mastodon-server!"
       prefix_sign_up: Registrera dig på Mastodon idag!
     didnt_get_confirmation: Fick du inte instruktioner om bekräftelse?
+    dont_have_your_security_key: Har du inte din säkerhetsnyckel?
     forgot_password: Glömt ditt lösenord?
     invalid_reset_password_token: Lösenordsåterställningstoken är ogiltig eller utgått. Vänligen be om en ny.
+    link_to_otp: Ange en tvåfaktor-kod från din telefon eller en återställningskod
     login: Logga in
     logout: Logga ut
     migrate_account: Flytta till ett annat konto
@@ -669,6 +674,7 @@ sv:
       cas: CAS
       saml: SAML
     register: Registrera
+    registration_closed: "%{instance} accepterar inte nya medlemmar"
     resend_confirmation: Skicka instruktionerna om bekräftelse igen
     reset_password: Återställ lösenord
     security: Säkerhet
@@ -729,7 +735,11 @@ sv:
     warning:
       email_change_html: Du kan <a href="%{path}">ändra din e-postadress</a> utan att radera ditt konto
       irreversible: Du kan inte återställa eller återaktivera ditt konto
+      username_available: Ditt användarnamn kommer att bli tillgängligt igen
+      username_unavailable: Ditt användarnamn kommer att fortsätta vara otillgängligt
   directories:
+    directory: Profil-mapp
+    explanation: Upptäck användare baserat på deras intressen
     explore_mastodon: Utforska %{title}
   domain_validator:
     invalid_domain: är inte ett giltigt domännamn
@@ -1191,8 +1201,18 @@ sv:
     sign_in_token:
       title: Inloggningsförsök
     warning:
+      statuses: 'Specifikt för:'
+      subject:
+        disable: Ditt konto %{acct} har blivit fruset
+        none: Varning för %{acct}
+        silence: Ditt konto %{acct} har blivit begränsat
+        suspend: Ditt konto %{acct} har stängts av
       title:
+        disable: Kontot fruset
         none: Varning
+        sensitive: Ditt media har blivit markerat som känsligt
+        silence: Kontot begränsat
+        suspend: Kontot avstängt
     welcome:
       edit_profile_action: Profilinställning
       edit_profile_step: Du kan anpassa din profil genom att ladda upp en avatar, bakgrundsbild, ändra ditt visningsnamn och mer. Om du vill granska nya följare innan de får följa dig kan du låsa ditt konto.
@@ -1208,13 +1228,18 @@ sv:
       tip_following: Du följer din servers administratör(er) som standard. För att hitta fler intressanta personer, kolla de lokala och förenade tidslinjerna.
       tip_local_timeline: Den lokala tidslinjen är en störtflodsvy av personer på %{instance}. Det här är dina närmaste grannar!
       tip_mobile_webapp: Om din mobila webbläsare erbjuder dig att lägga till Mastodon på din hemskärm kan du få push-aviseringar. Det fungerar som en inbyggd app på många sätt!
+      tips: Tips
       title: Välkommen ombord, %{name}!
   users:
     follow_limit_reached: Du kan inte följa fler än %{limit} personer
+    generic_access_help_html: Har du problem med att komma åt ditt konto? Du kan komma i kontakt med %{email} för assistans
     invalid_otp_token: Ogiltig tvåfaktorskod
+    invalid_sign_in_token: Ogiltig säkerhetskod
     otp_lost_help_html: Om du förlorat åtkomst till båda kan du komma i kontakt med %{email}
     seamless_external_login: Du är inloggad via en extern tjänst, så lösenord och e-postinställningar är inte tillgängliga.
     signed_in_as: 'Inloggad som:'
+  verification:
+    verification: Bekräftelse
   webauthn_credentials:
     add: Lägg till ny säkerhetsnyckel
     delete: Radera
