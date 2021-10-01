@@ -244,6 +244,14 @@ sv:
         update_custom_emoji: Uppdatera egna emojis
         update_domain_block: Uppdatera blockerad domän
         update_status: Uppdatera status
+      actions:
+        create_account_warning_html: "%{name} skickade en varning till %{target}"
+        create_announcement_html: "%{name} skapade tillkännagivande %{target}"
+        create_custom_emoji_html: "%{name} laddade upp ny emoji %{target}"
+        destroy_status_html: "%{name} tog bort inlägget av %{target}"
+        disable_custom_emoji_html: "%{name} inaktiverade emoji %{target}"
+        disable_user_html: "%{name} stängde av inloggning för användaren %{target}"
+        enable_custom_emoji_html: "%{name} aktiverade emoji %{target}"
       deleted_status: "(raderad status)"
       empty: Inga loggar hittades.
       filter_by_action: Filtrera efter åtgärd
@@ -382,14 +390,22 @@ sv:
     follow_recommendations:
       language: För språket
       status: Status
+      title: Följ rekommendationer
     instances:
       back_to_all: Alla
+      back_to_limited: Begränsat
       back_to_warning: Varning
       by_domain: Domän
       delivery:
         all: Alla
+        clear: Rensa leverans-fel
+        restart: Starta om leverans
+        stop: Stoppa leverans
+        title: Leverans
         unavailable: Ej tillgänglig
+        unavailable_message: Leverans otillgängligt
         warning: Varning
+      delivery_available: Leverans är tillgängligt
       empty: Inga domäner hittades.
       moderation:
         all: Alla
