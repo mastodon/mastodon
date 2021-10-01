@@ -289,8 +289,10 @@ sv:
       publish: Publicera
       published_msg: Publiceringen av tillkännagivandet lyckades!
       scheduled_for: Schemalagd för %{time}
+      scheduled_msg: Tillkännagivandet schemalades för publicering!
       title: Tillkännagivanden
       unpublish: Avpublicera
+      updated_msg: Uppdatering av tillkännagivandet lyckades!
     custom_emojis:
       assign_category: Tilldela kategori
       by_domain: Domän
@@ -480,6 +482,7 @@ sv:
       enable_hint: När den är aktiverad kommer din server att prenumerera på alla publika toots från detta relay, och kommer att börja skicka serverns publika toots till den.
       enabled: Aktivera
       save_and_enable: Spara och aktivera
+      setup: Konfigurera en relä-anslutning
       status: Status
       title: Relä
     report_notes:
@@ -559,6 +562,8 @@ sv:
       peers_api_enabled:
         desc_html: Domännamn denna instans har påträffat i fediverse
         title: Publicera lista över upptäckta instanser
+      preview_sensitive_media:
+        title: Visa känsligt media i OpenGraph-förhandsvisningar
       profile_directory:
         desc_html: Tillåt användare att upptäckas
         title: Aktivera profil-mapp
@@ -577,6 +582,7 @@ sv:
           title: Kräv att nya användare fyller i en inbjudningsförfrågan
       registrations_mode:
         modes:
+          approved: Godkännande krävs för registrering
           none: Ingen kan registrera
           open: Alla kan registrera
         title: Registreringsläge
