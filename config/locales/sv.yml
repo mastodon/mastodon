@@ -1097,10 +1097,16 @@ sv:
     webauthn_authentication: Säkerhetsnycklar
   statuses:
     attached:
+      audio:
+        one: "%{count} ljud"
+        other: "%{count} ljud"
       description: 'Bifogad: %{attached}'
       image:
         one: "%{count} bild"
         other: "%{count} bilder"
+      video:
+        one: "%{count} video"
+        other: "%{count} videor"
     boosted_from_html: Boosted från %{acct_link}
     content_warning: 'Innehållsvarning: %{warning}'
     disallowed_hashtags:
@@ -1125,10 +1131,13 @@ sv:
         other: "%{count} röster"
       vote: Rösta
     show_more: Visa mer
+    show_newer: Visa nyare
+    show_older: Visa äldre
     show_thread: Visa tråd
     sign_in_to_participate: Logga in för att delta i konversationen
     title: '%{name}: "%{quote}"'
     visibilities:
+      direct: Direkt
       private: Endast följare
       private_long: Visa endast till följare
       public: Offentlig
@@ -1139,6 +1148,12 @@ sv:
     enabled: Ta automatiskt bort gamla inlägg
     exceptions: Undantag
     ignore_favs: Bortse från favoriter
+    keep_direct: Behåll direktmeddelanden
+    keep_direct_hint: Tar inte bort någon av dina direktmeddelanden
+    keep_media: Behåll inlägg med media-bilagor
+    keep_media_hint: Tar inte bort någon av dina inlägg som har media-bilagor
+    keep_pinned: Behåll fästade inlägg
+    keep_pinned_hint: Tar inte bort någon av dina fästade inlägg
     min_age:
       '1209600': 2 veckor
       '15778476': 6 månader
