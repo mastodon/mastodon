@@ -1154,6 +1154,11 @@ sv:
     keep_media_hint: Tar inte bort någon av dina inlägg som har media-bilagor
     keep_pinned: Behåll fästade inlägg
     keep_pinned_hint: Tar inte bort någon av dina fästade inlägg
+    keep_polls: Behåll undersökningar
+    keep_polls_hint: Tar inte bort någon av dina undersökningar
+    keep_self_bookmark: Behåller inlägg som du har bokmärkt
+    keep_self_bookmark_hint: Tar inte bort dina egna inlägg om du har bokmärkt dem
+    keep_self_fav: Behåll inlägg som du har favorit-märkt
     min_age:
       '1209600': 2 veckor
       '15778476': 6 månader
@@ -1162,10 +1167,13 @@ sv:
       '5259492': 2 månader
       '63113904': 2 år
       '7889238': 3 månader
+    min_age_label: Åldersgräns
   stream_entries:
     pinned: Fäst toot
     reblogged: boostad
     sensitive_content: Känsligt innehåll
+  tags:
+    does_not_match_previous_name: matchar inte det föregående namnet
   terms:
     body_html: |
       <h2>Integritetspolicy</h2>
@@ -1253,6 +1261,10 @@ sv:
     contrast: Hög kontrast
     default: Mastodon
     mastodon-light: Mastodon (ljust)
+  time:
+    formats:
+      default: "%b %d, %Y, %H:%M"
+      month: "%b %Y"
   two_factor_authentication:
     add: Lägg till
     disable: Inaktivera
@@ -1261,6 +1273,8 @@ sv:
     enabled_success: Tvåfaktorsautentisering aktiverad
     generate_recovery_codes: Generera återställningskoder
     lost_recovery_codes: Återställningskoder tillåter dig att få tillgång till ditt konto om du förlorar din telefon. Om du har förlorat dina återställningskoder kan du regenerera dem här. Dina gamla återställningskoder kommer att ogiltigförklaras.
+    methods: Två-faktormetoder
+    otp: Autentiseringsapp
     recovery_codes: Backup återställningskod
     recovery_codes_regenerated: Återställningskoder genererades på nytt
     recovery_instructions_html: Om du någonsin tappar åtkomst till din telefon kan du använda någon av återställningskoderna nedan för att återställa åtkomst till ditt konto. <strong> Håll återställningskoderna säkra </strong>. Du kan till exempel skriva ut dem och lagra dem med andra viktiga dokument.
@@ -1271,6 +1285,8 @@ sv:
       subject: Ditt arkiv är klart för nedladdning
       title: Arkivuttagning
     sign_in_token:
+      details: 'Här är detaljerna för försöket:'
+      further_actions: 'Om det inte var du, vänligen ändra ditt lösenord och aktivera tvåfaktor-autentisering i ditt konto. Du kan göra det här:'
       title: Inloggningsförsök
     warning:
       statuses: 'Specifikt för:'
