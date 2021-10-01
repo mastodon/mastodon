@@ -248,16 +248,37 @@ sv:
         create_account_warning_html: "%{name} skickade en varning till %{target}"
         create_announcement_html: "%{name} skapade tillkännagivande %{target}"
         create_custom_emoji_html: "%{name} laddade upp ny emoji %{target}"
+        destroy_custom_emoji_html: "%{name} förstörde emoji %{target}"
+        destroy_domain_block_html: "%{name} avblockerade domänen %{target}"
+        destroy_email_domain_block_html: "%{name} avblockerade e-postdomän %{target}"
+        destroy_ip_block_html: "%{name} tog bort regel för IP %{target}"
         destroy_status_html: "%{name} tog bort inlägget av %{target}"
         disable_custom_emoji_html: "%{name} inaktiverade emoji %{target}"
         disable_user_html: "%{name} stängde av inloggning för användaren %{target}"
         enable_custom_emoji_html: "%{name} aktiverade emoji %{target}"
+        enable_user_html: "%{name} aktiverade inloggning för användaren %{target}"
+        memorialize_account_html: "%{name} gjorde %{target}'s konto till en minnessida"
+        promote_user_html: "%{name} befordrade användaren %{target}"
+        remove_avatar_user_html: "%{name} tog bort %{target}'s avatar"
+        reopen_report_html: "%{name} öppnade rapporten igen %{target}"
+        reset_password_user_html: "%{name} återställ användarens lösenord %{target}"
+        resolve_report_html: "%{name} löste rapporten %{target}"
+        sensitive_account_html: "%{name} markerade %{target}'s media som känsligt"
+        silence_account_html: "%{name} begränsade %{target}'s konto"
+        suspend_account_html: "%{name} stängde av %{target}'s konto"
+        unsensitive_account_html: "%{name} avmarkerade %{target}'s media som känsligt"
+        unsuspend_account_html: "%{name} tog bort avstängningen av %{target}'s konto"
+        update_announcement_html: "%{name} uppdaterade tillkännagivandet %{target}"
+        update_custom_emoji_html: "%{name} uppdaterade emoji %{target}"
+        update_domain_block_html: "%{name} uppdaterade domän-block för %{target}"
+        update_status_html: "%{name} uppdaterade inlägget av %{target}"
       deleted_status: "(raderad status)"
       empty: Inga loggar hittades.
       filter_by_action: Filtrera efter åtgärd
       filter_by_user: Filtrera efter användare
       title: Revisionslogg
     announcements:
+      destroyed_msg: Borttagning av tillkännagivandet lyckades!
       edit:
         title: Redigera tillkännagivande
       empty: Inga tillkännagivanden hittades.
@@ -266,6 +287,7 @@ sv:
         create: Skapa tillkännagivande
         title: Nytt tillkännagivande
       publish: Publicera
+      published_msg: Publiceringen av tillkännagivandet lyckades!
       scheduled_for: Schemalagd för %{time}
       title: Tillkännagivanden
       unpublish: Avpublicera
@@ -939,7 +961,18 @@ sv:
       subject: "%{name} publicerade nyss"
   notifications:
     email_events: Händelser för e-postaviseringar
+    email_events_hint: 'Välj händelser som du vill ta emot aviseringar för:'
     other_settings: Andra aviseringsinställningar
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          billion: B
+          million: M
+          quadrillion: Q
+          thousand: K
+          trillion: T
   otp_authentication:
     enable: Aktivera
     setup: Konfigurera
