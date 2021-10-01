@@ -770,6 +770,7 @@ sv:
       account: Profiler
       home: Hem och listor
       notifications: Aviseringar
+      public: Publika tidslinjer
       thread: Konversationer
     edit:
       title: Redigera filter
@@ -796,12 +797,23 @@ sv:
       other: Något är inte riktigt rätt ännu! Kontrollera dom %{count} felen nedan
   identity_proofs:
     active: Aktiv
+    authorize: Ja, autentisera
+    authorize_connection_prompt: Autentisera den här kryptografiska anslutningen?
+    errors:
+      failed: Den kryptografiska anslutningen misslyckades. Vänligen försök igen från %{provider}.
     i_am_html: Jag är %{username} på %{service}.
     identity: Identitet
     inactive: Inaktiv
+    publicize_checkbox: 'Och tuta det här:'
+    publicize_toot: 'Det är bevisat! Jag är %{username} på %{service}: %{url}'
+    remove: Ta bort bevis från konto
+    status: Bekräftelse-status
+    view_proof: Visa bevis
   imports:
     errors:
       over_rows_processing_limit: innehåller fler än %{count} rader
+    modes:
+      overwrite: Skriv över
     preface: Du kan importera data som du exporterat från en annan instans, till exempel en lista över personer du följer eller blockerar.
     success: Dina uppgifter har laddats upp och kommer nu att behandlas snarast
     types:
@@ -839,13 +851,18 @@ sv:
   login_activities:
     authentication_methods:
       password: lösenord
+      webauthn: säkerhetsnycklar
+    description_html: Om du ser aktivitet som du inte känner igen, överväg att byta ditt lösenord och aktivera tvåfaktor-autentisering.
   media_attachments:
     validations:
       images_and_video: Det går inte att bifoga en video till en status som redan innehåller bilder
       too_many: Det går inte att bifoga mer än 4 filer
   migrations:
     acct: användarnamn@domän av det nya kontot
+    cancel: Avbryt omdirigering
     cancel_explanation: Avstängning av omdirigeringen kommer att återaktivera ditt nuvarande konto, men kommer inte att återskapa följare som har flyttats till det kontot.
+    errors:
+      already_moved: är samma konto som du redan har flyttat till
     incoming_migrations: Flyttar från ett annat konto
     proceed_with_move: Flytta följare
     redirected_msg: Ditt konto dirigeras om till %{acct}.
