@@ -863,9 +863,15 @@ sv:
     cancel_explanation: Avstängning av omdirigeringen kommer att återaktivera ditt nuvarande konto, men kommer inte att återskapa följare som har flyttats till det kontot.
     errors:
       already_moved: är samma konto som du redan har flyttat till
+      missing_also_known_as: är inte ett alias för det här kontot
+      move_to_self: kan inte vara nuvarande konto
+      not_found: kunde inte hittas
+      on_cooldown: Du är på nerkylning
     incoming_migrations: Flyttar från ett annat konto
+    past_migrations: Föregående migreringar
     proceed_with_move: Flytta följare
     redirected_msg: Ditt konto dirigeras om till %{acct}.
+    redirecting_to: Ditt konto omdirigerar till %{acct}.
   moderation:
     title: Moderera
   notification_mailer:
@@ -908,6 +914,7 @@ sv:
     other_settings: Andra aviseringsinställningar
   otp_authentication:
     enable: Aktivera
+    setup: Konfigurera
   pagination:
     newer: Nyare
     next: Nästa
@@ -916,6 +923,9 @@ sv:
     truncate: "&hellip;"
   polls:
     errors:
+      already_voted: Du har redan röstat på den här undersökningen
+      duration_too_long: är för långt in i framtiden
+      duration_too_short: är för tidigt
       invalid_choice: Det valda röstalternativet finns inte
   preferences:
     other: Annat
