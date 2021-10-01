@@ -926,16 +926,32 @@ sv:
       already_voted: Du har redan röstat på den här undersökningen
       duration_too_long: är för långt in i framtiden
       duration_too_short: är för tidigt
+      expired: Undersökningen har redan avslutats
       invalid_choice: Det valda röstalternativet finns inte
+      too_few_options: måste ha mer än ett objekt
+      too_many_options: kan inte innehålla mer än %{max} objekt
   preferences:
     other: Annat
+    public_timelines: Publika tidslinjer
+  reactions:
+    errors:
+      unrecognized_emoji: är inte en igenkänd emoji
   relationships:
     activity: Kontoaktivitet
+    dormant: Vilande
     follow_selected_followers: Följ valda personer
     followers: Följare
     following: Följer
     invited: Inbjuden
     last_active: Senast aktiv
+    most_recent: Senaste
+    moved: Flyttad
+    mutual: Ömsesidig
+    primary: Primära
+    relationship: Samband
+    remove_selected_domains: Ta bort alla följare från de valda domänerna
+    remove_selected_followers: Ta bort valda följare
+    remove_selected_follows: Sluta följ valda användare
     status: Kontostatus
   remote_follow:
     acct: Ange ditt användarnamn@domän du vill följa från
@@ -944,6 +960,13 @@ sv:
     proceed: Fortsätt för att följa
     prompt: 'Du kommer att följa:'
     reason_html: "<strong>Varför är det här steget nödvändigt?</strong> <code>%{instance}</code> är kanske inte den server du är registrerad vid, så vi behöver dirigera dig till din hemserver först."
+  remote_interaction:
+    favourite:
+      proceed: Fortsätt till favorit
+      prompt: 'Du vill favorit-markera det här inlägget:'
+    reply:
+      proceed: Fortsätt till svar
+      prompt: 'Du vill svara på det här inlägget:'
   sessions:
     activity: Senaste aktivitet
     browser: Webbläsare
@@ -956,12 +979,19 @@ sv:
       firefox: Firefox
       generic: Okänd browser
       ie: Internet Explorer
+      micro_messenger: MicroMessenger
       opera: Opera
+      otter: Otter
+      phantom_js: PhantomJS
       safari: Safari
+      uc_browser: UCBrowser
+      weibo: Weibo
     current_session: Nuvarande session
     description: "%{browser} på %{platform}"
     explanation: Detta är inloggade webbläsare på Mastodon just nu.
+    ip: IP
     platforms:
+      adobe_air: Adobe Air
       android: Android
       blackberry: Blackberry
       chrome_os: Chrome OS
@@ -971,6 +1001,8 @@ sv:
       mac: Mac
       other: okänd plattform
       windows: Windows
+      windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
     revoke: Återkalla
     revoke_success: Sessionen återkallas framgångsrikt
     title: Sessioner
@@ -985,6 +1017,8 @@ sv:
     development: Utveckling
     edit_profile: Redigera profil
     export: Exportera data
+    identity_proofs: Identifiera bevisen
+    import: Importera
     import_and_export: Import och export
     migrate: Kontoflytt
     notifications: Aviseringar
@@ -1154,6 +1188,8 @@ sv:
       explanation: Du begärde en fullständig säkerhetskopiering av ditt Mastodon-konto. Det är nu klart för nedladdning!
       subject: Ditt arkiv är klart för nedladdning
       title: Arkivuttagning
+    sign_in_token:
+      title: Inloggningsförsök
     warning:
       title:
         none: Varning
