@@ -651,6 +651,7 @@ sv:
   auth:
     apply_for_account: Be om en inbjudan
     change_password: Lösenord
+    checkbox_agreement_html: Jag accepterar <a href="%{rules_path}" target="_blank">serverreglerna</a> och <a href="%{terms_path}" target="_blank">villkoren för användning</a>
     delete_account: Radera konto
     delete_account_html: Om du vill radera ditt konto kan du <a href="%{path}">fortsätta här</a>. Du kommer att bli ombedd att bekräfta.
     description:
@@ -678,6 +679,8 @@ sv:
       account_status: Kontostatus
       redirecting_to: Ditt konto är inaktivt eftersom det för närvarande dirigeras om till %{acct}.
     too_fast: Formuläret har skickats för snabbt, försök igen.
+    trouble_logging_in: Har du problem med att logga in?
+    use_security_key: Använd säkerhetsnyckel
   authorize_follow:
     already_following: Du följer redan detta konto
     already_requested: Du har redan skickat en vänförfrågan till det kontot
@@ -692,12 +695,17 @@ sv:
     title: Följ %{acct}
   challenge:
     confirm: Fortsätt
+    hint_html: "<strong>Tips:</strong> Vi frågar dig inte efter ditt lösenord igen under nästkommande timme."
     invalid_password: Ogiltigt lösenord
     prompt: Bekräfta lösenord för att fortsätta
   crypto:
     errors:
       invalid_key: är inte en giltig Ed25519 eller Curve25519 nyckel
       invalid_signature: är inte en giltig Ed25519 signatur
+  date:
+    formats:
+      default: "%b %d, %Y"
+      with_month_name: "%B %d, %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}tim"
@@ -708,11 +716,14 @@ sv:
       less_than_x_minutes: "%{count}min"
       less_than_x_seconds: Just nu
       over_x_years: "%{count}år"
+      x_days: "%{count}d"
       x_minutes: "%{count}min"
       x_months: "%{count}mån"
       x_seconds: "%{count}sek"
   deletes:
+    challenge_not_passed: Informationen som du angav var inte korrekt
     confirm_password: Ange ditt lösenord för att verifiera din identitet
+    confirm_username: Fyll i ditt användarnamn för att bekräfta proceduren
     proceed: Radera konto
     success_msg: Ditt konto har raderats
     warning:
@@ -748,6 +759,7 @@ sv:
     blocks: Du blockerar
     bookmarks: Bokmärken
     csv: CSV
+    domain_blocks: Domän-blockeringar
     lists: Listor
     mutes: Du tystar
     storage: Medialagring
@@ -756,6 +768,7 @@ sv:
   filters:
     contexts:
       account: Profiler
+      home: Hem och listor
       notifications: Aviseringar
       thread: Konversationer
     edit:
