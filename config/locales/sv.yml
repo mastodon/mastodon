@@ -747,7 +747,7 @@ sv:
     '400': The request you submitted was invalid or malformed.
     '403': Du har inte behörighet att visa den här sidan.
     '404': Sidan du letade efter existerar inte.
-    '406': This page is not available in the requested format.
+    '406': Den här sidan är inte tillgänglig i det förfrågade formatet.
     '410': Sidan du letade efter existerar inte längre.
     '422':
       content: Säkerhetsverifiering misslyckades Blockerar du cookies?
@@ -758,6 +758,8 @@ sv:
       title: Den här sidan är inte korrekt
     '503': The page could not be served due to a temporary server failure.
     noscript_html: För att använda Mastodon webbapplikationen, vänligen aktivera JavaScript. Alternativt kan du prova en av <a href="%{apps_path}">inhemska appar</a> för Mastodon för din plattform.
+  existing_username_validator:
+    not_found_multiple: kunde inte hitta %{usernames}
   exports:
     archive_takeout:
       date: Datum
@@ -878,12 +880,25 @@ sv:
       not_found: kunde inte hittas
       on_cooldown: Du är på nerkylning
     incoming_migrations: Flyttar från ett annat konto
+    incoming_migrations_html: För att flytta från ett annat konto till det här så behöver du först <a href="%{path}">skapa ett konto-alias</a>.
+    moved_msg: Ditt konto omdirigerar nu till %{acct} och dina följare flyttas över.
+    not_redirecting: Ditt konto omdirigerar inte till något annat konto för tillfället.
+    on_cooldown: Du har nyss migrerat ditt konto. Den här funktionen kommer att vara tillgänglig igen om %{count} dagar.
     past_migrations: Föregående migreringar
     proceed_with_move: Flytta följare
     redirected_msg: Ditt konto dirigeras om till %{acct}.
     redirecting_to: Ditt konto omdirigerar till %{acct}.
+    set_redirect: Konfigurera omdirigering
+    warning:
+      before: 'Vänligen läs dessa anteckningar noggrant innan du fortsätter:'
+      followers: Den här åtgärden kommer att flytta alla följare från det nuvarande kontot till det nya kontot
+      other_data: Ingen annan data kommer att flyttas automatiskt
   moderation:
     title: Moderera
+  move_handler:
+    carry_blocks_over_text: Den här användaren flyttades från %{acct} som du hade blockerat.
+    carry_mutes_over_text: Den här användaren flyttade från %{acct} som du hade tystat.
+    copy_account_note_text: 'Den här användaren flyttade från %{acct}, här var dina föregående anteckningar om dem:'
   notification_mailer:
     digest:
       action: Visa alla aviseringar
@@ -914,6 +929,8 @@ sv:
       body: 'Du nämndes av %{name} in:'
       subject: Du nämndes av %{name}
       title: Ny omnämning
+    poll:
+      subject: En undersökning av %{name} har avslutats
     reblog:
       body: 'Din status knuffades av %{name}:'
       subject: "%{name} knuffade din status"
@@ -921,6 +938,7 @@ sv:
     status:
       subject: "%{name} publicerade nyss"
   notifications:
+    email_events: Händelser för e-postaviseringar
     other_settings: Andra aviseringsinställningar
   otp_authentication:
     enable: Aktivera
