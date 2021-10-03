@@ -5,7 +5,10 @@ si:
     active_footnote: මාසික ක්‍රියාකාරී පරිශීලකයින් (මාක්‍රිප)
     api: යෙ.ක්‍ර. මු. (API)
     apps: ජංගම යෙදුම්
+    contact: සබඳතාව
+    contact_missing: සකසා නැත
     contact_unavailable: අ/නොවේ
+    documentation: ප්‍රලේඛනය
     get_apps: ජංගම යෙදුමක් උත්සාහ කරන්න
     learn_more: තව දැනගන්න
     privacy_policy: රහස්‍යතා ප්‍රතිපත්තිය
@@ -33,6 +36,8 @@ si:
       bot: ස්වයං ක්‍රමලේඛය
       group: සමූහය
   admin:
+    account_moderation_notes:
+      create: සටහන හැරයන්න
     accounts:
       add_email_domain_block: වි-තැපැල් වසම අවහිර කරන්න
       approve: අනුමත කරන්න
@@ -40,6 +45,7 @@ si:
       are_you_sure: ඔබට විශ්වාසද?
       by_domain: වසම
       change_email:
+        changed_msg: ගිණුමේ වි-තැපෑල සාර්ථකව වෙනස් කෙරිණි!
         current_email: වත්මන් වි-තැපෑල
         label: වි-තැපෑල වෙනස් කරන්න
         new_email: නව විද්‍යුත් තැපෑල
@@ -76,6 +82,8 @@ si:
       redownload: පැතිකඩ නැවුම්කරන්න
       reject: ප්‍රතික්ෂේප
       remove_header: ශීර්ෂය ඉවත්කරන්න
+      reset: නැවත සකසන්න
+      reset_password: මුරපදය නැවතසකසන්න
       role: අවසරයන්
       roles:
         admin: පරිපාලක
@@ -104,8 +112,11 @@ si:
         disable_user: පරිශීලක අබල කරන්න
         enable_user: පරිශීලක සබල කරන්න
         reopen_report: වාර්තාව නැවත විවෘත කරන්න
+        reset_password_user: මුරපදය නැවතසකසන්න
         suspend_account: ගිණුම අත්හිටුවන්න
         update_announcement: නිවේදනය යාවත්කාල කරන්න
+      filter_by_action: ක්‍රියාමාර්ගය අනුව පෙරන්න
+      filter_by_user: පරිශීලක අනුව පෙරන්න
     announcements:
       edit:
         title: නිවේදනය සංස්කරණය
@@ -124,16 +135,19 @@ si:
       enable: සබල කරන්න
       enabled: සබල කර ඇත
       list: ලැයිස්තුව
+      shortcode: කෙටිකේතය
       upload: උඩුගත කරන්න
     dashboard:
       config: වින්‍යාසය
       feature_invites: ඇරයුම් සබැඳි
       feature_profile_directory: පැතිකඩ නාමාවලිය
+      feature_registrations: ලියාපදිංචි කිරීම්
       features: විශේෂාංග
       open_reports: වාර්තා විවෘත කරන්න
       recent_users: මෑත පරිශීලකයින්
       software: මෘදුකාංගය
       title: උපකරණ පුවරුව
+      week_users_new: මෙම සතියේ පරිශීලකයින්
     domain_blocks:
       domain: වසම
       new:
