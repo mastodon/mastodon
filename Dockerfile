@@ -54,9 +54,9 @@ RUN npm install -g yarn && \
 COPY Gemfile* package.json yarn.lock /opt/mastodon/
 
 RUN cd /opt/mastodon && \
-  bundle config set deployment 'true' && \
-  bundle config set without 'development test' && \
-	bundle install -j"$(nproc)" && \
+#   bundle config set deployment 'true' && \
+#   bundle config set without 'development test' && \
+	bundle install && \
 	yarn install --pure-lockfile
 
 FROM ubuntu:20.04
@@ -96,22 +96,22 @@ COPY --chown=mastodon:mastodon . /opt/mastodon
 COPY --from=build-dep --chown=mastodon:mastodon /opt/mastodon /opt/mastodon
 
 # Run mastodon services in prod mode
-ENV RAILS_ENV="production"
-ENV NODE_ENV="production"
+ENV RAILS_ENV="development"
+ENV NODE_ENV="development"
 
 # Tell rails to serve static files
 ENV RAILS_SERVE_STATIC_FILES="true"
 ENV BIND="0.0.0.0"
 
 # Set the run user
-USER mastodon
+# USER mastodon
 
-# Precompile assets
-RUN cd ~ && \
-	OTP_SECRET=precompile_placeholder SECRET_KEY_BASE=precompile_placeholder rails assets:precompile && \
-	yarn cache clean
+# # Precompile assets
+# RUN cd ~ && \
+# 	OTP_SECRET=precompile_placeholder SECRET_KEY_BASE=precompile_placeholder rails assets:precompile && \
+# 	yarn cache clean
 
-# Set the work dir and the container entry point
+# # Set the work dir and the container entry point
 WORKDIR /opt/mastodon
-ENTRYPOINT ["/usr/bin/tini", "--"]
+# ENTRYPOINT ["bash", "--"]
 EXPOSE 3000 4000
