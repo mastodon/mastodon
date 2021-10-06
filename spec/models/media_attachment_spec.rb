@@ -181,4 +181,32 @@ RSpec.describe MediaAttachment, type: :model do
       expect(media.description.size).to be <= 1_500
     end
   end
+
+  describe 'size limit validation' do
+    it 'rejects video files that are too large' do
+      stub_const 'MediaAttachment::IMAGE_LIMIT', 100.megabytes
+      stub_const 'MediaAttachment::VIDEO_LIMIT', 1.kilobyte
+      expect { MediaAttachment.create!(account: Fabricate(:account), file: attachment_fixture('attachment.webm')) }.to raise_error(ActiveRecord::RecordInvalid)
+    end
+
+    it 'accepts video files that are small enough' do
+      stub_const 'MediaAttachment::IMAGE_LIMIT', 1.kilobyte
+      stub_const 'MediaAttachment::VIDEO_LIMIT', 100.megabytes
+      media = MediaAttachment.create!(account: Fabricate(:account), file: attachment_fixture('attachment.webm'))
+      expect(media.valid?).to be true
+    end
+
+    it 'rejects image files that are too large' do
+      stub_const 'MediaAttachment::IMAGE_LIMIT', 1.kilobyte
+      stub_const 'MediaAttachment::VIDEO_LIMIT', 100.megabytes
+      expect { MediaAttachment.create!(account: Fabricate(:account), file: attachment_fixture('attachment.jpg')) }.to raise_error(ActiveRecord::RecordInvalid)
+    end
+
+    it 'accepts image files that are small enough' do
+      stub_const 'MediaAttachment::IMAGE_LIMIT', 100.megabytes
+      stub_const 'MediaAttachment::VIDEO_LIMIT', 1.kilobyte
+      media = MediaAttachment.create!(account: Fabricate(:account), file: attachment_fixture('attachment.jpg'))
+      expect(media.valid?).to be true
+    end
+  end
 end
