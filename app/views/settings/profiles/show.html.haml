@@ -27,7 +27,7 @@
     = f.input :locked, as: :boolean, wrapper: :with_label, hint: t('simple_form.hints.defaults.locked')
 
   .fields-group
-    = f.input :bot, as: :boolean, wrapper: :with_label, hint: t('simple_form.hints.defaults.bot')
+    = f.input :bot, as: :boolean, wrapper: :with_label, hint: t('simple_form.hints.defaults.bot') + " ⚠️  "  +  t('simple_form.hints.defaults.bot_warning')
 
   .fields-group
     = f.input :discoverable, as: :boolean, wrapper: :with_label, hint: t('simple_form.hints.defaults.discoverable'), recommended: true
