@@ -167,8 +167,8 @@ class MediaAttachment < ApplicationRecord
                     processors: ->(f) { file_processors f },
                     convert_options: GLOBAL_CONVERT_OPTIONS
 
-  before_file_post_process :set_type_and_extension
-  before_file_post_process :check_video_dimensions
+  before_file_validate :set_type_and_extension
+  before_file_validate :check_video_dimensions
 
   validates_attachment_content_type :file, content_type: IMAGE_MIME_TYPES + VIDEO_MIME_TYPES + AUDIO_MIME_TYPES
   validates_attachment_size :file, less_than: IMAGE_LIMIT, unless: :larger_media_format?
