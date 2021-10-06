@@ -1,5 +1,8 @@
 br:
   simple_form:
+    hints:
+      defaults:
+        password: Implijit 8 lizherennoù d'an neubeutañ
     labels:
       account_warning_preset:
         title: Titl
@@ -9,10 +12,14 @@ br:
       announcement:
         text: Kemenn
       defaults:
+        confirm_new_password: Kadarnaat ar ger-tremen nevez
+        confirm_password: Kadarnaat ar ger-tremen
+        context: Kadarnaat ar ger-tremen
         current_password: Ger-tremen a vremañ
         data: Roadennoù
         display_name: Anv diskouezet
         email: Chomlec'h postel
+        expires_in: Mont war e dermen goude
         header: Talbenn
         locale: Yezh ar c'hetal
         new_password: Ger-tremen nevez
@@ -25,8 +32,13 @@ br:
         name: Ger-klik
       invite:
         comment: Evezhiadenn
+      ip_block:
+        ip: IP
+      notification_emails:
+        follow: Heuliañ a ra {name} ac'hanoc'h
       tag:
         name: Ger-klik
+        trendable: Aotren an hashtag-mañ da zont war wel dindan tuadurioù
     'no': 'Ket'
     recommended: Erbedet
     required:
