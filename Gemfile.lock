@@ -620,6 +620,8 @@ GEM
       redis (>= 4.2.0)
     sidekiq-bulk (0.2.0)
       sidekiq
+    sidekiq-prometheus-exporter (0.1.15)
+      sidekiq (>= 3.3.1)
     sidekiq-scheduler (4.0.0)
       redis (>= 4.2.0)
       rufus-scheduler (~> 3.2)
@@ -849,6 +851,7 @@ DEPENDENCIES
   scenic (~> 1.6)
   sidekiq (~> 6.4)
   sidekiq-bulk (~> 0.2.0)
+  sidekiq-prometheus-exporter (~> 0.1)
   sidekiq-scheduler (~> 4.0)
   sidekiq-statistic
   sidekiq-unique-jobs (~> 7.1)

@@ -2,11 +2,14 @@
 
 require 'sidekiq_unique_jobs/web'
 require 'sidekiq-scheduler/web'
+require 'sidekiq/prometheus/exporter'
 
 Rails.application.routes.draw do
   root 'home#index'
 
   mount LetterOpenerWeb::Engine, at: 'letter_opener' if Rails.env.development?
+
+  mount Sidekiq::Prometheus::Exporter => '/metrics'
 
   get 'health', to: 'health#show'
 
