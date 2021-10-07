@@ -2,8 +2,8 @@ zh-CN:
   devise:
     confirmations:
       confirmed: 已成功确认你的邮箱地址。
-      send_instructions: 你将在几分钟内收到一封电子邮件，指导你如何验证电子邮箱地址。如果你没有收到这封邮件，请检查你的垃圾邮件箱。
-      send_paranoid_instructions: 如果您的电子邮件地址存在于我们的数据库中，您将在几分钟内收到一封包含如何验证您的电子邮件地址说明的电子邮件。如果你没有收到这封邮件，请检查你的垃圾邮件文件夹。
+      send_instructions: 你将在几分钟内收到一封电子邮件，指导你如何验证电子邮箱地址。如果你没有收到这封邮件，请检查你的垃圾邮件文件夹。
+      send_paranoid_instructions: 如果你的电子邮箱地址存在于我们的数据库中，你将在几分钟内收到一封邮件，知道你如何验证电子邮箱地址。如果你没有收到这封邮件，请检查你的垃圾邮件文件夹。
     failure:
       already_authenticated: 你已登录。
       inactive: 你还没有激活帐户。
@@ -56,7 +56,7 @@ zh-CN:
       two_factor_recovery_codes_changed:
         explanation: 新恢复码已生成，同时旧恢复码已失效。
         subject: 'Mastodon：重新生成双重认证的恢复码'
-        title: 双重验证（2FA）的恢复码已更改
+        title: 双重认证的恢复码已更改
       unlock_instructions:
         subject: 'Mastodon：帐户解锁信息'
       webauthn_credential:
