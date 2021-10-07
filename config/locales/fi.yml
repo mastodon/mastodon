@@ -471,13 +471,18 @@ fi:
     relationships:
       title: "%{acct}n suhteet"
     relays:
+      add_new: Lisää uusi rele
       delete: Poista
+      description_html: <strong>federation relay</strong> on välittäjä palvelin, joka vaihtaa suuria määriä julkisia viestejä palvelimien välillä, jotka tilaavat ja julkaisevat sitä. <strong>Tämä auttaa pieniä ja keskisuuria palvelimia löytämään monipuolista sisältöä</strong>, joka muuten vaatisi käyttäjiä seuraamaan manuaalisesti muita ihmisiä eri palvelimilla.
       disable: Poista käytöstä
       disabled: Poistettu käytöstä
       enable: Ota käyttöön
       enabled: Käytössä
+      inbox_url: Synkronoi URL
+      pending: Odotetaan releen hyväksyntää
       save_and_enable: Tallenna ja ota käyttöön
       status: Tila
+      title: Releet
     report_notes:
       created_msg: Muistiinpano onnistuneesti lisätty raporttiin!
       destroyed_msg: Muistiinpano onnistuneesti poistettu raportista!
