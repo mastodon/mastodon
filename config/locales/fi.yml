@@ -481,6 +481,7 @@ fi:
       inbox_url: Synkronoi URL
       pending: Odotetaan releen hyväksyntää
       save_and_enable: Tallenna ja ota käyttöön
+      setup: Määritä releyhteys
       status: Tila
       title: Releet
     report_notes:
@@ -490,9 +491,13 @@ fi:
       action_taken_by: Toimenpiteen tekijä
       are_you_sure: Oletko varma?
       assign_to_self: Ota tehtäväksi
+      assigned: Määritetty valvoja
+      by_target_domain: Ilmoitetun tilin verkkotunnus
       comment:
         none: Ei mitään
       created_at: Raportoitu
+      forwarded: Välitetty
+      forwarded_to: Välitetty %{domain}
       mark_as_resolved: Merkitse ratkaistuksi
       mark_as_unresolved: Merkitse ratkaisemattomaksi
       notes:
@@ -508,9 +513,16 @@ fi:
       resolved: Ratkaistut
       resolved_msg: Raportti onnistuneesti ratkaistu!
       status: Tila
+      target_origin: Raportoidun tilin alkuperä
       title: Raportit
+      unassign: Määrittämätön
       unresolved: Ratkaisemattomat
       updated_at: Päivitetty
+    rules:
+      add_new: Lisää sääntö
+      delete: Poista
+      edit: Muokkaa sääntöä
+      title: Palvelimen säännöt
     settings:
       activity_api_enabled:
         desc_html: Paikallisesti julkaistujen tilojen, aktiivisten käyttäjien ja uusien rekisteröintien määrät viikoittain
