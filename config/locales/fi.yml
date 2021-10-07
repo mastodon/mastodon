@@ -419,7 +419,14 @@ fi:
         title: Uusi sähköpostiestolistan merkintä
       title: Sähköpostiestolista
     instances:
+      back_to_all: Kaikki
+      back_to_limited: Rajoitettu
+      back_to_warning: Varoitus
+      by_domain: Verkkotunnus
       delivery:
+        all: Kaikki
+        clear: Tyhjennä toimitusvirheet
+        restart: Käynnistä toimitus uudelleen
         stop: Lopeta toimitus
         title: Toimitus
         unavailable: Ei saatavilla
@@ -444,6 +451,10 @@ fi:
         expired: Vanhentunut
         title: Suodata
       title: Kutsut
+    ip_blocks:
+      add_new: Luo sääntö
+      created_msg: Lisätty uusi IP-sääntö onnistuneesti
+      delete: Poista
     relays:
       delete: Poista
       disable: Poista käytöstä
