@@ -425,6 +425,7 @@ class Status extends ImmutablePureComponent {
   handleHotkeyOpen = () => {
     let state = {...this.context.router.history.location.state};
     state.mastodonBackSteps = (state.mastodonBackSteps || 0) + 1;
+    const status = this.props.status;
     this.context.router.history.push(`/@${status.getIn(['account', 'acct'])}/${status.get('id')}`, state);
   }
 
