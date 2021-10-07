@@ -455,6 +455,21 @@ fi:
       add_new: Luo sääntö
       created_msg: Lisätty uusi IP-sääntö onnistuneesti
       delete: Poista
+      expires_in:
+        '1209600': 2 viikkoa
+        '15778476': 6 kuukautta
+        '2629746': 1 kuukausi
+        '31556952': 1 vuosi
+        '86400': 1 päivä
+        '94670856': 3 vuotta
+      new:
+        title: Luo uusi IP-sääntö
+      no_ip_block_selected: IP-sääntöjä ei muutettu, koska yhtään ei ole valittuna
+      title: IP-säännöt
+    pending_accounts:
+      title: Vireillä olevat tilit (%{count})
+    relationships:
+      title: "%{acct}n suhteet"
     relays:
       delete: Poista
       disable: Poista käytöstä
