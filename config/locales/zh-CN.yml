@@ -100,7 +100,7 @@ zh-CN:
       avatar: 头像
       by_domain: 域名
       change_email:
-        changed_msg: 帐号的电子邮箱更改成功！
+        changed_msg: 已成功更改账号的电子邮箱！
         current_email: 当前的电子邮箱
         label: 更改电子邮箱
         new_email: 新的电子邮箱
@@ -114,7 +114,7 @@ zh-CN:
       demote: 降任
       destroyed_msg: "%{username} 的数据已进入等待队列，即将被删除"
       disable: 冻结
-      disable_sign_in_token_auth: 禁用电子邮件令验证
+      disable_sign_in_token_auth: 禁用电子邮件令牌认证
       disable_two_factor_authentication: 停用双重认证
       disabled: 已冻结
       display_name: 昵称
@@ -123,7 +123,7 @@ zh-CN:
       email: 电子邮件地址
       email_status: 电子邮件地址状态
       enable: 解冻
-      enable_sign_in_token_auth: 启用电子邮件令牌验证
+      enable_sign_in_token_auth: 启用电子邮件令牌认证
       enabled: 已启用
       enabled_msg: 成功解冻 %{username} 的帐号
       followers: 关注者
@@ -191,7 +191,7 @@ zh-CN:
       security_measures:
         only_password: 仅密码
         password_and_2fa: 密码和双因素认证
-        password_and_sign_in_token: 密码与电子邮件令牌
+        password_and_sign_in_token: 密码和电子邮件令牌
       sensitive: 敏感内容
       sensitized: 已标记为敏感内容
       shared_inbox_url: 公用收件箱（Shared Inbox）URL
@@ -211,7 +211,7 @@ zh-CN:
       undo_sensitized: 去除敏感内容标记
       undo_silenced: 解除隐藏
       undo_suspension: 解除封禁
-      unsilenced_msg: 成功解除对 %{username} 的隐藏
+      unsilenced_msg: 成功解除 %{username} 的帐号限制
       unsubscribe: 取消订阅
       unsuspended_msg: 已成功取消封禁 %{username} 的帐号
       username: 用户名
@@ -569,7 +569,7 @@ zh-CN:
       resolved: 已处理
       resolved_msg: 举报处理成功！
       status: 状态
-      target_origin: 被报告账户的来源
+      target_origin: 被举报账号的来源
       title: 举报
       unassign: 取消接管
       unresolved: 未处理
@@ -1239,7 +1239,7 @@ zh-CN:
     preferences: 首选项
     profile: 个人资料
     relationships: 关注管理
-    statuses_cleanup: 自动删除帖子
+    statuses_cleanup: 自动删除嘟文
     two_factor_authentication: 双重认证
     webauthn_authentication: 安全密钥
   statuses:
@@ -1286,26 +1286,26 @@ zh-CN:
       unlisted: 不公开
       unlisted_long: 所有人可见，但不会出现在公共时间轴上
   statuses_cleanup:
-    enabled: 自动删除旧帖子
-    enabled_hint: 当您的帖子达到一个指定的年龄阈值时，自动删除，除非它们与下面的例外之一相匹配
+    enabled: 自动删除旧嘟文
+    enabled_hint: 当您的嘟文达到指定的过期时间后自动删除，除非它们与下面的例外之一相匹配
     exceptions: 例外
     explanation: 因为删除帖子是一个昂贵的操作，所以这个操作会随着时间的推移而缓慢地完成，当服务器没有其他忙碌的时候。 为此原因，您的帖子可能会在达到年龄界限后被删除。
-    ignore_favs: 取消收藏
-    ignore_reblogs: 忽略助推器
+    ignore_favs: 取消喜欢
+    ignore_reblogs: 忽略转嘟
     interaction_exceptions: 基于互动的例外
-    interaction_exceptions_explanation: 请注意，如果帖子已经超过了最喜欢的门槛值或升值门槛值，则无法保证将其删除。
+    interaction_exceptions_explanation: 请注意，如果嘟文超出转嘟和喜欢的阈值之后，又降到阈值以下，不能保证会被删除。
     keep_direct: 保留私信
-    keep_direct_hint: 没有删除您的任何私信
-    keep_media: 保留带媒体附件的帖子
-    keep_media_hint: 没有删除任何包含媒体附件的帖子
-    keep_pinned: 保留固定的帖子
-    keep_pinned_hint: 没有删除任何您固定的帖子
-    keep_polls: 保持投票
-    keep_polls_hint: 没有删除您的任何投票
-    keep_self_bookmark: 保存您的帖子书签
-    keep_self_bookmark_hint: 如果您已将自己的帖子添加书签，您不会删除这些帖子
-    keep_self_fav: 保持您喜欢的帖子
-    keep_self_fav_hint: 如果您喜欢您自己的帖子，则不会删除您自己的帖子
+    keep_direct_hint: 没有删除你的任何私信
+    keep_media: 保留带媒体附件的嘟文
+    keep_media_hint: 没有删除任何包含媒体附件的嘟文
+    keep_pinned: 保留置顶嘟文
+    keep_pinned_hint: 没有删除你的任何置顶嘟文
+    keep_polls: 保留投票
+    keep_polls_hint: 没有删除你的任何投票
+    keep_self_bookmark: 保存被你加入书签的嘟文
+    keep_self_bookmark_hint: 如果你已将自己的嘟文添加书签，就不会删除这些嘟文
+    keep_self_fav: 保留你喜欢的嘟文
+    keep_self_fav_hint: 如果你喜欢了自己的嘟文，则不会删除这些嘟文
     min_age:
       '1209600': 2 周
       '15778476': 6 个月
