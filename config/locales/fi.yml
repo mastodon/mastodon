@@ -1241,3 +1241,17 @@ fi:
     seamless_external_login: Olet kirjautunut ulkoisen palvelun kautta, joten salasana- ja sähköpostiasetukset eivät ole käytettävissä.
     signed_in_as: 'Kirjautunut henkilönä:'
     suspicious_sign_in_confirmation: Et ilmeisesti ole kirjautunut sisään tältä laitteelta aikaisemmin, joten lähetämme sähköpostiisi turvakoodin vahvistaaksesi, että se olet sinä.
+  verification:
+    explanation_html: 'Voit <strong>vahvistaa itsesi profiilisi metatietojen linkkien omistajaksi.</strong>. Tätä varten linkitetyn verkkosivuston on sisällettävä linkki takaisin Mastodon -profiiliisi. Palauttavalla linkillä <strong>täytyy</strong> olla <code>rel="minä"</code> tuntomerkki. Linkin tekstisisällöllä ei ole väliä. Tässä on esimerkki:'
+    verification: Vahvistus
+  webauthn_credentials:
+    add: Lisää uusi suojausavain
+    create:
+      error: Suojausavaimen lisäämisessä tapahtui ongelma. Yritä uudelleen.
+      success: Sinun suojausavaimen lisääminen onnistui.
+    delete: Poista
+    delete_confirmation: Haluatko varmasti poistaa tämän suojausavaimen?
+    description_html: Jos otat <strong>suojausavaimen todennuksen</strong> käyttöön, kirjautuminen edellyttää jonkin suojausavaimen käyttämistä.
+    destroy:
+      error: Suojausavaimen poistamisessa tapahtui ongelma. Yritä uudelleen.
+      success: Sinun suojausavaimen poistaminen onnistui.
