@@ -680,13 +680,26 @@ fi:
       media:
         title: Media
       no_media: Ei mediaa
+      no_status_selected: Viestejä ei muutettu, koska yhtään ei ole valittuna
       title: Tilin tilat
       with_media: Sisältää mediaa
+    system_checks:
+      database_schema_check:
+        message_html: Tietokannan siirto on vireillä. Suorita ne varmistaaksesi, että sovellus toimii odotetulla tavalla
+      rules_check:
+        action: Hallinnoi palvelimen sääntöjä
+        message_html: Et ole määrittänyt mitään palvelimen sääntöä.
+      sidekiq_process_check:
+        message_html: Ei ole Sidekiq-prosessia käynnissä jonossa %{value}. Tarkista Sidekiq-asetukset
     tags:
+      accounts_today: Tämän päivän käyttö
+      accounts_week: Tämän viikon käyttö
+      breakdown: Tämän päivän käyttö lähteen mukaan
       last_active: Aktiivinen viimeksi
       most_popular: Suosituimmat
       most_recent: Viimeisimmät
       name: Aihetunniste
+      review: Tarkista tila
       reviewed: Tarkistetut
       title: Aihetunnisteet
       trending_right_now: Trendaa juuri nyt
