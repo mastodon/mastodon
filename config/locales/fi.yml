@@ -406,6 +406,8 @@ fi:
       created_msg: Verkkotunnuksen estoa käsitellään
       destroyed_msg: Verkkotunnuksen esto on peruttu
       domain: Verkkotunnus
+      edit: Muokkaa verkkotunnuksen estoa
+      existing_domain_block_html: Olet jo asettanut %{name} tiukemmat rajat ja sinun täytyy <a href="%{unblock_url}">poistaa se</a> ensin.
       new:
         create: Luo esto
         hint: Verkkotunnuksen esto ei estä tilien luomista ja lisäämistä tietokantaan, mutta se soveltaa näihin tileihin automaattisesti määrättyjä moderointitoimia tilin luomisen jälkeen.
@@ -415,6 +417,8 @@ fi:
           silence: Hiljennys
           suspend: Jäähy
         title: Uusi verkkotunnuksen esto
+      obfuscate: Peitä verkkotunnuksen nimi
+      obfuscate_hint: Peitä verkkotunnus osittain luettelossa, jos verkkotunnuksen rajoitusten luettelo on käytössä
       private_comment: Yksityinen kommentti
       public_comment: Julkinen kommentti
       reject_media: Hylkää mediatiedostot
