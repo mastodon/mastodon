@@ -609,6 +609,12 @@ fi:
       peers_api_enabled:
         desc_html: Verkkotunnukset, jotka tämä instanssi on kohdannut fediversumissa
         title: Julkaise löydettyjen instanssien luettelo
+      preview_sensitive_media:
+        desc_html: Linkin esikatselu muilla sivustoilla näyttää pikkukuvan vaikka media on merkitty arkaluonteiseksi
+        title: Näytä arkaluontoiset mediat OpenGraph esikatselussa
+      profile_directory:
+        desc_html: Salli käyttäjien olla löydettävissä
+        title: Ota profiilihakemisto käyttöön
       registrations:
         closed_message:
           desc_html: Näytetään etusivulla, kun rekisteröinti on suljettu. HTML-tagit käytössä
@@ -619,11 +625,15 @@ fi:
         min_invite_role:
           disabled: Ei kukaan
           title: Salli kutsut käyttäjältä
+        require_invite_text:
+          desc_html: Kun rekisteröinnit edellyttävät manuaalista hyväksyntää, tee “Miksi haluat liittyä?” teksti pakolliseksi eikä valinnaiseksi
+          title: Vaadi uusia käyttäjiä antamaan liittymisen syy
       registrations_mode:
         modes:
           approved: Rekisteröinti vaatii hyväksynnän
           none: Kukaan ei voi rekisteröityä
           open: Kaikki voivat rekisteröityä
+        title: Rekisteröintitapa
       show_known_fediverse_at_about_page:
         desc_html: Kun tämä on valittu, esikatselussa näytetään tuuttaukset kaikkialta tunnetusta fediversumista. Muutoin näytetään vain paikalliset tuuttaukset.
         title: Näytä aikajanan esikatselussa koko tunnettu fediversumi
