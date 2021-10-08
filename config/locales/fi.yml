@@ -1177,6 +1177,15 @@ fi:
     keep_self_bookmark: Säilytä lisäämäsi viestit kirjanmerkkeihin
     keep_self_bookmark_hint: Ei poista viestejäsi, jos olet lisännyt ne kirjanmerkkeihin
     keep_self_fav: Säilyttää viestit suosikeissa
+    keep_self_fav_hint: Ei poista omia viestejäsi, jos olet lisännyt ne suosikkeihin
+    min_age:
+      '1209600': 2 viikkoa
+      '15778476': 6 kuukautta
+      '2629746': 1 kuukausi
+      '31556952': 1 year
+      '5259492': 2 months
+      '63113904': 2 years
+      '7889238': 3 months
   stream_entries:
     pinned: Kiinnitetty tuuttaus
     reblogged: buustasi
@@ -1202,6 +1211,10 @@ fi:
       explanation: Pyysit täydellistä varmuuskopiota Mastodon-tilistäsi. Voit nyt ladata sen!
       subject: Arkisto on valmiina ladattavaksi
       title: Arkiston tallennus
+    warning:
+      title:
+        silence: Rajoitettu tili
+        suspend: Tilin käyttäminen keskeytetty
     welcome:
       edit_profile_action: Aseta profiili
       edit_profile_step: Voit mukauttaa profiiliasi lataamalla profiilikuvan ja otsakekuvan, muuttamalla näyttönimeäsi ym. Jos haluat hyväksyä uudet seuraajat ennen kuin he voivat seurata sinua, voit lukita tilisi.
@@ -1220,7 +1233,11 @@ fi:
       tips: Vinkkejä
       title: Tervetuloa mukaan, %{name}!
   users:
+    follow_limit_reached: Et voi seurata yli %{limit} henkilöä
+    generic_access_help_html: Onko sinulla pääsy tiliisi? Voit ottaa yhteyttä %{email} saadaksesi apua
     invalid_otp_token: Virheellinen kaksivaiheisen todentamisen koodi
+    invalid_sign_in_token: Virheellinen turvakoodi
     otp_lost_help_html: Jos sinulla ei ole pääsyä kumpaankaan, voit ottaa yhteyttä osoitteeseen %{email}
     seamless_external_login: Olet kirjautunut ulkoisen palvelun kautta, joten salasana- ja sähköpostiasetukset eivät ole käytettävissä.
     signed_in_as: 'Kirjautunut henkilönä:'
+    suspicious_sign_in_confirmation: Et ilmeisesti ole kirjautunut sisään tältä laitteelta aikaisemmin, joten lähetämme sähköpostiisi turvakoodin vahvistaaksesi, että se olet sinä.
