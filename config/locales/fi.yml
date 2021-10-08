@@ -891,6 +891,9 @@ fi:
       request: Pyydä arkisto
       size: Koko
     blocks: Estot
+    bookmarks: Kirjanmerkit
+    csv: CSV
+    domain_blocks: Verkkotunnus estetty
     lists: Listat
     mutes: Mykistetyt
     storage: Media-arkisto
@@ -1255,3 +1258,9 @@ fi:
     destroy:
       error: Suojausavaimen poistamisessa tapahtui ongelma. Yritä uudelleen.
       success: Sinun suojausavaimen poistaminen onnistui.
+    invalid_credential: Virheellinen suojausavain
+    nickname_hint: Anna nimimerkki uudelle suojausavaimelle
+    not_enabled: Et ole vielä ottanut käyttöön WebAuthn-ohjelmaa
+    not_supported: Tämä selain ei tue suojausavaimia
+    otp_required: Jos haluat käyttää suojausavaimia, ota ensin käyttöön kaksivaiheinen todennus.
+    registered_on: Rekisteröity %{date}
