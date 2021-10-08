@@ -426,6 +426,9 @@ fi:
       reject_media: Hylkää mediatiedostot
       reject_media_hint: Poistaa paikallisesti tallennetut mediatiedostot eikä lataa niitä enää jatkossa. Ei merkitystä jäähyn kohdalla
       reject_reports: Hylkää raportit
+      reject_reports_hint: Ohita kaikki tästä verkkotunnuksesta tulevat raportit. Erottamisen kannalta ei merkitystä
+      rejecting_media: mediatiedostojen hylkääminen
+      rejecting_reports: raporttien hylkääminen
       severity:
         silence: hiljennetty
         suspend: jäähyllä
@@ -439,12 +442,15 @@ fi:
         title: Peru verkkotunnuksen %{domain} esto
         undo: Peru
       undo: Peru
+      view: Näytä verkkotunnuksen esto
     email_domain_blocks:
       add_new: Lisää uusi
       created_msg: Sähköpostiverkkotunnuksen lisäys estolistalle onnistui
       delete: Poista
       destroyed_msg: Sähköpostiverkkotunnuksen poisto estolistalta onnistui
       domain: Verkkotunnus
+      empty: Sähköpostiosoitteita ei ole tällä hetkellä estetty.
+      from_html: käyttäjältä %{domain}
       new:
         create: Lisää verkkotunnus
         title: Uusi sähköpostiestolistan merkintä
