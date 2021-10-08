@@ -312,6 +312,7 @@ fi:
         unsuspend_account_html: "%{name} perui käyttäjän %{target} jäähyn"
         update_announcement_html: "%{name} päivitti ilmoituksen %{target}"
         update_custom_emoji_html: "%{name} päivitti emojin %{target}"
+        update_domain_block_html: "%{name} päivitti verkkotunnuksen %{target}"
         update_status_html: "%{name} päivitti viestin %{target}"
       deleted_status: "(poistettu tilapäivitys)"
       empty: Lokeja ei löytynyt.
@@ -333,6 +334,8 @@ fi:
       scheduled_msg: Ilmoitus on tarkoitus julkaista!
       title: Ilmoitukset
       unpublish: Julkaisematon
+      unpublished_msg: Ilmoituksen julkaisu lopetettu!
+      updated_msg: Ilmoitus päivitetty onnistuneesti!
     custom_emojis:
       assign_category: Aseta kategoria
       by_domain: Verkkotunnus
@@ -346,6 +349,7 @@ fi:
       disable: Poista käytöstä
       disabled: Ei käytössä
       disabled_msg: Emojin poisto käytöstä onnistui
+      emoji: Emoji
       enable: Ota käyttöön
       enabled: Käytössä
       enabled_msg: Emojin käyttöönotto onnistui
@@ -367,13 +371,18 @@ fi:
       upload: Lähetä
     dashboard:
       authorized_fetch_mode: Suojattu tila
+      backlog: palautuneet työt
       config: Asetukset
       feature_deletions: Tilien poistot
       feature_invites: Kutsulinkit
       feature_profile_directory: Profiilihakemisto
       feature_registrations: Rekisteröitymiset
+      feature_relay: Federaation rele
       feature_timeline_preview: Aikajanan esikatselu
       features: Ominaisuudet
+      hidden_service: Federaation piilotetut palvelut
+      open_reports: avaa raportit
+      pending_tags: hashtagit odottavat tarkistusta
       recent_users: Viimeaikaiset käyttäjät
       search: Haku koko tekstistä
       software: Ohjelmisto
