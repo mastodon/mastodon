@@ -877,8 +877,11 @@ fi:
     '500':
       content: Valitettavasti jokin meni pieleen meidän päässämme.
       title: Sivu ei ole oikein
-    '503': The page could not be served due to a temporary server failure.
+    '503': Sivua ei voitu näyttää palvelimen väliaikaisen vian vuoksi.
     noscript_html: Mastodon-selainsovelluksen käyttöön vaaditaan JavaScript. Voit vaihtoehtoisesti kokeilla jotakin omalle käyttöjärjestelmällesi tehtyä Mastodon<a href="%{apps_path}">sovellusta</a>.
+  existing_username_validator:
+    not_found: paikallista käyttäjää ei löydy kyseisellä käyttäjänimellä
+    not_found_multiple: '%{usernames} ei löytynyt'
   exports:
     archive_takeout:
       date: Päiväys
@@ -1064,14 +1067,35 @@ fi:
     activity: Viimeisin toiminta
     browser: Selain
     browsers:
+      alipay: Alipay
+      blackberry: Blackberry
+      chrome: Chrome
+      edge: Microsoft Edge
+      electron: Electron
       generic: Tuntematon selain
       nokia: Nokia S40 Ovi -selain
+      phantom_js: PhantomJS
+      qq: QQ Browser
+      safari: Safari
+      uc_browser: UCBrowser
+      weibo: Weibo
     current_session: Nykyinen istunto
     description: "%{browser}, %{platform}"
     explanation: Nämä verkkoselaimet ovat tällä hetkellä kirjautuneet Mastodon-tilillesi.
     ip: IP-osoite
     platforms:
+      adobe_air: Adobe Air
+      android: Android
+      blackberry: Blackberry
+      chrome_os: Chrome OS
+      firefox_os: Firefox OS
+      ios: iOS
+      linux: Linux
+      mac: macOS
       other: tuntematon järjestelmä
+      windows: Windows
+      windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
     revoke: Hylkää
     revoke_success: Istunnon hylkäys onnistui
     title: Istunnot
@@ -1122,16 +1146,28 @@ fi:
         other: "%{count} ääntä"
       vote: Äänestä
     show_more: Näytä lisää
+    show_newer: Näytä uudemmat
+    show_older: Näytä vanhempi
     show_thread: Näytä ketju
     sign_in_to_participate: Kirjaudu sisään osallistuaksesi keskusteluun
     title: '%{name}: ”%{quote}”'
     visibilities:
+      direct: Suoraan
       private: Vain seuraajille
       private_long: Näytä vain seuraajille
       public: Julkinen
       public_long: Kaikki voivat nähdä
       unlisted: Listaamaton julkinen
       unlisted_long: Kaikki voivat nähdä, mutta ei näytetä julkisilla aikajanoilla
+  statuses_cleanup:
+    enabled: Poista vanhat viestit automaattisesti
+    enabled_hint: Poistaa viestit automaattisesti, kun ne saavuttavat tietyn ikärajan, elleivät ne täsmää yhtä alla olevista poikkeuksista
+    exceptions: Poikkeukset
+    explanation: Koska viestien poistaminen on kallista toimintaa. Tämä tehdään hitaasti ajan mittaan, kun palvelin ei ole muuten kiireinen. Tästä syystä viestejäsi voidaan poistaa jonkin aikaa myöhemmin, kun ne ovat saavuttaneet ikärajan.
+    ignore_favs: Ohita suosikit
+    ignore_reblogs: Ohita tehostukset
+    interaction_exceptions: Poikkeukset, jotka perustuvat vuorovaikutukseen
+    keep_direct: Säilytä suorat viestit
   stream_entries:
     pinned: Kiinnitetty tuuttaus
     reblogged: buustasi
