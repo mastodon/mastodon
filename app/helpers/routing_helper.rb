@@ -13,13 +13,13 @@ module RoutingHelper
   end
 
   def full_asset_url(source, **options)
-    source = ActionController::Base.helpers.asset_url(source, options) unless use_storage?
+    source = ActionController::Base.helpers.asset_url(source, **options) unless use_storage?
 
     URI.join(root_url, source).to_s
   end
 
   def full_pack_url(source, **options)
-    full_asset_url(asset_pack_path(source, options))
+    full_asset_url(asset_pack_path(source, **options))
   end
 
   private

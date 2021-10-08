@@ -30,12 +30,12 @@ class AccountAuthorize extends ImmutablePureComponent {
     return (
       <div className='account-authorize__wrapper'>
         <div className='account-authorize'>
-          <Permalink href={account.get('url')} to={`/accounts/${account.get('id')}`} className='detailed-status__display-name'>
+          <Permalink href={account.get('url')} to={`/@${account.get('acct')}`} className='detailed-status__display-name'>
             <div className='account-authorize__avatar'><Avatar account={account} size={48} /></div>
             <DisplayName account={account} />
           </Permalink>
 
-          <div className='account__header__content' dangerouslySetInnerHTML={content} />
+          <div className='account__header__content translate' dangerouslySetInnerHTML={content} />
         </div>
 
         <div className='account--panel'>

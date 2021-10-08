@@ -5,128 +5,858 @@ require 'rails_helper'
 describe StatusesController do
   render_views
 
-  describe '#show' do
-    context 'account is suspended' do
-      it 'returns gone' do
-        account = Fabricate(:account, suspended: true)
-        status = Fabricate(:status, account: account)
+  shared_examples 'cachable response' do
+    it 'does not set cookies' do
+      expect(response.cookies).to be_empty
+      expect(response.headers['Set-Cookies']).to be nil
+    end
+
+    it 'does not set sessions' do
+      expect(session).to be_empty
+    end
+
+    it 'returns public Cache-Control header' do
+      expect(response.headers['Cache-Control']).to include 'public'
+    end
+  end
+
+  describe 'GET #show' do
+    let(:account) { Fabricate(:account) }
+    let(:status)  { Fabricate(:status, account: account) }
+
+    context 'when account is permanently suspended' do
+      before do
+        account.suspend!
+        account.deletion_request.destroy
 
         get :show, params: { account_username: account.username, id: status.id }
+      end
 
+      it 'returns http gone' do
         expect(response).to have_http_status(410)
       end
     end
 
-    context 'status is not permitted' do
-      it 'raises ActiveRecord::RecordNotFound' do
-        user = Fabricate(:user)
-        status = Fabricate(:status)
-        status.account.block!(user.account)
+    context 'when account is temporarily suspended' do
+      before do
+        account.suspend!
 
-        sign_in(user)
-        get :show, params: { account_username: status.account.username, id: status.id }
+        get :show, params: { account_username: account.username, id: status.id }
+      end
 
-        expect(response).to have_http_status(404)
+      it 'returns http forbidden' do
+        expect(response).to have_http_status(403)
       end
     end
 
-    context 'status is a reblog' do
-      it 'redirects to the original status' do
-        original_account = Fabricate(:account, domain: 'example.com')
-        original_status = Fabricate(:status, account: original_account, uri: 'tag:example.com,2017:foo', url: 'https://example.com/123')
-        status = Fabricate(:status, reblog: original_status)
+    context 'when status is a reblog' do
+      let(:original_account) { Fabricate(:account, domain: 'example.com') }
+      let(:original_status) { Fabricate(:status, account: original_account, url: 'https://example.com/123') }
+      let(:status) { Fabricate(:status, account: account, reblog: original_status) }
 
+      before do
         get :show, params: { account_username: status.account.username, id: status.id }
+      end
 
+      it 'redirects to the original status' do
         expect(response).to redirect_to(original_status.url)
       end
     end
 
-    context 'account is not suspended and status is permitted' do
-      it 'assigns @account' do
-        status = Fabricate(:status)
-        get :show, params: { account_username: status.account.username, id: status.id }
-        expect(assigns(:account)).to eq status.account
+    context 'when status is public' do
+      before do
+        get :show, params: { account_username: status.account.username, id: status.id, format: format }
       end
 
-      it 'assigns @status' do
-        status = Fabricate(:status)
-        get :show, params: { account_username: status.account.username, id: status.id }
-        expect(assigns(:status)).to eq status
+      context 'as HTML' do
+        let(:format) { 'html' }
+
+        it 'returns http success' do
+          expect(response).to have_http_status(200)
+        end
+
+        it 'returns Link header' do
+          expect(response.headers['Link'].to_s).to include 'activity+json'
+        end
+
+        it 'returns Vary header' do
+          expect(response.headers['Vary']).to eq 'Accept'
+        end
+
+        it 'returns public Cache-Control header' do
+          expect(response.headers['Cache-Control']).to include 'public'
+        end
+
+        it 'renders status' do
+          expect(response).to render_template(:show)
+          expect(response.body).to include status.text
+        end
       end
 
-      it 'assigns @ancestors for ancestors of the status if it is a reply' do
-        ancestor = Fabricate(:status)
-        status = Fabricate(:status, in_reply_to_id: ancestor.id)
+      context 'as JSON' do
+        let(:format) { 'json' }
 
-        get :show, params: { account_username: status.account.username, id: status.id }
+        it 'returns http success' do
+          expect(response).to have_http_status(200)
+        end
 
-        expect(assigns(:ancestors)).to eq [ancestor]
+        it 'returns Link header' do
+          expect(response.headers['Link'].to_s).to include 'activity+json'
+        end
+
+        it 'returns Vary header' do
+          expect(response.headers['Vary']).to eq 'Accept'
+        end
+
+        it_behaves_like 'cachable response'
+
+        it 'returns Content-Type header' do
+          expect(response.headers['Content-Type']).to include 'application/activity+json'
+        end
+
+        it 'renders ActivityPub Note object' do
+          json = body_as_json
+          expect(json[:content]).to include status.text
+        end
+      end
+    end
+
+    context 'when status is private' do
+      let(:status) { Fabricate(:status, account: account, visibility: :private) }
+
+      before do
+        get :show, params: { account_username: status.account.username, id: status.id, format: format }
       end
 
-      it 'assigns @ancestors for [] if it is not a reply' do
-        status = Fabricate(:status)
-        get :show, params: { account_username: status.account.username, id: status.id }
-        expect(assigns(:ancestors)).to eq []
+      context 'as JSON' do
+        let(:format) { 'json' }
+
+        it 'returns http not found' do
+          expect(response).to have_http_status(404)
+        end
       end
 
-      it 'assigns @descendant_threads for a thread with several statuses' do
-        status = Fabricate(:status)
-        child = Fabricate(:status, in_reply_to_id: status.id)
-        grandchild = Fabricate(:status, in_reply_to_id: child.id)
+      context 'as HTML' do
+        let(:format) { 'html' }
 
-        get :show, params: { account_username: status.account.username, id: status.id }
+        it 'returns http not found' do
+          expect(response).to have_http_status(404)
+        end
+      end
+    end
 
-        expect(assigns(:descendant_threads)[0][:statuses].pluck(:id)).to eq [child.id, grandchild.id]
+    context 'when status is direct' do
+      let(:status) { Fabricate(:status, account: account, visibility: :direct) }
+
+      before do
+        get :show, params: { account_username: status.account.username, id: status.id, format: format }
       end
 
-      it 'assigns @descendant_threads for several threads sharing the same descendant' do
-        status = Fabricate(:status)
-        child = Fabricate(:status, in_reply_to_id: status.id)
-        grandchildren = 2.times.map { Fabricate(:status, in_reply_to_id: child.id) }
+      context 'as JSON' do
+        let(:format) { 'json' }
 
-        get :show, params: { account_username: status.account.username, id: status.id }
-
-        expect(assigns(:descendant_threads)[0][:statuses].pluck(:id)).to eq [child.id, grandchildren[0].id]
-        expect(assigns(:descendant_threads)[1][:statuses].pluck(:id)).to eq [grandchildren[1].id]
+        it 'returns http not found' do
+          expect(response).to have_http_status(404)
+        end
       end
 
-      it 'assigns @max_descendant_thread_id for the last thread if it is hitting the status limit' do
-        stub_const 'StatusControllerConcern::DESCENDANTS_LIMIT', 1
-        status = Fabricate(:status)
-        child = Fabricate(:status, in_reply_to_id: status.id)
+      context 'as HTML' do
+        let(:format) { 'html' }
 
-        get :show, params: { account_username: status.account.username, id: status.id }
+        it 'returns http not found' do
+          expect(response).to have_http_status(404)
+        end
+      end
+    end
 
-        expect(assigns(:descendant_threads)).to eq []
-        expect(assigns(:max_descendant_thread_id)).to eq child.id
+    context 'when signed-in' do
+      let(:user) { Fabricate(:user) }
+
+      before do
+        sign_in(user)
       end
 
-      it 'assigns @descendant_threads for threads with :next_status key if they are hitting the depth limit' do
-        stub_const 'StatusControllerConcern::DESCENDANTS_DEPTH_LIMIT', 2
-        status = Fabricate(:status)
-        child0 = Fabricate(:status, in_reply_to_id: status.id)
-        child1 = Fabricate(:status, in_reply_to_id: child0.id)
-        child2 = Fabricate(:status, in_reply_to_id: child0.id)
+      context 'when account blocks user' do
+        before do
+          account.block!(user.account)
+          get :show, params: { account_username: status.account.username, id: status.id }
+        end
 
-        get :show, params: { account_username: status.account.username, id: status.id }
-
-        expect(assigns(:descendant_threads)[0][:statuses].pluck(:id)).not_to include child1.id
-        expect(assigns(:descendant_threads)[1][:statuses].pluck(:id)).not_to include child2.id
-        expect(assigns(:descendant_threads)[0][:next_status].id).to eq child1.id
-        expect(assigns(:descendant_threads)[1][:next_status].id).to eq child2.id
+        it 'returns http not found' do
+          expect(response).to have_http_status(404)
+        end
       end
 
-      it 'returns a success' do
-        status = Fabricate(:status)
-        get :show, params: { account_username: status.account.username, id: status.id }
+      context 'when status is public' do
+        before do
+          get :show, params: { account_username: status.account.username, id: status.id, format: format }
+        end
+
+        context 'as HTML' do
+          let(:format) { 'html' }
+
+          it 'returns http success' do
+            expect(response).to have_http_status(200)
+          end
+
+          it 'returns Link header' do
+            expect(response.headers['Link'].to_s).to include 'activity+json'
+          end
+
+          it 'returns Vary header' do
+            expect(response.headers['Vary']).to eq 'Accept'
+          end
+
+          it 'returns no Cache-Control header' do
+            expect(response.headers).to_not include 'Cache-Control'
+          end
+
+          it 'renders status' do
+            expect(response).to render_template(:show)
+            expect(response.body).to include status.text
+          end
+        end
+
+        context 'as JSON' do
+          let(:format) { 'json' }
+
+          it 'returns http success' do
+            expect(response).to have_http_status(200)
+          end
+
+          it 'returns Link header' do
+            expect(response.headers['Link'].to_s).to include 'activity+json'
+          end
+
+          it 'returns Vary header' do
+            expect(response.headers['Vary']).to eq 'Accept'
+          end
+
+          it 'returns public Cache-Control header' do
+            expect(response.headers['Cache-Control']).to include 'public'
+          end
+
+          it 'returns Content-Type header' do
+            expect(response.headers['Content-Type']).to include 'application/activity+json'
+          end
+
+          it 'renders ActivityPub Note object' do
+            json = body_as_json
+            expect(json[:content]).to include status.text
+          end
+        end
+      end
+
+      context 'when status is private' do
+        let(:status) { Fabricate(:status, account: account, visibility: :private) }
+
+        context 'when user is authorized to see it' do
+          before do
+            user.account.follow!(account)
+            get :show, params: { account_username: status.account.username, id: status.id, format: format }
+          end
+
+          context 'as HTML' do
+            let(:format) { 'html' }
+
+            it 'returns http success' do
+              expect(response).to have_http_status(200)
+            end
+
+            it 'returns Link header' do
+              expect(response.headers['Link'].to_s).to include 'activity+json'
+            end
+
+            it 'returns Vary header' do
+              expect(response.headers['Vary']).to eq 'Accept'
+            end
+
+            it 'returns no Cache-Control header' do
+              expect(response.headers).to_not include 'Cache-Control'
+            end
+
+            it 'renders status' do
+              expect(response).to render_template(:show)
+              expect(response.body).to include status.text
+            end
+          end
+
+          context 'as JSON' do
+            let(:format) { 'json' }
+
+            it 'returns http success' do
+              expect(response).to have_http_status(200)
+            end
+
+            it 'returns Link header' do
+              expect(response.headers['Link'].to_s).to include 'activity+json'
+            end
+
+            it 'returns Vary header' do
+              expect(response.headers['Vary']).to eq 'Accept'
+            end
+
+            it 'returns private Cache-Control header' do
+              expect(response.headers['Cache-Control']).to include 'private'
+            end
+
+            it 'returns Content-Type header' do
+              expect(response.headers['Content-Type']).to include 'application/activity+json'
+            end
+
+            it 'renders ActivityPub Note object' do
+              json = body_as_json
+              expect(json[:content]).to include status.text
+            end
+          end
+        end
+
+        context 'when user is not authorized to see it' do
+          before do
+            get :show, params: { account_username: status.account.username, id: status.id, format: format }
+          end
+
+          context 'as JSON' do
+            let(:format) { 'json' }
+
+            it 'returns http not found' do
+              expect(response).to have_http_status(404)
+            end
+          end
+
+          context 'as HTML' do
+            let(:format) { 'html' }
+
+            it 'returns http not found' do
+              expect(response).to have_http_status(404)
+            end
+          end
+        end
+      end
+
+      context 'when status is direct' do
+        let(:status) { Fabricate(:status, account: account, visibility: :direct) }
+
+        context 'when user is authorized to see it' do
+          before do
+            Fabricate(:mention, account: user.account, status: status)
+            get :show, params: { account_username: status.account.username, id: status.id, format: format }
+          end
+
+          context 'as HTML' do
+            let(:format) { 'html' }
+
+            it 'returns http success' do
+              expect(response).to have_http_status(200)
+            end
+
+            it 'returns Link header' do
+              expect(response.headers['Link'].to_s).to include 'activity+json'
+            end
+
+            it 'returns Vary header' do
+              expect(response.headers['Vary']).to eq 'Accept'
+            end
+
+            it 'returns no Cache-Control header' do
+              expect(response.headers).to_not include 'Cache-Control'
+            end
+
+            it 'renders status' do
+              expect(response).to render_template(:show)
+              expect(response.body).to include status.text
+            end
+          end
+
+          context 'as JSON' do
+            let(:format) { 'json' }
+
+            it 'returns http success' do
+              expect(response).to have_http_status(200)
+            end
+
+            it 'returns Link header' do
+              expect(response.headers['Link'].to_s).to include 'activity+json'
+            end
+
+            it 'returns Vary header' do
+              expect(response.headers['Vary']).to eq 'Accept'
+            end
+
+            it 'returns private Cache-Control header' do
+              expect(response.headers['Cache-Control']).to include 'private'
+            end
+
+            it 'returns Content-Type header' do
+              expect(response.headers['Content-Type']).to include 'application/activity+json'
+            end
+
+            it 'renders ActivityPub Note object' do
+              json = body_as_json
+              expect(json[:content]).to include status.text
+            end
+          end
+        end
+
+        context 'when user is not authorized to see it' do
+          before do
+            get :show, params: { account_username: status.account.username, id: status.id, format: format }
+          end
+
+          context 'as JSON' do
+            let(:format) { 'json' }
+
+            it 'returns http not found' do
+              expect(response).to have_http_status(404)
+            end
+          end
+
+          context 'as HTML' do
+            let(:format) { 'html' }
+
+            it 'returns http not found' do
+              expect(response).to have_http_status(404)
+            end
+          end
+        end
+      end
+    end
+
+    context 'with signature' do
+      let(:remote_account) { Fabricate(:account, domain: 'example.com') }
+
+      before do
+        allow(controller).to receive(:signed_request_account).and_return(remote_account)
+      end
+
+      context 'when account blocks account' do
+        before do
+          account.block!(remote_account)
+          get :show, params: { account_username: status.account.username, id: status.id }
+        end
+
+        it 'returns http not found' do
+          expect(response).to have_http_status(404)
+        end
+      end
+
+      context 'when account domain blocks account' do
+        before do
+          account.block_domain!(remote_account.domain)
+          get :show, params: { account_username: status.account.username, id: status.id }
+        end
+
+        it 'returns http not found' do
+          expect(response).to have_http_status(404)
+        end
+      end
+
+      context 'when status is public' do
+        before do
+          get :show, params: { account_username: status.account.username, id: status.id, format: format }
+        end
+
+        context 'as HTML' do
+          let(:format) { 'html' }
+
+          it 'returns http success' do
+            expect(response).to have_http_status(200)
+          end
+
+          it 'returns Link header' do
+            expect(response.headers['Link'].to_s).to include 'activity+json'
+          end
+
+          it 'returns Vary header' do
+            expect(response.headers['Vary']).to eq 'Accept'
+          end
+
+          it 'returns no Cache-Control header' do
+            expect(response.headers).to_not include 'Cache-Control'
+          end
+
+          it 'renders status' do
+            expect(response).to render_template(:show)
+            expect(response.body).to include status.text
+          end
+        end
+
+        context 'as JSON' do
+          let(:format) { 'json' }
+
+          it 'returns http success' do
+            expect(response).to have_http_status(200)
+          end
+
+          it 'returns Link header' do
+            expect(response.headers['Link'].to_s).to include 'activity+json'
+          end
+
+          it 'returns Vary header' do
+            expect(response.headers['Vary']).to eq 'Accept'
+          end
+
+          it_behaves_like 'cachable response'
+
+          it 'returns Content-Type header' do
+            expect(response.headers['Content-Type']).to include 'application/activity+json'
+          end
+
+          it 'renders ActivityPub Note object' do
+            json = body_as_json
+            expect(json[:content]).to include status.text
+          end
+        end
+      end
+
+      context 'when status is private' do
+        let(:status) { Fabricate(:status, account: account, visibility: :private) }
+
+        context 'when user is authorized to see it' do
+          before do
+            remote_account.follow!(account)
+            get :show, params: { account_username: status.account.username, id: status.id, format: format }
+          end
+
+          context 'as HTML' do
+            let(:format) { 'html' }
+
+            it 'returns http success' do
+              expect(response).to have_http_status(200)
+            end
+
+            it 'returns Link header' do
+              expect(response.headers['Link'].to_s).to include 'activity+json'
+            end
+
+            it 'returns Vary header' do
+              expect(response.headers['Vary']).to eq 'Accept'
+            end
+
+            it 'returns no Cache-Control header' do
+              expect(response.headers).to_not include 'Cache-Control'
+            end
+
+            it 'renders status' do
+              expect(response).to render_template(:show)
+              expect(response.body).to include status.text
+            end
+          end
+
+          context 'as JSON' do
+            let(:format) { 'json' }
+
+            it 'returns http success' do
+              expect(response).to have_http_status(200)
+            end
+
+            it 'returns Link header' do
+              expect(response.headers['Link'].to_s).to include 'activity+json'
+            end
+
+            it 'returns Vary header' do
+              expect(response.headers['Vary']).to eq 'Accept'
+            end
+
+            it 'returns private Cache-Control header' do
+              expect(response.headers['Cache-Control']).to include 'private'
+            end
+
+            it 'returns Content-Type header' do
+              expect(response.headers['Content-Type']).to include 'application/activity+json'
+            end
+
+            it 'renders ActivityPub Note object' do
+              json = body_as_json
+              expect(json[:content]).to include status.text
+            end
+          end
+        end
+
+        context 'when user is not authorized to see it' do
+          before do
+            get :show, params: { account_username: status.account.username, id: status.id, format: format }
+          end
+
+          context 'as JSON' do
+            let(:format) { 'json' }
+
+            it 'returns http not found' do
+              expect(response).to have_http_status(404)
+            end
+          end
+
+          context 'as HTML' do
+            let(:format) { 'html' }
+
+            it 'returns http not found' do
+              expect(response).to have_http_status(404)
+            end
+          end
+        end
+      end
+
+      context 'when status is direct' do
+        let(:status) { Fabricate(:status, account: account, visibility: :direct) }
+
+        context 'when user is authorized to see it' do
+          before do
+            Fabricate(:mention, account: remote_account, status: status)
+            get :show, params: { account_username: status.account.username, id: status.id, format: format }
+          end
+
+          context 'as HTML' do
+            let(:format) { 'html' }
+
+            it 'returns http success' do
+              expect(response).to have_http_status(200)
+            end
+
+            it 'returns Link header' do
+              expect(response.headers['Link'].to_s).to include 'activity+json'
+            end
+
+            it 'returns Vary header' do
+              expect(response.headers['Vary']).to eq 'Accept'
+            end
+
+            it 'returns no Cache-Control header' do
+              expect(response.headers).to_not include 'Cache-Control'
+            end
+
+            it 'renders status' do
+              expect(response).to render_template(:show)
+              expect(response.body).to include status.text
+            end
+          end
+
+          context 'as JSON' do
+            let(:format) { 'json' }
+
+            it 'returns http success' do
+              expect(response).to have_http_status(200)
+            end
+
+            it 'returns Link header' do
+              expect(response.headers['Link'].to_s).to include 'activity+json'
+            end
+
+            it 'returns Vary header' do
+              expect(response.headers['Vary']).to eq 'Accept'
+            end
+
+            it 'returns private Cache-Control header' do
+              expect(response.headers['Cache-Control']).to include 'private'
+            end
+
+            it 'returns Content-Type header' do
+              expect(response.headers['Content-Type']).to include 'application/activity+json'
+            end
+
+            it 'renders ActivityPub Note object' do
+              json = body_as_json
+              expect(json[:content]).to include status.text
+            end
+          end
+        end
+
+        context 'when user is not authorized to see it' do
+          before do
+            get :show, params: { account_username: status.account.username, id: status.id, format: format }
+          end
+
+          context 'as JSON' do
+            let(:format) { 'json' }
+
+            it 'returns http not found' do
+              expect(response).to have_http_status(404)
+            end
+          end
+
+          context 'as HTML' do
+            let(:format) { 'html' }
+
+            it 'returns http not found' do
+              expect(response).to have_http_status(404)
+            end
+          end
+        end
+      end
+    end
+  end
+
+  describe 'GET #activity' do
+    let(:account) { Fabricate(:account) }
+    let(:status)  { Fabricate(:status, account: account) }
+
+    context 'when account is permanently suspended' do
+      before do
+        account.suspend!
+        account.deletion_request.destroy
+
+        get :activity, params: { account_username: account.username, id: status.id }
+      end
+
+      it 'returns http gone' do
+        expect(response).to have_http_status(410)
+      end
+    end
+
+    context 'when account is temporarily suspended' do
+      before do
+        account.suspend!
+
+        get :activity, params: { account_username: account.username, id: status.id }
+      end
+
+      it 'returns http forbidden' do
+        expect(response).to have_http_status(403)
+      end
+    end
+
+    context 'when status is public' do
+      pending
+    end
+
+    context 'when status is private' do
+      pending
+    end
+
+    context 'when status is direct' do
+      pending
+    end
+
+    context 'when signed-in' do
+      context 'when status is public' do
+        pending
+      end
+
+      context 'when status is private' do
+        context 'when user is authorized to see it' do
+          pending
+        end
+
+        context 'when user is not authorized to see it' do
+          pending
+        end
+      end
+
+      context 'when status is direct' do
+        context 'when user is authorized to see it' do
+          pending
+        end
+
+        context 'when user is not authorized to see it' do
+          pending
+        end
+      end
+    end
+
+    context 'with signature' do
+      context 'when status is public' do
+        pending
+      end
+
+      context 'when status is private' do
+        context 'when user is authorized to see it' do
+          pending
+        end
+
+        context 'when user is not authorized to see it' do
+          pending
+        end
+      end
+
+      context 'when status is direct' do
+        context 'when user is authorized to see it' do
+          pending
+        end
+
+        context 'when user is not authorized to see it' do
+          pending
+        end
+      end
+    end
+  end
+
+  describe 'GET #embed' do
+    let(:account) { Fabricate(:account) }
+    let(:status)  { Fabricate(:status, account: account) }
+
+    context 'when account is suspended' do
+      let(:account) { Fabricate(:account, suspended: true) }
+
+      before do
+        get :embed, params: { account_username: account.username, id: status.id }
+      end
+
+      it 'returns http gone' do
+        expect(response).to have_http_status(410)
+      end
+    end
+
+    context 'when status is a reblog' do
+      let(:original_account) { Fabricate(:account, domain: 'example.com') }
+      let(:original_status) { Fabricate(:status, account: original_account, url: 'https://example.com/123') }
+      let(:status) { Fabricate(:status, account: account, reblog: original_status) }
+
+      before do
+        get :embed, params: { account_username: status.account.username, id: status.id }
+      end
+
+      it 'returns http not found' do
+        expect(response).to have_http_status(404)
+      end
+    end
+
+    context 'when status is public' do
+      before do
+        get :embed, params: { account_username: status.account.username, id: status.id }
+      end
+
+      it 'returns http success' do
         expect(response).to have_http_status(200)
       end
 
-      it 'renders statuses/show' do
-        status = Fabricate(:status)
-        get :show, params: { account_username: status.account.username, id: status.id }
-        expect(response).to render_template 'statuses/show'
+      it 'returns Link header' do
+        expect(response.headers['Link'].to_s).to include 'activity+json'
+      end
+
+      it 'returns Vary header' do
+        expect(response.headers['Vary']).to eq 'Accept'
+      end
+
+      it 'returns public Cache-Control header' do
+        expect(response.headers['Cache-Control']).to include 'public'
+      end
+
+      it 'renders status' do
+        expect(response).to render_template(:embed)
+        expect(response.body).to include status.text
+      end
+    end
+
+    context 'when status is private' do
+      let(:status) { Fabricate(:status, account: account, visibility: :private) }
+
+      before do
+        get :embed, params: { account_username: status.account.username, id: status.id }
+      end
+
+      it 'returns http not found' do
+        expect(response).to have_http_status(404)
+      end
+    end
+
+    context 'when status is direct' do
+      let(:status) { Fabricate(:status, account: account, visibility: :direct) }
+
+      before do
+        get :embed, params: { account_username: status.account.username, id: status.id }
+      end
+
+      it 'returns http not found' do
+        expect(response).to have_http_status(404)
       end
     end
   end

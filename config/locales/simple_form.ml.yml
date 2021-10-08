@@ -1,0 +1,20 @@
+---
+ml:
+  simple_form:
+    hints:
+      admin_account_action:
+        type_html: "<strong>%{acct}</strong> നെ എന്ത് ചെയ്യണമെന്ന് തീരുമാനിക്കുക"
+      defaults:
+        password: 8 അക്ഷരങ്ങൾ എങ്കിലും ഉപയോഗിക്കുക
+    labels:
+      account:
+        fields:
+          value: ഉള്ളടക്കം
+      account_alias:
+        acct: പഴയ അംഗത്വത്തിലേക്കുള്ള പിടി
+      account_migration:
+        acct: പുതിയ അംഗത്വത്തിലേക്കുള്ള പിടി
+      defaults:
+        email: ഇ-മെയിൽ വിലാസം
+      notification_emails:
+        follow: ആരോ നിങ്ങളെ പിന്തുടർന്നു

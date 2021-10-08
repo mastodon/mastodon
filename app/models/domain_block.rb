@@ -12,10 +12,12 @@
 #  reject_reports  :boolean          default(FALSE), not null
 #  private_comment :text
 #  public_comment  :text
+#  obfuscate       :boolean          default(FALSE), not null
 #
 
 class DomainBlock < ApplicationRecord
   include DomainNormalizable
+  include DomainMaterializable
 
   enum severity: [:silence, :suspend, :noop]
 
@@ -50,11 +52,13 @@ class DomainBlock < ApplicationRecord
     def rule_for(domain)
       return if domain.blank?
 
-      uri      = Addressable::URI.new.tap { |u| u.host = domain.gsub(/[\/]/, '') }
+      uri      = Addressable::URI.new.tap { |u| u.host = domain.strip.gsub(/[\/]/, '') }
       segments = uri.normalized_host.split('.')
       variants = segments.map.with_index { |_, i| segments[i..-1].join('.') }
 
-      where(domain: variants[0..-2]).order(Arel.sql('char_length(domain) desc')).first
+      where(domain: variants).order(Arel.sql('char_length(domain) desc')).first
+    rescue Addressable::URI::InvalidURIError, IDN::Idna::IdnaError
+      nil
     end
   end
 
@@ -69,5 +73,24 @@ class DomainBlock < ApplicationRecord
   def affected_accounts_count
     scope = suspend? ? accounts.where(suspended_at: created_at) : accounts.where(silenced_at: created_at)
     scope.count
+  end
+
+  def public_domain
+    return domain unless obfuscate?
+
+    length        = domain.size
+    visible_ratio = length / 4
+
+    domain.chars.map.with_index do |chr, i|
+      if i > visible_ratio && i < length - visible_ratio && chr != '.'
+        '*'
+      else
+        chr
+      end
+    end.join
+  end
+
+  def domain_digest
+    Digest::SHA256.hexdigest(domain)
   end
 end

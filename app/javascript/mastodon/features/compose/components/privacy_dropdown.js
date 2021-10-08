@@ -5,23 +5,23 @@ import IconButton from '../../../components/icon_button';
 import Overlay from 'react-overlays/lib/Overlay';
 import Motion from '../../ui/util/optional_motion';
 import spring from 'react-motion/lib/spring';
-import detectPassiveEvents from 'detect-passive-events';
+import { supportsPassiveEvents } from 'detect-passive-events';
 import classNames from 'classnames';
 import Icon from 'mastodon/components/icon';
 
 const messages = defineMessages({
   public_short: { id: 'privacy.public.short', defaultMessage: 'Public' },
-  public_long: { id: 'privacy.public.long', defaultMessage: 'Post to public timelines' },
+  public_long: { id: 'privacy.public.long', defaultMessage: 'Visible for all, shown in public timelines' },
   unlisted_short: { id: 'privacy.unlisted.short', defaultMessage: 'Unlisted' },
-  unlisted_long: { id: 'privacy.unlisted.long', defaultMessage: 'Do not show in public timelines' },
+  unlisted_long: { id: 'privacy.unlisted.long', defaultMessage: 'Visible for all, but not in public timelines' },
   private_short: { id: 'privacy.private.short', defaultMessage: 'Followers-only' },
-  private_long: { id: 'privacy.private.long', defaultMessage: 'Post to followers only' },
+  private_long: { id: 'privacy.private.long', defaultMessage: 'Visible for followers only' },
   direct_short: { id: 'privacy.direct.short', defaultMessage: 'Direct' },
-  direct_long: { id: 'privacy.direct.long', defaultMessage: 'Post to mentioned users only' },
+  direct_long: { id: 'privacy.direct.long', defaultMessage: 'Visible for mentioned users only' },
   change_privacy: { id: 'privacy.change', defaultMessage: 'Adjust status privacy' },
 });
 
-const listenerOptions = detectPassiveEvents.hasSupport ? { passive: true } : false;
+const listenerOptions = supportsPassiveEvents ? { passive: true } : false;
 
 class PrivacyDropdownMenu extends React.PureComponent {
 
@@ -50,7 +50,7 @@ class PrivacyDropdownMenu extends React.PureComponent {
     const index = items.findIndex(item => {
       return (item.value === value);
     });
-    let element;
+    let element = null;
 
     switch(e.key) {
     case 'Escape':
@@ -60,18 +60,10 @@ class PrivacyDropdownMenu extends React.PureComponent {
       this.handleClick(e);
       break;
     case 'ArrowDown':
-      element = this.node.childNodes[index + 1];
-      if (element) {
-        element.focus();
-        this.props.onChange(element.getAttribute('data-index'));
-      }
+      element = this.node.childNodes[index + 1] || this.node.firstChild;
       break;
     case 'ArrowUp':
-      element = this.node.childNodes[index - 1];
-      if (element) {
-        element.focus();
-        this.props.onChange(element.getAttribute('data-index'));
-      }
+      element = this.node.childNodes[index - 1] || this.node.lastChild;
       break;
     case 'Tab':
       if (e.shiftKey) {
@@ -79,27 +71,20 @@ class PrivacyDropdownMenu extends React.PureComponent {
       } else {
         element = this.node.childNodes[index + 1] || this.node.firstChild;
       }
-      if (element) {
-        element.focus();
-        this.props.onChange(element.getAttribute('data-index'));
-        e.preventDefault();
-        e.stopPropagation();
-      }
       break;
     case 'Home':
       element = this.node.firstChild;
-      if (element) {
-        element.focus();
-        this.props.onChange(element.getAttribute('data-index'));
-      }
       break;
     case 'End':
       element = this.node.lastChild;
-      if (element) {
-        element.focus();
-        this.props.onChange(element.getAttribute('data-index'));
-      }
       break;
+    }
+
+    if (element) {
+      element.focus();
+      this.props.onChange(element.getAttribute('data-index'));
+      e.preventDefault();
+      e.stopPropagation();
     }
   }
 
@@ -115,7 +100,7 @@ class PrivacyDropdownMenu extends React.PureComponent {
   componentDidMount () {
     document.addEventListener('click', this.handleDocumentClick, false);
     document.addEventListener('touchend', this.handleDocumentClick, listenerOptions);
-    if (this.focusedItem) this.focusedItem.focus();
+    if (this.focusedItem) this.focusedItem.focus({ preventScroll: true });
     this.setState({ mounted: true });
   }
 
@@ -142,7 +127,7 @@ class PrivacyDropdownMenu extends React.PureComponent {
           // It should not be transformed when mounting because the resulting
           // size will be used to determine the coordinate of the menu by
           // react-overlays
-          <div className={`privacy-dropdown__dropdown ${placement}`} style={{ ...style, opacity: opacity, transform: mounted ? `scale(${scaleX}, ${scaleY})` : null, zIndex: 2 }} role='listbox' ref={this.setRef}>
+          <div className={`privacy-dropdown__dropdown ${placement}`} style={{ ...style, opacity: opacity, transform: mounted ? `scale(${scaleX}, ${scaleY})` : null }} role='listbox' ref={this.setRef}>
             {items.map(item => (
               <div role='option' tabIndex='0' key={item.value} data-index={item.value} onKeyDown={this.handleKeyDown} onClick={this.handleClick} className={classNames('privacy-dropdown__option', { active: item.value === value })} aria-selected={item.value === value} ref={item.value === value ? this.setFocusRef : null}>
                 <div className='privacy-dropdown__option__icon'>
@@ -168,11 +153,12 @@ class PrivacyDropdown extends React.PureComponent {
 
   static propTypes = {
     isUserTouching: PropTypes.func,
-    isModalOpen: PropTypes.bool.isRequired,
     onModalOpen: PropTypes.func,
     onModalClose: PropTypes.func,
     value: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
+    noDirect: PropTypes.bool,
+    container: PropTypes.func,
     intl: PropTypes.object.isRequired,
   };
 
@@ -182,7 +168,7 @@ class PrivacyDropdown extends React.PureComponent {
   };
 
   handleToggle = ({ target }) => {
-    if (this.props.isUserTouching()) {
+    if (this.props.isUserTouching && this.props.isUserTouching()) {
       if (this.state.open) {
         this.props.onModalClose();
       } else {
@@ -194,7 +180,7 @@ class PrivacyDropdown extends React.PureComponent {
     } else {
       const { top } = target.getBoundingClientRect();
       if (this.state.open && this.activeElement) {
-        this.activeElement.focus();
+        this.activeElement.focus({ preventScroll: true });
       }
       this.setState({ placement: top * 2 < innerHeight ? 'bottom' : 'top' });
       this.setState({ open: !this.state.open });
@@ -235,7 +221,7 @@ class PrivacyDropdown extends React.PureComponent {
 
   handleClose = () => {
     if (this.state.open && this.activeElement) {
-      this.activeElement.focus();
+      this.activeElement.focus({ preventScroll: true });
     }
     this.setState({ open: false });
   }
@@ -251,12 +237,17 @@ class PrivacyDropdown extends React.PureComponent {
       { icon: 'globe', value: 'public', text: formatMessage(messages.public_short), meta: formatMessage(messages.public_long) },
       { icon: 'unlock', value: 'unlisted', text: formatMessage(messages.unlisted_short), meta: formatMessage(messages.unlisted_long) },
       { icon: 'lock', value: 'private', text: formatMessage(messages.private_short), meta: formatMessage(messages.private_long) },
-      { icon: 'envelope', value: 'direct', text: formatMessage(messages.direct_short), meta: formatMessage(messages.direct_long) },
     ];
+
+    if (!this.props.noDirect) {
+      this.options.push(
+        { icon: 'envelope', value: 'direct', text: formatMessage(messages.direct_short), meta: formatMessage(messages.direct_long) },
+      );
+    }
   }
 
   render () {
-    const { value, intl } = this.props;
+    const { value, container, intl } = this.props;
     const { open, placement } = this.state;
 
     const valueOption = this.options.find(item => item.value === value);
@@ -279,7 +270,7 @@ class PrivacyDropdown extends React.PureComponent {
           />
         </div>
 
-        <Overlay show={open} placement={placement} target={this}>
+        <Overlay show={open} placement={placement} target={this} container={container}>
           <PrivacyDropdownMenu
             items={this.options}
             value={value}

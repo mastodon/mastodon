@@ -32,7 +32,7 @@ class Form::Redirect
 
   def set_target_account
     @target_account = ResolveAccountService.new.call(acct)
-  rescue Goldfinger::Error, HTTP::Error, OpenSSL::SSL::SSLError, Mastodon::Error
+  rescue Webfinger::Error, HTTP::Error, OpenSSL::SSL::SSLError, Mastodon::Error
     # Validation will take care of it
   end
 

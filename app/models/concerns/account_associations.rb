@@ -9,10 +9,12 @@ module AccountAssociations
 
     # Identity proofs
     has_many :identity_proofs, class_name: 'AccountIdentityProof', dependent: :destroy, inverse_of: :account
+    has_many :devices, dependent: :destroy, inverse_of: :account
 
     # Timelines
     has_many :statuses, inverse_of: :account, dependent: :destroy
     has_many :favourites, inverse_of: :account, dependent: :destroy
+    has_many :bookmarks, inverse_of: :account, dependent: :destroy
     has_many :mentions, inverse_of: :account, dependent: :destroy
     has_many :notifications, inverse_of: :account, dependent: :destroy
     has_many :conversations, class_name: 'AccountConversation', dependent: :destroy, inverse_of: :account
@@ -58,5 +60,14 @@ module AccountAssociations
     # Hashtags
     has_and_belongs_to_many :tags
     has_many :featured_tags, -> { includes(:tag) }, dependent: :destroy, inverse_of: :account
+
+    # Account deletion requests
+    has_one :deletion_request, class_name: 'AccountDeletionRequest', inverse_of: :account, dependent: :destroy
+
+    # Follow recommendations
+    has_one :follow_recommendation_suppression, inverse_of: :account, dependent: :destroy
+
+    # Account statuses cleanup policy
+    has_one :statuses_cleanup_policy, class_name: 'AccountStatusesCleanupPolicy', inverse_of: :account, dependent: :destroy
   end
 end

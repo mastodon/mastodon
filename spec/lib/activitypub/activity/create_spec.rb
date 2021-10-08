@@ -18,6 +18,7 @@ RSpec.describe ActivityPub::Activity::Create do
 
     stub_request(:get, 'http://example.com/attachment.png').to_return(request_fixture('avatar.txt'))
     stub_request(:get, 'http://example.com/emoji.png').to_return(body: attachment_fixture('emojo.png'))
+    stub_request(:get, 'http://example.com/emojib.png').to_return(body: attachment_fixture('emojo.png'), headers: { 'Content-Type' => 'application/octet-stream' })
   end
 
   describe '#perform' do
@@ -66,7 +67,7 @@ RSpec.describe ActivityPub::Activity::Create do
         end
       end
 
-      context 'public' do
+      context 'public with explicit public address' do
         let(:object_json) do
           {
             id: [ActivityPub::TagManager.instance.uri_for(sender), '#bar'].join,
@@ -84,13 +85,85 @@ RSpec.describe ActivityPub::Activity::Create do
         end
       end
 
-      context 'unlisted' do
+      context 'public with as:Public' do
+        let(:object_json) do
+          {
+            id: [ActivityPub::TagManager.instance.uri_for(sender), '#bar'].join,
+            type: 'Note',
+            content: 'Lorem ipsum',
+            to: 'as:Public',
+          }
+        end
+
+        it 'creates status' do
+          status = sender.statuses.first
+
+          expect(status).to_not be_nil
+          expect(status.visibility).to eq 'public'
+        end
+      end
+
+      context 'public with Public' do
+        let(:object_json) do
+          {
+            id: [ActivityPub::TagManager.instance.uri_for(sender), '#bar'].join,
+            type: 'Note',
+            content: 'Lorem ipsum',
+            to: 'Public',
+          }
+        end
+
+        it 'creates status' do
+          status = sender.statuses.first
+
+          expect(status).to_not be_nil
+          expect(status.visibility).to eq 'public'
+        end
+      end
+
+      context 'unlisted with explicit public address' do
         let(:object_json) do
           {
             id: [ActivityPub::TagManager.instance.uri_for(sender), '#bar'].join,
             type: 'Note',
             content: 'Lorem ipsum',
             cc: 'https://www.w3.org/ns/activitystreams#Public',
+          }
+        end
+
+        it 'creates status' do
+          status = sender.statuses.first
+
+          expect(status).to_not be_nil
+          expect(status.visibility).to eq 'unlisted'
+        end
+      end
+
+      context 'unlisted with as:Public' do
+        let(:object_json) do
+          {
+            id: [ActivityPub::TagManager.instance.uri_for(sender), '#bar'].join,
+            type: 'Note',
+            content: 'Lorem ipsum',
+            cc: 'as:Public',
+          }
+        end
+
+        it 'creates status' do
+          status = sender.statuses.first
+
+          expect(status).to_not be_nil
+          expect(status.visibility).to eq 'unlisted'
+        end
+      end
+
+      context 'unlisted with Public' do
+        let(:object_json) do
+          {
+            id: [ActivityPub::TagManager.instance.uri_for(sender), '#bar'].join,
+            type: 'Note',
+            content: 'Lorem ipsum',
+            cc: 'Public',
           }
         end
 
@@ -109,6 +182,28 @@ RSpec.describe ActivityPub::Activity::Create do
             type: 'Note',
             content: 'Lorem ipsum',
             to: 'http://example.com/followers',
+          }
+        end
+
+        it 'creates status' do
+          status = sender.statuses.first
+
+          expect(status).to_not be_nil
+          expect(status.visibility).to eq 'private'
+        end
+      end
+
+      context 'private with inlined Collection in audience' do
+        let(:object_json) do
+          {
+            id: [ActivityPub::TagManager.instance.uri_for(sender), '#bar'].join,
+            type: 'Note',
+            content: 'Lorem ipsum',
+            to: {
+              'type': 'OrderedCollection',
+              'id': 'http://example.com/followers',
+              'first': 'http://example.com/followers?page=true',
+            }
           }
         end
 
@@ -261,6 +356,57 @@ RSpec.describe ActivityPub::Activity::Create do
         end
       end
 
+
+      context 'with media attachments with long description' do
+        let(:object_json) do
+          {
+            id: [ActivityPub::TagManager.instance.uri_for(sender), '#bar'].join,
+            type: 'Note',
+            content: 'Lorem ipsum',
+            attachment: [
+              {
+                type: 'Document',
+                mediaType: 'image/png',
+                url: 'http://example.com/attachment.png',
+                name: '*' * 1500,
+              },
+            ],
+          }
+        end
+
+        it 'creates status' do
+          status = sender.statuses.first
+
+          expect(status).to_not be_nil
+          expect(status.media_attachments.map(&:description)).to include('*' * 1500)
+        end
+      end
+
+      context 'with media attachments with long description as summary' do
+        let(:object_json) do
+          {
+            id: [ActivityPub::TagManager.instance.uri_for(sender), '#bar'].join,
+            type: 'Note',
+            content: 'Lorem ipsum',
+            attachment: [
+              {
+                type: 'Document',
+                mediaType: 'image/png',
+                url: 'http://example.com/attachment.png',
+                summary: '*' * 1500,
+              },
+            ],
+          }
+        end
+
+        it 'creates status' do
+          status = sender.statuses.first
+
+          expect(status).to_not be_nil
+          expect(status.media_attachments.map(&:description)).to include('*' * 1500)
+        end
+      end
+
       context 'with media attachments with focal points' do
         let(:object_json) do
           {
@@ -352,6 +498,28 @@ RSpec.describe ActivityPub::Activity::Create do
         end
       end
 
+      context 'with hashtags invalid name' do
+        let(:object_json) do
+          {
+            id: [ActivityPub::TagManager.instance.uri_for(sender), '#bar'].join,
+            type: 'Note',
+            content: 'Lorem ipsum',
+            tag: [
+              {
+                type: 'Hashtag',
+                href: 'http://example.com/blah',
+                name: 'foo, #eh !',
+              },
+            ],
+          }
+        end
+
+        it 'creates status' do
+          status = sender.statuses.first
+          expect(status).to_not be_nil
+        end
+      end
+
       context 'with emojis' do
         let(:object_json) do
           {
@@ -375,6 +543,32 @@ RSpec.describe ActivityPub::Activity::Create do
 
           expect(status).to_not be_nil
           expect(status.emojis.map(&:shortcode)).to include('tinking')
+        end
+      end
+
+      context 'with emojis served with invalid content-type' do
+        let(:object_json) do
+          {
+            id: [ActivityPub::TagManager.instance.uri_for(sender), '#bar'].join,
+            type: 'Note',
+            content: 'Lorem ipsum :tinkong:',
+            tag: [
+              {
+                type: 'Emoji',
+                icon: {
+                  url: 'http://example.com/emojib.png',
+                },
+                name: 'tinkong',
+              },
+            ],
+          }
+        end
+
+        it 'creates status' do
+          status = sender.statuses.first
+
+          expect(status).to_not be_nil
+          expect(status.emojis.map(&:shortcode)).to include('tinkong')
         end
       end
 
@@ -503,6 +697,62 @@ RSpec.describe ActivityPub::Activity::Create do
         it 'does not add a vote to the poll' do
           expect(poll.votes.first).to be_nil
         end
+      end
+    end
+
+    context 'with an encrypted message' do
+      let(:recipient) { Fabricate(:account) }
+      let(:target_device) { Fabricate(:device, account: recipient) }
+
+      subject { described_class.new(json, sender, delivery: true, delivered_to_account_id: recipient.id) }
+
+      let(:object_json) do
+        {
+          id: [ActivityPub::TagManager.instance.uri_for(sender), '#bar'].join,
+          type: 'EncryptedMessage',
+          attributedTo: {
+            type: 'Device',
+            deviceId: '1234',
+          },
+          to: {
+            type: 'Device',
+            deviceId: target_device.device_id,
+          },
+          messageType: 1,
+          cipherText: 'Foo',
+          messageFranking: 'Baz678',
+          digest: {
+            digestAlgorithm: 'Bar456',
+            digestValue: 'Foo123',
+          },
+        }
+      end
+
+      before do
+        subject.perform
+      end
+
+      it 'creates an encrypted message' do
+        encrypted_message = target_device.encrypted_messages.reload.first
+
+        expect(encrypted_message).to_not be_nil
+        expect(encrypted_message.from_device_id).to eq '1234'
+        expect(encrypted_message.from_account).to eq sender
+        expect(encrypted_message.type).to eq 1
+        expect(encrypted_message.body).to eq 'Foo'
+        expect(encrypted_message.digest).to eq 'Foo123'
+      end
+
+      it 'creates a message franking' do
+        encrypted_message = target_device.encrypted_messages.reload.first
+        message_franking  = encrypted_message.message_franking
+
+        crypt = ActiveSupport::MessageEncryptor.new(SystemKey.current_key, serializer: Oj)
+        json  = crypt.decrypt_and_verify(message_franking)
+
+        expect(json['source_account_id']).to eq sender.id
+        expect(json['target_account_id']).to eq recipient.id
+        expect(json['original_franking']).to eq 'Baz678'
       end
     end
 

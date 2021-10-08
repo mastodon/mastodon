@@ -1,9 +1,7 @@
 - content_for :page_title do
-  = "#{display_name(@account)} (@#{@account.local_username_and_domain})"
+  = "#{display_name(@account)} (#{acct(@account)})"
 
 - content_for :header_tags do
-  %meta{ name: 'description', content: account_description(@account) }/
-
   - if @account.user&.setting_noindex
     %meta{ name: 'robots', content: 'noindex, noarchive' }/
 
@@ -41,12 +39,12 @@
             = render partial: 'statuses/status', collection: @pinned_statuses, as: :status, locals: { pinned: true }
 
           - if @newer_url
-            .entry= link_to_more @newer_url
+            .entry= link_to_newer @newer_url
 
           = render partial: 'statuses/status', collection: @statuses, as: :status
 
           - if @older_url
-            .entry= link_to_more @older_url
+            .entry= link_to_older @older_url
 
   .column-1
     - if @account.memorial?
@@ -83,6 +81,6 @@
                   = t('accounts.nothing_here')
                 - else
                   %time.formatted{ datetime: featured_tag.last_status_at.iso8601, title: l(featured_tag.last_status_at) }= l featured_tag.last_status_at
-            .trends__item__current= number_to_human featured_tag.statuses_count, strip_insignificant_zeros: true
+            .trends__item__current= friendly_number_to_human featured_tag.statuses_count
 
     = render 'application/sidebar'

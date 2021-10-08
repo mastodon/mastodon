@@ -33,7 +33,6 @@ ka:
     pin_errors:
       following: იმ ადამიანს, ვინც მოგწონთ, უკვე უნდა მიჰყვებოდეთ
     posts_with_replies: ტუტები და პასუხები
-    reserved_username: მომხმარებელი რეზერვირებულია
     roles:
       admin: ადმინისტრატორი
       bot: ბოტი
@@ -70,9 +69,7 @@ ka:
       email_status: ელ-ფოსტის სტატუსი
       enable: ჩართვა
       enabled: ჩართულია
-      feed_url: ლენტის ურლ
       followers: მიმდევრები
-      followers_url: მიმდევრების ურლ
       follows: დადევნებები
       inbox_url: ინბოქსის ურლ
       ip: აი-პი
@@ -93,9 +90,7 @@ ka:
       most_recent_activity: უახლესი აქტივობა
       most_recent_ip: უახლესი აი-პი
       not_subscribed: გამოუწერელი
-      outbox_url: აუთბოქსის ურლ
       perform_full_suspension: მოახდინეთ სრული შეჩერება
-      profile_url: პროფილის ურლ
       promote: დაწინაურება
       protocol: პროტოკოლი
       public: საჯარო
@@ -115,7 +110,6 @@ ka:
         moderator: მოდერატორი
         staff: სტაფი
         user: მომხმარებელი
-      salmon_url: სალმონის ურლ
       search: ძებნა
       shared_inbox_url: გაზიარებული ინბოქსის ურლ
       show:
@@ -132,35 +126,6 @@ ka:
       username: მომხმარებლის სახელი
       web: ვები
     action_logs:
-      actions:
-        assigned_to_self_report: "%{name}-მა დანიშნა რეპორტი %{target} საკუთარ თავზე"
-        change_email_user: "%{name}-მა შეცვალა %{target} მომხმარებლის ელ-ფოსტის მისამართი"
-        confirm_user: "%{name}-მა დაამოწმა %{target} მომხმარებლის ელ-ფოსტის მისამართი"
-        create_custom_emoji: "%{name}-მა ატვირთა ახალი ემოჯი %{target}"
-        create_domain_block: "%{name}-მა დაბლოკა დომენი %{target}"
-        create_email_domain_block: "%{name}-მა შავ სიაში მოაქცია დომენი %{target}"
-        demote_user: "%{name}-მა დააქვეითა მომხმარებელი %{target}"
-        destroy_domain_block: "%{name}-მა ბლოკი მოხსნა დომენს %{target}"
-        destroy_email_domain_block: "%{name} თეთრ სიაში მოაქცია დომენი %{target}"
-        destroy_status: "%{name}-მა გააუქმა სტატუსი %{target}-ზე"
-        disable_2fa_user: "%{name} გათიშა მეორე ფაქტორის მოთხოვნილება მომხმარებელზე %{target}"
-        disable_custom_emoji: "%{name}-მა გათისა ემოჯი %{target}"
-        disable_user: "%{name}-მა გათიშა ლოგინი მომხმარებლისთვის %{target}"
-        enable_custom_emoji: "%{name}-მა ჩართო ემოჯი %{target}"
-        enable_user: "%{name}-მა ჩართო ლოგინი მომხმარებლისთვის %{target}"
-        memorialize_account: "%{name}-მა აქცია ანგარიში %{target} მემორანდუმის გვერდად"
-        promote_user: "%{name}-მა დააწინაურა მომხმარებელი %{target}"
-        remove_avatar_user: "%{name}-მა გააუქმა %{target} მომხმარებლის ავატარი"
-        reopen_report: "%{name}-მა ხელახლა გახსნა რეპორტი %{target}"
-        reset_password_user: "%{name} გადატვირთა მომხმარებლის %{target} პაროლი"
-        resolve_report: "%{name}-მა მოაგვარა %{target} მომხმარებლის რეპორტი"
-        silence_account: "%{name}-მა გააჩუმა %{target} ანგარიში"
-        suspend_account: "%{name} შეაჩერა %{target} ანგარიში"
-        unassigned_report: "%{name}-მა მოაშორა რეპორტი %{target}"
-        unsilence_account: "%{name}-მა მოაშორა გაჩუმება %{target} ანგარიშს"
-        unsuspend_account: "%{name}-მა მოაშორა შეჩერება %{target} ანგარიშს"
-        update_custom_emoji: "%{name}-მა განაახლა ემოჯი %{target}"
-        update_status: "%{name}-მა განაახლა სტატუსი %{target}-ით"
       deleted_status: "(გაუქმებული სტატუსი)"
       title: აუდიტის ლოგი
     custom_emojis:
@@ -267,9 +232,6 @@ ka:
       created_msg: რეპორტის ჩანაწერი წარმატებით შეიქმნა!
       destroyed_msg: რეპორტის ჩანაწერი წარმატებით გაუქმდა!
     reports:
-      account:
-        note: ჩანაწერი
-        report: რეპორტი
       action_taken_by: მოქმედება შეასრულა
       are_you_sure: დარწმუნებული ხარ?
       assign_to_self: დანიშნე ჩემზე
@@ -458,7 +420,6 @@ ka:
       size: ზომა
     blocks: თქვენ ბლოკავთ
     csv: ცსვ
-    follows: თქვენ მიჰყვებით
     mutes: თქვენ აჩუმებთ
     storage: მედია საცავი
   filters:
@@ -761,21 +722,14 @@ ka:
     default: მასტოდონი
     mastodon-light: მასტოდონი (ღია)
   two_factor_authentication:
-    code_hint: დასამოწმებლად შეიყვანეთ თქვენი აუტენტიფიკატორ აპლიკაციისგან გენერირებული კოდი
-    description_html: თუ ჩართავთ <strong>მეორე-ფაქტორის აუტენტიფიკაციას</strong>, შესვლისას აუცილებელი იქნება ფლობდეთ ტელეფონს, რომელიც დააგენერირებს შესვლის ტოკენებს.
     disable: გათიშვა
-    enable: ჩართვა
     enabled: მეორე-ფაქტორის აუტენტიფიკაცია ჩართულია
     enabled_success: მეორე-ფაქტორის აუტენტიფიკაცია წარმატებით ჩაირთო
     generate_recovery_codes: აღდგენის კოდების გენერაცია
-    instructions_html: "<strong>დაასკანირეთ ეს ქრ კოდი გუგლ აუტენტიფიკატორში ან მსგავს ტოტპ აპლიკაციაში თქვენს ტელეფონზე</strong>. ამიერიდან, ეს აპლიკაცია დააგენერირებს ტოკენებს მაშინ როდესაც დაგჭირდებათ ავტორიზაცია."
     lost_recovery_codes: აღდგენის კოდები უფლებას გაძლევთ მიიღოთ ხელმეორე წვდომა თქვენი ანგარიშისადმი თუ დაკარგავთ ტელეფონს. თუ დაკარგეთ აღდგენის კოდები, მათ რეგენერაცია შეგიძლიათ აქ. ძველი აღდგენის კოდები აღარ იქნება ვალიდური.
-    manual_instructions: 'თუ ვერ ასკანირებთ ქრ კოდს და საჭიროებთ მის მექანიკურ რეჟიმში შეყვანას, აქ არის ჩვეულებრივი ტექსტური საიდუმლო:'
     recovery_codes: გაუწიეთ აღდგენის კოდებს რეზერვაცია
     recovery_codes_regenerated: აღგენის კოდების რეგენერაცია წარმატებით შესრულდა
     recovery_instructions_html: თუ როდესმე დაკარგავთ წვდომას თქვენს ტელეფონთან, შეგიძლიათ ქვემოთ მოცემული აღდგენის კოდები გამოიყენოთ, რათა მოიპოვოთ ხელმეორე წვდომა თქვენი ანგარიშისადმი. <strong>იქონიეთ აღდგენის კოდები დაცულად</strong>. მაგალითისთვის, შეგიძლიათ ამობეჭდოთ და შეინახოთ სხვა საბუთებთან ერთად.
-    setup: დაყენება
-    wrong_code: შეყვანილი კოდი არ იყო სწორი! სწორია სერვერის და მოწყობილობის დრო?
   user_mailer:
     backup_ready:
       explanation: თქვენ მოითხოვეთ თქვენი მასტოდონის ანგარიშის სრული რეზერვაცია. ის ახლა უკვე მზადაა გადმოსაწერად!
@@ -799,7 +753,6 @@ ka:
       tips: რჩევები
       title: კეთილი იყოს თქვენი მობრძანება, %{name}!
   users:
-    invalid_email: ელ-ფოსტის მისამართი არაა მართებული
     invalid_otp_token: არასწორი მეორე ფაქტორის კოდი
     otp_lost_help_html: თუ დაკარგეთ წვდომა ორივეზე, შესაძლოა დაუკავშირდეთ %{email}-ს
     seamless_external_login: შესული ხართ გარე სერვისით, აქედან გამომდინარე პაროლი და ელ-ფოსტის მისამართი არაა ხელმისაწვდომი.

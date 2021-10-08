@@ -1,6 +1,6 @@
 - content_for :header_tags do
   = render_initial_state
-  = javascript_pack_tag 'public', integrity: true, crossorigin: 'anonymous'
+  = javascript_pack_tag 'public', crossorigin: 'anonymous'
 
 - content_for :content do
   .public-layout
@@ -39,14 +39,15 @@
             %h4= t 'footer.developers'
             %ul
               %li= link_to t('about.documentation'), 'https://docs.joinmastodon.org/'
-              %li= link_to t('about.api'), 'https://docs.joinmastodon.org/api/guidelines/'
+              %li= link_to t('about.api'), 'https://docs.joinmastodon.org/client/intro/'
           .column-2
             %h4= link_to t('about.what_is_mastodon'), 'https://joinmastodon.org/'
             = link_to svg_logo, root_url, class: 'brand'
           .column-3
             %h4= site_hostname
             %ul
-              %li= link_to t('about.about_this'), about_more_path
+              - unless whitelist_mode?
+                %li= link_to t('about.about_this'), about_more_path
               %li= "v#{Mastodon::Version.to_s}"
           .column-4
             %h4= t 'footer.more'

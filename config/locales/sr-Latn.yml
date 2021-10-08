@@ -19,7 +19,6 @@ sr-Latn:
     people_followed_by: Ljudi koje %{name} prati
     people_who_follow: Ljudi koji prate %{name}
     posts_with_replies: Tutovi i odgovori
-    reserved_username: Korisničko ime je rezervisano
     roles:
       admin: Administrator
       moderator: Moderator
@@ -47,9 +46,7 @@ sr-Latn:
       email_status: Status e-pošte
       enable: Uključi
       enabled: Uključeno
-      feed_url: Adresa dovoda
       followers: Pratioci
-      followers_url: Adresa pratioca
       follows: Praćeni
       inbox_url: Adresa sandučeta
       location:
@@ -69,9 +66,7 @@ sr-Latn:
       most_recent_activity: Najskorija aktivnost
       most_recent_ip: Najskorija IP adresa
       not_subscribed: Nije pretplaćen
-      outbox_url: Odlazno sanduče
       perform_full_suspension: Izvrši kompletno isključenje
-      profile_url: Adresa profila
       promote: Unapredi
       protocol: Protokol
       public: Javno
@@ -87,7 +82,6 @@ sr-Latn:
       roles:
         staff: Osoblje
         user: Korisnik
-      salmon_url: Salmon adresa
       search: Pretraga
       shared_inbox_url: Adresa deljenog sandučeta
       show:
@@ -103,30 +97,6 @@ sr-Latn:
       username: Korisničko ime
       web: Veb
     action_logs:
-      actions:
-        confirm_user: "%{name} je potvrdio adresu e-pošte korisnika %{target}"
-        create_custom_emoji: "%{name} je otpremio novi emotikon %{target}"
-        create_domain_block: "%{name} je blokirao domen %{target}"
-        create_email_domain_block: "%{name} je stavio na crnu listu domen e-pošte %{target}"
-        demote_user: "%{name} je ražalovao korisnika %{target}"
-        destroy_domain_block: "%{name} je odblokirao domen %{target}"
-        destroy_email_domain_block: "%{name} je stavio na belu listu domen e-pošte %{target}"
-        destroy_status: "%{name} je uklonio status korisnika %{target}"
-        disable_2fa_user: "%{name} je isključio obaveznu dvofaktorsku identifikaciju za korisnika %{target}"
-        disable_custom_emoji: "%{name} je onemogućio emotikon %{target}"
-        disable_user: "%{name} je onemogućio prijavljivanje korisniku %{target}"
-        enable_custom_emoji: "%{name} je omogućio emotikon %{target}"
-        enable_user: "%{name} je omogućio prijavljivanje za korisnika %{target}"
-        memorialize_account: "%{name} je pretvorio stranu naloga %{target} kao in memoriam stranu"
-        promote_user: "%{name} je unapredio korisnika %{target}"
-        reset_password_user: "%{name} je resetovao lozinku korisniku %{target}"
-        resolve_report: "%{name} je odbacio prijavu %{target}"
-        silence_account: "%{name} je ućutkao nalog %{target}"
-        suspend_account: "%{name} je suspendovao nalog %{target}"
-        unsilence_account: "%{name} je ukinuo ćutanje nalogu %{target}"
-        unsuspend_account: "%{name} je ukinuo suspenziju nalogu %{target}"
-        update_custom_emoji: "%{name} je izmenio emotikon %{target}"
-        update_status: "%{name} je izmenio status korisnika %{target}"
       title: Zapisnik
     custom_emojis:
       by_domain: Domen
@@ -328,7 +298,6 @@ sr-Latn:
     noscript_html: Da biste koristili Mastodont veb aplikaciju, omogućite JavaScript. U suprotnom, probajte neku od <a href="%{apps_path}">originalnih aplikacija</a> za Mastodont za Vašu platformu.
   exports:
     blocks: Blokirali ste
-    follows: Pratite
     mutes: Ućutkali ste
     storage: Multimedijalno skladište
   generic:
@@ -478,22 +447,14 @@ sr-Latn:
   themes:
     default: Mastodont
   two_factor_authentication:
-    code_hint: Unesite kod sa Vaše aplikacije za proveru identiteta da potvrdite
-    description_html: Ako uključite <strong>dvofaktorsku identifikaciju</strong>, moraćete da imate telefon sa sobom da biste mogli da se prijavite. Telefon će onda generisati tokene za Vašu prijavu.
     disable: Isključi
-    enable: Uključi
     enabled: Dvofaktorska identifikacija je uključena
     enabled_success: Dvofaktorska identifikacija je uspešno uključena
     generate_recovery_codes: Generiši kodove za oporavak
-    instructions_html: "<strong>Skenirajte ovaj QR kod u Google Authenticator ili nekoj sličnoj TOTP aplikaciji na Vašem telefonu</strong>. Od sada, ta aplikacija će Vam generisati tokene koje morate uneti da biste se prijavili."
     lost_recovery_codes: Kodovi za oporavak Vam omogućavaju da povratite pristup nalogu ako izgubite telefon. Ako izgubite kodove za oporavak, možete ih regenerisati ovde. Od tog trenutka, stari kodovi za oporavak više ne važe.
-    manual_instructions: 'Ukoliko ne možete da skenirate QR kod i morate ga unesete ručno, evo je ogoljena šifra:'
     recovery_codes: Napravite rezervu kodova za oporavak
     recovery_codes_regenerated: Kodovi za oporavak uspešno regenerisani
     recovery_instructions_html: Ako ikada izgubite pristup telefonu, možete iskoristiti kodove za oporavak date ispod da povratite pristup nalogu. <strong>Držite kodove za oporavak na sigurnom</strong>. Na primer, odštampajte ih i čuvajte ih sa ostalim važnim dokumentima.
-    setup: Nameštanje
-    wrong_code: Uneseni kod nije ispravan! Da li su vremena na serveru i na uređaju ispravna?
   users:
-    invalid_email: Adresa e-pošte nije ispravna
     invalid_otp_token: Neispravni dvofaktorski kod
     signed_in_as: 'Prijavljen kao:'

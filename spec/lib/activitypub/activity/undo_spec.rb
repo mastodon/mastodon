@@ -50,6 +50,19 @@ RSpec.describe ActivityPub::Activity::Undo do
           expect(sender.reblogged?(status)).to be false
         end
       end
+
+      context 'with only object uri' do
+        let(:object_json) { 'bar' }
+
+        before do
+          Fabricate(:status, reblog: status, account: sender, uri: 'bar')
+        end
+
+        it 'deletes the reblog by uri' do
+          subject.perform
+          expect(sender.reblogged?(status)).to be false
+        end
+      end
     end
 
     context 'with Accept' do
@@ -91,12 +104,21 @@ RSpec.describe ActivityPub::Activity::Undo do
       end
 
       before do
-        sender.block!(recipient)
+        sender.block!(recipient, uri: 'bar')
       end
 
       it 'deletes block from sender to recipient' do
         subject.perform
         expect(sender.blocking?(recipient)).to be false
+      end
+
+      context 'with only object uri' do
+        let(:object_json) { 'bar' }
+
+        it 'deletes block from sender to recipient' do
+          subject.perform
+          expect(sender.blocking?(recipient)).to be false
+        end
       end
     end
 
@@ -113,12 +135,21 @@ RSpec.describe ActivityPub::Activity::Undo do
       end
 
       before do
-        sender.follow!(recipient)
+        sender.follow!(recipient, uri: 'bar')
       end
 
       it 'deletes follow from sender to recipient' do
         subject.perform
         expect(sender.following?(recipient)).to be false
+      end
+
+      context 'with only object uri' do
+        let(:object_json) { 'bar' }
+
+        it 'deletes follow from sender to recipient' do
+          subject.perform
+          expect(sender.following?(recipient)).to be false
+        end
       end
     end
 

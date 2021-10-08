@@ -14,6 +14,8 @@ module AccountFinderConcern
 
     def representative
       Account.find(-99)
+    rescue ActiveRecord::RecordNotFound
+      Account.create!(id: -99, actor_type: 'Application', locked: true, username: Rails.configuration.x.local_domain)
     end
 
     def find_local(username)
@@ -48,7 +50,7 @@ module AccountFinderConcern
     end
 
     def with_usernames
-      Account.where.not(username: '')
+      Account.where.not(Account.arel_table[:username].lower.eq '')
     end
 
     def matching_username
@@ -56,11 +58,7 @@ module AccountFinderConcern
     end
 
     def matching_domain
-      if domain.nil?
-        Account.where(domain: nil)
-      else
-        Account.where(Account.arel_table[:domain].lower.eq domain.to_s.downcase)
-      end
+      Account.where(Account.arel_table[:domain].lower.eq(domain.nil? ? nil : domain.to_s.downcase))
     end
   end
 end

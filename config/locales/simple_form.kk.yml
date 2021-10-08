@@ -1,1 +1,99 @@
+---
 kk:
+  simple_form:
+    hints:
+      defaults:
+        setting_display_media_hide_all: Always hide all media
+        setting_display_media_show_all: Always show media marked as sensitive
+    labels:
+      account:
+        fields:
+          value: Мазмұн
+      account_warning_preset:
+        text: Алдын ала белгіленген мәтін
+      admin_account_action:
+        text: Жеке ескерту
+        type: Әрекет
+        types:
+          disable: Ажырату
+          none: Ештеңе істемеу
+          silence: Үнсіз
+          suspend: Suspend and irreversibly delete account data
+      defaults:
+        autofollow: Жазылуға шақыру
+        avatar: Аватар
+        bot: Бұл бот аккаунт
+        chosen_languages: Тіл фильтрі
+        confirm_new_password: Жаңа құпиясөзді құптау
+        confirm_password: Құпиясөзді құптау
+        context: Фильтр контекстері
+        current_password: Ағымдағы кілтсөз
+        data: Дата
+        discoverable: Бұл аккаунтты каталогта көрсету
+        display_name: Атын көрсет
+        email: Эл. пошта мекен жайы
+        expires_in: Аяқталу мерзімі
+        fields: Профиль метадатасы
+        header: Басы
+        locale: Интерфейс тілі
+        locked: Аккаунтты құлыптау
+        max_uses: Максимум қолданушы саны
+        new_password: Жаңа құпиясөз
+        note: Био
+        otp_attempt: Екі факторлы код
+        password: Құпиясөз
+        phrase: Кілтсөз немесе фраза
+        setting_advanced_layout: Кеңейтілген веб-интерфейс қосу
+        setting_auto_play_gif: GIF анимацияларды бірден қосу
+        setting_boost_modal: Бөлісу алдында растау диалогын көрсету
+        setting_crop_images: Кеңейтілмеген жазбаларда суреттерді 16х9 көлеміне кес
+        setting_default_language: Жазба тілі
+        setting_default_privacy: Жазба құпиялылығы
+        setting_default_sensitive: Медиаларды әрдайым нәзік ретінде белгілеу
+        setting_delete_modal: Жазбаны өшірместен бұрын растау диалогын көрсету
+        setting_display_media: Медианы көрсету
+        setting_display_media_default: Əдепкі
+        setting_display_media_hide_all: Бәрін жасыру
+        setting_display_media_show_all: Бәрін көрсет
+        setting_expand_spoilers: Мазмұн ескертуімен белгіленген жазбаларды кеңейту
+        setting_hide_network: Желіні жасыру
+        setting_system_font_ui: Жүйенің әдепкі қарпі
+        setting_theme: Сайт темасы
+        setting_unfollow_modal: Анфоллоудан бұрын растау диалогын көрсету
+        setting_use_blurhash: Жасырын медиаға арналған түрлі-түсті градиенттерді көрсетіңіз
+        setting_use_pending_items: Баяу режим
+        severity: Маңыздылығы
+        type: Импорт түрі
+        username: Логин
+        username_or_email: Логин немесе Email
+        whole_word: Бүкіл апта
+      featured_tag:
+        name: Хэштег
+      interactions:
+        must_be_follower: Оқырман еместерден ескертпе әкелме
+        must_be_following: Жазылмаған адамдардан ескертпе әкелме
+        must_be_following_dm: Жазылмаған адамдардан хат әкелме
+      invite:
+        comment: Пікір
+      invite_request:
+        text: Неліктен қосылғыңыз келеді?
+      notification_emails:
+        digest: Дайджест e-mail жібер
+        favourite: Біреу жазбамды ұнатқан кезде хат жібер
+        follow: Біреу жазылған кезде хат жібер
+        follow_request: Біреу жазылуға сұранған кезде хат жібер
+        mention: Біреу мен туралы жазған кезде хат жібер
+        pending_account: Жаңа аккаунт құптау күткен кезде хат жібер
+        reblog: Жазбамды біреу бөліскен кезде хат жібер
+        report: Жаңа шағым түскен кезде хат жібер
+        trending_tag: Қаралмаған хештег шыққан кезде хат жібер
+      tag:
+        listable: Бұл хештегті барлық жерде көрсетуге рұқсат бер
+        name: Хэштег
+        trendable: Хештегті трендтерде көрсетуге рұқсат бер
+        usable: Бұл хештегті қолдануға рұқсат бер
+    'no': Жоқ
+    recommended: Рекоменделген
+    required:
+      text: міндетті
+    'yes': Иә

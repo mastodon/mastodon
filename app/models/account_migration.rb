@@ -14,6 +14,8 @@
 #
 
 class AccountMigration < ApplicationRecord
+  include Redisable
+
   COOLDOWN_PERIOD = 30.days.freeze
 
   belongs_to :account
@@ -39,7 +41,13 @@ class AccountMigration < ApplicationRecord
 
     return false unless errors.empty?
 
-    save
+    RedisLock.acquire(lock_options) do |lock|
+      if lock.acquired?
+        save
+      else
+        raise Mastodon::RaceConditionError
+      end
+    end
   end
 
   def cooldown_at
@@ -54,7 +62,7 @@ class AccountMigration < ApplicationRecord
 
   def set_target_account
     self.target_account = ResolveAccountService.new.call(acct)
-  rescue Goldfinger::Error, HTTP::Error, OpenSSL::SSL::SSLError, Mastodon::Error
+  rescue Webfinger::Error, HTTP::Error, OpenSSL::SSL::SSLError, Mastodon::Error
     # Validation will take care of it
   end
 
@@ -74,5 +82,9 @@ class AccountMigration < ApplicationRecord
 
   def validate_migration_cooldown
     errors.add(:base, I18n.t('migrations.errors.on_cooldown')) if account.migrations.within_cooldown.exists?
+  end
+
+  def lock_options
+    { redis: redis, key: "account_migration:#{account.id}" }
   end
 end

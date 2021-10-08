@@ -3,10 +3,10 @@ gl:
   activerecord:
     attributes:
       doorkeeper/application:
-        name: Nome do aplicativo
+        name: Nome da aplicación
         redirect_uri: URI a redireccionar
-        scopes: Permisos
-        website: Sitio web do aplicativo
+        scopes: Ámbitos
+        website: Sitio web da aplicación
     errors:
       models:
         doorkeeper/application:
@@ -27,31 +27,32 @@ gl:
       confirmations:
         destroy: Está segura?
       edit:
-        title: Editar aplicativo
+        title: Editar aplicación
       form:
-        error: Eeeeepa! Comprobe os posibles erros no formulario
+        error: Eeeeepa! Comproba os posibles erros no formulario
       help:
-        native_redirect_uri: Utilice %{native_redirect_uri} para probas locais
-        redirect_uri: Utilice unha liña por URI
-        scopes: Separar permisos con espazos. Deixar en blanco para utilizar os permisos por omisión.
+        native_redirect_uri: Utiliza %{native_redirect_uri} para probas locais
+        redirect_uri: Utiliza unha liña por URI
+        scopes: Separar permisos con espazos. Deixar en branco para utilizar os permisos por omisión.
       index:
-        application: Aplicativo
+        application: Aplicación
         callback_url: URL de chamada
         delete: Eliminar
+        empty: Non tes aplicacións.
         name: Nome
-        new: Novo aplicativo
-        scopes: Permisos
+        new: Nova aplicación
+        scopes: Ámbitos
         show: Mostrar
-        title: Os seus aplicativos
+        title: As túas aplicacións
       new:
-        title: Novo aplicativo
+        title: Nova aplicación
       show:
         actions: Accións
         application_id: Chave do cliente
         callback_urls: URLs de chamada
-        scopes: Permisos
-        secret: Chave secreta do cliente
-        title: 'Aplicativo: %{name}'
+        scopes: Ámbitos
+        secret: Chave segreda do cliente
+        title: 'Aplicación: %{name}'
     authorizations:
       buttons:
         authorize: Autorizar
@@ -60,29 +61,32 @@ gl:
         title: Algo fallou
       new:
         able_to: Poderá
-        prompt: O aplicativo %{client_name} solicita acceso a súa conta
+        prompt: A aplicación %{client_name} solicita acceso a túa conta
         title: Autorización necesaria
       show:
-        title: Copie este código de autorización e pégueo no aplicativo.
+        title: Copia este código de autorización e pégao na aplicación.
     authorized_applications:
       buttons:
         revoke: Retirar autorización
       confirmations:
-        revoke: Está segura?
+        revoke: Estás segura?
       index:
-        application: Aplicativo
+        application: Aplicación
         created_at: Autorizado
         date_format: "%d-%m-%Y %H:%M:%S"
-        scopes: Permisos
-        title: Os seus aplicativos autorizados
+        scopes: Ámbitos
+        title: As túas aplicacións autorizadas
     errors:
       messages:
         access_denied: O propietario do recurso ou o servidor autorizado denegaron a petición.
-        credential_flow_not_configured: O fluxo do Contrasinal de Credenciais do Dono do Recurso  fallou debido a que Doorkeeper.configure.resource_owner_from_credentials non están configuradas.
-        invalid_client: A autenticación do cliente fallou debido a un cliente descoñecido, non se incluíu autenticación do cliente, ou o método de autenticación non está soportado.
+        credential_flow_not_configured: O fluxo do Contrasinal de Credenciais do Dono do Recurso fallou debido a que Doorkeeper.configure.resource_owner_from_credentials non están configuradas.
+        invalid_client: A autenticación do cliente fallou por ser un cliente descoñecido, non se incluíu autenticación do cliente, ou o método de autenticación non está soportado.
         invalid_grant: A validación da autorización proporcionada non é valida, caducou, foi rexeitada, non coincide a redirección URI utilizada na petición de autorización, ou foi proporcionada para outro cliente.
         invalid_redirect_uri: A uri de redirección incluída non é válida.
-        invalid_request: A petición fáltalle un parámetro requerido, inclúe un valor de parámetro non soportado, ou de algún xeito non ten o formato axeitado.
+        invalid_request:
+          missing_param: 'Falta o parámetro requerido: %{value}.'
+          request_not_authorized: A solicitude debe ser autorizada. O parámetro requerido para a aprobación da solicitude non é válido ou non existe.
+          unknown: Fáltalle un parámetro requerido á solicitude, inclúe un valor do parámetro non soportado, ou dalgún xeito non é correcto.
         invalid_resource_owner: As credenciais do dono do recurso proporcionadas non son válidas, ou o dono do recurso non pode ser atopado
         invalid_scope: O permiso solicitado non é válido, descoñecido, ou mal formado.
         invalid_token:
@@ -98,51 +102,53 @@ gl:
     flash:
       applications:
         create:
-          notice: Aplicativo creado.
+          notice: Aplicación creada.
         destroy:
-          notice: Aplicativo eliminado.
+          notice: Aplicación eliminada.
         update:
-          notice: Aplicativo actualizado.
+          notice: Aplicación actualizada.
       authorized_applications:
         destroy:
-          notice: Aplicativo rexeitado.
+          notice: Aplicación revogada.
     layouts:
       admin:
         nav:
-          applications: Aplicativos
-          oauth2_provider: Proveedor OAuth2
+          applications: Aplicacións
+          oauth2_provider: Provedor OAuth2
       application:
         title: Precisa autorización OAuth
     scopes:
       admin:read: ler todos os datos no servidor
       admin:read:accounts: ler información sensible de todas as contas
-      admin:read:reports: ler información sensible de todos os informes e contas reportadas
+      admin:read:reports: ler información sensible de todos os informes e contas denunciadas
       admin:write: modificar todos os datos no servidor
       admin:write:accounts: executar accións de moderación nas contas
-      admin:write:reports: executar accións de moderación nos informes
+      admin:write:reports: executar accións de moderación nas denuncias
       follow: modificar as relacións da conta
       push: recibir notificacións push
-      read: ler todos os datos da súa conta
+      read: ler todos os datos da tua conta
       read:accounts: ver información das contas
-      read:blocks: ver a quen bloquea
-      read:favourites: ver as súas favoritas
-      read:filters: ver os seus filtros
-      read:follows: ver a quen segue
-      read:lists: ver as súas listas
-      read:mutes: ver a quen ten acalado
+      read:blocks: ver a quen bloqueas
+      read:bookmarks: ver os marcadores
+      read:favourites: ver os favoritos
+      read:filters: ver os filtros
+      read:follows: ver a quen segues
+      read:lists: ver as tuas listaxes
+      read:mutes: ver a quen tes acalado
       read:notifications: ver as notificacións
-      read:reports: ver os seus informes
-      read:search: buscar no seu nome
+      read:reports: ver as túas denuncias
+      read:search: buscar no teu nome
       read:statuses: ver todos os estados
-      write: modificar todos os datos da súa conta
-      write:accounts: modificar o seu perfil
+      write: modificar todos os datos da tua conta
+      write:accounts: modificar o teu perfil
       write:blocks: bloquear contas e dominios
+      write:bookmarks: marcar os estados
       write:favourites: estados favoritos
       write:filters: crear filtros
       write:follows: seguir usuarias
-      write:lists: crear listas
-      write:media: subir ficheiros de medios
+      write:lists: crear listaxes
+      write:media: subir ficheiros multimedia
       write:mutes: acalar usuarias e conversas
       write:notifications: eliminar as notificacións
-      write:reports: informe a outras usuarias
+      write:reports: denunciar usuarias
       write:statuses: publicar estados

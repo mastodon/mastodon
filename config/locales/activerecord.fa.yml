@@ -5,13 +5,28 @@ fa:
       poll:
         expires_at: مهلت
         options: گزینه‌ها
+      user:
+        agreement: توافق‌نامهٔ خدمت
+        email: نشانی رایانامه
+        locale: موقعیت
+        password: گذرواژه
+      user/account:
+        username: نام کاربری
+      user/invite_request:
+        text: دلیل
     errors:
       models:
         account:
           attributes:
             username:
               invalid: تنها حروف، اعداد، و زیرخط
+              reserved: محفوظ است
         status:
           attributes:
             reblog:
-              taken: نوشته‌ها وجود دارند
+              taken: تا از وضعیت‌ها هنوز وجود دارند
+        user:
+          attributes:
+            email:
+              blocked: از فراهم‌کنندهٔ رایانامهٔ غیرمجازی استفاده می‌کند
+              unreachable: به نظر نمی‌رسد وجود داشته باشد

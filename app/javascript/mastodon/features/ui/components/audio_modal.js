@@ -2,55 +2,31 @@ import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import Audio from 'mastodon/features/audio';
+import { connect } from 'react-redux';
 import ImmutablePureComponent from 'react-immutable-pure-component';
-import { FormattedMessage } from 'react-intl';
-import { previewState } from './video_modal';
-import classNames from 'classnames';
-import Icon from 'mastodon/components/icon';
+import Footer from 'mastodon/features/picture_in_picture/components/footer';
 
-export default class AudioModal extends ImmutablePureComponent {
+const mapStateToProps = (state, { statusId }) => ({
+  accountStaticAvatar: state.getIn(['accounts', state.getIn(['statuses', statusId, 'account']), 'avatar_static']),
+});
+
+export default @connect(mapStateToProps)
+class AudioModal extends ImmutablePureComponent {
 
   static propTypes = {
     media: ImmutablePropTypes.map.isRequired,
-    status: ImmutablePropTypes.map,
+    statusId: PropTypes.string.isRequired,
+    accountStaticAvatar: PropTypes.string.isRequired,
+    options: PropTypes.shape({
+      autoPlay: PropTypes.bool,
+    }),
     onClose: PropTypes.func.isRequired,
+    onChangeBackgroundColor: PropTypes.func.isRequired,
   };
-
-  static contextTypes = {
-    router: PropTypes.object,
-  };
-
-  componentDidMount () {
-    if (this.context.router) {
-      const history = this.context.router.history;
-
-      history.push(history.location.pathname, previewState);
-
-      this.unlistenHistory = history.listen(() => {
-        this.props.onClose();
-      });
-    }
-  }
-
-  componentWillUnmount () {
-    if (this.context.router) {
-      this.unlistenHistory();
-
-      if (this.context.router.history.location.state === previewState) {
-        this.context.router.history.goBack();
-      }
-    }
-  }
-
-  handleStatusClick = e => {
-    if (e.button === 0 && !(e.ctrlKey || e.metaKey)) {
-      e.preventDefault();
-      this.context.router.history.push(`/statuses/${this.props.status.get('id')}`);
-    }
-  }
 
   render () {
-    const { media, status } = this.props;
+    const { media, accountStaticAvatar, statusId, onClose } = this.props;
+    const options = this.props.options || {};
 
     return (
       <div className='modal-root__modal audio-modal'>
@@ -59,16 +35,18 @@ export default class AudioModal extends ImmutablePureComponent {
             src={media.get('url')}
             alt={media.get('description')}
             duration={media.getIn(['meta', 'original', 'duration'], 0)}
-            height={135}
-            preload
+            height={150}
+            poster={media.get('preview_url') || accountStaticAvatar}
+            backgroundColor={media.getIn(['meta', 'colors', 'background'])}
+            foregroundColor={media.getIn(['meta', 'colors', 'foreground'])}
+            accentColor={media.getIn(['meta', 'colors', 'accent'])}
+            autoPlay={options.autoPlay}
           />
         </div>
 
-        {status && (
-          <div className={classNames('media-modal__meta')}>
-            <a href={status.get('url')} onClick={this.handleStatusClick}><Icon id='comments' /> <FormattedMessage id='lightbox.view_context' defaultMessage='View context' /></a>
-          </div>
-        )}
+        <div className='media-modal__overlay'>
+          {statusId && <Footer statusId={statusId} withOpenButton onClose={onClose} />}
+        </div>
       </div>
     );
   }

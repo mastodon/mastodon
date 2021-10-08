@@ -1,6 +1,6 @@
 // Note: You must restart bin/webpack-dev-server for changes to take effect
 
-const merge = require('webpack-merge');
+const { merge } = require('webpack-merge');
 const sharedConfig = require('./shared');
 const { settings, output } = require('./configuration');
 
@@ -54,7 +54,7 @@ module.exports = merge(sharedConfig, {
     watchOptions: Object.assign(
       {},
       settings.dev_server.watch_options,
-      watchOptions
+      watchOptions,
     ),
     writeToDisk: filePath => /ocr/.test(filePath),
   },

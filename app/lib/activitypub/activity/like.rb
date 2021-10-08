@@ -7,6 +7,6 @@ class ActivityPub::Activity::Like < ActivityPub::Activity
     return if original_status.nil? || !original_status.account.local? || delete_arrived_first?(@json['id']) || @account.favourited?(original_status)
 
     favourite = original_status.favourites.create!(account: @account)
-    NotifyService.new.call(original_status.account, favourite)
+    NotifyService.new.call(original_status.account, :favourite, favourite)
   end
 end

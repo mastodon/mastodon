@@ -2,7 +2,8 @@ require:
   - rubocop-rails
 
 AllCops:
-  TargetRubyVersion: 2.3
+  TargetRubyVersion: 2.5
+  NewCops: disable
   Exclude:
   - 'spec/**/*'
   - 'db/**/*'
@@ -25,34 +26,78 @@ Layout/AccessModifierIndentation:
 Layout/EmptyLineAfterMagicComment:
   Enabled: false
 
+Layout/EmptyLineAfterGuardClause:
+  Enabled: false
+
+Layout/EmptyLinesAroundAttributeAccessor:
+  Enabled: true
+
+Layout/HashAlignment:
+  Enabled: false
+  # EnforcedHashRocketStyle: table
+  # EnforcedColonStyle: table
+
+Layout/SpaceAroundMethodCallOperator:
+  Enabled: true
+
 Layout/SpaceInsideHashLiteralBraces:
   EnforcedStyle: space
 
+Lint/DeprecatedOpenSSLConstant:
+  Enabled: true
+
+Lint/DuplicateElsifCondition:
+  Enabled: true
+
+Lint/MixedRegexpCaptureTypes:
+  Enabled: true
+
+Lint/RaiseException:
+  Enabled: true
+
+Lint/StructNewOverride:
+  Enabled: true
+
+Lint/UselessAccessModifier:
+  ContextCreatingMethods:
+    - class_methods
+
 Metrics/AbcSize:
   Max: 100
+  Exclude:
+    - 'lib/mastodon/*_cli.rb'
 
 Metrics/BlockLength:
-  Max: 35
+  Max: 55
   Exclude:
     - 'lib/tasks/**/*'
+    - 'lib/mastodon/*_cli.rb'
 
 Metrics/BlockNesting:
   Max: 3
+  Exclude:
+    - 'lib/mastodon/*_cli.rb'
 
 Metrics/ClassLength:
   CountComments: false
-  Max: 300
+  Max: 400
+  Exclude:
+    - 'lib/mastodon/*_cli.rb'
 
 Metrics/CyclomaticComplexity:
   Max: 25
+  Exclude:
+    - 'lib/mastodon/*_cli.rb'
 
-Metrics/LineLength:
+Layout/LineLength:
   AllowURI: true
   Enabled: false
 
 Metrics/MethodLength:
   CountComments: false
-  Max: 55
+  Max: 65
+  Exclude:
+    - 'lib/mastodon/*_cli.rb'
 
 Metrics/ModuleLength:
   CountComments: false
@@ -63,21 +108,29 @@ Metrics/ParameterLists:
   CountKeywordArgs: true
 
 Metrics/PerceivedComplexity:
-  Max: 20
+  Max: 25
 
 Naming/MemoizedInstanceVariableName:
   Enabled: false
 
+Naming/MethodParameterName:
+  Enabled: true
+
 Rails:
   Enabled: true
 
-Rails/HasAndBelongsToMany:
+Rails/ApplicationController:
+  Enabled: false
+  Exclude:
+    - 'app/controllers/well_known/**/*.rb'
+
+Rails/BelongsTo:
   Enabled: false
 
-Rails/SkipsModelValidations:
+Rails/ContentTag:
   Enabled: false
 
-Rails/HttpStatus:
+Rails/EnumHash:
   Enabled: false
 
 Rails/Exit:
@@ -85,7 +138,58 @@ Rails/Exit:
     - 'lib/mastodon/*'
     - 'lib/cli.rb'
 
+Rails/FilePath:
+  Enabled: false
+
+Rails/HasAndBelongsToMany:
+  Enabled: false
+
+Rails/HasManyOrHasOneDependent:
+  Enabled: false
+
 Rails/HelperInstanceVariable:
+  Enabled: false
+
+Rails/HttpStatus:
+  Enabled: false
+
+Rails/IndexBy:
+  Enabled: false
+
+Rails/InverseOf:
+  Enabled: false
+
+Rails/LexicallyScopedActionFilter:
+  Enabled: false
+
+Rails/OutputSafety:
+  Enabled: true
+
+Rails/RakeEnvironment:
+  Enabled: false
+
+Rails/RedundantForeignKey:
+  Enabled: false
+
+Rails/SkipsModelValidations:
+  Enabled: false
+
+Rails/UniqueValidationWithoutIndex:
+  Enabled: false
+
+Style/AccessorGrouping:
+  Enabled: true
+
+Style/AccessModifierDeclarations:
+  Enabled: false
+
+Style/ArrayCoercion:
+  Enabled: true
+
+Style/BisectedAttrAccessor:
+  Enabled: true
+
+Style/CaseLikeIf:
   Enabled: false
 
 Style/ClassAndModuleChildren:
@@ -102,13 +206,49 @@ Style/Documentation:
 Style/DoubleNegation:
   Enabled: true
 
+Style/ExpandPathArguments:
+  Enabled: false
+
+Style/ExponentialNotation:
+  Enabled: true
+
+Style/FormatString:
+  Enabled: false
+
+Style/FormatStringToken:
+  Enabled: false
+
 Style/FrozenStringLiteralComment:
   Enabled: true
 
 Style/GuardClause:
   Enabled: false
 
+Style/HashAsLastArrayItem:
+  Enabled: false
+
+Style/HashEachMethods:
+  Enabled: true
+
+Style/HashLikeCase:
+  Enabled: true
+
+Style/HashTransformKeys:
+  Enabled: true
+
+Style/HashTransformValues:
+  Enabled: false
+
+Style/IfUnlessModifier:
+  Enabled: false
+
+Style/InverseMethods:
+  Enabled: false
+
 Style/Lambda:
+  Enabled: false
+
+Style/MutableConstant:
   Enabled: false
 
 Style/PercentLiteralDelimiters:
@@ -119,8 +259,35 @@ Style/PercentLiteralDelimiters:
 Style/PerlBackrefs:
   AutoCorrect: false
 
+Style/RedundantAssignment:
+  Enabled: false
+
+Style/RedundantFetchBlock:
+  Enabled: true
+
+Style/RedundantFileExtensionInRequire:
+  Enabled: true
+
+Style/RedundantRegexpCharacterClass:
+  Enabled: false
+
+Style/RedundantRegexpEscape:
+  Enabled: false
+
+Style/RedundantReturn:
+  Enabled: true
+
 Style/RegexpLiteral:
   Enabled: false
+
+Style/RescueStandardError:
+  Enabled: false
+
+Style/SignalException:
+  Enabled: false
+
+Style/SlicingWithRange:
+  Enabled: true
 
 Style/SymbolArray:
   Enabled: false
@@ -130,3 +297,6 @@ Style/TrailingCommaInArrayLiteral:
 
 Style/TrailingCommaInHashLiteral:
   EnforcedStyleForMultiline: 'comma'
+
+Style/UnpackFirst:
+  Enabled: false

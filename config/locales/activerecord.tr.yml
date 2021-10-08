@@ -3,15 +3,30 @@ tr:
   activerecord:
     attributes:
       poll:
-        expires_at: Son Teslim Tarihi
+        expires_at: Bitiş zamanı
         options: Seçenekler
+      user:
+        agreement: Hizmet Sözleşmesi
+        email: E-posta adresi
+        locale: Bölge ayarı
+        password: Parola
+      user/account:
+        username: Kullanıcı adı
+      user/invite_request:
+        text: Gerekçe
     errors:
       models:
         account:
           attributes:
             username:
               invalid: sadece harfler, sayılar ve alt çizgiler
+              reserved: kullanılamaz
         status:
           attributes:
             reblog:
               taken: durum zaten var
+        user:
+          attributes:
+            email:
+              blocked: izin verilmeyen bir e-posta sağlayıcı kullanıyor
+              unreachable: mevcut gözükmüyor

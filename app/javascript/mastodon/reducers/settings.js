@@ -29,11 +29,13 @@ const initialState = ImmutableMap({
 
   notifications: ImmutableMap({
     alerts: ImmutableMap({
-      follow: true,
-      favourite: true,
-      reblog: true,
-      mention: true,
-      poll: true,
+      follow: false,
+      follow_request: false,
+      favourite: false,
+      reblog: false,
+      mention: false,
+      poll: false,
+      status: false,
     }),
 
     quickFilter: ImmutableMap({
@@ -42,20 +44,27 @@ const initialState = ImmutableMap({
       advanced: false,
     }),
 
+    dismissPermissionBanner: false,
+    showUnread: true,
+
     shows: ImmutableMap({
       follow: true,
+      follow_request: false,
       favourite: true,
       reblog: true,
       mention: true,
       poll: true,
+      status: true,
     }),
 
     sounds: ImmutableMap({
       follow: true,
+      follow_request: false,
       favourite: true,
       reblog: true,
       mention: true,
       poll: true,
+      status: true,
     }),
   }),
 

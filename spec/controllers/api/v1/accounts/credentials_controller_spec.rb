@@ -30,8 +30,8 @@ describe Api::V1::Accounts::CredentialsController do
           patch :update, params: {
             display_name: "Alice Isn't Dead",
             note: "Hi!\n\nToot toot!",
-            avatar: fixture_file_upload('files/avatar.gif', 'image/gif'),
-            header: fixture_file_upload('files/attachment.jpg', 'image/jpeg'),
+            avatar: fixture_file_upload('avatar.gif', 'image/gif'),
+            header: fixture_file_upload('attachment.jpg', 'image/jpeg'),
             source: {
               privacy: 'unlisted',
               sensitive: true,
@@ -58,6 +58,19 @@ describe Api::V1::Accounts::CredentialsController do
           expect(ActivityPub::UpdateDistributionWorker).to have_received(:perform_async).with(user.account_id)
         end
       end
+
+      describe 'with empty source list' do
+        before do
+          patch :update, params: {
+            display_name: "I'm a cat",
+            source: {},
+          }, as: :json
+        end
+
+        it 'returns http success' do
+          expect(response).to have_http_status(200)
+        end
+     end
 
       describe 'with invalid data' do
         before do

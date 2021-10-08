@@ -1,6 +1,28 @@
 - content_for :page_title do
   = t('admin.action_logs.title')
 
-= render @action_logs
+- content_for :header_tags do
+  = javascript_pack_tag 'admin', async: true, crossorigin: 'anonymous'
+
+= form_tag admin_action_logs_url, method: 'GET', class: 'simple_form' do
+  = hidden_field_tag :target_account_id, params[:target_account_id] if params[:target_account_id].present?
+
+  .filters
+    .filter-subset.filter-subset--with-select
+      %strong= t('admin.action_logs.filter_by_user')
+      .input.select.optional
+        = select_tag :account_id, options_from_collection_for_select(Account.joins(:user).merge(User.staff), :id, :username, params[:account_id]), prompt: I18n.t('admin.accounts.moderation.all')
+
+    .filter-subset.filter-subset--with-select
+      %strong= t('admin.action_logs.filter_by_action')
+      .input.select.optional
+        = select_tag :action_type, options_for_select(Admin::ActionLogFilter::ACTION_TYPE_MAP.keys.map { |key| [I18n.t("admin.action_logs.action_types.#{key}"), key]}, params[:action_type]), prompt: I18n.t('admin.accounts.moderation.all')
+
+- if @action_logs.empty?
+  %div.muted-hint.center-text
+    = t 'admin.action_logs.empty'
+- else
+  .announcements-list
+    = render partial: 'action_log', collection: @action_logs
 
 = paginate @action_logs

@@ -3,17 +3,183 @@ bg:
   about:
     about_mastodon_html: Mastodon е <em>безплатен</em> сървър с <em>отворен код</em> за социални мрежи. Като <em>децентрализирана</em> алтернатива на комерсиалните платформи, той позволява избягването на риска от монополизация на твоята комуникация от единични компании. Изберете си сървър, на който се доверявате, и ще можете да контактувате с всички останали. Всеки може да пусне Mastodon и лесно да вземе участие в <em>социалната мрежа</em>.
     about_this: За тази инстанция
+    active_count_after: активно
+    active_footnote: Месечни активни потребители (МАП)
+    administered_by: 'Администрирано от:'
+    api: API
+    apps: Мобилни приложения
+    apps_platforms: Използвайте Mastodon от iOS, Android и други платформи
+    browse_directory: Разгледайте профилна директория и филтрирайте по интереси
+    browse_local_posts: Разгледайте поток от публични публикации на живо от този сървър
+    browse_public_posts: Разгледайте поток от публични публикации на живо в Mastodon
     contact: За контакти
+    contact_missing: Не е зададено
+    contact_unavailable: Не е приложимо
+    discover_users: Открийте потребители
+    documentation: Документация
+    federation_hint_html: С акаунт в %{instance} ще можете да последвате хората от всеки сървър на Mastodon и отвъд.
+    get_apps: Опитайте мобилно приложение
+    hosted_on: Mastodon е хостван на %{domain}
+    learn_more: Още информация
+    privacy_policy: Политика за поверителност
+    see_whats_happening: Вижте какво се случва
+    server_stats: 'Сървърна статистика:'
     source_code: Програмен код
+    status_count_after:
+      one: състояние
+      other: състояния
     status_count_before: Написали
+    tagline: Следвайте приятели и открийте нови
+    terms: Условия за ползване
+    unavailable_content: Модерирани сървъри
+    unavailable_content_description:
+      domain: Сървър
+      reason: Причина
+      rejecting_media: 'Мултимедийните файлове от тези сървъри няма да бъдат обработени или съхранени и няма да бъдат показани миниатюри, което ще изисква ръчно щракване върху оригиналния файл:'
+      rejecting_media_title: Филтрирана мултимедия
+      silenced: 'Публикациите от тези сървъри ще бъдат скрити в обществени емисии и разговори и няма да се генерират известия от взаимодействията на потребителите им, освен ако не ги следвате:'
+      silenced_title: Заглушени сървъри
+      suspended: 'Никакви данни от тези сървъри няма да бъдат обработвани, съхранявани или обменяни, което прави невъзможно всяко взаимодействие или комуникация с потребители от тези сървъри:'
+      suspended_title: Спрени сървъри
+    user_count_after:
+      one: потребител
+      other: потребители
     user_count_before: Дом на
+    what_is_mastodon: Какво е Mastodon?
   accounts:
+    choices_html: 'Избори на %{name}:'
+    endorsements_hint: Можете да подкрепите хората, които следите, от уеб интерфейса и те ще се покажат тук.
+    featured_tags_hint: Можете да представите конкретни хаштагове, които ще се показват тук.
     follow: Последвай
+    followers:
+      one: Последовател
+      other: Последователи
     following: Следва
+    joined: Присъединил се на %{date}
+    last_active: последна дейност
+    link_verified_on: Собствеността върху тази връзка е проверена на %{date}
+    media: Мултимедия
+    moved_html: "%{name} се премести в %{new_profile_link}:"
+    network_hidden: Тази информация не е налична
+    never_active: Никога
     nothing_here: Тук няма никого!
     people_followed_by: Хора, които %{name} следва
     people_who_follow: Хора, които следват %{name}
+    pin_errors:
+      following: Трябва вече да следвате човека, когото искате да подкрепите
+    posts:
+      one: Публикация
+      other: Публикации
+    posts_tab_heading: Публикации
+    posts_with_replies: Публикации и отговори
+    roles:
+      admin: Админ
+      bot: Бот
+      group: Група
+      moderator: Мод
+    unavailable: Профилът не е наличен
     unfollow: Не следвай
+  admin:
+    account_actions:
+      action: Изпълняване на действие
+    account_moderation_notes:
+      create: Оставяне на бележка
+      created_msg: Бележката за модерация е създадена успешно!
+      delete: Изтриване
+    accounts:
+      add_email_domain_block: Блокиране на имейл домейн
+      approve: Одобряване
+      approve_all: Одобряване на всички
+      are_you_sure: Сигурни ли сте?
+      avatar: Аватар
+      by_domain: Домейн
+      change_email:
+        changed_msg: Имейлът на акаунта беше успешно променен!
+        current_email: Текущ имейл
+        label: Промяна на имейл
+        new_email: Нов имейл
+        submit: Промяна на имейл
+        title: Промяна на имейл за %{username}
+      confirm: Потвърждаване
+      confirmed: Потвърдено
+      confirming: Потвърждаване
+      delete: Изтриване на данни
+      deleted: Изтрито
+      demote: Понижаване
+      destroyed_msg: Данните на %{username} вече са на опашка за незабавно изтриване
+      disable: Замразяване
+      disable_two_factor_authentication: Изключване на 2FA
+      disabled: Замразено
+      display_name: Показвано име
+      domain: Домейн
+      edit: Редакция
+      email: Имейл
+      email_status: Състояние на имейл
+      enable: Размразяване
+      enabled: Включено
+      follows: Последвания
+      header: Заглавна част
+      inbox_url: Входящ URL
+      invite_request_text: Причини за присъединяване
+      invited_by: Покана от
+      ip: IP
+      joined: Присъединено
+      location:
+        all: Всичко
+        local: Локално
+        remote: Дистанционно
+        title: Местоположение
+      login_status: Състояние на вход
+      media_attachments: Прикачена мултимедия
+      moderation:
+        active: Активно
+        all: Всичко
+        pending: Чакащо
+        silenced: Заглушено
+        suspended: Спряно
+        title: Модерация
+      moderation_notes: Модераторни бележки
+      most_recent_activity: Последна дейност
+      most_recent_ip: Последен IP
+      no_account_selected: Нито един акаунт не е променен, тъй като нито един не е избран
+      no_limits_imposed: Няма наложени ограничения
+      not_subscribed: Без абонамент
+      pending: Изчаква преглед
+      perform_full_suspension: Спиране
+      promote: Повишаване
+      protocol: Протокол
+      public: Публично
+      push_subscription_expires: PuSH абонаментът изтича
+      redownload: Опресняване на профил
+      reject: Отхвърляне
+      reject_all: Отхвърляне на всичко
+      rejected_msg: Успешно отхвърлена заявка за регистрация на %{username}
+      remove_avatar: Премахване на аватар
+      remove_header: Премахване на заглавна част
+      unsubscribe: Отписване
+      username: Потребителско име
+      warn: Предупреждение
+      web: Уеб
+    action_logs:
+      action_types:
+        confirm_user: Потвърждаване на потребител
+        create_account_warning: Създаване на предупреждение
+        create_announcement: Създаване на оповестяване
+        create_custom_emoji: Създаване на персонализирано емоджи
+        create_ip_block: Създаване на IP правило
+        demote_user: Понижаване на потребител
+        destroy_announcement: Изтриване на оповестяване
+        destroy_custom_emoji: Изтриване на персонализирано емоджи
+        destroy_status: Изтриване на статус
+        disable_2fa_user: Деактивиране на 2FA
+        disable_custom_emoji: Деактивиране на персонализирано емоджи
+        disable_user: Деактивиране на потребител
+        enable_custom_emoji: Активиране на персонализирано емоджи
+        enable_user: Активиране на потребител
+        promote_user: Повишаване на потребител
+        remove_avatar_user: Премахване на аватар
+        reopen_report: Повторно отваряне на доклад
+        reset_password_user: Нулиране на парола
   application_mailer:
     settings: 'Промяна на предпочитанията за e-mail: %{link}'
     view: 'Преглед:'
@@ -54,12 +220,11 @@ bg:
     '406': This page is not available in the requested format.
     '410': The page you were looking for doesn't exist here anymore.
     '422': 
-    '429': Throttled
+    '429': Too many requests
     '500': 
     '503': The page could not be served due to a temporary server failure.
   exports:
     blocks: Вашите блокирания
-    follows: Вашите следвания
     storage: Съхранение на мултимедия
   generic:
     changes_saved_msg: Успешно запазване на промените!
@@ -71,14 +236,6 @@ bg:
       blocking: Списък на блокираните
       following: Списък на последователите
     upload: Качване
-  invites:
-    expires_in:
-      '1800': 30 minutes
-      '21600': 6 hours
-      '3600': 1 hour
-      '43200': 12 hours
-      '604800': 1 week
-      '86400': 1 day
   media_attachments:
     validations:
       images_and_video: Не мога да прикача видеоклип към публикация, която вече съдържа изображения
@@ -139,10 +296,6 @@ bg:
     formats:
       default: "%d %b, %Y, %H:%M"
   two_factor_authentication:
-    description_html: При активация на <strong>двустепенно удостоверяване</strong>, за да влезеш в приложението, ще трябва да използваш телефона си. През него ще се генерира код, който да въвеждаш при влизане.
     disable: Деактивирай
-    enable: Активирай
-    instructions_html: "<strong>Сканирай този QR код с Google Authenticator или подобно приложение от своя телефон</strong>. Oтсега нататък, това приложение ще генерира код, който ще трябва да въвеждаш при всяко влизане."
   users:
-    invalid_email: E-mail адресът е невалиден
     invalid_otp_token: Невалиден код

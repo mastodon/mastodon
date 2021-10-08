@@ -1,0 +1,104 @@
+---
+kab:
+  simple_form:
+    hints:
+      account_alias:
+        acct: Sekcem isem n umseqdac@domain n umiḍan s wansa itebγiḍ ad gujjeḍ
+      account_migration:
+        acct: Sekcem isem n umseqdac@taγult n umiḍan anida itebγiḍ ad gujjeḍ
+      admin_account_action:
+        send_email_notification: Amseqdac ad t-id-yewweḍ usefhem γef wayen yeḍran akked umiḍan-is
+        type_html: Fren d acu ara txedmeḍ s <strong>%{acct}</strong>
+      defaults:
+        autofollow: Imdanen ara ijerrden s usnebgi-inek, ad k-ḍefṛen s wudem awurman
+        discoverable: Tabdert n yimaγnuten d udem-nniḍen i umiḍan-ik akken ad yettwassen ugar
+        email: Ad n-teṭṭfeḍ imayl i usentem
+        irreversible: Tijewwaqin i tessazedgeḍ ad ttwakksent i lebda, ula ma tekkseḍ imsizdeg-nni ar zdat
+        locale: Tutlayt n ugrudem, imaylen d tilγa
+        locked: Isra asentem s wufus n ineḍfaren
+        password: Seqdec ma drus 8 n yisekkilen
+        setting_display_media_default: Ffer teywalt yettwacreḍ d tanafrit
+        setting_display_media_hide_all: Ffer yal tikkelt akk taywalt
+        setting_display_media_show_all: Ffer yal tikkelt teywalt yettwacreḍ d tanafrit
+        setting_hide_network: Wid i teṭṭafaṛeḍ d wid i k-yeṭṭafaṛen ur d-ttwaseknen ara deg umaγnu-inek
+        username: Isem-ik n umseqdac ad yili d ayiwen, ulac am netta deg %{domain}
+      featured_tag:
+        name: 'Ahat ad tebγuḍ ad tesqedceḍ yiwen gar-asen:'
+      imports:
+        data: Afaylu CSV id yusan seg uqeddac-nniḍen n Maṣṭudun
+      ip_block:
+        comment: D afrayan. Cfu ɣef wayɣer i terniḍ alugen-a.
+        severities:
+          no_access: Sewḥel anekcu ɣer akk tiɣbula
+    labels:
+      account:
+        fields:
+          name: Tabzimt
+          value: Agbur
+      account_migration:
+        acct: Tansa n umiḍan amaynut
+      account_warning_preset:
+        title: Azwel
+      admin_account_action:
+        send_email_notification: Sileɣ aseqdac s imaylen
+        type: Tigawt
+        types:
+          disable: Sens anekcum
+          none: Ur teg kra
+          silence: Sgugem
+          suspend: Ḥbes di leεḍil
+      announcement:
+        ends_at: Tagara n tedyant
+        text: Alɣu
+      defaults:
+        avatar: Avaṭar
+        bot: Wagi d amiḍan aṛubut
+        chosen_languages: Sizdeg tutlayin
+        confirm_new_password: Sentem awal uffir amaynut
+        confirm_password: Sentem awal uffir
+        current_password: Awal uffir n tura
+        data: Isefka
+        discoverable: Rnu amiḍan-a γer ukaram
+        display_name: Isem ara d-yettwaskanen
+        email: Tansa imayl
+        header: Ixef
+        locale: Tutlayt n wegrudem
+        locked: Rgel amiḍan
+        max_uses: Amḍan afellay n iseqdacen
+        new_password: Awal uffir amaynut
+        note: Tameddurt
+        otp_attempt: Tangalt n snat n tarayin
+        password: Awal uffir
+        setting_default_language: Tutlayt n tira
+        setting_default_privacy: Tabaḍnit n tira
+        setting_display_media_default: Akk-a kan
+        setting_display_media_hide_all: Ffer kullec
+        setting_display_media_show_all: Ssken kullec
+        setting_hide_network: Ffer azetta-k·m
+        setting_theme: Asental n wesmel
+        setting_use_pending_items: Askar aleγwayan
+        sign_in_token_attempt: Tangalt n tɣellist
+        username: Isem n useqdac
+        username_or_email: Isem n useqdac neγ imal
+        whole_word: Awal akk
+      featured_tag:
+        name: Ahacṭag
+      invite:
+        comment: Awennit
+      invite_request:
+        text: Acimi tebγiḍ ad ternuḍ iman-ik?
+      ip_block:
+        comment: Awennit
+        severities:
+          no_access: Sewḥel anekcum
+        severity: Alugen
+      notification_emails:
+        mention: Yuder-ik·em-id walbɛaḍ
+        reblog: Yella win yesselhan adda-dik·im
+      tag:
+        name: Ahacṭag
+    'no': Ala
+    recommended: Yettuwelleh
+    required:
+      text: ilaq
+    'yes': Ih

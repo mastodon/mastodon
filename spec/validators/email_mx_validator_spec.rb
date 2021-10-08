@@ -6,6 +6,24 @@ describe EmailMxValidator do
   describe '#validate' do
     let(:user) { double(email: 'foo@example.com', errors: double(add: nil)) }
 
+    it 'does not add errors if there are no DNS records for an e-mail domain that is explicitly allowed' do
+      old_whitelist = Rails.configuration.x.email_domains_whitelist
+      Rails.configuration.x.email_domains_whitelist = 'example.com'
+
+      resolver = double
+
+      allow(resolver).to receive(:getresources).with('example.com', Resolv::DNS::Resource::IN::MX).and_return([])
+      allow(resolver).to receive(:getresources).with('example.com', Resolv::DNS::Resource::IN::A).and_return([])
+      allow(resolver).to receive(:getresources).with('example.com', Resolv::DNS::Resource::IN::AAAA).and_return([])
+      allow(resolver).to receive(:timeouts=).and_return(nil)
+      allow(Resolv::DNS).to receive(:open).and_yield(resolver)
+
+      subject.validate(user)
+      expect(user.errors).to_not have_received(:add)
+
+      Rails.configuration.x.email_domains_whitelist = old_whitelist
+    end
+
     it 'adds an error if there are no DNS records for the e-mail domain' do
       resolver = double
 

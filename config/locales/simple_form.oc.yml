@@ -8,16 +8,23 @@ oc:
         acct: Donatz l’utilizaire@domeni del compte ont volètz anar
       account_warning_preset:
         text: Podètz utilizar la sintaxi dels tuts, coma las URL, las etiquetas e las mencions
+        title: Opcional. Pas visible pel destinari
       admin_account_action:
         include_statuses: L’utilizaire veiràs quals tuts a provocat l’accion de moderacion o avertiment
         send_email_notification: L’utilizaire recebrà una explicacion de çò qu’arribèt a son compte
         text_html: Opcional. Podètz utilizar la sintaxi dels tuts. Podètz <a href="%{path}">ajustar un avertiment personalizat</a> per estalviar de temps
         type_html: Causir de qué far amb <strong>%{acct}</strong>
         warning_preset_id: Opcional. Podètz ajustar un tèxt personalizat a a fin de çò predefinit
+      announcement:
+        all_day: Se son marcadas, solament las datas de l’interval de temps seràn mostrada
+        ends_at: Opcional. L’anóncia serà automaticament tirada a aqueste moment
+        scheduled_at: Daissar void per publicar l’anóncia immediatament
+        starts_at: Opcional. Se per cas vòstra anóncia es ligada a un interval de temps especific
+        text: Podètz utilizar la sintaxi dels tuts. Gardatz al cap qu’aquesta anóncia ocuparà la fenèstra de l’utilizaire
       defaults:
-        autofollow: Lo monde que se marcan gràcia a l’invitacion vos segràn automaticament
+        autofollow: Lo mond que se marcan gràcia a l’invitacion vos segràn automaticament
         avatar: PNG, GIF o JPG. Maximum %{size}. Serà retalhat en %{dimensions}px
-        bot: Avisar lo monde qu’aqueste compte es pas d’una persona
+        bot: Avisar lo mond qu’aqueste compte es pas d’una persona
         context: Un o mai de contèxtes ont lo filtre deuriá s’aplicar
         current_password: Per de rasons de seguretat volgatz picar lo senhal del compte actual
         current_username: Per confirmar, volgatz picar lo nom d’utilizaire del compte actual
@@ -38,7 +45,7 @@ oc:
         setting_display_media_default: Rescondre los mèdias marcats coma sensibles
         setting_display_media_hide_all: Totjorn rescondre los mèdias
         setting_display_media_show_all: Totjorn mostrar los mèdias marcats coma sensibles
-        setting_hide_network: Vòstre perfil mostrarà pas los que vos sègon e lo monde que seguètz
+        setting_hide_network: Vòstre perfil mostrarà pas los que vos sègon e lo mond que seguètz
         setting_noindex: Aquò es destinat a vòstre perfil public e vòstra pagina d’estatuts
         setting_show_application: Lo nom de l’aplicacion qu’utilizatz per publicar serà mostrat dins la vista detalhada de vòstres tuts
         setting_use_blurhash: Los degradats venon de las colors de l’imatge rescondut en enfoscar los detalhs
@@ -47,6 +54,9 @@ oc:
         whole_word: Quand lo mot-clau o frasa es solament alfranumeric, serà pas qu’aplicat se correspond al mot complèt
       domain_allow:
         domain: Aqueste domeni poirà recuperar las donadas d’aqueste servidor estant e las donadas venent d’aqueste domeni seràn tractadas e gardadas
+      email_domain_block:
+        domain: Pòt èsser lo nom de domeni mostrat sus l’adreça electronica, l’enregistrament MX, o l’adreça IP ligada. Serà verificat pendent l’inscripcion de la persona puèi serà regetada.
+        with_dns_records: Un ensag de resolucion dels enregistraments DNS del domeni donat serà realizat e los resultats seràn tanben meses en lista negra
       featured_tag:
         name: 'Benlèu que volètz utilizar una d’aquestas causas :'
       form_challenge:
@@ -55,8 +65,17 @@ oc:
         data: Fichièr CSV exportat d’un autre servidor Mastodon
       invite_request:
         text: Aquò nos ajudarà per validar vòstra demanda
+      ip_block:
+        comment: Opcional. Remembratz-vos perque ajustèretz aquesta règla.
+        expires_in: Las adreças IP son una ressorsa finida, son de còps partejadas e càmbian sovent de mans. Per aquesta rason, los blocatges d’IP sens fin son pas recomandats.
+        ip: Dintratz una adreça IPv4 o IPv6. Podètz blocar de plajas entièras en utilizant la sintaxi CIDR. Agachatz de pas vos blocar defòra !
+        severities:
+          no_access: Blocar l’accès a totas las ressorsas
+          sign_up_requires_approval: Las inscripcions novèlas requeriràn vòstra validacion
+        severity: Causissètz que far amb las requèstas d’aquesta IP
       sessions:
         otp: 'Picatz lo còdi d’autentificacion en dos temps (Two factor code) de vòstra aplicacion mobil o utilizatz un de vòstres còdis de recuperacion :'
+        webauthn: S’es una clau USB asseguratz-vos de l’inserir, e se cal de la picanhejar.
       tag:
         name: Podètz pas que cambiar la talha de las letras, per exemple, per que sián de melhor legir
       user:
@@ -72,6 +91,7 @@ oc:
         acct: Identificant del nòu compte
       account_warning_preset:
         text: Tèxt predefinit
+        title: Títol
       admin_account_action:
         include_statuses: Inclure los tuts senhalats dins lo corrièl
         send_email_notification: Avisar l’utilizaire per corrièl
@@ -80,9 +100,16 @@ oc:
         types:
           disable: Desactivar
           none: Far pas res
+          sensitive: Sensible
           silence: Metre en silence
           suspend: Suspendre e escafar per de bon las donadas del compte
         warning_preset_id: Utilizar un avertiment predefinit
+      announcement:
+        all_day: Eveniment tota la jornada
+        ends_at: Fin de l’eveniment
+        scheduled_at: Publicacions programadas
+        starts_at: Debuta de l’eveniment
+        text: Anóncia
       defaults:
         autofollow: Convidar a sègre vòstre compte
         avatar: Avatar
@@ -99,13 +126,14 @@ oc:
         expires_in: Expira aprèp
         fields: Metadonada del perfil
         header: Bandièra
+        honeypot: "%{label} (emplenar pas)"
         inbox_url: URL de la bóstia de recepcion del relai
         irreversible: Suprimir allòc de rescondre
         locale: Lenga de l’interfàcia
         locked: Far venir lo compte privat
         max_uses: Limit d’utilizacions
         new_password: Nòu senhal
-        note: Bio
+        note: Biografia
         otp_attempt: Còdi Two-factor
         password: Senhal
         phrase: Senhal o frasa
@@ -113,10 +141,12 @@ oc:
         setting_aggregate_reblogs: Agropar los partatges dins lo flux d’actualitat
         setting_auto_play_gif: Lectura automatica dels GIFS animats
         setting_boost_modal: Mostrar una fenèstra de confirmacion abans de partejar un estatut
+        setting_crop_images: Retalhar los imatges dins los tuts pas desplegats a 16x9
         setting_default_language: Lenga de publicacion
         setting_default_privacy: Confidencialitat dels tuts
         setting_default_sensitive: Totjorn marcar los mèdias coma sensibles
         setting_delete_modal: Mostrar una fenèstra de confirmacion abans de suprimir un estatut
+        setting_disable_swiping: Desactivar las accions en lisant
         setting_display_media: Afichatge dels mèdias
         setting_display_media_default: Defaut
         setting_display_media_hide_all: O rescondre tot
@@ -133,20 +163,30 @@ oc:
         setting_use_blurhash: Mostrar los degradats colorats pels mèdias resconduts
         setting_use_pending_items: Mòde lent
         severity: Severitat
+        sign_in_token_attempt: Còdi de seguretat
         type: Tipe d’impòrt
         username: Nom d’utilizaire
         username_or_email: Nom d’utilizaire o corrièl
         whole_word: Mot complèt
+      email_domain_block:
+        with_dns_records: Inclure los enregistraments MX e las IP del domeni
       featured_tag:
         name: Etiqueta
       interactions:
         must_be_follower: Blocar las notificacions del mond que vos sègon pas
         must_be_following: Blocar las notificacions del mond que seguètz pas
-        must_be_following_dm: Blocar los messatges del monde que seguètz pas
+        must_be_following_dm: Blocar los messatges del mond que seguètz pas
       invite:
         comment: Comentari
       invite_request:
         text: Perqué volètz vos marcar ?
+      ip_block:
+        comment: Comentari
+        ip: IP
+        severities:
+          no_access: Blocar l’accès
+          sign_up_requires_approval: Limitar las inscripcions
+        severity: Règla
       notification_emails:
         digest: Enviar un corrièl recapitulatiu
         favourite: Enviar un corrièl quand qualqu’un plaça vòstre estatut en favorit
@@ -157,6 +197,8 @@ oc:
         reblog: Enviar un corrièl quand qualqu’un tòrna partejar vòstre estatut
         report: Enviar un corrièl pels nòus senhalaments
         trending_tag: Enviar un corrièl quand una etiqueta pas repassada es en tendéncia
+      rule:
+        text: Règla
       tag:
         listable: Permetre a aquesta etiqueta d’aparéisser a las recèrcas e a l’annuari de perfils
         name: Etiqueta
@@ -167,4 +209,7 @@ oc:
     required:
       mark: "*"
       text: requesit
+    title:
+      sessions:
+        webauthn: Utilizatz una de vòstras clau de seguretat per vos identificar
     'yes': Òc

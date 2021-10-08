@@ -75,3 +75,8 @@
 .public-layout .public-account-header__tabs__tabs .counter.active::after {
   border-bottom: 4px solid $ui-highlight-color;
 }
+
+.compose-form .autosuggest-textarea__textarea::placeholder,
+.compose-form .spoiler-input__input::placeholder {
+  color: $inverted-text-color;
+}

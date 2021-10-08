@@ -36,8 +36,9 @@ hu:
         scopes: A hatásköröket szóközzel válaszd el. Hagyd üresen az alapértelmezett hatáskörökhöz.
       index:
         application: Alkalmazás
-        callback_url: Callback URL
+        callback_url: Visszahívási URL
         delete: Eltávolítás
+        empty: Nincsenek alkalmazásaid.
         name: Név
         new: Új alkalmazás
         scopes: Hatáskör
@@ -82,7 +83,10 @@ hu:
         invalid_client: A kliens hitelesítése megszakadt, mert ismeretlen a kliens, a kliens nem küldött hitelesítést, vagy a hitelesítés módja nem támogatott.
         invalid_grant: A biztosított hitelesítés érvénytelen, lejárt, visszavont, vagy nem egyezik a hitelesítési kérésben használt URI-val, vagy más kliensnek címezték.
         invalid_redirect_uri: Az átirányító URI nem valós.
-        invalid_request: A kérésből hiányzik egy szükséges paraméter, nem támogatott paramétert tartalmaz, vagy máshogy sérült.
+        invalid_request:
+          missing_param: 'Szükséges paraméter hiányzik: %{value}.'
+          request_not_authorized: A kérést jóvá kell hagyni. A jóváhagyási kérelemhez szükséges egyik paraméter hiányzik vagy hibás.
+          unknown: A kérelemből hiányzik egy szükséges paraméter, nem támogatott paraméter-értéket tartalmaz, vagy máshogy sérült.
         invalid_resource_owner: A biztosított erőforrás tulajdonosának hitelesítő adatai nem valósak, vagy az erőforrás tulajdonosa nem található.
         invalid_scope: A kért nézet érvénytelen, ismeretlen, vagy hibás.
         invalid_token:
@@ -115,8 +119,8 @@ hu:
         title: OAuth engedély szükséges
     scopes:
       admin:read: szerver minden adatának olvasása
-      admin:read:accounts: minden érzékeny fiókadat olvasása
-      admin:read:reports: minden bejelentés és bejelentett fiók érzékeny adatainak olvasása
+      admin:read:accounts: minden kényes fiókadat olvasása
+      admin:read:reports: minden bejelentés és bejelentett fiók kényes adatainak olvasása
       admin:write: szerver minden adatának változtatása
       admin:write:accounts: moderációs műveletek végzése fiókokon
       admin:write:reports: moderációs műveletek végzése bejelentéseken
@@ -125,6 +129,7 @@ hu:
       read: fiókod adatainak olvasása
       read:accounts: fiók adatainak megtekintése
       read:blocks: letiltások megtekintése
+      read:bookmarks: könyvjelzőid megtekintése
       read:favourites: kedvencek megtekintése
       read:filters: szűrök megtekintése
       read:follows: követések megtekintése
@@ -133,11 +138,12 @@ hu:
       read:notifications: értesítések megtekintése
       read:reports: bejelentések megtekintése
       read:search: nevedben keresés
-      read:statuses: tülkök megtekintése
+      read:statuses: bejegyzések megtekintése
       write: fiókod adatainak megváltoztatása
       write:accounts: profilod megváltoztatása
       write:blocks: fiókok és domainek letiltása
-      write:favourites: tülkök kedvencnek jelölése
+      write:bookmarks: bejegyzések könyvjelzőzése
+      write:favourites: bejegyzések kedvencnek jelölése
       write:filters: szűrők létrehozása
       write:follows: mások követése
       write:lists: listák létrehozása
@@ -145,4 +151,4 @@ hu:
       write:mutes: emberek és beszélgetések némítása
       write:notifications: értesítések törlése
       write:reports: mások bejelentése
-      write:statuses: tülkök közzététele
+      write:statuses: bejegyzések közzététele

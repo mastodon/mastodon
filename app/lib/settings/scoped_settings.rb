@@ -11,7 +11,6 @@ module Settings
       @object = object
     end
 
-    # rubocop:disable Style/MethodMissing
     def method_missing(method, *args)
       method_name = method.to_s
       # set a value for a variable
@@ -24,7 +23,6 @@ module Settings
         self[method_name]
       end
     end
-    # rubocop:enable Style/MethodMissing
 
     def respond_to_missing?(*)
       true
@@ -32,7 +30,7 @@ module Settings
 
     def all_as_records
       vars = thing_scoped
-      records = vars.each_with_object({}) { |r, h| h[r.var] = r }
+      records = vars.index_by(&:var)
 
       Setting.default_settings.each do |key, default_value|
         next if records.key?(key) || default_value.is_a?(Hash)
@@ -48,7 +46,6 @@ module Settings
       record.update!(value: value)
 
       Rails.cache.write(Setting.cache_key(key, @object), value)
-      value
     end
 
     def [](key)
@@ -66,7 +63,7 @@ module Settings
 
     class << self
       def default_settings
-        defaulting = DEFAULTING_TO_UNSCOPED.each_with_object({}) { |k, h| h[k] = Setting[k] }
+        defaulting = DEFAULTING_TO_UNSCOPED.index_with { |k| Setting[k] }
         Setting.default_settings.merge!(defaulting)
       end
     end

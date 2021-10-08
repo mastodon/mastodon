@@ -6,7 +6,7 @@ class GifReader
   EXTENSION_LABELS = [0xf9, 0x01, 0xff].freeze
   GIF_HEADERS      = %w(GIF87a GIF89a).freeze
 
-  class GifReaderException; end
+  class GifReaderException < StandardError; end
 
   class UnknownImageType < GifReaderException; end
 
@@ -100,16 +100,19 @@ end
 
 module Paperclip
   # This transcoder is only to be used for the MediaAttachment model
-  # to convert animated gifs to webm
+  # to convert animated GIFs to videos
+
   class GifTranscoder < Paperclip::Processor
     def make
       return File.open(@file.path) unless needs_convert?
 
       final_file = Paperclip::Transcoder.make(file, options, attachment)
 
-      attachment.instance.file_file_name    = File.basename(attachment.instance.file_file_name, '.*') + '.mp4'
-      attachment.instance.file_content_type = 'video/mp4'
-      attachment.instance.type              = MediaAttachment.types[:gifv]
+      if options[:style] == :original
+        attachment.instance.file_file_name    = File.basename(attachment.instance.file_file_name, '.*') + '.mp4'
+        attachment.instance.file_content_type = 'video/mp4'
+        attachment.instance.type              = MediaAttachment.types[:gifv]
+      end
 
       final_file
     end
@@ -117,7 +120,7 @@ module Paperclip
     private
 
     def needs_convert?
-      options[:style] == :original && GifReader.animated?(file.path)
+      GifReader.animated?(file.path)
     end
   end
 end

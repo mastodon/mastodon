@@ -19,6 +19,7 @@ const messages = defineMessages({
 const mapStateToProps = state => ({
   accountIds: state.getIn(['user_lists', 'blocks', 'items']),
   hasMore: !!state.getIn(['user_lists', 'blocks', 'next']),
+  isLoading: state.getIn(['user_lists', 'blocks', 'isLoading'], true),
 });
 
 export default @connect(mapStateToProps)
@@ -28,9 +29,9 @@ class Blocks extends ImmutablePureComponent {
   static propTypes = {
     params: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired,
-    shouldUpdateScroll: PropTypes.func,
     accountIds: ImmutablePropTypes.list,
     hasMore: PropTypes.bool,
+    isLoading: PropTypes.bool,
     intl: PropTypes.object.isRequired,
     multiColumn: PropTypes.bool,
   };
@@ -44,7 +45,7 @@ class Blocks extends ImmutablePureComponent {
   }, 300, { leading: true });
 
   render () {
-    const { intl, accountIds, shouldUpdateScroll, hasMore, multiColumn } = this.props;
+    const { intl, accountIds, hasMore, multiColumn, isLoading } = this.props;
 
     if (!accountIds) {
       return (
@@ -63,12 +64,12 @@ class Blocks extends ImmutablePureComponent {
           scrollKey='blocks'
           onLoadMore={this.handleLoadMore}
           hasMore={hasMore}
-          shouldUpdateScroll={shouldUpdateScroll}
+          isLoading={isLoading}
           emptyMessage={emptyMessage}
           bindToDocument={!multiColumn}
         >
           {accountIds.map(id =>
-            <AccountContainer key={id} id={id} />
+            <AccountContainer key={id} id={id} />,
           )}
         </ScrollableList>
       </Column>

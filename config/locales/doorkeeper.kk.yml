@@ -38,6 +38,7 @@ kk:
         application: Қосымша
         callback_url: Callbаck URL
         delete: Өшіру
+        empty: Сізде ешқандай қосымша жоқ.
         name: Аты
         new: Жаңа қосымша
         scopes: Scopеs
@@ -81,7 +82,6 @@ kk:
         invalid_client: Client authentication failed due to unknоwn client, no client authentication included, or unsupported authentication method.
         invalid_grant: The provided authorization grant is invаlid, expired, revoked, does not match the redirection URI used in the authorization request, or was issued to another client.
         invalid_redirect_uri: The redirеct uri included is not valid.
-        invalid_request: The request is missing a required parameter, includes an unsupported parameter vаlue, or is otherwise malformed.
         invalid_resource_owner: The provided resource owner credentials are not valid, or rеsource owner cannot be found
         invalid_scope: The requested scope is invаlid, unknown, or malformed.
         invalid_token:
@@ -113,11 +113,18 @@ kk:
       application:
         title: OAuth authorizatiоn required
     scopes:
+      admin:read: сервердегі барлық деректерді оқыңыз
+      admin:read:accounts: барлық аккаунттардың құпия ақпаратын оқыңыз
+      admin:read:reports: барлық есептер мен есептік жазбалардың құпия ақпаратын оқыңыз
+      admin:write: сервердегі барлық деректерді өзгертіңіз
+      admin:write:accounts: аккаунттардағы модерациялық әрекеттерді орындау
+      admin:write:reports: есептер бойынша модерация әрекеттерін орындау
       follow: modify accоunt relationships
       push: receive your push nоtifications
       read: read all your accоunt's data
       read:accounts: see accounts infоrmation
       read:blocks: see your blоcks
+      read:bookmarks: белгілегендерді қарау
       read:favourites: see your favоurites
       read:filters: see yоur filters
       read:follows: see your follоws
@@ -130,6 +137,7 @@ kk:
       write: modify all your accоunt's data
       write:accounts: modify your prоfile
       write:blocks: block accounts and dоmains
+      write:bookmarks: белгілер статусы
       write:favourites: favourite stаtuses
       write:filters: creаte filters
       write:follows: follow peоple

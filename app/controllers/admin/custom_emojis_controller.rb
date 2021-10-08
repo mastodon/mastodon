@@ -2,10 +2,6 @@
 
 module Admin
   class CustomEmojisController < BaseController
-    include ObfuscateFilename
-
-    obfuscate_filename [:custom_emoji, :image]
-
     def index
       authorize :custom_emoji, :index?
 
@@ -37,6 +33,8 @@ module Admin
       @form.save
     rescue ActionController::ParameterMissing
       flash[:alert] = I18n.t('admin.accounts.no_account_selected')
+    rescue Mastodon::NotPermittedError
+      flash[:alert] = I18n.t('admin.custom_emojis.not_permitted')
     ensure
       redirect_to admin_custom_emojis_path(filter_params)
     end
@@ -52,7 +50,7 @@ module Admin
     end
 
     def filter_params
-      params.slice(:local, :remote, :by_domain, :shortcode, :page).permit(:local, :remote, :by_domain, :shortcode, :page)
+      params.slice(:page, *CustomEmojiFilter::KEYS).permit(:page, *CustomEmojiFilter::KEYS)
     end
 
     def action_from_button

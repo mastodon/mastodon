@@ -12,7 +12,7 @@ curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
 sudo apt-add-repository 'deb https://dl.yarnpkg.com/debian/ stable main'
 
 # Add repo for NodeJS
-curl -sL https://deb.nodesource.com/setup_8.x | sudo bash -
+curl -sL https://deb.nodesource.com/setup_14.x | sudo bash -
 
 # Add firewall rule to redirect 80 to PORT and save
 sudo iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-port #{ENV["PORT"]}
@@ -72,10 +72,12 @@ bundle install
 yarn install
 
 # Build Mastodon
+export RAILS_ENV=development 
 export $(cat ".env.vagrant" | xargs)
 bundle exec rails db:setup
 
 # Configure automatic loading of environment variable
+echo 'export RAILS_ENV=development' >> ~/.bash_profile
 echo 'export $(cat "/vagrant/.env.vagrant" | xargs)' >> ~/.bash_profile
 
 SCRIPT
@@ -91,7 +93,7 @@ VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
-  config.vm.box = "ubuntu/xenial64"
+  config.vm.box = "ubuntu/bionic64"
 
   config.vm.provider :virtualbox do |vb|
     vb.name = "mastodon"

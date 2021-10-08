@@ -9,9 +9,10 @@ pt-PT:
       already_authenticated: A tua sessão já está aberta.
       inactive: A tua conta ainda não está ativada.
       invalid: "%{authentication_keys} ou palavra-passe inválida."
-      last_attempt: Tens mais uma tentativa antes de a tua conta ficar bloqueada.
+      last_attempt: Tens mais uma tentativa antes de a tua conta ser bloqueada.
       locked: A tua conta está bloqueada.
       not_found_in_database: "%{authentication_keys} ou palavra-passe inválida."
+      pending: A sua conta está ainda a aguardar revisão.
       timeout: A tua sessão expirou. Por favor, entra de novo para continuares.
       unauthenticated: Precisas de entrar na tua conta ou de te registares antes de continuar.
       unconfirmed: Tens de confirmar o teu endereço de email antes de continuar.
@@ -19,18 +20,19 @@ pt-PT:
       confirmation_instructions:
         action: Verificar o endereço de e-mail
         action_with_app: Confirmar e regressar a %{app}
-        explanation: Criaste uma conta em %{host} com este endereço de e-mail. Estás a um clique de activá-la. Se não foste tu que fizeste este registo, por favor ignora esta mensagem.
-        extra_html: Por favor lê <a href="%{terms_path}">as regras da instância</a> e os <a href="%{policy_path}"> nossos termos de serviço</a>.
+        explanation: Criou uma conta em %{host} com este endereço de e-mail. Está a um clique de activá-la. Se não foi você que fez este registo, por favor ignore esta mensagem.
+        explanation_when_pending: Você solicitou um convite para %{host} com este endereço de e-mail. Logo que confirme o seu endereço de e-mail, iremos rever a sua inscrição. Pode iniciar sessão para alterar os seus dados ou eliminar a sua conta, mas não poderá aceder à maioria das funções até que a sua conta seja aprovada. Se a sua inscrição for rejeitada, os seus dados serão eliminados, pelo que não será necessária qualquer ação adicional da sua parte. Se não solicitou este convite, por favor, ignore este e-mail.
+        extra_html: Por favor leia <a href="%{terms_path}">as regras da instância</a> e os <a href="%{policy_path}"> nossos termos de serviço</a>.
         subject: 'Mastodon: Instruções de confirmação %{instance}'
         title: Verificar o endereço de e-mail
       email_changed:
         explanation: 'O e-mail associado à tua conta será alterado para:'
-        extra: Se não alteraste o teu e-mail é possível que alguém tenha conseguido aceder à tua conta. Por favor muda a tua palavra-passe imediatamente ou entra em contato com um administrador do servidor se ficaste sem acesso à tua conta.
+        extra: Se não alterou o seu email, é possível que alguém tenha conseguido aceder à sua conta. Por favor altere a sua palavra-passe imediatamente ou entra em contacto com um administrador da instância se tiver ficado sem acesso à sua conta.
         subject: 'Mastodon: Email alterado'
         title: Novo endereço de e-mail
       password_change:
         explanation: A palavra-passe da tua conta foi alterada.
-        extra: Se não alteraste a tua palavra-passe, é possível que alguém tenha conseguido aceder à tua conta. Por favor muda a tua palavra-passe imediatamente ou entra em contato com um administrador do servidor se ficaste sem acesso à tua conta.
+        extra: Se não alterou a sua palavra-passe, é possível que alguém tenha conseguido aceder à sua conta. Por favor altere a sua palavra-passe imediatamente ou entre em contacto com um administrador da instância se tiver ficado sem acesso à sua conta.
         subject: 'Mastodon: Nova palavra-passe'
         title: Palavra-passe alterada
       reconfirmation_instructions:
@@ -44,8 +46,37 @@ pt-PT:
         extra: Se não fizeste este pedido, por favor ignora este e-mail. A tua palavra-passe não irá mudar se não acederes ao link acima e criares uma nova.
         subject: 'Mastodon: Instruções para alterar a palavra-passe'
         title: Solicitar nova palavra-passe
+      two_factor_disabled:
+        explanation: A autenticação de dois fatores para sua conta foi desativada. É agora possível aceder apenas com seu endereço de e-mail e senha.
+        subject: 'Mastodon: Autenticação de dois fatores desativada'
+        title: 2FA desativado
+      two_factor_enabled:
+        explanation: A autenticação de dois fatores foi ativada para sua conta. Um token, gerado pela aplicação TOTP emparelhada, será necessário para aceder.
+        subject: 'Mastodon: Autenticação de dois fatores ativada'
+        title: 2FA ativado
+      two_factor_recovery_codes_changed:
+        explanation: Os códigos de recuperação anteriores foram invalidados e novos foram gerados.
+        subject: 'Mastodonte: Gerados novos códigos de recuperação de dois fatores'
+        title: Códigos de recuperação 2FA alterados
       unlock_instructions:
         subject: 'Mastodon: Instruções para desbloquear a tua conta'
+      webauthn_credential:
+        added:
+          explanation: A seguinte chave de segurança foi adicionada à sua conta
+          subject: 'Mastodon: Nova chave de segurança'
+          title: Foi adicionada uma nova chave de segurança
+        deleted:
+          explanation: A seguinte chave de segurança foi eliminada da sua conta
+          subject: 'Mastodon: Chave de segurança eliminada'
+          title: Uma das suas chaves de segurança foi eliminada
+      webauthn_disabled:
+        explanation: A autenticação com chave de segurança foi desativada para sua conta. É agora possível aceder à sua conta utilizando apenas o token gerado pelo aplicativo TOTP pareado.
+        subject: 'Mastodon: Autenticação com chave de segurança desativada'
+        title: Chaves de segurança desativadas
+      webauthn_enabled:
+        explanation: A autenticação com chave de segurança foi ativada para sua conta. A sua chave de segurança pode agora ser utilizada para aceder à sua conta.
+        subject: 'Mastodon: Autenticação com chave de segurança ativada'
+        title: Chaves de segurança ativadas
     omniauth_callbacks:
       failure: Não foi possível autenticar %{kind} porque "%{reason}".
       success: Autenticado com sucesso na conta %{kind}.
@@ -59,7 +90,8 @@ pt-PT:
       destroyed: Adeus! A tua conta foi cancelada. Esperamos ver-te em breve.
       signed_up: Bem-vindo! A tua conta foi registada com sucesso.
       signed_up_but_inactive: A tua conta foi registada. No entanto ainda não está activa.
-      signed_up_but_locked: A tua conta foi registada. No entanto está bloqueada.
+      signed_up_but_locked: A sua conta foi registada com sucesso. No entanto, não pudemos iniciar a sua sessão porque a conta está bloqueada.
+      signed_up_but_pending: Uma mensagem com um link de confirmação foi enviada para o seu endereço de e-mail. Depois de clicar no link, iremos rever a sua inscrição. Será notificado se a sua conta é aprovada.
       signed_up_but_unconfirmed: Uma mensagem com um link de confirmação foi enviada para o teu email. Por favor segue esse link para activar a tua conta.
       update_needs_confirmation: Alteraste o teu endereço de email ou palavra-passe, mas é necessário confirmar essa alteração. Por favor vai ao teu email e segue link que te enviámos.
       updated: A tua conta foi actualizada com sucesso.
@@ -70,7 +102,7 @@ pt-PT:
     unlocks:
       send_instructions: Vais receber um email com instruções para desbloquear a tua conta dentro de alguns minutos.
       send_paranoid_instructions: Se a tua conta existe, vais receber um email com instruções a detalhar como a desbloquear dentro de alguns minutos.
-      unlocked: A sua conta foi desbloqueada. Por favor inica uma nova sessão para continuar.
+      unlocked: A sua conta foi desbloqueada com sucessos. Por favor, inicie uma nova sessão para continuar.
   errors:
     messages:
       already_confirmed: já confirmado, por favor tente iniciar sessão

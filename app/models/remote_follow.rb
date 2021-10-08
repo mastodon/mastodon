@@ -3,6 +3,7 @@
 class RemoteFollow
   include ActiveModel::Validations
   include RoutingHelper
+  include WebfingerHelper
 
   attr_accessor :acct, :addressable_template
 
@@ -55,7 +56,7 @@ class RemoteFollow
 
     if domain.nil?
       @addressable_template = Addressable::Template.new("#{authorize_interaction_url}?uri={uri}")
-    elsif redirect_url_link.nil? || redirect_url_link.template.nil?
+    elsif redirect_uri_template.nil?
       missing_resource_error
     else
       @addressable_template = Addressable::Template.new(redirect_uri_template)
@@ -63,16 +64,12 @@ class RemoteFollow
   end
 
   def redirect_uri_template
-    redirect_url_link.template
-  end
-
-  def redirect_url_link
-    acct_resource&.link('http://ostatus.org/schema/1.0/subscribe')
+    acct_resource&.link('http://ostatus.org/schema/1.0/subscribe', 'template')
   end
 
   def acct_resource
-    @acct_resource ||= Goldfinger.finger("acct:#{acct}")
-  rescue Goldfinger::Error, HTTP::ConnectionError
+    @acct_resource ||= webfinger!("acct:#{acct}")
+  rescue Webfinger::Error, HTTP::ConnectionError
     nil
   end
 

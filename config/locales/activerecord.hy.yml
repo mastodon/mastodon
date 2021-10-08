@@ -1,1 +1,20 @@
+---
 hy:
+  activerecord:
+    attributes:
+      poll:
+        expires_at: Վերջնաժամկետ
+        options: Տարբերակներ
+      user:
+        agreement: Ծառայության համաձայնագիր
+        email: Էլ․ հասցե
+    errors:
+      models:
+        account:
+          attributes:
+            username:
+              invalid: միայն տառեր, թվեր և ընդգիծկներ
+        status:
+          attributes:
+            reblog:
+              taken: թութը գոյություն ունի

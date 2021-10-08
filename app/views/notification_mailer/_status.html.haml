@@ -26,18 +26,18 @@
                                       = "@#{status.account.acct}"
 
                               - if status.spoiler_text?
-                                %div{ dir: rtl_status?(status) ? 'rtl' : 'ltr' }
+                                %div.auto-dir
                                   %p
                                     = Formatter.instance.format_spoiler(status)
 
-                              %div{ dir: rtl_status?(status) ? 'rtl' : 'ltr' }
+                              %div.auto-dir
                                 = Formatter.instance.format(status)
 
                                 - if status.media_attachments.size > 0
                                   %p
                                     - status.media_attachments.each do |a|
                                       - if status.local?
-                                        = link_to medium_url(a), medium_url(a)
+                                        = link_to full_asset_url(a.file.url(:original)), full_asset_url(a.file.url(:original))
                                       - else
                                         = link_to a.remote_url, a.remote_url
 

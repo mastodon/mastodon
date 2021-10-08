@@ -7,6 +7,24 @@ module ApplicationHelper
     follow
   ).freeze
 
+  RTL_LOCALES = %i(
+    ar
+    fa
+    he
+    ku
+  ).freeze
+
+  def friendly_number_to_human(number, **options)
+    # By default, the number of precision digits used by number_to_human
+    # is looked up from the locales definition, and rails-i18n comes with
+    # values that don't seem to make much sense for many languages, so
+    # override these values with a default of 3 digits of precision.
+    options[:precision] = 3
+    options[:strip_insignificant_zeros] = true
+
+    number_to_human(number, **options)
+  end
+
   def active_nav_class(*paths)
     paths.any? { |path| current_page?(path) } ? 'active' : ''
   end
@@ -44,7 +62,7 @@ module ApplicationHelper
   end
 
   def locale_direction
-    if [:ar, :fa, :he].include?(I18n.locale)
+    if RTL_LOCALES.include?(I18n.locale)
       'rtl'
     else
       'ltr'
@@ -75,6 +93,28 @@ module ApplicationHelper
     class_names += icon.split(' ').map { |cl| "fa-#{cl}" }
 
     content_tag(:i, nil, attributes.merge(class: class_names.join(' ')))
+  end
+
+  def visibility_icon(status)
+    if status.public_visibility?
+      fa_icon('globe', title: I18n.t('statuses.visibilities.public'))
+    elsif status.unlisted_visibility?
+      fa_icon('unlock', title: I18n.t('statuses.visibilities.unlisted'))
+    elsif status.private_visibility? || status.limited_visibility?
+      fa_icon('lock', title: I18n.t('statuses.visibilities.private'))
+    elsif status.direct_visibility?
+      fa_icon('envelope', title: I18n.t('statuses.visibilities.direct'))
+    end
+  end
+
+  def interrelationships_icon(relationships, account_id)
+    if relationships.following[account_id] && relationships.followed_by[account_id]
+      fa_icon('exchange', title: I18n.t('relationships.mutual'), class: 'fa-fw active passive')
+    elsif relationships.following[account_id]
+      fa_icon(locale_direction == 'ltr' ? 'arrow-right' : 'arrow-left', title: I18n.t('relationships.following'), class: 'fa-fw active')
+    elsif relationships.followed_by[account_id]
+      fa_icon(locale_direction == 'ltr' ? 'arrow-left' : 'arrow-right', title: I18n.t('relationships.followers'), class: 'fa-fw passive')
+    end
   end
 
   def custom_emoji_tag(custom_emoji, animate = true)
@@ -136,6 +176,11 @@ module ApplicationHelper
       text: [params[:title], params[:text], params[:url]].compact.join(' '),
     }
 
+    permit_visibilities = %w(public unlisted private direct)
+    default_privacy     = current_account&.user&.setting_default_privacy
+    permit_visibilities.shift(permit_visibilities.index(default_privacy) + 1) if default_privacy.present?
+    state_params[:visibility] = params[:visibility] if permit_visibilities.include? params[:visibility]
+
     if user_signed_in?
       state_params[:settings]          = state_params[:settings].merge(Web::Setting.find_by(user: current_user)&.data || {})
       state_params[:push_subscription] = current_account.user.web_push_subscription(current_session)
@@ -145,6 +190,8 @@ module ApplicationHelper
     end
 
     json = ActiveModelSerializers::SerializableResource.new(InitialStatePresenter.new(state_params), serializer: InitialStateSerializer).to_json
+    # rubocop:disable Rails/OutputSafety
     content_tag(:script, json_escape(json).html_safe, id: 'initial-state', type: 'application/json')
+    # rubocop:enable Rails/OutputSafety
   end
 end

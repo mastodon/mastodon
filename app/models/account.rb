@@ -3,64 +3,76 @@
 #
 # Table name: accounts
 #
-#  id                      :bigint(8)        not null, primary key
-#  username                :string           default(""), not null
-#  domain                  :string
-#  secret                  :string           default(""), not null
-#  private_key             :text
-#  public_key              :text             default(""), not null
-#  remote_url              :string           default(""), not null
-#  salmon_url              :string           default(""), not null
-#  hub_url                 :string           default(""), not null
-#  created_at              :datetime         not null
-#  updated_at              :datetime         not null
-#  note                    :text             default(""), not null
-#  display_name            :string           default(""), not null
-#  uri                     :string           default(""), not null
-#  url                     :string
-#  avatar_file_name        :string
-#  avatar_content_type     :string
-#  avatar_file_size        :integer
-#  avatar_updated_at       :datetime
-#  header_file_name        :string
-#  header_content_type     :string
-#  header_file_size        :integer
-#  header_updated_at       :datetime
-#  avatar_remote_url       :string
-#  subscription_expires_at :datetime
-#  locked                  :boolean          default(FALSE), not null
-#  header_remote_url       :string           default(""), not null
-#  last_webfingered_at     :datetime
-#  inbox_url               :string           default(""), not null
-#  outbox_url              :string           default(""), not null
-#  shared_inbox_url        :string           default(""), not null
-#  followers_url           :string           default(""), not null
-#  protocol                :integer          default("ostatus"), not null
-#  memorial                :boolean          default(FALSE), not null
-#  moved_to_account_id     :bigint(8)
-#  featured_collection_url :string
-#  fields                  :jsonb
-#  actor_type              :string
-#  discoverable            :boolean
-#  also_known_as           :string           is an Array
-#  silenced_at             :datetime
-#  suspended_at            :datetime
-#  trust_level             :integer
+#  id                            :bigint(8)        not null, primary key
+#  username                      :string           default(""), not null
+#  domain                        :string
+#  private_key                   :text
+#  public_key                    :text             default(""), not null
+#  created_at                    :datetime         not null
+#  updated_at                    :datetime         not null
+#  note                          :text             default(""), not null
+#  display_name                  :string           default(""), not null
+#  uri                           :string           default(""), not null
+#  url                           :string
+#  avatar_file_name              :string
+#  avatar_content_type           :string
+#  avatar_file_size              :integer
+#  avatar_updated_at             :datetime
+#  header_file_name              :string
+#  header_content_type           :string
+#  header_file_size              :integer
+#  header_updated_at             :datetime
+#  avatar_remote_url             :string
+#  locked                        :boolean          default(FALSE), not null
+#  header_remote_url             :string           default(""), not null
+#  last_webfingered_at           :datetime
+#  inbox_url                     :string           default(""), not null
+#  outbox_url                    :string           default(""), not null
+#  shared_inbox_url              :string           default(""), not null
+#  followers_url                 :string           default(""), not null
+#  protocol                      :integer          default("ostatus"), not null
+#  memorial                      :boolean          default(FALSE), not null
+#  moved_to_account_id           :bigint(8)
+#  featured_collection_url       :string
+#  fields                        :jsonb
+#  actor_type                    :string
+#  discoverable                  :boolean
+#  also_known_as                 :string           is an Array
+#  silenced_at                   :datetime
+#  suspended_at                  :datetime
+#  trust_level                   :integer
+#  hide_collections              :boolean
+#  avatar_storage_schema_version :integer
+#  header_storage_schema_version :integer
+#  devices_url                   :string
+#  suspension_origin             :integer
+#  sensitized_at                 :datetime
 #
 
 class Account < ApplicationRecord
-  USERNAME_RE = /[a-z0-9_]+([a-z0-9_\.-]+[a-z0-9_]+)?/i
-  MENTION_RE  = /(?<=^|[^\/[:word:]])@((#{USERNAME_RE})(?:@[a-z0-9\.\-]+[a-z0-9]+)?)/i
+  self.ignored_columns = %w(
+    subscription_expires_at
+    secret
+    remote_url
+    salmon_url
+    hub_url
+  )
 
+  USERNAME_RE   = /[a-z0-9_]+([a-z0-9_\.-]+[a-z0-9_]+)?/i
+  MENTION_RE    = /(?<=^|[^\/[:word:]])@((#{USERNAME_RE})(?:@[[:word:]\.\-]+[[:word:]]+)?)/i
+  URL_PREFIX_RE = /\Ahttp(s?):\/\/[^\/]+/
+
+  include Attachmentable
   include AccountAssociations
   include AccountAvatar
   include AccountFinderConcern
   include AccountHeader
   include AccountInteractions
-  include Attachmentable
   include Paginable
   include AccountCounters
   include DomainNormalizable
+  include DomainMaterializable
+  include AccountMerging
 
   TRUST_LEVELS = {
     untrusted: 0,
@@ -68,16 +80,16 @@ class Account < ApplicationRecord
   }.freeze
 
   enum protocol: [:ostatus, :activitypub]
+  enum suspension_origin: [:local, :remote], _prefix: true
 
   validates :username, presence: true
+  validates_with UniqueUsernameValidator, if: -> { will_save_change_to_username? }
 
   # Remote user validations
-  validates :username, uniqueness: { scope: :domain, case_sensitive: true }, if: -> { !local? && will_save_change_to_username? }
   validates :username, format: { with: /\A#{USERNAME_RE}\z/i }, if: -> { !local? && will_save_change_to_username? }
 
   # Local user validations
   validates :username, format: { with: /\A[a-z0-9_]+\z/i }, length: { maximum: 30 }, if: -> { local? && will_save_change_to_username? && actor_type != 'Application' }
-  validates_with UniqueUsernameValidator, if: -> { local? && will_save_change_to_username? }
   validates_with UnreservedUsernameValidator, if: -> { local? && will_save_change_to_username? }
   validates :display_name, length: { maximum: 30 }, if: -> { local? && will_save_change_to_display_name? }
   validates :note, note_length: { maximum: 500 }, if: -> { local? && will_save_change_to_note? }
@@ -85,23 +97,25 @@ class Account < ApplicationRecord
 
   scope :remote, -> { where.not(domain: nil) }
   scope :local, -> { where(domain: nil) }
-  scope :expiring, ->(time) { remote.where.not(subscription_expires_at: nil).where('subscription_expires_at < ?', time) }
   scope :partitioned, -> { order(Arel.sql('row_number() over (partition by domain)')) }
   scope :silenced, -> { where.not(silenced_at: nil) }
   scope :suspended, -> { where.not(suspended_at: nil) }
+  scope :sensitized, -> { where.not(sensitized_at: nil) }
   scope :without_suspended, -> { where(suspended_at: nil) }
   scope :without_silenced, -> { where(silenced_at: nil) }
+  scope :without_instance_actor, -> { where.not(id: -99) }
   scope :recent, -> { reorder(id: :desc) }
   scope :bots, -> { where(actor_type: %w(Application Service)) }
+  scope :groups, -> { where(actor_type: 'Group') }
   scope :alphabetic, -> { order(domain: :asc, username: :asc) }
-  scope :by_domain_accounts, -> { group(:domain).select(:domain, 'COUNT(*) AS accounts_count').order('accounts_count desc') }
   scope :matches_username, ->(value) { where(arel_table[:username].matches("#{value}%")) }
   scope :matches_display_name, ->(value) { where(arel_table[:display_name].matches("#{value}%")) }
   scope :matches_domain, ->(value) { where(arel_table[:domain].matches("%#{value}%")) }
   scope :searchable, -> { without_suspended.where(moved_to_account_id: nil) }
   scope :discoverable, -> { searchable.without_silenced.where(discoverable: true).left_outer_joins(:account_stat) }
-  scope :tagged_with, ->(tag) { joins(:accounts_tags).where(accounts_tags: { tag_id: tag }) }
+  scope :followable_by, ->(account) { joins(arel_table.join(Follow.arel_table, Arel::Nodes::OuterJoin).on(arel_table[:id].eq(Follow.arel_table[:target_account_id]).and(Follow.arel_table[:account_id].eq(account.id))).join_sources).where(Follow.arel_table[:id].eq(nil)).joins(arel_table.join(FollowRequest.arel_table, Arel::Nodes::OuterJoin).on(arel_table[:id].eq(FollowRequest.arel_table[:target_account_id]).and(FollowRequest.arel_table[:account_id].eq(account.id))).join_sources).where(FollowRequest.arel_table[:id].eq(nil)) }
   scope :by_recent_status, -> { order(Arel.sql('(case when account_stats.last_status_at is null then 1 else 0 end) asc, account_stats.last_status_at desc, accounts.id desc')) }
+  scope :by_recent_sign_in, -> { order(Arel.sql('(case when users.current_sign_in_at is null then 1 else 0 end) asc, users.current_sign_in_at desc, accounts.id desc')) }
   scope :popular, -> { order('account_stats.followers_count desc') }
   scope :by_domain_and_subdomains, ->(domain) { where(domain: domain).or(where(arel_table[:domain].matches('%.' + domain))) }
   scope :not_excluded_by_account, ->(account) { where.not(id: account.excluded_from_timeline_account_ids) }
@@ -153,8 +167,18 @@ class Account < ApplicationRecord
     self.actor_type = ActiveModel::Type::Boolean.new.cast(val) ? 'Service' : 'Person'
   end
 
+  def group?
+    actor_type == 'Group'
+  end
+
+  alias group group?
+
   def acct
     local? ? username : "#{username}@#{domain}"
+  end
+
+  def pretty_acct
+    local? ? username : "#{username}@#{Addressable::IDNA.to_unicode(domain)}"
   end
 
   def local_username_and_domain
@@ -167,10 +191,6 @@ class Account < ApplicationRecord
 
   def to_webfinger_s
     "acct:#{local_username_and_domain}"
-  end
-
-  def subscribed?
-    subscription_expires_at.present?
   end
 
   def searchable?
@@ -202,28 +222,47 @@ class Account < ApplicationRecord
   end
 
   def suspended?
-    suspended_at.present?
+    suspended_at.present? && !instance_actor?
   end
 
-  def suspend!(date = Time.now.utc)
+  def suspended_permanently?
+    suspended? && deletion_request.nil?
+  end
+
+  def suspended_temporarily?
+    suspended? && deletion_request.present?
+  end
+
+  def suspend!(date: Time.now.utc, origin: :local, block_email: true)
     transaction do
-      user&.disable! if local?
-      update!(suspended_at: date)
+      create_deletion_request!
+      update!(suspended_at: date, suspension_origin: origin)
+      create_canonical_email_block! if block_email
     end
   end
 
   def unsuspend!
     transaction do
-      user&.enable! if local?
-      update!(suspended_at: nil)
+      deletion_request&.destroy!
+      update!(suspended_at: nil, suspension_origin: nil)
+      destroy_canonical_email_block!
     end
   end
 
+  def sensitized?
+    sensitized_at.present?
+  end
+
+  def sensitize!(date = Time.now.utc)
+    update!(sensitized_at: date)
+  end
+
+  def unsensitize!
+    update!(sensitized_at: nil)
+  end
+
   def memorialize!
-    transaction do
-      user&.disable! if local?
-      update!(memorial: true)
-    end
+    update!(memorial: true)
   end
 
   def sign?
@@ -235,26 +274,20 @@ class Account < ApplicationRecord
   end
 
   def tags_as_strings=(tag_names)
-    hashtags_map = Tag.find_or_create_by_names(tag_names).each_with_object({}) { |tag, h| h[tag.name] = tag }
+    hashtags_map = Tag.find_or_create_by_names(tag_names).index_by(&:name)
 
     # Remove hashtags that are to be deleted
     tags.each do |tag|
       if hashtags_map.key?(tag.name)
         hashtags_map.delete(tag.name)
       else
-        transaction do
-          tags.delete(tag)
-          tag.decrement_count!(:accounts_count)
-        end
+        tags.delete(tag)
       end
     end
 
     # Add hashtags that were so far missing
     hashtags_map.each_value do |tag|
-      transaction do
-        tags << tag
-        tag.increment_count!(:accounts_count)
-      end
+      tags << tag
     end
   end
 
@@ -263,7 +296,11 @@ class Account < ApplicationRecord
   end
 
   def fields
-    (self[:fields] || []).map { |f| Field.new(self, f) }
+    (self[:fields] || []).map do |f|
+      Field.new(self, f)
+    rescue
+      nil
+    end.compact
   end
 
   def fields_attributes=(attributes)
@@ -303,10 +340,6 @@ class Account < ApplicationRecord
     self.fields = tmp
   end
 
-  def subscription(webhook_url)
-    @subscription ||= OStatus2::Subscription.new(remote_url, secret: secret, webhook: webhook_url, hub: hub_url)
-  end
-
   def save_with_optional_media!
     save!
   rescue ActiveRecord::RecordInvalid
@@ -314,6 +347,14 @@ class Account < ApplicationRecord
     self.header = nil
 
     save!
+  end
+
+  def hides_followers?
+    hide_collections? || user_hides_network?
+  end
+
+  def hides_following?
+    hide_collections? || user_hides_network?
   end
 
   def object_type
@@ -325,7 +366,7 @@ class Account < ApplicationRecord
   end
 
   def excluded_from_timeline_account_ids
-    Rails.cache.fetch("exclude_account_ids_for:#{id}") { blocking.pluck(:target_account_id) + blocked_by.pluck(:account_id) + muting.pluck(:target_account_id) }
+    Rails.cache.fetch("exclude_account_ids_for:#{id}") { block_relationships.pluck(:target_account_id) + blocked_by_relationships.pluck(:account_id) + mute_relationships.pluck(:target_account_id) }
   end
 
   def excluded_from_timeline_domains
@@ -336,16 +377,24 @@ class Account < ApplicationRecord
     shared_inbox_url.presence || inbox_url
   end
 
+  def synchronization_uri_prefix
+    return 'local' if local?
+
+    @synchronization_uri_prefix ||= "#{uri[URL_PREFIX_RE]}/"
+  end
+
   class Field < ActiveModelSerializers::Model
-    attributes :name, :value, :verified_at, :account, :errors
+    attributes :name, :value, :verified_at, :account
 
     def initialize(account, attributes)
-      @account     = account
-      @attributes  = attributes
-      @name        = attributes['name'].strip[0, string_limit]
-      @value       = attributes['value'].strip[0, string_limit]
-      @verified_at = attributes['verified_at']&.to_datetime
-      @errors      = {}
+      @original_field = attributes
+      string_limit = account.local? ? 255 : 2047
+      super(
+        account:     account,
+        name:        attributes['name'].strip[0, string_limit],
+        value:       attributes['value'].strip[0, string_limit],
+        verified_at: attributes['verified_at']&.to_datetime,
+      )
     end
 
     def verified?
@@ -367,22 +416,12 @@ class Account < ApplicationRecord
     end
 
     def mark_verified!
-      @verified_at = Time.now.utc
-      @attributes['verified_at'] = @verified_at
+      self.verified_at = Time.now.utc
+      @original_field['verified_at'] = verified_at
     end
 
     def to_h
-      { name: @name, value: @value, verified_at: @verified_at }
-    end
-
-    private
-
-    def string_limit
-      if account.local?
-        255
-      else
-        2047
-      end
+      { name: name, value: value, verified_at: verified_at }
     end
   end
 
@@ -391,13 +430,9 @@ class Account < ApplicationRecord
       super - %w(statuses_count following_count followers_count)
     end
 
-    def domains
-      reorder(nil).pluck(Arel.sql('distinct accounts.domain'))
-    end
-
     def inboxes
-      urls = reorder(nil).where(protocol: :activitypub).pluck(Arel.sql("distinct coalesce(nullif(accounts.shared_inbox_url, ''), accounts.inbox_url)"))
-      DeliveryFailureTracker.filter(urls)
+      urls = reorder(nil).where(protocol: :activitypub).group(:preferred_inbox_url).pluck(Arel.sql("coalesce(nullif(accounts.shared_inbox_url, ''), accounts.inbox_url) AS preferred_inbox_url"))
+      DeliveryFailureTracker.without_unavailable(urls)
     end
 
     def search_for(terms, limit = 10, offset = 0)
@@ -429,12 +464,14 @@ class Account < ApplicationRecord
             SELECT target_account_id
             FROM follows
             WHERE account_id = ?
+            UNION ALL
+            SELECT ?
           )
           SELECT
             accounts.*,
             (count(f.id) + 1) * ts_rank_cd(#{textsearch}, #{query}, 32) AS rank
           FROM accounts
-          LEFT OUTER JOIN follows AS f ON (accounts.id = f.account_id AND f.target_account_id = ?) OR (accounts.id = f.target_account_id AND f.account_id = ?)
+          LEFT OUTER JOIN follows AS f ON (accounts.id = f.account_id AND f.target_account_id = ?)
           WHERE accounts.id IN (SELECT * FROM first_degree)
             AND #{query} @@ #{textsearch}
             AND accounts.suspended_at IS NULL
@@ -465,6 +502,21 @@ class Account < ApplicationRecord
 
       ActiveRecord::Associations::Preloader.new.preload(records, :account_stat)
       records
+    end
+
+    def from_text(text)
+      return [] if text.blank?
+
+      text.scan(MENTION_RE).map { |match| match.first.split('@', 2) }.uniq.filter_map do |(username, domain)|
+        domain = begin
+          if TagManager.instance.local_domain?(domain)
+            nil
+          else
+            TagManager.instance.normalize_domain(domain)
+          end
+        end
+        EntityCache.instance.mention(username, domain)
+      end
     end
 
     private
@@ -517,17 +569,22 @@ class Account < ApplicationRecord
   end
 
   def clean_feed_manager
-    reblog_key       = FeedManager.instance.key(:home, id, 'reblogs')
-    reblogged_id_set = Redis.current.zrange(reblog_key, 0, -1)
+    FeedManager.instance.clean_feeds!(:home, [id])
+  end
 
-    Redis.current.pipelined do
-      Redis.current.del(FeedManager.instance.key(:home, id))
-      Redis.current.del(reblog_key)
+  def create_canonical_email_block!
+    return unless local? && user_email.present?
 
-      reblogged_id_set.each do |reblogged_id|
-        reblog_set_key = FeedManager.instance.key(:home, id, "reblogs:#{reblogged_id}")
-        Redis.current.del(reblog_set_key)
-      end
+    begin
+      CanonicalEmailBlock.create(reference_account: self, email: user_email)
+    rescue ActiveRecord::RecordNotUnique
+      # A canonical e-mail block may already exist for the same e-mail
     end
+  end
+
+  def destroy_canonical_email_block!
+    return unless local?
+
+    CanonicalEmailBlock.where(reference_account: self).delete_all
   end
 end

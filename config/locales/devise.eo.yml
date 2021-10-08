@@ -47,11 +47,36 @@ eo:
         subject: 'Mastodon: Instrukcioj por ŝanĝi pasvorton'
         title: Pasvorto restarigita
       two_factor_disabled:
+        explanation: Dufaktora aŭtentigo por via konto malebligis. Ensalutado nun eblas per nur retpoŝtadreso kaj pasvorto.
+        subject: 'Mastodon: dufaktora aŭtentigo malebligita'
         title: la du-etapa aŭtentigo estas malŝaltita
       two_factor_enabled:
+        explanation: Dufaktora aŭtentigo sukcese ebligita por via akonto. Vi bezonos ĵetonon kreitan per parigitan aplikaĵon por ensaluti.
+        subject: 'Mastodon: dufaktora aŭtentigo ebligita'
         title: la du-etapa aŭtentigo estas ŝaltita
+      two_factor_recovery_codes_changed:
+        explanation: La antaŭaj reakiraj kodoj estis nuligitaj kaj novaj estis generitaj.
+        subject: 'Mastodon: Reakiraj kodoj de dufaktora aŭtentigo rekreitaj'
+        title: Reakiraj kodoj de 2FA estas ŝanĝitaj
       unlock_instructions:
         subject: 'Mastodon: Instrukcioj por malŝlosi'
+      webauthn_credential:
+        added:
+          explanation: La sekva sekureca ŝlosilo estis aldonita al via konto
+          subject: 'Mastodon: Nova sekureca ŝlosilo'
+          title: Nova sekureca ŝlosilo estis aldonita
+        deleted:
+          explanation: La sekva sekureca ŝlosilo estis forigita de via konto
+          subject: 'Mastodon: sekureca ŝlosilo forigita'
+          title: Unu el viaj sekurecaj ŝlosiloj estis forigita
+      webauthn_disabled:
+        explanation: Aŭtentikigo per sekurecaj ŝlosiloj estis malebligita por via konto. Ensaluto nun eblas per nur la signo generita de la parigita TOTP-programo.
+        subject: 'Mastodon: sekureca-ŝlosila aŭtentigo malebligita'
+        title: Sekurecaj ŝlosiloj malaktivigitaj
+      webauthn_enabled:
+        explanation: Sekureca ŝlosila aŭtentokontrolo estis ebligita por via konto. Via sekureca ŝlosilo nun uzeblas por ensaluti.
+        subject: 'Mastodon: sekureca-ŝlosila aŭtentigo ebligita'
+        title: Sekurecaj ŝlosiloj aktivigitaj
     omniauth_callbacks:
       failure: 'Ni ne povis aŭtentigi vin per %{kind}: ''%{reason}''.'
       success: Aŭtentigita sukcese per %{kind}.

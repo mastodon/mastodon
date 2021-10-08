@@ -4,7 +4,6 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import classNames from 'classnames';
-import { vote, fetchPoll } from 'mastodon/actions/polls';
 import Motion from 'mastodon/features/ui/util/optional_motion';
 import spring from 'react-motion/lib/spring';
 import escapeTextContentForBrowser from 'escape-html';
@@ -28,8 +27,9 @@ class Poll extends ImmutablePureComponent {
   static propTypes = {
     poll: ImmutablePropTypes.map,
     intl: PropTypes.object.isRequired,
-    dispatch: PropTypes.func,
     disabled: PropTypes.bool,
+    refresh: PropTypes.func,
+    onVote: PropTypes.func,
   };
 
   state = {
@@ -39,7 +39,8 @@ class Poll extends ImmutablePureComponent {
 
   static getDerivedStateFromProps (props, state) {
     const { poll, intl } = props;
-    const expired = poll.get('expired') || (new Date(poll.get('expires_at'))).getTime() < intl.now();
+    const expires_at = poll.get('expires_at');
+    const expired = poll.get('expired') || expires_at !== null && (new Date(expires_at)).getTime() < intl.now();
     return (expired === state.expired) ? null : { expired };
   }
 
@@ -66,9 +67,7 @@ class Poll extends ImmutablePureComponent {
     }
   }
 
-  handleOptionChange = e => {
-    const { target: { value } } = e;
-
+  _toggleOption = value => {
     if (this.props.poll.get('multiple')) {
       const tmp = { ...this.state.selected };
       if (tmp[value]) {
@@ -82,14 +81,26 @@ class Poll extends ImmutablePureComponent {
       tmp[value] = true;
       this.setState({ selected: tmp });
     }
+  }
+
+  handleOptionChange = ({ target: { value } }) => {
+    this._toggleOption(value);
   };
+
+  handleOptionKeyPress = (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      this._toggleOption(e.target.getAttribute('data-index'));
+      e.stopPropagation();
+      e.preventDefault();
+    }
+  }
 
   handleVote = () => {
     if (this.props.disabled) {
       return;
     }
 
-    this.props.dispatch(vote(this.props.poll.get('id'), Object.keys(this.state.selected)));
+    this.props.onVote(Object.keys(this.state.selected));
   };
 
   handleRefresh = () => {
@@ -97,7 +108,7 @@ class Poll extends ImmutablePureComponent {
       return;
     }
 
-    this.props.dispatch(fetchPoll(this.props.poll.get('id')));
+    this.props.refresh();
   };
 
   renderOption (option, optionIndex, showResults) {
@@ -116,15 +127,7 @@ class Poll extends ImmutablePureComponent {
 
     return (
       <li key={option.get('title')}>
-        {showResults && (
-          <Motion defaultStyle={{ width: 0 }} style={{ width: spring(percent, { stiffness: 180, damping: 12 }) }}>
-            {({ width }) =>
-              <span className={classNames('poll__chart', { leading })} style={{ width: `${width}%` }} />
-            }
-          </Motion>
-        )}
-
-        <label className={classNames('poll__text', { selectable: !showResults })}>
+        <label className={classNames('poll__option', { selectable: !showResults })}>
           <input
             name='vote-options'
             type={poll.get('multiple') ? 'checkbox' : 'radio'}
@@ -134,14 +137,38 @@ class Poll extends ImmutablePureComponent {
             disabled={disabled}
           />
 
-          {!showResults && <span className={classNames('poll__input', { checkbox: poll.get('multiple'), active })} />}
+          {!showResults && (
+            <span
+              className={classNames('poll__input', { checkbox: poll.get('multiple'), active })}
+              tabIndex='0'
+              role={poll.get('multiple') ? 'checkbox' : 'radio'}
+              onKeyPress={this.handleOptionKeyPress}
+              aria-checked={active}
+              aria-label={option.get('title')}
+              data-index={optionIndex}
+            />
+          )}
           {showResults && <span className='poll__number'>
-            {!!voted && <Icon id='check' className='poll__vote__mark' title={intl.formatMessage(messages.voted)} />}
             {Math.round(percent)}%
           </span>}
 
-          <span dangerouslySetInnerHTML={{ __html: titleEmojified }} />
+          <span
+            className='poll__option__text translate'
+            dangerouslySetInnerHTML={{ __html: titleEmojified }}
+          />
+
+          {!!voted && <span className='poll__voted'>
+            <Icon id='check' className='poll__voted__mark' title={intl.formatMessage(messages.voted)} />
+          </span>}
         </label>
+
+        {showResults && (
+          <Motion defaultStyle={{ width: 0 }} style={{ width: spring(percent, { stiffness: 180, damping: 12 }) }}>
+            {({ width }) =>
+              <span className={classNames('poll__chart', { leading })} style={{ width: `${width}%` }} />
+            }
+          </Motion>
+        )}
       </li>
     );
   }

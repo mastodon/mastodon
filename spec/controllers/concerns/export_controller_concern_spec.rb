@@ -5,6 +5,7 @@ require 'rails_helper'
 describe ApplicationController, type: :controller do
   controller do
     include ExportControllerConcern
+
     def index
       send_export_file
     end
@@ -21,8 +22,8 @@ describe ApplicationController, type: :controller do
       get :index, format: :csv
 
       expect(response).to have_http_status(200)
-      expect(response.content_type).to eq 'text/csv'
-      expect(response.headers['Content-Disposition']).to eq 'attachment; filename="anonymous.csv"'
+      expect(response.media_type).to eq 'text/csv'
+      expect(response.headers['Content-Disposition']).to start_with 'attachment; filename="anonymous.csv"'
       expect(response.body).to eq user.account.username
     end
 

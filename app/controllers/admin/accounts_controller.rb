@@ -2,7 +2,7 @@
 
 module Admin
   class AccountsController < BaseController
-    before_action :set_account, only: [:show, :redownload, :remove_avatar, :remove_header, :enable, :unsilence, :unsuspend, :memorialize, :approve, :reject]
+    before_action :set_account, except: [:index]
     before_action :require_remote_account!, only: [:redownload]
     before_action :require_local_account!, only: [:enable, :memorialize, :approve, :reject]
 
@@ -14,49 +14,65 @@ module Admin
     def show
       authorize @account, :show?
 
+      @deletion_request        = @account.deletion_request
       @account_moderation_note = current_account.account_moderation_notes.new(target_account: @account)
       @moderation_notes        = @account.targeted_moderation_notes.latest
       @warnings                = @account.targeted_account_warnings.latest.custom
+      @domain_block            = DomainBlock.rule_for(@account.domain)
     end
 
     def memorialize
       authorize @account, :memorialize?
       @account.memorialize!
       log_action :memorialize, @account
-      redirect_to admin_account_path(@account.id)
+      redirect_to admin_account_path(@account.id), notice: I18n.t('admin.accounts.memorialized_msg', username: @account.acct)
     end
 
     def enable
       authorize @account.user, :enable?
       @account.user.enable!
       log_action :enable, @account.user
-      redirect_to admin_account_path(@account.id)
+      redirect_to admin_account_path(@account.id), notice: I18n.t('admin.accounts.enabled_msg', username: @account.acct)
     end
 
     def approve
       authorize @account.user, :approve?
       @account.user.approve!
-      redirect_to admin_pending_accounts_path
+      redirect_to admin_pending_accounts_path, notice: I18n.t('admin.accounts.approved_msg', username: @account.acct)
     end
 
     def reject
       authorize @account.user, :reject?
-      SuspendAccountService.new.call(@account, reserve_email: false, reserve_username: false)
-      redirect_to admin_pending_accounts_path
+      DeleteAccountService.new.call(@account, reserve_email: false, reserve_username: false)
+      redirect_to admin_pending_accounts_path, notice: I18n.t('admin.accounts.rejected_msg', username: @account.acct)
+    end
+
+    def destroy
+      authorize @account, :destroy?
+      Admin::AccountDeletionWorker.perform_async(@account.id)
+      redirect_to admin_account_path(@account.id), notice: I18n.t('admin.accounts.destroyed_msg', username: @account.acct)
+    end
+
+    def unsensitive
+      authorize @account, :unsensitive?
+      @account.unsensitize!
+      log_action :unsensitive, @account
+      redirect_to admin_account_path(@account.id)
     end
 
     def unsilence
       authorize @account, :unsilence?
       @account.unsilence!
       log_action :unsilence, @account
-      redirect_to admin_account_path(@account.id)
+      redirect_to admin_account_path(@account.id), notice: I18n.t('admin.accounts.unsilenced_msg', username: @account.acct)
     end
 
     def unsuspend
       authorize @account, :unsuspend?
       @account.unsuspend!
+      Admin::UnsuspensionWorker.perform_async(@account.id)
       log_action :unsuspend, @account
-      redirect_to admin_account_path(@account.id)
+      redirect_to admin_account_path(@account.id), notice: I18n.t('admin.accounts.unsuspended_msg', username: @account.acct)
     end
 
     def redownload
@@ -65,7 +81,7 @@ module Admin
       @account.update!(last_webfingered_at: nil)
       ResolveAccountService.new.call(@account)
 
-      redirect_to admin_account_path(@account.id)
+      redirect_to admin_account_path(@account.id), notice: I18n.t('admin.accounts.redownloaded_msg', username: @account.acct)
     end
 
     def remove_avatar
@@ -76,7 +92,7 @@ module Admin
 
       log_action :remove_avatar, @account.user
 
-      redirect_to admin_account_path(@account.id)
+      redirect_to admin_account_path(@account.id), notice: I18n.t('admin.accounts.removed_avatar_msg', username: @account.acct)
     end
 
     def remove_header
@@ -87,7 +103,7 @@ module Admin
 
       log_action :remove_header, @account.user
 
-      redirect_to admin_account_path(@account.id)
+      redirect_to admin_account_path(@account.id), notice: I18n.t('admin.accounts.removed_header_msg', username: @account.acct)
     end
 
     private
@@ -109,21 +125,7 @@ module Admin
     end
 
     def filter_params
-      params.permit(
-        :local,
-        :remote,
-        :by_domain,
-        :active,
-        :pending,
-        :disabled,
-        :silenced,
-        :suspended,
-        :username,
-        :display_name,
-        :email,
-        :ip,
-        :staff
-      )
+      params.slice(*AccountFilter::KEYS).permit(*AccountFilter::KEYS)
     end
   end
 end

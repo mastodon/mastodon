@@ -1,25 +1,29 @@
 # frozen_string_literal: true
 
 class NotifyService < BaseService
-  def call(recipient, activity)
+  def call(recipient, type, activity)
     @recipient    = recipient
     @activity     = activity
-    @notification = Notification.new(account: @recipient, activity: @activity)
+    @notification = Notification.new(account: @recipient, type: type, activity: @activity)
 
     return if recipient.user.nil? || blocked?
 
     create_notification!
-    push_notification! if @notification.browserable?
+    push_notification!
     push_to_conversation! if direct_message?
     send_email! if email_enabled?
   rescue ActiveRecord::RecordInvalid
-    return
+    nil
   end
 
   private
 
   def blocked_mention?
-    FeedManager.instance.filter?(:mentions, @notification.mention.status, @recipient.id)
+    FeedManager.instance.filter?(:mentions, @notification.mention.status, @recipient)
+  end
+
+  def blocked_status?
+    false
   end
 
   def blocked_favourite?
@@ -123,7 +127,7 @@ class NotifyService < BaseService
   def push_notification!
     return if @notification.activity.nil?
 
-    Redis.current.publish("timeline:#{@recipient.id}", Oj.dump(event: :notification, payload: InlineRenderer.render(@notification, @recipient, :notification)))
+    Redis.current.publish("timeline:#{@recipient.id}:notifications", Oj.dump(event: :notification, payload: InlineRenderer.render(@notification, @recipient, :notification)))
     send_push_notifications!
   end
 

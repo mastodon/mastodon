@@ -38,6 +38,7 @@ et:
         application: Rakendus
         callback_url: Ümbersuunamise URL
         delete: Kustuta
+        empty: Teil pole rakendusi.
         name: Nimi
         new: Uus rakendus
         scopes: Ulatused
@@ -72,7 +73,6 @@ et:
       index:
         application: Rakendus
         created_at: Autoriseeritud
-        date_format: "%Y-%m-%d %H:%M:%S"
         scopes: Ulatused
         title: Autoriseeritud rakendused
     errors:
@@ -82,7 +82,6 @@ et:
         invalid_client: Kliendi autentimine ebaõnnestus, kuna tundmatu klient, puudulik autentimine või mitte toetatud autentimismeetod.
         invalid_grant: Antud autoriseerimisluba on vale, aegunud, tagasi võetud, ei kattu kasutatud ümbersuunamise URLid või oli antud teisele kliendile.
         invalid_redirect_uri: Antud ümbersuunamise URL ei ole õige.
-        invalid_request: Taotlusel puudub kohustuslik parameeter, sisaldab mitte toetatud parameetri väärtust või on kuidagi teisiti vale.
         invalid_resource_owner: Antud ressursi omaniku andmed on valed või ressursi omanikku ei leitud
         invalid_scope: Soovitud ulatus on vale, tundmatu või vigane.
         invalid_token:
@@ -125,6 +124,7 @@ et:
       read: lugeda kogu Teie konto andmeid
       read:accounts: näha konto informatsiooni
       read:blocks: näha Teie blokeeringuid
+      read:bookmarks: näha järjehoidjaid
       read:favourites: näha Teie lemmikuid
       read:filters: näha Teie filtreid
       read:follows: näha Teie jälgimisi
@@ -137,6 +137,7 @@ et:
       write: redigeerida kogu Teie konto andmeid
       write:accounts: redigeerida Teie profiili
       write:blocks: blokeerida kontosid ja domeene
+      write:bookmarks: lisada staatusele järjehoidjaid
       write:favourites: lisada staatuseid lemmikuks
       write:filters: luua filtreid
       write:follows: jälgida inimesi

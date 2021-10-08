@@ -1,13 +1,32 @@
 ---
 pt-PT:
   activerecord:
+    attributes:
+      poll:
+        expires_at: Expira em
+        options: Escolhas
+      user:
+        agreement: Acordo de serviço
+        email: Endereço de e-mail
+        locale: Região
+        password: Palavra-passe
+      user/account:
+        username: Nome de utilizador
+      user/invite_request:
+        text: Motivo
     errors:
       models:
         account:
           attributes:
             username:
               invalid: apenas letras, números e underscores
+              reserved: está reservado
         status:
           attributes:
             reblog:
               taken: do status já existe
+        user:
+          attributes:
+            email:
+              blocked: utiliza um provedor de e-mail não permitido
+              unreachable: não parece existir

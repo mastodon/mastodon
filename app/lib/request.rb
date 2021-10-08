@@ -59,7 +59,7 @@ class Request
     begin
       response = http_client.public_send(@verb, @url.to_s, @options.merge(headers: headers))
     rescue => e
-      raise e.class, "#{e.message} on #{@url}", e.backtrace
+      raise e.class, "#{e.message} on #{@url}", e.backtrace[0]
     end
 
     begin
@@ -94,7 +94,7 @@ class Request
     end
 
     def http_client
-      HTTP.use(:auto_inflate).timeout(:per_operation, TIMEOUT.dup).follow(max_hops: 2)
+      HTTP.use(:auto_inflate).timeout(TIMEOUT.dup).follow(max_hops: 2)
     end
   end
 
@@ -114,7 +114,7 @@ class Request
 
   def signature
     algorithm = 'rsa-sha256'
-    signature = Base64.strict_encode64(@keypair.sign(OpenSSL::Digest::SHA256.new, signed_string))
+    signature = Base64.strict_encode64(@keypair.sign(OpenSSL::Digest.new('SHA256'), signed_string))
 
     "keyId=\"#{key_id}\",algorithm=\"#{algorithm}\",headers=\"#{signed_headers.keys.join(' ').downcase}\",signature=\"#{signature}\""
   end
@@ -145,7 +145,7 @@ class Request
   end
 
   def block_hidden_service?
-    !Rails.configuration.x.access_to_hidden_service && /\.(onion|i2p)$/.match(@url.host)
+    !Rails.configuration.x.access_to_hidden_service && /\.(onion|i2p)$/.match?(@url.host)
   end
 
   module ClientLimit
@@ -231,6 +231,7 @@ class Request
             begin
               sock.connect_nonblock(addr_by_socket[sock])
             rescue Errno::EISCONN
+              # Do nothing
             rescue => e
               sock.close
               outer_e = e
@@ -252,7 +253,15 @@ class Request
       alias new open
 
       def check_private_address(address)
-        raise Mastodon::HostValidationError if PrivateAddressCheck.private_address?(IPAddr.new(address.to_s))
+        addr = IPAddr.new(address.to_s)
+        return if private_address_exceptions.any? { |range| range.include?(addr) }
+        raise Mastodon::HostValidationError if PrivateAddressCheck.private_address?(addr)
+      end
+
+      def private_address_exceptions
+        @private_address_exceptions = begin
+          (ENV['ALLOWED_PRIVATE_ADDRESSES'] || '').split(',').map { |addr| IPAddr.new(addr) }
+        end
       end
     end
   end

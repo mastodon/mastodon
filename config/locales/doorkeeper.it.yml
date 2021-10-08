@@ -25,7 +25,7 @@ it:
         edit: Modifica
         submit: Invia
       confirmations:
-        destroy: Sei sicuro?
+        destroy: Sei sicur*?
       edit:
         title: Modifica applicazione
       form:
@@ -38,6 +38,7 @@ it:
         application: Applicazione
         callback_url: URL di callback
         delete: Elimina
+        empty: Non hai applicazioni.
         name: Nome
         new: Nuova applicazione
         scopes: Visibilità
@@ -68,7 +69,7 @@ it:
       buttons:
         revoke: Disabilita
       confirmations:
-        revoke: Sei sicuro?
+        revoke: Sei sicur*?
       index:
         application: Applicazione
         created_at: Autorizzato
@@ -82,7 +83,10 @@ it:
         invalid_client: Accesso al servizio fallito perché il servizio è sconosciuto, l'accesso al servizio non è stato incluso, o il metodo di accesso non è supportato.
         invalid_grant: Il permesso d'autorizzazione è non valido, scaduto, disabilitato, non coincide con l'URI di reindirizzamento fornito nella richiesta di autorizzazione, o è stato rilasciato da un altro client.
         invalid_redirect_uri: L'URI di reindirizzamento fornito non è valido.
-        invalid_request: La richiesta non contiene un parametro necessario, contiene un valore parametrico non supportato, o è altrimenti malformulata.
+        invalid_request:
+          missing_param: 'Manca il parametro obbligatorio: %{value}.'
+          request_not_authorized: La richiesta deve essere autorizzata. Il parametro richiesto per autorizzare la richiesta è mancante o non valido.
+          unknown: La richiesta manca di un parametro necessario, include un parametro non supportato, o è in qualche altro modo mal strutturata.
         invalid_resource_owner: Le credenziali di accesso fornite per il proprietario non sono corrette, o il proprietario del servizio non è stato trovato
         invalid_scope: Lo scope richiesto è invalido, sconosciuto, o malformulato.
         invalid_token:
@@ -125,6 +129,7 @@ it:
       read: leggere tutte le informazioni del tuo account
       read:accounts: vedere informazioni sull'account
       read:blocks: vedere i tuoi blocchi
+      read:bookmarks: vedi i tuoi preferiti
       read:favourites: vedere i tuoi preferiti
       read:filters: vedere i tuoi filtri
       read:follows: vedere i tuoi seguiti
@@ -137,6 +142,7 @@ it:
       write: modificare tutti i dati del tuo account
       write:accounts: modificare il tuo profilo
       write:blocks: bloccare account e domini
+      write:bookmarks: aggiungi post ai preferiti
       write:favourites: segnare status come preferiti
       write:filters: creare filtri
       write:follows: seguire persone

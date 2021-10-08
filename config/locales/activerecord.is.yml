@@ -1,0 +1,32 @@
+---
+is:
+  activerecord:
+    attributes:
+      poll:
+        expires_at: Lokadagur
+        options: Valkostir
+      user:
+        agreement: Þjónustuskilmálar
+        email: Tölvupóstfang
+        locale: Staðfærsla
+        password: Lykilorð
+      user/account:
+        username: Notandanafn
+      user/invite_request:
+        text: Ástæða
+    errors:
+      models:
+        account:
+          attributes:
+            username:
+              invalid: má aðeins innihalda bókstafi, tölur og undirstrik
+              reserved: er frátekið
+        status:
+          attributes:
+            reblog:
+              taken: af stöðu er þegar fyrirliggjandi
+        user:
+          attributes:
+            email:
+              blocked: notar óleyfilega tölvupóstþjónustu
+              unreachable: virðist ekki vera til

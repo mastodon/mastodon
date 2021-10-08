@@ -5,8 +5,6 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  force_ssl if: :https_enabled?
-
   include Localized
   include UserTrackingConcern
   include SessionTrackingConcern
@@ -20,14 +18,20 @@ class ApplicationController < ActionController::Base
   helper_method :use_seamless_external_login?
   helper_method :whitelist_mode?
 
-  rescue_from ActionController::RoutingError, with: :not_found
-  rescue_from ActionController::InvalidAuthenticityToken, with: :unprocessable_entity
-  rescue_from ActionController::UnknownFormat, with: :not_acceptable
-  rescue_from ActionController::ParameterMissing, with: :bad_request
-  rescue_from ActiveRecord::RecordNotFound, with: :not_found
+  rescue_from ActionController::ParameterMissing, Paperclip::AdapterRegistry::NoHandlerError, with: :bad_request
   rescue_from Mastodon::NotPermittedError, with: :forbidden
+  rescue_from ActionController::RoutingError, ActiveRecord::RecordNotFound, with: :not_found
+  rescue_from ActionController::UnknownFormat, with: :not_acceptable
+  rescue_from ActionController::InvalidAuthenticityToken, with: :unprocessable_entity
+  rescue_from Mastodon::RateLimitExceededError, with: :too_many_requests
+
   rescue_from HTTP::Error, OpenSSL::SSL::SSLError, with: :internal_server_error
-  rescue_from Mastodon::RaceConditionError, with: :service_unavailable
+  rescue_from Mastodon::RaceConditionError, Stoplight::Error::RedLight, ActiveRecord::SerializationFailure, with: :service_unavailable
+
+  rescue_from Seahorse::Client::NetworkingError do |e|
+    Rails.logger.warn "Storage server error: #{e}"
+    service_unavailable
+  end
 
   before_action :store_current_location, except: :raise_not_found, unless: :devise_controller?
   before_action :require_functional!, if: :user_signed_in?
@@ -40,10 +44,6 @@ class ApplicationController < ActionController::Base
 
   private
 
-  def https_enabled?
-    Rails.env.production? && !request.path.start_with?('/health')
-  end
-
   def authorized_fetch_mode?
     ENV['AUTHORIZED_FETCH'] == 'true' || Rails.configuration.x.whitelist_mode
   end
@@ -53,7 +53,7 @@ class ApplicationController < ActionController::Base
   end
 
   def store_current_location
-    store_location_for(:user, request.url) unless request.format == :json
+    store_location_for(:user, request.url) unless [:json, :rss].include?(request.format&.to_sym)
   end
 
   def require_admin!
@@ -110,6 +110,10 @@ class ApplicationController < ActionController::Base
     respond_with_error(503)
   end
 
+  def too_many_requests
+    respond_with_error(429)
+  end
+
   def single_user_mode?
     @single_user_mode ||= Rails.configuration.x.single_user_mode && Account.where('id > 0').exists?
   end
@@ -137,8 +141,8 @@ class ApplicationController < ActionController::Base
 
   def respond_with_error(code)
     respond_to do |format|
-      format.any  { head code }
-      format.html { render "errors/#{code}", layout: 'error', status: code }
+      format.any  { render "errors/#{code}", layout: 'error', status: code, formats: [:html] }
+      format.json { render json: { error: Rack::Utils::HTTP_STATUS_CODES[code] }, status: code }
     end
   end
 end

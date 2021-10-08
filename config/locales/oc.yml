@@ -11,6 +11,7 @@ oc:
     apps: Aplicacions per mobil
     apps_platforms: Utilizatz Mastodon d‘iOS, Android o d’autras plataforma estant
     browse_directory: Navigatz per l’annuari de perfil e filtratz segon çò qu’aimatz
+    browse_local_posts: Percórrer un flux en dirècte de las publicacions publicas d’aqueste servidor
     browse_public_posts: Navigatz pel flux public a Mastodon
     contact: Contacte
     contact_missing: Pas parametrat
@@ -22,6 +23,7 @@ oc:
     hosted_on: Mastodon albergat sus %{domain}
     learn_more: Ne saber mai
     privacy_policy: Politica de confidencialitat
+    rules: Règlas del servidor
     see_whats_happening: Agachatz çò qu’arriba
     server_stats: 'Estatisticas del servidor :'
     source_code: Còdi font
@@ -33,7 +35,12 @@ oc:
     terms: Condicions d’utilizacion
     unavailable_content: Contengut pas disponible
     unavailable_content_description:
+      domain: Servidor
       reason: 'Motiu :'
+      rejecting_media: 'Los fichièrs mèdias d’aquestes servidors estant seràn pas tractats o gardats e pas cap de miniatura serà pas mostrada, demanda de clicar sul fichièr original :'
+      rejecting_media_title: Mèdias filtrats
+      silenced_title: Servidors muts
+      suspended_title: Servidors suspenduts
     user_count_after:
       one: utilizaire
       other: utilizaires
@@ -41,6 +48,8 @@ oc:
     what_is_mastodon: Qu’es Mastodon ?
   accounts:
     choices_html: 'Recomandacions de %{name} :'
+    endorsements_hint: Podètz recomandar personas que seguètz a partir de l’interfàcia web, apreissaràn aquí.
+    featured_tags_hint: Podètz indicar d’etiquetas que mostrarem aquí.
     follow: Sègre
     followers:
       one: Seguidor
@@ -63,10 +72,10 @@ oc:
       other: Tuts
     posts_tab_heading: Tuts
     posts_with_replies: Tuts e responsas
-    reserved_username: Aqueste nom d’utilizaire es reservat
     roles:
       admin: Admin
       bot: Robòt
+      group: Grop
       moderator: Moderador
     unavailable: Perfil indisponible
     unfollow: Quitar de sègre
@@ -80,6 +89,7 @@ oc:
       delete: Suprimir
       destroyed_msg: Nòta de moderacion ben suprimida !
     accounts:
+      add_email_domain_block: Metre lo domeni del corrièl en lista negra
       approve: Aprovar
       approve_all: O validar tot
       are_you_sure: Sètz segur ?
@@ -95,6 +105,7 @@ oc:
       confirm: Confirmar
       confirmed: Confirmat
       confirming: Confirmacion
+      delete: Suprimir donadas
       deleted: Suprimits
       demote: Retrogradar
       disable: Desactivar
@@ -107,9 +118,7 @@ oc:
       email_status: Estat de l’adreça
       enable: Activar
       enabled: Activat
-      feed_url: Flux URL
       followers: Seguidors
-      followers_url: URL dels seguidors
       follows: Abonaments
       header: Bandièra
       inbox_url: URL de recepcion
@@ -124,6 +133,7 @@ oc:
       login_status: Estat formulari de connexion
       media_attachments: Mèdias enviats
       memorialize: Passar en memorial
+      memorialized: Memorizat
       moderation:
         active: Actius
         all: Totes
@@ -137,10 +147,8 @@ oc:
       no_account_selected: Cap de compte pas cambiat estant que cap èra pas seleccionat
       no_limits_imposed: Cap de limit impausat
       not_subscribed: Pas seguidor
-      outbox_url: URL Outbox
       pending: Revision en espèra
       perform_full_suspension: Suspendre
-      profile_url: URL del perfil
       promote: Promòure
       protocol: Protocòl
       public: Public
@@ -163,8 +171,10 @@ oc:
         moderator: Moderador
         staff: Personnal
         user: Uitlizaire
-      salmon_url: URL Salmon
       search: Cercar
+      search_same_ip: Autres utilizaires amb la meteissa IP
+      sensitive: Sensible
+      sensitized: marcar coma sensible
       shared_inbox_url: URL de recepcion partejada
       show:
         created_reports: Senhalaments creats
@@ -177,6 +187,7 @@ oc:
       time_in_queue: En espèra a la fila %{time}
       title: Comptes
       unconfirmed_email: Adreça pas confirmada
+      undo_sensitized: Desmarcar coma sensible
       undo_silenced: Levar lo silenci
       undo_suspension: Levar la suspension
       unsubscribe: Se desabonar
@@ -185,39 +196,56 @@ oc:
       web: Web
       whitelisted: Mes en lista blanca
     action_logs:
-      actions:
-        assigned_to_self_report: "%{name} s’assignèt lo rapòrt %{target}"
-        change_email_user: "%{name} cambièt l’adreça de corrièl de %{target}"
-        confirm_user: "%{name} confirmèt l’adreça a %{target}"
-        create_account_warning: "%{name} mandèt un avertiment a %{target}"
-        create_custom_emoji: "%{name} mandèt un nòu emoji %{target}"
-        create_domain_block: "%{name} bloquèt lo domeni %{target}"
-        create_email_domain_block: "%{name} botèt a la lista nègra lo domeni de corrièl %{target}"
-        demote_user: "%{name} retragradèt l‘utilizaire %{target}"
-        destroy_custom_emoji: "%{name} destruguèt l’emoji %{target}"
-        destroy_domain_block: "%{name} desbloquèt lo domeni %{target}"
-        destroy_email_domain_block: "%{name} botèt a la lista blanca lo domeni de corrièl %{target}"
-        destroy_status: "%{name} levèt l‘estatut a %{target}"
-        disable_2fa_user: "%{name} desactivèt l’autentificacion en dos temps per %{target}"
-        disable_custom_emoji: "%{name} desactivèt l’emoji %{target}"
-        disable_user: "%{name} desactivèt la connexion per %{target}"
-        enable_custom_emoji: "%{name} activèt l’emoji %{target}"
-        enable_user: "%{name} activèt la connexion per %{target}"
-        memorialize_account: "%{name} transformèt en memorial la pagina de perfil a %{target}"
-        promote_user: "%{name} promoguèt %{target}"
-        remove_avatar_user: "%{name} suprimèt l’avatar a %{target}"
-        reopen_report: "%{name} tornèt dobrir lo rapòrt %{target}"
-        reset_password_user: "%{name} reïnicializèt lo senhal a %{target}"
-        resolve_report: "%{name} anullèt lo rapòrt %{target}"
-        silence_account: "%{name} metèt en silenci lo compte a %{target}"
-        suspend_account: "%{name} susprenguèt lo compte a %{target}"
-        unassigned_report: "%{name} daissèt de tractar lo rapòrt %{target}"
-        unsilence_account: "%{name} levèt lo silenci del compte a %{target}"
-        unsuspend_account: "%{name} restabliguèt lo compte a %{target}"
-        update_custom_emoji: "%{name} metèt a jorn l’emoji %{target}"
-        update_status: "%{name} metèt a jorn l’estatut a %{target}"
+      action_types:
+        assigned_to_self_report: Assignar lo rapòrt
+        change_email_user: Cambiar l’adreça de l’utilizaire
+        confirm_user: Confirmar l’utilizaire
+        create_account_warning: Crear un avertiment
+        create_announcement: Crear una anóncia
+        create_custom_emoji: Crear un emoji personalizat
+        create_ip_block: Crear una règla IP
+        demote_user: Retrogradar l’utilizaire
+        destroy_announcement: Suprimir l’anóncia
+        destroy_custom_emoji: Suprimir l’emoji personalizat
+        destroy_domain_block: Suprimir lo blocatge de domeni
+        destroy_status: Suprimir l’estatut
+        disable_2fa_user: Desactivar 2FA
+        disable_custom_emoji: Desactivar l’emoji personalizat
+        disable_user: Desactivar l’utilizaire
+        enable_custom_emoji: Activar l’emoji personalizat
+        enable_user: Activar l’utilizaire
+        promote_user: Promòure l’utilizaire
+        remove_avatar_user: Suprimir l’avatar
+        reopen_report: Tornar dobrir lo rapòrt
+        reset_password_user: Reïnicializar lo senhal
+        resolve_report: Resòlver lo rapòrt
+        silence_account: " Metre en silenci lo compte"
+        suspend_account: Suspendre lo compte
+        unassigned_report: Desafectar lo rapòrt
+        unsilence_account: Levar lo silenci del compte
+        update_announcement: Actualizar l’anóncia
+        update_custom_emoji: Actualizar l’emoji personalizat
+        update_status: Actualizar l’estatut
       deleted_status: "(estatut suprimit)"
+      empty: Cap de jornal pas trobat.
+      filter_by_action: Filtrar per accion
+      filter_by_user: Filtrar per utilizaire
       title: Audit dels jornals
+    announcements:
+      destroyed_msg: Anóncia corrèctament tirada !
+      edit:
+        title: Modificar l’anóncia
+      empty: Cap d’anóncia pas trobada.
+      live: Dirèct
+      new:
+        create: Crear una anóncia
+        title: Anóncia novèla
+      published_msg: Anóncia corrèctament publicada !
+      scheduled_for: Programada per %{time}
+      scheduled_msg: Anóncia programada per publicacion !
+      title: Anóncias
+      unpublished_msg: Anóncia corrèctament tirada !
+      updated_msg: Anóncia corrèctament actualizada !
     custom_emojis:
       assign_category: Atribuir una categoria
       by_domain: Domeni
@@ -229,6 +257,7 @@ oc:
       delete: Suprimir
       destroyed_msg: Emoji ben suprimit !
       disable: Desactivar
+      disabled: Desactivat
       disabled_msg: Aqueste emoji es ben desactivat
       emoji: Emoji
       enable: Activar
@@ -258,7 +287,6 @@ oc:
       feature_profile_directory: Annuari de perfils
       feature_registrations: Inscripcions
       feature_relay: Relai de federacion
-      feature_spam_check: Anti-spam
       feature_timeline_preview: Apercebut del flux d’actualitats
       features: Foncionalitats
       hidden_service: Federacion amb servicis amagats
@@ -327,13 +355,12 @@ oc:
       delete: Suprimir
       destroyed_msg: Blocatge del domeni de corrièl ben levat
       domain: Domeni
+      empty: Cap de domeni de corrièl es pas en lista negra actualament.
+      from_html: de %{domain}
       new:
         create: Crear un blocatge
         title: Nòu blocatge de domeni de corrièl
       title: Blocatge de domeni de corrièl
-    followers:
-      back_to_account: Tornar al compte
-      title: Seguidors de %{acct}
     instances:
       by_domain: Domeni
       delivery_available: Liurason disponibla
@@ -360,8 +387,23 @@ oc:
         expired: Expirats
         title: Filtre
       title: Convits
+    ip_blocks:
+      add_new: Crear una règla
+      delete: Suprimir
+      expires_in:
+        '1209600': 2 setmanas
+        '15778476': 6 meses
+        '2629746': 1 mes
+        '31556952': 1 an
+        '86400': 1 jorn
+        '94670856': 3 ans
+      new:
+        title: Crear una règlas IP novèla
+      title: Règlas IP
     pending_accounts:
       title: Comptes en espèra (%{count})
+    relationships:
+      title: Relacions de %{acct}
     relays:
       add_new: Ajustar un nòu relai
       delete: Suprimir
@@ -383,12 +425,17 @@ oc:
       destroyed_msg: Nòta de moderacion corrèctament suprimida !
     reports:
       account:
-        note: nòta
-        report: rapòrt
+        notes:
+          one: "%{count} nòta"
+          other: "%{count} nòtas"
+        reports:
+          one: "%{count} senhalament"
+          other: "%{count} senhalaments"
       action_taken_by: Mesura menada per
       are_you_sure: Es segur ?
       assign_to_self: Me l’assignar
       assigned: Moderador assignat
+      by_target_domain: Domeni del compte senhalat
       comment:
         none: Pas cap
       created_at: Creacion
@@ -411,6 +458,8 @@ oc:
       unassign: Levar
       unresolved: Pas resolgut
       updated_at: Actualizat
+    rules:
+      title: Règlas del servidor
     settings:
       activity_api_enabled:
         desc_html: Nombre d’estatuts publicats, d’utilizaires actius e de novèlas inscripcions en rapòrt setmanièr
@@ -437,7 +486,7 @@ oc:
         desc_html: Mostrat en primièra pagina. Almens 600x100px recomandat. S’es pas configurat l’imatge del servidor serà mostrat
         title: Imatge de l’eròi
       mascot:
-        desc_html: Mostrat sus mantun paginas. Almens 293×205px recomandat. S’es pas configurat, mostrarem la mascòta per defaut
+        desc_html: Mostrat sus mantun pagina. Almens 293×205px recomandat. S’es pas configurat, mostrarem la mascòta per defaut
         title: Imatge de la mascòta
       peers_api_enabled:
         desc_html: Noms de domeni qu’aqueste servidor a trobats pel fediverse
@@ -483,8 +532,6 @@ oc:
         desc_html: Afichada sus la pagina de las condicions d’utilizacion<br>Podètz utilizar de balisas HTML
         title: Politica de confidencialitat del site
       site_title: Títol del servidor
-      spam_check_enabled:
-        title: Anti-spam
       thumbnail:
         desc_html: Servís pels apercebuts via OpenGraph e las API. Talha de 1200x630px recomandada
         title: Miniatura del servidor
@@ -494,6 +541,8 @@ oc:
       title: Paramètres del site
       trends:
         title: Etiquetas tendéncia
+    site_uploads:
+      delete: Suprimir lo fichièr enviat
     statuses:
       back_to_account: Tornar a la pagina Compte
       batch:
@@ -508,12 +557,13 @@ oc:
       no_status_selected: Cap d’estatut pas cambiat estant que cap èra pas seleccionat
       title: Estatuts del compte
       with_media: Amb mèdia
+    system_checks:
+      rules_check:
+        action: Gerir las règlas servidor
+        message_html: Avètz pas definida cap de règla.
     tags:
       accounts_today: Utilizacions unicas uèi
       accounts_week: Utilizacions unicas aquesta setmana
-      context: Contèxt
-      directory: A l’annuari
-      in_directory: "%{count} a l’annuari"
       last_active: Darrièra activitat
       most_popular: Mai popularas
       most_recent: Mai recentas
@@ -529,7 +579,6 @@ oc:
     warning_presets:
       add_new: N’ajustar un nòu
       delete: Escafar
-      edit: Modificar
       edit_preset: Modificar lo tèxt predefinit d’avertiment
       title: Gerir los tèxtes predefinits
   admin_mailer:
@@ -540,13 +589,22 @@ oc:
       body: "%{reporter} a senhalat %{target}"
       body_remote: Qualqu’un de %{domain} senhalèt %{target}
       subject: Novèl senhalament per %{instance} (#%{id})
+    new_trending_tag:
+      subject: Nòva etiqueta per repassar sus %{instance} (#%{name})
+  aliases:
+    add_new: Crear un alias
+    remove: Desligar l’alias
   appearance:
     advanced_web_interface: Interfàcia web avançada
     advanced_web_interface_hint: 'Se volètz utilizar la nautor complèta de l’ecran, l’interfàcia web avançada vos permet de configurar diferentas colomnas per mostrar tan d’informacions que volètz : Acuèlh, notificacions, flux d’actualitat, e d’autras listas e etiquetas.'
     animations_and_accessibility: Animacion e accessibilitat
     confirmation_dialogs: Fenèstras de confirmacion
     discovery: Descobèrta
+    localization:
+      body: Mastodon es traduch per de benevòls.
+      guide_link_text: Tot lo monde pòt contribuïr.
     sensitive_content: Contengut sensible
+    toot_layout: Disposicion del tut
   application_mailer:
     notification_preferences: Cambiar las preferéncias de corrièl
     salutation: "%{name},"
@@ -595,6 +653,7 @@ oc:
       account_status: Estat del compte
       functional: Vòstre compte es complètament foncional.
     trouble_logging_in: Problèmas de connexion ?
+    use_security_key: Utilizar clau de seguretat
   authorize_follow:
     already_following: Seguètz ja aqueste compte
     error: O planhèm, i a agut una error al moment de cercar lo compte
@@ -611,6 +670,10 @@ oc:
     hint_html: "<strong>Asutúcia :</strong> vos demandarem pas vòstre senhal de nòu d’aquí unas oras."
     invalid_password: Senhal invalid
     prompt: Confirmatz lo senhal per dire de contunhar
+  date:
+    formats:
+      default: "%-d %B de %Y"
+      with_month_name: "%-d %B de %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count} h"
@@ -624,7 +687,6 @@ oc:
       x_days: "%{count} jorns"
       x_minutes: "%{count} min"
       x_months: "%{count} meses"
-      x_seconds: "%{count}s"
   deletes:
     challenge_not_passed: Las informacions qu’avètz fornidas son pas corrèctas
     confirm_password: Picatz vòstre senhal actual per verificar vòstra identitat
@@ -632,7 +694,9 @@ oc:
     proceed: Suprimir lo compte
     success_msg: Compte ben suprimit
     warning:
+      before: 'Abans de contunhar, volgatz legir aquestas nòtas amb atencion :'
       caches: Lo contengut en cache suls autres servidors pòt demorar
+      data_removal: Vòstras publicacions e las autras donadas seràn suprimidas per totjorn
       email_change_html: Podètz <a href="%{path}">cambiar vòstra adreça electronia</a>sens suprimir vòstre compte
       irreversible: Poiretz pas restaurar o reactivar vòstre compte
       more_details_html: Per mai d’informacion, vejatz la <a href="%{terms_path}">politica de confidencialitat</a>.
@@ -671,9 +735,9 @@ oc:
       request: Demandar vòstre archiu
       size: Talha
     blocks: Personas que blocatz
+    bookmarks: Marcadors
     csv: CSV
     domain_blocks: Blocatge de domenis
-    follows: Personas que seguètz
     lists: Listas
     mutes: Personas rescondudas
     storage: Mèdias gardats
@@ -683,6 +747,7 @@ oc:
       limit: Avètz ja utilizat lo maximum d’etiquetas
   filters:
     contexts:
+      account: Perfils
       home: Flux d’acuèlh
       notifications: Notificacions
       public: Flux public
@@ -694,6 +759,7 @@ oc:
       invalid_irreversible: Lo filtratge irreversible fonciona pas qu’amb lo flux d’actualitat o en contèxte de notificacion
     index:
       delete: Suprimir
+      empty: Avètz pas cap de filtre.
       title: Filtres
     new:
       title: Ajustar un nòu filtre
@@ -706,6 +772,7 @@ oc:
     all: Tot
     changes_saved_msg: Cambiaments ben realizats !
     copy: Copiar
+    delete: Suprimir
     no_batch_actions_available: Cap d’accion de massa pas disponibla sus aquesta pagina
     order_by: Triar per
     save_changes: Salvar los cambiaments
@@ -730,6 +797,7 @@ oc:
     inactive: Inactiu
     publicize_checkbox: 'E enviatz lo tut seguent :'
     publicize_toot: 'Es provat ! Soi %{username} de %{service} : %{url}'
+    remove: Tirar la pròva del compte
     status: Estatut de verificacion
     view_proof: Veire la pròva
   imports:
@@ -742,6 +810,7 @@ oc:
     success: Vòstras donadas son ben estadas mandadas e seràn tractadas tre que possible
     types:
       blocking: Lista de blocatge
+      bookmarks: Marcadors
       domain_blocking: Lista dels domenis blocats
       following: Lista de monde que seguètz
       muting: Lista de monde que volètz pas legir
@@ -783,14 +852,18 @@ oc:
     errors:
       move_to_self: pòt pas èsser lo compte actual
       not_found: impossible de trobar
+      on_cooldown: Sètz en temps de recargament
+    followers_count: Seguidors al moment de mudar
     incoming_migrations: Mudar d’un compte diferent
     moved_msg: Vòstre compte manda ara a %{acct} e vòstres seguidors son desplaçats.
     not_redirecting: Vòstre compte manda pas enlòc pel moment.
     past_migrations: Migracions passadas
     proceed_with_move: Desplaçar los seguidors
     redirecting_to: Vòstre compte manda a %{acct}.
+    set_redirect: Definir redireccion
     warning:
       before: 'Abans de contunhar, volgatz legir aquestas nòtas amb atencion :'
+      only_redirect_html: Autrament, podètz <a href="%{path}">solament definir una redireccion sus vòstre perfil</a>.
       other_data: Cap d’autra donada serà desplaçada automaticament
   moderation:
     title: Moderacion
@@ -828,22 +901,22 @@ oc:
       body: "%{name} a tornat partejar vòstre estatut :"
       subject: "%{name} a tornat partejar vòstre estatut"
       title: Novèl partatge
+  notifications:
+    email_events: Eveniments per las notificacions per corrièl
+    email_events_hint: 'Seleccionatz los eveniments que volètz recebre :'
+    other_settings: Autres paramètres de notificacion
   number:
     human:
       decimal_units:
         format: "%n%u"
-        units:
-          billion: B
-          million: M
-          quadrillion: Q
-          thousand: K
-          trillion: T
+  otp_authentication:
+    enable: Activar
+    setup: Parametrar
   pagination:
     newer: Mai recents
     next: Seguent
     older: Mai ancians
     prev: Precedent
-    truncate: "&hellip;"
   polls:
     errors:
       already_voted: Avètz ja votat per aqueste sondatge
@@ -851,6 +924,7 @@ oc:
       duration_too_long: es tròp alonhat dins lo futur
       duration_too_short: es tròp d’ora
       expired: Lo sondatge es ja acabat
+      invalid_choice: L’opcion causida existís pas
       over_character_limit: pòt pas èsser superior a %{max} caractèrs cadun
       too_few_options: deu contenir mai d’una opcion
       too_many_options: pòt pas contenir mai de %{max} opcions
@@ -858,14 +932,21 @@ oc:
     other: Autre
     posting_defaults: Valors per defaut de las publicacions
     public_timelines: Fluxes d’actualitats publics
+  reactions:
+    errors:
+      limit_reached: La limita de las reaccions diferentas es estada atenguda
+      unrecognized_emoji: es pas un emoji reconegut
   relationships:
     activity: Activitat del compte
     dormant: Inactiu
+    followers: Seguidors
+    following: Abonaments
+    invited: Convidat
     last_active: Darrièra activitat
     most_recent: Mai recenta
     moved: Mudat
     mutual: Mutuala
-    primary: Pirmària
+    primary: Primària
     relationship: Relacion
     remove_selected_domains: Levar totes los seguidors dels domenis seleccionats
     remove_selected_followers: Levar los seguidors seleccionats
@@ -936,6 +1017,7 @@ oc:
   settings:
     account: Compte
     account_settings: Paramètres de compte
+    aliases: Alias de compte
     appearance: Aparéncia
     authorized_apps: Aplicacions autorizadas
     back: Tornar a Mastodon
@@ -953,8 +1035,12 @@ oc:
     profile: Perfil
     relationships: Abonaments e seguidors
     two_factor_authentication: Autentificacion en dos temps
+    webauthn_authentication: Claus de seguretat
   statuses:
     attached:
+      audio:
+        one: "%{count} àudio"
+        other: "%{count} àudios"
       description: 'Ajustat : %{attached}'
       image:
         one: "%{count} imatge"
@@ -976,11 +1062,17 @@ oc:
       private: Se pòt pas penjar los tuts pas publics
       reblog: Se pòt pas penjar un tut partejat
     poll:
+      total_people:
+        one: "%{count} persona"
+        other: "%{count} personas"
       total_votes:
         one: "%{count} vòte"
         other: "%{count} vòtes"
       vote: Votar
     show_more: Ne veire mai
+    show_newer: Veire mai recents
+    show_older: Veire mai ancians
+    show_thread: Mostrar lo fil
     sign_in_to_participate: Inscrivètz-vos per participar a la conversacion
     title: '%{name} : "%{quote}"'
     visibilities:
@@ -1087,24 +1179,21 @@ oc:
     mastodon-light: Mastodon (Clar)
   time:
     formats:
-      default: Lo %d %b de %Y a %Ho%M
-      month: "%b de %Y"
+      default: Lo %-d %B de %Y a %Ho%M
+      month: "%B de %Y"
   two_factor_authentication:
-    code_hint: Picatz lo còdi generat per vòstra aplicacion d’autentificacion per confirmar
-    description_html: S’activatz <strong> l’autentificacion two-factor</strong>, vos caldrà vòstre mobil per vos connectar perque generarà un geton per vos daissar dintrar.
+    add: Ajustar
     disable: Desactivar
-    enable: Activar
+    edit: Modificar
     enabled: Autentificacion en dos temps activada
     enabled_success: L’autentificacion en dos temps es ben activada
     generate_recovery_codes: Generar los còdis de recuperacion
-    instructions_html: "<strong>Escanatz aqueste còdi QR amb Google Authenticator o una aplicacion similària sus vòstre mobil</strong>. A partir d’ara, aquesta aplicacion generarà un geton que vos caldrà picar per vos connectar."
     lost_recovery_codes: Los còdi de recuperacion vos permeton d’accedir a vòstre compte se perdètz vòstre mobil. S’avètz perdut vòstres còdis de recuperacion los podètz tornar generar aquí. Los ancians còdis seràn pas mai valides.
-    manual_instructions: 'Se podètz pas numerizar lo còdi QR e que vos cal picar lo còdi a la man, vaquí lo còdi en clar :'
+    methods: Metòde en dos temps
     recovery_codes: Salvar los còdis de recuperacion
     recovery_codes_regenerated: Los còdis de recuperacion son ben estats tornats generar
     recovery_instructions_html: Se vos arriba de perdre vòstre mobil, podètz utilizar un dels còdis de recuperacion cai-jos per poder tornar accedir a vòstre compte. <strong>Gardatz los còdis en seguretat</strong>, per exemple, imprimissètz los e gardatz los amb vòstres documents importants.
-    setup: Parametrar
-    wrong_code: Lo còdi picat es invalid ! L’ora es bona sul servidor e lo mobil ?
+    webauthn: Claus de seguretat
   user_mailer:
     backup_ready:
       explanation: Avètz demandat una salvagarda complèta de vòstre compte Mastodon. Es prèsta per telecargament !
@@ -1113,7 +1202,7 @@ oc:
     warning:
       explanation:
         disable: Quand vòstre compte es gelat, las donadas d’aqueste demòran senceras, mas podètz pas realizar cap d’accion fins que siá desblocat.
-        silence: Del temps que vòstre compte es limitat, solament lo monde que vos sègon veiràn vòstres tuts sus aqueste servidor, e poiriatz èsser tirat de mantunas listas publicas. Pasmens, d’autres vos pòdon sègre manualament.
+        silence: Del temps que vòstre compte es limitat, solament lo monde que vos sègon veiràn vòstres tuts sus aqueste servidor, e poiriatz èsser tirat de mantuna lista publica. Pasmens, d’autres vos pòdon sègre manualament.
         suspend: Vòstre compte es suspendut e totes vòstres tuts e fichièrs enviats son estats suprimits sens retorn possible d’aqueste servidor e los de vòstres seguidors.
       get_in_touch: Podètz respondre a aqueste corrièl per contactar la còla de %{instance}.
       review_server_policies: Repassar las politicas del servidor
@@ -1147,11 +1236,16 @@ oc:
       title: Vos desirem la benvenguda a bòrd %{name} !
   users:
     follow_limit_reached: Podètz pas sègre mai de %{limit} personas
-    invalid_email: L’adreça de corrièl es invalida
     invalid_otp_token: Còdi d’autentificacion en dos temps invalid
+    invalid_sign_in_token: Còdi de seguretat invalid
     otp_lost_help_html: Se perdatz l’accès al dos, podètz benlèu contactar %{email}
     seamless_external_login: Sètz connectat via un servici extèrn, los paramètres de senhal e de corrièl son doncas pas disponibles.
     signed_in_as: 'Session a :'
   verification:
     explanation_html: 'Podètz <strong>verificar vosautres meteisses coma proprietari dels ligams per las metadonadas de vòstre perfil</strong>. Per aquò far, lo site Web ligat deu conténer un ligam cap a vòstre perfil Mastodon. Lo ligam <strong>deu</strong> aver un atribut <code>rel="me"</code>. Lo contengut tèxte del ligam impòrta pas. Vaquí un exemple :'
     verification: Verificacion
+  webauthn_credentials:
+    add: Apondre una clau de seguretat novèla
+    delete: Suprimir
+    invalid_credential: Cau de seguretat invalida
+    registered_on: Inscripcion del %{date}

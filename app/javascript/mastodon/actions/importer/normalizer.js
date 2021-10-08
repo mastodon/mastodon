@@ -10,6 +10,12 @@ const makeEmojiMap = record => record.emojis.reduce((obj, emoji) => {
   return obj;
 }, {});
 
+export function searchTextFromRawStatus (status) {
+  const spoilerText   = status.spoiler_text || '';
+  const searchContent = ([spoilerText, status.content].concat((status.poll && status.poll.options) ? status.poll.options.map(option => option.title) : [])).concat(status.media_attachments.map(att => att.description)).join('\n\n').replace(/<br\s*\/?>/g, '\n').replace(/<\/p><p>/g, '\n\n');
+  return domParser.parseFromString(searchContent, 'text/html').documentElement.textContent;
+}
+
 export function normalizeAccount(account) {
   account = { ...account };
 
@@ -18,6 +24,7 @@ export function normalizeAccount(account) {
 
   account.display_name_html = emojify(escapeTextContentForBrowser(displayName), emojiMap);
   account.note_emojified = emojify(account.note, emojiMap);
+  account.note_plain = unescapeHTML(account.note);
 
   if (account.fields) {
     account.fields = account.fields.map(pair => ({
@@ -53,8 +60,16 @@ export function normalizeStatus(status, normalOldStatus) {
     normalStatus.search_index = normalOldStatus.get('search_index');
     normalStatus.contentHtml = normalOldStatus.get('contentHtml');
     normalStatus.spoilerHtml = normalOldStatus.get('spoilerHtml');
+    normalStatus.spoiler_text = normalOldStatus.get('spoiler_text');
     normalStatus.hidden = normalOldStatus.get('hidden');
   } else {
+    // If the status has a CW but no contents, treat the CW as if it were the
+    // status' contents, to avoid having a CW toggle with seemingly no effect.
+    if (normalStatus.spoiler_text && !normalStatus.content) {
+      normalStatus.content = normalStatus.spoiler_text;
+      normalStatus.spoiler_text = '';
+    }
+
     const spoilerText   = normalStatus.spoiler_text || '';
     const searchContent = ([spoilerText, status.content].concat((status.poll && status.poll.options) ? status.poll.options.map(option => option.title) : [])).join('\n\n').replace(/<br\s*\/?>/g, '\n').replace(/<\/p><p>/g, '\n\n');
     const emojiMap      = makeEmojiMap(normalStatus);
@@ -70,7 +85,6 @@ export function normalizeStatus(status, normalOldStatus) {
 
 export function normalizePoll(poll) {
   const normalPoll = { ...poll };
-
   const emojiMap = makeEmojiMap(normalPoll);
 
   normalPoll.options = poll.options.map((option, index) => ({
@@ -80,4 +94,13 @@ export function normalizePoll(poll) {
   }));
 
   return normalPoll;
+}
+
+export function normalizeAnnouncement(announcement) {
+  const normalAnnouncement = { ...announcement };
+  const emojiMap = makeEmojiMap(normalAnnouncement);
+
+  normalAnnouncement.contentHtml = emojify(normalAnnouncement.content, emojiMap);
+
+  return normalAnnouncement;
 }

@@ -1,5 +1,7 @@
 %h3= t 'sessions.title'
-%p.muted-hint= t 'sessions.explanation'
+%p.muted-hint
+  = t 'sessions.explanation'
+  = link_to t('sessions.view_authentication_history'), settings_login_activities_path
 
 %hr.spacer/
 
@@ -27,5 +29,6 @@
             - else
               %time.time-ago{ datetime: session.updated_at.iso8601, title: l(session.updated_at) }= l(session.updated_at)
           %td
-            - if current_session.session_id != session.session_id
+            - if current_session.session_id != session.session_id && !current_account.suspended?
               = table_link_to 'times', t('sessions.revoke'), settings_session_path(session), method: :delete
+

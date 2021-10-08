@@ -3,15 +3,30 @@ gl:
   activerecord:
     attributes:
       poll:
-        expires_at: Caducidade
+        expires_at: Remata en
         options: Opcións
+      user:
+        agreement: Acordo do Servizo
+        email: Enderezo de email
+        locale: Locale
+        password: Contrasinal
+      user/account:
+        username: Nome de usuaria
+      user/invite_request:
+        text: Razón
     errors:
       models:
         account:
           attributes:
             username:
-              invalid: só letras, números e liñas baixas
+              invalid: só letras, números e trazo baixo
+              reserved: está reservado
         status:
           attributes:
             reblog:
               taken: do estado xa existe
+        user:
+          attributes:
+            email:
+              blocked: utiliza un provedor de email non autorizado
+              unreachable: semella que non existe

@@ -8,12 +8,25 @@ de:
         acct: Gib den benutzernamen@domain des Kontos an, zu dem du umziehen möchtest
       account_warning_preset:
         text: Du kannst Beitragssyntax benutzen, wie z.B. URLs, Hashtags und Erwähnungen
+        title: Optional. Für den Empfänger nicht sichtbar
       admin_account_action:
         include_statuses: Der Benutzer wird sehen, welche Beiträge diese Maßnahme verursacht haben
         send_email_notification: Benutzer_in wird Bescheid gegeben, was mit dem Konto geschehen ist
         text_html: Optional. Du kannst Beitragssyntax nutzen. Du kannst <a href="%{path}">Warnungsvorlagen</a> benutzen um Zeit zu sparen
         type_html: Wähle aus, was du mit <strong>%{acct}</strong> machen möchtest
+        types:
+          disable: Den Benutzer daran hindern, sein Konto zu verwenden, aber seinen Inhalt nicht löschen oder ausblenden.
+          none: Verwende dies, um eine Warnung an den Benutzer zu senden, ohne eine andere Aktion auszulösen.
+          sensitive: Erzwinge, dass alle Medienanhänge des Benutzers als NSFW markiert werden.
+          silence: Verhindern, dass der Benutzer in der Lage ist, mit der öffentlichen Sichtbarkeit zu posten und seine Beiträge und Benachrichtigungen von Personen zu verstecken, die ihm nicht folgen.
+          suspend: Verhindert jegliche Interaktion von oder zu diesem Konto und löscht dessen Inhalt. Kann innerhalb von 30 Tagen rückgängig gemacht werden.
         warning_preset_id: Optional. Du kannst immer noch eigenen Text an das Ende der Vorlage hinzufügen
+      announcement:
+        all_day: Wenn aktiviert werden nur die Daten des Zeitraums angezeigt
+        ends_at: Optional. Die Ankündigung wird zu diesem Zeitpunkt automatisch zurückgezogen
+        scheduled_at: Leer lassen um die Ankündigung sofort zu veröffentlichen
+        starts_at: Optional. Falls deine Ankündigung an einen bestimmten Zeitraum gebunden ist
+        text: Du kannst die Toot-Syntax verwenden. Bitte beachte den Platz, den die Ankündigung auf dem Bildschirm des Benutzers einnehmen wird
       defaults:
         autofollow: Leute, die sich über deine Einladung registrieren, werden dir automatisch folgen
         avatar: PNG, GIF oder JPG. Maximal %{size}. Wird auf %{dimensions} px herunterskaliert
@@ -34,19 +47,22 @@ de:
         phrase: Wird schreibungsunabhängig mit dem Text und Inhaltswarnung eines Beitrags verglichen
         scopes: Welche Schnittstellen der Applikation erlaubt sind. Wenn du einen Top-Level-Scope auswählst, dann musst du nicht jeden einzelnen darunter auswählen.
         setting_aggregate_reblogs: Zeige denselben Beitrag nicht nochmal an, wenn er erneut geteilt wurde (dies betrifft nur neulich erhaltene erneut geteilte Beiträge)
-        setting_default_sensitive: Heikle Medien werden erst nach einem Klick sichtbar
-        setting_display_media_default: Verstecke Medien, die als sensibel markiert sind
+        setting_default_sensitive: NSFW-Medien werden erst nach einem Klick sichtbar
+        setting_display_media_default: Verstecke Medien, die als NSFW markiert sind
         setting_display_media_hide_all: Alle Medien immer verstecken
-        setting_display_media_show_all: Medien, die als sensibel markiert sind, immer anzeigen
+        setting_display_media_show_all: Alle Medien immer anzeigen
         setting_hide_network: Wem du folgst und wer dir folgt, wird in deinem Profil nicht angezeigt
         setting_noindex: Betrifft dein öffentliches Profil und deine Beiträge
         setting_show_application: Die Anwendung die du nutzst wird in der detaillierten Ansicht deiner Beiträge angezeigt
-        setting_use_blurhash: Die Farbverläufe basieren auf den Farben der versteckten Medien, aber verstecken irgendwelche Details
+        setting_use_blurhash: Die Farbverläufe basieren auf den Farben der versteckten Medien, aber verstecken jegliche Details
         setting_use_pending_items: Neue Beiträge hinter einem Klick verstecken anstatt automatisch zu scrollen
         username: Dein Benutzername wird auf %{domain} einzigartig sein
         whole_word: Wenn das Schlagwort nur aus Buchstaben und Zahlen besteht, wird es nur angewendet, wenn es dem ganzen Wort entspricht
       domain_allow:
         domain: Diese Domain kann Daten von diesem Server abrufen und eingehende Daten werden verarbeitet und gespeichert
+      email_domain_block:
+        domain: Dies kann der Domainname sein, der in der E-Mail-Adresse angezeigt wird, den MX-Datensatz, der aufgelöst wird oder die IP des Servers, auf dem der MX-Eintrag aufgelöst wird. Diese werden bei der Registrierung überprüft und die Registrierung wird abgelehnt.
+        with_dns_records: Ein Versuch die DNS-Einträge der Domain aufzulösen wurde unternommen und diese Ergebnisse werden unter anderem auch geblockt
       featured_tag:
         name: 'Du möchtest vielleicht einen von diesen benutzen:'
       form_challenge:
@@ -55,8 +71,19 @@ de:
         data: CSV-Datei, die aus einem anderen Mastodon-Server exportiert wurde
       invite_request:
         text: Dies wird uns helfen deine Anmeldungsanfrage besser zu verarbeiten
+      ip_block:
+        comment: Optional. Denke daran, warum du diese Regel hinzugefügt hast.
+        expires_in: IP-Adressen sind eine endliche Ressource, sie werden manchmal geteilt und werden ab und zu ausgetauscht. Aus diesem Grund werden unbestimmte IP-Blöcke nicht empfohlen.
+        ip: Gebe eine IPv4- oder IPv6-Adresse an. Du kannst ganze Bereiche mit der CIDR-Syntax blockieren. Achte darauf, dass du dich nicht aussperrst!
+        severities:
+          no_access: Zugriff auf alle Ressourcen blockieren
+          sign_up_requires_approval: Neue Anmeldungen erfordern deine Zustimmung
+        severity: Wähle aus, was mit Anfragen aus dieser IP passiert
+      rule:
+        text: Beschreibe eine Regel oder Anforderung für Benutzer auf diesem Server. Versuche es kurz und einfach zu halten
       sessions:
         otp: 'Gib die Zwei-Faktor-Authentifizierung von deinem Telefon ein oder benutze einen deiner Wiederherstellungscodes:'
+        webauthn: Wenn es sich um einen USB-Schlüssel handelt, stelle sicher, dass du ihn einsteckst und ihn antippst.
       tag:
         name: Du kannst zum Beispiel nur die Groß- und Kleinschreibung der Buchstaben ändern, um es lesbarer zu machen
       user:
@@ -72,6 +99,7 @@ de:
         acct: Adresse des neuen Kontos
       account_warning_preset:
         text: Vorlagentext
+        title: Titel
       admin_account_action:
         include_statuses: Meldungen der E-Mail beifügen
         send_email_notification: Benachrichtige den Nutzer per E-Mail
@@ -80,9 +108,16 @@ de:
         types:
           disable: Deaktivieren
           none: Nichts tun
+          sensitive: NSFW
           silence: Stummschalten
           suspend: Deaktivieren und Benutzerdaten unwiderruflich löschen
         warning_preset_id: Benutze eine Warnungsvorlage
+      announcement:
+        all_day: Ganztägiges Ereignis
+        ends_at: Ereignisende
+        scheduled_at: Veröffentlichung planen
+        starts_at: Beginn des Ereignisses
+        text: Ankündigung
       defaults:
         autofollow: Eingeladene Nutzer sollen dir automatisch folgen
         avatar: Profilbild
@@ -99,6 +134,7 @@ de:
         expires_in: Läuft ab
         fields: Tabellenfelder
         header: Titelbild
+        honeypot: "%{label} (nicht ausfüllen)"
         inbox_url: Inbox-URL des Relais
         irreversible: Verwerfen statt verstecken
         locale: Sprache der Benutzeroberfläche
@@ -113,12 +149,14 @@ de:
         setting_aggregate_reblogs: Gruppiere erneut geteilte Beiträge auf der Startseite
         setting_auto_play_gif: Animierte GIFs automatisch abspielen
         setting_boost_modal: Bestätigungsdialog anzeigen, bevor ein Beitrag geteilt wird
+        setting_crop_images: Bilder in nicht ausgeklappten Beiträgen auf 16:9 zuschneiden
         setting_default_language: Beitragssprache
         setting_default_privacy: Beitragssichtbarkeit
-        setting_default_sensitive: Medien immer als heikel markieren
+        setting_default_sensitive: Medien immer als NSFW markieren
         setting_delete_modal: Bestätigungsdialog anzeigen, bevor ein Beitrag gelöscht wird
+        setting_disable_swiping: Deaktiviere Wischgesten
         setting_display_media: Medien-Anzeige
-        setting_display_media_default: Heikle Inhalte verstecken
+        setting_display_media_default: NSFW-Inhalte verstecken
         setting_display_media_hide_all: Alle Medien verstecken
         setting_display_media_show_all: Alle Medien anzeigen
         setting_expand_spoilers: Beiträge mit Inhaltswarnungen immer ausklappen
@@ -133,10 +171,13 @@ de:
         setting_use_blurhash: Farbverlauf für versteckte Medien anzeigen
         setting_use_pending_items: Langsamer Modus
         severity: Schweregrad
+        sign_in_token_attempt: Sicherheitscode
         type: Art des Imports
         username: Profilname
         username_or_email: Profilname oder E-Mail
         whole_word: Ganzes Wort
+      email_domain_block:
+        with_dns_records: MX-Einträge und IPs der Domain einbeziehen
       featured_tag:
         name: Hashtag
       interactions:
@@ -147,6 +188,13 @@ de:
         comment: Kommentar
       invite_request:
         text: Warum möchtest du beitreten?
+      ip_block:
+        comment: Kommentar
+        ip: IP-Adresse
+        severities:
+          no_access: Zugriff sperren
+          sign_up_requires_approval: Anmeldungen begrenzen
+        severity: Regel
       notification_emails:
         digest: Kurzfassungen über E-Mail senden
         favourite: E-Mail senden, wenn jemand meinen Beitrag favorisiert
@@ -157,6 +205,8 @@ de:
         reblog: E-Mail senden, wenn jemand meinen Beitrag teilt
         report: E-Mail senden, wenn ein neuer Bericht vorliegt
         trending_tag: E-Mail senden, wenn ein ausstehender Hashtag angesagt ist
+      rule:
+        text: Regel
       tag:
         listable: Erlaube diesem Hashtag im Profilverzeichnis zu erscheinen
         name: Hashtag
@@ -167,4 +217,7 @@ de:
     required:
       mark: "*"
       text: Pflichtfeld
+    title:
+      sessions:
+        webauthn: Verwende einer deiner Sicherheitsschlüssel zum Anmelden
     'yes': Ja

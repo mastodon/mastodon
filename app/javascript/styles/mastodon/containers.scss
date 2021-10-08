@@ -444,6 +444,10 @@
       }
     }
 
+    .logo-button {
+      padding: 3px 15px;
+    }
+
     &__image {
       border-radius: 4px 4px 0 0;
       overflow: hidden;
@@ -646,7 +650,7 @@
         }
 
         .counter {
-          width: 33.3%;
+          min-width: 33.3%;
           box-sizing: border-box;
           flex: 0 0 auto;
           color: $darker-text-color;

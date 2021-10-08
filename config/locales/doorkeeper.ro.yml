@@ -1,1 +1,149 @@
+---
 ro:
+  activerecord:
+    attributes:
+      doorkeeper/application:
+        name: Numele aplicației
+        redirect_uri: URI de redirecționare
+        scopes: Domenii
+        website: Pagina web a aplicației
+    errors:
+      models:
+        doorkeeper/application:
+          attributes:
+            redirect_uri:
+              fragment_present: nu poate conține un fragment.
+              invalid_uri: trebuie să fie un URI valid.
+              relative_uri: trebuie să fie un URI absolut.
+              secured_uri: trebuie să fie un URI HTTPS/SSL.
+  doorkeeper:
+    applications:
+      buttons:
+        authorize: Autorizează
+        cancel: Anulează
+        destroy: Distruge
+        edit: Editează
+        submit: Trimite
+      confirmations:
+        destroy: Ești sigur?
+      edit:
+        title: Editați aplicația
+      form:
+        error: Ups! Verificați formularul pentru posibile erori
+      help:
+        native_redirect_uri: Utilizați %{native_redirect_uri} pentru teste locale
+        redirect_uri: Folosește câte o linie per URI
+        scopes: Separați domeniile cu spații. Lăsați necompletat pentru a utiliza domeniile implicite.
+      index:
+        application: Aplicație
+        callback_url: URL pentru callback
+        delete: Șterge
+        empty: Nu aveți aplicații.
+        name: Nume
+        new: Aplicație nouă
+        scopes: Domenii
+        show: Arată
+        title: Aplicațiile tale
+      new:
+        title: Aplicație nouă
+      show:
+        actions: Acțiuni
+        application_id: Cheie client
+        callback_urls: URL-uri de callback
+        scopes: Domenii
+        secret: Codul secret al clientului
+        title: 'Aplicație: %{name}'
+    authorizations:
+      buttons:
+        authorize: Autorizează
+        deny: Interzice
+      error:
+        title: A apărut o eroare
+      new:
+        able_to: Acesta va putea să
+        prompt: Aplicația %{client_name} cere acces la contul dvs
+        title: Autorizare necesară
+      show:
+        title: Copiați acest cod de autorizare și lipiți-l în aplicație.
+    authorized_applications:
+      buttons:
+        revoke: Revocați
+      confirmations:
+        revoke: Ești sigur?
+      index:
+        application: Aplicație
+        created_at: Autorizat
+        scopes: Domenii
+        title: Aplicațiile dvs autorizate
+    errors:
+      messages:
+        access_denied: Proprietarul de resurse sau serverul de autorizare a refuzat cererea.
+        credential_flow_not_configured: Fluxul Resurselor de Acreditări Parole a eșuat din cauza faptului că Doorkeeper.configure.resource_owner_from_credentials nu este configurat.
+        invalid_client: Autentificarea clientului a eșuat din cauza unui client necunoscut, nici o autentificare client inclusă, sau metodă de autentificare nesuportată.
+        invalid_grant: Acordarea autorizației furnizată este invalidă, expirată, revocată, nu corespunde URI-ului de redirecționare folosit în cererea de autorizare, sau a fost eliberat altui client.
+        invalid_redirect_uri: Uri-ul de redirecționare inclus nu este valid.
+        invalid_resource_owner: Acreditările proprietarului de resurse nu sunt valide sau proprietarul de resurse nu poate fi găsit
+        invalid_scope: Domeniul de aplicare solicitat este invalid, necunoscut sau incorect.
+        invalid_token:
+          expired: Token-ul de acces a expirat
+          revoked: Token-ul de acces a fost revocat
+          unknown: Token-ul de acces nu este valid
+        resource_owner_authenticator_not_configured: Găsirea Proprietarului de Resurse a eșuat deoarece Doorkeeper.configure.resource_owner_authenticator nu a fost configurată.
+        server_error: Serverul de autorizare a întâmpinat o condiție neașteptată care l-a împiedicat să îndeplinească cererea.
+        temporarily_unavailable: Serverul de autorizare este în prezent incapabil să gestioneze cererea din cauza unei supraîncărcări sau întrețineri temporare a serverului.
+        unauthorized_client: Clientul nu este autorizat să efectueze această cerere folosind această metodă.
+        unsupported_grant_type: Tipul de acordare a autorizației nu este suportat de serverul de autorizare.
+        unsupported_response_type: Serverul de autorizare nu acceptă acest tip de răspuns.
+    flash:
+      applications:
+        create:
+          notice: Aplicație creată.
+        destroy:
+          notice: Aplicație ștearsă.
+        update:
+          notice: Aplicație actualizată.
+      authorized_applications:
+        destroy:
+          notice: Aplicație revocată.
+    layouts:
+      admin:
+        nav:
+          applications: Aplicaţii
+          oauth2_provider: Furnizor OAuth2
+      application:
+        title: Este necesară autorizarea OAuth
+    scopes:
+      admin:read: citește toate datele de pe server
+      admin:read:accounts: citește informații sensibile ale tuturor conturilor
+      admin:read:reports: citește informații sensibile din toate rapoartele și conturile raportate
+      admin:write: modifică toate datele de pe server
+      admin:write:accounts: efectuează acțiuni de moderare pe conturi
+      admin:write:reports: efectuează acțiuni de moderare pe rapoarte
+      follow: modifică relațiile contului
+      push: primește notificările tale push
+      read: citește toate datele contului tău
+      read:accounts: vede informațiile privind conturile
+      read:blocks: vede blocurile tale
+      read:bookmarks: vede marcajele tale
+      read:favourites: vede favoritele tale
+      read:filters: vede filtrele tale
+      read:follows: vede urmăririle tale
+      read:lists: vede listele tale
+      read:mutes: vede ignorările tale
+      read:notifications: vede notificările tale
+      read:reports: vede raportările tale
+      read:search: caută în numele tău
+      read:statuses: vede toate stările
+      write: modifică toate datele contului tău
+      write:accounts: modifică profilul tău
+      write:blocks: blochează conturile și domeniile
+      write:bookmarks: marchează stările
+      write:favourites: favorizează stările
+      write:filters: creează filtre
+      write:follows: urmărește persoane
+      write:lists: creează liste
+      write:media: încarcă fișiere media
+      write:mutes: ignoră persoane și conversații
+      write:notifications: curăță notificările
+      write:reports: raportează alte persoane
+      write:statuses: publică stări

@@ -6,6 +6,8 @@ $error-red: #df405a !default;        // Cerise
 $warning-red: #ff5050 !default;      // Sunset Orange
 $gold-star: #ca8f04 !default;        // Dark Goldenrod
 
+$red-bookmark: $warning-red;
+
 // Values from the classic Mastodon UI
 $classic-base-color: #282c37;         // Midnight Express
 $classic-primary-color: #9baec8;      // Echo Blue
@@ -34,6 +36,8 @@ $dark-text-color: $ui-base-lighter-color !default;
 $secondary-text-color: $ui-secondary-color !default;
 $highlight-text-color: $ui-highlight-color !default;
 $action-button-color: $ui-base-lighter-color !default;
+$passive-text-color: $gold-star !default;
+$active-passive-text-color: $success-green !default;
 // For texts on inverted backgrounds
 $inverted-text-color: $ui-base-color !default;
 $lighter-text-color: $ui-base-lighter-color !default;

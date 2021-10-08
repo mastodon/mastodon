@@ -2,15 +2,33 @@
 fi:
   simple_form:
     hints:
+      account_alias:
+        acct: Määrittele käyttäjän käyttäjänimi@verkkotunnus mistä haluat siirtyä
+      account_migration:
+        acct: Määrittele käyttäjän käyttäjänimi@verkkotunnus mihin haluat siirtyä
+      account_warning_preset:
+        title: Vapaaehtoinen. Ei näytetä vastaanottajalle
       admin_account_action:
+        include_statuses: Käyttäjä näkee mitkä tuuttaukset johtivat toimenpiteeseen tai varoitukseen
         send_email_notification: Käyttäjä saa selityksen mitä tapahtui hänen tililleen
+        type_html: Valitse mitä teet käyttäjälle <strong>%{acct}</strong>
+      announcement:
+        scheduled_at: Jätä tyhjäksi julkaistaksesi ilmoituksen välittömästi
       defaults:
         avatar: PNG, GIF tai JPG. Enintään %{size}. Skaalataan kokoon %{dimensions} px
+        bot: Tämä tili suorittaa enimmäkseen automaattisia toimintoja eikä sitä ehkä valvota
         digest: Lähetetään vain pitkän poissaolon jälkeen ja vain, jos olet saanut suoria viestejä poissaolosi aikana
+        discoverable: Profiilihakemisto on toinen tapa, jolla tilisi voi tavoittaa laajemman yleisön
+        email: Sinulle lähetetään vahvistussähköposti
         fields: Sinulla voi olla korkeintaan 4 asiaa profiilissasi taulukossa
         header: PNG, GIF tai JPG. Enintään %{size}. Skaalataan kokoon %{dimensions} px
         locked: Sinun täytyy hyväksyä seuraajat manuaalisesti
+        setting_display_media_default: Piilota arkaluonteiseksi merkitty media
+        setting_display_media_hide_all: Piilota aina kaikki media
+        setting_display_media_show_all: Näytä aina arkaluonteiseksi merkitty media
         setting_noindex: Vaikuttaa julkiseen profiiliisi ja tilasivuihisi
+        setting_show_application: Tuuttaamiseen käyttämäsi sovellus näkyy tuuttauksiesi yksityiskohtaisessa näkymässä
+        setting_use_blurhash: Liukuvärit perustuvat piilotettujen kuvien väreihin, mutta sumentavat yksityiskohdat
       imports:
         data: Toisesta Mastodon-instanssista tuotu CSV-tiedosto
       sessions:
@@ -18,13 +36,32 @@ fi:
     labels:
       account:
         fields:
+          name: Nimike
           value: Sisältö
+      account_warning_preset:
+        title: Otsikko
+      admin_account_action:
+        text: Mukautettu varoitus
+        type: Toimenpide
+        types:
+          disable: Poista kirjautuminen käytöstä
+          none: Älä tee mitään
+          silence: Hiljennä
+          suspend: Poista käytöstä ja tuhoa käyttäjätunnuksen tiedot peruuttamattomasti
+      announcement:
+        all_day: Koko päivän kestävä tapahtuma
+        text: Ilmoitus
       defaults:
+        autofollow: Kutsu seuraamaan tiliäsi
         avatar: Profiilikuva
+        bot: Tämä on botti
+        chosen_languages: Suodata kieliä
         confirm_new_password: Vahvista uusi salasana
         confirm_password: Vahvista salasana
+        context: Suodata konteksteista
         current_password: Nykyinen salasana
         data: Tiedot
+        discoverable: Listaa tämä tili hakemistoon
         display_name: Nimimerkki
         email: Sähköpostiosoite
         expires_in: Vanhenee
@@ -37,32 +74,61 @@ fi:
         note: Kuvaus
         otp_attempt: Kaksivaiheisen tunnistuksen koodi
         password: Salasana
+        phrase: Avainsana tai lause
+        setting_advanced_layout: Ota käyttöön edistynyt web käyttöliittymä
+        setting_aggregate_reblogs: Ryhmitä boostaukset aikajanalla
         setting_auto_play_gif: Toista GIF-animaatiot automaattisesti
         setting_boost_modal: Kysy vahvistusta ennen buustausta
+        setting_crop_images: Rajaa kuvat avaamattomissa tuuttauksissa 16:9 kuvasuhteeseen
+        setting_default_language: Julkaisujen kieli
         setting_default_privacy: Julkaisun näkyvyys
         setting_default_sensitive: Merkitse media aina arkaluontoiseksi
         setting_delete_modal: Kysy vahvistusta ennen tuuttauksen poistamista
+        setting_display_media: Median näyttäminen
+        setting_display_media_default: Oletus
+        setting_display_media_hide_all: Piilota kaikki
+        setting_display_media_show_all: Näytä kaikki
+        setting_hide_network: Piilota verkkosi
         setting_noindex: Jättäydy pois hakukoneindeksoinnista
         setting_reduce_motion: Vähennä animaatioiden liikettä
+        setting_show_application: Näytä sovellus mistä lähetät tuuttauksia
         setting_system_font_ui: Käytä järjestelmän oletusfonttia
         setting_theme: Sivuston teema
+        setting_trends: Näytä päivän trendit
         setting_unfollow_modal: Kysy vahvistusta, ennen kuin lopetat seuraamisen
+        setting_use_pending_items: Hidastila
         severity: Vakavuus
+        sign_in_token_attempt: Turvakoodi
         type: Tietojen laji
         username: Käyttäjänimi
         username_or_email: Käyttäjänimi tai sähköposti
+        whole_word: Koko sana
+      email_domain_block:
+        with_dns_records: Sisällytä toimialueen MX tietueet ja IP-osoite
+      featured_tag:
+        name: Aihetunniste
       interactions:
         must_be_follower: Estä ilmoitukset käyttäjiltä, jotka eivät seuraa sinua
         must_be_following: Estä ilmoitukset käyttäjiltä, joita et seuraa
         must_be_following_dm: Estä suorat viestit käyttäjiltä, joita et seuraa
+      invite:
+        comment: Kommentoi
+      invite_request:
+        text: Miksi haluat liittyä?
       notification_emails:
         digest: Lähetä koosteviestejä sähköpostitse
         favourite: Lähetä sähköposti, kun joku tykkää tilastasi
         follow: Lähetä sähköposti, kun joku seuraa sinua
         follow_request: Lähetä sähköposti, kun joku pyytää seurata sinua
         mention: Lähetä sähköposti, kun sinut mainitaan
+        pending_account: Uusi tili tarvitsee tarkastusta
         reblog: Lähetä sähköposti, kun joku buustaa julkaisusi
+      tag:
+        name: Aihetunniste
+        trendable: Salli tämän aihetunnisteen näkyä trendeissä
+        usable: Salli tuuttauksien käyttää tätä aihetunnistetta
     'no': Ei
+    recommended: Suositeltu
     required:
       text: pakollinen tieto
     'yes': Kyllä

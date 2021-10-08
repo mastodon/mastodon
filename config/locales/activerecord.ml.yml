@@ -1,0 +1,32 @@
+---
+ml:
+  activerecord:
+    attributes:
+      poll:
+        expires_at: സമയപരിധി
+        options: ചോയ്‌സുകൾ
+      user:
+        agreement: സേവന ഉടമ്പടി
+        email: ഇ-മെയിൽ വിലാസം
+        locale: ഭാഷ
+        password: രഹസ്യവാചകം
+      user/account:
+        username: ഉപയോക്തൃനാമം
+      user/invite_request:
+        text: കാരണം
+    errors:
+      models:
+        account:
+          attributes:
+            username:
+              invalid: അക്ഷരങ്ങളും, അക്കങ്ങളും, പിന്നെ അടിവരയും മാത്രം
+              reserved: കരുതിവച്ചു
+        status:
+          attributes:
+            reblog:
+              taken: സ്റ്റാറ്റസ് ഇതിനകം നിലവിലുണ്ട്
+        user:
+          attributes:
+            email:
+              blocked: അനുവദനീയമല്ലാത്ത ഇ-മെയിൽ ദാതാവിനെ ഉപയോഗിക്കുന്നു
+              unreachable: നിലവിലില്ല

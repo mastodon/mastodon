@@ -11,6 +11,10 @@ require_relative 'mastodon/statuses_cli'
 require_relative 'mastodon/domains_cli'
 require_relative 'mastodon/preview_cards_cli'
 require_relative 'mastodon/cache_cli'
+require_relative 'mastodon/upgrade_cli'
+require_relative 'mastodon/email_domain_blocks_cli'
+require_relative 'mastodon/ip_blocks_cli'
+require_relative 'mastodon/maintenance_cli'
 require_relative 'mastodon/version'
 
 module Mastodon
@@ -48,6 +52,18 @@ module Mastodon
 
     desc 'cache SUBCOMMAND ...ARGS', 'Manage cache'
     subcommand 'cache', Mastodon::CacheCLI
+
+    desc 'upgrade SUBCOMMAND ...ARGS', 'Various version upgrade utilities'
+    subcommand 'upgrade', Mastodon::UpgradeCLI
+
+    desc 'email_domain_blocks SUBCOMMAND ...ARGS', 'Manage e-mail domain blocks'
+    subcommand 'email_domain_blocks', Mastodon::EmailDomainBlocksCLI
+
+    desc 'ip_blocks SUBCOMMAND ...ARGS', 'Manage IP blocks'
+    subcommand 'ip_blocks', Mastodon::IpBlocksCLI
+
+    desc 'maintenance SUBCOMMAND ...ARGS', 'Various maintenance utilities'
+    subcommand 'maintenance', Mastodon::MaintenanceCLI
 
     option :dry_run, type: :boolean
     desc 'self-destruct', 'Erase the server from the federation'
@@ -95,6 +111,8 @@ module Mastodon
       end
 
       prompt.warn('Do NOT interrupt this process...')
+
+      Setting.registrations_mode = 'none'
 
       Account.local.without_suspended.find_each do |account|
         payload = ActiveModelSerializers::SerializableResource.new(

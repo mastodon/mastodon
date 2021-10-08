@@ -7,12 +7,18 @@ class EntityCache
 
   MAX_EXPIRATION = 7.days.freeze
 
+  def status(url)
+    Rails.cache.fetch(to_key(:status, url), expires_in: MAX_EXPIRATION) { FetchRemoteStatusService.new.call(url) }
+  end
+
   def mention(username, domain)
-    Rails.cache.fetch(to_key(:mention, username, domain), expires_in: MAX_EXPIRATION) { Account.select(:username, :domain, :url).find_remote(username, domain) }
+    Rails.cache.fetch(to_key(:mention, username, domain), expires_in: MAX_EXPIRATION) { Account.select(:id, :username, :domain, :url).find_remote(username, domain) }
   end
 
   def emoji(shortcodes, domain)
-    shortcodes   = [shortcodes] unless shortcodes.is_a?(Array)
+    shortcodes = Array(shortcodes)
+    return [] if shortcodes.empty?
+
     cached       = Rails.cache.read_multi(*shortcodes.map { |shortcode| to_key(:emoji, shortcode, domain) })
     uncached_ids = []
 
@@ -21,11 +27,11 @@ class EntityCache
     end
 
     unless uncached_ids.empty?
-      uncached = CustomEmoji.where(shortcode: shortcodes, domain: domain, disabled: false).each_with_object({}) { |item, h| h[item.shortcode] = item }
+      uncached = CustomEmoji.where(shortcode: shortcodes, domain: domain, disabled: false).index_by(&:shortcode)
       uncached.each_value { |item| Rails.cache.write(to_key(:emoji, item.shortcode, domain), item, expires_in: MAX_EXPIRATION) }
     end
 
-    shortcodes.map { |shortcode| cached[to_key(:emoji, shortcode, domain)] || uncached[shortcode] }.compact
+    shortcodes.filter_map { |shortcode| cached[to_key(:emoji, shortcode, domain)] || uncached[shortcode] }
   end
 
   def to_key(type, *ids)

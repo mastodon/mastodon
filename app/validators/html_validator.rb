@@ -15,6 +15,6 @@ class HtmlValidator < ActiveModel::EachValidator
 
   def html_errors(str)
     fragment = Nokogiri::HTML.fragment(options[:wrap_with] ? "<#{options[:wrap_with]}>#{str}</#{options[:wrap_with]}>" : str)
-    fragment.errors.select { |error| ERROR_RE =~ error.message }
+    fragment.errors.select { |error| ERROR_RE.match?(error.message) }
   end
 end

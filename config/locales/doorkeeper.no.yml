@@ -38,6 +38,7 @@
         application: Applikasjon
         callback_url: Callback-URL
         delete: Fjern
+        empty: Du har ingen søknader.
         name: Navn
         new: Ny applikasjon
         scopes: Omfang
@@ -81,7 +82,6 @@
         invalid_client: Klientautentisering feilet på grunn av ukjent klient, ingen autentisering inkludert, eller autentiseringsmetode er ikke støttet.
         invalid_grant: Autoriseringen er ugyldig, utløpt, opphevet, stemmer ikke overens med omdirigerings-URIen eller var utstedt til en annen klient.
         invalid_redirect_uri: Den inkluderte omdirigerings-URLen er ikke gyldig.
-        invalid_request: Forespørslen mangler en eller flere parametere, inkluderte en parameter som ikke støttes eller har feil struktur.
         invalid_resource_owner: Ressurseierens detaljer er ikke gyldige, eller så er det ikke mulig å finne eieren
         invalid_scope: Det etterspurte omfanget er ugyldig, ukjent eller har feil struktur.
         invalid_token:
@@ -113,6 +113,37 @@
       application:
         title: OAuth-autorisering påkrevet
     scopes:
+      admin:read: lese alle data på tjeneren
+      admin:read:accounts: lese sensitiv informasjon om alle kontoer
+      admin:read:reports: lese sensitiv informasjon om alle rapporter og rapporterte kontoer
+      admin:write: modifisere alle data på tjeneren
+      admin:write:accounts: utføre moderatorhandlinger på kontoer
+      admin:write:reports: utføre moderatorhandlinger på rapporter
       follow: følg, blokkér, avblokkér, avfølg brukere
+      push: motta dine varsler
       read: lese dine data
+      read:accounts: se informasjon om kontoer
+      read:blocks: se dine blokkeringer
+      read:bookmarks: se dine bokmerker
+      read:favourites: se dine likinger
+      read:filters: se dine filtre
+      read:follows: se dine følginger
+      read:lists: se listene dine
+      read:mutes: se dine dempinger
+      read:notifications: se dine varslinger
+      read:reports: se dine rapporter
+      read:search: søke på dine vegne
+      read:statuses: se alle statuser
       write: poste på dine vegne
+      write:accounts: endre på profilen din
+      write:blocks: blokkere kontoer og domener
+      write:bookmarks: bokmerke statuser
+      write:favourites: like statuser
+      write:filters: opprett filtre
+      write:follows: følg personer
+      write:lists: opprett lister
+      write:media: last opp mediafiler
+      write:mutes: dempe folk og samtaler
+      write:notifications: tømme dine varsler
+      write:reports: rapportere andre folk
+      write:statuses: legg ut statuser

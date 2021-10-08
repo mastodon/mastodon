@@ -1,0 +1,17 @@
+---
+hi:
+  activerecord:
+    attributes:
+      poll:
+        expires_at: समयसीमा
+        options: विकल्प
+    errors:
+      models:
+        account:
+          attributes:
+            username:
+              invalid: केवल अक्षर, संख्या और अंडरस्कोर
+        status:
+          attributes:
+            reblog:
+              taken: स्थिति पहले से मौजूद है

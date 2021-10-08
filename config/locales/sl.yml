@@ -7,7 +7,6 @@ sl:
     active_count_after: dejaven
     active_footnote: Aktivni mesečni uporabniki (AMU)
     administered_by: 'Upravlja:'
-    api: API
     apps: Mobilne aplikacije
     apps_platforms: Uporabljajte Mastodon iz iOS, Android ali iz drugih platform
     browse_directory: Brskajte po imeniku profilov in filtriranje po interesih
@@ -58,6 +57,7 @@ sl:
     media: Mediji
     moved_html: "%{name} se je prestavil na %{new_profile_link}:"
     network_hidden: Ta informacija ni na voljo
+    never_active: Nikoli
     nothing_here: Tukaj ni ničesar!
     people_followed_by: Ljudje, ki jim sledi %{name}
     people_who_follow: Ljudje, ki sledijo %{name}
@@ -70,11 +70,9 @@ sl:
       two: Tuta
     posts_tab_heading: Tuti
     posts_with_replies: Tuti in odgovori
-    reserved_username: Uporabniško ime je zasedeno
     roles:
       admin: Skrbnik
       bot: Robot
-      moderator: Mod
     unavailable: Profil ni na voljo
     unfollow: Prenehaj slediti
   admin:
@@ -114,14 +112,11 @@ sl:
       email_status: Stanje e-pošte
       enable: Omogoči
       enabled: Omogočeno
-      feed_url: URL vira
       followers: Sledilci
-      followers_url: URL sledilcev
       follows: Sledi
       header: Glava
       inbox_url: URL mape "Prejeto"
       invited_by: Povabljen od
-      ip: IP
       joined: Pridružil
       location:
         all: Vse
@@ -144,10 +139,8 @@ sl:
       no_account_selected: Noben račun ni bil spremenjen, ker ni bil izbran noben
       no_limits_imposed: Brez omejitev
       not_subscribed: Ni naročen
-      outbox_url: URL za pošiljanje
       pending: Čakanje na pregled
       perform_full_suspension: Suspendiraj
-      profile_url: URL profila
       promote: Promoviraj
       protocol: Protokol
       public: Javen
@@ -167,10 +160,8 @@ sl:
       role: Dovoljenja
       roles:
         admin: Skrbnik
-        moderator: Moderator
         staff: Osebje
         user: Uporabnik
-      salmon_url: URL lososa
       search: Iskanje
       shared_inbox_url: URL mape "Prejeto v skupni rabi"
       show:
@@ -192,37 +183,6 @@ sl:
       web: Splet
       whitelisted: Na belem seznamu
     action_logs:
-      actions:
-        assigned_to_self_report: "%{name} je prijavil %{target} sebi"
-        change_email_user: "%{name} je spremenil naslov e-pošte uporabnika %{target}"
-        confirm_user: "%{name} je potrdil naslov e-pošte uporabnika %{target}"
-        create_account_warning: "%{name} je poslal opozorilo %{target}"
-        create_custom_emoji: "%{name} je posodobil emotikone %{target}"
-        create_domain_block: "%{name} je blokiral domeno %{target}"
-        create_email_domain_block: "%{name} je dal na črni seznam e-pošto domene %{target}"
-        demote_user: "%{name} je degradiral uporabnika %{target}"
-        destroy_custom_emoji: "%{name} je uničil emotikone %{target}"
-        destroy_domain_block: "%{name} je odblokiral domeno %{target}"
-        destroy_email_domain_block: "%{name} je dal na beli seznam e-pošto domene %{target}"
-        destroy_status: "%{name} je odstranil stanje od %{target}"
-        disable_2fa_user: "%{name} je onemogočil dvofaktorsko zahtevo za uporabnika %{target}"
-        disable_custom_emoji: "%{name} je onemogočil emotikone %{target}"
-        disable_user: "%{name} je onemogočil prijavo za uporabnika %{target}"
-        enable_custom_emoji: "%{name} je omogočil emotikone %{target}"
-        enable_user: "%{name} je omogočil prijavo za uporabnika %{target}"
-        memorialize_account: "%{name} je spremenil račun od %{target} v stran spominov"
-        promote_user: "%{name} je promoviral uporabnika %{target}"
-        remove_avatar_user: "%{name} je odstranil podobo od %{target}"
-        reopen_report: "%{name} je ponovno odprl prijavo %{target}"
-        reset_password_user: "%{name} je ponastavil geslo od uporabnika %{target}"
-        resolve_report: "%{name} je razrešil prijavo %{target}"
-        silence_account: "%{name} je utišal račun od %{target}"
-        suspend_account: "%{name} je suspendiral račun od %{target}"
-        unassigned_report: "%{name} je nedodeljeno prijavil %{target}"
-        unsilence_account: "%{name} je preklical utišanje računa od %{target}"
-        unsuspend_account: "%{name} je aktiviral račun od %{target}"
-        update_custom_emoji: "%{name} je posodobil emotikone %{target}"
-        update_status: "%{name} je posodobil stanje od %{target}"
       deleted_status: "(izbrisano stanje)"
       title: Dnevnik revizije
     custom_emojis:
@@ -258,7 +218,6 @@ sl:
       feature_profile_directory: Imenik profilov
       feature_registrations: Registracije
       feature_relay: Rele federacije
-      feature_spam_check: Anti-spam
       feature_timeline_preview: Predogled časovnice
       features: Zmožnosti
       hidden_service: Federacija s skritimi storitvami
@@ -325,9 +284,6 @@ sl:
         create: Dodaj domeno
         title: Nov vnos e-pošte na črni seznam
       title: Črni seznam e-pošt
-    followers:
-      back_to_account: Nazaj na račun
-      title: Sledilci od %{acct}
     instances:
       by_domain: Domena
       delivery_available: Na voljo je dostava
@@ -352,7 +308,6 @@ sl:
         all: Vse
         available: Razpoložljivo
         expired: Potekel
-        title: Filter
       title: Povabila
     pending_accounts:
       title: "(%{count}) računov na čakanju"
@@ -375,9 +330,6 @@ sl:
       created_msg: Opomba o prijavi je uspešno ustvarjena!
       destroyed_msg: Opomba o prijavi je uspešno izbrisana!
     reports:
-      account:
-        note: opomba
-        report: prijava
       action_taken_by: Dejanje, ki ga je sprejel
       are_you_sure: Ali ste prepričani?
       assign_to_self: Dodeli meni
@@ -467,9 +419,6 @@ sl:
         desc_html: Lahko napišete svojo pravilnik o zasebnosti, pogoje storitve ali druge pravne dokumente. Lahko uporabite oznake HTML
         title: Pogoji storitve po meri
       site_title: Ime strežnika
-      spam_check_enabled:
-        desc_html: Mastodon lahko samodejno utiša in samodejno prijavi račune, ki temeljijo na ukrepih, kot je odkrivanje računov, ki pošiljajo ponavljajoča se neželena sporočila. Lahko pride do zmot.
-        title: Anti-spam
       thumbnail:
         desc_html: Uporablja se za predogled prek OpenGrapha in API-ja. Priporočamo 1200x630px
         title: Sličica strežnika
@@ -496,7 +445,6 @@ sl:
     warning_presets:
       add_new: Dodaj novo
       delete: Izbriši
-      edit: Uredi
       edit_preset: Uredi prednastavitev opozoril
       title: Upravljaj prednastavitev opozoril
   admin_mailer:
@@ -515,7 +463,6 @@ sl:
     sensitive_content: Občutljiva vsebina
   application_mailer:
     notification_preferences: Spremenite e-poštne nastavitve
-    salutation: "%{name},"
     settings: 'Spremenite e-poštne nastavitve: %{link}'
     view: 'Pogled:'
     view_profile: Ogled profila
@@ -543,9 +490,6 @@ sl:
     migrate_account: Premakni se na drug račun
     migrate_account_html: Če želite ta račun preusmeriti na drugega, ga lahko <a href="%{path}">nastavite tukaj</a>.
     or_log_in_with: Ali se prijavite z
-    providers:
-      cas: CAS
-      saml: SAML
     register: Vpis
     registration_closed: "%{instance} ne sprejema novih članov"
     resend_confirmation: Ponovno pošlji navodila za potrditev
@@ -574,18 +518,8 @@ sl:
     title: Sledi %{acct}
   datetime:
     distance_in_words:
-      about_x_hours: "%{count}h"
-      about_x_months: "%{count}mo"
-      about_x_years: "%{count}y"
-      almost_x_years: "%{count}y"
       half_a_minute: Pravkar
-      less_than_x_minutes: "%{count}m"
       less_than_x_seconds: Pravkar
-      over_x_years: "%{count}y"
-      x_days: "%{count}d"
-      x_minutes: "%{count}m"
-      x_months: "%{count}mo"
-      x_seconds: "%{count}s"
   deletes:
     confirm_password: Vnesite svoje trenutno geslo, da potrdite svojo identiteto
     proceed: Izbriši račun
@@ -621,9 +555,7 @@ sl:
       request: Zahtevajte svoj arhiv
       size: Velikost
     blocks: Blokirate
-    csv: CSV
     domain_blocks: Bloki domene
-    follows: Sledite
     lists: Seznami
     mutes: Utišate
     storage: Shranjeni mediji
@@ -770,22 +702,11 @@ sl:
       body: "%{name} je spodbudil/a vaše stanje:"
       subject: "%{name} je spodbudil/a vaše stanje"
       title: Nova spodbuda
-  number:
-    human:
-      decimal_units:
-        format: "%n%u"
-        units:
-          billion: B
-          million: M
-          quadrillion: Q
-          thousand: K
-          trillion: T
   pagination:
     newer: Novejše
     next: Naprej
     older: Starejše
     prev: Nazaj
-    truncate: "&hellip;"
   polls:
     errors:
       already_voted: Na tej anketi ste že glasovali
@@ -838,40 +759,16 @@ sl:
     activity: Zadnja dejavnost
     browser: Brskalnik
     browsers:
-      alipay: Alipay
       blackberry: BlackBerry
-      chrome: Chrome
-      edge: Microsoft Edge
-      electron: Electron
-      firefox: Firefox
       generic: Neznan brskalnik
-      ie: Internet Explorer
-      micro_messenger: MicroMessenger
-      nokia: Nokia S40 Ovi Browser
-      opera: Opera
-      otter: Otter
-      phantom_js: PhantomJS
-      qq: QQ Browser
-      safari: Safari
       uc_browser: UC Browser
-      weibo: Weibo
     current_session: Trenutna seja
     description: "%{browser} na %{platform}"
     explanation: To so spletni brskalniki, ki so trenutno prijavljeni v vaš Mastodon račun.
-    ip: IP
     platforms:
-      adobe_air: Adobe Air
-      android: Android
       blackberry: BlackBerry
-      chrome_os: ChromeOS
-      firefox_os: Firefox OS
-      ios: iOS
-      linux: Linux
       mac: Mac
       other: neznana platforma
-      windows: Windows
-      windows_mobile: Windows Mobile
-      windows_phone: Windows Phone
     revoke: Prekliči
     revoke_success: Seja je bila uspešno preklicana
     title: Seje
@@ -932,7 +829,6 @@ sl:
       vote: Glasuj
     show_more: Pokaži več
     sign_in_to_participate: Prijavite se, če želite sodelovati v pogovoru
-    title: '%{name}: "%{quote}"'
     visibilities:
       private: Samo sledilci
       private_long: Prikaži samo sledilcem
@@ -1031,26 +927,15 @@ sl:
     contrast: Mastodon (Visok kontrast)
     default: Mastodon (Temna)
     mastodon-light: Mastodon (Svetla)
-  time:
-    formats:
-      default: "%b %d, %Y, %H:%M"
-      month: "%b %Y"
   two_factor_authentication:
-    code_hint: Za potrditev vnesite kodo, ki jo je ustvarila aplikacija za preverjanje pristnosti
-    description_html: Če omogočite <strong>dvofaktorsko preverjanje pristnosti</strong>, boste za prijavo morali imeti svoj telefon, s katerim boste ustvarili žetone za vstop.
     disable: Onemogoči
-    enable: Omogoči
     enabled: Dvofaktorsko preverjanje pristnosti je omogočeno
     enabled_success: Dvofaktorsko preverjanje pristnosti je uspešno omogočeno
     generate_recovery_codes: Ustvari kode za obnovitev
-    instructions_html: "<strong>Skenirajte QR kodo z Google Authenticator ali s podobno aplikacijo TOTP</strong>. Od zdaj naprej bo ta aplikacija ustvarjala žetone, ki jih boste morali vnesti ob prijavi."
     lost_recovery_codes: Obnovitvene kode vam omogočajo, da ponovno pridobite dostop do svojega računa, če izgubite telefon. Če ste izgubili obnovitvene kode, jih lahko obnovite tukaj. Vaše stare obnovitvene kode bodo neveljavne.
-    manual_instructions: 'Če ne morete skenirati QR kode in jo morate vnesti ročno, je tu skrivnost v tekstovni obliki:'
     recovery_codes: Varnostna kopija obnovitvenih kod
     recovery_codes_regenerated: Obnovitvene kode so bile uspešno regenerirane
     recovery_instructions_html: Če kdaj izgubite dostop do telefona, lahko uporabite eno od spodnjih obnovitvenih kod, da ponovno pridobite dostop do svojega računa. <strong>Shranite obnovitvene kode</strong>. Lahko jih natisnete in shranite z drugimi pomembnimi dokumenti.
-    setup: Nastavi
-    wrong_code: Vnesena koda je bila neveljavna! Ali sta čas strežnika in čas naprave pravilna?
   user_mailer:
     backup_ready:
       explanation: Zahtevali ste popolno varnostno kopijo računa Mastodon. Zdaj je pripravljen za prenos!
@@ -1091,7 +976,6 @@ sl:
       title: Dobrodošli, %{name}!
   users:
     follow_limit_reached: Ne morete spremljati več kot %{limit} ljudi
-    invalid_email: E-poštni naslov je napačen
     invalid_otp_token: Neveljavna dvofaktorska koda
     otp_lost_help_html: Če ste izgubili dostop do obeh, stopite v stik z %{email}
     seamless_external_login: Prijavljeni ste prek zunanje storitve, tako da nastavitve gesla in e-pošte niso na voljo.

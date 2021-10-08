@@ -38,6 +38,7 @@ es:
         application: Aplicación
         callback_url: URL de callback
         delete: Eliminar
+        empty: No tienes aplicaciones.
         name: Nombre
         new: Nueva aplicación
         scopes: Ámbitos
@@ -82,7 +83,10 @@ es:
         invalid_client: La autentificación del cliente falló debido o a que es un cliente desconocido o no está incluída la autentificación del cliente o el método de autentificación no está confirmado.
         invalid_grant: La concesión de autorización ofrecida es inválida, venció, se revocó, no coincide con la URI de redirección utilizada en la petición de autorización, o fue emitida para otro cliente.
         invalid_redirect_uri: La URI de redirección incluida no es válida.
-        invalid_request: En la petición falta un parámetro necesario o incluye un valor de parámetro no soportado o tiene otro tipo de formato incorrecto.
+        invalid_request:
+          missing_param: 'Falta este parámetro requerido: %{value}.'
+          request_not_authorized: La solicitud debe ser autorizada. Hay un parámetro requerido para autorizar la solicitud que falta o no es válido.
+          unknown: Falta un parámetro requerido en la solicitud, o esta incluye un valor no admitido de parámetro, o bien está mal formulada.
         invalid_resource_owner: Las credenciales proporcionadas del propietario del recurso no son válidas, o el propietario del recurso no puede ser encontrado
         invalid_scope: El ámbito pedido es inválido, desconocido o erróneo.
         invalid_token:
@@ -125,6 +129,7 @@ es:
       read: leer los datos de tu cuenta
       read:accounts: ver información de cuentas
       read:blocks: ver a quién has bloqueado
+      read:bookmarks: ver tus marcadores
       read:favourites: ver tus favoritos
       read:filters: ver tus filtros
       read:follows: ver a quién sigues
@@ -137,7 +142,8 @@ es:
       write: publicar en tu nombre
       write:accounts: modifica tu perfil
       write:blocks: bloquear cuentas y dominios
-      write:favourites: toots favoritos
+      write:bookmarks: guardar estados como marcadores
+      write:favourites: publicaciones favoritas
       write:filters: crear filtros
       write:follows: seguir usuarios
       write:lists: crear listas

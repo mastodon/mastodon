@@ -2,20 +2,20 @@
 zh-CN:
   devise:
     confirmations:
-      confirmed: 成功验证你的邮箱地址。
+      confirmed: 已成功确认你的邮箱地址。
       send_instructions: 你的电子邮箱将在几分钟后收到一封确认邮件。如果没有，请检查你的垃圾邮箱。
       send_paranoid_instructions: 如果你的邮箱存在于我们的数据库中，你将收到一封确认注册的邮件。如果没有，请检查你的垃圾邮箱。
     failure:
       already_authenticated: 你已经登录。
       inactive: 你还没有激活帐户。
-      invalid: "%{authentication_keys}或密码错误。"
-      last_attempt: 你还有最后一次尝试机会，再次失败你的帐户将被锁定。
+      invalid: "%{authentication_keys} 无效或密码错误。"
+      last_attempt: 这是最后一次尝试机会，失败后你的帐户将被锁定。
       locked: 你的帐户已被锁定。
       not_found_in_database: "%{authentication_keys}或密码错误。"
-      pending: 你的账户仍在审核中。
-      timeout: 你已登录超时，请重新登录。
+      pending: 你的帐号仍在审核中。
+      timeout: 你的会话已过期。请重新登录再继续操作。
       unauthenticated: 继续操作前请注册或者登录。
-      unconfirmed: 继续操作前请先确认你的帐户。
+      unconfirmed: 你必须先确认你的电子邮件地址才能继续。
     mailer:
       confirmation_instructions:
         action: 验证电子邮件地址
@@ -23,15 +23,15 @@ zh-CN:
         explanation: 你在 %{host} 上使用这个电子邮件地址创建了一个帐户。只需点击下面的链接，即可完成激活。如果你并没有创建过帐户，请忽略此邮件。
         explanation_when_pending: 你用这个电子邮件申请了在 %{host} 注册。在确认电子邮件地址之后，我们会审核你的申请。在此之前，你不能登录。如果你的申请被驳回，你的数据会被移除，因此你无需再采取任何行动。如果申请人不是你，请忽略这封邮件。
         extra_html: 请记得阅读<a href="%{terms_path}">本服务器的相关规定</a>和<a href="%{policy_path}">我们的使用条款</a>。
-        subject: Mastodon：确认 %{instance} 帐户信息
+        subject: Mastodon：来自 %{instance} 的确认指引
         title: 验证电子邮件地址
       email_changed:
-        explanation: 你的帐户的电子邮件地址即将变更为：
+        explanation: 你的帐户的电子邮件地址将变更为：
         extra: 如果你并没有请求更改你的电子邮件地址，则他人很有可能已经入侵你的帐户。请立即更改你的密码；如果你已经无法访问你的帐户，请联系服务器管理员请求协助。
         subject: Mastodon：电子邮件地址已被更改
         title: 新电子邮件地址
       password_change:
-        explanation: 你的帐户的密码已被更改。
+        explanation: 你的帐户密码已更改。
         extra: 如果你并没有请求更改你的密码，则他人很有可能已经入侵你的帐户。请立即更改你的密码；如果你已经无法访问你的帐户，请联系服务器的管理员请求协助。
         subject: Mastodon：密码已被更改
         title: 密码已被重置
@@ -46,8 +46,37 @@ zh-CN:
         extra: 如果你并没有请求本次变更，请忽略此邮件。你的密码只有在你点击上面的链接并输入新密码后才会更改。
         subject: Mastodon：重置密码信息
         title: 重置密码
+      two_factor_disabled:
+        explanation: 帐号的双重认证已禁用。现在仅使用邮箱和密码登录即可登录。
+        subject: Mastodon：双重认证已禁用。
+        title: 双重认证已禁用
+      two_factor_enabled:
+        explanation: 账号双重认证已启用。登录时将需要来自已配对的 TOTP 应用生成的验证码。
+        subject: Mastodon：双重验证已开启
+        title: 已启用双重认证
+      two_factor_recovery_codes_changed:
+        explanation: 之前的恢复码已失效，现已生成了新的恢复码。
+        subject: Mastodon：重新生成双重认证的恢复码
+        title: 双重验证的恢复码已更改
       unlock_instructions:
         subject: Mastodon：帐户解锁信息
+      webauthn_credential:
+        added:
+          explanation: 以下安全密钥已添加到你的帐户
+          subject: Mastodon：新的安全密钥
+          title: 已添加一个新的安全密钥
+        deleted:
+          explanation: 以下安全密钥已从你的账户中删除
+          subject: Mastodon：安全密钥已删除
+          title: 你的安全密钥之一已被删除
+      webauthn_disabled:
+        explanation: 你的帐户已禁用安全密钥认证。现在只能使用配对的 TOTP 应用程序生成的令牌登录。
+        subject: Mastodon：安全密钥认证已禁用
+        title: 安全密钥已禁用
+      webauthn_enabled:
+        explanation: 你的帐户已启用安全密钥身份验证。你的安全密钥现在可以用于登录。
+        subject: Mastodon：安全密钥认证已启用
+        title: 已启用安全密钥
     omniauth_callbacks:
       failure: 由于%{reason}，无法从%{kind}获得授权。
       success: 成功地从%{kind}获得授权。
@@ -58,28 +87,28 @@ zh-CN:
       updated: 你的密码已修改成功，你现在已登录。
       updated_not_active: 你的密码已修改成功。
     registrations:
-      destroyed: 再见！你的帐户已成功销毁。我们希望很快可以再见到你。
+      destroyed: 再见！你的帐户已成功注销。我们希望很快可以再见到你。
       signed_up: 欢迎！你已注册成功。
-      signed_up_but_inactive: 你已注册，但尚未激活帐户。
-      signed_up_but_locked: 你已注册，但帐户被锁定了。
-      signed_up_but_pending: 一封带有确认链接的邮件已经发送到了您的邮箱。 在您点击确认链接后，我们将会审核您的申请。审核通过后，我们将会通知您。
+      signed_up_but_inactive: 你已成功注册，但因尚未激活帐户所以无法登陆。
+      signed_up_but_locked: 你已成功注册，但因帐户被锁定所以无法登陆。
+      signed_up_but_pending: 一封带有确认链接的邮件已经发送到了你的邮箱。 在你点击确认链接后，我们将会审核你的申请。审核通过后，我们将会通知你。
       signed_up_but_unconfirmed: 一封带有确认链接的邮件已经发送至你的邮箱，请点击邮件中的链接以激活你的帐户。如果没有，请检查你的垃圾邮件。
-      update_needs_confirmation: 信息更新成功，但我们需要验证你的新电子邮件地址，请点击邮件中的链接以确认。如果没有，请检查你的垃圾邮箱。
+      update_needs_confirmation: 帐号信息更新成功，但我们需要验证你的新电子邮件地址，请点击邮件中的链接以确认。如果没有，请检查你的垃圾邮箱。
       updated: 帐户资料更新成功。
     sessions:
       already_signed_out: 已成功登出。
-      signed_in: 登录成功。
-      signed_out: 登出成功。
+      signed_in: 已成功登录。
+      signed_out: 已成功登出。
     unlocks:
       send_instructions: 几分钟后，你将收到一封解锁帐户的邮件。如果没有，请检查你的垃圾邮箱。
-      send_paranoid_instructions: 如果你的邮箱存在于我们的数据库中，你将收到一封解锁帐户的邮件。如果没有，请检查你的垃圾邮箱。
+      send_paranoid_instructions: 如果你的帐号存在于数据库中，你将收到一封指引你解锁帐户的邮件。如果没有，请检查你的垃圾邮箱。
       unlocked: 你的帐户已成功解锁。登录以继续。
   errors:
     messages:
       already_confirmed: 已经确认成功，请尝试登录
-      confirmation_period_expired: 必须在 %{period}以内确认。请重新发起请求
+      confirmation_period_expired: 必须在 %{period} 以内确认。请重新发起请求
       expired: 已过期。请重新发起请求
-      not_found: 找不到
+      not_found: 未找到
       not_locked: 未被锁定
       not_saved:
         other: 发生 %{count} 个错误，导致%{resource}保存失败：

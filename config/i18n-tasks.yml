@@ -60,3 +60,7 @@ ignore_unused:
   - 'admin.accounts.roles.*'
   - 'admin.action_logs.actions.*'
   - 'statuses.attached.*'
+  - 'move_handler.carry_{mutes,blocks}_over_text'
+
+ignore_inconsistent_interpolations:
+  - '*.one'

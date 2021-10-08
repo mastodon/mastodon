@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { ScrollContainer } from 'react-router-scroll-4';
+import ScrollContainer from 'mastodon/containers/scroll_container';
 import PropTypes from 'prop-types';
 import IntersectionObserverArticleContainer from '../containers/intersection_observer_article_container';
 import LoadMore from './load_more';
@@ -10,10 +10,18 @@ import { List as ImmutableList } from 'immutable';
 import classNames from 'classnames';
 import { attachFullscreenListener, detachFullscreenListener, isFullscreen } from '../features/ui/util/fullscreen';
 import LoadingIndicator from './loading_indicator';
+import { connect } from 'react-redux';
 
 const MOUSE_IDLE_DELAY = 300;
 
-export default class ScrollableList extends PureComponent {
+const mapStateToProps = (state, { scrollKey }) => {
+  return {
+    preventScroll: scrollKey === state.getIn(['dropdown_menu', 'scroll_key']),
+  };
+};
+
+export default @connect(mapStateToProps, null, null, { forwardRef: true })
+class ScrollableList extends PureComponent {
 
   static contextTypes = {
     router: PropTypes.object,
@@ -26,16 +34,17 @@ export default class ScrollableList extends PureComponent {
     onScrollToTop: PropTypes.func,
     onScroll: PropTypes.func,
     trackScroll: PropTypes.bool,
-    shouldUpdateScroll: PropTypes.func,
     isLoading: PropTypes.bool,
     showLoading: PropTypes.bool,
     hasMore: PropTypes.bool,
     numPending: PropTypes.number,
     prepend: PropTypes.node,
+    append: PropTypes.node,
     alwaysPrepend: PropTypes.bool,
     emptyMessage: PropTypes.node,
     children: PropTypes.node,
     bindToDocument: PropTypes.bool,
+    preventScroll: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -82,15 +91,19 @@ export default class ScrollableList extends PureComponent {
   lastScrollWasSynthetic = false;
   scrollToTopOnMouseIdle = false;
 
+  _getScrollingElement = () => {
+    if (this.props.bindToDocument) {
+      return (document.scrollingElement || document.body);
+    } else {
+      return this.node;
+    }
+  }
+
   setScrollTop = newScrollTop => {
     if (this.getScrollTop() !== newScrollTop) {
       this.lastScrollWasSynthetic = true;
 
-      if (this.props.bindToDocument) {
-        document.scrollingElement.scrollTop = newScrollTop;
-      } else {
-        this.node.scrollTop = newScrollTop;
-      }
+      this._getScrollingElement().scrollTop = newScrollTop;
     }
   };
 
@@ -124,7 +137,7 @@ export default class ScrollableList extends PureComponent {
   });
 
   handleMouseIdle = () => {
-    if (this.scrollToTopOnMouseIdle) {
+    if (this.scrollToTopOnMouseIdle && !this.props.preventScroll) {
       this.setScrollTop(0);
     }
 
@@ -151,15 +164,15 @@ export default class ScrollableList extends PureComponent {
   }
 
   getScrollTop = () => {
-    return this.props.bindToDocument ? document.scrollingElement.scrollTop : this.node.scrollTop;
+    return this._getScrollingElement().scrollTop;
   }
 
   getScrollHeight = () => {
-    return this.props.bindToDocument ? document.scrollingElement.scrollHeight : this.node.scrollHeight;
+    return this._getScrollingElement().scrollHeight;
   }
 
   getClientHeight = () => {
-    return this.props.bindToDocument ? document.scrollingElement.clientHeight : this.node.clientHeight;
+    return this._getScrollingElement().clientHeight;
   }
 
   updateScrollBottom = (snapshot) => {
@@ -174,7 +187,7 @@ export default class ScrollableList extends PureComponent {
       this.getFirstChildKey(prevProps) !== this.getFirstChildKey(this.props);
     const pendingChanged = (prevProps.numPending > 0) !== (this.props.numPending > 0);
 
-    if (pendingChanged || someItemInserted && (this.getScrollTop() > 0 || this.mouseMovedRecently)) {
+    if (pendingChanged || someItemInserted && (this.getScrollTop() > 0 || this.mouseMovedRecently || this.props.preventScroll)) {
       return this.getScrollHeight() - this.getScrollTop();
     } else {
       return null;
@@ -208,10 +221,13 @@ export default class ScrollableList extends PureComponent {
   }
 
   attachIntersectionObserver () {
-    this.intersectionObserverWrapper.connect({
+    let nodeOptions = {
       root: this.node,
       rootMargin: '300% 0px',
-    });
+    };
+
+    this.intersectionObserverWrapper
+      .connect(this.props.bindToDocument ? {} : nodeOptions);
   }
 
   detachIntersectionObserver () {
@@ -273,7 +289,7 @@ export default class ScrollableList extends PureComponent {
   }
 
   render () {
-    const { children, scrollKey, trackScroll, shouldUpdateScroll, showLoading, isLoading, hasMore, numPending, prepend, alwaysPrepend, emptyMessage, onLoadMore } = this.props;
+    const { children, scrollKey, trackScroll, showLoading, isLoading, hasMore, numPending, prepend, alwaysPrepend, append, emptyMessage, onLoadMore } = this.props;
     const { fullscreen } = this.state;
     const childrenCount = React.Children.count(children);
 
@@ -293,7 +309,7 @@ export default class ScrollableList extends PureComponent {
           </div>
         </div>
       );
-    } else if (isLoading || childrenCount > 0 || hasMore || !emptyMessage) {
+    } else if (isLoading || childrenCount > 0 || numPending > 0 || hasMore || !emptyMessage) {
       scrollableArea = (
         <div className={classNames('scrollable', { fullscreen })} ref={this.setRef} onMouseMove={this.handleMouseMove}>
           <div role='feed' className='item-list'>
@@ -320,6 +336,8 @@ export default class ScrollableList extends PureComponent {
             ))}
 
             {loadMore}
+
+            {!hasMore && append}
           </div>
         </div>
       );
@@ -337,7 +355,7 @@ export default class ScrollableList extends PureComponent {
 
     if (trackScroll) {
       return (
-        <ScrollContainer scrollKey={scrollKey} shouldUpdateScroll={shouldUpdateScroll}>
+        <ScrollContainer scrollKey={scrollKey}>
           {scrollableArea}
         </ScrollContainer>
       );

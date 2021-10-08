@@ -13,7 +13,7 @@ class ActivityPub::DistributionWorker
     return if skip_distribution?
 
     ActivityPub::DeliveryWorker.push_bulk(inboxes) do |inbox_url|
-      [payload, @account.id, inbox_url]
+      [payload, @account.id, inbox_url, { synchronize_followers: !@status.distributable? }]
     end
 
     relay! if relayable?
@@ -35,7 +35,7 @@ class ActivityPub::DistributionWorker
     # Deliver the status to all followers.
     # If the status is a reply to another local status, also forward it to that
     # status' authors' followers.
-    @inboxes ||= if @status.reply? && @status.thread.account.local? && @status.distributable?
+    @inboxes ||= if @status.in_reply_to_local_account? && @status.distributable?
                    @account.followers.or(@status.thread.account.followers).inboxes
                  else
                    @account.followers.inboxes
@@ -43,7 +43,7 @@ class ActivityPub::DistributionWorker
   end
 
   def payload
-    @payload ||= Oj.dump(serialize_payload(@status, ActivityPub::ActivitySerializer, signer: @account))
+    @payload ||= Oj.dump(serialize_payload(ActivityPub::ActivityPresenter.from_status(@status), ActivityPub::ActivitySerializer, signer: @account))
   end
 
   def relay!

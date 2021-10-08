@@ -1,1 +1,113 @@
+---
 nn:
+  devise:
+    confirmations:
+      confirmed: E-posten din er stadfesta.
+      send_instructions: Om nokre få minutt får du ein e-post som fortel deg korleis du skal stadfesta e-postadressa di. Sjekk søppelpostmappa di om du ikkje fekk e-posten.
+      send_paranoid_instructions: Om vi har e-postadressa di i databasen vår, får du ein e-post som fortel deg korleis du skal stadfesta e-postadressa om nokre få minutt. Ver venleg og sjekk søppelpostmappa di om du ikkje fekk denne e-posten.
+    failure:
+      already_authenticated: Du er allereie logga inn.
+      inactive: Kontoen din er ikkje aktiv enno.
+      invalid: Ugyldig %{authentication_keys} eller passord.
+      last_attempt: Du har eitt forsøk igjen før kontoen din vert låst.
+      locked: Kontoen din er låst.
+      not_found_in_database: Ugyldig %{authentication_keys} eller passord.
+      pending: Kontoen din er vert gjennomgått enno.
+      timeout: Økta di er utgått. Logg inn omatt for å halde fram.
+      unauthenticated: Du må logge inn eller registere deg før du kan halde fram.
+      unconfirmed: Du må stadfesta e-postadressa di før du kan gå vidare.
+    mailer:
+      confirmation_instructions:
+        action: Stadfest e-postadresse
+        action_with_app: Stadfest og gå tilbake til %{app}
+        explanation: Du har registrert deg på %{host} med denne e-postadressa. Du er eitt klikk unna aktivere kontoen. Om det ikkje var deg, berre oversjå denne e-posten.
+        explanation_when_pending: Du har søkt om en invitasjon til %{host} med denne e-postadressa. Når du har stadfesta e-postadressa di, vil vi gå gjennom søknaden. Du kan logge på for å endre detaljar eller slette kontoen, men du har ikke tilgang til dei fleste funksjonane før kontoen din er godkjent. Dersom søknaden din vert avslått, vil dataene dine verte sletta, så du treng ikkje gjera meir. Dersom dette ikke var deg, berre oversjå denne e-posten.
+        extra_html: Ta ein kikk på <a href="%{terms_path}">reglane på instansen</a> og <a href="%{policy_path}">bruksvilkåra våre</a>.
+        subject: 'Mastodon: Instruksjonar for stadfesting hos %{instance}'
+        title: Stadfest e-postadresse
+      email_changed:
+        explanation: 'E-postadressa til kontoen din vert endra til:'
+        extra: Dersom du ikkje har endra e-postadressa di, er det truleg at nokon har fått tilgang til kontoen din. Bytt straks passordet ditt, eller kontakt tenaradministratoren dersom du har vorte låst ut av kontoen.
+        subject: 'Mastodon: E-postadressa er endra'
+        title: Ny e-postadresse
+      password_change:
+        explanation: Passordet til kontoen din er endra.
+        extra: Om du ikkje har endra passordet er det sannsynleg at nokon har fått tilgang til kontoen din. Ver venleg og skift passordet ditt med det same eller tak kontakt med tenaradministratoren om du er sperra ute av kontoen din.
+        subject: 'Mastodon: Passord endra'
+        title: Passord endra
+      reconfirmation_instructions:
+        explanation: Stadfest den nye adressa for å byta e-postadressa di.
+        extra: Oversjå denne eposten dersom du ikkje gjorde endra. E-postadressa for Mastodon-kontoen vert ikkje endra før lenka over vert trykt på.
+        subject: 'Mastodon: Stadfest e-post for %{instance}'
+        title: Stadfest e-postadresse
+      reset_password_instructions:
+        action: Endr passord
+        explanation: Du har bedt om eit nytt passord til kontoen din.
+        extra: Om du ikkje bad om dette, ignorer denne e-posten. Passordet ditt vert ikkje endra før du går inn på lenkja ovanfor og lagar eit nytt.
+        subject: 'Mastodon: Instuksjonar for å endra passord'
+        title: Attstilling av passord
+      two_factor_disabled:
+        explanation: To-faktor-autentisering har vorte slått av for kontoen din. Det går no an logge inn med berre e-postadresse og passord.
+        subject: 'Mastodon: To-faktor-autentisering deaktivert'
+        title: 2FA deaktivert
+      two_factor_enabled:
+        explanation: To-faktor-autentisering har vorte slått på for kontoen din. Ein kode frå den samankopla TOTP-appen er kravd for å logge inn.
+        subject: 'Mastodon: To-faktor-autentisering aktivert'
+        title: 2FA aktivert
+      two_factor_recovery_codes_changed:
+        explanation: Dei førre gjenopprettingskodane er ugyldige og nye er genererte.
+        subject: 'Mastodon: To-faktor-gjenopprettingskodar har vorte genererte på nytt'
+        title: 2FA-gjenopprettingskodane er endra
+      unlock_instructions:
+        subject: 'Mastodon: Instruksjonar for å opne kontoen igjen'
+      webauthn_credential:
+        added:
+          explanation: Følgende sikkerhetsnøkkel har blitt lagt til i kontoen din
+          subject: 'Mastodon: Ny sikkerhetsnøkkel'
+          title: En ny sikkerhetsnøkkel har blitt lagt til
+        deleted:
+          explanation: Følgende sikkerhetsnøkkel har blitt slettet fra kontoen din
+          subject: 'Mastodon: Sikkerhetsnøkkel slettet'
+          title: En av sikkerhetsnøklene dine har blitt slettet
+      webauthn_disabled:
+        subject: 'Mastodon: Autentisering med sikkerhetsnøkler ble skrudd av'
+        title: Sikkerhetsnøkler deaktivert
+      webauthn_enabled:
+        subject: 'Mastodon: Sikkerhetsnøkkelsautentisering ble skrudd på'
+        title: Sikkerhetsnøkler aktivert
+    omniauth_callbacks:
+      failure: Du kunne ikkje verte autentisert frå %{kind} av di "%{reason}".
+      success: Autentisert frå %{kind}-konto.
+    passwords:
+      no_token: Du har ikkje tilgang til denne sida utan ha gått via ein e-post som gjeld å nullstille passordet. Dersom det er kva du har gjort, dobbelsjekk at du har kopiert heile URLen.
+      send_instructions: Om vi har e-postadressa di i databasen vår, får du ein e-post med lenke til gjenopprette passordet om nokre få minutt. Sjekk søppelpostmappa di om du ikkje fekk denne e-posten.
+      send_paranoid_instructions: Om vi har e-postadressa di i databasen vår, får du ei lenkje til å endra passordet om nokre få minutt. Ver venleg og sjekk søppelpostmappa om du ikkje fekk denne e-posten.
+      updated: Passordet ditt er endra. No er du logga inn.
+      updated_not_active: Passordet ditt er endra.
+    registrations:
+      destroyed: Ha det! Kontoen din er sletta. Vi vonar å sjå deg igjen snart.
+      signed_up: Velkomen! No er du registrert.
+      signed_up_but_inactive: Du har registrert deg inn, men vi kunne ikkje logga deg inn fordi kontoen din er ikkje aktivert enno.
+      signed_up_but_locked: Du har registrert deg inn, men vi kunne ikkje logga deg inn fordi kontoen din er låst.
+      signed_up_but_pending: Ei melding med ei stadfestingslenkje er vorten send til e-postadressa di. Når du klikkar på lenkja skal vi sjå gjennom søknaden din. Du får ei melding om han vert godkjend.
+      signed_up_but_unconfirmed: Ei melding med ei lenke for å stadfeste kontoen har vorte sendt e-postadressa di. Klikk på lenka for å aktivere kontoen. Sjekk søppelpostmappa dersom du ikkje har fått e-posten.
+      update_needs_confirmation: Du har oppdatert kontoen din, men vi må stadfeste den nye e-postadressa. Sjekk innboksen og følg lenka for å stadfeste adressa di. Sjekk søppelpostmappa dersom du ikkje har fått den e-posten.
+      updated: Kontoen har vorte oppdatert.
+    sessions:
+      already_signed_out: Logga ut.
+      signed_in: Logga inn.
+      signed_out: Logga ut.
+    unlocks:
+      send_instructions: Om nokre minutt får du ein e-post med instruksjonar for korleis du kan låse opp kontoen din. Sjekk søppelpostmappa om du ikkje finn den mailen.
+      send_paranoid_instructions: Dersom du har konto her, får du ein e-post med instruksjonar for korleis du kan låse opp kontoen din om nokre minutt. Sjekk søppelpostmappa om du ikkje finn den mailen.
+      unlocked: Kontoen din har vorte låst opp. Logg inn for å halde fram.
+  errors:
+    messages:
+      already_confirmed: er allereie stadfesta, prøv logge inn
+      confirmation_period_expired: må verte stadfesta innan %{period}, spør etter ein ny
+      expired: er utgått, ver venleg å beda om ein ny ein
+      not_found: ikkje funne
+      not_locked: var ikkje låst
+      not_saved:
+        one: '1 feil hindra %{resource} frå verte lagra:'
+        other: "%{count} feil hindra %{resource} frå verte lagra:"

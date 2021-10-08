@@ -1,9 +1,8 @@
 import React from 'react';
-import Motion from '../features/ui/util/optional_motion';
-import spring from 'react-motion/lib/spring';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Icon from 'mastodon/components/icon';
+import AnimatedNumber from 'mastodon/components/animated_number';
 
 export default class IconButton extends React.PureComponent {
 
@@ -26,6 +25,8 @@ export default class IconButton extends React.PureComponent {
     animate: PropTypes.bool,
     overlay: PropTypes.bool,
     tabIndex: PropTypes.string,
+    counter: PropTypes.number,
+    obfuscateCount: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -36,6 +37,21 @@ export default class IconButton extends React.PureComponent {
     overlay: false,
     tabIndex: '0',
   };
+
+  state = {
+    activate: false,
+    deactivate: false,
+  }
+
+  componentWillReceiveProps (nextProps) {
+    if (!nextProps.animate) return;
+
+    if (this.props.active && !nextProps.active) {
+      this.setState({ activate: false, deactivate: true });
+    } else if (!this.props.active && nextProps.active) {
+      this.setState({ activate: true, deactivate: false });
+    }
+  }
 
   handleClick = (e) =>  {
     e.preventDefault();
@@ -75,7 +91,6 @@ export default class IconButton extends React.PureComponent {
 
     const {
       active,
-      animate,
       className,
       disabled,
       expanded,
@@ -85,59 +100,46 @@ export default class IconButton extends React.PureComponent {
       pressed,
       tabIndex,
       title,
+      counter,
+      obfuscateCount,
     } = this.props;
+
+    const {
+      activate,
+      deactivate,
+    } = this.state;
 
     const classes = classNames(className, 'icon-button', {
       active,
       disabled,
       inverted,
+      activate,
+      deactivate,
       overlayed: overlay,
+      'icon-button--with-counter': typeof counter !== 'undefined',
     });
 
-    if (!animate) {
-      // Perf optimization: avoid unnecessary <Motion> components unless
-      // we actually need to animate.
-      return (
-        <button
-          aria-label={title}
-          aria-pressed={pressed}
-          aria-expanded={expanded}
-          title={title}
-          className={classes}
-          onClick={this.handleClick}
-          onMouseDown={this.handleMouseDown}
-          onKeyDown={this.handleKeyDown}
-          onKeyPress={this.handleKeyPress}
-          style={style}
-          tabIndex={tabIndex}
-          disabled={disabled}
-        >
-          <Icon id={icon} fixedWidth aria-hidden='true' />
-        </button>
-      );
+    if (typeof counter !== 'undefined') {
+      style.width = 'auto';
     }
 
     return (
-      <Motion defaultStyle={{ rotate: active ? -360 : 0 }} style={{ rotate: animate ? spring(active ? -360 : 0, { stiffness: 120, damping: 7 }) : 0 }}>
-        {({ rotate }) => (
-          <button
-            aria-label={title}
-            aria-pressed={pressed}
-            aria-expanded={expanded}
-            title={title}
-            className={classes}
-            onClick={this.handleClick}
-            onMouseDown={this.handleMouseDown}
-            onKeyDown={this.handleKeyDown}
-            onKeyPress={this.handleKeyPress}
-            style={style}
-            tabIndex={tabIndex}
-            disabled={disabled}
-          >
-            <Icon id={icon} style={{ transform: `rotate(${rotate}deg)` }} fixedWidth aria-hidden='true' />
-          </button>
-        )}
-      </Motion>
+      <button
+        aria-label={title}
+        aria-pressed={pressed}
+        aria-expanded={expanded}
+        title={title}
+        className={classes}
+        onClick={this.handleClick}
+        onMouseDown={this.handleMouseDown}
+        onKeyDown={this.handleKeyDown}
+        onKeyPress={this.handleKeyPress}
+        style={style}
+        tabIndex={tabIndex}
+        disabled={disabled}
+      >
+        <Icon id={icon} fixedWidth aria-hidden='true' /> {typeof counter !== 'undefined' && <span className='icon-button__counter'><AnimatedNumber value={counter} obfuscate={obfuscateCount} /></span>}
+      </button>
     );
   }
 

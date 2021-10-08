@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import Toggle from 'react-toggle';
-import AsyncSelect from 'react-select/lib/Async';
+import AsyncSelect from 'react-select/async';
+import { NonceProvider } from 'react-select';
+import SettingToggle from '../../notifications/components/setting_toggle';
 
 const messages = defineMessages({
   placeholder: { id: 'hashtag.column_settings.select.placeholder', defaultMessage: 'Enter hashtags…' },
@@ -57,18 +59,20 @@ class ColumnSettings extends React.PureComponent {
           {this.modeLabel(mode)}
         </span>
 
-        <AsyncSelect
-          isMulti
-          autoFocus
-          value={this.tags(mode)}
-          onChange={this.onSelect(mode)}
-          loadOptions={this.props.onLoad}
-          className='column-select__container'
-          classNamePrefix='column-select'
-          name='tags'
-          placeholder={this.props.intl.formatMessage(messages.placeholder)}
-          noOptionsMessage={this.noOptionsMessage}
-        />
+        <NonceProvider nonce={document.querySelector('meta[name=style-nonce]').content} cacheKey='tags'>
+          <AsyncSelect
+            isMulti
+            autoFocus
+            value={this.tags(mode)}
+            onChange={this.onSelect(mode)}
+            loadOptions={this.props.onLoad}
+            className='column-select__container'
+            classNamePrefix='column-select'
+            name='tags'
+            placeholder={this.props.intl.formatMessage(messages.placeholder)}
+            noOptionsMessage={this.noOptionsMessage}
+          />
+        </NonceProvider>
       </div>
     );
   }
@@ -87,6 +91,8 @@ class ColumnSettings extends React.PureComponent {
   };
 
   render () {
+    const { settings, onChange } = this.props;
+
     return (
       <div>
         <div className='column-settings__row'>
@@ -106,6 +112,10 @@ class ColumnSettings extends React.PureComponent {
             {this.modeSelect('none')}
           </div>
         )}
+
+        <div className='column-settings__row'>
+          <SettingToggle settings={settings} settingPath={['local']} onChange={onChange} label={<FormattedMessage id='community.column_settings.local_only' defaultMessage='Local only' />} />
+        </div>
       </div>
     );
   }

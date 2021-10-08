@@ -47,11 +47,36 @@ eu:
         subject: 'Mastodon: Pasahitza berrezartzeko argibideak'
         title: Pasahitza berrezartzea
       two_factor_disabled:
+        explanation: Bi faktoreetako autentifikazioa desgaitu da zure kontuan. Orain saioa hasi daiteke e-mail helbidea eta pasahitza bakarrik erabilita.
+        subject: 'Mastodon: Bi faktoreetako autentifikazioa desgaituta'
         title: 2FA desgaituta
       two_factor_enabled:
+        explanation: Bi faktoreetako autentifikazioa gaitu da zure kontuan. Token bat sortu du lotutako TOTP aplikazioak eta saioa hasteko eskatuko da.
+        subject: 'Mastodon: Bi faktoreetako autentifikazioa gaituta'
         title: 2FA gaituta
+      two_factor_recovery_codes_changed:
+        explanation: Aurreko kodeak baliogabetu dira eta berriak sortu dira.
+        subject: 'Mastodon: Bi faktoreetako berreskuratze kodeak birsortuta'
+        title: 2FA berreskuratze kodeak aldatuta
       unlock_instructions:
         subject: 'Mastodon: Desblokeatzeko argibideak'
+      webauthn_credential:
+        added:
+          explanation: Segurtasun gako hau zure kontuan gehitu da
+          subject: 'Mastodon: Segurtasun gako berria'
+          title: Segurtasun gako berri bat gehitu da
+        deleted:
+          explanation: Segurtasun gako hau zure kontutik ezabatu da
+          subject: 'Mastodon: Segurtasun gakoa ezabatu da'
+          title: Zure segurtasun gakoetako bat ezabatu da
+      webauthn_disabled:
+        explanation: Segurtasun gako bidezko autentifikazioa desgaitu da zure kontuan. Saioa hasteko modu bakarra parekatutako TOTP aplikazioak sortutako tokena erabiltzea da orain.
+        subject: 'Mastodon: Segurtasun gakoekin autentifikatzea desgaituta'
+        title: Segurtasun gakoak desgaituta
+      webauthn_enabled:
+        explanation: Segurtasun gako bidezko autentifikazioa gaitu da zure kontuan. Orain zure segurtasun gakoa erabil dezakezu saioa hasteko.
+        subject: 'Mastodon: Segurtasun gako bidezko autentifikazioa gaituta'
+        title: Segurtasun gakoak gaituta
     omniauth_callbacks:
       failure: Ezin izan zaizu %{kind} motatik autentifikatu arrazoia "%{reason}" dela.
       success: Ongi egin da autentifikazioa %{kind}  kontuarekin.

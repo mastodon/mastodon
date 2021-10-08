@@ -13,6 +13,7 @@ export default class ImageLoader extends React.PureComponent {
     width: PropTypes.number,
     height: PropTypes.number,
     onClick: PropTypes.func,
+    zoomButtonHidden: PropTypes.bool,
   }
 
   static defaultProps = {
@@ -151,6 +152,9 @@ export default class ImageLoader extends React.PureComponent {
             alt={alt}
             src={src}
             onClick={onClick}
+            width={width}
+            height={height}
+            zoomButtonHidden={this.props.zoomButtonHidden}
           />
         )}
       </div>

@@ -2,6 +2,10 @@
 sk:
   simple_form:
     hints:
+      account_alias:
+        acct: Urči prezyvku@domenu účtu, s ktorého sa chceš presunúť
+      account_migration:
+        acct: Urči prezyvku@domenu účtu, na ktorý sa chceš presunúť
       account_warning_preset:
         text: Môžeš používať rovnakú syntaxiu ako v rámci príspevkov, čiže URL, haštagy, a spomenutia
       admin_account_action:
@@ -15,7 +19,10 @@ sk:
         avatar: PNG, GIF alebo JPG. Maximálne %{size}. Bude zmenšený na %{dimensions}px
         bot: Tento účet vykonáva hlavne automatizované akcie, a je pravdepodobne nespravovaný
         context: Jedno, alebo viac kritérií, v ktorých má byť filtrovanie uplatnené
+        current_password: Z bezpečtnostných dôvodov prosím zadaj heslo súčasného účtu
+        current_username: Pre potvrdenie prosím zadaj prezývku súčasného účtu
         digest: Odoslané iba v prípade dlhodobej neprítomnosti, a len ak si obdržal/a nejaké osobné správy kým si bol/a preč
+        discoverable: Zoznam profilov predstavuje ďalšiu cestu akou tvoj účet môže dosiahnúť väčšie publikum
         email: Bude ti odoslaný potvrdzujúci email
         fields: Až štyri položky môžeš mať na svojom profile zobrazené vo forme tabuľky
         header: PNG, GIF, alebo JPG. Maximálne %{size}. Bude zmenšený na %{dimensions}px
@@ -34,6 +41,7 @@ sk:
         setting_hide_network: Koho následuješ, a kto následuje teba, nebude zobrazené na tvojom profile
         setting_noindex: Ovplyvňuje verejný profil a stránky s príspevkami
         setting_show_application: Aplikácia, ktorú používaš na písanie príspevkov, bude zobrazená v podrobnom náhľade jednotlivých tvojích príspevkov
+        setting_use_blurhash: Prechody sú založené na farbách skrytých vizuálov, ale zahaľujú akékoľvek podrobnosti
         setting_use_pending_items: Skry aktualizovanie časovej osi tak, aby bola načitávaná iba po kliknutí, namiesto samostatného posúvania
         username: Tvoja prezývka bude unikátna pre server %{domain}
         whole_word: Ak je kľúčové slovo, alebo fráza poskladaná iba s písmen a čísel, bude použité iba ak sa zhoduje s celým výrazom
@@ -41,12 +49,16 @@ sk:
         domain: Táto doména bude schopná získavať dáta z tohto servera, a prichádzajúce dáta ním budú spracovávané a uložené
       featured_tag:
         name: 'Možno by si chcel/a použiť niektoré z týchto:'
+      form_challenge:
+        current_password: Vstupuješ do zabezpečenej časti
       imports:
         data: CSV súbor vyexportovaný z iného Mastodon serveru
       invite_request:
         text: Toto pomôže s vyhodnocovaním tvojej žiadosti
       sessions:
         otp: 'Napíš sem dvoj-faktorový kód z telefónu, alebo použi jeden z tvojích obnovovacích kódov:'
+      tag:
+        name: Zmeniť môžeš iba veľkosť písmen, napríklad aby boli ľahšie čítateľné
       user:
         chosen_languages: Keď je zaškrtnuté, vo verejnej osi budú zobrazené iba príspevky vo vybraných jazykoch
     labels:
@@ -54,8 +66,13 @@ sk:
         fields:
           name: Označenie
           value: Obsah
+      account_alias:
+        acct: Adresa starého účtu
+      account_migration:
+        acct: Adresa nového účtu
       account_warning_preset:
         text: Text predlohy
+        title: Názov
       admin_account_action:
         include_statuses: Zahrnúť nahlásené príspevky v emaile
         send_email_notification: Oznam užívateľovi cez email
@@ -67,6 +84,11 @@ sk:
           silence: Utíš
           suspend: Vylúč a nenávratne vymaž dáta na účte
         warning_preset_id: Použi varovnú predlohu
+      announcement:
+        all_day: Celodenná udalosť
+        ends_at: Koniec udalosti
+        starts_at: Začiatok udalosti
+        text: Oboznámenie
       defaults:
         autofollow: Pozvi k následovaniu tvojho profilu
         avatar: Maskot
@@ -97,6 +119,7 @@ sk:
         setting_aggregate_reblogs: Zoskupuj vyzdvihnutia v časovej osi
         setting_auto_play_gif: Automaticky prehrávaj animované GIFy
         setting_boost_modal: Zobrazuj potvrdzovacie okno pred povýšením
+        setting_crop_images: Orež obrázky v nerozbalených príspevkoch na 16x9
         setting_default_language: Píšeš v jazyku
         setting_default_privacy: Súkromie príspevkov
         setting_default_sensitive: Označ všetky mediálne súbory ako chúlostivé
@@ -124,9 +147,11 @@ sk:
       featured_tag:
         name: Haštag
       interactions:
-        must_be_follower: Blokuj oboznámenia od užívateľov, ktorí ma nenásledujú
+        must_be_follower: Blokuj oboznámenia od užívateľov, ktorí ma nenasledujú
         must_be_following: Blokuj oboznámenia od ľudí, ktorých nesledujem
-        must_be_following_dm: Blokuj súkromné správy od ľudí ktorých nesledujem
+        must_be_following_dm: Blokuj priame správy od ľudí, ktorých nesleduješ
+      invite:
+        comment: Okomentuj
       invite_request:
         text: Prečo sa k nám chceš pridať?
       notification_emails:
@@ -147,6 +172,5 @@ sk:
     'no': Nie
     recommended: Odporúčané
     required:
-      mark: "*"
       text: povinné
     'yes': Áno

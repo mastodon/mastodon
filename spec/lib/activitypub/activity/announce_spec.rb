@@ -73,6 +73,26 @@ RSpec.describe ActivityPub::Activity::Announce do
           expect(sender.reblogged?(sender.statuses.first)).to be true
         end
       end
+
+      context 'self-boost of a previously unknown status with correct attributedTo, inlined Collection in audience' do
+        let(:object_json) do
+          {
+            id: 'https://example.com/actor#bar',
+            type: 'Note',
+            content: 'Lorem ipsum',
+            attributedTo: 'https://example.com/actor',
+            to: {
+              'type': 'OrderedCollection',
+              'id': 'http://example.com/followers',
+              'first': 'http://example.com/followers?page=true',
+            }
+          }
+        end
+
+        it 'creates a reblog by sender of status' do
+          expect(sender.reblogged?(sender.statuses.first)).to be true
+        end
+      end
     end
 
     context 'when the status belongs to a local user' do

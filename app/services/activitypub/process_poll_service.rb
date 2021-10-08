@@ -30,7 +30,7 @@ class ActivityPub::ProcessPollService < BaseService
 
     voters_count = @json['votersCount']
 
-    latest_options = items.map { |item| item['name'].presence || item['content'] }
+    latest_options = items.filter_map { |item| item['name'].presence || item['content'] }
 
     # If for some reasons the options were changed, it invalidates all previous
     # votes, so we need to remove them

@@ -90,6 +90,10 @@ export function FavouritedStatuses () {
   return import(/* webpackChunkName: "features/favourited_statuses" */'../../favourited_statuses');
 }
 
+export function BookmarkedStatuses () {
+  return import(/* webpackChunkName: "features/bookmarked_statuses" */'../../bookmarked_statuses');
+}
+
 export function Blocks () {
   return import(/* webpackChunkName: "features/blocks" */'../../blocks');
 }
@@ -148,4 +152,8 @@ export function Audio () {
 
 export function Directory () {
   return import(/* webpackChunkName: "features/directory" */'../../directory');
+}
+
+export function FollowRecommendations () {
+  return import(/* webpackChunkName: "features/follow_recommendations" */'../../follow_recommendations');
 }

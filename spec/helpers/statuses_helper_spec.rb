@@ -1,20 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe StatusesHelper, type: :helper do
-  describe '#display_name' do
-    it 'uses the display name when it exists' do
-      account = Account.new(display_name: "Display", username: "Username")
-
-      expect(helper.display_name(account)).to eq "Display"
-    end
-
-    it 'uses the username when display name is nil' do
-      account = Account.new(display_name: nil, username: "Username")
-
-      expect(helper.display_name(account)).to eq "Username"
-    end
-  end
-
   describe '#stream_link_target' do
     it 'returns nil if it is not an embedded view' do
       set_not_embedded_view
@@ -26,46 +12,6 @@ RSpec.describe StatusesHelper, type: :helper do
       set_embedded_view
 
       expect(helper.stream_link_target).to eq '_blank'
-    end
-  end
-
-  describe '#acct' do
-    it 'is fully qualified for embedded local accounts' do
-      allow(Rails.configuration.x).to receive(:local_domain).and_return('local_domain')
-      set_embedded_view
-      account = Account.new(domain: nil, username: 'user')
-
-      acct = helper.acct(account)
-
-      expect(acct).to eq '@user@local_domain'
-    end
-
-    it 'is fully qualified for embedded foreign accounts' do
-      set_embedded_view
-      account = Account.new(domain: 'foreign_server.com', username: 'user')
-
-      acct = helper.acct(account)
-
-      expect(acct).to eq '@user@foreign_server.com'
-    end
-
-    it 'is fully qualified for non embedded foreign accounts' do
-      set_not_embedded_view
-      account = Account.new(domain: 'foreign_server.com', username: 'user')
-
-      acct = helper.acct(account)
-
-      expect(acct).to eq '@user@foreign_server.com'
-    end
-
-    it 'is fully qualified for non embedded local accounts' do
-      allow(Rails.configuration.x).to receive(:local_domain).and_return('local_domain')
-      set_not_embedded_view
-      account = Account.new(domain: nil, username: 'user')
-
-      acct = helper.acct(account)
-
-      expect(acct).to eq '@user@local_domain'
     end
   end
 
@@ -201,24 +147,6 @@ RSpec.describe StatusesHelper, type: :helper do
       css_class = helper.microformats_h_class(status, true, true, true)
 
       expect(css_class).to eq 'h-cite'
-    end
-  end
-
-  describe '#rtl?' do
-    it 'is false if text is empty' do
-      expect(helper).not_to be_rtl ''
-    end
-
-    it 'is false if there are no right to left characters' do
-      expect(helper).not_to be_rtl 'hello world'
-    end
-
-    it 'is false if right to left characters are fewer than 1/3 of total text' do
-      expect(helper).not_to be_rtl 'hello ݟ world'
-    end
-
-    it 'is true if right to left characters are greater than 1/3 of total text' do
-      expect(helper).to be_rtl 'aaݟaaݟ'
     end
   end
 end

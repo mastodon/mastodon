@@ -3,15 +3,14 @@
 class ResolveAccountService < BaseService
   include JsonLdHelper
   include DomainControlHelper
-
-  class WebfingerRedirectError < StandardError; end
+  include WebfingerHelper
 
   # Find or create an account record for a remote user. When creating,
   # look up the user's webfinger and fetch ActivityPub data
   # @param [String, Account] uri URI in the username@domain format or account record
   # @param [Hash] options
   # @option options [Boolean] :redirected Do not follow further Webfinger redirects
-  # @option options [Boolean] :skip_webfinger Do not attempt to refresh account data
+  # @option options [Boolean] :skip_webfinger Do not attempt any webfinger query or refreshing account data
   # @return [Account]
   def call(uri, options = {})
     return if uri.blank?
@@ -25,12 +24,12 @@ class ResolveAccountService < BaseService
 
     @account ||= Account.find_remote(@username, @domain)
 
-    return @account if @account&.local? || !webfinger_update_due?
+    return @account if @account&.local? || @domain.nil? || !webfinger_update_due?
 
     # At this point we are in need of a Webfinger query, which may
     # yield us a different username/domain through a redirect
-
     process_webfinger!(@uri)
+    @domain = nil if TagManager.instance.local_domain?(@domain)
 
     # Because the username/domain pair may be different than what
     # we already checked, we need to check if we've already got
@@ -40,13 +39,18 @@ class ResolveAccountService < BaseService
 
     @account ||= Account.find_remote(@username, @domain)
 
-    return @account if @account&.local? || !webfinger_update_due?
+    if gone_from_origin? && not_yet_deleted?
+      queue_deletion!
+      return
+    end
+
+    return @account if @account&.local? || gone_from_origin? || !webfinger_update_due?
 
     # Now it is certain, it is definitely a remote account, and it
     # either needs to be created, or updated from fresh data
 
-    process_account!
-  rescue Goldfinger::Error, WebfingerRedirectError, Oj::ParseError => e
+    fetch_account!
+  rescue Webfinger::Error, Oj::ParseError => e
     Rails.logger.debug "Webfinger query for #{@uri} failed: #{e}"
     nil
   end
@@ -75,33 +79,37 @@ class ResolveAccountService < BaseService
     @uri = [@username, @domain].compact.join('@')
   end
 
-  def process_webfinger!(uri, redirected = false)
-    @webfinger                           = Goldfinger.finger("acct:#{uri}")
-    confirmed_username, confirmed_domain = @webfinger.subject.gsub(/\Aacct:/, '').split('@')
+  def process_webfinger!(uri)
+    @webfinger                           = webfinger!("acct:#{uri}")
+    confirmed_username, confirmed_domain = split_acct(@webfinger.subject)
 
     if confirmed_username.casecmp(@username).zero? && confirmed_domain.casecmp(@domain).zero?
       @username = confirmed_username
       @domain   = confirmed_domain
-      @uri      = uri
-    elsif !redirected
-      return process_webfinger!("#{confirmed_username}@#{confirmed_domain}", true)
-    else
-      raise WebfingerRedirectError, "The URI #{uri} tries to hijack #{@username}@#{@domain}"
+      return
     end
 
-    @domain = nil if TagManager.instance.local_domain?(@domain)
+    # Account doesn't match, so it may have been redirected
+    @webfinger         = webfinger!("acct:#{confirmed_username}@#{confirmed_domain}")
+    @username, @domain = split_acct(@webfinger.subject)
+
+    unless confirmed_username.casecmp(@username).zero? && confirmed_domain.casecmp(@domain).zero?
+      raise Webfinger::RedirectError, "The URI #{uri} tries to hijack #{@username}@#{@domain}"
+    end
+  rescue Webfinger::GoneError
+    @gone = true
   end
 
-  def process_account!
+  def split_acct(acct)
+    acct.gsub(/\Aacct:/, '').split('@')
+  end
+
+  def fetch_account!
     return unless activitypub_ready?
 
     RedisLock.acquire(lock_options) do |lock|
       if lock.acquired?
-        @account = Account.find_remote(@username, @domain)
-
-        next if (@account.present? && !@account.activitypub?) || actor_json.nil?
-
-        @account = ActivityPub::ProcessAccountService.new.call(@username, @domain, actor_json)
+        @account = ActivityPub::FetchRemoteAccountService.new.call(actor_url)
       else
         raise Mastodon::RaceConditionError
       end
@@ -111,25 +119,34 @@ class ResolveAccountService < BaseService
   end
 
   def webfinger_update_due?
-    @account.nil? || ((!@options[:skip_webfinger] || @account.ostatus?) && @account.possibly_stale?)
+    return false if @options[:check_delivery_availability] && !DeliveryFailureTracker.available?(@domain)
+    return false if @options[:skip_webfinger]
+
+    @account.nil? || @account.possibly_stale?
   end
 
   def activitypub_ready?
-    !@webfinger.link('self').nil? && ['application/activity+json', 'application/ld+json; profile="https://www.w3.org/ns/activitystreams"'].include?(@webfinger.link('self').type)
+    ['application/activity+json', 'application/ld+json; profile="https://www.w3.org/ns/activitystreams"'].include?(@webfinger.link('self', 'type'))
   end
 
   def actor_url
-    @actor_url ||= @webfinger.link('self').href
+    @actor_url ||= @webfinger.link('self', 'href')
   end
 
-  def actor_json
-    return @actor_json if defined?(@actor_json)
+  def gone_from_origin?
+    @gone
+  end
 
-    json        = fetch_resource(actor_url, false)
-    @actor_json = supported_context?(json) && equals_or_includes_any?(json['type'], ActivityPub::FetchRemoteAccountService::SUPPORTED_TYPES) ? json : nil
+  def not_yet_deleted?
+    @account.present? && !@account.local?
+  end
+
+  def queue_deletion!
+    @account.suspend!(origin: :remote)
+    AccountDeletionWorker.perform_async(@account.id, reserve_username: false, skip_activitypub: true)
   end
 
   def lock_options
-    { redis: Redis.current, key: "resolve:#{@username}@#{@domain}" }
+    { redis: Redis.current, key: "resolve:#{@username}@#{@domain}", autorelease: 15.minutes.seconds }
   end
 end

@@ -1,0 +1,98 @@
+---
+kab:
+  devise:
+    confirmations:
+      confirmed: Tansa-ik imayl tettwasentem.
+      send_instructions: Deg kra n tesdatin, ad n-teṭṭfeḍ imayl deg-s iwellihen i ilaqen i usentem n umiḍan-ik. Ma yella ur tufiḍ ara izen-agi, ttxil-k ẓer deg ukaram spam.
+      send_paranoid_instructions: Ma yella tansa-ik imayl tella deg uzadur-nneɣ n yisefka, ad n-teṭṭfeḍ imayl deg tesdatin i d-iteddun, deg-s iwellihen i ilaqen i usentem n umiḍan-ik. Ma yella ur tufiḍ ara izen-agi, ttxil-k ẓer deg ukaram spam.
+    failure:
+      already_authenticated: Aqla-k teqqneḍ yakan.
+      inactive: Amiḍan-inek mazal ur yermed ara.
+      invalid: Tella tuccḍa deg %{authentication_keys} neγ deg wawal uffir.
+      last_attempt: Γur-k yiwen n uɛraḍ-nniḍen kan send ad yettucekkel umiḍan-ik.
+      locked: Amiḍan-ik yettwargel.
+      not_found_in_database: Tella tuccḍa deg %{authentication_keys} neγ deg wawal uffir.
+      pending: Amiḍan-inek mazal-it deg ɛiwed n tmuγli.
+      timeout: Tiγimit n tuqqna tezri. Ma ulac aγilif ɛiwed tuqqna akken ad tkemmleḍ.
+      unauthenticated: Ilaq ad teqqneḍ neγ ad tjerrḍeḍ akken ad tkemmelḍ.
+      unconfirmed: Ilaq ad wekdeḍ tansa-inek imayl akken ad tkemmelḍ.
+    mailer:
+      confirmation_instructions:
+        action: Senqed tansa-inek imayl
+        action_with_app: Wekked sakkin uγal γer %{app}
+        explanation: Aqla-k terniḍ amiḍan deg %{host} s tansa imayl-agi. Mazal-ak yiwen utekki akken ad t-tremdeḍ. Ma mačči d kečč i yessutren ay-agi, ttxil-k ssinef izen-a.
+        explanation_when_pending: Tsutreḍ-d ajerred deg %{host} s tansa-agi imayl. Ad nγeṛ asuter-ik ticki tsentmeḍ tansa-ik imayl. Send asentem, ur tezmireḍ ara ad teqqneḍ γer umiḍan-ik. Ma yella nugi asuter-ik, isefka-ik ad ttwakksen seg uqeddac, ihi ulac tigawt-nniḍen ara k-d-yettuqeblen. Ma mačči d kečč i yellan deffir n usuter-agi, ttxil-k ssinef izen-agi.
+        extra_html: Ttxil-k ẓer daγen <a href="%{terms_path}">ilugan n uqeddac</a> akked <a href="%{policy_path}">twetlin n useqdec-nneγ</a>.
+        subject: 'Maṣṭudun: Asentem n ujerred deg uqeddac %{instance}'
+        title: Senqed tansa-inek imayl
+      email_changed:
+        explanation: 'Tansa n yimayl n umiḍan-ik ibeddel ɣer:'
+        extra: Ma mačči d kečč i ibeddlen tansa imayl, ihi yezmer d alebɛaḍ i ikecmen γer umiḍan-ik. Ttxil-k beddel awal-ik uffir tura neγ siwel i unedbal n uqeddac ma tḥesleḍ berra n umiḍan-ik.
+        subject: 'Maṣṭudun: Imayl-ik yettubeddel'
+        title: Tansa imayl tamaynut
+      password_change:
+        explanation: Awal uffir n umiḍan-ik yettubeddel.
+        extra: Ma mačči d kečč i ibeddlen awal uffir, ihi yezmer d alebɛaḍ i ikecmen γer umiḍan-ik. Ttxil-k beddel awal-ik uffir tura neγ siwel i unedbal n uqeddac ma tḥesleḍ berra n umiḍan-ik.
+        subject: 'Maṣṭudun: Yettubeddel wawal-ik uffir'
+        title: Awal uffir yettubeddel
+      reconfirmation_instructions:
+        explanation: Sentem tansa imayl tamaynut akken ad tbeddleḍ imayl-inek.
+        extra: Ma yella mačči d kečč·kem i yebdan aya, ttxil suref i yimayl-a. Tansa n imayl n Mastodon ur tettbeddil ara skud ur tkecmeḍ ara ɣer useɣwen-nni ufella.
+        subject: 'Maṣṭudun: Sentem tansa imayl n %{instance}'
+        title: Senqed tansa-inek imayl
+      reset_password_instructions:
+        action: Beddel awal uffir
+        explanation: Tessutreḍ awal uffir amaynut i umiḍan-ik.
+        extra: Ma yella ur tsutreḍ aya, suref i yimayl-a. Awal-ik·im uffir ir ittbeddil ara skud ur tekcimeḍ ara ɣer useɣwen-nni ufella sakin ad tsutreḍ amaynut.
+        subject: 'Mastodon: Iwellihen n uwennez n wawal uffir'
+        title: Aɛiwed n wawal uffir
+      two_factor_disabled:
+        explanation: Asesṭeb s snat n tarayin insa i umiḍan-ik·im. Tzemreḍ ad teqnneḍ tura s imayl d wawal uffir kan.
+        subject: 'Mastodon: Asesteb s snat n tarrayin yensa'
+        title: Asesteb s snat n tarrayin insa
+      two_factor_enabled:
+        explanation: Asesṭeb s snat n tarayin yermed i umiḍan-ik·im. anekcum isra tangalt akken ad yeddu.
+        subject: 'Mastodon: Asesteb s snat n tarrayin yermed'
+        title: Asesteb s snat n tarrayin irmed
+      two_factor_recovery_codes_changed:
+        explanation: Tangalt n tuɣalin tettwaḥbes sakin nesnulfa-d yiwet d tamaynut.
+        subject: 'Mastodon: Tingalin n tuɣalin n snat n tarayin ttwarnanat i tikkelt-nniḍen'
+        title: Tangalt n tuɣalin 2FA tettwabeddel
+      unlock_instructions:
+        subject: 'Mastodon: iwelihhen n userreḥ'
+    omniauth_callbacks:
+      failure: Ur nezmir ara ad ak·akem-nsesṭeb seg %{kind} acku "%{reason}".
+      success: Asesṭeb idda akken iwata seg umiḍan %{kind}.
+    passwords:
+      no_token: Ur tezmireḍ ara ad tkecmeḍ ɣer usebter-a war ma tusiḍ-d seg imayl n uwennez n wawal uffir. ma syin i d-tusiḍ, wali ma tesqedceḍ tansa URL i d ak·am-d-nuzen.
+      send_instructions: Ma nufa tansa-inek imayl tella deg uzadur-nneγ n yisefka, ad n-teṭṭfeḍ izen deg kra n tesdatin, deg-s assaγ i uɛawed n wawal uffir. Ma ur k-in-yewwiḍ ara yizen, ttxil-k ẓer deg ukaram spam.
+      send_paranoid_instructions: Ma nufa tansa-inek imayl tella deg uzadur-nneγ n yisefka, ad n-teṭṭfeḍ izen deg kra n tesdatin, deg-s assaγ i uɛawed n wawal uffir. Ma ur k-in-yewwiḍ ara yizen, ttxil-k ẓer deg ukaram spam.
+      updated: Awal-ik uffir yettwabeddel mebla ugur. Aqla-k tura tjerrḍeḍ.
+      updated_not_active: Awal-ik uffir yettwabeddel mebla ugur.
+    registrations:
+      destroyed: Ar timlilit! Amiḍan-ik yettwakkes mebla ugur. Nessaram ad k-nwali tikelt-nniḍen.
+      signed_up: Anṣuf! Aqla-k tkecmeḍ.
+      signed_up_but_inactive: Tjerdeḍ akken iwata. maca ur tezmireḍ ara ad teqneḍ akka tura acku amiḍan-ik·im mazal ur yermid ara.
+      signed_up_but_locked: Tjerdeḍ akken iwata. maca ur tezmireḍ ara ad teqneḍ akka tura acku amiḍan-ik·im ittwawḥel.
+      signed_up_but_pending: Aseɣwen n usentem ittwazen ɣer tensa-inen·inem n imayl. ticki tsenndeḍ ɣef useɣwen, ad nsenqed asnas-ik·im. ad ak·am-n-yaweḍ telɣut ma yella ittwaqbel.
+      signed_up_but_unconfirmed: Aseɣwen n usentem ittwazen ɣer tensa-inen·inem n imayl. Ttxil ḍfer aseɣwen i usentem n umiḍan-ik·im. Ttxil wali akaram n ispamen ma ur teṭṭifeḍ ara imayl-agi.
+      update_needs_confirmation: Tleqmeḍ akken iwata amiḍan-ik·im, maca nesra ad nsenqed tansa-ik·im imayl tamaynut. Ttxil-k·m senqed imayl-k·m sakin ḍfer aseɣwen i usentem n n tansa imayl tamaynut. Ttxil senqed akaram n spam ma yella ur tufiḍ ara imayl-nni.
+      updated: Amiḍan-ik·im yettwalqem akken iwata.
+    sessions:
+      already_signed_out: Aqla-k teffγeḍ.
+      signed_in: Aqla-k teqqneḍ.
+      signed_out: Aqla-k teffγeḍ.
+    unlocks:
+      send_instructions: Deg kra n tesdatin, ad teṭṭfeḍ imayl deg-s iwellihen i yilaqen i userreḥ n umiḍan-ik·im. Ma yella ur tufiḍ ara izen-agi, ttxil-k·m ẓer deg ukaram spam.
+      send_paranoid_instructions: Ma yella umiḍan-ik·im yella, ad teṭṭfeḍ imayl deg tesdatin i d-iteddun, deg-s iwellihen i yilaqen i userreḥ n umiḍan-ik·im. Ma yella ur tufiḍ ara izen-agi, ttxil-k·m ẓer deg ukaram spam.
+      unlocked: Iserreḥ umiḍan-ik·im akken iwata. ttxil qqen akken ad tkemleḍ.
+  errors:
+    messages:
+      already_confirmed: ittwasentem yakan, ttxil εreḍ ad teqneḍ
+      confirmation_period_expired: isra asentem di %{period}, ttxil suter amaynut
+      expired: immut, ttxil suter amaynut
+      not_found: ulac-it
+      not_locked: ur yettucekkel ara
+      not_saved:
+        one: '1 n tuccḍa ur teǧǧa ara %{resource} ad ittwasekles:'
+        other: 'Tuccḍiwin n %{count} ur ǧǧant ara %{resource} ad ittwasekles:'

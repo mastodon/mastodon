@@ -2,7 +2,7 @@
 
 class SearchService < BaseService
   def call(query, account, limit, options = {})
-    @query   = query.strip
+    @query   = query&.strip
     @account = account
     @options = options
     @limit   = limit.to_i
@@ -10,8 +10,10 @@ class SearchService < BaseService
     @resolve = options[:resolve] || false
 
     default_results.tap do |results|
+      next if @query.blank? || @limit.zero?
+
       if url_query?
-        results.merge!(url_resource_results) unless url_resource.nil? || (@options[:type].present? && url_resource_symbol != @options[:type].to_sym)
+        results.merge!(url_resource_results) unless url_resource.nil? || @offset.positive? || (@options[:type].present? && url_resource_symbol != @options[:type].to_sym)
       elsif @query.present?
         results[:accounts] = perform_accounts_search! if account_searchable?
         results[:statuses] = perform_statuses_search! if full_text_searchable?
@@ -70,7 +72,7 @@ class SearchService < BaseService
   end
 
   def url_query?
-    @resolve && @query =~ /\Ahttps?:\/\//
+    @resolve && /\Ahttps?:\/\//.match?(@query)
   end
 
   def url_resource_results
@@ -92,7 +94,7 @@ class SearchService < BaseService
   end
 
   def account_searchable?
-    account_search? && !(@query.include?('@') && @query.include?(' '))
+    account_search? && !(@query.start_with?('#') || (@query.include?('@') && @query.include?(' ')))
   end
 
   def hashtag_searchable?

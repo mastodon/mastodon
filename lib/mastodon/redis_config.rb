@@ -14,17 +14,29 @@ def setup_redis_env_url(prefix = nil, defaults = true)
   ENV[prefix + 'REDIS_URL'] = if [password, host, port, db].all?(&:nil?)
                                 ENV['REDIS_URL']
                               else
-                                "redis://#{password.blank? ? '' : ":#{password}@"}#{host}:#{port}/#{db}"
+                                Addressable::URI.parse("redis://#{host}:#{port}/#{db}").tap do |uri|
+                                  uri.password = password if password.present?
+                                end.normalize.to_str
                               end
 end
 
 setup_redis_env_url
 setup_redis_env_url(:cache, false)
+setup_redis_env_url(:sidekiq, false)
 
-namespace       = ENV.fetch('REDIS_NAMESPACE') { nil }
-cache_namespace = namespace ? namespace + '_cache' : 'cache'
+namespace         = ENV.fetch('REDIS_NAMESPACE', nil)
+cache_namespace   = namespace ? namespace + '_cache' : 'cache'
+sidekiq_namespace = namespace
 
 REDIS_CACHE_PARAMS = {
+  driver: :hiredis,
+  url: ENV['CACHE_REDIS_URL'],
   expires_in: 10.minutes,
   namespace: cache_namespace,
+}.freeze
+
+REDIS_SIDEKIQ_PARAMS = {
+  driver: :hiredis,
+  url: ENV['SIDEKIQ_REDIS_URL'],
+  namespace: sidekiq_namespace,
 }.freeze

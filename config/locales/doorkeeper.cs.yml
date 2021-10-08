@@ -14,8 +14,8 @@ cs:
             redirect_uri:
               fragment_present: nesmí obsahovat fragment.
               invalid_uri: musí být platné URI.
-              relative_uri: musí být apsolutní URI.
-              secured_uri: musí být URI HTTPS/SSL.
+              relative_uri: musí být absolutní URI.
+              secured_uri: musí být HTTPS/SSL URI.
   doorkeeper:
     applications:
       buttons:
@@ -25,19 +25,20 @@ cs:
         edit: Upravit
         submit: Odeslat
       confirmations:
-        destroy: Jste si jistý/á?
+        destroy: Opravdu?
       edit:
         title: Upravit aplikaci
       form:
-        error: A jéje! Zkontrolujte svůj formulář kvůli případným chybám
+        error: A jéje! Zkontrolujte ve formuláři případné chyby
       help:
         native_redirect_uri: Pro místní testy použijte %{native_redirect_uri}
         redirect_uri: Jedno URI na každý řádek
-        scopes: Oddělujte rozsahy mezerami. Pro použití výchozích rozsahů zanechte prázdné.
+        scopes: Oddělujte rozsahy mezerami. Pro použití výchozích rozsahů ponechte prázdné.
       index:
         application: Aplikace
         callback_url: Zpáteční URL
         delete: Smazat
+        empty: Nemáte žádné aplikace.
         name: Název
         new: Nová aplikace
         scopes: Rozsahy
@@ -50,7 +51,7 @@ cs:
         application_id: Klientský klíč
         callback_urls: Zpáteční URL
         scopes: Rozsahy
-        secret: Klientské tajemství
+        secret: Klientský secret
         title: 'Aplikace: %{name}'
     authorizations:
       buttons:
@@ -68,7 +69,7 @@ cs:
       buttons:
         revoke: Zamítnout
       confirmations:
-        revoke: Jste si jistý/á?
+        revoke: Opravdu?
       index:
         application: Aplikace
         created_at: Autorizováno
@@ -77,14 +78,17 @@ cs:
         title: Vaše autorizované aplikace
     errors:
       messages:
-        access_denied: Vlastník zdroje či autorizační server zamítl požadavek.
+        access_denied: Vlastník zdroje či autorizační server žádost zamítl.
         credential_flow_not_configured: Proud Resource Owner Password Credentials selhal, protože Doorkeeper.configure.resource_owner_from_credentials nebylo nakonfigurováno.
         invalid_client: Ověření klienta selhalo kvůli neznámému klientovi, chybějící klientské autentizaci či nepodporované autentizační metodě.
-        invalid_grant: Poskytnuté oprávnění je neplatné, vypršelé, zamítnuté, neshoduje se s URI přesměrování použitým v požadavku o autorizaci, nebo bylo uděleno jinému klientu.
-        invalid_redirect_uri: Přesměrovací URI není platné.
-        invalid_request: Požadavku chybí pžadovaný parametr, obsahuje nepodporovanou hodnotu parametru, či je jinak malformovaný.
+        invalid_grant: Poskytnuté oprávnění je neplatné, vypršela jeho platnost, bylo zamítnuto, neshoduje se s URI přesměrování použitým v požadavku o autorizaci, nebo bylo uděleno jinému klientu.
+        invalid_redirect_uri: URI pro přesměrování není platné.
+        invalid_request:
+          missing_param: 'Chybí potřebný parametr: %{value}.'
+          request_not_authorized: Požadavek musí být autorizován. Potřebný parametr pro autorizaci požadavku chybí nebo není platný.
+          unknown: Požadavku chybí potřebný parametr, obsahuje nepodporovanou hodnotu parametru nebo je jinak špatně formulován.
         invalid_resource_owner: Poskytnuté přihlašovací údaje vlastníka zdroje nejsou platné, nebo vlastník zdroje nemůže být nalezen
-        invalid_scope: Požadovaný rozsah je neplatný, neznámý, nebo malformovaný.
+        invalid_scope: Požadovaný rozsah je neplatný, neznámý, nebo špatně formulovaný.
         invalid_token:
           expired: Přístupový token vypršel
           revoked: Přístupový token byl zamítnut
@@ -93,8 +97,8 @@ cs:
         server_error: Autorizační server se setkal s neočekávanou chybou, která mu zabránila ve vykonání požadavku.
         temporarily_unavailable: Autorizační server vás nyní nemůže obsloužit kvůli dočasnému přetížení či údržbě serveru.
         unauthorized_client: Klient není autorizován k vykonání tohoto požadavku touto metodou.
-        unsupported_grant_type: Tento typ oprávnění není podporován autorizačním serverem.
-        unsupported_response_type: Autorizační server nepodporuje tento typ odpovědi.
+        unsupported_grant_type: Tento typ oprávnění není autorizačním serverem podporován.
+        unsupported_response_type: Autorizační server tento typ odpovědi nepodporuje.
     flash:
       applications:
         create:
@@ -119,30 +123,32 @@ cs:
       admin:read:reports: číst citlivé informace všech nahlášení a nahlášených účtů
       admin:write: měnit všechna data na serveru
       admin:write:accounts: provádět moderátorské akce s účty
-      admin:write:reports: provádět moderátorské akce s nahlášeními
+      admin:write:reports: provádět moderátorské akce s hlášeními
       follow: upravovat vztahy mezi profily
       push: přijímat vaše push oznámení
       read: vidět všechna data vašeho účtu
       read:accounts: vidět informace o účtech
       read:blocks: vidět vaše blokace
-      read:favourites: vidět vaše oblíbení
+      read:bookmarks: vidět vaše záložky
+      read:favourites: vidět vaše oblíbené příspěvky
       read:filters: vidět vaše filtry
       read:follows: vidět vaše sledování
       read:lists: vidět vaše seznamy
       read:mutes: vidět vaše skrytí
       read:notifications: vidět vaše oznámení
-      read:reports: vidět vaše nahlášení
+      read:reports: vidět vaše hlášení
       read:search: vyhledávat za vás
-      read:statuses: vidět všechny tooty
+      read:statuses: vidět všechny příspěvky
       write: měnit všechna data vašeho účtu
       write:accounts: měnit váš profil
       write:blocks: blokovat účty a domény
-      write:favourites: oblibovat si tooty
+      write:bookmarks: přidávat příspěvky do záložek
+      write:favourites: oblibovat si příspěvky
       write:filters: vytvářet filtry
       write:follows: sledovat lidi
       write:lists: vytvářet seznamy
       write:media: nahrávat mediální soubory
       write:mutes: skrývat lidi a konverzace
-      write:notifications: vymazávat vaše oznámení
+      write:notifications: mazat vaše oznámení
       write:reports: nahlašovat jiné uživatele
-      write:statuses: publikovat tooty
+      write:statuses: zveřejňovat příspěvky

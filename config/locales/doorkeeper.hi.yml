@@ -1,0 +1,30 @@
+---
+hi:
+  activerecord:
+    attributes:
+      doorkeeper/application:
+        name: आवेदन का नाम
+        redirect_uri: अनुप्रेषित URI
+        scopes: कार्यक्षेत्र
+        website: आवेदन वेबसाइट
+    errors:
+      models:
+        doorkeeper/application:
+          attributes:
+            redirect_uri:
+              fragment_present: एक टुकड़ा नहीं हो सकता।
+              invalid_uri: एक वैध यूआरआई होना चाहिए।
+              relative_uri: एक पूर्ण URI होना चाहिए।
+              secured_uri: hTTPS/SSL URI होना चाहिए।
+  doorkeeper:
+    applications:
+      buttons:
+        authorize: अधिकार दें
+        cancel: रद्द करें
+        destroy: हटाएं
+        edit: संपादित करें
+        submit: सबमिट करें
+      confirmations:
+        destroy: क्या आप सुनिश्चित हैं?
+      edit:
+        title: आवेदन संपादित करें

@@ -1,0 +1,79 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "mastodon.fullname" . }}-env
+  labels:
+    {{- include "mastodon.labels" . | nindent 4 }}
+data:
+  {{- if .Values.postgresql.enabled }}
+  DB_HOST: {{ template "mastodon.postgresql.fullname" . }}
+  {{- else }}
+  DB_HOST: {{ .Values.postgresql.postgresqlHostname }}
+  {{- end }}
+  DB_NAME: {{ .Values.postgresql.postgresqlDatabase }}
+  DB_POOL: {{ .Values.mastodon.sidekiq.concurrency | quote }}
+  DB_PORT: "5432"
+  DB_USER: {{ .Values.postgresql.postgresqlUsername }}
+  DEFAULT_LOCALE: {{ .Values.mastodon.locale }}
+  {{- if .Values.elasticsearch.enabled }}
+  ES_ENABLED: "true"
+  ES_HOST: {{ template "mastodon.elasticsearch.fullname" . }}-master
+  ES_PORT: "9200"
+  {{- end }}
+  LOCAL_DOMAIN: {{ .Values.mastodon.local_domain }}
+  # https://devcenter.heroku.com/articles/tuning-glibc-memory-behavior
+  MALLOC_ARENA_MAX: "2"
+  NODE_ENV: "production"
+  RAILS_ENV: "production"
+  REDIS_HOST: {{ template "mastodon.redis.fullname" . }}-master
+  REDIS_PORT: "6379"
+  {{- if .Values.mastodon.s3.enabled }}
+  S3_BUCKET: {{ .Values.mastodon.s3.bucket }}
+  S3_ENABLED: "true"
+  S3_ENDPOINT: {{ .Values.mastodon.s3.endpoint }}
+  S3_HOSTNAME: {{ .Values.mastodon.s3.hostname }}
+  S3_PROTOCOL: "https"
+  {{- if .Values.mastodon.s3.region }}
+  S3_REGION: {{ .Values.mastodon.s3.region }}
+  {{- end }}
+  {{- end }}
+  {{- if .Values.mastodon.smtp.auth_method }}
+  SMTP_AUTH_METHOD: {{ .Values.mastodon.smtp.auth_method }}
+  {{- end }}
+  {{- if .Values.mastodon.smtp.ca_file }}
+  SMTP_CA_FILE: {{ .Values.mastodon.smtp.ca_file }}
+  {{- end }}
+  {{- if .Values.mastodon.smtp.delivery_method }}
+  SMTP_DELIVERY_METHOD: {{ .Values.mastodon.smtp.delivery_method }}
+  {{- end }}
+  {{- if .Values.mastodon.smtp.domain }}
+  SMTP_DOMAIN: {{ .Values.mastodon.smtp.domain }}
+  {{- end }}
+  {{- if .Values.mastodon.smtp.enable_starttls_auto }}
+  SMTP_ENABLE_STARTTLS_AUTO: {{ .Values.mastodon.smtp.enable_starttls_auto | quote }}
+  {{- end }}
+  {{- if .Values.mastodon.smtp.from_address }}
+  SMTP_FROM_ADDRESS: {{ .Values.mastodon.smtp.from_address }}
+  {{- end }}
+  {{- if .Values.mastodon.smtp.login }}
+  SMTP_LOGIN: {{ .Values.mastodon.smtp.login }}
+  {{- end }}
+  {{- if .Values.mastodon.smtp.openssl_verify_mode }}
+  SMTP_OPENSSL_VERIFY_MODE: {{ .Values.mastodon.smtp.openssl_verify_mode }}
+  {{- end }}
+  {{- if .Values.mastodon.smtp.password }}
+  SMTP_PASSWORD: {{ .Values.mastodon.smtp.password }}
+  {{- end }}
+  {{- if .Values.mastodon.smtp.port }}
+  SMTP_PORT: {{ .Values.mastodon.smtp.port | quote }}
+  {{- end }}
+  {{- if .Values.mastodon.smtp.reply_to }}
+  SMTP_REPLY_TO: {{ .Values.mastodon.smtp.reply_to }}
+  {{- end }}
+  {{- if .Values.mastodon.smtp.server }}
+  SMTP_SERVER: {{ .Values.mastodon.smtp.server }}
+  {{- end }}
+  {{- if .Values.mastodon.smtp.tls }}
+  SMTP_TLS: {{ .Values.mastodon.smtp.tls | quote }}
+  {{- end }}
+  STREAMING_CLUSTER_NUM: {{ .Values.mastodon.streaming.workers | quote }}

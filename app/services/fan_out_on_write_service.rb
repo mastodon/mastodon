@@ -6,19 +6,21 @@ class FanOutOnWriteService < BaseService
   def call(status)
     raise Mastodon::RaceConditionError if status.visibility.nil?
 
-    render_anonymous_payload(status)
+    deliver_to_self(status) if status.account.local?
 
     if status.direct_visibility?
+      deliver_to_mentioned_followers(status)
       deliver_to_own_conversation(status)
     elsif status.limited_visibility?
       deliver_to_mentioned_followers(status)
     else
-      deliver_to_self(status) if status.account.local?
       deliver_to_followers(status)
       deliver_to_lists(status)
     end
 
     return if status.account.silenced? || !status.public_visibility? || status.reblog?
+
+    render_anonymous_payload(status)
 
     deliver_to_hashtags(status)
 
@@ -58,8 +60,10 @@ class FanOutOnWriteService < BaseService
   def deliver_to_mentioned_followers(status)
     Rails.logger.debug "Delivering status #{status.id} to limited followers"
 
-    FeedInsertWorker.push_bulk(status.mentions.includes(:account).map(&:account).select { |mentioned_account| mentioned_account.local? && mentioned_account.following?(status.account) }) do |follower|
-      [status.id, follower.id, :home]
+    status.mentions.joins(:account).merge(status.account.followers_for_local_distribution).select(:id, :account_id).reorder(nil).find_in_batches do |mentions|
+      FeedInsertWorker.push_bulk(mentions) do |mention|
+        [status.id, mention.account_id, :home]
+      end
     end
   end
 
@@ -81,14 +85,22 @@ class FanOutOnWriteService < BaseService
     Rails.logger.debug "Delivering status #{status.id} to public timeline"
 
     Redis.current.publish('timeline:public', @payload)
-    Redis.current.publish('timeline:public:local', @payload) if status.local?
+    if status.local?
+      Redis.current.publish('timeline:public:local', @payload)
+    else
+      Redis.current.publish('timeline:public:remote', @payload)
+    end
   end
 
   def deliver_to_media(status)
     Rails.logger.debug "Delivering status #{status.id} to media timeline"
 
     Redis.current.publish('timeline:public:media', @payload)
-    Redis.current.publish('timeline:public:local:media', @payload) if status.local?
+    if status.local?
+      Redis.current.publish('timeline:public:local:media', @payload)
+    else
+      Redis.current.publish('timeline:public:remote:media', @payload)
+    end
   end
 
   def deliver_to_own_conversation(status)

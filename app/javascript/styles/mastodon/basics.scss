@@ -68,7 +68,32 @@ body {
   }
 
   &.player {
-    text-align: center;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+
+    & > div {
+      height: 100%;
+    }
+
+    .video-player video {
+      width: 100%;
+      height: 100%;
+      max-height: 100vh;
+    }
+
+    .media-gallery {
+      margin-top: 0;
+      height: 100% !important;
+      border-radius: 0;
+    }
+
+    .media-gallery__item {
+      border-radius: 0;
+    }
   }
 
   &.embed {
@@ -227,5 +252,21 @@ button {
       color: $valid-value-color;
       transition: none;
     }
+  }
+}
+
+.logo-resources {
+  display: none;
+}
+
+// NoScript adds a __ns__pop2top class to the full ancestry of blocked elements,
+// to set the z-index to a high value, which messes with modals and dropdowns.
+// Blocked elements can in theory only be media and frames/embeds, so they
+// should only appear in statuses, under divs and articles.
+body,
+div,
+article {
+  .__ns__pop2top {
+    z-index: unset !important;
   }
 }

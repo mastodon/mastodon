@@ -38,6 +38,7 @@ de:
         application: Anwendung
         callback_url: Callback-URL
         delete: Löschen
+        empty: Du hast keine Anwendungen.
         name: Name
         new: Neue Anwendung
         scopes: Befugnisse
@@ -82,7 +83,10 @@ de:
         invalid_client: 'Client-Authentifizierung ist fehlgeschlagen: Client unbekannt, keine Authentisierung mitgeliefert oder Authentisierungsmethode wird nicht unterstützt.'
         invalid_grant: Die beigefügte Autorisierung ist ungültig, abgelaufen, wurde widerrufen, einem anderen Client ausgestellt oder der Weiterleitungs-URI stimmt nicht mit der Autorisierungs-Anfrage überein.
         invalid_redirect_uri: Der beigefügte Weiterleitungs-URI ist ungültig.
-        invalid_request: Die Anfrage enthält ein nicht-unterstütztes Argument, ein Parameter fehlt, oder sie ist anderweitig fehlerhaft.
+        invalid_request:
+          missing_param: 'Erforderlicher Parameter fehlt: %{value}.'
+          request_not_authorized: Anfrage muss autorisiert werden. Benötigter Parameter für die Autorisierung der Anfrage fehlt oder ungültig.
+          unknown: Der Anfrage fehlt ein benötigter Parameter, enthält einen nicht unterstützten Parameterwert oder ist anderweitig fehlerhaft.
         invalid_resource_owner: Die angegebenen Zugangsdaten für das Konto sind ungültig oder das Konto kann nicht gefunden werden
         invalid_scope: Die angeforderte Befugnis ist ungültig, unbekannt oder fehlerhaft.
         invalid_token:
@@ -125,6 +129,7 @@ de:
       read: all deine Daten lesen
       read:accounts: deine Konteninformationen einsehen
       read:blocks: deine Blockaden einsehen
+      read:bookmarks: deine Lesezeichen lesen
       read:favourites: deine Favoriten ansehen
       read:filters: deine Filter ansehen
       read:follows: sehen, wem du folgst
@@ -137,6 +142,7 @@ de:
       write: all deine Benutzerdaten verändern
       write:accounts: dein Profil bearbeiten
       write:blocks: Domains und Konten blockieren
+      write:bookmarks: Lesezeichen hinzufügen
       write:favourites: Beiträge favorisieren
       write:filters: Filter erstellen
       write:follows: Leuten folgen

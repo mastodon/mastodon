@@ -1,13 +1,20 @@
 # frozen_string_literal: true
 
 class FetchOEmbedService
+  ENDPOINT_CACHE_EXPIRES_IN = 24.hours.freeze
+
   attr_reader :url, :options, :format, :endpoint_url
 
   def call(url, options = {})
     @url     = url
     @options = options
 
-    discover_endpoint!
+    if @options[:cached_endpoint]
+      parse_cached_endpoint!
+    else
+      discover_endpoint!
+    end
+
     fetch!
   end
 
@@ -31,9 +38,41 @@ class FetchOEmbedService
 
     return if @endpoint_url.blank?
 
-    @endpoint_url = (Addressable::URI.parse(@url) + @endpoint_url).to_s
+    @endpoint_url = begin
+      base_url = Addressable::URI.parse(@url)
+
+      # If the OEmbed endpoint is given as http but the URL we opened
+      # was served over https, we can assume OEmbed will be available
+      # through https as well
+
+      (base_url + @endpoint_url).tap do |absolute_url|
+        absolute_url.scheme = base_url.scheme if base_url.scheme == 'https'
+      end.to_s
+    end
+
+    cache_endpoint!
   rescue Addressable::URI::InvalidURIError
     @endpoint_url = nil
+  end
+
+  def parse_cached_endpoint!
+    cached = @options[:cached_endpoint]
+
+    return if cached[:endpoint].nil? || cached[:format].nil?
+
+    @endpoint_url = Addressable::Template.new(cached[:endpoint]).expand(url: @url).to_s
+    @format       = cached[:format]
+  end
+
+  def cache_endpoint!
+    url_domain = Addressable::URI.parse(@url).normalized_host
+
+    endpoint_hash = {
+      endpoint: @endpoint_url.gsub(/(=(http[s]?(%3A|:)(\/\/|%2F%2F)))([^&]*)/i, '={url}'),
+      format: @format,
+    }
+
+    Rails.cache.write("oembed_endpoint:#{url_domain}", endpoint_hash, expires_in: ENDPOINT_CACHE_EXPIRES_IN)
   end
 
   def fetch!
@@ -64,7 +103,7 @@ class FetchOEmbedService
   def html
     return @html if defined?(@html)
 
-    @html = @options[:html] || Request.new(:get, @url).perform do |res|
+    @html = @options[:html] || Request.new(:get, @url).add_headers('Accept' => 'text/html').perform do |res|
       res.code != 200 || res.mime_type != 'text/html' ? nil : res.body_with_limit
     end
   end

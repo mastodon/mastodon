@@ -1,5 +1,5 @@
 - content_for :header_tags do
-  = javascript_pack_tag 'public', integrity: true, crossorigin: 'anonymous'
+  = javascript_pack_tag 'public', crossorigin: 'anonymous'
 
 - content_for :content do
   - if user_signed_in? && !@hide_header
@@ -14,5 +14,6 @@
   .container-alt= yield
   .modal-layout__mastodon
     %div
+      %img{alt:'', draggable:'false', src:"#{mascot_url}"}
 
 = render template: 'layouts/application'

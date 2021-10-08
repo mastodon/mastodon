@@ -5,13 +5,28 @@ cs:
       poll:
         expires_at: Uzávěrka
         options: Volby
+      user:
+        agreement: Souhlas s podmínkami
+        email: E-mailová adresa
+        locale: Lokalizace
+        password: Heslo
+      user/account:
+        username: Uživatel
+      user/invite_request:
+        text: Zdůvodnění
     errors:
       models:
         account:
           attributes:
             username:
-              invalid: pouze písmena, číslice a podtržítka
+              invalid: musí obsahovat pouze písmena, číslice a podtržítka
+              reserved: je vyhrazeno
         status:
           attributes:
             reblog:
               taken: příspěvku již existuje
+        user:
+          attributes:
+            email:
+              blocked: používá zakázanou e-mailovou službu
+              unreachable: pravděpodobně neexistuje

@@ -38,6 +38,7 @@ id:
         application: Aplikasi
         callback_url: URL Callback
         delete: Hapus
+        empty: Anda tidak memiliki aplikasi.
         name: Nama
         new: Aplikasi baru
         scopes: Cakupan
@@ -82,7 +83,10 @@ id:
         invalid_client: Perizinan klien gagal karena klien tidak diketahui, tidak ada klien yang diizinkan, atau metode perizinan tidak didukung.
         invalid_grant: Pemberian izin yang diberikan tidak valid, kadaluarsa, telah dicabut, atau tidak cocok dengan URI pengalihan yang digunakan pada permintaan izin, atau telah diberikan pada klien lain.
         invalid_redirect_uri: Uri pengalihan tidak valid.
-        invalid_request: Permintaan ini tidak mempunyai parameter yang dibutuhkan, mengandung parameter yang tidak didukung, atau mungkin strukturnya tidak benar.
+        invalid_request:
+          missing_param: 'Kehilangan parameter yang diperlukan: %{value}.'
+          request_not_authorized: Permintaan perlu diotorisasi. Parameter yang diperlukan untuk otorisasi hilang atau tidak valid.
+          unknown: Permintaan ini kehilangan parameter yang dibutuhkan, termasuk parameter yang tidak didukung, atau mungkin format tidak benar.
         invalid_resource_owner: Identitas pemilik data yang diberikan tidak valid, atau pemilik data tidak ditemukan
         invalid_scope: Scope yang diminta tidak valid, tidak diketahui, atau struktur tidak benar.
         invalid_token:
@@ -125,6 +129,7 @@ id:
       read: membaca data pada akun anda
       read:accounts: lihat informasi akun
       read:blocks: lihat blokiran Anda
+      read:bookmarks: lihat markah Anda
       read:favourites: lihat favorit Anda
       read:filters: lihat saringan Anda
       read:follows: lihat yang Anda ikuti
@@ -137,6 +142,7 @@ id:
       write: memposting sebagai anda
       write:accounts: ubah profil Anda
       write:blocks: blokir akun dan domain
+      write:bookmarks: status markah
       write:favourites: status favorit
       write:filters: buat saringan
       write:follows: ikuti orang

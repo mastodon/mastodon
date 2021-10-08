@@ -1,6 +1,12 @@
+@use "sass:math";
+
 .hero-widget {
   margin-bottom: 10px;
   box-shadow: 0 0 15px rgba($base-shadow-color, 0.2);
+
+  &:last-child {
+    margin-bottom: 0;
+  }
 
   &__img {
     width: 100%;
@@ -92,12 +98,6 @@
     .account__display-name {
       display: flex;
       align-items: center;
-    }
-
-    .account__avatar {
-      width: 44px;
-      height: 44px;
-      background-size: 44px 44px;
     }
   }
 
@@ -448,6 +448,26 @@
     vertical-align: initial !important;
   }
 
+  &__interrelationships {
+    width: 21px;
+  }
+
+  .fa {
+    font-size: 16px;
+
+    &.active {
+      color: $highlight-text-color;
+    }
+
+    &.passive {
+      color: $passive-text-color;
+    }
+
+    &.active.passive {
+      color: $active-passive-text-color;
+    }
+  }
+
   @media screen and (max-width: $no-gap-breakpoint) {
     tbody td.optional {
       display: none;
@@ -480,10 +500,10 @@ $fluid-breakpoint: $maximum-width + 20px;
   }
 
   &__item {
-    width: (960px - 20px) / 3;
+    width: math.div(960px - 20px, 3);
 
     @media screen and (max-width: $fluid-breakpoint) {
-      width: (940px - 20px) / 3;
+      width: math.div(940px - 20px, 3);
     }
 
     @media screen and (max-width: 640px) {
@@ -575,7 +595,6 @@ $fluid-breakpoint: $maximum-width + 20px;
     display: block;
     font-weight: 500;
     padding: 15px;
-    overflow: hidden;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;

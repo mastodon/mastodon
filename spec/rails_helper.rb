@@ -15,7 +15,7 @@ ActiveRecord::Migration.maintain_test_schema!
 WebMock.disable_net_connect!(allow: Chewy.settings[:host])
 Redis.current = Redis::Namespace.new("mastodon_test#{ENV['TEST_ENV_NUMBER']}", redis: Redis.current)
 Sidekiq::Testing.inline!
-Sidekiq::Logging.logger = nil
+Sidekiq.logger = nil
 
 Devise::Test::ControllerHelpers.module_eval do
   alias_method :original_sign_in, :sign_in
@@ -69,6 +69,8 @@ end
 RSpec::Sidekiq.configure do |config|
   config.warn_when_jobs_not_processed_by_sidekiq = false
 end
+
+RSpec::Matchers.define_negated_matcher :not_change, :change
 
 def request_fixture(name)
   File.read(Rails.root.join('spec', 'fixtures', 'requests', name))

@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class HomeController < ApplicationController
+  before_action :redirect_unauthenticated_to_permalinks!
   before_action :authenticate_user!
   before_action :set_referrer_policy_header
 
@@ -10,32 +11,10 @@ class HomeController < ApplicationController
 
   private
 
-  def authenticate_user!
+  def redirect_unauthenticated_to_permalinks!
     return if user_signed_in?
 
-    matches = request.path.match(/\A\/web\/(statuses|accounts)\/([\d]+)\z/)
-
-    if matches
-      case matches[1]
-      when 'statuses'
-        status = Status.find_by(id: matches[2])
-
-        if status&.distributable?
-          redirect_to(ActivityPub::TagManager.instance.url_for(status))
-          return
-        end
-      when 'accounts'
-        account = Account.find_by(id: matches[2])
-
-        if account
-          redirect_to(ActivityPub::TagManager.instance.url_for(account))
-          return
-        end
-      end
-    end
-
-    matches = request.path.match(%r{\A/web/timelines/tag/(?<tag>.+)\z})
-    redirect_to(matches ? tag_path(CGI.unescape(matches[:tag])) : default_redirect_path)
+    redirect_to(PermalinkRedirector.new(request.path).redirect_path || default_redirect_path)
   end
 
   def default_redirect_path

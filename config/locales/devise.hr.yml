@@ -2,50 +2,56 @@
 hr:
   devise:
     confirmations:
-      confirmed: Tvoja email adresa je uspješno potvrđena.
-      send_instructions: Primit ćeš email sa uputama kako potvrditi  svoju email adresu za nekoliko minuta.
-      send_paranoid_instructions: Ako tvoja email adresa postoji u našoj bazi podataka, primit ćeš email sa uputama kako ju potvrditi za nekoliko minuta.
+      confirmed: Vaša adresa e-pošte uspješno je potvrđena.
+      send_instructions: Za nekoliko minuta primit ćete e-poštu s uputama kako potvrditi Vašu adresu e-pošte. Molimo pogledajte Vašu mapu s neželjenom poštom, ako niste primili ovu e-poštu.
+      send_paranoid_instructions: Ako Vaša adresa e-pošte postoji u našoj bazi podataka, za nekoliko minuta primit ćete e-poštu s uputama kako ju potvrditi. Molimo provjerite mapu s neželjenom poštom, ako niste primili ovu e-poštu.
     mailer:
       confirmation_instructions:
-        subject: 'Mastodon: Upute za potvrđivanje %{instance}'
+        action: Potvrdi adresu e-pošte
+        action_with_app: Potvrdi i vrati se na %{app}
+        subject: 'Mastodon: upute za potvrđivanje za %{instance}'
+        title: Potvrdi adresu e-pošte
       email_changed:
-        subject: 'Mastodon: Email adresa je promijenjena'
-        title: Nova email adresa
+        subject: 'Mastodon: adresa e-pošte je promijenjena'
+        title: Nova adresa e-pošte
       password_change:
-        subject: 'Mastodon: Lozinka je promijenjena'
+        subject: 'Mastodon: lozinka je promijenjena'
       reset_password_instructions:
-        subject: 'Mastodon: Upute za resetiranje lozinke'
+        subject: 'Mastodon: upute za ponovno postavljanje lozinke'
+        title: Ponovno postavljanje lozinke
+      two_factor_disabled:
+        title: 2FA je onemogućen
       unlock_instructions:
-        subject: 'Mastodon: Upute za otključavanje'
+        subject: 'Mastodon: upute za otključavanje'
     omniauth_callbacks:
-      failure: Ne možemo te autentificirati sa %{kind} zbog "%{reason}".
-      success: Uspješno autentificiran sa %{kind} računa.
+      failure: Ne možemo Vas autentificirati s %{kind} zbog "%{reason}".
+      success: Uspješno ste autentificirani s računom na %{kind}.
     passwords:
-      no_token: Ne možeš pristupiti ovoj stranici bez dolaženja sa emaila za resetiranje lozinke. Ako dolaziš sa tog emaila, pazi da koristiš potpuni link koji ti je dan.
-      send_instructions: Primit ćeš email sa uputama kako resetirati svoju lozinku za nekoliko minuta.
-      send_paranoid_instructions: Ako tvoja email adresa postoji u našoj bazi podataka, primit ćeš link za povrat lozinke na svoju email adresu za nekoliko minuta.
-      updated: Tvoja lozinka je uspješno izmijenjena. Sada si prijavljen.
-      updated_not_active: Toja lozinka je uspješno izmijenjena.
+      no_token: Ovoj stranici ne možete pristupiti, ako ne stižete iz e-pošte za ponovno postavljanje lozinke. Ako dolazite iz e-pošte za ponovno postavljanje lozinke, molimo budite sigurni da koristite puni URL koji ste primili.
+      send_instructions: Ako Vaša adresa e-pošte postoji u našoj bazi podataka, za nekoliko minuta primit ćete poveznicu za oporavak lozinke. Molimo provjerite mapu s neželjenom poštom, ako niste primili ovu e-poštu.
+      send_paranoid_instructions: Ako Vaša adresa e-pošte postoji u našoj bazi podataka, za nekoliko minuta primit ćete e-poštu s poveznicom za oporavak lozinke. Molimo provjerite mapu s neželjenom poštom, ako niste primili ovu e-poštu.
+      updated: Vaša lozinka uspješno je promijenjena. Sada ste prijavljeni.
+      updated_not_active: Vaša lozinka uspješno je promijenjena.
     registrations:
-      destroyed: Zbogom! Tvoj račun je uspješno otkazan. Nadamo se da ćemo te vidjeti ponovo.
-      signed_up: Dobro došao! Uspješno si se prijavio.
-      signed_up_but_inactive: Uspješno si se registrirao. No, ne možeš se prijaviti, jer ti račun još nije aktiviran.
-      signed_up_but_locked: Uspješno si se registrirao. No, ne možeš se prijaviti jer je tvoj račun zaključan.
-      signed_up_but_unconfirmed: Poruka sa linkom za potvrđivanje je poslana na tvoju email adresu. Molimo, slijedi link kako bi tvoj račun bio aktiviran.
-      update_needs_confirmation: Tvoj račun je uspješno ažuriran, ali trebamo provjeriti tvoju novu email adresu. Molimo, provjeri svoj email i slijedi link za potvrđivanje kako bi tvoja nova email adresa bila potvrđena.
-      updated: Tvoj račun je uspješno ažuriran.
+      destroyed: Zbogom! Vaš je račun uspješno otkazan. Nadamo se da ćemo Vas uskoro ponovno vidjeti.
+      signed_up: Dobro došli! Uspješno ste se prijavili.
+      signed_up_but_inactive: Uspješno ste se registrirali. No, ne možemo Vas prijaviti jer Vaš račun još nije aktiviran.
+      signed_up_but_locked: Uspješno ste se registrirali. No, ne možemo Vas prijaviti jer je Vaš račun zaključan.
+      signed_up_but_unconfirmed: Poruka s poveznicom za potvrđivanje poslana je na Vašu adresu e-pošte. Molimo slijedite poveznicu za aktivaciju Vašeg računa. Molimo provjerite mapu neželjene pošte, ako niste primili ovu e-poštu.
+      update_needs_confirmation: Vaš račun uspješno je ažuriran, ali moramo potvrditi Vašu novu adresu e-pošte. Molimo provjerite Vašu e-poštu i slijedite poveznicu za potvrđivanje Vaše nove adrese e-pošte. Molimo provjerite mapu neželjene pošte, ako niste primili ovu e-poštu.
+      updated: Vaš je račun uspješno ažuriran.
     sessions:
-      already_signed_out: Uspješno si odjavljen.
-      signed_in: Uspješno si prijavljen.
-      signed_out: Uspješno si odjavljen.
+      already_signed_out: Uspješno ste odjavljeni.
+      signed_in: Uspješno ste prijavljeni.
+      signed_out: Uspješno ste odjavljeni.
     unlocks:
-      send_instructions: Primit ćeš email sa uputama kako otključati svoj račun za nekoliko minuta.
-      send_paranoid_instructions: Ako tvoj račun postoji, primit ćeš email sa uputama kako ga otključati za nekoliko minuta.
-      unlocked: Tvoj račun je uspješno otključan. Prijavi se kako bi nastavio.
+      send_instructions: Primit ćete e-poštu s uputama kako otključati Vaš račun za nekoliko minuta. Molimo provjerite neželjenu poštu, ako niste primili ovu e-poštu.
+      send_paranoid_instructions: Ako Vaš račun postoji, za nekoliko minuta primit ćete e-poštu s uputama kako ga otključati. Molimo provjerite mapu neželjene pošte, ako niste primili ovu e-poštu.
+      unlocked: Vaš je račun uspješno otključan. Molimo prijavite se za nastavak.
   errors:
     messages:
-      already_confirmed: je već potvrđen, pokušaj se prijaviti
-      confirmation_period_expired: mora biti potvrđen u roku od %{period}, molimo zatraži novi
-      expired: je istekao, zatraži novu
-      not_found: nije nađen
+      already_confirmed: je već potvrđen, pokušajte se prijaviti
+      confirmation_period_expired: mora biti potvrđen unutar %{period}, molimo zatražite novi
+      expired: je istekao, zatražite novi
+      not_found: nije pronađen
       not_locked: nije zaključan

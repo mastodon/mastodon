@@ -1,16 +1,18 @@
 # frozen_string_literal: true
 
 class AccountsController < ApplicationController
-  PAGE_SIZE = 20
+  PAGE_SIZE     = 20
+  PAGE_SIZE_MAX = 200
 
   include AccountControllerConcern
   include SignatureAuthentication
 
+  before_action :require_signature!, if: -> { request.format == :json && authorized_fetch_mode? }
   before_action :set_cache_headers
   before_action :set_body_classes
 
-  skip_around_action :set_locale, if: -> { [:json, :rss].include?(request.format) }
-  skip_before_action :require_functional!
+  skip_around_action :set_locale, if: -> { [:json, :rss].include?(request.format&.to_sym) }
+  skip_before_action :require_functional!, unless: :whitelist_mode?
 
   def show
     respond_to do |format|
@@ -27,8 +29,7 @@ class AccountsController < ApplicationController
         end
 
         @pinned_statuses = cache_collection(@account.pinned_statuses, Status) if show_pinned_statuses?
-        @statuses        = filtered_status_page(params)
-        @statuses        = cache_collection(@statuses, Status)
+        @statuses        = cached_filtered_status_page
         @rss_url         = rss_url
 
         unless @statuses.empty?
@@ -40,14 +41,15 @@ class AccountsController < ApplicationController
       format.rss do
         expires_in 1.minute, public: true
 
-        @statuses = filtered_statuses.without_reblogs.without_replies.limit(PAGE_SIZE)
+        limit     = params[:limit].present? ? [params[:limit].to_i, PAGE_SIZE_MAX].min : PAGE_SIZE
+        @statuses = filtered_statuses.without_reblogs.limit(limit)
         @statuses = cache_collection(@statuses, Status)
         render xml: RSS::AccountSerializer.render(@account, @statuses, params[:tag])
       end
 
       format.json do
         expires_in 3.minutes, public: !(authorized_fetch_mode? && signed_request_account.present?)
-        render_with_cache json: @account, content_type: 'application/activity+json', serializer: ActivityPub::ActorSerializer, adapter: ActivityPub::Adapter, fields: restrict_fields_to
+        render_with_cache json: @account, content_type: 'application/activity+json', serializer: ActivityPub::ActorSerializer, adapter: ActivityPub::Adapter
       end
     end
   end
@@ -75,11 +77,7 @@ class AccountsController < ApplicationController
   end
 
   def only_media_scope
-    Status.where(id: account_media_status_ids)
-  end
-
-  def account_media_status_ids
-    @account.media_attachments.attached.reorder(nil).select(:status_id).distinct
+    Status.joins(:media_attachments).merge(@account.media_attachments.reorder(nil)).group(:id)
   end
 
   def no_replies_scope
@@ -98,6 +96,10 @@ class AccountsController < ApplicationController
 
   def username_param
     params[:username]
+  end
+
+  def skip_temporary_suspension_response?
+    request.format == :json
   end
 
   def rss_url
@@ -129,30 +131,27 @@ class AccountsController < ApplicationController
   end
 
   def media_requested?
-    request.path.ends_with?('/media') && !tag_requested?
+    request.path.split('.').first.end_with?('/media') && !tag_requested?
   end
 
   def replies_requested?
-    request.path.ends_with?('/with_replies') && !tag_requested?
+    request.path.split('.').first.end_with?('/with_replies') && !tag_requested?
   end
 
   def tag_requested?
-    request.path.split('.').first.ends_with?(Addressable::URI.parse("/tagged/#{params[:tag]}").normalize)
+    request.path.split('.').first.end_with?(Addressable::URI.parse("/tagged/#{params[:tag]}").normalize)
   end
 
-  def filtered_status_page(params)
-    if params[:min_id].present?
-      filtered_statuses.paginate_by_min_id(PAGE_SIZE, params[:min_id]).reverse
-    else
-      filtered_statuses.paginate_by_max_id(PAGE_SIZE, params[:max_id], params[:since_id]).to_a
-    end
+  def cached_filtered_status_page
+    cache_collection_paginated_by_id(
+      filtered_statuses,
+      Status,
+      PAGE_SIZE,
+      params_slice(:max_id, :min_id, :since_id)
+    )
   end
 
-  def restrict_fields_to
-    if signed_request_account.present? || public_fetch_mode?
-      # Return all fields
-    else
-      %i(id type preferred_username inbox public_key endpoints)
-    end
+  def params_slice(*keys)
+    params.slice(*keys).permit(*keys)
   end
 end

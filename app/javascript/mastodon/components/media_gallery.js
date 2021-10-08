@@ -6,11 +6,12 @@ import IconButton from './icon_button';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import { isIOS } from '../is_mobile';
 import classNames from 'classnames';
-import { autoPlayGif, displayMedia, useBlurhash } from '../initial_state';
-import { decode } from 'blurhash';
+import { autoPlayGif, cropImages, displayMedia, useBlurhash } from '../initial_state';
+import { debounce } from 'lodash';
+import Blurhash from 'mastodon/components/blurhash';
 
 const messages = defineMessages({
-  toggle_visible: { id: 'media_gallery.toggle_visible', defaultMessage: 'Toggle visibility' },
+  toggle_visible: { id: 'media_gallery.toggle_visible', defaultMessage: '{number, plural, one {Hide image} other {Hide images}}' },
 });
 
 class Item extends React.PureComponent {
@@ -23,6 +24,7 @@ class Item extends React.PureComponent {
     onClick: PropTypes.func.isRequired,
     displayWidth: PropTypes.number,
     visible: PropTypes.bool.isRequired,
+    autoplay: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -48,9 +50,13 @@ class Item extends React.PureComponent {
     }
   }
 
+  getAutoPlay() {
+    return this.props.autoplay || autoPlayGif;
+  }
+
   hoverToPlay () {
     const { attachment } = this.props;
-    return !autoPlayGif && attachment.get('type') === 'gifv';
+    return !this.getAutoPlay() && attachment.get('type') === 'gifv';
   }
 
   handleClick = (e) => {
@@ -66,36 +72,6 @@ class Item extends React.PureComponent {
     }
 
     e.stopPropagation();
-  }
-
-  componentDidMount () {
-    if (this.props.attachment.get('blurhash')) {
-      this._decode();
-    }
-  }
-
-  componentDidUpdate (prevProps) {
-    if (prevProps.attachment.get('blurhash') !== this.props.attachment.get('blurhash') && this.props.attachment.get('blurhash')) {
-      this._decode();
-    }
-  }
-
-  _decode () {
-    if (!useBlurhash) return;
-
-    const hash   = this.props.attachment.get('blurhash');
-    const pixels = decode(hash, 32, 32);
-
-    if (pixels) {
-      const ctx       = this.canvas.getContext('2d');
-      const imageData = new ImageData(pixels, 32, 32);
-
-      ctx.putImageData(imageData, 0, 0);
-    }
-  }
-
-  setCanvasRef = c => {
-    this.canvas = c;
   }
 
   handleImageLoad = () => {
@@ -159,8 +135,12 @@ class Item extends React.PureComponent {
     if (attachment.get('type') === 'unknown') {
       return (
         <div className={classNames('media-gallery__item', { standalone })} key={attachment.get('id')} style={{ left: left, top: top, right: right, bottom: bottom, width: `${width}%`, height: `${height}%` }}>
-          <a className='media-gallery__item-thumbnail' href={attachment.get('remote_url') || attachment.get('url')} target='_blank' style={{ cursor: 'pointer' }} title={attachment.get('description')}>
-            <canvas width={32} height={32} ref={this.setCanvasRef} className='media-gallery__preview' />
+          <a className='media-gallery__item-thumbnail' href={attachment.get('remote_url') || attachment.get('url')} style={{ cursor: 'pointer' }} title={attachment.get('description')} target='_blank' rel='noopener noreferrer'>
+            <Blurhash
+              hash={attachment.get('blurhash')}
+              className='media-gallery__preview'
+              dummy={!useBlurhash}
+            />
           </a>
         </div>
       );
@@ -187,6 +167,7 @@ class Item extends React.PureComponent {
           href={attachment.get('remote_url') || originalUrl}
           onClick={this.handleClick}
           target='_blank'
+          rel='noopener noreferrer'
         >
           <img
             src={previewUrl}
@@ -200,7 +181,7 @@ class Item extends React.PureComponent {
         </a>
       );
     } else if (attachment.get('type') === 'gifv') {
-      const autoPlay = !isIOS() && autoPlayGif;
+      const autoPlay = !isIOS() && this.getAutoPlay();
 
       thumbnail = (
         <div className={classNames('media-gallery__gifv', { autoplay: autoPlay })}>
@@ -225,7 +206,13 @@ class Item extends React.PureComponent {
 
     return (
       <div className={classNames('media-gallery__item', { standalone })} key={attachment.get('id')} style={{ left: left, top: top, right: right, bottom: bottom, width: `${width}%`, height: `${height}%` }}>
-        <canvas width={32} height={32} ref={this.setCanvasRef} className={classNames('media-gallery__preview', { 'media-gallery__preview--hidden': visible && this.state.loaded })} />
+        <Blurhash
+          hash={attachment.get('blurhash')}
+          dummy={!useBlurhash}
+          className={classNames('media-gallery__preview', {
+            'media-gallery__preview--hidden': visible && this.state.loaded,
+          })}
+        />
         {visible && thumbnail}
       </div>
     );
@@ -247,6 +234,7 @@ class MediaGallery extends React.PureComponent {
     defaultWidth: PropTypes.number,
     cacheWidth: PropTypes.func,
     visible: PropTypes.bool,
+    autoplay: PropTypes.bool,
     onToggleVisibility: PropTypes.func,
   };
 
@@ -259,6 +247,14 @@ class MediaGallery extends React.PureComponent {
     width: this.props.defaultWidth,
   };
 
+  componentDidMount () {
+    window.addEventListener('resize', this.handleResize, { passive: true });
+  }
+
+  componentWillUnmount () {
+    window.removeEventListener('resize', this.handleResize);
+  }
+
   componentWillReceiveProps (nextProps) {
     if (!is(nextProps.media, this.props.media) && nextProps.visible === undefined) {
       this.setState({ visible: displayMedia !== 'hide_all' && !nextProps.sensitive || displayMedia === 'show_all' });
@@ -266,6 +262,14 @@ class MediaGallery extends React.PureComponent {
       this.setState({ visible: nextProps.visible });
     }
   }
+
+  handleResize = debounce(() => {
+    if (this.node) {
+      this._setDimensions();
+    }
+  }, 250, {
+    trailing: true,
+  });
 
   handleOpen = () => {
     if (this.props.onToggleVisibility) {
@@ -279,24 +283,34 @@ class MediaGallery extends React.PureComponent {
     this.props.onOpenMedia(this.props.media, index);
   }
 
-  handleRef = (node) => {
-    if (node /*&& this.isStandaloneEligible()*/) {
-      // offsetWidth triggers a layout, so only calculate when we need to
-      if (this.props.cacheWidth) this.props.cacheWidth(node.offsetWidth);
+  handleRef = c => {
+    this.node = c;
 
-      this.setState({
-        width: node.offsetWidth,
-      });
+    if (this.node) {
+      this._setDimensions();
     }
   }
 
-  isStandaloneEligible() {
-    const { media, standalone } = this.props;
-    return standalone && media.size === 1 && media.getIn([0, 'meta', 'small', 'aspect']);
+  _setDimensions () {
+    const width = this.node.offsetWidth;
+
+    // offsetWidth triggers a layout, so only calculate when we need to
+    if (this.props.cacheWidth) {
+      this.props.cacheWidth(width);
+    }
+
+    this.setState({
+      width: width,
+    });
+  }
+
+  isFullSizeEligible() {
+    const { media } = this.props;
+    return media.size === 1 && media.getIn([0, 'meta', 'small', 'aspect']);
   }
 
   render () {
-    const { media, intl, sensitive, height, defaultWidth } = this.props;
+    const { media, intl, sensitive, height, defaultWidth, standalone, autoplay } = this.props;
     const { visible } = this.state;
 
     const width = this.state.width || defaultWidth;
@@ -305,7 +319,7 @@ class MediaGallery extends React.PureComponent {
 
     const style = {};
 
-    if (this.isStandaloneEligible()) {
+    if (this.isFullSizeEligible() && (standalone || !cropImages)) {
       if (width) {
         style.height = width / this.props.media.getIn([0, 'meta', 'small', 'aspect']);
       }
@@ -318,10 +332,10 @@ class MediaGallery extends React.PureComponent {
     const size     = media.take(4).size;
     const uncached = media.every(attachment => attachment.get('type') === 'unknown');
 
-    if (this.isStandaloneEligible()) {
-      children = <Item standalone onClick={this.handleClick} attachment={media.get(0)} displayWidth={width} visible={visible} />;
+    if (standalone && this.isFullSizeEligible()) {
+      children = <Item standalone autoplay={autoplay} onClick={this.handleClick} attachment={media.get(0)} displayWidth={width} visible={visible} />;
     } else {
-      children = media.take(4).map((attachment, i) => <Item key={attachment.get('id')} onClick={this.handleClick} attachment={attachment} index={i} size={size} displayWidth={width} visible={visible || uncached} />);
+      children = media.take(4).map((attachment, i) => <Item key={attachment.get('id')} autoplay={autoplay} onClick={this.handleClick} attachment={attachment} index={i} size={size} displayWidth={width} visible={visible || uncached} />);
     }
 
     if (uncached) {
@@ -331,7 +345,7 @@ class MediaGallery extends React.PureComponent {
         </button>
       );
     } else if (visible) {
-      spoilerButton = <IconButton title={intl.formatMessage(messages.toggle_visible)} icon='eye-slash' overlay onClick={this.handleOpen} />;
+      spoilerButton = <IconButton title={intl.formatMessage(messages.toggle_visible, { number: size })} icon='eye-slash' overlay onClick={this.handleOpen} />;
     } else {
       spoilerButton = (
         <button type='button' onClick={this.handleOpen} className='spoiler-button__overlay'>

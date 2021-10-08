@@ -38,6 +38,7 @@ ko:
         application: 애플리케이션
         callback_url: 콜백 URL
         delete: 삭제
+        empty: 어플리케이션이 없습니다.
         name: 이름
         new: 새 애플리케이션
         scopes: 범위
@@ -82,7 +83,10 @@ ko:
         invalid_client: 알 수 없는 클라이언트이기 때문에 클라이언트 인증이 실패하였습니다, 클라이언트 자격증명이 포함되지 않았거나, 지원 되지 않는 메소드입니다.
         invalid_grant: 제공된 권한 부여가 잘못되거나, 만료되었거나, 취소되었거나, 권한 부여 요청에 사용된 리디렉션 URI가 일치하지 않거나, 다른 클라이언트에 지정되었습니다.
         invalid_redirect_uri: 리디렉션 URI가 올바르지 않습니다
-        invalid_request: 요청에 필요한 매개변수가 없거나, 지원 되지 않는 매개변수가 있거나, 형식이 잘못되었습니다.
+        invalid_request:
+          missing_param: '필수 매개변수 누락: %{value}.'
+          request_not_authorized: 인증이 필요한 요청입니다. 인증 요청에 필요한 필수 매개 인자가 없거나 올바르지 않습니다.
+          unknown: 요청에 필요한 매개변수가 없거나, 지원 되지 않는 매개변수가 있거나, 형식이 잘못되었습니다.
         invalid_resource_owner: 제공 된 리소스 소유자 자격증명이 올바르지 않거나 리소스 소유자를 찾을 수 없습니다
         invalid_scope: 요청한 범위가 올바르지 않거나, 알 수 없거나, 잘못 된 형식입니다.
         invalid_token:
@@ -125,6 +129,7 @@ ko:
       read: 계정의 모든 데이터를 읽기
       read:accounts: 계정의 정보를 보기
       read:blocks: 차단을 보기
+      read:bookmarks: 내 보관함 보기
       read:favourites: 관심글을 보기
       read:filters: 필터를 보기
       read:follows: 팔로우를 보기
@@ -137,6 +142,7 @@ ko:
       write: 계정 정보 수정
       write:accounts: 프로필 수정
       write:blocks: 계정이나 도메인 차단
+      write:bookmarks: 게시글을 보관함에 넣기
       write:favourites: 관심글 지정
       write:filters: 필터 만들기
       write:follows: 사람을 팔로우

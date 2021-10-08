@@ -17,16 +17,17 @@
 #
 
 class Import < ApplicationRecord
-  FILE_TYPES = %w(text/plain text/csv).freeze
+  FILE_TYPES = %w(text/plain text/csv application/csv).freeze
   MODES = %i(merge overwrite).freeze
 
   self.inheritance_column = false
 
   belongs_to :account
 
-  enum type: [:following, :blocking, :muting, :domain_blocking]
+  enum type: [:following, :blocking, :muting, :domain_blocking, :bookmarks]
 
   validates :type, presence: true
+  validates_with ImportValidator, on: :create
 
   has_attached_file :data
   validates_attachment_content_type :data, content_type: FILE_TYPES

@@ -26,6 +26,7 @@ defaults: &defaults
   expand_spoilers: false
   preview_sensitive_media: false
   reduce_motion: false
+  disable_swiping: false
   show_application: true
   system_font_ui: false
   noindex: false
@@ -36,6 +37,7 @@ defaults: &defaults
   use_pending_items: false
   trends: true
   trendable_by_default: false
+  crop_images: true
   notification_emails:
     follow: false
     reblog: false
@@ -64,9 +66,9 @@ defaults: &defaults
   activity_api_enabled: true
   peers_api_enabled: true
   show_known_fediverse_at_about_page: true
-  spam_check_enabled: true
   show_domain_blocks: 'disabled'
   show_domain_blocks_rationale: 'disabled'
+  require_invite_text: false
 
 development:
   <<: *defaults

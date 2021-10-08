@@ -1,5 +1,219 @@
 ---
 br:
+  about:
+    about_this: Diàr-benn
+    active_count_after: oberiant
+    apps: Arloadoù pellgomz
+    apps_platforms: Ober get Mastodoñ àr iOS, Android ha savennoù arall
+    contact: Darempred
+    discover_users: Dizoleiñ implijer·ien·ezed
+    learn_more: Gouzout hiroc'h
+    privacy_policy: Reolennoù prevezded
+    source_code: Boneg tarzh
+    status_count_after:
+      few: toud
+      many: toud
+      one: toud
+      other: toud
+      two: toud
+    terms: Divizoù gwerzhañ hollek
+    unavailable_content_description:
+      domain: Dafariad
+    user_count_after:
+      few: implijer·ez
+      many: implijer·ez
+      one: implijer·ez
+      other: implijer·ez
+      two: implijer·ez
+    what_is_mastodon: Petra eo Mastodon?
+  accounts:
+    follow: Heuliañ
+    followers:
+      few: Heulier·ez
+      many: Heulier·ez
+      one: Heulier·ez
+      other: Heulier·ez
+      two: Heulier·ez
+    following: O heuliañ
+    never_active: Birviken
+    posts:
+      few: Toud
+      many: Toud
+      one: Toud
+      other: Toud
+      two: Toud
+    posts_tab_heading: Toudoù
+    posts_with_replies: Toudoù ha respontoù
+    roles:
+      admin: Merour
+      bot: Robot
+      group: Strollad
+    unavailable: Profil dihegerz
+    unfollow: Diheuliañ
+  admin:
+    account_moderation_notes:
+      delete: Dilemel
+    accounts:
+      by_domain: Domani
+      change_email:
+        current_email: Postel bremanel
+        label: Kemm ar postel
+        new_email: Postel nevez
+        submit: Kemm ar postel
+      deleted: Dilamet
+      domain: Domani
+      email: Postel
+      enable: Gweredekaat
+      enabled: Gweredekaet
+      followers: Heulier·ezed·ien
+      header: Talbenn
+      location:
+        local: Lec'hel
+        remote: A-bell
+      moderation:
+        active: Oberiant
+        silenced: Mudet
+        suspended: Astalet
+      perform_full_suspension: Astalañ
+      protocol: Komenad
+      public: Publik
+      reject: Nac'hañ
+      reject_all: Nac'hañ pep hini
+      remove_header: Dilemel an talbenn
+      reset: Adderaouekaat
+      reset_password: Adderaouekaat ar ger-tremen
+      roles:
+        admin: Merour
+        moderator: Habaskaer·ez
+        user: Implijer·ez
+      search: Klask
+      suspended: Astalet
+      title: Kontoù
+      username: Anv
+    action_logs:
+      action_types:
+        destroy_status: Dilemel ar statud
+      deleted_status: "(statud dilemet)"
+    announcements:
+      new:
+        create: Sevel ur gemenn
+        title: Kemenn nevez
+      title: Kemennoù
+    custom_emojis:
+      by_domain: Domani
+      copy: Eilañ
+      delete: Dilemel
+      disable: Diweredekaat
+      disabled: Diweredekaet
+      emoji: Fromlun
+      enable: Gweredekaat
+      enabled: Gweredekaet
+      list: Listenn
+    dashboard:
+      config: Kefluniadur
+      software: Meziant
+      title: Taolenn labour
+      trends: Luskadoù
+    domain_blocks:
+      domain: Domani
+      new:
+        create: Sevel ur stanker
+        severity:
+          noop: Hini ebet
+          silence: Mudañ
+          suspend: Astalañ
+      severity:
+        silence: mudet
+        suspend: astalet
+      show:
+        undo: Dizober
+    email_domain_blocks:
+      add_new: Ouzhpenniñ unan nevez
+      delete: Dilemel
+      domain: Domani
+      from_html: eus %{domain}
+      new:
+        create: Ouzhpenniñ un domani
+    instances:
+      by_domain: Domani
+      moderation:
+        all: Pep tra
+    invites:
+      filter:
+        available: Hegerzh
+    relays:
+      delete: Dilemel
+      disable: Diweredekaat
+      disabled: Diweredekaet
+      enable: Gweredekaat
+      enabled: Gweredekaet
+      save_and_enable: Enrollañ ha gweredekaat
+      status: Toud
+    reports:
+      account:
+        notes:
+          few: "%{count} a notennoù"
+          many: "%{count} a notennoù"
+          one: "%{count} a notennoù"
+          other: "%{count} a notennoù"
+          two: "%{count} a notennoù"
+      are_you_sure: Ha sur oc'h?
+      notes:
+        delete: Dilemel
+      status: Statud
+      updated_at: Nevesaet
+    settings:
+      domain_blocks:
+        all: D'an holl dud
+      site_title: Anv ar servijer
+      title: Arventennoù al lec'hienn
+    statuses:
+      batch:
+        delete: Dilemel
+      deleted: Dilamet
+      no_media: Media ebet
+    tags:
+      name: Ger-klik
+      title: Gerioù-klik
+    warning_presets:
+      add_new: Ouzhpenniñ unan nevez
+      delete: Dilemel
+  auth:
+    change_password: Ger-tremen
+    delete_account: Dilemel ar gont
+    login: Mont tre
+    logout: Digennaskañ
+    reset_password: Adderaouekaat ar ger-tremen
+    security: Diogelroez
+    setup:
+      title: Kefluniañ
+    status:
+      account_status: Statud ar gont
+  authorize_follow:
+    follow: Heuliañ
+    title: Heuliañ %{acct}
+  challenge:
+    confirm: Kenderc' hel
+    invalid_password: Ger-tremen diwiriek
+  date:
+    formats:
+      default: "%d %b %Y"
+      with_month_name: "%d a viz %B %Y"
+  datetime:
+    distance_in_words:
+      about_x_hours: "%{count}e"
+      about_x_months: "%{count}miz"
+      about_x_years: "%{count}b"
+      almost_x_years: "%{count}b"
+      half_a_minute: Diouzhtu
+      less_than_x_seconds: Diouzhtu
+      over_x_years: "%{count}b"
+      x_months: "%{count}miz"
+      x_seconds: "%{count}eil"
+  deletes:
+    proceed: Dilemel ar gont
+  directories:
+    directory: Roll ar profiloù
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
@@ -7,14 +221,99 @@ br:
     '406': This page is not available in the requested format.
     '410': The page you were looking for doesn't exist here anymore.
     '422': 
-    '429': Throttled
+    '429': Too many requests
     '500': 
     '503': The page could not be served due to a temporary server failure.
+  exports:
+    archive_takeout:
+      date: Deiziad
+      size: Ment
+    lists: Listennoù
+  featured_tags:
+    add_new: Ouzhpenniñ unan nevez
+  filters:
+    contexts:
+      account: Profiloù
+      notifications: Kemennoù
+    index:
+      delete: Dilemel
+      title: Siloù
+  footer:
+    developers: Diorroerien
+    more: Muioc'h…
+  generic:
+    all: Pep tra
+    copy: Eilañ
+    delete: Dilemel
+    order_by: Urzhiañ dre
+  identity_proofs:
+    identity: Identelezh
   invites:
     expires_in:
-      '1800': 30 minutes
-      '21600': 6 hours
-      '3600': 1 hour
-      '43200': 12 hours
-      '604800': 1 week
-      '86400': 1 day
+      '1800': 30 munutenn
+      '21600': 6 eur
+      '3600': 1 eur
+      '43200': 12 eur
+      '604800': 1 sizhun
+      '86400': 1 deiz
+    expires_in_prompt: Birviken
+    title: Pediñ tud
+  notification_mailer:
+    follow:
+      title: Heulier nevez
+    mention:
+      action: Respont
+  otp_authentication:
+    enable: Gweredekaat
+    setup: Kefluniañ
+  relationships:
+    followers: Heulier·ezed·ien
+    following: O heuliañ
+  sessions:
+    browser: Merdeer
+    browsers:
+      generic: Merdeer dianav
+    description: "%{browser} war %{platform}"
+    platforms:
+      other: savenn dianav
+  settings:
+    account: Kont
+    account_settings: Arventennoù ar gont
+    development: Diorren
+    edit_profile: Aozañ ar profil
+    import: Enporzhiañ
+    import_and_export: Enporzhiañ hag ezporzhiañ
+    preferences: Gwellvezioù
+    profile: Profil
+  statuses:
+    attached:
+      image:
+        few: "%{count} skeudenn"
+        many: "%{count} skeudenn"
+        one: "%{count} skeudenn"
+        other: "%{count} skeudenn"
+        two: "%{count} skeudenn"
+    show_more: Diskouez muioc'h
+    visibilities:
+      public: Publik
+  stream_entries:
+    pinned: Toud spilhennet
+  themes:
+    default: Mastodoñ (Teñval)
+    mastodon-light: Mastodoñ (Sklaer)
+  time:
+    formats:
+      default: "%He%M, %d %b %Y"
+  two_factor_authentication:
+    add: Ouzhpennañ
+    disable: Diweredekaat
+    edit: Aozañ
+  user_mailer:
+    warning:
+      title:
+        none: Diwall
+    welcome:
+      edit_profile_action: Kefluniañ ar profil
+      subject: Donemat e Mastodoñ
+  webauthn_credentials:
+    delete: Dilemel

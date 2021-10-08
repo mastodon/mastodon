@@ -3,50 +3,66 @@ cs:
   simple_form:
     hints:
       account_alias:
-        acct: Zadejte přezdívku@doménu účtu, ze kterého se chcete přesunout
+        acct: Zadejte svůj účet, ze kterého se chcete přesunout jinam, ve formátu přezdívka@doména
       account_migration:
-        acct: Zadejte přezdívku@doménu účtu, na který se chcete přesunout
+        acct: Zadejte svůj účet, na který se chcete přesunout, ve formátu přezdívka@doména
       account_warning_preset:
-        text: Můžete používat syntaxi tootů, jako například URL, hashtagy a zmínky
+        text: Můžete použít syntax příspěvku, jako jsou URL, hashtagy nebo zmínky
+        title: Nepovinné. Není viditelné pro příjemce
       admin_account_action:
-        include_statuses: Uživatel uvidí, které tooty způsobily moderátorskou akci nebo varování
+        include_statuses: Uživatel uvidí, které příspěvky způsobily moderátorskou akci nebo varování
         send_email_notification: Uživatel obdrží vysvětlení toho, co se stalo s jeho účtem
-        text_html: Volitelné. Můžete používat syntaxi tootů. Pro ušetření času si můžete <a href="%{path}">přidat předlohy pro varování</a>
-        type_html: Vyberte, co chcete udělat s účtem <strong>%{acct}</strong>
-        warning_preset_id: Volitelné. Můžete stále vložit na konec předlohy vlastní text
+        text_html: Volitelné. Můžete používat syntax příspěvků. Pro ušetření času můžete <a href="%{path}">přidat předlohy varování</a>
+        type_html: Vyberte, co chcete s účtem <strong>%{acct}</strong> udělat
+        types:
+          disable: Zabránit uživateli používat svůj účet, ale nemazat ani neskrývat jejich obsah.
+          none: Toto použijte pro zaslání varování uživateli, bez vyvolání jakékoliv další akce.
+          sensitive: Vynutit označení všech mediálních příloh tohoto uživatele jako citlivých.
+          silence: Zamezit uživateli odesílat příspěvky s veřejnou viditelností, schovat jejich příspěvky a notifikace před lidmi, kteří je nesledují.
+          suspend: Zamezit jakékoliv interakci z nebo do tohoto účtu a smazat jeho obsah. Vratné do 30 dnů.
+        warning_preset_id: Volitelné. Na konec předlohy můžete stále vložit vlastní text
+      announcement:
+        all_day: Po vybrání budou zobrazeny jenom dny z časového období
+        ends_at: Volitelné. Zveřejněné oznámení bude v uvedený čas skryto
+        scheduled_at: Pro okamžité zveřejnění ponechte prázdné
+        starts_at: Volitelné. Jen pokud je oznámení vázáno na konkrétní časové období
+        text: Můžete použít syntax příspěvků. Mějte prosím na paměti, kolik prostoru oznámení zabere na obrazovce uživatele
       defaults:
-        autofollow: Lidé, kteří se zaregistrují přes pozvání, vás budou automaticky sledovat
+        autofollow: Lidé, kteří se zaregistrují na základě pozvánky, vás budou automaticky sledovat
         avatar: PNG, GIF či JPG. Maximálně %{size}. Bude zmenšen na %{dimensions} px
-        bot: Tento účet provádí hlavně automatizované akce a nemusí být spravován
+        bot: Signalizovat ostatním, že účet převážně vykonává automatizované akce a nemusí být monitorován
         context: Jeden či více kontextů, ve kterých má být filtr uplatněn
-        current_password: Z bezpečnostních důvodů prosím zadejte heslo aktuálního účtu
-        current_username: Prosím potvrďte zadáním uživatelského jména aktuálního účtu
-        digest: Odesíláno pouze po dlouhé době nečinnosti a pouze, pokud jste při své nepřítomnosti obdržel/a osobní zprávy
-        discoverable: Adresář profilů je další způsob, díky kterému se může váš účet dostat k širšímu publiku
+        current_password: Z bezpečnostních důvodů prosím zadejte heslo současného účtu
+        current_username: Potvrďte prosím tuto akci zadáním uživatelského jména aktuálního účtu
+        digest: Odesíláno pouze po dlouhé době nečinnosti a pouze, pokud jste při své nepřítomnosti obdrželi osobní zprávy
+        discoverable: Umožnit, aby mohli váš účet objevit neznámí lidé pomocí doporučení a dalších funkcí
         email: Bude vám poslán potvrzovací e-mail
         fields: Na profilu můžete mít až 4 položky zobrazené jako tabulka
         header: PNG, GIF či JPG. Maximálně %{size}. Bude zmenšen na %{dimensions} px
         inbox_url: Zkopírujte URL z hlavní stránky mostu, který chcete použít
-        irreversible: Filtrované tooty nenávratně zmizí, i pokud bude filtr později odstraněn
+        irreversible: Filtrované příspěvky nenávratně zmizí, i pokud bude filtr později odstraněn
         locale: Jazyk uživatelského rozhraní, e-mailů a oznámení push
-        locked: Vyžaduje, abyste ručně schvaloval/a sledující
+        locked: Kontrolujte, kdo vás může sledovat pomocí schvalování žádostí o sledování
         password: Použijte alespoň 8 znaků
-        phrase: Shoda bude nalezena bez ohledu na velikost písmen v těle tootu či varování o obsahu
+        phrase: Shoda bude nalezena bez ohledu na velikost písmen v textu příspěvku či varování o obsahu
         scopes: Která API bude aplikaci povoleno používat. Pokud vyberete rozsah nejvyššího stupně, nebudete je muset vybírat jednotlivě.
-        setting_aggregate_reblogs: Nezobrazovat nové boosty pro tooty, které byly nedávno boostnuty (ovlivňuje pouze nově přijaté boosty)
+        setting_aggregate_reblogs: Nezobrazovat nové boosty pro příspěvky, které byly nedávno boostnuty (ovlivňuje pouze nově přijaté boosty)
         setting_default_sensitive: Citlivá média jsou ve výchozím stavu skryta a mohou být zobrazena kliknutím
         setting_display_media_default: Skrývat média označená jako citlivá
-        setting_display_media_hide_all: Vždy skrývat všechna média
-        setting_display_media_show_all: Vždy zobrazovat média označená jako citlivá
-        setting_hide_network: Koho sledujete a kdo sleduje vás nebude zobrazeno na vašem profilu
-        setting_noindex: Ovlivňuje váš veřejný profil a stránky tootů
-        setting_show_application: Aplikace, kterou používáte k psaní tootů, bude zobrazena v detailním zobrazení vašich tootů
+        setting_display_media_hide_all: Vždy skrývat média
+        setting_display_media_show_all: Vždy zobrazovat média
+        setting_hide_network: Koho sledujete a kdo sleduje vás bude na vašem profilu skryto
+        setting_noindex: Ovlivňuje váš veřejný profil a stránky příspěvků
+        setting_show_application: Aplikace, kterou používáte k odeslání příspěvků, bude zobrazena jejich detailním zobrazení
         setting_use_blurhash: Gradienty jsou založeny na barvách skryté grafiky, ale zakrývají jakékoliv detaily
-        setting_use_pending_items: Skrýt aktualizace časové osy a načíst je kliknutím namísto automatického rolování proudu
-        username: Vaše uživatelské jméno bude na %{domain} unikátní
+        setting_use_pending_items: Aktualizovat časovou osu až po kliknutím namísto automatického rolování kanálu
+        username: Vaše uživatelské jméno bude na serveru %{domain} unikátní
         whole_word: Je-li klíčové slovo či fráze pouze alfanumerická, bude aplikována pouze, pokud se shoduje s celým slovem
       domain_allow:
         domain: Tato doména bude moci stahovat data z tohoto serveru a příchozí data z ní budou zpracována a uložena
+      email_domain_block:
+        domain: Toto může být název domény v e-mailové adresy, její MX záznam nebo IP adresa odpovídající MX záznamu. Při registraci uživatele dojde k jejich kontrole a registrace bude zamítnuta.
+        with_dns_records: Dojde k pokusu o překlad DNS záznamů dané domény a výsledky budou rovněž zablokovány
       featured_tag:
         name: 'Nejspíš budete chtít použít jeden z těchto:'
       form_challenge:
@@ -54,13 +70,24 @@ cs:
       imports:
         data: Soubor CSV exportovaný z jiného serveru Mastodon
       invite_request:
-        text: To nám pomůže posoudit váš požadavek
+        text: To nám pomůže posoudit vaši žádost
+      ip_block:
+        comment: Nepovinné. Poznamenejte si, proč jste přidali toto pravidlo.
+        expires_in: IP adresy jsou omezeným zdrojem, občas jsou sdílené a často mění majitele. Proto se jejich časově neomezené blokování nedoporučuje.
+        ip: Zadejte IPv4 nebo IPv6 adresu. Můžete blokovat celé rozsahy použitím CIDR notace. Dejte pozor, ať neodříznete přístup sami sobě!
+        severities:
+          no_access: Blokovat přístup ke všem zdrojům
+          sign_up_requires_approval: Nové registrace budou vyžadovat schválení
+        severity: Zvolte, jak naložit s požadavky z dané IP
+      rule:
+        text: Popište pravidlo nebo požadavek uživatelům tohoto serveru. Snažte se ho držet krátký a jednoduchý
       sessions:
-        otp: 'Napište dvoufázový kód vygenerovaný vaší mobilní aplikací, nebo použijte jeden z vašich záložních kódů:'
+        otp: 'Zadejte kód pro dvoufázové ověření vygenerovaný vaší mobilní aplikací, nebo použijte jeden z vašich záložních kódů:'
+        webauthn: Pokud jde o USB klíč, vložte jej a případně se dotkněte jeho tlačítka.
       tag:
         name: Můžete měnit pouze velikost písmen, například kvůli lepší čitelnosti
       user:
-        chosen_languages: Je-li tohle zaškrtnuto, budou ve veřejných časových osách zobrazeny pouze tooty ve zvolených jazycích
+        chosen_languages: Po zaškrtnutí budou ve veřejných časových osách zobrazeny pouze příspěvky ve zvolených jazycích
     labels:
       account:
         fields:
@@ -72,17 +99,25 @@ cs:
         acct: Adresa nového účtu
       account_warning_preset:
         text: Text předlohy
+        title: Nadpis
       admin_account_action:
-        include_statuses: Zahrnout v e-mailu nahlášené tooty
+        include_statuses: Zahrnout v e-mailu nahlášené příspěvky
         send_email_notification: Informovat uživatele e-mailem
         text: Vlastní varování
         type: Akce
         types:
-          disable: Deaktivovat
+          disable: Deaktivovat přihlašování
           none: Nic nedělat
-          silence: Utišit
-          suspend: Pozastavit a nenávratně smazat data účtu
+          sensitive: Citlivý
+          silence: Ztišit
+          suspend: Pozastavit účet a nenávratně smazat jeho data
         warning_preset_id: Použít předlohu pro varování
+      announcement:
+        all_day: Celodenní událost
+        ends_at: Konec události
+        scheduled_at: Naplánovat zveřejnění
+        starts_at: Začátek události
+        text: Oznámení
       defaults:
         autofollow: Pozvat ke sledování vašeho účtu
         avatar: Avatar
@@ -93,50 +128,56 @@ cs:
         context: Kontexty filtrů
         current_password: Současné heslo
         data: Data
-        discoverable: Zveřejnit tento účet v adresáři
+        discoverable: Navrhovat účet ostatním
         display_name: Zobrazované jméno
         email: E-mailová adresa
         expires_in: Vypršet za
         fields: Metadata profilu
         header: Záhlaví
+        honeypot: "%{label} (nevyplňovat)"
         inbox_url: URL příchozí schránky mostu
         irreversible: Zahodit místo skrytí
         locale: Jazyk rozhraní
-        locked: Uzamknout účet
+        locked: Vynutit žádosti o sledování
         max_uses: Maximální počet použití
         new_password: Nové heslo
         note: O vás
-        otp_attempt: Dvoufázový kód
+        otp_attempt: Kód pro dvoufázové ověření
         password: Heslo
         phrase: Klíčové slovo či fráze
         setting_advanced_layout: Povolit pokročilé webové rozhraní
         setting_aggregate_reblogs: Seskupovat boosty v časových osách
         setting_auto_play_gif: Automaticky přehrávat animace GIF
-        setting_boost_modal: Zobrazovat před boostnutím potvrzovací okno
+        setting_boost_modal: Před boostnutím zobrazovat potvrzovací okno
+        setting_crop_images: Ořezávat obrázky v nerozbalených příspěvcích na 16x9
         setting_default_language: Jazyk příspěvků
         setting_default_privacy: Soukromí příspěvků
         setting_default_sensitive: Vždy označovat média jako citlivá
-        setting_delete_modal: Zobrazovat před smazáním tootu potvrzovací okno
+        setting_delete_modal: Před smazáním příspěvku zobrazovat potvrzovací dialog
+        setting_disable_swiping: Vypnout gesta přejetí prsty
         setting_display_media: Zobrazování médií
         setting_display_media_default: Výchozí
         setting_display_media_hide_all: Skrýt vše
         setting_display_media_show_all: Zobrazit vše
-        setting_expand_spoilers: Vždy rozbalit tooty označené varováními o obsahu
-        setting_hide_network: Skrýt svou síť
+        setting_expand_spoilers: Vždy rozbalit příspěvky označené varováními o obsahu
+        setting_hide_network: Skrýt mou síť
         setting_noindex: Neindexovat svůj profil vyhledávači
-        setting_reduce_motion: Redukovat pohyb v animacích
-        setting_show_application: Zobrazit aplikaci používanou k psaní tootů
+        setting_reduce_motion: Omezit pohyb v animacích
+        setting_show_application: Odhalit aplikaci použitou k odeslání příspěvků
         setting_system_font_ui: Použít výchozí písmo systému
-        setting_theme: Motiv stránky
-        setting_trends: Zobrazit dnešní trendy
-        setting_unfollow_modal: Zobrazovat před zrušením sledování potvrzovací okno
+        setting_theme: Vzhled stránky
+        setting_trends: Zobrazit dnes populární hashtagy
+        setting_unfollow_modal: Před zrušením sledování zobrazovat potvrzovací okno
         setting_use_blurhash: Zobrazit pro skrytá média barevné gradienty
         setting_use_pending_items: Pomalý režim
-        severity: Přísnost
+        severity: Vážnost
+        sign_in_token_attempt: Bezpečnostní kód
         type: Typ importu
         username: Uživatelské jméno
         username_or_email: Uživatelské jméno nebo e-mail
         whole_word: Celé slovo
+      email_domain_block:
+        with_dns_records: Zahrnout MX záznamy a IP adresy domény
       featured_tag:
         name: Hashtag
       interactions:
@@ -147,24 +188,36 @@ cs:
         comment: Komentář
       invite_request:
         text: Proč se chcete připojit?
+      ip_block:
+        comment: Komentář
+        ip: IP
+        severities:
+          no_access: Blokovat přístup
+          sign_up_requires_approval: Omezit registrace
+        severity: Pravidlo
       notification_emails:
         digest: Posílat e-maily s přehledem
-        favourite: Posílat e-maily, když si někdo oblíbí váš toot
-        follow: Posílat e-maily, když vás někdo začne sledovat
-        follow_request: Posílat e-maily, když vás někdo požádá o sledování
-        mention: Posílat e-maily, když vás někdo zmíní
-        pending_account: Posílat e-maily, když je třeba posoudit nový účet
-        reblog: Posílat e-maily, když někdo boostne váš toot
-        report: Posílat e-maily, je-li odesláno nové nahlášení
-        trending_tag: Posílat e-maily, když se neschválený hashtag stane populárním
+        favourite: Někdo si oblíbil váš příspěvek
+        follow: Někdo vás začal sledovat
+        follow_request: Někdo požádal o možnost vás sledovat
+        mention: Někdo vás zmínil
+        pending_account: Je třeba posoudit nový účet
+        reblog: Někdo boostnul váš příspěvek
+        report: Je odesláno nové hlášení
+        trending_tag: Neposouzený hashtag je populární
+      rule:
+        text: Pravidlo
       tag:
-        listable: Dovolit tomuto hashtagu objevovat se v hledáních a v adresáři profilů
+        listable: Povolit zobrazení tohoto hashtagu ve vyhledávání a návrzích
         name: Hashtag
-        trendable: Dovolit tomuto hashtagu objevovat se v trendech
-        usable: Dovolit tootům používat tento hashtag
+        trendable: Povolit zobrazení tohoto hashtagu mezi populárními
+        usable: Povolit používat tento hashtag v příspěvcích
     'no': Ne
     recommended: Doporučeno
     required:
       mark: "*"
-      text: požadováno
+      text: vyžadováno
+    title:
+      sessions:
+        webauthn: K přihlášení použijte jeden z Vašich bezpečnostních klíčů
     'yes': Ano

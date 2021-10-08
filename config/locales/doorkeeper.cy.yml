@@ -38,6 +38,7 @@ cy:
         application: Rhaglen
         callback_url: URL galw-nôl
         delete: Dileu
+        empty: Nid oes gennych unrhyw ceisiadau.
         name: Enw
         new: Rhaglen newydd
         scopes: Rhinweddau
@@ -82,7 +83,6 @@ cy:
         invalid_client: Methwyd dilysu cleient oherwydd cleient anhysbys, methiant i gynnwys dilysu cleient, neu defnydd o ddull dilysu nid yw'n cael ei gefnodi.
         invalid_grant: Mae'r grant dilysu a ddarparwyd yn annilys, wedi dod i ben, wedi'i wrthod, ddim yn cyfateb a'r URI ailgyferio a ddefnyddiwyd yn y cais dilysu, neu wedi ei ddarparu i gleient arall.
         invalid_redirect_uri: Nid yw'r uri ailgyfeirio cynnwysiedig yn gyfredol.
-        invalid_request: Nid yw'r cais yn cynnwys paramedr angenrheidiol, yn cynnwys paramader paramedr nad yw'n cael ei gefnogi, neu wedi ei gamffurfio mewn rhyw fodd arall.
         invalid_resource_owner: Nid yw meini prawf perchennog yr adnodd yn ddilys, neu ni ellir canfod perchennog yr adnodd
         invalid_scope: Mae'r sgôp a geisiwyd amdano yn annilys, anhysbys, neu'n gamffurfiedig.
         invalid_token:
@@ -125,6 +125,7 @@ cy:
       read: darllen holl ddata eich cyfrif
       read:accounts: gweld gwybodaeth y cyfrif
       read:blocks: gweld eich blociau
+      read:bookmarks: gweld eich tudalnodau
       read:favourites: gweld eich ffefrynnau
       read:filters: gweld eich hidlwyr
       read:follows: gweld eich dilynwyr
@@ -137,6 +138,7 @@ cy:
       write: addasu holl ddata eich cyfri
       write:accounts: addasu eich proffil
       write:blocks: blocio cyfrifon a parthau
+      write:bookmarks: statwsau tudalnod
       write:favourites: hoff dŵtiau
       write:filters: creu hidlwyr
       write:follows: dilyn pobl

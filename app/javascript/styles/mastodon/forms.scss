@@ -11,7 +11,29 @@ code {
   margin: 0 auto;
 }
 
+.indicator-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  color: $primary-text-color;
+
+  &.success {
+    background: $success-green;
+  }
+
+  &.failure {
+    background: $error-red;
+  }
+}
+
 .simple_form {
+  &.hidden {
+    display: none;
+  }
+
   .input {
     margin-bottom: 15px;
     overflow: hidden;
@@ -100,6 +122,14 @@ code {
     }
   }
 
+  .title {
+    color: #d9e1e8;
+    font-size: 20px;
+    line-height: 28px;
+    font-weight: 400;
+    margin-bottom: 30px;
+  }
+
   .hint {
     color: $darker-text-color;
 
@@ -140,6 +170,10 @@ code {
       margin-top: 15px;
       margin-bottom: 0;
     }
+  }
+
+  .authentication-hint {
+    margin-bottom: 25px;
   }
 
   .card {
@@ -222,6 +256,12 @@ code {
     }
   }
 
+  .input.datetime .label_input select {
+    display: inline-block;
+    width: auto;
+    flex: 0;
+  }
+
   .required abbr {
     text-decoration: none;
     color: lighten($error-value-color, 12%);
@@ -279,6 +319,14 @@ code {
         margin-bottom: 25px;
       }
     }
+
+    .fields-group.invited-by {
+      margin-bottom: 30px;
+
+      .hint {
+        text-align: center;
+      }
+    }
   }
 
   .input.radio_buttons .radio label {
@@ -324,6 +372,7 @@ code {
   input[type=number],
   input[type=email],
   input[type=password],
+  input[type=url],
   textarea {
     box-sizing: border-box;
     font-size: 16px;
@@ -346,10 +395,6 @@ code {
       box-shadow: none;
     }
 
-    &:focus:invalid:not(:placeholder-shown) {
-      border-color: lighten($error-red, 12%);
-    }
-
     &:required:valid {
       border-color: $valid-value-color;
     }
@@ -362,6 +407,16 @@ code {
     &:focus {
       border-color: $highlight-text-color;
       background: darken($ui-base-color, 8%);
+    }
+  }
+
+  input[type=text],
+  input[type=number],
+  input[type=email],
+  input[type=password] {
+    &:focus:invalid:not(:placeholder-shown),
+    &:required:invalid:not(:placeholder-shown) {
+      border-color: lighten($error-red, 12%);
     }
   }
 
@@ -513,6 +568,10 @@ code {
   &__overlay-area {
     position: relative;
 
+    &__blurred form {
+      filter: blur(2px);
+    }
+
     &__overlay {
       position: absolute;
       top: 0;
@@ -523,8 +582,10 @@ code {
       justify-content: center;
       align-items: center;
       background: rgba($ui-base-color, 0.65);
-      backdrop-filter: blur(2px);
       border-radius: 4px;
+      margin-left: -4px;
+      margin-top: -4px;
+      padding: 4px;
 
       &__content {
         text-align: center;
@@ -561,10 +622,20 @@ code {
     color: $valid-value-color;
   }
 
+  &.warning {
+    border: 1px solid rgba($gold-star, 0.5);
+    background: rgba($gold-star, 0.25);
+    color: $gold-star;
+  }
+
   &.alert {
     border: 1px solid rgba($error-value-color, 0.5);
-    background: rgba($error-value-color, 0.25);
+    background: rgba($error-value-color, 0.1);
     color: $error-value-color;
+  }
+
+  &.hidden {
+    display: none;
   }
 
   a {
@@ -575,6 +646,19 @@ code {
     &:hover {
       color: $primary-text-color;
       text-decoration: underline;
+    }
+  }
+
+  &.warning a {
+    font-weight: 700;
+    color: inherit;
+    text-decoration: underline;
+
+    &:hover,
+    &:focus,
+    &:active {
+      text-decoration: none;
+      color: inherit;
     }
   }
 
@@ -622,6 +706,38 @@ code {
 
   @media screen and (max-width: 740px) and (min-width: 441px) {
     margin-top: 40px;
+  }
+
+  &.translation-prompt {
+    text-align: unset;
+    color: unset;
+
+    a {
+      text-decoration: underline;
+    }
+  }
+}
+
+.flash-message-stack {
+  margin-bottom: 30px;
+
+  .flash-message {
+    border-radius: 0;
+    margin-bottom: 0;
+    border-top-width: 0;
+
+    &:first-child {
+      border-radius: 4px 4px 0 0;
+      border-top-width: 1px;
+    }
+
+    &:last-child {
+      border-radius: 0 0 4px 4px;
+
+      &:first-child {
+        border-radius: 4px;
+      }
+    }
   }
 }
 
@@ -942,5 +1058,12 @@ code {
     align-items: flex-start;
     display: flex;
     flex-direction: row;
+  }
+}
+
+.input.user_confirm_password,
+.input.user_website {
+  &:not(.field_with_errors) {
+    display: none;
   }
 }

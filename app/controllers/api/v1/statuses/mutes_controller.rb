@@ -8,8 +8,6 @@ class Api::V1::Statuses::MutesController < Api::BaseController
   before_action :set_status
   before_action :set_conversation
 
-  respond_to :json
-
   def create
     current_account.mute_conversation!(@conversation)
     @mutes_map = { @conversation.id => true }
@@ -30,8 +28,7 @@ class Api::V1::Statuses::MutesController < Api::BaseController
     @status = Status.find(params[:status_id])
     authorize @status, :show?
   rescue Mastodon::NotPermittedError
-    # Reraise in order to get a 404 instead of a 403 error code
-    raise ActiveRecord::RecordNotFound
+    not_found
   end
 
   def set_conversation

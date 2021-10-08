@@ -1,17 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { defineMessages, injectIntl } from 'react-intl';
+import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import { EmojiPicker as EmojiPickerAsync } from '../../ui/util/async-components';
 import Overlay from 'react-overlays/lib/Overlay';
 import classNames from 'classnames';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import detectPassiveEvents from 'detect-passive-events';
+import { supportsPassiveEvents } from 'detect-passive-events';
 import { buildCustomEmojis, categoriesFromEmojis } from '../../emoji/emoji';
+import { assetHost } from 'mastodon/utils/config';
 
 const messages = defineMessages({
   emoji: { id: 'emoji_button.label', defaultMessage: 'Insert emoji' },
   emoji_search: { id: 'emoji_button.search', defaultMessage: 'Search...' },
-  emoji_not_found: { id: 'emoji_button.not_found', defaultMessage: 'No emojos!! (╯°□°）╯︵ ┻━┻' },
   custom: { id: 'emoji_button.custom', defaultMessage: 'Custom' },
   recent: { id: 'emoji_button.recent', defaultMessage: 'Frequently used' },
   search_results: { id: 'emoji_button.search_results', defaultMessage: 'Search results' },
@@ -25,11 +25,27 @@ const messages = defineMessages({
   flags: { id: 'emoji_button.flags', defaultMessage: 'Flags' },
 });
 
-const assetHost = process.env.CDN_HOST || '';
 let EmojiPicker, Emoji; // load asynchronously
 
-const backgroundImageFn = () => `${assetHost}/emoji/sheet_10.png`;
-const listenerOptions = detectPassiveEvents.hasSupport ? { passive: true } : false;
+const listenerOptions = supportsPassiveEvents ? { passive: true } : false;
+
+const backgroundImageFn = () => `${assetHost}/emoji/sheet_13.png`;
+
+const notFoundFn = () => (
+  <div className='emoji-mart-no-results'>
+    <Emoji
+      emoji='sleuth_or_spy'
+      set='twitter'
+      size={32}
+      sheetSize={32}
+      backgroundImageFn={backgroundImageFn}
+    />
+
+    <div className='emoji-mart-no-results-label'>
+      <FormattedMessage id='emoji_button.not_found' defaultMessage='No matching emojis found' />
+    </div>
+  </div>
+);
 
 class ModifierPickerMenu extends React.PureComponent {
 
@@ -182,7 +198,6 @@ class EmojiPickerMenu extends React.PureComponent {
 
     return {
       search: intl.formatMessage(messages.emoji_search),
-      notfound: intl.formatMessage(messages.emoji_not_found),
       categories: {
         search: intl.formatMessage(messages.search_results),
         recent: intl.formatMessage(messages.recent),
@@ -199,12 +214,13 @@ class EmojiPickerMenu extends React.PureComponent {
     };
   }
 
-  handleClick = emoji => {
+  handleClick = (emoji, event) => {
     if (!emoji.native) {
       emoji.native = emoji.colons;
     }
-
-    this.props.onClose();
+    if (!(event.ctrlKey || event.metaKey)) {
+      this.props.onClose();
+    }
     this.props.onPick(emoji);
   }
 
@@ -262,7 +278,9 @@ class EmojiPickerMenu extends React.PureComponent {
           recent={frequentlyUsedEmojis}
           skin={skinTone}
           showPreview={false}
+          showSkinTones={false}
           backgroundImageFn={backgroundImageFn}
+          notFound={notFoundFn}
           autoFocus
           emojiTooltip
         />
@@ -290,6 +308,7 @@ class EmojiPickerDropdown extends React.PureComponent {
     onPickEmoji: PropTypes.func.isRequired,
     onSkinTone: PropTypes.func.isRequired,
     skinTone: PropTypes.number.isRequired,
+    button: PropTypes.node,
   };
 
   state = {
@@ -313,7 +332,7 @@ class EmojiPickerDropdown extends React.PureComponent {
 
         this.setState({ loading: false });
       }).catch(() => {
-        this.setState({ loading: false });
+        this.setState({ loading: false, active: false });
       });
     }
 
@@ -350,18 +369,18 @@ class EmojiPickerDropdown extends React.PureComponent {
   }
 
   render () {
-    const { intl, onPickEmoji, onSkinTone, skinTone, frequentlyUsedEmojis } = this.props;
+    const { intl, onPickEmoji, onSkinTone, skinTone, frequentlyUsedEmojis, button } = this.props;
     const title = intl.formatMessage(messages.emoji);
     const { active, loading, placement } = this.state;
 
     return (
       <div className='emoji-picker-dropdown' onKeyDown={this.handleKeyDown}>
         <div ref={this.setTargetRef} className='emoji-button' title={title} aria-label={title} aria-expanded={active} role='button' onClick={this.onToggle} onKeyDown={this.onToggle} tabIndex={0}>
-          <img
+          {button || <img
             className={classNames('emojione', { 'pulse-loading': active && loading })}
             alt='🙂'
             src={`${assetHost}/emoji/1f602.svg`}
-          />
+          />}
         </div>
 
         <Overlay show={active} placement={placement} target={this.findTarget}>

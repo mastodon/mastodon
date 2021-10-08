@@ -4,7 +4,7 @@ RSpec.describe BatchedRemoveStatusService, type: :service do
   subject { BatchedRemoveStatusService.new }
 
   let!(:alice)  { Fabricate(:account) }
-  let!(:bob)    { Fabricate(:account, username: 'bob', domain: 'example.com', salmon_url: 'http://example.com/salmon') }
+  let!(:bob)    { Fabricate(:account, username: 'bob', domain: 'example.com') }
   let!(:jeff)   { Fabricate(:user).account }
   let!(:hank)   { Fabricate(:account, username: 'hank', protocol: :activitypub, domain: 'example.com', inbox_url: 'http://example.com/inbox') }
 
@@ -26,6 +26,11 @@ RSpec.describe BatchedRemoveStatusService, type: :service do
     subject.call([status1, status2])
   end
 
+  it 'removes statuses' do
+    expect { Status.find(status1.id) }.to raise_error ActiveRecord::RecordNotFound
+    expect { Status.find(status2.id) }.to raise_error ActiveRecord::RecordNotFound
+  end
+
   it 'removes statuses from author\'s home feed' do
     expect(HomeFeed.new(alice).get(10)).to_not include([status1.id, status2.id])
   end
@@ -36,10 +41,6 @@ RSpec.describe BatchedRemoveStatusService, type: :service do
 
   it 'notifies streaming API of followers' do
     expect(Redis.current).to have_received(:publish).with("timeline:#{jeff.id}", any_args).at_least(:once)
-  end
-
-  it 'notifies streaming API of author' do
-    expect(Redis.current).to have_received(:publish).with("timeline:#{alice.id}", any_args).at_least(:once)
   end
 
   it 'notifies streaming API of public timeline' do

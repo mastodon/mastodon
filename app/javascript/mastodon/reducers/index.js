@@ -16,6 +16,7 @@ import push_notifications from './push_notifications';
 import status_lists from './status_lists';
 import mutes from './mutes';
 import blocks from './blocks';
+import boosts from './boosts';
 import reports from './reports';
 import contexts from './contexts';
 import compose from './compose';
@@ -34,8 +35,13 @@ import polls from './polls';
 import identity_proofs from './identity_proofs';
 import trends from './trends';
 import missed_updates from './missed_updates';
+import announcements from './announcements';
+import markers from './markers';
+import picture_in_picture from './picture_in_picture';
+import accounts_map from './accounts_map';
 
 const reducers = {
+  announcements,
   dropdown_menu,
   timelines,
   meta,
@@ -47,12 +53,14 @@ const reducers = {
   status_lists,
   accounts,
   accounts_counters,
+  accounts_map,
   statuses,
   relationships,
   settings,
   push_notifications,
   mutes,
   blocks,
+  boosts,
   reports,
   contexts,
   compose,
@@ -71,6 +79,8 @@ const reducers = {
   polls,
   trends,
   missed_updates,
+  markers,
+  picture_in_picture,
 };
 
 export default combineReducers(reducers);

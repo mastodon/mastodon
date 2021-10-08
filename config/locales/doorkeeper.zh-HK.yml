@@ -3,8 +3,8 @@ zh-HK:
   activerecord:
     attributes:
       doorkeeper/application:
-        name: 名稱
-        redirect_uri: 轉接 URI
+        name: 應用程式名稱
+        redirect_uri: 重新導向 URI
         scopes: 權限範圍
         website: 應用網站
     errors:
@@ -12,10 +12,10 @@ zh-HK:
         doorkeeper/application:
           attributes:
             redirect_uri:
-              fragment_present: URI 不可包含 "#fragment" 部份。
-              invalid_uri: 必需有正確的 URI。
-              relative_uri: 必需為完整 URI。
-              secured_uri: 必需使用有 HTTPS/SSL 加密的 URI。
+              fragment_present: 不能包含 fragment。
+              invalid_uri: 必需是一個有效的 URI。
+              relative_uri: 必須為絕對 URI。
+              secured_uri: 必須為 HTTPS/SSL 加密的 URI。
   doorkeeper:
     applications:
       buttons:
@@ -32,25 +32,26 @@ zh-HK:
         error: 噢！請檢查你表格的錯誤訊息
       help:
         native_redirect_uri: 使用 %{native_redirect_uri} 作局部測試
-        redirect_uri: 每行輸入一個 URI
+        redirect_uri: 一行一個 URI
         scopes: 請用半形空格分開權限範圍 (scope)。留空表示使用預設的權限範圍。
       index:
-        application: 應用
-        callback_url: 回傳網址
+        application: 應用程式
+        callback_url: 回傳網址 (Callback URL)
         delete: 刪除
+        empty: 你沒有應用程式
         name: 名稱
         new: 新增應用程式
-        scopes: 權限範圍
+        scopes: 權限範圍 (Scopes)
         show: 顯示
         title: 你的應用程式
       new:
         title: 新增應用程式
       show:
         actions: 操作
-        application_id: 應用程式 ID
-        callback_urls: 回傳網址
-        scopes: 權限範圍
-        secret: 密碼
+        application_id: 用戶程式鑰匙 (Client key)
+        callback_urls: 回傳網址 (Callback URL)
+        scopes: 權限範圍 (Scopes)
+        secret: 用戶程式密碼 (Client secret)
         title: 應用程式︰ %{name}
     authorizations:
       buttons:
@@ -59,7 +60,7 @@ zh-HK:
       error:
         title: 發生錯誤
       new:
-        able_to: 要求獲取權限
+        able_to: 它將可以
         prompt: 應用程式 %{client_name} 要求得到你用戶的部份權限
         title: 需要用戶授權
       show:
@@ -72,26 +73,30 @@ zh-HK:
       index:
         application: 應用程式
         created_at: 授權日期
-        scopes: 權限範圍
+        date_format: "%Y年%m月%d日 %H:%M:%S"
+        scopes: 權限範圍 (Scopes)
         title: 已獲你授權的程用程式
     errors:
       messages:
         access_denied: 資源擁有者或授權伺服器不接受請求。
         credential_flow_not_configured: 資源擁有者密碼認證程序 (Resource Owner Password Credentials flow) 失敗，原因是 Doorkeeper.configure.resource_owner_from_credentials 沒有設定。
-        invalid_client: 用戶程式認證 (Client authentication) 失敗，原因是用戶程式未有登記、沒有指定用戶程式 (client)、或者使用了不支援的認證方法 (method)。
-        invalid_grant: 授權申請 (authorization grant) 不正確、過期、已被取消，或者無法對應授權請求 (authorization request) 內的轉接 URI，或者屬於別的用戶程式。
+        invalid_client: 用戶程式認證 (Client Authentication) 失敗，原因是使用了未知的用戶程式、沒有傳回用戶認證資訊、或者使用了不支援的認證方法 (Authentication Method)。
+        invalid_grant: 所提供的認證申請 (authorization grant) 不正確、過期、已被取消、或者無法對應授權請求 (authorization request) 內的轉接 URI，或者屬於別的用戶程式。
         invalid_redirect_uri: 不正確的轉接網址。
-        invalid_request: 請求缺少了必要的參數、包含了不支援的參數、或者其他輸入錯誤。
-        invalid_resource_owner: 資源擁有者的登入資訊錯誤、或者無法找到該資源擁有者
-        invalid_scope: 請求的權限範圍 (scope) 不正確、未有定義、或者輸入錯誤。
+        invalid_request:
+          missing_param: 缺少必要的參數：%{value}.
+          request_not_authorized: 請求必須被授權。用於授權的必要參數缺失或無效。
+          unknown: 這個請求缺少必要的參數，包括有不支援的參數、或有其他格式錯誤。
+        invalid_resource_owner: 資源擁有者的登入資訊無效、或者無法找到該資源擁有者
+        invalid_scope: 你所請求的權限範圍 (scope) 無效、未知、或格式錯誤。
         invalid_token:
-          expired: access token 已經過期
-          revoked: access token 已被取消
-          unknown: access token 不正確
+          expired: 存取憑證 (access token) 已過期
+          revoked: 存取憑證 (access token) 已被撤銷
+          unknown: 存取憑證 (access token) 無效
         resource_owner_authenticator_not_configured: 無法找到資源擁有者，原因是 Doorkeeper.configure.resource_owner_authenticator 沒有設定。
-        server_error: 認證伺服器遇上未知狀況，令請求無法通過。
+        server_error: 認證伺服器遇上未知狀況，令請求無法被正確處理。
         temporarily_unavailable: 認證伺服器由於臨時負荷過重或者維護，目前未能處理請求。
-        unauthorized_client: 用戶程式無權用此方法 (method) 請行這個請求。
+        unauthorized_client: 用戶程式無權使用所選的方法 (method) 進行這個請求。
         unsupported_grant_type: 授權伺服器不支援這個授權類型 (grant type)。
         unsupported_response_type: 授權伺服器不支援這個回應類型 (response type)。
     flash:
@@ -113,7 +118,37 @@ zh-HK:
       application:
         title: 需要 OAuth 授權
     scopes:
-      follow: 關注、封鎖、解除封鎖及取消關注用戶
+      admin:read: 讀取伺服器的所有資料
+      admin:read:accounts: 讀取所有帳戶的敏感資訊
+      admin:read:reports: 讀取所有回報 / 被回報之帳戶的敏感資訊
+      admin:write: 修改伺服器的所有資料
+      admin:write:accounts: 對帳號進行仲裁管理動作
+      admin:write:reports: 對回報進行仲裁管理動作
+      follow: 修改帳號的對外聯繫
       push: 接收你的帳號的推送通知
-      read: 閱讀你的用戶資料
+      read: 閱讀你帳號的所有資料
+      read:accounts: 檢視帳號資訊
+      read:blocks: 檢視你的封鎖名單
+      read:bookmarks: 檢視你的書籤
+      read:favourites: 檢視你最愛的文章
+      read:filters: 檢視你的過濾條件
+      read:follows: 檢視你關注的人
+      read:lists: 檢視你的清單
+      read:mutes: 檢視被你靜音的人
+      read:notifications: 檢視你的通知
+      read:reports: 檢視你的檢舉
+      read:search: 以你的身份進行搜尋
+      read:statuses: 檢視所有文章
       write: 以你的名義發佈文章
+      write:accounts: 修改你的個人檔案
+      write:blocks: 封鎖帳號及域名
+      write:bookmarks: 把文章加入最愛
+      write:favourites: 喜歡的文章
+      write:filters: 建立過濾條件
+      write:follows: 關注其他人
+      write:lists: 建立清單
+      write:media: 上傳媒體檔案
+      write:mutes: 靜音使用者及對話
+      write:notifications: 清除你的通知
+      write:reports: 檢舉其他人
+      write:statuses: 發布嘟文

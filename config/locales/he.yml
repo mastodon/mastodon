@@ -24,7 +24,6 @@ he:
     people_followed_by: הנעקבים של %{name}
     people_who_follow: העוקבים של %{name}
     posts_with_replies: חצרוצים ותגובות
-    reserved_username: שם המשתמש שמור
     roles:
       admin: מנהל
       moderator: מנחה
@@ -52,9 +51,7 @@ he:
       email_status: סטטוס דוא"ל
       enable: לאפשר
       enabled: מאופשר
-      feed_url: כתובת פיד
       followers: עוקבים
-      followers_url: כתובת עוקבים
       follows: נעקבים
       inbox_url: כתובת תיבה נכנסת
       ip: כתובת IP
@@ -75,9 +72,7 @@ he:
       most_recent_activity: פעילות עדכנית
       most_recent_ip: כתובות אחרונות
       not_subscribed: לא רשום
-      outbox_url: כתובת תיבת דואר יוצא
       perform_full_suspension: ביצוע השעייה מלאה
-      profile_url: כתובת פרופיל
       promote: להעלות בדרגה
       protocol: פרטיכל
       public: פומבי
@@ -95,7 +90,6 @@ he:
         admin: מנהל מערכת
         moderator: מנחה דיונים
         user: משתמש(ת)
-      salmon_url: כתובת סלמון
       search: חיפוש
       shared_inbox_url: תיבה משותפת לדואר נכנס
       show:
@@ -110,17 +104,6 @@ he:
       unsubscribe: הפסקת הרשמה
       username: שם משתמש
       web: רשת
-    action_logs:
-      actions:
-        confirm_user: יש אישור מאת %{name} על כתובת הדוא"ל של %{target}
-        create_custom_emoji: "%{name} תרמה/תרם אמוג'י חדש %{target}"
-        create_domain_block: "%{name} חסמה/חסם את שם המתחם %{target}"
-        create_email_domain_block: מתחם דוא"ל %{target} הוסף לרשימה השחורה ע"י %{name}
-        demote_user: '%{name} הורד(ה) בדרגה ע"י %{target}'
-        destroy_domain_block: החסימה על מתחם %{target} הוסרה ע"י %{name}
-        destroy_email_domain_block: מתחם דוא"ל %{target} הוכנס לרשימה הלבנה ע"י %{name}
-        destroy_status: ההודעה של  %{target} הוסרה ע"י %{name}
-        disable_2fa_user: אימות דו שלבי של  %{target} הוסר ע"י %{name}
     domain_blocks:
       add_new: הוספת חדש
       created_msg: חסימת שרת בתהליך
@@ -221,7 +204,6 @@ he:
     '503': The page could not be served due to a temporary server failure.
   exports:
     blocks: רשימת חסימות
-    follows: רשימת נעקבים
     mutes: רשימת השתקות
     storage: אחסון מדיה
   generic:
@@ -235,14 +217,6 @@ he:
       following: רשימת נעקבים
       muting: רשימת השתקות
     upload: יבוא
-  invites:
-    expires_in:
-      '1800': 30 minutes
-      '21600': 6 hours
-      '3600': 1 hour
-      '43200': 12 hours
-      '604800': 1 week
-      '86400': 1 day
   media_attachments:
     validations:
       images_and_video: לא ניתן להוסיף וידאו לחצרוץ שכבר מכיל תמונות
@@ -300,19 +274,11 @@ he:
     formats:
       default: "%d %b %Y, %H:%M"
   two_factor_authentication:
-    code_hint: לאישור, יש להקליד את הקוד שיוצר על ידי ישום האימות
-    description_html: לאחר הפעלת <strong>אימות דו-שלבי</strong>, ניתן יהיה להכנס רק כל עוד ברשותך טלפון, שייצר עבורך קודים שיאפשרו כניסה.
     disable: כיבוי
-    enable: הפעלה
     enabled_success: אימות דו-שלבי הופעל בהצלחה
     generate_recovery_codes: ייצור קודי אחזור
-    instructions_html: "<strong>יש לסרוק קוד QR זה בעזרת Google Authenticator או ישום TOTP דומה על טלפונך</strong>. מעתה ואילך, ישום זה יוכל ליצר קודים לשימוש לצורך כניסה."
     lost_recovery_codes: קודי האחזור מאפשרים אחזור גישה לחשבון במידה ומכשירך אבד. במידה וקודי האחזור אבדו, ניתן לייצרם מחדש כאן. תוקף קודי האחזור הישנים יפוג.
-    manual_instructions: 'במידה ולא ניתן לסרוק את קוד ה-QR אלא יש צורך להקליד אותו ידנית, להלן סוד כמוס בלתי מוצפן:'
     recovery_codes_regenerated: קודי האחזור יוצרו בהצלחה
     recovery_instructions_html: במידה והגישה למכשירך תאבד, ניתן לייצר קודי אחזור למטה על מנת לאחזר גישה לחשבונך בכל עת. <strong>נא לשמור על קודי הגישה במקום בטוח</strong>. לדוגמא על ידי הדפסתם ושמירתם עם מסמכים חשובים אחרים, או שימוש בתוכנה ייעודית לניהול סיסמאות וסודות.
-    setup: הכנה
-    wrong_code: הקוד שהוזן שגוי! האם הזמן בשרת והזמן במכשירך נכונים?
   users:
-    invalid_email: כתובת הדוא"ל אינה חוקית
     invalid_otp_token: קוד דו-שלבי שגוי

@@ -34,7 +34,6 @@ lt:
       following: Privalai sekti žmogų kurį nori pagerbti
     posts_tab_heading: Tootai
     posts_with_replies: Tootai ir atsakymai
-    reserved_username: Vartotojo vardas rezervuotas
     roles:
       admin: Administratorius
       bot: Bot'as
@@ -75,9 +74,7 @@ lt:
       email_status: El pašto statusas
       enable: Įjungti
       enabled: Įjungta
-      feed_url: Srauto URL
       followers: Sekėjai
-      followers_url: Sekėjų URL
       follows: Seka
       header: Antraštė
       inbox_url: Gautųjų URL
@@ -102,9 +99,7 @@ lt:
       most_recent_ip: Paskutinis IP
       no_limits_imposed: Be limitu
       not_subscribed: Ne prenumeruota
-      outbox_url: Išsiustųjų URL
       perform_full_suspension: Užrakinti
-      profile_url: Profilio URL
       promote: Paaukštinti
       protocol: Protokolas
       public: Viešas
@@ -125,7 +120,6 @@ lt:
         moderator: Moderatorius
         staff: Personalas
         user: Vartotojas
-      salmon_url: Lašišos URL
       search: Ieškoti
       shared_inbox_url: Bendroji gautųjų URL
       show:
@@ -144,37 +138,6 @@ lt:
       username: Slapyvardis
       warn: Įspėti
     action_logs:
-      actions:
-        assigned_to_self_report: "%{name} paskyrė reportą %{target} saviems"
-        change_email_user: "%{name} pakeitė el pašto adresą vartotojui %{target}"
-        confirm_user: "%{name} patvirtino el pašto adresą vartotojui %{target}"
-        create_account_warning: "%{name} išsiuntė įspėjimą %{target}"
-        create_custom_emoji: "%{name} įkėlė naują jaustuką %{target}"
-        create_domain_block: "%{name} užblokavo domena %{target}"
-        create_email_domain_block: "%{name} įkėlė į juodajį sąrašą el pašto domena %{target}"
-        demote_user: "%{name} pažemino %{target}"
-        destroy_custom_emoji: "%{name} sunaikino jaustuką %{target}"
-        destroy_domain_block: "%{name} atrakino domeną %{target}"
-        destroy_email_domain_block: "%{name} pašalino iš juodojo sąrašo el pašto domeną %{target}"
-        destroy_status: "%{name} pašalino statusą %{target}"
-        disable_2fa_user: "%{name} išjungė 2 faktorių autentikavimo sistemos reikalavimus vartotojui  %{target}"
-        disable_custom_emoji: "%{name} išjungė jaustuką %{target}"
-        disable_user: "%{name} išjungė prisijungimą vartotojui %{target}"
-        enable_custom_emoji: "%{name} įjungė jaustuką %{target}"
-        enable_user: "%{name} įjungė prisijungimą vartotojui %{target}"
-        memorialize_account: "%{name} pavertė vartotojo %{target} paskyrą į prisiminimų puslapį"
-        promote_user: "%{name} paaukštino vartotoją %{target}"
-        remove_avatar_user: "%{name} panaikino vartotojo %{target} profilio nuotrauką"
-        reopen_report: "%{name} atidarė skundą %{target}"
-        reset_password_user: "%{name} atstatyti slaptažodį vartotojui %{target}"
-        resolve_report: "%{name} išsprendė skundą %{target}"
-        silence_account: "%{name} pritildė vartotojo %{target} paskyrą"
-        suspend_account: "%{name} laikinai užblokavo vartotojo %{target} paskyrą"
-        unassigned_report: "%{name} nepaskirtas skundas %{target}"
-        unsilence_account: "%{name} atitildė vartotojo %{target} paskyrą"
-        unsuspend_account: "%{name} atblokavo vartotojo %{target} paskyrą"
-        update_custom_emoji: "%{name} atnaujino jaustuką %{target}"
-        update_status: "%{name} pakeitė statusą %{target}"
       deleted_status: "(panaikintas statusas)"
       title: Audito žurnalas
     custom_emojis:
@@ -266,9 +229,6 @@ lt:
         create: Pridėto domeną
         title: Naujas el pašto juodojo sąrašo įtraukimas
       title: El pašto juodasis sąrašas
-    followers:
-      back_to_account: Atgal Į Paskyrą
-      title: "%{acct} Sekėjai"
     instances:
       by_domain: Domenas
       delivery_available: Pristatymas galimas
@@ -309,9 +269,6 @@ lt:
       created_msg: Skundo žinutė sekmingai sukurta!
       destroyed_msg: Skundo žinutė sekmingai ištrinta!
     reports:
-      account:
-        note: raštelis
-        report: skundas
       action_taken_by: Veiksmo ėmėsi
       are_you_sure: Ar tu įsitikinęs?
       assign_to_self: Paskirti man
@@ -421,7 +378,6 @@ lt:
     warning_presets:
       add_new: Pridėti naują
       delete: Ištrinti
-      edit: Keisti
       edit_preset: Keisti įspėjimo nustatymus
       title: Valdyti įspėjimo nustatymus
   admin_mailer:
@@ -518,7 +474,6 @@ lt:
       size: Dydis
     blocks: Jūs blokuojate
     domain_blocks: Domeno blokai
-    follows: Jūs sekate
     lists: Sąrašai
     mutes: Jūs tildote
     storage: Medijos sandėlis
@@ -789,21 +744,14 @@ lt:
     default: Mastodon (Tamsus)
     mastodon-light: Mastodon (Šviesus)
   two_factor_authentication:
-    code_hint: Įveskite autentikacijos aplikacijos sugeneruotą kodą kad galėtumete tęsti
-    description_html: Jeigu įjungiate <strong>dviejų veiksnių autentikaciją</strong>, prisijungiant jums reikės turėti su savimi savo telefoną, kuris jums generuos prisijungimo žetonus.
     disable: Išjungti
-    enable: Įjungti
     enabled: Dviejų veiksnių autentikacija įjungta
     enabled_success: Dviejų veiksnių autentikacija sėkmingai įjungta
     generate_recovery_codes: Sugeneruoti atkūrimo kodus
-    instructions_html: "<strong>Nuskenuokite šį QR kodą į Google Autentikatorių arba panašią TOTP aplikaciją jūsų telefone</strong>. Nuo šiol, ši aplikacija jums generuos žetonus, kurių reikės norint prisijungti."
     lost_recovery_codes: Atkūrimo kodai jums leidžia atgauti prisijungimą prie Jūsų paskyros, jeigu prarandate telefoną. Jeigu praradote atkūrimo kodus, juos galite sugeneruoti čia. Jūsų senieji atkūrimo kodai nebeveiks.
-    manual_instructions: 'Jeigu jūs negalite nuskenuoti QR kodo ir turite jį įvesti savarankiškai, štai čia yra tekstas šiam kodui:'
     recovery_codes: Atsarginio atkūrimo kodai
     recovery_codes_regenerated: Atkūrimo kodai sėkmingai sugeneruoti
     recovery_instructions_html: Jeigu prarandate prieiga prie telefono, jūs galite naudoti atkūrimo kodus esančius žemiau, kad atgautumėte priega prie savo paskyros.<strong>Laikykite atkūrimo kodus saugiai</strong> Pavyzdžiui, galite norėti juos išspausdinti, ir laikyti kartu su kitais svarbiais dokumentais.
-    setup: Nustatyti
-    wrong_code: Koda netinkamas! Ar serverio laikas ir prietaiso laikas vienodi?
   user_mailer:
     backup_ready:
       explanation: Jūs prašėte pilnos Mastodon paskyros atsarginės kopijos. Ji paruošta parsisiuntimui!
@@ -844,7 +792,6 @@ lt:
       title: Sveiki atvykę, %{name}!
   users:
     follow_limit_reached: Negalite sekti daugiau nei %{limit} žmonių
-    invalid_email: Netinkamas el pašto adresas
     invalid_otp_token: Netinkamas dviejų veiksnių kodas
     otp_lost_help_html: Jeigu praradote prieiga prie abiejų, susisiekite su mumis per %{email}
     seamless_external_login: Jūs esate prisijungę per išorini įrenginį, todėl slaptąžodis ir el pašto nustatymai neprieinami.

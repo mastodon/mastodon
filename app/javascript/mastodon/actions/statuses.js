@@ -1,9 +1,7 @@
 import api from '../api';
-import openDB from '../storage/db';
-import { evictStatus } from '../storage/modifier';
 
 import { deleteFromTimelines } from './timelines';
-import { importFetchedStatus, importFetchedStatuses, importAccount, importStatus } from './importer';
+import { importFetchedStatus, importFetchedStatuses, importFetchedAccount } from './importer';
 import { ensureComposeIsVisible } from './compose';
 
 export const STATUS_FETCH_REQUEST = 'STATUS_FETCH_REQUEST';
@@ -26,8 +24,9 @@ export const STATUS_UNMUTE_REQUEST = 'STATUS_UNMUTE_REQUEST';
 export const STATUS_UNMUTE_SUCCESS = 'STATUS_UNMUTE_SUCCESS';
 export const STATUS_UNMUTE_FAIL    = 'STATUS_UNMUTE_FAIL';
 
-export const STATUS_REVEAL = 'STATUS_REVEAL';
-export const STATUS_HIDE   = 'STATUS_HIDE';
+export const STATUS_REVEAL   = 'STATUS_REVEAL';
+export const STATUS_HIDE     = 'STATUS_HIDE';
+export const STATUS_COLLAPSE = 'STATUS_COLLAPSE';
 
 export const REDRAFT = 'REDRAFT';
 
@@ -38,48 +37,6 @@ export function fetchStatusRequest(id, skipLoading) {
     skipLoading,
   };
 };
-
-function getFromDB(dispatch, getState, accountIndex, index, id) {
-  return new Promise((resolve, reject) => {
-    const request = index.get(id);
-
-    request.onerror = reject;
-
-    request.onsuccess = () => {
-      const promises = [];
-
-      if (!request.result) {
-        reject();
-        return;
-      }
-
-      dispatch(importStatus(request.result));
-
-      if (getState().getIn(['accounts', request.result.account], null) === null) {
-        promises.push(new Promise((accountResolve, accountReject) => {
-          const accountRequest = accountIndex.get(request.result.account);
-
-          accountRequest.onerror = accountReject;
-          accountRequest.onsuccess = () => {
-            if (!request.result) {
-              accountReject();
-              return;
-            }
-
-            dispatch(importAccount(accountRequest.result));
-            accountResolve();
-          };
-        }));
-      }
-
-      if (request.result.reblog && getState().getIn(['statuses', request.result.reblog], null) === null) {
-        promises.push(getFromDB(dispatch, getState, accountIndex, index, request.result.reblog));
-      }
-
-      resolve(Promise.all(promises));
-    };
-  });
-}
 
 export function fetchStatus(id) {
   return (dispatch, getState) => {
@@ -93,23 +50,10 @@ export function fetchStatus(id) {
 
     dispatch(fetchStatusRequest(id, skipLoading));
 
-    openDB().then(db => {
-      const transaction = db.transaction(['accounts', 'statuses'], 'read');
-      const accountIndex = transaction.objectStore('accounts').index('id');
-      const index = transaction.objectStore('statuses').index('id');
-
-      return getFromDB(dispatch, getState, accountIndex, index, id).then(() => {
-        db.close();
-      }, error => {
-        db.close();
-        throw error;
-      });
-    }).then(() => {
-      dispatch(fetchStatusSuccess(skipLoading));
-    }, () => api(getState).get(`/api/v1/statuses/${id}`).then(response => {
+    api(getState).get(`/api/v1/statuses/${id}`).then(response => {
       dispatch(importFetchedStatus(response.data));
       dispatch(fetchStatusSuccess(skipLoading));
-    })).catch(error => {
+    }).catch(error => {
       dispatch(fetchStatusFail(id, error, skipLoading));
     });
   };
@@ -151,9 +95,9 @@ export function deleteStatus(id, routerHistory, withRedraft = false) {
     dispatch(deleteStatusRequest(id));
 
     api(getState).delete(`/api/v1/statuses/${id}`).then(response => {
-      evictStatus(id);
       dispatch(deleteStatusSuccess(id));
       dispatch(deleteFromTimelines(id));
+      dispatch(importFetchedAccount(response.data.account));
 
       if (withRedraft) {
         dispatch(redraft(status, response.data.text));
@@ -320,3 +264,11 @@ export function revealStatus(ids) {
     ids,
   };
 };
+
+export function toggleStatusCollapse(id, isCollapsed) {
+  return {
+    type: STATUS_COLLAPSE,
+    id,
+    isCollapsed,
+  };
+}

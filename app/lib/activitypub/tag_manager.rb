@@ -12,8 +12,14 @@ class ActivityPub::TagManager
     public: 'https://www.w3.org/ns/activitystreams#Public',
   }.freeze
 
+  def public_collection?(uri)
+    uri == COLLECTIONS[:public] || uri == 'as:Public' || uri == 'Public'
+  end
+
   def url_for(target)
     return target.url if target.respond_to?(:local?) && !target.local?
+
+    return unless target.respond_to?(:object_type)
 
     case target.object_type
     when :person
@@ -38,6 +44,10 @@ class ActivityPub::TagManager
     end
   end
 
+  def uri_for_username(username)
+    account_url(username: username)
+  end
+
   def generate_uri_for(_target)
     URI.join(root_url, 'payloads', SecureRandom.uuid)
   end
@@ -54,6 +64,10 @@ class ActivityPub::TagManager
     account_status_replies_url(target.account, target, page_params)
   end
 
+  def followers_uri_for(target)
+    target.local? ? account_followers_url(target) : target.followers_url.presence
+  end
+
   # Primary audience of a status
   # Public statuses go out to primarily the public collection
   # Unlisted and private statuses go out primarily to the followers collection
@@ -68,10 +82,19 @@ class ActivityPub::TagManager
       if status.account.silenced?
         # Only notify followers if the account is locally silenced
         account_ids = status.active_mentions.pluck(:account_id)
-        to = status.account.followers.where(id: account_ids).map { |account| uri_for(account) }
-        to.concat(FollowRequest.where(target_account_id: status.account_id, account_id: account_ids).map { |request| uri_for(request.account) })
+        to = status.account.followers.where(id: account_ids).each_with_object([]) do |account, result|
+          result << uri_for(account)
+          result << followers_uri_for(account) if account.group?
+        end
+        to.concat(FollowRequest.where(target_account_id: status.account_id, account_id: account_ids).each_with_object([]) do |request, result|
+          result << uri_for(request.account)
+          result << followers_uri_for(request.account) if request.account.group?
+        end).compact
       else
-        status.active_mentions.map { |mention| uri_for(mention.account) }
+        status.active_mentions.each_with_object([]) do |mention, result|
+          result << uri_for(mention.account)
+          result << followers_uri_for(mention.account) if mention.account.group?
+        end.compact
       end
     end
   end
@@ -97,10 +120,19 @@ class ActivityPub::TagManager
       if status.account.silenced?
         # Only notify followers if the account is locally silenced
         account_ids = status.active_mentions.pluck(:account_id)
-        cc.concat(status.account.followers.where(id: account_ids).map { |account| uri_for(account) })
-        cc.concat(FollowRequest.where(target_account_id: status.account_id, account_id: account_ids).map { |request| uri_for(request.account) })
+        cc.concat(status.account.followers.where(id: account_ids).each_with_object([]) do |account, result|
+          result << uri_for(account)
+          result << followers_uri_for(account) if account.group?
+        end.compact)
+        cc.concat(FollowRequest.where(target_account_id: status.account_id, account_id: account_ids).each_with_object([]) do |request, result|
+          result << uri_for(request.account)
+          result << followers_uri_for(request.account) if request.account.group?
+        end.compact)
       else
-        cc.concat(status.active_mentions.map { |mention| uri_for(mention.account) })
+        cc.concat(status.active_mentions.each_with_object([]) do |mention, result|
+          result << uri_for(mention.account)
+          result << followers_uri_for(mention.account) if mention.account.group?
+        end.compact)
       end
     end
 

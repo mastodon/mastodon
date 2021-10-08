@@ -5,8 +5,6 @@ class Api::V1::FavouritesController < Api::BaseController
   before_action :require_user!
   after_action :insert_pagination_headers
 
-  respond_to :json
-
   def index
     @statuses = load_statuses
     render json: @statuses, each_serializer: REST::StatusSerializer, relationships: StatusRelationshipsPresenter.new(@statuses, current_user&.account_id)
@@ -19,14 +17,11 @@ class Api::V1::FavouritesController < Api::BaseController
   end
 
   def cached_favourites
-    cache_collection(
-      Status.reorder(nil).joins(:favourites).merge(results),
-      Status
-    )
+    cache_collection(results.map(&:status), Status)
   end
 
   def results
-    @_results ||= account_favourites.paginate_by_id(
+    @_results ||= account_favourites.eager_load(:status).to_a_paginated_by_id(
       limit_param(DEFAULT_STATUSES_LIMIT),
       params_slice(:max_id, :since_id, :min_id)
     )

@@ -1,1 +1,208 @@
+---
 nn:
+  simple_form:
+    hints:
+      account_alias:
+        acct: Spesifiser brukarnamn@domenet til brukaren du vil flytja frå
+      account_migration:
+        acct: Spesifiser brukarnamn@domenet til brukaren du vil flytja til
+      account_warning_preset:
+        text: Du kan bruka tut-syntaks, som t. d. URL-ar, emneknaggar og nemningar
+        title: Valfritt. Ikkje synleg for mottakar
+      admin_account_action:
+        include_statuses: Brukaren får sjå kva tut som gjorde moderatorhandllinga eller -åtvaringa
+        send_email_notification: Brukaren får ei forklåring av kva som har hendt med kontoen sin
+        text_html: Valfritt. Du kan bruka tut-syntaks. Du kan <a href="%{path}">leggja til åtvaringsførehandsinnstillingar</a> for å spara tid
+        type_html: Vel det du vil gjera med <strong>%{acct}</strong>
+        warning_preset_id: Valfritt. Du kan leggja inn eigen tekst på enden av føreoppsettet
+      announcement:
+        all_day: Når merka, vil berre datoane til tidsramma synast
+        ends_at: Valfritt. Lysinga vert teken ned av seg sjølv på dette tidspunktet
+        scheduled_at: Lat stå blankt for å gjeva ut lysinga med ein gong
+        starts_at: Valfritt. Om lysinga di er bunden til eit tidspunkt
+        text: Du kan bruka tut-syntaks. Ver merksam på plassen lysinga tek på brukaren sin skjerm
+      defaults:
+        autofollow: Folk som lagar ein konto gjennom innbydinga fylgjer deg automatisk
+        avatar: PNG, GIF eller JPG. Maksimalt %{size}. Minkast til %{dimensions}px
+        bot: Denne kontoen utfører i hovedsak automatiserte handlinger og blir kanskje ikke holdt øye med
+        context: En eller flere sammenhenger der filteret skal gjelde
+        current_password: For sikkerhetsgrunner, vennligst oppgi passordet til den nåværende bruker
+        current_username: Skriv inn brukarnamnet til den noverande kontoen for å stadfesta
+        digest: Kun sendt etter en lang periode med inaktivitet og bare dersom du har mottatt noen personlige meldinger mens du var borte
+        discoverable: Profilmappen er en annen måte for kontoen din å nå et bredere publikum på
+        email: Du får snart ein stadfestings-e-post
+        fields: Du kan ha opptil 4 gjenstander vist som en tabell på profilsiden din
+        header: PNG, GIF eller JPG. Maksimalt %{size}. Minkast til %{dimensions}px
+        inbox_url: Kopier URLen fra forsiden til overgangen du vil bruke
+        irreversible: Filtrerte tut vil verta borte for evig, sjølv om filteret vert fjerna seinare
+        locale: Språket til brukargrensesnittet, e-postar og push-varsel
+        locked: Krev at du manuelt godkjenner fylgjarar
+        password: Nytt minst 8 teikn
+        phrase: Vil bli samsvart med, uansett bruk av store/små bokstaver eller innholdsadvarselen til en tut
+        scopes: API-ane som programmet vil få tilgjenge til. Ettersom du vel eit toppnivåomfang tarv du ikkje velja einskilde API-ar.
+        setting_aggregate_reblogs: Ikkje vis nye framhevingar for tut som nyleg har vorte heva fram (Påverkar berre nylege framhevingar)
+        setting_default_sensitive: Nærtakande media vert gøymd som standard og kan synast med eit klikk
+        setting_display_media_default: Gøym media som er merka som nærtakande
+        setting_display_media_hide_all: Alltid skjul alt media
+        setting_display_media_show_all: Vis alltid media
+        setting_hide_network: Kven du fylgjer og kven som fylgjer deg vert ikkje vist på profilen din
+        setting_noindex: Påverkar den offentlege profilen og statussidene dine
+        setting_show_application: Programmet du brukar for å tuta synast i den detaljerte visninga av tuta dine
+        setting_use_blurhash: Overgangar er bygt på dei løynde sine leter, men gjer detaljar utydelege
+        setting_use_pending_items: Gøym tidslineoppdateringar ved eit klikk, i staden for å bla ned hendestraumen automatisk
+        username: Brukarnamnet ditt vert unikt på %{domain}
+        whole_word: Når søkjeordet eller setninga berre er alfanumerisk, nyttast det berre om det samsvarar med heile ordet
+      domain_allow:
+        domain: Dette domenet er i stand til å henta data frå denne tenaren og innkomande data vert handsama og lagra
+      email_domain_block:
+        domain: Dette kan vera domenenamnet som synest i e-postaddressa, MX-recorden som domenet løyser til eller IP-adressa til tenaren som MX-record løyser til. Dei sjekkast ved brukarregistrering og registretinga vert avvist.
+        with_dns_records: Eit forsøk på å løysa gjeve domene som DNS-data vil vera gjord og resultata vert svartelista
+      featured_tag:
+        name: 'Kanskje du vil nytta ein av desse:'
+      form_challenge:
+        current_password: Du går inn i eit trygt område
+      imports:
+        data: CSV-fil eksportert frå ein annan Mastodon-tenar
+      invite_request:
+        text: Dette kjem til å hjelpa oss med å gå gjennom søknaden din
+      ip_block:
+        severities:
+          no_access: Blokker tilgang til alle ressurser
+      sessions:
+        otp: Angi tofaktorkoden fra din telefon eller bruk en av dine gjenopprettingskoder.
+      tag:
+        name: Du kan berre endra bruken av store/små bokstavar, t. d. for å gjera det meir leseleg
+      user:
+        chosen_languages: Når merka vil berre tuta på dei valde språka synast på offentlege tidsliner
+    labels:
+      account:
+        fields:
+          name: Merkelapp
+          value: Innhald
+      account_alias:
+        acct: Brukarnamnet på den gamle kontoen
+      account_migration:
+        acct: Brukarnamnet på den nye kontoen
+      account_warning_preset:
+        text: Føreåtstekst
+        title: Tittel
+      admin_account_action:
+        include_statuses: Ha med rapporterte tut i e-posten
+        send_email_notification: Varsl brukaren med e-post
+        text: Eigen åtvaring
+        type: Handling
+        types:
+          disable: Slå av innlogging
+          none: Gjer inkje
+          silence: Togn
+          suspend: Utvis og slett kontodata for godt
+        warning_preset_id: Bruk åtvaringsoppsett
+      announcement:
+        all_day: Heildagshending
+        ends_at: Hendinga er ferdig
+        scheduled_at: Planlegg publisering
+        starts_at: Byrjing av hendinga
+        text: Lysing
+      defaults:
+        autofollow: Bed om å fylgja kontoen din
+        avatar: Bilete
+        bot: Dette er ein bot-konto
+        chosen_languages: Filtermål
+        confirm_new_password: Stadfest nytt passord
+        confirm_password: Stadfest passord
+        context: Filtrer kontekstar
+        current_password: Noverande passord
+        data: Data
+        discoverable: Før denne kontoen opp i mappa
+        display_name: Synleg namn
+        email: E-post-adresse
+        expires_in: Vert ugyldig etter
+        fields: Profilmetadata
+        header: Overskrift
+        honeypot: "%{label} (ikke fyll ut)"
+        inbox_url: URL-addressen til overgangsinnboksen
+        irreversible: Forkast i staden for å gøyma
+        locale: Språk
+        locked: Lås konto
+        max_uses: Grense på brukartal
+        new_password: Nytt passord
+        note: Om meg
+        otp_attempt: Tostegskode
+        password: Passord
+        phrase: Nykelord eller frase
+        setting_advanced_layout: Skruv på det avanserte nettgrensesnittet
+        setting_aggregate_reblogs: Gruppeframhevingar på tidsliner
+        setting_auto_play_gif: Spel av animerte GIF-ar automatisk
+        setting_boost_modal: Vis stadfesting før framheving
+        setting_crop_images: Skjer bilete i ikkje-utvida tut til 16x9
+        setting_default_language: Språk på innlegg
+        setting_default_privacy: Privatliv
+        setting_default_sensitive: Merk alltid media som nærtakande
+        setting_delete_modal: Vis stadfesting før du slettar eit tut
+        setting_disable_swiping: Skru av sveipebevegelser
+        setting_display_media: Medievisning
+        setting_display_media_default: Standard
+        setting_display_media_hide_all: Gøym alle
+        setting_display_media_show_all: Vis alle
+        setting_expand_spoilers: Vid alltid ut tut som er merka med innhaldsåtvaringar
+        setting_hide_network: Gøym nettverket ditt
+        setting_noindex: Vel bort søkjemotorregistrering
+        setting_reduce_motion: Minsk rørsle i animasjonar
+        setting_show_application: Avdekk programmet bruka for å senda tut
+        setting_system_font_ui: Bruk standardskrifttypen på systemet
+        setting_theme: Sidetema
+        setting_trends: Vis kva som er populært i dag
+        setting_unfollow_modal: Vis stadfesting før du sluttar å fylgja nokon
+        setting_use_blurhash: Vis fargerike overgangar for gøymt media
+        setting_use_pending_items: Saktemodus
+        severity: Alvorsgrad
+        sign_in_token_attempt: Trygdenykel
+        type: Importtype
+        username: Brukarnamn
+        username_or_email: Brukarnamn eller E-post
+        whole_word: Heilt ord
+      email_domain_block:
+        with_dns_records: Ha med MX-recordar og IP-ar til domenet
+      featured_tag:
+        name: Emneknagg
+      interactions:
+        must_be_follower: Gøym varslingar frå folk som ikkje fylgjer deg
+        must_be_following: Gøym varslingar frå folk du ikkje fylgjer
+        must_be_following_dm: Gøym direktemeldinger frå folk du ikkje fylgjer
+      invite:
+        comment: Kommentar
+      invite_request:
+        text: Kvifor vil du verta med?
+      ip_block:
+        comment: Kommentere
+        ip: IP
+        severities:
+          no_access: Blokker tilgang
+          sign_up_requires_approval: Begrens påmeldinger
+        severity: Oppføring
+      notification_emails:
+        digest: Send samandrag på e-post
+        favourite: Send e-post når nokon merkjer statusen din som favoritt
+        follow: Send e-post når nokon fylgjer deg
+        follow_request: Send e-post når nokon spør om å fylgja deg
+        mention: Send e-post når nokon nemner deg
+        pending_account: Send e-post når ein ny konto treng gjennomgang
+        reblog: Send e-post når nokon framhevar statusen din
+        report: Send e-post når nokon rapporterer noko
+        trending_tag: Ein emneknagg som ikkje er sett igjennom er på veg opp
+      rule:
+        text: Regler
+      tag:
+        listable: Tillat denne emneknaggen å synast i søk og i profilmappa
+        name: Emneknagg
+        trendable: Tillat denne emneknaggen til å synast under trendar
+        usable: Gje tut lov til å nytta denne emneknaggen
+    'no': Nei
+    recommended: Tilrådt
+    required:
+      mark: "*"
+      text: obligatorisk
+    title:
+      sessions:
+        webauthn: Bruk en av sikkerhetsnøklene dine til å logge på
+    'yes': Ja

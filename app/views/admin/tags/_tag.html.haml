@@ -1,6 +1,7 @@
 .batch-table__row
-  %label.batch-table__row__select.batch-table__row__select--aligned.batch-checkbox
-    = f.check_box :tag_ids, { multiple: true, include_hidden: false }, tag.id
+  - if batch_available
+    %label.batch-table__row__select.batch-table__row__select--aligned.batch-checkbox
+      = f.check_box :tag_ids, { multiple: true, include_hidden: false }, tag.id
 
   .directory__tag
     = link_to admin_tag_path(tag.id) do
@@ -9,12 +10,10 @@
         = tag.name
 
         %small
-          = t('admin.tags.in_directory', count: tag.accounts_count)
-          &bull;
           = t('admin.tags.unique_uses_today', count: tag.history.first[:accounts])
 
           - if tag.trending?
             = fa_icon 'fire fw'
             = t('admin.tags.trending_right_now')
 
-      .trends__item__current= number_to_human tag.history.first[:uses], strip_insignificant_zeros: true
+      .trends__item__current= friendly_number_to_human tag.history.first[:uses]

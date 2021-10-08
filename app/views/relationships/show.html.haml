@@ -2,14 +2,14 @@
   = t('settings.relationships')
 
 - content_for :header_tags do
-  = javascript_pack_tag 'admin', integrity: true, async: true, crossorigin: 'anonymous'
+  = javascript_pack_tag 'admin', async: true, crossorigin: 'anonymous'
 
 .filters
   .filter-subset
     %strong= t 'relationships.relationship'
     %ul
-      %li= filter_link_to t('accounts.following', count: current_account.following_count), relationship: nil
-      %li= filter_link_to t('accounts.followers', count: current_account.followers_count), relationship: 'followed_by'
+      %li= filter_link_to t('relationships.following'), relationship: nil
+      %li= filter_link_to t('relationships.followers'), relationship: 'followed_by'
       %li= filter_link_to t('relationships.mutual'), relationship: 'mutual'
 
   .filter-subset
@@ -33,16 +33,17 @@
 
 = form_for(@form, url: relationships_path, method: :patch) do |f|
   = hidden_field_tag :page, params[:page] || 1
-  = hidden_field_tag :relationship, params[:relationship]
-  = hidden_field_tag :status, params[:status]
-  = hidden_field_tag :activity, params[:activity]
-  = hidden_field_tag :order, params[:order]
+
+  - RelationshipFilter::KEYS.each do |key|
+    = hidden_field_tag key, params[key] if params[key].present?
 
   .batch-table
     .batch-table__toolbar
       %label.batch-table__toolbar__select.batch-checkbox-all
         = check_box_tag :batch_checkbox_all, nil, false
       .batch-table__toolbar__actions
+        = f.button safe_join([fa_icon('user-plus'), t('relationships.follow_selected_followers')]), name: :follow, class: 'table-action-link', type: :submit, data: { confirm: t('admin.reports.are_you_sure') } if followed_by_relationship? && !mutual_relationship?
+
         = f.button safe_join([fa_icon('user-times'), t('relationships.remove_selected_follows')]), name: :unfollow, class: 'table-action-link', type: :submit, data: { confirm: t('admin.reports.are_you_sure') } unless followed_by_relationship?
 
         = f.button safe_join([fa_icon('trash'), t('relationships.remove_selected_followers')]), name: :remove_from_followers, class: 'table-action-link', type: :submit, data: { confirm: t('admin.reports.are_you_sure') } unless following_relationship?

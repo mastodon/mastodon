@@ -8,12 +8,25 @@ id:
         acct: Tentukan namapengguna@domain akun yang ingin Anda pindah
       account_warning_preset:
         text: Anda dapat memakai sintaks toot, seperti URL, tagar, dan sebutan
+        title: Opsional. Tidak terlihat penerima
       admin_account_action:
         include_statuses: Pengguna dapat melihat toot mana yang menyebabkan aksi atau peringatan moderasi
         send_email_notification: Pengguna akan menerima penjelasan tentang apa yang terjadi pada akun mereka
         text_html: Opsional. Anda dapat memakai sintaks toot. Anda dapat <a href="%{path}">menambahkan preset peringatan</a> untuk hemat waktu
         type_html: Pilih apa yang perlu dilakukan dengan <strong>%{acct}</strong>
+        types:
+          disable: Cegah pengguna menggunakan akun mereka, tetapi jangan menghapus atau menyembunyikan konten mereka.
+          none: Gunakan ini untuk mengirim peringatan kepada pengguna, tanpa memicu tindakan lainnya.
+          sensitive: Paksa semua lampiran media pengguna sebagai sensitif.
+          silence: Cegah pengguna agar tidak dapat memposting dengan visibilitas publik, sembunyikan postingan dan notifikasi mereka dari orang yang tidak mengikuti mereka.
+          suspend: Cegah interaksi apapun dari/ke akun ini dan hapus kontennya. Dapat dikembalikan selama 30 hari.
         warning_preset_id: Opsional. Anda tetap dapat menambahkan teks kustom pada akhir preset
+      announcement:
+        all_day: Saat dicentang, hanya tanggal dalam rentang waktu tertentu yang akan ditampilkan
+        ends_at: Opsional. Pengumuman akan diterbitkan secara otomatis saat ini
+        scheduled_at: Biarkan kosong jika ingin menerbitkan pengumuman secara langsung
+        starts_at: Opsional. Persiapan jika pengumuman Anda terikat pada rentang waktu tertentu
+        text: Anda dapat menggunakan sintaks toot. Mohon perhatikan ruang pengumuman yang mungkin akan memenuhi layar pengguna
       defaults:
         autofollow: Orang yang ingin mendaftar lewat undangan, otomatis mengikuti Anda
         avatar: PNG, GIF atau JPG. Maksimal %{size}. Ukuran dikecilkan menjadi %{dimensions}px
@@ -23,12 +36,12 @@ id:
         current_username: Untuk konfirmasi, mohon masukkan nama pengguna akun ini
         digest: Hanya kirim setelah lama tidak aktif dan hanya jika Anda menerima pesan personal atas absensi Anda
         discoverable: Direktori profil adalah cara lain agar akun Anda menyentuh audiens yang lebih luas
-        email: Anda akan dikirimi surel konfirmasi
+        email: Anda akan dikirimi email konfirmasi
         fields: Anda bisa memiliki hingga 4 item utk ditampilkan sebagai tabel di profil Anda
         header: PNG, GIF atau JPG. Maksimal %{size}. Ukuran dikecilkan menjadi %{dimensions}px
         inbox_url: Salin URL dari halaman depan relai yang ingin Anda pakai
         irreversible: Toot tersaring akan hilang permanen bahkan jika saringan dihapus kemudian
-        locale: Bahasa antar muka pengguna, surel, dan notifikasi dorong
+        locale: Bahasa antar muka pengguna, email, dan notifikasi dorong
         locked: Anda harus menerima permintaan pengikut secara manual dan setting privasi postingan akan diubah khusus untuk pengikut
         password: Gunakan minimal 8 karakter
         phrase: Akan dicocokkan terlepas dari luaran dalam teks atau peringatan konten dari toot
@@ -47,6 +60,9 @@ id:
         whole_word: Ketika kata kunci/frasa hanya alfanumerik, maka itu hanya akan diterapkan jika cocok dengan semua kata
       domain_allow:
         domain: Domain ini dapat mengambil data dari server ini dan data yang diterima akan diproses dan disimpan
+      email_domain_block:
+        domain: Ini bisa nama domain yang muncul di alamat email, data MX yang sedang diselesaikan oleh domain, atau IP server yang dipecahkan oleh data MX. Mereka akan dicek saat pendaftaran pengguna dan pendaftaran akan ditolak.
+        with_dns_records: Usaha untuk menyelesaikan data DNS domain yang diberikan akan dilakukan dan hasilnya akan masuk daftar hitam
       featured_tag:
         name: 'Anda mungkin ingin pakai salah satu dari ini:'
       form_challenge:
@@ -55,8 +71,21 @@ id:
         data: File CSV yang diexpor dari server Mastodon lain
       invite_request:
         text: Ini akan membantu kami meninjau aplikasi Anda
+      ip_block:
+        comment: Opsional. Harap ingat alasan Anda menambahkan peraturan ini.
+        expires_in: Alamat IP terbatas, kadang-kadang dibagikan dan dipindah tangan. Oleh karena itu, blok IP tidak terbatas tidak disarankan.
+        ip: Masukkan alamat IPv4 atau IPv6. Anda dapat memblokir seluruh rentang dengan sintaks CIDR. Hati-hati, jangan mengunci Anda sendiri!
+        severities:
+          no_access: Blokir akses ke seluruh sumber daya
+          sign_up_requires_approval: Pendaftaran baru memerlukan persetujuan Anda
+        severity: Pilih apa yang akan dilakukan dengan permintaan dari IP ini
+      rule:
+        text: Jelaskan aturan atau persyaratan untuk pengguna di server ini. Buatlah pendek dan sederhana
       sessions:
         otp: Masukkan kode dua-faktor dari handphone atau gunakan kode pemulihan anda.
+        webauthn: Jika ini kunci USB pastikan dalam keadaan tercolok dan, jika perlu, ketuk.
+      tag:
+        name: Anda hanya dapat mengubahnya ke huruf kecil/besar, misalnya, agar lebih mudah dibaca
       user:
         chosen_languages: Ketika dicentang, hanya toot dalam bahasa yang dipilih yang akan ditampilkan di linimasa publik
     labels:
@@ -70,17 +99,25 @@ id:
         acct: Menangani akun baru
       account_warning_preset:
         text: Teks preset
+        title: Judul
       admin_account_action:
-        include_statuses: Sertakan toot terlapor pada surel
-        send_email_notification: Beritahu pengguna per surel
+        include_statuses: Sertakan kiriman yang dilaporkan pada email
+        send_email_notification: Beri tahu pengguna per email
         text: Peringatan kustom
         type: Aksi
         types:
           disable: Matikan
           none: Biarkan
+          sensitive: Sensitif
           silence: Diamkan
           suspend: Tangguhkan dan hapus data akun scr permanen
         warning_preset_id: Gunakan preset peringatan
+      announcement:
+        all_day: Event sepanjang hari
+        ends_at: Akhir event
+        scheduled_at: Jadwal publikasi
+        starts_at: Awal mulai event
+        text: Pengumuman
       defaults:
         autofollow: Undang untuk mengikuti Anda
         avatar: Avatar
@@ -97,6 +134,7 @@ id:
         expires_in: Kedaluwarsa setelah
         fields: Metadata profil
         header: Tajuk
+        honeypot: "%{label} (jangan diisi)"
         inbox_url: URL kotak relai
         irreversible: Hapus alih-alih sembunyikan
         locale: Bahasa
@@ -111,10 +149,12 @@ id:
         setting_aggregate_reblogs: Boost grup di linimasa
         setting_auto_play_gif: Mainkan otomatis animasi GIF
         setting_boost_modal: Tampilkan dialog konfirmasi dialog sebelum boost
+        setting_crop_images: Potong gambar ke 16x9 pada toot yang tidak dibentangkan
         setting_default_language: Bahasa posting
         setting_default_privacy: Privasi postingan
         setting_default_sensitive: Selalu tandai media sebagai sensitif
         setting_delete_modal: Tampilkan dialog konfirmasi sebelum hapus toot
+        setting_disable_swiping: Nonaktifkan gerak usap
         setting_display_media: Tampilan media
         setting_display_media_default: Bawaan
         setting_display_media_hide_all: Sembunyikan semua
@@ -131,10 +171,13 @@ id:
         setting_use_blurhash: Tampilkan gradien penuh warna utk media tersembunyi
         setting_use_pending_items: Mode pelan
         severity: Keparahan
+        sign_in_token_attempt: Kode keamanan
         type: Tipe impor
         username: Nama pengguna
-        username_or_email: Nama pengguna atau Surel
+        username_or_email: Nama pengguna atau Email
         whole_word: Seluruh kata
+      email_domain_block:
+        with_dns_records: Termasuk data MX dan IP domain
       featured_tag:
         name: Tagar
       interactions:
@@ -145,16 +188,25 @@ id:
         comment: Komentar
       invite_request:
         text: Mengapa Anda ingin gabung?
+      ip_block:
+        comment: Komentar
+        ip: IP
+        severities:
+          no_access: Blok akses
+          sign_up_requires_approval: Batasi pendaftaran
+        severity: Aturan
       notification_emails:
         digest: Kirim email berisi rangkuman
         favourite: Kirim email saat seseorang menyukai status anda
         follow: Kirim email saat seseorang mengikuti anda
         follow_request: Kirim email saat seseorang meminta untuk mengikuti anda
         mention: Kirim email saat seseorang menyebut anda
-        pending_account: Kirim surel ketika akun baru perlu ditinjau
+        pending_account: Kirim email ketika akun baru perlu ditinjau
         reblog: Kirim email saat seseorang mem-boost status anda
-        report: Kirim surel ketika laporan baru dikirim
-        trending_tag: Kirim surel ketika tagar tak tertinjau jadi tren
+        report: Kirim email ketika laporan baru dikirim
+        trending_tag: Kirim email ketika tagar tak tertinjau jadi tren
+      rule:
+        text: Aturan
       tag:
         listable: Izinkan tagar ini muncul di penelusuran dan di direktori profil
         name: Tagar
@@ -165,4 +217,7 @@ id:
     required:
       mark: "*"
       text: wajib
+    title:
+      sessions:
+        webauthn: Gunakan salah satu kunci keamanan untuk masuk
     'yes': Ya

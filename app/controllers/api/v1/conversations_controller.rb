@@ -9,8 +9,6 @@ class Api::V1::ConversationsController < Api::BaseController
   before_action :set_conversation, except: :index
   after_action :insert_pagination_headers, only: :index
 
-  respond_to :json
-
   def index
     @conversations = paginated_conversations
     render json: @conversations, each_serializer: REST::ConversationSerializer
@@ -34,7 +32,7 @@ class Api::V1::ConversationsController < Api::BaseController
 
   def paginated_conversations
     AccountConversation.where(account: current_account)
-                       .paginate_by_id(limit_param(LIMIT), params_slice(:max_id, :since_id, :min_id))
+                       .to_a_paginated_by_id(limit_param(LIMIT), params_slice(:max_id, :since_id, :min_id))
   end
 
   def insert_pagination_headers

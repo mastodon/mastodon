@@ -1,1 +1,17 @@
+---
 ro:
+  activerecord:
+    attributes:
+      poll:
+        expires_at: Termen limită
+        options: Alegeri
+    errors:
+      models:
+        account:
+          attributes:
+            username:
+              invalid: doar litere, numere și sublinieri
+        status:
+          attributes:
+            reblog:
+              taken: de stare există deja

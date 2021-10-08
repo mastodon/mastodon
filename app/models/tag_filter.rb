@@ -1,6 +1,16 @@
 # frozen_string_literal: true
 
 class TagFilter
+  KEYS = %i(
+    directory
+    reviewed
+    unreviewed
+    pending_review
+    popular
+    active
+    name
+  ).freeze
+
   attr_reader :params
 
   def initialize(params)
@@ -23,8 +33,6 @@ class TagFilter
 
   def scope_for(key, value)
     case key.to_s
-    when 'directory'
-      Tag.discoverable
     when 'reviewed'
       Tag.reviewed.order(reviewed_at: :desc)
     when 'unreviewed'

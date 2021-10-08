@@ -1,34 +1,24 @@
+import { render, fireEvent, screen } from '@testing-library/react';
 import React from 'react';
-import { mount } from 'enzyme';
 import Column from '../column';
-import ColumnHeader from '../column_header';
 
 describe('<Column />', () => {
   describe('<ColumnHeader /> click handler', () => {
-    const originalRaf = global.requestAnimationFrame;
-
-    beforeEach(() => {
-      global.requestAnimationFrame = jest.fn();
-    });
-
-    afterAll(() => {
-      global.requestAnimationFrame = originalRaf;
-    });
-
     it('runs the scroll animation if the column contains scrollable content', () => {
-      const wrapper = mount(
+      const scrollToMock = jest.fn();
+      const { container } = render(
         <Column heading='notifications'>
           <div className='scrollable' />
-        </Column>
+        </Column>,
       );
-      wrapper.find(ColumnHeader).find('button').simulate('click');
-      expect(global.requestAnimationFrame.mock.calls.length).toEqual(1);
+      container.querySelector('.scrollable').scrollTo = scrollToMock;
+      fireEvent.click(screen.getByText('notifications'));
+      expect(scrollToMock).toHaveBeenCalledWith({ behavior: 'smooth', top: 0 });
     });
 
     it('does not try to scroll if there is no scrollable content', () => {
-      const wrapper = mount(<Column heading='notifications' />);
-      wrapper.find(ColumnHeader).find('button').simulate('click');
-      expect(global.requestAnimationFrame.mock.calls.length).toEqual(0);
+      render(<Column heading='notifications' />);
+      fireEvent.click(screen.getByText('notifications'));
     });
   });
 });

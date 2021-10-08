@@ -59,8 +59,8 @@ module Admin
                              .where(Status.arel_table[:id].gteq(Mastodon::Snowflake.id_at(Time.now.utc.beginning_of_day)))
                              .joins(:account)
                              .group('accounts.domain')
-                             .reorder('statuses_count desc')
-                             .pluck('accounts.domain, count(*) AS statuses_count')
+                             .reorder(statuses_count: :desc)
+                             .pluck(Arel.sql('accounts.domain, count(*) AS statuses_count'))
     end
 
     def set_counters
@@ -73,7 +73,7 @@ module Admin
     end
 
     def filter_params
-      params.slice(:directory, :reviewed, :unreviewed, :pending_review, :page, :popular, :active, :name).permit(:directory, :reviewed, :unreviewed, :pending_review, :page, :popular, :active, :name)
+      params.slice(:page, *TagFilter::KEYS).permit(:page, *TagFilter::KEYS)
     end
 
     def tag_params

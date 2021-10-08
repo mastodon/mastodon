@@ -3,9 +3,10 @@
 class UnreservedUsernameValidator < ActiveModel::Validator
   def validate(account)
     @username = account.username
-    return if @username.nil?
 
-    account.errors.add(:username, I18n.t('accounts.reserved_username')) if reserved_username?
+    return if @username.blank?
+
+    account.errors.add(:username, :reserved) if reserved_username?
   end
 
   private

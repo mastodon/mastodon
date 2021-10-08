@@ -17,6 +17,9 @@ import {
   DOMAIN_BLOCK_SUCCESS,
   DOMAIN_UNBLOCK_SUCCESS,
 } from '../actions/domain_blocks';
+import {
+  ACCOUNT_NOTE_SUBMIT_SUCCESS,
+} from '../actions/account_notes';
 import { Map as ImmutableMap, fromJS } from 'immutable';
 
 const normalizeRelationship = (state, relationship) => state.set(relationship.id, fromJS(relationship));
@@ -42,7 +45,7 @@ const initialState = ImmutableMap();
 export default function relationships(state = initialState, action) {
   switch(action.type) {
   case ACCOUNT_FOLLOW_REQUEST:
-    return state.setIn([action.id, action.locked ? 'requested' : 'following'], true);
+    return state.getIn([action.id, 'following']) ? state : state.setIn([action.id, action.locked ? 'requested' : 'following'], true);
   case ACCOUNT_FOLLOW_FAIL:
     return state.setIn([action.id, action.locked ? 'requested' : 'following'], false);
   case ACCOUNT_UNFOLLOW_REQUEST:
@@ -57,6 +60,7 @@ export default function relationships(state = initialState, action) {
   case ACCOUNT_UNMUTE_SUCCESS:
   case ACCOUNT_PIN_SUCCESS:
   case ACCOUNT_UNPIN_SUCCESS:
+  case ACCOUNT_NOTE_SUBMIT_SUCCESS:
     return normalizeRelationship(state, action.relationship);
   case RELATIONSHIPS_FETCH_SUCCESS:
     return normalizeRelationships(state, action.relationships);

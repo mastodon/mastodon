@@ -38,6 +38,7 @@ eu:
         application: Aplikazioa
         callback_url: Itzulera URLa
         delete: Ezabatu
+        empty: Ez duzu aplikaziorik.
         name: Izena
         new: Aplikazio berria
         scopes: Irismena
@@ -82,7 +83,10 @@ eu:
         invalid_client: Bezeroaren autentifikazioak huts egin du bezero ezezaguna delako, ez delako bezero autentifikazioa txertatu, edo autentifikazio metodoa ez delako onartzen.
         invalid_grant: Emandako autorizatzea baliogabea da, iraungitu da, indargabetu da. ez dator bat autorizatze eskarian erabilitako URI-arekin, edo beste bezero batek sortu du.
         invalid_redirect_uri: Sartutako birbideratze URI-a baliogabea da.
-        invalid_request: Eskaerak beharrezkoa den parametro bat falta du, onartu gabeko parametro-balio bat du, edo beste moduren batean gaizki osatua dago.
+        invalid_request:
+          missing_param: 'Beharrezko parametroa falta da: %{value}.'
+          request_not_authorized: Eskaera baimendu behar da. Eskaera baimentzeko beharrezko parametroa falta da edo baliogabea da.
+          unknown: Eskaerak beharrezkoa den parametro bat falta du, onartu gabeko parametro-balio bat du, edo beste moduren batean gaizki osatua dago.
         invalid_resource_owner: Emandako baliabidearen jabearen kredentzialak baliogabeak dira, edo baliabidearen jabea ez da aurkitu
         invalid_scope: Eskatutako esparrua baliogabea da, ezezaguna, edo gaizki osatua dago.
         invalid_token:
@@ -125,6 +129,7 @@ eu:
       read: irakurri zure kontuko datu guztiak
       read:accounts: ikusi kontuaren informazioa
       read:blocks: ikusi zure blokeoak
+      read:bookmarks: ikusi zure laster-markak
       read:favourites: ikusi zure gogokoak
       read:filters: ikusi zure iragazkiak
       read:follows: ikusi zuk jarraitutakoak
@@ -137,6 +142,7 @@ eu:
       write: kontuaren datu guztiak aldatzea
       write:accounts: zure profila aldatzea
       write:blocks: kontuak eta domeinuak blokeatzea
+      write:bookmarks: mezuen laster-marka
       write:favourites: gogoko mezuak
       write:filters: sortu iragazkiak
       write:follows: jarraitu jendea

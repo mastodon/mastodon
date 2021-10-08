@@ -1,9 +1,6 @@
 # frozen_string_literal: true
 
 class Settings::ImportsController < Settings::BaseController
-  layout 'admin'
-
-  before_action :authenticate_user!
   before_action :set_account
 
   def show
@@ -29,6 +26,6 @@ class Settings::ImportsController < Settings::BaseController
   end
 
   def import_params
-    params.require(:import).permit(:data, :type)
+    params.require(:import).permit(:data, :type, :mode)
   end
 end

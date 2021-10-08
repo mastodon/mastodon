@@ -11,6 +11,7 @@ bn:
     apps: মোবাইল অ্যাপ
     apps_platforms: মাস্টাডন আইওএস, এন্ড্রোইড বা অন্য মাধ্যমে ব্যবহার করুন
     browse_directory: একটি ব্যবহারকারীদের তালিকা দেখুন এবং পছন্দ অনুসারে খুজুন
+    browse_local_posts: এই সার্ভার থেকে সর্বজনীন পোস্টগুলির একটি লাইভ স্ট্রিম ব্রাউজ করুন
     browse_public_posts: মাস্টাডনে নতুন প্রকাশ্য লেখাগুলো সরাসরি দেখুন
     contact: যোগাযোগ
     contact_missing: নেই
@@ -20,6 +21,7 @@ bn:
     federation_hint_html: "%{instance}তে একটা নিবন্ধন থাকলে আপনি যেকোনো মাস্টাডন বা এধরণের অন্যান্য সার্ভারের মানুষের সাথে যুক্ত হতে পারবেন ।"
     get_apps: মোবাইল এপ্প একটা ব্যবহার করতে পারেন
     hosted_on: এই মাস্টাডনটি আছে %{domain} এ
+    instance_actor_flash: "এই অ্যাকাউন্টটি ভার্চুয়াল এক্টর যা নিজে কোনও সার্ভারের প্রতিনিধিত্ব করতে ব্যবহৃত হয় এবং কোনও পৃথক ব্যবহারকারী নয়। এটি ফেডারেশনের উদ্দেশ্যে ব্যবহৃত হয় এবং আপনি যদি পুরো ইনস্ট্যান্স ব্লক করতে না চান তবে অবরুদ্ধ করা উচিত নয়, সেক্ষেত্রে আপনার ডোমেন ব্লক ব্যবহার করা উচিত। \n"
     learn_more: বিস্তারিত জানুন
     privacy_policy: গোপনীয়তা নীতি
     see_whats_happening: কী কী হচ্ছে দেখুন
@@ -31,6 +33,17 @@ bn:
     status_count_before: কে লিখেছে
     tagline: পরিচিতজনদের সাথে যুক্ত হন এবং নতুনদের সাথে পরিচিত হন
     terms: ব্যবহারের শর্তাবলী
+    unavailable_content: অনুপলব্ধ সামগ্রী
+    unavailable_content_description:
+      domain: সার্ভার
+      reason: কারণ
+      rejecting_media: 'এই সার্ভারগুলি থেকে মিডিয়া ফাইলগুলি প্রক্রিয়া করা বা সংরক্ষণ করা হবে না এবং কোনও থাম্বনেইল প্রদর্শিত হবে না, মূল ফাইলটিতে ম্যানুয়াল ক্লিক-মাধ্যমে প্রয়োজন:'
+      rejecting_media_title: ফিল্টার করা মিডিয়া
+      silenced: 'এই সার্ভারগুলির পোস্টগুলি জনসাধারণের টাইমলাইন এবং কথোপকথনে লুকানো থাকবে এবং আপনি যদি তাদের অনুসরণ না করেন তবে তাদের ব্যবহারকারীর ইন্টারঅ্যাকশন থেকে কোনও বিজ্ঞপ্তি উত্পন্ন হবে না:'
+      silenced_title: নীরব করা সার্ভার
+      suspended: 'এই সার্ভারগুলি থেকে কোনও ডেটা প্রক্রিয়াজাতকরণ, সংরক্ষণ বা আদান-প্রদান করা হবে না, এই সার্ভারগুলির ব্যবহারকারীদের সাথে কোনও মিথস্ক্রিয়া বা যোগাযোগকে অসম্ভব করে তুলেছে:'
+      suspended_title: স্থগিত করা সার্ভার
+    unavailable_content_html: ম্যাস্টোডন সাধারণত আপনাকে ফেদিভার্স এ অন্য কোনও সার্ভারের ব্যবহারকারীদের থেকে সামগ্রী দেখতে এবং তাদের সাথে আলাপচারিতা করার অনুমতি দেয়। এই ব্যতিক্রম যে এই বিশেষ সার্ভারে তৈরি করা হয়েছে।
     user_count_after:
       one: ব্যবহারকারী
       other: জনের
@@ -38,6 +51,8 @@ bn:
     what_is_mastodon: মাস্টাডনটি কি ?
   accounts:
     choices_html: "%{name} বাছাই:"
+    endorsements_hint: আপনি ওয়েব ইন্টারফেস থেকে অনুসরণ করা লোকেদের প্রচার করতে পারেন এবং তারা এখানে প্রদর্শিত হবে।
+    featured_tags_hint: আপনি এখানে নির্দিষ্ট হ্যাশট্যাগগুলি বৈশিষ্ট্যযুক্ত করতে পারেন যেটা এখানে প্রদর্শিত হবে।
     follow: যুক্ত
     followers:
       one: যুক্ত আছে
@@ -49,6 +64,7 @@ bn:
     media: ছবি বা ভিডিও
     moved_html: "%{name} চলে গেছে %{new_profile_link} তে:"
     network_hidden: এই তথ্যটি নেই
+    never_active: কখনও না
     nothing_here: এখানে কিছুই নেই!
     people_followed_by: "%{name} যাদেরকে অনুসরণ করে"
     people_who_follow: যারা %{name} কে অনুসরণ করে
@@ -59,10 +75,10 @@ bn:
       other: লেখাগুলো
     posts_tab_heading: লেখাগুলো
     posts_with_replies: লেখা এবং মতামত
-    reserved_username: নামটি সংরক্ষিত
     roles:
       admin: পরিচালক
       bot: রোবট
+      group: গোষ্ঠী
       moderator: পরিচালক
     unavailable: প্রোফাইল অনুপলব্ধ
     unfollow: অনুসরণ বাদ
@@ -76,6 +92,7 @@ bn:
       delete: মুছে ফেলা
       destroyed_msg: প্রশাসনবস্তুত লেখাটি সঠিকভাবে মুছে ফেলা হয়েছে!
     accounts:
+      add_email_domain_block: নিষিদ্ধ করা ই-মেইল ডোমেইন
       approve: অনুমোদন দিন
       approve_all: প্রত্যেক কে অনুমতি দিন
       are_you_sure: আপনি কি নিশ্চিত ?
@@ -103,9 +120,7 @@ bn:
       email_status: ইমেইলের অবস্থা
       enable: চালু করুন
       enabled: চালু করুন
-      feed_url: সম্মিলিত(feed) লিংক
       followers: অনুসরকারীরা
-      followers_url: অনুসরণকারীদের লিংক
       follows: অনুসরণ করে
       header: শিরোলেখা
       inbox_url: চিঠি পাওয়ার বক্স লিংক
@@ -130,11 +145,187 @@ bn:
       moderation_notes: প্রশাসনের কিছু লেখা
       most_recent_activity: সর্বশেষ কার্যক্রম
       most_recent_ip: সর্বশেষ আইপি(IP)
+      no_account_selected: কোনও অ্যাকাউন্টই নির্বাচন করা হয়নি বলে কোনও অ্যাকাউন্ট পরিবর্তন করা হয়নি
       no_limits_imposed: কোন সীমা আরোপ করা নেই
       not_subscribed: সাবস্ক্রাইব নেই
-      outbox_url: চিঠি পাঠানোর বাক্স লিংক
       pending: পয্র্যবেক্ষণের অপেক্ষায় আছে
       perform_full_suspension: বাতিল করা
+      promote: প্রচার
+      protocol: প্রোটোকল
+      public: সর্বজনীন
+      push_subscription_expires: PuSH সাবস্ক্রিপশনের মেয়াদ শেষ হয়ে গেছে
+      redownload: প্রোফাইল সতেজ করুন
+      reject: প্রত্যাখ্যান করুন
+      reject_all: সব প্রত্যাখ্যান করুন
+      remove_avatar: অবতার অপসারণ করুন
+      remove_header: হেডার এর ছবি অপসারণ করুন
+      resend_confirmation:
+        already_confirmed: এই ব্যবহারকারী ইতিমধ্যে নিশ্চিত করা আছে
+        send: নিশ্চিতকরণ ইমেল পুনরায় পাঠান
+        success: নিশ্চিতকরণের ইমেল সফলভাবে পাঠানো হয়েছে!
+      reset: পুনরায় সেট করুন
+      reset_password: পাসওয়ার্ড পুনঃস্থাপন করুন
+      resubscribe: পুনরায় সদস্যতা নিন
+      role: অনুমতিসমূহ
+      roles:
+        admin: পরিচালক
+        moderator: নিয়ামক
+        staff: কর্মী
+        user: ব্যবহারকারী
+      search: অনুসন্ধান
+      search_same_email_domain: একই ইমেল ডোমেন সহ অন্যান্য ব্যবহারকারীরা
+      search_same_ip: একই IP সহ অন্যান্য ব্যবহারকারীরা
+      shared_inbox_url: ভাগ করা ইনবক্স URL
+      show:
+        created_reports: তৈরি করা রিপোর্টগুলি
+        targeted_reports: অন্যদের দ্বারা প্রতিবেদনগুলি
+      silence: নীরব
+      silenced: নীরব করা হয়েছে
+      statuses: স্থিতিগুলি
+      subscribe: সদস্যতা
+      suspended: স্থগিত করা হয়েছে
+      time_in_queue: কাতারে অপেক্ষা করছে %{time}
+      title: একাউন্ট সমূহ
+      unconfirmed_email: অনিশ্চিত ইমেল
+      undo_silenced: নীরবতা পূর্বাবস্থা
+      undo_suspension: স্থগিতকরণ পূর্বাবস্থায় ফেরাও
+      unsubscribe: সদস্যতা ত্যাগ করুন
+      username: ব্যবহারকারীর নাম
+      warn: সতর্ক
+      web: ওয়েব
+      whitelisted: সাদাতালিকাযুক্ত
+    action_logs:
+      action_types:
+        assigned_to_self_report: রিপোর্ট বরাদ্দ করুন
+        change_email_user: ব্যবহারকারী জন্য ইমেইল পরিবর্তন করুন
+        confirm_user: ব্যবহারকারী নিশ্চিত করুন
+        create_account_warning: সতর্কতা তৈরি করুন
+        create_announcement: ঘোষণা তৈরি করুন
+        create_custom_emoji: স্বনির্ধারিত ইমোজি তৈরি করুন
+        create_domain_allow: ডোমেন অনুমোদন তৈরি করুন
+        create_domain_block: ডোমেন ব্লক তৈরি করুন
+        create_email_domain_block: ইমেইল ডোমেন ব্লক তৈরি করুন
+        demote_user: ব্যবহারকারী কে হীনপদস্থ করুন
+        destroy_announcement: ঘোষণা মুছুন
+        destroy_custom_emoji: স্বনির্ধারিত ইমোজি মুছুন
+        destroy_domain_allow: ডোমেন অনুমোদন মুছুন
+        destroy_domain_block: ডোমেন ব্লক মুছুন
+        destroy_email_domain_block: ইমেইল ডোমেন ব্লক মুছুন
+        destroy_status: স্ট্যাটাস মুছুন
+        disable_2fa_user: 2FA নিষ্ক্রিয় করুন
+        disable_custom_emoji: স্বনির্ধারিত ইমোজি নিষ্ক্রিয় করুন
+        disable_user: ব্যবহারকারী কে নিষ্ক্রিয় করুন
+        enable_custom_emoji: স্বনির্ধারিত ইমোজি সক্রিয় করুন
+        enable_user: ব্যবহারকারী কে সক্রিয় করুন
+        memorialize_account: মেমোরিয়ালাইজ অ্যাকাউন্ট
+        promote_user: ব্যবহারকারী কে পদোন্নতি করুন
+        remove_avatar_user: অবতার অপসারণ করুন
+        reopen_report: প্রতিবেদনটি পুনরায় খুলুন
+        reset_password_user: পাসওয়ার্ড পুনঃস্থাপন করুন
+        resolve_report: প্রতিবেদনটি সমাধান করুন
+        silence_account: অ্যাকাউন্ট নীরব করুন
+        suspend_account: অ্যাকাউন্ট স্থগিত করুন
+        unassigned_report: রিপোর্ট বরাদ্দ মুক্ত করুন
+        unsilence_account: অ্যাকাউন্ট নীরব মুক্ত করুন
+        unsuspend_account: অ্যাকাউন্ট স্থগিতমুক্ত করুন
+        update_announcement: ঘোষণা আপডেট করুন
+        update_custom_emoji: স্বনির্ধারিত ইমোজি আপডেট করুন
+        update_status: স্থিতি আপডেট করুন
+    custom_emojis:
+      destroyed_msg: ইমোজো সফলভাবে ধ্বংস হয়েছে!
+      disable: অক্ষম
+      disabled: অক্ষমিত
+      disabled_msg: সফলভাবে সেই ইমোজি অক্ষম করা হয়েছে
+      emoji: ইমোজি
+      enable: সক্রিয়
+      enabled: সক্রিয়
+      enabled_msg: সফলভাবে সেই ইমোজি সক্ষম করা হয়েছে
+      image_hint: ৫০কেবি অবধি পিএনজি
+      list: তালিকা
+      listed: তালিকাভুক্ত
+      new:
+        title: নতুন স্বনির্ধারিত ইমোজি যোগ করুন
+      not_permitted: আপনার এই ক্রিয়া সম্পাদন করার অনুমতি নেই
+      overwrite: পুনর্লিখন
+      shortcode: শর্টকোড
+      shortcode_hint: কমপক্ষে ২ টি অক্ষর, কেবলমাত্র বর্ণানুক্রমিক অক্ষর এবং আন্ডারস্কোর
+      title: স্বনির্ধারিত ইমোজিগুলি
+      uncategorized: শ্রেণীবিহীন
+      unlist: তালিকামুক্ত
+      unlisted: তালিকামুক্ত
+      update_failed_msg: সেই ইমোজি আপডেট করতে পারেনি
+      updated_msg: ইমোজি সফলভাবে আপডেট হয়েছে!
+      upload: আপলোড
+    dashboard:
+      authorized_fetch_mode: সুরক্ষিত মোড
+      backlog: ব্যাকলগ জবগুলি
+      config: কনফিগারেশন
+      feature_deletions: মোছা অ্যাকাউন্টগুলি
+      feature_invites: আমন্ত্রণ লিঙ্কগুলি
+      feature_profile_directory: প্রোফাইল ডিরেক্টরি
+      feature_registrations: নিবন্ধনগুলি
+      feature_relay: ফেডারেশন রিলে
+      feature_timeline_preview: পূর্বদর্শন সময়রেখা
+      features: বৈশিষ্ট্যগুলি
+      hidden_service: লুকানো সেবা সহ ফেডারেশন
+      open_reports: খোলার রিপোর্টগুলি
+      pending_tags: যে হ্যাশট্যাগগুলি পুনঃমূল্যায়নার জন্য অপেক্ষা করছে
+      pending_users: যে ব্যবহারকারী পুনঃমূল্যায়নার জন্য অপেক্ষা করছে
+      recent_users: সাম্প্রতিক ব্যবহারকারীরা
+      search: সম্পূর্ণ পাঠ্য অনুসন্ধান
+      single_user_mode: একক ব্যবহারকারী মোড
+      software: সফটওয়্যার
+      space: স্থান ব্যবহার
+      title: ড্যাশবোর্ড
+      total_users: মোট ব্যবহারকারী
+      trends: প্রবণতাগুলি
+      week_interactions: এই সপ্তাহে মিথষ্ক্রিয়াগুলি
+      week_users_active: এই সপ্তাহে সক্রিয় ব্যাবহারকারিরা
+      week_users_new: এই সপ্তাহে ব্যাবহারকারিরা
+      whitelist_mode: সীমিত ফেডারেশন মোড
+    instances:
+      moderation:
+        limited: সীমিত
+        title: প্রশাসনা
+      private_comment: ব্যক্তিগত মন্তব্য
+      public_comment: জনমত
+      title: ফেডারেশন
+      total_blocked_by_us: আমাদের দ্বারা অবরুদ্ধ
+      total_followed_by_them: তাদের দ্বারা অনুসরণ
+      total_followed_by_us: আমাদের দ্বারা অনুসরণ
+      total_reported: তাদের সম্পর্কে রিপোর্ট
+      total_storage: মিডিয়া সংযুক্তিগুলি
+    invites:
+      deactivate_all: সব নিষ্ক্রিয় করুন
+      filter:
+        all: সব
+        available: সহজলভ্য
+        expired: মেয়াদোত্তীর্ণ
+        title: ফিল্টার
+      title: আমন্ত্রণগুলি
+    pending_accounts:
+      title: মুলতুবি থাকা অ্যাকাউন্টগুলি (%{count})
+    relationships:
+      title: "%{acct} এর সম্পর্কগুলি"
+    relays:
+      add_new: নতুন রিলে যোগ করুন
+      delete: মুছুন
+      description_html: একটি <strong>ফেডারেশন রিলে</strong> একটি মধ্যস্থতাকারী সার্ভার যা সাবস্ক্রাইব করে এটিতে প্রকাশ করে এমন সার্ভারের মধ্যে প্রচুর পরিমাণে সর্বজনীন টটস বিনিময় করে। <strong>এটি ক্ষুদ্র ও মাঝারি সার্ভারগুলিকে ফেডাইভার্স থেকে সামগ্রী আবিষ্কার করতে সহায়তা করতে পারে</strong>, অন্যথায় স্থানীয় ব্যবহারকারীদের ম্যানুয়ালি অন্য লোককে দূরবর্তী সার্ভারে অনুসরণ করতে হবে।
+      disable: অক্ষম
+      disabled: অক্ষমিত
+      enable: সক্রিয়
+      enable_hint: একবার সক্ষম হয়ে গেলে, আপনার সার্ভার এই রিলে থেকে সমস্ত পাবলিক টুটগুলিতে সাবস্ক্রাইব করবে এবং এতে এই সার্ভারের সর্বজনীন টটগুলি প্রেরণ শুরু করবে।
+      enabled: সক্রিয়কৃত
+      inbox_url: রিলে ইউআরএল
+      pending: রিলের অনুমোদনের অপেক্ষায়
+      save_and_enable: সংরক্ষণ করুন এবং সক্ষম করুন
+      setup: রিলে সংযোগ সেটআপ করুন
+      signatures_not_enabled: সুরক্ষিত মোড বা সীমিত ফেডারেশন মোড সক্ষম থাকা অবস্থায় রিলেগুলি সঠিকভাবে কাজ করবে না
+      status: অবস্থা
+      title: রিলেগুলি
+    report_notes:
+      created_msg: রিপোর্ট নোট সফলভাবে তৈরি করা হয়েছে!
+      destroyed_msg: রিপোর্ট নোট সফলভাবে মোছা হয়েছে!
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
@@ -142,16 +333,8 @@ bn:
     '406': This page is not available in the requested format.
     '410': The page you were looking for doesn't exist here anymore.
     '422': 
-    '429': Throttled
+    '429': Too many requests
     '500': 
     '503': The page could not be served due to a temporary server failure.
-  invites:
-    expires_in:
-      '1800': 30 minutes
-      '21600': 6 hours
-      '3600': 1 hour
-      '43200': 12 hours
-      '604800': 1 week
-      '86400': 1 day
   verification:
     verification: সত্যতা নির্ধারণ

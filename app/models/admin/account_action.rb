@@ -8,6 +8,7 @@ class Admin::AccountAction
   TYPES = %w(
     none
     disable
+    sensitive
     silence
     suspend
   ).freeze
@@ -62,10 +63,10 @@ class Admin::AccountAction
 
   def process_action!
     case type
-    when 'none'
-      handle_resolve!
     when 'disable'
       handle_disable!
+    when 'sensitive'
+      handle_sensitive!
     when 'silence'
       handle_silence!
     when 'suspend'
@@ -105,20 +106,16 @@ class Admin::AccountAction
     end
   end
 
-  def handle_resolve!
-    if with_report? && report.account_id == -99 && target_account.trust_level == Account::TRUST_LEVELS[:untrusted]
-      # This is an automated report and it is being dismissed, so it's
-      # a false positive, in which case update the account's trust level
-      # to prevent further spam checks
-
-      target_account.update(trust_level: Account::TRUST_LEVELS[:trusted])
-    end
-  end
-
   def handle_disable!
     authorize(target_account.user, :disable?)
     log_action(:disable, target_account.user)
     target_account.user&.disable!
+  end
+
+  def handle_sensitive!
+    authorize(target_account, :sensitive?)
+    log_action(:sensitive, target_account)
+    target_account.sensitize!
   end
 
   def handle_silence!
@@ -130,7 +127,7 @@ class Admin::AccountAction
   def handle_suspend!
     authorize(target_account, :suspend?)
     log_action(:suspend, target_account)
-    target_account.suspend!
+    target_account.suspend!(origin: :local)
   end
 
   def text_for_warning
@@ -146,7 +143,7 @@ class Admin::AccountAction
   end
 
   def process_email!
-    UserMailer.warning(target_account.user, warning, status_ids).deliver_now! if warnable?
+    UserMailer.warning(target_account.user, warning, status_ids).deliver_later! if warnable?
   end
 
   def warnable?
@@ -154,7 +151,7 @@ class Admin::AccountAction
   end
 
   def status_ids
-    @report.status_ids if @report && include_statuses
+    report.status_ids if report && include_statuses
   end
 
   def reports

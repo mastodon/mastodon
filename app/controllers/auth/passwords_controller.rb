@@ -6,6 +6,15 @@ class Auth::PasswordsController < Devise::PasswordsController
 
   layout 'auth'
 
+  def update
+    super do |resource|
+      if resource.errors.empty?
+        resource.session_activations.destroy_all
+        resource.forget_me!
+      end
+    end
+  end
+
   private
 
   def check_validity_of_reset_password_token

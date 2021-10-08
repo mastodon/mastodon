@@ -5,13 +5,28 @@ ca:
       poll:
         expires_at: Data límit
         options: Opcions
+      user:
+        agreement: Acord de servei
+        email: Adreça de correu electrònic
+        locale: Idioma
+        password: Contrasenya
+      user/account:
+        username: Nom d'usuari
+      user/invite_request:
+        text: Motiu
     errors:
       models:
         account:
           attributes:
             username:
               invalid: només lletres, números i subratllats
+              reserved: està reservat
         status:
           attributes:
             reblog:
-              taken: de l'estat ja existeix
+              taken: del tut ja existeix
+        user:
+          attributes:
+            email:
+              blocked: utilitza un proveïdor de correu electrònic no autoritzat
+              unreachable: sembla que no existeix

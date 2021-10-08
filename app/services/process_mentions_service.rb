@@ -14,26 +14,35 @@ class ProcessMentionsService < BaseService
     mentions = []
 
     status.text = status.text.gsub(Account::MENTION_RE) do |match|
-      username, domain  = Regexp.last_match(1).split('@')
+      username, domain = Regexp.last_match(1).split('@')
+
+      domain = begin
+        if TagManager.instance.local_domain?(domain)
+          nil
+        else
+          TagManager.instance.normalize_domain(domain)
+        end
+      end
+
       mentioned_account = Account.find_remote(username, domain)
 
       if mention_undeliverable?(mentioned_account)
         begin
           mentioned_account = resolve_account_service.call(Regexp.last_match(1))
-        rescue Goldfinger::Error, HTTP::Error, OpenSSL::SSL::SSLError, Mastodon::UnexpectedResponseError
+        rescue Webfinger::Error, HTTP::Error, OpenSSL::SSL::SSLError, Mastodon::UnexpectedResponseError
           mentioned_account = nil
         end
       end
 
       next match if mention_undeliverable?(mentioned_account) || mentioned_account&.suspended?
 
-      mentions << mentioned_account.mentions.where(status: status).first_or_create(status: status)
+      mention = mentioned_account.mentions.new(status: status)
+      mentions << mention if mention.save
 
       "@#{mentioned_account.acct}"
     end
 
     status.save!
-    check_for_spam(status)
 
     mentions.each { |mention| create_notification(mention) }
   end
@@ -48,22 +57,18 @@ class ProcessMentionsService < BaseService
     mentioned_account = mention.account
 
     if mentioned_account.local?
-      LocalNotificationWorker.perform_async(mentioned_account.id, mention.id, mention.class.name)
+      LocalNotificationWorker.perform_async(mentioned_account.id, mention.id, mention.class.name, :mention)
     elsif mentioned_account.activitypub?
-      ActivityPub::DeliveryWorker.perform_async(activitypub_json, mention.status.account_id, mentioned_account.inbox_url)
+      ActivityPub::DeliveryWorker.perform_async(activitypub_json, mention.status.account_id, mentioned_account.inbox_url, { synchronize_followers: !mention.status.distributable? })
     end
   end
 
   def activitypub_json
     return @activitypub_json if defined?(@activitypub_json)
-    @activitypub_json = Oj.dump(serialize_payload(@status, ActivityPub::ActivitySerializer, signer: @status.account))
+    @activitypub_json = Oj.dump(serialize_payload(ActivityPub::ActivityPresenter.from_status(@status), ActivityPub::ActivitySerializer, signer: @status.account))
   end
 
   def resolve_account_service
     ResolveAccountService.new
-  end
-
-  def check_for_spam(status)
-    SpamCheck.perform(status)
   end
 end

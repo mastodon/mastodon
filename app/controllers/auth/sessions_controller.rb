@@ -7,8 +7,10 @@ class Auth::SessionsController < Devise::SessionsController
 
   skip_before_action :require_no_authentication, only: [:create]
   skip_before_action :require_functional!
+  skip_before_action :update_user_sign_in
 
-  prepend_before_action :authenticate_with_two_factor, if: :two_factor_enabled?, only: [:create]
+  include TwoFactorAuthenticationConcern
+  include SignInTokenAuthenticationConcern
 
   before_action :set_instance_presenter, only: [:new]
   before_action :set_body_classes
@@ -23,8 +25,11 @@ class Auth::SessionsController < Devise::SessionsController
 
   def create
     super do |resource|
-      remember_me(resource)
-      flash.delete(:notice)
+      # We only need to call this if this hasn't already been
+      # called from one of the two-factor or sign-in token
+      # authentication methods
+
+      on_authentication_success(resource, :password) unless @on_authentication_success_called
     end
   end
 
@@ -36,20 +41,42 @@ class Auth::SessionsController < Devise::SessionsController
     store_location_for(:user, tmp_stored_location) if continue_after?
   end
 
-  protected
+  def webauthn_options
+    user = User.find_by(id: session[:attempt_user_id])
 
-  def find_user
-    if session[:otp_user_id]
-      User.find(session[:otp_user_id])
+    if user&.webauthn_enabled?
+      options_for_get = WebAuthn::Credential.options_for_get(
+        allow: user.webauthn_credentials.pluck(:external_id),
+        user_verification: 'discouraged'
+      )
+
+      session[:webauthn_challenge] = options_for_get.challenge
+
+      render json: options_for_get, status: :ok
     else
-      user   = User.authenticate_with_ldap(user_params) if Devise.ldap_authentication
-      user ||= User.authenticate_with_pam(user_params) if Devise.pam_authentication
-      user ||= User.find_for_authentication(email: user_params[:email])
+      render json: { error: t('webauthn_credentials.not_enabled') }, status: :unauthorized
     end
   end
 
+  protected
+
+  def find_user
+    if user_params[:email].present?
+      find_user_from_params
+    elsif session[:attempt_user_id]
+      User.find_by(id: session[:attempt_user_id])
+    end
+  end
+
+  def find_user_from_params
+    user   = User.authenticate_with_ldap(user_params) if Devise.ldap_authentication
+    user ||= User.authenticate_with_pam(user_params) if Devise.pam_authentication
+    user ||= User.find_for_authentication(email: user_params[:email])
+    user
+  end
+
   def user_params
-    params.require(:user).permit(:email, :password, :otp_attempt)
+    params.require(:user).permit(:email, :password, :otp_attempt, :sign_in_token_attempt, credential: {})
   end
 
   def after_sign_in_path_for(resource)
@@ -70,45 +97,12 @@ class Auth::SessionsController < Devise::SessionsController
     super
   end
 
-  def two_factor_enabled?
-    find_user&.otp_required_for_login?
-  end
+  def require_no_authentication
+    super
 
-  def valid_otp_attempt?(user)
-    user.validate_and_consume_otp!(user_params[:otp_attempt]) ||
-      user.invalidate_otp_backup_code!(user_params[:otp_attempt])
-  rescue OpenSSL::Cipher::CipherError
-    false
-  end
-
-  def authenticate_with_two_factor
-    user = self.resource = find_user
-
-    if user_params[:otp_attempt].present? && session[:otp_user_id]
-      authenticate_with_two_factor_via_otp(user)
-    elsif user.present? && (user.encrypted_password.blank? || user.valid_password?(user_params[:password]))
-      # If encrypted_password is blank, we got the user from LDAP or PAM,
-      # so credentials are already valid
-
-      prompt_for_two_factor(user)
-    end
-  end
-
-  def authenticate_with_two_factor_via_otp(user)
-    if valid_otp_attempt?(user)
-      session.delete(:otp_user_id)
-      remember_me(user)
-      sign_in(user)
-    else
-      flash.now[:alert] = I18n.t('users.invalid_otp_token')
-      prompt_for_two_factor(user)
-    end
-  end
-
-  def prompt_for_two_factor(user)
-    session[:otp_user_id] = user.id
-    @body_classes = 'lighter'
-    render :two_factor
+    # Delete flash message that isn't entirely useful and may be confusing in
+    # most cases because /web doesn't display/clear flash messages.
+    flash.delete(:alert) if flash[:alert] == I18n.t('devise.failure.already_authenticated')
   end
 
   private
@@ -123,13 +117,60 @@ class Auth::SessionsController < Devise::SessionsController
 
   def home_paths(resource)
     paths = [about_path]
+
     if single_user_mode? && resource.is_a?(User)
       paths << short_account_path(username: resource.account)
     end
+
     paths
   end
 
   def continue_after?
     truthy_param?(:continue)
+  end
+
+  def restart_session
+    clear_attempt_from_session
+    redirect_to new_user_session_path, alert: I18n.t('devise.failure.timeout')
+  end
+
+  def set_attempt_session(user)
+    session[:attempt_user_id]         = user.id
+    session[:attempt_user_updated_at] = user.updated_at.to_s
+  end
+
+  def clear_attempt_from_session
+    session.delete(:attempt_user_id)
+    session.delete(:attempt_user_updated_at)
+  end
+
+  def on_authentication_success(user, security_measure)
+    @on_authentication_success_called = true
+
+    clear_attempt_from_session
+
+    user.update_sign_in!(request, new_sign_in: true)
+    remember_me(user)
+    sign_in(user)
+    flash.delete(:notice)
+
+    LoginActivity.create(
+      user: user,
+      success: true,
+      authentication_method: security_measure,
+      ip: request.remote_ip,
+      user_agent: request.user_agent
+    )
+  end
+
+  def on_authentication_failure(user, security_measure, failure_reason)
+    LoginActivity.create(
+      user: user,
+      success: false,
+      authentication_method: security_measure,
+      failure_reason: failure_reason,
+      ip: request.remote_ip,
+      user_agent: request.user_agent
+    )
   end
 end

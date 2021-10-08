@@ -151,6 +151,12 @@ RSpec.describe User, type: :model do
       expect(user.reload.otp_required_for_login).to be false
     end
 
+    it 'saves nil for otp_secret' do
+      user = Fabricate.build(:user, otp_secret: 'oldotpcode')
+      user.disable_two_factor!
+      expect(user.reload.otp_secret).to be nil
+    end
+
     it 'saves cleared otp_backup_codes' do
       user = Fabricate.build(:user, otp_backup_codes: %w(dummy dummy))
       user.disable_two_factor!
@@ -169,7 +175,7 @@ RSpec.describe User, type: :model do
       user = Fabricate(:user)
       ActiveJob::Base.queue_adapter = :test
 
-      expect { user.send_confirmation_instructions }.to have_enqueued_job(ActionMailer::DeliveryJob)
+      expect { user.send_confirmation_instructions }.to have_enqueued_job(ActionMailer::MailDeliveryJob)
     end
   end
 
@@ -200,7 +206,7 @@ RSpec.describe User, type: :model do
 
   describe 'whitelist' do
     around(:each) do |example|
-      old_whitelist = Rails.configuration.x.email_whitelist
+      old_whitelist = Rails.configuration.x.email_domains_whitelist
 
       Rails.configuration.x.email_domains_whitelist = 'mastodon.space'
 
@@ -322,20 +328,7 @@ RSpec.describe User, type: :model do
     end
 
     it 'disables user' do
-      expect(user).to have_attributes(disabled: true, current_sign_in_at: nil, last_sign_in_at: current_sign_in_at)
-    end
-  end
-
-  describe '#disable!' do
-    subject(:user) { Fabricate(:user, disabled: false, current_sign_in_at: current_sign_in_at, last_sign_in_at: nil) }
-    let(:current_sign_in_at) { Time.zone.now }
-
-    before do
-      user.disable!
-    end
-
-    it 'disables user' do
-      expect(user).to have_attributes(disabled: true, current_sign_in_at: nil, last_sign_in_at: current_sign_in_at)
+      expect(user).to have_attributes(disabled: true)
     end
   end
 
@@ -348,6 +341,34 @@ RSpec.describe User, type: :model do
 
     it 'enables user' do
       expect(user).to have_attributes(disabled: false)
+    end
+  end
+
+  describe '#reset_password!' do
+    subject(:user) { Fabricate(:user, password: 'foobar12345') }
+
+    let!(:session_activation) { Fabricate(:session_activation, user: user) }
+    let!(:access_token) { Fabricate(:access_token, resource_owner_id: user.id) }
+    let!(:web_push_subscription) { Fabricate(:web_push_subscription, access_token: access_token) }
+
+    before do
+      user.reset_password!
+    end
+
+    it 'changes the password immediately' do
+      expect(user.external_or_valid_password?('foobar12345')).to be false
+    end
+
+    it 'deactivates all sessions' do
+      expect(user.session_activations.count).to eq 0
+    end
+
+    it 'revokes all access tokens' do
+      expect(Doorkeeper::AccessToken.active_for(user).count).to eq 0
+    end
+
+    it 'removes push subscriptions' do
+      expect(Web::PushSubscription.where(user: user).or(Web::PushSubscription.where(access_token: access_token)).count).to eq 0
     end
   end
 

@@ -38,6 +38,7 @@ pl:
         application: Aplikacja
         callback_url: URL wywołania zwrotnego (callback)
         delete: Usuń
+        empty: Nie masz aplikacji.
         name: Nazwa
         new: Nowa aplikacja
         scopes: Zakres
@@ -82,7 +83,10 @@ pl:
         invalid_client: Autoryzacja klienta nie powiodła się z powodu nieznanego klienta, braku uwierzytelnienia klienta, lub niewspieranej metody uwierzytelniania.
         invalid_grant: Grant uwierzytelnienia jest niepoprawny, przeterminowany, unieważniony, nie pasuje do URI przekierowwania użytego w żądaniu uwierzytelnienia, lub został wystawiony przez innego klienta.
         invalid_redirect_uri: URI przekierowania jest nieprawidłowy.
-        invalid_request: 'Żądanie jest nieprawidłowe: brakujący parametr, niewspierana wartość parametru, lub inny błąd.'
+        invalid_request:
+          missing_param: 'Brak wymaganego parametru: %{value}.'
+          request_not_authorized: Żądanie musi być autoryzowane. Wymagany do autoryzacji żądania parametr nie istnieje lub jest nieprawidłowy.
+          unknown: Żądanie nie zawiera wymaganego parametru, zawiera nieobsługiwaną wartość parametru, lub jest w inny sposób uszkodzone.
         invalid_resource_owner: Dostarczone dane uwierzytelniające właściciela zasobu są niepoprawne, lub właściciel zasobu nie może zostać znaleziony
         invalid_scope: Zakres żądania jest niepoprawny, nieznany, lub błędnie zbudowany.
         invalid_token:
@@ -125,6 +129,7 @@ pl:
       read: możliwość odczytu wszystkich danych konta
       read:accounts: dostęp do informacji o koncie
       read:blocks: dostęp do listy blokowanych
+      read:bookmarks: dostęp do zakładek
       read:favourites: dostęp do listy ulubionych
       read:filters: dostęp do filtrów
       read:follows: dostęp do listy śledzonych
@@ -137,6 +142,7 @@ pl:
       write: możliwość modyfikowania wszystkich danych o koncie
       write:accounts: możliwość modyfikowania informacji o koncie
       write:blocks: możliwość blokowania domen i użytkowników
+      write:bookmarks: możliwość dodawania wpisów do zakładek
       write:favourites: możliwość dodawnia wpisów do ulubionych
       write:filters: możliwość tworzenia filtrów
       write:follows: możliwość śledzenia ludzi

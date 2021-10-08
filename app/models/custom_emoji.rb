@@ -3,23 +3,26 @@
 #
 # Table name: custom_emojis
 #
-#  id                 :bigint(8)        not null, primary key
-#  shortcode          :string           default(""), not null
-#  domain             :string
-#  image_file_name    :string
-#  image_content_type :string
-#  image_file_size    :integer
-#  image_updated_at   :datetime
-#  created_at         :datetime         not null
-#  updated_at         :datetime         not null
-#  disabled           :boolean          default(FALSE), not null
-#  uri                :string
-#  image_remote_url   :string
-#  visible_in_picker  :boolean          default(TRUE), not null
-#  category_id        :bigint(8)
+#  id                           :bigint(8)        not null, primary key
+#  shortcode                    :string           default(""), not null
+#  domain                       :string
+#  image_file_name              :string
+#  image_content_type           :string
+#  image_file_size              :integer
+#  image_updated_at             :datetime
+#  created_at                   :datetime         not null
+#  updated_at                   :datetime         not null
+#  disabled                     :boolean          default(FALSE), not null
+#  uri                          :string
+#  image_remote_url             :string
+#  visible_in_picker            :boolean          default(TRUE), not null
+#  category_id                  :bigint(8)
+#  image_storage_schema_version :integer
 #
 
 class CustomEmoji < ApplicationRecord
+  include Attachmentable
+
   LIMIT = 50.kilobytes
 
   SHORTCODE_RE_FRAGMENT = '[a-zA-Z0-9_]{2,}'
@@ -33,7 +36,7 @@ class CustomEmoji < ApplicationRecord
   belongs_to :category, class_name: 'CustomEmojiCategory', optional: true
   has_one :local_counterpart, -> { where(domain: nil) }, class_name: 'CustomEmoji', primary_key: :shortcode, foreign_key: :shortcode
 
-  has_attached_file :image, styles: { static: { format: 'png', convert_options: '-coalesce -strip' } }
+  has_attached_file :image, styles: { static: { format: 'png', convert_options: '-coalesce -strip' } }, validate_media_type: false
 
   before_validation :downcase_domain
 
@@ -47,8 +50,6 @@ class CustomEmoji < ApplicationRecord
   scope :listed, -> { local.where(disabled: false).where(visible_in_picker: true) }
 
   remotable_attachment :image, LIMIT
-
-  include Attachmentable
 
   after_commit :remove_entity_cache
 
@@ -67,7 +68,7 @@ class CustomEmoji < ApplicationRecord
   end
 
   class << self
-    def from_text(text, domain)
+    def from_text(text, domain = nil)
       return [] if text.blank?
 
       shortcodes = text.scan(SCAN_RE).map(&:first).uniq

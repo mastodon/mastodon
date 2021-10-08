@@ -1,8 +1,15 @@
 - content_for :page_title do
   = t('settings.notifications')
 
-= simple_form_for current_user, url: settings_preferences_notifications_path, html: { method: :put } do |f|
+- content_for :heading_actions do
+  = button_tag t('generic.save_changes'), class: 'button', form: 'edit_notification'
+
+= simple_form_for current_user, url: settings_preferences_notifications_path, html: { method: :put, id: 'edit_notification' } do |f|
   = render 'shared/error_messages', object: current_user
+
+  %h4= t 'notifications.email_events'
+
+  %p.hint= t 'notifications.email_events_hint'
 
   .fields-group
     = f.simple_fields_for :notification_emails, hash_to_object(current_user.settings.notification_emails) do |ff|
@@ -21,11 +28,10 @@
     = f.simple_fields_for :notification_emails, hash_to_object(current_user.settings.notification_emails) do |ff|
       = ff.input :digest, as: :boolean, wrapper: :with_label
 
+  %h4= t 'notifications.other_settings'
+
   .fields-group
     = f.simple_fields_for :interactions, hash_to_object(current_user.settings.interactions) do |ff|
       = ff.input :must_be_follower, as: :boolean, wrapper: :with_label
       = ff.input :must_be_following, as: :boolean, wrapper: :with_label
       = ff.input :must_be_following_dm, as: :boolean, wrapper: :with_label
-
-  .actions
-    = f.button :button, t('generic.save_changes'), type: :submit

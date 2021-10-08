@@ -10,10 +10,10 @@ export default class ConversationsList extends ImmutablePureComponent {
 
   static propTypes = {
     conversations: ImmutablePropTypes.list.isRequired,
+    scrollKey: PropTypes.string.isRequired,
     hasMore: PropTypes.bool,
     isLoading: PropTypes.bool,
     onLoadMore: PropTypes.func,
-    shouldUpdateScroll: PropTypes.func,
   };
 
   getCurrentIndex = id => this.props.conversations.findIndex(x => x.get('id') === id)
@@ -58,13 +58,14 @@ export default class ConversationsList extends ImmutablePureComponent {
     const { conversations, onLoadMore, ...other } = this.props;
 
     return (
-      <ScrollableList {...other} onLoadMore={onLoadMore && this.handleLoadOlder} scrollKey='direct' ref={this.setRef}>
+      <ScrollableList {...other} onLoadMore={onLoadMore && this.handleLoadOlder} ref={this.setRef}>
         {conversations.map(item => (
           <ConversationContainer
             key={item.get('id')}
             conversationId={item.get('id')}
             onMoveUp={this.handleMoveUp}
             onMoveDown={this.handleMoveDown}
+            scrollKey={this.props.scrollKey}
           />
         ))}
       </ScrollableList>

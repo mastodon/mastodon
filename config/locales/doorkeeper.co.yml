@@ -38,6 +38,7 @@ co:
         application: Applicazione
         callback_url: URL di richjama
         delete: Toglie
+        empty: Ùn avete micca d'applicazione.
         name: Nome
         new: Applicazione nova
         scopes: Scopi
@@ -61,7 +62,7 @@ co:
       new:
         able_to: St’applicazione puderà
         prompt: L’applicazione %{client_name} hà dumandatu d’avè accessu à u vostru contu
-        title: Permessu riquestu
+        title: Permessu richiestu
       show:
         title: Codice d’auturizazione da cupià indè l’applicazione.
     authorized_applications:
@@ -72,7 +73,7 @@ co:
       index:
         application: Applicazione
         created_at: Auturizata u
-        date_format: "%d-%m-%Y %H:%M:%S"
+        date_format: "%Y-%m-%d %H:%M:%S"
         scopes: Scopi
         title: E vostre applicazione auturizate
     errors:
@@ -82,7 +83,10 @@ co:
         invalid_client: L’autintificazione di u cliente hà fiascatu perchè u cliente ùn hè micca cunnisciutu, l’identificazione di u cliente ùn hè cumpresa, o u modu d’identificazione ùn marchja micca.
         invalid_grant: L’accunsentu d’auturizazione furnitu ùn hè currettu, hè spiratu, sguassatu, ùn và micca cù l’indirizzu di ridirezzione usatu in a dumanda d’auturizazione, o hè statu emessu per un’altru cliente.
         invalid_redirect_uri: L’URI di ridirezzione ùn hè curretta.
-        invalid_request: Ci manca un parametru riquestu indè a dumanda, cuntene un parametru ch’ùn esiste micca, o altru sbagliu di forma.
+        invalid_request:
+          missing_param: 'Parametru richiestu mancante: %{value}.'
+          request_not_authorized: A dumanda deve esse auturizata. Ci manca o hè invalidu un parametru richiestu per a dumanda d'auturizazione.
+          unknown: Ci manca un parametru richiestu indè a dumanda, cuntene un parametru ch’ùn esiste micca, o altru sbagliu di forma.
         invalid_resource_owner: L’idintificanti di u pruprietariu di a risorsa ùn sò curretti, o u pruprietariu ùn pò micca esse trovu
         invalid_scope: U scopu dumandatu ùn hè currettu, hè scunnisciutu, o altru sbagliu di forma.
         invalid_token:
@@ -112,7 +116,7 @@ co:
           applications: Applicazione
           oauth2_provider: Furnitore OAuth2
       application:
-        title: Auturizazione OAuth riquestata
+        title: Auturizazione OAuth richiestata
     scopes:
       admin:read: leghje tutti i dati nant'à u servore
       admin:read:accounts: leghje i cuntinuti sensibili di tutti i conti
@@ -120,11 +124,12 @@ co:
       admin:write: mudificà tutti i dati nant'à u servore
       admin:write:accounts: realizà azzione di muderazione nant'à i conti
       admin:write:reports: realizà azzione di muderazione nant'à i rapporti
-      follow: Mudificà rilazione trà i conti
-      push: Riceve e vostre nutificazione push
+      follow: mudificà rilazione trà i conti
+      push: riceve e vostre nutificazione push
       read: leghje tutte l’infurmazioni di u vostru contu
-      read:accounts: Vede l'infurmazione di i conti
+      read:accounts: vede l'infurmazione di i conti
       read:blocks: vede i vostri blucchimi
+      read:bookmarks: vede i vostri segnalibri
       read:favourites: vede i vostri favuriti
       read:filters: vede i vostri filtri
       read:follows: vede i vostri abbunamenti
@@ -137,6 +142,7 @@ co:
       write: mudificà i dati di u vostru contu
       write:accounts: mudificà u prufile
       write:blocks: bluccà conti è dumini
+      write:bookmarks: segnà statuti
       write:favourites: aghjustà statuti à i favuriti
       write:filters: creà filtri
       write:follows: siguità conti

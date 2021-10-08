@@ -8,7 +8,7 @@ class ActivityPub::ProcessCollectionService < BaseService
     @json    = Oj.load(body, mode: :strict)
     @options = options
 
-    return if !supported_context? || (different_actor? && verify_account!.nil?) || @account.suspended? || @account.local?
+    return if !supported_context? || (different_actor? && verify_account!.nil?) || suspended_actor? || @account.local?
 
     case @json['type']
     when 'Collection', 'CollectionPage'
@@ -28,8 +28,16 @@ class ActivityPub::ProcessCollectionService < BaseService
     @json['actor'].present? && value_or_id(@json['actor']) != @account.uri
   end
 
+  def suspended_actor?
+    @account.suspended? && !activity_allowed_while_suspended?
+  end
+
+  def activity_allowed_while_suspended?
+    %w(Delete Reject Undo Update).include?(@json['type'])
+  end
+
   def process_items(items)
-    items.reverse_each.map { |item| process_item(item) }.compact
+    items.reverse_each.filter_map { |item| process_item(item) }
   end
 
   def supported_context?
@@ -37,7 +45,7 @@ class ActivityPub::ProcessCollectionService < BaseService
   end
 
   def process_item(item)
-    activity = ActivityPub::Activity.factory(item, @account, @options)
+    activity = ActivityPub::Activity.factory(item, @account, **@options)
     activity&.perform
   end
 

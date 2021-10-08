@@ -4,8 +4,8 @@ class AccountSearchService < BaseService
   attr_reader :query, :limit, :offset, :options, :account
 
   def call(query, account = nil, options = {})
-    @acct_hint = query.start_with?('@')
-    @query     = query.strip.gsub(/\A@/, '')
+    @acct_hint = query&.start_with?('@')
+    @query     = query&.strip&.gsub(/\A@/, '')
     @limit     = options[:limit].to_i
     @offset    = options[:offset].to_i
     @options   = options
@@ -27,7 +27,7 @@ class AccountSearchService < BaseService
 
     return @exact_match if defined?(@exact_match)
 
-    @exact_match = begin
+    match = begin
       if options[:resolve]
         ResolveAccountService.new.call(query)
       elsif domain_is_local?
@@ -36,6 +36,10 @@ class AccountSearchService < BaseService
         Account.find_remote(query_username, query_domain)
       end
     end
+
+    match = nil if !match.nil? && !account.nil? && options[:following] && !account.following?(match)
+
+    @exact_match = match
   end
 
   def search_results
@@ -127,7 +131,7 @@ class AccountSearchService < BaseService
   end
 
   def following_ids
-    @following_ids ||= account.active_relationships.pluck(:target_account_id)
+    @following_ids ||= account.active_relationships.pluck(:target_account_id) + [account.id]
   end
 
   def limit_for_non_exact_results
@@ -171,7 +175,7 @@ class AccountSearchService < BaseService
   end
 
   def username_complete?
-    query.include?('@') && "@#{query}" =~ Account::MENTION_RE
+    query.include?('@') && "@#{query}".match?(/\A#{Account::MENTION_RE}\Z/)
   end
 
   def likely_acct?
