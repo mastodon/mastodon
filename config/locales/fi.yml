@@ -703,6 +703,9 @@ fi:
       reviewed: Tarkistetut
       title: Aihetunnisteet
       trending_right_now: Trendaa juuri nyt
+      unique_uses_today: "%{count} postausta tänään"
+      unreviewed: Ei tarkistettu
+      updated_msg: Hashtagin asetukset päivitetty onnistuneesti
     title: Ylläpito
     warning_presets:
       add_new: Lisää uusi
@@ -849,6 +852,9 @@ fi:
       caches: Muiden palvelimien välimuistiin tallentamaa sisältöä voi vielä löytyä
       data_removal: Viestit ja muut tiedot poistetaan pysyvästi
       email_change_html: Voit <a href="%{path}">muuttaa sähköpostiosoitettasi</a> poistamatta tiliäsi
+      email_contact_html: Jos ei saavu perille, voit pyytää apua sähköpostilla <a href="mailto:%{email}">%{email}</a>
+      email_reconfirmation_html: Jos et saa vahvistuksen sähköpostia, niin voit <a href="%{path}">pyytää sitä uudelleen</a>
+      irreversible: Et voi palauttaa tiliäsi tai aktivoida sitä uudelleen
       more_details_html: Lisätietoja saat <a href="%{terms_path}">tietosuojakäytännöstämme</a>.
       username_available: Käyttäjänimesi tulee saataville uudestaan
       username_unavailable: Käyttäjänimesi ei tule saataville enää uudestaan
@@ -859,10 +865,10 @@ fi:
   domain_validator:
     invalid_domain: ei ole kelvollinen toimialueen nimi
   errors:
-    '400': The request you submitted was invalid or malformed.
+    '400': Lähettämäsi pyyntö oli virheellinen tai muotoiltu virheellisesti.
     '403': Sinulla ei ole lupaa nähdä tätä sivua.
     '404': Etsimääsi sivua ei ole olemassa.
-    '406': This page is not available in the requested format.
+    '406': Tämä sivu ei ole saatavilla pyydetyssä muodossa.
     '410': Etsimääsi sivua ei ole enää olemassa.
     '422':
       content: Turvallisuusvahvistus epäonnistui. Oletko estänyt evästeet?
