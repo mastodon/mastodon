@@ -527,11 +527,13 @@ fi:
       disable: Poista käytöstä
       disabled: Poistettu käytöstä
       enable: Ota käyttöön
+      enable_hint: Kun käytössä, palvelimesi tilaa kaikki julkiset viestit tästä releestä ja alkaa lähettää tämän palvelimen julkisia viestejä siihen.
       enabled: Käytössä
       inbox_url: Synkronoi URL
       pending: Odotetaan releen hyväksyntää
       save_and_enable: Tallenna ja ota käyttöön
       setup: Määritä releyhteys
+      signatures_not_enabled: Releet eivät toimi oikein, kun turvallinen tila tai rajoitettu federaatio on käytössä
       status: Tila
       title: Releet
     report_notes:
@@ -571,7 +573,9 @@ fi:
     rules:
       add_new: Lisää sääntö
       delete: Poista
+      description_html: Vaikka useimmat väittävät, että ovat lukenut ja hyväksyneet käyttöehdot niin yleensä ihmiset eivät lue niitä läpi ennen kuin ongelma syntyy. <strong>Tee helpoksi nähdä palvelimen säännöt yhdellä silmäyksellä tarjoamalla ne tiiviissä luettelossa.</strong> Yritä pitää säännöt lyhyinä ja yksinkertaisina, mutta yritä olla jakamatta niitä moniin erillisiin kohteisiin.
       edit: Muokkaa sääntöä
+      empty: Palvelimen sääntöjä ei ole vielä määritelty.
       title: Palvelimen säännöt
     settings:
       activity_api_enabled:
@@ -586,6 +590,8 @@ fi:
       custom_css:
         desc_html: Muokkaa ulkoasua CSS:llä, joka on ladattu jokaiselle sivulle
         title: Mukautettu CSS
+      default_noindex:
+        desc_html: Vaikuttaa kaikkiin käyttäjiin, jotka eivät ole muuttaneet tätä asetusta itse
       domain_blocks:
         all: Kaikille
         disabled: Ei kenellekkään
