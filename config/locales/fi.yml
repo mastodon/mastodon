@@ -307,7 +307,10 @@ fi:
         silence_account_html: "%{name} rajoitti %{target} tilin"
         suspend_account_html: "%{name} siirsi käyttäjän %{target} jäähylle"
         unassigned_report_html: "%{name} peruutti raportin määrityksen %{target}"
+        unsensitive_account_html: "%{name} poisti merkinnän %{target} arkaluonteinen media"
+        unsilence_account_html: "%{name} ei tehnyt rajoitusta %{target} tilille"
         unsuspend_account_html: "%{name} perui käyttäjän %{target} jäähyn"
+        update_announcement_html: "%{name} päivitti ilmoituksen %{target}"
         update_custom_emoji_html: "%{name} päivitti emojin %{target}"
         update_status_html: "%{name} päivitti viestin %{target}"
       deleted_status: "(poistettu tilapäivitys)"
@@ -329,6 +332,7 @@ fi:
       scheduled_for: Ajastettu %{time}
       scheduled_msg: Ilmoitus on tarkoitus julkaista!
       title: Ilmoitukset
+      unpublish: Julkaisematon
     custom_emojis:
       assign_category: Aseta kategoria
       by_domain: Verkkotunnus
