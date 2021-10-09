@@ -1,6 +1,3 @@
-require "google/cloud/vision"
-require "json"
-
 # frozen_string_literal: true
 
 class Api::V1::StatusesController < Api::BaseController
