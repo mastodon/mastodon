@@ -1,3 +1,5 @@
+@use "sass:math";
+
 $no-columns-breakpoint: 600px;
 $sidebar-width: 240px;
 $content-width: 840px;
@@ -909,10 +911,197 @@ a.name-tag,
   }
 }
 
+.dashboard__counters.admin-account-counters {
+  margin-top: 10px;
+}
+
 .account-badges {
   margin: -2px 0;
 }
 
-.dashboard__counters.admin-account-counters {
-  margin-top: 10px;
+.retention {
+  &__table {
+    &__number {
+      color: $secondary-text-color;
+      padding: 10px;
+    }
+
+    &__date {
+      white-space: nowrap;
+      padding: 10px 0;
+      text-align: left;
+      min-width: 120px;
+
+      &.retention__table__average {
+        font-weight: 700;
+      }
+    }
+
+    &__size {
+      text-align: center;
+      padding: 10px;
+    }
+
+    &__label {
+      font-weight: 700;
+      color: $darker-text-color;
+    }
+
+    &__box {
+      box-sizing: border-box;
+      background: $ui-highlight-color;
+      padding: 10px;
+      font-weight: 500;
+      color: $primary-text-color;
+      width: 52px;
+      margin: 1px;
+
+      @for $i from 0 through 10 {
+        &--#{10 * $i} {
+          background-color: rgba($ui-highlight-color, 1 * (math.div(max(1, $i), 10)));
+        }
+      }
+    }
+  }
+}
+
+.sparkline {
+  display: block;
+  text-decoration: none;
+  background: lighten($ui-base-color, 4%);
+  border-radius: 4px;
+  padding: 0;
+  position: relative;
+  padding-bottom: 55px + 20px;
+  overflow: hidden;
+
+  &__value {
+    display: flex;
+    line-height: 33px;
+    align-items: flex-end;
+    padding: 20px;
+    padding-bottom: 10px;
+
+    &__total {
+      display: block;
+      margin-right: 10px;
+      font-weight: 500;
+      font-size: 28px;
+      color: $primary-text-color;
+    }
+
+    &__change {
+      display: block;
+      font-weight: 500;
+      font-size: 18px;
+      color: $darker-text-color;
+      margin-bottom: -3px;
+
+      &.positive {
+        color: $valid-value-color;
+      }
+
+      &.negative {
+        color: $error-value-color;
+      }
+    }
+  }
+
+  &__label {
+    padding: 0 20px;
+    padding-bottom: 10px;
+    text-transform: uppercase;
+    color: $darker-text-color;
+    font-weight: 500;
+  }
+
+  &__graph {
+    position: absolute;
+    bottom: 0;
+
+    svg {
+      display: block;
+      margin: 0;
+    }
+
+    path:first-child {
+      fill: rgba($highlight-text-color, 0.25) !important;
+      fill-opacity: 1 !important;
+    }
+
+    path:last-child {
+      stroke: lighten($highlight-text-color, 6%) !important;
+      fill: none !important;
+    }
+  }
+}
+
+a.sparkline {
+  &:hover,
+  &:focus,
+  &:active {
+    background: lighten($ui-base-color, 6%);
+  }
+}
+
+.skeleton {
+  background-color: lighten($ui-base-color, 8%);
+  background-image: linear-gradient(90deg, lighten($ui-base-color, 8%), lighten($ui-base-color, 12%), lighten($ui-base-color, 8%));
+  background-size: 200px 100%;
+  background-repeat: no-repeat;
+  border-radius: 4px;
+  display: inline-block;
+  line-height: 1;
+  width: 100%;
+  animation: skeleton 1.2s ease-in-out infinite;
+}
+
+@keyframes skeleton {
+  0% {
+    background-position: -200px 0;
+  }
+
+  100% {
+    background-position: calc(200px + 100%) 0;
+  }
+}
+
+.dimension {
+  table {
+    width: 100%;
+  }
+
+  &__item {
+    border-bottom: 1px solid lighten($ui-base-color, 4%);
+
+    &__key {
+      font-weight: 500;
+      padding: 11px 10px;
+    }
+
+    &__value {
+      text-align: right;
+      color: $darker-text-color;
+      padding: 11px 10px;
+    }
+
+    &__indicator {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: $ui-highlight-color;
+      margin-right: 10px;
+
+      @for $i from 0 through 10 {
+        &--#{10 * $i} {
+          background-color: rgba($ui-highlight-color, 1 * (math.div(max(1, $i), 10)));
+        }
+      }
+    }
+
+    &:last-child {
+      border-bottom: 0;
+    }
+  }
 }
