@@ -226,6 +226,7 @@ sk:
         disable_2fa_user: Vypni dvoj-faktorové overovanie
         disable_custom_emoji: Vypni vlastné emotikony
         disable_user: Deaktivuj užívateľa
+        enable_custom_emoji: Povoľ vlastné emotikony
         enable_user: Povoľ užívateľa
         promote_user: Povýš užívateľskú rolu
         remove_avatar_user: Vymaž avatar
@@ -237,8 +238,13 @@ sk:
         unsilence_account: Zvráť obmedzenie účtu
         unsuspend_account: Odblokuj účet
         update_announcement: Aktualizuj oboznámenie
-        update_domain_block: Aktualizuj blokovanie domény
+        update_domain_block: Aktualizuj zákaz domény
         update_status: Aktualizuj stav
+      actions:
+        assigned_to_self_report_html: "%{name} pridelil/a hlásenie užívateľa %{target} sebe"
+        change_email_user_html: "%{name} zmenil/a emailovú adresu užívateľa %{target}"
+        confirm_user_html: "%{name} potvrdil/a emailovú adresu používateľa %{target}"
+        create_account_warning_html: "%{name} poslal/a upozornenie užívateľovi %{target}"
       deleted_status: "(zmazaný príspevok)"
       filter_by_action: Filtruj podľa úkonu
       filter_by_user: Trieď podľa užívateľa
