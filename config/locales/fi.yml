@@ -957,11 +957,21 @@ fi:
     remove: Poista todiste tililtä
     removed: Todisteen poistaminen tililtä onnistui
     status: Vahvistuksen tila
+    view_proof: Näytä todiste
   imports:
+    errors:
+      over_rows_processing_limit: sisältää yli %{count} riviä
+    modes:
+      merge: Yhdistä
+      merge_long: Säilytä olemassa olevat tietueet ja lisää uusia
+      overwrite: Korvaa
+      overwrite_long: Korvaa nykyiset tietueet uusilla
     preface: Voit tuoda toisesta instanssista viemiäsi tietoja, kuten esimerkiksi seuraamiesi tai estämiesi henkilöiden listan.
     success: Tietojen lähettäminen onnistui, ja ne käsitellään kohtapuoliin
     types:
       blocking: Estettyjen lista
+      bookmarks: Kirjanmerkit
+      domain_blocking: Verkkoalueen estolista
       following: Seurattujen lista
       muting: Mykistettyjen lista
     upload: Lähetä
@@ -978,6 +988,7 @@ fi:
       '86400': 1 vuorokausi
     expires_in_prompt: Ei koskaan
     generate: Luo
+    invited_by: 'Sinut kutsui:'
     max_uses:
       one: kertakäyttöinen
       other: "%{count} käyttökertaa"
@@ -990,6 +1001,17 @@ fi:
   lists:
     errors:
       limit: Sinulla on jo suurin sallittu määrä listoja
+  login_activities:
+    authentication_methods:
+      otp: kaksivaiheinen todennussovellus
+      password: salasana
+      sign_in_token: sähköpostin turvakoodi
+      webauthn: suojausavaimet
+    description_html: Jos näet toimintaa, jota et tunnista, harkitse salasanan vaihtamista ja kaksivaiheisen todennuksen ottamista käyttöön.
+    empty: Todennushistoriaa ei ole saatavilla
+    failed_sign_in_html: Kirjautumisyritys epäonnistui %{method} - %{ip} (%{browser})
+    successful_sign_in_html: Kirjautuminen onnistui %{method} - %{ip} (%{browser})
+    title: Todennushistoria
   media_attachments:
     validations:
       images_and_video: Videota ei voi liittää tilapäivitykseen, jossa on jo kuvia
