@@ -6,3 +6,17 @@ lv:
       send_paranoid_instructions: Ja tava e-pasta adrese ir mūsu datu bāzē, pēc dažām minūtēm saņemsi e-pastu ar norādījumiem, kā apstiprināt savu e-pasta adresi. Lūdzu, pārbaudi surogātpasta mapi, ja neesi saņēmis šo e-pastu.
     failure:
       already_authenticated: Jau esi pierakstījies.
+      inactive: Tavs konts vēl nav aktivizēts.
+      invalid: Nederīga %{authentication_keys} vai parole.
+      last_attempt: Tev ir vēl viens mēģinājums, pirms tavs konts tiks bloķēts.
+      locked: Tavs konts ir bloķēts.
+      not_found_in_database: Nederīga %{authentication_keys} vai parole.
+      pending: Tavs konts joprojām tiek pārskatīts.
+      timeout: Tava sesija ir beigusies. Lūdzu, pieraksties vēlreiz, lai turpinātu.
+      unauthenticated: Lai turpinātu, tev ir jāpierakstās vai jāreģistrējas.
+      unconfirmed: Lai turpinātu, tev ir jāapstiprina savu e-pasta adresi.
+    mailer:
+      confirmation_instructions:
+        action: Apstipriniet savu e-pasta adresi
+        action_with_app: Apstiprini un atgriezies %{app}
+        explanation: Ar šo e-pasta adresi esi izveidojis kontu vietnē %{host}. Tu esi viena klikšķa attālumā no tā aktivizēšanas. Ja tas nebiji tu, lūdzu, ignorē šo e-pasta ziņojumu.
