@@ -941,6 +941,13 @@ fi:
   identity_proofs:
     active: Aktiivinen
     authorize: Kyllä, valtuuta
+    authorize_connection_prompt: Sallitaanko tämä salausyhteys?
+    errors:
+      failed: Salausyhteys epäonnistui. Yritä uudelleen %{provider}.
+      keybase:
+        invalid_token: Keybase-tunnukset ovat allekirjoituksia ja niiden on oltava 66 hex-merkkiä
+        verification_failed: Keybase ei tunnista tätä tunnusta Keybase käyttäjän %{kb_username} allekirjoituksena. Yritä uudelleen Keybasesta.
+      wrong_user: Todistusta käyttäjälle %{proving} ei voida luoda kirjautuessa %{current}. Kirjaudu sisään käyttäjänä %{proving} ja yritä uudelleen.
   imports:
     preface: Voit tuoda toisesta instanssista viemiäsi tietoja, kuten esimerkiksi seuraamiesi tai estämiesi henkilöiden listan.
     success: Tietojen lähettäminen onnistui, ja ne käsitellään kohtapuoliin
