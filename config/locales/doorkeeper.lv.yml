@@ -13,3 +13,30 @@ lv:
             redirect_uri:
               fragment_present: nedrīkst saturēt fragmentu.
               invalid_uri: jābūt derīgam URI.
+              relative_uri: jābūt absolūtam URI.
+              secured_uri: jābūt HTTPS/SSL URI.
+  doorkeeper:
+    applications:
+      buttons:
+        authorize: Autorizēt
+        cancel: Atcelt
+        destroy: Iznīcināt
+        edit: Rediģēt
+        submit: Apstiprināt
+      confirmations:
+        destroy: Vai esi pārliecināts?
+      edit:
+        title: Rediģēt pieteikumu
+      form:
+        error: Hmm! Pārbaudi, vai tavā veidlapā nav kļūdu
+      help:
+        native_redirect_uri: Lokālajiem testiem izmanto %{native_redirect_uri}
+        redirect_uri: Katram URI izmanto vienu līniju
+        scopes: Atdali darbības jomas ar atstarpēm. Lai izmantotu noklusējuma darbības jomas, atstāj tukšu.
+      index:
+        application: Lietotne
+        callback_url: Atzvanīšanas URL
+        delete: Dzēst
+        empty: Tev nav lietotņu.
+        name: Nosaukums
+        new: Jauns pieteikums
