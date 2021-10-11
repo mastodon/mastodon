@@ -899,6 +899,9 @@ fi:
     storage: Media-arkisto
   featured_tags:
     add_new: Lisää uusi
+    errors:
+      limit: Olet jo lisännyt enimmäismäärän hashtageja
+    hint_html: "<strong>Mitkä ovat näkyvillä olevat hashtagit?</strong> Ne ovat näkyvästi julkisessa profiilissasi ja niiden avulla ihmiset voivat selata julkisia viestejäsi nimenomaan näiden hashtagien alla. Ne ovat loistava luovan työn työkalu tai pitkäaikaisten projektien seurantaan."
   filters:
     contexts:
       account: Profiilit
@@ -908,6 +911,9 @@ fi:
       thread: Keskustelut
     edit:
       title: Muokkaa suodatinta
+    errors:
+      invalid_context: Ei sisältöä tai se on virheellinen
+      invalid_irreversible: Sen sijaan suodatus toimii vain kodin tai ilmoitusten yhteydessä
     index:
       delete: Poista
       empty: Sinulla ei ole suodattimia.
@@ -924,11 +930,14 @@ fi:
     changes_saved_msg: Muutosten tallennus onnistui!
     copy: Kopioi
     delete: Poista
+    no_batch_actions_available: Tällä sivulla ei ole erätoimintoja
     order_by: Järjestä
     save_changes: Tallenna muutokset
     validation_errors:
       one: Kaikki ei ole aivan oikein! Tarkasta alla oleva virhe
       other: Kaikki ei ole aivan oikein! Tarkasta alla olevat %{count} virhettä
+  html_validator:
+    invalid_markup: 'sisältää virheellisen HTML-merkinnän: %{error}'
   identity_proofs:
     active: Aktiivinen
     authorize: Kyllä, valtuuta
