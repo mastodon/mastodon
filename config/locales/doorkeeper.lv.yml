@@ -40,3 +40,46 @@ lv:
         empty: Tev nav lietotņu.
         name: Nosaukums
         new: Jauns pieteikums
+        scopes: Darbības sfēras
+        show: Parādīt
+        title: Tavi pieteikumi
+      new:
+        title: Jauns pieteikums
+      show:
+        actions: Darbības
+        application_id: Klienta atslēga
+        callback_urls: Atzvanīšanas URL
+        scopes: Darbības sfēras
+        secret: Klienta noslēpums
+        title: 'Lietotne: %{name}'
+    authorizations:
+      buttons:
+        authorize: Autorizēt
+        deny: Aizliegt
+      error:
+        title: Radās kļūda
+      new:
+        able_to: Tā varēs
+        prompt: Lietotne %{client_name} prasa piekļuvi tavam kontam
+        title: Nepieciešama autorizācija
+      show:
+        title: Nokopē šo autorizācijas kodu un ielīmē to lietotnē.
+    authorized_applications:
+      buttons:
+        revoke: Atsaukt
+      confirmations:
+        revoke: Vai esi pārliecināts?
+      index:
+        application: Lietotne
+        created_at: Autorizēts
+        date_format: "%Y-%m-%d %H:%M:%S"
+        scopes: Darbības sfēras
+        title: Tevis autorizētās lietotnes
+    errors:
+      messages:
+        access_denied: Resursa īpašnieks vai autorizācijas serveris pieprasījumu noraidīja.
+    scopes:
+      "write:favourites": iecienītākās ziņas
+      "write:filters": izveidot filtrus
+      "write:follows": seko cilvēkiem
+      "write:lists": izveido sarakstus
