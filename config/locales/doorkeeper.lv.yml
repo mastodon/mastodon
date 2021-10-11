@@ -1,1 +1,15 @@
 lv:
+  activerecord:
+    attributes:
+      doorkeeper/application:
+        name: Lietotnes nosaukums
+        redirect_uri: Novirzīšanas URI
+        scopes: Darbības sfēras
+        website: Lietotnes mājvieta
+    errors:
+      models:
+        doorkeeper/application:
+          attributes:
+            redirect_uri:
+              fragment_present: nedrīkst saturēt fragmentu.
+              invalid_uri: jābūt derīgam URI.
