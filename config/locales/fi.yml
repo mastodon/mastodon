@@ -948,6 +948,15 @@ fi:
         invalid_token: Keybase-tunnukset ovat allekirjoituksia ja niiden on oltava 66 hex-merkkiä
         verification_failed: Keybase ei tunnista tätä tunnusta Keybase käyttäjän %{kb_username} allekirjoituksena. Yritä uudelleen Keybasesta.
       wrong_user: Todistusta käyttäjälle %{proving} ei voida luoda kirjautuessa %{current}. Kirjaudu sisään käyttäjänä %{proving} ja yritä uudelleen.
+    explanation_html: Täällä voit salata muita identiteettejäsi muista alustoista, kuten Keybase. Näin muut ihmiset voivat lähettää sinulle salattuja viestejä kyseisillä alustoilla ja he voivat luottaa siihen, että lähettämäsi sisältö tulee sinulta.
+    i_am_html: Olen %{username} %{service}.
+    identity: Identiteetti
+    inactive: Passiivinen
+    publicize_checkbox: 'Ja toot tämä:'
+    publicize_toot: 'Se on todistettu! Olen %{username} %{service}: %{url}'
+    remove: Poista todiste tililtä
+    removed: Todisteen poistaminen tililtä onnistui
+    status: Vahvistuksen tila
   imports:
     preface: Voit tuoda toisesta instanssista viemiäsi tietoja, kuten esimerkiksi seuraamiesi tai estämiesi henkilöiden listan.
     success: Tietojen lähettäminen onnistui, ja ne käsitellään kohtapuoliin
