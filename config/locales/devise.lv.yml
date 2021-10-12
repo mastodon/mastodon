@@ -74,3 +74,10 @@ lv:
         title: Drošības atslēgas atspējotas
       webauthn_enabled:
         explanation: Tavam kontam ir iespējota drošības atslēgas autentifikācija. Tavu drošības atslēgu tagad var izmantot, lai pieteiktos.
+        subject: 'Mastodon: Drošības atslēgas autentifikācija iespējota'
+        title: Drošības atslēgas iespējotas
+    omniauth_callbacks:
+      failure: Nevarēja autentificēt tevi no %{kind}, jo "%{reason}".
+      success: Veiksmīgi autentificēts no %{kind} konta.
+    passwords:
+      no_token: Tu nevari piekļūt šai lapai, ja neesi saņēmis paroles atiestatīšanas e-pasta ziņojumu. Ja ienāci no paroles atiestatīšanas e-pasta, lūdzu, pārliecinies, vai izmanto visu norādīto URL.
