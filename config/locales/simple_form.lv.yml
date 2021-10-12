@@ -11,3 +11,10 @@ lv:
       admin_account_action:
         include_statuses: Lietotājs redzēs, kuras ziņas izraisījušas moderācijas darbību vai brīdinājumu
         send_email_notification: Lietotājs saņems paskaidrojumu par to, kas notika ar viņa kontu
+        text_html: Neobligāts. Tu vari lietot ziņu sintaksi. Lai ietaupītu laiku, tu vari <a href="%{path}">pievienot brīdinājuma sākotnējos iestatījumus</a>
+        type_html: Izvēlies, ko darīt ar <strong>%{acct}</strong>
+        types:
+          disable: Neļauj lietotājam izmantot savu kontu, bet neizdzēs vai neslēp tā saturu.
+          none: Izmanto šo, lai nosūtītu lietotājam brīdinājumu, neradot nekādas citas darbības.
+          sensitive: Piespiest visus šī lietotāja multivides pielikumus atzīmēt kā sensitīvus.
+          silence: Neļauj lietotājam publicēt ziņas publiski redzamā veidā, paslēp viņu ziņas un paziņojumus no cilvēkiem, kuri viņiem neseko.
