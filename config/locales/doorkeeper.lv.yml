@@ -78,6 +78,15 @@ lv:
     errors:
       messages:
         access_denied: Resursa īpašnieks vai autorizācijas serveris pieprasījumu noraidīja.
+        credential_flow_not_configured: Resursa īpašnieka paroles akreditācijas datu plūsma neizdevās, jo Doorkeeper.configure.resource_owner_from_credentials nebija konfigurēts.
+        invalid_client: Klienta autentifikācija neizdevās nezināma klienta, klienta autentifikācijas vai neatbalstītas autentifikācijas metodes dēļ.
+        invalid_grant: Sniegtā autorizācijas piekrišana nav derīga, tai ir beidzies derīguma termiņš, tā ir atsaukta, tā neatbilst autorizācijas pieprasījumā izmantotajam novirzīšanas URI vai tika izsniegta citam klientam.
+        invalid_redirect_uri: Iekļauts novirzīšanas uri nav derīgs.
+        invalid_request:
+          missing_param: 'Trūkst pieprasītā parametra: %{value}.'
+          request_not_authorized: Pieprasījums ir jāautorizē. Trūkst vai nav derīgs pieprasījuma autorizēšanai nepieciešamais parametrs.
+          unknown: Pieprasījumā trūkst nepieciešamā parametra, tajā ir neatbalstīta parametra vērtība vai tas ir citādi nepareizi veidots.
+        invalid_resource_owner: Norādītie resursa īpašnieka akreditācijas dati nav derīgi, vai arī resursa īpašnieku nevar atrast
     scopes:
       "write:favourites": iecienītākās ziņas
       "write:filters": izveidot filtrus
