@@ -87,6 +87,33 @@ lv:
           request_not_authorized: Pieprasījums ir jāautorizē. Trūkst vai nav derīgs pieprasījuma autorizēšanai nepieciešamais parametrs.
           unknown: Pieprasījumā trūkst nepieciešamā parametra, tajā ir neatbalstīta parametra vērtība vai tas ir citādi nepareizi veidots.
         invalid_resource_owner: Norādītie resursa īpašnieka akreditācijas dati nav derīgi, vai arī resursa īpašnieku nevar atrast
+        invalid_scope: Pieprasītā darbības joma nav derīga, nav zināma vai ir nepareizi veidota.
+        invalid_token:
+          expired: Piekļuves pilnvaras derīguma termiņš ir beidzies
+          revoked: Piekļuves pilnvara tika atsaukta
+          unknown: Piekļuves pilnvara nav derīga
+        resource_owner_authenticator_not_configured: Resursa īpašnieka atrašana neizdevās, jo Doorkeeper.configure.resource_owner_authenticator nav savienots.
+        server_error: Autorizācijas serverim radās neparedzēts nosacījums, kas neļāva izpildīt pieprasījumu.
+        temporarily_unavailable: Autorizācijas serveris pašlaik nevar apstrādāt pieprasījumu servera īslaicīgas pārslodzes vai apkopes dēļ.
+        unauthorized_client: Klients nav pilnvarots izpildīt šo pieprasījumu, izmantojot šo metodi.
+        unsupported_grant_type: Autorizācijas serveris neatbalsta atļaujas piešķiršanas veidu.
+        unsupported_response_type: Autorizācijas serveris neatbalsta šo atbildes veidu.
+    flash:
+      applications:
+        create:
+          notice: Lietotne izveidota.
+        destroy:
+          notice: Lietotne izdzēsta.
+        update:
+          notice: Lietotne atjaunināta.
+      authorized_applications:
+        destroy:
+          notice: Lietotne atsaukta.
+    layouts:
+      admin:
+        nav:
+          applications: Lietotnes
+          oauth2_provider: OAuth2 nodrošinātājs
     scopes:
       "write:favourites": iecienītākās ziņas
       "write:filters": izveidot filtrus
