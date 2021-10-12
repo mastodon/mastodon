@@ -114,7 +114,17 @@ lv:
         nav:
           applications: Lietotnes
           oauth2_provider: OAuth2 nodrošinātājs
+      application:
+        title: OAuth nepieciešama autorizācija
     scopes:
+      "admin:read": lasīt visus datus uz servera
+      "admin:read:accounts": lasīt sensitīvu informāciju no visiem kontiem
+      "admin:read:reports": lasīt sensitīvu informāciju no visiem pārskatiem un kontiem, par kuriem ziņots
+      "admin:write": modificēt visus datus uz servera
+      "admin:write:accounts": veikt moderācijas darbības kontos
+      "admin:write:reports": veikt moderācijas darbības pārskatos
+      follow: mainīt konta attiecības
+      push: saņemt savus push paziņojumus
       "write:favourites": iecienītākās ziņas
       "write:filters": izveidot filtrus
       "write:follows": seko cilvēkiem
