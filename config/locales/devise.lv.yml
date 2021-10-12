@@ -64,3 +64,13 @@ lv:
           explanation: Tavam kontam ir pievienota šāda drošības atslēga
           subject: 'Mastodon: Jaunā drošības atslēga'
           title: Tika pievienota jauna drošības atslēga
+        deleted:
+          explanation: Tālāk norādītā drošības atslēga ir izdzēsta no tava konta
+          subject: 'Mastodon: Drošības atslēga izdzēsta'
+          title: Viena no tavām drošības atslēgām tika izdzēsta
+      webauthn_disabled:
+        explanation: Tavam kontam ir atspējota autentifikācija ar drošības atslēgām. Pieteikšanās tagad ir iespējama, izmantojot tikai marķieri, ko ģenerējusi pārī savienotā TOTP lietotne.
+        subject: 'Mastodon: Atutentifikācija ar drošības atslēgām ir atspējota'
+        title: Drošības atslēgas atspējotas
+      webauthn_enabled:
+        explanation: Tavam kontam ir iespējota drošības atslēgas autentifikācija. Tavu drošības atslēgu tagad var izmantot, lai pieteiktos.
