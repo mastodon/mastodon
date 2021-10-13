@@ -5,7 +5,7 @@ ruby '>= 2.5.0', '< 3.1.0'
 
 gem 'pkg-config', '~> 1.4'
 
-gem 'puma', '~> 5.4'
+gem 'puma', '~> 5.5'
 gem 'rails', '~> 6.1.4'
 gem 'sprockets', '~> 3.7.2'
 gem 'thor', '~> 1.1'
@@ -134,7 +134,7 @@ group :development do
   gem 'letter_opener', '~> 1.7'
   gem 'letter_opener_web', '~> 1.4'
   gem 'memory_profiler'
-  gem 'rubocop', '~> 1.21', require: false
+  gem 'rubocop', '~> 1.22', require: false
   gem 'rubocop-rails', '~> 2.12', require: false
   gem 'brakeman', '~> 5.1', require: false
   gem 'bundler-audit', '~> 0.9', require: false
