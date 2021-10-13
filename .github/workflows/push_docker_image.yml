@@ -18,6 +18,7 @@ jobs:
         name: Login to Docker Registry
         uses: docker/login-action@v1
         with:
+          registry: ${{ secrets.REGISTRY_SERVER }}
           username: ${{ secrets.REGISTRY_USERNAME }}
           password: ${{ secrets.REGISTRY_TOKEN }}
       -
@@ -41,4 +42,4 @@ jobs:
         with:
           context: mastodon
           push: true
-          tags: ${{ secrets.REGISTRY_USERNAME }}/${{ secrets.REGISTRY_REPO }}:${{steps.set_tag.outputs.docker_tag}}
+          tags: ${{ secrets.REGISTRY_SERVER }}/${{ secrets.REGISTRY_REPO }}:${{steps.set_tag.outputs.docker_tag}}
