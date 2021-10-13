@@ -287,7 +287,7 @@ class MediaAttachment < ApplicationRecord
       if instance.file_content_type == 'image/gif'
         [:gif_transcoder, :blurhash_transcoder]
       elsif instance.file_content_type == 'image/png'
-        [:img_converter, :lazy_thumbnail, :blurhash_transcoder]
+        [:img_converter, :lazy_thumbnail, :blurhash_transcoder, :type_corrector]
       elsif VIDEO_MIME_TYPES.include?(instance.file_content_type)
         [:transcoder, :blurhash_transcoder, :type_corrector]
       elsif AUDIO_MIME_TYPES.include?(instance.file_content_type)
