@@ -74,3 +74,8 @@ lv:
       ip_block:
         comment: Neobligāts. Atceries, kādēļ tu pievienoji šo nosacījumu.
         expires_in: IP adreses ir ierobežots resurss, tās dažreiz tiek koplietotas un bieži maina turētāju. Šī iemesla dēļ nedefinēti IP bloki nav ieteicami.
+        ip: Ievadi IPv4 vai IPv6 adresi. Izmantojot CIDR sintaksi, tu vari bloķēt visus diapazonus. Esi piesardzīgs un neizslēdz pats sevi!
+        severities:
+          no_access: Bloķēt piekļuvi visiem resursiem
+          sign_up_requires_approval: Jaunām reģistrācijām būs nepieciešams tavs apstiprinājums
+        severity: Izvēlies, kas notiks ar pieprasījumiem no šīs IP adreses
