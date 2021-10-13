@@ -431,7 +431,7 @@ const startWorker = (workerId) => {
       requiredScopes.push('read:statuses');
     }
 
-    if (requiredScopes.some(requiredScope => req.scopes.includes(requiredScope))) {
+    if (req.scopes && requiredScopes.some(requiredScope => req.scopes.includes(requiredScope))) {
       resolve();
       return;
     }
