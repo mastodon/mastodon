@@ -182,7 +182,21 @@ lv:
         name: Tēmturis
       interactions:
         must_be_follower: Bloķēt paziņojumus no ne-sekotājiem
+        must_be_following: Bloķēt paziņojumus no cilvēkiem, kuriem tu neseko
+        must_be_following_dm: Bloķēt tiešos ziņojumus no cilvēkiem, kuriem tu neseko
+      invite:
+        comment: Komentēt
+      invite_request:
+        text: Kāpēc tu vēlies pievienoties?
+      ip_block:
+        comment: Komentēt
+        ip: IP
+        severities:
+          no_access: Bloķēt piekļuvi
+          sign_up_requires_approval: Ierobežot reģistrēšanos
+        severity: Noteikumi
       notification_emails:
+        digest: Sūtīt kopsavilkumu e-pastus
         favourite: Kāds izcēla tavu ziņu
         follow: Kāds uzsāka tev sekot
         follow_request: Kāds vēlas tev sekot
