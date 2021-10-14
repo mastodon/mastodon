@@ -29,7 +29,7 @@ class Admin::Metrics::Retention
           INNER JOIN new_users on new_users.id = users.id
           WHERE date_trunc($3, users.current_sign_in_at) >= axis.retention_period
         )
-        SELECT ARRAY[count(*), (count(*) + 1)::float / (SELECT count(*) + 1 FROM new_users)] AS retention_value_and_percent
+        SELECT ARRAY[count(*), (count(*))::float / (SELECT GREATEST(count(*), 1) FROM new_users)] AS retention_value_and_rate
         FROM retained_users
       )
       FROM (
@@ -55,11 +55,11 @@ class Admin::Metrics::Retention
         arr << current_cohort
       end
 
-      value, percent = row['retention_value_and_percent'].delete('{}').split(',')
+      value, rate = row['retention_value_and_rate'].delete('{}').split(',')
 
       current_cohort.data << CohortData.new(
         date: row['retention_period'],
-        percent: percent.to_f,
+        percent: rate.to_f,
         value: value.to_s
       )
     end
