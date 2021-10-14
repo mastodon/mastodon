@@ -510,6 +510,12 @@ Rails.application.routes.draw do
             post :resolve
           end
         end
+
+        resources :trends, only: [:index]
+
+        post :measures, to: 'measures#create'
+        post :dimensions, to: 'dimensions#create'
+        post :retention, to: 'retention#create'
       end
     end
 
