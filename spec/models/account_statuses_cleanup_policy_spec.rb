@@ -499,9 +499,9 @@ RSpec.describe AccountStatusesCleanupPolicy, type: :model do
       end
     end
 
-    context 'when policy is to keep statuses with more than 4 boosts' do
+    context 'when policy is to keep statuses with at least 5 boosts' do
       before do
-        account_statuses_cleanup_policy.min_reblogs = 4
+        account_statuses_cleanup_policy.min_reblogs = 5
       end
 
       it 'does not return the recent toot' do
@@ -521,9 +521,9 @@ RSpec.describe AccountStatusesCleanupPolicy, type: :model do
       end
     end
 
-    context 'when policy is to keep statuses with more than 4 favs' do
+    context 'when policy is to keep statuses with at least 5 favs' do
       before do
-        account_statuses_cleanup_policy.min_favs = 4
+        account_statuses_cleanup_policy.min_favs = 5
       end
 
       it 'does not return the recent toot' do
