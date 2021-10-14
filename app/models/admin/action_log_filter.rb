@@ -76,7 +76,7 @@ class Admin::ActionLogFilter
     when 'account_id'
       Admin::ActionLog.where(account_id: value)
     when 'target_account_id'
-      account = Account.find(value)
+      account = Account.find_or_initialize_by(id: value)
       Admin::ActionLog.where(target: [account, account.user].compact)
     else
       raise "Unknown filter: #{key}"
