@@ -237,6 +237,15 @@ lv:
       whitelist_mode: Ierobežotas federācijas režīms
     domain_allows:
       add_new: Atļaut federāciju ar domēnu
+      created_msg: Domēns ir veiksmīgi atļauts federācijai
+      destroyed_msg: Domēns ir aizliegts federācijai
+      undo: Aizliegt federāciju ar domēnu
+    domain_blocks:
+      add_new: Pievienot jaunu domēna bloku
+      created_msg: Domēna bloķēšana tagad tiek apstrādāta
+      destroyed_msg: Domēna bloķēšana ir atsaukta
+      domain: Domēns
+      edit: Rediģēt domēna bloķēšanu
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
