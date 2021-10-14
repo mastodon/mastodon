@@ -159,6 +159,22 @@ lv:
     action_logs:
       action_types:
         unsuspend_account: Atcelt konta apturēšanu
+        update_announcement: Atjaunināt Paziņojumu
+        update_custom_emoji: Atjaunināt pielāgoto emocijzīmi
+        update_domain_block: Atjaunināt Domēna Bloku
+        update_status: Atjaunināt ziņu
+      actions:
+        assigned_to_self_report_html: "%{name} piešķīra pārskatu %{target} sev"
+        change_email_user_html: "%{name} nomainīja e-pasta adresi lietotājam %{target}"
+        confirm_user_html: "%{name} apstiprināja e-pasta adresi lietotājam %{target}"
+        create_account_warning_html: "%{name} nosūtīja brīdinājumu %{target}"
+        create_announcement_html: "%{name} izveidoja jaunu paziņojumu %{target}"
+        create_custom_emoji_html: "%{name} augšupielādēja jaunu emocijzīmi %{target}"
+        create_domain_allow_html: "%{name} atļāva federāciju ar domēnu %{target}"
+        create_domain_block_html: "%{name} bloķēja domēnu %{target}"
+        create_email_domain_block_html: "%{name} bloķēja e-pasta domēnu %{target}"
+        create_ip_block_html: "%{name} izveidoja nosacījumu priekš IP %{target}"
+        create_unavailable_domain_html: "%{name} apturēja piegādi uz domēnu %{target}"
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
