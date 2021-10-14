@@ -383,6 +383,21 @@ cs:
       media_storage: Úložiště médií
       new_users: noví uživatelé
       opened_reports: podáno hlášení
+      pending_reports_html:
+        one: "<strong>1</strong> čekající hlášení"
+        few: "<strong>%{count}</strong> čekající hlášení"
+        many: "<strong>%{count}</strong> čekajících hlášení"
+        other: "<strong>%{count}</strong> čekající hlášení"
+      pending_tags_html:
+        one: "<strong>1</strong> čekající hashtag"
+        few: "<strong>%{count}</strong> čekající hashtagy"
+        many: "<strong>%{count}</strong> čekajících hashtagů"
+        other: "<strong>%{count}</strong> čekající hashtagy"
+      pending_users_html:
+        one: "<strong>1</strong> čekající uživatel"
+        few: "<strong>%{count}</strong> čekající uživatelé"
+        many: "<strong>%{count}</strong> čekajících uživatelů"
+        other: "<strong>%{count}</strong> čekající uživatel"
       resolved_reports: vyřešeno hlášení
       software: Software
       sources: Zdroje registrací
