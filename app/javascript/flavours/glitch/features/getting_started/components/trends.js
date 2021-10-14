@@ -2,7 +2,7 @@ import React from 'react';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import Hashtag from 'flavours/glitch/components/hashtag';
+import { ImmutableHashtag as Hashtag } from 'flavours/glitch/components/hashtag';
 import { FormattedMessage } from 'react-intl';
 
 export default class Trends extends ImmutablePureComponent {
