@@ -175,6 +175,14 @@ lv:
         create_email_domain_block_html: "%{name} bloķēja e-pasta domēnu %{target}"
         create_ip_block_html: "%{name} izveidoja nosacījumu priekš IP %{target}"
         create_unavailable_domain_html: "%{name} apturēja piegādi uz domēnu %{target}"
+        demote_user_html: "%{name} pazemināja lietotāju %{target}"
+        destroy_announcement_html: "%{name} izdzēsa paziņojumu %{target}"
+        destroy_custom_emoji_html: "%{name} iznīcināja emocijzīmi %{target}"
+        destroy_domain_allow_html: "%{name} neatļāva federāciju ar domēnu %{target}"
+        destroy_domain_block_html: "%{name} atbloķēja domēnu %{target}"
+        destroy_email_domain_block_html: "%{name} atbloķēja e-pasta domēnu %{target}"
+        destroy_ip_block_html: "%{name} izdzēsa nosacījumu priekš IP %{target}"
+        destroy_status_html: "%{name} noņēma ziņu %{target}"
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
