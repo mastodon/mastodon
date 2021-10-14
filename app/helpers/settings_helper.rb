@@ -41,6 +41,7 @@ module SettingsHelper
     ka: 'ქართული',
     kab: 'Taqbaylit',
     kk: 'Қазақша',
+    kmr: 'Kurmancî',
     kn: 'ಕನ್ನಡ',
     ko: '한국어',
     ku: 'سۆرانی',
