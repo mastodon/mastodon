@@ -200,6 +200,31 @@ lv:
         sensitive_account_html: "%{name} atzīmēja %{target} mediju kā sensitīvu"
         silence_account_html: "%{name} ierobežoja %{target} kontu"
         suspend_account_html: "%{name} apturēja %{target} kontu"
+        unassigned_report_html: "%{name} nepiešķīra ziņojumu %{target}"
+        unsensitive_account_html: "%{name} atmarķēja %{target} mediju kā sensitīvu"
+        unsilence_account_html: "%{name} atcēla ierobežojumu %{target} kontam"
+        unsuspend_account_html: "%{name} neapturēja %{target} kontu"
+        update_announcement_html: "%{name} atjaunināja paziņojumu %{target}"
+        update_custom_emoji_html: "%{name} atjaunināja emocijzīmi %{target}"
+        update_domain_block_html: "%{name} atjaunināja domēna bloku %{target}"
+        update_status_html: "%{name} atjaunināja ziņu %{target}"
+      deleted_status: "(dzēsta ziņa)"
+    dashboard:
+      backlog: aizkavējušies darbi
+      config: Konfigurācija
+      feature_deletions: Kontu izdzēšanas
+      feature_invites: Uzaicinājumu saites
+      feature_profile_directory: Profila direktorija
+      feature_registrations: Reģistrācijas
+      feature_relay: Federācijas relejs
+      feature_timeline_preview: Ziņu lentas priekšskatījums
+      features: Funkcijas,
+      hidden_service: Federācija ar slēptiem pakalpojumiem
+      open_reports: atvērtie ziņojumi
+      pending_tags: tēmturi gaida pārskatīšanu
+      pending_users: lietotāji gaida pārskatīšanu
+      recent_users: Nesenie lietotāji
+      search: Pilna teksta meklēšana
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
