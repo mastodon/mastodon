@@ -183,6 +183,23 @@ lv:
         destroy_email_domain_block_html: "%{name} atbloķēja e-pasta domēnu %{target}"
         destroy_ip_block_html: "%{name} izdzēsa nosacījumu priekš IP %{target}"
         destroy_status_html: "%{name} noņēma ziņu %{target}"
+        destroy_unavailable_domain_html: "%{name} atjaunoja piegādi uz domēnu %{target}"
+        disable_2fa_user_html: "%{name} atspējoja divfaktoru prasības lietotājam %{target}"
+        disable_custom_emoji_html: "%{name} atspējoja emocijzīmi %{target}"
+        disable_sign_in_token_auth_user_html: "%{name} atspējoja e-pasta marķiera autentifikāciju %{target}"
+        disable_user_html: "%{name} atspējoja pieteikšanos lietotājam %{target}"
+        enable_custom_emoji_html: "%{name} iespējoja emocijzīmi %{target}"
+        enable_sign_in_token_auth_user_html: "%{name} iespējoja e-pasta marķiera autentifikāciju %{target}"
+        enable_user_html: "%{name} iespējoja pieteikšanos lietotājam %{target}"
+        memorialize_account_html: "%{name} pārvērta %{target} kontu par atmiņas lapu"
+        promote_user_html: "%{name} paaugstināja lietotāju %{target}"
+        remove_avatar_user_html: "%{name} noņēma %{target} avatāru"
+        reopen_report_html: "%{name} atkārtoti atvēra ziņojumu %{target}"
+        reset_password_user_html: "%{name} atiestatīja paroli lietotājam %{target}"
+        resolve_report_html: "%{name} atrisināja ziņojumu %{target}"
+        sensitive_account_html: "%{name} atzīmēja %{target} mediju kā sensitīvu"
+        silence_account_html: "%{name} ierobežoja %{target} kontu"
+        suspend_account_html: "%{name} apturēja %{target} kontu"
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
