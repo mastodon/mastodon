@@ -427,7 +427,29 @@ lv:
         title: Rādīt pamatojumus
       hero:
         desc_html: Parādīts pirmajā lapā. Ieteicams vismaz 600x100 pikseļus. Ja tas nav iestatīts, atgriežas servera sīktēlā
-        title: Varoņa tēls
+        title: Varoņa attēls
+      mascot:
+        desc_html: Parādīts vairākās lapās. Ieteicams vismaz 293 × 205 pikseļi. Ja tas nav iestatīts, tiek atgriezts noklusējuma talismans
+        title: Talismana attēls
+      peers_api_enabled:
+        desc_html: Domēna vārdi, ar kuriem šis serveris ir saskāries fediversā
+        title: Publicēt API atklāto serveru sarakstu
+      preview_sensitive_media:
+        desc_html: Saites priekšskatījumus citās vietnēs parādīs kā sīktēlu pat tad, ja medijs ir atzīmēts kā sensitīvs
+        title: Parādīt sensitīvos medijus OpenGraph priekšskatījumos
+      profile_directory:
+        desc_html: Atļaut lietotājiem būt atklājamiem
+        title: Iespējot profila direktoriju
+      registrations:
+        closed_message:
+          desc_html: Tiek parādīts sākumlapā, kad reģistrācija ir slēgta. Tu vari izmantot HTML tagus
+          title: Paziņojums par slēgtu reģistrāciju
+        deletion:
+          desc_html: Atļaut ikvienam dzēst savu kontu
+          title: Atvērt konta dzēšanu
+        min_invite_role:
+          disabled: Nevienam
+          title: Atļaut uzaicinājumus
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
