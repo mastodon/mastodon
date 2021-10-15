@@ -450,6 +450,25 @@ lv:
         min_invite_role:
           disabled: Nevienam
           title: Atļaut uzaicinājumus
+        require_invite_text:
+          desc_html: 'Ja reģistrācijai nepieciešama manuāla apstiprināšana, izdari, lai teksta: “Kāpēc vēlaties pievienoties?” ievade ir obligāta, nevis neobligāts'
+          title: Pieprasīt jauniem lietotājiem ievadīt pievienošanās iemeslu
+      registrations_mode:
+        modes:
+          approved: Reģistrācijai nepieciešams apstiprinājums
+          none: Neviens nevar reģistrēties
+          open: Jebkurš var reģistrēties
+        title: Reģistrācijas režīms
+      show_known_fediverse_at_about_page:
+        desc_html: Ja šī funkcija ir atspējota, tā ierobežo publisko ziņu lentu, kas ir saistīta ar galveno lapu, lai parādītu tikai vietējo saturu
+        title: Iekļaut federēto saturu neautentificētā publiskā ziņu lentas lapā
+      show_staff_badge:
+        desc_html: Parādiet personāla emblēmu lietotāja lapā
+    title: Administrēšana
+    warning_presets:
+      add_new: Pievienot jaunu
+      delete: Dzēst
+      edit_preset: Labot iepriekš iestatītus brīdinājumus
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
