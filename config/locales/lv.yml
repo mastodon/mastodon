@@ -398,6 +398,16 @@ lv:
     rules:
       add_new: Pievienot noteikumu
       delete: Dzēst
+      description_html: Lai gan lielākā daļa apgalvo, ka ir izlasījuši pakalpojumu sniegšanas noteikumus un piekrīt tiem, parasti cilvēki to izlasa tikai pēc problēmas rašanās. <strong>Padariet vienkāršāku sava servera noteikumu uztveršanu, veidojot tos vienkāršā sarakstā pa punktiem.</strong> Centieties, lai atsevišķi noteikumi būtu īsi un vienkārši, taču arī nesadaliet tos daudzos atsevišķos vienumos.
+      edit: Rediģēt noteikumu
+      empty: Servera noteikumi vēl nav definēti.
+      title: Servera noteikumi
+    settings:
+      activity_api_enabled:
+        desc_html: Vietēji publicēto ziņu, aktīvo lietotāju un jauno reģistrāciju skaits nedēļas kopās
+        title: Publicējiet apkopotu statistiku par lietotāju darbībām API
+      bootstrap_timeline_accounts:
+        desc_html: Atdaliet vairākus lietotājvārdus ar komatu. Tiks garantēts, ka šie konti tiks parādīti ieteikumos
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
