@@ -154,9 +154,9 @@ end
 #gem 'mastodon_cthulhu', '~> 0.1.2'
 
 #gem 'google-cloud-vision'
-gem 'json'
-gem 'dotenv'
-gem 'concurrent-ruby', require: false
-gem 'connection_pool', require: false
+# gem 'json'
+# gem 'dotenv'
+# gem 'concurrent-ruby', require: false
+# gem 'connection_pool', require: false
 
 gem 'xorcist', '~> 1.1'
