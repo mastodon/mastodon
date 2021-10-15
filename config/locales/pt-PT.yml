@@ -372,11 +372,26 @@ pt-PT:
     dashboard:
       active_users: utilizadores activos
       interactions: interações
+      media_storage: Armazenamento de media
       new_users: novos utilizadores
       opened_reports: relatórios abertos
+      pending_reports_html:
+        one: "<strong>1</strong> relatório pendente"
+        other: "<strong>%{count}</strong> relatórios pendentes"
+      pending_tags_html:
+        one: "<strong>1</strong> hashtag pendente"
+        other: "<strong>%{count}</strong> hashtags pendentes"
+      pending_users_html:
+        one: "<strong>1</strong> utilizador pendente"
+        other: "<strong>%{count}</strong> utilizadores pendentes"
+      resolved_reports: relatórios resolvidos
       software: Software
+      sources: Origem de inscrições
       space: Utilização do espaço
       title: Painel de controlo
+      top_languages: Principais idiomas activos
+      top_servers: Servidores mais activos
+      website: Website
     domain_allows:
       add_new: Colocar domínio na lista branca
       created_msg: Domínio foi adicionado à lista branca com sucesso
@@ -1490,7 +1505,7 @@ pt-PT:
     signed_in_as: 'Registado como:'
     suspicious_sign_in_confirmation: Parece que não iniciou sessão através deste dispositivo antes, e não acede à sua conta há algum tempo. Portanto, enviámos um código de segurança para o seu endereço de e-mail para confirmar que é você.
   verification:
-    explanation_html: 'Pode <strong>comprovar que é o dono dos links nos metadados do seu perfil</strong>. Para isso, o website para o qual o link aponta tem de conter um link para o seu perfil do Mastodon. Este link <strong>tem</strong> de ter um atributo <code>rel="me"</code>. O conteúdo do texto não é relevante. Aqui está um exemplo:'
+    explanation_html: 'Pode <strong>comprovar que é o dono dos links nos metadados do seu perfil</strong>. Para isso, o website para o qual o link aponta tem de conter um link para o seu perfil do Mastodon. Esse link <strong>tem</strong> de ter um atributo <code>rel="me"</code>. O conteúdo do texto não é relevante. Aqui está um exemplo:'
     verification: Verificação
   webauthn_credentials:
     add: Adicionar nova chave de segurança
