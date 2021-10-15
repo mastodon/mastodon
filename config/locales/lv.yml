@@ -415,6 +415,19 @@ lv:
       custom_css:
         desc_html: Maini izskatu, izmantojot CSS, kas ielādēta katrā lapā
         title: Pielāgota CSS
+      default_noindex:
+        desc_html: Ietekmē visus lietotājus, kuri paši nav mainījuši šo iestatījumu
+        title: Pēc noklusējuma lietotāji būs atteikušies no meklētājprogrammu indeksēšanas
+      domain_blocks:
+        all: Visiem
+        disabled: Nevienam
+        title: Rādīt domēnu bloķēšanas
+        users: Vietējiem reģistrētiem lietotājiem
+      domain_blocks_rationale:
+        title: Rādīt pamatojumus
+      hero:
+        desc_html: Parādīts pirmajā lapā. Ieteicams vismaz 600x100 pikseļus. Ja tas nav iestatīts, atgriežas servera sīktēlā
+        title: Varoņa tēls
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
