@@ -689,8 +689,6 @@ DEPENDENCIES
   cld3 (~> 3.4.2)
   climate_control (~> 0.2)
   color_diff (~> 0.1)
-  concurrent-ruby
-  connection_pool
   devise (~> 4.8)
   devise-two-factor (~> 4.0)
   devise_pam_authenticatable2 (~> 9.2)
@@ -712,6 +710,7 @@ DEPENDENCIES
   http_accept_language (~> 2.1)
   httplog (~> 1.5.0)
   i18n-tasks (~> 0.9)
+  idn-ruby
   iso-639
   json-ld
   json-ld-preloaded (~> 3.1)
@@ -788,3 +787,9 @@ DEPENDENCIES
   webpacker (~> 5.4)
   webpush (~> 0.3)
   xorcist (~> 1.1)
+
+RUBY VERSION
+   ruby 2.7.4p191
+
+BUNDLED WITH
+   2.1.4
