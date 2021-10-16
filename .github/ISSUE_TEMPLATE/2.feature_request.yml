@@ -1,0 +1,21 @@
+name: Feature Request
+description: I have a suggestion
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please use a concise and distinct title for the issue.
+
+        Consider: Could it be implemented as a 3rd party app using the REST API instead?
+  - type: textarea
+    attributes:
+      label: Pitch
+      description: Describe your idea for a feature. Make sure it has not already been suggested/implemented/turned down before.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Motivation
+      description: Why do you think this feature is needed? Who would benefit from it?
+    validations:
+      required: true

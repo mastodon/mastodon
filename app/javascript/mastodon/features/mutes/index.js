@@ -29,7 +29,6 @@ class Mutes extends ImmutablePureComponent {
   static propTypes = {
     params: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired,
-    shouldUpdateScroll: PropTypes.func,
     hasMore: PropTypes.bool,
     isLoading: PropTypes.bool,
     accountIds: ImmutablePropTypes.list,
@@ -46,7 +45,7 @@ class Mutes extends ImmutablePureComponent {
   }, 300, { leading: true });
 
   render () {
-    const { intl, shouldUpdateScroll, hasMore, accountIds, multiColumn, isLoading } = this.props;
+    const { intl, hasMore, accountIds, multiColumn, isLoading } = this.props;
 
     if (!accountIds) {
       return (
@@ -66,7 +65,6 @@ class Mutes extends ImmutablePureComponent {
           onLoadMore={this.handleLoadMore}
           hasMore={hasMore}
           isLoading={isLoading}
-          shouldUpdateScroll={shouldUpdateScroll}
           emptyMessage={emptyMessage}
           bindToDocument={!multiColumn}
         >

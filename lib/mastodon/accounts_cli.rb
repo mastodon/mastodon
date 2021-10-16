@@ -54,7 +54,8 @@ module Mastodon
 
     option :email, required: true
     option :confirmed, type: :boolean
-    option :role, default: 'user'
+    option :role, default: 'user', enum: %w(user moderator admin)
+    option :skip_sign_in_token, type: :boolean
     option :reattach, type: :boolean
     option :force, type: :boolean
     desc 'create USERNAME', 'Create a new user'
@@ -68,6 +69,9 @@ module Mastodon
       With the --role option one of  "user", "admin" or "moderator"
       can be supplied. Defaults to "user"
 
+      With the --skip-sign-in-token option, you can ensure that
+      the user is never asked for an e-mailed security code.
+
       With the --reattach option, the new user will be reattached
       to a given existing username of an old account. If the old
       account is still in use by someone else, you can supply
@@ -77,7 +81,7 @@ module Mastodon
     def create(username)
       account  = Account.new(username: username)
       password = SecureRandom.hex
-      user     = User.new(email: options[:email], password: password, agreement: true, approved: true, admin: options[:role] == 'admin', moderator: options[:role] == 'moderator', confirmed_at: options[:confirmed] ? Time.now.utc : nil, bypass_invite_request_check: true)
+      user     = User.new(email: options[:email], password: password, agreement: true, approved: true, admin: options[:role] == 'admin', moderator: options[:role] == 'moderator', confirmed_at: options[:confirmed] ? Time.now.utc : nil, bypass_invite_request_check: true, skip_sign_in_token: options[:skip_sign_in_token])
 
       if options[:reattach]
         account = Account.find_local(username) || Account.new(username: username)
@@ -113,7 +117,7 @@ module Mastodon
       end
     end
 
-    option :role
+    option :role, enum: %w(user moderator admin)
     option :email
     option :confirm, type: :boolean
     option :enable, type: :boolean
@@ -121,6 +125,7 @@ module Mastodon
     option :disable_2fa, type: :boolean
     option :approve, type: :boolean
     option :reset_password, type: :boolean
+    option :skip_sign_in_token, type: :boolean
     desc 'modify USERNAME', 'Modify a user'
     long_desc <<-LONG_DESC
       Modify a user account.
@@ -142,6 +147,9 @@ module Mastodon
 
       With the --reset-password option, the user's password is replaced by
       a randomly-generated one, printed in the output.
+
+      With the --skip-sign-in-token option, you can ensure that
+      the user is never asked for an e-mailed security code.
     LONG_DESC
     def modify(username)
       user = Account.find_local(username)&.user
@@ -163,6 +171,7 @@ module Mastodon
       user.disabled = true if options[:disable]
       user.approved = true if options[:approve]
       user.otp_required_for_login = false if options[:disable_2fa]
+      user.skip_sign_in_token = options[:skip_sign_in_token] unless options[:skip_sign_in_token].nil?
       user.confirm if options[:confirm]
 
       if user.save
@@ -278,7 +287,7 @@ module Mastodon
 
     option :concurrency, type: :numeric, default: 5, aliases: [:c]
     option :dry_run, type: :boolean
-    desc 'cull', 'Remove remote accounts that no longer exist'
+    desc 'cull [DOMAIN...]', 'Remove remote accounts that no longer exist'
     long_desc <<-LONG_DESC
       Query every single remote account in the database to determine
       if it still exists on the origin server, and if it doesn't,
@@ -287,19 +296,22 @@ module Mastodon
       Accounts that have had confirmed activity within the last week
       are excluded from the checks.
     LONG_DESC
-    def cull
+    def cull(*domains)
       skip_threshold = 7.days.ago
       dry_run        = options[:dry_run] ? ' (DRY RUN)' : ''
       skip_domains   = Concurrent::Set.new
 
-      processed, culled = parallelize_with_progress(Account.remote.where(protocol: :activitypub).partitioned) do |account|
+      query = Account.remote.where(protocol: :activitypub)
+      query = query.where(domain: domains) unless domains.empty?
+
+      processed, culled = parallelize_with_progress(query.partitioned) do |account|
         next if account.updated_at >= skip_threshold || (account.last_webfingered_at.present? && account.last_webfingered_at >= skip_threshold) || skip_domains.include?(account.domain)
 
         code = 0
 
         begin
           code = Request.new(:head, account.uri).perform(&:code)
-        rescue HTTP::ConnectionError
+        rescue HTTP::TimeoutError, HTTP::ConnectionError, OpenSSL::SSL::SSLError
           skip_domains << account.domain
         end
 
