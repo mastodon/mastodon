@@ -1,31 +1,17 @@
-kmr-TR:
+---
+ku:
   activerecord:
     attributes:
       poll:
-        expires_at: Dîroka dawîbûnê
-        options: Hilbijark
-      user:
-        agreement: Peymana karûbarê
-        email: Navnîşana E-nameyê
-        locale: Herêm
-        password: Pêborîn
-      user/account:
-        username: Navê bikarhêneriyê
-      user/invite_request:
-        text: Sedem
+        expires_at: وادەی کۆتایی
+        options: هەڵبژاردنەکان
     errors:
       models:
         account:
           attributes:
             username:
-              invalid: pêdivî ye ku tenê tîp, hejmar û xêzikên jêrîn hebin
-              reserved: hatiye bikaranîn
+              invalid: تەنها پیت، ژمارە و ژێرەوە
         status:
           attributes:
             reblog:
-              taken: ev nivîs berê heye jixwe
-        user:
-          attributes:
-            email:
-              blocked: dabînkerê e-nameya qedexe bi kar tîne
-              unreachable: xuya ye ku tune ye
+              taken: لە بار بوونی هەیە

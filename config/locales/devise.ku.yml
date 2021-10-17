@@ -1,114 +1,115 @@
-kmr-TR:
+---
+ku:
   devise:
     confirmations:
-      confirmed: Navnîşana te ya e-nameyê bi awayekî serkeftî hat piştrastkirin.
-      send_instructions: Çend xulek şûnde ji bo navnîşana e-name ya te çawa were pejirandinê, tu yê e-name yek hildî. Heke ev e-name yê hilnedî ji kerema xwe re peldanka nexwestî binêre.
-      send_paranoid_instructions: Heger navnîşana e-name ya te danegeha me de hebe çend xulek şûnde ji bo navnîşana e-name ya te çawa were pejirandinê, tu yê e-name yek hildî. Heke ev e-name yê hilnedî ji kerema xwe re peldanka nexwestî binêrin.
+      confirmed: ناونیشانی ئیمەیڵەکەت بە سەرکەوتوویی پشتڕاستکرایەوە.
+      send_instructions: ئیمەیڵێکت بۆ دەنێردرێت لەگەڵ ڕێنمایی بۆ چۆنیەتی دڵنیابوون لە ناونیشانی ئیمەیلەکەت لە چەند خولەکێکدا. تکایە بوخچەی سپامەکەت چاولێبکە ئەگەر ئەم ئیمەیڵەت پێنەدرا.
+      send_paranoid_instructions: ئەگەر ناونیشانی ئیمەیڵەکەت لە بنکەی زانیارێکانماندا هەبێت، ئیمەیڵێکت پێدەگات لەگەڵ ڕێنماییەکانی چۆنیەتی دڵنیابوون لە ناونیشانی ئیمەیلەکەت لە چەند خولەکێکدا. تکایە بۆخچەی سپامەکەت بپشکنە ئەگەر ئەم ئیمەیڵەت پێنەدرا.
     failure:
-      already_authenticated: Jixwe te berê têketin kiriye.
-      inactive: Ajimêra te hîn nehatiye çalakkirin.
-      invalid: Nederbasdar %{authentication_keys} an jî şîfre.
-      last_attempt: Peşiya kilît kirina ajimêra te carek din jî biceribîne.
-      locked: Ajimêra ye hat kilît kirin.
-      not_found_in_database: Nederbasdar %{authentication_keys} an jî şîfre.
-      pending: Ajimêra te hîn tê vekolandin.
-      timeout: Danişîna te qedîya. Ji kerema xwe ji bo berdewamiyê dîsa têkeve.
-      unauthenticated: Peşiya berdewamiya te têketina xwe bike an jî xwe tomar bike.
-      unconfirmed: Peşiya berdewamiyê, navnîşana e-name ya xwe bipejirîne.
+      already_authenticated: تۆ پێشتر چوونە ژوورەوەت کردووە.
+      inactive: هەژمارەکەت هێشتا کارا نەکراوە.
+      invalid: "%{authentication_keys} یان نهێنوشە نادروستە."
+      last_attempt: تۆ یەک هەوڵیدیکەت ماوە پێش ئەوەی ئەژمێرەکەت قوفڵ بێت.
+      locked: هەژمارەکت داخراوە.
+      not_found_in_database: "%{authentication_keys} یان نهێنوشە نادروستە."
+      pending: هەژمێرەکەت هێشتا لەژێر پێداچوونەوەدایە.
+      timeout: کۆبوونەوەکەت بەسەرچووە. تکایە دووبارە بچۆ ژوورەوە بۆ بەردەوام بوون.
+      unauthenticated: پێویستە بچیتە ژوورەوە یان بچیتە ناو چوونە ناو پێش بەردەوام بوون.
+      unconfirmed: دەبێت ناونیشانی ئیمەیڵەکەت پشتڕاست بکەیتەوە پێش بەردەوام بوون.
     mailer:
       confirmation_instructions:
-        action: Navnîşana e-nameyê piştrast bike
-        action_with_app: Piştrast bike û vegere bo %{app}
-        explanation: Te li ser %{host} ajimêrek çê kiriye bi navnîşana vê e-nameyê re. Tu ji çalakkirina wê bi tikandinekê dûr î. Heke ev ne tu bûya, ji kerema xwe guh nede vê e-nameyê.
-        explanation_when_pending: "Te bi vê navnîşana e -nameyê serlêdana vexwendina %{host} kir. Gava ku tu navnîşana e-nameya xwe piştrast bikî, em ê serlêdana te binirxînin. Tu dikarî têkevî da ku hûrguliyên xwe biguherînî an ajimêra xwe jê bibî, lê heya ku ajimêra te neyê pejirandin tu nekarî piraniya fonksiyonan bi kar bînî\n Heke serlêdana te werê red kirin, dê daneyên te werin jêbirin, ji ber vê yekê çalakîyek din ji te nayê xwestin. Heke ev ne tu bû, ji kerema xwe guh nede vê e-nameyê."
-        extra_html: Jkx vê jî kontrol bike <a href="%{terms_path}"> rêbazên rajekar</a> û <a href="%{policy_path}">mercên me yên karûbaran</a>.
-        subject: 'Mastodon: ji bo %{instance} pejirandinê rêwerzan'
-        title: Navnîşana e-nameyê piştrast bike
+        action: ناونیشانی ئیمەیڵ ساخ بکەرەوە
+        action_with_app: پشتڕاستی بکەوە و بگەڕێوە بۆ %{app}
+        explanation: ئەژمێرێکت دروست کردووە لەسەر %{host} بەم ناونیشانی ئیمەیڵە. تۆ یەک کرتە دووریت لە کاراکردنی. ئەگەر ئەمە تۆ نەبووی، تکایە ئەم ئیمەیڵە فەرامۆش بکە.
+        explanation_when_pending: تۆ داوای بانگهێشتت کرد بۆ %{host} بەم ناونیشانی ئیمەیڵە. هەر کە دڵنیایی لە ناونیشانی ئیمەیڵەکەت دەکەیت، ئێمە پێداچوونەوە دەکەین بە بەرنامەکەتدا. دەتوانیت بچیت بۆ چوونە ژوورەوە بۆ گۆڕینی ووردەکاریەکانت یان سڕینەوەی هەژمارەکەت، بەڵام ناتوانیت دەستگەیشتنت هەبێت بە زۆربەی ئەرکەکان تا ئەژمێرەکەت پەسەند ناکرێت. ئەگەر کاربەرنامەکەت ڕەتکرایەوە، داتاکەت لادەبرێت، بۆیە پێویست بە کاری زیاتر لە تۆ ناکرێت. ئەگەر ئەمە تۆ نەبووی، تکایە ئەم ئیمەیڵە فەرامۆش بکە.
+        extra_html: تکایە تێڕوانە لە <a href="%{terms_path}"> ڕێساکانی ڕاژەکار</a> و <a href="%{policy_path}"> مەرجەکانی خزمەتگوزاری</a>.
+        subject: 'ماستۆدۆن: ڕێنماییەکانی پشتڕاستکردنەوە بۆ %{instance}'
+        title: ناونیشانی ئیمەیڵ ساخ بکەرەوە
       email_changed:
-        explanation: 'Navnîşana e-nameyê ajimêra te hate guhertin bo:'
-        extra: Heke te ajimêra xwe ne guhertiye. Ew tê wateya ku kesek ketiye ajimêrê te. Jkx pêborîna xwe zû biguherîne an jî bi rêveberiya rajekar re têkeve têkiliyê heke tu êdî nikare ajimêra xwe bi kar bînî.
-        subject: 'Mastodon: E-name hate guhertin'
-        title: Navnîşana e-nameya nû
+        explanation: 'ناونیشانی ئیمەیڵەکەی ئەژمێرەکەت دەگۆڕدرێت بۆ:'
+        extra: ئەگەر ئیمەیلەکەت نەگۆڕیت، لەوانەیە کەسێک دەستگەیشتنی بۆ هەژمارەکەت بەدەست بێت. تکایە تێپەڕوشەکەت بگۆڕە دەستبەجێ یان پەیوەندی بکە بە بەڕێوەبەری ڕاژەوە ئەگەر تۆ لە هەژمارەکەت داخرایت.
+        subject: 'ماستۆدۆن: ئیمەیڵ گۆڕا'
+        title: ناونیشانی ئیمەیڵی نوێ
       password_change:
-        explanation: Pêborîna ajimêra te hate guhertin.
-        extra: Heke te ajimêra xwe ne guhertiye. Ew tê wateya ku kesek ketiye ajimêrê te. Jkx pêborîna xwe zû biguherîne an jî bi rêveberiya rajekar re têkeve têkiliyê heke tu êdî nikare ajimêra xwe bi kar bînî.
-        subject: 'Mastodon: pêborîn hate guhertin'
-        title: Pêborîn hate guhertin
+        explanation: تێپەڕوشە بۆ هەژمارەکەت گۆڕاوە.
+        extra: ئەگەر تێپەڕوشەکەت نەگۆڕی، وا دیارە کەسێک دەستگەیشتنی بۆ هەژمارەکەت بەدەست بێت. تکایە تێپەڕوسيکەت بگۆڕە دەستبەجێ یان پەیوەندی بکە بە بەڕێوەبەری ڕاژە ئەگەر تۆ لە هەژمارەکەت داخرایت.
+        subject: 'ماستۆدۆن: تێپەڕوشە گۆڕدرا'
+        title: تێپەڕوشە گۆڕدرا
       reconfirmation_instructions:
-        explanation: Navnîşana nû piştrast bike da ku tu e-nameya xwe biguherînî.
-        extra: "Heke ev daxwaz ji aliyê te de nehate pêkanîn, jkx guh nede vê e-nameyê\n Navnîşana e-nameyê bo ajimêra Mastodon wê tu guhertin pêk neyîne heya ku tu li girêdana Jêrin bitikînî."
-        subject: 'Mastodon: E-nameyê piştrast bike bo %{instance}'
-        title: Navnîşana e-nameyê piştrast bike
+        explanation: دڵنیابوون لە ناونیشانی نوێ بۆ گۆڕینی ئیمەیڵەکەت.
+        extra: ئەگەر ئەم گۆڕانکاریە لەلایەن تۆوە دەست پێنەکراوە، تکایە ئەم ئیمەیڵە فەرامۆش بکە. ناونیشانی ئیمەیڵ بۆ هەژمێری ماستۆدۆن ناگۆڕێ هەتا ئەو کاتەی دەستپێگەیشتنی ئەم لینکەت لە سەرەوە نیە.
+        subject: 'ماستۆدۆن: دووپاتی ئیمەیل بۆ %{instance}'
+        title: ناونیشانی ئیمەیڵ ساخ بکەرەوە
       reset_password_instructions:
-        action: Pêborînê biguherîne
-        explanation: Te ji bo ajimêra xwe daxwaza pêborîneke nû kiriye.
-        extra: Heke te ev daxwaz nekir, jkx guh nede vê e-nameyê. Pêborîna te wê neyê guhertin heya ku tu li girêdana Jêrin bitikînî û yeka nû çê bikî.
-        subject: 'Mastodon: rêwerzên jê birina pêborîn'
-        title: Pêborîn ji nû ve saz bike
+        action: گۆڕینی تێپەڕوشە
+        explanation: تۆ تیپەڕوشەی نوێت داوا کرد بۆ هەژمارەکەت.
+        extra: ئەگەر ئەم داواکاریەت نەکرد، تکایە ئەم ئیمەیڵە فەرامۆش بکە. تێپەڕوشەکەت ناگۆڕێ هەتا نەچیتە ناو لینکی سەرەوە و دانەیەکی نوێ دروست بکەیت.
+        subject: 'ماستۆدۆن: رێکردنەوەی رێنماییەکانی تێپەڕوشە'
+        title: گەڕانەوەی تێپەڕوشە
       two_factor_disabled:
-        explanation: Ji bo ajimêrê te piştrastkirina du-faktorî hat asteng kirin. Niha tu tenê bi navnîşana e-name û şîfre ya xwe dikarî têketin bikî.
-        subject: 'Mastodon: piştrastkirina du- faktorî neçalak bike'
-        title: 2FA Neçalak e
+        explanation: سەلماندنی دوو-فاکتەر بۆ هەژمارەکەت کە لە کارخراوە. چوونەژوورەوە ئێستا دەکرێت تەنها ناونیشانی ئیمەیڵ و تێپەڕوشەکەت بەکاربهێنی.
+        subject: 'ماستۆدۆن: سەلماندنی دوو-فاکتەری ناچالاک کراوە'
+        title: 2FA ناچالاک کرا
       two_factor_enabled:
-        explanation: Piştrastkirinê du-faktorî ya ajimêrê te hat çalak kirin. Ji bo têketinê ji alî sepanê cotkirî TOTP ve hewceyî nîşanderek heye.
-        subject: 'Mastodon: piştrastkirina du-faktorî hat çalak kirin'
-        title: 2FA Çalak e
+        explanation: سەلماندنی دوو-فاکتەر بۆ هەژمارەکەت چالاک کراوە. ئاماژەیەک کە لەلایەن نەرمەکالایTOTP جووتکراو دروست کراوە پێویستە بە چوونە ژوورەوە.
+        subject: 'ماستۆدۆن: سەلماندنی دوو-فاکتەری چالاک کراوە'
+        title: 2FA چالاک کرا
       two_factor_recovery_codes_changed:
-        explanation: Kodên paşve hatiye rizgarkirin betal bû û yên nû hat çêkirin.
-        subject: 'Mastodon: kodên rizgarkirî ên du-faktorî dîsa hat avakirin'
-        title: Kodê 2FA ya rizgarkirinê hatine guhertin
+        explanation: کۆدەکانی چاککردنەوەی پێشوو هەڵوەشێنرانەوە و، نوێکان دروست بوون.
+        subject: 'ماستۆدۆن: کۆدەکانی گەڕانەوەی دوو فاکتەر، دووبارە دروست دەکرێتەوە'
+        title: 2FA کۆدی چاککردنەوە گۆڕا
       unlock_instructions:
-        subject: 'Mastodon: kilîdê rêwerzan veke'
+        subject: 'ماستۆدۆن: رێنماییەکان بکەرەوە'
       webauthn_credential:
         added:
-          explanation: Kilîta ewlehiyê jêrîn li ajimêra te hate tevlîkirin
-          subject: 'Kilîta ewlehiyê ya nû'
-          title: Kilîta ewlehiyê ya nû hate tevlîkirin
+          explanation: کلیلی ئاسایشی خوارەوە زیادکرا بۆ هەژمارەکەت
+          subject: 'ماستۆدۆن: کلیلی ئاسایشی نوێ'
+          title: کلیلی پاراستنی نوێ زیادکرا
         deleted:
-          explanation: Kilîta ewlehiyê jêrîn li ajimêra te hate jêbirin
-          subject: 'Mastodon: Kilîta ewlehiyê hate jêbirin'
-          title: Yek ji kilîta ewlehiyê yên te hate jêbirin
+          explanation: کلیلی ئاسایشی خوارەوە لە هەژمارەکەت سڕایەوە
+          subject: 'ماستۆدۆن: کلیلی پاراستن سڕایەوە'
+          title: کلیلە کانی پاراستنی یەکێک لە ئێوە سڕایەوە
       webauthn_disabled:
-        explanation: Rastandina kilîta ewlehiyê hate çalakkirin bo ajimêra te. kilîta te ya ewlehiyê niha bo têketinê dikarê bê karanîn. Têketin niha gengaz e ku mirov tenê nîşana ku ji hêla sepana cotkirî ya TOTP ve hatî avakirin bi kar bîne.
-        subject: 'Mastodon: Rastandin bi kilîta ewlehiyê re nehate çalakirin'
-        title: Kilîta ewlehiyê neçalak e
+        explanation: سەلماندن بە کلیلەپارێزراوەکان لە کارخراوە بۆ هەژمارەکەت. چوونەژوورەوە ئێستا دەکرێت تەنها ئەو نیشانەیە بەکاربێنیت کە لەلایەن نەرمەکالایTOTP دروست کراوە.
+        subject: 'ماستۆدۆن: سەلماندن لەگەڵ کلیلە پاسایشی ناچالاک کراوە'
+        title: کلیلە پارستنەکان ناچالاک کراون
       webauthn_enabled:
-        explanation: Rastandina kilîta ewlehiyê hate çalakkirin bo ajimêra te. kilîta te ya ewlehiyê niha bo têketinê dikarê bê karanîn.
-        subject: 'Mastodon: Rastandina kilîta ewlehiyê hate çalakkirin'
-        title: Kilîta ewlehiyê çalak e
+        explanation: سەلماندنی کلیلی ئاسایش چالاک کراوە بۆ هەژمارەکەت. ئێستا کلیلی پاراستن دەتوانرێت بۆ چوونە ژوورەوە بەکار بێت.
+        subject: 'ماستۆدۆن: سەلماندنی کلیلی پاراستن چالاک کراوە'
+        title: کلیلە کانی پاراستن چالاک کرا
     omniauth_callbacks:
-      failure: Nikare ji %{kind} rastandinê bikê ji bo " %{reason}".
-      success: Ji ajimêra %{kind} bi serkeftî hate rastandin.
+      failure: نەیتوانی ڕەسەنایە تی %{kind} بتەوبکات لەبەرئەوەی "%{reason}".
+      success: سەرکەوتووانە لە هەژماری %{kind} سەلمێنرا.
     passwords:
-      no_token: Tu nikarî xwe bigihînî vê rûpelê bêyî ku tu ji e-nameya ji nû ve sazkirina pêborînê wernegerî. Heke tu ji e-nameya ji nû ve sazkirina pêborînê tê, ji kerema xwe pê ewle be ku tu girêdanê ya tevahî bi kar tînî.
-      send_instructions: Heke navnîşana te ya e-nameyê di danegeha me da hebê, tu yê di navnîşana xwe ya e-nameyê da girêdana rizgarkirina pêborînê bistînî. Heke te ev e-name wernegirtibe, ji kerema xwe peldanka xwe ya spamê kontrol bike.
-      send_paranoid_instructions: Heke navnîşana te ya e-nameyê di danegeha me da hebê, tu yê di navnîşana xwe ya e-nameyê da girêdana rizgarkirina pêborînê bistînî di hundir çend xulkan de. Heke te ev e-name wernegirtibe, ji kerema xwe peldanka xwe ya spamê kontrol bike.
-      updated: Pêborîna te bi serkeftî hate guhertin. Niha tu têketî ye.
-      updated_not_active: Pêborîna te bi serkeftî hate guhertin.
+      no_token: ناتوانیت دەستگەیشتنت هەبێت بەم لاپەڕەیە بەبێ ئەوەی لە ئیمەیڵێکی گەڕانەوەی تێپەڕوشەت بێت. ئەگەر لە ئیمەیڵێکیگەڕانەوەی تێپەڕوشە هاتوویت، تکایە دڵنیابە لەوەی کە URLی تەواوت بەکارهێناوە کە دابینکراوە.
+      send_instructions: ئەگەر ناونیشانی ئیمەیڵەکەت لە بنکەی زانیارێکانماندا هەبێت، لە چەند خولەکێکی کەمدا لینکی هێنانەوەی تێپەڕوشە لە ناونیشانی ئیمەیلەکەت پێ دەگات. تکایە بوخچەی سپامەکەت بکەرەوە، ئەگەر ئەم ئیمەیڵەت پێنەدرا.
+      send_paranoid_instructions: ئەگەر ناونیشانی ئیمەیڵەکەت لە بنکەی زانیارێکانماندا هەبێت، لە چەند خولەکێکی کەمدا لینکی هێنانەوەی تێپەڕوشە لە ناونیشانی ئیمەیلەکەت پێ دەگات. تکایە بوخچەی سپامەکەت بکەرەوە، ئەگەر ئەم ئیمەیڵەت پێنەدرا.
+      updated: تێپەڕوشەکەت بە سەرکەوتوویی گۆڕدرا. تۆ ئێستاچوویتە ژوورەوە.
+      updated_not_active: تێپەڕوشەکەت بە سەرکەوتوویی گۆڕدرا.
     registrations:
-      destroyed: Xatirê te! Ajimêra te bi serkeftî hate pûçkirin. Em hêvî dikin ku tu di nêzîk de te dîsa bibînin.
-      signed_up: Bi xêr hatî! Te bi serkeftî tomarkirin kir.
-      signed_up_but_inactive: Te bi serkeftî tomarkirin kir. lê piştî ku tu çalak bikî em dikarin ku tu têketinê bikî.
-      signed_up_but_locked: Te bi serkeftî tomarkirin kir. lê ajimêra te girtiye ber wê tu nikarî ku têketinê bikî.
-      signed_up_but_pending: Peyamek bi girêda pejirandinê ji navnîşana e-nameya te re hate şandin. Piştî ku tu girêdanê bitikînî, em ê serlêdana te binirxînin. Heke werê pejirandin tu yê bê agahdarkirin.
-      signed_up_but_unconfirmed: Peyamek bi girêda pejirandinê ji navnîşana e-nameya te re hate şandin. Ji kerema xwe girêdanê bişopîne da ku tu ajimêra xwe çalak bikî. Ji kerema xwe heke te ev e-name nestand peldanka spama xwe kontrol bike.
-      update_needs_confirmation: Te ajimêra xwe bi awayekî serkeftî rojane kir, lê pêdiviya me bi kontrolkirina navnîşana e -nameya te ya nû heye. Ji kerema xwe e -nameya xwe kontrol bike û girêdana piştrastkirinê bişopîne da ku navnîşana e -nameya xwe ya nû piştrast bikî. Ji kerema xwe heke te ev e -name nestand peldanka spama xwe kontrol bike.
-      updated: Ajimêra te bi awayekî serkeftî hate rojanekirin.
+      destroyed: خوات لەگەڵ! ئەژمێرەکەت بە سەرکەوتوویی هەڵوەشێنرایەوە. هیوادارین بەزوویی بتبینینەوە.
+      signed_up: بەخێربێیت! تۆ بە سەرکەوتوویی تۆمار کرای.
+      signed_up_but_inactive: تۆ بە سەرکەوتوویی تۆمارکرای. هەرچۆنێک بێت، نەمانتوانی چوونە ژوورەوەت بۆ بکەین لەبەرئەوەی هێشتا هەژمارەکەت کارا نەکراوە.
+      signed_up_but_locked: تۆ بە سەرکەوتوویی تۆمارکرای. هەرچۆنێک بێت، نەمانتوانی چوونە ژوورەوەت بۆ بکەین لەبەرئەوەی هێشتا هەژمارەکەت قوفڵ کراوە.
+      signed_up_but_pending: نامەیەک بە لینکی دووپاتکردنەوە نێردراوە بۆ ناونیشانی ئیمەیڵەکەت. دوای ئەوەی تۆ کرتە لەسەر لینکەکە دەکەیت، ئێمە پێداچوونەوە دەکەین بە بەرنامەکەتدا. ئاگادار دەکرێیت ئەگەر پەسەند کرا.
+      signed_up_but_unconfirmed: نامەیەک بە لینکی دووپاتکردنەوە نێردراوە بۆ ناونیشانی ئیمەیڵەکەت. تکایە دوای لینکەکە بکەوە بۆ کاراکردنی هەژمارەکەت. تکایە بوخچەی سپامەکەت بکەرەوە ئەگەر ئەم ئیمەیڵەت پێنەدرا.
+      update_needs_confirmation: تۆ ئەژمێرەکەت بە سەرکەوتوویی نوێکردەوە، بەڵام پێویستە ئیمەیڵە نوێکەت بسەلمێنین. تکایە ئیمەیڵەکەت بپشکنە و دوای بەستەری دڵنیابوونەوە بکەوە بۆ دڵنیابوون لە ناونیشانی ئیمەیڵە نوێکەت. تکایە بوخچەی سپامەکەت بکەرەوە ئەگەر ئەم ئیمەیڵەت پێنەدرا.
+      updated: هەژمارەکەت بە سەرکەوتوویی نوێکرایەوە.
     sessions:
-      already_signed_out: Derketina te serkeftî bû.
-      signed_in: Têketina te serkeftî bû.
-      signed_out: Derketina te serkeftî bû.
+      already_signed_out: چوونە دەرەوە بە سەرکەوتوویی ئەنجام بوو.
+      signed_in: بە سەرکەوتوویی چوونە ژوورەوە.
+      signed_out: چوونە دەرەوە بە سەرکەوتوویی ئەنجام بوو.
     unlocks:
-      send_instructions: Çend xulek şûnde ji bo navnîşana e-name ya te çawa were pejirandinê, tu yê e-name yek hildî. Heke ev e-name yê hilnedî ji kerema xwe re peldanka nexwestî binêrin.
-      send_paranoid_instructions: Hek ajimêra te hebe, tu yê e-nameyeke bi zanyariyan bistînî ka mirov çawa di çend xulekan de ajimêr vedikê. Ji kerema xwe heke te ev e-name nestand peldanka spama xwe kontrol bike.
-      unlocked: Ajimêra te bi serkeftî vebû. Ji kerema xwe têkeve da ku tu bidomînî.
+      send_instructions: ئیمەیڵێکت بۆ دەنێردرێت لەگەڵ ڕێنمایی بۆ چۆنیەتی کردنەوەی هەژمارەکەت لە چەند خولەکێکدا. تکایە بوخچەی سپامەکەت بپشکنە ئەگەر ئەم ئیمەیڵەت پێنەدرا.
+      send_paranoid_instructions: ئەگەر هەژمارەکەت بوونی هەبێت، ئیمەیڵێکت پێدەگات لەگەڵ ڕێنمایی چۆنیەتی کردنەوەی لە چەند خولەکێکدا. تکایە بوخچەی سپامەکەت بپشکنە ئەگەر ئەم ئیمەیڵەت پێنەدرا.
+      unlocked: هەژمارەکەت بە سەرکەوتوویی لە قوفڵ لاچوو. تکایە بچۆ ژوورەوە بۆ بەردەوام بوون.
   errors:
     messages:
-      already_confirmed: jixwe hate pejirandin, ji kerema xwe têketinê biceribîne
-      confirmation_period_expired: pêdivî ye ku di nav %{period} de werê pejirandin, ji kerema xwe yeka nû bixwaze
-      expired: qediya ye, ji kerema xwe yeka nû bixwaze
-      not_found: nehate dîtin
-      not_locked: ne girtî bû
+      already_confirmed: پێشتر پشتڕاست کرایەوە، تکایە هەوڵ دەدە بچۆ ژوورەوە
+      confirmation_period_expired: پێویستە لە نێو %{period} دا پشتڕاست بکرێتەوە، تکایە داوای دانەیەکی نوێ بکە
+      expired: بەسەرچووە، تکایە داوایەکی نوێ بکە
+      not_found: نەدۆزرایەوە
+      not_locked: دانەخرابوو
       not_saved:
-        one: '1 çewtî nehişt ku %{resource} werê tomarkirin:'
-        other: "%{count} çewtî nehişt ku %{resource} werê tomarkirin:"
+        one: '١ هەڵە قەدەغەکرا ئەم %{resource} لە تۆمارکردن:'
+        other: "%{count} هەڵەی قەدەغەکرد کە %{resource} لە پاشکەوتکردن:"

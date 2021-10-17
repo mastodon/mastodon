@@ -1,7 +1,8 @@
+---
 id:
   about:
-    about_hashtag_html: 'Ini adalah toot publik yang ditandai dengan <strong>#%{hashtag}</strong>. Anda bisa berinteraksi dengan mereka jika anda memiliki akun dimanapun di fediverse.'
-    about_mastodon_html: 'Mastodon adalah sebuah jejaring sosial <em>terbuka, open-source</em. Sebuah alternatif <em>desentralisasi</em> dari platform komersial, menjauhkan anda resiko dari sebuah perusahaan yang memonopoli komunikasi anda. Pilih server yang anda percayai &mdash; apapun yang anda pilih, anda tetap dapat berinteraksi dengan semua orang. Semua orang dapat menjalankan server Mastodon sendiri dan berpartisipasi dalam <em>jejaring sosial</em> dengan mudah.'
+    about_hashtag_html: Ini adalah toot publik yang ditandai dengan <strong>#%{hashtag}</strong>. Anda bisa berinteraksi dengan mereka jika anda memiliki akun dimanapun di fediverse.
+    about_mastodon_html: Mastodon adalah sebuah jejaring sosial <em>terbuka, open-source</em. Sebuah alternatif <em>desentralisasi</em> dari platform komersial, menjauhkan anda resiko dari sebuah perusahaan yang memonopoli komunikasi anda. Pilih server yang anda percayai &mdash; apapun yang anda pilih, anda tetap dapat berinteraksi dengan semua orang. Semua orang dapat menjalankan server Mastodon sendiri dan berpartisipasi dalam <em>jejaring sosial</em> dengan mudah.
     about_this: Tentang server ini
     active_count_after: aktif
     active_footnote: Pengguna Aktif Bulanan (PAB)
@@ -20,9 +21,7 @@ id:
     federation_hint_html: Dengan akun di %{instance} Anda dapat mengikuti orang di server Mastodon mana pun dan di luarnya.
     get_apps: Coba aplikasi mobile
     hosted_on: Mastodon dihosting di %{domain}
-    instance_actor_flash: |
-      Akun ini adalah aktor virtual yang dipakai untuk merepresentasikan server, bukan pengguna individu. Ini dipakai untuk tujuan federasi dan jangan diblokir kecuali Anda ingin memblokir seluruh instansi, yang seharusnya Anda pakai blokir domain. 
-
+    instance_actor_flash: "Akun ini adalah aktor virtual yang dipakai untuk merepresentasikan server, bukan pengguna individu. Ini dipakai untuk tujuan federasi dan jangan diblokir kecuali Anda ingin memblokir seluruh instansi, yang seharusnya Anda pakai blokir domain. \n"
     learn_more: Pelajari selengkapnya
     privacy_policy: Kebijakan Privasi
     rules: Aturan server
@@ -51,7 +50,7 @@ id:
     user_count_before: Tempat bernaung bagi
     what_is_mastodon: Apa itu Mastodon?
   accounts:
-    choices_html: "Pilihan %{name}:"
+    choices_html: 'Pilihan %{name}:'
     endorsements_hint: Anda dapat mempromosikan orang yang Anda ikuti lewat antar muka web, dan mereka akan muncul di sini.
     featured_tags_hint: Anda dapat mengunggulkan tagar tertentu yang akan ditampilkan di sini.
     follow: Ikuti
@@ -112,7 +111,7 @@ id:
       delete: Hapus data
       deleted: Terhapus
       demote: Turunkan
-      destroyed_msg: "Data %{username} masuk antrean untuk dihapus segera"
+      destroyed_msg: Data %{username} masuk antrean untuk dihapus segera
       disable: Nonaktifkan
       disable_sign_in_token_auth: Nonaktifkan otentikasi token email
       disable_two_factor_authentication: Nonaktifkan 2FA
@@ -444,7 +443,7 @@ id:
         title: Blokir domain email baru
       title: Domain email terblokir
     follow_recommendations:
-      description_html: "<strong>\"Rekomendasi untuk diikuti\" membantu pengguna baru untuk secara cepat menemukan konten yang menarik</strong>. Ketika pengguna belum cukup berinteraksi dengan lainnya sehingga belum memunculkan rekomendasi, akun-akun ini akan direkomendasikan. Mereka dihitung ulang secara harian dari campuran akun-akun dengan keterlibatan tertinggi baru-baru ini dan jumlah pengikut lokal tertinggi untuk bahasa tertentu."
+      description_html: <strong>"Rekomendasi untuk diikuti" membantu pengguna baru untuk secara cepat menemukan konten yang menarik</strong>. Ketika pengguna belum cukup berinteraksi dengan lainnya sehingga belum memunculkan rekomendasi, akun-akun ini akan direkomendasikan. Mereka dihitung ulang secara harian dari campuran akun-akun dengan keterlibatan tertinggi baru-baru ini dan jumlah pengikut lokal tertinggi untuk bahasa tertentu.
       language: Untuk bahasa
       status: Status
       suppress: Hapus akun yang direkomendasikan untuk diikuti
@@ -511,11 +510,11 @@ id:
     pending_accounts:
       title: Akun tertunda (%{count})
     relationships:
-      title: "Hubungan %{acct}"
+      title: Hubungan %{acct}
     relays:
       add_new: Tambah relai baru
       delete: Hapus
-      description_html: <strong>Relai gabungan</strong> adalah server perantara yang menukarkan toot publik dalam jumlah besar antara server yang berlangganan dengan yang menerbitkannya. <strong>Ini akan membantu server kecil hingga medium menemukan konten dari fediverse</strong>, yang tentu saja mengharuskan pengguna lokal untuk mengikuti orang lain dari server remot.
+      description_html: "<strong>Relai gabungan</strong> adalah server perantara yang menukarkan toot publik dalam jumlah besar antara server yang berlangganan dengan yang menerbitkannya. <strong>Ini akan membantu server kecil hingga medium menemukan konten dari fediverse</strong>, yang tentu saja mengharuskan pengguna lokal untuk mengikuti orang lain dari server remot."
       disable: Matikan
       disabled: Dimatikan
       enable: Aktifkan
@@ -717,10 +716,10 @@ id:
     new_report:
       body: "%{reporter} telah melaporkan %{target}"
       body_remote: Seseorang dari %{domain} telah melaporkan %{target}
-      subject: 'Laporan baru untuk %{instance} (#%{id})'
+      subject: Laporan baru untuk %{instance} (#%{id})
     new_trending_tag:
       body: 'Tagar #%{name} sedang tren hari ini, tetapi belum ditinjau. Itu tidak akan ditampilkan secara publik kecuali Anda mengizinkannya, atau simpan saja borang sebagaimana mestinya untuk tidak mendengarnya lagi.'
-      subject: 'Tagar baru muncul untuk ditinjau di %{instance} (#%{name})'
+      subject: Tagar baru muncul untuk ditinjau di %{instance} (#%{name})
   aliases:
     add_new: Buat alias
     created_msg: Berhasil membuat alias baru. Sekarang Anda dapat memulai pindah dari akun lama.
