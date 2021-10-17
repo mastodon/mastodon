@@ -1,7 +1,6 @@
----
 sq:
   about:
-    about_hashtag_html: Këto janë mesazhe publike të etiketuara me <strong>#%{hashtag}</strong>. Mundeni të ndërveproni me ta, nëse keni një llogari kudo qoftë në fedivers.
+    about_hashtag_html: 'Këto janë mesazhe publike të etiketuara me <strong>#%{hashtag}</strong>. Mundeni të ndërveproni me ta, nëse keni një llogari kudo qoftë në fedivers.'
     about_mastodon_html: 'Rrjeti shoqëror i së ardhmes: Pa reklama, pa survejim nga korporata, konceptim etik dhe decentralizim! Jini zot i të dhënave tuaja, me Mastodon-in!'
     about_this: Mbi
     active_count_after: aktive
@@ -54,7 +53,7 @@ sq:
     user_count_before: Shtëpi e
     what_is_mastodon: Ç’është Mastodon-i?
   accounts:
-    choices_html: 'Zgjedhje të %{name}:'
+    choices_html: "Zgjedhje të %{name}:"
     endorsements_hint: Mund t’i mbështesni personat që nga ndërfaqja web, dhe do të shfaqen këtu.
     featured_tags_hint: Mund të zgjidhni hashtag-ë të veçantë që do të shfaqen këtu.
     follow: Ndiqeni
@@ -117,7 +116,7 @@ sq:
       delete: Fshiji të dhënat
       deleted: U fshi
       demote: Zhgradoje
-      destroyed_msg: Të dhënat e %{username} tani janë vënë në radhë për fshirje të menjëhershme
+      destroyed_msg: "Të dhënat e %{username} tani janë vënë në radhë për fshirje të menjëhershme"
       disable: Çaktivizoje
       disable_sign_in_token_auth: Çaktivizo mirëfilltësim me token email-i
       disable_two_factor_authentication: Çaktivizoni 2FA-në
@@ -148,7 +147,7 @@ sq:
       media_attachments: Bashkëngjitje media
       memorialize: Shndërroje në përkujtimore
       memorialized: U shndërrua në përkujtimore
-      memorialized_msg: "%{username} u kthye me sukses në një llogari përkujtimore"
+      memorialized_msg: '%{username} u kthye me sukses në një llogari përkujtimore'
       moderation:
         active: Aktiv
         all: Krejt
@@ -376,6 +375,15 @@ sq:
       media_storage: Depozitë media
       new_users: përdorues të rinj
       opened_reports: raportime të hapur
+      pending_reports_html:
+        one: "<strong>1</strong> raportim pezull"
+        other: "<strong>%{count}</strong> raportime pezull"
+      pending_tags_html:
+        one: "<strong>1</strong> hashtag pezull"
+        other: "<strong>%{count}</strong> hashtag-ë pezull"
+      pending_users_html:
+        one: "<strong>1</strong> përdorues pezull"
+        other: "<strong>%{count}</strong> përdorues pezull"
       resolved_reports: raportime të zgjidhur
       software: Software
       sources: Burime regjistrimi
@@ -423,7 +431,7 @@ sq:
       show:
         affected_accounts:
           one: Pat ndikim te një llogari në bazën e të dhënave
-          other: Pat ndikim te %{count} llogari në bazën e të dhënave
+          other: "Pat ndikim te %{count} llogari në bazën e të dhënave"
         retroactive:
           silence: Hiqu heshtimin krejt llogarive ekzistuese nga kjo përkatësi
           suspend: Hiqu pezullimin krejt llogarive ekzistuese nga kjo përkatësi
@@ -513,7 +521,7 @@ sq:
     pending_accounts:
       title: Llogari pezull (%{count})
     relationships:
-      title: Marrëdhënie të %{acct}
+      title: "Marrëdhënie të %{acct}"
     relays:
       add_new: Shtoni rele të re
       delete: Fshije
@@ -721,10 +729,10 @@ sq:
     new_report:
       body: "%{reporter} ka raportuar %{target}"
       body_remote: Dikush nga %{domain} ka raportuar %{target}
-      subject: Raportim i ri për %{instance} (#%{id})
+      subject: 'Raportim i ri për %{instance} (#%{id})'
     new_trending_tag:
       body: 'Hashtag-u #%{name} është popullor sot, por s’është shqyrtuar më parë. S’do të shfaqet publikisht pa e lejuar ju, ose thjesht ruani formularin siç është, që të mos dëgjoni më për të.'
-      subject: Hashtag i ri për shqyrtim te %{instance} (#%{name})
+      subject: 'Hashtag i ri për shqyrtim te %{instance} (#%{name})'
   aliases:
     add_new: Krijo alias
     created_msg: U krijua me sukses alias i ri. Tani mund të filloni lëvizjen prej llogarisë së vjetër.
@@ -1072,8 +1080,8 @@ sq:
       subject: "%{name} parapëlqeu gjendjen tuaj"
       title: E parapëlqyer e re
     follow:
-      body: Tani ju ndjek %{name}!
-      subject: Tani ju ndjek %{name}
+      body: "Tani ju ndjek %{name}!"
+      subject: "Tani ju ndjek %{name}"
       title: Ndjekës i ri
     follow_request:
       action: Administroni kërkesa ndjekjeje
@@ -1414,7 +1422,7 @@ sq:
       <p>Ky dokument është CC-BY-SA. U përditësua së fundi më 7 mars, 2018.</p>
 
       <p>Përshtatur fillimisht nga <a href="https://github.com/discourse/discourse">rregullat e privatësisë në Discourse</a>.</p>
-    title: Kushte Shërbimi dhe Rregulla Privatësie te %{instance}
+    title: "Kushte Shërbimi dhe Rregulla Privatësie te %{instance}"
   themes:
     contrast: Mastodon (Me shumë kontrast)
     default: Mastodon (I errët)
