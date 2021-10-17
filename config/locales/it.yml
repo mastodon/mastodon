@@ -1,7 +1,6 @@
----
 it:
   about:
-    about_hashtag_html: Questi sono i toot pubblici etichettati con <strong>#%{hashtag}</strong>. Puoi interagire con loro se hai un account nel fediverse.
+    about_hashtag_html: 'Questi sono i toot pubblici etichettati con <strong>#%{hashtag}</strong>. Puoi interagire con loro se hai un account nel fediverse.'
     about_mastodon_html: 'Il social network del futuro: niente pubblicità, niente controllo da parte di qualche azienda privata, design etico e decentralizzazione! Con Mastodon il proprietario dei tuoi dati sei tu!'
     about_this: A proposito di questo server
     active_count_after: attivo
@@ -41,7 +40,7 @@ it:
     unavailable_content_description:
       domain: Server
       reason: 'Motivo:'
-      rejecting_media: I file multimediali di questo server non saranno elaborati e non verranno visualizzate miniature, che richiedono clic manuale sull'altro server.
+      rejecting_media: 'I file multimediali di questo server non saranno elaborati e non verranno visualizzate miniature, che richiedono clic manuale sull''altro server.'
       rejecting_media_title: Media filtrati
       silenced: 'I messaggi da questi server saranno nascosti nelle timeline e nelle conversazioni pubbliche, e nessuna notifica verrà generata dalle interazioni dei loro utenti, a meno che non li stai seguendo:'
       silenced_title: Server silenziati
@@ -54,7 +53,7 @@ it:
     user_count_before: Home di
     what_is_mastodon: Che cos'è Mastodon?
   accounts:
-    choices_html: 'Suggerimenti da %{name}:'
+    choices_html: "Suggerimenti da %{name}:"
     endorsements_hint: 'Puoi segnalare persone che segui e che apprezzi dall''interfaccia web: saranno mostrate qui.'
     featured_tags_hint: Puoi mettere in evidenza determinati hashtag che verranno visualizzati qui.
     follow: Segui
@@ -117,7 +116,7 @@ it:
       delete: Elimina dati
       deleted: Cancellato
       demote: Declassa
-      destroyed_msg: I dati di %{username} sono ora in coda per essere eliminati tra poco
+      destroyed_msg: "I dati di %{username} sono ora in coda per essere eliminati tra poco"
       disable: Disabilita
       disable_sign_in_token_auth: Disabilita autenticazione con token email
       disable_two_factor_authentication: Disabilita l'autenticazione a due fattori
@@ -379,6 +378,9 @@ it:
       pending_reports_html:
         one: "<strong>1</strong> rapporto in attesa"
         other: "<strong>%{count}</strong> rapporti in attesa"
+      pending_tags_html:
+        one: "<strong>1</strong> hashtag in attesa"
+        other: "<strong>%{count}</strong> hashtag in attesa"
       pending_users_html:
         one: "<strong>1</strong> utente in attesa"
         other: "<strong>%{count}</strong> utenti in attesa"
@@ -429,7 +431,7 @@ it:
       show:
         affected_accounts:
           one: Interessato un solo account nel database
-          other: Interessati %{count} account nel database
+          other: "Interessati %{count} account nel database"
         retroactive:
           silence: De-silenzia tutti gli account esistenti da questo dominio
           suspend: Annulla la sospensione di tutti gli account esistenti da questo dominio
@@ -519,7 +521,7 @@ it:
     pending_accounts:
       title: Account in attesa (%{count})
     relationships:
-      title: Relazioni di %{acct}
+      title: "Relazioni di %{acct}"
     relays:
       add_new: Aggiungi ripetitore
       delete: Cancella
@@ -727,10 +729,10 @@ it:
     new_report:
       body: "%{reporter} ha segnalato %{target}"
       body_remote: Qualcuno da %{domain} ha segnalato %{target}
-      subject: Nuova segnalazione per %{instance} (#%{id})
+      subject: 'Nuova segnalazione per %{instance} (#%{id})'
     new_trending_tag:
       body: 'L''hashtag #%{name} oggi è di tendenza, ma non è stato mai controllato. Non sarà visualizzato pubblicamente se non lo permetti; se salvi il form senza modifiche non lo vedrai mai più.'
-      subject: Nuovo hashtag pronto per essere controllato su %{instance} (#%{name})
+      subject: 'Nuovo hashtag pronto per essere controllato su %{instance} (#%{name})'
   aliases:
     add_new: Crea alias
     created_msg: Hai creato un nuovo alias. Ora puoi iniziare lo spostamento dal vecchio account.
@@ -740,9 +742,7 @@ it:
     remove: Scollega alias
   appearance:
     advanced_web_interface: Interfaccia web avanzata
-    advanced_web_interface_hint: |-
-      Se vuoi utilizzare l'intera larghezza dello schermo, l'interfaccia web avanzata ti consente di configurare varie colonne per mostrare più informazioni allo stesso tempo, secondo le tue preferenze:
-      Home, notifiche, timeline federata, qualsiasi numero di liste e etichette.
+    advanced_web_interface_hint: "Se vuoi utilizzare l'intera larghezza dello schermo, l'interfaccia web avanzata ti consente di configurare varie colonne per mostrare più informazioni allo stesso tempo, secondo le tue preferenze:\nHome, notifiche, timeline federata, qualsiasi numero di liste e etichette."
     animations_and_accessibility: Animazioni e accessibiiltà
     confirmation_dialogs: Dialoghi di conferma
     discovery: Scoperta
