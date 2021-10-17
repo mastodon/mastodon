@@ -1,1 +1,116 @@
+---
 lv:
+  devise:
+    confirmations:
+      confirmed: Tava e-pasta adrese ir veiksmīgi apstiprināta.
+      send_instructions: Pēc dažām minūtēm jūs saņemsi e-pastu ar norādījumiem, kā apstiprināt savu e -pasta adresi. Lūdzu, pārbaudi surogātpasta mapi, ja neesi saņēmis šo e-pastu.
+      send_paranoid_instructions: Ja tava e-pasta adrese ir mūsu datu bāzē, pēc dažām minūtēm saņemsi e-pastu ar norādījumiem, kā apstiprināt savu e-pasta adresi. Lūdzu, pārbaudi surogātpasta mapi, ja neesi saņēmis šo e-pastu.
+    failure:
+      already_authenticated: Jau esi pierakstījies.
+      inactive: Tavs konts vēl nav aktivizēts.
+      invalid: Nederīga %{authentication_keys} vai parole.
+      last_attempt: Tev ir vēl viens mēģinājums, pirms tavs konts tiks bloķēts.
+      locked: Tavs konts ir bloķēts.
+      not_found_in_database: Nederīga %{authentication_keys} vai parole.
+      pending: Tavs konts joprojām tiek pārskatīts.
+      timeout: Tava sesija ir beigusies. Lūdzu, pieraksties vēlreiz, lai turpinātu.
+      unauthenticated: Lai turpinātu, tev ir jāpierakstās vai jāreģistrējas.
+      unconfirmed: Lai turpinātu, tev ir jāapstiprina savu e-pasta adresi.
+    mailer:
+      confirmation_instructions:
+        action: Apstiprini savu e-pasta adresi
+        action_with_app: Apstiprini un atgriezies %{app}
+        explanation: Ar šo e-pasta adresi esi izveidojis kontu vietnē %{host}. Tu esi viena klikšķa attālumā no tā aktivizēšanas. Ja tas nebiji tu, lūdzu, ignorē šo e-pasta ziņojumu.
+        explanation_when_pending: Tu pieteicies uzaicinājumam uz %{host} ar šo e-pasta adresi. Kad būsi apstiprinājis savu e-pasta adresi, mēs izskatīsim pieteikumu. Tu vari pieteikties, lai mainītu savu informāciju vai dzēstu savu kontu, taču nevari piekļūt lielākajai daļai funkciju, kamēr tavs konts nav apstiprināts. Ja tavs pieteikums tiks noraidīts, tavi dati tiks noņemti, tāpēc tev nebūs jāveic nekādas darbības. Ja tas nebiji tu, lūdzu, ignorē šo e-pasta ziņojumu.
+        extra_html: Lūdzu, pārbaudi arī <a href="%{terms_path}">servera nosacījumus</a> un <a href="%{policy_path}"> mūsu pakalpojumu sniegšanas noteikumi</a>.
+        subject: 'Mastodon: Apstiprināšanas norādījumi %{instance}'
+        title: Apstiprini savu e-pasta adresi
+      email_changed:
+        explanation: 'Tava konta e-pasta adrese tiek mainīta uz:'
+        extra: Ja neesi mainījis savu e-pasta adresi, iespējams, kāds ir ieguvis piekļuvi tavam kontam. Lūdzu, nekavējoties nomaini paroli vai sazinies ar servera administratoru, ja nevari piekļūt savam kontam.
+        subject: 'Mastodon: E-pasts nomainīts'
+        title: Jaunā e-pasta adrese
+      password_change:
+        explanation: Tava konta parole ir nomainīta.
+        extra: Ja neesi mainījis savu paroli, iespējams, kāds ir ieguvis piekļuvi tavam kontam. Lūdzu, nekavējoties nomaini paroli vai sazinies ar servera administratoru, ja nevari piekļūt savam kontam.
+        subject: 'Mastodon: Parole ir nomainīta'
+        title: Parole nomainīta
+      reconfirmation_instructions:
+        explanation: Apstiprini jauno adresi, lai mainītu savu e-pastu.
+        extra: Ja šīs izmaiņas neesi veicis tu, lūdzu, ignorē šo e-pasta ziņojumu. Mastodon konta e-pasta adrese nemainīsies, kamēr nebūsi piekļuvis iepriekš norādītajai saitei.
+        subject: 'Mastodon: Apstiprini e-pastu %{instance}'
+        title: Apstiprini e-pasta adresi
+      reset_password_instructions:
+        action: Nomainīt paroli
+        explanation: Tu pieprasīji jaunu paroli savam kontam.
+        extra: Ja neesi to pieprasījis, lūdzu, ignorē šo e-pasta ziņojumu. Tava parole nemainīsies, kamēr neesi piekļuvis iepriekš norādītajai saitei un izveidojis jaunu.
+        subject: 'Mastodon: Norādījumi paroles atiestatīšanai'
+        title: Paroles atiestatīšana
+      two_factor_disabled:
+        explanation: Tavam kontam divfaktoru autentifikācija ir atspējota. Pieteikšanās tagad ir iespējama, izmantojot tikai e-pasta adresi un paroli.
+        subject: 'Mastodon: Divfaktoru autentifikācija atspējota'
+        title: 2FA atspējota
+      two_factor_enabled:
+        explanation: Tavam kontam ir iespējota divfaktoru autentifikācija. Lai pieteiktos, būs nepieciešams marķieris, ko ģenerējusi pārī savienotā TOTP lietotne.
+        subject: 'Mastodon: Divfaktoru autentifikācija iespējota'
+        title: 2FA iespējota
+      two_factor_recovery_codes_changed:
+        explanation: Iepriekšējie atkopšanas kodi ir atzīti par nederīgiem un ģenerēti jauni.
+        subject: 'Mastodon: Divfaktoru autkopšanas kodi pārģenerēti'
+        title: 2FA atkopšanas kodi mainīti
+      unlock_instructions:
+        subject: 'Mastodon: Norādījumi atbloķēšanai'
+      webauthn_credential:
+        added:
+          explanation: Tavam kontam ir pievienota šāda drošības atslēga
+          subject: 'Mastodon: Jaunā drošības atslēga'
+          title: Tika pievienota jauna drošības atslēga
+        deleted:
+          explanation: Tālāk norādītā drošības atslēga ir izdzēsta no tava konta
+          subject: 'Mastodon: Drošības atslēga izdzēsta'
+          title: Viena no tavām drošības atslēgām tika izdzēsta
+      webauthn_disabled:
+        explanation: Tavam kontam ir atspējota autentifikācija ar drošības atslēgām. Pieteikšanās tagad ir iespējama, izmantojot tikai marķieri, ko ģenerējusi pārī savienotā TOTP lietotne.
+        subject: 'Mastodon: Atutentifikācija ar drošības atslēgām ir atspējota'
+        title: Drošības atslēgas atspējotas
+      webauthn_enabled:
+        explanation: Tavam kontam ir iespējota drošības atslēgas autentifikācija. Tavu drošības atslēgu tagad var izmantot, lai pieteiktos.
+        subject: 'Mastodon: Drošības atslēgas autentifikācija iespējota'
+        title: Drošības atslēgas iespējotas
+    omniauth_callbacks:
+      failure: Nevarēja autentificēt tevi no %{kind}, jo "%{reason}".
+      success: Veiksmīgi autentificēts no %{kind} konta.
+    passwords:
+      no_token: Tu nevari piekļūt šai lapai, ja neesi saņēmis paroles atiestatīšanas e-pasta ziņojumu. Ja ienāci no paroles atiestatīšanas e-pasta, lūdzu, pārliecinies, vai izmanto visu norādīto URL.
+      send_instructions: Ja tava e pasta adrese ir mūsu datu bāzē, pēc dažām minūtēm uz savu e-pasta adresi saņemsi paroles atkopšanas saiti. Lūdzu, pārbaudi surogātpasta mapi, ja neesi saņēmis šo e-pastu.
+      send_paranoid_instructions: Ja tava e pasta adrese ir mūsu datu bāzē, pēc dažām minūtēm uz savu e-pasta adresi saņemsi paroles atkopšanas saiti. Lūdzu, pārbaudi surogātpasta mapi, ja neesi saņēmis šo e-pastu.
+      updated: Tava parole ir veiksmīgi nomainīta. Tagad tu esi pierakstījies.
+      updated_not_active: Tava parole ir veiksmīgi nomainīta.
+    registrations:
+      destroyed: Visu labu! Tavs konts ir veiksmīgi atcelts. Mēs ceram tevi drīz atkal redzēt.
+      signed_up: Laipni lūdzam! Tu esi veiksmīgi reģistrējies.
+      signed_up_but_inactive: Tava reģistrācija bija veiksmīga. Tomēr mēs nevarējām tevi pierakstīt, jo tavs konts vēl nav aktivizēts.
+      signed_up_but_locked: Tava reģistrācija bija veiksmīga. Tomēr mēs nevarējām tevi pierakstīt, jo tavs konts ir bloķēts.
+      signed_up_but_pending: Uz tavu e-pasta adresi ir nosūtīts ziņojums ar apstiprinājuma saiti. Pēc noklikšķināšanas uz saites mēs izskatīsim tavu pieteikumu. Tu tiksi informēts, ja tas tiks apstiprināts.
+      signed_up_but_unconfirmed: Uz tavu e-pasta adresi ir nosūtīts ziņojums ar apstiprinājuma saiti. Lūdzu, seko saitei, lai aktivizētu savu kontu. Lūdzu, pārbaudi surogātpasta mapi, ja neesi saņēmis šo e-pastu.
+      update_needs_confirmation: Tu veiksmīgi atjaunināji savu kontu, taču mums ir jāverificē teva jaunā e-pasta adrese. Lūdzu, pārbaudi savu e-pastu un seko apstiprinājuma saitei, lai apstiprinātu savu jauno e-pasta adresi. Lūdzu, pārbaudi surogātpasta mapi, ja neesi saņēmis šo e-pastu.
+      updated: Tavs konts ir veiksmīgi atjaunināts.
+    sessions:
+      already_signed_out: Veiksmīgi izrakstījies.
+      signed_in: Veiksmīgi pierakstījies.
+      signed_out: Veiksmīgi izrakstījies.
+    unlocks:
+      send_instructions: Pēc dažām minūtēm tu saņemsi e-pastu ar norādījumiem, kā atbloķēt savu kontu. Lūdzu, pārbaudi surogātpasta mapi, ja neesi saņēmis šo e-pastu.
+      send_paranoid_instructions: Ja tavs konts eksistē, dažu minūšu laikā tu saņemsi e-pastu ar norādījumiem, kā to atbloķēt. Lūdzu, pārbaudi surogātpasta mapi, ja neesi saņēmis šo e-pastu.
+      unlocked: Tavs konts ir veiksmīgi atbloķēts. Lūdzu, pieraksties, lai turpinātu.
+  errors:
+    messages:
+      already_confirmed: jau tika apstiprināts, lūdzu, mēģini pierakstīties
+      confirmation_period_expired: jāapstiprina %{period} laikā, lūdzu, pieprasi jaunu
+      expired: ir beidzies derīguma termiņš, lūdzu, pieprasi jaunu
+      not_found: nav atrasts
+      not_locked: nebija bloķēts
+      not_saved:
+        one: '1 kļūda liedza saglabāt šo %{resource}:'
+        other: "%{count} kļūdas liedza saglabāt šo %{resource}:"
+        zero: "%{count} kļūdas liedza saglabāt šo %{resource}:"

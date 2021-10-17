@@ -135,6 +135,7 @@ ar:
       demote: إنزال الرُتبة الوظيفية
       destroyed_msg: بيانات حساب %{username} الآن في قائمة الانتظار ليتم حذفها قريباً
       disable: تعطيل
+      disable_sign_in_token_auth: تعطيل مصادقة رمز البريد الإلكتروني
       disable_two_factor_authentication: تعطيل المصادقة بخطوتين
       disabled: معطَّل
       display_name: عرض الاسم
@@ -143,6 +144,7 @@ ar:
       email: البريد الإلكتروني
       email_status: حالة البريد الإلكتروني
       enable: تفعيل
+      enable_sign_in_token_auth: تمكين مصادقة رمز البريد الإلكتروني
       enabled: مفعَّل
       enabled_msg: تم إلغاء تجميد حساب %{username}
       followers: المتابِعون
@@ -207,6 +209,10 @@ ar:
       search: البحث
       search_same_email_domain: مستخدمون آخرون لديهم نفس نطاق البريد الإلكتروني
       search_same_ip: مستخدِمون آخرون بنفس الـ IP
+      security_measures:
+        only_password: كلمة المرور فقط
+        password_and_2fa: كلمة المرور و 2FA
+        password_and_sign_in_token: كلمة المرور ورمز البريد الإلكتروني
       sensitive: حساس
       sensitized: مُعَين كمنشور حساس
       shared_inbox_url: رابط الصندوق المُشترَك للبريد الوارد
@@ -258,8 +264,10 @@ ar:
         destroy_unavailable_domain: حذف نطاق غير متوفر
         disable_2fa_user: تعطيل 2FA
         disable_custom_emoji: تعطيل الإيموجي المخصص
+        disable_sign_in_token_auth_user: تعطيل مصادقة رمز البريد الإلكتروني للمستخدم
         disable_user: تعطيل المستخدم
         enable_custom_emoji: تفعيل الإيموجي المخصص
+        enable_sign_in_token_auth_user: تمكين مصادقة رمز البريد الإلكتروني للمستخدم
         enable_user: تفعيل المستخدم
         memorialize_account: جعل الحساب تذكاريا
         promote_user: ترقية المستخدم
@@ -287,6 +295,42 @@ ar:
         create_custom_emoji_html: "%{name} قام برفع إيموجي جديد %{target}"
         create_domain_allow_html: قام %{name} بإضافة النطاق %{target} إلى القائمة البيضاء
         create_domain_block_html: "%{name} قام بحجب نطاق %{target}"
+        create_email_domain_block_html: قام %{name} بحظر نطاق البريد الإلكتروني %{target}
+        create_ip_block_html: قام %{name} بإنشاء قاعدة للـIP %{target}
+        create_unavailable_domain_html: قام %{name} بتوقيف التوصيل للنطاق %{target}
+        demote_user_html: قام %{name} بخفض الرتبة الوظيفية لـ%{target}
+        destroy_announcement_html: قام %{name} بحذف الإعلان %{target}
+        destroy_custom_emoji_html: قام %{name} بحذف الإيموجي %{target}
+        destroy_domain_allow_html: قام %{name} بمنع الاتحاد مع النطاق %{target}
+        destroy_domain_block_html: قام %{name} برفع الحظر عن النطاق %{target}
+        destroy_email_domain_block_html: قام %{name} برفع الحظر عن نطاق البريد الإلكتروني %{target}
+        destroy_ip_block_html: قام %{name} بحذف قاعدة للـIP %{target}
+        destroy_status_html: قام %{name} بحذف منشور من %{target}
+        destroy_unavailable_domain_html: قام %{name} باستئناف التوصيل للنطاق %{target}
+        disable_2fa_user_html: قام %{name} بتعطيل المصادقة بخطوتين للمستخدم %{target}
+        disable_custom_emoji_html: قام %{name} بتعطيل الإيموجي %{target}
+        disable_sign_in_token_auth_user_html: "%{name} تعطيل مصادقة رمز البريد الإلكتروني لـ %{target}"
+        disable_user_html: قام %{name} بتعطيل تسجيل الدخول للمستخدم %{target}
+        enable_custom_emoji_html: قام %{name} بتنشيط الإيموجي %{target}
+        enable_sign_in_token_auth_user_html: "%{name} تمكين مصادقة رمز البريد الإلكتروني لـ %{target}"
+        enable_user_html: قام %{name} بتنشيط تسجيل الدخول للمستخدم %{target}
+        memorialize_account_html: قام %{name} بتحويل حساب %{target} إلى صفحة تذكارية
+        promote_user_html: قام %{name} بترويج المستخدم %{target}
+        remove_avatar_user_html: قام %{name} بإزالة صورة %{target} الرمزية
+        reopen_report_html: قام %{name} بإعادة فتح الشكوى %{target}
+        reset_password_user_html: قام %{name} بإعادة تعيين كلمة مرور المستخدم %{target}
+        resolve_report_html: قام %{name} بحل الشكوى %{target}
+        sensitive_account_html: قام %{name} بوضع علامة حساس على محتوى %{target}
+        silence_account_html: قام %{name} بكتم حساب %{target}
+        suspend_account_html: قام %{name} بتعليق حساب %{target}
+        unassigned_report_html: قام %{name} بإلغاء تعيين الشكوى %{target}
+        unsensitive_account_html: قام %{name} بإزالة علامة حساس على محتوى %{target}
+        unsilence_account_html: قام %{name} بإلغاء كتم المستخدم %{target}
+        unsuspend_account_html: قام %{name} بإلغاء تعليق حساب %{target}
+        update_announcement_html: قام %{name} بتحديث الإعلان %{target}
+        update_custom_emoji_html: قام %{name} بتحديث الإيموجي %{target}
+        update_domain_block_html: قام %{name} بتحديث كتلة النطاق %{target}
+        update_status_html: قام %{name} بتحديث منشور من %{target}
       deleted_status: "(منشور محذوف)"
       empty: لم يتم العثور على سجلات.
       filter_by_action: تصفية بحسب الإجراء
@@ -301,10 +345,12 @@ ar:
       new:
         create: إنشاء إعلان
         title: إعلان جديد
+      publish: نشر
       published_msg: تم نشر الإعلان بنجاح!
       scheduled_for: بُرمِج على %{time}
       scheduled_msg: تمت جدولة نشر الإعلان!
       title: الإعلانات
+      unpublish: إلغاء النشر
       unpublished_msg: تم إلغاء نشر الإعلان بنجاح!
       updated_msg: تم تحديث الإعلان بنجاح!
     custom_emojis:
@@ -341,32 +387,9 @@ ar:
       updated_msg: تم تحديث الإيموجي بنجاح!
       upload: رفع
     dashboard:
-      authorized_fetch_mode: الوضع الآمن
-      backlog: الأعمال المتراكمة
-      config: الإعداد
-      feature_deletions: الحسابات المحذوفة
-      feature_invites: روابط الدعوات
-      feature_profile_directory: دليل الملفات التعريفية
-      feature_registrations: التسجيلات
-      feature_relay: المُرحّل الفديرالي
-      feature_timeline_preview: معاينة الخيط الزمني
-      features: الميّزات
-      hidden_service: الفيديرالية مع الخدمات الخفية
-      open_reports: شكاوي مفتوحة
-      pending_tags: وسوم في انتظار المراجعة
-      pending_users: مستخدمين في انتظار مراجعة
-      recent_users: أحدث المستخدِمين
-      search: البحث النصي الكامل
-      single_user_mode: وضع المستخدِم الأوحد
       software: البرنامج
       space: المساحة المستخدَمة
       title: لوح المراقبة
-      total_users: إجمالي المستخدِمين
-      trends: المتداوَلة
-      week_interactions: تفاعُلات هذا الأسبوع
-      week_users_active: نشطاء هذا الأسبوع
-      week_users_new: مستخدِمين هذا الأسبوع
-      whitelist_mode: وضع القائمة البيضاء
     domain_allows:
       add_new: إضافة النطاق إلى القائمة البيضاء
       created_msg: تمت إضافة النطاق إلى القائمة البيضاء بنجاح
@@ -430,9 +453,38 @@ ar:
         create: إضافة نطاق
         title: إضافة نطاق بريد جديد إلى اللائحة السوداء
       title: القائمة السوداء للبريد الإلكتروني
+    follow_recommendations:
+      description_html: "<strong>تساعد اقتراحات المتابعة المستخدمين في العثور بسرعة على محتوى مثير للاهتمام</strong>. عندما لا يتفاعل المستخدم مع الآخرين بشكل كافي لتشكيل اقتراحات متابعة مخصصة له، تظهر هذه الاقتراحات بدلاً من ذلك. يُعاد حسابهم بشكل يومي من مزيج حسابات لديها أكثر التفاعلات وأكثر عدد من المتابعين المحليين للغة معينة."
+      language: للغة
+      status: الحالة
+      suppress: إلغاء توصية اقتراح المتابعة
+      suppressed: ملغاة التوصية
+      title: اقتراحات المتابعة
+      unsuppress: إستعادة إقتراحات المتابعة
     instances:
+      back_to_all: الكل
+      back_to_limited: محدود
+      back_to_warning: تحذير
       by_domain: النطاق
+      delivery:
+        all: الكل
+        clear: مسح أخطاء التسليم
+        restart: إعادة تشغيل التوصيل
+        stop: إيقاف التوصيل
+        title: التوصيل
+        unavailable: غير متوفر
+        unavailable_message: التوصيل غير متوفر
+        warning: تحذير
+        warning_message:
+          few: فشل التوصيل لـ%{count} أيام
+          many: فشل التوصيل لـ%{count} يوم
+          one: فشل التوصيل لـ%{count} يوم
+          other: فشل التوصيل لـ%{count} يوم
+          two: فشل التوصيل لـ%{count} يوم
+          zero: فشل التوصيل لـ%{count} يوم
       delivery_available: التسليم متوفر
+      delivery_error_days: أيام أخطاء التوصيل
+      delivery_error_hint: إذا كان التوصيل غير ممكناً لـ%{count} يوم، فستوضع عليها علامة {غير قابلة للتسليم} تلقائياً.
       empty: لم يتم العثور على نطاقات.
       known_accounts:
         few: "%{count} حسابات معروفة"
@@ -540,13 +592,17 @@ ar:
       resolved: معالجة
       resolved_msg: تم حل تقرير بنجاح!
       status: الحالة
+      target_origin: مصدر الحساب المبلغ عنه
       title: الشكاوى
       unassign: إلغاء تعيين
       unresolved: غير معالجة
       updated_at: محدث
     rules:
       add_new: إضافة قاعدة
+      delete: حذف
+      description_html: بينما يدعي معظم الناس أنهم قرأوا شروط الخدمة ووافقوا عليها، فإن الناس عادةً لا يقرأون إلا بعد حدوث مشكلة. <strong>اجعل من الأسهل رؤية قواعد خادمك بلمحة عن طريق تزويدهم في قائمة النقاط المدورة.</strong> حاول إبقاء القواعد الفردية قصيرة وبسيطة، ولكن لا تحاول أن تُقسمها إلى العديد من العناصر المنفصلة أيضا.
       edit: تعديل القانون
+      empty: لم يتم تحديد قواعد الخادم بعد.
       title: قوانين الخادم
     settings:
       activity_api_enabled:
@@ -654,6 +710,14 @@ ar:
       no_status_selected: لم يطرأ أي تغيير على أي منشور بما أنه لم يتم اختيار أي واحد
       title: منشورات الحساب
       with_media: تحتوي على وسائط
+    system_checks:
+      database_schema_check:
+        message_html: هناك عمليات هجرة معلقة لقواعد البيانات. يرجى تشغيلها لضمان تصرف التطبيق كما هو متوقع
+      rules_check:
+        action: إدارة قواعد الخادم
+        message_html: لم تقم بتحديد أي قواعد خادم.
+      sidekiq_process_check:
+        message_html: لا توجد عملية Sidekiq قيد التشغيل لقائمة الانتظار %{value}. يرجى مراجعة إعدادات Sidekiq الخاصة بك
     tags:
       accounts_today: استخدامات هذا اليوم
       accounts_week: استخدامات هذا الأسبوع
@@ -674,6 +738,7 @@ ar:
       add_new: إضافة واحد جديد
       delete: حذف
       edit_preset: تعديل نموذج التحذير
+      empty: لم تحدد أي إعدادات تحذير مسبقة بعد.
       title: إدارة نماذج التحذير
   admin_mailer:
     new_pending_account:
@@ -971,6 +1036,17 @@ ar:
   lists:
     errors:
       limit: لقد بلغت الحد الأقصى للقوائم
+  login_activities:
+    authentication_methods:
+      otp: تطبيق المصادقة الثنائية
+      password: كلمة المرور
+      sign_in_token: رمز الأمان للبريد الإلكتروني
+      webauthn: مفاتيح الأمان
+    description_html: إذا رأيت النشاط الذي لا تتعرف عليه، فكر في تغيير كلمة المرور الخاصة بك وتفعيل المصادقة ذات العاملين.
+    empty: لا يوجد سجل مصادقة متاح
+    failed_sign_in_html: فشل محاولة تسجيل الدخول مع %{method} من %{ip} (%{browser})
+    successful_sign_in_html: تم تسجيل الدخول بنجاح مع %{method} من %{ip} (%{browser})
+    title: تاريخ المصادقة
   media_attachments:
     validations:
       images_and_video: ليس بالإمكان إرفاق فيديو في منشور يحتوي مسبقا على صور
@@ -1051,6 +1127,8 @@ ar:
       body: 'أشار إليك %{name} في:'
       subject: لقد قام %{name} بذِكرك
       title: إشارة جديدة
+    poll:
+      subject: انتهى استطلاع %{name} للرأي
     reblog:
       body: 'قام %{name} بترقية منشورك:'
       subject: قام %{name} بترقية منشورك
@@ -1183,6 +1261,7 @@ ar:
     revoke: إبطال
     revoke_success: تم إبطال الجلسة بنجاح
     title: الجلسات
+    view_authentication_history: عرض سجل المصادقة لحسابك
   settings:
     account: الحساب
     account_settings: إعدادات الحساب
@@ -1203,6 +1282,7 @@ ar:
     preferences: التفضيلات
     profile: الملف التعريفي
     relationships: المتابِعون والمتابَعون
+    statuses_cleanup: حذف المنشور الآلي
     two_factor_authentication: المُصادقة بخُطوَتَيْن
     webauthn_authentication: مفاتيح الأمان
   statuses:
@@ -1271,12 +1351,47 @@ ar:
     sign_in_to_participate: قم بتسجيل الدخول للمشاركة في هذه المحادثة
     title: '%{name}: "%{quote}"'
     visibilities:
+      direct: مباشرة
       private: لمتابِعيك فقط
       private_long: اعرضه لمتابعيك فقط
       public: للعامة
       public_long: يمكن للجميع رؤيته
       unlisted: غير مُدرَج
       unlisted_long: يُمكن لأيٍ كان رُؤيتَه و لكن لن يُعرَض على الخيوط العامة
+  statuses_cleanup:
+    enabled: حذف المشاركات القديمة تلقائياً
+    enabled_hint: حذف منشوراتك تلقائياً بمجرد أن تصل إلى عتبة عمرية محددة، إلا إذا كانت مطابقة لأحد الاستثناءات أدناه
+    exceptions: الاستثناءات
+    explanation: لأن حذف المشاركات عملية مكلفة، يتم ذلك ببطء مع مرور الوقت عندما يكون الخادم غير مشغول. لهذا السبب، يمكن حذف مشاركاتك بعد فترة من بلوغها عتبة السن.
+    ignore_favs: تجاهل المفضلة
+    ignore_reblogs: تجاهل التعزيزات
+    interaction_exceptions: الاستثناءات المبنية على التفاعلات
+    interaction_exceptions_explanation: لاحظ أنه لا يوجد ضمان لحذف الوظائف إذا كانت أقل من عتبة التعزيز المفضلة بعد أن تكون قد ذهبت إليها.
+    keep_direct: الاحتفاظ بالرسائل المباشرة
+    keep_direct_hint: لم تقوم بحذف أي من رسائلك المباشرة
+    keep_media: الاحتفاظ بالمشاركات مع مرفقات الوسائط
+    keep_media_hint: لم تقوم بحذف أي من المشاركات الخاصة بك التي تحتوي على مرفقات الوسائط
+    keep_pinned: الاحتفاظ بالمشاركات المثبتة
+    keep_pinned_hint: لم تقوم بحذف أي من مشاركتك المثبتة
+    keep_polls: الاحتفاظ باستطلاعات الرأي
+    keep_polls_hint: لم تقم بحذف أي من استطلاعاتك
+    keep_self_bookmark: احتفظ بالمشاركات التي أدرجتها حجزا
+    keep_self_bookmark_hint: لم تقم بحذف مشاركاتك الخاصة إذا قمت بوضع علامة مرجعية عليها
+    keep_self_fav: احتفظ بالمشاركات التي تفضلها
+    keep_self_fav_hint: لم تقم بحذف مشاركاتك الخاصة إذا كنت قد فضلتهم
+    min_age:
+      '1209600': أسبوعان
+      '15778476': 6 أشهر
+      '2629746': شهر واحد
+      '31556952': سنة واحدة
+      '5259492': شهران
+      '63113904': أسبوعان
+      '7889238': 3 أشهر
+    min_age_label: عتبة العمر
+    min_favs: إبقاء المشاركات المفضلة أكثر من
+    min_favs_hint: لم تقوم بحذف أي من المشاركات الخاصة بك التي حصلت على أكثر من هذه الكمية من المفضلة. اتركه فارغاً لحذف المشاركات بغض النظر عن عدد المفضلات لديها
+    min_reblogs: إبقاء المشاركات المعززة أكثر من
+    min_reblogs_hint: لم تقم بحذف أي من مشاركاتك التي تم تعزيزها أكثر من هذا العدد من المرات. اتركه فارغاً لحذف المشاركات بغض النظر عن عدد تعزيزاتها
   stream_entries:
     pinned: تبويق مثبّت
     reblogged: رقّاه
