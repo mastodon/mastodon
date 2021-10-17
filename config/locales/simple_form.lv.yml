@@ -1,1 +1,224 @@
+---
 lv:
+  simple_form:
+    hints:
+      account_alias:
+        acct: Norādi konta lietotājvārdu@domēnu, no kura vēlies pārvākties
+      account_migration:
+        acct: Norādi konta lietotājvārdu@domēnu, uz kuru vēlies pārvākties
+      account_warning_preset:
+        text: Vari izmantot ziņu sintaksi, piemēram, URL, atsauces un pieminējumus
+        title: Neobligāts. Saņēmējam nav redzams
+      admin_account_action:
+        include_statuses: Lietotājs redzēs, kuras ziņas izraisījušas moderācijas darbību vai brīdinājumu
+        send_email_notification: Lietotājs saņems paskaidrojumu par to, kas notika ar viņa kontu
+        text_html: Neobligāts. Tu vari lietot ziņu sintaksi. Lai ietaupītu laiku, tu vari <a href="%{path}">pievienot brīdinājuma sākotnējos iestatījumus</a>
+        type_html: Izvēlies, ko darīt ar <strong>%{acct}</strong>
+        types:
+          disable: Neļauj lietotājam izmantot savu kontu, bet neizdzēs vai neslēp tā saturu.
+          none: Izmanto šo, lai nosūtītu lietotājam brīdinājumu, neradot nekādas citas darbības.
+          sensitive: Piespiest visus šī lietotāja multivides pielikumus atzīmēt kā sensitīvus.
+          silence: Neļauj lietotājam publicēt ziņas publiski redzamā veidā, paslēp viņu ziņas un paziņojumus no cilvēkiem, kuri viņiem neseko.
+          suspend: Novērst jebkādu mijiedarbību ar šo kontu vai ar to un dzēst tā saturu. Atgriežams 30 dienu laikā.
+        warning_preset_id: Neobligāts. Tu joprojām vari pievienot pielāgotu tekstu sākotnējās iestatīšanas beigās
+      announcement:
+        all_day: Atzīmējot šo opciju, tiks parādīti tikai laika diapazona datumi
+        ends_at: Neobligāts. Paziņojums šoreiz tiks automātiski atcelts
+        scheduled_at: Lai nekavējoties publicētu paziņojumu, atstāj tukšu
+        starts_at: Neobligāts. Ja tavs paziņojums ir saistīts ar noteiktu laika diapazonu
+        text: Varari izmantot ziņu sintaksi. Lūdzu, apdomā lauku, ko paziņojums aizņems lietotāja ekrānā
+      defaults:
+        autofollow: Cilvēki, kuri reģistrējas, izmantojot uzaicinājumu, automātiski sekos tev
+        avatar: PNG, GIF vai JPG. Ne vairāk kā %{size}. Tiks samazināts līdz %{dimensions} px
+        bot: Paziņo citiem, ka kontā galvenokārt tiek veiktas automatizētas darbības un tas var netikt uzraudzīts
+        context: Viens vai vairāki konteksti, kur jāpiemēro filtrs
+        current_password: Drošības nolūkos, lūdzu, ievadi pašreizējā konta paroli
+        current_username: Lai apstiprinātu, lūdzu, ievadi pašreizējā konta paroli
+        digest: Sūta tikai pēc ilgstošas neaktivitātes un tikai tad, ja savas prombūtnes laikā neesi saņēmis personiskas ziņas
+        discoverable: Ļauj svešiniekiem atklāt savu kontu caur ieteikumiem, profila direktoriju un citām iespējām
+        discoverable_no_directory: Ļauj svešiniekiem atklāt savu kontu caur ieteikumiem un citām iespējām
+        email: Tev tiks nosūtīts apstiprinājuma e-pasts
+        fields: Savā profilā kā tabulu vari parādīt līdz 4 vienumiem
+        header: PNG, GIF vai JPG. Ne vairāk kā %{size}. Tiks samazināts līdz %{dimensions}px
+        inbox_url: Nokopē URL no tā releja sākumlapas, kuru vēlies izmantot
+        irreversible: Filtrētās ziņas neatgriezeniski pazudīs, pat ja filtrs vēlāk tiks noņemts
+        locale: Lietotāja saskarnes, e-pasta ziņojumu un push paziņojumu valoda
+        locked: Manuāli kontrolē, kas var tev sekot, apstiprinot sekošanas pieprasījumus
+        password: Izmanto vismaz 8 rakstzīmes
+        phrase: Tiks saskaņots neatkarīgi no ziņas teksta reģistra vai satura brīdinājuma
+        scopes: Kuriem API lietojumprogrammai būs atļauta piekļuve. Ja izvēlies augstākā līmeņa tvērumu, tev nav jāatlasa atsevišķi vienumi.
+        setting_aggregate_reblogs: Nerādīt jaunus palielinājumus ziņām, kas nesen tika palielinātas (ietekmē tikai nesen saņemtos palielinājumus)
+        setting_default_sensitive: Sensitīvi mediji pēc noklusējuma ir paslēpti, un tos var atklāt, noklikšķinot
+        setting_display_media_default: Paslēpt mediju, kas atzīmēts kā sensitīvs
+        setting_display_media_hide_all: Vienmēr slēpt medijus
+        setting_display_media_show_all: Vienmēr rādīt medijus
+        setting_hide_network: Kam tu seko un kurš seko tev, tavā profilā tiks paslēps
+        setting_noindex: Ietekmē tavu publisko profilu un ziņu lapas
+        setting_show_application: Lietojumprogramma, ko tu izmanto publicēšanai, tiks parādīta tavu ziņu detalizētajā skatā
+        setting_use_blurhash: Gradientu pamatā ir paslēpto vizuālo attēlu krāsas, bet neskaidras visas detaļas
+        setting_use_pending_items: Paslēpt laika skalas atjauninājumus aiz klikšķa, nevis automātiski ritini plūsmu
+        username: Tavs lietotājvārds %{domain} būs unikāls
+        whole_word: Ja atslēgvārds vai frāze ir tikai burtciparu, tas tiks lietots tikai tad, ja tas atbilst visam vārdam
+      domain_allow:
+        domain: Šis domēns varēs izgūt datus no šī servera, un no tā ienākošie dati tiks apstrādāti un saglabāti
+      email_domain_block:
+        domain: Tas var būt domēna nosaukums, kas redzams e-pasta adresē, MX ieraksts, kuru domēns atrisina, vai servera IP, uz kuru tiek atrisināts MX ieraksts. Tie tiks pārbaudīti, reģistrējoties lietotājam, un reģistrācija tiks noraidīta.
+        with_dns_records: Tiks mēģināts atrisināt dotā domēna DNS ierakstus, un rezultāti arī tiks bloķēti
+      featured_tag:
+        name: 'Iespējams, vēlēsies izmantot kādu no šīm:'
+      form_challenge:
+        current_password: Tu ieej drošā zonā
+      imports:
+        data: CSV fails, eksportēts no cita Mastodon servera
+      invite_request:
+        text: Tas palīdzēs mums pārskatīt tavu lietojumprogrammu
+      ip_block:
+        comment: Neobligāts. Atceries, kādēļ tu pievienoji šo nosacījumu.
+        expires_in: IP adreses ir ierobežots resurss, tās dažreiz tiek koplietotas un bieži maina turētāju. Šī iemesla dēļ nedefinēti IP bloki nav ieteicami.
+        ip: Ievadi IPv4 vai IPv6 adresi. Izmantojot CIDR sintaksi, tu vari bloķēt visus diapazonus. Esi piesardzīgs un neizslēdz pats sevi!
+        severities:
+          no_access: Bloķēt piekļuvi visiem resursiem
+          sign_up_requires_approval: Jaunām reģistrācijām būs nepieciešams tavs apstiprinājums
+        severity: Izvēlies, kas notiks ar pieprasījumiem no šīs IP adreses
+      rule:
+        text: Apraksti nosacījumus vai prasības šī servera lietotājiem. Centies, lai tas būtu īss un vienkāršs
+      sessions:
+        otp: 'Ievadi divfaktoru kodu, ko ģenerējusi tava tālruņa lietotne, vai izmanto kādu no atkopšanas kodiem:'
+        webauthn: Ja tā ir USB atslēga, noteikti ievieto to un, ja nepieciešams, pieskaries tai.
+      tag:
+        name: Tu vari mainīt tikai burtu lielumu, piemēram, lai tie būtu vieglāk lasāmi
+      user:
+        chosen_languages: Ja ieķeksēts, publiskos laika grafikos tiks parādītas tikai ziņas noteiktajās valodās
+    labels:
+      account:
+        fields:
+          name: Marķējums
+          value: Saturs
+      account_alias:
+        acct: Vecā konta rokturis
+      account_migration:
+        acct: Jaunā konta rokturis
+      account_warning_preset:
+        text: Iestatītais teksts
+        title: Virsraksts
+      admin_account_action:
+        include_statuses: Iekļaut ziņotās ziņas e-pastā
+        send_email_notification: Paziņot lietotājam pa e-pastu
+        text: Pielāgots brīdinājums
+        type: Darbība
+        types:
+          disable: Iesaldēt
+          none: Nosūtīt brīdinājumu
+          sensitive: Sensitīvs
+          silence: Ierobežot
+          suspend: Apturēt
+        warning_preset_id: Lietot iepriekš iestatītus brīdinājumus
+      announcement:
+        all_day: Visas dienas pasākums
+        ends_at: Pasākuma noslēgums
+        scheduled_at: Ieplānot publikāciju
+        starts_at: Pasākuma sākums
+        text: Paziņojums
+      defaults:
+        autofollow: Uzaicini sekot tavam kontam
+        avatar: Avatars
+        bot: Šis ir bot konts
+        chosen_languages: Filtrēt valodas
+        confirm_new_password: Apstiprināt jauno paroli
+        confirm_password: Apstiprināt paroli
+        context: Filtrēt kontekstus
+        current_password: Pašreizējā parole
+        data: Dati
+        discoverable: Ieteikt kontu citiem
+        display_name: Parādāmais vārds
+        email: E-pasta adrese
+        expires_in: Beidzas pēc
+        fields: Profila metadati
+        header: Galvene
+        honeypot: "%{label} (neaizpildi)"
+        inbox_url: URL vai releja pastkaste
+        irreversible: Nomest, nevis paslēpt
+        locale: Interfeisa valoda
+        locked: Pieprasīt sekotāju pieprasījumus
+        max_uses: Maksimālais lietojumu skaits
+        new_password: Jauna parole
+        note: Par sevi
+        otp_attempt: Divfaktoru kods
+        password: Parole
+        phrase: Atslēgvārds vai frāze
+        setting_advanced_layout: Iespējot paplašināto web interfeisu
+        setting_aggregate_reblogs: Grupēt paaugstinājumus ziņu lentās
+        setting_auto_play_gif: Automātiski atskaņot animētos GIF
+        setting_boost_modal: Parādīt apstiprinājuma dialogu pirms paaugstināšanas
+        setting_crop_images: Apgrieziet attēlus neizvērstajās ziņās līdz 16x9
+        setting_default_language: Publicēšanas valoda
+        setting_default_privacy: Publicēšanas privātums
+        setting_default_sensitive: Atļaut atzīmēt medijus kā sensitīvus
+        setting_delete_modal: Parādīt apstiprinājuma dialogu pirms ziņas dzēšanas
+        setting_disable_swiping: Atspējot vilkšanas kustības
+        setting_display_media: Mediju bibliotēka
+        setting_display_media_default: Noklusējums
+        setting_display_media_hide_all: Paslēpt visu
+        setting_display_media_show_all: Parādīt visu
+        setting_expand_spoilers: Vienmēr izvērst ziņas, kas apzīmētas ar brīdinājumiem par saturu
+        setting_hide_network: Slēpt savu sociālo diagrammu
+        setting_noindex: Atteikties no meklētājprogrammu indeksēšanas
+        setting_reduce_motion: Ierobežot kustību animācijās
+        setting_show_application: Atklāt lietojumprogrammu, ko izmanto ziņu nosūtīšanai
+        setting_system_font_ui: Lietot sistēmas noklusējuma fontu
+        setting_theme: Vietnes motīvs
+        setting_trends: Parādīt šodienas tendences
+        setting_unfollow_modal: Parādīt apstiprinājuma dialogu pirms atsekoties no kāda
+        setting_use_blurhash: Rādīt krāsainos gradientus slēptajiem medijiem
+        setting_use_pending_items: Lēnais režīms
+        severity: Smagums
+        sign_in_token_attempt: Drošības kods
+        type: Importa veids
+        username: Lietotājvārds
+        username_or_email: Lietotājvārds vai e-pasts
+        whole_word: Pilns vārds
+      email_domain_block:
+        with_dns_records: Ietvert domēna MX ierakstus un IP adreses
+      featured_tag:
+        name: Tēmturis
+      interactions:
+        must_be_follower: Bloķēt paziņojumus no ne-sekotājiem
+        must_be_following: Bloķēt paziņojumus no cilvēkiem, kuriem tu neseko
+        must_be_following_dm: Bloķēt tiešos ziņojumus no cilvēkiem, kuriem tu neseko
+      invite:
+        comment: Komentēt
+      invite_request:
+        text: Kāpēc tu vēlies pievienoties?
+      ip_block:
+        comment: Komentēt
+        ip: IP
+        severities:
+          no_access: Bloķēt piekļuvi
+          sign_up_requires_approval: Ierobežot reģistrēšanos
+        severity: Noteikumi
+      notification_emails:
+        digest: Sūtīt kopsavilkumu e-pastus
+        favourite: Kāds izcēla tavu ziņu
+        follow: Kāds uzsāka tev sekot
+        follow_request: Kāds vēlas tev sekot
+        mention: Kāds pieminēja tevi
+        pending_account: Jāpārskata jaunu kontu
+        reblog: Kāds paaugstināja tavu ziņu
+        report: Tika iesniegts jauns ziņojums
+        trending_tag: Kļūst populārs nepārskatīts tēmturis
+      rule:
+        text: Noteikumi
+      tag:
+        listable: Atļaut šim tēmturim parādīties meklējumos un ieteikumos
+        name: Tēmturis
+        trendable: Atļaut šim tēmturim parādīties zem tendencēm
+        usable: Atļaut lietot ziņās šo tēmturi
+    'no': Nē
+    recommended: Ieteicams
+    required:
+      mark: "*"
+      text: nepieciešams
+    title:
+      sessions:
+        webauthn: Lai pierakstītos, izmanto vienu no savām drošības atslēgām
+    'yes': Jā

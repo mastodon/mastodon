@@ -359,32 +359,9 @@ eu:
       updated_msg: Emoji-a ongi eguneratu da!
       upload: Igo
     dashboard:
-      authorized_fetch_mode: Baimendutako eskuratze modua
-      backlog: aurreikusitako lanak
-      config: Konfigurazioa
-      feature_deletions: Kontu ezabaketak
-      feature_invites: Gonbidapen estekak
-      feature_profile_directory: Profil-direktorioa
-      feature_registrations: Izen emateak
-      feature_relay: Federazio errelea
-      feature_timeline_preview: Denbora-lerroaren aurrebista
-      features: Ezaugarriak
-      hidden_service: Federazioa ezkutuko zerbitzuekin
-      open_reports: salaketa irekiak
-      pending_tags: berrikusketaren zain dauden etiketak
-      pending_users: berrikusketaren zain dauden erabiltzaileak
-      recent_users: Azken erabiltzaileak
-      search: Testu osoko bilaketa
-      single_user_mode: Erabiltzaile bakarreko modua
       software: Softwarea
       space: Espazio erabilera
       title: Kontrol panela
-      total_users: erabiltzaile guztira
-      trends: Joerak
-      week_interactions: interakzio aste honetan
-      week_users_active: aktibo aste honetan
-      week_users_new: erabiltzaile aste honetan
-      whitelist_mode: Zerrenda zuria modua
     domain_allows:
       add_new: Sartu domeinua zerrenda zurian
       created_msg: Domeinua ongi sartu da zerrenda zurian
@@ -1002,6 +979,17 @@ eu:
   lists:
     errors:
       limit: Gehieneko zerrenda kopurura heldu zara
+  login_activities:
+    authentication_methods:
+      otp: bi faktoreko autentifikazio aplikazioa
+      password: pasahitza
+      sign_in_token: e-posta segurtasun kodea
+      webauthn: segurtasun gakoak
+    description_html: Ezagutzen ez duzun aktibitatea ikusten baduzu, pasahitza aldatu eta bi faktoreko autentifikazioa gaitzea gomendatzen dizugu.
+    empty: Ez dago autentifikazio historiarik eskuragarri
+    failed_sign_in_html: Huts egindako saioa hasteko saiakera %{method} erabiliz %{ip} IPtik (%{browser})
+    successful_sign_in_html: Saioa hasiera arrakastatsua %{method} erabiliz %{ip} IPtik (%{browser})
+    title: Autentifikazioen historia
   media_attachments:
     validations:
       images_and_video: Ezin da irudiak dituen bidalketa batean bideo bat erantsi
@@ -1208,6 +1196,7 @@ eu:
     revoke: Indargabetu
     revoke_success: Saioa ongi indargabetu da
     title: Saioak
+    view_authentication_history: Ikusi zure kontuaren autentifikazioen historia
   settings:
     account: Kontua
     account_settings: Kontuaren ezarpenak

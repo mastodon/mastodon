@@ -119,6 +119,7 @@ de:
       demote: Degradieren
       destroyed_msg: "%{username}'s Daten wurden zum Löschen in die Warteschlange eingereiht"
       disable: Ausschalten
+      disable_sign_in_token_auth: Deaktiviere die Zwei-Faktor-Authentifizierung per E-Mail
       disable_two_factor_authentication: 2FA abschalten
       disabled: Ausgeschaltet
       display_name: Anzeigename
@@ -127,6 +128,7 @@ de:
       email: E-Mail
       email_status: E-Mail-Status
       enable: Freischalten
+      enable_sign_in_token_auth: Aktiviere die Zwei-Faktor-Authentifizierung per E-Mail
       enabled: Freigegeben
       enabled_msg: "%{username}'s Konto erfolgreich freigegeben"
       followers: Folgende
@@ -191,6 +193,10 @@ de:
       search: Suche
       search_same_email_domain: Andere Benutzer mit der gleichen E-Mail-Domain
       search_same_ip: Andere Benutzer mit derselben IP
+      security_measures:
+        only_password: Nur Passwort
+        password_and_2fa: Passwort und 2FA
+        password_and_sign_in_token: Passwort und E-Mail-Token
       sensitive: NSFW
       sensitized: Als NSFW markieren
       shared_inbox_url: Geteilte Posteingang-URL
@@ -242,8 +248,10 @@ de:
         destroy_unavailable_domain: Nicht verfügbare Domain löschen
         disable_2fa_user: 2FA deaktivieren
         disable_custom_emoji: Benutzerdefiniertes Emoji deaktivieren
+        disable_sign_in_token_auth_user: Zwei-Faktor-Authentifizierung per E-Mail für den Nutzer deaktiviert
         disable_user: Benutzer deaktivieren
         enable_custom_emoji: Benutzerdefiniertes Emoji aktivieren
+        enable_sign_in_token_auth_user: Zwei-Faktor-Authentifizierung per E-Mail für den Nutzer aktiviert
         enable_user: Benutzer aktivieren
         memorialize_account: Account deaktivieren
         promote_user: Benutzer befördern
@@ -285,8 +293,10 @@ de:
         destroy_unavailable_domain_html: "%{name} setzte die Lieferung an die Domain %{target} fort"
         disable_2fa_user_html: "%{name} hat Zwei-Faktor-Anforderung für Benutzer_in %{target} deaktiviert"
         disable_custom_emoji_html: "%{name} hat das %{target} Emoji deaktiviert"
+        disable_sign_in_token_auth_user_html: "%{name} hat die E-Mail-Token Authentifizierung für %{target} deaktiviert"
         disable_user_html: "%{name} hat Zugang von Benutzer_in %{target} deaktiviert"
         enable_custom_emoji_html: "%{name} hat das %{target} Emoji aktiviert"
+        enable_sign_in_token_auth_user_html: "%{name} hat die E-Mail-Token Authentifizierung für %{target} aktiviert"
         enable_user_html: "%{name} hat Zugang von Benutzer_in %{target} aktiviert"
         memorialize_account_html: "%{name} hat das Konto von %{target} in eine Gedenkseite umgewandelt"
         promote_user_html: "%{name} hat %{target} befördert"
@@ -361,32 +371,9 @@ de:
       updated_msg: Emoji erfolgreich aktualisiert!
       upload: Hochladen
     dashboard:
-      authorized_fetch_mode: Autorisierter Abruf-Modus
-      backlog: Rückständige Jobs
-      config: Konfiguration
-      feature_deletions: Kontolöschung
-      feature_invites: Einladungen
-      feature_profile_directory: Profilverzeichnis
-      feature_registrations: Offene Anmeldung
-      feature_relay: Föderationsrelais
-      feature_timeline_preview: Zeitleistenvorschau
-      features: Funktionen
-      hidden_service: Föderation mit versteckten Diensten
-      open_reports: Ausstehende Meldungen
-      pending_tags: Hashtags, die auf eine Überprüfung warten
-      pending_users: Benutzer, die auf eine Überprüfung warten
-      recent_users: Neueste Nutzer
-      search: Volltextsuche
-      single_user_mode: Einzelnutzermodus
       software: Software
       space: Speicherverbrauch
       title: Übersicht
-      total_users: Benutzer insgesamt
-      trends: Trends
-      week_interactions: Interaktionen diese Woche
-      week_users_active: Aktiv diese Woche
-      week_users_new: Benutzer diese Woche
-      whitelist_mode: Whitelist-Modus
     domain_allows:
       add_new: Whitelist-Domain
       created_msg: Domain wurde erfolgreich zur Whitelist hinzugefügt
@@ -569,6 +556,7 @@ de:
       resolved: Gelöst
       resolved_msg: Meldung erfolgreich gelöst!
       status: Zustand
+      target_origin: Domain des gemeldeten Kontos
       title: Meldungen
       unassign: Zuweisung entfernen
       unresolved: Ungelöst
@@ -1004,6 +992,17 @@ de:
   lists:
     errors:
       limit: Du hast die maximale Anzahl an Listen erreicht
+  login_activities:
+    authentication_methods:
+      otp: Zwei-Faktor-Authentifizierung-App
+      password: Passwort
+      sign_in_token: E-Mail Sicherheitscode
+      webauthn: Sicherheitsschlüssel
+    description_html: Wenn du Aktivitäten siehst, die du nicht erkennst, solltest du dein Passwort ändern und die Zwei-Faktor-Authentifizierung aktivieren.
+    empty: Kein Authentifizierungsverlauf verfügbar
+    failed_sign_in_html: Fehler beim Anmeldeversuch mit %{method} von %{ip} (%{browser})
+    successful_sign_in_html: Erfolgreiche Anmeldung mit %{method} von %{ip} (%{browser})
+    title: Authentifizierungsverlauf
   media_attachments:
     validations:
       images_and_video: Es kann kein Video an einen Beitrag, der bereits Bilder enthält, angehängt werden
@@ -1108,7 +1107,7 @@ de:
     wrong_code: Der eingegebene Code war ungültig! Sind die Serverzeit und die Gerätezeit korrekt?
   pagination:
     newer: Neuer
-    next: Vorwärts
+    next: Weiter
     older: Älter
     prev: Zurück
     truncate: "&hellip;"
@@ -1210,6 +1209,7 @@ de:
     revoke: Schließen
     revoke_success: Sitzung erfolgreich geschlossen
     title: Sitzungen
+    view_authentication_history: Authentifizierungsverlauf deines Kontos anzeigen
   settings:
     account: Konto
     account_settings: Konto & Sicherheit
@@ -1230,6 +1230,7 @@ de:
     preferences: Einstellungen
     profile: Profil
     relationships: Folgende und Gefolgte
+    statuses_cleanup: Automatisches Beitraglöschen
     two_factor_authentication: Zwei-Faktor-Auth
     webauthn_authentication: Sicherheitsschlüssel
   statuses:
@@ -1281,6 +1282,40 @@ de:
       public_long: Für alle sichtbar
       unlisted: Nicht gelistet
       unlisted_long: Für alle sichtbar, aber nicht in öffentlichen Zeitleisten aufgelistet
+  statuses_cleanup:
+    enabled: Automatisch alte Beiträge löschen
+    enabled_hint: Löscht automatisch deine Beiträge, sobald sie einen bestimmten Altersgrenzwert erreicht haben, es sei denn, sie entsprechen einer der folgenden Ausnahmen
+    exceptions: Ausnahmen
+    explanation: Da das Löschen von Beiträgen eine kostspielige Operation ist, geschieht dies langsam im Laufe der Zeit, wenn der Server sonst nicht beschäftigt ist. Aus diesem Grund können deine Beiträge gelöscht werden, eine Weile nachdem sie die Altersgrenze erreicht haben.
+    ignore_favs: Favoriten ignorieren
+    ignore_reblogs: Boosts ignorieren
+    interaction_exceptions: Ausnahmen basierend auf Interaktionen
+    interaction_exceptions_explanation: Beachte, dass es keine Garantie für das Löschen von Beiträgen gibt, wenn sie nach einem Übertritt des Favoriten- oder Boost-Schwellenwert wieder unter diesen fallen.
+    keep_direct: Direktnachrichten behalten
+    keep_direct_hint: Löscht keine deiner Direktnachrichten
+    keep_media: Beiträge mit Medienanhängen behalten
+    keep_media_hint: Löscht keine Ihrer Beiträge mit Medienanhängen
+    keep_pinned: Angeheftete Beiträge behalten
+    keep_pinned_hint: Löscht keine deiner angehefteten Beiträge
+    keep_polls: Umfragen behalten
+    keep_polls_hint: Löscht keine deiner Umfragen
+    keep_self_bookmark: Als Lesezeichen markierte Beiträge behalten
+    keep_self_bookmark_hint: Löscht nicht deine eigenen Beiträge, wenn du sie als Lesezeichen markiert hast
+    keep_self_fav: Behalte die von dir favorisierten Beiträge
+    keep_self_fav_hint: Löscht nicht deine eigenen Beiträge, wenn du sie favorisiert hast
+    min_age:
+      '1209600': 2 Wochen
+      '15778476': 6 Monate
+      '2629746': 1 Monat
+      '31556952': 1 Jahr
+      '5259492': 2 Monate
+      '63113904': 2 Jahre
+      '7889238': 3 Monate
+    min_age_label: Altersgrenze
+    min_favs: Behalte Beiträge, die öfter favorisiert wurden als
+    min_favs_hint: Löscht keine deiner Beiträge, die mehr als diese Anzahl an Favoriten erhalten haben. Leer lassen, um Beiträge zu löschen, unabhängig von ihrer Anzahl an Favoriten
+    min_reblogs: Behalte Beiträge, die öfter geteilt wurden als
+    min_reblogs_hint: Löscht keine deiner Beiträge, die mehr als diese Anzahl geteilt wurden. Lasse leer, um Beiträge zu löschen, unabhängig von ihrer Anzahl an Boosts
   stream_entries:
     pinned: Angehefteter Beitrag
     reblogged: teilte
