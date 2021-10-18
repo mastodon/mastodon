@@ -43,9 +43,7 @@ class Form::AccountBatch
   end
 
   def remove_from_followers!
-    current_account.passive_relationships.where(account_id: account_ids).find_each do |follow|
-      reject_follow!(follow)
-    end
+    RemoveFromFollowersService.new.call(current_account, account_ids)
   end
 
   def block_domains!
@@ -60,14 +58,6 @@ class Form::AccountBatch
 
   def accounts
     Account.where(id: account_ids)
-  end
-
-  def reject_follow!(follow)
-    follow.destroy
-
-    return unless follow.account.activitypub?
-
-    ActivityPub::DeliveryWorker.perform_async(Oj.dump(serialize_payload(follow, ActivityPub::RejectFollowSerializer)), current_account.id, follow.account.inbox_url)
   end
 
   def approve!
