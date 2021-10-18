@@ -1,7 +1,6 @@
----
 lv:
   about:
-    about_hashtag_html: Šīs ir publiskas ziņas, kas atzīmētas ar <strong>#%{hashtag} </strong>. Tu vari mijiedarboties ar viņiem, ja tev ir konts jebkurā federācijas vietnē.
+    about_hashtag_html: 'Šīs ir publiskas ziņas, kas atzīmētas ar <strong>#%{hashtag} </strong>. Tu vari mijiedarboties ar viņiem, ja tev ir konts jebkurā federācijas vietnē.'
     about_mastodon_html: 'Nākotnes sociālais tīkls: bez reklāmām, bez korporatīvās uzraudzības, ētisks dizains un decentralizācija! Pārvaldi savus datus ar Mastodon!'
     about_this: Par
     active_count_after: aktīvs
@@ -32,9 +31,9 @@ lv:
     server_stats: 'Servera statistika:'
     source_code: Pirmkods
     status_count_after:
+      zero: nav
       one: ziņa
       other: ziņas
-      zero: nav
     status_count_before: Kurš publicējis
     tagline: Seko draugiem un atrodi jaunus
     terms: Pakalpojuma noteikumi
@@ -50,9 +49,9 @@ lv:
       suspended_title: Apturēti serveri
     unavailable_content_html: Mastodon parasti ļauj apskatīt saturu un mijiedarboties ar lietotājiem no jebkura cita federācijas servera. Šie ir izņēmumi, kas veikti šajā konkrētajā serverī.
     user_count_after:
+      zero: lietotājI
       one: lietotājs
       other: lietotāji
-      zero: lietotājI
     user_count_before: Mājās uz
     what_is_mastodon: Kas ir Mastodon?
   accounts:
@@ -113,7 +112,7 @@ lv:
       delete: Dzēst datus
       deleted: Dzēsts
       demote: Pazemināt
-      destroyed_msg: Lietotāja %{username} dati tagad ievietoti rindā, lai tos nekavējoties izdzēstu
+      destroyed_msg: "Lietotāja %{username} dati tagad ievietoti rindā, lai tos nekavējoties izdzēstu"
       disable: Iesaldēt
       disable_sign_in_token_auth: Atspējot autentifikāciju ar e-pasta marķieri
       disable_two_factor_authentication: Atspējot 2FA
@@ -144,7 +143,7 @@ lv:
       media_attachments: Mediju pielikumi
       memorialize: Pārvērst atmiņās
       memorialized: Piemiņa saglabāta
-      memorialized_msg: "%{username} veiksmīgi pārvērsts par piemiņas kontu"
+      memorialized_msg: '%{username} veiksmīgi pārvērsts par piemiņas kontu'
       moderation:
         active: Aktīvie
         all: Visi
@@ -184,6 +183,7 @@ lv:
       roles:
         admin: Administrators
         moderator: Moderators
+        staff: Personāls
         user: Lietotājs
       search: Meklēt
       search_same_email_domain: Citi lietotāji ar tādu pašu e-pasta domēnu
@@ -209,6 +209,8 @@ lv:
       title: Konti
       unconfirmed_email: Neapstiprināts e-pasts
       undo_sensitized: Atcelt sensitivizēšanu
+      undo_silenced: Atsaukt ierobežojumu
+      undo_suspension: Atsaukt apturēšanu
     action_logs:
       action_types:
         unsuspend_account: Atcelt konta apturēšanu
@@ -481,7 +483,7 @@ lv:
     '404': The page you are looking for isn't here.
     '406': This page is not available in the requested format.
     '410': The page you were looking for doesn't exist here anymore.
-    '422': 
+    '422':
     '429': Too many requests
-    '500': 
+    '500':
     '503': The page could not be served due to a temporary server failure.
