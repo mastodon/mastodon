@@ -1,4 +1,3 @@
----
 eu:
   simple_form:
     hints:
@@ -36,6 +35,7 @@ eu:
         current_username: Berresteko sartu uneko kontuaren erabiltzaile-izena
         digest: Jarduerarik gabeko epe luze bat eta gero mezu pertsonalen bat jaso baduzu, besterik ez
         discoverable: Profilen direktorioa zure kontua jende gehiagok irakurtzeko modu bat da
+        discoverable_no_directory: Baimendu zure kontua ezezagunek aurkitu ahal izatea gomendio eta beste ezaugarrien bidez
         email: Baieztapen e-mail bat bidaliko zaizu
         fields: 4 elementu bistaratu ditzakezu taula batean zure profilean
         header: PNG, GIF edo JPG. Gehienez %{size}. %{dimensions}px eskalara txikituko da
@@ -212,7 +212,7 @@ eu:
         name: Traola
         trendable: Baimendu traola hau joeretan agertzea
         usable: Baimendu tootek traola hau erabiltzea
-    'no': Ez
+    'no': 'Ez'
     recommended: Aholkatua
     required:
       mark: "*"
@@ -220,4 +220,4 @@ eu:
     title:
       sessions:
         webauthn: Erabili zure segurtasun gakoetako bat saioa hasteko
-    'yes': Bai
+    'yes': 'Bai'
