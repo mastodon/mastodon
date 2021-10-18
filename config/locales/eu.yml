@@ -375,6 +375,15 @@ eu:
       media_storage: Multimedia biltegiratzea
       new_users: erabiltzaile berri
       opened_reports: txosten irekita
+      pending_reports_html:
+        one: "Txosten <strong>1</strong> zain"
+        other: "<strong>%{count}</strong> txosten zain"
+      pending_tags_html:
+        one: "Traola <strong>1</strong> zain"
+        other: "<strong>%{count}</strong> traola zain"
+      pending_users_html:
+        one: "Erabiltzaile <strong>1</strong> zain"
+        other: "<strong>%{count}</strong> erabiltzaile zain"
       resolved_reports: txosten konponduta
       software: Softwarea
       sources: Izen emate jatorriak
@@ -1310,6 +1319,21 @@ eu:
     keep_polls_hint: Zure inkestak ez dira ezabatuko
     keep_self_bookmark: Mantendu laster-marka duten bidalketak
     keep_self_bookmark_hint: Laster-marka egin diezun zure bidalketak ez dira ezabatuko
+    keep_self_fav: Mantendu gogoko bidalketak
+    keep_self_fav_hint: Gogoko bezala markatu dituzun zure bidalketak ez ditu ezabatuko
+    min_age:
+      '1209600': 2 aste
+      '15778476': 6 hilabete
+      '2629746': Hilabete 1
+      '31556952': Urte 1
+      '5259492': 2 hilabete
+      '63113904': 2 urte
+      '7889238': 3 hilabete
+    min_age_label: Denbora muga
+    min_favs: Mantendu gogoko kopuru hau duten bidalketak
+    min_favs_hint: Gutxienez gogoko kopuru hau jaso duten zure bidalketak ez dira ezabatuko. Hutsik utziz gero gogoko kopurua ez da kontuan hartuko bidalketak ezabatzean
+    min_reblogs: Mantendu bultzada kopuru hau duten bidalketak
+    min_reblogs_hint: Gutxienez bultzada kopuru hau jaso duten zure bidalketak ez dira ezabatuko. Hutsik utziz gero bultzada kopurua ez da kontuan hartuko bidalketak ezabatzean
   stream_entries:
     pinned: Finkatutako bidalketa
     reblogged: (r)en bultzada
