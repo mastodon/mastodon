@@ -230,6 +230,12 @@ html {
   border-bottom: 1px solid lighten($purple2, 8%);
 }
 
+.status.status-direct {
+  background: $purple1;
+  border-right: 1px solid $purple2;
+  border-left: 1px solid $purple2;
+}
+
 .detailed-status, .detailed-status__action-bar {
   background: $purplescrollbar;
 }
