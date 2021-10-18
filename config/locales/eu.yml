@@ -371,9 +371,18 @@ eu:
       upload: Igo
     dashboard:
       active_users: erabiltzaile aktibo
+      interactions: elkarrekintza
+      media_storage: Multimedia biltegiratzea
+      new_users: erabiltzaile berri
+      opened_reports: txosten irekita
+      resolved_reports: txosten konponduta
       software: Softwarea
+      sources: Izen emate jatorriak
       space: Espazio erabilera
       title: Kontrol panela
+      top_languages: Hizkuntza aktiboenak
+      top_servers: Zerbitzari aktiboenak
+      website: Webgunea
     domain_allows:
       add_new: Sartu domeinua zerrenda zurian
       created_msg: Domeinua ongi sartu da zerrenda zurian
@@ -556,6 +565,7 @@ eu:
       resolved: Konponduta
       resolved_msg: Salaketa ongi konpondu da!
       status: Mezua
+      target_origin: Salatutako kontuaren jatorria
       title: Salaketak
       unassign: Kendu esleipena
       unresolved: Konpondu gabea
@@ -1229,6 +1239,7 @@ eu:
     preferences: Hobespenak
     profile: Profila
     relationships: Jarraitutakoak eta jarraitzaileak
+    statuses_cleanup: Bidalketak automatikoki ezabatzea
     two_factor_authentication: Bi faktoreetako autentifikazioa
     webauthn_authentication: Segurtasun gakoak
   statuses:
@@ -1280,6 +1291,13 @@ eu:
       public_long: Edonork ikusi dezake
       unlisted: Zerrendatu gabea
       unlisted_long: Edonork ikusi dezake, baina ez da denbora-lerro publikoetan agertzen
+  statuses_cleanup:
+    enabled: Ezabatu bidalketa zaharrak automatikoki
+    enabled_hint: Zure bidalketa zaharrak automatikoki ezabatzen ditu zehazturiko denbora mugara iristean, beheko baldintza bat betetzen ez bada
+    exceptions: Salbuespenak
+    explanation: Bidalketak ezabatzea eragiketa garestia denez, mantso egiten da, zerbitzaria lasai dagoenean. Horregatik, zure bidalketak denbora mugara iristen direnetik ezabatu arte tarte bat igaro daiteke.
+    ignore_favs: Ez ikusi gogokoak
+    ignore_reblogs: Ez ikusi bultzadak
   stream_entries:
     pinned: Finkatutako bidalketa
     reblogged: (r)en bultzada
