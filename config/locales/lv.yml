@@ -256,6 +256,9 @@ lv:
         sensitive_account: Piespiedu sensitīvizēt kontu
         silence_account: Ierobežot Kontu
         suspend_account: Apturēt Kontu
+        unassigned_report: Atcelt Pārskata Piešķiršanu
+        unsensitive_account: Atsaukt Konta Piespiedu Sensitivizēšanu
+        unsilence_account: Atcelt Konta Ierobežošanu
         unsuspend_account: Atcelt konta apturēšanu
         update_announcement: Atjaunināt Paziņojumu
         update_custom_emoji: Atjaunināt pielāgoto emocijzīmi
@@ -378,6 +381,8 @@ lv:
       domain: Domēns
       edit: Rediģēt domēna bloķēšanu
     email_domain_blocks:
+      new:
+        title: Bloķēt jaunu e-pasta domēnu
       title: Bloķētie e-pasta domēni
     follow_recommendations:
       description_html: "<strong>Sekošana rekomendācijām palīdz jaunajiem lietotājiem ātri atrast interesantu saturu</strong>. Ja lietotājs nav pietiekami mijiedarbojies ar citiem, lai izveidotu personalizētus ieteikumus, ieteicams izmantot šos kontus. Tie tiek pārrēķināti katru dienu, izmantojot vairākus kontus ar visaugstākajām pēdējā laika saistībām un vislielāko vietējo sekotāju skaitu noteiktā valodā."
@@ -434,8 +439,26 @@ lv:
         '15778476': 6 mēneši
         '2629746': 1 mēnesis
         '31556952': 1 gads
-        '86400': 1 day
-        '94670856': 3 years
+        '86400': 1 diena
+        '94670856': 3 gadi
+      new:
+        title: Izveidot jaunu IP noteikumu
+      no_ip_block_selected: Neviens IP noteikums netika mainīts, jo netika atlasīts
+      title: IP noteikumi
+    pending_accounts:
+      title: Neapstiprinātie konti (%{count})
+    relationships:
+      title: "%{acct} attiecības"
+    relays:
+      add_new: Pievienot jaunu releju
+      delete: Dzēst
+      description_html: <strong>Federācijas relejs</strong> ir starpniekserveris, kas apmainās ar lielu publisko ziņu apjomu starp serveriem, kas to abonē un publicē. <strong>Tas var palīdzēt maziem un vidējiem serveriem atklāt saturu no federācijas</strong>, pretējā gadījumā vietējiem lietotājiem manuāli jāseko citām personām attālos serveros.
+      disable: Atspējot
+      disabled: Atspējots
+      enable: Iespējot
+      enable_hint: Kad tas būs iespējots, tavs serveris abonēs visas publiskās ziņas no šī releja un sāks tam sūtīt šī servera publiskās ziņas.
+      enabled: Iespējots
+      inbox_url: Releja URL
     reports:
       title: Ziņojumi
       unassign: Atsaukt
