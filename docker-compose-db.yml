@@ -1,0 +1,24 @@
+version: "3"
+services:
+  db:
+    restart: always
+    image: postgres:9.6-alpine
+    shm_size: 256mb
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "postgres"]
+    volumes:
+      - ./postgres:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: password
+    ports:
+      - 10000:5432
+
+  redis:
+    restart: always
+    image: redis:6-alpine
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+    volumes:
+      - ./redis:/data
+    ports:
+      - 10001:6379
