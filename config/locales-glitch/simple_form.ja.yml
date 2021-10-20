@@ -1,6 +1,20 @@
 ---
 ja:
   simple_form:
+    hints:
+      defaults:
+        setting_default_content_type_html: トゥートを作成するとき特に指定がない限り生のHTMLで書かれているとします
+        setting_default_content_type_markdown: トゥートを作成するとき特に指定がない限りリッチテキスト形式のマークダウンで書かれているとします
+        setting_default_content_type_plain: トゥートを作成するとき特に指定がない限りプレーンテキストで書かれているとします（Mastodon既定の動作）
+        setting_default_language: あなたのトゥートの言語を自動検出しますが必ずしも正確ではありません
+        setting_skin: 選択したMastodonフレーバーに変更します
     labels:
       defaults:
+        setting_default_content_type: 既定のトゥート形式
+        setting_default_content_type_html: HTML
+        setting_default_content_type_markdown: マークダウン
+        setting_default_content_type_plain: プレーンテキスト
         setting_favourite_modal: お気に入りをする前に確認ダイアログを表示する
+        setting_hide_followers_count: フォロワー数を隠す
+        setting_skin: スキン
+        setting_system_emoji_font: 絵文字にシステム既定のフォントを使用する（Glitch Edition フレーバーのみに適用されます）
