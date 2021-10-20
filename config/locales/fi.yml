@@ -372,9 +372,26 @@ fi:
     dashboard:
       active_users: aktiiviset käyttäjät
       interactions: vuorovaikutukset
+      media_storage: Median tallennustila
+      new_users: uudet käyttäjät
+      opened_reports: raportit avattu
+      pending_reports_html:
+        one: "<strong>1</strong> odottavat raportit"
+        other: "<strong>%{count}</strong> odottavat raportit"
+      pending_tags_html:
+        one: "<strong>1</strong> odottavat hashtagit"
+        other: "<strong>%{count}</strong> odottavat hashtagit"
+      pending_users_html:
+        one: "<strong>1</strong> odottavat käyttäjät"
+        other: "<strong>%{count}</strong> odottavat käyttäjät"
+      resolved_reports: raportit ratkaistu
       software: Ohjelmisto
+      sources: Kirjautumisen lähteet
       space: Tilankäyttö
       title: Hallintapaneeli
+      top_languages: Aktiiviset kielet
+      top_servers: Aktiiviset palvelimet
+      website: Sivusto
     domain_allows:
       add_new: Salli liitto verkkotunnuksella
       created_msg: Verkkotunnus on onnistuneesti sallittu federaatiolle
@@ -1021,6 +1038,10 @@ fi:
     warning:
       backreference_required: Uusi tili on ensin määritettävä viittaamaan tähän tiliin
       before: 'Ennen jatkamista, lue nämä huomautukset huolellisesti:'
+      cooldown: Muuton jälkeen on odotusaika, jonka aikana et pysty enää liikkumaan
+      disabled_account: Nykyinen tilisi ei ole täysin käytettävissä jälkikäteen. Sinulla on kuitenkin pääsy tietojen vientiin ja uudelleenaktivointiin.
+      followers: Tämä toiminto siirtää kaikki seuraajat nykyisestä tilistä uudelle tilille
+      only_redirect_html: Vaihtoehtoisesti voit <a href="%{path}">asettaa vain uudelleenohjauksen profiiliisi</a>.
   moderation:
     title: Moderointi
   notification_mailer:
