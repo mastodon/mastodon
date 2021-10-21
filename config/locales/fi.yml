@@ -1082,12 +1082,15 @@ fi:
       title: Uusi buustaus
     status:
       subject: "%{name} julkaisi juuri"
+  notifications:
+    other_settings: Muut ilmoitusasetukset
   number:
     human:
       decimal_units:
         format: "%n %u"
         units:
           billion: Mrd
+          million: M
           quadrillion: Brd
           thousand: k
           trillion: B
