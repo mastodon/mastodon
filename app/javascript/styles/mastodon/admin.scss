@@ -920,6 +920,13 @@ a.name-tag,
 }
 
 .retention {
+  overflow: auto;
+  
+  > h4 {
+    position: sticky;
+    left: 0;
+  }
+  
   &__table {
     &__number {
       color: $secondary-text-color;
