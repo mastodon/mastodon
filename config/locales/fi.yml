@@ -1258,11 +1258,15 @@ fi:
   terms:
     title: "%{instance}, käyttöehdot ja tietosuojakäytäntö"
   themes:
-    default: Mastodon
+    contrast: Mastodon (Korkea kontrasti)
+    default: Mastodon (Tumma)
+    mastodon-light: Mastodon (Vaalea)
   time:
     formats:
       default: "%d.%m.%Y klo %H.%M"
+      month: "%b %Y"
   two_factor_authentication:
+    add: Lisää
     disable: Poista käytöstä
     enabled: Kaksivaiheinen todentaminen käytössä
     enabled_success: Kaksivaiheisen todentamisen käyttöönotto onnistui
