@@ -1080,6 +1080,8 @@ fi:
       body: '%{name} buustasi tilaasi:'
       subject: "%{name} boostasi tilaasi"
       title: Uusi buustaus
+    status:
+      subject: "%{name} julkaisi juuri"
   number:
     human:
       decimal_units:
@@ -1124,7 +1126,9 @@ fi:
       chrome: Chrome
       edge: Microsoft Edge
       electron: Electron
+      firefox: Firefox
       generic: Tuntematon selain
+      ie: Internet Explorer
       nokia: Nokia S40 Ovi -selain
       phantom_js: PhantomJS
       qq: QQ Browser
@@ -1265,6 +1269,7 @@ fi:
       title: Arkiston tallennus
     warning:
       title:
+        none: Varoitus
         silence: Rajoitettu tili
         suspend: Tilin käyttäminen keskeytetty
     welcome:
