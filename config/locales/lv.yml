@@ -393,6 +393,14 @@ lv:
       existing_domain_block_html: Tu jau esi noteicis stingrākus ierobežojumus %{name}, vispirms tev <a href="%{unblock_url}">jāatbloķē</a>.
       new:
         create: Izveodot bloku
+        hint: Domēna bloķēšana netraucēs izveidot kontu ierakstus datu bāzē, bet ar atpakaļejošu datumu un automātiski tiks piemērotas noteiktas moderēšanas metodes šajos kontos.
+        severity:
+          desc_html: "<strong>Klusums</strong> padarīs konta ziņas neredzamas ikvienam, kurš tām neseko. <strong>Apturēt</strong> tiks noņemts viss konta saturs, mediji un profila dati. Izmanto <strong>Nevienu</strong>, ja vēlies noraidīt mediju failus."
+          noop: Neviens
+          silence: Klusums
+          suspend: Apturēt
+        title: Jauns domēna bloks
+      obfuscate: Sajaukt domēna vārdu
     email_domain_blocks:
       new:
         title: Bloķēt jaunu e-pasta domēnu
