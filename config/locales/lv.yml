@@ -414,8 +414,25 @@ lv:
       rejecting_reports: noraida ziņojumus
       severity:
         silence: ierobežots
+        suspend: apturēts
+      show:
+        retroactive:
+          silence: Atsaukt ierobežojumus esošajiem ietekmētajiem kontiem no šī domēna
+          suspend: Atcelt šī domēna esošo ietekmēto kontu darbības apturēšanu
+        title: Atsaukt domēna bloķēšanu %{domain}
+        undo: Atsaukt
+      undo: Atsaukt domēna bloķēšanu
+      view: Skatīt domēna bloķēšanu
     email_domain_blocks:
+      add_new: Pievienot jaunu
+      created_msg: E-pasta domēns ir veiksmīgi bloķēts
+      delete: Dzēst
+      destroyed_msg: E-pasta domēns ir veiksmīgi atbloķēts
+      domain: Domēns
+      empty: Pašlaik nav bloķēts neviens e-pasta domēns.
+      from_html: no %{domain}
       new:
+        create: Pievienot domēnu
         title: Bloķēt jaunu e-pasta domēnu
       title: Bloķētie e-pasta domēni
     follow_recommendations:
@@ -606,6 +623,8 @@ lv:
         title: Iekļaut federēto saturu neautentificētā publiskā ziņu lentas lapā
       show_staff_badge:
         desc_html: Parādiet personāla emblēmu lietotāja lapā
+    tags:
+      updated_msg: Tēmtura uzstādījumi ir veiksmīgi atjaunināti
     title: Administrēšana
     warning_presets:
       add_new: Pievienot jaunu
@@ -616,6 +635,13 @@ lv:
   admin_mailer:
     new_pending_account:
       body: Sīkāka informācija par jauno kontu ir sniegta zemāk. Tu vari apstiprināt vai noraidīt šo pieteikumu.
+      subject: Jauns konts pārskatīšanai %{instance} (%{username})
+    new_report:
+      body: "%{reporter} ziņoja par %{target}"
+      body_remote: Kāds no %{domain} ziņoja par %{target}
+      subject: 'Jauns ziņojums par %{instance} (#%{id})'
+    new_trending_tag:
+      body: 'Tēmturis #%{name} šodien ir populārs, taču iepriekš nav pārskatīts. Tas netiks parādīts publiski, ja vien tu to neatļausi vai vienkārši saglabāsi veidlapu tādu, kāda tā ir, lai nekad par to vairs nedzirdētu.'
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
