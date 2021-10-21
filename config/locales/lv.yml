@@ -642,6 +642,14 @@ lv:
       subject: 'Jauns ziņojums par %{instance} (#%{id})'
     new_trending_tag:
       body: 'Tēmturis #%{name} šodien ir populārs, taču iepriekš nav pārskatīts. Tas netiks parādīts publiski, ja vien tu to neatļausi vai vienkārši saglabāsi veidlapu tādu, kāda tā ir, lai nekad par to vairs nedzirdētu.'
+      subject: 'Jauns tēmturis pārskatīšanai %{instance} (#%{name})'
+  aliases:
+    add_new: Izveidot aizstājvārdu
+    created_msg: Veiksmīgi izveidots jauns aizstājvārds. Tagad vari sākt pārvietošanu no vecā konta.
+    deleted_msg: Aizstājvārds tika veiksmīgi noņemts. Pāreja no šī konta uz šo vairs nebūs iespējama.
+    empty: Tev nav aizstājvārdu.
+    hint_html: Ja vēlies pāriet no cita konta uz šo, šeit vari izveidot aizstājvārdu, kas ir nepieciešams, lai varētu turpināt sekotāju pārvietošanu no vecā konta uz šo. Šī darbība pati par sevi ir <strong>nekaitīga un atgriezeniska</strong>. <strong>Konta migrācija tiek sākta no vecā konta</strong>.
+    remove: Atsaistīt aizstājvārdu
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
