@@ -716,6 +716,30 @@ lv:
     empty: Tev nav aizstājvārdu.
     hint_html: Ja vēlies pāriet no cita konta uz šo, šeit vari izveidot aizstājvārdu, kas ir nepieciešams, lai varētu turpināt sekotāju pārvietošanu no vecā konta uz šo. Šī darbība pati par sevi ir <strong>nekaitīga un atgriezeniska</strong>. <strong>Konta migrācija tiek sākta no vecā konta</strong>.
     remove: Atsaistīt aizstājvārdu
+  auth:
+    set_new_password: Iestatīt jaunu paroli
+    setup:
+      email_below_hint_html: Ja zemāk norādītā e-pasta adrese ir nepareiza, vari to nomainīt šeit un saņemt jaunu apstiprinājuma e-pastu.
+      email_settings_hint_html: Apstiprinājuma e-pasts tika nosūtīts uz %{email}. Ja šī e-pasta adrese nav pareiza, vari to nomainīt konta iestatījumos.
+      title: Iestatīt
+    status:
+      account_status: Konta statuss
+      confirming: Gaida e-pasta apstiprinājuma pabeigšanu.
+      functional: Tavs konts ir pilnībā darboties spējīgs.
+      pending: Tavu pieteikumu gaida mūsu darbinieku izskatīšana. Tas var aizņemt kādu laiku. Ja tavs pieteikums tiks apstiprināts, tu saņemsi e-pastu.
+      redirecting_to: Tavs konts ir neaktīvs, jo pašlaik tas tiek novirzīts uz %{acct}.
+    too_fast: Veidlapa ir iesniegta pārāk ātri, mēģini vēlreiz.
+    trouble_logging_in: Problēma ar pieteikšanos?
+    use_security_key: Lietot drošības atslēgu
+  authorize_follow:
+    already_following: Tu jau seko šim kontam
+    already_requested: Tu jau esi nosūtījis sekošanas pieteikumu šim kontam
+    error: Diemžēl, meklējot attālināto kontu, radās kļūda
+    follow: Sekot
+    follow_request: 'Tu esi nosūtījis sekošanas pieteikumu:'
+    following: 'Veiksme! Tu tagad seko:'
+    post_follow:
+      close: Vai vienkārši aizver šo logu.
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
