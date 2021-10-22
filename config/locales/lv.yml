@@ -745,6 +745,28 @@ lv:
     title: Seko %{acct}
   challenge:
     confirm: Turpināt
+    hint_html: "<strong>Padoms:</strong> Nākamās stundas laikā mēs tev vairs neprasīsim paroli."
+    invalid_password: Nepareiza parole
+    prompt: Lai turpinātu, apstiprini paroli
+  crypto:
+    errors:
+      invalid_key: nav derīga Ed25519 vai Curve25519 atslēga
+      invalid_signature: nav derīgs Ed25519 paraksts
+  date:
+    formats:
+      default: "%b %d, %Y"
+      with_month_name: "%B %d, %Y"
+  datetime:
+    distance_in_words:
+      about_x_hours: "%{count}st"
+      about_x_months: "%{count}mēn"
+      about_x_years: "%{count}g"
+      almost_x_years: "%{count}g"
+      half_a_minute: Tikko
+      less_than_x_minutes: "%{count}min"
+      less_than_x_seconds: Tikko
+      over_x_years: "%{count}g"
+      x_days: "%{count}d"
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
