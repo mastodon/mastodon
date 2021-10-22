@@ -818,4 +818,23 @@ lv:
     errors:
       failed: Kriptogrāfiskais savienojums neizdevās. Lūdzu, mēģini vēlreiz no %{provider}.
       keybase:
-        invalid_token: Taustiņu atslēgas ir parakstu jaucējzīmes, un tām jābūt 66 heksadecimālām rakstzīmēm
+        invalid_token: Keybase atslēgas ir parakstu jaucējzīmes, un tām jābūt 66 heksadecimālām rakstzīmēm
+        verification_failed: Keybase neatpazīst šo marķieri kā Keybase lietotāja %{kb_username} parakstu. Lūdzu, mēģini vēlreiz no Keybase.
+      wrong_user: Nevar izveidot pierādījumu %{proving}, kamēr esat pieteicies kā %{current}. Piesakieties kā %{proving} un mēģiniet vēlreiz.
+    explanation_html: Šeit tu vari kriptogrāfiski savienot savas citas identitātes no citām platformām, piemēram, Keybase. Tas ļaus citiem cilvēkiem sūtīt tev šifrētus ziņojumus šajās platformās un viņi varēs uzticēties, ka tevis sūtītais saturs nāk tiešām no tevis.
+    i_am_html: Es esmu %{username} no %{service}.
+    identity: Identitāte
+    inactive: Neaktīvs
+    publicize_checkbox: 'Un taurē šo:'
+    publicize_toot: 'Tas ir pierādīts! Es esmu %{username} no %{service}: %{url}'
+    remove: Noņemt pierādījumu kontam
+    removed: Veiksmīgi noņemts pierādījums kontam
+    status: Verifikācijas statuss
+    view_proof: Skatīt pierādījumu
+  imports:
+    errors:
+      over_rows_processing_limit: satur vairāk, nekā %{count} rindas
+    modes:
+      merge: Savienot
+      merge_long: Saglabāt esošos ierakstus un pievienot jaunus
+      overwrite: Pārrakstīt
