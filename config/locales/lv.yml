@@ -651,6 +651,31 @@ lv:
       trends:
         desc_html: Publiski parādīt iepriekš pārskatītus tēmturus, kas pašlaik ir populāri
         title: Populārākie tēmturi
+    site_uploads:
+      delete: Dzēst augšupielādēto failu
+      destroyed_msg: Vietnes augšupielāde ir veiksmīgi izdzēsta!
+    statuses:
+      back_to_account: Atpakaļ uz konta lapu
+      batch:
+        delete: Dzēst
+        nsfw_off: Atzīmēt kā ne-sensitīvu
+        nsfw_on: Atzīmēt kā sensitīvu
+      deleted: Dzēstie
+      failed_to_execute: Neizdevās izpildīt
+      media:
+        title: Mediji
+      no_media: Nav mediju
+      no_status_selected: Neviena ziņa netika mainīta, jo neviena netika atlasīta
+      title: Konta ziņas
+      with_media: Ar medijiem
+    system_checks:
+      database_schema_check:
+        message_html: Notiek datubāzu migrācijas. Lūdzu, palaid tās, lai nodrošinātu, ka lietojumprogramma darbojas, kā paredzēts
+      rules_check:
+        action: Pārvaldīt servera nosacījumus
+        message_html: Tu neesi definējis nevienu servera nosacījumu.
+      sidekiq_process_check:
+        message_html: Rindā(s) %{value} nedarbojas neviens Sidekiq process. Lūdzu, pārskati savu Sidekiq konfigurāciju
     tags:
       updated_msg: Tēmtura uzstādījumi ir veiksmīgi atjaunināti
     title: Administrēšana
