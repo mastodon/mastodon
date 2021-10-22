@@ -767,6 +767,19 @@ lv:
       less_than_x_seconds: Tikko
       over_x_years: "%{count}g"
       x_days: "%{count}d"
+      x_minutes: "%{count}min"
+      x_months: "%{count}mēn"
+      x_seconds: "%{count}s"
+  deletes:
+    challenge_not_passed: Tevis ievadītā informācija nebija pareiza
+    confirm_password: Ievadi savu pašreizējo paroli, lai pārbaudītu savu identitāti
+    confirm_username: Ievadi savu lietotājvārdu, lai apstiprinātu procedūru
+    proceed: Dzēst kontu
+    success_msg: Tavs konts tika veiksmīgi dzēsts
+    warning:
+      before: 'Pirms turpināt, lūdzu, uzmanīgi izlasi šīs piezīmes:'
+      caches: Citu serveru kešatmiņā saglabātais saturs var saglabāties
+      data_removal: Tavas ziņas un citi dati tiks neatgriezeniski noņemti
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
@@ -777,3 +790,19 @@ lv:
     '429': Too many requests
     '500':
     '503': The page could not be served due to a temporary server failure.
+  filters:
+    index:
+      empty: Tev nav filtru.
+      title: Filtri
+    new:
+      title: Pievienot jaunu filtru
+  footer:
+    developers: Izstrādātāji
+    more: Vairāk…
+    resources: Resursi
+    trending_now: Šobrīd tendences
+  generic:
+    all: Visi
+    changes_saved_msg: Izmaiņas veiksmīgi saglabātas!
+    copy: Kopēt
+    delete: Dzēst
