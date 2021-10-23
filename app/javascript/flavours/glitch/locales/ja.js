@@ -7,6 +7,7 @@ const messages = {
   'layout.desktop': 'デスクトップ',
   'layout.single': 'モバイル',
   'navigation_bar.app_settings': 'アプリ設定',
+  'navigation_bar.featured_users': '紹介しているアカウント',
   'getting_started.onboarding': '解説を表示',
   'onboarding.page_one.federation': '{domain}はMastodonのインスタンスです。Mastodonとは、独立したサーバが連携して作るソーシャルネットワークです。これらのサーバーをインスタンスと呼びます。',
   'onboarding.page_one.welcome': '{domain}へようこそ！',
@@ -53,12 +54,15 @@ const messages = {
   'status.collapse': '折りたたむ',
   'status.uncollapse': '折りたたみを解除',
 
-  'confirmations.missing_media_description.message': '少なくとも1つの画像に視聴覚障害者のための画像説明が付与されていません。すべての画像に対して説明を付与することを望みます。',
+  'confirmations.missing_media_description.message': '少なくとも1つの画像に視覚障害者のための画像説明が付与されていません。すべての画像に対して説明を付与することを望みます。',
   'confirmations.missing_media_description.confirm': 'このまま投稿',
+  'confirmations.missing_media_description.edit': 'メディアを編集',
 
   'favourite_modal.combo': '次からは {combo} を押せば、これをスキップできます。',
 
   'home.column_settings.show_direct': 'DMを表示',
+  'home.column_settings.advanced': '高度',
+  'home.column_settings.filter_regex': '正規表現でフィルター',
 
   'notification.markForDeletion': '選択',
   'notifications.clear': '通知を全てクリアする',
@@ -71,7 +75,7 @@ const messages = {
   'notification_purge.btn_apply': '選択したものを\n削除',
 
   'compose.attach.upload': 'ファイルをアップロード',
-  'compose.attach.doodle': '落書きをする',
+  'compose.attach.doodle': 'お絵描きをする',
   'compose.attach': '添付...',
 
   'advanced_options.local-only.short': 'ローカル限定',
@@ -86,6 +90,17 @@ const messages = {
   'navigation_bar.bookmarks': 'ブックマーク',
   'column.bookmarks': 'ブックマーク',
 
+  'account.add_account_note': '@{name}のメモを追加',
+  'account.disclaimer_full': 'このユーザー情報は不正確な可能性があります。',
+  'account.follows': 'フォロー',
+  'account.suspended_disclaimer_full': 'このユーザーはモデレータにより停止されました。',
+  'account.view_full_profile': '正確な情報を見る',
+  'account_note.cancel': 'キャンセル',
+  'account_note.edit': '編集',
+  'account_note.glitch_placeholder': 'メモがありません',
+  'account_note.save': '保存',
+  'boost_modal.missing_description': 'このトゥートには少なくとも1つの画像に説明が付与されていません',
+  'community.column_settings.allow_local_only': 'ローカル限定投稿を表示する',
   'compose.content-type.html': 'HTML',
   'compose.content-type.markdown': 'マークダウン',
   'compose.content-type.plain': 'プレーンテキスト',
@@ -95,7 +110,19 @@ const messages = {
   'confirmation_modal.do_not_ask_again': 'もう１度尋ねない',
   'confirmations.discard_edit_media.confirm': '破棄',
   'confirmations.discard_edit_media.message': 'メディアの説明・プレビューに保存していない変更があります。破棄してもよろしいですか？',
+  'confirmations.unfilter': 'このフィルターされたトゥートについての情報',
+  'confirmations.unfilter.author': '筆者',
+  'confirmations.unfilter.confirm': '見る',
+  'confirmations.unfilter.edit_filter': 'フィルターを編集',
+  'confirmations.unfilter.filters': '適用されたフィルター',
   'content-type.change': 'コンテンツ形式を変更',
+  'direct.conversations_mode': '会話',
+  'direct.timeline_mode': 'タイムライン',
+  'endorsed_accounts_editor.endorsed_accounts': '紹介しているユーザー',
+  'keyboard_shortcuts.bookmark': 'ブックマーク',
+  'keyboard_shortcuts.secondary_toot': 'セカンダリートゥートの公開範囲でトゥートする',
+  'keyboard_shortcuts.toggle_collapse': '折りたたむ/折りたたみを解除',
+  'moved_to_warning': 'このアカウント{moved_to_link}に引っ越したため、新しいフォロワーを受け入れていません。',
   'settings.show_action_bar': 'アクションバーを表示',
   'settings.filtering_behavior': 'フィルターの振る舞い',
   'settings.filtering_behavior.cw': '警告文にフィルターされた単語を付加して表示します',
@@ -105,7 +132,6 @@ const messages = {
   'settings.filters': 'フィルター',
   'settings.hicolor_privacy_icons': 'ハイカラーの公開範囲アイコン',
   'settings.hicolor_privacy_icons.hint': '公開範囲アイコンを明るく表示し見分けやすい色にします',
-  'confirmations.missing_media_description.message': 'このトゥートには説明のないメディアが含まれています',
   'settings.confirm_boost_missing_media_description': 'メディアの説明が欠けているトゥートをブーストする前に確認ダイアログを表示する',
   'settings.tag_misleading_links': '誤解を招くリンクにタグをつける',
   'settings.tag_misleading_links.hint': '明示的に言及していないすべてのリンクに、リンクターゲットホストを含む視覚的な表示を追加します',
@@ -124,6 +150,7 @@ const messages = {
   'settings.pop_in_player': 'ポップインプレイヤーを有効化する',
   'settings.pop_in_position': 'ポップインプレーヤーの位置:',
   'settings.pop_in_right': '右',
+  'status.show_filter_reason': '(理由を見る)',
 
 };
 
