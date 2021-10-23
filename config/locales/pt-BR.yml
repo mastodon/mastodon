@@ -266,9 +266,28 @@ pt-BR:
         update_domain_block: Atualizar bloqueio de domínio
         update_status: Editar Status
       actions:
+        assigned_to_self_report_html: "%{name} atribuiu o relatório %{target} para si"
+        change_email_user_html: "%{name} alterou o endereço de e-mail do usuário %{target}"
+        confirm_user_html: "%{name} confirmou o endereço de e-mail do usuário %{target}"
         create_account_warning_html: "%{name} enviou um aviso para %{target}"
+        create_announcement_html: "%{name} criou o novo anúncio %{target}"
+        create_custom_emoji_html: "%{name} enviou o novo emoji %{target}"
+        create_domain_allow_html: "%{name} permitiu federação com domínio %{target}"
         create_domain_block_html: "%{name} bloqueou o domínio %{target}"
         create_email_domain_block_html: "%{name} bloqueou do domínio de e-mail %{target}"
+        create_ip_block_html: "%{name} criou regra para o IP %{target}"
+        create_unavailable_domain_html: "%{name} parou a entrega ao domínio %{target}"
+        demote_user_html: "%{name} rebaixou o usuário %{target}"
+        destroy_announcement_html: "%{name} excluiu o anúncio %{target}"
+        destroy_custom_emoji_html: "%{name} excluiu emoji %{target}"
+        destroy_domain_allow_html: "%{name} bloqueou federação com domínio %{target}"
+        destroy_domain_block_html: "%{name} deixou de bloquear domínio %{target}"
+        destroy_email_domain_block_html: "%{name} adicionou domínio de e-mail %{target} à lista branca"
+        destroy_ip_block_html: "%{name} excluiu regra para o IP %{target}"
+        destroy_status_html: "%{name} excluiu post de %{target}"
+        destroy_unavailable_domain_html: "%{name} retomou a entrega ao domínio %{target}"
+        disable_2fa_user_html: "%{name} desativou a exigência de autenticação de dois fatores para o usuário %{target}"
+        disable_custom_emoji_html: "%{name} desativou o emoji %{target}"
       deleted_status: "(status excluído)"
       empty: Nenhum registro encontrado.
       filter_by_action: Filtrar por ação
