@@ -1121,14 +1121,17 @@ fi:
     moved: Muuttaneet
     mutual: Molemminpuoleinen
     primary: Ensisijainen
+    remove_selected_domains: Poista kaikki seuraajat valituista verkkotunnuksista
     remove_selected_followers: Poista valitut seuraajat
     remove_selected_follows: Lopeta valittujen käyttäjien seuraaminen
     status: Tilin tila
   remote_follow:
     acct: Syötä se käyttäjätunnus@verkkotunnus, josta haluat seurata
     missing_resource: Vaadittavaa uudelleenohjaus-URL:ää tiliisi ei löytynyt
+    no_account_html: Eikö sinulla ole tiliä? Voit <a href='%{sign_up_path}' target='_blank'>rekisteröityä täällä</a>
     proceed: Siirry seuraamaan
     prompt: 'Olet aikeissa seurata:'
+    reason_html: "<strong>Miksi tämä vaihe on tarpeen?</strong> <code>%{instance}</code> ei ehkä ole se palvelin, jolle olet rekisteröitynyt, joten meidän täytyy ensin ohjata sinut kotipalvelimellesi."
   sessions:
     activity: Viimeisin toiminta
     browser: Selain
