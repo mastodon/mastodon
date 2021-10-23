@@ -1,8 +1,7 @@
----
 sv:
   about:
-    about_hashtag_html: Dessa är offentliga toots märkta med <strong>#%{hashtag}</strong>. Du kan interagera med dem om du har ett konto någonstans i federationen.
-    about_mastodon_html: Mastodon är ett socialt nätverk baserat på öppna webbprotokoll och gratis, öppen källkodsprogramvara. Det är decentraliserat som e-post.
+    about_hashtag_html: 'Dessa är offentliga toots märkta med <strong>#%{hashtag}</strong>. Du kan interagera med dem om du har ett konto någonstans i federationen.'
+    about_mastodon_html: 'Mastodon är ett socialt nätverk baserat på öppna webbprotokoll och gratis, öppen källkodsprogramvara. Det är decentraliserat som e-post.'
     about_this: Om
     active_count_after: aktiv
     active_footnote: Månatligen Aktiva användare (MAU)
@@ -21,7 +20,9 @@ sv:
     federation_hint_html: Med ett konto på %{instance} kommer du att kunna följa personer på alla Mastodon-servers och mer än så.
     get_apps: Prova en mobilapp
     hosted_on: Mastodon-värd på %{domain}
-    instance_actor_flash: "Detta konto är en virtuell agent som används för att representera servern själv och inte någon individuell användare. Det används av sammanslutningsskäl och ska inte blockeras såvitt du inte vill blockera hela instansen, och för detta fall ska domänblockering användas. \n"
+    instance_actor_flash: |
+      Detta konto är en virtuell agent som används för att representera servern själv och inte någon individuell användare. Det används av sammanslutningsskäl och ska inte blockeras såvitt du inte vill blockera hela instansen, och för detta fall ska domänblockering användas. 
+
     learn_more: Lär dig mer
     privacy_policy: Integritetspolicy
     rules: Serverns regler
@@ -326,9 +327,11 @@ sv:
       updated_msg: Emoji uppdaterades utan problem!
       upload: Ladda upp
     dashboard:
+      new_users: nya användare
       software: Programvara
       space: Utrymmesutnyttjande / Utrymmesanvändning
       title: Kontrollpanel
+      website: Hemsida
     domain_allows:
       add_new: Vitlistedomän
       created_msg: Domänen har vitlistats
@@ -627,13 +630,14 @@ sv:
     new_report:
       body: "%{reporter} har rapporterat %{target}"
       body_remote: Någon från %{domain} har rapporterat %{target}
-      subject: Ny rapport för %{instance} (#%{id})
+      subject: 'Ny rapport för %{instance} (#%{id})'
   aliases:
     add_new: Skapa alias
     remove: Avlänka alias
   appearance:
     advanced_web_interface: Avancerat webbgränssnitt
     animations_and_accessibility: Animationer och tillgänglighet
+    confirmation_dialogs: Bekräftelsedialoger
     discovery: Upptäck
     localization:
       body: Mastodon översätts av volontärer.
@@ -685,8 +689,11 @@ sv:
     set_new_password: Skriv in nytt lösenord
     setup:
       email_settings_hint_html: Bekräftelsemeddelandet skickades till %{email}. Om den e-postadressen inte stämmer så kan du ändra den i kontoinställningarna.
+      title: Ställ in
     status:
       account_status: Kontostatus
+      confirming: Väntar på att e-postbekräftelsen ska slutföras.
+      functional: Ditt konto fungerar som det ska.
       redirecting_to: Ditt konto är inaktivt eftersom det för närvarande dirigeras om till %{acct}.
     too_fast: Formuläret har skickats för snabbt, försök igen.
     trouble_logging_in: Har du problem med att logga in?
@@ -748,7 +755,7 @@ sv:
   domain_validator:
     invalid_domain: är inte ett giltigt domännamn
   errors:
-    '400': The request you submitted was invalid or malformed.
+    '400': Förfrågningen som du skickade in var ogiltig eller felaktigt utformad.
     '403': Du har inte behörighet att visa den här sidan.
     '404': Sidan du letade efter existerar inte.
     '406': Den här sidan är inte tillgänglig i det förfrågade formatet.
@@ -829,7 +836,10 @@ sv:
     errors:
       over_rows_processing_limit: innehåller fler än %{count} rader
     modes:
+      merge: Slå ihop
+      merge_long: Behåll befintliga uppgifter och lägg till nya
       overwrite: Skriv över
+      overwrite_long: Ersätt de nuvarande uppgifterna med de nya
     preface: Du kan importera data som du exporterat från en annan instans, till exempel en lista över personer du följer eller blockerar.
     success: Dina uppgifter har laddats upp och kommer nu att behandlas snarast
     types:
@@ -867,6 +877,7 @@ sv:
   login_activities:
     authentication_methods:
       password: lösenord
+      sign_in_token: säkerhetskod för e-post
       webauthn: säkerhetsnycklar
     description_html: Om du ser aktivitet som du inte känner igen, överväg att byta ditt lösenord och aktivera tvåfaktor-autentisering.
   media_attachments:
@@ -883,6 +894,7 @@ sv:
       move_to_self: kan inte vara nuvarande konto
       not_found: kunde inte hittas
       on_cooldown: Du är på nerkylning
+    followers_count: Följare vid tidpunkten för flytten
     incoming_migrations: Flyttar från ett annat konto
     incoming_migrations_html: För att flytta från ett annat konto till det här så behöver du först <a href="%{path}">skapa ett konto-alias</a>.
     moved_msg: Ditt konto omdirigerar nu till %{acct} och dina följare flyttas över.
@@ -894,6 +906,7 @@ sv:
     redirecting_to: Ditt konto omdirigerar till %{acct}.
     set_redirect: Konfigurera omdirigering
     warning:
+      backreference_required: Det nya kontot måste först vara konfigurerat till att bakåt-referera till det här
       before: 'Vänligen läs dessa anteckningar noggrant innan du fortsätter:'
       followers: Den här åtgärden kommer att flytta alla följare från det nuvarande kontot till det nya kontot
       other_data: Ingen annan data kommer att flyttas automatiskt
@@ -957,6 +970,7 @@ sv:
           trillion: T
   otp_authentication:
     enable: Aktivera
+    instructions_html: "<strong>Skanna den här QR-koden i Google Authenticator eller en liknande TOTP-app i din telefon</strong>. Från och med nu så kommer den appen att generera symboler som du måste skriva in när du ska logga in."
     setup: Konfigurera
   pagination:
     newer: Nyare
