@@ -1,7 +1,6 @@
----
 fr:
   about:
-    about_hashtag_html: Voici des messages publics tagués avec <strong>#%{hashtag}</strong>. Vous pouvez interagir avec si vous avez un compte n’importe où dans le fédiverse.
+    about_hashtag_html: 'Voici des messages publics tagués avec <strong>#%{hashtag}</strong>. Vous pouvez interagir avec si vous avez un compte n’importe où dans le fédiverse.'
     about_mastodon_html: 'Le réseau social de l''avenir : pas de publicité, pas de surveillance institutionnelle, conception éthique et décentralisation ! Gardez le contrôle de vos données avec Mastodon !'
     about_this: À propos
     active_count_after: actif·ve·s
@@ -16,7 +15,7 @@ fr:
     contact: Contact
     contact_missing: Non défini
     contact_unavailable: Non disponible
-    discover_users: Découvrez des utilisateur·rice·s
+    discover_users: Découvrez des utilisateurs
     documentation: Documentation
     federation_hint_html: Avec un compte sur %{instance}, vous pourrez suivre les gens sur n’importe quel serveur Mastodon et au-delà.
     get_apps: Essayez une application mobile
@@ -47,7 +46,7 @@ fr:
       silenced_title: Serveurs masqués
       suspended: 'Aucune donnée venant de ces serveurs ne sera traitée, stockée ou échangée, rendant impossible toute interaction ou communication avec les utilisateurs de ces serveurs :'
       suspended_title: Serveurs suspendus
-    unavailable_content_html: Mastodon vous permet généralement de visualiser le contenu et d'interagir avec les utilisateur·rice·s de n'importe quel autre serveur dans le fédiverse. Voici les exceptions qui ont été faites sur ce serveur en particulier.
+    unavailable_content_html: Mastodon vous permet généralement de visualiser le contenu et d'interagir avec les utilisateurs de n'importe quel autre serveur dans le fédiverse. Voici les exceptions qui ont été faites sur ce serveur en particulier.
     user_count_after:
       one: utilisateur
       other: utilisateurs
@@ -117,7 +116,7 @@ fr:
       delete: Supprimer les données
       deleted: Supprimé
       demote: Rétrograder
-      destroyed_msg: Les données de %{username} sont maintenant en file d’attente pour être supprimées imminemment
+      destroyed_msg: "Les données de %{username} sont maintenant en file d’attente pour être supprimées imminemment"
       disable: Désactiver
       disable_sign_in_token_auth: Désactiver l'authentification basée sur les jetons envoyés par courriel
       disable_two_factor_authentication: Désactiver l’authentification à deux facteurs
@@ -273,7 +272,7 @@ fr:
       actions:
         assigned_to_self_report_html: "%{name} s’est assigné le signalement de %{target}"
         change_email_user_html: "%{name} a modifié l'adresse de courriel de l'utilisateur %{target}"
-        confirm_user_html: "%{name} a confirmé l'adresse courriel de l'utilisateur·rice %{target}"
+        confirm_user_html: "%{name} a confirmé l'adresse courriel de l'utilisateur %{target}"
         create_account_warning_html: "%{name} a envoyé un avertissement à %{target}"
         create_announcement_html: "%{name} a créé une nouvelle annonce %{target}"
         create_custom_emoji_html: "%{name} a téléversé un nouvel émoji %{target}"
@@ -522,7 +521,7 @@ fr:
     pending_accounts:
       title: Comptes en attente (%{count})
     relationships:
-      title: Relations de %{acct}
+      title: "Relations de %{acct}"
     relays:
       add_new: Ajouter un nouveau relais
       delete: Supprimer
@@ -730,10 +729,10 @@ fr:
     new_report:
       body: "%{reporter} a signalé %{target}"
       body_remote: Quelqu’un de %{domain} a signalé %{target}
-      subject: Nouveau signalement sur %{instance} (#%{id})
+      subject: 'Nouveau signalement sur %{instance} (#%{id})'
     new_trending_tag:
       body: 'Le hashtag #%{name} est dans les tendances aujourd’hui, mais il n’a pas encore été approuvé. Il ne sera pas affiché publiquement à moins que vous l’autorisiez. Sauvegardez simplement ce formulaire tel quel pour ne plus jamais en entendre parler.'
-      subject: Nouveau hashtag en attente d’approbation sur %{instance} (#%{name})
+      subject: 'Nouveau hashtag en attente d’approbation sur %{instance} (#%{name})'
   aliases:
     add_new: Créer un alias
     created_msg: Un nouvel alias a été créé avec succès. Vous pouvez maintenant déménager depuis l'ancien compte.
@@ -870,7 +869,7 @@ fr:
       username_unavailable: Votre nom d’utilisateur restera indisponible
   directories:
     directory: Annuaire des profils
-    explanation: Découvrir des utilisateurs en selon leurs centres d’intérêt
+    explanation: Découvrir des utilisateurs en fonction de leurs centres d’intérêt
     explore_mastodon: Explorer %{title}
   domain_validator:
     invalid_domain: n’est pas un nom de domaine valide
@@ -1052,7 +1051,7 @@ fr:
     warning:
       backreference_required: Le nouveau compte doit d'abord être configuré pour faire référence à celui-ci en définissant un alias
       before: 'Avant de procéder, veuillez lire attentivement ces notes :'
-      cooldown: Après le déménagement, il y a une période d’attente pendant laquelle vous ne pourrez pas re-déménager
+      cooldown: Après le déménagement, il y a une période d’attente pendant laquelle vous ne pourrez pas redéménager
       disabled_account: Votre compte actuel ne sera pas entièrement utilisable par la suite. Cependant, vous aurez accès à l'exportation de données et à la réactivation.
       followers: Cette action va déménager tous les abonnés du compte actuel vers le nouveau compte
       only_redirect_html: Alternativement, vous pouvez <a href="%{path}">seulement appliquer une redirection sur votre profil</a>.
@@ -1077,7 +1076,7 @@ fr:
         other: "%{count} nouvelles notifications depuis votre dernière visite \U0001F418"
       title: Pendant votre absence…
     favourite:
-      body: "%{name} a ajouté votre message à ses favoris :"
+      body: '%{name} a ajouté votre message à ses favoris :'
       subject: "%{name} a ajouté votre message à ses favoris"
       title: Nouveau favori
     follow:
@@ -1091,8 +1090,8 @@ fr:
       title: Nouvelle demande d’abonnement
     mention:
       action: Répondre
-      body: "%{name} vous a mentionné dans :"
-      subject: "%{name} vous a mentionné"
+      body: '%{name} vous a mentionné dans :'
+      subject: '%{name} vous a mentionné'
       title: Nouvelle mention
     poll:
       subject: Un sondage de %{name} est terminé
@@ -1423,7 +1422,7 @@ fr:
       <p>Ce document est publié sous licence CC-BY-SA. Il a été mis à jour pour la dernière fois le 7 mars 2018.</p>
 
       <p>Originellement adapté de la <a href="https://github.com/discourse/discourse">politique de confidentialité de Discourse</a>.</p>
-    title: Conditions d’utilisation et politique de confidentialité de %{instance}
+    title: "Conditions d’utilisation et politique de confidentialité de %{instance}"
   themes:
     contrast: Mastodon (Contraste élevé)
     default: Mastodon (Sombre)
@@ -1491,7 +1490,7 @@ fr:
       review_preferences_step: Assurez-vous de définir vos préférences, telles que les courriels que vous aimeriez recevoir ou le niveau de confidentialité auquel vous publier vos messages par défaut. Si vous n’avez pas le mal des transports, vous pouvez choisir d’activer la lecture automatique des GIF.
       subject: Bienvenue sur Mastodon
       tip_federated_timeline: La fil public global est une vue en direct du réseau Mastodon. Mais elle n’inclut que les personnes auxquelles vos voisins sont abonnés, donc elle n’est pas complète.
-      tip_following: Vous suivez les administrateur·rice·s de votre serveur par défaut. Pour trouver d’autres personnes intéressantes, consultez les fils publics local et global.
+      tip_following: Vous suivez les administrateurs de votre serveur par défaut. Pour trouver d’autres personnes intéressantes, consultez les fils publics local et global.
       tip_local_timeline: Le fil public local est une vue des personnes sur %{instance}. Ce sont vos voisines et voisins immédiats !
       tip_mobile_webapp: Si votre navigateur mobile vous propose d’ajouter Mastodon à votre écran d’accueil, vous pouvez recevoir des notifications. Il agit comme une application native de bien des façons !
       tips: Astuces
