@@ -78,7 +78,7 @@ fi:
       one: Tuuttaus
       other: Tuuttaukset
     posts_tab_heading: Tuuttaukset
-    posts_with_replies: Tuuttaukset ja vastaukset
+    posts_with_replies: Julkaisut ja vastaukset
     roles:
       admin: Ylläpitäjä
       bot: Botti
@@ -243,7 +243,7 @@ fi:
         destroy_domain_block: Poista verkkotunnuksen esto
         destroy_email_domain_block: Poista sähköpostipalvelimen esto
         destroy_ip_block: Poista IP-sääntö
-        destroy_status: Poista tilapäivitys
+        destroy_status: Poista julkaisu
         destroy_unavailable_domain: Poista ei-saatavilla oleva verkkotunnus
         disable_2fa_user: Poista kaksivaiheinen tunnistautuminen käytöstä
         disable_custom_emoji: Estä mukautettu emoji
@@ -314,7 +314,7 @@ fi:
         update_custom_emoji_html: "%{name} päivitti emojin %{target}"
         update_domain_block_html: "%{name} päivitti verkkotunnuksen %{target}"
         update_status_html: "%{name} päivitti viestin %{target}"
-      deleted_status: "(poistettu tilapäivitys)"
+      deleted_status: "(poistettu julkaisu)"
       empty: Lokeja ei löytynyt.
       filter_by_action: Suodata tapahtuman mukaan
       filter_by_user: Suodata käyttäjän mukaan
@@ -699,7 +699,7 @@ fi:
       reviewed: Tarkistetut
       title: Aihetunnisteet
       trending_right_now: Trendaa juuri nyt
-      unique_uses_today: "%{count} postausta tänään"
+      unique_uses_today: "%{count} julkaisua tänään"
       unreviewed: Ei tarkistettu
       updated_msg: Hashtagin asetukset päivitetty onnistuneesti
     title: Ylläpito
@@ -1132,6 +1132,16 @@ fi:
     proceed: Siirry seuraamaan
     prompt: 'Olet aikeissa seurata:'
     reason_html: "<strong>Miksi tämä vaihe on tarpeen?</strong> <code>%{instance}</code> ei ehkä ole se palvelin, jolle olet rekisteröitynyt, joten meidän täytyy ensin ohjata sinut kotipalvelimellesi."
+  remote_interaction:
+    favourite:
+      proceed: Jatka suosikiksi lisäämiseen
+      prompt: 'Haluat lisätä suosikiksi julkaisun:'
+    reblog:
+      proceed: Jatka buustaamiseen
+      prompt: 'Haluat buustata julkaisun:'
+    reply:
+      proceed: Jatka vastaamiseen
+      prompt: 'Haluat vastata julkaisuun:'
   sessions:
     activity: Viimeisin toiminta
     browser: Selain
