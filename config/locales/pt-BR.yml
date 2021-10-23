@@ -1,7 +1,6 @@
----
 pt-BR:
   about:
-    about_hashtag_html: Estes são toots públicos com a hashtag <strong>#%{hashtag}</strong>. Você pode interagir com eles se tiver uma conta em qualquer lugar no fediverso.
+    about_hashtag_html: 'Estes são toots públicos com a hashtag <strong>#%{hashtag}</strong>. Você pode interagir com eles se tiver uma conta em qualquer lugar no fediverso.'
     about_mastodon_html: 'A rede social do futuro: Sem anúncios, sem vigilância corporativa, com design ético e muita descentralização! Possua seus próprios dados com o Mastodon!'
     about_this: Sobre
     active_count_after: ativo
@@ -54,7 +53,7 @@ pt-BR:
     user_count_before: Casa de
     what_is_mastodon: O que é Mastodon?
   accounts:
-    choices_html: 'Sugestões de %{name}:'
+    choices_html: "Sugestões de %{name}:"
     endorsements_hint: Você pode sugerir pessoas que você segue, elas aparecerão aqui.
     featured_tags_hint: Você pode destacar hashtags específicas, elas aparecerão aqui.
     follow: Seguir
@@ -117,7 +116,7 @@ pt-BR:
       delete: Excluir dados
       deleted: Excluído
       demote: Rebaixar
-      destroyed_msg: Os dados de %{username} estão na fila para serem excluídos em breve
+      destroyed_msg: "Os dados de %{username} estão na fila para serem excluídos em breve"
       disable: Congelar
       disable_two_factor_authentication: Desativar autenticação de dois fatores
       disabled: Desativada
@@ -139,6 +138,7 @@ pt-BR:
       joined: Entrou
       location:
         all: Todos
+        local: Local
         remote: Remoto
         title: Localização
       login_status: Situação da conta
@@ -190,6 +190,10 @@ pt-BR:
       search: Pesquisar
       search_same_email_domain: Outros usuários com o mesmo domínio de e-mail
       search_same_ip: Outros usuários com o mesmo IP
+      security_measures:
+        only_password: Somente senha
+        password_and_2fa: Senha e 2FA
+        password_and_sign_in_token: Token de senha e e-mail
       sensitive: Sensíveis
       sensitized: marcadas como sensíveis
       shared_inbox_url: Link da caixa de entrada compartilhada
@@ -229,6 +233,7 @@ pt-BR:
         create_domain_block: Criar Bloqueio de Domínio
         create_email_domain_block: Criar Bloqueio de Domínio de E-mail
         create_ip_block: Criar regra de IP
+        create_unavailable_domain: Criar domínio indisponível
         demote_user: Rebaixar usuário
         destroy_announcement: Excluir anúncio
         destroy_custom_emoji: Excluir emoji personalizado
@@ -237,6 +242,7 @@ pt-BR:
         destroy_email_domain_block: Excluir bloqueio de domínio de e-mail
         destroy_ip_block: Excluir regra de IP
         destroy_status: Excluir Status
+        destroy_unavailable_domain: Deletar domínio indisponível
         disable_2fa_user: Desativar autenticação de dois fatores
         disable_custom_emoji: Desativar Emoji Personalizado
         disable_user: Desativar usuário
@@ -425,7 +431,7 @@ pt-BR:
     pending_accounts:
       title: Contas pendentes (%{count})
     relationships:
-      title: Relações de %{acct}
+      title: "Relações de %{acct}"
     relays:
       add_new: Adicionar novo repetidor
       delete: Excluir
@@ -622,10 +628,10 @@ pt-BR:
     new_report:
       body: "%{reporter} denunciou %{target}"
       body_remote: Alguém da instância %{domain} reportou %{target}
-      subject: Nova denúncia sobre %{instance} (#%{id})
+      subject: 'Nova denúncia sobre %{instance} (#%{id})'
     new_trending_tag:
       body: 'A hashtag #%{name} está em alta hoje, mas não foi previamente revisada. Ela não estará visível publicamente a menos que você aprove, ou salve o formulário do jeito que está para nunca mais ouvir falar dela.'
-      subject: Nova hashtag disponível para revisão em %{instance} (#%{name})
+      subject: 'Nova hashtag disponível para revisão em %{instance} (#%{name})'
   aliases:
     add_new: Criar alias
     created_msg: Um novo alias foi criado com sucesso. Agora você pode iniciar a mudança da conta antiga.
@@ -948,7 +954,7 @@ pt-BR:
         other: "%{count} novas notificações desde o seu último acesso \U0001F418"
       title: Enquanto você estava ausente...
     favourite:
-      body: "%{name} favoritou seu toot:"
+      body: '%{name} favoritou seu toot:'
       subject: "%{name} favoritou seu toot"
       title: Novo favorito
     follow:
@@ -962,11 +968,11 @@ pt-BR:
       title: Novo seguidor pendente
     mention:
       action: Responder
-      body: "%{name} te mencionou em:"
-      subject: "%{name} te mencionou"
+      body: '%{name} te mencionou em:'
+      subject: '%{name} te mencionou'
       title: Nova menção
     reblog:
-      body: "%{name} deu boost no seu toot:"
+      body: '%{name} deu boost no seu toot:'
       subject: "%{name} deu boost no seu toot"
       title: Novo boost
   notifications:
@@ -1242,7 +1248,7 @@ pt-BR:
       <p>CC-BY-SA. Atualizado pela última vez em 7 de março de 2018.</p>
 
       <p>Adaptado originalmente de <a href="https://github.com/discourse/discourse">Política de Privacidade Discourse</a>.</p>
-    title: Termos de Serviço e Política de Privacidade de %{instance}
+    title: "Termos de Serviço e Política de Privacidade de %{instance}"
   themes:
     contrast: Mastodon  (Alto contraste)
     default: Mastodon (Noturno)
