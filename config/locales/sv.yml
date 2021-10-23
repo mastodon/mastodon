@@ -972,6 +972,7 @@ sv:
     enable: Aktivera
     instructions_html: "<strong>Skanna den här QR-koden i Google Authenticator eller en liknande TOTP-app i din telefon</strong>. Från och med nu så kommer den appen att generera symboler som du måste skriva in när du ska logga in."
     setup: Konfigurera
+    wrong_code: Den ifyllda koden är ogiltig! Är server-tiden och enhetens tid korrekt?
   pagination:
     newer: Nyare
     next: Nästa
@@ -981,6 +982,7 @@ sv:
   polls:
     errors:
       already_voted: Du har redan röstat på den här undersökningen
+      duplicate_options: innehåller dublett-objekt
       duration_too_long: är för långt in i framtiden
       duration_too_short: är för tidigt
       expired: Undersökningen har redan avslutats
@@ -1138,6 +1140,7 @@ sv:
     enabled: Ta automatiskt bort gamla inlägg
     exceptions: Undantag
     ignore_favs: Bortse från favoriter
+    interaction_exceptions: Undantag baserat på interaktioner
     keep_direct: Behåll direktmeddelanden
     keep_direct_hint: Tar inte bort någon av dina direktmeddelanden
     keep_media: Behåll inlägg med media-bilagor
