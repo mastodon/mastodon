@@ -367,6 +367,23 @@ describe AccountInteractions do
     end
   end
 
+  describe '#followed_by?' do
+    subject { account.followed_by?(target_account) }
+
+    context 'followed by target_account' do
+      it 'returns true' do
+        account.passive_relationships.create(account: target_account)
+        is_expected.to be true
+      end
+    end
+
+    context 'not followed by target_account' do
+      it 'returns false' do
+        is_expected.to be false
+      end
+    end
+  end
+
   describe '#blocking?' do
     subject { account.blocking?(target_account) }
 

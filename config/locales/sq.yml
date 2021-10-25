@@ -119,6 +119,7 @@ sq:
       demote: Zhgradoje
       destroyed_msg: Të dhënat e %{username} tani janë vënë në radhë për fshirje të menjëhershme
       disable: Çaktivizoje
+      disable_sign_in_token_auth: Çaktivizo mirëfilltësim me token email-i
       disable_two_factor_authentication: Çaktivizoni 2FA-në
       disabled: E çaktivizuar
       display_name: Emër në ekran
@@ -127,6 +128,7 @@ sq:
       email: Email
       email_status: Gjendje email-i
       enable: Shkrije
+      enable_sign_in_token_auth: Aktivizo mirëfilltësim me token email-i
       enabled: E aktivizuar
       enabled_msg: U hoq me sukses ngrirja për llogarinë e %{username}
       followers: Ndjekës
@@ -191,6 +193,10 @@ sq:
       search: Kërkoni
       search_same_email_domain: Të tjerë përdorues me të njëjtën përkatësi email-i
       search_same_ip: Të tjerë përdorues me të njëjtën IP
+      security_measures:
+        only_password: Vetëm fjalëkalim
+        password_and_2fa: Fjalëkalim dhe 2FA
+        password_and_sign_in_token: Fjalëkalim dhe token email-i
       sensitive: Rezervat
       sensitized: iu vu shenjë si rezervat
       shared_inbox_url: URL kutie të përbashkët mesazhesh
@@ -230,6 +236,7 @@ sq:
         create_domain_block: Krijo Bllokim Përkatësie
         create_email_domain_block: Krijo Bllokim Përkatësie Email-esh
         create_ip_block: Krijoni Rregull IP
+        create_unavailable_domain: Krijo Përkatësi të Papërdorshme
         demote_user: Zhgradoje Përdoruesin
         destroy_announcement: Fshije Lajmërimin
         destroy_custom_emoji: Fshi Emotikon Vetjak
@@ -238,10 +245,13 @@ sq:
         destroy_email_domain_block: Fshi bllokim përkatësie email-esh
         destroy_ip_block: Fshini Rregull IP
         destroy_status: Fshi Gjendje
+        destroy_unavailable_domain: Fshi Përkatësi të Papërdorshme
         disable_2fa_user: Çaktivizo 2FA-në
         disable_custom_emoji: Çaktivizo Emotikon Vetjak
+        disable_sign_in_token_auth_user: Çaktivizo Mirëfilltësim me Token Email-i për Përdoruesin
         disable_user: Çaktivizo Përdorues
         enable_custom_emoji: Aktivizo Emotikon Vetjak
+        enable_sign_in_token_auth_user: Aktivizo Mirëfilltësim me Token Email-i për Përdoruesin
         enable_user: Aktivizo Përdorues
         memorialize_account: Bëje Llogari Përkujtimore
         promote_user: Promovojeni Përdoruesin
@@ -283,8 +293,10 @@ sq:
         destroy_unavailable_domain_html: "%{name} rinisi dërgimin drejt përkatësisë %{target}"
         disable_2fa_user_html: "%{name} çaktivizoi domosdoshmërinë për dyfaktorësh për përdoruesin %{target}"
         disable_custom_emoji_html: "%{name} çaktivizoi emoxhin %{target}"
+        disable_sign_in_token_auth_user_html: "%{name} çaktivizo mirëfilltësim me token email-i për %{target}"
         disable_user_html: "%{name} çaktivizoi hyrje për përdoruesin %{target}"
         enable_custom_emoji_html: "%{name} aktivizoi emoxhin %{target}"
+        enable_sign_in_token_auth_user_html: "%{name} aktivizo mirëfilltësim me token email-i përdoruesi për %{target}"
         enable_user_html: "%{name} aktivizoi hyrje për përdoruesin %{target}"
         memorialize_account_html: "%{name} e shndërroi llogarinë e %{target} në një faqe përkujtimore"
         promote_user_html: "%{name} gradoi përdoruesin %{target}"
@@ -359,32 +371,19 @@ sq:
       updated_msg: Emoji u përditësua me sukses!
       upload: Ngarkoje
     dashboard:
-      authorized_fetch_mode: Mënyrë e sigurt
-      backlog: punë të prapambetura
-      config: Formësim
-      feature_deletions: Fshirje llogarish
-      feature_invites: Lidhje ftesash
-      feature_profile_directory: Drejtori profilesh
-      feature_registrations: Regjistrime
-      feature_relay: Rele federimi
-      feature_timeline_preview: Paraparje rrjedhjeje kohore
-      features: Veçori
-      hidden_service: Federim me shërbime të fshehura
-      open_reports: raportime të hapur
-      pending_tags: hashtag-ë në pritje të shqyrtimit
-      pending_users: përdorues në pritje për rishikim
-      recent_users: Përdorues së fundi
-      search: Kërko tekstin e plotë
-      single_user_mode: Mënyrë me përdorues të vetëm
+      active_users: përdorues aktivë
+      interactions: ndërveprime
+      media_storage: Depozitë media
+      new_users: përdorues të rinj
+      opened_reports: raportime të hapur
+      resolved_reports: raportime të zgjidhur
       software: Software
+      sources: Burime regjistrimi
       space: Përdorim hapësire
       title: Pult
-      total_users: përdorues gjithsej
-      trends: Tendenca
-      week_interactions: ndërveprime këtë javë
-      week_users_active: aktivë këtë javë
-      week_users_new: përdorues këtë javë
-      whitelist_mode: Mënyrë liste lejimesh
+      top_languages: Gjuhët aktive kryesuese
+      top_servers: Shërbyesit aktivë kryesues
+      website: Sajt
     domain_allows:
       add_new: Shtoje përkatësinë në listë lejimesh
       created_msg: Përkatësia u shtua me sukses në listë lejimesh
@@ -463,6 +462,8 @@ sq:
         restart: Rinis dërgimin
         stop: Ndale dërgimin
         title: Dërgim
+        unavailable: Jo i passhëm
+        unavailable_message: Dërgim jo i passhëm
         warning: Kujdes
         warning_message:
           one: Dështim dërgimi %{count} ditë
@@ -565,6 +566,7 @@ sq:
       resolved: I zgjidhur
       resolved_msg: Raportimi u zgjidh me sukses!
       status: Gjendje
+      target_origin: Origjinë e llogarisë së raportuar
       title: Raportime
       unassign: Hiqja
       unresolved: Të pazgjidhur
@@ -1000,6 +1002,17 @@ sq:
   lists:
     errors:
       limit: Keni mbërritur në numrin maksimum të sasisë së listave
+  login_activities:
+    authentication_methods:
+      otp: aplikacion mirëfilltësimi dyfaktorësh
+      password: fjalëkalim
+      sign_in_token: kod sigurie përmes email-i
+      webauthn: kyçe sigurie
+    description_html: Nëse shihni veprimtari që nuk e njihni, shihni mundësinë e ndryshimit të fjalëkalimit tuaj dhe të aktivizimit të mirëfilltësimit dyfaktorësh.
+    empty: S’ka historik mirëfilltësimesh
+    failed_sign_in_html: Dështoi përpjekje hyrjeje me %{method} nga %{ip} (%{browser})
+    successful_sign_in_html: Hyrje e suksesshme me %{method} nga %{ip} (%{browser})
+    title: Historik mirëfilltësimesh
   media_attachments:
     validations:
       images_and_video: S’mund të bashkëngjitet video te një gjendje që përmban figura tashmë
@@ -1206,6 +1219,7 @@ sq:
     revoke: Shfuqizoje
     revoke_success: Sesioni u shfuqizua me sukses
     title: Sesione
+    view_authentication_history: Shihni historik mirëfilltësimesh të llogarisë tuaj
   settings:
     account: Llogari
     account_settings: Rregullime llogarie
@@ -1226,6 +1240,7 @@ sq:
     preferences: Parapëlqime
     profile: Profil
     relationships: Ndjekje dhe ndjekës
+    statuses_cleanup: Fshirje e automatizuar postimesh
     two_factor_authentication: Mirëfilltësim Dyfaktorësh
     webauthn_authentication: Kyçe sigurie
   statuses:
@@ -1277,6 +1292,40 @@ sq:
       public_long: Mund ta shohë kushdo
       unlisted: Jo në listë
       unlisted_long: Mund ta shohë gjithkush, por s’gjendet në rrjedha publike kohore
+  statuses_cleanup:
+    enabled: Fshi automatikisht postime të vjetra
+    enabled_hint: Fshin automatikisht postimet tuaja, pasi mbërrijnë një prag të caktuar moshe, hiq rastin kur ka përputhje me një nga përjashtimet më poshtë
+    exceptions: Përjashtime
+    explanation: Ngaqë fshirja e postimeve është një veprim i shtrenjtë, kjo bëhet ngadalë, gjatë kohës kur shërbyesi s’është i zënë. Për këtë arsye, postimet tuaja mund të fshihen pas ca kohësh pasi të ketë mbërritur pragun e moshës për to.
+    ignore_favs: Shpërfilli të parapëlqyerit
+    ignore_reblogs: Shpërfilli përforcimet
+    interaction_exceptions: Përjashtime bazuar në ndërveprime
+    interaction_exceptions_explanation: Kini parasysh se nuk ka garanci se postimet do të fshihen, nëse kalojnë nën pragun për të parapëlqyerat ose përforcimet, pasi kanë kaluar një herë në to.
+    keep_direct: Mbaj mesazhet e drejtpërdrejtë
+    keep_direct_hint: S’fshihet ndonjë nga mesazhet tuaj të drejtpërdrejtë
+    keep_media: Mbaj postime me bashkëngjitje media
+    keep_media_hint: S’fshihet ndonjë nga postimet tuaj që kanë bashkëngjitje media
+    keep_pinned: Mbaj postimet e fiksuara
+    keep_pinned_hint: S’fshihet ndonjë nga postimet tuaj të fiksuara
+    keep_polls: Mbaj pyetësorë
+    keep_polls_hint: S’fshihet ndonjë nga pyetësorët tuaj
+    keep_self_bookmark: Mbaj postime që keni faqeruajtur
+    keep_self_bookmark_hint: S’fshihen postimet tuaja, nëse i keni faqeruajtur
+    keep_self_fav: Mbaji postimet që keni parapëlqyer
+    keep_self_fav_hint: Nuk fshihen postimet tuaja, nëse i keni parapëlqyer
+    min_age:
+      '1209600': 2 javë
+      '15778476': 6 muaj
+      '2629746': 1 muaj
+      '31556952': 1 vit
+      '5259492': 2 muaj
+      '63113904': 2 vjet
+      '7889238': 3 muaj
+    min_age_label: Prag moshe
+    min_favs: Mbaji postimet e parapëlqyera më shumë se
+    min_favs_hint: Nuk fshihet ndonjë nga postimet tuaja që kanë marrë më shumë se sa ky numër parapëlqimesh. Lëreni të zbrazët për të fshirë postimet, pavarësisht të numrit të parapëlqimeve për to
+    min_reblogs: Mbaji postimet e përforcuara më shumë se
+    min_reblogs_hint: Nuk fshihet ndonjë nga postimet tuaja që kanë marrë më shumë se sa ky numër përforcimesh. Lëreni të zbrazët për të fshirë postimet, pavarësisht të numrit të përforcimeve për to
   stream_entries:
     pinned: Mesazh i fiksuar
     reblogged: të përforcuara

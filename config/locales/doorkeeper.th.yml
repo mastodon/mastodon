@@ -81,10 +81,13 @@ th:
         access_denied: เจ้าของทรัพยากรหรือเซิร์ฟเวอร์การอนุญาตปฏิเสธคำขอ
         invalid_request:
           missing_param: 'พารามิเตอร์ที่จำเป็นขาดหายไป: %{value}'
+        invalid_scope: ขอบเขตที่ขอไม่ถูกต้อง ไม่รู้จัก หรือผิดรูปแบบ
         invalid_token:
           expired: โทเคนการเข้าถึงหมดอายุแล้ว
           revoked: เพิกถอนโทเคนการเข้าถึงแล้ว
           unknown: โทเคนการเข้าถึงไม่ถูกต้อง
+        resource_owner_authenticator_not_configured: การค้นหาเจ้าของทรัพยากรล้มเหลวเนื่องจากไม่ได้กำหนดค่า Doorkeeper.configure.resource_owner_authenticator
+        unauthorized_client: ไคลเอ็นต์ไม่ได้รับอนุญาตให้ทำคำขอนี้โดยใช้วิธีการนี้
         unsupported_response_type: เซิร์ฟเวอร์การอนุญาตไม่รองรับชนิดการตอบสนองนี้
     flash:
       applications:

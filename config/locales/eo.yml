@@ -175,6 +175,10 @@ eo:
       search: Serĉi
       search_same_email_domain: Aliaj uzantoj kun la sama retpoŝta domajno
       search_same_ip: Aliaj uzantoj kun la sama IP
+      security_measures:
+        only_password: Nur pasvorto
+        password_and_2fa: Pasvorto kaj 2FA
+        password_and_sign_in_token: Pasvorto kaj retpoŝta ĵetono
       sensitive: Tikla
       sensitized: markita tikla
       shared_inbox_url: URL de kunhavigita leterkesto
@@ -324,32 +328,9 @@ eo:
       updated_msg: Emoĝio sukcese ĝisdatigita!
       upload: Alŝuti
     dashboard:
-      authorized_fetch_mode: Sekura reĝimo
-      backlog: postigitaj taskoj
-      config: Agordado
-      feature_deletions: Forigo de kontoj
-      feature_invites: Invitaj ligiloj
-      feature_profile_directory: Profilujo
-      feature_registrations: Registriĝoj
-      feature_relay: Federacia ripetilo
-      feature_timeline_preview: Templinio antaŭvidi
-      features: Funkcioj
-      hidden_service: Federacio kun kaŝitaj servoj
-      open_reports: nesolvitaj signaloj
-      pending_tags: kradvortoj atendantaj revizion
-      pending_users: uzantoj atendantaj revizion
-      recent_users: Lastatempaj uzantoj
-      search: Tutteksta serĉado
-      single_user_mode: Unuuzanta reĝimo
       software: Programo
       space: Memorspaca uzado
       title: Kontrolpanelo
-      total_users: uzantoj sume
-      trends: Furoraĵoj
-      week_interactions: interagoj tiusemajne
-      week_users_active: aktivaj tiusemajne
-      week_users_new: uzantoj tiusemajne
-      whitelist_mode: En la blanka listo
     domain_allows:
       add_new: Aldoni domajnon al la blanka listo
       created_msg: Domajno estis sukcese aldonita al la blanka listo
@@ -413,8 +394,12 @@ eo:
       suppressed: Subpremita
       title: Rekomendoj de sekvado
     instances:
+      back_to_all: Ĉiuj
+      back_to_limited: Limigita
+      back_to_warning: Averta
       by_domain: Domajno
       delivery:
+        all: Ĉiuj
         warning: Averto
       delivery_available: Liverado disponeblas
       empty: Neniuj domajnoj trovitaj.
@@ -662,7 +647,7 @@ eo:
     remove: Malligili alinomon
   appearance:
     advanced_web_interface: Altnivela retpaĝa interfaco
-    advanced_web_interface_hint: 'Se vi volas uzi la tutan larĝecon de via ekrano, la kompleksa reta interfaco permesas al vi agordi multajn malsamajn kolumnojn por vidi tiom da informoj kiom vi volas samtempe: Hejmo, sciigoj, fratara tempolinio, kaj ajna kvanto de listoj kaj kradvortoj.'
+    advanced_web_interface_hint: 'Se vi volas uzi la tutan larĝecon de via ekrano, la kompleksa reta interfaco permesas al vi agordi multajn malsamajn kolumnojn por vidi tiom da informoj kiom vi volas samtempe: Hejmo, sciigoj, fratara templinio, kaj ajna kvanto de listoj kaj kradvortoj.'
     animations_and_accessibility: Animacioj kaj alirebleco
     confirmation_dialogs: Konfirmaj fenestroj
     discovery: Eltrovo
@@ -913,6 +898,12 @@ eo:
   lists:
     errors:
       limit: Vi atingis la maksimuman kvanton de listoj
+  login_activities:
+    authentication_methods:
+      password: pasvorto
+      sign_in_token: retpoŝta sekureca kodo
+      webauthn: sekurecaj ŝlosiloj
+    title: Aŭtentiga historio
   media_attachments:
     validations:
       images_and_video: Aldoni videon al mesaĝo, kiu jam havas bildojn ne eblas
@@ -1169,6 +1160,19 @@ eo:
       public_long: Ĉiuj povas vidi
       unlisted: Nelistigita
       unlisted_long: Ĉiuj povas vidi, sed nelistigita en publikaj templinioj
+  statuses_cleanup:
+    enabled: Aŭtomate forigi malnovajn postojn
+    exceptions: Esceptoj
+    ignore_favs: Ignori ŝatatajn
+    ignore_reblogs: Ignori akcelojn
+    min_age:
+      '1209600': 2 semajnoj
+      '15778476': 6 monatoj
+      '2629746': 1 monato
+      '31556952': 1 jaro
+      '5259492': 2 monatoj
+      '63113904': 2 jaroj
+      '7889238': 3 monatoj
   stream_entries:
     pinned: Alpinglita
     reblogged: diskonigita

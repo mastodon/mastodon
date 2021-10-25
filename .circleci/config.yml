@@ -1,255 +1,152 @@
-version: 2
+version: 2.1
 
-aliases:
-  - &defaults
+orbs:
+  ruby: circleci/ruby@1.2.0
+  node: circleci/node@4.7.0
+
+executors:
+  default:
+    parameters:
+      ruby-version:
+        type: string
     docker:
-      - image: circleci/ruby:2.7-buster-node
-        environment: &ruby_environment
+      - image: cimg/ruby:<< parameters.ruby-version >>
+        environment:
           BUNDLE_JOBS: 3
           BUNDLE_RETRY: 3
-          BUNDLE_APP_CONFIG: ./.bundle/
-          BUNDLE_PATH: ./vendor/bundle/
+          CONTINUOUS_INTEGRATION: true
           DB_HOST: localhost
           DB_USER: root
-          RAILS_ENV: test
-          ALLOW_NOPAM: true
-          CONTINUOUS_INTEGRATION: true
           DISABLE_SIMPLECOV: true
-          PAM_ENABLED: true
-          PAM_DEFAULT_SERVICE: pam_test
-          PAM_CONTROLLED_SERVICE: pam_test_controlled
-    working_directory: ~/projects/mastodon/
+          RAILS_ENV: test
+      - image: cimg/postgres:12.7
+        environment:
+          POSTGRES_USER: root
+          POSTGRES_HOST_AUTH_METHOD: trust
+      - image: circleci/redis:5-alpine
 
-  - &attach_workspace
-    attach_workspace:
-      at: ~/projects/
+commands:
+  install-system-dependencies:
+    steps:
+      - run:
+          name: Install system dependencies
+          command: |
+            sudo apt-get update
+            sudo apt-get install -y libicu-dev libidn11-dev libprotobuf-dev protobuf-compiler
+  install-ruby-dependencies:
+    parameters:
+      ruby-version:
+        type: string
+    steps:
+      - run:
+          command: |
+            bundle config clean 'true'
+            bundle config frozen 'true'
+            bundle config without 'development production'
+          name: Set bundler settings
+      - ruby/install-deps:
+          bundler-version: '2.2.29'
+          key: ruby<< parameters.ruby-version >>-gems-v1
+  wait-db:
+    steps:
+      - run:
+          command: dockerize -wait tcp://localhost:5432 -wait tcp://localhost:6379 -timeout 1m
+          name: Wait for PostgreSQL and Redis
 
-  - &persist_to_workspace
-    persist_to_workspace:
-      root: ~/projects/
-      paths:
-        - ./mastodon/
-
-  - &restore_ruby_dependencies
-    restore_cache:
-      keys:
-        - v3-ruby-dependencies-{{ checksum "/tmp/.ruby-version" }}-{{ checksum "Gemfile.lock" }}
-        - v3-ruby-dependencies-{{ checksum "/tmp/.ruby-version" }}-
-        - v3-ruby-dependencies-
-
-  - &install_steps
+jobs:
+  build:
+    docker:
+      - image: cimg/ruby:2.7-node
+        environment:
+          RAILS_ENV: test
     steps:
       - checkout
-      - *attach_workspace
-      - restore_cache:
-          keys:
-            - v2-node-dependencies-{{ checksum "yarn.lock" }}
-            - v2-node-dependencies-
+      - install-system-dependencies
+      - install-ruby-dependencies:
+          ruby-version: '2.7'
+      - node/install-packages:
+          cache-version: v1
+          pkg-manager: yarn
       - run:
-          name: Install yarn dependencies
-          command: yarn install --frozen-lockfile
-      - save_cache:
-          key: v2-node-dependencies-{{ checksum "yarn.lock" }}
-          paths:
-            - ./node_modules/
-      - *persist_to_workspace
-
-  - &install_system_dependencies
-      run:
-        name: Install system dependencies
-        command: |
-          sudo apt-get update
-          sudo apt-get install -y libicu-dev libidn11-dev libprotobuf-dev protobuf-compiler
-
-  - &install_ruby_dependencies
-      steps:
-        - *attach_workspace
-        - *install_system_dependencies
-        - run:
-            name: Set Ruby version
-            command: ruby -e 'puts RUBY_VERSION' | tee /tmp/.ruby-version
-        - *restore_ruby_dependencies
-        - run:
-            name: Set bundler settings
-            command: |
-              bundle config --local clean 'true'
-              bundle config --local deployment 'true'
-              bundle config --local with 'pam_authentication'
-              bundle config --local without 'development production'
-              bundle config --local frozen 'true'
-              bundle config --local path $BUNDLE_PATH
-        - run:
-            name: Install bundler dependencies
-            command: bundle check || (bundle install && bundle clean)
-        - save_cache:
-            key: v3-ruby-dependencies-{{ checksum "/tmp/.ruby-version" }}-{{ checksum "Gemfile.lock" }}
-            paths:
-              - ./.bundle/
-              - ./vendor/bundle/
-        - persist_to_workspace:
-            root: ~/projects/
-            paths:
-                - ./mastodon/.bundle/
-                - ./mastodon/vendor/bundle/
-
-  - &test_steps
-      parallelism: 4
-      steps:
-        - *attach_workspace
-        - *install_system_dependencies
-        - run:
-            name: Install FFMPEG
-            command: sudo apt-get install -y ffmpeg
-        - run:
-            name: Load database schema
-            command: ./bin/rails db:create db:schema:load db:seed
-        - run:
-            name: Run rspec in parallel
-            command: |
-              bundle exec rspec --profile 10 \
-                                --format RspecJunitFormatter \
-                                --out test_results/rspec.xml \
-                                --format progress \
-                                $(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
-        - store_test_results:
-            path: test_results
-jobs:
-  install:
-    <<: *defaults
-    <<: *install_steps
-
-  install-ruby2.7:
-    <<: *defaults
-    <<: *install_ruby_dependencies
-
-  install-ruby2.6:
-    <<: *defaults
-    docker:
-      - image: circleci/ruby:2.6-buster-node
-        environment: *ruby_environment
-    <<: *install_ruby_dependencies
-
-  install-ruby3.0:
-    <<: *defaults
-    docker:
-      - image: circleci/ruby:3.0-buster-node
-        environment: *ruby_environment
-    <<: *install_ruby_dependencies
-
-  build:
-    <<: *defaults
-    steps:
-      - *attach_workspace
-      - *install_system_dependencies
-      - run:
-          name: Precompile assets
           command: ./bin/rails assets:precompile
+          name: Precompile assets
       - persist_to_workspace:
-          root: ~/projects/
           paths:
-              - ./mastodon/public/assets
-              - ./mastodon/public/packs-test/
+            - public/assets
+            - public/packs-test
+          root: .
+
+  test:
+    parameters:
+      ruby-version:
+        type: string
+    executor:
+      name: default
+      ruby-version: << parameters.ruby-version >>
+    environment:
+      ALLOW_NOPAM: true
+      PAM_ENABLED: true
+      PAM_DEFAULT_SERVICE: pam_test
+      PAM_CONTROLLED_SERVICE: pam_test_controlled
+    parallelism: 4
+    steps:
+      - checkout
+      - install-system-dependencies
+      - run:
+          command: sudo apt-get install -y ffmpeg imagemagick libpam-dev
+          name: Install additional system dependencies
+      - run:
+          command: bundle config with 'pam_authentication'
+          name: Enable PAM authentication
+      - install-ruby-dependencies:
+          ruby-version: << parameters.ruby-version >>
+      - attach_workspace:
+          at: .
+      - wait-db
+      - run:
+          command: ./bin/rails db:create db:schema:load db:seed
+          name: Load database schema
+      - ruby/rspec-test
 
   test-migrations:
-    <<: *defaults
-    docker:
-      - image: circleci/ruby:2.7-buster-node
-        environment: *ruby_environment
-      - image: circleci/postgres:12.2
-        environment:
-          POSTGRES_USER: root
-          POSTGRES_HOST_AUTH_METHOD: trust
-      - image: circleci/redis:5-alpine
+    executor:
+      name: default
+      ruby-version: '2.7'
     steps:
-      - *attach_workspace
-      - *install_system_dependencies
+      - checkout
+      - install-system-dependencies
+      - install-ruby-dependencies:
+          ruby-version: '2.7'
+      - wait-db
       - run:
-          name: Create database
           command: ./bin/rails db:create
+          name: Create database
       - run:
-          name: Run migrations
           command: ./bin/rails db:migrate
-
-  test-ruby2.7:
-    <<: *defaults
-    docker:
-      - image: circleci/ruby:2.7-buster-node
-        environment: *ruby_environment
-      - image: circleci/postgres:12.2
-        environment:
-          POSTGRES_USER: root
-          POSTGRES_HOST_AUTH_METHOD: trust
-      - image: circleci/redis:5-alpine
-    <<: *test_steps
-
-  test-ruby2.6:
-    <<: *defaults
-    docker:
-      - image: circleci/ruby:2.6-buster-node
-        environment: *ruby_environment
-      - image: circleci/postgres:12.2
-        environment:
-          POSTGRES_USER: root
-          POSTGRES_HOST_AUTH_METHOD: trust
-      - image: circleci/redis:5-alpine
-    <<: *test_steps
-
-  test-ruby3.0:
-    <<: *defaults
-    docker:
-      - image: circleci/ruby:3.0-buster-node
-        environment: *ruby_environment
-      - image: circleci/postgres:12.2
-        environment:
-          POSTGRES_USER: root
-          POSTGRES_HOST_AUTH_METHOD: trust
-      - image: circleci/redis:5-alpine
-    <<: *test_steps
-
-  test-webui:
-    <<: *defaults
-    docker:
-      - image: circleci/node:14-buster
-    steps:
-      - *attach_workspace
-      - run:
-          name: Run jest
-          command: yarn test:jest
+          name: Run migrations
 
 workflows:
   version: 2
   build-and-test:
     jobs:
-      - install
-      - install-ruby2.7:
+      - build
+      - test:
+          matrix:
+            parameters:
+              ruby-version:
+                - '2.7'
+                - '3.0'
+          name: test-ruby<< matrix.ruby-version >>
           requires:
-            - install
-      - install-ruby2.6:
-          requires:
-            - install
-            - install-ruby2.7
-      - install-ruby3.0:
-          requires:
-            - install
-            - install-ruby2.7
-      - build:
-          requires:
-            - install-ruby2.7
+            - build
       - test-migrations:
           requires:
-            - install-ruby2.7
-      - test-ruby2.7:
-          requires:
-            - install-ruby2.7
             - build
-      - test-ruby2.6:
+      - node/run:
+          cache-version: v1
+          name: test-webui
+          pkg-manager: yarn
           requires:
-            - install-ruby2.6
             - build
-      - test-ruby3.0:
-          requires:
-            - install-ruby3.0
-            - build
-      - test-webui:
-          requires:
-            - install
+          version: lts
+          yarn-run: test:jest

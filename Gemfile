@@ -65,7 +65,6 @@ gem 'nsa', '~> 0.2'
 gem 'oj', '~> 3.13'
 gem 'ox', '~> 2.14'
 gem 'parslet'
-gem 'parallel', '~> 1.21'
 gem 'posix-spawn'
 gem 'pundit', '~> 2.1'
 gem 'premailer-rails'
@@ -73,7 +72,7 @@ gem 'rack-attack', '~> 6.5'
 gem 'rack-cors', '~> 1.1', require: 'rack/cors'
 gem 'rails-i18n', '~> 6.0'
 gem 'rails-settings-cached', '~> 0.6'
-gem 'redis', '~> 4.4', require: ['redis', 'redis/connection/hiredis']
+gem 'redis', '~> 4.5', require: ['redis', 'redis/connection/hiredis']
 gem 'mario-redis-lock', '~> 1.2', require: 'redis_lock'
 gem 'rqrcode', '~> 2.1'
 gem 'ruby-progressbar', '~> 1.11'
@@ -123,7 +122,6 @@ group :test do
   gem 'rspec-sidekiq', '~> 3.1'
   gem 'simplecov', '~> 0.21', require: false
   gem 'webmock', '~> 3.14'
-  gem 'parallel_tests', '~> 3.7'
   gem 'rspec_junit_formatter', '~> 0.4'
 end
 
