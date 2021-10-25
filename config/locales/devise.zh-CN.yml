@@ -3,13 +3,13 @@ zh-CN:
   devise:
     confirmations:
       confirmed: 已成功确认你的邮箱地址。
-      send_instructions: 你的电子邮箱将在几分钟后收到一封确认邮件。如果没有，请检查你的垃圾邮箱。
-      send_paranoid_instructions: 如果你的邮箱存在于我们的数据库中，你将收到一封确认注册的邮件。如果没有，请检查你的垃圾邮箱。
+      send_instructions: 你将在几分钟内收到一封电子邮件，指导你如何验证电子邮箱地址。如果你没有收到这封邮件，请检查你的垃圾邮件文件夹。
+      send_paranoid_instructions: 如果你的电子邮箱地址存在于我们的数据库中，你将在几分钟内收到一封邮件，知道你如何验证电子邮箱地址。如果你没有收到这封邮件，请检查你的垃圾邮件文件夹。
     failure:
-      already_authenticated: 你已经登录。
+      already_authenticated: 你已登录。
       inactive: 你还没有激活帐户。
       invalid: "%{authentication_keys} 无效或密码错误。"
-      last_attempt: 这是最后一次尝试机会，失败后你的帐户将被锁定。
+      last_attempt: 你只有最后一次尝试机会，若未通过，帐号将被锁定。
       locked: 你的帐户已被锁定。
       not_found_in_database: "%{authentication_keys}或密码错误。"
       pending: 你的帐号仍在审核中。
@@ -20,19 +20,19 @@ zh-CN:
       confirmation_instructions:
         action: 验证电子邮件地址
         action_with_app: 确认并返回%{app}
-        explanation: 你在 %{host} 上使用这个电子邮件地址创建了一个帐户。只需点击下面的链接，即可完成激活。如果你并没有创建过帐户，请忽略此邮件。
+        explanation: 你在 %{host} 上使用此电子邮箱地址创建了一个帐号。点击下面的链接即可激活帐号。如果你没有创建帐号，请忽略此邮件。
         explanation_when_pending: 你用这个电子邮件申请了在 %{host} 注册。在确认电子邮件地址之后，我们会审核你的申请。在此之前，你不能登录。如果你的申请被驳回，你的数据会被移除，因此你无需再采取任何行动。如果申请人不是你，请忽略这封邮件。
         extra_html: 请记得阅读<a href="%{terms_path}">本服务器的相关规定</a>和<a href="%{policy_path}">我们的使用条款</a>。
         subject: Mastodon：来自 %{instance} 的确认指引
         title: 验证电子邮件地址
       email_changed:
-        explanation: 你的帐户的电子邮件地址将变更为：
+        explanation: 你的账号的电子邮箱地址将变更为：
         extra: 如果你并没有请求更改你的电子邮件地址，则他人很有可能已经入侵你的帐户。请立即更改你的密码；如果你已经无法访问你的帐户，请联系服务器管理员请求协助。
         subject: Mastodon：电子邮件地址已被更改
         title: 新电子邮件地址
       password_change:
         explanation: 你的帐户密码已更改。
-        extra: 如果你并没有请求更改你的密码，则他人很有可能已经入侵你的帐户。请立即更改你的密码；如果你已经无法访问你的帐户，请联系服务器的管理员请求协助。
+        extra: 如果你并没有申请更改密码，那似乎有人已经入侵你的帐户。请立即更改你的密码；如果你已经无法访问你的帐户，请联系服务器的管理员获取帮助。
         subject: Mastodon：密码已被更改
         title: 密码已被重置
       reconfirmation_instructions:
@@ -55,9 +55,9 @@ zh-CN:
         subject: Mastodon：双重验证已开启
         title: 已启用双重认证
       two_factor_recovery_codes_changed:
-        explanation: 之前的恢复码已失效，现已生成了新的恢复码。
+        explanation: 新恢复码已生成，同时旧恢复码已失效。
         subject: Mastodon：重新生成双重认证的恢复码
-        title: 双重验证的恢复码已更改
+        title: 双重认证的恢复码已更改
       unlock_instructions:
         subject: Mastodon：帐户解锁信息
       webauthn_credential:
