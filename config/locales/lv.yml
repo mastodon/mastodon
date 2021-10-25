@@ -757,6 +757,22 @@ lv:
     didnt_get_confirmation: Vai nesaņēmi apstiprināšanas norādījumus?
     dont_have_your_security_key: Vai tev nav drošības atslēgas?
     forgot_password: Aizmirsi paroli?
+    invalid_reset_password_token: Paroles atiestatīšanas pilnvara nav derīga, vai tai ir beidzies derīgums. Lūdzu, pieprasi jaunu.
+    link_to_otp: Ievadi divfaktoru kodu no tālruņa vai atkopšanas kodu
+    link_to_webauth: Lieto savu drošības atslēgas iekārtu
+    login: Pieteikties
+    logout: Iziet
+    migrate_account: Pāriešana uz citu kontu
+    migrate_account_html: Ja vēlies novirzīt šo kontu uz citu, tu vari <a href="%{path}">to konfigurēt šeit</a>.
+    or_log_in_with: Vai piesakies ar
+    providers:
+      cas: CAS
+      saml: SAML
+    register: Reģistrēties
+    registration_closed: "%{instance} nepieņem jaunus dalībniekus"
+    resend_confirmation: Atkārtoti nosūtīt apstiprinājuma norādījumus
+    reset_password: Atiestatīt paroli
+    security: Drošība
     set_new_password: Iestatīt jaunu paroli
     setup:
       email_below_hint_html: Ja zemāk norādītā e-pasta adrese ir nepareiza, vari to nomainīt šeit un saņemt jaunu apstiprinājuma e-pastu.
@@ -881,3 +897,21 @@ lv:
       overwrite_long: Nomainīt pašreizējos ierakstus ar jauniem
     preface: Tu vari importēt datus, kurus esi eksportējis no cita servera, piemēram, to personu sarakstu, kurām tu seko vai kuras bloķē.
     success: Tavi dati tika veiksmīgi augšupielādēti un tiks apstrādāti noteiktajā laikā
+    types:
+      blocking: Bloķēšanas saraksts
+      bookmarks: Grāmatzīmes
+      domain_blocking: Domēnu bloķēšanas saraksts
+      following: Šāds saraksts
+      muting: Izslēgšanas saraksts
+    upload: Augšupielādēt
+  in_memoriam_html: Piemiņai.
+  invites:
+    delete: Deaktivizēt
+    expired: Beigušies
+    expires_in:
+      '1800': 30 minūtes
+      '21600': 6 stundas
+      '3600': 1 stunda
+      '43200': 12 stundas
+      '604800': 1 nedēļa
+      '86400': 1 day
