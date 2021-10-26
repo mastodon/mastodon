@@ -838,16 +838,31 @@ lv:
       data_removal: Tavas ziņas un citi dati tiks neatgriezeniski noņemti
       email_change_html: Tu vari <a href="%{path}">mainīt savu e-pasta adresi</a>, neizdzēšot savu kontu
       email_contact_html: Ja tas joprojām nav saņemts, tu vari nosūtīt e-pastu <a href="mailto:%{email}">%{email}</a> lai saņemtu palīdzību
+      email_reconfirmation_html: Ja tu nesaņem apstiprinājuma e-pastu, tu vari <a href="%{path}">pieprsīt to vēlreiz</a>
+      irreversible: Tu nevarēsi atjaunot vai atkārtoti aktivizēt savu kontu
+      more_details_html: Plašāku informāciju skatīt <a href="%{terms_path}">privātuma politika</a>.
+      username_available: Tavs lietotājvārds atkal būs pieejams
+      username_unavailable: Tavs lietotājvārds paliks nepieejams
+  directories:
+    directory: Profila direktorija
+    explanation: Atklāj lietotājus, pamatojoties uz viņu interesēm
+    explore_mastodon: Izpētīt %{title}
+  domain_validator:
+    invalid_domain: nav derīgs domēna nosaukums
   errors:
-    '400': The request you submitted was invalid or malformed.
-    '403': You don't have permission to view this page.
-    '404': The page you are looking for isn't here.
-    '406': This page is not available in the requested format.
-    '410': The page you were looking for doesn't exist here anymore.
+    '400': Tevis iesniegtais pieprasījums bija nederīgs vai nepareizi izveidots.
+    '403': Tev nav atļauts aplūkot šo lapu.
+    '404': Tevis meklētās lapas šeit nav.
+    '406': Šī lapa nav pieejama pieprasītajā formātā.
+    '410': Tevis meklētā lapa šeit vairs nepastāv.
     '422':
-    '429': Too many requests
+      content: Drošības pārbaude neizdevās. Vai tu bloķē sīkfailus?
+      title: Drošības pārbaude neizdevās
+    '429': Pārāk daudz pieprasījumu
     '500':
-    '503': The page could not be served due to a temporary server failure.
+      content: Atvaino, bet kaut kas mūsu pusē nogāja greizi.
+      title: Šī lapa nav pareiza
+    '503': Lapu nevarēja apkalpot īslaicīgas servera kļūmes dēļ.
   filters:
     index:
       empty: Tev nav filtru.
