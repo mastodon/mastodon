@@ -884,8 +884,22 @@ lv:
     storage: Mediju krātuve
   featured_tags:
     add_new: Pievienot jaunu
+    errors:
+      limit: Tu jau esi piedāvājis maksimālo tēmturu skaitu
+    hint_html: "<strong>Kas ir piedāvātie tēmturi?</strong> Tie ir redzami tavā publiskajā profilā un ļauj cilvēkiem pārlūkot tavas publiskās ziņas tieši zem šiem tēmturiem. Tie ir lielisks līdzeklis radošu darbu vai ilgtermiņa projektu izsekošanai."
   filters:
+    contexts:
+      account: Profili
+      home: Sākums un saraksti
+      notifications: Paziņojumi
+      public: Publiskās ziņu lentas
+    edit:
+      title: Rediģēt filtru
+    errors:
+      invalid_context: Nav, vai piegādāts nederīgs konteksts
+      invalid_irreversible: Neatgriezeniskā filtrēšana darbojas tikai sākuma vai paziņojumu kontekstā
     index:
+      delete: Dzēst
       empty: Tev nav filtru.
       title: Filtri
     new:
