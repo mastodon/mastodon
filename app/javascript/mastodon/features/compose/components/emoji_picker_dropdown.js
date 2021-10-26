@@ -291,7 +291,7 @@ class EmojiPickerMenu extends React.PureComponent {
           showSkinTones={false}
           backgroundImageFn={backgroundImageFn}
           notFound={notFoundFn}
-          autoFocus={this.state.readyToFocus}
+          autoFocus={false&&this.state.readyToFocus}
           emojiTooltip
         />
 
