@@ -863,6 +863,15 @@ lv:
       content: Atvaino, bet kaut kas mūsu pusē nogāja greizi.
       title: Šī lapa nav pareiza
     '503': Lapu nevarēja apkalpot īslaicīgas servera kļūmes dēļ.
+    noscript_html: Lai izmantotu Mastodon web lietojumu, lūdzu, iespējo JavaScript. Vai arī izmēģini kādu no <a href="%{apps_path}">vietējām lietotnēm</a> Mastodon savai platformai.
+  existing_username_validator:
+    not_found: nevarēja atrast lokālo lietotāju ar šādu lietotājvārdu
+    not_found_multiple: nevarēja atrast %{usernames}
+  exports:
+    archive_takeout:
+      date: Dati
+      download: Lejupielādē savu arhīvu
+      hint_html: Tu vari pieprasīt savu <strong>ziņu un augšupielādēto mediju</strong> arhīvu. Eksportētie dati būs ActivityPub formātā, ko varēs nolasīt ar jebkuru saderīgu programmatūru. Tu vari pieprasīt arhīvu ik pēc 7 dienām.
   filters:
     index:
       empty: Tev nav filtru.
