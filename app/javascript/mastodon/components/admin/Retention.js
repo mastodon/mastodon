@@ -42,6 +42,7 @@ export default class Retention extends React.PureComponent {
 
   render () {
     const { loading, data } = this.state;
+    const { frequency } = this.props;
 
     let content;
 
@@ -129,9 +130,18 @@ export default class Retention extends React.PureComponent {
       );
     }
 
+    let title = null;
+    switch(frequency) {
+    case 'day':
+      title = <FormattedMessage id='admin.dashboard.daily_retention' defaultMessage='User retention rate by day after sign-up' />;
+      break;
+    default:
+      title = <FormattedMessage id='admin.dashboard.monthly_retention' defaultMessage='User retention rate by month after sign-up' />;
+    };
+
     return (
       <div className='retention'>
-        <h4><FormattedMessage id='admin.dashboard.retention' defaultMessage='Retention' /></h4>
+        <h4>{title}</h4>
 
         {content}
       </div>
