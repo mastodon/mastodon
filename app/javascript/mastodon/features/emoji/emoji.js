@@ -102,7 +102,7 @@ export const buildCustomEmojis = (customEmojis) => {
       short_names: [name],
       text: '',
       emoticons: [],
-      keywords: [name],
+      keywords: [name, emoji.get('category')].filter(i => i),
       imageUrl: url,
       custom: true,
       customCategory: emoji.get('category'),
