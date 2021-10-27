@@ -1,4 +1,4 @@
-name: Build Prod Image
+name: Build Dev Image
 
 on:
   push:
@@ -31,18 +31,17 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: .
+          file: ./Dockerfile.dev
           pull: true
           push: true
           # build-args: |
           #   arg1=value1
           #   arg2=value2
-          cache-from: type=registry,ref=mashirozx/mastodon:alpha
+          cache-from: type=registry,ref=mashirozx/mastodon:dev
           cache-to: type=inline
-          # tags: mashirozx/mastodon:alpha
           tags: |
-            mashirozx/mastodon:alpha
-            mashirozx/mastodon:latest
-            mashirozx/mastodon:sha-${{steps.vars.outputs.sha_short}}
+            mashirozx/mastodon:dev
+            mashirozx/mastodon:dev-${{steps.vars.outputs.sha_short}}
 
       # - name: ⚓ Build and push Docker images
       #   uses: docker/build-push-action@v1
