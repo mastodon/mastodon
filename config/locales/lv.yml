@@ -1154,6 +1154,20 @@ lv:
       too_many_options: nevar saturēt vairāk par %{max} vienumiem
   preferences:
     other: Citi
+    posting_defaults: Publicēšanas noklusējuma iestatījumi
+    public_timelines: Publiskās ziņu lentas
+  reactions:
+    errors:
+      limit_reached: Sasniegts dažādu reakciju limits
+      unrecognized_emoji: nav atpazīta emocijzīme
+  relationships:
+    activity: Konta aktivitāte
+    dormant: Snaudošie
+    follow_selected_followers: Sekot atlasītajiem sekotājiem
+    followers: Sekotāji
+    following: Seko
+    invited: Uzaicinātie
+    last_active: Pēdējā aktivitāte
   sessions:
     browsers:
       qq: QQ Browser
@@ -1228,6 +1242,99 @@ lv:
   tags:
     does_not_match_previous_name: nesakrīt ar iepriekšējo nosaukumu
   terms:
+    body_html: |2
+      <h2>Privātuma politika</h2>
+      <h3 id="collect">Kādu informāciju mēs apkopojam?</h3>
+
+      <ul>
+        <li><em>Konta pamatinformācija</em>: Ja tu reģistrējies šajā serverī, iespējams, tev tiks lūgts ievadīt lietotājvārdu, e-pasta adresi un paroli. Vari arī ievadīt papildu profila informāciju, piemēram, parādāmo vārdu un biogrāfiju, kā arī augšupielādēt profila attēlu un galvenes attēlu. Lietotājvārds, parādāmais vārds, biogrāfija, profila attēls un galvenes attēls vienmēr ir publiski.</li>
+        <li><em>Ziņas, sekošana un cita publiska informācija</em>: To personu saraksts, kurām tu seko, ir publiski pieejams, tas pats attiecas uz taviem sekotājiem. Iesniedzot ziņojumu, tiek saglabāts datums un laiks, kā arī pieteikums, no kura iesniedzi ziņojumu. Ziņojumos var būt mediju pielikumi, piemēram, attēli un videoklipi. Publiskās un nerindotās ziņas ir pieejamas publiski. Ja savā profilā ievieto ziņu, tā ir arī publiski pieejama informācija. Ziņas tiek piegādātas taviem sekotājiem, dažos gadījumos tas nozīmē, ka tās tiek piegādātas uz dažādiem serveriem un tur tiek glabātas to kopijas. Dzēšot ziņas, tas tāpat tiek piegādāts taviem sekotājiem. Atkārtota emuāra pievienošana vai citas ziņas pievienošana izlasei vienmēr ir publiskas.</li>
+        <li><em>Tiešas un tikai sekotāju ziņas</em>: Visas ziņas tiek glabātas un apstrādātas serverī. Tikai sekotājiem paredzētās ziņas tiek piegādātas taviem sekotājiem un tajās minētajiem lietotājiem, un tiešās ziņas tiek piegādātas tikai tajās minētajiem lietotājiem. Dažos gadījumos tas nozīmē, ka tās tiek piegādātas uz dažādiem serveriem un tur tiek saglabātas kopijas. Mēs godprātīgi cenšamies ierobežot piekļuvi šīm ziņām tikai pilnvarotām personām, taču citiem serveriem tas var neizdoties. Tāpēc ir svarīgi pārskatīt serverus, kuriem pieder tavi sekotāji. Iestatījumos varat manuāli pārslēgt iespēju apstiprināt un noraidīt jaunus sekotājus. <em>Lūdzu, ņemiet vērā, ka servera operatori un jebkura saņēmēja servera operatori var skatīt šādus ziņojumus</em> un adresāti var uzņemt to ekrānšāviņus, kopēt vai citādi atkārtoti kopīgot. <em>Nekopīgo nekādu sensitīvu informāciju, izmantojot Mastodon.</em></li>
+        <li><em>IP un citi metadati</em>: Kad tu piesakies, mēs ierakstām IP adresi, no kuras piesakies, kā arī tavu pārlūkprogrammas un/vai lietojumprogrammas nosaukumu. Visas pieteikušās sesijas ir pieejamas iestatījumos pārskatīšanai un atsaukšanai. Pēdējā izmantotā IP adrese tiek glabāta līdz 12 mēnešiem. Mēs varam arī saglabāt servera žurnālus, kuros ir iekļauta katra mūsu serverim nosūtītā pieprasījuma IP adrese.</li>
+      </ul>
+
+      <hr class="spacer" />
+
+      <h3 id="use">Kam mēs izmantojam tavu informāciju?</h3>
+
+      <p>Jebkuru informāciju, ko mēs apkopojam par tevi, var izmantot šādos veidos:</p>
+
+      <ul>
+        <li>Lai nodrošinātu Mastodon pamatfunkcionalitāti. Tu vari mijiedarboties ar citu personu saturu un izlikt savu saturu tikai tad, kad esi pieteicies. Piemēram, tu vari sekot citām personām, lai skatītu viņu apvienotās ziņas savā personalizētajā mājas laika skalā.</li>
+        <li>Lai palīdzētu regulēt kopienu, piemēram, salīdzinot tavu IP adresi ar citām zināmām, lai noteiktu izvairīšanos no aizlieguma vai citus pārkāpumus.</li>
+        <li>Tevis norādītā e-pasta adrese var tikt izmantota, lai nosūtītu tev informāciju, paziņojumus par citām personām, kas mijiedarbojas ar tavu saturu vai sūta tev ziņojumus, kā arī atbildētu uz jautājumiem un/vai citiem pieprasījumiem vai jautājumiem.</li>
+      </ul>
+
+      <hr class="spacer" />
+
+      <h3 id="protect">Kā mēs aizsargājam tavu informāciju?</h3>
+
+      <p>Mēs ieviešam dažādus drošības pasākumus, lai saglabātu tavas personiskās informācijas drošību, kad ievadi, iesniedz vai piekļūsti savai personas informācijai. Cita starpā pārlūkprogrammas sesija, kā arī datplūsma starp lietojumprogrammām un API ir aizsargāta ar SSL, un tava parole tiek sajaukta, izmantojot spēcīgu vienvirziena algoritmu. Vari iespējot divu faktoru autentifikāciju, lai vēl vairāk aizsargātu piekļuvi savam kontam.</p>
+
+      <hr class="spacer" />
+
+      <h3 id="use">Kam mēs izmantojam tavu informāciju?</h3>
+
+      <p>Jebkuru informāciju, ko mēs apkopojam no jums, var izmantot šādos veidos:</p>
+
+      <ul>
+        <li>Lai nodrošinātu Mastodon pamatfunkcionalitāti. Jūs varat mijiedarboties ar citu personu saturu un izlikt savu saturu tikai tad, kad esat pieteicies. Piemēram, varat sekot citām personām, lai skatītu viņu apvienotās ziņas savā personalizētajā mājas laika skalā.</li>
+        <li>Lai palīdzētu regulēt kopienu, piemēram, salīdzinot jūsu IP adresi ar citām zināmām, lai noteiktu izvairīšanos no aizlieguma vai citus pārkāpumus.</li>
+        <li>Jūsu norādītā e-pasta adrese var tikt izmantota, lai nosūtītu jums informāciju, paziņojumus par citām personām, kas mijiedarbojas ar jūsu saturu vai sūta jums ziņojumus, kā arī atbildētu uz jautājumiem un/vai citiem pieprasījumiem vai jautājumiem.</li>
+      </ul>
+
+      <hr class="spacer" />
+
+      <h3 id="data-retention">Kāda ir mūsu datu saglabāšanas politika?</h3>
+
+      <p>Mēs godprātīgi centīsimies:</p>
+
+      <ul>
+        <li>Saglabājiet servera žurnālus, kuros ir visu šim serverim nosūtīto pieprasījumu IP adrese, ciktāl šādi žurnāli tiek glabāti, ne ilgāk kā 90 dienas.</li>
+        <li>Saglabājiet ar reģistrētajiem lietotājiem saistītās IP adreses ne ilgāk kā 12 mēnešus.</li>
+      </ul>
+
+      <p>Varat pieprasīt un lejupielādēt sava satura arhīvu, tostarp ziņas, multivides pielikumus, profila attēlu un galvenes attēlu.</p>
+
+      <p>Jūs jebkurā laikā varat neatgriezeniski izdzēst savu kontu.</p>
+
+      <hr class="spacer"/>
+
+      <h3 id="cookies">Vai mēs izmantojam sīkfailus?</h3>
+
+      <p>Jā. Sīkfaili ir mazi faili, ko vietne vai tās pakalpojumu sniedzējs pārsūta uz jūsu datora cieto disku, izmantojot jūsu tīmekļa pārlūkprogrammu (ja atļaujat). Šīs sīkdatnes ļauj vietnei atpazīt jūsu pārlūkprogrammu un, ja jums ir reģistrēts konts, saistīt to ar jūsu reģistrēto kontu.</p>
+
+      <p>Mēs izmantojam sīkfailus, lai saprastu un saglabātu jūsu preferences turpmākiem apmeklējumiem.</p>
+
+      <hr class="spacer" />
+
+      <h3 id="disclose">Vai mēs izpaužam kādu informāciju ārējām pusēm?</h3>
+
+      <p>Mēs nepārdodam, netirgojam vai citādi nenododam ārējām pusēm jūsu personu identificējošo informāciju. Tas neietver uzticamas trešās puses, kas palīdz mums darboties mūsu vietnē, veikt mūsu uzņēmējdarbību vai apkalpot jūs, ja vien šīs puses piekrīt saglabāt šīs informācijas konfidencialitāti. Mēs varam arī izpaust jūsu informāciju, ja uzskatām, ka tā ir piemērota, lai ievērotu likumus, īstenotu mūsu vietnes politikas vai aizsargātu mūsu vai citu tiesības, īpašumu vai drošību.</p>
+
+      <p>Jūsu publisko saturu var lejupielādēt citi tīkla serveri. Jūsu publiskās un tikai sekotājiem paredzētās ziņas tiek piegādātas serveros, kur atrodas jūsu sekotāji, un tiešie ziņojumi tiek piegādāti adresātu serveriem, ja šie sekotāji vai adresāti atrodas citā serverī, nevis šajā.</p>
+
+      <p>Kad jūs pilnvarojat lietojumprogrammu izmantot jūsu kontu, atkarībā no jūsu apstiprināto atļauju apjoma, tā var piekļūt jūsu publiskā profila informācijai, jūsu sekojošajam sarakstam, jūsu sekotājiem, sarakstiem, visām jūsu ziņām un jūsu izlasei. Lietojumprogrammas nekad nevar piekļūt jūsu e-pasta adresei vai parolei.</p>
+
+      <hr class="spacer" />
+
+      <h3 id="children">Vietnes lietojums bērniem</h3>
+
+      <p>Ja šis serveris atrodas ES vai EEZ: mūsu vietne, produkti un pakalpojumi ir paredzēti personām, kuras ir vismaz 16 gadus vecas. Ja esat jaunāks par 16 gadiem, neizmantojiet šo vietni atbilstoši GDPR (<a href="https://en.wikipedia.org/wiki/General_Data_Protection_Regulation">Vispārīgās datu aizsardzības regulas</a>) prasībām..</p>
+
+      <p>Ja šis serveris atrodas ASV: mūsu vietne, produkti un pakalpojumi ir paredzēti personām, kuras ir vismaz 13 gadus vecas. Ja esat jaunāks par 13 gadiem, saskaņā ar COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a>) prasībām neizmantojiet šajā vietnē.</p>
+
+      <p>Tiesību prasības var atšķirties, ja šis serveris atrodas citā jurisdikcijā.</p>
+
+      <hr class="spacer" />
+
+      <h3 id="changes">Izmaiņas mūsu konfidencialitātes politikā</h3>
+
+      <p>Ja mēs nolemsim mainīt savu konfidencialitātes politiku, mēs publicēsim šīs izmaiņas šajā lapā.</p>
+
+      <p>Šis dokuments ir CC-BY-SA. Pēdējo reizi tas tika atjaunināts 2018. gada 7. martā.</p>
+
+      <p>Sākotnēji pielāgots no <a href="https://github.com/discourse/discourse">Discourse konfidencialitātes politikas</a>.</p>
     title: "%{instance} Pakalpojuma Noteikumi un Privātuma Politika"
   themes:
     contrast: Mastodon (Augsts kontrasts)
