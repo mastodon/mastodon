@@ -1,4 +1,3 @@
----
 nn:
   activerecord:
     attributes:
@@ -73,6 +72,7 @@ nn:
       index:
         application: Applikasjon
         created_at: Autorisert
+        date_format: "%d. %m %Y kl. %H.%M.%S"
         scopes: Skop
         title: Dine autoriserte applikasjonar
     errors:
@@ -82,6 +82,10 @@ nn:
         invalid_client: Klientautentisering feilet på grunn av ukjent klient, ingen autentisering inkludert, eller autentiseringsmetode er ikke støttet.
         invalid_grant: Autoriseringen er ugyldig, utløpt, opphevet, stemmer ikke overens med omdirigerings-URIen eller var utstedt til en annen klient.
         invalid_redirect_uri: Omdirigerings-URLen er ikkje gyldig.
+        invalid_request:
+          missing_param: 'Mangler påkrevd parameter: %{value}.'
+          request_not_authorized: Forespørselen må godkjennes. Påkrevd parameter for godkjenningsforespørselen mangler eller er ugyldig.
+          unknown: Forespørselen mangler en påkrevd parameter, inkluderer en ukjent parameterverdi, eller er utformet for noe annet.
         invalid_resource_owner: Ressurseierens detaljer er ikke gyldige, eller så er det ikke mulig å finne eieren
         invalid_scope: Det etterspurte omfanget er ugyldig, ukjent eller har feil struktur.
         invalid_token:
@@ -113,37 +117,37 @@ nn:
       application:
         title: OAuth-autorisering påkrevet
     scopes:
-      admin:read: lese alle data på tjeneren
-      admin:read:accounts: lese sensitiv informasjon om alle kontoer
-      admin:read:reports: lese sensitiv informasjon om alle rapporter og rapporterte kontoer
-      admin:write: modifisere alle data på tjeneren
-      admin:write:accounts: utføre moderatorhandlinger på kontoer
-      admin:write:reports: utføre moderatorhandlinger på rapporter
+      "admin:read": lese alle data på tjeneren
+      "admin:read:accounts": lese sensitiv informasjon om alle kontoer
+      "admin:read:reports": lese sensitiv informasjon om alle rapporter og rapporterte kontoer
+      "admin:write": modifisere alle data på tjeneren
+      "admin:write:accounts": utføre moderatorhandlinger på kontoer
+      "admin:write:reports": utføre moderatorhandlinger på rapporter
       follow: følg, blokkér, avblokkér, avfølg brukere
       push: motta dine varsler
       read: lese dine data
-      read:accounts: se informasjon om kontoer
-      read:blocks: se dine blokkeringer
-      read:bookmarks: sjå bokmerka dine
-      read:favourites: sjå favorittane dine
-      read:filters: sjå filtera dine
-      read:follows: sjå fylgjarane dine
-      read:lists: sjå listene dine
-      read:mutes: sjå kven du har målbunde
-      read:notifications: sjå varsla dine
-      read:reports: sjå rapportane dine
-      read:search: søke på dine vegne
-      read:statuses: sjå alle statusar
+      "read:accounts": se informasjon om kontoer
+      "read:blocks": se dine blokkeringer
+      "read:bookmarks": sjå bokmerka dine
+      "read:favourites": sjå favorittane dine
+      "read:filters": sjå filtera dine
+      "read:follows": sjå fylgjarane dine
+      "read:lists": sjå listene dine
+      "read:mutes": sjå kven du har målbunde
+      "read:notifications": sjå varsla dine
+      "read:reports": sjå rapportane dine
+      "read:search": søke på dine vegne
+      "read:statuses": sjå alle statusar
       write: poste på dine vegne
-      write:accounts: rediger profilen din
-      write:blocks: blokker kontoar og domene
-      write:bookmarks: bokmerk statusar
-      write:favourites: merk statusar som favoritt
-      write:filters: lag filter
-      write:follows: fylg folk
-      write:lists: lag lister
-      write:media: last opp mediefiler
-      write:mutes: målbind folk og samtalar
-      write:notifications: tøm varsla dine
-      write:reports: rapporter andre folk
-      write:statuses: legg ut statusar
+      "write:accounts": rediger profilen din
+      "write:blocks": blokker kontoar og domene
+      "write:bookmarks": bokmerk statusar
+      "write:favourites": merk statusar som favoritt
+      "write:filters": lag filter
+      "write:follows": fylg folk
+      "write:lists": lag lister
+      "write:media": last opp mediefiler
+      "write:mutes": målbind folk og samtalar
+      "write:notifications": tøm varsla dine
+      "write:reports": rapporter andre folk
+      "write:statuses": legg ut statusar
