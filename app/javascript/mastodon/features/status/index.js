@@ -126,7 +126,21 @@ const makeMapStateToProps = () => {
       });
     }
 
-    return Immutable.List(descendantsIds);
+    const idToStatus = descendantsIds.map(id => {
+      const { in_reply_to_id, content } = statuses.get(id).toObject();
+      return { id, in_reply_to_id, content, children: [] };
+    }).reduce((prev, current) => {
+      return { ...prev, [current.id]: current };
+    }, {});
+
+    Object.values(idToStatus).forEach(status => {
+      idToStatus[status.in_reply_to_id]?.children.push(status);
+      if(status.in_reply_to_id !== statusId){
+        delete idToStatus[status.id];
+      }
+    });
+
+    return Immutable.List(Object.values(idToStatus).map(({ id, children }) => ({ id, children: children.map(x => x.id) })));
   });
 
   const mapStateToProps = (state, props) => {
@@ -467,6 +481,30 @@ class Status extends ImmutablePureComponent {
     ));
   }
 
+  renderDescendants (list) {
+    return list.map(({ id, children }) => {
+      return (<>
+        <StatusContainer
+          key={id}
+          id={id}
+          onMoveUp={this.handleMoveUp}
+          onMoveDown={this.handleMoveDown}
+          contextType='thread'
+        />
+        {children.length ? (<div className={classNames('status__reply')}>
+          {children.map(id => (
+            <StatusContainer
+              key={id}
+              id={id}
+              onMoveUp={this.handleMoveUp}
+              onMoveDown={this.handleMoveDown}
+              contextType='thread'
+            />))}
+        </div>) : null}
+      </>);
+    });
+  }
+
   setRef = c => {
     this.node = c;
   }
@@ -515,7 +553,7 @@ class Status extends ImmutablePureComponent {
     }
 
     if (descendantsIds && descendantsIds.size > 0) {
-      descendants = <div>{this.renderChildren(descendantsIds)}</div>;
+      descendants = <div>{this.renderDescendants(descendantsIds)}</div>;
     }
 
     const handlers = {
