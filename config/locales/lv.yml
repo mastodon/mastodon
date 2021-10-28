@@ -1190,3 +1190,20 @@ lv:
         <li><em>Tiešas un tikai sekotāju ziņas</em>: visas ziņas tiek glabātas un apstrādātas serverī. Tikai sekotājiem paredzētās ziņas tiek piegādātas jūsu sekotājiem un tajos minētajiem lietotājiem, un tiešās ziņas tiek piegādātas tikai tajos minētajiem lietotājiem. Dažos gadījumos tas nozīmē, ka tie tiek piegādāti uz dažādiem serveriem un tur tiek saglabātas kopijas. Mēs godprātīgi cenšamies ierobežot piekļuvi šīm ziņām tikai pilnvarotām personām, taču citiem serveriem tas var neizdoties. Tāpēc ir svarīgi pārskatīt serverus, kuriem pieder jūsu sekotāji. Iestatījumos varat manuāli pārslēgt iespēju apstiprināt un noraidīt jaunus sekotājus. <em>Lūdzu, ņemiet vērā, ka servera operatori un jebkura saņēmēja servera operatori var skatīt šādus ziņojumus</em> un adresāti var tos ekrānuzņēmumus, kopēt vai citādi atkārtoti kopīgot. <em>Nekopīgojiet nekādu bīstamu informāciju, izmantojot Mastodon.</em></li>
         <li><em>IP un citi metadati</em>: kad jūs piesakāties, mēs ierakstām IP adresi, no kuras piesakāties, kā arī jūsu pārlūkprogrammas lietojumprogrammas nosaukumu. Visas pieteikušās sesijas ir pieejamas iestatījumos pārskatīšanai un atsaukšanai. Pēdējā izmantotā IP adrese tiek glabāta līdz 12 mēnešiem. Mēs varam arī saglabāt servera žurnālus, kuros ir iekļauta katra mūsu serverim nosūtītā pieprasījuma IP adrese.</li>
       </ul>
+    title: "%{instance} Pakalpojuma Noteikumi un Privātuma Politika"
+  themes:
+    contrast: Mastodon (Augsts kontrasts)
+    default: Mastodon (Tumšs)
+    mastodon-light: Mastodon (Gaišs)
+  time:
+    formats:
+      default: "%b %d, %Y, %H:%M"
+      month: "%b %Y"
+  two_factor_authentication:
+    add: Pievienot
+    disable: Atspējot 2FA
+    disabled_success: Divfaktoru autentifikācija veiksmīgi atspējota
+    edit: Rediģēt
+    enabled: Divfaktoru autentifikācija ir iespējota
+    enabled_success: Divfaktoru autentifikācija veiksmīgi iespējota
+    generate_recovery_codes: Ģenerēt atkopšanas kodus
