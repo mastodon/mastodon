@@ -1049,10 +1049,33 @@ lv:
       title: Jauns sekotājs
     follow_request:
       action: Pārvaldīt sekošanas pieprasījumus
+      body: "%{name} vēlas tev sekot"
+      subject: 'Gaidošs sekotājs: %{name}'
+      title: Jauns sekotāja pieprasījums
+    mention:
+      action: Atbildēt
+      body: 'Tevi pieminēja %{name}:'
+      subject: Tevi pieminēja %{name}
+      title: Jauna pieminēšana
+    poll:
+      subject: '%{name} aptauja ir beigusies'
+    reblog:
+      body: 'Tavu ziņu paaugstināja %{name}:'
+      subject: "%{name} paaugstināja tavu ziņu"
+      title: Jauns stimuls
+    status:
+      subject: "%{name} tikko publicēja"
+  notifications:
+    email_events: E-pasta paziņojumu notikumi
+    email_events_hint: 'Atlasi notikumus, par kuriem vēlies saņemt paziņojumus:'
+    other_settings: Citu paziņojumu iestatījumi
   number:
     human:
       decimal_units:
+        format: "%n%u"
         units:
+          billion: B
+          million: M
           quadrillion: Q
           thousand: K
           trillion: T
@@ -1064,3 +1087,20 @@ lv:
     manual_instructions: 'Ja nevari noskenēt QR kodu un tas ir jāievada manuāli, šeit ir noslēpums vienkāršā tekstā:'
     setup: Iestatīt
     wrong_code: Ievadītais kods nebija derīgs! Vai servera laiks un ierīces laiks ir pareizs?
+  pagination:
+    newer: Jaunāks
+    next: Nākamais
+    older: Vecāks
+    prev: Iepr
+    truncate: "&hellip;"
+  polls:
+    errors:
+      already_voted: Šajā aptaujā tu esi jau balsojis
+      duplicate_options: satur dublētus vienumus
+      duration_too_long: ir pārāk tālu nākotnē
+      duration_too_short: ir par agru
+      expired: Aptauja jau ir beigusies
+      invalid_choice: Izvēlētā balsošanas iespēja nepastāv
+      over_character_limit: katrs nedrīkst būt garāks par %{max} rakstzīmēm
+      too_few_options: jābūt vairāk nekā vienam vienumam
+      too_many_options: nevar saturēt vairāk par %{max} vienumiem
