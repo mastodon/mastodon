@@ -893,6 +893,7 @@ lv:
       home: Sākums un saraksti
       notifications: Paziņojumi
       public: Publiskās ziņu lentas
+      thread: Sarunas
     edit:
       title: Rediģēt filtru
     errors:
@@ -1028,6 +1029,26 @@ lv:
       redirect: Tava pašreizējā konta profils tiks atjaunināts ar novirzīšanas paziņojumu un tiks izslēgts no meklēšanas
   moderation:
     title: Moderācija
+  move_handler:
+    carry_blocks_over_text: Šis lietotājs pārcēlās no %{acct}, kuru tu biji bloķējis.
+    carry_mutes_over_text: Šis lietotājs pārcēlās no %{acct}, kuru tu biji apklusinājis.
+    copy_account_note_text: 'Šis lietotājs pārcēlās no %{acct}, šeit bija tavas iepriekšējās piezīmes par viņu:'
+  notification_mailer:
+    digest:
+      action: Rādīt visus paziņojumus
+      body: Šeit ir īss kopsavilkums par ziņojumiem, kurus tu esi palaidis garām kopš pēdējā apmeklējuma %{since}
+      mention: "%{name} pieminēja tevi:"
+      title: Tavas prombūtnes laikā...
+    favourite:
+      body: 'Tavu ziņu izlasei pievienoja %{name}:'
+      subject: "%{name} pievienoja tavu ziņu izlasei"
+      title: Jauns izcēlums
+    follow:
+      body: "%{name} tagad tev seko!"
+      subject: "%{name} tagad tev seko"
+      title: Jauns sekotājs
+    follow_request:
+      action: Pārvaldīt sekošanas pieprasījumus
   number:
     human:
       decimal_units:
