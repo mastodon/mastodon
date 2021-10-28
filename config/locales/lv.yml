@@ -73,6 +73,10 @@ lv:
     people_who_follow: Cilvēki, kuri seko %{name}
     pin_errors:
       following: Tev jau ir jāseko personai, kuru vēlies apstiprināt
+    posts:
+      zero: Ziņu
+      one: Ziņa
+      other: Ziņas
     posts_tab_heading: Ziņas
     posts_with_replies: Ziņas un atbildes
     roles:
@@ -371,6 +375,18 @@ lv:
       media_storage: Mediju glabāšana
       new_users: jauni lietotāji
       opened_reports: atvērtie ziņojumi
+      pending_reports_html:
+        zero: "<strong>%{count}</strong> ziņojumu"
+        one: "<strong>1</strong> ziņojums gaida"
+        other: "<strong>%{count}</strong> ziņojumi gaida"
+      pending_tags_html:
+        zero: "<strong>%{count}</strong> tēmturu"
+        one: "<strong>1</strong> tēmturis gaida"
+        other: "<strong>%{count}</strong> tēmturi gaida"
+      pending_users_html:
+        zero: "<strong>%{count}</strong> lietotāju"
+        one: "<strong>1</strong> lietotājs gaida"
+        other: "<strong>%{count}</strong> lietotāji gaida"
       resolved_reports: ziņojumi atrisināti
       software: Programmatūra
       sources: Reģistrēšanās avoti
@@ -416,6 +432,10 @@ lv:
         silence: ierobežots
         suspend: apturēts
       show:
+        affected_accounts:
+          zero: "%{count} ietekmētu kontu"
+          one: Ietekmēts viens konts datu bāzē
+          other: "Ietekmēti %{count} konti datu bāzē"
         retroactive:
           silence: Atsaukt ierobežojumus esošajiem ietekmētajiem kontiem no šī domēna
           suspend: Atcelt šī domēna esošo ietekmēto kontu darbības apturēšanu
@@ -457,10 +477,18 @@ lv:
         unavailable: Nav pieejams
         unavailable_message: Piegāde nav iespējama
         warning: Brīdinājums
+        warning_message:
+          zero: Piegādes kļūme %{count} dienas
+          one: Piegādes kļūme %{count} diena
+          other: Piegādes kļūme %{count} dienas
       delivery_available: Piegāde ir iespējama
       delivery_error_days: Piegādes kļūdu dienas
       delivery_error_hint: Ja piegāde nav iespējama %{count} dienas, tā tiks automātiski atzīmēta kā nepiegādājama.
       empty: Domēni nav atrasti.
+      known_accounts:
+        zero: "%{count} zināmu kontu"
+        one: "%{count} zināms konts"
+        other: "%{count} zināmi konti"
       moderation:
         all: Visas
         limited: Ierobežotās
@@ -525,6 +553,10 @@ lv:
           zero: "%{count} piezīmju"
           one: "%{count} piezīme"
           other: "%{count} piezīmes"
+        reports:
+          zero: "%{count} ziņojumu"
+          one: "%{count} ziņojums"
+          other: "%{count} ziņojumi"
       action_taken_by: Veiktā darbība
       are_you_sure: Vai esi pārliecināts?
       assign_to_self: Piešķirt man
@@ -918,6 +950,10 @@ lv:
     no_batch_actions_available: Šajā lapā nav pieejamas sērijveida darbības
     order_by: Kārtot pēc
     save_changes: Saglabāt izmaiņas
+    validation_errors:
+      zero: '%{count} kļūdu'
+      one: Kaut kas vēl nav īsti kārtībā! Lūdzu, pārskati zemāk norādīto kļūdu
+      other: Kaut kas vēl nav īsti kārtībā! Lūdzu, pārskati %{count} kļūdas zemāk
   html_validator:
     invalid_markup: 'satur nederīgu HTML marķējumu: %{error}'
   identity_proofs:
@@ -971,6 +1007,10 @@ lv:
     expires_in_prompt: Nekad
     generate: Ģenerēt uzaicinājuma saiti
     invited_by: 'Tevi uzaicināja:'
+    max_uses:
+      zero: "%{count} lietojumu"
+      one: 1 lietojums
+      other: "%{count} lietojumi"
     max_uses_prompt: Nav ierobežojuma
     prompt: Izveido un kopīgo saites ar citiem, lai piešķirtu piekļuvi šim serverim
     table:
@@ -1038,6 +1078,14 @@ lv:
       action: Rādīt visus paziņojumus
       body: Šeit ir īss kopsavilkums par ziņojumiem, kurus tu esi palaidis garām kopš pēdējā apmeklējuma %{since}
       mention: "%{name} pieminēja tevi:"
+      new_followers_summary:
+        zero: '%{count} jaunu sekotāju!'
+        one: Tāpat, atrodoties prom, esi ieguvis vienu jaunu sekotāju! Jip!
+        other: Turklāt, atrodoties prom, esi ieguvis %{count} jaunus sekotājus! Apbrīnojami!
+      subject:
+        zero: "%{count} jaunu paziņojumu"
+        one: "1 jauns paziņojums kopš tava pēdējā apmeklējuma \U0001F418"
+        other: "%{count} jauni paziņojumi kopš tava pēdējā apmeklējuma \U0001F418"
       title: Tavas prombūtnes laikā...
     favourite:
       body: 'Tavu ziņu izlasei pievienoja %{name}:'
