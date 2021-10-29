@@ -147,9 +147,9 @@ GEM
       activesupport
     cbor (0.5.9.6)
     charlock_holmes (0.7.7)
-    chewy (7.2.2)
+    chewy (7.2.3)
       activesupport (>= 5.2)
-      elasticsearch (>= 7.12.0)
+      elasticsearch (>= 7.12.0, < 7.14.0)
       elasticsearch-dsl
     chunky_png (1.4.0)
     cld3 (3.4.2)
@@ -214,7 +214,7 @@ GEM
     fabrication (2.22.0)
     faker (2.19.0)
       i18n (>= 1.6, < 2)
-    faraday (1.6.0)
+    faraday (1.8.0)
       faraday-em_http (~> 1.0)
       faraday-em_synchrony (~> 1.0)
       faraday-excon (~> 1.1)
@@ -674,7 +674,7 @@ GEM
     xorcist (1.1.2)
     xpath (3.2.0)
       nokogiri (~> 1.8)
-    zeitwerk (2.4.2)
+    zeitwerk (2.5.1)
 
 PLATFORMS
   ruby
@@ -712,7 +712,6 @@ DEPENDENCIES
   doorkeeper (~> 5.5)
   dotenv-rails (~> 2.7)
   ed25519 (~> 1.2)
-  elasticsearch (>= 7.12.0, < 7.14.0)
   fabrication (~> 2.22)
   faker (~> 2.19)
   fast_blank (~> 1.0)
