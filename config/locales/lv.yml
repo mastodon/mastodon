@@ -1173,8 +1173,40 @@ lv:
     mutual: Savstarpējs
     primary: Primārais
     relationship: Attiecības
+    remove_selected_domains: Noņemt visus sekotājus no atlasītajiem domēniem
+    remove_selected_followers: Noņemt atlasītos sekotājus
+    remove_selected_follows: Pārtraukt sekošanu atlasītajiem lietotājiem
+    status: Konta statuss
+  remote_follow:
+    acct: Ievadi savu lietotajvards@domens, no kura vēlies darboties
+    missing_resource: Nevarēja atrast tavam kontam nepieciešamo novirzīšanas URL
+    no_account_html: Vai tev nav konta? Tu vari <a href='%{sign_up_path}' target='_blank'>piereģistrēties šeit</a>
+    proceed: Turpini lai sekotu
+    prompt: 'Tu gatavojies sekot:'
+    reason_html: "<strong> Kāpēc šis solis ir nepieciešams?</strong> <code>%{instance}</code>, iespējams, nav serveris, kurā esi reģistrēts, tāpēc mums vispirms ir jānovirza tevi uz tavu mājas serveri."
+  remote_interaction:
+    favourite:
+      proceed: Pārej uz izlasi
+      prompt: 'Tu vēlies pievienot izlasei šo ziņu:'
+    reblog:
+      proceed: Turpini paaugstināt
+      prompt: 'Tu vēlies paugstināt šo ziņu:'
+    reply:
+      proceed: Turpini lai atbildētu
+      prompt: 'Tu vēlies atbildēt uz šo ziņu:'
+  scheduled_statuses:
+    over_daily_limit: Tu esi pārsniedzis šodien ieplānoto %{limit} ziņu ierobežojumu
+    over_total_limit: Tu esi pārsniedzis ieplānoto %{limit} ziņu ierobežojumu
+    too_soon: Ieplānotajam datumam ir jābūt nākotnē
   sessions:
+    activity: Pēdējā aktivitāte
+    browser: Pārlūks
     browsers:
+      alipay: Alipay
+      blackberry: Blackberry
+      chrome: Chrome
+      edge: Microsoft Edge
+      electron: Electron
       qq: QQ Browser
       safari: Safari
       uc_browser: UCBrowser
