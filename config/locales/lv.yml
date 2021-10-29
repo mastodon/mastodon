@@ -59,6 +59,10 @@ lv:
     endorsements_hint: Jūs varat apstiprināt cilvēkus, kuriem sekojat no tīmekļa saskarnes, un viņi tiks parādīti šeit.
     featured_tags_hint: Šeit vari norādīt īpašus tēmturus, kuri tiks parādīti šeit.
     follow: Seko
+    followers:
+      zero: Sekotāju
+      one: Sekotājs
+      other: Sekotāji
     following: Seko
     instance_actor_flash: Šis konts ir virtuāls aktieris, ko izmanto, lai pārstāvētu pašu serveri, nevis atsevišķu lietotāju. To izmanto federācijas nolūkos, un to nevajadzētu apturēt.
     joined: Pievienojās %{date}
@@ -1265,7 +1269,19 @@ lv:
     webauthn_authentication: Drošības atslēgas
   statuses:
     attached:
+      audio:
+        zero: "%{count} audio"
+        one: "%{count} audio"
+        other: "%{count} audio"
       description: 'Pievienots: %{attached}'
+      image:
+        zero: "%{count} attēlu"
+        one: "%{count} attēls"
+        other: "%{count} attēli"
+      video:
+        zero: "%{count} video"
+        one: "%{count} video"
+        other: "%{count} video"
     boosted_from_html: Paaugstināja %{acct_link}
     content_warning: 'Satura brīdinājums: %{warning}'
     disallowed_hashtags:
@@ -1294,6 +1310,12 @@ lv:
       vote: Balsu skaits
     show_more: Rādīt vairāk
     show_newer: Nekad nerādīt
+    show_older: Rādīt senākus
+    show_thread: Rādīt tematu
+    sign_in_to_participate: Lai piedalītos sarunā, pieraksties
+    title: '%{name}: “%{quote}”'
+    visibilities:
+      direct: Tiešs
   statuses_cleanup:
     min_age:
       '1209600': 2 weeks
@@ -1489,3 +1511,7 @@ lv:
       success: Tava drošības atslēga tika veiksmīgi izdēsta.
     invalid_credential: Nederīga drošības atslēga
     nickname_hint: Ievadi savas jaunās drošības atslēgas segvārdu
+    not_enabled: Tu vel neesi iespējojis WebAuthn
+    not_supported: Šī pārlūkprogramma neatbalsta drošības atslēgas
+    otp_required: Lai izmantotu drošības atslēgas, lūdzu, vispirms iespējo divfaktoru autentifikāciju.
+    registered_on: Reģistrēts %{date}
