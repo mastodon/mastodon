@@ -1328,10 +1328,25 @@ lv:
     exceptions: Izņēmumi
     explanation: Tā kā ziņu dzēšana ir dārga darbība, tā tiek veikta lēnām laika gaitā, kad serveris nav citādi aizņemts. Šī iemesla dēļ tavas ziņas var tikt izdzēstas kādu laiku pēc vecuma sliekšņa sasniegšanas.
     ignore_favs: Ignorēt izlasi
+    ignore_reblogs: Ignorēt paaugstinātās
+    interaction_exceptions: Izņēmumi, kuru pamatā ir mijiedarbība
+    interaction_exceptions_explanation: Ņem vērā, ka nav garantijas, ka ziņas tiks dzēstas, ja tās ir zemākas par izlases vai paaugstinājuma slieksni pēc to pārsniegšanas.
+    keep_direct: Saglabāt tiešos ziņojumus
+    keep_direct_hint: Nedzēš nevienu tavu tiešo ziņojumu
+    keep_media: Saglabāt ziņas ar mediju pielikumiem
+    keep_media_hint: Neizdzēš nevienu no tavām ziņām, kurām ir mediju pielikumi
+    keep_pinned: Saglabāt piespraustās ziņas
+    keep_pinned_hint: Nedzēš nevienu tavis piesprausto ziņu
+    keep_polls: Saglabāt aptaujas
+    keep_polls_hint: Nedzēš nevienu tavu aptauju
+    keep_self_bookmark: Saglabāt ziņas, kuras esi pievienojis grāmatzīmēm
+    keep_self_bookmark_hint: Neizdzēš tavas ziņas, ja esi tās pievienojis grāmatzīmēm
+    keep_self_fav: Saglabāt ziņas, kuras esi pievienojis izlasei
+    keep_self_fav_hint: Neizdzēš tavas ziņas, ja esi tās pievienojis izlasei
     min_age:
-      '1209600': 2 weeks
-      '15778476': 6 months
-      '2629746': 1 month
+      '1209600': 2 nedēļas
+      '15778476': 6 mēneši
+      '2629746': 1 mēnesis
       '31556952': 1 gads
       '5259492': 2 mēneši
       '63113904': 2 gadi
@@ -1487,6 +1502,13 @@ lv:
       statuses: 'Konkrēti, priekš:'
       subject:
         disable: Tavs konts %{acct} tika iesaldēts
+        none: Brīdinājums par %{acct}
+        sensitive: Tavs konts %{acct}, kurā tiek publicēts mediju saturs, ir atzīmēts kā sensitīvs
+        silence: Tavs konts %{acct} tika ierobežots
+        suspend: Tava konta %{acct} darbība ir apturēta
+      title:
+        disable: Konts iesaldēts
+        none: Brīdinājums
     welcome:
       review_preferences_action: Mainīt preferences
       review_preferences_step: Noteikti iestati savas preferences, piemēram, kādus e-pasta ziņojumus vēlies saņemt vai kādu konfidencialitātes līmeni vēlies iestatīt savām ziņām pēc noklusējuma. Ja tev nav kustību slimības, vari izvēlēties iespējot GIF automātisko atskaņošanu.
