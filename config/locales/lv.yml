@@ -1207,6 +1207,14 @@ lv:
       chrome: Chrome
       edge: Microsoft Edge
       electron: Electron
+      firefox: Firefox
+      generic: Nezināms pārlūks
+      ie: Internet Explorer
+      micro_messenger: MicroMessenger
+      nokia: Nokia S40 Ovi Browser
+      opera: Opera
+      otter: Otter
+      phantom_js: PhantomJS
       qq: QQ Browser
       safari: Safari
       uc_browser: UCBrowser
@@ -1258,6 +1266,34 @@ lv:
   statuses:
     attached:
       description: 'Pievienots: %{attached}'
+    boosted_from_html: Paaugstināja %{acct_link}
+    content_warning: 'Satura brīdinājums: %{warning}'
+    disallowed_hashtags:
+      zero: 'neatļauti tēmturi: %{tags}'
+      one: 'saturēja neatļautu tēmturi: %{tags}'
+      other: 'saturēja neatļautus tēmturus: %{tags}'
+    errors:
+      in_reply_not_found: Šķiet, ka ziņa, uz kuru tu mēģini atbildēt, nepastāv.
+    language_detection: Automātiski noteikt valodu
+    open_in_web: Atvērt webā
+    over_character_limit: pārsniegts %{max} rakstzīmju ierobežojums
+    pin_errors:
+      limit: Tu jau esi piespraudis maksimālo ziņu skaitu
+      ownership: Citas personas ziņu nevar piespraust
+      private: Nepubliskas ziņas nevar piespraust
+      reblog: Paaugstinātās ziņas nevar piespraust
+    poll:
+      total_people:
+        zero: "%{count} personu"
+        one: "%{count} persona"
+        other: "%{count} personas"
+      total_votes:
+        zero: "%{count} balsu"
+        one: "%{count} balss"
+        other: "%{count} balsis"
+      vote: Balsu skaits
+    show_more: Rādīt vairāk
+    show_newer: Nekad nerādīt
   statuses_cleanup:
     min_age:
       '1209600': 2 weeks
@@ -1418,3 +1454,5 @@ lv:
       statuses: 'Konkrēti, priekš:'
       subject:
         disable: Tavs konts %{acct} tika iesaldēts
+    welcome:
+      review_preferences_action: Mainīt preferences
