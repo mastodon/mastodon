@@ -1316,7 +1316,18 @@ lv:
     title: '%{name}: “%{quote}”'
     visibilities:
       direct: Tiešs
+      private: Tikai sekotājiem
+      private_long: Rādīt tikai sekotājiem
+      public: Publisks
+      public_long: Visi var redzēt
+      unlisted: Neiekļautie
+      unlisted_long: Ikviens var redzēt, bet nav norādīts publiskajā ziņu lentā
   statuses_cleanup:
+    enabled: Automātiski dzēst vecās ziņas
+    enabled_hint: Automātiski izdzēš tavas ziņas, tiklīdz tās sasniedz noteiktu vecuma slieksni, ja vien tās neatbilst kādam no tālāk norādītajiem izņēmumiem
+    exceptions: Izņēmumi
+    explanation: Tā kā ziņu dzēšana ir dārga darbība, tā tiek veikta lēnām laika gaitā, kad serveris nav citādi aizņemts. Šī iemesla dēļ tavas ziņas var tikt izdzēstas kādu laiku pēc vecuma sliekšņa sasniegšanas.
+    ignore_favs: Ignorēt izlasi
     min_age:
       '1209600': 2 weeks
       '15778476': 6 months
