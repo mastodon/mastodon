@@ -1,0 +1,30 @@
+.batch-table__row{ class: [preview_card.provider&.requires_review? && 'batch-table__row--attention', !preview_card.provider&.requires_review? && !preview_card.provider&.trendable? && 'batch-table__row--muted'] }
+  %label.batch-table__row__select.batch-table__row__select--aligned.batch-checkbox
+    = f.check_box :preview_card_ids, { multiple: true, include_hidden: false }, preview_card.id
+
+  .batch-table__row__content.pending-account
+    .pending-account__header
+      = link_to preview_card.title, preview_card.url
+
+      %br/
+
+      - if preview_card.provider_name.present?
+        = preview_card.provider_name
+        •
+
+      - if preview_card.language.present?
+        = human_locale(preview_card.language)
+        •
+
+      = t('admin.trends.links.shared_by_over_week', count: preview_card.history.reduce(0) { |sum, day| sum + day.accounts })
+
+      - if preview_card.provider&.trendable? && (rank = Trends.links.rank(preview_card.id))
+        •
+        %abbr{ title: t('admin.trends.tags.current_score', score: Trends.links.score(preview_card.id)) }= t('admin.trends.tags.trending_rank', rank: rank + 1)
+
+        - if preview_card.max_score_at && preview_card.max_score_at >= Trends::Links::MAX_SCORE_COOLDOWN.ago && preview_card.max_score_at < 1.day.ago
+          •
+          = t('admin.trends.tags.peaked_on_and_decaying', date: l(preview_card.max_score_at.to_date, format: :short))
+      - elsif preview_card.provider&.requires_review?
+        •
+        = t('admin.trends.pending_review')

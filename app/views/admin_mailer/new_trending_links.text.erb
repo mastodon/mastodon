@@ -1,0 +1,16 @@
+<%= raw t('application_mailer.salutation', name: display_name(@me)) %>
+
+<%= raw t('admin_mailer.new_trending_links.body') %>
+
+<% @links.each do |link| %>
+- <%= link.title %> • <%= link.url %>
+  <%= t('admin.trends.links.usage_comparison', today: link.history.get(Time.now.utc).accounts, yesterday: link.history.get(Time.now.utc - 1.day).accounts) %> • <%= t('admin.trends.tags.current_score', score: Trends.links.score(link.id).round(2)) %>
+<% end %>
+
+<% if @lowest_trending_link %>
+<%= t('admin_mailer.new_trending_links.requirements', lowest_link_title: @lowest_trending_link.name, lowest_link_score: Trends.links.score(@lowest_trending_link.id).round(2)) %>
+<% else %>
+<%= t('admin_mailer.new_trending_links.no_approved_links') %>
+<% end %>
+
+<%= raw t('application_mailer.view')%> <%= admin_trends_links_url %>

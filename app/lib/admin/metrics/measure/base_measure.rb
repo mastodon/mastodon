@@ -1,9 +1,10 @@
 # frozen_string_literal: true
 
 class Admin::Metrics::Measure::BaseMeasure
-  def initialize(start_at, end_at)
+  def initialize(start_at, end_at, params)
     @start_at = start_at&.to_datetime
     @end_at   = end_at&.to_datetime
+    @params   = params
   end
 
   def key
@@ -33,14 +34,18 @@ class Admin::Metrics::Measure::BaseMeasure
   protected
 
   def time_period
-    (@start_at...@end_at)
+    (@start_at..@end_at)
   end
 
   def previous_time_period
-    ((@start_at - length_of_period)...(@end_at - length_of_period))
+    ((@start_at - length_of_period)..(@end_at - length_of_period))
   end
 
   def length_of_period
     @length_of_period ||= @end_at - @start_at
+  end
+
+  def params
+    raise NotImplementedError
   end
 end

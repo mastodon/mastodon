@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_08_071221) do
+ActiveRecord::Schema.define(version: 2021_11_12_011713) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -689,6 +689,20 @@ ActiveRecord::Schema.define(version: 2021_08_08_071221) do
     t.index ["status_id"], name: "index_polls_on_status_id"
   end
 
+  create_table "preview_card_providers", force: :cascade do |t|
+    t.string "domain", default: "", null: false
+    t.string "icon_file_name"
+    t.string "icon_content_type"
+    t.bigint "icon_file_size"
+    t.datetime "icon_updated_at"
+    t.boolean "trendable"
+    t.datetime "reviewed_at"
+    t.datetime "requested_review_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["domain"], name: "index_preview_card_providers_on_domain", unique: true
+  end
+
   create_table "preview_cards", force: :cascade do |t|
     t.string "url", default: "", null: false
     t.string "title", default: "", null: false
@@ -710,6 +724,9 @@ ActiveRecord::Schema.define(version: 2021_08_08_071221) do
     t.string "embed_url", default: "", null: false
     t.integer "image_storage_schema_version"
     t.string "blurhash"
+    t.string "language"
+    t.float "max_score"
+    t.datetime "max_score_at"
     t.index ["url"], name: "index_preview_cards_on_url", unique: true
   end
 
