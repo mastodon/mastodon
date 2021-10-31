@@ -20,6 +20,8 @@ ast:
         data: El ficheru CSV esportáu dende otra instancia de Mastodon
       invite_request:
         text: Esto va ayudanos a revisar la to aplicación
+      ip_block:
+        comment: Opcional. Acuérdate por qué amestesti esta regla.
       sessions:
         otp: 'Introduz el códigu de dos pasos xeneráu pola aplicación autenticadora o usa unu de los códigos de recuperación:'
     labels:
@@ -50,7 +52,6 @@ ast:
         header: Testera
         irreversible: Escartar en cuentes d'anubrir
         locale: Llingua de la interfaz
-        locked: Bloquiar la cuenta
         max_uses: Númberu máximu d'usos
         new_password: Contraseña nueva
         note: Biografía
@@ -71,6 +72,7 @@ ast:
         setting_unfollow_modal: Amosar el diálogu de confirmación enantes de dexar de siguir a daquién
         setting_use_pending_items: Mou lentu
         severity: Severidá
+        sign_in_token_attempt: Códigu de seguranza
         type: Triba de la importación
         username: Nome d'usuariu
         username_or_email: Nome d'usuariu o corréu
