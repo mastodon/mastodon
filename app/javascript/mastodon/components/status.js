@@ -101,6 +101,7 @@ class Status extends ImmutablePureComponent {
       inUse: PropTypes.bool,
       available: PropTypes.bool,
     }),
+    lines: PropTypes.array,
   };
 
   // Avoid checking props that are functions (and whose equality will always
@@ -479,6 +480,8 @@ class Status extends ImmutablePureComponent {
               </a>
 
               <a onClick={this.handleAccountClick} href={status.getIn(['account', 'url'])} title={status.getIn(['account', 'acct'])} className='status__display-name' target='_blank' rel='noopener noreferrer'>
+                {this.props.lines?.[0] === 'HEAD' ? <div className='status-line' /> : null}
+                
                 <div className='status__avatar'>
                   {statusAvatar}
                 </div>

@@ -1,4 +1,4 @@
-import { assignResponsesForStatus } from '../assignResponesForStatus';
+import { assignResponsesForStatus } from '../utils/assignResponesForStatus';
 
 describe('assignResponsesForStatus', () => {
   it('returns [] when no statuses', () => {
