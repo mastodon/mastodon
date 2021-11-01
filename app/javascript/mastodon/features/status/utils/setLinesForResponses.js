@@ -52,8 +52,8 @@ const flatChildren = (list, level = 1, hiddenLevels = 0, lastChildX = undefined)
           ...flatChildren(
             children,
             level + 1,
-            lastChildX === true && level > 1 ? hiddenLevels + 1 : hiddenLevels,
-            current.lastChild && level === 1 || lastChildX,
+            current.lastChild === true && level > 1 ? hiddenLevels + 1 : hiddenLevels,
+            current.lastChild || lastChildX,
           ),
         ]
         : [{ [id]: current }];

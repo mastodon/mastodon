@@ -27,7 +27,7 @@ describe('setLinesForResponses', () => {
       2: { mode: 'o', lastChild: false, level: 1, hiddenLevels: 0 },
       3: { mode: 'i', lastChild: false, level: 2, hiddenLevels: 0 },
       4: { mode: 'io', lastChild: true, level: 2, hiddenLevels: 0 },
-      5: { mode: 'i', lastChild: true, level: 3, hiddenLevels: 0 },
+      5: { mode: 'i', lastChild: true, level: 3, hiddenLevels: 1 },
       6: { mode: '', lastChild: false, level: 1, hiddenLevels: 0 },
       7: { mode: 'o', lastChild: true, level: 1, hiddenLevels: 0 },
       8: { mode: 'io', lastChild: true, level: 2, hiddenLevels: 0 },

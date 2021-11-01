@@ -480,9 +480,10 @@ class Status extends ImmutablePureComponent {
     return list.map(({ id, children, lines }) => {
       return (<div className='status__container'>
         <div className='status_with_lines'>
+          {new Array(lines.level - 1).fill(undefined).map((_, index, self) => <div data={JSON.stringify({index, l: self.length, lines, half: index === self.lenght-1 && lines?.lastChild})} className={classNames('indent', { half: (index === self.length-1) && lines?.lastChild , hidden: index < lines?.hiddenLevels})} />)}
           <div style={{ flex: 1 }}>
             <StatusContainer
-              key={id}
+              key={`${id}${lines?.mode}`}
               id={id}
               onMoveUp={this.handleMoveUp}
               onMoveDown={this.handleMoveDown}
