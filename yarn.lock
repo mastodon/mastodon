@@ -65,6 +65,13 @@
   dependencies:
     "@babel/types" "^7.15.4"
 
+"@babel/helper-annotate-as-pure@^7.16.0":
+  version "7.16.0"
+  resolved "https://registry.yarnpkg.com/@babel/helper-annotate-as-pure/-/helper-annotate-as-pure-7.16.0.tgz#9a1f0ebcda53d9a2d00108c4ceace6a5d5f1f08d"
+  integrity sha512-ItmYF9vR4zA8cByDocY05o0LGUkp1zhbTQOH1NFyl5xXEqlTJQCEJjieriw+aFpxo16swMxUnUiKS7a/r4vtHg==
+  dependencies:
+    "@babel/types" "^7.16.0"
+
 "@babel/helper-builder-binary-assignment-operator-visitor@^7.14.5":
   version "7.14.5"
   resolved "https://registry.yarnpkg.com/@babel/helper-builder-binary-assignment-operator-visitor/-/helper-builder-binary-assignment-operator-visitor-7.14.5.tgz#b939b43f8c37765443a19ae74ad8b15978e0a191"
@@ -73,13 +80,13 @@
     "@babel/helper-explode-assignable-expression" "^7.14.5"
     "@babel/types" "^7.14.5"
 
-"@babel/helper-builder-react-jsx@^7.14.5":
-  version "7.14.5"
-  resolved "https://registry.yarnpkg.com/@babel/helper-builder-react-jsx/-/helper-builder-react-jsx-7.14.5.tgz#87620c97a8729e91caf9e6f0d324fff23e90bb5d"
-  integrity sha512-LT/856RUBXAHjmvJuLuI6XYZZAZNMSS+N2Yf5EUoHgSWtiWrAaGh7t5saP7sPCq07uvWVxxK3gwwm3weA9gKLg==
+"@babel/helper-builder-react-jsx@^7.16.0":
+  version "7.16.0"
+  resolved "https://registry.yarnpkg.com/@babel/helper-builder-react-jsx/-/helper-builder-react-jsx-7.16.0.tgz#cbff6790e8dfc29b9f986f712a1d69f1428a35b5"
+  integrity sha512-m04yTRoynupLijXcfkxjx5VfQeNRR67lncuW6osD6P/3o2sChz8zcwJGzso55oeTkEJlMu2atFJAdmB56i8F5Q==
   dependencies:
-    "@babel/helper-annotate-as-pure" "^7.14.5"
-    "@babel/types" "^7.14.5"
+    "@babel/helper-annotate-as-pure" "^7.16.0"
+    "@babel/types" "^7.16.0"
 
 "@babel/helper-compilation-targets@^7.13.0", "@babel/helper-compilation-targets@^7.15.4":
   version "7.15.4"
@@ -837,12 +844,12 @@
   dependencies:
     "@babel/helper-plugin-utils" "^7.14.5"
 
-"@babel/plugin-transform-react-inline-elements@^7.14.5":
-  version "7.14.5"
-  resolved "https://registry.yarnpkg.com/@babel/plugin-transform-react-inline-elements/-/plugin-transform-react-inline-elements-7.14.5.tgz#5e2c8ad96612f1a86484b291df5216cc6a6cffb6"
-  integrity sha512-RsdXYEbicGlg9WBvanlndPqCxrG9hV86lPjObbsTzA5hkrfScoECP5NWEJFUrtE/NVFu81OcPu6pQVVQtOX20Q==
+"@babel/plugin-transform-react-inline-elements@^7.16.0":
+  version "7.16.0"
+  resolved "https://registry.yarnpkg.com/@babel/plugin-transform-react-inline-elements/-/plugin-transform-react-inline-elements-7.16.0.tgz#e0975bba7b3fc332599c2f15d98f633ce978a198"
+  integrity sha512-b/MO7Rr1ew/D0UdTfcl8QTSygAzuEvVSwIzu7dqeVUuU6wWvuQGueEv3NXvdUl29mlnoXaAAcJy50fgLqXg+Lg==
   dependencies:
-    "@babel/helper-builder-react-jsx" "^7.14.5"
+    "@babel/helper-builder-react-jsx" "^7.16.0"
     "@babel/helper-plugin-utils" "^7.14.5"
 
 "@babel/plugin-transform-react-jsx-development@^7.14.5":
@@ -1102,6 +1109,14 @@
   integrity sha512-BPU+7QhqNjmWyDO0/vitH/CuhpV8ZmK1wpKva8nuyNF5MJfuRNWMc+hc14+u9xT93kvykMdncrJT19h74uB1Ig==
   dependencies:
     "@babel/helper-validator-identifier" "^7.14.9"
+    to-fast-properties "^2.0.0"
+
+"@babel/types@^7.16.0":
+  version "7.16.0"
+  resolved "https://registry.yarnpkg.com/@babel/types/-/types-7.16.0.tgz#db3b313804f96aadd0b776c4823e127ad67289ba"
+  integrity sha512-PJgg/k3SdLsGb3hhisFvtLOw5ts113klrpLuIPtCJIU+BB24fqq6lf8RWqKJEjzqXR9AEH1rIb5XTqwBHB+kQg==
+  dependencies:
+    "@babel/helper-validator-identifier" "^7.15.7"
     to-fast-properties "^2.0.0"
 
 "@bcoe/v8-coverage@^0.2.3":
