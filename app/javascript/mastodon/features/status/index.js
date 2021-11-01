@@ -1,5 +1,6 @@
 import Immutable from 'immutable';
 import React from 'react';
+import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
@@ -57,7 +58,8 @@ import { boostModal, deleteModal } from '../../initial_state';
 import { attachFullscreenListener, detachFullscreenListener, isFullscreen } from '../ui/util/fullscreen';
 import { textForScreenReader, defaultMediaVisibility } from '../../components/status';
 import Icon from 'mastodon/components/icon';
-import { assignResponsesForStatus } from './assignResponesForStatus';
+import { assignResponsesForStatus } from './utils/assignResponesForStatus';
+import { setResponsesWithLinesData } from './utils/setLinesForResponses';
 
 const messages = defineMessages({
   deleteConfirm: { id: 'confirmations.delete.confirm', defaultMessage: 'Delete' },
@@ -133,7 +135,7 @@ const makeMapStateToProps = () => {
       3,
     );
 
-    return Immutable.List(statusesWithResponseHierarchy);
+    return Immutable.List(setResponsesWithLinesData( statusesWithResponseHierarchy ));
   });
 
   const mapStateToProps = (state, props) => {
@@ -475,21 +477,24 @@ class Status extends ImmutablePureComponent {
   }
 
   renderDescendants (list) {
-    return list.map(({ id, children }) => {
+    return list.map(({ id, children, lines }) => {
       return (<div className='status__container'>
-        <StatusContainer
-          key={id}
-          id={id}
-          onMoveUp={this.handleMoveUp}
-          onMoveDown={this.handleMoveDown}
-          contextType='thread'
-        />
+        <div className='status_with_lines'>
+          <div style={{ flex: 1 }}>
+            <StatusContainer
+              key={id}
+              id={id}
+              onMoveUp={this.handleMoveUp}
+              onMoveDown={this.handleMoveDown}
+              contextType='thread'
+              lines={lines}
+            />
+          </div>
+          <div className={classNames('line', lines[0] === 't' ? 't-line' : 'l-line')} />
+        </div>
         {children.length ? (
           <>
-            <div className='status__response_line' />
-            <div className={classNames('status__reply')}>
-              {this.renderDescendants(children)}
-            </div>
+            {this.renderDescendants(children)}
           </>
         ) : null}
       </div>);
@@ -542,6 +547,20 @@ class Status extends ImmutablePureComponent {
     if (ancestorsIds && ancestorsIds.size > 0) {
       ancestors = <div>{this.renderChildren(ancestorsIds)}</div>;
     }
+
+    const wrapDescendants = (elements) => {
+      const children = React.Children.toArray(elements.props.children);
+
+      // const allChildren = reactChildrenToFlatArray(children);
+
+      // allChildren.forEach(x => x.props.className += ' edited');
+
+      return React.createElement(
+        elements.type,
+        elements.props,
+        children,
+      );
+    };
 
     if (descendantsIds && descendantsIds.size > 0) {
       descendants = <div>{this.renderDescendants(descendantsIds)}</div>;

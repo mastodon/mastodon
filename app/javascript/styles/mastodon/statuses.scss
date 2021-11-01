@@ -203,3 +203,34 @@ a.button.logo-button {
 .status__reply{
   padding-left: 25px;
 }
+
+
+.status__container {
+  .line {
+    width: 2px;
+    display: block;
+    background: white;
+  } 
+
+  .status_with_lines{
+    display: flex;
+  }
+
+  .t-line {
+    height: 100%;
+  }
+  .l-line {
+    height: 50%;
+  }
+
+  .status-line{
+    position: absolute;
+    height: 50%;
+    width: 2px;
+    background: white;
+    top: 50%;
+    overflow: hidden;
+    /* z-index: -51; */
+    left: 37px;
+  }
+}
