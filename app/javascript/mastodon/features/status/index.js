@@ -57,6 +57,7 @@ import { boostModal, deleteModal } from '../../initial_state';
 import { attachFullscreenListener, detachFullscreenListener, isFullscreen } from '../ui/util/fullscreen';
 import { textForScreenReader, defaultMediaVisibility } from '../../components/status';
 import Icon from 'mastodon/components/icon';
+import { assignResponsesForStatus } from './assignResponesForStatus';
 
 const messages = defineMessages({
   deleteConfirm: { id: 'confirmations.delete.confirm', defaultMessage: 'Delete' },
@@ -126,21 +127,13 @@ const makeMapStateToProps = () => {
       });
     }
 
-    const idToStatus = descendantsIds.map(id => {
-      const { in_reply_to_id, content } = statuses.get(id).toObject();
-      return { id, in_reply_to_id, content, children: [] };
-    }).reduce((prev, current) => {
-      return { ...prev, [current.id]: current };
-    }, {});
+    const statusesWithResponseHierarchy = assignResponsesForStatus(
+      statusId,
+      descendantsIds.map(id => statuses.get(id).toObject()),
+      3,
+    );
 
-    Object.values(idToStatus).forEach(status => {
-      idToStatus[status.in_reply_to_id]?.children.push(status);
-      if(status.in_reply_to_id !== statusId){
-        delete idToStatus[status.id];
-      }
-    });
-
-    return Immutable.List(Object.values(idToStatus).map(({ id, children }) => ({ id, children: children.map(x => x.id) })));
+    return Immutable.List(statusesWithResponseHierarchy);
   });
 
   const mapStateToProps = (state, props) => {
@@ -483,7 +476,7 @@ class Status extends ImmutablePureComponent {
 
   renderDescendants (list) {
     return list.map(({ id, children }) => {
-      return (<>
+      return (<div className='status__container'>
         <StatusContainer
           key={id}
           id={id}
@@ -491,17 +484,15 @@ class Status extends ImmutablePureComponent {
           onMoveDown={this.handleMoveDown}
           contextType='thread'
         />
-        {children.length ? (<div className={classNames('status__reply')}>
-          {children.map(id => (
-            <StatusContainer
-              key={id}
-              id={id}
-              onMoveUp={this.handleMoveUp}
-              onMoveDown={this.handleMoveDown}
-              contextType='thread'
-            />))}
-        </div>) : null}
-      </>);
+        {children.length ? (
+          <>
+            <div className='status__response_line' />
+            <div className={classNames('status__reply')}>
+              {this.renderDescendants(children)}
+            </div>
+          </>
+        ) : null}
+      </div>);
     });
   }
 
