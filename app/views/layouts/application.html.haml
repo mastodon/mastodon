@@ -37,6 +37,12 @@
     - if Setting.custom_css.present? || Setting.custom_css.present?
       = stylesheet_link_tag custom_css_path(Digest::SHA1.hexdigest("#{Setting.custom_css if Setting.custom_css.present?}\n#{current_user.setting_custom_css if user_signed_in?}")), host: request.host, media: 'all'
 
+    - if ENV['PLAUSIBLE_ANALYTICS_HOST']
+      = javascript_include_tag "//#{ ENV['PLAUSIBLE_ANALYTICS_HOST'] }/js/plausible.js", :defer => true, :async => 'async', :'data-domain' => ENV['PLAUSIBLE_ANALYTICS_SITE_DOMAIN'] || Rails.configuration.x.local_domain
+
+    - if ENV['MATOMO_ANALYTICS_HOST']
+      = javascript_pack_tag 'matomo', crossorigin: 'anonymous', 'data-matomo-host' => ENV['MATOMO_ANALYTICS_HOST'], 'data-matomo-site-id' => ENV['MATOMO_ANALYTICS_SITE_ID']
+
     = yield :header_tags
 
   %body{ class: body_classes }
