@@ -153,6 +153,7 @@ class Header extends ImmutablePureComponent {
       bellBtn = <IconButton icon='bell-o' size={24} active={account.getIn(['relationship', 'notifying'])} title={intl.formatMessage(account.getIn(['relationship', 'notifying']) ? messages.disableNotifications : messages.enableNotifications, { name: account.get('username') })} onClick={this.props.onNotifyToggle} />;
     }
 
+
     if (me !== account.get('id')) {
       if (!account.get('relationship')) { // Wait until the relationship is loaded
         actionBtn = '';
@@ -186,6 +187,8 @@ class Header extends ImmutablePureComponent {
       menu.push(null);
     }
 
+    let blocks = `/blocks/${account.get('id')}`
+
     if (account.get('id') === me) {
       menu.push({ text: intl.formatMessage(messages.edit_profile), href: '/settings/profile' });
       menu.push({ text: intl.formatMessage(messages.preferences), href: '/settings/preferences' });
@@ -196,7 +199,7 @@ class Header extends ImmutablePureComponent {
       menu.push({ text: intl.formatMessage(messages.lists), to: '/lists' });
       menu.push(null);
       menu.push({ text: intl.formatMessage(messages.mutes), to: '/mutes' });
-      menu.push({ text: intl.formatMessage(messages.blocks), to: '/blocks' });
+      menu.push({ text: intl.formatMessage(messages.blocks), to: blocks });
       menu.push({ text: intl.formatMessage(messages.domain_blocks), to: '/domain_blocks' });
     } else {
       if (account.getIn(['relationship', 'following'])) {
@@ -212,6 +215,10 @@ class Header extends ImmutablePureComponent {
         menu.push({ text: intl.formatMessage(messages.add_or_remove_from_list), action: this.props.onAddToList });
         menu.push(null);
       }
+
+      menu.push({ text: intl.formatMessage(messages.blocks), to: blocks});
+      menu.push({ text: intl.formatMessage(messages.domain_blocks), to: '/domain_blocks' });
+      menu.push(null);
 
       if (account.getIn(['relationship', 'muting'])) {
         menu.push({ text: intl.formatMessage(messages.unmute, { name: account.get('username') }), action: this.props.onMute });
@@ -332,21 +339,22 @@ class Header extends ImmutablePureComponent {
 
             {!suspended && (
               <div className='account__header__extra__links'>
-                <NavLink isActive={this.isStatusesPageActive} activeClassName='active' to={`/@${account.get('acct')}`} title={intl.formatNumber(account.get('statuses_count'))}>
+                <NavLink isActive={this.isStatusesPageActive} activeClassName='active' to={`/accounts/${account.get('id')}`} title={intl.formatNumber(account.get('statuses_count'))}>
                   <ShortNumber
                     value={account.get('statuses_count')}
                     renderer={counterRenderer('statuses')}
                   />
                 </NavLink>
 
-                <NavLink exact activeClassName='active' to={`/@${account.get('acct')}/following`} title={intl.formatNumber(account.get('following_count'))}>
+
+                <NavLink exact activeClassName='active' to={`/accounts/${account.get('id')}/following`} title={intl.formatNumber(account.get('following_count'))}>
                   <ShortNumber
                     value={account.get('following_count')}
                     renderer={counterRenderer('following')}
                   />
                 </NavLink>
 
-                <NavLink exact activeClassName='active' to={`/@${account.get('acct')}/followers`} title={intl.formatNumber(account.get('followers_count'))}>
+                <NavLink exact activeClassName='active' to={`/accounts/${account.get('id')}/followers`} title={intl.formatNumber(account.get('followers_count'))}>
                   <ShortNumber
                     value={account.get('followers_count')}
                     renderer={counterRenderer('followers')}

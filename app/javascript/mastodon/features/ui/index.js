@@ -54,6 +54,8 @@ import {
   FollowRecommendations,
 } from './util/async-components';
 import { me } from '../../initial_state';
+import { previewState as previewMediaState } from './components/media_modal';
+import { previewState as previewVideoState } from './components/video_modal';
 import { closeOnboarding, INTRODUCTION_VERSION } from 'mastodon/actions/onboarding';
 
 // Dummy import, to make sure that <Status /> ends up in the application bundle.
@@ -72,7 +74,6 @@ const mapStateToProps = state => ({
   canUploadMore: !state.getIn(['compose', 'media_attachments']).some(x => ['audio', 'video'].includes(x.get('type'))) && state.getIn(['compose', 'media_attachments']).size < 4,
   dropdownMenuIsOpen: state.getIn(['dropdown_menu', 'openId']) !== null,
   firstLaunch: state.getIn(['settings', 'introductionVersion'], 0) < INTRODUCTION_VERSION,
-  username: state.getIn(['accounts', me, 'username']),
 });
 
 const keyMap = {
@@ -137,6 +138,10 @@ class SwitchingColumnsArea extends React.PureComponent {
     }
   }
 
+  shouldUpdateScroll (_, { location }) {
+    return location.state !== previewMediaState && location.state !== previewVideoState;
+  }
+
   setRef = c => {
     if (c) {
       this.node = c.getWrappedInstance();
@@ -145,7 +150,7 @@ class SwitchingColumnsArea extends React.PureComponent {
 
   render () {
     const { children, mobile } = this.props;
-    const redirect = mobile ? <Redirect from='/' to='/home' exact /> : <Redirect from='/' to='/getting-started' exact />;
+    const redirect = mobile ? <Redirect from='/' to='/timelines/home' exact /> : <Redirect from='/' to='/getting-started' exact />;
 
     return (
       <ColumnsAreaContainer ref={this.setRef} singleColumn={mobile}>
@@ -153,45 +158,39 @@ class SwitchingColumnsArea extends React.PureComponent {
           {redirect}
           <WrappedRoute path='/getting-started' component={GettingStarted} content={children} />
           <WrappedRoute path='/keyboard-shortcuts' component={KeyboardShortcuts} content={children} />
+          <WrappedRoute path='/timelines/home' component={HomeTimeline} content={children} componentParams={{ shouldUpdateScroll: this.shouldUpdateScroll }} />
+          <WrappedRoute path='/timelines/public' exact component={PublicTimeline} content={children} componentParams={{ shouldUpdateScroll: this.shouldUpdateScroll }} />
+          <WrappedRoute path='/timelines/public/local' exact component={CommunityTimeline} content={children} componentParams={{ shouldUpdateScroll: this.shouldUpdateScroll }} />
+          <WrappedRoute path='/timelines/direct' component={DirectTimeline} content={children} componentParams={{ shouldUpdateScroll: this.shouldUpdateScroll }} />
+          <WrappedRoute path='/timelines/tag/:id' component={HashtagTimeline} content={children} componentParams={{ shouldUpdateScroll: this.shouldUpdateScroll }} />
+          <WrappedRoute path='/timelines/list/:id' component={ListTimeline} content={children} componentParams={{ shouldUpdateScroll: this.shouldUpdateScroll }} />
 
-          <WrappedRoute path={['/home', '/timelines/home']} component={HomeTimeline} content={children} />
-          <WrappedRoute path={['/public', '/timelines/public']} exact component={PublicTimeline} content={children} />
-          <WrappedRoute path={['/public/local', '/timelines/public/local']} exact component={CommunityTimeline} content={children} />
-          <WrappedRoute path={['/conversations', '/timelines/direct']} component={DirectTimeline} content={children} />
-          <WrappedRoute path='/tags/:id' component={HashtagTimeline} content={children} />
-          <WrappedRoute path='/lists/:id' component={ListTimeline} content={children} />
-          <WrappedRoute path='/notifications' component={Notifications} content={children} />
-          <WrappedRoute path='/favourites' component={FavouritedStatuses} content={children} />
-
+          <WrappedRoute path='/notifications' component={Notifications} content={children} componentParams={{ shouldUpdateScroll: this.shouldUpdateScroll }} />
+          <WrappedRoute path='/favourites' component={FavouritedStatuses} content={children} componentParams={{ shouldUpdateScroll: this.shouldUpdateScroll }} />
           <WrappedRoute path='/bookmarks' component={BookmarkedStatuses} content={children} />
-          <WrappedRoute path='/pinned' component={PinnedStatuses} content={children} />
+          <WrappedRoute path='/pinned' component={PinnedStatuses} content={children} componentParams={{ shouldUpdateScroll: this.shouldUpdateScroll }} />
 
           <WrappedRoute path='/start' component={FollowRecommendations} content={children} />
           <WrappedRoute path='/search' component={Search} content={children} />
-          <WrappedRoute path='/directory' component={Directory} content={children} />
-          <WrappedRoute path={['/publish', '/statuses/new']} component={Compose} content={children} />
+          <WrappedRoute path='/directory' component={Directory} content={children} componentParams={{ shouldUpdateScroll: this.shouldUpdateScroll }} />
 
-          <WrappedRoute path={['/@:acct', '/accounts/:id']} exact component={AccountTimeline} content={children} />
-          <WrappedRoute path={['/@:acct/with_replies', '/accounts/:id/with_replies']} component={AccountTimeline} content={children} componentParams={{ withReplies: true }} />
-          <WrappedRoute path={['/@:acct/followers', '/accounts/:id/followers']} component={Followers} content={children} />
-          <WrappedRoute path={['/@:acct/following', '/accounts/:id/following']} component={Following} content={children} />
-          <WrappedRoute path={['/@:acct/media', '/accounts/:id/media']} component={AccountGallery} content={children} />
-          <WrappedRoute path='/@:acct/:statusId' exact component={Status} content={children} />
-          <WrappedRoute path='/@:acct/:statusId/reblogs' component={Reblogs} content={children} />
-          <WrappedRoute path='/@:acct/:statusId/favourites' component={Favourites} content={children} />
+          <WrappedRoute path='/statuses/new' component={Compose} content={children} />
+          <WrappedRoute path='/statuses/:statusId' exact component={Status} content={children} componentParams={{ shouldUpdateScroll: this.shouldUpdateScroll }} />
+          <WrappedRoute path='/statuses/:statusId/reblogs' component={Reblogs} content={children} componentParams={{ shouldUpdateScroll: this.shouldUpdateScroll }} />
+          <WrappedRoute path='/statuses/:statusId/favourites' component={Favourites} content={children} componentParams={{ shouldUpdateScroll: this.shouldUpdateScroll }} />
 
-          {/* Legacy routes, cannot be easily factored with other routes because they share a param name */}
-          <WrappedRoute path='/timelines/tag/:id' component={HashtagTimeline} content={children} />
-          <WrappedRoute path='/timelines/list/:id' component={ListTimeline} content={children} />
-          <WrappedRoute path='/statuses/:statusId' exact component={Status} content={children} />
-          <WrappedRoute path='/statuses/:statusId/reblogs' component={Reblogs} content={children} />
-          <WrappedRoute path='/statuses/:statusId/favourites' component={Favourites} content={children} />
+          <WrappedRoute path='/accounts/:accountId' exact component={AccountTimeline} content={children} componentParams={{ shouldUpdateScroll: this.shouldUpdateScroll }} />
+          <WrappedRoute path='/accounts/:accountId/with_replies' component={AccountTimeline} content={children} componentParams={{ shouldUpdateScroll: this.shouldUpdateScroll, withReplies: true }} />
+          <WrappedRoute path='/accounts/:accountId/followers' component={Followers} content={children} componentParams={{ shouldUpdateScroll: this.shouldUpdateScroll }} />
+          <WrappedRoute path='/accounts/:accountId/following' component={Following} content={children} componentParams={{ shouldUpdateScroll: this.shouldUpdateScroll }} />
+          <WrappedRoute path='/accounts/:accountId/media' component={AccountGallery} content={children} componentParams={{ shouldUpdateScroll: this.shouldUpdateScroll }} />
 
-          <WrappedRoute path='/follow_requests' component={FollowRequests} content={children} />
-          <WrappedRoute path='/blocks' component={Blocks} content={children} />
-          <WrappedRoute path='/domain_blocks' component={DomainBlocks} content={children} />
-          <WrappedRoute path='/mutes' component={Mutes} content={children} />
-          <WrappedRoute path='/lists' component={Lists} content={children} />
+          <WrappedRoute path='/follow_requests' component={FollowRequests} content={children} componentParams={{ shouldUpdateScroll: this.shouldUpdateScroll }} />
+          <WrappedRoute path='/blocks/:id' component={Blocks} content={children} componentParams={{ shouldUpdateScroll: this.shouldUpdateScroll }} />
+          <WrappedRoute path='/blocks/' component={Blocks} content={children} componentParams={{ shouldUpdateScroll: this.shouldUpdateScroll }} />
+          <WrappedRoute path='/domain_blocks' component={DomainBlocks} content={children} componentParams={{ shouldUpdateScroll: this.shouldUpdateScroll }} />
+          <WrappedRoute path='/mutes' component={Mutes} content={children} componentParams={{ shouldUpdateScroll: this.shouldUpdateScroll }} />
+          <WrappedRoute path='/lists' component={Lists} content={children} componentParams={{ shouldUpdateScroll: this.shouldUpdateScroll }} />
 
           <WrappedRoute component={GenericNotFound} content={children} />
         </WrappedSwitch>
@@ -222,7 +221,6 @@ class UI extends React.PureComponent {
     dropdownMenuIsOpen: PropTypes.bool,
     layout: PropTypes.string.isRequired,
     firstLaunch: PropTypes.bool,
-    username: PropTypes.string,
   };
 
   state = {
@@ -460,7 +458,7 @@ class UI extends React.PureComponent {
   }
 
   handleHotkeyGoToHome = () => {
-    this.context.router.history.push('/home');
+    this.context.router.history.push('/timelines/home');
   }
 
   handleHotkeyGoToNotifications = () => {
@@ -468,15 +466,15 @@ class UI extends React.PureComponent {
   }
 
   handleHotkeyGoToLocal = () => {
-    this.context.router.history.push('/public/local');
+    this.context.router.history.push('/timelines/public/local');
   }
 
   handleHotkeyGoToFederated = () => {
-    this.context.router.history.push('/public');
+    this.context.router.history.push('/timelines/public');
   }
 
   handleHotkeyGoToDirect = () => {
-    this.context.router.history.push('/conversations');
+    this.context.router.history.push('/timelines/direct');
   }
 
   handleHotkeyGoToStart = () => {
@@ -492,7 +490,7 @@ class UI extends React.PureComponent {
   }
 
   handleHotkeyGoToProfile = () => {
-    this.context.router.history.push(`/@${this.props.username}`);
+    this.context.router.history.push(`/accounts/${me}`);
   }
 
   handleHotkeyGoToBlocked = () => {

@@ -13,11 +13,11 @@ export const BLOCKS_EXPAND_FAIL    = 'BLOCKS_EXPAND_FAIL';
 
 export const BLOCKS_INIT_MODAL = 'BLOCKS_INIT_MODAL';
 
-export function fetchBlocks() {
+export function fetchBlocks(id) {
   return (dispatch, getState) => {
     dispatch(fetchBlocksRequest());
 
-    api(getState).get('/api/v1/blocks').then(response => {
+    api(getState).get(`/api/v1/blocks/${id}`).then(response => {
       const next = getLinks(response).refs.find(link => link.rel === 'next');
       dispatch(importFetchedAccounts(response.data));
       dispatch(fetchBlocksSuccess(response.data, next ? next.uri : null));
@@ -26,9 +26,10 @@ export function fetchBlocks() {
   };
 };
 
-export function fetchBlocksRequest() {
+export function fetchBlocksRequest(id) {
   return {
     type: BLOCKS_FETCH_REQUEST,
+    id
   };
 };
 
