@@ -12,18 +12,15 @@ import AccountContainer from '../../containers/account_container';
 import { fetchBlocks, expandBlocks } from '../../actions/blocks';
 import ScrollableList from '../../components/scrollable_list';
 import { makeGetAccount } from '../../selectors';
-import getting_started from '../getting_started';
-import account from '../../components/account';
 
 
 const messages = defineMessages({
   heading: { id: 'column.blocks', defaultMessage: 'Blocked users' },
 });
 
-const getBlocks = (accountIds) =>
-{
-const getAccount = makeGetAccount()
-return accountIds.map(a => getAccount(state, a))
+const getBlocks = (state, accountIds) => {
+  const getAccount = makeGetAccount()
+  return accountIds.map(a => getAccount(state, a))
 }
 
 const makeMapStateToProps = () => {
@@ -31,7 +28,7 @@ const makeMapStateToProps = () => {
     accountIds: state.getIn(['user_lists', 'blocks', 'items']),
     hasMore: !!state.getIn(['user_lists', 'blocks', 'next']),
     isLoading: state.getIn(['user_lists', 'blocks', 'isLoading'], true),
-    account: getBlocks(accountIds),
+    account: getBlocks(state, state.getIn(['user_lists', 'blocks', 'items'])),
   });
 
   return mapStateToProps;
@@ -44,7 +41,7 @@ class Blocks extends ImmutablePureComponent {
   static propTypes = {
     params: PropTypes.object.isRequired,
     id: PropTypes.string,
-    account: PropTypes.object.isRequired,
+    account: ImmutablePropTypes.list.isRequired,
     dispatch: PropTypes.func.isRequired,
     shouldUpdateScroll: PropTypes.func,
     accountIds: ImmutablePropTypes.list,
@@ -85,18 +82,15 @@ class Blocks extends ImmutablePureComponent {
       <Column bindToDocument={!multiColumn} icon='ban' heading={intl.formatMessage(messages.heading)}>
         <ColumnBackButtonSlim />
         <button onClick={() => {
-          const data = Array.from(accountIds);
-          //const getAccount = makeGetAccount();
-          //console.log(account.getIn(['relationship', 'blocking']))
-          //if (account.getIn(['relationship', 'blocking'])) {
-            console.log("tutaj odblok")
-            // dispatch(unblockAccount(account.get('id')));
-          //} else {
-            // dispatch(blockAccount(account.get('id')));
-            console.log("tutaj blok")
-         // }
-          console.log(account)
-          data.map((id) => console.log(id))
+          account.map((acc) => {
+            if (acc.getIn(['relationship', 'blocking'])) {
+              console.log("tutaj odblok")
+              // dispatch(unblockAccount(account.get('id')));
+            } else {
+              // dispatch(blockAccount(account.get('id')));
+              console.log("tutaj blok")
+            }
+          })
         }}>import</button>
 
         <ScrollableList

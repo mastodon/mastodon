@@ -117,7 +117,7 @@ class SwitchingColumnsArea extends React.PureComponent {
     mobile: PropTypes.bool,
   };
 
-  componentWillMount () {
+  componentWillMount() {
     if (this.props.mobile) {
       document.body.classList.toggle('layout-single-column', true);
       document.body.classList.toggle('layout-multiple-columns', false);
@@ -127,7 +127,7 @@ class SwitchingColumnsArea extends React.PureComponent {
     }
   }
 
-  componentDidUpdate (prevProps) {
+  componentDidUpdate(prevProps) {
     if (![this.props.location.pathname, '/'].includes(prevProps.location.pathname)) {
       this.node.handleChildrenContentChange();
     }
@@ -138,7 +138,7 @@ class SwitchingColumnsArea extends React.PureComponent {
     }
   }
 
-  shouldUpdateScroll (_, { location }) {
+  shouldUpdateScroll(_, { location }) {
     return location.state !== previewMediaState && location.state !== previewVideoState;
   }
 
@@ -148,7 +148,7 @@ class SwitchingColumnsArea extends React.PureComponent {
     }
   }
 
-  render () {
+  render() {
     const { children, mobile } = this.props;
     const redirect = mobile ? <Redirect from='/' to='/timelines/home' exact /> : <Redirect from='/' to='/getting-started' exact />;
 
@@ -340,7 +340,7 @@ class UI extends React.PureComponent {
     }
   }
 
-  componentDidMount () {
+  componentDidMount() {
     window.addEventListener('focus', this.handleWindowFocus, false);
     window.addEventListener('blur', this.handleWindowBlur, false);
     window.addEventListener('beforeunload', this.handleBeforeUnload, false);
@@ -352,7 +352,7 @@ class UI extends React.PureComponent {
     document.addEventListener('dragleave', this.handleDragLeave, false);
     document.addEventListener('dragend', this.handleDragEnd, false);
 
-    if ('serviceWorker' in  navigator) {
+    if ('serviceWorker' in navigator) {
       navigator.serviceWorker.addEventListener('message', this.handleServiceWorkerPostMessage);
     }
 
@@ -372,7 +372,7 @@ class UI extends React.PureComponent {
     };
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     window.removeEventListener('focus', this.handleWindowFocus);
     window.removeEventListener('blur', this.handleWindowBlur);
     window.removeEventListener('beforeunload', this.handleBeforeUnload);
@@ -420,7 +420,7 @@ class UI extends React.PureComponent {
   }
 
   handleHotkeyFocusColumn = e => {
-    const index  = (e.key * 1) + 1; // First child is drawer, skip that
+    const index = (e.key * 1) + 1; // First child is drawer, skip that
     const column = this.node.querySelector(`.column:nth-child(${index})`);
     if (!column) return;
     const container = column.querySelector('.scrollable');
@@ -505,7 +505,7 @@ class UI extends React.PureComponent {
     this.context.router.history.push('/follow_requests');
   }
 
-  render () {
+  render() {
     const { draggingOver } = this.state;
     const { children, isComposing, location, dropdownMenuIsOpen, layout } = this.props;
 
