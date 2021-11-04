@@ -8,6 +8,7 @@ import PropTypes from 'prop-types';
 import LoadingIndicator from '../../components/loading_indicator';
 import Column from '../ui/components/column';
 import ColumnBackButtonSlim from '../../components/column_back_button_slim';
+import ImportBlocksButton from '../../components/import_blocks_button';
 import AccountContainer from '../../containers/account_container';
 import { fetchBlocks, expandBlocks } from '../../actions/blocks';
 import ScrollableList from '../../components/scrollable_list';
@@ -28,7 +29,7 @@ const makeMapStateToProps = () => {
     accountIds: state.getIn(['user_lists', 'blocks', 'items']),
     hasMore: !!state.getIn(['user_lists', 'blocks', 'next']),
     isLoading: state.getIn(['user_lists', 'blocks', 'isLoading'], true),
-    account: getBlocks(state, state.getIn(['user_lists', 'blocks', 'items'])),
+    accounts: getBlocks(state, state.getIn(['user_lists', 'blocks', 'items'])),
   });
 
   return mapStateToProps;
@@ -41,7 +42,7 @@ class Blocks extends ImmutablePureComponent {
   static propTypes = {
     params: PropTypes.object.isRequired,
     id: PropTypes.string,
-    account: ImmutablePropTypes.list.isRequired,
+    accounts: ImmutablePropTypes.list.isRequired,
     dispatch: PropTypes.func.isRequired,
     shouldUpdateScroll: PropTypes.func,
     accountIds: ImmutablePropTypes.list,
@@ -61,7 +62,7 @@ class Blocks extends ImmutablePureComponent {
   }, 300, { leading: true });
 
   render() {
-    const { intl, accountIds, shouldUpdateScroll, hasMore, multiColumn, isLoading, dispatch, account } = this.props;
+    const { intl, accountIds, shouldUpdateScroll, hasMore, multiColumn, isLoading, accounts } = this.props;
 
     if (!accountIds) {
       return (
@@ -71,27 +72,12 @@ class Blocks extends ImmutablePureComponent {
       );
     }
 
-    // if(id == account.get('id')){
-    //   const  emptyMessage = <FormattedMessage id='empty_column.blocks' defaultMessage="You haven't blocked any users yet." />;
-    // }
-    // else {
     const emptyMessage = <FormattedMessage id='empty_column.blocks' defaultMessage="This user haven't blocked any users yet." />;
-    // }
 
     return (
       <Column bindToDocument={!multiColumn} icon='ban' heading={intl.formatMessage(messages.heading)}>
         <ColumnBackButtonSlim />
-        <button onClick={() => {
-          account.map((acc) => {
-            if (acc.getIn(['relationship', 'blocking'])) {
-              console.log("tutaj odblok")
-              // dispatch(unblockAccount(account.get('id')));
-            } else {
-              // dispatch(blockAccount(account.get('id')));
-              console.log("tutaj blok")
-            }
-          })
-        }}>import</button>
+        <ImportBlocksButton accounts={accounts} />
 
         <ScrollableList
           scrollKey='blocks'

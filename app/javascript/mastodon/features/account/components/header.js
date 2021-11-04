@@ -187,8 +187,6 @@ class Header extends ImmutablePureComponent {
       menu.push(null);
     }
 
-    let blocks = `/blocks/${account.get('id')}`
-
     if (account.get('id') === me) {
       menu.push({ text: intl.formatMessage(messages.edit_profile), href: '/settings/profile' });
       menu.push({ text: intl.formatMessage(messages.preferences), href: '/settings/preferences' });
@@ -199,7 +197,7 @@ class Header extends ImmutablePureComponent {
       menu.push({ text: intl.formatMessage(messages.lists), to: '/lists' });
       menu.push(null);
       menu.push({ text: intl.formatMessage(messages.mutes), to: '/mutes' });
-      menu.push({ text: intl.formatMessage(messages.blocks), to: blocks });
+      menu.push({ text: intl.formatMessage(messages.blocks), to: '/blocks/' + account.get('id') });
       menu.push({ text: intl.formatMessage(messages.domain_blocks), to: '/domain_blocks' });
     } else {
       if (account.getIn(['relationship', 'following'])) {
@@ -216,7 +214,7 @@ class Header extends ImmutablePureComponent {
         menu.push(null);
       }
 
-      menu.push({ text: intl.formatMessage(messages.blocks), to: blocks });
+      menu.push({ text: intl.formatMessage(messages.blocks), to: '/blocks/' + account.get('id') });
       menu.push({ text: intl.formatMessage(messages.domain_blocks), to: '/domain_blocks' });
       menu.push(null);
 
