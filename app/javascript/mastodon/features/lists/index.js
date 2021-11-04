@@ -10,7 +10,7 @@ import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import ColumnLink from '../ui/components/column_link';
 import ColumnSubheading from '../ui/components/column_subheading';
-import NewListForm from './components/new_list_form';
+import AddNewList from './components/add_new_list';
 import { createSelector } from 'reselect';
 import ScrollableList from '../../components/scrollable_list';
 
@@ -64,7 +64,7 @@ class Lists extends ImmutablePureComponent {
       <Column bindToDocument={!multiColumn} icon='list-ul' heading={intl.formatMessage(messages.heading)}>
         <ColumnBackButtonSlim />
 
-        <NewListForm />
+        <AddNewList />
 
         <ScrollableList
           scrollKey='lists'

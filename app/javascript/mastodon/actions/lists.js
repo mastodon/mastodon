@@ -14,6 +14,8 @@ export const LIST_EDITOR_TITLE_CHANGE = 'LIST_EDITOR_TITLE_CHANGE';
 export const LIST_EDITOR_RESET        = 'LIST_EDITOR_RESET';
 export const LIST_EDITOR_SETUP        = 'LIST_EDITOR_SETUP';
 
+export const NEW_LIST_ADDER = 'NEW_LIST_ADDER'
+
 export const LIST_CREATE_REQUEST = 'LIST_CREATE_REQUEST';
 export const LIST_CREATE_SUCCESS = 'LIST_CREATE_SUCCESS';
 export const LIST_CREATE_FAIL    = 'LIST_CREATE_FAIL';
@@ -131,7 +133,7 @@ export const createList = (title, shouldReset) => (dispatch, getState) => {
     dispatch(createListSuccess(data));
 
     if (shouldReset) {
-      dispatch(resetListEditor());
+      dispatch(changeListEditorTitle(title));
     }
   }).catch(err => dispatch(createListFail(err)));
 };

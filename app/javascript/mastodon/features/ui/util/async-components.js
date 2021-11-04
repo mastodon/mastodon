@@ -38,6 +38,10 @@ export function Lists () {
   return import(/* webpackChunkName: "features/lists" */'../../lists');
 }
 
+export function NewListAdder () {
+  return import(/* webpackChunkName: "features/lists" */'../../lists/components/new_list_adder');
+}
+
 export function Status () {
   return import(/* webpackChunkName: "features/status" */'../../status');
 }
