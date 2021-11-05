@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class Auth::SessionsController < Devise::SessionsController
-  include Devise::Controllers::Rememberable
-
   layout 'auth'
 
   skip_before_action :require_no_authentication, only: [:create]
