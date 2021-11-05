@@ -45,7 +45,8 @@ RUN apt-get update && \
 
 ENV PATH="${PATH}:/opt/ruby/bin:/opt/node/bin"
 
-RUN npm install -g yarn && \
+RUN npm install -g npm && \
+  npm install -g yarn && \
 	gem install bundler && \
 	apt-get update && \
 	apt-get install -y --no-install-recommends git libicu-dev libidn11-dev \
