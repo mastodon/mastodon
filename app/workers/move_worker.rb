@@ -53,10 +53,16 @@ class MoveWorker
 
       new_note = AccountNote.find_by(account: note.account, target_account: @target_account)
       if new_note.nil?
-        AccountNote.create!(account: note.account, target_account: @target_account, comment: [text, note.comment].join("\n"))
+        begin
+          AccountNote.create!(account: note.account, target_account: @target_account, comment: [text, note.comment].join("\n"))
+        rescue ActiveRecord::RecordInvalid
+          AccountNote.create!(account: note.account, target_account: @target_account, comment: note.comment)
+        end
       else
         new_note.update!(comment: [text, note.comment, "\n", new_note.comment].join("\n"))
       end
+    rescue ActiveRecord::RecordInvalid
+      nil
     rescue => e
       @deferred_error = e
     end
