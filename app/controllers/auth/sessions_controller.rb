@@ -148,7 +148,6 @@ class Auth::SessionsController < Devise::SessionsController
     clear_attempt_from_session
 
     user.update_sign_in!(request, new_sign_in: true)
-    remember_me(user)
     sign_in(user)
     flash.delete(:notice)
 
