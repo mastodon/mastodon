@@ -94,7 +94,7 @@ class Request
     end
 
     def http_client
-      HTTP.use(:auto_inflate).timeout(TIMEOUT.dup).follow(max_hops: 2)
+      HTTP.use(:auto_inflate).timeout(TIMEOUT.dup).follow(max_hops: 3)
     end
   end
 
