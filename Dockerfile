@@ -2,6 +2,7 @@ FROM ubuntu:20.04 as build-dep
 
 # Use bash for the shell
 SHELL ["/bin/bash", "-c"]
+RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
 
 # Install Node v14 (LTS)
 ENV NODE_VER="14.17.6"
@@ -18,7 +19,7 @@ RUN ARCH= && \
   esac && \
     echo "Etc/UTC" > /etc/localtime && \
 	apt-get update && \
-	apt-get install -y --no-install-recommends ca-certificates wget python && \
+	apt-get install -y --no-install-recommends ca-certificates wget python apt-utils && \
 	cd ~ && \
 	wget -q https://nodejs.org/download/release/v$NODE_VER/node-v$NODE_VER-linux-$ARCH.tar.gz && \
 	tar xf node-v$NODE_VER-linux-$ARCH.tar.gz && \
@@ -82,11 +83,12 @@ RUN apt-get update && \
 	rm -rf /var/lib/apt/lists/*
 
 # Install mastodon runtime deps
+RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
 RUN apt-get update && \
   apt-get -y --no-install-recommends install \
 	  libssl1.1 libpq5 imagemagick ffmpeg libjemalloc2 \
 	  libicu66 libprotobuf17 libidn11 libyaml-0-2 \
-	  file ca-certificates tzdata libreadline8 gcc tini && \
+	  file ca-certificates tzdata libreadline8 gcc tini apt-utils && \
 	ln -s /opt/mastodon /mastodon && \
 	gem install bundler && \
 	rm -rf /var/cache && \
