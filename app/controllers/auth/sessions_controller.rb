@@ -24,7 +24,6 @@ class Auth::SessionsController < Devise::SessionsController
   def create
     super do |resource|
       resource.update_sign_in!(request, new_sign_in: true)
-      remember_me(resource)
       flash.delete(:notice)
     end
   end
