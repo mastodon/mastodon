@@ -3,7 +3,7 @@ services:
 
   db:
     restart: always
-    image: postgres:9.6-alpine
+    image: postgres:14.0-alpine
     shm_size: 256mb
     networks:
       - internal_network
