@@ -57,7 +57,6 @@ module TwoFactorAuthenticationConcern
 
     if valid_webauthn_credential?(user, webauthn_credential)
       clear_attempt_from_session
-      remember_me(user)
       sign_in(user)
       render json: { redirect_path: root_path }, status: :ok
     else
@@ -68,7 +67,6 @@ module TwoFactorAuthenticationConcern
   def authenticate_with_two_factor_via_otp(user)
     if valid_otp_attempt?(user)
       clear_attempt_from_session
-      remember_me(user)
       sign_in(user)
     else
       flash.now[:alert] = I18n.t('users.invalid_otp_token')
