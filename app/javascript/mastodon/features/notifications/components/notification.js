@@ -20,6 +20,7 @@ const messages = defineMessages({
   reblog: { id: 'notification.reblog', defaultMessage: '{name} boosted your status' },
   status: { id: 'notification.status', defaultMessage: '{name} just posted' },
   update: { id: 'notification.update', defaultMessage: '{name} edited a post' },
+  adminSignUp: { id: 'notification.admin.sign_up', defaultMessage: '{name} signed up' },
 });
 
 const notificationForScreenReader = (intl, message, timestamp) => {
@@ -344,6 +345,28 @@ class Notification extends ImmutablePureComponent {
     );
   }
 
+  renderAdminSignUp (notification, account, link) {
+    const { intl, unread } = this.props;
+
+    return (
+      <HotKeys handlers={this.getHandlers()}>
+        <div className={classNames('notification notification-admin-sign-up focusable', { unread })} tabIndex='0' aria-label={notificationForScreenReader(intl, intl.formatMessage(messages.adminSignUp, { name: account.get('acct') }), notification.get('created_at'))}>
+          <div className='notification__message'>
+            <div className='notification__favourite-icon-wrapper'>
+              <Icon id='user-plus' fixedWidth />
+            </div>
+
+            <span title={notification.get('created_at')}>
+              <FormattedMessage id='notification.admin.sign_up' defaultMessage='{name} signed up' values={{ name: link }} />
+            </span>
+          </div>
+
+          <AccountContainer id={account.get('id')} hidden={this.props.hidden} />
+        </div>
+      </HotKeys>
+    );
+  }
+
   render () {
     const { notification } = this.props;
     const account          = notification.get('account');
@@ -367,6 +390,8 @@ class Notification extends ImmutablePureComponent {
       return this.renderUpdate(notification, link);
     case 'poll':
       return this.renderPoll(notification, account);
+    case 'admin.sign_up':
+      return this.renderAdminSignUp(notification, account, link);
     }
 
     return null;
