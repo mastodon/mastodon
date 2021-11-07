@@ -37,8 +37,9 @@ RSpec.describe StatusPinValidator, type: :validator do
       end
     end
 
-    context 'unless %w(public unlisted).include?(pin.status.visibility)' do
+    context 'unless %w(public unlisted).include?(pin.status.visibility) || !pin.account.local?' do
       let(:visibility) { '' }
+      let(:local) { true }
 
       it 'calls errors.add' do
         expect(errors).to have_received(:add).with(:base, I18n.t('statuses.pin_errors.private'))
