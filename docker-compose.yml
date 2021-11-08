@@ -11,6 +11,8 @@ services:
       test: ["CMD", "pg_isready", "-U", "postgres"]
     volumes:
       - ./postgres14:/var/lib/postgresql/data
+    environment:
+      - "POSTGRES_HOST_AUTH_METHOD=trust"
 
   redis:
     restart: always
