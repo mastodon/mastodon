@@ -1047,6 +1047,7 @@ pt-BR:
   number:
     human:
       decimal_units:
+        format: "%n%u"
         units:
           billion: BI
           million: MI
@@ -1066,6 +1067,7 @@ pt-BR:
     next: Próximo
     older: Mais antigo
     prev: Anterior
+    truncate: "&hellip;"
   polls:
     errors:
       already_voted: Enquete votada
@@ -1153,8 +1155,12 @@ pt-BR:
       android: Android
       blackberry: BlackBerry
       chrome_os: Chrome OS
+      firefox_os: Firefox OS
+      ios: iOS
+      linux: Linux
       mac: MacOS
       other: Plataforma desconhecida
+      windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
     revoke: Fechar
@@ -1254,6 +1260,19 @@ pt-BR:
     keep_self_bookmark_hint: Não exclui suas próprias publicações se você as tiver salvado
     keep_self_fav: Manter publicações que você favoritou
     keep_self_fav_hint: Não exclui suas próprias publicações se você as tiver favoritado
+    min_age:
+      '1209600': 2 semanas
+      '15778476': 6 meses
+      '2629746': 1 mês
+      '31556952': 1 ano
+      '5259492': 2 meses
+      '63113904': 2 anos
+      '7889238': 3 meses
+    min_age_label: Validade
+    min_favs: Manter publicações favoritadas por ao menos
+    min_favs_hint: Não exclui publicações que tiverem sido favoritados ao menos essa quantidade de vezes. Deixe em branco para excluir publicações independente da quantidade de favoritos
+    min_reblogs: Manter publicações boostadas por ao menos
+    min_reblogs_hint: Não exclui publicações que tiverem sido boostadas ao menos essa quantidade de vezes. Deixe em branco para excluir publicações independente da quantidade de boosts
   stream_entries:
     pinned: Toot fixado
     reblogged: deu boost
