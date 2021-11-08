@@ -118,6 +118,7 @@ pt-BR:
       demote: Rebaixar
       destroyed_msg: "Os dados de %{username} estão na fila para serem excluídos em breve"
       disable: Congelar
+      disable_sign_in_token_auth: Desativar autenticação via token por email
       disable_two_factor_authentication: Desativar autenticação de dois fatores
       disabled: Desativada
       display_name: Nome de exibição
@@ -126,6 +127,7 @@ pt-BR:
       email: E-mail
       email_status: Status do e-mail
       enable: Descongelar
+      enable_sign_in_token_auth: Ativar autenticação via token por email
       enabled: Ativada
       enabled_msg: Descongelada com sucesso a conta de %{username}
       followers: Seguidores
@@ -245,8 +247,10 @@ pt-BR:
         destroy_unavailable_domain: Deletar domínio indisponível
         disable_2fa_user: Desativar autenticação de dois fatores
         disable_custom_emoji: Desativar Emoji Personalizado
+        disable_sign_in_token_auth_user: Desativar autenticação via token por email para Usuário
         disable_user: Desativar usuário
         enable_custom_emoji: Ativar Emoji Personalizado
+        enable_sign_in_token_auth_user: Ativar autenticação via token por email para Usuário
         enable_user: Ativar usuário
         memorialize_account: Converter conta em memorial
         promote_user: Promover usuário
@@ -288,6 +292,28 @@ pt-BR:
         destroy_unavailable_domain_html: "%{name} retomou a entrega ao domínio %{target}"
         disable_2fa_user_html: "%{name} desativou a exigência de autenticação de dois fatores para o usuário %{target}"
         disable_custom_emoji_html: "%{name} desativou o emoji %{target}"
+        disable_sign_in_token_auth_user_html: "%{name} desativou a autenticação via token por email para %{target}"
+        disable_user_html: "%{name} desativou o login para %{target}"
+        enable_custom_emoji_html: "%{name} desativou o emoji %{target}"
+        enable_sign_in_token_auth_user_html: "%{name} ativou a autenticação via token por email para %{target}"
+        enable_user_html: "%{name} ativou o login para %{target}"
+        memorialize_account_html: "%{name} transformou a conta de %{target} em um memorial"
+        promote_user_html: "%{name} promoveu o usuário %{target}"
+        remove_avatar_user_html: "%{name} removeu a imagem de perfil de %{target}"
+        reopen_report_html: "%{name} reabriu a denúncia %{target}"
+        reset_password_user_html: "%{name} redefiniu a senha de %{target}"
+        resolve_report_html: "%{name} fechou a denúncia %{target}"
+        sensitive_account_html: "%{name} marcou a mídia de %{target} como sensível"
+        silence_account_html: "%{name} limitou a conta de %{target}"
+        suspend_account_html: "%{name} suspendeu a conta de %{target}"
+        unassigned_report_html: "%{name} desvinculou a denúncia %{target}"
+        unsensitive_account_html: "%{name} desmarcou a mídia de %{target} como sensível"
+        unsilence_account_html: "%{name} removeu a limitação da conta de %{target}"
+        unsuspend_account_html: "%{name} removeu a suspenção da conta de %{target}"
+        update_announcement_html: "%{name} atualizou o comunicado %{target}"
+        update_custom_emoji_html: "%{name} atualizou o emoji %{target}"
+        update_domain_block_html: "%{name} atualizou o bloqueio de domínio de %{target}"
+        update_status_html: "%{name} atualizou a publicação de %{target}"
       deleted_status: "(status excluído)"
       empty: Nenhum registro encontrado.
       filter_by_action: Filtrar por ação
@@ -323,6 +349,7 @@ pt-BR:
       disable: Desativar
       disabled: Desativado
       disabled_msg: Emoji desativado com sucesso
+      emoji: Emoji
       enable: Ativar
       enabled: Ativado
       enabled_msg: Emoji ativado com sucesso
@@ -343,9 +370,26 @@ pt-BR:
       updated_msg: Emoji atualizado com sucesso!
       upload: Enviar
     dashboard:
+      active_users: usuários ativos
+      interactions: interações
+      media_storage: Armazenamento de mídia
+      new_users: novos usuários
+      opened_reports: denúncias abertas
+      pending_reports_html:
+        one: "<strong>1</strong> denúncia em aberto"
+        other: "<strong>%{count}</strong> denúncias em aberto"
+      pending_tags_html:
+        one: "<strong>1</strong> hashtag em aberto"
+        other: "<strong>%{count}</strong> hashtags em aberto"
+      pending_users_html:
+        one: "<strong>1</strong> usuário em aberto"
+        other: "<strong>%{count}</strong> usuários em aberto"
+      resolved_reports: denúncias solucionadas
       software: Software
+      sources: Origem das inscrições
       space: Uso de espaço em disco
       title: Painel de controle
+      top_languages: Línguas mais ativas
     domain_allows:
       add_new: Permitir domínio
       created_msg: Domínio foi permitido
@@ -994,6 +1038,8 @@ pt-BR:
       body: '%{name} deu boost no seu toot:'
       subject: "%{name} deu boost no seu toot"
       title: Novo boost
+    status:
+      subject: "%{name} acabou de postar"
   notifications:
     email_events: Eventos para notificações por e-mail
     email_events_hint: 'Selecione os eventos que deseja receber notificações:'
@@ -1110,6 +1156,7 @@ pt-BR:
     revoke: Fechar
     revoke_success: Sessão fechada com sucesso
     title: Sessões
+    view_authentication_history: Ver histórico de autenticação da sua conta
   settings:
     account: Conta
     account_settings: Configurações da conta
@@ -1130,6 +1177,7 @@ pt-BR:
     preferences: Preferências
     profile: Perfil
     relationships: Seguindo e seguidores
+    statuses_cleanup: Exclusão automatizada de publicações
     two_factor_authentication: Autenticação de dois fatores
     webauthn_authentication: Chaves de segurança
   statuses:
@@ -1172,13 +1220,19 @@ pt-BR:
     show_older: Mostrar mais antigos
     show_thread: Mostrar conversa
     sign_in_to_participate: Entre para participar dessa conversa
+    title: '%{name}: "%{quote}"'
     visibilities:
+      direct: Direto
       private: Privado
       private_long: Posta apenas para seguidores
       public: Público
       public_long: Posta em linhas públicas
       unlisted: Não-listado
       unlisted_long: Não posta em linhas públicas
+  statuses_cleanup:
+    enabled: Excluir publicações antigas automaticamente
+    enabled_hint: Exclui suas publicações automaticamente assim que elas alcançam sua validade, a não ser que se enquadrem em alguma das exceções abaixo
+    exceptions: Exceções
   stream_entries:
     pinned: Toot fixado
     reblogged: deu boost
