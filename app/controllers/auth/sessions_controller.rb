@@ -148,6 +148,7 @@ class Auth::SessionsController < Devise::SessionsController
     clear_attempt_from_session
 
     user.update_sign_in!(request, new_sign_in: true)
+    remember_me(user)
     sign_in(user)
     flash.delete(:notice)
 
@@ -169,5 +170,18 @@ class Auth::SessionsController < Devise::SessionsController
       ip: request.remote_ip,
       user_agent: request.user_agent
     )
+  end
+
+  def remember_me(user)
+    session_id = cookies.signed['_session_id']
+    session_id = user.activate_session(request) unless user.session_active?(session_id)
+
+    cookies.signed['_session_id'] = {
+      value: session_id,
+      expires: 1.year.from_now,
+      httponly: true,
+      secure: (Rails.env.production? || ENV['LOCAL_HTTPS'] == 'true'),
+      same_site: :lax,
+    }
   end
 end
