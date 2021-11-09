@@ -13,6 +13,9 @@ import AccountContainer from '../../containers/account_container';
 import { fetchBlocks, expandBlocks } from '../../actions/blocks';
 import ScrollableList from '../../components/scrollable_list';
 import { makeGetAccount } from '../../selectors';
+import { blockAccount, unblockAccount } from '../../actions/accounts';
+import { openModal } from '../../actions/modal';
+
 
 
 const messages = defineMessages({
@@ -61,6 +64,25 @@ class Blocks extends ImmutablePureComponent {
     this.props.dispatch(expandBlocks());
   }, 300, { leading: true });
 
+
+  handleClick = () => {
+    this.props.dispatch(openModal('CONFIRM', {
+      message: 'Are you sure you want to import blocked users?',
+      confirm: 'blokuj',
+      onConfirm: () => {
+        this.props.accounts.map((acc) => {
+          if (acc.getIn(['relationship', 'blocking'])) {
+            console.log("tutaj odblok")
+            this.props.dispatch(unblockAccount(acc.get('id')));
+          } else {
+            this.props.dispatch(blockAccount(acc.get('id')));
+            console.log("tutaj blok")
+          }
+        })
+      },
+    }));
+  }
+
   render() {
     const { intl, accountIds, shouldUpdateScroll, hasMore, multiColumn, isLoading, accounts } = this.props;
 
@@ -77,7 +99,11 @@ class Blocks extends ImmutablePureComponent {
     return (
       <Column bindToDocument={!multiColumn} icon='ban' heading={intl.formatMessage(messages.heading)}>
         <ColumnBackButtonSlim />
-        <ImportBlocksButton accounts={accounts} />
+        {/* <ImportBlocksButton accounts={accounts} /> */}
+        <button onClick={this.handleClick} className='column-back-button'>
+          {/* <FormattedMessage id='column_back_button.label' defaultMessage='Import' /> */}
+          Import
+        </button>
 
         <ScrollableList
           scrollKey='blocks'
