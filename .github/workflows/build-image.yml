@@ -2,7 +2,7 @@ name: Build container image
 on:
   push:
     branches:
-      - "*"
+      - "main"
     tags:
       - "*"
 jobs:
