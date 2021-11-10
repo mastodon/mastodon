@@ -20,8 +20,10 @@ jobs:
         id: meta
         with:
           images: ghcr.io/${{ github.repository_owner }}/mastodon
+          flavor: |
+            latest=true
           tags: |
-            type=raw,value=latest
+            type=edge,branch=main
             type=semver,pattern={{ raw }}
       - uses: docker/build-push-action@v2
         with:
