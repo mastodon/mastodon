@@ -350,11 +350,11 @@ namespace :mastodon do
           end
         end.join("\n")
 
-        generated_header = "# Generated with mastodon:setup on #{Time.now.utc}\n\n"
+        generated_header = "# Generated with mastodon:setup on #{Time.now.utc}\n\n".dup
 
         if incompatible_syntax
-          generated_header << "Some variables in this file will be interpreted differently whether you are\n"
-          generated_header << "using docker-compose or not.\n\n"
+          generated_header << "# Some variables in this file will be interpreted differently whether you are\n"
+          generated_header << "# using docker-compose or not.\n\n"
         end
 
         File.write(Rails.root.join('.env.production'), "#{generated_header}#{env_contents}\n")
