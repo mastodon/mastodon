@@ -3,6 +3,54 @@ Changelog
 
 All notable changes to this project will be documented in this file.
 
+## [3.4.3] - 2021-11-06
+### Fixed
+
+- Fix login being broken due to inaccurately applied backport fix in 3.4.2 ([Gargron](https://github.com/mastodon/mastodon/commit/5c47a18c8df3231aa25c6d1f140a71a7fac9cbf9))
+
+## [3.4.2] - 2021-11-06
+### Added
+
+- Add `configuration` attribute to `GET /api/v1/instance` ([Gargron](https://github.com/mastodon/mastodon/pull/16485))
+
+### Fixed
+
+- Fix handling of back button with modal windows in web UI ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/16499))
+- Fix pop-in player when author has long username in web UI ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/16468))
+- Fix crash when a status with a playing video gets deleted in web UI ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/16384))
+- Fix crash with Microsoft Translate in web UI ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/16525))
+- Fix PWA not being usable from alternate domains ([HolgerHuo](https://github.com/mastodon/mastodon/pull/16714))
+- Fix locale-specific number rounding errors ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/16469))
+- Fix scheduling a status decreasing status count ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/16791))
+- Fix user's canonical email address being blocked when user deletes own account ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/16503))
+- Fix not being able to suspend users that already have their canonical e-mail blocked ([Gargron](https://github.com/mastodon/mastodon/pull/16455))
+- Fix anonymous access to outbox not being cached by the reverse proxy ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/16458))
+- Fix followers synchronization mechanism not working when URI has empty path ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/16744))
+- Fix serialization of counts in REST API when user hides their network ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/16418))
+- Fix inefficiencies in auto-linking code ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/16506))
+- Fix `tootctl self-destruct` not sending delete activities for recently-suspended accounts ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/16688))
+- Fix suspicious sign-in e-mail text being out of date ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/16690))
+- Fix some frameworks being unnecessarily loaded ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/16725))
+- Fix canonical e-mail blocks missing foreign key constraints ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/16448))
+- Fix inconsistent order on account's statuses page in admin UI ([tribela](https://github.com/mastodon/mastodon/pull/16937))
+- Fix media from blocked domains being redownloaded by `tootctl media refresh` ([tribela](https://github.com/mastodon/mastodon/pull/16914))
+- Fix `mastodon:setup` generated env-file syntax ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/16896))
+- Fix link previews being incorrectly generated from earlier links ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/16885))
+- Fix wrong `to`/`cc` values for remote groups in ActivityPub ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/16700))
+- Fix mentions with non-ascii TLDs not being processed ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/16689))
+- Fix authentication failures halfway through a sign-in attempt ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/16607), [ClearlyClaire](https://github.com/mastodon/mastodon/pull/16792))
+- Fix suspended accounts statuses being merged back into timelines ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/16628))
+- Fix crash when encountering invalid account fields ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/16598))
+- Fix invalid blurhash handling for remote activities ([noellabo](https://github.com/mastodon/mastodon/pull/16583))
+- Fix newlines being added to accout notes when an account moves ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/16415), [noellabo](https://github.com/mastodon/mastodon/pull/16576))
+- Fix crash when creating an announcement with links ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/16941))
+- Fix logging out from one browser logging out all other sessions ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/16943))
+
+### Security
+
+- Fix user notes not having a length limit ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/16942))
+- Fix revoking a specific session not working ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/16943))
+
 ## [3.4.1] - 2021-06-03
 ### Added
 
