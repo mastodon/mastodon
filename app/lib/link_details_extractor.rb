@@ -59,7 +59,7 @@ class LinkDetailsExtractor
     end
 
     def json
-      @json ||= Oj.load(@data)
+      @json ||= first_of_value(Oj.load(@data))
     end
   end
 
@@ -178,6 +178,8 @@ class LinkDetailsExtractor
     @structured_data ||= begin
       json_ld = document.xpath('//script[@type="application/ld+json"]').map(&:content).first
       json_ld.present? ? StructuredData.new(json_ld) : nil
+    rescue Oj::ParseError
+      nil
     end
   end
 
