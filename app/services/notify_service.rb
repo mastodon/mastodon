@@ -127,7 +127,7 @@ class NotifyService < BaseService
   def push_notification!
     return if @notification.activity.nil?
 
-    Redis.current.publish("timeline:#{@recipient.id}", Oj.dump(event: :notification, payload: InlineRenderer.render(@notification, @recipient, :notification)))
+    Redis.current.publish("timeline:#{@recipient.id}:notifications", Oj.dump(event: :notification, payload: InlineRenderer.render(@notification, @recipient, :notification)))
     send_push_notifications!
   end
 

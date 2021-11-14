@@ -2849,7 +2849,7 @@ a.account__display-name {
   transition: background-color 0.2s ease;
 }
 
-.react-toggle:hover:not(.react-toggle--disabled) .react-toggle-track {
+.react-toggle:is(:hover, :focus-within):not(.react-toggle--disabled) .react-toggle-track {
   background-color: darken($ui-base-color, 10%);
 }
 
@@ -2857,7 +2857,7 @@ a.account__display-name {
   background-color: $ui-highlight-color;
 }
 
-.react-toggle--checked:hover:not(.react-toggle--disabled) .react-toggle-track {
+.react-toggle--checked:is(:hover, :focus-within):not(.react-toggle--disabled) .react-toggle-track {
   background-color: lighten($ui-highlight-color, 10%);
 }
 
@@ -3575,10 +3575,15 @@ a.status-card.compact:hover {
 }
 
 .column-header__setting-btn {
-  &:hover {
+  &:hover,
+  &:focus {
     color: $darker-text-color;
     text-decoration: underline;
   }
+}
+
+.column-header__collapsible__extra + .column-header__setting-btn {
+  padding-top: 5px;
 }
 
 .column-header__permission-btn {
@@ -3591,10 +3596,15 @@ a.status-card.compact:hover {
   float: right;
 
   .column-header__setting-btn {
-    padding: 0 10px;
+    padding: 5px;
+
+    &:first-child {
+      padding-right: 7px;
+    }
 
     &:last-child {
-      padding-right: 0;
+      padding-left: 7px;
+      margin-left: 5px;
     }
   }
 }
@@ -6972,7 +6982,6 @@ noscript {
     &__current {
       flex: 0 0 auto;
       font-size: 24px;
-      line-height: 36px;
       font-weight: 500;
       text-align: right;
       padding-right: 15px;
@@ -6994,6 +7003,58 @@ noscript {
         fill: none !important;
       }
     }
+
+    &--requires-review {
+      .trends__item__name {
+        color: $gold-star;
+
+        a {
+          color: $gold-star;
+        }
+      }
+
+      .trends__item__current {
+        color: $gold-star;
+      }
+
+      .trends__item__sparkline {
+        path:first-child {
+          fill: rgba($gold-star, 0.25) !important;
+        }
+
+        path:last-child {
+          stroke: lighten($gold-star, 6%) !important;
+        }
+      }
+    }
+
+    &--disabled {
+      .trends__item__name {
+        color: lighten($ui-base-color, 12%);
+
+        a {
+          color: lighten($ui-base-color, 12%);
+        }
+      }
+
+      .trends__item__current {
+        color: lighten($ui-base-color, 12%);
+      }
+
+      .trends__item__sparkline {
+        path:first-child {
+          fill: rgba(lighten($ui-base-color, 12%), 0.25) !important;
+        }
+
+        path:last-child {
+          stroke: lighten(lighten($ui-base-color, 12%), 6%) !important;
+        }
+      }
+    }
+  }
+
+  &--compact &__item {
+    padding: 10px;
   }
 }
 

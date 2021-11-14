@@ -31,6 +31,8 @@
 class MediaAttachment < ApplicationRecord
   self.inheritance_column = nil
 
+  include Attachmentable
+
   enum type: [:image, :gifv, :video, :unknown, :audio]
   enum processing: [:queued, :in_progress, :complete, :failed], _prefix: true
 
@@ -50,7 +52,7 @@ class MediaAttachment < ApplicationRecord
   IMAGE_MIME_TYPES             = %w(image/jpeg image/png image/gif).freeze
   VIDEO_MIME_TYPES             = %w(video/webm video/mp4 video/quicktime video/ogg).freeze
   VIDEO_CONVERTIBLE_MIME_TYPES = %w(video/webm video/quicktime).freeze
-  AUDIO_MIME_TYPES             = %w(audio/wave audio/wav audio/x-wav audio/x-pn-wave audio/ogg audio/mpeg audio/mp3 audio/webm audio/flac audio/aac audio/m4a audio/x-m4a audio/mp4 audio/3gpp video/x-ms-asf).freeze
+  AUDIO_MIME_TYPES             = %w(audio/wave audio/wav audio/x-wav audio/x-pn-wave audio/ogg audio/vorbis audio/mpeg audio/mp3 audio/webm audio/flac audio/aac audio/m4a audio/x-m4a audio/mp4 audio/3gpp video/x-ms-asf).freeze
 
   BLURHASH_OPTIONS = {
     x_comp: 4,
@@ -165,12 +167,11 @@ class MediaAttachment < ApplicationRecord
                     processors: ->(f) { file_processors f },
                     convert_options: GLOBAL_CONVERT_OPTIONS
 
-  before_file_post_process :set_type_and_extension
-  before_file_post_process :check_video_dimensions
+  before_file_validate :set_type_and_extension
+  before_file_validate :check_video_dimensions
 
   validates_attachment_content_type :file, content_type: IMAGE_MIME_TYPES + VIDEO_MIME_TYPES + AUDIO_MIME_TYPES
-  validates_attachment_size :file, less_than: IMAGE_LIMIT, unless: :larger_media_format?
-  validates_attachment_size :file, less_than: VIDEO_LIMIT, if: :larger_media_format?
+  validates_attachment_size :file, less_than: ->(m) { m.larger_media_format? ? VIDEO_LIMIT : IMAGE_LIMIT }
   remotable_attachment :file, VIDEO_LIMIT, suppress_errors: false, download_on_assign: false, attribute_name: :remote_url
 
   has_attached_file :thumbnail,
@@ -181,8 +182,6 @@ class MediaAttachment < ApplicationRecord
   validates_attachment_content_type :thumbnail, content_type: IMAGE_MIME_TYPES
   validates_attachment_size :thumbnail, less_than: IMAGE_LIMIT
   remotable_attachment :thumbnail, IMAGE_LIMIT, suppress_errors: true, download_on_assign: false
-
-  include Attachmentable
 
   validates :account, presence: true
   validates :description, length: { maximum: MAX_DESCRIPTION_LENGTH }, if: :local?
@@ -218,7 +217,7 @@ class MediaAttachment < ApplicationRecord
   end
 
   def to_param
-    shortcode
+    shortcode.presence || id&.to_s
   end
 
   def focus=(point)

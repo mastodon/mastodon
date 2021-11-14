@@ -1,6 +1,8 @@
 enabled         = ENV['ES_ENABLED'] == 'true'
 host            = ENV.fetch('ES_HOST') { 'localhost' }
 port            = ENV.fetch('ES_PORT') { 9200 }
+user            = ENV.fetch('ES_USER') { nil }
+password        = ENV.fetch('ES_PASS') { nil }
 fallback_prefix = ENV.fetch('REDIS_NAMESPACE') { nil }
 prefix          = ENV.fetch('ES_PREFIX') { fallback_prefix }
 
@@ -9,6 +11,8 @@ Chewy.settings = {
   prefix: prefix,
   enabled: enabled,
   journal: false,
+  user: user,
+  password: password,
   sidekiq: { queue: 'pull' },
 }
 

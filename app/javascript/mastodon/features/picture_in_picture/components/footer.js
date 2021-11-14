@@ -124,7 +124,7 @@ class Footer extends ImmutablePureComponent {
       onClose();
     }
 
-    router.history.push(`/statuses/${status.get('id')}`);
+    router.history.push(`/@${status.getIn(['account', 'acct'])}/${status.get('id')}`);
   }
 
   _performQuote = () => {

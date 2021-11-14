@@ -371,32 +371,28 @@ en:
       updated_msg: Emoji successfully updated!
       upload: Upload
     dashboard:
-      authorized_fetch_mode: Secure mode
-      backlog: backlogged jobs
-      config: Configuration
-      feature_deletions: Account deletions
-      feature_invites: Invite links
-      feature_profile_directory: Profile directory
-      feature_registrations: Registrations
-      feature_relay: Federation relay
-      feature_timeline_preview: Timeline preview
-      features: Features
-      hidden_service: Federation with hidden services
-      open_reports: open reports
-      pending_tags: hashtags waiting for review
-      pending_users: users waiting for review
-      recent_users: Recent users
-      search: Full-text search
-      single_user_mode: Single user mode
+      active_users: active users
+      interactions: interactions
+      media_storage: Media storage
+      new_users: new users
+      opened_reports: reports opened
+      pending_reports_html:
+        one: "<strong>1</strong> pending reports"
+        other: "<strong>%{count}</strong> pending reports"
+      pending_tags_html:
+        one: "<strong>1</strong> pending hashtags"
+        other: "<strong>%{count}</strong> pending hashtags"
+      pending_users_html:
+        one: "<strong>1</strong> pending users"
+        other: "<strong>%{count}</strong> pending users"
+      resolved_reports: reports resolved
       software: Software
+      sources: Sign-up sources
       space: Space usage
       title: Dashboard
-      total_users: users in total
-      trends: Trends
-      week_interactions: interactions this week
-      week_users_active: active this week
-      week_users_new: users this week
-      whitelist_mode: Limited federation mode
+      top_languages: Top active languages
+      top_servers: Top active servers
+      website: Website
     domain_allows:
       add_new: Allow federation with domain
       created_msg: Domain has been successfully allowed for federation
@@ -1336,10 +1332,10 @@ en:
       '63113904': 2 years
       '7889238': 3 months
     min_age_label: Age threshold
-    min_favs: Keep posts favourited more than
-    min_favs_hint: Doesn't delete any of your posts that has received more than this amount of favourites. Leave blank to delete posts regardless of their number of favourites
-    min_reblogs: Keep posts boosted more than
-    min_reblogs_hint: Doesn't delete any of your posts that has been boosted more than this number of times. Leave blank to delete posts regardless of their number of boosts
+    min_favs: Keep posts favourited at least
+    min_favs_hint: Doesn't delete any of your posts that has received at least this amount of favourites. Leave blank to delete posts regardless of their number of favourites
+    min_reblogs: Keep posts boosted at least
+    min_reblogs_hint: Doesn't delete any of your posts that has been boosted at least this number of times. Leave blank to delete posts regardless of their number of boosts
   stream_entries:
     pinned: Pinned post
     reblogged: boosted

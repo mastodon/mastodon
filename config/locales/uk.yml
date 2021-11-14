@@ -125,6 +125,7 @@ uk:
       demote: Усунути
       destroyed_msg: Дані %{username} тепер в черзі на негайне видалення
       disable: Вимкнути
+      disable_sign_in_token_auth: Вимкнути автентифікацію за допомогою е-пошти
       disable_two_factor_authentication: Вимкнути двофакторну авторизацію
       disabled: Вимкнено
       display_name: Відображуване ім'я
@@ -133,6 +134,7 @@ uk:
       email: Електронна пошта
       email_status: Статус електронної пошти
       enable: Увімкнути
+      enable_sign_in_token_auth: Увімкнути автентифікацію за допомогою е-пошти
       enabled: Увімкнено
       enabled_msg: Обліковий запис %{username} успішно розморожено
       followers: Підписники
@@ -197,6 +199,10 @@ uk:
       search: Пошук
       search_same_email_domain: Інші користувачі з тим самим поштовим доменом
       search_same_ip: Інші користувачі з тим самим IP
+      security_measures:
+        only_password: Лише пароль
+        password_and_2fa: Пароль та 2FA
+        password_and_sign_in_token: Пароль та токен з е-пошти
       sensitive: Делікатне
       sensitized: позначено делікатним
       shared_inbox_url: URL спільного вхідного кошика
@@ -248,8 +254,10 @@ uk:
         destroy_unavailable_domain: Видалити недоступний домен
         disable_2fa_user: Вимкнути 2FA
         disable_custom_emoji: Вимкнути користувацькі емодзі
+        disable_sign_in_token_auth_user: Вимкнути автентифікацію за допомогою е-пошти для користувача
         disable_user: Відключити користувача
         enable_custom_emoji: Увімкнути користувацькі емодзі
+        enable_sign_in_token_auth_user: Увімкнути автентифікацію за допомогою е-пошти для користувача
         enable_user: Активувати користувача
         memorialize_account: Зробити обліковий запис меморіалом
         promote_user: Підвищити користувача
@@ -291,8 +299,10 @@ uk:
         destroy_unavailable_domain_html: "%{name} відновлює доставляння на домен %{target}"
         disable_2fa_user_html: "%{name} вимикає двоетапну перевірку для користувача %{target}"
         disable_custom_emoji_html: "%{name} вимикає емодзі %{target}"
+        disable_sign_in_token_auth_user_html: "%{name} вимикає автентифікацію через е-пошту для %{target}"
         disable_user_html: "%{name} вимикає вхід для користувача %{target}"
         enable_custom_emoji_html: "%{name} вмикає емодзі %{target}"
+        enable_sign_in_token_auth_user_html: "%{name} вмикає автентифікацію через е-пошту для %{target}"
         enable_user_html: "%{name} вмикає вхід для користувача %{target}"
         memorialize_account_html: "%{name} перетворює обліковий запис %{target} на сторінку пам'яті"
         promote_user_html: "%{name} підвищує користувача %{target}"
@@ -367,32 +377,34 @@ uk:
       updated_msg: Емодзі успішно оновлене!
       upload: Вивантажити
     dashboard:
-      authorized_fetch_mode: Безпечний режим
-      backlog: відкладені завдання
-      config: Налаштування
-      feature_deletions: Видалення облікових записів
-      feature_invites: Посилання-запрошення
-      feature_profile_directory: Каталог профілів
-      feature_registrations: Реєстрації
-      feature_relay: Ретранслятор дмухів між серверами
-      feature_timeline_preview: Передпоказ стрічки
-      features: Можливості
-      hidden_service: Федерація з прихованими сервісами
-      open_reports: відкриті скарги
-      pending_tags: хештеги, що очікують на перегляд
-      pending_users: користувачі, що очікують на перегляд
-      recent_users: Останні користувачі
-      search: Повнотекстовий пошук
-      single_user_mode: Режим одного користувача
+      active_users: активні користувачі
+      interactions: взаємодії
+      media_storage: Медіасховище
+      new_users: нові користувачі
+      opened_reports: звітів відкрито
+      pending_reports_html:
+        few: "<strong>%{count}</strong> звіти у черзі"
+        many: "<strong>%{count}</strong> звітів у черзі"
+        one: "<strong>1</strong> звіт у черзі"
+        other: "<strong>%{count}</strong> звіти у черзі"
+      pending_tags_html:
+        few: "<strong>%{count}</strong> хештеґи у черзі"
+        many: "<strong>%{count}</strong> хештеґів у черзі"
+        one: "<strong>1</strong> хештеґ у черзі"
+        other: "<strong>%{count}</strong> хештеґи у черзі"
+      pending_users_html:
+        few: "<strong>%{count}</strong> користувачі у черзі"
+        many: "<strong>%{count}</strong> користувачів у черзі"
+        one: "<strong>1</strong> користувач у черзі"
+        other: "<strong>%{count}</strong> користувача у черзі"
+      resolved_reports: розв'язані звіти
       software: Програмне забезпечення
+      sources: Джерела реєстрації
       space: Використання дискового простору
       title: Приборна панель
-      total_users: користувачів загалом
-      trends: Тренди
-      week_interactions: дій за цей тиждень
-      week_users_active: активно протягом тижня
-      week_users_new: користувачів цього тижня
-      whitelist_mode: Режим білого списку
+      top_languages: Найактивніші мови
+      top_servers: Найактивніші сервери
+      website: Вебсайт
     domain_allows:
       add_new: Додати домен до білого списку
       created_msg: Домен було успішно додано до білого списку
@@ -585,6 +597,7 @@ uk:
       resolved: Вирішено
       resolved_msg: Скаргу успішно вирішено!
       status: Статус
+      target_origin: Походження облікового запису, на який скаржаться
       title: Скарги
       unassign: Зняти призначення
       unresolved: Невирішені
@@ -1026,6 +1039,17 @@ uk:
   lists:
     errors:
       limit: Ви досягли максимальної кількості списків
+  login_activities:
+    authentication_methods:
+      otp: застосунок двофакторної автентифікації
+      password: пароль
+      sign_in_token: код безпеки е-поштою
+      webauthn: ключі безпеки
+    description_html: Якщо ви помітили невідомі вам дії, тоді подумайте про зміну свого пароля та можливість увімкнення двофакторної автентифікації.
+    empty: Немає історії входів
+    failed_sign_in_html: Не вдалося увійти з %{method} з %{ip} (%{browser})
+    successful_sign_in_html: Успішний вхід з %{method} з %{ip} (%{browser})
+    title: Історія входів
   media_attachments:
     validations:
       images_and_video: Не можна додати відео до статусу з зображеннями
@@ -1236,6 +1260,7 @@ uk:
     revoke: Закінчити
     revoke_success: Сесія успішно закінчена
     title: Сесії
+    view_authentication_history: Переглянути історію входів вашого облікового запису
   settings:
     account: Обліковий запис
     account_settings: Налаштування облікового запису
@@ -1256,6 +1281,7 @@ uk:
     preferences: Налаштування
     profile: Профіль
     relationships: Підписки та підписники
+    statuses_cleanup: Автовидалення допису
     two_factor_authentication: Двофакторна авторизація
     webauthn_authentication: Ключі безпеки
   statuses:
@@ -1319,6 +1345,40 @@ uk:
       public_long: Показувати всім
       unlisted: Приховувати зі стрічок
       unlisted_long: Показувати всім, але не відображати в публічних стрічках
+  statuses_cleanup:
+    enabled: Автовидалення давніх дописів
+    enabled_hint: Автоматично видаляє ваші дописи після досягнення вказаного вікового порогу, якщо вони не є одним з наведених винятків
+    exceptions: Винятки
+    explanation: Оскільки видалення дописів є складною операцією, то це відбувається повільно, коли сервер не дуже завантажено. З цієї причини ваші дописи можуть бути видалені через деякий час після досягнення вікового порогу.
+    ignore_favs: Ігнорувати обране
+    ignore_reblogs: Ігнорувати передмухнуті
+    interaction_exceptions: Винятки базуються на взаємодії
+    interaction_exceptions_explanation: Зверніть увагу, що немає гарантії, щоб дописи були видалені, якщо вони йдуть нижче улюблених або підсилювачів після того, як вони перейшли за них.
+    keep_direct: Зберігати приватні повідомлення
+    keep_direct_hint: Не видаляти ваших особистих повідомлень
+    keep_media: Зберігати повідомлення з вкладеними мультимедійними файлами
+    keep_media_hint: Не видаляти ваших дописів, у яких є вкладення медіа
+    keep_pinned: Зберігати закріплені дописи
+    keep_pinned_hint: Не вилучати прикріплені дописи
+    keep_polls: Залишити опитування
+    keep_polls_hint: Не видаляти опитувань
+    keep_self_bookmark: Не зберігати дописи, які ви додали до закладок
+    keep_self_bookmark_hint: Не видаляти ваші власні дописи, якщо ви їх додали до закладок
+    keep_self_fav: Залишати обрані дописи
+    keep_self_fav_hint: Не видаляти ваші власні дописи, якщо ви їх додали до обраних
+    min_age:
+      '1209600': 2 тижні
+      '15778476': 6 місяців
+      '2629746': 1 місяць
+      '31556952': 1 рік
+      '5259492': 2 місяці
+      '63113904': 2 роки
+      '7889238': 3 місяці
+    min_age_label: Поріг давності
+    min_favs: Залишати дописи в обраному більше ніж
+    min_favs_hint: Не видаляти ваших дописів, що отримали більше вказаної кількості додавання до закладок. Залиште порожнім, щоб видаляти дописи незалежно від кількості їхнього додавання до обраних
+    min_reblogs: Залишати дописи передмухнуті більше ніж
+    min_reblogs_hint: Не видаляти ваших дописів, що були передмухнуті більш ніж вказану кількість разів. Залиште порожнім, щоб видаляти дописи, попри кількість їхніх передмухів
   stream_entries:
     pinned: Закріплений пост
     reblogged: передмухнув(-ла)

@@ -82,6 +82,49 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "Loading...",
+        "id": "loading_indicator.label"
+      },
+      {
+        "defaultMessage": "Sign-up month",
+        "id": "admin.dashboard.retention.cohort"
+      },
+      {
+        "defaultMessage": "New users",
+        "id": "admin.dashboard.retention.cohort_size"
+      },
+      {
+        "defaultMessage": "Average",
+        "id": "admin.dashboard.retention.average"
+      },
+      {
+        "defaultMessage": "Retention",
+        "id": "admin.dashboard.retention"
+      }
+    ],
+    "path": "app/javascript/mastodon/components/admin/Retention.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Trending now",
+        "id": "trends.trending_now"
+      }
+    ],
+    "path": "app/javascript/mastodon/components/admin/Trends.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "(unprocessed)",
+        "id": "attachments_list.unprocessed"
+      }
+    ],
+    "path": "app/javascript/mastodon/components/attachment_list.json"
+  },
+  {
+    "descriptors": [
+      {
         "defaultMessage": "{count} per week",
         "id": "autosuggest_hashtag.per_week"
       }
@@ -290,8 +333,11 @@
       },
       {
         "defaultMessage": "You voted for this answer",
-        "description": "Tooltip of the \"voted\" checkmark in polls",
         "id": "poll.voted"
+      },
+      {
+        "defaultMessage": "{votes, plural, one {# vote} other {# votes}}",
+        "id": "poll.votes"
       },
       {
         "defaultMessage": "{count, plural, one {# person} other {# people}}",
@@ -2239,8 +2285,12 @@
   {
     "descriptors": [
       {
-        "defaultMessage": "Show",
-        "id": "notifications.column_settings.filter_bar.show"
+        "defaultMessage": "Highlight unread notifications",
+        "id": "notifications.column_settings.unread_notifications.highlight"
+      },
+      {
+        "defaultMessage": "Show filter bar",
+        "id": "notifications.column_settings.filter_bar.show_bar"
       },
       {
         "defaultMessage": "Display all categories",
@@ -2271,8 +2321,8 @@
         "id": "notifications.permission_required"
       },
       {
-        "defaultMessage": "Unread notification markers",
-        "id": "notifications.column_settings.unread_markers.category"
+        "defaultMessage": "Unread notifications",
+        "id": "notifications.column_settings.unread_notifications.category"
       },
       {
         "defaultMessage": "Quick filter bar",
@@ -2917,12 +2967,24 @@
         "id": "upload_modal.apply"
       },
       {
+        "defaultMessage": "Applying…",
+        "id": "upload_modal.applying"
+      },
+      {
         "defaultMessage": "A quick brown fox jumps over the lazy dog",
         "id": "upload_modal.description_placeholder"
       },
       {
         "defaultMessage": "Choose image",
         "id": "upload_modal.choose_image"
+      },
+      {
+        "defaultMessage": "You have unsaved changes to the media description or preview, discard them anyway?",
+        "id": "confirmations.discard_edit_media.message"
+      },
+      {
+        "defaultMessage": "Discard",
+        "id": "confirmations.discard_edit_media.confirm"
       },
       {
         "defaultMessage": "Describe for people with hearing loss",

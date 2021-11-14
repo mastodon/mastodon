@@ -459,6 +459,7 @@ Rails.application.routes.draw do
         member do
           post :follow
           post :unfollow
+          post :remove_from_followers
           post :block
           post :unblock
           post :mute
@@ -510,6 +511,12 @@ Rails.application.routes.draw do
             post :resolve
           end
         end
+
+        resources :trends, only: [:index]
+
+        post :measures, to: 'measures#create'
+        post :dimensions, to: 'dimensions#create'
+        post :retention, to: 'retention#create'
       end
     end
 
