@@ -60,10 +60,10 @@ class ActivityPub::FetchRemoteAccountService < BaseService
     end
 
     raise Error, "Webfinger response for #{@username}@#{@domain} does not loop back to #{@uri}" if webfinger.link('self', 'href') != @uri
-  rescue Webfinger::Error
-    raise Error, "Webfinger error when resolving #{@username}@#{@domain}"
   rescue Webfinger::RedirectError => e
     raise Error, e.message
+  rescue Webfinger::Error => e
+    raise Error, "Webfinger error when resolving #{@username}@#{@domain}: #{e.message}"
   end
 
   def split_acct(acct)
