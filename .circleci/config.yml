@@ -45,7 +45,7 @@ commands:
             bundle config without 'development production'
           name: Set bundler settings
       - ruby/install-deps:
-          bundler-version: '2.2.29'
+          bundler-version: '2.2.31'
           key: ruby<< parameters.ruby-version >>-gems-v1
   wait-db:
     steps:
