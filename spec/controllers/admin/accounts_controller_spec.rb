@@ -21,12 +21,9 @@ RSpec.describe Admin::AccountsController, type: :controller do
       expect(AccountFilter).to receive(:new) do |params|
         h = params.to_h
 
-        expect(h[:local]).to eq '1'
-        expect(h[:remote]).to eq '1'
+        expect(h[:origin]).to eq 'local'
         expect(h[:by_domain]).to eq 'domain'
-        expect(h[:active]).to eq '1'
-        expect(h[:silenced]).to eq '1'
-        expect(h[:suspended]).to eq '1'
+        expect(h[:status]).to eq 'active'
         expect(h[:username]).to eq 'username'
         expect(h[:display_name]).to eq 'display name'
         expect(h[:email]).to eq 'local-part@domain'
@@ -36,12 +33,9 @@ RSpec.describe Admin::AccountsController, type: :controller do
       end
 
       get :index, params: {
-        local: '1',
-        remote: '1',
+        origin: 'local',
         by_domain: 'domain',
-        active: '1',
-        silenced: '1',
-        suspended: '1',
+        status: 'active',
         username: 'username',
         display_name: 'display name',
         email: 'local-part@domain',

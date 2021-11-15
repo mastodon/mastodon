@@ -2,13 +2,24 @@
 
 module Admin
   class AccountsController < BaseController
-    before_action :set_account, except: [:index]
+    before_action :set_account, except: [:index, :batch]
     before_action :require_remote_account!, only: [:redownload]
     before_action :require_local_account!, only: [:enable, :memorialize, :approve, :reject]
 
     def index
       authorize :account, :index?
+
       @accounts = filtered_accounts.page(params[:page])
+      @form     = Form::AccountBatch.new
+    end
+
+    def batch
+      @form = Form::AccountBatch.new(form_account_batch_params.merge(current_account: current_account, action: action_from_button))
+      @form.save
+    rescue ActionController::ParameterMissing
+      flash[:alert] = I18n.t('admin.accounts.no_account_selected')
+    ensure
+      redirect_to admin_accounts_path(filter_params)
     end
 
     def show
@@ -38,13 +49,13 @@ module Admin
     def approve
       authorize @account.user, :approve?
       @account.user.approve!
-      redirect_to admin_pending_accounts_path, notice: I18n.t('admin.accounts.approved_msg', username: @account.acct)
+      redirect_to admin_accounts_path(status: 'pending'), notice: I18n.t('admin.accounts.approved_msg', username: @account.acct)
     end
 
     def reject
       authorize @account.user, :reject?
       DeleteAccountService.new.call(@account, reserve_email: false, reserve_username: false)
-      redirect_to admin_pending_accounts_path, notice: I18n.t('admin.accounts.rejected_msg', username: @account.acct)
+      redirect_to admin_accounts_path(status: 'pending'), notice: I18n.t('admin.accounts.rejected_msg', username: @account.acct)
     end
 
     def destroy
@@ -121,11 +132,25 @@ module Admin
     end
 
     def filtered_accounts
-      AccountFilter.new(filter_params).results
+      AccountFilter.new(filter_params.with_defaults(order: 'recent')).results
     end
 
     def filter_params
       params.slice(*AccountFilter::KEYS).permit(*AccountFilter::KEYS)
+    end
+
+    def form_account_batch_params
+      params.require(:form_account_batch).permit(:action, account_ids: [])
+    end
+
+    def action_from_button
+      if params[:suspend]
+        'suspend'
+      elsif params[:approve]
+        'approve'
+      elsif params[:reject]
+        'reject'
+      end
     end
   end
 end
