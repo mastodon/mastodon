@@ -13,7 +13,7 @@ module Trends
     @tags ||= Trends::Tags.new
   end
 
-  def self.calculate
-    [links, tags].each(&:calculate)
+  def self.refresh!
+    [links, tags].each(&:refresh)
   end
 end

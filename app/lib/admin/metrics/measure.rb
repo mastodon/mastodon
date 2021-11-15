@@ -13,6 +13,9 @@ class Admin::Metrics::Measure
   }.freeze
 
   def self.retrieve(measure_keys, start_at, end_at, params)
-    Array(measure_keys).map { |key| MEASURES[key.to_sym]&.new(start_at, end_at, params[key.to_sym]) }.compact
+    Array(measure_keys).map do |key|
+      klass = MEASURES[key.to_sym]
+      klass&.new(start_at, end_at, klass.with_params? ? params.require(key.to_sym) : nil)
+    end.compact
   end
 end

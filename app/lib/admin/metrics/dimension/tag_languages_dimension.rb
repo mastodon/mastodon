@@ -3,6 +3,10 @@
 class Admin::Metrics::Dimension::TagLanguagesDimension < Admin::Metrics::Dimension::BaseDimension
   include LanguagesHelper
 
+  def self.with_params?
+    true
+  end
+
   def key
     'tag_languages'
   end
@@ -19,7 +23,7 @@ class Admin::Metrics::Dimension::TagLanguagesDimension < Admin::Metrics::Dimensi
       LIMIT $4
     SQL
 
-    rows = ActiveRecord::Base.connection.select_all(sql, nil, [[nil, params[:id]], [nil, Mastodon::Snowflake.id_at(@start_at)], [nil, Mastodon::Snowflake.id_at(@end_at)], [nil, @limit]])
+    rows = ActiveRecord::Base.connection.select_all(sql, nil, [[nil, params[:id]], [nil, Mastodon::Snowflake.id_at(@start_at, with_random: false)], [nil, Mastodon::Snowflake.id_at(@end_at, with_random: false)], [nil, @limit]])
 
     rows.map { |row| { key: row['language'], human_key: human_locale(row['language']), value: row['value'].to_s } }
   end

@@ -11,7 +11,7 @@ class Trends::Base
     raise NotImplementedError
   end
 
-  def calculate(*)
+  def refresh(*)
     raise NotImplementedError
   end
 

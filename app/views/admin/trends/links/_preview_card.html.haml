@@ -1,4 +1,4 @@
-.batch-table__row{ class: [preview_card.provider&.requires_review? && 'batch-table__row--attention', !preview_card.provider&.requires_review? && !preview_card.provider&.trendable? && 'batch-table__row--muted'] }
+.batch-table__row{ class: [preview_card.provider&.requires_review? && 'batch-table__row--attention', !preview_card.provider&.requires_review? && !preview_card.trendable? && 'batch-table__row--muted'] }
   %label.batch-table__row__select.batch-table__row__select--aligned.batch-checkbox
     = f.check_box :preview_card_ids, { multiple: true, include_hidden: false }, preview_card.id
 
@@ -18,7 +18,7 @@
 
       = t('admin.trends.links.shared_by_over_week', count: preview_card.history.reduce(0) { |sum, day| sum + day.accounts })
 
-      - if preview_card.provider&.trendable? && (rank = Trends.links.rank(preview_card.id))
+      - if preview_card.trendable? && (rank = Trends.links.rank(preview_card.id))
         •
         %abbr{ title: t('admin.trends.tags.current_score', score: Trends.links.score(preview_card.id)) }= t('admin.trends.tags.trending_rank', rank: rank + 1)
 

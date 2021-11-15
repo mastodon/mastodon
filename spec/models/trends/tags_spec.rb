@@ -25,7 +25,7 @@ RSpec.describe Trends::Tags do
     pending
   end
 
-  describe '#calculate' do
+  describe '#refresh' do
     let!(:today) { at_time }
     let!(:yesterday) { today - 1.day }
 
@@ -42,8 +42,8 @@ RSpec.describe Trends::Tags do
 
     context do
       before do
-        subject.calculate(yesterday + 12.hours)
-        subject.calculate(at_time)
+        subject.refresh(yesterday + 12.hours)
+        subject.refresh(at_time)
       end
 
       it 'calculates and re-calculates scores' do
@@ -56,10 +56,10 @@ RSpec.describe Trends::Tags do
     end
 
     it 'decays scores' do
-      subject.calculate(yesterday + 12.hours)
+      subject.refresh(yesterday + 12.hours)
       original_score = subject.score(tag3.id)
       expect(original_score).to eq 144.0
-      subject.calculate(yesterday + 12.hours + described_class::MAX_SCORE_HALFLIFE)
+      subject.refresh(yesterday + 12.hours + described_class::MAX_SCORE_HALFLIFE)
       decayed_score = subject.score(tag3.id)
       expect(decayed_score).to be <= original_score / 2
     end

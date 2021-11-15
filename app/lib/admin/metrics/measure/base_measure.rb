@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 class Admin::Metrics::Measure::BaseMeasure
+  def self.with_params?
+    false
+  end
+
   def initialize(start_at, end_at, params)
     @start_at = start_at&.to_datetime
     @end_at   = end_at&.to_datetime

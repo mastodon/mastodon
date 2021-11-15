@@ -27,6 +27,7 @@
 #  language                     :string
 #  max_score                    :float
 #  max_score_at                 :datetime
+#  trendable                    :boolean
 #
 
 class PreviewCard < ApplicationRecord
@@ -67,6 +68,18 @@ class PreviewCard < ApplicationRecord
 
   def provider
     @provider ||= PreviewCardProvider.matching_domain(domain)
+  end
+
+  def trendable?
+    if attributes['trendable'].nil?
+      provider&.trendable?
+    else
+      attributes['trendable']
+    end
+  end
+
+  def requires_review_notification?
+    attributes['trendable'].nil? && (provider.nil? || provider.requires_review_notification?)
   end
 
   attr_writer :provider

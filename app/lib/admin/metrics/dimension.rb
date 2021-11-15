@@ -12,6 +12,9 @@ class Admin::Metrics::Dimension
   }.freeze
 
   def self.retrieve(dimension_keys, start_at, end_at, limit, params)
-    Array(dimension_keys).map { |key| DIMENSIONS[key.to_sym]&.new(start_at, end_at, limit, params[key.to_sym]) }.compact
+    Array(dimension_keys).map do |key|
+      klass = DIMENSIONS[key.to_sym]
+      klass&.new(start_at, end_at, limit, klass.with_params? ? params.require(key.to_sym) : nil)
+    end.compact
   end
 end

@@ -13,12 +13,14 @@ class Trends::Links < Trends::Base
   MAX_SCORE_COOLDOWN = 2.days.freeze
 
   # How quickly a peak score decays
-  MAX_SCORE_HALFLIFE = 2.hours.freeze
+  MAX_SCORE_HALFLIFE = 6.hours.freeze
 
   def register(status, at_time = Time.now.utc)
     original_status = status.reblog? ? status.reblog : status
 
-    return unless original_status.public_visibility? && status.public_visibility? && !original_status.account.silenced? && !status.account.silenced?
+    return unless original_status.public_visibility? && status.public_visibility? &&
+                  !original_status.account.silenced? && !status.account.silenced? &&
+                  !original_status.spoiler_text?
 
     original_status.preview_cards.each do |preview_card|
       add(preview_card, status.account_id, at_time) if preview_card.appropriate_for_trends?
@@ -36,7 +38,7 @@ class Trends::Links < Trends::Base
     preview_card_ids.map { |id| preview_cards[id] }.compact
   end
 
-  def calculate(at_time = Time.now.utc)
+  def refresh(at_time = Time.now.utc)
     preview_cards = PreviewCard.where(id: (recently_used_ids(at_time) + currently_trending_ids(false, -1)).uniq)
 
     calculate_scores(preview_cards, at_time)
@@ -85,7 +87,7 @@ class Trends::Links < Trends::Base
       else
         redis.zadd("#{PREFIX}:all", decaying_score, preview_card.id)
 
-        if preview_card.provider&.trendable?
+        if preview_card.trendable?
           redis.zadd("#{PREFIX}:allowed", decaying_score, preview_card.id)
         else
           redis.zrem("#{PREFIX}:allowed", preview_card.id)
@@ -96,7 +98,7 @@ class Trends::Links < Trends::Base
 
   def request_review_for_trending_items(preview_cards)
     preview_cards_requiring_review = preview_cards.filter_map do |preview_card|
-      next unless would_be_trending?(preview_card.id) && !preview_card.provider&.trendable? && (preview_card.provider.nil? || preview_card.provider.requires_review_notification?)
+      next unless would_be_trending?(preview_card.id) && !preview_card.trendable? && preview_card.requires_review_notification?
 
       if preview_card.provider.nil?
         preview_card.provider = PreviewCardProvider.create(domain: preview_card.domain, requested_review_at: Time.now.utc)

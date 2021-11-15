@@ -1,16 +1,20 @@
 # frozen_string_literal: true
 
 class Admin::Metrics::Measure::TagServersMeasure < Admin::Metrics::Measure::BaseMeasure
+  def self.with_params?
+    true
+  end
+
   def key
     'tag_servers'
   end
 
   def total
-    tag.statuses.where('statuses.id BETWEEN ? AND ?', Mastodon::Snowflake.id_at(@start_at), Mastodon::Snowflake.id_at(@end_at)).joins(:account).count('distinct accounts.domain')
+    tag.statuses.where('statuses.id BETWEEN ? AND ?', Mastodon::Snowflake.id_at(@start_at, with_random: false), Mastodon::Snowflake.id_at(@end_at, with_random: false)).joins(:account).count('distinct accounts.domain')
   end
 
   def previous_total
-    tag.statuses.where('statuses.id BETWEEN ? AND ?', Mastodon::Snowflake.id_at(@start_at - length_of_period), Mastodon::Snowflake.id_at(@end_at - length_of_period)).joins(:account).count('distinct accounts.domain')
+    tag.statuses.where('statuses.id BETWEEN ? AND ?', Mastodon::Snowflake.id_at(@start_at - length_of_period, with_random: false), Mastodon::Snowflake.id_at(@end_at - length_of_period, with_random: false)).joins(:account).count('distinct accounts.domain')
   end
 
   def data
@@ -26,7 +30,7 @@ class Admin::Metrics::Measure::TagServersMeasure < Admin::Metrics::Measure::Base
       ) as axis
     SQL
 
-    rows = ActiveRecord::Base.connection.select_all(sql, nil, [[nil, Mastodon::Snowflake.id_at(@start_at)], [nil, Mastodon::Snowflake.id_at(@end_at)], [nil, @start_at], [nil, @end_at]])
+    rows = ActiveRecord::Base.connection.select_all(sql, nil, [[nil, Mastodon::Snowflake.id_at(@start_at, with_random: false)], [nil, Mastodon::Snowflake.id_at(@end_at, with_random: false)], [nil, @start_at], [nil, @end_at]])
 
     rows.map { |row| { date: row['day'], value: row['value'].to_s } }
   end
