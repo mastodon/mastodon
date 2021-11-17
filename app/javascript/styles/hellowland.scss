@@ -1,0 +1,127 @@
+// Dependent colors
+$black: #000000;
+$white: #ffffff;
+// Dependent colors
+$classic-base-color: #333;
+$classic-primary-color: #888;
+$classic-secondary-color: #f3f3f3;
+$classic-highlight-color: #65acbd;
+
+// Differences
+$success-green: lighten(#3c754d, 8%);
+
+$base-overlay-background: $white !default;
+$valid-value-color: $success-green !default;
+
+$ui-base-color: $classic-secondary-color !default;
+$ui-base-lighter-color: #b0cecf;
+$ui-primary-color: #96d2e0;
+$ui-secondary-color: $classic-base-color !default;
+$ui-highlight-color: #65acbd;
+
+$primary-text-color: $black !default;
+$darker-text-color: $classic-base-color !default;
+$dark-text-color: #aaa;
+$action-button-color: #606984;
+
+$inverted-text-color: $black !default;
+$lighter-text-color: $classic-base-color !default;
+$light-text-color: #444;
+
+//Newly added colors
+$account-background-color: $white !default;
+
+//Invert darkened and lightened colors
+@function darken($color, $amount) {
+  @return hsl(hue($color), saturation($color), lightness($color) + $amount);
+}
+
+@function lighten($color, $amount) {
+  @return hsl(hue($color), saturation($color), lightness($color) - $amount);
+}
+
+$emojis-requiring-inversion: "chains";
+
+@import "application";
+@import "mastodon-light/diff";
+
+body {
+  background: #525659;
+}
+code,
+.simple_form .hint code,
+.flash-message {
+  background: #d8f2f9;
+}
+.placeholder-widget {
+  border: 2px dashed darken($classic-highlight-color, 10%);
+  color: $classic-base-color;
+  background: #d8f2f9;
+}
+.drawer__inner__mastodon {
+  background: none;
+}
+.drawer__inner__mastodon > img {
+  opacity: 0.5;
+}
+.landing__brand svg {
+  fill: $white;
+}
+.simple_form {
+  input[type="text"],
+  input[type="number"],
+  input[type="email"],
+  input[type="password"],
+  input[type="url"],
+  textarea {
+    background: $white;
+    border: 1px solid #ccc;
+    &:focus {
+      background: $white;
+    }
+  }
+}
+
+.admin-wrapper .content-wrapper,
+.admin-wrapper .sidebar ul .simple-navigation-active-leaf a:hover {
+  background: $white;
+}
+.directory__tag h4 .fa {
+  color: $classic-highlight-color;
+}
+.simple_form select,
+.input-copy input[type="text"] {
+  border: 1px solid #ccc;
+}
+.trends__item__current {
+  color: $classic-primary-color;
+}
+.column > .scrollable {
+  background: #f3f3f3;
+}
+.drawer__inner {
+  background: #f3f3f3;
+}
+.admin-wrapper .content .positive-hint {
+  color: $white;
+  background: $valid-value-color;
+  padding: 0.2rem 0.5rem;
+  border-radius: 0.3rem;
+}
+.public-layout .footer h4,
+.public-layout .public-account-bio__extra {
+  color: #aaa;
+}
+.hero-widget__text a {
+  color: #4f96a7;
+}
+.status__display-name strong {
+  color: #4f96a7;
+  font-weight: bold;
+}
+.character-counter {
+  color: $dark-text-color;
+}
+.admin-wrapper .sidebar ul ul {
+  background: $classic-secondary-color;
+}
