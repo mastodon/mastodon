@@ -3,8 +3,8 @@ FROM ubuntu:20.04 as build-dep
 # Use bash for the shell
 SHELL ["/bin/bash", "-c"]
 
-# Install Node v14 (LTS)
-ENV NODE_VER="14.17.6"
+# Install Node v16 (LTS)
+ENV NODE_VER="16.13.0"
 RUN ARCH= && \
     dpkgArch="$(dpkg --print-architecture)" && \
   case "${dpkgArch##*-}" in \
@@ -45,7 +45,8 @@ RUN apt-get update && \
 
 ENV PATH="${PATH}:/opt/ruby/bin:/opt/node/bin"
 
-RUN npm install -g yarn && \
+RUN npm install -g npm@latest && \
+	npm install -g yarn && \
 	gem install bundler && \
 	apt-get update && \
 	apt-get install -y --no-install-recommends git libicu-dev libidn11-dev \
