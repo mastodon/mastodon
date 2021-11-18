@@ -37,23 +37,3 @@ end
 # Mastodon is run with hidden services enabled, because
 # ElasticSearch is *not* supposed to be accessed through a proxy
 Faraday.ignore_env_proxy = true
-
-# Elasticsearch 7.x workaround
-Elasticsearch::Transport::Client.prepend Module.new {
-  def search(arguments = {})
-    arguments[:rest_total_hits_as_int] = true
-    super arguments
-  end
-}
-
-Elasticsearch::API::Indices::IndicesClient.prepend Module.new {
-  def create(arguments = {})
-    arguments[:include_type_name] = true
-    super arguments
-  end
-
-  def put_mapping(arguments = {})
-    arguments[:include_type_name] = true
-    super arguments
-  end
-}
