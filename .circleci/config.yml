@@ -23,7 +23,7 @@ executors:
         environment:
           POSTGRES_USER: root
           POSTGRES_HOST_AUTH_METHOD: trust
-      - image: circleci/redis:5-alpine
+      - image: circleci/redis:6-alpine
 
 commands:
   install-system-dependencies:
@@ -45,7 +45,7 @@ commands:
             bundle config without 'development production'
           name: Set bundler settings
       - ruby/install-deps:
-          bundler-version: '2.2.29'
+          bundler-version: '2.2.31'
           key: ruby<< parameters.ruby-version >>-gems-v1
   wait-db:
     steps:
@@ -56,14 +56,14 @@ commands:
 jobs:
   build:
     docker:
-      - image: cimg/ruby:2.7-node
+      - image: cimg/ruby:3.0-node
         environment:
           RAILS_ENV: test
     steps:
       - checkout
       - install-system-dependencies
       - install-ruby-dependencies:
-          ruby-version: '2.7'
+          ruby-version: '3.0'
       - node/install-packages:
           cache-version: v1
           pkg-manager: yarn
@@ -111,12 +111,12 @@ jobs:
   test-migrations:
     executor:
       name: default
-      ruby-version: '2.7'
+      ruby-version: '3.0'
     steps:
       - checkout
       - install-system-dependencies
       - install-ruby-dependencies:
-          ruby-version: '2.7'
+          ruby-version: '3.0'
       - wait-db
       - run:
           command: ./bin/rails db:create
