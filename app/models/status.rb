@@ -42,7 +42,7 @@ class Status < ApplicationRecord
   # will be based on current time instead of `created_at`
   attr_accessor :override_timestamps
 
-  update_index('statuses#status', :proper)
+  update_index('statuses', :proper)
 
   enum visibility: [:public, :unlisted, :private, :direct, :limited], _suffix: :visibility
 
