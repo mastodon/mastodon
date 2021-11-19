@@ -8,6 +8,7 @@ require_relative 'mastodon/feeds_cli'
 require_relative 'mastodon/search_cli'
 require_relative 'mastodon/settings_cli'
 require_relative 'mastodon/statuses_cli'
+require_relative 'mastodon/conversations_cli'
 require_relative 'mastodon/domains_cli'
 require_relative 'mastodon/preview_cards_cli'
 require_relative 'mastodon/cache_cli'
@@ -43,6 +44,9 @@ module Mastodon
 
     desc 'statuses SUBCOMMAND ...ARGS', 'Manage statuses'
     subcommand 'statuses', Mastodon::StatusesCLI
+
+    desc 'conversations SUBCOMMAND ...ARGS', 'Manage conversations'
+    subcommand 'conversations', Mastodon::ConversationsCLI
 
     desc 'domains SUBCOMMAND ...ARGS', 'Manage account domains'
     subcommand 'domains', Mastodon::DomainsCLI
