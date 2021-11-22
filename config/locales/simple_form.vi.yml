@@ -1,4 +1,3 @@
----
 vi:
   simple_form:
     hints:
@@ -15,11 +14,11 @@ vi:
         text_html: Tùy chọn. Bạn nên dùng <a href="%{path}">cảnh cáo cài sẵn</a> để tiết kiệm thời gian
         type_html: Chọn làm gì với <strong>%{acct}</strong>
         types:
-          disable: Cấm người này tiếp tục đăng nhập, nhưng không xóa hoặc ẩn tút của họ.
-          none: Sử dụng để gửi cảnh cáo tới tài khoản này, không áp đặt trừng phạt.
+          disable: Tạm khóa đăng nhập tài khoản, nhưng không xóa hoặc ẩn tút.
+          none: Cảnh cáo tài khoản này, không áp đặt trừng phạt.
           sensitive: Mọi tập tin của tài khoản này tải lên đều sẽ bị gắn nhãn nhạy cảm.
           silence: Cấm tài khoản này đăng tút công khai, ẩn tút của họ hiện ra với những người chưa theo dõi họ.
-          suspend: Vô hiệu hóa mọi hoạt động của tài khoản này và xóa sạch dữ liệu. Có thể mở lại trong vòng 30 ngày.
+          suspend: Vô hiệu hóa và xóa sạch dữ liệu của tài khoản này. Có thể khôi phục trước 30 ngày.
         warning_preset_id: Tùy chọn. Bạn vẫn có thể thêm ghi chú riêng
       announcement:
         all_day: Chỉ có khoảng thời gian được đánh dấu mới hiển thị
@@ -107,10 +106,10 @@ vi:
         text: Ghi chú riêng
         type: Hành động
         types:
-          disable: Tạm khóa
+          disable: Khóa
           none: Cảnh cáo
           sensitive: Nhạy cảm
-          silence: Tạm ẩn
+          silence: Hạn chế
           suspend: Vô hiệu hóa
         warning_preset_id: Dùng mẫu có sẵn
       announcement:
@@ -213,7 +212,7 @@ vi:
         name: Hashtag
         trendable: Cho phép hashtag này xuất hiện trong xu hướng
         usable: Cho phép dùng hashtag này trong tút
-    'no': Tắt
+    'no': 'Tắt'
     recommended: Đề xuất
     required:
       mark: "*"
@@ -221,4 +220,4 @@ vi:
     title:
       sessions:
         webauthn: Dùng một trong những khóa bảo mật của bạn để đăng nhập
-    'yes': Bật
+    'yes': 'Bật'
