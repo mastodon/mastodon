@@ -3,14 +3,14 @@ services:
 
   db:
     restart: always
-    image: lindwurm/pg_repack:9.6
+    image: postgres:9.6-alpine
     shm_size: 256mb
     networks:
       - internal_network
     healthcheck:
       test: ["CMD", "pg_isready", "-U", "postgres"]
     volumes:
-      - /home/ubuntu/mastodon_data/postgresql:/var/lib/postgresql/data
+      - ./postgres:/var/lib/postgresql/data
 
   redis:
     restart: always
@@ -20,7 +20,7 @@ services:
     healthcheck:
       test: ["CMD", "redis-cli", "ping"]
     volumes:
-      - /home/ubuntu/mastodon_data/redis:/data
+      - ./redis:/data
 
 #  es:
 #    restart: always
@@ -78,12 +78,12 @@ services:
       - db
       - redis
 
-  sidekiq_default_first:
+  sidekiq:
     build: .
     image: tootsuite/mastodon
     restart: always
     env_file: .env.production
-    command: bundle exec sidekiq -c 16 -q default -q push
+    command: bundle exec sidekiq
     depends_on:
       - db
       - redis
@@ -92,37 +92,6 @@ services:
       - internal_network
     volumes:
       - ./public/system:/mastodon/public/system
-
-  sidekiq_push_first:
-    build: .
-    image: tootsuite/mastodon
-    restart: always
-    env_file: .env.production
-    command: bundle exec sidekiq -c 16 -q push -q default
-    depends_on:
-      - db
-      - redis
-    networks:
-      - external_network
-      - internal_network
-    volumes:
-      - ./public/system:/mastodon/public/system
-
-  sidekiq_all:
-    build: .
-    image: tootsuite/mastodon
-    restart: always
-    env_file: .env.production
-    command: bundle exec sidekiq -c 16
-    depends_on:
-      - db
-      - redis
-    networks:
-      - external_network
-      - internal_network
-    volumes:
-      - ./public/system:/mastodon/public/system
-
 ## Uncomment to enable federation with tor instances along with adding the following ENV variables
 ## http_proxy=http://privoxy:8118
 ## ALLOW_ACCESS_TO_HIDDEN_SERVICE=true
