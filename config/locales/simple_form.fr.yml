@@ -10,15 +10,15 @@ fr:
         text: Vous pouvez utiliser la syntaxe des messages, comme les URL, les hashtags et les mentions
         title: Facultatif. Invisible pour le destinataire
       admin_account_action:
-        include_statuses: L’utilisateur·rice verra quels messages sont la source de l’action de modération ou de l’avertissement
+        include_statuses: L’utilisateur verra quels messages sont la source de l’action de modération ou de l’avertissement
         send_email_notification: L’utilisateur recevra une explication de ce qu’il s’est passé avec son compte
         text_html: Optionnel. Vous pouvez utilisez la syntaxe des messages. Vous pouvez <a href="%{path}">ajouter des modèles d’avertissement</a> pour économiser du temps
         type_html: Choisir que faire avec <strong>%{acct}</strong>
         types:
-          disable: Empêcher l’utilisateur·rice d’utiliser son compte, mais ne pas supprimer ou masquer son contenu.
-          none: Utilisez ceci pour envoyer un avertissement à l’utilisateur·rice, sans déclencher aucune autre action.
-          sensitive: Forcer toutes les pièces jointes de cet·te utilisateur·rice à être signalées comme sensibles.
-          silence: Empêcher l’utilisateur·rice de poster avec une visibilité publique, cacher ses messages et ses notifications aux personnes qui ne les suivent pas.
+          disable: Empêcher l’utilisateur d’utiliser son compte, mais ne pas supprimer ou masquer son contenu.
+          none: Utilisez ceci pour envoyer un avertissement à l’utilisateur, sans déclencher aucune autre action.
+          sensitive: Forcer toutes les pièces jointes de cet utilisateur à être signalées comme sensibles.
+          silence: Empêcher l’utilisateur de poster avec une visibilité publique, cacher ses messages et ses notifications aux personnes qui ne les suivent pas.
           suspend: Empêcher toute interaction depuis ou vers ce compte et supprimer son contenu. Réversible dans les 30 jours.
         warning_preset_id: Optionnel. Vous pouvez toujours ajouter un texte personnalisé à la fin de la présélection
       announcement:
@@ -26,7 +26,7 @@ fr:
         ends_at: Optionnel. L’annonce sera automatiquement dépubliée à ce moment
         scheduled_at: Laisser vide pour publier l’annonce immédiatement
         starts_at: Optionnel. Si votre annonce est liée à une période spécifique
-        text: Vous pouvez utiliser la syntaxe des messages. Veuillez prendre en compte l’espace que l'annonce prendra sur l’écran de l'utilisateur·rice
+        text: Vous pouvez utiliser la syntaxe des messages. Veuillez prendre en compte l’espace que l'annonce prendra sur l’écran de l'utilisateur
       defaults:
         autofollow: Les personnes qui s’inscrivent grâce à l’invitation vous suivront automatiquement
         avatar: Au format PNG, GIF ou JPG. %{size} maximum. Sera réduit à %{dimensions}px
@@ -36,13 +36,14 @@ fr:
         current_username: Pour confirmer, veuillez saisir le nom d'utilisateur du compte courant
         digest: Uniquement envoyé après une longue période d’inactivité et uniquement si vous avez reçu des messages personnels pendant votre absence
         discoverable: L’annuaire des profils est une autre façon pour votre compte d’atteindre une plus grande audience
+        discoverable_no_directory: Permettre à des inconnu·e·s de découvrir votre compte par le biais des recommandations et autres fonctionnalités
         email: Vous recevrez un courriel de confirmation
         fields: Vous pouvez avoir jusqu’à 4 éléments affichés en tant que tableau sur votre profil
         header: Au format PNG, GIF ou JPG. %{size} maximum. Sera réduit à %{dimensions}px
         inbox_url: Copiez l’URL depuis la page d’accueil du relais que vous souhaitez utiliser
         irreversible: Les messages filtrés disparaîtront pour toujours, même si le filtre est supprimé plus tard
         locale: La langue de l’interface, des courriels et des notifications
-        locked: Nécessite que vous approuviez manuellement chaque abonné·e
+        locked: Nécessite que vous approuviez manuellement chaque abonné
         password: Utilisez au moins 8 caractères
         phrase: Sera filtré peu importe la casse ou l’avertissement de contenu du message
         scopes: À quelles APIs l’application sera autorisée à accéder. Si vous sélectionnez une permission générale, vous n’avez pas besoin de sélectionner les permissions plus précises.
@@ -74,7 +75,7 @@ fr:
       ip_block:
         comment: Optionnel. Pour ne pas oublier pourquoi vous avez ajouté cette règle.
         expires_in: Les adresses IP sont une ressource finie, elles sont parfois partagées et changent souvent de mains. Pour cette raison, les blocages d’IP indéfiniment ne sont pas recommandés.
-        ip: Entrez une adresse IPv4 ou IPv6. Vous pouvez bloquer des plages entières en utilisant la syntaxe CIDR. Faites attention à ne pas vous bloquer vous-même !
+        ip: Entrez une adresse IPv4 ou IPv6. Vous pouvez bloquer des plages entières en utilisant la syntaxe CIDR. Faites attention à ne pas vous bloquer vous-même!
         severities:
           no_access: Bloquer l’accès à toutes les ressources
           sign_up_requires_approval: Les nouvelles inscriptions nécessiteront votre approbation
@@ -128,8 +129,8 @@ fr:
         context: Contextes du filtre
         current_password: Mot de passe actuel
         data: Données
-        discoverable: Inscrire ce compte dans l’annuaire
-        display_name: Nom public
+        discoverable: Proposer ce compte aux autres
+        display_name: Afficher le nom
         email: Adresse courriel
         expires_in: Expire après
         fields: Métadonnées du profil
