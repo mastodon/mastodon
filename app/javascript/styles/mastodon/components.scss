@@ -2745,6 +2745,48 @@ a.account__display-name {
   }
 }
 
+.wrapper-import{
+  display: flex;
+  background: lighten($ui-base-color, 4%);
+  justify-content: space-between;
+}
+
+.message-import{
+  box-sizing: border-box;
+  width: 100%;
+  background: lighten($ui-base-color, 4%);
+  display: inline-block;
+  font-size: 16px;
+  line-height: inherit;
+  border: 0;
+  text-align: unset;
+  padding: 15px;
+  margin: 0;
+  z-index: 3;
+  outline: 0;
+}
+
+.button-import{
+  box-sizing: border-box;
+  width: 100%;
+  background: lighten($ui-base-color, 4%);
+  color: $highlight-text-color;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 16px;
+  line-height: inherit;
+  border: 0;
+  text-align: unset;
+  padding: 15px;
+  margin: 0;
+  z-index: 3;
+  outline: 0;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
 .column-header__back-button {
   background: lighten($ui-base-color, 4%);
   border: 0;

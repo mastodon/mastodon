@@ -215,7 +215,6 @@ class Header extends ImmutablePureComponent {
       }
 
       menu.push({ text: intl.formatMessage(messages.blocks), to: '/blocks/' + account.get('id') });
-      menu.push({ text: intl.formatMessage(messages.domain_blocks), to: '/domain_blocks' });
       menu.push(null);
 
       if (account.getIn(['relationship', 'muting'])) {
