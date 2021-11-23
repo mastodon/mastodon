@@ -16,4 +16,8 @@ module Trends
   def self.refresh!
     [links, tags].each(&:refresh)
   end
+
+  def self.request_review!
+    [links, tags].each(&:request_review)
+  end
 end

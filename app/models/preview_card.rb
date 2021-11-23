@@ -28,6 +28,7 @@
 #  max_score                    :float
 #  max_score_at                 :datetime
 #  trendable                    :boolean
+#  link_type                    :integer
 #
 
 class PreviewCard < ApplicationRecord
@@ -44,6 +45,7 @@ class PreviewCard < ApplicationRecord
   self.inheritance_column = false
 
   enum type: [:link, :photo, :video, :rich]
+  enum link_type: [:unknown, :article]
 
   has_and_belongs_to_many :statuses
 
@@ -59,7 +61,7 @@ class PreviewCard < ApplicationRecord
   before_save :extract_dimensions, if: :link?
 
   def appropriate_for_trends?
-    link? && title.present? && description.present? && image.present? && provider_name.present?
+    link? && article? && title.present? && description.present? && image.present? && provider_name.present?
   end
 
   def domain

@@ -4,7 +4,7 @@ class Trends::Links < Trends::Base
   PREFIX = 'trending_links'
 
   # Minimum amount of uses by unique accounts to begin calculating the score
-  THRESHOLD = 5
+  THRESHOLD = 15
 
   # Minimum rank (lower = better) before requesting a review
   REVIEW_THRESHOLD = 10
@@ -13,7 +13,7 @@ class Trends::Links < Trends::Base
   MAX_SCORE_COOLDOWN = 2.days.freeze
 
   # How quickly a peak score decays
-  MAX_SCORE_HALFLIFE = 6.hours.freeze
+  MAX_SCORE_HALFLIFE = 8.hours.freeze
 
   def register(status, at_time = Time.now.utc)
     original_status = status.reblog? ? status.reblog : status
@@ -40,10 +40,30 @@ class Trends::Links < Trends::Base
 
   def refresh(at_time = Time.now.utc)
     preview_cards = PreviewCard.where(id: (recently_used_ids(at_time) + currently_trending_ids(false, -1)).uniq)
-
     calculate_scores(preview_cards, at_time)
-    request_review_for_trending_items(preview_cards) if feature_enabled?
     trim_older_items
+  end
+
+  def request_review
+    preview_cards = PreviewCard.where(id: currently_trending_ids(false, -1))
+
+    preview_cards_requiring_review = preview_cards.filter_map do |preview_card|
+      next unless would_be_trending?(preview_card.id) && !preview_card.trendable? && preview_card.requires_review_notification?
+
+      if preview_card.provider.nil?
+        preview_card.provider = PreviewCardProvider.create(domain: preview_card.domain, requested_review_at: Time.now.utc)
+      else
+        preview_card.provider.touch(:requested_review_at)
+      end
+
+      preview_card
+    end
+
+    return if preview_cards_requiring_review.empty? || !feature_enabled?
+
+    User.staff.includes(:account).find_each do |user|
+      AdminMailer.new_trending_links(user.account, preview_cards_requiring_review).deliver_later! if user.allows_trending_tag_emails?
+    end
   end
 
   protected
@@ -93,26 +113,6 @@ class Trends::Links < Trends::Base
           redis.zrem("#{PREFIX}:allowed", preview_card.id)
         end
       end
-    end
-  end
-
-  def request_review_for_trending_items(preview_cards)
-    preview_cards_requiring_review = preview_cards.filter_map do |preview_card|
-      next unless would_be_trending?(preview_card.id) && !preview_card.trendable? && preview_card.requires_review_notification?
-
-      if preview_card.provider.nil?
-        preview_card.provider = PreviewCardProvider.create(domain: preview_card.domain, requested_review_at: Time.now.utc)
-      else
-        preview_card.provider.touch(:requested_review_at)
-      end
-
-      preview_card
-    end
-
-    return if preview_cards_requiring_review.empty?
-
-    User.staff.includes(:account).find_each do |user|
-      AdminMailer.new_trending_links(user.account, preview_cards_requiring_review).deliver_later! if user.allows_trending_tag_emails?
     end
   end
 

@@ -15,6 +15,10 @@ class Trends::Base
     raise NotImplementedError
   end
 
+  def request_review
+    raise NotImplementedError
+  end
+
   def get(*)
     raise NotImplementedError
   end

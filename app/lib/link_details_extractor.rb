@@ -25,6 +25,10 @@ class LinkDetailsExtractor
       json['inLanguage']
     end
 
+    def type
+      json['@type']
+    end
+
     def image
       obj = first_of_value(json['image'])
 
@@ -92,6 +96,7 @@ class LinkDetailsExtractor
       description: description || '',
       image_remote_url: image,
       type: type,
+      link_type: link_type,
       width: width || 0,
       height: height || 0,
       html: html || '',
@@ -106,6 +111,14 @@ class LinkDetailsExtractor
 
   def type
     player_url.present? ? :video : :link
+  end
+
+  def link_type
+    if structured_data&.type == 'NewsArticle' || opengraph_tag('og:type') == 'article'
+      :article
+    else
+      :unknown
+    end
   end
 
   def html

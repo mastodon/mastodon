@@ -4,7 +4,7 @@ class Trends::Tags < Trends::Base
   PREFIX = 'trending_tags'
 
   # Minimum amount of uses by unique accounts to begin calculating the score
-  THRESHOLD = 5
+  THRESHOLD = 15
 
   # Minimum rank (lower = better) before requesting a review
   REVIEW_THRESHOLD = 10
@@ -13,7 +13,7 @@ class Trends::Tags < Trends::Base
   MAX_SCORE_COOLDOWN = 2.days.freeze
 
   # How quickly a peak score decays
-  MAX_SCORE_HALFLIFE = 2.hours.freeze
+  MAX_SCORE_HALFLIFE = 4.hours.freeze
 
   def register(status, at_time = Time.now.utc)
     original_status = status.reblog? ? status.reblog : status
@@ -33,9 +33,7 @@ class Trends::Tags < Trends::Base
 
   def refresh(at_time = Time.now.utc)
     tags = Tag.where(id: (recently_used_ids(at_time) + currently_trending_ids(false, -1)).uniq)
-
     calculate_scores(tags, at_time)
-    request_review_for_trending_items(tags) if feature_enabled?
     trim_older_items
   end
 
@@ -43,6 +41,23 @@ class Trends::Tags < Trends::Base
     tag_ids = currently_trending_ids(allowed, limit)
     tags = Tag.where(id: tag_ids).index_by(&:id)
     tag_ids.map { |id| tags[id] }.compact
+  end
+
+  def request_review
+    tags = Tag.where(id: currently_trending_ids(false, -1))
+
+    tags_requiring_review = tags.filter_map do |tag|
+      next unless would_be_trending?(tag.id) && !tag.trendable? && tag.requires_review_notification?
+
+      tag.touch(:requested_review_at)
+      tag
+    end
+
+    return if tags_requiring_review.empty? || !feature_enabled?
+
+    User.staff.includes(:account).find_each do |user|
+      AdminMailer.new_trending_tags(user.account, tags_requiring_review).deliver_later! if user.allows_trending_tag_emails?
+    end
   end
 
   protected
@@ -92,21 +107,6 @@ class Trends::Tags < Trends::Base
           redis.zrem("#{PREFIX}:allowed", tag.id)
         end
       end
-    end
-  end
-
-  def request_review_for_trending_items(tags)
-    tags_requiring_review = tags.filter_map do |tag|
-      next unless would_be_trending?(tag.id) && !tag.trendable? && tag.requires_review_notification?
-
-      tag.touch(:requested_review_at)
-      tag
-    end
-
-    return if tags_requiring_review.empty?
-
-    User.staff.includes(:account).find_each do |user|
-      AdminMailer.new_trending_tags(user.account, tags_requiring_review).deliver_later! if user.allows_trending_tag_emails?
     end
   end
 
