@@ -1,9 +1,9 @@
 ja:
   about:
-    about_hashtag_html: 'ハッシュタグ <strong>#%{hashtag}</strong> の付いた公開投稿です。どこでもいいので、連合に参加しているSNS上にアカウントを作れば会話に参加することができます。'
+    about_hashtag_html: 'ハッシュタグ <strong>#%{hashtag}</strong> の公開投稿です。どこか連合に参加しているSNS上にアカウントを作れば、会話に参加することができます。'
     about_mastodon_html: 'Mastodon は、オープンなウェブプロトコルを採用した、自由でオープンソースなソーシャルネットワークです。電子メールのような分散型の仕組みを採っています。'
     about_this: 詳細情報
-    active_count_after: 人アクティブ
+    active_count_after: 人がアクティブ
     active_footnote: 月間アクティブユーザー数 (MAU)
     administered_by: '管理者:'
     api: API
@@ -1003,6 +1003,9 @@ ja:
       webauthn: セキュリティキー
     description_html: 認識できないアクティビティが表示された場合は、パスワードの変更と2要素認証の有効化を検討してください。
     empty: 利用可能な認証履歴がありません
+    failed_sign_in_html: '%{ip} (%{browser}) からの %{method} を利用したサインインに失敗しました。'
+    successful_sign_in_html: '%{ip} (%{browser}) からの %{method} を利用したサインインに成功しました'
+    title: 認証履歴
   media_attachments:
     validations:
       images_and_video: 既に画像が追加されているため、動画を追加することはできません
@@ -1207,6 +1210,7 @@ ja:
     revoke: 削除
     revoke_success: セッションを削除しました
     title: セッション
+    view_authentication_history: アカウントの認証履歴を表示
   settings:
     account: アカウント
     account_settings: アカウント設定
