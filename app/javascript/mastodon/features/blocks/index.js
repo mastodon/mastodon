@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import ImmutablePropTypes, { list } from 'react-immutable-proptypes';
-import { debounce, identity } from 'lodash';
+import { debounce } from 'lodash';
 import PropTypes from 'prop-types';
 import LoadingIndicator from '../../components/loading_indicator';
 import Column from '../ui/components/column';
@@ -79,7 +79,7 @@ class Blocks extends ImmutablePureComponent {
 
   handleClick = () => {
     if (this.props.params.id == me.compose.me) {
-      this.setState({ showDenyMessage: true, showMessage: false,})
+      this.setState({ showDenyMessage: true, showMessage: false, })
     }
     else {
       var counter = 0;
@@ -101,7 +101,7 @@ class Blocks extends ImmutablePureComponent {
   }
 
   render() {
-    const { intl, accountIds, shouldUpdateScroll, hasMore, multiColumn, isLoading, params, account, id } = this.props;
+    const { intl, accountIds, shouldUpdateScroll, hasMore, multiColumn, isLoading, account } = this.props;
 
     if (!accountIds) {
       return (
