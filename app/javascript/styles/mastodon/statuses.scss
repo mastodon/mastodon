@@ -139,7 +139,7 @@ a.button.logo-button {
 
 .embed,
 .public-layout {
-  .status__content[data-spoiler=folded] {
+  .status__content[data-spoiler="folded"] {
     .e-content {
       display: none;
     }
@@ -196,6 +196,79 @@ a.button.logo-button {
       width: 23.1429px;
       height: 23.1429px;
       line-height: 23.15px;
+    }
+  }
+}
+
+.status__reply {
+  padding-left: 25px;
+}
+
+.status__container {
+  p {
+    overflow-wrap: anywhere;
+  }
+  
+  .status {
+    border-bottom: none;
+  }
+  .line {
+    display: block;
+    background: lighten($ui-base-color, 8%);
+  }
+
+  .status_with_lines {
+    display: flex;
+  }
+
+  .t-line {
+    height: 100%;
+  }
+  .l-line {
+    height: 50%;
+  }
+
+  .status-line-output {
+    position: absolute;
+    height: 84%;
+    width: 2px;
+    background: lighten($ui-base-color, 8%);
+    top: 16%;
+    left: 28px;
+  }
+
+  .status-line-input {
+    position: absolute;
+    height: 2px;
+    width: 30px;
+    background: lighten($ui-base-color, 8%);
+    top: 39px;
+    left: 0px;
+  }
+
+  .indent {
+    width: 30px;
+    position: relative;
+
+    &::after {
+      content: "";
+      display: block;
+      background: lighten($ui-base-color, 8%);
+      height: 100%;
+      width: 2px;
+      position: absolute;
+      right: 0;
+    }
+  }
+
+  .indent.half{
+    &::after{
+      height: 41px;
+    }
+  }
+  .indent.hidden{
+    &::after{
+      height: 0;
     }
   }
 }
