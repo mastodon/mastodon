@@ -57,6 +57,9 @@ export const COMPOSE_UPLOAD_CHANGE_REQUEST     = 'COMPOSE_UPLOAD_UPDATE_REQUEST'
 export const COMPOSE_UPLOAD_CHANGE_SUCCESS     = 'COMPOSE_UPLOAD_UPDATE_SUCCESS';
 export const COMPOSE_UPLOAD_CHANGE_FAIL        = 'COMPOSE_UPLOAD_UPDATE_FAIL';
 
+export const COMPOSE_STREAM_ADD             = 'COMPOSE_STREAM_ADD';
+export const COMPOSE_STREAM_REMOVE          = 'COMPOSE_STREAM_REMOVE';
+
 export const COMPOSE_POLL_ADD             = 'COMPOSE_POLL_ADD';
 export const COMPOSE_POLL_REMOVE          = 'COMPOSE_POLL_REMOVE';
 export const COMPOSE_POLL_OPTION_ADD      = 'COMPOSE_POLL_OPTION_ADD';
@@ -637,6 +640,18 @@ export function changeComposing(value) {
   return {
     type: COMPOSE_COMPOSING_CHANGE,
     value,
+  };
+};
+
+export function addStream() {
+  return {
+    type: COMPOSE_STREAM_ADD,
+  };
+};
+
+export function removeStream() {
+  return {
+    type: COMPOSE_STREAM_REMOVE,
   };
 };
 

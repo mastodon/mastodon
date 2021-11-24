@@ -33,6 +33,8 @@ import {
   COMPOSE_UPLOAD_CHANGE_SUCCESS,
   COMPOSE_UPLOAD_CHANGE_FAIL,
   COMPOSE_RESET,
+  COMPOSE_STREAM_ADD,
+  COMPOSE_STREAM_REMOVE,
   COMPOSE_POLL_ADD,
   COMPOSE_POLL_REMOVE,
   COMPOSE_POLL_OPTION_ADD,
@@ -86,6 +88,7 @@ const initialState = ImmutableMap({
     focusY: 0,
     dirty: false,
   }),
+  stream: false,
 });
 
 const initialPoll = ImmutableMap({
@@ -117,6 +120,7 @@ function clearAll(state) {
     map.update('media_attachments', list => list.clear());
     map.set('poll', null);
     map.set('idempotencyKey', uuid());
+    map.set('stream', false);
   });
 };
 
@@ -448,6 +452,10 @@ export default function compose(state = initialState, action) {
         }));
       }
     });
+  case COMPOSE_STREAM_ADD:
+    return state.set('stream', true);
+  case COMPOSE_STREAM_REMOVE:
+    return state.set('stream', false);
   case COMPOSE_POLL_ADD:
     return state.set('poll', initialPoll);
   case COMPOSE_POLL_REMOVE:
