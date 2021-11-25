@@ -1,7 +1,6 @@
----
 nn:
   about:
-    about_hashtag_html: Dette er offentlege tut merkt med <strong>#%{hashtag}</strong>. Du kan nytta dei om du har ein konto kvar som helst i fødiverset.
+    about_hashtag_html: 'Dette er offentlege tut merkt med <strong>#%{hashtag}</strong>. Du kan nytta dei om du har ein konto kvar som helst i fødiverset.'
     about_mastodon_html: 'Framtidas sosiale nettverk: Ingen annonsar, ingen verksemder som overvaker deg, etisk design og desentralisering! Eig idéane dine med Mastodon!'
     about_this: Om oss
     active_count_after: aktiv
@@ -20,8 +19,10 @@ nn:
     documentation: Dokumentasjon
     federation_hint_html: Med ein konto på %{instance} kan du fylgja folk på kva som helst slags Mastod-tenar og meir.
     get_apps: Prøv ein mobilapp
-    hosted_on: "%{domain} er vert for Mastodon"
-    instance_actor_flash: "Denne brukeren er en virtuell aktør brukt til å representere selve serveren og ingen individuell bruker. Det brukes til foreningsformål og bør ikke blokkeres med mindre du vil blokkere hele instansen, hvor domeneblokkering bør brukes i stedet. \n"
+    hosted_on: '%{domain} er vert for Mastodon'
+    instance_actor_flash: |
+      Denne brukeren er en virtuell aktør brukt til å representere selve serveren og ingen individuell bruker. Det brukes til foreningsformål og bør ikke blokkeres med mindre du vil blokkere hele instansen, hvor domeneblokkering bør brukes i stedet. 
+
     learn_more: Lær meir
     privacy_policy: Personvernsreglar
     rules: Server regler
@@ -319,9 +320,28 @@ nn:
       updated_msg: Kjensleteiknet er oppdatert!
       upload: Last opp
     dashboard:
+      active_users: aktive brukere
+      interactions: interaksjoner
+      media_storage: Medialagring
+      new_users: nye brukere
+      opened_reports: rapporter åpnet
+      pending_reports_html:
+        one: "<strong>1</strong> ventende rapport"
+        other: "<strong>%{count}</strong> ventende rapporter"
+      pending_tags_html:
+        one: "<strong>1</strong> ventende hashtag"
+        other: "<strong>%{count}</strong> ventende hashtags"
+      pending_users_html:
+        one: "<strong>1</strong> ventende bruker"
+        other: "<strong>%{count}</strong> ventende brukere"
+      resolved_reports: rapporter løst
       software: Programvare
+      sources: Kilder for registreringer
       space: Lagrinsplass nytta
       title: Dashbord
+      top_languages: Mest aktive språk
+      top_servers: Mest aktive servere
+      website: Nettside
     domain_allows:
       add_new: Kvitlist domene
       created_msg: Domene er vorte kvitlista
@@ -620,19 +640,7 @@ nn:
         action: Behandle serverregler
         message_html: Du har ikke definert noen serverregler.
     tags:
-      accounts_today: Ulike brukarar i dag
-      accounts_week: Unike brukstilfeller denne uken
-      breakdown: Oversyn over bruk i dag etter kjelde
-      last_active: Sist aktiv
-      most_popular: Mest populær
-      most_recent: Nyast
-      name: Emneknagg
       review: Sjå gjennom status
-      reviewed: Gjennomgått
-      title: Emneknaggar
-      trending_right_now: Populært no
-      unique_uses_today: "%{count} legg ut i dag"
-      unreviewed: Ikkje gjennomgått
       updated_msg: Emneknagginnstillingane er oppdaterte
     title: Leiing
     warning_presets:
@@ -647,10 +655,7 @@ nn:
     new_report:
       body: "%{reporter} har rapportert %{target}"
       body_remote: Nokon frå %{domain} har meldt %{target}
-      subject: Ny rapport for %{instance} (#%{id})
-    new_trending_tag:
-      body: 'Emneknaggen #%{name} trender i dag, men den har ikke blitt gjennomgått tidligere. Den vil ikke bli vist offentlig med mindre du tillater at den blir det, eller du kan bare lagre skjemaet slik det er for å aldri høre om det igjen.'
-      subject: Ny emneknagg ventar gjennomgang på %{instance} (#%{name})
+      subject: 'Ny rapport for %{instance} (#%{id})'
   aliases:
     add_new: Lag psevdonym
     created_msg: Laga eit nytt kallenamn. No kan du setja i gang med flyttinga frå den gamle kontoen.
@@ -850,7 +855,6 @@ nn:
     changes_saved_msg: Alle endringane vart lagra!
     copy: Kopier
     delete: Slett
-    no_batch_actions_available: Ingen batch-handlingar tilgjengelege på denne sida
     order_by: Sorter etter
     save_changes: Lagr endringar
     validation_errors:
@@ -1187,7 +1191,7 @@ nn:
     show_older: Vis eldre
     show_thread: Vis tråden
     sign_in_to_participate: Logg inn for å verta med i samtalen
-    title: "%{name}: «%{quote}»"
+    title: '%{name}: «%{quote}»'
     visibilities:
       direct: Direkte
       private: Berre fylgjarar
@@ -1284,7 +1288,7 @@ nn:
       <p>Dette dokumentet er lisensiert under CC BY-SA. Den engelske originalversjonen ble sist oppdatert den 7. mars 2018. Den norske oversettelsen ble sist oppdatert den 13. desember 2019.</p>
 
       <p>Opprinnelig modifisert utifra <a href="https://github.com/discourse/discourse">Discourse sine privatlivsretningslinjer</a>.</p>
-    title: Tenestevilkår og personvernsvilkår for %{instance}
+    title: "Tenestevilkår og personvernsvilkår for %{instance}"
   themes:
     contrast: Mastodon (Høg kontrast)
     default: Mastodon (Mørkt)
