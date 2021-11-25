@@ -1,13 +1,13 @@
 import React, { useRef, useEffect } from 'react';
 import { useStore, useSelector } from 'react-redux';
 
-import { removeStream } from '../../../actions/compose';
+import { addStream, removeStream } from '../../../actions/compose';
 
 const StreamPreviewContainer = () => {
   const videoRef = useRef();
   const streamVisible = useSelector((state) =>
     state.getIn(['compose', 'stream']),
-  );
+  ) !== false;
 
   const store = useStore();
 
@@ -25,6 +25,7 @@ const StreamPreviewContainer = () => {
           videoTrack.addEventListener('ended', handleVideoTrackEnd);
           const mStream = new MediaStream();
           mStream.addTrack(videoTrack);
+          store.dispatch(addStream(videoTrack.id));
           videoRef.current.srcObject = mStream;
           videoRef.current.play().catch();
         })

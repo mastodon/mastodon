@@ -453,7 +453,7 @@ export default function compose(state = initialState, action) {
       }
     });
   case COMPOSE_STREAM_ADD:
-    return state.set('stream', true);
+    return state.set('stream', action.payload ?? true);
   case COMPOSE_STREAM_REMOVE:
     return state.set('stream', false);
   case COMPOSE_POLL_ADD:

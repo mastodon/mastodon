@@ -22,6 +22,7 @@
 #  application_id         :bigint(8)
 #  in_reply_to_account_id :bigint(8)
 #  poll_id                :bigint(8)
+#  stream                 :string
 #  deleted_at             :datetime
 #
 

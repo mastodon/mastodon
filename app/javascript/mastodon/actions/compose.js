@@ -156,6 +156,7 @@ export function submitCompose(routerHistory) {
       spoiler_text: getState().getIn(['compose', 'spoiler']) ? getState().getIn(['compose', 'spoiler_text'], '') : '',
       visibility: getState().getIn(['compose', 'privacy']),
       poll: getState().getIn(['compose', 'poll'], null),
+      stream: getState().getIn(['compose', 'stream']),
     }, {
       headers: {
         'Idempotency-Key': getState().getIn(['compose', 'idempotencyKey']),
@@ -643,9 +644,10 @@ export function changeComposing(value) {
   };
 };
 
-export function addStream() {
+export function addStream(payload) {
   return {
     type: COMPOSE_STREAM_ADD,
+    payload,
   };
 };
 
