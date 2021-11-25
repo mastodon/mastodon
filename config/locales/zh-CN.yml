@@ -689,19 +689,7 @@ zh-CN:
       sidekiq_process_check:
         message_html: '%{value} 队列未运行任何 Sidekiq 进程。请检查你的 Sidekiq 配置'
     tags:
-      accounts_today: 今日活跃用户
-      accounts_week: 本周活跃用户
-      breakdown: 按来源分类今天的使用情况
-      last_active: 最近活动
-      most_popular: 最热门的
-      most_recent: 最近的
-      name: 话题标签
       review: 审核状态
-      reviewed: 已审核
-      title: 话题标签
-      trending_right_now: 当前热门
-      unique_uses_today: "今天发布了 %{count} 条"
-      unreviewed: 未审核
       updated_msg: 话题标签设置更新成功
     title: 管理
     warning_presets:
@@ -718,9 +706,6 @@ zh-CN:
       body: "%{reporter} 举报了用户 %{target}"
       body_remote: 来自 %{domain} 的用户举报了用户 %{target}
       subject: '来自 %{instance} 的用户举报（#%{id}）'
-    new_trending_tag:
-      body: '今日的热门话题 #%{name} 之前未经审核。直到你允许之前这个话题将不会公开显示，或者就保持原样让它石沉大海。'
-      subject: '在 %{instance} 有新话题 (#%{name}) 待审核'
   aliases:
     add_new: 创建别名
     created_msg: 成功创建了一个新别名。你现在可以从旧账户开始迁移了。
@@ -927,7 +912,6 @@ zh-CN:
     changes_saved_msg: 更改保存成功！
     copy: 复制
     delete: 删除
-    no_batch_actions_available: 本页面无可用批量操作
     order_by: 排序方式
     save_changes: 保存更改
     validation_errors:
