@@ -704,6 +704,48 @@ hu:
       review: Engedélyezés állapota
       updated_msg: A hashtag beállításokat sikeresen frissítettük
     title: Karbantartás
+    trends:
+      allow: Engedélyezés
+      approved: Jóváhagyott
+      disallow: Letiltás
+      links:
+        allow: Hivatkozás engedélyezése
+        allow_provider: Közzétevő engedélyezése
+        disallow: Hivatkozás letiltása
+        disallow_provider: Közzétevő letiltása
+        shared_by_over_week:
+          one: Egy ember osztotta meg a múlt héten
+          other: '%{count} ember osztotta meg a múlt héten'
+        title: Felkapott hivatkozások
+        usage_comparison: '%{today} alkalommal lett ma megosztva, a tegnapi %{yesterday} alkalomhoz képest'
+      pending_review: Áttekintésre vár
+      preview_card_providers:
+        allowed: A közzétevő hivatkozásai felkapottak lehetnek
+        rejected: A közzétevő hivatkozásai nem lesznek felkapottak
+        title: Közzétévők
+      rejected: Elutasított
+      tags:
+        current_score: 'Jelenlegi pontszám: %{score}'
+        dashboard:
+          tag_accounts_measure: egyedi használat
+          tag_languages_dimension: Legnépszerűbb nyelvek
+          tag_servers_dimension: Legnépszerűbb kiszolgálók
+          tag_servers_measure: különböző kiszolgáló
+          tag_uses_measure: összes használat
+        listable: Javasolható
+        not_listable: Nem lesz javasolva
+        not_trendable: Nem fog megjelenni a trendek alatt
+        not_usable: Nem használható
+        peaked_on_and_decaying: 'Ekkor volt a csúcson: %{date}, most hanyatlik'
+        title: Felkapott hashtagek
+        trendable: Megjelenhet a trendek alatt
+        trending_rank: '%{rank}. felkapott'
+        usable: Használható
+        usage_comparison: '%{today} alkalommal lett ma használva, a tegnapi %{yesterday} alkalomhoz képest'
+        used_by_over_week:
+          one: Egy ember használta a múlt héten
+          other: '%{count} ember használta a múlt héten'
+      title: Trendek
     warning_presets:
       add_new: Új hozzáadása
       delete: Törlés
