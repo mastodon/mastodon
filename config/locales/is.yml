@@ -760,6 +760,12 @@ is:
       body: "%{reporter} hefur kært %{target}"
       body_remote: Einhver frá %{domain} hefur kært %{target}
       subject: 'Ný kæra vegna %{instance} (#%{id})'
+    new_trending_links:
+      body: Eftirfarandi tenglar eru vinsælir í dag, en ekki er búið að yfirfara útgefendur þeirra. Þeir munu ekki birtast opinberlega nema þú samþykkir þá. Ekki verða útbúnar frekari tilkynningar frá sömu útgefendum.
+      no_approved_links: Í augnablikinu eru engir samþykktir vinsælir tenglar.
+    new_trending_tags:
+      body: 'Eftirfarandi myllumerki eru vinsæl í dag, en ekki er búið að yfirfara þau. Þau munu ekki birtast opinberlega nema þú samþykkir þau:'
+      no_approved_tags: Í augnablikinu eru engin samþykkt vinsæl myllumerki.
   aliases:
     add_new: Búa til samnefni (alias)
     created_msg: Tókst að búa til samnefni. Þú getur núna byrjað að færa gögn af gamla aðgangnum.
