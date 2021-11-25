@@ -704,6 +704,44 @@ is:
       review: Yfirfara stöðufærslu
       updated_msg: Það tókst að uppfæra stillingar myllumerkja
     title: Stjórnendur
+    trends:
+      allow: Leyfa
+      approved: Samþykkt
+      disallow: Ekki leyfa
+      links:
+        allow: Leyfa tengil
+        allow_provider: Leyfa útgefanda
+        disallow: Ekki leyfa tengil
+        disallow_provider: Ekki leyfa útgefanda
+        shared_by_over_week:
+          one: Deilt af einum aðila síðustu vikuna
+          other: Deilt af %{count} aðilum síðustu vikuna
+        title: Vinsælir tenglar
+        usage_comparison: Deilt %{today} sinnum í dag, samanborið við %{yesterday} í gær
+      pending_review: Bíður eftir yfirlestri
+      preview_card_providers:
+        allowed: Tenglar frá þessum útgefanda geta verið með í vinsældum
+        rejected: Tenglar frá þessum útgefanda verða ekki með í vinsældum
+        title: Útgefendur
+      rejected: Hafnað
+      tags:
+        current_score: Núverandi stig %{score}
+        dashboard:
+          tag_accounts_measure: einstök tilvik
+          tag_languages_dimension: Vinsælustu tungumál
+          tag_servers_dimension: Vinsælustu netþjónar
+          tag_servers_measure: mismunandi netþjónar
+          tag_uses_measure: tilvik alls
+        listable: Má stinga uppá
+        not_listable: Mun ekki vera stungið uppá
+        not_trendable: Mun ekki birtast í vinsældum
+        not_usable: Má ekki nota
+        peaked_on_and_decaying: Toppaði þann %{date}, núna dalandi
+        title: Vinsæl myllumerki
+        trendable: Má vera með í vinsældum
+        trending_rank: 'Vinsæl #%{rank}'
+        usable: Má nota
+        usage_comparison: Notað %{today} sinnum í dag, samanborið við %{yesterday} í gær
     warning_presets:
       add_new: Bæta við nýju
       delete: Eyða
@@ -924,6 +962,7 @@ is:
     changes_saved_msg: Það tókst að vista breytingarnar!
     copy: Afrita
     delete: Eyða
+    none: Ekkert
     order_by: Raða eftir
     save_changes: Vista breytingar
     validation_errors:
