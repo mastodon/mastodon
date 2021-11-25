@@ -701,19 +701,7 @@ fr:
       sidekiq_process_check:
         message_html: Aucun processus Sidekiq en cours d'exécution pour la/les file(s) d'attente %{value}. Veuillez vérifier votre configuration de Sidekiq
     tags:
-      accounts_today: Utilisations uniques aujourd'hui
-      accounts_week: Utilisation unique cette semaine
-      breakdown: Répartition de l’utilisation actuelle par source
-      last_active: Dernière activité
-      most_popular: Plus populaire
-      most_recent: Plus récent
-      name: Hashtag
       review: État du traitement
-      reviewed: Traité
-      title: Hashtags
-      trending_right_now: Populaire en ce moment
-      unique_uses_today: "%{count} publications aujourd'hui"
-      unreviewed: Non traité
       updated_msg: Paramètres du hashtag mis à jour avec succès
     title: Administration
     warning_presets:
@@ -730,9 +718,6 @@ fr:
       body: "%{reporter} a signalé %{target}"
       body_remote: Quelqu’un de %{domain} a signalé %{target}
       subject: 'Nouveau signalement sur %{instance} (#%{id})'
-    new_trending_tag:
-      body: 'Le hashtag #%{name} est dans les tendances aujourd’hui, mais il n’a pas encore été approuvé. Il ne sera pas affiché publiquement à moins que vous l’autorisiez. Sauvegardez simplement ce formulaire tel quel pour ne plus jamais en entendre parler.'
-      subject: 'Nouveau hashtag en attente d’approbation sur %{instance} (#%{name})'
   aliases:
     add_new: Créer un alias
     created_msg: Un nouvel alias a été créé avec succès. Vous pouvez maintenant déménager depuis l'ancien compte.
@@ -939,7 +924,6 @@ fr:
     changes_saved_msg: Les modifications ont été enregistrées avec succès !
     copy: Copier
     delete: Supprimer
-    no_batch_actions_available: Aucune action par lots disponible sur cette page
     order_by: Classer par
     save_changes: Enregistrer les modifications
     validation_errors:
