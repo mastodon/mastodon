@@ -689,19 +689,7 @@ ko:
       sidekiq_process_check:
         message_html: '%{value} 큐에 대한 사이드킥 프로세스가 발견되지 않았습니다. 사이드킥 설정을 검토해주세요'
     tags:
-      accounts_today: 오늘의 순 사용자
-      accounts_week: 금주의 순 사용자
-      breakdown: 소스별 오늘의 사용량 분석
-      last_active: 최근에 사용됨
-      most_popular: 최고 인기
-      most_recent: 최근에 추가됨
-      name: 해시태그
       review: 심사 상태
-      reviewed: 심사 됨
-      title: 해시태그
-      trending_right_now: 지금 유행 중
-      unique_uses_today: "오늘 %{count}명이 포스팅"
-      unreviewed: 심사 되지 않음
       updated_msg: 해시태그 설정이 성공적으로 갱신되었습니다
     title: 관리
     warning_presets:
@@ -718,9 +706,6 @@ ko:
       body: "%{reporter} 가 %{target} 를 신고했습니다"
       body_remote: '%{domain}의 누군가가 %{target}을 신고했습니다'
       subject: '%{instance} 에 새 신고 등록됨 (#%{id})'
-    new_trending_tag:
-      body: '오늘 #%{name} 해시태그가 유행하고 있습니다, 하지만 심사 된 적이 없습니다. 허용하지 않는 한 공개적으로 나타나지 않습니다. 또는 그냥 저장을 눌러 더이상 나타나지 않게 할 수 있습니다.'
-      subject: '새 해시태그가 %{instance}에서 심사 대기 중입니다(#%{name})'
   aliases:
     add_new: 별칭 만들기
     created_msg: 새 별칭이 성공적으로 만들어졌습니다. 이제 기존 계정에서 이주를 시작할 수 있습니다.
@@ -927,7 +912,6 @@ ko:
     changes_saved_msg: 정상적으로 변경되었습니다!
     copy: 복사
     delete: 삭제
-    no_batch_actions_available: 이 페이지에서 수행할 수 있는 일괄작업이 없습니다
     order_by: 순서
     save_changes: 변경 사항을 저장
     validation_errors:
