@@ -701,19 +701,7 @@ de:
       sidekiq_process_check:
         message_html: Kein Sidekiq-Prozess läuft für die %{value} Warteschlange(n). Bitte überprüfen Sie Ihre Sidekiq-Konfiguration
     tags:
-      accounts_today: Einzigartige Nutzungen heute
-      accounts_week: Einzigartige Nutzung dieser Woche
-      breakdown: Heruntergebrochene Statistiken der heutigen Nutzung nach Quelle
-      last_active: Zuletzt aktiv
-      most_popular: Am beliebtesten
-      most_recent: Neuste
-      name: Hashtag
       review: Prüfstatus
-      reviewed: Überprüft
-      title: Hashtags
-      trending_right_now: Aktuell in den Trends
-      unique_uses_today: "%{count} Beiträge heute"
-      unreviewed: Nicht überprüft
       updated_msg: Hashtageinstellungen wurden erfolgreich aktualisiert
     title: Administration
     warning_presets:
@@ -730,9 +718,6 @@ de:
       body: "%{reporter} hat %{target} gemeldet"
       body_remote: Jemand von %{domain} hat %{target} gemeldet
       subject: 'Neue Meldung auf %{instance} (#%{id})'
-    new_trending_tag:
-      body: 'Der Hashtag #%{name} ist heute am trenden, aber wurde vorher noch nicht überprüft. Er wird nicht öffentlich angezeigt, es sei denn du erlaubst es oder speicherst das Formular ab und vergisst es.'
-      subject: 'Neuer Hashtag zur Überprüfung auf %{instance} verfügbar (#%{name})'
   aliases:
     add_new: Alias erstellen
     created_msg: Ein neuer Alias wurde erfolgreich erstellt. Du kannst nun den Wechsel vom alten Konto starten.
@@ -939,7 +924,6 @@ de:
     changes_saved_msg: Änderungen gespeichert!
     copy: Kopieren
     delete: Löschen
-    no_batch_actions_available: Keine Massenaktionen auf dieser Seite verfügbar
     order_by: Sortieren nach
     save_changes: Änderungen speichern
     validation_errors:
