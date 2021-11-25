@@ -18,10 +18,7 @@ module Trends
   end
 
   def self.request_review!
-    [links, tags].each(&:request_review) if enabled?
-  end
-
-  def self.enabled?
-    Setting.trends
+    tags.request_review if Setting.trends
+    links.request_review if Setting.trending_links
   end
 end

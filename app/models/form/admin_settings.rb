@@ -30,6 +30,7 @@ class Form::AdminSettings
     mascot
     trends
     trendable_by_default
+    trending_links
     show_domain_blocks
     show_domain_blocks_rationale
     noindex
@@ -47,6 +48,7 @@ class Form::AdminSettings
     profile_directory
     trends
     trendable_by_default
+    trending_links
     noindex
     require_invite_text
   ).freeze

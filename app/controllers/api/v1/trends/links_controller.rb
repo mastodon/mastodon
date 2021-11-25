@@ -11,7 +11,7 @@ class Api::V1::Trends::LinksController < Api::BaseController
 
   def set_links
     @links = begin
-      if Setting.trends
+      if Setting.trending_links
         Trends.links.get(true, limit_param(10))
       else
         []

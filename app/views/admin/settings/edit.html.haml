@@ -87,6 +87,9 @@
       = f.input :trendable_by_default, as: :boolean, wrapper: :with_label, label: t('admin.settings.trendable_by_default.title'), hint: t('admin.settings.trendable_by_default.desc_html')
 
     .fields-group
+      = f.input :trending_links, as: :boolean, wrapper: :with_label, label: t('admin.settings.trending_links.title'), hint: t('admin.settings.trending_links.desc_html')
+
+    .fields-group
       = f.input :noindex, as: :boolean, wrapper: :with_label, label: t('admin.settings.default_noindex.title'), hint: t('admin.settings.default_noindex.desc_html')
 
   %hr.spacer/
