@@ -704,6 +704,46 @@ it:
       review: Esamina status
       updated_msg: Impostazioni degli hashtag aggiornate
     title: Amministrazione
+    trends:
+      allow: Consenti
+      approved: Approvato
+      disallow: Non consentire
+      links:
+        allow: Consenti link
+        allow_provider: Consenti editore
+        disallow: Non consentire link
+        disallow_provider: Non consentire editore
+        shared_by_over_week:
+          one: Condiviso da una persona nell'ultima settimana
+          other: Condiviso da %{count} persone nell'ultima settimana
+        title: Link in tendenza
+        usage_comparison: Condiviso %{today} volte oggi, rispetto a %{yesterday} ieri
+      pending_review: Revisione in sospeso
+      preview_card_providers:
+        title: Editori
+      rejected: Rifiutato
+      tags:
+        current_score: Punteggio corrente %{score}
+        dashboard:
+          tag_accounts_measure: usi unici
+          tag_languages_dimension: Lingue migliori
+          tag_servers_dimension: Server migliori
+          tag_servers_measure: server diversi
+          tag_uses_measure: usi totali
+        listable: Suggeribile
+        not_listable: Non sarà suggerito
+        not_trendable: Non apparirà nelle tendenze
+        not_usable: Inutilizzabile
+        peaked_on_and_decaying: Ha avuto un picco il %{date}, ora in caduta
+        title: Hashtag in tendenza
+        trendable: Può comparire nelle tendenze
+        trending_rank: 'In tendenza #%{rank}'
+        usable: Utilizzabile
+        usage_comparison: Usato %{today} volte oggi, rispetto a %{yesterday} ieri
+        used_by_over_week:
+          one: Usato da una persona nell'ultima settimana
+          other: Usato da %{count} persone nell'ultima settimana
+      title: Tendenze
     warning_presets:
       add_new: Aggiungi nuovo
       delete: Cancella
@@ -718,6 +758,8 @@ it:
       body: "%{reporter} ha segnalato %{target}"
       body_remote: Qualcuno da %{domain} ha segnalato %{target}
       subject: 'Nuova segnalazione per %{instance} (#%{id})'
+    new_trending_links:
+      no_approved_links: Nessun link in tendenza correntemente approvato.
   aliases:
     add_new: Crea alias
     created_msg: Hai creato un nuovo alias. Ora puoi iniziare lo spostamento dal vecchio account.
