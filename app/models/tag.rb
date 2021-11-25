@@ -40,7 +40,7 @@ class Tag < ApplicationRecord
   scope :recently_used, ->(account) { joins(:statuses).where(statuses: { id: account.statuses.select(:id).limit(1000) }).group(:id).order(Arel.sql('count(*) desc')) }
   scope :matches_name, ->(term) { where(arel_table[:name].lower.matches(arel_table.lower("#{sanitize_sql_like(Tag.normalize(term))}%"), nil, true)) } # Search with case-sensitive to use B-tree index
 
-  update_index('tags#tag', :self)
+  update_index('tags', :self)
 
   def to_param
     name
