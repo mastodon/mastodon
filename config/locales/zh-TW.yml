@@ -689,19 +689,7 @@ zh-TW:
       sidekiq_process_check:
         message_html: 没有队列 %{value} 的Sidekiq进程，请检查你的Sidekiq配置
     tags:
-      accounts_today: 本日不重複使用者數
-      accounts_week: 本週不重複使用者數
-      breakdown: 根據來源分類本日使用情況
-      last_active: 上次活躍
-      most_popular: 最熱門
-      most_recent: 最近
-      name: 主題標籤
       review: 審核嘟文
-      reviewed: 已審核
-      title: 主題標籤
-      trending_right_now: 最新趨勢
-      unique_uses_today: "今天嘟了 %{count} 則"
-      unreviewed: 未審核
       updated_msg: 成功更新主題標籤設定
     title: 管理介面
     warning_presets:
@@ -718,9 +706,6 @@ zh-TW:
       body: "%{reporter} 檢舉了使用者 %{target}"
       body_remote: 來自 %{domain} 的使用者檢舉了使用者 %{target}
       subject: '來自 %{instance} 的使用者檢舉（#%{id}）'
-    new_trending_tag:
-      body: '尚未通過審核的主題標籤 #%{name} 今天有炎上趨勢。這個標籤在你開綠燈之前不會公開顯示，你也可以選擇無視它以遭蒙蔽雙眼。'
-      subject: '%{instance} 上有待審核的主題標籤 (#%{name})'
   aliases:
     add_new: 建立別名
     created_msg: 成功建立別名。您可以自舊帳戶開始轉移。
@@ -927,7 +912,6 @@ zh-TW:
     changes_saved_msg: 已成功儲存修改!
     copy: 複製
     delete: 刪除
-    no_batch_actions_available: 此頁面目前沒有可用的批次作業
     order_by: 排序
     save_changes: 儲存修改
     validation_errors:
