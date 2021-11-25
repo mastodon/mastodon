@@ -31,7 +31,7 @@ class TagsIndex < Chewy::Index
     end
 
     field :reviewed, type: 'boolean', value: ->(tag) { tag.reviewed? }
-    field :usage, type: 'long', value: ->(tag) { tag.history.reduce(0) { |total, day| total + day[:accounts].to_i } }
+    field :usage, type: 'long', value: ->(tag) { tag.history.reduce(0) { |total, day| total + day.accounts } }
     field :last_status_at, type: 'date', value: ->(tag) { tag.last_status_at || tag.created_at }
   end
 end

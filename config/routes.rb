@@ -301,12 +301,27 @@ Rails.application.routes.draw do
 
     resources :account_moderation_notes, only: [:create, :destroy]
     resource :follow_recommendations, only: [:show, :update]
+    resources :tags, only: [:show, :update]
 
-    resources :tags, only: [:index, :show, :update] do
-      collection do
-        post :approve_all
-        post :reject_all
-        post :batch
+    namespace :trends do
+      resources :links, only: [:index] do
+        collection do
+          post :batch
+        end
+      end
+
+      resources :tags, only: [:index] do
+        collection do
+          post :batch
+        end
+      end
+
+      namespace :links do
+        resources :preview_card_providers, only: [:index], path: :publishers do
+          collection do
+            post :batch
+          end
+        end
       end
     end
   end
@@ -399,7 +414,7 @@ Rails.application.routes.draw do
       resources :favourites,   only: [:index]
       resources :bookmarks,    only: [:index]
       resources :reports,      only: [:create]
-      resources :trends,       only: [:index]
+      resources :trends,       only: [:index], controller: 'trends/tags'
       resources :filters,      only: [:index, :create, :show, :update, :destroy]
       resources :endorsements, only: [:index]
       resources :markers,      only: [:index, :create]
@@ -409,6 +424,11 @@ Rails.application.routes.draw do
       end
 
       resources :apps, only: [:create]
+
+      namespace :trends do
+        resources :links, only: [:index]
+        resources :tags, only: [:index]
+      end
 
       namespace :emails do
         resources :confirmations, only: [:create]
@@ -512,7 +532,9 @@ Rails.application.routes.draw do
           end
         end
 
-        resources :trends, only: [:index]
+        namespace :trends do
+          resources :tags, only: [:index]
+        end
 
         post :measures, to: 'measures#create'
         post :dimensions, to: 'dimensions#create'

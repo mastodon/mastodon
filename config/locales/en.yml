@@ -674,8 +674,8 @@ en:
         desc_html: Affects hashtags that have not been previously disallowed
         title: Allow hashtags to trend without prior review
       trends:
-        desc_html: Publicly display previously reviewed hashtags that are currently trending
-        title: Trending hashtags
+        desc_html: Publicly display previously reviewed content that is currently trending
+        title: Trends
     site_uploads:
       delete: Delete uploaded file
       destroyed_msg: Site upload successfully deleted!
@@ -702,21 +702,51 @@ en:
       sidekiq_process_check:
         message_html: No Sidekiq process running for the %{value} queue(s). Please review your Sidekiq configuration
     tags:
-      accounts_today: Unique uses today
-      accounts_week: Unique uses this week
-      breakdown: Breakdown of today's usage by source
-      last_active: Recently used
-      most_popular: Most popular
-      most_recent: Recently created
-      name: Hashtag
       review: Review status
-      reviewed: Reviewed
-      title: Hashtags
-      trending_right_now: Trending right now
-      unique_uses_today: "%{count} posting today"
-      unreviewed: Not reviewed
       updated_msg: Hashtag settings updated successfully
     title: Administration
+    trends:
+      allow: Allow
+      approved: Approved
+      disallow: Disallow
+      links:
+        allow: Allow link
+        allow_provider: Allow publisher
+        disallow: Disallow link
+        disallow_provider: Disallow publisher
+        shared_by_over_week:
+          one: Shared by one person over the last week
+          other: Shared by %{count} people over the last week
+        title: Trending links
+        usage_comparison: Shared %{today} times today, compared to %{yesterday} yesterday
+      pending_review: Pending review
+      preview_card_providers:
+        allowed: Links from this publisher can trend
+        rejected: Links from this publisher won't trend
+        title: Publishers
+      rejected: Rejected
+      tags:
+        current_score: Current score %{score}
+        dashboard:
+          tag_accounts_measure: unique uses
+          tag_languages_dimension: Top languages
+          tag_servers_dimension: Top servers
+          tag_servers_measure: different servers
+          tag_uses_measure: total uses
+        listable: Can be suggested
+        not_listable: Won't be suggested
+        not_trendable: Won't appear under trends
+        not_usable: Cannot be used
+        peaked_on_and_decaying: Peaked on %{date}, now decaying
+        title: Trending hashtags
+        trendable: Can appear under trends
+        trending_rank: 'Trending #%{rank}'
+        usable: Can be used
+        usage_comparison: Used %{today} times today, compared to %{yesterday} yesterday
+        used_by_over_week:
+          one: Used by one person over the last week
+          other: Used by %{count} people over the last week
+      title: Trends
     warning_presets:
       add_new: Add new
       delete: Delete
@@ -731,9 +761,16 @@ en:
       body: "%{reporter} has reported %{target}"
       body_remote: Someone from %{domain} has reported %{target}
       subject: New report for %{instance} (#%{id})
-    new_trending_tag:
-      body: 'The hashtag #%{name} is trending today, but has not been previously reviewed. It will not be displayed publicly unless you allow it to, or just save the form as it is to never hear about it again.'
-      subject: New hashtag up for review on %{instance} (#%{name})
+    new_trending_links:
+      body: The following links are trending today, but their publishers have not been previously reviewed. They will not be displayed publicly unless you approve them. Further notifications from the same publishers will not be generated.
+      no_approved_links: There are currently no approved trending links.
+      requirements: The lowest approved trending link is currently "%{lowest_link_title}" with a score of %{lowest_link_score}.
+      subject: New trending links up for review on %{instance}
+    new_trending_tags:
+      body: 'The following hashtags are trending today, but they have not been previously reviewed. They will not be displayed publicly unless you approve them:'
+      no_approved_tags: There are currently no approved trending hashtags.
+      requirements: 'The lowest approved trending hashtag is currently #%{lowest_tag_name} with a score of %{lowest_tag_score}.'
+      subject: New trending hashtags up for review on %{instance}
   aliases:
     add_new: Create alias
     created_msg: Successfully created a new alias. You can now initiate the move from the old account.
@@ -940,7 +977,7 @@ en:
     changes_saved_msg: Changes successfully saved!
     copy: Copy
     delete: Delete
-    no_batch_actions_available: No batch actions available on this page
+    none: None
     order_by: Order by
     save_changes: Save changes
     validation_errors:

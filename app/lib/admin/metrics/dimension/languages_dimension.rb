@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Admin::Metrics::Dimension::LanguagesDimension < Admin::Metrics::Dimension::BaseDimension
+  include LanguagesHelper
+
   def key
     'languages'
   end
@@ -18,6 +20,6 @@ class Admin::Metrics::Dimension::LanguagesDimension < Admin::Metrics::Dimension:
 
     rows = ActiveRecord::Base.connection.select_all(sql, nil, [[nil, @start_at], [nil, @end_at], [nil, @limit]])
 
-    rows.map { |row| { key: row['locale'], human_key: SettingsHelper::HUMAN_LOCALES[row['locale'].to_sym], value: row['value'].to_s } }
+    rows.map { |row| { key: row['locale'], human_key: human_locale(row['locale']), value: row['value'].to_s } }
   end
 end

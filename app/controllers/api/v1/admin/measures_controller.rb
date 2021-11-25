@@ -16,7 +16,8 @@ class Api::V1::Admin::MeasuresController < Api::BaseController
     @measures = Admin::Metrics::Measure.retrieve(
       params[:keys],
       params[:start_at],
-      params[:end_at]
+      params[:end_at],
+      params
     )
   end
 end

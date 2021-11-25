@@ -13,9 +13,13 @@
     every: '5m'
     class: Scheduler::ScheduledStatusesScheduler
     queue: scheduler
-  trending_tags_scheduler:
+  trends_refresh_scheduler:
     every: '5m'
-    class: Scheduler::TrendingTagsScheduler
+    class: Scheduler::Trends::RefreshScheduler
+    queue: scheduler
+  trends_review_notifications_scheduler:
+    every: '2h'
+    class: Scheduler::Trends::ReviewNotificationsScheduler
     queue: scheduler
   media_cleanup_scheduler:
     cron: '<%= Random.rand(0..59) %> <%= Random.rand(3..5) %> * * *'

@@ -100,6 +100,16 @@
       transition: all 200ms ease-out;
     }
 
+    &.positive {
+      background: lighten($ui-base-color, 4%);
+      color: $valid-value-color;
+    }
+
+    &.negative {
+      background: lighten($ui-base-color, 4%);
+      color: $error-value-color;
+    }
+
     span {
       flex: 1 1 auto;
     }

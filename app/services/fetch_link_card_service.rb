@@ -50,7 +50,7 @@ class FetchLinkCardService < BaseService
       # We follow redirects, and ideally we want to save the preview card for
       # the destination URL and not any link shortener in-between, so here
       # we set the URL to the one of the last response in the redirect chain
-      @url  = res.request.uri.to_s.to_s
+      @url  = res.request.uri.to_s
       @card = PreviewCard.find_or_initialize_by(url: @url) if @card.url != @url
 
       if res.code == 200 && res.mime_type == 'text/html'
@@ -66,6 +66,7 @@ class FetchLinkCardService < BaseService
   def attach_card
     @status.preview_cards << @card
     Rails.cache.delete(@status)
+    Trends.links.register(@status)
   end
 
   def parse_urls
