@@ -701,19 +701,7 @@ ca:
       sidekiq_process_check:
         message_html: No hi ha cap procés de Sidekiq executant-se per a la cua (o cues) de %{value}. Si us plau revisa la teva configuració de Sidekiq
     tags:
-      accounts_today: Usos únics actuals
-      accounts_week: Usos únics d'aquesta setmana
-      breakdown: Desglossament de l’ús actual per origen
-      last_active: Darrer actiu
-      most_popular: Més populars
-      most_recent: Més recent
-      name: Etiqueta
       review: Revisar l'estat
-      reviewed: Revisades
-      title: Etiquetes
-      trending_right_now: Actualment en tendència
-      unique_uses_today: "%{count} publicacions d'avui"
-      unreviewed: Sense revisar
       updated_msg: Ajustaments d'etiquetes actualitzats amb èxit
     title: Administració
     warning_presets:
@@ -730,9 +718,6 @@ ca:
       body: "%{reporter} ha informat de %{target}"
       body_remote: Algú des de el domini %{domain} ha informat sobre %{target}
       subject: 'Informe nou per a %{instance} (#%{id})'
-    new_trending_tag:
-      body: 'La etiqueta #%{name} està actualment en tendència però no s''ha revisat prèviament. No es mostrarà públicament tret que ho permetis o guardis el formulari tal com està per a no tornar a escoltar res al respecte.'
-      subject: 'Nova etiqueta pendent de revisió a %{instance} (#%{name})'
   aliases:
     add_new: Crea un àlies
     created_msg: Nou àlies creat amb èxit. Ara pots iniciar el moviment des de'l compte vell.
@@ -939,7 +924,6 @@ ca:
     changes_saved_msg: Els canvis s'han desat correctament!
     copy: Copia
     delete: Esborra
-    no_batch_actions_available: Cap accions de lot disponibles en aquesta pàgina
     order_by: Ordena per
     save_changes: Desa els canvis
     validation_errors:
