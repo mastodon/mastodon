@@ -700,19 +700,7 @@ gl:
       sidekiq_process_check:
         message_html: Non hai procesos Sidekiq a funcionar para a cola(s) %{value}. Revisa a túa configuración para Sidekiq
     tags:
-      accounts_today: Usos únicos hoxe
-      accounts_week: Usos únicos esta semana
-      breakdown: Consumo do uso diario por fonte
-      last_active: Úlimo activo
-      most_popular: Máis popular
-      most_recent: Máis recente
-      name: Cancelo
       review: Estado de revisión
-      reviewed: Revisado
-      title: Cancelos
-      trending_right_now: Agora como Tendencia
-      unique_uses_today: "%{count} publicando hoxe"
-      unreviewed: Sen revisar
       updated_msg: Actualizaronse os axustes dos cancelos
     title: Administración
     warning_presets:
@@ -729,9 +717,6 @@ gl:
       body: "%{reporter} informou sobre %{target}"
       body_remote: Alguén desde %{domain} informou sobre %{target}
       subject: 'Novo informe sobre %{instance} (#%{id})'
-    new_trending_tag:
-      body: 'O cancelo #%{name} é tendencia hoxe, pero non foi previamente revisada. Non se amosará de xeito público a menos que ti o permitas, ou gardes o formulario para facer que non se che consulte de novo.'
-      subject: 'Un novo cancelo que revisar en %{instance} (#%{name})'
   aliases:
     add_new: Crear alcume
     created_msg: Creou un novo alcume correctamente. Pode iniciar o movemento desde a conta antiga.
@@ -938,7 +923,6 @@ gl:
     changes_saved_msg: Cambios gardados correctamente!!
     copy: Copiar
     delete: Eliminar
-    no_batch_actions_available: Non hai accións en pila dispoñibles nesta páxina
     order_by: Ordenar por
     save_changes: Gardar cambios
     validation_errors:
