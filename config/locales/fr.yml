@@ -704,6 +704,36 @@ fr:
       review: État du traitement
       updated_msg: Paramètres du hashtag mis à jour avec succès
     title: Administration
+    trends:
+      allow: Autoriser
+      approved: Approuvé
+      disallow: Interdire
+      links:
+        allow: Autoriser le lien
+        allow_provider: Autoriser l'éditeur
+        disallow: Interdire le lien
+        disallow_provider: Interdire l'éditeur
+        shared_by_over_week:
+          one: Partagé par une personne au cours de la dernière semaine
+          other: Partagé par %{count} personnes au cours de la dernière semaine
+        title: Liens tendances
+        usage_comparison: Partagé %{today} fois aujourd'hui, comparé à %{yesterday} hier
+      pending_review: En attente de révision
+      preview_card_providers:
+        allowed: Les liens de cet éditeur peuvent être tendance
+        rejected: Les liens de cet éditeur ne seront pas considérés tendance
+        title: Éditeurs
+      rejected: Rejeté
+      tags:
+        current_score: Score actuel %{score}
+        dashboard:
+          tag_accounts_measure: utilisations uniques
+          tag_languages_dimension: Langues principales
+          tag_servers_dimension: Meilleurs serveurs
+          tag_servers_measure: différents serveurs
+          tag_uses_measure: utilisations totales
+        listable: Peut être suggéré
+        not_listable: Ne sera pas suggéré
     warning_presets:
       add_new: Ajouter un nouveau
       delete: Supprimer
