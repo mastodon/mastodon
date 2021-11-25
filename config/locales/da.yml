@@ -374,6 +374,7 @@ da:
       interactions: interaktioner
       media_storage: Medielagerplads
       new_users: nye brugere
+      opened_reports: rapporter åbnet
       pending_reports_html:
         one: "<strong>1</strong> afventende rapport"
         other: "<strong>%{count}</strong> afventende rapporter"
@@ -762,7 +763,13 @@ da:
     new_trending_links:
       body: De flg. links er populære i dag, men deres udgivere er ikke tidligere blevet revideret. De vil ikke blive vist offentligt, medmindre du godkender dem. Yderligere notifikationer fra de samme udgivere genereres ikke.
       no_approved_links: Der er i pt. ingen godkendte populære links.
-      requirements: Det laveste godkendte populære link er i pt. "%{lowest_link_title}" med en score på %{lowest_link_score}.
+      requirements: Det laveste godkendte populære link er pt. "%{lowest_link_title}" med en score på %{lowest_link_score}.
+      subject: Nye populære links er klar til revidering på %{instance}
+    new_trending_tags:
+      body: 'Flg. hashtags er populære i dag, men de er ikke tidligere revideret. De vises ikke offentligt, medmindre du godkender dem:'
+      no_approved_tags: Der er pt. ingen godkendte populære hashtags.
+      requirements: 'Det laveste godkendte populære hashtags er pt. #%{lowest_tag_name} med en score på %{lowest_tag_score}.'
+      subject: Nye populære hashtags er klar til revidering på %{instance}
   aliases:
     add_new: Opret alias
     created_msg: Nyt alias oprettet. Du kan nu påbegynde flytningen fra den gamle konto.
@@ -969,6 +976,7 @@ da:
     changes_saved_msg: Ændringerne er gemt!
     copy: Kopier
     delete: Slet
+    none: Intet
     order_by: Sortér efter
     save_changes: Gem ændringer
     validation_errors:
