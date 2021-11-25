@@ -725,19 +725,7 @@ gd:
       sidekiq_process_check:
         message_html: Chan eil pròiseas Sidekiq sam bith a ruith dhan chiutha/dha na ciuthan %{value}. Thoir sùil air an rèiteachadh Sidekiq agad
     tags:
-      accounts_today: Cleachdaidhean fa leth an-diugh
-      accounts_week: Cleachdaidhean fa leth an t-seachdain seo
-      breakdown: Seall an cleachdadh an-diugh a-rèir tùis
-      last_active: Air a chleachdadh o chionn goirid
-      most_popular: Na tha fèill mhòr air
-      most_recent: Air a chruthachadh o chionn goirid
-      name: Taga hais
       review: Dèan lèirmheas air an staid
-      reviewed: Chaidh lèirmheas a dhèanamh air
-      title: Tagaichean hais
-      trending_right_now: A’ treandadh an-dràsta
-      unique_uses_today: "%{count} a’ postadh an-diugh"
-      unreviewed: Gun lèirmheas
       updated_msg: Chaidh roghainnean nan tagaichean hais ùrachadh
     title: Rianachd
     warning_presets:
@@ -754,9 +742,6 @@ gd:
       body: "Rinn %{reporter} gearan air %{target}"
       body_remote: Rinn cuideigin o %{domain} gearan air %{target}
       subject: 'Tha gearan ùr aig %{instance} (#%{id})'
-    new_trending_tag:
-      body: 'Tha an taga hais #%{name} a’ treandadh an-diugh ach cha deach lèirmheas a dhèanamh air cheana. Cha nochd e gu poblach ach ma cheadaicheas tu e. Ma shàbhaileas tu am foirm seo mar a tha e, cha bhodraig e a-rithist thu.'
-      subject: 'Tha taga hais ùr air %{instance} a’ feitheamh air lèirmheas (#%{name})'
   aliases:
     add_new: Cruthaich alias
     created_msg: Chaidh an t-alias ùr a chruthachadh. ’S urrainn dhut tòiseachadh air imrich on seann-chunntas a-nis.
@@ -963,7 +948,6 @@ gd:
     changes_saved_msg: Chaidh na h-atharraichean a shàbhaladh!
     copy: Dèan lethbhreac
     delete: Sguab às
-    no_batch_actions_available: Chan eil gnìomh grunna ri fhaighinn air an duilleag seo
     order_by: Seòrsaich a-rèir
     save_changes: Sàbhail na h-atharraichean
     validation_errors:
