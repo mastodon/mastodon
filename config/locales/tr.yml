@@ -704,6 +704,48 @@ tr:
       review: Durumu gözden geçir
       updated_msg: Etiket ayarları başarıyla güncellendi
     title: Yönetim
+    trends:
+      allow: İzin ver
+      approved: Onaylandı
+      disallow: İzin verme
+      links:
+        allow: Bağlantıya izin ver
+        allow_provider: Yayıncıya izin ver
+        disallow: Bağlantıya izin verme
+        disallow_provider: Yayıncıya izin verme
+        shared_by_over_week:
+          one: Geçen hafta bir kişi paylaştı
+          other: Geçen hafta %{count} kişi paylaştı
+        title: Öne çıkan bağlantılar
+        usage_comparison: Bugün %{today} kere paylaşıldı, dün %{yesterday} kere paylaşılmıştı
+      pending_review: İnceleme bekliyor
+      preview_card_providers:
+        allowed: Bu yayıncının bağlantıları öne çıkabilir
+        rejected: Bu yayıncının bağlantıları öne çıkmayacak
+        title: Yayıncılar
+      rejected: Reddedildi
+      tags:
+        current_score: Mevcut puan %{score}
+        dashboard:
+          tag_accounts_measure: tekil kullanımlar
+          tag_languages_dimension: En gözde diller
+          tag_servers_dimension: En gözde sunucular
+          tag_servers_measure: farklı sunucular
+          tag_uses_measure: toplam kullanım
+        listable: Önerilebilir
+        not_listable: Önerilmeyecek
+        not_trendable: Öne çıkanlar altında görünmeyecek
+        not_usable: Kullanılamaz
+        peaked_on_and_decaying: '%{date} tarihinde zirvedeydi, şimdi azalıyor'
+        title: Öne çıkan etiketler
+        trendable: Öne çıkanlar altında görünebilir
+        trending_rank: 'Öne çıkanlar #%{rank}'
+        usable: Kullanılabilir
+        usage_comparison: Bugün %{today} kere kullanıldı, dün %{yesterday} kere kullanılmıştı
+        used_by_over_week:
+          one: Geçen hafta %{count} kişi tarafından kullanıldı
+          other: Geçen hafta %{count} kişi tarafından kullanıldı
+      title: Öne çıkanlar
     warning_presets:
       add_new: Yeni ekle
       delete: Sil
@@ -718,6 +760,10 @@ tr:
       body: "%{reporter}, %{target} kişisini bildirdi"
       body_remote: '%{domain} alan adından birisi %{target} kişisini bildirdi'
       subject: '%{instance} için yeni şikayet (#%{id})'
+    new_trending_links:
+      body: Aşağıdaki bağlantılar bugün öne çıkıyor, ancak yayıncıları daha önce incelenmemişti. Siz onaylamadığınız sürece herkese açık olarak görüntülenmeyecek. Aynı yayıncının benzer bildirimleri üretilmeyecek.
+      no_approved_links: Şu anda onaylanmış öne çıkan bağlantı yok.
+      requirements: Şu anda en düşük onaylanmış öne çıkan bağlantı %{lowest_link_score} puana sahip olan "%{lowest_link_title}".
   aliases:
     add_new: Takma ad oluştur
     created_msg: Yeni takma ad başarıyla oluşturuldu. Artık eski hesaptan taşınmayı başlatabilirsiniz.
