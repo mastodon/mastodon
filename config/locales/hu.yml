@@ -760,6 +760,16 @@ hu:
       body: "%{reporter} jelentette: %{target}"
       body_remote: Valaki a %{domain} domainről jelentette %{target}
       subject: 'Új jelentés az alábbi szerveren: %{instance} (#%{id})'
+    new_trending_links:
+      body: A következő hivatkozások ma felkapottak, de a közzétevőjük eddig még nem lett ellenőrizve. Nem fognak nyilvánosan megjelenni, hacsak nem hagyja jóvá őket. További értesítések nem lesznek előállítva ugyanahhoz a közzétevőhöz.
+      no_approved_links: Jelenleg nincsenek jóváhagyott felkapott hivatkozások.
+      requirements: 'A legkisebb pontszámú jóváhagyott felkapott hivatkozás jelenleg ez: „%{lowest_link_title}”, pontszáma %{lowest_link_score}.'
+      subject: 'Új jóváhagyandó felkapott hivatkozások ezen: %{instance}'
+    new_trending_tags:
+      body: 'A következő hashtagek ma felkapottak, de a eddig még nem lettek ellenőrizve. Nem fognak nyilvánosan megjelenni, hacsak nem hagyja jóvá őket:'
+      no_approved_tags: Jelenleg nincsenek jóváhagyott felkapott hashtagek.
+      requirements: 'A legkisebb pontszámú jóváhagyott felkapott hashtag jelenleg ez: #%{lowest_tag_name}, pontszáma %{lowest_tag_score}.'
+      subject: 'Új jóváhagyandó felkapott hashtagek ezen: %{instance}'
   aliases:
     add_new: Alias készítése
     created_msg: Elkészült az új aliasod. Most már elkezdheted a költöztetést a régi fiókból.
@@ -966,6 +976,7 @@ hu:
     changes_saved_msg: A változásokat elmentettük!
     copy: Másolás
     delete: Törlés
+    none: Nincs
     order_by: Rendezés
     save_changes: Változások mentése
     validation_errors:
