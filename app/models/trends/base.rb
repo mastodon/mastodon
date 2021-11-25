@@ -3,6 +3,19 @@
 class Trends::Base
   include Redisable
 
+  class_attribute :default_options
+
+  attr_reader :options
+
+  # @param [Hash] options
+  # @option options [Integer] :threshold Minimum amount of uses by unique accounts to begin calculating the score
+  # @option options [Integer] :review_threshold Minimum rank (lower = better) before requesting a review
+  # @option options [ActiveSupport::Duration] :max_score_cooldown For this amount of time, the peak score (if bigger than current score) is decayed-from
+  # @option options [ActiveSupport::Duration] :max_score_halflife How quickly a peak score decays
+  def initialize(options = {})
+    @options = self.class.default_options.merge(options)
+  end
+
   def register(_status)
     raise NotImplementedError
   end
@@ -51,16 +64,12 @@ class Trends::Base
   end
 
   def trim_older_items
-    redis.zremrangebyscore("#{key_prefix}:all", '-inf', '(0.3')
-    redis.zremrangebyscore("#{key_prefix}:allowed", '-inf', '(0.3')
+    redis.zremrangebyscore("#{key_prefix}:all", '-inf', '(1')
+    redis.zremrangebyscore("#{key_prefix}:allowed", '-inf', '(1')
   end
 
   def score_at_rank(rank)
     redis.zrevrange("#{key_prefix}:allowed", 0, rank, with_scores: true).last&.last || 0
-  end
-
-  def feature_enabled?
-    Setting.trends
   end
 
   private

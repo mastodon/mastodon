@@ -3,17 +3,12 @@
 class Trends::Links < Trends::Base
   PREFIX = 'trending_links'
 
-  # Minimum amount of uses by unique accounts to begin calculating the score
-  THRESHOLD = 15
-
-  # Minimum rank (lower = better) before requesting a review
-  REVIEW_THRESHOLD = 10
-
-  # For this amount of time, the peak score (if bigger than current score) is decayed-from
-  MAX_SCORE_COOLDOWN = 2.days.freeze
-
-  # How quickly a peak score decays
-  MAX_SCORE_HALFLIFE = 8.hours.freeze
+  self.default_options = {
+    threshold: 15,
+    review_threshold: 10,
+    max_score_cooldown: 2.days.freeze,
+    max_score_halflife: 8.hours.freeze,
+  }
 
   def register(status, at_time = Time.now.utc)
     original_status = status.reblog? ? status.reblog : status
@@ -59,7 +54,7 @@ class Trends::Links < Trends::Base
       preview_card
     end
 
-    return if preview_cards_requiring_review.empty? || !feature_enabled?
+    return if preview_cards_requiring_review.empty?
 
     User.staff.includes(:account).find_each do |user|
       AdminMailer.new_trending_links(user.account, preview_cards_requiring_review).deliver_later! if user.allows_trending_tag_emails?
@@ -81,10 +76,10 @@ class Trends::Links < Trends::Base
       observed  = preview_card.history.get(at_time).accounts.to_f
       max_time  = preview_card.max_score_at
       max_score = preview_card.max_score
-      max_score = 0 if max_time.nil? || max_time < (at_time - MAX_SCORE_COOLDOWN)
+      max_score = 0 if max_time.nil? || max_time < (at_time - options[:max_score_cooldown])
 
       score = begin
-        if expected > observed || observed < THRESHOLD
+        if expected > observed || observed < options[:threshold]
           0
         else
           ((observed - expected)**2) / expected
@@ -99,7 +94,7 @@ class Trends::Links < Trends::Base
         preview_card.update_columns(max_score: max_score, max_score_at: max_time)
       end
 
-      decaying_score = max_score * (0.5**((at_time.to_f - max_time.to_f) / MAX_SCORE_HALFLIFE.to_f))
+      decaying_score = max_score * (0.5**((at_time.to_f - max_time.to_f) / options[:max_score_halflife].to_f))
 
       if decaying_score.zero?
         redis.zrem("#{PREFIX}:all", preview_card.id)
@@ -117,6 +112,6 @@ class Trends::Links < Trends::Base
   end
 
   def would_be_trending?(id)
-    score(id) > score_at_rank(REVIEW_THRESHOLD - 1)
+    score(id) > score_at_rank(options[:review_threshold] - 1)
   end
 end

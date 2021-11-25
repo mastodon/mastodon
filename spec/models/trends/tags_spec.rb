@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Trends::Tags do
-  subject { described_class.new }
+  subject { described_class.new(threshold: 5, review_threshold: 10) }
 
   let!(:at_time) { DateTime.new(2021, 11, 14, 10, 15, 0) }
 
@@ -59,7 +59,7 @@ RSpec.describe Trends::Tags do
       subject.refresh(yesterday + 12.hours)
       original_score = subject.score(tag3.id)
       expect(original_score).to eq 144.0
-      subject.refresh(yesterday + 12.hours + described_class::MAX_SCORE_HALFLIFE)
+      subject.refresh(yesterday + 12.hours + subject.options[:max_score_halflife])
       decayed_score = subject.score(tag3.id)
       expect(decayed_score).to be <= original_score / 2
     end
