@@ -1,6 +1,6 @@
 is:
   about:
-    about_hashtag_html: 'Þetta eru opinber tíst sem merkt eru með <strong>#%{hashtag}</strong>. Þú getur unnið með þau ef þú ert með skráðan aðgang einhversstaðar í skýjasambandinu.'
+    about_hashtag_html: 'Þetta eru opinber skilaboð sem merkt eru með <strong>#%{hashtag}</strong>. Þú getur unnið með þau ef þú ert með skráðan aðgang einhversstaðar í skýjasambandinu.'
     about_mastodon_html: 'Samfélagsnet framtíðarinnar: Engar auglýsingar, ekkert eftirlit stórfyrirtækja, siðleg hönnun og engin miðstýring! Þú átt þín eigin gögn í Mastodon!'
     about_this: Um hugbúnaðinn
     active_count_after: virkt
@@ -763,9 +763,13 @@ is:
     new_trending_links:
       body: Eftirfarandi tenglar eru vinsælir í dag, en ekki er búið að yfirfara útgefendur þeirra. Þeir munu ekki birtast opinberlega nema þú samþykkir þá. Ekki verða útbúnar frekari tilkynningar frá sömu útgefendum.
       no_approved_links: Í augnablikinu eru engir samþykktir vinsælir tenglar.
+      requirements: Minnst vinsæli tengillinn sem búið er að samþykkja er núna "%{lowest_link_title}" með stigaskorið %{lowest_link_score}.
+      subject: Nýir vinsælir tenglar eru tilbúnir til yfirferðar á %{instance}
     new_trending_tags:
       body: 'Eftirfarandi myllumerki eru vinsæl í dag, en ekki er búið að yfirfara þau. Þau munu ekki birtast opinberlega nema þú samþykkir þau:'
       no_approved_tags: Í augnablikinu eru engin samþykkt vinsæl myllumerki.
+      requirements: 'Minnst vinsæla myllumerkið sem búið er að samþykkja er núna %{lowest_tag_name} með stigaskorið %{lowest_tag_score}.'
+      subject: Ný vinsæl myllumerki eru tilbúin til yfirferðar á %{instance}
   aliases:
     add_new: Búa til samnefni (alias)
     created_msg: Tókst að búa til samnefni. Þú getur núna byrjað að færa gögn af gamla aðgangnum.
