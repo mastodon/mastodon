@@ -722,6 +722,29 @@ da:
         allowed: Links fra denne udgiver kan trende
         rejected: Links fra denne udgiver vil ikke trende
         title: Udgivere
+      rejected: Afvist
+      tags:
+        current_score: Aktuel score %{score}
+        dashboard:
+          tag_accounts_measure: unikke brugere
+          tag_languages_dimension: Topsprog
+          tag_servers_dimension: Topservere
+          tag_servers_measure: forskellige servere
+          tag_uses_measure: brugere i alt
+        listable: Kan foreslås
+        not_listable: Foreslås ikke
+        not_trendable: Vises ikke under tendenser
+        not_usable: Kan ikke bruges
+        peaked_on_and_decaying: Toppede d. %{date}, nu nedadgående
+        title: Populære hashtags
+        trendable: Kan vises under tendenser
+        trending_rank: 'Populær #%{rank}'
+        usable: Kan bruges
+        usage_comparison: Brugt %{today} gange i dag, sammenlignet med %{yesterday} i går
+        used_by_over_week:
+          one: Brugt af én person i løbet af den sidste uge
+          other: Brugt af %{count} personer i løbet af den sidste uge
+      title: Trends
     warning_presets:
       add_new: Tilføj ny
       delete: Slet
@@ -736,6 +759,10 @@ da:
       body: "%{reporter} har anmeldt %{target}"
       body_remote: Nogen fra %{domain} har anmeldt %{target}
       subject: 'Ny anmeldelse for %{instance} (#%{id})'
+    new_trending_links:
+      body: De flg. links er populære i dag, men deres udgivere er ikke tidligere blevet revideret. De vil ikke blive vist offentligt, medmindre du godkender dem. Yderligere notifikationer fra de samme udgivere genereres ikke.
+      no_approved_links: Der er i pt. ingen godkendte populære links.
+      requirements: Det laveste godkendte populære link er i pt. "%{lowest_link_title}" med en score på %{lowest_link_score}.
   aliases:
     add_new: Opret alias
     created_msg: Nyt alias oprettet. Du kan nu påbegynde flytningen fra den gamle konto.
