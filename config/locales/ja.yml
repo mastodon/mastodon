@@ -688,19 +688,7 @@ ja:
       sidekiq_process_check:
         message_html: '%{value} キューに対応するSidekiq プロセスがありません。Sidekiq の設定を確認してください。'
     tags:
-      accounts_today: 本日使用した人数
-      accounts_week: 今週使用した人数
-      breakdown: 直近のサーバー別使用状況
-      last_active: 最近使われた順
-      most_popular: 使用頻度順
-      most_recent: 新着順
-      name: ハッシュタグ
       review: 審査状況
-      reviewed: 審査済み
-      title: ハッシュタグ
-      trending_right_now: 現在のトレンド
-      unique_uses_today: "本日 %{count} 人が投稿に使用"
-      unreviewed: 未審査
       updated_msg: ハッシュタグ設定が更新されました
     title: 管理
     warning_presets:
@@ -717,9 +705,6 @@ ja:
       body: "%{reporter} が %{target} を通報しました"
       body_remote: '%{domain} の誰かが %{target} を通報しました'
       subject: '%{instance} の新しい通報 (#%{id})'
-    new_trending_tag:
-      body: 'ハッシュタグ #%{name} が本日のトレンドになっていますが、審査がまだ行われていないためトレンドタグには表示されていません。一度許可すれば次回からこの操作は不要です。'
-      subject: '%{instance} で新しいハッシュタグ (#%{name}) が審査待ちです'
   aliases:
     add_new: エイリアスを作成
     created_msg: エイリアスを作成しました。これで以前のアカウントから引っ越しを開始できます。
@@ -926,7 +911,6 @@ ja:
     changes_saved_msg: 正常に変更されました！
     copy: コピー
     delete: 削除
-    no_batch_actions_available: このページに一括操作はありません
     order_by: 並び順
     save_changes: 変更を保存
     validation_errors:
