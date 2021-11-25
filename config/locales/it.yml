@@ -701,19 +701,7 @@ it:
       sidekiq_process_check:
         message_html: Nessun processo di Sidekiq in esecuzione per le code di %{value}. Sei pregato di revisionare la tua configurazione di Sidekiq
     tags:
-      accounts_today: Usi unici oggi
-      accounts_week: Usi unici questa settimana
-      breakdown: Suddivisione dell'utilizzo di oggi per fonte
-      last_active: Ultima attività
-      most_popular: Più popolari
-      most_recent: Più recenti
-      name: Hashtag
       review: Esamina status
-      reviewed: Controllato
-      title: Hashtag
-      trending_right_now: Di tendenza ora
-      unique_uses_today: "%{count} post oggi"
-      unreviewed: Non controllato
       updated_msg: Impostazioni degli hashtag aggiornate
     title: Amministrazione
     warning_presets:
@@ -730,9 +718,6 @@ it:
       body: "%{reporter} ha segnalato %{target}"
       body_remote: Qualcuno da %{domain} ha segnalato %{target}
       subject: 'Nuova segnalazione per %{instance} (#%{id})'
-    new_trending_tag:
-      body: 'L''hashtag #%{name} oggi è di tendenza, ma non è stato mai controllato. Non sarà visualizzato pubblicamente se non lo permetti; se salvi il form senza modifiche non lo vedrai mai più.'
-      subject: 'Nuovo hashtag pronto per essere controllato su %{instance} (#%{name})'
   aliases:
     add_new: Crea alias
     created_msg: Hai creato un nuovo alias. Ora puoi iniziare lo spostamento dal vecchio account.
@@ -939,7 +924,6 @@ it:
     changes_saved_msg: Modifiche effettuate con successo!
     copy: Copia
     delete: Cancella
-    no_batch_actions_available: Nessuna azione batch disponibile su questa pagina
     order_by: Ordina per
     save_changes: Salva modifiche
     validation_errors:
