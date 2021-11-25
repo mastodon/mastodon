@@ -701,19 +701,7 @@ sq:
       sidekiq_process_check:
         message_html: S’ka proces Sidekiq në punë për %{value} radhë. Ju lutemi, shqyrtoni formësimin tuaj për Sidekiq-un
     tags:
-      accounts_today: Përdorime unike sot
-      accounts_week: Përdorime unike këtë javë
-      breakdown: Përdorimi sot, analizuar sipas burimesh
-      last_active: Aktive së fundi më
-      most_popular: Më populloret
-      most_recent: Më të rejat
-      name: Hashtag
       review: Gjendje rishikimi
-      reviewed: E shqyrtuar
-      title: Hashtag-ë
-      trending_right_now: Popullore mu tani
-      unique_uses_today: "%{count} postime sot"
-      unreviewed: E pashqyrtuar
       updated_msg: Rregullimet për hashtag-ët u përditësuan me sukses
     title: Administrim
     warning_presets:
@@ -730,9 +718,6 @@ sq:
       body: "%{reporter} ka raportuar %{target}"
       body_remote: Dikush nga %{domain} ka raportuar %{target}
       subject: 'Raportim i ri për %{instance} (#%{id})'
-    new_trending_tag:
-      body: 'Hashtag-u #%{name} është popullor sot, por s’është shqyrtuar më parë. S’do të shfaqet publikisht pa e lejuar ju, ose thjesht ruani formularin siç është, që të mos dëgjoni më për të.'
-      subject: 'Hashtag i ri për shqyrtim te %{instance} (#%{name})'
   aliases:
     add_new: Krijo alias
     created_msg: U krijua me sukses alias i ri. Tani mund të filloni lëvizjen prej llogarisë së vjetër.
@@ -939,7 +924,6 @@ sq:
     changes_saved_msg: Ndryshimet u ruajtën me sukses!
     copy: Kopjoje
     delete: Fshije
-    no_batch_actions_available: Në këtë faqe s’ka veprime masive gati
     order_by: Renditi sipas
     save_changes: Ruaji ndryshimet
     validation_errors:
