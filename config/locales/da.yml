@@ -703,6 +703,25 @@ da:
       review: Gennemsynsstatus
       updated_msg: Hashtag-indstillinger opdateret
     title: Administration
+    trends:
+      allow: Tillad
+      approved: Godkendt
+      disallow: Tillad ikke
+      links:
+        allow: Tillad link
+        allow_provider: Tillad udgiver
+        disallow: Tillad ikke link
+        disallow_provider: Tillad ikke udgiver
+        shared_by_over_week:
+          one: Delt af én person i løbet af den sidste uge
+          other: Delt af %{count} personer i løbet af den sidste uge
+        title: Populære links
+        usage_comparison: Delt %{today} gange i dag, sammenlignet med %{yesterday} i går
+      pending_review: Afventende vurdering
+      preview_card_providers:
+        allowed: Links fra denne udgiver kan trende
+        rejected: Links fra denne udgiver vil ikke trende
+        title: Udgivere
     warning_presets:
       add_new: Tilføj ny
       delete: Slet
