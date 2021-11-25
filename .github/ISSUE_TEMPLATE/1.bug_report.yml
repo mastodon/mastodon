@@ -8,6 +8,17 @@ body:
         Make sure that you are submitting a new bug that was not previously reported or already fixed.
 
         Please use a concise and distinct title for the issue.
+  - type: textarea
+    attributes:
+      label: Steps to reproduce the problem
+      description: What were you trying to do?
+      value: |
+        1.
+        2.
+        3.
+        ...
+    validations:
+      required: true
   - type: input
     attributes:
       label: Expected behaviour
@@ -18,17 +29,6 @@ body:
     attributes:
       label: Actual behaviour
       description: What happened?
-    validations:
-      required: true
-  - type: textarea
-    attributes:
-      label: Steps to reproduce the problem
-      description: What were you trying to do?
-      value: |
-        1.
-        2.
-        3.
-        ...
     validations:
       required: true
   - type: textarea
