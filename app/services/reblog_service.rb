@@ -30,12 +30,13 @@ class ReblogService < BaseService
 
     reblog = account.statuses.create!(reblog: reblogged_status, text: '', visibility: visibility, rate_limit: options[:with_rate_limit])
 
+    Trends.tags.register(reblog)
+    Trends.links.register(reblog)
     DistributionWorker.perform_async(reblog.id)
     ActivityPub::DistributionWorker.perform_async(reblog.id) unless reblogged_status.local_only?
 
     create_notification(reblog)
     bump_potential_friendship(account, reblog)
-    record_use(account, reblog)
 
     reblog
   end
@@ -58,16 +59,6 @@ class ReblogService < BaseService
     return if account.following?(reblog.reblog.account_id)
 
     PotentialFriendshipTracker.record(account.id, reblog.reblog.account_id, :reblog)
-  end
-
-  def record_use(account, reblog)
-    return unless reblog.public_visibility?
-
-    original_status = reblog.reblog
-
-    original_status.tags.each do |tag|
-      tag.use!(account)
-    end
   end
 
   def build_json(reblog)

@@ -4,7 +4,7 @@ module Admin
   class DashboardController < BaseController
     def index
       @system_checks         = Admin::SystemCheck.perform
-      @time_period           = (1.month.ago.to_date...Time.now.utc.to_date)
+      @time_period           = (29.days.ago.to_date...Time.now.utc.to_date)
       @pending_users_count   = User.pending.count
       @pending_reports_count = Report.unresolved.count
       @pending_tags_count    = Tag.pending_review.count

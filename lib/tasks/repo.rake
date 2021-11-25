@@ -96,7 +96,7 @@ namespace :repo do
     end.uniq.compact
 
     missing_available_locales = locales_in_files - I18n.available_locales
-    missing_locale_names = I18n.available_locales.reject { |locale| SettingsHelper::HUMAN_LOCALES.key?(locale) }
+    missing_locale_names = I18n.available_locales.reject { |locale| LanguagesHelper::HUMAN_LOCALES.key?(locale) }
 
     critical = false
 

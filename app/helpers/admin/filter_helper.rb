@@ -6,6 +6,8 @@ module Admin::FilterHelper
     CustomEmojiFilter::KEYS,
     ReportFilter::KEYS,
     TagFilter::KEYS,
+    PreviewCardProviderFilter::KEYS,
+    PreviewCardFilter::KEYS,
     InstanceFilter::KEYS,
     InviteFilter::KEYS,
     RelationshipFilter::KEYS,
