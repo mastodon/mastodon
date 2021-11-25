@@ -760,6 +760,16 @@ ca:
       body: "%{reporter} ha informat de %{target}"
       body_remote: Algú des de el domini %{domain} ha informat sobre %{target}
       subject: 'Informe nou per a %{instance} (#%{id})'
+    new_trending_links:
+      body: Els enllaços següents son tendència avui però els seus mitjans no han estat verificats. No seran mostrats públicament fins que els aprovis. No es generaran noves notificacions dels mateixos mitjans.
+      no_approved_links: Actualment no hi ha enllaços en tendència aprovats.
+      requirements: L'enllaç en tendència més baixa aprovat és actualment "%{lowest_link_title}" amb una puntuació de %{lowest_link_score}.
+      subject: Nou enllaços en tendència pendents de revisar a %{instance}
+    new_trending_tags:
+      body: 'Les següents etiquetes son tendència avui però no han estat prèviament revisades. No seran mostrades públicament fins que les aprovis:'
+      no_approved_tags: Actualment no hi ha etiquetes en tendència aprovades.
+      requirements: 'L''etiqueta en tendència més baixa aprovada és actualment "%{lowest_tag_name}" amb una puntuació de %{lowest_tag_score}.'
+      subject: Noves etiquetes en tendència pendents de ser revisades a %{instance}
   aliases:
     add_new: Crea un àlies
     created_msg: Nou àlies creat amb èxit. Ara pots iniciar el moviment des de'l compte vell.
@@ -966,6 +976,7 @@ ca:
     changes_saved_msg: Els canvis s'han desat correctament!
     copy: Copia
     delete: Esborra
+    none: Cap
     order_by: Ordena per
     save_changes: Desa els canvis
     validation_errors:
