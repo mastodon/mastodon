@@ -701,19 +701,7 @@ eu:
       sidekiq_process_check:
         message_html: Ez da ari Sidekiq prozesurik exekutatzen %{value} ilad(et)an. Egiaztatu Sidekiq konfigurazioa
     tags:
-      accounts_today: Erabilera bakanak gaur
-      accounts_week: Erabilera bakanak aste honetan
-      breakdown: Gaurko erabilera iturriaren arabera
-      last_active: Azkenekoz aktiboa
-      most_popular: Erabilienak
-      most_recent: Azkenak
-      name: Traola
       review: Berrikusketaren egoera
-      reviewed: Berrikusita
-      title: Traolak
-      trending_right_now: Joera orain
-      unique_uses_today: "%{count} bidalketa gaur"
-      unreviewed: Berrikusi gabe
       updated_msg: Traola-ezarpenak ongi eguneratu dira
     title: Administrazioa
     warning_presets:
@@ -730,9 +718,6 @@ eu:
       body: "%{reporter}(e)k %{target} salatu du"
       body_remote: '%{domain} domeinuko norbaitek %{target} salatu du'
       subject: 'Salaketa berria %{instance} instantzian (#%{id})'
-    new_trending_tag:
-      body: '#%{name} traola joeran dago gaur, baina ez da oraindik errebisatu. Ez da publikoki agertuko baimentzen ez baduzu, edo gorde inprimakia dagoen moduan eta ez duzu berriro honi buruz entzungo.'
-      subject: 'Traola berria errebisatzeko %{instance} instantzian (#%{name})'
   aliases:
     add_new: Sortu ezizena
     created_msg: Ongi sortu da ezizena. Orain kontu zaharretik migratzen hasi zaitezke.
@@ -939,7 +924,6 @@ eu:
     changes_saved_msg: Aldaketak ongi gorde dira!
     copy: Kopiatu
     delete: Ezabatu
-    no_batch_actions_available: Ez dago ekintza masiborik orri honetan eskuragarri
     order_by: Ordenatze-irizpidea
     save_changes: Gorde aldaketak
     validation_errors:
