@@ -688,19 +688,7 @@ fi:
       sidekiq_process_check:
         message_html: Ei ole Sidekiq-prosessia käynnissä jonossa %{value}. Tarkista Sidekiq-asetukset
     tags:
-      accounts_today: Tämän päivän käyttö
-      accounts_week: Tämän viikon käyttö
-      breakdown: Tämän päivän käyttö lähteen mukaan
-      last_active: Aktiivinen viimeksi
-      most_popular: Suosituimmat
-      most_recent: Viimeisimmät
-      name: Aihetunniste
       review: Tarkista tila
-      reviewed: Tarkistetut
-      title: Aihetunnisteet
-      trending_right_now: Trendaa juuri nyt
-      unique_uses_today: "%{count} julkaisua tänään"
-      unreviewed: Ei tarkistettu
       updated_msg: Hashtagin asetukset päivitetty onnistuneesti
     title: Ylläpito
     warning_presets:
@@ -717,9 +705,6 @@ fi:
       body: "%{reporter} on raportoinut kohteen %{target}"
       body_remote: Joku osoitteesta %{domain} on raportoinut kohteen %{target}
       subject: Uusi raportti instanssista %{instance} (nro %{id})
-    new_trending_tag:
-      body: 'Aihetunniste #%{name} on nousussa tänään, mutta sitä ei ole aiemmin tarkistettu. Sitä ei näytetä julkisesti, ellet salli sitä. Siitä ei ilmoiteta uudelleen, jos pelkästään tallennat lomakkeen sellaisenaan.'
-      subject: 'Uusi aihetunniste tarkistettavaksi %{instance} (#%{name})'
   aliases:
     add_new: Luo alias
     created_msg: Uusi alias luotiin onnistuneesti. Voit nyt aloittaa siirron vanhasta tilistä.
@@ -926,7 +911,6 @@ fi:
     changes_saved_msg: Muutosten tallennus onnistui!
     copy: Kopioi
     delete: Poista
-    no_batch_actions_available: Tällä sivulla ei ole erätoimintoja
     order_by: Järjestä
     save_changes: Tallenna muutokset
     validation_errors:
