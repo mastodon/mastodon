@@ -728,19 +728,7 @@ ar:
       sidekiq_process_check:
         message_html: لا توجد عملية Sidekiq قيد التشغيل لقائمة الانتظار %{value}. يرجى مراجعة إعدادات Sidekiq الخاصة بك
     tags:
-      accounts_today: استخدامات هذا اليوم
-      accounts_week: استخدامات هذا الأسبوع
-      breakdown: توزيع استخدام اليوم حسب المصدر
-      last_active: آخر نشاط
-      most_popular: الأكثر شعبية
-      most_recent: الأحدث
-      name: الوسم
       review: حالة المراجعة
-      reviewed: مُراجَع
-      title: الوسوم
-      trending_right_now: متداول اللحظة
-      unique_uses_today: "%{count} منشورات اليوم"
-      unreviewed: غير مُراجَع
       updated_msg: تم تحديث إعدادات الوسوم بنجاح
     title: الإدارة
     warning_presets:
@@ -757,9 +745,6 @@ ar:
       body: "قام %{reporter} بالإبلاغ عن %{target}"
       body_remote: أبلغ شخص ما من %{domain} عن %{target}
       subject: 'تقرير جديد ل%{instance} (#%{id})'
-    new_trending_tag:
-      body: 'الوسم #%{name} متداوَل اليوم، ولكن لم يتم مراجعته من قبل. لن يتم عرضه علنا إلا إذا سمحت بذلك، أو قم بحفظ هذه الإستمارة كما هي حتى تتجاهله مستقبَلًا.'
-      subject: 'وسم جديد في انتظار المراجعة على %{instance} (#%{name})'
   aliases:
     add_new: أنشئ كُنية
     created_msg: تم إنشاء الكُنية الجديدة بنجاح. يمكنكم الآن الشروع في الإنتقال مِن حسابكم القديم.
@@ -966,7 +951,6 @@ ar:
     changes_saved_msg: تم حفظ التعديلات بنجاح!
     copy: نسخ
     delete: احذف
-    no_batch_actions_available: ليس هناك أية إجراءات بالجملة على هذه الصفحة
     order_by: ترتيب بحسب
     save_changes: حفظ التغييرات
     validation_errors:
