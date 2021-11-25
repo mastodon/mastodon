@@ -8,7 +8,7 @@ class ProcessHashtagsService < BaseService
     Tag.find_or_create_by_names(tags) do |tag|
       status.tags << tag
       records << tag
-      tag.use!(status.account, status: status, at_time: status.created_at) if status.public_visibility?
+      tag.update(last_status_at: status.created_at) if tag.last_status_at.nil? || (tag.last_status_at < status.created_at && tag.last_status_at < 12.hours.ago)
     end
 
     return unless status.distributable?

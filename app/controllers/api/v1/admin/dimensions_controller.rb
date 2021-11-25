@@ -17,7 +17,8 @@ class Api::V1::Admin::DimensionsController < Api::BaseController
       params[:keys],
       params[:start_at],
       params[:end_at],
-      params[:limit]
+      params[:limit],
+      params
     )
   end
 end

@@ -164,8 +164,13 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   def attach_tags(status)
     @tags.each do |tag|
       status.tags << tag
-      tag.use!(@account, status: status, at_time: status.created_at) if status.public_visibility?
+      tag.update(last_status_at: status.created_at) if tag.last_status_at.nil? || (tag.last_status_at < status.created_at && tag.last_status_at < 12.hours.ago)
     end
+
+    # If we're processing an old status, this may register tags as being used now
+    # as opposed to when the status was really published, but this is probably
+    # not a big deal
+    Trends.tags.register(status)
 
     @mentions.each do |mention|
       mention.status = status
