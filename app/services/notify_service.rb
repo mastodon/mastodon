@@ -73,11 +73,9 @@ class NotifyService < BaseService
 
     # Using an SQL CTE to avoid unneeded back-and-forth with SQL server in case of long threads
     !Status.count_by_sql([<<-SQL.squish, id: @notification.target_status.in_reply_to_id, recipient_id: @recipient.id, sender_id: @notification.from_account.id]).zero?
-      WITH RECURSIVE ancestors(id, in_reply_to_id, replying_to_sender, path) AS (
+      WITH RECURSIVE ancestors(id, in_reply_to_id, replying_to_sender) AS (
           SELECT
-            s.id,
-            s.in_reply_to_id,
-            (CASE
+            s.id, s.in_reply_to_id, (CASE
               WHEN s.account_id = :recipient_id THEN
                 EXISTS (
                   SELECT *
@@ -86,8 +84,7 @@ class NotifyService < BaseService
                 )
               ELSE
                 FALSE
-             END),
-            ARRAY[s.id]
+             END)
           FROM statuses s
           WHERE s.id = :id
         UNION ALL
@@ -103,11 +100,10 @@ class NotifyService < BaseService
                 )
               ELSE
                 FALSE
-             END),
-            st.path || s.id
+             END)
           FROM ancestors st
           JOIN statuses s ON s.id = st.in_reply_to_id
-          WHERE st.replying_to_sender IS FALSE AND NOT s.id = ANY(path)
+          WHERE st.replying_to_sender IS FALSE
       )
       SELECT COUNT(*)
       FROM ancestors st
