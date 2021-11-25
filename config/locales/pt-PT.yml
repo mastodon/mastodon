@@ -1,8 +1,7 @@
----
 pt-PT:
   about:
-    about_hashtag_html: Estes são toots públicos marcados com <strong>#%{hashtag}</strong>. Podes interagir com eles se tiveres uma conta Mastodon.
-    about_mastodon_html: Mastodon é uma rede social baseada em protocolos abertos da web e software livre e gratuito. É descentralizado como e-mail.
+    about_hashtag_html: 'Estes são toots públicos marcados com <strong>#%{hashtag}</strong>. Podes interagir com eles se tiveres uma conta Mastodon.'
+    about_mastodon_html: 'Mastodon é uma rede social baseada em protocolos abertos da web e software livre e gratuito. É descentralizado como e-mail.'
     about_this: Sobre esta instância
     active_count_after: activo
     active_footnote: Utilizadores activos mensais (UAM)
@@ -54,7 +53,7 @@ pt-PT:
     user_count_before: Casa para
     what_is_mastodon: O que é o Mastodon?
   accounts:
-    choices_html: 'escolhas de %{name}:'
+    choices_html: "escolhas de %{name}:"
     endorsements_hint: Você pode, através da interface web, escolher endossar pessoas que segue, e elas aparecerão aqui.
     featured_tags_hint: Você pode destacar hashtags específicas que serão exibidas aqui.
     follow: Seguir
@@ -117,7 +116,7 @@ pt-PT:
       delete: Eliminar dados
       deleted: Eliminada
       demote: Despromoveu
-      destroyed_msg: Os dados de %{username} estão agora em fila de espera para serem eliminados de imediato
+      destroyed_msg: "Os dados de %{username} estão agora em fila de espera para serem eliminados de imediato"
       disable: Congelar
       disable_sign_in_token_auth: Desativar token de autenticação por e-mail
       disable_two_factor_authentication: Desativar 2FA
@@ -522,7 +521,7 @@ pt-PT:
     pending_accounts:
       title: Contas pendentes (%{count})
     relationships:
-      title: Relações de %{acct}
+      title: "Relações de %{acct}"
     relays:
       add_new: Adicionar novo repetidor
       delete: Eliminar
@@ -702,19 +701,7 @@ pt-PT:
       sidekiq_process_check:
         message_html: Nenhum processo Sidekiq em execução para a(s) fila(s) %{value}. Reveja a configuração do seu Sidekiq
     tags:
-      accounts_today: Usos únicos hoje
-      accounts_week: Usos únicos desta semana
-      breakdown: Descrição do consumo atual por fonte
-      last_active: Última actividade
-      most_popular: Mais popular
-      most_recent: Mais recente
-      name: Hashtag
       review: Estado da revisão
-      reviewed: Revista
-      title: Hashtags
-      trending_right_now: Tendências agora
-      unique_uses_today: "%{count} publicando hoje"
-      unreviewed: Não revista
       updated_msg: Definições de hashtags actualizadas com sucesso
     title: Administração
     warning_presets:
@@ -730,10 +717,7 @@ pt-PT:
     new_report:
       body: "%{reporter} relatou %{target}"
       body_remote: Alguém de %{domain} relatou %{target}
-      subject: Novo relatório sobre %{instance} (#%{id})
-    new_trending_tag:
-      body: 'A hashtag #%{name} está hoje a destacar-se, mas não foi anteriormente revista. Ela não será exibida publicamente a menos que você o permita, ou limite-se a salvar o formulário tal como está, para nunca mais ouvir falar dela.'
-      subject: Nova hashtag para revisão em %{instance} (#%{name})
+      subject: 'Novo relatório sobre %{instance} (#%{id})'
   aliases:
     add_new: Criar pseudónimo
     created_msg: Criou com sucesso um novo pseudónimo. Pode agora iniciar a migração da conta antiga.
@@ -940,7 +924,6 @@ pt-PT:
     changes_saved_msg: Alterações guardadas!
     copy: Copiar
     delete: Eliminar
-    no_batch_actions_available: Nenhuma ação em lote disponível nesta página
     order_by: Ordenar por
     save_changes: Guardar alterações
     validation_errors:
@@ -1092,7 +1075,7 @@ pt-PT:
     mention:
       action: Responder
       body: 'Foste mencionado por %{name}:'
-      subject: "%{name} mencionou-te"
+      subject: '%{name} mencionou-te'
       title: Nova menção
     poll:
       subject: Uma votação realizada por %{name} terminou
