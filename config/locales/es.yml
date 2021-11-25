@@ -710,9 +710,9 @@ es:
       disallow: Rechazar
       links:
         allow: Permitir enlace
-        allow_provider: Permitir editor
+        allow_provider: Permitir medio
         disallow: No permitir enlace
-        disallow_provider: Rechazar editor
+        disallow_provider: Rechazar medio
         shared_by_over_week:
           one: Compartido por una persona durante la última semana
           other: Compartido por %{count} personas durante la última semana
@@ -720,9 +720,9 @@ es:
         usage_comparison: Compartido %{today} veces hoy, comparado con %{yesterday} ayer
       pending_review: Revisión pendiente
       preview_card_providers:
-        allowed: Los enlaces de este editor pueden ser tendencia
-        rejected: Los enlaces de este editor no son tendencia
-        title: Editores
+        allowed: Los enlaces de este medio pueden ser tendencia
+        rejected: Los enlaces de este medio no pueden ser tendencia
+        title: Medios
       rejected: Rechazada
       tags:
         current_score: Puntuación actual %{score}
@@ -734,7 +734,7 @@ es:
           tag_uses_measure: usos totales
         listable: Puede ser sugerido
         not_listable: No será sugerido
-        not_trendable: No aparecerá en las tendencias
+        not_trendable: No pueden aparecer en tendencias
         not_usable: No puede ser usado
         peaked_on_and_decaying: Alcanzó el pico en %{date}, ahora decreciendo
         title: Hashtags en tendencia
@@ -761,7 +761,7 @@ es:
       body_remote: Alguien de %{domain} a reportado a %{target}
       subject: 'Nuevo reporte para la %{instance} (#%{id})'
     new_trending_links:
-      body: Los siguientes enlaces están en tendencia hoy, pero sus editores no han sido revisados previamente. No se mostrarán públicamente a menos que los apruebes. No se generarán más notificaciones de estos editores.
+      body: Los siguientes enlaces están en tendencia hoy, pero sus medios de origen no han sido revisados previamente. No se mostrarán públicamente a menos que los apruebes. No se generarán más notificaciones de estos medios.
       no_approved_links: Actualmente no hay enlaces en tendencia aprobados.
       requirements: El enlace en tendencia aprobado más bajo actualmente es "%{lowest_link_title}" con una puntuación de %{lowest_link_score}.
       subject: Nuevos enlaces en tendencia esperando ser revisados en %{instance}
