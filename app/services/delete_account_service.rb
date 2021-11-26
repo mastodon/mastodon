@@ -17,7 +17,6 @@ class DeleteAccountService < BaseService
     domain_blocks
     featured_tags
     follow_requests
-    identity_proofs
     list_accounts
     migrations
     mute_relationships
@@ -45,7 +44,6 @@ class DeleteAccountService < BaseService
     domain_blocks
     featured_tags
     follow_requests
-    identity_proofs
     list_accounts
     migrations
     mute_relationships
