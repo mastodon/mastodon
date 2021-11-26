@@ -84,6 +84,10 @@ class PreviewCard < ApplicationRecord
     attributes['trendable'].nil? && (provider.nil? || provider.requires_review_notification?)
   end
 
+  def decaying?
+    max_score_at && max_score_at >= Trends.links.options[:max_score_cooldown].ago && max_score_at < 1.day.ago
+  end
+
   attr_writer :provider
 
   def local?
