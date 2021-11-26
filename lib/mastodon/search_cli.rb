@@ -19,9 +19,9 @@ module Mastodon
     option :concurrency, type: :numeric, default: 2, aliases: [:c], desc: 'Workload will be split between this number of threads'
     option :batch_size, type: :numeric, default: 1_000, aliases: [:b], desc: 'Number of records in each batch'
     option :only, type: :array, enum: %w(accounts tags statuses), desc: 'Only process these indices'
-    desc 'deploy', 'Create or upgrade ElasticSearch indices and populate them'
+    desc 'deploy', 'Create or upgrade Elasticsearch indices and populate them'
     long_desc <<~LONG_DESC
-      If ElasticSearch is empty, this command will create the necessary indices
+      If Elasticsearch is empty, this command will create the necessary indices
       and then import data from the database into those indices.
 
       This command will also upgrade indices if the underlying schema has been
