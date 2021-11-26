@@ -984,26 +984,6 @@ es:
       other: '¡Algo no está bien! Por favor, revise %{count} errores más abajo'
   html_validator:
     invalid_markup: 'contiene código HTML no válido: %{error}'
-  identity_proofs:
-    active: Activo
-    authorize: Sí, autorizar
-    authorize_connection_prompt: '¿Autorizar esta conexión criptográfica?'
-    errors:
-      failed: La conexión criptográfica falló. Por favor, inténtalo de nuevo desde %{provider}.
-      keybase:
-        invalid_token: Los tokens de Keybase son hashes de firmas y deben tener 66 caracteres hex
-        verification_failed: Keybase no reconoce este token como una firma del usuario de Keybase %{kb_username}. Por favor, inténtelo de nuevo desde Keybase.
-      wrong_user: No se puede crear una prueba para %{proving} mientras se inicia sesión como %{current}. Inicia sesión como %{proving} e inténtalo de nuevo.
-    explanation_html: Aquí puedes conectar criptográficamente sus otras identidades, como un perfil de Keybase. Esto permite a otras personas enviarle mensajes encriptados y confiar en el contenido que les envías.
-    i_am_html: Soy %{username} en %{service}.
-    identity: Identidad
-    inactive: Inactivo
-    publicize_checkbox: 'Y tootee esto:'
-    publicize_toot: '¡Comprobado! Soy %{username} en %{service}: %{url}'
-    remove: Eliminar prueba de la cuenta
-    removed: Prueba eliminada con éxito de la cuenta
-    status: Estado de la verificación
-    view_proof: Ver prueba
   imports:
     errors:
       over_rows_processing_limit: contiene más de %{count} filas
@@ -1277,7 +1257,6 @@ es:
     edit_profile: Editar perfil
     export: Exportar información
     featured_tags: Hashtags destacados
-    identity_proofs: Pruebas de identidad
     import: Importar
     import_and_export: Importar y exportar
     migrate: Migración de cuenta
