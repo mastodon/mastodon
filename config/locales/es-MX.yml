@@ -704,6 +704,48 @@ es-MX:
       review: Estado de revisión
       updated_msg: Hashtags actualizados exitosamente
     title: Administración
+    trends:
+      allow: Permitir
+      approved: Aprobadas
+      disallow: Rechazar
+      links:
+        allow: Permitir enlace
+        allow_provider: Permitir medio
+        disallow: No permitir enlace
+        disallow_provider: Rechazar medio
+        shared_by_over_week:
+          one: Compartido por una persona durante la última semana
+          other: Compartido por %{count} personas durante la última semana
+        title: Enlaces en tendencia
+        usage_comparison: Compartido %{today} veces hoy, comparado con %{yesterday} ayer
+      pending_review: Revisión pendiente
+      preview_card_providers:
+        allowed: Los enlaces de este medio pueden ser tendencia
+        rejected: Los enlaces de este medio no pueden ser tendencia
+        title: Medios
+      rejected: Rechazada
+      tags:
+        current_score: Puntuación actual %{score}
+        dashboard:
+          tag_accounts_measure: usos únicos
+          tag_languages_dimension: Idiomas principales
+          tag_servers_dimension: Servidores principales
+          tag_servers_measure: diferentes servidores
+          tag_uses_measure: usos totales
+        listable: Puede ser sugerido
+        not_listable: No será sugerido
+        not_trendable: No pueden aparecer en tendencias
+        not_usable: No puede ser usado
+        peaked_on_and_decaying: Alcanzó el pico en %{date}, ahora decreciendo
+        title: Hashtags en tendencia
+        trendable: Puede aparecer en tendencias
+        trending_rank: 'Tendencia n.º %{rank}'
+        usable: Puede usarse
+        usage_comparison: Usada %{today} veces hoy, comparado con %{yesterday} ayer
+        used_by_over_week:
+          one: Usada por una persona durante la última semana
+          other: Usada por %{count} personas durante la última semana
+      title: Tendencias
     warning_presets:
       add_new: Añadir nuevo
       delete: Borrar
@@ -718,6 +760,16 @@ es-MX:
       body: "%{reporter} ha reportado a %{target}"
       body_remote: Alguien de %{domain} a reportado a %{target}
       subject: 'Nuevo reporte para la %{instance} (#%{id})'
+    new_trending_links:
+      body: Los siguientes enlaces están en tendencia hoy, pero sus medios de origen no han sido revisados previamente. No se mostrarán públicamente a menos que los apruebes. No se generarán más notificaciones de estos medios.
+      no_approved_links: Actualmente no hay enlaces en tendencia aprobados.
+      requirements: El enlace en tendencia aprobado más bajo actualmente es "%{lowest_link_title}" con una puntuación de %{lowest_link_score}.
+      subject: Nuevos enlaces en tendencia esperando ser revisados en %{instance}
+    new_trending_tags:
+      body: 'Los siguientes hashtags están en tendencia hoy, pero no han sido revisados. No se mostrarán públicamente a menos que los apruebes:'
+      no_approved_tags: Actualmente no hay ningún hashtag en tendencia aprobado.
+      requirements: 'El hashtag en tendencia aprobado más bajo actualmente es "%{lowest_tag_name}" con una puntuación de %{lowest_tag_score}.'
+      subject: Nuevo hashtags en tendencia esperando ser revisados en %{instance}
   aliases:
     add_new: Crear alias
     created_msg: El nuevo alias se ha creado correctamente. Ahora puedes empezar el traslado desde la cuenta antigua.
@@ -924,6 +976,7 @@ es-MX:
     changes_saved_msg: '¡Cambios guardados con éxito!'
     copy: Copiar
     delete: Eliminar
+    none: Ninguno
     order_by: Ordenar por
     save_changes: Guardar cambios
     validation_errors:
@@ -931,26 +984,6 @@ es-MX:
       other: '¡Algo no está bien! Por favor, revise %{count} errores más abajo'
   html_validator:
     invalid_markup: 'contiene código HTML no válido: %{error}'
-  identity_proofs:
-    active: Activo
-    authorize: Sí, autorizar
-    authorize_connection_prompt: '¿Autorizar esta conexión criptográfica?'
-    errors:
-      failed: La conexión criptográfica falló. Por favor, inténtalo de nuevo desde %{provider}.
-      keybase:
-        invalid_token: Los tokens de Keybase son hashes de firmas y deben tener 66 caracteres hex
-        verification_failed: Keybase no reconoce este token como una firma del usuario de Keybase %{kb_username}. Por favor, inténtelo de nuevo desde Keybase.
-      wrong_user: No se puede crear una prueba para %{proving} mientras se inicia sesión como %{current}. Inicia sesión como %{proving} e inténtalo de nuevo.
-    explanation_html: Aquí puedes conectar criptográficamente sus otras identidades, como un perfil de Keybase. Esto permite a otras personas enviarle mensajes encriptados y confiar en el contenido que les envías.
-    i_am_html: Soy %{username} en %{service}.
-    identity: Identidad
-    inactive: Inactivo
-    publicize_checkbox: 'Y tootee esto:'
-    publicize_toot: '¡Comprobado! Soy %{username} en %{service}: %{url}'
-    remove: Eliminar prueba de la cuenta
-    removed: Prueba eliminada con éxito de la cuenta
-    status: Estado de la verificación
-    view_proof: Ver prueba
   imports:
     errors:
       over_rows_processing_limit: contiene más de %{count} filas
@@ -1224,7 +1257,6 @@ es-MX:
     edit_profile: Editar perfil
     export: Exportar información
     featured_tags: Hashtags destacados
-    identity_proofs: Pruebas de identidad
     import: Importar
     import_and_export: Importar y exportar
     migrate: Migración de cuenta
