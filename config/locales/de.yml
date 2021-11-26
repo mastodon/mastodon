@@ -942,26 +942,6 @@ de:
       other: Etwas ist noch nicht ganz richtig! Bitte korrigiere %{count} Fehler
   html_validator:
     invalid_markup: 'enthält ungültiges HTML-Markup: %{error}'
-  identity_proofs:
-    active: Aktiv
-    authorize: Ja, autorisieren
-    authorize_connection_prompt: Diese kryptographische Verbindung autorisieren?
-    errors:
-      failed: Die kryptographische Verbindung ist fehlgeschlagen. Bitte versuche es nochmal von %{provider}.
-      keybase:
-        invalid_token: Keybase-Tokens sind Hashsignaturen und müssen 66 Hexadezimalzeichen lang sein
-        verification_failed: Keybase nimmt dieses Token nicht als Signatur für Keybase-Benutzer %{kb_username} an. Bitte versuche es nochmal über Keybase.
-      wrong_user: Kann keinen Beweis für %{proving} erstellen während du als %{current} angemeldet bist. Melde dich als %{proving} an und versuche es noch einmal.
-    explanation_html: Hier kannst du kryptographisch deine anderen Identitäten wie dein Keybase-Profil verbinden. Dadurch können andere Leute dir verschlüsselte Nachrichten senden und dem Inhalt, den sie dir senden, vertrauen.
-    i_am_html: Ich bin %{username} auf %{service}.
-    identity: Identität
-    inactive: Inaktiv
-    publicize_checkbox: 'Und poste das:'
-    publicize_toot: 'Es ist offiziell! Ich bin %{username} auf %{service}: %{url}'
-    remove: Nachweis vom Konto entfernen
-    removed: Identitätsnachweis erfolgreich vom Konto entfernt
-    status: Verifizierungsstatus
-    view_proof: Zeige Nachweis
   imports:
     errors:
       over_rows_processing_limit: enthält mehr als %{count} Zeilen
@@ -1235,7 +1215,6 @@ de:
     edit_profile: Profil bearbeiten
     export: Datenexport
     featured_tags: Empfohlene Hashtags
-    identity_proofs: Identitätsnachweise
     import: Datenimport
     import_and_export: Importieren und Exportieren
     migrate: Konto-Umzug
