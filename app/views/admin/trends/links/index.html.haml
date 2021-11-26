@@ -1,0 +1,38 @@
+- content_for :page_title do
+  = t('admin.trends.links.title')
+
+.filters
+  .filter-subset
+    %strong= t('admin.trends.trending')
+    %ul
+      %li= filter_link_to t('generic.all'), trending: nil
+      %li= filter_link_to t('admin.trends.only_allowed'), trending: 'allowed'
+  .back-link
+    = link_to admin_trends_links_preview_card_providers_path do
+      = t('admin.trends.preview_card_providers.title')
+      = fa_icon 'chevron-right fw'
+
+%hr.spacer/
+
+= form_for(@form, url: batch_admin_trends_links_path) do |f|
+  = hidden_field_tag :page, params[:page] || 1
+
+  - PreviewCardFilter::KEYS.each do |key|
+    = hidden_field_tag key, params[key] if params[key].present?
+
+  .batch-table
+    .batch-table__toolbar
+      %label.batch-table__toolbar__select.batch-checkbox-all
+        = check_box_tag :batch_checkbox_all, nil, false
+      .batch-table__toolbar__actions
+        = f.button safe_join([fa_icon('check'), t('admin.trends.links.allow')]), name: :approve, class: 'table-action-link', type: :submit, data: { confirm: t('admin.reports.are_you_sure') }
+        = f.button safe_join([fa_icon('check'), t('admin.trends.links.allow_provider')]), name: :approve_all, class: 'table-action-link', type: :submit, data: { confirm: t('admin.reports.are_you_sure') }
+        = f.button safe_join([fa_icon('times'), t('admin.trends.links.disallow')]), name: :reject, class: 'table-action-link', type: :submit, data: { confirm: t('admin.reports.are_you_sure') }
+        = f.button safe_join([fa_icon('times'), t('admin.trends.links.disallow_provider')]), name: :reject_all, class: 'table-action-link', type: :submit, data: { confirm: t('admin.reports.are_you_sure') }
+    .batch-table__body
+      - if @preview_cards.empty?
+        = nothing_here 'nothing-here--under-tabs'
+      - else
+        = render partial: 'preview_card', collection: @preview_cards, locals: { f: f }
+
+= paginate @preview_cards

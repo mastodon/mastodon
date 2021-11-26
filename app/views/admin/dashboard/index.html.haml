@@ -39,7 +39,7 @@
       %span= t('admin.dashboard.pending_users_html', count: @pending_users_count)
       = fa_icon 'chevron-right fw'
 
-    = link_to admin_tags_path(pending_review: '1'), class: 'dashboard__quick-access' do
+    = link_to admin_trends_tags_path(status: 'pending_review'), class: 'dashboard__quick-access' do
       %span= t('admin.dashboard.pending_tags_html', count: @pending_tags_count)
       = fa_icon 'chevron-right fw'
 
