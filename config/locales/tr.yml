@@ -984,26 +984,6 @@ tr:
       other: Bir şeyler ters gitti! Lütfen aşağıdaki %{count} hatayı gözden geçiriniz
   html_validator:
     invalid_markup: 'geçersiz HTML markup içermektedir: %{error}'
-  identity_proofs:
-    active: Etkin
-    authorize: Evet, izin ver
-    authorize_connection_prompt: Bu kriptolu bağlantıyı yetkilendir?
-    errors:
-      failed: Kriptolu bağlantı başarısız oldu. Lütfen %{provider} üzerinden tekrar deneyin.
-      keybase:
-        invalid_token: Keybase belirteçleri imza hash'leridir ve 66 hex karakter içermelidir
-        verification_failed: Keybase, bu belirteci, %{kb_username} Keybase kullanıcısının imzası olarak tanımıyor. Lütfen Keybase'den tekrar deneyin.
-      wrong_user: '%{current} olarak giriş yaparken %{proving} için bir kanıt oluşturulamıyor. %{proving} olarak giriş yapın ve tekrar deneyin.'
-    explanation_html: Burada, Keybase profili gibi diğer kimliklerinizi şifreli olarak bağlayabilirsiniz. Bu, diğer kişilerin size şifreli mesajlar göndermesini ve gönderdiğiniz içeriğe güvenmelerini sağlar.
-    i_am_html: Ben %{service} üzerinde %{username}.
-    identity: Kimlik
-    inactive: Pasif
-    publicize_checkbox: 'Ve bunu tootla:'
-    publicize_toot: 'İspatlandı! Ben %{service} üzerinde %{username}: %{url}'
-    remove: Hesaptan kanıtı kaldır
-    removed: Kanıt hesaptan başarıyla kaldırıldı
-    status: Doğrulama durumu
-    view_proof: Kanıtı görüntüle
   imports:
     errors:
       over_rows_processing_limit: '%{count} satırdan fazlasını içeriyor'
@@ -1277,7 +1257,6 @@ tr:
     edit_profile: Profili düzenle
     export: Veriyi dışa aktar
     featured_tags: Öne çıkan etiketler
-    identity_proofs: Kimlik kanıtları
     import: İçe aktar
     import_and_export: İçe ve dışa aktar
     migrate: Hesap taşıma
