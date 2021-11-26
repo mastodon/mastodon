@@ -984,26 +984,6 @@ fr:
       other: Certaines choses ne vont pas ! Veuillez vérifiez les %{count} erreurs ci-dessous
   html_validator:
     invalid_markup: 'contient un balisage HTML invalide: %{error}'
-  identity_proofs:
-    active: Active
-    authorize: Oui, autoriser
-    authorize_connection_prompt: Autoriser cette connexion chiffrée ?
-    errors:
-      failed: La connexion chiffrée a échoué. Veuillez réessayer à partir de %{provider}.
-      keybase:
-        invalid_token: Les jetons Keybase sont des hachages de signatures et doivent comporter 66 caractères hexadécimaux
-        verification_failed: Keybase ne reconnaît pas ce jeton comme une signature de l’utilisateur Keybase %{kb_username}. Veuillez réessayer à partir de Keybase.
-      wrong_user: Impossible de créer une preuve pour %{proving} lorsque vous êtes connecté en tant que %{current}. Connectez-vous en tant que %{proving} et réessayez.
-    explanation_html: Ici, vous pouvez connecter de manière chiffrée vos autres identités, par exemple un profil Keybase. Cela permet à d’autres personnes de vous envoyer des messages chiffrés et de faire confiance au contenu que vous leur envoyez.
-    i_am_html: Je suis %{username} sur %{service}.
-    identity: Identité
-    inactive: Inactive
-    publicize_checkbox: 'Et publier ceci :'
-    publicize_toot: 'C’est prouvé ! Je suis %{username} sur %{service}: %{url}'
-    remove: Retirer la preuve du compte
-    removed: Preuve retirée du compte avec succès
-    status: État de la vérification
-    view_proof: Voir la preuve
   imports:
     errors:
       over_rows_processing_limit: contient plus de %{count} lignes
@@ -1277,7 +1257,6 @@ fr:
     edit_profile: Modifier le profil
     export: Export de données
     featured_tags: Hashtags mis en avant
-    identity_proofs: Preuves d’identité
     import: Import de données
     import_and_export: Import et export
     migrate: Migration de compte
