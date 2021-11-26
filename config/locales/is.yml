@@ -984,26 +984,6 @@ is:
       other: Ennþá er ekki alveg allt í lagi! Skoðaðu vel villurnar %{count} hér fyrir neðan
   html_validator:
     invalid_markup: 'inniheldur ógildar HTML-merkingar: %{error}'
-  identity_proofs:
-    active: Virkur
-    authorize: Já, heimila
-    authorize_connection_prompt: Auðkenna dulkóðaða tengingu?
-    errors:
-      failed: Dulrituð tenging mistókst, endilega reyndu aftur frá %{provider}.
-      keybase:
-        invalid_token: Keybase-teikn eru tætigildi undirritana og verða að vera 66 hex-stafir
-        verification_failed: Keybase skilur þetta teikn ekki sem undirritun Keybase-notandans %{kb_username}. Prófaðu aftur í Keybase.
-      wrong_user: Get ekki búið til sannvottun fyrir %{proving} á meðan skráð er inn sem %{current}. Skráðu inn sem %{proving} og prófaðu aftur.
-    explanation_html: Hér geturðu tengt dulritað önnur auðkenni þín, eins og t.d. Keybase-notandasnið. Þetta gerir öðru fólki kleift að senda þér dulrituð skilaboð og að treysta efni sem þú sendir þeim.
-    i_am_html: Ég er %{username} á %{service}.
-    identity: Auðkenni
-    inactive: Óvirkt
-    publicize_checkbox: 'Og tísti þetta:'
-    publicize_toot: 'Það er búið að sanna þetta! Ég er %{username} á %{service}: %{url}'
-    remove: Fjarlægja sönnun úr notandaaðgangi
-    removed: Tókst að fjarlægja sönnun úr notandaaðgangi
-    status: Staða sannvottunar
-    view_proof: Skoða sönnun
   imports:
     errors:
       over_rows_processing_limit: inniheldur meira en %{count} raðir
@@ -1277,7 +1257,6 @@ is:
     edit_profile: Breyta notandasniði
     export: Útflutningur gagna
     featured_tags: Myllumerki með aukið vægi
-    identity_proofs: Sannanir á auðkenni
     import: Flytja inn
     import_and_export: Inn- og útflutningur
     migrate: Yfirfærsla notandaaðgangs
