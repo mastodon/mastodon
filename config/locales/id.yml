@@ -918,26 +918,6 @@ id:
       other: Ada yang belum benar! Silakan tinjau %{count} kesalahan di bawah ini
   html_validator:
     invalid_markup: 'berisi markup HTML yang tidak valid: %{error}'
-  identity_proofs:
-    active: Aktif
-    authorize: Ya, izinkan
-    authorize_connection_prompt: Izinkan koneksi kriptografi ini?
-    errors:
-      failed: Koneksi kriptografi gagal. Silakan coba lagi dari %{provider}.
-      keybase:
-        invalid_token: Token Keybase adalah sandi tanda tangan dan harus berupa 66 karakter hex
-        verification_failed: Keybase tidak mengenali token ini sebagai tanda tangan pengguna Keybase %{kb_username}. Silakan ulangi lagi dari Keybase.
-      wrong_user: Tidak dapat membuat bukti untuk %{proving} saat masuk sebagai %{current}. Masuk sebagai %{proving} dan coba lagi.
-    explanation_html: Anda dapat mengoneksikan identitas lain secara kriptografi, seperti profil Keybase. Ini mengizinkan orang lain untuk mengirim pesan terenkripsi kepada Anda dan mempercayai konten yang Anda kirim.
-    i_am_html: Saya adalah %{username} di %{service}.
-    identity: Identitas
-    inactive: Tidak aktif
-    publicize_checkbox: 'Dan toot ini:'
-    publicize_toot: 'Terbukti! Saya adalah %{username} di %{service}: %{url}'
-    remove: Hapus bukti dari akun
-    removed: Berhasil menghapus bukti dari akun
-    status: Status verifikasi
-    view_proof: Lihat bukti
   imports:
     errors:
       over_rows_processing_limit: berisi lebih dari %{count} baris
@@ -1208,7 +1188,6 @@ id:
     edit_profile: Ubah profil
     export: Expor data
     featured_tags: Tagar unggulan
-    identity_proofs: Bukti identitas
     import: Impor
     import_and_export: Impor dan ekspor
     migrate: Pemindahan akun
