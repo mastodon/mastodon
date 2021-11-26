@@ -692,6 +692,32 @@ zh-TW:
       review: 審核嘟文
       updated_msg: 成功更新主題標籤設定
     title: 管理介面
+    trends:
+      allow: 允許
+      approved: 已通過審核
+      disallow: 不允許
+      links:
+        allow: 允許連結
+        allow_provider: 允許發行者
+        disallow: 不允許連結
+        disallow_provider: 不允許發行者
+        shared_by_over_week:
+          other: 於過去一週被 %{count} 人分享
+        title: 熱門連結
+        usage_comparison: 於今日被 %{today} 人分享，相較於昨日 %{yesterday} 人
+      pending_review: 等待審核中
+      preview_card_providers:
+        allowed: 此發行者之連結能登上熱門
+        rejected: 此發行者之連結不會登上熱門
+        title: 發行者
+      rejected: 被拒絕
+      tags:
+        current_score: 目前分數 %{score} 分
+        dashboard:
+          tag_accounts_measure: 獨立用途
+          tag_languages_dimension: 熱門語言
+          tag_servers_dimension: 熱門伺服器
+          tag_servers_measure: 不同伺服器
     warning_presets:
       add_new: 新增
       delete: 刪除
