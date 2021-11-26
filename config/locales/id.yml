@@ -727,6 +727,11 @@ id:
         title: Tagar sedang tren
         trendable: Dapat muncul di bawah tren
         trending_rank: 'Sedang tren #%{rank}'
+        usable: Dapat digunakan
+        usage_comparison: Digunakan %{today} kali hari ini, dibandingkan %{yesterday} kemarin
+        used_by_over_week:
+          other: Digunakan oleh %{count} orang selama seminggu terakhir
+      title: Tren
     warning_presets:
       add_new: Tambah baru
       delete: Hapus
@@ -741,6 +746,16 @@ id:
       body: "%{reporter} telah melaporkan %{target}"
       body_remote: Seseorang dari %{domain} telah melaporkan %{target}
       subject: 'Laporan baru untuk %{instance} (#%{id})'
+    new_trending_links:
+      body: Tautan berikut sedang tren hari ini, tetapi penerbit sebelumnya belum ditinjau. Mereka tidak akan ditampilkan secara publik kecuali Anda menyetujuinya. Notifikasi berikutnya dari penerbit yang sama tidak akan dibuat.
+      no_approved_links: Saat ini tidak akan tautan tren yang disetujui.
+      requirements: Tautan tren yang disetujui peringkat terendah saat ini "%{lowest_link_title}" dengan skor %{lowest_link_score}.
+      subject: Tautan tren baru mulai ditinjau di %{instance}
+    new_trending_tags:
+      body: 'Tagar berikut sedang tren hari ini, tetapi mereka sebelumnya belum ditinjau. Mereka tidak akan muncul secara publik kecuali Anda menyetujuinya:'
+      no_approved_tags: Saat ini tidak ada tagar tren yang disetujui.
+      requirements: 'Tagar tren yang disetujui peringkat terendah saat ini #%{lowest_tag_name} dengan skor %{lowest_tag_score}.'
+      subject: Tagar tren baru mulai ditinjau di %{instance}
   aliases:
     add_new: Buat alias
     created_msg: Berhasil membuat alias baru. Sekarang Anda dapat memulai pindah dari akun lama.
@@ -947,6 +962,7 @@ id:
     changes_saved_msg: Perubahan berhasil disimpan!
     copy: Salin
     delete: Hapus
+    none: Tidak ada
     order_by: Urut berdasarkan
     save_changes: Simpan perubahan
     validation_errors:
