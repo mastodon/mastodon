@@ -962,26 +962,6 @@ ar:
       other: هناك شيء ما ليس على ما يرام! يُرجى مراجعة الأخطاء الـ %{count} أدناه
   html_validator:
     invalid_markup: 'يحتوي على علامة HTML غير صالحة: %{error}'
-  identity_proofs:
-    active: نشط
-    authorize: نعم ، قم بترخيصه
-    authorize_connection_prompt: هل تريد ترخيص هذا الاتصال المشفّر؟
-    errors:
-      failed: فشل اتصال التشفير. الرجاء المحاولة مرة أخرى من %{provider}.
-      keybase:
-        invalid_token: رموز Keybase هي تجزئة من التوقيعات ويجب أن تكون 66 حرف hex
-        verification_failed: Keybase لا يستطيع التعرف على هذا الرمز كتوقيع لمستخدم Keybase %{kb_username}، الرجاء إعادة المحاولة من Keybase.
-      wrong_user: لا يمكن إنشاء دليل لـ%{proving} أثناء تسجيل الدخول كـ%{current}. قم بتسجيل الدخول كـ%{proving} ثم حاول مرة أخرى.
-    explanation_html: هنا يمكنك أن تربط بشكل مُشفر هوياتك الأُخريات من منصات أخرى مثل Keybase. هذا يتيح للأشخاص الآخرين إرسال رسائل مشفرة إليك على تلك المنصات ويسمح لهم بالثقة في أن المحتوى الذي ترسله لهم يأتي منك أنت.
-    i_am_html: أنا %{username} على %{service}.
-    identity: الهوية
-    inactive: ليس نشطا
-    publicize_checkbox: 'وقم بتبويق هذا:'
-    publicize_toot: 'متحقق منه! أنا %{username} على %{service}: %{url}'
-    remove: احذف الدليل مِن الحساب
-    removed: تم حذف الدليل مِن الحساب بنجاح
-    status: حالة التحقق
-    view_proof: عرض الدليل
   imports:
     errors:
       over_rows_processing_limit: يحتوي على أكثر من %{count} صف
@@ -1267,7 +1247,6 @@ ar:
     edit_profile: عدّل الصفحة التعريفية
     export: تصدير البيانات
     featured_tags: الوسوم الشائعة
-    identity_proofs: دلائل الهوية
     import: استيراد
     import_and_export: استيراد وتصدير
     migrate: تهجير الحساب
