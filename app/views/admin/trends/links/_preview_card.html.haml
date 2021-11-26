@@ -22,7 +22,7 @@
         •
         %abbr{ title: t('admin.trends.tags.current_score', score: Trends.links.score(preview_card.id)) }= t('admin.trends.tags.trending_rank', rank: rank + 1)
 
-        - if preview_card.max_score_at && preview_card.max_score_at >= Trends::Links::MAX_SCORE_COOLDOWN.ago && preview_card.max_score_at < 1.day.ago
+        - if preview_card.decaying?
           •
           = t('admin.trends.tags.peaked_on_and_decaying', date: l(preview_card.max_score_at.to_date, format: :short))
       - elsif preview_card.provider&.requires_review?
