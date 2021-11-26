@@ -957,26 +957,6 @@ cs:
       other: Něco ještě není úplně v pořádku! Zkontrolujte prosím %{count} chyb uvedených níže
   html_validator:
     invalid_markup: 'obsahuje neplatný HTML kód: %{error}'
-  identity_proofs:
-    active: Aktivní
-    authorize: Ano, autorizovat
-    authorize_connection_prompt: Autorizovat toto kryptografické spojení?
-    errors:
-      failed: Kryptografické spojení selhalo. Zkuste to prosím znovu z %{provider}.
-      keybase:
-        invalid_token: Keybase tokeny jsou hashe podpisů a musí být dlouhé 66 hexadecimálních znaků
-        verification_failed: Keybase nerozpoznává tento token jako podpis uživatele %{kb_username} na Keybase. Zkuste to prosím znovu z Keybase.
-      wrong_user: Nelze vytvořit důkaz pro %{proving}, zatímco jste přihlášeni jako %{current}. Přihlaste se jako %{proving} a zkuste to znovu.
-    explanation_html: Zde můžete kryptograficky propojit další své identity z jiných platforem, jako například Keybase. To umožňuje jiným lidem poslat vám šifrované zprávy na těchto platformách a důvěřovat, že obsah, který jim posíláte, pochází od vás.
-    i_am_html: Na %{service} jsem %{username}.
-    identity: Identita
-    inactive: Neaktivní
-    publicize_checkbox: 'A odeslat tohle:'
-    publicize_toot: 'Je to dokázáno! Na %{service} jsem %{username}: %{url}'
-    remove: Odstranit důkaz z účtu
-    removed: Úspěšně odstraněn důkaz z účtu
-    status: Stav ověření
-    view_proof: Zobrazit důkaz
   imports:
     errors:
       over_rows_processing_limit: obsahuje více než %{count} řádků
@@ -1256,7 +1236,6 @@ cs:
     edit_profile: Upravit profil
     export: Export dat
     featured_tags: Zvýrazněné hashtagy
-    identity_proofs: Důkazy identity
     import: Import
     import_and_export: Import a export
     migrate: Přesun účtu
