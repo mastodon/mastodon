@@ -930,26 +930,6 @@ gl:
       other: Algo aínda non está ben! Por favor revise os %{count} erros abaixo
   html_validator:
     invalid_markup: 'contén cancelos HTML non válidas: %{error}'
-  identity_proofs:
-    active: Activo
-    authorize: Si, autorizar
-    authorize_connection_prompt: Autorizar esta conexión criptográfica?
-    errors:
-      failed: Fallou a conexión criptográfica. Por favor inténteo de novo desde %{provider}.
-      keybase:
-        invalid_token: Os testemuños Keybase son hashes de firma e deben ter 66 caracteres hexadecimais
-        verification_failed: Keybase non recoñece este testemuño como firma da usuaria de Keybase %{kb_username}. Por favor inténteo desde Keybase.
-      wrong_user: Non se puido crear a proba para %{proving} mentras está conectada como %{current}. Conéctate como %{proving} e inténtao de novo.
-    explanation_html: Aquí podes conectar criptográficamente as tuas outras identidades, como a un perfil Keybase. Esto permítelle a outras persoas enviarche mensaxes cifradas e confiar no contido que ti lles envías.
-    i_am_html: Eu son %{username} en %{service}.
-    identity: Identidade
-    inactive: Inactiva
-    publicize_checkbox: 'E tootee esto:'
-    publicize_toot: 'Comprobado! Eu son %{username} en %{service}: %{url}'
-    remove: Quitar a verificación da conta
-    removed: Quitaches correctamente a verificación da conta
-    status: Estado da validación
-    view_proof: Ver proba
   imports:
     errors:
       over_rows_processing_limit: contén máis de %{count} filas
@@ -1223,7 +1203,6 @@ gl:
     edit_profile: Editar perfil
     export: Exportar datos
     featured_tags: Cancelos destacados
-    identity_proofs: Probas de identidade
     import: Importar
     import_and_export: Importar e exportar
     migrate: Migrar conta
