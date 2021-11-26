@@ -574,24 +574,6 @@ sl:
       other: Nekaj še ni čisto v redu! Spodaj si oglejte %{count} napak
   html_validator:
     invalid_markup: 'vsebuje neveljavno oznako HTML: %{error}'
-  identity_proofs:
-    active: Dejaven
-    authorize: Da, odobri
-    authorize_connection_prompt: Odobrite to kriptografsko povezavo?
-    errors:
-      failed: Kriptografska povezava ni uspela. Poskusite znova od %{provider}.
-      keybase:
-        invalid_token: Žetoni Keybase so algoritem podpisov in morajo biti sestavljeni iz 66 heksadecimalnih znakov
-        verification_failed: Keybase ne prepozna tega žetona kot podpis uporabnika %{kb_username}. Poskusite znova s Keybase-om.
-      wrong_user: Dokler se prijavite kot %{current}, ni mogoče ustvariti dokazila za %{proving}. Prijavite se kot %{proving} in poskusite znova.
-    explanation_html: Tukaj lahko kriptografsko povežete druge identitete, na primer profil Keybase. To omogoča drugim, da vam pošljejo šifrirana sporočila in zaupate vsebino, ki ste jo poslali.
-    i_am_html: Jaz sem %{username} na %{service}.
-    identity: Identiteta
-    inactive: Neaktiven
-    publicize_checkbox: 'In to tutnite:'
-    publicize_toot: 'Dokazano je! Jaz sem %{username} na %{service}: %{url}'
-    status: Stanje preverjanja
-    view_proof: Oglejte si dokaz
   imports:
     modes:
       merge: Združi
@@ -761,7 +743,6 @@ sl:
     edit_profile: Uredi profil
     export: Izvoz podatkov
     featured_tags: Vključeni ključniki
-    identity_proofs: Dokazi o identiteti
     import: Uvozi
     import_and_export: Uvoz in izvoz
     migrate: Selitev računa
