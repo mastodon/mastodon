@@ -692,6 +692,41 @@ id:
       review: Tinjau status
       updated_msg: Pembaruan pengaturan tagar berhasil
     title: Administrasi
+    trends:
+      allow: Izinkan
+      approved: Disetujui
+      disallow: Batalkan izin
+      links:
+        allow: Izinkan tautan
+        allow_provider: Izinkan penerbit
+        disallow: Batalkan izin tautan
+        disallow_provider: Batalkan izin penerbit
+        shared_by_over_week:
+          other: Dibagikan oleh %{count} orang selama seminggu terakhir
+        title: Tautan sedang tren
+        usage_comparison: Dibagikan %{today} kali hari ini, dibandingkan %{yesterday} kemarin
+      pending_review: Tinjauan tertunda
+      preview_card_providers:
+        allowed: Tautan dari penerbit ini dapat menjadi tren
+        rejected: Tautan dari penerbit ini tidak dapat menjadi tren
+        title: Penerbit
+      rejected: Ditolak
+      tags:
+        current_score: Skor saat ini %{score}
+        dashboard:
+          tag_accounts_measure: kegunaan unik
+          tag_languages_dimension: Bahasa terpopuler
+          tag_servers_dimension: Server terpopuler
+          tag_servers_measure: server berbeda
+          tag_uses_measure: kegunaan total
+        listable: Dapat disarankan
+        not_listable: Tidak akan disarankan
+        not_trendable: Tidak akan muncul di bawah tren
+        not_usable: Tidak dapat digunakan
+        peaked_on_and_decaying: Populer pada %{date}, kini mulai turun
+        title: Tagar sedang tren
+        trendable: Dapat muncul di bawah tren
+        trending_rank: 'Sedang tren #%{rank}'
     warning_presets:
       add_new: Tambah baru
       delete: Hapus
