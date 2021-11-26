@@ -984,26 +984,6 @@ hu:
       other: Valami nincs rendjén! Tekintsd meg a(z) %{count} hibát lent
   html_validator:
     invalid_markup: 'hibás HTML leíró: %{error}'
-  identity_proofs:
-    active: Aktív
-    authorize: Igen, engedélyezés
-    authorize_connection_prompt: Engedélyezed ezt a kriptografikus kapcsolatot?
-    errors:
-      failed: A kriptografikus kapcsolat sikertelen. Próbáld inkább innen %{provider}.
-      keybase:
-        invalid_token: A Keybase tokenek hashelt aláírások és pont 66 hexa karakterből állnak
-        verification_failed: A Keybase ezt a tokent nem ismerte fel a %{kb_username} Keybase felhasználó aláírásaként. Próbáld újra Keybase-ből.
-      wrong_user: Nem tudjuk tanúsítani %{proving} felhasználót amíg %{current} felhasználóként vagy bejelentkezve. Jelentkezz be %{proving} felhasználóként és próbáld újra.
-    explanation_html: Itt más személyazonosságaiddal tudsz kriptografikus kapcsolatot létesíteni, pl. Keybase profillal. Így mások titkosított üzenetet küldhetnek neked, valamint megbízhatnak az általad küldött tartalomban is.
-    i_am_html: '%{username} vagyok %{service} szerveren.'
-    identity: Személyazonosság
-    inactive: Inaktív
-    publicize_checkbox: 'És ezt tülköld ki:'
-    publicize_toot: 'Tanúsítva! %{username} vagyok %{service}: %{url} szerveren'
-    remove: Tanúsítás eltávolítása a fiókról
-    removed: Leszedtük a tanúsítást a fiókról
-    status: Ellenőrzés állapota
-    view_proof: Tanúsítás megtekintése
   imports:
     errors:
       over_rows_processing_limit: több mint %{count} sort tartalmaz
@@ -1277,7 +1257,6 @@ hu:
     edit_profile: Profil szerkesztése
     export: Adatok exportálása
     featured_tags: Kiemelt hashtagek
-    identity_proofs: Személyazonosság tanúsítások
     import: Importálás
     import_and_export: Import és export
     migrate: Fiók átirányítása
