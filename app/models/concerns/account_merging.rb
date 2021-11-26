@@ -13,7 +13,7 @@ module AccountMerging
 
     owned_classes = [
       Status, StatusPin, MediaAttachment, Poll, Report, Tombstone, Favourite,
-      Follow, FollowRequest, Block, Mute, AccountIdentityProof,
+      Follow, FollowRequest, Block, Mute,
       AccountModerationNote, AccountPin, AccountStat, ListAccount,
       PollVote, Mention, AccountDeletionRequest, AccountNote, FollowRecommendationSuppression
     ]
