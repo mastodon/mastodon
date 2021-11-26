@@ -957,26 +957,6 @@ pl:
       other: Coś jest wciąż nie tak! Przejrzyj poniższe błędy (%{count})
   html_validator:
     invalid_markup: 'zawiera nieprawidłową składnię HTML: %{error}'
-  identity_proofs:
-    active: Aktywny
-    authorize: Tak, autoryzuj
-    authorize_connection_prompt: Czy chcesz autoryzować to połączenie kryptograficzne?
-    errors:
-      failed: Połączenioe kryptograficzne nie powiodło się. Spróbuj ponownie z poziomu %{provider}.
-      keybase:
-        invalid_token: Tokeny Keybase są hashami podpisów i musza składać się z 66 znaków heksadecymalnych
-        verification_failed: Keybase nie rozpoznaje tego tokenu jako podpisu użytkownika Keybase %{kb_username}. Spróbuj ponownie z poziomu Keybase.
-      wrong_user: Nie można utworzyć dowodu dla %{proving}, gdy jesteś zalogowany(-a) jako %{current}. Zaloguj się jako %{proving} i spróbuj ponownie.
-    explanation_html: Tutaj możesz połączyć kryptograficznie swoje inne tożsamości, takie jak profil Keybase. To pozwoli innym wysłać Ci szyfrowane wiadomości i zaufać zawartości którą im wysyłasz.
-    i_am_html: Jestem %{username} na %{service}.
-    identity: Tożsamość
-    inactive: Niekatywny
-    publicize_checkbox: 'I opublikuj to:'
-    publicize_toot: 'Udowodnione! Jestem %{username} na %{service}: %{url}'
-    remove: Usuń dowód z konta
-    removed: Pomyślnie usunięto dowód z konta
-    status: Stan weryfikacji
-    view_proof: Wyświetl dowód
   imports:
     errors:
       over_rows_processing_limit: zawiera więcej niż %{count} wierszy
@@ -1256,7 +1236,6 @@ pl:
     edit_profile: Edytuj profil
     export: Eksportowanie danych
     featured_tags: Wyróżnione hashtagi
-    identity_proofs: Dowody tożsamości
     import: Importowanie danych
     import_and_export: Import i eksport
     migrate: Migracja konta
