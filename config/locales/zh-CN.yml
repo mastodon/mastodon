@@ -969,26 +969,6 @@ zh-CN:
       other: 出错啦！检查一下下面 %{count} 处出错的地方吧
   html_validator:
     invalid_markup: '包含无效的 HTML 标记: %{error}'
-  identity_proofs:
-    active: 有效
-    authorize: 是，授权
-    authorize_connection_prompt: 授权这一密码学连接？
-    errors:
-      failed: 密码关联失败。请在 %{provider} 上重新尝试。
-      keybase:
-        invalid_token: Keybase 令牌是签名的哈希并且必须是 66 个十六进制字符
-        verification_failed: Keybase 无法将此令牌识别为 Keybase 用户 %{kb_username} 的签名。请在 Keybase 再试一次。
-      wrong_user: 无法以 %{current} 的身份创建 %{proving} 的证明。请以 %{proving} 的身份登录并再次尝试。
-    explanation_html: 在这里，你可以和你的其他身份建立密码学关联，例如 Keybase 个人资料。这样，别人就可以给你发送加密信息，也能够信任你发给他们的内容。
-    i_am_html: 我是 %{service} 上的 %{username} 。
-    identity: 身份
-    inactive: 失效
-    publicize_checkbox: '并发一条这样的嘟文：'
-    publicize_toot: '证明完毕！我是 %{service} 上的 %{username}: %{url}'
-    remove: 从帐户中移除凭据
-    removed: 成功从帐户中删除凭据
-    status: 验证状态
-    view_proof: 查看证明
   imports:
     errors:
       over_rows_processing_limit: 包含行数超过了 %{count}
@@ -1259,7 +1239,6 @@ zh-CN:
     edit_profile: 更改个人资料
     export: 导出
     featured_tags: 精选的话题标签
-    identity_proofs: 身份证明
     import: 导入
     import_and_export: 导入和导出
     migrate: 帐户迁移
