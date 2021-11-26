@@ -7,8 +7,7 @@ module AccountAssociations
     # Local users
     has_one :user, inverse_of: :account, dependent: :destroy
 
-    # Identity proofs
-    has_many :identity_proofs, class_name: 'AccountIdentityProof', dependent: :destroy, inverse_of: :account
+    # E2EE
     has_many :devices, dependent: :destroy, inverse_of: :account
 
     # Timelines
