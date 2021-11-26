@@ -984,26 +984,6 @@ da:
       other: Noget er ikke er helt i vinkel! Tjek de %{count} fejl nedenfor
   html_validator:
     invalid_markup: 'indeholder ugyldig HTML-markup: %{error}'
-  identity_proofs:
-    active: Aktiv
-    authorize: Ja, godkend
-    authorize_connection_prompt: Godkend denne kryptografiske forbindelse?
-    errors:
-      failed: Den kryptografiske forbindelse mislykkedes. Prøv igen fra %{provider}.
-      keybase:
-        invalid_token: Keybase-tokens er hashes af signaturer og skal udgøre 66 hex tegn
-        verification_failed: Keybase genkender ikke dette token som Keybasebruger %{kb_username}s signatur. Forsøg igen fra Keybase.
-      wrong_user: Kan ikke oprette et bevis til %{proving}, når indlogget %{current}. Log ind som %{proving} og forsøg igen.
-    explanation_html: Her kan du kryptografisk forbinde dine andre identiteter fra andre platforme, såsom Keybase. Dette lader andre personer sende dig krypterede beskeder på disse platforme og giver dem mulighed for at stole på, at det indhold, du sender dem, kommer fra dig.
-    i_am_html: Jeg er %{username} på %{service}.
-    identity: Identitet
-    inactive: Inaktiv
-    publicize_checkbox: 'Og toot dette:'
-    publicize_toot: 'Det er bevist! Jeg er %{username} på %{service}: %{url}'
-    remove: Fjern bevis fra konto
-    removed: Bevis fjernet fra kontoen
-    status: Verifikationsstatus
-    view_proof: Se bevis
   imports:
     errors:
       over_rows_processing_limit: indeholder mere end %{count} rækker
@@ -1277,7 +1257,6 @@ da:
     edit_profile: Redigér profil
     export: Dataeksport
     featured_tags: Fremhævede hashtags
-    identity_proofs: Identitetsbeviser
     import: Import
     import_and_export: Importér og eksportér
     migrate: Kontomigrering
