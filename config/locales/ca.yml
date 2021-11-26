@@ -984,26 +984,6 @@ ca:
       other: Alguna cosa no va bé! Si us plau, revisa %{count} errors més a baix
   html_validator:
     invalid_markup: 'conté HTML markup no vàlid: %{error}'
-  identity_proofs:
-    active: Actiu
-    authorize: Sí, autoritza
-    authorize_connection_prompt: Autoritzar aquesta connexió criptogràfica?
-    errors:
-      failed: Ha fallat la connexió criptogràfica. Torna-ho a provar des de %{provider}.
-      keybase:
-        invalid_token: Els tokens de Keybase són hashs de signatures i han de tenir 66 caràcters hexadecimals
-        verification_failed: Keybase no reconeix aquest token com a signatura del usuari de Keybase %{kb_username}. Si us plau prova des de Keybase.
-      wrong_user: No es pot crear una prova per a %{proving} mentre es connectava com a %{current}. Inicia sessió com a %{proving} i prova de nou.
-    explanation_html: Aquí pots connectar criptogràficament les teves altres identitats com ara el teu perfil de Keybase. Això permet que altres persones t'enviïn missatges xifrats i confiar en el contingut que els hi envies.
-    i_am_html: Sóc %{username} a %{service}.
-    identity: Identitat
-    inactive: Inactiu
-    publicize_checkbox: 'I envia un tut d''això:'
-    publicize_toot: 'Està provat! Sóc %{username} a %{service}: %{url}'
-    remove: Elimina prova d’identitat del compte
-    removed: Prova d’identitat del compte eliminada amb èxit
-    status: Estat de verificació
-    view_proof: Veure la prova
   imports:
     errors:
       over_rows_processing_limit: conté més de %{count} files
@@ -1277,7 +1257,6 @@ ca:
     edit_profile: Edita el perfil
     export: Exportació de dades
     featured_tags: Etiquetes destacades
-    identity_proofs: Proves d'identitat
     import: Importació
     import_and_export: Importació i exportació
     migrate: Migració del compte
