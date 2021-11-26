@@ -900,26 +900,6 @@ nl:
       other: Er is iets niet helemaal goed! Bekijk onderstaande %{count} fouten
   html_validator:
     invalid_markup: 'bevat ongeldige HTML-opmaak: %{error}'
-  identity_proofs:
-    active: Actief
-    authorize: Ja, autoriseren
-    authorize_connection_prompt: Deze cryptografische verbinding autoriseren?
-    errors:
-      failed: De cryptografische verbinding is mislukt. Probeer het opnieuw vanaf %{provider}.
-      keybase:
-        invalid_token: Keybasetokens zijn hashes van handtekeningen en moeten een lengte hebben van 66 hexadecimale tekens
-        verification_failed: Keybase herkent deze token niet als een handtekening van Keybasegebruiker %{kb_username}. Probeer het opnieuw vanuit Keybase.
-      wrong_user: Er kan geen bewijs worden aangemaakt voor %{proving} terwijl je bent ingelogd als %{current}. Log in als %{proving} en probeer het opnieuw.
-    explanation_html: Hier kun je met behulp van cryptografie jouw andere identiteiten verbinden, zoals een Keybaseprofiel. Hiermee kunnen andere mensen jou versleutelde berichten sturen en inhoud die jij verstuurt vertrouwen.
-    i_am_html: Ik ben %{username} op %{service}.
-    identity: Identiteit
-    inactive: Inactief
-    publicize_checkbox: 'En toot dit:'
-    publicize_toot: 'Het is bewezen! Ik ben %{username} op %{service}: %{url}'
-    remove: Bewijs uit account verwijderen
-    removed: Bewijs is succesvol uit account verwijderd
-    status: Verificatiestatus
-    view_proof: Bekijk bewijs
   imports:
     errors:
       over_rows_processing_limit: bevat meer dan %{count} rijen
@@ -1181,7 +1161,6 @@ nl:
     edit_profile: Profiel bewerken
     export: Exporteren
     featured_tags: Uitgelichte hashtags
-    identity_proofs: Identiteitsbewijzen
     import: Importeren
     import_and_export: Importeren en exporteren
     migrate: Accountmigratie
