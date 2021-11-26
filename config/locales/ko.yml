@@ -698,18 +698,18 @@ ko:
       disallow: 거부
       links:
         allow: 링크 허용하기
-        allow_provider: 게시자 허용하기
+        allow_provider: 출처 허용하기
         disallow: 링크 거부하기
-        disallow_provider: 게시자 거부하기
+        disallow_provider: 출처 거부하기
         shared_by_over_week:
           other: 한 주 동안 %{count}명의 사람이 공유했습니다
         title: 지금 유행 중인 링크
         usage_comparison: 오늘은 %{today}회 공유되었고, 어제는 %{yesterday}회 공유되었습니다
       pending_review: 심사 대기
       preview_card_providers:
-        allowed: 이 게시자의 링크는 유행 목록에 실릴 수 있습니다
-        rejected: 이 게시자의 링크는 유행 목록에 실릴 수 없습니다
-        title: 게시자
+        allowed: 이 출처의 링크는 유행 목록에 실릴 수 있습니다
+        rejected: 이 출처의 링크는 유행 목록에 실릴 수 없습니다
+        title: 출처
       rejected: 거부됨
       tags:
         current_score: 현재 %{score}점
@@ -747,13 +747,14 @@ ko:
       body_remote: '%{domain}의 누군가가 %{target}을 신고했습니다'
       subject: '%{instance} 에 새 신고 등록됨 (#%{id})'
     new_trending_links:
+      body: 아래에 있는 링크들이 오늘 유행 중입니다, 하지만 이 링크들의 출처는 전에 심사를 받은 적이 없습니다. 이 링크들은 승인하기 전까지는 공개적으로 표시되지 않을 것입니다. 동일한 출처에 대한 알림은 더 생성되지 않습니다.
       no_approved_links: 현재 승인된 유행 중인 링크가 없습니다.
       requirements: 현재 승인된 유행하는 링크 중 가장 낮은 것은 %{lowest_link_score}점을 가진 "%{lowest_link_title}" 입니다
       subject: 새 유행하는 링크가 %{instance}에서 심사 대기 중입니다
     new_trending_tags:
       body: '아래에 있는 해시태그들이 오늘 유행 중입니다, 하지만 전에 심사를 받은 적이 없습니다. 이 해시태그들은 승인하기 전까지는 공개적으로 표시되지 않을 것입니다:'
       no_approved_tags: 현재 승인된 유행 중인 해시태그가 없습니다.
-      requirements: '현재 승인된 유행하는 해시태그 중 가장 낮은 것은 %{lowest_tag_score}점을 가진 "%{lowest_tag_name}" 입니다'
+      requirements: '현재 승인된 유행하는 해시태그 중 가장 낮은 것은 %{lowest_tag_score}점을 가진 #%{lowest_tag_name} 입니다'
       subject: 새 유행하는 해시태그가 %{instance}에서 심사 대기 중입니다
   aliases:
     add_new: 별칭 만들기
