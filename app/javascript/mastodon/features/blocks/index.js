@@ -26,6 +26,7 @@ const messages = defineMessages({
   blockedBy: { id: 'column.blockedBy', defaultMessage: 'Users blocked by @{name}' },
   importMessage: { id: 'column.importMessage', defaultMessage: 'Imported {counter} users' },
   denyMessage: { id: 'column.denyMessage', defaultMessage: 'Cannot import from yourself' },
+  otherEmptyBlocks: {id: 'empty_column.otherBlocks', defaultMessage: "This user haven't blocked any users yet."},
 });
 const getAccount = makeGetAccount()
 
@@ -88,7 +89,7 @@ class Blocks extends ImmutablePureComponent {
         confirm: this.props.intl.formatMessage({ id: 'confirmations.confirm', defaultMessage: "Confirm" }),
         onConfirm: () => {
           this.props.accounts.map((acc) => {
-            if (acc.getIn(['relationship', 'blocking'])) {
+            if (acc.getIn(['relationship', 'blocking']) || acc.get('id') == me.compose.me) {
             } else {
               this.props.dispatch(blockAccount(acc.get('id')));
               counter += 1
@@ -101,7 +102,7 @@ class Blocks extends ImmutablePureComponent {
   }
 
   render() {
-    const { intl, accountIds, shouldUpdateScroll, hasMore, multiColumn, isLoading, account } = this.props;
+    const { intl, accountIds, hasMore, multiColumn, isLoading, account } = this.props;
 
     if (!accountIds) {
       return (
@@ -111,7 +112,13 @@ class Blocks extends ImmutablePureComponent {
       );
     }
 
-    const emptyMessage = <FormattedMessage id='empty_column.blocks' defaultMessage="This user haven't blocked any users yet." />;
+    var emptyMessage = <FormattedMessage id='empty_column.otherBlocks' defaultMessage="This user haven't blocked any users yet." />;
+
+    if (this.props.params.id == me.compose.me) {
+      emptyMessage = <FormattedMessage id='empty_column.blocks' defaultMessage="You haven't blocked any users yet." />;
+    }
+    
+    
     return (
       <Column bindToDocument={!multiColumn} icon='ban' heading={intl.formatMessage(messages.heading)}>
         <ColumnBackButtonSlim />
