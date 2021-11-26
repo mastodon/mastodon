@@ -714,10 +714,24 @@ zh-TW:
       tags:
         current_score: 目前分數 %{score} 分
         dashboard:
-          tag_accounts_measure: 獨立用途
+          tag_accounts_measure: 獨特使用
           tag_languages_dimension: 熱門語言
           tag_servers_dimension: 熱門伺服器
           tag_servers_measure: 不同伺服器
+          tag_uses_measure: 總使用
+        listable: 能被建議
+        not_listable: 不能被建議
+        not_trendable: 不會登上熱門
+        not_usable: 不可用於
+        peaked_on_and_decaying: 於 %{date} 最熱門，目前正退燒中
+        title: 熱門主題標籤
+        trendable: 能登上熱門
+        trending_rank: '熱門 #%{rank}'
+        usable: 可用於
+        usage_comparison: 於今日被使用 %{today} 次，相較於昨日 %{yesterday} 次
+        used_by_over_week:
+          other: 於過去一週被 %{count} 使用
+      title: 熱門
     warning_presets:
       add_new: 新增
       delete: 刪除
@@ -732,6 +746,16 @@ zh-TW:
       body: "%{reporter} 檢舉了使用者 %{target}"
       body_remote: 來自 %{domain} 的使用者檢舉了使用者 %{target}
       subject: '來自 %{instance} 的使用者檢舉（#%{id}）'
+    new_trending_links:
+      body: 以下連結於今日登上熱門榜，然而他們的發行者之前仍未被審核過。除非您核准，這些連結將不會被公開顯示。來自這些發行者的通知往後將不會被產生。
+      no_approved_links: 這些是目前未被審核之熱門連結。
+      requirements: 已核准連結中最低分者目前是「%{lowest_link_title}」為 %{lowest_link_score} 分。
+      subject: 於 %{instance} 等待審核的新熱門連結
+    new_trending_tags:
+      body: '以下主題標籤於今日登上熱門榜，然而他們的發行者之前仍未被審核過。除非您核准，這些連結將不會被公開顯示：'
+      no_approved_tags: 這些是目前未被審核之熱門主題標籤。
+      requirements: '已核准熱門標籤中最低分者目前是「%{lowest_tag_name}」為 %{lowest_tag_score} 分。'
+      subject: 於 %{instance} 等待審核的新熱門主題標籤
   aliases:
     add_new: 建立別名
     created_msg: 成功建立別名。您可以自舊帳戶開始轉移。
@@ -938,6 +962,7 @@ zh-TW:
     changes_saved_msg: 已成功儲存修改!
     copy: 複製
     delete: 刪除
+    none: 無
     order_by: 排序
     save_changes: 儲存修改
     validation_errors:
