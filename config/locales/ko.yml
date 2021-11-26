@@ -704,14 +704,34 @@ ko:
         shared_by_over_week:
           other: 한 주 동안 %{count}명의 사람이 공유했습니다
         title: 지금 유행 중인 링크
+        usage_comparison: 오늘은 %{today}회 공유되었고, 어제는 %{yesterday}회 공유되었습니다
       pending_review: 심사 대기
       preview_card_providers:
+        allowed: 이 게시자의 링크는 유행 목록에 실릴 수 있습니다
+        rejected: 이 게시자의 링크는 유행 목록에 실릴 수 없습니다
         title: 게시자
       rejected: 거부됨
       tags:
+        current_score: 현재 %{score}점
         dashboard:
+          tag_accounts_measure: 고유한 사용
           tag_languages_dimension: 상위 언어
           tag_servers_dimension: 상위 서버
+          tag_servers_measure: 다른 서버들
+          tag_uses_measure: 총 사용
+        listable: 추천될 수 있습니다
+        not_listable: 추천될 수 없습니다
+        not_trendable: 유행 목록에 나타나지 않습니다
+        not_usable: 사용할 수 없음
+        peaked_on_and_decaying: '%{date}에 고점을 찍고, 떨어지고 있습니다'
+        title: 유행하는 해시태그
+        trendable: 유행 목록에 나타날 수 있습니다
+        trending_rank: '#%{rank}위로 유행 중'
+        usable: 사용할 수 없음
+        usage_comparison: 오늘은 %{today}회 사용되었고, 어제는 %{yesterday}회 사용되었습니다
+        used_by_over_week:
+          other: 한 주 동안 %{count}명의 사람이 사용했습니다
+      title: 유행
     warning_presets:
       add_new: 새로 추가
       delete: 삭제
@@ -726,6 +746,15 @@ ko:
       body: "%{reporter} 가 %{target} 를 신고했습니다"
       body_remote: '%{domain}의 누군가가 %{target}을 신고했습니다'
       subject: '%{instance} 에 새 신고 등록됨 (#%{id})'
+    new_trending_links:
+      no_approved_links: 현재 승인된 유행 중인 링크가 없습니다.
+      requirements: 현재 승인된 유행하는 링크 중 가장 낮은 것은 %{lowest_link_score}점을 가진 "%{lowest_link_title}" 입니다
+      subject: 새 유행하는 링크가 %{instance}에서 심사 대기 중입니다
+    new_trending_tags:
+      body: '아래에 있는 해시태그들이 오늘 유행 중입니다, 하지만 전에 심사를 받은 적이 없습니다. 이 해시태그들은 승인하기 전까지는 공개적으로 표시되지 않을 것입니다:'
+      no_approved_tags: 현재 승인된 유행 중인 해시태그가 없습니다.
+      requirements: '현재 승인된 유행하는 해시태그 중 가장 낮은 것은 %{lowest_tag_score}점을 가진 "%{lowest_tag_name}" 입니다'
+      subject: 새 유행하는 해시태그가 %{instance}에서 심사 대기 중입니다
   aliases:
     add_new: 별칭 만들기
     created_msg: 새 별칭이 성공적으로 만들어졌습니다. 이제 기존 계정에서 이주를 시작할 수 있습니다.
@@ -932,32 +961,13 @@ ko:
     changes_saved_msg: 정상적으로 변경되었습니다!
     copy: 복사
     delete: 삭제
+    none: 없음
     order_by: 순서
     save_changes: 변경 사항을 저장
     validation_errors:
       other: 오류가 발생했습니다. 아래 %{count}개 오류를 확인해 주십시오
   html_validator:
     invalid_markup: '올바르지 않은 HTML 마크업을 포함하고 있습니다: %{error}'
-  identity_proofs:
-    active: 활성
-    authorize: 네, 인증합니다
-    authorize_connection_prompt: 이 암호화 연결을 인증합니까?
-    errors:
-      failed: 암호화 연결에 실패했습니다. %{provider}에서 다시 시도해 주세요.
-      keybase:
-        invalid_token: 키베이스 토큰은 서명의 해시이며 66자의 16진수 문자여야 합니다
-        verification_failed: 키베이스가 이 토큰을 키베이스 유저 %{kb_username}의 서명으로 인식하지 못했습니다. 키베이스에서 다시 시도하세요.
-      wrong_user: '%{current}로 로그인 한 상태에서는 %{proving}에 대한 증명을 할 수 없습니다. %{proving}으로 로그인 한 후 다시 시도하세요.'
-    explanation_html: 키베이스와 같은 다른 명의에 대한 암호화 연결을 할 수 있습니다. 이것으로 다른 사람들이 당신에게 암호화 된 메시지를 보낼 수 있고 당신의 메시지를 믿을 수 있습니다.
-    i_am_html: 나는 %{service}의 %{username} 입니다.
-    identity: 신원
-    inactive: 비활성
-    publicize_checkbox: '그리고 이것을 게시하세요:'
-    publicize_toot: '증명되었습니다! 저는 %{service}에 있는 %{username}입니다: %{url}'
-    remove: 계정증명 삭제
-    removed: 성공적으로 계정증명을 삭제했습니다
-    status: 인증 상태
-    view_proof: 증명 보기
   imports:
     errors:
       over_rows_processing_limit: '%{count}개 이상의 열을 포함합니다'
@@ -1228,7 +1238,6 @@ ko:
     edit_profile: 프로필 편집
     export: 데이터 내보내기
     featured_tags: 추천 해시태그
-    identity_proofs: 신원 증명
     import: 데이터 가져오기
     import_and_export: 가져오기 / 내보내기
     migrate: 계정 이동
