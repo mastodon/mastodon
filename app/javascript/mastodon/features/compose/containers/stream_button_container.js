@@ -1,24 +1,52 @@
-import { connect } from 'react-redux';
+import React, { useCallback, useMemo } from 'react';
+import { useStore } from 'react-redux';
 import StreamButton from '../components/stream_button';
-import { addStream, removeStream } from '../../../actions/compose';
+import streamStore from '../../../reducers/stream';
 
-const mapStateToProps = state => ({
-  unavailable: state.getIn(['compose', 'is_uploading']) || (state.getIn(['compose', 'media_attachments']).size > 0),
-  active: state.getIn(['compose', 'stream']) !== false,
-});
+const Wrapper = () => {
+  const [videoTrack, setVideoTrack] = streamStore.useGlobalState('videoTrack');
+  const [activePreview, setActivePreview] =
+    streamStore.useGlobalState('activePreview');
+  const store = useStore();
+  store.getState();
+  const unavailable = useMemo(
+    () =>
+      store.getState().getIn(['compose', 'is_uploading']) ||
+      store.getState().getIn(['compose', 'media_attachments']).size > 0,
+  );
 
-const mapDispatchToProps = dispatch => ({
-
-  onClick () {
-    dispatch((_, getState) => {
-      if (getState().getIn(['compose', 'stream']) !== false) {
-        dispatch(removeStream());
+  const handleClick = useCallback(
+    function handleClick() {
+      if (activePreview) {
+        setVideoTrack((p) => {
+          p.getTracks().forEach((x) => x.stop());
+          return new MediaStream();
+        });
       } else {
-        dispatch(addStream());
+        navigator.mediaDevices
+          .getUserMedia({ video: true })
+          .then((stream) => {
+            const videoTrack_ = stream.getVideoTracks()[0];
+            videoTrack_.addEventListener('ended', () => {
+              setActivePreview(false);
+              setVideoTrack((p) => {
+                p.removeTrack(videoTrack_);
+                return p;
+              });
+            });
+            setVideoTrack(() => {
+              const n = new MediaStream();
+              n.addTrack(videoTrack_);
+              return n;
+            });
+          })
+          .catch({});
       }
-    });
-  },
+      setActivePreview((p) => !p);
+    },
+    [videoTrack],
+  );
 
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(StreamButton);
+  return <StreamButton onClick={handleClick} active={activePreview} unavailable={unavailable} />;
+};
+export default Wrapper;

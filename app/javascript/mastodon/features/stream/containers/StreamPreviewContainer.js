@@ -1,55 +1,22 @@
-import React, { useRef, useEffect } from 'react';
-import { useStore, useSelector } from 'react-redux';
+import React, { useEffect, useRef } from 'react';
+import streamStore from '../../../reducers/stream';
 
-import { addStream, removeStream } from '../../../actions/compose';
-
-const StreamPreviewContainer = () => {
+const VideoPreview = () => {
   const videoRef = useRef();
-  const streamVisible = useSelector((state) =>
-    state.getIn(['compose', 'stream']),
-  ) !== false;
-
-  const store = useStore();
+  const [videoTrack] = streamStore.useGlobalState('videoTrack');
 
   useEffect(() => {
-    if (streamVisible && videoRef.current) {
-      const handleVideoTrackEnd = () => {
-        store.dispatch(removeStream());
-      };
-      let videoTrack;
-      navigator.mediaDevices
-        .getUserMedia({ video: true })
-        .then((stream) => {
+    videoRef.current.srcObject = videoTrack;
+    videoRef.current.play().catch();
+  }, [videoTrack]);
 
-          videoTrack = stream.getVideoTracks()[0];
-          videoTrack.addEventListener('ended', handleVideoTrackEnd);
-          const mStream = new MediaStream();
-          mStream.addTrack(videoTrack);
-          store.dispatch(addStream(videoTrack.id));
-          videoRef.current.srcObject = mStream;
-          videoRef.current.play().catch();
-        })
-        .catch({});
-      return () => {
-        videoRef.current.srcObject = undefined;
-        videoTrack.stop();
-        videoTrack.removeEventListener('ended', handleVideoTrackEnd);
-      };
-    }
-    return () => {};
-  }, [streamVisible]);
+  return <video ref={videoRef} />;
+};
 
-  return (
-    <div>
-      <video
-        ref={videoRef}
-        style={{
-          maxWidth: streamVisible ? '100%' : 0,
-          display: streamVisible ? undefined : 'none',
-        }}
-      />
-    </div>
-  );
+const StreamPreviewContainer = () => {
+  const [activePreview] = streamStore.useGlobalState('activePreview');
+
+  return activePreview ? <VideoPreview /> : null;
 };
 
 export default StreamPreviewContainer;

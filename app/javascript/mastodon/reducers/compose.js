@@ -33,8 +33,6 @@ import {
   COMPOSE_UPLOAD_CHANGE_SUCCESS,
   COMPOSE_UPLOAD_CHANGE_FAIL,
   COMPOSE_RESET,
-  COMPOSE_STREAM_ADD,
-  COMPOSE_STREAM_REMOVE,
   COMPOSE_POLL_ADD,
   COMPOSE_POLL_REMOVE,
   COMPOSE_POLL_OPTION_ADD,
@@ -452,10 +450,6 @@ export default function compose(state = initialState, action) {
         }));
       }
     });
-  case COMPOSE_STREAM_ADD:
-    return state.set('stream', action.payload ?? true);
-  case COMPOSE_STREAM_REMOVE:
-    return state.set('stream', false);
   case COMPOSE_POLL_ADD:
     return state.set('poll', initialPoll);
   case COMPOSE_POLL_REMOVE:
