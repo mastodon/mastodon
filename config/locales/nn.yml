@@ -862,25 +862,6 @@ nn:
       other: Noe er ikke helt riktig ennå. Det er ennå %{count} feil å rette på
   html_validator:
     invalid_markup: 'rommar ugild HTML-kode: %{error}'
-  identity_proofs:
-    active: Aktiv
-    authorize: Ja, stadfest
-    authorize_connection_prompt: Vil du autorisere denne kryptografiske forbindelsen?
-    errors:
-      failed: Den kryptografiske tilkoplinga gjekk gale. Venlegast prøv om att frå %{provider}.
-      keybase:
-        verification_failed: Keybase kjenner ikke igjen denne sjetongen som en signatur for Keybase-brukeren %{kb_username}. Vennligst prøv igjen gjennom Keybase.
-      wrong_user: Kan ikke lage et bevis for %{proving} mens du er logget på som %{current}. Logg på som %{proving} og prøv igjen.
-    explanation_html: Her kan du kryptografisk koble til dine andre enheter, f.eks. en Keybase-profil. Dette lar andre folk sende deg krypterte meldinger og stole på innhold som du sender dem.
-    i_am_html: Eg er %{username} på %{service}.
-    identity: Identitet
-    inactive: Uaktiv
-    publicize_checkbox: 'Og tut dette:'
-    publicize_toot: 'Det er prova! Eg er %{username} på %{service}: %{url}'
-    remove: Fjern prov frå konto
-    removed: Vellukka fjerning av prov frå konto
-    status: Stadfestingsstatus
-    view_proof: Sjå prov
   imports:
     modes:
       merge: Set saman
@@ -1141,7 +1122,6 @@ nn:
     edit_profile: Endr profil
     export: Dataeksport
     featured_tags: Utvalgte emneknagger
-    identity_proofs: Identitetsprov
     import: Hent inn
     import_and_export: Importer og eksporter
     migrate: Kontoflytting
