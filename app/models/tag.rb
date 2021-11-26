@@ -80,6 +80,10 @@ class Tag < ApplicationRecord
     requires_review? && !requested_review?
   end
 
+  def decaying?
+    max_score_at && max_score_at >= Trends.tags.options[:max_score_cooldown].ago && max_score_at < 1.day.ago
+  end
+
   def history
     @history ||= Trends::History.new('tags', id)
   end
