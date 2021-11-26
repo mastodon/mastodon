@@ -902,26 +902,6 @@ zh-HK:
       other: 提交的資料有 %{count} 項問題
   html_validator:
     invalid_markup: '含有無效的HTML標記：%{error}'
-  identity_proofs:
-    active: 活躍
-    authorize: 是的，請授權
-    authorize_connection_prompt: 授權此加密通訊？
-    errors:
-      failed: 加密通訊失敗。請在%{provider} 重試。
-      keybase:
-        invalid_token: Keybase tokens必定為66個16位元字符的簽名檔散列。
-        verification_failed: Keybase不能識別此令牌為Keybase用戶%{kb_username} 的簽名。請在Keybase再試一次。
-      wrong_user: 未能以%{current} 為 %{proving} 建立身份驗證。請登入為%{proving} 再試一次。
-    explanation_html: 在此你連結其他網路平台（如 Keybase）上的加密身份。讓其他人可以在那些平台上，傳送加密信息給你，並驗證你的身份。
-    i_am_html: 我是 %{service} 上的 %{username}
-    identity: 身份
-    inactive: 停用
-    publicize_checkbox: '發表文章：'
-    publicize_toot: '驗證成功！我在%{service} 是%{username} ：%{url}'
-    remove: 刪除帳號的驗證
-    removed: 成功刪除身份驗證
-    status: 確認狀態
-    view_proof: 查看證明
   imports:
     errors:
       over_rows_processing_limit: 包含超過 %{count} 行
@@ -1192,7 +1172,6 @@ zh-HK:
     edit_profile: 修改個人資料
     export: 匯出
     featured_tags: 推薦的標籤
-    identity_proofs: 身份驗證
     import: 匯入
     import_and_export: 匯入及匯出
     migrate: 帳戶遷移
