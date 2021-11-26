@@ -957,26 +957,6 @@ uk:
       other: Щось досі не гаразд! Перегляньте %{count} повідомлень про помилки
   html_validator:
     invalid_markup: 'містить неприпустиму HTML розмітку: %{error}'
-  identity_proofs:
-    active: Активне
-    authorize: Так, авторизувати
-    authorize_connection_prompt: Авторизувати це зашифроване з'єднання?
-    errors:
-      failed: Не вдалося встановити це зашифроване з'єднання. Спробуйте ще раз за допомогою %{provider}.
-      keybase:
-        invalid_token: Токени Keybase - це хеші від підписів і повинні бути по довжині в 66 hex-символів
-        verification_failed: Keybase не розпізнає цей токен як підпис користувача Keybase %{kb_username}. Будь-ласка, спробуйте з Keybase.
-      wrong_user: Неможливо підтвердити користувача%{proving}, під час входу в систему як %{current}. Виконайте вхід як %{proving} і спробуйте ще раз.
-    explanation_html: На цій сторінці відображаються криптографічні підтверджені ідентифікатори - наприклад, прив'язаний профіль Keybase. Це дозволяє людям відправляти вам зашифровані повідомлення, а також довіряти вашим постам.
-    i_am_html: Я %{username} з %{service}.
-    identity: Ідентичність
-    inactive: Неактивний
-    publicize_checkbox: 'Та дмухнути це:'
-    publicize_toot: 'Це доведено! Я таки %{username} з %{service}: %{url}'
-    remove: Видалення підтвердження з облікового запису
-    removed: Підтвердження видалено з облікового запису
-    status: Стан перевірки
-    view_proof: Переглянути доказ
   imports:
     errors:
       over_rows_processing_limit: містить більше ніж %{count} рядків
@@ -1256,7 +1236,6 @@ uk:
     edit_profile: Редагувати профіль
     export: Експорт даних
     featured_tags: Рекомендовані хештеґи
-    identity_proofs: Докази ідентичності
     import: Імпорт
     import_and_export: Імпорт та експорт
     migrate: Міграція облікового запису
