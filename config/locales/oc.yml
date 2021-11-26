@@ -765,25 +765,6 @@ oc:
       other: I a quicòm que truca ! Mercés de corregir las %{count} errors çai-jos
   html_validator:
     invalid_markup: 'conten un balisatge HTML invalid : %{error}'
-  identity_proofs:
-    active: Actiu
-    authorize: Òc, autorizar
-    authorize_connection_prompt: Autorizar aquesta connexion criptografica ?
-    errors:
-      failed: La connexion criptografica a fracassat. Ensajatz tornamai de %{provider} estant.
-      keybase:
-        invalid_token: Los getons Keybase son de hashes de signaturas e devon èsser de caractèrs 66 hex
-        verification_failed: Keybase reconeis pas aqueste geton coma signatura de l’utilizaire Keybase %{kb_username}. Ensajatz tornamai de Keybase estant.
-      wrong_user: Creacion impossibla de la pròva per %{proving} en estant connectat coma %{current}. Connectatz-vos coma %{proving} e ensajatz tornamai.
-    explanation_html: Aquí podètz connectar d’un biais criptografic vòstras identitats, coma un perfil Keybase. Aquò permet al monde de vos enviar de messatges chifrats e fisar al contengut que lor enviatz.
-    i_am_html: Soi %{username} a %{service}.
-    identity: Identitat
-    inactive: Inactiu
-    publicize_checkbox: 'E enviatz lo tut seguent :'
-    publicize_toot: 'Es provat ! Soi %{username} de %{service} : %{url}'
-    remove: Tirar la pròva del compte
-    status: Estatut de verificacion
-    view_proof: Veire la pròva
   imports:
     modes:
       merge: Fondre
@@ -1012,7 +993,6 @@ oc:
     edit_profile: Modificar lo perfil
     export: Exportar de donadas
     featured_tags: Etiquetas en avant
-    identity_proofs: Pròvas d’identitat
     import: Importar de donadas
     import_and_export: Import e export
     migrate: Migracion de compte
