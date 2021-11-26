@@ -918,26 +918,6 @@ zh-TW:
       other: 唔…這是什麼鳥？請檢查以下 %{count} 項錯誤
   html_validator:
     invalid_markup: '含有無效的 HTML 語法：%{error}'
-  identity_proofs:
-    active: 有效
-    authorize: 是的，請授權
-    authorize_connection_prompt: 授權此加密連接？
-    errors:
-      failed: 加密連接失敗。請於 %{provider} 重試。
-      keybase:
-        invalid_token: Keybase 標記必須為雜湊加密簽章並且由66個十六進位字符組成。
-        verification_failed: Keybase 無法確認此標記為 Keybase 使用者 %{kb_username} 的簽章。請在 Keybase 再試一次。
-      wrong_user: 未能為%{current} 以 %{proving} 建立身分驗證。請登入為 %{proving} 再試一次。
-    explanation_html: 在此你連結其他網路平台（如 Keybase）上的加密身分。讓其他人可以在那些平台上，傳送加密訊息給你，並驗證你的身分。
-    i_am_html: 我是 %{service} 上的 %{username}
-    identity: 身份
-    inactive: 非活躍
-    publicize_checkbox: '並發嘟：'
-    publicize_toot: '驗證成功！我在是住在 %{service} 的 %{username} ： %{url}'
-    remove: 移除帳戶證明
-    removed: 成功移除帳戶證明
-    status: 驗證狀態
-    view_proof: 檢視證明
   imports:
     errors:
       over_rows_processing_limit: 含有超過 %{count} 行
@@ -1208,7 +1188,6 @@ zh-TW:
     edit_profile: 編輯使用者資訊
     export: 匯出
     featured_tags: 推薦標籤
-    identity_proofs: 身分驗證
     import: 匯入
     import_and_export: 匯入及匯出
     migrate: 帳戶搬遷
