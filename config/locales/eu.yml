@@ -931,26 +931,6 @@ eu:
       other: Zerbait ez dabil ongi! Egiaztatu beheko %{count}  erroreak mesedez
   html_validator:
     invalid_markup: 'HTML markaketa baliogabea du: %{error}'
-  identity_proofs:
-    active: Aktiboa
-    authorize: Bai, baimendu
-    authorize_connection_prompt: Baimendu zifratutako konexio hau?
-    errors:
-      failed: Zifratutako konexioak huts egin du. Saiatu berriro %{provider} hornitzailetik.
-      keybase:
-        invalid_token: Keybase-ko token-ak sinaduren hash-ak dira eta 66 hex karakterekoak izan beha dira
-        verification_failed: Keybase-k ez du token hau Keybase-ko %{kb_username} erabiltzailearen sinaduratzat onartzen. Saiatu berriro Keybase-tik.
-      wrong_user: Ezin izan da %{proving} erabiltzailearentzat froga sortu %{current} gisa saioa hasita. Hasi saioa %{proving} erabilita eta saiatu berriro.
-    explanation_html: Hemen modu zifratuan konektatu ditzakezu zure beste identitateak, esaterako Keybase profila. Honek beste jendeak zuri zifratutako mezuak bidaltzea ahalbidetzen du, eta zuk beraiei bidalitako edukia fidagarritzat jotzea.
-    i_am_html: '%{username} erabiltzailea naiz %{service} zerbitzuan.'
-    identity: Identitatea
-    inactive: Ez aktiboa
-    publicize_checkbox: 'Eta argitaratu bidalketa hau:'
-    publicize_toot: 'Frogatua dago! %{username} erabiltzailea naiz %{service} zerbitzuan: %{url}'
-    remove: Kendu froga kontutik
-    removed: Ongi kendu da froga kontutik
-    status: Egiaztatze egoera
-    view_proof: Ikusi froga
   imports:
     errors:
       over_rows_processing_limit: '%{count} lerro baina gehiago ditu'
@@ -1224,7 +1204,6 @@ eu:
     edit_profile: Aldatu profila
     export: Datuen esportazioa
     featured_tags: Nabarmendutako traolak
-    identity_proofs: Identitate frogak
     import: Inportazioa
     import_and_export: Inportatu eta esportatu
     migrate: Kontuaren migrazioa
