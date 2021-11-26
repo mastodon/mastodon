@@ -788,26 +788,6 @@ sk:
       other: Niečo ešte nieje celkom v poriadku! Prosím skontroluj %{count} chyby uvedené nižšie
   html_validator:
     invalid_markup: 'obsahuje neplatný HTML kód: %{error}'
-  identity_proofs:
-    active: Aktívne
-    authorize: Áno, povoľ
-    authorize_connection_prompt: Povoliť toto kryptografické prepojenie?
-    errors:
-      failed: Kryptografické prepojenie sa nepodarilo. Prosím skús to znova z %{provider}.
-      keybase:
-        invalid_token: Keybase tokeny sú hašovaniami podpisov a musia mať 66 znakov
-        verification_failed: Keybase nerozpoznáva tento token ako podpis od Keybase užívateľa menom %{kb_username}. Prosím skús to znova cez Keybase.
-      wrong_user: Nemožno vytvoriť overenie pre %{proving}, pokiaľ si prihlásený/á ako %{current}. Prihlás sa za %{proving} a skús to znova.
-    explanation_html: "Tu si môžeš kryptograficky prepojiť svoje iné identity, ako napríklad tvoj profil na Keybase.\nUmožňuje to ostatním ľudom posielať ti enkryptované správy a veriť obsahu ktorý im pošleš ty."
-    i_am_html: Na %{service} som %{username}.
-    identity: Identita
-    inactive: Neaktívne
-    publicize_checkbox: 'A poslať toto:'
-    publicize_toot: 'Je to dokázané! Na %{service} som %{username}: %{url}'
-    remove: Odstrániť z účtu dôkaz
-    removed: Dôkaz z účtu úspešne odstránený
-    status: Stav overenia
-    view_proof: Ukáž overenie
   imports:
     errors:
       over_rows_processing_limit: obsahuje viac než %{count} riadkov
@@ -1046,7 +1026,6 @@ sk:
     edit_profile: Uprav profil
     export: Exportuj dáta
     featured_tags: Zvýraznené haštagy
-    identity_proofs: Overenia identity
     import: Importuj
     import_and_export: Import a export
     migrate: Presuň účet
