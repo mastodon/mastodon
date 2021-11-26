@@ -3,6 +3,19 @@
 class Trends::Base
   include Redisable
 
+  class_attribute :default_options
+
+  attr_reader :options
+
+  # @param [Hash] options
+  # @option options [Integer] :threshold Minimum amount of uses by unique accounts to begin calculating the score
+  # @option options [Integer] :review_threshold Minimum rank (lower = better) before requesting a review
+  # @option options [ActiveSupport::Duration] :max_score_cooldown For this amount of time, the peak score (if bigger than current score) is decayed-from
+  # @option options [ActiveSupport::Duration] :max_score_halflife How quickly a peak score decays
+  def initialize(options = {})
+    @options = self.class.default_options.merge(options)
+  end
+
   def register(_status)
     raise NotImplementedError
   end
