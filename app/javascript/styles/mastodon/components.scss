@@ -98,6 +98,19 @@
     outline: 0 !important;
   }
 
+  &.button-primary,
+  &.button-alternative,
+  &.button-secondary,
+  &.button-alternative-2,
+  &.button-github,
+  &.button-gitlab {
+    font-size: 16px;
+    line-height: 36px;
+    height: auto;
+    text-transform: none;
+    padding: 4px 16px;
+  }
+
   &.button-alternative {
     color: $inverted-text-color;
     background: $ui-primary-color;
@@ -137,6 +150,28 @@
     }
   }
 
+  &.button-github {
+    color: $white;
+    background: #24292f;
+
+    &:active,
+    &:focus,
+    &:hover {
+      background-color: lighten(#24292f, 4%);
+    }
+  }
+
+  &.button-gitlab {
+    color: $white;
+    background: #fc6d27;
+
+    &:active,
+    &:focus,
+    &:hover {
+      background-color: darken(#fc6d27, 4%);
+    }
+  }
+  
   &.button--block {
     display: block;
     width: 100%;

@@ -7,6 +7,12 @@ class Auth::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     define_method provider do
       @user = User.find_for_oauth(request.env['omniauth.auth'], current_user)
 
+      if @user.nil?
+        redirect_to new_user_registration_url
+        set_flash_message(:alert, 'should_register_before_auth_login', scope: 'devise.failure')
+        return
+      end
+
       if @user.persisted?
         LoginActivity.create(
           user: @user,
