@@ -740,26 +740,6 @@ et:
       other: Midagi pole ikka õigesti! Palun vaadake all olevad %{count} veateadet üle
   html_validator:
     invalid_markup: 'sisaldab valet HTMLi süntaksi: %{error}'
-  identity_proofs:
-    active: Aktiivne
-    authorize: Jah, luba
-    authorize_connection_prompt: Luba see krüptograafiline ühendus?
-    errors:
-      failed: Krüptograafiline ühendus ebaõnnestus. Palun proovi uuesti %{provider}-ist.
-      keybase:
-        invalid_token: Keybase võtmed on allkirjade hashid ja peavad olema 66 hex tähemärki
-        verification_failed: Keybase ei tunnista seda võtit kui kasutaja %{kb_username} omand. Palun proovige uuesti Keybasest.
-      wrong_user: Ei saa luua tõendit kontole %{proving} kui olete sisseloginud kui %{current}. Logige sisse kui %{proving} ja proovige uuesti.
-    explanation_html: Siin saate luua krüptograafilisi ühendusi oma teiste identiteetidega, nagu näiteks Keybase profiiliga. See võimaldab teistel kasutajatel saata Teile krüptitud sõnumeid ja usaldada sisu, mis Teie saadate neile.
-    i_am_html: Ma olen %{username} teenusel %{service}.
-    identity: Identiteet
-    inactive: Passiivne
-    publicize_checkbox: 'Ja tuututa seda:'
-    publicize_toot: 'See on tõestatud! Ma olen %{username} teenusel %{service}: %{url}'
-    remove: Eemalda isikutõend kontolt
-    removed: Isikutõendi eemaldamine oli edukas
-    status: Kinnituse staatus
-    view_proof: Vaata tõendit
   imports:
     modes:
       merge: Lõimi
@@ -969,7 +949,6 @@ et:
     edit_profile: Muuda profiili
     export: Andmete eksportimine
     featured_tags: Esile toodud sildid
-    identity_proofs: Isikutõendid
     import: Impordi
     import_and_export: Import / eksport
     migrate: Konto migreerumine
