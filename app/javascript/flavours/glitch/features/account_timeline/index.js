@@ -13,7 +13,6 @@ import ColumnBackButton from 'flavours/glitch/components/column_back_button';
 import { List as ImmutableList } from 'immutable';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { FormattedMessage } from 'react-intl';
-import { fetchAccountIdentityProofs } from '../../actions/identity_proofs';
 import MissingIndicator from 'flavours/glitch/components/missing_indicator';
 import TimelineHint from 'flavours/glitch/components/timeline_hint';
 
@@ -77,7 +76,7 @@ class AccountTimeline extends ImmutablePureComponent {
     const { accountId, withReplies, dispatch } = this.props;
 
     dispatch(fetchAccount(accountId));
-    dispatch(fetchAccountIdentityProofs(accountId));
+
     if (!withReplies) {
       dispatch(expandAccountFeaturedTimeline(accountId));
     }
@@ -109,10 +108,11 @@ class AccountTimeline extends ImmutablePureComponent {
 
     if ((nextProps.params.accountId !== this.props.params.accountId && nextProps.params.accountId) || nextProps.withReplies !== this.props.withReplies) {
       dispatch(fetchAccount(nextProps.params.accountId));
-      dispatch(fetchAccountIdentityProofs(nextProps.params.accountId));
+
       if (!nextProps.withReplies) {
         dispatch(expandAccountFeaturedTimeline(nextProps.params.accountId));
       }
+
       dispatch(expandAccountTimeline(nextProps.params.accountId, { withReplies: nextProps.params.withReplies }));
     }
   }

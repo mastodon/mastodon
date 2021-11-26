@@ -34,7 +34,6 @@ import conversations from './conversations';
 import suggestions from './suggestions';
 import pinnedAccountsEditor from './pinned_accounts_editor';
 import polls from './polls';
-import identity_proofs from './identity_proofs';
 import trends from './trends';
 import announcements from './announcements';
 import markers from './markers';
@@ -73,7 +72,6 @@ const reducers = {
   notifications,
   height_cache,
   custom_emojis,
-  identity_proofs,
   lists,
   listEditor,
   listAdder,
