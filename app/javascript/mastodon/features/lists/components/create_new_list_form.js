@@ -1,18 +1,18 @@
-import React, { useState, useEffect } from "react";
-import { injectIntl, defineMessages } from "react-intl";
-import { useSelector, useDispatch } from "react-redux";
+import React, { useState, useEffect } from 'react';
+import { injectIntl, defineMessages } from 'react-intl';
+import { useSelector, useDispatch } from 'react-redux';
 
-import IconButton from "../../../components/icon_button";
+import IconButton from '../../../components/icon_button';
 import {
   changeListEditorTitle,
   submitListEditor,
   clearListSuggestions,
   resetListEditor,
-} from "../../../actions/lists";
-import Account from "../../list_editor/components/account";
-import Search from "../../list_editor/components/search";
-import Motion from "../../ui/util/optional_motion";
-import spring from "react-motion/lib/spring";
+} from '../../../actions/lists';
+import Account from '../../list_editor/components/account';
+import Search from '../../list_editor/components/search';
+import Motion from '../../ui/util/optional_motion';
+import spring from 'react-motion/lib/spring';
 
 const messages = defineMessages({
   label: {
