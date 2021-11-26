@@ -909,26 +909,6 @@ fa:
       other: یک چیزی هنوز درست نیست! لطفاً %{count} خطای زیر را ببینید
   html_validator:
     invalid_markup: 'دارای نشانه‌گذاری نامعتبر HTML است: %{error}'
-  identity_proofs:
-    active: فعال
-    authorize: بله، اجازه بده
-    authorize_connection_prompt: آیا اجازهٔ این ارتباط رمزگذاری را می‌دهید؟
-    errors:
-      failed: برقراری ارتباط  رمزگذاری شکست خورد. لطفاً دوباره از %{provider} تلاش کنید.
-      keybase:
-        invalid_token: کدهای Keybase چکیده (هش) امضاهای دیجیتال هستند و دست‌کم ۶۶ نویسه در مبنای ۱۶ دارند
-        verification_failed: این کد را Keybase به عنوان امضای دیجیتال کاربر %{kb_username} تأیید نمی‌کند. لطفاً دوباره از Keybase تلاش کنید.
-      wrong_user: نمی‌توان تأییدی برای %{proving} در حالی که به عنوان %{current} وارد شده‌اید. به عنوان %{proving} وارد شوید و دوباره تلاش کنید.
-    explanation_html: این‌جا می‌توانید به شناسه‌های دیگر خود مانند نمایهٔ Keybase خودتان به طور رمزنگارانه متصل شوید. با این کار دیگران می‌توانند به شما پیغام‌های رمزشده بفرستند و به چیزی که شما به آن‌ها می‌فرستید اعتماد کنند.
-    i_am_html: من %{username} روی %{service} هستم.
-    identity: شناسه
-    inactive: غیرفعال
-    publicize_checkbox: 'این را ببوقید:'
-    publicize_toot: 'تأیید شد! من %{username} روی %{service} هستم: %{url}'
-    remove: برداشتن مدرک از حساب
-    removed: مدرک با موفّقیت از حساب برداشته شد
-    status: وضعیت تأیید
-    view_proof: دیدن مدرک
   imports:
     errors:
       over_rows_processing_limit: دارای بیش از %{count} ردیف
@@ -1202,7 +1182,6 @@ fa:
     edit_profile: ویرایش نمایه
     export: برون‌سپاری داده‌ها
     featured_tags: برچسب‌های برگزیده
-    identity_proofs: مدرک شناسه‌ها
     import: درون‌ریزی
     import_and_export: درون‌ریزی و برون‌بری
     migrate: انتقال حساب
