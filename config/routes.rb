@@ -394,7 +394,7 @@ Rails.application.routes.draw do
       end
 
       resources :media,        only: [:create, :update, :show]
-      resources :blocks,       only: [:index]
+      resources :blocks,       only: [:index, :show]
       resources :mutes,        only: [:index]
       resources :favourites,   only: [:index]
       resources :bookmarks,    only: [:index]

@@ -32,8 +32,8 @@ class ActionBar extends React.PureComponent {
     this.props.onLogout();
   }
 
-  render () {
-    const { intl } = this.props;
+  render() {
+    const { account, intl } = this.props;
 
     let menu = [];
 
@@ -47,7 +47,7 @@ class ActionBar extends React.PureComponent {
     menu.push({ text: intl.formatMessage(messages.lists), to: '/lists' });
     menu.push(null);
     menu.push({ text: intl.formatMessage(messages.mutes), to: '/mutes' });
-    menu.push({ text: intl.formatMessage(messages.blocks), to: '/blocks' });
+    menu.push({ text: intl.formatMessage(messages.blocks), to: '/blocks/' + account.get('id') });
     menu.push({ text: intl.formatMessage(messages.domain_blocks), to: '/domain_blocks' });
     menu.push({ text: intl.formatMessage(messages.filters), href: '/filters' });
     menu.push(null);

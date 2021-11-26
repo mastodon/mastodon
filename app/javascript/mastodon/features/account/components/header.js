@@ -122,7 +122,7 @@ class Header extends ImmutablePureComponent {
     }
   }
 
-  render () {
+  render() {
     const { account, intl, domain, identity_proofs } = this.props;
 
     if (!account) {
@@ -131,11 +131,11 @@ class Header extends ImmutablePureComponent {
 
     const suspended = account.get('suspended');
 
-    let info        = [];
-    let actionBtn   = '';
-    let bellBtn     = '';
-    let lockedIcon  = '';
-    let menu        = [];
+    let info = [];
+    let actionBtn = '';
+    let bellBtn = '';
+    let lockedIcon = '';
+    let menu = [];
 
     if (me !== account.get('id') && account.getIn(['relationship', 'followed_by'])) {
       info.push(<span key='followed_by' className='relationship-tag'><FormattedMessage id='account.follows_you' defaultMessage='Follows you' /></span>);
@@ -152,6 +152,7 @@ class Header extends ImmutablePureComponent {
     if (account.getIn(['relationship', 'requested']) || account.getIn(['relationship', 'following'])) {
       bellBtn = <IconButton icon='bell-o' size={24} active={account.getIn(['relationship', 'notifying'])} title={intl.formatMessage(account.getIn(['relationship', 'notifying']) ? messages.disableNotifications : messages.enableNotifications, { name: account.get('username') })} onClick={this.props.onNotifyToggle} />;
     }
+
 
     if (me !== account.get('id')) {
       if (!account.get('relationship')) { // Wait until the relationship is loaded
@@ -196,7 +197,7 @@ class Header extends ImmutablePureComponent {
       menu.push({ text: intl.formatMessage(messages.lists), to: '/lists' });
       menu.push(null);
       menu.push({ text: intl.formatMessage(messages.mutes), to: '/mutes' });
-      menu.push({ text: intl.formatMessage(messages.blocks), to: '/blocks' });
+      menu.push({ text: intl.formatMessage(messages.blocks), to: '/blocks/' + account.get('id') });
       menu.push({ text: intl.formatMessage(messages.domain_blocks), to: '/domain_blocks' });
     } else {
       if (account.getIn(['relationship', 'following'])) {
@@ -212,6 +213,9 @@ class Header extends ImmutablePureComponent {
         menu.push({ text: intl.formatMessage(messages.add_or_remove_from_list), action: this.props.onAddToList });
         menu.push(null);
       }
+
+      menu.push({ text: intl.formatMessage(messages.blocks), to: '/blocks/' + account.get('id') });
+      menu.push(null);
 
       if (account.getIn(['relationship', 'muting'])) {
         menu.push({ text: intl.formatMessage(messages.unmute, { name: account.get('username') }), action: this.props.onMute });
@@ -245,10 +249,10 @@ class Header extends ImmutablePureComponent {
       menu.push({ text: intl.formatMessage(messages.admin_account, { name: account.get('username') }), href: `/admin/accounts/${account.get('id')}` });
     }
 
-    const content         = { __html: account.get('note_emojified') };
+    const content = { __html: account.get('note_emojified') };
     const displayNameHtml = { __html: account.get('display_name_html') };
-    const fields          = account.get('fields');
-    const acct            = account.get('acct').indexOf('@') === -1 && domain ? `${account.get('acct')}@${domain}` : account.get('acct');
+    const fields = account.get('fields');
+    const acct = account.get('acct').indexOf('@') === -1 && domain ? `${account.get('acct')}@${domain}` : account.get('acct');
 
     let badge;
 
@@ -307,7 +311,7 @@ class Header extends ImmutablePureComponent {
                         <a href={proof.get('proof_url')} target='_blank' rel='noopener noreferrer'><span title={intl.formatMessage(messages.linkVerifiedOn, { date: intl.formatDate(proof.get('updated_at'), dateFormatOptions) })}>
                           <Icon id='check' className='verified__mark' />
                         </span></a>
-                        <a href={proof.get('profile_url')} target='_blank' rel='noopener noreferrer'><span dangerouslySetInnerHTML={{ __html: ' '+proof.get('provider_username') }} /></a>
+                        <a href={proof.get('profile_url')} target='_blank' rel='noopener noreferrer'><span dangerouslySetInnerHTML={{ __html: ' ' + proof.get('provider_username') }} /></a>
                       </dd>
                     </dl>
                   ))}

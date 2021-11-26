@@ -6,6 +6,13 @@ class Api::V1::BlocksController < Api::BaseController
   after_action :insert_pagination_headers
 
   def index
+    @account = Account.find(current_account.id)
+    @accounts = load_accounts
+    render json: @accounts, each_serializer: REST::AccountSerializer
+  end
+
+  def show
+    @account = Account.find(params[:id])
     @accounts = load_accounts
     render json: @accounts, each_serializer: REST::AccountSerializer
   end
@@ -20,13 +27,15 @@ class Api::V1::BlocksController < Api::BaseController
     @paginated_blocks ||= Block.eager_load(target_account: :account_stat)
                                .joins(:target_account)
                                .merge(Account.without_suspended)
-                               .where(account: current_account)
+                               .where(account: @account)
                                .paginate_by_max_id(
                                  limit_param(DEFAULT_ACCOUNTS_LIMIT),
                                  params[:max_id],
                                  params[:since_id]
                                )
   end
+
+
 
   def insert_pagination_headers
     set_pagination_headers(next_path, prev_path)
