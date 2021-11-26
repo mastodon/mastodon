@@ -17,6 +17,7 @@ module Mastodon
     ].freeze
 
     option :concurrency, type: :numeric, default: 2, aliases: [:c], desc: 'Workload will be split between this number of threads'
+    option :batch_size, type: :numeric, default: 1_000, aliases: [:b], desc: 'Number of records in each batch'
     option :only, type: :array, enum: %w(accounts tags statuses), desc: 'Only process these indices'
     desc 'deploy', 'Create or upgrade ElasticSearch indices and populate them'
     long_desc <<~LONG_DESC
@@ -32,6 +33,11 @@ module Mastodon
     def deploy
       if options[:concurrency] < 1
         say('Cannot run with this concurrency setting, must be at least 1', :red)
+        exit(1)
+      end
+
+      if options[:batch_size] < 1
+        say('Cannot run with this batch_size setting, must be at least 1', :red)
         exit(1)
       end
 
@@ -73,7 +79,7 @@ module Mastodon
       # is uneconomical. So we only ever add.
       indices.each do |index|
         progress.title = "Importing #{index} "
-        batch_size     = 1_000
+        batch_size     = options[:batch_size]
         slice_size     = (batch_size / options[:concurrency]).ceil
 
         index.adapter.default_scope.reorder(nil).find_in_batches(batch_size: batch_size) do |batch|
