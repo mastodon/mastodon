@@ -741,6 +741,9 @@ kmr:
         trending_rank: 'Rojev #%{rank}'
         usable: Dikare were bikaranîn
         usage_comparison: '%{today} car îro hate bikaranîn, li gorî %{yesterday} duh'
+        used_by_over_week:
+          one: Di nava hefteya dawî de ji aliyê kesekî ve hatiye bikaranîn
+          other: Di nava hefteya dawî de ji %{count} kes ve hatiye bikaranîn
       title: Rojev
     warning_presets:
       add_new: Yeka nû tevlî bike
@@ -756,6 +759,12 @@ kmr:
       body: "%{reporter} ji %{target} ê ragihand"
       body_remote: Kesekî bi navê %{domain} ji %{target} ê ragihand
       subject: 'Ragihandinek nû ji bo %{instance} (#%{id})'
+    new_trending_links:
+      body: Girêdanên li jêr îro rojev in, lê weşangerên wan berê nehatine nirxandin. Heya ku tu wan nepejirînî ew dê bi awayekî giştî neyên nîşandan. Ji heman weşangeran agahdarîyên bêtir nayên çêkirin.
+      no_approved_links: Niha tu girêdanên rojeva pejirandî tune ne.
+      requirements: Girêdanên rojevê ya herî kêm pejirandî niha "%{lowest_link_title}" e bi rêjeyek %{lowest_link_score}.
+    new_trending_tags:
+      requirements: 'Hashtagên rojevê ya herî kêm pejirandî niha #%{lowest_tag_name} e bi rêjeyek %{lowest_tag_score}.'
   aliases:
     add_new: Naveke sexte çê bike
     created_msg: Bi serkeftî nûçikê nû hat çêkirin. Tu niha dikarî di ajimêrê xwe kevn bar bikî.
