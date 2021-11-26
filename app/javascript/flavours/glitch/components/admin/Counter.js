@@ -32,6 +32,7 @@ export default class Counter extends React.PureComponent {
     end_at: PropTypes.string.isRequired,
     label: PropTypes.string.isRequired,
     href: PropTypes.string,
+    params: PropTypes.object,
   };
 
   state = {
@@ -40,9 +41,9 @@ export default class Counter extends React.PureComponent {
   };
 
   componentDidMount () {
-    const { measure, start_at, end_at } = this.props;
+    const { measure, start_at, end_at, params } = this.props;
 
-    api().post('/api/v1/admin/measures', { keys: [measure], start_at, end_at }).then(res => {
+    api().post('/api/v1/admin/measures', { keys: [measure], start_at, end_at, [measure]: params }).then(res => {
       this.setState({
         loading: false,
         data: res.data,
