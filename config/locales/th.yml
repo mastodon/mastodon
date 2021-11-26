@@ -863,21 +863,6 @@ th:
     save_changes: บันทึกการเปลี่ยนแปลง
   html_validator:
     invalid_markup: 'มีมาร์กอัป HTML ที่ไม่ถูกต้อง: %{error}'
-  identity_proofs:
-    active: ใช้งานอยู่
-    authorize: ใช่ อนุญาต
-    authorize_connection_prompt: อนุญาตการเชื่อมต่อการเข้ารหัสนี้?
-    errors:
-      failed: การเชื่อมต่อการเข้ารหัสล้มเหลว โปรดลองอีกครั้งจาก %{provider}
-    i_am_html: ฉันคือ %{username} ใน %{service}
-    identity: ตัวตน
-    inactive: ไม่ได้ใช้งาน
-    publicize_checkbox: 'และโพสต์สิ่งนี้:'
-    publicize_toot: 'พิสูจน์ตัวตนแล้ว! ฉันคือ %{username} ใน %{service}: %{url}'
-    remove: เอาการพิสูจน์ออกจากบัญชี
-    removed: เอาการพิสูจน์ออกจากบัญชีสำเร็จ
-    status: สถานะการตรวจสอบ
-    view_proof: ดูการพิสูจน์
   imports:
     errors:
       over_rows_processing_limit: มีมากกว่า %{count} แถว
@@ -1120,7 +1105,6 @@ th:
     edit_profile: แก้ไขโปรไฟล์
     export: การส่งออกข้อมูล
     featured_tags: แฮชแท็กที่แนะนำ
-    identity_proofs: การพิสูจน์ตัวตน
     import: การนำเข้า
     import_and_export: การนำเข้าและการส่งออก
     migrate: การโยกย้ายบัญชี
