@@ -918,26 +918,6 @@ vi:
       other: Đã có %{count} lỗi xảy ra! Xem chi tiết bên dưới
   html_validator:
     invalid_markup: 'chứa đánh dấu HTML không hợp lệ: %{error}'
-  identity_proofs:
-    active: Hoạt động
-    authorize: OK, cho phép
-    authorize_connection_prompt: Cho phép kết nối mã hóa này?
-    errors:
-      failed: Kết nối mã hóa không thành công. Vui lòng thử lại từ %{provider}.
-      keybase:
-        invalid_token: Mã đăng nhập Keybase giống như chữ ký số và phải đảm bảo 66 ký tự hex
-        verification_failed: Keybase không nhận ra mã đăng nhập này là chữ ký của người dùng Keybase %{kb_username}. Vui lòng thử lại từ Keybase.
-      wrong_user: Không thể tạo bằng chứng cho %{proving} trong khi đăng nhập là %{current}. Đăng nhập bằng %{proving} và thử lại.
-    explanation_html: Tại đây, bạn có thể kết nối mã hóa tài khoản của bạn trên các nền tảng khác, chẳng hạn như Keybase. Điều này cho phép người khác gửi cho bạn tin nhắn được mã hóa và tin tưởng nội dung bạn gửi cho họ.
-    i_am_html: Tôi là %{username} trên %{service}.
-    identity: Danh tính
-    inactive: Không hoạt động
-    publicize_checkbox: 'Và tút này:'
-    publicize_toot: 'Đã chứng minh! Tôi là %{username} trên %{service}: %{url}'
-    remove: Xóa bằng chứng của tài khoản
-    removed: Hoàn tất xóa bằng chứng của tài khoản
-    status: Tình trạng xác minh
-    view_proof: Xem bằng chứng
   imports:
     errors:
       over_rows_processing_limit: chứa nhiều hơn %{count} hàng
@@ -1208,7 +1188,6 @@ vi:
     edit_profile: Trang cá nhân
     export: Xuất dữ liệu
     featured_tags: Hashtag thường dùng
-    identity_proofs: Bằng chứng nhận dạng
     import: Nhập dữ liệu
     import_and_export: Dữ liệu
     migrate: Chuyển tài khoản sang máy chủ khác
