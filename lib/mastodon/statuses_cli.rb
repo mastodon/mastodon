@@ -69,7 +69,7 @@ module Mastodon
 
       say('Beginning removal... This might take a while...')
 
-      klass = Class.new(ActiveRecord::Base) do |c|
+      klass = Class.new(ApplicationRecord) do |c|
         c.table_name = 'statuses_to_be_deleted'
       end
 
