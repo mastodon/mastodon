@@ -957,26 +957,6 @@ ru:
       other: Что-то здесь не так! Пожалуйста, прочитайте о %{count} ошибках ниже
   html_validator:
     invalid_markup: 'невалидная разметка HTML: %{error}'
-  identity_proofs:
-    active: Активно
-    authorize: Да, авторизовать
-    authorize_connection_prompt: Авторизовать эту криптографическую связь?
-    errors:
-      failed: Криптографическое соединение не установлено. Попробуйте ещё раз на %{provider}.
-      keybase:
-        invalid_token: Токены Keybase — это хэши от подписей и должны быть по длине в 66 hex-символов
-        verification_failed: Keybase не распознаёт этот токен как подпись пользователя %{kb_username}. Пожалуйста, повторите на Keybase.
-      wrong_user: Невозможно подтвердить пользователя %{proving}, будучи залогиненным как %{current}. Выполните вход как %{proving} и попробуйте ещё раз.
-    explanation_html: На этой странице отображаются криптографически подтверждённые идентификаторы — например, привязанный профиль Keybase. Это позволяет людям отправлять вам зашифрованные сообщения, а также доверять вашим постам.
-    i_am_html: Я %{username} на %{service}.
-    identity: Идентификатор
-    inactive: Неактивно
-    publicize_checkbox: 'И опубликуйте текст:'
-    publicize_toot: 'Подтверждено! Я %{username} на %{service}: %{url}'
-    remove: Удалить идентификатор
-    removed: Идентификатор учётной записи удалён
-    status: Статус
-    view_proof: Посмотреть подтверждение
   imports:
     errors:
       over_rows_processing_limit: содержит более %{count} строк
@@ -1256,7 +1236,6 @@ ru:
     edit_profile: Изменить профиль
     export: Экспорт данных
     featured_tags: Особенные хэштеги
-    identity_proofs: Идентификация
     import: Импорт
     import_and_export: Импорт и экспорт
     migrate: Миграция учётной записи
