@@ -807,20 +807,6 @@ sv:
     validation_errors:
       one: Något är inte riktigt rätt ännu! Kontrollera felet nedan
       other: Något är inte riktigt rätt ännu! Kontrollera dom %{count} felen nedan
-  identity_proofs:
-    active: Aktiv
-    authorize: Ja, autentisera
-    authorize_connection_prompt: Autentisera den här kryptografiska anslutningen?
-    errors:
-      failed: Den kryptografiska anslutningen misslyckades. Vänligen försök igen från %{provider}.
-    i_am_html: Jag är %{username} på %{service}.
-    identity: Identitet
-    inactive: Inaktiv
-    publicize_checkbox: 'Och tuta det här:'
-    publicize_toot: 'Det är bevisat! Jag är %{username} på %{service}: %{url}'
-    remove: Ta bort bevis från konto
-    status: Bekräftelse-status
-    view_proof: Visa bevis
   imports:
     errors:
       over_rows_processing_limit: innehåller fler än %{count} rader
@@ -1065,7 +1051,6 @@ sv:
     development: Utveckling
     edit_profile: Redigera profil
     export: Exportera data
-    identity_proofs: Identifiera bevisen
     import: Importera
     import_and_export: Import och export
     migrate: Kontoflytt
