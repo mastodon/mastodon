@@ -917,26 +917,6 @@ ja:
       other: エラーが発生しました！ 以下の%{count}個のエラーを確認してください
   html_validator:
     invalid_markup: '無効なHTMLマークアップが含まれています: %{error}'
-  identity_proofs:
-    active: アクティブ
-    authorize: 許可する
-    authorize_connection_prompt: この暗号化接続を許可しますか？
-    errors:
-      failed: 暗号化接続に失敗しました。%{provider}からもう一度やり直してください。
-      keybase:
-        invalid_token: Keybaseトークンは16進数で66文字のハッシュである必要があります
-        verification_failed: KeybaseはこのトークンをKeybaseユーザー%{kb_username}の署名として認識しませんでした。Keybaseから再試行してください。
-      wrong_user: '%{current}としてログインしている間%{proving}の証明を作成することはできません。%{proving}としてログインし、もう一度やり直してください。'
-    explanation_html: ここではKeybaseのような他のサービスのアカウントと暗号化し関連づけることができます。これによりそれらのサービス上で他の人が暗号化されたメッセージを送信したり、あなたの送信した内容があなたからのものであると信用できるようになります。
-    i_am_html: 私は %{service} の %{username} です。
-    identity: 所属
-    inactive: 非アクティブ
-    publicize_checkbox: 'そしてこれをトゥートします:'
-    publicize_toot: '証明されました！私は %{service} の %{username} です: %{url}'
-    remove: アカウントから証明書を削除
-    removed: アカウントから証明書を削除することに成功しました
-    status: 認証状態
-    view_proof: 証明を表示
   imports:
     errors:
       over_rows_processing_limit: '%{count} 行以上'
@@ -1207,7 +1187,6 @@ ja:
     edit_profile: プロフィールを編集
     export: データのエクスポート
     featured_tags: 注目のハッシュタグ
-    identity_proofs: Identity proofs
     import: データのインポート
     import_and_export: インポート・エクスポート
     migrate: アカウントの引っ越し
