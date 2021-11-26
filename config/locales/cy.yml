@@ -778,26 +778,6 @@ cy:
       other: Mae rhywbeth o'i le o hyd! Edrychwch ar y %{count} gwall isod os gwelwch yn dda
   html_validator:
     invalid_markup: 'yn cynnwys marciad HTML annilys: %{error}'
-  identity_proofs:
-    active: Yn weithredol
-    authorize: Ie, awdurdodi
-    authorize_connection_prompt: Awdurdodi y cysylltiad cryptograffig hon?
-    errors:
-      failed: Methwyd y cysylltiad cryptograffig. Ceisiwch eto o %{provider}, os gwelwch yn dda.
-      keybase:
-        invalid_token: Mae tocynnau keybase yn hashiau o llofnodau ac mae rhaid iddynt bod yn 66 cymeriadau hecs
-        verification_failed: Nid yw Keybase yn adnabod y tocyn hyn fel llofnod defnyddiwr Keybase %{kb_username}. Cesiwch eto o Keybase, os gwelwch yn dda.
-      wrong_user: Ni all greu prawf ar gyfer %{proving} tra wedi mewngofnodi fel %{current}. Mewngofnodi fel %{proving} a cheisiwch eto.
-    explanation_html: Fama gallwch cysylltu i'ch hunanieithau arall yn cryptograffig, er enghraifft proffil Keybase. Mae hyn yn gadael pobl arall i anfon chi negeseuon amgryptiedig a ymddiried mewn cynnwys rydych yn eich anfon iddynt.
-    i_am_html: Rydw i'n %{username} ar %{service}.
-    identity: Hunaniaeth
-    inactive: Anweithgar
-    publicize_checkbox: 'A thŵtiwch hon:'
-    publicize_toot: 'Wedi profi! Rydw i''n %{username} ar %{service}: %{url}'
-    remove: Tynnu prawf o'r cyfrif
-    removed: Wedi tynnu prawf o'r cyfrif yn llwyddiannus
-    status: Statws gwirio
-    view_proof: Gweld prawf
   imports:
     modes:
       merge: Cyfuno
@@ -1031,7 +1011,6 @@ cy:
     edit_profile: Golygu proffil
     export: Allforio data
     featured_tags: Hashnodau Nodedig
-    identity_proofs: Profiadau Hunaniaeth
     import: Mewnforio
     import_and_export: Mewnfori ac allfori
     migrate: Mudo cyfrif
