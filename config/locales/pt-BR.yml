@@ -899,26 +899,6 @@ pt-BR:
       other: Algo errado não está certo! Por favor, analise os %{count} erros abaixo
   html_validator:
     invalid_markup: 'contém HTML inválido: %{error}'
-  identity_proofs:
-    active: Ativo
-    authorize: Sim, autorizar
-    authorize_connection_prompt: Autorizar essa conexão criptográfica?
-    errors:
-      failed: Falha na conexão criptográfica. Por favor, tente novamente a partir de %{provider}.
-      keybase:
-        invalid_token: Tokens keybase são hashes de assinatura e devem conter 66 caracteres hexa
-        verification_failed: Keybase não reconhece esse token como uma assinatura do usuário keybase %{kb_username}. Por favor, tente novamente a partir do Keybase.
-      wrong_user: Não foi possível criar uma prova para %{proving} como %{current}. Entre como %{proving} e tente novamente.
-    explanation_html: Você pode conectar criptograficamente suas outras identidades, tais quais seu perfil Keybase. Isso permite outras pessoas de lhe enviarem mensagens criptografadas e confiar no conteúdo que você as envia.
-    i_am_html: Eu sou %{username} em %{service}.
-    identity: Identidade
-    inactive: Inativo
-    publicize_checkbox: 'E toote isso:'
-    publicize_toot: 'Está provado! Eu sou %{username} no %{service}: %{url}'
-    remove: Remover prova da conta
-    removed: Prova removida da conta com sucesso
-    status: Status da verificação
-    view_proof: Ver prova
   imports:
     modes:
       merge: Juntar
@@ -1177,7 +1157,6 @@ pt-BR:
     edit_profile: Editar perfil
     export: Exportar dados
     featured_tags: Hashtags em destaque
-    identity_proofs: Provas de identidade
     import: Importar
     import_and_export: Importar e exportar
     migrate: Migração de conta
