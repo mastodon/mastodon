@@ -847,23 +847,6 @@
     validation_errors:
       one: Noe er ikke helt riktig ennå. Vennligst se etter en gang til
       other: Noe er ikke helt riktig ennå. Det er ennå %{count} feil å rette på
-  identity_proofs:
-    active: Aktive
-    authorize: Ja, autoriser
-    authorize_connection_prompt: Vil du autorisere denne kryptografiske forbindelsen?
-    errors:
-      keybase:
-        verification_failed: Keybase kjenner ikke igjen denne sjetongen som en signatur for Keybase-brukeren %{kb_username}. Vennligst prøv igjen gjennom Keybase.
-      wrong_user: Kan ikke lage et bevis for %{proving} mens du er logget på som %{current}. Logg på som %{proving} og prøv igjen.
-    explanation_html: Her kan du kryptografisk koble til dine andre enheter, f.eks. en Keybase-profil. Dette lar andre folk sende deg krypterte meldinger og stole på innhold som du sender dem.
-    i_am_html: Jeg er %{username} på %{service}.
-    identity: Identitet
-    inactive: Inaktive
-    publicize_checkbox: 'Og tut ut dette:'
-    publicize_toot: 'Det er bevist! Jeg er %{username} på %{service}: %{url}'
-    remove: Fjern bevis fra kontoen
-    status: Verifiseringsstatus
-    view_proof: Se bevis
   imports:
     modes:
       merge: Slå sammen
@@ -1123,7 +1106,6 @@
     edit_profile: Endre profil
     export: Dataeksport
     featured_tags: Utvalgte emneknagger
-    identity_proofs: Identitetsbevis
     import: Importér
     import_and_export: Importer og eksporter
     migrate: Kontomigrering
