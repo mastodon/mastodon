@@ -931,26 +931,6 @@ sq:
       other: Diçka s’është ende si duhet! Ju lutemi, shqyrtoni %{count} gabimet më poshtë
   html_validator:
     invalid_markup: 'përmban elementë HTML të pavlefshëm: %{error}'
-  identity_proofs:
-    active: Aktive
-    authorize: Po, autorizoje
-    authorize_connection_prompt: Të autorizohet kjo lidhje kriptografike?
-    errors:
-      failed: Lidhja kriptografike dështoi. Ju lutemi, riprovoni prej %{provider}.
-      keybase:
-        invalid_token: Token-ët Keybase janë hashe nënshkrimesh dhe duhet të jenë 66 shenja gjashtëmbëdhjetëshe
-        verification_failed: Keybase-i s’e njeh këtë token si një nënshkrim nga përdoruesi %{kb_username} i Keybase-it. Ju lutemi, riprovoni që prej Keybase-it.
-      wrong_user: S’mund të krijohet provë për %{proving} teksa është i futur si %{current}. Hyni si %{proving} dhe riprovoni.
-    explanation_html: Këtu mund të lidhni në mënyrë kriptografike identitetet tuaja të tjera prej platformash të tjera, bie fjala Keybase. Kjo u lejon të tjerëve t’ju dërgojnë mesazhe të fshehtëzuar në këto platforma dhe u lejon atyre të besojnë se lënda që u dërgoni vjen prej jush.
-    i_am_html: Jam %{username} në %{service}.
-    identity: Identitet
-    inactive: Jo aktiv
-    publicize_checkbox: 'Dhe cicëro këtë:'
-    publicize_toot: 'Është i provuar! Jam %{username} te %{service}: %{url}'
-    remove: Hiq provën prej llogarie
-    removed: Prova u hoq me sukses nga llogaria
-    status: Gjendje verifikimi
-    view_proof: Shihni provën
   imports:
     errors:
       over_rows_processing_limit: përmban më shumë se %{count} rreshta
@@ -1224,7 +1204,6 @@ sq:
     edit_profile: Përpunoni profilin
     export: Eksportim të dhënash
     featured_tags: Hashtag-ë të zgjedhur
-    identity_proofs: Prova identiteti
     import: Importo
     import_and_export: Importim dhe eksportim
     migrate: Migrim llogarie
