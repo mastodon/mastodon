@@ -19,6 +19,7 @@ import {
   EmbedModal,
   ListEditor,
   ListAdder,
+  NewListAdder,
 } from '../../../features/ui/util/async-components';
 
 const MODAL_COMPONENTS = {
@@ -35,6 +36,7 @@ const MODAL_COMPONENTS = {
   'LIST_EDITOR': ListEditor,
   'FOCAL_POINT': () => Promise.resolve({ default: FocalPointModal }),
   'LIST_ADDER':ListAdder,
+  'NEW_LIST_ADDER' : NewListAdder
 };
 
 export default class ModalRoot extends React.PureComponent {

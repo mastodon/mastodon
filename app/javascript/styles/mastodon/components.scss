@@ -7430,3 +7430,21 @@ noscript {
     text-align: center;
   }
 }
+
+.button-adder {
+  padding: 15px;
+  padding-right: 0;
+  display: flex;
+  font-size: 16px;
+  justify-content: space-between;
+  align-items: center;
+  background: lighten($ui-base-color, 4%);
+
+  .icon-button {
+    margin-right: 15px;
+  }
+
+  &:hover {
+    background: lighten($ui-base-color, 11%);
+  }
+}
