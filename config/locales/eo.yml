@@ -830,24 +830,6 @@ eo:
       other: Io mise okazis! Bonvolu konsulti la subajn %{count} erar-raportojn
   html_validator:
     invalid_markup: 'havas nevalidan HTML-markadon: %{error}'
-  identity_proofs:
-    active: Aktiva
-    authorize: Jes, permesi
-    authorize_connection_prompt: Permesi ĉi tiu ĉifrikan conekton?
-    errors:
-      failed: La ĉifrika conekto nefaris. Peti provu denove el %{provider}.
-      keybase:
-        invalid_token: Keybase signo estas haŝoj de subskribo kaj devi 66 deksesuma leteroj
-        verification_failed: Keybase ne rekoni ĉi tiu signo kiel subskribo de Keybase uzanto %{kb_username}. Peti provu denove el Keybase.
-      wrong_user: Ne povas krei por %{proving} dum ensalutis kiel %{current}. Ensaluti kiel %{proving} kaj provu denove.
-    explanation_html: Ĉi tie vi povas ĉifrika konekti via alia identicoj, kiel Keybase profilon. ĉi tiu igi aliaj popoloj sendi al vi ĉifritaj mesaĝoj kaj fidi kontento vi sendi al ilin.
-    i_am_html: Mi estas %{username} en %{service}.
-    identity: Identeco
-    inactive: Malaktiva
-    publicize_checkbox: 'Kaj fajfi ĉi tio:'
-    publicize_toot: 'I estas pruvita! Mi estas %{username} sur %{service}: %{url}'
-    status: Confirmo statuso
-    view_proof: Vidi pruvo
   imports:
     modes:
       merge: Kunigi
@@ -1094,7 +1076,6 @@ eo:
     edit_profile: Redakti profilon
     export: Eksporti datumojn
     featured_tags: Elstarigitaj kradvortoj
-    identity_proofs: Pruvo de identeco
     import: Importi
     import_and_export: Alporto kaj elporto
     migrate: Konta migrado
