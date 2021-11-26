@@ -710,7 +710,23 @@ kmr:
       links:
         allow: Mafê bide girêdanê
         allow_provider: Mafê bide weşanger
+        disallow: Mafê nede girêdanê
         disallow_provider: Mafê nede weşanger
+        shared_by_over_week:
+          one: Di nava hefteya dawî de ji aliyê keskekî ve hate parvekirin
+          other: Di nava hefteya dawî de ji aliyê %{count} ve hate parvekirin
+        title: Girêdanên di rojevê de
+        usage_comparison: Îro %{today} car hate parvekirin, li gorî %{yesterday} duh
+      pending_review: Li benda nirxandinê ye
+      preview_card_providers:
+        allowed: Girêdanên ji vê weşangerê dikarin bibin rojev
+        rejected: Girêdanên ji vê weşangerê nikarin bibin rojev
+        title: Weşanger
+      rejected: Nepejirand
+      tags:
+        current_score: Encama niha %{score}
+        dashboard:
+          tag_accounts_measure: bikaranînên bêhempa
     warning_presets:
       add_new: Yeka nû tevlî bike
       delete: Jê bibe
