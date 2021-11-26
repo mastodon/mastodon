@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_23_212714) do
+ActiveRecord::Schema.define(version: 2021_11_26_000907) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,18 +49,6 @@ ActiveRecord::Schema.define(version: 2021_11_23_212714) do
     t.datetime "updated_at", null: false
     t.bigint "account_id"
     t.index ["account_id", "domain"], name: "index_account_domain_blocks_on_account_id_and_domain", unique: true
-  end
-
-  create_table "account_identity_proofs", force: :cascade do |t|
-    t.bigint "account_id"
-    t.string "provider", default: "", null: false
-    t.string "provider_username", default: "", null: false
-    t.text "token", default: "", null: false
-    t.boolean "verified", default: false, null: false
-    t.boolean "live", default: false, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["account_id", "provider", "provider_username"], name: "index_account_proofs_on_account_and_provider_and_username", unique: true
   end
 
   create_table "account_migrations", force: :cascade do |t|
@@ -1012,7 +1000,6 @@ ActiveRecord::Schema.define(version: 2021_11_23_212714) do
   add_foreign_key "account_conversations", "conversations", on_delete: :cascade
   add_foreign_key "account_deletion_requests", "accounts", on_delete: :cascade
   add_foreign_key "account_domain_blocks", "accounts", name: "fk_206c6029bd", on_delete: :cascade
-  add_foreign_key "account_identity_proofs", "accounts", on_delete: :cascade
   add_foreign_key "account_migrations", "accounts", column: "target_account_id", on_delete: :nullify
   add_foreign_key "account_migrations", "accounts", on_delete: :cascade
   add_foreign_key "account_moderation_notes", "accounts"
