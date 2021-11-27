@@ -755,6 +755,7 @@ lv:
         trending_rank: 'Populārākie #%{rank}'
         usable: Var tikt lietots
         usage_comparison: Šodien lietots %{today} reizes, salīdzinot ar %{yesterday} vakar
+      title: Tendences
     warning_presets:
       add_new: Pievienot jaunu
       delete: Dzēst
@@ -769,6 +770,16 @@ lv:
       body: "%{reporter} ziņoja par %{target}"
       body_remote: Kāds no %{domain} ziņoja par %{target}
       subject: 'Jauns ziņojums par %{instance} (#%{id})'
+    new_trending_links:
+      body: Tālāk norādītās saites šodien ir populāras, taču to publicētāji iepriekš nav pārskatīti. Tie netiks rādīti publiski, ja vien tu tos neapstiprināsi. Turpmāki paziņojumi no tiem pašiem publicētājiem netiks ģenerēti.
+      no_approved_links: Pašlaik nav apstiprinātu tendenču saišu.
+      requirements: Viszemāk apstiprinātā populārā saite pašlaik ir “%{lowest_link_title}” ar rezultātu %{lowest_link_score}.
+      subject: Jaunas populāras saites ir pieejamas pārskatīšanai vietnē %{instance}
+    new_trending_tags:
+      body: 'Tālāk norādītās atsauces ir populāras, taču tās iepriekš nav pārskatītas. Tie netiks rādīti publiski, ja vien tu tās neapstiprināsi:'
+      no_approved_tags: Pašlaik nav apstiprinātu tendenču tēmturu.
+      requirements: 'Viszemāk apstiprinātais populārais tēmturis pašlaik ir #%{lowest_tag_name} ar rezultātu %{lowest_tag_score}.'
+      subject: Jauni populāri tēmturi ir pieejami pārskatīšanai vietnē %{instance}
   aliases:
     add_new: Izveidot aizstājvārdu
     created_msg: Veiksmīgi izveidots jauns aizstājvārds. Tagad vari sākt pārvietošanu no vecā konta.
@@ -975,6 +986,7 @@ lv:
     changes_saved_msg: Izmaiņas veiksmīgi saglabātas!
     copy: Kopēt
     delete: Dzēst
+    none: Neviens
     order_by: Kārtot pēc
     save_changes: Saglabāt izmaiņas
     validation_errors:
