@@ -14,15 +14,20 @@ module Mastodon
     end
 
     option :days, type: :numeric, default: 90
-    option :clean_followed, type: :boolean
-    option :skip_media_remove, type: :boolean
-    option :vacuum, type: :boolean, default: false, desc: 'Reduce the file size and update the statistics. This option locks the table for a long time, so run it offline'
     option :batch_size, type: :numeric, default: 1_000, aliases: [:b], desc: 'Number of records in each batch'
+    option :clean_followed, type: :boolean, default: false, desc: 'Include the status of remote accounts that are followed by local accounts as candidates for remove'
+    option :skip_status_remove, type: :boolean, default: false, desc: 'Skip status remove (run only cleanup tasks)'
+    option :skip_remove_orphans, type: :boolean, default: false, desc: 'Skip remove orphans that have lost their association with status'
+    option :skip_media_remove, type: :boolean, default: false, desc: 'Skip remove orphaned media attachments'
+    option :vacuum, type: :boolean, default: false, desc: 'Reduce the file size and update the statistics. This option locks the table for a long time, so run it offline'
     desc 'remove', 'Remove unreferenced statuses'
     long_desc <<~LONG_DESC
       Remove statuses that are not referenced by local user activity, such as
       ones that came from relays, or belonging to users that were once followed
       by someone locally but no longer are.
+
+      It also removes orphaned records and performs additional cleanup tasks
+      such as updating statistics and recovering disk space.
 
       This is a computationally heavy procedure that creates extra database
       indices before commencing, and removes them afterward.
@@ -33,6 +38,16 @@ module Mastodon
         exit(1)
       end
 
+      remove_statuses unless options[:skip_status_remove]
+      vacuum_and_analyze_statuses
+
+      remove_orphans unless options[:skip_remove_orphans]
+      vacuum_and_analyze_conversations
+    end
+
+    private
+
+    def remove_statuses
       say('Creating temporary database indices...')
 
       ActiveRecord::Base.connection.add_index(:accounts, :id, name: :index_accounts_local, where: 'domain is null', algorithm: :concurrently, if_not_exists: true)
@@ -67,7 +82,7 @@ module Mastodon
       ActiveRecord::Base.connection.remove_index(:accounts, name: :index_accounts_local, if_exists: true)
       ActiveRecord::Base.connection.remove_index(:status_pins, name: :index_status_pins_status_id, if_exists: true)
 
-      say('Beginning removal... This might take a while...')
+      say('Beginning statuses removal... This might take a while...')
 
       klass = Class.new(ApplicationRecord) do |c|
         c.table_name = 'statuses_to_be_deleted'
@@ -89,21 +104,6 @@ module Mastodon
 
       progress.stop
 
-      if options[:vacuum]
-        say('Run VACUUM and ANALYZE to statuses...')
-
-        ActiveRecord::Base.connection.execute('VACUUM FULL ANALYZE statuses')
-      else
-        say('Run ANALYZE to statuses...')
-
-        ActiveRecord::Base.connection.execute('ANALYZE statuses')
-      end
-
-      unless options[:skip_media_remove]
-        say('Beginning removal of now-orphaned media attachments to free up disk space...')
-        Scheduler::MediaCleanupScheduler.new.perform
-      end
-
       say("Done after #{Time.now.to_f - start_at}s, removed #{removed} out of #{processed} statuses.", :green)
     ensure
       say('Removing temporary database indices to restore write performance...')
@@ -111,6 +111,59 @@ module Mastodon
       ActiveRecord::Base.connection.remove_index(:accounts, name: :index_accounts_local, if_exists: true)
       ActiveRecord::Base.connection.remove_index(:status_pins, name: :index_status_pins_status_id, if_exists: true)
       ActiveRecord::Base.connection.remove_index(:media_attachments, name: :index_media_attachments_remote_url, if_exists: true)
+    end
+
+    def remove_orphans
+      unless options[:skip_media_remove]
+        say('Beginning removal of now-orphaned media attachments to free up disk space...')
+        Scheduler::MediaCleanupScheduler.new.perform
+      end
+
+      say('Creating temporary database indices...')
+
+      ActiveRecord::Base.connection.add_index(:statuses, :conversation_id, name: :index_statuses_conversation_id, algorithm: :concurrently, if_not_exists: true)
+
+      start_at = Time.now.to_f
+
+      say('Beginning orphans removal... This might take a while...')
+
+      scope = Conversation.unscoped.where('NOT EXISTS (SELECT 1 FROM statuses WHERE statuses.conversation_id = conversations.id)')
+      processed = 0
+      removed   = 0
+      progress  = create_progress_bar(scope.count.fdiv(options[:batch_size]).ceil)
+
+      scope.in_batches(of: options[:batch_size]) do |relation|
+        processed += relation.count
+        removed   += relation.delete_all
+        progress.increment
+      end
+
+      progress.stop
+
+      say("Done after #{Time.now.to_f - start_at}s, removed #{removed} out of #{processed} conversations.", :green)
+    ensure
+      say('Removing temporary database indices to restore write performance...')
+      ActiveRecord::Base.connection.remove_index(:statuses, name: :index_statuses_conversation_id, if_exists: true)
+    end
+
+    def vacuum_and_analyze_statuses
+      if options[:vacuum]
+        say('Run VACUUM and ANALYZE to statuses...')
+        ActiveRecord::Base.connection.execute('VACUUM FULL ANALYZE statuses')
+      else
+        say('Run ANALYZE to statuses...')
+        ActiveRecord::Base.connection.execute('ANALYZE statuses')
+      end
+    end
+
+    def vacuum_and_analyze_conversations
+      if options[:vacuum]
+        say('Run VACUUM and ANALYZE to conversations...')
+        ActiveRecord::Base.connection.execute('VACUUM FULL ANALYZE conversations')
+      else
+        say('Run ANALYZE to conversations...')
+        ActiveRecord::Base.connection.execute('ANALYZE conversations')
+      end
     end
   end
 end
