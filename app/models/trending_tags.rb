@@ -29,7 +29,7 @@ class TrendingTags
 
     def update!(at_time = Time.now.utc)
       tag_ids = redis.smembers("#{KEY}:used:#{at_time.beginning_of_day.to_i}") + redis.zrange(KEY, 0, -1)
-      tags    = Tag.trendable.where(id: tag_ids.uniq)
+      tags    = Tag.where(id: tag_ids.uniq)
 
       # First pass to calculate scores and update the set
 
