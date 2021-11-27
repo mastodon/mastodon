@@ -19,7 +19,7 @@ module Mastodon
     option :skip_status_remove, type: :boolean, default: false, desc: 'Skip status remove (run only cleanup tasks)'
     option :skip_remove_orphans, type: :boolean, default: false, desc: 'Skip remove orphans that have lost their association with status'
     option :skip_media_remove, type: :boolean, default: false, desc: 'Skip remove orphaned media attachments'
-    option :vacuum, type: :boolean, default: false, desc: 'Reduce the file size and update the statistics. This option locks the table for a long time, so run it offline'
+    option :compression_database, type: :boolean, default: false, desc: 'Compression database and update the statistics. This option locks the table for a long time, so run it offline'
     desc 'remove', 'Remove unreferenced statuses'
     long_desc <<~LONG_DESC
       Remove statuses that are not referenced by local user activity, such as
@@ -147,9 +147,10 @@ module Mastodon
     end
 
     def vacuum_and_analyze_statuses
-      if options[:vacuum]
-        say('Run VACUUM and ANALYZE to statuses...')
+      if options[:compression_database]
+        say('Run VACUUM FULL ANALYZE and REINDEX to statuses...')
         ActiveRecord::Base.connection.execute('VACUUM FULL ANALYZE statuses')
+        ActiveRecord::Base.connection.execute('REINDEX TABLE statuses')
       else
         say('Run ANALYZE to statuses...')
         ActiveRecord::Base.connection.execute('ANALYZE statuses')
@@ -157,9 +158,10 @@ module Mastodon
     end
 
     def vacuum_and_analyze_conversations
-      if options[:vacuum]
-        say('Run VACUUM and ANALYZE to conversations...')
+      if options[:compression_database]
+        say('Run VACUUM FULL ANALYZE and REINDEX to conversations...')
         ActiveRecord::Base.connection.execute('VACUUM FULL ANALYZE conversations')
+        ActiveRecord::Base.connection.execute('REINDEX TABLE conversations')
       else
         say('Run ANALYZE to conversations...')
         ActiveRecord::Base.connection.execute('ANALYZE conversations')
