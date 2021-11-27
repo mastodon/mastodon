@@ -77,6 +77,7 @@ Doorkeeper.configure do
                   :'write:follows',
                   :'write:lists',
                   :'write:media',
+                  :'write:custom_emoji',
                   :'write:mutes',
                   :'write:notifications',
                   :'write:reports',
