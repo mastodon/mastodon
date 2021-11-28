@@ -8,7 +8,7 @@ const PC_PROPRIETARY_CONSTRAINTS = {
 
 export function getProtooClient(roomId = randomString({ length: 8 })) {
   const protooTransport = new protooClient.WebSocketTransport(
-    `wss://localhost:4333/?roomId=${roomId}&peerId=streamer`,
+    `wss://localhost:4443/?roomId=${roomId}&peerId=streamer`,
   );
 
   return new protooClient.Peer(protooTransport);

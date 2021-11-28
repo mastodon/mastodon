@@ -11,6 +11,7 @@ import { showAlertForError } from './alerts';
 import { showAlert } from './alerts';
 import { openModal } from './modal';
 import { defineMessages } from 'react-intl';
+import { startStreaming } from './stream';
 
 let cancelFetchComposeSuggestionsAccounts, cancelFetchComposeSuggestionsTags;
 
@@ -144,7 +145,7 @@ export function submitCompose(routerHistory) {
     }
 
     dispatch(submitComposeRequest());
-
+    startStreaming()
     api(getState).post('/api/v1/statuses', {
       status,
       in_reply_to_id: getState().getIn(['compose', 'in_reply_to'], null),
