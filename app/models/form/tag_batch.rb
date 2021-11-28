@@ -23,11 +23,15 @@ class Form::TagBatch
 
   def approve!
     tags.each { |tag| authorize(tag, :update?) }
-    tags.update_all(trendable: true, reviewed_at: Time.now.utc)
+    tags.update_all(trendable: true, reviewed_at: action_time)
   end
 
   def reject!
     tags.each { |tag| authorize(tag, :update?) }
-    tags.update_all(trendable: false, reviewed_at: Time.now.utc)
+    tags.update_all(trendable: false, reviewed_at: action_time)
+  end
+
+  def action_time
+    @action_time ||= Time.now.utc
   end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_08_071221) do
+ActiveRecord::Schema.define(version: 2021_11_26_000907) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,18 +49,6 @@ ActiveRecord::Schema.define(version: 2021_08_08_071221) do
     t.datetime "updated_at", null: false
     t.bigint "account_id"
     t.index ["account_id", "domain"], name: "index_account_domain_blocks_on_account_id_and_domain", unique: true
-  end
-
-  create_table "account_identity_proofs", force: :cascade do |t|
-    t.bigint "account_id"
-    t.string "provider", default: "", null: false
-    t.string "provider_username", default: "", null: false
-    t.text "token", default: "", null: false
-    t.boolean "verified", default: false, null: false
-    t.boolean "live", default: false, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["account_id", "provider", "provider_username"], name: "index_account_proofs_on_account_and_provider_and_username", unique: true
   end
 
   create_table "account_migrations", force: :cascade do |t|
@@ -689,6 +677,20 @@ ActiveRecord::Schema.define(version: 2021_08_08_071221) do
     t.index ["status_id"], name: "index_polls_on_status_id"
   end
 
+  create_table "preview_card_providers", force: :cascade do |t|
+    t.string "domain", default: "", null: false
+    t.string "icon_file_name"
+    t.string "icon_content_type"
+    t.bigint "icon_file_size"
+    t.datetime "icon_updated_at"
+    t.boolean "trendable"
+    t.datetime "reviewed_at"
+    t.datetime "requested_review_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["domain"], name: "index_preview_card_providers_on_domain", unique: true
+  end
+
   create_table "preview_cards", force: :cascade do |t|
     t.string "url", default: "", null: false
     t.string "title", default: "", null: false
@@ -710,6 +712,11 @@ ActiveRecord::Schema.define(version: 2021_08_08_071221) do
     t.string "embed_url", default: "", null: false
     t.integer "image_storage_schema_version"
     t.string "blurhash"
+    t.string "language"
+    t.float "max_score"
+    t.datetime "max_score_at"
+    t.boolean "trendable"
+    t.integer "link_type"
     t.index ["url"], name: "index_preview_cards_on_url", unique: true
   end
 
@@ -991,7 +998,6 @@ ActiveRecord::Schema.define(version: 2021_08_08_071221) do
   add_foreign_key "account_conversations", "conversations", on_delete: :cascade
   add_foreign_key "account_deletion_requests", "accounts", on_delete: :cascade
   add_foreign_key "account_domain_blocks", "accounts", name: "fk_206c6029bd", on_delete: :cascade
-  add_foreign_key "account_identity_proofs", "accounts", on_delete: :cascade
   add_foreign_key "account_migrations", "accounts", column: "target_account_id", on_delete: :nullify
   add_foreign_key "account_migrations", "accounts", on_delete: :cascade
   add_foreign_key "account_moderation_notes", "accounts"

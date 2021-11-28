@@ -24,10 +24,10 @@ class Admin::Metrics::Measure::ActiveUsersMeasure < Admin::Metrics::Measure::Bas
   end
 
   def time_period
-    (@start_at.to_date...@end_at.to_date)
+    (@start_at.to_date..@end_at.to_date)
   end
 
   def previous_time_period
-    ((@start_at.to_date - length_of_period)...(@end_at.to_date - length_of_period))
+    ((@start_at.to_date - length_of_period)..(@end_at.to_date - length_of_period))
   end
 end
