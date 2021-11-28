@@ -2,11 +2,11 @@ import React, { useCallback, useMemo } from 'react';
 import { useStore } from 'react-redux';
 import StreamButton from '../components/stream_button';
 import streamStore from '../../../reducers/stream';
+import { selectWebcam, turnOffWebcam } from '../../../actions/stream';
 
 const Wrapper = () => {
-  const [videoTrack, setVideoTrack] = streamStore.useGlobalState('videoTrack');
-  const [activePreview, setActivePreview] =
-    streamStore.useGlobalState('activePreview');
+  const [webcam] = streamStore.useGlobalState('webcam');
+
   const store = useStore();
   store.getState();
   const unavailable = useMemo(
@@ -17,36 +17,15 @@ const Wrapper = () => {
 
   const handleClick = useCallback(
     function handleClick() {
-      if (activePreview) {
-        setVideoTrack((p) => {
-          p.getTracks().forEach((x) => x.stop());
-          return new MediaStream();
-        });
+      if (webcam === undefined) {
+        selectWebcam();
       } else {
-        navigator.mediaDevices
-          .getUserMedia({ video: true })
-          .then((stream) => {
-            const videoTrack_ = stream.getVideoTracks()[0];
-            videoTrack_.addEventListener('ended', () => {
-              setActivePreview(false);
-              setVideoTrack((p) => {
-                p.removeTrack(videoTrack_);
-                return p;
-              });
-            });
-            setVideoTrack(() => {
-              const n = new MediaStream();
-              n.addTrack(videoTrack_);
-              return n;
-            });
-          })
-          .catch({});
+        turnOffWebcam();
       }
-      setActivePreview((p) => !p);
     },
-    [videoTrack],
+    [webcam],
   );
 
-  return <StreamButton onClick={handleClick} active={activePreview} unavailable={unavailable} />;
+  return <StreamButton onClick={handleClick} active={webcam !== undefined} unavailable={unavailable} />;
 };
 export default Wrapper;
