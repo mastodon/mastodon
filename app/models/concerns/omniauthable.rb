@@ -63,6 +63,7 @@ module Omniauthable
       user.account.avatar_remote_url = auth.info.image if /\A#{URI::DEFAULT_PARSER.make_regexp(%w(http https))}\z/.match?(auth.info.image)
       user.skip_confirmation! if email_is_verified or trusted_auth_provider(auth)
       user.save!
+      user.prepare_for_new_auth_login_user!(auth.provider)
       user
     end
 

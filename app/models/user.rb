@@ -368,6 +368,13 @@ class User < ApplicationRecord
     setting_display_media == 'hide_all'
   end
 
+  def prepare_for_new_auth_login_user!(auth_provider)
+    user_invite_request = UserInviteRequest.new({ user_id: id, text: "This account was authorized by #{auth_provider}.", })
+    user_invite_request.save!
+
+    prepare_new_user!
+  end
+
   protected
 
   def send_devise_notification(notification, *args, **kwargs)
