@@ -57,7 +57,7 @@ module Mastodon
       max_id   = Mastodon::Snowflake.id_at(options[:days].days.ago)
       start_at = Time.now.to_f
 
-      say('Extract the deletion target... This might take a while...')
+      say('Extract the deletion target from statuses... This might take a while...')
 
       ActiveRecord::Base.connection.create_table('statuses_to_be_deleted', temporary: true)
 
@@ -125,16 +125,35 @@ module Mastodon
 
       start_at = Time.now.to_f
 
+      say('Extract the deletion target from coversations... This might take a while...')
+
+      ActiveRecord::Base.connection.create_table('conversations_to_be_deleted', temporary: true)
+
+      ActiveRecord::Base.connection.exec_insert(<<-SQL.squish, 'SQL')
+        INSERT INTO conversations_to_be_deleted (id)
+        SELECT id FROM conversations WHERE NOT EXISTS (SELECT 1 FROM statuses WHERE statuses.conversation_id = conversations.id)
+      SQL
+
+      say('Removing temporary database indices to restore write performance...')
+      ActiveRecord::Base.connection.remove_index(:statuses, name: :index_statuses_conversation_id, if_exists: true)
+
       say('Beginning orphans removal... This might take a while...')
 
-      scope = Conversation.unscoped.where('NOT EXISTS (SELECT 1 FROM statuses WHERE statuses.conversation_id = conversations.id)')
+      klass = Class.new(ApplicationRecord) do |c|
+        c.table_name = 'conversations_to_be_deleted'
+      end
+
+      Object.const_set('ConversationsToBeDeleted', klass)
+
+      scope     = ConversationsToBeDeleted
       processed = 0
       removed   = 0
       progress  = create_progress_bar(scope.count.fdiv(options[:batch_size]).ceil)
 
       scope.in_batches(of: options[:batch_size]) do |relation|
-        processed += relation.count
-        removed   += relation.delete_all
+        ids        = relation.pluck(:id)
+        processed += ids.count
+        removed   += Conversation.unscoped.where(id: ids).delete_all
         progress.increment
       end
 
@@ -148,8 +167,9 @@ module Mastodon
 
     def vacuum_and_analyze_statuses
       if options[:compression_database]
-        say('Run VACUUM FULL ANALYZE and REINDEX to statuses...')
+        say('Run VACUUM FULL ANALYZE to statuses...')
         ActiveRecord::Base.connection.execute('VACUUM FULL ANALYZE statuses')
+        say('Run REINDEX to statuses...')
         ActiveRecord::Base.connection.execute('REINDEX TABLE statuses')
       else
         say('Run ANALYZE to statuses...')
@@ -159,8 +179,9 @@ module Mastodon
 
     def vacuum_and_analyze_conversations
       if options[:compression_database]
-        say('Run VACUUM FULL ANALYZE and REINDEX to conversations...')
+        say('Run VACUUM FULL ANALYZE to conversations...')
         ActiveRecord::Base.connection.execute('VACUUM FULL ANALYZE conversations')
+        say('Run REINDEX to conversations...')
         ActiveRecord::Base.connection.execute('REINDEX TABLE conversations')
       else
         say('Run ANALYZE to conversations...')
