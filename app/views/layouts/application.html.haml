@@ -10,6 +10,11 @@
 
     - if storage_host?
       %link{ rel: 'dns-prefetch', href: storage_host }/
+    
+    - if user_signed_in?
+      - unless (not current_user.setting_enable_noto_serif) or current_user.setting_system_font_ui
+        %link{ rel: 'preconnect', href: 'https://fonts.googleapis.com' }/
+        %link{ rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: true }/
 
     %link{ rel: 'icon', href: favicon_path, type: 'image/x-icon' }/
     %link{ rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' }/
@@ -32,7 +37,7 @@
 
     -if user_signed_in? && current_user.setting_enable_snowfall
       = content_tag(:script, nil, src: full_asset_url('plugins/snow.js?v3', skip_pipeline: true), async: true)
-      = stylesheet_link_tag '/plugins/snow.css?v3', skip_pipeline: true, media: 'all', id: 'snow-plugin-style'
+      = stylesheet_link_tag '/plugins/snow.css', skip_pipeline: true, media: 'all', id: 'snow-plugin-style'
 
     - if Setting.custom_css.present? || Setting.custom_css.present?
       = stylesheet_link_tag custom_css_path(Digest::SHA1.hexdigest("#{Setting.custom_css if Setting.custom_css.present?}\n#{current_user.setting_custom_css if user_signed_in?}")), host: request.host, media: 'all'
@@ -42,6 +47,15 @@
 
     - if ENV['MATOMO_ANALYTICS_HOST']
       = javascript_pack_tag 'matomo', crossorigin: 'anonymous', 'data-matomo-host' => ENV['MATOMO_ANALYTICS_HOST'], 'data-matomo-site-id' => ENV['MATOMO_ANALYTICS_SITE_ID']
+
+    - if user_signed_in?
+      - unless (not current_user.setting_enable_noto_serif) or current_user.setting_system_font_ui
+        - if ['zh-HK', 'zh-TW'].include? I18n.locale.to_s
+          = stylesheet_link_tag 'https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@200;300;400;500;600;700;900&display=swap', skip_pipeline: true, media: 'all'
+        - if ['ja'].include? I18n.locale.to_s
+          = stylesheet_link_tag 'https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;300;400;500;600;700;900&display=swap', skip_pipeline: true, media: 'all'
+        - else
+          = stylesheet_link_tag 'https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200;300;400;500;600;700;900&display=swap', skip_pipeline: true, media: 'all'
 
     = yield :header_tags
 

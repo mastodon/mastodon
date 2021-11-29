@@ -133,6 +133,7 @@ class User < ApplicationRecord
            :expand_spoilers, :default_language, :aggregate_reblogs, :show_application,
            :advanced_layout, :use_blurhash, :use_pending_items, :trends, :crop_images,
            :default_federation, :default_content_type, :enable_snowfall, :custom_css,
+           :enable_noto_serif,
            :disable_swiping, :always_send_emails,
            to: :settings, prefix: :setting, allow_nil: false
 
