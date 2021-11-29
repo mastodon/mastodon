@@ -4,7 +4,7 @@ RuCaptcha.configure do
   # Custom captcha code expire time if you need, default: 2 minutes
   # self.expires_in = 120
   # self.cache_store = :redis_cache_store, REDIS_CACHE_PARAMS
-  self.cache_store = Rails.application.config.cache_store
+  self.cache_store = :redis_cache_store #Rails.application.config.cache_store
   # self.skip_cache_store_check = true
   # Chars length, default: 5, allows: [3 - 7]
   # self.length = 5
