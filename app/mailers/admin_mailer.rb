@@ -29,7 +29,7 @@ class AdminMailer < ApplicationMailer
     @tags                = tags
     @me                  = recipient
     @instance            = Rails.configuration.x.local_domain
-    @lowest_trending_tag = Trends.tags.get(true, Trends::Tags::REVIEW_THRESHOLD).last
+    @lowest_trending_tag = Trends.tags.get(true, Trends.tags.options[:review_threshold]).last
 
     locale_for_account(@me) do
       mail to: @me.user_email, subject: I18n.t('admin_mailer.new_trending_tags.subject', instance: @instance)
@@ -40,7 +40,7 @@ class AdminMailer < ApplicationMailer
     @links                = links
     @me                   = recipient
     @instance             = Rails.configuration.x.local_domain
-    @lowest_trending_link = Trends.links.get(true, Trends::Links::REVIEW_THRESHOLD).last
+    @lowest_trending_link = Trends.links.get(true, Trends.links.options[:review_threshold]).last
 
     locale_for_account(@me) do
       mail to: @me.user_email, subject: I18n.t('admin_mailer.new_trending_links.subject', instance: @instance)
