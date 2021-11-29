@@ -22,4 +22,5 @@
         = link_to omniauth_authorize_path('user', provider), class: "button button-#{provider}", method: :post do
           %i{:class => ['fab', "fa-#{provider}"]}
           %span 
-            = t("auth.providers.#{provider}") || provider.to_s.chomp("_oauth2").capitalize
+            &nbsp;
+            = t('auth.login_with_provider', provider_name: t("auth.providers.#{provider}")) || provider.to_s.chomp("_oauth2").capitalize
