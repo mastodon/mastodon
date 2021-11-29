@@ -8,6 +8,9 @@ describe Admin::StatusesController do
   let!(:status) { Fabricate(:status, account: account) }
   let(:media_attached_status) { Fabricate(:status, account: account, sensitive: !sensitive) }
   let!(:media_attachment) { Fabricate(:media_attachment, account: account, status: media_attached_status) }
+  let(:last_media_attached_status) { Fabricate(:status, account: account, sensitive: !sensitive) }
+  let!(:last_media_attachment) { Fabricate(:media_attachment, account: account, status: last_media_attached_status) }
+  let!(:last_status) { Fabricate(:status, account: account) }
   let(:sensitive) { true }
 
   before do
@@ -19,7 +22,8 @@ describe Admin::StatusesController do
       get :index, params: { account_id: account.id }
 
       statuses = assigns(:statuses).to_a
-      expect(statuses.size).to eq 2
+      expect(statuses.size).to eq 4
+      expect(statuses.first.id).to eq last_status.id
       expect(response).to have_http_status(200)
     end
 
@@ -27,7 +31,8 @@ describe Admin::StatusesController do
       get :index, params: { account_id: account.id, media: true }
 
       statuses = assigns(:statuses).to_a
-      expect(statuses.size).to eq 1
+      expect(statuses.size).to eq 2
+      expect(statuses.first.id).to eq last_media_attached_status.id
       expect(response).to have_http_status(200)
     end
   end

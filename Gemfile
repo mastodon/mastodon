@@ -18,7 +18,7 @@ gem 'makara', '~> 0.5'
 gem 'pghero', '~> 2.8'
 gem 'dotenv-rails', '~> 2.7'
 
-gem 'aws-sdk-s3', '~> 1.106', require: false
+gem 'aws-sdk-s3', '~> 1.107', require: false
 gem 'fog-core', '<= 2.1.0'
 gem 'fog-openstack', '~> 0.3', require: false
 gem 'kt-paperclip', '~> 7.0'
@@ -26,12 +26,12 @@ gem 'blurhash', '~> 0.1'
 
 gem 'active_model_serializers', '~> 0.10'
 gem 'addressable', '~> 2.8'
-gem 'bootsnap', '~> 1.9.1', require: false
+gem 'bootsnap', '~> 1.9.2', require: false
 gem 'browser'
 gem 'charlock_holmes', '~> 0.7.7'
 gem 'iso-639'
 gem 'chewy', '~> 7.2'
-gem 'cld3', '~> 3.4.2'
+gem 'cld3', '~> 3.4.3'
 gem 'devise', '~> 4.8'
 gem 'devise-two-factor', '~> 4.0'
 
