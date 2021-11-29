@@ -12,6 +12,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       -
+        name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v3
+        with:
+          images: ${{ secrets.REGISTRY_SERVER }}/${{ secrets.REGISTRY_REPO }}
+      -
         name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
       -
@@ -28,18 +34,10 @@ jobs:
           repository: akane-blue/mastodon
           path: mastodon
       -
-        name: Get latest branch name
-        id: set_tag
-        run: |
-          cd mastodon
-          DOCKER_TAG="$(echo ${GITHUB_REF} | sed -e 's/.*\///g' -e 's/-/_/g')"
-          # Use Docker `latest` tag convention
-          [ "$DOCKER_TAG" == "master" ] && DOCKER_TAG=latest
-          echo "::set-output name=docker_tag::${DOCKER_TAG}"
-      -
         name: Build and push to Docker Registry
         uses: docker/build-push-action@v2
         with:
           context: mastodon
           push: true
-          tags: ${{ secrets.REGISTRY_SERVER }}/${{ secrets.REGISTRY_REPO }}:${{steps.set_tag.outputs.docker_tag}}
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
