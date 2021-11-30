@@ -720,6 +720,8 @@ it:
         usage_comparison: Condiviso %{today} volte oggi, rispetto a %{yesterday} ieri
       pending_review: Revisione in sospeso
       preview_card_providers:
+        allowed: I link da questa fonte possono essere in tendenza
+        rejected: I link da questa fonte non possono essere in tendenza
         title: Editori
       rejected: Rifiutato
       tags:
@@ -760,6 +762,11 @@ it:
       subject: 'Nuova segnalazione per %{instance} (#%{id})'
     new_trending_links:
       no_approved_links: Nessun link in tendenza correntemente approvato.
+      subject: Nuovi link in tendenza in attesa di revisione su %{instance}
+    new_trending_tags:
+      body: 'I seguenti hashtag sono in tendenza oggi, ma non sono stati precedentemente revisionati. Non saranno visualizzati pubblicamente a meno che non li approvi:'
+      no_approved_tags: Nessun hashtag in tendenza correntemente approvato.
+      requirements: 'L''hashtag in tendenza approvato con punteggio più basso è al momento #%{lowest_tag_name} con un punteggio di %{lowest_tag_score}.'
   aliases:
     add_new: Crea alias
     created_msg: Hai creato un nuovo alias. Ora puoi iniziare lo spostamento dal vecchio account.
