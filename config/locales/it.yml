@@ -403,7 +403,7 @@ it:
       destroyed_msg: Il blocco del dominio è stato rimosso
       domain: Dominio
       edit: Modifica blocco di dominio
-      existing_domain_block_html: Hai già impostato limitazioni più stringenti su %{name}, dovresti <a href="%{unblock_url}">sbloccare</a> prima.
+      existing_domain_block_html: Hai già impostato limitazioni più stringenti su %{name}, dovresti <a href="%{unblock_url}">sbloccarlo</a> prima.
       new:
         create: Crea blocco
         hint: Il blocco dominio non previene la creazione di utenti nel database, ma applicherà automaticamente e retroattivamente metodi di moderazione specifici su quegli account.
@@ -792,7 +792,7 @@ it:
     settings: 'Cambia le impostazioni per le email: %{link}'
     view: 'Guarda:'
     view_profile: Mostra profilo
-    view_status: Mostra stati
+    view_status: Mostra post
   applications:
     created: Applicazione creata con successo
     destroyed: Applicazione eliminata con successo
@@ -929,7 +929,7 @@ it:
     archive_takeout:
       date: Data
       download: Scarica il tuo archivio
-      hint_html: Puoi richiedere un archivio dei tuoi <strong>toot e media caricati</strong>. I dati esportati sono in formato ActivityPub, leggibili da qualunque software che segue questo standard. Puoi richiedere un archivio ogni 7 giorni.
+      hint_html: Puoi richiedere un archivio dei tuoi <strong>post media caricati</strong>. I dati esportati sono in formato ActivityPub, leggibili da qualunque software che segue questo standard. Puoi richiedere un archivio ogni 7 giorni.
       in_progress: Creazione archivio...
       request: Chiedi il tuo archivio
       size: Dimensioni
@@ -1188,16 +1188,16 @@ it:
   remote_interaction:
     favourite:
       proceed: Continua per segnare come apprezzato
-      prompt: 'Vuoi segnare questo toot come apprezzato:'
+      prompt: 'Vuoi segnare questo post come apprezzato:'
     reblog:
       proceed: Continua per condividere
-      prompt: 'Vuoi condividere questo toot:'
+      prompt: 'Vuoi condividere questo post:'
     reply:
       proceed: Continua per rispondere
-      prompt: 'Vuoi rispondere a questo toot:'
+      prompt: 'Vuoi rispondere a questo post:'
   scheduled_statuses:
-    over_daily_limit: Hai superato il limite di %{limit} toot programmati per questo giorno
-    over_total_limit: Hai superato il limite di %{limit} toot programmati
+    over_daily_limit: Hai superato il limite di %{limit} post programmati per questo giorno
+    over_total_limit: Hai superato il limite di %{limit} post programmati
     too_soon: La data di pubblicazione deve essere nel futuro
   sessions:
     activity: Ultima attività
@@ -1281,14 +1281,14 @@ it:
       one: 'contiene un hashtag non permesso: %{tags}'
       other: 'contiene gli hashtags non permessi: %{tags}'
     errors:
-      in_reply_not_found: Lo stato a cui stai tentando di rispondere non sembra esistere.
+      in_reply_not_found: Il post a cui stai tentando di rispondere non sembra esistere.
     language_detection: Individua lingua automaticamente
     open_in_web: Apri sul Web
     over_character_limit: Limite caratteri superato di %{max}
     pin_errors:
-      limit: Hai già fissato in cima il massimo numero di toot
-      ownership: Non puoi fissare in cima un toot di qualcun altro
-      private: Un toot non pubblico non può essere fissato in cima
+      limit: Hai già fissato in cima il massimo numero di post
+      ownership: Non puoi fissare in cima un post di qualcun altro
+      private: Un post non pubblico non può essere fissato in cima
       reblog: Un toot condiviso non può essere fissato in cima
     poll:
       total_people:
@@ -1347,7 +1347,7 @@ it:
     min_reblogs: Conserva i post condivisi più di
     min_reblogs_hint: Non cancella nessuno dei tuoi post che è stato condiviso più di questo numero di volte. Lascia vuoto per cancellare i post indipendentemente dal loro numero di condivisioni
   stream_entries:
-    pinned: Toot fissato in cima
+    pinned: Post fissato in cima
     reblogged: condiviso
     sensitive_content: Materiale sensibile
   tags:
@@ -1476,7 +1476,7 @@ it:
       explanation:
         disable: Mentre il tuo account è congelato, i tuoi dati dell'account rimangono intatti, ma non potrai eseguire nessuna azione fintanto che non viene sbloccato.
         sensitive: I tuoi file multimediali caricati e multimedia collegati saranno trattati come sensibili.
-        silence: Mentre il tuo account è limitato, solo le persone che già ti seguono possono vedere i tuoi toot su questo server, e potresti essere escluso da vari elenchi pubblici. Comunque, altri possono manualmente seguirti.
+        silence: Mentre il tuo account è limitato, solo le persone che già ti seguono possono vedere i tuoi post su questo server, e potresti essere escluso da vari elenchi pubblici. Comunque, altri possono manualmente seguirti.
         suspend: Non puoi più utilizzare il tuo account, e il tuo profilo e altri dati non sono più accessibili. È ancora possibile effettuare il login per richiedere un backup dei dati fino a quando i dati non vengono completamente rimossi, ma conserveremo alcuni dati per impedirti di eludere la sospensione.
       get_in_touch: Puoi rispondere a questa email per entrare in contatto con lo staff di %{instance}.
       review_server_policies: Rivedi regole del server
