@@ -97,7 +97,7 @@ it:
         temporarily_unavailable: Al momento il server di autorizzazione non può completare la tua richiesta a causa di un temporaneo sovraccarico o di manutenzione del server.
         unauthorized_client: Il client non è autorizzato a eseguire questa operazione con questo metodo.
         unsupported_grant_type: Questa modalità di trasmissione di autenticazione non è supportata da questo server.
-        unsupported_response_type: Il server autorizzatore non supporta questa modalità di risposta.
+        unsupported_response_type: Il server di autorizzazione non supporta questo tipo di risposta.
     flash:
       applications:
         create:
@@ -137,12 +137,12 @@ it:
       "read:notifications": vedere le tue notifiche
       "read:reports": vedere i tuoi rapporti
       "read:search": fare ricerche per te
-      "read:statuses": vedere tutti gli status
+      "read:statuses": vedere tutti i post
       write: modificare tutti i dati del tuo account
       "write:accounts": modificare il tuo profilo
       "write:blocks": bloccare account e domini
-      "write:bookmarks": aggiungi post ai preferiti
-      "write:favourites": segnare status come preferiti
+      "write:bookmarks": aggiungere post ai preferiti
+      "write:favourites": apprezzare post
       "write:filters": creare filtri
       "write:follows": seguire persone
       "write:lists": creare liste
@@ -150,4 +150,4 @@ it:
       "write:mutes": silenziare persone e conversazioni
       "write:notifications": cancellare le tue notifiche
       "write:reports": fare rapporto su altre persone
-      "write:statuses": pubblicare status
+      "write:statuses": pubblicare post
