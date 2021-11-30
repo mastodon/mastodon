@@ -600,7 +600,7 @@ it:
         desc_html: Modifica l'aspetto con il CSS caricato in ogni pagina
         title: CSS personalizzato
       default_noindex:
-        desc_html: Interessa tutti gli utenti che non hanno cambiato questa impostazione
+        desc_html: Influisce su tutti gli utenti che non hanno cambiato questa impostazione
         title: Esclude gli utenti dall'indicizzazione dei motori di ricerca per impostazione predefinita
       domain_blocks:
         all: A tutti
@@ -653,7 +653,7 @@ it:
         desc_html: Paragrafo introduttivo nella pagina iniziale. Descrive ciò che rende speciale questo server Mastodon e qualunque altra cosa sia importante dire. Potete usare marcatori HTML, in particolare <code>&lt;a&gt;</code> e <code>&lt;em&gt;</code>.
         title: Descrizione del server
       site_description_extended:
-        desc_html: Un posto adatto per pubblicare regole di comportamento, linee guida e altre cose specifiche del vostro server. Potete usare marcatori HTML
+        desc_html: Un posto adatto le regole di comportamento, linee guida e altre cose specifiche del vostro server. Potete usare marcatori HTML
         title: Informazioni estese personalizzate
       site_short_description:
         desc_html: Mostrato nella barra laterale e nei tag meta. Descrive in un paragrafo che cos'è Mastodon e che cosa rende questo server speciale. Se vuoto, sarà usata la descrizione predefinita del server.
@@ -702,7 +702,7 @@ it:
         message_html: Nessun processo di Sidekiq in esecuzione per le code di %{value}. Sei pregato di revisionare la tua configurazione di Sidekiq
     tags:
       review: Esamina status
-      updated_msg: Impostazioni degli hashtag aggiornate
+      updated_msg: Impostazioni hashtag aggiornate con successo
     title: Amministrazione
     trends:
       allow: Consenti
@@ -1060,14 +1060,14 @@ it:
     proceed_with_move: Sposta seguaci
     redirected_msg: Il tuo account sta reindirizzando a %{acct}.
     redirecting_to: Il tuo account sta reindirizzando a %{acct}.
-    set_redirect: Imposta ridirezione
+    set_redirect: Imposta reindirizzamento
     warning:
       backreference_required: Il nuovo account deve essere prima configurato per collegarsi a questo
       before: 'Prima di procedere, leggi attentamente queste avvertenze:'
       cooldown: Dopo il trasferimento c'è un periodo di pausa durante il quale non potrai trasferirti di nuovo
       disabled_account: Il tuo account attuale non sarà più pienamente utilizzabile. Tuttavia, avrai accesso all'esportazione dei dati e alla riattivazione.
-      followers: Questa azione sposterà tutti i seguaci dall'account attuale al nuovo account
-      only_redirect_html: In alternativa, puoi solo <a href="%{path}">impostare un redirect sul tuo profilo</a>.
+      followers: Questa azione sposterà tutti i follower dall'account attuale al nuovo account
+      only_redirect_html: In alternativa, puoi solo <a href="%{path}">impostare un reindirizzamento sul tuo profilo</a>.
       other_data: Nessun altro dato verrà spostato automaticamente
       redirect: Il profilo del tuo account corrente sarà aggiornato con un avviso di ridirezione e sarà escluso dalle ricerche
   moderation:
@@ -1117,7 +1117,7 @@ it:
   notifications:
     email_events: Eventi per notifiche via email
     email_events_hint: 'Seleziona gli eventi per i quali vuoi ricevere le notifiche:'
-    other_settings: Altre impostazioni per le notifiche
+    other_settings: Altre impostazioni delle notifiche
   number:
     human:
       decimal_units:
@@ -1251,7 +1251,7 @@ it:
     delete: Cancellazione account
     development: Sviluppo
     edit_profile: Modifica profilo
-    export: Esporta impostazioni
+    export: Esportazione dati
     featured_tags: Hashtag in evidenza
     import: Importa
     import_and_export: Importa ed esporta
@@ -1494,7 +1494,7 @@ it:
         silence: Account limitato
         suspend: Account sospeso
     welcome:
-      edit_profile_action: Imposta profilo
+      edit_profile_action: Configura profilo
       edit_profile_step: Puoi personalizzare il tuo profilo caricando un avatar, un'intestazione, modificando il tuo nome visualizzato e così via. Se vuoi controllare i tuoi nuovi seguaci prima di autorizzarli a seguirti, puoi bloccare il tuo account.
       explanation: Ecco alcuni suggerimenti per iniziare
       final_action: Inizia a postare
@@ -1505,7 +1505,7 @@ it:
       review_preferences_step: Dovresti impostare le tue preferenze, ad esempio quali email vuoi ricevere oppure il livello predefinito di privacy per i tuoi post. Se le immagini in movimento non ti danno fastidio, puoi abilitare l'animazione automatica delle GIF.
       subject: Benvenuto/a su Mastodon
       tip_federated_timeline: La timeline federata visualizza uno dopo l'altro i messaggi pubblicati su Mastodon. Ma comprende solo gli utenti seguiti dai tuoi vicini, quindi non è completa.
-      tip_following: Per impostazione predefinita, segui l'amministratore/i del tuo server. Per trovare utenti più interessanti, dà un'occhiata alle timeline locale e federata.
+      tip_following: Per impostazione predefinita, segui gli amministratori del tuo server. Per trovare utenti più interessanti, dà un'occhiata alle timeline locale e federata.
       tip_local_timeline: La timeline locale visualizza uno dopo l'altro i messaggi degli utenti di %{instance}. Questi sono i tuoi vicini!
       tip_mobile_webapp: Se il tuo browser mobile ti dà la possibilità di aggiungere Mastodon allo schermo, puoi ricevere le notifiche. Funziona un po' come un'app natova!
       tips: Suggerimenti
@@ -1516,7 +1516,7 @@ it:
     invalid_otp_token: Codice d'accesso non valido
     invalid_sign_in_token: Codice di sicurezza non valido
     otp_lost_help_html: Se perdessi l'accesso ad entrambi, puoi entrare in contatto con %{email}
-    seamless_external_login: Ti sei collegato per mezzo di un servizio esterno, quindi le impostazioni di email e password non sono disponibili.
+    seamless_external_login: Hai effettuato l'accesso tramite un servizio esterno, quindi le impostazioni di password e e-mail non sono disponibili.
     signed_in_as: 'Hai effettuato l''accesso come:'
     suspicious_sign_in_confirmation: Sembra che tu non abbia effettuato l'accesso da questo dispositivo prima d'ora, e non hai effettuato l'accesso per un po', quindi inviamo un codice di sicurezza al tuo indirizzo e-mail per confermare che sei proprio tu.
   verification:
