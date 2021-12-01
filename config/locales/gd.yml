@@ -45,7 +45,7 @@ gd:
       rejecting_media: 'Cha dèid faidhlichean meadhain o na frithealaichean seo a phròiseasadh no a stòradh agus cha dèid dealbhagan dhiubh a shealltainn. Feumar briogadh gus an ruigear am faidhle tùsail a làimh:'
       rejecting_media_title: Meadhanan criathraichte
       silenced: 'Thèid postaichean o na frithealaichean seo fhalach air loidhnichean-ama is còmhraidhean poblach agus cha dèid brathan a ghintinn à conaltraidhean nan cleachdaichean aca ach ma bhios tu fèin a’ leantainn orra:'
-      silenced_title: Frithealaichean mùchte
+      silenced_title: Frithealaichean cuingichte
       suspended: 'Cha dèid dàta sam bith o na frithealaichean seo a phròiseasadh, a stòradh no iomlaid agus chan urrainn do na cleachdaichean o na frithealaichean sin conaltradh an-seo:'
       suspended_title: Frithealaichean à rèim
     unavailable_content_html: San fharsaingeachd, leigidh Mastodon leat susbaint o fhrithealaiche sam bith sa cho-shaoghal a shealltainn agus conaltradh leis na cleachdaichean uapa-san. Seo na h-easgaidhean a tha an sàs air an fhrithealaiche shònraichte seo.
@@ -160,7 +160,7 @@ gd:
         active: Gnìomhach
         all: Na h-uile
         pending: Ri dhèiligeadh
-        silenced: Mùchte
+        silenced: Cuingichte
         suspended: À rèim
         title: Maorsainneachd
       moderation_notes: Nòtaichean na maorsainneachd
@@ -204,13 +204,13 @@ gd:
         only_password: Facal-faire a-mhàin
         password_and_2fa: Facal-faire ’s dà-cheumnach
         password_and_sign_in_token: Facal-faire ’s tòcan puist-d
-      sensitive: Frionasach
+      sensitive: Spàrr an fhrionasachd air
       sensitized: Chaidh comharradh gu bheil e frionasach
       shared_inbox_url: URL a’ bhogsa a-steach cho-roinnte
       show:
         created_reports: Gearanan a chaidh a dhèanamh
         targeted_reports: Gearanan le càch
-      silence: Crìoch
+      silence: Cuingich
       silenced: Cuingichte
       statuses: Postaichean
       subscribe: Fo-sgrìobh
@@ -220,8 +220,8 @@ gd:
       time_in_queue: A’ feitheamh air a’ chiudha fad %{time}
       title: Cunntasan
       unconfirmed_email: Post-d gun dearbhadh
-      undo_sensitized: Thoir air falbh a comharra gu bheil e frionasach
-      undo_silenced: Dì-mhùch
+      undo_sensitized: Na spàrr an fhrionasachd air tuilleadh
+      undo_silenced: Dì-chuingich
       undo_suspension: Cuir ann an rèim a-rithist
       unsilenced_msg: Chaidh an cuingeachadh a thoirt air falbh on chunntas aig %{username}
       unsubscribe: Cuir crìoch air an fho-sgrìobhadh
@@ -266,12 +266,12 @@ gd:
         reopen_report: Fosgail an gearan a-rithist
         reset_password_user: Ath-shuidhich am facal-faire
         resolve_report: Fuasgail an gearan
-        sensitive_account: Comharraich gu bheil na meadhanan sa chunntas agad frionasach
-        silence_account: Mùch an cunntas
+        sensitive_account: Spàrr an fhrionasachd air a’ chunntas seo
+        silence_account: Cuingich an cunntas
         suspend_account: Cuir an cunntas à rèim
         unassigned_report: Dì-iomruin an gearan
-        unsensitive_account: Comharraich nach eil na meadhanan sa chunntas agad frionasach
-        unsilence_account: Dì-mhùch an cunntas
+        unsensitive_account: Na spàrr an fhrionasachd air a’ chunntas seo tuilleadh
+        unsilence_account: Dì-chuingich an cunntas
         unsuspend_account: Cuir an cunntas ann an rèim a-rithist
         update_announcement: Ùraich am brath-fios
         update_custom_emoji: Ùraich an t-Emoji gnàthaichte
@@ -312,11 +312,11 @@ gd:
         reset_password_user_html: "Dh’ath-shuidhich %{name} am facal-faire aig a’ chleachdaiche %{target}"
         resolve_report_html: "Dh’fhuasgail %{name} an gearan %{target}"
         sensitive_account_html: "Chuir %{name} comharra gu bheil e frionasach ri meadhan aig %{target}"
-        silence_account_html: "Mhùch %{name} an cunntas aig %{target}"
+        silence_account_html: "Chuingich %{name} an cunntas aig %{target}"
         suspend_account_html: "Chuir %{name} an cunntas aig %{target} à rèim"
         unassigned_report_html: "Neo-iomruin %{name} an gearan %{target}"
         unsensitive_account_html: "Chuir %{name} comharra nach eil e frionasach ri meadhan aig %{target}"
-        unsilence_account_html: "Dì-mhùch %{name} an cunntas aig %{target}"
+        unsilence_account_html: "Dì-chuingich %{name} an cunntas aig %{target}"
         unsuspend_account_html: "Chuir %{name} an cunntas aig %{target} ann an rèim a-rithist"
         update_announcement_html: "Dh’ùraich %{name} am brath-fios %{target}"
         update_custom_emoji_html: "Dh’ùraich %{name} an Emoji %{target}"
@@ -440,7 +440,7 @@ gd:
       rejecting_media: a’ diùltadh faidhlichean meadhain
       rejecting_reports: a’ diùltadh gearanan
       severity:
-        silence: mùchte
+        silence: cuingichte
         suspend: à rèim
       show:
         affected_accounts:
@@ -449,7 +449,7 @@ gd:
           few: "Bheir seo buaidh air %{count} cunntasan san stòr-dàta"
           other: "Bheir seo buaidh air %{count} cunntas san stòr-dàta"
         retroactive:
-          silence: Dì-mhùch na cunntasan a tha ann on àrainn seo ’s air a bheil buaidh
+          silence: Dì-chuingich na cunntasan a tha ann on àrainn seo ’s air a bheil buaidh
           suspend: Cuir na cunntasan a tha ann on àrainn seo ’s air a bheil buaidh ann an rèim a-rithist
         title: Neo-dhèan bacadh na h-àrainne %{domain}
         undo: Neo-dhèan
