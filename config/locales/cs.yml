@@ -725,7 +725,7 @@ cs:
       sidekiq_process_check:
         message_html: Pro %{value} frontu/fronty neběží žádný Sidekiq proces. Zkontrolujte prosím svou Sidekiq konfiguraci
     tags:
-      review: Stav schválení
+      review: Stav posouzení
       updated_msg: Nastavení hashtagů bylo úspěšně aktualizováno
     title: Administrace
     trends:
@@ -737,6 +737,12 @@ cs:
         allow_provider: Povolit vydavatele
         disallow: Zakázat odkaz
         disallow_provider: Zakázat vydavatele
+        shared_by_over_week:
+          one: Sdílený jedním člověkem za poslední týden
+          few: Sdílený %{count} lidmi za poslední týden
+          many: Sdílený %{count} lidmi za poslední týden
+          other: Sdílený %{count} lidmi za poslední týden
+        title: Populární odkazy
     warning_presets:
       add_new: Přidat nové
       delete: Smazat
@@ -824,7 +830,7 @@ cs:
       account_status: Stav účtu
       confirming: Čeká na dokončení potvrzení e-mailu.
       functional: Váš účet je zcela funkční.
-      pending: Vaše žádost čeká na schválení naším personálem. To může nějakou dobu trvat. Pokud bude váš požadavek schválen, obdržíte e-mail.
+      pending: Vaše žádost čeká na posouzení naším personálem. To může nějakou dobu trvat. Pokud bude váš požadavek schválen, obdržíte e-mail.
       redirecting_to: Váš účet je neaktivní, protože je právě přesměrován na účet %{acct}.
     too_fast: Formulář byl odeslán příliš rychle, zkuste to znovu.
     trouble_logging_in: Problémy s přihlášením?
