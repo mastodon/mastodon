@@ -737,6 +737,14 @@ gl:
         not_usable: Non pode ser usado
         peaked_on_and_decaying: Máximo en %{date}, agora diminúe
         title: Cancelos en voga
+        trendable: Pode aparecer nas tendencias
+        trending_rank: 'En voga #%{rank}'
+        usable: Pode ser usado
+        usage_comparison: Utilizado %{today} veces hoxe, comparado coas %{yesterday} de onte
+        used_by_over_week:
+          one: Utilizado por unha persoa na última semana
+          other: Utilizado por %{count} persoas na última semana
+      title: Tendencias
     warning_presets:
       add_new: Engadir novo
       delete: Eliminar
@@ -751,6 +759,16 @@ gl:
       body: "%{reporter} informou sobre %{target}"
       body_remote: Alguén desde %{domain} informou sobre %{target}
       subject: 'Novo informe sobre %{instance} (#%{id})'
+    new_trending_links:
+      body: As seguintes ligazóns están hoxe en voga, pero as súas orixes non foron anteriormente revisadas. Non se van amosar públicamente ata que as aprobes. Non se crearán novas notificacións acerca destas orixes.
+      no_approved_links: Actualmente non hai ligazóns en voga aprobadas.
+      requirements: A ligazón en voga aprobada con menor rango é "%{lowest_link_title}" cunha puntuación de %{lowest_link_score}.
+      subject: Novas ligazóns en voga para revisión en %{instance}
+    new_trending_tags:
+      body: 'Os seguintes cancelos son tendencia hoxe, pero non foron previamente revisados. Non aparecerán públicamente a menos que os aprobes:'
+      no_approved_tags: Non hai cancelos en voga aprobados.
+      requirements: 'O cancelo aprobado con menor rango é #%{lowest_tag_name} cunha puntuación de %{lowest_tag_score}.'
+      subject: Hai novos cancelos pendentes de revisión en %{instance}
   aliases:
     add_new: Crear alcume
     created_msg: Creou un novo alcume correctamente. Pode iniciar o movemento desde a conta antiga.
@@ -957,6 +975,7 @@ gl:
     changes_saved_msg: Cambios gardados correctamente!!
     copy: Copiar
     delete: Eliminar
+    none: Ningún
     order_by: Ordenar por
     save_changes: Gardar cambios
     validation_errors:
