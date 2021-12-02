@@ -78,7 +78,7 @@ export const createMediaTransport = <T extends webrtc>(s: T) =>
   });
 
 export const createWebRtcTransport = createRequest<
-  {room: string},
+  { room: string },
   {
     forceTcp?: boolean;
     producing: boolean;
@@ -87,14 +87,15 @@ export const createWebRtcTransport = createRequest<
   },
   mediasoupTypes.TransportOptions
 >({
-  uri: p => `/rooms/${p.room}/createWebRtcTransport`,
+  uri: (p) => `/rooms/${p.room}/createWebRtcTransport`,
   method: "post",
 });
 
 export const connectWebRtcTransport = createRequest<
   undefined,
   {
-    transportId: string, dtlsParameters: any
+    transportId: string;
+    dtlsParameters: any;
   },
   undefined
 >({
@@ -114,6 +115,15 @@ type RTC = {
   codecs: (VideoCodec | AudioCodec)[];
   encodings: [{ ssrc: 1111 | 2222 }];
 };
+
+export const getStreamer = createRequest<
+  { room: string },
+  {transport: string},
+  mediasoupTypes.ConsumerOptions
+>({
+  uri: (p) => `/rooms/${p.room}/streamer`,
+  method: 'post'
+});
 
 export const createMediasoupProducer = createRequest<
   { roomId: string; broadcasterId: string; transportId: string },

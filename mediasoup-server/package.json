@@ -1,0 +1,17 @@
+{
+  "name": "mediasoup-broadcast-example",
+  "version": "1.2.11",
+  "description": "Sample WebRTC broadcast client/server for the Mediasoup SFU.",
+  "main": "server/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "curl -o app/mediasoup-client.js https://raw.githubusercontent.com/versatica/mediasoup-client/v2/dist/mediasoup-client.js"
+  },
+  "author": "michael@fig.org",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.3",
+    "mediasoup": "^2.6.19",
+    "ws": "^6.2.2"
+  }
+}

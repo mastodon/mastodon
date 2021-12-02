@@ -27,7 +27,7 @@ Rails.application.configure do
     end
   end
 
-  config.x.mediasoup_protoo_base_url = 'http://localhost:4443'
+  config.x.mediasoup_protoo_base_url = 'ws://localhost:8000'
 
   unless Rails.env.test?
     config.hosts << host if host.present?
