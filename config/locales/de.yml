@@ -706,7 +706,24 @@ de:
     title: Administration
     trends:
       allow: Erlauben
+      approved: Freigegeben
+      disallow: Verbieten
+      links:
+        allow: Erlaube Link
+        allow_provider: Erlaube Herausgeber
+        disallow: Verbiete Link
+        disallow_provider: Verbiete Herausgeber
+        shared_by_over_week:
+          one: In der letzten Woche geteilt von einer Person
+          other: In der letzten Woche geteilt von %{count} Personen
+        title: Angesagte Links
+        usage_comparison: Heute %{today} mal geteilt, gestern %{yesterday} mal
       pending_review: Überprüfung ausstehend
+      preview_card_providers:
+        allowed: Links von diesem Herausgeber können angesagt sein
+        rejected: Links von diesem Herausgeber können nicht angesagt sein
+        title: Herausgeber
+      rejected: Abgelehnt
       tags:
         dashboard:
           tag_languages_dimension: Top Sprachen
