@@ -659,13 +659,20 @@ th:
     title: การดูแล
     trends:
       allow: อนุญาต
+      approved: อนุมัติแล้ว
       disallow: ไม่อนุญาต
       links:
         allow: อนุญาตลิงก์
+        allow_provider: อนุญาตผู้เผยแพร่
         disallow: ไม่อนุญาตลิงก์
+        disallow_provider: ไม่อนุญาตผู้เผยแพร่
         title: ลิงก์ที่กำลังนิยม
       pending_review: การตรวจทานที่รอดำเนินการ
+      preview_card_providers:
+        title: ผู้เผยแพร่
+      rejected: ปฏิเสธแล้ว
       tags:
+        current_score: คะแนนปัจจุบัน %{score}
         title: แฮชแท็กที่กำลังนิยม
         trending_rank: 'กำลังนิยม #%{rank}'
       title: แนวโน้ม
