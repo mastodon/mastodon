@@ -16,7 +16,7 @@
           *
       %div.label_input__wrapper
         %div.rucaptcha_wrapper
-          = rucaptcha_input_tag(type: 'text', class: 'required', id: 'rucaptcha', required: 'required', aria_label: t('simple_form.labels.defaults.captcha_label'))
+          = rucaptcha_input_tag(type: 'text', class: 'required', id: 'rucaptcha', required: 'required', placeholder: ' ', aria_label: t('simple_form.labels.defaults.captcha_label'))
           = rucaptcha_image_tag(id: 'rucaptcha-image', alt: t('simple_form.labels.defaults.captcha_image'))
       - unless object == nil
         %span.hint= t('simple_form.labels.defaults.captcha_hint')
