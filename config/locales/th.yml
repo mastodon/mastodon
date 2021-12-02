@@ -630,7 +630,7 @@ th:
         title: อนุญาตให้แฮชแท็กขึ้นแนวโน้มโดยไม่มีการตรวจทานล่วงหน้า
       trends:
         desc_html: แสดงแฮชแท็กที่ตรวจทานแล้วก่อนหน้านี้ที่กำลังนิยมเป็นสาธารณะ
-        title: แฮชแท็กที่กำลังนิยม
+        title: แนวโน้ม
     site_uploads:
       delete: ลบไฟล์ที่อัปโหลด
       destroyed_msg: ลบการอัปโหลดไซต์สำเร็จ!
@@ -673,7 +673,12 @@ th:
       rejected: ปฏิเสธแล้ว
       tags:
         current_score: คะแนนปัจจุบัน %{score}
+        dashboard:
+          tag_languages_dimension: ภาษายอดนิยม
+          tag_servers_dimension: เซิร์ฟเวอร์ยอดนิยม
+        not_trendable: จะไม่ปรากฏภายใต้แนวโน้ม
         title: แฮชแท็กที่กำลังนิยม
+        trendable: สามารถปรากฏภายใต้แนวโน้ม
         trending_rank: 'กำลังนิยม #%{rank}'
       title: แนวโน้ม
     warning_presets:
