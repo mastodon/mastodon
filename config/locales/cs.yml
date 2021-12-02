@@ -788,6 +788,16 @@ cs:
       body: "Uživatel %{reporter} nahlásil uživatele %{target}"
       body_remote: Někdo z domény %{domain} nahlásil uživatele %{target}
       subject: 'Nové hlášení pro %{instance} (#%{id})'
+    new_trending_links:
+      body: Následující odkazy jsou dnes populární, ale jejich vydavatelé zatím nebyli posouzeni. Nebudou veřejně zobrazeny, pokud je neschválíte. Pro stejné vydavatele už další upozornění nedostanete.
+      no_approved_links: Momentálně nejsou žádné schválené populární odkazy.
+      requirements: Nejnižší schválený populární odkaz je momentálně "%{lowest_link_title}" se skóre %{lowest_link_score}.
+      subject: Nové populární odkazy k posouzení na %{instance}
+    new_trending_tags:
+      body: 'Následující hashtagy jsou dnes populární, ale nebyly dříve přezkoumány. Nebudou zobrazeny veřejně, pokud je neschválíte:'
+      no_approved_tags: Momentálně nejsou žádné schválené populární hashtagy.
+      requirements: 'Nejnižší schválený populární hashtag je momentálně "%{lowest_tag_name}" se skóre %{lowest_tag_score}.'
+      subject: Nové populární hashtagy k posouzení na %{instance}
   aliases:
     add_new: Vytvořit alias
     created_msg: Nový alias byl úspěšně vytvořen. Nyní můžete zahájit přesun ze starého účtu.
