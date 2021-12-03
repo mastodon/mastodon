@@ -49,7 +49,7 @@ module Omniauthable
       strategy          = Devise.omniauth_configs[auth.provider.to_sym].strategy
       assume_verified   = strategy&.security&.assume_email_is_verified
       email_is_verified = auth.info.verified || auth.info.verified_email || auth.info.email_verified || assume_verified
-      email             = auth.info.verified_email || auth.info.email
+      email             = trusted_auth_provider_email(auth)
       # email             = nil unless email_is_verified or trusted_auth_provider(auth)
 
       user = User.find_by(email: email) if email_is_verified or trusted_auth_provider(auth)
@@ -124,6 +124,16 @@ module Omniauthable
       end
 
       return nil
+    end
+
+    def trusted_auth_provider_email(auth)
+      if auth.provider == 'github'
+        return auth.info.email || auth.extra['all_emails'].select{ |email| email.primary? }.email
+      elsif auth.provider == 'gitlab'
+        return auth.info.email
+      end
+
+      return auth.info.verified_email || auth.info.email
     end
 
     def is_registration_limited()
