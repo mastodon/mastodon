@@ -6,6 +6,7 @@ import IconButton from '../../../components/icon_button';
 import RadioButton from '../../../components/radio_button';
 import {
   changeListEditorTitle,
+  changeListEditorType,
   submitListEditor,
   clearListSuggestions,
   resetListEditor,
@@ -16,6 +17,7 @@ import Motion from '../../ui/util/optional_motion';
 import spring from 'react-motion/lib/spring';
 
 const messages = defineMessages({
+  listCreator: {id: "lists.new.creator", defaultMessage: "List creator"},
   label: {
     id: "lists.new.title_placeholder",
     defaultMessage: "New list title",
@@ -34,13 +36,14 @@ const CreateNewListForm = (props) => {
 
   const label = intl.formatMessage(messages.label);
   const title = intl.formatMessage(messages.title);
+  const listCreator = intl.formatMessage(messages.listCreator);
 
   const [listName, setListName] = useState(false);
-  const [listType, setListType] = useState(undefined);
+  const [listType, setListType] = useState('users');
 
   const dispatch = useDispatch();
 
-  const [value, disabled, accountIds, searchAccountIds] = useSelector(
+  const [value, disabled, accountIds, searchAccountIds, listTypeValue] = useSelector(
     (state) => [
       state.getIn(["listEditor", "title"]),
       state.getIn(["listEditor", "isSubmitting"]),
@@ -58,11 +61,15 @@ const CreateNewListForm = (props) => {
   }, []);
 
   useEffect(() => {
-    console.log(listName);
   }, [listName]);
 
-  const handleChange = (e) => {
-    dispatch(changeListEditorTitle(e.target.value));
+  const handleChange = ({target}) => {
+    dispatch(changeListEditorTitle(target.value));
+  };
+
+  const handleListTypeChange = ({target}) => {
+    setListType(target.value);
+    dispatch(changeListEditorType(target.value));
   };
 
   const handleSubmit = (e) => {
@@ -88,14 +95,9 @@ const CreateNewListForm = (props) => {
     dispatch(clearListSuggestions());
   };
 
-  const handleListType = ({ target }) => {
-    setListType(target.value);
-    console.log(target.value);
-  };
-
   return (
     <div>
-      <h4>List creator</h4>
+      <h4>{listCreator}</h4>
       <form className="column-settings__row" onSubmit={handleSubmit}>
         <div className="column-inline-form">
           <label>
@@ -111,7 +113,7 @@ const CreateNewListForm = (props) => {
           </label>
 
           <IconButton
-            disabled={disabled || !value || !listType}
+            disabled={disabled || !value}
             icon={!listName ? "plus" : "check"}
             title={title}
             onClick={handleClick}
@@ -133,7 +135,7 @@ const CreateNewListForm = (props) => {
                   value={type}
                   label={intl.formatMessage(messages[type])}
                   checked={listType === type}
-                  onChange={handleListType}
+                  onChange={handleListTypeChange}
                 />
               ))}
             </div>

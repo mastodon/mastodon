@@ -9,6 +9,7 @@
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #  replies_policy :integer          default("list"), not null
+#  list_types     :integer          default("users"), nut null
 #
 
 class List < ApplicationRecord
@@ -17,6 +18,8 @@ class List < ApplicationRecord
   PER_ACCOUNT_LIMIT = 50
 
   enum replies_policy: [:list, :followed, :none], _prefix: :show
+
+  enum list_types: [:users, :hashtag], _prefix: :show
 
   belongs_to :account, optional: true
 

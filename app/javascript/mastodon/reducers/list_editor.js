@@ -9,6 +9,7 @@ import {
   LIST_EDITOR_RESET,
   LIST_EDITOR_SETUP,
   LIST_EDITOR_TITLE_CHANGE,
+  LIST_EDITOR_TYPE_CHANGE,
   LIST_ACCOUNTS_FETCH_REQUEST,
   LIST_ACCOUNTS_FETCH_SUCCESS,
   LIST_ACCOUNTS_FETCH_FAIL,
@@ -24,6 +25,7 @@ const initialState = ImmutableMap({
   isSubmitting: false,
   isChanged: false,
   title: '',
+  listType: 'users',
 
   accounts: ImmutableMap({
     items: ImmutableList(),
@@ -51,6 +53,10 @@ export default function listEditorReducer(state = initialState, action) {
     return state.withMutations(map => {
       map.set('title', action.value);
       map.set('isChanged', true);
+    });
+  case LIST_EDITOR_TYPE_CHANGE:
+    return state.withMutations(map => {
+      map.set('listType', action.listType);
     });
   case LIST_CREATE_REQUEST:
   case LIST_UPDATE_REQUEST:

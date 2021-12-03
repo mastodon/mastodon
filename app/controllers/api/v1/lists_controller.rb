@@ -38,6 +38,6 @@ class Api::V1::ListsController < Api::BaseController
   end
 
   def list_params
-    params.permit(:title, :replies_policy)
+    params.permit(:title, :replies_policy, :list_types)
   end
 end

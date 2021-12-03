@@ -11,6 +11,7 @@ export const LISTS_FETCH_SUCCESS = 'LISTS_FETCH_SUCCESS';
 export const LISTS_FETCH_FAIL    = 'LISTS_FETCH_FAIL';
 
 export const LIST_EDITOR_TITLE_CHANGE = 'LIST_EDITOR_TITLE_CHANGE';
+export const LIST_EDITOR_TYPE_CHANGE = 'LIST_EDITOR_TYPE_CHANGE';
 export const LIST_EDITOR_RESET        = 'LIST_EDITOR_RESET';
 export const LIST_EDITOR_SETUP        = 'LIST_EDITOR_SETUP';
 
@@ -104,9 +105,10 @@ export const fetchListsFail = error => ({
 export const submitListEditor = shouldReset => (dispatch, getState) => {
   const listId = getState().getIn(['listEditor', 'listId']);
   const title  = getState().getIn(['listEditor', 'title']);
+  const listType = getState().getIn(['listEditor', 'listType']);
 
   if (listId === null) {
-    dispatch(createList(title, shouldReset));
+    dispatch(createList(title, listType, shouldReset));
   } else {
     dispatch(updateList(listId, title, shouldReset));
   }
@@ -126,10 +128,15 @@ export const changeListEditorTitle = value => ({
   value,
 });
 
-export const createList = (title, shouldReset) => (dispatch, getState) => {
+export const changeListEditorType = listType => ({
+  type: LIST_EDITOR_TYPE_CHANGE,
+  listType,
+})
+
+export const createList = (title, listType, shouldReset) => (dispatch, getState) => {
   dispatch(createListRequest());
 
-  api(getState).post('/api/v1/lists', { title }).then(({ data }) => {
+  api(getState).post('/api/v1/lists', { title, list_types: listType }).then(({ data }) => {
     dispatch(createListSuccess(data));
 
     if (shouldReset) {
