@@ -1,23 +1,20 @@
-import React, { useState, useEffect } from 'react';
-import { FormattedMessage, injectIntl, defineMessages } from 'react-intl';
-import { useSelector, useDispatch } from 'react-redux';
+import React, { useState, useEffect } from "react";
+import { FormattedMessage, injectIntl, defineMessages } from "react-intl";
+import { useSelector, useDispatch } from "react-redux";
+import RadioButton from "../../../components/radio_button";
 
-import IconButton from '../../../components/icon_button';
-import RadioButton from '../../../components/radio_button';
+import IconButton from "../../../components/icon_button";
 import {
   changeListEditorTitle,
   changeListEditorType,
   submitListEditor,
-  clearListSuggestions,
   resetListEditor,
-} from '../../../actions/lists';
-import Account from '../../list_editor/components/account';
-import Search from '../../list_editor/components/search';
-import Motion from '../../ui/util/optional_motion';
-import spring from 'react-motion/lib/spring';
+} from "../../../actions/lists";
+
+import UserListCreator from "./list_creators/user_list_creator";
 
 const messages = defineMessages({
-  listCreator: {id: "lists.new.creator", defaultMessage: "List creator"},
+  listCreator: { id: "lists.new.creator", defaultMessage: "List creator" },
   label: {
     id: "lists.new.title_placeholder",
     defaultMessage: "New list title",
@@ -39,20 +36,18 @@ const CreateNewListForm = (props) => {
   const listCreator = intl.formatMessage(messages.listCreator);
 
   const [listName, setListName] = useState(false);
-  const [listType, setListType] = useState('users');
+  const [listType, setListType] = useState("users");
 
   const dispatch = useDispatch();
 
-  const [value, disabled, accountIds, searchAccountIds, listTypeValue] = useSelector(
-    (state) => [
+  const [value, disabled, accountIds, searchAccountIds, listTypeValue] =
+    useSelector((state) => [
       state.getIn(["listEditor", "title"]),
       state.getIn(["listEditor", "isSubmitting"]),
       state.getIn(["listEditor", "accounts", "items"]),
       state.getIn(["listEditor", "suggestions", "items"]),
-    ]
-  );
-
-  const showSearch = searchAccountIds.size > 0;
+      state.getIn(["listEditor", "listType"]),
+    ]);
 
   useEffect(() => {
     return () => {
@@ -60,14 +55,13 @@ const CreateNewListForm = (props) => {
     };
   }, []);
 
-  useEffect(() => {
-  }, [listName]);
+  useEffect(() => {}, [listName]);
 
-  const handleChange = ({target}) => {
+  const handleChange = ({ target }) => {
     dispatch(changeListEditorTitle(target.value));
   };
 
-  const handleListTypeChange = ({target}) => {
+  const handleListTypeChange = ({ target }) => {
     setListType(target.value);
     dispatch(changeListEditorType(target.value));
   };
@@ -91,9 +85,20 @@ const CreateNewListForm = (props) => {
     }
   };
 
-  const onClear = () => {
-    dispatch(clearListSuggestions());
-  };
+  let creator;
+
+  if (listName && listTypeValue === "users") {
+    creator = (
+      <UserListCreator
+        accountIds={accountIds}
+        searchAccountIds={searchAccountIds}
+      />
+    );
+  }
+  else if (listName && listTypeValue === "hashtag") {
+
+  }
+  
 
   return (
     <div>
@@ -142,53 +147,7 @@ const CreateNewListForm = (props) => {
           </div>
         )}
       </form>
-
-      {listName && (
-        <div>
-          <Search />
-
-          <div className="drawer__pager">
-            <div className="drawer__inner list-editor__accounts">
-              {accountIds.map((accountId) => (
-                <Account key={accountId} accountId={accountId} added />
-              ))}
-            </div>
-
-            {showSearch && (
-              <div
-                role="button"
-                tabIndex="-1"
-                className="drawer__backdrop"
-                onClick={onClear}
-              />
-            )}
-
-            <Motion
-              defaultStyle={{ x: -100 }}
-              style={{
-                x: spring(showSearch ? 0 : -100, {
-                  stiffness: 210,
-                  damping: 20,
-                }),
-              }}
-            >
-              {({ x }) => (
-                <div
-                  className="drawer__inner backdrop"
-                  style={{
-                    transform: x === 0 ? null : `translateX(${x}%)`,
-                    visibility: x === -100 ? "hidden" : "visible",
-                  }}
-                >
-                  {searchAccountIds.map((accountId) => (
-                    <Account key={accountId} accountId={accountId} />
-                  ))}
-                </div>
-              )}
-            </Motion>
-          </div>
-        </div>
-      )}
+      {creator}
     </div>
   );
 };
