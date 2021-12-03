@@ -87,15 +87,15 @@ zh-CN:
       action: 执行操作
       title: 在 %{acct} 上执行管理操作
     account_moderation_notes:
-      create: 新建
-      created_msg: 管理备忘建立成功！
+      create: 新增记录
+      created_msg: 管理记录已创建！
       delete: 删除
-      destroyed_msg: 管理备忘删除成功！
+      destroyed_msg: 管理记录删除成功！
     accounts:
       add_email_domain_block: 封禁电子邮箱域名
       approve: 批准
       approve_all: 全部批准
-      approved_msg: 成功批准 %{username} 的注册申请
+      approved_msg: 已批准 %{username} 的注册申请
       are_you_sure: 你确定吗？
       avatar: 头像
       by_domain: 域名
@@ -108,14 +108,14 @@ zh-CN:
         title: 为 %{username} 更改电子邮箱
       confirm: 确认
       confirmed: 已确认
-      confirming: 确认中
+      confirming: 等待确认
       delete: 删除数据
       deleted: 已删除
       demote: 降任
-      destroyed_msg: "%{username} 的数据已进入等待队列，即将被删除"
+      destroyed_msg: "%{username} 的数据已被安排至删除队列"
       disable: 冻结
       disable_sign_in_token_auth: 禁用电子邮件令牌认证
-      disable_two_factor_authentication: 停用双重认证
+      disable_two_factor_authentication: 停用两步认证
       disabled: 已冻结
       display_name: 昵称
       domain: 域名
@@ -137,7 +137,7 @@ zh-CN:
       location:
         all: 全部
         local: 本站
-        remote: 远程
+        remote: 远端实例
         title: 位置
       login_status: 登录状态
       media_attachments: 媒体文件
@@ -167,7 +167,7 @@ zh-CN:
       redownloaded_msg: 成功从来源处刷新 %{username} 的用户资料
       reject: 拒绝
       reject_all: 拒绝全部
-      rejected_msg: 成功拒绝 %{username} 的注册申请
+      rejected_msg: 已拒绝 %{username} 的注册申请
       remove_avatar: 删除头像
       remove_header: 删除横幅图片
       removed_avatar_msg: 成功删除 %{username} 的头像
