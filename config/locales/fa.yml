@@ -372,7 +372,10 @@ fa:
     dashboard:
       active_users: کاربران فعّال
       interactions: برهم‌کنش‌ها
+      media_storage: ذخیره‌ساز رسانه
       new_users: کاربران جدید
+      opened_reports: گزارش باز شده
+      resolved_reports: گزارش حل شده
       software: نرم‌افزار
       sources: منابع ثبت‌نام
       space: فضای مصرف‌شده
@@ -461,6 +464,9 @@ fa:
         unavailable: ناموجود
         unavailable_message: تحویل محتوا در دسترس نیست
         warning: هشدار
+        warning_message:
+          one: شکست تحویل %{count} روز
+          other: شکست تحویل محتوا %{count} روز
       delivery_available: پیام آماده است
       delivery_error_days: زورهای خطای تحویل محتوا
       delivery_error_hint: اگر تحویل محتوا به مدت %{count} روز ممکن نباشد، به طور خودکار به عنوان تحویل‌ناشونده علامت‌گذاری خواهد شد.
@@ -693,10 +699,14 @@ fa:
       allow: اجازه
       approved: تأیید شده
       disallow: اجازه ندادن
+      pending_review: بازبینی منتظر
       preview_card_providers:
         title: ناشران
+      rejected: رد شده
       tags:
+        current_score: امتیاز کنونی %{score}
         dashboard:
+          tag_accounts_measure: استفادهٔ یکتا
           tag_languages_dimension: زبان‌های برتر
           tag_servers_dimension: کارسازهای برتر
           tag_servers_measure: کارسازهای گوناگون
@@ -976,7 +986,7 @@ fa:
     title: دعوت دیگران
   lists:
     errors:
-      limit: از این بیشتر نمی‌شود فهرست داشت
+      limit: به بیشینهٔ مقدار سیاهه‌ها رسیدید
   login_activities:
     authentication_methods:
       otp: کارهٔ تأیید هویت دوعاملی
@@ -1110,7 +1120,7 @@ fa:
   preferences:
     other: سایر تنظیمات
     posting_defaults: تنظیمات پیش‌فرض انتشار
-    public_timelines: فهرست عمومی نوشته‌ها
+    public_timelines: خط زمانی‌های عمومی
   reactions:
     errors:
       limit_reached: تجاوز از کران واکنش‌های مختلف
@@ -1264,7 +1274,7 @@ fa:
       private_long: تنها پیگیران شما می‌بینند
       public: عمومی
       public_long: همه می‌توانند ببینند
-      unlisted: فهرست‌نشده
+      unlisted: فهرست نشده
       unlisted_long: عمومی، ولی در فهرست نوشته‌ها نمایش نمی‌یابد
   statuses_cleanup:
     enabled: حذف خودکار فرسته‌های قدیمی
