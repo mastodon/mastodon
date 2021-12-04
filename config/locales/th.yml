@@ -669,7 +669,7 @@ th:
         shared_by_over_week:
           other: แบ่งปันโดย %{count} คนในช่วงสัปดาห์ที่ผ่านมา
         title: ลิงก์ที่กำลังนิยม
-        usage_comparison: แบ่งปัน %{today} ครั้งในวันนี้ เทียบกับ %{yesterday} เมื่อวานนี้
+        usage_comparison: แบ่งปัน %{today} ครั้งวันนี้ เทียบกับ %{yesterday} เมื่อวานนี้
       pending_review: การตรวจทานที่รอดำเนินการ
       preview_card_providers:
         allowed: ลิงก์จากผู้เผยแพร่นี้สามารถขึ้นแนวโน้ม
@@ -679,17 +679,17 @@ th:
       tags:
         current_score: คะแนนปัจจุบัน %{score}
         dashboard:
-          tag_accounts_measure: การใช้ที่ไม่ซ้ำกัน
+          tag_accounts_measure: การใช้งานที่ไม่ซ้ำกัน
           tag_languages_dimension: ภาษายอดนิยม
           tag_servers_dimension: เซิร์ฟเวอร์ยอดนิยม
-          tag_uses_measure: การใช้ทั้งหมด
+          tag_uses_measure: การใช้งานทั้งหมด
         not_trendable: จะไม่ปรากฏภายใต้แนวโน้ม
         not_usable: ไม่สามารถใช้
         title: แฮชแท็กที่กำลังนิยม
         trendable: สามารถปรากฏภายใต้แนวโน้ม
         trending_rank: 'กำลังนิยม #%{rank}'
         usable: สามารถใช้
-        usage_comparison: ใช้ %{today} ครั้งในวันนี้ เทียบกับ %{yesterday} เมื่อวานนี้
+        usage_comparison: ใช้ %{today} ครั้งวันนี้ เทียบกับ %{yesterday} เมื่อวานนี้
         used_by_over_week:
           other: ใช้โดย %{count} คนในช่วงสัปดาห์ที่ผ่านมา
       title: แนวโน้ม
@@ -933,12 +933,12 @@ th:
     generate: สร้างลิงก์เชิญ
     invited_by: 'คุณได้รับเชิญโดย:'
     max_uses:
-      other: "%{count} การใช้"
+      other: "%{count} การใช้งาน"
     max_uses_prompt: ไม่มีขีดจำกัด
     prompt: สร้างและแบ่งปันลิงก์กับผู้อื่นเพื่ออนุญาตให้เข้าถึงเซิร์ฟเวอร์นี้
     table:
       expires_at: หมดอายุเมื่อ
-      uses: การใช้
+      uses: การใช้งาน
     title: เชิญผู้คน
   login_activities:
     authentication_methods:
@@ -1254,6 +1254,7 @@ th:
   user_mailer:
     backup_ready:
       subject: การเก็บถาวรของคุณพร้อมสำหรับการดาวน์โหลดแล้ว
+      title: การส่งออกการเก็บถาวร
     sign_in_token:
       details: 'นี่คือรายละเอียดของความพยายาม:'
       explanation: 'เราตรวจพบความพยายามลงชื่อเข้าบัญชีของคุณจากที่อยู่ IP ที่ไม่รู้จัก หากนี่คือคุณ โปรดป้อนรหัสความปลอดภัยด้านล่างในหน้าตรวจสอบการลงชื่อเข้า:'
