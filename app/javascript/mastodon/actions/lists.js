@@ -105,12 +105,16 @@ export const fetchListsFail = error => ({
 export const submitListEditor = shouldReset => (dispatch, getState) => {
   const listId = getState().getIn(['listEditor', 'listId']);
   const title  = getState().getIn(['listEditor', 'title']);
-  const hashtags = getState().getIn(['listEditor', 'hashtags']);
+  const hashtags = getState().getIn(["listEditor", "hashtags"]).split(/(\s+)/).filter( e => e.trim().length > 0);
+  const hashtagsUsers = { hashtags: {}, users: {} };
+  hashtags.forEach((h, i) => (hashtagsUsers.hashtags[i] = h));
+  const hashtagsUsersJSON = JSON.stringify(hashtagsUsers);
+  console.log(hashtagsUsersJSON);
 
   if (listId === null) {
     dispatch(createList(title, shouldReset));
   } else {
-    dispatch(updateList(listId, title, hashtags, shouldReset));
+    dispatch(updateList(listId, title, hashtagsUsersJSON, shouldReset));
   }
 };
 
@@ -159,10 +163,10 @@ export const createListFail = error => ({
   error,
 });
 
-export const updateList = (id, title, hashtags, shouldReset, replies_policy) => (dispatch, getState) => {
+export const updateList = (id, title, hashtags_users, shouldReset, replies_policy) => (dispatch, getState) => {
   dispatch(updateListRequest(id));
 
-  api(getState).put(`/api/v1/lists/${id}`, { title, replies_policy, hashtags }).then(({ data }) => {
+  api(getState).put(`/api/v1/lists/${id}`, { title, replies_policy, hashtags_users }).then(({ data }) => {
     dispatch(updateListSuccess(data));
 
     if (shouldReset) {
