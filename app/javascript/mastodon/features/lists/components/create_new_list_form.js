@@ -1,17 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { FormattedMessage, injectIntl, defineMessages } from "react-intl";
+import { injectIntl, defineMessages } from "react-intl";
 import { useSelector, useDispatch } from "react-redux";
-import RadioButton from "../../../components/radio_button";
 
 import IconButton from "../../../components/icon_button";
 import {
   changeListEditorTitle,
-  changeListEditorType,
   submitListEditor,
   resetListEditor,
 } from "../../../actions/lists";
 
-import UserListCreator from "./list_creators/user_list_creator";
+import HashtagUserListCreator from "./list_creators/hashtag_user_list_creator";
 
 const messages = defineMessages({
   listCreator: { id: "lists.new.creator", defaultMessage: "List creator" },
@@ -20,12 +18,6 @@ const messages = defineMessages({
     defaultMessage: "New list title",
   },
   title: { id: "lists.new.create", defaultMessage: "Add list" },
-  hashtag: { id: "lists.extended_lists.hashtag", defaultMessage: "Hashtag" },
-  users: { id: "lists.extended_lists.users", defaultMessage: "Users" },
-  listTypes: {
-    id: "lists.extended_lists.list_types",
-    defaultMessage: "Choose list type:",
-  },
 });
 
 const CreateNewListForm = (props) => {
@@ -36,18 +28,17 @@ const CreateNewListForm = (props) => {
   const listCreator = intl.formatMessage(messages.listCreator);
 
   const [listName, setListName] = useState(false);
-  const [listType, setListType] = useState("users");
 
   const dispatch = useDispatch();
 
-  const [value, disabled, accountIds, searchAccountIds, listTypeValue] =
-    useSelector((state) => [
+  const [value, disabled, accountIds, searchAccountIds] = useSelector(
+    (state) => [
       state.getIn(["listEditor", "title"]),
       state.getIn(["listEditor", "isSubmitting"]),
       state.getIn(["listEditor", "accounts", "items"]),
       state.getIn(["listEditor", "suggestions", "items"]),
-      state.getIn(["listEditor", "listType"]),
-    ]);
+    ]
+  );
 
   useEffect(() => {
     return () => {
@@ -55,15 +46,11 @@ const CreateNewListForm = (props) => {
     };
   }, []);
 
-  useEffect(() => {}, [listName]);
+  useEffect(() => {
+  }, [listName]);
 
   const handleChange = ({ target }) => {
     dispatch(changeListEditorTitle(target.value));
-  };
-
-  const handleListTypeChange = ({ target }) => {
-    setListType(target.value);
-    dispatch(changeListEditorType(target.value));
   };
 
   const handleSubmit = (e) => {
@@ -84,21 +71,6 @@ const CreateNewListForm = (props) => {
       dispatch(submitListEditor(false));
     }
   };
-
-  let creator;
-
-  if (listName && listTypeValue === "users") {
-    creator = (
-      <UserListCreator
-        accountIds={accountIds}
-        searchAccountIds={searchAccountIds}
-      />
-    );
-  }
-  else if (listName && listTypeValue === "hashtag") {
-
-  }
-  
 
   return (
     <div>
@@ -124,30 +96,8 @@ const CreateNewListForm = (props) => {
             onClick={handleClick}
           />
         </div>
-        {!listName && (
-          <div className="radio-button-list" role="group">
-            <span className="column-settings__section">
-              <FormattedMessage
-                id="lists.extended_lists.list_types"
-                defaultMessage="Choose list type:"
-              />
-            </span>
-            <div className="column-settings__row">
-              {["users", "hashtag"].map((type) => (
-                <RadioButton
-                  name="order"
-                  key={type}
-                  value={type}
-                  label={intl.formatMessage(messages[type])}
-                  checked={listType === type}
-                  onChange={handleListTypeChange}
-                />
-              ))}
-            </div>
-          </div>
-        )}
       </form>
-      {creator}
+      {listName && <HashtagUserListCreator/>}
     </div>
   );
 };

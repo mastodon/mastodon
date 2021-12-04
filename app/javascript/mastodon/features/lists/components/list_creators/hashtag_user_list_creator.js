@@ -6,14 +6,13 @@ import IconButton from "../../../../components/icon_button";
 import {
   changeListEditorHashtag,
   submitListEditor,
-  resetListEditor,
 } from "../../../../actions/lists";
 
 const messages = defineMessages({
   hashtags: { id: "lists.extend_list.hashtags", defaultMessage: "Hashtags" },
   placeholder: {
     id: "lists.extend_list.hashtags_placeholder",
-    defaultMessage: "#yourhashtag",
+    defaultMessage: "#first_hashtag #second_hashtag",
   },
   title: { id: "lists.extend_list.create", defaultMessage: "Add hashtags" },
 });
@@ -28,43 +27,27 @@ const HashtagUserListCreator = (props) => {
 
   const dispatch = useDispatch();
 
+  useEffect(() => {
+  }, [hashtag]);
+
   const [hashtagValue, disabled] = useSelector((state) => [
-    state.getIn(["listEditor", "hashtag"]),
+    state.getIn(["listEditor", "hashtags"]),
     state.getIn(["listEditor", "isSubmitting"]),
   ]);
 
-  useEffect(() => {
-    return () => {
-      dispatch(resetListEditor());
-    };
-  }, []);
-
-  useEffect(() => {}, [hashtag]);
-
   const handleChange = ({ target }) => {
     dispatch(changeListEditorHashtag(target.value));
-    console.log(target.value);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!hashtag) {
-      console.log(hashtagValue);
-      setHashtag(true);
-      dispatch(submitListEditor(true));
-    } else {
-      dispatch(submitListEditor(false));
-    }
+    setHashtag(true);
+    dispatch(submitListEditor(false));
   };
 
   const handleClick = () => {
-    if (!hashtag) {
-      console.log(hashtagValue);
-      setHashtag(true);
-      dispatch(submitListEditor(true));
-    } else {
-      dispatch(submitListEditor(false));
-    }
+    setHashtag(true);
+    dispatch(submitListEditor(false));
   };
 
   return (
@@ -78,17 +61,17 @@ const HashtagUserListCreator = (props) => {
         </span>
         <div className="column-inline-form">
           <label>
-            <input
+            <textarea
               className="setting-text"
               value={hashtagValue}
               disabled={disabled}
               onChange={handleChange}
-              placeholder={hashtagValue === "" ? label : hashtagValue}
+              placeholder={!hashtag ? label : hashtagValue}
             />
           </label>
           <IconButton
             disabled={disabled || !hashtagValue}
-            icon={"plus"}
+            icon={!hashtag ? "plus" : "check"}
             title={title}
             onClick={handleClick}
           />

@@ -11,7 +11,7 @@ export const LISTS_FETCH_SUCCESS = 'LISTS_FETCH_SUCCESS';
 export const LISTS_FETCH_FAIL    = 'LISTS_FETCH_FAIL';
 
 export const LIST_EDITOR_TITLE_CHANGE = 'LIST_EDITOR_TITLE_CHANGE';
-export const LIST_EDITOR_TYPE_CHANGE = 'LIST_EDITOR_TYPE_CHANGE';
+export const LIST_EDITOR_HASHTAG_CHANGE = 'LIST_EDITOR_HASHTAG_CHANGE';
 export const LIST_EDITOR_RESET        = 'LIST_EDITOR_RESET';
 export const LIST_EDITOR_SETUP        = 'LIST_EDITOR_SETUP';
 
@@ -105,12 +105,12 @@ export const fetchListsFail = error => ({
 export const submitListEditor = shouldReset => (dispatch, getState) => {
   const listId = getState().getIn(['listEditor', 'listId']);
   const title  = getState().getIn(['listEditor', 'title']);
-  const listType = getState().getIn(['listEditor', 'listType']);
+  const hashtags = getState().getIn(['listEditor', 'hashtags']);
 
   if (listId === null) {
-    dispatch(createList(title, listType, shouldReset));
+    dispatch(createList(title, shouldReset));
   } else {
-    dispatch(updateList(listId, title, shouldReset));
+    dispatch(updateList(listId, title, hashtags, shouldReset));
   }
 };
 
@@ -128,15 +128,15 @@ export const changeListEditorTitle = value => ({
   value,
 });
 
-export const changeListEditorType = listType => ({
-  type: LIST_EDITOR_TYPE_CHANGE,
-  listType,
+export const changeListEditorHashtag = hashtags => ({
+  type: LIST_EDITOR_HASHTAG_CHANGE,
+  hashtags,
 })
 
-export const createList = (title, listType, shouldReset) => (dispatch, getState) => {
+export const createList = (title, shouldReset) => (dispatch, getState) => {
   dispatch(createListRequest());
 
-  api(getState).post('/api/v1/lists', { title, list_types: listType }).then(({ data }) => {
+  api(getState).post('/api/v1/lists', { title }).then(({ data }) => {
     dispatch(createListSuccess(data));
 
     if (shouldReset) {
@@ -159,10 +159,10 @@ export const createListFail = error => ({
   error,
 });
 
-export const updateList = (id, title, shouldReset, replies_policy) => (dispatch, getState) => {
+export const updateList = (id, title, hashtags, shouldReset, replies_policy) => (dispatch, getState) => {
   dispatch(updateListRequest(id));
 
-  api(getState).put(`/api/v1/lists/${id}`, { title, replies_policy }).then(({ data }) => {
+  api(getState).put(`/api/v1/lists/${id}`, { title, replies_policy, hashtags }).then(({ data }) => {
     dispatch(updateListSuccess(data));
 
     if (shouldReset) {
