@@ -357,6 +357,11 @@ class Account < ApplicationRecord
     hide_collections? || user_hides_network?
   end
 
+  def hides_blocks?
+    hide_blocks? || user_hides_network?
+  end
+
+
   def object_type
     :person
   end

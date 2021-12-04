@@ -188,6 +188,7 @@ ActiveRecord::Schema.define(version: 2021_08_08_071221) do
     t.datetime "suspended_at"
     t.integer "trust_level"
     t.boolean "hide_collections"
+    t.boolean "hide_blocks", default: false
     t.integer "avatar_storage_schema_version"
     t.integer "header_storage_schema_version"
     t.string "devices_url"

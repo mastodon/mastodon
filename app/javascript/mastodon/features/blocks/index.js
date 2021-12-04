@@ -67,8 +67,10 @@ class Blocks extends ImmutablePureComponent {
   };
 
   componentWillMount() {
-    const { id } = this.props.params;
-    this.props.dispatch(fetchBlocks(id));
+    if (account.get('hide_blocks')) {
+      const { id } = this.props.params;
+      this.props.dispatch(fetchBlocks(id));
+    }
     this.setState({ showMessage: false, showDenyMessage: false, count: 0, })
   }
 
