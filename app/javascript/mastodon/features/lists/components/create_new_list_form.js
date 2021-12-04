@@ -1,23 +1,24 @@
-import React, { useState, useEffect } from "react";
-import { injectIntl, defineMessages } from "react-intl";
-import { useSelector, useDispatch } from "react-redux";
+import React, { useState, useEffect } from 'react';
+import { injectIntl, defineMessages } from 'react-intl';
+import { useSelector, useDispatch } from 'react-redux';
 
-import IconButton from "../../../components/icon_button";
+import IconButton from '../../../components/icon_button';
 import {
   changeListEditorTitle,
   submitListEditor,
   resetListEditor,
-} from "../../../actions/lists";
+} from '../../../actions/lists';
 
-import HashtagUserListCreator from "./list_creators/hashtag_user_list_creator";
+import HashtagListCreator from './list_creators/hashtag_list_creator';
+import UsersListCreator from './list_creators/Users_list_creator';
 
 const messages = defineMessages({
-  listCreator: { id: "lists.new.creator", defaultMessage: "List creator" },
+  listCreator: { id: 'lists.new.creator', defaultMessage: 'List creator' },
   label: {
-    id: "lists.new.title_placeholder",
-    defaultMessage: "New list title",
+    id: 'lists.new.title_placeholder',
+    defaultMessage: 'New list title',
   },
-  title: { id: "lists.new.create", defaultMessage: "Add list" },
+  title: { id: 'lists.new.create', defaultMessage: 'Add list' },
 });
 
 const CreateNewListForm = (props) => {
@@ -33,10 +34,10 @@ const CreateNewListForm = (props) => {
 
   const [value, disabled, accountIds, searchAccountIds] = useSelector(
     (state) => [
-      state.getIn(["listEditor", "title"]),
-      state.getIn(["listEditor", "isSubmitting"]),
-      state.getIn(["listEditor", "accounts", "items"]),
-      state.getIn(["listEditor", "suggestions", "items"]),
+      state.getIn(['listEditor', 'title']),
+      state.getIn(['listEditor', 'isSubmitting']),
+      state.getIn(['listEditor', 'accounts', 'items']),
+      state.getIn(['listEditor', 'suggestions', 'items']),
     ]
   );
 
@@ -46,8 +47,7 @@ const CreateNewListForm = (props) => {
     };
   }, []);
 
-  useEffect(() => {
-  }, [listName]);
+  useEffect(() => {}, [listName]);
 
   const handleChange = ({ target }) => {
     dispatch(changeListEditorTitle(target.value));
@@ -78,26 +78,32 @@ const CreateNewListForm = (props) => {
       <form className="column-settings__row" onSubmit={handleSubmit}>
         <div className="column-inline-form">
           <label>
-            <span style={{ display: "none" }}>{label}</span>
+            <span style={{ display: 'none' }}>{label}</span>
 
             <input
               className="setting-text"
               value={value}
               disabled={disabled}
               onChange={handleChange}
-              placeholder={value === "" ? label : value}
+              placeholder={value === '' ? label : value}
             />
           </label>
 
           <IconButton
             disabled={disabled || !value}
-            icon={!listName ? "plus" : "check"}
+            icon={!listName ? 'plus' : 'check'}
             title={title}
             onClick={handleClick}
           />
         </div>
       </form>
-      {listName && <HashtagUserListCreator/>}
+      {listName && <HashtagListCreator />}
+      {listName && (
+        <UsersListCreator
+          accountIds={accountIds}
+          searchAccountIds={searchAccountIds}
+        />
+      )}
     </div>
   );
 };

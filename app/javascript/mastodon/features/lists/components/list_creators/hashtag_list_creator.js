@@ -1,23 +1,23 @@
-import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { injectIntl, FormattedMessage, defineMessages } from "react-intl";
-import IconButton from "../../../../components/icon_button";
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { injectIntl, FormattedMessage, defineMessages } from 'react-intl';
+import IconButton from '../../../../components/icon_button';
 
 import {
   changeListEditorHashtag,
   submitListEditor,
-} from "../../../../actions/lists";
+} from '../../../../actions/lists';
 
 const messages = defineMessages({
-  hashtags: { id: "lists.extend_list.hashtags", defaultMessage: "Hashtags" },
+  hashtags: { id: 'lists.extend_list.hashtags', defaultMessage: 'Hashtags' },
   placeholder: {
-    id: "lists.extend_list.hashtags_placeholder",
-    defaultMessage: "#first_hashtag #second_hashtag",
+    id: 'lists.extend_list.hashtags_placeholder',
+    defaultMessage: '#first_hashtag #second_hashtag',
   },
-  title: { id: "lists.extend_list.create", defaultMessage: "Add hashtags" },
+  title: { id: 'lists.extend_list.create', defaultMessage: 'Add hashtags' },
 });
 
-const HashtagUserListCreator = (props) => {
+const HashtagListCreator = (props) => {
   const { intl } = props;
 
   const label = intl.formatMessage(messages.placeholder);
@@ -27,12 +27,11 @@ const HashtagUserListCreator = (props) => {
 
   const dispatch = useDispatch();
 
-  useEffect(() => {
-  }, [hashtag]);
+  useEffect(() => {}, [hashtag]);
 
   const [hashtagValue, disabled] = useSelector((state) => [
-    state.getIn(["listEditor", "hashtags"]),
-    state.getIn(["listEditor", "isSubmitting"]),
+    state.getIn(['listEditor', 'hashtags']),
+    state.getIn(['listEditor', 'isSubmitting']),
   ]);
 
   const handleChange = ({ target }) => {
@@ -71,7 +70,7 @@ const HashtagUserListCreator = (props) => {
           </label>
           <IconButton
             disabled={disabled || !hashtagValue}
-            icon={!hashtag ? "plus" : "check"}
+            icon={!hashtag ? 'plus' : 'check'}
             title={title}
             onClick={handleClick}
           />
@@ -81,4 +80,4 @@ const HashtagUserListCreator = (props) => {
   );
 };
 
-export default injectIntl(HashtagUserListCreator);
+export default injectIntl(HashtagListCreator);
