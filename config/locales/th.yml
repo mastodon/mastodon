@@ -666,7 +666,10 @@ th:
         allow_provider: อนุญาตผู้เผยแพร่
         disallow: ไม่อนุญาตลิงก์
         disallow_provider: ไม่อนุญาตผู้เผยแพร่
+        shared_by_over_week:
+          other: แบ่งปันโดย %{count} คนในช่วงสัปดาห์ที่ผ่านมา
         title: ลิงก์ที่กำลังนิยม
+        usage_comparison: แบ่งปัน %{today} ครั้งในวันนี้ เทียบกับ %{yesterday} เมื่อวานนี้
       pending_review: การตรวจทานที่รอดำเนินการ
       preview_card_providers:
         title: ผู้เผยแพร่
@@ -677,9 +680,13 @@ th:
           tag_languages_dimension: ภาษายอดนิยม
           tag_servers_dimension: เซิร์ฟเวอร์ยอดนิยม
         not_trendable: จะไม่ปรากฏภายใต้แนวโน้ม
+        not_usable: ไม่สามารถใช้
         title: แฮชแท็กที่กำลังนิยม
         trendable: สามารถปรากฏภายใต้แนวโน้ม
         trending_rank: 'กำลังนิยม #%{rank}'
+        usable: สามารถใช้
+        used_by_over_week:
+          other: ใช้โดย %{count} คนในช่วงสัปดาห์ที่ผ่านมา
       title: แนวโน้ม
     warning_presets:
       add_new: เพิ่มใหม่
@@ -694,6 +701,8 @@ th:
       body: "%{reporter} ได้รายงาน %{target}"
       body_remote: ใครสักคนจาก %{domain} ได้รายงาน %{target}
       subject: 'รายงานใหม่สำหรับ %{instance} (#%{id})'
+    new_trending_links:
+      subject: ลิงก์ที่กำลังนิยมใหม่สำหรับตรวจทานใน %{instance}
   aliases:
     add_new: สร้างนามแฝง
     deleted_msg: เอานามแฝงออกสำเร็จ จะไม่สามารถย้ายจากบัญชีนั้นไปยังบัญชีนี้ได้อีกต่อไป
