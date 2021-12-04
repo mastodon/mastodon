@@ -32,14 +32,10 @@ const CreateNewListForm = (props) => {
 
   const dispatch = useDispatch();
 
-  const [value, disabled, accountIds, searchAccountIds] = useSelector(
-    (state) => [
-      state.getIn(['listEditor', 'title']),
-      state.getIn(['listEditor', 'isSubmitting']),
-      state.getIn(['listEditor', 'accounts', 'items']),
-      state.getIn(['listEditor', 'suggestions', 'items']),
-    ]
-  );
+  const [value, disabled] = useSelector((state) => [
+    state.getIn(['listEditor', 'title']),
+    state.getIn(['listEditor', 'isSubmitting']),
+  ]);
 
   useEffect(() => {
     return () => {
@@ -98,12 +94,7 @@ const CreateNewListForm = (props) => {
         </div>
       </form>
       {listName && <HashtagListCreator />}
-      {listName && (
-        <UsersListCreator
-          accountIds={accountIds}
-          searchAccountIds={searchAccountIds}
-        />
-      )}
+      {listName && <UsersListCreator />}
     </div>
   );
 };
