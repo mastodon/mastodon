@@ -221,6 +221,7 @@ fr:
       whitelisted: Sur liste blanche
     action_logs:
       action_types:
+        approve_user: Approuver l’utilisateur
         assigned_to_self_report: Affecter le signalement
         change_email_user: Modifier le courriel pour
         confirm_user: Confirmer l’utilisateur
@@ -250,6 +251,7 @@ fr:
         enable_user: Activer l’utilisateur
         memorialize_account: Se souvenir du compte
         promote_user: Promouvoir l’utilisateur
+        reject_user: Rejeter l’utilisateur
         remove_avatar_user: Supprimer l’avatar
         reopen_report: Rouvrir le signalement
         reset_password_user: Réinitialiser le mot de passe
@@ -266,6 +268,7 @@ fr:
         update_domain_block: Mettre à jour le blocage de domaine
         update_status: Mettre à jour le statut
       actions:
+        approve_user_html: "%{name} a approuvé l’inscription de %{target}"
         assigned_to_self_report_html: "%{name} s’est assigné le signalement de %{target}"
         change_email_user_html: "%{name} a modifié l'adresse de courriel de l'utilisateur %{target}"
         confirm_user_html: "%{name} a confirmé l'adresse courriel de l'utilisateur %{target}"
@@ -295,6 +298,7 @@ fr:
         enable_user_html: "%{name} a activé la connexion de l'utilisateur %{target}"
         memorialize_account_html: "%{name} a converti le compte de %{target} en un mémorial"
         promote_user_html: "%{name} a promu l'utilisateur %{target}"
+        reject_user_html: "%{name} a rejeté l’inscription de %{target}"
         remove_avatar_user_html: "%{name} a supprimé l'avatar de %{target}"
         reopen_report_html: "%{name} a rouvert le signalement %{target}"
         reset_password_user_html: "%{name} a réinitialisé le mot de passe de l'utilisateur %{target}"
@@ -973,6 +977,7 @@ fr:
     none: Aucun
     order_by: Classer par
     save_changes: Enregistrer les modifications
+    today: aujourd’hui
     validation_errors:
       one: Quelque chose ne va pas ! Veuillez vérifiez l’erreur ci-dessous
       other: Certaines choses ne vont pas ! Veuillez vérifiez les %{count} erreurs ci-dessous
