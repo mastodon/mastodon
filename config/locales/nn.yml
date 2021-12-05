@@ -98,7 +98,6 @@ nn:
     accounts:
       add_email_domain_block: Gøym e-postdomene
       approve: Godtak
-      approve_all: Godtak alle
       approved_msg: Godkjent %{username} sin registreringsapplikasjon
       are_you_sure: Er du sikker?
       avatar: Bilete
@@ -152,7 +151,6 @@ nn:
         active: Aktiv
         all: Alle
         pending: Ventar på svar
-        silenced: Dempa
         suspended: Utvist
         title: Moderasjon
       moderation_notes: Moderasjonsmerknader
@@ -170,7 +168,6 @@ nn:
       redownload: Last inn profil på nytt
       redownloaded_msg: Oppdatert %{username} sin profil fra opprinnelse
       reject: Avvis
-      reject_all: Avvis alle
       rejected_msg: Vellykket avvist %{username} sin registreringsapplikasjon
       remove_avatar: Fjern bilete
       remove_header: Fjern overskrift
@@ -208,7 +205,6 @@ nn:
       suspended: Utvist
       suspension_irreversible: Dataene fra denne kontoen har blitt ikke reverserbart slettet. Du kan oppheve suspenderingen av kontoen for å gjøre den brukbart, men den vil ikke gjenopprette alle data den tidligere har hatt.
       suspension_reversible_hint_html: Kontoen har blitt suspendert, og dataene vil bli fullstendig fjernet den %{date}. Frem til da kan kontoen gjenopprettes uten negative effekter. Hvis du ønsker å fjerne alle kontoens data umiddelbart, kan du gjøre det nedenfor.
-      time_in_queue: Ventar i kø %{time}
       title: Kontoar
       unconfirmed_email: E-post utan stadfesting
       undo_silenced: Angr målbinding
@@ -461,8 +457,6 @@ nn:
         title: Opprett ny IP-regel
       no_ip_block_selected: Ingen IP-regler ble endret da ingen ble valgt
       title: IP-regler
-    pending_accounts:
-      title: Kontoar som ventar (%{count})
     relationships:
       title: "%{acct} sitt forhold"
     relays:
