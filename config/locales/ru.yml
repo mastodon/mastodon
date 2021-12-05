@@ -106,7 +106,6 @@ ru:
     accounts:
       add_email_domain_block: Заблокировать e-mail домен
       approve: Подтвердить
-      approve_all: Подтвердить все
       approved_msg: Успешно одобрена заявка на регистрацию %{username}
       are_you_sure: Вы уверены?
       avatar: Аватар
@@ -160,7 +159,6 @@ ru:
         active: Действующие
         all: Все
         pending: В ожидании
-        silenced: Скрытые
         suspended: Заблокированные
         title: Модерация
       moderation_notes: Заметки модератора
@@ -178,7 +176,6 @@ ru:
       redownload: Обновить аватар
       redownloaded_msg: Профиль %{username} успешно обновлен из оригинала
       reject: Отклонить
-      reject_all: Отклонить все
       rejected_msg: Успешно отклонено приложение для регистрации %{username}
       remove_avatar: Удалить аватар
       remove_header: Убрать шапку
@@ -217,7 +214,6 @@ ru:
       suspended: Заморожен
       suspension_irreversible: Данные этой учётной записи были необратимо удалены. Вы можете разблокировать учетную запись, чтобы сделать её доступной, но это не восстановит ранее имевшиеся в ней данные.
       suspension_reversible_hint_html: Учётная запись была заблокирована, и данные будут полностью удалены %{date}. До этого момента её можно восстановить без каких-либо неприятных последствий. Если вы хотите немедленно удалить все данные учётной записи, вы можете сделать это ниже.
-      time_in_queue: Ожидание в очереди %{time}
       title: Учётные записи
       unconfirmed_email: Неподтверждённый e-mail
       undo_sensitized: Убрать отметку «деликатного содержания»
@@ -538,8 +534,6 @@ ru:
         title: Создать новое IP правило
       no_ip_block_selected: Не было изменено ни одного IP правила, так как не было выбрано ни одного
       title: IP правила
-    pending_accounts:
-      title: Ожидающие учетные записи (%{count})
     relationships:
       title: "Связи %{acct}"
     relays:
