@@ -98,7 +98,6 @@ ca:
     accounts:
       add_email_domain_block: Afegir el domini de correu a la llista negra
       approve: Aprova
-      approve_all: Aprova'ls tots
       approved_msg: L’aplicació del registre de %{username} s’ha aprovat amb èxit
       are_you_sure: N'estàs segur?
       avatar: Avatar
@@ -152,7 +151,6 @@ ca:
         active: Actiu
         all: Tot
         pending: Pendent
-        silenced: Silenciat
         suspended: Suspès
         title: Moderació
       moderation_notes: Notes de moderació
@@ -170,7 +168,6 @@ ca:
       redownload: Actualitza el perfil
       redownloaded_msg: El perfil de %{username} s’ha refrescat des de l’origen amb èxit
       reject: Rebutja
-      reject_all: Rebutja'ls tots
       rejected_msg: L’aplicació de registre de %{username} s’ha rebutjat amb èxit
       remove_avatar: Eliminar avatar
       remove_header: Treu la capçalera
@@ -209,7 +206,6 @@ ca:
       suspended: Suspès
       suspension_irreversible: Les dades d’aquest compte s’han suprimit irreversiblament. Pots desfer la suspensió del compte per a fer-lo usable però això no recuperarà les dades si és que en tenia.
       suspension_reversible_hint_html: El compte ha estat suspès i les dades seran totalment suprimides el %{date}. Fins llavors, el compte pot ser restaurat sense problemes. Si vols suprimir immediatament totes les dades del compte, ho pots fer a continuació.
-      time_in_queue: Esperant en la cua %{time}
       title: Comptes
       unconfirmed_email: Correu electrònic sense confirmar
       undo_sensitized: Desmarcar com a sensible
@@ -518,8 +514,6 @@ ca:
         title: Crea nova regla IP
       no_ip_block_selected: No s’ha canviat cap regla IP perquè no s’han seleccionat
       title: Regles IP
-    pending_accounts:
-      title: Comptes pendents (%{count})
     relationships:
       title: "relacions del %{acct}"
     relays:
