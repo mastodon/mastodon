@@ -98,7 +98,6 @@ it:
     accounts:
       add_email_domain_block: Inserisci il dominio email nella blacklist
       approve: Approva
-      approve_all: Approva tutto
       approved_msg: Richiesta di registrazione di %{username} approvata
       are_you_sure: Sei sicuro?
       avatar: Immagine di profilo
@@ -152,7 +151,6 @@ it:
         active: Attivo
         all: Tutto
         pending: In attesa
-        silenced: Silenziati
         suspended: Sospesi
         title: Moderazione
       moderation_notes: Note di moderazione
@@ -170,7 +168,6 @@ it:
       redownload: Aggiorna avatar
       redownloaded_msg: Il profilo di %{username} è stato aggiornato dall'origine
       reject: Rifiuta
-      reject_all: Rifiuta tutto
       rejected_msg: Richiesta di registrazione di %{username} rifiutata
       remove_avatar: Rimuovi avatar
       remove_header: Rimuovi intestazione
@@ -209,7 +206,6 @@ it:
       suspended: Sospeso
       suspension_irreversible: I dati di questo account sono stati cancellati in modo irreversibile. È possibile annullare la sospensione dell'account per renderlo utilizzabile, ma non recupererà alcuno dei dati precedenti.
       suspension_reversible_hint_html: L'account è stato sospeso e i dati saranno completamente eliminati il %{date}. Fino ad allora, l'account può essere ripristinato senza effetti negativi. Se si desidera eliminare immediatamente tutti i dati dell'account, è possibile farlo qui sotto.
-      time_in_queue: Attesa in coda %{time}
       title: Account
       unconfirmed_email: Email non confermata
       undo_sensitized: Annulla sensibile
@@ -518,8 +514,6 @@ it:
         title: Crea una nuova regola IP
       no_ip_block_selected: Nessuna regola IP è stata modificata poiché nessuna è stata selezionata
       title: Regole IP
-    pending_accounts:
-      title: Account in attesa (%{count})
     relationships:
       title: "Relazioni di %{acct}"
     relays:
