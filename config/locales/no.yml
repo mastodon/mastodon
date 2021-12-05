@@ -98,7 +98,6 @@
     accounts:
       add_email_domain_block: Svartelist E-postdomenet
       approve: Godkjenn
-      approve_all: Godkjenn alle
       approved_msg: Godkjent %{username} sin registreringsapplikasjon
       are_you_sure: Er du sikker?
       avatar: Profilbilde
@@ -152,7 +151,6 @@
         active: Aktive
         all: Alle
         pending: Avventer
-        silenced: Målbundet
         suspended: Utvist
         title: Moderasjon
       moderation_notes: Moderasjonsnotater
@@ -170,7 +168,6 @@
       redownload: Oppdater avatar
       redownloaded_msg: Oppdatert %{username} sin profil fra opprinnelse
       reject: Avslå
-      reject_all: Avslå alle
       rejected_msg: Vellykket avvist %{username} sin registreringsapplikasjon
       remove_avatar: Fjern profilbilde
       remove_header: Fjern overskrift
@@ -208,7 +205,6 @@
       suspended: Suspendert
       suspension_irreversible: Dataene fra denne kontoen har blitt ikke reverserbart slettet. Du kan oppheve suspenderingen av kontoen for å gjøre den brukbart, men den vil ikke gjenopprette alle data den tidligere har hatt.
       suspension_reversible_hint_html: Kontoen har blitt suspendert, og dataene vil bli fullstendig fjernet den %{date}. Frem til da kan kontoen gjenopprettes uten negative effekter. Hvis du ønsker å fjerne alle kontoens data umiddelbart, kan du gjøre det nedenfor.
-      time_in_queue: Venter i kø %{time}
       title: Kontoer
       unconfirmed_email: Ubekreftet E-postadresse
       undo_silenced: Angre målbinding
@@ -458,8 +454,6 @@
         title: Opprett ny IP-regel
       no_ip_block_selected: Ingen IP-regler ble endret da ingen ble valgt
       title: IP-regler
-    pending_accounts:
-      title: Avventende brukere (%{count})
     relationships:
       title: "%{acct} sitt forhold"
     relays:
