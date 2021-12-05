@@ -98,7 +98,6 @@ de:
     accounts:
       add_email_domain_block: E-Mail-Domain blacklisten
       approve: Akzeptieren
-      approve_all: Alle akzeptieren
       approved_msg: '%{username}''s Anmeldeantrag erfolgreich genehmigt'
       are_you_sure: Bist du sicher?
       avatar: Profilbild
@@ -152,7 +151,6 @@ de:
         active: Aktiv
         all: Alle
         pending: In Warteschlange
-        silenced: Stummgeschaltet
         suspended: Gesperrt
         title: Moderation
       moderation_notes: Moderationsnotizen
@@ -170,7 +168,6 @@ de:
       redownload: Profil neu laden
       redownloaded_msg: Profil von %{username} erfolgreich von Ursprung aktualisiert
       reject: Ablehnen
-      reject_all: Alle ablehnen
       rejected_msg: '%{username}''s Anmeldeantrag erfolgreich abgelehnt'
       remove_avatar: Profilbild entfernen
       remove_header: Titelbild entfernen
@@ -209,7 +206,6 @@ de:
       suspended: Verbannt
       suspension_irreversible: Die Daten dieses Kontos wurden unwiderruflich gelöscht. Du kannst das Konto aufheben, um es brauchbar zu machen, aber es wird keine Daten wiederherstellen, die es davor schon hatte.
       suspension_reversible_hint_html: Das Konto wurde gesperrt und die Daten werden am %{date} vollständig gelöscht. Bis dahin kann das Konto ohne irgendwelche negativen Auswirkungen wiederhergestellt werden. Wenn du alle Daten des Kontos sofort entfernen möchtest, kannst du dies nachfolgend tun.
-      time_in_queue: '%{time} in der Warteschlange'
       title: Konten
       unconfirmed_email: Unbestätigte E-Mail-Adresse
       undo_sensitized: Nicht mehr als NSFW markieren
@@ -518,8 +514,6 @@ de:
         title: Neue IP-Regel erstellen
       no_ip_block_selected: Keine IP-Regeln wurden geändert, weil keine ausgewählt wurden
       title: IP-Regeln
-    pending_accounts:
-      title: Ausstehende Konten (%{count})
     relationships:
       title: "Beziehungen von %{acct}"
     relays:
