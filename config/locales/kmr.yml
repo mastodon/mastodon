@@ -220,6 +220,7 @@ kmr:
       whitelisted: Ji bona yekbûyînê maf tê dayîn
     action_logs:
       action_types:
+        approve_user: Bikarhêner bipejirîne
         assigned_to_self_report: Ragihandinê diyar bike
         change_email_user: E-nameya bikarhêner biguherîne
         confirm_user: Bikarhêner bipejirîne
@@ -249,6 +250,7 @@ kmr:
         enable_user: Bikarhêner çalak bike
         memorialize_account: Ajimêrê bike bîranînek
         promote_user: Bikarhêner pêş bixe
+        reject_user: Bikarhêner nepejirîne
         remove_avatar_user: Avatarê rake
         reopen_report: Ragihandina ji nû ve veke
         reset_password_user: Pêborînê ji nû ve saz bike
@@ -265,6 +267,7 @@ kmr:
         update_domain_block: Navperên astengkirî rojane bike
         update_status: Şandiyê rojane bike
       actions:
+        approve_user_html: "%{name} tomarkirina ji %{target} pejirand"
         assigned_to_self_report_html: "%{name} ji xwe re ragihandinek %{target} hilda"
         change_email_user_html: "%{name} navnîşana e-nameya bikarhêner %{target} guherand"
         confirm_user_html: "%{name} navnîşana e-nameya bikarhêner %{target} piştrast kir"
@@ -294,6 +297,7 @@ kmr:
         enable_user_html: "%{name}, ji bo bikarhênerê %{target} têketinê çalak kir"
         memorialize_account_html: "%{name} ajimêra %{target} veguherand rûpeleke bîranînê"
         promote_user_html: "%{name}, bikarhêner %{target} bilind kir"
+        reject_user_html: "%{name} tomarkirina ji %{target} nepejirand"
         remove_avatar_user_html: "%{name} avatara bikarhêner %{target} rakir"
         reopen_report_html: "%{name} gilîyê %{target} ji nû ve vekir"
         reset_password_user_html: "%{name} şifre ya bikarhênerê %{target} ji nû ve saz kir"
@@ -972,6 +976,7 @@ kmr:
     none: Ne yek
     order_by: Rêz bike bi
     save_changes: Guhertinan tomar bike
+    today: îro
     validation_errors:
       one: Tiştek hîn ne rast e! Ji kerema xwe çewtiya li jêr di ber çavan re derbas bike
       other: Tiştek hîn ne rast e! Ji kerema xwe %{count} çewtî li jêr di ber çavan re derbas bike
