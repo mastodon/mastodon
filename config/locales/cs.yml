@@ -229,6 +229,7 @@ cs:
       whitelisted: Povoleno federovat
     action_logs:
       action_types:
+        approve_user: Schválit uživatele
         assigned_to_self_report: Přiřadit hlášení
         change_email_user: Změnit uživateli e-mailovou adresu
         confirm_user: Potvrdit uživatele
@@ -258,6 +259,7 @@ cs:
         enable_user: Povolit uživatele
         memorialize_account: Změna na „in memoriam“
         promote_user: Povýšit uživatele
+        reject_user: Odmítnout uživatele
         remove_avatar_user: Odstranit avatar
         reopen_report: Znovu otevřít hlášení
         reset_password_user: Obnovit heslo
@@ -274,6 +276,7 @@ cs:
         update_domain_block: Změnit blokaci domény
         update_status: Aktualizovat Příspěvek
       actions:
+        approve_user_html: "%{name} schválil registraci od %{target}"
         assigned_to_self_report_html: "Uživatel %{name} si přidělil hlášení %{target}"
         change_email_user_html: "Uživatel %{name} změnil e-mailovou adresu uživatele %{target}"
         confirm_user_html: "Uživatel %{name} potvrdil e-mailovou adresu uživatele %{target}"
@@ -303,6 +306,7 @@ cs:
         enable_user_html: "Uživatel %{name} povolil přihlašování pro uživatele %{target}"
         memorialize_account_html: "Uživatel %{name} změnil účet %{target} na „in memoriam“ stránku"
         promote_user_html: "Uživatel %{name} povýšil uživatele %{target}"
+        reject_user_html: "%{name} odmítl registraci od %{target}"
         remove_avatar_user_html: "Uživatel %{name} odstranil avatar uživatele %{target}"
         reopen_report_html: "Uživatel %{name} znovu otevřel hlášení %{target}"
         reset_password_user_html: "Uživatel %{name} obnovil heslo uživatele %{target}"
@@ -1001,6 +1005,7 @@ cs:
     none: Žádné
     order_by: Seřadit podle
     save_changes: Uložit změny
+    today: dnes
     validation_errors:
       one: Něco ještě není úplně v pořádku! Zkontrolujte prosím chybu uvedenou níže
       few: Něco ještě není úplně v pořádku! Zkontrolujte prosím %{count} chyby uvedené níže
