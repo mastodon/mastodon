@@ -15,7 +15,7 @@
 
 .dashboard__counters
   %div
-    = link_to admin_accounts_path(remote: '1', by_domain: @instance.domain) do
+    = link_to admin_accounts_path(origin: 'remote', by_domain: @instance.domain) do
       .dashboard__counters__num= number_with_delimiter @instance.accounts_count
       .dashboard__counters__label= t 'admin.accounts.title'
   %div

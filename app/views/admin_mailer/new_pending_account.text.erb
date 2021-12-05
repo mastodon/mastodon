@@ -9,4 +9,4 @@
 <%= quote_wrap(@account.user&.invite_request&.text) %>
 <% end %>
 
-<%= raw t('application_mailer.view')%> <%= admin_pending_accounts_url %>
+<%= raw t('application_mailer.view')%> <%= admin_accounts_url(status: 'pending') %>

@@ -251,6 +251,10 @@ Rails.application.routes.draw do
         post :reject
       end
 
+      collection do
+        post :batch
+      end
+
       resource :change_email, only: [:show, :update]
       resource :reset, only: [:create]
       resource :action, only: [:new, :create], controller: 'account_actions'
@@ -268,14 +272,6 @@ Rails.application.routes.draw do
           post :promote
           post :demote
         end
-      end
-    end
-
-    resources :pending_accounts, only: [:index] do
-      collection do
-        post :approve_all
-        post :reject_all
-        post :batch
       end
     end
 
