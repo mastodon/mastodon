@@ -94,7 +94,6 @@ id:
     accounts:
       add_email_domain_block: Masukkan domain email ke daftar hitam
       approve: Terima
-      approve_all: Terima semua
       approved_msg: Berhasil menerima pendaftaran %{username}
       are_you_sure: Anda yakin?
       avatar: Avatar
@@ -148,7 +147,6 @@ id:
         active: Aktif
         all: Semua
         pending: Tertunda
-        silenced: Didiamkan
         suspended: Disuspen
         title: Moderasi
       moderation_notes: Catatan moderasi
@@ -166,7 +164,6 @@ id:
       redownload: Muat ulang profil
       redownloaded_msg: Berhasil menyegarkan profil %{username} dari asal
       reject: Tolak
-      reject_all: Tolak semua
       rejected_msg: Berhasil menolak permintaan pendaftaran %{username}
       remove_avatar: Hapus avatar
       remove_header: Hapus header
@@ -205,7 +202,6 @@ id:
       suspended: Disuspen
       suspension_irreversible: Data akun ini telah dihapus secara permanen. Anda dapat mengaktifkan akun agar tetap bisa dipakai lagi tapi data sebelumnya tidak dapat dikembalikan.
       suspension_reversible_hint_html: Akun telah ditangguhkan, dan data akan dihapus total pada %{date}. Sebelum tanggal tersebut, akun dapat dikembalikan tanpa efek apapun. Jika Anda ingin menghapus segera semua data, Anda dapat melakukan sesuai keterangan di bawah.
-      time_in_queue: Menunggu dalam antrean %{time}
       title: Akun
       unconfirmed_email: Email belum dikonfirmasi
       undo_sensitized: Batalkan sensitif
@@ -508,8 +504,6 @@ id:
         title: Buat aturan IP baru
       no_ip_block_selected: Tak ada aturan IP yang berubah karena tak ada yang dipilih
       title: Aturan IP
-    pending_accounts:
-      title: Akun tertunda (%{count})
     relationships:
       title: "Hubungan %{acct}"
     relays:
