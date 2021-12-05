@@ -759,12 +759,15 @@ it:
       body_remote: Qualcuno da %{domain} ha segnalato %{target}
       subject: 'Nuova segnalazione per %{instance} (#%{id})'
     new_trending_links:
+      body: I seguenti link sono in tendenza oggi, ma i loro editori non sono stati revisionati precedentemente. Non saranno mostrati pubblicamente a meno che tu non li approvi. Ulteriori notifiche dagli stessi editori non saranno generate.
       no_approved_links: Nessun link in tendenza correntemente approvato.
+      requirements: Il link in tendenza più basso approvato è correntemente "%{lowest_link_title}" con un punteggio di %{lowest_link_score}.
       subject: Nuovi link in tendenza in attesa di revisione su %{instance}
     new_trending_tags:
       body: 'I seguenti hashtag sono in tendenza oggi, ma non sono stati precedentemente revisionati. Non saranno visualizzati pubblicamente a meno che non li approvi:'
       no_approved_tags: Nessun hashtag in tendenza correntemente approvato.
       requirements: 'L''hashtag in tendenza approvato con punteggio più basso è al momento #%{lowest_tag_name} con un punteggio di %{lowest_tag_score}.'
+      subject: I nuovi hashtag in tendenza in attesa di revisione su %{instance}
   aliases:
     add_new: Crea alias
     created_msg: Hai creato un nuovo alias. Ora puoi iniziare lo spostamento dal vecchio account.
@@ -971,6 +974,7 @@ it:
     changes_saved_msg: Modifiche effettuate con successo!
     copy: Copia
     delete: Cancella
+    none: Nessuno
     order_by: Ordina per
     save_changes: Salva modifiche
     today: oggi
