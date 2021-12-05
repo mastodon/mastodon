@@ -97,7 +97,6 @@ el:
     accounts:
       add_email_domain_block: Εγγραφή τομέα email σε μαύρη λίστα
       approve: Έγκριση
-      approve_all: Έγκριση όλων
       approved_msg: Επιτυχής έγκριση αίτησης εγγραφής του/της %{username}
       are_you_sure: Σίγουρα;
       avatar: Αβατάρ
@@ -149,7 +148,6 @@ el:
         active: Ενεργός/ή
         all: Όλα
         pending: Εκκρεμούν
-        silenced: Αποσιωπημένα
         suspended: Σε αναστολή
         title: Μεσολάβηση
       moderation_notes: Σημειώσεις μεσολάβησης
@@ -167,7 +165,6 @@ el:
       redownload: Ανανέωση αβατάρ
       redownloaded_msg: Επιτυχής ανανέωη προφίλ του/της %{username} από την πηγή
       reject: Απόρριψη
-      reject_all: Απόρριψη όλων
       rejected_msg: Επιτυχής απόρριψη αίτησης εγγραφής του/της %{username}
       remove_avatar: Απομακρυσμένο αβατάρ
       remove_header: Αφαίρεση επικεφαλίδας
@@ -202,7 +199,6 @@ el:
       suspended: Σε αναστολή
       suspension_irreversible: Τα δεδομένα αυτού του λογαριασμού έχουν διαγραφεί οριστικά. Μπορείς να άρεις την αναστολή του λογαριασμού για να μπορέσει να χρησιμοποιηθεί αλλά αυτό δεν θα επαναφέρει όσα δεδομένα είχε προηγουμένως.
       suspension_reversible_hint_html: Ο λογαριασμός έχει ανασταλλεί και τα δεδομένα του θα διαγραφούν πλήρως στις %{date}. Μέχρι τότε ο λογαριασμός μπορεί να επανέλθει κανονικά. Αν θέλεις να διαγράψεις όλα τα δεδομένα του λογαριασμού, μπορείς να το κάνεις παρακάτω.
-      time_in_queue: Σε αναμονή για %{time}
       title: Λογαριασμοί
       unconfirmed_email: Ανεπιβεβαίωτο email
       undo_sensitized: Αναίρεση ευαίσθητου
@@ -416,8 +412,6 @@ el:
       new:
         title: Δημιουργία νέου κανόνα IP
       title: Κανόνες IP
-    pending_accounts:
-      title: Λογαριασμοί σε αναμονή (%{count})
     relationships:
       title: "Σχέσεις %{acct}"
     relays:
