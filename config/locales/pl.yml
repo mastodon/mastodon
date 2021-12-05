@@ -106,7 +106,6 @@ pl:
     accounts:
       add_email_domain_block: Dodaj domenę e-mail na czarną listę
       approve: Przyjmij
-      approve_all: Zatwierdź wszystkie
       approved_msg: Pomyślnie zaakceptowano wniosek o rejestrację %{username}
       are_you_sure: Jesteś tego pewien?
       avatar: Awatar
@@ -160,7 +159,6 @@ pl:
         active: Aktywne
         all: Wszystkie
         pending: Oczekujące
-        silenced: Wyciszone
         suspended: Zawieszone
         title: Moderacja
       moderation_notes: Notatki moderacyjne
@@ -178,7 +176,6 @@ pl:
       redownload: Odśwież profil
       redownloaded_msg: Pomyślnie odświeżono profil %{username} z miejsca pochodzenia
       reject: Odrzuć
-      reject_all: Odrzuć wszystkie
       rejected_msg: Pomyślnie odrzucono wniosek o rejestrację %{username}
       remove_avatar: Usun awatar
       remove_header: Usuń nagłówek
@@ -217,7 +214,6 @@ pl:
       suspended: Zawieszono
       suspension_irreversible: Dane tego konta zostały bezpowrotnie usunięte. Możesz cofnąć zawieszenie tego konta aby można było z niego ponownie korzystać, lecz nie przywróci to danych które poprzednio się na nim znajdowały.
       suspension_reversible_hint_html: Twoje konto zostało zawieszone, a dane zostaną całkowicie usunięte %{date}. Do tego czasu, konto może zostać przywrócone bez żadnych negatywnych skutków. Jeżeli chcesz natychmiastowo usunąć wszystkie dane, możesz zrobić to niżej.
-      time_in_queue: Czekanie w kolejce %{time}
       title: Konta
       unconfirmed_email: Niepotwierdzony adres e-mail
       undo_sensitized: Cofnij oznaczenie
@@ -538,8 +534,6 @@ pl:
         title: Utwórz nową regułę IP
       no_ip_block_selected: Żadna reguła nie została zmieniona, ponieważ żadna nie została wybrana
       title: Reguły adresów IP
-    pending_accounts:
-      title: Oczekujące konta (%{count})
     relationships:
       title: "Relacje %{acct}"
     relays:
