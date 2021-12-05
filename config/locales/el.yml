@@ -214,6 +214,7 @@ el:
       whitelisted: Εγκεκριμένοι
     action_logs:
       action_types:
+        approve_user: Έγκριση Χρήστη
         assigned_to_self_report: Ανάθεση Αναφοράς
         change_email_user: Αλλαγή email για χρήστη
         confirm_user: Επιβεβαίωση Χρήστη
@@ -239,6 +240,7 @@ el:
         enable_user: Ενεργοποίηση Χρήστη
         memorialize_account: Μετατροπή Λογαριασμού σε Αναμνηστικό
         promote_user: Προαγωγή Χρήστη
+        reject_user: Απόρριψη Χρήστη
         remove_avatar_user: Αφαίρεση Avatar
         reopen_report: Ξανάνοιγμα Καταγγελίας
         reset_password_user: Επαναφορά Συνθηματικού
@@ -253,6 +255,9 @@ el:
         update_announcement: Ενημέρωση Ανακοίνωσης
         update_custom_emoji: Ενημέρωση Προσαρμοσμένου Emoji
         update_status: Ενημέρωση Κατάστασης
+      actions:
+        approve_user_html: "%{name} εγκρίθηκε εγγραφή από %{target}"
+        reject_user_html: "%{name} απορρίφθηκε εγγραφή από %{target}"
       deleted_status: "(διαγραμμένη δημοσίευση)"
       empty: Δεν βρέθηκαν αρχεία καταγραφής.
       filter_by_action: Φιλτράρισμα ανά ενέργεια
@@ -808,6 +813,7 @@ el:
     delete: Διαγραφή
     order_by: Ταξινόμηση κατά
     save_changes: Αποθήκευση αλλαγών
+    today: σήμερα
     validation_errors:
       one: Κάτι δεν είναι εντάξει ακόμα! Για κοίταξε το παρακάτω σφάλμα
       other: Κάτι δεν είναι εντάξει ακόμα! Για κοίταξε τα παρακάτω %{count} σφάλματα
