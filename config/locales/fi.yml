@@ -98,7 +98,6 @@ fi:
     accounts:
       add_email_domain_block: Estä sähköpostidomain
       approve: Hyväksy
-      approve_all: Hyväksy kaikki
       approved_msg: Käyttäjän %{username} liittymishakemus hyväksyttiin
       are_you_sure: Oletko varma?
       avatar: Profiilikuva
@@ -152,7 +151,6 @@ fi:
         active: Aktiivinen
         all: Kaikki
         pending: Odottavat
-        silenced: Hiljennetty
         suspended: Jäähyllä
         title: Moderointi
       moderation_notes: Moderointimerkinnät
@@ -170,7 +168,6 @@ fi:
       redownload: Päivitä profiilikuva
       redownloaded_msg: Käyttäjän %{username} profiilin päivittäminen alkuperästä onnistui
       reject: Hylkää
-      reject_all: Hylkää kaikki
       rejected_msg: Käyttäjän %{username} rekisteröitymishakemus hylättiin
       remove_avatar: Poista profiilikuva
       remove_header: Poista otsakekuva
@@ -209,7 +206,6 @@ fi:
       suspended: Jäähyllä
       suspension_irreversible: Tämän tilin tiedot on poistettu peruuttamattomasti. Voit peruuttaa tilin jäädyttämisen, jolloin siitä tulee käyttökelpoinen, mutta toiminto ei palauta sillä aiemmin olleita tietoja.
       suspension_reversible_hint_html: Tili on jäädytetty, ja tiedot poistetaan kokonaan %{date}. Siihen asti tili voidaan palauttaa ilman haitallisia vaikutuksia. Jos haluat poistaa kaikki tilin tiedot välittömästi, voit tehdä sen alla.
-      time_in_queue: Odottaa jonossa %{time}
       title: Tilit
       unconfirmed_email: Sähköpostia ei vahvistettu
       undo_sensitized: Kumoa pakotus arkaluontoiseksi tiliksi
@@ -512,8 +508,6 @@ fi:
         title: Luo uusi IP-sääntö
       no_ip_block_selected: IP-sääntöjä ei muutettu, koska yhtään ei ole valittuna
       title: IP-säännöt
-    pending_accounts:
-      title: Vireillä olevat tilit (%{count})
     relationships:
       title: "%{acct}n suhteet"
     relays:
