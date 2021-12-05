@@ -221,6 +221,7 @@ it:
       whitelisted: Nella whitelist
     action_logs:
       action_types:
+        approve_user: Approva Utente
         assigned_to_self_report: Assegna report
         change_email_user: Cambia l'e-mail per l'utente
         confirm_user: Conferma utente
@@ -250,6 +251,7 @@ it:
         enable_user: Abilita utente
         memorialize_account: Trasforma in account commemorativo
         promote_user: Promuovi utente
+        reject_user: Rifiuta Utente
         remove_avatar_user: Elimina avatar
         reopen_report: Riapri report
         reset_password_user: Reimposta password
@@ -266,6 +268,7 @@ it:
         update_domain_block: Aggiorna blocco di dominio
         update_status: Aggiorna stato
       actions:
+        approve_user_html: "%{name} ha approvato la registrazione da %{target}"
         assigned_to_self_report_html: "%{name} ha assegnato il rapporto %{target} a se stesso"
         change_email_user_html: "%{name} ha cambiato l'indirizzo e-mail dell'utente %{target}"
         confirm_user_html: "%{name} ha confermato l'indirizzo e-mail dell'utente %{target}"
@@ -295,6 +298,7 @@ it:
         enable_user_html: "%{name} ha abilitato il login per l'utente %{target}"
         memorialize_account_html: "%{name} ha trasformato l'account di %{target} in una pagina in memoriam"
         promote_user_html: "%{name} ha promosso l'utente %{target}"
+        reject_user_html: "%{name} ha rifiutato la registrazione da %{target}"
         remove_avatar_user_html: "%{name} ha rimosso l'immagine profilo di %{target}"
         reopen_report_html: "%{name} ha riaperto il rapporto %{target}"
         reset_password_user_html: "%{name} ha reimpostato la password dell'utente %{target}"
@@ -969,6 +973,7 @@ it:
     delete: Cancella
     order_by: Ordina per
     save_changes: Salva modifiche
+    today: oggi
     validation_errors:
       one: Qualcosa ancora non va bene! Per favore, controlla l'errore qui sotto
       other: Qualcosa ancora non va bene! Per favore, controlla i %{count} errori qui sotto
