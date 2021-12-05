@@ -114,7 +114,6 @@ ar:
     accounts:
       add_email_domain_block: حظر نطاق بريد إلكتروني
       approve: صادِق عليه
-      approve_all: الموافقة على الكل
       approved_msg: تمت الموافقة على تسجيل %{username}
       are_you_sure: متأكد ؟
       avatar: الصورة الرمزية
@@ -168,7 +167,6 @@ ar:
         active: نشِط
         all: الكل
         pending: قيد المراجعة
-        silenced: تم كتمه
         suspended: مُجَمَّد
         title: الإشراف
       moderation_notes: ملاحظات الإشراف
@@ -186,7 +184,6 @@ ar:
       redownload: انعش الصفحة التعريفية
       redownloaded_msg: تم تحديث ملف %{username} التعريفي من الأصل
       reject: ارفض
-      reject_all: ارفض الكل
       rejected_msg: تم رفض تطبيق تسجيل %{username} بنجاح
       remove_avatar: حذف الصورة الرمزية
       remove_header: حذف الرأسية
@@ -225,7 +222,6 @@ ar:
       suspended: تم تعليقه
       suspension_irreversible: تم حذف بيانات هذا الحساب بشكل لا رجعة فيه، يمكنك إلغاء تعليق الحساب لجعله قابلا للاستخدام، ولكنه لن يسترد أي بيانات كانت لديه سابقاً.
       suspension_reversible_hint_html: تم تعليق الحساب، وسيتم إزالة البيانات بالكامل في %{date}، حتى ذلك الحين، يمكن استعادة الحساب دون أي آثار سلبية أي كما أنه لم يحدث أي شيء، إذا كنت ترغب في حذف جميع بيانات الحساب الآن، فيمكنك فعل ذلك أدناه.
-      time_in_queue: في قائمة الانتظار %{time}
       title: الحسابات
       unconfirmed_email: البريد الإلكتروني غير مؤكد
       undo_sensitized: التراجع عن حساسية
@@ -537,8 +533,6 @@ ar:
         title: إنشاء قاعدة IP جديدة
       no_ip_block_selected: لم يطرأ أي تغيير على أي قاعدة IP بما أنه لم يتم اختيار أي واحد
       title: قواعد الـIP
-    pending_accounts:
-      title: الحسابات المعلقة (%{count})
     relationships:
       title: "علاقات %{acct}"
     relays:
