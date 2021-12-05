@@ -221,6 +221,7 @@ ca:
       whitelisted: Llista blanca
     action_logs:
       action_types:
+        approve_user: Aprova l'usuari
         assigned_to_self_report: Assigna l'informe
         change_email_user: Canvia l'adreça electrònica per l'usuari
         confirm_user: Confirma l'usuari
@@ -250,6 +251,7 @@ ca:
         enable_user: Activa l'usuari
         memorialize_account: Memoritza el compte
         promote_user: Promou l'usuari
+        reject_user: Rebutja l'usuari
         remove_avatar_user: Eliminar avatar
         reopen_report: Reobre l'informe
         reset_password_user: Restableix la contrasenya
@@ -266,6 +268,7 @@ ca:
         update_domain_block: Actualitza el Bloqueig de Domini
         update_status: Actualitza l'estat
       actions:
+        approve_user_html: "%{name} ha aprovat el registre de %{target}"
         assigned_to_self_report_html: "%{name} han assignat l'informe %{target} a ells mateixos"
         change_email_user_html: "%{name} ha canviat l'adreça de correu electrònic del usuari %{target}"
         confirm_user_html: "%{name} ha confirmat l'adreça de correu electrònic de l'usuari %{target}"
@@ -295,6 +298,7 @@ ca:
         enable_user_html: "%{name} ha activat l'accés del usuari %{target}"
         memorialize_account_html: "%{name} ha convertit el compte %{target} en una pàgina de memorial"
         promote_user_html: "%{name} ha promogut l'usuari %{target}"
+        reject_user_html: "%{name} ha rebutjat el registre de %{target}"
         remove_avatar_user_html: "%{name} ha eliminat l'avatar de %{target}"
         reopen_report_html: "%{name} ha reobert l'informe %{target}"
         reset_password_user_html: "%{name} ha restablert la contrasenya de l'usuari %{target}"
@@ -973,6 +977,7 @@ ca:
     none: Cap
     order_by: Ordena per
     save_changes: Desa els canvis
+    today: avui
     validation_errors:
       one: Alguna cosa no va bé! Si us plau, revisa l'error
       other: Alguna cosa no va bé! Si us plau, revisa %{count} errors més a baix
