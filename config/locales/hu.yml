@@ -98,7 +98,6 @@ hu:
     accounts:
       add_email_domain_block: Email domain tiltólistára vétele
       approve: Jóváhagyás
-      approve_all: Mindet jóváhagy
       approved_msg: A %{username} fiók regisztrációs kérelmét sikeresen elfogadtuk
       are_you_sure: Biztos vagy benne?
       avatar: Profilkép
@@ -152,7 +151,6 @@ hu:
         active: Aktív
         all: Összes
         pending: Függőben
-        silenced: Némítva
         suspended: Felfüggesztve
         title: Moderáció
       moderation_notes: Moderációs bejegyzés
@@ -170,7 +168,6 @@ hu:
       redownload: Profilkép frissítése
       redownloaded_msg: '%{username} profilját sikeresen frissítettük az eredetiből'
       reject: Elutasítás
-      reject_all: Összes elutasítása
       rejected_msg: A %{username} fiók regisztrációs kérelmét sikeresen elutasítottuk
       remove_avatar: Profilkép eltávolítása
       remove_header: Fejléc törlése
@@ -209,7 +206,6 @@ hu:
       suspended: Felfüggesztett
       suspension_irreversible: Ennek a fióknak az adatait visszaállíthatatlanul törölték. Visszavonhatod a fiók felfüggesztését, hogy újra használható legyen, de a régi adatok ettől még nem fognak visszatérni.
       suspension_reversible_hint_html: A fiókot felfüggesztettük, az adatait %{date}-n teljesen eltávolítjuk. Eddig az időpontig a fiók probléma nélkül visszaállítható. Ha mégis azonnal törölni szeretnéd a fiókot, alább megteheted.
-      time_in_queue: Várakozás a sorban %{time}
       title: Fiókok
       unconfirmed_email: Nem megerősített e-mail
       undo_sensitized: Kényesnek jelölés visszavonása
@@ -518,8 +514,6 @@ hu:
         title: Új IP szabály létrehozása
       no_ip_block_selected: Nem változtattunk egy IP szabályon sem, mivel egy sem volt kiválasztva
       title: IP szabály
-    pending_accounts:
-      title: Függőben lévő fiókok (%{count})
     relationships:
       title: "%{acct} kapcsolatai"
     relays:
