@@ -94,7 +94,6 @@ zh-HK:
     accounts:
       add_email_domain_block: 封鎖電郵網域
       approve: 核准
-      approve_all: 全部批准
       approved_msg: 成功審核了%{username} 的新帳號申請
       are_you_sure: 你確定嗎？
       avatar: 頭像
@@ -148,7 +147,6 @@ zh-HK:
         active: 活躍
         all: 全部
         pending: 處理中
-        silenced: 被靜音的
         suspended: 已停權
         title: 管理操作
       moderation_notes: 管理備註
@@ -166,7 +164,6 @@ zh-HK:
       redownload: 更新頁面
       redownloaded_msg: 成功重新載入 %{username} 的個人資料頁面
       reject: 拒絕
-      reject_all: 全部拒絕
       rejected_msg: 成功拒絕了 %{username} 的新帳號申請
       remove_avatar: 刪除頭像
       remove_header: 移除頁面頂端
@@ -205,7 +202,6 @@ zh-HK:
       suspended: 已停權
       suspension_irreversible: 已永久刪除此帳號的數據。你可以取消此帳號的停權狀態，但帳號的資料已被永久刪除。
       suspension_reversible_hint_html: 此帳戶已被停權及所有數據將會於 %{date} 被刪除。在此之前，你仍可以完全回復帳號。如果你想即時刪除此帳戶的資料，可以在下面進行操作。
-      time_in_queue: 排隊中 %{time}
       title: 帳號
       unconfirmed_email: 未確認的電郵
       undo_sensitized: 取消敏感狀態
@@ -492,8 +488,6 @@ zh-HK:
         title: 新增 IP 規則
       no_ip_block_selected: 因未選擇 IP 規則而未有任何變更。
       title: IP 規則
-    pending_accounts:
-      title: 待處理帳戶（%{count}）
     relationships:
       title: "%{acct} 的關係"
     relays:
