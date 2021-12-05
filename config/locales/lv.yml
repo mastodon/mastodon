@@ -102,7 +102,6 @@ lv:
     accounts:
       add_email_domain_block: Bloķēt e-pasta domēnu
       approve: Apstiprināt
-      approve_all: Apstiprināt visus
       approved_msg: Veiksmīgi apstiprināts %{username} reģistrēšanās pieteikums
       are_you_sure: Vai esi pārliecināts?
       avatar: Avatars
@@ -156,7 +155,6 @@ lv:
         active: Aktīvie
         all: Visi
         pending: Gaida
-        silenced: Ierobežotie
         suspended: Apturētie
         title: Moderācija
       moderation_notes: Moderācijas piezīmes
@@ -174,7 +172,6 @@ lv:
       redownload: Atsvaidzināt profilu
       redownloaded_msg: Veiksmīgi atsvaidzināts %{username} profils no izcelsmes
       reject: Noraidīt
-      reject_all: Noraidīt visus
       rejected_msg: Veiksmīgi noraidīts %{username} reģistrēšanās pieteikums
       remove_avatar: Noņemt avatāru
       remove_header: Noņemt galveni
@@ -213,7 +210,6 @@ lv:
       suspended: Apturēts
       suspension_irreversible: Šī konta dati ir neatgriezeniski izdzēsti. Tu vari atcelt konta darbības apturēšanu, lai tas būtu izmantojams, taču tas neatjaunos iepriekšējos datus.
       suspension_reversible_hint_html: Konta darbība ir apturēta, un dati tiks pilnībā noņemti %{date}. Līdz tam kontu var atjaunot bez jebkādām nelabvēlīgām sekām. Ja vēlies nekavējoties noņemt visus konta datus, to vari izdarīt zemāk.
-      time_in_queue: Gaida rindā %{time}
       title: Konti
       unconfirmed_email: Neapstiprināts e-pasts
       undo_sensitized: Atcelt sensitivizēšanu
@@ -528,8 +524,6 @@ lv:
         title: Izveidot jaunu IP noteikumu
       no_ip_block_selected: Neviens IP noteikums netika mainīts, jo netika atlasīts
       title: IP noteikumi
-    pending_accounts:
-      title: Neapstiprinātie konti (%{count})
     relationships:
       title: "%{acct} attiecības"
     relays:
@@ -755,6 +749,10 @@ lv:
         trending_rank: 'Populārākie #%{rank}'
         usable: Var tikt lietots
         usage_comparison: Šodien lietots %{today} reizes, salīdzinot ar %{yesterday} vakar
+        used_by_over_week:
+          zero: Pēdējās nedēļas laikā izmantoja %{count} personu
+          one: Pēdējās nedēļas laikā izmantoja viens cilvēks
+          other: Pēdējās nedēļas laikā izmantoja %{count} personas
       title: Tendences
     warning_presets:
       add_new: Pievienot jaunu
