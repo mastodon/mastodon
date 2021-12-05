@@ -98,7 +98,6 @@ tr:
     accounts:
       add_email_domain_block: E-posta alan adını engelle
       approve: Onayla
-      approve_all: Tümünü onayla
       approved_msg: '%{username} adlı kullanıcının kayıt başvurusu başarıyla onaylandı'
       are_you_sure: Emin misiniz?
       avatar: Profil resmi
@@ -152,7 +151,6 @@ tr:
         active: Etkin
         all: Hepsi
         pending: Bekliyor
-        silenced: Susturulanlar
         suspended: Uzaklaştırılanlar
         title: Denetim
       moderation_notes: Denetleme notları
@@ -170,7 +168,6 @@ tr:
       redownload: Profili yenile
       redownloaded_msg: '%{username} kullanıcısının profili kökenden başarıyla yenilendi'
       reject: Reddet
-      reject_all: Tümünü reddet
       rejected_msg: '%{username} adlı kullanıcının kayıt başvurusu başarıyla reddedildi'
       remove_avatar: Profil resmini kaldır
       remove_header: Üstbilgiyi kaldır
@@ -209,7 +206,6 @@ tr:
       suspended: Askıya alındı
       suspension_irreversible: Bu hesabın verileri geri dönüşümsüz olarak silindi. Hesabı kullanılabilir hale getirmek için hesabın askıya alınmasını kaldırabilirsiniz, ancak daha önce sahip olduğu herhangi bir veri kurtarılamaz.
       suspension_reversible_hint_html: Hesap askıya alındı ve veriler %{date} tarihinde tamamen kaldırılacak. O zamana kadar, hesap herhangi bir olumsuz etki olmaksızın geri yüklenebilir. Hesabın tüm verilerini hemen kaldırmak isterseniz, bunu aşağıdan yapabilirsiniz.
-      time_in_queue: '%{time} kuyruğunda bekliyor'
       title: Hesaplar
       unconfirmed_email: Onaylanmamış e-posta
       undo_sensitized: Hassaslığı geri al
@@ -518,8 +514,6 @@ tr:
         title: Yeni IP kuralı oluştur
       no_ip_block_selected: Hiçbiri seçilmediğinden hiçbir IP kuralı değiştirilmedi
       title: IP kuralları
-    pending_accounts:
-      title: Bekleyen hesaplar (%{count})
     relationships:
       title: "%{acct} kişisinin ilişkileri"
     relays:
