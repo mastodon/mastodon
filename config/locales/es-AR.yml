@@ -221,6 +221,7 @@ es-AR:
       whitelisted: Permitidas para federación
     action_logs:
       action_types:
+        approve_user: Aprobar usuario
         assigned_to_self_report: Asignar denuncia
         change_email_user: Cambiar correo electrónico del usuario
         confirm_user: Confirmar usuario
@@ -250,6 +251,7 @@ es-AR:
         enable_user: Habilitar usuario
         memorialize_account: Convertir en cuenta conmemorativa
         promote_user: Promover usuario
+        reject_user: Rechazar usuario
         remove_avatar_user: Quitar avatar
         reopen_report: Reabrir denuncia
         reset_password_user: Cambiar contraseña
@@ -266,6 +268,7 @@ es-AR:
         update_domain_block: Actualizar bloque de dominio
         update_status: Actualizar mensaje
       actions:
+        approve_user_html: "%{name} aprobó el registro de %{target}"
         assigned_to_self_report_html: "%{name} se asignó la denuncia %{target} a sí"
         change_email_user_html: "%{name} cambió la dirección de correo electrónico del usuario %{target}"
         confirm_user_html: "%{name} confirmó la dirección de correo del usuario %{target}"
@@ -295,6 +298,7 @@ es-AR:
         enable_user_html: "%{name} habilitó el inicio de sesión para el usuario %{target}"
         memorialize_account_html: "%{name} convirtió la cuenta de %{target} en una cuenta conmemorativa"
         promote_user_html: "%{name} promovió al usuario %{target}"
+        reject_user_html: "%{name} rechazó el registro de %{target}"
         remove_avatar_user_html: "%{name} quitó el avatar de %{target}"
         reopen_report_html: "%{name} reabrió la denuncia %{target}"
         reset_password_user_html: "%{name} cambió la contraseña del usuario %{target}"
@@ -973,6 +977,7 @@ es-AR:
     none: '[Ninguna]'
     order_by: Ordenar por
     save_changes: Guardar cambios
+    today: hoy
     validation_errors:
       one: '¡Falta algo! Por favor, revisá el error abajo'
       other: '¡Falta algo! Por favor, revisá los %{count} errores abajo'
