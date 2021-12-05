@@ -93,7 +93,6 @@ ja:
     accounts:
       add_email_domain_block: メールドメインブロックに追加
       approve: 承認
-      approve_all: すべて承認
       approved_msg: '%{username} の登録申請を承認しました'
       are_you_sure: 本当に実行しますか？
       avatar: アイコン
@@ -147,7 +146,6 @@ ja:
         active: アクティブ
         all: すべて
         pending: 承認待ち
-        silenced: サイレンス済み
         suspended: 停止済み
         title: モデレーション
       moderation_notes: モデレーションメモ
@@ -165,7 +163,6 @@ ja:
       redownload: プロフィールを更新
       redownloaded_msg: '%{username} のプロフィールを正常に更新しました'
       reject: 却下
-      reject_all: すべて却下
       rejected_msg: '%{username} の登録申請を却下しました'
       remove_avatar: アイコンを削除
       remove_header: ヘッダーを削除
@@ -204,7 +201,6 @@ ja:
       suspended: 停止済み
       suspension_irreversible: このアカウントのデータは削除され元に戻せなくなります。後日アカウントの凍結を解除することはできますがデータは元に戻せません。
       suspension_reversible_hint_html: アカウントは停止されており、データは %{date} に完全に削除されます。それまではアカウントを元に戻すことができます。今すぐ完全に削除したい場合は以下から行うことができます。
-      time_in_queue: '%{time} 待ち'
       title: アカウント
       unconfirmed_email: 確認待ちのメールアドレス
       undo_sensitized: 閲覧注意から戻す
@@ -507,8 +503,6 @@ ja:
         title: 新規IPルール
       no_ip_block_selected: 何も選択されていないためIPルールを変更しませんでした
       title: IPルール
-    pending_accounts:
-      title: 承認待ちアカウント (%{count})
     relationships:
       title: "%{acct} さんのフォロー・フォロワー"
     relays:
