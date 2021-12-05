@@ -221,6 +221,7 @@ is:
       whitelisted: Á lista yfir leyft
     action_logs:
       action_types:
+        approve_user: Samþykkja notanda
         assigned_to_self_report: Úthluta kæru
         change_email_user: Skipta um tölvupóstfang notanda
         confirm_user: Staðfesta notanda
@@ -250,6 +251,7 @@ is:
         enable_user: Virkja notanda
         memorialize_account: Gera aðgang að minningargrein
         promote_user: Hækka notanda í tign
+        reject_user: Hafna notanda
         remove_avatar_user: Fjarlægja auðkennismynd
         reopen_report: Enduropna kæru
         reset_password_user: Endurstilla lykilorð
@@ -266,6 +268,7 @@ is:
         update_domain_block: Uppfæra útilokun léns
         update_status: Uppfæra stöðufærslu
       actions:
+        approve_user_html: "%{name} samþykkti nýskráningu frá %{target}"
         assigned_to_self_report_html: "%{name} úthlutaði kæru %{target} til sín"
         change_email_user_html: "%{name} breytti tölvupóstfangi fyrir notandann %{target}"
         confirm_user_html: "%{name} staðfesti tölvupóstfang fyrir notandann %{target}"
@@ -295,6 +298,7 @@ is:
         enable_user_html: "%{name} gerði innskráningu virka fyrir notandann %{target}"
         memorialize_account_html: "%{name} breytti notandaaðgangnum %{target} í minningargreinarsíðu"
         promote_user_html: "%{name} hækkaði notandann %{target} í tign"
+        reject_user_html: "%{name} hafnaði nýskráningu frá %{target}"
         remove_avatar_user_html: "%{name} fjarlægði auðkennismynd af %{target}"
         reopen_report_html: "%{name} enduropnaði kæru %{target}"
         reset_password_user_html: "%{name} endurstillti lykilorð fyrir notandann %{target}"
@@ -973,6 +977,7 @@ is:
     none: Ekkert
     order_by: Raða eftir
     save_changes: Vista breytingar
+    today: í dag
     validation_errors:
       one: Ennþá er ekk alvegi allt í lagi! Skoðaðu vel villuna hér fyrir neðan
       other: Ennþá er ekki alveg allt í lagi! Skoðaðu vel villurnar %{count} hér fyrir neðan
