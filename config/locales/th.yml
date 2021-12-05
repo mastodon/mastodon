@@ -84,7 +84,6 @@ th:
     accounts:
       add_email_domain_block: ปิดกั้นโดเมนอีเมล
       approve: อนุมัติ
-      approve_all: อนุมัติทั้งหมด
       approved_msg: อนุมัติใบสมัครลงทะเบียนของ %{username} สำเร็จ
       are_you_sure: คุณแน่ใจหรือไม่?
       avatar: ภาพประจำตัว
@@ -138,7 +137,6 @@ th:
         active: ใช้งานอยู่
         all: ทั้งหมด
         pending: รอดำเนินการ
-        silenced: จำกัดอยู่
         suspended: ระงับอยู่
         title: การควบคุม
       moderation_notes: หมายเหตุการควบคุม
@@ -155,7 +153,6 @@ th:
       redownload: รีเฟรชโปรไฟล์
       redownloaded_msg: รีเฟรชโปรไฟล์ของ %{username} จากจุดเริ่มต้นสำเร็จ
       reject: ปฏิเสธ
-      reject_all: ปฏิเสธทั้งหมด
       rejected_msg: ปฏิเสธใบสมัครลงทะเบียนของ %{username} สำเร็จ
       remove_avatar: เอาภาพประจำตัวออก
       remove_header: เอาส่วนหัวออก
@@ -191,7 +188,6 @@ th:
       statuses: โพสต์
       subscribe: บอกรับ
       suspended: ระงับอยู่
-      time_in_queue: กำลังรออยู่ในคิว %{time}
       title: บัญชี
       unconfirmed_email: อีเมลที่ยังไม่ได้ยืนยัน
       undo_sensitized: เลิกทำการบังคับให้ละเอียดอ่อน
@@ -483,8 +479,6 @@ th:
       new:
         title: สร้างกฎ IP ใหม่
       title: กฎ IP
-    pending_accounts:
-      title: บัญชีที่รอดำเนินการ (%{count})
     relationships:
       title: "ความสัมพันธ์ของ %{acct}"
     relays:
