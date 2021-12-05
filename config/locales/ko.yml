@@ -94,7 +94,6 @@ ko:
     accounts:
       add_email_domain_block: 이 이메일 도메인을 차단하기
       approve: 승인
-      approve_all: 모두 승인
       approved_msg: 성공적으로 %{username}의 가입 신청서를 승인했습니다
       are_you_sure: 정말로 실행하시겠습니까?
       avatar: 아바타
@@ -148,7 +147,6 @@ ko:
         active: 활동
         all: 전체
         pending: 대기중
-        silenced: 침묵 중
         suspended: 정지 중
         title: 중재
       moderation_notes: 중재 기록
@@ -166,7 +164,6 @@ ko:
       redownload: 프로필 업데이트
       redownloaded_msg: 성공적으로 %{username}의 프로필을 원본으로부터 업데이트 하였습니다
       reject: 거부
-      reject_all: 모두 거부
       rejected_msg: 성공적으로 %{username}의 가입 신청서를 반려하였습니다
       remove_avatar: 아바타 지우기
       remove_header: 헤더 삭제
@@ -205,7 +202,6 @@ ko:
       suspended: 정지 됨
       suspension_irreversible: 이 계정의 데이터는 복구할 수 없도록 삭제되었습니다. 계정을 정지 해제함으로서 계정을 다시 사용 가능하게 할 수 있지만 이전에 삭제한 어떤 데이터도 복구되지 않습니다.
       suspension_reversible_hint_html: 계정이 정지되었습니다, 그리고 %{date}에 데이터가 완전히 삭제될 것입니다. 그 때까지는 어떤 안 좋은 효과 없이 계정이 복구 될 수 있습니다. 만약 지금 당장 계정의 모든 데이터를 삭제하고 싶다면, 아래에서 행할 수 있습니다.
-      time_in_queue: '%{time}동안 기다림'
       title: 계정
       unconfirmed_email: 미확인 된 이메일 주소
       undo_sensitized: 민감함으로 설정 취소
@@ -508,8 +504,6 @@ ko:
         title: 새 IP 규칙 만들기
       no_ip_block_selected: 아무 것도 선택 되지 않아 어떤 IP 규칙도 변경 되지 않았습니다
       title: IP 규칙들
-    pending_accounts:
-      title: 대기중인 계정 (%{count})
     relationships:
       title: "%{acct}의 관계"
     relays:
