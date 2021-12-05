@@ -98,7 +98,6 @@ fr:
     accounts:
       add_email_domain_block: Mettre le domaine du courriel sur liste noire
       approve: Approuver
-      approve_all: Tout approuver
       approved_msg: La demande d’inscription de %{username} a été approuvée avec succès
       are_you_sure: Voulez-vous vraiment faire ça ?
       avatar: Avatar
@@ -152,7 +151,6 @@ fr:
         active: Actifs
         all: Tous
         pending: En cours de traitement
-        silenced: Masqués
         suspended: Suspendus
         title: Modération
       moderation_notes: Notes de modération
@@ -170,7 +168,6 @@ fr:
       redownload: Rafraîchir le profil
       redownloaded_msg: Le profil de %{username} a été actualisé avec succès depuis l’origine
       reject: Rejeter
-      reject_all: Tout rejeter
       rejected_msg: La demande d’inscription de %{username} a été rejetée avec succès
       remove_avatar: Supprimer l’avatar
       remove_header: Supprimer l’entête
@@ -209,7 +206,6 @@ fr:
       suspended: Suspendu
       suspension_irreversible: Les données de ce compte ont été irréversiblement supprimées. Vous pouvez annuler la suspension du compte pour le rendre utilisable, mais il ne récupérera aucune donnée qu’il avait auparavant.
       suspension_reversible_hint_html: Le compte a été suspendu et les données seront complètement supprimées le %{date}. D’ici là, le compte peut être restauré sans aucun effet néfaste. Si vous souhaitez supprimer toutes les données du compte immédiatement, vous pouvez le faire ci-dessous.
-      time_in_queue: En file d’attente %{time}
       title: Comptes
       unconfirmed_email: Courriel non confirmé
       undo_sensitized: Annuler sensible
@@ -518,8 +514,6 @@ fr:
         title: Créer une nouvelle règle IP
       no_ip_block_selected: Aucune règle IP n’a été modifiée car aucune n’a été sélectionnée
       title: Règles IP
-    pending_accounts:
-      title: Comptes en attente (%{count})
     relationships:
       title: "Relations de %{acct}"
     relays:
