@@ -94,7 +94,6 @@ vi:
     accounts:
       add_email_domain_block: Chặn tên miền email
       approve: Phê duyệt
-      approve_all: Phê duyệt tất cả
       approved_msg: Đã phê duyệt %{username} đăng ký thành công
       are_you_sure: Bạn có chắc không?
       avatar: Ảnh đại diện
@@ -148,7 +147,6 @@ vi:
         active: Hoạt động
         all: Toàn bộ
         pending: Chờ xử lý
-        silenced: Hạn chế
         suspended: Vô hiệu hóa
         title: Trạng thái
       moderation_notes: Nhật ký kiểm duyệt
@@ -166,7 +164,6 @@ vi:
       redownload: Làm mới trang cá nhân
       redownloaded_msg: Đã tiếp nhận tài khoản %{username} thành công
       reject: Từ chối
-      reject_all: Từ chối tất cả
       rejected_msg: Đã từ chối đăng ký tài khoản %{username}
       remove_avatar: Xóa ảnh đại diện
       remove_header: Xóa ảnh bìa
@@ -205,7 +202,6 @@ vi:
       suspended: Vô hiệu hóa
       suspension_irreversible: Toàn bộ dữ liệu của người dùng này sẽ bị xóa hết. Bạn vẫn có thể ngừng vô hiệu hóa nhưng dữ liệu sẽ không thể phục hồi.
       suspension_reversible_hint_html: Mọi dữ liệu của người này sẽ bị xóa sạch vào %{date}. Trước thời hạn này, dữ liệu vẫn có thể phục hồi. Nếu bạn muốn xóa dữ liệu của người này ngay lập tức, hãy tiếp tục.
-      time_in_queue: Đang chờ cách đây %{time}
       title: Tài khoản
       unconfirmed_email: Email chưa được xác thực
       undo_sensitized: Đánh dấu bình thường
@@ -508,8 +504,6 @@ vi:
         title: Chặn một IP mới
       no_ip_block_selected: Bạn chưa chọn bất kỳ IP nào
       title: Những IP bị chặn
-    pending_accounts:
-      title: Tài khoản đang chờ xem xét (%{count})
     relationships:
       title: "Mối quan hệ của %{acct}"
     relays:
