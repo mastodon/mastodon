@@ -94,7 +94,6 @@ zh-CN:
     accounts:
       add_email_domain_block: 封禁电子邮箱域名
       approve: 批准
-      approve_all: 全部批准
       approved_msg: 已批准 %{username} 的注册申请
       are_you_sure: 你确定吗？
       avatar: 头像
@@ -148,7 +147,6 @@ zh-CN:
         active: 活跃
         all: 全部
         pending: 待审核
-        silenced: 已隐藏
         suspended: 已封禁
         title: 管理
       moderation_notes: 管理员备注
@@ -166,7 +164,6 @@ zh-CN:
       redownload: 刷新个人资料
       redownloaded_msg: 成功从来源处刷新 %{username} 的用户资料
       reject: 拒绝
-      reject_all: 拒绝全部
       rejected_msg: 已拒绝 %{username} 的注册申请
       remove_avatar: 删除头像
       remove_header: 删除横幅图片
@@ -205,7 +202,6 @@ zh-CN:
       suspended: 已封禁
       suspension_irreversible: 该帐号的数据已被不可逆转地删除。你可以取消暂停该帐号以使其可用，但它不会恢复以前拥有的任何数据。
       suspension_reversible_hint_html: 帐号已封禁，数据将在 %{date} 完全删除。 在此之前，帐号仍可恢复，并且没有任何不良影响。 如果你想立即移除该帐号的所有数据，可以在下面进行。
-      time_in_queue: 已经等待了 %{time}
       title: 用户
       unconfirmed_email: 待验证的电子邮件地址
       undo_sensitized: 去除敏感内容标记
@@ -508,8 +504,6 @@ zh-CN:
         title: 创建新 IP 规则
       no_ip_block_selected: 因为没有 IP 规则被选中，所以没有更改
       title: IP 规则
-    pending_accounts:
-      title: 待处理的帐户 (%{count})
     relationships:
       title: "%{acct} 的关系"
     relays:
