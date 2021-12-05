@@ -106,7 +106,6 @@ cs:
     accounts:
       add_email_domain_block: Blokovat e-mailovou doménu
       approve: Schválit
-      approve_all: Schválit vše
       approved_msg: Žádost o registraci uživatele %{username} úspěšně schválena
       are_you_sure: Opravdu?
       avatar: Avatar
@@ -160,7 +159,6 @@ cs:
         active: Aktivní
         all: Vše
         pending: Čekající
-        silenced: Omezené
         suspended: Pozastavené
         title: Moderování
       moderation_notes: Moderátorské poznámky
@@ -178,7 +176,6 @@ cs:
       redownload: Obnovit profil
       redownloaded_msg: Profil účtu %{username} byl úspěšně obnoven ze zdroje
       reject: Zamítnout
-      reject_all: Zamítnout vše
       rejected_msg: Žádost o registraci uživatele %{username} úspěšně zamítnuta
       remove_avatar: Odstranit avatar
       remove_header: Odstranit záhlaví
@@ -217,7 +214,6 @@ cs:
       suspended: Uživatel pozastaven
       suspension_irreversible: Data tohoto účtu byla nevratně smazána. Účet můžete obnovit, aby byl použitelný, ale nebudou obnovena žádná jeho dřívější data.
       suspension_reversible_hint_html: Účet byl pozastaven a jeho data budou kompletně smazána %{date}. Do té doby může být tento účet kompletně obnoven do původního stavu. Chcete-li smazat všechna data účtu ihned, můžete tak učinit níže.
-      time_in_queue: Čeká ve frontě %{time}
       title: Účty
       unconfirmed_email: Nepotvrzený e-mail
       undo_sensitized: Vrátit zpět citlivost
@@ -538,8 +534,6 @@ cs:
         title: Vytvořit nové IP pravidlo
       no_ip_block_selected: Nebyla změněna žádná IP pravidla, protože nebylo žádné zaškrtnuto
       title: IP pravidla
-    pending_accounts:
-      title: Čekající účty (%{count})
     relationships:
       title: "Vztahy uživatele %{acct}"
     relays:
