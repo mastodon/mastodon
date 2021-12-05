@@ -97,7 +97,6 @@ nl:
     accounts:
       add_email_domain_block: E-maildomein blokkeren
       approve: Goedkeuren
-      approve_all: Alles goedkeuren
       approved_msg: Het goedkeuren van het registratieverzoek van %{username} is geslaagd
       are_you_sure: Weet je het zeker?
       avatar: Avatar
@@ -149,7 +148,6 @@ nl:
         active: Actief
         all: Alles
         pending: In afwachting
-        silenced: Genegeerd
         suspended: Opgeschort
         title: Moderatie
       moderation_notes: Opmerkingen voor moderatoren
@@ -167,7 +165,6 @@ nl:
       redownload: Profiel vernieuwen
       redownloaded_msg: Het herstellen van het oorspronkelijke profiel van %{username} is geslaagd
       reject: Afkeuren
-      reject_all: Alles afkeuren
       rejected_msg: Het afwijzen van het registratieverzoek van %{username} is geslaagd
       remove_avatar: Avatar verwijderen
       remove_header: Omslagfoto verwijderen
@@ -202,7 +199,6 @@ nl:
       suspended: Opgeschort
       suspension_irreversible: De gegevens van dit account zijn onomkeerbaar verwijderd. Je kunt het opschorten van dit account ongedaan maken zodat het weer valt te gebruiken, maar de verwijderde gegevens worden hiermee niet hersteld.
       suspension_reversible_hint_html: Dit account is opgeschort en de gegevens worden volledig verwijderd op %{date}. Tot die tijd kan dit account worden hersteld zonder nadelige gevolgen. Wanneer je alle gegevens van dit account onmiddellijk wilt verwijderen, kun je dit hieronder doen.
-      time_in_queue: '%{time} in de wachtrij'
       title: Accounts
       unconfirmed_email: Onbevestigd e-mailadres
       undo_sensitized: Niet meer als gevoelig markeren
@@ -488,8 +484,6 @@ nl:
         title: Nieuwe IP-regel aanmaken
       no_ip_block_selected: Er zijn geen IP-regels veranderd, omdat er geen een was geselecteerd
       title: IP-regels
-    pending_accounts:
-      title: Accounts in afwachting (%{count})
     relationships:
       title: "Relaties van %{acct}"
     relays:
