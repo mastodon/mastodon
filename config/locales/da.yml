@@ -221,6 +221,7 @@ da:
       whitelisted: Tilladt for federering
     action_logs:
       action_types:
+        approve_user: Godkend bruger
         assigned_to_self_report: Tildel rapport
         change_email_user: Skift e-mail for bruger
         confirm_user: Bekræft bruger
@@ -250,6 +251,7 @@ da:
         enable_user: Aktivér brugeren
         memorialize_account: Gør til mindekonto
         promote_user: Promovér bruger
+        reject_user: Afvis bruger
         remove_avatar_user: Fjern profilbillede
         reopen_report: Genåbn anmeldelse
         reset_password_user: Nulstil adgangskode
@@ -266,6 +268,7 @@ da:
         update_domain_block: Opdatér domæneblokering
         update_status: Opdatér status
       actions:
+        approve_user_html: "%{name} godkendte tilmelding fra %{target}"
         assigned_to_self_report_html: "%{name} tildelte sig selv anmeldelsen %{target}"
         change_email_user_html: "%{name} ændrede e-mailadressen for bruger %{target}"
         confirm_user_html: "%{name} bekræftede e-mailadressen for bruger %{target}"
@@ -295,6 +298,7 @@ da:
         enable_user_html: "%{name} aktiverede indlogning for brugeren %{target}"
         memorialize_account_html: "%{name} gjorde %{target}s konto til en mindeside"
         promote_user_html: "%{name} forfremmede brugeren %{target}"
+        reject_user_html: "%{name} afviste tilmelding fra %{target}"
         remove_avatar_user_html: "%{name} fjernede %{target}s profilbillede"
         reopen_report_html: "%{name} genåbnede anmeldelsen %{target}"
         reset_password_user_html: "%{name} nulstillede adgangskoden for brugeren %{target}"
@@ -973,6 +977,7 @@ da:
     none: Intet
     order_by: Sortér efter
     save_changes: Gem ændringer
+    today: i dag
     validation_errors:
       one: Noget er ikke er helt i vinkel! Tjek fejlen nedenfor
       other: Noget er ikke er helt i vinkel! Tjek de %{count} fejl nedenfor
