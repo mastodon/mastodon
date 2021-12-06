@@ -217,6 +217,7 @@ id:
       whitelisted: Masuk daftar putih
     action_logs:
       action_types:
+        approve_user: Setujui Pengguna
         assigned_to_self_report: Berikan laporan
         change_email_user: Ubah Email untuk Pengguna
         confirm_user: Konfirmasi Pengguna
@@ -246,6 +247,7 @@ id:
         enable_user: Aktifkan Pengguna
         memorialize_account: Kenang Akun
         promote_user: Promosikan Pengguna
+        reject_user: Tolak Pengguna
         remove_avatar_user: Hapus Avatar
         reopen_report: Buka Lagi Laporan
         reset_password_user: Atur Ulang Kata sandi
@@ -262,6 +264,7 @@ id:
         update_domain_block: Perbarui Blokir Domain
         update_status: Perbarui Status
       actions:
+        approve_user_html: "%{name} menyetujui pendaftaran dari %{target}"
         assigned_to_self_report_html: "%{name} menugaskan laporan %{target} ke dirinya sendiri"
         change_email_user_html: "%{name} mengubah alamat email pengguna %{target}"
         confirm_user_html: "%{name} mengonfirmasi alamat email pengguna %{target}"
@@ -291,6 +294,7 @@ id:
         enable_user_html: "%{name} mengaktifkan login untuk pengguna %{target}"
         memorialize_account_html: "%{name} mengubah akun %{target} jadi halaman memorial"
         promote_user_html: "%{name} mempromosikan pengguna %{target}"
+        reject_user_html: "%{name} menolak pendaftaran dari %{target}"
         remove_avatar_user_html: "%{name} menghapus avatar %{target}"
         reopen_report_html: "%{name} membuka ulang laporan %{target}"
         reset_password_user_html: "%{name} mereset kata sandi pengguna %{target}"
@@ -959,6 +963,7 @@ id:
     none: Tidak ada
     order_by: Urut berdasarkan
     save_changes: Simpan perubahan
+    today: hari ini
     validation_errors:
       other: Ada yang belum benar! Silakan tinjau %{count} kesalahan di bawah ini
   html_validator:
