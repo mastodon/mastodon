@@ -69,8 +69,7 @@ const CreateNewListForm = (props) => {
   };
 
   return (
-    <div>
-      <h4>{listCreator}</h4>
+    <div className="list-creator">
       <form className="column-settings__row" onSubmit={handleSubmit}>
         <div className="column-inline-form">
           <label>

@@ -1,14 +1,21 @@
 import React from 'react';
-
-import Search from '../../../list_editor/components/search';
-
+import { FormattedMessage } from 'react-intl';
+import Icon from 'mastodon/components/icon';
+import SearchUsers from '../../../search_users';
 
 const UsersListCreator = (props) => {
-
-
   return (
-    <div>
-      <Search />
+    <div className="search-results__section">
+      <h5>
+        <Icon id="users" fixedWidth />
+        <FormattedMessage
+          id="search_results.accounts"
+          defaultMessage="People"
+        />
+      </h5>
+      <div className="users_list_creator">
+        <SearchUsers />
+      </div>
     </div>
   );
 };

@@ -146,6 +146,10 @@ export function Search () {
   return import(/*webpackChunkName: "features/search" */'../../search');
 }
 
+export function SearchUsers () {
+  return import(/*webpackChunkName: "features/search" */'../../search_users');
+}
+
 export function Tesseract () {
   return import(/*webpackChunkName: "tesseract" */'tesseract.js');
 }

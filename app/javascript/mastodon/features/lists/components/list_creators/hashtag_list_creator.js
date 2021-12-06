@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { injectIntl, FormattedMessage, defineMessages } from 'react-intl';
 import IconButton from '../../../../components/icon_button';
+import Icon from 'mastodon/components/icon';
 
 import {
   changeListEditorHashtag,
@@ -50,14 +51,15 @@ const HashtagListCreator = (props) => {
   };
 
   return (
-    <div className="extend-list">
-      <form className="column-settings__row" onSubmit={handleSubmit}>
-        <span className="column-settings__section">
+    <div className="search-results__section">
+      <form onSubmit={handleSubmit}>
+        <h5>
+          <Icon id="hashtag" fixedWidth />
           <FormattedMessage
-            id="lists.extended_lists.hashtags"
+            id="search_results.hashtags"
             defaultMessage="Hashtags"
           />
-        </span>
+        </h5>
         <div className="column-inline-form">
           <label>
             <textarea
@@ -66,6 +68,7 @@ const HashtagListCreator = (props) => {
               disabled={disabled}
               onChange={handleChange}
               placeholder={!hashtag ? label : hashtagValue}
+              rows="1"
             />
           </label>
           <IconButton
