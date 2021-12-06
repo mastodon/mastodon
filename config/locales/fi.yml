@@ -705,6 +705,8 @@ fi:
         usage_comparison: Jaettu %{today} kertaa tänään verrattuna eilen %{yesterday}
       pending_review: Odottaa tarkistusta
       preview_card_providers:
+        allowed: Tämän julkaisijan linkit voivat trendata
+        rejected: Tämän julkaisijan linkit eivät voi trendata
         title: Julkaisijat
       rejected: Hylätty
       tags:
@@ -722,6 +724,13 @@ fi:
         peaked_on_and_decaying: Saavutti huipun %{date}, nyt hiipuu
         title: Suositut tunnisteet
         trendable: Voi näkyä trendien alla
+        trending_rank: 'Nousussa #%{rank}'
+        usable: Voidaan käyttää
+        usage_comparison: Käytetty %{today} kertaa tänään, verrattuna %{yesterday} eiliseen
+        used_by_over_week:
+          one: Yhden henkilön käyttämä viime viikon aikana
+          other: '%{count} henkilön käyttämä viime viikon aikana'
+      title: Trendit
     warning_presets:
       add_new: Lisää uusi
       delete: Poista
@@ -736,6 +745,10 @@ fi:
       body: "%{reporter} on raportoinut kohteen %{target}"
       body_remote: Joku osoitteesta %{domain} on raportoinut kohteen %{target}
       subject: Uusi raportti instanssista %{instance} (nro %{id})
+    new_trending_links:
+      body: Seuraavat linkit trendaavat tänään, mutta niiden julkaisijoita ei ole aiemmin tarkistettu. Niitä ei näytetä julkisesti, ellet hyväksy niitä. Uusia ilmoituksia samoilta julkaisijoilta ei luoda.
+      no_approved_links: Tällä hetkellä ei ole hyväksyttyjä trendaavia linkkejä.
+      requirements: Alin hyväksytty trendilinkki on tällä hetkellä "%{lowest_link_title}" pisteillä %{lowest_link_score}.
   aliases:
     add_new: Luo alias
     created_msg: Uusi alias luotiin onnistuneesti. Voit nyt aloittaa siirron vanhasta tilistä.
@@ -942,6 +955,7 @@ fi:
     changes_saved_msg: Muutosten tallennus onnistui!
     copy: Kopioi
     delete: Poista
+    none: Ei mitään
     order_by: Järjestä
     save_changes: Tallenna muutokset
     today: tänään
@@ -1072,6 +1086,8 @@ fi:
       body: '%{name} mainitsi sinut:'
       subject: '%{name} mainitsi sinut'
       title: Uusi maininta
+    poll:
+      subject: Äänestys käyttäjältä %{name} on päättynyt
     reblog:
       body: '%{name} buustasi tilaasi:'
       subject: "%{name} boostasi tilaasi"
