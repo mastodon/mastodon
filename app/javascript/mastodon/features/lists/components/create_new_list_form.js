@@ -13,7 +13,7 @@ import HashtagListCreator from './list_creators/hashtag_list_creator';
 import UsersListCreator from './list_creators/Users_list_creator';
 
 const messages = defineMessages({
-  listCreator: { id: 'lists.new.creator', defaultMessage: 'List creator' },
+  // listCreator: { id: 'lists.new.creator', defaultMessage: 'List creator' },
   label: {
     id: 'lists.new.title_placeholder',
     defaultMessage: 'New list title',
@@ -26,7 +26,7 @@ const CreateNewListForm = (props) => {
 
   const label = intl.formatMessage(messages.label);
   const title = intl.formatMessage(messages.title);
-  const listCreator = intl.formatMessage(messages.listCreator);
+  // const listCreator = intl.formatMessage(messages.listCreator);
 
   const [listName, setListName] = useState(false);
 
