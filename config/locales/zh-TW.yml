@@ -217,6 +217,7 @@ zh-TW:
       whitelisted: 已加入白名單
     action_logs:
       action_types:
+        approve_user: 批准使用者
         assigned_to_self_report: 指派回報
         change_email_user: 變更使用者的電子信箱地址
         confirm_user: 確認使用者
@@ -246,6 +247,7 @@ zh-TW:
         enable_user: 啓用帳戶
         memorialize_account: 設定成紀念帳戶
         promote_user: 把用戶升級
+        reject_user: 回絕使用者
         remove_avatar_user: 刪除大頭貼
         reopen_report: 重開舉報
         reset_password_user: 重設密碼
@@ -262,6 +264,7 @@ zh-TW:
         update_domain_block: 更新封鎖網域
         update_status: 更新狀態
       actions:
+        approve_user_html: "%{name} 批准了從 %{target} 而來的註冊"
         assigned_to_self_report_html: "%{name} 將報告 %{target} 指派給自己"
         change_email_user_html: "%{name} 變更了使用者 %{target} 的電子信箱地址"
         confirm_user_html: "%{name} 確認了使用者 %{target} 的電子信箱位址"
@@ -291,6 +294,7 @@ zh-TW:
         enable_user_html: "%{name} 將使用者 %{target} 設定為允許登入"
         memorialize_account_html: "%{name} 將 %{target} 設定為追悼帳戶"
         promote_user_html: "%{name} 對使用者 %{target} 進行了晉級操作"
+        reject_user_html: "%{name} 回絕了從 %{target} 而來的註冊"
         remove_avatar_user_html: "%{name} 移除了 %{target} 的大頭貼"
         reopen_report_html: "%{name} 重新開啟 %{target} 的檢舉"
         reset_password_user_html: "%{name} 重新設定了使用者 %{target} 的密碼"
@@ -959,6 +963,7 @@ zh-TW:
     none: 無
     order_by: 排序
     save_changes: 儲存修改
+    today: 今天
     validation_errors:
       other: 唔…這是什麼鳥？請檢查以下 %{count} 項錯誤
   html_validator:
