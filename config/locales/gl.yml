@@ -220,6 +220,7 @@ gl:
       whitelisted: Listaxe branca
     action_logs:
       action_types:
+        approve_user: Aprobar Usuaria
         assigned_to_self_report: Asignar denuncia
         change_email_user: Editar email da usuaria
         confirm_user: Confirmar usuaria
@@ -249,6 +250,7 @@ gl:
         enable_user: Activar usuaria
         memorialize_account: Transformar en conta conmemorativa
         promote_user: Promover usuaria
+        reject_user: Rexeitar Usuaria
         remove_avatar_user: Eliminar avatar
         reopen_report: Reabrir denuncia
         reset_password_user: Restabelecer contrasinal
@@ -265,6 +267,7 @@ gl:
         update_domain_block: Actualizar bloqueo do dominio
         update_status: Actualizar publicación
       actions:
+        approve_user_html: "%{name} aprobou o rexistro de %{target}"
         assigned_to_self_report_html: "%{name} asignou a denuncia %{target} para si mesma"
         change_email_user_html: "%{name} cambiou o enderezo de email da usuaria %{target}"
         confirm_user_html: "%{name} confirmou o enderezo de email da usuaria %{target}"
@@ -294,6 +297,7 @@ gl:
         enable_user_html: "%{name} activou a conexión para a usuaria %{target}"
         memorialize_account_html: "%{name} convertiu a conta de %{target} nunha páxina para o recordo"
         promote_user_html: "%{name} promocionou a usuaria %{target}"
+        reject_user_html: "%{name} rexeitou o rexistro de %{target}"
         remove_avatar_user_html: "%{name} eliminou o avatar de %{target}"
         reopen_report_html: "%{name} reabriu a denuncia %{target}"
         reset_password_user_html: "%{name} restableceu o contrasinal da usuaria %{target}"
@@ -972,6 +976,7 @@ gl:
     none: Ningún
     order_by: Ordenar por
     save_changes: Gardar cambios
+    today: hoxe
     validation_errors:
       one: Algo non está ben de todo! Por favor revise abaixo o erro
       other: Algo aínda non está ben! Por favor revise os %{count} erros abaixo
