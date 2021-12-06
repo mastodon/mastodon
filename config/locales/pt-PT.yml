@@ -221,6 +221,7 @@ pt-PT:
       whitelisted: Está na lista branca
     action_logs:
       action_types:
+        approve_user: Aprovar Utilizador
         assigned_to_self_report: Atribuir Relatório
         change_email_user: Alterar E-mail do Utilizador
         confirm_user: Confirmar Utilizador
@@ -250,6 +251,7 @@ pt-PT:
         enable_user: Ativar Utilizador
         memorialize_account: Memorizar Conta
         promote_user: Promover Utilizador
+        reject_user: Rejeitar Utilizador
         remove_avatar_user: Remover Imagem de Perfil
         reopen_report: Reabrir Relatório
         reset_password_user: Repor Password
@@ -266,6 +268,7 @@ pt-PT:
         update_domain_block: Atualizar Bloqueio de Domínio
         update_status: Atualizar Estado
       actions:
+        approve_user_html: "%{name} aprovou a inscrição de %{target}"
         assigned_to_self_report_html: "%{name} atribuiu o relatório %{target} a si próprio"
         change_email_user_html: "%{name} alterou o endereço de e-mail do utilizador %{target}"
         confirm_user_html: "%{name} confirmou o endereço de e-mail do utilizador %{target}"
@@ -295,6 +298,7 @@ pt-PT:
         enable_user_html: "%{name} ativou o acesso para o utilizador %{target}"
         memorialize_account_html: "%{name} transformou a conta de %{target} em um memorial"
         promote_user_html: "%{name} promoveu o utilizador %{target}"
+        reject_user_html: "%{name} rejeitou a inscrição de %{target}"
         remove_avatar_user_html: "%{name} removeu a imagem de perfil de %{target}"
         reopen_report_html: "%{name} reabriu o relatório %{target}"
         reset_password_user_html: "%{name} restabeleceu a palavra-passe do utilizador %{target}"
@@ -761,6 +765,9 @@ pt-PT:
       subject: Novos links em destaque para revisão em %{instance}
     new_trending_tags:
       body: 'As seguintes hashtags estão hoje em tendência, mas não foram revistas anteriormente. Elas não serão exibidas publicamente, a menos que você as aprove:'
+      no_approved_tags: Não existem, atualmente, hashtags aprovados em tendência.
+      requirements: 'A hashtag em tendência, com pontuação mais baixa, aprovado atualmente é #%{lowest_tag_name} com uma pontuação de %{lowest_tag_score}.'
+      subject: Novas hashtags em tendência para revisão em %{instance}
   aliases:
     add_new: Criar pseudónimo
     created_msg: Criou com sucesso um novo pseudónimo. Pode agora iniciar a migração da conta antiga.
@@ -967,8 +974,10 @@ pt-PT:
     changes_saved_msg: Alterações guardadas!
     copy: Copiar
     delete: Eliminar
+    none: Nenhum
     order_by: Ordenar por
     save_changes: Guardar alterações
+    today: hoje
     validation_errors:
       one: Algo não está correcto. Por favor vê o erro abaixo
       other: Algo não está correto. Por favor vê os %{count} erros abaixo
