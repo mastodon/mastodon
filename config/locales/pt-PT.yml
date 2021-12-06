@@ -704,9 +704,15 @@ pt-PT:
       disallow: Não permitir
       links:
         allow: Permitir link
-        allow_provider: Permitir origem
+        allow_provider: Permitir editor
         disallow: Não permitir link
-        disallow_provider: Não permitir origem
+        disallow_provider: Não permitir editor
+        shared_by_over_week:
+          one: Partilhado por uma pessoa na última semana
+          other: Partilhado por %{count} pessoas na última semana
+        title: Links em destaque
+        usage_comparison: Partilhado %{today} vezes hoje, em comparação com %{yesterday} ontem
+      pending_review: Pendente de revisão
     warning_presets:
       add_new: Adicionar novo
       delete: Eliminar
