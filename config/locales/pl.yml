@@ -229,6 +229,7 @@ pl:
       whitelisted: Na białej liście
     action_logs:
       action_types:
+        approve_user: Zatwierdź użytkownika
         assigned_to_self_report: Przypisz zgłoszenie
         change_email_user: Zmień adres e-mail użytkownika
         confirm_user: Potwierdź użytkownika
@@ -258,6 +259,7 @@ pl:
         enable_user: Włącz użytkownika
         memorialize_account: Upamiętnij konto
         promote_user: Podnieś uprawnienia
+        reject_user: Odrzuć użytkownika
         remove_avatar_user: Usuń awatar
         reopen_report: Otwórz zgłoszenie ponownie
         reset_password_user: Resetuj hasło
@@ -274,6 +276,7 @@ pl:
         update_domain_block: Zaktualizuj blokadę domeny
         update_status: Aktualizuj wpis
       actions:
+        approve_user_html: "%{name} zatwierdził rejestrację od %{target}"
         assigned_to_self_report_html: "%{name} przypisał(a) sobie zgłoszenie %{target}"
         change_email_user_html: "%{name} zmienił(a) adres e-mail użytkownika %{target}"
         confirm_user_html: "%{name} potwierdził(a) adres e-mail użytkownika %{target}"
@@ -303,6 +306,7 @@ pl:
         enable_user_html: "%{name} przywrócił(a) możliwość logowania użytkownikowi %{target}"
         memorialize_account_html: "%{name} nadał(a) kontu %{target} status in memoriam"
         promote_user_html: "%{name} podniósł(a) uprawnienia użytkownikowi %{target}"
+        reject_user_html: "%{name} odrzucił rejestrację od %{target}"
         remove_avatar_user_html: "%{name} usunął(-ęła) awatar użytkownikowi %{target}"
         reopen_report_html: "%{name} otworzył(a) ponownie zgłoszenie %{target}"
         reset_password_user_html: "%{name} przywrócił(a) hasło użytkownikowi %{target}"
@@ -991,6 +995,7 @@ pl:
     none: Żaden
     order_by: Uporządkuj według
     save_changes: Zapisz zmiany
+    today: dzisiaj
     validation_errors:
       one: Coś jest wciąż nie tak! Przyjrzyj się poniższemu błędowi
       few: Coś jest wciąż nie tak! Przejrzyj %{count} poniższe błędy
