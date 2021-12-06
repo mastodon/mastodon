@@ -221,6 +221,7 @@ fi:
       whitelisted: Sallittu liittämiselle
     action_logs:
       action_types:
+        approve_user: Hyväksy käyttäjä
         assigned_to_self_report: Määritä raportti
         change_email_user: Vaihda sähköposti käyttäjälle
         confirm_user: Vahvista käyttäjä
@@ -250,6 +251,7 @@ fi:
         enable_user: Tili otettu käyttöön
         memorialize_account: Muuta muistotiliksi
         promote_user: Käyttäjä ylennetty
+        reject_user: Hylkää käyttäjä
         remove_avatar_user: Profiilikuvan poisto
         reopen_report: Uudelleenavaa raportti
         reset_password_user: Nollaa salasana
@@ -266,6 +268,7 @@ fi:
         update_domain_block: Päivitä verkkotunnuksen esto
         update_status: Päivitä viesti
       actions:
+        approve_user_html: "%{name} hyväksyi käyttäjän rekisteröitymisen kohteesta %{target}"
         assigned_to_self_report_html: "%{name} otti raportin %{target} tehtäväkseen"
         change_email_user_html: "%{name} vaihtoi käyttäjän %{target} sähköpostiosoitteen"
         confirm_user_html: "%{name} vahvisti käyttäjän %{target} sähköpostiosoitteen"
@@ -295,6 +298,7 @@ fi:
         enable_user_html: "%{name} salli kirjautumisen käyttäjälle %{target}"
         memorialize_account_html: "%{name} muutti käyttäjän %{target} tilin muistosivuksi"
         promote_user_html: "%{name} ylensi käyttäjän %{target}"
+        reject_user_html: "%{name} hylkäsi käyttäjän rekisteröitymisen kohteesta %{target}"
         remove_avatar_user_html: "%{name} poisti käyttäjän %{target} profiilikuvan"
         reopen_report_html: "%{name} avasi uudelleen raportin %{target}"
         reset_password_user_html: "%{name} palautti käyttäjän %{target} salasanan"
@@ -685,6 +689,39 @@ fi:
       review: Tarkista tila
       updated_msg: Hashtagin asetukset päivitetty onnistuneesti
     title: Ylläpito
+    trends:
+      allow: Salli
+      approved: Hyväksytty
+      disallow: Estä
+      links:
+        allow: Salli linkki
+        allow_provider: Salli julkaisija
+        disallow: Hylkää linkki
+        disallow_provider: Estä julkaisija
+        shared_by_over_week:
+          one: Yhden henkilön jakama viime viikon aikana
+          other: '%{count} henkilön jakama viime viikon aikana'
+        title: Suositut linkit
+        usage_comparison: Jaettu %{today} kertaa tänään verrattuna eilen %{yesterday}
+      pending_review: Odottaa tarkistusta
+      preview_card_providers:
+        title: Julkaisijat
+      rejected: Hylätty
+      tags:
+        current_score: Nykyinen tulos %{score}
+        dashboard:
+          tag_accounts_measure: uniikit käyttötarkoitukset
+          tag_languages_dimension: Suosituimmat kielet
+          tag_servers_dimension: Suosituimmat palvelimet
+          tag_servers_measure: eri palvelimet
+          tag_uses_measure: käyttökerrat
+        listable: Voidaan ehdottaa
+        not_listable: Ei tulla ehdottamaan
+        not_trendable: Ei näy trendien alla
+        not_usable: Ei voida käyttää
+        peaked_on_and_decaying: Saavutti huipun %{date}, nyt hiipuu
+        title: Suositut tunnisteet
+        trendable: Voi näkyä trendien alla
     warning_presets:
       add_new: Lisää uusi
       delete: Poista
@@ -907,6 +944,7 @@ fi:
     delete: Poista
     order_by: Järjestä
     save_changes: Tallenna muutokset
+    today: tänään
     validation_errors:
       one: Kaikki ei ole aivan oikein! Tarkasta alla oleva virhe
       other: Kaikki ei ole aivan oikein! Tarkasta alla olevat %{count} virhettä
