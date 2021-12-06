@@ -219,6 +219,7 @@
       whitelisted: Hvitelistet
     action_logs:
       action_types:
+        approve_user: Godkjenn bruker
         assigned_to_self_report: Tilordne rapport
         change_email_user: Endre brukerens E-postadresse
         confirm_user: Bekreft brukeren
@@ -240,6 +241,7 @@
         enable_custom_emoji: Skru på tilpassede emojier
         enable_user: Aktiver bruker
         promote_user: Promoter bruker
+        reject_user: Avvis bruker
         remove_avatar_user: Fjern Avatar
         reopen_report: Gjenåpne rapporten
         reset_password_user: Tilbakestill passord
@@ -251,11 +253,13 @@
         update_custom_emoji: Oppdater tilpasset Emoji
         update_status: Oppdater statusen
       actions:
+        approve_user_html: "%{name} godkjente registrering fra %{target}"
         create_custom_emoji_html: "%{name} lastet opp ny emoji %{target}"
         create_domain_allow_html: "%{name} tillatt føderasjon med domenet %{target}"
         create_domain_block_html: "%{name} blokkert domene %{target}"
         create_email_domain_block_html: "%{name} blokkert e-post domene %{target}"
         create_ip_block_html: "%{name} opprettet regel for IP %{target}"
+        reject_user_html: "%{name} avslo registrering fra %{target}"
         silence_account_html: "%{name} begrenset %{target} sin konto"
       deleted_status: "(statusen er slettet)"
       empty: Ingen loggføringer ble funnet.
@@ -838,6 +842,7 @@
     delete: Slett
     order_by: Sorter etter
     save_changes: Lagre endringer
+    today: i dag
     validation_errors:
       one: Noe er ikke helt riktig ennå. Vennligst se etter en gang til
       other: Noe er ikke helt riktig ennå. Det er ennå %{count} feil å rette på
