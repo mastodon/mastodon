@@ -20,7 +20,7 @@ const makeMapStateToProps = () => {
 
   const mapStateToProps = (state, { accountId, added }) => ({
     account: getAccount(state, accountId),
-    added: typeof added === 'undefined' ? state.getIn(['listEditor', 'accounts', 'items']).includes(accountId) : added,
+    added: typeof added === 'undefined' ? Object.values(JSON.parse(state.getIn(['listEditor', 'hashtagsUsers'])).users).includes(accountId) : added,
   });
 
   return mapStateToProps;

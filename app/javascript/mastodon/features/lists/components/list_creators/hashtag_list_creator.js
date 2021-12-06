@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { injectIntl, FormattedMessage, defineMessages } from 'react-intl';
 import IconButton from '../../../../components/icon_button';
 import Icon from 'mastodon/components/icon';
-
 import {
   changeListEditorHashtag,
   submitListEditor,
+  fetchList,
 } from '../../../../actions/lists';
 
 const messages = defineMessages({
@@ -25,12 +25,25 @@ const HashtagListCreator = (props) => {
   const title = intl.formatMessage(messages.title);
 
   const [hashtag, setHashtag] = useState(false);
+  const [count, setCount] = useState(0);
+  const firstUpdate = useRef(true);
 
   const dispatch = useDispatch();
 
-  useEffect(() => {}, [hashtag]);
+  useEffect(() => {
+    if (firstUpdate.current) {
+      firstUpdate.current = false;
+      setCount(count + 1);
+      return;
+    } else {
+      dispatch(fetchList(id));
+    }
+    setCount(count + 1);
+    console.log(count);
+  }, [hashtag]);
 
-  const [hashtagValue, disabled] = useSelector((state) => [
+  const [id, hashtagValue, disabled] = useSelector((state) => [
+    state.getIn(['listEditor', 'listId']),
     state.getIn(['listEditor', 'hashtags']),
     state.getIn(['listEditor', 'isSubmitting']),
   ]);

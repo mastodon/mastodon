@@ -27,7 +27,7 @@ const makeMapStateToProps = () => {
 };
 
 const mapDispatchToProps = (dispatch, { accountId }) => ({
-  onRemove: () => dispatch(removeFromListEditor(accountId)),
+  onRemove: () => dispatch(removeFromListEditor(accountId, false)),
   onAdd: () => dispatch(addToListEditor(accountId)),
 });
 

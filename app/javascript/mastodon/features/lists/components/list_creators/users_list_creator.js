@@ -13,9 +13,7 @@ const UsersListCreator = (props) => {
           defaultMessage="People"
         />
       </h5>
-      <div className="users_list_creator">
-        <SearchUsers />
-      </div>
+      <SearchUsers />
     </div>
   );
 };

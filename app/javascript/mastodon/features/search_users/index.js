@@ -3,7 +3,7 @@ import SearchUsersContainer from 'mastodon/features/compose/containers/search_us
 import SearchUsersResultsContainer from 'mastodon/features/compose/containers/search_users_results_container';
 
 const SearchUsers = () => (
-  <div className='column'>
+  <div>
     <SearchUsersContainer />
 
     <div className='drawer__pager'>

@@ -14,10 +14,10 @@ import {
   LIST_ACCOUNTS_FETCH_SUCCESS,
   LIST_ACCOUNTS_FETCH_FAIL,
   LIST_EDITOR_SUGGESTIONS_READY,
-  LIST_EDITOR_SUGGESTIONS_CLEAR,
   LIST_EDITOR_SUGGESTIONS_CHANGE,
   LIST_EDITOR_ADD_SUCCESS,
   LIST_EDITOR_REMOVE_SUCCESS,
+  UPDATE_HASHTAGS_USERS,
 } from '../actions/lists';
 
 const initialState = ImmutableMap({
@@ -26,6 +26,7 @@ const initialState = ImmutableMap({
   isChanged: false,
   title: '',
   hashtags: '',
+  hashtagsUsers: '',
 
   accounts: ImmutableMap({
     items: ImmutableList(),
@@ -87,15 +88,18 @@ export default function listEditorReducer(state = initialState, action) {
     return state.setIn(['suggestions', 'value'], action.value);
   case LIST_EDITOR_SUGGESTIONS_READY:
     return state.setIn(['suggestions', 'items'], ImmutableList(action.accounts.map(item => item.id)));
-  case LIST_EDITOR_SUGGESTIONS_CLEAR:
-    return state.update('suggestions', suggestions => suggestions.withMutations(map => {
-      map.set('items', ImmutableList());
-      map.set('value', '');
-    }));
+  // case LIST_EDITOR_SUGGESTIONS_CLEAR:
+  //   return state.update('suggestions', suggestions => suggestions.withMutations(map => {
+  //     map.set('items', ImmutableList());
+  //     map.set('value', '');
+  //   }));
   case LIST_EDITOR_ADD_SUCCESS:
     return state.updateIn(['accounts', 'items'], list => list.unshift(action.accountId));
   case LIST_EDITOR_REMOVE_SUCCESS:
     return state.updateIn(['accounts', 'items'], list => list.filterNot(item => item === action.accountId));
+  case UPDATE_HASHTAGS_USERS:
+    return state.withMutations(map => {
+      map.set('hashtagsUsers', action.hashtagsUsersJSON)});
   default:
     return state;
   }

@@ -93,7 +93,7 @@ class SearchUsers extends React.PureComponent {
     const hasValue = value.length > 0 || submitted;
 
     return (
-      <div className="list-creator search">
+      <div className="search">
         <label>
           <span style={{ display: 'none' }}>
             {intl.formatMessage(messages.placeholder)}

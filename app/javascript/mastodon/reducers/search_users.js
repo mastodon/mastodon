@@ -4,6 +4,7 @@ import {
   SEARCH_USERS_FETCH_SUCCESS,
   SEARCH_USERS_SHOW,
   SEARCH_USERS_EXPAND_SUCCESS,
+  LIST_EDITOR_SEARCH_USERS_CLEAR,
 } from '../actions/search_users';
 import {
   COMPOSE_MENTION,
@@ -54,6 +55,9 @@ export default function search_users(state = initialState, action) {
       return state.updateIn(['results', action.searchType], (list) =>
         list.concat(results)
       );
+    case LIST_EDITOR_SEARCH_USERS_CLEAR:
+      console.log("CLEAR");
+      return state.withMutations('results', ImmutableMap());
     default:
       return state;
   }
