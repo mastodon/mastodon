@@ -754,6 +754,13 @@ pt-PT:
       body: "%{reporter} relatou %{target}"
       body_remote: Alguém de %{domain} relatou %{target}
       subject: 'Novo relatório sobre %{instance} (#%{id})'
+    new_trending_links:
+      body: Os seguintes links estão hoje em destaque, mas os seus editores não foram previamente revistos. Eles não serão exibidos publicamente a menos que você os aprove. Outras notificações dos mesmos editores não serão geradas.
+      no_approved_links: Não existem, atualmente, links aprovados em destaque.
+      requirements: O link em destaque, com pontuação mais baixa, aprovado atualmente é "%{lowest_link_title}" com uma pontuação de %{lowest_link_score}.
+      subject: Novos links em destaque para revisão em %{instance}
+    new_trending_tags:
+      body: 'As seguintes hashtags estão hoje em tendência, mas não foram revistas anteriormente. Elas não serão exibidas publicamente, a menos que você as aprove:'
   aliases:
     add_new: Criar pseudónimo
     created_msg: Criou com sucesso um novo pseudónimo. Pode agora iniciar a migração da conta antiga.
