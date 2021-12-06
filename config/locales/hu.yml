@@ -221,6 +221,7 @@ hu:
       whitelisted: Engedélyező-listán
     action_logs:
       action_types:
+        approve_user: Felhasználó Jóváhagyása
         assigned_to_self_report: Jelentés hozzárendelése
         change_email_user: Felhasználó e-mail címének módosítása
         confirm_user: Felhasználó megerősítése
@@ -250,6 +251,7 @@ hu:
         enable_user: Felhasználó engedélyezése
         memorialize_account: Fiók emlékké nyilvánítása
         promote_user: Felhasználó előléptetése
+        reject_user: Felhasználó Elutasítása
         remove_avatar_user: Profilkép eltávolítása
         reopen_report: Jelentés újranyitása
         reset_password_user: Jelszó visszaállítása
@@ -266,6 +268,7 @@ hu:
         update_domain_block: Domain tiltás frissítése
         update_status: Bejegyzés frissítése
       actions:
+        approve_user_html: "%{name} jóváhagyta %{target} regisztrációját"
         assigned_to_self_report_html: "%{name} a %{target} bejelentést magához rendelte"
         change_email_user_html: "%{name} megváltoztatta %{target} felhasználó e-mail címét"
         confirm_user_html: "%{name} megerősítette %{target} e-mail-címét"
@@ -295,6 +298,7 @@ hu:
         enable_user_html: "%{name} engedélyezte %{target} felhasználó bejelentkezését"
         memorialize_account_html: "%{name} emléket állított %{target} felhasználónak"
         promote_user_html: "%{name} előléptette %{target} felhasználót"
+        reject_user_html: "%{name} elutasította %{target} regisztrációját"
         remove_avatar_user_html: "%{name} törölte %{target} profilképét"
         reopen_report_html: "%{name} újranyitotta a %{target} bejelentést"
         reset_password_user_html: "%{name} visszaállította %{target} felhasználó jelszavát"
@@ -973,6 +977,7 @@ hu:
     none: Nincs
     order_by: Rendezés
     save_changes: Változások mentése
+    today: ma
     validation_errors:
       one: Valami nincs rendjén! Tekintsd meg a hibát lent
       other: Valami nincs rendjén! Tekintsd meg a(z) %{count} hibát lent
