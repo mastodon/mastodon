@@ -21,6 +21,7 @@ fi:
         warning_preset_id: Valinnainen. Voit silti lisätä mukautetun tekstin esiasetuksen loppuun
       announcement:
         all_day: Kun valittu, vain valittu aikaväli näytetään
+        ends_at: Valinnainen. Ilmoitus tullaan poistamaan automaattisesti tällä hetkellä
         scheduled_at: Jätä tyhjäksi julkaistaksesi ilmoituksen välittömästi
       defaults:
         avatar: PNG, GIF tai JPG. Enintään %{size}. Skaalataan kokoon %{dimensions} px
@@ -31,6 +32,7 @@ fi:
         fields: Sinulla voi olla korkeintaan 4 asiaa profiilissasi taulukossa
         header: PNG, GIF tai JPG. Enintään %{size}. Skaalataan kokoon %{dimensions} px
         locked: Sinun täytyy hyväksyä seuraajat manuaalisesti
+        password: Käytä vähintään 8 merkkiä
         setting_display_media_default: Piilota arkaluonteiseksi merkitty media
         setting_display_media_hide_all: Piilota aina kaikki media
         setting_display_media_show_all: Näytä aina arkaluonteiseksi merkitty media
@@ -54,10 +56,14 @@ fi:
         types:
           disable: Poista kirjautuminen käytöstä
           none: Älä tee mitään
+          sensitive: Arkaluontoinen
           silence: Hiljennä
           suspend: Poista käytöstä ja tuhoa käyttäjätunnuksen tiedot peruuttamattomasti
+        warning_preset_id: Käytä varoitusmallia
       announcement:
         all_day: Koko päivän kestävä tapahtuma
+        ends_at: Tapahtuman loppu
+        starts_at: Tapahtuman alku
         text: Ilmoitus
       defaults:
         autofollow: Kutsu seuraamaan tiliäsi
@@ -123,6 +129,12 @@ fi:
         comment: Kommentoi
       invite_request:
         text: Miksi haluat liittyä?
+      ip_block:
+        ip: IP
+        severities:
+          no_access: Estä pääsy
+          sign_up_requires_approval: Rajoita rekisteröitymisiä
+        severity: Sääntö
       notification_emails:
         digest: Lähetä koosteviestejä sähköpostitse
         favourite: Lähetä sähköposti, kun joku tykkää tilastasi
@@ -131,6 +143,8 @@ fi:
         mention: Lähetä sähköposti, kun sinut mainitaan
         pending_account: Uusi tili tarvitsee tarkastusta
         reblog: Lähetä sähköposti, kun joku buustaa julkaisusi
+      rule:
+        text: Sääntö
       tag:
         name: Aihetunniste
         trendable: Salli tämän aihetunnisteen näkyä trendeissä
