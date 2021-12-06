@@ -1106,18 +1106,24 @@ fi:
           quadrillion: Brd
           thousand: k
           trillion: B
+  otp_authentication:
+    setup: Asetusten määritys
+    wrong_code: Annettu koodi oli virheellinen! Ovatko palvelimen aika ja laitteen aika oikein?
   pagination:
     newer: Uudemmat
     next: Seuraava
     older: Vanhemmat
     prev: Edellinen
+    truncate: "&hellip;"
   polls:
     errors:
+      already_voted: Olet jo äänestänyt tässä äänestyksessä
       duration_too_long: on liian kaukana tulevaisuudessa
       duration_too_short: on liian aikainen
       expired: Äänestys on jo loppunut
   preferences:
     other: Muut
+    posting_defaults: Julkaisujen oletusasetukset
     public_timelines: Julkiset aikajanat
   reactions:
     errors:
@@ -1133,6 +1139,7 @@ fi:
     moved: Muuttaneet
     mutual: Molemminpuoleinen
     primary: Ensisijainen
+    relationship: Suhde
     remove_selected_domains: Poista kaikki seuraajat valituista verkkotunnuksista
     remove_selected_followers: Poista valitut seuraajat
     remove_selected_follows: Lopeta valittujen käyttäjien seuraaminen
@@ -1166,8 +1173,10 @@ fi:
       firefox: Firefox
       generic: Tuntematon selain
       ie: Internet Explorer
+      micro_messenger: MicroMessenger
       nokia: Nokia S40 Ovi -selain
       opera: Opera
+      otter: Otter
       phantom_js: PhantomJS
       qq: QQ Browser
       safari: Safari
@@ -1276,10 +1285,11 @@ fi:
       '1209600': 2 viikkoa
       '15778476': 6 kuukautta
       '2629746': 1 kuukausi
-      '31556952': 1 year
-      '5259492': 2 months
-      '63113904': 2 years
-      '7889238': 3 months
+      '31556952': 1 vuosi
+      '5259492': 2 kuukautta
+      '63113904': 2 vuotta
+      '7889238': 3 kuukautta
+    min_age_label: Ikäraja
   stream_entries:
     pinned: Kiinnitetty tuuttaus
     reblogged: buustasi
@@ -1302,17 +1312,32 @@ fi:
     enabled_success: Kaksivaiheisen todentamisen käyttöönotto onnistui
     generate_recovery_codes: Luo palautuskoodit
     lost_recovery_codes: Palautuskoodien avulla voit käyttää tiliä, jos menetät puhelimesi. Jos olet hukannut palautuskoodit, voit luoda uudet tästä. Vanhat palautuskoodit poistetaan käytöstä.
+    otp: Todennussovellus
     recovery_codes: Varapalautuskoodit
     recovery_codes_regenerated: Uusien palautuskoodien luonti onnistui
     recovery_instructions_html: Jos menetät puhelimesi, voit kirjautua tilillesi jollakin alla olevista palautuskoodeista. <strong>Pidä palautuskoodit hyvässä tallessa</strong>. Voit esimerkiksi tulostaa ne ja säilyttää muiden tärkeiden papereiden joukossa.
+    webauthn: Suojausavaimet
   user_mailer:
     backup_ready:
       explanation: Pyysit täydellistä varmuuskopiota Mastodon-tilistäsi. Voit nyt ladata sen!
       subject: Arkisto on valmiina ladattavaksi
       title: Arkiston tallennus
+    sign_in_token:
+      details: 'Tässä yrityksen yksityiskohtia:'
+      explanation: 'Tunnistimme sisäänkirjautumisyrityksen tunnistamattomasta IP-osoitteesta. Jos se olit sinä, syötä alla oleva turvakoodi sisäänkirjautumissivulle:'
+      further_actions: 'Jos tämä et ollut sinä, vaihda salasanasi ja ota käyttöön kaksivaiheinen todennus tililläsi. Voit tehdä sen täällä:'
+      subject: Ole hyvä ja vahvista sisäänkirjautumisyritys
+      title: Sisäänkirjautumisyritys
     warning:
+      review_server_policies: Tarkista palvelimen käytännöt
+      statuses: 'Erityisesti:'
+      subject:
+        disable: Tilisi %{acct} on jäädytetty
+        none: Varoitus %{acct}
       title:
+        disable: Tili jäädytetty
         none: Varoitus
+        sensitive: Mediasi on merkitty arkaluonteiseksi
         silence: Rajoitettu tili
         suspend: Tilin käyttäminen keskeytetty
     welcome:
