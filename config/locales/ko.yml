@@ -217,6 +217,7 @@ ko:
       whitelisted: 허용 목록
     action_logs:
       action_types:
+        approve_user: 사용자 승인
         assigned_to_self_report: 신고 맡기
         change_email_user: 사용자의 이메일 변경
         confirm_user: 사용자 확인
@@ -246,6 +247,7 @@ ko:
         enable_user: 사용자 활성화
         memorialize_account: 추모계정으로 전환
         promote_user: 사용자 승급
+        reject_user: 사용자 거부
         remove_avatar_user: 아바타 지우기
         reopen_report: 신고 다시 열기
         reset_password_user: 암호 재설정
@@ -262,6 +264,7 @@ ko:
         update_domain_block: 도메인 차단 갱신
         update_status: 게시물 게시
       actions:
+        approve_user_html: "%{name} 님이 %{target}의 가입을 승인했습니다"
         assigned_to_self_report_html: "%{name} 님이 신고 %{target}을 자신에게 할당했습니다"
         change_email_user_html: "%{name} 님이 사용자 %{target}의 이메일 주소를 변경했습니다"
         confirm_user_html: "%{name} 님이 사용자 %{target}의 이메일 주소를 승인했습니다"
@@ -291,6 +294,7 @@ ko:
         enable_user_html: "%{name} 님이 사용자 %{target}의 로그인을 활성화 했습니다"
         memorialize_account_html: "%{name} 님이 %{target}의 계정을 추모비 페이지로 전환했습니다"
         promote_user_html: "%{name} 님이 사용자 %{target}를 승급시켰습니다"
+        reject_user_html: "%{name} 님이 %{target}의 가입을 거부했습니다"
         remove_avatar_user_html: "%{name} 님이 %{target}의 아바타를 지웠습니다"
         reopen_report_html: "%{name} 님이 신고 %{target}을 다시 열었습니다"
         reset_password_user_html: "%{name} 님이 사용자 %{target}의 암호를 초기화했습니다"
@@ -959,6 +963,7 @@ ko:
     none: 없음
     order_by: 순서
     save_changes: 변경 사항을 저장
+    today: 오늘
     validation_errors:
       other: 오류가 발생했습니다. 아래 %{count}개 오류를 확인해 주십시오
   html_validator:
