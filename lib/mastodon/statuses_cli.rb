@@ -20,7 +20,7 @@ module Mastodon
     option :skip_status_remove, type: :boolean, default: false, desc: 'Skip status remove (run only cleanup tasks)'
     option :skip_remove_orphans, type: :boolean, default: false, desc: 'Skip remove orphans that have lost their association with status'
     option :skip_media_remove, type: :boolean, default: false, desc: 'Skip remove orphaned media attachments'
-    option :compression_database, type: :boolean, default: false, desc: 'Compression database and update the statistics. This option locks the table for a long time, so run it offline'
+    option :compress_database, type: :boolean, default: false, desc: 'Compress database and update the statistics. This option locks the table for a long time, so run it offline'
     desc 'remove', 'Remove unreferenced statuses'
     long_desc <<~LONG_DESC
       Remove statuses that are not referenced by local user activity, such as
@@ -204,7 +204,7 @@ module Mastodon
     end
 
     def vacuum_and_analyze_statuses
-      if options[:compression_database]
+      if options[:compress_database]
         say('Run VACUUM FULL ANALYZE to statuses...')
         ActiveRecord::Base.connection.execute('VACUUM FULL ANALYZE statuses')
         say('Run REINDEX to statuses...')
@@ -216,7 +216,7 @@ module Mastodon
     end
 
     def vacuum_and_analyze_conversations
-      if options[:compression_database]
+      if options[:compress_database]
         say('Run VACUUM FULL ANALYZE to conversations...')
         ActiveRecord::Base.connection.execute('VACUUM FULL ANALYZE conversations')
         say('Run REINDEX to conversations...')
