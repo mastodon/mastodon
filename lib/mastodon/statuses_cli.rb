@@ -114,11 +114,41 @@ module Mastodon
     end
 
     def remove_orphans
-      unless options[:skip_media_remove]
-        say('Beginning removal of now-orphaned media attachments to free up disk space...')
-        Scheduler::MediaCleanupScheduler.new.perform
+      remove_orphans_media_attachments
+      remove_orphans_conversations
+    end
+
+    def remove_orphans_media_attachments
+      return if options[:skip_media_remove]
+
+      start_at = Time.now.to_f
+
+      say('Beginning removal of now-orphaned media attachments to free up disk space...')
+
+      scope     = MediaAttachment.reorder(nil).unattached.where('created_at < ?', options[:days].pred.days.ago)
+      processed = 0
+      removed   = 0
+      progress  = create_progress_bar(scope.count)
+
+      scope.find_each do |media_attachment|
+        begin
+          media_attachment.destroy!
+
+          removed += 1
+        rescue => e
+          progress.log pastel.red("Error processing #{media_attachment.id}: #{e}")
+        ensure
+          progress.increment
+          processed += 1
+        end
       end
 
+      progress.stop
+
+      say("Done after #{Time.now.to_f - start_at}s, removed #{removed} out of #{processed} media_attachments.", :green)
+    end
+
+    def remove_orphans_conversations
       say('Creating temporary database indices...')
 
       ActiveRecord::Base.connection.add_index(:statuses, :conversation_id, name: :index_statuses_conversation_id, algorithm: :concurrently, if_not_exists: true)
