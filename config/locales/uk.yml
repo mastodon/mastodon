@@ -229,6 +229,7 @@ uk:
       whitelisted: У білому списку
     action_logs:
       action_types:
+        approve_user: Затвердити користувачів
         assigned_to_self_report: Призначити звіт
         change_email_user: Змінити електронну пошту для користувача
         confirm_user: Підтвердити користувача
@@ -258,6 +259,7 @@ uk:
         enable_user: Активувати користувача
         memorialize_account: Зробити обліковий запис меморіалом
         promote_user: Підвищити користувача
+        reject_user: Відхилити користувача
         remove_avatar_user: Видалити аватар
         reopen_report: Перевідкрити скаргу
         reset_password_user: Скинути пароль
@@ -274,6 +276,7 @@ uk:
         update_domain_block: Оновити блокування домену
         update_status: Оновити статус
       actions:
+        approve_user_html: "%{name} схвалює реєстрацію від %{target}"
         assigned_to_self_report_html: "%{name} створює скаргу %{target} на себе"
         change_email_user_html: "%{name} змінює поштову адресу користувача %{target}"
         confirm_user_html: "%{name} підтверджує стан поштової адреси користувача %{target}"
@@ -303,6 +306,7 @@ uk:
         enable_user_html: "%{name} вмикає вхід для користувача %{target}"
         memorialize_account_html: "%{name} перетворює обліковий запис %{target} на сторінку пам'яті"
         promote_user_html: "%{name} підвищує користувача %{target}"
+        reject_user_html: "%{name} відхиляє реєстрацію від %{target}"
         remove_avatar_user_html: "%{name} прибирає аватар %{target}"
         reopen_report_html: "%{name} знову відкриває звіт %{target}"
         reset_password_user_html: "%{name} скидає пароль користувача %{target}"
@@ -722,6 +726,15 @@ uk:
       review: Переглянути статус
       updated_msg: Параметри хештеґів успішно оновлені
     title: Адміністрування
+    trends:
+      allow: Дозволити
+      approved: Схвалено
+      disallow: Заборонити
+      links:
+        allow: Дозволити посилання
+        allow_provider: Дозволити публікатора
+        disallow: Заборонити посилання
+        disallow_provider: Заборонити публікатора
     warning_presets:
       add_new: Додати новий
       delete: Видалити
@@ -944,6 +957,7 @@ uk:
     delete: Видалити
     order_by: Сортувати за
     save_changes: Зберегти зміни
+    today: сьогодні
     validation_errors:
       one: Щось досі не гаразд! Перегляньте повідомлення про помилку
       few: Щось досі не гаразд! Перегляньте %{count} повідомлень про помилки
