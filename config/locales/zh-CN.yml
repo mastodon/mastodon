@@ -217,6 +217,7 @@ zh-CN:
       whitelisted: 允许跨站交互
     action_logs:
       action_types:
+        approve_user: 批准用户
         assigned_to_self_report: 指派举报
         change_email_user: 为用户修改邮箱地址
         confirm_user: 确认用户
@@ -246,6 +247,7 @@ zh-CN:
         enable_user: 启用用户
         memorialize_account: 将账户设为追悼模式
         promote_user: 给用户升任
+        reject_user: 拒绝用户
         remove_avatar_user: 移除头像
         reopen_report: 重开举报
         reset_password_user: 重置密码
@@ -262,6 +264,7 @@ zh-CN:
         update_domain_block: 更新域名屏蔽
         update_status: 更新嘟文
       actions:
+        approve_user_html: "%{name} 批准了用户 %{target} 的注册"
         assigned_to_self_report_html: "%{name} 接管了举报 %{target}"
         change_email_user_html: "%{name} 更改了用户 %{target} 的电子邮件地址"
         confirm_user_html: "%{name} 确认了用户 %{target} 的电子邮件地址"
@@ -291,6 +294,7 @@ zh-CN:
         enable_user_html: "%{name} 将用户 %{target} 设置为允许登录"
         memorialize_account_html: "%{name} 将 %{target} 设置为追悼帐户"
         promote_user_html: "%{name} 对用户 %{target} 进行了升任操作"
+        reject_user_html: "%{name} 拒绝了用户 %{target} 的注册"
         remove_avatar_user_html: "%{name} 删除了 %{target} 的头像"
         reopen_report_html: "%{name} 重开了举报 %{target}"
         reset_password_user_html: "%{name} 重置了用户 %{target} 的密码"
@@ -959,6 +963,7 @@ zh-CN:
     none: 无
     order_by: 排序方式
     save_changes: 保存更改
+    today: 今天
     validation_errors:
       other: 出错啦！检查一下下面 %{count} 处出错的地方吧
   html_validator:
