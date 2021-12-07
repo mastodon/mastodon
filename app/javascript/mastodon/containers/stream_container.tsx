@@ -4,24 +4,25 @@ import Video from "../features/video";
 
 type GetProps<FC> = FC extends React.FC<infer X> ? X : never;
 
-function conditionalRender<C extends React.FC<any>>(
-  component: C,
-  visible: (x: GetProps<C>) => boolean
-): React.FC<GetProps<C> & { defaultComponent: React.ReactElement }> {
+function conditionalRender<Props extends object>(
+  component: React.FC<Props>,
+  visible: (x: Props) => boolean
+): React.FC<Props & { defaultComponent: React.ReactElement }> {
   return function isCondition(p) {
-    if (visible(p)) return component;
+    if (visible(p)) return component(p);
     else {
       return p.defaultComponent;
     }
   };
 }
 
-function injectStream<C extends React.FC<{ stream: MediaStream } & any>>(
-  component: C
-): React.FC<Omit<GetProps<C>, "stream"> & { id: string }> {
-  return function inject({ id, ...rest }) {
+function injectStream<Props extends {stream: MediaStream}>(
+  component: React.FC<Props>
+): React.FC<Omit<Props, 'stream'> & { id: string }> {
+  return function inject(p) {
+    const {id, ...rest} = p
     const stream = useSubscribeStream({ id });
-    return component({ stream, ...rest });
+    return component({stream, ...rest as unknown as Props});
   };
 }
 
