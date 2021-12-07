@@ -59,6 +59,11 @@ class Api::V1::StatusesController < Api::BaseController
     RemovalWorker.perform_async(@status.id, redraft: true)
     @status.account.statuses_count = @status.account.statuses_count - 1
 
+    status_conversation = Conversation.find(@status.conversation_id)
+    if status_conversation.status_ids.empty?
+      status_conversation.destroy
+    end
+
     render json: @status, serializer: REST::StatusSerializer, source_requested: true
   end
 
