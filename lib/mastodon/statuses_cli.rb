@@ -18,7 +18,6 @@ module Mastodon
     option :continue, type: :boolean, default: false, desc: 'If remove is not completed, execute from the previous continuation'
     option :clean_followed, type: :boolean, default: false, desc: 'Include the status of remote accounts that are followed by local accounts as candidates for remove'
     option :skip_status_remove, type: :boolean, default: false, desc: 'Skip status remove (run only cleanup tasks)'
-    option :skip_remove_orphans, type: :boolean, default: false, desc: 'Skip remove orphans that have lost their association with status'
     option :skip_media_remove, type: :boolean, default: false, desc: 'Skip remove orphaned media attachments'
     option :compress_database, type: :boolean, default: false, desc: 'Compress database and update the statistics. This option locks the table for a long time, so run it offline'
     desc 'remove', 'Remove unreferenced statuses'
@@ -39,16 +38,18 @@ module Mastodon
         exit(1)
       end
 
-      remove_statuses unless options[:skip_status_remove]
+      remove_statuses
       vacuum_and_analyze_statuses
-
-      remove_orphans unless options[:skip_remove_orphans]
+      remove_orphans_media_attachments
+      remove_orphans_conversations
       vacuum_and_analyze_conversations
     end
 
     private
 
     def remove_statuses
+      return if options[:skip_status_remove]
+
       say('Creating temporary database indices...')
 
       ActiveRecord::Base.connection.add_index(:media_attachments, :remote_url, name: :index_media_attachments_remote_url, where: 'remote_url is not null', algorithm: :concurrently, if_not_exists: true)
@@ -117,11 +118,6 @@ module Mastodon
       ActiveRecord::Base.connection.remove_index(:accounts, name: :index_accounts_local, if_exists: true)
       ActiveRecord::Base.connection.remove_index(:status_pins, name: :index_status_pins_status_id, if_exists: true)
       ActiveRecord::Base.connection.remove_index(:media_attachments, name: :index_media_attachments_remote_url, if_exists: true)
-    end
-
-    def remove_orphans
-      remove_orphans_media_attachments
-      remove_orphans_conversations
     end
 
     def remove_orphans_media_attachments
