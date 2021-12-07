@@ -168,7 +168,7 @@ export function subscribeStream({ id }: { id: string }) {
 
   return unSubscribe;
 }
-export function useSubscribeStream({ id }: { id: string }): MediaStream {
+export function useSubscribeStream({ id }: { id: string }): MediaStream | undefined {
   useEffect(() => {
     return subscribeStream({ id });
   }, [id]);

@@ -1,10 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useSubscribeStream } from "../actions/stream";
 import Video from "../features/video";
+import { pipe, flip, FunctionN, flow } from "fp-ts/function";
+import { right } from "fp-ts/Either";
+import * as _ from "fp-ts/IO";
+import * as O from "fp-ts/Either";
 
-type GetProps<FC> = FC extends React.FC<infer X> ? X : never;
-
-function conditionalRender<Props extends object>(
+function conditionalRender<Props extends {}>(
   component: React.FC<Props>,
   visible: (x: Props) => boolean
 ): React.FC<Props & { defaultComponent: React.ReactElement }> {
@@ -16,13 +18,22 @@ function conditionalRender<Props extends object>(
   };
 }
 
-function injectStream<Props extends {stream: MediaStream}>(
-  component: React.FC<Props>
-): React.FC<Omit<Props, 'stream'> & { id: string }> {
-  return function inject(p) {
-    const {id, ...rest} = p
-    const stream = useSubscribeStream({ id });
-    return component({stream, ...rest as unknown as Props});
+type HookGetter<P extends {}, Result> = (p: P) => Result;
+type GetHookProps<H> = H extends HookGetter<infer P, any> ? P : never;
+type GetHookResult<H> = H extends HookGetter<any, infer R> ? R : never;
+
+function injectHook<
+  Props extends Partial<{ [k in Name]: GetHookResult<Hook> }>,
+  Hook extends HookGetter<any, any>,
+  Name extends keyof Props
+>(
+  component: React.FC<Props>,
+  name: Name,
+  getHook: Hook
+): React.FC<Omit<Props, Name> & GetHookProps<Hook>> {
+  return function getComponentWithInjectedHook(p: Props) {
+    const hook = getHook(p);
+    return component({ [name]: hook, ...p } as any);
   };
 }
 
@@ -43,9 +54,23 @@ const VideoStreamElement: React.FC<{ stream: MediaStream | undefined }> = ({
   return <Video videoRef={videoRef} />;
 };
 
-export const StreamContainer = injectStream(VideoStreamElement);
-export const StreamPreviewWithDefaultComponent = injectStream(
-  conditionalRender(VideoStreamElement, (p) => Boolean(p.stream))
+const Com = () => <div>asd</div>;
+
+export const StreamContainer = injectHook(
+  VideoStreamElement,
+  "stream",
+  useSubscribeStream
+);
+
+const VideoViewWithDefault = conditionalRender(
+  VideoStreamElement,
+  (p) => !!p.stream
+);
+
+export const StreamPreviewWithDefaultComponent = injectHook(
+  VideoViewWithDefault,
+  "stream",
+  useSubscribeStream
 );
 
 export default StreamContainer;
