@@ -7,7 +7,7 @@ gem 'pkg-config', '~> 1.4'
 gem 'rexml', '~> 3.2'
 
 gem 'puma', '~> 5.5'
-gem 'rails', '~> 6.1.4'
+gem 'rails', '7.0.0.rc1'
 gem 'sprockets', '~> 3.7.2'
 gem 'thor', '~> 1.1'
 gem 'rack', '~> 2.2.3'
@@ -33,7 +33,7 @@ gem 'iso-639'
 gem 'chewy', '~> 7.2'
 gem 'cld3', '~> 3.4.3'
 gem 'devise', '~> 4.8'
-gem 'devise-two-factor', '~> 4.0'
+gem 'devise-two-factor'
 
 group :pam_authentication, optional: true do
   gem 'devise_pam_authenticatable2', '~> 9.2'
