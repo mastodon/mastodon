@@ -15,6 +15,7 @@ module Mastodon
 
     option :days, type: :numeric, default: 90
     option :batch_size, type: :numeric, default: 1_000, aliases: [:b], desc: 'Number of records in each batch'
+    option :continue, type: :boolean, default: false, desc: 'If remove is not completed, execute from the previous continuation'
     option :clean_followed, type: :boolean, default: false, desc: 'Include the status of remote accounts that are followed by local accounts as candidates for remove'
     option :skip_status_remove, type: :boolean, default: false, desc: 'Skip status remove (run only cleanup tasks)'
     option :skip_remove_orphans, type: :boolean, default: false, desc: 'Skip remove orphans that have lost their association with status'
@@ -50,37 +51,40 @@ module Mastodon
     def remove_statuses
       say('Creating temporary database indices...')
 
-      ActiveRecord::Base.connection.add_index(:accounts, :id, name: :index_accounts_local, where: 'domain is null', algorithm: :concurrently, if_not_exists: true)
-      ActiveRecord::Base.connection.add_index(:status_pins, :status_id, name: :index_status_pins_status_id, algorithm: :concurrently, if_not_exists: true)
       ActiveRecord::Base.connection.add_index(:media_attachments, :remote_url, name: :index_media_attachments_remote_url, where: 'remote_url is not null', algorithm: :concurrently, if_not_exists: true)
 
       max_id   = Mastodon::Snowflake.id_at(options[:days].days.ago)
       start_at = Time.now.to_f
 
-      say('Extract the deletion target from statuses... This might take a while...')
+      unless options[:continue] && ActiveRecord::Base.connection.table_exists?('statuses_to_be_deleted')
+        ActiveRecord::Base.connection.add_index(:accounts, :id, name: :index_accounts_local, where: 'domain is null', algorithm: :concurrently, if_not_exists: true)
+        ActiveRecord::Base.connection.add_index(:status_pins, :status_id, name: :index_status_pins_status_id, algorithm: :concurrently, if_not_exists: true)
 
-      ActiveRecord::Base.connection.create_table('statuses_to_be_deleted', temporary: true)
+        say('Extract the deletion target from statuses... This might take a while...')
 
-      # Skip accounts followed by local accounts
-      clean_followed_sql = 'AND NOT EXISTS (SELECT 1 FROM follows WHERE statuses.account_id = follows.target_account_id)' unless options[:clean_followed]
+        ActiveRecord::Base.connection.create_table('statuses_to_be_deleted', force: true)
 
-      ActiveRecord::Base.connection.exec_insert(<<-SQL.squish, 'SQL', [[nil, max_id]])
-        INSERT INTO statuses_to_be_deleted (id)
-        SELECT statuses.id FROM statuses WHERE deleted_at IS NULL AND NOT local AND uri IS NOT NULL AND (id < $1)
-        AND NOT EXISTS (SELECT 1 FROM statuses AS statuses1 WHERE statuses.id = statuses1.in_reply_to_id)
-        AND NOT EXISTS (SELECT 1 FROM statuses AS statuses1 WHERE statuses1.id = statuses.reblog_of_id AND (statuses1.uri IS NULL OR statuses1.local))
-        AND NOT EXISTS (SELECT 1 FROM statuses AS statuses1 WHERE statuses.id = statuses1.reblog_of_id AND (statuses1.uri IS NULL OR statuses1.local OR statuses1.id >= $1))
-        AND NOT EXISTS (SELECT 1 FROM status_pins WHERE statuses.id = status_id)
-        AND NOT EXISTS (SELECT 1 FROM mentions WHERE statuses.id = mentions.status_id AND mentions.account_id IN (SELECT accounts.id FROM accounts WHERE domain IS NULL))
-        AND NOT EXISTS (SELECT 1 FROM favourites WHERE statuses.id = favourites.status_id AND favourites.account_id IN (SELECT accounts.id FROM accounts WHERE domain IS NULL))
-        AND NOT EXISTS (SELECT 1 FROM bookmarks WHERE statuses.id = bookmarks.status_id AND bookmarks.account_id IN (SELECT accounts.id FROM accounts WHERE domain IS NULL))
-        #{clean_followed_sql}
-      SQL
+        # Skip accounts followed by local accounts
+        clean_followed_sql = 'AND NOT EXISTS (SELECT 1 FROM follows WHERE statuses.account_id = follows.target_account_id)' unless options[:clean_followed]
 
-      say('Removing temporary database indices to restore write performance...')
+        ActiveRecord::Base.connection.exec_insert(<<-SQL.squish, 'SQL', [[nil, max_id]])
+          INSERT INTO statuses_to_be_deleted (id)
+          SELECT statuses.id FROM statuses WHERE deleted_at IS NULL AND NOT local AND uri IS NOT NULL AND (id < $1)
+          AND NOT EXISTS (SELECT 1 FROM statuses AS statuses1 WHERE statuses.id = statuses1.in_reply_to_id)
+          AND NOT EXISTS (SELECT 1 FROM statuses AS statuses1 WHERE statuses1.id = statuses.reblog_of_id AND (statuses1.uri IS NULL OR statuses1.local))
+          AND NOT EXISTS (SELECT 1 FROM statuses AS statuses1 WHERE statuses.id = statuses1.reblog_of_id AND (statuses1.uri IS NULL OR statuses1.local OR statuses1.id >= $1))
+          AND NOT EXISTS (SELECT 1 FROM status_pins WHERE statuses.id = status_id)
+          AND NOT EXISTS (SELECT 1 FROM mentions WHERE statuses.id = mentions.status_id AND mentions.account_id IN (SELECT accounts.id FROM accounts WHERE domain IS NULL))
+          AND NOT EXISTS (SELECT 1 FROM favourites WHERE statuses.id = favourites.status_id AND favourites.account_id IN (SELECT accounts.id FROM accounts WHERE domain IS NULL))
+          AND NOT EXISTS (SELECT 1 FROM bookmarks WHERE statuses.id = bookmarks.status_id AND bookmarks.account_id IN (SELECT accounts.id FROM accounts WHERE domain IS NULL))
+          #{clean_followed_sql}
+        SQL
 
-      ActiveRecord::Base.connection.remove_index(:accounts, name: :index_accounts_local, if_exists: true)
-      ActiveRecord::Base.connection.remove_index(:status_pins, name: :index_status_pins_status_id, if_exists: true)
+        say('Removing temporary database indices to restore write performance...')
+
+        ActiveRecord::Base.connection.remove_index(:accounts, name: :index_accounts_local, if_exists: true)
+        ActiveRecord::Base.connection.remove_index(:status_pins, name: :index_status_pins_status_id, if_exists: true)
+      end
 
       say('Beginning statuses removal... This might take a while...')
 
@@ -103,6 +107,8 @@ module Mastodon
       end
 
       progress.stop
+
+      ActiveRecord::Base.connection.drop_table('statuses_to_be_deleted')
 
       say("Done after #{Time.now.to_f - start_at}s, removed #{removed} out of #{processed} statuses.", :green)
     ensure
@@ -131,16 +137,14 @@ module Mastodon
       progress  = create_progress_bar(scope.count)
 
       scope.find_each do |media_attachment|
-        begin
-          media_attachment.destroy!
+        media_attachment.destroy!
 
-          removed += 1
-        rescue => e
-          progress.log pastel.red("Error processing #{media_attachment.id}: #{e}")
-        ensure
-          progress.increment
-          processed += 1
-        end
+        removed += 1
+      rescue => e
+        progress.log pastel.red("Error processing #{media_attachment.id}: #{e}")
+      ensure
+        progress.increment
+        processed += 1
       end
 
       progress.stop
@@ -149,23 +153,25 @@ module Mastodon
     end
 
     def remove_orphans_conversations
-      say('Creating temporary database indices...')
-
-      ActiveRecord::Base.connection.add_index(:statuses, :conversation_id, name: :index_statuses_conversation_id, algorithm: :concurrently, if_not_exists: true)
-
       start_at = Time.now.to_f
 
-      say('Extract the deletion target from coversations... This might take a while...')
+      unless options[:continue] && ActiveRecord::Base.connection.table_exists?('conversations_to_be_deleted')
+        say('Creating temporary database indices...')
 
-      ActiveRecord::Base.connection.create_table('conversations_to_be_deleted', temporary: true)
+        ActiveRecord::Base.connection.add_index(:statuses, :conversation_id, name: :index_statuses_conversation_id, algorithm: :concurrently, if_not_exists: true)
 
-      ActiveRecord::Base.connection.exec_insert(<<-SQL.squish, 'SQL')
-        INSERT INTO conversations_to_be_deleted (id)
-        SELECT id FROM conversations WHERE NOT EXISTS (SELECT 1 FROM statuses WHERE statuses.conversation_id = conversations.id)
-      SQL
+        say('Extract the deletion target from coversations... This might take a while...')
 
-      say('Removing temporary database indices to restore write performance...')
-      ActiveRecord::Base.connection.remove_index(:statuses, name: :index_statuses_conversation_id, if_exists: true)
+        ActiveRecord::Base.connection.create_table('conversations_to_be_deleted', force: true)
+
+        ActiveRecord::Base.connection.exec_insert(<<-SQL.squish, 'SQL')
+          INSERT INTO conversations_to_be_deleted (id)
+          SELECT id FROM conversations WHERE NOT EXISTS (SELECT 1 FROM statuses WHERE statuses.conversation_id = conversations.id)
+        SQL
+
+        say('Removing temporary database indices to restore write performance...')
+        ActiveRecord::Base.connection.remove_index(:statuses, name: :index_statuses_conversation_id, if_exists: true)
+      end
 
       say('Beginning orphans removal... This might take a while...')
 
@@ -188,6 +194,8 @@ module Mastodon
       end
 
       progress.stop
+
+      ActiveRecord::Base.connection.drop_table('conversations_to_be_deleted')
 
       say("Done after #{Time.now.to_f - start_at}s, removed #{removed} out of #{processed} conversations.", :green)
     ensure
