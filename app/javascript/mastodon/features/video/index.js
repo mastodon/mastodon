@@ -164,6 +164,9 @@ class Video extends React.PureComponent {
   setVideoRef = c => {
     this.video = c;
 
+    if(this.props.videoRef && Object.keys(this.props.videoRef).find(x => x === 'current')){
+      this.props.videoRef.current = c
+    }
     if (this.video) {
       this.setState({ volume: this.video.volume, muted: this.video.muted });
     }
@@ -584,6 +587,7 @@ class Video extends React.PureComponent {
           tabIndex='0'
           aria-label={alt}
           title={alt}
+          style={{maxWidth: containerWidth}}
           width={width}
           height={height}
           volume={volume}

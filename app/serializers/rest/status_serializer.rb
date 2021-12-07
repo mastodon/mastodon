@@ -75,10 +75,6 @@ class REST::StatusSerializer < ActiveModel::Serializer
     Formatter.instance.format(object)
   end
 
-  def stream
-    object.stream
-  end
-
   def url
     ActivityPub::TagManager.instance.url_for(object)
   end

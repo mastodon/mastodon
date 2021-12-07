@@ -1,36 +1,40 @@
-import protooClient from 'protoo-client';
-import mediasoupClient from 'mediasoup-client';
-import { createGlobalState } from 'react-hooks-global-state';
+import protooClient from "protoo-client";
+import { createGlobalState } from "react-hooks-global-state";
+import { Map as ImmutableMap, fromJS } from 'immutable';
 
 export type Streaming = {
   roomId: string;
 };
 
-export type StreamState = {
-  activeStreaming: Streaming | undefined;
-  protooClient: protooClient.Peer | undefined;
-  sendTransport: mediasoupClient.types.Transport | undefined;
-  webcam: MediaStreamTrack | undefined;
+export type StreamState = typeof initialState
+
+function Undefined<T>(): undefined | T {
+  return undefined;
+}
+
+type Stream = {
+  media: MediaStream | undefined,
+  subscribers: number
+}
+
+const initialState = {
+  activeStreaming: Undefined<Streaming>(),
+  protooClient: Undefined<protooClient.Peer>(),
+  webcam: Undefined<MediaStream>(),
+  streams: ImmutableMap<string, Stream>()
 };
+const streamStore_ = createGlobalState(initialState)
 
-const initialState: StreamState = {
-  activeStreaming: undefined,
-  protooClient: undefined,
-  sendTransport: undefined,
-  webcam: undefined,
-};
-
-export const streamStore = createGlobalState(initialState);
-
-
-export default {
-  ...streamStore,
+export const streamStore = {
+  ...streamStore_, 
   getState(): StreamState {
     //@ts-ignore
-    return streamStore.getState();
+    return streamStore_.getState();
   },
   setState(state: StreamState) {
     //@ts-ignore
-    streamStore.setState(state);
+    streamStore_.setState(state);
   },
 };
+
+export default streamStore;

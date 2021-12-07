@@ -1,5 +1,10 @@
+import { useEffect, useMemo } from "react";
 import streamStore from "../reducers/stream";
 import { publishStream } from "../features/stream/mediasoupPublisherService";
+import {
+  startStream,
+  subscribeChannel,
+} from "../features/stream/mediasoupStreamingService";
 
 export const startStreaming = async () => {
   const state = streamStore.getState();
@@ -62,7 +67,7 @@ export const startStreaming = async () => {
   // // );
 
   // // const client = getProtooClient("streaming");
-  const m = new MediaStream()
+  const m = new MediaStream();
   m.addTrack(state.webcam);
   publishStream(m);
   // sendTransport.produce({
@@ -95,6 +100,94 @@ export function selectWebcam() {
 export function turnOffWebcam() {
   streamStore.getGlobalState("webcam")?.stop();
   streamStore.setGlobalState("webcam", undefined);
+}
+
+type x = {
+  [x in "s" | "w"]: any;
+};
+
+function curry<FN extends (...args: any) => any>(func: FN) {
+  return function curried(args: Parameters<FN>) {
+    if (args.length >= func.length) {
+      return func(args);
+    } else {
+      return function (...args2: any[]) {
+        return curried.apply(this, args.concat(args2));
+      };
+    }
+  };
+}
+
+const curriedSetGlobalState = curry(streamStore.setGlobalState);
+
+// curriedSetGlobalState(['streams'])
+const withPrev = (data: object) => (prev: any) => ({ ...prev, ...data });
+
+export function subscribeStream({ id }: { id: string }) {
+  const stream = streamStore.getGlobalState("streams").get(id) ?? {
+    media: undefined,
+    subscribers: 0,
+  };
+
+  function save<K extends keyof typeof stream>(
+    item: K,
+    value: typeof stream[K]
+  ) {
+    streamStore.setGlobalState("streams", (p) => {
+      const new_val = p.set(id, { ...p.get(id), [item]: value });
+      return new_val;
+    });
+  }
+
+  function subscribe() {
+    stream.subscribers++;
+    save("subscribers", stream.subscribers);
+  }
+
+  function unSubscribe() {
+    stream.subscribers--;
+    save("subscribers", stream.subscribers);
+  }
+
+  if (stream.subscribers === 0) {
+    subscribeChannel((p, t) => {
+      startStream(p, t, {
+        onStreamChange: (s) => {
+          console.log("NEW PEER");
+          stream.media = s;
+          save("media", s);
+        },
+        onClose: () => {
+          console.log("CLOSE");
+          save("media", undefined);
+        },
+      });
+    });
+  }
+  subscribe();
+
+  return unSubscribe;
+}
+export function useSubscribeStream({ id }: { id: string }): MediaStream {
+  useEffect(() => {
+    return subscribeStream({ id });
+  }, [id]);
+
+  const [streams] = streamStore.useGlobalState("streams");
+
+  const stream = useMemo(
+    function getStream() {
+      const stream = streams.get(id)?.media;
+      console.log("memo", { streams, id, stream });
+      return stream;
+    },
+    [streams]
+  );
+
+  console.log({ streams, stream });
+
+
+  return stream;
 }
 // export const stopStreaming = () => {
 //   const [currentStream, setCurrentStream] =

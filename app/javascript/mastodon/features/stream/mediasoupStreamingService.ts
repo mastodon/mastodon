@@ -1,7 +1,12 @@
 import * as mediasoupClient from "mediasoup-client";
 
-export function startStream(peer, transport, onStreamChange: (s: MediaStream) => void) {
-    var stream = new MediaStream();
+type StartStreamCallbacks = {
+    onClose: () => void
+    onStreamChange: (s: MediaStream) => void
+}
+
+export function startStream(peer, transport, callbacks: Partial<StartStreamCallbacks> ) {
+    let stream = new MediaStream();
     function addConsumer(consumer) {
         if (!consumer.supported) {
             console.log('consumer', consumer.id, 'not supported');
@@ -16,7 +21,7 @@ export function startStream(peer, transport, onStreamChange: (s: MediaStream) =>
         consumer.receive(transport)
             .then(function receiveTrack(track) {
                 stream.addTrack(track);
-                onStreamChange(stream)
+                callbacks.onStreamChange?.(stream)
                 consumer.on('close', function closeConsumer() {
                     // Remove the old track.
                     console.log('removing the old track', track.id);
@@ -26,8 +31,10 @@ export function startStream(peer, transport, onStreamChange: (s: MediaStream) =>
                         // Replace the stream.
                         console.log('replacing stream');
                         stream = new MediaStream();
-                        onStreamChange(stream)
+                        callbacks.onStreamChange?.(stream)
+                        callbacks.onClose?.()
                         // setVideoSource(video, stream);
+                    }else{
                     }
                 });
             })
@@ -39,7 +46,7 @@ export function startStream(peer, transport, onStreamChange: (s: MediaStream) =>
     // Add consumers that are added later...
     peer.on('newconsumer', addConsumer);
     peer.on('closed', function closedPeer() {
-        // setVideoSource(video);
+        callbacks.onClose?.()
     });
     // ... as well as the ones that were already present.
     for (var i = 0; i < peer.consumers.length; i ++) {
@@ -73,7 +80,7 @@ export function subscribeChannel(cb: (peer: any, transport: any) => void){
 export function pubsubClient(channel, password, isPublisher) {
     return new Promise(function executor(resolve, reject) {
         var kind = isPublisher ? 'publish' : 'subscribe';
-        if (!new mediasoupClient.isDeviceSupported()) {
+        if (!mediasoupClient.isDeviceSupported()) {
             alert('Sorry, WebRTC is not supported on this device');
             return;
         }

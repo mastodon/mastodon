@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import streamStore from '../../../reducers/stream';
 
-const VideoPreview = () => {
+export const WebcamPreview = () => {
   const videoRef = useRef<any>();
   const [webcam] = streamStore.useGlobalState('webcam');
 
@@ -23,7 +23,7 @@ const VideoPreview = () => {
 const StreamPreviewContainer = () => {
   const [activePreview] = streamStore.useGlobalState('webcam');
 
-  return activePreview ? <VideoPreview /> : null;
+  return activePreview ? <WebcamPreview /> : null;
 };
 
 export default StreamPreviewContainer;
