@@ -37,35 +37,35 @@ Click below to **learn more** in a video:
 
 <img src="https://docs.joinmastodon.org/elephant.svg" align="right" width="30%" />
 
-**No vendor lock-in: Fully interoperable with any conforming platform**
+### No vendor lock-in: Fully interoperable with any conforming platform
 
 It doesn't have to be Mastodon; whatever implements ActivityPub is part of the social network! [Learn more](https://blog.joinmastodon.org/2018/06/why-activitypub-is-the-future/)
 
-**Real-time, chronological timeline updates**
+### Real-time, chronological timeline updates
 
 Updates of people you're following appear in real-time in the UI via WebSockets. There's a firehose view as well!
 
-**Media attachments like images and short videos**
+### Media attachments like images and short videos
 
 Upload and view images and WebM/MP4 videos attached to the updates. Videos with no audio track are treated like GIFs; normal videos loop continuously!
 
-**Safety and moderation tools**
+### Safety and moderation tools
 
 Mastodon includes private posts, locked accounts, phrase filtering, muting, blocking and all sorts of other features, along with a reporting and moderation system. [Learn more](https://blog.joinmastodon.org/2018/07/cage-the-mastodon/)
 
-**OAuth2 and a straightforward REST API**
+### OAuth2 and a straightforward REST API
 
 Mastodon acts as an OAuth2 provider, so 3rd party apps can use the REST and Streaming APIs. This results in a rich app ecosystem with a lot of choices!
 
 ## Deployment
 
-**Tech stack:**
+### Tech stack:
 
 - **Ruby on Rails** powers the REST API and other web pages
 - **React.js** and Redux are used for the dynamic parts of the interface
 - **Node.js** powers the streaming API
 
-**Requirements:**
+### Requirements:
 
 - **PostgreSQL** 9.5+
 - **Redis** 4+
