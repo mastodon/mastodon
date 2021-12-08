@@ -269,7 +269,7 @@ class ComposeForm extends ImmutablePureComponent {
           <div className='compose-form__publish-button-wrapper'><Button text={publishText} onClick={this.handleSubmit} disabled={!this.canSubmit()} block /></div>
         </div>
         <StreamPreviewContainer />
-        <StreamContainer id='f'/>
+        <StreamContainer id='streaming' defaultComponent={null}/>
       </div>
     );
   }

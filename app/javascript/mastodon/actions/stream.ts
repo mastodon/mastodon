@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import streamStore from "../reducers/stream";
 import { publishStream } from "../features/stream/mediasoupPublisherService";
 import {
@@ -188,6 +188,20 @@ export function useSubscribeStream({ id }: { id: string }): MediaStream | undefi
 
 
   return stream;
+}
+
+export function useMediaStreamToVideoRef({ stream }: { stream: MediaStream | undefined }) {
+  const videoRef = useRef<HTMLVideoElement>();
+  useEffect(
+    function showStream() {
+      if (videoRef.current) {
+        videoRef.current.srcObject = stream;
+      }
+    },
+    [stream]
+  );
+
+  return videoRef;
 }
 // export const stopStreaming = () => {
 //   const [currentStream, setCurrentStream] =
