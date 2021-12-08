@@ -5,6 +5,7 @@ import {
   startStream,
   subscribeChannel,
 } from "../features/stream/mediasoupStreamingService";
+import { functionResultWrapper } from "../utils/fp";
 
 export const startStreaming = async () => {
   const state = streamStore.getState();
@@ -168,7 +169,11 @@ export function subscribeStream({ id }: { id: string }) {
 
   return unSubscribe;
 }
-export function useSubscribeStream({ id }: { id: string }): MediaStream | undefined {
+export function useSubscribeStream({
+  id,
+}: {
+  id: string;
+}): MediaStream | undefined {
   useEffect(() => {
     return subscribeStream({ id });
   }, [id]);
@@ -186,11 +191,14 @@ export function useSubscribeStream({ id }: { id: string }): MediaStream | undefi
 
   console.log({ streams, stream });
 
-
   return stream;
 }
 
-export function useMediaStreamToVideoRef({ stream }: { stream: MediaStream | undefined }) {
+export function useMediaStreamToVideoRef({
+  stream,
+}: {
+  stream: MediaStream | undefined;
+}) {
   const videoRef = useRef<HTMLVideoElement>();
   useEffect(
     function showStream() {
@@ -203,6 +211,13 @@ export function useMediaStreamToVideoRef({ stream }: { stream: MediaStream | und
 
   return videoRef;
 }
+
+export const useMediaStreamToVideoRefAndPlay = functionResultWrapper(
+  useMediaStreamToVideoRef
+)((ref) => {
+  ref.current?.play();
+  return ref;
+});
 // export const stopStreaming = () => {
 //   const [currentStream, setCurrentStream] =
 //     streamStore.useGlobalState("activeStreaming");
