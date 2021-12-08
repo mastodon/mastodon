@@ -1140,15 +1140,20 @@ fi:
       duration_too_short: on liian aikainen
       expired: Äänestys on jo loppunut
       invalid_choice: Valittua äänestysvaihtoehtoa ei ole
+      over_character_limit: voi olla enintään %{max} merkkiä
+      too_few_options: on oltava useampi kuin yksi
+      too_many_options: ei voi sisältää enempää kuin %{max} kohdetta
   preferences:
     other: Muut
     posting_defaults: Julkaisujen oletusasetukset
     public_timelines: Julkiset aikajanat
   reactions:
     errors:
+      limit_reached: Erilaisten reaktioiden raja saavutettu
       unrecognized_emoji: ei ole tunnistettu emoji
   relationships:
     activity: Tilin tapahtumat
+    dormant: Ei aktiivinen
     follow_selected_followers: Seuraa valittuja seuraajia
     followers: Seuraajat
     following: Seuratut
@@ -1180,6 +1185,8 @@ fi:
     reply:
       proceed: Jatka vastaamiseen
       prompt: 'Haluat vastata julkaisuun:'
+  scheduled_statuses:
+    over_daily_limit: Olet ylittänyt %{limit} ajoitetun viestien rajan tälle päivälle
   sessions:
     activity: Viimeisin toiminta
     browser: Selain
