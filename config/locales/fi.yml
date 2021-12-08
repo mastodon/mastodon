@@ -749,6 +749,11 @@ fi:
       body: Seuraavat linkit trendaavat tänään, mutta niiden julkaisijoita ei ole aiemmin tarkistettu. Niitä ei näytetä julkisesti, ellet hyväksy niitä. Uusia ilmoituksia samoilta julkaisijoilta ei luoda.
       no_approved_links: Tällä hetkellä ei ole hyväksyttyjä trendaavia linkkejä.
       requirements: Alin hyväksytty trendilinkki on tällä hetkellä "%{lowest_link_title}" pisteillä %{lowest_link_score}.
+      subject: Uudet trendikkäät linkit tarkistettavaksi %{instance}
+    new_trending_tags:
+      body: 'Seuraavat hashtagit ovat trendejä tänään, mutta niitä ei ole aiemmin tarkistettu. Niitä ei näytetä julkisesti, ellet hyväksy niitä:'
+      no_approved_tags: Tällä hetkellä ei ole hyväksyttyjä trendikkäitä hashtageja.
+      requirements: 'Alin hyväksytty trendikäs hashtag on tällä hetkellä "%{lowest_tag_name}" pisteillä %{lowest_tag_score}.'
   aliases:
     add_new: Luo alias
     created_msg: Uusi alias luotiin onnistuneesti. Voit nyt aloittaa siirron vanhasta tilistä.
