@@ -1186,7 +1186,9 @@ fi:
       proceed: Jatka vastaamiseen
       prompt: 'Haluat vastata julkaisuun:'
   scheduled_statuses:
-    over_daily_limit: Olet ylittänyt %{limit} ajoitetun viestien rajan tälle päivälle
+    over_daily_limit: Olet ylittänyt %{limit} ajoitetun viestin rajan tälle päivälle
+    over_total_limit: Olet ylittänyt %{limit} ajoitetun viestin rajan
+    too_soon: Ajoitetun päivämäärän on oltava tulevaisuudessa
   sessions:
     activity: Viimeisin toiminta
     browser: Selain
@@ -1228,6 +1230,7 @@ fi:
     revoke: Hylkää
     revoke_success: Istunnon hylkäys onnistui
     title: Istunnot
+    view_authentication_history: Näytä tilisi todennushistoria
   settings:
     account: Tili
     account_settings: Tilin asetukset
@@ -1247,17 +1250,28 @@ fi:
     preferences: Ominaisuudet
     profile: Profiili
     relationships: Seuratut ja seuraajat
+    statuses_cleanup: Automaattinen viestin poisto
     two_factor_authentication: Kaksivaiheinen todentaminen
+    webauthn_authentication: Suojausavaimet
   statuses:
     attached:
+      audio:
+        one: "%{count} ääni"
+        other: "%{count} ääntä"
       description: 'Liitetty: %{attached}'
       image:
         one: "%{count} kuva"
         other: "%{count} kuvaa"
+      video:
+        one: "%{count} video"
+        other: "%{count} videota"
+    boosted_from_html: Tehostettu %{acct_link}
     content_warning: 'Sisältövaroitus: %{warning}'
     disallowed_hashtags:
       one: 'sisälsi aihetunnisteen jota ei sallita: %{tags}'
       other: 'sisälsi aihetunnisteet joita ei sallita: %{tags}'
+    errors:
+      in_reply_not_found: Viesti, johon yrität vastata, ei näytä olevan olemassa.
     language_detection: Tunnista kieli automaattisesti
     open_in_web: Avaa selaimessa
     over_character_limit: merkkimäärän rajoitus %{max} ylitetty
