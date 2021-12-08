@@ -715,8 +715,10 @@ sq:
         title: Lidhje në modë
         usage_comparison: Ndarë %{today} herë sot, kundrejt %{yesterday} dje
       pending_review: Në pritje të shqyrtimit
+      rejected: Hedhur poshtë
       tags:
         dashboard:
+          tag_accounts_measure: përdorime unike
           tag_languages_dimension: Gjuhë kryesuese
           tag_servers_dimension: Shërbyes kryesues
           tag_servers_measure: shërbyes të ndryshëm
@@ -748,6 +750,13 @@ sq:
       body: "%{reporter} ka raportuar %{target}"
       body_remote: Dikush nga %{domain} ka raportuar %{target}
       subject: 'Raportim i ri për %{instance} (#%{id})'
+    new_trending_links:
+      body: Lidhjet vijuese janë në modë sot, por botuesit e tyre nuk janë shqyrtuar më herët. Nuk do të shfaqen publikisht, veç në i miratofshi. S’do të prodhohen njoftime të mëtejshme për të njëjtë botues.
+      no_approved_links: Aktualisht nuk ka lidhje në modë të miratuara.
+      subject: Lidhje të reja në modë për shqyrtim te %{instance}
+    new_trending_tags:
+      body: 'Hashtag-ët vijues janë në modë sot, por nuk janë miratuar më herët. S’do të shfaqen publikisht, veç në i miratofshi:'
+      no_approved_tags: Aktualisht nuk ka hashtag-ë në modë të miratuar.
   aliases:
     add_new: Krijo alias
     created_msg: U krijua me sukses alias i ri. Tani mund të filloni lëvizjen prej llogarisë së vjetër.
@@ -954,8 +963,10 @@ sq:
     changes_saved_msg: Ndryshimet u ruajtën me sukses!
     copy: Kopjoje
     delete: Fshije
+    none: Asnjë
     order_by: Renditi sipas
     save_changes: Ruaji ndryshimet
+    today: sot
     validation_errors:
       one: Diçka s’është ende si duhet! Ju lutemi, shqyrtoni gabimin më poshtë
       other: Diçka s’është ende si duhet! Ju lutemi, shqyrtoni %{count} gabimet më poshtë
