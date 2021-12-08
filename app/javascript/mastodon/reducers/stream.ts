@@ -20,7 +20,7 @@ type Stream = {
 const initialState = {
   activeStreaming: Undefined<Streaming>(),
   protooClient: Undefined<protooClient.Peer>(),
-  webcam: Undefined<MediaStream>(),
+  webcam: Undefined<MediaStreamTrack>(),
   streams: ImmutableMap<string, Stream>()
 };
 const streamStore_ = createGlobalState(initialState)

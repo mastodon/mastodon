@@ -54,8 +54,8 @@ export function startStream(peer, transport, callbacks: Partial<StartStreamCallb
     }
 }
 
-export function subscribeChannel(cb: (peer: any, transport: any) => void){
-   pubsubClient('streaming', 'NotSecret', false)
+export function subscribeChannel(id: string, cb: (peer: any, transport: any) => void){
+   pubsubClient(id, 'NotSecret', false)
         .then(function havePubsub(ps: any) {
             const ws = ps.ws;
             const room = ps.room;

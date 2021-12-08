@@ -6,8 +6,9 @@ import {
   subscribeChannel,
 } from "../features/stream/mediasoupStreamingService";
 import { functionResultWrapper } from "../utils/fp";
+import randomString from 'random-string'
 
-export const startStreaming = async () => {
+export const startStreaming = (): string => {
   const state = streamStore.getState();
 
   // const sendTransport = await getSendTransport();
@@ -70,7 +71,10 @@ export const startStreaming = async () => {
   // // const client = getProtooClient("streaming");
   const m = new MediaStream();
   m.addTrack(state.webcam);
-  publishStream(m);
+
+  const id = randomString({length: 15})
+  publishStream({id, sendStream: m});
+
   // sendTransport.produce({
   //   track: state.webcam,
   // });
@@ -79,6 +83,7 @@ export const startStreaming = async () => {
   //   ...state,
   //   sendTransport,
   // });
+  return id
 };
 
 export function selectWebcam() {
@@ -151,7 +156,7 @@ export function subscribeStream({ id }: { id: string }) {
   }
 
   if (stream.subscribers === 0) {
-    subscribeChannel((p, t) => {
+    subscribeChannel(id, (p, t) => {
       startStream(p, t, {
         onStreamChange: (s) => {
           console.log("NEW PEER");

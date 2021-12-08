@@ -11,11 +11,11 @@ var sendStream;
 
 var lastProduced = {};
 
-export function publishStream(sendStream) {
+export function publishStream({sendStream, id}: {sendStream: MediaStream, id: string}) {
     // stopPublishClick();
 
 
-    pubsubClient('streaming', 'NotSecret', true)
+    pubsubClient(id, 'NotSecret', true)
         .then(function havePubsub(ps: any) {
             ws = ps.ws;
             room = ps.room;
