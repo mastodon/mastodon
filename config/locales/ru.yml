@@ -229,6 +229,7 @@ ru:
       whitelisted: В белом списке
     action_logs:
       action_types:
+        approve_user: Утвердить
         assigned_to_self_report: Присвоение жалоб
         change_email_user: Изменение e-mail пользователей
         confirm_user: Подтверждение пользователей
@@ -258,6 +259,7 @@ ru:
         enable_user: Разморозка пользователей
         memorialize_account: Присвоение пользователям статуса «мемориала»
         promote_user: Повышение пользователей
+        reject_user: Отклонить
         remove_avatar_user: Удаление аватаров
         reopen_report: Возобновление жалоб
         reset_password_user: Сброс пароля пользователей
@@ -274,6 +276,7 @@ ru:
         update_domain_block: Изменение блокировки домена
         update_status: Изменение постов
       actions:
+        approve_user_html: "%{name} утвердил(а) регистрацию %{target}"
         assigned_to_self_report_html: "%{name} назначил(а) себя для решения жалобы %{target}"
         change_email_user_html: "%{name} сменил(а) e-mail пользователя %{target}"
         confirm_user_html: "%{name} подтвердил(а) e-mail адрес пользователя %{target}"
