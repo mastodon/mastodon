@@ -221,6 +221,7 @@ sq:
       whitelisted: Lejuar për federim
     action_logs:
       action_types:
+        approve_user: Miratoje Përdoruesin
         assigned_to_self_report: Caktoji Raportim
         change_email_user: Ndrysho Email për Përdoruesin
         confirm_user: Ripohoje Përdoruesin
@@ -250,6 +251,7 @@ sq:
         enable_user: Aktivizo Përdorues
         memorialize_account: Bëje Llogari Përkujtimore
         promote_user: Promovojeni Përdoruesin
+        reject_user: Hidhe Poshtë Përdoruesin
         remove_avatar_user: Hiqe Avatarin
         reopen_report: Rihape Raportimin
         reset_password_user: Ricaktoni Fjalëkalimin
@@ -266,6 +268,7 @@ sq:
         update_domain_block: Përditëso Bllok Përkatësish
         update_status: Përditëso Gjendjen
       actions:
+        approve_user_html: "%{name} miratoi regjistrim nga %{target}"
         assigned_to_self_report_html: "%{name} ia kaloi raportimin %{target} në ngarkim vetvetes"
         change_email_user_html: "%{name} ndryshoi adresën email të përdoruesit %{target}"
         confirm_user_html: "%{name} ripohoi adresën email të përdoruesit %{target}"
@@ -295,6 +298,7 @@ sq:
         enable_user_html: "%{name} aktivizoi hyrje për përdoruesin %{target}"
         memorialize_account_html: "%{name} e shndërroi llogarinë e %{target} në një faqe përkujtimore"
         promote_user_html: "%{name} gradoi përdoruesin %{target}"
+        reject_user_html: "%{name} hodhi poshtë regjistrimin nga %{target}"
         remove_avatar_user_html: "%{name} hoqi avatarin e %{target}"
         reopen_report_html: "%{name} rihapi raportimin %{target}"
         reset_password_user_html: "%{name} ricaktoi fjalëkalimi për përdoruesin %{target}"
@@ -698,6 +702,38 @@ sq:
       review: Gjendje rishikimi
       updated_msg: Rregullimet për hashtag-ët u përditësuan me sukses
     title: Administrim
+    trends:
+      allow: Lejojeni
+      approved: Miratuar
+      disallow: Mos e lejo
+      links:
+        allow: Lejoje lidhjen
+        disallow: Hiq lejimin e lidhjes
+        shared_by_over_week:
+          one: Ndarë nga një person javën e kaluar
+          other: Ndarë nga %{count} persona javën e kaluar
+        title: Lidhje në modë
+        usage_comparison: Ndarë %{today} herë sot, kundrejt %{yesterday} dje
+      pending_review: Në pritje të shqyrtimit
+      tags:
+        dashboard:
+          tag_languages_dimension: Gjuhë kryesuese
+          tag_servers_dimension: Shërbyes kryesues
+          tag_servers_measure: shërbyes të ndryshëm
+          tag_uses_measure: përdorime gjithsej
+        listable: Mund të sugjerohet
+        not_listable: S’do të sugjerohet
+        not_trendable: S’do të shfaqet nën të modës
+        not_usable: S’mund të përdoret
+        peaked_on_and_decaying: Kulmoi më %{date}, tani në rënie
+        title: Hashtag-ë në modë
+        trendable: Mund të shfaqet nën të modës
+        usable: Mund të përdoret
+        usage_comparison: Përdorur %{today} herë sot, krahasuar me %{yesterday} dje
+        used_by_over_week:
+          one: Përdorur nga një persona gjatë javës së kaluar
+          other: Përdorur nga %{count} persona gjatë javës së kaluar
+      title: Në modë
     warning_presets:
       add_new: Shtoni të ri
       delete: Fshije
