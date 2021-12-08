@@ -1,6 +1,6 @@
 eu:
   about:
-    about_hashtag_html: 'Hauek <strong>#%{hashtag}</strong> traola duten bidalketa publikoak dira. Fedibertsoko edozein kontu baduzu harremanetan jarri zaitezke.'
+    about_hashtag_html: 'Hauek <strong>#%{hashtag}</strong> traola duten bidalketa publikoak dira. Fedibertsoko edozein kontu baduzu haiekin elkarrekintza izan dezakezu.'
     about_mastodon_html: 'Etorkizuneko sare soziala: ez iragarkirik eta ez zelatatze korporatiborik, diseinu etikoa eta deszentralizazioa! Izan zure datuen jabea Mastodonekin!'
     about_this: Honi buruz
     active_count_after: aktibo
@@ -724,6 +724,26 @@ eu:
       rejected: Ukatua
       tags:
         current_score: Uneko emaitza%{score}
+        dashboard:
+          tag_accounts_measure: aldiz
+          tag_languages_dimension: Hizkuntza nagusiak
+          tag_servers_dimension: Zerbitzari nagusiak
+          tag_servers_measure: zerbitzari desberdin
+          tag_uses_measure: erabilera guztira
+        listable: Gomendatu daiteke
+        not_listable: Ez da gomendatuko
+        not_trendable: Ez da joeretan agertuko
+        not_usable: Ezin da erabili
+        peaked_on_and_decaying: '%{date} datan jo du goia, orain beherantz'
+        title: Traolak joeran
+        trendable: Joeretan agertuko da
+        trending_rank: '%{rank}. joera'
+        usable: Erabili daiteke
+        usage_comparison: '%{today} aldiz erabili da gaur, atzo %{yesterday} aldiz'
+        used_by_over_week:
+          one: Pertsona batek erabilia azken astean
+          other: '%{count} pertsonak erabilia azken astean'
+      title: Joerak
     warning_presets:
       add_new: Gehitu berria
       delete: Ezabatu
@@ -738,6 +758,16 @@ eu:
       body: "%{reporter}(e)k %{target} salatu du"
       body_remote: '%{domain} domeinuko norbaitek %{target} salatu du'
       subject: 'Salaketa berria %{instance} instantzian (#%{id})'
+    new_trending_links:
+      body: Ondorengo estekak dira joera gaur, baina beren argitaratzaileak ez dira berrikusi aurretik. Ez dira bistaratuko publikoki onartu ezean. Ez da sortuko argitaratzaile hauen jakinarazpen gehiago.
+      no_approved_links: Ez dago onartutako esteken joerarik une honetan.
+      requirements: Onartutako esteken joera baxuena %{lowest_link_title} da une honetan %{lowest_link_score} emaitzarekin.
+      subject: Esteken joera gehiago daude berrikusteko %{instance} instantzian
+    new_trending_tags:
+      body: 'Ondorengo traolak dira joera gaur, baina ez dira berrikusi aurretik. Ez dira bistaratuko publikoki onartzen ez badituzu:'
+      no_approved_tags: Ez dago onartutako traolen joerarik une honetan.
+      requirements: 'Onartutako traolen joera baxuena %{lowest_tag_name} da une honetan %{lowest_tag_score} emaitzarekin.'
+      subject: Traolen joera gehiago daude berrikusteko %{instance} instantzian
   aliases:
     add_new: Sortu ezizena
     created_msg: Ongi sortu da ezizena. Orain kontu zaharretik migratzen hasi zaitezke.
@@ -944,8 +974,10 @@ eu:
     changes_saved_msg: Aldaketak ongi gorde dira!
     copy: Kopiatu
     delete: Ezabatu
+    none: Bat ere ez
     order_by: Ordenatze-irizpidea
     save_changes: Gorde aldaketak
+    today: gaur
     validation_errors:
       one: Zerbait ez dabil ongi! Egiaztatu beheko errorea mesedez
       other: Zerbait ez dabil ongi! Egiaztatu beheko %{count}  erroreak mesedez
