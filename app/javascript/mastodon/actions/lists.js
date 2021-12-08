@@ -8,13 +8,10 @@ export const LIST_FETCH_FAIL = 'LIST_FETCH_FAIL';
 export const LISTS_FETCH_REQUEST = 'LISTS_FETCH_REQUEST';
 export const LISTS_FETCH_SUCCESS = 'LISTS_FETCH_SUCCESS';
 export const LISTS_FETCH_FAIL = 'LISTS_FETCH_FAIL';
-
 export const LIST_EDITOR_TITLE_CHANGE = 'LIST_EDITOR_TITLE_CHANGE';
 export const LIST_EDITOR_HASHTAG_CHANGE = 'LIST_EDITOR_HASHTAG_CHANGE';
 export const LIST_EDITOR_RESET = 'LIST_EDITOR_RESET';
 export const LIST_EDITOR_SETUP = 'LIST_EDITOR_SETUP';
-
-export const NEW_LIST_ADDER = 'NEW_LIST_ADDER';
 
 export const LIST_CREATE_REQUEST = 'LIST_CREATE_REQUEST';
 export const LIST_CREATE_SUCCESS = 'LIST_CREATE_SUCCESS';
@@ -24,20 +21,9 @@ export const LIST_UPDATE_REQUEST = 'LIST_UPDATE_REQUEST';
 export const LIST_UPDATE_SUCCESS = 'LIST_UPDATE_SUCCESS';
 export const LIST_UPDATE_FAIL = 'LIST_UPDATE_FAIL';
 
-export const LIST_ACCOUNTS_FETCH_REQUEST = 'LIST_ACCOUNTS_FETCH_REQUEST';
-export const LIST_ACCOUNTS_FETCH_SUCCESS = 'LIST_ACCOUNTS_FETCH_SUCCESS';
-export const LIST_ACCOUNTS_FETCH_FAIL = 'LIST_ACCOUNTS_FETCH_FAIL';
-
-export const LIST_EDITOR_SUGGESTIONS_CHANGE = 'LIST_EDITOR_SUGGESTIONS_CHANGE';
-export const LIST_EDITOR_SUGGESTIONS_READY = 'LIST_EDITOR_SUGGESTIONS_READY';
-
-export const LIST_EDITOR_ADD_REQUEST = 'LIST_EDITOR_ADD_REQUEST';
-export const LIST_EDITOR_ADD_SUCCESS = 'LIST_EDITOR_ADD_SUCCESS';
-export const LIST_EDITOR_ADD_FAIL = 'LIST_EDITOR_ADD_FAIL';
-
-export const LIST_EDITOR_REMOVE_REQUEST = 'LIST_EDITOR_REMOVE_REQUEST';
-export const LIST_EDITOR_REMOVE_SUCCESS = 'LIST_EDITOR_REMOVE_SUCCESS';
-export const LIST_EDITOR_REMOVE_FAIL = 'LIST_EDITOR_REMOVE_FAIL';
+export const LIST_DELETE_REQUEST = 'LIST_DELETE_REQUEST';
+export const LIST_DELETE_SUCCESS = 'LIST_DELETE_SUCCESS';
+export const LIST_DELETE_FAIL = 'LIST_DELETE_FAIL';
 
 export const UPDATE_HASHTAGS_USERS = 'UPDATE_HASHTAGS_USERS';
 
@@ -93,7 +79,7 @@ export const fetchListsFail = (error) => ({
   error,
 });
 
-export const updateHashagsUsers = (hashtagsUsersJSON) => ({
+export const updateHashtagsUsers = (hashtagsUsersJSON) => ({
   type: UPDATE_HASHTAGS_USERS,
   hashtagsUsersJSON,
 });
@@ -101,22 +87,11 @@ export const updateHashagsUsers = (hashtagsUsersJSON) => ({
 export const submitListEditor = (shouldReset) => (dispatch, getState) => {
   const listId = getState().getIn(['listEditor', 'listId']);
   const title = getState().getIn(['listEditor', 'title']);
-  const hashtags = getState()
-    .getIn(['listEditor', 'hashtags'])
-    .split(/(\s+)/)
-    .filter((e) => e.trim().length > 0);
-  const hashtagsUsers = { hashtags: {}, users: {} };
-  hashtags.forEach((h, i) => (hashtagsUsers.hashtags[i] = h));
-  const hashtagsUsersJSON = JSON.stringify(hashtagsUsers);
-
-  dispatch(updateHashagsUsers(hashtagsUsersJSON));
-
-  console.log(hashtagsUsersJSON);
 
   if (listId === null) {
     dispatch(createList(title, shouldReset));
   } else {
-    dispatch(updateList(listId, title, hashtagsUsersJSON, shouldReset));
+    dispatch(updateList(listId, title, shouldReset));
   }
 };
 
@@ -169,7 +144,7 @@ export const createListFail = (error) => ({
 });
 
 export const updateList =
-  (id, title, hashtags_users, shouldReset, replies_policy) =>
+  (id, title, shouldReset, hashtags_users, replies_policy) =>
   (dispatch, getState) => {
     dispatch(updateListRequest(id));
 
@@ -230,35 +205,44 @@ export const deleteListFail = (id, error) => ({
   error,
 });
 
-export const fetchListAccounts = (listId) => (dispatch, getState) => {
-  dispatch(fetchListAccountsRequest(listId));
+export const addHashtagsToListEditor =
+  (shouldReset) => (dispatch, getState) => {
+    dispatch(
+      addHashtagsToList(getState().getIn(['listEditor', 'listId']), shouldReset)
+    );
+  };
 
-  api(getState)
-    .get(`/api/v1/lists/${listId}/accounts`, { params: { limit: 0 } })
-    .then(({ data }) => {
-      dispatch(importFetchedAccounts(data));
-      dispatch(fetchListAccountsSuccess(listId, data));
-    })
-    .catch((err) => dispatch(fetchListAccountsFail(listId, err)));
-};
+export const addHashtagsToList =
+  (listId, shouldReset) => (dispatch, getState) => {
+    dispatch(fetchList(listId));
+    var hashtagsUsers;
 
-export const fetchListAccountsRequest = (id) => ({
-  type: LIST_ACCOUNTS_FETCH_REQUEST,
-  id,
-});
+    const title = getState().getIn(['listEditor', 'title']);
+    if (getState().getIn(['listEditor', 'hashtagsUsers']) === '') {
+      hashtagsUsers = { hashtags: {}, users: {} };
+    } else {
+      hashtagsUsers = JSON.parse(
+        getState().getIn(['listEditor', 'hashtagsUsers'])
+      );
+    }
 
-export const fetchListAccountsSuccess = (id, accounts, next) => ({
-  type: LIST_ACCOUNTS_FETCH_SUCCESS,
-  id,
-  accounts,
-  next,
-});
+    const hashtags = getState()
+      .getIn(['listEditor', 'hashtags'])
+      .split(/(\s+)/)
+      .filter((e) => e.trim().length > 0);
 
-export const fetchListAccountsFail = (id, error) => ({
-  type: LIST_ACCOUNTS_FETCH_FAIL,
-  id,
-  error,
-});
+    if (hashtags.length === 0) {
+      hashtagsUsers.hashtags = {};
+    } else {
+      hashtags.forEach((h, i) => (hashtagsUsers.hashtags[i] = h));
+    }
+    console.log(hashtagsUsers);
+    const hashtagsUsersJSON = JSON.stringify(hashtagsUsers);
+
+    dispatch(updateList(listId, title, shouldReset, hashtagsUsersJSON));
+
+    dispatch(updateHashtagsUsers(hashtagsUsersJSON));
+  };
 
 export const addToListEditor = (accountId) => (dispatch, getState) => {
   dispatch(
@@ -270,19 +254,24 @@ export const addToList =
   (listId, accountId, shouldReset) => (dispatch, getState) => {
     dispatch(fetchList(listId));
 
+    var hashtagsUsers;
+
     const title = getState().getIn(['listEditor', 'title']);
-    const hashtagsUsers = JSON.parse(
-      getState().getIn(['listEditor', 'hashtagsUsers'])
-    );
+    if (getState().getIn(['listEditor', 'hashtagsUsers']) === '') {
+      hashtagsUsers = { hashtags: {}, users: {} };
+    } else {
+      hashtagsUsers = JSON.parse(
+        getState().getIn(['listEditor', 'hashtagsUsers'])
+      );
+    }
     hashtagsUsers.users[Object.keys(hashtagsUsers.users).length] = accountId;
     console.log(hashtagsUsers);
     const hashtagsUsersJSON = JSON.stringify(hashtagsUsers);
 
-    dispatch(updateList(listId, title, hashtagsUsersJSON, shouldReset));
+    dispatch(updateList(listId, title, shouldReset, hashtagsUsersJSON));
 
-    dispatch(updateHashagsUsers(hashtagsUsersJSON));
+    dispatch(updateHashtagsUsers(hashtagsUsersJSON));
   };
-
 
 export const removeFromListEditor =
   (accountId, shouldReset) => (dispatch, getState) => {
@@ -297,11 +286,10 @@ export const removeFromListEditor =
         delete hashtagsUsers.users[h];
       }
     });
-
+    console.log(hashtagsUsers);
     const hashtagsUsersJSON = JSON.stringify(hashtagsUsers);
 
-    dispatch(updateList(listId, title, hashtagsUsersJSON, shouldReset));
+    dispatch(updateList(listId, title, shouldReset, hashtagsUsersJSON));
 
-    dispatch(updateHashagsUsers(hashtagsUsersJSON));
-
+    dispatch(updateHashtagsUsers(hashtagsUsersJSON));
   };

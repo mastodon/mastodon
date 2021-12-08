@@ -5,7 +5,7 @@ import IconButton from '../../../../components/icon_button';
 import Icon from 'mastodon/components/icon';
 import {
   changeListEditorHashtag,
-  submitListEditor,
+  addHashtagsToListEditor,
   fetchList,
 } from '../../../../actions/lists';
 
@@ -54,13 +54,21 @@ const HashtagListCreator = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setHashtag(true);
-    dispatch(submitListEditor(false));
+    if (hashtagValue === '') {
+      setHashtag(false);
+    } else {
+      setHashtag(true);
+    }
+    dispatch(addHashtagsToListEditor(false));
   };
 
   const handleClick = () => {
-    setHashtag(true);
-    dispatch(submitListEditor(false));
+    if (hashtagValue === '') {
+      setHashtag(false);
+    } else {
+      setHashtag(true);
+    }
+    dispatch(addHashtagsToListEditor(false));
   };
 
   return (
@@ -85,7 +93,7 @@ const HashtagListCreator = (props) => {
             />
           </label>
           <IconButton
-            disabled={disabled || !hashtagValue}
+            disabled={disabled}
             icon={!hashtag ? 'plus' : 'check'}
             title={title}
             onClick={handleClick}

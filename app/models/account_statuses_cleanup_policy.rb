@@ -4,8 +4,8 @@
 #
 # Table name: account_statuses_cleanup_policies
 #
-#  id                 :bigint           not null, primary key
-#  account_id         :bigint           not null
+#  id                 :bigint(8)        not null, primary key
+#  account_id         :bigint(8)        not null
 #  enabled            :boolean          default(TRUE), not null
 #  min_status_age     :integer          default(1209600), not null
 #  keep_direct        :boolean          default(TRUE), not null

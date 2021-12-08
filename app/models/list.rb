@@ -9,7 +9,7 @@
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #  replies_policy :integer          default("list"), not null
-#  hashtags       :string           default([]), not null, is an Array
+#  hashtags_users :text             default(""), not null
 #
 
 class List < ApplicationRecord

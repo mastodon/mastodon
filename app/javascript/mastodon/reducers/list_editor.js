@@ -88,11 +88,6 @@ export default function listEditorReducer(state = initialState, action) {
     return state.setIn(['suggestions', 'value'], action.value);
   case LIST_EDITOR_SUGGESTIONS_READY:
     return state.setIn(['suggestions', 'items'], ImmutableList(action.accounts.map(item => item.id)));
-  // case LIST_EDITOR_SUGGESTIONS_CLEAR:
-  //   return state.update('suggestions', suggestions => suggestions.withMutations(map => {
-  //     map.set('items', ImmutableList());
-  //     map.set('value', '');
-  //   }));
   case LIST_EDITOR_ADD_SUCCESS:
     return state.updateIn(['accounts', 'items'], list => list.unshift(action.accountId));
   case LIST_EDITOR_REMOVE_SUCCESS:
