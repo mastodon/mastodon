@@ -754,6 +754,7 @@ fi:
       body: 'Seuraavat hashtagit ovat trendejä tänään, mutta niitä ei ole aiemmin tarkistettu. Niitä ei näytetä julkisesti, ellet hyväksy niitä:'
       no_approved_tags: Tällä hetkellä ei ole hyväksyttyjä trendikkäitä hashtageja.
       requirements: 'Alin hyväksytty trendikäs hashtag on tällä hetkellä "%{lowest_tag_name}" pisteillä %{lowest_tag_score}.'
+      subject: Uusia trendikkäitä hashtageja tarkistettavaksi %{instance}
   aliases:
     add_new: Luo alias
     created_msg: Uusi alias luotiin onnistuneesti. Voit nyt aloittaa siirron vanhasta tilistä.
@@ -1061,6 +1062,10 @@ fi:
       redirect: Nykyinen tilisi profiili päivitetään, ohjataan uudelleen ja jätetään pois hausta
   moderation:
     title: Moderointi
+  move_handler:
+    carry_blocks_over_text: Tämä käyttäjä siirtyi paikasta %{acct}, jonka olit estänyt.
+    carry_mutes_over_text: Tämä käyttäjä siirtyi paikasta %{acct}, jonka mykistit.
+    copy_account_note_text: 'Tämä käyttäjä siirtyi paikasta %{acct}, tässä olivat aiemmat muistiinpanosi niistä:'
   notification_mailer:
     digest:
       action: Näytä kaikki ilmoitukset
@@ -1100,6 +1105,8 @@ fi:
     status:
       subject: "%{name} julkaisi juuri"
   notifications:
+    email_events: Sähköposti-ilmoitusten tapahtumat
+    email_events_hint: 'Valitse tapahtumat, joista haluat saada ilmoituksia:'
     other_settings: Muut ilmoitusasetukset
   number:
     human:
@@ -1112,6 +1119,7 @@ fi:
           thousand: k
           trillion: B
   otp_authentication:
+    code_hint: Anna todennussovelluksen luoma koodi vahvistaaksesi
     setup: Asetusten määritys
     wrong_code: Annettu koodi oli virheellinen! Ovatko palvelimen aika ja laitteen aika oikein?
   pagination:
