@@ -306,6 +306,7 @@ ru:
         enable_user_html: "%{name} разморозил(а) пользователя %{target}"
         memorialize_account_html: "%{name} перевел(а) учётную запись пользователя %{target} в статус памятника"
         promote_user_html: "%{name} повысил(а) пользователя %{target}"
+        reject_user_html: "%{name} отклонил(а) регистрацию %{target}"
         remove_avatar_user_html: "%{name} убрал(а) аватарку пользователя %{target}"
         reopen_report_html: "%{name} повторно открыл(а) жалобу %{target}"
         reset_password_user_html: "%{name} сбросил(а) пароль пользователя %{target}"
@@ -727,6 +728,8 @@ ru:
     title: Администрирование
     trends:
       allow: Разрешить
+      approved: Принятые
+      rejected: Отклонённые
     warning_presets:
       add_new: Добавить
       delete: Удалить
@@ -949,6 +952,7 @@ ru:
     delete: Удалить
     order_by: Сортировка
     save_changes: Сохранить изменения
+    today: сегодня
     validation_errors:
       one: Что-то здесь не так! Пожалуйста, прочитайте об ошибке ниже
       few: Что-то здесь не так! Пожалуйста, прочитайте о %{count} ошибках ниже
