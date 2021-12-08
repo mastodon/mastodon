@@ -1120,6 +1120,10 @@ fi:
           trillion: B
   otp_authentication:
     code_hint: Anna todennussovelluksen luoma koodi vahvistaaksesi
+    description_html: Jos otat käyttöön <strong>kaksivaiheisen todentamisen</strong>, käyttämällä todennussovellusta, kirjautumiseen vaaditaan puhelin, jolla voidaan luoda kirjautumistunnuksia.
+    enable: Ota käyttöön
+    instructions_html: "<strong>Lue tämä QR-koodi puhelimen Google Authenticator- tai vastaavalla TOTP-sovelluksella</strong>. Sen jälkeen sovellus luo tunnuksia, joita tarvitset kun kirjaudut sisään."
+    manual_instructions: 'Jos et voi lukea QR-koodia ja haluat syöttää sen käsin, tässä on salainen koodi tekstinä:'
     setup: Asetusten määritys
     wrong_code: Annettu koodi oli virheellinen! Ovatko palvelimen aika ja laitteen aika oikein?
   pagination:
@@ -1131,9 +1135,11 @@ fi:
   polls:
     errors:
       already_voted: Olet jo äänestänyt tässä äänestyksessä
+      duplicate_options: sisältää kaksoiskappaleita
       duration_too_long: on liian kaukana tulevaisuudessa
       duration_too_short: on liian aikainen
       expired: Äänestys on jo loppunut
+      invalid_choice: Valittua äänestysvaihtoehtoa ei ole
   preferences:
     other: Muut
     posting_defaults: Julkaisujen oletusasetukset
