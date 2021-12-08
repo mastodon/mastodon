@@ -221,6 +221,7 @@ eu:
       whitelisted: Zerrenda zurian
     action_logs:
       action_types:
+        approve_user: Onartu erabiltzailea
         assigned_to_self_report: Esleitu salaketa
         change_email_user: Aldatu erabiltzailearen e-maila
         confirm_user: Berretsi erabiltzailea
@@ -250,6 +251,7 @@ eu:
         enable_user: Gaitu erabiltzailea
         memorialize_account: Bihurtu kontua oroigarri
         promote_user: Igo erabiltzailea mailaz
+        reject_user: Baztertu erabiltzailea
         remove_avatar_user: Kendu abatarra
         reopen_report: Berrireki txostena
         reset_password_user: Berrezarri pasahitza
@@ -266,6 +268,7 @@ eu:
         update_domain_block: Eguneratu domeinu-blokeoa
         update_status: Eguneratu bidalketa
       actions:
+        approve_user_html: "%{name} erabiltzaileak %{target} erabiltzailearen izen-ematea onartu du"
         assigned_to_self_report_html: "%{name} erabiltzaileak %{target} salaketa bere buruari esleitu dio"
         change_email_user_html: "%{name} erabiltzaileak %{target} erabiltzailearen e-posta helbidea aldatu du"
         confirm_user_html: "%{name} erabiltzaileak %{target} erabiltzailearen e-posta helbidea berretsi du"
@@ -295,6 +298,7 @@ eu:
         enable_user_html: "%{name} erabiltzaileak %{target} erabiltzailearen saioa gaitu du"
         memorialize_account_html: "%{name} erabiltzaileak %{target} kontua memoriala bihurtu du"
         promote_user_html: "%{name} erabiltzaileak %{target} erabiltzailea mailaz igo du"
+        reject_user_html: "%{name} erabiltzaileak %{target} erabiltzailearen izen-ematea baztertu du"
         remove_avatar_user_html: "%{name} erabiltzaileak %{target} erabiltzailearen abatarra kendu du"
         reopen_report_html: "%{name} erabiltzaileak %{target} txostena berrireki du"
         reset_password_user_html: "%{name} erabiltzaileak %{target} erabiltzailearen pasahitza berrezarri du"
@@ -698,6 +702,28 @@ eu:
       review: Berrikusketaren egoera
       updated_msg: Traola-ezarpenak ongi eguneratu dira
     title: Administrazioa
+    trends:
+      allow: Onartu
+      approved: Onartua
+      disallow: Ukatu
+      links:
+        allow: Onartu esteka
+        allow_provider: Onartu argitaratzailea
+        disallow: Ukatu esteka
+        disallow_provider: Ukatu argitaratzailea
+        shared_by_over_week:
+          one: Pertsona batek partekatua azken astean
+          other: '%{count} pertsonak partekatua azken astean'
+        title: Esteken joerak
+        usage_comparison: '%{today} aldiz partekatua gaur, atzo %{yesterday} aldiz'
+      pending_review: Berrikusketaren zain
+      preview_card_providers:
+        allowed: Argitaratzaile honen estekak joera izan daitezke
+        rejected: Argitaratzaile honen estekek ezin dute joera izan
+        title: Argitaratzaileak
+      rejected: Ukatua
+      tags:
+        current_score: Uneko emaitza%{score}
     warning_presets:
       add_new: Gehitu berria
       delete: Ezabatu
