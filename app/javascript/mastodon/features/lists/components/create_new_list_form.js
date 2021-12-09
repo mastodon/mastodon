@@ -11,7 +11,7 @@ import {
 } from '../../../actions/lists';
 
 import HashtagListCreator from './list_creators/hashtag_list_creator';
-import UsersListCreator from './list_creators/Users_list_creator';
+import UsersListCreator from './list_creators/users_list_creator';
 
 const messages = defineMessages({
   label: {
