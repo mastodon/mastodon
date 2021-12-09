@@ -6,7 +6,6 @@ import Icon from 'mastodon/components/icon';
 import {
   changeListEditorHashtag,
   addHashtagsToListEditor,
-  fetchList,
 } from '../../../../actions/lists';
 
 const messages = defineMessages({
@@ -25,25 +24,32 @@ const HashtagListCreator = (props) => {
   const title = intl.formatMessage(messages.title);
 
   const [hashtag, setHashtag] = useState(false);
-  const [count, setCount] = useState(0);
-  const firstUpdate = useRef(true);
 
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    if (firstUpdate.current) {
-      firstUpdate.current = false;
-      setCount(count + 1);
-      return;
-    } else {
-      dispatch(fetchList(id));
-    }
-    setCount(count + 1);
-    console.log(count);
-  }, [hashtag]);
+  const hashtagsArrayToString = () => {
+    var text = '';
+    const hashtagsUsers = JSON.parse(props.hashtagsUsers);
+    Object.keys(hashtagsUsers.hashtags).forEach((h, i) => {
+      text += hashtagsUsers.hashtags[h] + ' ';
+    });
+    return text.trim();
+  };
 
-  const [id, hashtagValue, disabled] = useSelector((state) => [
-    state.getIn(['listEditor', 'listId']),
+  useEffect(() => {
+    if (props.listId !== undefined) {
+      const hash = hashtagsArrayToString();
+      if (hash !== '') {
+        console.log('sth');
+        dispatch(changeListEditorHashtag(hash));
+        setHashtag(true);
+      }
+    }
+  }, []);
+
+  useEffect(() => {}, [hashtag, hashtagValue]);
+
+  const [hashtagValue, disabled] = useSelector((state) => [
     state.getIn(['listEditor', 'hashtags']),
     state.getIn(['listEditor', 'isSubmitting']),
   ]);

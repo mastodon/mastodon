@@ -100,8 +100,6 @@ export const setupListEditor = (listId) => (dispatch, getState) => {
     type: LIST_EDITOR_SETUP,
     list: getState().getIn(['lists', listId]),
   });
-
-  dispatch(fetchListAccounts(listId));
 };
 
 export const changeListEditorTitle = (value) => ({

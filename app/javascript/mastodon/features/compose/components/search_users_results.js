@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import { defineMessages, injectIntl } from 'react-intl';
+import { injectIntl } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { setupListEditor, resetListEditor } from '../../../actions/lists';
 import { clearSearch } from '../../../actions/search_users';
@@ -26,12 +26,6 @@ const mapDispatchToProps = (dispatch) => ({
   onReset: () => dispatch(resetListEditor()),
 });
 
-const messages = defineMessages({
-  dismissSuggestion: {
-    id: 'suggestions.dismiss',
-    defaultMessage: 'Dismiss suggestion',
-  },
-});
 
 export default
 @connect(mapStateToProps, mapDispatchToProps)
@@ -45,18 +39,6 @@ class SearchUsersResults extends ImmutablePureComponent {
     intl: PropTypes.object.isRequired,
     onClear: PropTypes.func.isRequired,
   };
-
-  componentDidMount() {
-    if (this.props.searchTerm === '') {
-      this.props.fetchSuggestions();
-    }
-  }
-
-  componentDidUpdate() {
-    if (this.props.searchTerm === '') {
-      this.props.fetchSuggestions();
-    }
-  }
 
   handleLoadMoreAccounts = () => this.props.expandSearch('accounts');
 

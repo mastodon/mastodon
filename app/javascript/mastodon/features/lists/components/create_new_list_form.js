@@ -7,13 +7,13 @@ import {
   changeListEditorTitle,
   submitListEditor,
   resetListEditor,
+  setupListEditor,
 } from '../../../actions/lists';
 
 import HashtagListCreator from './list_creators/hashtag_list_creator';
 import UsersListCreator from './list_creators/Users_list_creator';
 
 const messages = defineMessages({
-  // listCreator: { id: 'lists.new.creator', defaultMessage: 'List creator' },
   label: {
     id: 'lists.new.title_placeholder',
     defaultMessage: 'New list title',
@@ -26,18 +26,22 @@ const CreateNewListForm = (props) => {
 
   const label = intl.formatMessage(messages.label);
   const title = intl.formatMessage(messages.title);
-  // const listCreator = intl.formatMessage(messages.listCreator);
 
   const [listName, setListName] = useState(false);
 
   const dispatch = useDispatch();
 
-  const [value, disabled] = useSelector((state) => [
+  const [value, disabled, hashtagsUsers] = useSelector((state) => [
     state.getIn(['listEditor', 'title']),
     state.getIn(['listEditor', 'isSubmitting']),
+    state.getIn(['listEditor', 'hashtagsUsers']),
   ]);
 
   useEffect(() => {
+    if (props.listId !== undefined) {
+      setListName(true);
+      dispatch(setupListEditor(props.listId));
+    }
     return () => {
       dispatch(resetListEditor());
     };
@@ -92,8 +96,8 @@ const CreateNewListForm = (props) => {
           />
         </div>
       </form>
-      {listName && <HashtagListCreator />}
-      {listName && <UsersListCreator />}
+      {listName && <HashtagListCreator listId={props.listId} hashtagsUsers={hashtagsUsers} />}
+      {listName && <UsersListCreator listId={props.listId} />}
     </div>
   );
 };
