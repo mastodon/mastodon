@@ -705,11 +705,11 @@ es:
     trends:
       allow: Permitir
       approved: Aprobadas
-      disallow: Rechazar
+      disallow: No permitir
       links:
         allow: Permitir enlace
         allow_provider: Permitir medio
-        disallow: No permitir enlace
+        disallow: Rechazar enlace
         disallow_provider: Rechazar medio
         shared_by_over_week:
           one: Compartido por una persona durante la última semana
@@ -721,7 +721,7 @@ es:
         allowed: Los enlaces de este medio pueden ser tendencia
         rejected: Los enlaces de este medio no pueden ser tendencia
         title: Medios
-      rejected: Rechazada
+      rejected: Rechazadas
       tags:
         current_score: Puntuación actual %{score}
         dashboard:
@@ -730,15 +730,15 @@ es:
           tag_servers_dimension: Servidores principales
           tag_servers_measure: diferentes servidores
           tag_uses_measure: usos totales
-        listable: Puede ser sugerido
-        not_listable: No será sugerido
-        not_trendable: No pueden aparecer en tendencias
-        not_usable: No puede ser usado
+        listable: Pueden ser recomendadas
+        not_listable: No serán recomendadas
+        not_trendable: No aparecerán en tendencias
+        not_usable: No pueden ser usadas
         peaked_on_and_decaying: Alcanzó el pico en %{date}, ahora decreciendo
-        title: Hashtags en tendencia
-        trendable: Puede aparecer en tendencias
+        title: Etiquetas en tendencia
+        trendable: Pueden aparecer en tendencias
         trending_rank: 'Tendencia n.º %{rank}'
-        usable: Puede usarse
+        usable: Pueden usarse
         usage_comparison: Usada %{today} veces hoy, comparado con %{yesterday} ayer
         used_by_over_week:
           one: Usada por una persona durante la última semana
@@ -764,7 +764,7 @@ es:
       requirements: El enlace en tendencia aprobado más bajo actualmente es "%{lowest_link_title}" con una puntuación de %{lowest_link_score}.
       subject: Nuevos enlaces en tendencia esperando ser revisados en %{instance}
     new_trending_tags:
-      body: 'Los siguientes hashtags están en tendencia hoy, pero no han sido revisados. No se mostrarán públicamente a menos que los apruebes:'
+      body: 'Las siguientes etiquetas están en tendencia hoy, pero no han sido revisadas previamente. No se mostrarán públicamente a menos que las apruebes:'
       no_approved_tags: Actualmente no hay ningún hashtag en tendencia aprobado.
       requirements: 'El hashtag en tendencia aprobado más bajo actualmente es "%{lowest_tag_name}" con una puntuación de %{lowest_tag_score}.'
       subject: Nuevo hashtags en tendencia esperando ser revisados en %{instance}
