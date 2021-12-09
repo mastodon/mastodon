@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { injectIntl, FormattedMessage, defineMessages } from 'react-intl';
 import IconButton from '../../../../components/icon_button';

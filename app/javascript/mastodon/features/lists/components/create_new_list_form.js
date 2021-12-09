@@ -18,7 +18,7 @@ const messages = defineMessages({
     id: 'lists.new.title_placeholder',
     defaultMessage: 'New list title',
   },
-  title: { id: 'lists.new.create', defaultMessage: 'Add list' },
+  title: { id: 'lists.new.add_list', defaultMessage: 'Add list' },
 });
 
 const CreateNewListForm = (props) => {
@@ -96,7 +96,12 @@ const CreateNewListForm = (props) => {
           />
         </div>
       </form>
-      {listName && <HashtagListCreator listId={props.listId} hashtagsUsers={hashtagsUsers} />}
+      {listName && (
+        <HashtagListCreator
+          listId={props.listId}
+          hashtagsUsers={hashtagsUsers}
+        />
+      )}
       {listName && <UsersListCreator listId={props.listId} />}
     </div>
   );

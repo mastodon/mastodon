@@ -2089,20 +2089,7 @@
         "id": "lists.account.add"
       }
     ],
-    "path": "app/javascript/mastodon/features/list_adder/components/list.json"
-  },
-  {
-    "descriptors": [
-      {
-        "defaultMessage": "Remove from list",
-        "id": "lists.account.remove"
-      },
-      {
-        "defaultMessage": "Add to list",
-        "id": "lists.account.add"
-      }
-    ],
-    "path": "app/javascript/mastodon/features/list_editor/components/account.json"
+    "path": "app/javascript/mastodon/features/list/components/account.json"
   },
   {
     "descriptors": [
@@ -2112,6 +2099,32 @@
       }
     ],
     "path": "app/javascript/mastodon/features/list_editor/components/edit_list_form.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Hashtags",
+        "id": "lists.extend_list.hashtags"
+      },
+      {
+        "defaultMessage": "#first_hashtag #second_hashtag",
+        "id": "lists.extend_list.hashtags_placeholder"
+      },
+      {
+        "defaultMessage": "Add hashtags",
+        "id": "lists.extend_list.create"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/lists/components/lists_creators/hashtag_list_creator.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Search users: @username@domain",
+        "id": "lists.extend_list.search_placeholder"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/compose/components/search_users.json"
   },
   {
     "descriptors": [
@@ -2166,15 +2179,24 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "Create a new list",
+        "id": "lists.new.create"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/lists/components/add_new_list.json"
+  },
+  {
+    "descriptors": [
+      {
         "defaultMessage": "New list title",
         "id": "lists.new.title_placeholder"
       },
       {
         "defaultMessage": "Add list",
-        "id": "lists.new.create"
+        "id": "lists.new.add_list"
       }
     ],
-    "path": "app/javascript/mastodon/features/lists/components/new_list_form.json"
+    "path": "app/javascript/mastodon/features/lists/components/create_new_list_form.json"
   },
   {
     "descriptors": [
