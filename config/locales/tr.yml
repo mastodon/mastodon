@@ -221,6 +221,7 @@ tr:
       whitelisted: Beyaz listede
     action_logs:
       action_types:
+        approve_user: Kullanıcıyı Onayla
         assigned_to_self_report: Raporu Ata
         change_email_user: Kullanıcı E-postasını Değiştir
         confirm_user: Kullanıcıyı Onayla
@@ -250,6 +251,7 @@ tr:
         enable_user: Kullanıcıyı Etkinleştir
         memorialize_account: Hesabı Anıtlaştır
         promote_user: Kullanıcıyı Yükselt
+        reject_user: Kullanıcıyı Reddet
         remove_avatar_user: Profil Resmini Kaldır
         reopen_report: Şikayeti Tekrar Aç
         reset_password_user: Parolayı Sıfırla
@@ -266,6 +268,7 @@ tr:
         update_domain_block: Engellenen Alan Adını Güncelle
         update_status: Durumu Güncelle
       actions:
+        approve_user_html: "%{name}, %{target} konumundan kaydı onayladı"
         assigned_to_self_report_html: "%{name} kendilerine %{target} adlı raporu verdi"
         change_email_user_html: "%{name}, %{target} kullanıcısının e-posta adresini değiştirdi"
         confirm_user_html: "%{name} %{target} kullanıcısının e-posta adresini onayladı"
@@ -295,6 +298,7 @@ tr:
         enable_user_html: "%{name}, %{target} kullanıcısı için oturum açmayı etkinleştirdi"
         memorialize_account_html: "%{name}, %{target} kullanıcısının hesabını bir anıt sayfaya dönüştürdü"
         promote_user_html: "%{name}, %{target} kullanıcısını yükseltti"
+        reject_user_html: "%{name}, %{target} konumundan kaydı reddetti"
         remove_avatar_user_html: "%{name}, %{target} kullanıcısının avatarını kaldırdı"
         reopen_report_html: "%{name}, %{target} şikayetini yeniden açtı"
         reset_password_user_html: "%{name}, %{target} kullanıcısının parolasını sıfırladı"
@@ -973,6 +977,7 @@ tr:
     none: Hiçbiri
     order_by: Sıralama ölçütü
     save_changes: Değişiklikleri kaydet
+    today: bugün
     validation_errors:
       one: Bir şeyler ters gitti! Lütfen aşağıdaki hatayı gözden geçiriniz
       other: Bir şeyler ters gitti! Lütfen aşağıdaki %{count} hatayı gözden geçiriniz
