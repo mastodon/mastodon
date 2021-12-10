@@ -26,7 +26,6 @@ const mapDispatchToProps = (dispatch) => ({
   onReset: () => dispatch(resetListEditor()),
 });
 
-
 export default
 @connect(mapStateToProps, mapDispatchToProps)
 @injectIntl
@@ -43,16 +42,10 @@ class SearchUsersResults extends ImmutablePureComponent {
   handleLoadMoreAccounts = () => this.props.expandSearch('accounts');
 
   render() {
-    const {
-      results,
-      onClear,
-      accountIds,
-    } = this.props;
-
+    const { results, onClear, accountIds } = this.props;
 
     let accounts;
     let count = 0;
-
     if (results.get('accounts') && results.get('accounts').size > 0)
       count += results.get('accounts').size;
     accounts = (

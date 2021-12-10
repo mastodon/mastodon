@@ -56,7 +56,6 @@ export default function search_users(state = initialState, action) {
         list.concat(results)
       );
     case LIST_EDITOR_SEARCH_USERS_CLEAR:
-      console.log("CLEAR");
       return state.withMutations('results', ImmutableMap());
     default:
       return state;

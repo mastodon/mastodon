@@ -13,7 +13,7 @@ const UsersListCreator = (props) => {
           defaultMessage="People"
         />
       </h5>
-      <SearchUsers />
+      <SearchUsers listId={props.listId} />
     </div>
   );
 };

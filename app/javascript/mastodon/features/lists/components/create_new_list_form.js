@@ -38,6 +38,7 @@ const CreateNewListForm = (props) => {
   ]);
 
   useEffect(() => {
+    dispatch(resetListEditor());
     if (props.listId !== undefined) {
       setListName(true);
       dispatch(setupListEditor(props.listId));

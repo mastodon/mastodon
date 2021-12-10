@@ -1,5 +1,5 @@
 import api from '../api';
-import { importFetchedAccounts } from './importer';
+import { fetchAccountList } from './accounts';
 
 export const LIST_FETCH_REQUEST = 'LIST_FETCH_REQUEST';
 export const LIST_FETCH_SUCCESS = 'LIST_FETCH_SUCCESS';
@@ -8,6 +8,7 @@ export const LIST_FETCH_FAIL = 'LIST_FETCH_FAIL';
 export const LISTS_FETCH_REQUEST = 'LISTS_FETCH_REQUEST';
 export const LISTS_FETCH_SUCCESS = 'LISTS_FETCH_SUCCESS';
 export const LISTS_FETCH_FAIL = 'LISTS_FETCH_FAIL';
+
 export const LIST_EDITOR_TITLE_CHANGE = 'LIST_EDITOR_TITLE_CHANGE';
 export const LIST_EDITOR_HASHTAG_CHANGE = 'LIST_EDITOR_HASHTAG_CHANGE';
 export const LIST_EDITOR_RESET = 'LIST_EDITOR_RESET';
@@ -100,6 +101,27 @@ export const setupListEditor = (listId) => (dispatch, getState) => {
     type: LIST_EDITOR_SETUP,
     list: getState().getIn(['lists', listId]),
   });
+  dispatch(setupAccounts());
+  
+};
+
+export const setupAccounts = () => (dispatch, getState) => {
+  var hashtagsUsers;
+  if (getState().getIn(['listEditor', 'hashtagsUsers']) === '') {
+    hashtagsUsers = { hashtags: {}, users: {} };
+  } else {
+    hashtagsUsers = JSON.parse(
+      getState().getIn(['listEditor', 'hashtagsUsers'])
+    );
+  }
+  const users = Object.values(hashtagsUsers.users);
+
+  users.forEach((u, i) => {
+    dispatch(fetchAccountList(users[i]));
+  });
+
+  
+
 };
 
 export const changeListEditorTitle = (value) => ({
