@@ -51,6 +51,7 @@ class Settings::PreferencesController < Settings::BaseController
       :setting_aggregate_reblogs,
       :setting_show_application,
       :setting_advanced_layout,
+      :setting_hide_blocks,
       :setting_use_blurhash,
       :setting_use_pending_items,
       :setting_trends,

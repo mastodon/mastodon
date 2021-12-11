@@ -122,7 +122,7 @@ class User < ApplicationRecord
   has_many :session_activations, dependent: :destroy
 
   delegate :auto_play_gif, :default_sensitive, :unfollow_modal, :boost_modal, :delete_modal,
-           :reduce_motion, :system_font_ui, :noindex, :theme, :display_media, :hide_network,
+           :reduce_motion, :system_font_ui, :noindex, :theme, :display_media, :hide_network, :hide_blocks,
            :expand_spoilers, :default_language, :aggregate_reblogs, :show_application,
            :advanced_layout, :use_blurhash, :use_pending_items, :trends, :crop_images,
            :disable_swiping,
@@ -267,6 +267,10 @@ class User < ApplicationRecord
 
   def hides_network?
     @hides_network ||= settings.hide_network
+  end
+
+  def hides_blocks?
+    @hides_blocks ||= settings.hide_blocks
   end
 
   def aggregates_reblogs?
