@@ -35,6 +35,7 @@ class UserSettingsDecorator
     user.settings['aggregate_reblogs']   = aggregate_reblogs_preference if change?('setting_aggregate_reblogs')
     user.settings['show_application']    = show_application_preference if change?('setting_show_application')
     user.settings['advanced_layout']     = advanced_layout_preference if change?('setting_advanced_layout')
+    user.settings['hide_blocks']         = hide_blocks_preference if change?('setting_hide_blocks')    
     user.settings['use_blurhash']        = use_blurhash_preference if change?('setting_use_blurhash')
     user.settings['use_pending_items']   = use_pending_items_preference if change?('setting_use_pending_items')
     user.settings['trends']              = trends_preference if change?('setting_trends')
@@ -99,6 +100,10 @@ class UserSettingsDecorator
 
   def hide_network_preference
     boolean_cast_setting 'setting_hide_network'
+  end
+
+  def hide_blocks_preference
+    boolean_cast_setting 'setting_hide_blocks'
   end
 
   def show_application_preference

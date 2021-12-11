@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_08_071221) do
+ActiveRecord::Schema.define(version: 2021_12_10_003511) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -188,14 +188,14 @@ ActiveRecord::Schema.define(version: 2021_08_08_071221) do
     t.datetime "suspended_at"
     t.integer "trust_level"
     t.boolean "hide_collections"
-    t.boolean "hide_blocks", default: false
     t.integer "avatar_storage_schema_version"
     t.integer "header_storage_schema_version"
     t.string "devices_url"
     t.integer "suspension_origin"
     t.datetime "sensitized_at"
+    t.boolean "hide_blocks", default: true, null: false
     t.index "(((setweight(to_tsvector('simple'::regconfig, (display_name)::text), 'A'::\"char\") || setweight(to_tsvector('simple'::regconfig, (username)::text), 'B'::\"char\")) || setweight(to_tsvector('simple'::regconfig, (COALESCE(domain, ''::character varying))::text), 'C'::\"char\")))", name: "search_index", using: :gin
-    t.index "lower((username)::text), COALESCE(lower((domain)::text), ''::text)", name: "index_accounts_on_username_and_domain_lower", unique: true
+    t.index "lower((username)::text), (COALESCE(lower((domain)::text), ''::text))", name: "index_accounts_on_username_and_domain_lower", unique: true
     t.index ["moved_to_account_id"], name: "index_accounts_on_moved_to_account_id"
     t.index ["uri"], name: "index_accounts_on_uri"
     t.index ["url"], name: "index_accounts_on_url"
@@ -946,6 +946,7 @@ ActiveRecord::Schema.define(version: 2021_08_08_071221) do
     t.string "webauthn_id"
     t.inet "sign_up_ip"
     t.boolean "skip_sign_in_token"
+    t.boolean "hide_blocks", default: true, null: false
     t.index ["account_id"], name: "index_users_on_account_id"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["created_by_application_id"], name: "index_users_on_created_by_application_id"

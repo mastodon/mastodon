@@ -22,10 +22,9 @@
   .fields-group
     = f.input :setting_advanced_layout, as: :boolean, wrapper: :with_label, hint: false
 
-  %p.hint= t 'appearance.show_blocked_hint'
 
   .fields-group
-    = f.input :setting_show_blocked, as: :boolean, wrapper: :with_label, hint: false
+    = f.input :setting_hide_blocks, as: :boolean, wrapper: :with_label, hint: false
 
   %h4= t 'appearance.animations_and_accessibility'
 

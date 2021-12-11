@@ -17,7 +17,6 @@ import { blockAccount } from '../../actions/accounts';
 import { openModal } from '../../actions/modal';
 
 
-
 const messages = defineMessages({
   heading: { id: 'column.blocks', defaultMessage: 'Blocked users' },
   question: { id: 'modal.information', defaultMessage: 'Are you sure you want to import users blocked by {name}?' },
@@ -67,10 +66,9 @@ class Blocks extends ImmutablePureComponent {
   };
 
   componentWillMount() {
-    if (account.get('hide_blocks')) {
-      const { id } = this.props.params;
-      this.props.dispatch(fetchBlocks(id));
-    }
+    const { id } = this.props.params;
+    console.log(this.props.account.get('hide_blocks'))
+    this.props.dispatch(fetchBlocks(id));
     this.setState({ showMessage: false, showDenyMessage: false, count: 0, })
   }
 
@@ -96,6 +94,7 @@ class Blocks extends ImmutablePureComponent {
               counter += 1
             }
           })
+
           this.setState({ showMessage: true, showDenyMessage: false, count: counter, })
         },
       }));
@@ -103,49 +102,50 @@ class Blocks extends ImmutablePureComponent {
   }
 
   render() {
-    const { intl, accountIds, shouldUpdateScroll, hasMore, multiColumn, isLoading, account } = this.props;
+    const { intl, accountIds, hasMore, multiColumn, isLoading, account } = this.props;
 
-    if (!accountIds) {
+    if (!accountIds)
+      {
+        return (
+          <Column>
+            <LoadingIndicator />
+          </Column>
+        );
+      }
+
+      const emptyMessage = <FormattedMessage id='empty_column.blocks' defaultMessage="This user haven't blocked any users yet." />;
       return (
-        <Column>
-          <LoadingIndicator />
+        <Column bindToDocument={!multiColumn} icon='ban' heading={intl.formatMessage(messages.heading)}>
+          <ColumnBackButtonSlim />
+
+          <div className="wrapper-import">
+            <div >
+              <button onClick={this.handleClick} className='button-import'>
+                <FormattedMessage id='button.import' defaultMessage='Import' />
+              </button>
+            </div>
+            <div>
+              {this.state.showMessage && <span className='message-import'> {intl.formatMessage(messages.importMessage, { counter: this.state.count })}</span>}
+              {this.state.showDenyMessage && <span className='message-import'> {intl.formatMessage(messages.denyMessage)} </span>}
+            </div>
+            <div  >
+              <span className='message-import'> {intl.formatMessage(messages.blockedBy, { name: account.get('username') })} </span>
+            </div>
+          </div>
+
+          <ScrollableList
+            scrollKey='blocks'
+            onLoadMore={this.handleLoadMore}
+            hasMore={hasMore}
+            isLoading={isLoading}
+            emptyMessage={emptyMessage}
+            bindToDocument={!multiColumn}
+          >
+            {accountIds.map(id =>
+              <AccountContainer key={id} id={id} />,
+            )}
+          </ScrollableList>
         </Column>
       );
     }
-
-    const emptyMessage = <FormattedMessage id='empty_column.blocks' defaultMessage="This user haven't blocked any users yet." />;
-    return (
-      <Column bindToDocument={!multiColumn} icon='ban' heading={intl.formatMessage(messages.heading)}>
-        <ColumnBackButtonSlim />
-
-        <div className="wrapper-import">
-          <div >
-            <button onClick={this.handleClick} className='button-import'>
-              <FormattedMessage id='button.import' defaultMessage='Import' />
-            </button>
-          </div>
-          <div>
-            {this.state.showMessage && <span className='message-import'> {intl.formatMessage(messages.importMessage, { counter: this.state.count })}</span>}
-            {this.state.showDenyMessage && <span className='message-import'> {intl.formatMessage(messages.denyMessage)} </span>}
-          </div>
-          <div  >
-            <span className='message-import'> {intl.formatMessage(messages.blockedBy, { name: account.get('username') })} </span>
-          </div>
-        </div>
-
-        <ScrollableList
-          scrollKey='blocks'
-          onLoadMore={this.handleLoadMore}
-          hasMore={hasMore}
-          isLoading={isLoading}
-          emptyMessage={emptyMessage}
-          bindToDocument={!multiColumn}
-        >
-          {accountIds.map(id =>
-            <AccountContainer key={id} id={id} />,
-          )}
-        </ScrollableList>
-      </Column>
-    );
   }
-}
