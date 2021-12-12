@@ -40,7 +40,6 @@ const HashtagListCreator = (props) => {
     if (props.listId !== undefined) {
       const hash = hashtagsArrayToString();
       if (hash !== '') {
-        console.log('sth');
         dispatch(changeListEditorHashtag(hash));
         setHashtag(true);
       }

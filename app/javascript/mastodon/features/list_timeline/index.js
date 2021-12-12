@@ -86,12 +86,14 @@ class ListTimeline extends React.PureComponent {
   componentDidMount() {
     const { dispatch } = this.props;
     const { id } = this.props.params;
-    console.log('DIDMOUNT' + id);
 
     dispatch(fetchLists());
-
     dispatch(fetchList(id));
-    dispatch(setupListEditor(id));
+
+    if (this.list !== undefined) {
+      dispatch(setupListEditor(id));
+    }
+
     dispatch(expandListTimeline(id));
 
     this.disconnect = dispatch(connectListStream(id));
@@ -100,7 +102,6 @@ class ListTimeline extends React.PureComponent {
   componentDidUpdate() {
     const { dispatch } = this.props;
     const { id } = this.props.params;
-    console.log('DIDUPDATE' + id);
 
     dispatch(fetchList(id));
     dispatch(setupListEditor(id));
@@ -109,8 +110,6 @@ class ListTimeline extends React.PureComponent {
   componentWillReceiveProps(nextProps) {
     const { dispatch } = this.props;
     const { id } = nextProps.params;
-
-    console.log('WILLMOUNT' + id);
 
     if (id !== this.props.params.id) {
       if (this.disconnect) {

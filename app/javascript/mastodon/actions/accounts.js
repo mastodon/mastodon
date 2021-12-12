@@ -109,7 +109,6 @@ export function fetchAccountList(id) {
       .catch((error) => {
         dispatch(fetchAccountFail(id, error));
       });
-    console.log('WCZYTANE');
   };
 }
 
