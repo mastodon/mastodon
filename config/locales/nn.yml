@@ -219,6 +219,7 @@ nn:
       whitelisted: Kvitlista
     action_logs:
       action_types:
+        approve_user: Godkjenn bruker
         assigned_to_self_report: Tilordne rapport
         change_email_user: Byt e-post for brukar
         confirm_user: Stadfest brukar
@@ -243,6 +244,7 @@ nn:
         enable_custom_emoji: Skruv på tilpassa emoji
         enable_user: Skruv på brukar
         promote_user: Forfrem brukar
+        reject_user: Avvis bruker
         remove_avatar_user: Fjern avatar
         reopen_report: Opn rapport opp att
         reset_password_user: Tilbakestill passord
@@ -254,11 +256,13 @@ nn:
         update_custom_emoji: Oppdater tilpassa emoji
         update_status: Oppdater tut
       actions:
+        approve_user_html: "%{name} godkjente registrering fra %{target}"
         create_custom_emoji_html: "%{name} lastet opp ny emoji %{target}"
         create_domain_allow_html: "%{name} tillatt føderasjon med domenet %{target}"
         create_domain_block_html: "%{name} blokkert domene %{target}"
         create_email_domain_block_html: "%{name} blokkert e-post domene %{target}"
         create_ip_block_html: "%{name} opprettet regel for IP %{target}"
+        reject_user_html: "%{name} avslo registrering fra %{target}"
         silence_account_html: "%{name} begrenset %{target} sin konto"
       deleted_status: "(sletta status)"
       empty: Ingen loggar funne.
@@ -321,15 +325,6 @@ nn:
       media_storage: Medialagring
       new_users: nye brukere
       opened_reports: rapporter åpnet
-      pending_reports_html:
-        one: "<strong>1</strong> ventende rapport"
-        other: "<strong>%{count}</strong> ventende rapporter"
-      pending_tags_html:
-        one: "<strong>1</strong> ventende hashtag"
-        other: "<strong>%{count}</strong> ventende hashtags"
-      pending_users_html:
-        one: "<strong>1</strong> ventende bruker"
-        other: "<strong>%{count}</strong> ventende brukere"
       resolved_reports: rapporter løst
       software: Programvare
       sources: Kilder for registreringer
@@ -851,6 +846,7 @@ nn:
     delete: Slett
     order_by: Sorter etter
     save_changes: Lagr endringar
+    today: i dag
     validation_errors:
       one: Noe er ikke helt riktig ennå. Vennligst se etter en gang til
       other: Noe er ikke helt riktig ennå. Det er ennå %{count} feil å rette på
