@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_26_000907) do
+ActiveRecord::Schema.define(version: 2021_12_13_040746) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -1129,7 +1129,7 @@ ActiveRecord::Schema.define(version: 2021_11_26_000907) do
               statuses.language,
               statuses.sensitive
              FROM statuses
-            WHERE ((statuses.account_id = accounts.id) AND (statuses.deleted_at IS NULL))
+            WHERE ((statuses.account_id = accounts.id) AND (statuses.deleted_at IS NULL) AND (statuses.reblog_of_id IS NULL))
             ORDER BY statuses.id DESC
            LIMIT 20) t0)
     WHERE ((accounts.suspended_at IS NULL) AND (accounts.silenced_at IS NULL) AND (accounts.moved_to_account_id IS NULL) AND (accounts.discoverable = true) AND (accounts.locked = false))
