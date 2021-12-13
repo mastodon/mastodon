@@ -221,6 +221,7 @@ es-MX:
       whitelisted: Añadido a la lista blanca
     action_logs:
       action_types:
+        approve_user: Aprobar Usuario
         assigned_to_self_report: Asignar Reporte
         change_email_user: Cambiar Correo Electrónico del Usuario
         confirm_user: Confirmar Usuario
@@ -250,6 +251,7 @@ es-MX:
         enable_user: Habilitar Usuario
         memorialize_account: Transformar en Cuenta Conmemorativa
         promote_user: Promover Usuario
+        reject_user: Rechazar Usuario
         remove_avatar_user: Eliminar Avatar
         reopen_report: Reabrir Reporte
         reset_password_user: Restablecer Contraseña
@@ -266,6 +268,7 @@ es-MX:
         update_domain_block: Actualizar el Bloqueo de Dominio
         update_status: Actualizar Estado
       actions:
+        approve_user_html: "%{name} aprobó el registro de %{target}"
         assigned_to_self_report_html: "%{name} asignó el informe %{target} a sí mismo"
         change_email_user_html: "%{name} cambió la dirección de correo electrónico del usuario %{target}"
         confirm_user_html: "%{name} confirmó la dirección de correo electrónico del usuario %{target}"
@@ -295,6 +298,7 @@ es-MX:
         enable_user_html: "%{name} habilitó el inicio de sesión para el usuario %{target}"
         memorialize_account_html: "%{name} convirtió la cuenta de %{target} en una página in memoriam"
         promote_user_html: "%{name} promoción al usuario %{target}"
+        reject_user_html: "%{name} rechazó el registro de %{target}"
         remove_avatar_user_html: "%{name} eliminó el avatar de %{target}"
         reopen_report_html: "%{name} reabrió el informe %{target}"
         reset_password_user_html: "%{name} reinició la contraseña del usuario %{target}"
@@ -371,15 +375,6 @@ es-MX:
       media_storage: Almacenamiento multimedia
       new_users: nuevos usuarios
       opened_reports: informes abiertos
-      pending_reports_html:
-        one: "<strong>1</strong> informe pendiente"
-        other: "<strong>%{count}</strong> informes pendientes"
-      pending_tags_html:
-        one: "<strong>1</strong> etiqueta pendiente"
-        other: "<strong>%{count}</strong> etiquetas pendientes"
-      pending_users_html:
-        one: "<strong>1</strong> usuario pendiente"
-        other: "<strong>%{count}</strong> usuarios pendientes"
       resolved_reports: informes resueltos
       software: Software
       sources: Fuentes de registro
@@ -701,11 +696,11 @@ es-MX:
     trends:
       allow: Permitir
       approved: Aprobadas
-      disallow: Rechazar
+      disallow: No permitir
       links:
         allow: Permitir enlace
         allow_provider: Permitir medio
-        disallow: No permitir enlace
+        disallow: Rechazar enlace
         disallow_provider: Rechazar medio
         shared_by_over_week:
           one: Compartido por una persona durante la última semana
@@ -717,7 +712,7 @@ es-MX:
         allowed: Los enlaces de este medio pueden ser tendencia
         rejected: Los enlaces de este medio no pueden ser tendencia
         title: Medios
-      rejected: Rechazada
+      rejected: Rechazadas
       tags:
         current_score: Puntuación actual %{score}
         dashboard:
@@ -726,15 +721,15 @@ es-MX:
           tag_servers_dimension: Servidores principales
           tag_servers_measure: diferentes servidores
           tag_uses_measure: usos totales
-        listable: Puede ser sugerido
-        not_listable: No será sugerido
-        not_trendable: No pueden aparecer en tendencias
-        not_usable: No puede ser usado
+        listable: Pueden ser recomendadas
+        not_listable: No serán recomendadas
+        not_trendable: No aparecerán en tendencias
+        not_usable: No pueden ser usadas
         peaked_on_and_decaying: Alcanzó el pico en %{date}, ahora decreciendo
-        title: Hashtags en tendencia
-        trendable: Puede aparecer en tendencias
+        title: Etiquetas en tendencia
+        trendable: Pueden aparecer en tendencias
         trending_rank: 'Tendencia n.º %{rank}'
-        usable: Puede usarse
+        usable: Pueden usarse
         usage_comparison: Usada %{today} veces hoy, comparado con %{yesterday} ayer
         used_by_over_week:
           one: Usada por una persona durante la última semana
@@ -760,10 +755,10 @@ es-MX:
       requirements: El enlace en tendencia aprobado más bajo actualmente es "%{lowest_link_title}" con una puntuación de %{lowest_link_score}.
       subject: Nuevos enlaces en tendencia esperando ser revisados en %{instance}
     new_trending_tags:
-      body: 'Los siguientes hashtags están en tendencia hoy, pero no han sido revisados. No se mostrarán públicamente a menos que los apruebes:'
-      no_approved_tags: Actualmente no hay ningún hashtag en tendencia aprobado.
-      requirements: 'El hashtag en tendencia aprobado más bajo actualmente es "%{lowest_tag_name}" con una puntuación de %{lowest_tag_score}.'
-      subject: Nuevo hashtags en tendencia esperando ser revisados en %{instance}
+      body: 'Las siguientes etiquetas están en tendencia hoy, pero no han sido revisadas previamente. No se mostrarán públicamente a menos que las apruebes:'
+      no_approved_tags: Actualmente no hay ninguna etiqueta en tendencia aprobada.
+      requirements: 'La etiqueta en tendencia aprobada más baja actualmente es "%{lowest_tag_name}" con una puntuación de %{lowest_tag_score}.'
+      subject: Nuevas etiquetas en tendencia esperando ser revisadas en %{instance}
   aliases:
     add_new: Crear alias
     created_msg: El nuevo alias se ha creado correctamente. Ahora puedes empezar el traslado desde la cuenta antigua.
@@ -970,9 +965,10 @@ es-MX:
     changes_saved_msg: '¡Cambios guardados con éxito!'
     copy: Copiar
     delete: Eliminar
-    none: Ninguno
+    none: Nada
     order_by: Ordenar por
     save_changes: Guardar cambios
+    today: hoy
     validation_errors:
       one: '¡Algo no está bien! Por favor, revisa el error'
       other: '¡Algo no está bien! Por favor, revise %{count} errores más abajo'
