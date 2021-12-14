@@ -189,10 +189,10 @@ ja:
         password_and_2fa: パスワードと 2FA
         password_and_sign_in_token: パスワードとメールトークン
       sensitive: 閲覧注意
-      sensitized: 閲覧注意済み
+      sensitized: 閲覧注意としてマーク済み
       shared_inbox_url: Shared inbox URL
       show:
-        created_reports: このアカウントで作られた通報
+        created_reports: このアカウントからの通報
         targeted_reports: このアカウントについての通報
       silence: サイレンス
       silenced: サイレンス済み
@@ -216,7 +216,7 @@ ja:
       whitelisted: 連合許可済み
     action_logs:
       action_types:
-        approve_user: ユーザーを承認
+        approve_user: ユーザーの承認
         assigned_to_self_report: 通報の担当者に設定
         change_email_user: ユーザーのメールアドレスを変更
         confirm_user: ユーザーの確認
@@ -749,6 +749,8 @@ ja:
     new_trending_tags:
       body: '以下のハッシュタグは今日のトレンドですが、これらの発行者はまだレビューされていません。承認するまでは、このハッシュタグは公開されず、通知も生成されません。'
       no_approved_tags: 承認済みのハッシュタグはありません。
+      requirements: '承認された最低のトレンドハッシュタグは現在 %{lowest_tag_name} です。（スコア: %{lowest_tag_score} ）'
+      subject: 新しいトレンドハッシュタグを %{instance} で確認してください。
   aliases:
     add_new: エイリアスを作成
     created_msg: エイリアスを作成しました。これで以前のアカウントから引っ越しを開始できます。
@@ -955,8 +957,10 @@ ja:
     changes_saved_msg: 正常に変更されました！
     copy: コピー
     delete: 削除
+    none: なし
     order_by: 並び順
     save_changes: 変更を保存
+    today: 今日
     validation_errors:
       other: エラーが発生しました！ 以下の%{count}個のエラーを確認してください
   html_validator:
