@@ -701,6 +701,28 @@ ja:
         shared_by_over_week:
           other: 先週 %{count} 人が共有しました
         title: トレンドリンク
+        usage_comparison: 今日は %{today} 回、昨日は %{yesterday} 回共有されました
+      pending_review: 保留中のレビュー
+      preview_card_providers:
+        allowed: この発行者からのリンクを許可
+        rejected: この発行者からのリンクを拒否
+        title: 発行者
+      rejected: 拒否
+      tags:
+        current_score: 現在のスコア %{score}
+        dashboard:
+          tag_languages_dimension: 人気の言語
+          tag_servers_dimension: 人気のサーバー
+          tag_servers_measure: その他のサーバー
+        listable: おすすめの
+        not_listable: 推奨されない
+        not_trendable: トレンドに表示されない
+        not_usable: 使用不可
+        peaked_on_and_decaying: '%{date} 以降、しばらく使われていません'
+        title: ハッシュタグのトレンド
+        trendable: トレンドに表示される
+        trending_rank: '人気: %{rank} 位'
+        usable: 使用不能
     warning_presets:
       add_new: 追加
       delete: 削除
