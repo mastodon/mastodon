@@ -263,6 +263,7 @@ ja:
         update_domain_block: ドメインブロックを更新
         update_status: 投稿を更新
       actions:
+        approve_user_html: "%{target} から登録された %{name} さんを承認しました"
         assigned_to_self_report_html: "%{name} さんが通報 %{target} を自身の担当に割り当てました"
         change_email_user_html: "%{name} さんが %{target} さんのメールアドレスを変更しました"
         confirm_user_html: "%{name} さんが %{target} さんのメールアドレスを確認済みにしました"
@@ -292,6 +293,7 @@ ja:
         enable_user_html: "%{name} さんが %{target} さんのログインを有効化しました"
         memorialize_account_html: "%{name} さんが %{target} さんを追悼アカウントページに登録しました"
         promote_user_html: "%{name} さんが %{target} さんを昇格しました"
+        reject_user_html: "%{target} から登録された %{name} さんを拒否しました"
         remove_avatar_user_html: "%{name} さんが %{target} さんのアイコンを削除しました"
         reopen_report_html: "%{name} さんが通報 %{target} を未解決に戻しました"
         reset_password_user_html: "%{name} さんが %{target} さんのパスワードをリセットしました"
@@ -368,6 +370,12 @@ ja:
       media_storage: メディアストレージ
       new_users: 新規ユーザー
       opened_reports: レポートが開かれました
+      pending_reports_html:
+        other: "保留中の報告 <strong>%{count}</strong> 件"
+      pending_tags_html:
+        other: "保留中のハッシュタグ <strong>%{count}</strong> 件"
+      pending_users_html:
+        other: "保留中のユーザー <strong>%{count}</strong> 件"
       resolved_reports: 解決済みのレポート
       software: ソフトウェア
       sources: サインアップソース
@@ -681,6 +689,18 @@ ja:
       review: 審査状況
       updated_msg: ハッシュタグ設定が更新されました
     title: 管理
+    trends:
+      allow: 許可
+      approved: 承認
+      disallow: 不許可
+      links:
+        allow: リンクの許可
+        allow_provider: 発行者の承認
+        disallow: リンクの拒否
+        disallow_provider: 発行者の拒否
+        shared_by_over_week:
+          other: 先週 %{count} 人が共有しました
+        title: トレンドリンク
     warning_presets:
       add_new: 追加
       delete: 削除
