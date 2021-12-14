@@ -723,6 +723,10 @@ ja:
         trendable: トレンドに表示される
         trending_rank: '人気: %{rank} 位'
         usable: 使用不能
+        usage_comparison: 今日は %{today} 回、昨日は %{yesterday} 回使用されました。
+        used_by_over_week:
+          other: 先週は %{count} 人に使用されました
+      title: トレンド
     warning_presets:
       add_new: 追加
       delete: 削除
@@ -737,6 +741,14 @@ ja:
       body: "%{reporter} が %{target} を通報しました"
       body_remote: '%{domain} の誰かが %{target} を通報しました'
       subject: '%{instance} の新しい通報 (#%{id})'
+    new_trending_links:
+      body: 以下のリンクは今日のトレンドですが、これらの発行者はまだレビューされていません。承認するまでは、このリンクは公開されず、通知も生成されません。
+      no_approved_links: 承認済みのトレンドはありません。
+      requirements: '承認された最低のトレンドは現在 %{lowest_link_title} です。（スコア: %{lowest_link_score} ）'
+      subject: 新しいトレンドを %{instance} で確認してください。
+    new_trending_tags:
+      body: '以下のハッシュタグは今日のトレンドですが、これらの発行者はまだレビューされていません。承認するまでは、このハッシュタグは公開されず、通知も生成されません。'
+      no_approved_tags: 承認済みのハッシュタグはありません。
   aliases:
     add_new: エイリアスを作成
     created_msg: エイリアスを作成しました。これで以前のアカウントから引っ越しを開始できます。
