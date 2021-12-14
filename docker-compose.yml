@@ -42,9 +42,21 @@ services:
 #      memlock:
 #        soft: -1
 #        hard: -1
-
+  nginx-ssl-proxy:
+    build: 
+      context: .
+      dockerfile: Dockerfile-https
+    restart: always
+    network_mode: host
+    environment:
+      UPSTREAM: 0.0.0.0:3000
+      SERVERNAME: 35.225.47.75
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - "/etc/letsencrypt"
   web:
-    build: .
     image: tootsuite/mastodon
     restart: always
     env_file: .env.production
@@ -64,7 +76,6 @@ services:
       - ./public/system:/mastodon/public/system
 
   streaming:
-    build: .
     image: tootsuite/mastodon
     restart: always
     env_file: .env.production
@@ -81,7 +92,6 @@ services:
       - redis
 
   sidekiq:
-    build: .
     image: tootsuite/mastodon
     restart: always
     env_file: .env.production
