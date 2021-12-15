@@ -180,6 +180,7 @@ export function useSubscribeStream({
   id: string;
 }): MediaStream | undefined {
   useEffect(() => {
+    console.log("Start subscribe stream", {id})
     return subscribeStream({ id });
   }, [id]);
 

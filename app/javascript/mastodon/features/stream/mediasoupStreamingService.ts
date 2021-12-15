@@ -79,8 +79,9 @@ export function subscribeChannel(id: string, cb: (peer: any, transport: any) => 
 }
 
 export function pubsubClient(channel, password, isPublisher) {
+    const base_url = store.getState().getIn(['meta', 'mediasoup_api_base_url'])
+    console.log("CONNECTIONG TO MEDIASOUP", {base_url, channel, password, store})
     return new Promise(function executor(resolve, reject) {
-        const base_url = store.getState().meta.get('mediasoup_api_base_url')
         var kind = isPublisher ? 'publish' : 'subscribe';
         if (!mediasoupClient.isDeviceSupported()) {
             alert('Sorry, WebRTC is not supported on this device');

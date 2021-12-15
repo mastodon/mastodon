@@ -42,7 +42,8 @@ services:
 #      memlock:
 #        soft: -1
 #        hard: -1
-  nginx-ssl-proxy:
+  ssl:
+    image: ssl
     build: 
       context: .
       dockerfile: Dockerfile-https
@@ -53,6 +54,7 @@ services:
     depends_on:
       - web
       - streaming
+      - mediasoup
     environment:
       SERVERNAME: 127.0.0.1
     ports:
@@ -96,6 +98,23 @@ services:
     depends_on:
       - db
       - redis
+
+  mediasoup:
+    build: 
+      context: mediasoup-server
+    image: mediasoup
+    restart: always
+    env_file: .env.production
+    # command: node ./streaming
+    networks:
+      - external_network
+      - internal_network
+    # healthcheck:
+    #   test: ["CMD-SHELL", "wget -q --spider --proxy=off localhost:4000/api/v1/streaming/health || exit 1"]
+    ports:
+      - "127.0.0.1:8000:8000"
+    depends_on:
+      - web
 
   sidekiq:
     build: .
