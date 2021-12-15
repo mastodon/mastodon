@@ -99,7 +99,6 @@ en:
     accounts:
       add_email_domain_block: Block e-mail domain
       approve: Approve
-      approve_all: Approve all
       approved_msg: Successfully approved %{username}'s sign-up application
       are_you_sure: Are you sure?
       avatar: Avatar
@@ -153,7 +152,6 @@ en:
         active: Active
         all: All
         pending: Pending
-        silenced: Limited
         suspended: Suspended
         title: Moderation
       moderation_notes: Moderation notes
@@ -171,7 +169,6 @@ en:
       redownload: Refresh profile
       redownloaded_msg: Successfully refreshed %{username}'s profile from origin
       reject: Reject
-      reject_all: Reject all
       rejected_msg: Successfully rejected %{username}'s sign-up application
       remove_avatar: Remove avatar
       remove_header: Remove header
@@ -210,7 +207,6 @@ en:
       suspended: Suspended
       suspension_irreversible: The data of this account has been irreversibly deleted. You can unsuspend the account to make it usable but it will not recover any data it previously had.
       suspension_reversible_hint_html: The account has been suspended, and the data will be fully removed on %{date}. Until then, the account can be restored without any ill effects. If you wish to remove all of the account's data immediately, you can do so below.
-      time_in_queue: Waiting in queue %{time}
       title: Accounts
       unconfirmed_email: Unconfirmed email
       undo_sensitized: Undo force-sensitive
@@ -226,6 +222,7 @@ en:
       whitelisted: Allowed for federation
     action_logs:
       action_types:
+        approve_user: Approve User
         assigned_to_self_report: Assign Report
         change_email_user: Change E-mail for User
         confirm_user: Confirm User
@@ -255,6 +252,7 @@ en:
         enable_user: Enable User
         memorialize_account: Memorialize Account
         promote_user: Promote User
+        reject_user: Reject User
         remove_avatar_user: Remove Avatar
         reopen_report: Reopen Report
         reset_password_user: Reset Password
@@ -271,6 +269,7 @@ en:
         update_domain_block: Update Domain Block
         update_status: Update Post
       actions:
+        approve_user_html: "%{name} approved sign-up from %{target}"
         assigned_to_self_report_html: "%{name} assigned report %{target} to themselves"
         change_email_user_html: "%{name} changed the e-mail address of user %{target}"
         confirm_user_html: "%{name} confirmed e-mail address of user %{target}"
@@ -300,6 +299,7 @@ en:
         enable_user_html: "%{name} enabled login for user %{target}"
         memorialize_account_html: "%{name} turned %{target}'s account into a memoriam page"
         promote_user_html: "%{name} promoted user %{target}"
+        reject_user_html: "%{name} rejected sign-up from %{target}"
         remove_avatar_user_html: "%{name} removed %{target}'s avatar"
         reopen_report_html: "%{name} reopened report %{target}"
         reset_password_user_html: "%{name} reset password of user %{target}"
@@ -371,32 +371,28 @@ en:
       updated_msg: Emoji successfully updated!
       upload: Upload
     dashboard:
-      authorized_fetch_mode: Secure mode
-      backlog: backlogged jobs
-      config: Configuration
-      feature_deletions: Account deletions
-      feature_invites: Invite links
-      feature_profile_directory: Profile directory
-      feature_registrations: Registrations
-      feature_relay: Federation relay
-      feature_timeline_preview: Timeline preview
-      features: Features
-      hidden_service: Federation with hidden services
-      open_reports: open reports
-      pending_tags: hashtags waiting for review
-      pending_users: users waiting for review
-      recent_users: Recent users
-      search: Full-text search
-      single_user_mode: Single user mode
+      active_users: active users
+      interactions: interactions
+      media_storage: Media storage
+      new_users: new users
+      opened_reports: reports opened
+      pending_reports_html:
+        one: "<strong>1</strong> pending report"
+        other: "<strong>%{count}</strong> pending reports"
+      pending_tags_html:
+        one: "<strong>1</strong> pending hashtag"
+        other: "<strong>%{count}</strong> pending hashtags"
+      pending_users_html:
+        one: "<strong>1</strong> pending user"
+        other: "<strong>%{count}</strong> pending users"
+      resolved_reports: reports resolved
       software: Software
+      sources: Sign-up sources
       space: Space usage
       title: Dashboard
-      total_users: users in total
-      trends: Trends
-      week_interactions: interactions this week
-      week_users_active: active this week
-      week_users_new: users this week
-      whitelist_mode: Limited federation mode
+      top_languages: Top active languages
+      top_servers: Top active servers
+      website: Website
     domain_allows:
       add_new: Allow federation with domain
       created_msg: Domain has been successfully allowed for federation
@@ -523,8 +519,6 @@ en:
         title: Create new IP rule
       no_ip_block_selected: No IP rules were changed as none were selected
       title: IP rules
-    pending_accounts:
-      title: Pending accounts (%{count})
     relationships:
       title: "%{acct}'s relationships"
     relays:
@@ -678,8 +672,8 @@ en:
         desc_html: Affects hashtags that have not been previously disallowed
         title: Allow hashtags to trend without prior review
       trends:
-        desc_html: Publicly display previously reviewed hashtags that are currently trending
-        title: Trending hashtags
+        desc_html: Publicly display previously reviewed content that is currently trending
+        title: Trends
     site_uploads:
       delete: Delete uploaded file
       destroyed_msg: Site upload successfully deleted!
@@ -706,21 +700,51 @@ en:
       sidekiq_process_check:
         message_html: No Sidekiq process running for the %{value} queue(s). Please review your Sidekiq configuration
     tags:
-      accounts_today: Unique uses today
-      accounts_week: Unique uses this week
-      breakdown: Breakdown of today's usage by source
-      last_active: Recently used
-      most_popular: Most popular
-      most_recent: Recently created
-      name: Hashtag
       review: Review status
-      reviewed: Reviewed
-      title: Hashtags
-      trending_right_now: Trending right now
-      unique_uses_today: "%{count} posting today"
-      unreviewed: Not reviewed
       updated_msg: Hashtag settings updated successfully
     title: Administration
+    trends:
+      allow: Allow
+      approved: Approved
+      disallow: Disallow
+      links:
+        allow: Allow link
+        allow_provider: Allow publisher
+        disallow: Disallow link
+        disallow_provider: Disallow publisher
+        shared_by_over_week:
+          one: Shared by one person over the last week
+          other: Shared by %{count} people over the last week
+        title: Trending links
+        usage_comparison: Shared %{today} times today, compared to %{yesterday} yesterday
+      pending_review: Pending review
+      preview_card_providers:
+        allowed: Links from this publisher can trend
+        rejected: Links from this publisher won't trend
+        title: Publishers
+      rejected: Rejected
+      tags:
+        current_score: Current score %{score}
+        dashboard:
+          tag_accounts_measure: unique uses
+          tag_languages_dimension: Top languages
+          tag_servers_dimension: Top servers
+          tag_servers_measure: different servers
+          tag_uses_measure: total uses
+        listable: Can be suggested
+        not_listable: Won't be suggested
+        not_trendable: Won't appear under trends
+        not_usable: Cannot be used
+        peaked_on_and_decaying: Peaked on %{date}, now decaying
+        title: Trending hashtags
+        trendable: Can appear under trends
+        trending_rank: 'Trending #%{rank}'
+        usable: Can be used
+        usage_comparison: Used %{today} times today, compared to %{yesterday} yesterday
+        used_by_over_week:
+          one: Used by one person over the last week
+          other: Used by %{count} people over the last week
+      title: Trends
     warning_presets:
       add_new: Add new
       delete: Delete
@@ -735,9 +759,16 @@ en:
       body: "%{reporter} has reported %{target}"
       body_remote: Someone from %{domain} has reported %{target}
       subject: New report for %{instance} (#%{id})
-    new_trending_tag:
-      body: 'The hashtag #%{name} is trending today, but has not been previously reviewed. It will not be displayed publicly unless you allow it to, or just save the form as it is to never hear about it again.'
-      subject: New hashtag up for review on %{instance} (#%{name})
+    new_trending_links:
+      body: The following links are trending today, but their publishers have not been previously reviewed. They will not be displayed publicly unless you approve them. Further notifications from the same publishers will not be generated.
+      no_approved_links: There are currently no approved trending links.
+      requirements: The lowest approved trending link is currently "%{lowest_link_title}" with a score of %{lowest_link_score}.
+      subject: New trending links up for review on %{instance}
+    new_trending_tags:
+      body: 'The following hashtags are trending today, but they have not been previously reviewed. They will not be displayed publicly unless you approve them:'
+      no_approved_tags: There are currently no approved trending hashtags.
+      requirements: 'The lowest approved trending hashtag is currently #%{lowest_tag_name} with a score of %{lowest_tag_score}.'
+      subject: New trending hashtags up for review on %{instance}
   aliases:
     add_new: Create alias
     created_msg: Successfully created a new alias. You can now initiate the move from the old account.
@@ -944,34 +975,15 @@ en:
     changes_saved_msg: Changes successfully saved!
     copy: Copy
     delete: Delete
-    no_batch_actions_available: No batch actions available on this page
+    none: None
     order_by: Order by
     save_changes: Save changes
+    today: today
     validation_errors:
       one: Something isn't quite right yet! Please review the error below
       other: Something isn't quite right yet! Please review %{count} errors below
   html_validator:
     invalid_markup: 'contains invalid HTML markup: %{error}'
-  identity_proofs:
-    active: Active
-    authorize: Yes, authorize
-    authorize_connection_prompt: Authorize this cryptographic connection?
-    errors:
-      failed: The cryptographic connection failed. Please try again from %{provider}.
-      keybase:
-        invalid_token: Keybase tokens are hashes of signatures and must be 66 hex characters
-        verification_failed: Keybase does not recognize this token as a signature of Keybase user %{kb_username}. Please retry from Keybase.
-      wrong_user: Cannot create a proof for %{proving} while logged in as %{current}. Log in as %{proving} and try again.
-    explanation_html: Here you can cryptographically connect your other identities from other platforms, such as Keybase. This lets other people send you encrypted messages on those platforms and allows them to trust that the content you send them comes from you.
-    i_am_html: I am %{username} on %{service}.
-    identity: Identity
-    inactive: Inactive
-    publicize_checkbox: 'And toot this:'
-    publicize_toot: 'It is proven! I am %{username} on %{service}: %{url}'
-    remove: Remove proof from account
-    removed: Successfully removed proof from account
-    status: Verification status
-    view_proof: View proof
   imports:
     errors:
       over_rows_processing_limit: contains more than %{count} rows
@@ -1246,7 +1258,6 @@ en:
     edit_profile: Edit profile
     export: Data export
     featured_tags: Featured hashtags
-    identity_proofs: Identity proofs
     import: Import
     import_and_export: Import and export
     migrate: Account migration
@@ -1254,6 +1265,7 @@ en:
     preferences: Preferences
     profile: Profile
     relationships: Follows and followers
+    statuses_cleanup: Automated post deletion
     two_factor_authentication: Two-factor Auth
     webauthn_authentication: Security keys
   statuses:
@@ -1305,6 +1317,40 @@ en:
       public_long: Everyone can see
       unlisted: Unlisted
       unlisted_long: Everyone can see, but not listed on public timelines
+  statuses_cleanup:
+    enabled: Automatically delete old posts
+    enabled_hint: Automatically deletes your posts once they reach a specified age threshold, unless they match one of the exceptions below
+    exceptions: Exceptions
+    explanation: Because deleting posts is an expensive operation, this is done slowly over time when the server is not otherwise busy. For this reason, your posts may be deleted a while after they reach the age threshold.
+    ignore_favs: Ignore favourites
+    ignore_reblogs: Ignore boosts
+    interaction_exceptions: Exceptions based on interactions
+    interaction_exceptions_explanation: Note that there is no guarantee for posts to be deleted if they go below the favourite or boost threshold after having once gone over them.
+    keep_direct: Keep direct messages
+    keep_direct_hint: Doesn't delete any of your direct messages
+    keep_media: Keep posts with media attachments
+    keep_media_hint: Doesn't delete any of your posts that have media attachments
+    keep_pinned: Keep pinned posts
+    keep_pinned_hint: Doesn't delete any of your pinned posts
+    keep_polls: Keep polls
+    keep_polls_hint: Doesn't delete any of your polls
+    keep_self_bookmark: Keep posts you bookmarked
+    keep_self_bookmark_hint: Doesn't delete your own posts if you have bookmarked them
+    keep_self_fav: Keep posts you favourited
+    keep_self_fav_hint: Doesn't delete your own posts if you have favourited them
+    min_age:
+      '1209600': 2 weeks
+      '15778476': 6 months
+      '2629746': 1 month
+      '31556952': 1 year
+      '5259492': 2 months
+      '63113904': 2 years
+      '7889238': 3 months
+    min_age_label: Age threshold
+    min_favs: Keep posts favourited at least
+    min_favs_hint: Doesn't delete any of your posts that has received at least this amount of favourites. Leave blank to delete posts regardless of their number of favourites
+    min_reblogs: Keep posts boosted at least
+    min_reblogs_hint: Doesn't delete any of your posts that has been boosted at least this number of times. Leave blank to delete posts regardless of their number of boosts
   stream_entries:
     pinned: Pinned post
     reblogged: boosted
@@ -1474,7 +1520,7 @@ en:
     otp_lost_help_html: If you lost access to both, you may get in touch with %{email}
     seamless_external_login: You are logged in via an external service, so password and e-mail settings are not available.
     signed_in_as: 'Signed in as:'
-    suspicious_sign_in_confirmation: You appear to not have logged in from this device before, and you haven't logged in for a while, so we're sending a security code to your e-mail address to confirm that it's you.
+    suspicious_sign_in_confirmation: You appear to not have logged in from this device before, so we're sending a security code to your e-mail address to confirm that it's you.
   verification:
     explanation_html: 'You can <strong>verify yourself as the owner of the links in your profile metadata</strong>. For that, the linked website must contain a link back to your Mastodon profile. The link back <strong>must</strong> have a <code>rel="me"</code> attribute. The text content of the link does not matter. Here is an example:'
     verification: Verification

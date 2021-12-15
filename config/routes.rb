@@ -25,7 +25,6 @@ Rails.application.routes.draw do
   get '.well-known/nodeinfo', to: 'well_known/nodeinfo#index', as: :nodeinfo, defaults: { format: 'json' }
   get '.well-known/webfinger', to: 'well_known/webfinger#show', as: :webfinger
   get '.well-known/change-password', to: redirect('/auth/edit')
-  get '.well-known/keybase-proof-config', to: 'well_known/keybase_proof_config#show'
 
   get '/nodeinfo/2.0', to: 'well_known/nodeinfo#show', as: :nodeinfo_schema
 
@@ -146,8 +145,6 @@ Rails.application.routes.draw do
       resource :confirmation, only: [:new, :create]
     end
 
-    resources :identity_proofs, only: [:index, :new, :create, :destroy]
-
     resources :applications, except: [:edit] do
       member do
         post :regenerate
@@ -176,6 +173,7 @@ Rails.application.routes.draw do
   resources :invites, only: [:index, :create, :destroy]
   resources :filters, except: [:show]
   resource :relationships, only: [:show, :update]
+  resource :statuses_cleanup, controller: :statuses_cleanup, only: [:show, :update]
 
   get '/public', to: 'public_timelines#show', as: :public_timeline
   get '/media_proxy/:id/(*any)', to: 'media_proxy#show', as: :media_proxy
@@ -253,6 +251,10 @@ Rails.application.routes.draw do
         post :reject
       end
 
+      collection do
+        post :batch
+      end
+
       resource :change_email, only: [:show, :update]
       resource :reset, only: [:create]
       resource :action, only: [:new, :create], controller: 'account_actions'
@@ -270,14 +272,6 @@ Rails.application.routes.draw do
           post :promote
           post :demote
         end
-      end
-    end
-
-    resources :pending_accounts, only: [:index] do
-      collection do
-        post :approve_all
-        post :reject_all
-        post :batch
       end
     end
 
@@ -300,12 +294,27 @@ Rails.application.routes.draw do
 
     resources :account_moderation_notes, only: [:create, :destroy]
     resource :follow_recommendations, only: [:show, :update]
+    resources :tags, only: [:show, :update]
 
-    resources :tags, only: [:index, :show, :update] do
-      collection do
-        post :approve_all
-        post :reject_all
-        post :batch
+    namespace :trends do
+      resources :links, only: [:index] do
+        collection do
+          post :batch
+        end
+      end
+
+      resources :tags, only: [:index] do
+        collection do
+          post :batch
+        end
+      end
+
+      namespace :links do
+        resources :preview_card_providers, only: [:index], path: :publishers do
+          collection do
+            post :batch
+          end
+        end
       end
     end
   end
@@ -315,9 +324,6 @@ Rails.application.routes.draw do
   namespace :api do
     # OEmbed
     get '/oembed', to: 'oembed#show', as: :oembed
-
-    # Identity proofs
-    get :proofs, to: 'proofs#index'
 
     # JSON / REST API
     namespace :v1 do
@@ -398,7 +404,7 @@ Rails.application.routes.draw do
       resources :favourites,   only: [:index]
       resources :bookmarks,    only: [:index]
       resources :reports,      only: [:create]
-      resources :trends,       only: [:index]
+      resources :trends,       only: [:index], controller: 'trends/tags'
       resources :filters,      only: [:index, :create, :show, :update, :destroy]
       resources :endorsements, only: [:index]
       resources :markers,      only: [:index, :create]
@@ -408,6 +414,11 @@ Rails.application.routes.draw do
       end
 
       resources :apps, only: [:create]
+
+      namespace :trends do
+        resources :links, only: [:index]
+        resources :tags, only: [:index]
+      end
 
       namespace :emails do
         resources :confirmations, only: [:create]
@@ -458,6 +469,7 @@ Rails.application.routes.draw do
         member do
           post :follow
           post :unfollow
+          post :remove_from_followers
           post :block
           post :unblock
           post :mute
@@ -509,6 +521,14 @@ Rails.application.routes.draw do
             post :resolve
           end
         end
+
+        namespace :trends do
+          resources :tags, only: [:index]
+        end
+
+        post :measures, to: 'measures#create'
+        post :dimensions, to: 'dimensions#create'
+        post :retention, to: 'retention#create'
       end
     end
 

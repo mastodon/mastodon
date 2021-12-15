@@ -7,7 +7,6 @@ SimpleNavigation::Configuration.run do |navigation|
     n.item :profile, safe_join([fa_icon('user fw'), t('settings.profile')]), settings_profile_url, if: -> { current_user.functional? } do |s|
       s.item :profile, safe_join([fa_icon('pencil fw'), t('settings.appearance')]), settings_profile_url
       s.item :featured_tags, safe_join([fa_icon('hashtag fw'), t('settings.featured_tags')]), settings_featured_tags_url
-      s.item :identity_proofs, safe_join([fa_icon('key fw'), t('settings.identity_proofs')]), settings_identity_proofs_path, highlights_on: %r{/settings/identity_proofs*}, if: proc { current_account.identity_proofs.exists? }
     end
 
     n.item :preferences, safe_join([fa_icon('cog fw'), t('settings.preferences')]), settings_preferences_url, if: -> { current_user.functional? } do |s|
@@ -18,6 +17,7 @@ SimpleNavigation::Configuration.run do |navigation|
 
     n.item :relationships, safe_join([fa_icon('users fw'), t('settings.relationships')]), relationships_url, if: -> { current_user.functional? }
     n.item :filters, safe_join([fa_icon('filter fw'), t('filters.index.title')]), filters_path, highlights_on: %r{/filters}, if: -> { current_user.functional? }
+    n.item :statuses_cleanup, safe_join([fa_icon('history fw'), t('settings.statuses_cleanup')]), statuses_cleanup_url, if: -> { current_user.functional? }
 
     n.item :security, safe_join([fa_icon('lock fw'), t('settings.account')]), edit_user_registration_url do |s|
       s.item :password, safe_join([fa_icon('lock fw'), t('settings.account_settings')]), edit_user_registration_url, highlights_on: %r{/auth/edit|/settings/delete|/settings/migration|/settings/aliases|/settings/login_activities}
@@ -33,12 +33,16 @@ SimpleNavigation::Configuration.run do |navigation|
     n.item :invites, safe_join([fa_icon('user-plus fw'), t('invites.title')]), invites_path, if: proc { Setting.min_invite_role == 'user' && current_user.functional? }
     n.item :development, safe_join([fa_icon('code fw'), t('settings.development')]), settings_applications_url, if: -> { current_user.functional? }
 
+    n.item :trends, safe_join([fa_icon('fire fw'), t('admin.trends.title')]), admin_trends_tags_path, if: proc { current_user.staff? } do |s|
+      s.item :tags, safe_join([fa_icon('hashtag fw'), t('admin.trends.tags.title')]), admin_trends_tags_path, highlights_on: %r{/admin/tags|/admin/trends/tags}
+      s.item :links, safe_join([fa_icon('newspaper-o fw'), t('admin.trends.links.title')]), admin_trends_links_path, highlights_on: %r{/admin/trends/links}
+    end
+
     n.item :moderation, safe_join([fa_icon('gavel fw'), t('moderation.title')]), admin_reports_url, if: proc { current_user.staff? } do |s|
       s.item :action_logs, safe_join([fa_icon('bars fw'), t('admin.action_logs.title')]), admin_action_logs_url
       s.item :reports, safe_join([fa_icon('flag fw'), t('admin.reports.title')]), admin_reports_url, highlights_on: %r{/admin/reports}
-      s.item :accounts, safe_join([fa_icon('users fw'), t('admin.accounts.title')]), admin_accounts_url, highlights_on: %r{/admin/accounts|/admin/pending_accounts}
+      s.item :accounts, safe_join([fa_icon('users fw'), t('admin.accounts.title')]), admin_accounts_url(origin: 'local'), highlights_on: %r{/admin/accounts|/admin/pending_accounts}
       s.item :invites, safe_join([fa_icon('user-plus fw'), t('admin.invites.title')]), admin_invites_path
-      s.item :tags, safe_join([fa_icon('hashtag fw'), t('admin.tags.title')]), admin_tags_path, highlights_on: %r{/admin/tags}
       s.item :follow_recommendations, safe_join([fa_icon('user-plus fw'), t('admin.follow_recommendations.title')]), admin_follow_recommendations_path, highlights_on: %r{/admin/follow_recommendations}
       s.item :instances, safe_join([fa_icon('cloud fw'), t('admin.instances.title')]), admin_instances_url(limited: whitelist_mode? ? nil : '1'), highlights_on: %r{/admin/instances|/admin/domain_blocks|/admin/domain_allows}, if: -> { current_user.admin? }
       s.item :email_domain_blocks, safe_join([fa_icon('envelope fw'), t('admin.email_domain_blocks.title')]), admin_email_domain_blocks_url, highlights_on: %r{/admin/email_domain_blocks}, if: -> { current_user.admin? }

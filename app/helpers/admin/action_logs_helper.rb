@@ -36,6 +36,8 @@ module Admin::ActionLogsHelper
 
   def log_target_from_history(type, attributes)
     case type
+    when 'User'
+      attributes['username']
     when 'CustomEmoji'
       attributes['shortcode']
     when 'DomainBlock', 'DomainAllow', 'EmailDomainBlock', 'UnavailableDomain'

@@ -137,6 +137,10 @@ module ApplicationHelper
     end
   end
 
+  def react_admin_component(name, props = {})
+    content_tag(:div, nil, data: { 'admin-component': name.to_s.camelcase, props: Oj.dump({ locale: I18n.locale }.merge(props)) })
+  end
+
   def body_classes
     output = (@body_classes || '').split(' ')
     output << "theme-#{current_theme.parameterize}"

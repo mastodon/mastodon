@@ -9,7 +9,7 @@ class Auth::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
       if @user.persisted?
         LoginActivity.create(
-          user: user,
+          user: @user,
           success: true,
           authentication_method: :omniauth,
           provider: provider,

@@ -60,6 +60,23 @@ fi:
         title: 2FA palautuskoodit vaihdettu
       unlock_instructions:
         subject: 'Mastodon: Ohjeet lukituksen poistoon'
+      webauthn_credential:
+        added:
+          explanation: Seuraava suojausavain on lisätty tilillesi
+          subject: 'Mastodon: Uusi suojausavain'
+          title: Uusi suojausavain on lisätty
+        deleted:
+          explanation: Seuraava suojausavain on poistettu tililtäsi
+          subject: 'Mastodon: Suojausavain poistettu'
+          title: Yksi suojausavaimistasi on poistettu
+      webauthn_disabled:
+        explanation: Suojausavaimilla todennus on poistettu käytöstä tililtäsi. Kirjautuminen on nyt mahdollista käyttämällä vain paritetun TOTP-sovelluksen luomaa tokenia.
+        subject: 'Mastodon: Todennus suoja-avaimilla poistettu käytöstä'
+        title: Suojausavaimet poistettu käytöstä
+      webauthn_enabled:
+        explanation: Todennus suojausavaimella on otettu käyttöön tililläsi. Suojausavaintasi voidaan nyt käyttää kirjautumiseen.
+        subject: 'Mastodon: Todennus suojausavaimella on otettu käyttöön'
+        title: Suojausavaimet käytössä
     omniauth_callbacks:
       failure: Tunnistautuminen lähteestä %{kind} ei onnistunut, koska "%{reason}".
       success: Tunnistautuminen tililtä %{kind} onnistui.

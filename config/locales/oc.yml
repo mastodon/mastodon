@@ -240,10 +240,12 @@ oc:
       new:
         create: Crear una anóncia
         title: Anóncia novèla
+      publish: Publicar
       published_msg: Anóncia corrèctament publicada !
       scheduled_for: Programada per %{time}
       scheduled_msg: Anóncia programada per publicacion !
       title: Anóncias
+      unpublish: Despublicar
       unpublished_msg: Anóncia corrèctament tirada !
       updated_msg: Anóncia corrèctament actualizada !
     custom_emojis:
@@ -279,32 +281,26 @@ oc:
       updated_msg: Emoji ben mes a jorn !
       upload: Enviar
     dashboard:
-      authorized_fetch_mode: Mòde recuperacion autorizat
-      backlog: Accions en retard
-      config: Configuracion
-      feature_deletions: Supressions de comptes
-      feature_invites: Ligams convidat
-      feature_profile_directory: Annuari de perfils
-      feature_registrations: Inscripcions
-      feature_relay: Relai de federacion
-      feature_timeline_preview: Apercebut del flux d’actualitats
-      features: Foncionalitats
-      hidden_service: Federacion amb servicis amagats
-      open_reports: Senhalaments dobèrts
-      pending_tags: etiquetas en espèra de validacion
-      pending_users: utilizaires en espèra de validacion
-      recent_users: Utilizaires recents
-      search: Recèrca tèxte complèt
-      single_user_mode: Mòde sol utilizaire
+      active_users: utilizaires actius
+      interactions: interraccions
+      media_storage: Emmagazinatge dels mèdias
+      new_users: utilizaire novèl
+      pending_reports_html:
+        one: "<strong>1</strong> senhalament en espèra"
+        other: "<strong>%{count}</strong> senhalaments en espèra"
+      pending_tags_html:
+        one: "<strong>1</strong> etiqueta en espèra"
+        other: "<strong>%{count}</strong> etiquetas en espèra"
+      pending_users_html:
+        one: "<strong>1</strong> utilizaire en espèra"
+        other: "<strong>%{count}</strong> utilizaires en espèra"
+      resolved_reports: senhalament resolguts
       software: Logicial
       space: Utilizacion de l’espaci
       title: Tablèu de bòrd
-      total_users: total dels utilizaires
-      trends: Tendéncias
-      week_interactions: interaccions aquesta setmana
-      week_users_active: actius aquesta setmana
-      week_users_new: utilizaires aquesta setmana
-      whitelist_mode: Mòde lista blanca
+      top_languages: Lengas mai activas
+      top_servers: Servidors mai actius
+      website: Site web
     domain_allows:
       add_new: Plaçar en lista blanca
       created_msg: Lo domeni es corrèctament estat plaçat en lista blanca
@@ -361,6 +357,9 @@ oc:
         create: Crear un blocatge
         title: Nòu blocatge de domeni de corrièl
       title: Blocatge de domeni de corrièl
+    follow_recommendations:
+      language: Per lenga
+      status: Estat
     instances:
       by_domain: Domeni
       delivery_available: Liurason disponibla
@@ -901,6 +900,8 @@ oc:
       body: "%{name} a tornat partejar vòstre estatut :"
       subject: "%{name} a tornat partejar vòstre estatut"
       title: Novèl partatge
+    status:
+      subject: "%{name} ven de publicar"
   notifications:
     email_events: Eveniments per las notificacions per corrièl
     email_events_hint: 'Seleccionatz los eveniments que volètz recebre :'
@@ -1082,6 +1083,11 @@ oc:
       public_long: Tot lo monde pòt veire
       unlisted: Pas listat
       unlisted_long: Tot lo monde pòt veire mai serà pas visible sul flux public
+  statuses_cleanup:
+    enabled: Supression automatica de publicacions ancianas
+    keep_direct: Gardar los messatges dirèctes
+    keep_media: Gardar las publicacions amb pèça-junta
+    keep_pinned: Gardar las publicacions penjadas
   stream_entries:
     pinned: Tut penjat
     reblogged: a partejat

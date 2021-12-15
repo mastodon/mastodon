@@ -134,42 +134,32 @@ class Status extends ImmutablePureComponent {
     this.setState({ showMedia: !this.state.showMedia });
   }
 
-  handleClick = () => {
-    if (this.props.onClick) {
-      this.props.onClick();
+  handleClick = e => {
+    if (e && (e.button !== 0 || e.ctrlKey || e.metaKey)) {
       return;
     }
 
-    if (!this.context.router) {
-      return;
-    }
-
-    const { status } = this.props;
-    this.context.router.history.push(`/statuses/${status.getIn(['reblog', 'id'], status.get('id'))}`);
-  }
-
-  handleExpandClick = (e) => {
-    if (this.props.onClick) {
-      this.props.onClick();
-      return;
-    }
-
-    if (e.button === 0) {
-      if (!this.context.router) {
-        return;
-      }
-
-      const { status } = this.props;
-      this.context.router.history.push(`/statuses/${status.getIn(['reblog', 'id'], status.get('id'))}`);
-    }
-  }
-
-  handleAccountClick = (e) => {
-    if (this.context.router && e.button === 0 && !(e.ctrlKey || e.metaKey)) {
-      const id = e.currentTarget.getAttribute('data-id');
+    if (e) {
       e.preventDefault();
-      this.context.router.history.push(`/accounts/${id}`);
     }
+
+    this.handleHotkeyOpen();
+  }
+
+  handlePrependAccountClick = e => {
+    this.handleAccountClick(e, false);
+  }
+
+  handleAccountClick = (e, proper = true) => {
+    if (e && (e.button !== 0 || e.ctrlKey || e.metaKey))  {
+      return;
+    }
+
+    if (e) {
+      e.preventDefault();
+    }
+
+    this._openProfile(proper);
   }
 
   handleExpandedToggle = () => {
@@ -242,11 +232,34 @@ class Status extends ImmutablePureComponent {
   }
 
   handleHotkeyOpen = () => {
-    this.context.router.history.push(`/statuses/${this._properStatus().get('id')}`);
+    if (this.props.onClick) {
+      this.props.onClick();
+      return;
+    }
+
+    const { router } = this.context;
+    const status = this._properStatus();
+
+    if (!router) {
+      return;
+    }
+
+    router.history.push(`/@${status.getIn(['account', 'acct'])}/${status.get('id')}`);
   }
 
   handleHotkeyOpenProfile = () => {
-    this.context.router.history.push(`/accounts/${this._properStatus().getIn(['account', 'id'])}`);
+    this._openProfile();
+  }
+
+  _openProfile = (proper = true) => {
+    const { router } = this.context;
+    const status = proper ? this._properStatus() : this.props.status;
+
+    if (!router) {
+      return;
+    }
+
+    router.history.push(`/@${status.getIn(['account', 'acct'])}`);
   }
 
   handleHotkeyMoveUp = e => {
@@ -344,7 +357,7 @@ class Status extends ImmutablePureComponent {
       prepend = (
         <div className='status__prepend'>
           <div className='status__prepend-icon-wrapper'><Icon id='retweet' className='status__prepend-icon' fixedWidth /></div>
-          <FormattedMessage id='status.reblogged_by' defaultMessage='{name} boosted' values={{ name: <a onClick={this.handleAccountClick} data-id={status.getIn(['account', 'id'])} href={status.getIn(['account', 'url'])} className='status__display-name muted'><bdi><strong dangerouslySetInnerHTML={display_name_html} /></bdi></a> }} />
+          <FormattedMessage id='status.reblogged_by' defaultMessage='{name} boosted' values={{ name: <a onClick={this.handlePrependAccountClick} data-id={status.getIn(['account', 'id'])} href={status.getIn(['account', 'url'])} className='status__display-name muted'><bdi><strong dangerouslySetInnerHTML={display_name_html} /></bdi></a> }} />
         </div>
       );
 
@@ -465,14 +478,15 @@ class Status extends ImmutablePureComponent {
           {prepend}
 
           <div className={classNames('status', `status-${status.get('visibility')}`, { 'status-reply': !!status.get('in_reply_to_id'), muted: this.props.muted })} data-id={status.get('id')}>
-            <div className='status__expand' onClick={this.handleExpandClick} role='presentation' />
+            <div className='status__expand' onClick={this.handleClick} role='presentation' />
+
             <div className='status__info'>
-              <a href={status.get('url')} className='status__relative-time' target='_blank' rel='noopener noreferrer'>
+              <a onClick={this.handleClick} href={status.get('url')} className='status__relative-time' target='_blank' rel='noopener noreferrer'>
                 <span className='status__visibility-icon'><Icon id={visibilityIcon.icon} title={visibilityIcon.text} /></span>
                 <RelativeTimestamp timestamp={status.get('created_at')} />
               </a>
 
-              <a onClick={this.handleAccountClick} data-id={status.getIn(['account', 'id'])} href={status.getIn(['account', 'url'])} title={status.getIn(['account', 'acct'])} className='status__display-name' target='_blank' rel='noopener noreferrer'>
+              <a onClick={this.handleAccountClick} href={status.getIn(['account', 'url'])} title={status.getIn(['account', 'acct'])} className='status__display-name' target='_blank' rel='noopener noreferrer'>
                 <div className='status__avatar'>
                   {statusAvatar}
                 </div>
