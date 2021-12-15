@@ -48,18 +48,16 @@ services:
       context: .
       dockerfile: Dockerfile-https
     restart: always
-    networks:
-      - internal_network
-      - external_network
+    network_mode: host
     depends_on:
       - web
       - streaming
       - mediasoup
     environment:
       SERVERNAME: 127.0.0.1
-    ports:
-      - "80:80"
-      - "443:443"
+    # ports:
+    #   - "80:80"
+    #   - "443:443"
     volumes:
       - "/etc/letsencrypt"
   web:
@@ -106,13 +104,12 @@ services:
     restart: always
     env_file: .env.production
     command: node index.js
-    networks:
-      - external_network
-      - internal_network
+    network_mode: host
     # healthcheck:
     #   test: ["CMD-SHELL", "wget -q --spider --proxy=off localhost:4000/api/v1/streaming/health || exit 1"]
-    ports:
-      - "127.0.0.1:8000:8000"
+    # ports:
+    #   # - "127.0.0.1:8000:8000"
+    #   - "10000-10030"
     depends_on:
       - web
 

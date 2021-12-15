@@ -20,6 +20,8 @@ if (process.env.LOG_LEVEL) {
     msOptions.logLevel = process.env.LOG_LEVEL;
     msOptions.logTags = [ 'info', 'ice', 'dlts', 'rtp', 'srtp', 'rtcp', 'rbe', 'rtx' ];
 }
+msOptions.numWorkers = 1;
+msOptions.rtcMaxPort = 10030;
 const ms = mediasoup.Server(msOptions);
 
 const PUBLISHER_PEER = 'publisher';
