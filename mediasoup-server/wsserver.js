@@ -45,7 +45,7 @@ const MEDIA_CODECS = [
     */
     {
       kind       : "video",
-      name       : "h264",
+      name       : "VP8",
       clockRate  : 90000,
       parameters :
       {
