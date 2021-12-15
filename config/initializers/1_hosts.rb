@@ -27,7 +27,13 @@ Rails.application.configure do
     end
   end
 
-  config.x.mediasoup_protoo_base_url = 'ws://localhost:8000'
+  config.x.mediasoup_api_base_url = ENV.fetch('MEDIASOUP_API_BASE_URL') do 
+     if Rails.env.production?
+      "ws#{https ? 's' : ''}://#{web_host}"
+    else
+      "ws://#{ENV['REMOTE_DEV'] == 'true' ? host.split(':').first : 'localhost'}:8000"
+    end
+  end
 
   unless Rails.env.test?
     config.hosts << host if host.present?

@@ -1,4 +1,5 @@
 import * as mediasoupClient from "mediasoup-client";
+import { store } from '../../containers/mastodon';
 
 type StartStreamCallbacks = {
     onClose: () => void
@@ -79,6 +80,7 @@ export function subscribeChannel(id: string, cb: (peer: any, transport: any) => 
 
 export function pubsubClient(channel, password, isPublisher) {
     return new Promise(function executor(resolve, reject) {
+        const base_url = store.getState().meta.get('mediasoup_api_base_url')
         var kind = isPublisher ? 'publish' : 'subscribe';
         if (!mediasoupClient.isDeviceSupported()) {
             alert('Sorry, WebRTC is not supported on this device');
@@ -102,7 +104,7 @@ export function pubsubClient(channel, password, isPublisher) {
                 .replace(/^(wss?:\/\/.*)\/.*$/, '$1') + '/pubsub';
         }
         
-        var ws = new WebSocket('ws://localhost:8000/pubsub');
+        var ws = new WebSocket(`${base_url}/pubsub`);
         var connected = false;
         var peerName = isPublisher ? 'publisher' : '' + Math.random();
         function wsSend(obj) {
