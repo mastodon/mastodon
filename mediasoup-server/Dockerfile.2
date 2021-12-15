@@ -1,4 +1,4 @@
-FROM ubuntu:20.04 as build-dep
+FROM ubuntu:latest as build-dep
 
 SHELL ["/bin/bash", "-c"]
 
@@ -27,10 +27,14 @@ ENV PATH="${PATH}:/opt/ruby/bin:/opt/node/bin"
 
 RUN npm install -g npm@latest
 
-COPY package.json /opt/mediasoup-server/
+WORKDIR /opt/mediasoup-server
+COPY package.json .
 
 RUN cd /opt/mediasoup-server && npm install
 
 ENV NODE_ENV="production"
 
-WORKDIR /opt/mediasoup-server
+COPY . .
+EXPOSE 8000
+ENV PORT 8000
+ENV HOST 0.0.0.0

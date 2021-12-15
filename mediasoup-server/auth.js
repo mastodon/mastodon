@@ -41,9 +41,9 @@ function getPayload(kind) {
 function authorize(addr, channel, request) {
     if (request.kind === 'subscribe') {
         console.log(addr, `Authorizing subscriber to ${channel}`);
-        if (request.password === RECV_PASSWORD) {
+        // if (request.password === RECV_PASSWORD) {
             return Promise.resolve(getPayload('subscribe'));
-        }
+        // }
     }
     else if (request.kind === 'publish') {
         console.log(addr, `Authorizing publisher to ${channel}`);
