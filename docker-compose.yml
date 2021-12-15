@@ -47,10 +47,14 @@ services:
       context: .
       dockerfile: Dockerfile-https
     restart: always
-    network_mode: host
+    networks:
+      - internal_network
+      - external_network
+    depends_on:
+      - web
+      - streaming
     environment:
-      UPSTREAM: 0.0.0.0:3000
-      SERVERNAME: 35.225.47.75
+      SERVERNAME: 127.0.0.1
     ports:
       - "80:80"
       - "443:443"
