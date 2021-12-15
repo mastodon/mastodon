@@ -10,7 +10,7 @@ class Api::V1::Admin::AccountsController < Api::BaseController
   before_action -> { doorkeeper_authorize! :'admin:write', :'admin:write:accounts' }, except: [:index, :show]
   before_action :require_staff!
   before_action :set_accounts, only: :index
-  before_action :set_account, except: :index
+  before_action :set_account, except: [:index, :create]
   before_action :require_local_account!, only: [:enable, :approve, :reject]
 
   after_action :insert_pagination_headers, only: :index
@@ -42,6 +42,45 @@ class Api::V1::Admin::AccountsController < Api::BaseController
   def show
     authorize @account, :show?
     render json: @account, serializer: REST::Admin::AccountSerializer
+  end
+
+  def create
+    account = Account.new(username: params[:username])
+
+    user = User.new(
+      email: params[:email],
+      password: params[:password],
+      agreement: true,
+      approved: true,
+      admin: params[:role] == 'admin',
+      moderator: params[:role] == 'moderator',
+      confirmed_at: params[:confirmed] ? Time.now.utc : nil,
+      bypass_invite_request_check: true
+    )
+
+    if params[:reattach]
+      account = Account.find_local(params[:username]) || account
+
+      if account.user.present? && !params[:force]
+        render json: { error: 'The chosen username is currently in use. Use `force: true` to reattach it anyway and delete the other user.' }, status: 422
+      elsif account.user.present?
+        DeleteAccountService.new.call(account, reserve_email: false)
+      end
+    end
+
+    account.suspended_at = nil
+    user.account         = account
+
+    if user.save
+      if params[:confirmed]
+        user.confirmed_at = nil
+        user.confirm!
+      end
+
+      render json: user.account, serializer: REST::Admin::AccountSerializer
+    else
+      render json: { errors: user.errors.to_h }, status: 422
+    end
   end
 
   def enable

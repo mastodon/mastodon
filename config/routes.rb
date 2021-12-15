@@ -222,7 +222,7 @@ Rails.application.routes.draw do
         post :stop_delivery
       end
     end
-  
+
     resources :rules
 
     resources :reports, only: [:index, :show] do
@@ -486,7 +486,7 @@ Rails.application.routes.draw do
       end
 
       namespace :admin do
-        resources :accounts, only: [:index, :show, :destroy] do
+        resources :accounts, only: [:index, :show, :create, :destroy] do
           member do
             post :enable
             post :unsensitive

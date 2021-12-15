@@ -55,6 +55,28 @@ RSpec.describe Api::V1::Admin::AccountsController, type: :controller do
     end
   end
 
+  describe 'POST #create' do
+    before do
+      post :create, params: { username: 'bob', email: 'bob@example.com', password: '12345678', confirmed: true, role: 'moderator' }
+    end
+
+    it_behaves_like 'forbidden for wrong scope', 'write:statuses'
+    it_behaves_like 'forbidden for wrong role', 'user'
+
+    it 'returns http success' do
+      puts response.body
+      expect(response).to have_http_status(200)
+    end
+
+    it 'creates a user' do
+      account = Account.find_by(username: 'alice')
+      expect(account).to_not be_nil
+      expect(account.user).to_not be_nil
+      expect(account.user.functional?).to be true
+      expect(account.user.moderator).to be true
+    end
+  end
+
   describe 'POST #approve' do
     before do
       account.user.update(approved: false)
