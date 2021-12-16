@@ -1,0 +1,13 @@
+.batch-table__row
+  .batch-table__row__content.batch-table__row__content--simple.batch-table__row__content--with-image
+    .batch-table__row__content__image
+      = custom_emoji_tag(custom_emoji, animate = current_account&.user&.setting_auto_play_gif)
+
+    .batch-table__row__content__text
+      %samp= ":#{custom_emoji.shortcode}:"
+
+    .batch-table__row__content__extra
+      - if custom_emoji.disabled?
+        = t('admin.custom_emojis.disabled')
+      - else
+        = t('admin.custom_emojis.enabled')

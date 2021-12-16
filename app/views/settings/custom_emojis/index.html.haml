@@ -1,0 +1,26 @@
+- content_for :page_title do
+  = t('admin.custom_emojis.title')
+
+- content_for :header_tags do
+  = javascript_pack_tag 'admin', async: true, crossorigin: 'anonymous'
+
+- content_for :heading_actions do
+  = link_to t('admin.custom_emojis.upload'), new_settings_custom_emoji_path, class: 'button'
+
+
+= form_for(@form, url: batch_admin_custom_emojis_path) do |f|
+  = hidden_field_tag :page, params[:page] || 1
+
+  - CustomEmojiFilter::KEYS.each do |key|
+    = hidden_field_tag key, params[key] if params[key].present?
+
+  .batch-table.batch-table--simple
+    .batch-table__body
+      .batch-table__top_rid
+      - if @custom_emojis.empty?
+        = nothing_here 'nothing-here--under-tabs'
+      - else
+        = render partial: 'custom_emoji', collection: @custom_emojis, locals: { f: f }
+
+= paginate @custom_emojis
+

@@ -31,6 +31,7 @@ SimpleNavigation::Configuration.run do |navigation|
     end
 
     n.item :invites, safe_join([fa_icon('user-plus fw'), t('invites.title')]), invites_path, if: proc { Setting.min_invite_role == 'user' && current_user.functional? }
+    n.item :custom_emoji, safe_join([fa_icon('smile-o fw'), t('settings.custom_emoji')]), settings_custom_emojis_url
     n.item :development, safe_join([fa_icon('code fw'), t('settings.development')]), settings_applications_url, if: -> { current_user.functional? }
 
     n.item :trends, safe_join([fa_icon('fire fw'), t('admin.trends.title')]), admin_trends_tags_path, if: proc { current_user.staff? } do |s|

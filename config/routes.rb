@@ -162,6 +162,8 @@ Rails.application.routes.draw do
     resources :sessions, only: [:destroy]
     resources :featured_tags, only: [:index, :create, :destroy]
     resources :login_activities, only: [:index]
+
+    resources :custom_emojis, only: [:index, :new, :create]
   end
 
   resources :media, only: [:show] do

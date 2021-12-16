@@ -127,6 +127,9 @@ a.table-action-link {
 }
 
 .batch-table {
+  &--simple {
+    border-top: 1px solid darken($ui-base-color, 8%);
+  }
   &__toolbar,
   &__row {
     display: flex;
@@ -156,6 +159,10 @@ a.table-action-link {
       padding: 8px 0;
       padding-right: 16px;
       flex: 1 1 auto;
+
+      &--simple {
+        padding: 8px 16px;
+      }
     }
   }
 
