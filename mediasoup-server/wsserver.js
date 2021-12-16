@@ -11,6 +11,8 @@ if (process.env.RTC_ANNOUNCED_IPV4) {
     // will be a different address than the connected network
     // interface will use.
     msOptions.rtcAnnouncedIPv4 = process.env.RTC_ANNOUNCED_IPV4;
+}else{
+    msOptions.rtcAnnouncedIPv4 = process.env.LOCAL_DOMAIN;
 }
 if (process.env.RTC_ANNOUNCED_IPV6) {
     msOptions.rtcAnnouncedIPv6 = process.env.RTC_ANNOUNCED_IPV6;
