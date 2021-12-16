@@ -35,7 +35,7 @@
       %span= t('admin.dashboard.pending_reports_html', count: @pending_reports_count)
       = fa_icon 'chevron-right fw'
 
-    = link_to admin_pending_accounts_path, class: 'dashboard__quick-access' do
+    = link_to admin_accounts_path(status: 'pending'), class: 'dashboard__quick-access' do
       %span= t('admin.dashboard.pending_users_html', count: @pending_users_count)
       = fa_icon 'chevron-right fw'
 

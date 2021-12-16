@@ -434,6 +434,24 @@
     }
   }
 
+  tbody td.accounts-table__extra {
+    width: 120px;
+    text-align: right;
+    color: $darker-text-color;
+    padding-right: 16px;
+
+    a {
+      text-decoration: none;
+      color: inherit;
+
+      &:focus,
+      &:hover,
+      &:active {
+        text-decoration: underline;
+      }
+    }
+  }
+
   &__comment {
     width: 50%;
     vertical-align: initial !important;
