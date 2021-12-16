@@ -6,7 +6,7 @@ import {
   subscribeChannel,
 } from "../features/stream/mediasoupStreamingService";
 import { functionResultWrapper } from "../utils/fp";
-import randomString from 'random-string'
+import randomString from "random-string";
 
 export const startStreaming = (): string => {
   const state = streamStore.getState();
@@ -70,10 +70,13 @@ export const startStreaming = (): string => {
 
   // // const client = getProtooClient("streaming");
   const m = new MediaStream();
-  m.addTrack(state.webcam);
+  if (state.webcam) {
+    m.addTrack(state.webcam);
+    if (state.microphone) m.addTrack(state.microphone);
+  }
 
-  const id = randomString({length: 15})
-  publishStream({id, sendStream: m});
+  const id = randomString({ length: 30 });
+  publishStream({ id, sendStream: m });
 
   // sendTransport.produce({
   //   track: state.webcam,
@@ -83,22 +86,35 @@ export const startStreaming = (): string => {
   //   ...state,
   //   sendTransport,
   // });
-  return id
+  return id;
 };
 
 export function selectWebcam() {
   navigator.mediaDevices
-    .getUserMedia({ video: true })
+    .getUserMedia({ video: true, audio: true })
     .then((stream) => {
       const videoTrack_ = stream.getVideoTracks()[0];
-      streamStore.setGlobalState("webcam", (p) => {
-        p?.stop();
-        return videoTrack_;
-      });
+      if (videoTrack_) {
+        streamStore.setGlobalState("webcam", (p) => {
+          p?.stop();
+          return videoTrack_;
+        });
 
-      videoTrack_.addEventListener("ended", () => {
-        streamStore.setGlobalState("webcam", undefined);
-      });
+        videoTrack_.addEventListener("ended", () => {
+          streamStore.setGlobalState("webcam", undefined);
+        });
+      }
+
+      const audioTrack_ = stream.getAudioTracks()[0];
+      if (audioTrack_) {
+        streamStore.setGlobalState("microphone", (p) => {
+          p?.stop();
+          return audioTrack_;
+        });
+        audioTrack_.addEventListener("ended", () => {
+          streamStore.setGlobalState("webcam", undefined);
+        });
+      }
     })
     .catch(undefined);
 }
@@ -180,7 +196,7 @@ export function useSubscribeStream({
   id: string;
 }): MediaStream | undefined {
   useEffect(() => {
-    console.log("Start subscribe stream", {id})
+    console.log("Start subscribe stream", { id });
     return subscribeStream({ id });
   }, [id]);
 
