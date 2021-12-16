@@ -57,7 +57,7 @@ module TwoFactorAuthenticationConcern
 
     if valid_webauthn_credential?(user, webauthn_credential)
       on_authentication_success(user, :webauthn)
-      render json: { redirect_path: root_path }, status: :ok
+      render json: { redirect_path: after_sign_in_path_for(user) }, status: :ok
     else
       on_authentication_failure(user, :webauthn, :invalid_credential)
       render json: { error: t('webauthn_credentials.invalid_credential') }, status: :unprocessable_entity

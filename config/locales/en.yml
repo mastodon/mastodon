@@ -99,7 +99,6 @@ en:
     accounts:
       add_email_domain_block: Block e-mail domain
       approve: Approve
-      approve_all: Approve all
       approved_msg: Successfully approved %{username}'s sign-up application
       are_you_sure: Are you sure?
       avatar: Avatar
@@ -153,7 +152,6 @@ en:
         active: Active
         all: All
         pending: Pending
-        silenced: Limited
         suspended: Suspended
         title: Moderation
       moderation_notes: Moderation notes
@@ -171,7 +169,6 @@ en:
       redownload: Refresh profile
       redownloaded_msg: Successfully refreshed %{username}'s profile from origin
       reject: Reject
-      reject_all: Reject all
       rejected_msg: Successfully rejected %{username}'s sign-up application
       remove_avatar: Remove avatar
       remove_header: Remove header
@@ -210,7 +207,6 @@ en:
       suspended: Suspended
       suspension_irreversible: The data of this account has been irreversibly deleted. You can unsuspend the account to make it usable but it will not recover any data it previously had.
       suspension_reversible_hint_html: The account has been suspended, and the data will be fully removed on %{date}. Until then, the account can be restored without any ill effects. If you wish to remove all of the account's data immediately, you can do so below.
-      time_in_queue: Waiting in queue %{time}
       title: Accounts
       unconfirmed_email: Unconfirmed email
       undo_sensitized: Undo force-sensitive
@@ -226,6 +222,7 @@ en:
       whitelisted: Allowed for federation
     action_logs:
       action_types:
+        approve_user: Approve User
         assigned_to_self_report: Assign Report
         change_email_user: Change E-mail for User
         confirm_user: Confirm User
@@ -255,6 +252,7 @@ en:
         enable_user: Enable User
         memorialize_account: Memorialize Account
         promote_user: Promote User
+        reject_user: Reject User
         remove_avatar_user: Remove Avatar
         reopen_report: Reopen Report
         reset_password_user: Reset Password
@@ -271,6 +269,7 @@ en:
         update_domain_block: Update Domain Block
         update_status: Update Post
       actions:
+        approve_user_html: "%{name} approved sign-up from %{target}"
         assigned_to_self_report_html: "%{name} assigned report %{target} to themselves"
         change_email_user_html: "%{name} changed the e-mail address of user %{target}"
         confirm_user_html: "%{name} confirmed e-mail address of user %{target}"
@@ -300,6 +299,7 @@ en:
         enable_user_html: "%{name} enabled login for user %{target}"
         memorialize_account_html: "%{name} turned %{target}'s account into a memoriam page"
         promote_user_html: "%{name} promoted user %{target}"
+        reject_user_html: "%{name} rejected sign-up from %{target}"
         remove_avatar_user_html: "%{name} removed %{target}'s avatar"
         reopen_report_html: "%{name} reopened report %{target}"
         reset_password_user_html: "%{name} reset password of user %{target}"
@@ -377,13 +377,13 @@ en:
       new_users: new users
       opened_reports: reports opened
       pending_reports_html:
-        one: "<strong>1</strong> pending reports"
+        one: "<strong>1</strong> pending report"
         other: "<strong>%{count}</strong> pending reports"
       pending_tags_html:
-        one: "<strong>1</strong> pending hashtags"
+        one: "<strong>1</strong> pending hashtag"
         other: "<strong>%{count}</strong> pending hashtags"
       pending_users_html:
-        one: "<strong>1</strong> pending users"
+        one: "<strong>1</strong> pending user"
         other: "<strong>%{count}</strong> pending users"
       resolved_reports: reports resolved
       software: Software
@@ -519,8 +519,6 @@ en:
         title: Create new IP rule
       no_ip_block_selected: No IP rules were changed as none were selected
       title: IP rules
-    pending_accounts:
-      title: Pending accounts (%{count})
     relationships:
       title: "%{acct}'s relationships"
     relays:
@@ -980,6 +978,7 @@ en:
     none: None
     order_by: Order by
     save_changes: Save changes
+    today: today
     validation_errors:
       one: Something isn't quite right yet! Please review the error below
       other: Something isn't quite right yet! Please review %{count} errors below
