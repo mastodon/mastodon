@@ -247,6 +247,7 @@ cs:
         destroy_domain_allow: Odstranit povolenou doménu
         destroy_domain_block: Odstranit blokování domény
         destroy_email_domain_block: Smazat blokaci e-mailové domény
+        destroy_instance: Odmazat doménu
         destroy_ip_block: Smazat IP pravidlo
         destroy_status: Odstranit Příspěvek
         destroy_unavailable_domain: Smazat nedostupnou doménu
@@ -294,6 +295,7 @@ cs:
         destroy_domain_allow_html: "Uživatel %{name} zakázal federaci s doménou %{target}"
         destroy_domain_block_html: "Uživatel %{name} odblokoval doménu %{target}"
         destroy_email_domain_block_html: "Uživatel %{name} odblokoval e-mailovou doménu %{target}"
+        destroy_instance_html: "Uživatel %{name} odmazal doménu %{target}"
         destroy_ip_block_html: "%{name} odstranil pravidlo pro IP %{target}"
         destroy_status_html: "Uživatel %{name} odstranil příspěvek uživatele %{target}"
         destroy_unavailable_domain_html: "%{name} obnovil doručování na doménu %{target}"
@@ -480,6 +482,7 @@ cs:
       back_to_limited: Omezený
       back_to_warning: Varování
       by_domain: Doména
+      confirm_purge: Jste si jisti, že chcete nevratně smazat data z této domény?
       delivery:
         all: Vše
         clear: Vymazat chyby doručení
@@ -509,6 +512,7 @@ cs:
         title: Moderování
       private_comment: Soukromý komentář
       public_comment: Veřejný komentář
+      purge: Odmazat
       title: Federace
       total_blocked_by_us: Blokované námi
       total_followed_by_them: Sledované jimi
