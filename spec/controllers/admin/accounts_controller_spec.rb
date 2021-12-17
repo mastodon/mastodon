@@ -192,4 +192,36 @@ RSpec.describe Admin::AccountsController, type: :controller do
       end
     end
   end
+
+  describe 'POST #unblock_email' do
+    subject do
+      -> { post :unblock_email, params: { id: account.id } }
+    end
+
+    let(:current_user) { Fabricate(:user, admin: admin) }
+    let(:account) { Fabricate(:account, suspended: true) }
+    let!(:email_block) { Fabricate(:canonical_email_block, reference_account: account) }
+
+    context 'when user is admin' do
+      let(:admin) { true }
+
+      it 'succeeds in removing email blocks' do
+        is_expected.to change { CanonicalEmailBlock.where(reference_account: account).count }.from(1).to(0)
+      end
+
+      it 'redirects to admin account path' do
+        subject.call
+        expect(response).to redirect_to admin_account_path(account.id)
+      end
+    end
+
+    context 'when user is not admin' do
+      let(:admin) { false }
+
+      it 'fails to remove avatar' do
+        subject.call
+        expect(response).to have_http_status :forbidden
+      end
+    end
+  end
 end
