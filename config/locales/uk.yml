@@ -215,6 +215,8 @@ uk:
       suspension_irreversible: Дані цього облікового запису безповоротно видалено. Ви можете розблокувати обліковий запис, щоб могти ним користуватися, але будь-які його дані не відновляться.
       suspension_reversible_hint_html: Обліковий запис заблоковано, а дані буде повністю вилучено %{date}. До цього часу обліковий запис можна відновити без будь-яких негативних наслідків. Якщо ви бажаєте вилучити всі дані облікового запису негайно, ви можете зробити це внизу.
       title: Облікові записи
+      unblock_email: Розблокувати адресу е-пошти
+      unblocked_email_msg: Адреса електронної пошти %{username} успішно розблокована
       unconfirmed_email: Непідтверджена адреса електронної пошти
       undo_sensitized: Скасувати позначення делікатним
       undo_silenced: Зняти глушення
@@ -247,6 +249,7 @@ uk:
         destroy_domain_allow: Видалити дозвіл на домен
         destroy_domain_block: Видалити блокування домену
         destroy_email_domain_block: Видалити блокування поштового домену
+        destroy_instance: Очистити домен
         destroy_ip_block: Видалити правило IP
         destroy_status: Видалити пост
         destroy_unavailable_domain: Видалити недоступний домен
@@ -268,6 +271,7 @@ uk:
         silence_account: Заглушити обліковий запис
         suspend_account: Призупинити обліковий запис
         unassigned_report: Видалити скаргу
+        unblock_email_account: Розблокувати адресу е-пошти
         unsensitive_account: Прибрати позначку "делікатне" з медіа вашого облікового запису
         unsilence_account: Розглушити обліковий запис
         unsuspend_account: Розморозити обліковий запис
@@ -294,6 +298,7 @@ uk:
         destroy_domain_allow_html: "%{name} скасовує федерацію з доменом %{target}"
         destroy_domain_block_html: "%{name} розблокує домен %{target}"
         destroy_email_domain_block_html: "%{name} розблоковує домен електронної пошти %{target}"
+        destroy_instance_html: "%{name} очищує домен %{target}"
         destroy_ip_block_html: "%{name} видаляє правило для IP %{target}"
         destroy_status_html: "%{name} видаляє статус %{target}"
         destroy_unavailable_domain_html: "%{name} відновлює доставляння на домен %{target}"
@@ -315,6 +320,7 @@ uk:
         silence_account_html: "%{name} приглушує обліковий запис %{target}"
         suspend_account_html: "%{name} заморожує обліковий запис %{target}"
         unassigned_report_html: "%{name} прибирає призначення скарги %{target}"
+        unblock_email_account_html: "%{name} розблоковує електронну пошту %{target}"
         unsensitive_account_html: "%{name} прибирає позначку \"делікатне\" з медіа від %{target}"
         unsilence_account_html: "%{name} розглушує обліковий запис %{target}"
         unsuspend_account_html: "%{name} розморожує обліковий запис %{target}"
@@ -480,6 +486,7 @@ uk:
       back_to_limited: Обмежені
       back_to_warning: Попередження
       by_domain: Домен
+      confirm_purge: Ви впевнені, що хочете видалити ці дані з цього домену?
       delivery:
         all: Усі
         clear: Очистити помилки доставляння
@@ -497,6 +504,7 @@ uk:
       delivery_available: Доставлення доступне
       delivery_error_days: Днів помилок доставляння
       delivery_error_hint: Якщо доставляння неможливе впродовж %{count} днів, воно автоматично позначиться недоставленим.
+      destroyed_msg: Дані з %{domain} тепер у черзі на видалення.
       empty: Доменів не знайдено.
       known_accounts:
         one: "%{count} відомий обліковий запис"
@@ -509,6 +517,7 @@ uk:
         title: Модерація
       private_comment: Приватний коментар
       public_comment: Публічний коментар
+      purge: Очисти
       title: Відомі інстанції
       total_blocked_by_us: Заблокованих нами
       total_followed_by_them: Вони стежать за
