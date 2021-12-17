@@ -207,6 +207,8 @@ ca:
       suspension_irreversible: Les dades d’aquest compte s’han suprimit irreversiblament. Pots desfer la suspensió del compte per a fer-lo usable però això no recuperarà les dades si és que en tenia.
       suspension_reversible_hint_html: El compte ha estat suspès i les dades seran totalment suprimides el %{date}. Fins llavors, el compte pot ser restaurat sense problemes. Si vols suprimir immediatament totes les dades del compte, ho pots fer a continuació.
       title: Comptes
+      unblock_email: Desbloqueja l'adreça de correu
+      unblocked_email_msg: Adreça de correu de %{username} desbloquejada amb èxit
       unconfirmed_email: Correu electrònic sense confirmar
       undo_sensitized: Desmarcar com a sensible
       undo_silenced: Deixa de silenciar
@@ -239,6 +241,7 @@ ca:
         destroy_domain_allow: Esborra el domini permès
         destroy_domain_block: Esborra el bloqueig de domini
         destroy_email_domain_block: Esborra el bloqueig de domini de l'adreça de correu
+        destroy_instance: Purga Domini
         destroy_ip_block: Eliminar regla IP
         destroy_status: Esborra el tut
         destroy_unavailable_domain: Esborra domini no disponible
@@ -260,6 +263,7 @@ ca:
         silence_account: Silencia el compte
         suspend_account: Suspèn el compte
         unassigned_report: Des-assigna l'informe
+        unblock_email_account: Desbloqueja l'adreça de correu
         unsensitive_account: Desmarcar els mèdia en el teu compte com a sensibles
         unsilence_account: Desfés el silenci del compte
         unsuspend_account: Desfés la suspensió del compte
@@ -286,6 +290,7 @@ ca:
         destroy_domain_allow_html: "%{name} no permet la federació amb el domini %{target}"
         destroy_domain_block_html: "%{name} ha desbloquejat el domini %{target}"
         destroy_email_domain_block_html: "%{name} ha desbloquejat el domini de correu electrònic %{target}"
+        destroy_instance_html: "%{name} ha purgat el domini %{target}"
         destroy_ip_block_html: "%{name} ha esborrat la regla per a l'IP %{target}"
         destroy_status_html: "%{name} ha eliminat el tut de %{target}"
         destroy_unavailable_domain_html: "%{name} ha représ el lliurament delivery al domini %{target}"
@@ -307,6 +312,7 @@ ca:
         silence_account_html: "%{name} ha silenciat el compte de %{target}"
         suspend_account_html: "%{name} ha suspès el compte de %{target}"
         unassigned_report_html: "%{name} ha des-assignat l'informe %{target}"
+        unblock_email_account_html: "%{name} ha desbloquejat l'adreça de correu de %{target}"
         unsensitive_account_html: "%{name} ha desmarcat com sensibles els mèdia de %{target}"
         unsilence_account_html: "%{name} ha llevat el silenci del compte %{target}"
         unsuspend_account_html: "%{name} ha llevat la suspensió del compte de %{target}"
@@ -464,6 +470,7 @@ ca:
       back_to_limited: Limitades
       back_to_warning: Avís
       by_domain: Domini
+      confirm_purge: Estàs segur que vols eliminar permanentment les dades d'aquest domini?
       delivery:
         all: Totes
         clear: Neteja els errors de lliurament
@@ -479,6 +486,7 @@ ca:
       delivery_available: El lliurament està disponible
       delivery_error_days: Dies de fallades de lliurament
       delivery_error_hint: Si el lliurament no és possible per %{count} dies, serà automàticament marcat com a no lliurable.
+      destroyed_msg: Les dades de %{domain} ara son en la cua per a esborrat imminent.
       empty: No s'han trobat dominis.
       known_accounts:
         one: "%{count} compte conegut"
@@ -489,6 +497,7 @@ ca:
         title: Moderació
       private_comment: Comentari privat
       public_comment: Comentari públic
+      purge: Purga
       title: Federació
       total_blocked_by_us: Bloquejats per nosaltres
       total_followed_by_them: Seguits per ells
