@@ -207,6 +207,8 @@ pt-PT:
       suspension_irreversible: Os dados desta conta foram eliminados irreversivelmente. Pode cancelar a suspensão da conta para torná-la utilizável, mas ela não irá recuperar os dados que possuía anteriormente.
       suspension_reversible_hint_html: A conta foi suspensa e os dados serão totalmente eliminados em %{date}. Até lá, a conta poderá ser recuperada sem quaisquer efeitos negativos. Se deseja eliminar todos os dados desta conta imediatamente, pode fazê-lo em baixo.
       title: Contas
+      unblock_email: Desbloquear endereço de e-mail
+      unblocked_email_msg: Endereço de e-mail de %{username} desbloqueado com sucesso
       unconfirmed_email: E-mail não confirmado
       undo_sensitized: Desmarcar como sensível
       undo_silenced: Desfazer silenciar
@@ -239,6 +241,7 @@ pt-PT:
         destroy_domain_allow: Eliminar Permissão de Domínio
         destroy_domain_block: Eliminar Bloqueio de Domínio
         destroy_email_domain_block: Eliminar Bloqueio de Domínio de E-mail
+        destroy_instance: Purgar Domínio
         destroy_ip_block: Eliminar regra de IP
         destroy_status: Eliminar Publicação
         destroy_unavailable_domain: Eliminar Domínio Indisponível
@@ -260,6 +263,7 @@ pt-PT:
         silence_account: Silenciar Conta
         suspend_account: Suspender Conta
         unassigned_report: Desatribuir Relatório
+        unblock_email_account: Desbloquear endereço de e-mail
         unsensitive_account: Desmarcar a media na sua conta como sensível
         unsilence_account: Deixar de Silenciar Conta
         unsuspend_account: Retirar Suspensão à Conta
@@ -286,6 +290,7 @@ pt-PT:
         destroy_domain_allow_html: "%{name} desabilitou a federação com o domínio %{target}"
         destroy_domain_block_html: "%{name} desbloqueou o domínio %{target}"
         destroy_email_domain_block_html: "%{name} desbloqueou o domínio de e-mail %{target}"
+        destroy_instance_html: "%{name} purgou o domínio %{target}"
         destroy_ip_block_html: "%{name} eliminou regra para o IP %{target}"
         destroy_status_html: "%{name} removeu a publicação de %{target}"
         destroy_unavailable_domain_html: "%{name} retomou a entrega ao domínio %{target}"
@@ -307,6 +312,7 @@ pt-PT:
         silence_account_html: "%{name} silenciou a conta de %{target}"
         suspend_account_html: "%{name} suspendeu a conta de %{target}"
         unassigned_report_html: "%{name} desatribuiu o realtório %{target}"
+        unblock_email_account_html: "%{name} desbloqueou o endereço de e-mail de %{target}"
         unsensitive_account_html: "%{name} desmarcou a media de %{target} como sensível"
         unsilence_account_html: "%{name} desativou o silêncio de %{target}"
         unsuspend_account_html: "%{name} desativou a suspensão de %{target}"
@@ -464,6 +470,7 @@ pt-PT:
       back_to_limited: Limitadas
       back_to_warning: Aviso
       by_domain: Domínio
+      confirm_purge: Tem a certeza que deseja eliminar permanentemente os dados deste domínio?
       delivery:
         all: Todas
         clear: Limpar erros de entrega
@@ -479,6 +486,7 @@ pt-PT:
       delivery_available: Entrega disponível
       delivery_error_days: Dias de erro de entrega
       delivery_error_hint: Se a entrega não for possível durante %{count} dias, será automaticamente marcada como não realizável.
+      destroyed_msg: Dados de %{domain} estão agora na fila para iminente eliminação.
       empty: Não foram encontrados domínios.
       known_accounts:
         one: "%{count} conta conhecida"
@@ -489,6 +497,7 @@ pt-PT:
         title: Moderação
       private_comment: Comentários privados
       public_comment: Comentários públicos
+      purge: Purgar
       title: Instâncias conhecidas
       total_blocked_by_us: Bloqueadas por nós
       total_followed_by_them: Seguidas por eles
