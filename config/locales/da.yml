@@ -207,6 +207,8 @@ da:
       suspension_irreversible: Disse kontodata er blevet slettet permanent. Du kan afsuspendere kontoen for at gøre den brugbar, men dette gendanner ikke de tidligere kontodata.
       suspension_reversible_hint_html: Kontoen er blevet suspenderet, og dens data fjernes helt d. %{date}. Indtil da kan kontoen genoprettes uden datatab mv. Ønsker alle kontodata fjernet straks, kan dette gøres nedenfor.
       title: Konti
+      unblock_email: Afblokér e-mailadresse
+      unblocked_email_msg: '%{username}s e-mail-adresse afblokeret'
       unconfirmed_email: Ikke-bekræftet e-mail
       undo_sensitized: Fortryd sensitiv
       undo_silenced: Fortryd tavsgørelse
@@ -239,6 +241,7 @@ da:
         destroy_domain_allow: Slet domænetilladelse
         destroy_domain_block: Slet domæneblokering
         destroy_email_domain_block: Slet e-maildomæneblokering
+        destroy_instance: Udrens domæne
         destroy_ip_block: Slet IP-regel
         destroy_status: Slet status
         destroy_unavailable_domain: Slet Utilgængeligt Domæne
@@ -260,6 +263,7 @@ da:
         silence_account: Tavsgør konto
         suspend_account: Suspendér konto
         unassigned_report: Aftildel anmeldelse
+        unblock_email_account: Afblokér af e-mailadresse
         unsensitive_account: Afmarkér medierne i din konto som sensitive
         unsilence_account: Fjern kontotavsgørelse
         unsuspend_account: Afsuspendér konto
@@ -286,6 +290,7 @@ da:
         destroy_domain_allow_html: "%{name} fjernede federeringstilladelsen med domænet %{target}"
         destroy_domain_block_html: "%{name} afblokerede domænet %{target}"
         destroy_email_domain_block_html: "%{name} afblokerede e-maildomænet %{target}"
+        destroy_instance_html: "%{name} udrensede domænet %{target}"
         destroy_ip_block_html: "%{name} slettede en regel for IP %{target}"
         destroy_status_html: "%{name} fjernede statussen fra %{target}"
         destroy_unavailable_domain_html: "%{name} genoptog levering til domænet %{target}"
@@ -307,6 +312,7 @@ da:
         silence_account_html: "%{name} tavsgjorde %{target}s konto"
         suspend_account_html: "%{name} suspenderede %{target}s konto"
         unassigned_report_html: "%{name} fjernede tildelingen af rapporten %{target}"
+        unblock_email_account_html: "%{name} afblokerede %{target}s e-mailadresse"
         unsensitive_account_html: "%{name} afmarkerede %{target}s medier som sensitive"
         unsilence_account_html: "%{name} fjernede tavsgøring af %{target}s konto"
         unsuspend_account_html: "%{name} fjernede suspenderingen af %{target}s konto"
