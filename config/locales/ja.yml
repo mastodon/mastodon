@@ -202,6 +202,8 @@ ja:
       suspension_irreversible: このアカウントのデータは削除され元に戻せなくなります。後日アカウントの凍結を解除することはできますがデータは元に戻せません。
       suspension_reversible_hint_html: アカウントは停止されており、データは %{date} に完全に削除されます。それまではアカウントを元に戻すことができます。今すぐ完全に削除したい場合は以下から行うことができます。
       title: アカウント
+      unblock_email: メールアドレスのブロックを解除
+      unblocked_email_msg: '%{username} のメールアドレスのブロックを解除しました'
       unconfirmed_email: 確認待ちのメールアドレス
       undo_sensitized: 閲覧注意から戻す
       undo_silenced: サイレンスから戻す
@@ -234,6 +236,7 @@ ja:
         destroy_domain_allow: 連合許可を外す
         destroy_domain_block: ドメインブロックを削除
         destroy_email_domain_block: メールドメインブロックを削除
+        destroy_instance: ドメインをブロックする
         destroy_ip_block: IPルールを削除
         destroy_status: 投稿を削除
         destroy_unavailable_domain: 配送できないドメインを削除
@@ -255,6 +258,7 @@ ja:
         silence_account: アカウントをサイレンス
         suspend_account: アカウントを停止
         unassigned_report: 通報の担当を解除
+        unblock_email_account: メールアドレスのブロックを解除
         unsensitive_account: アカウントのメディアの閲覧注意マークを解除
         unsilence_account: アカウントのサイレンスを解除
         unsuspend_account: アカウントの停止を解除
@@ -281,6 +285,7 @@ ja:
         destroy_domain_allow_html: "%{name} さんが %{target} の連合許可を外しました"
         destroy_domain_block_html: "%{name} さんがドメイン %{target} のブロックを外しました"
         destroy_email_domain_block_html: "%{name} さんが %{target} をメールドメインブロックから外しました"
+        destroy_instance_html: "%{name} さんが %{target} をドメインブロックしました"
         destroy_ip_block_html: "%{name} さんが IP %{target} のルールを削除しました"
         destroy_status_html: "%{name} さんが %{target} さんの投稿を削除しました"
         destroy_unavailable_domain_html: "%{name} がドメイン %{target} への配送を再開しました"
@@ -302,6 +307,7 @@ ja:
         silence_account_html: "%{name} さんが %{target} さんをサイレンスにしました"
         suspend_account_html: "%{name} さんが %{target} さんを停止しました"
         unassigned_report_html: "%{name} さんが通報 %{target} の担当を外しました"
+        unblock_email_account_html: "%{name} さんが %{target} のドメインブロックを解除しました"
         unsensitive_account_html: "%{name} さんが %{target} さんのメディアの閲覧注意を解除しました"
         unsilence_account_html: "%{name} さんが %{target} さんのサイレンスを解除しました"
         unsuspend_account_html: "%{name} さんが %{target} さんの停止を解除しました"
@@ -455,6 +461,7 @@ ja:
       back_to_limited: 制限あり
       back_to_warning: 警告あり
       by_domain: ドメイン
+      confirm_purge: このドメインを完全にブロックしてもよろしいですか？
       delivery:
         all: すべて
         clear: 配送エラーをクリア
@@ -469,6 +476,7 @@ ja:
       delivery_available: 配送可能
       delivery_error_days: 配送エラー発生日
       delivery_error_hint: '%{count} 日間配送ができない場合は、自動的に配送不可としてマークされます。'
+      destroyed_msg: '%{domain} からのデータは、すぐに削除されるように、キューに追加されました。'
       empty: ドメインが見つかりませんでした。
       known_accounts:
         other: "既知のアカウント数 %{count}"
@@ -478,6 +486,7 @@ ja:
         title: モデレーション
       private_comment: コメント (非公開)
       public_comment: コメント (公開)
+      purge: パージ
       title: 既知のサーバー
       total_blocked_by_us: ブロック合計
       total_followed_by_them: 被フォロー合計
