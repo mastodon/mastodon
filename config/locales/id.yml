@@ -259,6 +259,7 @@ id:
         silence_account: Bisukan Akun
         suspend_account: Tangguhkan Akun
         unassigned_report: Batalkan Pemberian Laporan
+        unblock_email_account: Buka blokir alamat email
         unsensitive_account: Batalkan tanda media di akun Anda dari sensitif
         unsilence_account: Lepas Status Bisu Akun
         unsuspend_account: Lepas Status Tangguh Akun
@@ -285,6 +286,7 @@ id:
         destroy_domain_allow_html: "%{name} membatalkan izin penggabungan dengan domain %{target}"
         destroy_domain_block_html: "%{name} membuka blokir domain %{target}"
         destroy_email_domain_block_html: "%{name} membuka blokir domain email %{target}"
+        destroy_instance_html: "%{name} menghapus domain %{target}"
         destroy_ip_block_html: "%{name} menghapus aturan untuk IP %{target}"
         destroy_status_html: "%{name} menghapus status %{target}"
         destroy_unavailable_domain_html: "%{name} melanjutkan pengiriman ke domain %{target}"
@@ -306,6 +308,7 @@ id:
         silence_account_html: "%{name} membisukan akun %{target}"
         suspend_account_html: "%{name} menangguhkan akun %{target}"
         unassigned_report_html: "%{name} membatalkan penugasan laporan %{target}"
+        unblock_email_account_html: "%{name} membuka blokir alamat email %{target}"
         unsensitive_account_html: "%{name} membatalkan tanda media %{target} sebagai sensitif"
         unsilence_account_html: "%{name} membunyikan akun %{target}"
         unsuspend_account_html: "%{name} membatalkan penangguhan akun %{target}"
@@ -459,6 +462,7 @@ id:
       back_to_limited: Terbatas
       back_to_warning: Peringatan
       by_domain: Domain
+      confirm_purge: Yakin ingin menghapus permanen data dari domain ini?
       delivery:
         all: Semua
         clear: Hapus galat pengiriman
@@ -473,6 +477,7 @@ id:
       delivery_available: Pengiriman tersedia
       delivery_error_days: Lama hari pengiriman galat
       delivery_error_hint: Jika pengiriman tidak terjadi selama %{count} hari, ia akan ditandai secara otomatis sebagai tidak terkirim.
+      destroyed_msg: Data dari %{domain} masuk antrean dihapus dalam waktu dekat.
       empty: Domain tidak ditemukan.
       known_accounts:
         other: "%{count} akun yang dikenal"
@@ -482,6 +487,7 @@ id:
         title: Moderasi
       private_comment: Komentar pribadi
       public_comment: Komentar publik
+      purge: Hapus
       title: Server yang diketahui
       total_blocked_by_us: Yang kita blokir
       total_followed_by_them: Diikuti mereka
