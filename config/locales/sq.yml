@@ -207,6 +207,8 @@ sq:
       suspension_irreversible: Të dhënat e kësaj llogarie janë fshirë në mënyrë të pakthyeshme. Mund ta shpezulloni llogarinë, për ta bërë të përdorshme, por kjo s’do të kthejë ndonjë të dhënë që kihej më parë.
       suspension_reversible_hint_html: Llogaria është pezulluar, dhe të dhënat do të hiqen plotësisht më %{date}. Deri atëherë, llogaria mund të rikthehet pa ndonjë zarar. Nëse doni të hiqen menjëherë krejt të dhënat e llogarisë, këtë mund ta bëni më poshtë.
       title: Llogari
+      unblock_email: Zhbllokoje adresën email
+      unblocked_email_msg: U zhbllokua me sukses adresa email e %{username}
       unconfirmed_email: Email i paripohuar
       undo_sensitized: Hiqja shenjën si rezervat
       undo_silenced: Zhbëje heshtjen
@@ -239,6 +241,7 @@ sq:
         destroy_domain_allow: Fshi Lejim Përkatësie
         destroy_domain_block: Fshi Bllokim Përkatësie
         destroy_email_domain_block: Fshi bllokim përkatësie email-esh
+        destroy_instance: Spastroje Përkatësinë
         destroy_ip_block: Fshini Rregull IP
         destroy_status: Fshi Gjendje
         destroy_unavailable_domain: Fshi Përkatësi të Papërdorshme
@@ -260,6 +263,7 @@ sq:
         silence_account: Heshtoje Llogarinë
         suspend_account: Pezulloje Llogarinë
         unassigned_report: Hiqe Caktimin e Raportimit
+        unblock_email_account: Zhbllokoje adresën email
         unsensitive_account: Hiqjani shenjën si rezervat medias në llogarinë tuaj
         unsilence_account: Hiqe Heshtimin e Llogarisë
         unsuspend_account: Hiqe Pezullimin e Llogarisë
@@ -286,6 +290,7 @@ sq:
         destroy_domain_allow_html: "%{name} hoqi lejimin për federim me %{target}"
         destroy_domain_block_html: "%{name} zhbllokoi përkatësinë %{target}"
         destroy_email_domain_block_html: "%{name} hoqi bllokimin për përkatësinë email %{target}"
+        destroy_instance_html: "%{name} spastroi përkatësinë %{target}"
         destroy_ip_block_html: "%{name} fshiu rregull për IP-në %{target}"
         destroy_status_html: "%{name} hoqi gjendje nga %{target}"
         destroy_unavailable_domain_html: "%{name} rinisi dërgimin drejt përkatësisë %{target}"
@@ -307,6 +312,7 @@ sq:
         silence_account_html: "%{name} heshtoi llogarinë e %{target}"
         suspend_account_html: "%{name} pezulloi llogarinë e %{target}"
         unassigned_report_html: "%{name} rihapi raportimin %{target}"
+        unblock_email_account_html: "%{name} zhbllokoi adresën email të %{target}"
         unsensitive_account_html: "%{name} ia hoqi shenjën si rezervat medias në %{target}"
         unsilence_account_html: "%{name} hoqi heshtimin për llogarinë %{target}"
         unsuspend_account_html: "%{name} hoqi pezullimin për llogarinë e %{target}"
@@ -464,6 +470,7 @@ sq:
       back_to_limited: E kufizuar
       back_to_warning: Kujdes
       by_domain: Përkatësi
+      confirm_purge: Jeni i sigurt se doni të fshihen përgjithmonë të dhënat prej kësaj përkatësie?
       delivery:
         all: Krejt
         clear: Spastro gabime dërgimi
@@ -479,6 +486,7 @@ sq:
       delivery_available: Ka shpërndarje të mundshme
       delivery_error_days: Ditë gabimi dështimi
       delivery_error_hint: Nëse dërgimi s’është i mundshëm për %{count} ditë, do t’i vihet shenjë automatikisht si i padërgueshëm.
+      destroyed_msg: Të dhënat prej %{domain} tani janë vënë në radhë për fshirje të menjëhershme.
       empty: S’u gjetën përkatësi.
       known_accounts:
         one: "%{count} llogari e njohur"
@@ -489,6 +497,7 @@ sq:
         title: Moderim
       private_comment: Koment privat
       public_comment: Koment publik
+      purge: Spastroje
       title: Federim
       total_blocked_by_us: Bllokuar nga ne
       total_followed_by_them: Ndjekur prej tyre
