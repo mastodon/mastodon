@@ -200,6 +200,8 @@ el:
       suspension_irreversible: Τα δεδομένα αυτού του λογαριασμού έχουν διαγραφεί οριστικά. Μπορείς να άρεις την αναστολή του λογαριασμού για να μπορέσει να χρησιμοποιηθεί αλλά αυτό δεν θα επαναφέρει όσα δεδομένα είχε προηγουμένως.
       suspension_reversible_hint_html: Ο λογαριασμός έχει ανασταλλεί και τα δεδομένα του θα διαγραφούν πλήρως στις %{date}. Μέχρι τότε ο λογαριασμός μπορεί να επανέλθει κανονικά. Αν θέλεις να διαγράψεις όλα τα δεδομένα του λογαριασμού, μπορείς να το κάνεις παρακάτω.
       title: Λογαριασμοί
+      unblock_email: Ξεμπλοκάρισμα διεύθυνσης email
+      unblocked_email_msg: Επιτυχής κατάργηση αποκλεισμού διεύθυνσης ηλεκτρονικού ταχυδρομείου %{username}
       unconfirmed_email: Ανεπιβεβαίωτο email
       undo_sensitized: Αναίρεση ευαίσθητου
       undo_silenced: Αναίρεση αποσιώπησης
@@ -231,6 +233,7 @@ el:
         destroy_domain_allow: Διαγραφή Επιτρεπτού Τομέα
         destroy_domain_block: Διαγραφή Αποκλεισμού Τομέα
         destroy_email_domain_block: Διαγραφή Αποκλεισμένου Τομέα email
+        destroy_instance: Εκκαθάριση Τομέα
         destroy_ip_block: Διαγραφή κανόνα IP
         destroy_status: Διαγραφή Κατάστασης
         disable_2fa_user: Απενεργοποίηση 2FA
@@ -249,6 +252,7 @@ el:
         silence_account: Σίγαση Λογαριασμού
         suspend_account: Αναστολή Λογαριασμού
         unassigned_report: Αποδέσμευση Καταγγελίας
+        unblock_email_account: Ξεμπλοκάρισμα διεύθυνσης email
         unsensitive_account: Αφαίρεση σήμανσης των πολυμέσων στον λογαριασμό σας ως ευαίσθητων
         unsilence_account: Άρση Σίγασης Λογαριασμού
         unsuspend_account: Άρση Αναστολής Λογαριασμού
@@ -257,7 +261,9 @@ el:
         update_status: Ενημέρωση Κατάστασης
       actions:
         approve_user_html: "%{name} εγκρίθηκε εγγραφή από %{target}"
+        destroy_instance_html: "Ο/Η %{name} εκκαθάρισε τον τομέα %{target}"
         reject_user_html: "%{name} απορρίφθηκε εγγραφή από %{target}"
+        unblock_email_account_html: "%{name} ξεμπλόκαρε τη διεύθυνση ηλεκτρονικού ταχυδρομείου του %{target}"
       deleted_status: "(διαγραμμένη δημοσίευση)"
       empty: Δεν βρέθηκαν αρχεία καταγραφής.
       filter_by_action: Φιλτράρισμα ανά ενέργεια
@@ -387,7 +393,9 @@ el:
       status: Κατάσταση
     instances:
       by_domain: Τομέας
+      confirm_purge: Είστε βέβαιοι ότι θέλετε να διαγράψετε μόνιμα τα δεδομένα από αυτόν τον τομέα;
       delivery_available: Διαθέσιμη παράδοση
+      destroyed_msg: Τα δεδομένα από το %{domain} βρίσκονται σε αναμονή για επικείμενη διαγραφή.
       empty: Δεν βρέθηκαν τομείς.
       known_accounts:
         one: "%{count} γνωστός λογαριασμός"
@@ -398,6 +406,7 @@ el:
         title: Διαμεσολάβηση
       private_comment: Ιδιωτικό σχόλιο
       public_comment: Δημόσιο σχόλιο
+      purge: Εκκαθάριση
       title: Γνωστοί κόμβοι
       total_blocked_by_us: Μπλοκάρονται από εμάς
       total_followed_by_them: Ακολουθούνται από εκείνους
