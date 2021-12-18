@@ -28,9 +28,30 @@ Rails.application.configure do
   end
 
   unless Rails.env.test?
+    response_app = ->(env) do
+      request = ActionDispatch::Request.new(env)
+
+      body = "Blocked host: #{request.host}. To allow requests to #{request.host}, add it to config.hosts.\n"
+
+      status  = 403
+      headers = {
+        'Content-Type' => "text/plain; charset=#{ActionDispatch::Response.default_charset}",
+        'Content-Length' => body.bytesize.to_s,
+      }
+
+      if request.request_method == 'GET'
+        status = 307
+        headers['Location'] = "#{request.scheme}://#{web_host}#{request.fullpath}"
+      end
+
+      Rails.logger.warn("[HostAuthorization] Invalid host: #{request.host}.")
+
+      [status, headers, [body]]
+    end
+
     config.hosts << host if host.present?
     config.hosts << web_host if web_host.present?
     config.hosts.concat(alternate_domains) if alternate_domains.present?
-    config.host_authorization = { exclude: ->(request) { request.path == '/health' } }
+    config.host_authorization = { response_app: response_app, exclude: ->(request) { request.path == '/health' } }
   end
 end
