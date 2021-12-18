@@ -2,17 +2,57 @@
   Blocked host:
   = host
 
+- content_for :header_tags do
+  :javascript
+    document.addEventListener('DOMContentLoaded', function() {
+      const expected_host = #{json_escape(host.to_json)};
+
+      if (window.location.hostname !== expected_host) {
+        const p1 = document.getElementById('reverse-proxy');
+        const p2 = document.getElementById('env-variables');
+        const parent = p1.parentNode;
+
+        // Swap both paragraphs
+        parent.removeChild(p1);
+        parent.insertBefore(p1, p2);
+
+        // Replace start of paragraph with more affirmative content
+        const newPrelude = document.createElement('span');
+        newPrelude.appendChild(document.createTextNode('If you are the server administrator and '));
+        const c1 = document.createElement('code');
+        c1.appendChild(document.createTextNode(expected_host));
+        newPrelude.appendChild(c1);
+        newPrelude.appendChild(document.createTextNode(' is not the intended domain name but '));
+        const c2 = document.createElement('code');
+        c2.appendChild(document.createTextNode(window.location.hostname));
+        newPrelude.appendChild(c2);
+        newPrelude.appendChild(document.createTextNode(' is, then your reverse-proxy is almost certainly misconfigured. Check'));
+
+        const prelude = document.getElementById('reverse-proxy-prelude');
+        prelude.parentNode.replaceChild(newPrelude, prelude);
+
+        // Remove duplicate prelude
+        const prelude2 = document.getElementById('env-variables-prelude');
+        prelude2.parentNode.removeChild(prelude2);
+      }
+    });
+
 - content_for :content do
   :plain
-    <h1>Blocked host: <code>#{host}</code></h1>
+    <h1>Blocked host: #{host}</h1>
 
     <p>
-      It appears you have tried accessing your Mastodon server using a different name (<code>#{host}</code>) than defined in the <code>LOCAL_DOMAIN</code>
-      and <code>WEB_DOMAIN</code> environment variables.
+      It appears you have tried accessing this Mastodon server using a different name (<code>#{host}</code>) than defined in its configuration.
+      If you are a user of this server, try reaching out to a server administrator.
     </p>
 
-    <p>
-      If that's not the case, check your reverse-proxy configuration to ensure it properly sets the <code>Host</code> header.
+    <p id='env-variables'>
+      If <span id='env-variables-prelude'>you are the server administrator and</span> <code>#{host}</code> is the intended domain name for this server, please check the <code>LOCAL_DOMAIN</code>
+      and <code>WEB_DOMAIN</code> environment variables for typos or other errors.
+    </p>
+
+    <p id='reverse-proxy'>
+      <span id='reverse-proxy-prelude'>If <code>#{host}</code> is not the intended domain name for your server, please check</span> your reverse-proxy configuration to ensure it properly sets the <code>Host</code> header.
     </p>
 
     <p>
