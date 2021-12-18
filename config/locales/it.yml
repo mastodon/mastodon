@@ -207,6 +207,8 @@ it:
       suspension_irreversible: I dati di questo account sono stati cancellati in modo irreversibile. È possibile annullare la sospensione dell'account per renderlo utilizzabile, ma non recupererà alcuno dei dati precedenti.
       suspension_reversible_hint_html: L'account è stato sospeso e i dati saranno completamente eliminati il %{date}. Fino ad allora, l'account può essere ripristinato senza effetti negativi. Se si desidera eliminare immediatamente tutti i dati dell'account, è possibile farlo qui sotto.
       title: Account
+      unblock_email: Sblocca indirizzo email
+      unblocked_email_msg: Indirizzo email di %{username} sbloccato
       unconfirmed_email: Email non confermata
       undo_sensitized: Annulla sensibile
       undo_silenced: Rimuovi silenzia
@@ -239,6 +241,7 @@ it:
         destroy_domain_allow: Cancella permesso di dominio
         destroy_domain_block: Cancella blocco di dominio
         destroy_email_domain_block: Cancella blocco dominio e-mail
+        destroy_instance: Ripulisci dominio
         destroy_ip_block: Elimina regola IP
         destroy_status: Cancella stato
         destroy_unavailable_domain: Elimina dominio non disponibile
@@ -260,6 +263,7 @@ it:
         silence_account: Silenzia account
         suspend_account: Sospendi account
         unassigned_report: Disassegna report
+        unblock_email_account: Sblocca indirizzo email
         unsensitive_account: Deseleziona il media nel tuo profilo come sensibile
         unsilence_account: De-silenzia account
         unsuspend_account: Annulla la sospensione dell'account
@@ -286,6 +290,7 @@ it:
         destroy_domain_allow_html: "%{name} ha negato la federazione al dominio %{target}"
         destroy_domain_block_html: "%{name} ha sbloccato dominio %{target}"
         destroy_email_domain_block_html: "%{name} ha sbloccato il dominio e-mail %{target}"
+        destroy_instance_html: "%{name} ha ripulito il dominio %{target}"
         destroy_ip_block_html: "%{name} ha eliminato la regola per l'IP %{target}"
         destroy_status_html: "%{name} ha eliminato lo status di %{target}"
         destroy_unavailable_domain_html: "%{name} ha ripreso la consegna al dominio %{target}"
@@ -307,6 +312,7 @@ it:
         silence_account_html: "%{name} ha silenziato l'account di %{target}"
         suspend_account_html: "%{name} ha sospeso l'account di %{target}"
         unassigned_report_html: "%{name} ha disassegnato il rapporto %{target}"
+        unblock_email_account_html: "%{name} ha sbloccato l'indirizzo email di %{target}"
         unsensitive_account_html: "%{name} ha annullato il segnare il media di %{target} come sensibile"
         unsilence_account_html: "%{name} ha riattivato l'account di %{target}"
         unsuspend_account_html: "%{name} ha annullato la sospensione dell'account di %{target}"
@@ -464,6 +470,7 @@ it:
       back_to_limited: Limitato
       back_to_warning: Avviso
       by_domain: Dominio
+      confirm_purge: Sei sicuro di voler cancellare definitivamente i dati di questo dominio?
       delivery:
         all: Tutto
         clear: Cancella errori di consegna
