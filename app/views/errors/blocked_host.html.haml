@@ -1,0 +1,20 @@
+- content_for :page_title do
+  Blocked host:
+  = host
+
+- content_for :content do
+  :plain
+    <h1>Blocked host: <code>#{host}</code></h1>
+
+    <p>
+      It appears you have tried accessing your Mastodon server using a different name (<code>#{host}</code>) than defined in the <code>LOCAL_DOMAIN</code>
+      and <code>WEB_DOMAIN</code> environment variables.
+    </p>
+
+    <p>
+      If that's not the case, check your reverse-proxy configuration to ensure it properly sets the <code>Host</code> header.
+    </p>
+
+    <p>
+      If you want to allow requests to <code>#{host}</code> without making it the primary domain name for your Mastodon instance, add it to the <code>ALTERNATE_DOMAINS</code> environment variable.
+    </p>

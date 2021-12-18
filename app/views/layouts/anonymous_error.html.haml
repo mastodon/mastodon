@@ -1,0 +1,34 @@
+!!!
+%html{ lang: I18n.locale }
+  %head
+    %meta{ content: 'text/html; charset=UTF-8', 'http-equiv' => 'Content-Type' }/
+    %meta{ charset: 'utf-8' }/
+    %title= yield(:page_title)
+    %meta{ content: 'width=device-width,initial-scale=1', name: 'viewport' }/
+
+    :css
+      body.error {
+        position: absolute;
+        color: #9baec8;
+        background: #282c37;
+        width: 100%;
+        height: 100%;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+        font-family: sans-serif;
+        font-size: 14px;
+      }
+
+      body.error .dialog h1 {
+        text-align: center;
+        font-size: 20px;
+        line-height: 28px;
+        font-weight: 400;
+      }
+
+  %body.error
+    .dialog
+      .dialog__message= yield :content

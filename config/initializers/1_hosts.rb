@@ -31,22 +31,15 @@ Rails.application.configure do
     response_app = ->(env) do
       request = ActionDispatch::Request.new(env)
 
-      body = "Blocked host: #{request.host}. To allow requests to #{request.host}, add it to config.hosts.\n"
+      body = ApplicationController.renderer.render 'errors/blocked_host', layout: 'anonymous_error', locals: { host: request.host }, formats: [:html]
 
       status  = 403
       headers = {
-        'Content-Type' => "text/plain; charset=#{ActionDispatch::Response.default_charset}",
+        'Content-Type' => "text/html; charset=#{ActionDispatch::Response.default_charset}",
         'Content-Length' => body.bytesize.to_s,
       }
 
-      if request.request_method == 'GET'
-        status = 307
-        headers['Location'] = "#{request.scheme}://#{web_host}#{request.fullpath}"
-      end
-
-      Rails.logger.warn("[HostAuthorization] Invalid host: #{request.host}.")
-
-      [status, headers, [body]]
+      [403, headers, [body]]
     end
 
     config.hosts << host if host.present?
