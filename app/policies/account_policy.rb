@@ -64,4 +64,8 @@ class AccountPolicy < ApplicationPolicy
   def memorialize?
     admin? && !record.user&.admin? && !record.instance_actor?
   end
+
+  def unblock_email?
+    staff?
+  end
 end

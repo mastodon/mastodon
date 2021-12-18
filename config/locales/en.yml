@@ -208,6 +208,8 @@ en:
       suspension_irreversible: The data of this account has been irreversibly deleted. You can unsuspend the account to make it usable but it will not recover any data it previously had.
       suspension_reversible_hint_html: The account has been suspended, and the data will be fully removed on %{date}. Until then, the account can be restored without any ill effects. If you wish to remove all of the account's data immediately, you can do so below.
       title: Accounts
+      unblock_email: Unblock email address
+      unblocked_email_msg: Successfully unblocked %{username}'s email address
       unconfirmed_email: Unconfirmed email
       undo_sensitized: Undo force-sensitive
       undo_silenced: Undo limit
@@ -240,6 +242,7 @@ en:
         destroy_domain_allow: Delete Domain Allow
         destroy_domain_block: Delete Domain Block
         destroy_email_domain_block: Delete E-mail Domain Block
+        destroy_instance: Purge Domain
         destroy_ip_block: Delete IP rule
         destroy_status: Delete Post
         destroy_unavailable_domain: Delete Unavailable Domain
@@ -261,6 +264,7 @@ en:
         silence_account: Limit Account
         suspend_account: Suspend Account
         unassigned_report: Unassign Report
+        unblock_email_account: Unblock email address
         unsensitive_account: Undo Force-Sensitive Account
         unsilence_account: Undo Limit Account
         unsuspend_account: Unsuspend Account
@@ -287,6 +291,7 @@ en:
         destroy_domain_allow_html: "%{name} disallowed federation with domain %{target}"
         destroy_domain_block_html: "%{name} unblocked domain %{target}"
         destroy_email_domain_block_html: "%{name} unblocked e-mail domain %{target}"
+        destroy_instance_html: "%{name} purged domain %{target}"
         destroy_ip_block_html: "%{name} deleted rule for IP %{target}"
         destroy_status_html: "%{name} removed post by %{target}"
         destroy_unavailable_domain_html: "%{name} resumed delivery to domain %{target}"
@@ -308,6 +313,7 @@ en:
         silence_account_html: "%{name} limited %{target}'s account"
         suspend_account_html: "%{name} suspended %{target}'s account"
         unassigned_report_html: "%{name} unassigned report %{target}"
+        unblock_email_account_html: "%{name} unblocked %{target}'s email address"
         unsensitive_account_html: "%{name} unmarked %{target}'s media as sensitive"
         unsilence_account_html: "%{name} undid limit of %{target}'s account"
         unsuspend_account_html: "%{name} unsuspended %{target}'s account"
@@ -465,6 +471,7 @@ en:
       back_to_limited: Limited
       back_to_warning: Warning
       by_domain: Domain
+      confirm_purge: Are you sure you want to permanently delete data from this domain?
       delivery:
         all: All
         clear: Clear delivery errors
@@ -480,6 +487,7 @@ en:
       delivery_available: Delivery is available
       delivery_error_days: Delivery error days
       delivery_error_hint: If delivery is not possible for %{count} days, it will be automatically marked as undeliverable.
+      destroyed_msg: Data from %{domain} is now queued for imminent deletion.
       empty: No domains found.
       known_accounts:
         one: "%{count} known account"
@@ -490,6 +498,7 @@ en:
         title: Moderation
       private_comment: Private comment
       public_comment: Public comment
+      purge: Purge
       title: Federation
       total_blocked_by_us: Blocked by us
       total_followed_by_them: Followed by them
