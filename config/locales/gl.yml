@@ -206,6 +206,8 @@ gl:
       suspension_irreversible: Elimináronse de xeito irreversible os datos desta conta. Podes reactivar a conta para facela usable novamente pero non recuperará os datos eliminados.
       suspension_reversible_hint_html: Esta conta foi suspendida, e os datos serán totalmente eliminados o %{date}. Ata entón, a conta pode ser restaurada sen danos. Se desexas eliminar agora mesmo todos os datos da conta, podes facelo aquí embaixo.
       title: Contas
+      unblock_email: Desbloquear enderezo de email
+      unblocked_email_msg: Enderezo de email de %{username} desbloqueado
       unconfirmed_email: Email non confirmado
       undo_sensitized: Desmarcar sensible
       undo_silenced: Desfacer acalar
@@ -238,6 +240,7 @@ gl:
         destroy_domain_allow: Eliminar permiso de dominio
         destroy_domain_block: Eliminar bloqueo de dominio
         destroy_email_domain_block: Eliminar bloqueo de dominio de correo electrónico
+        destroy_instance: Purgar Dominio
         destroy_ip_block: Eliminar regra IP
         destroy_status: Eliminar publicación
         destroy_unavailable_domain: Eliminar dominio Non dispoñible
@@ -259,6 +262,7 @@ gl:
         silence_account: Silenciar conta
         suspend_account: Suspender conta
         unassigned_report: Desasignar denuncia
+        unblock_email_account: Desbloquear enderezo de email
         unsensitive_account: Retira a marca de sensible do multimedia da conta
         unsilence_account: Deixar de silenciar conta
         unsuspend_account: Retirar suspensión de conta
@@ -285,6 +289,7 @@ gl:
         destroy_domain_allow_html: "%{name} retirou a federación co dominio %{target}"
         destroy_domain_block_html: "%{name} desbloqueou o dominio %{target}"
         destroy_email_domain_block_html: "%{name} desbloqueou o dominio de email %{target}"
+        destroy_instance_html: "%{name} purgou o dominio %{target}"
         destroy_ip_block_html: "%{name} eliminou a regra para o IP %{target}"
         destroy_status_html: "%{name} eliminou a publicación de %{target}"
         destroy_unavailable_domain_html: "%{name} retomou a interacción co dominio %{target}"
@@ -306,6 +311,7 @@ gl:
         silence_account_html: "%{name} acalou a conta de %{target}"
         suspend_account_html: "%{name} suspendeu a conta de %{target}"
         unassigned_report_html: "%{name} quitoulle a asignación á denuncia %{target}"
+        unblock_email_account_html: "%{name} desbloqueou o enderezo de email de %{target}"
         unsensitive_account_html: "%{name} desmarcou como sensible o multimedia de %{target}"
         unsilence_account_html: "%{name} reactivou a conta de %{target}"
         unsuspend_account_html: "%{name} retiroulle a suspensión á conta de %{target}"
