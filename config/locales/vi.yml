@@ -203,6 +203,8 @@ vi:
       suspension_irreversible: Toàn bộ dữ liệu của người dùng này sẽ bị xóa hết. Bạn vẫn có thể ngừng vô hiệu hóa nhưng dữ liệu sẽ không thể phục hồi.
       suspension_reversible_hint_html: Mọi dữ liệu của người này sẽ bị xóa sạch vào %{date}. Trước thời hạn này, dữ liệu vẫn có thể phục hồi. Nếu bạn muốn xóa dữ liệu của người này ngay lập tức, hãy tiếp tục.
       title: Tài khoản
+      unblock_email: Mở khóa địa chỉ email
+      unblocked_email_msg: Mở khóa thành công địa chỉ email của %{username}
       unconfirmed_email: Email chưa được xác thực
       undo_sensitized: Đánh dấu bình thường
       undo_silenced: Bỏ hạn chế
@@ -235,6 +237,7 @@ vi:
         destroy_domain_allow: Xóa máy chủ cho phép
         destroy_domain_block: Xóa máy chủ đã chặn
         destroy_email_domain_block: Xóa tên miền email đã chặn
+        destroy_instance: Thanh trừng máy chủ
         destroy_ip_block: Xóa IP đã chặn
         destroy_status: Xóa tút
         destroy_unavailable_domain: Xóa máy chủ không khả dụng
@@ -256,6 +259,7 @@ vi:
         silence_account: Đánh dấu hạn chế
         suspend_account: Đánh dấu vô hiệu hóa
         unassigned_report: Báo cáo chưa xử lý
+        unblock_email_account: Mở khóa địa chỉ email
         unsensitive_account: 'Bỏ nhạy cảm'
         unsilence_account: Bỏ hạn chế
         unsuspend_account: Bỏ vô hiệu hóa
@@ -282,6 +286,7 @@ vi:
         destroy_domain_allow_html: "%{name} đã ngừng liên hợp với %{target}"
         destroy_domain_block_html: "%{name} bỏ chặn tên miền email %{target}"
         destroy_email_domain_block_html: "%{name} bỏ chặn tên miền email %{target}"
+        destroy_instance_html: "%{name} thanh trừng máy chủ %{target}"
         destroy_ip_block_html: "%{name} bỏ chặn IP %{target}"
         destroy_status_html: "%{name} đã xóa tút của %{target}"
         destroy_unavailable_domain_html: "%{name} tiếp tục phân phối với máy chủ %{target}"
@@ -303,6 +308,7 @@ vi:
         silence_account_html: "%{name} đã ẩn %{target}"
         suspend_account_html: "%{name} đã vô hiệu hóa %{target}"
         unassigned_report_html: "%{name} đã xử lý báo cáo %{target} chưa xử lí"
+        unblock_email_account_html: "%{name} mở khóa địa chỉ email của %{target}"
         unsensitive_account_html: "%{name} đánh dấu nội dung của %{target} là bình thường"
         unsilence_account_html: "%{name} đã bỏ ẩn %{target}"
         unsuspend_account_html: "%{name} đã ngừng vô hiệu hóa %{target}"
@@ -371,6 +377,12 @@ vi:
       media_storage: Dung lượng lưu trữ
       new_users: người dùng mới
       opened_reports: báo cáo chưa xử lí
+      pending_reports_html:
+        other: "<strong>%{count}</strong> báo cáo đang chờ"
+      pending_tags_html:
+        other: "<strong>%{count}</strong> hashtag đang chờ"
+      pending_users_html:
+        other: "<strong>%{count}</strong> người dùng đang chờ"
       resolved_reports: báo cáo đã xử lí
       software: Phần mềm
       sources: Nguồn đăng ký
@@ -450,6 +462,7 @@ vi:
       back_to_limited: Hạn chế
       back_to_warning: Cảnh báo
       by_domain: Máy chủ
+      confirm_purge: Bạn có chắc chắn muốn xóa dữ liệu từ máy chủ này vĩnh viễn?
       delivery:
         all: Toàn bộ
         clear: Xóa phân phối lỗi
@@ -464,6 +477,7 @@ vi:
       delivery_available: Cho phép liên kết
       delivery_error_days: Ngày lỗi phân phối
       delivery_error_hint: Nếu không thể phân phối sau %{count} ngày, nó sẽ tự dộng đánh dấu là không thể phân phối.
+      destroyed_msg: Dữ liệu từ %{domain} đã lên lịch để xóa.
       empty: Không có máy chủ nào.
       known_accounts:
         other: "%{count} tài khoản đã biết"
@@ -473,6 +487,7 @@ vi:
         title: Kiểm duyệt
       private_comment: Bình luận riêng
       public_comment: Bình luận công khai
+      purge: Thanh trừng
       title: Mạng liên hợp
       total_blocked_by_us: Bị chặn bởi chúng ta
       total_followed_by_them: Được họ theo dõi
