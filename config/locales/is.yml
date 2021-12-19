@@ -290,6 +290,7 @@ is:
         destroy_domain_allow_html: "%{name} bannaði skýjasamband með léninu %{target}"
         destroy_domain_block_html: "%{name} aflétti útilokun af léninu %{target}"
         destroy_email_domain_block_html: "%{name} aflétti útilokun af póstléninu %{target}"
+        destroy_instance_html: "%{name} henti léninu %{target}"
         destroy_ip_block_html: "%{name} eyddi reglu fyrir IP-vistfangið %{target}"
         destroy_status_html: "%{name} fjarlægði stöðufærslu frá %{target}"
         destroy_unavailable_domain_html: "%{name} hóf aftur afhendingu til lénsins %{target}"
@@ -311,6 +312,7 @@ is:
         silence_account_html: "%{name} þaggaði niður í aðgangnum %{target}"
         suspend_account_html: "%{name} setti notandaaðganginn %{target} í bið"
         unassigned_report_html: "%{name} fjarlægði úthlutun af kæru %{target}"
+        unblock_email_account_html: "%{name} opnaði á tölvupóstfangið %{target}"
         unsensitive_account_html: "%{name} tók merkinguna viðkvæmt af myndefni frá %{target}"
         unsilence_account_html: "%{name} hætti að hylja notandaaðganginn %{target}"
         unsuspend_account_html: "%{name} tók notandaaðganginn %{target} úr bið"
@@ -379,6 +381,15 @@ is:
       media_storage: Geymsla myndefnis
       new_users: nýir notendur
       opened_reports: kærur opnaðar
+      pending_reports_html:
+        one: "<strong>1</strong> kæra í bið"
+        other: "<strong>%{count}</strong> kærur í bið"
+      pending_tags_html:
+        one: "<strong>1</strong> myllumerki í bið"
+        other: "<strong>%{count}</strong> myllumerki í bið"
+      pending_users_html:
+        one: "<strong>1</strong> notandi í bið"
+        other: "<strong>%{count}</strong> notendur í bið"
       resolved_reports: kærur leystar
       software: Hugbúnaður
       sources: Uppruni nýskráninga
