@@ -16,6 +16,7 @@ br:
       confirmation_instructions:
         action: Gwiriekaat ar chomlec'h postel
         action_with_app: Kadarnaat ha distroiñ da %{app}
+        subject: 'Mastodon: kemennoù kadarnadur evit %{instance}'
         title: Gwiriekaat ar chomlec'h postel
       email_changed:
         subject: 'Mastodoñ : Postel kemmet'
@@ -26,16 +27,22 @@ br:
         title: Ger-tremen kemmet
       reconfirmation_instructions:
         explanation: Kadarnait ar chomlec'h nevez evit cheñch ho postel.
+        extra: Ma ne oa ket lañset ar cheñchamant-se ganeoc'h, dianavezit ar postel-mañ. Chomlec'h-postel ar c'hont Mastodon ne vo ket cheñchet keit ha ma c'hlikit ar lec'hienn a-us.
         subject: 'Mastodoñ : Kadarnait ar postel evit %{instance}'
         title: Gwiriekaat ar chomlec'h postel
       reset_password_instructions:
         action: Cheñch ar ger-tremen
         explanation: Goulennet ho peus ur ger-tremen nevez evit ho kont.
+        subject: 'Mastodon: Adkorañ kemennoù ar ger-tremen'
         title: Adderaouekaat ar ger-tremen
       two_factor_disabled:
+        subject: 'Mastodon: dilesadur dre eil-elfenn nac''het'
         title: 2FA diweredekaet
       two_factor_enabled:
+        subject: 'Mastodon: dilesadur dre eil-elfenn aotreet'
         title: 2FA gweredekaet
+      two_factor_recovery_codes_changed:
+        subject: 'Mastodon: kod adtapout dre eil-elfenn a zo adgrouet'
       unlock_instructions:
         subject: 'Mastodon: Dikrouilhiñ kemennoù'
       webauthn_credential:
