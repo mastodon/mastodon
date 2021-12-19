@@ -207,6 +207,8 @@ tr:
       suspension_irreversible: Bu hesabın verileri geri dönüşümsüz olarak silindi. Hesabı kullanılabilir hale getirmek için hesabın askıya alınmasını kaldırabilirsiniz, ancak daha önce sahip olduğu herhangi bir veri kurtarılamaz.
       suspension_reversible_hint_html: Hesap askıya alındı ve veriler %{date} tarihinde tamamen kaldırılacak. O zamana kadar, hesap herhangi bir olumsuz etki olmaksızın geri yüklenebilir. Hesabın tüm verilerini hemen kaldırmak isterseniz, bunu aşağıdan yapabilirsiniz.
       title: Hesaplar
+      unblock_email: E-posta adresinin engelini kaldır
+      unblocked_email_msg: '%{username} kişisinin e-posta adresinin engeli başarıyla kaldırıldı'
       unconfirmed_email: Onaylanmamış e-posta
       undo_sensitized: Hassaslığı geri al
       undo_silenced: Susturmayı geri al
@@ -239,6 +241,7 @@ tr:
         destroy_domain_allow: İzin Verilen Alan Adını Sil
         destroy_domain_block: Engellenen Alan Adını Sil
         destroy_email_domain_block: E-posta alan adı engelini sil
+        destroy_instance: Alan adını temizle
         destroy_ip_block: IP kuralını sil
         destroy_status: Durumu Sil
         destroy_unavailable_domain: Mevcut Olmayan Alan Adı Sil
@@ -260,6 +263,7 @@ tr:
         silence_account: Hesabı Sustur
         suspend_account: Hesabı Askıya Al
         unassigned_report: Rapor Atamasını Kaldır
+        unblock_email_account: E-posta adresinin engelini kaldır
         unsensitive_account: Hesabınızdaki medyayı hassas olarak işaretlemeyin
         unsilence_account: Hesabın Sesini Aç
         unsuspend_account: Hesabı Askıdan Kaldır
@@ -286,6 +290,7 @@ tr:
         destroy_domain_allow_html: "%{name}, %{target} alan adıyla birlik iznini kaldırdı"
         destroy_domain_block_html: "%{name}, %{target} alan adı engelini kaldırdı"
         destroy_email_domain_block_html: "%{name}, %{target} e-posta alan adı engelini kaldırdı"
+        destroy_instance_html: "%{name}, %{target} alan adını temizledi"
         destroy_ip_block_html: "%{name}, %{target} IP adresi kuralını sildi"
         destroy_status_html: "%{name}, %{target} kullanıcısının gönderisini kaldırdı"
         destroy_unavailable_domain_html: "%{name}, %{target} alan adına teslimatı sürdürdü"
@@ -307,6 +312,7 @@ tr:
         silence_account_html: "%{name}, %{target} kullanıcısının hesabını sessize aldı"
         suspend_account_html: "%{name}, %{target} kullanıcısının hesabını askıya aldı"
         unassigned_report_html: "%{name}, %{target} şikayetinin atamasını kaldırdı"
+        unblock_email_account_html: "%{name}, %{target} kişisinin e-posta adresinin engelini kaldırdı"
         unsensitive_account_html: "%{name}, %{target} kullanıcısının medyasının hassas işaretini kaldırdı"
         unsilence_account_html: "%{name}, %{target} kullanıcısının hesabının sessizliğini kaldırdı"
         unsuspend_account_html: "%{name}, %{target} kullanıcısının hesabının askı durumunu kaldırdı"
@@ -464,6 +470,7 @@ tr:
       back_to_limited: Sınırlı
       back_to_warning: Uyarı
       by_domain: Alan adı
+      confirm_purge: Bu alan adından verileri kalıcı olarak silmek istediğinizden emin misin?
       delivery:
         all: Tümü
         clear: Teslimat hatalarını temizle
@@ -479,6 +486,7 @@ tr:
       delivery_available: Teslimat mevcut
       delivery_error_days: Teslimat hatası günleri
       delivery_error_hint: Eğer teslimat %{count} gün boyunca mümkün olmazsa, otomatik olarak teslim edilemiyor olarak işaretlenecek.
+      destroyed_msg: '%{domain} alan adından veriler hemen silinmek üzere kuyruğa alındı.'
       empty: Alan adı bulunamadı.
       known_accounts:
         one: "%{count} bilinen hesap"
@@ -489,6 +497,7 @@ tr:
         title: Denetim
       private_comment: Özel yorum
       public_comment: Genel yorum
+      purge: Temizle
       title: Bilinen Sunucular
       total_blocked_by_us: Tarafımızca engellenen
       total_followed_by_them: Onlar tarafından takip edilen
