@@ -217,6 +217,7 @@ vi:
       whitelisted: Danh sách trắng
     action_logs:
       action_types:
+        approve_user: Phê duyệt người dùng
         assigned_to_self_report: Tự xử lý báo cáo
         change_email_user: Đổi email
         confirm_user: Xác thực
@@ -246,6 +247,7 @@ vi:
         enable_user: Kích hoạt lại người dùng
         memorialize_account: Đánh dấu tưởng niệm
         promote_user: Chỉ định vai trò
+        reject_user: Từ chối người dùng
         remove_avatar_user: Xóa ảnh đại diện
         reopen_report: Mở lại báo cáo
         reset_password_user: Đặt lại mật khẩu
@@ -262,6 +264,7 @@ vi:
         update_domain_block: Cập nhật máy chủ chặn
         update_status: Cập nhật tút
       actions:
+        approve_user_html: "%{name} đã chấp nhận đăng ký từ %{target}"
         assigned_to_self_report_html: "%{name} tự xử lý báo cáo %{target}"
         change_email_user_html: "%{name} đã thay đổi địa chỉ email cho %{target}"
         confirm_user_html: "%{name} xác nhận địa chỉ email của người dùng %{target}"
@@ -291,6 +294,7 @@ vi:
         enable_user_html: "%{name} mở khóa cho người dùng %{target}"
         memorialize_account_html: "%{name} đã biến tài khoản %{target} thành một trang tưởng niệm"
         promote_user_html: "%{name} chỉ định vai trò cho %{target}"
+        reject_user_html: "%{name} đã từ chối đăng ký từ %{target}"
         remove_avatar_user_html: "%{name} đã xóa ảnh đại diện của %{target}"
         reopen_report_html: "%{name} mở lại báo cáo %{target}"
         reset_password_user_html: "%{name} đặt lại mật khẩu của người dùng %{target}"
@@ -686,18 +690,18 @@ vi:
       disallow: Cấm
       links:
         allow: Liên kết cho phép
-        allow_provider: Nguồn liên kết cho phép
+        allow_provider: Nguồn đăng cho phép
         disallow: Liên kết cấm
-        disallow_provider: Nguồn liên kết cấm
+        disallow_provider: Nguồn đăng bị cấm
         shared_by_over_week:
           other: Chia sẻ bởi %{count} người trong tuần rồi
         title: Liên kết đang là xu hướng
         usage_comparison: Chia sẻ %{today} lần hôm nay, so với %{yesterday} lần hôm qua
       pending_review: Đang chờ
       preview_card_providers:
-        allowed: Liên kết từ nguồn có thể thành xu hướng
-        rejected: Liên kết từ nguồn không thể thành xu hướng
-        title: Nguồn liên kết
+        allowed: Liên kết từ nguồn đăng này có thể thành xu hướng
+        rejected: Liên kết từ nguồn đăng không thể thành xu hướng
+        title: Nguồn đăng
       rejected: Đã cấm
       tags:
         current_score: Chỉ số gần đây %{score}
@@ -708,6 +712,18 @@ vi:
           tag_servers_measure: máy chủ khác
           tag_uses_measure: tổng người dùng
         listable: Có thể đề xuất
+        not_listable: Không thể đề xuất
+        not_trendable: Không xuất hiện xu hướng
+        not_usable: Không được phép dùng
+        peaked_on_and_decaying: Đỉnh điểm %{date}, giờ đang giảm
+        title: Hashtag xu hướng
+        trendable: Có thể xuất hiện thành xu hướng
+        trending_rank: 'Xu hướng #%{rank}'
+        usable: Có thể dùng
+        usage_comparison: Dùng %{today} lần hôm nay, so với %{yesterday} hôm qua
+        used_by_over_week:
+          other: Dùng bởi %{count} người tuần rồi
+      title: Xu hướng
     warning_presets:
       add_new: Thêm mới
       delete: Xóa bỏ
@@ -722,6 +738,16 @@ vi:
       body: "%{reporter} vừa báo cáo %{target}"
       body_remote: Ai đó từ %{domain} đã báo cáo %{target}
       subject: '(%{instance}) Báo cáo #%{id}'
+    new_trending_links:
+      body: Các liên kết này đang là xu hướng hôm nay, nhưng các nguồn đăng của chúng chưa được xem xét trước đây. Chúng sẽ không được hiển thị công khai trừ khi bạn cho phép chúng. Các thông báo khác từ cùng một nguồn đăng sẽ không được tạo.
+      no_approved_links: Hiện tại không có liên kết xu hướng nào được cho phép.
+      requirements: Liên kết xu hướng được cho phép thấp nhất hiện tại là "%{lowest_link_title}" với chỉ số %{lowest_link_score}.
+      subject: Liên kết xu hướng mới chờ duyệt trên %{instance}
+    new_trending_tags:
+      body: 'Các hashtag này đang là xu hướng hôm nay, nhưng chúng chưa được xem xét trước đó. Chúng sẽ không được hiển thị công khai trừ khi bạn cho phép chúng:'
+      no_approved_tags: Hiện tại không có hashtag xu hướng nào được cho phép.
+      requirements: 'Hashtag xu hướng được cho phép thấp nhất hiện tại là #%{lowest_tag_name} với chỉ số %{lowest_tag_score}.'
+      subject: Hashtag xu hướng mới chờ duyệt trên %{instance}
   aliases:
     add_new: Kết nối tài khoản
     created_msg: Tạo thành công một tên hiển thị mới. Bây giờ bạn có thể bắt đầu di chuyển từ tài khoản cũ.
@@ -928,8 +954,10 @@ vi:
     changes_saved_msg: Đã cập nhật thay đổi xong!
     copy: Sao chép
     delete: Xóa
+    none: Trống
     order_by: Sắp xếp
     save_changes: Lưu thay đổi
+    today: hôm nay
     validation_errors:
       other: Đã có %{count} lỗi xảy ra! Xem chi tiết bên dưới
   html_validator:
