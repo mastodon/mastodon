@@ -9,7 +9,11 @@ import ColumnHeader from '../../components/column_header';
 import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
 import { FormattedMessage, defineMessages, injectIntl } from 'react-intl';
 import { connectListStream } from '../../actions/streaming';
-import { expandListTimeline } from '../../actions/timelines';
+import {
+  expandAccountTimeline,
+  expandListTimeline,
+  expandHashtagTimeline,
+} from '../../actions/timelines';
 import { fetchList, deleteList, updateList } from '../../actions/lists';
 import { openModal } from '../../actions/modal';
 import MissingIndicator from '../../components/missing_indicator';
@@ -84,14 +88,22 @@ class ListTimeline extends React.PureComponent {
   };
 
   componentDidMount() {
-    const { dispatch } = this.props;
+    const { dispatch, list } = this.props;
     const { id } = this.props.params;
 
     dispatch(fetchLists());
     dispatch(fetchList(id));
-
-    if (this.list !== undefined) {
+    if (list !== undefined) {
       dispatch(setupListEditor(id));
+
+      const hashtagsUsers = JSON.parse(list.get('hashtags_users'));
+
+      Object.keys(hashtagsUsers.users).forEach((h, i) => {
+        dispatch(expandAccountTimeline(hashtagsUsers.users[h]));
+      });
+      Object.keys(hashtagsUsers.hashtags).forEach((h, i) => {
+        dispatch(expandHashtagTimeline(hashtagsUsers.hashtags[h].substring(1)));
+      });
     }
 
     dispatch(expandListTimeline(id));
@@ -100,11 +112,21 @@ class ListTimeline extends React.PureComponent {
   }
 
   componentDidUpdate() {
-    const { dispatch } = this.props;
+    const { dispatch, list } = this.props;
     const { id } = this.props.params;
 
     dispatch(fetchList(id));
     dispatch(setupListEditor(id));
+    const hashtagsUsers = JSON.parse(list.get('hashtags_users'));
+
+    console.log(hashtagsUsers);
+
+    Object.keys(hashtagsUsers.users).forEach((h, i) => {
+      dispatch(expandAccountTimeline(hashtagsUsers.users[h]));
+    });
+    Object.keys(hashtagsUsers.hashtags).forEach((h, i) => {
+      dispatch(expandHashtagTimeline(hashtagsUsers.hashtags[h].substring(1)));
+    });
   }
 
   componentWillReceiveProps(nextProps) {
