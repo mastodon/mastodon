@@ -2,6 +2,8 @@ br:
   devise:
     confirmations:
       confirmed: Kadarnaet eo bet ho chomlec'h postel gant berzh.
+      send_instructions: Resev a rit ur postel evit displegañ penaos kadarnaat ho chomlec'h-postel tuchantig, Mar plij, gwiriit ho restr strobel ma ne oa ket resevet ar postel-mañ ganeoc'h.
+      send_paranoid_instructions: Ma'z eo ho chomlec'h-postel er stlennvon dija, kaset a vo ur postel deoc'h evit displegañ penaos kadarnaat ho chomlec'h-postel tuchantig. Mar plij, gwiriit ho restr strobel ma ne oa ket resevet ar postel-mañ ganeoc'h.
     failure:
       already_authenticated: Kennasket oc'h dija.
       inactive: N'eo ket gweredekaet ho kont c'hoazh.
@@ -35,6 +37,9 @@ br:
       two_factor_enabled:
         title: 2FA gweredekaet
     passwords:
+      no_token: Ne c'hellit ket mont d'ar bajenn-mañ ma zeuit ket deus ur postel evit adkorañ ur ger-tremen. M'ho peus implijet ur postel evit adkorañ ur ger-tremen, gwiriit oc'h implijet an URL a-bezh.
+      send_instructions: Ma'z eo ho chomlec'h-postel er stlennvon dija, kaset a vo deoc'h ur lec'hienn evit adkorañ ho ker-tremen tuchantig. Mar plij, gwiriit ho restr strobel ma ne oa ket resevet ar postel-mañ ganeoc'h.
+      send_paranoid_instructions: Ma'z eo ho chomlec'h-postel er stlennvon dija, kaset a vo deoc'h ur lec'hienn evit adkorañ ho ker-tremen tuchantig. Mar plij, gwiriit ho restr strobel ma ne oa ket resevet ar postel-mañ ganeoc'h.
       updated: Cheñchet eo bet ho ker-tremen gant berzh. Bremañ oc'h anavezadennet.
       updated_not_active: Kemmet eo bet ho ker-tremen ent reizh.
     registrations:
