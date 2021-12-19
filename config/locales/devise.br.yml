@@ -36,6 +36,23 @@ br:
         title: 2FA diweredekaet
       two_factor_enabled:
         title: 2FA gweredekaet
+      unlock_instructions:
+        subject: 'Mastodon: Dikrouilhiñ kemennoù'
+      webauthn_credential:
+        added:
+          subject: 'Mastodon: alc''hwez surentez nevez-flamm'
+        deleted:
+          subject: 'Mastodon: alc''hwezioù surentez dilamet'
+      webauthn_disabled:
+        subject: 'Mastodon: dilesadur dre alc''hwezioù surentez nac''het'
+        title: Alc'hwezioù surentez nac'het
+      webauthn_enabled:
+        explanation: Dilesadur dre alc'hwez surentez a zo bet aotreet evit ho kont. Hoc'h alc'hwez surentez a c'hell bezañ implijet evit mont-tre.
+        subject: 'Mastodon: dilesadur dre alc''hwezioù surentez aotreet'
+        title: Alc'hwezioù surentez aotreet
+    omniauth_callbacks:
+      failure: Ne c'haller ket bezañ gwiriekaet deus %{kind} abalamour da "%{reason}".
+      success: Gwiriekaet deus kont %{kind} gant berzh.
     passwords:
       no_token: Ne c'hellit ket mont d'ar bajenn-mañ ma zeuit ket deus ur postel evit adkorañ ur ger-tremen. M'ho peus implijet ur postel evit adkorañ ur ger-tremen, gwiriit oc'h implijet an URL a-bezh.
       send_instructions: Ma'z eo ho chomlec'h-postel er stlennvon dija, kaset a vo deoc'h ur lec'hienn evit adkorañ ho ker-tremen tuchantig. Mar plij, gwiriit ho restr strobel ma ne oa ket resevet ar postel-mañ ganeoc'h.
