@@ -10,9 +10,7 @@ import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
 import { FormattedMessage, defineMessages, injectIntl } from 'react-intl';
 import { connectListStream } from '../../actions/streaming';
 import {
-  expandAccountTimeline,
-  expandListTimeline,
-  expandHashtagTimeline,
+  combineTimelines,
 } from '../../actions/timelines';
 import { fetchList, deleteList, updateList } from '../../actions/lists';
 import { openModal } from '../../actions/modal';
@@ -98,15 +96,9 @@ class ListTimeline extends React.PureComponent {
 
       const hashtagsUsers = JSON.parse(list.get('hashtags_users'));
 
-      Object.keys(hashtagsUsers.users).forEach((h, i) => {
-        dispatch(expandAccountTimeline(hashtagsUsers.users[h]));
-      });
-      Object.keys(hashtagsUsers.hashtags).forEach((h, i) => {
-        dispatch(expandHashtagTimeline(hashtagsUsers.hashtags[h].substring(1)));
-      });
+      dispatch(combineTimelines(id, hashtagsUsers));
     }
 
-    dispatch(expandListTimeline(id));
 
     this.disconnect = dispatch(connectListStream(id));
   }
@@ -121,12 +113,7 @@ class ListTimeline extends React.PureComponent {
 
     console.log(hashtagsUsers);
 
-    Object.keys(hashtagsUsers.users).forEach((h, i) => {
-      dispatch(expandAccountTimeline(hashtagsUsers.users[h]));
-    });
-    Object.keys(hashtagsUsers.hashtags).forEach((h, i) => {
-      dispatch(expandHashtagTimeline(hashtagsUsers.hashtags[h].substring(1)));
-    });
+    dispatch(combineTimelines(id, hashtagsUsers));
   }
 
   componentWillReceiveProps(nextProps) {
@@ -140,7 +127,11 @@ class ListTimeline extends React.PureComponent {
       }
 
       dispatch(fetchList(id));
-      dispatch(expandListTimeline(id));
+      const hashtagsUsers = JSON.parse(list.get('hashtags_users'));
+
+      console.log(hashtagsUsers);
+
+      dispatch(combineTimelines(id, hashtagsUsers));
 
       this.disconnect = dispatch(connectListStream(id));
     }
@@ -158,8 +149,12 @@ class ListTimeline extends React.PureComponent {
   };
 
   handleLoadMore = (maxId) => {
+    const { dispatch, list } = this.props;
     const { id } = this.props.params;
-    this.props.dispatch(expandListTimeline(id, { maxId }));
+    const hashtagsUsers = JSON.parse(list.get('hashtags_users'));
+
+    console.log(hashtagsUsers);
+    dispatch(combineTimelines(id, hashtagsUsers, {maxId}));
   };
 
   handleEditClick = () => {

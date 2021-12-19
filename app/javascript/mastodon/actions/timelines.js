@@ -140,6 +140,28 @@ export const expandHashtagTimeline         = (hashtag, { maxId, tags, local } = 
     local:  local,
   }, done);
 };
+export const expandAccountListTimeline         = (id, accountId, { maxId, withReplies } = {}) => expandTimeline(`list:${id}`, `/api/v1/accounts/${accountId}/statuses`, { exclude_replies: !withReplies, max_id: maxId });
+export const expandHashtagListTimeline         = (id, hashtag, { maxId, tags, local } = {}, done = noOp) => {
+  return expandTimeline(`list:${id}`, `/api/v1/timelines/tag/${hashtag}`, {
+    max_id: maxId,
+    any:    parseTags(tags, 'any'),
+    all:    parseTags(tags, 'all'),
+    none:   parseTags(tags, 'none'),
+    local:  local,
+  }, done);
+};
+
+export function combineTimelines(timelineId, hashtagsUsers) {
+  return (dispatch) => {
+
+  Object.keys(hashtagsUsers.users).forEach((h, i) => {
+    dispatch(expandAccountListTimeline(timelineId, hashtagsUsers.users[h]));
+  });
+  Object.keys(hashtagsUsers.hashtags).forEach((h, i) => {
+    dispatch(expandHashtagListTimeline(timelineId, hashtagsUsers.hashtags[h].substring(1)));
+  });
+  }
+}
 
 export function expandTimelineRequest(timeline, isLoadingMore) {
   return {
