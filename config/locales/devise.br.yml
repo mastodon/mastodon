@@ -16,13 +16,17 @@ br:
       confirmation_instructions:
         action: Gwiriekaat ar chomlec'h postel
         action_with_app: Kadarnaat ha distroiñ da %{app}
+        explanation_when_pending: Enskrivañ ho peus d'ur c'hemennad da %{host} gant ar chomlec'h-postel-se. Pa vo kadarnaet ho chomlec'h-postel, hoc'h enskrivadur a vo asantet. Gallout a rit mont-tre evit kemmañ munudoù ho kont pe skarzhañ anezhañ, met ne c'hellit ket implijout ul lod eus an aezamantoù par ma n'eo ket asantet ho kont. Ma vefe hoc'h enskrivadur nac'het, ho keloù a vefe skarzhet, neuze ne vo ket ret deoc'h ober netra ken. Ma ne oa ket ac'hanoc'h, dianavezit ar postel-se.
         subject: 'Mastodon: kemennoù kadarnadur evit %{instance}'
         title: Gwiriekaat ar chomlec'h postel
       email_changed:
+        explanation: 'Chomlec''h-postel ho kont a zo bet kemmet da:'
+        extra: Ma n'ho peus ket kemmet ho postel, e seblant un den bennak en deus gallet mont-tre d'ho kont. Mar plij, kemmit ho ker-tremen hep gortoz, pe kit e darempred gant merer ar servijer ma'z oc'h bac'het e-maez ho kont.
         subject: 'Mastodoñ : Postel kemmet'
         title: Chomlec'h postel nevez
       password_change:
         explanation: Kemmet eo bet ger-tremen ho kont.
+        extra: Ma n'ho peus ket kemmet ho ker-tremen, e seblant un den bennak en deus gallet mont-tre d'ho kont. Mar plij, kemmit ho ker-tremen hep gortoz, pe kit e darempred gant merer ar servijer ma'z oc'h bac'het e-maez ho kont.
         subject: 'Mastodoñ : Ger-tremen kemmet'
         title: Ger-tremen kemmet
       reconfirmation_instructions:
