@@ -16,7 +16,9 @@ br:
       confirmation_instructions:
         action: Gwiriekaat ar chomlec'h postel
         action_with_app: Kadarnaat ha distroiñ da %{app}
+        explanation: Krouet ho peus ur c'hont war %{host} gant ar chomlec'h-postel-mañ. N'eus nemet ur c'hlik evit bevaat anezhañ. Ma ne oa ket krouet ganeoc'h, dianavezit ar postel-se.
         explanation_when_pending: Enskrivañ ho peus d'ur c'hemennad da %{host} gant ar chomlec'h-postel-se. Pa vo kadarnaet ho chomlec'h-postel, hoc'h enskrivadur a vo asantet. Gallout a rit mont-tre evit kemmañ munudoù ho kont pe skarzhañ anezhañ, met ne c'hellit ket implijout ul lod eus an aezamantoù par ma n'eo ket asantet ho kont. Ma vefe hoc'h enskrivadur nac'het, ho keloù a vefe skarzhet, neuze ne vo ket ret deoc'h ober netra ken. Ma ne oa ket ac'hanoc'h, dianavezit ar postel-se.
+        extra_html: Mar plij, gwiriit ivez <a href="%{terms_path}"> reolennoù ar servijer</a> ha <a href="%{policy_path}"> hon divizoù-implij</a>.
         subject: 'Mastodon: kemennoù kadarnadur evit %{instance}'
         title: Gwiriekaat ar chomlec'h postel
       email_changed:
@@ -30,14 +32,14 @@ br:
         subject: 'Mastodoñ : Ger-tremen kemmet'
         title: Ger-tremen kemmet
       reconfirmation_instructions:
-        explanation: Kadarnait ar chomlec'h nevez evit cheñch ho postel.
-        extra: Ma ne oa ket lañset ar cheñchamant-se ganeoc'h, dianavezit ar postel-mañ. Chomlec'h-postel ar c'hont Mastodon ne vo ket cheñchet keit ha ma c'hlikit ar lec'hienn a-us.
+        explanation: Kadarnait ar chomlec'h nevez evit kemmañ ho postel.
+        extra: Ma ne oa ket lañset ar ch'emm-se ganeoc'h, dianavezit ar postel-mañ. Chomlec'h-postel ar c'hont Mastodon ne vo ket kemmet keit ha ma c'hlikit ar lec'hienn a-us.
         subject: 'Mastodoñ : Kadarnait ar postel evit %{instance}'
         title: Gwiriekaat ar chomlec'h postel
       reset_password_instructions:
-        action: Cheñch ar ger-tremen
+        action: Kemmañ ar ger-tremen
         explanation: Goulennet ho peus ur ger-tremen nevez evit ho kont.
-        extra: Ma n'ho peus ket goulennet an dra-se, dianavezit ar postel-mañ. Ho ker-tremen ne cheñcho ket keit ha ma c'hlikit ar lec'hienn a-us ha krouiit unan all.
+        extra: Ma n'ho peus ket goulennet an dra-se, dianavezit ar postel-mañ. Ho ker-tremen ne gemmo ket keit ha ma c'hlikit ar lec'hienn a-us ha krouiit unan all.
         subject: 'Mastodon: Adkorañ kemennoù ar ger-tremen'
         title: Adderaouekaat ar ger-tremen
       two_factor_disabled:
@@ -51,7 +53,7 @@ br:
       two_factor_recovery_codes_changed:
         explanation: Ar c'hodoù adtapout diaraok a zo bet skarzhet ha kodoù nevez krouet.
         subject: 'Mastodon: kod adtapout dre eil-elfenn a zo adgrouet'
-        title: Kod adtapout 2FA a zo bet cheñchet
+        title: Kod adtapout 2FA a zo bet kemmet
       unlock_instructions:
         subject: 'Mastodon: Dikrouilhiñ kemennoù'
       webauthn_credential:
@@ -78,7 +80,7 @@ br:
       no_token: Ne c'hellit ket mont d'ar bajenn-mañ ma zeuit ket deus ur postel evit adkorañ ur ger-tremen. M'ho peus implijet ur postel evit adkorañ ur ger-tremen, gwiriit oc'h implijet an URL a-bezh.
       send_instructions: Ma'z eo ho chomlec'h-postel er stlennvon dija, kaset a vo deoc'h ur lec'hienn evit adkorañ ho ker-tremen tuchantig. Mar plij, gwiriit ho restr strobel ma ne oa ket resevet ar postel-mañ ganeoc'h.
       send_paranoid_instructions: Ma'z eo ho chomlec'h-postel er stlennvon dija, kaset a vo deoc'h ur lec'hienn evit adkorañ ho ker-tremen tuchantig. Mar plij, gwiriit ho restr strobel ma ne oa ket resevet ar postel-mañ ganeoc'h.
-      updated: Cheñchet eo bet ho ker-tremen gant berzh. Bremañ oc'h anavezadennet.
+      updated: Kemmet eo bet ho ker-tremen gant berzh. Bremañ oc'h anavezadennet.
       updated_not_active: Kemmet eo bet ho ker-tremen ent reizh.
     registrations:
       destroyed: Kenavo! Ho kont a zo bet nullet gant berzh. Emichañs e viot adwelet tuchant.
