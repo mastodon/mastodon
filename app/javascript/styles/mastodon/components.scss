@@ -413,6 +413,15 @@
         text-decoration: none;
       }
     }
+
+    &.highlighted {
+      color: $primary-text-color;
+      background: $gold-star;
+
+      a {
+        color: $primary-text-color;
+      }
+    }
   }
 
   .emoji-picker-dropdown {
