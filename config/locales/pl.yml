@@ -249,6 +249,7 @@ pl:
         destroy_domain_allow: Usuń zezwolenie dla domeny
         destroy_domain_block: Usuń blokadę domeny
         destroy_email_domain_block: Usuń blokadę domeny e-mail
+        destroy_instance: Wyczyść domenę
         destroy_ip_block: Usuń regułę IP
         destroy_status: Usuń wpis
         destroy_unavailable_domain: Usuń niedostępną domenę
@@ -270,6 +271,7 @@ pl:
         silence_account: Wycisz konto
         suspend_account: Zawieś konto
         unassigned_report: Cofnij przypisanie zgłoszenia
+        unblock_email_account: Odblokuj adres e-mail
         unsensitive_account: Cofnij oznaczenie zawartości multimedialnej swojego konta jako wrażliwą
         unsilence_account: Cofnij wyciszenie konta
         unsuspend_account: Cofnij zawieszenie konta
@@ -296,6 +298,7 @@ pl:
         destroy_domain_allow_html: "%{name} usunął(-ęła) domenę %{target} z białej listy"
         destroy_domain_block_html: "%{name} odblokował(a) domenę %{target}"
         destroy_email_domain_block_html: "%{name} usunął(-ęła) domenę e-mail %{target} z czarnej listy"
+        destroy_instance_html: "%{name} usunął domenę %{target}"
         destroy_ip_block_html: "%{name} usunął(-ęła) regułę dla IP %{target}"
         destroy_status_html: "%{name} usunął(-ęła) wpis użytkownika %{target}"
         destroy_unavailable_domain_html: "%{name} wznowił(a) doręczanie do domeny %{target}"
@@ -317,6 +320,7 @@ pl:
         silence_account_html: "%{name} wyciszył(a) konto %{target}"
         suspend_account_html: "%{name} zawiesił(a) konto %{target}"
         unassigned_report_html: "%{name} cofnął(-ęła) przypisanie zgłoszenia %{target}"
+        unblock_email_account_html: "%{name} odblokował adres e-mail %{target}"
         unsensitive_account_html: "%{name} cofnął(-ęła) oznaczenie zawartości multimedialnej %{target} jako wrażliwą"
         unsilence_account_html: "%{name} cofnął(-ęła) wyciszenie konta %{target}"
         unsuspend_account_html: "%{name} cofnął(-ęła) zawieszenie konta %{target}"
@@ -477,6 +481,7 @@ pl:
       back_to_limited: Ograniczone
       back_to_warning: Ostrzeżenie
       by_domain: Domena
+      confirm_purge: Czy na pewno chcesz trwale usunąć dane z tej domeny?
       delivery:
         all: Wszystkie
         clear: Wyczyść błędy w doręczaniu
@@ -494,6 +499,7 @@ pl:
       delivery_available: Doręczanie jest dostępne
       delivery_error_days: Dni błędów doręczenia
       delivery_error_hint: Jeżeli doręczanie nie będzie możliwe przez %{count} dni, zostanie automatycznie oznaczona jako nie do doręczania.
+      destroyed_msg: Dane z %{domain} są teraz w kolejce do bezpośredniego usunięcia.
       empty: Nie znaleziono domen.
       known_accounts:
         one: "%{count} znane konto"
@@ -506,6 +512,7 @@ pl:
         title: Moderacja
       private_comment: Prywatny komentarz
       public_comment: Publiczny komentarz
+      purge: Wyczyść
       title: Znane instancje
       total_blocked_by_us: Zablokowane przez nas
       total_followed_by_them: Śledzeni przez nich
