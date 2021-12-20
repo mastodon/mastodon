@@ -207,6 +207,8 @@ hu:
       suspension_irreversible: Ennek a fióknak az adatait visszaállíthatatlanul törölték. Visszavonhatod a fiók felfüggesztését, hogy újra használható legyen, de a régi adatok ettől még nem fognak visszatérni.
       suspension_reversible_hint_html: A fiókot felfüggesztettük, az adatait %{date}-n teljesen eltávolítjuk. Eddig az időpontig a fiók probléma nélkül visszaállítható. Ha mégis azonnal törölni szeretnéd a fiókot, alább megteheted.
       title: Fiókok
+      unblock_email: Email cím tiltásának feloldása
+      unblocked_email_msg: Sikeresen feloldottuk a %{username} email cím tiltását
       unconfirmed_email: Nem megerősített e-mail
       undo_sensitized: Kényesnek jelölés visszavonása
       undo_silenced: Némítás visszavonása
@@ -239,6 +241,7 @@ hu:
         destroy_domain_allow: Domain engedélyezés törlése
         destroy_domain_block: Domain tiltás törlése
         destroy_email_domain_block: E-mail domain tiltás törlése
+        destroy_instance: Domain végleges törlése
         destroy_ip_block: IP szabály törlése
         destroy_status: Bejegyzés törlése
         destroy_unavailable_domain: Elérhetetlen domain törlése
@@ -260,6 +263,7 @@ hu:
         silence_account: Fiók némítása
         suspend_account: Fiók felfüggesztése
         unassigned_report: Jelentés hozzárendelésének megszüntetése
+        unblock_email_account: Email cím tiltásának feloldása
         unsensitive_account: A fiókodban minden média kényesként jelölésének törlése
         unsilence_account: Fiók némításának feloldása
         unsuspend_account: Fiók felfüggesztésének feloldása
@@ -286,6 +290,7 @@ hu:
         destroy_domain_allow_html: "%{name} letiltotta a föderációt a %{target} domainnel"
         destroy_domain_block_html: "%{name} engedélyezte a %{target} domaint"
         destroy_email_domain_block_html: "%{name} engedélyezte a %{target} e-mail domaint"
+        destroy_instance_html: "%{name} véglegesen törölte a %{target} domaint"
         destroy_ip_block_html: "%{name} törölt egy szabályt a %{target} IP-vel kapcsolatban"
         destroy_status_html: "%{name} eltávolította %{target} felhasználó bejegyzését"
         destroy_unavailable_domain_html: "%{name} újraindította a kézbesítést a %{target} domainbe"
@@ -307,6 +312,7 @@ hu:
         silence_account_html: "%{name} lenémította %{target} felhasználói fiókját"
         suspend_account_html: "%{name} felfüggesztette %{target} felhasználói fiókját"
         unassigned_report_html: "%{name} törölte a %{target} bejelentés hozzárendelését"
+        unblock_email_account_html: "%{name} feloldotta %{target} email cím tiltását"
         unsensitive_account_html: "%{name} levette a kényesnek jelölést %{target} médiatartalmáról"
         unsilence_account_html: "%{name} feloldotta a némítást %{target} felhasználói fiókján"
         unsuspend_account_html: "%{name} feloldotta %{target} felhasználói fiókjának felfüggesztését"
@@ -464,6 +470,7 @@ hu:
       back_to_limited: Korlátozott
       back_to_warning: Figyelmeztetés
       by_domain: Domain
+      confirm_purge: Biztos, hogy véglegesen törölni akarod az adatokat ebből a domainből?
       delivery:
         all: Mind
         clear: Kézbesítési hibák törlése
@@ -479,6 +486,7 @@ hu:
       delivery_available: Kézbesítés elérhető
       delivery_error_days: Kézbesítési hiba időtartama
       delivery_error_hint: Ha a kézbesítés lehetetlen %{count} napig, automatikusan kézbesíthetetlennek lesz megjelölve.
+      destroyed_msg: A %{domain} adatait sorbaállítottuk végleges törlésre.
       empty: Nem található domain.
       known_accounts:
         one: "%{count} ismert fiók"
@@ -489,6 +497,7 @@ hu:
         title: Moderáció
       private_comment: Privát megjegyzés
       public_comment: Nyilvános megjegyzés
+      purge: Végleges törlés
       title: Föderáció
       total_blocked_by_us: Általunk letiltott
       total_followed_by_them: Általuk követett
