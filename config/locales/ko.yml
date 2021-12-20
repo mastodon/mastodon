@@ -203,6 +203,8 @@ ko:
       suspension_irreversible: 이 계정의 데이터는 복구할 수 없도록 삭제되었습니다. 계정을 정지 해제함으로서 계정을 다시 사용 가능하게 할 수 있지만 이전에 삭제한 어떤 데이터도 복구되지 않습니다.
       suspension_reversible_hint_html: 계정이 정지되었습니다, 그리고 %{date}에 데이터가 완전히 삭제될 것입니다. 그 때까지는 어떤 안 좋은 효과 없이 계정이 복구 될 수 있습니다. 만약 지금 당장 계정의 모든 데이터를 삭제하고 싶다면, 아래에서 행할 수 있습니다.
       title: 계정
+      unblock_email: 이메일 주소 차단 해제
+      unblocked_email_msg: '%{username}의 이메일 주소를 성공적으로 차단 해제했습니다'
       unconfirmed_email: 미확인 된 이메일 주소
       undo_sensitized: 민감함으로 설정 취소
       undo_silenced: 침묵 해제
@@ -235,6 +237,7 @@ ko:
         destroy_domain_allow: 도메인 허용 삭제
         destroy_domain_block: 도메인 차단 삭제
         destroy_email_domain_block: 이메일 도메인 차단 삭제
+        destroy_instance: 도메인 제거
         destroy_ip_block: IP 규칙 삭제
         destroy_status: 게시물 삭제
         destroy_unavailable_domain: 사용 불가능한 도메인 제거
@@ -256,6 +259,7 @@ ko:
         silence_account: 계정 침묵
         suspend_account: 계정 정지
         unassigned_report: 신고 맡기 취소
+        unblock_email_account: 이메일 주소 차단 해제
         unsensitive_account: 당신의 계정의 미디어를 민감함으로 표시하지 않음
         unsilence_account: 계정 침묵 취소
         unsuspend_account: 계정 정지 취소
@@ -282,6 +286,7 @@ ko:
         destroy_domain_allow_html: "%{name} 님이 %{target} 도메인과의 연합을 금지했습니다"
         destroy_domain_block_html: "%{name} 님이 도메인 %{target}의 차단을 해제했습니다"
         destroy_email_domain_block_html: "%{name} 님이 이메일 도메인 %{target}을 차단 해제하였습니다"
+        destroy_instance_html: "%{name} 님이 도메인 %{target}를 제거했습니다"
         destroy_ip_block_html: "%{name} 님이 IP 규칙 %{target}을 삭제하였습니다"
         destroy_status_html: "%{name} 님이 %{target}의 게시물을 삭제했습니다"
         destroy_unavailable_domain_html: "%{name} 님이 도메인 %{target}에 대한 전달을 재개"
@@ -303,6 +308,7 @@ ko:
         silence_account_html: "%{name} 님이 %{target}의 계정을 침묵시켰습니다"
         suspend_account_html: "%{name} 님이 %{target}의 계정을 정지시켰습니다"
         unassigned_report_html: "%{name} 님이 신고 %{target}을 할당 해제했습니다"
+        unblock_email_account_html: "%{name} 님이 %{target}의 이메일 주소를 차단 해제했습니다."
         unsensitive_account_html: "%{name} 님이 %{target}의 미디어를 민감하지 않음으로 표시했습니다"
         unsilence_account_html: "%{name} 님이 %{target}의 계정에 대한 침묵을 해제했습니다"
         unsuspend_account_html: "%{name} 님이 %{target}의 계정에 대한 정지를 해제했습니다"
@@ -456,6 +462,7 @@ ko:
       back_to_limited: 제한됨
       back_to_warning: 경고
       by_domain: 도메인
+      confirm_purge: 정말로 이 도메인의 데이터를 영구적으로 삭제하길 원하십니까?
       delivery:
         all: 전체
         clear: 전달 에러 초기화
@@ -470,6 +477,7 @@ ko:
       delivery_available: 전송 가능
       delivery_error_days: 전달 에러가 난 날짜들
       delivery_error_hint: 만약 %{count}일동안 전달이 불가능하다면, 자동으로 전달불가로 표시됩니다.
+      destroyed_msg: '%{domain}의 데이터는 곧바로 지워지도록 대기열에 들어갔습니다.'
       empty: 도메인이 하나도 없습니다.
       known_accounts:
         other: "알려진 계정 %{count}개"
@@ -479,6 +487,7 @@ ko:
         title: 중재
       private_comment: 비공개 주석
       public_comment: 공개 주석
+      purge: 제거
       title: 연합
       total_blocked_by_us: 우리에게 차단 됨
       total_followed_by_them: 우리를 팔로우
