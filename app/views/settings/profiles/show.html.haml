@@ -42,8 +42,8 @@
 
         = f.simple_fields_for :fields do |fields_f|
           .row
-            = fields_f.input :name, placeholder: t('simple_form.labels.account.fields.name'), input_html: { maxlength: 255 }
-            = fields_f.input :value, placeholder: t('simple_form.labels.account.fields.value'), input_html: { maxlength: 255 }
+            = fields_f.input :name, placeholder: fields_f.index.zero? ? t('simple_form.labels.account.fields.pronouns.name') : t('simple_form.labels.account.fields.name'), input_html: { maxlength: 255 }
+            = fields_f.input :value, placeholder: fields_f.index.zero? ? t('simple_form.labels.account.fields.pronouns.value') : t('simple_form.labels.account.fields.value'), input_html: { maxlength: 255 }
 
     .fields-row__column.fields-group.fields-row__column-6
       %h6= t('verification.verification')
