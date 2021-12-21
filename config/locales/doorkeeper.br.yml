@@ -10,7 +10,7 @@ br:
         doorkeeper/application:
           attributes:
             redirect_uri:
-              invalid_uri: eo ret bezañ un URI gwiriek.
+              invalid_uri: eo ret bezañ un URI reizh.
               secured_uri: eo ret bezañ un HTTPS/SSL URI.
   doorkeeper:
     applications:
@@ -64,11 +64,20 @@ br:
         revoke: Ha sur oc'h ?
       index:
         application: Arload
+        created_at: Aotreet
         date_format: "%d-%m-%Y %H:%M:%S"
+        title: Hoc'h arloadoù aotreet
     errors:
       messages:
+        access_denied: Perc'henn an danvez pe ar servijer aotre nac'het ar reket.
+        invalid_grant: An aotre pourvezhet a zo direizh, aet da dermen, skarzhet, roet d'un arval all pe ne glot ket gant an URI dazkas implijet.
+        invalid_redirect_uri: An URI dazkas n'eo ket reizh.
+        invalid_request:
+          missing_param: 'Un arventenn a vank: %{value}.'
         invalid_token:
+          expired: Ar jedouer moned a zo aet da dermen
           revoked: Ar jedouer moned a zo skarzhet
+          unknown: Ar jedouer moned a zo direizh
     flash:
       applications:
         create:
