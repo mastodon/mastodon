@@ -26,9 +26,14 @@ br:
         title: Kemmañ an arload
       form:
         error: Hopala! Gwiriit ho frammenn rak fazioù a c'hell bezañ enni
+      help:
+        native_redirect_uri: Implijit %{native_redirect_uri} evit amprouadennoù lec'hel
+        redirect_uri: Implijit ul linenn evit pep URI
       index:
         application: Arload
+        callback_url: URL adc'halv
         delete: Dilemel
+        empty: Arloadoù ebet ganeoc'h.
         name: Anv
         new: Arload nevez
         show: Diskouez
@@ -36,16 +41,34 @@ br:
       new:
         title: Arload nevez
       show:
+        actions: Obererezhioù
+        application_id: Alc'hwez an arval
+        callback_urls: URLoù adc'halv
         title: 'Arload : %{name}'
     authorizations:
       buttons:
         authorize: Aotren
+        deny: Nac'hañ
+      error:
+        title: Ur fazi a zo degouezhet
+      new:
+        able_to: Gallout a raio
+        prompt: Arload %{client_name} a reket moned d'ho kont
+        title: Aotre rekis
+      show:
+        title: Eilennit kod aotre-se ha pegit en arload.
     authorized_applications:
+      buttons:
+        revoke: Skarzhañ
       confirmations:
         revoke: Ha sur oc'h ?
       index:
         application: Arload
         date_format: "%d-%m-%Y %H:%M:%S"
+    errors:
+      messages:
+        invalid_token:
+          revoked: Ar jedouer moned a zo skarzhet
     flash:
       applications:
         create:
