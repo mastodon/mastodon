@@ -300,6 +300,7 @@ pt-BR:
         enable_user_html: "%{name} ativou o login para %{target}"
         memorialize_account_html: "%{name} transformou a conta de %{target} em um memorial"
         promote_user_html: "%{name} promoveu o usuário %{target}"
+        reject_user_html: "%{name} rejeitou a inscrição de %{target}"
         remove_avatar_user_html: "%{name} removeu a imagem de perfil de %{target}"
         reopen_report_html: "%{name} reabriu a denúncia %{target}"
         reset_password_user_html: "%{name} redefiniu a senha de %{target}"
@@ -308,6 +309,7 @@ pt-BR:
         silence_account_html: "%{name} limitou a conta de %{target}"
         suspend_account_html: "%{name} suspendeu a conta de %{target}"
         unassigned_report_html: "%{name} desvinculou a denúncia %{target}"
+        unblock_email_account_html: "%{name} desbloqueou o endereço de e-mail de %{target}"
         unsensitive_account_html: "%{name} desmarcou a mídia de %{target} como sensível"
         unsilence_account_html: "%{name} removeu a limitação da conta de %{target}"
         unsuspend_account_html: "%{name} removeu a suspenção da conta de %{target}"
@@ -558,6 +560,7 @@ pt-BR:
       resolved: Resolvido
       resolved_msg: Denúncia resolvida com sucesso!
       status: Situação
+      target_origin: Origem da conta relatada
       title: Denúncias
       unassign: Largar
       unresolved: Não resolvido
@@ -676,7 +679,10 @@ pt-BR:
       title: Toots da conta
       with_media: Com mídia
     system_checks:
+      database_schema_check:
+        message_html: Existem migrações de banco de dados pendentes. Por favor, execute-as para garantir que o aplicativo se comporte como esperado
       rules_check:
+        action: Gerenciar regras do servidor
         message_html: Você não definiu nenhuma regra de servidor.
     tags:
       review: Status da revisão
@@ -690,12 +696,30 @@ pt-BR:
         allow: Permitir link
         allow_provider: Permitir editor
         disallow: Proibir link
+        title: Em alta no momento
       pending_review: Revisão pendente
+      preview_card_providers:
+        title: Editor
       rejected: Rejeitado
+      tags:
+        current_score: Pontuação atual %{score}
+        dashboard:
+          tag_accounts_measure: usos únicos
+          tag_languages_dimension: Idiomas principais
+          tag_servers_dimension: Servidores mais populares
+          tag_servers_measure: servidores diferentes
+        listable: Pode ser sugerido
+        not_listable: Não será sugerido
+        not_trendable: Não aparecerá em alta
+        not_usable: Não pode ser usado
+        title: Hashtags em alta
+        usable: Pode ser usado
+      title: Em alta
     warning_presets:
       add_new: Adicionar novo
       delete: Excluir
       edit_preset: Editar o aviso pré-definido
+      empty: Você ainda não definiu nenhuma predefinição de alerta.
       title: Gerenciar os avisos pré-definidos
   admin_mailer:
     new_pending_account:
@@ -760,6 +784,9 @@ pt-BR:
     migrate_account: Mudar-se para outra conta
     migrate_account_html: Se você quer redirecionar essa conta para uma outra você pode <a href="%{path}">configurar isso aqui</a>.
     or_log_in_with: Ou entre com
+    providers:
+      cas: CAS
+      saml: SAML
     register: Criar conta
     registration_closed: "%{instance} não está aceitando novos membros"
     resend_confirmation: Reenviar instruções de confirmação
@@ -806,6 +833,7 @@ pt-BR:
       with_month_name: "%d de %b de %Y"
   datetime:
     distance_in_words:
+      about_x_hours: "%{count}h"
       about_x_months: "%{count}m"
       about_x_years: "%{count}a"
       almost_x_years: "%{count}a"
@@ -866,6 +894,7 @@ pt-BR:
       size: Tamanho
     blocks: Você bloqueou
     bookmarks: Marcadores
+    csv: CSV
     domain_blocks: Bloqueios de domínio
     lists: Listas
     mutes: Você silenciou
@@ -903,14 +932,18 @@ pt-BR:
     changes_saved_msg: Alterações foram salvas com sucesso!
     copy: Copiar
     delete: Excluir
+    none: Nenhum
     order_by: Ordenar por
     save_changes: Salvar alterações
+    today: hoje
     validation_errors:
       one: Algo errado não está certo! Por favor, analise o erro abaixo
       other: Algo errado não está certo! Por favor, analise os %{count} erros abaixo
   html_validator:
     invalid_markup: 'contém HTML inválido: %{error}'
   imports:
+    errors:
+      over_rows_processing_limit: contém mais de %{count} linhas
     modes:
       merge: Juntar
       merge_long: Manter os registros existentes e adicionar novos
@@ -951,6 +984,14 @@ pt-BR:
   lists:
     errors:
       limit: Você atingiu o máximo de listas
+  login_activities:
+    authentication_methods:
+      otp: autenticação de dois fatores
+      password: senha
+      webauthn: chaves de segurança
+    description_html: Se você vir atividades suspeitas ou não reconhecidas, considere alterar sua senha e ativar a autenticação de dois fatores.
+    empty: Sem histórico de autenticação disponível
+    title: Histórico de autenticação
   media_attachments:
     validations:
       images_and_video: Não foi possível anexar um vídeo a um toot que já contém imagens
@@ -1023,6 +1064,8 @@ pt-BR:
       body: '%{name} te mencionou em:'
       subject: '%{name} te mencionou'
       title: Nova menção
+    poll:
+      subject: Uma enquete por %{name} terminou
     reblog:
       body: '%{name} deu boost no seu toot:'
       subject: "%{name} deu boost no seu toot"
