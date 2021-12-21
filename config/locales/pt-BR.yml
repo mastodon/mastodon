@@ -207,6 +207,8 @@ pt-BR:
       suspension_irreversible: Os dados desta conta foram excluídos de forma irreversível. Você pode remover a suspensão da conta para torná-la utilizável, mas ela não irá recuperar nenhum dado que ela possuía anteriormente.
       suspension_reversible_hint_html: A conta foi suspensa e os dados serão totalmente removidos em %{date}. Até lá, a conta pode ser restaurada sem nenhum efeito negativo. Se você deseja remover todos os dados da conta imediatamente, você pode fazer isso abaixo.
       title: Contas
+      unblock_email: Desbloquear endereço de e-mail
+      unblocked_email_msg: Endereço de e-mail de %{username} desbloqueado com sucesso
       unconfirmed_email: E-mail não confirmado
       undo_sensitized: Desfazer sensível
       undo_silenced: Desfazer silêncio
@@ -221,6 +223,7 @@ pt-BR:
       whitelisted: Permitido
     action_logs:
       action_types:
+        approve_user: Aprovar Usuário
         assigned_to_self_report: Adicionar relatório
         change_email_user: Editar e-mail do usuário
         confirm_user: Confirmar Usuário
@@ -250,6 +253,7 @@ pt-BR:
         enable_user: Ativar usuário
         memorialize_account: Converter conta em memorial
         promote_user: Promover usuário
+        reject_user: Rejeitar Usuário
         remove_avatar_user: Remover Avatar
         reopen_report: Reabrir Relatório
         reset_password_user: Redefinir a senha
@@ -258,6 +262,7 @@ pt-BR:
         silence_account: Silenciar conta
         suspend_account: Suspender Conta
         unassigned_report: Remover relatório
+        unblock_email_account: Desbloquear endereço de e-mail
         unsensitive_account: Desmarcar a mídia na sua conta como sensível
         unsilence_account: Desfazer silenciar conta
         unsuspend_account: Remover suspensão de conta
@@ -450,6 +455,15 @@ pt-BR:
       back_to_all: Todas
       back_to_warning: Aviso
       by_domain: Domínio
+      delivery:
+        all: Todos
+        clear: Limpar erros de entrega
+        restart: Reiniciar a entrega
+        stop: Parar entrega
+        title: Entrega
+        unavailable: Indisponível
+        unavailable_message: Envio indisponível
+        warning: Aviso
       delivery_available: Envio disponível
       empty: Nenhum domínio encontrado.
       known_accounts:
@@ -506,6 +520,7 @@ pt-BR:
       save_and_enable: Salvar e ativar
       setup: Configurar uma conexão de repetidor
       signatures_not_enabled: Repetidores não funcionarão adequadamente enquanto o modo seguro ou o modo lista de permitidos estiverem ativos
+      status: Situação
       title: Repetidores
     report_notes:
       created_msg: Nota de denúncia criada com sucesso!
@@ -542,6 +557,7 @@ pt-BR:
       reported_by: Denunciada por
       resolved: Resolvido
       resolved_msg: Denúncia resolvida com sucesso!
+      status: Situação
       title: Denúncias
       unassign: Largar
       unresolved: Não resolvido
@@ -666,6 +682,16 @@ pt-BR:
       review: Status da revisão
       updated_msg: Configurações de hashtag atualizadas com sucesso
     title: Administração
+    trends:
+      allow: Permitir
+      approved: Aprovado
+      disallow: Anular
+      links:
+        allow: Permitir link
+        allow_provider: Permitir editor
+        disallow: Proibir link
+      pending_review: Revisão pendente
+      rejected: Rejeitado
     warning_presets:
       add_new: Adicionar novo
       delete: Excluir
