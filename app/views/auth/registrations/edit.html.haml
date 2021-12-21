@@ -15,6 +15,9 @@
       .fields-row__column.fields-group.fields-row__column-6
         = f.input :current_password, wrapper: :with_label, input_html: { 'aria-label' => t('simple_form.labels.defaults.current_password'), :autocomplete => 'off' }, required: true, disabled: current_account.suspended?, hint: false
 
+    %p.muted-hint= " ⚠️ " + t('simple_form.hints.defaults.current_password_reset_tip')
+    %br
+
     .fields-row
       .fields-row__column.fields-group.fields-row__column-6
         = f.input :password, wrapper: :with_label, label: t('simple_form.labels.defaults.new_password'), input_html: { 'aria-label' => t('simple_form.labels.defaults.new_password'), :autocomplete => 'off', :minlength => User.password_length.first, :maxlength => User.password_length.last }, hint: t('simple_form.hints.defaults.password'), disabled: current_account.suspended?
