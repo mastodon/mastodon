@@ -3,7 +3,15 @@ br:
     attributes:
       doorkeeper/application:
         name: Anv an arload
+        redirect_uri: Dazkas URI
         website: Lec'hienn an arload
+    errors:
+      models:
+        doorkeeper/application:
+          attributes:
+            redirect_uri:
+              invalid_uri: eo ret bezañ un URI gwiriek.
+              secured_uri: eo ret bezañ un HTTPS/SSL URI.
   doorkeeper:
     applications:
       buttons:
@@ -11,8 +19,13 @@ br:
         cancel: Nullañ
         destroy: Distrujañ
         edit: Aozañ
+        submit: Kas
       confirmations:
         destroy: Ha sur oc'h ?
+      edit:
+        title: Kemmañ an arload
+      form:
+        error: Hopala! Gwiriit ho frammenn rak fazioù a c'hell bezañ enni
       index:
         application: Arload
         delete: Dilemel
@@ -41,6 +54,9 @@ br:
           notice: Dilamet eo bet an arload.
         update:
           notice: Hizivaet eo bet an arload.
+      authorized_applications:
+        destroy:
+          notice: Skarzhet eo bet an arload.
     layouts:
       admin:
         nav:
