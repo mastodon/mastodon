@@ -100,7 +100,7 @@ gem 'json-ld-preloaded', '~> 3.1'
 gem 'rdf-normalize', '~> 0.4'
 
 group :development, :test do
-  gem 'fabrication', '~> 2.22'
+  gem 'fabrication', '~> 2.23'
   gem 'fuubar', '~> 2.5'
   gem 'i18n-tasks', '~> 0.9', require: false
   gem 'pry-byebug', '~> 3.9'
