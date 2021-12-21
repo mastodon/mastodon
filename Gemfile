@@ -135,7 +135,7 @@ group :development do
   gem 'memory_profiler'
   gem 'rubocop', '~> 1.23', require: false
   gem 'rubocop-rails', '~> 2.12', require: false
-  gem 'brakeman', '~> 5.1', require: false
+  gem 'brakeman', '~> 5.2', require: false
   gem 'bundler-audit', '~> 0.9', require: false
 
   gem 'capistrano', '~> 3.16'
