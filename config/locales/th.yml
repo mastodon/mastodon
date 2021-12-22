@@ -272,6 +272,7 @@ th:
         destroy_domain_allow_html: "%{name} ได้ไม่อนุญาตการติดต่อกับภายนอกกับโดเมน %{target}"
         destroy_domain_block_html: "%{name} ได้เลิกปิดกั้นโดเมน %{target}"
         destroy_email_domain_block_html: "%{name} ได้เลิกปิดกั้นโดเมนอีเมล %{target}"
+        destroy_instance_html: "%{name} ได้ล้างข้อมูลโดเมน %{target}"
         destroy_ip_block_html: "%{name} ได้ลบกฎสำหรับ IP %{target}"
         destroy_status_html: "%{name} ได้เอาโพสต์โดย %{target} ออก"
         disable_2fa_user_html: "%{name} ได้ปิดใช้งานความต้องการสองปัจจัยสำหรับผู้ใช้ %{target}"
@@ -440,6 +441,7 @@ th:
       back_to_limited: จำกัดอยู่
       back_to_warning: คำเตือน
       by_domain: โดเมน
+      confirm_purge: คุณแน่ใจหรือไม่ว่าต้องการลบข้อมูลจากโดเมนนี้อย่างถาวร?
       delivery:
         all: ทั้งหมด
         clear: ล้างข้อผิดพลาดการจัดส่ง
