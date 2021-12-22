@@ -189,6 +189,8 @@ th:
       subscribe: บอกรับ
       suspended: ระงับอยู่
       title: บัญชี
+      unblock_email: เลิกปิดกั้นที่อยู่อีเมล
+      unblocked_email_msg: เลิกปิดกั้นที่อยู่อีเมลของ %{username} สำเร็จ
       unconfirmed_email: อีเมลที่ยังไม่ได้ยืนยัน
       undo_sensitized: เลิกทำการบังคับให้ละเอียดอ่อน
       undo_silenced: เลิกทำการจำกัด
@@ -221,6 +223,7 @@ th:
         destroy_domain_allow: ลบการอนุญาตโดเมน
         destroy_domain_block: ลบการปิดกั้นโดเมน
         destroy_email_domain_block: ลบการปิดกั้นโดเมนอีเมล
+        destroy_instance: ล้างข้อมูลโดเมน
         destroy_ip_block: ลบกฎ IP
         destroy_status: ลบโพสต์
         destroy_unavailable_domain: ลบโดเมนที่ไม่พร้อมใช้งาน
@@ -242,6 +245,7 @@ th:
         silence_account: จำกัดบัญชี
         suspend_account: ระงับบัญชี
         unassigned_report: เลิกมอบหมายรายงาน
+        unblock_email_account: เลิกปิดกั้นที่อยู่อีเมล
         unsensitive_account: เลิกทำการบังคับให้บัญชีละเอียดอ่อน
         unsilence_account: เลิกทำการจำกัดบัญชี
         unsuspend_account: เลิกระงับบัญชี
@@ -288,6 +292,7 @@ th:
         silence_account_html: "%{name} ได้จำกัดบัญชีของ %{target}"
         suspend_account_html: "%{name} ได้ระงับบัญชีของ %{target}"
         unassigned_report_html: "%{name} ได้เลิกมอบหมายรายงาน %{target}"
+        unblock_email_account_html: "%{name} ได้เลิกปิดกั้นที่อยู่อีเมลของ %{target}"
         unsensitive_account_html: "%{name} ได้เลิกทำเครื่องหมายสื่อของ %{target} ว่าละเอียดอ่อน"
         unsilence_account_html: "%{name} ได้เลิกจำกัดบัญชีของ %{target}"
         unsuspend_account_html: "%{name} ได้เลิกระงับบัญชีของ %{target}"
@@ -455,6 +460,7 @@ th:
         title: การควบคุม
       private_comment: ความคิดเห็นส่วนตัว
       public_comment: ความคิดเห็นสาธารณะ
+      purge: ล้างข้อมูล
       title: การติดต่อกับภายนอก
       total_blocked_by_us: ปิดกั้นโดยเรา
       total_followed_by_them: ติดตามโดยเขา
