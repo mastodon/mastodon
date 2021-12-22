@@ -45,6 +45,7 @@ SystemCallArchitectures=native
 SystemCallFilter=~@cpu-emulation @debug @keyring @ipc @memlock @mount @obsolete @privileged @resources @setuid
 SystemCallFilter=pipe
 SystemCallFilter=pipe2
+ReadWritePaths=/home/mastodon/live
 
 [Install]
 WantedBy=multi-user.target
