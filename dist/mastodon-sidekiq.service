@@ -47,6 +47,7 @@ SystemCallFilter=~@cpu-emulation @debug @keyring @ipc @mount @obsolete @privileg
 SystemCallFilter=@chown
 SystemCallFilter=pipe
 SystemCallFilter=pipe2
+ReadWritePaths=/home/mastodon/live
 
 [Install]
 WantedBy=multi-user.target
