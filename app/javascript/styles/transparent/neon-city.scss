@@ -548,5 +548,17 @@ pre.highlight > code {
   background: $transparent-light;
   border-radius: 4px;
   padding: 15px;
-  width: 400px;
+  // width: 400px;
+}
+
+// fixup /about
+.brand__tagline{
+  color: $primary-text-color
+}
+
+@media screen and (max-width: 415px) {
+  .public-layout .footer {
+    padding: 0;
+    margin: 0;
+  }
 }
