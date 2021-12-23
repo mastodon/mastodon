@@ -33,8 +33,8 @@ class ColumnSettings extends React.PureComponent {
   tags (mode) {
     let tags = this.props.settings.getIn(['tags', mode]) || [];
 
-    if (tags.toJSON) {
-      return tags.toJSON();
+    if (tags.toArray) {
+      return tags.toArray().map(tag => tag.toJSON());
     } else {
       return tags;
     }
