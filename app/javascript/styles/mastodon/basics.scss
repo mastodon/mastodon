@@ -7,7 +7,7 @@
 }
 
 body {
-  font-family: "Noto Serif SC", "Noto Serif TC", "Noto Serif JP", $font-sans-serif, sans-serif;
+  font-family: $font-sans-serif, sans-serif;
   background: darken($ui-base-color, 7%);
   font-size: 13px;
   line-height: 18px;
@@ -18,6 +18,16 @@ body {
   text-size-adjust: none;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   -webkit-tap-highlight-color: transparent;
+
+  &.noto-serif-tc {
+    font-family: "Noto Serif TC", $font-sans-serif, sans-serif;
+  }
+  &.noto-serif-sc {
+    font-family: "Noto Serif SC", $font-sans-serif, sans-serif;
+  }
+  &.noto-serif-jp {
+    font-family: "Noto Serif JP", $font-sans-serif, sans-serif;
+  }
 
   &.system-font {
     // system-ui => standard property (Chrome/Android WebView 56+, Opera 43+, Safari 11+)

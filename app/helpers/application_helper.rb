@@ -176,6 +176,17 @@ module ApplicationHelper
     output << 'system-font' if current_account&.user&.setting_system_font_ui
     output << (current_account&.user&.setting_reduce_motion ? 'reduce-motion' : 'no-reduce-motion')
     output << 'rtl' if locale_direction == 'rtl'
+    if user_signed_in?
+      unless (not current_user.setting_enable_noto_serif) or current_user.setting_system_font_ui
+        if ['zh-HK', 'zh-TW'].include? I18n.locale.to_s
+          output << 'noto-serif-tc'
+        elsif ['ja'].include? I18n.locale.to_s
+          output << 'noto-serif-jp'
+        else
+          output << 'noto-serif-sc'
+        end
+      end
+    end
     output.reject(&:blank?).join(' ')
   end
 
