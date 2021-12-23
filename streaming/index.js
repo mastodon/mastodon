@@ -63,20 +63,25 @@ const dbUrlToConfig = (dbUrl) => {
  * @param {Object.<string, any>} defaultConfig
  * @param {string} redisUrl
  */
-const redisUrlToClient = (defaultConfig, redisUrl) => {
+const redisUrlToClient = async (defaultConfig, redisUrl) => {
   const config = defaultConfig;
 
+  let client;
+
   if (!redisUrl) {
-    return redis.createClient(config);
+    client = redis.createClient(config);
+  } else if (redisUrl.startsWith('unix://')) {
+    client = redis.createClient(redisUrl.slice(7), config);
+  } else {
+    client = redis.createClient(Object.assign(config, {
+      url: redisUrl,
+    }));
   }
 
-  if (redisUrl.startsWith('unix://')) {
-    return redis.createClient(redisUrl.slice(7), config);
-  }
+  client.on('error', (err) => console.log('Redis Client Error!', err));
+  await client.connect();
 
-  return redis.createClient(Object.assign(config, {
-    url: redisUrl,
-  }));
+  return client;
 };
 
 const numWorkers = +process.env.STREAMING_CLUSTER_NUM || (env === 'development' ? 1 : Math.max(os.cpus().length - 1, 1));
@@ -102,7 +107,7 @@ const startMaster = () => {
   log.warn(`Starting streaming API server master with ${numWorkers} workers`);
 };
 
-const startWorker = (workerId) => {
+const startWorker = async (workerId) => {
   log.warn(`Starting worker ${workerId}`);
 
   const pgConfigs = {
@@ -151,8 +156,8 @@ const startWorker = (workerId) => {
 
   const redisPrefix = redisNamespace ? `${redisNamespace}:` : '';
 
-  const redisSubscribeClient = redisUrlToClient(redisParams, process.env.REDIS_URL);
-  const redisClient = redisUrlToClient(redisParams, process.env.REDIS_URL);
+  const redisSubscribeClient = await redisUrlToClient(redisParams, process.env.REDIS_URL);
+  const redisClient = await redisUrlToClient(redisParams, process.env.REDIS_URL);
 
   /**
    * @type {Object.<string, Array.<function(string): void>>}
