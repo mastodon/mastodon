@@ -112,27 +112,27 @@ const startWorker = async (workerId) => {
 
   const pgConfigs = {
     development: {
-      user:     process.env.DB_USER || pg.defaults.user,
+      user: process.env.DB_USER || pg.defaults.user,
       password: process.env.DB_PASS || pg.defaults.password,
       database: process.env.DB_NAME || 'mastodon_development',
-      host:     process.env.DB_HOST || pg.defaults.host,
-      port:     process.env.DB_PORT || pg.defaults.port,
-      max:      10,
+      host: process.env.DB_HOST || pg.defaults.host,
+      port: process.env.DB_PORT || pg.defaults.port,
+      max: 10,
     },
 
     production: {
-      user:     process.env.DB_USER || 'mastodon',
+      user: process.env.DB_USER || 'mastodon',
       password: process.env.DB_PASS || '',
       database: process.env.DB_NAME || 'mastodon_production',
-      host:     process.env.DB_HOST || 'localhost',
-      port:     process.env.DB_PORT || 5432,
-      max:      10,
+      host: process.env.DB_HOST || 'localhost',
+      port: process.env.DB_PORT || 5432,
+      max: 10,
     },
   };
 
   if (!!process.env.DB_SSLMODE && process.env.DB_SSLMODE !== 'disable') {
     pgConfigs.development.ssl = true;
-    pgConfigs.production.ssl  = true;
+    pgConfigs.production.ssl = true;
   }
 
   const app = express();
@@ -144,9 +144,9 @@ const startWorker = async (workerId) => {
   const redisNamespace = process.env.REDIS_NAMESPACE || null;
 
   const redisParams = {
-    host:     process.env.REDIS_HOST     || '127.0.0.1',
-    port:     process.env.REDIS_PORT     || 6379,
-    db:       process.env.REDIS_DB       || 0,
+    host: process.env.REDIS_HOST || '127.0.0.1',
+    port: process.env.REDIS_PORT || 6379,
+    db: process.env.REDIS_DB || 0,
     password: process.env.REDIS_PASSWORD || undefined,
   };
 
@@ -158,23 +158,6 @@ const startWorker = async (workerId) => {
 
   const redisSubscribeClient = await redisUrlToClient(redisParams, process.env.REDIS_URL);
   const redisClient = await redisUrlToClient(redisParams, process.env.REDIS_URL);
-
-  /**
-   * @type {Object.<string, Array.<function(string): void>>}
-   */
-  const subs = {};
-
-  redisSubscribeClient.on('message', (channel, message) => {
-    const callbacks = subs[channel];
-
-    log.silly(`New message on channel ${channel}`);
-
-    if (!callbacks) {
-      return;
-    }
-
-    callbacks.forEach(callback => callback(message));
-  });
 
   /**
    * @param {string[]} channels
@@ -202,34 +185,16 @@ const startWorker = async (workerId) => {
    */
   const subscribe = (channel, callback) => {
     log.silly(`Adding listener for ${channel}`);
-    subs[channel] = subs[channel] || [];
 
-    if (subs[channel].length === 0) {
-      log.verbose(`Subscribe ${channel}`);
-      redisSubscribeClient.subscribe(channel);
-    }
-
-    subs[channel].push(callback);
+    redisSubscribeClient.subscribe(channel, callback);
   };
 
   /**
    * @param {string} channel
-   * @param {function(string): void} callback
    */
-  const unsubscribe = (channel, callback) => {
-    log.silly(`Removing listener for ${channel}`);
+  const unsubscribe = (channel) => {
 
-    if (!subs[channel]) {
-      return;
-    }
-
-    subs[channel] = subs[channel].filter(item => item !== callback);
-
-    if (subs[channel].length === 0) {
-      log.verbose(`Unsubscribe ${channel}`);
-      redisSubscribeClient.unsubscribe(channel);
-      delete subs[channel];
-    }
+    redisSubscribeClient.unsubscribe(channel);
   };
 
   const FALSE_VALUES = [
@@ -370,7 +335,7 @@ const startWorker = async (workerId) => {
     const { path, query } = req;
     const onlyMedia = isTruthy(query.only_media);
 
-    switch(path) {
+    switch (path) {
     case '/api/v1/streaming/user':
       return 'user';
     case '/api/v1/streaming/user/notification':
@@ -501,7 +466,7 @@ const startWorker = async (workerId) => {
 
     const listener = createSystemMessageListener(req, {
 
-      onKill () {
+      onKill() {
         res.end();
       },
 
@@ -553,7 +518,7 @@ const startWorker = async (workerId) => {
   };
 
   /**
-   * @param {array}
+   * @param arr {array}
    * @param {number=} shift
    * @return {string}
    */
@@ -595,7 +560,7 @@ const startWorker = async (workerId) => {
    * @return {function(string): void}
    */
   const streamFrom = (ids, req, output, attachCloseHandler, needsFiltering = false) => {
-    const accountId  = req.accountId || req.remoteAddress;
+    const accountId = req.accountId || req.remoteAddress;
 
     log.verbose(req.requestId, `Starting stream from ${ids.join(', ')} for ${accountId}`);
 
@@ -607,8 +572,8 @@ const startWorker = async (workerId) => {
       const { event, payload, queued_at } = json;
 
       const transmit = () => {
-        const now            = new Date().getTime();
-        const delta          = now - queued_at;
+        const now = new Date().getTime();
+        const delta = now - queued_at;
         const encodedPayload = typeof payload === 'object' ? JSON.stringify(payload) : payload;
 
         log.silly(req.requestId, `Transmitting for ${accountId}: ${event} ${encodedPayload} Delay: ${delta}ms`);
@@ -622,9 +587,9 @@ const startWorker = async (workerId) => {
         return;
       }
 
-      const unpackedPayload  = payload;
+      const unpackedPayload = payload;
       const targetAccountIds = [unpackedPayload.account.id].concat(unpackedPayload.mentions.map(item => item.id));
-      const accountDomain    = unpackedPayload.account.acct.split('@')[1];
+      const accountDomain = unpackedPayload.account.acct.split('@')[1];
 
       if (Array.isArray(req.chosenLanguages) && unpackedPayload.language !== null && req.chosenLanguages.indexOf(unpackedPayload.language) === -1) {
         log.silly(req.requestId, `Message ${unpackedPayload.id} filtered by language (${unpackedPayload.language})`);
@@ -644,7 +609,15 @@ const startWorker = async (workerId) => {
         }
 
         const queries = [
-          client.query(`SELECT 1 FROM blocks WHERE (account_id = $1 AND target_account_id IN (${placeholders(targetAccountIds, 2)})) OR (account_id = $2 AND target_account_id = $1) UNION SELECT 1 FROM mutes WHERE account_id = $1 AND target_account_id IN (${placeholders(targetAccountIds, 2)})`, [req.accountId, unpackedPayload.account.id].concat(targetAccountIds)),
+          client.query(`SELECT 1
+                        FROM blocks
+                        WHERE (account_id = $1 AND target_account_id IN (${placeholders(targetAccountIds, 2)}))
+                           OR (account_id = $2 AND target_account_id = $1)
+                        UNION
+                        SELECT 1
+                        FROM mutes
+                        WHERE account_id = $1
+                          AND target_account_id IN (${placeholders(targetAccountIds, 2)})`, [req.accountId, unpackedPayload.account.id].concat(targetAccountIds)),
         ];
 
         if (accountDomain) {
@@ -707,12 +680,12 @@ const startWorker = async (workerId) => {
   /**
    * @param {any} req
    * @param {function(): void} [closeHandler]
-   * @return {function(string[], function(string): void)}
+   * @return {function(string[]): void}
    */
-  const streamHttpEnd = (req, closeHandler = undefined) => (ids, listener) => {
+  const streamHttpEnd = (req, closeHandler = undefined) => (ids) => {
     req.on('close', () => {
       ids.forEach(id => {
-        unsubscribe(id, listener);
+        unsubscribe(id);
       });
 
       if (closeHandler) {
@@ -759,7 +732,7 @@ const startWorker = async (workerId) => {
   app.get('/api/v1/streaming/*', (req, res) => {
     channelNameToIds(req, channelNameFromPath(req), req.query).then(({ channelIds, options }) => {
       const onSend = streamToHttp(req, res);
-      const onEnd  = streamHttpEnd(req, subscriptionHeartbeat(channelIds));
+      const onEnd = streamHttpEnd(req, subscriptionHeartbeat(channelIds));
 
       streamFrom(channelIds, req, onSend, onEnd, options.needsFiltering);
     }).catch(err => {
@@ -802,7 +775,7 @@ const startWorker = async (workerId) => {
    * @return {Promise.<{ channelIds: string[], options: { needsFiltering: boolean } }>}
    */
   const channelNameToIds = (req, name, params) => new Promise((resolve, reject) => {
-    switch(name) {
+    switch (name) {
     case 'user':
       resolve({
         channelIds: channelsForUserStream(req),
@@ -932,14 +905,17 @@ const startWorker = async (workerId) => {
    * @param {StreamParams} params
    */
   const subscribeWebsocketToChannel = ({ socket, request, subscriptions }, channelName, params) =>
-    checkScopes(request, channelName).then(() => channelNameToIds(request, channelName, params)).then(({ channelIds, options }) => {
+    checkScopes(request, channelName).then(() => channelNameToIds(request, channelName, params)).then(({
+      channelIds,
+      options,
+    }) => {
       if (subscriptions[channelIds.join(';')]) {
         return;
       }
 
-      const onSend        = streamToWs(request, socket, streamNameFromChannelName(channelName, params));
+      const onSend = streamToWs(request, socket, streamNameFromChannelName(channelName, params));
       const stopHeartbeat = subscriptionHeartbeat(channelIds);
-      const listener      = streamFrom(channelIds, request, onSend, undefined, options.needsFiltering);
+      const listener = streamFrom(channelIds, request, onSend, undefined, options.needsFiltering);
 
       subscriptions[channelIds.join(';')] = {
         listener,
@@ -987,7 +963,7 @@ const startWorker = async (workerId) => {
 
     const listener = createSystemMessageListener(request, {
 
-      onKill () {
+      onKill() {
         socket.close();
       },
 
@@ -997,7 +973,8 @@ const startWorker = async (workerId) => {
 
     subscriptions[systemChannelId] = {
       listener,
-      stopHeartbeat: () => {},
+      stopHeartbeat: () => {
+      },
     };
   };
 
@@ -1016,7 +993,7 @@ const startWorker = async (workerId) => {
   wss.on('connection', (ws, req) => {
     const location = url.parse(req.url, true);
 
-    req.requestId     = uuid.v4();
+    req.requestId = uuid.v4();
     req.remoteAddress = ws._socket.remoteAddress;
 
     ws.isAlive = true;
