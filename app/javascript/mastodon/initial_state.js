@@ -27,5 +27,6 @@ export const showTrends = getMeta('trends');
 export const title = getMeta('title');
 export const cropImages = getMeta('crop_images');
 export const disableSwiping = getMeta('disable_swiping');
+export const notificationSound = getMeta('notification_sound');
 
 export default initialState;

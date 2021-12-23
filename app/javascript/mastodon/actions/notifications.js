@@ -94,14 +94,14 @@ export function updateNotifications(notification, intlMessages, intlLocale) {
         type: NOTIFICATIONS_UPDATE,
         notification,
         usePendingItems: preferPendingItems,
-        meta: (playSound && !filtered) ? { sound: 'boop' } : undefined,
+        meta: (playSound && !filtered) ? { sound: 'notificationSound' } : undefined,
       });
 
       fetchRelatedRelationships(dispatch, [notification]);
     } else if (playSound && !filtered) {
       dispatch({
         type: NOTIFICATIONS_UPDATE_NOOP,
-        meta: { sound: 'boop' },
+        meta: { sound: 'notificationSound' },
       });
     }
 

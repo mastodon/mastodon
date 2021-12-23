@@ -15,30 +15,31 @@ class UserSettingsDecorator
   private
 
   def process_update
-    user.settings['notification_emails'] = merged_notification_emails if change?('notification_emails')
-    user.settings['interactions']        = merged_interactions if change?('interactions')
-    user.settings['default_privacy']     = default_privacy_preference if change?('setting_default_privacy')
-    user.settings['default_sensitive']   = default_sensitive_preference if change?('setting_default_sensitive')
-    user.settings['default_language']    = default_language_preference if change?('setting_default_language')
-    user.settings['unfollow_modal']      = unfollow_modal_preference if change?('setting_unfollow_modal')
-    user.settings['boost_modal']         = boost_modal_preference if change?('setting_boost_modal')
-    user.settings['delete_modal']        = delete_modal_preference if change?('setting_delete_modal')
-    user.settings['auto_play_gif']       = auto_play_gif_preference if change?('setting_auto_play_gif')
-    user.settings['display_media']       = display_media_preference if change?('setting_display_media')
-    user.settings['expand_spoilers']     = expand_spoilers_preference if change?('setting_expand_spoilers')
-    user.settings['reduce_motion']       = reduce_motion_preference if change?('setting_reduce_motion')
-    user.settings['disable_swiping']     = disable_swiping_preference if change?('setting_disable_swiping')
-    user.settings['system_font_ui']      = system_font_ui_preference if change?('setting_system_font_ui')
-    user.settings['noindex']             = noindex_preference if change?('setting_noindex')
-    user.settings['theme']               = theme_preference if change?('setting_theme')
-    user.settings['aggregate_reblogs']   = aggregate_reblogs_preference if change?('setting_aggregate_reblogs')
-    user.settings['show_application']    = show_application_preference if change?('setting_show_application')
-    user.settings['advanced_layout']     = advanced_layout_preference if change?('setting_advanced_layout')
-    user.settings['use_blurhash']        = use_blurhash_preference if change?('setting_use_blurhash')
-    user.settings['use_pending_items']   = use_pending_items_preference if change?('setting_use_pending_items')
-    user.settings['trends']              = trends_preference if change?('setting_trends')
-    user.settings['crop_images']         = crop_images_preference if change?('setting_crop_images')
-    user.settings['always_send_emails']  = always_send_emails_preference if change?('setting_always_send_emails')
+    update_if_changed('notification_emails', merged_notification_emails, 'notification_emails')
+    update_if_changed('interactions', merged_interactions, 'interactions')
+    update_if_changed('default_privacy', default_privacy_preference, 'setting_default_privacy')
+    update_if_changed('default_sensitive', default_sensitive_preference, 'setting_default_sensitive')
+    update_if_changed('default_language', default_language_preference, 'setting_default_language')
+    update_if_changed('unfollow_modal', unfollow_modal_preference, 'setting_unfollow_modal')
+    update_if_changed('boost_modal', boost_modal_preference, 'setting_boost_modal')
+    update_if_changed('delete_modal', delete_modal_preference, 'setting_delete_modal')
+    update_if_changed('auto_play_gif', auto_play_gif_preference, 'setting_auto_play_gif')
+    update_if_changed('display_media', display_media_preference, 'setting_display_media')
+    update_if_changed('expand_spoilers', expand_spoilers_preference, 'setting_expand_spoilers')
+    update_if_changed('reduce_motion', reduce_motion_preference, 'setting_reduce_motion')
+    update_if_changed('disable_swiping', disable_swiping_preference, 'setting_disable_swiping')
+    update_if_changed('system_font_ui', system_font_ui_preference, 'setting_system_font_ui')
+    update_if_changed('noindex', noindex_preference, 'setting_noindex')
+    update_if_changed('theme', theme_preference, 'setting_theme')
+    update_if_changed('aggregate_reblogs', aggregate_reblogs_preference, 'setting_aggregate_reblogs')
+    update_if_changed('show_application', show_application_preference, 'setting_show_application')
+    update_if_changed('advanced_layout', advanced_layout_preference, 'setting_advanced_layout')
+    update_if_changed('use_blurhash', use_blurhash_preference, 'setting_use_blurhash')
+    update_if_changed('use_pending_items', use_pending_items_preference, 'setting_use_pending_items')
+    update_if_changed('trends', trends_preference, 'setting_trends')
+    update_if_changed('crop_images', crop_images_preference, 'setting_crop_images')
+    update_if_changed('always_send_emails', always_send_emails_preference, 'setting_always_send_emails')
+    update_if_changed('notification_sound', notification_sound_preference, 'setting_notification_sound')
   end
 
   def merged_notification_emails
@@ -137,6 +138,10 @@ class UserSettingsDecorator
     boolean_cast_setting 'setting_always_send_emails'
   end
 
+  def notification_sound_preference
+    settings['setting_notification_sound']
+  end
+
   def boolean_cast_setting(key)
     ActiveModel::Type::Boolean.new.cast(settings[key])
   end
@@ -151,5 +156,9 @@ class UserSettingsDecorator
 
   def change?(key)
     !settings[key].nil?
+  end
+
+  def update_if_changed(key, pref, setting_key)
+    user.settings[key] = pref if change?(setting_key)
   end
 end
