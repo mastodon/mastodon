@@ -697,7 +697,9 @@ pt-BR:
         allow: Permitir link
         allow_provider: Permitir editor
         disallow: Proibir link
+        disallow_provider: Anular editor
         title: Em alta no momento
+        usage_comparison: Compartilhado %{today} vezes hoje, em comparação com %{yesterday} de ontem
       pending_review: Revisão pendente
       preview_card_providers:
         title: Editor
@@ -715,7 +717,9 @@ pt-BR:
         not_usable: Não pode ser usado
         title: Hashtags em alta
         trendable: Aparecerá em alta
+        trending_rank: 'Em alta #%{rank}'
         usable: Pode ser usado
+        usage_comparison: Usado %{today} vezes hoje, em comparação com %{yesterday} de ontem
       title: Em alta
     warning_presets:
       add_new: Adicionar novo
@@ -993,6 +997,8 @@ pt-BR:
       webauthn: chaves de segurança
     description_html: Se você vir atividades suspeitas ou não reconhecidas, considere alterar sua senha e ativar a autenticação de dois fatores.
     empty: Sem histórico de autenticação disponível
+    failed_sign_in_html: Falha na tentativa de login com %{method} de %{ip} (%{browser})
+    successful_sign_in_html: Login bem-sucedido com %{method} de %{ip} (%{browser})
     title: Histórico de autenticação
   media_attachments:
     validations:
