@@ -71,14 +71,18 @@ const redisUrlToClient = async (defaultConfig, redisUrl) => {
   if (!redisUrl) {
     client = redis.createClient(config);
   } else if (redisUrl.startsWith('unix://')) {
-    client = redis.createClient(redisUrl.slice(7), config);
+    client = redis.createClient(Object.assign(config, {
+      socket: {
+        path: redisUrl.slice(7),
+      },
+    }));
   } else {
     client = redis.createClient(Object.assign(config, {
       url: redisUrl,
     }));
   }
 
-  client.on('error', (err) => console.error('Redis Client Error!', err));
+  client.on('error', (err) => log.error('Redis Client Error!', err));
   await client.connect();
 
   return client;
@@ -144,9 +148,11 @@ const startWorker = async (workerId) => {
   const redisNamespace = process.env.REDIS_NAMESPACE || null;
 
   const redisParams = {
-    host: process.env.REDIS_HOST || '127.0.0.1',
-    port: process.env.REDIS_PORT || 6379,
-    db: process.env.REDIS_DB || 0,
+    socket: {
+      host: process.env.REDIS_HOST || '127.0.0.1',
+      port: process.env.REDIS_PORT || 6379,
+    },
+    database: process.env.REDIS_DB || 0,
     password: process.env.REDIS_PASSWORD || undefined,
   };
 
