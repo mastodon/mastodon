@@ -524,7 +524,7 @@ const startWorker = async (workerId) => {
   };
 
   /**
-   * @param arr {array}
+   * @param {array} arr
    * @param {number=} shift
    * @return {string}
    */
