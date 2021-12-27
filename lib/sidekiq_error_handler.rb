@@ -17,10 +17,8 @@ class SidekiqErrorHandler
 
   private
 
-  # rubocop:disable Naming/MethodParameterName
-  def limit_backtrace_and_raise(e)
-    e.set_backtrace(e.backtrace.first(BACKTRACE_LIMIT))
-    raise e
+  def limit_backtrace_and_raise(exception)
+    exception.set_backtrace(exception.backtrace.first(BACKTRACE_LIMIT))
+    raise exception
   end
-  # rubocop:enable Naming/MethodParameterName
 end
