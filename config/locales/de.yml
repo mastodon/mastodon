@@ -207,6 +207,8 @@ de:
       suspension_irreversible: Die Daten dieses Kontos wurden unwiderruflich gelöscht. Du kannst das Konto aufheben, um es brauchbar zu machen, aber es wird keine Daten wiederherstellen, die es davor schon hatte.
       suspension_reversible_hint_html: Das Konto wurde gesperrt und die Daten werden am %{date} vollständig gelöscht. Bis dahin kann das Konto ohne irgendwelche negativen Auswirkungen wiederhergestellt werden. Wenn du alle Daten des Kontos sofort entfernen möchtest, kannst du dies nachfolgend tun.
       title: Konten
+      unblock_email: E-Mail Adresse entsperren
+      unblocked_email_msg: Die E-Mail-Adresse von %{username} wurde erfolgreich entsperrt
       unconfirmed_email: Unbestätigte E-Mail-Adresse
       undo_sensitized: Nicht mehr als NSFW markieren
       undo_silenced: Stummschaltung aufheben
@@ -250,6 +252,7 @@ de:
         enable_user: Benutzer aktivieren
         memorialize_account: Account deaktivieren
         promote_user: Benutzer befördern
+        reject_user: Benutzer ablehnen
         remove_avatar_user: Profilbild entfernen
         reopen_report: Meldung wieder eröffnen
         reset_password_user: Passwort zurücksetzen
@@ -258,6 +261,7 @@ de:
         silence_account: Konto stummschalten
         suspend_account: Konto sperren
         unassigned_report: Meldung widerrufen
+        unblock_email_account: E-Mail Adresse entsperren
         unsensitive_account: Markiere die Medien in deinem Konto nicht mehr als NSFW
         unsilence_account: Konto nicht mehr stummschalten
         unsuspend_account: Konto nicht mehr sperren
@@ -717,7 +721,10 @@ de:
           tag_servers_dimension: Top Server
           tag_servers_measure: verschiedene Server
           tag_uses_measure: Gesamtnutzungen
+        not_usable: Kann nicht verwendet werden
         title: Beliebtes Hashtags
+        trendable: Darf unter Trends erscheinen
+        usable: Kann verwendet werden
       title: Trends
     warning_presets:
       add_new: Neu hinzufügen
@@ -942,6 +949,7 @@ de:
     none: Keine
     order_by: Sortieren nach
     save_changes: Änderungen speichern
+    today: heute
     validation_errors:
       one: Etwas ist noch nicht ganz richtig! Bitte korrigiere den Fehler
       other: Etwas ist noch nicht ganz richtig! Bitte korrigiere %{count} Fehler
