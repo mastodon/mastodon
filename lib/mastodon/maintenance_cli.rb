@@ -14,7 +14,7 @@ module Mastodon
     end
 
     MIN_SUPPORTED_VERSION = 2019_10_01_213028
-    MAX_SUPPORTED_VERSION = 2021_05_26_193025
+    MAX_SUPPORTED_VERSION = 2022_01_18_183123
 
     # Stubs to enjoy ActiveRecord queries while not depending on a particular
     # version of the code/database
@@ -84,13 +84,14 @@ module Mastodon
 
         owned_classes = [
           Status, StatusPin, MediaAttachment, Poll, Report, Tombstone, Favourite,
-          Follow, FollowRequest, Block, Mute, AccountIdentityProof,
+          Follow, FollowRequest, Block, Mute,
           AccountModerationNote, AccountPin, AccountStat, ListAccount,
           PollVote, Mention
         ]
         owned_classes << AccountDeletionRequest if ActiveRecord::Base.connection.table_exists?(:account_deletion_requests)
         owned_classes << AccountNote if ActiveRecord::Base.connection.table_exists?(:account_notes)
         owned_classes << FollowRecommendationSuppression if ActiveRecord::Base.connection.table_exists?(:follow_recommendation_suppressions)
+        owned_classes << AccountIdentityProof if ActiveRecord::Base.connection.table_exists?(:account_identity_proofs)
 
         owned_classes.each do |klass|
           klass.where(account_id: other_account.id).find_each do |record|
@@ -236,12 +237,14 @@ module Mastodon
         end
       end
 
-      ActiveRecord::Base.connection.select_all("SELECT string_agg(id::text, ',') AS ids FROM users WHERE remember_token IS NOT NULL GROUP BY remember_token HAVING count(*) > 1").each do |row|
-        users = User.where(id: row['ids'].split(',')).sort_by(&:updated_at).reverse.drop(1)
-        @prompt.warn "Unsetting remember token for those accounts: #{users.map(&:account).map(&:acct).join(', ')}"
+      if ActiveRecord::Migrator.current_version < 20220118183010
+        ActiveRecord::Base.connection.select_all("SELECT string_agg(id::text, ',') AS ids FROM users WHERE remember_token IS NOT NULL GROUP BY remember_token HAVING count(*) > 1").each do |row|
+          users = User.where(id: row['ids'].split(',')).sort_by(&:updated_at).reverse.drop(1)
+          @prompt.warn "Unsetting remember token for those accounts: #{users.map(&:account).map(&:acct).join(', ')}"
 
-        users.each do |user|
-          user.update!(remember_token: nil)
+          users.each do |user|
+            user.update!(remember_token: nil)
+          end
         end
       end
 
@@ -257,7 +260,7 @@ module Mastodon
       @prompt.say 'Restoring users indexes…'
       ActiveRecord::Base.connection.add_index :users, ['confirmation_token'], name: 'index_users_on_confirmation_token', unique: true
       ActiveRecord::Base.connection.add_index :users, ['email'], name: 'index_users_on_email', unique: true
-      ActiveRecord::Base.connection.add_index :users, ['remember_token'], name: 'index_users_on_remember_token', unique: true
+      ActiveRecord::Base.connection.add_index :users, ['remember_token'], name: 'index_users_on_remember_token', unique: true if ActiveRecord::Migrator.current_version < 20220118183010
       ActiveRecord::Base.connection.add_index :users, ['reset_password_token'], name: 'index_users_on_reset_password_token', unique: true
     end
 
@@ -274,6 +277,8 @@ module Mastodon
     end
 
     def deduplicate_account_identity_proofs!
+      return unless ActiveRecord::Base.connection.table_exists?(:account_identity_proofs)
+
       remove_index_if_exists!(:account_identity_proofs, 'index_account_proofs_on_account_and_provider_and_username')
 
       @prompt.say 'Removing duplicate account identity proofs…'
