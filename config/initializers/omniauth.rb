@@ -109,6 +109,6 @@ Devise.setup do |config|
 
   # Gitlab strategy
   if ENV['GITLAB_OAUTH2_ENABLED'] == 'true'
-    config.omniauth :gitlab, ENV['GITLAB_OAUTH2_KEY'], ENV['GITLAB_OAUTH2_SECRET'], scope: 'read_user email'
+    config.omniauth :gitlab, ENV['GITLAB_OAUTH2_KEY'], ENV['GITLAB_OAUTH2_SECRET'], scope: 'read_user'
   end
 end
