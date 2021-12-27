@@ -140,17 +140,22 @@ module Mastodon
       @prompt = TTY::Prompt.new
 
       if ActiveRecord::Migrator.current_version < MIN_SUPPORTED_VERSION
-        @prompt.warn 'Your version of the database schema is too old and is not supported by this script.'
-        @prompt.warn 'Please update to at least Mastodon 3.0.0 before running this script.'
+        @prompt.error 'Your version of the database schema is too old and is not supported by this script.'
+        @prompt.error 'Please update to at least Mastodon 3.0.0 before running this script.'
         exit(1)
       elsif ActiveRecord::Migrator.current_version > MAX_SUPPORTED_VERSION
         @prompt.warn 'Your version of the database schema is more recent than this script, this may cause unexpected errors.'
-        exit(1) unless @prompt.yes?('Continue anyway?')
+        exit(1) unless @prompt.yes?('Continue anyway? (Yes/No)')
+      end
+
+      if Sidekiq::ProcessSet.new.any?
+        @prompt.error 'It seems Sidekiq is running. All Mastodon processes need to be stopped when using this script.'
+        exit(1)
       end
 
       @prompt.warn 'This task will take a long time to run and is potentially destructive.'
       @prompt.warn 'Please make sure to stop Mastodon and have a backup.'
-      exit(1) unless @prompt.yes?('Continue?')
+      exit(1) unless @prompt.yes?('Continue? (Yes/No)')
 
       deduplicate_users!
       deduplicate_account_domain_blocks!
