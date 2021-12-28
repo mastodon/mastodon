@@ -129,3 +129,109 @@ data:
   SAML_ATTRIBUTES_STATEMENTS_VERIFIED_EMAIL: {{ .Values.externalAuth.saml.attributes_statements.verified_email | quote }}
   {{- end }}
   {{- end }}
+  {{- if .Values.externalAuth.oauth_global.oauth_redirect_at_sign_in }}
+  OAUTH_REDIRECT_AT_SIGN_IN: {{ .Values.externalAuth.oauth_global.oauth_redirect_at_sign_in | quote }}
+  {{- end }}
+  {{- if .Values.externalAuth.cas.enabled }}
+  CAS_ENABLED: {{ .Values.externalAuth.cas.enabled | quote }}
+  CAS_URL: {{ .Values.externalAuth.cas.url }}
+  CAS_HOST: {{ .Values.externalAuth.cas.host }}
+  CAS_PORT: {{ .Values.externalAuth.cas.port }}
+  CAS_SSL: {{ .Values.externalAuth.cas.ssl | quote }}
+  {{- if .Values.externalAuth.cas.validate_url }}
+  CAS_VALIDATE_URL: {{ .Values.externalAuth.cas.validate_url }}
+  {{- end }}
+  {{- if .Values.externalAuth.cas.callback_url }}
+  CAS_CALLBACK_URL: {{ .Values.externalAuth.cas.callback_url }}
+  {{- end }}
+  {{- if .Values.externalAuth.cas.logout_url }}
+  CAS_LOGOUT_URL: {{ .Values.externalAuth.cas.logout_url }}
+  {{- end }}
+  {{- if .Values.externalAuth.cas.login_url }}
+  CAS_LOGIN_URL: {{ .Values.externalAuth.cas.login_url }}
+  {{- end }}
+  {{- if .Values.externalAuth.cas.uid_field }}
+  CAS_UID_FIELD: {{ .Values.externalAuth.cas.uid_field | quote }}
+  {{- end }}
+  {{- if .Values.externalAuth.cas.ca_path }}
+  CAS_CA_PATH: {{ .Values.externalAuth.cas.ca_path }}
+  {{- end }}
+  {{- if .Values.externalAuth.cas.disable_ssl_verification }}
+  CAS_DISABLE_SSL_VERIFICATION: {{ .Values.externalAuth.cas.disable_ssl_verification | quote }}
+  {{- end }}
+  {{- if .Values.externalAuth.cas.assume_email_is_verified }}
+  CAS_SECURITY_ASSUME_EMAIL_IS_VERIFIED: {{ .Values.externalAuth.cas.assume_email_is_verified | quote }}
+  {{- end }}
+  {{- if .Values.externalAuth.cas.keys.uid }}
+  CAS_UID_KEY: {{ .Values.externalAuth.cas.keys.uid | quote }}
+  {{- end }}
+  {{- if .Values.externalAuth.cas.keys.name }}
+  CAS_NAME_KEY: {{ .Values.externalAuth.cas.keys.name | quote }}
+  {{- end }}
+  {{- if .Values.externalAuth.cas.keys.email }}
+  CAS_EMAIL_KEY: {{ .Values.externalAuth.cas.keys.email | quote }}
+  {{- end }}
+  {{- if .Values.externalAuth.cas.keys.nickname }}
+  CAS_NICKNAME_KEY: {{ .Values.externalAuth.cas.keys.nickname | quote }}
+  {{- end }}
+  {{- if .Values.externalAuth.cas.keys.first_name }}
+  CAS_FIRST_NAME_KEY: {{ .Values.externalAuth.cas.keys.first_name | quote }}
+  {{- end }}
+  {{- if .Values.externalAuth.cas.keys.last_name }}
+  CAS_LAST_NAME_KEY: {{ .ValValues.externalAuth.cas.keys.last_name | quote }}
+  {{- end }}
+  {{- if .Values.externalAuth.cas.keys.location }}
+  CAS_LOCATION_KEY: {{ .Values.externalAuth.cas.keys.location | quote }}
+  {{- end }}
+  {{- if .Values.externalAuth.cas.keys.image }}
+  CAS_IMAGE_KEY: {{ .Values.externalAuth.cas.keys.image | quote }}
+  {{- end }}
+  {{- if .Values.externalAuth.cas.keys.phone }}
+  CAS_PHONE_KEY: {{ .Values.externalAuth.cas.keys.phone | quote }}
+  {{- end }}
+  {{- end }}
+  {{- if .Values.externalAuth.pam.enabled }}
+  PAM_ENABLED: {{ .Values.externalAuth.pam.enabled | quote }}
+  {{- if .Values.externalAuth.pam.email_domain }}
+  PAM_EMAIL_DOMAIN: {{ .Values.externalAuth.pam.email_domain }}
+  {{- end }}
+  {{- if .Values.externalAuth.pam.default_service }}
+  PAM_DEFAULT_SERVICE: {{ .Values.externalAuth.pam.default_service }}
+  {{- end }}
+  {{- if .Values.externalAuth.pam.controlled_service }}
+  PAM_CONTROLLED_SERVICE: {{ .Values.externalAuth.pam.controlled_service }}
+  {{- end }}
+  {{- end }}
+  {{- if .Values.externalAuth.ldap.enabled }}
+  LDAP_ENABLED: {{ .Values.externalAuth.ldap.enabled | quote }}
+  LDAP_HOST: {{ .Values.externalAuth.ldap.host }}
+  LDAP_PORT: {{ .Values.externalAuth.ldap.port }}
+  LDAP_METHOD: {{ .Values.externalAuth.ldap.method }}
+  {{- if .Values.externalAuth.ldap.base }}
+  LDAP_BASE: {{ .Values.externalAuth.ldap.base }}
+  {{- end }}
+  {{- if .Values.externalAuth.ldap.bind_on }}
+  LDAP_BIND_ON: {{ .Values.externalAuth.ldap.bind_on }}
+  {{- end }}
+  {{- if .Values.externalAuth.ldap.password }}
+  LDAP_PASSWORD: {{ .Values.externalAuth.ldap.password }}
+  {{- end }}
+  {{- if .Values.externalAuth.ldap.uid }}
+  LDAP_UID: {{ .Values.externalAuth.ldap.uid }}
+  {{- end }}
+  {{- if .Values.externalAuth.ldap.mail }}
+  LDAP_MAIL: {{ .Values.externalAuth.ldap.mail }}
+  {{- end }}
+  {{- if .Values.externalAuth.ldap.search_filter }}
+  LDAP_SEARCH_FILTER: {{ .Values.externalAuth.ldap.search_filter }}
+  {{- end }}
+  {{- if .Values.externalAuth.ldap.uid_conversion.enabled }}
+  LDAP_UID_CONVERSION_ENABLED: {{ .Values.externalAuth.ldap.uid_conversion.enabled | quote }}
+  {{- end }}
+  {{- if .Values.externalAuth.ldap.uid_conversion.search }}
+  LDAP_UID_CONVERSION_SEARCH: {{ .Values.externalAuth.ldap.uid_conversion.search }}
+  {{- end }}
+  {{- if .Values.externalAuth.ldap.uid_conversion.replace }}
+  LDAP_UID_CONVERSION_REPLACE: {{ .Values.externalAuth.ldap.uid_conversion.replace }}
+  {{- end }}
+  {{- end }}

@@ -161,6 +161,53 @@ externalAuth:
     #   last_name: 
     #   verified: 
     #   verified_email: 
+  oauth_global: 
+    # Force redirect local login to CAS. Does not function with SAML or LDAP.
+    oauth_redirect_at_sign_in: false
+  cas:
+    enabled: false
+    # url: https://sso.myserver.com
+    # host: sso.myserver.com
+    # port: 443
+    # ssl: true
+    # validate_url: 
+    # callback_url: 
+    # logout_url: 
+    # login_url: 
+    # uid_field: 'user'
+    # ca_path: 
+    # disable_ssl_verification: false
+    # assume_email_is_verified: true
+    # keys: 
+    #   uid: 'user'
+    #   name: 'name'
+    #   email: 'email'
+    #   nickname: 'nickname'
+    #   first_name: 'firstname'
+    #   last_name: 'lastname'
+    #   location: 'location'
+    #   image: 'image'
+    #   phone: 'phone'
+  pam: 
+    enabled: false
+    # email_domain: example.com
+    # default_service: rpam
+    # controlled_service: rpam
+  ldap:
+    enabled: false
+    # host: myservice.namespace.svc
+    # port: 389
+    # method: simple_tls
+    # base: 
+    # bind_on: 
+    # password: 
+    # uid: cn
+    # mail: mail
+    # search_filter: "(|(%{uid}=%{email})(%{mail}=%{email}))"
+    # uid_conversion:
+    #   enabled: true
+    #   search: "., -"
+    #   replace: _
 
 # https://github.com/tootsuite/mastodon/blob/master/Dockerfile#L88
 #
