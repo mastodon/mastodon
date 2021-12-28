@@ -77,3 +77,55 @@ data:
   SMTP_TLS: {{ .Values.mastodon.smtp.tls | quote }}
   {{- end }}
   STREAMING_CLUSTER_NUM: {{ .Values.mastodon.streaming.workers | quote }}
+  {{- if .Values.externalAuth.saml.enabled }}
+  SAML_ENABLED: {{ .Values.externalAuth.saml.enabled | quote }}
+  SAML_ACS_URL: {{ .Values.externalAuth.saml.acs_url }}
+  SAML_ISSUER: {{ .Values.externalAuth.saml.issuer }}
+  SAML_IDP_SSO_TARGET_URL: {{ .Values.externalAuth.saml.idp_sso_target_url }}
+  SAML_IDP_CERT: {{ .Values.externalAuth.saml.idp_cert | quote }}
+  {{- if .Values.externalAuth.saml.idp_cert_fingerprint }}
+  SAML_IDP_CERT_FINGERPRINT: {{ .Values.externalAuth.saml.idp_cert_fingerprint | quote }}
+  {{- end }}
+  {{- if .Values.externalAuth.saml.name_identifier_format }}
+  SAML_NAME_IDENTIFIER_FORMAT: {{ .Values.externalAuth.saml.name_identifier_format }}
+  {{- end }}
+  {{- if .Values.externalAuth.saml.cert }}
+  SAML_CERT: {{ .Values.externalAuth.saml.cert | quote }}
+  {{- end }}
+  {{- if .Values.externalAuth.saml.private_key }}
+  SAML_PRIVATE_KEY: {{ .Values.externalAuth.saml.private_key | quote }}
+  {{- end }}
+  {{- if .Values.externalAuth.saml.want_assertion_signed }}
+  SAML_SECURITY_WANT_ASSERTION_SIGNED: {{ .Values.externalAuth.saml.want_assertion_signed | quote }}
+  {{- end }}
+  {{- if .Values.externalAuth.saml.want_assertion_encrypted }}
+  SAML_SECURITY_WANT_ASSERTION_ENCRYPTED: {{ .Values.externalAuth.saml.want_assertion_encrypted | quote }}
+  {{- end }}
+  {{- if .Values.externalAuth.saml.assume_email_is_verified }}
+  SAML_SECURITY_ASSUME_EMAIL_IS_VERIFIED: {{ .Values.externalAuth.saml.assume_email_is_verified | quote }}
+  {{- end }}
+  {{- if .Values.externalAuth.saml.uid_attribute }}
+  SAML_UID_ATTRIBUTE: {{ .Values.externalAuth.saml.uid_attribute }}
+  {{- end }}
+  {{- if .Values.externalAuth.saml.attributes_statements.uid }}
+  SAML_ATTRIBUTES_STATEMENTS_UID: {{ .Values.externalAuth.saml.attributes_statements.uid | quote }}
+  {{- end }}
+  {{- if .Values.externalAuth.saml.attributes_statements.email }}
+  SAML_ATTRIBUTES_STATEMENTS_EMAIL: {{ .Values.externalAuth.saml.attributes_statements.email | quote }}
+  {{- end }}
+  {{- if .Values.externalAuth.saml.attributes_statements.full_name }}
+  SAML_ATTRIBUTES_STATEMENTS_FULL_NAME: {{ .Values.externalAuth.saml.attributes_statements.full_name | quote }}
+  {{- end }}
+  {{- if .Values.externalAuth.saml.attributes_statements.first_name }}
+  SAML_ATTRIBUTES_STATEMENTS_FIRST_NAME: {{ .Values.externalAuth.saml.attributes_statements.first_name | quote }}
+  {{- end }}
+  {{- if .Values.externalAuth.saml.attributes_statements.last_name }}
+  SAML_ATTRIBUTES_STATEMENTS_LAST_NAME: {{ .Values.externalAuth.saml.attributes_statements.last_name | quote }}
+  {{- end }}
+  {{- if .Values.externalAuth.saml.attributes_statements.verified }}
+  SAML_ATTRIBUTES_STATEMENTS_VERIFIED: {{ .Values.externalAuth.saml.attributes_statements.verified | quote }}
+  {{- end }}
+  {{- if .Values.externalAuth.saml.attributes_statements.verified_email }}
+  SAML_ATTRIBUTES_STATEMENTS_VERIFIED_EMAIL: {{ .Values.externalAuth.saml.attributes_statements.verified_email | quote }}
+  {{- end }}
+  {{- end }}
