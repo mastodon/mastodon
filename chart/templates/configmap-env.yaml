@@ -244,7 +244,7 @@ data:
   CAS_FIRST_NAME_KEY: {{ .Values.externalAuth.cas.keys.first_name | quote }}
   {{- end }}
   {{- if .Values.externalAuth.cas.keys.last_name }}
-  CAS_LAST_NAME_KEY: {{ .ValValues.externalAuth.cas.keys.last_name | quote }}
+  CAS_LAST_NAME_KEY: {{ .Values.externalAuth.cas.keys.last_name | quote }}
   {{- end }}
   {{- if .Values.externalAuth.cas.keys.location }}
   CAS_LOCATION_KEY: {{ .Values.externalAuth.cas.keys.location | quote }}
