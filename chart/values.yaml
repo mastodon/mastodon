@@ -145,6 +145,7 @@ service:
 
 externalAuth:
   oidc:
+    # OpenID Connect support is proposed in PR #16221 and awaiting merge.
     enabled: false
     # display_name: "example-label"
     # issuer: https://login.example.space/auth/realms/example-space
