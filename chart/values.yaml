@@ -144,6 +144,33 @@ service:
   port: 80
 
 externalAuth:
+  oidc:
+    enabled: false
+    # display_name: "example-label"
+    # issuer: https://login.example.space/auth/realms/example-space
+    # discovery: true
+    # scope: "openid,profile"
+    # uid_field: uid
+    # client_id: mastodon
+    # client_secret: SECRETKEY
+    # redirect_uri: https://example.com/auth/auth/openid_connect/callback
+    # assume_email_is_verified: true
+    # client_auth_method: 
+    # response_type: 
+    # response_mode: 
+    # display: 
+    # prompt: 
+    # send_nonce: 
+    # send_scope_to_token_endpoint: 
+    # idp_logout_redirect_uri: 
+    # http_scheme: 
+    # host: 
+    # port: 
+    # jwks_uri: 
+    # auth_endpoint: 
+    # token_endpoint: 
+    # user_info_endpoint: 
+    # end_session_endpoint: 
   saml:
     enabled: false
     # acs_url: http://mastodon.example.com/auth/auth/saml/callback

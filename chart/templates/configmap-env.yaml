@@ -83,6 +83,66 @@ data:
   SMTP_TLS: {{ .Values.mastodon.smtp.tls | quote }}
   {{- end }}
   STREAMING_CLUSTER_NUM: {{ .Values.mastodon.streaming.workers | quote }}
+  {{- if .Values.externalAuth.oidc.enabled }}
+  OIDC_ENABLED: {{ .Values.externalAuth.oidc.enabled | quote }}
+  OIDC_DISPLAY_NAME: {{ .Values.externalAuth.oidc.display_name }}
+  OIDC_ISSUER: {{ .Values.externalAuth.oidc.issuer }}
+  OIDC_DISCOVERY: {{ .Values.externalAuth.oidc.discovery | quote }}
+  OIDC_SCOPE: {{ .Values.externalAuth.oidc.scope | quote }}
+  OIDC_UID_FIELD: {{ .Values.externalAuth.oidc.uid_field }}
+  OIDC_CLIENT_ID: {{ .Values.externalAuth.oidc.client_id }}
+  OIDC_CLIENT_SECRET: {{ .Values.externalAuth.oidc.client_secret }}
+  OIDC_REDIRECT_URI: {{ .Values.externalAuth.oidc.redirect_uri }}
+  OIDC_SECURITY_ASSUME_EMAIL_IS_VERIFIED: {{ .Values.externalAuth.oidc.assume_email_is_verified | quote }}
+  {{- if .Values.externalAuth.oidc.client_auth_method }}
+  OIDC_CLIENT_AUTH_METHOD: {{ .Values.externalAuth.oidc.client_auth_method }}
+  {{- end }}
+  {{- if .Values.externalAuth.oidc.response_type }}
+  OIDC_RESPONSE_TYPE: {{ .Values.externalAuth.oidc.response_type }}
+  {{- end }}
+  {{- if .Values.externalAuth.oidc.response_mode }}
+  OIDC_RESPONSE_MODE: {{ .Values.externalAuth.oidc.response_mode }}
+  {{- end }}
+  {{- if .Values.externalAuth.oidc.display }}
+  OIDC_DISPLAY: {{ .Values.externalAuth.oidc.display }}
+  {{- end }}
+  {{- if .Values.externalAuth.oidc.prompt }}
+  OIDC_PROMPT: {{ .Values.externalAuth.oidc.prompt }}
+  {{- end }}
+  {{- if .Values.externalAuth.oidc.send_nonce }}
+  OIDC_SEND_NONCE: {{ .Values.externalAuth.oidc.send_nonce }}
+  {{- end }}
+  {{- if .Values.externalAuth.oidc.send_scope_to_token_endpoint }}
+  OIDC_SEND_SCOPE_TO_TOKEN_ENDPOINT: {{ .Values.externalAuth.oidc.send_scope_to_token_endpoint | quote }}
+  {{- end }}
+  {{- if .Values.externalAuth.oidc.idp_logout_redirect_uri }}
+  OIDC_IDP_LOGOUT_REDIRECT_URI: {{ .Values.externalAuth.oidc.idp_logout_redirect_uri }}
+  {{- end }}
+  {{- if .Values.externalAuth.oidc.http_scheme }}
+  OIDC_HTTP_SCHEME: {{ .Values.externalAuth.oidc.http_scheme }}
+  {{- end }}
+  {{- if .Values.externalAuth.oidc.host }}
+  OIDC_HOST: {{ .Values.externalAuth.oidc.host }}
+  {{- end }}
+  {{- if .Values.externalAuth.oidc.port }}
+  OIDC_PORT: {{ .Values.externalAuth.oidc.port }}
+  {{- end }}
+  {{- if .Values.externalAuth.oidc.jwks_uri }}
+  OIDC_JWKS_URI: {{ .Values.externalAuth.oidc.jwks_uri }}
+  {{- end }}
+  {{- if .Values.externalAuth.oidc.auth_endpoint }}
+  OIDC_AUTH_ENDPOINT: {{ .Values.externalAuth.oidc.auth_endpoint }}
+  {{- end }}
+  {{- if .Values.externalAuth.oidc.token_endpoint }}
+  OIDC_TOKEN_ENDPOINT: {{ .Values.externalAuth.oidc.token_endpoint }}
+  {{- end }}
+  {{- if .Values.externalAuth.oidc.user_info_endpoint }}
+  OIDC_USER_INFO_ENDPOINT: {{ .Values.externalAuth.oidc.user_info_endpoint }}
+  {{- end }}
+  {{- if .Values.externalAuth.oidc.end_session_endpoint }}
+  OIDC_END_SESSION_ENDPOINT: {{ .Values.externalAuth.oidc.end_session_endpoint }}
+  {{- end }}
+  {{- end }}
   {{- if .Values.externalAuth.saml.enabled }}
   SAML_ENABLED: {{ .Values.externalAuth.saml.enabled | quote }}
   SAML_ACS_URL: {{ .Values.externalAuth.saml.acs_url }}
