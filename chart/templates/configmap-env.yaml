@@ -21,6 +21,9 @@ data:
   ES_PORT: "9200"
   {{- end }}
   LOCAL_DOMAIN: {{ .Values.mastodon.local_domain }}
+  {{- if .Values.mastodon.web_domain }}
+  WEB_DOMAIN: {{ .Values.mastodon.web_domain }}
+  {{- end }}
   # https://devcenter.heroku.com/articles/tuning-glibc-memory-behavior
   MALLOC_ARENA_MAX: "2"
   NODE_ENV: "production"
@@ -35,6 +38,9 @@ data:
   S3_PROTOCOL: "https"
   {{- if .Values.mastodon.s3.region }}
   S3_REGION: {{ .Values.mastodon.s3.region }}
+  {{- end }}
+  {{- if .Values.mastodon.s3.alias_host }}
+  S3_ALIAS_HOST: {{ .Values.mastodon.s3.alias_host}}
   {{- end }}
   {{- end }}
   {{- if .Values.mastodon.smtp.auth_method }}
