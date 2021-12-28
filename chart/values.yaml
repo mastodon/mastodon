@@ -102,30 +102,6 @@ ingress:
       hosts:
         - mastodon.local
 
-externalAuth:
-  saml:
-    enabled: false
-    acs_url: http://mastodon.example.com/auth/auth/saml/callback
-    issuer: mastodon
-    idp_sso_target_url: https://login.example.com/auth/realms/example/protocol/saml
-    idp_cert: '-----BEGIN CERTIFICATE-----[your_cert_content]-----END CERTIFICATE-----'
-    idp_cert_fingerprint: 
-    name_identifier_format: urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified
-    cert: 
-    private_key: 
-    want_assertion_signed: true
-    want_assertion_encrypted: true
-    assume_email_is_verified: true
-    uid_attribute: 
-    attributes_statements: 
-      uid: 
-      email: 
-      full_name: 
-      first_name: 
-      last_name: 
-      verified: 
-      verified_email: 
-
 # https://github.com/bitnami/charts/tree/master/bitnami/elasticsearch#parameters
 elasticsearch:
   # `false` will disable full-text search
@@ -161,6 +137,30 @@ redis:
 service:
   type: ClusterIP
   port: 80
+
+externalAuth:
+  saml:
+    enabled: false
+    # acs_url: http://mastodon.example.com/auth/auth/saml/callback
+    # issuer: mastodon
+    # idp_sso_target_url: https://login.example.com/auth/realms/example/protocol/saml
+    # idp_cert: '-----BEGIN CERTIFICATE-----[your_cert_content]-----END CERTIFICATE-----'
+    # idp_cert_fingerprint: 
+    # name_identifier_format: urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified
+    # cert: 
+    # private_key: 
+    # want_assertion_signed: true
+    # want_assertion_encrypted: true
+    # assume_email_is_verified: true
+    # uid_attribute: 
+    # attributes_statements: 
+    #   uid: 
+    #   email: 
+    #   full_name: 
+    #   first_name: 
+    #   last_name: 
+    #   verified: 
+    #   verified_email: 
 
 # https://github.com/tootsuite/mastodon/blob/master/Dockerfile#L88
 #
