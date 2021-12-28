@@ -6,7 +6,6 @@
 #  id                         :bigint(8)        not null, primary key
 #  status_ids                 :bigint(8)        default([]), not null, is an Array
 #  comment                    :text             default(""), not null
-#  action_taken               :boolean          default(FALSE), not null
 #  created_at                 :datetime         not null
 #  updated_at                 :datetime         not null
 #  account_id                 :bigint(8)        not null
@@ -15,9 +14,14 @@
 #  assigned_account_id        :bigint(8)
 #  uri                        :string
 #  forwarded                  :boolean
+#  category                   :integer          default("other"), not null
+#  action_taken_at            :datetime
+#  rule_ids                   :bigint(8)        is an Array
 #
 
 class Report < ApplicationRecord
+  self.ignored_columns = %w(action_taken)
+
   include Paginable
   include RateLimitable
 
@@ -30,11 +34,17 @@ class Report < ApplicationRecord
 
   has_many :notes, class_name: 'ReportNote', foreign_key: :report_id, inverse_of: :report, dependent: :destroy
 
-  scope :unresolved, -> { where(action_taken: false) }
-  scope :resolved,   -> { where(action_taken: true) }
+  scope :unresolved, -> { where(action_taken_at: nil) }
+  scope :resolved,   -> { where.not(action_taken_at: nil) }
   scope :with_accounts, -> { includes([:account, :target_account, :action_taken_by_account, :assigned_account].index_with({ user: [:invite_request, :invite] })) }
 
-  validates :comment, length: { maximum: 1000 }
+  validates :comment, length: { maximum: 1_000 }
+
+  enum category: {
+    other: 0,
+    spam: 1_000,
+    violation: 2_000,
+  }
 
   def local?
     false # Force uri_for to use uri attribute
@@ -47,11 +57,15 @@ class Report < ApplicationRecord
   end
 
   def statuses
-    Status.with_discarded.where(id: status_ids).includes(:account, :media_attachments, :mentions)
+    Status.with_discarded.where(id: status_ids)
   end
 
   def media_attachments
     MediaAttachment.where(status_id: status_ids)
+  end
+
+  def rules
+    Rule.with_discarded.where(id: rule_ids)
   end
 
   def assign_to_self!(current_account)
@@ -63,21 +77,18 @@ class Report < ApplicationRecord
   end
 
   def resolve!(acting_account)
-    if account_id == -99 && target_account.trust_level == Account::TRUST_LEVELS[:untrusted]
-      # This is an automated report and it is being dismissed, so it's
-      # a false positive, in which case update the account's trust level
-      # to prevent further spam checks
-
-      target_account.update(trust_level: Account::TRUST_LEVELS[:trusted])
-    end
-
-    RemovalWorker.push_bulk(Status.with_discarded.discarded.where(id: status_ids).pluck(:id)) { |status_id| [status_id, { immediate: true }] }
-    update!(action_taken: true, action_taken_by_account_id: acting_account.id)
+    update!(action_taken_at: Time.now.utc, action_taken_by_account_id: acting_account.id)
   end
 
   def unresolve!
-    update!(action_taken: false, action_taken_by_account_id: nil)
+    update!(action_taken_at: nil, action_taken_by_account_id: nil)
   end
+
+  def action_taken?
+    action_taken_at.present?
+  end
+
+  alias action_taken action_taken?
 
   def unresolved?
     !action_taken?
@@ -88,29 +99,24 @@ class Report < ApplicationRecord
   end
 
   def history
-    time_range = created_at..updated_at
-
-    sql = [
+    subquery = [
       Admin::ActionLog.where(
         target_type: 'Report',
-        target_id: id,
-        created_at: time_range
-      ).unscope(:order),
+        target_id: id
+      ).unscope(:order).arel,
 
       Admin::ActionLog.where(
         target_type: 'Account',
-        target_id: target_account_id,
-        created_at: time_range
-      ).unscope(:order),
+        target_id: target_account_id
+      ).unscope(:order).arel,
 
       Admin::ActionLog.where(
         target_type: 'Status',
-        target_id: status_ids,
-        created_at: time_range
-      ).unscope(:order),
-    ].map { |query| "(#{query.to_sql})" }.join(' UNION ALL ')
+        target_id: status_ids
+      ).unscope(:order).arel,
+    ].reduce { |union, query| Arel::Nodes::UnionAll.new(union, query) }
 
-    Admin::ActionLog.from("(#{sql}) AS admin_action_logs")
+    Admin::ActionLog.from(Arel::Nodes::As.new(subquery, Admin::ActionLog.arel_table))
   end
 
   def set_uri

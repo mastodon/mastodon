@@ -579,37 +579,42 @@ body,
 
 .log-entry {
   line-height: 20px;
-  padding: 15px 0;
+  padding: 15px;
+  padding-left: 15px * 2 + 40px;
   background: $ui-base-color;
-  border-bottom: 1px solid lighten($ui-base-color, 4%);
+  border-bottom: 1px solid darken($ui-base-color, 8%);
+  position: relative;
+
+  &:first-child {
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+  }
 
   &:last-child {
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
     border-bottom: 0;
   }
 
+  &:hover {
+    background: lighten($ui-base-color, 4%);
+  }
+
   &__header {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
     color: $darker-text-color;
     font-size: 14px;
-    padding: 0 10px;
   }
 
   &__avatar {
-    margin-right: 10px;
+    position: absolute;
+    left: 15px;
+    top: 15px;
 
     .avatar {
-      display: block;
-      margin: 0;
-      border-radius: 50%;
+      border-radius: 4px;
       width: 40px;
       height: 40px;
     }
-  }
-
-  &__content {
-    max-width: calc(100% - 90px);
   }
 
   &__title {
@@ -626,6 +631,14 @@ body,
     color: $secondary-text-color;
     text-decoration: none;
     font-weight: 500;
+  }
+
+  a {
+    &:hover,
+    &:focus,
+    &:active {
+      text-decoration: underline;
+    }
   }
 }
 
@@ -655,8 +668,9 @@ a.inline-name-tag,
 
 a.name-tag,
 .name-tag {
-  display: flex;
+  display: inline-flex;
   align-items: center;
+  vertical-align: top;
 
   .avatar {
     display: block;
@@ -1111,6 +1125,290 @@ a.sparkline {
 
     &:last-child {
       border-bottom: 0;
+    }
+  }
+}
+
+.report-reason-selector {
+  border-radius: 4px;
+  background: $ui-base-color;
+  margin-bottom: 20px;
+
+  &__category {
+    cursor: pointer;
+    border-bottom: 1px solid darken($ui-base-color, 8%);
+
+    &:last-child {
+      border-bottom: 0;
+    }
+
+    &__label {
+      padding: 15px;
+    }
+
+    &__rules {
+      margin-left: 30px;
+    }
+  }
+
+  &__rule {
+    cursor: pointer;
+    padding: 15px;
+  }
+}
+
+.report-header {
+  display: grid;
+  grid-gap: 15px;
+  grid-template-columns: minmax(0, 1fr) 300px;
+
+  &__details {
+    &__item {
+      border-bottom: 1px solid lighten($ui-base-color, 8%);
+      padding: 15px 0;
+
+      &:last-child {
+        border-bottom: 0;
+      }
+
+      &__header {
+        font-weight: 600;
+        padding: 4px 0;
+      }
+    }
+
+    &--horizontal {
+      display: grid;
+      grid-auto-columns: minmax(0, 1fr);
+      grid-auto-flow: column;
+
+      .report-header__details__item {
+        border-bottom: 0;
+      }
+    }
+  }
+}
+
+.account-card {
+  background: $ui-base-color;
+  border-radius: 4px;
+
+  &__header {
+    padding: 4px;
+    border-radius: 4px;
+    height: 128px;
+
+    img {
+      display: block;
+      margin: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      background: darken($ui-base-color, 8%);
+    }
+  }
+
+  &__title {
+    margin-top: -25px;
+    display: flex;
+    align-items: flex-end;
+
+    &__avatar {
+      padding: 15px;
+
+      img {
+        display: block;
+        margin: 0;
+        width: 56px;
+        height: 56px;
+        background: darken($ui-base-color, 8%);
+        border-radius: 8px;
+      }
+    }
+
+    .display-name {
+      color: $darker-text-color;
+      padding-bottom: 15px;
+      font-size: 15px;
+
+      bdi {
+        display: block;
+        color: $primary-text-color;
+        font-weight: 500;
+      }
+    }
+  }
+
+  &__bio {
+    padding: 0 15px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    max-height: 18px * 2;
+    position: relative;
+
+    &::after {
+      display: block;
+      content: "";
+      width: 50px;
+      height: 18px;
+      position: absolute;
+      bottom: 0;
+      right: 15px;
+      background: linear-gradient(to left, $ui-base-color, transparent);
+      pointer-events: none;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    padding-top: 10px;
+
+    &__button {
+      flex: 0 0 auto;
+      padding: 0 15px;
+    }
+  }
+
+  &__counters {
+    flex: 1 1 auto;
+    display: grid;
+    grid-auto-columns: minmax(0, 1fr);
+    grid-auto-flow: column;
+
+    &__item {
+      padding: 15px;
+      text-align: center;
+      color: $primary-text-color;
+      font-weight: 600;
+      font-size: 15px;
+
+      small {
+        display: block;
+        color: $darker-text-color;
+        font-weight: 400;
+        font-size: 13px;
+      }
+    }
+  }
+}
+
+.report-notes {
+  margin-bottom: 20px;
+
+  &__item {
+    background: $ui-base-color;
+    position: relative;
+    padding: 15px;
+    padding-left: 15px * 2 + 40px;
+    border-bottom: 1px solid darken($ui-base-color, 8%);
+
+    &:first-child {
+      border-top-left-radius: 4px;
+      border-top-right-radius: 4px;
+    }
+
+    &:last-child {
+      border-bottom-left-radius: 4px;
+      border-bottom-right-radius: 4px;
+      border-bottom: 0;
+    }
+
+    &:hover {
+      background-color: lighten($ui-base-color, 4%);
+    }
+
+    &__avatar {
+      position: absolute;
+      left: 15px;
+      top: 15px;
+      border-radius: 4px;
+      width: 40px;
+      height: 40px;
+    }
+
+    &__header {
+      color: $darker-text-color;
+      font-size: 15px;
+      line-height: 20px;
+      margin-bottom: 4px;
+
+      .username a {
+        color: $primary-text-color;
+        font-weight: 500;
+        text-decoration: none;
+        margin-right: 5px;
+
+        &:hover,
+        &:focus,
+        &:active {
+          text-decoration: underline;
+        }
+      }
+
+      time {
+        margin-left: 5px;
+        vertical-align: baseline;
+      }
+    }
+
+    &__content {
+      font-size: 15px;
+      line-height: 20px;
+      word-wrap: break-word;
+      font-weight: 400;
+      color: $primary-text-color;
+
+      p {
+        margin-bottom: 20px;
+        white-space: pre-wrap;
+        unicode-bidi: plaintext;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+
+    &__actions {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      text-align: right;
+    }
+  }
+}
+
+.report-actions {
+  border: 1px solid darken($ui-base-color, 8%);
+
+  &__item {
+    display: flex;
+    align-items: center;
+    line-height: 18px;
+    border-bottom: 1px solid darken($ui-base-color, 8%);
+
+    &:last-child {
+      border-bottom: 0;
+    }
+
+    &__button {
+      flex: 0 0 auto;
+      width: 100px;
+      padding: 15px;
+      padding-right: 0;
+
+      .button {
+        display: block;
+        width: 100%;
+      }
+    }
+
+    &__description {
+      padding: 15px;
+      font-size: 14px;
+      color: $dark-text-color;
     }
   }
 }
