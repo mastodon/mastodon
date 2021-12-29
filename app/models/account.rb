@@ -104,7 +104,6 @@ class Account < ApplicationRecord
   scope :without_instance_actor, -> { where.not(id: -99) }
   scope :recent, -> { reorder(id: :desc) }
   scope :bots, -> { where(actor_type: %w(Application Service)) }
-  scope :not_bots, -> { where.not(actor_type: %w(Application Service)) }
   scope :groups, -> { where(actor_type: 'Group') }
   scope :alphabetic, -> { order(domain: :asc, username: :asc) }
   scope :matches_username, ->(value) { where(arel_table[:username].matches("#{value}%")) }
