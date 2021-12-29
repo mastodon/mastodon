@@ -373,6 +373,11 @@ class User < ApplicationRecord
     user_invite_request = UserInviteRequest.new({ user_id: id, text: "This account was authorized by #{auth_provider}.", })
     user_invite_request.save!
 
+    # for these users, they shall not be required to input profile again
+    account.update!(actor_type: 'Person')
+    account.update!(fields: [])
+    account.update!(discoverable: false)
+
     prepare_new_user!
   end
 
