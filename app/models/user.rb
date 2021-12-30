@@ -373,11 +373,6 @@ class User < ApplicationRecord
     user_invite_request = UserInviteRequest.new({ user_id: id, text: "This account was authorized by #{auth_provider}.", })
     user_invite_request.save!
 
-    # for these users, they shall not be required to input profile again
-    account.update!(actor_type: 'Person')
-    account.update!(fields: [])
-    account.update!(discoverable: false)
-
     prepare_new_user!
   end
 
@@ -454,6 +449,11 @@ class User < ApplicationRecord
   end
 
   def prepare_new_user!
+    # for these users, they shall not be required to input profile again
+    account.update!(actor_type: 'Person')
+    account.update!(fields: [])
+    account.update!(discoverable: false)
+    
     BootstrapTimelineWorker.perform_async(account_id)
     ActivityTracker.increment('activity:accounts:local')
     UserMailer.welcome(self).deliver_later
