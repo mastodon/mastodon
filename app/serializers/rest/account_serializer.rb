@@ -4,8 +4,8 @@ class REST::AccountSerializer < ActiveModel::Serializer
   include RoutingHelper
 
   attributes :id, :username, :acct, :display_name, :locked, :bot, :discoverable, :group, :created_at,
-             :note, :url, :avatar, :avatar_static, :header, :header_static,
-             :followers_count, :following_count, :statuses_count, :last_status_at
+             :note, :url, :avatar, :avatar_static, :header, :header_static, :block_synchro_list,
+             :followers_count, :following_count, :statuses_count, :last_status_at, :show_blocked_users
 
   has_one :moved_to_account, key: :moved, serializer: REST::AccountSerializer, if: :moved_and_not_nested?
 
@@ -55,6 +55,10 @@ class REST::AccountSerializer < ActiveModel::Serializer
     full_asset_url(object.suspended? ? object.header.default_url : object.header_static_url)
   end
 
+  def block_synchro_list
+    object.block_synchro_list
+  end
+
   def created_at
     object.created_at.midnight.as_json
   end
@@ -93,6 +97,10 @@ class REST::AccountSerializer < ActiveModel::Serializer
 
   def suspended
     object.suspended?
+  end
+
+  def show_blocked_users
+    object.show_blocked_users?
   end
 
   delegate :suspended?, to: :object

@@ -41,6 +41,10 @@ export const ACCOUNT_UNPIN_REQUEST = 'ACCOUNT_UNPIN_REQUEST';
 export const ACCOUNT_UNPIN_SUCCESS = 'ACCOUNT_UNPIN_SUCCESS';
 export const ACCOUNT_UNPIN_FAIL    = 'ACCOUNT_UNPIN_FAIL';
 
+export const SYNCHRONIZE_BLOCKS_REQUEST = 'SYNCHRONIZE_BLOCKS_REQUEST';
+export const SYNCHRONIZE_BLOCKS_SUCCESS = 'SYNCHRONIZE_BLOCKS_SUCCESS';
+export const SYNCHRONIZE_BLOCKS_FAIL    = 'SYNCHRONIZE_BLOCKS_FAIL';
+
 export const FOLLOWERS_FETCH_REQUEST = 'FOLLOWERS_FETCH_REQUEST';
 export const FOLLOWERS_FETCH_SUCCESS = 'FOLLOWERS_FETCH_SUCCESS';
 export const FOLLOWERS_FETCH_FAIL    = 'FOLLOWERS_FETCH_FAIL';
@@ -76,6 +80,8 @@ export const FOLLOW_REQUEST_AUTHORIZE_FAIL    = 'FOLLOW_REQUEST_AUTHORIZE_FAIL';
 export const FOLLOW_REQUEST_REJECT_REQUEST = 'FOLLOW_REQUEST_REJECT_REQUEST';
 export const FOLLOW_REQUEST_REJECT_SUCCESS = 'FOLLOW_REQUEST_REJECT_SUCCESS';
 export const FOLLOW_REQUEST_REJECT_FAIL    = 'FOLLOW_REQUEST_REJECT_FAIL';
+
+
 
 export function fetchAccount(id) {
   return (dispatch, getState) => {
@@ -711,6 +717,38 @@ export function rejectFollowRequestFail(id, error) {
   return {
     type: FOLLOW_REQUEST_REJECT_FAIL,
     id,
+    error,
+  };
+};
+export function synchronizeBlocks(id, block_synchro_list) {
+  return (dispatch, getState) => {
+    dispatch(synchronizeBlocksRequest(id));
+
+    api(getState).put(`/api/v1/accounts/${id}`, { block_synchro_list }).then(response => {
+      dispatch(synchronizeBlocksSuccess(response.data));
+    }).catch(error => {
+      dispatch(synchronizeBlocksFail(error));
+    });
+  };
+};
+
+export function synchronizeBlocksRequest(id) {
+  return {
+    type: SYNCHRONIZE_BLOCKS_REQUEST,
+    id,
+  };
+};
+
+export function synchronizeBlocksSuccess(relationship) {
+  return {
+    type: SYNCHRONIZE_BLOCKS_SUCCESS,
+    relationship,
+  };
+};
+
+export function synchronizeBlocksFail(error) {
+  return {
+    type: SYNCHRONIZE_BLOCKS_FAIL,
     error,
   };
 };

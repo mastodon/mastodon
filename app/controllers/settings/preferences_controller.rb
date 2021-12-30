@@ -5,7 +5,8 @@ class Settings::PreferencesController < Settings::BaseController
 
   def update
     user_settings.update(user_settings_params.to_h)
-
+    @account = current_account
+    UpdateAccountService.new.call(@account, account_params, raise_error: true)
     if current_user.update(user_params)
       I18n.locale = current_user.locale
       redirect_to after_update_redirect_path, notice: I18n.t('generic.changes_saved_msg')
@@ -31,6 +32,12 @@ class Settings::PreferencesController < Settings::BaseController
     )
   end
 
+  def account_params
+    params.require(:user).permit(
+      :show_blocked_users
+    )
+  end
+
   def user_settings_params
     params.require(:user).permit(
       :setting_default_privacy,
@@ -51,7 +58,7 @@ class Settings::PreferencesController < Settings::BaseController
       :setting_aggregate_reblogs,
       :setting_show_application,
       :setting_advanced_layout,
-      :setting_hide_blocks,
+      :show_blocked_users,
       :setting_use_blurhash,
       :setting_use_pending_items,
       :setting_trends,
