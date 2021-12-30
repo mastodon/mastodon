@@ -322,8 +322,23 @@ br:
       edit_profile_action: Kefluniañ ar profil
       subject: Donemat e Mastodoñ
       title: Degemer mat e bourzh, %{name}!
+  users:
+    signed_in_as: 'Aet-tre evel:'
+  verification:
+    verification: Amprouadur
   webauthn_credentials:
+    add: Ouzphennañ un alc'hwez surentez nevez
+    create:
+      error: Ur guden a oa en ur ouzphennañ hoc'h alc'hwez surentez. Mar plij, klaskit c'hoazh.
+      success: Hoc'h alc'hwez surentez a zo bet ouzphennet gant berzh.
     delete: Dilemel
+    delete_confirmation: Sur oc'h e fell deoc'h dilemel an alc'hwez surentez-se ?
+    description_html: Ma'z eo aotreet <strong>dilesadur dre alc'hwez surentez</strong>, ret e vo deoc'h implijout unan eus hoc'h alc'hwezioù surentez evit mont-tre.
+    destroy:
+      error: Ur gudenn a oa en ur zilemel hoc'h alc'hwez surentez. Mar plij, klaskit c'hoazh.
+      success: Hoc'h alc'hwez surentez a zo bet dilamet gant berzh.
+    invalid_credential: Alc'hwez surentez direizh
+    nickname_hint: Skrivit lesanv hoc'h alc'hwez surentez nevez
     not_enabled: WebAuthn n'eo ket aotreet ganeoc'h c'hoazh
     not_supported: Alc'hwezioù surentez a zo diembreg gant ar merdeer-se
     otp_required: Evit implijout alc'hwezioù surentez, aotrit dilesadur dre eil-elfenn da gentañ.
