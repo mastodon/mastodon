@@ -203,6 +203,8 @@ zh-CN:
       suspension_irreversible: 该帐号的数据已被不可逆转地删除。你可以取消暂停该帐号以使其可用，但它不会恢复以前拥有的任何数据。
       suspension_reversible_hint_html: 帐号已封禁，数据将在 %{date} 完全删除。 在此之前，帐号仍可恢复，并且没有任何不良影响。 如果你想立即移除该帐号的所有数据，可以在下面进行。
       title: 用户
+      unblock_email: 取消屏蔽邮件地址
+      unblocked_email_msg: 成功取消屏蔽了 %{username} 的邮件地址
       unconfirmed_email: 待验证的电子邮件地址
       undo_sensitized: 去除敏感内容标记
       undo_silenced: 解除隐藏
@@ -235,6 +237,7 @@ zh-CN:
         destroy_domain_allow: 解除域名允许
         destroy_domain_block: 解除域名封禁
         destroy_email_domain_block: 解除电子邮箱域名封禁
+        destroy_instance: 删除实例
         destroy_ip_block: 删除 IP 规则
         destroy_status: 删除嘟文
         destroy_unavailable_domain: 删除不可用域名
@@ -256,6 +259,7 @@ zh-CN:
         silence_account: 隐藏用户
         suspend_account: 封禁用户
         unassigned_report: 取消举报的指派
+        unblock_email_account: 取消屏蔽邮件地址
         unsensitive_account: 去除你帐号中媒体的敏感内容标记
         unsilence_account: 解除账号隐藏
         unsuspend_account: 解除账号封禁
@@ -282,6 +286,7 @@ zh-CN:
         destroy_domain_allow_html: "%{name} 拒绝了和 %{target} 跨站交互"
         destroy_domain_block_html: "%{name} 解除了对域名 %{target} 的屏蔽"
         destroy_email_domain_block_html: "%{name} 解除了对电子邮件域名 %{target} 的屏蔽"
+        destroy_instance_html: "%{name} 删除了实例 %{target}"
         destroy_ip_block_html: "%{name} 删除了 IP %{target} 的规则"
         destroy_status_html: "%{name} 删除了 %{target} 的嘟文"
         destroy_unavailable_domain_html: "%{name} 恢复了向域名 %{target} 的投递"
@@ -303,6 +308,7 @@ zh-CN:
         silence_account_html: "%{name} 隐藏了用户 %{target}"
         suspend_account_html: "%{name} 封禁了用户 %{target}"
         unassigned_report_html: "%{name} 放弃接管举报 %{target}"
+        unblock_email_account_html: "%{name} 取消屏蔽了 %{target} 的邮件地址"
         unsensitive_account_html: "%{name} 去除了 %{target} 的媒体的敏感内容标记"
         unsilence_account_html: "%{name} 解除了用户 %{target} 的隐藏状态"
         unsuspend_account_html: "%{name} 解除了用户 %{target} 的封禁状态"
@@ -371,6 +377,12 @@ zh-CN:
       media_storage: 媒体存储
       new_users: 新用户
       opened_reports: 被发起的举报
+      pending_reports_html:
+        other: "<strong>%{count}</strong> 个待处理请求"
+      pending_tags_html:
+        other: "<strong>%{count}</strong> 个待处理标签"
+      pending_users_html:
+        other: "<strong>%{count}</strong> 个待处理用户"
       resolved_reports: 已解决的举报
       software: 软件
       sources: 注册来源
@@ -450,6 +462,7 @@ zh-CN:
       back_to_limited: 受限
       back_to_warning: 警告
       by_domain: 域名
+      confirm_purge: 你确认要从这个实例中永久地删除数据吗？
       delivery:
         all: 全部
         clear: 清理投递错误
