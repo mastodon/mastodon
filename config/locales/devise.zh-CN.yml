@@ -87,10 +87,10 @@ zh-CN:
       updated_not_active: 你的密码已成功修改。
     registrations:
       destroyed: 再见！你的帐户已成功注销。我们希望很快可以再见到你。
-      signed_up: 欢迎！你已注册成功。
-      signed_up_but_inactive: 你已成功注册，但因尚未激活帐户所以无法登陆。
-      signed_up_but_locked: 你已成功注册，但因帐户被锁定所以无法登陆。
-      signed_up_but_pending: 一封带有确认链接的邮件已经发送到了你的邮箱。 在你点击确认链接后，我们将会审核你的申请。审核通过后，我们将会通知你。
+      signed_up: 欢迎！你已成功注册。
+      signed_up_but_inactive: 你已成功注册，但我们无法让你登录，因为你的账户还没有激活。
+      signed_up_but_locked: 你已成功注册，但我们无法让你登录，因为你的账户已被锁定。
+      signed_up_but_pending: 一条带有确认链接的邮件已经发送到你的电子邮件地址。在你点击该链接后，我们将会审查你的申请。如果申请被批准，你将收到通知。
       signed_up_but_unconfirmed: 一封带有确认链接的邮件已经发送至你的邮箱，请点击邮件中的链接以激活你的帐户。如果没有，请检查你的垃圾邮件。
       update_needs_confirmation: 帐号信息更新成功，但我们需要验证你的新电子邮件地址，请点击邮件中的链接以确认。如果没有，请检查你的垃圾邮箱。
       updated: 帐户资料更新成功。
@@ -104,7 +104,7 @@ zh-CN:
       unlocked: 你的帐户已成功解锁。登录以继续。
   errors:
     messages:
-      already_confirmed: 已经确认成功，请尝试登录
+      already_confirmed: 已经成功确认，请尝试登录
       confirmation_period_expired: 必须在 %{period} 以内确认。请重新发起请求
       expired: 已过期。请重新发起请求
       not_found: 未找到
