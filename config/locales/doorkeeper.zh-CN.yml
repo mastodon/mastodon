@@ -72,12 +72,12 @@ zh-CN:
       index:
         application: 应用
         created_at: 授权时间
-        date_format: "%Y年%m月%d日 %H:%M:%S"
+        date_format: "%Y 年 %m 月 %d 日 %H:%M:%S"
         scopes: 权限范围
         title: 已授权的应用列表
     errors:
       messages:
-        access_denied: 资源所有者或服务器拒绝了请求
+        access_denied: 资源所有者或验证服务器拒绝了此请求
         credential_flow_not_configured: 由于 Doorkeeper.configure.resource_owner_from_credentials 尚未配置，应用验证授权流程失败。
         invalid_client: 由于应用信息未知、未提交认证信息或使用了不支持的认证方式，认证失败
         invalid_grant: 授权方式无效、过期或已被撤销、与授权请求中的回调地址不一致，或使用了其他应用的回调地址
