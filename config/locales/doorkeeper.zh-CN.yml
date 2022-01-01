@@ -3,7 +3,7 @@ zh-CN:
     attributes:
       doorkeeper/application:
         name: 应用名称
-        redirect_uri: 跳转 URI
+        redirect_uri: 重定向 URI
         scopes: 权限范围
         website: 应用网站
     errors:
@@ -11,9 +11,9 @@ zh-CN:
         doorkeeper/application:
           attributes:
             redirect_uri:
-              fragment_present: '不能包含网址片段（#）'
-              invalid_uri: 必须是有效的 URL 格式
-              relative_uri: 必须是绝对的 URL 地址
+              fragment_present: '不能包含网页书签（#）'
+              invalid_uri: 必须是有效的 URL 地址。
+              relative_uri: 必须是绝对的 URL 地址。
               secured_uri: 必须是 HTTPS/SSL 的 URL 地址
   doorkeeper:
     applications:
@@ -60,7 +60,7 @@ zh-CN:
         title: 发生错误
       new:
         able_to: 此应用将能够
-        prompt: 授权 %{client_name} 访问你的帐户？
+        prompt: '%{client_name} 应用想要授权访问你的账户'
         title: 需要授权
       show:
         title: 接下来请复制此处的授权代码并粘贴到应用中。
