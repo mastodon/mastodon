@@ -223,6 +223,7 @@ de:
       whitelisted: Auf der Whitelist
     action_logs:
       action_types:
+        approve_user: Benutzer genehmigen
         assigned_to_self_report: Bericht zuweisen
         change_email_user: E-Mail des Benutzers ändern
         confirm_user: Benutzer bestätigen
@@ -240,6 +241,7 @@ de:
         destroy_domain_allow: Erlaube das Löschen von Domains
         destroy_domain_block: Domain-Blockade löschen
         destroy_email_domain_block: E-Mail-Domain-Blockade löschen
+        destroy_instance: Domain-Daten entfernen
         destroy_ip_block: IP-Regel löschen
         destroy_status: Beitrag löschen
         destroy_unavailable_domain: Nicht verfügbare Domain löschen
@@ -270,6 +272,7 @@ de:
         update_domain_block: Domain Block aktualisieren
         update_status: Beitrag aktualisieren
       actions:
+        approve_user_html: "%{name} genehmigte die Anmeldung von %{target}"
         assigned_to_self_report_html: "%{name} hat sich die Meldung %{target} selbst zugewiesen"
         change_email_user_html: "%{name} hat die E-Mail-Adresse des Nutzers %{target} geändert"
         confirm_user_html: "%{name} hat die E-Mail-Adresse von %{target} bestätigt"
@@ -287,6 +290,7 @@ de:
         destroy_domain_allow_html: "%{name} hat die Domain %{target} von der Whitelist entfernt"
         destroy_domain_block_html: "%{name} hat die Domain %{target} entblockt"
         destroy_email_domain_block_html: "%{name} hat die E-Mail-Domain %{target} gewhitelistet"
+        destroy_instance_html: "%{name} hat die Daten der Domain %{target} entfernt"
         destroy_ip_block_html: "%{name} hat eine Regel für IP %{target} gelöscht"
         destroy_status_html: "%{name} hat einen Beitrag von %{target} entfernt"
         destroy_unavailable_domain_html: "%{name} setzte die Lieferung an die Domain %{target} fort"
@@ -299,6 +303,7 @@ de:
         enable_user_html: "%{name} hat Zugang von Benutzer_in %{target} aktiviert"
         memorialize_account_html: "%{name} hat das Konto von %{target} in eine Gedenkseite umgewandelt"
         promote_user_html: "%{name} hat %{target} befördert"
+        reject_user_html: "%{name} hat die Registrierung von %{target} abgelehnt"
         remove_avatar_user_html: "%{name} hat das Profilbild von %{target} entfernt"
         reopen_report_html: "%{name} hat die Meldung %{target} wieder geöffnet"
         reset_password_user_html: "%{name} hat das Passwort von %{target} zurückgesetzt"
