@@ -312,6 +312,7 @@ de:
         silence_account_html: "%{name} hat das Konto von %{target} stummgeschaltet"
         suspend_account_html: "%{name} hat das Konto von %{target} verbannt"
         unassigned_report_html: "%{name} hat die Zuweisung der Meldung %{target} entfernt"
+        unblock_email_account_html: "%{name} entsperrte %{target}'s E-Mail-Adresse"
         unsensitive_account_html: "%{name} markierte %{target}'s Medien nicht als NSFW"
         unsilence_account_html: "%{name} hat die Stummschaltung von %{target} aufgehoben"
         unsuspend_account_html: "%{name} hat die Verbannung von %{target} aufgehoben"
@@ -380,6 +381,15 @@ de:
       media_storage: Medienspeicher
       new_users: Neue Benutzer
       opened_reports: Erstellte Meldungen
+      pending_reports_html:
+        one: "<strong>1</strong> ausstehende Meldung"
+        other: "<strong>%{count}</strong> ausstehende Meldungen"
+      pending_tags_html:
+        one: "<strong>1</strong> ausstehender Hashtag"
+        other: "<strong>%{count}</strong> ausstehende Hashtags"
+      pending_users_html:
+        one: "<strong>1</strong> ausstehender Benutzer"
+        other: "<strong>%{count}</strong> ausstehende Benutzer"
       resolved_reports: Gelöste Meldungen
       software: Software
       sources: Registrierungsquellen
@@ -460,6 +470,7 @@ de:
       back_to_limited: Beschränkt
       back_to_warning: Warnung
       by_domain: Domain
+      confirm_purge: Bist du dir sicher, dass du die Daten für diese Domain für immer löschen möchtest?
       delivery:
         all: Alle
         clear: Zustellfehler löschen
@@ -475,6 +486,7 @@ de:
       delivery_available: Zustellung funktioniert
       delivery_error_days: Tage seitdem die Zustellung nicht funktioniert
       delivery_error_hint: Wenn eine Lieferung für %{count} Tage nicht möglich ist, wird sie automatisch als nicht lieferbar markiert.
+      destroyed_msg: Daten von %{domain} sind nun in der Warteschlange für die bevorstehende Löschung.
       empty: Keine Domains gefunden.
       known_accounts:
         one: "%{count} bekanntes Konto"
@@ -485,6 +497,7 @@ de:
         title: Moderation
       private_comment: Privater Kommentar
       public_comment: Öffentlicher Kommentar
+      purge: Löschen
       title: Föderation
       total_blocked_by_us: Von uns blockiert
       total_followed_by_them: Gefolgt von denen
@@ -726,10 +739,19 @@ de:
           tag_servers_dimension: Top Server
           tag_servers_measure: verschiedene Server
           tag_uses_measure: Gesamtnutzungen
+        listable: Kann vorgeschlagen werden
+        not_listable: Wird nicht vorgeschlagen
+        not_trendable: Wird nicht unter Trends angezeigt
         not_usable: Kann nicht verwendet werden
+        peaked_on_and_decaying: In den Trends am %{date}, jetzt absteigend
         title: Beliebtes Hashtags
         trendable: Darf unter Trends erscheinen
+        trending_rank: 'Trend #%{rank}'
         usable: Kann verwendet werden
+        usage_comparison: Heute %{today} mal genutzt, gestern %{yesterday} mal
+        used_by_over_week:
+          one: In der letzten Woche genutzt von einer Person
+          other: In der letzten Woche genutzt von %{count} Personen
       title: Trends
     warning_presets:
       add_new: Neu hinzufügen
@@ -745,6 +767,13 @@ de:
       body: "%{reporter} hat %{target} gemeldet"
       body_remote: Jemand von %{domain} hat %{target} gemeldet
       subject: 'Neue Meldung auf %{instance} (#%{id})'
+    new_trending_links:
+      body: Die folgenden Links sind heute in den Trends, aber der Ursprung wurde bisher nicht überprüft. Sie werden nicht öffentlich angezeigt, es sei denn, du genehmigst sie. Sollten weitere Links vom selben Ursprung trenden, müssen sie nicht vorher überprüft werden.
+      no_approved_links: Derzeit sind keine Links hinterlegt, die genehmigt wurden.
+      requirements: Der am wenigsten genehmigte Trend-Link ist derzeit "%{lowest_link_title}" mit einer Punktzahl von %{lowest_link_score}.
+      subject: Neue Trend-Links zur Überprüfung auf %{instance}
+    new_trending_tags:
+      body: 'Die folgenden Hashtags trenden heute, aber sie wurden bisher nicht überprüft. Sie werden nicht öffentlich angezeigt, es sei denn, du genehmigst sie:'
   aliases:
     add_new: Alias erstellen
     created_msg: Ein neuer Alias wurde erfolgreich erstellt. Du kannst nun den Wechsel vom alten Konto starten.
