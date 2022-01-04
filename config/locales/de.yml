@@ -129,7 +129,7 @@ de:
       enable_sign_in_token_auth: Aktiviere die Zwei-Faktor-Authentifizierung per E-Mail
       enabled: Freigegeben
       enabled_msg: '%{username}''s Konto erfolgreich freigegeben'
-      followers: Folgende
+      followers: Follower
       follows: Folgt
       header: Titelbild
       inbox_url: Posteingangs-URL
@@ -774,6 +774,9 @@ de:
       subject: Neue Trend-Links zur Überprüfung auf %{instance}
     new_trending_tags:
       body: 'Die folgenden Hashtags trenden heute, aber sie wurden bisher nicht überprüft. Sie werden nicht öffentlich angezeigt, es sei denn, du genehmigst sie:'
+      no_approved_tags: Derzeit gibt es keine genehmigten trendene Hashtags.
+      requirements: 'Der am wenigsten genehmigte trendene Hashtag ist derzeit #%{lowest_tag_name} mit einer Punktzahl von %{lowest_tag_score}.'
+      subject: Neuer Hashtag zur Überprüfung auf %{instance} verfügbar
   aliases:
     add_new: Alias erstellen
     created_msg: Ein neuer Alias wurde erfolgreich erstellt. Du kannst nun den Wechsel vom alten Konto starten.
