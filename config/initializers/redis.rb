@@ -1,9 +1,16 @@
 # frozen_string_literal: true
 
-redis_connection = Redis.new(
+opts = {
   url: ENV['REDIS_URL'],
   driver: :hiredis
-)
+}
+
+if ENV['REDIS_TLS_NOVERIFY']
+  opts[:driver] = :ruby
+  opts[:ssl_params] = { verify_mode: OpenSSL::SSL::VERIFY_NONE }
+end
+
+redis_connection = Redis.new(opts)
 
 namespace = ENV.fetch('REDIS_NAMESPACE') { nil }
 
