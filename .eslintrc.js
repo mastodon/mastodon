@@ -19,7 +19,10 @@ module.exports = {
     'jsx-a11y',
     'import',
     'promise',
+    '@typescript-eslint'
   ],
+
+  extends: ["plugin:@typescript-eslint/recommended"],
 
   parserOptions: {
     sourceType: 'module',
@@ -35,7 +38,7 @@ module.exports = {
       version: 'detect',
     },
     'import/extensions': [
-      '.js',
+      '.js', '.ts', '.tsx'
     ],
     'import/ignore': [
       'node_modules',
@@ -44,6 +47,7 @@ module.exports = {
     'import/resolver': {
       node: {
         paths: ['app/javascript'],
+        extensions: [".js", ".jsx", ".ts", ".tsx"]
       },
     },
   },

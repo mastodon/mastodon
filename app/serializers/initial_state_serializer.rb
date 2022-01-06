@@ -9,6 +9,7 @@ class InitialStateSerializer < ActiveModel::Serializer
   def meta
     store = {
       streaming_api_base_url: Rails.configuration.x.streaming_api_base_url,
+      mediasoup_api_base_url: Rails.configuration.x.mediasoup_api_base_url,
       access_token: object.token,
       locale: I18n.locale,
       domain: Rails.configuration.x.local_domain,

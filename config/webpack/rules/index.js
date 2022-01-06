@@ -1,4 +1,5 @@
 const babel = require('./babel');
+const babelTS = require('./babelTypescript');
 const css = require('./css');
 const file = require('./file');
 const tesseract = require('./tesseract');
@@ -13,4 +14,5 @@ module.exports = {
   css,
   nodeModules,
   babel,
+  babelTS,
 };

@@ -22,6 +22,7 @@ import PictureInPicturePlaceholder from 'mastodon/components/picture_in_picture_
 // We use the component (and not the container) since we do not want
 // to use the progress bar to show download progress
 import Bundle from '../features/ui/components/bundle';
+import { StreamContainer } from '../containers/stream_container';
 
 export const textForScreenReader = (intl, status, rebloggedByText = false) => {
   const displayName = status.getIn(['account', 'display_name']);
@@ -446,7 +447,14 @@ class Status extends ImmutablePureComponent {
           sensitive={status.get('sensitive')}
         />
       );
+    } 
+    
+    if (status.get('stream') !== ""){
+      media = (
+        <StreamContainer id={status.get('stream')} defaultComponent={media}/> 
+      )
     }
+
 
     if (otherAccounts && otherAccounts.size > 0) {
       statusAvatar = <AvatarComposite accounts={otherAccounts} size={48} />;
