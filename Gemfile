@@ -147,6 +147,7 @@ end
 
 group :production do
   gem 'lograge', '~> 0.11'
+  gem 'foreman'
 end
 
 gem 'concurrent-ruby', require: false
