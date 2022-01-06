@@ -1,0 +1,3 @@
+nginx: bin/start-nginx-solo
+rails: env PORT=3000 bundle exec puma -C config/puma.rb
+streaming: env PORT=4000 node ./streaming
