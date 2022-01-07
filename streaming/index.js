@@ -197,10 +197,12 @@ const startWorker = async (workerId) => {
 
   /**
    * @param {string} channel
+   * @param {function(string): void} callback
    */
-  const unsubscribe = (channel) => {
+  const unsubscribe = (channel, callback) => {
+    log.silly(`Removing listener for ${channel}`);
 
-    redisSubscribeClient.unsubscribe(channel);
+    redisSubscribeClient.unsubscribe(channel, callback);
   };
 
   const FALSE_VALUES = [
