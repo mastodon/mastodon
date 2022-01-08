@@ -6,12 +6,16 @@ import { createSelector } from 'reselect';
 import { debounce } from 'lodash';
 import { me } from '../../../initial_state';
 
+function onlyUnique(value, index, self){
+  return self.indexOf(value) === index;
+}
+
 const makeGetStatusIds = (pending = false) => createSelector([
   (state, { type }) => state.getIn(['settings', type], ImmutableMap()),
   (state, { type }) => state.getIn(['timelines', type, pending ? 'pendingItems' : 'items'], ImmutableList()),
   (state)           => state.get('statuses'),
 ], (columnSettings, statusIds, statuses) => {
-  return statusIds.filter(id => {
+  return statusIds.filter(onlyUnique).filter(id => {
     if (id === null) return true;
 
     const statusForId = statuses.get(id);

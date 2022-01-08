@@ -111,8 +111,6 @@ class ListTimeline extends React.PureComponent {
     dispatch(setupListEditor(id));
     const hashtagsUsers = JSON.parse(list.get('hashtags_users'));
 
-    console.log(hashtagsUsers);
-
     dispatch(combineTimelines(id, hashtagsUsers));
   }
 
@@ -128,8 +126,6 @@ class ListTimeline extends React.PureComponent {
 
       dispatch(fetchList(id));
       const hashtagsUsers = JSON.parse(list.get('hashtags_users'));
-
-      console.log(hashtagsUsers);
 
       dispatch(combineTimelines(id, hashtagsUsers));
 
@@ -152,8 +148,6 @@ class ListTimeline extends React.PureComponent {
     const { dispatch, list } = this.props;
     const { id } = this.props.params;
     const hashtagsUsers = JSON.parse(list.get('hashtags_users'));
-
-    console.log(hashtagsUsers);
     dispatch(combineTimelines(id, hashtagsUsers, {maxId}));
   };
 

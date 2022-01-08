@@ -3,6 +3,7 @@ import {
   TIMELINE_DELETE,
   TIMELINE_CLEAR,
   TIMELINE_EXPAND_SUCCESS,
+  TIMELINES_EXPAND_SUCCESS,
   TIMELINE_EXPAND_REQUEST,
   TIMELINE_EXPAND_FAIL,
   TIMELINE_SCROLL_TOP,
@@ -43,9 +44,48 @@ const expandNormalizedTimeline = (state, timeline, statuses, next, isPartial, is
     } else if (!statuses.isEmpty()) {
       usePendingItems = isLoadingRecent && (usePendingItems || !mMap.get('pendingItems').isEmpty());
 
-      mMap.update(usePendingItems ? 'pendingItems' : 'items', ImmutableList(), oldIds => {
+      mMap.update(usePendingItems ? 'pendingItems' : 'items', ImmutableList(), oldIds => { 
         const newIds = statuses.map(status => status.get('id'));
 
+        const lastIndex = oldIds.findLastIndex(id => id !== null && compareId(id, newIds.last()) >= 0) + 1;
+        const firstIndex = oldIds.take(lastIndex).findLastIndex(id => id !== null && compareId(id, newIds.first()) > 0);
+
+        if (firstIndex < 0) {
+          return (isPartial ? newIds.unshift(null) : newIds).concat(oldIds.skip(lastIndex));
+        }
+
+        return oldIds.take(firstIndex + 1).concat(
+          isPartial && oldIds.get(firstIndex) !== null ? newIds.unshift(null) : newIds,
+          oldIds.skip(lastIndex),
+        );
+      });
+    }
+  }));
+};
+
+function onlyUnique(value, index, self){
+  return self.indexOf(value) === index;
+}
+
+const expandNormalizedTimelines = (state, timeline, statuses, next, isPartial, isLoadingRecent, usePendingItems) => {
+  return state.update(timeline, initialTimeline, map => map.withMutations(mMap => {
+    mMap.set('isLoading', false);
+    mMap.set('isPartial', isPartial);
+
+    const ids = state.getIn([timeline, 'items'], ImmutableList());
+
+    if (!next && !isLoadingRecent) mMap.set('hasMore', false);
+
+    if (timeline.endsWith(':pinned')) {
+      mMap.set('items', statuses.map(status => status.get('id')));
+    } else if (!statuses.isEmpty()) {
+      usePendingItems = isLoadingRecent && (usePendingItems || !mMap.get('pendingItems').isEmpty());
+
+      mMap.update(usePendingItems ? 'pendingItems' : 'items', ImmutableList(), oldIds => { 
+        var newStatuses = statuses.map(status => status.get('id'));
+        const newIdsDup = (ids.concat(newStatuses).toJS());
+        const newIds = ImmutableList(newIdsDup.filter(onlyUnique).filter(x=>x).sort((a,b)=>b-a));
+        
         const lastIndex = oldIds.findLastIndex(id => id !== null && compareId(id, newIds.last()) >= 0) + 1;
         const firstIndex = oldIds.take(lastIndex).findLastIndex(id => id !== null && compareId(id, newIds.first()) > 0);
 
@@ -148,6 +188,8 @@ export default function timelines(state = initialState, action) {
     return state.update(action.timeline, initialTimeline, map => map.set('isLoading', false));
   case TIMELINE_EXPAND_SUCCESS:
     return expandNormalizedTimeline(state, action.timeline, fromJS(action.statuses), action.next, action.partial, action.isLoadingRecent, action.usePendingItems);
+    case TIMELINES_EXPAND_SUCCESS:
+    return expandNormalizedTimelines(state, action.timeline, fromJS(action.statuses), action.next, action.partial, action.isLoadingRecent, action.usePendingItems);
   case TIMELINE_UPDATE:
     return updateTimeline(state, action.timeline, fromJS(action.status), action.usePendingItems);
   case TIMELINE_DELETE:
