@@ -5,7 +5,7 @@ import CreateNewListForm from "./create_new_list_form";
 const NewListAdder = React.forwardRef((props, ref) => {
   return (
     <div className="modal-root__modal list-editor">
-      <CreateNewListForm />
+      <CreateNewListForm listId={props.listId}/>
     </div>
   );
 });

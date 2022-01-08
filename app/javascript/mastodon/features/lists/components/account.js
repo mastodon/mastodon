@@ -20,7 +20,14 @@ const makeMapStateToProps = () => {
 
   const mapStateToProps = (state, { accountId, added }) => ({
     account: getAccount(state, accountId),
-    added: typeof added === 'undefined' ? state.getIn(['listEditor', 'accounts', 'items']).includes(accountId) : added,
+    added:
+      typeof added === 'undefined'
+        ? state.getIn(['listEditor', 'hashtagsUsers']) !== ''
+          ? Object.values(
+              JSON.parse(state.getIn(['listEditor', 'hashtagsUsers'])).users
+            ).includes(accountId)
+          : false
+        : added,
   });
 
   return mapStateToProps;
@@ -31,10 +38,10 @@ const mapDispatchToProps = (dispatch, { accountId }) => ({
   onAdd: () => dispatch(addToListEditor(accountId)),
 });
 
-export default @connect(makeMapStateToProps, mapDispatchToProps)
+export default
+@connect(makeMapStateToProps, mapDispatchToProps)
 @injectIntl
 class Account extends ImmutablePureComponent {
-
   static propTypes = {
     account: ImmutablePropTypes.map.isRequired,
     intl: PropTypes.object.isRequired,
@@ -47,31 +54,42 @@ class Account extends ImmutablePureComponent {
     added: false,
   };
 
-  render () {
+  render() {
     const { account, intl, onRemove, onAdd, added } = this.props;
 
     let button;
 
     if (added) {
-      button = <IconButton icon='times' title={intl.formatMessage(messages.remove)} onClick={onRemove} />;
+      button = (
+        <IconButton
+          icon="times"
+          title={intl.formatMessage(messages.remove)}
+          onClick={onRemove}
+        />
+      );
     } else {
-      button = <IconButton icon='plus' title={intl.formatMessage(messages.add)} onClick={onAdd} />;
+      button = (
+        <IconButton
+          icon="plus"
+          title={intl.formatMessage(messages.add)}
+          onClick={onAdd}
+        />
+      );
     }
 
     return (
-      <div className='account'>
-        <div className='account__wrapper'>
-          <div className='account__display-name'>
-            <div className='account__avatar-wrapper'><Avatar account={account} size={36} /></div>
+      <div className="account">
+        <div className="account__wrapper">
+          <div className="account__display-name">
+            <div className="account__avatar-wrapper">
+              <Avatar account={account} size={36} />
+            </div>
             <DisplayName account={account} />
           </div>
 
-          <div className='account__relationship'>
-            {button}
-          </div>
+          <div className="account__relationship">{button}</div>
         </div>
       </div>
     );
   }
-
 }

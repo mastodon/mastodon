@@ -339,7 +339,7 @@
 
 .ellipsis {
   &::after {
-    content: "…";
+    content: '…';
   }
 }
 
@@ -357,7 +357,7 @@
       color: $highlight-text-color;
     }
 
-    input[type=checkbox] {
+    input[type='checkbox'] {
       display: none;
     }
 
@@ -600,12 +600,17 @@
       margin: 5px;
 
       &__actions {
-        background: linear-gradient(180deg, rgba($base-shadow-color, 0.8) 0, rgba($base-shadow-color, 0.35) 80%, transparent);
+        background: linear-gradient(
+          180deg,
+          rgba($base-shadow-color, 0.8) 0,
+          rgba($base-shadow-color, 0.35) 80%,
+          transparent
+        );
         display: flex;
         align-items: flex-start;
         justify-content: space-between;
         opacity: 0;
-        transition: opacity .1s ease;
+        transition: opacity 0.1s ease;
 
         .icon-button {
           flex: 0 1 auto;
@@ -634,10 +639,15 @@
         left: 0;
         right: 0;
         box-sizing: border-box;
-        background: linear-gradient(0deg, rgba($base-shadow-color, 0.8) 0, rgba($base-shadow-color, 0.35) 80%, transparent);
+        background: linear-gradient(
+          0deg,
+          rgba($base-shadow-color, 0.8) 0,
+          rgba($base-shadow-color, 0.35) 80%,
+          transparent
+        );
         padding: 10px;
         opacity: 0;
-        transition: opacity .1s ease;
+        transition: opacity 0.1s ease;
 
         textarea {
           background: transparent;
@@ -751,7 +761,7 @@
   font-size: inherit;
   vertical-align: middle;
   object-fit: contain;
-  margin: -.2ex .15em .2ex;
+  margin: -0.2ex 0.15em 0.2ex;
   width: 16px;
   height: 16px;
 
@@ -1028,8 +1038,12 @@
   }
 
   @keyframes fade {
-    0% { opacity: 0; }
-    100% { opacity: 1; }
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
   }
 
   opacity: 1;
@@ -1751,11 +1765,11 @@ a.account__display-name {
   justify-content: center;
   flex-direction: column;
   scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none;  /* IE 10+ */
+  -ms-overflow-style: none; /* IE 10+ */
 
   * {
     scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none;  /* IE 10+ */
+    -ms-overflow-style: none; /* IE 10+ */
   }
 
   &::-webkit-scrollbar,
@@ -2283,7 +2297,7 @@ a.account__display-name {
   .scrollable {
     overflow: visible;
 
-    @supports(display: grid) {
+    @supports (display: grid) {
       contain: content;
     }
   }
@@ -2647,7 +2661,9 @@ a.account__display-name {
 }
 
 .drawer__inner__mastodon {
-  background: lighten($ui-base-color, 13%) url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 234.80078 31.757813" width="234.80078" height="31.757812"><path d="M19.599609 0c-1.05 0-2.10039.375-2.90039 1.125L0 16.925781v14.832031h234.80078V17.025391l-16.5-15.900391c-1.6-1.5-4.20078-1.5-5.80078 0l-13.80078 13.099609c-1.6 1.5-4.19883 1.5-5.79883 0L179.09961 1.125c-1.6-1.5-4.19883-1.5-5.79883 0L159.5 14.224609c-1.6 1.5-4.20078 1.5-5.80078 0L139.90039 1.125c-1.6-1.5-4.20078-1.5-5.80078 0l-13.79883 13.099609c-1.6 1.5-4.20078 1.5-5.80078 0L100.69922 1.125c-1.600001-1.5-4.198829-1.5-5.798829 0l-13.59961 13.099609c-1.6 1.5-4.200781 1.5-5.800781 0L61.699219 1.125c-1.6-1.5-4.198828-1.5-5.798828 0L42.099609 14.224609c-1.6 1.5-4.198828 1.5-5.798828 0L22.5 1.125C21.7.375 20.649609 0 19.599609 0z" fill="#{hex-color($ui-base-color)}"/></svg>') no-repeat bottom / 100% auto;
+  background: lighten($ui-base-color, 13%)
+    url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 234.80078 31.757813" width="234.80078" height="31.757812"><path d="M19.599609 0c-1.05 0-2.10039.375-2.90039 1.125L0 16.925781v14.832031h234.80078V17.025391l-16.5-15.900391c-1.6-1.5-4.20078-1.5-5.80078 0l-13.80078 13.099609c-1.6 1.5-4.19883 1.5-5.79883 0L179.09961 1.125c-1.6-1.5-4.19883-1.5-5.79883 0L159.5 14.224609c-1.6 1.5-4.20078 1.5-5.80078 0L139.90039 1.125c-1.6-1.5-4.20078-1.5-5.80078 0l-13.79883 13.099609c-1.6 1.5-4.20078 1.5-5.80078 0L100.69922 1.125c-1.600001-1.5-4.198829-1.5-5.798829 0l-13.59961 13.099609c-1.6 1.5-4.200781 1.5-5.800781 0L61.699219 1.125c-1.6-1.5-4.198828-1.5-5.798828 0L42.099609 14.224609c-1.6 1.5-4.198828 1.5-5.798828 0L22.5 1.125C21.7.375 20.649609 0 19.599609 0z" fill="#{hex-color($ui-base-color)}"/></svg>')
+    no-repeat bottom / 100% auto;
   flex: 1;
   min-height: 47px;
   display: none;
@@ -2702,7 +2718,8 @@ a.account__display-name {
     overflow-y: auto;
   }
 
-  @supports(display: grid) { // hack to fix Chrome <57
+  @supports (display: grid) {
+    // hack to fix Chrome <57
     contain: strict;
   }
 
@@ -2719,7 +2736,8 @@ a.account__display-name {
 }
 
 .scrollable.fullscreen {
-  @supports(display: grid) { // hack to fix Chrome <57
+  @supports (display: grid) {
+    // hack to fix Chrome <57
     contain: none;
   }
 }
@@ -2745,13 +2763,13 @@ a.account__display-name {
   }
 }
 
-.wrapper-import{
+.wrapper-import {
   display: flex;
   background: lighten($ui-base-color, 4%);
   justify-content: space-between;
 }
 
-.message-import{
+.message-import {
   box-sizing: border-box;
   width: 100%;
   background: lighten($ui-base-color, 4%);
@@ -2766,7 +2784,7 @@ a.account__display-name {
   outline: 0;
 }
 
-.button-import{
+.button-import {
   box-sizing: border-box;
   width: 100%;
   background: lighten($ui-base-color, 4%);
@@ -2864,7 +2882,8 @@ a.account__display-name {
   transition: background-color 0.2s ease;
 }
 
-.react-toggle:is(:hover, :focus-within):not(.react-toggle--disabled) .react-toggle-track {
+.react-toggle:is(:hover, :focus-within):not(.react-toggle--disabled)
+  .react-toggle-track {
   background-color: darken($ui-base-color, 10%);
 }
 
@@ -2872,7 +2891,8 @@ a.account__display-name {
   background-color: $ui-highlight-color;
 }
 
-.react-toggle--checked:is(:hover, :focus-within):not(.react-toggle--disabled) .react-toggle-track {
+.react-toggle--checked:is(:hover, :focus-within):not(.react-toggle--disabled)
+  .react-toggle-track {
   background-color: lighten($ui-highlight-color, 10%);
 }
 
@@ -3458,7 +3478,7 @@ a.status-card.compact:hover {
 
     &::before {
       display: block;
-      content: "";
+      content: '';
       position: absolute;
       bottom: -13px;
       left: 0;
@@ -3468,7 +3488,11 @@ a.status-card.compact:hover {
       pointer-events: none;
       height: 28px;
       z-index: 1;
-      background: radial-gradient(ellipse, rgba($ui-highlight-color, 0.23) 0%, rgba($ui-highlight-color, 0) 60%);
+      background: radial-gradient(
+        ellipse,
+        rgba($ui-highlight-color, 0.23) 0%,
+        rgba($ui-highlight-color, 0) 60%
+      );
     }
   }
 
@@ -3764,9 +3788,15 @@ a.status-card.compact:hover {
 }
 
 @keyframes loader-label {
-  0% { opacity: 0.25; }
-  30% { opacity: 1; }
-  100% { opacity: 0.25; }
+  0% {
+    opacity: 0.25;
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.25;
+  }
 }
 
 .video-error-cover {
@@ -4059,7 +4089,8 @@ a.status-card.compact:hover {
   align-items: center;
   justify-content: center;
 
-  @supports(display: grid) { // hack to fix Chrome <57
+  @supports (display: grid) {
+    // hack to fix Chrome <57
     contain: strict;
   }
 
@@ -4812,7 +4843,7 @@ a.status-card.compact:hover {
   padding: 0;
   border: 0;
   font-size: 0;
-  transition: opacity .2s ease-in-out;
+  transition: opacity 0.2s ease-in-out;
 
   &.active {
     opacity: 1;
@@ -5326,7 +5357,9 @@ a.status-card.compact:hover {
     width: auto;
     outline: 0;
     font-family: inherit;
-    background: $simple-background-color url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14.933 18.467' height='19.698' width='15.929'><path d='M3.467 14.967l-3.393-3.5H14.86l-3.392 3.5c-1.866 1.925-3.666 3.5-4 3.5-.335 0-2.135-1.575-4-3.5zm.266-11.234L7.467 0 11.2 3.733l3.733 3.734H0l3.733-3.734z' fill='#{hex-color(darken($simple-background-color, 14%))}'/></svg>") no-repeat right 8px center / auto 16px;
+    background: $simple-background-color
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14.933 18.467' height='19.698' width='15.929'><path d='M3.467 14.967l-3.393-3.5H14.86l-3.392 3.5c-1.866 1.925-3.666 3.5-4 3.5-.335 0-2.135-1.575-4-3.5zm.266-11.234L7.467 0 11.2 3.733l3.733 3.734H0l3.733-3.734z' fill='#{hex-color(darken($simple-background-color, 14%))}'/></svg>")
+      no-repeat right 8px center / auto 16px;
     border: 1px solid darken($simple-background-color, 14%);
     border-radius: 4px;
     padding: 6px 10px;
@@ -5566,7 +5599,6 @@ a.status-card.compact:hover {
   .video-player__volume__handle {
     bottom: 23px;
   }
-
 }
 
 .audio-player {
@@ -5685,10 +5717,15 @@ a.status-card.compact:hover {
     left: 0;
     right: 0;
     box-sizing: border-box;
-    background: linear-gradient(0deg, rgba($base-shadow-color, 0.85) 0, rgba($base-shadow-color, 0.45) 60%, transparent);
+    background: linear-gradient(
+      0deg,
+      rgba($base-shadow-color, 0.85) 0,
+      rgba($base-shadow-color, 0.45) 60%,
+      transparent
+    );
     padding: 0 15px;
     opacity: 0;
-    transition: opacity .1s ease;
+    transition: opacity 0.1s ease;
 
     &.active {
       opacity: 1;
@@ -5827,7 +5864,7 @@ a.status-card.compact:hover {
     }
 
     &::before {
-      content: "";
+      content: '';
       width: 50px;
       background: rgba($white, 0.35);
       border-radius: 4px;
@@ -5897,7 +5934,7 @@ a.status-card.compact:hover {
     position: relative;
 
     &::before {
-      content: "";
+      content: '';
       width: 100%;
       background: rgba($white, 0.35);
       border-radius: 4px;
@@ -5934,7 +5971,7 @@ a.status-card.compact:hover {
       box-shadow: 1px 2px 6px rgba($base-shadow-color, 0.2);
 
       .no-reduce-motion & {
-        transition: opacity .1s ease;
+        transition: opacity 0.1s ease;
       }
 
       &.active {
@@ -6157,7 +6194,7 @@ a.status-card.compact:hover {
       &::before,
       &::after {
         display: block;
-        content: "";
+        content: '';
         position: absolute;
         bottom: 0;
         left: 50%;
@@ -6223,8 +6260,8 @@ a.status-card.compact:hover {
   text-overflow: ellipsis;
   cursor: pointer;
 
-  input[type=radio],
-  input[type=checkbox] {
+  input[type='radio'],
+  input[type='checkbox'] {
     display: none;
   }
 
@@ -6283,9 +6320,15 @@ noscript {
 }
 
 @keyframes flicker {
-  0% { opacity: 1; }
-  30% { opacity: 0.75; }
-  100% { opacity: 1; }
+  0% {
+    opacity: 1;
+  }
+  30% {
+    opacity: 0.75;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 @media screen and (max-width: 630px) and (max-height: 400px) {
@@ -6306,7 +6349,9 @@ noscript {
   .navigation-bar {
     & > a:first-child {
       will-change: margin-top, margin-left, margin-right, width;
-      transition: margin-top $duration $delay, margin-left $duration ($duration + $delay), margin-right $duration ($duration + $delay);
+      transition: margin-top $duration $delay,
+        margin-left $duration ($duration + $delay),
+        margin-right $duration ($duration + $delay);
     }
 
     & > .navigation-bar__profile-edit {
@@ -6317,14 +6362,13 @@ noscript {
     .navigation-bar__actions {
       & > .icon-button.close {
         will-change: opacity transform;
-        transition: opacity $duration * 0.5 $delay,
-                    transform $duration $delay;
+        transition: opacity $duration * 0.5 $delay, transform $duration $delay;
       }
 
       & > .compose__action-bar .icon-button {
         will-change: opacity transform;
         transition: opacity $duration * 0.5 $delay + $duration * 0.5,
-                    transform $duration $delay;
+          transform $duration $delay;
       }
     }
   }
@@ -7047,7 +7091,7 @@ noscript {
     border-radius: 50%;
     width: 0.625rem;
     height: 0.625rem;
-    margin: -.1ex .15em .1ex;
+    margin: -0.1ex 0.15em 0.1ex;
   }
 
   &__content {
@@ -7253,7 +7297,11 @@ noscript {
     &.active {
       transition: all 100ms ease-in;
       transition-property: background-color, color;
-      background-color: mix(lighten($ui-base-color, 12%), $ui-highlight-color, 80%);
+      background-color: mix(
+        lighten($ui-base-color, 12%),
+        $ui-highlight-color,
+        80%
+      );
 
       .reactions-bar__item__count {
         color: lighten($highlight-text-color, 8%);
@@ -7306,7 +7354,7 @@ noscript {
 
   &.unread {
     &::before {
-      content: "";
+      content: '';
       position: absolute;
       top: 0;
       left: 0;
@@ -7446,5 +7494,39 @@ noscript {
 
   &:hover {
     background: lighten($ui-base-color, 11%);
+  }
+}
+
+.list-creator {
+  .search-results__section {
+    margin-bottom: 0;
+  }
+
+  .drawer__pager {
+    height: 36vh;
+  }
+
+  h5 {
+    padding: 10px;
+    font-weight: 500;
+    font-size: 12px;
+    color: $dark-text-color;
+
+    .fa {
+      display: inline-block;
+      margin-right: 5px;
+    }
+  }
+
+  .search__input {
+    background: darken($ui-base-color, 4%);
+    // border-bottom: 1px solid lighten($ui-base-color, 8%);
+    cursor: default;
+    display: flex;
+    padding: 15px;
+
+    // font-weight: 500;
+    // font-size: 16px;
+    // color: $dark-text-color;
   }
 }
