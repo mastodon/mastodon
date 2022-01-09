@@ -14,6 +14,9 @@
     = f.input :setting_hide_network, as: :boolean, wrapper: :with_label
 
   .fields-group
+    = f.input :show_blocked_users, as: :boolean, wrapper: :with_label, hint: false
+
+  .fields-group
     = f.input :setting_aggregate_reblogs, as: :boolean, wrapper: :with_label, recommended: true
 
   %h4= t 'preferences.posting_defaults'

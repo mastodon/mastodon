@@ -43,6 +43,7 @@
 #  webauthn_id               :string
 #  sign_up_ip                :inet
 #  skip_sign_in_token        :boolean
+#  show_blocked_users        :boolean
 #
 
 class User < ApplicationRecord
@@ -122,11 +123,13 @@ class User < ApplicationRecord
   has_many :session_activations, dependent: :destroy
 
   delegate :auto_play_gif, :default_sensitive, :unfollow_modal, :boost_modal, :delete_modal,
-           :reduce_motion, :system_font_ui, :noindex, :theme, :display_media, :hide_network,
+           :reduce_motion, :system_font_ui, :noindex, :theme, :display_media, :hide_network, :show_blocked_users,
            :expand_spoilers, :default_language, :aggregate_reblogs, :show_application,
            :advanced_layout, :use_blurhash, :use_pending_items, :trends, :crop_images,
            :disable_swiping,
            to: :settings, prefix: :setting, allow_nil: false
+
+  delegate :show_blocked_users, to: :settings, allow_nil: false
 
   attr_reader :invite_code, :sign_in_token_attempt
   attr_writer :external, :bypass_invite_request_check
@@ -269,6 +272,9 @@ class User < ApplicationRecord
     @hides_network ||= settings.hide_network
   end
 
+  def show_blocked_users?
+    @show_blocked_users ||= settings.show_blocked_users
+  end
   def aggregates_reblogs?
     @aggregates_reblogs ||= settings.aggregate_reblogs
   end

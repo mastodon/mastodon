@@ -213,10 +213,10 @@ class Header extends ImmutablePureComponent {
         menu.push({ text: intl.formatMessage(messages.add_or_remove_from_list), action: this.props.onAddToList });
         menu.push(null);
       }
-
-      menu.push({ text: intl.formatMessage(messages.blocks), to: '/blocks/' + account.get('id') });
-      menu.push(null);
-
+      if (account.get('show_blocked_users')) {
+        menu.push({ text: intl.formatMessage(messages.blocks), to: '/blocks/' + account.get('id') });
+        menu.push(null);
+      }
       if (account.getIn(['relationship', 'muting'])) {
         menu.push({ text: intl.formatMessage(messages.unmute, { name: account.get('username') }), action: this.props.onMute });
       } else {

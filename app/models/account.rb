@@ -47,6 +47,8 @@
 #  devices_url                   :string
 #  suspension_origin             :integer
 #  sensitized_at                 :datetime
+#  show_blocked_users            :boolean
+#  block_synchro_list            :string
 #
 
 class Account < ApplicationRecord

@@ -240,7 +240,7 @@ Rails.application.routes.draw do
 
     resources :report_notes, only: [:create, :destroy]
 
-    resources :accounts, only: [:index, :show, :destroy] do
+    resources :accounts, only: [:index, :show, :update, :destroy] do
       member do
         post :enable
         post :unsensitive
@@ -448,7 +448,7 @@ Rails.application.routes.draw do
         resources :relationships, only: :index
       end
 
-      resources :accounts, only: [:create, :show] do
+      resources :accounts, only: [:create, :update,:show] do
         resources :statuses, only: :index, controller: 'accounts/statuses'
         resources :followers, only: :index, controller: 'accounts/follower_accounts'
         resources :following, only: :index, controller: 'accounts/following_accounts'
@@ -463,6 +463,8 @@ Rails.application.routes.draw do
           post :unblock
           post :mute
           post :unmute
+          post :synchronize
+          post :unsynchronize
         end
 
         resource :pin, only: :create, controller: 'accounts/pins'
@@ -471,7 +473,7 @@ Rails.application.routes.draw do
       end
 
       resources :lists, only: [:index, :create, :show, :update, :destroy] do
-        resource :accounts, only: [:show, :create, :destroy], controller: 'lists/accounts'
+        resource :accounts, only: [:show, :create, :update, :destroy], controller: 'lists/accounts'
       end
 
       namespace :featured_tags do
@@ -489,7 +491,7 @@ Rails.application.routes.draw do
       end
 
       namespace :admin do
-        resources :accounts, only: [:index, :show, :destroy] do
+        resources :accounts, only: [:index, :show, :update, :destroy] do
           member do
             post :enable
             post :unsensitive
