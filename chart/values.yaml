@@ -110,10 +110,8 @@ elasticsearch:
   # RAILS_ENV=production bundle exec rake chewy:sync
   # (https://docs.joinmastodon.org/admin/optional/elasticsearch/)
   enabled: true
-  # may be removed once https://github.com/tootsuite/mastodon/pull/13828 is part
-  # of a tagged release
   image:
-    tag: 6
+    tag: 7
 
 # https://github.com/bitnami/charts/tree/master/bitnami/postgresql#parameters
 postgresql:
