@@ -1,17 +1,18 @@
-version: "3"
+version: '3'
 services:
+
   db:
     restart: always
-    image: postgres:9.6-alpine
+    image: postgres:14-alpine
     shm_size: 256mb
     networks:
       - internal_network
     healthcheck:
       test: ["CMD", "pg_isready", "-U", "postgres"]
     volumes:
-      - ./postgres:/var/lib/postgresql/data
+      - ./postgres14:/var/lib/postgresql/data
     environment:
-      POSTGRES_PASSWORD: password
+      - "POSTGRES_HOST_AUTH_METHOD=trust"
 
   redis:
     restart: always
@@ -23,52 +24,65 @@ services:
     volumes:
       - ./redis:/data
 
-  #  es:
-  #    restart: always
-  #    image: docker.elastic.co/elasticsearch/elasticsearch-oss:6.8.10
-  #    environment:
-  #      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
-  #      - "cluster.name=es-mastodon"
-  #      - "discovery.type=single-node"
-  #      - "bootstrap.memory_lock=true"
-  #    networks:
-  #      - internal_network
-  #    healthcheck:
-  #      test: ["CMD-SHELL", "curl --silent --fail localhost:9200/_cluster/health || exit 1"]
-  #    volumes:
-  #      - ./elasticsearch:/usr/share/elasticsearch/data
-  #    ulimits:
-  #      memlock:
-  #        soft: -1
-  #        hard: -1
-
+#  es:
+#    restart: always
+#    image: docker.elastic.co/elasticsearch/elasticsearch-oss:7.10.2
+#    environment:
+#      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+#      - "cluster.name=es-mastodon"
+#      - "discovery.type=single-node"
+#      - "bootstrap.memory_lock=true"
+#    networks:
+#      - internal_network
+#    healthcheck:
+#      test: ["CMD-SHELL", "curl --silent --fail localhost:9200/_cluster/health || exit 1"]
+#    volumes:
+#      - ./elasticsearch:/usr/share/elasticsearch/data
+#    ulimits:
+#      memlock:
+#        soft: -1
+#        hard: -1
+  ssl:
+    image: ssl
+    build: 
+      context: .
+      dockerfile: Dockerfile-https
+    restart: always
+    network_mode: host
+    depends_on:
+      - web
+      - streaming
+      - mediasoup
+    environment:
+      SERVERNAME: 127.0.0.1
+    # ports:
+    #   - "80:80"
+    #   - "443:443"
+    volumes:
+      - "/etc/letsencrypt"
   web:
-    image: mastodon:localdev
+    build: .
+    image: mastodon
     restart: always
     env_file: .env.production
-    command: bash -c "DISABLE_DATABASE_ENVIRONMENT_CHECK=1 bundle exec rails db:setup && bundle exec rails server"
-    # command: bash -c "rm -f /mastodon/tmp/pids/server.pid; bundle exec rails s -p 3000"
+    command: bash -c "rm -f /mastodon/tmp/pids/server.pid; bundle exec rails s -p 3000"
     networks:
       - external_network
       - internal_network
     healthcheck:
-      test:
-        [
-          "CMD-SHELL",
-          "wget -q --spider --proxy=off localhost:3000/health || exit 1",
-        ]
+      test: ["CMD-SHELL", "wget -q --spider --proxy=off localhost:3000/health || exit 1"]
     ports:
       - "127.0.0.1:3000:3000"
     depends_on:
       - db
       - redis
-    #      - es
+#      - es
     volumes:
       - ./public/system:/mastodon/public/system
 
   streaming:
-    # build: .
-    image: tootsuite/mastodon:v3.4.1
+    build: .
+    image: mastodon
     restart: always
     env_file: .env.production
     command: node ./streaming
@@ -76,20 +90,32 @@ services:
       - external_network
       - internal_network
     healthcheck:
-      test:
-        [
-          "CMD-SHELL",
-          "wget -q --spider --proxy=off localhost:4000/api/v1/streaming/health || exit 1",
-        ]
+      test: ["CMD-SHELL", "wget -q --spider --proxy=off localhost:4000/api/v1/streaming/health || exit 1"]
     ports:
       - "127.0.0.1:4000:4000"
     depends_on:
       - db
       - redis
 
+  mediasoup:
+    build: 
+      context: mediasoup-server
+    image: mediasoup
+    restart: always
+    env_file: .env.production
+    command: node index.js
+    network_mode: host
+    # healthcheck:
+    #   test: ["CMD-SHELL", "wget -q --spider --proxy=off localhost:4000/api/v1/streaming/health || exit 1"]
+    # ports:
+    #   # - "127.0.0.1:8000:8000"
+    #   - "10000-10030"
+    depends_on:
+      - web
+
   sidekiq:
-    # build: .
-    image: tootsuite/mastodon:v3.4.1
+    build: .
+    image: mastodon
     restart: always
     env_file: .env.production
     command: bundle exec sidekiq

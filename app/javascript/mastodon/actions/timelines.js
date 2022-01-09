@@ -11,6 +11,7 @@ export const TIMELINE_CLEAR   = 'TIMELINE_CLEAR';
 
 export const TIMELINE_EXPAND_REQUEST = 'TIMELINE_EXPAND_REQUEST';
 export const TIMELINE_EXPAND_SUCCESS = 'TIMELINE_EXPAND_SUCCESS';
+export const TIMELINES_EXPAND_SUCCESS = 'TIMELINES_EXPAND_SUCCESS';
 export const TIMELINE_EXPAND_FAIL    = 'TIMELINE_EXPAND_FAIL';
 
 export const TIMELINE_SCROLL_TOP   = 'TIMELINE_SCROLL_TOP';
@@ -130,7 +131,7 @@ export const expandCommunityTimeline       = ({ maxId, onlyMedia } = {}, done = 
 export const expandAccountTimeline         = (accountId, { maxId, withReplies } = {}) => expandTimeline(`account:${accountId}${withReplies ? ':with_replies' : ''}`, `/api/v1/accounts/${accountId}/statuses`, { exclude_replies: !withReplies, max_id: maxId });
 export const expandAccountFeaturedTimeline = accountId => expandTimeline(`account:${accountId}:pinned`, `/api/v1/accounts/${accountId}/statuses`, { pinned: true });
 export const expandAccountMediaTimeline    = (accountId, { maxId } = {}) => expandTimeline(`account:${accountId}:media`, `/api/v1/accounts/${accountId}/statuses`, { max_id: maxId, only_media: true, limit: 40 });
-export const expandListTimeline            = (id, { maxId } = {}, done = noOp) => expandTimeline(`list:${id}`, `/api/v1/timelines/list/${id}`, { max_id: maxId }, done);
+//export const expandListTimeline            = (id, { maxId } = {}, done = noOp) => expandTimeline(`list:${id}`, `/api/v1/timelines/list/${id}`, { max_id: maxId }, done);
 export const expandHashtagTimeline         = (hashtag, { maxId, tags, local } = {}, done = noOp) => {
   return expandTimeline(`hashtag:${hashtag}${local ? ':local' : ''}`, `/api/v1/timelines/tag/${hashtag}`, {
     max_id: maxId,
@@ -140,6 +141,86 @@ export const expandHashtagTimeline         = (hashtag, { maxId, tags, local } = 
     local:  local,
   }, done);
 };
+export const expandAccountListTimeline         = (id, accountId, { maxId, withReplies } = {}) => expandListTimeline(`list:${id}`, `/api/v1/accounts/${accountId}/statuses`, { exclude_replies: !withReplies, max_id: maxId });
+export const expandHashtagListTimeline         = (id, hashtag, { maxId, tags, local } = {}, done = noOp) => {
+  return expandListTimeline(`list:${id}`, `/api/v1/timelines/tag/${hashtag}`, {
+    max_id: maxId,
+    any:    parseTags(tags, 'any'),
+    all:    parseTags(tags, 'all'),
+    none:   parseTags(tags, 'none'),
+    local:  local,
+  }, done);
+};
+
+export function expandListTimeline(timelineId, hashtagsUsers, params = {}, done = noOp) {
+  return (dispatch, getState) => {
+    const timeline = getState().getIn(['timelines', timelineId], ImmutableMap());
+    const isLoadingMore = !!params.max_id;
+
+    if (timeline.get('isLoading')) {
+      done();
+      return;
+    }
+
+    if (!params.max_id && !params.pinned && (timeline.get('items', ImmutableList()).size + timeline.get('pendingItems', ImmutableList()).size) > 0) {
+      const a = timeline.getIn(['pendingItems', 0]);
+      const b = timeline.getIn(['items', 0]);
+
+      if (a && b && compareId(a, b) > 0) {
+        params.since_id = a;
+      } else {
+        params.since_id = b || a;
+      }
+    }
+
+    const isLoadingRecent = !!params.since_id;
+
+    dispatch(expandTimelineRequest(timelineId, isLoadingMore));
+
+    Object.keys(hashtagsUsers.users).forEach((h, i) => {
+    // console.log(hashtagsUsers.users[h])
+    
+    api(getState).get(`/api/v1/accounts/${hashtagsUsers.users[h]}/statuses`, params.max_id, params.exclude_replies).then(response => {
+      const next = getLinks(response).refs.find(link => link.rel === 'next');
+      dispatch(importFetchedStatuses(response.data));
+      console.log(response.data);
+      dispatch(expandTimelinesSuccess(timelineId, response.data, next ? next.uri : null, response.status === 206, isLoadingRecent, isLoadingMore, isLoadingRecent && preferPendingItems));
+
+    }).catch(error => {
+      dispatch(expandTimelineFail(timelineId, error, isLoadingMore));
+    }).finally(() => {
+      done();
+    });
+  });
+
+  Object.keys(hashtagsUsers.hashtags).forEach((h, i) => {
+    // console.log(hashtagsUsers.hashtags[h])
+    
+    api(getState).get(`/api/v1/timelines/tag/${hashtagsUsers.hashtags[h].substring(1)}`, params.any, params.all, params.none, params.local, params.max_id).then(response => {
+      const next = getLinks(response).refs.find(link => link.rel === 'next');
+      dispatch(importFetchedStatuses(response.data));
+      console.log(response.data);
+      dispatch(expandTimelinesSuccess(timelineId, response.data, next ? next.uri : null, response.status === 206, isLoadingRecent, isLoadingMore, isLoadingRecent && preferPendingItems));
+
+    }).catch(error => {
+      dispatch(expandTimelineFail(timelineId, error, isLoadingMore));
+    }).finally(() => {
+      done();
+    });
+  });
+  };
+};
+
+export function combineTimelines(timelineId, hashtagsUsers, { maxId, withReplies, local, tags } = {}, done = noOp) {
+  return expandListTimeline(`list:${timelineId}`, hashtagsUsers, {
+    max_id: maxId,
+    any:    parseTags(tags, 'any'),
+    all:    parseTags(tags, 'all'),
+    none:   parseTags(tags, 'none'),
+    local:  local,
+    exclude_replies: !withReplies
+  }, done);
+}
 
 export function expandTimelineRequest(timeline, isLoadingMore) {
   return {
@@ -152,6 +233,19 @@ export function expandTimelineRequest(timeline, isLoadingMore) {
 export function expandTimelineSuccess(timeline, statuses, next, partial, isLoadingRecent, isLoadingMore, usePendingItems) {
   return {
     type: TIMELINE_EXPAND_SUCCESS,
+    timeline,
+    statuses,
+    next,
+    partial,
+    isLoadingRecent,
+    usePendingItems,
+    skipLoading: !isLoadingMore,
+  };
+};
+
+export function expandTimelinesSuccess(timeline, statuses, next, partial, isLoadingRecent, isLoadingMore, usePendingItems) {
+  return {
+    type: TIMELINES_EXPAND_SUCCESS,
     timeline,
     statuses,
     next,

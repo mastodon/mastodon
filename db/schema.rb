@@ -510,6 +510,7 @@ ActiveRecord::Schema.define(version: 2021_12_23_020926) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "replies_policy", default: 0, null: false
+    t.text "hashtags_users", default: "", null: false
     t.index ["account_id"], name: "index_lists_on_account_id"
   end
 
@@ -844,6 +845,7 @@ ActiveRecord::Schema.define(version: 2021_12_23_020926) do
     t.bigint "application_id"
     t.bigint "in_reply_to_account_id"
     t.bigint "poll_id"
+    t.string "stream"
     t.datetime "deleted_at"
     t.index ["account_id", "id", "visibility", "updated_at"], name: "index_statuses_20190820", order: { id: :desc }, where: "(deleted_at IS NULL)"
     t.index ["id", "account_id"], name: "index_statuses_local_20190824", order: { id: :desc }, where: "((local OR (uri IS NULL)) AND (deleted_at IS NULL) AND (visibility = 0) AND (reblog_of_id IS NULL) AND ((NOT reply) OR (in_reply_to_account_id = account_id)))"

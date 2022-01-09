@@ -14,7 +14,7 @@ const normalizeAccount = (state, account) => {
 };
 
 const normalizeAccounts = (state, accounts) => {
-  accounts.forEach(account => {
+  accounts.forEach((account) => {
     state = normalizeAccount(state, account);
   });
 
@@ -22,12 +22,12 @@ const normalizeAccounts = (state, accounts) => {
 };
 
 export default function accounts(state = initialState, action) {
-  switch(action.type) {
-  case ACCOUNT_IMPORT:
-    return normalizeAccount(state, action.account);
-  case ACCOUNTS_IMPORT:
-    return normalizeAccounts(state, action.accounts);
-  default:
-    return state;
+  switch (action.type) {
+    case ACCOUNT_IMPORT:
+      return normalizeAccount(state, action.account);
+    case ACCOUNTS_IMPORT:
+      return normalizeAccounts(state, action.accounts);
+    default:
+      return state;
   }
-};
+}

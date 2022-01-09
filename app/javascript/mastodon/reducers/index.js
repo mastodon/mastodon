@@ -27,7 +27,6 @@ import height_cache from './height_cache';
 import custom_emojis from './custom_emojis';
 import lists from './lists';
 import listEditor from './list_editor';
-import listAdder from './list_adder';
 import filters from './filters';
 import conversations from './conversations';
 import suggestions from './suggestions';
@@ -39,6 +38,7 @@ import announcements from './announcements';
 import markers from './markers';
 import picture_in_picture from './picture_in_picture';
 import accounts_map from './accounts_map';
+import searchUsers from './search_users';
 
 const reducers = {
   announcements,
@@ -72,7 +72,6 @@ const reducers = {
   identity_proofs,
   lists,
   listEditor,
-  listAdder,
   filters,
   conversations,
   suggestions,
@@ -81,6 +80,7 @@ const reducers = {
   missed_updates,
   markers,
   picture_in_picture,
+  searchUsers,
 };
 
 export default combineReducers(reducers);

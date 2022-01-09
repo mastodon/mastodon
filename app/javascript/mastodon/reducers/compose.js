@@ -86,6 +86,7 @@ const initialState = ImmutableMap({
     focusY: 0,
     dirty: false,
   }),
+  stream: false,
 });
 
 const initialPoll = ImmutableMap({
@@ -117,6 +118,7 @@ function clearAll(state) {
     map.update('media_attachments', list => list.clear());
     map.set('poll', null);
     map.set('idempotencyKey', uuid());
+    map.set('stream', false);
   });
 };
 

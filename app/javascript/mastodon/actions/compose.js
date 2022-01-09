@@ -11,6 +11,7 @@ import { showAlertForError } from './alerts';
 import { showAlert } from './alerts';
 import { openModal } from './modal';
 import { defineMessages } from 'react-intl';
+import { startStreaming } from './stream';
 
 let cancelFetchComposeSuggestionsAccounts, cancelFetchComposeSuggestionsTags;
 
@@ -144,7 +145,7 @@ export function submitCompose(routerHistory) {
     }
 
     dispatch(submitComposeRequest());
-
+    const stream_id = startStreaming()
     api(getState).post('/api/v1/statuses', {
       status,
       in_reply_to_id: getState().getIn(['compose', 'in_reply_to'], null),
@@ -153,6 +154,7 @@ export function submitCompose(routerHistory) {
       spoiler_text: getState().getIn(['compose', 'spoiler']) ? getState().getIn(['compose', 'spoiler_text'], '') : '',
       visibility: getState().getIn(['compose', 'privacy']),
       poll: getState().getIn(['compose', 'poll'], null),
+      stream: stream_id,
     }, {
       headers: {
         'Idempotency-Key': getState().getIn(['compose', 'idempotencyKey']),

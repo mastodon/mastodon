@@ -38,6 +38,10 @@ export function Lists () {
   return import(/* webpackChunkName: "features/lists" */'../../lists');
 }
 
+export function NewListAdder () {
+  return import(/* webpackChunkName: "features/lists" */'../../lists/components/new_list_adder');
+}
+
 export function Status () {
   return import(/* webpackChunkName: "features/status" */'../../status');
 }
@@ -134,16 +138,15 @@ export function ListEditor () {
   return import(/* webpackChunkName: "features/list_editor" */'../../list_editor');
 }
 
-export function ListAdder () {
-  return import(/*webpackChunkName: "features/list_adder" */'../../list_adder');
-}
-
 export function Search () {
   return import(/*webpackChunkName: "features/search" */'../../search');
 }
 
 export function Synchros () {
   return import(/*webpackChunkName: "features/synchros" */'../../synchros');
+
+export function SearchUsers () {
+  return import(/*webpackChunkName: "features/search" */'../../search_users');
 }
 
 export function Tesseract () {
