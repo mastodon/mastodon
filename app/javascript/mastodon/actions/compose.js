@@ -9,6 +9,7 @@ import { importFetchedAccounts } from './importer';
 import { updateTimeline } from './timelines';
 import { showAlertForError } from './alerts';
 import { showAlert } from './alerts';
+import { openModal } from './modal';
 import { defineMessages } from 'react-intl';
 
 let cancelFetchComposeSuggestionsAccounts, cancelFetchComposeSuggestionsTags;
@@ -36,6 +37,7 @@ export const THUMBNAIL_UPLOAD_PROGRESS = 'THUMBNAIL_UPLOAD_PROGRESS';
 export const COMPOSE_SUGGESTIONS_CLEAR = 'COMPOSE_SUGGESTIONS_CLEAR';
 export const COMPOSE_SUGGESTIONS_READY = 'COMPOSE_SUGGESTIONS_READY';
 export const COMPOSE_SUGGESTION_SELECT = 'COMPOSE_SUGGESTION_SELECT';
+export const COMPOSE_SUGGESTION_IGNORE = 'COMPOSE_SUGGESTION_IGNORE';
 export const COMPOSE_SUGGESTION_TAGS_UPDATE = 'COMPOSE_SUGGESTION_TAGS_UPDATE';
 
 export const COMPOSE_TAG_HISTORY_UPDATE = 'COMPOSE_TAG_HISTORY_UPDATE';
@@ -63,6 +65,11 @@ export const COMPOSE_POLL_OPTION_CHANGE   = 'COMPOSE_POLL_OPTION_CHANGE';
 export const COMPOSE_POLL_OPTION_REMOVE   = 'COMPOSE_POLL_OPTION_REMOVE';
 export const COMPOSE_POLL_SETTINGS_CHANGE = 'COMPOSE_POLL_SETTINGS_CHANGE';
 
+export const INIT_MEDIA_EDIT_MODAL = 'INIT_MEDIA_EDIT_MODAL';
+
+export const COMPOSE_CHANGE_MEDIA_DESCRIPTION = 'COMPOSE_CHANGE_MEDIA_DESCRIPTION';
+export const COMPOSE_CHANGE_MEDIA_FOCUS       = 'COMPOSE_CHANGE_MEDIA_FOCUS';
+
 const messages = defineMessages({
   uploadErrorLimit: { id: 'upload_error.limit', defaultMessage: 'File upload limit exceeded.' },
   uploadErrorPoll:  { id: 'upload_error.poll', defaultMessage: 'File upload not allowed with polls.' },
@@ -72,7 +79,7 @@ const COMPOSE_PANEL_BREAKPOINT = 600 + (285 * 1) + (10 * 1);
 
 export const ensureComposeIsVisible = (getState, routerHistory) => {
   if (!getState().getIn(['compose', 'mounted']) && window.innerWidth < COMPOSE_PANEL_BREAKPOINT) {
-    routerHistory.push('/statuses/new');
+    routerHistory.push('/publish');
   }
 };
 
@@ -152,7 +159,7 @@ export function submitCompose(routerHistory) {
         'Idempotency-Key': getState().getIn(['compose', 'idempotencyKey']),
       },
     }).then(function (response) {
-      if (routerHistory && routerHistory.location.pathname === '/statuses/new' && window.history.state) {
+      if (routerHistory && (routerHistory.location.pathname === '/publish' || routerHistory.location.pathname === '/statuses/new') && window.history.state) {
         routerHistory.goBack();
       }
 
@@ -305,6 +312,32 @@ export const uploadThumbnailFail = error => ({
   error,
   skipLoading: true,
 });
+
+export function initMediaEditModal(id) {
+  return dispatch => {
+    dispatch({
+      type: INIT_MEDIA_EDIT_MODAL,
+      id,
+    });
+
+    dispatch(openModal('FOCAL_POINT', { id }));
+  };
+};
+
+export function onChangeMediaDescription(description) {
+  return {
+    type: COMPOSE_CHANGE_MEDIA_DESCRIPTION,
+    description,
+  };
+};
+
+export function onChangeMediaFocus(focusX, focusY) {
+  return {
+    type: COMPOSE_CHANGE_MEDIA_FOCUS,
+    focusX,
+    focusY,
+  };
+};
 
 export function changeUploadCompose(id, params) {
   return (dispatch, getState) => {
@@ -502,13 +535,25 @@ export function selectComposeSuggestion(position, token, suggestion, path) {
       startPosition = position;
     }
 
-    dispatch({
-      type: COMPOSE_SUGGESTION_SELECT,
-      position: startPosition,
-      token,
-      completion,
-      path,
-    });
+    // We don't want to replace hashtags that vary only in case due to accessibility, but we need to fire off an event so that
+    // the suggestions are dismissed and the cursor moves forward.
+    if (suggestion.type !== 'hashtag' || token.slice(1).localeCompare(suggestion.name, undefined, { sensitivity: 'accent' }) !== 0) {
+      dispatch({
+        type: COMPOSE_SUGGESTION_SELECT,
+        position: startPosition,
+        token,
+        completion,
+        path,
+      });
+    } else {
+      dispatch({
+        type: COMPOSE_SUGGESTION_IGNORE,
+        position: startPosition,
+        token,
+        completion,
+        path,
+      });
+    }
   };
 };
 

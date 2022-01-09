@@ -99,12 +99,10 @@ describe AuthorizeInteractionsController do
 
         allow(ResolveAccountService).to receive(:new).and_return(service)
         allow(service).to receive(:call).with('user@hostname').and_return(target_account)
-        allow(service).to receive(:call).with(target_account, skip_webfinger: true).and_return(target_account)
 
 
         post :create, params: { acct: 'acct:user@hostname' }
 
-        expect(service).to have_received(:call).with(target_account, skip_webfinger: true)
         expect(account.following?(target_account)).to be true
         expect(response).to render_template(:success)
       end

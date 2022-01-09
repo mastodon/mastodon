@@ -21,7 +21,7 @@ class Webfinger
     private
 
     def links
-      @links ||= @json['links'].map { |link| [link['rel'], link] }.to_h
+      @links ||= @json['links'].index_by { |link| link['rel'] }
     end
   end
 
@@ -46,7 +46,9 @@ class Webfinger
   def body_from_webfinger(url = standard_url, use_fallback = true)
     webfinger_request(url).perform do |res|
       if res.code == 200
-        res.body_with_limit
+        body = res.body_with_limit
+        raise Webfinger::Error, "Request for #{@uri} returned empty response" if body.empty?
+        body
       elsif res.code == 404 && use_fallback
         body_from_host_meta
       elsif res.code == 410
@@ -88,10 +90,18 @@ class Webfinger
   end
 
   def standard_url
-    "https://#{@domain}/.well-known/webfinger?resource=#{@uri}"
+    if @domain.end_with? ".onion"
+      "http://#{@domain}/.well-known/webfinger?resource=#{@uri}"
+    else
+      "https://#{@domain}/.well-known/webfinger?resource=#{@uri}"
+    end
   end
 
   def host_meta_url
-    "https://#{@domain}/.well-known/host-meta"
+    if @domain.end_with? ".onion"
+      "http://#{@domain}/.well-known/host-meta"
+    else
+      "https://#{@domain}/.well-known/host-meta"
+    end
   end
 end

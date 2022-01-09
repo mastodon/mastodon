@@ -11,18 +11,23 @@ class Admin::ActionLogFilter
     assigned_to_self_report: { target_type: 'Report', action: 'assigned_to_self' }.freeze,
     change_email_user: { target_type: 'User', action: 'change_email' }.freeze,
     confirm_user: { target_type: 'User', action: 'confirm' }.freeze,
+    approve_user: { target_type: 'User', action: 'approve' }.freeze,
+    reject_user: { target_type: 'User', action: 'reject' }.freeze,
     create_account_warning: { target_type: 'AccountWarning', action: 'create' }.freeze,
     create_announcement: { target_type: 'Announcement', action: 'create' }.freeze,
     create_custom_emoji: { target_type: 'CustomEmoji', action: 'create' }.freeze,
     create_domain_allow: { target_type: 'DomainAllow', action: 'create' }.freeze,
     create_domain_block: { target_type: 'DomainBlock', action: 'create' }.freeze,
     create_email_domain_block: { target_type: 'EmailDomainBlock', action: 'create' }.freeze,
+    create_unavailable_domain: { target_type: 'UnavailableDomain', action: 'create' }.freeze,
     demote_user: { target_type: 'User', action: 'demote' }.freeze,
     destroy_announcement: { target_type: 'Announcement', action: 'destroy' }.freeze,
     destroy_custom_emoji: { target_type: 'CustomEmoji', action: 'destroy' }.freeze,
     destroy_domain_allow: { target_type: 'DomainAllow', action: 'destroy' }.freeze,
     destroy_domain_block: { target_type: 'DomainBlock', action: 'destroy' }.freeze,
     destroy_email_domain_block: { target_type: 'EmailDomainBlock', action: 'destroy' }.freeze,
+    destroy_instance: { target_type: 'Instance', action: 'destroy' }.freeze,
+    destroy_unavailable_domain: { target_type: 'UnavailableDomain', action: 'destroy' }.freeze,
     destroy_status: { target_type: 'Status', action: 'destroy' }.freeze,
     disable_2fa_user: { target_type: 'User', action: 'disable' }.freeze,
     disable_custom_emoji: { target_type: 'CustomEmoji', action: 'disable' }.freeze,
@@ -45,6 +50,7 @@ class Admin::ActionLogFilter
     update_announcement: { target_type: 'Announcement', action: 'update' }.freeze,
     update_custom_emoji: { target_type: 'CustomEmoji', action: 'update' }.freeze,
     update_status: { target_type: 'Status', action: 'update' }.freeze,
+    unblock_email_account: { target_type: 'Account', action: 'unblock_email' }.freeze,
   }.freeze
 
   attr_reader :params
@@ -74,7 +80,7 @@ class Admin::ActionLogFilter
     when 'account_id'
       Admin::ActionLog.where(account_id: value)
     when 'target_account_id'
-      account = Account.find(value)
+      account = Account.find_or_initialize_by(id: value)
       Admin::ActionLog.where(target: [account, account.user].compact)
     else
       raise "Unknown filter: #{key}"

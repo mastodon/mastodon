@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe ImportService, type: :service do
+  include RoutingHelper
+
   let!(:account) { Fabricate(:account, locked: false) }
   let!(:bob)     { Fabricate(:account, username: 'bob', locked: false) }
   let!(:eve)     { Fabricate(:account, username: 'eve', domain: 'example.com', locked: false, protocol: :activitypub, inbox_url: 'https://example.com/inbox') }
@@ -166,6 +168,46 @@ RSpec.describe ImportService, type: :service do
         expect(account.follow_requests.count).to eq 1
         expect(Follow.find_by(account: account, target_account: bob).show_reblogs).to be true
         expect(FollowRequest.find_by(account: account, target_account: eve).show_reblogs).to be false
+      end
+    end
+  end
+
+  context 'import bookmarks' do
+    subject { ImportService.new }
+
+    let(:csv) { attachment_fixture('bookmark-imports.txt') }
+
+    around(:each) do |example|
+      local_before = Rails.configuration.x.local_domain
+      web_before = Rails.configuration.x.web_domain
+      Rails.configuration.x.local_domain = 'local.com'
+      Rails.configuration.x.web_domain = 'local.com'
+      example.run
+      Rails.configuration.x.web_domain = web_before
+      Rails.configuration.x.local_domain = local_before
+    end
+
+    let(:local_account)  { Fabricate(:account, username: 'foo', domain: '') }
+    let!(:remote_status) { Fabricate(:status, uri: 'https://example.com/statuses/1312') }
+    let!(:direct_status) { Fabricate(:status, uri: 'https://example.com/statuses/direct', visibility: :direct) }
+
+    before do
+      service = double
+      allow(ActivityPub::FetchRemoteStatusService).to receive(:new).and_return(service)
+      allow(service).to receive(:call).with('https://unknown-remote.com/users/bar/statuses/1') do
+        Fabricate(:status, uri: 'https://unknown-remote.com/users/bar/statuses/1')
+      end
+    end
+
+    describe 'when no bookmarks are set' do
+      let(:import) { Import.create(account: account, type: 'bookmarks', data: csv) }
+      it 'adds the toots the user has access to to bookmarks' do
+        local_status = Fabricate(:status, account: local_account, uri: 'https://local.com/users/foo/statuses/42', id: 42, local: true)
+        subject.call(import)
+        expect(account.bookmarks.map(&:status).map(&:id)).to include(local_status.id)
+        expect(account.bookmarks.map(&:status).map(&:id)).to include(remote_status.id)
+        expect(account.bookmarks.map(&:status).map(&:id)).not_to include(direct_status.id)
+        expect(account.bookmarks.count).to eq 3
       end
     end
   end

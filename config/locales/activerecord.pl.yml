@@ -5,13 +5,28 @@ pl:
       poll:
         expires_at: Ostateczny termin
         options: Opcje
+      user:
+        agreement: Umowa o świadczenie usług
+        email: Adres e-mail
+        locale: Język
+        password: Hasło
+      user/account:
+        username: Nazwa użytkownika
+      user/invite_request:
+        text: Powód
     errors:
       models:
         account:
           attributes:
             username:
               invalid: może składać się tylko z liter, cyfr i podkreślników
+              reserved: jest zarezerwowana
         status:
           attributes:
             reblog:
               taken: status już istnieje
+        user:
+          attributes:
+            email:
+              blocked: używa niedozwolonego dostawcy poczty elektronicznej
+              unreachable: wydaje się nie istnieć

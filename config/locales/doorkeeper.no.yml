@@ -73,7 +73,7 @@
       index:
         application: Applikasjon
         created_at: Autorisert
-        date_format: "%Y-%m-%d %H:%M:%S"
+        date_format: "%d. %m %Y kl. %H.%M.%S"
         scopes: Omfang
         title: Dine autoriserte applikasjoner
     errors:
@@ -83,7 +83,10 @@
         invalid_client: Klientautentisering feilet på grunn av ukjent klient, ingen autentisering inkludert, eller autentiseringsmetode er ikke støttet.
         invalid_grant: Autoriseringen er ugyldig, utløpt, opphevet, stemmer ikke overens med omdirigerings-URIen eller var utstedt til en annen klient.
         invalid_redirect_uri: Den inkluderte omdirigerings-URLen er ikke gyldig.
-        invalid_request: Forespørslen mangler en eller flere parametere, inkluderte en parameter som ikke støttes eller har feil struktur.
+        invalid_request:
+          missing_param: 'Mangler påkrevd parameter: %{value}.'
+          request_not_authorized: Forespørselen må godkjennes. Påkrevd parameter for godkjenningsforespørselen mangler eller er ugyldig.
+          unknown: Forespørselen mangler en påkrevd parameter, inkluderer en ukjent parameterverdi, eller er utformet for noe annet.
         invalid_resource_owner: Ressurseierens detaljer er ikke gyldige, eller så er det ikke mulig å finne eieren
         invalid_scope: Det etterspurte omfanget er ugyldig, ukjent eller har feil struktur.
         invalid_token:

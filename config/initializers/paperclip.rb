@@ -107,10 +107,22 @@ elsif ENV['SWIFT_ENABLED'] == 'true'
 else
   Paperclip::Attachment.default_options.merge!(
     storage: :filesystem,
-    use_timestamp: true,
     path: File.join(ENV.fetch('PAPERCLIP_ROOT_PATH', File.join(':rails_root', 'public', 'system')), ':prefix_path:class', ':attachment', ':id_partition', ':style', ':filename'),
     url: ENV.fetch('PAPERCLIP_ROOT_URL', '/system') + '/:prefix_url:class/:attachment/:id_partition/:style/:filename',
   )
 end
 
-Paperclip.options[:content_type_mappings] = { csv: Import::FILE_TYPES }
+Rails.application.reloader.to_prepare do
+  Paperclip.options[:content_type_mappings] = { csv: Import::FILE_TYPES }
+end
+
+# In some places in the code, we rescue this exception, but we don't always
+# load the S3 library, so it may be an undefined constant:
+
+unless defined?(Seahorse)
+  module Seahorse
+    module Client
+      class NetworkingError < StandardError; end
+    end
+  end
+end

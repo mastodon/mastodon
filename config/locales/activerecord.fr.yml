@@ -5,13 +5,28 @@ fr:
       poll:
         expires_at: Date butoir
         options: Choix
+      user:
+        agreement: Contrat de service
+        email: Adresse courriel
+        locale: Langue
+        password: Mot de passe
+      user/account:
+        username: Nom d’utilisateur
+      user/invite_request:
+        text: Raison
     errors:
       models:
         account:
           attributes:
             username:
               invalid: seulement des lettres, des nombres et des tirets bas
+              reserved: est réservé
         status:
           attributes:
             reblog:
               taken: du statut existe déjà
+        user:
+          attributes:
+            email:
+              blocked: utilise un fournisseur de courriel interdit
+              unreachable: ne semble pas exister

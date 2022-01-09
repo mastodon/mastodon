@@ -26,6 +26,8 @@ ca:
       S'utilitza per a propòsits de federació i no ha de ser bloquejat si no voleu bloquejar tota la instància, en aquest cas hauríeu d'utilitzar un bloqueig de domini.
     learn_more: Més informació
     privacy_policy: Política de privadesa
+    rules: Normes del servidor
+    rules_html: 'El de sota és un resum de les normes que has de seguir si vols tenir un compte en aquest servidor de Mastodon:'
     see_whats_happening: Mira què està passant
     server_stats: 'Estadístiques del servidor:'
     source_code: Codi font
@@ -60,6 +62,7 @@ ca:
       one: Seguidor
       other: Seguidors
     following: Seguint
+    instance_actor_flash: Aquest compte és un actor virtual usat per a representar el mateix servidor i no cap usuari individual. Es fa servir per a federar i no s'hauria d'esborrar.
     joined: Unit des de %{date}
     last_active: darrer actiu
     link_verified_on: La propietat d'aquest enllaç s'ha verificat el %{date}
@@ -77,7 +80,6 @@ ca:
       other: Tuts
     posts_tab_heading: Tuts
     posts_with_replies: Tuts i respostes
-    reserved_username: El nom d'usuari està reservat
     roles:
       admin: Administrador
       bot: Bot
@@ -117,6 +119,7 @@ ca:
       demote: Degrada
       destroyed_msg: Les dades de %{username} son a la cua per a ser esborrades en breu
       disable: Inhabilita
+      disable_sign_in_token_auth: Desactivar l'autenticació de token per correu
       disable_two_factor_authentication: Desactiva 2FA
       disabled: Inhabilitat
       display_name: Nom visible
@@ -125,12 +128,14 @@ ca:
       email: Adreça electrònica
       email_status: Estat de l'adreça electrònica
       enable: Habilita
+      enable_sign_in_token_auth: Activar l'autenticació de token per correu
       enabled: Habilitat
       enabled_msg: El compte de %{username} s’ha descongelat amb èxit
       followers: Seguidors
       follows: Segueix
       header: Capçalera
       inbox_url: URL de la safata d'entrada
+      invite_request_text: Motiu del registre
       invited_by: Convidat per
       ip: IP
       joined: Unit
@@ -188,6 +193,10 @@ ca:
       search: Cerca
       search_same_email_domain: Altres usuaris amb el mateix domini de correu
       search_same_ip: Altres usuaris amb la mateixa IP
+      security_measures:
+        only_password: Només contrasenya
+        password_and_2fa: Contrasenya i 2FA
+        password_and_sign_in_token: Contrasenya i token per correu
       sensitive: Sensible
       sensitized: marcar com a sensible
       shared_inbox_url: URL de la safata d'entrada compartida
@@ -227,6 +236,7 @@ ca:
         create_domain_block: Crea un bloqueig de domini
         create_email_domain_block: Crea un bloqueig de domini d'adreça de correu
         create_ip_block: Crear regla IP
+        create_unavailable_domain: Crea un domini no disponible
         demote_user: Degrada l'usuari
         destroy_announcement: Esborra l'anunci
         destroy_custom_emoji: Esborra l'emoji personalitzat
@@ -235,10 +245,13 @@ ca:
         destroy_email_domain_block: Esborra el bloqueig de domini de l'adreça de correu
         destroy_ip_block: Eliminar regla IP
         destroy_status: Esborra el tut
+        destroy_unavailable_domain: Esborra domini no disponible
         disable_2fa_user: Desactiva 2FA
         disable_custom_emoji: Desactiva l'emoji personalitzat
+        disable_sign_in_token_auth_user: Desactivar l'autenticació de token per correu per l'usuari
         disable_user: Deshabilita l'usuari
         enable_custom_emoji: Activa l'emoji personalitzat
+        enable_sign_in_token_auth_user: Activar l'autenticació de token per correu pel l'usuari
         enable_user: Activa l'usuari
         memorialize_account: Memoritza el compte
         promote_user: Promou l'usuari
@@ -255,47 +268,53 @@ ca:
         unsuspend_account: Desfés la suspensió del compte
         update_announcement: Actualitza l'anunci
         update_custom_emoji: Actualitza l'emoji personalitzat
+        update_domain_block: Actualitza el Bloqueig de Domini
         update_status: Actualitza l'estat
       actions:
-        assigned_to_self_report: "%{name} han assignat l'informe %{target} a ells mateixos"
-        change_email_user: "%{name} ha canviat l'adreça de correu electrònic del usuari %{target}"
-        confirm_user: "%{name} ha confirmat l'adreça de correu electrònic de l'usuari %{target}"
-        create_account_warning: "%{name} ha enviat un avís a %{target}"
-        create_announcement: "%{name} ha creat un nou anunci %{target}"
-        create_custom_emoji: "%{name} ha pujat un nou emoji %{target}"
-        create_domain_allow: "%{name} ha afegit a la llista blanca el domini %{target}"
-        create_domain_block: "%{name} ha blocat el domini %{target}"
-        create_email_domain_block: "%{name} ha afegit a la llista negra el domini del correu electrònic %{target}"
-        create_ip_block: "%{name} ha creat una regla IP per a %{target}"
-        demote_user: "%{name} ha degradat l'usuari %{target}"
-        destroy_announcement: "%{name} ha eliminat l'anunci %{target}"
-        destroy_custom_emoji: "%{name} ha destruït l'emoji %{target}"
-        destroy_domain_allow: "%{name} ha eliminat el domini %{target} de la llista blanca"
-        destroy_domain_block: "%{name} ha desblocat el domini %{target}"
-        destroy_email_domain_block: "%{name} ha afegit a la llista negra el domini de correu electrònic %{target}"
-        destroy_ip_block: "%{name} ha esborrat la regla IP per a %{target}"
-        destroy_status: "%{name} eliminat l'estat per %{target}"
-        disable_2fa_user: "%{name} ha desactivat el requisit de dos factors per a l'usuari %{target}"
-        disable_custom_emoji: "%{name} ha desactivat l'emoji %{target}"
-        disable_user: "%{name} ha desactivat l'accés per a l'usuari %{target}"
-        enable_custom_emoji: "%{name} ha activat l'emoji %{target}"
-        enable_user: "%{name} ha activat l'accés per a l'usuari %{target}"
-        memorialize_account: "%{name} ha convertit el compte %{target} en una pàgina de memorial"
-        promote_user: "%{name} ha promogut l'usuari %{target}"
-        remove_avatar_user: "%{name} ha eliminat l'avatar de %{target}"
-        reopen_report: "%{name} ha reobert l'informe %{target}"
-        reset_password_user: "%{name} ha restablert la contrasenya de l'usuari %{target}"
-        resolve_report: "%{name} ha resolt l'informe %{target}"
-        sensitive_account: "%{name} ha marcat els mèdia de %{target} com a sensibles"
-        silence_account: "%{name} ha silenciat el compte de %{target}"
-        suspend_account: "%{name} ha suspès el compte de %{target}"
-        unassigned_report: "%{name} ha des-assignat l'informe %{target}"
-        unsensitive_account: "%{name} ha desmarcat els mèdia de %{target} com a sensibles"
-        unsilence_account: "%{name} ha silenciat el compte de %{target}"
-        unsuspend_account: "%{name} ha llevat la suspensió del compte de %{target}"
-        update_announcement: "%{name} ha actualitzat l'anunci %{target}"
-        update_custom_emoji: "%{name} ha actualitzat l'emoji %{target}"
-        update_status: "%{name} estat actualitzat per %{target}"
+        assigned_to_self_report_html: "%{name} han assignat l'informe %{target} a ells mateixos"
+        change_email_user_html: "%{name} ha canviat l'adreça de correu electrònic del usuari %{target}"
+        confirm_user_html: "%{name} ha confirmat l'adreça de correu electrònic de l'usuari %{target}"
+        create_account_warning_html: "%{name} ha enviat un avís a %{target}"
+        create_announcement_html: "%{name} ha creat un nou anunci %{target}"
+        create_custom_emoji_html: "%{name} ha pujat un emoji nou %{target}"
+        create_domain_allow_html: "%{name} ha permès la federació amb el domini %{target}"
+        create_domain_block_html: "%{name} ha bloquejat el domini %{target}"
+        create_email_domain_block_html: "%{name} ha bloquejat el domini de correu electrònic %{target}"
+        create_ip_block_html: "%{name} ha creat una regla per a l'IP %{target}"
+        create_unavailable_domain_html: "%{name} ha aturat el lliurament al domini %{target}"
+        demote_user_html: "%{name} ha degradat l'usuari %{target}"
+        destroy_announcement_html: "%{name} ha eliminat l'anunci %{target}"
+        destroy_custom_emoji_html: "%{name} ha destruït l'emoji %{target}"
+        destroy_domain_allow_html: "%{name} no permet la federació amb el domini %{target}"
+        destroy_domain_block_html: "%{name} ha desbloquejat el domini %{target}"
+        destroy_email_domain_block_html: "%{name} ha desbloquejat el domini de correu electrònic %{target}"
+        destroy_ip_block_html: "%{name} ha esborrat la regla per a l'IP %{target}"
+        destroy_status_html: "%{name} ha eliminat el tut de %{target}"
+        destroy_unavailable_domain_html: "%{name} ha représ el lliurament delivery al domini %{target}"
+        disable_2fa_user_html: "%{name} ha desactivat el requisit de dos factors per a l'usuari %{target}"
+        disable_custom_emoji_html: "%{name} ha desactivat l'emoji %{target}"
+        disable_sign_in_token_auth_user_html: "%{name} ha desactivat l'autenticació de token per correu per a %{target}"
+        disable_user_html: "%{name} ha desactivat l'accés del usuari %{target}"
+        enable_custom_emoji_html: "%{name} ha activat l'emoji %{target}"
+        enable_sign_in_token_auth_user_html: "%{name} ha activat l'autenticació de token per correu per a %{target}"
+        enable_user_html: "%{name} ha activat l'accés del usuari %{target}"
+        memorialize_account_html: "%{name} ha convertit el compte %{target} en una pàgina de memorial"
+        promote_user_html: "%{name} ha promogut l'usuari %{target}"
+        remove_avatar_user_html: "%{name} ha eliminat l'avatar de %{target}"
+        reopen_report_html: "%{name} ha reobert l'informe %{target}"
+        reset_password_user_html: "%{name} ha restablert la contrasenya de l'usuari %{target}"
+        resolve_report_html: "%{name} ha resolt l'informe %{target}"
+        sensitive_account_html: "%{name} ha marcat els mèdia de %{target} com a sensibles"
+        silence_account_html: "%{name} ha silenciat el compte de %{target}"
+        suspend_account_html: "%{name} ha suspès el compte de %{target}"
+        unassigned_report_html: "%{name} ha des-assignat l'informe %{target}"
+        unsensitive_account_html: "%{name} ha desmarcat com sensibles els mèdia de %{target}"
+        unsilence_account_html: "%{name} ha llevat el silenci del compte %{target}"
+        unsuspend_account_html: "%{name} ha llevat la suspensió del compte de %{target}"
+        update_announcement_html: "%{name} ha actualitzat l'anunci %{target}"
+        update_custom_emoji_html: "%{name} ha actualitzat l'emoji %{target}"
+        update_domain_block_html: "%{name} ha actualitzat el bloqueig de domini per a %{target}"
+        update_status_html: "%{name} ha actualitzat l'estat de %{target}"
       deleted_status: "(tut esborrat)"
       empty: No s’han trobat registres.
       filter_by_action: Filtra per acció
@@ -310,10 +329,12 @@ ca:
       new:
         create: Crea un anunci
         title: Nou anunci
+      publish: Publica-ho
       published_msg: L’anunci s’ha publicat amb èxit!
       scheduled_for: Programat per a %{time}
       scheduled_msg: Anunci programat per a ser publicat!
       title: Anuncis
+      unpublish: Despublicar
       unpublished_msg: L’anunci s’ha despublicat amb èxit!
       updated_msg: L'anunci s'ha actualitzat correctament!
     custom_emojis:
@@ -350,33 +371,28 @@ ca:
       updated_msg: Emoji s'ha actualitzat correctament!
       upload: Carrega
     dashboard:
-      authorized_fetch_mode: Mode d'obtenció autoritzat
-      backlog: treballs en espera
-      config: Configuració
-      feature_deletions: Supressions del compte
-      feature_invites: Enllaços de convits
-      feature_profile_directory: Directori de perfils
-      feature_registrations: Registres
-      feature_relay: Relay de la Federació
-      feature_spam_check: Anti-spam
-      feature_timeline_preview: Vista prèvia de línia de temps
-      features: Característiques
-      hidden_service: Federació amb serveis ocults
-      open_reports: informes oberts
-      pending_tags: etiquetes pendents de revisar
-      pending_users: usuaris pendents de revisar
-      recent_users: Usuaris recents
-      search: Cerca de text complet
-      single_user_mode: Mode d'usuari únic
+      active_users: usuaris actius
+      interactions: interaccions
+      media_storage: Mèdia
+      new_users: usuaris nous
+      opened_reports: informes oberts
+      pending_reports_html:
+        one: "<strong>1</strong> informe pendent"
+        other: "<strong>%{count}</strong> informes pendents"
+      pending_tags_html:
+        one: "<strong>1</strong> etiqueta pendent"
+        other: "<strong>%{count}</strong> etiquetes pendents"
+      pending_users_html:
+        one: "<strong>1</strong> usuari pendent"
+        other: "<strong>%{count}</strong> usuaris pendents"
+      resolved_reports: informes resolts
       software: Programari
+      sources: Fonts de registre
       space: Ús de l’espai
       title: Panell
-      total_users: usuaris en total
-      trends: Tendències
-      week_interactions: interaccions d'aquesta setmana
-      week_users_active: usuaris actius aquesta setmana
-      week_users_new: nous usuaris aquest setmana
-      whitelist_mode: Mode llista blanca
+      top_languages: Idiomes més actius
+      top_servers: Servidors més actius
+      website: Lloc web
     domain_allows:
       add_new: Dominis autoritzats
       created_msg: El domini ha estat correctament autoritzat
@@ -398,6 +414,8 @@ ca:
           silence: Silenci
           suspend: Suspensió
         title: Bloqueig de domini nou
+      obfuscate: Oculta el nom del domini
+      obfuscate_hint: Oculta parcialment el nom del domini si està activat mostrar la llista de dominis limitats
       private_comment: Comentari privat
       private_comment_hint: Comentari sobre aquesta limitació del domini per a ús intern dels moderadors.
       public_comment: Comentari públic
@@ -434,9 +452,35 @@ ca:
         create: Afegeix un domini
         title: Nova adreça de correu en la llista negra
       title: Llista negra de correus electrònics
+    follow_recommendations:
+      description_html: "<strong>Seguir les recomanacions ajuda als nous usuaris a trobar ràpidament contingut interessant</strong>. Quan un usuari no ha interactuat prou amb d'altres com per a formar a qui seguir personalment, aquests comptes li seran recomanats. Es recalculen a diari a partir d'una barreja de comptes amb els compromisos recents més alts i el nombre més alt de seguidors locals per a un idioma determinat."
+      language: Per llenguatge
+      status: Estat
+      suppress: Suprimeix les recomanacions de seguiment
+      suppressed: Suprimit
+      title: Seguir les recomanacions
+      unsuppress: Restaurar les recomanacions de seguiment
     instances:
+      back_to_all: Totes
+      back_to_limited: Limitades
+      back_to_warning: Avís
       by_domain: Domini
+      delivery:
+        all: Totes
+        clear: Neteja els errors de lliurament
+        restart: Reinicia el lliurament
+        stop: Atura el lliurament
+        title: Lliurament
+        unavailable: No disponible
+        unavailable_message: El lliurament no està disponible
+        warning: Avís
+        warning_message:
+          one: Fallada de lliurament %{count} dia
+          other: Fallada de lliurament %{count} dies
       delivery_available: El lliurament està disponible
+      delivery_error_days: Dies de fallades de lliurament
+      delivery_error_hint: Si el lliurament no és possible per %{count} dies, serà automàticament marcat com a no lliurable.
+      empty: No s'han trobat dominis.
       known_accounts:
         one: "%{count} compte conegut"
         other: "%{count} comptes coneguts"
@@ -514,6 +558,8 @@ ca:
       comment:
         none: Cap
       created_at: Reportat
+      forwarded: Reenviat
+      forwarded_to: Reenviat a %{domain}
       mark_as_resolved: Marca com a resolt
       mark_as_unresolved: Marcar com a sense resoldre
       notes:
@@ -529,10 +575,18 @@ ca:
       resolved: Resolt
       resolved_msg: Informe resolt amb èxit!
       status: Estat
+      target_origin: Origen del compte reportat
       title: Informes
       unassign: Treu l'assignació
       unresolved: No resolt
       updated_at: Actualitzat
+    rules:
+      add_new: Afegir norma
+      delete: Suprimeix
+      description_html: Tot i que molts diuen que han llegit les normes i estan d'acord amb els termes del servei, normalment no les llegeixen fins que surgeix un problema. <strong>Fes que sigui més fàcil veure les normes del teu servidor d'una ullada proporcionant-les en una llista de punts.</strong> Intenta mantenir les normes individuals curtes i senzilles però sense dividir-les en massa parts separades.
+      edit: Edita la norma
+      empty: Encara no s'han definit les normes del servidor.
+      title: Normes del servidor
     settings:
       activity_api_enabled:
         desc_html: Nombre de tuts publicats localment, usuaris actius i registres nous en períodes setmanals
@@ -556,8 +610,6 @@ ca:
         users: Per als usuaris locals en línia
       domain_blocks_rationale:
         title: Mostra el raonament
-      enable_bootstrap_timeline_accounts:
-        title: Activa els seguiments per defecte per els usuaris nous
       hero:
         desc_html: Es mostra en pàgina frontal. Recomanat al menys 600x100px. Si no es configura es mostrarà el del servidor
         title: Imatge d’heroi
@@ -583,6 +635,9 @@ ca:
         min_invite_role:
           disabled: Ningú
           title: Permet les invitacions de
+        require_invite_text:
+          desc_html: Quan el registre requereix aprovació manual, fer que sigui obligatori enlloc d'opcions l escriure el text de la solicitud d'invitació "Perquè vols unirte?"
+          title: Requerir als nous usuaris omplir el text de la solicitud d'invitació
       registrations_mode:
         modes:
           approved: Es requereix l’aprovació per registrar-se
@@ -608,9 +663,6 @@ ca:
         desc_html: Pots escriure la teva pròpia política de privadesa, els termes del servei o d'altres normes legals. Pots utilitzar etiquetes HTML
         title: Termes del servei personalitzats
       site_title: Nom del servidor
-      spam_check_enabled:
-        desc_html: Mastodon pot informar automàticament de comptes que envien repetits missatges no sol·licitats. Pot haver-hi falsos positius.
-        title: Anti-spam
       thumbnail:
         desc_html: S'utilitza per obtenir visualitzacions prèvies a través d'OpenGraph i API. Es recomana 1200x630px
         title: Miniatura del servidor
@@ -641,13 +693,18 @@ ca:
       no_status_selected: No s’han canviat els estatus perquè cap no ha estat seleccionat
       title: Estats del compte
       with_media: Amb contingut multimèdia
+    system_checks:
+      database_schema_check:
+        message_html: Hi ha pendents migracions de la base de dades. Si us plau executa-les per a assegurar que l'aplicació es comporta com s'espera
+      rules_check:
+        action: Gestiona les normes del servidor
+        message_html: No has definit cap norma del servidor.
+      sidekiq_process_check:
+        message_html: No hi ha cap procés de Sidekiq executant-se per a la cua (o cues) de %{value}. Si us plau revisa la teva configuració de Sidekiq
     tags:
       accounts_today: Usos únics actuals
       accounts_week: Usos únics d'aquesta setmana
       breakdown: Desglossament de l’ús actual per origen
-      context: Context
-      directory: En el directori
-      in_directory: "%{count} en el directori"
       last_active: Darrer actiu
       most_popular: Més populars
       most_recent: Més recent
@@ -664,6 +721,7 @@ ca:
       add_new: Afegeix-ne un de nou
       delete: Esborra
       edit_preset: Edita l'avís predeterminat
+      empty: Encara no has definit cap preavís.
       title: Gestiona les configuracions predefinides dels avisos
   admin_mailer:
     new_pending_account:
@@ -751,6 +809,7 @@ ca:
       functional: El teu compte és plenament operatiu.
       pending: La vostra sol·licitud està pendent de revisió pel nostre personal. Això pot trigar una mica. Rebreu un correu electrònic quan sigui aprovada.
       redirecting_to: El teu compte és inactiu perquè actualment està redirigint a %{acct}.
+    too_fast: Formulari enviat massa ràpid, torna a provar-ho.
     trouble_logging_in: Problemes per iniciar la sessió?
     use_security_key: Usa clau de seguretat
   authorize_follow:
@@ -842,6 +901,7 @@ ca:
       request: Sol·licita el teu arxiu
       size: Mida
     blocks: Persones que has blocat
+    bookmarks: Marcadors
     csv: CSV
     domain_blocks: Bloquejos de dominis
     lists: Llistes
@@ -909,6 +969,8 @@ ca:
     status: Estat de verificació
     view_proof: Veure la prova
   imports:
+    errors:
+      over_rows_processing_limit: conté més de %{count} files
     modes:
       merge: Fusionar
       merge_long: Mantenir els registres existents i afegir-ne de nous
@@ -918,6 +980,7 @@ ca:
     success: Les dades s'han rebut correctament i es processaran en breu
     types:
       blocking: Llista de blocats
+      bookmarks: Marcadors
       domain_blocking: Llistat de dominis bloquejats
       following: Llista de seguits
       muting: Llista de silenciats
@@ -948,6 +1011,17 @@ ca:
   lists:
     errors:
       limit: Has assolit la quantitat màxima de llistes
+  login_activities:
+    authentication_methods:
+      otp: aplicació d'autenticació de dos factors
+      password: contrasenya
+      sign_in_token: codi de seguretat per correu electrònic
+      webauthn: claus de seguretat
+    description_html: Si veus activitat que no reconeixes, considera canviar la teva contrasenya i activar l'autenticació de dos factors.
+    empty: Historial d'autenticació no disponible
+    failed_sign_in_html: Intent d'inici de sessió errat amb %{method} des-de %{ip} (%{browser})
+    successful_sign_in_html: Inici de sessió exitós amb %{method} des-de %{ip} (%{browser})
+    title: Historial d'autenticació
   media_attachments:
     validations:
       images_and_video: No es pot adjuntar un vídeo a una publicació que ja contingui imatges
@@ -1020,10 +1094,14 @@ ca:
       body: "%{name} t'ha mencionat en:"
       subject: "%{name} t'ha mencionat"
       title: Menció nova
+    poll:
+      subject: Ha finalitzat l'enquesta de %{name}
     reblog:
       body: "%{name} ha impulsat el teu estat:"
       subject: "%{name} ha impulsat el teu estat"
       title: Nou impuls
+    status:
+      subject: "%{name} ha publicat"
   notifications:
     email_events: Esdeveniments per a notificacions per correu electrònic
     email_events_hint: 'Selecciona els esdeveniments per als quals vols rebre notificacions:'
@@ -1074,6 +1152,7 @@ ca:
   relationships:
     activity: Activitat del compte
     dormant: Inactiu
+    follow_selected_followers: Segueix als seguidors seleccionats
     followers: Seguidors
     following: Seguint
     invited: Convidat
@@ -1149,6 +1228,7 @@ ca:
     revoke: Revoca
     revoke_success: S'ha revocat la sessió amb èxit
     title: Sessions
+    view_authentication_history: Veure l'historial d'autenticació del teu compte
   settings:
     account: Compte
     account_settings: Ajustos del compte
@@ -1169,10 +1249,9 @@ ca:
     preferences: Preferències
     profile: Perfil
     relationships: Seguits i seguidors
+    statuses_cleanup: Borrat automàtic de publicacions
     two_factor_authentication: Autenticació de dos factors
     webauthn_authentication: Claus de seguretat
-  spam_check:
-    spam_detected: Aquest és un informe automàtic. S'ha detectat spam.
   statuses:
     attached:
       audio:
@@ -1215,12 +1294,47 @@ ca:
     sign_in_to_participate: Inicia la sessió per participar a la conversa
     title: '%{name}: "%{quote}"'
     visibilities:
+      direct: Directe
       private: Només seguidors
       private_long: Mostra només als seguidors
       public: Públic
       public_long: Tothom pot veure-ho
       unlisted: No llistat
       unlisted_long: Tothom ho pot veure, però no es mostra en les línies de temps públiques
+  statuses_cleanup:
+    enabled: Esborra automàtic publicacions velles
+    enabled_hint: Suprimeix automàticament les teves publicacions quan arribin a un llindar d’edat especificat, tret que coincideixin amb una de les excepcions següents
+    exceptions: Excepcions
+    explanation: Com que suprimir publicacions és una operació cara, es fa lentament amb el pas del temps quan el servidor no està ocupat. Per aquest motiu, és possible que les teves publicacions se suprimeixin un temps després d’assolir el llindar d’edat.
+    ignore_favs: Ignora favorits
+    ignore_reblogs: Ignora impulsos
+    interaction_exceptions: Excepcions basades en interaccions
+    interaction_exceptions_explanation: Tingues en compte que no es garanteix que es suprimeixen les publicacions si passen per sota del llindar de favorit o impuls després d'haver-lo superat.
+    keep_direct: Manté missatges directes
+    keep_direct_hint: No esborra cap dels teus missatges directes
+    keep_media: Manté les publicacions amb adjunts multimèdia
+    keep_media_hint: No esborra cap de les teves publicacions que tinguin adjunts multimèdia
+    keep_pinned: Manté les publicacions fixades
+    keep_pinned_hint: No esborra cap de les teves publicacions fixades
+    keep_polls: Manté enquestes
+    keep_polls_hint: No esborra cap de les teves enquestes
+    keep_self_bookmark: Manté les publicacions que has desat a les adreces d'interès
+    keep_self_bookmark_hint: No esborra les teves pròpies publicacions si les has desat en les adreces d'interès
+    keep_self_fav: Manté les publicacions que has afavorit
+    keep_self_fav_hint: No esborra les teves pròpies publicacions si les has afavorit
+    min_age:
+      '1209600': 2 setmanes
+      '15778476': 6 mesos
+      '2629746': 1 mes
+      '31556952': 1 any
+      '5259492': 2 mesos
+      '63113904': 2 anys
+      '7889238': 3 mesos
+    min_age_label: Llindar d'edat
+    min_favs: Manté les publicacions afavorides més de
+    min_favs_hint: No suprimeix cap de les teves publicacions que hagin rebut més d'aquesta quantitat de favorits. Deixa-ho en blanc per suprimir publicacions independentment del nombre de favorits que tinguin
+    min_reblogs: Manté les publicacions impulsades més de
+    min_reblogs_hint: No suprimeix cap de les teves publicacions que s'hagin impulsat més que aquest número de vegades. Deixa-ho en blanc per suprimir les publicacions independentment del nombre d'impulsos que tinguin
   stream_entries:
     pinned: Tut fixat
     reblogged: ha impulsat
@@ -1383,11 +1497,8 @@ ca:
       tips: Consells
       title: Benvingut a bord, %{name}!
   users:
-    blocked_email_provider: Aquest proveïdor de correu electrònic no és permés
     follow_limit_reached: No pots seguir més de %{limit} persones
     generic_access_help_html: Problemes accedint al teu compte? Pots contactar amb %{email} per a demanar assistència
-    invalid_email: L'adreça de correu no és correcta
-    invalid_email_mx: Sembla que l’adreça de correu electrònic no existeix
     invalid_otp_token: El codi de dos factors no és correcte
     invalid_sign_in_token: Codi de seguretat invàlid
     otp_lost_help_html: Si has perdut l'accés a tots dos pots contactar per %{email}

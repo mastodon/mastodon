@@ -1,0 +1,117 @@
+---
+gd:
+  devise:
+    confirmations:
+      confirmed: Chaidh an seòladh puist-d agad a dhearbhadh.
+      send_instructions: Gheibh thu post-d an ceann corra mionaid le stiùireadh air mar a dhearbhas tu an seòladh puist-d agad. Thoir sùil air pasgan an spama agad mura faigh thu am post-d seo.
+      send_paranoid_instructions: Ma tha an seòladh puist-d agad san stòr-dàta againn, gheibh thu post-d an ceann corra mionaid le stiùireadh air mar a dhearbhas tu an seòladh puist-d agad. Thoir sùil air pasgan an spama agad mura faigh thu am post-d seo.
+    failure:
+      already_authenticated: Tha thu air do chlàradh a-steach mu thràth.
+      inactive: Cha deach an cunntas agad a ghnìomhachadh fhathast.
+      invalid: "%{authentication_keys} no facal-faire mì-dhligheach."
+      last_attempt: Tha aon oidhirp eile agad mus dèid an cunntas agad a ghlasadh.
+      locked: Tha an cunntas agad glaiste.
+      not_found_in_database: "%{authentication_keys} no facal-faire mì-dhligheach."
+      pending: Tha an cunntas agad fo lèirmheas fhathast.
+      timeout: Dh’fhalbh an ùine air an t-seisean agad. Clàraich a-steach a-rithist airson leantainn air adhart.
+      unauthenticated: Feumaidh tu clàradh a-steach no clàradh leinn mus lean thu air adhart.
+      unconfirmed: Feumaidh tu an seòladh puist-d agad a dhearbhadh mus lean thu air adhart.
+    mailer:
+      confirmation_instructions:
+        action: Dearbh an seòladh puist-d
+        action_with_app: Dearbh ’s till gu %{app}
+        explanation: Tha thu air cunntas a chruthachadh air %{host} leis an t-seòladh puist-d seo. Chan eil ach aon bhriogadh a dhìth gus am bi e gnìomhach. Mur e tusa a bh’ ann, leig seachad am post-d seo.
+        explanation_when_pending: Chuir thu iarrtas a-steach ach am faigh thu cuireadh dha %{host} air an t-seòladh puist-d seo. Nuair a bhios tu air an seòladh puist-d agad a dhearbhadh, nì sinn lèirmheas air d’ iarrtas. ’S urrainn dhut clàradh a-steach airson am fiosrachadh mu d’ dhèidhinn atharrachadh no an cunntas agad a sguabadh às ach chan fhaigh thu cothrom air a’ mhòrchuid a ghleusan gus am bi an cunntas agad air a dhearbhadh. Ma thèid d’ iarrtas a dhiùltadh, thèid an dàta agad a thoirt air falbh is cha leig thu leas dad sam bith eile a dhèanamh. Mur e tusa a bh’ ann, leig seachad am post-d seo.
+        extra_html: Thoir sùil air <a href="%{terms_path}">riaghailtean an fhrithealaiche</a> agus <a href="%{policy_path}">teirmichean na seirbheise againn</a> cuideachd.
+        subject: 'Mastodon: Stiùireadh dearbhaidh airson %{instance}'
+        title: Dearbh an seòladh puist-d
+      email_changed:
+        explanation: 'Tha an seòladh puist-d dhan chunntas agad ’ga atharrachadh gu:'
+        extra: Mur an do dh’atharraich thu fhèin am post-d agad, tha deagh theans gun d’ fhuair cuideigin eile grèim air a’ chunntas agad. Atharraich am facal-faire agad sa bhad no cuir fios gu rianaire an fhrithealaiche ma chaidh do ghlasadh a-mach às a’ chunntas agad.
+        subject: 'Mastodon: Chaidh am post-d atharrachadh'
+        title: Seòladh puist-d ùr
+      password_change:
+        explanation: Chaidh facal-faire a’ chunntais agad atharrachadh.
+        extra: Mur an do dh’atharraich thu fhèin am facal-faire agad, tha deagh theans gun d’ fhuair cuideigin eile grèim air a’ chunntas agad. Atharraich am facal-faire agad sa bhad no cuir fios gu rianaire an fhrithealaiche ma chaidh do ghlasadh a-mach às a’ chunntas agad.
+        subject: 'Mastodon: Chaidh am facal-faire atharrachadh'
+        title: Chaidh am facal-faire atharrachadh
+      reconfirmation_instructions:
+        explanation: Dearbh an seòladh ùr airson am post-d agad atharrachadh.
+        extra: Mura rinn thu fhèin an t-atharrachadh seo, leig seachad am post-d seo. Chan atharraich seòladh puist-d a’ chunntais Mastodon agad gus am briog thu air a’ cheangal gu h-àrd.
+        subject: 'Mastodon: Dearbh am post-d airson %{instance}'
+        title: Dearbh an seòladh puist-d
+      reset_password_instructions:
+        action: Atharraich am facal-faire
+        explanation: Dh’iarr thu facal-faire ùr dhan chunntas agad.
+        extra: Mur an do dh’iarr thu fhèin seo, leig seachad am post-d seo. Chan atharraich am facal-faire agad gus an inntrig thu an ceangal gu h-àrd ’s an cruthaich thu facal-faire ùr.
+        subject: 'Mastodon: Stiùireadh air ath-shuidheachadh an fhacail-fhaire'
+        title: Ath-shuidheachadh an fhacail-fhaire
+      two_factor_disabled:
+        explanation: Chaidh an dearbhadh dà-cheumnach a chur à comas dhan chunntas agad. ’S urrainn dhut clàradh a-steach le seòladh puist-d is facal-faire a-mhàin a-nis.
+        subject: 'Mastodon: Tha an dearbhadh dà-cheumnach à comas'
+        title: Dearbhadh dà-cheumnach à comas
+      two_factor_enabled:
+        explanation: Chaidh an dearbhadh dà-cheumnach a chur an comas dhan chunntas agad. Bidh feum air tòcan a ghineas an aplacaid TOTP a chaidh a phaidhreachadh airson clàradh a-steach.
+        subject: 'Mastodon: Tha an dearbhadh dà-cheumnach an comas'
+        title: Dearbhadh dà-cheumnach an comas
+      two_factor_recovery_codes_changed:
+        explanation: Tha na còdan aisig a bh’ agad cheana mì-dhligheach a-nis agus chaidh feadhainn ùra a ghintinn.
+        subject: 'Mastodon: Chaidh còdan aisig dà-cheumnach ath-ghintinn'
+        title: Dh’atharraich còdan aisig an dearbhaidh dà-cheumnaich
+      unlock_instructions:
+        subject: 'Mastodon: Stiùireadh neo-ghlasaidh'
+      webauthn_credential:
+        added:
+          explanation: Chaidh an iuchair tèarainteachd a leanas a chur ris a’ chunntas agad
+          subject: 'Mastodon: Iuchair tèarainteachd ùr'
+          title: Chaidh iuchair tèarainteachd ùr a chur ris
+        deleted:
+          explanation: Chaidh an iuchair tèarainteachd a leanas a sguabadh às on chunntas agad
+          subject: 'Mastodon: Chaidh iuchair tèarainteachd a sguabadh às'
+          title: Chaidh tè dhe na h-iuchraichean tèarainteachd agad a sguabadh às
+      webauthn_disabled:
+        explanation: Chaidh an dearbhadh le iuchraichean tèarainteachd a chur à comas dhan chunntas agad. ’S urrainn dhut clàradh a-steach leis an tòcan a ghineas an aplacaid TOTP paidhrichte a-mhàin a-nis.
+        subject: 'Mastodon: Tha dearbhadh le iuchraichean tèarainteachd à comas'
+        title: Chaidh na h-iuchraichean tèarainteachd a chur à comas
+      webauthn_enabled:
+        explanation: Chaidh an dearbhadh le iuchair tèarainteachd a chur an comas dhan chunntas agad. ’S urrainn dhut an iuchair tèarainteachd agad a chleachdadh airson clàradh a-steach a-nis.
+        subject: 'Mastodon: Tha dearbhadh le iuchair tèarainteachd an comas'
+        title: Chaidh na h-iuchraichean tèarainteachd a chur an comas
+    omniauth_callbacks:
+      failure: Cha b’ urrainn dhuinn dearbhadh cò thusa o %{kind} air adhbhar “%{reason}”.
+      success: Chaidh dearbhadh cò thusa o chunntas %{kind}.
+    passwords:
+      no_token: Chan urrainn dhut an duilleag seo inntrigeadh ach o phost-d ath-shuidheachadh facail-fhaire. Mas ann gun tàinig thu o phost-d dhen leithid, dèan cinnteach gun do chleachd thu an URL slàn a chaidh a thoirt dhut.
+      send_instructions: Ma tha an seòladh puist-d agad san stòr-dàta againn, gheibh thu post-d le ceangal aiseag facail-fhaire an ceann corra mionaid. Thoir sùil air pasgan an spama agad mura faigh thu am post-d seo.
+      send_paranoid_instructions: Ma tha an seòladh puist-d agad san stòr-dàta againn, gheibh thu post-d le ceangal aiseag facail-fhaire an ceann corra mionaid. Thoir sùil air pasgan an spama agad mura faigh thu am post-d seo.
+      updated: Chaidh am facal-faire agad atharrachadh ’s do chlàradh a-steach.
+      updated_not_active: Chaidh am facal-faire agad atharrachadh.
+    registrations:
+      destroyed: Soraidh slàn leat! Chaidh crìoch a chur air a’ chunntas agad. Tha sinn an dòchas nach bi thu fada gun tilleadh.
+      signed_up: Fàilte ort! Tha thu air clàradh leinn.
+      signed_up_but_inactive: Tha thu air clàradh leinn. Gidheadh, chan urrainn dhuinn do clàradh a-steach air sgàth ’s nach deach an cunntas agad a ghnìomhachadh fhathast.
+      signed_up_but_locked: Tha thu air clàradh leinn. Gidheadh, chan urrainn dhuinn do clàradh a-steach air sgàth ’s gu bheil an cunntas agad glaiste.
+      signed_up_but_pending: Chaidh teachdaireachd le ceangal dearbhaidh a chur dhan t-seòladh puist-d agad. Nuair a bhios tu air briogadh air a’ cheangal, nì sinn lèirmheas air d’ iarrtas. Leigidh sinn fios dhut ma thèid aontachadh ris.
+      signed_up_but_unconfirmed: Chaidh teachdaireachd le ceangal dearbhaidh a chur dhan t-seòladh puist-d agad. Lean ris a’ cheangal ud a ghnìomhachadh a’ chunntais agad. Thoir sùil air pasgan an spama agad mura faigh thu am post-d seo.
+      update_needs_confirmation: Chaidh an cunntas agad ùrachadh ach feumaidh sinn an seòladh puist-d ùr agad a dhearbhadh. Thoir sùil air a’ phost-d agad agus lean ris a’ cheangal dearbhaidh a dhearbhadh an t-seòlaidh puist-d ùir agad. Thoir sùil air pasgan an spama agad mura faigh thu am post-d seo.
+      updated: Chaidh an cunntas agad ùrachadh.
+    sessions:
+      already_signed_out: Chaidh do chlàradh a-mach.
+      signed_in: Chaidh do chlàradh a-steach.
+      signed_out: Chaidh do chlàradh a-mach.
+    unlocks:
+      send_instructions: Gheibh thu post-d an ceann corra mionaid le stiùireadh air mar a bheir thu a’ ghlas far a’ chunntais agad. Thoir sùil air pasgan an spama agad mura faigh thu am post-d seo.
+      send_paranoid_instructions: Ma tha an cunntas agad ann, gheibh thu post-d an ceann corra mionaid le stiùireadh air mar a bheir thu a’ ghlas fo bhàrr. Thoir sùil air pasgan an spama agad mura faigh thu am post-d seo.
+      unlocked: Chaidh a’ ghlas a thoirt far a’ chunntais agad. Clàraich a-steach airson leantainn air adhart.
+  errors:
+    messages:
+      already_confirmed: "– chaidh a dhearbhadh mu thràth, feuch is clàraich a-steach"
+      confirmation_period_expired: "– feumaidh tu a dhearbhadh am broinn %{period}, iarr fear ùr"
+      expired: "– dh’fhalbh an ùine air, iarr fear ùr"
+      not_found: "– cha deach seo a lorg"
+      not_locked: "– cha deach seo a ghlasadh"
+      not_saved:
+        few: 'Dh’adhbharaich %{count} mearachdan nach gabh a’ %{resource} seo a shàbhaladh:'
+        one: 'Dh’adhbharaich %{count} mhearachd nach gabh a’ %{resource} seo a shàbhaladh:'
+        other: 'Dh’adhbharaich %{count} mearachd nach gabh a’ %{resource} seo a shàbhaladh:'
+        two: 'Dh’adhbharaich %{count} mhearachd nach gabh a’ %{resource} seo a shàbhaladh:'

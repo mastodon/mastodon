@@ -26,6 +26,8 @@ is:
       Tilgangur hans tengist virkni vefþjónasambandsins og ætti alls ekki að loka á hann nema að þú viljir útiloka allan viðkomandi vefþjón, en þá ætti frekar að útiloka sjálft lénið.
     learn_more: Kanna nánar
     privacy_policy: Persónuverndarstefna
+    rules: Reglur netþjónsins
+    rules_html: 'Hér fyrir neðan er yfirlit yfir þær reglur sem þú þarft að fara eftir ef þú ætlar að vera með notandaaðgang á þessum Mastodon-netþjóni:'
     see_whats_happening: Sjáðu hvað er í gangi
     server_stats: 'Tölfræði þjóns:'
     source_code: Grunnkóði
@@ -60,6 +62,7 @@ is:
       one: fylgjandi
       other: fylgjendur
     following: Fylgist með
+    instance_actor_flash: Þessi notandaaðgangur er sýndarnotandi sem stendur fyrir sjálfan netþjóninn en ekki neinn einstakling. Hann er notaður við skýjasambandsmiðlun og ætti ekki að setja hann í bið eða banna.
     joined: Gerðist þátttakandi %{date}
     last_active: síðasta virkni
     link_verified_on: Eignarhald á þessum tengli var athugað þann %{date}
@@ -77,7 +80,6 @@ is:
       other: Tíst
     posts_tab_heading: Tíst
     posts_with_replies: Tíst og svör
-    reserved_username: Notandanafnið er frátekið
     roles:
       admin: Stjóri
       bot: Róbót
@@ -117,6 +119,7 @@ is:
       demote: Lækka í tign
       destroyed_msg: Gögn notandans %{username} eru núna í bið eftir að vera endanlega eytt
       disable: Gera óvirkt
+      disable_sign_in_token_auth: Gera óvirka auðkenningu með teikni í tölvupósti
       disable_two_factor_authentication: Gera tveggja-þátta auðkenningu óvirka
       disabled: Óvirkt
       display_name: Birtingarnafn
@@ -125,12 +128,14 @@ is:
       email: Tölvupóstfang
       email_status: Staða tölvupósts
       enable: Virkja
+      enable_sign_in_token_auth: Virkja auðkenningu með teikni í tölvupósti
       enabled: Virkt
       enabled_msg: Tókst að affrysta aðgang notandans %{username}
       followers: Fylgjendur
       follows: Fylgist með
       header: Haus
       inbox_url: Slóð á innhólf
+      invite_request_text: Ástæður fyrir þátttöku
       invited_by: Boðið af
       ip: IP-vistfang
       joined: Gerðist þátttakandi
@@ -188,6 +193,10 @@ is:
       search: Leita
       search_same_email_domain: Aðra notendur með sama tölvupóstlén
       search_same_ip: Aðrir notendur með sama IP-vistfang
+      security_measures:
+        only_password: Aðeins lykilorð
+        password_and_2fa: Lykilorð og 2-þátta auðkenning
+        password_and_sign_in_token: Lykilorð og teikn í tölvupósti
       sensitive: Viðkvæmt
       sensitized: merkt sem viðkvæmt
       shared_inbox_url: Slóð á sameiginlegt innhólf
@@ -227,6 +236,7 @@ is:
         create_domain_block: Búa til lén bannað
         create_email_domain_block: Búa til tölvupóstfang bannað
         create_ip_block: Búa til IP-reglu
+        create_unavailable_domain: Útbúa lén sem ekki er tiltækt
         demote_user: Lækka notanda í tign
         destroy_announcement: Eyða tilkynningu
         destroy_custom_emoji: Eyða sérsniðnu tjáningartákni
@@ -235,10 +245,13 @@ is:
         destroy_email_domain_block: Eyða tölvupóstfangi bannað
         destroy_ip_block: Eyða IP-reglu
         destroy_status: Eyða stöðufærslu
+        destroy_unavailable_domain: Eyða léni sem ekki er tiltækt
         disable_2fa_user: Gera tveggja-þátta auðkenningu óvirka
         disable_custom_emoji: Gera sérsniðið tjáningartákn óvirkt
+        disable_sign_in_token_auth_user: Gera óvirka auðkenningu með teikni í tölvupósti fyrir notandann
         disable_user: Gera notanda óvirkan
         enable_custom_emoji: Virkja sérsniðið tjáningartákn
+        enable_sign_in_token_auth_user: Gera virka auðkenningu með teikni í tölvupósti fyrir notandann
         enable_user: Virkja notanda
         memorialize_account: Gera aðgang að minningargrein
         promote_user: Hækka notanda í tign
@@ -255,47 +268,53 @@ is:
         unsuspend_account: Taka notandaaðgang úr bið
         update_announcement: Uppfæra tilkynningu
         update_custom_emoji: Uppfæra sérsniðið tjáningartákn
+        update_domain_block: Uppfæra útilokun léns
         update_status: Uppfæra stöðufærslu
       actions:
-        assigned_to_self_report: "%{name} úthlutaði skýrslu %{target} til sín"
-        change_email_user: "%{name} breytti tölvupóstfangi fyrir notandann %{target}"
-        confirm_user: "%{name} staðfesti tölvupóstfang fyrir notandann %{target}"
-        create_account_warning: "%{name} sendi aðvörun til %{target}"
-        create_announcement: "%{name} útbjó auglýsingu %{target}"
-        create_custom_emoji: "%{name} sendi inn nýtt tjáningartákn %{target}"
-        create_domain_allow: "%{name} setti lén %{target} á lista yfir leyft"
-        create_domain_block: "%{name} útilokaði lénið %{target}"
-        create_email_domain_block: "%{name} setti póstlén %{target} á lista yfir bannað"
-        create_ip_block: "%{name} bjó til reglu fyrir IP-vistfangið %{target}"
-        demote_user: "%{name} lækkaði notandann %{target} í tign"
-        destroy_announcement: "%{name} eyddi auglýsingu %{target}"
-        destroy_custom_emoji: "%{name} henti út tjáningartákninu %{target}"
-        destroy_domain_allow: "%{name} fjarlægði lén %{target} af lista yfir leyft"
-        destroy_domain_block: "%{name} aflétti útilokun af léninu %{target}"
-        destroy_email_domain_block: "%{name} setti póstlén %{target} á lista yfir leyft"
-        destroy_ip_block: "%{name} eyddi reglu fyrir IP-vistfangið %{target}"
-        destroy_status: "%{name} fjarlægði stöðufærslu frá %{target}"
-        disable_2fa_user: "%{name} gerði tveggja-þátta auðkenningu óvirka fyrir notandann %{target}"
-        disable_custom_emoji: "%{name} gerði tjáningartáknið %{target} óvirkt"
-        disable_user: "%{name} gerðir innskráningu óvirka fyrir notandann %{target}"
-        enable_custom_emoji: "%{name} gerði tjáningartáknið %{target} virkt"
-        enable_user: "%{name} gerðir innskráningu virka fyrir notandann %{target}"
-        memorialize_account: "%{name} breytti notandaaðgangnum %{target} í minningargreinarsíðu"
-        promote_user: "%{name} hækkaði notandann %{target} í tign"
-        remove_avatar_user: "%{name} fjarlægði auðkennismynd af %{target}"
-        reopen_report: "%{name} enduropnaði skýrslu %{target}"
-        reset_password_user: "%{name} endurstillti lykilorð fyrir notandann %{target}"
-        resolve_report: "%{name} leysti skýrslu %{target}"
-        sensitive_account: "%{name} merkti myndefni frá %{target} sem viðkvæmt"
-        silence_account: "%{name} gerði notandaaðganginn %{target} hulinn"
-        suspend_account: "%{name} setti notandaaðganginn %{target} í bið"
-        unassigned_report: "%{name} fjarlægði úthlutun af skýrslu %{target}"
-        unsensitive_account: "%{name} afmerkti myndefni frá %{target} sem viðkvæmt"
-        unsilence_account: "%{name} hætti að hylja notandaaðganginn %{target}"
-        unsuspend_account: "%{name} tók notandaaðganginn %{target} úr bið"
-        update_announcement: "%{name} uppfærði auglýsingu %{target}"
-        update_custom_emoji: "%{name} uppfærði tjáningartákn %{target}"
-        update_status: "%{name} uppfærði stöðufærslu frá %{target}"
+        assigned_to_self_report_html: "%{name} úthlutaði kæru %{target} til sín"
+        change_email_user_html: "%{name} breytti tölvupóstfangi fyrir notandann %{target}"
+        confirm_user_html: "%{name} staðfesti tölvupóstfang fyrir notandann %{target}"
+        create_account_warning_html: "%{name} sendi aðvörun til %{target}"
+        create_announcement_html: "%{name} útbjó nýja tilkynningu %{target}"
+        create_custom_emoji_html: "%{name} sendi inn nýtt tjáningartákn %{target}"
+        create_domain_allow_html: "%{name} leyfði skýjasamband með léninu %{target}"
+        create_domain_block_html: "%{name} útilokaði lénið %{target}"
+        create_email_domain_block_html: "%{name} útilokaði póstlénið %{target}"
+        create_ip_block_html: "%{name} útbjó reglu fyrir IP-vistfangið %{target}"
+        create_unavailable_domain_html: "%{name} stöðvaði afhendingu til lénsins %{target}"
+        demote_user_html: "%{name} lækkaði notandann %{target} í tign"
+        destroy_announcement_html: "%{name} eyddi tilkynninguni %{target}"
+        destroy_custom_emoji_html: "%{name} henti út tjáningartákninu %{target}"
+        destroy_domain_allow_html: "%{name} bannaði skýjasamband með léninu %{target}"
+        destroy_domain_block_html: "%{name} aflétti útilokun af léninu %{target}"
+        destroy_email_domain_block_html: "%{name} aflétti útilokun af póstléninu %{target}"
+        destroy_ip_block_html: "%{name} eyddi reglu fyrir IP-vistfangið %{target}"
+        destroy_status_html: "%{name} fjarlægði stöðufærslu frá %{target}"
+        destroy_unavailable_domain_html: "%{name} hóf aftur afhendingu til lénsins %{target}"
+        disable_2fa_user_html: "%{name} gerði kröfu um tveggja-þátta innskráningu óvirka fyrir notandann %{target}"
+        disable_custom_emoji_html: "%{name} gerði tjáningartáknið %{target} óvirkt"
+        disable_sign_in_token_auth_user_html: "%{name} gerði óvirka auðkenningu með teikni í tölvupósti fyrir %{target}"
+        disable_user_html: "%{name} gerði innskráningu óvirka fyrir notandann %{target}"
+        enable_custom_emoji_html: "%{name} gerði tjáningartáknið %{target} virkt"
+        enable_sign_in_token_auth_user_html: "%{name} gerði virka auðkenningu með teikni í tölvupósti fyrir %{target}"
+        enable_user_html: "%{name} gerði innskráningu virka fyrir notandann %{target}"
+        memorialize_account_html: "%{name} breytti notandaaðgangnum %{target} í minningargreinarsíðu"
+        promote_user_html: "%{name} hækkaði notandann %{target} í tign"
+        remove_avatar_user_html: "%{name} fjarlægði auðkennismynd af %{target}"
+        reopen_report_html: "%{name} enduropnaði kæru %{target}"
+        reset_password_user_html: "%{name} endurstillti lykilorð fyrir notandann %{target}"
+        resolve_report_html: "%{name} leysti kæru %{target}"
+        sensitive_account_html: "%{name} merkti myndefni frá %{target} sem viðkvæmt"
+        silence_account_html: "%{name} þaggaði niður í aðgangnum %{target}"
+        suspend_account_html: "%{name} setti notandaaðganginn %{target} í bið"
+        unassigned_report_html: "%{name} fjarlægði úthlutun af kæru %{target}"
+        unsensitive_account_html: "%{name} tók merkinguna viðkvæmt af myndefni frá %{target}"
+        unsilence_account_html: "%{name} hætti að hylja notandaaðganginn %{target}"
+        unsuspend_account_html: "%{name} tók notandaaðganginn %{target} úr bið"
+        update_announcement_html: "%{name} uppfærði tilkynningu %{target}"
+        update_custom_emoji_html: "%{name} uppfærði tjáningartáknið %{target}"
+        update_domain_block_html: "%{name} uppfærði lénalás fyrir %{target}"
+        update_status_html: "%{name} uppfærði stöðufærslu frá %{target}"
       deleted_status: "(eydd stöðufærsla)"
       empty: Engar atvikaskrár fundust.
       filter_by_action: Sía eftir aðgerð
@@ -310,10 +329,12 @@ is:
       new:
         create: Búa til auglýsingu
         title: Ný auglýsing
+      publish: Birta
       published_msg: Það tókst að birta auglýsinguna!
       scheduled_for: Áætlað %{time}
       scheduled_msg: Auglýsing var sett á áætlun!
       title: Auglýsingar
+      unpublish: Taka úr birtingu
       unpublished_msg: Það tókst að taka auglýsinguna úr birtingu!
       updated_msg: Það tókst að uppfæra auglýsinguna!
     custom_emojis:
@@ -350,33 +371,9 @@ is:
       updated_msg: Tókst að uppfæra tjáningartákn!
       upload: Senda inn
     dashboard:
-      authorized_fetch_mode: Öruggur hamur
-      backlog: bakskráð verk
-      config: Stillingar
-      feature_deletions: Eyðingar notandaaðganga
-      feature_invites: Boðstenglar
-      feature_profile_directory: Notandasniðamappa
-      feature_registrations: Nýskráningar
-      feature_relay: Sambandsendurvarpi
-      feature_spam_check: Ruslpóstvarnir
-      feature_timeline_preview: Forskoðun tímalínu
-      features: Eiginleikar
-      hidden_service: Skýjasamband með faldar þjónustur
-      open_reports: opnar kærur
-      pending_tags: myllumerki bíða eftir yfirferð
-      pending_users: notendur bíða eftir yfirferð
-      recent_users: Nýlegir notendur
-      search: Leit í öllum texta
-      single_user_mode: Eins-notandahamur
       software: Hugbúnaður
       space: Notkun geymslurýmis
       title: Stjórnborð
-      total_users: notendur alls
-      trends: Tilhneiging
-      week_interactions: aðgerðir í þessari viku
-      week_users_active: virkir í þessari viku
-      week_users_new: notendur þessari viku
-      whitelist_mode: Hamur til að leyfa (whitelist)
     domain_allows:
       add_new: Setja lén á lista yfir leyft
       created_msg: Það tókst að setja lénið á lista yfir leyft
@@ -398,6 +395,8 @@ is:
           silence: Hylja
           suspend: Setja í bið
         title: Ný útilokun á léni
+      obfuscate: Gera heiti léns ólæsilegt
+      obfuscate_hint: Gera heiti léns ólæsilegt að hluta í listanum ef auglýsing er virk fyrir lista yfir takmarkanir léna
       private_comment: Einkaathugasemd
       private_comment_hint: Athugasemd um þessa útilokun á léni til innanhússnotkunar fyrir umsjónarmenn.
       public_comment: Opinber athugasemd
@@ -434,9 +433,35 @@ is:
         create: Bæta við léni
         title: Ný færsla á bannlista fyrir tölvupóstföng
       title: Bannlisti yfir tölvupóstföng
+    follow_recommendations:
+      description_html: "<strong>Að fylgja meðmælum hjálpar nýjum notendum að finna áhugavert efni á einfaldan máta</strong>. Þegar notandi hefur ekki átt í nægilegum samskiptum við aðra til að vera farinn að móta sér skoðanir á hverju hann vill fylgjast með, er mælt með að fylgjast með þessum aðgöngum. Þeir eru endurreiknaðir daglega út frá blöndu þeirra aðganga sem eru með hvað mestri þáttöku í umræðum og mesta fylgjendafjölda út frá hverju tungumáli."
+      language: Fyrir tungumálið
+      status: Staða
+      suppress: Útiloka að fylgja meðmælum
+      suppressed: Útilokað
+      title: Fylgja meðmælum
+      unsuppress: Endurheimta að fylgja meðmælum
     instances:
+      back_to_all: Allt
+      back_to_limited: Takmarkað
+      back_to_warning: Aðvörun
       by_domain: Lén
+      delivery:
+        all: Allt
+        clear: Hreinsa afhendingarvillur
+        restart: Endurræsa afhendingu
+        stop: Stöðva afhendingu
+        title: Afhending
+        unavailable: Ekki tiltækt
+        unavailable_message: Afhending ekki möguleg
+        warning: Aðvörun
+        warning_message:
+          one: "%{count} dagur með villum í afhendingu"
+          other: "%{count} dagar með villum í afhendingu"
       delivery_available: Afhending er til taks
+      delivery_error_days: Dagar með villum í afhendingu
+      delivery_error_hint: Ef afhending er ekki möguleg í %{count} daga, verður það sjálfkrafa merkt sem óafhendanlegt.
+      empty: Engin lén fundust.
       known_accounts:
         one: "%{count} þekktur notandaaðgangur"
         other: "%{count} þekktir notendaaðgangar"
@@ -514,6 +539,8 @@ is:
       comment:
         none: Ekkert
       created_at: Tilkynnt
+      forwarded: Áframsent
+      forwarded_to: Áframsent á %{domain}
       mark_as_resolved: Merkja sem leyst
       mark_as_unresolved: Merkja sem óleyst
       notes:
@@ -529,10 +556,18 @@ is:
       resolved: Leyst
       resolved_msg: Það tókst að leysa kæruna!
       status: Staða
+      target_origin: Uppruni kærða notandaaðgangsins
       title: Kærur
       unassign: Aftengja úthlutun
       unresolved: Óleyst
       updated_at: Uppfært
+    rules:
+      add_new: Skrá reglu
+      delete: Eyða
+      description_html: Þó að flestir segist hafa lesið og samþykkt þjónustuskilmála, er fólk samt gjarnt á að lesa slíkar upplýsingar ekki til enda fyrr en upp koma einhver vandamál. <strong>Gerðu fólki auðvelt að sjá mikilvægustu reglurnar með því að setja þær fram í flötum punktalista.</strong> Reyndu að hafa hverja reglu stutta og skýra, en ekki vera heldur að skipta þeim upp í mörg aðskilin atriði.
+      edit: Breyta reglu
+      empty: Engar reglur fyrir netþjón hafa ennþá verið skilgreindar.
+      title: Reglur netþjónsins
     settings:
       activity_api_enabled:
         desc_html: Fjöldi staðværra stöðufærslna, virkra notenda og nýskráninga í vikulegum skömmtum
@@ -556,8 +591,6 @@ is:
         users: Til innskráðra staðværra notenda
       domain_blocks_rationale:
         title: Birta röksemdafærslu
-      enable_bootstrap_timeline_accounts:
-        title: Virkja sjálfgefnar fylgnistillingar fyrir nýja notendur
       hero:
         desc_html: Birt á forsíðunni. Mælt með að hún sé a.m.k. 600×100 mynddílar. Þegar þetta er ekki stillt, er notuð smámynd netþjónsins
         title: Aðalmynd
@@ -583,6 +616,9 @@ is:
         min_invite_role:
           disabled: Enginn
           title: Leyfa boð frá
+        require_invite_text:
+          desc_html: Þegar nýskráningar krefjast handvirks samþykkis, skal gera "Hvers vegna viltu taka þátt?" boðstexta að skyldu fremur en valkvæðan
+          title: Krefja nýja notendur um að fylla út boðstexta
       registrations_mode:
         modes:
           approved: Krafist er samþykkt nýskráningar
@@ -608,9 +644,6 @@ is:
         desc_html: Þú getur skrifað þína eigin persónuverndarstefnu, þjónustuskilmála eða annað lagatæknilegt. Þú getur notað HTML-einindi
         title: Sérsniðnir þjónustuskilmálar
       site_title: Heiti vefþjóns
-      spam_check_enabled:
-        desc_html: Mastodon getur tilkynnt sjálfvirkt um aðganga sem senda ítrekað óumbeðin skilaboð. Mögulega geta verið rangar slíkar tilkynningar.
-        title: Sjálfvirkar ruslpóstvarnir
       thumbnail:
         desc_html: Notað við forskoðun í gegnum OpenGraph og API-kerfisviðmót. Mælt með 1200×630 mynddílum
         title: Smámynd vefþjóns
@@ -641,13 +674,18 @@ is:
       no_status_selected: Engum stöðufærslum var breytt þar sem engar voru valdar
       title: Staða notendaaðganga
       with_media: Með myndefni
+    system_checks:
+      database_schema_check:
+        message_html: Það eru fyrirliggjandi yfirfærslur á gagnagrunnum. Keyrðu þær til að tryggja að forritið hegði sér eins og skyldi
+      rules_check:
+        action: Sýsla með reglur netþjónsins
+        message_html: Þú hefur ekki skilgreint neinar reglur fyrir netþjón.
+      sidekiq_process_check:
+        message_html: Ekkert Sidekiq-ferli er í gangi fyrir %{value} biðröð/biðraðir. Endilega athugaðu Sidekiq-uppsetninguna þína
     tags:
       accounts_today: Einstök afnot í dag
       accounts_week: Einstök afnot í þessari viku
       breakdown: Samantekt á notkun dagsins eftir uppruna
-      context: Samhengi
-      directory: Í möppunni
-      in_directory: "%{count} í möppunni"
       last_active: Síðasta virkni
       most_popular: Vinsælast
       most_recent: Nýjast
@@ -664,6 +702,7 @@ is:
       add_new: Bæta við nýju
       delete: Eyða
       edit_preset: Breyta forstilltri aðvörun
+      empty: Þú hefur ekki enn skilgreint neinar aðvaranaforstillingar.
       title: Sýsla með forstilltar aðvaranir
   admin_mailer:
     new_pending_account:
@@ -751,6 +790,7 @@ is:
       functional: Notandaaðgangurinn þinn er með fulla virkni.
       pending: Umsóknin þín bíður eftir að starfsfólkið okkar fari yfir hana. Það gæti tekið nokkurn tíma. Þú munt fá tölvupóst ef umsóknin er samþykkt.
       redirecting_to: Notandaaðgangurinn þinn er óvirkur vegna þess að hann endurbeinist á %{acct}.
+    too_fast: Innfyllingarform sent inn of hratt, prófaðu aftur.
     trouble_logging_in: Vandræði við að skrá inn?
     use_security_key: Nota öryggislykil
   authorize_follow:
@@ -842,6 +882,7 @@ is:
       request: Biddu um safnskrána þína
       size: Stærð
     blocks: Þú útilokar
+    bookmarks: Bókamerki
     csv: CSV
     domain_blocks: Útilokanir á lénum
     lists: Listar
@@ -909,6 +950,8 @@ is:
     status: Staða sannvottunar
     view_proof: Skoða sönnun
   imports:
+    errors:
+      over_rows_processing_limit: inniheldur meira en %{count} raðir
     modes:
       merge: Sameina
       merge_long: Halda fyrirliggjandi færslum og bæta við nýjum
@@ -918,6 +961,7 @@ is:
     success: Það tókst að senda inn gögnin þín og verður unnið með þau þegar færi gefst
     types:
       blocking: Listi yfir útilokanir
+      bookmarks: Bókamerki
       domain_blocking: Listi yfir útilokanir léna
       following: Listi yfir þá sem fylgst er með
       muting: Listi yfir þagganir
@@ -948,6 +992,17 @@ is:
   lists:
     errors:
       limit: Þú hefur náð hámarksfjölda lista
+  login_activities:
+    authentication_methods:
+      otp: tveggja-þátta auðkenningarforrit
+      password: lykilorð
+      sign_in_token: öryggiskóði í tölvupósti
+      webauthn: öryggislyklar
+    description_html: Ef þú sérð einhverja virkni sem þú kannast ekki við, skaltu íhuga að skipta um lykilorð og að virkja tveggja-þátta auðkenningu.
+    empty: Enginn aðkenningarferill tiltækur
+    failed_sign_in_html: Misheppnuð tilraun til innskráningar með %{method} frá %{ip} (%{browser})
+    successful_sign_in_html: Vel heppnuð tilraun til innskráningar með %{method} frá %{ip} (%{browser})
+    title: Auðkenningarferill
   media_attachments:
     validations:
       images_and_video: Ekki er hægt að hengja myndskeið við stöðufærslu sem þegar inniheldur myndir
@@ -1020,10 +1075,14 @@ is:
       body: "%{name} minntist á þig í:"
       subject: "%{name} minntist á þig"
       title: Ný tilvísun
+    poll:
+      subject: Könnun frá %{name} er lokið
     reblog:
       body: "%{name} endurbirti stöðufærsluna þína:"
       subject: "%{name} endurbirti stöðufærsluna þína"
       title: Ný endurbirting
+    status:
+      subject: "%{name} sendi inn rétt í þessu"
   notifications:
     email_events: Atburðir fyrir tilkynningar í tölvupósti
     email_events_hint: 'Veldu þá atburði sem þú vilt fá tilkynningar í tölvupósti þegar þeir koma upp:'
@@ -1074,6 +1133,7 @@ is:
   relationships:
     activity: Virkni aðgangs
     dormant: Sofandi
+    follow_selected_followers: Fylgjast með völdum fylgjendum
     followers: Fylgjendur
     following: Fylgist með
     invited: Boðið
@@ -1149,6 +1209,7 @@ is:
     revoke: Afturkalla
     revoke_success: Tókst að afturkalla setu
     title: Setur
+    view_authentication_history: Skoða aðkenningarferil aðgangsins þíns
   settings:
     account: Notandaaðgangur
     account_settings: Stillingar notandaaðgangs
@@ -1169,10 +1230,9 @@ is:
     preferences: Kjörstillingar
     profile: Notandasnið
     relationships: Fylgist með og fylgjendur
+    statuses_cleanup: Sjálfvirk eyðing færslna
     two_factor_authentication: Tveggja-þátta auðkenning
     webauthn_authentication: Öryggislyklar
-  spam_check:
-    spam_detected: Þetta er sjálfvirk kæra. Ruslpóstur hefur fundist.
   statuses:
     attached:
       audio:
@@ -1215,12 +1275,47 @@ is:
     sign_in_to_participate: Skráðu þig inn til að taka þátt í samtalinu
     title: "%{name}: „%{quote}‟"
     visibilities:
+      direct: Beint
       private: Einungis fylgjendur
       private_long: Aðeins birt fylgjendum
       public: Opinber
       public_long: Allir geta séð
       unlisted: Óskráð
       unlisted_long: Allir geta skoðað, en er ekki talið upp á opinberum tímalínum
+  statuses_cleanup:
+    enabled: Sjálfkrafa eyða eldri færslum
+    enabled_hint: Eyðir sjálfkrafa færslum þínum um leið og þær ná tilteknum aldursmörkum, nema ef þær samsvara einni af undantekningunum hér fyrir neðan
+    exceptions: Undantekningar
+    explanation: Þar sem eyðing færslna gerir talsverðar kröfur til kerfisins, er þetta gert smátt og smátt þegar netþjónninn er ekki upptekinn við annað. Að þessum sökum má vera að færslunum þínum sé eytt einhverjum tíma eftir að þær ná skilgreindum aldursmörkum.
+    ignore_favs: Hunsa eftirlæti
+    ignore_reblogs: Hunsa endurbirtingar
+    interaction_exceptions: Undantekningar byggðar á gagnvirkni
+    interaction_exceptions_explanation: Athugaðu að ekki er öruggt að færslum sé eytt við að fara niður fyrir skilgreind mörk eftirlæta eða endurbirtinga ef þær hafa einu sinni farið upp fyrir þessi mörk.
+    keep_direct: Halda beinum skilaboðum
+    keep_direct_hint: Eyðir ekki neinum af beinu skilaboðunum þínum
+    keep_media: Halda færslum með myndaviðhengjum
+    keep_media_hint: Eyðir ekki neinum af færslunum þínum sem eru með myndaviðhengi
+    keep_pinned: Halda festum færslum
+    keep_pinned_hint: Eyðir ekki neinum af festu færslunum þínum
+    keep_polls: Halda könnunum
+    keep_polls_hint: Eyðir ekki neinum af könnununum þínum
+    keep_self_bookmark: Halda bókamerktum færslum
+    keep_self_bookmark_hint: Eyðir ekki þínum eigin færslum ef þú hefur bókamerkt þær
+    keep_self_fav: Halda eftirlætisfærslum
+    keep_self_fav_hint: Eyðir ekki þínum eigin færslum ef þú hefur sett þær í eftirlæti
+    min_age:
+      '1209600': 2 vikur
+      '15778476': 6 mánuðir
+      '2629746': 1 mánuður
+      '31556952': 1 ár
+      '5259492': 2 mánuðir
+      '63113904': 2 ár
+      '7889238': 3 mánuðir
+    min_age_label: Aldursmörk
+    min_favs: Halda færslum sem eru í eftirlætum oftar en
+    min_favs_hint: Eyðir ekki þínum eigin færslum sem settar hafa verið í eftirlæti þetta oft. Skildu þetta eftir autt til að eyða færslum burtséð frá fjölda eftirlæta
+    min_reblogs: Halda færslum sem eru endurbirtar oftar en
+    min_reblogs_hint: Eyðir ekki þínum eigin færslum sem endurbirtar hafa verið þetta oft. Skildu þetta eftir autt til að eyða færslum burtséð frá fjölda endurbirtinga
   stream_entries:
     pinned: Fest tíst
     reblogged: endurbirt
@@ -1383,11 +1478,8 @@ is:
       tips: Ábendingar
       title: Velkomin/n um borð, %{name}!
   users:
-    blocked_email_provider: Þessi tölvupóstþjónusta er ekki leyfileg
     follow_limit_reached: Þú getur ekki fylgst með fleiri en %{limit} aðilum
     generic_access_help_html: Vandamál við að tengjast aðgangnum þínum? Þú getur sett þig í samband við %{email} til að fá aðstoð
-    invalid_email: Tölvupóstfangið er ógilt
-    invalid_email_mx: Tölvupóstfangið virðist ekki vera til
     invalid_otp_token: Ógildur tveggja-þátta kóði
     invalid_sign_in_token: Ógildur öryggiskóði
     otp_lost_help_html: Ef þú hefur misst aðganginn að hvoru tveggja, geturðu sett þig í samband við %{email}

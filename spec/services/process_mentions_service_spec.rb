@@ -7,37 +7,6 @@ RSpec.describe ProcessMentionsService, type: :service do
 
   subject { ProcessMentionsService.new }
 
-  context 'OStatus with public toot' do
-    let(:remote_user) { Fabricate(:account, username: 'remote_user', protocol: :ostatus, domain: 'example.com', salmon_url: 'http://salmon.example.com') }
-
-    before do
-      stub_request(:post, remote_user.salmon_url)
-      subject.call(status)
-    end
-
-    it 'does not create a mention' do
-      expect(remote_user.mentions.where(status: status).count).to eq 0
-    end
-  end
-
-  context 'OStatus with private toot' do
-    let(:visibility)  { :private }
-    let(:remote_user) { Fabricate(:account, username: 'remote_user', protocol: :ostatus, domain: 'example.com', salmon_url: 'http://salmon.example.com') }
-
-    before do
-      stub_request(:post, remote_user.salmon_url)
-      subject.call(status)
-    end
-
-    it 'does not create a mention' do
-      expect(remote_user.mentions.where(status: status).count).to eq 0
-    end
-
-    it 'does not post to remote user\'s Salmon end point' do
-      expect(a_request(:post, remote_user.salmon_url)).to_not have_been_made
-    end
-  end
-
   context 'ActivityPub' do
     context do
       let(:remote_user) { Fabricate(:account, username: 'remote_user', protocol: :activitypub, domain: 'example.com', inbox_url: 'http://example.com/inbox') }
@@ -59,6 +28,24 @@ RSpec.describe ProcessMentionsService, type: :service do
     context 'with an IDN domain' do
       let(:remote_user) { Fabricate(:account, username: 'sneak', protocol: :activitypub, domain: 'xn--hresiar-mxa.ch', inbox_url: 'http://example.com/inbox') }
       let(:status) { Fabricate(:status, account: account, text: "Hello @sneak@hæresiar.ch") }
+
+      before do
+        stub_request(:post, remote_user.inbox_url)
+        subject.call(status)
+      end
+
+      it 'creates a mention' do
+        expect(remote_user.mentions.where(status: status).count).to eq 1
+      end
+
+      it 'sends activity to the inbox' do
+        expect(a_request(:post, remote_user.inbox_url)).to have_been_made.once
+      end
+    end
+
+    context 'with an IDN TLD' do
+      let(:remote_user) { Fabricate(:account, username: 'foo', protocol: :activitypub, domain: 'xn--y9a3aq.xn--y9a3aq', inbox_url: 'http://example.com/inbox') }
+      let(:status) { Fabricate(:status, account: account, text: "Hello @foo@հայ.հայ") }
 
       before do
         stub_request(:post, remote_user.inbox_url)

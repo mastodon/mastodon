@@ -1,7 +1,7 @@
 ---
 ja:
   about:
-    about_hashtag_html: ハッシュタグ <strong>#%{hashtag}</strong> の付いた公開トゥートです。どこでもいいので、連合に参加しているSNS上にアカウントを作れば会話に参加することができます。
+    about_hashtag_html: ハッシュタグ <strong>#%{hashtag}</strong> の付いた公開投稿です。どこでもいいので、連合に参加しているSNS上にアカウントを作れば会話に参加することができます。
     about_mastodon_html: Mastodon は、オープンなウェブプロトコルを採用した、自由でオープンソースなソーシャルネットワークです。電子メールのような分散型の仕組みを採っています。
     about_this: 詳細情報
     active_count_after: 人アクティブ
@@ -21,17 +21,17 @@ ja:
     federation_hint_html: "%{instance} のアカウントひとつでどんなMastodon互換サーバーのユーザーでもフォローできるでしょう。"
     get_apps: モバイルアプリを試す
     hosted_on: Mastodon hosted on %{domain}
-    instance_actor_flash: 'このアカウントはサーバーそのものを示す仮想的なもので、特定のユーザーを示すものではありません。これはサーバーの連合のために使用されます。サーバー全体をブロックするときは、このアカウントをブロックせずに、ドメインブロックを使用してください。
-
-'
+    instance_actor_flash: "このアカウントはサーバーそのものを示す仮想的なもので、特定のユーザーを示すものではありません。これはサーバーの連合のために使用されます。サーバー全体をブロックするときは、このアカウントをブロックせずに、ドメインブロックを使用してください。 \n"
     learn_more: もっと詳しく
     privacy_policy: プライバシーポリシー
+    rules: サーバーのルール
+    rules_html: 'このMastodonサーバーには、アカウントの所持にあたって従うべきルールが設定されています。概要は以下の通りです:'
     see_whats_happening: やりとりを見てみる
     server_stats: 'サーバー統計:'
     source_code: ソースコード
     status_count_after:
-      other: トゥート
-    status_count_before: トゥート数
+      other: 投稿
+    status_count_before: 投稿数
     tagline: Follow friends and discover new ones
     terms: 利用規約
     unavailable_content: 制限中のサーバー
@@ -57,6 +57,7 @@ ja:
     followers:
       other: フォロワー
     following: フォロー中
+    instance_actor_flash: このアカウントは、個々のユーザーではなく、サーバー自体を表すために使用される仮想のユーザーです。 連合のために使用されるため、停止しないで下さい。
     joined: "%{date} に登録"
     last_active: 最後の活動
     link_verified_on: このリンクの所有権は %{date} に確認されました
@@ -70,10 +71,9 @@ ja:
     pin_errors:
       following: おすすめしたい人はあなたが既にフォローしている必要があります
     posts:
-      other: トゥート
-    posts_tab_heading: トゥート
-    posts_with_replies: トゥートと返信
-    reserved_username: このユーザー名は予約されています
+      other: 投稿
+    posts_tab_heading: 投稿
+    posts_with_replies: 投稿と返信
     roles:
       admin: Admin
       bot: Bot
@@ -127,6 +127,7 @@ ja:
       follows: フォロー数
       header: ヘッダー
       inbox_url: Inbox URL
+      invite_request_text: 意気込み
       invited_by: 招待した人
       ip: IP
       joined: 登録日
@@ -138,6 +139,7 @@ ja:
       login_status: ログイン
       media_attachments: 添付されたメディア
       memorialize: 追悼アカウント化
+      memorialized: 追悼化済み
       memorialized_msg: "%{username} を追悼アカウント化しました"
       moderation:
         active: アクティブ
@@ -159,6 +161,7 @@ ja:
       public: パブリック
       push_subscription_expires: PuSH購読期限
       redownload: プロフィールを更新
+      redownloaded_msg: "%{username} のプロフィールを正常に更新しました"
       reject: 却下
       reject_all: すべて却下
       rejected_msg: "%{username} の登録申請を却下しました"
@@ -182,15 +185,17 @@ ja:
       search: 検索
       search_same_email_domain: 同じドメインのメールアドレスを使用しているユーザー
       search_same_ip: 同じ IP のユーザーを検索
+      security_measures:
+        password_and_2fa: パスワードと 2FA
       sensitive: 閲覧注意
-      sensitized: 閲覧注意にする
+      sensitized: 閲覧注意済み
       shared_inbox_url: Shared inbox URL
       show:
         created_reports: このアカウントで作られた通報
         targeted_reports: このアカウントについての通報
       silence: サイレンス
       silenced: サイレンス済み
-      statuses: トゥート数
+      statuses: 投稿数
       subscribe: 購読する
       suspended: 停止済み
       suspension_irreversible: このアカウントのデータは削除され元に戻せなくなります。後日アカウントの凍結を解除することはできますがデータは元に戻せません。
@@ -198,10 +203,12 @@ ja:
       time_in_queue: "%{time} 待ち"
       title: アカウント
       unconfirmed_email: 確認待ちのメールアドレス
-      undo_sensitized: 機密情報から戻す
+      undo_sensitized: 閲覧注意から戻す
       undo_silenced: サイレンスから戻す
       undo_suspension: 停止から戻す
+      unsilenced_msg: "%{username} のサイレンス解除に成功しました"
       unsubscribe: 購読の解除
+      unsuspended_msg: "%{username} の無効化を解除しました"
       username: ユーザー名
       view_domain: ドメインの概要を表示
       warn: 警告
@@ -219,6 +226,7 @@ ja:
         create_domain_block: ドメインブロックを作成
         create_email_domain_block: メールドメインブロックを作成
         create_ip_block: IPルールを作成
+        create_unavailable_domain: 配送できないドメインを作成
         demote_user: ユーザーを降格
         destroy_announcement: お知らせを削除
         destroy_custom_emoji: カスタム絵文字を削除
@@ -226,7 +234,8 @@ ja:
         destroy_domain_block: ドメインブロックを削除
         destroy_email_domain_block: メールドメインブロックを削除
         destroy_ip_block: IPルールを削除
-        destroy_status: トゥートを削除
+        destroy_status: 投稿を削除
+        destroy_unavailable_domain: 配送できないドメインを削除
         disable_2fa_user: 二段階認証を無効化
         disable_custom_emoji: カスタム絵文字を無効化
         disable_user: ユーザーを無効化
@@ -235,55 +244,63 @@ ja:
         memorialize_account: 追悼アカウント化
         promote_user: ユーザーを昇格
         remove_avatar_user: アイコンを削除
-        reopen_report: 通報を再度開く
+        reopen_report: 未解決に戻す
         reset_password_user: パスワードをリセット
         resolve_report: 通報を解決済みにする
+        sensitive_account: アカウントのメディアを閲覧注意にマーク
         silence_account: アカウントをサイレンス
         suspend_account: アカウントを停止
         unassigned_report: 通報の担当を解除
+        unsensitive_account: アカウントのメディアの閲覧注意マークを解除
         unsilence_account: アカウントのサイレンスを解除
         unsuspend_account: アカウントの停止を解除
         update_announcement: お知らせを更新
         update_custom_emoji: カスタム絵文字を更新
-        update_status: トゥートを更新
+        update_domain_block: ドメインブロックを更新
+        update_status: 投稿を更新
       actions:
-        assigned_to_self_report: "%{name} さんが通報 %{target} を自身の担当に割り当てました"
-        change_email_user: "%{name} さんが %{target} さんのメールアドレスを変更しました"
-        confirm_user: "%{name} さんが %{target} さんのメールアドレスを確認済みにしました"
-        create_account_warning: "%{name} さんが %{target} さんに警告メールを送信しました"
-        create_announcement: "%{name} さんが新しいお知らせ %{target} を作成しました"
-        create_custom_emoji: "%{name} さんがカスタム絵文字 %{target} を追加しました"
-        create_domain_allow: "%{name} さんが %{target} の連合を許可しました"
-        create_domain_block: "%{name} さんがドメイン %{target} をブロックしました"
-        create_email_domain_block: "%{name} さんが %{target} をメールドメインブロックに追加しました"
-        create_ip_block: "%{name} さんが IP %{target} のルールを作成しました"
-        demote_user: "%{name} さんが %{target} さんを降格しました"
-        destroy_announcement: "%{name} さんがお知らせ %{target} を削除しました"
-        destroy_custom_emoji: "%{name} さんがカスタム絵文字 %{target} を削除しました"
-        destroy_domain_allow: "%{name} さんが %{target} の連合許可を外しました"
-        destroy_domain_block: "%{name} さんがドメイン %{target} のブロックを外しました"
-        destroy_email_domain_block: "%{name} さんが %{target} をメールドメインブロックから外しました"
-        destroy_ip_block: "%{name} さんが IP %{target} のルールを削除しました"
-        destroy_status: "%{name} さんが %{target} さんのトゥートを削除しました"
-        disable_2fa_user: "%{name} さんが %{target} さんの二段階認証を無効化しました"
-        disable_custom_emoji: "%{name} さんがカスタム絵文字 %{target} を無効化しました"
-        disable_user: "%{name} さんが %{target} さんのログインを無効化しました"
-        enable_custom_emoji: "%{name} さんがカスタム絵文字 %{target} を有効化しました"
-        enable_user: "%{name} さんが %{target} さんのログインを有効化しました"
-        memorialize_account: "%{name} さんが %{target} さんを追悼アカウントページに登録しました"
-        promote_user: "%{name} さんが %{target} さんを昇格しました"
-        remove_avatar_user: "%{name} さんが %{target} さんのアイコンを削除しました"
-        reopen_report: "%{name} さんが通報 %{target} を再び開きました"
-        reset_password_user: "%{name} さんが %{target} さんのパスワードをリセットしました"
-        resolve_report: "%{name} さんが通報 %{target} を解決済みにしました"
-        silence_account: "%{name} さんが %{target} さんをサイレンスにしました"
-        suspend_account: "%{name} さんが %{target} さんを停止しました"
-        unassigned_report: "%{name} さんが通報 %{target} の担当を外しました"
-        unsilence_account: "%{name} さんが %{target} さんのサイレンスを解除しました"
-        unsuspend_account: "%{name} さんが %{target} さんの停止を解除しました"
-        update_announcement: "%{name} さんがお知らせ %{target} を更新しました"
-        update_custom_emoji: "%{name} さんがカスタム絵文字 %{target} を更新しました"
-        update_status: "%{name} さんが %{target} さんのトゥートを更新しました"
+        assigned_to_self_report_html: "%{name} さんが通報 %{target} を自身の担当に割り当てました"
+        change_email_user_html: "%{name} さんが %{target} さんのメールアドレスを変更しました"
+        confirm_user_html: "%{name} さんが %{target} さんのメールアドレスを確認済みにしました"
+        create_account_warning_html: "%{name} さんが %{target} さんに警告メールを送信しました"
+        create_announcement_html: "%{name} さんが新しいお知らせ %{target} を作成しました"
+        create_custom_emoji_html: "%{name} さんがカスタム絵文字 %{target} を追加しました"
+        create_domain_allow_html: "%{name} さんが %{target} の連合を許可しました"
+        create_domain_block_html: "%{name} さんがドメイン %{target} をブロックしました"
+        create_email_domain_block_html: "%{name} さんが %{target} をメールドメインブロックに追加しました"
+        create_ip_block_html: "%{name} さんが IP %{target} のルールを作成しました"
+        create_unavailable_domain_html: "%{name} がドメイン %{target} への配送を停止しました"
+        demote_user_html: "%{name} さんが %{target} さんを降格しました"
+        destroy_announcement_html: "%{name} さんがお知らせ %{target} を削除しました"
+        destroy_custom_emoji_html: "%{name} さんがカスタム絵文字 %{target} を削除しました"
+        destroy_domain_allow_html: "%{name} さんが %{target} の連合許可を外しました"
+        destroy_domain_block_html: "%{name} さんがドメイン %{target} のブロックを外しました"
+        destroy_email_domain_block_html: "%{name} さんが %{target} をメールドメインブロックから外しました"
+        destroy_ip_block_html: "%{name} さんが IP %{target} のルールを削除しました"
+        destroy_status_html: "%{name} さんが %{target} さんの投稿を削除しました"
+        destroy_unavailable_domain_html: "%{name} がドメイン %{target} への配送を再開しました"
+        disable_2fa_user_html: "%{name} さんが %{target} さんの二段階認証を無効化しました"
+        disable_custom_emoji_html: "%{name} さんがカスタム絵文字 %{target} を無効化しました"
+        disable_user_html: "%{name} さんが %{target} さんのログインを無効化しました"
+        enable_custom_emoji_html: "%{name} さんがカスタム絵文字 %{target} を有効化しました"
+        enable_user_html: "%{name} さんが %{target} さんのログインを有効化しました"
+        memorialize_account_html: "%{name} さんが %{target} さんを追悼アカウントページに登録しました"
+        promote_user_html: "%{name} さんが %{target} さんを昇格しました"
+        remove_avatar_user_html: "%{name} さんが %{target} さんのアイコンを削除しました"
+        reopen_report_html: "%{name} さんが通報 %{target} を未解決に戻しました"
+        reset_password_user_html: "%{name} さんが %{target} さんのパスワードをリセットしました"
+        resolve_report_html: "%{name} さんが通報 %{target} を解決済みにしました"
+        sensitive_account_html: "%{name} さんが %{target} さんのメディアを閲覧注意にマークしました"
+        silence_account_html: "%{name} さんが %{target} さんをサイレンスにしました"
+        suspend_account_html: "%{name} さんが %{target} さんを停止しました"
+        unassigned_report_html: "%{name} さんが通報 %{target} の担当を外しました"
+        unsensitive_account_html: "%{name} さんが %{target} さんのメディアの閲覧注意を解除しました"
+        unsilence_account_html: "%{name} さんが %{target} さんのサイレンスを解除しました"
+        unsuspend_account_html: "%{name} さんが %{target} さんの停止を解除しました"
+        update_announcement_html: "%{name} さんがお知らせ %{target} を更新しました"
+        update_custom_emoji_html: "%{name} さんがカスタム絵文字 %{target} を更新しました"
+        update_domain_block_html: "%{name} が %{target} のドメインブロックを更新しました"
+        update_status_html: "%{name} さんが %{target} さんの投稿を更新しました"
       deleted_status: "(削除済)"
       empty: ログが見つかりませんでした
       filter_by_action: アクションでフィルター
@@ -298,10 +315,12 @@ ja:
       new:
         create: お知らせを作成
         title: お知らせを追加
+      publish: 公開する
       published_msg: お知らせを掲載しました
       scheduled_for: "%{time} に予約"
       scheduled_msg: お知らせの掲載を予約しました
       title: お知らせ
+      unpublish: 非公開にする
       unpublished_msg: お知らせを非掲載にしました
       updated_msg: お知らせを更新しました
     custom_emojis:
@@ -338,33 +357,9 @@ ja:
       updated_msg: 絵文字の更新に成功しました！
       upload: アップロード
     dashboard:
-      authorized_fetch_mode: セキュアモード
-      backlog: 未処理のジョブ
-      config: 構成
-      feature_deletions: アカウント削除
-      feature_invites: 招待リンク
-      feature_profile_directory: ディレクトリ
-      feature_registrations: 新規登録
-      feature_relay: 連合リレー
-      feature_spam_check: スパム対策
-      feature_timeline_preview: タイムラインプレビュー
-      features: 機能
-      hidden_service: 秘匿サービスとの連合
-      open_reports: 未解決の通報
-      pending_tags: 審査待ちのハッシュタグ
-      pending_users: 承認待ちの人数
-      recent_users: 最近登録したユーザー
-      search: 全文検索
-      single_user_mode: シングルユーザーモード
       software: ソフトウェア
       space: ディスク使用量
       title: ダッシュボード
-      total_users: 全ユーザー
-      trends: トレンドタグ
-      week_interactions: 今週交流のあった回数
-      week_users_active: 今週活動した人数
-      week_users_new: 今週登録した人数
-      whitelist_mode: 連合制限モード
     domain_allows:
       add_new: 連合を許可
       created_msg: 連合を許可しました
@@ -381,11 +376,13 @@ ja:
         create: ブロックを作成
         hint: ドメインブロックはデータベース中のアカウント項目の作成を妨げませんが、遡って自動的に指定されたモデレーションをそれらのアカウントに適用します。
         severity:
-          desc_html: "<strong>サイレンス</strong>はアカウントのトゥートをフォローしていない人から隠します。<strong>停止</strong>はそのアカウントのコンテンツ、メディア、プロフィールデータをすべて削除します。メディアファイルを拒否したいだけの場合は<strong>なし</strong>を使います。"
+          desc_html: "<strong>サイレンス</strong>はアカウントの投稿をフォローしていない人から隠します。<strong>停止</strong>はそのアカウントのコンテンツ、メディア、プロフィールデータをすべて削除します。メディアファイルを拒否したいだけの場合は<strong>なし</strong>を使います。"
           noop: なし
           silence: サイレンス
           suspend: 停止
         title: 新規ドメインブロック
+      obfuscate: ドメイン名を伏せ字にする
+      obfuscate_hint: ドメインブロックのリストを公開している場合、ドメイン名の一部を伏せ字にします
       private_comment: コメント (非公開)
       private_comment_hint: このコメントは同じサーバーのモデレーターも閲覧できます。
       public_comment: コメント (公開)
@@ -421,9 +418,34 @@ ja:
         create: ドメインを追加
         title: 新規メールドメインブロック
       title: メールドメインブロック
+    follow_recommendations:
+      description_html: "<strong>おすすめフォローは、新規ユーザーが興味のあるコンテンツをすばやく見つけるのに役立ちます。</strong>ユーザーが他のユーザーとの交流を十分にしていない場合、パーソナライズされたおすすめフォローを生成する代わりに、これらのアカウントが表示されます。最近のエンゲージメントが最も高いアカウントと、特定の言語のローカルフォロワー数が最も多いアカウントを組み合わせて､毎日再計算されます。"
+      language: 言語
+      status: ステータス
+      suppress: おすすめフォローに表示しない
+      suppressed: 非表示
+      title: おすすめフォロー
+      unsuppress: おすすめフォローを復元
     instances:
+      back_to_all: すべて
+      back_to_limited: 制限あり
+      back_to_warning: 警告あり
       by_domain: ドメイン
+      delivery:
+        all: すべて
+        clear: 配送エラーをクリア
+        restart: 配送を再開
+        stop: 配送を停止
+        title: 配送
+        unavailable: 配送不可
+        unavailable_message: 配送不可
+        warning: 警告あり
+        warning_message:
+          other: "%{count} 日配送失敗"
       delivery_available: 配送可能
+      delivery_error_days: 配送エラー発生日
+      delivery_error_hint: "%{count} 日間配送ができない場合は、自動的に配送不可としてマークされます。"
+      empty: ドメインが見つかりませんでした。
       known_accounts:
         other: 既知のアカウント数 %{count}
       moderation:
@@ -468,11 +490,11 @@ ja:
     relays:
       add_new: リレーを追加
       delete: 削除
-      description_html: "<strong>連合リレー</strong>とは、登録しているサーバー間の公開トゥートを仲介するサーバーです。<strong>中小規模のサーバーが連合のコンテンツを見つけるのを助けます。</strong>これを使用しない場合、ローカルユーザーがリモートユーザーを手動でフォローする必要があります。"
+      description_html: "<strong>連合リレー</strong>とは、登録しているサーバー間の公開投稿を仲介するサーバーです。<strong>中小規模のサーバーが連合のコンテンツを見つけるのを助けます。</strong>これを使用しない場合、ローカルユーザーがリモートユーザーを手動でフォローする必要があります。"
       disable: 無効化
       disabled: 無効
       enable: 有効化
-      enable_hint: 有効にすると、リレーから全ての公開トゥートを受信するようになり、またこのサーバーの全ての公開トゥートをリレーに送信するようになります。
+      enable_hint: 有効にすると、リレーから全ての公開投稿を受信するようになり、またこのサーバーの全ての公開投稿をリレーに送信するようになります。
       enabled: 有効
       inbox_url: リレーURL
       pending: リレーサーバーの承認待ちです
@@ -498,15 +520,17 @@ ja:
       comment:
         none: なし
       created_at: 通報日時
+      forwarded: 転送済み
+      forwarded_to: "%{domain} に転送されました"
       mark_as_resolved: 解決済みとしてマーク
-      mark_as_unresolved: 未解決として再び開く
+      mark_as_unresolved: 未解決に戻す
       notes:
         create: 書き込む
         create_and_resolve: 書き込み、解決済みにする
-        create_and_unresolve: 書き込み、未解決として開く
+        create_and_unresolve: 書き込み、未解決に戻す
         delete: 削除
         placeholder: どのような措置が取られたか、または関連する更新を記述してください…
-      reopen: 再び開く
+      reopen: 未解決に戻す
       report: 通報#%{id}
       reported_account: 報告対象アカウント
       reported_by: 報告者
@@ -517,13 +541,20 @@ ja:
       unassign: 担当を外す
       unresolved: 未解決
       updated_at: 更新日時
+    rules:
+      add_new: ルールを追加
+      delete: 削除
+      description_html: たいていの人が利用規約を読んで同意したと言いますが、普通は問題が発生するまで読みません。<strong>箇条書きにして、サーバーのルールが一目で分かるようにしましょう</strong>。個々のルールは短くシンプルなものにし、多くの項目に分割しないようにしましょう。
+      edit: ルールを編集
+      empty: サーバーのルールが定義されていません。
+      title: サーバーのルール
     settings:
       activity_api_enabled:
-        desc_html: 週ごとのローカルに投稿されたトゥート数、アクティブなユーザー数、新規登録者数
+        desc_html: 週ごとのローカルに投稿された投稿数、アクティブなユーザー数、新規登録者数
         title: ユーザーアクティビティに関する統計を公開する
       bootstrap_timeline_accounts:
-        desc_html: 複数のユーザー名はコンマで区切ります。ローカルの公開アカウントのみ有効です。指定しない場合は管理者がデフォルトで指定されます。
-        title: 新規ユーザーが自動フォローするアカウント
+        desc_html: 複数のユーザー名を指定する場合コンマで区切ります。おすすめに表示されます。
+        title: 新規ユーザーにおすすめするアカウント
       contact_information:
         email: ビジネスメールアドレス
         username: 連絡先ユーザー名
@@ -540,8 +571,6 @@ ja:
         users: ログイン済みローカルユーザーのみ許可
       domain_blocks_rationale:
         title: コメントを表示
-      enable_bootstrap_timeline_accounts:
-        title: 新規ユーザーの自動フォローを有効にする
       hero:
         desc_html: フロントページに表示されます。サイズは600x100px以上推奨です。未設定の場合、標準のサムネイルが使用されます
         title: ヒーローイメージ
@@ -567,6 +596,9 @@ ja:
         min_invite_role:
           disabled: 誰にも許可しない
           title: 招待の作成を許可
+        require_invite_text:
+          desc_html: アカウント登録が承認制の場合、「意気込みをお聞かせください」のテキストを必須入力にする
+          title: 新規ユーザー登録時の理由を必須入力にする
       registrations_mode:
         modes:
           approved: 登録には承認が必要
@@ -574,7 +606,7 @@ ja:
           open: 誰でも登録可
         title: 新規登録
       show_known_fediverse_at_about_page:
-        desc_html: チェックを外すと、ランディングページからリンクされた公開タイムラインにローカルの公開トゥートのみ表示します。
+        desc_html: チェックを外すと、ランディングページからリンクされた公開タイムラインにローカルの公開投稿のみ表示します。
         title: 公開タイムラインに連合先のコンテンツも表示する
       show_staff_badge:
         desc_html: ユーザーページにスタッフのバッジを表示します
@@ -592,9 +624,6 @@ ja:
         desc_html: 独自のプライバシーポリシーや利用規約、その他の法的根拠を記述できます。HTMLタグが使えます
         title: カスタム利用規約
       site_title: サーバーの名前
-      spam_check_enabled:
-        desc_html: 迷惑なメッセージを繰り返し送信するアカウントを自動で通報することができます。誤検知を含む可能性があります。
-        title: スパム対策を有効にする
       thumbnail:
         desc_html: OpenGraphとAPIによるプレビューに使用されます。サイズは1200×630px推奨です
         title: サーバーのサムネイル
@@ -623,15 +652,20 @@ ja:
         title: メディア
       no_media: メディアなし
       no_status_selected: 何も選択されていないため、変更されていません
-      title: トゥート一覧
+      title: 投稿一覧
       with_media: メディアあり
+    system_checks:
+      database_schema_check:
+        message_html: 未実行のデータベースマイグレーションがあります。実行して正常に動作するようにしてください。
+      rules_check:
+        action: サーバーのルールを管理
+        message_html: サーバーのルールを定義していません。
+      sidekiq_process_check:
+        message_html: "%{value} キューに対応するSidekiq プロセスがありません。Sidekiq の設定を確認してください。"
     tags:
       accounts_today: 本日使用した人数
       accounts_week: 今週使用した人数
       breakdown: 直近のサーバー別使用状況
-      context: 表示先
-      directory: ディレクトリに使用
-      in_directory: "%{count} 人がディレクトリに使用"
       last_active: 最近使われた順
       most_popular: 使用頻度順
       most_recent: 新着順
@@ -640,7 +674,7 @@ ja:
       reviewed: 審査済み
       title: ハッシュタグ
       trending_right_now: 現在のトレンド
-      unique_uses_today: 本日 %{count} 人がトゥートに使用
+      unique_uses_today: 本日 %{count} 人が投稿に使用
       unreviewed: 未審査
       updated_msg: ハッシュタグ設定が更新されました
     title: 管理
@@ -648,6 +682,7 @@ ja:
       add_new: 追加
       delete: 削除
       edit_preset: プリセット警告文を編集
+      empty: まだプリセット警告文が作成されていません。
       title: プリセット警告文を管理
   admin_mailer:
     new_pending_account:
@@ -678,14 +713,14 @@ ja:
       guide_link: https://ja.crowdin.com/project/mastodon
       guide_link_text: 誰でも参加することができます。
     sensitive_content: 閲覧注意コンテンツ
-    toot_layout: トゥートレイアウト
+    toot_layout: 投稿のレイアウト
   application_mailer:
     notification_preferences: メール設定の変更
     salutation: "%{name} さん"
     settings: 'メール設定の変更: %{link}'
     view: 'リンク:'
     view_profile: プロフィールを表示
-    view_status: トゥートを表示
+    view_status: 投稿を表示
   applications:
     created: アプリが作成されました
     destroyed: アプリが削除されました
@@ -735,6 +770,7 @@ ja:
       functional: アカウントは完全に機能しています。
       pending: あなたの申請は現在サーバー管理者による審査待ちです。これにはしばらくかかります。申請が承認されるとメールが届きます。
       redirecting_to: アカウントは %{acct} に引っ越し設定されているため非アクティブになっています。
+    too_fast: フォームの送信が速すぎます。もう一度やり直してください。
     trouble_logging_in: ログインできませんか？
     use_security_key: セキュリティキーを使用
   authorize_follow:
@@ -761,6 +797,7 @@ ja:
   date:
     formats:
       default: "%Y年%m月%d日"
+      with_month_name: "%Y年%m月%d日"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}時間"
@@ -788,7 +825,7 @@ ja:
       email_change_html: アカウントを削除しなくても<a href="%{path}">メールアドレスを変更</a>できます
       email_contact_html: それでも届かない場合、<a href="mailto:%{email}">%{email}</a> までメールで問い合わせてください
       email_reconfirmation_html: 確認のメールが届かない場合、<a href="%{path}">もう一度申請</a>できます。
-      irreversible: アカウントを元に戻したり復活させることはできません
+      irreversible: 削除操作の撤回やアカウントの復活はできません
       more_details_html: 詳しくは<a href="%{terms_path}">プライバシーポリシー</a>をご覧ください。
       username_available: あなたのユーザー名は再利用できるようになります
       username_unavailable: あなたのユーザー名は引き続き利用できません
@@ -820,11 +857,12 @@ ja:
     archive_takeout:
       date: 日時
       download: ダウンロード
-      hint_html: "<strong>トゥートとメディア</strong>のアーカイブをリクエストできます。 データはActivityPub形式で、対応しているソフトウェアで読み込むことができます。7日毎にアーカイブをリクエストできます。"
+      hint_html: "<strong>投稿本文とメディア</strong>のアーカイブをリクエストできます。 データはActivityPub形式で、対応しているソフトウェアで読み込むことができます。7日毎にアーカイブをリクエストできます。"
       in_progress: 準備中...
       request: アーカイブをリクエスト
       size: 容量
     blocks: ブロック
+    bookmarks: ブックマーク
     csv: CSV
     domain_blocks: 非表示にしたドメイン
     lists: リスト
@@ -881,16 +919,18 @@ ja:
         verification_failed: KeybaseはこのトークンをKeybaseユーザー%{kb_username}の署名として認識しませんでした。Keybaseから再試行してください。
       wrong_user: "%{current}としてログインしている間%{proving}の証明を作成することはできません。%{proving}としてログインし、もう一度やり直してください。"
     explanation_html: ここではKeybaseのような他のサービスのアカウントと暗号化し関連づけることができます。これによりそれらのサービス上で他の人が暗号化されたメッセージを送信したり、あなたの送信した内容があなたからのものであると信用できるようになります。
-    i_am_html: I am %{username} on %{service}.
-    identity: Identity
+    i_am_html: 私は %{service} の %{username} です。
+    identity: 所属
     inactive: 非アクティブ
     publicize_checkbox: 'そしてこれをトゥートします:'
-    publicize_toot: 'It is proven! I am %{username} on %{service}: %{url}'
+    publicize_toot: '証明されました！私は %{service} の %{username} です: %{url}'
     remove: アカウントから証明書を削除
     removed: アカウントから証明書を削除することに成功しました
     status: 認証状態
     view_proof: 証明を表示
   imports:
+    errors:
+      over_rows_processing_limit: "%{count} 行以上"
     modes:
       merge: 統合
       merge_long: 現在のレコードを保持したまま新しいものを追加します
@@ -900,6 +940,7 @@ ja:
     success: ファイルは正常にアップロードされ、現在処理中です。しばらくしてから確認してください
     types:
       blocking: ブロックしたアカウントリスト
+      bookmarks: ブックマーク
       domain_blocking: 非表示にしたドメインリスト
       following: フォロー中のアカウントリスト
       muting: ミュートしたアカウントリスト
@@ -929,6 +970,11 @@ ja:
   lists:
     errors:
       limit: リストの上限に達しました
+  login_activities:
+    authentication_methods:
+      password: パスワード
+      sign_in_token: 電子メールセキュリティコード
+      webauthn: セキュリティキー
   media_attachments:
     validations:
       images_and_video: 既に画像が追加されているため、動画を追加することはできません
@@ -982,7 +1028,7 @@ ja:
         other: "新しい%{count}件の通知 \U0001F418"
       title: 不在の間に…
     favourite:
-      body: "%{name} さんにお気に入り登録された、あなたのトゥートがあります:"
+      body: "%{name} さんにお気に入り登録された、あなたの投稿があります:"
       subject: "%{name} さんにお気に入りに登録されました"
       title: 新たなお気に入り登録
     follow:
@@ -999,10 +1045,14 @@ ja:
       body: "%{name} さんから返信がありました:"
       subject: "%{name} さんに返信されました"
       title: 新たな返信
+    poll:
+      subject: "%{name}  さんの投票が終了しました"
     reblog:
-      body: "%{name} さんにブーストされた、あなたのトゥートがあります:"
+      body: "%{name} さんにブーストされた、あなたの投稿があります:"
       subject: "%{name} さんにブーストされました"
       title: 新たなブースト
+    status:
+      subject: "%{name} さんが投稿しました"
   notifications:
     email_events: メールによる通知
     email_events_hint: '受信する通知を選択:'
@@ -1020,14 +1070,15 @@ ja:
   otp_authentication:
     code_hint: 続行するには認証アプリで表示されたコードを入力してください
     description_html: "<strong>二要素認証</strong>を有効にすると、ログイン時に認証アプリからコードを入力する必要があります。"
+    enable: 有効化
     instructions_html: "<strong>Google Authenticatorか、もしくはほかのTOTPアプリでこのQRコードをスキャンしてください。</strong>これ以降、ログインするときはそのアプリで生成されるコードが必要になります。"
     manual_instructions: 'QRコードがスキャンできず、手動での登録を希望の場合はこのシークレットコードを利用してください。:'
     setup: セットアップ
     wrong_code: コードが間違っています。サーバーとデバイスの時計にずれがあるかもしれません。
   pagination:
-    newer: 新しいトゥート
+    newer: 新しい投稿
     next: 次
-    older: 以前のトゥート
+    older: 以前の投稿
     prev: 前
     truncate: "&hellip;"
   polls:
@@ -1052,6 +1103,7 @@ ja:
   relationships:
     activity: 活動
     dormant: 非アクティブ
+    follow_selected_followers: 選択したフォロワーをフォロー
     followers: フォロワー
     following: フォロー中
     invited: 招待済み
@@ -1147,10 +1199,9 @@ ja:
     preferences: ユーザー設定
     profile: プロフィール
     relationships: フォロー・フォロワー
+    statuses_cleanup: 投稿の自動削除
     two_factor_authentication: 二段階認証
     webauthn_authentication: セキュリティキー
-  spam_check:
-    spam_detected: これは自動的に作成された通報です。スパムが検出されています。
   statuses:
     attached:
       audio:
@@ -1165,14 +1216,14 @@ ja:
     disallowed_hashtags:
       other: '許可されていないハッシュタグが含まれています: %{tags}'
     errors:
-      in_reply_not_found: あなたが返信しようとしているトゥートは存在しないようです。
+      in_reply_not_found: あなたが返信しようとしている投稿は存在しないようです。
     language_detection: 自動検出
     open_in_web: Webで開く
     over_character_limit: 上限は %{max}文字までです
     pin_errors:
-      limit: 固定できるトゥート数の上限に達しました
-      ownership: 他人のトゥートを固定することはできません
-      private: 非公開のトゥートを固定することはできません
+      limit: 固定できる投稿数の上限に達しました
+      ownership: 他人の投稿を固定することはできません
+      private: 非公開の投稿を固定することはできません
       reblog: ブーストを固定することはできません
     poll:
       total_people:
@@ -1187,14 +1238,49 @@ ja:
     sign_in_to_participate: ログインして会話に参加
     title: '%{name}: "%{quote}"'
     visibilities:
+      direct: ダイレクト
       private: フォロワー限定
       private_long: フォロワーにのみ表示されます
       public: 公開
       public_long: 誰でも見ることができ、かつ公開タイムラインに表示されます
       unlisted: 未収載
       unlisted_long: 誰でも見ることができますが、公開タイムラインには表示されません
+  statuses_cleanup:
+    enabled: 古い投稿を自動的に削除する
+    enabled_hint: 設定した期間を過ぎた投稿は、以下の例外に該当しない限り、自動的に削除されます
+    exceptions: 例外
+    explanation: 投稿の削除はサーバーに負荷がかかるため、サーバーが混み合っていないときに時間をかけて行われます。
+    ignore_favs: お気に入りされた数を無視
+    ignore_reblogs: ブーストされた数を無視
+    interaction_exceptions: インタラクションに基づく例外
+    interaction_exceptions_explanation: お気に入りやブーストの基準値を一度超えてしまった投稿は、基準値を下回った後であっても、削除される保証はありません。
+    keep_direct: ダイレクトメッセージを保持
+    keep_direct_hint: ダイレクトメッセージを削除せずに残します
+    keep_media: メディア付きの投稿を保持
+    keep_media_hint: メディア付きの投稿を削除せずに残します
+    keep_pinned: ピン留めされた投稿を保持
+    keep_pinned_hint: ピン留めされた投稿を削除せずに残します
+    keep_polls: アンケート付きの投稿を保持
+    keep_polls_hint: アンケート付きの投稿を削除せずに残します
+    keep_self_bookmark: ブックマークした投稿を保持
+    keep_self_bookmark_hint: 自分自身でブックマークした投稿を削除せずに残します
+    keep_self_fav: お気に入りに登録した投稿を保持
+    keep_self_fav_hint: 自分自身でお気に入りに登録した投稿を削除せずに残します
+    min_age:
+      '1209600': 2週間
+      '15778476': 6ヶ月
+      '2629746': 1ヶ月
+      '31556952': 1年
+      '5259492': 2ヶ月
+      '63113904': 2年
+      '7889238': 3ヶ月
+    min_age_label: 投稿を保持する期間
+    min_favs: これ以上お気に入りに登録された投稿を無視する
+    min_favs_hint: この数以上、お気に入りに登録された投稿を削除しません。空白にしておくと、お気に入りに登録された数に関わらず投稿を削除します。
+    min_reblogs: これ以上ブーストされた投稿を無視する
+    min_reblogs_hint: この数以上、ブーストされた投稿を削除しません。空白にしておくと、ブーストされた数に関わらず投稿を削除します。
   stream_entries:
-    pinned: 固定されたトゥート
+    pinned: 固定された投稿
     reblogged: さんがブースト
     sensitive_content: 閲覧注意
   tags:
@@ -1293,7 +1379,7 @@ ja:
   two_factor_authentication:
     add: 追加
     disable: 無効化
-    disabled_success: 二要素認証が更新されました
+    disabled_success: 二段階認証が無効になりました
     edit: 編集
     enabled: 二段階認証は有効になっています
     enabled_success: 二段階認証が有効になりました
@@ -1319,22 +1405,22 @@ ja:
     warning:
       explanation:
         disable: あなたのアカウントはログインが禁止され使用できなくなりました。しかしアカウントのデータはそのまま残っています。
-        sensitive: アップロードされたメディアファイルとリンクされたメディアは閲覧注意として扱われます。
-        silence: あなたのアカウントは制限されましたがそのまま使用できます。ただし既にフォローしている人はあなたのトゥートを見ることができますが、様々な公開タイムラインには表示されない場合があります。また他のユーザーは今後も手動であなたをフォローすることができます。
+        sensitive: あなたのアップロードしたメディアファイルとリンク先のメディアは、閲覧注意として扱われます。
+        silence: あなたのアカウントは制限されましたがそのまま使用できます。ただし既にフォローしている人はあなたの投稿を見ることができますが、様々な公開タイムラインには表示されない場合があります。また他のユーザーは今後も手動であなたをフォローすることができます。
         suspend: あなたのアカウントは使用できなくなりプロフィールやその他データにアクセスできなくなりました。アカウントが完全に削除されるまではログインしてデータのエクスポートをリクエストできます。証拠隠滅を防ぐため一部のデータは削除されず残ります。
       get_in_touch: このメールに返信することで %{instance} のスタッフと連絡を取ることができます。
       review_server_policies: サーバーのポリシーを確認
-      statuses: '特に次のトゥート:'
+      statuses: '特に次の投稿:'
       subject:
         disable: あなたのアカウント %{acct} は凍結されました
         none: "%{acct} に対する警告"
-        sensitive: あなたのアカウント %{acct} が投稿したメディアは閲覧注意にマークされました
+        sensitive: あなたのアカウント %{acct} の投稿メディアは閲覧注意とマークされました
         silence: あなたのアカウント %{acct} はサイレンスにされました
         suspend: あなたのアカウント %{acct} は停止されました
       title:
         disable: アカウントが凍結されました
         none: 警告
-        sensitive: あなたのメディアが閲覧注意に指定されました
+        sensitive: あなたのメディアが閲覧注意とマークされました
         silence: アカウントがサイレンスにされました
         suspend: アカウントが停止されました
     welcome:
@@ -1355,11 +1441,8 @@ ja:
       tips: 豆知識
       title: ようこそ、%{name}！
   users:
-    blocked_email_provider: このメールプロバイダは許可されていません
     follow_limit_reached: あなたは現在 %{limit} 人以上フォローできません
     generic_access_help_html: アクセスできませんか？ %{email} に問い合わせることができます。
-    invalid_email: メールアドレスが無効です
-    invalid_email_mx: メールアドレスが存在しないようです
     invalid_otp_token: 二段階認証コードが間違っています
     invalid_sign_in_token: 無効なセキュリティコードです
     otp_lost_help_html: どちらも使用できない場合、%{email} に連絡を取ると解決できるかもしれません

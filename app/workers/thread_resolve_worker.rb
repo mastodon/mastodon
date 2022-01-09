@@ -14,5 +14,7 @@ class ThreadResolveWorker
 
     child_status.thread = parent_status
     child_status.save!
+  rescue ActiveRecord::RecordNotFound
+    true
   end
 end

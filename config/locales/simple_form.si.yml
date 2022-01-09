@@ -1,0 +1,38 @@
+---
+si:
+  simple_form:
+    labels:
+      admin_account_action:
+        type: ක්‍රියාමාර්ගය
+        types:
+          sensitive: සංවේදීතාව
+          suspend: අත්හිටුවන්න
+      defaults:
+        bot: මෙය ස්වයං ක්‍රමලේඛගත ගිණුමකි
+        confirm_new_password: නව මුර පදය තහවුරු කරන්න
+        confirm_password: මුරපදය තහවුරු කරන්න
+        data: දත්ත
+        email: වි-තැපැල් ලිපිනය
+        new_password: නව මුරපදය
+        password: මුර පදය
+        setting_display_media_hide_all: සියල්ල සඟවන්න
+        setting_display_media_show_all: සියල්ල පෙන්වන්න
+        setting_hide_network: ඔබගේ ජාලය සඟවන්න
+        setting_theme: අඩවියේ තේමාව
+        sign_in_token_attempt: ආරක්‍ෂණ කේතය
+        username: පරිශීලක නාමය
+        username_or_email: පරිශීලක නාමය හෝ වි-තැපෑල
+        whole_word: සමස්ත වචනය
+      invite:
+        comment: අදහස
+      ip_block:
+        comment: අදහස
+        ip: අ.ජා. කෙ. (IP)
+        severities:
+          no_access: ප්‍රවේශය අවහිර කරන්න
+        severity: නීතිය
+    recommended: නිර්දේශිත
+    required:
+      mark: "*"
+      text: අවශ්‍යයි
+    'yes': ඔව්

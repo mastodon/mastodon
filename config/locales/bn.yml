@@ -21,9 +21,7 @@ bn:
     federation_hint_html: "%{instance}তে একটা নিবন্ধন থাকলে আপনি যেকোনো মাস্টাডন বা এধরণের অন্যান্য সার্ভারের মানুষের সাথে যুক্ত হতে পারবেন ।"
     get_apps: মোবাইল এপ্প একটা ব্যবহার করতে পারেন
     hosted_on: এই মাস্টাডনটি আছে %{domain} এ
-    instance_actor_flash: 'এই অ্যাকাউন্টটি ভার্চুয়াল এক্টর যা নিজে কোনও সার্ভারের প্রতিনিধিত্ব করতে ব্যবহৃত হয় এবং কোনও পৃথক ব্যবহারকারী নয়। এটি ফেডারেশনের উদ্দেশ্যে ব্যবহৃত হয় এবং আপনি যদি পুরো ইনস্ট্যান্স ব্লক করতে না চান তবে অবরুদ্ধ করা উচিত নয়, সেক্ষেত্রে আপনার ডোমেন ব্লক ব্যবহার করা উচিত।
-
-'
+    instance_actor_flash: "এই অ্যাকাউন্টটি ভার্চুয়াল এক্টর যা নিজে কোনও সার্ভারের প্রতিনিধিত্ব করতে ব্যবহৃত হয় এবং কোনও পৃথক ব্যবহারকারী নয়। এটি ফেডারেশনের উদ্দেশ্যে ব্যবহৃত হয় এবং আপনি যদি পুরো ইনস্ট্যান্স ব্লক করতে না চান তবে অবরুদ্ধ করা উচিত নয়, সেক্ষেত্রে আপনার ডোমেন ব্লক ব্যবহার করা উচিত। \n"
     learn_more: বিস্তারিত জানুন
     privacy_policy: গোপনীয়তা নীতি
     see_whats_happening: কী কী হচ্ছে দেখুন
@@ -77,7 +75,6 @@ bn:
       other: লেখাগুলো
     posts_tab_heading: লেখাগুলো
     posts_with_replies: লেখা এবং মতামত
-    reserved_username: নামটি সংরক্ষিত
     roles:
       admin: পরিচালক
       bot: রোবট
@@ -234,17 +231,6 @@ bn:
         update_announcement: ঘোষণা আপডেট করুন
         update_custom_emoji: স্বনির্ধারিত ইমোজি আপডেট করুন
         update_status: স্থিতি আপডেট করুন
-      actions:
-        assigned_to_self_report: "%{name} তাদের জন্য %{target} রিপোর্ট অর্পণ করেছিলেন"
-        change_email_user: "%{name} %{target} ব্যবহারকারীর ইমেল ঠিকানা পরিবর্তন করেছেন"
-        confirm_user: "%{name} %{target} ব্যবহারকারীর ইমেল ঠিকানা নিশ্চিত করেছেন"
-        create_account_warning: "%{name} %{target} একটি সতর্কতা প্রেরণ করেছেন"
-        create_announcement: "%{name} একটি নতুন ঘোষণা তৈরি করেছেন %{target}"
-        create_custom_emoji: "%{name} নতুন ইমোজি আপলোড করেছেন %{target}"
-        create_domain_allow: "%{name} ডোমেন %{target} এর সঙ্গে ফেডারেশন অনুমোদিত করেছেন"
-        create_domain_block: "%{name} ডোমেন %{target} কে অবরুদ্ধ করেছেন"
-        create_email_domain_block: "%{name} ই-মেইল ডোমেন %{target} কে অবরুদ্ধ করেছেন"
-        demote_user: "%{name} ব্যবহারকারী %{target} কে হীনপদস্থ করেছেন"
     custom_emojis:
       destroyed_msg: ইমোজো সফলভাবে ধ্বংস হয়েছে!
       disable: অক্ষম
@@ -271,33 +257,9 @@ bn:
       updated_msg: ইমোজি সফলভাবে আপডেট হয়েছে!
       upload: আপলোড
     dashboard:
-      authorized_fetch_mode: সুরক্ষিত মোড
-      backlog: ব্যাকলগ জবগুলি
-      config: কনফিগারেশন
-      feature_deletions: মোছা অ্যাকাউন্টগুলি
-      feature_invites: আমন্ত্রণ লিঙ্কগুলি
-      feature_profile_directory: প্রোফাইল ডিরেক্টরি
-      feature_registrations: নিবন্ধনগুলি
-      feature_relay: ফেডারেশন রিলে
-      feature_spam_check: বিরোধী স্প্যাম
-      feature_timeline_preview: পূর্বদর্শন সময়রেখা
-      features: বৈশিষ্ট্যগুলি
-      hidden_service: লুকানো সেবা সহ ফেডারেশন
-      open_reports: খোলার রিপোর্টগুলি
-      pending_tags: যে হ্যাশট্যাগগুলি পুনঃমূল্যায়নার জন্য অপেক্ষা করছে
-      pending_users: যে ব্যবহারকারী পুনঃমূল্যায়নার জন্য অপেক্ষা করছে
-      recent_users: সাম্প্রতিক ব্যবহারকারীরা
-      search: সম্পূর্ণ পাঠ্য অনুসন্ধান
-      single_user_mode: একক ব্যবহারকারী মোড
       software: সফটওয়্যার
       space: স্থান ব্যবহার
       title: ড্যাশবোর্ড
-      total_users: মোট ব্যবহারকারী
-      trends: প্রবণতাগুলি
-      week_interactions: এই সপ্তাহে মিথষ্ক্রিয়াগুলি
-      week_users_active: এই সপ্তাহে সক্রিয় ব্যাবহারকারিরা
-      week_users_new: এই সপ্তাহে ব্যাবহারকারিরা
-      whitelist_mode: সীমিত ফেডারেশন মোড
     instances:
       moderation:
         limited: সীমিত

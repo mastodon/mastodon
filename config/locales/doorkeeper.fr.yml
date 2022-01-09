@@ -67,7 +67,7 @@ fr:
         title: Copiez ce code d’autorisation et collez-le dans l’application.
     authorized_applications:
       buttons:
-        revoke: Annuler
+        revoke: Révoquer
       confirmations:
         revoke: Voulez-vous vraiment faire ça ?
       index:
@@ -81,9 +81,12 @@ fr:
         access_denied: Le propriétaire de la ressource ou le serveur d’autorisation a refusé la requête.
         credential_flow_not_configured: Le flux des identifiants du mot de passe du propriétaire de la ressource a échoué car Doorkeeper.configure.resource_owner_from_credentials n’est pas configuré.
         invalid_client: L’authentification du client a échoué à cause d’un client inconnu, d’aucune authentification de client incluse ou d’une méthode d’authentification non prise en charge.
-        invalid_grant: Le consentement d’autorisation accordé n’est pas valide, a expiré, est annulé, ne concorde pas avec l’URL de redirection utilisée dans la requête d’autorisation ou a été émis à un autre client.
+        invalid_grant: L’autorisation accordée est invalide, expirée, annulée, ne concorde pas avec l’URL de redirection utilisée dans la requête d’autorisation, ou a été délivrée à un autre client.
         invalid_redirect_uri: L’URL de redirection n’est pas valide.
-        invalid_request: La requête omet un paramètre requis, inclut une valeur de paramètre non prise en charge ou est autrement mal formée.
+        invalid_request:
+          missing_param: 'Parramètre requis manquant: %{value}.'
+          request_not_authorized: La requête doit être autorisée. Le paramètre requis pour la requête d'autorisation est manquant ou non valide.
+          unknown: La requête omet un paramètre requis, inclut une valeur de paramètre non prise en charge ou est autrement mal formée.
         invalid_resource_owner: Les identifiants fournis par le propriétaire de la ressource ne sont pas valides ou le propriétaire de la ressource ne peut être trouvé
         invalid_scope: La permission demandée est invalide, inconnue ou mal formée.
         invalid_token:
@@ -106,7 +109,7 @@ fr:
           notice: Application mise à jour.
       authorized_applications:
         destroy:
-          notice: Application annulée.
+          notice: Application révoquée.
     layouts:
       admin:
         nav:

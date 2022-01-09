@@ -2,7 +2,8 @@ import React from 'react';
 import Icon from 'mastodon/components/icon';
 import Button from 'mastodon/components/button';
 import IconButton from 'mastodon/components/icon_button';
-import { requestBrowserPermission, dismissBrowserPermission } from 'mastodon/actions/notifications';
+import { requestBrowserPermission } from 'mastodon/actions/notifications';
+import { changeSetting } from 'mastodon/actions/settings';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
@@ -25,7 +26,7 @@ class NotificationsPermissionBanner extends React.PureComponent {
   }
 
   handleClose = () => {
-    this.props.dispatch(dismissBrowserPermission());
+    this.props.dispatch(changeSetting(['notifications', 'dismissPermissionBanner'], true));
   }
 
   render () {

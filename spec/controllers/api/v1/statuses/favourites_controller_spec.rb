@@ -82,6 +82,31 @@ describe Api::V1::Statuses::FavouritesController do
         end
       end
 
+      context 'with public status when blocked by its author' do
+        let(:status) { Fabricate(:status) }
+
+        before do
+          FavouriteService.new.call(user.account, status)
+          status.account.block!(user.account)
+          post :destroy, params: { status_id: status.id }
+        end
+
+        it 'returns http success' do
+          expect(response).to have_http_status(200)
+        end
+
+        it 'updates the favourite attribute' do
+          expect(user.account.favourited?(status)).to be false
+        end
+
+        it 'returns json with updated attributes' do
+          hash_body = body_as_json
+
+          expect(hash_body[:id]).to eq status.id.to_s
+          expect(hash_body[:favourited]).to be false
+        end
+      end
+
       context 'with private status that was not favourited' do
         let(:status) { Fabricate(:status, visibility: :private) }
 

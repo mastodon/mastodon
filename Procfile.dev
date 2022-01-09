@@ -1,4 +1,4 @@
-web: env PORT=3000 bundle exec puma -C config/puma.rb
-sidekiq: env PORT=3000 bundle exec sidekiq
+web: env PORT=3000 RAILS_ENV=development bundle exec puma -C config/puma.rb
+sidekiq: env PORT=3000 RAILS_ENV=development bundle exec sidekiq
 stream: env PORT=4000 yarn run start
 webpack: ./bin/webpack-dev-server --listen-host 0.0.0.0

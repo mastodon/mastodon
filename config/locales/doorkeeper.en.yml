@@ -83,7 +83,10 @@ en:
         invalid_client: Client authentication failed due to unknown client, no client authentication included, or unsupported authentication method.
         invalid_grant: The provided authorization grant is invalid, expired, revoked, does not match the redirection URI used in the authorization request, or was issued to another client.
         invalid_redirect_uri: The redirect uri included is not valid.
-        invalid_request: The request is missing a required parameter, includes an unsupported parameter value, or is otherwise malformed.
+        invalid_request:
+          missing_param: 'Missing required parameter: %{value}.'
+          request_not_authorized: Request need to be authorized. Required parameter for authorizing request is missing or invalid.
+          unknown: The request is missing a required parameter, includes an unsupported parameter value, or is otherwise malformed.
         invalid_resource_owner: The provided resource owner credentials are not valid, or resource owner cannot be found
         invalid_scope: The requested scope is invalid, unknown, or malformed.
         invalid_token:
@@ -135,12 +138,12 @@ en:
       read:notifications: see your notifications
       read:reports: see your reports
       read:search: search on your behalf
-      read:statuses: see all statuses
+      read:statuses: see all posts
       write: modify all your account's data
       write:accounts: modify your profile
       write:blocks: block accounts and domains
-      write:bookmarks: bookmark statuses
-      write:favourites: favourite statuses
+      write:bookmarks: bookmark posts
+      write:favourites: favourite posts
       write:filters: create filters
       write:follows: follow people
       write:lists: create lists
@@ -148,4 +151,4 @@ en:
       write:mutes: mute people and conversations
       write:notifications: clear your notifications
       write:reports: report other people
-      write:statuses: publish statuses
+      write:statuses: publish posts

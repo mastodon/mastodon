@@ -3,7 +3,7 @@ ar:
   about:
     about_hashtag_html: هذه تبويقات متاحة للجمهور تحتوي على الكلمات الدلالية <strong>#%{hashtag}</strong>. يمكنك التفاعل معها إن كان لديك حساب في أي مكان على الفديفرس.
     about_mastodon_html: 'شبكة التواصل الإجتماعية المستقبَليّة: مِن دون إعلانات ، غير خاضعة لرقابة الشركات ، تصميم أخلاقي ولامركزية! بياناتكم مِلك لكم مع ماستدون!'
-    about_this: عن مثيل الخادوم هذا
+    about_this: عن مثيل الخادم هذا
     active_count_after: نشط
     active_footnote: مستخدم نشيط شهريا (MAU)
     administered_by: 'يُديره:'
@@ -21,8 +21,13 @@ ar:
     federation_hint_html: بواسطة حساب في %{instance} ستتمكن من تتبع أناس في أي خادم ماستدون وأكثر.
     get_apps: جرّب تطبيقا على الموبايل
     hosted_on: ماستدون مُستضاف على %{domain}
+    instance_actor_flash: |
+      هذا الحساب هو ممثل افتراضي يستخدم لتمثيل الخادم نفسه وليس أي مستخدم فردي.
+      يستخدم لأغراض الاتحاد ولا ينبغي حظره إلا إذا كنت ترغب في حظر مثيل الخادم بأكمله، في هذه الحالة يجب عليك استخدام أداة حظر النطاق.
     learn_more: تعلم المزيد
     privacy_policy: سياسة الخصوصية
+    rules: قوانين الخادم
+    rules_html: 'فيما يلي ملخص للقوانين التي تحتاج إلى اتباعها إذا كنت تريد أن يكون لديك حساب على هذا الخادم من ماستدون:'
     see_whats_happening: اطّلع على ما يجري
     server_stats: 'إحصائيات الخادم:'
     source_code: الشفرة المصدرية
@@ -69,6 +74,7 @@ ar:
       two: متابِعون
       zero: متابِعون
     following: مُتابَع
+    instance_actor_flash: هذا الحساب هو ممثل افتراضي يُستخدم لتمثيل الخادم نفسه ولا يمثل أي مستخدم فردي، يُستخدم لأغراض الاتحاد ولا ينبغي حظره.
     joined: انضم·ت في %{date}
     last_active: آخر نشاط
     link_verified_on: تم التحقق مِن مالك هذا الرابط بتاريخ %{date}
@@ -90,7 +96,6 @@ ar:
       zero: تبويقات
     posts_tab_heading: تبويقات
     posts_with_replies: التبويقات و الردود
-    reserved_username: اسم المستخدم محجوز
     roles:
       admin: المدير
       bot: روبوت
@@ -108,8 +113,10 @@ ar:
       delete: حذف
       destroyed_msg: تم تدمير ملاحظة الإشراف بنجاح!
     accounts:
+      add_email_domain_block: حظر نطاق بريد إلكتروني
       approve: صادِق عليه
       approve_all: الموافقة على الكل
+      approved_msg: تمت الموافقة على تسجيل %{username}
       are_you_sure: متأكد ؟
       avatar: الصورة الرمزية
       by_domain: النطاق
@@ -123,9 +130,12 @@ ar:
       confirm: تأكيد
       confirmed: مؤكَّد
       confirming: التأكد
+      delete: حذف البيانات
       deleted: تمت إزالته
       demote: إنزال الرُتبة الوظيفية
+      destroyed_msg: بيانات حساب %{username} الآن في قائمة الانتظار ليتم حذفها قريباً
       disable: تعطيل
+      disable_sign_in_token_auth: تعطيل مصادقة رمز البريد الإلكتروني
       disable_two_factor_authentication: تعطيل المصادقة بخطوتين
       disabled: معطَّل
       display_name: عرض الاسم
@@ -134,11 +144,14 @@ ar:
       email: البريد الإلكتروني
       email_status: حالة البريد الإلكتروني
       enable: تفعيل
+      enable_sign_in_token_auth: تمكين مصادقة رمز البريد الإلكتروني
       enabled: مفعَّل
+      enabled_msg: تم إلغاء تجميد حساب %{username}
       followers: المتابِعون
       follows: يتابع
       header: الرأسية
       inbox_url: رابط صندوق الوارد
+      invite_request_text: أسباب للانضمام
       invited_by: تمت دعوته مِن طرف
       ip: عنوان الإيبي
       joined: انضم
@@ -150,6 +163,8 @@ ar:
       login_status: وضع الدخول
       media_attachments: الوسائط المرفقة
       memorialize: تحويل الحساب إلى صفحة ذكرى
+      memorialized: تذكاري
+      memorialized_msg: تم تحويل %{username} بنجاح إلى حساب تذكاري
       moderation:
         active: نشِط
         all: الكل
@@ -170,10 +185,14 @@ ar:
       public: عمومي
       push_subscription_expires: انتهاء الاشتراك ”PuSH“
       redownload: انعش الصفحة التعريفية
+      redownloaded_msg: تم تحديث ملف %{username} التعريفي من الأصل
       reject: ارفض
       reject_all: ارفض الكل
+      rejected_msg: تم رفض تطبيق تسجيل %{username} بنجاح
       remove_avatar: حذف الصورة الرمزية
       remove_header: حذف الرأسية
+      removed_avatar_msg: تمت إزالة صورة %{username} الرمزية بنجاح
+      removed_header_msg: تمت إزالة صورة %{username} الرأسية بنجاح
       resend_confirmation:
         already_confirmed: هذا المستخدم مؤكد بالفعل
         send: أعد إرسال رسالة البريد الإلكتروني الخاصة بالتأكيد
@@ -190,6 +209,12 @@ ar:
       search: البحث
       search_same_email_domain: مستخدمون آخرون لديهم نفس نطاق البريد الإلكتروني
       search_same_ip: مستخدِمون آخرون بنفس الـ IP
+      security_measures:
+        only_password: كلمة المرور فقط
+        password_and_2fa: كلمة المرور و 2FA
+        password_and_sign_in_token: كلمة المرور ورمز البريد الإلكتروني
+      sensitive: حساس
+      sensitized: مُعَين كمنشور حساس
       shared_inbox_url: رابط الصندوق المُشترَك للبريد الوارد
       show:
         created_reports: البلاغات التي أنشأها هذا الحساب
@@ -199,13 +224,19 @@ ar:
       statuses: المنشورات
       subscribe: اشترك
       suspended: تم تعليقه
+      suspension_irreversible: تم حذف بيانات هذا الحساب بشكل لا رجعة فيه، يمكنك إلغاء تعليق الحساب لجعله قابلا للاستخدام، ولكنه لن يسترد أي بيانات كانت لديه سابقاً.
+      suspension_reversible_hint_html: تم تعليق الحساب، وسيتم إزالة البيانات بالكامل في %{date}، حتى ذلك الحين، يمكن استعادة الحساب دون أي آثار سلبية أي كما أنه لم يحدث أي شيء، إذا كنت ترغب في حذف جميع بيانات الحساب الآن، فيمكنك فعل ذلك أدناه.
       time_in_queue: في قائمة الانتظار %{time}
       title: الحسابات
       unconfirmed_email: البريد الإلكتروني غير مؤكد
+      undo_sensitized: التراجع عن حساسية
       undo_silenced: رفع الصمت
       undo_suspension: إلغاء تعليق الحساب
+      unsilenced_msg: تم فك الحدود من حساب %{username} بنجاح
       unsubscribe: إلغاء الاشتراك
+      unsuspended_msg: تم إلغاء تجميد حساب %{username}
       username: اسم المستخدم
+      view_domain: عرض ملخص للنطاق
       warn: تحذير
       web: الويب
       whitelisted: في القائمة البيضاء
@@ -217,14 +248,26 @@ ar:
         create_account_warning: إنشاء تحذير
         create_announcement: إنشاء إعلان
         create_custom_emoji: إنشاء إيموجي مخصص
+        create_domain_allow: إنشاء نطاق المسموح به
+        create_domain_block: إنشاء كتلة نطاق
+        create_email_domain_block: إنشاء كتلة نطاق بريد إلكتروني
+        create_ip_block: إنشاء قاعدة IP جديدة
+        create_unavailable_domain: إنشاء نطاق غير متوفر
         demote_user: إنزال رتبة المستخدم
         destroy_announcement: احذف الإعلان
         destroy_custom_emoji: احذف الإيموجي المخصص
+        destroy_domain_allow: حذف النطاق المسموح به
+        destroy_domain_block: حذف كتلة النطاق
+        destroy_email_domain_block: حذف نطاق بريد إلكتروني
+        destroy_ip_block: حذف قانون IP
         destroy_status: حذف المنشور
+        destroy_unavailable_domain: حذف نطاق غير متوفر
         disable_2fa_user: تعطيل 2FA
         disable_custom_emoji: تعطيل الإيموجي المخصص
+        disable_sign_in_token_auth_user: تعطيل مصادقة رمز البريد الإلكتروني للمستخدم
         disable_user: تعطيل المستخدم
         enable_custom_emoji: تفعيل الإيموجي المخصص
+        enable_sign_in_token_auth_user: تمكين مصادقة رمز البريد الإلكتروني للمستخدم
         enable_user: تفعيل المستخدم
         memorialize_account: جعل الحساب تذكاريا
         promote_user: ترقية المستخدم
@@ -232,50 +275,62 @@ ar:
         reopen_report: إعادة فتح التقرير
         reset_password_user: إعادة تعيين كلمة المرور
         resolve_report: حل الشكوى
+        sensitive_account: وضع علامة على الوسائط في حسابك على أنها حساسة
         silence_account: كتم الحساب
         suspend_account: تعليق الحساب
         unassigned_report: إلغاء إسناد الشكوى
+        unsensitive_account: إلغاء تحديد الوسائط في حسابك على أنها حساسة
         unsilence_account: إلغاء كتم الحساب
         unsuspend_account: إلغاء تعليق الحساب
         update_announcement: تحديث الإعلان
         update_custom_emoji: تحديث الإيموجي المخصص
+        update_domain_block: تحديث كتلة النطاق
         update_status: تحديث الحالة
       actions:
-        assigned_to_self_report: قام %{name} بتعيين التقرير %{target} لأنفسهم
-        change_email_user: غيّر %{name} عنوان البريد الإلكتروني للمستخدم %{target}
-        confirm_user: "%{name} قد قام بتأكيد عنوان البريد الإلكتروني لـ %{target}"
-        create_account_warning: قام %{name} بإرسال تحذير إلى %{target}
-        create_announcement: قام %{name} بإنشاء إعلان جديد %{target}
-        create_custom_emoji: "%{name} قام برفع إيموجي جديد %{target}"
-        create_domain_allow: قام %{name} بإضافة النطاق %{target} إلى القائمة البيضاء
-        create_domain_block: "%{name} قام بحجب نطاق %{target}"
-        create_email_domain_block: "%{name} قد قام بحظر نطاق البريد الإلكتروني %{target}"
-        demote_user: "%{name} قد قام بإنزال الرتبة الوظيفية لـ %{target}"
-        destroy_announcement: قام %{name} بحذف الإعلان %{target}
-        destroy_custom_emoji: قام %{name} بحذف الإيموجي %{target}
-        destroy_domain_allow: قام %{name} بإزالة النطاق %{target} مِن القائمة البيضاء
-        destroy_domain_block: "%{name} قام بإلغاء الحجب عن النطاق %{target}"
-        destroy_email_domain_block: قام %{name} بإضافة نطاق البريد الإلكتروني %{target} إلى اللائحة البيضاء
-        destroy_status: لقد قام %{name} بحذف منشور %{target}
-        disable_2fa_user: "%{name} لقد قام بتعطيل ميزة المصادقة بخطوتين للمستخدم %{target}"
-        disable_custom_emoji: "%{name} قام بتعطيل الإيموجي %{target}"
-        disable_user: "%{name} لقد قام بتعطيل تسجيل الدخول للمستخدِم %{target}"
-        enable_custom_emoji: "%{name} قام بتنشيط الإيموجي %{target}"
-        enable_user: لقد قام %{name} بتنشيط تسجيل الدخول للمستخدِم %{target}
-        memorialize_account: لقد قام %{name} بتحويل حساب %{target} إلى صفحة تذكارية
-        promote_user: "%{name} قام بترقية المستخدم %{target}"
-        remove_avatar_user: تمت إزالة %{name} الصورة الرمزية %{target}
-        reopen_report: تمت إعادة فتح الشكوى %{name} %{target}
-        reset_password_user: "%{name} لقد قام بإعادة تعيين الكلمة السرية الخاصة بـ %{target}"
-        resolve_report: قام %{name} بحل الشكوى %{target}
-        silence_account: لقد قام %{name} بكتم حساب %{target}
-        suspend_account: لقد قام %{name} بتعليق حساب %{target}
-        unassigned_report: "%{name} تقرير غير معتمد %{target}"
-        unsilence_account: لقد قام %{name} بإلغاء الكتم عن حساب %{target}
-        unsuspend_account: لقد قام %{name} بإلغاء التعليق المفروض على حساب %{target}
-        update_announcement: قام %{name} بتحديث الإعلان %{target}
-        update_custom_emoji: "%{name} قام بتحديث الإيموجي %{target}"
-        update_status: لقد قام %{name} بتحديث منشور %{target}
+        assigned_to_self_report_html: قام %{name} بتعيين التقرير %{target} لأنفسهم
+        change_email_user_html: غيّر %{name} عنوان البريد الإلكتروني للمستخدم %{target}
+        confirm_user_html: "%{name} قد قام بتأكيد عنوان البريد الإلكتروني لـ %{target}"
+        create_account_warning_html: قام %{name} بإرسال تحذير إلى %{target}
+        create_announcement_html: قام %{name} بإنشاء إعلان جديد %{target}
+        create_custom_emoji_html: "%{name} قام برفع إيموجي جديد %{target}"
+        create_domain_allow_html: قام %{name} بإضافة النطاق %{target} إلى القائمة البيضاء
+        create_domain_block_html: "%{name} قام بحجب نطاق %{target}"
+        create_email_domain_block_html: قام %{name} بحظر نطاق البريد الإلكتروني %{target}
+        create_ip_block_html: قام %{name} بإنشاء قاعدة للـIP %{target}
+        create_unavailable_domain_html: قام %{name} بتوقيف التوصيل للنطاق %{target}
+        demote_user_html: قام %{name} بخفض الرتبة الوظيفية لـ%{target}
+        destroy_announcement_html: قام %{name} بحذف الإعلان %{target}
+        destroy_custom_emoji_html: قام %{name} بحذف الإيموجي %{target}
+        destroy_domain_allow_html: قام %{name} بمنع الاتحاد مع النطاق %{target}
+        destroy_domain_block_html: قام %{name} برفع الحظر عن النطاق %{target}
+        destroy_email_domain_block_html: قام %{name} برفع الحظر عن نطاق البريد الإلكتروني %{target}
+        destroy_ip_block_html: قام %{name} بحذف قاعدة للـIP %{target}
+        destroy_status_html: قام %{name} بحذف منشور من %{target}
+        destroy_unavailable_domain_html: قام %{name} باستئناف التوصيل للنطاق %{target}
+        disable_2fa_user_html: قام %{name} بتعطيل المصادقة بخطوتين للمستخدم %{target}
+        disable_custom_emoji_html: قام %{name} بتعطيل الإيموجي %{target}
+        disable_sign_in_token_auth_user_html: "%{name} تعطيل مصادقة رمز البريد الإلكتروني لـ %{target}"
+        disable_user_html: قام %{name} بتعطيل تسجيل الدخول للمستخدم %{target}
+        enable_custom_emoji_html: قام %{name} بتنشيط الإيموجي %{target}
+        enable_sign_in_token_auth_user_html: "%{name} تمكين مصادقة رمز البريد الإلكتروني لـ %{target}"
+        enable_user_html: قام %{name} بتنشيط تسجيل الدخول للمستخدم %{target}
+        memorialize_account_html: قام %{name} بتحويل حساب %{target} إلى صفحة تذكارية
+        promote_user_html: قام %{name} بترويج المستخدم %{target}
+        remove_avatar_user_html: قام %{name} بإزالة صورة %{target} الرمزية
+        reopen_report_html: قام %{name} بإعادة فتح الشكوى %{target}
+        reset_password_user_html: قام %{name} بإعادة تعيين كلمة مرور المستخدم %{target}
+        resolve_report_html: قام %{name} بحل الشكوى %{target}
+        sensitive_account_html: قام %{name} بوضع علامة حساس على محتوى %{target}
+        silence_account_html: قام %{name} بكتم حساب %{target}
+        suspend_account_html: قام %{name} بتعليق حساب %{target}
+        unassigned_report_html: قام %{name} بإلغاء تعيين الشكوى %{target}
+        unsensitive_account_html: قام %{name} بإزالة علامة حساس على محتوى %{target}
+        unsilence_account_html: قام %{name} بإلغاء كتم المستخدم %{target}
+        unsuspend_account_html: قام %{name} بإلغاء تعليق حساب %{target}
+        update_announcement_html: قام %{name} بتحديث الإعلان %{target}
+        update_custom_emoji_html: قام %{name} بتحديث الإيموجي %{target}
+        update_domain_block_html: قام %{name} بتحديث كتلة النطاق %{target}
+        update_status_html: قام %{name} بتحديث منشور من %{target}
       deleted_status: "(منشور محذوف)"
       empty: لم يتم العثور على سجلات.
       filter_by_action: تصفية بحسب الإجراء
@@ -290,10 +345,12 @@ ar:
       new:
         create: إنشاء إعلان
         title: إعلان جديد
+      publish: نشر
       published_msg: تم نشر الإعلان بنجاح!
       scheduled_for: بُرمِج على %{time}
       scheduled_msg: تمت جدولة نشر الإعلان!
       title: الإعلانات
+      unpublish: إلغاء النشر
       unpublished_msg: تم إلغاء نشر الإعلان بنجاح!
       updated_msg: تم تحديث الإعلان بنجاح!
     custom_emojis:
@@ -330,33 +387,9 @@ ar:
       updated_msg: تم تحديث الإيموجي بنجاح!
       upload: رفع
     dashboard:
-      authorized_fetch_mode: الوضع الآمن
-      backlog: الأعمال المتراكمة
-      config: الإعداد
-      feature_deletions: الحسابات المحذوفة
-      feature_invites: روابط الدعوات
-      feature_profile_directory: دليل الملفات التعريفية
-      feature_registrations: التسجيلات
-      feature_relay: المُرحّل الفديرالي
-      feature_spam_check: مكافح البريد المزعج
-      feature_timeline_preview: معاينة الخيط الزمني
-      features: الميّزات
-      hidden_service: الفيديرالية مع الخدمات الخفية
-      open_reports: شكاوي مفتوحة
-      pending_tags: وسوم في انتظار المراجعة
-      pending_users: مستخدمين في انتظار مراجعة
-      recent_users: أحدث المستخدِمين
-      search: البحث النصي الكامل
-      single_user_mode: وضع المستخدِم الأوحد
       software: البرنامج
       space: المساحة المستخدَمة
       title: لوح المراقبة
-      total_users: إجمالي المستخدِمين
-      trends: المتداوَلة
-      week_interactions: تفاعُلات هذا الأسبوع
-      week_users_active: نشطاء هذا الأسبوع
-      week_users_new: مستخدِمين هذا الأسبوع
-      whitelist_mode: وضع القائمة البيضاء
     domain_allows:
       add_new: إضافة النطاق إلى القائمة البيضاء
       created_msg: تمت إضافة النطاق إلى القائمة البيضاء بنجاح
@@ -368,6 +401,7 @@ ar:
       destroyed_msg: تم إلغاء الحجب المفروض على النطاق
       domain: النطاق
       edit: تحرير النطاق المحظور
+      existing_domain_block_html: لقد فرضت بالفعل سابقاً حدوداً أكثر صرامة على %{name}، تحتاج إلى <a href="%{unblock_url}">إلغاء حظره</a> أولاً.
       new:
         create: إنشاء حظر
         hint: لن تمنع كتلة المجال إنشاء إدخالات حساب في قاعدة البيانات ، ولكنها ستطبق طرق الإشراف المحددة بأثر رجعي وتلقائي على هذه الحسابات.
@@ -377,12 +411,18 @@ ar:
           silence: كتم
           suspend: تعليق
         title: حجب نطاق جديد
+      obfuscate: تشويش اسم النطاق
+      obfuscate_hint: تشويش اسم النطاق جزئيا في القائمة إذا كان الإعلان عن قائمة قيود النطاق مفعلاً
       private_comment: تعليق خاص
+      private_comment_hint: التعليق على تقييد هذا النطاق للاستخدام الداخلي من قبل المشرفين.
       public_comment: تعليق للعلن
+      public_comment_hint: التعليق على تقييد هذا النطاق لعامة الجمهور، إذا كان الإعلان عن قائمة قيود النطاق مفعلاً.
       reject_media: رفض ملفات الوسائط
       reject_media_hint: يزيل ملفات الوسائط المخزنة محليًا ويرفض تنزيل أي ملفات في المستقبل. غير ذي صلة للتعليق
       reject_reports: رفض التقارير
       reject_reports_hint: تجاهل جميع تقارير الإبلاغ القادمة من هذا النطاق. هذا يستثي التعليقات
+      rejecting_media: جار رفض ملفات الوسائط
+      rejecting_reports: جار رفض التقارير
       severity:
         silence: تم كتمه
         suspend: تم تعليقه
@@ -400,6 +440,7 @@ ar:
         title: رفع حظر النطاق عن %{domain}
         undo: إلغاء
       undo: إلغاء حجب النطاق
+      view: عرض كتلة النطاق
     email_domain_blocks:
       add_new: إضافة
       created_msg: لقد دخل حظر نطاق البريد الإلكتروني حيّز الخدمة
@@ -412,9 +453,39 @@ ar:
         create: إضافة نطاق
         title: إضافة نطاق بريد جديد إلى اللائحة السوداء
       title: القائمة السوداء للبريد الإلكتروني
+    follow_recommendations:
+      description_html: "<strong>تساعد اقتراحات المتابعة المستخدمين في العثور بسرعة على محتوى مثير للاهتمام</strong>. عندما لا يتفاعل المستخدم مع الآخرين بشكل كافي لتشكيل اقتراحات متابعة مخصصة له، تظهر هذه الاقتراحات بدلاً من ذلك. يُعاد حسابهم بشكل يومي من مزيج حسابات لديها أكثر التفاعلات وأكثر عدد من المتابعين المحليين للغة معينة."
+      language: للغة
+      status: الحالة
+      suppress: إلغاء توصية اقتراح المتابعة
+      suppressed: ملغاة التوصية
+      title: اقتراحات المتابعة
+      unsuppress: إستعادة إقتراحات المتابعة
     instances:
+      back_to_all: الكل
+      back_to_limited: محدود
+      back_to_warning: تحذير
       by_domain: النطاق
+      delivery:
+        all: الكل
+        clear: مسح أخطاء التسليم
+        restart: إعادة تشغيل التوصيل
+        stop: إيقاف التوصيل
+        title: التوصيل
+        unavailable: غير متوفر
+        unavailable_message: التوصيل غير متوفر
+        warning: تحذير
+        warning_message:
+          few: فشل التوصيل لـ%{count} أيام
+          many: فشل التوصيل لـ%{count} يوم
+          one: فشل التوصيل لـ%{count} يوم
+          other: فشل التوصيل لـ%{count} يوم
+          two: فشل التوصيل لـ%{count} يوم
+          zero: فشل التوصيل لـ%{count} يوم
       delivery_available: التسليم متوفر
+      delivery_error_days: أيام أخطاء التوصيل
+      delivery_error_hint: إذا كان التوصيل غير ممكناً لـ%{count} يوم، فستوضع عليها علامة {غير قابلة للتسليم} تلقائياً.
+      empty: لم يتم العثور على نطاقات.
       known_accounts:
         few: "%{count} حسابات معروفة"
         many: "%{count} حسابات معروفة"
@@ -443,6 +514,9 @@ ar:
         title: التصفية
       title: الدعوات
     ip_blocks:
+      add_new: إنشاء قانون
+      created_msg: تمت إضافة قاعدة IP جديدة
+      delete: حذف
       expires_in:
         '1209600': أسبوعان
         '15778476': 6 أشهر
@@ -450,6 +524,10 @@ ar:
         '31556952': سنة واحدة
         '86400': يوم واحد
         '94670856': 3 سنوات
+      new:
+        title: إنشاء قاعدة IP جديدة
+      no_ip_block_selected: لم يطرأ أي تغيير على أي قاعدة IP بما أنه لم يتم اختيار أي واحد
+      title: قواعد الـIP
     pending_accounts:
       title: الحسابات المعلقة (%{count})
     relationships:
@@ -457,6 +535,7 @@ ar:
     relays:
       add_new: إضافة مُرحّل جديد
       delete: حذف
+      description_html: "<strong>مُرَحِّل الاتحاد</strong> هو خادم وسيط يقوم بتبادل كميات كبيرة من التبويقات العامة بين الخوادم التي تشترك به وتنشر إليه. <strong>يمكنه أن يساعد الخوادم الصغيرة والمتوسطة على اكتشاف المحتوى من فيديفرس</strong>، الذي من شأنه خلاف ذلك أن يَتطلّب من المستخدمين المحليين أن يُتابِعوا يدوياً الأشخاص الآخرين على خوادم مُتحكم بها عن بُعد."
       disable: تعطيل
       disabled: مُعطَّل
       enable: تشغيل
@@ -496,6 +575,8 @@ ar:
       comment:
         none: لا شيء
       created_at: ذكرت
+      forwarded: أُعيد توجيهه
+      forwarded_to: أُعيد توجيهه إلى %{domain}
       mark_as_resolved: اعتبار الشكوى كمحلولة
       mark_as_unresolved: علم كغير محلولة
       notes:
@@ -511,10 +592,18 @@ ar:
       resolved: معالجة
       resolved_msg: تم حل تقرير بنجاح!
       status: الحالة
+      target_origin: مصدر الحساب المبلغ عنه
       title: الشكاوى
       unassign: إلغاء تعيين
       unresolved: غير معالجة
       updated_at: محدث
+    rules:
+      add_new: إضافة قاعدة
+      delete: حذف
+      description_html: بينما يدعي معظم الناس أنهم قرأوا شروط الخدمة ووافقوا عليها، فإن الناس عادةً لا يقرأون إلا بعد حدوث مشكلة. <strong>اجعل من الأسهل رؤية قواعد خادمك بلمحة عن طريق تزويدهم في قائمة النقاط المدورة.</strong> حاول إبقاء القواعد الفردية قصيرة وبسيطة، ولكن لا تحاول أن تُقسمها إلى العديد من العناصر المنفصلة أيضا.
+      edit: تعديل القانون
+      empty: لم يتم تحديد قواعد الخادم بعد.
+      title: قوانين الخادم
     settings:
       activity_api_enabled:
         desc_html: عدد المنشورات المحلية و المستخدمين الناشطين و التسجيلات الأسبوعية الجديدة
@@ -529,6 +618,7 @@ ar:
         desc_html: يقوم بتغيير المظهر بواسطة سي أس أس يُحمَّل على كافة الصفحات
         title: سي أس أس مخصص
       default_noindex:
+        desc_html: يؤثر على جميع المستخدمين الذين لم يغيروا هذا الإعداد بأنفسهم
         title: عدم السماح مبدئيا لمحركات البحث بفهرسة الملفات التعريفية للمستخدمين
       domain_blocks:
         all: للجميع
@@ -537,12 +627,11 @@ ar:
         users: للمستخدمين المتصلين محليا
       domain_blocks_rationale:
         title: اظهر السبب
-      enable_bootstrap_timeline_accounts:
-        title: تمكين الاشتراكات الافتراضية للمستخدمين الجدد
       hero:
         desc_html: معروض على الصفحة الأولى. لا يقل عن 600 × 100 بكسل. عند عدم التعيين ، تعود الصورة إلى النسخة المصغرة على سبيل المثال
         title: الصورة الرأسية
       mascot:
+        desc_html: معروض على عدة صفحات، يوصى بِعلى الأقل 293x205 بكسل، عند عدم التعيين، تعود الصورة إلى التميمة الافتراضية
         title: صورة الماسكوت
       peers_api_enabled:
         desc_html: أسماء النطاقات التي التقى بها مثيل الخادوم على البيئة الموحَّدة فديفرس
@@ -563,6 +652,9 @@ ar:
         min_invite_role:
           disabled: لا أحد
           title: المستخدِمون المصرح لهم لإرسال الدعوات
+        require_invite_text:
+          desc_html: عندما تتطلب التسجيلات الموافقة اليدوية، جعل إدخال نص لسؤال "لماذا تريد أن تنضم؟" إلزاميا بدلاً من اختياري
+          title: الطلب من المستخدمين الجدد إدخال سبب للتسجيل
       registrations_mode:
         modes:
           approved: طلب الموافقة لازم عند إنشاء حساب
@@ -570,6 +662,7 @@ ar:
           open: يمكن للجميع إنشاء حساب
         title: طريقة إنشاء الحسابات
       show_known_fediverse_at_about_page:
+        desc_html: عند التعطيل، يُقيّد الخط الزمني العام المرتبط من صفحة الهبوط لعرض المحتوى المحلي فقط
         title: إظهار الفديفرس الموحَّد في خيط المُعايَنة
       show_staff_badge:
         desc_html: عرض شارة الموظفين على صفحة المستخدم
@@ -587,9 +680,6 @@ ar:
         desc_html: يمكنك كتابة سياسة الخصوصية الخاصة بك ، شروط الخدمة أو غيرها من القوانين. يمكنك استخدام علامات HTML
         title: شروط الخدمة المخصصة
       site_title: اسم مثيل الخادم
-      spam_check_enabled:
-        desc_html: يمكن لماستدون الإبلاغ التلقائي عن الحسابات التي ترسل رسائل متكررة غير مرغوب فيها. قد تكون هناك زائفات إيجابيات.
-        title: مكافحة البريد المزعج
       thumbnail:
         desc_html: يستخدم للعروض السابقة عبر Open Graph و API. 1200x630px موصى به
         title: الصورة الرمزية المصغرة لمثيل الخادوم
@@ -601,6 +691,7 @@ ar:
         desc_html: يؤثر على علامات الوسوم التي لم يكن مسموح بها مسبقاً
         title: السماح للوسوم بالظهور على المتداوَلة بدون مراجعة مسبقة
       trends:
+        desc_html: عرض علني للوسوم المستعرضة سابقاً التي هي رائجة الآن
         title: الوسوم المتداولة
     site_uploads:
       delete: احذف الملف الذي تم تحميله
@@ -619,13 +710,18 @@ ar:
       no_status_selected: لم يطرأ أي تغيير على أي منشور بما أنه لم يتم اختيار أي واحد
       title: منشورات الحساب
       with_media: تحتوي على وسائط
+    system_checks:
+      database_schema_check:
+        message_html: هناك عمليات هجرة معلقة لقواعد البيانات. يرجى تشغيلها لضمان تصرف التطبيق كما هو متوقع
+      rules_check:
+        action: إدارة قواعد الخادم
+        message_html: لم تقم بتحديد أي قواعد خادم.
+      sidekiq_process_check:
+        message_html: لا توجد عملية Sidekiq قيد التشغيل لقائمة الانتظار %{value}. يرجى مراجعة إعدادات Sidekiq الخاصة بك
     tags:
       accounts_today: استخدامات هذا اليوم
       accounts_week: استخدامات هذا الأسبوع
       breakdown: توزيع استخدام اليوم حسب المصدر
-      context: السياق
-      directory: في دليل حسابات المستخدمين
-      in_directory: "%{count} في سجل حسابات المستخدمين"
       last_active: آخر نشاط
       most_popular: الأكثر شعبية
       most_recent: الأحدث
@@ -642,6 +738,7 @@ ar:
       add_new: إضافة واحد جديد
       delete: حذف
       edit_preset: تعديل نموذج التحذير
+      empty: لم تحدد أي إعدادات تحذير مسبقة بعد.
       title: إدارة نماذج التحذير
   admin_mailer:
     new_pending_account:
@@ -700,8 +797,11 @@ ar:
       prefix_sign_up: أنشئ حسابًا على ماستدون اليوم!
       suffix: بفضل حساب ، ستكون قادرا على متابعة الأشخاص ونشر تحديثات وتبادل رسائل مع مستخدمين مِن أي خادم Mastodon وأكثر!
     didnt_get_confirmation: لم تتلق تعليمات التأكيد ؟
+    dont_have_your_security_key: ليس لديك مفتاح الأمان الخاص بك؟
     forgot_password: نسيت كلمة المرور ؟
     invalid_reset_password_token: رمز إعادة تعيين كلمة المرور غير صالح أو منتهي الصلاحية. يرجى طلب واحد جديد.
+    link_to_otp: أدخل رمز ذو عامِلين من هاتفك أو رمز الاسترجاع
+    link_to_webauth: استخدم جهاز مفتاح الأمان الخاص بك
     login: تسجيل الدخول
     logout: خروج
     migrate_account: الانتقال إلى حساب آخر
@@ -726,7 +826,9 @@ ar:
       functional: حسابك جاهز.
       pending: إن طلبك قيد المراجعة من قبل فريقنا. قد يستغرق هذا بعض الوقت. سوف تتلقى بريدا إلكترونيا إذا تمت الموافقة على طلبك.
       redirecting_to: حسابك غير نشط لأنه تم تحويله حاليا إلى %{acct}.
+    too_fast: تم إرسال النموذج بسرعة كبيرة، حاول مرة أخرى.
     trouble_logging_in: هل صادفتكم مشكلة في الولوج؟
+    use_security_key: استخدام مفتاح الأمان
   authorize_follow:
     already_following: أنت تتابع بالفعل هذا الحساب
     already_requested: لقد قُمتَ بإرسال طلب متابَعة إلى هذا الحساب مِن قَبل
@@ -751,6 +853,7 @@ ar:
   date:
     formats:
       default: "%d %b %Y"
+      with_month_name: "%d %B %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}سا"
@@ -815,6 +918,7 @@ ar:
       request: اطلب نسخة مِن حسابك
       size: الحجم
     blocks: قمت بحظر
+    bookmarks: الفواصل المرجعية
     csv: CSV
     domain_blocks: النطاقات المحظورة
     lists: القوائم
@@ -824,6 +928,7 @@ ar:
     add_new: أضف واحدًا جديدا
     errors:
       limit: لقد قمت بالفعل بعرض الحد الأقصى من الوسوم
+    hint_html: "<strong>ما هي الوسوم الرائجة؟</strong> يتم عرضها بشكل بارز على ملفك الشخصي العام وتسمح للناس بتصفح منشوراتك العامة على وجه التحديد تحت تلك الوسوم. وهي أداة رائعة لتتبع الأعمال الإبداعية أو المشاريع الطويلة الأجل."
   filters:
     contexts:
       account: الملفات التعريفية
@@ -868,6 +973,13 @@ ar:
     active: نشط
     authorize: نعم ، قم بترخيصه
     authorize_connection_prompt: هل تريد ترخيص هذا الاتصال المشفّر؟
+    errors:
+      failed: فشل اتصال التشفير. الرجاء المحاولة مرة أخرى من %{provider}.
+      keybase:
+        invalid_token: رموز Keybase هي تجزئة من التوقيعات ويجب أن تكون 66 حرف hex
+        verification_failed: Keybase لا يستطيع التعرف على هذا الرمز كتوقيع لمستخدم Keybase %{kb_username}، الرجاء إعادة المحاولة من Keybase.
+      wrong_user: لا يمكن إنشاء دليل لـ%{proving} أثناء تسجيل الدخول كـ%{current}. قم بتسجيل الدخول كـ%{proving} ثم حاول مرة أخرى.
+    explanation_html: هنا يمكنك أن تربط بشكل مُشفر هوياتك الأُخريات من منصات أخرى مثل Keybase. هذا يتيح للأشخاص الآخرين إرسال رسائل مشفرة إليك على تلك المنصات ويسمح لهم بالثقة في أن المحتوى الذي ترسله لهم يأتي منك أنت.
     i_am_html: أنا %{username} على %{service}.
     identity: الهوية
     inactive: ليس نشطا
@@ -878,6 +990,8 @@ ar:
     status: حالة التحقق
     view_proof: عرض الدليل
   imports:
+    errors:
+      over_rows_processing_limit: يحتوي على أكثر من %{count} صف
     modes:
       merge: دمج
       merge_long: الإبقاء علي التسجيلات الحالية وإضافة الجديدة
@@ -887,6 +1001,7 @@ ar:
     success: تم تحميل بياناتك بنجاح وسيتم معالجتها في الوقت المناسب
     types:
       blocking: قائمة المحظورين
+      bookmarks: الفواصل المرجعية
       domain_blocking: قائمة النطاقات المحظورة
       following: قائمة المستخدمين المتبوعين
       muting: قائمة الكتم
@@ -921,6 +1036,17 @@ ar:
   lists:
     errors:
       limit: لقد بلغت الحد الأقصى للقوائم
+  login_activities:
+    authentication_methods:
+      otp: تطبيق المصادقة الثنائية
+      password: كلمة المرور
+      sign_in_token: رمز الأمان للبريد الإلكتروني
+      webauthn: مفاتيح الأمان
+    description_html: إذا رأيت النشاط الذي لا تتعرف عليه، فكر في تغيير كلمة المرور الخاصة بك وتفعيل المصادقة ذات العاملين.
+    empty: لا يوجد سجل مصادقة متاح
+    failed_sign_in_html: فشل محاولة تسجيل الدخول مع %{method} من %{ip} (%{browser})
+    successful_sign_in_html: تم تسجيل الدخول بنجاح مع %{method} من %{ip} (%{browser})
+    title: تاريخ المصادقة
   media_attachments:
     validations:
       images_and_video: ليس بالإمكان إرفاق فيديو في منشور يحتوي مسبقا على صور
@@ -949,11 +1075,20 @@ ar:
     redirecting_to: حسابك موجَّه إلى %{acct}.
     set_redirect: تعين إعادة التوجيه
     warning:
+      backreference_required: يجب على الحساب الجديد أن يتم تكوينه كمرجع خلفي لهذا الحساب
       before: 'يرجى قراءة هذه الملاحظات بتأنّي قبل المواصلة:'
+      cooldown: بعد الانتقال هناك فترة تبريد لن تتمكن خلالها من الانتقال مرة أخرى
+      disabled_account: لن يكون حسابك الحالي قابلا للاستخدام بشكل كامل بعد ذلك، ولكن سيكون لديك حق الوصول إلى تصدير البيانات وكذلك إعادة التنشيط.
       followers: تقوم هذه العملية بنقل كافة المُتابِعين مِن الحساب الحالي إلى الحساب الجديد
+      only_redirect_html: بدلاً من ذلك، يمكنك <a href="%{path}">أن تضع فقط إعادة توجيه على ملفك الشخصي</a>.
       other_data: لن يتم نقل أية بيانات أخرى تلقائيا
+      redirect: سيتم تحديث ملفك التعريفي الحالي مع إشعار إعادة توجيه وسيتم استبعاده من عمليات البحث
   moderation:
     title: الإشراف
+  move_handler:
+    carry_blocks_over_text: انتقل هذا المستخدم من %{acct}، الذي حَظرته أنت.
+    carry_mutes_over_text: انتقل هذا المستخدم من %{acct}، الذي كتَمتَه أنت.
+    copy_account_note_text: 'انتقل هذا المستخدم من %{acct}، إليك ملاحظاتك السابقة عنه:'
   notification_mailer:
     digest:
       action: معاينة كافة الإشعارات
@@ -992,10 +1127,14 @@ ar:
       body: 'أشار إليك %{name} في:'
       subject: لقد قام %{name} بذِكرك
       title: إشارة جديدة
+    poll:
+      subject: انتهى استطلاع %{name} للرأي
     reblog:
       body: 'قام %{name} بترقية منشورك:'
       subject: قام %{name} بترقية منشورك
       title: ترقية جديدة
+    status:
+      subject: "%{name} نشر للتو"
   notifications:
     email_events: الأحداث للإشعارات عبر البريد الإلكتروني
     email_events_hint: 'اختر الأحداث التي تريد أن تصِلَك اشعارات عنها:'
@@ -1010,6 +1149,14 @@ ar:
           quadrillion: كواد
           thousand: ألف
           trillion: ترل
+  otp_authentication:
+    code_hint: قم بإدخال الرمز المُوَلّد عبر تطبيق الاستيثاق لديك للتأكيد
+    description_html: في حال تفعيل <strong>الاستيثاق بخطوتين</strong> باستخدام تطبيق استيثاق، فسيتطلب تسجيل الدخول منك أن يكون بحوزتك هاتفك النقال، الذي سيُولد الرمز لك لتُدخله.
+    enable: تفعيل
+    instructions_html: "<strong>قم بمسح رمز الـQR عبر Google Authenticator أو أي تطبيق TOTP على جهازك</strong>. من الآن فصاعدا سيقوم ذاك التطبيق بتوليد رموز يجب عليك إدخالها عند تسجيل الدخول."
+    manual_instructions: 'في حالة تعذّر مسح رمز QR وتحتاج إلى إدخاله يدوياً، يُمْكِنك إدخال هذا النص السري على التطبيق:'
+    setup: إعداد
+    wrong_code: الرمز الذي تم إدخاله غير صالح! هل وقت الخادم ووقت الجهاز صحيحَين؟
   pagination:
     newer: الأحدَث
     next: التالي
@@ -1024,6 +1171,7 @@ ar:
       duration_too_short: مبكّر جدا
       expired: لقد انتهى استطلاع الرأي
       invalid_choice: خيار التصويت الذي قُمتَ يتحديده غير موجود
+      over_character_limit: لا يمكن أن يكون أطول من %{max} حرف لكل واحد
       too_few_options: يجب أن يحتوي على أكثر من عنصر واحد
       too_many_options: لا يمكنه أن يحتوي أكثر مِن %{max} عناصر
   preferences:
@@ -1037,6 +1185,7 @@ ar:
   relationships:
     activity: نشاط الحساب
     dormant: في سبات
+    follow_selected_followers: متابَعة المتابِعين المحددين
     followers: المتابِعون
     following: يُتابِع
     invited: مَدعُوّ
@@ -1112,6 +1261,7 @@ ar:
     revoke: إبطال
     revoke_success: تم إبطال الجلسة بنجاح
     title: الجلسات
+    view_authentication_history: عرض سجل المصادقة لحسابك
   settings:
     account: الحساب
     account_settings: إعدادات الحساب
@@ -1132,9 +1282,9 @@ ar:
     preferences: التفضيلات
     profile: الملف التعريفي
     relationships: المتابِعون والمتابَعون
+    statuses_cleanup: حذف المنشور الآلي
     two_factor_authentication: المُصادقة بخُطوَتَيْن
-  spam_check:
-    spam_detected: هذا إبلاغ تلقائي. تم اكتشاف منشورات عشوائية غير مرغوب فيها.
+    webauthn_authentication: مفاتيح الأمان
   statuses:
     attached:
       audio:
@@ -1195,16 +1345,53 @@ ar:
         zero: بدون صوت %{count}
       vote: صوّت
     show_more: أظهر المزيد
+    show_newer: إظهار أحدث
+    show_older: إظهار أقدم
     show_thread: اعرض خيط المحادثة
     sign_in_to_participate: قم بتسجيل الدخول للمشاركة في هذه المحادثة
     title: '%{name}: "%{quote}"'
     visibilities:
+      direct: مباشرة
       private: لمتابِعيك فقط
       private_long: اعرضه لمتابعيك فقط
       public: للعامة
       public_long: يمكن للجميع رؤيته
       unlisted: غير مُدرَج
       unlisted_long: يُمكن لأيٍ كان رُؤيتَه و لكن لن يُعرَض على الخيوط العامة
+  statuses_cleanup:
+    enabled: حذف المشاركات القديمة تلقائياً
+    enabled_hint: حذف منشوراتك تلقائياً بمجرد أن تصل إلى عتبة عمرية محددة، إلا إذا كانت مطابقة لأحد الاستثناءات أدناه
+    exceptions: الاستثناءات
+    explanation: لأن حذف المشاركات عملية مكلفة، يتم ذلك ببطء مع مرور الوقت عندما يكون الخادم غير مشغول. لهذا السبب، يمكن حذف مشاركاتك بعد فترة من بلوغها عتبة السن.
+    ignore_favs: تجاهل المفضلة
+    ignore_reblogs: تجاهل التعزيزات
+    interaction_exceptions: الاستثناءات المبنية على التفاعلات
+    interaction_exceptions_explanation: لاحظ أنه لا يوجد ضمان لحذف الوظائف إذا كانت أقل من عتبة التعزيز المفضلة بعد أن تكون قد ذهبت إليها.
+    keep_direct: الاحتفاظ بالرسائل المباشرة
+    keep_direct_hint: لم تقوم بحذف أي من رسائلك المباشرة
+    keep_media: الاحتفاظ بالمشاركات مع مرفقات الوسائط
+    keep_media_hint: لم تقوم بحذف أي من المشاركات الخاصة بك التي تحتوي على مرفقات الوسائط
+    keep_pinned: الاحتفاظ بالمشاركات المثبتة
+    keep_pinned_hint: لم تقوم بحذف أي من مشاركتك المثبتة
+    keep_polls: الاحتفاظ باستطلاعات الرأي
+    keep_polls_hint: لم تقم بحذف أي من استطلاعاتك
+    keep_self_bookmark: احتفظ بالمشاركات التي أدرجتها حجزا
+    keep_self_bookmark_hint: لم تقم بحذف مشاركاتك الخاصة إذا قمت بوضع علامة مرجعية عليها
+    keep_self_fav: احتفظ بالمشاركات التي تفضلها
+    keep_self_fav_hint: لم تقم بحذف مشاركاتك الخاصة إذا كنت قد فضلتهم
+    min_age:
+      '1209600': أسبوعان
+      '15778476': 6 أشهر
+      '2629746': شهر واحد
+      '31556952': سنة واحدة
+      '5259492': شهران
+      '63113904': أسبوعان
+      '7889238': 3 أشهر
+    min_age_label: عتبة العمر
+    min_favs: إبقاء المشاركات المفضلة أكثر من
+    min_favs_hint: لم تقوم بحذف أي من المشاركات الخاصة بك التي حصلت على أكثر من هذه الكمية من المفضلة. اتركه فارغاً لحذف المشاركات بغض النظر عن عدد المفضلات لديها
+    min_reblogs: إبقاء المشاركات المعززة أكثر من
+    min_reblogs_hint: لم تقم بحذف أي من مشاركاتك التي تم تعزيزها أكثر من هذا العدد من المرات. اتركه فارغاً لحذف المشاركات بغض النظر عن عدد تعزيزاتها
   stream_entries:
     pinned: تبويق مثبّت
     reblogged: رقّاه
@@ -1212,6 +1399,88 @@ ar:
   tags:
     does_not_match_previous_name: لا يطابق الإسم السابق
   terms:
+    body_html: |
+      <h2>سياسة الخصوصية</h2>
+      <h3 id="collect">ما هي المعلومات التي نجمعها؟</h3>
+      <ul>
+      <li><em>معلومات الحساب الأساسية</em>: إذا سجلت على هذا الخادم، فسيُطلب منك أن تُدخل اسم المستخدم، عنوان بريد إلكتروني، وكلمة سر، وتستطيع أن تُدخل معلومات تعريفية إضافية مثل اسم معروض، وسيرة ذاتية، وصورة رمزية، وصورة رأسية. اسم المستخدم، والاسم المعروض، والسيرة الذاتية، والصورة الرمزية، والصورة الرأسية سيكونون ظاهرين بشكل علني للجميع دائماً.</li>
+      <li><em>المنشورات، المتابَعون، ومعلومات علنية أخرى</em>: قائمة الأشخاص الذين تُتابِعُهم علنية للجميع، نفس الشيء مع قائمة متابِعيك. عندما تُرسل رسالة، يتم تخزين التاريخ والوقت واسم البرنامج المنَشور منه. يُمكن للرسائل أن تحتوي على وسائط مُرفقة مثل الصور ومقاطع الفيديو. المنشورات العامة والغير مُدرجة متوفرات بشكل علني. عندما تُميّز منشور على ملفك الشخصي، فهذه أيضاً معلومات متوفرة بشكل علني. يتم تسليم منشوراتك إلى متابِعيك، في بعض الأحيان، يتم تسليمهم إلى خوادم مختلفة ويتم نسخهم وحفظهم هناك. عندما تحذف منشور معيّن، يتم تسليم هذه المعلومة على نفس المنوال إلى متابِعيك أيضاً، إعادة النشر والإعجاب بمنشور معيّن هما أضاً تصرفات علنية دائماً.</li>
+      <li><em>المنشورات المباشرة ومنشورات المتابِعين فقط</em>: تُخزّن وتُعالج كل المنشورات على الخادم. يتم تسليم "منشورات المتابعين فقط" إلى متابِعيك والأشخاص المذكورين في المنشور، ويتم تسليم المنشورات المباشرة إلى الأشخاص المذكورين في المنشور فقط لا غير. في بعض الأحيان يتم تسليمهم إلى خوادم مختلفة ويتم حفظ نُسخ منهم هناك. نحن نبذل جهداً حسن النية للحد من إمكانية وصول المنشورات إلى الأشخاص المُصرّح لهم فقط، ولكن قد تفشل الخوادم الأخرى في القيام بذلك، لذلك من المهم أن تُراجِع الخوادم التي ينتمي إليها متابِعوك. تستطيع أن تُصحّح في الإعدادات على خيار "الموافقة أو الرفض اليدوي" للمتابِعين الجدد. <em>ضع في الحسبان أنه من الممكن أن يقرأ أيُّ أحد من الخوادم هذه الرسائل أو المنشورات</em>، ومن الممكن أن يلتقط المُستقبِلون لقطات شاشة أو أن ينسخوا أو يعيدوا مشاركتهم بطريقة أخرى، لذلك <em>لا تنشر أي معلومات خطرة على ماستدون.</em></li>
+
+      <li><em>عناوين الـIP وبيانات وصفية أخرى</em>: عندما تُسجل دخولك، نقوم بتسجيل عنوان الـIP الذي دخلت منه، وأيضاً اسم المتصفح الذي دخلت منه، كل عناوين الـIP لتسجيلات الدخول متاحة لك للمراجعة وللإبطال في الإعدادات. يبقى آخر عنوان IP مُسجل لما يصل إلى 12 شهراً. ومن الممكن أن نحتفظ بسجلات الخادم التي تحتوي على عنوان الـIP من كل طلب وصول إلى خادمنا.</li>
+      </ul>
+
+      <hr class="spacer" />
+
+      <h3 id="use">بماذا نستعمل معلوماتك؟</h3>
+
+      <p>أي معلومات نجمعها عنك قَد تُستخدم بالطرق التالية:</p>
+
+      <ul>
+      <li>لتوفير الوظائف الأساسية لماستدون، تستطيع أن تتفاعل مع محتوى الآخرين وأن تنشر محتواك الخاص عندما تُسجل دخولك. كمثال، تستطيع أن تُتابِع حسابات أشخاص آخرين لعرض منشوراتهم المُجمّعة في خطك الزمني الشخصي الرئيسي.</li>
+      <li>للمساعدة في اعتدال المجتمع. كمثال، مقارنة عنوان الـIP الخاص بك بعناوين IP أخرى معروفة لمعرفة ما إذا ثمة هناك أي تهرب من الحظر أو انتهاكات أخرى.</li>
+      <li>يمكن أن يُستعمل عنوان بريدك الإلكتروني الذي أدخلته لإرسال معلومات إليك، أو إشعارات عن تفاعل أشخاص آخرين مع محتواك أو إرسالهم راسائل إليك، أو للرد على استفسارات، و/أو طلبات أو أسئلة أخرى.</li>
+      </ul>
+
+      <hr class="spacer" />
+
+      <h3 id="protect">كيف نحمي معلوماتك؟</h3>
+
+      <p>نقوم بتنفيذ مجموعة متنوعة من التدابير الأمنية للحفاظ على سلامة معلوماتك الشخصية عندما تدخلها، أو ترسلها، أو تقوم بالوصول إليها. بجاني أشياء أخرى، تؤَمن جلسة المتصفح الخاص بك، وحركة المرور بين تطبيقاتك والـAPI (واجهة برمجة التطبيقات) باستخدام SSL (بروتوكول طبقة المقابس الآمنة)، وتُهَش أو بالأحرى تُجَزأ كلمة السر الخاصة بك باستخدام خوارزمية أحادية الاتجاه، يمكنك تفعيل خاصّية "الاستيثاق بخطوتين" لتؤَمن وتُصعب إمكانية الوصول إلى حسابك أكثر.</p>
+
+      <hr class="spacer" />
+
+      <h3 id="data-retention">ما هي سياسة الاحتفاظ بالبيانات لدينا؟</h3>
+
+      <p>سنبذل جهداً حسن النية لـ:</p>
+
+      <ul>
+      <li>حفظ سجلّات بيانات الخوادم التي تحتوي على عنوان الـIP من كل طلب وصول إلى خادمنا، بقدر ما يتم الاحتفاظ بهذه السجلات، لا تزيد عن 90 يومًا.</li>
+      <li>الاحتفاظ بعناوين الـIP المربوطة بالمُستخدمين المُسجلين دخولهم لمدة لا تزيد عن 12 شهراً.</li>
+      </ul>
+
+      <p>تستطيع أن تطلب وتُنزل أرشيف لمحتواك، الذي يحتوي على منشوراتك، ووسائطك المُرفقة، وصورك الرمزية، وصورك الرأسية.</p>
+
+      <p>تستطيع أن تحذف حسابك بشكل لا رجعة فيه في أي وقت تريد.</p>
+
+      <hr class="spacer"/>
+
+      <h3 id="cookies">هل نستخدم الـCookies (ملفات تعريف الارتباط)؟</h3>
+
+      <p>نعم، الـcookies هي عبارة عن قطعة نصية صغيرة مخزنة على قرص حاسوبك من قبل متصفحك (إذا سمحت له). تسمح هذه الـcookies للموقع بأن يتعرف على متصفحك، وإذا كنت قد سجلت دخولك إلى حسابك، فسيربطه بحسابك المسجل.</p>
+
+      <p>نستعمل الـcookies لفهم ولحفظ تفضيلاتك للزيارات المستقبلية</p>
+
+      <hr class="spacer" />
+
+      <h3 id="disclose">هل نُفصح عن أي معلومات لأطراف خارجية؟</h3>
+
+      <p>نحن لا نبيع، أو نتاجر، أو بأي طريقة أخرى نُحول بياناتك التعريفية الشخصية إلى جهات خارجية. طبعاً هذا الكلام لا ينطبق على الجهات الموثوقة التي تساعدنا في تشغيل موقعنا، أو في إجراء أعمالنا، أو في خدمتك طالما أنهم يوافقون على الحفاظ على سرّيتها. ومن الممكن أن نُطلق أو أن نُصرّح بمعلوماتك عندما نؤمِن بأن هذا هو التصرّف الصحيح للامتثال للقانون، أو لتطبيق سياسة موقعنا، أو لحفظ الحقوق، أو الأملاك، أو الأمان الخاص بنا أو بغيرنا.</p>
+
+      <p>من الممكن أن يُنزل محتواك من قبل خوادم أخرى في الشبكة، يتم تسليم منشوراتك "العامة" ومنشورات "المتابعين فقط" إلى الخوادم التي يقيم فيها متابِعوك، وتُسلم الرسائل المباشرة إلى خوادم التي يُقيم فيها المُستقبلون، طالما أن هؤلاء المتابِعين أو المُستلمين يقيمون في خوادم مختلفة عن هذا الخادم.</p>
+
+      <p>عندما تخوّل تطبيق معين لاستخدام حسابك، وطبعاً على حسب نطاق الأذونات التي سمحت له بها، فيستطيع هذا التطبيق الوصول إلى معلومات ملفك التعريفي العامة، قائمة المتابَعون منك، قائمة المتابِعون لك، كل منشوراتك، وكل إعجاباتك. لا يمكن للتطبيقات الوصول إلى عنوان بريدك الإلكتروني أو إلى كلمة مرورك.</p>
+
+      <hr class="spacer" />
+
+      <h3 id="children">استخدام الأطفال للموقع</h3>
+
+      <p>إذا كان هذا الخادم في الـEU (الإتحاد الأوروبي) أو في الـEEA (المنطقة الاقتصادية الأوروبية): فموقعنا، ومنتجاتنا وخدماتنا كلها موجهة للأشخاص الذين لا تقل أعمارهم عن الـ16 سنة، إذا كنت تحت هذا السن، حسب متطلبات الـ<a href="https://ar.wikipedia.org/wiki/%D8%A7%D9%84%D9%86%D8%B8%D8%A7%D9%85_%D8%A7%D9%84%D8%A3%D9%88%D8%B1%D9%88%D8%A8%D9%8A_%D8%A7%D9%84%D8%B9%D8%A7%D9%85_%D9%84%D8%AD%D9%85%D8%A7%D9%8A%D8%A9_%D8%A7%D9%84%D8%A8%D9%8A%D8%A7%D9%86%D8%A7%D8%AA">GDPR</a> (النظام الأوروبي العام لحماية البيانات) فلا تستخدم هذا الموقع.</p>
+
+
+      <p>إذا كان هذا السيرفر في الـUS (الولايات المتحدة الأمريكية): فموقعنا، ومنتجاتنا وخدماتنا كلها موجهة للأشخاص الذين لا تقل أعمارهم عن الـ13 سنة، إذا كنت تحت هذا السن، حسب متطلبات الـ<a href="https://ar.wikipedia.org/wiki/%D9%82%D8%A7%D9%86%D9%88%D9%86_%D8%AD%D9%85%D8%A7%D9%8A%D8%A9_%D8%AE%D8%B5%D9%88%D8%B5%D9%8A%D8%A9_%D8%A7%D9%84%D8%A3%D8%B7%D9%81%D8%A7%D9%84_%D8%B9%D9%84%D9%89_%D8%A7%D9%84%D8%A5%D9%86%D8%AA%D8%B1%D9%86%D8%AA">COPPA</a> (قانون حماية خصوصية الأطفال على الإنترنت) فلا تستخدم هذا الموقع.</p>
+
+      <p>من الممكن أن تكون المتطلبات القانونية مختلفة إذا كان هذا الخادم في ولاية قضائية أخرى.</p>
+
+      <hr class="spacer" />
+
+      <h3 id="changes">تغييرات لسياستنا للخصوصية</h3>
+
+      <p>إذا قررنا أن نغير سياستنا للخصوصية، فسنَنشر هذه التغييرات على هذه الصفحة.</p>
+
+      <p>هذه الوثيقة هي CC-BY-SA (النسبة-الترخيص بالمثل)، تم آخر تحديث لها في 7 مارس، 2018.</p>
+
+      <p>مقتبسة في الأصل من <a href="https://github.com/discourse/discourse">Discourse privacy policy</a>.</p>
     title: شروط الخدمة وسياسة الخصوصية على %{instance}
   themes:
     contrast: ماستدون (تباين عالٍ)
@@ -1222,11 +1491,16 @@ ar:
       default: "%b %d, %Y, %H:%M"
       month: "%b %Y"
   two_factor_authentication:
+    add: إضافة
     disable: تعطيل
+    disabled_success: تم تعطيل المصادقة بخطوتين
+    edit: تعديل
     enabled: نظام المصادقة بخطوتين مُفعَّل
     enabled_success: تم تفعيل المصادقة بخطوتين بنجاح
     generate_recovery_codes: توليد رموز الاسترجاع
     lost_recovery_codes: تُمكّنك رموز الاسترجاع الاحتياطية مِن استرجاع النفاذ إلى حسابك في حالة فقدان جهازك المحمول. إن ضاعت منك هذه الرموز فبإمكانك إعادة توليدها مِن هنا و إبطال الرموز القديمة.
+    methods: المصادقة بخُطوَتَيْن
+    otp: تطبيق استيثاق
     recovery_codes: النسخ الاحتياطي لرموز الاسترجاع
     recovery_codes_regenerated: تم إعادة توليد رموز الاسترجاع الاحتياطية بنجاح
     recovery_instructions_html: إن فقدت الوصول إلى هاتفك، يمكنك استخدام أحد رموز الاسترداد أدناه لاستعادة الوصول إلى حسابك. <strong>حافظ على رموز الاسترداد بأمان</strong>. يمكنك ، على سبيل المثال ، طباعتها وتخزينها مع مستندات أخرى هامة.
@@ -1245,6 +1519,7 @@ ar:
     warning:
       explanation:
         disable: عندما يتم تجميد حسابك، تظل بيانات حسابك سليمة، ولكن لا يمكنك تنفيذ أي إجراءات حتى يتم فتحه.
+        sensitive: سيتم التعامل مع ملفات الوسائط المحملة والوسائط المرتبطة لديك على أنها حساسة.
         silence: في حين أن حسابك محدود، فإن الأشخاص الذين يتبعونك بالفعل سيشاهدون تبويقاتك على هذا الخادم، وقد يتم استثناؤك من قوائم عامة مختلفة. ومع ذلك، قد يمكن للآخرين متابعتك يدويا.
         suspend: تم إيقاف حسابك بشكل دائم، وتم إزالة كافة تبويقاتك وملفات الوسائط التي تم تحميلها بشكل لا رجعة فيه من هذا الخادم، و كذا على الخوادم حيث كان لديك فيها متابِعون.
       get_in_touch: يمكنك الرد على هذا البريد الإلكتروني للاتصال بفريق %{instance}.
@@ -1253,11 +1528,13 @@ ar:
       subject:
         disable: تم تجميد حسابك %{acct}
         none: تحذير إلى %{acct}
+        sensitive: تم وضع علامة حساسة على وسائط منشورات حسابك %{acct}
         silence: إنّ حسابك %{acct} محدود
         suspend: لقد تم تعليق حسابك %{acct}
       title:
         disable: الحساب مُجمَّد
         none: تحذير
+        sensitive: تم وضع علامة حساسة على الوسائط الخاصة بك
         silence: الحساب محدود
         suspend: الحساب مُعلَّق
     welcome:
@@ -1280,11 +1557,8 @@ ar:
       tips: نصائح
       title: أهلاً بك، %{name}!
   users:
-    blocked_email_provider: مزوّد خدمة البريد الإلكتروني هذا غير مسموح به
     follow_limit_reached: لا يمكنك متابعة أكثر مِن %{limit} أشخاص
     generic_access_help_html: صادفت مشكلة في الوصول إلى حسابك؟ اتصل بـ %{email} للحصول على المساعدة
-    invalid_email: عنوان البريد الإلكتروني غير صالح
-    invalid_email_mx: لا يبدو أن عنوان البريد الإلكتروني موجود
     invalid_otp_token: رمز المصادقة بخطوتين غير صالح
     invalid_sign_in_token: رمز الآمان غير صحيح
     otp_lost_help_html: إن فقدتَهُما ، يمكنك الاتصال بـ %{email}
@@ -1294,3 +1568,20 @@ ar:
   verification:
     explanation_html: 'يمكنك <strong>التحقق من نفسك كمالك لروابط البيانات التعريفية على صفحتك الشخصية</strong>. لذلك، يجب أن يحتوي الموقع المقترِن على رابط إلى صفحتك التعريفية الشخصية على ماستدون. الرابط الخلفي <strong>يجب أن</strong> يحتوي على رمز <code>rel="me"</code>. محتوى النص في الرابط غير مهم. على سبيل المثال:'
     verification: التحقق
+  webauthn_credentials:
+    add: إضافة مفتاح أمان جديد
+    create:
+      error: حدثت مشكلة ما خلال إضافة مفتاح أمانك. الرجاء المحاولة مرة أخرى.
+      success: تم إضافة مفتاح الأمان الخاص بك.
+    delete: حذف
+    delete_confirmation: هل أنت متأكد من أنك تريد حذف مفتاح الأمان هذا؟
+    description_html: إذا قمت بتفعيل <strong>استيثاق مفتاح الأمان</strong>، فإن تسجيل الدخول سيتطلب منك استخدام أحد مفاتيح الأمان الخاصة بك.
+    destroy:
+      error: حدثت مشكلة ما خلال حذف مفتاح أمانك. الرجاء المحاولة مرة أخرى.
+      success: تم حذف مفتاح الأمان الخاص بك.
+    invalid_credential: مفتاح الأمان غير صالح
+    nickname_hint: أدخل اسم مستعار لمفتاح الأمان الجديد الخاص بك
+    not_enabled: لم تقم بتفعيل WebAuthn بعد
+    not_supported: هذا المتصفح لا يدعم مفاتيح الأمان
+    otp_required: لاستخدام مفاتيح الأمان، يرجى تفعيل الاستيثاق بعامِلين أولاً.
+    registered_on: تم التسجيل في %{date}

@@ -53,7 +53,7 @@ const messages = defineMessages({
   publish: { id: 'compose_form.publish', defaultMessage: 'Toot' },
 });
 
-const shouldHideFAB = path => path.match(/^\/statuses\/|^\/search|^\/getting-started/);
+const shouldHideFAB = path => path.match(/^\/statuses\/|^\/@[^/]+\/\d+|^\/publish|^\/search|^\/getting-started|^\/start/);
 
 export default @(component => injectIntl(component, { withRef: true }))
 class ColumnsArea extends ImmutablePureComponent {
@@ -70,17 +70,32 @@ class ColumnsArea extends ImmutablePureComponent {
     children: PropTypes.node,
   };
 
+   // Corresponds to (max-width: 600px + (285px * 1) + (10px * 1)) in SCSS
+   mediaQuery = 'matchMedia' in window && window.matchMedia('(max-width: 895px)');
+
   state = {
     shouldAnimate: false,
+    renderComposePanel: !(this.mediaQuery && this.mediaQuery.matches),
   }
 
   componentWillReceiveProps() {
-    this.setState({ shouldAnimate: false });
+    if (typeof this.pendingIndex !== 'number' && this.lastIndex !== getIndex(this.context.router.history.location.pathname)) {
+      this.setState({ shouldAnimate: false });
+    }
   }
 
   componentDidMount() {
     if (!this.props.singleColumn) {
       this.node.addEventListener('wheel', this.handleWheel, supportsPassiveEvents ? { passive: true } : false);
+    }
+
+    if (this.mediaQuery) {
+      if (this.mediaQuery.addEventListener) {
+        this.mediaQuery.addEventListener('change', this.handleLayoutChange);
+      } else {
+        this.mediaQuery.addListener(this.handleLayoutChange);
+      }
+      this.setState({ renderComposePanel: !this.mediaQuery.matches });
     }
 
     this.lastIndex   = getIndex(this.context.router.history.location.pathname);
@@ -99,13 +114,26 @@ class ColumnsArea extends ImmutablePureComponent {
     if (this.props.singleColumn !== prevProps.singleColumn && !this.props.singleColumn) {
       this.node.addEventListener('wheel', this.handleWheel, supportsPassiveEvents ? { passive: true } : false);
     }
-    this.lastIndex = getIndex(this.context.router.history.location.pathname);
-    this.setState({ shouldAnimate: true });
+
+    const newIndex = getIndex(this.context.router.history.location.pathname);
+
+    if (this.lastIndex !== newIndex) {
+      this.lastIndex = newIndex;
+      this.setState({ shouldAnimate: true });
+    }
   }
 
   componentWillUnmount () {
     if (!this.props.singleColumn) {
       this.node.removeEventListener('wheel', this.handleWheel);
+    }
+
+    if (this.mediaQuery) {
+      if (this.mediaQuery.removeEventListener) {
+        this.mediaQuery.removeEventListener('change', this.handleLayoutChange);
+      } else {
+        this.mediaQuery.removeListener(this.handleLayouteChange);
+      }
     }
   }
 
@@ -114,6 +142,10 @@ class ColumnsArea extends ImmutablePureComponent {
       const modifier = this.isRtlLayout ? -1 : 1;
       this._interruptScrollAnimation = scrollRight(this.node, (this.node.scrollWidth - window.innerWidth) * modifier);
     }
+  }
+
+  handleLayoutChange = (e) => {
+    this.setState({ renderComposePanel: !e.matches });
   }
 
   handleSwipe = (index) => {
@@ -179,12 +211,12 @@ class ColumnsArea extends ImmutablePureComponent {
 
   render () {
     const { columns, children, singleColumn, isModalOpen, intl } = this.props;
-    const { shouldAnimate } = this.state;
+    const { shouldAnimate, renderComposePanel } = this.state;
 
     const columnIndex = getIndex(this.context.router.history.location.pathname);
 
     if (singleColumn) {
-      const floatingActionButton = shouldHideFAB(this.context.router.history.location.pathname) ? null : <Link key='floating-action-button' to='/statuses/new' className='floating-action-button' aria-label={intl.formatMessage(messages.publish)}><Icon id='pencil' /></Link>;
+      const floatingActionButton = shouldHideFAB(this.context.router.history.location.pathname) ? null : <Link key='floating-action-button' to='/publish' className='floating-action-button' aria-label={intl.formatMessage(messages.publish)}><Icon id='pencil' /></Link>;
 
       const content = columnIndex !== -1 ? (
         <ReactSwipeableViews key='content' hysteresis={0.2} threshold={15} index={columnIndex} onChangeIndex={this.handleSwipe} onTransitionEnd={this.handleAnimationEnd} animateTransitions={shouldAnimate} springConfig={{ duration: '400ms', delay: '0s', easeFunction: 'ease' }} style={{ height: '100%' }} disabled={disableSwiping}>
@@ -198,7 +230,7 @@ class ColumnsArea extends ImmutablePureComponent {
         <div className='columns-area__panels'>
           <div className='columns-area__panels__pane columns-area__panels__pane--compositional'>
             <div className='columns-area__panels__pane__inner'>
-              <ComposePanel />
+              {renderComposePanel && <ComposePanel />}
             </div>
           </div>
 

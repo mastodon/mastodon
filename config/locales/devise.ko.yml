@@ -2,7 +2,7 @@
 ko:
   devise:
     confirmations:
-      confirmed: 이메일이 성공적으로 확인 되었습니다.
+      confirmed: 이메일이 성공적으로 승인 되었습니다.
       send_instructions: 몇 분 이내로 확인 이메일이 발송 됩니다. 이메일을 받지 못 한 경우, 스팸 폴더를 확인하세요.
       send_paranoid_instructions: 당신의 이메일이 우리의 DB에 있을 경우 몇 분 이내로 확인 메일이 발송 됩니다. 이메일을 받지 못 한 경우, 스팸 폴더를 확인하세요.
     failure:
@@ -82,8 +82,8 @@ ko:
       success: 성공적으로 %{kind} 계정을 인증 했습니다.
     passwords:
       no_token: 패스워드 재설정 이메일을 거치지 않고는 여기에 올 수 없습니다. 만약 패스워드 재설정 메일에서 온 것이라면 URL이 맞는지 확인해 주세요.
-      send_instructions: 당신의 이메일 주소가 우리의 DB에 있아면 패스워드 복구 링크가 몇 분 이내에 메일로 발송 됩니다. 만약 메일을 받지 못 하신 경우 스팸 폴더를 확인해 주세요.
-      send_paranoid_instructions: 당신의 이메일 주소가 우리의 DB에 있아면 패스워드 복구 링크가 몇 분 이내에 메일로 발송 됩니다. 만약 메일을 받지 못 하신 경우 스팸 폴더를 확인해 주세요.
+      send_instructions: 당신의 이메일 주소가 우리의 DB에 있다면 패스워드 복구 링크가 몇 분 이내에 메일로 발송 됩니다. 만약 메일을 받지 못 하신 경우 스팸 폴더를 확인해 주세요.
+      send_paranoid_instructions: 당신의 이메일 주소가 우리의 DB에 있다면 패스워드 복구 링크가 몇 분 이내에 메일로 발송 됩니다. 만약 메일을 받지 못 하신 경우 스팸 폴더를 확인해 주세요.
       updated: 패스워드가 재설정 되었습니다. 로그인 되었습니다.
       updated_not_active: 패스워드가 성공적으로 변경 되었습니다.
     registrations:

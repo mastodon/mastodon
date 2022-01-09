@@ -1,0 +1,42 @@
+---
+si:
+  devise:
+    failure:
+      already_authenticated: ඔබ දැනටමත් පිවිස ඇත.
+      locked: ඔබගේ ගිණුම අගුළු දමා ඇත.
+    mailer:
+      confirmation_instructions:
+        title: වි. තැපැල් ලිපිනය තහවුරු කරන්න
+      email_changed:
+        subject: 'මාස්ටඩන්: වි-තැපෑල වෙනස් විය'
+        title: නව විද්‍යුත් තැපැල් ලිපිනය
+      password_change:
+        title: මුරපදය වෙනස් කරන ලදි
+      reconfirmation_instructions:
+        title: වි. තැපැල් ලිපිනය තහවුරු කරන්න
+      reset_password_instructions:
+        action: මුරපදය වෙනස් කරන්න
+        title: මුරපදය නැවත සැකසීම
+      two_factor_disabled:
+        title: ද්විපියවර අබලයි
+      two_factor_enabled:
+        title: ද්විපියවර සබලයි
+      two_factor_recovery_codes_changed:
+        title: ද්විපියවර ප්‍රතිසාධන කේත වෙනස්විණි
+      unlock_instructions:
+        subject: 'මාස්ටඩන්: අගුලුහැරීමේ උපදේශ'
+      webauthn_credential:
+        added:
+          subject: 'මාස්ටඩන්: නව ආරක්‍ෂණ යතුර'
+          title: ආරක්‍ෂණ යතුරක් එකතු කර ඇත
+      webauthn_disabled:
+        title: ආරක්‍ෂණ යතුරු අබල කර ඇත
+      webauthn_enabled:
+        title: ආරක්‍ෂණ යතුරු සබල කර ඇත
+    registrations:
+      update_needs_confirmation: ඔබ ඔබගේ ගිණුම සාර්ථකව යාවත්කාලීන කළ නමුත් අපට ඔබගේ නව විද්‍යුත් තැපැල් ලිපිනය තහවුරු කළ යුතුය. කරුණාකර ඔබගේ විද්‍යුත් තැපෑල පරීක්ෂා කර තහවුරු කිරීමේ සබැඳිය අනුගමනය කර ඔබගේ නව විද්‍යුත් තැපැල් ලිපිනය තහවුරු කරන්න. ඔබට මෙම විද්‍යුත් තැපෑල නොලැබුනේ නම් කරුණාකර ඔබගේ අයාචිත තැපැල් බහාලුම පරීක්ෂා කරන්න.
+      updated: ඔබගේ ගිණුම සාර්ථකව යාවත්කාලීන කර ඇත.
+    sessions:
+      already_signed_out: සාර්ථකව නික්මුනි.
+      signed_in: සාර්ථකව පිවිසුනි.
+      signed_out: සාර්ථකව නික්මුනි.

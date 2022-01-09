@@ -94,7 +94,7 @@ class Request
     end
 
     def http_client
-      HTTP.use(:auto_inflate).timeout(TIMEOUT.dup).follow(max_hops: 2)
+      HTTP.use(:auto_inflate).timeout(TIMEOUT.dup).follow(max_hops: 3)
     end
   end
 
@@ -145,7 +145,7 @@ class Request
   end
 
   def block_hidden_service?
-    !Rails.configuration.x.access_to_hidden_service && /\.(onion|i2p)$/.match(@url.host)
+    !Rails.configuration.x.access_to_hidden_service && /\.(onion|i2p)$/.match?(@url.host)
   end
 
   module ClientLimit

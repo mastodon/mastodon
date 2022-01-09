@@ -5,34 +5,63 @@
   - [push, 4]
   - [mailers, 2]
   - [pull]
+  - [scheduler]
+:scheduler:
+  :listened_queues_only: true
 :schedule:
   scheduled_statuses_scheduler:
     every: '5m'
     class: Scheduler::ScheduledStatusesScheduler
-  trending_tags_scheduler:
+    queue: scheduler
+  trends_refresh_scheduler:
     every: '5m'
-    class: Scheduler::TrendingTagsScheduler
+    class: Scheduler::Trends::RefreshScheduler
+    queue: scheduler
+  trends_review_notifications_scheduler:
+    every: '2h'
+    class: Scheduler::Trends::ReviewNotificationsScheduler
+    queue: scheduler
   media_cleanup_scheduler:
     cron: '<%= Random.rand(0..59) %> <%= Random.rand(3..5) %> * * *'
     class: Scheduler::MediaCleanupScheduler
+    queue: scheduler
   feed_cleanup_scheduler:
     cron: '<%= Random.rand(0..59) %> <%= Random.rand(0..2) %> * * *'
     class: Scheduler::FeedCleanupScheduler
+    queue: scheduler
+  follow_recommendations_scheduler:
+    cron: '<%= Random.rand(0..59) %> <%= Random.rand(6..9) %> * * *'
+    class: Scheduler::FollowRecommendationsScheduler
+    queue: scheduler
   doorkeeper_cleanup_scheduler:
     cron: '<%= Random.rand(0..59) %> <%= Random.rand(0..2) %> * * 0'
     class: Scheduler::DoorkeeperCleanupScheduler
+    queue: scheduler
   user_cleanup_scheduler:
     cron: '<%= Random.rand(0..59) %> <%= Random.rand(4..6) %> * * *'
     class: Scheduler::UserCleanupScheduler
+    queue: scheduler
   ip_cleanup_scheduler:
     cron: '<%= Random.rand(0..59) %> <%= Random.rand(3..5) %> * * *'
     class: Scheduler::IpCleanupScheduler
+    queue: scheduler
   email_scheduler:
     cron: '0 10 * * 2'
     class: Scheduler::EmailScheduler
+    queue: scheduler
   backup_cleanup_scheduler:
     cron: '<%= Random.rand(0..59) %> <%= Random.rand(3..5) %> * * *'
     class: Scheduler::BackupCleanupScheduler
+    queue: scheduler
   pghero_scheduler:
     cron: '0 0 * * *'
     class: Scheduler::PgheroScheduler
+    queue: scheduler
+  instance_refresh_scheduler:
+    cron: '0 * * * *'
+    class: Scheduler::InstanceRefreshScheduler
+    queue: scheduler
+  accounts_statuses_cleanup_scheduler:
+    interval: 1 minute
+    class: Scheduler::AccountsStatusesCleanupScheduler
+    queue: scheduler

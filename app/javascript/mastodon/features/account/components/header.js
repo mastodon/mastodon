@@ -96,49 +96,34 @@ class Header extends ImmutablePureComponent {
     return !location.pathname.match(/\/(followers|following)\/?$/);
   }
 
-  _updateEmojis () {
-    const node = this.node;
-
-    if (!node || autoPlayGif) {
+  handleMouseEnter = ({ currentTarget }) => {
+    if (autoPlayGif) {
       return;
     }
 
-    const emojis = node.querySelectorAll('.custom-emoji');
+    const emojis = currentTarget.querySelectorAll('.custom-emoji');
 
     for (var i = 0; i < emojis.length; i++) {
       let emoji = emojis[i];
-      if (emoji.classList.contains('status-emoji')) {
-        continue;
-      }
-      emoji.classList.add('status-emoji');
-
-      emoji.addEventListener('mouseenter', this.handleEmojiMouseEnter, false);
-      emoji.addEventListener('mouseleave', this.handleEmojiMouseLeave, false);
+      emoji.src = emoji.getAttribute('data-original');
     }
   }
 
-  componentDidMount () {
-    this._updateEmojis();
-  }
+  handleMouseLeave = ({ currentTarget }) => {
+    if (autoPlayGif) {
+      return;
+    }
 
-  componentDidUpdate () {
-    this._updateEmojis();
-  }
+    const emojis = currentTarget.querySelectorAll('.custom-emoji');
 
-  handleEmojiMouseEnter = ({ target }) => {
-    target.src = target.getAttribute('data-original');
-  }
-
-  handleEmojiMouseLeave = ({ target }) => {
-    target.src = target.getAttribute('data-static');
-  }
-
-  setRef = (c) => {
-    this.node = c;
+    for (var i = 0; i < emojis.length; i++) {
+      let emoji = emojis[i];
+      emoji.src = emoji.getAttribute('data-static');
+    }
   }
 
   render () {
-    const { account, intl, domain, identity_proofs } = this.props;
+    const { account, intl, domain } = this.props;
 
     if (!account) {
       return null;
@@ -164,22 +149,22 @@ class Header extends ImmutablePureComponent {
       info.push(<span key='domain_blocked' className='relationship-tag'><FormattedMessage id='account.domain_blocked' defaultMessage='Domain blocked' /></span>);
     }
 
+    if (account.getIn(['relationship', 'requested']) || account.getIn(['relationship', 'following'])) {
+      bellBtn = <IconButton icon='bell-o' size={24} active={account.getIn(['relationship', 'notifying'])} title={intl.formatMessage(account.getIn(['relationship', 'notifying']) ? messages.disableNotifications : messages.enableNotifications, { name: account.get('username') })} onClick={this.props.onNotifyToggle} />;
+    }
+
     if (me !== account.get('id')) {
       if (!account.get('relationship')) { // Wait until the relationship is loaded
         actionBtn = '';
       } else if (account.getIn(['relationship', 'requested'])) {
-        actionBtn = <Button className='logo-button' text={intl.formatMessage(messages.cancel_follow_request)} title={intl.formatMessage(messages.requested)} onClick={this.props.onFollow} />;
+        actionBtn = <Button className={classNames('logo-button', { 'button--with-bell': bellBtn !== '' })} text={intl.formatMessage(messages.cancel_follow_request)} title={intl.formatMessage(messages.requested)} onClick={this.props.onFollow} />;
       } else if (!account.getIn(['relationship', 'blocking'])) {
-        actionBtn = <Button disabled={account.getIn(['relationship', 'blocked_by'])} className={classNames('logo-button', { 'button--destructive': account.getIn(['relationship', 'following']) })} text={intl.formatMessage(account.getIn(['relationship', 'following']) ? messages.unfollow : messages.follow)} onClick={this.props.onFollow} />;
+        actionBtn = <Button disabled={account.getIn(['relationship', 'blocked_by'])} className={classNames('logo-button', { 'button--destructive': account.getIn(['relationship', 'following']), 'button--with-bell': bellBtn !== '' })} text={intl.formatMessage(account.getIn(['relationship', 'following']) ? messages.unfollow : messages.follow)} onClick={this.props.onFollow} />;
       } else if (account.getIn(['relationship', 'blocking'])) {
         actionBtn = <Button className='logo-button' text={intl.formatMessage(messages.unblock, { name: account.get('username') })} onClick={this.props.onBlock} />;
       }
     } else {
       actionBtn = <Button className='logo-button' text={intl.formatMessage(messages.edit_profile)} onClick={this.openEditProfile} />;
-    }
-
-    if (account.getIn(['relationship', 'requested']) || account.getIn(['relationship', 'following'])) {
-      bellBtn = <IconButton icon='bell-o' size={24} active={account.getIn(['relationship', 'notifying'])} title={intl.formatMessage(account.getIn(['relationship', 'notifying']) ? messages.disableNotifications : messages.enableNotifications, { name: account.get('username') })} onClick={this.props.onNotifyToggle} />;
     }
 
     if (account.get('moved') && !account.getIn(['relationship', 'following'])) {
@@ -276,7 +261,7 @@ class Header extends ImmutablePureComponent {
     }
 
     return (
-      <div className={classNames('account__header', { inactive: !!account.get('moved') })} ref={this.setRef}>
+      <div className={classNames('account__header', { inactive: !!account.get('moved') })} onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
         <div className='account__header__image'>
           <div className='account__header__info'>
             {!suspended && info}
@@ -312,25 +297,13 @@ class Header extends ImmutablePureComponent {
 
           <div className='account__header__extra'>
             <div className='account__header__bio'>
-              {(fields.size > 0 || identity_proofs.size > 0) && (
+              {fields.size > 0 && (
                 <div className='account__header__fields'>
-                  {identity_proofs.map((proof, i) => (
-                    <dl key={i}>
-                      <dt dangerouslySetInnerHTML={{ __html: proof.get('provider') }} />
-
-                      <dd className='verified'>
-                        <a href={proof.get('proof_url')} target='_blank' rel='noopener noreferrer'><span title={intl.formatMessage(messages.linkVerifiedOn, { date: intl.formatDate(proof.get('updated_at'), dateFormatOptions) })}>
-                          <Icon id='check' className='verified__mark' />
-                        </span></a>
-                        <a href={proof.get('profile_url')} target='_blank' rel='noopener noreferrer'><span dangerouslySetInnerHTML={{ __html: ' '+proof.get('provider_username') }} /></a>
-                      </dd>
-                    </dl>
-                  ))}
                   {fields.map((pair, i) => (
                     <dl key={i}>
-                      <dt dangerouslySetInnerHTML={{ __html: pair.get('name_emojified') }} title={pair.get('name')} />
+                      <dt dangerouslySetInnerHTML={{ __html: pair.get('name_emojified') }} title={pair.get('name')} className='translate' />
 
-                      <dd className={pair.get('verified_at') && 'verified'} title={pair.get('value_plain')}>
+                      <dd className={`${pair.get('verified_at') ? 'verified' : ''} translate`} title={pair.get('value_plain')}>
                         {pair.get('verified_at') && <span title={intl.formatMessage(messages.linkVerifiedOn, { date: intl.formatDate(pair.get('verified_at'), dateFormatOptions) })}><Icon id='check' className='verified__mark' /></span>} <span dangerouslySetInnerHTML={{ __html: pair.get('value_emojified') }} />
                       </dd>
                     </dl>
@@ -340,26 +313,28 @@ class Header extends ImmutablePureComponent {
 
               {account.get('id') !== me && !suspended && <AccountNoteContainer account={account} />}
 
-              {account.get('note').length > 0 && account.get('note') !== '<p></p>' && <div className='account__header__content' dangerouslySetInnerHTML={content} />}
+              {account.get('note').length > 0 && account.get('note') !== '<p></p>' && <div className='account__header__content translate' dangerouslySetInnerHTML={content} />}
+
+              <div className='account__header__joined'><FormattedMessage id='account.joined' defaultMessage='Joined {date}' values={{ date: intl.formatDate(account.get('created_at'), { year: 'numeric', month: 'short', day: '2-digit' }) }} /></div>
             </div>
 
             {!suspended && (
               <div className='account__header__extra__links'>
-                <NavLink isActive={this.isStatusesPageActive} activeClassName='active' to={`/accounts/${account.get('id')}`} title={intl.formatNumber(account.get('statuses_count'))}>
+                <NavLink isActive={this.isStatusesPageActive} activeClassName='active' to={`/@${account.get('acct')}`} title={intl.formatNumber(account.get('statuses_count'))}>
                   <ShortNumber
                     value={account.get('statuses_count')}
                     renderer={counterRenderer('statuses')}
                   />
                 </NavLink>
 
-                <NavLink exact activeClassName='active' to={`/accounts/${account.get('id')}/following`} title={intl.formatNumber(account.get('following_count'))}>
+                <NavLink exact activeClassName='active' to={`/@${account.get('acct')}/following`} title={intl.formatNumber(account.get('following_count'))}>
                   <ShortNumber
                     value={account.get('following_count')}
                     renderer={counterRenderer('following')}
                   />
                 </NavLink>
 
-                <NavLink exact activeClassName='active' to={`/accounts/${account.get('id')}/followers`} title={intl.formatNumber(account.get('followers_count'))}>
+                <NavLink exact activeClassName='active' to={`/@${account.get('acct')}/followers`} title={intl.formatNumber(account.get('followers_count'))}>
                   <ShortNumber
                     value={account.get('followers_count')}
                     renderer={counterRenderer('followers')}

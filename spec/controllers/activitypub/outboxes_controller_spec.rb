@@ -46,7 +46,7 @@ RSpec.describe ActivityPub::OutboxesController, type: :controller do
         end
 
         it 'returns application/activity+json' do
-          expect(response.content_type).to eq 'application/activity+json'
+          expect(response.media_type).to eq 'application/activity+json'
         end
 
         it 'returns totalItems' do
@@ -54,6 +54,10 @@ RSpec.describe ActivityPub::OutboxesController, type: :controller do
         end
 
         it_behaves_like 'cachable response'
+
+        it 'does not have a Vary header' do
+          expect(response.headers['Vary']).to be_nil
+        end
 
         context 'when account is permanently suspended' do
           before do
@@ -85,7 +89,7 @@ RSpec.describe ActivityPub::OutboxesController, type: :controller do
         end
 
         it 'returns application/activity+json' do
-          expect(response.content_type).to eq 'application/activity+json'
+          expect(response.media_type).to eq 'application/activity+json'
         end
 
         it 'returns orderedItems with public or unlisted statuses' do
@@ -95,6 +99,10 @@ RSpec.describe ActivityPub::OutboxesController, type: :controller do
         end
 
         it_behaves_like 'cachable response'
+
+        it 'returns Vary header with Signature' do
+          expect(response.headers['Vary']).to include 'Signature'
+        end
 
         context 'when account is permanently suspended' do
           before do
@@ -133,7 +141,7 @@ RSpec.describe ActivityPub::OutboxesController, type: :controller do
         end
 
         it 'returns application/activity+json' do
-          expect(response.content_type).to eq 'application/activity+json'
+          expect(response.media_type).to eq 'application/activity+json'
         end
 
         it 'returns orderedItems with public or unlisted statuses' do
@@ -144,7 +152,7 @@ RSpec.describe ActivityPub::OutboxesController, type: :controller do
         end
 
         it 'returns private Cache-Control header' do
-          expect(response.headers['Cache-Control']).to eq 'max-age=0, private'
+          expect(response.headers['Cache-Control']).to eq 'max-age=60, private'
         end
       end
 
@@ -159,7 +167,7 @@ RSpec.describe ActivityPub::OutboxesController, type: :controller do
         end
 
         it 'returns application/activity+json' do
-          expect(response.content_type).to eq 'application/activity+json'
+          expect(response.media_type).to eq 'application/activity+json'
         end
 
         it 'returns orderedItems with private statuses' do
@@ -170,7 +178,7 @@ RSpec.describe ActivityPub::OutboxesController, type: :controller do
         end
 
         it 'returns private Cache-Control header' do
-          expect(response.headers['Cache-Control']).to eq 'max-age=0, private'
+          expect(response.headers['Cache-Control']).to eq 'max-age=60, private'
         end
       end
 
@@ -185,7 +193,7 @@ RSpec.describe ActivityPub::OutboxesController, type: :controller do
         end
 
         it 'returns application/activity+json' do
-          expect(response.content_type).to eq 'application/activity+json'
+          expect(response.media_type).to eq 'application/activity+json'
         end
 
         it 'returns empty orderedItems' do
@@ -195,7 +203,7 @@ RSpec.describe ActivityPub::OutboxesController, type: :controller do
         end
 
         it 'returns private Cache-Control header' do
-          expect(response.headers['Cache-Control']).to eq 'max-age=0, private'
+          expect(response.headers['Cache-Control']).to eq 'max-age=60, private'
         end
       end
 
@@ -210,7 +218,7 @@ RSpec.describe ActivityPub::OutboxesController, type: :controller do
         end
 
         it 'returns application/activity+json' do
-          expect(response.content_type).to eq 'application/activity+json'
+          expect(response.media_type).to eq 'application/activity+json'
         end
 
         it 'returns empty orderedItems' do
@@ -220,7 +228,7 @@ RSpec.describe ActivityPub::OutboxesController, type: :controller do
         end
 
         it 'returns private Cache-Control header' do
-          expect(response.headers['Cache-Control']).to eq 'max-age=0, private'
+          expect(response.headers['Cache-Control']).to eq 'max-age=60, private'
         end
       end
     end

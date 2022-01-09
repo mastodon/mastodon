@@ -5,13 +5,28 @@ id:
       poll:
         expires_at: Tenggat waktu
         options: Pilihan
+      user:
+        agreement: Persetujuan layanan
+        email: Alamat email
+        locale: Locale
+        password: Kata sandi
+      user/account:
+        username: Nama pengguna
+      user/invite_request:
+        text: Alasan
     errors:
       models:
         account:
           attributes:
             username:
-              invalid: hanya boleh berisi huruf, angka, dan underscore
+              invalid: hanya boleh berisi huruf, angka, dan garis bawah
+              reserved: sudah dipesan
         status:
           attributes:
             reblog:
               taken: status sudah ada
+        user:
+          attributes:
+            email:
+              blocked: menggunakan layanan email yang tidak diizinkan
+              unreachable: sepertinya tidak ada

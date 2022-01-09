@@ -5,13 +5,28 @@ hy:
       poll:
         expires_at: Վերջնաժամկետ
         options: Տարբերակներ
+      user:
+        agreement: Ծառայության համաձայնագիր
+        email: Էլ․ հասցե
+        locale: Տեղանք
+        password: Գաղտնաբառ
+      user/account:
+        username: Մուտքանուն
+      user/invite_request:
+        text: Պատճառ
     errors:
       models:
         account:
           attributes:
             username:
               invalid: միայն տառեր, թվեր և ընդգիծկներ
+              reserved: զբաղուած է
         status:
           attributes:
             reblog:
-              taken: թութը գոյություն ունի
+              taken: գրառումը արդէն գոյութիւն ունի
+        user:
+          attributes:
+            email:
+              blocked: արգելուած էլ. փոստի ծառայութիւն
+              unreachable: կարծես գոյութիւն չունի

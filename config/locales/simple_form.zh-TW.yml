@@ -8,14 +8,25 @@ zh-TW:
         acct: 指定欲移動至之帳戶的 使用者名稱@站台
       account_warning_preset:
         text: 您可使用嘟文語法，例如網址、「#」標籤和提及功能
+        title: 可選。不會向收件者顯示
       admin_account_action:
+        include_statuses: 使用者可看到導致檢舉或警告的嘟文
         send_email_notification: 使用者將收到帳戶發生之事情的解釋
         text_html: 選用。您能使用嘟文語法。您可 <a href="%{path}">新增警告預設</a> 來節省時間
         type_html: 設定要使用 <strong>%{acct}</strong> 做的事
+        types:
+          disable: 禁止該使用者使用他們的帳戶，但是不刪除或隱藏他們的內容。
+          none: 使用這個寄送警告給該使用者，而不進行其他動作。
+          sensitive: 強制標記此使用者所有媒體為敏感內容。
+          silence: 禁止該使用者發公開嘟文，從無跟隨他們的帳戶中隱藏嘟文和通知。
+          suspend: 禁止所有對該帳戶任何互動，並且刪除其內容。三十日內可以撤回。
         warning_preset_id: 選用。您仍可在預設的結尾新增自訂文字
       announcement:
         all_day: 核取後，只會顯示出時間範圍中的日期部分
+        ends_at: 可選的，公告會在該時間點自動取消發布
         scheduled_at: 空白則立即發布公告
+        starts_at: 可選的，讓公告在特定時間範圍內顯示
+        text: 您可以使用嘟文語法，但請小心別讓公告太鴨霸而佔據使用者的整個版面。
       defaults:
         autofollow: 通過邀請網址註冊的使用者將自動關注你
         avatar: 支援 PNG, GIF 或 JPG 圖片，檔案最大為 %{size}，會等比例縮減成 %{dimensions} 像素
@@ -24,6 +35,8 @@ zh-TW:
         current_password: 因安全因素，請輸入目前帳戶的密碼
         current_username: 請輸入目前帳戶的使用者名稱以確認
         digest: 僅在你長時間未登入且在未登入期間收到私訊時傳送
+        discoverable: 加入個人資料目錄能接觸更多閱聽眾
+        discoverable_no_directory: 允許陌生人透過推薦與其他功能探索您的帳號
         email: 您將收到一封確認電子郵件
         fields: 您可在個人資料上有至多 4 個以表格形式顯示的項目
         header: 支援 PNG, GIF 或 JPG 圖片，檔案最大為 %{size}，會按比例縮小成 %{dimensions} 像素
@@ -42,8 +55,15 @@ zh-TW:
         setting_hide_network: 你關注的人與關注你的人將不會在你的個人資料頁上顯示
         setting_noindex: 會影響您的公開個人資料與嘟文頁面
         setting_show_application: 您用來發嘟文的應用程式將會在您嘟文的詳細檢視顯示
+        setting_use_blurhash: 漸層圖樣是基於隱藏媒體內容顏色產生，所有細節會變得模糊
+        setting_use_pending_items: 關閉自動捲動更新，時間軸只會在點擊後更新
         username: 您的使用者名稱將在 %{domain} 是獨一無二的
         whole_word: 如果關鍵字或詞組僅有字母與數字，則其將只在符合整個單字的時候才會套用
+      domain_allow:
+        domain: 此域名將能夠攫取本站資料，而自域名該發出的資料也會於本站處理和留存。
+      email_domain_block:
+        domain: 這裡可以是電子郵件地址中的域名、域名解析到的 MX 記錄、或 MX 記錄解析到的伺服器 IP 地址。新使用者註冊時會比對上述資料，如果相符時將拒絕相關註冊。
+        with_dns_records: Mastodon 會嘗試解析所給域名的 DNS 記錄，解析結果一致者將一併封鎖
       featured_tag:
         name: 您可能想使用其中一個：
       form_challenge:
@@ -52,8 +72,19 @@ zh-TW:
         data: 從其他 Mastodon 伺服器匯出的 CSV 檔案
       invite_request:
         text: 這會協助我們審核您的應用程式
+      ip_block:
+        comment: 可選的，但請記得您為何添加這項規則。
+        expires_in: IP 位址是經常共用或轉手的有限資源，不建議無限期地封鎖特定 IP 位址。
+        ip: 請輸入 IPv4 或 IPv6 位址，亦可以用 CIDR 語法以封鎖整個 IP 區段。小心不要把自己給一併封鎖掉囉！
+        severities:
+          no_access: 封鎖對所有資源存取
+          sign_up_requires_approval: 新註冊申請需要先經過您的審核
+        severity: 請選擇將如何處理來自這個 IP 位址的請求
+      rule:
+        text: 說明使用者在此伺服器上需遵守的規則或條款。試著維持各項條款簡短而明瞭。
       sessions:
         otp: 請輸入產生自您手機 App 的兩步驟驗證碼，或輸入其中一個復原代碼：
+        webauthn: 如果它是 USB 安全金鑰的話，請確認已正確插入，如有需要請觸擊。
       tag:
         name: 您只能變更大小寫，例如，以使其更易讀。
       user:
@@ -63,6 +94,10 @@ zh-TW:
         fields:
           name: 標籤
           value: 內容
+      account_alias:
+        acct: 舊帳號名稱
+      account_migration:
+        acct: 新帳號名稱
       account_warning_preset:
         text: 預設文字
         title: 標題
@@ -74,6 +109,7 @@ zh-TW:
         types:
           disable: 停用
           none: 什麼也不做
+          sensitive: 有雷小心
           silence: 安靜
           suspend: 停權並不可逆的刪除帳戶資料
         warning_preset_id: 使用警告預設
@@ -86,7 +122,7 @@ zh-TW:
       defaults:
         autofollow: 邀請別人關注你的帳戶
         avatar: 大頭貼
-        bot: 此帳號是台機器人
+        bot: 此帳戶是台機器人
         chosen_languages: 過濾語言
         confirm_new_password: 確認新密碼
         confirm_password: 確認密碼
@@ -95,14 +131,15 @@ zh-TW:
         data: 資料
         discoverable: 在目錄列出此帳戶
         display_name: 顯示名稱
-        email: 電子信箱位址
+        email: 電子信箱地址
         expires_in: 失效時間
         fields: 個人資料中繼資料
         header: 頁面頂端
+        honeypot: "%{label} (請勿填寫)"
         inbox_url: 中繼收件匣的 URL
         irreversible: 放棄而非隱藏
         locale: 介面語言
-        locked: 鎖定帳號
+        locked: 鎖定帳戶
         max_uses: 最大使用次數
         new_password: 新密碼
         note: 簡介
@@ -113,10 +150,12 @@ zh-TW:
         setting_aggregate_reblogs: 時間軸中的群組轉嘟
         setting_auto_play_gif: 自動播放 GIF 動畫
         setting_boost_modal: 在轉嘟前先詢問我
+        setting_crop_images: 將未展開嘟文中的圖片裁剪至 16x9
         setting_default_language: 嘟文語言
         setting_default_privacy: 嘟文可見範圍
         setting_default_sensitive: 總是將媒體標記為敏感內容
         setting_delete_modal: 刪除嘟文前先詢問我
+        setting_disable_swiping: 停用滑動手勢
         setting_display_media: 媒體顯示
         setting_display_media_default: 預設
         setting_display_media_hide_all: 全部隱藏
@@ -130,12 +169,16 @@ zh-TW:
         setting_theme: 站點主題
         setting_trends: 顯示本日趨勢
         setting_unfollow_modal: 取消關注某人前先詢問我
+        setting_use_blurhash: 將隱藏媒體以彩色漸變圖樣表示
         setting_use_pending_items: 限速模式
         severity: 優先級
+        sign_in_token_attempt: 安全代碼
         type: 匯入類型
         username: 使用者名稱
-        username_or_email: 使用者名稱或電子信箱位址
+        username_or_email: 使用者名稱或電子信箱地址
         whole_word: 整個詞彙
+      email_domain_block:
+        with_dns_records: 包括網域的 MX 記錄和 IP 位址
       featured_tag:
         name: "「#」標籤"
       interactions:
@@ -146,6 +189,13 @@ zh-TW:
         comment: 備註
       invite_request:
         text: 加入的原因
+      ip_block:
+        comment: 備註
+        ip: IP 位址
+        severities:
+          no_access: 封鎖
+          sign_up_requires_approval: 限制註冊
+        severity: 規則
       notification_emails:
         digest: 傳送摘要信件
         favourite: 當有使用者喜歡你的嘟文時，傳送電子信件通知
@@ -155,6 +205,9 @@ zh-TW:
         pending_account: 需要審核的新帳戶
         reblog: 當有使用者轉嘟你的嘟文時，傳送電子信件通知
         report: 當提交新檢舉時傳送電子郵件
+        trending_tag: 未經審核的標籤正在炎上中
+      rule:
+        text: 規則
       tag:
         listable: 允許此主題標籤在搜尋及個人檔案目錄中顯示
         name: 主題標籤
@@ -165,4 +218,7 @@ zh-TW:
     required:
       mark: "*"
       text: 必須填寫
+    title:
+      sessions:
+        webauthn: 使用您的安全金鑰來登入
     'yes': 是

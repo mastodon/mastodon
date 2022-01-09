@@ -14,6 +14,12 @@
         send_email_notification: Brukeren vil motta en forklaring på hva som har skjedd med deres bruker
         text_html: Valgfritt. Du kan bruke tut syntaks. Du kan <a href="%{path}">legge til advarsels-forhåndsinnstillinger</a> for å spare tid
         type_html: Velg hva du vil gjøre med <strong>%{acct}</strong>
+        types:
+          disable: Forhindre brukeren å bruke kontoen sin, men ikke slett eller skjule innholdet deres.
+          none: Bruk dette for å sende en advarsel til brukeren uten å utløse noen andre handlinger.
+          sensitive: Tving alle denne brukerens medievedlegg til å bli markert som følsom.
+          silence: Hindre brukeren i å kunne skrive offentlig synlighet, skjule sine innlegg og varsler for personer som ikke kan følge dem.
+          suspend: Forhindre interaksjon fra eller til denne kontoen og slett innholdet der. Reversibel innen 30 dager.
         warning_preset_id: Valgfritt. Du kan fortsatt legge til tilpasset tekst til slutten av forhåndsinnstillingen
       announcement:
         all_day: Hvis noen av dem er valgt, vil kun datoene av tidsrammen bli vist
@@ -66,8 +72,15 @@
       invite_request:
         text: Dette vil hjelpe oss med å gjennomgå din søknad
       ip_block:
+        comment: Valgfritt. Husk hvorfor du la til denne regelen.
+        expires_in: IP-adressene er en helt begrenset ressurs, de deles og endres ofte hender. Ubestemte IP-blokker anbefales ikke.
+        ip: Skriv inn en IPv4 eller IPv6-adresse. Du kan blokkere alle områder ved å bruke CIDR-syntaksen. Pass på å ikke låse deg selv!
         severities:
           no_access: Blokker tilgang til alle ressurser
+          sign_up_requires_approval: Nye registreringer vil kreve din godkjenning
+        severity: Velg hva som vil skje med forespørsler fra denne IP
+      rule:
+        text: Beskriv en regel eller krav til brukere på denne serveren. Prøv å holde den kort og enkelt
       sessions:
         otp: Angi tofaktorkoden fra din telefon eller bruk en av dine gjenopprettingskoder.
       tag:
@@ -94,6 +107,7 @@
         types:
           disable: Deaktiver pålogging
           none: Ikke gjør noe
+          sensitive: Sensitiv
           silence: Stilne
           suspend: Suspender og ugjenkallelig slett brukerdata
         warning_preset_id: Bruk en advarsels-forhåndsinnstilling
@@ -119,6 +133,7 @@
         expires_in: Utløper etter
         fields: Profilmetadata
         header: Overskrift
+        honeypot: "%{label} (ikke fyll ut)"
         inbox_url: URL til overgangsinnboksen
         irreversible: Forkast i stedet for å skjule
         locale: Språk
@@ -189,6 +204,8 @@
         reblog: Send e-post når noen fremhever din status
         report: Ny rapport er sendt inn
         trending_tag: En ugjennomgått emneknagg trender
+      rule:
+        text: Regler
       tag:
         listable: Tillat denne emneknaggen å vises i søk og på profilmappen
         name: Emneknagg

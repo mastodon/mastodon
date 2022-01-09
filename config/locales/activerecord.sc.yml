@@ -4,3 +4,29 @@ sc:
     attributes:
       poll:
         expires_at: Iscadèntzia
+        options: Seberos
+      user:
+        agreement: Acordu de servìtziu
+        email: Indiritzu de posta eletrònica
+        locale: Idioma
+        password: Crae
+      user/account:
+        username: Nòmine utente
+      user/invite_request:
+        text: Resone
+    errors:
+      models:
+        account:
+          attributes:
+            username:
+              invalid: isceti lìteras, nùmeros e tratigheddos bassos
+              reserved: est prenotadu
+        status:
+          attributes:
+            reblog:
+              taken: de s'istadu esistet giai
+        user:
+          attributes:
+            email:
+              blocked: impreat unu frunidore de posta eletrònica proibidu
+              unreachable: paret chi no esistit

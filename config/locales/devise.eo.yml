@@ -60,6 +60,23 @@ eo:
         title: Reakiraj kodoj de 2FA estas ŝanĝitaj
       unlock_instructions:
         subject: 'Mastodon: Instrukcioj por malŝlosi'
+      webauthn_credential:
+        added:
+          explanation: La sekva sekureca ŝlosilo estis aldonita al via konto
+          subject: 'Mastodon: Nova sekureca ŝlosilo'
+          title: Nova sekureca ŝlosilo estis aldonita
+        deleted:
+          explanation: La sekva sekureca ŝlosilo estis forigita de via konto
+          subject: 'Mastodon: sekureca ŝlosilo forigita'
+          title: Unu el viaj sekurecaj ŝlosiloj estis forigita
+      webauthn_disabled:
+        explanation: Aŭtentikigo per sekurecaj ŝlosiloj estis malebligita por via konto. Ensaluto nun eblas per nur la signo generita de la parigita TOTP-programo.
+        subject: 'Mastodon: sekureca-ŝlosila aŭtentigo malebligita'
+        title: Sekurecaj ŝlosiloj malaktivigitaj
+      webauthn_enabled:
+        explanation: Sekureca ŝlosila aŭtentokontrolo estis ebligita por via konto. Via sekureca ŝlosilo nun uzeblas por ensaluti.
+        subject: 'Mastodon: sekureca-ŝlosila aŭtentigo ebligita'
+        title: Sekurecaj ŝlosiloj aktivigitaj
     omniauth_callbacks:
       failure: 'Ni ne povis aŭtentigi vin per %{kind}: ''%{reason}''.'
       success: Aŭtentigita sukcese per %{kind}.

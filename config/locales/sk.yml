@@ -7,7 +7,6 @@ sk:
     active_count_after: aktívni
     active_footnote: Mesačne aktívnych užívateľov (MAU)
     administered_by: 'Správcom je:'
-    api: API
     apps: Aplikácie
     apps_platforms: Užívaj Mastodon z iOSu, Androidu, a iných platforiem
     browse_directory: Prehľadávaj databázu profilov, a filtruj podľa záujmov
@@ -26,6 +25,7 @@ sk:
       Je využívaný pre potreby federovania a nemal by byť blokovaný, pokiaľ nechceš zablokovať celý server, čo ide lepšie dosiahnúť cez blokovanie domény.
     learn_more: Zisti viac
     privacy_policy: Zásady súkromia
+    rules: Serverové pravidlá
     see_whats_happening: Pozoruj, čo sa deje
     server_stats: 'Serverové štatistiky:'
     source_code: Zdrojový kód
@@ -39,12 +39,13 @@ sk:
     terms: Podmienky užitia
     unavailable_content: Nedostupný obsah
     unavailable_content_description:
-      domain: Server
       reason: 'Dôvod:'
       rejecting_media: 'Mediálne súbory z týchto serverov nebudú spracované, alebo ukladané, a nebudú z nich zobrazované žiadne náhľady, vyžadujúc ručné prekliknutie priamo až k pôvodnému súboru:'
       rejecting_media_title: Triedené médiá
       silenced: 'Príspevky z týchto serverov budú skryté z verejných osí a z konverzácií, a nebudú vytvorené žiadné oboznámena ohľadom aktivity ich užívateľov, pokiaľ ich nenásleduješ:'
       silenced_title: Utíšené servery
+      suspended: 'Z týchto serverov nebudú spracovávané, ukladané, alebo vymieňané žiadne dáta, čo urobí nemožnou akúkoľvek interakciu, alebo komunikáciu s užívateľmi z týchto serverov:'
+      suspended_title: Vylúčené servery
     unavailable_content_html: Vo všeobecnosti, Mastodon ti dovoľuje vidieť obsah, a komunikovať s užívateľmi akéhokoľvek iného serveru v rámci fediversa. Toto sú výnimky, ktoré boli vytvorené na tomto konkrétnom serveri.
     user_count_after:
       few: užívateľov
@@ -83,10 +84,8 @@ sk:
       other: Príspevkov
     posts_tab_heading: Príspevky
     posts_with_replies: Príspevky s odpoveďami
-    reserved_username: Prihlasovacie meno je vyhradené
     roles:
       admin: Správca
-      bot: Bot
       group: Skupina
       moderator: Moderátor
     unavailable: Profil nieje dostupný
@@ -117,6 +116,7 @@ sk:
       confirm: Potvrď
       confirmed: Potvrdený
       confirming: Potvrdzujúci
+      delete: Vymaž dáta
       deleted: Vymazané
       demote: Degraduj
       disable: Zablokuj
@@ -125,7 +125,6 @@ sk:
       display_name: Ukáž meno
       domain: Doména
       edit: Uprav
-      email: Email
       email_status: Stav emailu
       enable: Povoľ
       enabled: Povolený
@@ -133,6 +132,7 @@ sk:
       follows: Sledovania
       header: Záhlavie
       inbox_url: URL adresa prijatých správ
+      invite_request_text: Dôvody pre prijatie
       invited_by: Pozvaný/á užívateľom
       ip: IP adresa
       joined: Pridal/a sa
@@ -184,6 +184,10 @@ sk:
       search: Hľadaj
       search_same_email_domain: Iní užívatelia s tou istou emailovou doménou
       search_same_ip: Ostatní užívatelia s rovnakou IP adresou
+      security_measures:
+        only_password: Iba heslo
+        password_and_2fa: Heslo a dvoj-faktorové overovanie
+      sensitized: Označený ako chúlostivý
       shared_inbox_url: URL zdieľanej schránky
       show:
         created_reports: Vytvorené hlásenia
@@ -200,8 +204,8 @@ sk:
       undo_suspension: Zruš blokovanie
       unsubscribe: Prestaň odoberať
       username: Prezývka
+      view_domain: Ukáž súhrn pre doménu
       warn: Varuj
-      web: Web
       whitelisted: Na bielej listine
     action_logs:
       action_types:
@@ -211,54 +215,39 @@ sk:
         create_account_warning: Vytvor výstrahu
         create_announcement: Vytvor oboznámenie
         create_domain_allow: Vytvor povolenie pre doménu
-        create_domain_block: Vytvor doménovú blokádu
+        create_domain_block: Vytvor zákaz domény
+        create_email_domain_block: Vytvor zákaz emailovej domény
+        create_ip_block: Vytvor IP pravidlo
         demote_user: Zniž užívateľskú rolu
         destroy_announcement: Vymaž oboznámenie
         destroy_domain_allow: Zmaž povolenie pre doménu
         destroy_domain_block: Zruš blokovanie domény
+        destroy_ip_block: Vymaž IP pravidlo
         destroy_status: Vymaž príspevok
+        destroy_unavailable_domain: Vymaž nedostupnú doménu
         disable_2fa_user: Vypni dvoj-faktorové overovanie
+        disable_custom_emoji: Vypni vlastné emotikony
         disable_user: Deaktivuj užívateľa
+        enable_custom_emoji: Povoľ vlastné emotikony
         enable_user: Povoľ užívateľa
+        promote_user: Povýš užívateľskú rolu
         remove_avatar_user: Vymaž avatar
         reopen_report: Znovu otvor hlásenie
         reset_password_user: Obnov heslo
+        resolve_report: Vyrieš nahlásený problém
+        sensitive_account: Vynúť všetky médiá na účte ako chúlostivé
         silence_account: Utíš účet
         suspend_account: Vylúč účet
+        unsilence_account: Zvráť obmedzenie účtu
+        unsuspend_account: Odblokuj účet
+        update_announcement: Aktualizuj oboznámenie
+        update_domain_block: Aktualizuj zákaz domény
         update_status: Aktualizuj stav
       actions:
-        assigned_to_self_report: "%{name} pridelil/a hlásenie užívateľa %{target} sebe"
-        change_email_user: "%{name} zmenil/a emailovú adresu užívateľa %{target}"
-        confirm_user: "%{name} potvrdil emailovú adresu používateľa %{target}"
-        create_account_warning: "%{name} poslal/a varovanie užívateľovi %{target}"
-        create_custom_emoji: "%{name} nahral nový emoji %{target}"
-        create_domain_allow: "%{name} pridal/a doménu %{target} na zoznam povolených"
-        create_domain_block: "%{name} zablokoval doménu %{target}"
-        create_email_domain_block: "%{name} pridal e-mailovú doménu %{target} na zoznam zakázaných"
-        demote_user: "%{name} degradoval používateľa %{target}"
-        destroy_custom_emoji: "%{name} zničil/a %{target} emoji"
-        destroy_domain_allow: "%{name} odstránil/a doménu %{target} zo zoznamu povolených"
-        destroy_domain_block: "%{name} povolil doménu %{target}"
-        destroy_email_domain_block: "%{name} pridal e-mailovú doménu %{target} na zoznam povolených"
-        destroy_status: "%{name} zmazal status %{target}"
-        disable_2fa_user: "%{name} vypol požiadavku 2FA pre používateľa %{target}"
-        disable_custom_emoji: "%{name} zakázal emoji %{target}"
-        disable_user: "%{name} zakázal prihlásenie pre používateľa %{target}"
-        enable_custom_emoji: "%{name} povolil emoji %{target}"
-        enable_user: "%{name} povolil prihlásenie pre používateľa %{target}"
-        memorialize_account: "%{name} zmenil účet %{target} na pamätnú stránku"
-        promote_user: "%{name} vyzdvihli užívateľa %{target}"
-        remove_avatar_user: "%{name} odstránil/a %{target}ov avatár"
-        reopen_report: "%{name} znovu otvoril/a hlásenie užívateľa %{target}"
-        reset_password_user: "%{name} resetoval/a heslo pre používateľa %{target}"
-        resolve_report: "%{name} vyriešili nahlásenie užívateľa %{target}"
-        silence_account: "%{name} utíšil/a účet %{target}"
-        suspend_account: "%{name} zablokoval/a účet používateľa %{target}"
-        unassigned_report: "%{name} odobral/a report od %{target}"
-        unsilence_account: "%{name} zrušil/a stíšenie účtu používateľa %{target}"
-        unsuspend_account: "%{name} zrušil/a blokovanie účtu používateľa %{target}"
-        update_custom_emoji: "%{name} aktualizoval/a emoji %{target}"
-        update_status: "%{name} aktualizoval/a status pre %{target}"
+        assigned_to_self_report_html: "%{name} pridelil/a hlásenie užívateľa %{target} sebe"
+        change_email_user_html: "%{name} zmenil/a emailovú adresu užívateľa %{target}"
+        confirm_user_html: "%{name} potvrdil/a emailovú adresu používateľa %{target}"
+        create_account_warning_html: "%{name} poslal/a upozornenie užívateľovi %{target}"
       deleted_status: "(zmazaný príspevok)"
       filter_by_action: Filtruj podľa úkonu
       filter_by_user: Trieď podľa užívateľa
@@ -272,6 +261,7 @@ sk:
       new:
         create: Vytvor oznam
         title: Nové oznámenie
+      publish: Zverejni
       published_msg: Oboznámenie úspešne zverejnené!
       scheduled_for: Načasované na %{time}
       scheduled_msg: Oboznámenie bolo naplánované na zverejnenie!
@@ -309,33 +299,9 @@ sk:
       updated_msg: Emoji bolo úspešne aktualizované!
       upload: Nahraj
     dashboard:
-      authorized_fetch_mode: Autorizovaný režim
-      backlog: odložené aktivity
-      config: Nastavenia
-      feature_deletions: Vymazanie účtov
-      feature_invites: Pozvánky
-      feature_profile_directory: Katalóg profilov
-      feature_registrations: Registrácie
-      feature_relay: Federovací mostík
-      feature_spam_check: Proti spamu
-      feature_timeline_preview: Náhľad časovej osi
-      features: Vymoženosti
-      hidden_service: Federácia so skrytými službami
-      open_reports: otvorené hlásenia
-      pending_tags: haštagy čakajúce na posúdenie
-      pending_users: užívatelia čakajúci na posúdenie
-      recent_users: Nedávni užívatelia
-      search: Celofrázové vyhľadávanie
-      single_user_mode: Jednouživateľské rozhranie
       software: Softvér
       space: Využitie miesta
       title: Spravovacie rozhranie
-      total_users: užívateľov celkovo
-      trends: Trendy
-      week_interactions: Tohto-týždňové interakcie
-      week_users_active: aktívni tento týždeň
-      week_users_new: užívateľov počas tohto týždňa
-      whitelist_mode: Režim povolených
     domain_allows:
       add_new: Povolená doména
       created_msg: Doména bola úspešne povolená
@@ -357,6 +323,7 @@ sk:
           silence: Stíš
           suspend: Vylúč
         title: Nové blokovanie domény
+      obfuscate: Zatemniť názov domény
       private_comment: Súkromný komentár
       private_comment_hint: Odôvodni toto doménové obmedzenie, pre vnútorné vyrozumenie moderátorov.
       public_comment: Verejný komentár
@@ -394,8 +361,22 @@ sk:
         create: Pridaj doménu
         title: Nový email na zablokovanie
       title: Blokované emailové adresy
+    follow_recommendations:
+      description_html: "<strong>Odporúčania na sledovanie pomáhaju novým užívateľom rýchlo nájsť zaujímavý obsah</strong>. Ak užívateľ zatiaľ nedostatočne interagoval s ostatnými aby si vyformoval personalizované odporúčania na sledovanie, tak mu budú odporúčané tieto účty. Sú prepočítavané na dennej báze z mixu účtov s nedávnym najvyšším záujmom a najvyšším počtom lokálnych sledujúcich pre daný jazyk."
+      language: Pre jazyk
+      status: Stav
+      suppress: Utlmiť oporúčanie na sledovanie
+      suppressed: Utlmené
+      title: Odporáčania na sledovanie
+      unsuppress: Obnoviť odporúčanie na sledovanie
     instances:
+      back_to_all: Všetko
+      back_to_limited: Obmedzené
+      back_to_warning: Upozornenie
       by_domain: Doména
+      delivery:
+        all: Všetko
+        warning: Upozornenie
       delivery_available: Je v dosahu doručovania
       known_accounts:
         few: "%{count} známych účtov"
@@ -422,6 +403,18 @@ sk:
         expired: Vypršalo
         title: Filtruj
       title: Pozvánky
+    ip_blocks:
+      add_new: Vytvor pravidlo
+      delete: Vymaž
+      expires_in:
+        '1209600': 2 týždne
+        '15778476': 6 mesiacov
+        '2629746': 1 mesiac
+        '31556952': 1 rok
+        '86400': 1 deň
+        '94670856': 3 roky
+      new:
+        title: Vytvor nové IP pravidlo
     pending_accounts:
       title: Čakajúcich účtov (%{count})
     relationships:
@@ -484,7 +477,7 @@ sk:
         desc_html: Sčítanie miestne uverejnených príspevkov, aktívnych užívateľov, a nových registrácii, v týždenných intervaloch
         title: Vydať hromadné štatistiky o užívateľskej aktivite
       bootstrap_timeline_accounts:
-        desc_html: Ak je prezývok viacero, každú oddeľ čiarkou. Je možné zadať iba miestne, odomknuté účty. Pokiaľ necháš prázdne, je to pre všetkých miestnych správcov.
+        desc_html: Ak je prezývok viacero, každú oddeľ čiarkou. Tieto účty budú zobrazené v odporúčaniach na sledovanie
         title: Štandardní následovníci nových užívateľov
       contact_information:
         email: Pracovný email
@@ -502,8 +495,6 @@ sk:
         users: Prihláseným, miestnym užívateľom
       domain_blocks_rationale:
         title: Ukáž zdôvodnenie
-      enable_bootstrap_timeline_accounts:
-        title: Novým užívateľom povoľ východiskové následovania
       hero:
         desc_html: Zobrazuje sa na hlavnej stránke. Doporučené je rozlišenie aspoň 600x100px. Pokiaľ nič nieje dodané, bude nastavený základný orázok serveru.
         title: Obrázok hrdinu
@@ -514,7 +505,7 @@ sk:
         desc_html: Domény, na ktoré tento server už v rámci fediversa natrafil
         title: Zverejni zoznam objavených serverov
       preview_sensitive_media:
-        desc_html: Náhľad odkazov z iných serverov, bude zobrazený aj vtedy, keď sú médiá označené ako citlivé
+        desc_html: Náhľad odkazov z iných serverov, bude zobrazený aj vtedy, keď sú médiá označené ako chúlostivé
         title: Ukazuj aj chúlostivé médiá v náhľadoch OpenGraph
       profile_directory:
         desc_html: Povoľ užívateľom, aby mohli byť nájdení
@@ -554,9 +545,6 @@ sk:
         desc_html: Môžeš si napísať svoje vlastné pravidla o súkromí, prevádzke, alebo aj iné legality. Môžeš tu používať HTML kód
         title: Vlastné pravidlá prevádzky
       site_title: Názov servera
-      spam_check_enabled:
-        desc_html: Mastodon môže sám stíšiť, a nahlásiť účty v závislosti od rozpoznania parametrov ako napríklad opakované rozosielanie nevyžiadanej komunikácie. Môže dôjsť aj k nesprávnej identifikácii.
-        title: Proti spamu
       thumbnail:
         desc_html: Používané pre náhľady cez OpenGraph a API. Doporučuje sa rozlišenie 1200x630px
         title: Miniatúra servera
@@ -587,13 +575,14 @@ sk:
       no_status_selected: Žiadne príspevky neboli zmenené, keďže si žiadne nemal/a zvolené
       title: Príspevky na účte
       with_media: S médiami
+    system_checks:
+      rules_check:
+        action: Spravuj serverové pravidlá
+        message_html: Neurčil/a si žiadne serverové pravidlá.
     tags:
       accounts_today: Jedinečných užívateľov za dnešok
       accounts_week: Jedinečných užívateľov tento týždeň
       breakdown: Rozpis dnešného využitia podľa zdroja
-      context: Súvis
-      directory: V zozname
-      in_directory: "%{count} v zozname"
       last_active: Naposledy aktívny
       most_popular: Najpopulárnejšie
       most_recent: Najnovšie
@@ -639,7 +628,6 @@ sk:
     toot_layout: Rozloženie príspevkov
   application_mailer:
     notification_preferences: Zmeň emailové voľby
-    salutation: "%{name},"
     settings: 'Zmeň emailové voľby: %{link}'
     view: 'Zobraziť:'
     view_profile: Zobraz profil
@@ -688,6 +676,7 @@ sk:
       pending: Tvoja žiadosť čaká na schvílenie od nášho týmu. Môže to chviľu potrvať. Ak bude tvoja žiadosť schválená, dostaneš o tom email.
       redirecting_to: Tvoj účet je neaktívny, lebo v súčasnosti presmerováva na %{acct}.
     trouble_logging_in: Problém s prihlásením?
+    use_security_key: Použi bezpečnostný kľúč
   authorize_follow:
     already_following: Tento účet už následuješ
     error: Naneštastie nastala chyba pri hľadaní vzdialeného účtu
@@ -768,7 +757,7 @@ sk:
       request: Vyžiadaj si tvoj archív
       size: Veľkosť
     blocks: Blokujete
-    csv: CSV
+    bookmarks: Záložky
     domain_blocks: Blokované domény
     lists: Zoznamy
     mutes: Stíšil/a si
@@ -833,9 +822,13 @@ sk:
     inactive: Neaktívne
     publicize_checkbox: 'A poslať toto:'
     publicize_toot: 'Je to dokázané! Na %{service} som %{username}: %{url}'
+    remove: Odstrániť z účtu dôkaz
+    removed: Dôkaz z účtu úspešne odstránený
     status: Stav overenia
     view_proof: Ukáž overenie
   imports:
+    errors:
+      over_rows_processing_limit: obsahuje viac než %{count} riadkov
     modes:
       merge: Spoj dohromady
       merge_long: Ponechaj existujúce záznamy a pridaj k nim nové
@@ -845,6 +838,7 @@ sk:
     success: Tvoje dáta boli nahraté úspešne, a teraz budú spracované v danom čase
     types:
       blocking: Zoznam blokovaných
+      bookmarks: Záložky
       domain_blocking: Zoznam blokovaných domén
       following: Zoznam sledovaných
       muting: Zoznam ignorovaných
@@ -877,6 +871,12 @@ sk:
   lists:
     errors:
       limit: Dosiahli ste maximálny možný počet zoznamov
+  login_activities:
+    authentication_methods:
+      password: heslom
+      sign_in_token: emailovým bezpečtnostným kódom
+      webauthn: bezpečnostnými kľúčmi
+    title: História overení
   media_attachments:
     validations:
       images_and_video: K príspevku ktorý už obsahuje obrázky nemôžeš priložiť video
@@ -900,6 +900,7 @@ sk:
     on_cooldown: Účet si si presunul/a len nedávno. Táto vymoženosť bude znovu sprístupnená za %{count} dní.
     past_migrations: Predošlé presuny
     proceed_with_move: Presuň sledovateľov
+    redirected_msg: Tvoj účet teraz presmerováva na %{acct}.
     redirecting_to: Tvoj účet presmerováva na %{acct}.
     set_redirect: Nastav presmerovanie
     warning:
@@ -913,6 +914,9 @@ sk:
       redirect: Tvoj súčastný účet bude aktualizovaný s oznamom o presunutí a bude vylúčený z vyhľadávania
   moderation:
     title: Moderovanie
+  move_handler:
+    carry_blocks_over_text: Tento užívateľ sa presunul z účtu %{acct}, ktorý si mal/a zablokovaný.
+    carry_mutes_over_text: Tento užívateľ sa presunul z účtu %{acct}, ktorý si mal/a stíšený.
   notification_mailer:
     digest:
       action: Zobraziť všetky notifikácie
@@ -947,10 +951,14 @@ sk:
       body: "%{name} ťa spomenul/a v:"
       subject: Bol/a si spomenutý/á užívateľom %{name}
       title: Novo spomenutý/á
+    poll:
+      subject: Anketa od %{name} skončila
     reblog:
       body: 'Tvoj príspevok bol vyzdvihnutý užívateľom %{name}:'
       subject: "%{name} vyzdvihli tvoj príspevok"
       title: Novo vyzdvyhnuté
+    status:
+      subject: "%{name} práve prispel/a"
   notifications:
     email_events: Udalosti oznamované emailom
     email_events_hint: 'Vyber si udalosti, pre ktoré chceš dostávať oboznámenia:'
@@ -982,6 +990,7 @@ sk:
   relationships:
     activity: Aktivita účtu
     dormant: Spiace
+    follow_selected_followers: Následuj označených sledovatelov
     followers: Následovatelia
     following: Následovaní
     invited: Pozvaný/á
@@ -1064,8 +1073,6 @@ sk:
     profile: Profil
     relationships: Sledovania a následovatelia
     two_factor_authentication: Dvojfázové overenie
-  spam_check:
-    spam_detected: Toto je automatizované hlásenie. Bol odhalený spam.
   statuses:
     attached:
       description: 'Priložené: %{attached}'
@@ -1074,11 +1081,6 @@ sk:
         many: "%{count} obrázkov"
         one: "%{count} obrázok"
         other: "%{count} obrázky"
-      video:
-        few: "%{count} videí"
-        many: "%{count} videí"
-        one: "%{count} video"
-        other: "%{count} videá"
     boosted_from_html: Vyzdvihnuté od %{acct_link}
     content_warning: 'Varovanie o obsahu: %{warning}'
     disallowed_hashtags:
@@ -1121,7 +1123,7 @@ sk:
       unlisted_long: Všetci môžu vidieť, ale nieje zaradené do verejnej osi
   stream_entries:
     pinned: Pripnutý príspevok
-    reblogged: vyzdvihnutý
+    reblogged: vyzdvihli
     sensitive_content: Senzitívny obsah
   tags:
     does_not_match_previous_name: nezhoduje sa s predošlým názvom
@@ -1133,7 +1135,7 @@ sk:
 
       <ul>
       <li><em>Základné informácie o účte</em>: Ak sa na tomto serveri zaregistruješ, budeš môcť byť požiadaný/á zadať prezývku, emailovú adresu a heslo. Budeš tiež môcť zadať aj ďalšie profilové údaje, ako napríklad meno a životopis, a nahrať profilovú fotku aj obrázok v záhlaví. Tvoja prezývka, meno, životopis, profilová fotka a obrázok v záhlaví sú vždy zobrazené verejne.</li><li><em>Príspevky, sledovania a iné verejné informácie</em>:
-      Zoznam ľudí, ktorých sleduješ je zobrazený verejne, a to isté platí aj pre zoznam tvojích následovateľov. Keď pošleš správu, ukladá sa jej dátum a čas, ale aj z akej aplikácie bola poslaná. Správy môžu obsahovať mediálne prílohy, ako obrázky a videá. Verejné, a nezaradené príspevky sú verejne prístupné. Keď si pripneš príspevok na svoj profil, toto je tiež verejne dostupnou informáciou. Tvoje príspevky sú takisto doručené tvojím sledovateľom, a to aj v rámci iných serverov, kde je potom uložená kópia tvojho príspevku. Ak vymažeš príspevok, táto akcia bude takisto doručená tvojím sledovateľom. Vyzdvihnutie, alebo obľúbenie iného príspevku je vždy verejne viditeľné.</li>
+      Zoznam ľudí, ktorých sleduješ je zobrazený verejne, a to isté platí aj pre zoznam tvojích nasledovateľov. Keď pošleš správu, ukladá sa jej dátum a čas, ale aj z akej aplikácie bola poslaná. Správy môžu obsahovať mediálne prílohy, ako obrázky a videá. Verejné, a nezaradené príspevky sú verejne prístupné. Keď si pripneš príspevok na svoj profil, toto je tiež verejne dostupnou informáciou. Tvoje príspevky sú takisto doručené tvojím sledovateľom, a to aj v rámci iných serverov, kde je potom uložená kópia tvojho príspevku. Ak vymažeš príspevok, táto akcia bude takisto doručená tvojím sledovateľom. Vyzdvihnutie, alebo obľúbenie iného príspevku je vždy verejne viditeľné.</li>
 
       <li><em>Priame príspevky, a príspevky určené iba pre sledovateľov</em>: Všetky príspevky sú uložené a spracované na serveri. Príspevky iba pre sledovateľov sú doručené tvojím sledovateľom a užívateľom ktorí sú v nich spomenutí, pričom priame príspevky sú doručené iba tím užívateľom ktorí sú v nich spomenutí. V niektorých prípadoch to môže znamenať, že tieto príspevkz sú doručené aj v rámci iných serverov, a kópie príspevkov sú na nich uložené.
       V dobrej viere robíme všetko preto, aby bol prístup k tímto príspevkom vymedzený iba pre oprávnených používateľov, ale môže sa stať, že iné servery v tomto ohľade zlyhajú. Preto je dôležité prezrieť si a zhodnotiť, na aké servery patria tvoji následovatelia. V nastaveniach si môžeš zapnúť voľbu ručne povoľovať a odmietať nových následovateľov.
@@ -1148,7 +1150,7 @@ sk:
 
       <p>Hociktorá z informácií, ktoré sú o tebe zozbierané, môže byť použité následujúcimi spôsobmi:</p>
       <ul>
-      <li>Pre zabezpečenie základného fungovania Mastodonu. Narábať s užívateľským obsahom iných, ako aj prispievať svoj vlastný obsah, možeš len keď si prihlásený/á. Môžeš napríklad následovať iných ľudí, aby si potom videl/a ich príspevky v rámci svojej osobne prispôsobenej domácej osi.</li>
+      <li>Pre zabezpečenie základného fungovania Mastodonu. Narábať s užívateľským obsahom iných, ako aj prispievať svoj vlastný obsah, možeš len keď si prihlásený/á. Môžeš napríklad nasledovať iných ľudí, aby si potom videl/a ich príspevky v rámci svojej osobne prispôsobenej domácej osi.</li>
       <li>Pre lepšie moderovanie komunity sa napríklad môže tvoja IP adresa porovnať s ostatnými už známimi adresami, aby bolo možné zistiť, či nedochádza napríklad k obchádzaniu pravidiel vylúčenia, aleb k iným porušeniam zásad.</li>
       <li>Emailová adresa, ktorú poskytneš, môže byť použitá na zasielanie informácií, oboznámení keď ostatní užívatelia interaktujú s tvojím obsahom, alebo na posielanie správ, odpovedí na otázky a iné požiadavky.</li>
       </ul>
@@ -1214,11 +1216,11 @@ sk:
       title: Vitaj na palube, %{name}!
   users:
     follow_limit_reached: Nemôžeš následovať viac ako %{limit} ľudí
-    invalid_email: Emailová adresa je neplatná
     invalid_otp_token: Neplatný kód pre dvojfaktorovú autentikáciu
     otp_lost_help_html: Pokiaľ si stratil/a prístup k obom, môžeš dať vedieť %{email}
     seamless_external_login: Si prihlásená/ý cez externú službu, takže nastavenia hesla a emailu ti niesú prístupné.
     signed_in_as: 'Prihlásená/ý ako:'
+    suspicious_sign_in_confirmation: Vyzerá to, že si sa predtým z tohto zariadenia ešte neprihlasoval/a, takže ti na tvoju emailovú adresu pošleme bezpečnostný kód, aby sa potvrdilo, že si to ty.
   verification:
     explanation_html: 'Môžeš sa <strong>overiť ako majiteľ odkazov v metadátach tvojho profilu</strong>. Na to ale musí odkazovaná stránka obsahovať odkaz späť na tvoj Mastodon profil. Tento spätný odkaz <strong>musí</strong> mať prívlastok <code>rel="me"</code>. Na texte odkazu nezáleží. Tu je príklad:'
     verification: Overenie

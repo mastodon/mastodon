@@ -7,6 +7,24 @@ module ApplicationHelper
     follow
   ).freeze
 
+  RTL_LOCALES = %i(
+    ar
+    fa
+    he
+    ku
+  ).freeze
+
+  def friendly_number_to_human(number, **options)
+    # By default, the number of precision digits used by number_to_human
+    # is looked up from the locales definition, and rails-i18n comes with
+    # values that don't seem to make much sense for many languages, so
+    # override these values with a default of 3 digits of precision.
+    options[:precision] = 3
+    options[:strip_insignificant_zeros] = true
+
+    number_to_human(number, **options)
+  end
+
   def active_nav_class(*paths)
     paths.any? { |path| current_page?(path) } ? 'active' : ''
   end
@@ -44,7 +62,7 @@ module ApplicationHelper
   end
 
   def locale_direction
-    if [:ar, :fa, :he].include?(I18n.locale)
+    if RTL_LOCALES.include?(I18n.locale)
       'rtl'
     else
       'ltr'
@@ -89,6 +107,16 @@ module ApplicationHelper
     end
   end
 
+  def interrelationships_icon(relationships, account_id)
+    if relationships.following[account_id] && relationships.followed_by[account_id]
+      fa_icon('exchange', title: I18n.t('relationships.mutual'), class: 'fa-fw active passive')
+    elsif relationships.following[account_id]
+      fa_icon(locale_direction == 'ltr' ? 'arrow-right' : 'arrow-left', title: I18n.t('relationships.following'), class: 'fa-fw active')
+    elsif relationships.followed_by[account_id]
+      fa_icon(locale_direction == 'ltr' ? 'arrow-left' : 'arrow-right', title: I18n.t('relationships.followers'), class: 'fa-fw passive')
+    end
+  end
+
   def custom_emoji_tag(custom_emoji, animate = true)
     if animate
       image_tag(custom_emoji.image.url, class: 'emojione', alt: ":#{custom_emoji.shortcode}:")
@@ -107,6 +135,10 @@ module ApplicationHelper
     else
       content_tag(:div, data: { component: name.to_s.camelcase, props: Oj.dump(props) }, &block)
     end
+  end
+
+  def react_admin_component(name, props = {})
+    content_tag(:div, nil, data: { 'admin-component': name.to_s.camelcase, props: Oj.dump({ locale: I18n.locale }.merge(props)) })
   end
 
   def body_classes

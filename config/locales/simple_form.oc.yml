@@ -67,6 +67,11 @@ oc:
         text: Aquò nos ajudarà per validar vòstra demanda
       ip_block:
         comment: Opcional. Remembratz-vos perque ajustèretz aquesta règla.
+        expires_in: Las adreças IP son una ressorsa finida, son de còps partejadas e càmbian sovent de mans. Per aquesta rason, los blocatges d’IP sens fin son pas recomandats.
+        ip: Dintratz una adreça IPv4 o IPv6. Podètz blocar de plajas entièras en utilizant la sintaxi CIDR. Agachatz de pas vos blocar defòra !
+        severities:
+          no_access: Blocar l’accès a totas las ressorsas
+          sign_up_requires_approval: Las inscripcions novèlas requeriràn vòstra validacion
         severity: Causissètz que far amb las requèstas d’aquesta IP
       sessions:
         otp: 'Picatz lo còdi d’autentificacion en dos temps (Two factor code) de vòstra aplicacion mobil o utilizatz un de vòstres còdis de recuperacion :'
@@ -121,13 +126,14 @@ oc:
         expires_in: Expira aprèp
         fields: Metadonada del perfil
         header: Bandièra
+        honeypot: "%{label} (emplenar pas)"
         inbox_url: URL de la bóstia de recepcion del relai
         irreversible: Suprimir allòc de rescondre
         locale: Lenga de l’interfàcia
         locked: Far venir lo compte privat
         max_uses: Limit d’utilizacions
         new_password: Nòu senhal
-        note: Bio
+        note: Biografia
         otp_attempt: Còdi Two-factor
         password: Senhal
         phrase: Senhal o frasa
@@ -191,6 +197,8 @@ oc:
         reblog: Enviar un corrièl quand qualqu’un tòrna partejar vòstre estatut
         report: Enviar un corrièl pels nòus senhalaments
         trending_tag: Enviar un corrièl quand una etiqueta pas repassada es en tendéncia
+      rule:
+        text: Règla
       tag:
         listable: Permetre a aquesta etiqueta d’aparéisser a las recèrcas e a l’annuari de perfils
         name: Etiqueta

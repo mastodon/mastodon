@@ -40,7 +40,12 @@ class Api::BaseController < ApplicationController
     render json: { error: 'This action is not allowed' }, status: 403
   end
 
-  rescue_from Mastodon::RaceConditionError do
+  rescue_from Seahorse::Client::NetworkingError do |e|
+    Rails.logger.warn "Storage server error: #{e}"
+    render json: { error: 'There was a temporary problem serving your request, please try again' }, status: 503
+  end
+
+  rescue_from Mastodon::RaceConditionError, Stoplight::Error::RedLight do
     render json: { error: 'There was a temporary problem serving your request, please try again' }, status: 503
   end
 
@@ -103,7 +108,7 @@ class Api::BaseController < ApplicationController
     elsif !current_user.functional?
       render json: { error: 'Your login is currently disabled' }, status: 403
     else
-      set_user_activity
+      update_user_sign_in
     end
   end
 

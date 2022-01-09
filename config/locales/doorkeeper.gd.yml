@@ -1,0 +1,154 @@
+---
+gd:
+  activerecord:
+    attributes:
+      doorkeeper/application:
+        name: Ainm na h-aplacaid
+        redirect_uri: URI ath-stiùiridh
+        scopes: Sgòpaichean
+        website: Làrach-lìn na h-aplacaid
+    errors:
+      models:
+        doorkeeper/application:
+          attributes:
+            redirect_uri:
+              fragment_present: "– chan fhaod bloigh a bhith ’na bhroinn."
+              invalid_uri: "– feumaidh seo a bhith ’na URI dligheach."
+              relative_uri: "– feumaidh seo a bhith ’na URI absaloideach."
+              secured_uri: "– feumaidh seo a bhith ’na URI HTTPS/SSL."
+  doorkeeper:
+    applications:
+      buttons:
+        authorize: Ùghdarraich
+        cancel: Sguir dheth
+        destroy: Mill
+        edit: Deasaich
+        submit: Cuir a-null
+      confirmations:
+        destroy: A bheil thu cinnteach?
+      edit:
+        title: Deasaich an aplacaid
+      form:
+        error: Iochd! Thoir sùil air an fhoirm agad air eagal ’s gu bheil mearachd ann
+      help:
+        native_redirect_uri: Cleachd %{native_redirect_uri} gus a chur fo dheuchainn gu h-ionadail
+        redirect_uri: Cleachd loidhne fa leth do gach URI
+        scopes: Sgar sgòpaichean le beàrnan. Fàg seo bàn airson nan sgòpaichean bunaiteach a chleachdadh.
+      index:
+        application: Aplacaid
+        callback_url: URL gairm air ais
+        delete: Sguab às
+        empty: Chan eil aplacaid agad.
+        name: Ainm
+        new: Aplacaid ùr
+        scopes: Sgòpaichean
+        show: Seall
+        title: Na h-aplacaidean agad
+      new:
+        title: Aplacaid ùr
+      show:
+        actions: Gnìomhan
+        application_id: Iuchair cliant
+        callback_urls: URLaichean gairm air ais
+        scopes: Sgòpaichean
+        secret: Rùn a’ chliant
+        title: 'Aplacaidean: %{name}'
+    authorizations:
+      buttons:
+        authorize: Ùghdarraich
+        deny: Diùlt
+      error:
+        title: Thachair mearachd
+      new:
+        able_to: 'Seo na comasan a bhios air:'
+        prompt: Tha aplacaid %{client_name} ag iarraidh inntrigeadh dhan chunntas agad
+        title: Tha feum air ùghdarrachadh
+      show:
+        title: Dèan lethbhreac dhen chòd ùghdarrachaidh seo ’s cuir san aplacaid e.
+    authorized_applications:
+      buttons:
+        revoke: Cùl-ghairm
+      confirmations:
+        revoke: A bheil thu cinnteach?
+      index:
+        application: Aplacaid
+        created_at: Ceadaichte
+        date_format: "%Y-%m-%d %H:%M:%S"
+        scopes: Sgòpaichean
+        title: Na h-aplacaidean ùghdarraichte agad
+    errors:
+      messages:
+        access_denied: Dhiùlt sealbhadair a’ ghoireis no am frithealaiche ùghdarrachaidh an t-iarrtas.
+        credential_flow_not_configured: Dh’fhàillig le sruth cruthachadh teisteas facail-fhaire do shealbhadair a’ ghoireis ri linn Doorkeeper.configure.resource_owner_from_credentials gun rèiteachadh.
+        invalid_client: Dh’fhàillig le dearbhadh a’ chliant ri linn cliant nach aithne dhuinn, dearbhadh cliant nach deach gabhail a-staigh no dòigh dearbhaidh ris nach cuirear taic.
+        invalid_grant: Chan eil an t-ùghdarrachadh a chaidh a thoirt seachad dligheach, dh’fhalbh an ùine air, chaidh a chùl-ghairm no chan eil e a-rèir URI an ath-stiùiridh a chaidh a chleachdadh san iarrtas ùghdarrachaidh no chaidh fhoillseachadh le cliant eile.
+        invalid_redirect_uri: Chan eil an URI ath-stiùiridh a chaidh a ghabhail a-staigh dligheach.
+        invalid_request:
+          missing_param: 'Tha paramadair riatanach a dhìth: %{value}.'
+          request_not_authorized: Tha an t-iarrtas feumach air ùghdarrachadh. Tha paramadair riatanach a dhìth air an iarrtas ùghdarrachaidh no tha e mì-dhligheach.
+          unknown: Tha paramadair a dhìth air an iarrtas, tha luach paramadair ’na bhroinn ris nach cuirear taic no tha droch-chruth air choireigin eile air.
+        invalid_resource_owner: Chan eil teisteas sealbhadair a’ ghoireis a chaidh a sholar dligheach no cha ghabh sealbhadair a’ ghoireis a lorg
+        invalid_scope: Tha an sgòp a chaidh iarraidh mì-dhligheach, chan aithne dhuinn e no tha droch-chruth air.
+        invalid_token:
+          expired: Dh’fhalbh an ùine air an tòcan inntrigidh
+          revoked: Chaidh an tòcan inntrigidh a chùl-ghairm
+          unknown: Chan eil an tòcan inntrigidh dligheach
+        resource_owner_authenticator_not_configured: Cha deach sealbhadair a’ ghoireis a lorg ri linn Doorkeeper.configure.resource_owner_authenticator gun rèiteachadh.
+        server_error: Thachair am frithealaiche dearbhaidh ri cumha gun dùil nach do leig leis an t-iarrtas a choileanadh.
+        temporarily_unavailable: Chan urrainn dhan fhrithealaiche ùghdarrachaidh an t-iarrtas a làimhseachadh aig an àm seo ri linn eallach anabarrach no obair-ghlèidhidh air an fhrithealaiche.
+        unauthorized_client: Cha deach an cliant ùghdarrachadh airson an t-iarrtas seo a dhèanamh air an dòigh seo.
+        unsupported_grant_type: Cha chuir am frithealaiche ùghdarrachaidh taic ris an seòrsa seo de thoirt cead ùghdarrachaidh.
+        unsupported_response_type: Cha chuir am frithealaiche ùghdarrachaidh taic ris an seòrsa seo de fhreagairt.
+    flash:
+      applications:
+        create:
+          notice: Chaidh an aplacaid a chruthachadh.
+        destroy:
+          notice: Chaidh an aplacaid a sguabadh às.
+        update:
+          notice: Chaidh an aplacaid ùrachadh.
+      authorized_applications:
+        destroy:
+          notice: Chaidh an t-iarrtas a chùl-ghairm.
+    layouts:
+      admin:
+        nav:
+          applications: Aplacaidean
+          oauth2_provider: Solaraiche OAuth2
+      application:
+        title: Tha feum air ùghdarrachadh OAuth
+    scopes:
+      admin:read: dàta sam bith a leughadh air an fhrithealaiche
+      admin:read:accounts: fiosrachadh dìomhair air a h-uile cunntas a leughadh
+      admin:read:reports: fiosrachadh dìomhair air a h-uile gearan is cunntasan a chaidh a ghearan mun dèidhinn a leughadh
+      admin:write: dàta sam bith atharrachadh air an fhrithealaiche
+      admin:write:accounts: gnìomhan na maorsainneachd a ghabhail air cunntasan
+      admin:write:reports: gnìomhan na maorsainneachd a ghabhail air gearanan
+      follow: dàimhean chunntasan atharrachadh
+      push: na brathan putaidh agad fhaighinn
+      read: dàta sam bith a’ cunntais agad a leughadh
+      read:accounts: fiosrachadh nan cunntasan fhaicinn
+      read:blocks: na bacaidhean agad fhaicinn
+      read:bookmarks: na comharran-lìn agad fhaicinn
+      read:favourites: na h-annsachdan agad fhaicinn
+      read:filters: na criathragan agad fhaicinn
+      read:follows: faicinn cò air a tha thu a’ leantainn
+      read:lists: na liostaichean agad fhaicinn
+      read:mutes: na mùchaidhean agad fhaicinn
+      read:notifications: na brathan agad faicinn
+      read:reports: na gearanan agad fhaicinn
+      read:search: lorg a dhèanamh às do leth
+      read:statuses: na postaichean uile fhaicinn
+      write: dàta sam bith a’ cunntais agad atharrachadh
+      write:accounts: a’ phròifil agad atharrachadh
+      write:blocks: cunntasan is àrainnean a bhacadh
+      write:bookmarks: comharran-lìn a dhèanamh de phostaichean
+      write:favourites: postaichean a chur ris na h-annsachdan
+      write:filters: criathragan a chruthachadh
+      write:follows: leantainn air daoine
+      write:lists: liostaichean a chruthachadh
+      write:media: faidhlichean meadhain a luchdadh suas
+      write:mutes: daoine is còmhraidhean a mhùchadh
+      write:notifications: na brathan agad fhalamhachadh
+      write:reports: gearan a dhèanamh mu chàch
+      write:statuses: postaichean fhoillseachadh

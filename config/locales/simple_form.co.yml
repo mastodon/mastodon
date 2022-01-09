@@ -73,6 +73,8 @@ co:
           no_access: Bluccà l'accessu à tutte e risorse
           sign_up_requires_approval: E nove dumande d'arregistramente necessitaranu a vostr'appruvazione
         severity: Sceglie ciò chì si passerà cù e richieste di quest'IP
+      rule:
+        text: Discrizzione di una regula o esigenza per l'utilizatori di stu servore. Pruvate di guardalla corta è simplice
       sessions:
         otp: 'Entrate u codice d’identificazione à dui fattori nant’à u vostru telefuninu, o unu di i vostri codici di ricuperazione:'
         webauthn: S'ella hè una chjave USB assicuratevi di brancalla è, s'ellu c'hè unu, appughjà nant'à u buttone.
@@ -126,6 +128,7 @@ co:
         expires_in: Spira dopu à
         fields: Metadata di u prufile
         header: Ritrattu di cuprendula
+        honeypot: "%{label} (ùn empie micca)"
         inbox_url: URL di l'inbox di u ripetitore
         irreversible: Sguassà invece di piattà
         locale: Lingua di l'interfaccia
@@ -196,6 +199,8 @@ co:
         reblog: Mandà un’e-mail quandu qualch’unu sparte i mo statuti
         report: Mandà un'e-mail quandu c'hè un novu signalamentu
         trending_tag: Mandà un'e-mail quandu un hashtag micca verificatu hè in e tendenze
+      rule:
+        text: Regula
       tag:
         listable: Auturizà stu hashtag à esse vistu nant'à l'annuariu di i prufili
         name: Hashtag

@@ -13,7 +13,7 @@ class InstanceActorsController < ApplicationController
   private
 
   def set_account
-    @account = Account.find(-99)
+    @account = Account.representative
   end
 
   def restrict_fields_to

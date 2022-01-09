@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import DetailedStatus from '../components/detailed_status';
-import { makeGetStatus } from '../../../selectors';
+import { makeGetStatus, makeGetPictureInPicture } from '../../../selectors';
 import {
   replyCompose,
   mentionCompose,
@@ -23,6 +23,7 @@ import {
 } from '../../../actions/statuses';
 import { initMuteModal } from '../../../actions/mutes';
 import { initBlockModal } from '../../../actions/blocks';
+import { initBoostModal } from '../../../actions/boosts';
 import { initReport } from '../../../actions/reports';
 import { openModal } from '../../../actions/modal';
 import { defineMessages, injectIntl } from 'react-intl';
@@ -40,10 +41,12 @@ const messages = defineMessages({
 
 const makeMapStateToProps = () => {
   const getStatus = makeGetStatus();
+  const getPictureInPicture = makeGetPictureInPicture();
 
   const mapStateToProps = (state, props) => ({
     status: getStatus(state, props),
     domain: state.getIn(['meta', 'domain']),
+    pictureInPicture: getPictureInPicture(state, props),
   });
 
   return mapStateToProps;
@@ -66,8 +69,8 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
     });
   },
 
-  onModalReblog (status) {
-    dispatch(reblog(status));
+  onModalReblog (status, privacy) {
+    dispatch(reblog(status, privacy));
   },
 
   onReblog (status, e) {
@@ -77,7 +80,7 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
       if (e.shiftKey || !boostModal) {
         this.onModalReblog(status);
       } else {
-        dispatch(openModal('BOOST', { status, onReblog: this.onModalReblog }));
+        dispatch(initBoostModal({ status, onReblog: this.onModalReblog }));
       }
     }
   },

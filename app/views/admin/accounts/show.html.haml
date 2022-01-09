@@ -1,23 +1,19 @@
 - content_for :page_title do
   = @account.acct
 
+- if @account.instance_actor?
+  .flash-message.notice
+    %strong= t('accounts.instance_actor_flash')
+
 = render 'application/card', account: @account
 
 - account = @account
-- proofs = account.identity_proofs.active
 - fields = account.fields
-- unless fields.empty? && proofs.empty? && account.note.blank?
+- unless fields.empty? && account.note.blank?
   .admin-account-bio
-    - unless fields.empty? && proofs.empty?
+    - unless fields.empty?
       %div
         .account__header__fields
-          - proofs.each do |proof|
-            %dl
-              %dt= proof.provider.capitalize
-              %dd.verified
-                = link_to fa_icon('check'), proof.badge.proof_url, class: 'verified__mark', title: t('accounts.link_verified_on', date: l(proof.updated_at))
-                = link_to proof.provider_username, proof.badge.profile_url
-
           - fields.each do |field|
             %dl
               %dt.emojify{ title: field.name }= Formatter.instance.format_field(account, field.name, custom_emojify: true)
@@ -75,7 +71,9 @@
           = t('admin.accounts.no_limits_imposed')
       .dashboard__counters__label= t 'admin.accounts.login_status'
 
-- unless @account.local? && @account.user.nil?
+- if @account.local? && @account.user.nil?
+  = link_to t('admin.accounts.unblock_email'), unblock_email_admin_account_path(@account.id), method: :post, class: 'button' if can?(:unblock_email, @account) && CanonicalEmailBlock.where(reference_account_id: @account.id).exists?
+- else
   .table-wrapper
     %table.table.inline-table
       %tbody
@@ -125,6 +123,27 @@
               - else
                 = t('admin.accounts.confirming')
             %td= table_link_to 'refresh', t('admin.accounts.resend_confirmation.send'), resend_admin_account_confirmation_path(@account.id), method: :post if can?(:confirm, @account.user)
+          %tr
+            %th{ rowspan: can?(:reset_password, @account.user) ? 2 : 1 }= t('admin.accounts.security')
+            %td{ rowspan: can?(:reset_password, @account.user) ? 2 : 1 }
+              - if @account.user&.two_factor_enabled?
+                = t 'admin.accounts.security_measures.password_and_2fa'
+              - elsif @account.user&.skip_sign_in_token?
+                = t 'admin.accounts.security_measures.only_password'
+              - else
+                = t 'admin.accounts.security_measures.password_and_sign_in_token'
+            %td
+              - if @account.user&.two_factor_enabled?
+                = table_link_to 'unlock', t('admin.accounts.disable_two_factor_authentication'), admin_user_two_factor_authentication_path(@account.user.id), method: :delete if can?(:disable_2fa, @account.user)
+              - elsif @account.user&.skip_sign_in_token?
+                = table_link_to 'lock', t('admin.accounts.enable_sign_in_token_auth'), admin_user_sign_in_token_authentication_path(@account.user.id), method: :post if can?(:enable_sign_in_token_auth, @account.user)
+              - else
+                = table_link_to 'unlock', t('admin.accounts.disable_sign_in_token_auth'), admin_user_sign_in_token_authentication_path(@account.user.id), method: :delete if can?(:disable_sign_in_token_auth, @account.user)
+
+          - if can?(:reset_password, @account.user)
+            %tr
+              %td
+                = table_link_to 'key', t('admin.accounts.reset_password'), admin_account_reset_path(@account.id), method: :create, data: { confirm: t('admin.accounts.are_you_sure') }
 
           %tr
             %th= t('simple_form.labels.defaults.locale')
@@ -217,9 +236,6 @@
 
       %div
         - if @account.local?
-          = link_to t('admin.accounts.reset_password'), admin_account_reset_path(@account.id), method: :create, class: 'button' if can?(:reset_password, @account.user)
-          - if @account.user&.otp_required_for_login?
-            = link_to t('admin.accounts.disable_two_factor_authentication'), admin_user_two_factor_authentication_path(@account.user.id), method: :delete, class: 'button' if can?(:disable_2fa, @account.user)
           - if !@account.memorial? && @account.user_approved?
             = link_to t('admin.accounts.memorialize'), memorialize_admin_account_path(@account.id), method: :post, data: { confirm: t('admin.accounts.are_you_sure') }, class: 'button button--destructive' if can?(:memorialize, @account)
         - else
@@ -242,3 +258,13 @@
 
     .actions
       = f.button :button, t('admin.account_moderation_notes.create'), type: :submit
+
+  %hr.spacer/
+
+  - if @account.user&.invite_request&.text&.present?
+    %div.speech-bubble
+      %div.speech-bubble__bubble
+        = @account.user&.invite_request&.text
+      %div.speech-bubble__owner
+        = admin_account_link_to @account
+        = t('admin.accounts.invite_request_text')

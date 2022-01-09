@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class Api::V1::AccountsController < Api::BaseController
-  before_action -> { authorize_if_got_token! :read, :'read:accounts' }, except: [:create, :follow, :unfollow, :block, :unblock, :mute, :unmute]
-  before_action -> { doorkeeper_authorize! :follow, :'write:follows' }, only: [:follow, :unfollow]
+  before_action -> { authorize_if_got_token! :read, :'read:accounts' }, except: [:create, :follow, :unfollow, :remove_from_followers, :block, :unblock, :mute, :unmute]
+  before_action -> { doorkeeper_authorize! :follow, :'write:follows' }, only: [:follow, :unfollow, :remove_from_followers]
   before_action -> { doorkeeper_authorize! :follow, :'write:mutes' }, only: [:mute, :unmute]
   before_action -> { doorkeeper_authorize! :follow, :'write:blocks' }, only: [:block, :unblock]
   before_action -> { doorkeeper_authorize! :write, :'write:accounts' }, only: [:create]
@@ -27,13 +27,15 @@ class Api::V1::AccountsController < Api::BaseController
 
     self.response_body = Oj.dump(response.body)
     self.status        = response.status
+  rescue ActiveRecord::RecordInvalid => e
+    render json: ValidationErrorFormatter.new(e, :'account.username' => :username, :'invite_request.text' => :reason).as_json, status: :unprocessable_entity
   end
 
   def follow
     follow  = FollowService.new.call(current_user.account, @account, reblogs: params.key?(:reblogs) ? truthy_param?(:reblogs) : nil, notify: params.key?(:notify) ? truthy_param?(:notify) : nil, with_rate_limit: true)
     options = @account.locked? || current_user.account.silenced? ? {} : { following_map: { @account.id => { reblogs: follow.show_reblogs?, notify: follow.notify? } }, requested_map: { @account.id => false } }
 
-    render json: @account, serializer: REST::RelationshipSerializer, relationships: relationships(options)
+    render json: @account, serializer: REST::RelationshipSerializer, relationships: relationships(**options)
   end
 
   def block
@@ -42,12 +44,17 @@ class Api::V1::AccountsController < Api::BaseController
   end
 
   def mute
-    MuteService.new.call(current_user.account, @account, notifications: truthy_param?(:notifications), duration: (params[:duration] || 0))
+    MuteService.new.call(current_user.account, @account, notifications: truthy_param?(:notifications), duration: (params[:duration]&.to_i || 0))
     render json: @account, serializer: REST::RelationshipSerializer, relationships: relationships
   end
 
   def unfollow
     UnfollowService.new.call(current_user.account, @account)
+    render json: @account, serializer: REST::RelationshipSerializer, relationships: relationships
+  end
+
+  def remove_from_followers
+    RemoveFromFollowersService.new.call(current_user.account, @account)
     render json: @account, serializer: REST::RelationshipSerializer, relationships: relationships
   end
 
@@ -68,7 +75,7 @@ class Api::V1::AccountsController < Api::BaseController
   end
 
   def relationships(**options)
-    AccountRelationshipsPresenter.new([@account.id], current_user.account_id, options)
+    AccountRelationshipsPresenter.new([@account.id], current_user.account_id, **options)
   end
 
   def account_params

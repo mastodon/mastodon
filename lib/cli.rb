@@ -13,7 +13,9 @@ require_relative 'mastodon/preview_cards_cli'
 require_relative 'mastodon/cache_cli'
 require_relative 'mastodon/upgrade_cli'
 require_relative 'mastodon/email_domain_blocks_cli'
+require_relative 'mastodon/canonical_email_blocks_cli'
 require_relative 'mastodon/ip_blocks_cli'
+require_relative 'mastodon/maintenance_cli'
 require_relative 'mastodon/version'
 
 module Mastodon
@@ -61,6 +63,12 @@ module Mastodon
     desc 'ip_blocks SUBCOMMAND ...ARGS', 'Manage IP blocks'
     subcommand 'ip_blocks', Mastodon::IpBlocksCLI
 
+    desc 'canonical_email_blocks SUBCOMMAND ...ARGS', 'Manage canonical e-mail blocks'
+    subcommand 'canonical_email_blocks', Mastodon::CanonicalEmailBlocksCLI
+
+    desc 'maintenance SUBCOMMAND ...ARGS', 'Various maintenance utilities'
+    subcommand 'maintenance', Mastodon::MaintenanceCLI
+
     option :dry_run, type: :boolean
     desc 'self-destruct', 'Erase the server from the federation'
     long_desc <<~LONG_DESC
@@ -90,17 +98,22 @@ module Mastodon
 
       exit(1) unless prompt.ask('Type in the domain of the server to confirm:', required: true) == Rails.configuration.x.local_domain
 
-      prompt.warn('This operation WILL NOT be reversible. It can also take a long time.')
-      prompt.warn('While the data won\'t be erased locally, the server will be in a BROKEN STATE afterwards.')
-      prompt.warn('A running Sidekiq process is required. Do not shut it down until queues clear.')
+      unless options[:dry_run]
+        prompt.warn('This operation WILL NOT be reversible. It can also take a long time.')
+        prompt.warn('While the data won\'t be erased locally, the server will be in a BROKEN STATE afterwards.')
+        prompt.warn('A running Sidekiq process is required. Do not shut it down until queues clear.')
 
-      exit(1) if prompt.no?('Are you sure you want to proceed?')
+        exit(1) if prompt.no?('Are you sure you want to proceed?')
+      end
 
       inboxes   = Account.inboxes
       processed = 0
       dry_run   = options[:dry_run] ? ' (DRY RUN)' : ''
 
+      Setting.registrations_mode = 'none' unless options[:dry_run]
+
       if inboxes.empty?
+        Account.local.without_suspended.in_batches.update_all(suspended_at: Time.now.utc, suspension_origin: :local) unless options[:dry_run]
         prompt.ok('It seems like your server has not federated with anything')
         prompt.ok('You can shut it down and delete it any time')
         return
@@ -108,9 +121,7 @@ module Mastodon
 
       prompt.warn('Do NOT interrupt this process...')
 
-      Setting.registrations_mode = 'none'
-
-      Account.local.without_suspended.find_each do |account|
+      delete_account = ->(account) do
         payload = ActiveModelSerializers::SerializableResource.new(
           account,
           serializer: ActivityPub::DeleteActorSerializer,
@@ -124,11 +135,14 @@ module Mastodon
             [json, account.id, inbox_url]
           end
 
-          account.suspend!
+          account.suspend!(block_email: false)
         end
 
         processed += 1
       end
+
+      Account.local.without_suspended.find_each { |account| delete_account.call(account) }
+      Account.local.suspended.joins(:deletion_request).find_each { |account| delete_account.call(account) }
 
       prompt.ok("Queued #{inboxes.size * processed} items into Sidekiq for #{processed} accounts#{dry_run}")
       prompt.ok('Wait until Sidekiq processes all items, then you can shut everything down and delete the data')

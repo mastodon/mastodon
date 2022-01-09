@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe FetchLinkCardService, type: :service do
-  subject { FetchLinkCardService.new }
+  subject { described_class.new }
 
   before do
     stub_request(:get, 'http://example.xn--fiqs8s/').to_return(request_fixture('idn.txt'))
@@ -75,6 +75,14 @@ RSpec.describe FetchLinkCardService, type: :service do
 
       it 'works with a URL ending with a hyphen' do
         expect(a_request(:get, 'http://example.com/test-')).to have_been_made.at_least_once
+      end
+    end
+
+    context do
+      let(:status) { Fabricate(:status, text: 'testhttp://example.com/sjis') }
+
+      it 'does not fetch URLs with not isolated from their surroundings' do
+        expect(a_request(:get, 'http://example.com/sjis')).to_not have_been_made
       end
     end
   end

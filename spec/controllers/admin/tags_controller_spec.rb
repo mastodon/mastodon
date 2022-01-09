@@ -9,11 +9,11 @@ RSpec.describe Admin::TagsController, type: :controller do
     sign_in Fabricate(:user, admin: true)
   end
 
-  describe 'GET #index' do
+  describe 'GET #show' do
     let!(:tag) { Fabricate(:tag) }
 
     before do
-      get :index
+      get :show, params: { id: tag.id }
     end
 
     it 'returns status 200' do

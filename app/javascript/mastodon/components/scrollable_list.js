@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { ScrollContainer } from 'react-router-scroll-4';
+import ScrollContainer from 'mastodon/containers/scroll_container';
 import PropTypes from 'prop-types';
 import IntersectionObserverArticleContainer from '../containers/intersection_observer_article_container';
 import LoadMore from './load_more';
@@ -34,7 +34,6 @@ class ScrollableList extends PureComponent {
     onScrollToTop: PropTypes.func,
     onScroll: PropTypes.func,
     trackScroll: PropTypes.bool,
-    shouldUpdateScroll: PropTypes.func,
     isLoading: PropTypes.bool,
     showLoading: PropTypes.bool,
     hasMore: PropTypes.bool,
@@ -290,7 +289,7 @@ class ScrollableList extends PureComponent {
   }
 
   render () {
-    const { children, scrollKey, trackScroll, shouldUpdateScroll, showLoading, isLoading, hasMore, numPending, prepend, alwaysPrepend, append, emptyMessage, onLoadMore } = this.props;
+    const { children, scrollKey, trackScroll, showLoading, isLoading, hasMore, numPending, prepend, alwaysPrepend, append, emptyMessage, onLoadMore } = this.props;
     const { fullscreen } = this.state;
     const childrenCount = React.Children.count(children);
 
@@ -356,7 +355,7 @@ class ScrollableList extends PureComponent {
 
     if (trackScroll) {
       return (
-        <ScrollContainer scrollKey={scrollKey} shouldUpdateScroll={shouldUpdateScroll}>
+        <ScrollContainer scrollKey={scrollKey}>
           {scrollableArea}
         </ScrollContainer>
       );

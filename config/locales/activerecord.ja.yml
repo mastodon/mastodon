@@ -5,13 +5,28 @@ ja:
       poll:
         expires_at: 期限
         options: 項目
+      user:
+        agreement: サービス契約
+        email: メールアドレス
+        locale: ロケール
+        password: パスワード
+      user/account:
+        username: ユーザー名
+      user/invite_request:
+        text: 理由
     errors:
       models:
         account:
           attributes:
             username:
               invalid: アルファベット・数字・アンダーバーの組み合わせで入力してください
+              reserved: は予約されています
         status:
           attributes:
             reblog:
               taken: は既にブーストされています
+        user:
+          attributes:
+            email:
+              blocked: は禁止されているプロバイダメールを使用します
+              unreachable: 存在しないようです

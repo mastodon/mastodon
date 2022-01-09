@@ -7,7 +7,6 @@ cy:
     active_count_after: yn weithredol
     active_footnote: Defnyddwyr Gweithredol Misol (DGM)
     administered_by: 'Gweinyddir gan:'
-    api: API
     apps: Apiau symudol
     apps_platforms: Defnyddio Mastodon o iOS, Android a phlatfformau eraill
     browse_directory: Pori cyfeiriadur proffil a hidlo wrth diddordebau
@@ -93,10 +92,8 @@ cy:
       zero: Tŵtiau
     posts_tab_heading: Tŵtiau
     posts_with_replies: Tŵtiau ac atebion
-    reserved_username: Mae'r enw defnyddiwr ar gadw
     roles:
       admin: Gweinyddwr
-      bot: Bot
       group: Grŵp
       moderator: Safonwr
     unavailable: Proffil ddim ar gael
@@ -127,6 +124,7 @@ cy:
       confirm: Cadarnhau
       confirmed: Cadarnhawyd
       confirming: Cadarnhau
+      delete: Dileu data
       deleted: Wedi dileu
       demote: Diraddio
       disable: Diffodd
@@ -144,7 +142,6 @@ cy:
       header: Pennawd
       inbox_url: URL Mewnflwch
       invited_by: Gwahoddwyd gan
-      ip: IP
       joined: Ymunodd
       location:
         all: Popeth
@@ -189,7 +186,6 @@ cy:
       roles:
         admin: Gweinyddwr
         moderator: Aroglygydd
-        staff: Staff
         user: Defnyddiwr
       search: Chwilio
       search_same_email_domain: Defnyddwyr eraill gyda'r un parth ebost
@@ -250,42 +246,6 @@ cy:
         update_announcement: Diweddaru Cyhoeddiad
         update_custom_emoji: Diweddaru Emoji Addasiedig
         update_status: Diweddaru Statws
-      actions:
-        assigned_to_self_report: Aseiniodd %{name} adroddiad %{target} i'w hunan
-        change_email_user: Newidodd %{name} gyfeiriad e-bost y defnyddiwr %{target}
-        confirm_user: Cadarnhaodd %{name} gyfeiriad e-bost y defnyddiwr %{target}
-        create_account_warning: Anfonwyd rhybudd i %{target} gan %{name}
-        create_announcement: Wnaeth %{name} creu cyhoeddiad newydd %{target}
-        create_custom_emoji: Uwchlwythodd %{name} emoji newydd %{target}
-        create_domain_allow: Gwynrestrodd %{name} y parth %{target}
-        create_domain_block: Blociodd %{name} y parth %{target}
-        create_email_domain_block: Cosbrestrwyd parth e-bost %{target} gan %{name}
-        demote_user: Diraddiodd %{name} y defnyddiwr %{target}
-        destroy_announcement: Wnaeth %{name} dileu cyhoeddiad newydd %{target}
-        destroy_custom_emoji: Dinistriodd %{name} emoji %{target}
-        destroy_domain_allow: Tynnodd %{name} parth %{target} o'r gwynrestr
-        destroy_domain_block: Dadflociodd %{name} y parth %{target}
-        destroy_email_domain_block: Gwynrestrodd %{name} parth e-bost %{target}
-        destroy_status: Cafodd %{name} wared ar statws gan %{target}
-        disable_2fa_user: Diffoddodd %{name} ar ofyniad dau gam ar gyfer y defnyddiwr %{target}
-        disable_custom_emoji: Diffoddodd %{name} emoji %{target}
-        disable_user: Diffoddodd %{name} mewngofnodi ar gyfer y defnyddiwr %{target}
-        enable_custom_emoji: Galluogodd %{name} emoji %{target}
-        enable_user: Galluogodd %{name} mewngofnodi ar gyfer y defnyddiwr %{target}
-        memorialize_account: Newidodd %{name} gyfrif %{target} i dudalen goffau
-        promote_user: Dyrchafodd %{name} y defnyddiwr %{target}
-        remove_avatar_user: Cafodd %{name} wared ar afatar %{target}
-        reopen_report: Ailagorodd %{name} adroddiad %{target}
-        reset_password_user: Ailosododd %{name} gyfrinair y defnyddiwr %{target}
-        resolve_report: Datrusodd %{name} adroddiad %{target}
-        silence_account: Tawelodd %{name} gyfrif %{target}
-        suspend_account: Ataliodd %{name} gyfrif %{target}
-        unassigned_report: Dadbenododd %{name} adroddiad %{target}
-        unsilence_account: Terfynodd %{name} dawelu cyfrif %{target}
-        unsuspend_account: Terfynodd %{name} yr ataliad ar gyfrif %{target}
-        update_announcement: Wnaeth %{name} diweddaru cyhoeddiad newydd %{target}
-        update_custom_emoji: Diweddarodd %{name} emoji %{target}
-        update_status: Diweddarodd %{name} statws gan %{target}
       deleted_status: "(statws wedi ei ddileu)"
       empty: Dim logiau ar gael.
       filter_by_action: Hidlo wrth weithred
@@ -312,14 +272,12 @@ cy:
       copied_msg: Llwyddwyd i greu copi lleol o'r emoji
       copy: Copïo
       copy_failed_msg: Methwyd i greu copi lleol o'r emoji hwnnw
-      create_new_category: Create new category
       created_msg: Llwyddwyd i greu emoji!
       delete: Dileu
       destroyed_msg: Llwyddwyd i ddinistrio emojo!
       disable: Diffodd
       disabled: Wedi'i ddiffodd
       disabled_msg: Llwyddwyd i ddiffodd yr emoji hwnnw
-      emoji: Emoji
       enable: Galluogi
       enabled: Wedi ei alluogi
       enabled_msg: Llwyddwyd i alluogi yr emoji hwnnw
@@ -340,33 +298,9 @@ cy:
       updated_msg: Llwyddwyd i ddiweddaru'r emoji!
       upload: Uwchlwytho
     dashboard:
-      authorized_fetch_mode: Modd nôl awdurdodedig
-      backlog: tasgau heb eu cwblhau
-      config: Cyfluniad
-      feature_deletions: Dileadau cyfrif
-      feature_invites: Dolenni gwahodd
-      feature_profile_directory: Cyfeiriadur proffil
-      feature_registrations: Cofrestriadau
-      feature_relay: Relái ffederasiwn
-      feature_spam_check: Gwrth-sbam
-      feature_timeline_preview: Rhagolwg o'r ffrwd
-      features: Nodweddion
-      hidden_service: Ffederasiwn a gwasanaethau cudd
-      open_reports: adroddiadau agored
-      pending_tags: hashnodau yn aros am adolygiad
-      pending_users: defnyddwyr yn aros am adolygiad
-      recent_users: Defnyddwyr diweddar
-      search: Chwilio testun llawn
-      single_user_mode: Modd un defnyddiwr
       software: Meddalwedd
       space: Defnydd o ofod
       title: Dangosfwrdd
-      total_users: cyfanswm defnyddwyr
-      trends: Tueddiadau
-      week_interactions: ymadweithiau yr wythnos hon
-      week_users_active: gweithredol yr wythnos hon
-      week_users_new: defnyddwyr yr wythnos hon
-      whitelist_mode: Modd rhestr wen
     domain_allows:
       add_new: Rhestrwch parth
       created_msg: Rhestrwyd wen parth yn llwyddiannus
@@ -547,8 +481,6 @@ cy:
         users: I ddefnyddwyr lleol mewngofnodadwy
       domain_blocks_rationale:
         title: Dangos rhesymwaith
-      enable_bootstrap_timeline_accounts:
-        title: Alluogi dilyn diofyn i ddefnyddwyr newydd
       hero:
         desc_html: Yn cael ei arddangos ar y dudadlen flaen. Awgrymir 600x100px oleia. Pan nad yw wedi ei osod, mae'n ymddangos fel mân-lun yr achos
         title: Delwedd arwr
@@ -599,9 +531,6 @@ cy:
         desc_html: Mae modd i chi ysgrifennu polisi preifatrwydd, termau gwasanaeth a cyfreitheg arall eich hun. Mae modd defnyddio tagiau HTML
         title: Termau gwasanaeth wedi eu haddasu
       site_title: Enw'r achos
-      spam_check_enabled:
-        desc_html: Gall Mastodon adrodd cyrfifau sy'n anfon negeseuon niferus na chrefwyd yn awtomatig. Efallai fydd yna positifau anwir.
-        title: Awtomeiddiad gwrth-sbam
       thumbnail:
         desc_html: Ceith ei ddefnyddio ar gyfer rhagolygon drwy OpenGraph a'r API. Argymhellir 1200x630px
         title: Mân-lun yr achos
@@ -636,9 +565,6 @@ cy:
       accounts_today: Defyddau unigol heddiw
       accounts_week: Defnyddau unigol yr wythnos hon
       breakdown: Ymddatodiad o ddefnyddiaeth heddiw wrth ffynhonnell
-      context: Cyd-destun
-      directory: O fewn y gyfeiriadur
-      in_directory: "%{count} yn y gyfeiriadur"
       last_active: Yn weithredol ddiwethaf
       most_popular: Mwyaf poblogaidd
       most_recent: Mwyaf diweddar
@@ -682,13 +608,11 @@ cy:
     discovery: Darganfyddiad
     localization:
       body: Caiff Mastodon ei gyfieithu gan wirfoddolwyr.
-      guide_link: https://crowdin.com/project/mastodon
       guide_link_text: Gall pawb gyfrannu.
     sensitive_content: Cynnwys sensitif
     toot_layout: Gosodiad tŵt
   application_mailer:
     notification_preferences: Newid gosodiadau e-bost
-    salutation: "%{name},"
     settings: 'Newid gosodiadau e-bost: %{link}'
     view: 'Gweld:'
     view_profile: Gweld proffil
@@ -720,9 +644,6 @@ cy:
     migrate_account: Symud i gyfrif gwahanol
     migrate_account_html: Os hoffech chi ailgyfeirio'r cyfrif hwn at un gwahanol, mae modd <a href="%{path}">ei ffurfweddu yma</a>.
     or_log_in_with: Neu logiwch mewn a
-    providers:
-      cas: CAS
-      saml: SAML
     register: Cofrestru
     registration_closed: Nid yw %{instance} yn derbyn aelodau newydd
     resend_confirmation: Ailanfon cyfarwyddiadau cadarnhau
@@ -761,9 +682,6 @@ cy:
     errors:
       invalid_key: ddim yn allwedd Ed25519 na Curve25519 dilys
       invalid_signature: ddim yn llofnod Ed25519 dilys
-  date:
-    formats:
-      default: "%b %d, %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}awr"
@@ -828,7 +746,6 @@ cy:
       request: Gwneud cais am eich archif
       size: Maint
     blocks: Yr ydych yn blocio
-    csv: CSV
     domain_blocks: Blociau parth
     lists: Rhestrau
     mutes: Yr ydych yn tawelu
@@ -1033,7 +950,6 @@ cy:
   number:
     human:
       decimal_units:
-        format: "%n%u"
         units:
           billion: Biliwn
           million: Miliwn
@@ -1045,7 +961,6 @@ cy:
     next: Nesaf
     older: Hŷn
     prev: Blaenorol
-    truncate: "&hellip;"
   polls:
     errors:
       already_voted: Rydych chi barod wedi pleidleisio ar y pleidlais hon
@@ -1108,39 +1023,17 @@ cy:
     activity: Gweithgaredd ddiwethaf
     browser: Porwr
     browsers:
-      alipay: Alipay
-      blackberry: Blackberry
-      chrome: Chrome
-      edge: Microsoft Edge
-      electron: Electron
-      firefox: Firefox
       generic: Porwr anhysbys
-      ie: Internet Explorer
-      micro_messenger: MicroMessenger
       nokia: Porwr Nokia S40 Ovi
-      opera: Opera
-      otter: Otter
-      phantom_js: PhantomJS
       qq: Porwr QQ
-      safari: Safari
-      uc_browser: UCBrowser
-      weibo: Weibo
     current_session: Sesiwn cyfredol
     description: "%{browser} ar %{platform}"
     explanation: Dyma'r porwyr gwê sydd wedi mewngofnodi i'ch cyfrif Mastododon ar hyn o bryd.
-    ip: IP
     platforms:
-      adobe_air: Adobe Air
-      android: Android
-      blackberry: Blackberry
       chrome_os: OS Chrome
       firefox_os: OS Firefox
-      ios: iOS
-      linux: Linux
       mac: Mac
       other: platfform anhysbys
-      windows: Windows
-      windows_mobile: Windows Mobile
       windows_phone: Ffôn Windows
     revoke: Diddymu
     revoke_success: Sesiwn wedi ei ddiddymu yn llwyddiannus
@@ -1166,8 +1059,6 @@ cy:
     profile: Proffil
     relationships: Dilynion a dilynwyr
     two_factor_authentication: Awdurdodi dau-gam
-  spam_check:
-    spam_detected: Mae hyn yn adrodd awtomatig. Caiff sbam ei ganfod.
   statuses:
     attached:
       audio:
@@ -1230,7 +1121,6 @@ cy:
     show_more: Dangos mwy
     show_thread: Dangos edefyn
     sign_in_to_participate: Mengofnodwch i gymryd rhan yn y sgwrs
-    title: '%{name}: "%{quote}"'
     visibilities:
       private: Dilynwyr yn unig
       private_long: Dangos i ddilynwyr yn unig
@@ -1331,10 +1221,6 @@ cy:
     contrast: Mastodon (Cyferbyniad uchel)
     default: Mastodon (Tywyll)
     mastodon-light: Mastodon (golau)
-  time:
-    formats:
-      default: "%b %d, %Y, %H:%M"
-      month: "%b %Y"
   two_factor_authentication:
     disable: Diffodd
     enabled: Awdurdodi dau-gam wedi'i alluogi
@@ -1391,11 +1277,8 @@ cy:
       tips: Awgrymiadau
       title: Croeso, %{name}!
   users:
-    blocked_email_provider: Nid yw'r darparwr ebost hon yn cael ei ganiatâu
     follow_limit_reached: Nid oes modd i chi ddilyn mwy na %{limit} o bobl
     generic_access_help_html: Cael trafferth yn cyrchu eich cyfrif? Efallai hoffwch cysylltu â %{email} am gymorth
-    invalid_email: Mae'r cyfeiriad e-bost hwn yn annilys
-    invalid_email_mx: Nid yw'r ebost yn edrcyh fel ei bod yn bodoli
     invalid_otp_token: Côd dau-ffactor annilys
     invalid_sign_in_token: Cod diogelwch annilys
     otp_lost_help_html: Os colloch chi fynediad i'r ddau, mae modd i chi gysylltu a %{email}

@@ -5,13 +5,26 @@ br:
       poll:
         expires_at: Deiziad termen
         options: Dibaboù
+      user:
+        email: Chomlec'h postel
+        locale: Lec'hel
+        password: Ger-tremen
+      user/account:
+        username: Anv
+      user/invite_request:
+        text: Abeg
     errors:
       models:
         account:
           attributes:
             username:
               invalid: nemet lizherennoù, niverennoù hag isbarrennigoù
+              reserved: a zo miret
         status:
           attributes:
             reblog:
               taken: eus ar statud a zo dija
+        user:
+          attributes:
+            email:
+              blocked: a implij ur pourvezour postel berzet

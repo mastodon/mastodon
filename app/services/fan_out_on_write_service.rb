@@ -9,6 +9,7 @@ class FanOutOnWriteService < BaseService
     deliver_to_self(status) if status.account.local?
 
     if status.direct_visibility?
+      deliver_to_mentioned_followers(status)
       deliver_to_own_conversation(status)
     elsif status.limited_visibility?
       deliver_to_mentioned_followers(status)

@@ -30,8 +30,8 @@ describe Api::V1::Accounts::CredentialsController do
           patch :update, params: {
             display_name: "Alice Isn't Dead",
             note: "Hi!\n\nToot toot!",
-            avatar: fixture_file_upload('files/avatar.gif', 'image/gif'),
-            header: fixture_file_upload('files/attachment.jpg', 'image/jpeg'),
+            avatar: fixture_file_upload('avatar.gif', 'image/gif'),
+            header: fixture_file_upload('attachment.jpg', 'image/jpeg'),
             source: {
               privacy: 'unlisted',
               sensitive: true,

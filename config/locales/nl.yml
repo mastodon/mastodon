@@ -21,11 +21,11 @@ nl:
     federation_hint_html: Met een account op %{instance} ben je in staat om mensen die zich op andere Mastodonservers (en op andere plekken) bevinden te volgen.
     get_apps: Mobiele apps
     hosted_on: Mastodon op %{domain}
-    instance_actor_flash: 'Dit account is een virtuel actor dat wordt gebruikt om de server zelf te vertegenwoordigen en is geen individuele gebruiker. Het wordt voor federatiedoeleinden gebruikt en moet niet worden geblokkeerd, tenzij je de hele server wilt blokkeren. In zo''n geval dien je echter een domeinblokkade te gebruiken.
-
-'
+    instance_actor_flash: "Dit account is een virtuel actor dat wordt gebruikt om de server zelf te vertegenwoordigen en is geen individuele gebruiker. Het wordt voor federatiedoeleinden gebruikt en moet niet worden geblokkeerd, tenzij je de hele server wilt blokkeren. In zo'n geval dien je echter een domeinblokkade te gebruiken. \n"
     learn_more: Meer leren
     privacy_policy: Privacybeleid
+    rules: Serverregels
+    rules_html: 'Hieronder vind je een samenvatting van de regels die je op deze Mastodon-server moet opvolgen:'
     see_whats_happening: Kijk wat er aan de hand is
     server_stats: 'Serverstatistieken:'
     source_code: Broncode
@@ -60,6 +60,7 @@ nl:
       one: Volger
       other: Volgers
     following: Volgend
+    instance_actor_flash: Dit account is een 'virtual actor' waarmee de server zichzelf vertegenwoordigd en is dus geen individuele gebruiker. Het wordt voor federatiedoeleinden gebruikt en moet niet worden opgeschort.
     joined: Geregistreerd in %{date}
     last_active: laatst actief
     link_verified_on: Eigendom van deze link is gecontroleerd op %{date}
@@ -77,7 +78,6 @@ nl:
       other: Toots
     posts_tab_heading: Toots
     posts_with_replies: Toots en reacties
-    reserved_username: Deze gebruikersnaam is gereserveerd
     roles:
       admin: Beheerder
       bot: Bot
@@ -98,6 +98,7 @@ nl:
       add_email_domain_block: E-maildomein blokkeren
       approve: Goedkeuren
       approve_all: Alles goedkeuren
+      approved_msg: Het goedkeuren van het registratieverzoek van %{username} is geslaagd
       are_you_sure: Weet je het zeker?
       avatar: Avatar
       by_domain: Domein
@@ -111,8 +112,10 @@ nl:
       confirm: Bevestigen
       confirmed: Bevestigd
       confirming: Bevestiging
+      delete: Gegevens verwijderen
       deleted: Verwijderd
       demote: Degraderen
+      destroyed_msg: De verwijdering van de gegevens van %{username} staat nu in de wachtrij
       disable: Bevriezen
       disable_two_factor_authentication: 2FA uitschakelen
       disabled: Bevroren
@@ -123,10 +126,12 @@ nl:
       email_status: E-mailstatus
       enable: Ontdooien
       enabled: Ingeschakeld
+      enabled_msg: Het ontdooien van het account van %{username} is geslaagd
       followers: Volgers
       follows: Volgt
       header: Omslagfoto
       inbox_url: Inbox-URL
+      invite_request_text: Redenen om te registreren
       invited_by: Uitgenodigd door
       ip: IP
       joined: Geregistreerd in
@@ -137,7 +142,9 @@ nl:
         title: Locatie
       login_status: Loginstatus
       media_attachments: Mediabijlagen
-      memorialize: In gedenkpagina veranderen
+      memorialize: Naar een In memoriam veranderen
+      memorialized: In memoriam
+      memorialized_msg: Het naar een In memoriam veranderen van het account van %{username} is geslaagd
       moderation:
         active: Actief
         all: Alles
@@ -158,10 +165,14 @@ nl:
       public: Openbaar
       push_subscription_expires: PuSH-abonnement verloopt op
       redownload: Profiel vernieuwen
+      redownloaded_msg: Het herstellen van het oorspronkelijke profiel van %{username} is geslaagd
       reject: Afkeuren
       reject_all: Alles afkeuren
+      rejected_msg: Het afwijzen van het registratieverzoek van %{username} is geslaagd
       remove_avatar: Avatar verwijderen
       remove_header: Omslagfoto verwijderen
+      removed_avatar_msg: Het verwijderen van de avatar van %{username} is geslaagd
+      removed_header_msg: Het verwijderen van de omslagfoto van %{username} is geslaagd
       resend_confirmation:
         already_confirmed: Deze gebruiker is al bevestigd
         send: Verzend bevestigingsmail opnieuw
@@ -178,6 +189,8 @@ nl:
       search: Zoeken
       search_same_email_domain: Andere gebruikers met hetzelfde e-maildomein
       search_same_ip: Andere gebruikers met hetzelfde IP-adres
+      sensitive: Gevoelig
+      sensitized: als gevoelig gemarkeerd
       shared_inbox_url: Gedeelde inbox-URL
       show:
         created_reports: Aangemaakte rapportages
@@ -187,13 +200,19 @@ nl:
       statuses: Toots
       subscribe: Abonneren
       suspended: Opgeschort
+      suspension_irreversible: De gegevens van dit account zijn onomkeerbaar verwijderd. Je kunt het opschorten van dit account ongedaan maken zodat het weer valt te gebruiken, maar de verwijderde gegevens worden hiermee niet hersteld.
+      suspension_reversible_hint_html: Dit account is opgeschort en de gegevens worden volledig verwijderd op %{date}. Tot die tijd kan dit account worden hersteld zonder nadelige gevolgen. Wanneer je alle gegevens van dit account onmiddellijk wilt verwijderen, kun je dit hieronder doen.
       time_in_queue: "%{time} in de wachtrij"
       title: Accounts
       unconfirmed_email: Onbevestigd e-mailadres
+      undo_sensitized: Niet meer als gevoelig markeren
       undo_silenced: Niet langer negeren
       undo_suspension: Niet langer opschorten
+      unsilenced_msg: Het opheffen van de beperkingen van %{username} zijn geslaagd
       unsubscribe: Opzeggen
+      unsuspended_msg: Het niet langer opschorten van %{username} is geslaagd
       username: Gebruikersnaam
+      view_domain: Samenvatting voor domein bekijken
       warn: Waarschuwen
       web: Webapp
       whitelisted: Goedgekeurd voor federatie
@@ -208,68 +227,82 @@ nl:
         create_domain_allow: Domeingoedkeuring aanmaken
         create_domain_block: Domeinblokkade aanmaken
         create_email_domain_block: E-maildomeinblokkade aanmaken
+        create_ip_block: IP-regel aanmaken
+        create_unavailable_domain: Niet beschikbaar domein aanmaken
         demote_user: Gebruiker degraderen
         destroy_announcement: Mededeling verwijderen
         destroy_custom_emoji: Lokale emoji verwijderen
         destroy_domain_allow: Domeingoedkeuring verwijderen
         destroy_domain_block: Domeinblokkade verwijderen
         destroy_email_domain_block: E-maildomeinblokkade verwijderen
+        destroy_ip_block: IP-regel verwijderen
         destroy_status: Toot verwijderen
+        destroy_unavailable_domain: Niet beschikbaar domein verwijderen
         disable_2fa_user: Tweestapsverificatie uitschakelen
         disable_custom_emoji: Lokale emojij uitschakelen
         disable_user: Gebruiker uitschakelen
         enable_custom_emoji: Lokale emoji inschakelen
         enable_user: Gebruiker inschakelen
-        memorialize_account: Account in gedenkpagina veranderen
+        memorialize_account: Het account in een In memoriam veranderen
         promote_user: Gebruiker promoveren
         remove_avatar_user: Avatar verwijderen
         reopen_report: Rapportage heropenen
         reset_password_user: Wachtwoord opnieuw instellen
         resolve_report: Rapportage oplossen
+        sensitive_account: De media in jouw account als gevoelig markeren
         silence_account: Account negeren
         suspend_account: Account opschorten
         unassigned_report: Rapportage niet langer toewijzen
+        unsensitive_account: De media in jouw account niet langer als gevoelig markeren
         unsilence_account: Account niet langer negeren
         unsuspend_account: Account niet langer opschorten
         update_announcement: Mededeling bijwerken
         update_custom_emoji: Lokale emoji bijwerken
+        update_domain_block: Domeinblokkade bijwerken
         update_status: Toot bijwerken
       actions:
-        assigned_to_self_report: "%{name} heeft rapportage %{target} aan zichzelf toegewezen"
-        change_email_user: "%{name} veranderde het e-mailadres van gebruiker %{target}"
-        confirm_user: E-mailadres van gebruiker %{target} is door %{name} bevestigd
-        create_account_warning: "%{name} verzond een waarschuwing naar %{target}"
-        create_announcement: "%{name} heeft de nieuwe mededeling %{target} aangemaakt"
-        create_custom_emoji: Nieuwe emoji %{target} is door %{name} geüpload
-        create_domain_allow: "%{name} heeft federatie met het domein %{target} goedgekeurd"
-        create_domain_block: Domein %{target} is door %{name} geblokkeerd
-        create_email_domain_block: "%{name} heeft het e-maildomein %{target} geblokkeerd"
-        demote_user: Gebruiker %{target} is door %{name} gedegradeerd
-        destroy_announcement: "%{name} heeft de mededeling %{target} verwijderd"
-        destroy_custom_emoji: "%{name} verwijderde emoji %{target}"
-        destroy_domain_allow: "%{name} heeft federatie met het domein %{target} afgekeurd"
-        destroy_domain_block: Domein %{target} is door %{name} gedeblokkeerd
-        destroy_email_domain_block: "%{name} heeft het e-maildomein %{target} gedeblokkeerd"
-        destroy_status: Toot van %{target} is door %{name} verwijderd
-        disable_2fa_user: Vereisten tweestapsverificatie van %{target} zijn door %{name} uitgeschakeld
-        disable_custom_emoji: Emoji %{target} is door %{name} uitgeschakeld
-        disable_user: Inloggen voor %{target} is door %{name} uitgeschakeld
-        enable_custom_emoji: Emoji %{target} is door %{name} ingeschakeld
-        enable_user: Inloggen voor %{target} is door %{name} ingeschakeld
-        memorialize_account: Account %{target} is door %{name} in een gedenkpagina veranderd
-        promote_user: Gebruiker %{target} is door %{name} gepromoveerd
-        remove_avatar_user: "%{name} verwijderde de avatar van %{target}"
-        reopen_report: "%{name} heeft rapportage %{target} heropend"
-        reset_password_user: Wachtwoord van gebruiker %{target} is door %{name} opnieuw ingesteld
-        resolve_report: "%{name} heeft rapportage %{target} opgelost"
-        silence_account: Account %{target} is door %{name} genegeerd
-        suspend_account: Account %{target} is door %{name} opgeschort
-        unassigned_report: "%{name} heeft het toewijzen van rapportage %{target} ongedaan gemaakt"
-        unsilence_account: Negeren van account %{target} is door %{name} opgeheven
-        unsuspend_account: Opschorten van account %{target} is door %{name} opgeheven
-        update_announcement: "%{name} heeft de mededeling %{target} bijgewerkt"
-        update_custom_emoji: Emoji %{target} is door %{name} bijgewerkt
-        update_status: De toots van %{target} zijn door %{name} bijgewerkt
+        assigned_to_self_report_html: "%{name} heeft rapportage %{target} aan zichzelf toegewezen"
+        change_email_user_html: "%{name} veranderde het e-mailadres van gebruiker %{target}"
+        confirm_user_html: E-mailadres van gebruiker %{target} is door %{name} bevestigd
+        create_account_warning_html: "%{name} verzond een waarschuwing naar %{target}"
+        create_announcement_html: "%{name} heeft de nieuwe mededeling %{target} aangemaakt"
+        create_custom_emoji_html: Nieuwe emoji %{target} is door %{name} geüpload
+        create_domain_allow_html: "%{name} heeft de federatie met het domein %{target} goedgekeurd"
+        create_domain_block_html: Domein %{target} is door %{name} geblokkeerd
+        create_email_domain_block_html: "%{name} heeft het e-maildomein %{target} geblokkeerd"
+        create_ip_block_html: "%{name} maakte regel aan voor IP %{target}"
+        create_unavailable_domain_html: "%{name} heeft de bezorging voor domein %{target} beëindigd"
+        demote_user_html: Gebruiker %{target} is door %{name} gedegradeerd
+        destroy_announcement_html: "%{name} heeft de mededeling %{target} verwijderd"
+        destroy_custom_emoji_html: "%{name} verwijderde emoji %{target}"
+        destroy_domain_allow_html: "%{name} heeft de federatie met het domein %{target} afgekeurd"
+        destroy_domain_block_html: Domein %{target} is door %{name} gedeblokkeerd
+        destroy_email_domain_block_html: "%{name} heeft het e-maildomein %{target} gedeblokkeerd"
+        destroy_ip_block_html: "%{name} verwijderde regel voor IP %{target}"
+        destroy_status_html: Toot van %{target} is door %{name} verwijderd
+        destroy_unavailable_domain_html: "%{name} heeft de bezorging voor domein %{target} hervat"
+        disable_2fa_user_html: De vereiste tweestapsverificatie voor %{target} is door %{name} uitgeschakeld
+        disable_custom_emoji_html: Emoji %{target} is door %{name} uitgeschakeld
+        disable_user_html: Inloggen voor %{target} is door %{name} uitgeschakeld
+        enable_custom_emoji_html: Emoji %{target} is door %{name} ingeschakeld
+        enable_user_html: Inloggen voor %{target} is door %{name} ingeschakeld
+        memorialize_account_html: Het account %{target} is door %{name} in een In memoriam veranderd
+        promote_user_html: Gebruiker %{target} is door %{name} gepromoveerd
+        remove_avatar_user_html: "%{name} verwijderde de avatar van %{target}"
+        reopen_report_html: "%{name} heeft rapportage %{target} heropend"
+        reset_password_user_html: Wachtwoord van gebruiker %{target} is door %{name} opnieuw ingesteld
+        resolve_report_html: "%{name} heeft rapportage %{target} opgelost"
+        sensitive_account_html: "%{name} markeerde de media van %{target} als gevoelig"
+        silence_account_html: Account %{target} is door %{name} beperkt
+        suspend_account_html: Account %{target} is door %{name} opgeschort
+        unassigned_report_html: "%{name} heeft het toewijzen van rapportage %{target} ongedaan gemaakt"
+        unsensitive_account_html: "%{name} markeerde media van %{target} als niet gevoelig"
+        unsilence_account_html: Beperking van account %{target} is door %{name} opgeheven
+        unsuspend_account_html: Opschorten van account %{target} is door %{name} opgeheven
+        update_announcement_html: "%{name} heeft de mededeling %{target} bijgewerkt"
+        update_custom_emoji_html: Emoji %{target} is door %{name} bijgewerkt
+        update_domain_block_html: "%{name} heeft de domeinblokkade bijgewerkt voor %{target}"
+        update_status_html: "%{name} heeft de toots van %{target} bijgewerkt"
       deleted_status: "(verwijderde toot}"
       empty: Geen logs gevonden.
       filter_by_action: Op actie filteren
@@ -284,10 +317,12 @@ nl:
       new:
         create: Mededeling aanmaken
         title: Nieuwe mededeling
+      publish: Inschakelen
       published_msg: Publiceren van mededeling geslaagd!
       scheduled_for: Ingepland voor %{time}
       scheduled_msg: Mededeling staat ingepland voor publicatie!
       title: Mededelingen
+      unpublish: Uitschakelen
       unpublished_msg: Ongedaan maken van gepubliceerde mededeling geslaagd!
       updated_msg: Bijwerken van mededeling geslaagd!
     custom_emojis:
@@ -324,33 +359,9 @@ nl:
       updated_msg: Bijwerken van emoji is geslaagd!
       upload: Uploaden
     dashboard:
-      authorized_fetch_mode: Veilige modus
-      backlog: achterstallige taken
-      config: Configuratie
-      feature_deletions: Verwijderen van account
-      feature_invites: Uitnodigingen
-      feature_profile_directory: Gebruikersgids
-      feature_registrations: Registraties
-      feature_relay: Federatierelay
-      feature_spam_check: Anti-spam
-      feature_timeline_preview: Voorvertoning van tijdlijn
-      features: Functies
-      hidden_service: Federatie met verborgen diensten
-      open_reports: onopgeloste rapportages
-      pending_tags: hashtags die op een beoordeling wachten
-      pending_users: gebruikers die op een beoordeling wachten
-      recent_users: Recente gebruikers
-      search: In volledige tekst zoeken
-      single_user_mode: Modus voor één gebruiker
       software: Software
       space: Ruimtegebruik
       title: Dashboard
-      total_users: gebruikers in totaal
-      trends: Trends
-      week_interactions: interacties deze week
-      week_users_active: actieve gebruikers deze week
-      week_users_new: nieuwe gebruikers deze week
-      whitelist_mode: Beperkte federatiemodus
     domain_allows:
       add_new: Federatie met domein goedkeuren
       created_msg: Federatie met domein is succesvol goedgekeurd
@@ -372,6 +383,8 @@ nl:
           silence: Negeren
           suspend: Opschorten
         title: Nieuwe domeinblokkade
+      obfuscate: Domeinnaam verdoezelen
+      obfuscate_hint: De domeinnaam gedeeltelijk verdoezelen wanneer de lijst met domeinblokkades wordt getoond
       private_comment: Privé-opmerking
       private_comment_hint: Opmerking over deze domeinbeperking voor intern gebruik door de moderatoren.
       public_comment: Openbare opmerking
@@ -408,9 +421,35 @@ nl:
         create: Blokkeren
         title: Nieuw e-maildomein blokkeren
       title: Geblokkeerde e-maildomeinen
+    follow_recommendations:
+      description_html: "<strong>Deze aanbevolen accounts helpen nieuwe gebruikers snel interessante inhoud</strong>te vinden. Wanneer een gebruiker niet met andere gebruikers genoeg interactie heeft gehad om gepersonaliseerde aanbevelingen te krijgen, worden in plaats daarvan deze accounts aanbevolen. Deze accounts worden dagelijks opnieuw berekend met behulp van accounts met het hoogste aantal recente interacties en het hoogste aantal lokale volgers in een bepaalde taal."
+      language: Voor taal
+      status: Status
+      suppress: Aanbevolen account niet meer aanbevelen
+      suppressed: Account niet meer aanbevolen
+      title: Aanbevolen accounts
+      unsuppress: Account weer aanbevelen
     instances:
+      back_to_all: Alles
+      back_to_limited: Beperkt
+      back_to_warning: Waarschuwing
       by_domain: Domein
+      delivery:
+        all: Alles
+        clear: Bezorgfouten weghalen
+        restart: Bezorging herstarten
+        stop: Bezorging beëindigen
+        title: Bezorging
+        unavailable: Niet beschikbaar
+        unavailable_message: Bezorging is niet beschikbaar
+        warning: Waarschuwing
+        warning_message:
+          one: Bezorgingsfout voor %{count} dag
+          other: Bezorgfout voor %{count} dagen
       delivery_available: Bezorging is mogelijk
+      delivery_error_days: Dagen met bezorgfouten
+      delivery_error_hint: Wanneer de bezorging voor %{count} dagen niet mogelijk is, wordt de bezorging automatisch als niet beschikbaar gemarkeerd.
+      empty: Geen domeinen gevonden.
       known_accounts:
         one: "%{count} bekend account"
         other: "%{count} bekende accounts"
@@ -434,6 +473,21 @@ nl:
         expired: Verlopen
         title: Filter
       title: Uitnodigingen
+    ip_blocks:
+      add_new: Regel aanmaken
+      created_msg: Het toevoegen van een nieuwe IP-regel is geslaagd
+      delete: Verwijderen
+      expires_in:
+        '1209600': 2 weken
+        '15778476': 6 maanden
+        '2629746': 1 maand
+        '31556952': 1 jaar
+        '86400': 1 dag
+        '94670856': 3 jaar
+      new:
+        title: Nieuwe IP-regel aanmaken
+      no_ip_block_selected: Er zijn geen IP-regels veranderd, omdat er geen een was geselecteerd
+      title: IP-regels
     pending_accounts:
       title: Accounts in afwachting (%{count})
     relationships:
@@ -473,6 +527,8 @@ nl:
       comment:
         none: Geen
       created_at: Gerapporteerd op
+      forwarded: Doorgestuurd
+      forwarded_to: Doorgestuurd naar %{domain}
       mark_as_resolved: Markeer als opgelost
       mark_as_unresolved: Markeer als onopgelost
       notes:
@@ -492,13 +548,20 @@ nl:
       unassign: Niet langer toewijzen
       unresolved: Onopgelost
       updated_at: Bijgewerkt
+    rules:
+      add_new: Regel toevoegen
+      delete: Verwijderen
+      description_html: Hoewel de meeste mensen zeggen dat ze de gebruiksvoorwaarden hebben gelezen en er mee akkoord gaan, lezen mensen deze meestal niet totdat er een probleem optreedt. <strong>Maak het eenvoudiger om de regels van deze server in één oogopslag te zien, door ze puntsgewijs in een lijst te zetten.</strong> Probeer de verschillende regels kort en simpel te houden, maar probeer ze ook niet in verschillende items onder te verdelen.
+      edit: Regel bewerken
+      empty: Voor deze server zijn nog geen regels opgesteld.
+      title: Serverregels
     settings:
       activity_api_enabled:
         desc_html: Wekelijks overzicht van de hoeveelheid lokale toots, actieve gebruikers en nieuwe registraties
-        title: Statistieken over gebruikersactiviteit publiceren
+        title: Statistieken over gebruikersactiviteit via de API publiceren
       bootstrap_timeline_accounts:
-        desc_html: Meerdere gebruikersnamen met komma's scheiden. Alleen lokale en niet opgeschorte accounts werken. Laat leeg voor alle lokale beheerders.
-        title: Standaard te volgen accounts voor nieuwe gebruikers
+        desc_html: Meerdere gebruikersnamen met komma's scheiden. Deze accounts worden in ieder geval aan nieuwe gebruikers aanbevolen
+        title: Aanbevolen accounts voor nieuwe gebruikers
       contact_information:
         email: Vul een openbaar gebruikt e-mailadres in
         username: Vul een gebruikersnaam in
@@ -509,14 +572,12 @@ nl:
         desc_html: Heeft invloed op alle gebruikers die deze instelling niet zelf hebben veranderd
         title: Toots van gebruikers standaard niet door zoekmachines laten indexeren
       domain_blocks:
-        all: Naar iedereen
-        disabled: Naar niemand
+        all: Aan iedereen
+        disabled: Aan niemand
         title: Domeinblokkades tonen
-        users: Naar ingelogde lokale gebruikers
+        users: Aan ingelogde lokale gebruikers
       domain_blocks_rationale:
         title: Motivering tonen
-      enable_bootstrap_timeline_accounts:
-        title: Standaard te volgen accounts voor nieuwe gebruikers inschakelen
       hero:
         desc_html: Wordt op de voorpagina getoond. Tenminste 600x100px aanbevolen. Wanneer dit niet is ingesteld wordt de thumbnail van de Mastodonserver getoond
         title: Hero-afbeelding
@@ -525,7 +586,7 @@ nl:
         title: Mascotte-afbeelding
       peers_api_enabled:
         desc_html: Domeinnamen die deze server in de fediverse is tegengekomen
-        title: Lijst van bekende servers publiceren
+        title: Lijst van bekende servers via de API publiceren
       preview_sensitive_media:
         desc_html: Linkvoorvertoningen op andere websites hebben een thumbnail, zelfs als een afbeelding of video als gevoelig is gemarkeerd
         title: Gevoelige afbeeldingen en video's in OpenGraph-voorvertoningen tonen
@@ -542,6 +603,9 @@ nl:
         min_invite_role:
           disabled: Niemand
           title: Uitnodigingen toestaan door
+        require_invite_text:
+          desc_html: Maak het invullen van "Waarom wil je je hier registreren?" verplicht in plaats van optioneel, wanneer registraties handmatig moeten worden goedgekeurd
+          title: Nieuwe gebruikers moeten een reden invullen waarom ze zich willen registreren
       registrations_mode:
         modes:
           approved: Goedkeuring vereist om te kunnen registreren
@@ -567,9 +631,6 @@ nl:
         desc_html: Je kan hier jouw eigen privacybeleid, gebruiksvoorwaarden en ander juridisch jargon kwijt. Je kan HTML gebruiken
         title: Aangepaste gebruiksvoorwaarden
       site_title: Naam Mastodonserver
-      spam_check_enabled:
-        desc_html: Mastodon kan accounts die herhaaldelijk ongevraagde berichten versturen automatisch negeren of rapporteren. Het is mogelijk dat er foutpositieven tussen zitten.
-        title: Automatische spambestrijding
       thumbnail:
         desc_html: Gebruikt als voorvertoning voor OpenGraph en de API. 1200x630px aanbevolen
         title: Thumbnail Mastodonserver
@@ -600,13 +661,18 @@ nl:
       no_status_selected: Er werden geen toots gewijzigd, omdat er geen enkele werd geselecteerd
       title: Toots van account
       with_media: Met media
+    system_checks:
+      database_schema_check:
+        message_html: Niet alle databasemigraties zijn voltooid. Je moet deze uitvoeren om er voor te zorgen dat de applicatie blijft werken zoals het hoort
+      rules_check:
+        action: Serverregels beheren
+        message_html: Je hebt voor deze server geen regels opgesteld.
+      sidekiq_process_check:
+        message_html: Er draait geen Sidekiqproces voor de wachtrij(en) %{value}. Controleer je Sidekiqconfiguratie
     tags:
       accounts_today: Aantal verschillende keren vandaag gebruikt
       accounts_week: Aantal verschillende keren deze week gebruikt
       breakdown: Uitsplitsing van het gebruik van vandaag naar bron
-      context: Context
-      directory: In de gebruikersgids
-      in_directory: "%{count} keer in de gebruikersgids"
       last_active: Laatst actief
       most_popular: Meest populair
       most_recent: Meest recent
@@ -622,8 +688,9 @@ nl:
     warning_presets:
       add_new: Nieuwe toevoegen
       delete: Verwijderen
-      edit_preset: Voorinstelling van waarschuwing bewerken
-      title: Voorinstellingen van waarschuwingen beheren
+      edit_preset: Preset voor waarschuwing bewerken
+      empty: Je hebt nog geen presets voor waarschuwingen toegevoegd.
+      title: Presets voor waarschuwingen beheren
   admin_mailer:
     new_pending_account:
       body: Zie hieronder de details van het nieuwe account. Je kunt de aanvraag goedkeuren of afkeuren.
@@ -660,7 +727,7 @@ nl:
     settings: 'E-mailvoorkeuren wijzigen: %{link}'
     view: 'Bekijk:'
     view_profile: Profiel bekijken
-    view_status: Status bekijken
+    view_status: Toot bekijken
   applications:
     created: Aanmaken toepassing geslaagd
     destroyed: Verwijderen toepassing geslaagd
@@ -681,8 +748,11 @@ nl:
       prefix_sign_up: Registreer je vandaag nog op Mastodon!
       suffix: Met een account ben je in staat om mensen te volgen, berichten te plaatsen en uit te wisselen met mensen die zich op andere Mastodonservers bevinden en meer!
     didnt_get_confirmation: Geen bevestigingsinstructies ontvangen?
+    dont_have_your_security_key: Heb je jouw beveiligingssleutel niet bij de hand?
     forgot_password: Wachtwoord vergeten?
     invalid_reset_password_token: De code om jouw wachtwoord opnieuw in te stellen is verlopen. Vraag een nieuwe aan.
+    link_to_otp: Voer een tweestapsverificatiecode van je telefoon of een herstelcode in
+    link_to_webauth: Jouw apparaat met de authenticatie-app gebruiken
     login: Inloggen
     logout: Uitloggen
     migrate_account: Naar een ander account verhuizen
@@ -707,7 +777,9 @@ nl:
       functional: Jouw account is volledig operationeel.
       pending: Jouw aanvraag moet nog worden beoordeeld door een van onze medewerkers. Dit kan misschien eventjes duren. Je ontvangt een e-mail wanneer jouw aanvraag is goedgekeurd.
       redirecting_to: Jouw account is inactief omdat het momenteel wordt doorverwezen naar %{acct}.
+    too_fast: Formulier is te snel ingediend. Probeer het nogmaals.
     trouble_logging_in: Problemen met inloggen?
+    use_security_key: Beveiligingssleutel gebruiken
   authorize_follow:
     already_following: Je volgt dit account al
     already_requested: Je hebt al een volgverzoek naar dat account verstuurd
@@ -732,6 +804,7 @@ nl:
   date:
     formats:
       default: "%d %b %Y"
+      with_month_name: "%d %B %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}u"
@@ -796,6 +869,7 @@ nl:
       request: Jouw archief opvragen
       size: Omvang
     blocks: Jij blokkeert
+    bookmarks: Bladwijzers
     csv: CSV
     domain_blocks: Domeinblokkades
     lists: Lijsten
@@ -809,7 +883,7 @@ nl:
   filters:
     contexts:
       account: Profielen
-      home: Starttijdlijn
+      home: Starttijdlijn en lijsten
       notifications: Meldingen
       public: Openbare tijdlijnen
       thread: Gesprekken
@@ -863,6 +937,8 @@ nl:
     status: Verificatiestatus
     view_proof: Bekijk bewijs
   imports:
+    errors:
+      over_rows_processing_limit: bevat meer dan %{count} rijen
     modes:
       merge: Samenvoegen
       merge_long: Bestaande gegevens behouden en nieuwe toevoegen
@@ -872,6 +948,7 @@ nl:
     success: Jouw gegevens zijn succesvol geüpload en worden binnenkort verwerkt
     types:
       blocking: Blokkeerlijst
+      bookmarks: Bladwijzers
       domain_blocking: Lijst met genegeerde servers
       following: Volglijst
       muting: Negeerlijst
@@ -974,10 +1051,14 @@ nl:
       body: 'Jij bent door %{name} vermeld in:'
       subject: Jij bent vermeld door %{name}
       title: Nieuwe vermelding
+    poll:
+      subject: Een poll van %{name} is beëindigd
     reblog:
       body: 'Jouw toot werd door %{name} geboost:'
       subject: "%{name} boostte jouw toot"
       title: Nieuwe boost
+    status:
+      subject: "%{name} heeft zojuist een toot geplaatst"
   notifications:
     email_events: E-mailmeldingen voor gebeurtenissen
     email_events_hint: 'Selecteer gebeurtenissen waarvoor je meldingen wilt ontvangen:'
@@ -992,6 +1073,14 @@ nl:
           quadrillion: qdn.
           thousand: K
           trillion: bln.
+  otp_authentication:
+    code_hint: Voer de code in die door de authenticatie-app werd gegenereerd
+    description_html: Na het instellen van <strong>tweestapsverificatie</strong> met een authenticatie-app, kun je alleen inloggen als je jouw mobiele telefoon bij je hebt. Hiermee genereer je namelijk de in te voeren toegangscode.
+    enable: Inschakelen
+    instructions_html: "<strong>Scan deze QR-code in Google Authenticator of een soortgelijke app op jouw mobiele telefoon</strong>. Van nu af aan genereert deze app toegangscodes die je bij het inloggen moet invoeren."
+    manual_instructions: 'Voor het geval je de QR-code niet kunt scannen en het handmatig moet invoeren, vind je hieronder de geheime code in platte tekst:'
+    setup: Instellen
+    wrong_code: De ingevoerde code is ongeldig! Klopt de systeemtijd van de server en die van jouw apparaat?
   pagination:
     newer: Nieuwer
     next: Volgende
@@ -1020,6 +1109,7 @@ nl:
   relationships:
     activity: Accountactiviteit
     dormant: Sluimerend
+    follow_selected_followers: Geselecteerde volgers volgen
     followers: Volgers
     following: Volgend
     invited: Uitgenodigd
@@ -1116,8 +1206,7 @@ nl:
     profile: Profiel
     relationships: Volgers en gevolgden
     two_factor_authentication: Tweestapsverificatie
-  spam_check:
-    spam_detected: Dit is een automatisch gegenereerde rapportage. Er is spam gedetecteerd.
+    webauthn_authentication: Beveiligingssleutels
   statuses:
     attached:
       audio:
@@ -1131,7 +1220,7 @@ nl:
         one: "%{count} video"
         other: "%{count} video's"
     boosted_from_html: Geboost van %{acct_link}
-    content_warning: 'Tekstwaarschuwing: %{warning}'
+    content_warning: 'Inhoudswaarschuwing: %{warning}'
     disallowed_hashtags:
       one: 'bevatte een niet toegestane hashtag: %{tags}'
       other: 'bevatte niet toegestane hashtags: %{tags}'
@@ -1154,10 +1243,13 @@ nl:
         other: "%{count} stemmen"
       vote: Stemmen
     show_more: Meer tonen
+    show_newer: Nieuwere tonen
+    show_older: Oudere tonen
     show_thread: Gesprek tonen
     sign_in_to_participate: Meld je aan om aan dit gesprek mee te doen
     title: '%{name}: "%{quote}"'
     visibilities:
+      direct: Direct
       private: Alleen volgers
       private_long: Alleen aan jouw volgers tonen
       public: Openbaar
@@ -1262,14 +1354,20 @@ nl:
       default: "%d %B %Y om %H:%M"
       month: "%b %Y"
   two_factor_authentication:
+    add: Toevoegen
     disable: Tweestapsverificatie uitschakelen
+    disabled_success: Uitschakelen tweestapsverificatie is geslaagd
+    edit: Bewerken
     enabled: Tweestapsverificatie is ingeschakeld
     enabled_success: Inschakelen tweestapsverificatie geslaagd
     generate_recovery_codes: Herstelcodes genereren
     lost_recovery_codes: Met herstelcodes kun je toegang tot jouw account krijgen wanneer je jouw telefoon bent kwijtgeraakt. Wanneer je jouw herstelcodes bent kwijtgeraakt, kan je ze hier opnieuw genereren. Jouw oude herstelcodes zijn daarna ongeldig.
+    methods: Methoden voor tweestapsverificatie
+    otp: Authenticatie-app
     recovery_codes: Herstelcodes back-uppen
     recovery_codes_regenerated: Opnieuw genereren herstelcodes geslaagd
     recovery_instructions_html: Wanneer je ooit de toegang verliest tot jouw telefoon, kan je met behulp van een van de herstelcodes hieronder opnieuw toegang krijgen tot jouw account. <strong>Zorg ervoor dat je de herstelcodes op een veilige plek bewaard</strong>. Je kunt ze bijvoorbeeld printen en ze samen met andere belangrijke documenten bewaren.
+    webauthn: Beveiligingssleutels
   user_mailer:
     backup_ready:
       explanation: Je hebt een volledige back-up van jouw Mastodon-account opgevraagd. Het staat nu klaar om te worden gedownload!
@@ -1284,6 +1382,7 @@ nl:
     warning:
       explanation:
         disable: Zolang jouw account is bevroren blijven jouw accountgegevens intact, maar kun je geen handelingen uitvoeren totdat het account is vrijgegeven.
+        sensitive: De mediabestanden die je upload en gekoppelde media worden als gevoelig behandeld.
         silence: Zolang jouw account wordt beperkt, kunnen alleen mensen die jou al volgen jouw toots op deze server zien. Tevens ben je niet zichtbaar in meldingen, gesprekken en op openbare tijdlijnen. Anderen kunnen je echter wel handmatig volgen.
         suspend: Jouw account is opgeschort. Jouw toots en geüploade media zijn onomkeerbaar van deze server verwijderd, en ook o.a. van de servers waar jij volgers had.
       get_in_touch: Je kunt deze e-mail beantwoorden om in contact te komen met de medewerkers van %{instance}.
@@ -1292,11 +1391,13 @@ nl:
       subject:
         disable: Jouw account %{acct} is bevroren
         none: Waarschuwing voor %{acct}
+        sensitive: De door jouw account %{acct} geplaatste media is als gevoelig gemarkeerd
         silence: Jouw account %{acct} is nu beperkt
         suspend: Jouw account %{acct} is opgeschort
       title:
         disable: Account bevroren
         none: Waarschuwing
+        sensitive: Jouw media is als gevoelig gemarkeerd
         silence: Account beperkt
         suspend: Account opgeschort
     welcome:
@@ -1319,8 +1420,7 @@ nl:
   users:
     follow_limit_reached: Je kunt niet meer dan %{limit} accounts volgen
     generic_access_help_html: Problemen met toegang tot je account? Neem dan contact op met %{email} voor assistentie
-    invalid_email: E-mailadres is ongeldig
-    invalid_otp_token: Ongeldige tweestaps-aanmeldcode
+    invalid_otp_token: Ongeldige tweestaps-toegangscode
     invalid_sign_in_token: Ongeldige beveiligingscode
     otp_lost_help_html: Als je toegang tot beiden kwijt bent geraakt, neem dan contact op via %{email}
     seamless_external_login: Je bent ingelogd via een externe dienst, daarom zijn wachtwoorden en e-mailinstellingen niet beschikbaar.
@@ -1329,3 +1429,20 @@ nl:
   verification:
     explanation_html: 'Je kunt <strong>jezelf verifiëren als de eigenaar van de links in de metadata van jouw profiel</strong>. Hiervoor moet op de gelinkte website een link terug naar jouw Mastodonprofiel staan. Deze link <strong>moet</strong> het <code>rel="me"</code>-attribuut bevatten. De omschrijving van de link maakt niet uit. Hier is een voorbeeld:'
     verification: Verificatie
+  webauthn_credentials:
+    add: Nieuwe beveiligingssleutel toevoegen
+    create:
+      error: Er deed zich een probleem voor met het toevoegen van jouw beveiligingssleutel. Probeer het nogmaals.
+      success: Het toevoegen van je beveiligingssleutel is geslaagd.
+    delete: Verwijderen
+    delete_confirmation: Weet je zeker dat je deze beveiligingssleutel wilt verwijderen?
+    description_html: Wanneer je <strong>verificatie met beveiligingssleutels</strong> inschakelt, moet je tijdens het inloggen een van jouw beveiligingssleutels gebruiken.
+    destroy:
+      error: Er deed zich een probleem voor met het verwijderen van jouw beveiligingssleutel. Probeer het nogmaals.
+      success: Het verwijderen van jouw beveiligingssleutel is geslaagd.
+    invalid_credential: Ongeldige beveiligingssleutel
+    nickname_hint: Voer de bijnaam in van jouw nieuwe beveiligingssleutel
+    not_enabled: Je hebt WebAuthn nog niet ingeschakeld
+    not_supported: Deze browser ondersteunt geen beveiligingssleutels
+    otp_required: Om beveiligingssleutels te kunnen gebruiken, moet je eerst tweestapsverificatie inschakelen.
+    registered_on: Geregistreerd op %{date}

@@ -1,7 +1,7 @@
 ---
 co:
   about:
-    about_hashtag_html: Quessi sò statuti pubblichi taggati cù <strong>#%{hashtag}</strong>. Pudete interagisce cù elli sì voi avete un contu in qualche parte di u fediverse.
+    about_hashtag_html: Quessi sò statuti pubblichi taggati cù <strong>#%{hashtag}</strong>. Pudete interagisce cù elli sì voi avete un contu in qualche parte di u fediversu.
     about_mastodon_html: 'A rete suciale di u futuru: micca pubblicità, micca surveglianza, cuncezzione etica, è dicentralizazione! Firmate in cuntrollu di i vostri dati cù Mastodon!'
     about_this: À prupositu
     active_count_after: attivi
@@ -26,6 +26,8 @@ co:
       Hè utilizatu da a federazione è ùn deve micca esse bluccatu eccettu s'e voi vulete bluccà tuttu u servore, in quellu casu duvereste utilizà un blucchime di duminiu.
     learn_more: Amparà di più
     privacy_policy: Pulitica di vita privata
+    rules: Regule di u servore
+    rules_html: 'Eccu un riassuntu di e regule da siguità s''e voi vulete creà un contu nant''à quessu servore di Mastodon:'
     see_whats_happening: Vede cio chì si passa
     server_stats: 'Statistiche di u servore:'
     source_code: Codice di fonte
@@ -60,6 +62,7 @@ co:
       one: Abbunatu·a
       other: Abbunati
     following: Abbunamenti
+    instance_actor_flash: Stu contu virtuale riprisenta u servore stessu, micca un'utilizatore individuale. Hè utilizatu per scopi di federazione è ùn duveria mai esse suspesu.
     joined: Quì dapoi %{date}
     last_active: ultima attività
     link_verified_on: A pruprietà d'issu ligame hè stata verificata u %{date}
@@ -77,7 +80,6 @@ co:
       other: Statuti
     posts_tab_heading: Statuti
     posts_with_replies: Statuti è risposte
-    reserved_username: Stu cugnome hè riservatu
     roles:
       admin: Amministratore
       bot: Bot
@@ -117,20 +119,23 @@ co:
       demote: Ritrugradà
       destroyed_msg: I dati di %{username} sò avà in fila d'attesa per esse tolti da quì à pocu
       disable: Disattivà
+      disable_sign_in_token_auth: Disattivà l'autentificazione à codice e-mail
       disable_two_factor_authentication: Disattivà l’identificazione à 2 fattori
-      disabled: Disattivatu
+      disabled: Ghjacciatu
       display_name: Nome pubblicu
       domain: Duminiu
       edit: Mudificà
       email: E-mail
       email_status: Statutu di l’e-mail
       enable: Riattivà
+      enable_sign_in_token_auth: Attivà l'autentificazione à codice e-mail
       enabled: Attivatu
       enabled_msg: U contu di %{username} hè statu riattivatu
       followers: Abbunati
       follows: Abbunamenti
       header: Ritrattu di cuprendula
       inbox_url: URL di l’inbox
+      invite_request_text: Ragione di l'arregistramentu
       invited_by: Invitatu da
       ip: IP
       joined: Ghjuntu
@@ -188,6 +193,10 @@ co:
       search: Cercà
       search_same_email_domain: Altri utilizatori cù listessu duminiu d'e-mail
       search_same_ip: Altri utilizatori cù listessa IP
+      security_measures:
+        only_password: Solu a chjave d'accessu
+        password_and_2fa: Chjave d’accessu è A2F
+        password_and_sign_in_token: Chjave d’accessu è codice da l'e-mail
       sensitive: Sensibile
       sensitized: indicatu cum’è sensibile
       shared_inbox_url: URL di l’inbox spartuta
@@ -227,6 +236,7 @@ co:
         create_domain_block: Creà Blucchime di Duminiu
         create_email_domain_block: Creà Blucchime di Duminiu E-mail
         create_ip_block: Creà regula IP
+        create_unavailable_domain: Creà duminiu micca dispunibule
         demote_user: Ritrugadà Utilizatore
         destroy_announcement: Toglie Annunziu
         destroy_custom_emoji: Toglie Emoji Persunalizata
@@ -235,10 +245,13 @@ co:
         destroy_email_domain_block: Toglie blucchime di duminiu e-mail
         destroy_ip_block: Toglie regula IP
         destroy_status: Toglie u statutu
+        destroy_unavailable_domain: Toglie duminiu micca dispunibule
         disable_2fa_user: Disattivà l’identificazione à 2 fattori
         disable_custom_emoji: Disattivà Emoji Persunalizata
+        disable_sign_in_token_auth_user: Disattivà l'Autentificazione à Codice E-Mail
         disable_user: Disattivà Utilizatore
         enable_custom_emoji: Attivà Emoji Persunalizata
+        enable_sign_in_token_auth_user: Attivà l'Autentificazione à Codice E-Mail
         enable_user: Attivà utilizatore
         memorialize_account: Trasfurmà contu in mimuriale
         promote_user: Prumove Utilizatore
@@ -255,47 +268,51 @@ co:
         unsuspend_account: Ùn Suspende Più u Contu
         update_announcement: Cambià Annunziu
         update_custom_emoji: Cambià Emoji Persunalizata
+        update_domain_block: Mette à Ghjornu Blucchime di Duminiu
         update_status: Cambià Statutu
       actions:
-        assigned_to_self_report: "%{name} s’hè assignatu u signalamentu %{target}"
-        change_email_user: "%{name} hà cambiatu l’indirizzu e-mail di %{target}"
-        confirm_user: "%{name} hà cunfirmatu l’indirizzu e-mail di %{target}"
-        create_account_warning: "%{name} hà mandatu un'avertimentu à %{target}"
-        create_announcement: "%{name} hà creatu u novu annunziu %{target}"
-        create_custom_emoji: "%{name} hà caricatu una nov’emoji %{target}"
-        create_domain_allow: "%{name} hà messu u duminiu %{target} nant’a lista bianca"
-        create_domain_block: "%{name} hà bluccatu u duminiu %{target}"
-        create_email_domain_block: "%{name} hà messu u duminiu e-mail %{target} nant’a lista nera"
-        create_ip_block: "%{name} hà creatu a regula IP %{target}"
-        demote_user: "%{name} hà ritrugradatu l’utilizatore %{target}"
-        destroy_announcement: "%{name} hà sguassatu u novu annunziu %{target}"
-        destroy_custom_emoji: "%{name} hà sguassatu l'emoji %{target}"
-        destroy_domain_allow: "%{name} hà sguassatu u duminiu %{target} da a lista bianca"
-        destroy_domain_block: "%{name} hà sbluccatu u duminiu %{target}"
-        destroy_email_domain_block: "%{name} hà messu u duminiu e-mail %{target} nant’a lista bianca"
-        destroy_ip_block: "%{name} hà toltu a regula IP %{target}"
-        destroy_status: "%{name} hà toltu u statutu di %{target}"
-        disable_2fa_user: "%{name} hà disattivatu l’identificazione à dui fattori per %{target}"
-        disable_custom_emoji: "%{name} hà disattivatu l’emoji %{target}"
-        disable_user: "%{name} hà disattivatu a cunnessione per %{target}"
-        enable_custom_emoji: "%{name} hà attivatu l’emoji %{target}"
-        enable_user: "%{name} hà attivatu a cunnessione per %{target}"
-        memorialize_account: "%{name} hà trasfurmatu u contu di %{target} in una pagina mimuriale"
-        promote_user: "%{name} hà prumossu %{target}"
-        remove_avatar_user: "%{name} hà toltu u ritrattu di %{target}"
-        reopen_report: "%{name} hà riapertu u signalamentu %{target}"
-        reset_password_user: "%{name} hà riinizializatu a chjave d’accessu di %{target}"
-        resolve_report: "%{name} hà chjosu u signalamentu %{target}"
-        sensitive_account: "%{name} hà marcatu i media di %{target} cum'è sensibili"
-        silence_account: "%{name} hà limitatu u contu di %{target}"
-        suspend_account: "%{name} hà suspesu u contu di %{target}"
-        unassigned_report: "%{name} hà disassignatu u signalamentu %{target}"
-        unsensitive_account: "%{name} hà sguassatu a marcatura di i media di %{target} cum'è sensibili"
-        unsilence_account: "%{name} hà fattu che u contu di %{target} ùn hè più limitatu"
-        unsuspend_account: "%{name} hà fattu che u contu di %{target} ùn hè più suspesu"
-        update_announcement: "%{name} hà cambiatu u novu annunziu %{target}"
-        update_custom_emoji: "%{name} hà messu à ghjornu l’emoji %{target}"
-        update_status: "%{name} hà cambiatu u statutu di %{target}"
+        assigned_to_self_report_html: "%{name} s’hè assignatu u signalamentu %{target}"
+        change_email_user_html: "%{name} hà cambiatu l’indirizzu e-mail di %{target}"
+        confirm_user_html: "%{name} hà cunfirmatu l’indirizzu e-mail di %{target}"
+        create_account_warning_html: "%{name} hà mandatu un'avertimentu à %{target}"
+        create_announcement_html: "%{name} hà creatu u novu annunziu %{target}"
+        create_custom_emoji_html: "%{name} hà caricatu una nov’emoji %{target}"
+        create_domain_allow_html: "%{name} hà messu u duminiu %{target} nant’a lista bianca"
+        create_domain_block_html: "%{name} hà bluccatu u duminiu %{target}"
+        create_email_domain_block_html: "%{name} hà messu u duminiu e-mail %{target} nant’a lista nera"
+        create_ip_block_html: "%{name} hà creatu a regula IP %{target}"
+        create_unavailable_domain_html: "%{name} hà firmatu a distribuzione à u duminiu %{target}"
+        demote_user_html: "%{name} hà ritrugradatu l’utilizatore %{target}"
+        destroy_announcement_html: "%{name} hà sguassatu u novu annunziu %{target}"
+        destroy_custom_emoji_html: "%{name} hà sguassatu l'emoji %{target}"
+        destroy_domain_allow_html: "%{name} hà sguassatu u duminiu %{target} da a lista bianca"
+        destroy_domain_block_html: "%{name} hà sbluccatu u duminiu %{target}"
+        destroy_email_domain_block_html: "%{name} hà messu u duminiu e-mail %{target} nant’a lista bianca"
+        destroy_ip_block_html: "%{name} hà toltu a regula IP %{target}"
+        destroy_status_html: "%{name} hà toltu u statutu di %{target}"
+        destroy_unavailable_domain_html: "%{name} hà riprincipiatu a distribuzione à u duminiu %{target}"
+        disable_2fa_user_html: "%{name} hà disattivatu l’identificazione à dui fattori per %{target}"
+        disable_custom_emoji_html: "%{name} hà disattivatu l’emoji %{target}"
+        disable_user_html: "%{name} hà disattivatu a cunnessione per %{target}"
+        enable_custom_emoji_html: "%{name} hà attivatu l’emoji %{target}"
+        enable_user_html: "%{name} hà attivatu a cunnessione per %{target}"
+        memorialize_account_html: "%{name} hà trasfurmatu u contu di %{target} in una pagina mimuriale"
+        promote_user_html: "%{name} hà prumossu %{target}"
+        remove_avatar_user_html: "%{name} hà toltu u ritrattu di %{target}"
+        reopen_report_html: "%{name} hà riapertu u signalamentu %{target}"
+        reset_password_user_html: "%{name} hà riinizializatu a chjave d’accessu di %{target}"
+        resolve_report_html: "%{name} hà chjosu u signalamentu %{target}"
+        sensitive_account_html: "%{name} hà marcatu i media di %{target} cum'è sensibili"
+        silence_account_html: "%{name} hà limitatu u contu di %{target}"
+        suspend_account_html: "%{name} hà suspesu u contu di %{target}"
+        unassigned_report_html: "%{name} hà disassignatu u signalamentu %{target}"
+        unsensitive_account_html: "%{name} hà sguassatu a marcatura di i media di %{target} cum'è sensibili"
+        unsilence_account_html: "%{name} hà fattu che u contu di %{target} ùn hè più limitatu"
+        unsuspend_account_html: "%{name} hà fattu che u contu di %{target} ùn hè più suspesu"
+        update_announcement_html: "%{name} hà cambiatu u novu annunziu %{target}"
+        update_custom_emoji_html: "%{name} hà messu à ghjornu l’emoji %{target}"
+        update_domain_block_html: "%{name} hà messu à ghjornu u blucchime di duminiu per %{target}"
+        update_status_html: "%{name} hà cambiatu u statutu di %{target}"
       deleted_status: "(statutu sguassatu)"
       empty: Nunda trovu.
       filter_by_action: Filtrà da azzione
@@ -310,10 +327,12 @@ co:
       new:
         create: Creà un'annunziu
         title: Novu annunziu
+      publish: Pubblicà
       published_msg: Annunziu pubblicatu!
       scheduled_for: Prugrammatu per %{time}
       scheduled_msg: Annunziu prugrammatu per pubblicazione!
       title: Annunzii
+      unpublish: Annullà a pubblicazione
       unpublished_msg: Annunziu piattatu!
       updated_msg: Annunziu mudificatu!
     custom_emojis:
@@ -350,33 +369,9 @@ co:
       updated_msg: L’emoji hè stata messa à ghjornu!
       upload: Caricà
     dashboard:
-      authorized_fetch_mode: Modu ricuperazione auturizata
-      backlog: travagli in attesa
-      config: Cunfigurazione
-      feature_deletions: Sguassamenti di conti
-      feature_invites: Ligami d'invitazione
-      feature_profile_directory: Annuariu di i prufili
-      feature_registrations: Arregistramenti
-      feature_relay: Ripetitore di federazione
-      feature_spam_check: Anti-spam
-      feature_timeline_preview: Vista di a linea pubblica
-      features: Funziunalità
-      hidden_service: Federazione cù servizii piattati
-      open_reports: signalamenti aperti
-      pending_tags: hashtag in attesa di verificazione
-      pending_users: utilizatori in attesa di rivista
-      recent_users: Utilizatori ricenti
-      search: Ricerca di testu sanu
-      single_user_mode: Modu utilizatore unicu
       software: Lugiziale
       space: Usu di u spaziu
       title: Quatru di strumenti
-      total_users: utilizatori in tutale
-      trends: Tindenze
-      week_interactions: interazzione sta settimana
-      week_users_active: attivi sta settimana
-      week_users_new: utilizatori sta settimana
-      whitelist_mode: Modu lista bianca
     domain_allows:
       add_new: Aghjunghje à a lista bianca
       created_msg: U duminiu hè statu aghjuntu à a lista bianca
@@ -398,6 +393,8 @@ co:
           silence: Silenzà
           suspend: Suspende
         title: Novu blucchime di duminiu
+      obfuscate: Uscurà u nome di duminiu
+      obfuscate_hint: Uscurà in parte u nome di duminiu indè a lista s'ella hè attivata l'affissera di a lista di limitazione di duminiu
       private_comment: Cummentariu privatu
       private_comment_hint: Cummentariu nant'à a limitazione di stu duminiu per l'usu internu di i muderatori.
       public_comment: Cummentariu pubblicu
@@ -434,9 +431,34 @@ co:
         create: Creà un blucchime
         title: Nova iscrizzione nant’a lista nera e-mail
       title: Lista nera e-mail
+    follow_recommendations:
+      language: Per a lingua
+      status: Statutu
+      suppress: Piattà a ricumandazione d'abbunamentu
+      suppressed: Piattate
+      title: Ricumandazione d'abbunamentu
+      unsuppress: Riattivà a ricumandazione d'abbunamentu
     instances:
+      back_to_all: Tutti
+      back_to_limited: Limitate
+      back_to_warning: Avertimenti
       by_domain: Duminiu
-      delivery_available: Rimessa dispunibule
+      delivery:
+        all: Tutti
+        clear: Sguassà l'errori di distribuzione
+        restart: Riprincipià a distribuzione
+        stop: Firmà a distribuzione
+        title: Distribuzione
+        unavailable: Indispunibule
+        unavailable_message: Distribuzione micca dispunibule
+        warning: Avertimentu
+        warning_message:
+          one: Errore di distribuzione per %{count} ghjornu
+          other: Errore di distribuzione per %{count} ghjorni
+      delivery_available: Distribuzione dispunibule
+      delivery_error_days: Ghjorni d'errori di a distribuzione
+      delivery_error_hint: S'ellu ùn si pò distribuì à u duminiu per %{count} ghjorni, sarà autumaticamente marcatu cum'è indistribuibile.
+      empty: Mancun duminiu trovu.
       known_accounts:
         one: "%{count} contu cunnisciutu"
         other: "%{count} conti cunnisciuti"
@@ -482,7 +504,7 @@ co:
     relays:
       add_new: Aghjunghje un ripetitore
       delete: Sguassà
-      description_html: Un <strong>ripetitore di federazione</strong> ghjè un servore intermediariu chì manda statuti pubblichi trà l'istanze abbunate. <strong>Pò aiutà l'istanze chjuche è mezane à scuprì u cuntinutu di u fediverse</strong> senza chì l'utilizatori appianu bisognu di seguità tutti i conti di l'altri servori.
+      description_html: Un <strong>ripetitore di federazione</strong> ghjè un servore intermediariu chì manda statuti pubblichi trà l'istanze abbunate. <strong>Pò aiutà l'istanze chjuche è mezane à scuprì u cuntinutu di u fediversu</strong> senza chì l'utilizatori appianu bisognu di seguità tutti i conti di l'altri servori.
       disable: Disattivà
       disabled: Disattivatu
       enable: Attivà
@@ -514,6 +536,8 @@ co:
       comment:
         none: Nisunu
       created_at: Palisatu
+      forwarded: Trasferitu
+      forwarded_to: Trasferistu à %{domain}
       mark_as_resolved: Indicà cum’è chjosu
       mark_as_unresolved: Indicà cum’è sempre apertu
       notes:
@@ -533,6 +557,11 @@ co:
       unassign: Disassignà
       unresolved: Micca sciolti
       updated_at: Messi à ghjornu
+    rules:
+      add_new: Aghjunghje regula
+      delete: Sguassà
+      edit: Mudificà regula
+      title: Regule di u servore
     settings:
       activity_api_enabled:
         desc_html: Numeri di statuti creati quì, utilizatori attivi, è arregistramenti novi tutte e settimane
@@ -556,8 +585,6 @@ co:
         users: À l'utilizatori lucali cunnettati
       domain_blocks_rationale:
         title: Vede ragiò
-      enable_bootstrap_timeline_accounts:
-        title: Attivà l'abbunamenti predefiniti per l'utilizatori novi
       hero:
         desc_html: Affissatu nant’a pagina d’accolta. Ricumandemu almenu 600x100px. S’ellu ùn hè micca definiti, a vignetta di u servore sarà usata
         title: Ritrattu di cuprendula
@@ -565,7 +592,7 @@ co:
         desc_html: Affissata nant'à parechje pagine. Almenu 293x205px ricumandatu. S'ella hè lasciata viota, a mascotta predefinita sarà utilizata
         title: Ritrattu di a mascotta
       peers_api_enabled:
-        desc_html: Indirizzi web stu servore hà vistu indè u fediverse
+        desc_html: Indirizzi web stu servore hà vistu indè u fediversu
         title: Pubblicà a lista di servori cunnisciuti
       preview_sensitive_media:
         desc_html: E priviste di i ligami nant'à l'altri siti mustreranu una vignetta ancu s'ellu hè marcatu cum'è sensibile u media
@@ -581,8 +608,11 @@ co:
           desc_html: Auturizà tuttu u mondu à sguassà u so propiu contu
           title: Auturizà à sguassà i conti
         min_invite_role:
-          disabled: Nisunu
+          disabled: Nimu
           title: Auturizà l’invitazione da
+        require_invite_text:
+          desc_html: Quandu l'arregistramenti necessitanu un'apprubazione manuale, fà chì u testu "Perchè vulete ghjunghje?" sia ubligatoriu invece d'esse facultativu
+          title: Richiede chì i novi utilizatori empiinu una dumanda d'invitazione
       registrations_mode:
         modes:
           approved: Apprubazione necessaria per arregistrassi
@@ -608,9 +638,6 @@ co:
         desc_html: Quì pudete scrive e vostre regule di cunfidenzialità, cundizione d’usu o altre menzione legale. Pudete fà usu di marchi HTML
         title: Termini persunalizati
       site_title: Nome di u servore
-      spam_check_enabled:
-        desc_html: Mastodon pò autosilenzà è autosignalà conti, per esempiu ditettendu quelli chì mandanu missaghji micca sullicitati à ripetizione. Ci ponu esse falzi pusitivi.
-        title: Anti-spam
       thumbnail:
         desc_html: Utilizatu per viste cù OpenGraph è l’API. Ricumandemu 1200x630px
         title: Vignetta di u servore
@@ -641,13 +668,14 @@ co:
       no_status_selected: I statuti ùn sò micca stati mudificati perchè manc'unu era selezziunatu
       title: Statuti di u contu
       with_media: Cù media
+    system_checks:
+      rules_check:
+        action: Amministrà e regule di u servore
+        message_html: Ùn avete micca ancu difinitu di regula per u servore.
     tags:
       accounts_today: Usi unichi oghji
       accounts_week: Usi unichi sta settimana
       breakdown: Ditagli di l'usu d'oghji per origine
-      context: Cuntestu
-      directory: In l'annuariu
-      in_directory: "%{count} in l'annuariu"
       last_active: Ultima attività
       most_popular: Più pupulari
       most_recent: Più ricente
@@ -751,6 +779,7 @@ co:
       functional: U vostru contu hè uperaziunale.
       pending: A vostra dumanda hè in attesa di rivista da a squadra di muderazione. Quessa pò piglià un certu tempu. Avete da riceve un'e-mail s'ella hè appruvata.
       redirecting_to: U vostru contu hè inattivu perchè riindirizza versu %{acct}.
+    too_fast: Furmulariu mandatu troppu prestu, ripruvate.
     trouble_logging_in: Difficultà per cunnettavi?
     use_security_key: Utilizà a chjave di sicurità
   authorize_follow:
@@ -842,6 +871,7 @@ co:
       request: Dumandà u vostr’archiviu
       size: Pesu
     blocks: Bluccate
+    bookmarks: Segnalibri
     csv: CSV
     domain_blocks: Blucchime di duminiu
     lists: Liste
@@ -909,6 +939,8 @@ co:
     status: Statutu di a verificazione
     view_proof: Vede a prova
   imports:
+    errors:
+      over_rows_processing_limit: cuntene più di %{count} filari
     modes:
       merge: Unisce
       merge_long: Cunservà i dati esistenti è aghjunghje i novi
@@ -918,6 +950,7 @@ co:
     success: I vostri dati sò stati impurtati è saranu trattati da quì à pocu
     types:
       blocking: Persone chì bluccate
+      bookmarks: Segnalibri
       domain_blocking: Lista di blucchimi di duminiu
       following: Persone chì seguitate
       muting: Persone chì piattate
@@ -948,6 +981,12 @@ co:
   lists:
     errors:
       limit: Ùn pudete più creà altre liste
+  login_activities:
+    authentication_methods:
+      otp: app d'identificazione à dui fattori
+      password: chjave d’accessu
+      sign_in_token: codice di sicurità d'un e-mail
+      webauthn: chjave di sicurità
   media_attachments:
     validations:
       images_and_video: Ùn si pò micca aghjunghje un filmettu à un statutu chì hà digià ritratti
@@ -1020,10 +1059,14 @@ co:
       body: "%{name} v’hà mintuvatu·a indè :"
       subject: "%{name} v’hà mintuvatu·a"
       title: Nova menzione
+    poll:
+      subject: Un scandagliu da %{name} hè finitu
     reblog:
       body: 'U vostru statutu hè statu spartutu da %{name}:'
       subject: "%{name} hà spartutu u vostru statutu"
       title: Nova spartera
+    status:
+      subject: "%{name} hà appena pubblicatu"
   notifications:
     email_events: Avvenimenti da nutificà cù l'e-mail
     email_events_hint: 'Selezziunate l''avvenimenti per quelli vulete riceve nutificazione:'
@@ -1074,6 +1117,7 @@ co:
   relationships:
     activity: Attività di u contu
     dormant: Inattivu
+    follow_selected_followers: Abbunassi à l'abbunati selezziunati
     followers: Abbunati
     following: Abbunamenti
     invited: Invitatu
@@ -1171,8 +1215,6 @@ co:
     relationships: Abbunamenti è abbunati
     two_factor_authentication: Identificazione à dui fattori
     webauthn_authentication: Chjave di sicurità
-  spam_check:
-    spam_detected: Quessu ghjè un riportu automaticu. Un spam hè statu ditettatu.
   statuses:
     attached:
       audio:
@@ -1215,12 +1257,40 @@ co:
     sign_in_to_participate: Cunnettatevi per participà à a cunversazione
     title: '%{name}: "%{quote}"'
     visibilities:
+      direct: Direttu
       private: Solu per l’abbunati
       private_long: Mustrà solu à l’abbunati
       public: Pubblicu
       public_long: Tuttu u mondu pò vede
       unlisted: Micca listatu
       unlisted_long: Tuttu u mondu pò vede, mà micca indè e linee pubbliche
+  statuses_cleanup:
+    exceptions: Eccezzione
+    keep_direct: Cunservà i missaghji diretti
+    keep_direct_hint: Ùn sguassa micca i vostri missaghji diretti
+    keep_media: Cunservà i statuti cù fugliali aghjunti
+    keep_media_hint: Ùn sguassa micca i vostri missaghji chì anu fugliali aghjunti
+    keep_pinned: Cunservà i statuti puntarulati
+    keep_pinned_hint: Ùn sguassa micca i vostri missaghji chì sò puntarulati
+    keep_polls: Cunservà i scandagli
+    keep_polls_hint: Ùn sguassa micca i vostri missaghji ch'anu scandagli
+    keep_self_bookmark: Cunservà i statuti ch'avete segnalibrati
+    keep_self_bookmark_hint: Ùn sguassa micca i vostri propii missaghji s'e voi l'avete aghjunti à i vostri segnalibri
+    keep_self_fav: Cunservà i statuti ch'avete favurizati
+    keep_self_fav_hint: Ùn sguassa micca i vostri propii missaghji s'e voi l'avete aghjunti à i vostri favuriti
+    min_age:
+      '1209600': 2 settimane
+      '15778476': 6 mesi
+      '2629746': 1 mese
+      '31556952': 1 annu
+      '5259492': 2 mesi
+      '63113904': 2 anni
+      '7889238': 3 mesi
+    min_age_label: Età minima
+    min_favs: Cunservà i statuti favurizzati più di
+    min_favs_hint: Ùn sguassa micca i vostri statuti chì anu ricevuti più chì stu numeru di favuriti. Lasciate viotu per sguassà i statuti senza piglià in contu u numaru di favuriti
+    min_reblogs: Cunservà i statuti spartuti più di
+    min_reblogs_hint: Ùn sguassa micca i vostri statuti chì anu ricevuti più chì stu numeru di spartere. Lasciate viotu per sguassà i statuti senza piglià in contu u numaru di spartere
   stream_entries:
     pinned: Statutu puntarulatu
     reblogged: hà spartutu
@@ -1383,11 +1453,8 @@ co:
       tips: Cunsiglii
       title: Benvenutu·a, %{name}!
   users:
-    blocked_email_provider: Stu serviziu e-mail ùn hè micca auturizatu
     follow_limit_reached: Ùn pidete seguità più di %{limit} conti
     generic_access_help_html: Prublemi d'accessu à u vostru contu? Pudete cuntattà %{email} per ottene aiutu
-    invalid_email: L’indirizzu e-mail ùn hè currettu
-    invalid_email_mx: L'indirizzu e-mail ùn pare micca esiste
     invalid_otp_token: U codice d’identificazione ùn hè currettu
     invalid_sign_in_token: Codice di sicurità micca validu
     otp_lost_help_html: S’è voi avete persu i dui, pudete cuntattà %{email}

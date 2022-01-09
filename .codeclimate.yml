@@ -30,9 +30,12 @@ plugins:
     channel: eslint-7
   rubocop:
     enabled: true
-    channel: rubocop-0-92
+    channel: rubocop-1-9-1
   sass-lint:
     enabled: true
 exclude_patterns:
 - spec/
-- vendor/asset
+- vendor/asset/
+
+- app/javascript/mastodon/locales/**/*.json
+- config/locales/**/*.yml

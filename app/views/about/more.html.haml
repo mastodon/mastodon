@@ -17,11 +17,11 @@
         .row__information-board
           .information-board__section
             %span= t 'about.user_count_before'
-            %strong= number_with_delimiter @instance_presenter.user_count
+            %strong= friendly_number_to_human @instance_presenter.user_count
             %span= t 'about.user_count_after', count: @instance_presenter.user_count
           .information-board__section
             %span= t 'about.status_count_before'
-            %strong= number_with_delimiter @instance_presenter.status_count
+            %strong= friendly_number_to_human @instance_presenter.status_count
             %span= t 'about.status_count_after', count: @instance_presenter.status_count
         .row__mascot
           .landing-page__mascot
@@ -43,11 +43,21 @@
   .column-3
     = render 'application/flashes'
 
-    - if @contents.blank? && (!display_blocks? || @blocks&.empty?)
+    - if @contents.blank? && @rules.empty? && (!display_blocks? || @blocks&.empty?)
       = nothing_here
     - else
       .box-widget
         .rich-formatting
+          - unless @rules.empty?
+            %h2#rules= t('about.rules')
+
+            %p= t('about.rules_html')
+
+            %ol.rules-list
+              - @rules.each do |rule|
+                %li
+                  .rules-list__text= rule.text
+
           = @contents.html_safe
 
           - if display_blocks? && !@blocks.empty?
@@ -70,6 +80,9 @@
 
   .column-4
     %ul.table-of-contents
+      - unless @rules.empty?
+        %li= link_to t('about.rules'), '#rules'
+
       - @table_of_contents.each do |item|
         %li
           = link_to item.title, "##{item.anchor}"

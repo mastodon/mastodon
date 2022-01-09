@@ -10,17 +10,23 @@ ja:
         text: URL、ハッシュタグ、メンションなど、投稿に用いる構文が使用できます
         title: オプションです。受信者には表示されません。
       admin_account_action:
-        include_statuses: ユーザーは取られた制限や警告の原因となったトゥートを確認できるようになります
+        include_statuses: ユーザーは取られた制限や警告の原因となった投稿を確認できるようになります
         send_email_notification: ユーザーは自分のアカウントに何が起こったのか説明を受け取ります
         text_html: オプションです。投稿に用いる構文を使うことができます。簡略化のため<a href="%{path}">プリセット警告文を追加</a>することができます
         type_html: "<strong>%{acct}</strong>さんに対し、何を行うか選択してください"
+        types:
+          disable: ユーザーが自分のアカウントを使用できないようにします。コンテンツを削除したり非表示にすることはありません。
+          none: これを使用すると、他の操作をせずにユーザーに警告を送信できます。
+          sensitive: このユーザーが添付したメディアを強制的に閲覧注意にする
+          silence: ユーザーが公開投稿できないようにし、フォローしていない人に投稿や通知が表示されないようにする。
+          suspend: このアカウントとのやりとりを止め、コンテンツを削除します。30日以内は取消可能です。
         warning_preset_id: オプションです。プリセット警告文の末尾に任意の文字列を追加することができます
       announcement:
         all_day: 有効化すると、対象期間の箇所に日付だけが表示されます
         ends_at: オプションです。指定すると、お知らせの掲載はその日時で自動的に終了します
         scheduled_at: お知らせを今すぐ掲載する場合は空欄にしてください
         starts_at: オプションです。お知らせしたい事柄の期間が決まっている場合に使用します
-        text: トゥートと同じ構文を使用できます。アナウンスが占める画面のスペースに注意してください
+        text: 投稿と同じ構文を使用できます。アナウンスが占める画面のスペースに注意してください
       defaults:
         autofollow: 招待から登録した人が自動的にあなたをフォローするようになります
         avatar: "%{size}までのPNG、GIF、JPGが利用可能です。%{dimensions}pxまで縮小されます"
@@ -34,20 +40,20 @@ ja:
         fields: プロフィールに表として4つまでの項目を表示することができます
         header: "%{size}までのPNG、GIF、JPGが利用可能です。 %{dimensions}pxまで縮小されます"
         inbox_url: 使用したいリレーサーバーのトップページからURLをコピーします
-        irreversible: フィルターが後で削除されても、除外されたトゥートは元に戻せなくなります
+        irreversible: フィルターが後で削除されても、除外された投稿は元に戻せなくなります
         locale: ユーザーインターフェース、メールやプッシュ通知の言語
         locked: フォロワーを手動で承認する必要があります
         password: 少なくとも8文字は入力してください
-        phrase: トゥートの大文字小文字や閲覧注意に関係なく一致
+        phrase: 投稿内容の大文字小文字や閲覧注意に関係なく一致
         scopes: アプリの API に許可するアクセス権を選択してください。最上位のスコープを選択する場合、個々のスコープを選択する必要はありません。
-        setting_aggregate_reblogs: 最近ブーストされたトゥートが新たにブーストされても表示しません (設定後受信したものにのみ影響)
+        setting_aggregate_reblogs: 最近ブーストされた投稿が新たにブーストされても表示しません (設定後受信したものにのみ影響)
         setting_default_sensitive: 閲覧注意状態のメディアはデフォルトでは内容が伏せられ、クリックして初めて閲覧できるようになります
         setting_display_media_default: 閲覧注意としてマークされたメディアは隠す
         setting_display_media_hide_all: メディアを常に隠す
         setting_display_media_show_all: メディアを常に表示する
         setting_hide_network: フォローとフォロワーの情報がプロフィールページで見られないようにします
         setting_noindex: 公開プロフィールおよび各投稿ページに影響します
-        setting_show_application: トゥートするのに使用したアプリがトゥートの詳細ビューに表示されるようになります
+        setting_show_application: 投稿するのに使用したアプリが投稿の詳細ビューに表示されるようになります
         setting_use_blurhash: ぼかしはメディアの色を元に生成されますが、細部は見えにくくなっています
         setting_use_pending_items: 新着があってもタイムラインを自動的にスクロールしないようにします
         username: あなたのユーザー名は %{domain} の中で重複していない必要があります
@@ -73,13 +79,15 @@ ja:
           no_access: すべてのリソースへのアクセスをブロックします
           sign_up_requires_approval: 承認するまで新規登録が完了しなくなります
         severity: このIPに対する措置を選択してください
+      rule:
+        text: ユーザーのためのルールや要件を記述してください。短くシンプルにしてください。
       sessions:
         otp: '携帯電話のアプリで生成された二段階認証コードを入力するか、リカバリーコードを使用してください:'
         webauthn: USBキーの場合は、必ず挿入し、必要に応じてタップしてください。
       tag:
         name: 視認性向上などのためにアルファベット大文字小文字の変更のみ行うことができます
       user:
-        chosen_languages: 選択すると、選択した言語のトゥートのみが公開タイムラインに表示されるようになります
+        chosen_languages: 選択すると、選択した言語の投稿のみが公開タイムラインに表示されるようになります
     labels:
       account:
         fields:
@@ -93,7 +101,7 @@ ja:
         text: プリセット警告文
         title: タイトル
       admin_account_action:
-        include_statuses: 通報されたトゥートをメールに含める
+        include_statuses: 通報された投稿をメールに含める
         send_email_notification: メールでユーザーに通知
         text: カスタム警告文
         type: アクション
@@ -126,6 +134,7 @@ ja:
         expires_in: 有効期限
         fields: プロフィール補足情報
         header: ヘッダー
+        honeypot: "%{label} (入力しない)"
         inbox_url: リレーサーバーの inbox URL
         irreversible: 隠すのではなく除外する
         locale: 言語
@@ -140,17 +149,17 @@ ja:
         setting_aggregate_reblogs: ブーストをまとめる
         setting_auto_play_gif: アニメーションGIFを自動再生する
         setting_boost_modal: ブーストする前に確認ダイアログを表示する
-        setting_crop_images: トゥート詳細以外では画像を16:9に切り抜く
+        setting_crop_images: 投稿の詳細以外では画像を16:9に切り抜く
         setting_default_language: 投稿する言語
         setting_default_privacy: 投稿の公開範囲
         setting_default_sensitive: メディアを常に閲覧注意としてマークする
-        setting_delete_modal: トゥートを削除する前に確認ダイアログを表示する
+        setting_delete_modal: 投稿を削除する前に確認ダイアログを表示する
         setting_disable_swiping: スワイプでの切り替えを無効にする
         setting_display_media: メディアの表示
         setting_display_media_default: 標準
         setting_display_media_hide_all: 非表示
         setting_display_media_show_all: 表示
-        setting_expand_spoilers: 閲覧注意としてマークされたトゥートを常に展開する
+        setting_expand_spoilers: 閲覧注意としてマークされた投稿を常に展開する
         setting_hide_network: 繋がりを隠す
         setting_noindex: 検索エンジンによるインデックスを拒否する
         setting_reduce_motion: アニメーションの動きを減らす
@@ -193,14 +202,16 @@ ja:
         follow_request: フォローリクエストを受けた時
         mention: 返信が来た時
         pending_account: 新しいアカウントの承認が必要な時
-        reblog: トゥートがブーストされた時
+        reblog: 投稿がブーストされた時
         report: 通報を受けた時
         trending_tag: 未審査のハッシュタグが人気の時
+      rule:
+        text: ルール
       tag:
         listable: 検索とディレクトリへの使用を許可する
         name: ハッシュタグ
         trendable: トレンドへの表示を許可する
-        usable: トゥートへの使用を許可する
+        usable: 投稿への使用を許可する
     'no': いいえ
     recommended: おすすめ
     required:

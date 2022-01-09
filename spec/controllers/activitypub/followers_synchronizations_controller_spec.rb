@@ -5,11 +5,13 @@ RSpec.describe ActivityPub::FollowersSynchronizationsController, type: :controll
   let!(:follower_1) { Fabricate(:account, domain: 'example.com', uri: 'https://example.com/users/a') }
   let!(:follower_2) { Fabricate(:account, domain: 'example.com', uri: 'https://example.com/users/b') }
   let!(:follower_3) { Fabricate(:account, domain: 'foo.com', uri: 'https://foo.com/users/a') }
+  let!(:follower_4) { Fabricate(:account, username: 'instance-actor', domain: 'example.com', uri: 'https://example.com') }
 
   before do
     follower_1.follow!(account)
     follower_2.follow!(account)
     follower_3.follow!(account)
+    follower_4.follow!(account)
   end
 
   before do
@@ -40,12 +42,12 @@ RSpec.describe ActivityPub::FollowersSynchronizationsController, type: :controll
       end
 
       it 'returns application/activity+json' do
-        expect(response.content_type).to eq 'application/activity+json'
+        expect(response.media_type).to eq 'application/activity+json'
       end
 
       it 'returns orderedItems with followers from example.com' do
         expect(body[:orderedItems]).to be_an Array
-        expect(body[:orderedItems].sort).to eq [follower_1.uri, follower_2.uri]
+        expect(body[:orderedItems].sort).to eq [follower_4.uri, follower_1.uri, follower_2.uri]
       end
 
       it 'returns private Cache-Control header' do

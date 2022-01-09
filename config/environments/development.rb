@@ -17,7 +17,7 @@ Rails.application.configure do
   if Rails.root.join('tmp/caching-dev.txt').exist?
     config.action_controller.perform_caching = true
 
-    config.cache_store = :redis_store, ENV['REDIS_URL'], REDIS_CACHE_PARAMS
+    config.cache_store = :redis_cache_store, REDIS_CACHE_PARAMS
 
     config.public_file_server.headers = {
       'Cache-Control' => "public, max-age=#{2.days.to_i}",
@@ -81,7 +81,7 @@ Rails.application.configure do
     Bullet.bullet_logger = true
     Bullet.rails_logger  = false
 
-    Bullet.add_whitelist type: :n_plus_one_query, class_name: 'User', association: :account
+    Bullet.add_safelist type: :n_plus_one_query, class_name: 'User', association: :account
   end
 
   config.x.otp_secret = ENV.fetch('OTP_SECRET', '1fc2b87989afa6351912abeebe31ffc5c476ead9bf8b3d74cbc4a302c7b69a45b40b1bbef3506ddad73e942e15ed5ca4b402bf9a66423626051104f4b5f05109')

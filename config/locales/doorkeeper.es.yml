@@ -1,1 +1,154 @@
---- {}
+---
+es:
+  activerecord:
+    attributes:
+      doorkeeper/application:
+        name: Nombre de aplicación
+        redirect_uri: URI para redirección
+        scopes: Ámbitos
+        website: Sitio web
+    errors:
+      models:
+        doorkeeper/application:
+          attributes:
+            redirect_uri:
+              fragment_present: no puede contener un fragmento.
+              invalid_uri: debe ser un URI válido.
+              relative_uri: debe ser una URI absoluta.
+              secured_uri: debe ser un URI HTTPS/SSL.
+  doorkeeper:
+    applications:
+      buttons:
+        authorize: Autorizar
+        cancel: Cancelar
+        destroy: Destruir
+        edit: Editar
+        submit: Enviar
+      confirmations:
+        destroy: "¿Está seguro?"
+      edit:
+        title: Editar aplicación
+      form:
+        error: "¡Uuups! Compruebe su formulario"
+      help:
+        native_redirect_uri: Utilice %{native_redirect_uri} para pruebas locales
+        redirect_uri: Utilice una línea por URI
+        scopes: Separe los ámbitos con espacios. Déjelo en blanco para utilizar los ámbitos por defecto.
+      index:
+        application: Aplicación
+        callback_url: URL de callback
+        delete: Eliminar
+        empty: No tienes aplicaciones.
+        name: Nombre
+        new: Nueva aplicación
+        scopes: Ámbitos
+        show: Mostrar
+        title: Sus aplicaciones
+      new:
+        title: Nueva aplicación
+      show:
+        actions: Acciones
+        application_id: Id de la aplicación
+        callback_urls: URLs de callback
+        scopes: Ámbitos
+        secret: Secreto
+        title: 'Aplicación: %{name}'
+    authorizations:
+      buttons:
+        authorize: Autorizar
+        deny: Desautorizar
+      error:
+        title: Ha ocurrido un error
+      new:
+        able_to: Será capaz de
+        prompt: La aplicación %{client_name} solicita tener acceso a su cuenta
+        title: Se requiere autorización
+      show:
+        title: Copia este código de autorización y pégalo en la aplicación.
+    authorized_applications:
+      buttons:
+        revoke: Revocar
+      confirmations:
+        revoke: "¿Está seguro?"
+      index:
+        application: Aplicación
+        created_at: Creado el
+        date_format: "%A-%m-%d %H:%M:%S"
+        scopes: Ámbitos
+        title: Sus aplicaciones autorizadas
+    errors:
+      messages:
+        access_denied: El propietario del recurso o servidor de autorización denegó la petición.
+        credential_flow_not_configured: Las credenciales de contraseña del propietario del recurso falló debido a que Doorkeeper.configure.resource_owner_from_credentials está sin configurar.
+        invalid_client: La autentificación del cliente falló debido o a que es un cliente desconocido o no está incluída la autentificación del cliente o el método de autentificación no está confirmado.
+        invalid_grant: La concesión de autorización ofrecida es inválida, venció, se revocó, no coincide con la URI de redirección utilizada en la petición de autorización, o fue emitida para otro cliente.
+        invalid_redirect_uri: La URI de redirección incluida no es válida.
+        invalid_request:
+          missing_param: 'Falta este parámetro requerido: %{value}.'
+          request_not_authorized: La solicitud debe ser autorizada. Hay un parámetro requerido para autorizar la solicitud que falta o no es válido.
+          unknown: Falta un parámetro requerido en la solicitud, o esta incluye un valor no admitido de parámetro, o bien está mal formulada.
+        invalid_resource_owner: Las credenciales proporcionadas del propietario del recurso no son válidas, o el propietario del recurso no puede ser encontrado
+        invalid_scope: El ámbito pedido es inválido, desconocido o erróneo.
+        invalid_token:
+          expired: El autentificador de acceso expiró
+          revoked: El autentificador de acceso fue revocado
+          unknown: El autentificador de acceso es inválido
+        resource_owner_authenticator_not_configured: El propietario del recurso falló debido a que Doorkeeper.configure.resource_owner_authenticator está sin configurar.
+        server_error: El servidor de la autorización entontró una condición inesperada que le impidió cumplir con la solicitud.
+        temporarily_unavailable: El servidor de la autorización es actualmente incapaz de manejar la petición debido a una sobrecarga temporal o un trabajo de mantenimiento del servidor.
+        unauthorized_client: El cliente no está autorizado a realizar esta petición utilizando este método.
+        unsupported_grant_type: El tipo de concesión de autorización no está soportado por el servidor de autorización.
+        unsupported_response_type: El servidor de autorización no soporta este tipo de respuesta.
+    flash:
+      applications:
+        create:
+          notice: Aplicación creada.
+        destroy:
+          notice: Aplicación eliminada.
+        update:
+          notice: Aplicación actualizada.
+      authorized_applications:
+        destroy:
+          notice: Aplicación revocada.
+    layouts:
+      admin:
+        nav:
+          applications: Aplicaciones
+          oauth2_provider: Proveedor OAuth2
+      application:
+        title: OAuth autorización requerida
+    scopes:
+      admin:read: leer todos los datos en el servidor
+      admin:read:accounts: leer información sensible de todas las cuentas
+      admin:read:reports: leer información sensible de todos los informes y cuentas reportadas
+      admin:write: modificar todos los datos en el servidor
+      admin:write:accounts: realizar acciones de moderación en cuentas
+      admin:write:reports: realizar acciones de moderación en informes
+      follow: seguir, bloquear, desbloquear y dejar de seguir cuentas
+      push: recibir tus notificaciones push
+      read: leer los datos de tu cuenta
+      read:accounts: ver información de cuentas
+      read:blocks: ver a quién has bloqueado
+      read:bookmarks: ver tus marcadores
+      read:favourites: ver tus favoritos
+      read:filters: ver tus filtros
+      read:follows: ver a quién sigues
+      read:lists: ver tus listas
+      read:mutes: ver a quién has silenciado
+      read:notifications: ver tus notificaciones
+      read:reports: ver tus informes
+      read:search: buscar en su nombre
+      read:statuses: ver todos los estados
+      write: publicar en tu nombre
+      write:accounts: modifica tu perfil
+      write:blocks: bloquear cuentas y dominios
+      write:bookmarks: guardar estados como marcadores
+      write:favourites: publicaciones favoritas
+      write:filters: crear filtros
+      write:follows: seguir usuarios
+      write:lists: crear listas
+      write:media: subir archivos multimedia
+      write:mutes: silenciar usuarios y conversaciones
+      write:notifications: limpia tus notificaciones
+      write:reports: reportar a otras personas
+      write:statuses: publicar estados

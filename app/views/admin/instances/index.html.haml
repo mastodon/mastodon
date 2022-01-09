@@ -16,6 +16,24 @@
       - unless whitelist_mode?
         %li= filter_link_to t('admin.instances.moderation.limited'), limited: '1'
 
+  .filter-subset
+    %strong= t('admin.instances.delivery.title')
+    %ul
+      %li= filter_link_to t('admin.instances.delivery.all'), warning: nil, unavailable: nil
+      %li= filter_link_to t('admin.instances.delivery.warning'), warning: '1', unavailable: nil
+      %li= filter_link_to t('admin.instances.delivery.unavailable'), warning: nil, unavailable: '1'
+
+  .back-link
+    = link_to admin_instances_path() do
+      %i.fa.fa-chevron-left.fa-fw
+      = t('admin.instances.back_to_all')
+    = link_to admin_instances_path(limited: 1) do
+      %i.fa.fa-chevron-left.fa-fw
+      = t('admin.instances.back_to_limited')
+    = link_to admin_instances_path(warning: 1) do
+      %i.fa.fa-chevron-left.fa-fw
+      = t('admin.instances.back_to_warning')
+
 - unless whitelist_mode?
   = form_tag admin_instances_url, method: 'GET', class: 'simple_form' do
     .fields-group
@@ -32,32 +50,10 @@
 
 %hr.spacer/
 
-- @instances.each do |instance|
-  .directory__tag
-    = link_to admin_instance_path(instance) do
-      %h4
-        = instance.domain
-        %small
-          - if instance.domain_block
-            - first_item = true
-            - if !instance.domain_block.noop?
-              = t("admin.domain_blocks.severity.#{instance.domain_block.severity}")
-              - first_item = false
-            - unless instance.domain_block.suspend?
-              - if instance.domain_block.reject_media?
-                - unless first_item
-                  &bull;
-                = t('admin.domain_blocks.rejecting_media')
-                - first_item = false
-              - if instance.domain_block.reject_reports?
-                - unless first_item
-                  &bull;
-                = t('admin.domain_blocks.rejecting_reports')
-          - elsif whitelist_mode?
-            = t('admin.accounts.whitelisted')
-          - else
-            = t('admin.accounts.no_limits_imposed')
-      - if instance.countable?
-        .trends__item__current{ title: t('admin.instances.known_accounts', count: instance.accounts_count) }= number_to_human instance.accounts_count, strip_insignificant_zeros: true
+- if @instances.empty?
+  %div.muted-hint.center-text
+    = t 'admin.instances.empty'
+- else
+  = render partial: 'instance', collection: @instances
 
-= paginate paginated_instances
+= paginate @instances

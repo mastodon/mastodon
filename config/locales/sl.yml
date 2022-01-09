@@ -7,7 +7,6 @@ sl:
     active_count_after: dejaven
     active_footnote: Aktivni mesečni uporabniki (AMU)
     administered_by: 'Upravlja:'
-    api: API
     apps: Mobilne aplikacije
     apps_platforms: Uporabljajte Mastodon iz iOS, Android ali iz drugih platform
     browse_directory: Brskajte po imeniku profilov in filtriranje po interesih
@@ -71,11 +70,9 @@ sl:
       two: Tuta
     posts_tab_heading: Tuti
     posts_with_replies: Tuti in odgovori
-    reserved_username: Uporabniško ime je zasedeno
     roles:
       admin: Skrbnik
       bot: Robot
-      moderator: Mod
     unavailable: Profil ni na voljo
     unfollow: Prenehaj slediti
   admin:
@@ -120,7 +117,6 @@ sl:
       header: Glava
       inbox_url: URL mape "Prejeto"
       invited_by: Povabljen od
-      ip: IP
       joined: Pridružil
       location:
         all: Vse
@@ -164,7 +160,6 @@ sl:
       role: Dovoljenja
       roles:
         admin: Skrbnik
-        moderator: Moderator
         staff: Osebje
         user: Uporabnik
       search: Iskanje
@@ -188,37 +183,6 @@ sl:
       web: Splet
       whitelisted: Na belem seznamu
     action_logs:
-      actions:
-        assigned_to_self_report: "%{name} je prijavil %{target} sebi"
-        change_email_user: "%{name} je spremenil naslov e-pošte uporabnika %{target}"
-        confirm_user: "%{name} je potrdil naslov e-pošte uporabnika %{target}"
-        create_account_warning: "%{name} je poslal opozorilo %{target}"
-        create_custom_emoji: "%{name} je posodobil emotikone %{target}"
-        create_domain_block: "%{name} je blokiral domeno %{target}"
-        create_email_domain_block: "%{name} je dal na črni seznam e-pošto domene %{target}"
-        demote_user: "%{name} je degradiral uporabnika %{target}"
-        destroy_custom_emoji: "%{name} je uničil emotikone %{target}"
-        destroy_domain_block: "%{name} je odblokiral domeno %{target}"
-        destroy_email_domain_block: "%{name} je dal na beli seznam e-pošto domene %{target}"
-        destroy_status: "%{name} je odstranil stanje od %{target}"
-        disable_2fa_user: "%{name} je onemogočil dvofaktorsko zahtevo za uporabnika %{target}"
-        disable_custom_emoji: "%{name} je onemogočil emotikone %{target}"
-        disable_user: "%{name} je onemogočil prijavo za uporabnika %{target}"
-        enable_custom_emoji: "%{name} je omogočil emotikone %{target}"
-        enable_user: "%{name} je omogočil prijavo za uporabnika %{target}"
-        memorialize_account: "%{name} je spremenil račun od %{target} v stran spominov"
-        promote_user: "%{name} je promoviral uporabnika %{target}"
-        remove_avatar_user: "%{name} je odstranil podobo od %{target}"
-        reopen_report: "%{name} je ponovno odprl prijavo %{target}"
-        reset_password_user: "%{name} je ponastavil geslo od uporabnika %{target}"
-        resolve_report: "%{name} je razrešil prijavo %{target}"
-        silence_account: "%{name} je utišal račun od %{target}"
-        suspend_account: "%{name} je suspendiral račun od %{target}"
-        unassigned_report: "%{name} je nedodeljeno prijavil %{target}"
-        unsilence_account: "%{name} je preklical utišanje računa od %{target}"
-        unsuspend_account: "%{name} je aktiviral račun od %{target}"
-        update_custom_emoji: "%{name} je posodobil emotikone %{target}"
-        update_status: "%{name} je posodobil stanje od %{target}"
       deleted_status: "(izbrisano stanje)"
       title: Dnevnik revizije
     custom_emojis:
@@ -247,29 +211,9 @@ sl:
       updated_msg: Emotikon je uspešno posodobljen!
       upload: Pošlji
     dashboard:
-      backlog: zaostala opravila
-      config: Nastavitve
-      feature_deletions: Brisanje računov
-      feature_invites: Povezave povabil
-      feature_profile_directory: Imenik profilov
-      feature_registrations: Registracije
-      feature_relay: Rele federacije
-      feature_spam_check: Anti-spam
-      feature_timeline_preview: Predogled časovnice
-      features: Zmožnosti
-      hidden_service: Federacija s skritimi storitvami
-      open_reports: odprte prijave
-      recent_users: Nedavni uporabniki
-      search: Iskanje po celotnem besedilu
-      single_user_mode: Način enega uporabnika
       software: Programska oprema
       space: Uporaba prostora
       title: Nadzorna plošča
-      total_users: skupaj uporabnikov
-      trends: Trendi
-      week_interactions: interakcije ta teden
-      week_users_active: aktivni ta teden
-      week_users_new: uporabniki ta teden
     domain_allows:
       add_new: Dodaj domeno na beli seznam
       created_msg: Domena je bila uspešno dodana na beli seznam
@@ -345,7 +289,6 @@ sl:
         all: Vse
         available: Razpoložljivo
         expired: Potekel
-        title: Filter
       title: Povabila
     pending_accounts:
       title: "(%{count}) računov na čakanju"
@@ -457,9 +400,6 @@ sl:
         desc_html: Lahko napišete svojo pravilnik o zasebnosti, pogoje storitve ali druge pravne dokumente. Lahko uporabite oznake HTML
         title: Pogoji storitve po meri
       site_title: Ime strežnika
-      spam_check_enabled:
-        desc_html: Mastodon lahko samodejno utiša in samodejno prijavi račune, ki temeljijo na ukrepih, kot je odkrivanje računov, ki pošiljajo ponavljajoča se neželena sporočila. Lahko pride do zmot.
-        title: Anti-spam
       thumbnail:
         desc_html: Uporablja se za predogled prek OpenGrapha in API-ja. Priporočamo 1200x630px
         title: Sličica strežnika
@@ -504,7 +444,6 @@ sl:
     sensitive_content: Občutljiva vsebina
   application_mailer:
     notification_preferences: Spremenite e-poštne nastavitve
-    salutation: "%{name},"
     settings: 'Spremenite e-poštne nastavitve: %{link}'
     view: 'Pogled:'
     view_profile: Ogled profila
@@ -532,9 +471,6 @@ sl:
     migrate_account: Premakni se na drug račun
     migrate_account_html: Če želite ta račun preusmeriti na drugega, ga lahko <a href="%{path}">nastavite tukaj</a>.
     or_log_in_with: Ali se prijavite z
-    providers:
-      cas: CAS
-      saml: SAML
     register: Vpis
     registration_closed: "%{instance} ne sprejema novih članov"
     resend_confirmation: Ponovno pošlji navodila za potrditev
@@ -563,18 +499,8 @@ sl:
     title: Sledi %{acct}
   datetime:
     distance_in_words:
-      about_x_hours: "%{count}h"
-      about_x_months: "%{count}mo"
-      about_x_years: "%{count}y"
-      almost_x_years: "%{count}y"
       half_a_minute: Pravkar
-      less_than_x_minutes: "%{count}m"
       less_than_x_seconds: Pravkar
-      over_x_years: "%{count}y"
-      x_days: "%{count}d"
-      x_minutes: "%{count}m"
-      x_months: "%{count}mo"
-      x_seconds: "%{count}s"
   deletes:
     confirm_password: Vnesite svoje trenutno geslo, da potrdite svojo identiteto
     proceed: Izbriši račun
@@ -610,7 +536,6 @@ sl:
       request: Zahtevajte svoj arhiv
       size: Velikost
     blocks: Blokirate
-    csv: CSV
     domain_blocks: Bloki domene
     lists: Seznami
     mutes: Utišate
@@ -758,22 +683,11 @@ sl:
       body: "%{name} je spodbudil/a vaše stanje:"
       subject: "%{name} je spodbudil/a vaše stanje"
       title: Nova spodbuda
-  number:
-    human:
-      decimal_units:
-        format: "%n%u"
-        units:
-          billion: B
-          million: M
-          quadrillion: Q
-          thousand: K
-          trillion: T
   pagination:
     newer: Novejše
     next: Naprej
     older: Starejše
     prev: Nazaj
-    truncate: "&hellip;"
   polls:
     errors:
       already_voted: Na tej anketi ste že glasovali
@@ -826,40 +740,16 @@ sl:
     activity: Zadnja dejavnost
     browser: Brskalnik
     browsers:
-      alipay: Alipay
       blackberry: BlackBerry
-      chrome: Chrome
-      edge: Microsoft Edge
-      electron: Electron
-      firefox: Firefox
       generic: Neznan brskalnik
-      ie: Internet Explorer
-      micro_messenger: MicroMessenger
-      nokia: Nokia S40 Ovi Browser
-      opera: Opera
-      otter: Otter
-      phantom_js: PhantomJS
-      qq: QQ Browser
-      safari: Safari
       uc_browser: UC Browser
-      weibo: Weibo
     current_session: Trenutna seja
     description: "%{browser} na %{platform}"
     explanation: To so spletni brskalniki, ki so trenutno prijavljeni v vaš Mastodon račun.
-    ip: IP
     platforms:
-      adobe_air: Adobe Air
-      android: Android
       blackberry: BlackBerry
-      chrome_os: ChromeOS
-      firefox_os: Firefox OS
-      ios: iOS
-      linux: Linux
       mac: Mac
       other: neznana platforma
-      windows: Windows
-      windows_mobile: Windows Mobile
-      windows_phone: Windows Phone
     revoke: Prekliči
     revoke_success: Seja je bila uspešno preklicana
     title: Seje
@@ -920,7 +810,6 @@ sl:
       vote: Glasuj
     show_more: Pokaži več
     sign_in_to_participate: Prijavite se, če želite sodelovati v pogovoru
-    title: '%{name}: "%{quote}"'
     visibilities:
       private: Samo sledilci
       private_long: Prikaži samo sledilcem
@@ -1019,10 +908,6 @@ sl:
     contrast: Mastodon (Visok kontrast)
     default: Mastodon (Temna)
     mastodon-light: Mastodon (Svetla)
-  time:
-    formats:
-      default: "%b %d, %Y, %H:%M"
-      month: "%b %Y"
   two_factor_authentication:
     disable: Onemogoči
     enabled: Dvofaktorsko preverjanje pristnosti je omogočeno
@@ -1072,7 +957,6 @@ sl:
       title: Dobrodošli, %{name}!
   users:
     follow_limit_reached: Ne morete spremljati več kot %{limit} ljudi
-    invalid_email: E-poštni naslov je napačen
     invalid_otp_token: Neveljavna dvofaktorska koda
     otp_lost_help_html: Če ste izgubili dostop do obeh, stopite v stik z %{email}
     seamless_external_login: Prijavljeni ste prek zunanje storitve, tako da nastavitve gesla in e-pošte niso na voljo.

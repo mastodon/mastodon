@@ -175,7 +175,7 @@ RSpec.describe User, type: :model do
       user = Fabricate(:user)
       ActiveJob::Base.queue_adapter = :test
 
-      expect { user.send_confirmation_instructions }.to have_enqueued_job(ActionMailer::DeliveryJob)
+      expect { user.send_confirmation_instructions }.to have_enqueued_job(ActionMailer::MailDeliveryJob)
     end
   end
 
@@ -206,7 +206,7 @@ RSpec.describe User, type: :model do
 
   describe 'whitelist' do
     around(:each) do |example|
-      old_whitelist = Rails.configuration.x.email_whitelist
+      old_whitelist = Rails.configuration.x.email_domains_whitelist
 
       Rails.configuration.x.email_domains_whitelist = 'mastodon.space'
 
@@ -341,6 +341,34 @@ RSpec.describe User, type: :model do
 
     it 'enables user' do
       expect(user).to have_attributes(disabled: false)
+    end
+  end
+
+  describe '#reset_password!' do
+    subject(:user) { Fabricate(:user, password: 'foobar12345') }
+
+    let!(:session_activation) { Fabricate(:session_activation, user: user) }
+    let!(:access_token) { Fabricate(:access_token, resource_owner_id: user.id) }
+    let!(:web_push_subscription) { Fabricate(:web_push_subscription, access_token: access_token) }
+
+    before do
+      user.reset_password!
+    end
+
+    it 'changes the password immediately' do
+      expect(user.external_or_valid_password?('foobar12345')).to be false
+    end
+
+    it 'deactivates all sessions' do
+      expect(user.session_activations.count).to eq 0
+    end
+
+    it 'revokes all access tokens' do
+      expect(Doorkeeper::AccessToken.active_for(user).count).to eq 0
+    end
+
+    it 'removes push subscriptions' do
+      expect(Web::PushSubscription.where(user: user).or(Web::PushSubscription.where(access_token: access_token)).count).to eq 0
     end
   end
 

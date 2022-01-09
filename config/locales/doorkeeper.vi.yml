@@ -15,13 +15,13 @@ vi:
               fragment_present: không thể chứa một mảnh.
               invalid_uri: phải là một URI hợp lệ.
               relative_uri: phải là một URI tuyệt đối.
-              secured_uri: phải sử dụng giao thức HTTPS / SSL.
+              secured_uri: phải là giao thức HTTPS/SSL.
   doorkeeper:
     applications:
       buttons:
         authorize: Cho phép
         cancel: Hủy bỏ
-        destroy: Xoá bỏ
+        destroy: Xóa bỏ
         edit: Sửa
         submit: Gửi đi
       confirmations:
@@ -31,9 +31,9 @@ vi:
       form:
         error: Rất tiếc! Hãy kiểm tra thông tin của bạn bởi vì nó có lỗi
       help:
-        native_redirect_uri: Sử dụng %{native_redirect_uri} khi kiểm tra nội bộ
-        redirect_uri: Sử dụng mỗi dòng chỉ một URL
-        scopes: Phạm vi riêng biệt với không gian. Để trống để sử dụng phạm vi mặc định.
+        native_redirect_uri: Dùng %{native_redirect_uri} khi kiểm tra nội bộ
+        redirect_uri: Mỗi dòng chỉ một URL
+        scopes: Tách phạm vi ra bằng dấu cách. Bỏ trống để dùng phạm vi mặc định.
       index:
         application: Ứng dụng
         callback_url: Gọi lại URL
@@ -62,12 +62,12 @@ vi:
       new:
         able_to: Nó sẽ có thể
         prompt: Ứng dụng %{client_name} yêu cầu quyền truy cập vào tài khoản của bạn
-        title: Cần được cho phép
+        title: Yêu cầu truy cập
       show:
         title: Sao chép mã này và dán nó vào ứng dụng.
     authorized_applications:
       buttons:
-        revoke: Thu hồi
+        revoke: Gỡ
       confirmations:
         revoke: Bạn có chắc không?
       index:
@@ -75,20 +75,23 @@ vi:
         created_at: Đã cho phép
         date_format: "%Y-%m-%d %H:%M:%S"
         scopes: Quyền hạn
-        title: Các ứng dụng mà bạn cho phép
+        title: Các ứng dụng đang cho phép
     errors:
       messages:
         access_denied: Chủ sở hữu tài nguyên hoặc máy chủ đã từ chối yêu cầu.
         credential_flow_not_configured: Resource Owner Password Credentials không thành công do Doorkeeper.configure.resource_owner_from_credentials không được định cấu hình.
         invalid_client: Xác thực ứng dụng khách không thành công do máy khách mơ hồ, không bao gồm xác thực ứng dụng khách hoặc phương thức xác thực không được hỗ trợ.
-        invalid_grant: Yêu cầu không hợp lệ, hết hạn, bị thu hồi hoặc không khớp với tài khoản đã cung cấp.
+        invalid_grant: Yêu cầu không hợp lệ, hết hạn, bị gỡ hoặc không khớp với tài khoản đã cấp phép. Hoặc xung đột với ứng dụng khác.
         invalid_redirect_uri: URL chuyển hướng không hợp lệ.
-        invalid_request: Yêu cầu thiếu tham số bắt buộc, bao gồm giá trị tham số không được hỗ trợ hoặc không đúng định dạng.
+        invalid_request:
+          missing_param: 'Thiếu tham số bắt buộc: %{value}.'
+          request_not_authorized: Yêu cầu cần được cho phép trước. Tham số bắt buộc bị thiếu hoặc vô giá trị.
+          unknown: Thiếu tham số bắt buộc. Có thể giá trị tham số không được hỗ trợ, hoặc không đúng định dạng.
         invalid_resource_owner: Thông tin xác thực chủ sở hữu tài nguyên được cung cấp không hợp lệ hoặc không thể tìm thấy chủ sở hữu tài nguyên
         invalid_scope: Quyền yêu cầu không hợp lệ, không có thật hoặc sai định dạng.
         invalid_token:
           expired: Mã thông báo truy cập đã hết hạn
-          revoked: Mã thông báo truy cập đã bị thu hồi
+          revoked: Mã token đăng nhập đã bị hủy
           unknown: Mã thông báo truy cập không hợp lệ
         resource_owner_authenticator_not_configured: Chủ sở hữu tài nguyên tìm thấy thất bại do Doorkeeper.configure.resource_owner_authenticator không được định cấu hình.
         server_error: Có một điều kiện không thể chấp nhận khiến máy chủ không thực hiện yêu cầu.
@@ -106,7 +109,7 @@ vi:
           notice: Ứng dụng cập nhật.
       authorized_applications:
         destroy:
-          notice: Ứng dụng bị thu hồi.
+          notice: Đã gỡ bỏ ứng dụng.
     layouts:
       admin:
         nav:
@@ -119,8 +122,8 @@ vi:
       admin:read:accounts: đọc thông tin nhạy cảm của tất cả các tài khoản
       admin:read:reports: đọc thông tin của các báo cáo và các tài khoản bị báo cáo
       admin:write: sửa đổi tất cả dữ liệu trên máy chủ
-      admin:write:accounts: thực hiện hành động kiểm duyệt trên tài khoản
-      admin:write:reports: thực hiện hành động kiểm duyệt với các báo cáo
+      admin:write:accounts: áp đặt hành động kiểm duyệt trên tài khoản
+      admin:write:reports: áp đặt kiểm duyệt với các báo cáo
       follow: sửa đổi các mối quan hệ tài khoản
       push: nhận thông báo đẩy của bạn
       read: đọc tất cả dữ liệu tài khoản của bạn

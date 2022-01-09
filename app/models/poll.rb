@@ -25,7 +25,7 @@ class Poll < ApplicationRecord
   belongs_to :account
   belongs_to :status
 
-  has_many :votes, class_name: 'PollVote', inverse_of: :poll, dependent: :destroy
+  has_many :votes, class_name: 'PollVote', inverse_of: :poll, dependent: :delete_all
 
   has_many :notifications, as: :activity, dependent: :destroy
 
@@ -73,10 +73,12 @@ class Poll < ApplicationRecord
     attributes :id, :title, :votes_count, :poll
 
     def initialize(poll, id, title, votes_count)
-      @poll        = poll
-      @id          = id
-      @title       = title
-      @votes_count = votes_count
+      super(
+        poll:        poll,
+        id:          id,
+        title:       title,
+        votes_count: votes_count,
+      )
     end
   end
 

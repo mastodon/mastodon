@@ -3,37 +3,37 @@ da:
   activerecord:
     attributes:
       doorkeeper/application:
-        name: Navn på program
+        name: Applikationsnavn
         redirect_uri: Link
         scopes: Områder
-        website: Webside for applikation
+        website: Applikationswebsted
     errors:
       models:
         doorkeeper/application:
           attributes:
             redirect_uri:
               fragment_present: kan ikke indeholde et fragment.
-              invalid_uri: skal være et gyldigt URI.
+              invalid_uri: skal være en gyldigt URI.
               relative_uri: skal være en absolut URI.
-              secured_uri: skal være en HTTPS/SSL URI.
+              secured_uri: skal være en HTTPS-/SSL-URI.
   doorkeeper:
     applications:
       buttons:
         authorize: Godkend
-        cancel: Annuller
-        destroy: Destruer
-        edit: Rediger
+        cancel: Afbryd
+        destroy: Destruér
+        edit: Redigér
         submit: Indsend
       confirmations:
-        destroy: Er du sikker?
+        destroy: Sikker?
       edit:
-        title: Rediger applikation
+        title: Redigér applikation
       form:
-        error: Ups! Tjek din form for mulige fejl
+        error: Ups! Tjek din formular for mulige fejl
       help:
-        native_redirect_uri: Brug %{native_redirect_uri} for lokale tests
-        redirect_uri: Brug en linje per URI
-        scopes: Adskil omfang med mellemrum. Lad være blankt for at bruge standard omfang.
+        native_redirect_uri: Brug %{native_redirect_uri} til lokale tests
+        redirect_uri: Brug én linje pr. URI
+        scopes: Adskil omfang med mellemrum. Lad være tomt for standardomfang.
       index:
         application: Applikation
         callback_url: Callback-URL
@@ -48,28 +48,28 @@ da:
         title: Ny applikation
       show:
         actions: Handlinger
-        application_id: Klient nøgle
-        callback_urls: Callback-URLs
+        application_id: Klientnøgle
+        callback_urls: Callback-URL'er
         scopes: Omfang
-        secret: Secret
+        secret: Klienthemmelighed
         title: 'Applikation: %{name}'
     authorizations:
       buttons:
         authorize: Godkend
         deny: Afvis
       error:
-        title: Der opstod en fejl
+        title: En fejl opstod
       new:
         able_to: Den vil være i stand til
         prompt: Applikationen %{client_name} anmoder om adgang til din konto
-        title: Godkendelse påkrævet
+        title: Godkendelse krævet
       show:
-        title: Kopiere denne godkendelseskode og indsæt den i applikationen.
+        title: Kopiér og indsæt denne godkendelseskode i applikationen.
     authorized_applications:
       buttons:
         revoke: Ophæv
       confirmations:
-        revoke: Er du sikker?
+        revoke: Sikker?
       index:
         application: Applikation
         created_at: Godkendt
@@ -78,42 +78,45 @@ da:
         title: Dine godkendte applikationer
     errors:
       messages:
-        access_denied: Ejeren af ressourcen eller godkendelses serveren afviste anmodningen.
-        credential_flow_not_configured: Flytning af ressourceejers adgangskode mislykkedes grundet Doorkeeper.configure.resource_owner_from_credentials ikke er opsat.
-        invalid_client: Klient autentikationen mislykkedes grundet en ukendt klient, ingen klient autentikation fulgte med, eller en ikke-understøttet metode.
-        invalid_grant: Autoriseringen er ugyldig, udløbet, ophævet, passer ikke med den henvisnings URI der blev brugt i autoriserings anmodningen, eller blev givet til en anden klient.
-        invalid_redirect_uri: Ormdirigerings-uri'en der blev angivet er ikke gyldig.
-        invalid_request: Anmodningen mangler en parametre, inkluderer en ikke understøttet parametre værdi eller er på en eller anden måde deformeret.
-        invalid_resource_owner: De angivne ressource ejer kredentialer er ikke gyldige, eller ressource ejeren kunne ikke blive fundet
-        invalid_scope: Det anmodede omfang er ugyldigt, ukendt eller deformeret.
+        access_denied: Ressourceejeren eller godkendelsesserveren afviste anmodningen.
+        credential_flow_not_configured: Ressourceejeradgangskodeakkreditiv flow mislykkedes grundet ikke-opsat Doorkeeper.configure.resource_owner_from_credentials.
+        invalid_client: Klientbekræftelse mislykkedes grundet en ukendt klient, ingen klientbekræftelse inkluderet, eller uunderstøttet bekræftelsesmetode.
+        invalid_grant: Den leverede godkendelse er ugyldig, udløbet, tilbagekaldt, matcher ikke omdirigerings-URI brugt i godkendelsesanmodningen, eller er udstedt til en anden klient.
+        invalid_redirect_uri: Inkluderede ormdirigerings-URI er ugyldig.
+        invalid_request:
+          missing_param: 'Mangler krævet parameter: %{value}.'
+          request_not_authorized: Anmodning skal godkendes. Krævet parameter til godkendelse af anmodning mangler eller er ugyldig.
+          unknown: Anmodningen mangler en krævet parametre, inkluderer en uunderstøttet parametre værdi eller er på anden vis fejlbehæftet.
+        invalid_resource_owner: De angivne ressourceejerakkreditiver er ugyldige, eller ressourceejer kunne ikke findes
+        invalid_scope: Det anmodede omfang er ugyldigt, ukendt eller fejlbehæftet.
         invalid_token:
-          expired: Adgangs-beviset er udløbet
-          revoked: Adgangs-beviset er blevet ophævet
-          unknown: Adgangs-beviset er ugyldigt
-        resource_owner_authenticator_not_configured: Ressource ejeren kunne ikke blive fundet grundet Doorkeeper.configure.resource_owner_authenticator ikke er konfigureret.
-        server_error: Autoriserings serveren blev mødt med en uventet betingelse der forhindrede den i at færdiggøre anmodningen.
-        temporarily_unavailable: Autoriserings serveren er på nuværende tidspunkt ikke i stand til at håndtere anmodningen grundet midlertidig overlast eller serveren er ved at blive opdateret.
-        unauthorized_client: Klienten er ikke godkendt til at udføre denne anmodning ved at bruge denne metode.
-        unsupported_grant_type: Autoriserings typen understøttes ikke af autoriserings serveren.
-        unsupported_response_type: Godkendelses serveren understøtter ikke denne type respons.
+          expired: Adgangstoken er udløbet
+          revoked: Adgangstoken er tilbagekaldt
+          unknown: Adgangstoken er ugyldig
+        resource_owner_authenticator_not_configured: Ressourceejer kunne ikke findes grundet ikke-opsat Doorkeeper.configure.resource_owner_authenticator.
+        server_error: Godkejdelsesserveren stødte på en uventet betingelse, der forhindrede den i at imødekomme anmodningen.
+        temporarily_unavailable: Godkendelsesserveren kan pt. ikke håndtere anmodningen grundet midlertidig overbelastning eller servervedligehold.
+        unauthorized_client: Klienten er ikke godkendt til at udføre denne anmodning via denne metode.
+        unsupported_grant_type: Godkendelsestypen understøttes ikke af godkendelsesserveren.
+        unsupported_response_type: Godkendelsesserveren understøtter ikke denne svartype.
     flash:
       applications:
         create:
-          notice: Applikationen blev oprettet.
+          notice: Applikation oprettet.
         destroy:
-          notice: Applikationen blev slettet.
+          notice: Applikation slettet.
         update:
-          notice: Applikationen blev opdateret.
+          notice: Applikation opdateret.
       authorized_applications:
         destroy:
-          notice: Applikationen blev ophævet.
+          notice: Applikation tilbagekaldt.
     layouts:
       admin:
         nav:
           applications: Applikationer
-          oauth2_provider: OAuth Udbyder
+          oauth2_provider: OAuth-udbyder
       application:
-        title: OAuth godkendelse påkrævet
+        title: OAuth-godkendelse krævet
     scopes:
       admin:read: læs al data på serveren
       admin:read:accounts: læs sensitiv information fra alle konti
@@ -121,31 +124,31 @@ da:
       admin:write: redigér al data på serveren
       admin:write:accounts: udfør modereringshandlinger på konti
       admin:write:reports: udfør modereringshandlinger på anmeldelser
-      follow: ændre din kontos forhold
-      push: modtage dine push notifikationer
-      read: læse alle din kontos data
-      read:accounts: se konto oplysninger
+      follow: ændre kontorelationer
+      push: modtage dine push-notifikationer
+      read: læse alle dine kontodata
+      read:accounts: se kontooplysninger
       read:blocks: se dine blokeringer
       read:bookmarks: se dine bogmærker
       read:favourites: se dine favoritter
       read:filters: se dine filtre
-      read:follows: se hvem du følger
+      read:follows: se, hvem du følger
       read:lists: se dine lister
-      read:mutes: se dine dæmpninger
+      read:mutes: se dine tavsgørelser
       read:notifications: se dine notifikationer
       read:reports: se dine anmeldelser
       read:search: søge på dine vegne
       read:statuses: se alle statusser
-      write: ændre din kontos data
+      write: ændre alle dine kontodata
       write:accounts: ændre din profil
-      write:blocks: bloker konti og domæner
-      write:bookmarks: bogmærk statusser
-      write:favourites: favoriser statusser
-      write:filters: opret filtre
-      write:follows: følg folk
-      write:lists: opret lister
-      write:media: upload multimedie filer
-      write:mutes: dæmp folk og samtaler
-      write:notifications: ryd dine notifikationer
-      write:reports: anmeld andre folk
-      write:statuses: udgiv statusser
+      write:blocks: blokere konti og domæner
+      write:bookmarks: bogmærke statusser
+      write:favourites: favorisere statusser
+      write:filters: oprette filtre
+      write:follows: følge personer
+      write:lists: oprette lister
+      write:media: uploade multimediefiler
+      write:mutes: tavsgøre personer og konversationer
+      write:notifications: rydde dine notifikationer
+      write:reports: anmelde personer
+      write:statuses: udgive statusser

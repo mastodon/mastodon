@@ -13,7 +13,7 @@
 class Favourite < ApplicationRecord
   include Paginable
 
-  update_index('statuses#status', :status)
+  update_index('statuses', :status)
 
   belongs_to :account, inverse_of: :favourites
   belongs_to :status,  inverse_of: :favourites
@@ -28,6 +28,7 @@ class Favourite < ApplicationRecord
 
   after_create :increment_cache_counters
   after_destroy :decrement_cache_counters
+  after_destroy :invalidate_cleanup_info
 
   private
 
@@ -36,7 +37,13 @@ class Favourite < ApplicationRecord
   end
 
   def decrement_cache_counters
-    return if association(:status).loaded? && (status.marked_for_destruction? || status.marked_for_mass_destruction?)
+    return if association(:status).loaded? && status.marked_for_destruction?
     status&.decrement_count!(:favourites_count)
+  end
+
+  def invalidate_cleanup_info
+    return unless status&.account_id == account_id && account.local?
+
+    account.statuses_cleanup_policy&.invalidate_last_inspected(status, :unfav)
   end
 end

@@ -19,7 +19,7 @@ class RefollowWorker
 
       # Schedule re-follow
       begin
-        FollowService.new.call(follower, target_account, reblogs: reblogs, notify: notify)
+        FollowService.new.call(follower, target_account, reblogs: reblogs, notify: notify, bypass_limit: true)
       rescue Mastodon::NotPermittedError, ActiveRecord::RecordNotFound, Mastodon::UnexpectedResponseError, HTTP::Error, OpenSSL::SSL::SSLError
         next
       end

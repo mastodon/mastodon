@@ -14,9 +14,10 @@ spec:
       name: {{ include "mastodon.fullname" . }}-assets-precompile
     spec:
       restartPolicy: Never
+      {{- if (not .Values.mastodon.s3.enabled) }}
       # ensure we run on the same node as the other rails components; only
       # required when using PVCs that are ReadWriteOnce
-      {{- if or (eq "ReadWriteOnce" .Values.persistence.assets.accessMode) (eq "ReadWriteOnce" .Values.persistence.system.accessMode) }}
+      {{- if or (eq "ReadWriteOnce" .Values.mastodon.persistence.assets.accessMode) (eq "ReadWriteOnce" .Values.mastodon.persistence.system.accessMode) }}
       affinity:
         podAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
@@ -35,6 +36,7 @@ spec:
         - name: system
           persistentVolumeClaim:
             claimName: {{ template "mastodon.fullname" . }}-system
+      {{- end }}
       containers:
         - name: {{ include "mastodon.fullname" . }}-assets-precompile
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
@@ -53,7 +55,11 @@ spec:
             - name: "DB_PASS"
               valueFrom:
                 secretKeyRef:
+                  {{- if .Values.postgresql.enabled }}
                   name: {{ .Release.Name }}-postgresql
+                  {{- else }}
+                  name: {{ template "mastodon.fullname" . }}
+                  {{- end }}
                   key: postgresql-password
             - name: "REDIS_PASSWORD"
               valueFrom:
@@ -61,9 +67,11 @@ spec:
                   name: {{ .Release.Name }}-redis
                   key: redis-password
             - name: "PORT"
-              value: {{ .Values.application.web.port | quote }}
+              value: {{ .Values.mastodon.web.port | quote }}
+          {{- if (not .Values.mastodon.s3.enabled) }}
           volumeMounts:
             - name: assets
               mountPath: /opt/mastodon/public/assets
             - name: system
               mountPath: /opt/mastodon/public/system
+          {{- end }}

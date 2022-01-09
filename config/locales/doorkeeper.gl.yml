@@ -3,7 +3,7 @@ gl:
   activerecord:
     attributes:
       doorkeeper/application:
-        name: Nome do aplicativo
+        name: Nome da aplicación
         redirect_uri: URI a redireccionar
         scopes: Ámbitos
         website: Sitio web da aplicación
@@ -83,7 +83,10 @@ gl:
         invalid_client: A autenticación do cliente fallou por ser un cliente descoñecido, non se incluíu autenticación do cliente, ou o método de autenticación non está soportado.
         invalid_grant: A validación da autorización proporcionada non é valida, caducou, foi rexeitada, non coincide a redirección URI utilizada na petición de autorización, ou foi proporcionada para outro cliente.
         invalid_redirect_uri: A uri de redirección incluída non é válida.
-        invalid_request: A petición fáltalle un parámetro requerido, inclúe un valor de parámetro non soportado, ou de algún xeito non ten o formato axeitado.
+        invalid_request:
+          missing_param: 'Falta o parámetro requerido: %{value}.'
+          request_not_authorized: A solicitude debe ser autorizada. O parámetro requerido para a aprobación da solicitude non é válido ou non existe.
+          unknown: Fáltalle un parámetro requerido á solicitude, inclúe un valor do parámetro non soportado, ou dalgún xeito non é correcto.
         invalid_resource_owner: As credenciais do dono do recurso proporcionadas non son válidas, ou o dono do recurso non pode ser atopado
         invalid_scope: O permiso solicitado non é válido, descoñecido, ou mal formado.
         invalid_token:

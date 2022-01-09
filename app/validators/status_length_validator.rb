@@ -2,6 +2,8 @@
 
 class StatusLengthValidator < ActiveModel::Validator
   MAX_CHARS = 500
+  URL_PLACEHOLDER_CHARS = 23
+  URL_PLACEHOLDER = "\1#{'x' * URL_PLACEHOLDER_CHARS}"
 
   def validate(status)
     return unless status.local? && !status.reblog?
@@ -28,7 +30,7 @@ class StatusLengthValidator < ActiveModel::Validator
     return '' if @status.text.nil?
 
     @status.text.dup.tap do |new_text|
-      new_text.gsub!(FetchLinkCardService::URL_PATTERN, 'x' * 23)
+      new_text.gsub!(FetchLinkCardService::URL_PATTERN, URL_PLACEHOLDER)
       new_text.gsub!(Account::MENTION_RE, '@\2')
     end
   end

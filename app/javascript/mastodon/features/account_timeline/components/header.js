@@ -11,7 +11,6 @@ export default class Header extends ImmutablePureComponent {
 
   static propTypes = {
     account: ImmutablePropTypes.map,
-    identity_proofs: ImmutablePropTypes.list,
     onFollow: PropTypes.func.isRequired,
     onBlock: PropTypes.func.isRequired,
     onMention: PropTypes.func.isRequired,
@@ -92,7 +91,7 @@ export default class Header extends ImmutablePureComponent {
   }
 
   render () {
-    const { account, hideTabs, identity_proofs } = this.props;
+    const { account, hideTabs } = this.props;
 
     if (account === null) {
       return null;
@@ -104,7 +103,6 @@ export default class Header extends ImmutablePureComponent {
 
         <InnerHeader
           account={account}
-          identity_proofs={identity_proofs}
           onFollow={this.handleFollow}
           onBlock={this.handleBlock}
           onMention={this.handleMention}
@@ -123,9 +121,9 @@ export default class Header extends ImmutablePureComponent {
 
         {!hideTabs && (
           <div className='account__section-headline'>
-            <NavLink exact to={`/accounts/${account.get('id')}`}><FormattedMessage id='account.posts' defaultMessage='Toots' /></NavLink>
-            <NavLink exact to={`/accounts/${account.get('id')}/with_replies`}><FormattedMessage id='account.posts_with_replies' defaultMessage='Toots and replies' /></NavLink>
-            <NavLink exact to={`/accounts/${account.get('id')}/media`}><FormattedMessage id='account.media' defaultMessage='Media' /></NavLink>
+            <NavLink exact to={`/@${account.get('acct')}`}><FormattedMessage id='account.posts' defaultMessage='Toots' /></NavLink>
+            <NavLink exact to={`/@${account.get('acct')}/with_replies`}><FormattedMessage id='account.posts_with_replies' defaultMessage='Toots and replies' /></NavLink>
+            <NavLink exact to={`/@${account.get('acct')}/media`}><FormattedMessage id='account.media' defaultMessage='Media' /></NavLink>
           </div>
         )}
       </div>

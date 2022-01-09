@@ -6,7 +6,7 @@ describe "The host_meta route" do
       get host_meta_url
 
       expect(response).to have_http_status(200)
-      expect(response.content_type).to eq "application/xrd+xml"
+      expect(response.media_type).to eq "application/xrd+xml"
     end
   end
 end

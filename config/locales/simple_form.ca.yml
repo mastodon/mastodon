@@ -14,6 +14,12 @@ ca:
         send_email_notification: L'usuari rebrà una explicació del que ha passat amb el seu compte
         text_html: Opcional. Pots utilitzar tota la sintaxi. Pots <a href="%{path}">afegir configuracions predefinides d'avís</a> per a estalviar temps
         type_html: Tria què fer amb <strong>%{acct}</strong>
+        types:
+          disable: Evita que l'usuari faci ús del seu compte però no li esborra o amaga els seus continguts.
+          none: Fes servir això per a enviar un avís al usuari sense desencadenar cap altre acció.
+          sensitive: Obliga a marcar tots els fitxers multi mèdia adjunts com a sensibles.
+          silence: Evita que l'usuari sigui capaç de publicar amb visibilitat publica, amaga els tuts i notificacions de usuaris que no el segueixen.
+          suspend: Evita qualsevol interacció de o a aquest compte i esborra els seus continguts. Reversible en un termini de 30 dies.
         warning_preset_id: Opcional. Encara pots afegir text personalitzat al final de la configuració predefinida
       announcement:
         all_day: Si es marca, només es mostraran les dates de l'interval de temps
@@ -30,6 +36,7 @@ ca:
         current_username: Per a confirmar, si us plau entra el nom d'usuari del compte actual
         digest: Només s'envia després d'un llarg període d'inactivitat amb un resum de les mencions que has rebut en la teva absència
         discoverable: El directori de perfils és una altra manera per quin el teu compte pot assolir una audiència més àmplia
+        discoverable_no_directory: Permet que el teu compte sigui descobert per estranys grácies a les sugerències i altres característiques
         email: Se t'enviarà un correu electrònic de confirmació
         fields: Pots tenir fins a 4 elements que es mostren com a taula al teu perfil
         header: PNG, GIF o JPG. Màxim %{size}. S'escalarà a %{dimensions}px
@@ -73,6 +80,8 @@ ca:
           no_access: Bloqueja l’accés a tots els recursos
           sign_up_requires_approval: Els nous registres requeriran la teva aprovació
         severity: Tria què passarà amb les sol·licituds des d’aquesta IP
+      rule:
+        text: Descriu una norma o requeriment pels usuaris d'aquest servidor. Intenta fer-la curta i senzilla
       sessions:
         otp: 'Introdueix el codi de dos factors generat per el teu telèfon o utilitza un dels teus codis de recuperació:'
         webauthn: Si és una clau USB assegurat de que està inserida i, si és necessari, toca-ho.
@@ -112,7 +121,6 @@ ca:
         text: Anunci
       defaults:
         autofollow: Convida a seguir el teu compte
-        avatar: Avatar
         bot: Aquest compte és un bot
         chosen_languages: Filtrar llengües
         confirm_new_password: Confirma la contrasenya nova
@@ -126,6 +134,7 @@ ca:
         expires_in: Expira després
         fields: Metadades del perfil
         header: Capçalera
+        honeypot: "%{label} (no omplir)"
         inbox_url: URL de la safata d'entrada del relay
         irreversible: Cau en lloc d'ocultar
         locale: Llengua de la interfície
@@ -181,7 +190,6 @@ ca:
         text: Per què vols unir-te?
       ip_block:
         comment: Comentari
-        ip: IP
         severities:
           no_access: Bloquejar l’accés
           sign_up_requires_approval: Limitar els registres
@@ -196,15 +204,15 @@ ca:
         reblog: Envia un correu electrònic si algú comparteix el teu estat
         report: Envia un correu electrònic quan s'enviï un nou informe
         trending_tag: Envia un correu quan una etiqueta sense revisar està en tendència
+      rule:
+        text: Norma
       tag:
         listable: Permet que aquesta etiqueta aparegui en les cerques i en el directori de perfils
         name: Etiqueta
         trendable: Permet que aquesta etiqueta aparegui en les tendències
         usable: Permet als tuts emprar aquesta etiqueta
-    'no': 'No'
     recommended: Recomanat
     required:
-      mark: "*"
       text: necessari
     title:
       sessions:

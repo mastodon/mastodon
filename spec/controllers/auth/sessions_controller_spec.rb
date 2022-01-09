@@ -69,7 +69,7 @@ RSpec.describe Auth::SessionsController, type: :controller do
         end
 
         it 'shows a login error' do
-          expect(flash[:alert]).to match I18n.t('devise.failure.invalid', authentication_keys: 'Email')
+          expect(flash[:alert]).to match I18n.t('devise.failure.invalid', authentication_keys: I18n.t('activerecord.attributes.user.email'))
         end
 
         it "doesn't log the user in" do
@@ -136,7 +136,7 @@ RSpec.describe Auth::SessionsController, type: :controller do
         end
 
         it 'shows a login error' do
-          expect(flash[:alert]).to match I18n.t('devise.failure.invalid', authentication_keys: 'Email')
+          expect(flash[:alert]).to match I18n.t('devise.failure.invalid', authentication_keys: I18n.t('activerecord.attributes.user.email'))
         end
 
         it "doesn't log the user in" do
@@ -206,6 +206,38 @@ RSpec.describe Auth::SessionsController, type: :controller do
           end
         end
 
+        context 'using email and password after an unfinished log-in attempt to a 2FA-protected account' do
+          let!(:other_user) do
+            Fabricate(:user, email: 'z@y.com', password: 'abcdefgh', otp_required_for_login: true, otp_secret: User.generate_otp_secret(32))
+          end
+
+          before do
+            post :create, params: { user: { email: other_user.email, password: other_user.password } }
+            post :create, params: { user: { email: user.email, password: user.password } }
+          end
+
+          it 'renders two factor authentication page' do
+            expect(controller).to render_template("two_factor")
+            expect(controller).to render_template(partial: "_otp_authentication_form")
+          end
+        end
+
+        context 'using email and password after an unfinished log-in attempt with a sign-in token challenge' do
+          let!(:other_user) do
+            Fabricate(:user, email: 'z@y.com', password: 'abcdefgh', otp_required_for_login: false, current_sign_in_at: 1.month.ago)
+          end
+
+          before do
+            post :create, params: { user: { email: other_user.email, password: other_user.password } }
+            post :create, params: { user: { email: user.email, password: user.password } }
+          end
+
+          it 'renders two factor authentication page' do
+            expect(controller).to render_template("two_factor")
+            expect(controller).to render_template(partial: "_otp_authentication_form")
+          end
+        end
+
         context 'using upcase email and password' do
           before do
             post :create, params: { user: { email: user.email.upcase, password: user.password } }
@@ -219,7 +251,7 @@ RSpec.describe Auth::SessionsController, type: :controller do
 
         context 'using a valid OTP' do
           before do
-            post :create, params: { user: { otp_attempt: user.current_otp } }, session: { attempt_user_id: user.id }
+            post :create, params: { user: { otp_attempt: user.current_otp } }, session: { attempt_user_id: user.id, attempt_user_updated_at: user.updated_at.to_s }
           end
 
           it 'redirects to home' do
@@ -231,10 +263,25 @@ RSpec.describe Auth::SessionsController, type: :controller do
           end
         end
 
+        context 'using a valid OTP, attempting to leverage previous half-login to bypass password auth' do
+          let!(:other_user) do
+            Fabricate(:user, email: 'z@y.com', password: 'abcdefgh', otp_required_for_login: false, current_sign_in_at: 1.month.ago)
+          end
+
+          before do
+            post :create, params: { user: { email: other_user.email, password: other_user.password } }
+            post :create, params: { user: { email: user.email, otp_attempt: user.current_otp } }, session: { attempt_user_updated_at: user.updated_at.to_s }
+          end
+
+          it "doesn't log the user in" do
+            expect(controller.current_user).to be_nil
+          end
+        end
+
         context 'when the server has an decryption error' do
           before do
             allow_any_instance_of(User).to receive(:validate_and_consume_otp!).and_raise(OpenSSL::Cipher::CipherError)
-            post :create, params: { user: { otp_attempt: user.current_otp } }, session: { attempt_user_id: user.id }
+            post :create, params: { user: { otp_attempt: user.current_otp } }, session: { attempt_user_id: user.id, attempt_user_updated_at: user.updated_at.to_s }
           end
 
           it 'shows a login error' do
@@ -248,7 +295,7 @@ RSpec.describe Auth::SessionsController, type: :controller do
 
         context 'using a valid recovery code' do
           before do
-            post :create, params: { user: { otp_attempt: recovery_codes.first } }, session: { attempt_user_id: user.id }
+            post :create, params: { user: { otp_attempt: recovery_codes.first } }, session: { attempt_user_id: user.id, attempt_user_updated_at: user.updated_at.to_s }
           end
 
           it 'redirects to home' do
@@ -262,7 +309,7 @@ RSpec.describe Auth::SessionsController, type: :controller do
 
         context 'using an invalid OTP' do
           before do
-            post :create, params: { user: { otp_attempt: 'wrongotp' } }, session: { attempt_user_id: user.id }
+            post :create, params: { user: { otp_attempt: 'wrongotp' } }, session: { attempt_user_id: user.id, attempt_user_updated_at: user.updated_at.to_s }
           end
 
           it 'shows a login error' do
@@ -334,7 +381,7 @@ RSpec.describe Auth::SessionsController, type: :controller do
           before do
             @controller.session[:webauthn_challenge] = challenge
 
-            post :create, params: { user: { credential: fake_credential } }, session: { attempt_user_id: user.id }
+            post :create, params: { user: { credential: fake_credential } }, session: { attempt_user_id: user.id, attempt_user_updated_at: user.updated_at.to_s }
           end
 
           it 'instructs the browser to redirect to home' do
@@ -380,10 +427,56 @@ RSpec.describe Auth::SessionsController, type: :controller do
         end
       end
 
+      context 'using email and password after an unfinished log-in attempt to a 2FA-protected account' do
+        let!(:other_user) do
+          Fabricate(:user, email: 'z@y.com', password: 'abcdefgh', otp_required_for_login: true, otp_secret: User.generate_otp_secret(32))
+        end
+
+        before do
+          post :create, params: { user: { email: other_user.email, password: other_user.password } }
+          post :create, params: { user: { email: user.email, password: user.password } }
+        end
+
+        it 'renders sign in token authentication page' do
+          expect(controller).to render_template("sign_in_token")
+        end
+
+        it 'generates sign in token' do
+          expect(user.reload.sign_in_token).to_not be_nil
+        end
+
+        it 'sends sign in token e-mail' do
+          expect(UserMailer).to have_received(:sign_in_token)
+        end
+      end
+
+      context 'using email and password after an unfinished log-in attempt with a sign-in token challenge' do
+        let!(:other_user) do
+          Fabricate(:user, email: 'z@y.com', password: 'abcdefgh', otp_required_for_login: false, current_sign_in_at: 1.month.ago)
+        end
+
+        before do
+          post :create, params: { user: { email: other_user.email, password: other_user.password } }
+          post :create, params: { user: { email: user.email, password: user.password } }
+        end
+
+        it 'renders sign in token authentication page' do
+          expect(controller).to render_template("sign_in_token")
+        end
+
+        it 'generates sign in token' do
+          expect(user.reload.sign_in_token).to_not be_nil
+        end
+
+        it 'sends sign in token e-mail' do
+          expect(UserMailer).to have_received(:sign_in_token).with(user, any_args)
+        end
+      end
+
       context 'using a valid sign in token' do
         before do
           user.generate_sign_in_token && user.save
-          post :create, params: { user: { sign_in_token_attempt: user.sign_in_token } }, session: { attempt_user_id: user.id }
+          post :create, params: { user: { sign_in_token_attempt: user.sign_in_token } }, session: { attempt_user_id: user.id, attempt_user_updated_at: user.updated_at.to_s }
         end
 
         it 'redirects to home' do
@@ -395,9 +488,25 @@ RSpec.describe Auth::SessionsController, type: :controller do
         end
       end
 
+      context 'using a valid sign in token, attempting to leverage previous half-login to bypass password auth' do
+        let!(:other_user) do
+          Fabricate(:user, email: 'z@y.com', password: 'abcdefgh', otp_required_for_login: false, current_sign_in_at: 1.month.ago)
+        end
+
+        before do
+          user.generate_sign_in_token && user.save
+          post :create, params: { user: { email: other_user.email, password: other_user.password } }
+          post :create, params: { user: { email: user.email, sign_in_token_attempt: user.sign_in_token } }, session: { attempt_user_updated_at: user.updated_at.to_s }
+        end
+
+        it "doesn't log the user in" do
+          expect(controller.current_user).to be_nil
+        end
+      end
+
       context 'using an invalid sign in token' do
         before do
-          post :create, params: { user: { sign_in_token_attempt: 'wrongotp' } }, session: { attempt_user_id: user.id }
+          post :create, params: { user: { sign_in_token_attempt: 'wrongotp' } }, session: { attempt_user_id: user.id, attempt_user_updated_at: user.updated_at.to_s }
         end
 
         it 'shows a login error' do
@@ -407,6 +516,35 @@ RSpec.describe Auth::SessionsController, type: :controller do
         it "doesn't log the user in" do
           expect(controller.current_user).to be_nil
         end
+      end
+    end
+  end
+
+  describe 'GET #webauthn_options' do
+    context 'with WebAuthn and OTP enabled as second factor' do
+      let(:domain) { "#{Rails.configuration.x.use_https ? 'https' : 'http' }://#{Rails.configuration.x.web_domain}" }
+
+      let(:fake_client) { WebAuthn::FakeClient.new(domain) }
+
+      let!(:user) do
+        Fabricate(:user, email: 'x@y.com', password: 'abcdefgh', otp_required_for_login: true, otp_secret: User.generate_otp_secret(32))
+      end
+
+      before do
+        user.update(webauthn_id: WebAuthn.generate_user_id)
+        public_key_credential = WebAuthn::Credential.from_create(fake_client.create)
+        user.webauthn_credentials.create(
+          nickname: 'SecurityKeyNickname',
+          external_id: public_key_credential.id,
+          public_key: public_key_credential.public_key,
+          sign_count: '1000'
+        )
+        post :create, params: { user: { email: user.email, password: user.password } }
+      end
+
+      it 'returns http success' do
+        get :webauthn_options
+        expect(response).to have_http_status :ok
       end
     end
   end

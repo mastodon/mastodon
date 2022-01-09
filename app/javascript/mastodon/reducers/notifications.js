@@ -12,7 +12,6 @@ import {
   NOTIFICATIONS_MARK_AS_READ,
   NOTIFICATIONS_SET_BROWSER_SUPPORT,
   NOTIFICATIONS_SET_BROWSER_PERMISSION,
-  NOTIFICATIONS_DISMISS_BROWSER_PERMISSION,
 } from '../actions/notifications';
 import {
   ACCOUNT_BLOCK_SUCCESS,
@@ -107,7 +106,7 @@ const expandNormalizedNotifications = (state, notifications, next, isLoadingRece
     }
 
     if (shouldCountUnreadNotifications(state)) {
-      mutable.update('unread', unread => unread + items.count(item => compareId(item.get('id'), lastReadId) > 0));
+      mutable.set('unread', mutable.get('pendingItems').count(item => item !== null) + mutable.get('items').count(item => item && compareId(item.get('id'), lastReadId) > 0));
     } else {
       const mostRecent = items.find(item => item !== null);
       if (mostRecent && compareId(lastReadId, mostRecent.get('id')) < 0) {
@@ -251,8 +250,6 @@ export default function notifications(state = initialState, action) {
     return state.set('browserSupport', action.value);
   case NOTIFICATIONS_SET_BROWSER_PERMISSION:
     return state.set('browserPermission', action.value);
-  case NOTIFICATIONS_DISMISS_BROWSER_PERMISSION:
-    return state.set('browserPermission', 'denied');
   default:
     return state;
   }

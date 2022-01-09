@@ -11,6 +11,24 @@ code {
   margin: 0 auto;
 }
 
+.indicator-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  color: $primary-text-color;
+
+  &.success {
+    background: $success-green;
+  }
+
+  &.failure {
+    background: $error-red;
+  }
+}
+
 .simple_form {
   &.hidden {
     display: none;
@@ -354,6 +372,7 @@ code {
   input[type=number],
   input[type=email],
   input[type=password],
+  input[type=url],
   textarea {
     box-sizing: border-box;
     font-size: 16px;
@@ -376,11 +395,6 @@ code {
       box-shadow: none;
     }
 
-    &:focus:invalid:not(:placeholder-shown),
-    &:required:invalid:not(:placeholder-shown) {
-      border-color: lighten($error-red, 12%);
-    }
-
     &:required:valid {
       border-color: $valid-value-color;
     }
@@ -393,6 +407,16 @@ code {
     &:focus {
       border-color: $highlight-text-color;
       background: darken($ui-base-color, 8%);
+    }
+  }
+
+  input[type=text],
+  input[type=number],
+  input[type=email],
+  input[type=password] {
+    &:focus:invalid:not(:placeholder-shown),
+    &:required:invalid:not(:placeholder-shown) {
+      border-color: lighten($error-red, 12%);
     }
   }
 
@@ -598,6 +622,12 @@ code {
     color: $valid-value-color;
   }
 
+  &.warning {
+    border: 1px solid rgba($gold-star, 0.5);
+    background: rgba($gold-star, 0.25);
+    color: $gold-star;
+  }
+
   &.alert {
     border: 1px solid rgba($error-value-color, 0.5);
     background: rgba($error-value-color, 0.1);
@@ -616,6 +646,19 @@ code {
     &:hover {
       color: $primary-text-color;
       text-decoration: underline;
+    }
+  }
+
+  &.warning a {
+    font-weight: 700;
+    color: inherit;
+    text-decoration: underline;
+
+    &:hover,
+    &:focus,
+    &:active {
+      text-decoration: none;
+      color: inherit;
     }
   }
 
@@ -671,6 +714,29 @@ code {
 
     a {
       text-decoration: underline;
+    }
+  }
+}
+
+.flash-message-stack {
+  margin-bottom: 30px;
+
+  .flash-message {
+    border-radius: 0;
+    margin-bottom: 0;
+    border-top-width: 0;
+
+    &:first-child {
+      border-radius: 4px 4px 0 0;
+      border-top-width: 1px;
+    }
+
+    &:last-child {
+      border-radius: 0 0 4px 4px;
+
+      &:first-child {
+        border-radius: 4px;
+      }
     }
   }
 }
@@ -933,64 +999,9 @@ code {
   }
 }
 
-.connection-prompt {
-  margin-bottom: 25px;
-
-  .fa-link {
-    background-color: darken($ui-base-color, 4%);
-    border-radius: 100%;
-    font-size: 24px;
-    padding: 10px;
-  }
-
-  &__column {
-    align-items: center;
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    flex-shrink: 1;
-    max-width: 50%;
-
-    &-sep {
-      align-self: center;
-      flex-grow: 0;
-      overflow: visible;
-      position: relative;
-      z-index: 1;
-    }
-
-    p {
-      word-break: break-word;
-    }
-  }
-
-  .account__avatar {
-    margin-bottom: 20px;
-  }
-
-  &__connection {
-    background-color: lighten($ui-base-color, 8%);
-    box-shadow: 0 0 15px rgba($base-shadow-color, 0.2);
-    border-radius: 4px;
-    padding: 25px 10px;
-    position: relative;
-    text-align: center;
-
-    &::after {
-      background-color: darken($ui-base-color, 4%);
-      content: '';
-      display: block;
-      height: 100%;
-      left: 50%;
-      position: absolute;
-      top: 0;
-      width: 1px;
-    }
-  }
-
-  &__row {
-    align-items: flex-start;
-    display: flex;
-    flex-direction: row;
+.input.user_confirm_password,
+.input.user_website {
+  &:not(.field_with_errors) {
+    display: none;
   }
 }

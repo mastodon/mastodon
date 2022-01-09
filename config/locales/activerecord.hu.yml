@@ -5,13 +5,28 @@ hu:
       poll:
         expires_at: Határidő
         options: Lehetőségek
+      user:
+        agreement: Szolgáltatási megállapodás
+        email: E-mail-cím
+        locale: Régió
+        password: Jelszó
+      user/account:
+        username: Felhasználónév
+      user/invite_request:
+        text: Indoklás
     errors:
       models:
         account:
           attributes:
             username:
-              invalid: csak betűk, számok vagy alávonás
+              invalid: csak betűket, számokat vagy alávonást tartalmazhat
+              reserved: fenntartott
         status:
           attributes:
             reblog:
               taken: már létezik ehhez a bejegyzéshez
+        user:
+          attributes:
+            email:
+              blocked: egy letiltott e-mail szolgáltatót használ
+              unreachable: úgy tűnik, hogy nem létezik

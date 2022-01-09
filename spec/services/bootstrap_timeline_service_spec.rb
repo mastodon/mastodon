@@ -1,42 +1,37 @@
 require 'rails_helper'
 
 RSpec.describe BootstrapTimelineService, type: :service do
-  subject { described_class.new }
+  subject { BootstrapTimelineService.new }
 
-  describe '#call' do
-    let(:source_account) { Fabricate(:account) }
+  context 'when the new user has registered from an invite' do
+    let(:service)    { double }
+    let(:autofollow) { false }
+    let(:inviter)    { Fabricate(:user, confirmed_at: 2.days.ago) }
+    let(:invite)     { Fabricate(:invite, user: inviter, max_uses: nil, expires_at: 1.hour.from_now, autofollow: autofollow) }
+    let(:new_user)   { Fabricate(:user, invite_code: invite.code) }
 
-    context 'when setting is empty' do
-      let!(:admin) { Fabricate(:user, admin: true) }
+    before do
+      allow(FollowService).to receive(:new).and_return(service)
+      allow(service).to receive(:call)
+    end
 
-      before do
-        Setting.bootstrap_timeline_accounts = nil
-        subject.call(source_account)
-      end
+    context 'when the invite has auto-follow enabled' do
+      let(:autofollow) { true }
 
-      it 'follows admin accounts from account' do
-        expect(source_account.following?(admin.account)).to be true
+      it 'calls FollowService to follow the inviter' do
+        subject.call(new_user.account)
+        expect(service).to have_received(:call).with(new_user.account, inviter.account)
       end
     end
 
-    context 'when setting is set' do
-      let!(:alice) { Fabricate(:account, username: 'alice') }
-      let!(:bob)   { Fabricate(:account, username: 'bob') }
-      let!(:eve)   { Fabricate(:account, username: 'eve', suspended: true) }
+    context 'when the invite does not have auto-follow enable' do
+      let(:autofollow) { false }
 
-      before do
-        Setting.bootstrap_timeline_accounts = 'alice, @bob, eve, unknown'
-        subject.call(source_account)
-      end
-
-      it 'follows found accounts from account' do
-        expect(source_account.following?(alice)).to be true
-        expect(source_account.following?(bob)).to be true
-      end
-
-      it 'does not follow suspended account' do
-        expect(source_account.following?(eve)).to be false
+      it 'calls FollowService to follow the inviter' do
+        subject.call(new_user.account)
+        expect(service).to_not have_received(:call)
       end
     end
+
   end
 end

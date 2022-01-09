@@ -1,34 +1,64 @@
 ---
 br:
   simple_form:
+    hints:
+      defaults:
+        avatar: PNG, GIF pe JPG. Brasoc'h eget %{size}. A vo izelaet betek %{dimensions}px
+        header: PNG, GIF pe JPG. Brasoc'h eget %{size}. A vo izelaet betek %{dimensions}px
+        password: Implijit 8 lizherennoù d'an neubeutañ
+        setting_default_sensitive: Ar mediaoù kizidik a zo kuzhet dre ziouer ha gallout a reont bezañ diguzhet dre ur c'hlik
+        setting_display_media_default: Kuzhat mediaoù aroueziet evel kizidik
+      form_challenge:
+        current_password: Emaoc'h o tont-tre ul lec'h diogel
     labels:
       account_warning_preset:
         title: Titl
       admin_account_action:
+        type: Ober
         types:
+          disable: Skornañ
+          sensitive: Kizidik
           suspend: Astalañ
       announcement:
+        all_day: Darvoud a-hed an devezh
+        ends_at: Diwezh an darvoud
+        starts_at: Deroù an darvoud
         text: Kemenn
       defaults:
+        avatar: Avatar
+        chosen_languages: Silañ yezhoù
+        confirm_new_password: Kadarnaat ar ger-tremen nevez
+        confirm_password: Kadarnaat ar ger-tremen
+        context: Kadarnaat ar ger-tremen
         current_password: Ger-tremen a vremañ
         data: Roadennoù
         display_name: Anv diskouezet
         email: Chomlec'h postel
+        expires_in: Mont war e dermen goude
         header: Talbenn
         locale: Yezh ar c'hetal
         new_password: Ger-tremen nevez
         password: Ger-tremen
+        phrase: Ger-alc'hwez pe frazenn
         setting_display_media_default: Dre ziouer
         setting_display_media_hide_all: Kuzhat pep tra
         setting_display_media_show_all: Diskouez pep tra
         username: Anv
+        whole_word: Ger a-bezh
       featured_tag:
         name: Ger-klik
       invite:
         comment: Evezhiadenn
+      ip_block:
+        ip: IP
+      notification_emails:
+        follow: Heuliañ a ra {name} ac'hanoc'h
       tag:
         name: Ger-klik
+        trendable: Aotren an hashtag-mañ da zont war wel dindan tuadurioù
     'no': Ket
+    recommended: Erbedet
     required:
       mark: "*"
+      text: rekis
     'yes': Ya

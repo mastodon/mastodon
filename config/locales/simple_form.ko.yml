@@ -7,47 +7,54 @@ ko:
       account_migration:
         acct: 이동하고자 하는 목적지 계정의 사용자이름@도메인을 설정하세요
       account_warning_preset:
-        text: URL, 해시태그, 멘션과 같은 툿 문법을 사용할 수 있습니다
+        text: URL, 해시태그, 멘션과 같은 게시물 문법을 사용할 수 있습니다
         title: 선택사항. 수신자에게는 보이지 않습니다
       admin_account_action:
-        include_statuses: 사용자는 어떤 툿에 대해 경고나 조치가 취해졌는지 볼 수 있게 됩니다
+        include_statuses: 사용자는 어떤 게시물에 대해 경고나 조치가 취해졌는지 볼 수 있게 됩니다
         send_email_notification: 유저는 어떤 일이 일어났는 지에 대한 설명을 받게 됩니다
-        text_html: 선택사항. 툿 문법을 사용할 수 있습니다. <a href="%{path}">경고 틀을 추가</a>하여 시간을 절약할 수 있습니다
+        text_html: 선택사항. 게시물 문법을 사용할 수 있습니다. <a href="%{path}">경고 틀을 추가</a>하여 시간을 절약할 수 있습니다
         type_html: "<strong>%{acct}</strong>에 대해 취할 행동 선택"
+        types:
+          disable: 사용자가 계정을 사용하는 것을 막지만, 그들의 게시물을 삭제하거나 숨기지는 않습니다.
+          none: 이것을 사용해서 어떤 동작도 하지 않고, 사용자에게 경고를 보냅니다.
+          sensitive: 이 사용자의 모든 미디어 첨부를 민감함으로 강제 설정합니다.
+          silence: 이 사용자가 공개 설정으로 게시물을 작성할 수 없도록 하고, 그를 팔로우 하지 않는 사람에게는 이 사용자의 게시물과 알림을 숨깁니다.
+          suspend: 이 계정과의 모든 상호작용을 막고 모든 내용을 삭제합니다. 30일 이내에 되돌리기가 가능합니다.
         warning_preset_id: 선택사항. 틀의 마지막에 임의의 텍스트를 추가 할 수 있습니다
       announcement:
         all_day: 체크 되었을 경우, 그 시간에 속한 날짜들에만 표시됩니다
         ends_at: 옵션입니다. 공지사항이 이 시간에 자동으로 발행 중지 됩니다
         scheduled_at: 공백으로 두면 공지사항이 곧바로 발행 됩니다
         starts_at: 공지사항이 특정한 시간에 종속 될 때를 위한 옵션입니다
-        text: 툿 문법을 사용할 수 있습니다. 공지사항은 사용자의 화면 상단 공간을 차지한다는 것을 명심하세요
+        text: 게시물 문법을 사용할 수 있습니다. 공지사항은 사용자의 화면 상단 공간을 차지한다는 것을 명심하세요
       defaults:
         autofollow: 이 초대를 통해 가입하는 사람은 당신을 자동으로 팔로우 하게 됩니다
         avatar: PNG, GIF 혹은 JPG. 최대 %{size}. %{dimensions}px로 축소 됨
-        bot: 사람들에게 계정이 사람이 아님을 알립니다
+        bot: 이 계정이 대부분 자동으로 작업을 수행하고 잘 확인하지 않는다는 것을 알립니다.
         context: 필터를 적용 할 한 개 이상의 컨텍스트
         current_password: 보안을 위해 현재 계정의 암호를 입력해주세요
         current_username: 확인을 위해, 현재 계정의 사용자명을 입력해주세요
         digest: 오랫동안 활동하지 않았을 때 받은 멘션들에 대한 요약 받기
-        discoverable: 프로필 책자는 내 계정이 더 많은 관심을 갖게 할 수 있는 다른 방법입니다
+        discoverable: 당신의 계정을 추천과 기타 기능들에 의해 다른 사람들이 발견할 수 있게 허용합니다
+        discoverable_no_directory: 당신의 계정을 추천과 기타 기능들에 의해 다른 사람들이 발견할 수 있도록 허용합니다
         email: 당신은 확인 메일을 받게 됩니다
         fields: 당신의 프로파일에 최대 4개까지 표 형식으로 나타낼 수 있습니다
         header: PNG, GIF 혹은 JPG. 최대 %{size}. %{dimensions}px로 축소 됨
         inbox_url: 사용 할 릴레이 서버의 프론트페이지에서 URL을 복사합니다
-        irreversible: 필터링 된 툿은 나중에 필터가 사라지더라도 돌아오지 않게 됩니다
+        irreversible: 필터링 된 게시물은 나중에 필터가 사라지더라도 돌아오지 않게 됩니다
         locale: 유저 인터페이스, 이메일, 푸시 알림 언어
-        locked: 수동으로 팔로워를 승인하고, 기본 툿 프라이버시 설정을 팔로워 전용으로 변경
+        locked: 팔로우 요청을 승인함으로써 누가 당신을 팔로우 할 수 있는지를 수동으로 제어합니다.
         password: 최소 8글자
-        phrase: 툿 내용이나 CW 내용 안에서 대소문자 구분 없이 매칭 됩니다
+        phrase: 게시물 내용이나 열람주의 내용 안에서 대소문자 구분 없이 매칭 됩니다
         scopes: 애플리케이션에 허용할 API들입니다. 최상위 스코프를 선택하면 개별적인 것은 선택하지 않아도 됩니다.
-        setting_aggregate_reblogs: 내가 부스트 했던 툿은 새로 부스트 되어도 보여주지 않습니다
+        setting_aggregate_reblogs: 최근에 부스트 됐던 게시물은 새로 부스트 되어도 보여주지 않기 (새로 받은 부스트에만 적용됩니다)
         setting_default_sensitive: 민감한 미디어는 기본적으로 가려져 있으며 클릭해서 볼 수 있습니다
         setting_display_media_default: 민감함으로 설정 된 미디어 가리기
         setting_display_media_hide_all: 항상 모든 미디어를 가리기
         setting_display_media_show_all: 민감함으로 설정 된 미디어를 항상 보이기
-        setting_hide_network: 나를 팔로우 하는 사람들과 내가 팔로우 하는 사람들이 내 프로필에 표시되지 않게 합니다
-        setting_noindex: 공개 프로필 및 각 툿페이지에 영향을 미칩니다
-        setting_show_application: 당신이 툿을 작성하는데에 사용한 앱이 툿의 상세정보에 표시 됩니다
+        setting_hide_network: 나를 팔로우 하는 사람들과 내가 팔로우 하는 사람들을 내 프로필에서 숨깁니다
+        setting_noindex: 공개 프로필 및 각 게시물 페이지에 영향을 미칩니다
+        setting_show_application: 당신이 게시물을 작성하는데에 사용한 앱이 게시물의 상세정보에 표시 됩니다
         setting_use_blurhash: 그라디언트는 숨겨진 내용의 색상을 기반으로 하지만 상세 내용은 보이지 않게 합니다
         setting_use_pending_items: 타임라인의 새 게시물을 자동으로 보여 주는 대신, 클릭해서 나타내도록 합니다
         username: 당신의 유저네임은 %{domain} 안에서 유일해야 합니다
@@ -73,13 +80,15 @@ ko:
           no_access: 모든 자원에 대한 접근 차단
           sign_up_requires_approval: 새 가입이 승인을 필요로 하도록 합니다
         severity: 해당 IP로부터의 요청에 대해 무엇이 일어나게 할 지 고르세요
+      rule:
+        text: 이 서버 사용자들이 지켜야 할 규칙과 요구사항을 설명해주세요. 짧고 간단하게 작성해주세요
       sessions:
         otp: '휴대전화에서 생성 된 2단계 인증 코드를 입력하거나, 복구 코드 중 하나를 사용하세요:'
         webauthn: USB 키라면 삽입했는지 확인하고, 필요하다면 누르세요.
       tag:
         name: 읽기 쉽게하기 위한 글자의 대소문자만 변경할 수 있습니다.
       user:
-        chosen_languages: 체크하면, 선택 된 언어들만 공개 타임라인에 보여집니다
+        chosen_languages: 체크하면, 선택 된 언어로 작성된 게시물들만 공개 타임라인에 보여집니다
     labels:
       account:
         fields:
@@ -93,7 +102,7 @@ ko:
         text: 프리셋 텍스트
         title: 제목
       admin_account_action:
-        include_statuses: 신고된 툿을 이메일에 포함
+        include_statuses: 신고된 게시물을 이메일에 포함
         send_email_notification: 이메일로 유저에게 알리기
         text: 커스텀 경고
         type: 조치
@@ -120,16 +129,17 @@ ko:
         context: 필터 컨텍스트
         current_password: 현재 암호 입력
         data: 데이터
-        discoverable: 이 계정을 책자에서 찾을 수 있도록 합니다
+        discoverable: 계정을 다른 사람들에게 추천하기
         display_name: 표시되는 이름
         email: 이메일 주소
         expires_in: 만료시각
         fields: 프로필 메타데이터
         header: 헤더
+        honeypot: "%{label} (채우지 마시오)"
         inbox_url: 릴레이 서버의 inbox URL
         irreversible: 숨기는 대신 삭제
         locale: 인터페이스 언어
-        locked: 계정 잠금
+        locked: 팔로우 요청 필요
         max_uses: 사용 횟수 제한
         new_password: 새로운 암호 입력
         note: 자기소개
@@ -140,18 +150,18 @@ ko:
         setting_aggregate_reblogs: 타임라인의 부스트를 그룹화
         setting_auto_play_gif: 애니메이션 GIF를 자동 재생
         setting_boost_modal: 부스트 전 확인 창을 표시
-        setting_crop_images: 확장되지 않은 툿의 이미지를 16x9로 자르기
+        setting_crop_images: 확장되지 않은 게시물의 이미지를 16x9로 자르기
         setting_default_language: 게시물 언어
-        setting_default_privacy: 툿 프라이버시
+        setting_default_privacy: 게시물 프라이버시
         setting_default_sensitive: 미디어를 언제나 민감한 컨텐츠로 설정
-        setting_delete_modal: 툿 삭제 전 확인 창을 표시
+        setting_delete_modal: 게시물 삭제 전 확인 창을 표시
         setting_disable_swiping: 스와이프 모션 비활성화
         setting_display_media: 미디어 표시
         setting_display_media_default: 기본
         setting_display_media_hide_all: 모두 가리기
         setting_display_media_show_all: 모두 보이기
         setting_expand_spoilers: 열람주의 툿을 항상 펼치기
-        setting_hide_network: 내 네트워크 숨기기
+        setting_hide_network: 내 인맥 숨기기
         setting_noindex: 검색엔진의 인덱싱을 거절
         setting_reduce_motion: 애니메이션 줄이기
         setting_show_application: 툿 작성에 사용한 앱을 공개
@@ -196,11 +206,13 @@ ko:
         reblog: 누군가 내 툿을 부스트 했을 때 이메일 보내기
         report: 새 신고 등록시 이메일로 알리기
         trending_tag: 리뷰 되지 않은 해시태그가 유행할 때 이메일 보내기
+      rule:
+        text: 규칙
       tag:
-        listable: 이 해시태그가 프로필 책자에 보여지도록 허용
+        listable: 이 해시태그가 검색과 추천에 보여지도록 허용
         name: 해시태그
         trendable: 이 해시태그가 유행에 보여지도록 허용
-        usable: 이 해시태그를 툿에 사용 가능하도록 허용
+        usable: 이 해시태그를 게시물에 사용 가능하도록 허용
     'no': 아니오
     recommended: 추천함
     required:

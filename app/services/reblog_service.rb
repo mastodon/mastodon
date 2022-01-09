@@ -30,6 +30,8 @@ class ReblogService < BaseService
 
     reblog = account.statuses.create!(reblog: reblogged_status, text: '', visibility: visibility, rate_limit: options[:with_rate_limit])
 
+    Trends.tags.register(reblog)
+    Trends.links.register(reblog)
     DistributionWorker.perform_async(reblog.id)
     ActivityPub::DistributionWorker.perform_async(reblog.id)
 

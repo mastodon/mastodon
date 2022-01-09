@@ -7,7 +7,6 @@ kk:
     active_count_after: актив
     active_footnote: Соңғы айдағы актив қолданушылар (MAU)
     administered_by: 'Админ:'
-    api: API
     apps: Мобиль қосымшалар
     apps_platforms: iOS, Android және басқа платформалардағы Mastodon қолданыңыз
     browse_directory: Профильдер каталогын қажет фильтрлер арқылы қараңыз
@@ -74,7 +73,6 @@ kk:
       other: Жазба
     posts_tab_heading: Жазба
     posts_with_replies: Жазбалар және жауаптар
-    reserved_username: Мұндай логин тіркелген
     roles:
       admin: Админ
       bot: Бот
@@ -193,39 +191,6 @@ kk:
       web: Веб
       whitelisted: Рұқсат тізімі
     action_logs:
-      actions:
-        assigned_to_self_report: "%{name} шағым тастады %{target} өздері үшін"
-        change_email_user: "%{name} e-mail адресін өзгертті - %{target}"
-        confirm_user: "%{name} e-mail адресін құптады - %{target}"
-        create_account_warning: "%{name} ескерту жіберді - %{target}"
-        create_custom_emoji: "%{name} жаңа эмодзи қосты %{target}"
-        create_domain_allow: "%{name} ақ тізімдегі домен %{target}"
-        create_domain_block: "%{name} домен бұғаттады - %{target}"
-        create_email_domain_block: "%{name} e-mail доменін қара тізімге қосты - %{target}"
-        demote_user: "%{name} төмендетілген қолданушы - %{target}"
-        destroy_custom_emoji: "%{name} эмодзи жойды %{target}"
-        destroy_domain_allow: "%{name} домені %{target} ақ тізімнен шығарылды"
-        destroy_domain_block: "%{name} бұғатталмаған домен %{target}"
-        destroy_email_domain_block: "%{name} e-mail доменін ақ тізімге кіргізді %{target}"
-        destroy_status: "%{name} жазбасын өшірді %{target}"
-        disable_2fa_user: "%{name} қолданушы үшін екі фактор ажыратылған %{target}"
-        disable_custom_emoji: "%{name} эмодзи алып тастады %{target}"
-        disable_user: "%{name} қосылмаған логин %{target}"
-        enable_custom_emoji: "%{name} қосылған эмодзи %{target}"
-        enable_user: "%{name} қосылған логин %{target}"
-        memorialize_account: "%{name} %{target} аккаунтын естеліктеріне қосты"
-        promote_user: "%{name} жарнамалады %{target}"
-        remove_avatar_user: "%{name} %{target} аватарын өшірді"
-        reopen_report: "%{name} %{target} шағымын қайта қарады"
-        reset_password_user: "%{name} %{target} құпиясөзін қалпына келтірді"
-        resolve_report: "%{name} %{target} шағымын қарастырды"
-        silence_account: "%{name} %{target} аккаунтын үнсіз қылды"
-        suspend_account: "%{name} %{target} аккаунтын тоқтатты"
-        unassigned_report: "%{name} бекітілмеген есеп %{target}"
-        unsilence_account: "%{name} %{target} аккаунтын қайта қосты"
-        unsuspend_account: "%{name} %{target} аккаунтын қайта қосты"
-        update_custom_emoji: "%{name} эмодзи жаңартты %{target}"
-        update_status: "%{name} жазбасын жаңартты %{target}"
       deleted_status: "(өшірілген жазба)"
       title: Аудит логы
     announcements:
@@ -268,33 +233,9 @@ kk:
       updated_msg: Эмодзи сәтті жаңартылды!
       upload: Жүктеу
     dashboard:
-      authorized_fetch_mode: Қауіпсіз режим
-      backlog: босатылған тапсырмалар
-      config: Конфигурация
-      feature_deletions: Аккаунттарды жою
-      feature_invites: Шақыру сілтемелері
-      feature_profile_directory: Профиль каталогы
-      feature_registrations: Тіркелулер
-      feature_relay: Федерация релесі
-      feature_spam_check: Анти-спам
-      feature_timeline_preview: Таймлайн превьюі
-      features: Мүмкіндіктер
-      hidden_service: Жасырын қызметтер федерациясы
-      open_reports: ашық шағымдар
-      pending_tags: хештегтер күтілуде
-      pending_users: қолданушылар күтілуде
-      recent_users: Соңғы қолданушылар
-      search: Толық мәтінмен іздеу
-      single_user_mode: Жалғыз пайдаланушы режимі
       software: Бағдарлама
       space: Пайдаланылған кеңістік
       title: Басқару тақтасы
-      total_users: барлық қолданушы
-      trends: Трендтер
-      week_interactions: осы аптадағы әрекеттер
-      week_users_active: осы аптадағы белсенділік
-      week_users_new: осы аптадағы қолданушылар
-      whitelist_mode: Рұқсат тізімі
     domain_allows:
       add_new: Рұқсат етілген домендер
       created_msg: Доменге рұқсат берілді
@@ -451,8 +392,6 @@ kk:
         users: Жергілікті қолданушыларға
       domain_blocks_rationale:
         title: Дәлелді көрсету
-      enable_bootstrap_timeline_accounts:
-        title: Жаңа қолданушылар жазылатын адамдарды белгілеу
       hero:
         desc_html: Бастапқы бетінде көрсетіледі. Кем дегенде 600x100px ұсынылады. Орнатылмаған кезде, сервердің нобайына оралады
         title: Қаһарман суреті
@@ -503,9 +442,6 @@ kk:
         desc_html: You can write your own privacy policy, terms of service or other legalese. You can use HTML тег
         title: Қолдану шарттары мен ережелер
       site_title: Сервер аты
-      spam_check_enabled:
-        desc_html: Мастодон бірнеше рет қажетсіз хабарламаларды жіберетін есептік жазбаларды автоматты түрде жасай алады. Жалған позитивтер болуы мүмкін.
-        title: Спамға қарсы автоматика
       thumbnail:
         desc_html: Used for previews via OpenGraph and API. 1200x630px рекоменделеді
         title: Сервер суреті
@@ -540,9 +476,6 @@ kk:
       accounts_today: Бүгін қолданылғандар
       accounts_week: Осы аптада қолданылғандар
       breakdown: Бүгінгі пайдалану көздері бойынша бөлу
-      context: Контекст
-      directory: Бөлім ішінде
-      in_directory: "%{count} бөлім ішінде"
       last_active: Соңғы белсенділік
       most_popular: Ең танымал
       most_recent: Ең соңғы
@@ -575,7 +508,6 @@ kk:
     add_new: Алиас қосу
     created_msg: Жаңа алиас сәтті жасалды. Енді сіз ескі аккаунттан көшіруді бастай аласыз.
     deleted_msg: Алиасты сәтті алып тастаңыз. Осы есептік жазбадан екіншіге ауысу мүмкін болмайды.
-    hint_html: If you want to move from another account to this one, here you can create an alias, which is required before you can proceed with moving followers from the old account to this one. This action by itself is <strong>harmless and reversible</strong>. <strong>The account migration is initiated from the old account</strong>.
     remove: Алиас сілтемесін алып тастау
   appearance:
     advanced_web_interface: Кеңейтілген веб-интерфейс
@@ -587,7 +519,6 @@ kk:
     toot_layout: Жазба формасы
   application_mailer:
     notification_preferences: Change e-mail prеferences
-    salutation: "%{name},"
     settings: 'Change e-mail preferеnces: %{link}'
     view: 'Viеw:'
     view_profile: Viеw Profile
@@ -835,26 +766,9 @@ kk:
       missing_also_known_as: бұл тіркелгіге сілтеме жасамайды
       move_to_self: ағымдағы шот болуы мүмкін емес
       not_found: табылмады
-      on_cooldown: You are on cooldown
     followers_count: Көшу кезіндегі оқырмандар
-    incoming_migrations: Moving from a different account
-    incoming_migrations_html: To move from another account to this one, first you need to <a href="%{path}">create an account alias</a>.
-    moved_msg: Your account is now redirecting to %{acct} and your followers are being moved over.
-    not_redirecting: Your account is not redirecting to any other account currently.
-    on_cooldown: You have recently migrated your account. This function will become available again in %{count} days.
-    past_migrations: Past migrations
-    proceed_with_move: Move followers
-    redirecting_to: Your account is redirecting to %{acct}.
-    set_redirect: Set redirect
     warning:
-      backreference_required: The new account must first be configured to back-reference this one
       before: 'Жұмысты бастамас бұрын, осы жазбаларды мұқият оқып шығыңыз:'
-      cooldown: After moving there is a cooldown period during which you will not be able to move again
-      disabled_account: Your current account will not be fully usable afterwards. However, you will have access to data export as well as re-activation.
-      followers: This action will move all followers from the current account to the new account
-      only_redirect_html: Alternatively, you can <a href="%{path}">only put up a redirect on your profile</a>.
-      other_data: No other data will be moved automatically
-      redirect: Your current account's profile will be updated with a redirect notice and be excluded from searches
   moderation:
     title: Модерация
   notification_mailer:
@@ -898,11 +812,9 @@ kk:
   number:
     human:
       decimal_units:
-        format: "%n%u"
         units:
           billion: В
           million: М
-          quadrillion: Q
           thousand: К
           trillion: Т
   pagination:
@@ -910,7 +822,6 @@ kk:
     next: Келесі
     older: Ерте
     prev: Алдыңғы
-    truncate: "&hellip;"
   polls:
     errors:
       already_voted: Бұл сауалнамаға қатысқансыз
@@ -1028,8 +939,6 @@ kk:
     profile: Профиль
     relationships: Жазылымдар және оқырмандар
     two_factor_authentication: Екі-факторлы авторизация
-  spam_check:
-    spam_detected: Бұл автоматтандырылған есеп. Спам анықталды.
   statuses:
     attached:
       description: 'Жүктелді: %{attached}'
@@ -1063,7 +972,6 @@ kk:
     show_more: Тағы әкел
     show_thread: Тақырыпты көрсет
     sign_in_to_participate: Сұхбатқа қатысу үшін кіріңіз
-    title: '%{name}: "%{quote}"'
     visibilities:
       private: Тек оқырмандарға
       private_long: Тек оқырмандарға ғана көрінеді
@@ -1164,10 +1072,6 @@ kk:
     contrast: Mastodon (Жоғары контраст)
     default: Mastodon (Қою)
     mastodon-light: Mastodon (Ашық)
-  time:
-    formats:
-      default: "%b %d, %Y, %H:%M"
-      month: "%b %Y"
   two_factor_authentication:
     disable: Ажырату
     enabled: Екі-факторлы авторизация қосылған
@@ -1219,7 +1123,6 @@ kk:
       title: Ортаға қош келдің, %{name}!
   users:
     follow_limit_reached: Сіз %{limit} лимитінен көп адамға жазыла алмайсыз
-    invalid_email: Бұл e-mail адрес қате
     invalid_otp_token: Қате екі-факторлы код
     otp_lost_help_html: Егер кіру жолдарын жоғалтып алсаңыз, сізге %{email} арқылы жіберіледі
     seamless_external_login: Сыртқы сервис арқылы кіріпсіз, сондықтан құпиясөз және электрондық пошта параметрлері қол жетімді емес.

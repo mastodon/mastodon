@@ -1,3 +1,5 @@
+@use "sass:math";
+
 .hero-widget {
   margin-bottom: 10px;
   box-shadow: 0 0 15px rgba($base-shadow-color, 0.2);
@@ -441,9 +443,47 @@
     }
   }
 
+  tbody td.accounts-table__extra {
+    width: 120px;
+    text-align: right;
+    color: $darker-text-color;
+    padding-right: 16px;
+
+    a {
+      text-decoration: none;
+      color: inherit;
+
+      &:focus,
+      &:hover,
+      &:active {
+        text-decoration: underline;
+      }
+    }
+  }
+
   &__comment {
     width: 50%;
     vertical-align: initial !important;
+  }
+
+  &__interrelationships {
+    width: 21px;
+  }
+
+  .fa {
+    font-size: 16px;
+
+    &.active {
+      color: $highlight-text-color;
+    }
+
+    &.passive {
+      color: $passive-text-color;
+    }
+
+    &.active.passive {
+      color: $active-passive-text-color;
+    }
   }
 
   @media screen and (max-width: $no-gap-breakpoint) {
@@ -478,10 +518,10 @@ $fluid-breakpoint: $maximum-width + 20px;
   }
 
   &__item {
-    width: (960px - 20px) / 3;
+    width: math.div(960px - 20px, 3);
 
     @media screen and (max-width: $fluid-breakpoint) {
-      width: (940px - 20px) / 3;
+      width: math.div(940px - 20px, 3);
     }
 
     @media screen and (max-width: 640px) {
@@ -573,7 +613,6 @@ $fluid-breakpoint: $maximum-width + 20px;
     display: block;
     font-weight: 500;
     padding: 15px;
-    overflow: hidden;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;

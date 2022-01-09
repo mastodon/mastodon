@@ -4,17 +4,21 @@ class DeleteAccountService < BaseService
   include Payloadable
 
   ASSOCIATIONS_ON_SUSPEND = %w(
+    account_notes
     account_pins
     active_relationships
+    aliases
     block_relationships
     blocked_by_relationships
     conversation_mutes
     conversations
     custom_filters
+    devices
     domain_blocks
-    favourites
+    featured_tags
     follow_requests
     list_accounts
+    migrations
     mute_relationships
     muted_by_relationships
     notifications
@@ -24,6 +28,31 @@ class DeleteAccountService < BaseService
     scheduled_statuses
     status_pins
   ).freeze
+
+  # The following associations have no important side-effects
+  # in callbacks and all of their own associations are secured
+  # by foreign keys, making them safe to delete without loading
+  # into memory
+  ASSOCIATIONS_WITHOUT_SIDE_EFFECTS = %w(
+    account_notes
+    account_pins
+    aliases
+    conversation_mutes
+    conversations
+    custom_filters
+    devices
+    domain_blocks
+    featured_tags
+    follow_requests
+    list_accounts
+    migrations
+    mute_relationships
+    muted_by_relationships
+    notifications
+    owned_lists
+    scheduled_statuses
+    status_pins
+  )
 
   ASSOCIATIONS_ON_DESTROY = %w(
     reports
@@ -41,6 +70,7 @@ class DeleteAccountService < BaseService
   # @option [Boolean] :reserve_email Keep user record. Only applicable for local accounts
   # @option [Boolean] :reserve_username Keep account record
   # @option [Boolean] :skip_side_effects Side effects are ActivityPub and streaming API payloads
+  # @option [Boolean] :skip_activitypub Skip sending ActivityPub payloads. Implied by :skip_side_effects
   # @option [Time]    :suspended_at Only applicable when :reserve_username is true
   def call(account, **options)
     @account = account
@@ -52,18 +82,27 @@ class DeleteAccountService < BaseService
       @options[:skip_side_effects] = true
     end
 
-    reject_follows!
-    purge_user!
-    purge_profile!
+    @options[:skip_activitypub] = true if @options[:skip_side_effects]
+
+    distribute_activities!
     purge_content!
     fulfill_deletion_request!
   end
 
   private
 
-  def reject_follows!
-    return if @account.local? || !@account.activitypub?
+  def distribute_activities!
+    return if skip_activitypub?
 
+    if @account.local?
+      delete_actor!
+    elsif @account.activitypub?
+      reject_follows!
+      undo_follows!
+    end
+  end
+
+  def reject_follows!
     # When deleting a remote account, the account obviously doesn't
     # actually become deleted on its origin server, i.e. unlike a
     # locally deleted account it continues to have access to its home
@@ -76,10 +115,22 @@ class DeleteAccountService < BaseService
     end
   end
 
+  def undo_follows!
+    # When deleting a remote account, the account obviously doesn't
+    # actually become deleted on its origin server, but following relationships
+    # are severed on our end. Therefore, make the remote server aware that the
+    # follow relationships are severed to avoid confusion and potential issues
+    # if the remote account gets un-suspended.
+
+    ActivityPub::DeliveryWorker.push_bulk(Follow.where(target_account: @account)) do |follow|
+      [Oj.dump(serialize_payload(follow, ActivityPub::UndoFollowSerializer)), follow.account_id, @account.inbox_url]
+    end
+  end
+
   def purge_user!
     return if !@account.local? || @account.user.nil?
 
-    if @options[:reserve_email]
+    if keep_user_record?
       @account.user.disable!
       @account.user.invites.where(uses: 0).destroy_all
     else
@@ -88,30 +139,78 @@ class DeleteAccountService < BaseService
   end
 
   def purge_content!
-    distribute_delete_actor! if @account.local? && !@options[:skip_side_effects]
+    purge_user!
+    purge_profile!
+    purge_statuses!
+    purge_mentions!
+    purge_media_attachments!
+    purge_polls!
+    purge_generated_notifications!
+    purge_favourites!
+    purge_bookmarks!
+    purge_feeds!
+    purge_other_associations!
 
-    @account.statuses.reorder(nil).find_in_batches do |statuses|
-      statuses.reject! { |status| reported_status_ids.include?(status.id) } if @options[:reserve_username]
-      BatchedRemoveStatusService.new.call(statuses, skip_side_effects: @options[:skip_side_effects])
+    @account.destroy unless keep_account_record?
+  end
+
+  def purge_statuses!
+    @account.statuses.reorder(nil).where.not(id: reported_status_ids).in_batches do |statuses|
+      BatchedRemoveStatusService.new.call(statuses, skip_side_effects: skip_side_effects?)
     end
+  end
 
+  def purge_mentions!
+    @account.mentions.reorder(nil).where.not(status_id: reported_status_ids).in_batches.delete_all
+  end
+
+  def purge_media_attachments!
     @account.media_attachments.reorder(nil).find_each do |media_attachment|
-      next if @options[:reserve_username] && reported_status_ids.include?(media_attachment.status_id)
+      next if keep_account_record? && reported_status_ids.include?(media_attachment.status_id)
 
       media_attachment.destroy
     end
+  end
 
-    @account.polls.reorder(nil).find_each do |poll|
-      next if @options[:reserve_username] && reported_status_ids.include?(poll.status_id)
+  def purge_polls!
+    @account.polls.reorder(nil).where.not(status_id: reported_status_ids).in_batches.delete_all
+  end
 
-      poll.destroy
+  def purge_generated_notifications!
+    # By deleting polls and statuses without callbacks, we've left behind
+    # polymorphically associated notifications generated by this account
+
+    Notification.where(from_account: @account).in_batches.delete_all
+  end
+
+  def purge_favourites!
+    @account.favourites.in_batches do |favourites|
+      ids = favourites.pluck(:status_id)
+      StatusStat.where(status_id: ids).update_all('favourites_count = GREATEST(0, favourites_count - 1)')
+      Chewy.strategy.current.update(StatusesIndex, ids) if Chewy.enabled?
+      Rails.cache.delete_multi(ids.map { |id| "statuses/#{id}" })
+      favourites.delete_all
     end
+  end
 
+  def purge_bookmarks!
+    @account.bookmarks.in_batches do |bookmarks|
+      Chewy.strategy.current.update(StatusesIndex, bookmarks.pluck(:status_id)) if Chewy.enabled?
+      bookmarks.delete_all
+    end
+  end
+
+  def purge_other_associations!
     associations_for_destruction.each do |association_name|
-      destroy_all(@account.public_send(association_name))
+      purge_association(association_name)
     end
+  end
 
-    @account.destroy unless @options[:reserve_username]
+  def purge_feeds!
+    return unless @account.local?
+
+    FeedManager.instance.clean_feeds!(:home, [@account.id])
+    FeedManager.instance.clean_feeds!(:list, @account.owned_lists.pluck(:id))
   end
 
   def purge_profile!
@@ -119,7 +218,7 @@ class DeleteAccountService < BaseService
     # there is no point wasting time updating
     # its values first
 
-    return unless @options[:reserve_username]
+    return unless keep_account_record?
 
     @account.silenced_at       = nil
     @account.suspended_at      = @options[:suspended_at] || Time.now.utc
@@ -134,6 +233,7 @@ class DeleteAccountService < BaseService
     @account.followers_count   = 0
     @account.following_count   = 0
     @account.moved_to_account  = nil
+    @account.also_known_as     = []
     @account.trust_level       = :untrusted
     @account.avatar.destroy
     @account.header.destroy
@@ -144,11 +244,17 @@ class DeleteAccountService < BaseService
     @account.deletion_request&.destroy
   end
 
-  def destroy_all(association)
-    association.in_batches.destroy_all
+  def purge_association(association_name)
+    association = @account.public_send(association_name)
+
+    if ASSOCIATIONS_WITHOUT_SIDE_EFFECTS.include?(association_name)
+      association.in_batches.delete_all
+    else
+      association.in_batches.destroy_all
+    end
   end
 
-  def distribute_delete_actor!
+  def delete_actor!
     ActivityPub::DeliveryWorker.push_bulk(delivery_inboxes) do |inbox_url|
       [delete_actor_json, @account.id, inbox_url]
     end
@@ -175,10 +281,26 @@ class DeleteAccountService < BaseService
   end
 
   def associations_for_destruction
-    if @options[:reserve_username]
+    if keep_account_record?
       ASSOCIATIONS_ON_SUSPEND
     else
       ASSOCIATIONS_ON_SUSPEND + ASSOCIATIONS_ON_DESTROY
     end
+  end
+
+  def keep_user_record?
+    @options[:reserve_email]
+  end
+
+  def keep_account_record?
+    @options[:reserve_username]
+  end
+
+  def skip_side_effects?
+    @options[:skip_side_effects]
+  end
+
+  def skip_activitypub?
+    @options[:skip_activitypub]
   end
 end

@@ -7,8 +7,7 @@ module AccountAssociations
     # Local users
     has_one :user, inverse_of: :account, dependent: :destroy
 
-    # Identity proofs
-    has_many :identity_proofs, class_name: 'AccountIdentityProof', dependent: :destroy, inverse_of: :account
+    # E2EE
     has_many :devices, dependent: :destroy, inverse_of: :account
 
     # Timelines
@@ -63,5 +62,11 @@ module AccountAssociations
 
     # Account deletion requests
     has_one :deletion_request, class_name: 'AccountDeletionRequest', inverse_of: :account, dependent: :destroy
+
+    # Follow recommendations
+    has_one :follow_recommendation_suppression, inverse_of: :account, dependent: :destroy
+
+    # Account statuses cleanup policy
+    has_one :statuses_cleanup_policy, class_name: 'AccountStatusesCleanupPolicy', inverse_of: :account, dependent: :destroy
   end
 end

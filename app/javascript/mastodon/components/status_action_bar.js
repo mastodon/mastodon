@@ -186,7 +186,7 @@ class StatusActionBar extends ImmutablePureComponent {
   }
 
   handleOpen = () => {
-    this.context.router.history.push(`/statuses/${this.props.status.get('id')}`);
+    this.context.router.history.push(`/@${this.props.status.getIn(['account', 'acct'])}/${this.props.status.get('id')}`);
   }
 
   handleEmbed = () => {
@@ -223,10 +223,11 @@ class StatusActionBar extends ImmutablePureComponent {
   render () {
     const { status, relationship, intl, withDismiss, scrollKey } = this.props;
 
-    const mutingConversation = status.get('muted');
     const anonymousAccess    = !me;
     const publicStatus       = ['public', 'unlisted'].includes(status.get('visibility'));
+    const mutingConversation = status.get('muted');
     const account            = status.get('account');
+    const writtenByMe        = status.getIn(['account', 'id']) === me;
 
     let menu = [];
 
@@ -237,19 +238,22 @@ class StatusActionBar extends ImmutablePureComponent {
       menu.push({ text: intl.formatMessage(messages.embed), action: this.handleEmbed });
     }
 
-    menu.push({ text: intl.formatMessage(status.get('bookmarked') ? messages.removeBookmark : messages.bookmark), action: this.handleBookmarkClick });
     menu.push(null);
 
-    if (status.getIn(['account', 'id']) === me || withDismiss) {
+    menu.push({ text: intl.formatMessage(status.get('bookmarked') ? messages.removeBookmark : messages.bookmark), action: this.handleBookmarkClick });
+
+    if (writtenByMe && publicStatus) {
+      menu.push({ text: intl.formatMessage(status.get('pinned') ? messages.unpin : messages.pin), action: this.handlePinClick });
+    }
+
+    menu.push(null);
+
+    if (writtenByMe || withDismiss) {
       menu.push({ text: intl.formatMessage(mutingConversation ? messages.unmuteConversation : messages.muteConversation), action: this.handleConversationMuteClick });
       menu.push(null);
     }
 
-    if (status.getIn(['account', 'id']) === me) {
-      if (publicStatus) {
-        menu.push({ text: intl.formatMessage(status.get('pinned') ? messages.unpin : messages.pin), action: this.handlePinClick });
-      }
-
+    if (writtenByMe) {
       menu.push({ text: intl.formatMessage(messages.delete), action: this.handleDeleteClick });
       menu.push({ text: intl.formatMessage(messages.redraft), action: this.handleRedraftClick });
     } else {

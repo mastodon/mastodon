@@ -230,6 +230,7 @@ module Mastodon
 
       processed, aggregate = parallelize_with_progress(scope) do |media_attachment|
         next if media_attachment.remote_url.blank? || (!options[:force] && media_attachment.file_file_name.present?)
+        next if DomainBlock.reject_media?(media_attachment.account.domain)
 
         unless options[:dry_run]
           media_attachment.reset_file!
@@ -326,7 +327,7 @@ module Mastodon
       end
 
       preload_map.each_with_object({}) do |(model_name, record_ids), model_map|
-        model_map[model_name] = model_name.constantize.where(id: record_ids).each_with_object({}) { |record, record_map| record_map[record.id] = record }
+        model_map[model_name] = model_name.constantize.where(id: record_ids).index_by(&:id)
       end
     end
   end

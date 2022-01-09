@@ -8,6 +8,9 @@ eo:
         send_email_notification: La uzanto ricevos klarigon pri tio, kio okazis al ties konto
         text_html: Malnepra. Vi povas uzi skribmanierojn de mesaĝoj. Vi povas <a href="%{path}">aldoni avertajn antaŭagordojn</a> por ŝpari tempon
         type_html: Elektu kion fari kun <strong>%{acct}</strong>
+        types:
+          none: Uzu ĉi tion por sendi averton al la uzanto, sen ekigi alian agon.
+          suspend: Malhelpu ajnan interagon de aŭ al ĉi tiu konto kaj forigu ĝian enhavon. Returnebla ene de 30 tagoj.
         warning_preset_id: Malnepra. Vi povas ankoraŭ aldoni propran tekston al la fino de la antaŭagordo
       defaults:
         autofollow: Homoj, kiuj registriĝos per la invito aŭtomate sekvos vin
@@ -29,7 +32,7 @@ eo:
         phrase: Estos provita senzorge pri la uskleco de teksto aŭ averto pri enhavo de mesaĝo
         scopes: Kiujn API-ojn la aplikaĵo permesiĝos atingi. Se vi elektas supran amplekson, vi ne bezonas elekti la individuajn.
         setting_aggregate_reblogs: Ne montri novajn diskonigojn de mesaĝoj laste diskonigitaj (nur efikas al novaj diskonigoj)
-        setting_default_sensitive: Sentema komunikilo estas kaŝita defaŭlte kaj povas esti rivelita per alklako
+        setting_default_sensitive: Tiklaj aŭdovidaĵoj estas defaŭlte kaŝita kaj povas esti malkiŝita per klako
         setting_display_media_default: Kaŝi aŭdovidaĵojn markitajn kiel tiklaj
         setting_display_media_hide_all: Ĉiam kaŝi ĉiujn aŭdovidaĵojn
         setting_display_media_show_all: Ĉiam montri aŭdovidaĵojn markitajn kiel tiklaj
@@ -47,10 +50,13 @@ eo:
         data: CSV-dosiero el alia Mastodon-servilo
       invite_request:
         text: Ĉi tio helpos nin revizii vian kandidatiĝon
+      ip_block:
+        severities:
+          sign_up_requires_approval: Novaj registriĝoj devigos vian aprobon
       sessions:
         otp: 'Enmetu la kodon de dufaktora aŭtentigo el via telefono aŭ uzu unu el viaj realiraj kodoj:'
       user:
-        chosen_languages: Kiam estas elekto, nur mesaĝoj en elektitaj lingvoj aperos en publikaj tempolinioj
+        chosen_languages: Kiam estas elekto, nur mesaĝoj en elektitaj lingvoj aperos en publikaj templinioj
     labels:
       account:
         fields:
@@ -70,6 +76,7 @@ eo:
         types:
           disable: Malebligi
           none: Fari nenion
+          sensitive: Tikla
           silence: Silentigi
           suspend: Haltigi kaj nemalfereble forigi kontajn datumojn
         warning_preset_id: Uzi antaŭagorditan averton
@@ -95,6 +102,7 @@ eo:
         expires_in: Eksvalidiĝas post
         fields: Profilaj metadatumoj
         header: Fonbildo
+        honeypot: "%{label} (ne plenigi)"
         inbox_url: URL de la ripetila enirkesto
         irreversible: Forĵeti anstataŭ kaŝi
         locale: Interfaca lingvo
@@ -106,14 +114,14 @@ eo:
         password: Pasvorto
         phrase: Vorto aŭ frazo
         setting_advanced_layout: Ebligi altnivelan retpaĝan interfacon
-        setting_aggregate_reblogs: Grupigi diskonigojn en tempolinioj
+        setting_aggregate_reblogs: Grupigi diskonigojn en templinioj
         setting_auto_play_gif: Aŭtomate ekigi GIF-ojn
-        setting_boost_modal: Montri fenestron por konfirmi antaŭ ol diskonigi mesaĝon
+        setting_boost_modal: Montri konfirman fenestron antaŭ ol diskonigi mesaĝon
         setting_crop_images: Stuci bildojn en negrandigitaj mesaĝoj al 16x9
         setting_default_language: Publikada lingvo
         setting_default_privacy: Mesaĝa videbleco
         setting_default_sensitive: Ĉiam marki aŭdovidaĵojn tiklaj
-        setting_delete_modal: Montri fenestron por konfirmi antaŭ ol forigi mesaĝon
+        setting_delete_modal: Montri konfirman fenestron antaŭ ol forigi mesaĝon
         setting_display_media: Aŭdovidaĵa montrado
         setting_display_media_default: Dekomenca
         setting_display_media_hide_all: Kaŝi ĉiujn
@@ -126,7 +134,7 @@ eo:
         setting_system_font_ui: Uzi la dekomencan tiparon de la sistemo
         setting_theme: Reteja etoso
         setting_trends: Montri hodiaŭajn furoraĵojn
-        setting_unfollow_modal: Montri fenestron por konfirmi antaŭ ol ĉesi sekvi iun
+        setting_unfollow_modal: Montri konfirman fenestron antaŭ ol ĉesi sekvi iun
         setting_use_blurhash: Montri buntajn transirojn por kaŝitaj aŭdovidaĵoj
         setting_use_pending_items: Malrapida reĝimo
         severity: Graveco
@@ -145,6 +153,13 @@ eo:
         comment: Komento
       invite_request:
         text: Kial vi volas aliĝi?
+      ip_block:
+        comment: Komento
+        ip: IP
+        severities:
+          no_access: Bloki atingon
+          sign_up_requires_approval: Limigi registriĝojn
+        severity: Regulo
       notification_emails:
         digest: Sendi resumajn retmesaĝojn
         favourite: Sendi retmesaĝon kiam iu stelumas vian mesaĝon
@@ -155,6 +170,8 @@ eo:
         reblog: Sendi retmesaĝon kiam iu diskonigas vian mesaĝon
         report: Nova signalo estas sendita
         trending_tag: Nekontrolita kradvorto furoras
+      rule:
+        text: Regulo
       tag:
         name: Kradvorto
         trendable: Permesi al ĉi tiu kradvorto aperi en furoraĵoj
@@ -164,4 +181,7 @@ eo:
     required:
       mark: "*"
       text: bezonata
+    title:
+      sessions:
+        webauthn: Uzi unu el viaj sekurecaj ŝlosiloj por ensaluti
     'yes': Jes

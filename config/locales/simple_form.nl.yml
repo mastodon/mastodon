@@ -12,8 +12,14 @@ nl:
       admin_account_action:
         include_statuses: De gebruiker ziet welke toots verantwoordelijk zijn voor de moderatieactie of waarschuwing
         send_email_notification: De gebruiker ontvangt een uitleg over wat er met hun account is gebeurd
-        text_html: Optioneel. Je kunt voor toots specifieke tekst gebruiken. Om tijd te besparen kun je <a href="%{path}">voorinstellingen van waarschuwingen toevoegen</a>
+        text_html: Optioneel. Je kunt voor toots specifieke tekst gebruiken. Om tijd te besparen kun je <a href="%{path}">presets voor waarschuwingen toevoegen</a>
         type_html: Kies wat er met <strong>%{acct}</strong> moet gebeuren
+        types:
+          disable: Voorkom dat de gebruiker hun account gebruikt, maar verwijder of verberg de inhoud niet.
+          none: Gebruik dit om een waarschuwing naar de gebruiker te sturen, zonder dat nog een andere actie wordt uitgevoerd.
+          sensitive: Forceer dat alle mediabijlagen van deze gebruiker als gevoelig worden gemarkeerd.
+          silence: Voorkom dat de gebruiker openbare toots kan versturen, verberg hun toots en meldingen voor mensen die hen niet volgen.
+          suspend: Alle interacties van en met dit account blokkeren en de inhoud verwijderen. Dit kan binnen dertig dagen worden teruggedraaid.
         warning_preset_id: Optioneel. Je kunt nog steeds handmatig tekst toevoegen aan het eind van de voorinstelling
       announcement:
         all_day: Wanneer dit is aangevinkt worden alleen de datums binnen het tijdvak getoond
@@ -24,7 +30,7 @@ nl:
       defaults:
         autofollow: Mensen die zich via de uitnodiging hebben geregistreerd, volgen jou automatisch
         avatar: PNG, GIF of JPG. Maximaal %{size}. Wordt teruggeschaald naar %{dimensions}px
-        bot: Dit is een geautomatiseerd account en wordt mogelijk niet gemonitord
+        bot: Signaal naar andere gebruikers toe dat dit account hoofdzakelijk geautomatiseerde berichten stuurt en mogelijk niet wordt gemonitord
         context: Een of meerdere locaties waar de filter actief moet zijn
         current_password: Voer voor veiligheidsredenen het wachtwoord van je huidige account in
         current_username: Voer ter bevestiging de gebruikersnaam van je huidige account in
@@ -36,9 +42,9 @@ nl:
         inbox_url: Kopieer de URL van de voorpagina van de relayserver die je wil gebruiken
         irreversible: Gefilterde toots verdwijnen onomkeerbaar, zelfs als de filter later wordt verwijderd
         locale: De taal van de gebruikersomgeving, e-mails en pushmeldingen
-        locked: Vereist dat je handmatig volgers moet accepteren
+        locked: Door het goedkeuren van volgers handmatig bepalen wie jou mag volgen
         password: Gebruik tenminste 8 tekens
-        phrase: Komt overeen ongeacht hoofd-/kleine letters of tekstwaarschuwingen
+        phrase: Komt overeen ongeacht hoofd-/kleine letters of een inhoudswaarschuwing
         scopes: Tot welke API's heeft de toepassing toegang. Wanneer je een toestemming van het bovenste niveau kiest, hoef je geen individuele toestemmingen meer te kiezen.
         setting_aggregate_reblogs: Geen nieuwe boosts tonen voor toots die recentelijk nog zijn geboost (heeft alleen effect op nieuw ontvangen boosts)
         setting_default_sensitive: Gevoelige media wordt standaard verborgen en kan met één klik worden getoond
@@ -65,8 +71,19 @@ nl:
         data: CSV-bestand dat op een andere Mastodonserver werd geëxporteerd
       invite_request:
         text: Dit helpt ons om jouw aanvraag te beoordelen
+      ip_block:
+        comment: Optioneel. Vergeet niet te onthouden waarom je deze regel hebt toegevoegd.
+        expires_in: Het aantal IP-adressen zijn beperkt. Ze worden soms gedeeld en wisselen vaak van eigenaar. Om deze reden worden onbeperkte IP-blokkades niet aanbevolen.
+        ip: Voer een IPv4- of IPv6-adres in. Je kunt hele reeksen blokkeren met de CIDR-methode. Pas op dat je jezelf niet buitensluit!
+        severities:
+          no_access: Toegang tot de hele server blokkeren
+          sign_up_requires_approval: Nieuwe registraties vereisen jouw goedkeuring
+        severity: Kies wat er moet gebeuren met aanvragen van dit IP-adres
+      rule:
+        text: Omschrijf een regel of vereiste voor gebruikers op deze server. Probeer het kort en simpel te houden
       sessions:
-        otp: 'Voer de tweestaps-aanmeldcode vanaf jouw mobiele telefoon in of gebruik een van jouw herstelcodes:'
+        otp: 'Voer de tweestaps-toegangscode vanaf jouw mobiele telefoon in of gebruik een van jouw herstelcodes:'
+        webauthn: Wanneer het een USB-sleutel is, zorg er dan voor dat je deze in de computer steekt en, wanneer nodig, activeert.
       tag:
         name: Je kunt elk woord met een hoofdletter beginnen, om zo bijvoorbeeld de tekst leesbaarder te maken
       user:
@@ -81,7 +98,7 @@ nl:
       account_migration:
         acct: Mastodonadres van het nieuwe account
       account_warning_preset:
-        text: Tekst van voorinstelling
+        text: Tekst van preset
         title: Titel
       admin_account_action:
         include_statuses: Gerapporteerde toots aan de e-mail toevoegen
@@ -91,6 +108,7 @@ nl:
         types:
           disable: Bevriezen
           none: Waarschuwing sturen
+          sensitive: Gevoelig
           silence: Beperken
           suspend: Opschorten en onomkeerbaar accountgegevens verwijderen
         warning_preset_id: Gebruik een voorinstelling van een waarschuwing
@@ -110,36 +128,38 @@ nl:
         context: Filterlocaties
         current_password: Huidig wachtwoord
         data: Gegevens
-        discoverable: Dit account in de gebruikersgids tonen
+        discoverable: Dit account laten aanbevelen en in de gebruikersgids tonen
         display_name: Weergavenaam
         email: E-mailadres
         expires_in: Vervalt na
         fields: Metadata profiel
         header: Omslagfoto
+        honeypot: "%{label} (niet invullen)"
         inbox_url: Inbox-URL van de relayserver
         irreversible: Verwijderen in plaats van verbergen
         locale: Taal van de gebruikersomgeving
-        locked: Maak account besloten
+        locked: Volgverzoek vereisen
         max_uses: Max. aantal keer te gebruiken
         new_password: Nieuwe wachtwoord
         note: Bio
-        otp_attempt: Tweestaps-aanmeldcode
+        otp_attempt: Tweestaps-toegangscode
         password: Wachtwoord
         phrase: Trefwoord of zinsdeel
         setting_advanced_layout: Geavanceerde webomgeving inschakelen
         setting_aggregate_reblogs: Boosts in tijdlijnen groeperen
         setting_auto_play_gif: Speel geanimeerde GIF's automatisch af
         setting_boost_modal: Vraag voor het boosten van een toot een bevestiging
-        setting_crop_images: Afbeeldingen tot 16x9 besnijden in niet uitgebreide toots
+        setting_crop_images: Afbeeldingen bijsnijden tot 16x9 in toots op tijdlijnen
         setting_default_language: Taal van jouw toots
         setting_default_privacy: Standaardzichtbaarheid van jouw toots
         setting_default_sensitive: Media altijd als gevoelig markeren
         setting_delete_modal: Vraag voor het verwijderen van een toot een bevestiging
+        setting_disable_swiping: Swipebewegingen uitschakelen
         setting_display_media: Mediaweergave
         setting_display_media_default: Standaard
         setting_display_media_hide_all: Alles verbergen
         setting_display_media_show_all: Alles tonen
-        setting_expand_spoilers: Altijd toots met tekstwaarschuwingen uitklappen
+        setting_expand_spoilers: Altijd toots met inhoudswaarschuwingen uitklappen
         setting_hide_network: Jouw volgers en wie je volgt verbergen
         setting_noindex: Jouw toots niet door zoekmachines laten indexeren
         setting_reduce_motion: Langzamere animaties
@@ -167,7 +187,14 @@ nl:
       invite:
         comment: Opmerking
       invite_request:
-        text: Waarom wil jij je aanmelden?
+        text: Waarom wil je je hier registreren?
+      ip_block:
+        comment: Opmerking
+        ip: IP
+        severities:
+          no_access: Toegang blokkeren
+          sign_up_requires_approval: Registraties beperken
+        severity: Regel
       notification_emails:
         digest: Periodiek e-mails met een samenvatting versturen
         favourite: Wanneer iemand jouw toot aan hun favorieten heeft toegevoegd
@@ -178,8 +205,10 @@ nl:
         reblog: Wanneer iemand jouw toot heeft geboost
         report: Bij het indienen van een nieuwe rapportage
         trending_tag: Wanneer een nog niet beoordeelde hashtag trending is
+      rule:
+        text: Regel
       tag:
-        listable: Toestaan dat deze hashtag in zoekopdrachten en in de gebruikersgids te zien valt
+        listable: Toestaan dat deze hashtag in zoekopdrachten en aanbevelingen te zien valt
         name: Hashtag
         trendable: Toestaan dat deze hashtag onder trends te zien valt
         usable: Toestaan dat deze hashtag in toots gebruikt mag worden
@@ -188,4 +217,7 @@ nl:
     required:
       mark: "*"
       text: vereist
+    title:
+      sessions:
+        webauthn: Gebruik een van uw beveiligingssleutels om in te loggen
     'yes': Ja

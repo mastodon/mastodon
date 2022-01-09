@@ -24,8 +24,12 @@ describe WellKnown::WebfingerController, type: :controller do
         expect(response).to have_http_status(200)
       end
 
+      it 'does not set a Vary header' do
+        expect(response.headers['Vary']).to be_nil
+      end
+
       it 'returns application/jrd+json' do
-        expect(response.content_type).to eq 'application/jrd+json'
+        expect(response.media_type).to eq 'application/jrd+json'
       end
 
       it 'returns links for the account' do

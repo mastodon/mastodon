@@ -4,29 +4,28 @@ class ActivityPub::Activity::Announce < ActivityPub::Activity
   def perform
     return reject_payload! if delete_arrived_first?(@json['id']) || !related_to_local_activity?
 
-    RedisLock.acquire(lock_options) do |lock|
-      if lock.acquired?
-        original_status = status_from_object
+    lock_or_fail("announce:#{@object['id']}") do
+      original_status = status_from_object
 
-        return reject_payload! if original_status.nil? || !announceable?(original_status)
+      return reject_payload! if original_status.nil? || !announceable?(original_status)
 
-        @status = Status.find_by(account: @account, reblog: original_status)
+      @status = Status.find_by(account: @account, reblog: original_status)
 
-        return @status unless @status.nil?
+      return @status unless @status.nil?
 
-        @status = Status.create!(
-          account: @account,
-          reblog: original_status,
-          uri: @json['id'],
-          created_at: @json['published'],
-          override_timestamps: @options[:override_timestamps],
-          visibility: visibility_from_audience
-        )
+      @status = Status.create!(
+        account: @account,
+        reblog: original_status,
+        uri: @json['id'],
+        created_at: @json['published'],
+        override_timestamps: @options[:override_timestamps],
+        visibility: visibility_from_audience
+      )
 
-        distribute(@status)
-      else
-        raise Mastodon::RaceConditionError
-      end
+      Trends.tags.register(@status)
+      Trends.links.register(@status)
+
+      distribute(@status)
     end
 
     @status
@@ -43,9 +42,9 @@ class ActivityPub::Activity::Announce < ActivityPub::Activity
   end
 
   def visibility_from_audience
-    if audience_to.include?(ActivityPub::TagManager::COLLECTIONS[:public])
+    if audience_to.any? { |to| ActivityPub::TagManager.instance.public_collection?(to) }
       :public
-    elsif audience_cc.include?(ActivityPub::TagManager::COLLECTIONS[:public])
+    elsif audience_cc.any? { |cc| ActivityPub::TagManager.instance.public_collection?(cc) }
       :unlisted
     elsif audience_to.include?(@account.followers_url)
       :private
@@ -68,9 +67,5 @@ class ActivityPub::Activity::Announce < ActivityPub::Activity
 
   def reblog_of_local_status?
     status_from_uri(object_uri)&.account&.local?
-  end
-
-  def lock_options
-    { redis: Redis.current, key: "announce:#{@object['id']}" }
   end
 end

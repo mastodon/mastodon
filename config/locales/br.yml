@@ -3,7 +3,6 @@ br:
   about:
     about_this: Diàr-benn
     active_count_after: oberiant
-    api: API
     apps: Arloadoù pellgomz
     apps_platforms: Ober get Mastodoñ àr iOS, Android ha savennoù arall
     contact: Darempred
@@ -36,7 +35,6 @@ br:
       other: Heulier·ez
       two: Heulier·ez
     following: O heuliañ
-    media: Media
     never_active: Birviken
     posts:
       few: Toud
@@ -50,7 +48,6 @@ br:
       admin: Merour
       bot: Robot
       group: Strollad
-      moderator: Mod
     unavailable: Profil dihegerz
     unfollow: Diheuliañ
   admin:
@@ -70,7 +67,6 @@ br:
       enabled: Gweredekaet
       followers: Heulier·ezed·ien
       header: Talbenn
-      ip: IP
       location:
         local: Lec'hel
         remote: A-bell
@@ -94,7 +90,6 @@ br:
       suspended: Astalet
       title: Kontoù
       username: Anv
-      web: Web
     action_logs:
       action_types:
         destroy_status: Dilemel ar statud
@@ -115,10 +110,8 @@ br:
       enabled: Gweredekaet
       list: Listenn
     dashboard:
-      config: Kefluniadur
       software: Meziant
       title: Taolenn labour
-      trends: Luskadoù
     domain_blocks:
       domain: Domani
       new:
@@ -176,8 +169,6 @@ br:
       batch:
         delete: Dilemel
       deleted: Dilamet
-      media:
-        title: Media
       no_media: Media ebet
     tags:
       name: Ger-klik
@@ -185,15 +176,11 @@ br:
     warning_presets:
       add_new: Ouzhpenniñ unan nevez
       delete: Dilemel
-  application_mailer:
-    salutation: "%{name},"
   auth:
     change_password: Ger-tremen
     delete_account: Dilemel ar gont
     login: Mont tre
     logout: Digennaskañ
-    providers:
-      saml: SAML
     reset_password: Adderaouekaat ar ger-tremen
     security: Diogelroez
     setup:
@@ -217,11 +204,8 @@ br:
       about_x_years: "%{count}b"
       almost_x_years: "%{count}b"
       half_a_minute: Diouzhtu
-      less_than_x_minutes: "%{count}m"
       less_than_x_seconds: Diouzhtu
       over_x_years: "%{count}b"
-      x_days: "%{count}d"
-      x_minutes: "%{count}m"
       x_months: "%{count}miz"
       x_seconds: "%{count}eil"
   deletes:
@@ -242,7 +226,6 @@ br:
     archive_takeout:
       date: Deiziad
       size: Ment
-    csv: CSV
     lists: Listennoù
   featured_tags:
     add_new: Ouzhpenniñ unan nevez
@@ -278,15 +261,9 @@ br:
       title: Heulier nevez
     mention:
       action: Respont
-  number:
-    human:
-      decimal_units:
-        format: "%n%u"
   otp_authentication:
     enable: Gweredekaat
     setup: Kefluniañ
-  pagination:
-    truncate: "&hellip;"
   relationships:
     followers: Heulier·ezed·ien
     following: O heuliañ
@@ -302,7 +279,7 @@ br:
       generic: Merdeer dianav
       ie: Internet Explorer
       micro_messenger: MicroMessenger
-      nokia: Nokia S40 Ovi Browser
+      nokia: Merdeer Nokia S40 Ovi
       opera: Opera
       otter: Otter
       phantom_js: PhantomJS
@@ -311,20 +288,8 @@ br:
       uc_browser: UCBrowser
       weibo: Weibo
     description: "%{browser} war %{platform}"
-    ip: IP
     platforms:
-      adobe_air: Adobe Air
-      android: Android
-      blackberry: Blackberry
-      chrome_os: ChromeOS
-      firefox_os: Firefox OS
-      ios: iOS
-      linux: Linux
-      mac: macOS
       other: savenn dianav
-      windows: Windows
-      windows_mobile: Windows Mobile
-      windows_phone: Windows Phone
   settings:
     account: Kont
     account_settings: Arventennoù ar gont
@@ -342,14 +307,7 @@ br:
         one: "%{count} skeudenn"
         other: "%{count} skeudenn"
         two: "%{count} skeudenn"
-      video:
-        few: "%{count} video"
-        many: "%{count} video"
-        one: "%{count} video"
-        other: "%{count} video"
-        two: "%{count} video"
     show_more: Diskouez muioc'h
-    title: '%{name}: "%{quote}"'
     visibilities:
       public: Publik
   stream_entries:
@@ -360,7 +318,6 @@ br:
   time:
     formats:
       default: "%He%M, %d %b %Y"
-      month: "%b %Y"
   two_factor_authentication:
     add: Ouzhpennañ
     disable: Diweredekaat

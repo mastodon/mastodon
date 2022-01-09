@@ -129,8 +129,6 @@ class ActivityPub::Activity
   end
 
   def crawl_links(status)
-    return if status.spoiler_text?
-
     # Spread out crawling randomly to avoid DDoSing the link
     LinkCrawlWorker.perform_in(rand(1..59).seconds, status.id)
   end
@@ -144,7 +142,7 @@ class ActivityPub::Activity
   end
 
   def delete_later!(uri)
-    redis.setex("delete_upon_arrival:#{@account.id}:#{uri}", 6.hours.seconds, uri)
+    redis.setex("delete_upon_arrival:#{@account.id}:#{uri}", 6.hours.seconds, true)
   end
 
   def status_from_object
@@ -210,10 +208,20 @@ class ActivityPub::Activity
     end
   end
 
-  def lock_or_return(key, expire_after = 7.days.seconds)
+  def lock_or_return(key, expire_after = 2.hours.seconds)
     yield if redis.set(key, true, nx: true, ex: expire_after)
   ensure
     redis.del(key)
+  end
+
+  def lock_or_fail(key, expire_after = 15.minutes.seconds)
+    RedisLock.acquire({ redis: Redis.current, key: key, autorelease: expire_after }) do |lock|
+      if lock.acquired?
+        yield
+      else
+        raise Mastodon::RaceConditionError
+      end
+    end
   end
 
   def fetch?

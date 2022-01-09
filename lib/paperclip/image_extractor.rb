@@ -31,21 +31,17 @@ module Paperclip
     private
 
     def extract_image_from_file!
-      ::Av.logger = Paperclip.logger
-
-      cli = ::Av.cli
       dst = Tempfile.new([File.basename(@file.path, '.*'), '.png'])
       dst.binmode
 
-      cli.add_source(@file.path)
-      cli.add_destination(dst.path)
-      cli.add_output_param loglevel: 'fatal'
-
       begin
-        cli.run
-      rescue Cocaine::ExitStatusError, ::Av::CommandError
+        command = Terrapin::CommandLine.new('ffmpeg', '-i :source -loglevel :loglevel -y :destination', logger: Paperclip.logger)
+        command.run(source: @file.path, destination: dst.path, loglevel: 'fatal')
+      rescue Terrapin::ExitStatusError
         dst.close(true)
         return nil
+      rescue Terrapin::CommandNotFoundError
+        raise Paperclip::Errors::CommandNotFoundError, 'Could not run the `ffmpeg` command. Please install ffmpeg.'
       end
 
       dst

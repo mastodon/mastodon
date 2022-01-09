@@ -5,6 +5,8 @@ class ActivityPub::FetchRemoteKeyService < BaseService
 
   # Returns account that owns the key
   def call(uri, id: true, prefetched_body: nil)
+    return if uri.blank?
+
     if prefetched_body.nil?
       if id
         @json = fetch_resource_without_id_validation(uri)

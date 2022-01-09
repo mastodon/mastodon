@@ -28,6 +28,8 @@ th:
         destroy: คุณแน่ใจหรือไม่?
       edit:
         title: แก้ไขแอปพลิเคชัน
+      form:
+        error: อ๊ะ! ตรวจสอบแบบฟอร์มของคุณสำหรับข้อผิดพลาดที่อาจเกิดขึ้น
       help:
         native_redirect_uri: ใช้ %{native_redirect_uri} สำหรับการทดสอบในเซิร์ฟเวอร์
         redirect_uri: ใช้หนึ่งบรรทัดต่อ URI
@@ -71,16 +73,21 @@ th:
       index:
         application: แอปพลิเคชัน
         created_at: อนุญาตเมื่อ
-        date_format: "%Y-%m-%d %H:%M:%S"
+        date_format: "%d/%m/%Y %H:%M:%S"
         scopes: ขอบเขต
         title: แอปพลิเคชันที่ได้รับอนุญาตของคุณ
     errors:
       messages:
         access_denied: เจ้าของทรัพยากรหรือเซิร์ฟเวอร์การอนุญาตปฏิเสธคำขอ
+        invalid_request:
+          missing_param: 'พารามิเตอร์ที่จำเป็นขาดหายไป: %{value}'
+        invalid_scope: ขอบเขตที่ขอไม่ถูกต้อง ไม่รู้จัก หรือผิดรูปแบบ
         invalid_token:
           expired: โทเคนการเข้าถึงหมดอายุแล้ว
           revoked: เพิกถอนโทเคนการเข้าถึงแล้ว
           unknown: โทเคนการเข้าถึงไม่ถูกต้อง
+        resource_owner_authenticator_not_configured: การค้นหาเจ้าของทรัพยากรล้มเหลวเนื่องจากไม่ได้กำหนดค่า Doorkeeper.configure.resource_owner_authenticator
+        unauthorized_client: ไคลเอ็นต์ไม่ได้รับอนุญาตให้ทำคำขอนี้โดยใช้วิธีการนี้
         unsupported_response_type: เซิร์ฟเวอร์การอนุญาตไม่รองรับชนิดการตอบสนองนี้
     flash:
       applications:
@@ -121,12 +128,12 @@ th:
       read:notifications: ดูการแจ้งเตือนของคุณ
       read:reports: ดูรายงานของคุณ
       read:search: ค้นหาในนามของคุณ
-      read:statuses: ดูสถานะทั้งหมด
+      read:statuses: ดูโพสต์ทั้งหมด
       write: ปรับเปลี่ยนข้อมูลบัญชีทั้งหมดของคุณ
       write:accounts: ปรับเปลี่ยนโปรไฟล์ของคุณ
       write:blocks: ปิดกั้นบัญชีและโดเมน
-      write:bookmarks: เพิ่มที่คั่นหน้าสถานะ
-      write:favourites: ชื่นชอบสถานะ
+      write:bookmarks: เพิ่มที่คั่นหน้าโพสต์
+      write:favourites: ชื่นชอบโพสต์
       write:filters: สร้างตัวกรอง
       write:follows: ติดตามผู้คน
       write:lists: สร้างรายการ
@@ -134,4 +141,4 @@ th:
       write:mutes: ซ่อนผู้คนและการสนทนา
       write:notifications: ล้างการแจ้งเตือนของคุณ
       write:reports: รายงานผู้คนอื่น ๆ
-      write:statuses: เผยแพร่สถานะ
+      write:statuses: เผยแพร่โพสต์

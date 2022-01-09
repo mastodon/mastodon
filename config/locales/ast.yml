@@ -5,7 +5,6 @@ ast:
     about_mastodon_html: 'La rede social del futuru: ¡ensin anuncios nin vixilancia, con un diseñu éticu y descentralizáu! Controla los tos datos con Mastodon.'
     about_this: Tocante a
     administered_by: 'Alministráu por:'
-    api: API
     apps: Aplicaciones pa móviles
     apps_platforms: Usa Mastodon dende Android, iOS y otres plataformes
     contact: Contautu
@@ -51,19 +50,16 @@ ast:
       other: Barritos
     posts_tab_heading: Barritos
     posts_with_replies: Barritos y rempuestes
-    reserved_username: El nome d'usuariu ta acutáu
     roles:
       bot: Robó
   admin:
     accounts:
       approve_all: Aprobar too
       are_you_sure: "¿De xuru?"
-      avatar: Avatar
       by_domain: Dominiu
       domain: Dominiu
       email: Corréu
       followers: Siguidores
-      ip: IP
       location:
         local: Llocal
         title: Allugamientu
@@ -82,26 +78,6 @@ ast:
       time_in_queue: Esperando na cola %{time}
       title: Cuentes
       username: Nome d'usuariu
-      web: Web
-    action_logs:
-      actions:
-        create_account_warning: "%{name} unvió una alvertencia a %{target}"
-        create_announcement: "%{name} creó un anunciu %{target}"
-        create_domain_block: "%{name} bloquió'l dominiu %{target}"
-        destroy_announcement: "%{name} desanició l'anunciu %{target}"
-        disable_custom_emoji: "%{name} desactivó'l fustaxe %{target}"
-        disable_user: "%{name} desactivó l'aniciu de sesión del usuariu %{target}"
-        enable_custom_emoji: "%{name} activó'l fustaxe %{target}"
-        enable_user: "%{name} activó l'aniciu de sesión del usuariu %{target}"
-        promote_user: "%{name} ascendió al usuariu %{target}"
-        remove_avatar_user: "%{name} desanició l'avatar de %{target}"
-        reopen_report: "%{name} reabrió l'informe de %{target}"
-        reset_password_user: "%{name} reafitó la contraseña del usuariu %{target}"
-        resolve_report: "%{name} resolvió l'informe de %{target}"
-        silence_account: "%{name} silenció la cuenta de %{target}"
-        suspend_account: "%{name} suspendió la cuenta de %{target}"
-        update_announcement: "%{name} anovó l'anunciu %{target}"
-        update_custom_emoji: "%{name} anovo'l fustaxe %{target}"
     announcements:
       destroyed_msg: "¡L'anunciu desanicióse con ésitu!"
       new:
@@ -113,17 +89,6 @@ ast:
       copy_failed_msg: Nun pudo facese una copia llocal d'esi fustaxe
       emoji: Fustaxe
       update_failed_msg: Nun pudo anovase esi fustaxe
-    dashboard:
-      config: Configuración
-      feature_registrations: Rexistros
-      features: Carauterístiques
-      hidden_service: Federación con servicios anubríos
-      recent_users: Usuarios de recién
-      software: Software
-      total_users: usuarios en total
-      trends: Tendencies
-      week_interactions: interaiciones d'esta selmana
-      week_users_new: usuarios d'esta selmana
     domain_blocks:
       domain: Dominiu
     email_domain_blocks:
@@ -160,7 +125,6 @@ ast:
     statuses:
       failed_to_execute: Fallu al executar
     tags:
-      context: Contestu
       most_recent: Lo más recién
       name: Etiqueta
       title: Etiquetes
@@ -183,7 +147,6 @@ ast:
     discovery: Descubrición
     localization:
       body: Mastodon tradúcenlu voluntarios,
-      guide_link: https://crowdin.com/project/mastodon
       guide_link_text: tol mundu pue collaborar.
     sensitive_content: Conteníu sensible
     toot_layout: Distribución de los barritos
@@ -204,9 +167,6 @@ ast:
     login: Aniciar sesión
     migrate_account: Mudase a otra cuenta
     migrate_account_html: Si deseyes redirixir esta cuenta a otra, pues <a href="%{path}">configuralo equí</a>.
-    providers:
-      cas: CAS
-      saml: SAML
     register: Rexistrase
     security: Seguranza
     trouble_logging_in: "¿Problemes col aniciu de sesión?"
@@ -254,7 +214,6 @@ ast:
       request: Solicitar l'archivu
       size: Tamañu
     blocks: Xente que bloquiesti
-    csv: CSV
     lists: Llistes
     mutes: Xente que silenciesti
   featured_tags:
@@ -387,38 +346,12 @@ ast:
   sessions:
     browser: Restolador
     browsers:
-      alipay: Alipay
-      blackberry: Blackberry
-      chrome: Chrome
-      edge: Microsoft Edge
-      electron: Electron
-      firefox: Firefox
       generic: Restolador desconocíu
-      ie: Internet Explorer
-      micro_messenger: MicroMessenger
-      opera: Opera
-      otter: Otter
-      phantom_js: PhantomJS
-      qq: QQ Browser
-      safari: Safari
-      uc_browser: UCBrowser
-      weibo: Weibo
     current_session: Sesión actual
     description: "%{browser} en %{platform}"
-    ip: IP
     platforms:
-      adobe_air: Adobe Air
-      android: Android
-      blackberry: Blackberry
-      chrome_os: ChromeOS
-      firefox_os: Firefox OS
-      ios: iOS
-      linux: Linux
       mac: Mac
       other: plataforma desconocida
-      windows: Windows
-      windows_mobile: Windows Mobile
-      windows_phone: Windows Phone
     revoke: Revocar
     revoke_success: La sesión revocóse con esitu
     title: Sesiones
@@ -439,8 +372,6 @@ ast:
     profile: Perfil
     two_factor_authentication: Autenticación en dos pasos
     webauthn_authentication: Claves d'autenticación
-  spam_check:
-    spam_detected: Esto ye un informe automatizáu. Deteutóse spam.
   statuses:
     attached:
       audio:
@@ -507,7 +438,6 @@ ast:
       subject: Afáyate en Mastodon
       tips: Conseyos
   users:
-    invalid_email: La direición de corréu nun ye válida
     invalid_otp_token: El códigu nun ye válidu
     otp_lost_help_html: Si pierdes l'accesu, contauta con %{email}
     seamless_external_login: Aniciesti sesión pente un serviciu esternu, polo que los axustes de la contraseña y corréu nun tán disponibles.

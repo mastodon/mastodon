@@ -5,13 +5,28 @@ sq:
       poll:
         expires_at: Afat
         options: Mundësi
+      user:
+        agreement: Marrëveshje shërbimi
+        email: Adresë email
+        locale: Gjuhë
+        password: Fjalëkalim
+      user/account:
+        username: Emër përdoruesi
+      user/invite_request:
+        text: Arsye
     errors:
       models:
         account:
           attributes:
             username:
-              invalid: vetëm shkronja, numra dhe nënvija
+              invalid: duhet të përmbajë vetëm shkronja, numra dhe nënvija
+              reserved: është i rezervuar
         status:
           attributes:
             reblog:
               taken: e gjendjes ekziston tashmë
+        user:
+          attributes:
+            email:
+              blocked: përdor një shërbim email të palejuar
+              unreachable: s’duket se ekziston

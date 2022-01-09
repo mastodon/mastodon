@@ -5,12 +5,14 @@
     %table.accounts-table
       %tbody
         %tr
+          %td.accounts-table__interrelationships
+            = interrelationships_icon(@relationships, account.id)
           %td= account_link_to account
           %td.accounts-table__count.optional
-            = number_to_human account.statuses_count, strip_insignificant_zeros: true
+            = friendly_number_to_human account.statuses_count
             %small= t('accounts.posts', count: account.statuses_count).downcase
           %td.accounts-table__count.optional
-            = number_to_human account.followers_count, strip_insignificant_zeros: true
+            = friendly_number_to_human account.followers_count
             %small= t('accounts.followers', count: account.followers_count).downcase
           %td.accounts-table__count
             - if account.last_status_at.present?

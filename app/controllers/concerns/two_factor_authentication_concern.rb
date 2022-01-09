@@ -35,14 +35,20 @@ module TwoFactorAuthenticationConcern
   end
 
   def authenticate_with_two_factor
-    user = self.resource = find_user
+    if user_params[:email].present?
+      user = self.resource = find_user_from_params
+      prompt_for_two_factor(user) if user&.external_or_valid_password?(user_params[:password])
+    elsif session[:attempt_user_id]
+      user = self.resource = User.find_by(id: session[:attempt_user_id])
+      return if user.nil?
 
-    if user.webauthn_enabled? && user_params[:credential].present? && session[:attempt_user_id]
-      authenticate_with_two_factor_via_webauthn(user)
-    elsif user_params[:otp_attempt].present? && session[:attempt_user_id]
-      authenticate_with_two_factor_via_otp(user)
-    elsif user.present? && user.external_or_valid_password?(user_params[:password])
-      prompt_for_two_factor(user)
+      if session[:attempt_user_updated_at] != user.updated_at.to_s
+        restart_session
+      elsif user.webauthn_enabled? && user_params.key?(:credential)
+        authenticate_with_two_factor_via_webauthn(user)
+      elsif user_params.key?(:otp_attempt)
+        authenticate_with_two_factor_via_otp(user)
+      end
     end
   end
 
@@ -50,37 +56,37 @@ module TwoFactorAuthenticationConcern
     webauthn_credential = WebAuthn::Credential.from_get(user_params[:credential])
 
     if valid_webauthn_credential?(user, webauthn_credential)
-      session.delete(:attempt_user_id)
-      remember_me(user)
-      sign_in(user)
-      render json: { redirect_path: root_path }, status: :ok
+      on_authentication_success(user, :webauthn)
+      render json: { redirect_path: after_sign_in_path_for(user) }, status: :ok
     else
+      on_authentication_failure(user, :webauthn, :invalid_credential)
       render json: { error: t('webauthn_credentials.invalid_credential') }, status: :unprocessable_entity
     end
   end
 
   def authenticate_with_two_factor_via_otp(user)
     if valid_otp_attempt?(user)
-      session.delete(:attempt_user_id)
-      remember_me(user)
-      sign_in(user)
+      on_authentication_success(user, :otp)
     else
+      on_authentication_failure(user, :otp, :invalid_otp_token)
       flash.now[:alert] = I18n.t('users.invalid_otp_token')
       prompt_for_two_factor(user)
     end
   end
 
   def prompt_for_two_factor(user)
-    set_locale do
-      session[:attempt_user_id] = user.id
-      @body_classes = 'lighter'
-      @webauthn_enabled = user.webauthn_enabled?
-      @scheme_type = if user.webauthn_enabled? && user_params[:otp_attempt].blank?
-                       'webauthn'
-                     else
-                       'totp'
-                     end
-      render :two_factor
+    set_attempt_session(user)
+
+    @body_classes     = 'lighter'
+    @webauthn_enabled = user.webauthn_enabled?
+    @scheme_type      = begin
+      if user.webauthn_enabled? && user_params[:otp_attempt].blank?
+        'webauthn'
+      else
+        'totp'
+      end
     end
+
+    set_locale { render :two_factor }
   end
 end

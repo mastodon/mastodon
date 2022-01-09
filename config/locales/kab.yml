@@ -21,6 +21,7 @@ kab:
     hosted_on: Maṣṭudun yersen deg %{domain}
     learn_more: Issin ugar
     privacy_policy: Tasertit tabaḍnit
+    rules: Ilugan n uqeddac
     see_whats_happening: Ẓer d acu i iḍerrun
     server_stats: 'Tidaddanin n uqeddac:'
     source_code: Tangalt Taɣbalut
@@ -63,7 +64,6 @@ kab:
       other: Tijewwiqin
     posts_tab_heading: Tijewwiqin
     posts_with_replies: Tijewwaqin akked tririyin
-    reserved_username: Isem-agi n umseqdac yettwaṭṭef yakan
     roles:
       admin: Anedbal
       bot: Aṛubut
@@ -72,10 +72,13 @@ kab:
     unavailable: Ur nufi ara amaɣnu-a
     unfollow: Ur ṭṭafaṛ ara
   admin:
+    account_actions:
+      action: Eg tigawt
     account_moderation_notes:
       create: Eǧǧ tazmilt
       delete: Kkes
     accounts:
+      add_email_domain_block: Sewḥel taɣult n yimayl
       approve: Qbel
       approve_all: Qbel kullec
       are_you_sure: Tetḥeqqeḍ?
@@ -95,6 +98,7 @@ kab:
       deleted: Yettwakkes
       demote: Sider s weswir
       disable: Gdel
+      disable_sign_in_token_auth: Sens asesteb yebnan ɣef ujiṭun s yimayl
       disable_two_factor_authentication: Gdel 2FA
       disabled: Yensa
       display_name: Isem ara d-yettwaskanen
@@ -103,11 +107,13 @@ kab:
       email: Imayl
       email_status: Addad n imayl
       enable: Rmed
+      enable_sign_in_token_auth: Rmed asesteb yebnan ɣef ujiṭun s yimayl
       enabled: Yermed
       followers: Imeḍfaṛen
       follows: Yeṭafaṛ
       header: Ixef
       inbox_url: URL n yinekcam
+      invite_request_text: Timental n tmerna
       invited_by: Inced-it-id
       ip: Tansa IP
       joined: Ikcemed deg
@@ -117,13 +123,17 @@ kab:
         remote: Ameccaq
         title: Amḍiq
       login_status: Addad n tuqqna
+      media_attachments: Imeddayen n umidya
       memorialize: Err amiḍan d asebter n usmekti
+      memorialized_msg: Yuɣal %{username} d amiḍan n usmekti akken iwata
       moderation:
         active: Yermed
         all: Akk
         pending: Yettraǧu
         silenced: Yettwasgugem
         suspended: Yeḥbes
+        title: Aseɣyed
+      moderation_notes: Tamawin n useɣyed
       most_recent_activity: Armud aneggaru
       most_recent_ip: Tansa IP taneggarut
       no_account_selected: Ula yiwen n umiḍan ur yettwabeddel acku ula yiwen ur yettwafren
@@ -134,6 +144,7 @@ kab:
       promote: Ali s uswir
       protocol: Aneggaf
       public: Azayez
+      push_subscription_expires: Ajerred PuSH ad ifakk
       redownload: Smiren amaɣnu
       reject: Aggi
       reject_all: Aggi-ten akk
@@ -153,7 +164,12 @@ kab:
         staff: Tarbaɛt
         user: Amseqdac
       search: Nadi
+      search_same_email_domain: Iseqdacen-nniḍen s yiwet n taɣult n yimayl
       search_same_ip: Imseqdacen-nniḍen s tansa IP am tinn-ik
+      security_measures:
+        only_password: Awal uffir kan
+        password_and_2fa: Awal uffir d 2FA
+        password_and_sign_in_token: Ajiṭun n wawal uffir d yimayl
       shared_inbox_url: Bḍu URL n tbewwaḍt
       show:
         created_reports: Eg ineqqisen
@@ -169,58 +185,91 @@ kab:
       undo_silenced: Kkes asgugem
       unsubscribe: Ur ṭafar ara
       username: Isem n useqdac
+      view_domain: Sken-d agzul n taɣult
+      warn: Alɣu
       web: Web
       whitelisted: Deg tebdert tamellalt
     action_logs:
       action_types:
         change_email_user: Beddel imayl i useqdac
         confirm_user: Sentem aseqdac
+        create_announcement: Rnu-d ulɣu
         create_custom_emoji: Rnu imujit udmawan
+        create_domain_allow: Rnu-d taɣult yettusirgen
+        create_domain_block: Rnu-d asewḥel n taɣult
+        create_email_domain_block: Rnu-d asewḥel n taɣult n yimayl
         create_ip_block: Rnu alugen n IP
+        create_unavailable_domain: Rnu-d taɣult ur nelli ara
+        destroy_announcement: Kkes ulɣu
+        destroy_custom_emoji: Kkes imujit udmawan
+        destroy_domain_allow: Kkes taɣult yettusirgen
+        destroy_domain_block: Kkes asewḥel n taɣult
+        destroy_email_domain_block: Kkes asewḥel n taɣult n yimayl
         destroy_ip_block: Kkes alugen n IP
+        destroy_status: Kkes tasufeɣt
+        destroy_unavailable_domain: Kkes taɣult ur nelli ara
         disable_2fa_user: Gdel 2FA
+        disable_custom_emoji: Sens imujit udmawan
+        disable_sign_in_token_auth_user: Sens asesteb yebnan ɣef ujiṭun s yimayl i useqdac
+        disable_user: Sens aseqdac
+        enable_custom_emoji: Rmed imujit udmawan
+        enable_sign_in_token_auth_user: Rmed asesteb yebnan ɣef ujiṭun s yimayl i useqdac
         enable_user: Rmed aseqdac
+        promote_user: Aseqdac anmeggag
         remove_avatar_user: Kkes avaṭar
+        reopen_report: Allus n ulday n uneqqis
         reset_password_user: Ales awennez n wawal n uffir
+        resolve_report: Ferru n uneqqis
         silence_account: Sgugem amiḍan
+        update_announcement: Leqqem ulɣu
+        update_custom_emoji: Leqqem imuji udmawan
+        update_domain_block: Leqqem iḥder n taɣult
+        update_status: Leqqem tasufeɣt
       actions:
-        assigned_to_self_report: "%{name} imudd aneqqis %{target} i yiman-nsen"
-        change_email_user: "%{name} ibeddel imayl n umseqdac %{target}"
-        confirm_user: "%{name} isentem tansa imayl n umseqdac %{target}"
-        create_account_warning: "%{name} yuzen alɣu i %{target}"
-        create_announcement: "%{name} yerna taselɣut tamaynut %{target}"
-        create_custom_emoji: "%{name} yessuli-d imujiten imaynuten %{target}"
-        create_domain_allow: "%{name} yerna taɣult %{target} ɣer tebdart tamellalt"
-        create_domain_block: "%{name} yesseḥbes taɣult %{target}"
-        create_email_domain_block: "%{name} yerna taɣult n imayl %{target} ɣer tebdart taberkant"
-        create_ip_block: "%{name} rnu alugen i IP %{target}"
-        demote_user: "%{name} iṣubb-d deg usellun aseqdac %{target}"
-        destroy_announcement: "%{name} yekkes taselɣut %{target}"
-        destroy_custom_emoji: "%{name} ihudd imuji %{target}"
-        destroy_domain_allow: "%{name} yekkes taɣult %{target} seg tebdart tamellalt"
-        destroy_domain_block: "%{name} yekkes aseḥbes n taɣult %{target}"
-        destroy_email_domain_block: "%{name} yerna taɣult n imayl %{target} ɣer tebdart tamellalt"
-        destroy_ip_block: "%{name} kkes alugen i IP %{target}"
-        destroy_status: "%{name} yekkes tasuffeɣt n %{target}"
-        disable_custom_emoji: "%{name} yessens imuji %{target}"
-        disable_user: "%{name} yessens tuqqna i umseqdac %{target}"
-        enable_custom_emoji: "%{name} yermed imuji %{target}"
-        enable_user: "%{name} yermed tuqqna i umseqdac %{target}"
-        memorialize_account: "%{name} yerra amiḍan n %{target} d asebter n usmekti"
-        promote_user: "%{name} yerna deg usellun n useqdac %{target}"
-        remove_avatar_user: "%{name} yekkes avaṭar n %{target}"
-        reset_password_user: "%{name} iwennez awal uffir n useqdac %{target}"
-        resolve_report: "%{name} yefra aneqqis %{target}"
-        silence_account: "%{name} yesgugem amiḍan n %{target}"
-        unsilence_account: "%{name} yekkes asgugem n umiḍan n %{target}"
-        update_announcement: "%{name} ileqqem taselɣut %{target}"
-        update_custom_emoji: "%{name} yelqem imuji %{target}"
-        update_status: "%{name} yelqem tasuffeɣt n %{target}"
+        assigned_to_self_report_html: "%{name} imudd aneqqis %{target} i yiman-nsen"
+        change_email_user_html: "%{name} ibeddel tansa imayl n useqdac %{target}"
+        confirm_user_html: "%{name} isentem tansa imayl n useqdac %{target}"
+        create_account_warning_html: "%{name} yuzen alɣu i %{target}"
+        create_announcement_html: "%{name} yerna taselɣut tamaynut %{target}"
+        create_custom_emoji_html: "%{name} yessuli-d imujiten imaynuten %{target}"
+        create_domain_allow_html: "%{name} yerna taɣult %{target} ɣer tebdart tamellalt"
+        create_domain_block_html: "%{name} yessewḥel taɣult %{target}"
+        create_email_domain_block_html: "%{name} yessewḥel taɣult n yimayl %{target}"
+        create_ip_block_html: "%{name} yerna alugen i IP %{target}"
+        create_unavailable_domain_html: "%{name} iseḥbes asiweḍ ɣer taɣult %{target}"
+        demote_user_html: "%{name} iṣubb-d deg usellun aseqdac %{target}"
+        destroy_announcement_html: "%{name} yekkes taselɣut %{target}"
+        destroy_custom_emoji_html: "%{name} ihudd imuji %{target}"
+        destroy_domain_allow_html: "%{name} yekkes taɣult %{target} seg tebdart tamellalt"
+        destroy_domain_block_html: "%{name} yekkes aseḥbes n taɣult %{target}"
+        destroy_email_domain_block_html: "%{name} yekkes asewḥel i taɣult n imayl %{target}"
+        destroy_ip_block_html: "%{name} yekkes alugen i IP %{target}"
+        destroy_status_html: "%{name} yekkes tasufeɣt n %{target}"
+        destroy_unavailable_domain_html: "%{name} yerra-d asiweḍ ɣer taɣult %{target}"
+        disable_2fa_user_html: "%{name} yssens asesteb s snat n tarrayin i useqdac %{target}"
+        disable_custom_emoji_html: "%{name} yessens imuji %{target}"
+        disable_sign_in_token_auth_user_html: "%{name} yessens asesteb yebnan ɣef ujiṭun s yimayl i %{target}"
+        disable_user_html: "%{name} yessens tuqqna i useqdac %{target}"
+        enable_custom_emoji_html: "%{name} yermed imuji %{target}"
+        enable_sign_in_token_auth_user_html: "%{name} yermed asesteb yebnan ɣef ujiṭun s yimayl i %{target}"
+        enable_user_html: "%{name} yermed tuqqna i useqdac %{target}"
+        memorialize_account_html: "%{name} yerra amiḍan n %{target} d asebter n usmekti"
+        promote_user_html: "%{name} yerna deg usellun n useqdac %{target}"
+        remove_avatar_user_html: "%{name} yekkes avaṭar n %{target}"
+        reopen_report_html: "%{name} yules alday n uneqqis %{target}"
+        reset_password_user_html: "%{name} iwennez awal uffir n useqdac %{target}"
+        resolve_report_html: "%{name} yefra aneqqis %{target}"
+        update_announcement_html: "%{name} ileqqem taselɣut %{target}"
+        update_custom_emoji_html: "%{name} ileqqem imuji %{target}"
+        update_domain_block_html: "%{name} ileqqem iḥder n taɣult i %{target}"
+        update_status_html: "%{name} ileqqem tasufeɣt n %{target}"
       deleted_status: "(tasuffeɣt tettwakkes)"
       empty: Ulac iɣmisen i yellan.
+      filter_by_action: Fren s tigawt
       filter_by_user: Sizdeg s useqdac
       title: Aɣmis n usenqed
     announcements:
+      destroyed_msg: Tamselɣut tettwakkes akken iwata!
       edit:
         title: Ẓreg ulγu
       empty: Ulac kra n ulγuyen.
@@ -228,6 +277,10 @@ kab:
       new:
         create: Rnu-d ulγu
         title: Ulγu amaynut
+      publish: Sufeɣ
+      published_msg: Tamselɣut tettwasufeɣ-d akken iwata!
+      scheduled_for: Yettusɣiwsen i %{time}
+      scheduled_msg: Tamselɣut tettusɣiwes i usufeɣ!
       title: Ulγuyen
     custom_emojis:
       assign_category: Efk taggayt
@@ -257,21 +310,9 @@ kab:
       update_failed_msg: Ur izmir ara ad-issali umuji-a
       upload: Sali
     dashboard:
-      config: Tawila
-      feature_deletions: Imiḍan yettwaksen
-      feature_invites: Iseɣwan n iɛaṛuḍen
-      feature_profile_directory: Akaram n imaɣnuten
-      feature_registrations: Ajerred
-      feature_relay: Anmegli n tfidiṛalitt
-      features: Timahaltin
-      open_reports: yeldin d ineqqisen
-      pending_users: imseqdacen ttrajun aɛiwed n tmuɣli
-      recent_users: Iseqdacen n memli kan
       software: Aseɣẓan
+      space: Tallunt yettwasqedcen
       title: Tafelwit
-      total_users: igellan akk d iseqdacen
-      week_users_active: urmiden deg yimalas-agi
-      week_users_new: imseqdacen deg yimalas-agi
     domain_allows:
       add_new: Timerna n taɣult ɣer tabdert tamellalt
       created_msg: Taγult-a tettwarna γer wumuγ amellal mebla ugur
@@ -281,17 +322,25 @@ kab:
       add_new: Rni iḥder amaynut n taɣult
       domain: Taγult
       new:
+        create: Rnu-d iḥder
         severity:
           noop: Ula yiwen
           silence: Sgugem
           suspend: Ḥbes di leεḍil
+        title: Iḥder amaynut n taɣult
       private_comment: Awennit uslig
       public_comment: Awennit azayez
+      reject_media: Agi ifuyla n umidya
+      reject_reports: Agi ineqqisen
+      rejecting_media: agami n yifuyla n umidya
+      rejecting_reports: agami n yineqqisen
       severity:
         silence: yettwasgugem
         suspend: yeḥbes
       show:
         undo: Sefsex
+      undo: Sefsex iḥder n taɣult
+      view: Sken-d iḥder n taɣult
     email_domain_blocks:
       add_new: Rnu amaynut
       delete: Kkes
@@ -301,22 +350,43 @@ kab:
         create: Rnu taγult
         title: Timerna n taɣult tamaynut n imayl ɣer tebdart taberkant
       title: Tabdart taberkant n imayl
+    follow_recommendations:
+      language: I tutlayt
+      status: Addad
+      suppressed: Yettwakkes
     instances:
+      back_to_all: Akk
+      back_to_limited: Ɣur-s talast
       by_domain: Taγult
+      delivery:
+        all: Akk
+        clear: Sfeḍ tuccḍiwin n usiweḍ
+        restart: Ales asiweḍ
+        stop: Seḥbes asiweḍ
+        title: Asiweḍ
+        unavailable: Ur yelli ara
+        unavailable_message: Asiweḍ ur yelli ara
+        warning: Aneddeh
       delivery_available: Yella usiweḍ
+      delivery_error_days: Ussan n tuccḍiwin n usiweḍ
+      empty: Ulac taɣultin yettwafen.
       known_accounts:
         one: "%{count} n umiḍan i yettwasnen"
         other: "%{count} n yimiḍanen i yettwassnen"
       moderation:
         all: Akk
         limited: Yettwasgugem
+        title: Aseɣyed
       private_comment: Awennit uslig
       public_comment: Awennit azayez
       title: Tamatut
       total_blocked_by_us: Ttwasḥebsen sγur-neγ
       total_followed_by_them: Ṭtafaṛen-t
       total_followed_by_us: Neṭṭafaṛ-it
+      total_reported: Ineqqisen fell-asen
+      total_storage: Imeddayen n umidya
     invites:
+      deactivate_all: Sens kullec
       filter:
         all: Akk
         available: Yella
@@ -369,13 +439,23 @@ kab:
       mark_as_unresolved: Creḍ-it ur yefra ara
       notes:
         create: Rnu tazmilt
+        create_and_resolve: Fru s tamawt
+        create_and_unresolve: Alew alday s tamawt
         delete: Kkes
+      reopen: Allus n ulday n uneqqis
       report: 'Aneqqis #%{id}'
+      reported_account: Amiḍan yettumlen
       resolved: Fran
       status: Addad
       title: Ineqqisen
       unresolved: Ur yefra ara
       updated_at: Yettwaleqqem
+    rules:
+      add_new: Rnu alugen
+      delete: Kkes
+      edit: Ẓreg alugen
+      empty: Mazal ur ttwasbadun ara yilugan n uqeddac.
+      title: Ilugan n uqeddac
     settings:
       custom_css:
         desc_html: Beddel aγan s CSS ara d-yettwasalayen deg yal asebter
@@ -410,9 +490,6 @@ kab:
       title: Tisuffiγin n umiḍan
       with_media: S taγwalt
     tags:
-      context: Asatal
-      directory: Deg ukaram
-      in_directory: "%{count} deg ukaram"
       last_active: Armud aneggaru
       most_popular: Ittwasnen aṭas
       most_recent: Melmi kan
@@ -431,16 +508,15 @@ kab:
   appearance:
     discovery: Asnirem
     localization:
-      guide_link: https://crowdin.com/project/mastodon
       guide_link_text: Yal yiwen·t y·tezmer a ttekki.
     sensitive_content: Agbur amḥulfu
   application_mailer:
-    salutation: "%{name},"
     view: 'Ẓaṛ:'
     view_profile: Ssken-d amaɣnu
     view_status: Ssken-d tasuffiɣt
   applications:
     token_regenerated: Ajuṭu n unekcum yettusirew i tikkelt-nniḍen akken iwata
+    your_token: Ajiṭun-ik·im n unekcum
   auth:
     apply_for_account: Suter asnebgi
     change_password: Awal uffir
@@ -455,9 +531,6 @@ kab:
     logout: Ffeγ
     migrate_account: Gujj γer umiḍan nniḍen
     or_log_in_with: Neγ eqqen s
-    providers:
-      cas: CAS
-      saml: SAML
     register: Jerred
     registration_closed: "%{instance} ur yeqbil ara imttekkiyen imaynuten"
     reset_password: Wennez awal uffir
@@ -485,7 +558,6 @@ kab:
   date:
     formats:
       default: "%d %b %Y"
-      with_month_name: "%B %d, %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}isr"
@@ -525,7 +597,6 @@ kab:
     archive_takeout:
       date: Azemz
       size: Teγzi
-    csv: CSV
     lists: Tibdarin
     mutes: Wid tesgugmeḍ
   featured_tags:
@@ -566,6 +637,8 @@ kab:
       merge: Smezdi
       overwrite: Semselsi
     types:
+      blocking: Tabdart n yimiḍanen iweḥlen
+      bookmarks: Ticraḍ
       following: Tabdert n wid teṭṭafareḍ
       muting: Tabdert n wid tesgugmeḍ
     upload: Sali
@@ -588,6 +661,11 @@ kab:
     table:
       expires_at: Ad ifat di
     title: Ɛreḍ-d kra n yimdanen
+  login_activities:
+    authentication_methods:
+      password: awal uffir
+      sign_in_token: tangalt n tɣellist n tansa imayl
+      webauthn: tisura n tɣellist
   migrations:
     acct: Ibeddel γer
     incoming_migrations: Tusiḍ-d seg umiḍan nniḍen
@@ -619,11 +697,9 @@ kab:
   number:
     human:
       decimal_units:
-        format: "%n%u"
         units:
           billion: AṬ
           million: A
-          thousand: K
           trillion: Am
   otp_authentication:
     enable: Rmed
@@ -633,7 +709,6 @@ kab:
     next: Wayed
     older: Aqbuṛ
     prev: Win iɛeddan
-    truncate: "&hellip;"
   preferences:
     other: Wiyaḍ
   relationships:
@@ -670,11 +745,11 @@ kab:
       generic: Iminig arusin
       ie: Internet Explorer
       micro_messenger: MicroMessenger
-      nokia: Nokia S40 Ovi Browser
+      nokia: Iminig Nokia S40 Ovi
       opera: Opera
       otter: Otter
       phantom_js: PhantomJS
-      qq: QQ Browser
+      qq: Iminig QQ
       safari: Safari
       uc_browser: UCBrowser
       weibo: Weibo
@@ -685,11 +760,12 @@ kab:
       adobe_air: Adobe Air
       android: Android
       blackberry: Blackberry
-      chrome_os: ChromeOS
+      chrome_os: Chrome OS
       firefox_os: Firefox OS
       ios: iOS
       linux: Linux
       mac: macOS
+      other: anagraw arussin
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Tiliγri Windows Phone
@@ -712,6 +788,7 @@ kab:
     preferences: Imenyafen
     profile: Ameγnu
     relationships: Imeḍfaṛen akked wid i teṭṭafaṛeḍ
+    two_factor_authentication: Asesteb s snat n tarrayin
     webauthn_authentication: Tisura n teɣlist
   statuses:
     attached:
@@ -737,13 +814,21 @@ kab:
     show_more: Ssken-d ugar
     show_thread: Ssken-d lxiḍ
     sign_in_to_participate: Qqen i waken ad tzeddiḍ deg udiwenni
-    title: '%{name}: "%{quote}"'
     visibilities:
       private: Imeḍfaṛen kan
       private_long: Ssken i ymeḍfaṛen kan
       public: Azayez
       public_long: Yal yiwen·t yezmer at iwali
       unlisted: War tabdert
+  statuses_cleanup:
+    min_age:
+      '1209600': 2 n yimalasen
+      '15778476': 6 n wayyuren
+      '2629746': 1 n wayyur
+      '31556952': 1 n useggas
+      '5259492': 2 n wayyuren
+      '63113904': 2 n yiseggasen
+      '7889238': 3 n wayyuren
   stream_entries:
     pinned: Tijewwiqt yettwasentḍen
     sensitive_content: Agbur amḥulfu
@@ -753,15 +838,13 @@ kab:
     contrast: Maṣṭudun (agnil awriran)
     default: Maṣṭudun (Aberkan)
     mastodon-light: Maṣṭudun (Aceɛlal)
-  time:
-    formats:
-      default: "%b %d, %Y, %H:%M"
-      month: "%b %Y"
   two_factor_authentication:
     add: Rnu
     disable: Gdel
     disabled_success: Asesteb s snat n tarrayin yensa akken iwata
     edit: Ẓreg
+    enabled: Asesteb s snat n tarrayin yermed
+    enabled_success: Asesteb s snat n tarrayin yermed akken iwata
     otp: Asnas n usesteb
     webauthn: Tisura n teɣlist
   user_mailer:
