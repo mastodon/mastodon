@@ -3,10 +3,12 @@ import Immutable from 'immutable';
 import {
   BLOCKS_INIT_MODAL,
 } from '../actions/blocks';
+import { List as ImmutableList } from 'immutable';
 
 const initialState = Immutable.Map({
   new: Immutable.Map({
     account_id: null,
+    items: ImmutableList(),
   }),
 });
 

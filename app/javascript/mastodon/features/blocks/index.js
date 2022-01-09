@@ -74,9 +74,14 @@ class Blocks extends ImmutablePureComponent {
 
   componentDidMount() {
     const { id } = this.props.params;
-    this.props.dispatch(fetchBlocks(id));
-    this.props.dispatch(fetchAccount(id));
+    const { dispatch } = this.props;
     this.setState({ showMessage: false, showDenyMessage: false, synchronized: false, count: 0, })
+    dispatch(fetchBlocks(id));
+    dispatch(fetchAccount(id))
+    const text = JSON.parse(this.props.myAccount.get("block_synchro_list"));
+    this.setState({
+      synchronized: this.checkSynchronization(text),
+    });
   }
 
   handleLoadMore = debounce(() => {
@@ -114,31 +119,28 @@ class Blocks extends ImmutablePureComponent {
 
   handleClickSynchronizeBlocks = () => {
     const text = JSON.parse(this.props.myAccount.get("block_synchro_list"));
-    console.log(text)
     if (text == null) {
       json = { "id": this.props.params.id };
-      this.setState({ synchronized: false, })
       this.props.dispatch(synchronizeBlocks(me.compose.me, JSON.stringify(json)));
     }
     else {
       var json = Object.values(text);
-      console.log(json);
-      const res = this.checkSynchronization(json);
-      if (!res) {
-        json = json.filter(value => this.isEmpty(value) == false);
-        json = json.filter(value => value.id !== undefined);
-        json.push({ "id": this.props.params.id });
-        this.setState({ synchronized: true, })
-        this.props.dispatch(synchronizeBlocks(me.compose.me, JSON.stringify(json)));
+      this.checkSynchronization(json);
+      if (!this.state.synchronized) {
+        if (this.checkIfIn(json, this.props.params.id)) {
+          json = json.filter(value => this.isEmpty(value) == false);
+          json = json.filter(value => value.id !== undefined);
+          json.push({ "id": this.props.params.id });
+          this.props.dispatch(synchronizeBlocks(me.compose.me, JSON.stringify(json)));
+        }
       }
       else {
         json = json.filter(x => x.id !== this.props.params.id).filter(value => this.isEmpty(value) == false).filter(value => value.id !== undefined);
-        this.setState({ synchronized: false, })
         this.props.dispatch(synchronizeBlocks(me.compose.me, JSON.stringify(json)));
       }
     }
-    this.props.dispatch(fetchAccount(me.compose.me));
-    // this.checkSynchronization(json);
+    this.checkSynchronization(json);
+    this.props.dispatch(fetchAccount(me.compose.me))
   }
 
   checkSynchronization = (text) => {
@@ -170,11 +172,6 @@ class Blocks extends ImmutablePureComponent {
       );
     }
 
-    const text = JSON.parse(this.props.myAccount.get("block_synchro_list"));
-    this.setState({
-      synchronized: this.checkSynchronization(text),
-    });
-
     const emptyMessage = <FormattedMessage id='empty_column.blocks' defaultMessage="This user haven't blocked any users yet." />;
     return (
 
@@ -200,14 +197,10 @@ class Blocks extends ImmutablePureComponent {
                 <FormattedMessage id='button.unsynchronize' defaultMessage='Unsynchronize' />
               </button>
             </div>}
-          {/* </div> */}
-          {/* <div>
-          {this.state.showMessage && <span className='message-import'> {intl.formatMessage(messages.importMessage, { counter: this.state.count })}</span>}
-          {this.state.showDenyMessage && <span className='message-import'> {intl.formatMessage(messages.denyMessage)} </span>}
-        </div> */}
-          <div  >
-            <span className='message-import'> {intl.formatMessage(messages.blockedBy, { name: account.get('username') })} </span>
-          </div>
+          {me.compose.me !== params.id &&
+            <div  >
+              <span className='message-import'> {intl.formatMessage(messages.blockedBy, { name: account.get('username') })} </span>
+            </div>}
         </div>
         {
           (account.get('show_blocked_users') || me.compose.me == params.id) &&
