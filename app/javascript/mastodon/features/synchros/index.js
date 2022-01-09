@@ -11,102 +11,99 @@ import ScrollableList from '../../components/scrollable_list';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { makeGetAccount } from '../../selectors';
 import me from 'mastodon/initial_state';
-import { fetchAccount } from '../../actions/accounts';
+import { fetchAccount, blockAccount } from '../../actions/accounts';
 import { fetchBlocks } from '../../actions/blocks';
 
 const messages = defineMessages({
-    heading: { id: 'column.blocks', defaultMessage: 'Blocked users' },
+    heading: { id: 'column.synchros', defaultMessage: 'Blocked Users from Synchros' },
+    synchronized: { id: 'blocks.blockall', defaultMessage: 'Block All' },
+    synchronization: { id: 'blocks.synchronization', defaultMessage: 'Blocks to Synchronize' },
+    emptyMessage: {id: 'empty_column.synchros', defaultMessage: "You don't have users to block from synchronization" }
 });
 
 const makeMapStateToProps = () => {
 
     const getAccount = makeGetAccount();
 
-    const mapStateToProps = (state, props) => ({
+    const mapStateToProps = (state) => ({
         account: getAccount(state, me.compose.me),
         accounts: JSON.parse(state.getIn(['accounts', me.compose.me, 'block_synchro_list'])),
-
+        accountIds: state.getIn(['user_lists', 'blocks', 'items']),
     });
     return mapStateToProps;
 };
+
+var result = [];
 
 export default @connect(makeMapStateToProps)
 @injectIntl
 class Synchros extends ImmutablePureComponent {
 
     static propTypes = {
-        account: ImmutablePropTypes.map,
+        account: ImmutablePropTypes.map.isRequired,
         accounts: PropTypes.array.isRequired,
+        accountIds: ImmutablePropTypes.list,
         dispatch: PropTypes.func.isRequired,
-        hasMore: PropTypes.bool,
-        isLoading: PropTypes.bool,
         intl: PropTypes.object.isRequired,
         multiColumn: PropTypes.bool,
     };
 
-    state = {
-        accountIds: null,
-    }
-
     componentDidMount() {
+        this.setState({ user_lists: [], })
         this.props.dispatch(fetchAccount(me.compose.me));
-        // this.fetchSynchros(this.props.account)
+        this.props.accounts.map(x => this.props.dispatch(fetchBlocks(x.id)));
     }
 
     handleClick = () => {
-        console.log(this.isEmpty(this.props.accounts));
-        this.props.accounts.map(x => console.log(x.id));
-        // console.log();
-        // console.log(this.props.account.get("block_synchro_list"));
+        result.map(x => this.props.dispatch(blockAccount(x)));
     }
 
-    fetchSynchros = (account) => {
-        console.log(this.state.accountIds)
-        var json = JSON.parse(account.get("block_synchro_list"))
-        json = Object.values(json);
-        const accountIds = json.map(x => this.props.dispatch(fetchBlocks(x.id)));
-        // this.setState({ accountIds: accountIds });
-        return accountIds;
+    isEmpty = (obj) => {
+        for (var key in obj) {
+            if (obj.hasOwnProperty(key))
+                return false;
+        }
+        return true;
     }
-
-
-  isEmpty = (obj) => {
-    for (var key in obj) {
-      if (obj.hasOwnProperty(key))
-        return false;
-    }
-    return true;
-  }
 
     render() {
-        const { intl, hasMore, multiColumn, isLoading, accounts } = this.props;
+        const { intl, multiColumn, accountIds } = this.props;
 
-        const emptyMessage = <FormattedMessage id='empty_column.blocks' defaultMessage="You haven't blocked any users yet." />;
+        const emptyMessage = <FormattedMessage id='empty_column.synchros' defaultMessage="You don't have users to block from synchronization" />;
 
-        if (this.isEmpty(accounts)) {
+        if (!accountIds) {
             return (
                 <Column>
                     <LoadingIndicator />
                 </Column>
             );
         }
+        accountIds.map(x => result.push(x.toString()));
+
+        result = result.filter((w, index) => {
+            return result.indexOf(w) === index;
+        }).filter(id => id !== me.compose.me);
+
         return (
             <Column bindToDocument={!multiColumn} icon='ban' heading={intl.formatMessage(messages.heading)}>
                 <ColumnBackButtonSlim />
-                {<div >
-                    <button onClick={this.handleClick} className='button-import'>
-                        <FormattedMessage id='button.import' defaultMessage='Import' />
-                    </button>
-                </div>}
+                <div className="wrapper-import">
+                    {<div >
+                        <button onClick={this.handleClick} className='button-import'>
+                            <FormattedMessage id='blocks.blockall' defaultMessage='Block All' />
+                        </button>
+                    </div>}
+                    <div  >
+                        <span className='message-import'> {intl.formatMessage(messages.synchronization)} </span>
+                    </div>
+                </div>
                 <ScrollableList
                     scrollKey='synchros'
-                    hasMore={hasMore}
-                    isLoading={isLoading}
                     emptyMessage={emptyMessage}
                     bindToDocument={!multiColumn}
                 >
-                    {accounts.map(id =>
-                        <AccountContainer key={id.id} id={id.id} />,
+                    {result.map(id =>
+                        <AccountContainer key={id} id={id} />,
                     )}
                 </ScrollableList>
             </Column>
