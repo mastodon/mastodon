@@ -3,16 +3,18 @@ services:
 
   db:
     restart: always
-    image: postgres:14-alpine
+    image: postgres:9.6-alpine
     shm_size: 256mb
     networks:
       - internal_network
     healthcheck:
       test: ["CMD", "pg_isready", "-U", "postgres"]
-    volumes:
-      - ./postgres14:/var/lib/postgresql/data
     environment:
-      - "POSTGRES_HOST_AUTH_METHOD=trust"
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=ee1669350bc29a0589931f9647f9ec66a70aba7a2
+      - POSTGRES_DB=mastodon_production
+    volumes:
+      - ./postgres:/var/lib/postgresql/data
 
   redis:
     restart: always
@@ -24,24 +26,29 @@ services:
     volumes:
       - ./redis:/data
 
-#  es:
-#    restart: always
-#    image: docker.elastic.co/elasticsearch/elasticsearch-oss:7.10.2
-#    environment:
-#      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
-#      - "cluster.name=es-mastodon"
-#      - "discovery.type=single-node"
-#      - "bootstrap.memory_lock=true"
-#    networks:
-#      - internal_network
-#    healthcheck:
-#      test: ["CMD-SHELL", "curl --silent --fail localhost:9200/_cluster/health || exit 1"]
-#    volumes:
-#      - ./elasticsearch:/usr/share/elasticsearch/data
-#    ulimits:
-#      memlock:
-#        soft: -1
-#        hard: -1
+  es:
+    restart: always
+    build: 
+      context: .
+      dockerfile: Dockerfile.es
+    environment:
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - "cluster.name=es-mastodon"
+      - "discovery.type=single-node"
+      - "bootstrap.memory_lock=true"
+    networks:
+      - external_network
+      - internal_network
+    healthcheck:
+      test: ["CMD-SHELL", "curl --silent --fail localhost:9200/_cluster/health || exit 1"]
+    volumes:
+      - ./elasticsearch:/usr/share/elasticsearch/data
+    ports:
+      - "127.0.0.1:9200:9200"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
 
   web:
     build: .
@@ -59,7 +66,7 @@ services:
     depends_on:
       - db
       - redis
-#      - es
+      - es
     volumes:
       - ./public/system:/mastodon/public/system
 
@@ -94,6 +101,14 @@ services:
       - internal_network
     volumes:
       - ./public/system:/mastodon/public/system
+    deploy:
+      resources:
+        limits:
+          memory: 4096M
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "5g"
 ## Uncomment to enable federation with tor instances along with adding the following ENV variables
 ## http_proxy=http://privoxy:8118
 ## ALLOW_ACCESS_TO_HIDDEN_SERVICE=true

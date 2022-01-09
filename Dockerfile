@@ -62,6 +62,8 @@ RUN cd /opt/mastodon && \
 	bundle install -j"$(nproc)" && \
 	yarn install --pure-lockfile
 
+RUN gem install rake --version 13.0.1
+
 FROM ubuntu:20.04
 
 # Copy over all the langs needed for runtime

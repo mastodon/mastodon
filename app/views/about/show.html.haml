@@ -17,18 +17,6 @@
         = render 'registration'
 
       .directory
-        - if Setting.profile_directory
-          .directory__tag
-            = optional_link_to Setting.profile_directory, explore_path do
-              %h4
-                = fa_icon 'address-book fw'
-                = t('about.discover_users')
-                %small= t('about.browse_directory')
-
-              .avatar-stack
-                - @instance_presenter.sample_accounts.each do |account|
-                  = image_tag current_account&.user&.setting_auto_play_gif ? account.avatar_original_url : account.avatar_static_url, alt: '', class: 'account__avatar'
-
         - if Setting.timeline_preview
           .directory__tag
             = optional_link_to Setting.timeline_preview, public_timeline_path do
