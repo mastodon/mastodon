@@ -29,6 +29,8 @@ const messages = defineMessages({
   synchronize: { id: 'button.synchronize', defaultMessage: 'Synchronize' },
   unsynchronize: { id: 'button.unsynchronize', defaultMessage: 'Unsynchronize' },
   otherEmptyBlocks: {id: 'empty_column.otherBlocks', defaultMessage: "This user haven't blocked any users yet."},
+  synchronize: { id: 'button.synchronize', defaultMessage: 'Synchronize' },
+  unsynchronize: { id: 'button.unsynchronize', defaultMessage: 'Unsynchronize' },
 });
 
 const makeMapStateToProps = () => {
@@ -173,13 +175,7 @@ class Blocks extends ImmutablePureComponent {
       );
     }
 
-    var emptyMessage = <FormattedMessage id='empty_column.otherBlocks' defaultMessage="This user haven't blocked any users yet." />;
-
-    if (this.props.params.id == me.compose.me) {
-      emptyMessage = <FormattedMessage id='empty_column.blocks' defaultMessage="You haven't blocked any users yet." />;
-    }
-    
-    
+    const emptyMessage = <FormattedMessage id='empty_column.blocks' defaultMessage="This user haven't blocked any users yet." />;
     return (
 
       <Column bindToDocument={!multiColumn} icon='ban' heading={intl.formatMessage(messages.heading)}>

@@ -148,6 +148,10 @@ export function Synchros () {
 export function SearchUsers () {
   return import(/*webpackChunkName: "features/search" */'../../search_users');
 }
+ 
+export function Synchros () {
+  return import(/*webpackChunkName: "features/synchros" */'../../synchros');
+}
 
 export function Tesseract () {
   return import(/*webpackChunkName: "tesseract" */'tesseract.js');
