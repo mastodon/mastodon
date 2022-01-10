@@ -12,6 +12,7 @@ const messages = defineMessages({
   favourites: { id: 'navigation_bar.favourites', defaultMessage: 'Favourites' },
   lists: { id: 'navigation_bar.lists', defaultMessage: 'Lists' },
   blocks: { id: 'navigation_bar.blocks', defaultMessage: 'Blocked users' },
+  synchros: { id: 'navigation_bar.synchros', defaultMessage: 'Synchronized blocks' },
   domain_blocks: { id: 'navigation_bar.domain_blocks', defaultMessage: 'Hidden domains' },
   mutes: { id: 'navigation_bar.mutes', defaultMessage: 'Muted users' },
   filters: { id: 'navigation_bar.filters', defaultMessage: 'Muted words' },
@@ -48,6 +49,7 @@ class ActionBar extends React.PureComponent {
     menu.push(null);
     menu.push({ text: intl.formatMessage(messages.mutes), to: '/mutes' });
     menu.push({ text: intl.formatMessage(messages.blocks), to: '/blocks/' + account.get('id') });
+    menu.push({ text: intl.formatMessage(messages.synchros), to: '/synchros' });
     menu.push({ text: intl.formatMessage(messages.domain_blocks), to: '/domain_blocks' });
     menu.push({ text: intl.formatMessage(messages.filters), href: '/filters' });
     menu.push(null);

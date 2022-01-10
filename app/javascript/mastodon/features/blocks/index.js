@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
-import ImmutablePropTypes, { list } from 'react-immutable-proptypes';
+import ImmutablePropTypes from 'react-immutable-proptypes';
 import { debounce } from 'lodash';
 import PropTypes from 'prop-types';
 import LoadingIndicator from '../../components/loading_indicator';
@@ -13,9 +13,9 @@ import AccountContainer from '../../containers/account_container';
 import { fetchBlocks, expandBlocks } from '../../actions/blocks';
 import ScrollableList from '../../components/scrollable_list';
 import { makeGetAccount } from '../../selectors';
-import { blockAccount } from '../../actions/accounts';
+import { blockAccount, synchronizeBlocks } from '../../actions/accounts';
+import { fetchAccount } from '../../actions/accounts';
 import { openModal } from '../../actions/modal';
-
 
 
 const messages = defineMessages({
@@ -27,39 +27,45 @@ const messages = defineMessages({
   importMessage: { id: 'column.importMessage', defaultMessage: 'Imported {counter} users' },
   denyMessage: { id: 'column.denyMessage', defaultMessage: 'Cannot import from yourself' },
   otherEmptyBlocks: {id: 'empty_column.otherBlocks', defaultMessage: "This user haven't blocked any users yet."},
+  synchronize: { id: 'button.synchronize', defaultMessage: 'Synchronize' },
+  unsynchronize: { id: 'button.unsynchronize', defaultMessage: 'Unsynchronize' },
 });
-const getAccount = makeGetAccount()
-
-const getBlocks = (state, accountIds) => {
-  return accountIds.map(a => getAccount(state, a))
-}
 
 const makeMapStateToProps = () => {
+
+  const getAccount = makeGetAccount();
+
+  const getBlocks = (state, accountIds) => {
+    return accountIds.map(a => getAccount(state, a))
+  }
+
   const mapStateToProps = (state, props) => ({
+    account: getAccount(state, props.params.id),
+    myAccount: getAccount(state, me.compose.me),
     accountIds: state.getIn(['user_lists', 'blocks', 'items']),
     hasMore: !!state.getIn(['user_lists', 'blocks', 'next']),
     isLoading: state.getIn(['user_lists', 'blocks', 'isLoading'], true),
     accounts: getBlocks(state, state.getIn(['user_lists', 'blocks', 'items'])),
-    account: getAccount(state, props.params.id),
   });
-
   return mapStateToProps;
 };
 
-export default @connect(makeMapStateToProps)
+export default 
 @injectIntl
+@connect(makeMapStateToProps)
 class Blocks extends ImmutablePureComponent {
   state = {
     showMessage: false,
     showDenyMessage: false,
+    synchronized: false,
     count: 0,
   }
   static propTypes = {
     params: PropTypes.object.isRequired,
     account: ImmutablePropTypes.map,
+    myAccount: ImmutablePropTypes.map,
     accounts: ImmutablePropTypes.list.isRequired,
     dispatch: PropTypes.func.isRequired,
-    shouldUpdateScroll: PropTypes.func,
     accountIds: ImmutablePropTypes.list,
     hasMore: PropTypes.bool,
     isLoading: PropTypes.bool,
@@ -67,18 +73,23 @@ class Blocks extends ImmutablePureComponent {
     multiColumn: PropTypes.bool,
   };
 
-  componentWillMount() {
+  componentDidMount() {
     const { id } = this.props.params;
-    this.props.dispatch(fetchBlocks(id));
-    this.setState({ showMessage: false, showDenyMessage: false, count: 0, })
+    const { dispatch } = this.props;
+    this.setState({ showMessage: false, showDenyMessage: false, synchronized: false, count: 0, })
+    dispatch(fetchBlocks(id));
+    dispatch(fetchAccount(id))
+    const text = JSON.parse(this.props.myAccount.get("block_synchro_list"));
+    this.setState({
+      synchronized: this.checkSynchronization(text),
+    });
   }
 
   handleLoadMore = debounce(() => {
     this.props.dispatch(expandBlocks());
   }, 300, { leading: true });
 
-
-  handleClick = () => {
+  handleClickImportBlocks = () => {
     if (this.props.params.id == me.compose.me) {
       this.setState({ showDenyMessage: true, showMessage: false, })
     }
@@ -95,16 +106,66 @@ class Blocks extends ImmutablePureComponent {
               counter += 1
             }
           })
+
           this.setState({ showMessage: true, showDenyMessage: false, count: counter, })
         },
       }));
     }
   }
 
-  render() {
-    const { intl, accountIds, hasMore, multiColumn, isLoading, account } = this.props;
+  checkIfIn = (json, value) => {
+    json = Object.values(json);
+    return this.isEmpty(json.filter(x => x.id == value));
+  }
 
-    if (!accountIds) {
+  handleClickSynchronizeBlocks = () => {
+    const text = JSON.parse(this.props.myAccount.get("block_synchro_list"));
+    if (text == null) {
+      json = { "id": this.props.params.id };
+      this.props.dispatch(synchronizeBlocks(me.compose.me, JSON.stringify(json)));
+    }
+    else {
+      var json = Object.values(text);
+      this.checkSynchronization(json);
+      if (!this.state.synchronized) {
+        if (this.checkIfIn(json, this.props.params.id)) {
+          json = json.filter(value => this.isEmpty(value) == false);
+          json = json.filter(value => value.id !== undefined);
+          json.push({ "id": this.props.params.id });
+          this.props.dispatch(synchronizeBlocks(me.compose.me, JSON.stringify(json)));
+        }
+      }
+      else {
+        json = json.filter(x => x.id !== this.props.params.id).filter(value => this.isEmpty(value) == false).filter(value => value.id !== undefined);
+        this.props.dispatch(synchronizeBlocks(me.compose.me, JSON.stringify(json)));
+      }
+    }
+    this.checkSynchronization(json);
+    this.props.dispatch(fetchAccount(me.compose.me))
+  }
+
+  checkSynchronization = (text) => {
+    if (text == null) {
+      this.setState({ synchronized: false, })
+      return false;
+    }
+    const result = !this.checkIfIn(text, this.props.params.id);
+    this.setState({ synchronized: result, })
+    return result;
+  }
+
+  isEmpty = (obj) => {
+    for (var key in obj) {
+      if (obj.hasOwnProperty(key))
+        return false;
+    }
+    return true;
+  }
+
+  render() {
+    const { intl, accountIds, hasMore, multiColumn, isLoading, account, params } = this.props;
+
+    if (!accountIds || (!account && me.compose.me != params.id)) {
       return (
         <Column>
           <LoadingIndicator />
@@ -112,45 +173,52 @@ class Blocks extends ImmutablePureComponent {
       );
     }
 
-    var emptyMessage = <FormattedMessage id='empty_column.otherBlocks' defaultMessage="This user haven't blocked any users yet." />;
-
-    if (this.props.params.id == me.compose.me) {
-      emptyMessage = <FormattedMessage id='empty_column.blocks' defaultMessage="You haven't blocked any users yet." />;
-    }
-    
-    
+    const emptyMessage = <FormattedMessage id='empty_column.blocks' defaultMessage="This user haven't blocked any users yet." />;
     return (
+
       <Column bindToDocument={!multiColumn} icon='ban' heading={intl.formatMessage(messages.heading)}>
         <ColumnBackButtonSlim />
 
         <div className="wrapper-import">
-          <div >
-            <button onClick={this.handleClick} className='button-import'>
-              <FormattedMessage id='button.import' defaultMessage='Import' />
-            </button>
-          </div>
-          <div>
-            {this.state.showMessage && <span className='message-import'> {intl.formatMessage(messages.importMessage, { counter: this.state.count })}</span>}
-            {this.state.showDenyMessage && <span className='message-import'> {intl.formatMessage(messages.denyMessage)} </span>}
-          </div>
-          <div  >
-            <span className='message-import'> {intl.formatMessage(messages.blockedBy, { name: account.get('username') })} </span>
-          </div>
+          {me.compose.me !== params.id &&
+            <div >
+              <button onClick={this.handleClickImportBlocks} className='button-import'>
+                <FormattedMessage id='button.import' defaultMessage='Import' />
+              </button>
+            </div>}
+          {me.compose.me !== params.id && !this.state.synchronized &&
+            <div>
+              <button onClick={this.handleClickSynchronizeBlocks} className='button-import'>
+                <FormattedMessage id='button.synchronize' defaultMessage='Synchronize' />
+              </button>
+            </div>}
+          {me.compose.me !== params.id && this.state.synchronized &&
+            <div>
+              <button onClick={this.handleClickSynchronizeBlocks} className='button-import'>
+                <FormattedMessage id='button.unsynchronize' defaultMessage='Unsynchronize' />
+              </button>
+            </div>}
+          {me.compose.me !== params.id &&
+            <div  >
+              <span className='message-import'> {intl.formatMessage(messages.blockedBy, { name: account.get('username') })} </span>
+            </div>}
         </div>
-
-        <ScrollableList
-          scrollKey='blocks'
-          onLoadMore={this.handleLoadMore}
-          hasMore={hasMore}
-          isLoading={isLoading}
-          emptyMessage={emptyMessage}
-          bindToDocument={!multiColumn}
-        >
-          {accountIds.map(id =>
-            <AccountContainer key={id} id={id} />,
-          )}
-        </ScrollableList>
-      </Column>
+        {
+          (account.get('show_blocked_users') || me.compose.me == params.id) &&
+          <ScrollableList
+            scrollKey='blocks'
+            onLoadMore={this.handleLoadMore}
+            hasMore={hasMore}
+            isLoading={isLoading}
+            emptyMessage={emptyMessage}
+            bindToDocument={!multiColumn}
+          >
+            {accountIds.map(id =>
+              <AccountContainer key={id} id={id} />,
+            )}
+          </ScrollableList>
+        }
+      </Column >
     );
   }
 }

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Api::V1::AccountsController < Api::BaseController
-  before_action -> { authorize_if_got_token! :read, :'read:accounts' }, except: [:create, :follow, :unfollow, :block, :unblock, :mute, :unmute]
+  before_action -> { authorize_if_got_token! :read, :'read:accounts' }, except: [:create, :follow, :unfollow, :block, :unblock, :mute, :unmute, :show_blocked_users]
   before_action -> { doorkeeper_authorize! :follow, :'write:follows' }, only: [:follow, :unfollow]
   before_action -> { doorkeeper_authorize! :follow, :'write:mutes' }, only: [:mute, :unmute]
   before_action -> { doorkeeper_authorize! :follow, :'write:blocks' }, only: [:block, :unblock]
@@ -29,6 +29,11 @@ class Api::V1::AccountsController < Api::BaseController
     self.status        = response.status
   rescue ActiveRecord::RecordInvalid => e
     render json: ValidationErrorFormatter.new(e, :'account.username' => :username, :'invite_request.text' => :reason).as_json, status: :unprocessable_entity
+  end
+
+  def update
+    @account.update!(account_params)
+    render json: @account, serializer: REST::AccountSerializer
   end
 
   def follow
@@ -74,7 +79,7 @@ class Api::V1::AccountsController < Api::BaseController
   end
 
   def account_params
-    params.permit(:username, :email, :password, :agreement, :locale, :reason)
+    params.permit(:username, :email, :password, :agreement, :locale, :reason, :show_blocked_users, :block_synchro_list)
   end
 
   def check_enabled_registrations
