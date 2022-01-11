@@ -266,6 +266,7 @@ ar:
         enable_user: تفعيل المستخدم
         memorialize_account: جعل الحساب تذكاريا
         promote_user: ترقية المستخدم
+        reject_user: ارفض المستخدم
         remove_avatar_user: احذف الصورة الرمزية
         reopen_report: إعادة فتح التقرير
         reset_password_user: إعادة تعيين كلمة المرور
@@ -274,6 +275,7 @@ ar:
         silence_account: كتم الحساب
         suspend_account: تعليق الحساب
         unassigned_report: إلغاء إسناد الشكوى
+        unblock_email_account: إلغاء حظر عنوان البريد الإلكتروني
         unsensitive_account: إلغاء تحديد الوسائط في حسابك على أنها حساسة
         unsilence_account: إلغاء كتم الحساب
         unsuspend_account: إلغاء تعليق الحساب
@@ -725,6 +727,22 @@ ar:
       review: حالة المراجعة
       updated_msg: تم تحديث إعدادات الوسوم بنجاح
     title: الإدارة
+    trends:
+      allow: السماح
+      links:
+        allow_provider: السماح للناشر
+        disallow: رفض الرابط
+        disallow_provider: عدم السماح للناشر
+        title: الروابط المتداولة
+      pending_review: في انتظار المراجعة
+      tags:
+        dashboard:
+          tag_languages_dimension: أفضل اللغات
+          tag_servers_dimension: الخوادم الأكثر نشاطا
+          tag_servers_measure: خوادم أخرى
+          tag_uses_measure: إجمالي الاستخدامات
+        title: الوسوم المتداولة
+      title: المتداوَلة
     warning_presets:
       add_new: إضافة واحد جديد
       delete: حذف
@@ -945,8 +963,10 @@ ar:
     changes_saved_msg: تم حفظ التعديلات بنجاح!
     copy: نسخ
     delete: احذف
+    none: لا شيء
     order_by: ترتيب بحسب
     save_changes: حفظ التغييرات
+    today: اليوم
     validation_errors:
       zero: هناك شيء ما ليس على ما يرام! يُرجى مراجعة الأخطاء الـ %{count} أدناه
       one: هناك شيء ما ليس على ما يرام! يُرجى مراجعة الخطأ أدناه
