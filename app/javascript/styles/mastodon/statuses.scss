@@ -210,8 +210,9 @@ a.button.logo-button {
   }
 
   .status {
-    border-bottom: none;
+    border-bottom: 0;
   }
+
   .line {
     display: block;
     background: lighten($ui-base-color, 8%);
@@ -224,6 +225,7 @@ a.button.logo-button {
   .t-line {
     height: 100%;
   }
+
   .l-line {
     height: 50%;
   }
@@ -243,7 +245,7 @@ a.button.logo-button {
     width: 30px;
     background: lighten($ui-base-color, 8%);
     top: 39px;
-    left: 0px;
+    left: 0;
   }
 
   .indent {
@@ -266,6 +268,7 @@ a.button.logo-button {
       height: 41px;
     }
   }
+
   .indent.hidden {
     &::after {
       height: 0;
