@@ -134,16 +134,9 @@ export function EmbedModal () {
   return import(/* webpackChunkName: "modals/embed_modal" */'../components/embed_modal');
 }
 
-export function ListEditor () {
-  return import(/* webpackChunkName: "features/list_editor" */'../../list_editor');
-}
-
 export function Search () {
   return import(/*webpackChunkName: "features/search" */'../../search');
 }
-
-export function Synchros () {
-  return import(/*webpackChunkName: "features/synchros" */'../../synchros');
 
 export function SearchUsers () {
   return import(/*webpackChunkName: "features/search" */'../../search_users');
