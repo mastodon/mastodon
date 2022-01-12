@@ -200,19 +200,24 @@ a.button.logo-button {
   }
 }
 
-.status__reply{
+.status__reply {
   padding-left: 25px;
 }
 
-
 .status__container {
-  .line {
-    width: 2px;
-    display: block;
-    background: white;
-  } 
+  p {
+    overflow-wrap: anywhere;
+  }
 
-  .status_with_lines{
+  .status {
+    border-bottom: none;
+  }
+  .line {
+    display: block;
+    background: lighten($ui-base-color, 8%);
+  }
+
+  .status_with_lines {
     display: flex;
   }
 
@@ -223,14 +228,47 @@ a.button.logo-button {
     height: 50%;
   }
 
-  .status-line{
+  .status-line-output {
     position: absolute;
-    height: 50%;
+    height: 84%;
     width: 2px;
-    background: white;
-    top: 50%;
-    overflow: hidden;
-    /* z-index: -51; */
-    left: 37px;
+    background: lighten($ui-base-color, 8%);
+    top: 16%;
+    left: 28px;
+  }
+
+  .status-line-input {
+    position: absolute;
+    height: 2px;
+    width: 30px;
+    background: lighten($ui-base-color, 8%);
+    top: 39px;
+    left: 0px;
+  }
+
+  .indent {
+    width: 30px;
+    position: relative;
+
+    &::after {
+      content: "";
+      display: block;
+      background: lighten($ui-base-color, 8%);
+      height: 100%;
+      width: 2px;
+      position: absolute;
+      right: 0;
+    }
+  }
+
+  .indent.half {
+    &::after {
+      height: 41px;
+    }
+  }
+  .indent.hidden {
+    &::after {
+      height: 0;
+    }
   }
 }
