@@ -18,7 +18,7 @@ const messages = defineMessages({
     heading: { id: 'column.synchros', defaultMessage: 'Blocked Users from Synchros' },
     synchronized: { id: 'blocks.blockall', defaultMessage: 'Block All' },
     synchronization: { id: 'blocks.synchronization', defaultMessage: 'Blocks to Synchronize' },
-    emptyMessage: {id: 'empty_column.synchros', defaultMessage: "You don't have users to block from synchronization" }
+    emptyMessage: { id: 'empty_column.synchros', defaultMessage: "You don't have users to block from synchronization" }
 });
 
 const makeMapStateToProps = () => {
@@ -27,11 +27,17 @@ const makeMapStateToProps = () => {
 
     const mapStateToProps = (state) => ({
         account: getAccount(state, me.compose.me),
-        accounts: JSON.parse(state.getIn(['accounts', me.compose.me, 'block_synchro_list'])),
+        accounts: fetchJson(state),
         accountIds: state.getIn(['user_lists', 'blocks', 'items']),
     });
     return mapStateToProps;
 };
+
+const fetchJson = (state) => {
+    if (state.getIn(['accounts', me.compose.me, 'block_synchro_list']) !== null)
+        return JSON.parse(state.getIn(['accounts', me.compose.me, 'block_synchro_list']));
+    return [];
+}
 
 var result = [];
 
