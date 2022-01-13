@@ -16,6 +16,7 @@ sv:
         types:
           disable: Förhindra användaren från att använda sitt konto, men ta inte bort eller dölj innehållet.
           none: Använd det här för att skicka en varning till användaren, utan att trigga någon annan åtgärd.
+          sensitive: Tvinga denna användares alla mediebilagor att flaggas som känsliga.
         warning_preset_id: Extra. Du kan lägga till valfri text i slutet av förinställningen
       announcement:
         all_day: När det är markerat visas endast datum för tidsintervallet
@@ -43,12 +44,25 @@ sv:
         username: Ditt användarnamn måste vara unikt på %{domain}
       featured_tag:
         name: 'Du kan vilja använda en av dessa:'
+      form_challenge:
+        current_password: Du går in i ett säkert område
       imports:
         data: CSV-fil som exporteras från en annan Mastodon-instans
+      invite_request:
+        text: Det här kommer att hjälpa oss att granska din ansökan
+      ip_block:
+        comment: Valfritt. Kom ihåg varför du lade till denna regel.
+        severities:
+          no_access: Blockera åtkomst till alla resurser
+          sign_up_requires_approval: Nya registreringar kräver ditt godkännande
+        severity: Välj vad som ska hända med förfrågningar från denna IP
       rule:
         text: Beskriv en kort och enkel regel för användare på denna server
       sessions:
         otp: 'Ange tvåfaktorkoden genererad från din telefonapp eller använd någon av dina återställningskoder:'
+        webauthn: Om det är en USB-nyckel se till att sätta in den och, om nödvändigt, knacka på den.
+      tag:
+        name: Du kan bara ändra bokstävernas typ av variant, till exempel för att göra det mer läsbart
       user:
         chosen_languages: När aktiverat så visas bara inlägg i dina valda språk i den offentliga tidslinjen
     labels:
@@ -61,8 +75,10 @@ sv:
       account_migration:
         acct: Namnet på det nya kontot
       account_warning_preset:
+        text: Förinställd text
         title: Rubrik
       admin_account_action:
+        include_statuses: Inkludera rapporterade inlägg i e-postmeddelandet
         send_email_notification: Meddela användaren via e-post
         text: Anpassad varning
         type: Åtgärd
@@ -72,6 +88,7 @@ sv:
           sensitive: Känslig
           silence: Tysta
           suspend: Stäng av
+        warning_preset_id: Använd en förinställd varning
       announcement:
         all_day: Heldagsevenemang
         ends_at: Evenemangets slut
