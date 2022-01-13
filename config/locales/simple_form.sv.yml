@@ -2,7 +2,7 @@ sv:
   simple_form:
     hints:
       account_alias:
-        acct: Ange användarnamn@domän för kontot du flyttar från
+        acct: Ange användarnamn@domän för kontot som du vill flytta från
       account_migration:
         acct: Ange användarnamn@domän för kontot du flyttar till
       account_warning_preset:
@@ -15,6 +15,7 @@ sv:
         type_html: Välj vad du vill göra med <strong>%{acct}</strong>
         types:
           disable: Förhindra användaren från att använda sitt konto, men ta inte bort eller dölj innehållet.
+          none: Använd det här för att skicka en varning till användaren, utan att trigga någon annan åtgärd.
         warning_preset_id: Extra. Du kan lägga till valfri text i slutet av förinställningen
       announcement:
         all_day: När det är markerat visas endast datum för tidsintervallet
