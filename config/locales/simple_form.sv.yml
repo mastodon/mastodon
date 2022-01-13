@@ -42,6 +42,8 @@ sv:
         setting_hide_network: Vem du följer och vilka som följer dig kommer inte att visas på din profilsida
         setting_noindex: Påverkar din offentliga profil och statussidor
         username: Ditt användarnamn måste vara unikt på %{domain}
+      email_domain_block:
+        with_dns_records: Ett försök att lösa den givna domänens DNS-poster kommer att göras och resultaten kommer också att blockeras
       featured_tag:
         name: 'Du kan vilja använda en av dessa:'
       form_challenge:
@@ -52,6 +54,8 @@ sv:
         text: Det här kommer att hjälpa oss att granska din ansökan
       ip_block:
         comment: Valfritt. Kom ihåg varför du lade till denna regel.
+        expires_in: IP-adresser är en ändlig resurs, de delas ibland och byter ofta händer. Av den här anledningen så rekommenderas inte IP-blockeringar på obestämd tid.
+        ip: Ange en IPv4 eller IPv6-adress. Du kan blockera hela intervall med hjälp av CIDR-syntax. Var försiktig så att du inte låser ut dig själv!
         severities:
           no_access: Blockera åtkomst till alla resurser
           sign_up_requires_approval: Nya registreringar kräver ditt godkännande
