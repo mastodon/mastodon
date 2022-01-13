@@ -45,16 +45,16 @@ See [lib/tasks/mastodon.rake](https://github.com/mastodon/mastodon/blob/5ba46952
 $ heroku config:set S3_ENABLED=true S3_BUCKET=bbb AWS_ACCESS_KEY_ID=xxx AWS_SECRET_ACCESS_KEY=yyy
 ```
 
-#### Federation
-
-```
-$ heroku config:set LIMITED_FEDERATION_MODE=true
-```
-
 #### Outgoing email
 
 ```
 $ heroku config:set SMTP_SERVER= SMTP_LOGIN= SMTP_PASSWORD= SMTP_FROM_ADDRESS=
+```
+
+#### Disable federation (optional)
+
+```
+$ heroku config:set LIMITED_FEDERATION_MODE=true
 ```
 
 #### ElasticSearch (optional)
