@@ -50,7 +50,7 @@ module ApplicationHelper
   end
 
   def available_sign_up_path
-    if closed_registrations?
+    if closed_registrations? || omniauth_only?
       'https://joinmastodon.org/#getting-started'
     else
       new_user_registration_path
