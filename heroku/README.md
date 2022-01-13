@@ -69,12 +69,14 @@ $ heroku config:set ES_ENABLED=true ES_HOST= ES_PORT= ES_USER= ES_PASS=
 
 ```
 $ git push heroku HEAD:main
+$ heroku open
 $ heroku ps:scale worker=1
 ```
 
 ### Debug
 
 ```
+$ heroku logs -t
 $ heroku console
 $ heroku ps:exec
 ```
