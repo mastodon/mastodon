@@ -107,9 +107,9 @@ Rails.application.configure do
     :authentication       => ENV['SMTP_AUTH_METHOD'] == 'none' ? nil : ENV['SMTP_AUTH_METHOD'] || :plain,
     :ca_file              => ENV['SMTP_CA_FILE'].presence || '/etc/ssl/certs/ca-certificates.crt',
     :openssl_verify_mode  => ENV['SMTP_OPENSSL_VERIFY_MODE'],
-    :enable_starttls_auto => ENV['SMTP_ENABLE_STARTTLS_AUTO'] || true,
-    :tls                  => ENV['SMTP_TLS'].presence,
-    :ssl                  => ENV['SMTP_SSL'].presence,
+    :enable_starttls_auto => ENV['SMTP_ENABLE_STARTTLS_AUTO'] != 'false',
+    :tls                  => ENV['SMTP_TLS'].presence && ENV['SMTP_TLS'] == 'true',
+    :ssl                  => ENV['SMTP_SSL'].presence && ENV['SMTP_SSL'] == 'true',
   }
 
   config.action_mailer.delivery_method = ENV.fetch('SMTP_DELIVERY_METHOD', 'smtp').to_sym
