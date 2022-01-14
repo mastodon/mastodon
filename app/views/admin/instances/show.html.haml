@@ -84,5 +84,5 @@
       = link_to t('admin.instances.delivery.stop'), stop_delivery_admin_instance_path(@instance), data: { confirm: t('admin.accounts.are_you_sure'), method: :post }, class: 'button'
     - else
       = link_to t('admin.instances.delivery.restart'), restart_delivery_admin_instance_path(@instance), data: { confirm: t('admin.accounts.are_you_sure'), method: :post }, class: 'button'
-    - unless @instance.delivery_failure_tracker.available? && @instance.accounts_count > 0 && ! @instance.domain_block&.suspend?
+    - if !@instance.delivery_failure_tracker.available? || @instance.accounts_count.zero? || @instance.domain_block&.suspend?
       = link_to t('admin.instances.purge'), admin_instance_path(@instance), data: { confirm: t('admin.instances.confirm_purge'), method: :delete }, class: 'button'
