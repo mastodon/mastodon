@@ -21,9 +21,9 @@ Generate secrets:
 
 ```
 $ heroku config:set \
-    OTP_SECRET=$(docker run --rm -it tootsuite/mastodon:latest bin/rake secret) \
-    SECRET_KEY_BASE=$(docker run --rm -it tootsuite/mastodon:latest bin/rake secret) \
-    $(docker run --rm -e OTP_SECRET=placeholder -e SECRET_KEY_BASE=placeholder -it tootsuite/mastodon:latest bin/rake mastodon:webpush:generate_vapid_key | xargs)
+    OTP_SECRET=$(RAILS_ENV=production bin/rake secret) \
+    SECRET_KEY_BASE=$(RAILS_ENV=production bin/rake secret) \
+    $(RAILS_ENV=production OTP_SECRET=placeholder SECRET_KEY_BASE=placeholder bin/rake mastodon:webpush:generate_vapid_key | xargs)
 ```
 
 Create databases:
