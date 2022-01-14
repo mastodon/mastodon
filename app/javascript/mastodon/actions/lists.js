@@ -284,8 +284,15 @@ export const addToList =
         getState().getIn(['listEditor', 'hashtagsUsers'])
       );
     }
+
+    //console.log(hashtagsUsers);
+
+    //console.log(Object.keys(hashtagsUsers.users).length);
+
     hashtagsUsers.users[Object.keys(hashtagsUsers.users).length] = accountId;
-    console.log(hashtagsUsers);
+
+    //console.log(accountId);
+
     const hashtagsUsersJSON = JSON.stringify(hashtagsUsers);
 
     dispatch(updateList(listId, title, shouldReset, hashtagsUsersJSON));

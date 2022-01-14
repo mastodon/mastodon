@@ -205,13 +205,13 @@ export function useSubscribeStream({
   const stream = useMemo(
     function getStream() {
       const stream = streams.get(id)?.media;
-      console.log("memo", { streams, id, stream });
+      // console.log("memo", { streams, id, stream });
       return stream;
     },
     [streams]
   );
 
-  console.log({ streams, stream });
+  // console.log({ streams, stream });
 
   return stream;
 }
