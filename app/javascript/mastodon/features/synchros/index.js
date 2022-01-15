@@ -10,9 +10,11 @@ import AccountContainer from '../../containers/account_container';
 import ScrollableList from '../../components/scrollable_list';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { makeGetAccount } from '../../selectors';
+import { debounce } from 'lodash';
 import me from 'mastodon/initial_state';
-import { fetchAccount, blockAccount } from '../../actions/accounts';
-import { fetchBlocks } from '../../actions/blocks';
+import { fetchAccount } from '../../actions/accounts';
+import { fetchSynchroBlocks, expandSynchroBlocks } from '../../actions/blocks';
+import { blockAccount } from '../../actions/accounts'
 
 const messages = defineMessages({
     heading: { id: 'column.synchros', defaultMessage: 'Blocked Users from Synchros' },
@@ -28,7 +30,9 @@ const makeMapStateToProps = () => {
     const mapStateToProps = (state) => ({
         account: getAccount(state, me.compose.me),
         accounts: fetchJson(state),
-        accountIds: state.getIn(['user_lists', 'blocks', 'items']),
+        accountIds: state.getIn(['user_lists', 'synchros', 'items']),
+        hasMore: !!state.getIn(['user_lists', 'synchros', 'next']),
+        isLoading: state.getIn(['user_lists', 'synchros', 'isLoading'], true),
     });
     return mapStateToProps;
 };
@@ -50,15 +54,31 @@ class Synchros extends ImmutablePureComponent {
         accounts: PropTypes.array.isRequired,
         accountIds: ImmutablePropTypes.list,
         dispatch: PropTypes.func.isRequired,
+        hasMore: PropTypes.bool,
+        isLoading: PropTypes.bool,
         intl: PropTypes.object.isRequired,
         multiColumn: PropTypes.bool,
     };
 
     componentDidMount() {
-        this.setState({ user_lists: [], })
+        result = [];
         this.props.dispatch(fetchAccount(me.compose.me));
-        this.props.accounts.map(x => this.props.dispatch(fetchBlocks(x.id)));
+        this.props.accounts.map(x => this.props.dispatch(fetchSynchroBlocks(x.id)));
+        console.log(this.props.accountIds);
+        console.log(this.props.accounts);
     }
+
+    componentDidUpdate() {
+        this.props.accountIds.map(x => result.push(x.toString()));
+
+        result = result.filter((w, index) => {
+            return result.indexOf(w) === index;
+        }).filter(id => id !== me.compose.me);
+    }
+
+    handleLoadMore = debounce(() => {
+        this.props.dispatch(expandSynchroBlocks());
+    }, 300, { leading: true });
 
     handleClick = () => {
         result.map(x => this.props.dispatch(blockAccount(x)));
@@ -73,7 +93,7 @@ class Synchros extends ImmutablePureComponent {
     }
 
     render() {
-        const { intl, multiColumn, accountIds } = this.props;
+        const { intl, multiColumn, accountIds, hasMore, isLoading, } = this.props;
 
         const emptyMessage = <FormattedMessage id='empty_column.synchros' defaultMessage="You don't have users to block from synchronization" />;
 
@@ -84,12 +104,6 @@ class Synchros extends ImmutablePureComponent {
                 </Column>
             );
         }
-        accountIds.map(x => result.push(x.toString()));
-
-        result = result.filter((w, index) => {
-            return result.indexOf(w) === index;
-        }).filter(id => id !== me.compose.me);
-
         return (
             <Column bindToDocument={!multiColumn} icon='ban' heading={intl.formatMessage(messages.heading)}>
                 <ColumnBackButtonSlim />
@@ -105,6 +119,9 @@ class Synchros extends ImmutablePureComponent {
                 </div>
                 <ScrollableList
                     scrollKey='synchros'
+                    onLoadMore={this.handleLoadMore}
+                    hasMore={hasMore}
+                    isLoading={isLoading}
                     emptyMessage={emptyMessage}
                     bindToDocument={!multiColumn}
                 >

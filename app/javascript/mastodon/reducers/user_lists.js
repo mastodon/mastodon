@@ -34,6 +34,12 @@ import {
   BLOCKS_EXPAND_REQUEST,
   BLOCKS_EXPAND_SUCCESS,
   BLOCKS_EXPAND_FAIL,
+  SYNCHROS_FETCH_REQUEST,
+  SYNCHROS_FETCH_SUCCESS,
+  SYNCHROS_FETCH_FAIL,
+  SYNCHROS_EXPAND_REQUEST,
+  SYNCHROS_EXPAND_SUCCESS,
+  SYNCHROS_EXPAND_FAIL,
 } from '../actions/blocks';
 import {
   MUTES_FETCH_REQUEST,
@@ -66,6 +72,7 @@ const initialState = ImmutableMap({
   favourited_by: initialListState,
   follow_requests: initialListState,
   blocks: initialListState,
+  synchros: initialListState,
   mutes: initialListState,
 });
 
@@ -90,77 +97,87 @@ const normalizeFollowRequest = (state, notification) => {
 };
 
 export default function userLists(state = initialState, action) {
-  switch(action.type) {
-  case FOLLOWERS_FETCH_SUCCESS:
-    return normalizeList(state, ['followers', action.id], action.accounts, action.next);
-  case FOLLOWERS_EXPAND_SUCCESS:
-    return appendToList(state, ['followers', action.id], action.accounts, action.next);
-  case FOLLOWERS_FETCH_REQUEST:
-  case FOLLOWERS_EXPAND_REQUEST:
-    return state.setIn(['followers', action.id, 'isLoading'], true);
-  case FOLLOWERS_FETCH_FAIL:
-  case FOLLOWERS_EXPAND_FAIL:
-    return state.setIn(['followers', action.id, 'isLoading'], false);
-  case FOLLOWING_FETCH_SUCCESS:
-    return normalizeList(state, ['following', action.id], action.accounts, action.next);
-  case FOLLOWING_EXPAND_SUCCESS:
-    return appendToList(state, ['following', action.id], action.accounts, action.next);
-  case FOLLOWING_FETCH_REQUEST:
-  case FOLLOWING_EXPAND_REQUEST:
-    return state.setIn(['following', action.id, 'isLoading'], true);
-  case FOLLOWING_FETCH_FAIL:
-  case FOLLOWING_EXPAND_FAIL:
-    return state.setIn(['following', action.id, 'isLoading'], false);
-  case REBLOGS_FETCH_SUCCESS:
-    return state.setIn(['reblogged_by', action.id], ImmutableList(action.accounts.map(item => item.id)));
-  case FAVOURITES_FETCH_SUCCESS:
-    return state.setIn(['favourited_by', action.id], ImmutableList(action.accounts.map(item => item.id)));
-  case NOTIFICATIONS_UPDATE:
-    return action.notification.type === 'follow_request' ? normalizeFollowRequest(state, action.notification) : state;
-  case FOLLOW_REQUESTS_FETCH_SUCCESS:
-    return normalizeList(state, ['follow_requests'], action.accounts, action.next);
-  case FOLLOW_REQUESTS_EXPAND_SUCCESS:
-    return appendToList(state, ['follow_requests'], action.accounts, action.next);
-  case FOLLOW_REQUESTS_FETCH_REQUEST:
-  case FOLLOW_REQUESTS_EXPAND_REQUEST:
-    return state.setIn(['follow_requests', 'isLoading'], true);
-  case FOLLOW_REQUESTS_FETCH_FAIL:
-  case FOLLOW_REQUESTS_EXPAND_FAIL:
-    return state.setIn(['follow_requests', 'isLoading'], false);
-  case FOLLOW_REQUEST_AUTHORIZE_SUCCESS:
-  case FOLLOW_REQUEST_REJECT_SUCCESS:
-    return state.updateIn(['follow_requests', 'items'], list => list.filterNot(item => item === action.id));
-  case BLOCKS_FETCH_SUCCESS:
-    return normalizeList(state, ['blocks'], action.accounts, action.next);
-  case BLOCKS_EXPAND_SUCCESS:
-    return appendToList(state, ['blocks'], action.accounts, action.next);
-  case BLOCKS_FETCH_REQUEST:
-  case BLOCKS_EXPAND_REQUEST:
-    return state.setIn(['blocks', 'isLoading'], true);
-  case BLOCKS_FETCH_FAIL:
-  case BLOCKS_EXPAND_FAIL:
-    return state.setIn(['blocks', 'isLoading'], false);
-  case MUTES_FETCH_SUCCESS:
-    return normalizeList(state, ['mutes'], action.accounts, action.next);
-  case MUTES_EXPAND_SUCCESS:
-    return appendToList(state, ['mutes'], action.accounts, action.next);
-  case MUTES_FETCH_REQUEST:
-  case MUTES_EXPAND_REQUEST:
-    return state.setIn(['mutes', 'isLoading'], true);
-  case MUTES_FETCH_FAIL:
-  case MUTES_EXPAND_FAIL:
-    return state.setIn(['mutes', 'isLoading'], false);
-  case DIRECTORY_FETCH_SUCCESS:
-    return normalizeList(state, ['directory'], action.accounts, action.next);
-  case DIRECTORY_EXPAND_SUCCESS:
-    return appendToList(state, ['directory'], action.accounts, action.next);
-  case DIRECTORY_FETCH_REQUEST:
-  case DIRECTORY_EXPAND_REQUEST:
-    return state.setIn(['directory', 'isLoading'], true);
-  case DIRECTORY_FETCH_FAIL:
-  case DIRECTORY_EXPAND_FAIL:
-    return state.setIn(['directory', 'isLoading'], false);
-  default:
-    return state;
+  switch (action.type) {
+    case FOLLOWERS_FETCH_SUCCESS:
+      return normalizeList(state, ['followers', action.id], action.accounts, action.next);
+    case FOLLOWERS_EXPAND_SUCCESS:
+      return appendToList(state, ['followers', action.id], action.accounts, action.next);
+    case FOLLOWERS_FETCH_REQUEST:
+    case FOLLOWERS_EXPAND_REQUEST:
+      return state.setIn(['followers', action.id, 'isLoading'], true);
+    case FOLLOWERS_FETCH_FAIL:
+    case FOLLOWERS_EXPAND_FAIL:
+      return state.setIn(['followers', action.id, 'isLoading'], false);
+    case FOLLOWING_FETCH_SUCCESS:
+      return normalizeList(state, ['following', action.id], action.accounts, action.next);
+    case FOLLOWING_EXPAND_SUCCESS:
+      return appendToList(state, ['following', action.id], action.accounts, action.next);
+    case FOLLOWING_FETCH_REQUEST:
+    case FOLLOWING_EXPAND_REQUEST:
+      return state.setIn(['following', action.id, 'isLoading'], true);
+    case FOLLOWING_FETCH_FAIL:
+    case FOLLOWING_EXPAND_FAIL:
+      return state.setIn(['following', action.id, 'isLoading'], false);
+    case REBLOGS_FETCH_SUCCESS:
+      return state.setIn(['reblogged_by', action.id], ImmutableList(action.accounts.map(item => item.id)));
+    case FAVOURITES_FETCH_SUCCESS:
+      return state.setIn(['favourited_by', action.id], ImmutableList(action.accounts.map(item => item.id)));
+    case NOTIFICATIONS_UPDATE:
+      return action.notification.type === 'follow_request' ? normalizeFollowRequest(state, action.notification) : state;
+    case FOLLOW_REQUESTS_FETCH_SUCCESS:
+      return normalizeList(state, ['follow_requests'], action.accounts, action.next);
+    case FOLLOW_REQUESTS_EXPAND_SUCCESS:
+      return appendToList(state, ['follow_requests'], action.accounts, action.next);
+    case FOLLOW_REQUESTS_FETCH_REQUEST:
+    case FOLLOW_REQUESTS_EXPAND_REQUEST:
+      return state.setIn(['follow_requests', 'isLoading'], true);
+    case FOLLOW_REQUESTS_FETCH_FAIL:
+    case FOLLOW_REQUESTS_EXPAND_FAIL:
+      return state.setIn(['follow_requests', 'isLoading'], false);
+    case FOLLOW_REQUEST_AUTHORIZE_SUCCESS:
+    case FOLLOW_REQUEST_REJECT_SUCCESS:
+      return state.updateIn(['follow_requests', 'items'], list => list.filterNot(item => item === action.id));
+    case BLOCKS_FETCH_SUCCESS:
+      return normalizeList(state, ['blocks'], action.accounts, action.next);
+    case BLOCKS_EXPAND_SUCCESS:
+      return appendToList(state, ['blocks'], action.accounts, action.next);
+    case BLOCKS_FETCH_REQUEST:
+    case BLOCKS_EXPAND_REQUEST:
+      return state.setIn(['blocks', 'isLoading'], true);
+    case BLOCKS_FETCH_FAIL:
+    case BLOCKS_EXPAND_FAIL:
+      return state.setIn(['blocks', 'isLoading'], false);
+    case SYNCHROS_FETCH_SUCCESS:
+      return normalizeList(state, ['synchros'], action.accounts, action.next);
+    case SYNCHROS_EXPAND_SUCCESS:
+      return appendToList(state, ['synchros'], action.accounts, action.next);
+    case SYNCHROS_FETCH_REQUEST:
+    case SYNCHROS_EXPAND_REQUEST:
+      return state.setIn(['synchros', 'isLoading'], true);
+    case SYNCHROS_FETCH_FAIL:
+    case SYNCHROS_EXPAND_FAIL:
+      return state.setIn(['synchros', 'isLoading'], false);
+    case MUTES_FETCH_SUCCESS:
+      return normalizeList(state, ['mutes'], action.accounts, action.next);
+    case MUTES_EXPAND_SUCCESS:
+      return appendToList(state, ['mutes'], action.accounts, action.next);
+    case MUTES_FETCH_REQUEST:
+    case MUTES_EXPAND_REQUEST:
+      return state.setIn(['mutes', 'isLoading'], true);
+    case MUTES_FETCH_FAIL:
+    case MUTES_EXPAND_FAIL:
+      return state.setIn(['mutes', 'isLoading'], false);
+    case DIRECTORY_FETCH_SUCCESS:
+      return normalizeList(state, ['directory'], action.accounts, action.next);
+    case DIRECTORY_EXPAND_SUCCESS:
+      return appendToList(state, ['directory'], action.accounts, action.next);
+    case DIRECTORY_FETCH_REQUEST:
+    case DIRECTORY_EXPAND_REQUEST:
+      return state.setIn(['directory', 'isLoading'], true);
+    case DIRECTORY_FETCH_FAIL:
+    case DIRECTORY_EXPAND_FAIL:
+      return state.setIn(['directory', 'isLoading'], false);
+    default:
+      return state;
   }
 };
