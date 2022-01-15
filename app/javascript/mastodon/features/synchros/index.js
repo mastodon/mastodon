@@ -64,8 +64,6 @@ class Synchros extends ImmutablePureComponent {
         result = [];
         this.props.dispatch(fetchAccount(me.compose.me));
         this.props.accounts.map(x => this.props.dispatch(fetchSynchroBlocks(x.id)));
-        console.log(this.props.accountIds);
-        console.log(this.props.accounts);
     }
 
     componentDidUpdate() {
