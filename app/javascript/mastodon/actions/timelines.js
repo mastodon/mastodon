@@ -131,7 +131,6 @@ export const expandCommunityTimeline       = ({ maxId, onlyMedia } = {}, done = 
 export const expandAccountTimeline         = (accountId, { maxId, withReplies } = {}) => expandTimeline(`account:${accountId}${withReplies ? ':with_replies' : ''}`, `/api/v1/accounts/${accountId}/statuses`, { exclude_replies: !withReplies, max_id: maxId });
 export const expandAccountFeaturedTimeline = accountId => expandTimeline(`account:${accountId}:pinned`, `/api/v1/accounts/${accountId}/statuses`, { pinned: true });
 export const expandAccountMediaTimeline    = (accountId, { maxId } = {}) => expandTimeline(`account:${accountId}:media`, `/api/v1/accounts/${accountId}/statuses`, { max_id: maxId, only_media: true, limit: 40 });
-//export const expandListTimeline            = (id, { maxId } = {}, done = noOp) => expandTimeline(`list:${id}`, `/api/v1/timelines/list/${id}`, { max_id: maxId }, done);
 export const expandHashtagTimeline         = (hashtag, { maxId, tags, local } = {}, done = noOp) => {
   return expandTimeline(`hashtag:${hashtag}${local ? ':local' : ''}`, `/api/v1/timelines/tag/${hashtag}`, {
     max_id: maxId,
@@ -178,12 +177,10 @@ export function expandListTimeline(timelineId, hashtagsUsers, params = {}, done 
     dispatch(expandTimelineRequest(timelineId, isLoadingMore));
 
     Object.keys(hashtagsUsers.users).forEach((h, i) => {
-    // console.log(hashtagsUsers.users[h])
     
     api(getState).get(`/api/v1/accounts/${hashtagsUsers.users[h]}/statuses`, params.max_id, params.exclude_replies).then(response => {
       const next = getLinks(response).refs.find(link => link.rel === 'next');
       dispatch(importFetchedStatuses(response.data));
-      console.log(response.data);
       dispatch(expandTimelinesSuccess(timelineId, response.data, next ? next.uri : null, response.status === 206, isLoadingRecent, isLoadingMore, isLoadingRecent && preferPendingItems));
 
     }).catch(error => {
@@ -194,12 +191,10 @@ export function expandListTimeline(timelineId, hashtagsUsers, params = {}, done 
   });
 
   Object.keys(hashtagsUsers.hashtags).forEach((h, i) => {
-    // console.log(hashtagsUsers.hashtags[h])
     
     api(getState).get(`/api/v1/timelines/tag/${hashtagsUsers.hashtags[h].substring(1)}`, params.any, params.all, params.none, params.local, params.max_id).then(response => {
       const next = getLinks(response).refs.find(link => link.rel === 'next');
       dispatch(importFetchedStatuses(response.data));
-      console.log(response.data);
       dispatch(expandTimelinesSuccess(timelineId, response.data, next ? next.uri : null, response.status === 206, isLoadingRecent, isLoadingMore, isLoadingRecent && preferPendingItems));
 
     }).catch(error => {
