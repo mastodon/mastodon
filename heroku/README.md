@@ -73,6 +73,13 @@ $ heroku open
 $ heroku ps:scale worker=1
 ```
 
+### Run Admin CLI commands
+
+```
+$ heroku run bash
+> bin/tootctl command options
+```
+
 ### Debug
 
 ```
