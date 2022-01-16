@@ -127,7 +127,6 @@ class Account < ApplicationRecord
 
   delegate :email,
            :unconfirmed_email,
-           :current_sign_in_ip,
            :current_sign_in_at,
            :created_at,
            :sign_up_ip,
