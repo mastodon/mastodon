@@ -2,7 +2,7 @@
 
 module Admin::DashboardHelper
   def relevant_account_ip(account, ip_query)
-    ips = account.user.ips.to_a
+    ips = account.user.present? ? account.user.ips.to_a : []
 
     matched_ip = begin
       ip_query_addr = IPAddr.new(ip_query)
