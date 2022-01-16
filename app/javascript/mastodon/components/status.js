@@ -58,6 +58,7 @@ const messages = defineMessages({
   unlisted_short: { id: 'privacy.unlisted.short', defaultMessage: 'Unlisted' },
   private_short: { id: 'privacy.private.short', defaultMessage: 'Followers-only' },
   direct_short: { id: 'privacy.direct.short', defaultMessage: 'Direct' },
+  local_short: { id: 'privacy.local.short', defaultMessage: 'Local' },
 });
 
 export default @injectIntl
@@ -469,6 +470,7 @@ class Status extends ImmutablePureComponent {
       'unlisted': { icon: 'unlock', text: intl.formatMessage(messages.unlisted_short) },
       'private': { icon: 'lock', text: intl.formatMessage(messages.private_short) },
       'direct': { icon: 'envelope', text: intl.formatMessage(messages.direct_short) },
+      'local': { icon: 'users', text: intl.formatMessage(messages.local_short) },
     };
 
     const visibilityIcon = visibilityIconInfo[status.get('visibility')];
