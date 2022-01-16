@@ -73,70 +73,6 @@ class ApplicationController < ActionController::Base
     new_user_session_path
   end
 
-  def pack(data, pack_name, skin = 'default')
-    return nil unless pack?(data, pack_name)
-    pack_data = {
-      common: pack_name == 'common' ? nil : resolve_pack(data['name'] ? Themes.instance.flavour(current_flavour) : Themes.instance.core, 'common', skin),
-      flavour: data['name'],
-      pack: pack_name,
-      preload: nil,
-      skin: nil,
-      supported_locales: data['locales'],
-    }
-    if data['pack'][pack_name].is_a?(Hash)
-      pack_data[:common] = nil if data['pack'][pack_name]['use_common'] == false
-      pack_data[:pack] = nil unless data['pack'][pack_name]['filename']
-      if data['pack'][pack_name]['preload']
-        pack_data[:preload] = [data['pack'][pack_name]['preload']] if data['pack'][pack_name]['preload'].is_a?(String)
-        pack_data[:preload] = data['pack'][pack_name]['preload'] if data['pack'][pack_name]['preload'].is_a?(Array)
-      end
-      if skin != 'default' && data['skin'][skin]
-        pack_data[:skin] = skin if data['skin'][skin].include?(pack_name)
-      else  #  default skin
-        pack_data[:skin] = 'default' if data['pack'][pack_name]['stylesheet']
-      end
-    end
-    pack_data
-  end
-
-  def pack?(data, pack_name)
-    if data['pack'].is_a?(Hash) && data['pack'].key?(pack_name)
-      return true if data['pack'][pack_name].is_a?(String) || data['pack'][pack_name].is_a?(Hash)
-    end
-    false
-  end
-
-  def nil_pack(data, pack_name, skin = 'default')
-    {
-      common: pack_name == 'common' ? nil : resolve_pack(data['name'] ? Themes.instance.flavour(current_flavour) : Themes.instance.core, 'common', skin),
-      flavour: data['name'],
-      pack: nil,
-      preload: nil,
-      skin: nil,
-      supported_locales: data['locales'],
-    }
-  end
-
-  def resolve_pack(data, pack_name, skin = 'default')
-    result = pack(data, pack_name, skin)
-    unless result
-      if data['name'] && data.key?('fallback')
-        if data['fallback'].nil?
-          return nil_pack(data, pack_name, skin)
-        elsif data['fallback'].is_a?(String) && Themes.instance.flavour(data['fallback'])
-          return resolve_pack(Themes.instance.flavour(data['fallback']), pack_name)
-        elsif data['fallback'].is_a?(Array)
-          data['fallback'].each do |fallback|
-            return resolve_pack(Themes.instance.flavour(fallback), pack_name) if Themes.instance.flavour(fallback)
-          end
-        end
-        return nil_pack(data, pack_name, skin)
-      end
-      return data.key?('name') && data['name'] != Setting.default_settings['flavour'] ? resolve_pack(Themes.instance.flavour(Setting.default_settings['flavour']), pack_name) : nil_pack(data, pack_name, skin)
-    end
-    result
-  end
-
   def use_pack(pack_name)
     @core = resolve_pack(Themes.instance.core, pack_name)
     @theme = resolve_pack(Themes.instance.flavour(current_flavour), pack_name, current_skin)
@@ -222,5 +158,69 @@ class ApplicationController < ActionController::Base
       end
       format.json { render json: { error: Rack::Utils::HTTP_STATUS_CODES[code] }, status: code }
     end
+  end
+
+  private
+
+  def valid_pack?(data, pack_name)
+    data['pack'].is_a?(Hash) && [String, Hash].any? { |c| data['pack'][pack_name].is_a?(c) }
+  end
+
+  def nil_pack(data, pack_name, skin)
+    {
+      common: pack_name == 'common' ? nil : resolve_pack(data['name'] ? Themes.instance.flavour(current_flavour) : Themes.instance.core, 'common', skin),
+      flavour: data['name'],
+      pack: nil,
+      preload: nil,
+      skin: nil,
+      supported_locales: data['locales'],
+    }
+  end
+
+  def pack(data, pack_name, skin)
+    pack_data = {
+      common: pack_name == 'common' ? nil : resolve_pack(data['name'] ? Themes.instance.flavour(current_flavour) : Themes.instance.core, 'common', skin),
+      flavour: data['name'],
+      pack: pack_name,
+      preload: nil,
+      skin: nil,
+      supported_locales: data['locales'],
+    }
+
+    return pack_data unless data['pack'][pack_name].is_a?(Hash)
+
+    pack_data[:common] = nil if data['pack'][pack_name]['use_common'] == false
+    pack_data[:pack] = nil unless data['pack'][pack_name]['filename']
+
+    preloads = data['pack'][pack_name]['preload']
+    pack_data[:preload] = [preloads] if preloads.is_a?(String)
+    pack_data[:preload] = preloads if preloads.is_a?(Array)
+
+    if skin != 'default' && data['skin'][skin]
+      pack_data[:skin] = skin if data['skin'][skin].include?(pack_name)
+    else # default skin
+      pack_data[:skin] = 'default' if data['pack'][pack_name]['stylesheet']
+    end
+
+    pack_data
+  end
+
+  def resolve_pack(data, pack_name, skin = 'default')
+    return pack(data, pack_name, skin) if valid_pack?(data, pack_name)
+    return nil_pack(data, pack_name, skin) if data['name'].blank?
+
+    fallbacks = []
+    if data.key?('fallback')
+      fallbacks = data['fallback'] if data['fallback'].is_a?(Array)
+      fallbacks = [data['fallback']] if data['fallback'].is_a?(String)
+    elsif data['name'] != Setting.default_settings['flavour']
+      fallbacks = [Setting.default_settings['flavour']]
+    end
+
+    fallbacks.each do |fallback|
+      return resolve_pack(Themes.instance.flavour(fallback), pack_name) if Themes.instance.flavour(fallback)
+    end
+
+    nil_pack(data, pack_name, skin)
   end
 end
