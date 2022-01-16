@@ -24,11 +24,9 @@ const messages = defineMessages({
   confirm: { id: 'confirmations.confirm', defaultMessage: 'Confirm' },
   import: { id: 'button.import', defaultMessage: 'Import' },
   blockedBy: { id: 'column.blockedBy', defaultMessage: 'Users blocked by @{name}' },
-  importMessage: { id: 'column.importMessage', defaultMessage: 'Imported {counter} users' },
-  denyMessage: { id: 'column.denyMessage', defaultMessage: 'Cannot import from yourself' },
-  synchronize: { id: 'button.synchronize', defaultMessage: 'Synchronize' },
-  unsynchronize: { id: 'button.unsynchronize', defaultMessage: 'Unsynchronize' },
-  otherEmptyBlocks: {id: 'empty_column.otherBlocks', defaultMessage: "This user haven't blocked any users yet."},
+  // importMessage: { id: 'column.importMessage', defaultMessage: 'Imported {counter} users' },
+  // denyMessage: { id: 'column.denyMessage', defaultMessage: 'Cannot import from yourself' },
+  otherEmptyBlocks: { id: 'empty_column.otherBlocks', defaultMessage: "This user haven't blocked any users yet." },
   synchronize: { id: 'button.synchronize', defaultMessage: 'Synchronize' },
   unsynchronize: { id: 'button.unsynchronize', defaultMessage: 'Unsynchronize' },
 });
@@ -57,8 +55,6 @@ export default
 @connect(makeMapStateToProps)
 class Blocks extends ImmutablePureComponent {
   state = {
-    showMessage: false,
-    showDenyMessage: false,
     synchronized: false,
     count: 0,
   }
@@ -78,7 +74,7 @@ class Blocks extends ImmutablePureComponent {
   componentDidMount() {
     const { id } = this.props.params;
     const { dispatch } = this.props;
-    this.setState({ showMessage: false, showDenyMessage: false, synchronized: false, count: 0, })
+    this.setState({ synchronized: false, count: 0, })
     dispatch(fetchBlocks(id));
     dispatch(fetchAccount(id))
     const text = JSON.parse(this.props.myAccount.get("block_synchro_list"));
@@ -108,8 +104,6 @@ class Blocks extends ImmutablePureComponent {
               counter += 1
             }
           })
-
-          this.setState({ showMessage: true, showDenyMessage: false, count: counter, })
         },
       }));
     }
