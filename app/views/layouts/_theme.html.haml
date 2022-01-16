@@ -2,10 +2,11 @@
   - if theme[:pack] != 'common' && theme[:common]
     = render partial: 'layouts/theme', object: theme[:common]
   - if theme[:pack]
-    = javascript_pack_tag theme[:flavour] ? "flavours/#{theme[:flavour]}/#{theme[:pack]}" : "core/#{theme[:pack]}", crossorigin: 'anonymous'
+    - pack_path = theme[:flavour] ? "flavours/#{theme[:flavour]}/#{theme[:pack]}" : "core/#{theme[:pack]}"
+    = javascript_pack_tag pack_path, crossorigin: 'anonymous'
     - if theme[:skin]
       - if !theme[:flavour] || theme[:skin] == 'default'
-        = stylesheet_pack_tag theme[:flavour] ? "flavours/#{theme[:flavour]}/#{theme[:pack]}" : "core/#{theme[:pack]}", media: 'all', crossorigin: 'anonymous'
+        = stylesheet_pack_tag pack_path, media: 'all', crossorigin: 'anonymous'
       - else
         = stylesheet_pack_tag "skins/#{theme[:flavour]}/#{theme[:skin]}/#{theme[:pack]}", crossorigin: 'anonymous'
     - if theme[:preload]
