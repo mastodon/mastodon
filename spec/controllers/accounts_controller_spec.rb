@@ -35,6 +35,7 @@ RSpec.describe AccountsController, type: :controller do
     before do
       status_media.media_attachments << Fabricate(:media_attachment, account: account, type: :image)
       account.pinned_statuses << status_pinned
+      account.pinned_statuses << status_private
     end
 
     shared_examples 'preliminary checks' do

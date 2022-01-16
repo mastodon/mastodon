@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe ActivityPub::Activity::Add do
-  let(:sender) { Fabricate(:account, featured_collection_url: 'https://example.com/featured') }
-  let(:status) { Fabricate(:status, account: sender) }
+  let(:sender) { Fabricate(:account, featured_collection_url: 'https://example.com/featured', domain: 'example.com') }
+  let(:status) { Fabricate(:status, account: sender, visibility: :private) }
 
   let(:json) do
     {
@@ -24,6 +24,8 @@ RSpec.describe ActivityPub::Activity::Add do
     end
 
     context 'when status was not known before' do
+      let(:service_stub) { double }
+
       let(:json) do
         {
           '@context': 'https://www.w3.org/ns/activitystreams',
@@ -36,12 +38,40 @@ RSpec.describe ActivityPub::Activity::Add do
       end
 
       before do
-        stub_request(:get, 'https://example.com/unknown').to_return(status: 410)
+        allow(ActivityPub::FetchRemoteStatusService).to receive(:new).and_return(service_stub)
       end
 
-      it 'fetches the status' do
-        subject.perform
-        expect(a_request(:get, 'https://example.com/unknown')).to have_been_made.at_least_once
+      context 'when there is a local follower' do
+        before do
+          account = Fabricate(:account)
+          account.follow!(sender)
+        end
+
+        it 'fetches the status and pins it' do
+          allow(service_stub).to receive(:call) do |uri, id: true, on_behalf_of: nil|
+            expect(uri).to eq 'https://example.com/unknown'
+            expect(id).to eq true
+            expect(on_behalf_of&.following?(sender)).to eq true
+            status
+          end
+          subject.perform
+          expect(service_stub).to have_received(:call)
+          expect(sender.pinned?(status)).to be true
+        end
+      end
+
+      context 'when there is no local follower' do
+        it 'tries to fetch the status' do
+          allow(service_stub).to receive(:call) do |uri, id: true, on_behalf_of: nil|
+            expect(uri).to eq 'https://example.com/unknown'
+            expect(id).to eq true
+            expect(on_behalf_of).to eq nil
+            nil
+          end
+          subject.perform
+          expect(service_stub).to have_received(:call)
+          expect(sender.pinned?(status)).to be false
+        end
       end
     end
   end
