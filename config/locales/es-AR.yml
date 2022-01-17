@@ -112,6 +112,7 @@ es-AR:
       confirm: Confirmar
       confirmed: Confirmado
       confirming: Confirmación
+      custom: Personalizar
       delete: Eliminar datos
       deleted: Eliminado
       demote: Bajar de nivel
@@ -202,6 +203,7 @@ es-AR:
       silence: Limitar
       silenced: Limitadas
       statuses: Mensajes
+      strikes: Sanciones previas
       subscribe: Suscribirse
       suspended: Suspendidas
       suspension_irreversible: Se eliminaron irreversiblemente los datos de esta cuenta. Podés dejar de suspenderla para hacerla utilizable, pero no se recuperarán los datos que tenía anteriormente.
@@ -548,29 +550,44 @@ es-AR:
     report_notes:
       created_msg: '¡La nota de denuncia fue creada exitosamente!'
       destroyed_msg: '¡La nota de denuncia fue eliminada exitosamente!'
+      today_at: Hoy a las %{time}
     reports:
       account:
         notes:
           one: "%{count} nota"
           other: "%{count} notas"
+      action_log: Registro de auditoría
       action_taken_by: Acción tomada por
+      actions:
+        other_description_html: Ver más opciones para controlar el comportamiento de la cuenta y personalizar la comunicación de la cuenta denunciada.
+        silence_description_html: El perfil será visible sólo para aquellos que ya sigan esta cuenta o que la busquen manualmente, limitando seriamente su alcance. Siempre puede ser revertido.
+        suspend_description_html: El perfil y todos sus contenidos serán inaccesibles hasta que sean finalmente eliminados. No será posible interactuar con la cuenta. Reversible dentro de los 30 días.
+      actions_description_html: 'Si eliminar el contenido ofensivo de arriba no es suficiente:'
+      add_to_report: Añadir más al reporte
       are_you_sure: '¿Estás seguro?'
       assign_to_self: Asignármela a mí
       assigned: Moderador asignado
       by_target_domain: Dominio de la cuenta denunciada
+      category: Categoría
+      category_description_html: La razón por la que se reportó esta cuenta o contenido será citada en las comunicaciones con la cuenta reportada
       comment:
         none: Ninguno
+      comment_description_html: 'Para proporcionar más información, %{name} escribió:'
       created_at: Denunciado
+      delete_and_resolve: Eliminar y resolver
       forwarded: Reenviado
       forwarded_to: Reenviado a %{domain}
       mark_as_resolved: Marcar como resuelta
       mark_as_unresolved: Marcar como no resuelta
+      no_one_assigned: Nadie
       notes:
         create: Agregar nota
         create_and_resolve: Resolver con nota
         create_and_unresolve: Reabrir con nota
         delete: Eliminar
         placeholder: Describí qué acciones se tomaron, o cualquier otra actualización relacionada...
+        title: Notas
+      notes_description_html: Ver y dejar notas a otros moderadores y a tu yo futuro
       reopen: Reabrir denuncia
       report: 'Denuncia #%{id}'
       reported_account: Cuenta denunciada
@@ -578,11 +595,14 @@ es-AR:
       resolved: Resueltas
       resolved_msg: '¡Denuncia exitosamente resuelta!'
       status: Estado
+      statuses: Contenido reportado
+      statuses_description_html: El contenido ofensivo se citará en la comunicación con la cuenta reportada
       target_origin: Origen de la cuenta denunciada
       title: Denuncias
       unassign: Desasignar
       unresolved: No resueltas
       updated_at: Actualizadas
+      view_profile: Ver perfil
     rules:
       add_new: Agregar regla
       delete: Eliminar
@@ -684,6 +704,10 @@ es-AR:
       destroyed_msg: '¡Subida al sitio eliminada exitosamente!'
     statuses:
       back_to_account: Volver a la página de la cuenta
+      back_to_report: Volver a la página del reporte
+      batch:
+        remove_from_report: Eliminar del reporte
+        report: Reporte
       deleted: Eliminado
       media:
         title: Medios
@@ -1446,6 +1470,7 @@ es-AR:
     formats:
       default: "%Y.%b.%d, %H:%M"
       month: "%b de %Y"
+      time: "%H:%M"
   two_factor_authentication:
     add: Agregar
     disable: Deshabilitar 2FA
@@ -1473,15 +1498,31 @@ es-AR:
       subject: Por favor, confirmá el intento de inicio de sesión
       title: Intento de inicio de sesión
     warning:
+      categories:
+        spam: Spam
+        violation: El contenido viola las siguientes directrices de la comunidad
+      explanation:
+        delete_statuses: Se ha visto que algunas de tus publicaciones violan una o más directrices de la comunidad y seguidamente han sido eliminadas por los moderadores de %{instance}. Futuras violaciones pueden resultar en acciones punitivas más severas contra tu cuenta.
+        disable: Ya no puedes usar tu cuenta, pero tu perfil y el resto de datos permanecen intactos. Puedes solicitar una copia de seguridad de tus datos, cambiar la configuración de tu cuenta o eliminarla.
+        sensitive: A partir de ahora todos los archivos multimedia que subas serán marcados como sensibles y ocultos tras una advertencia que habrá que clicar.
+        silence: Aún puedes usar tu cuenta, pero solo las personas que te están siguiendo verán tus publicaciones en este servidor, y puedes ser excluido de varias funcionalidades de descubrimiento. Sin embargo, otras cuentas podrán empezar a seguirte manualmente.
+        suspend: Ya no puedes utilizar tu cuenta, y tu perfil y el resto de datos ya no son accesibles. Todavía puedes iniciar sesión para solicitar una copia de seguridad de tus datos, hasta que estos sean eliminados por completo en unos 30 días, aunque conservaremos algunos datos básicos para impedir que esquives la suspensión.
+      get_in_touch: Si crees que esto es un error, puedes responder a este correo electrónico para ponerte en contacto con el personal de %{instance}.
+      reason: 'Razón:'
       review_server_policies: Revisar las políticas del servidor
+      statuses: 'Publicaciones que han sido halladas contrarias las directrices:'
       subject:
+        delete_statuses: Tus publicaciones en %{acct} han sido eliminadas
         disable: Tu cuenta %{acct} fue congelada
         none: Advertencia para %{acct}
+        sensitive: Tus archivos multimedia en %{acct} se marcarán como sensibles a partir de ahora
         silence: Tu cuenta %{acct} fue limitada
         suspend: Tu cuenta %{acct} fue suspendida
       title:
+        delete_statuses: Publicaciones eliminadas
         disable: Cuenta congelada
         none: Advertencia
+        sensitive: Contenido multimedia oculto
         silence: Cuenta limitada
         suspend: Cuenta suspendida
     welcome:
