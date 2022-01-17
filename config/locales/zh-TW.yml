@@ -542,8 +542,6 @@ zh-TW:
       account:
         notes:
           other: "%{count} 則備註"
-        reports:
-          other: "%{count} 則檢舉"
       action_taken_by: 操作執行者
       are_you_sure: 你確定嗎?
       assign_to_self: 指派給自己
@@ -675,15 +673,9 @@ zh-TW:
       destroyed_msg: 成功刪除站台的上傳項目！
     statuses:
       back_to_account: 返回帳戶訊息頁
-      batch:
-        delete: 刪除
-        nsfw_off: 標記為非敏感內容
-        nsfw_on: 標記為敏感內容
       deleted: 已刪除
-      failed_to_execute: 執行失敗
       media:
         title: 媒體檔案
-      no_media: 不含媒體檔案
       no_status_selected: 因未選擇嘟文而未變更。
       title: 帳戶嘟文
       with_media: 含有媒體檔案
@@ -1456,24 +1448,15 @@ zh-TW:
       subject: 請確認登入嘗試
       title: 登入嘗試
     warning:
-      explanation:
-        disable: 您將無法以任何方式登入或使用您的帳號，但您的個人資料頁面和其他資料仍保持完整。
-        sensitive: 您上傳的媒體檔案或連結的媒體將會被標記為敏感。
-        silence: 您仍然可以使用您的帳號，但僅有已追蹤您的人才能看到您在此伺服器的貼文，您也可能會從公開清單中被排除。但其他人仍可手動追蹤您。
-        suspend: 您將不能使用您的帳號，您的個人資料頁面及其他資料將不再能被取得。您仍可在資料被完全刪除前要求下載你的資料，但我們仍會保留一部份資料，以防止有人規避停權處罰。
-      get_in_touch: 您可以回覆此電子郵件並與 %{instance} 的工作人員們聯絡。
       review_server_policies: 檢視伺服器政策
-      statuses: '特別是：'
       subject:
         disable: 您的帳號 %{acct} 已被凍結
         none: 對 %{acct} 的警告
-        sensitive: 您帳號 %{acct} 張貼的媒體已被標記為敏感內容
         silence: 您的帳號 %{acct} 已被限制
         suspend: 您的帳號 %{acct} 已被停權
       title:
         disable: 帳號已被涷結
         none: 警告
-        sensitive: 您的媒體已被標記為敏感內容
         silence: 帳號已被限制
         suspend: 帳號己被停用
     welcome:
