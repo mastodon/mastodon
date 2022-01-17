@@ -387,9 +387,6 @@ et:
         notes:
           one: "%{count} märkus"
           other: "%{count} märkust"
-        reports:
-          one: "%{count} teavitus"
-          other: "%{count} teavitust"
       action_taken_by: Meetmeid kasutanud
       are_you_sure: Olete kindel?
       assign_to_self: Määra mulle
@@ -508,15 +505,9 @@ et:
       destroyed_msg: Üleslaetud fail edukalt kustutatud!
     statuses:
       back_to_account: Tagasi konto lehele
-      batch:
-        delete: Kustuta
-        nsfw_off: Märgi kui mitte tundlik
-        nsfw_on: Märgi kui tundlik
       deleted: Kustutatud
-      failed_to_execute: Täitmine ebaõnnestus
       media:
         title: Meedia
-      no_media: Meedia puudub
       no_status_selected: Mitte ühtegi staatust muudeti sest midagi polnud valitud
       title: Konto staatused
       with_media: Meediaga
@@ -1020,13 +1011,7 @@ et:
       subject: Teie arhiiv on allalaadimiseks valmis
       title: Arhiivi väljavõte
     warning:
-      explanation:
-        disable: Kuniks Teie konto on lukus, ei saa Te teha sellega ühtegi tegevust kuni see on lukust lahti tehtud.
-        silence: Kuniks Teie konto on limiteeritud, ainult need inimesed, kes Teid juba jälgivad, näevad Teie tuututusi sellel serveril ning Teid jäetakse välja avalikest nimekirjadest. Sellest hoolimata võivad inimesed Teid siiski jälgida.
-        suspend: Teie konto on peatatud ning kõik Teie tuututused ja üleslaetud meediafailid on jäädavalt kustutatud sellelt serverilt ning serveritelt, kus Teil oli jälgijad.
-      get_in_touch: Te saate sellele e-kirjale vastata, et võtta ühendust %{instance}-i personaliga.
       review_server_policies: Vaadake üle serveri eeskirju
-      statuses: 'Täpsemalt:'
       subject:
         disable: Teie konto %{acct} on lukustatud
         none: Hoiatus kasutajale %{acct}
