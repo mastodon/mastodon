@@ -541,8 +541,6 @@ ja:
       account:
         notes:
           other: "%{count} 件のメモ"
-        reports:
-          other: "%{count} 件の通報"
       action_taken_by: 通報処理者
       are_you_sure: 本当に実行しますか？
       assign_to_self: 担当になる
@@ -674,15 +672,9 @@ ja:
       destroyed_msg: ファイルを削除しました！
     statuses:
       back_to_account: アカウントページに戻る
-      batch:
-        delete: 削除
-        nsfw_off: 閲覧注意をはずす
-        nsfw_on: 閲覧注意にする
       deleted: 削除済み
-      failed_to_execute: 実行に失敗しました
       media:
         title: メディア
-      no_media: メディアなし
       no_status_selected: 何も選択されていないため、変更されていません
       title: 投稿一覧
       with_media: メディアあり
@@ -1454,24 +1446,15 @@ ja:
       subject: ログイン試行を確認してください
       title: ログインを検出しました
     warning:
-      explanation:
-        disable: あなたのアカウントはログインが禁止され使用できなくなりました。しかしアカウントのデータはそのまま残っています。
-        sensitive: あなたのアップロードしたメディアファイルとリンク先のメディアは、閲覧注意として扱われます。
-        silence: あなたのアカウントは制限されましたがそのまま使用できます。ただし既にフォローしている人はあなたの投稿を見ることができますが、様々な公開タイムラインには表示されない場合があります。また他のユーザーは今後も手動であなたをフォローすることができます。
-        suspend: あなたのアカウントは使用できなくなりプロフィールやその他データにアクセスできなくなりました。アカウントが完全に削除されるまではログインしてデータのエクスポートをリクエストできます。証拠隠滅を防ぐため一部のデータは削除されず残ります。
-      get_in_touch: このメールに返信することで %{instance} のスタッフと連絡を取ることができます。
       review_server_policies: サーバーのポリシーを確認
-      statuses: '特に次の投稿:'
       subject:
         disable: あなたのアカウント %{acct} は凍結されました
         none: '%{acct} に対する警告'
-        sensitive: あなたのアカウント %{acct} の投稿メディアは閲覧注意とマークされました
         silence: あなたのアカウント %{acct} はサイレンスにされました
         suspend: あなたのアカウント %{acct} は停止されました
       title:
         disable: アカウントが凍結されました
         none: 警告
-        sensitive: あなたのメディアが閲覧注意とマークされました
         silence: アカウントがサイレンスにされました
         suspend: アカウントが停止されました
     welcome:
