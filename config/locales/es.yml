@@ -553,9 +553,6 @@ es:
         notes:
           one: "%{count} nota"
           other: "%{count} notas"
-        reports:
-          one: "%{count} informe"
-          other: "%{count} informes"
       action_taken_by: Acción tomada por
       are_you_sure: '¿Estás seguro?'
       assign_to_self: Asignármela a mí
@@ -687,15 +684,9 @@ es:
       destroyed_msg: '¡Carga del sitio eliminada con éxito!'
     statuses:
       back_to_account: Volver a la cuenta
-      batch:
-        delete: Eliminar
-        nsfw_off: Marcar contenido como no sensible
-        nsfw_on: Marcar contenido como sensible
       deleted: Eliminado
-      failed_to_execute: Falló al ejecutar
       media:
         title: Multimedia
-      no_media: No hay multimedia
       no_status_selected: No se cambió ningún estado al no seleccionar ninguno
       title: Estado de las cuentas
       with_media: Con multimedia
@@ -1481,24 +1472,15 @@ es:
       subject: Por favor, confirma el intento de inicio de sesión
       title: Intento de inicio de sesión
     warning:
-      explanation:
-        disable: Mientras su cuenta esté congelada, la información de su cuenta permanecerá intacta, pero no puede realizar ninguna acción hasta que se desbloquee.
-        sensitive: Los archivos multimedia subidos y vinculados serán tratados como sensibles.
-        silence: Mientras su cuenta está limitada, sólo las personas que ya te están siguiendo verán tus publicaciones en este servidor, y puede que se te excluya de varios listados públicos. Sin embargo, otros pueden seguirte manualmente.
-        suspend: Su cuenta ha sido suspendida, y todas tus publicaciones y tus archivos multimedia subidos han sido irreversiblemente eliminados de este servidor, y de los servidores donde tenías seguidores.
-      get_in_touch: Puede responder a esta dirección de correo electrónico para ponerse en contacto con el personal de %{instance}.
       review_server_policies: Revisar las políticas del servidor
-      statuses: 'Específicamente, para:'
       subject:
         disable: Su cuenta %{acct} ha sido congelada
         none: Advertencia para %{acct}
-        sensitive: Tu cuenta %{acct} ha sido marcada como sensible
         silence: Su cuenta %{acct} ha sido limitada
         suspend: Su cuenta %{acct} ha sido suspendida
       title:
         disable: Cuenta congelada
         none: Advertencia
-        sensitive: Tu multimedia ha sido marcado como sensible
         silence: Cuenta limitada
         suspend: Cuenta suspendida
     welcome:
