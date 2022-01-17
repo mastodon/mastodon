@@ -116,6 +116,7 @@ lv:
       confirm: Apstiprināt
       confirmed: Apstiprināts
       confirming: Apstiprina
+      custom: Pielāgot
       delete: Dzēst datus
       deleted: Dzēsts
       demote: Pazemināt
@@ -206,6 +207,7 @@ lv:
       silence: Ierobežot
       silenced: Ierobežots
       statuses: Ziņas
+      strikes: Iepriekšējie streiki
       subscribe: Abonēt
       suspended: Apturēts
       suspension_irreversible: Šī konta dati ir neatgriezeniski izdzēsti. Tu vari atcelt konta darbības apturēšanu, lai tas būtu izmantojams, taču tas neatjaunos iepriekšējos datus.
@@ -533,30 +535,45 @@ lv:
     report_notes:
       created_msg: Ziņojuma piezīme ir veiksmīgi izveidota!
       destroyed_msg: Ziņojuma piezīme ir veiksmīgi izdzēsta!
+      today_at: Šodien %{time}
     reports:
       account:
         notes:
           zero: "%{count} piezīmju"
           one: "%{count} piezīme"
           other: "%{count} piezīmes"
+      action_log: Auditācijas pieraksti
       action_taken_by: Veiktā darbība
+      actions:
+        other_description_html: Skatīt vairāk iespēju kontrolēt konta uzvedību un pielāgot saziņu ar paziņoto kontu.
+        silence_description_html: Profils būs redzams tikai tiem, kas jau tam seko vai manuāli apskata, stingri ierobežojot tās sasniedzamību. Šo vienmēr var atgriezt.
+        suspend_description_html: Profils un viss tā saturs kļūs nepieejami, līdz tas beidzot tiek izdzēsts. Mijiedarbība ar kontu būs neiespējama. Atgriežams 30 dienu laikā.
+      actions_description_html: 'Ja ar minētā satura noņemšanu vien nepietiek:'
+      add_to_report: Pievienot varāk paziņošanai
       are_you_sure: Vai esi pārliecināts?
       assign_to_self: Piešķirt man
       assigned: Piešķirtais moderators
       by_target_domain: Ziņotā konta domēns
+      category: Kategorija
+      category_description_html: Iemesls kāpēc šis konts un / vai saturs tika ziņots, tiks minēts saziņā ar paziņoto kontu
       comment:
         none: Neviens
+      comment_description_html: 'Lai sniegtu vairāk informācijas, %{name} rakstīja:'
       created_at: Ziņoti
+      delete_and_resolve: Dzēst un atrisināt
       forwarded: Pārsūtīti
       forwarded_to: Pārsūtīti %{domain}
       mark_as_resolved: Atzīmēt kā atrisinātu
       mark_as_unresolved: Atzīmēt kā neatrisinātu
+      no_one_assigned: Neviena
       notes:
         create: Pievienot piezīmi
         create_and_resolve: Atrisināt ar piezīmi
         create_and_unresolve: Atvērt atkārtoti ar piezīmi
         delete: Dzēst
         placeholder: Apraksti veiktās darbības vai citus saistītus atjauninājumus...
+        title: Piezīmes
+      notes_description_html: Skati un atstāj piezīmes citiem moderatoriem un sev nākotnei
       reopen: Atkārtoti atvērt ziņojumu
       report: 'Ziņojums #%{id}'
       reported_account: Ziņotais konts
@@ -564,11 +581,14 @@ lv:
       resolved: Atrisināts
       resolved_msg: Ziņojums veiksmīgi atrisināts!
       status: Statuss
+      statuses: Ziņotais saturs
+      statuses_description_html: Pārkāpuma saturs tiks minēts saziņā ar paziņoto kontu
       target_origin: Ziņotā konta izcelsme
       title: Ziņojumi
       unassign: Atsaukt
       unresolved: Neatrisinātie
       updated_at: Atjaunināts
+      view_profile: Skatīt profilu
     rules:
       add_new: Pievienot noteikumu
       delete: Dzēst
@@ -670,6 +690,9 @@ lv:
       destroyed_msg: Vietnes augšupielāde ir veiksmīgi izdzēsta!
     statuses:
       back_to_account: Atpakaļ uz konta lapu
+      back_to_report: Atpakaļ uz paziņojumu lapu
+      batch:
+        remove_from_report: Noņemt no ziņojuma
       deleted: Dzēstie
       media:
         title: Mediji
