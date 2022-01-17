@@ -510,9 +510,6 @@ nl:
         notes:
           one: "%{count} opmerking"
           other: "%{count} opmerkingen"
-        reports:
-          one: "%{count} rapportage"
-          other: "%{count} rapportages"
       action_taken_by: Actie uitgevoerd door
       are_you_sure: Weet je het zeker?
       assign_to_self: Aan mij toewijzen
@@ -643,15 +640,9 @@ nl:
       destroyed_msg: Verwijderen website-upload geslaagd!
     statuses:
       back_to_account: Terug naar accountpagina
-      batch:
-        delete: Verwijderen
-        nsfw_off: Als niet gevoelig markeren
-        nsfw_on: Als gevoelig markeren
       deleted: Verwijderd
-      failed_to_execute: Uitvoeren mislukt
       media:
         title: Media
-      no_media: Geen media
       no_status_selected: Er werden geen toots gewijzigd, omdat er geen enkele werd geselecteerd
       title: Toots van account
       with_media: Met media
@@ -1336,24 +1327,15 @@ nl:
       subject: Bevestig de inlogpoging
       title: Inlogpoging
     warning:
-      explanation:
-        disable: Zolang jouw account is bevroren blijven jouw accountgegevens intact, maar kun je geen handelingen uitvoeren totdat het account is vrijgegeven.
-        sensitive: De mediabestanden die je upload en gekoppelde media worden als gevoelig behandeld.
-        silence: Zolang jouw account wordt beperkt, kunnen alleen mensen die jou al volgen jouw toots op deze server zien. Tevens ben je niet zichtbaar in meldingen, gesprekken en op openbare tijdlijnen. Anderen kunnen je echter wel handmatig volgen.
-        suspend: Jouw account is opgeschort. Jouw toots en geüploade media zijn onomkeerbaar van deze server verwijderd, en ook o.a. van de servers waar jij volgers had.
-      get_in_touch: Je kunt deze e-mail beantwoorden om in contact te komen met de medewerkers van %{instance}.
       review_server_policies: Serverbeleid bekijken
-      statuses: 'Met name voor:'
       subject:
         disable: Jouw account %{acct} is bevroren
         none: Waarschuwing voor %{acct}
-        sensitive: De door jouw account %{acct} geplaatste media is als gevoelig gemarkeerd
         silence: Jouw account %{acct} is nu beperkt
         suspend: Jouw account %{acct} is opgeschort
       title:
         disable: Account bevroren
         none: Waarschuwing
-        sensitive: Jouw media is als gevoelig gemarkeerd
         silence: Account beperkt
         suspend: Account opgeschort
     welcome:
