@@ -124,7 +124,7 @@ class REST::StatusSerializer < ActiveModel::Serializer
     current_user? &&
       current_user.account_id == object.account_id &&
       !object.reblog? &&
-      %w(public unlisted).include?(object.visibility)
+      %w(public unlisted private).include?(object.visibility)
   end
 
   def source_requested?
