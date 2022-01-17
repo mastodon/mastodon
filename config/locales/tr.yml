@@ -553,9 +553,6 @@ tr:
         notes:
           one: "%{count} not"
           other: "%{count} not"
-        reports:
-          one: "%{count} şikayet"
-          other: "%{count} şikayet"
       action_taken_by: tarafından gerçekleştirilen eylem
       are_you_sure: Emin misiniz?
       assign_to_self: Bana ata
@@ -687,15 +684,9 @@ tr:
       destroyed_msg: Site yüklemesi başarıyla silindi!
     statuses:
       back_to_account: Hesap sayfasına geri dön
-      batch:
-        delete: Sil
-        nsfw_off: Hassas değil olarak işaretle
-        nsfw_on: Hassas olarak işaretle
       deleted: Silindi
-      failed_to_execute: Çalıştırılamadı
       media:
         title: Medya
-      no_media: Medya yok
       no_status_selected: Hiçbiri seçilmediğinden hiçbir durum değiştirilmedi
       title: Hesap durumları
       with_media: Medya ile
@@ -1481,24 +1472,15 @@ tr:
       subject: Lütfen oturum açma girişimini onaylayın
       title: Oturum açma girişimi
     warning:
-      explanation:
-        disable: Hesabınız donmuşken, hesap verileriniz bozulmadan kalır, ancak kilidi açılıncaya kadar herhangi bir işlem gerçekleştiremezsiniz.
-        sensitive: Yüklediğiniz medya dosyalarınız ve bağlantılı medyanız hassas olarak değerlendirilecektir.
-        silence: Hesabınız sınırlı iken, yalnızca sizi takip eden kişiler bu sunucuda tootlarınızı görecek ve çeşitli halka açık listelerin dışında tutulabilirsiniz. Ancak, diğerleri hala sizi manuel olarak takip edebilir.
-        suspend: Hesabınız askıya alındı ve tüm tootlarınız ve yüklediğiniz medya dosyalarınız bu sunucudan ve takipçilerinizin bulunduğu sunuculardan geri alınamaz şekilde kaldırıldı.
-      get_in_touch: '%{instance} çalışanlarıyla iletişim kurmak için bu e-postayı yanıtlayabilirsiniz.'
       review_server_policies: Sunucu politikalarını inceleyin
-      statuses: 'Özellikle, şunun için:'
       subject:
         disable: '%{acct} hesabınız donduruldu'
         none: '%{acct} için uyarı'
-        sensitive: Hesabınızdan yayınlanan %{acct} medyanız hassas olarak işaretlendi
         silence: '%{acct} hesabınız sınırlandırıldı'
         suspend: '%{acct} hesabınız askıya alındı'
       title:
         disable: Hesap donduruldu
         none: Uyarı
-        sensitive: Medyanız hassas olarak işaretlendi
         silence: Hesap sınırlandırıldı
         suspend: Hesap askıya alındı
     welcome:
