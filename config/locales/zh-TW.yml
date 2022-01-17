@@ -551,23 +551,31 @@ zh-TW:
         other_description_html: 檢視更多控制帳號行為以及自訂檢舉帳號通知之選項。
         silence_description_html: 個人頁面僅會對已跟隨帳號之使用者或手動查詢可見，將大幅度限制觸及範圍。此設定可隨時被還原。
         suspend_description_html: 個人頁面及其內容將無法被存取，直到其最終被刪除。將無法與此帳號互動。此設定 30 日內可被還原。
+      actions_description_html: '若移除以上侵犯性違規內容不足成效：'
+      add_to_report: 加入更多至報告
       are_you_sure: 你確定嗎?
       assign_to_self: 指派給自己
       assigned: 指派負責人
       by_target_domain: 檢舉帳戶之網域
+      category: 分類
+      category_description_html: 此帳號及/或被檢舉內容之原因會被引用在檢舉帳號通知中。
       comment:
         none: 無
+      comment_description_html: '提供更多資訊，%{name} 寫道：'
       created_at: 日期
+      delete_and_resolve: 刪除與解決
       forwarded: 已轉寄
       forwarded_to: 轉寄到 %{domain}
       mark_as_resolved: 標記為「已解決」
       mark_as_unresolved: 標記為「未解決」
+      no_one_assigned: 沒有人
       notes:
         create: 建立記錄
         create_and_resolve: 建立記錄並標記為「已解決」
         create_and_unresolve: 建立記錄並標記「未解決」
         delete: 刪除
         placeholder: 記錄已執行的動作，或其他相關的更新...
+        title: 註記
       reopen: 重開檢舉
       report: '檢舉 #%{id}'
       reported_account: 被檢舉使用者
