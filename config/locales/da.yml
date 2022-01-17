@@ -569,22 +569,25 @@ da:
       assigned: Tildelt moderator
       by_target_domain: Domæne for anmeldt konto
       category: Kategori
-      category_description_html: Årsagen til anmeldelsen af denne konto og/eller indhold vil fremgå i kommunikationen med den anmeldte konto
+      category_description_html: Årsagen til anmeldelsen af denne konto og/eller indhold refereres i kommunikationen med den anmeldte konto
       comment:
         none: Ingen
       comment_description_html: 'For at give mere information, skrev %{name}:'
       created_at: Anmeldt
-      delete_and_resolve: Slet og løs
+      delete_and_resolve: Løs og slet
       forwarded: Videresendt
       forwarded_to: Videresendt til %{domain}
       mark_as_resolved: Markér som løst
       mark_as_unresolved: Markér som ikke-løst
+      no_one_assigned: Ingen
       notes:
         create: Tilføj notat
         create_and_resolve: Løs med notat
         create_and_unresolve: Genåbn med notat
         delete: Slet
         placeholder: Beskriv de udførte handlinger eller andre relevante opdateringer...
+        title: Notater
+      notes_description_html: Se og skriv notater til andre moderatorer og dit fremtid selv
       reopen: Genåbn anmeldelse
       report: 'Anmeldelse #%{id}'
       reported_account: Anmeldt konto
@@ -592,11 +595,14 @@ da:
       resolved: Løst
       resolved_msg: Anmeldelse er nu løst!
       status: Status
+      statuses: Anmeld indhold
+      statuses_description_html: Krænkende indhold refereres i kommunikationen med den anmeldte konto
       target_origin: Anmeldte kontos oprindelse
       title: Anmeldelser
       unassign: Utildel
       unresolved: Ikke-løst
       updated_at: Opdateret
+      view_profile: Vis profil
     rules:
       add_new: Tilføj regel
       delete: Slet
@@ -698,6 +704,10 @@ da:
       destroyed_msg: Websteds-upload blev slettet!
     statuses:
       back_to_account: Tilbage til kontosiden
+      back_to_report: Retur til anmeldelsessiden
+      batch:
+        remove_from_report: Fjern fra anmeldelse
+        report: Anmeldelse
       deleted: Slettet
       media:
         title: Medier
@@ -1461,6 +1471,7 @@ da:
     formats:
       default: "%b %d, %Y, %H:%M"
       month: "%b %Y"
+      time: "%H:%M"
   two_factor_authentication:
     add: Tilføj
     disable: Deaktivér 2FA
@@ -1488,6 +1499,8 @@ da:
       subject: Bekræft indlogningsforsøg
       title: Indlogningsforsøg
     warning:
+      categories:
+        spam: Spam
       review_server_policies: Gennemgå serverpolitikker
       subject:
         disable: Din konto %{acct} er blevet frosset
