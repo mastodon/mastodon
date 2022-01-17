@@ -1445,15 +1445,28 @@ vi:
       categories:
         spam: Spam
         violation: Nội dung vi phạm quy tắc cộng đồng
+      explanation:
+        delete_statuses: Một số bài đăng của bạn đã vi phạm một hoặc nhiều quy tắc cộng đồng và bị gỡ bỏ bởi kiểm duyệt viên %{instance}. Các vi phạm trong tương lai có thể dẫn đến các hành động trừng phạt khắc nghiệt hơn so với tài khoản của bạn.
+        disable: Bạn không còn có thể sử dụng tài khoản của mình, nhưng hồ sơ của bạn và dữ liệu khác vẫn còn nguyên. Bạn có thể yêu cầu sao lưu dữ liệu của mình, thay đổi cài đặt tài khoản hoặc xóa tài khoản của bạn.
+        sensitive: Từ giờ trở đi, tất cả các media của bạn bạn tải lên sẽ được đánh dấu là nhạy cảm và ẩn đằng sau cảnh báo nhấp chuột.
+        silence: Bạn vẫn có thể sử dụng tài khoản của mình, nhưng chỉ những người đang theo dõi bạn mới thấy bài đăng của bạn. Bạn cũng bị loại khỏi các tính năng khám phá khác. Tuy nhiên, những người khác vẫn có thể theo dõi bạn.
+        suspend: Bạn không còn có thể sử dụng tài khoản của bạn, hồ sơ và các dữ liệu khác không còn có thể truy cập được. Bạn vẫn có thể đăng nhập để yêu cầu sao lưu dữ liệu của mình cho đến khi dữ liệu bị xóa hoàn toàn trong khoảng 30 ngày, nhưng chúng tôi sẽ giữ lại một số dữ liệu cơ bản để ngăn bạn tránh bị đình chỉ.
+      get_in_touch: Nếu bạn tin rằng đây là lỗi, bạn có thể trả lời e-mail này để liên lạc với các nhân viên của %{instance}.
+      reason: 'Lý do:'
       review_server_policies: Xem lại quy tắc của máy chủ
+      statuses: 'Đây là những tút vi phạm:'
       subject:
+        delete_statuses: Những tút %{acct} của bạn đã bị xóa bỏ
         disable: Tài khoản %{acct} của bạn đã bị vô hiệu hóa
         none: Cảnh báo cho %{acct}
+        sensitive: Những tập tin media %{acct} sẽ bị đánh dấu nhạy cảm kể từ bây giờ
         silence: Tài khoản %{acct} của bạn đã bị hạn chế
         suspend: Tài khoản %{acct} của bạn đã bị vô hiệu hóa
       title:
+        delete_statuses: Tút đã bị xóa
         disable: Tài khoản bị đóng băng
         none: Cảnh báo
+        sensitive: Media đã bị ẩn
         silence: Tài khoản bị hạn chế
         suspend: Toài khoản bị vô hiệu hóa
     welcome:
