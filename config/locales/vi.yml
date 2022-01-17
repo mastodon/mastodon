@@ -108,6 +108,7 @@ vi:
       confirm: Phê duyệt
       confirmed: Đã xác thực
       confirming: Chờ xác nhận
+      custom: Tùy chỉnh
       delete: Xóa dữ liệu
       deleted: Đã xóa
       demote: Xóa vai trò
@@ -198,6 +199,7 @@ vi:
       silence: Ẩn
       silenced: Hạn chế
       statuses: Tút
+      strikes: Những lần trước
       subscribe: Đăng ký
       suspended: Vô hiệu hóa
       suspension_irreversible: Toàn bộ dữ liệu của người dùng này sẽ bị xóa hết. Bạn vẫn có thể ngừng vô hiệu hóa nhưng dữ liệu sẽ không thể phục hồi.
@@ -538,11 +540,15 @@ vi:
     report_notes:
       created_msg: Đã thêm ghi chú kiểm duyệt!
       destroyed_msg: Đã xóa ghi chú kiểm duyệt!
+      today_at: Hôm nay lúc %{time}
     reports:
       account:
         notes:
           other: "%{count} kiểm duyệt"
+      action_log: Nhật ký kiểm duyệt
       action_taken_by: Hành động được thực hiện bởi
+      actions:
+        other_description_html: Những tùy chọn để kiểm soát tài khoản và giao tiếp với tài khoản bị báo cáo.
       are_you_sure: Bạn có chắc không?
       assign_to_self: Giao cho tôi
       assigned: Người xử lý
