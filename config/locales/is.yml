@@ -557,12 +557,18 @@ is:
           other: "%{count} minnispunktar"
       action_log: Atvikaskrá
       action_taken_by: Aðgerð framkvæmd af
+      actions:
+        other_description_html: Skoðaðu fleir valkosti fyrir stjórnun á hegðun notandaaðgangsins og til að stýra samskiptum við kærðan notandaaðgang.
+        silence_description_html: Notandaaðgangurinn verður einungis sýnilegur þeim sem þegar fylgjast með honum eða sem fletta honum upp handvirkt, sem takmarkar útbreiðslu efnis verulega. Er alltaf hægt að afturkalla.
+        suspend_description_html: Notandaaðgangurinn og allt efni á honum mun verða óaðgengilegt og á endanum eytt út. Samskipti við aðganginn verða ekki möguleg. Hægt að afturkalla innan 30 daga.
+      actions_description_html: 'Ef það að fjarlægja óviðeigandi efnið hér fyrir ofan er ekki nægilegt:'
       add_to_report: Bæta fleiru í kæru
       are_you_sure: Ertu viss?
       assign_to_self: Úthluta mér
       assigned: Úthlutaður umsjónarmaður
       by_target_domain: Lén kærða notandaaðgangsins
       category: Flokkur
+      category_description_html: Ástæðan fyrir því að þessi notandaaðgangur og/eða efni hans var kært mun verða tiltekin í samskiptum við kærðan notandaaðgang
       comment:
         none: Ekkert
       comment_description_html: 'Til að gefa nánari upplýsingar skrifaði %{name}:'
@@ -580,6 +586,7 @@ is:
         delete: Eyða
         placeholder: Lýstu til hvaða aðgerða hefur verið gripið eða uppfærðu inn aðrar tengdar upplýsingar...
         title: Minnispunktar
+      notes_description_html: Skoðaðu og skrifaðu minnispunkta til annarra stjórnenda og sjálfs þín
       reopen: Enduropna kæru
       report: 'Kæra #%{id}'
       reported_account: Kærður notandaaðgangur
@@ -588,6 +595,7 @@ is:
       resolved_msg: Það tókst að leysa kæruna!
       status: Staða
       statuses: Kært efni
+      statuses_description_html: Óviðeigandi efni verður tiltekið í samskiptum við kærðan notandaaðgang
       target_origin: Uppruni kærða notandaaðgangsins
       title: Kærur
       unassign: Aftengja úthlutun
