@@ -448,12 +448,6 @@ sk:
       created_msg: Poznámka o nahlásení úspešne vytvorená!
       destroyed_msg: Poznámka o nahlásení úspešne vymazaná!
     reports:
-      account:
-        reports:
-          one: "%{count} hlásenie"
-          few: "%{count} hlásení"
-          many: "%{count} hlásenia"
-          other: "%{count} hlásení"
       action_taken_by: Zákrok vykonal/a
       are_you_sure: Si si istý/á?
       assign_to_self: Priraď sebe
@@ -572,15 +566,9 @@ sk:
       destroyed_msg: Nahratie bolo zo stránky úspešne vymazané!
     statuses:
       back_to_account: Späť na účet
-      batch:
-        delete: Vymaž
-        nsfw_off: Označ ako nechúlostivé
-        nsfw_on: Označ ako chúlostivé
       deleted: Vymazané
-      failed_to_execute: Nepodarilo sa vykonať
       media:
         title: Médiá
-      no_media: Žiadné médiá
       no_status_selected: Žiadne príspevky neboli zmenené, keďže si žiadne nemal/a zvolené
       title: Príspevky na účte
       with_media: S médiami
@@ -1167,13 +1155,7 @@ sk:
       subject: Prosím potvrď pokus o prihlásenie
       title: Pokus o prihlásenie
     warning:
-      explanation:
-        disable: Pokiaľ je tvoj účet zamrazený, tvoje dáta zostávajú nedoknuté, ale nemôžeš v rámci neho nič robiť, až kým nebude odomknutý.
-        silence: Kým máš účet obmedzený, tvoje príspevky na tomto serveri uvidia iba tí ľudia, ktorí ťa už následujú, a môžeš byť vylúčený/á z rôznych verejných záznamov. Ostatní ťa však stále budú môcť následovať manuálne.
-        suspend: Tvoj účet bol vylúčený, a všetky tvoje príspevky a nahraté médiálné súbory boli nenávratne zmazané z tohto serveru, a zo serverov na ktorých si mal následovateľov.
-      get_in_touch: Môžeš na tento email odpovedať, pre skontaktovanie sa s tímom %{instance}.
       review_server_policies: Prehodnoť pravidlá servera
-      statuses: 'Konkrétne kvôli:'
       subject:
         disable: Tvoj účet %{acct} bol zamrazený
         none: Varovanie pre %{acct}
