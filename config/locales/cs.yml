@@ -575,11 +575,6 @@ cs:
           few: "%{count} poznámky"
           many: "%{count} poznámek"
           other: "%{count} poznámek"
-        reports:
-          one: "%{count} hlášení"
-          few: "%{count} hlášení"
-          many: "%{count} hlášení"
-          other: "%{count} hlášení"
       action_taken_by: Akci vykonal uživatel
       are_you_sure: Opravu?
       assign_to_self: Přidělit ke mně
@@ -711,15 +706,9 @@ cs:
       destroyed_msg: Upload stránky byl úspěšně smazán!
     statuses:
       back_to_account: Zpět na stránku účtu
-      batch:
-        delete: Smazat
-        nsfw_off: Označit, že není citlivý
-        nsfw_on: Označit jako citlivý
       deleted: Smazáno
-      failed_to_execute: Nepodařilo se vykonat
       media:
         title: Média
-      no_media: Žádná média
       no_status_selected: Nebyly změněny žádné příspěvky, neboť žádné nebyly vybrány
       title: Příspěvky účtu
       with_media: S médii
@@ -1530,24 +1519,15 @@ cs:
       subject: Potvrďte prosím pokus o přihlášení
       title: Pokus o přihlášení
     warning:
-      explanation:
-        disable: Nemůžete se přihlásit do svého účtu nebo ho jakkoliv jinak používat, ale váš profil a ostatní data zůstávají nedotčeny.
-        sensitive: Vámi nahrané a odkazované mediální soubory budou považovány za citlivé.
-        silence: Nadále můžete používat svůj účet, ale pouze lidé, kteří vás již sledovali, uvidí vaše příspěvky na tomto serveru a můžete být vyjmuti z různých veřejných seznamů. Ostatní vás však stále mohou ručně začít sledovat.
-        suspend: Nemůžete už používat svůj účet a váš profil a ostatní data již nejsou dostupná. Stále se můžete přihlásit pro vyžádání zálohy svých dat, dokud nebudou zcela smazána, ale ponecháme si některé údaje, abychom vám zabránili ve vyhýbání se pozastavení.
-      get_in_touch: Můžete odpovědět na tento e-mail a spojit se s personálem serveru %{instance}.
       review_server_policies: Zkontrolujte pravidla serveru
-      statuses: 'Konkrétně kvůli:'
       subject:
         disable: Váš účet %{acct} byl zmrazen
         none: Varování pro %{acct}
-        sensitive: Média z Vašeho účtu %{acct} byla označena za citlivá
         silence: Váš účet %{acct} byl omezen
         suspend: Váš účet %{acct} byl pozastaven
       title:
         disable: Účet zmrazen
         none: Varování
-        sensitive: Vaše média byla označena jako citlivá
         silence: Účet omezen
         suspend: Účet pozastaven
     welcome:
