@@ -553,9 +553,6 @@ eu:
         notes:
           one: "Ohar %{count}"
           other: "%{count} ohar"
-        reports:
-          one: "Txosten %{count}"
-          other: "%{count} txosten"
       action_taken_by: Neurrien hartzailea
       are_you_sure: Ziur zaude?
       assign_to_self: Esleitu niri
@@ -687,15 +684,9 @@ eu:
       destroyed_msg: Guneko igoera ongi ezabatu da!
     statuses:
       back_to_account: Atzera kontuaren orrira
-      batch:
-        delete: Ezabatu
-        nsfw_off: Markatu ez hunkigarri gisa
-        nsfw_on: Markatu hunkigarri gisa
       deleted: Ezabatuta
-      failed_to_execute: Ezin izan da burutu
       media:
         title: Multimedia
-      no_media: Multimediarik ez
       no_status_selected: Ez da bidalketarik aldatu ez delako bidalketarik aukeratu
       title: Kontuaren bidalketak
       with_media: Multimediarekin
@@ -1481,24 +1472,15 @@ eu:
       subject: Berretsi saioa hasteko saiakera
       title: Saioa hasteko saiakera
     warning:
-      explanation:
-        disable: Zure kontua izoztuta dagoen bitartean, zure kontua bere horretan dirau, baina ezin duzu ekintzarik burutu desblokeatzen den arte.
-        sensitive: Igotzen dituzun multimedia fitxategiak eta estekatutako edukiak hunkigarri bezala hartuko dira.
-        silence: Zure kontua murriztua dagoen bitartean, jada zu jarraitzen zaituztenak besterik ez dituzte zure bidalketak ikusiko zerbitzari honetan, eta agian zerrenda publikoetatik kenduko zaizu. Hala ere besteek oraindik zu jarraitu zaitzakete.
-        suspend: Zure kontua kanporatua izan da, zure toot guztiak eta multimedia fitxategiak behin betiko ezabatu dira zerbitzari honetatik, eta zure jarraitzaileen zerbitzarietatik.
-      get_in_touch: '%{instance} instantziako jendearekin harremanetan jartzeko e-mail honi erantzun ahal diozu.'
       review_server_policies: Berrikusi zerbitzariko politikak
-      statuses: 'Zehazki, honentzat:'
       subject:
         disable: Zure  %{acct} kontua izoztu da
         none: '%{acct} konturako abisua'
-        sensitive: Zure %{acct} kontuaren multimedia bidalketak hunkigarri bezala markatu dira
         silence: Zure  %{acct} kontua murriztu da
         suspend: Zure %{acct} kontua kanporatua izan da
       title:
         disable: Kontu izoztua
         none: Abisua
-        sensitive: Zure multimedia edukiak hunkigarri bezala markatu dira
         silence: Kontu murriztua
         suspend: Kontu kanporatua
     welcome:
