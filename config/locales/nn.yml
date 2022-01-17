@@ -478,9 +478,6 @@ nn:
         notes:
           one: "%{count} notis"
           other: "%{count} notiser"
-        reports:
-          one: "%{count} rapport"
-          other: "%{count} rapporter"
       action_taken_by: Handling gjort av
       are_you_sure: Er du sikker?
       assign_to_self: Tilegn til meg
@@ -610,15 +607,9 @@ nn:
       destroyed_msg: Vellukka sletting av sideopplasting!
     statuses:
       back_to_account: Tilbake til kontosida
-      batch:
-        delete: Slett
-        nsfw_off: NSFW AV
-        nsfw_on: NSFW PÅ
       deleted: Sletta
-      failed_to_execute: Lét seg ikkje gjera
       media:
         title: Media
-      no_media: Ingen media
       no_status_selected: Ingen statusar vart endra sidan ingen vart valde
       title: Kontostatusar
       with_media: Med media
@@ -1144,6 +1135,7 @@ nn:
     open_in_web: Opn på nett
     over_character_limit: øvregrensa for teikn, %{max}, er nådd
     pin_errors:
+      direct: Innlegg som bare er synlige for nevnte brukere kan ikke festes
       limit: Du har allereie festa så mange tut som det går an å festa
       ownership: Du kan ikkje festa andre sine tut
       reblog: Ei framheving kan ikkje festast
@@ -1292,24 +1284,15 @@ nn:
       subject: Venlegast stadfest forsøket på å logga inn
       title: Forsøk på å logga inn
     warning:
-      explanation:
-        disable: Mens kontoen din er fryst, forblir dine kontodata intakt, men du kan ikke utføre noen handlinger før den har blitt tint opp.
-        sensitive: De opplastede mediefilene og linket vil bli behandlet som sensitive.
-        silence: Mens kontoen din er begrenset, vil bare folk som allerede følger deg se dine tuter på denne tjeneren, og du kan bli ekskludert fra diverse offentlige oppføringer. Men andre kan fortsatt følge deg manuelt.
-        suspend: Kontoen din har blitt suspendert, og alle dine tuter og opplastede media har blitt ugjenkallelig fjernet fra denne tjeneren, og fra tjenere der du hadde følgere.
-      get_in_touch: Du kan svare på denne E-posten for å komme i kontakt med styret i %{instance}.
       review_server_policies: Gjennomgå serverretningslinjer
-      statuses: 'Spesifikt for å:'
       subject:
         disable: Kontoen din, %{acct}, har blitt fryst
         none: Åtvaring for %{acct}
-        sensitive: Din konto %{acct} medier har blitt merket som følsom
         silence: Kontoen din, %{acct}, er vorten avgrensa
         suspend: Kontoen din, %{acct}, er vorten utvist
       title:
         disable: Konto frosen
         none: Åtvaring
-        sensitive: Mediet ditt er markert som følsom
         silence: Konto avgrensa
         suspend: Konto utvist
     welcome:
