@@ -549,23 +549,34 @@ vi:
       action_taken_by: Hành động được thực hiện bởi
       actions:
         other_description_html: Những tùy chọn để kiểm soát tài khoản và giao tiếp với tài khoản bị báo cáo.
+        silence_description_html: Trang cá nhân sẽ chỉ hiển thị với những người đã theo dõi hoặc tìm kiếm thủ công, hạn chế tối đa tầm ảnh hưởng của nó. Có thể đổi lại bình thường sau.
+        suspend_description_html: Trang cá nhân và tất cả các nội dung sẽ không thể truy cập cho đến khi nó bị xóa hoàn toàn. Không thể tương tác với tài khoản. Đảo ngược trong vòng 30 ngày.
+      actions_description_html: 'Nếu loại bỏ nội dung vi phạm ở trên là không đủ:'
+      add_to_report: Bổ sung báo cáo
       are_you_sure: Bạn có chắc không?
       assign_to_self: Giao cho tôi
       assigned: Người xử lý
       by_target_domain: Tên tài khoản bị báo cáo
+      category: Phân loại
+      category_description_html: Lý do tài khoản hoặc nội dung này bị báo cáo sẽ được trích dẫn trong giao tiếp với tài khoản báo cáo
       comment:
         none: Không có mô tả
+      comment_description_html: 'Để cung cấp thêm thông tin, %{name} cho biết:'
       created_at: Báo cáo lúc
+      delete_and_resolve: Xóa và giải quyết
       forwarded: Chuyển tiếp
       forwarded_to: Chuyển tiếp tới %{domain}
       mark_as_resolved: Đã xử lý xong!
       mark_as_unresolved: Mở lại
+      no_one_assigned: Chưa có
       notes:
         create: Ghi chú
         create_and_resolve: Xử lý
         create_and_unresolve: Mở lại kèm ghi chú mới
         delete: Xóa bỏ
         placeholder: Mô tả vi phạm của người này, mức độ xử lý và những cập nhật liên quan khác...
+        title: Ghi chú
+      notes_description_html: Xem và để lại ghi chú cho các kiểm duyệt viên khác
       reopen: Mở lại báo cáo
       report: 'Báo cáo #%{id}'
       reported_account: Tài khoản bị báo cáo
@@ -573,11 +584,14 @@ vi:
       resolved: Đã xử lý xong
       resolved_msg: Đã xử lý báo cáo xong!
       status: Trạng thái
+      statuses: Nội dung bị báo cáo
+      statuses_description_html: Lý do tài khoản hoặc nội dung này bị báo cáo sẽ được trích dẫn trong giao tiếp với tài khoản báo cáo
       target_origin: Nguồn đã báo cáo người dùng
       title: Báo cáo
       unassign: Bỏ qua
       unresolved: Chờ xử lý
       updated_at: Cập nhật lúc
+      view_profile: Xem trang cá nhân
     rules:
       add_new: Thêm quy tắc
       delete: Xóa bỏ
@@ -679,6 +693,10 @@ vi:
       destroyed_msg: Đã xóa tập tin tải lên thành công!
     statuses:
       back_to_account: Quay lại trang tài khoản
+      back_to_report: Quay lại trang báo cáo
+      batch:
+        remove_from_report: Xóa khỏi báo cáo
+        report: Báo cáo
       deleted: Đã xóa
       media:
         title: Media
@@ -1396,6 +1414,7 @@ vi:
     formats:
       default: "%d.%m.%Y %H:%M"
       month: "%B %Y"
+      time: "%H:%M"
   two_factor_authentication:
     add: Thêm
     disable: Vô hiệu hóa
@@ -1423,6 +1442,9 @@ vi:
       subject: Xác nhận đăng nhập
       title: Đăng nhập
     warning:
+      categories:
+        spam: Spam
+        violation: Nội dung vi phạm quy tắc cộng đồng
       review_server_policies: Xem lại quy tắc của máy chủ
       subject:
         disable: Tài khoản %{acct} của bạn đã bị vô hiệu hóa
