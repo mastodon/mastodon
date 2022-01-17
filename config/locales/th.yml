@@ -514,8 +514,6 @@ th:
       account:
         notes:
           other: "%{count} หมายเหตุ"
-        reports:
-          other: "%{count} รายงาน"
       are_you_sure: คุณแน่ใจหรือไม่?
       assign_to_self: มอบหมายให้ฉัน
       assigned: ผู้ควบคุมที่ได้รับมอบหมาย
@@ -642,15 +640,9 @@ th:
       destroyed_msg: ลบการอัปโหลดไซต์สำเร็จ!
     statuses:
       back_to_account: กลับไปที่หน้าบัญชี
-      batch:
-        delete: ลบ
-        nsfw_off: ทำเครื่องหมายว่าไม่ละเอียดอ่อน
-        nsfw_on: ทำเครื่องหมายว่าละเอียดอ่อน
       deleted: ลบแล้ว
-      failed_to_execute: ไม่สามารถปฏิบัติการ
       media:
         title: สื่อ
-      no_media: ไม่มีสื่อ
       title: โพสต์ของบัญชี
       with_media: มีสื่อ
     system_checks:
@@ -1268,9 +1260,7 @@ th:
       subject: โปรดยืนยันการลงชื่อเข้าที่พยายาม
       title: ความพยายามลงชื่อเข้า
     warning:
-      get_in_touch: คุณสามารถตอบกลับอีเมลนี้เพื่อติดต่อกับพนักงานของ %{instance}
       review_server_policies: ตรวจทานนโยบายของเซิร์ฟเวอร์
-      statuses: 'โดยเฉพาะสำหรับ:'
       subject:
         disable: บัญชีของคุณ %{acct} ถูกอายัด
         none: คำเตือนสำหรับ %{acct}
@@ -1279,7 +1269,6 @@ th:
       title:
         disable: อายัดบัญชีอยู่
         none: คำเตือน
-        sensitive: มีการทำเครื่องหมายสื่อของคุณว่าละเอียดอ่อน
         silence: จำกัดบัญชีอยู่
         suspend: ระงับบัญชีอยู่
     welcome:
