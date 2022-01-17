@@ -529,9 +529,6 @@ co:
         notes:
           one: "%{count} nota"
           other: "%{count} note"
-        reports:
-          one: "%{count} riportu"
-          other: "%{count} riporti"
       action_taken_by: Intervenzione di
       are_you_sure: Site sicuru·a?
       assign_to_self: Assignallu à mè
@@ -661,15 +658,9 @@ co:
       destroyed_msg: Fugliale sguassatu da u situ!
     statuses:
       back_to_account: Ritornu à a pagina di u contu
-      batch:
-        delete: Toglie
-        nsfw_off: Indicà cum’è micca sensibile
-        nsfw_on: Indicà cum’è sensibile
       deleted: Sguassatu
-      failed_to_execute: Esecuzione impussibule
       media:
         title: Media
-      no_media: Nisun media
       no_status_selected: I statuti ùn sò micca stati mudificati perchè manc'unu era selezziunatu
       title: Statuti di u contu
       with_media: Cù media
@@ -1402,24 +1393,15 @@ co:
       subject: Cunfirmate u tentativu di cunnessione
       title: Tentativu di cunnessione
     warning:
-      explanation:
-        disable: Quandu u vostru contu hè ghjacciatu, i vostri dati stannu intatti, mà ùn pudete fà nunda fin'à ch'ellu sia sbluccatu.
-        sensitive: I vostri media caricati è in ligami saranu trattati cum'è sensibili.
-        silence: Quandu u vostru contu hè limitatu, solu quelli chì sò digià abbunati à u vostru contu viderenu i vostri statuti nant'à quessu servore, è puderete esse esclusu·a di parechje liste pubbliche. Però, altri conti puderenu sempre seguitavi.
-        suspend: U vostru contu hè statu suspesu, è tutti i vo statuti è fugliali media caricati sò stati sguassati di manera irreversibile di stu servore, è di i servori induve aviate abbunati.
-      get_in_touch: Pudete risponde à quest'e-mail per cuntattà a squadra di muderazione di %{instance}.
       review_server_policies: Leghje e pulitiche di u servore
-      statuses: 'Più pricisamente, per:'
       subject:
         disable: U vostru contu %{acct} hè statu ghjacciatu
         none: Avertimentu pè %{acct}
-        sensitive: I media di u vostru contu %{acct} sò stati marcati cum'è sensibili
         silence: U vostru contu %{acct} hè statu limitatu
         suspend: U vostru contu %{acct} hè statu suspesu
       title:
         disable: Contu ghjacciatu
         none: Avertimentu
-        sensitive: U vostru media hè statu marcatu cum'è sensibile
         silence: Contu limitatu
         suspend: Contu suspesu
     welcome:
