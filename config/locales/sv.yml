@@ -481,9 +481,6 @@ sv:
         notes:
           one: "%{count} anteckning"
           other: "%{count} anteckningar"
-        reports:
-          one: "%{count} rapport"
-          other: "%{count} rapporter"
       action_taken_by: Åtgärder vidtagna av
       are_you_sure: Är du säker?
       assign_to_self: Tilldela till mig
@@ -605,15 +602,9 @@ sv:
       delete: Radera uppladdad fil
     statuses:
       back_to_account: Tillbaka till kontosidan
-      batch:
-        delete: Radera
-        nsfw_off: Markera som ej känslig
-        nsfw_on: Markera som känslig
       deleted: Raderad
-      failed_to_execute: Misslyckades att utföra
       media:
         title: Media
-      no_media: Ingen media
       title: Kontostatus
       with_media: med media
     system_checks:
@@ -1265,7 +1256,6 @@ sv:
       further_actions: 'Om det inte var du, vänligen ändra ditt lösenord och aktivera tvåfaktor-autentisering i ditt konto. Du kan göra det här:'
       title: Inloggningsförsök
     warning:
-      statuses: 'Specifikt för:'
       subject:
         disable: Ditt konto %{acct} har blivit fruset
         none: Varning för %{acct}
@@ -1274,7 +1264,6 @@ sv:
       title:
         disable: Kontot fruset
         none: Varning
-        sensitive: Ditt media har blivit markerat som känsligt
         silence: Kontot begränsat
         suspend: Kontot avstängt
     welcome:
