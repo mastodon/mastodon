@@ -553,9 +553,6 @@ de:
         notes:
           one: "%{count} Notiz"
           other: "%{count} Notizen"
-        reports:
-          one: "%{count} Bericht"
-          other: "%{count} Berichte"
       action_taken_by: Maßnahme ergriffen durch
       are_you_sure: Bist du dir sicher?
       assign_to_self: Mir zuweisen
@@ -687,15 +684,9 @@ de:
       destroyed_msg: Upload erfolgreich gelöscht!
     statuses:
       back_to_account: Zurück zum Konto
-      batch:
-        delete: Löschen
-        nsfw_off: Als nicht NSFW markieren
-        nsfw_on: Als NSFW markieren
       deleted: Gelöscht
-      failed_to_execute: Ausführen fehlgeschlagen
       media:
         title: Medien
-      no_media: Keine Medien
       no_status_selected: Keine Beiträge wurden geändert, weil keine ausgewählt wurden
       title: Beiträge des Kontos
       with_media: Mit Medien
@@ -1484,24 +1475,15 @@ de:
       subject: Bitte bestätige den Anmeldeversuch
       title: Anmeldeversuch
     warning:
-      explanation:
-        disable: Solange dein Konto eingefroren ist, sind deine Benutzerdaten intakt; aber du kannst nichts tun, bis dein Konto entsperrt wurde.
-        sensitive: Deine hochgeladenen Mediendateien und verknüpften Medien werden als NSFW markiert.
-        silence: Solange dein Konto limitiert ist, können nur die Leute, die dir bereits folgen, deine Beiträge auf dem Server sehen und es könnte sein, dass du von verschiedenen öffentlichen Listungen ausgeschlossen wirst. Andererseits können andere dir manuell folgen.
-        suspend: Dein Konto wurde gesperrt und alle deine Beiträge und hochgeladenen Medien wurden unwiderruflich vom Server und anderen Servern, bei denen du Folgende hattest, gelöscht.
-      get_in_touch: Du kannst auf diese E-Mail antworten, um mit dem Personal von %{instance} in Kontakt zu treten.
       review_server_policies: Serverrichtlinien ansehen
-      statuses: 'Besonders für:'
       subject:
         disable: Dein Konto %{acct} wurde eingefroren
         none: Warnung für %{acct}
-        sensitive: Die Medien deines Konto %{acct} wurden als NSFW markiert
         silence: Dein Konto %{acct} wurde limitiert
         suspend: Dein Konto %{acct} wurde gesperrt
       title:
         disable: Konto eingefroren
         none: Warnung
-        sensitive: Deine Medien wurden als NSFW markiert
         silence: Konto limitiert
         suspend: Konto gesperrt
     welcome:
