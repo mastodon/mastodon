@@ -46,9 +46,7 @@ class Api::V1::Accounts::StatusesController < Api::BaseController
   end
 
   def pinned_scope
-    return Status.none if @account.blocking?(current_account)
-
-    @account.pinned_statuses
+    @account.pinned_statuses.permitted_for(@account, current_account)
   end
 
   def no_replies_scope
