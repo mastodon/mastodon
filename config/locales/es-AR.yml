@@ -553,9 +553,6 @@ es-AR:
         notes:
           one: "%{count} nota"
           other: "%{count} notas"
-        reports:
-          one: "%{count} denuncia"
-          other: "%{count} denuncias"
       action_taken_by: Acción tomada por
       are_you_sure: '¿Estás seguro?'
       assign_to_self: Asignármela a mí
@@ -687,15 +684,9 @@ es-AR:
       destroyed_msg: '¡Subida al sitio eliminada exitosamente!'
     statuses:
       back_to_account: Volver a la página de la cuenta
-      batch:
-        delete: Eliminar
-        nsfw_off: Marcar contenido como no sensible
-        nsfw_on: Marcar contenido como sensible
       deleted: Eliminado
-      failed_to_execute: Falló al ejecutar
       media:
         title: Medios
-      no_media: Sin medios
       no_status_selected: No se cambió ningún mensaje, ya que ninguno fue seleccionado
       title: Mensajes de la cuenta
       with_media: Con medios
@@ -1482,24 +1473,15 @@ es-AR:
       subject: Por favor, confirmá el intento de inicio de sesión
       title: Intento de inicio de sesión
     warning:
-      explanation:
-        disable: Ya no podés iniciar sesión en tu cuenta o usarla de alguna manera, pero tu perfil y otros datos permanecen intactos.
-        sensitive: Tus archivos de medios subidos y enlaces de medios serán tratados como sensibles.
-        silence: Todavía podés usar tu cuenta, pero sólo las cuentas que ya te estén siguiendo verán tus mensajes en este servidor, y puede que se te excluya de varios listados públicos. Sin embargo, otras cuentas pueden seguirte manualmente.
-        suspend: Ya no podés usar tu cuenta; tu perfil y otros datos ya no son accesibles. Todavía podés iniciar sesión para solicitar un resguardo de tus datos hasta que los mismos sean totalmente quitados, pero retendremos ciertos datos para prevenirte de evadir la suspensión.
-      get_in_touch: Podés responder a esta dirección de correo electrónico para ponerte en contacto con la administración de %{instance}.
       review_server_policies: Revisar las políticas del servidor
-      statuses: 'Específicamente, para:'
       subject:
         disable: Tu cuenta %{acct} fue congelada
         none: Advertencia para %{acct}
-        sensitive: Los mensajes con medios de tu cuenta %{acct} fueron marcados como sensibles
         silence: Tu cuenta %{acct} fue limitada
         suspend: Tu cuenta %{acct} fue suspendida
       title:
         disable: Cuenta congelada
         none: Advertencia
-        sensitive: Tus medios fueron marcados como sensibles
         silence: Cuenta limitada
         suspend: Cuenta suspendida
     welcome:
