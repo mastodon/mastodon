@@ -112,6 +112,7 @@ da:
       confirm: Bekræft
       confirmed: Bekræftet
       confirming: Bekræfter
+      custom: Tilpasset
       delete: Slet data
       deleted: Slettet
       demote: Degradér
@@ -202,6 +203,7 @@ da:
       silence: Tavsgør
       silenced: Tavsgjort
       statuses: Statusser
+      strikes: Tidligere striber
       subscribe: Abonnér
       suspended: Suspenderet
       suspension_irreversible: Disse kontodata er blevet slettet permanent. Du kan afsuspendere kontoen for at gøre den brugbar, men dette gendanner ikke de tidligere kontodata.
@@ -548,12 +550,17 @@ da:
     report_notes:
       created_msg: Anmeldelsesnotat er oprettet!
       destroyed_msg: Anmeldelsesnotat er slettet!
+      today_at: I dag kl. %{time}
     reports:
       account:
         notes:
           one: "%{count} notat"
           other: "%{count} notater"
+      action_log: Revisionslog
       action_taken_by: Handling udført af
+      actions:
+        other_description_html: Se flere muligheder for kontoadfærdsstyring og kommunikationstilpasning til den anmeldte konto.
+        silence_description_html: Profilen vil kun være synlig for dem, som allerede følger den eller manuelt slå den op, hvilket markant begrænse dens rækkevidde. Kan altid omgøres.
       are_you_sure: Sikker?
       assign_to_self: Tildel til mig
       assigned: Tildelt moderator
