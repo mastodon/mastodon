@@ -112,6 +112,7 @@ is:
       confirm: Staðfesta
       confirmed: Staðfest
       confirming: Staðfesti
+      custom: Sérsniðið
       delete: Eyða gögnum
       deleted: Eytt
       demote: Lækka í tign
@@ -548,23 +549,28 @@ is:
     report_notes:
       created_msg: Tókst að útbúa minnispunkt skýrslu!
       destroyed_msg: Tókst að eyða minnispunkti skýrslu!
+      today_at: Í dag kl. %{time}
     reports:
       account:
         notes:
           one: "%{count} minnispunktur"
           other: "%{count} minnispunktar"
+      action_log: Atvikaskrá
       action_taken_by: Aðgerð framkvæmd af
       are_you_sure: Ertu viss?
       assign_to_self: Úthluta mér
       assigned: Úthlutaður umsjónarmaður
       by_target_domain: Lén kærða notandaaðgangsins
+      category: Flokkur
       comment:
         none: Ekkert
       created_at: Tilkynnt
+      delete_and_resolve: Eyða og leysa
       forwarded: Áframsent
       forwarded_to: Áframsent á %{domain}
       mark_as_resolved: Merkja sem leyst
       mark_as_unresolved: Merkja sem óleyst
+      no_one_assigned: Enginn
       notes:
         create: Bæta við minnispunkti
         create_and_resolve: Leysa með minnispunkti
@@ -578,6 +584,7 @@ is:
       resolved: Leyst
       resolved_msg: Það tókst að leysa kæruna!
       status: Staða
+      statuses: Kært efni
       target_origin: Uppruni kærða notandaaðgangsins
       title: Kærur
       unassign: Aftengja úthlutun
@@ -1446,6 +1453,7 @@ is:
     formats:
       default: "%d. %b, %Y, %H:%M"
       month: "%b %Y"
+      time: "%H:%M"
   two_factor_authentication:
     add: Bæta við
     disable: Gera óvirkt
@@ -1473,6 +1481,8 @@ is:
       subject: Endilega staðfestu tilraun til innskráningar
       title: Tilraun til innskráningar
     warning:
+      categories:
+        spam: Ruslpóstur
       review_server_policies: Yfirfara reglur vefþjónsins
       subject:
         disable: Notandaaðgangurinn þinn %{acct} hefur verið frystur
