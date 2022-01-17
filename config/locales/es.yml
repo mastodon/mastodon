@@ -112,6 +112,7 @@ es:
       confirm: Confirmar
       confirmed: Confirmado
       confirming: Confirmando
+      custom: Personalizado
       delete: Eliminar datos
       deleted: Borrado
       demote: Degradar
@@ -202,6 +203,7 @@ es:
       silence: Silenciar
       silenced: Silenciado
       statuses: Estados
+      strikes: Amonestaciones previas
       subscribe: Suscribir
       suspended: Suspendido
       suspension_irreversible: Los datos de esta cuenta han sido irreversiblemente eliminados. Puedes deshacer la suspensión de la cuenta para hacerla utilizable, pero no recuperará los datos que tenías anteriormente.
@@ -548,12 +550,17 @@ es:
     report_notes:
       created_msg: '¡El registro de la denuncia se ha creado correctamente!'
       destroyed_msg: '¡El registro de la denuncia se ha borrado correctamente!'
+      today_at: Hoy a las %{time}
     reports:
       account:
         notes:
           one: "%{count} nota"
           other: "%{count} notas"
+      action_log: Registro de auditoría
       action_taken_by: Acción tomada por
+      actions:
+        other_description_html: Ver más opciones para controlar el comportamiento de la cuenta y personalizar la comunicación de la cuenta reportada.
+        silence_description_html: El perfil será visible solo para aquellos que ya lo sigan o lo busquen manualmente, limitando seriamente su alcance. Siempre puede ser revertido.
       are_you_sure: '¿Estás seguro?'
       assign_to_self: Asignármela a mí
       assigned: Moderador asignado
