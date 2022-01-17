@@ -586,6 +586,7 @@ kmr:
         delete: Jê bibe
         placeholder: Bide nasîn ka çi çalakî hatine kirin, an jî heman rojanekirinên din ên têkildar...
         title: Nîşe
+      notes_description_html: Nîşeyan ji çavdêrên din û ji xwe re di pêşerojê de bibîne û bihêle
       reopen: Ragihandina ji nû ve veke
       report: '@%{id} Ragihîne'
       reported_account: Ajimêra ragihandî
@@ -593,11 +594,14 @@ kmr:
       resolved: Çareserkirî
       resolved_msg: Ragihandin bi awayekî serkeftî hate çareserkirin!
       status: Rewş
+      statuses: Naveroka ragihandî
+      statuses_description_html: Naveroka sûcdar wê di danûstendina bi xwediyê ajimêra ragihandî re wê werê diyarkirin
       target_origin: Jêdera ajimêrê ragihandî
       title: Ragihandinên
       unassign: Diyar neke
       unresolved: Neçareserkirî
       updated_at: Rojanekirî
+      view_profile: Profîlê nîşan bide
     rules:
       add_new: Rêbazekê tevlî bike
       delete: Jê bibe
@@ -699,6 +703,10 @@ kmr:
       destroyed_msg: Barkirina malperê bi serkeftî hate jêbirin!
     statuses:
       back_to_account: Vegere bo rûpela ajimêr
+      back_to_report: Vegere rûpela ragihandinê
+      batch:
+        remove_from_report: Ji ragihandinê rake
+        report: Ragihîne
       deleted: Hate jêbirin
       media:
         title: Medya
@@ -1461,6 +1469,7 @@ kmr:
     formats:
       default: "%b %d, %Y, %H:%M"
       month: "%b %Y"
+      time: "%H:%M"
   two_factor_authentication:
     add: Tevlî bike
     disable: 2FA neçalak bike
@@ -1488,6 +1497,13 @@ kmr:
       subject: Ji kerema xwe re hewldanên têketinê piştrast bike
       title: Hewldanên têketinê
     warning:
+      categories:
+        spam: Nexwestî (Spam)
+        violation: Naverok rêbazên civakê yên jêrîn binpê dike
+      explanation:
+        delete_statuses: Hate dîtin ku hinek nivîsên te yek an çend rêbazên civakê binpê dikin û dû re ji hêla çavdêran %{instance} ve hatine rakirin. Binpêkirinên di pêşerojê dibe ku li dijî ajimêra te bibe sedema kiryarên cezayê tundtir.
+        disable: Tu êdî nikarî ajimêra xwe bi kar bînî, lê profîla te û daneyên din bê ziyan dimînin. Tu dikarî ji daneyên xwe hilanînê bixwazî, sazkariyên ajimêrê biguherîmî an jî ajimêrê xwe jê bibî.
+        sensitive: Ji niha û pê ve, hemû pelên te yên medyayê yên hatine barkirin wê li piştî hişyariyek wekî hestyar û veşartî bêne nîşankirin.
       reason: 'Sedem:'
       review_server_policies: Rêbazên rajeker lêkolîn bike
       subject:
