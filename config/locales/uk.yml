@@ -582,10 +582,15 @@ uk:
       action_taken_by: Дія виконана
       actions:
         other_description_html: Більше опцій керування поведінкою облікового запису і налаштування комунікації з обліковим записом, на який поскаржилися.
+        silence_description_html: Профіль буде видимий лише тим, хто вже стежить за ним або знайде його самостійно, сильно обмежуючи його знаходження. Можна потім скасувати.
+        suspend_description_html: Профіль і весь його вміст буде недоступним, поки його не буде видалено. Взаємодія з обліковим записом буде неможливою.
+      actions_description_html: 'Якщо вилучення зазначеного образливого вмісту недостатньо:'
+      add_to_report: Додати ще подробиць до скарги
       are_you_sure: Ви впевнені?
       assign_to_self: Призначити мені
       assigned: Призначений модератор
       by_target_domain: Домен облікового запису, на який скаржаться
+      category: Категорія
       comment:
         none: Немає
       created_at: Створено
@@ -611,6 +616,7 @@ uk:
       unassign: Зняти призначення
       unresolved: Невирішені
       updated_at: Оновлені
+      view_profile: Переглянути профіль
     rules:
       add_new: Додати правило
       delete: Видалити
@@ -1501,6 +1507,7 @@ uk:
     formats:
       default: "%b %d, %Y, %H:%M"
       month: "%b %Y"
+      time: "%H:%M"
   two_factor_authentication:
     add: Додати
     disable: Вимкнути
@@ -1528,6 +1535,9 @@ uk:
       subject: Будь ласка, підтвердіть спробу входу
       title: Спроба входу
     warning:
+      categories:
+        spam: Спам
+      reason: 'Причина:'
       review_server_policies: Переглянути політики сервера
       subject:
         disable: Ваш обліковий запис %{acct} було заморожено
@@ -1535,8 +1545,10 @@ uk:
         silence: Ваш обліковий запис %{acct} було обмежено
         suspend: Ваш обліковий запис %{acct} було призупинено
       title:
+        delete_statuses: Дописи вилучено
         disable: Обліковий запис заморожено
         none: Попередження
+        sensitive: Медіа приховано
         silence: Ообліковий запис обмежено
         suspend: Обліковий запис призупинено
     welcome:
