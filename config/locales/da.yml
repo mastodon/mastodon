@@ -1508,15 +1508,22 @@ da:
         sensitive: Fra nu af vil alle dine uploadede mediefiler blive markeret som sensitive og skjult bag en klik-igennem advarsel.
         silence: Din konto kan stadig bruges, men dine indlæg vil kunne ses af personer, som allerede følger dig på denne server, og du kan blive udelukket fra forskellige opdagelsesfunktioner. Personer vil stadig kunne følge dig manuelt.
         suspend: Din konto kan ikke længere bruges, og hverken profil eller øvrige data kan tilgås. Du kan stadig logge ind for at anmode om en sikkerhedskopi af dine data, indtil disse om ca. 30 er helt slettet. Visse data bevares dog mhp. at forhindre dig i at omgå udelukkelsen.
+      get_in_touch: Anses dette som en fejl, kan denne e-mail besvares for at komme i kontakt med personalet på %{instance}.
+      reason: 'Årsag:'
       review_server_policies: Gennemgå serverpolitikker
+      statuses: 'Indlæg fundet i krænkelse:'
       subject:
+        delete_statuses: Dine indlæg på %{acct} er blevet fjernet
         disable: Din konto %{acct} er blevet frosset
         none: Advarsel for %{acct}
+        sensitive: Dine mediefiler på %{acct} markeres fra nu af som sensitive
         silence: Din konto %{acct} er blevet begrænset
         suspend: Din konto %{acct} er blevet suspenderet
       title:
+        delete_statuses: Indlæg fjernet
         disable: Konto frosset
         none: Advarsel
+        sensitive: Medier skjult
         silence: Konto begrænset
         suspend: Konto suspenderet
     welcome:
