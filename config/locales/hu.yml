@@ -561,13 +561,18 @@ hu:
       actions:
         other_description_html: További lehetőségek megjelenítése a fiók viselkedésének szabályozásához, és a jelentett fiók kommunikációjának testreszabásához.
         silence_description_html: A profil csak azok számára lesz látható, akik már követik, vagy kézileg megkeresik, rendkívül korlátozva az elérését. Ez mindig visszafordítható.
+        suspend_description_html: A profil és az összes tartalma elérhetetlen lesz, amíg végleg törlésre nem kerül. A fiókkal történő minden interakció lehetetlen lesz. 30 napon belül még visszaállítható.
+      actions_description_html: 'Ha a fenti szabálysértő tartalom eltávolítása elégtelen:'
+      add_to_report: Továbbiak hozzáadása a bejelentéshez
       are_you_sure: Biztos vagy benne?
       assign_to_self: Magamhoz rendelés
       assigned: Hozzárendelt moderátor
       by_target_domain: A bejelentett fiók domainje
       category: Kategória
+      category_description_html: A fiók vagy tartalom bejelentésének oka a jelentett fiókkal kapcsolatos kommunikációban idézve lesz
       comment:
         none: Egyik sem
+      comment_description_html: 'Hogy további információkat adjon, %{name} ezt írta:'
       created_at: Jelentve
       delete_and_resolve: Törlés és megoldás
       forwarded: Továbbítva
@@ -582,6 +587,7 @@ hu:
         delete: Törlés
         placeholder: Jegyezd le, mi tettünk az ügy érdekében, vagy bármilyen változást...
         title: Megjegyzések
+      notes_description_html: Megtekintés, és megjegyzések hagyása más moderátoroknak
       reopen: Bejelentés újranyitása
       report: '#%{id} számú jelentés'
       reported_account: Bejelentett fiók
@@ -1496,6 +1502,7 @@ hu:
         violation: A tartalom megsérti a következő közösségi irányelveket
       reason: 'Indok:'
       review_server_policies: Szerver szabályzat átnézése
+      statuses: 'Szabálysértőnek talált bejegyzések:'
       subject:
         delete_statuses: A(z) %{acct} fiók bejegyzései eltávolításra kerültek
         disable: A fiókodat %{acct} befagyasztották
