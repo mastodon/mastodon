@@ -570,11 +570,6 @@ pl:
           few: "%{count} notatki"
           many: "%{count} notatek"
           other: "%{count} notatki"
-        reports:
-          one: "%{count} zgłoszenie"
-          few: "%{count} zgłoszenia"
-          many: "%{count} zgłoszeń"
-          other: "%{count} zgłoszenia"
       action_taken_by: Działanie podjęte przez
       are_you_sure: Czy na pewno?
       assign_to_self: Przypisz do siebie
@@ -706,15 +701,9 @@ pl:
       destroyed_msg: Pomyślnie usunięto przesłany plik!
     statuses:
       back_to_account: Wróć na konto
-      batch:
-        delete: Usuń
-        nsfw_off: Cofnij NSFW
-        nsfw_on: Oznacz jako NSFW
       deleted: Usunięto
-      failed_to_execute: Nie udało się wykonać
       media:
         title: Multimedia
-      no_media: Bez zawartości multimedialnej
       no_status_selected: Żaden wpis nie został zmieniony, bo żaden nie został wybrany
       title: Wpisy konta
       with_media: Z zawartością multimedialną
@@ -1514,24 +1503,15 @@ pl:
       subject: Potwierdź próbę zalogowania
       title: Próba logowania
     warning:
-      explanation:
-        disable: Kiedy Twoje konto jest wyłączone, Twoje dane pozostają na serwerze, ale nie możesz wykonywać żadnych działań, zanim zostanie odblokowane.
-        sensitive: Wysyłane przez Ciebie pliki multimedialne i media z odnośników będą traktowane jako wrażliwe.
-        silence: Kiedy Twoje konto jest ograniczone, tylko osoby które je śledzą będą widzieć Twoje wpisy. Może ono też przestać być widoczne na publicznych listach. Inni wciąż mogą zacząć Cię śledzić.
-        suspend: Twoje konto zostało zawieszone i wszystkie Twoje wpisy wraz z zawartością multimedialną zostały nieodwracalnie usunięte z tego serwera i serwerów, których użytkownicy śledzili Cię.
-      get_in_touch: Możesz odpowiedzieć na ten e-mail aby pozostać w kontakcie z prowadzącymi %{instance}.
       review_server_policies: Przejrzyj zasady serwera
-      statuses: 'Szczególnie dla:'
       subject:
         disable: Twoje konto %{acct} zostało wyłączone
         none: Ostrzeżenie dla %{acct}
-        sensitive: Zawartość multimedialna publikowana przez Twoje konto %{acct} została oznaczona jako wrażliwa
         silence: Twoje konto %{acct} zostało ograniczone
         suspend: Twoje konto %{acct} zostało zawieszone
       title:
         disable: Konto wyłączone
         none: Ostrzeżenie
-        sensitive: Twoja zawartość multimedialna została oznaczona jako wrażliwa
         silence: Konto ograniczone
         suspend: Konto zawieszone
     welcome:
