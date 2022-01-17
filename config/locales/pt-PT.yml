@@ -559,7 +559,7 @@ pt-PT:
       action_log: Registo de auditoria
       action_taken_by: Ação tomada por
       actions:
-        other_description_html: Ver mais opções para controlar o comportamento da conta e personalizar a comunicação para a conta reportada.
+        other_description_html: Ver mais opções para controlar o comportamento da conta e personalizar a comunicação para a conta denunciada.
         silence_description_html: O perfil será visível apenas para aqueles que já o seguem ou o procurem manualmente, limitando severamente o seu alcance. Pode sempre ser revertido.
         suspend_description_html: O perfil e todo o seu conteúdo tornar-se-ão inacessíveis até serem eventualmente apagados. A interacção com a conta será impossível. Reversível no prazo de 30 dias.
       actions_description_html: 'Se a remoção do conteúdo ofensivo acima for insuficiente:'
@@ -569,7 +569,7 @@ pt-PT:
       assigned: Atribuído ao moderador
       by_target_domain: Domínio da conta reportada
       category: Categorização
-      category_description_html: A razão pela qual esta conta e/ou conteúdo foi reportado será citada na comunicação com a conta reportada
+      category_description_html: A razão pela qual esta conta e/ou conteúdo foi denunciado será citada na comunicação com a conta denunciada
       comment:
         none: Nenhum
       comment_description_html: 'Para fornecer mais informações, %{name} escreveu:'
@@ -595,8 +595,8 @@ pt-PT:
       resolved: Resolvido
       resolved_msg: Relatório resolvido com sucesso!
       status: Estado
-      statuses: Conteúdo reportado
-      statuses_description_html: O conteúdo ofensivo será citado na comunicação com a conta reportada
+      statuses: Conteúdo denunciado
+      statuses_description_html: O conteúdo ofensivo será citado na comunicação com a conta denunciada
       target_origin: Origem da conta reportada
       title: Relatórios
       unassign: Não atribuir
@@ -704,7 +704,10 @@ pt-PT:
       destroyed_msg: Upload do site eliminado com sucesso!
     statuses:
       back_to_account: Voltar para página da conta
-      back_to_report: Voltar à página do reporte
+      back_to_report: Voltar à página da denúncia
+      batch:
+        remove_from_report: Remover da denúncia
+        report: Denúncia
       deleted: Eliminado
       media:
         title: Media
@@ -1467,6 +1470,7 @@ pt-PT:
     formats:
       default: "%H:%M em %d de %b de %Y"
       month: "%b de %Y"
+      time: "%H:%M"
   two_factor_authentication:
     add: Adicionar
     disable: Desativar
@@ -1494,6 +1498,9 @@ pt-PT:
       subject: Por favor, confirme a tentativa de acesso
       title: Tentativa de acesso
     warning:
+      categories:
+        spam: Spam
+        violation: O conteúdo viola as seguintes diretrizes da comunidade
       review_server_policies: Reveja a política da instância
       subject:
         disable: A tua conta %{acct} foi congelada
