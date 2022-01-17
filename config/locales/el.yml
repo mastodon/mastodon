@@ -456,29 +456,39 @@ el:
     report_notes:
       created_msg: Επιτυχής δημιουργία σημείωσης καταγγελίας!
       destroyed_msg: Επιτυχής διαγραφή σημείωσης καταγγελίας!
+      today_at: Σήμερα στις %{time}
     reports:
       account:
         notes:
           one: "%{count} σημείωση"
           other: "%{count} σημειώσεις"
+      action_log: Αρχείο ελέγχου
       action_taken_by: Ενέργεια από τον/την
+      actions:
+        other_description_html: Δείτε περισσότερες επιλογές για τον έλεγχο της συμπεριφοράς του λογαριασμού και προσαρμόσετε την επικοινωνία στον αναφερόμενο λογαριασμό.
+        silence_description_html: Το προφίλ θα είναι ορατό μόνο σε όσους το ακολουθούν ή το αναζητούν με μη αυτόματο τρόπο, περιορίζοντας σημαντικά την εμβέλειά του. Μπορεί πάντα να επανέλθει.
+      add_to_report: Προσθέστε περισσότερα στην αναφορά
       are_you_sure: Σίγουρα;
       assign_to_self: Ανάθεση σε μένα
       assigned: Αρμόδιος συντονιστής
       by_target_domain: Κόμβος του λογαριασμού υπό καταγγελία
+      category: Κατηγορία
       comment:
         none: Κανένα
       created_at: Καταγγέλθηκε
+      delete_and_resolve: Διαγραφή και επίλυση
       forwarded: Προωθημένα
       forwarded_to: Προώθημένα προς %{domain}
       mark_as_resolved: Σημειωμένο ως επιλυμένο
       mark_as_unresolved: Σημειωμένο ως ανεπίλυτο
+      no_one_assigned: Κανένας
       notes:
         create: Πρόσθεσε σημείωση
         create_and_resolve: Επίλυσε με σημείωση
         create_and_unresolve: Ξανάνοιξε με σημείωση
         delete: Διαγραφή
         placeholder: Περιέγραψε τις ενέργειες που έγιναν, ή οποιαδήποτε άλλη ενημέρωση...
+        title: Σημειώσεις
       reopen: Ξανάνοιξε την καταγγελία
       report: 'Καταγγελία #%{id}'
       reported_account: Αναφερόμενος λογαριασμός
@@ -486,10 +496,12 @@ el:
       resolved: Επιλύθηκε
       resolved_msg: Η καταγγελία επιλύθηκε επιτυχώς!
       status: Κατάσταση
+      statuses: Αναφερόμενο περιεχόμενο
       title: Αναφορές
       unassign: Αποσύνδεση
       unresolved: Άλυτη
       updated_at: Ενημερωμένη
+      view_profile: Προβολή προφίλ
     rules:
       add_new: Προσθήκη κανόνα
       delete: Διαγραφή
@@ -588,6 +600,9 @@ el:
       destroyed_msg: Η μεταφόρτωση ιστότοπου διαγράφηκε επιτυχώς!
     statuses:
       back_to_account: Επιστροφή στη σελίδα λογαριασμού
+      batch:
+        remove_from_report: Αφαίρεση από την αναφορά
+        report: Αναφορά
       deleted: Διαγραμμένα
       media:
         title: Πολυμέσα
@@ -1203,6 +1218,9 @@ el:
     contrast: Mastodon (Υψηλή αντίθεση)
     default: Mastodon (Σκοτεινό)
     mastodon-light: Mastodon (Ανοιχτόχρωμο)
+  time:
+    formats:
+      time: "%H:%M"
   two_factor_authentication:
     add: Προσθήκη
     disable: Απενεργοποίησε
@@ -1227,6 +1245,9 @@ el:
       subject: Παρακαλούμε επιβεβαίωσε την απόπειρα εισόδου
       title: Απόπειρα εισόδου
     warning:
+      categories:
+        spam: Ανεπιθύμητο
+      reason: 'Αιτιολογία:'
       review_server_policies: Αναθεώρηση πολιτικής του κόμβου
       subject:
         disable: Ο λογαριασμός σου %{acct} έχει παγώσει
@@ -1236,6 +1257,7 @@ el:
       title:
         disable: Παγωμένος λογαριασμός
         none: Προειδοποίηση
+        sensitive: Κρυμμένο πολυμέσο
         silence: Περιορισμένος λογαριασμός
         suspend: Λογαριασμός σε αναστολή
     welcome:
