@@ -120,6 +120,7 @@ pl:
       confirm: Potwierdź
       confirmed: Potwierdzono
       confirming: Potwierdzanie
+      custom: Własne
       delete: Usuń dane
       deleted: Usunięto
       demote: Degraduj
@@ -210,6 +211,7 @@ pl:
       silence: Wycisz
       silenced: Wyciszono
       statuses: Wpisy
+      strikes: Poprzednie ostrzeżenia
       subscribe: Subskrybuj
       suspended: Zawieszono
       suspension_irreversible: Dane tego konta zostały bezpowrotnie usunięte. Możesz cofnąć zawieszenie tego konta aby można było z niego ponownie korzystać, lecz nie przywróci to danych które poprzednio się na nim znajdowały.
@@ -563,6 +565,7 @@ pl:
     report_notes:
       created_msg: Pomyslnie utworzono notatkę moderacyjną.
       destroyed_msg: Pomyślnie usunięto notatkę moderacyjną.
+      today_at: Dziś o %{time}
     reports:
       account:
         notes:
@@ -570,24 +573,38 @@ pl:
           few: "%{count} notatki"
           many: "%{count} notatek"
           other: "%{count} notatki"
+      action_log: Dziennik audytu
       action_taken_by: Działanie podjęte przez
+      actions:
+        other_description_html: Zobacz więcej opcji do kontrolowania zachowania konta i dostosuj komunikację do zgłoszonego konta.
+        silence_description_html: Profil będzie widoczny tylko dla tych, którzy go już obserwują lub szukaj ręcznie, poważnie ograniczając jego zasięg. Może być zawsze cofnięty.
+        suspend_description_html: Profil i cała jego zawartość staną się niedostępne, dopóki nie zostaną ostatecznie usunięte. Interakcja z kontem będzie niemożliwa. Odwracalne w ciągu 30 dni.
+      actions_description_html: 'Jeśli usunięcie obraźliwych treści jest niewystarczające:'
+      add_to_report: Dodaj więcej do raportu
       are_you_sure: Czy na pewno?
       assign_to_self: Przypisz do siebie
       assigned: Przypisany moderator
       by_target_domain: Domena zgłaszanego konta
+      category: Kategoria
+      category_description_html: Powód, dla którego to konto i/lub zawartość zostały zgłoszone, będzie cytowany w komunikacji ze zgłoszonym kontem
       comment:
         none: Brak
+      comment_description_html: 'Aby dostarczyć więcej informacji, %{name} napisał:'
       created_at: Zgłoszono
+      delete_and_resolve: Usuń i rozwiąż
       forwarded: Przekazano
       forwarded_to: Przekazano do %{domain}
       mark_as_resolved: Oznacz jako rozwiązane
       mark_as_unresolved: Oznacz jako nierozwiązane
+      no_one_assigned: Nikt nie
       notes:
         create: Utwórz notatkę
         create_and_resolve: Rozwiąż i pozostaw notatkę
         create_and_unresolve: Cofnij rozwiązanie i pozostaw notatkę
         delete: Usuń
         placeholder: Opisz wykonane akcje i inne szczegóły dotyczące tego zgłoszenia…
+        title: Notatki
+      notes_description_html: Przeglądaj i zostaw notatki innym moderatorom i sobie samemu
       reopen: Otwórz ponownie
       report: 'Zgłoszenie #%{id}'
       reported_account: Zgłoszone konto
@@ -595,11 +612,14 @@ pl:
       resolved: Rozwiązane
       resolved_msg: Pomyślnie rozwiązano zgłoszenie.
       status: Stan
+      statuses: Zgłoszona treść
+      statuses_description_html: Obraźliwe treści będą cytowane w komunikacji ze zgłoszonym kontem
       target_origin: Pochodzenie zgłaszanego konta
       title: Zgłoszenia
       unassign: Cofnij przypisanie
       unresolved: Nierozwiązane
       updated_at: Zaktualizowano
+      view_profile: Wyświetl profil
     rules:
       add_new: Dodaj zasadę
       delete: Usuń
@@ -701,6 +721,10 @@ pl:
       destroyed_msg: Pomyślnie usunięto przesłany plik!
     statuses:
       back_to_account: Wróć na konto
+      back_to_report: Wróć do strony zgłoszenia
+      batch:
+        remove_from_report: Usuń ze zgłoszenia
+        report: Zgłoszenie
       deleted: Usunięto
       media:
         title: Multimedia
@@ -1476,6 +1500,7 @@ pl:
     formats:
       default: "%d. %b %Y, %H:%M"
       month: "%b %Y"
+      time: "%H:%M"
   two_factor_authentication:
     add: Dodaj
     disable: Wyłącz
@@ -1503,6 +1528,9 @@ pl:
       subject: Potwierdź próbę zalogowania
       title: Próba logowania
     warning:
+      categories:
+        spam: Spam
+        violation: Zawartość narusza następujące wytyczne społeczności
       review_server_policies: Przejrzyj zasady serwera
       subject:
         disable: Twoje konto %{acct} zostało wyłączone
