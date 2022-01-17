@@ -564,6 +564,7 @@ is:
       category: Flokkur
       comment:
         none: Ekkert
+      comment_description_html: 'Til að gefa nánari upplýsingar skrifaði %{name}:'
       created_at: Tilkynnt
       delete_and_resolve: Eyða og leysa
       forwarded: Áframsent
@@ -590,6 +591,7 @@ is:
       unassign: Aftengja úthlutun
       unresolved: Óleyst
       updated_at: Uppfært
+      view_profile: Skoða notandasnið
     rules:
       add_new: Skrá reglu
       delete: Eyða
@@ -691,6 +693,8 @@ is:
       destroyed_msg: Það tókst að eyða innsendingu á vefsvæði!
     statuses:
       back_to_account: Fara aftur á síðu notandaaðgangsins
+      batch:
+        report: Kæra
       deleted: Eytt
       media:
         title: Myndefni
@@ -1483,6 +1487,7 @@ is:
     warning:
       categories:
         spam: Ruslpóstur
+      reason: 'Ástæða:'
       review_server_policies: Yfirfara reglur vefþjónsins
       subject:
         disable: Notandaaðgangurinn þinn %{acct} hefur verið frystur
@@ -1492,6 +1497,7 @@ is:
       title:
         disable: Notandaaðgangur frystur
         none: Aðvörun
+        sensitive: Mynd er falin
         silence: Notandaaðgangur takmarkaður
         suspend: Notandaaðgangur í bið
     welcome:
