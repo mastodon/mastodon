@@ -547,11 +547,6 @@ gd:
           two: "%{count} nòta"
           few: "%{count} nòtaichean"
           other: "%{count} nòta"
-        reports:
-          one: "%{count} ghearan"
-          two: "%{count} ghearan"
-          few: "%{count} gearanan"
-          other: "%{count} gearan"
       action_taken_by: Chaidh an gnìomh a ghabhail le
       are_you_sure: A bheil thu cinnteach?
       assign_to_self: Iomruin dhomh-sa
@@ -683,15 +678,9 @@ gd:
       destroyed_msg: Chaidh an luchdadh suas dhan làrach a sguabadh às!
     statuses:
       back_to_account: Till gu duilleag a’ chunntais
-      batch:
-        delete: Sguab às
-        nsfw_off: Cuir comharra nach eil e frionasach
-        nsfw_on: Cuir comharra gu bheil e frionasach
       deleted: Chaidh a sguabadh às
-      failed_to_execute: Cha b’ urrainn dhuinn a ruith
       media:
         title: Meadhanan
-      no_media: Chan eil meadhanan ann
       no_status_selected: Cha deach post sam bith atharrachadh o nach deach gin dhiubh a thaghadh
       title: Postaichean a’ chunntais
       with_media: Le meadhanan riutha
@@ -1364,24 +1353,15 @@ gd:
       subject: Dearbh an oidhirp air clàradh a-steach
       title: Oidhirp clàraidh a-steach
     warning:
-      explanation:
-        disable: Chan urrainn dhut clàradh a-steach dhan chunntas agad tuilleadh no a chleachdadh ann an dòigh sam bith eile ach mairidh a’ phròifil ’s an dàta eile agad.
-        sensitive: Thèid dèiligeadh ris na faidhlichean meadhain is na meadhanan ceangailte agad mar fheadhainn fhrionasach.
-        silence: '’S urrainn dhut an cunntas agad a chleachdadh fhathast ach chan fhaic ach na daoine a tha a’ leantainn ort mu thràth na postaichean agad air an fhrithealaiche seo agus dh’fhaoidte gun dèid d’ às-dhùnadh o iomadh liosta phoblach. Gidheadh, faodaidh càch leantainn ort a làimh fhathast.'
-        suspend: Chan urrainn dhut an cunntas agad a chleachdadh tuilleadh agus chan fhaigh thu grèim air a’ phròifil no air an dàta eile agad. ’S urrainn dhut clàradh a-steach fhathast airson lethbhreac-glèidhidh dhen dàta agad iarraidh mur dèid an dàta a thoirt air falbh gu slàn ach cumaidh sinn cuid dhen dàta ach nach seachain thu an cur à rèim.
-      get_in_touch: '’S urrainn dhut freagairt dhan phost-d seo no conaltradh ris an sgioba aig %{instance}.'
       review_server_policies: Thoir sùil air riaghailtean an fhrithealaiche
-      statuses: 'Gu sònraichte, dha:'
       subject:
         disable: Chaidh an cunntas %{acct} agad a reòthadh
         none: Rabhadh dha %{acct}
-        sensitive: Chaidh comharra a chur ri meadhanan a’ chunntais %{acct} agad gu bheil iad frionasach
         silence: Chaidh an cunntas %{acct} agad a chuingeachadh
         suspend: Chaidh an cunntas %{acct} agad a chur à rèim
       title:
         disable: Cunntas reòite
         none: Rabhadh
-        sensitive: Chaidh comharra a chur ris na meadhanan agad gu bheil iad frionasach
         silence: Cunntas cuingichte
         suspend: Cunntas à rèim
     welcome:
