@@ -10,28 +10,37 @@
   .filter-subset
     %strong= t('admin.statuses.media.title')
     %ul
-      %li= link_to t('admin.statuses.no_media'), admin_account_statuses_path(@account.id, current_params.merge(media: nil)), class: !params[:media] && 'selected'
-      %li= link_to t('admin.statuses.with_media'), admin_account_statuses_path(@account.id, current_params.merge(media: true)), class: params[:media] && 'selected'
+      %li= filter_link_to t('generic.all'), media: nil, id: nil
+      %li= filter_link_to t('admin.statuses.with_media'), media: '1'
   .back-link
-    = link_to admin_account_path(@account.id) do
-      = fa_icon 'chevron-left fw'
-      = t('admin.statuses.back_to_account')
+    - if params[:report_id]
+      = link_to admin_report_path(params[:report_id].to_i) do
+        = fa_icon 'chevron-left fw'
+        = t('admin.statuses.back_to_report')
+    - else
+      = link_to admin_account_path(@account.id) do
+        = fa_icon 'chevron-left fw'
+        = t('admin.statuses.back_to_account')
 
 %hr.spacer/
 
-= form_for(@form, url: admin_account_statuses_path(@account.id)) do |f|
-  = hidden_field_tag :page, params[:page]
-  = hidden_field_tag :media, params[:media]
+= form_for(@status_batch_action, url: batch_admin_account_statuses_path(@account.id)) do |f|
+  = hidden_field_tag :page, params[:page] || 1
+
+  - Admin::StatusFilter::KEYS.each do |key|
+    = hidden_field_tag key, params[key] if params[key].present?
 
   .batch-table
     .batch-table__toolbar
       %label.batch-table__toolbar__select.batch-checkbox-all
         = check_box_tag :batch_checkbox_all, nil, false
       .batch-table__toolbar__actions
-        = f.button safe_join([fa_icon('eye-slash'), t('admin.statuses.batch.nsfw_on')]), name: :nsfw_on, class: 'table-action-link', type: :submit, data: { confirm: t('admin.reports.are_you_sure') }
-        = f.button safe_join([fa_icon('eye'), t('admin.statuses.batch.nsfw_off')]), name: :nsfw_off, class: 'table-action-link', type: :submit, data: { confirm: t('admin.reports.are_you_sure') }
-        = f.button safe_join([fa_icon('trash'), t('admin.statuses.batch.delete')]), name: :delete, class: 'table-action-link', type: :submit, data: { confirm: t('admin.reports.are_you_sure') }
+        - unless @statuses.empty?
+          = f.button safe_join([fa_icon('flag'), t('admin.statuses.batch.report')]), name: :report, class: 'table-action-link', type: :submit, data: { confirm: t('admin.reports.are_you_sure') }
     .batch-table__body
-      = render partial: 'admin/reports/status', collection: @statuses, locals: { f: f }
+      - if @statuses.empty?
+        = nothing_here 'nothing-here--under-tabs'
+      - else
+        = render partial: 'admin/reports/status', collection: @statuses, locals: { f: f }
 
 = paginate @statuses

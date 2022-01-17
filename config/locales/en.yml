@@ -113,6 +113,7 @@ en:
       confirm: Confirm
       confirmed: Confirmed
       confirming: Confirming
+      custom: Custom
       delete: Delete data
       deleted: Deleted
       demote: Demote
@@ -203,6 +204,7 @@ en:
       silence: Limit
       silenced: Limited
       statuses: Posts
+      strikes: Previous strikes
       subscribe: Subscribe
       suspended: Suspended
       suspension_irreversible: The data of this account has been irreversibly deleted. You can unsuspend the account to make it usable but it will not recover any data it previously had.
@@ -549,32 +551,44 @@ en:
     report_notes:
       created_msg: Report note successfully created!
       destroyed_msg: Report note successfully deleted!
+      today_at: Today at %{time}
     reports:
       account:
         notes:
           one: "%{count} note"
           other: "%{count} notes"
-        reports:
-          one: "%{count} report"
-          other: "%{count} reports"
+      action_log: Audit log
       action_taken_by: Action taken by
+      actions:
+        other_description_html: See more options for controlling the account's behaviour and customize communication to the reported account.
+        silence_description_html: The profile will be visible only to those who already follow it or manually look it up, severely limiting its reach. Can always be reverted.
+        suspend_description_html: The profile and all its contents will become inaccessible until it is eventually deleted. Interacting with the account will be impossible. Reversible within 30 days.
+      actions_description_html: 'If removing the offending content above is insufficient:'
+      add_to_report: Add more to report
       are_you_sure: Are you sure?
       assign_to_self: Assign to me
       assigned: Assigned moderator
       by_target_domain: Domain of reported account
+      category: Category
+      category_description_html: The reason this account and/or content was reported will be cited in communication with the reported account
       comment:
         none: None
+      comment_description_html: 'To provide more information, %{name} wrote:'
       created_at: Reported
+      delete_and_resolve: Delete and resolve
       forwarded: Forwarded
       forwarded_to: Forwarded to %{domain}
       mark_as_resolved: Mark as resolved
       mark_as_unresolved: Mark as unresolved
+      no_one_assigned: No one
       notes:
         create: Add note
         create_and_resolve: Resolve with note
         create_and_unresolve: Reopen with note
         delete: Delete
         placeholder: Describe what actions have been taken, or any other related updates...
+        title: Notes
+      notes_description_html: View and leave notes to other moderators and your future self
       reopen: Reopen report
       report: 'Report #%{id}'
       reported_account: Reported account
@@ -582,11 +596,14 @@ en:
       resolved: Resolved
       resolved_msg: Report successfully resolved!
       status: Status
+      statuses: Reported content
+      statuses_description_html: Offending content will be cited in communication with the reported account
       target_origin: Origin of reported account
       title: Reports
       unassign: Unassign
       unresolved: Unresolved
       updated_at: Updated
+      view_profile: View profile
     rules:
       add_new: Add rule
       delete: Delete
@@ -688,15 +705,13 @@ en:
       destroyed_msg: Site upload successfully deleted!
     statuses:
       back_to_account: Back to account page
+      back_to_report: Back to report page
       batch:
-        delete: Delete
-        nsfw_off: Mark as not sensitive
-        nsfw_on: Mark as sensitive
+        remove_from_report: Remove from report
+        report: Report
       deleted: Deleted
-      failed_to_execute: Failed to execute
       media:
         title: Media
-      no_media: No media
       no_status_selected: No posts were changed as none were selected
       title: Account posts
       with_media: With media
@@ -1457,6 +1472,7 @@ en:
     formats:
       default: "%b %d, %Y, %H:%M"
       month: "%b %Y"
+      time: "%H:%M"
   two_factor_authentication:
     add: Add
     disable: Disable 2FA
@@ -1484,24 +1500,31 @@ en:
       subject: Please confirm attempted sign in
       title: Sign in attempt
     warning:
+      categories:
+        spam: Spam
+        violation: Content violates the following community guidelines
       explanation:
-        disable: You can no longer login to your account or use it in any other way, but your profile and other data remains intact.
-        sensitive: Your uploaded media files and linked media will be treated as sensitive.
-        silence: You can still use your account but only people who are already following you will see your posts on this server, and you may be excluded from various public listings. However, others may still manually follow you.
-        suspend: You can no longer use your account, and your profile and other data are no longer accessible. You can still login to request a backup of your data until the data is fully removed, but we will retain some data to prevent you from evading the suspension.
-      get_in_touch: You can reply to this e-mail to get in touch with the staff of %{instance}.
+        delete_statuses: Some of your posts have been found to violate one or more community guidelines and have been subsequently removed by the moderators of %{instance}. Future violations may result in harsher punitive actions against your account.
+        disable: You can no longer use your account, but your profile and other data remains intact. You can request a backup of your data, change account settings or delete your account.
+        sensitive: From now on, all your uploaded media files will be marked as sensitive and hidden behind a click-through warning.
+        silence: You can still use your account but only people who are already following you will see your posts on this server, and you may be excluded from various discovery features. However, others may still manually follow you.
+        suspend: You can no longer use your account, and your profile and other data are no longer accessible. You can still login to request a backup of your data until the data is fully removed in about 30 days, but we will retain some basic data to prevent you from evading the suspension.
+      get_in_touch: If you believe this is an error, you can reply to this e-mail to get in touch with the staff of %{instance}.
+      reason: 'Reason:'
       review_server_policies: Review server policies
-      statuses: 'Specifically, for:'
+      statuses: 'Posts that have been found in violation:'
       subject:
+        delete_statuses: Your posts on %{acct} have been removed
         disable: Your account %{acct} has been frozen
         none: Warning for %{acct}
-        sensitive: Your account %{acct} posting media has been marked as sensitive
+        sensitive: Your media files on %{acct} will be marked as sensitive from now on
         silence: Your account %{acct} has been limited
         suspend: Your account %{acct} has been suspended
       title:
+        delete_statuses: Posts removed
         disable: Account frozen
         none: Warning
-        sensitive: Your media has been marked as sensitive
+        sensitive: Media hidden
         silence: Account limited
         suspend: Account suspended
     welcome:
