@@ -591,19 +591,25 @@ uk:
       assigned: Призначений модератор
       by_target_domain: Домен облікового запису, на який скаржаться
       category: Категорія
+      category_description_html: Причина скарги на цей обліковий запис та/або вміст, яку буде вказано у звіті
       comment:
         none: Немає
+      comment_description_html: 'Щоб надати більше відомостей, %{name} пише:'
       created_at: Створено
+      delete_and_resolve: Видалити й розв'язати
       forwarded: Переслано
       forwarded_to: Переслано до %{domain}
       mark_as_resolved: Відмітити як вирішену
       mark_as_unresolved: Відмітити як невирішену
+      no_one_assigned: Ніхто
       notes:
         create: Додати примітку
         create_and_resolve: Розв'язати з приміткою
         create_and_unresolve: Перевідкрити з приміткою
         delete: Видалити
         placeholder: Опишіть, які дії були виконані, або інші зміни, що стосуються справи...
+        title: Примітки
+      notes_description_html: Переглядайте та залишайте примітки для інших модераторів та для себе на майбутнє
       reopen: Перевідкрити скаргу
       report: 'Скарга #%{id}'
       reported_account: Обліковий запис порушника
@@ -611,6 +617,8 @@ uk:
       resolved: Вирішено
       resolved_msg: Скаргу успішно вирішено!
       status: Статус
+      statuses: Вміст, на який поскаржилися
+      statuses_description_html: Замінений вміст буде цитований у спілкуванні з обліковим записом, на який поскаржилися
       target_origin: Походження облікового запису, на який скаржаться
       title: Скарги
       unassign: Зняти призначення
@@ -718,6 +726,10 @@ uk:
       destroyed_msg: Завантаження сайту успішно видалено!
     statuses:
       back_to_account: Назад до сторінки облікового запису
+      back_to_report: Повернутися до сторінки скарги
+      batch:
+        remove_from_report: Вилучити зі скарги
+        report: Скарга
       deleted: Видалено
       media:
         title: Медіа
@@ -1343,6 +1355,7 @@ uk:
     open_in_web: Відкрити у вебі
     over_character_limit: перевищено ліміт символів (%{max})
     pin_errors:
+      direct: Не можливо прикріпити дописи, які видимі лише згаданим користувачам
       limit: Ви вже закріпили максимальну кількість постів
       ownership: Не можна закріпити чужий пост
       reblog: Не можна закріпити просунутий пост
@@ -1537,6 +1550,9 @@ uk:
     warning:
       categories:
         spam: Спам
+        violation: Вміст порушує такі правила спільноти
+      explanation:
+        delete_statuses: Деякі з ваших дописів порушили одне або кілька правил спільноти, і модератори %{instance} видалили їх. Майбутні порушення можуть призвести до жорсткіших дій щодо вашого облікового запису.
       reason: 'Причина:'
       review_server_policies: Переглянути політики сервера
       subject:
