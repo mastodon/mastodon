@@ -553,9 +553,6 @@ sq:
         notes:
           one: "%{count} shënim"
           other: "%{count} shënime"
-        reports:
-          one: "%{count} raportim"
-          other: "%{count} raportime"
       action_taken_by: Veprimi i ndërmarrë nga
       are_you_sure: A jeni i sigurt?
       assign_to_self: Caktojani vetes
@@ -687,15 +684,9 @@ sq:
       destroyed_msg: Ngarkimi në sajt u fshi me sukses!
     statuses:
       back_to_account: Mbrapsht te faqja e llogarisë
-      batch:
-        delete: Fshije
-        nsfw_off: Vëri shenjë si jo rezervat
-        nsfw_on: Vëri shenjë si rezervat
       deleted: E fshirë
-      failed_to_execute: S’u arrit të përmbushej
       media:
         title: Media
-      no_media: S’ka media
       no_status_selected: S’u ndryshua ndonjë gjendje, ngaqë s’u përzgjodh ndonjë e tillë
       title: Gjendje llogarish
       with_media: Me media
@@ -1470,24 +1461,15 @@ sq:
       subject: Ju lutemi, ripohoni përpjekje hyrjeje
       title: Përpjekje hyrjeje
     warning:
-      explanation:
-        disable: Kur llogaria juaj është e ngrirë, të dhënat në llogarinë tuaj mbeten të paprekura, por s’mund të kryeni ndonjë veprim, para se të shkyçet.
-        sensitive: Kartelat tuaja media të ngarkuara dhe media e lidhur prej jush do të trajtohet si rezervat.
-        silence: Kur llogaria juaj është e kufizuar, mesazhet tuaj në këtë shërbyes do t’i shohin vetëm personat që ju ndjekin tashmë. dhe mund të liheni jashtë nga lista të ndryshme publike. Megjithatë, të tjerët prapë mund t’ju ndjekin dorazi.
-        suspend: Llogaria juaj është pezulluar, dhe krejt mesazhet tuaja dhe kartelat media të ngarkuara janë hequr në mënyrë të pakthyeshme nga ky shërbyes, dhe nga shërbyesit te të cilët kishit ndjekës.
-      get_in_touch: Që të lidheni me ekipin e %{instance}, mund t’i përgjigjeni këtij email-i.
       review_server_policies: Shqyrtoni rregullat e shërbyesit
-      statuses: 'Posaçërisht, për:'
       subject:
         disable: Llogaria juaj %{acct} është ngrirë
         none: Sinjalizim për %{acct}
-        sensitive: Medias postuar nga llogaria juaj %{acct} i është vënë shenjë si rezervat
         silence: Llogaria juaj %{acct} është kufizuar
         suspend: Llogaria juaj %{acct} është pezulluar
       title:
         disable: Llogari e ngrirë
         none: Sinjalizim
-        sensitive: Medias tuaj i është vënë shenjë si rezervat
         silence: Llogari e kufizuar
         suspend: Llogari e pezulluar
     welcome:
