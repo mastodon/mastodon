@@ -553,9 +553,6 @@ da:
         notes:
           one: "%{count} notat"
           other: "%{count} notater"
-        reports:
-          one: "%{count} anmeldelse"
-          other: "%{count} anmeldelser"
       action_taken_by: Handling udført af
       are_you_sure: Sikker?
       assign_to_self: Tildel til mig
@@ -687,15 +684,9 @@ da:
       destroyed_msg: Websteds-upload blev slettet!
     statuses:
       back_to_account: Tilbage til kontosiden
-      batch:
-        delete: Slet
-        nsfw_off: Markér som ikke-sensitivt
-        nsfw_on: Markér som sensitivt
       deleted: Slettet
-      failed_to_execute: Udførelse mislykkedes
       media:
         title: Medier
-      no_media: Ingen medier
       no_status_selected: Ingen indlæg ændret, da ingen var valgt
       title: Kontoindlæg
       with_media: Med medier
@@ -1482,24 +1473,15 @@ da:
       subject: Bekræft indlogningsforsøg
       title: Indlogningsforsøg
     warning:
-      explanation:
-        disable: Du kan ikke længere logge ind på, eller på anden vis bruge, din konto, men din profil og øvrige data forbliver intakte.
-        sensitive: Dine uploadede mediefiler og linkede medier vil blive behandlet som sensitive.
-        silence: Du kan stadig bruge din konto, men kun personer, som allerede følger dig, vil se dine indlæg på denne server, og du kan blive udelukket fra forskellige offentlige lister. Personer vil stadig manuelt kunne følge dig.
-        suspend: Du kan ikke længere bruge din konto, og din profil samt øvrige data kan ikke længere tilgås. Du kan stadig logge ind for at anmode om en sikkerhedskopi af dine data, indtil dataene helt er fjernet. men visse data bevares mhp. at forhindre dig i at omgå udelukkelsen.
-      get_in_touch: Du kan besvare denne e-mail for at komme i kontakt med personalet på %{instance}.
       review_server_policies: Gennemgå serverpolitikker
-      statuses: 'Specifikt til:'
       subject:
         disable: Din konto %{acct} er blevet frosset
         none: Advarsel for %{acct}
-        sensitive: Din konto %{acct} opslagsmedie er blevet markeret som sensitivt
         silence: Din konto %{acct} er blevet begrænset
         suspend: Din konto %{acct} er blevet suspenderet
       title:
         disable: Konto frosset
         none: Advarsel
-        sensitive: Dit medie er blevet markeret som sensitivt
         silence: Konto begrænset
         suspend: Konto suspenderet
     welcome:
