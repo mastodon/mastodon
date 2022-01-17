@@ -95,6 +95,7 @@ he:
         targeted_reports: דיווחים נגד חשבון זה
       silence: השתקה
       statuses: הודעות
+      strikes: עבירות קודמות
       subscribe: הרשמה
       title: חשבונות
       undo_silenced: ביטול השתקה
@@ -126,18 +127,28 @@ he:
       undo: ביטול
     instances:
       title: שרתים מוכרים
+    report_notes:
+      today_at: היום, ב%{time}
     reports:
+      add_to_report: הוספת פרטים לדיווח
       are_you_sure: 100% על בטוח?
+      category: קטגוריה
       comment:
         none: ללא
+      comment_description_html: 'על מנת לספק עוד מידע, %{name} כתב\ה:'
       mark_as_resolved: סימון כפתור
+      no_one_assigned: אף אחד
+      notes:
+        title: הערות
       report: 'דווח על #%{id}'
       reported_account: חשבון מדווח
       reported_by: דווח על ידי
       resolved: פתור
       status: הודעה
+      statuses: התוכן עליו דווח
       title: דיווחים
       unresolved: לא פתור
+      view_profile: צפה בפרופיל
     settings:
       contact_information:
         email: נא להקליד כתובת דוא"ל פומבית
@@ -154,6 +165,10 @@ he:
         title: תיאור אתר מורחב
       site_title: כותרת האתר
       title: הגדרות אתר
+    statuses:
+      back_to_report: חזרה לעמוד הדיווח
+      batch:
+        remove_from_report: הסרה מהדיווח
     title: ניהול
   application_mailer:
     settings: 'שינוי הגדרות דוא"ל: %{link}'
@@ -271,6 +286,7 @@ he:
   time:
     formats:
       default: "%d %b %Y, %H:%M"
+      time: "%H:%M"
   two_factor_authentication:
     disable: כיבוי
     enabled_success: אימות דו-שלבי הופעל בהצלחה
@@ -278,5 +294,16 @@ he:
     lost_recovery_codes: קודי האחזור מאפשרים אחזור גישה לחשבון במידה ומכשירך אבד. במידה וקודי האחזור אבדו, ניתן לייצרם מחדש כאן. תוקף קודי האחזור הישנים יפוג.
     recovery_codes_regenerated: קודי האחזור יוצרו בהצלחה
     recovery_instructions_html: במידה והגישה למכשירך תאבד, ניתן לייצר קודי אחזור למטה על מנת לאחזר גישה לחשבונך בכל עת. <strong>נא לשמור על קודי הגישה במקום בטוח</strong>. לדוגמא על ידי הדפסתם ושמירתם עם מסמכים חשובים אחרים, או שימוש בתוכנה ייעודית לניהול סיסמאות וסודות.
+  user_mailer:
+    warning:
+      categories:
+        spam: ספאם
+      reason: 'סיבה:'
+      subject:
+        delete_statuses: הפוסטים שלכם ב%{acct} הוסרו
+        sensitive: קבצי המדיה שלכם ב%{acct} יסומנו בתור תוכן רגיש מעכשיו והלאה
+      title:
+        delete_statuses: פוסטים שהוסרו
+        sensitive: מדיה שהוסתרה
   users:
     invalid_otp_token: קוד דו-שלבי שגוי
