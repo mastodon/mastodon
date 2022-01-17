@@ -707,7 +707,7 @@ es:
       back_to_report: Volver a la página del reporte
       batch:
         remove_from_report: Eliminar del reporte
-        report: Reportar
+        report: Reporte
       deleted: Eliminado
       media:
         title: Multimedia
@@ -1470,6 +1470,7 @@ es:
     formats:
       default: "%d de %b del %Y, %H:%M"
       month: "%b %Y"
+      time: "%H:%M"
   two_factor_authentication:
     add: Añadir
     disable: Deshabilitar
@@ -1497,6 +1498,12 @@ es:
       subject: Por favor, confirma el intento de inicio de sesión
       title: Intento de inicio de sesión
     warning:
+      categories:
+        spam: Spam
+        violation: El contenido viola las siguientes directrices de la comunidad
+      explanation:
+        delete_statuses: Se ha visto que algunas de tus publicaciones violan una o más directrices de la comunidad y seguidamente han sido eliminadas por los moderadores de %{instance}. Futuras violaciones pueden resultar en acciones punitivas más severas contra tu cuenta.
+        disable: Ya no puedes usar tu cuenta, pero tu perfil y el resto de datos permanecen intactos. Puedes solicitar una copia de seguridad de tus datos, cambiar la configuración de tu cuenta o eliminarla.
       review_server_policies: Revisar las políticas del servidor
       subject:
         disable: Su cuenta %{acct} ha sido congelada
