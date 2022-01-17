@@ -553,9 +553,6 @@ pt-PT:
         notes:
           one: "%{count} nota"
           other: "%{count} notas"
-        reports:
-          one: "%{count} relatório"
-          other: "%{count} relatórios"
       action_taken_by: Ação tomada por
       are_you_sure: Tens a certeza?
       assign_to_self: Atribuí-me a mim
@@ -687,15 +684,9 @@ pt-PT:
       destroyed_msg: Upload do site eliminado com sucesso!
     statuses:
       back_to_account: Voltar para página da conta
-      batch:
-        delete: Eliminar
-        nsfw_off: NSFW OFF
-        nsfw_on: NSFW ON
       deleted: Eliminado
-      failed_to_execute: Falhou ao executar
       media:
         title: Media
-      no_media: Não há media
       no_status_selected: Nenhum estado foi alterado porque nenhum foi selecionado
       title: Estado das contas
       with_media: Com media
@@ -1482,24 +1473,15 @@ pt-PT:
       subject: Por favor, confirme a tentativa de acesso
       title: Tentativa de acesso
     warning:
-      explanation:
-        disable: Enquanto a tua conta está congelada, os seus dados permanecem intactos, mas tu não podes executar quaisquer acções até que ela seja desbloqueada.
-        sensitive: Os seus ficheiros de media carregados e os media ligados serão tratados como sensíveis.
-        silence: Enquanto a sua conta estiver limitada, só pessoas que já estiver a seguir irão ver as suas publicações nesta instância e poderá ser excluído de várias listagens públicas. No entanto, outros ainda o poderão seguir de forma manual.
-        suspend: A sua conta foi suspensa e todas as suas publicações e os seus ficheiros de media foram irreversivelmente removidos desta instância e das instâncias onde tinhas seguidores.
-      get_in_touch: Pode responder a este e-mail para entrar em contacto com a equipa de %{instance}.
       review_server_policies: Reveja a política da instância
-      statuses: 'Especificamente, para:'
       subject:
         disable: A tua conta %{acct} foi congelada
         none: Aviso para %{acct}
-        sensitive: As publicações de media da sua conta %{acct} foram marcadas como sensíveis
         silence: A tua conta %{acct} foi limitada
         suspend: A tua conta %{acct} foi suspensa
       title:
         disable: Conta congelada
         none: Aviso
-        sensitive: A sua media foi marcada como sensível
         silence: Conta limitada
         suspend: Conta suspensa
     welcome:
