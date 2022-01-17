@@ -112,6 +112,7 @@ hu:
       confirm: Megerősítés
       confirmed: Megerősítve
       confirming: Megerősítés alatt
+      custom: Egyéni
       delete: Adatok törlése
       deleted: Törölve
       demote: Lefokozás
@@ -553,21 +554,22 @@ hu:
         notes:
           one: "%{count} feljegyzés"
           other: "%{count} feljegyzés"
-        reports:
-          one: "%{count} bejelentés"
-          other: "%{count} bejelentés"
+      action_log: Audit napló
       action_taken_by: 'Kezelte:'
       are_you_sure: Biztos vagy benne?
       assign_to_self: Magamhoz rendelés
       assigned: Hozzárendelt moderátor
       by_target_domain: A bejelentett fiók domainje
+      category: Kategória
       comment:
         none: Egyik sem
       created_at: Jelentve
+      delete_and_resolve: Törlés és megoldás
       forwarded: Továbbítva
       forwarded_to: 'Továbbítva ide: %{domain}'
       mark_as_resolved: Megjelölés megoldottként
       mark_as_unresolved: Megjelölés megoldatlanként
+      no_one_assigned: Senki
       notes:
         create: Feljegyzés hozzáadása
         create_and_resolve: Megoldás feljegyzéssel
@@ -687,15 +689,9 @@ hu:
       destroyed_msg: Sikeresen töröltük a site feltöltését!
     statuses:
       back_to_account: Vissza a fiók oldalára
-      batch:
-        delete: Törlés
-        nsfw_off: Kényesnek jelölés törlése
-        nsfw_on: Megjelölés kényes tartalomként
       deleted: Törölve
-      failed_to_execute: Végrehajtás sikertelen
       media:
         title: Média
-      no_media: Nincs média
       no_status_selected: Nem változtattunk meg egy bejegyzést sem, mert semmi sem volt kiválasztva
       title: Fiók bejegyzései
       with_media: Médiával
@@ -1298,6 +1294,7 @@ hu:
     open_in_web: Megnyitás a weben
     over_character_limit: túllépted a maximális %{max} karakteres keretet
     pin_errors:
+      direct: A csak a megemlített felhasználók számára látható bejegyzések nem tűzhetők ki
       limit: Elérted a kitűzhető bejegyzések maximális számát
       ownership: Nem tűzheted ki valaki más bejegyzését
       reblog: Megtolt bejegyzést nem tudsz kitűzni
@@ -1481,24 +1478,15 @@ hu:
       subject: Erősítsd meg a megkísérelt belépést
       title: Belépési kísérlet
     warning:
-      explanation:
-        disable: A fiókod befagyasztott állapotban megtartja minden adatát, de feloldásig nem csinálhatsz vele semmit.
-        sensitive: A feltöltött és hivatkozott médiatartalmaidat kényesként kezeljük.
-        silence: A fiókodat így is használhatod, de csak a követőid láthatják a bejegyzéseidet ezen a szerveren, valamint kimaradhatsz a nyilvános idővonalakról is. Ugyanakkor ettől még mások manuálisan bekövethetnek.
-        suspend: Többé nem használhatod a fiókodat, a profilod és más adataid többé nem elérhetőek. Még be tudsz jelentkezni, hogy lementsd az adataidat addig, amíg azokat teljesen le nem töröljük, bár néhány adatot megtartunk, hogy a jövőben ne tudd elkerülni a felfüggesztést.
-      get_in_touch: Válaszolhatsz erre az emailre, hogy kapcsolatba lépj a %{instance} csapatával.
       review_server_policies: Szerver szabályzat átnézése
-      statuses: 'Különösen hozzá:'
       subject:
         disable: A fiókodat %{acct} befagyasztották
         none: Figyelmeztetés a %{acct} fióknak
-        sensitive: A %{acct} fiókod médiatartalmait kényesnek jelölték
         silence: A fiókodat %{acct} korlátozták
         suspend: A fiókodat %{acct} felfüggesztették
       title:
         disable: Befagyasztott fiók
         none: Figyelem
-        sensitive: Médiatartalmadat kényesnek jelölték
         silence: Lekorlátozott fiók
         suspend: Felfüggesztett fiók
     welcome:
