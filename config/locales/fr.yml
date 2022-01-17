@@ -553,9 +553,6 @@ fr:
         notes:
           one: "%{count} note"
           other: "%{count} notes"
-        reports:
-          one: "%{count} signalement"
-          other: "%{count} signalements"
       action_taken_by: Intervention de
       are_you_sure: Voulez-vous vraiment faire ça ?
       assign_to_self: Me l’assigner
@@ -687,15 +684,9 @@ fr:
       destroyed_msg: Téléversement sur le site supprimé avec succès !
     statuses:
       back_to_account: Retour à la page du compte
-      batch:
-        delete: Supprimer
-        nsfw_off: Marquer comme non-sensible
-        nsfw_on: Marquer comme sensible
       deleted: Supprimé
-      failed_to_execute: Erreur d’exécution
       media:
         title: Médias
-      no_media: Aucun média
       no_status_selected: Aucun statut n’a été modifié car aucun n’a été sélectionné
       title: Statuts du compte
       with_media: Avec médias
@@ -1482,24 +1473,15 @@ fr:
       subject: Veuillez confirmer la tentative de connexion
       title: Tentative de connexion
     warning:
-      explanation:
-        disable: Lorsque votre compte est gelé, les données de votre compte demeurent intactes, mais vous ne pouvez effectuer aucune action jusqu’à ce qu’il soit débloqué.
-        sensitive: Vos fichiers médias téléversés et vos médias liés seront traités comme sensibles.
-        silence: Vous pouvez encore utiliser votre compte, mais seuls les comptes qui vous suivent déjà verront vos messages sur ce serveur, et vous pouvez être exclu de plusieurs listes publiques. Néanmoins, il est encore possible de vous suivre manuellement.
-        suspend: Votre ne pouvez plus utiliser votre compte, et votre profil ainsi que d’autres données ne sont plus accessibles. Vous pouvez vous connecter pour demander une sauvegarde de vos données avant qu’elles ne soient complètement supprimées, mais nous gardons certaines données pour vous empêcher d’échapper à la suspension.
-      get_in_touch: Vous pouvez répondre à cette adresse pour entrer en contact avec l’équipe de %{instance}.
       review_server_policies: Passer en revue les politiques du serveur
-      statuses: 'Spécialement, pour :'
       subject:
         disable: Votre compte %{acct} a été gelé
         none: Avertissement pour %{acct}
-        sensitive: Les médias de votre compte %{acct} ont été marqués comme sensibles
         silence: Votre compte %{acct} a été limité
         suspend: Votre compte %{acct} a été suspendu
       title:
         disable: Compte gelé
         none: Avertissement
-        sensitive: Vos médias ont été marqués comme sensibles
         silence: Compte limité
         suspend: Compte suspendu
     welcome:
