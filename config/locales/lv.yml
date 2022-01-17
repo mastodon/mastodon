@@ -1514,15 +1514,23 @@ lv:
         disable: Tu vairs nevari izmantot savu kontu, taču tavs profils un citi dati paliek neskarti. Tu vari pieprasīt savu datu dublējumu, mainīt konta iestatījumus vai dzēst kontu.
         sensitive: No šī brīža visi augšupielādētie mediju faili tiks atzīmēti kā sensitīvi un paslēpti aiz klikšķa brīdinājuma.
         silence: Tu joprojām vari izmantot savu kontu, taču tikai tie cilvēki, kuri jau tev seko, redzēs tavas ziņas šajā serverī, un tev var tikt liegtas dažādas atklāšanas funkcijas. Tomēr citi joprojām var tev manuāli sekot.
+        suspend: Tu vairs nevari izmantot savu kontu, un tavs profils un citi dati vairs nav pieejami. Tu joprojām vari pieteikties, lai pieprasītu savu datu dublēšanu, līdz dati tiks pilnībā noņemti aptuveni 30 dienu laikā, taču mēs saglabāsim dažus pamata datus, lai neļautu tev izvairīties no apturēšanas.
+      get_in_touch: Ja uzskati, ka tā ir kļūda, vari atbildēt uz šo e-pastu, lai sazinātos ar %{instance} darbiniekiem.
+      reason: 'Iemesls:'
       review_server_policies: Pārskati servera politikas
+      statuses: 'Ziņas, kurās tika konstatēti pārkāpumi:'
       subject:
+        delete_statuses: Tavas ziņas %{acct} tika noņemtas
         disable: Tavs konts %{acct} tika iesaldēts
         none: Brīdinājums par %{acct}
+        sensitive: Tavi mediju faili %{acct} turpmāk tiks marķēti kā sensitīvi
         silence: Tavs konts %{acct} tika ierobežots
         suspend: Tava konta %{acct} darbība ir apturēta
       title:
+        delete_statuses: Izdzēstās ziņas
         disable: Konts iesaldēts
         none: Brīdinājums
+        sensitive: Paslēptie mediji
         silence: Konts ierobežots
         suspend: Konts apturēts
     welcome:
