@@ -542,8 +542,6 @@ id:
       account:
         notes:
           other: "%{count} catatan"
-        reports:
-          other: "%{count} laporan"
       action_taken_by: Aksi dilakukan oleh
       are_you_sure: Apakah Anda yakin?
       assign_to_self: Tugaskan kpd saya
@@ -675,15 +673,9 @@ id:
       destroyed_msg: Situs yang diunggah berhasil dihapus!
     statuses:
       back_to_account: Kembali ke halaman akun
-      batch:
-        delete: Hapus
-        nsfw_off: Tandai sebagai tak sensitif
-        nsfw_on: Tandai sebagai sensitif
       deleted: Dihapus
-      failed_to_execute: Gagal mengeksekusi
       media:
         title: Media
-      no_media: Tanpa media
       no_status_selected: Tak ada status yang berubah karena tak ada yang dipilih
       title: Status akun
       with_media: Dengan media
@@ -1457,24 +1449,15 @@ id:
       subject: Harap konfirmasi usaha masuk akun
       title: Usaha masuk akun
     warning:
-      explanation:
-        disable: Saat akun Anda beku, data Anda tetap utuh. Anda tidak akan dapat melakukan apa-apa sampai akun Anda tidak lagi dikunci.
-        sensitive: Berkas media dan media tertaut yang Anda unggah akan dianggap sebagai sensitif.
-        silence: Saat akun Anda dibatasi, hanya akun yang Anda ikuti yang dapat melihat toot Anda di server ini. Akun Anda mungkin akan dikecualikan dari daftar publik. Akun lain dapat mengikuti akun Anda secara manual.
-        suspend: Akun Anda telah ditangguhkan. Semua toot dan media yang Anda unggah dihapus secara permanen dari server ini, dan server tempat Anda memiliki pengikut.
-      get_in_touch: Anda dapat membalas email ini untuk menghubungi pengurus %{instance}.
       review_server_policies: Tinjau kebijakan server
-      statuses: 'Khususnya untuk:'
       subject:
         disable: Akun Anda %{acct} telah dibekukan
         none: Peringatan untuk %{acct}
-        sensitive: Postingan media akun Anda %{acct} telah ditandai sebagai sensitif
         silence: Akun Anda %{acct} telah dibatasi
         suspend: Akun Anda %{acct} telah ditangguhkan
       title:
         disable: Akun dibekukan
         none: Peringatan
-        sensitive: Media Anda telah ditandai sebagai sensitif
         silence: Akun dibatasi
         suspend: Akun ditangguhkan
     welcome:
