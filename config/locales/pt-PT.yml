@@ -198,8 +198,8 @@ pt-PT:
       sensitized: marcada como sensível
       shared_inbox_url: URL da caixa de entrada compartilhada
       show:
-        created_reports: Relatórios gerados por esta conta
-        targeted_reports: Relatórios feitos sobre esta conta
+        created_reports: Denúncias realizadas
+        targeted_reports: Denunciada por outros
       silence: Silêncio
       silenced: Silenciada
       statuses: Status
@@ -226,7 +226,7 @@ pt-PT:
     action_logs:
       action_types:
         approve_user: Aprovar Utilizador
-        assigned_to_self_report: Atribuir Relatório
+        assigned_to_self_report: Atribuir Denúncia
         change_email_user: Alterar E-mail do Utilizador
         confirm_user: Confirmar Utilizador
         create_account_warning: Criar Aviso
@@ -258,13 +258,13 @@ pt-PT:
         promote_user: Promover Utilizador
         reject_user: Rejeitar Utilizador
         remove_avatar_user: Remover Imagem de Perfil
-        reopen_report: Reabrir Relatório
+        reopen_report: Reabrir Denúncia
         reset_password_user: Repor Password
-        resolve_report: Resolver Relatório
+        resolve_report: Resolver Denúncia
         sensitive_account: Marcar a media na sua conta como sensível
         silence_account: Silenciar Conta
         suspend_account: Suspender Conta
-        unassigned_report: Desatribuir Relatório
+        unassigned_report: Desatribuir Denúncia
         unblock_email_account: Desbloquear endereço de e-mail
         unsensitive_account: Desmarcar a media na sua conta como sensível
         unsilence_account: Deixar de Silenciar Conta
@@ -275,7 +275,7 @@ pt-PT:
         update_status: Atualizar Estado
       actions:
         approve_user_html: "%{name} aprovou a inscrição de %{target}"
-        assigned_to_self_report_html: "%{name} atribuiu o relatório %{target} a si próprio"
+        assigned_to_self_report_html: "%{name} atribuiu a denúncia %{target} a si próprio"
         change_email_user_html: "%{name} alterou o endereço de e-mail do utilizador %{target}"
         confirm_user_html: "%{name} confirmou o endereço de e-mail do utilizador %{target}"
         create_account_warning_html: "%{name} enviou um aviso para %{target}"
@@ -307,13 +307,13 @@ pt-PT:
         promote_user_html: "%{name} promoveu o utilizador %{target}"
         reject_user_html: "%{name} rejeitou a inscrição de %{target}"
         remove_avatar_user_html: "%{name} removeu a imagem de perfil de %{target}"
-        reopen_report_html: "%{name} reabriu o relatório %{target}"
+        reopen_report_html: "%{name} reabriu a denúncia %{target}"
         reset_password_user_html: "%{name} restabeleceu a palavra-passe do utilizador %{target}"
-        resolve_report_html: "%{name} resolveu o relatório %{target}"
+        resolve_report_html: "%{name} resolveu a denúncia %{target}"
         sensitive_account_html: "%{name} marcou a media de %{target} como sensível"
         silence_account_html: "%{name} silenciou a conta de %{target}"
         suspend_account_html: "%{name} suspendeu a conta de %{target}"
-        unassigned_report_html: "%{name} desatribuiu o realtório %{target}"
+        unassigned_report_html: "%{name} desatribuiu a denúncia %{target}"
         unblock_email_account_html: "%{name} desbloqueou o endereço de e-mail de %{target}"
         unsensitive_account_html: "%{name} desmarcou a media de %{target} como sensível"
         unsilence_account_html: "%{name} desativou o silêncio de %{target}"
@@ -382,17 +382,17 @@ pt-PT:
       interactions: interações
       media_storage: Armazenamento de media
       new_users: novos utilizadores
-      opened_reports: relatórios abertos
+      opened_reports: denúncias abertas
       pending_reports_html:
-        one: "<strong>1</strong> relatório pendente"
-        other: "<strong>%{count}</strong> relatórios pendentes"
+        one: "<strong>1</strong> denúncia pendente"
+        other: "<strong>%{count}</strong> denúncias pendentes"
       pending_tags_html:
         one: "<strong>1</strong> hashtag pendente"
         other: "<strong>%{count}</strong> hashtags pendentes"
       pending_users_html:
         one: "<strong>1</strong> utilizador pendente"
         other: "<strong>%{count}</strong> utilizadores pendentes"
-      resolved_reports: relatórios resolvidos
+      resolved_reports: denúncias resolvidas
       software: Software
       sources: Origem de inscrições
       space: Utilização do espaço
@@ -429,10 +429,10 @@ pt-PT:
       public_comment_hint: Comentário sobre essa limitação de domínio para o público geral, se ativada a divulgação da lista de limitações de domínio.
       reject_media: Rejeitar ficheiros de media
       reject_media_hint: Remove arquivos de media armazenados localmente e rejeita descarregar novos arquivos no futuro. Irrelevante para suspensões
-      reject_reports: Rejeitar relatórios
-      reject_reports_hint: Ignorar todos os relatórios vindos deste domínio. Irrelevantes para efectuar suspensões
+      reject_reports: Rejeitar denúncia
+      reject_reports_hint: Ignorar todos as denúncias provenientes deste domínio. Irrelevante para suspensões
       rejecting_media: a rejeitar ficheiros de media
-      rejecting_reports: a rejeitar relatórios
+      rejecting_reports: a rejeitar denúncias
       severity:
         silence: silenciado
         suspend: suspenso
@@ -504,7 +504,7 @@ pt-PT:
       total_blocked_by_us: Bloqueadas por nós
       total_followed_by_them: Seguidas por eles
       total_followed_by_us: Seguidas por nós
-      total_reported: Relatórios sobre eles
+      total_reported: Denúncias sobre eles
       total_storage: Anexos de media
     invites:
       deactivate_all: Desativar todos
@@ -548,8 +548,8 @@ pt-PT:
       status: Estado
       title: Retransmissores
     report_notes:
-      created_msg: Relatório criado com sucesso!
-      destroyed_msg: Nota de relatório eliminada com sucesso!
+      created_msg: Nota de denúncia criada com sucesso!
+      destroyed_msg: Nota de denúncia eliminada com sucesso!
       today_at: Hoje às %{time}
     reports:
       account:
@@ -573,7 +573,7 @@ pt-PT:
       comment:
         none: Nenhum
       comment_description_html: 'Para fornecer mais informações, %{name} escreveu:'
-      created_at: Relatado
+      created_at: Denunciado
       delete_and_resolve: Apagar e resolver
       forwarded: Encaminhado
       forwarded_to: Encaminhado para %{domain}
