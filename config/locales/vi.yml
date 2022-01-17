@@ -542,8 +542,6 @@ vi:
       account:
         notes:
           other: "%{count} kiểm duyệt"
-        reports:
-          other: "%{count} báo cáo"
       action_taken_by: Hành động được thực hiện bởi
       are_you_sure: Bạn có chắc không?
       assign_to_self: Giao cho tôi
@@ -675,15 +673,9 @@ vi:
       destroyed_msg: Đã xóa tập tin tải lên thành công!
     statuses:
       back_to_account: Quay lại trang tài khoản
-      batch:
-        delete: Xóa bỏ
-        nsfw_off: Đánh dấu là bình thường
-        nsfw_on: Đánh dấu là nhạy cảm
       deleted: Đã xóa
-      failed_to_execute: Không thể thực thi
       media:
         title: Media
-      no_media: Toàn bộ
       no_status_selected: Bạn chưa chọn bất kỳ tút nào
       title: Toàn bộ tút
       with_media: Có media
@@ -1276,6 +1268,7 @@ vi:
     open_in_web: Xem trong web
     over_character_limit: vượt quá giới hạn %{max} ký tự
     pin_errors:
+      direct: Không thể ghim những tút nhắn riêng
       limit: Bạn đã ghim quá số lượng tút cho phép
       ownership: Không thể ghim tút của người khác
       reblog: Không thể ghim chia sẻ
@@ -1424,24 +1417,15 @@ vi:
       subject: Xác nhận đăng nhập
       title: Đăng nhập
     warning:
-      explanation:
-        disable: Bạn bị cấm đăng nhập tài khoản. Tuy nhiên, trang cá nhân và dữ liệu của bạn vẫn sẽ được giữ nguyên.
-        sensitive: Ảnh và video tải lên của bạn sẽ bị đánh dấu là nhạy cảm.
-        silence: Bạn vẫn có thể dùng tài khoản của bạn. Tuy nhiên, chỉ có những người đang theo dõi bạn mới có thể thấy tút của bạn. Bạn sẽ bị loại khỏi danh sách của một số người. Những người mới khác vẫn có thể theo dõi bạn bình thường.
-        suspend: Tài khoản của bạn đã bị vô hiệu hóa. Tất cả tút và tập tin mà bạn đã tải lên sẽ không thể truy cập được nữa. Bạn vẫn có thể đăng nhập để yêu cầu tải về bản sao dữ liệu của bạn. Tuy nhiên, chúng tôi sẽ giữ lại một vài dữ liệu để ngăn ngừa bạn trốn tránh trách nhiệm.
-      get_in_touch: Bạn có thể trả lời e-mail này để liên hệ với đội ngũ của %{instance}.
       review_server_policies: Xem lại quy tắc của máy chủ
-      statuses: 'Cụ thể, cho:'
       subject:
         disable: Tài khoản %{acct} của bạn đã bị vô hiệu hóa
         none: Cảnh báo cho %{acct}
-        sensitive: Ảnh và video tải lên của %{acct} sẽ bị đánh dấu là nhạy cảm
         silence: Tài khoản %{acct} của bạn đã bị hạn chế
         suspend: Tài khoản %{acct} của bạn đã bị vô hiệu hóa
       title:
         disable: Tài khoản bị đóng băng
         none: Cảnh báo
-        sensitive: Ảnh và video của bạn sẽ bị đánh dấu nhạy cảm
         silence: Tài khoản bị hạn chế
         suspend: Toài khoản bị vô hiệu hóa
     welcome:
