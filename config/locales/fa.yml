@@ -243,7 +243,7 @@ fa:
         destroy_domain_allow: حذف اجازهٔ دامنه
         destroy_domain_block: حذف انسداد دامنه
         destroy_email_domain_block: حذف انسداد دامنهٔ رایانامه
-        destroy_instance: امحاء دامنه
+        destroy_instance: پاکسازی دامنه
         destroy_ip_block: حذف قاعدهٔ آی‌پی
         destroy_status: حذف وضعیت
         destroy_unavailable_domain: حذف دامنهٔ ناموجود
@@ -292,7 +292,7 @@ fa:
         destroy_domain_allow_html: "%{name} دامنهٔ %{target} را از فهرست مجاز برداشت"
         destroy_domain_block_html: "%{name} انسداد دامنهٔ %{target} را رفع کرد"
         destroy_email_domain_block_html: "%{name} انسداد دامنهٔ رایانامهٔ %{target} را برداشت"
-        destroy_instance_html: "%{name} دامنه %{target} را امحاء کرد"
+        destroy_instance_html: "%{name} دامنه %{target} را پاکسازی کرد"
         destroy_ip_block_html: "%{name} قاعدهٔ آی‌پی %{target} را حذف کرد"
         destroy_status_html: "%{name} وضعیت %{target} را برداشت"
         destroy_unavailable_domain_html: "%{name} تحویل محتوا به دامنه %{target} را از سر گرفت"
@@ -472,6 +472,7 @@ fa:
       back_to_limited: محدود
       back_to_warning: هشدار
       by_domain: دامین
+      confirm_purge: آیا مطمئن هستید می‌خواهید داده را از این دامنه برای همیشه پاک کنید؟
       delivery:
         all: همه
         clear: پاک کردن خطاهای تحول محتوا
@@ -487,6 +488,7 @@ fa:
       delivery_available: پیام آماده است
       delivery_error_days: زورهای خطای تحویل محتوا
       delivery_error_hint: اگر تحویل محتوا به مدت %{count} روز ممکن نباشد، به طور خودکار به عنوان تحویل‌ناشونده علامت‌گذاری خواهد شد.
+      destroyed_msg: هم اکنون داده دامنه %{domain} در صف حذف حتمی است.
       empty: هیج دامنه‌ای پیدا نشد.
       known_accounts:
         one: "%{count} حساب شناخته‌شده"
@@ -497,6 +499,7 @@ fa:
         title: مدیریت
       private_comment: یادداشت خصوصی
       public_comment: یادداشت عمومی
+      purge: پاکسازی
       title: ارتباط میان‌سروری
       total_blocked_by_us: مسدودشده از طرف ما
       total_followed_by_them: ما را پی می‌گیرند
@@ -547,12 +550,16 @@ fa:
     report_notes:
       created_msg: یادداشت گزارش با موفقیت ساخته شد!
       destroyed_msg: یادداشت گزارش با موفقیت حذف شد!
+      today_at: امروز در %{time}
     reports:
       account:
         notes:
           one: "%{count} یادداشت"
           other: "%{count} یادداشت"
+      action_log: گزارش حسابرسی
       action_taken_by: انجام‌دهنده
+      actions:
+        other_description_html: دیدن انتخاب های بیشتر برای کنترل رفتار حساب و سفارشی سازی ارتباط با حساب گزارش شده.
       are_you_sure: مطمئنید؟
       assign_to_self: به عهدهٔ من بگذار
       assigned: مدیر عهده‌دار
