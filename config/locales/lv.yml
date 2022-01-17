@@ -693,6 +693,7 @@ lv:
       back_to_report: Atpakaļ uz paziņojumu lapu
       batch:
         remove_from_report: Noņemt no ziņojuma
+        report: Ziņojums
       deleted: Dzēstie
       media:
         title: Mediji
@@ -1477,6 +1478,7 @@ lv:
     formats:
       default: "%b %d, %Y, %H:%M"
       month: "%b %Y"
+      time: "%H:%M"
   two_factor_authentication:
     add: Pievienot
     disable: Atspējot 2FA
@@ -1504,6 +1506,14 @@ lv:
       subject: Lūdzu, apstiprini pierakstīšanās mēģinājumu
       title: Pierakstīšanās mēģinājums
     warning:
+      categories:
+        spam: Spams
+        violation: Saturs pārkāpj šādas kopienas pamatnostādnes
+      explanation:
+        delete_statuses: Ir konstatēts, ka daži no jūsu ierakstiem pārkāpj vienu vai vairākas kopienas vadlīnijas, un pēc tam %{instance} moderatori tos ir izdzēsuši. Turpmāki pārkāpumi var novest pie bargākiem soda pasākumiem pret jūsu kontu.
+        disable: Tu vairs nevari izmantot savu kontu, taču tavs profils un citi dati paliek neskarti. Tu vari pieprasīt savu datu dublējumu, mainīt konta iestatījumus vai dzēst kontu.
+        sensitive: No šī brīža visi augšupielādētie mediju faili tiks atzīmēti kā sensitīvi un paslēpti aiz klikšķa brīdinājuma.
+        silence: Tu joprojām vari izmantot savu kontu, taču tikai tie cilvēki, kuri jau tev seko, redzēs tavas ziņas šajā serverī, un tev var tikt liegtas dažādas atklāšanas funkcijas. Tomēr citi joprojām var tev manuāli sekot.
       review_server_policies: Pārskati servera politikas
       subject:
         disable: Tavs konts %{acct} tika iesaldēts
