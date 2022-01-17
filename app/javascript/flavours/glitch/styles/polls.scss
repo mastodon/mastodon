@@ -150,6 +150,21 @@
     &:active {
       outline: 0 !important;
     }
+
+    &.disabled {
+      border-color: $dark-text-color;
+
+      &.active {
+        background: $dark-text-color;
+      }
+
+      &:active,
+      &:focus,
+      &:hover {
+        border-color: $dark-text-color;
+        border-width: 1px;
+      }
+    }
   }
 
   &__number {
