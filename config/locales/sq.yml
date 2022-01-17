@@ -729,13 +729,19 @@ sq:
       disallow: Mos e lejo
       links:
         allow: Lejoje lidhjen
+        allow_provider: Lejoje botuesin
         disallow: Hiq lejimin e lidhjes
+        disallow_provider: Mos e lejo botuesin
         shared_by_over_week:
           one: Ndarë nga një person javën e kaluar
           other: Ndarë nga %{count} persona javën e kaluar
         title: Lidhje në modë
         usage_comparison: Ndarë %{today} herë sot, kundrejt %{yesterday} dje
       pending_review: Në pritje të shqyrtimit
+      preview_card_providers:
+        allowed: Lidhje prej këtij botuesi mund të përdoren
+        rejected: Lidhje prej këtij botuesi s’do të përdoren
+        title: Botues
       rejected: Hedhur poshtë
       tags:
         dashboard:
@@ -1299,6 +1305,7 @@ sq:
     open_in_web: Hape në internet
     over_character_limit: u tejkalua kufi shenjash prej %{max}
     pin_errors:
+      direct: Postimet që janë të dukshme vetëm për përdoruesit e përmendur s’mund të fiksohen
       limit: Keni fiksuar tashmë numrin maksimum të mesazheve
       ownership: S’mund të fiksohen mesazhet e të tjerëve
       reblog: S’mund të fiksohet një përforcim
@@ -1455,6 +1462,7 @@ sq:
     formats:
       default: "%d %b, %Y, %H:%M"
       month: "%b %Y"
+      time: "%H:%M"
   two_factor_authentication:
     add: Shtoje
     disable: Çaktivizoje
@@ -1482,7 +1490,17 @@ sq:
       subject: Ju lutemi, ripohoni përpjekje hyrjeje
       title: Përpjekje hyrjeje
     warning:
+      categories:
+        spam: I padëshiruar
+        violation: Lënda cenon udhëzimet vijuese të bashkësisë
+      explanation:
+        delete_statuses: Për disa nga postimet tuaja është parë se cenojnë një ose më tepër udhëzime të bashkësisë dhe për pasojë janë hequr nga moderatorët e %{instance}. Cenime të ardhshme mund të sjellin veprime ndëshkimore më të ashpra kundër llogarisë tuaj.
+        disable: S’mund të përdorni më llogarinë tuaj, por profili juaj dhe të dhëna të tjera mbeten të paprekura. Mund të kërkoni një kopjeruajtje të të dhënave tuaja, të ndryshoni rregullime llogarie, ose të fshini llogarinë tuaj.
+        sensitive: Nga sot e tutje, krejt kartelave media të ngarkuara do t’u vihet shenjë si me spec dhe do të fshihen pas një sinjalizimi “klikojeni”.
+        silence: Mundeni ende të përdorni llogarinë tuaj, por vetëm personat që tashmë ju ndjekin do të shohin postimet tuaja në këtë shërbyes dhe mund të përjashtoheni nga veçori të ndryshme për zbulim lënde. Sidoqoftë, të tjerët mund t’ju ndjekin dorazi.
+      reason: 'Arsye:'
       review_server_policies: Shqyrtoni rregullat e shërbyesit
+      statuses: 'Postime që janë gjetur me cenime:'
       subject:
         disable: Llogaria juaj %{acct} është ngrirë
         none: Sinjalizim për %{acct}
