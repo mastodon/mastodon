@@ -1500,9 +1500,9 @@ pt-PT:
     warning:
       categories:
         spam: Spam
-        violation: O conteúdo viola as seguintes diretrizes da comunidade
+        violation: O conteúdo infringe as seguintes diretrizes da comunidade
       explanation:
-        delete_statuses: Algumas das suas publicações foram consideradas como violando uma ou mais diretrizes da comunidade e foram subsequentemente removidas pelos moderadores de %{instance}. Futuras infrações podem resultar em acções punitivas mais severas contra a sua conta.
+        delete_statuses: Algumas das suas publicações foram consideradas como a infringir uma ou mais diretrizes da comunidade e foram subsequentemente removidas pelos moderadores de %{instance}. Futuras infrações podem resultar em acções punitivas mais severas contra a sua conta.
         disable: Não pode mais utilizar a sua conta, mas o seu perfil e outros dados permanecem intactos. Pode solicitar uma cópia dos seus dados, alterar as definições da conta ou apagá-la.
         sensitive: A partir de agora, todos os ficheiros de media que carregue serão marcados como sensíveis e escondidos atrás de um aviso de "clicar-para-continuar".
         silence: Pode ainda utilizar a sua conta mas apenas as pessoas que já o seguem poderão ver as suas mensagens neste servidor, e poderá ser excluído de várias funcionalidades de divulgação. No entanto, outros poderão ainda segui-lo manualmente.
@@ -1512,13 +1512,17 @@ pt-PT:
       review_server_policies: Reveja a política da instância
       statuses: 'Publicações que foram consideradas em infracção:'
       subject:
+        delete_statuses: As suas publicações em %{acct} foram removidas
         disable: A tua conta %{acct} foi congelada
         none: Aviso para %{acct}
+        sensitive: Os seus ficheiros de media em %{acct} serão marcados como sensiveis de agora em diante
         silence: A tua conta %{acct} foi limitada
         suspend: A tua conta %{acct} foi suspensa
       title:
+        delete_statuses: Publicações removidas
         disable: Conta congelada
         none: Aviso
+        sensitive: Media escondida
         silence: Conta limitada
         suspend: Conta suspensa
     welcome:
