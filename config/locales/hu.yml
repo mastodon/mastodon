@@ -203,6 +203,7 @@ hu:
       silence: Némítás
       silenced: Némított
       statuses: Bejegyzés
+      strikes: Korábbi kihágások
       subscribe: Feliratkozás
       suspended: Felfüggesztett
       suspension_irreversible: Ennek a fióknak az adatait visszaállíthatatlanul törölték. Visszavonhatod a fiók felfüggesztését, hogy újra használható legyen, de a régi adatok ettől még nem fognak visszatérni.
@@ -549,6 +550,7 @@ hu:
     report_notes:
       created_msg: Bejelentési feljegyzés létrehozva!
       destroyed_msg: Bejelentési feljegyzés törölve!
+      today_at: Ma %{time}-kor
     reports:
       account:
         notes:
@@ -556,6 +558,9 @@ hu:
           other: "%{count} feljegyzés"
       action_log: Audit napló
       action_taken_by: 'Kezelte:'
+      actions:
+        other_description_html: További lehetőségek megjelenítése a fiók viselkedésének szabályozásához, és a jelentett fiók kommunikációjának testreszabásához.
+        silence_description_html: A profil csak azok számára lesz látható, akik már követik, vagy kézileg megkeresik, rendkívül korlátozva az elérését. Ez mindig visszafordítható.
       are_you_sure: Biztos vagy benne?
       assign_to_self: Magamhoz rendelés
       assigned: Hozzárendelt moderátor
@@ -576,6 +581,7 @@ hu:
         create_and_unresolve: Újranyitás feljegyzéssel
         delete: Törlés
         placeholder: Jegyezd le, mi tettünk az ügy érdekében, vagy bármilyen változást...
+        title: Megjegyzések
       reopen: Bejelentés újranyitása
       report: '#%{id} számú jelentés'
       reported_account: Bejelentett fiók
@@ -583,11 +589,13 @@ hu:
       resolved: Megoldott
       resolved_msg: A bejelentést sikeresen megoldottuk!
       status: Állapot
+      statuses: Jelentett tartalom
       target_origin: A jelentett fiók eredete
       title: Bejelentések
       unassign: Hozzárendelés törlése
       unresolved: Megoldatlan
       updated_at: Frissítve
+      view_profile: Profil megtekintése
     rules:
       add_new: Szabály hozzáadása
       delete: Törlés
@@ -689,6 +697,10 @@ hu:
       destroyed_msg: Sikeresen töröltük a site feltöltését!
     statuses:
       back_to_account: Vissza a fiók oldalára
+      back_to_report: Vissza a bejelentés oldalra
+      batch:
+        remove_from_report: Eltávolítás a bejelentésből
+        report: Bejelentés
       deleted: Törölve
       media:
         title: Média
@@ -1451,6 +1463,7 @@ hu:
     formats:
       default: "%Y. %b %d., %H:%M"
       month: "%Y %b"
+      time: "%H:%M"
   two_factor_authentication:
     add: Hozzáadás
     disable: Kikapcsolás
@@ -1478,15 +1491,23 @@ hu:
       subject: Erősítsd meg a megkísérelt belépést
       title: Belépési kísérlet
     warning:
+      categories:
+        spam: Kéretlen üzenet
+        violation: A tartalom megsérti a következő közösségi irányelveket
+      reason: 'Indok:'
       review_server_policies: Szerver szabályzat átnézése
       subject:
+        delete_statuses: A(z) %{acct} fiók bejegyzései eltávolításra kerültek
         disable: A fiókodat %{acct} befagyasztották
         none: Figyelmeztetés a %{acct} fióknak
+        sensitive: A(z) %{acct} fiók médiafájljai mostantól érzékenynek lesznek jelölve
         silence: A fiókodat %{acct} korlátozták
         suspend: A fiókodat %{acct} felfüggesztették
       title:
+        delete_statuses: Bejegyzések törölve
         disable: Befagyasztott fiók
         none: Figyelem
+        sensitive: Média elrejtve
         silence: Lekorlátozott fiók
         suspend: Felfüggesztett fiók
     welcome:
