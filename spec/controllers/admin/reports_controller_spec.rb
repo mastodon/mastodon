@@ -10,8 +10,8 @@ describe Admin::ReportsController do
 
   describe 'GET #index' do
     it 'returns http success with no filters' do
-      specified = Fabricate(:report, action_taken: false)
-      Fabricate(:report, action_taken: true)
+      specified = Fabricate(:report, action_taken_at: nil)
+      Fabricate(:report, action_taken_at: Time.now.utc)
 
       get :index
 
@@ -22,10 +22,10 @@ describe Admin::ReportsController do
     end
 
     it 'returns http success with resolved filter' do
-      specified = Fabricate(:report, action_taken: true)
-      Fabricate(:report, action_taken: false)
+      specified = Fabricate(:report, action_taken_at: Time.now.utc)
+      Fabricate(:report, action_taken_at: nil)
 
-      get :index, params: { resolved: 1 }
+      get :index, params: { resolved: '1' }
 
       reports = assigns(:reports).to_a
       expect(reports.size).to eq 1
@@ -54,15 +54,7 @@ describe Admin::ReportsController do
       expect(response).to redirect_to(admin_reports_path)
       report.reload
       expect(report.action_taken_by_account).to eq user.account
-      expect(report.action_taken).to eq true
-    end
-
-    it 'sets trust level when the report is an antispam one' do
-      report = Fabricate(:report, account: Account.representative)
-
-      put :resolve, params: { id: report }
-      report.reload
-      expect(report.target_account.trust_level).to eq Account::TRUST_LEVELS[:trusted]
+      expect(report.action_taken?).to eq true
     end
   end
 
@@ -74,7 +66,7 @@ describe Admin::ReportsController do
       expect(response).to redirect_to(admin_report_path(report))
       report.reload
       expect(report.action_taken_by_account).to eq nil
-      expect(report.action_taken).to eq false
+      expect(report.action_taken?).to eq false
     end
   end
 
