@@ -558,23 +558,36 @@ fr:
           other: "%{count} notes"
       action_log: Journal d’audit
       action_taken_by: Intervention de
+      actions:
+        other_description_html: Voir plus d'options pour contrôler le comportement du compte et personnaliser la communication vers le compte signalé.
+        silence_description_html: Le profil ne sera visible que pour ceux qui le suivent déjà ou le consultent manuellement, ce qui limite considérablement sa portée. Peut toujours être restauré.
+        suspend_description_html: Le profil et tout son contenu deviendront inaccessibles jusqu'à ce qu'il soit éventuellement supprimé. Interagir avec le compte sera impossible. Réversible dans les 30 jours.
+      actions_description_html: 'Si la suppression du contenu offensant ci-dessus est insuffisante :'
+      add_to_report: Ajouter davantage au rapport
       are_you_sure: Voulez-vous vraiment faire ça ?
       assign_to_self: Me l’assigner
       assigned: Modérateur assigné
       by_target_domain: Domaine du compte signalé
+      category: Catégorie
+      category_description_html: La raison pour laquelle ce compte et/ou ce contenu a été signalé sera citée dans la communication avec le compte signalé
       comment:
         none: Aucun
+      comment_description_html: 'Pour fournir plus d''informations, %{name} a écrit :'
       created_at: Signalé
+      delete_and_resolve: Supprimer et résoudre
       forwarded: Transféré
       forwarded_to: Transféré à %{domain}
       mark_as_resolved: Marquer comme résolu
       mark_as_unresolved: Marquer comme non-résolu
+      no_one_assigned: Personne
       notes:
         create: Ajouter une note
         create_and_resolve: Résoudre avec une note
         create_and_unresolve: Ré-ouvrir avec une note
         delete: Supprimer
         placeholder: Décrivez quelles actions ont été prises, ou toute autre mise à jour…
+        title: Remarques
+      notes_description_html: Voir et laisser des notes aux autres modérateurs et à votre futur moi-même
       reopen: Ré-ouvrir le signalement
       report: 'Signalement #%{id}'
       reported_account: Compte signalé
@@ -582,11 +595,14 @@ fr:
       resolved: Résolus
       resolved_msg: Signalement résolu avec succès !
       status: Statut
+      statuses: Contenu signalé
+      statuses_description_html: Le contenu offensant sera cité dans la communication avec le compte signalé
       target_origin: Origine du compte signalé
       title: Signalements
       unassign: Dés-assigner
       unresolved: Non résolus
       updated_at: Mis à jour
+      view_profile: Voir le profil
     rules:
       add_new: Ajouter une règle
       delete: Supprimer
@@ -688,6 +704,10 @@ fr:
       destroyed_msg: Téléversement sur le site supprimé avec succès !
     statuses:
       back_to_account: Retour à la page du compte
+      back_to_report: Retour à la page du rapport
+      batch:
+        remove_from_report: Retirer du rapport
+        report: Signalement
       deleted: Supprimé
       media:
         title: Médias
@@ -1450,6 +1470,7 @@ fr:
     formats:
       default: "%d %b %Y, %H:%M"
       month: "%b %Y"
+      time: "%H:%M"
   two_factor_authentication:
     add: Ajouter
     disable: Désactiver
@@ -1477,6 +1498,9 @@ fr:
       subject: Veuillez confirmer la tentative de connexion
       title: Tentative de connexion
     warning:
+      categories:
+        spam: Indésirable
+        violation: Le contenu viole les directives de la communauté suivantes
       review_server_policies: Passer en revue les politiques du serveur
       subject:
         disable: Votre compte %{acct} a été gelé
