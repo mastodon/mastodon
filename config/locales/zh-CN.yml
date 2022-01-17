@@ -542,8 +542,6 @@ zh-CN:
       account:
         notes:
           other: "%{count} 条笔记"
-        reports:
-          other: "%{count} 个报告"
       action_taken_by: 操作执行者
       are_you_sure: 你确定吗？
       assign_to_self: 接管
@@ -675,15 +673,9 @@ zh-CN:
       destroyed_msg: 站点上传的文件已经成功删除！
     statuses:
       back_to_account: 返回帐户信息页
-      batch:
-        delete: 删除
-        nsfw_off: 标记为非敏感内容
-        nsfw_on: 标记为敏感内容
       deleted: 已删除
-      failed_to_execute: 执行失败
       media:
         title: 媒体文件
-      no_media: 不含媒体文件
       no_status_selected: 因为没有嘟文被选中，所以没有更改
       title: 帐户嘟文
       with_media: 含有媒体文件
@@ -1458,24 +1450,15 @@ zh-CN:
       subject: 请确认登录请求：
       title: 登录请求
     warning:
-      explanation:
-        disable: 虽然你的帐户被冻结，你的帐户数据仍然完整；但是你无法在解锁前执行任何操作。
-        sensitive: 你上传的媒体文件和媒体链接将被视作敏感内容。
-        silence: 当你的帐户被隐藏时，只有已经关注你的人才会这台服务器上看到你的嘟文，并且你会被排除在各种公共列表之外。但是，其他人仍然可以手动关注你。
-        suspend: 你的帐户已被封禁，所有的嘟文和你上传的媒体文件都已经从该服务器和你的关注者的服务器上删除并且不可恢复。
-      get_in_touch: 你可回复该邮件以联系 %{instance} 的工作人员。
       review_server_policies: 查看服务器政策
-      statuses: '具体来说，适用于：'
       subject:
         disable: 你的帐户 %{acct} 已被冻结
         none: 对 %{acct} 的警告
-        sensitive: 你的帐号 %{acct} 所发布的媒体已被标记为敏感内容
         silence: 你的帐户 %{acct} 已被隐藏
         suspend: 你的帐户 %{acct} 已被封禁。
       title:
         disable: 账号已冻结
         none: 警示
-        sensitive: 你的媒体被标记为敏感内容
         silence: 帐户被隐藏
         suspend: 账号被封禁
     welcome:
