@@ -111,6 +111,7 @@ kmr:
       confirm: Bipejirîne
       confirmed: Hate pejirandin
       confirming: Tê pejirandin
+      custom: Kesanekirin
       delete: Daneyan jê bibe
       deleted: Hate jêbirin
       demote: Ast daxistin
@@ -201,6 +202,7 @@ kmr:
       silence: Sînor
       silenced: Bêdeng kirî
       statuses: Şandî
+      strikes: Lêdanên berê
       subscribe: Bibe kiryar
       suspended: Hatiye rawestandin
       suspension_irreversible: Daneyên vê ajimêrê bêveger hatine jêbirin. Tu dikarî ajimêra xwe ji rawestandinê vegerinî da ku ew bi kar bînî lê ew ê tu daneya ku berê hebû venegere.
@@ -547,11 +549,13 @@ kmr:
     report_notes:
       created_msg: Nîşeyê ragihandinê bi awayekî serkeftî pêk hat!
       destroyed_msg: Nîşeyê ragihandinê bi awayekî serkeftî hate jêbirin!
+      today_at: Îro di %{time} de
     reports:
       account:
         notes:
           one: "%{count} nîşe"
           other: "%{count} nîşe"
+      action_log: Tomarê çavdêriyê
       action_taken_by: Çalakî hate kirin ji aliyê
       are_you_sure: Gelo tu bawerî?
       assign_to_self: Bo min diyar bike
@@ -1472,6 +1476,7 @@ kmr:
       subject: Ji kerema xwe re hewldanên têketinê piştrast bike
       title: Hewldanên têketinê
     warning:
+      reason: 'Sedem:'
       review_server_policies: Rêbazên rajeker lêkolîn bike
       subject:
         disable: Ajimêra te a %{acct} hat qerisandin
@@ -1479,8 +1484,10 @@ kmr:
         silence: Ajimêra te ya %{acct} hate bisînorkirin
         suspend: Ajimêra te %{acct} hate rawestandin
       title:
+        delete_statuses: Şandî hatin rakirin
         disable: Ajimêr hate qerisandin
         none: Hişyarî
+        sensitive: Medya veşartî ye
         silence: Ajimêr sînor kiriye
         suspend: Ajimêr hatiye rawestandin
     welcome:
