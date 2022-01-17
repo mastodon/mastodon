@@ -553,9 +553,6 @@ ca:
         notes:
           one: "%{count} nota"
           other: "%{count} notes"
-        reports:
-          one: "%{count} informe"
-          other: "%{count} informes"
       action_taken_by: Mesures adoptades per
       are_you_sure: N'estàs segur?
       assign_to_self: Assignar-me
@@ -687,15 +684,9 @@ ca:
       destroyed_msg: La càrrega al lloc s'ha suprimit correctament!
     statuses:
       back_to_account: Torna a la pàgina del compte
-      batch:
-        delete: Suprimeix
-        nsfw_off: Marcar com a no sensible
-        nsfw_on: Marcar com a sensible
       deleted: Esborrats
-      failed_to_execute: No s'ha pogut executar
       media:
         title: Contingut multimèdia
-      no_media: Sense contingut multimèdia
       no_status_selected: No s’han canviat els estatus perquè cap no ha estat seleccionat
       title: Estats del compte
       with_media: Amb contingut multimèdia
@@ -1482,24 +1473,15 @@ ca:
       subject: Si us plau confirma l’intent d’inici de sessió
       title: Intent d’inici de sessió
     warning:
-      explanation:
-        disable: Mentre el teu compte estigui congelat les dades romandran intactes però no pots dur a terme cap acció fins que no estigui desbloquejat.
-        sensitive: Els fitxers multimèdia pujats i els enllaçats seran tractas com a sensibles.
-        silence: Mentre el teu compte estigui limitat només les persones que ja et segueixen veuen les teves dades en aquest servidor i pots ser exclòs de diverses llistes públiques. No obstant això, d'altres encara poden seguir-te manualment.
-        suspend: El teu compte s'ha suspès i tots els teus tuts i fitxers multimèdia penjats s'han eliminat de manera irreversible d'aquest servidor i dels servidors on tenies seguidors.
-      get_in_touch: Pots respondre a aquest correu electrònic per a contactar amb el personal de %{instance}.
       review_server_policies: Revisa les polítiques del servidor
-      statuses: 'Concretament, per:'
       subject:
         disable: S'ha congelat el teu compte %{acct}
         none: Avís per a %{acct}
-        sensitive: El teu compte %{acct} de publicació de mèdia ha estat marcat com a sensible
         silence: El teu compte %{acct} ha estat limitat
         suspend: S'ha suspès el teu compte %{acct}
       title:
         disable: Compte congelat
         none: Avís
-        sensitive: Els teus mèdia han estat marcats com a sensibles
         silence: Compte limitat
         suspend: Compte suspès
     welcome:
