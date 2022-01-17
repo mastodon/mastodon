@@ -108,6 +108,7 @@ zh-TW:
       confirm: 確定
       confirmed: 已確定
       confirming: 確定
+      custom: 自訂
       delete: 刪除資料
       deleted: 已刪除
       demote: 降級
@@ -198,6 +199,7 @@ zh-TW:
       silence: 靜音
       silenced: 已靜音
       statuses: 嘟文
+      strikes: 先前連續嘟文紀錄
       subscribe: 訂閱
       suspended: 已停權
       suspension_irreversible: 已永久刪除這個帳戶的數據。雖然這個帳戶的數據已被永久刪除，但是您仍然可以取消暫停這個帳戶。
@@ -538,11 +540,17 @@ zh-TW:
     report_notes:
       created_msg: 檢舉記錄建立成功!
       destroyed_msg: 檢舉記錄刪除成功!
+      today_at: 今日為 %{time}
     reports:
       account:
         notes:
           other: "%{count} 則備註"
+      action_log: 審計日誌
       action_taken_by: 操作執行者
+      actions:
+        other_description_html: 檢視更多控制帳號行為以及自訂檢舉帳號通知之選項。
+        silence_description_html: 個人頁面僅會對已跟隨帳號之使用者或手動查詢可見，將大幅度限制觸及範圍。此設定可隨時被還原。
+        suspend_description_html: 個人頁面及其內容將無法被存取，直到其最終被刪除。將無法與此帳號互動。此設定 30 日內可被還原。
       are_you_sure: 你確定嗎?
       assign_to_self: 指派給自己
       assigned: 指派負責人
