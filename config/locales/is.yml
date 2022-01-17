@@ -553,9 +553,6 @@ is:
         notes:
           one: "%{count} minnispunktur"
           other: "%{count} minnispunktar"
-        reports:
-          one: "%{count} skýrsla"
-          other: "%{count} skýrslur"
       action_taken_by: Aðgerð framkvæmd af
       are_you_sure: Ertu viss?
       assign_to_self: Úthluta mér
@@ -687,15 +684,9 @@ is:
       destroyed_msg: Það tókst að eyða innsendingu á vefsvæði!
     statuses:
       back_to_account: Fara aftur á síðu notandaaðgangsins
-      batch:
-        delete: Eyða
-        nsfw_off: Merkja gögn sem ekki viðkvæm
-        nsfw_on: Merkja sem viðkvæmt
       deleted: Eytt
-      failed_to_execute: Mistókst að keyra
       media:
         title: Myndefni
-      no_media: Ekkert myndefni
       no_status_selected: Engum stöðufærslum var breytt þar sem engar voru valdar
       title: Staða notendaaðganga
       with_media: Með myndefni
@@ -1482,24 +1473,15 @@ is:
       subject: Endilega staðfestu tilraun til innskráningar
       title: Tilraun til innskráningar
     warning:
-      explanation:
-        disable: Á meðan aðgangurinn þinn er frystur, eru gögn aðgangsins ósnert, en þú getur ekki framkvæmt neinar aðgerðir fyrr en honum hefur verið aflæst.
-        sensitive: Innsent myndefni sem þú sendir inn og tengt myndefni verður farið með sem viðkvæmt efni.
-        silence: Á meðan aðgangurinn þinn er takmarkaður, mun aðeins fólk sem þegar fylgist með þér sjá tístin þín á þessum vefþjóni, auk þess sem lokað gæti verið á þig á ýmsum opinberum listum. Aftur á móti geta aðrir gerst fylgjendur þínir handvirkt.
-        suspend: Aðgangurinn þinn hefur verið settur í biðstöðu, öll þín tíst og innsent myndefni hafa verið óafturkræft fjarlægð af þessum vefþjóni, sem og af þeim vefþjónum þar sem þú áttir þér fylgjendur.
-      get_in_touch: Þú getur svarað þessum tölvupósti til að setja þig í samband við umsjónarmenn %{instance}.
       review_server_policies: Yfirfara reglur vefþjónsins
-      statuses: 'Sérstaklega fyrir:'
       subject:
         disable: Notandaaðgangurinn þinn %{acct} hefur verið frystur
         none: Aðvörun fyrir %{acct}
-        sensitive: Myndefni sent frá %{acct} aðgangnum þínum hefur verið merkt sem viðkvæmt
         silence: Notandaaðgangurinn þinn %{acct} hefur verið takmarkaður
         suspend: Notandaaðgangurinn þinn %{acct} hefur verið settur í bið
       title:
         disable: Notandaaðgangur frystur
         none: Aðvörun
-        sensitive: Myndefnið þitt hefur verið merkt sem viðkvæmt
         silence: Notandaaðgangur takmarkaður
         suspend: Notandaaðgangur í bið
     welcome:
