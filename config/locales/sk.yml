@@ -308,11 +308,13 @@ sk:
       media_storage: Úložisko médií
       new_users: noví užívatelia
       opened_reports: otvorené hlásenia
+      resolved_reports: vyriešené hlásenia
       software: Softvér
       space: Využitie miesta
       title: Spravovacie rozhranie
       top_languages: Hlavne aktívne jazyky
       top_servers: Hlavne aktívne servery
+      website: Webová stránka
     domain_allows:
       add_new: Povolená doména
       created_msg: Doména bola úspešne povolená
@@ -417,6 +419,7 @@ sk:
       title: Pozvánky
     ip_blocks:
       add_new: Vytvor pravidlo
+      created_msg: Nové IP pravidlo úspešne pridané
       delete: Vymaž
       expires_in:
         '1209600': 2 týždne
@@ -427,6 +430,8 @@ sk:
         '94670856': 3 roky
       new:
         title: Vytvor nové IP pravidlo
+      no_ip_block_selected: Žiadne IP pravidlá neboli zmenené, keďže si žiadne nemal/a zvolené
+      title: pravidlá pre IP adresy
     relationships:
       title: "Vzťahy užívateľa %{acct}"
     relays:
@@ -448,23 +453,29 @@ sk:
     report_notes:
       created_msg: Poznámka o nahlásení úspešne vytvorená!
       destroyed_msg: Poznámka o nahlásení úspešne vymazaná!
+      today_at: Dnes o %{time}
     reports:
       action_taken_by: Zákrok vykonal/a
       are_you_sure: Si si istý/á?
       assign_to_self: Priraď sebe
       assigned: Priradený moderátor
       by_target_domain: Doména nahláseného účtu
+      category: Kategória
       comment:
         none: Žiadne
       created_at: Nahlásené
+      forwarded: Preposlané
+      forwarded_to: Preposlané na %{domain}
       mark_as_resolved: Označiť ako vyriešené
       mark_as_unresolved: Označ ako nevyriešené
+      no_one_assigned: Nikoho
       notes:
         create: Pridaj poznámku
         create_and_resolve: Vyrieš s poznámkou
         create_and_unresolve: Otvor znovu, s poznámkou
         delete: Vymaž
         placeholder: Opíš aké opatrenia boli urobené, alebo akékoľvek iné súvisiace aktualizácie…
+        title: Poznámky
       reopen: Znovu otvor report
       report: 'Nahlásiť #%{id}'
       reported_account: Nahlásený účet
@@ -472,6 +483,7 @@ sk:
       resolved: Vyriešené
       resolved_msg: Hlásenie úspešne vyriešené!
       status: Stav
+      statuses: Nahlásený obsah
       title: Hlásenia
       unassign: Odober
       unresolved: Nevyriešené
