@@ -199,6 +199,7 @@ ko:
       silence: 침묵
       silenced: 침묵 됨
       statuses: 게시물
+      strikes: 이전의 처벌들
       subscribe: 구독하기
       suspended: 정지 됨
       suspension_irreversible: 이 계정의 데이터는 복구할 수 없도록 삭제되었습니다. 계정을 정지 해제함으로서 계정을 다시 사용 가능하게 할 수 있지만 이전에 삭제한 어떤 데이터도 복구되지 않습니다.
@@ -546,6 +547,11 @@ ko:
           other: "%{count}개의 기록"
       action_log: 감사 기록
       action_taken_by: 신고 처리자
+      actions:
+        silence_description_html: 이미 팔로우 하고 있는 사람이나 수동으로 찾아보는 사람에게만 프로필이 보여지고, 도달 범위를 엄격하게 제한합니다. 언제든지 되돌릴 수 있습니다.
+        suspend_description_html: 프로필과 모든 컨텐츠가 최종적으로 삭제될 때까지 접근 불가상태가 됩니다. 이 계정과의 상호작용은 불가능해집니다. 30일 이내에 되돌릴 수 있습니다.
+      actions_description_html: '만약 문제가 되는 위의 컨텐츠를 삭제하는 것을 불충분할 때에는:'
+      add_to_report: 신고에 더 추가하기
       are_you_sure: 정말로 실행하시겠습니까?
       assign_to_self: 나에게 할당하기
       assigned: 할당 된 중재자
@@ -554,6 +560,7 @@ ko:
       comment:
         none: 없음
       created_at: 리포트 시각
+      delete_and_resolve: 삭제하고 처리됨으로 변경
       forwarded: 전달됨
       forwarded_to: '%{domain}에게 전달됨'
       mark_as_resolved: 해결 완료 처리
@@ -573,6 +580,8 @@ ko:
       resolved: 해결됨
       resolved_msg: 리포트가 성공적으로 해결되었습니다!
       status: 상태
+      statuses: 신고된 컨텐츠
+      statuses_description_html: 문제가 되는 컨텐츠는 신고된 계정에게 인용되어 전달됩니다
       target_origin: 신고된 계정의 소속
       title: 신고
       unassign: 할당 해제
@@ -1465,12 +1474,15 @@ ko:
       categories:
         spam: 스팸
         violation: 컨텐츠가 다음의 커뮤니티 규정을 위반합니다
+      get_in_touch: 이것이 잘못된 조치라고 생각된다면, 이 메일에 답장하여 %{instance}의 스태프들에게 연락할 수 있습니다.
       reason: '사유:'
       review_server_policies: 서버 정책 검토하기
+      statuses: '위반사항이 발견된 게시물:'
       subject:
         delete_statuses: 당신의 계정 %{acct}에서 작성한 게시물이 삭제되었습니다
         disable: 당신의 계정 %{acct}가 동결 되었습니다
         none: '%{acct}에게의 경고'
+        sensitive: 지금부터 당신의 계정 %{acct}의 미디어 파일들은 민감함으로 표시됩니다
         silence: 당신의 계정 %{acct}가 제한 되었습니다
         suspend: 당신의 계정 %{acct}가 정지 되었습니다
       title:
