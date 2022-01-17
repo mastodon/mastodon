@@ -1508,15 +1508,21 @@ ca:
         silence: Encara pots fer servir el teu compte però només la gent que ja t'està seguint veuran les teves publicacions en aquest servidor i tu podries ser exclòs de les diverses opcions de descobriment. De totes maneres altres podrien encara seguir-te manualment.
         suspend: Ja no pots utilitzar el teu compte i el teu perfil i altres dades ja no son accessibles. Encara pots iniciar sessió per a demanar una copia de les teves dades fins que siguin totalment eliminades als 30 dies però es mantindran les dades bàsiques per evitar que esquivis la suspensió.
       get_in_touch: Si tu creus que això és un error pots respondre aquest correu electrònic per a contactar amb l'equip de %{instance}.
+      reason: 'Raó:'
       review_server_policies: Revisa les polítiques del servidor
+      statuses: 'Publicacions que han estat trobades com a violació:'
       subject:
+        delete_statuses: Les teves publicacions de %{acct} han estat esborrades
         disable: S'ha congelat el teu compte %{acct}
         none: Avís per a %{acct}
+        sensitive: Els teus mèdia de %{acct} seran marcades com a sensibles a partir d'ara
         silence: El teu compte %{acct} ha estat limitat
         suspend: S'ha suspès el teu compte %{acct}
       title:
+        delete_statuses: Publicacions esborrades
         disable: Compte congelat
         none: Avís
+        sensitive: Mèdia ocult
         silence: Compte limitat
         suspend: Compte suspès
     welcome:
