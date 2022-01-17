@@ -213,6 +213,8 @@ lv:
       suspension_irreversible: Šī konta dati ir neatgriezeniski izdzēsti. Tu vari atcelt konta darbības apturēšanu, lai tas būtu izmantojams, taču tas neatjaunos iepriekšējos datus.
       suspension_reversible_hint_html: Konta darbība ir apturēta, un dati tiks pilnībā noņemti %{date}. Līdz tam kontu var atjaunot bez jebkādām nelabvēlīgām sekām. Ja vēlies nekavējoties noņemt visus konta datus, to vari izdarīt zemāk.
       title: Konti
+      unblock_email: Atbloķēt e-pasta adresi
+      unblocked_email_msg: Veiksmīgi atbloķēta %{username} e-pasta adrese
       unconfirmed_email: Neapstiprināts e-pasts
       undo_sensitized: Atcelt sensitivizēšanu
       undo_silenced: Atsaukt ierobežojumu
@@ -227,6 +229,7 @@ lv:
       whitelisted: Atļauts federācijai
     action_logs:
       action_types:
+        approve_user: Apstiprināt lietotāju
         assigned_to_self_report: Piešķirt Pārskatu
         change_email_user: Mainīt e-pastu lietotājam
         confirm_user: Apstiprināt lietotāju
@@ -244,6 +247,7 @@ lv:
         destroy_domain_allow: Dzēst Domēna Atļauju
         destroy_domain_block: Dzēst Domēna Bloku
         destroy_email_domain_block: Dzēst E-pasta Domēna Bloku
+        destroy_instance: Attīrīt domēnu
         destroy_ip_block: Dzēst IP noteikumu
         destroy_status: Izdzēst Rakstu
         destroy_unavailable_domain: Dzēst Nepieejamu Domēnu
@@ -256,6 +260,7 @@ lv:
         enable_user: Ieslēgt Lietotāju
         memorialize_account: Saglabāt Kontu Piemiņai
         promote_user: Paaugstināt Lietotāju
+        reject_user: Noraidīt lietotāju
         remove_avatar_user: Noņemt Avatāru
         reopen_report: Atkārtoti Atvērt Ziņojumu
         reset_password_user: Atiestatīt Paroli
@@ -264,6 +269,7 @@ lv:
         silence_account: Ierobežot Kontu
         suspend_account: Apturēt Kontu
         unassigned_report: Atcelt Pārskata Piešķiršanu
+        unblock_email_account: Atbloķēt e-pasta adresi
         unsensitive_account: Atsaukt Konta Piespiedu Sensitivizēšanu
         unsilence_account: Atcelt Konta Ierobežošanu
         unsuspend_account: Atcelt konta apturēšanu
@@ -272,6 +278,7 @@ lv:
         update_domain_block: Atjaunināt Domēna Bloku
         update_status: Atjaunināt ziņu
       actions:
+        approve_user_html: "%{name} apstiprināja reģistrēšanos no %{target}"
         assigned_to_self_report_html: "%{name} piešķīra pārskatu %{target} sev"
         change_email_user_html: "%{name} nomainīja e-pasta adresi lietotājam %{target}"
         confirm_user_html: "%{name} apstiprināja e-pasta adresi lietotājam %{target}"
@@ -289,6 +296,7 @@ lv:
         destroy_domain_allow_html: "%{name} neatļāva federāciju ar domēnu %{target}"
         destroy_domain_block_html: "%{name} atbloķēja domēnu %{target}"
         destroy_email_domain_block_html: "%{name} atbloķēja e-pasta domēnu %{target}"
+        destroy_instance_html: "%{name} attīrija domēnu %{target}"
         destroy_ip_block_html: "%{name} izdzēsa nosacījumu priekš IP %{target}"
         destroy_status_html: "%{name} noņēma ziņu %{target}"
         destroy_unavailable_domain_html: "%{name} atjaunoja piegādi uz domēnu %{target}"
