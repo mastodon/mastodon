@@ -475,9 +475,6 @@
         notes:
           one: "%{count} notis"
           other: "%{count} notiser"
-        reports:
-          one: "%{count} rapport"
-          other: "%{count} rapporter"
       action_taken_by: Handling utført av
       are_you_sure: Er du sikker?
       assign_to_self: Tilegn til meg
@@ -607,15 +604,9 @@
       destroyed_msg: Vellykket sletting av sideopplasting!
     statuses:
       back_to_account: Tilbake til kontosiden
-      batch:
-        delete: Slett
-        nsfw_off: NSFW AV
-        nsfw_on: NSFW PÅ
       deleted: Slettet
-      failed_to_execute: Utføring mislyktes
       media:
         title: Media
-      no_media: Ingen media
       no_status_selected: Ingen statuser ble endret da ingen ble valgt
       title: Kontostatuser
       with_media: Med media
@@ -1274,24 +1265,15 @@
       subject: Bekreft forsøk på å logge inn
       title: Påloggingsforsøk
     warning:
-      explanation:
-        disable: Mens kontoen din er fryst, forblir dine kontodata intakt, men du kan ikke utføre noen handlinger før den har blitt tint opp.
-        sensitive: De opplastede mediefilene og linket vil bli behandlet som sensitive.
-        silence: Mens kontoen din er begrenset, vil bare folk som allerede følger deg se dine tuter på denne tjeneren, og du kan bli ekskludert fra diverse offentlige oppføringer. Men andre kan fortsatt følge deg manuelt.
-        suspend: Kontoen din har blitt suspendert, og alle dine tuter og opplastede media har blitt ugjenkallelig fjernet fra denne tjeneren, og fra tjenere der du hadde følgere.
-      get_in_touch: Du kan svare på denne E-posten for å komme i kontakt med styret i %{instance}.
       review_server_policies: Gjennomgå serverretningslinjer
-      statuses: 'Spesifikt for å:'
       subject:
         disable: Kontoen din, %{acct}, har blitt fryst
         none: Advarsel for %{acct}
-        sensitive: Din konto %{acct} medier har blitt merket som følsom
         silence: Kontoen din, %{acct}, har blitt begrenset
         suspend: Kontoen din, %{acct}, har blitt suspendert
       title:
         disable: Kontoen er fryst
         none: Advarsel
-        sensitive: Mediet ditt er markert som følsom
         silence: Kontoen er begrenset
         suspend: Kontoen er suspendert
     welcome:
