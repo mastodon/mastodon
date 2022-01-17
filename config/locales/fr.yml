@@ -112,6 +112,7 @@ fr:
       confirm: Confirmer
       confirmed: Confirmé
       confirming: Confirmation
+      custom: Personnalisé
       delete: Supprimer les données
       deleted: Supprimé
       demote: Rétrograder
@@ -202,6 +203,7 @@ fr:
       silence: Masquer
       silenced: Masqué
       statuses: Statuts
+      strikes: Punitions précédentes
       subscribe: S’abonner
       suspended: Suspendu
       suspension_irreversible: Les données de ce compte ont été irréversiblement supprimées. Vous pouvez annuler la suspension du compte pour le rendre utilisable, mais il ne récupérera aucune donnée qu’il avait auparavant.
@@ -548,11 +550,13 @@ fr:
     report_notes:
       created_msg: Note de signalement créée avec succès !
       destroyed_msg: Note de signalement effacée avec succès !
+      today_at: Aujourd'hui à %{time}
     reports:
       account:
         notes:
           one: "%{count} note"
           other: "%{count} notes"
+      action_log: Journal d’audit
       action_taken_by: Intervention de
       are_you_sure: Voulez-vous vraiment faire ça ?
       assign_to_self: Me l’assigner
