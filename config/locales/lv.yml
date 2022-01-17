@@ -309,6 +309,7 @@ lv:
         enable_user_html: "%{name} iespējoja pieteikšanos lietotājam %{target}"
         memorialize_account_html: "%{name} pārvērta %{target} kontu par atmiņas lapu"
         promote_user_html: "%{name} paaugstināja lietotāju %{target}"
+        reject_user_html: "%{name} noraidīja reģistrēšanos no %{target}"
         remove_avatar_user_html: "%{name} noņēma %{target} avatāru"
         reopen_report_html: "%{name} atkārtoti atvēra ziņojumu %{target}"
         reset_password_user_html: "%{name} atiestatīja paroli lietotājam %{target}"
@@ -317,6 +318,7 @@ lv:
         silence_account_html: "%{name} ierobežoja %{target} kontu"
         suspend_account_html: "%{name} apturēja %{target} kontu"
         unassigned_report_html: "%{name} nepiešķīra ziņojumu %{target}"
+        unblock_email_account_html: "%{name} atbloķēja %{target} e-pasta adresi"
         unsensitive_account_html: "%{name} atmarķēja %{target} mediju kā sensitīvu"
         unsilence_account_html: "%{name} atcēla ierobežojumu %{target} kontam"
         unsuspend_account_html: "%{name} neapturēja %{target} kontu"
@@ -466,6 +468,7 @@ lv:
       back_to_limited: Ierobežotās
       back_to_warning: Brīdinājums
       by_domain: Domēns
+      confirm_purge: Vai tiešām vēlies neatgriezeniski izdzēst datus no šī domēna?
       delivery:
         all: Visas
         clear: Notīrīt piegādes kļūdas
@@ -482,6 +485,7 @@ lv:
       delivery_available: Piegāde ir iespējama
       delivery_error_days: Piegādes kļūdu dienas
       delivery_error_hint: Ja piegāde nav iespējama %{count} dienas, tā tiks automātiski atzīmēta kā nepiegādājama.
+      destroyed_msg: Dati no %{domain} tagad ir gaidīšanas rindā, lai tos drīzumā dzēstu.
       empty: Domēni nav atrasti.
       known_accounts:
         zero: "%{count} zināmu kontu"
@@ -493,6 +497,7 @@ lv:
         title: Moderācija
       private_comment: Privāts komentārs
       public_comment: Publisks komentārs
+      purge: Iztīrīt
       title: Federācija
       total_blocked_by_us: Mūsu bloķēta
       total_followed_by_them: Viņiem seko
@@ -997,6 +1002,7 @@ lv:
     none: Neviens
     order_by: Kārtot pēc
     save_changes: Saglabāt izmaiņas
+    today: šodien
     validation_errors:
       zero: '%{count} kļūdu'
       one: Kaut kas vēl nav īsti kārtībā! Lūdzu, pārskati zemāk norādīto kļūdu
@@ -1316,6 +1322,7 @@ lv:
     open_in_web: Atvērt webā
     over_character_limit: pārsniegts %{max} rakstzīmju ierobežojums
     pin_errors:
+      direct: Ziņojumus, kas ir redzami tikai minētajiem lietotājiem, nevar piespraust
       limit: Tu jau esi piespraudis maksimālo ziņu skaitu
       ownership: Citas personas ziņu nevar piespraust
       reblog: Paaugstinātās ziņas nevar piespraust
