@@ -542,8 +542,6 @@ ko:
       account:
         notes:
           other: "%{count}개의 기록"
-        reports:
-          other: "%{count}개의 신고"
       action_taken_by: 신고 처리자
       are_you_sure: 정말로 실행하시겠습니까?
       assign_to_self: 나에게 할당하기
@@ -675,15 +673,9 @@ ko:
       destroyed_msg: 사이트 업로드를 성공적으로 삭제했습니다!
     statuses:
       back_to_account: 계정으로 돌아가기
-      batch:
-        delete: 삭제
-        nsfw_off: NSFW 끄기
-        nsfw_on: NSFW 켜기
       deleted: 삭제됨
-      failed_to_execute: 실행을 실패하였습니다
       media:
         title: 미디어
-      no_media: 미디어 없음
       no_status_selected: 아무 게시물도 선택 되지 않아 아무 것도 바뀌지 않았습니다
       title: 계정 게시물
       with_media: 미디어 있음
@@ -1457,24 +1449,15 @@ ko:
       subject: 로그인 시도를 확인해 주십시오
       title: 로그인 시도
     warning:
-      explanation:
-        disable: 당신의 계정이 동결 된 동안 당신의 계정은 유지 됩니다. 하지만 잠금이 풀릴 때까지 당신은 아무 것도 할 수 없습니다.
-        sensitive: 당신의 업로드 한 미디어 파일들과 링크된 미디어들은 민감함으로 취급됩니다.
-        silence: 당신의 계정이 제한 된 동안엔 당신의 팔로워 이외엔 게시물을 받아 볼 수 없고 공개 리스팅에서 제외 됩니다. 하지만 다른 사람들은 여전히 당신을 팔로우 가능합니다.
-        suspend: 당신의 계정은 정지 되었으며, 모든 게시물과 업로드 한 미디어가 서버에서 삭제 되어 되돌릴 수 없습니다.
-      get_in_touch: 이 메일에 대해 답장해서 %{instance}의 스태프와 연락 할 수 있습니다.
       review_server_policies: 서버 정책 검토하기
-      statuses: '구체적으로:'
       subject:
         disable: 당신의 계정 %{acct}가 동결 되었습니다
         none: '%{acct}에게의 경고'
-        sensitive: 당신의 계정 %{acct}에서 포스팅 하는 미디어는 민감함으로 설정되었습니다
         silence: 당신의 계정 %{acct}가 제한 되었습니다
         suspend: 당신의 계정 %{acct}가 정지 되었습니다
       title:
         disable: 계정 동결 됨
         none: 경고
-        sensitive: 당신의 미디어는 민감함으로 표시되었습니다
         silence: 계정 제한 됨
         suspend: 계정 정지 됨
     welcome:
