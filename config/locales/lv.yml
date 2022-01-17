@@ -539,10 +539,6 @@ lv:
           zero: "%{count} piezīmju"
           one: "%{count} piezīme"
           other: "%{count} piezīmes"
-        reports:
-          zero: "%{count} ziņojumu"
-          one: "%{count} ziņojums"
-          other: "%{count} ziņojumi"
       action_taken_by: Veiktā darbība
       are_you_sure: Vai esi pārliecināts?
       assign_to_self: Piešķirt man
@@ -674,15 +670,9 @@ lv:
       destroyed_msg: Vietnes augšupielāde ir veiksmīgi izdzēsta!
     statuses:
       back_to_account: Atpakaļ uz konta lapu
-      batch:
-        delete: Dzēst
-        nsfw_off: Atzīmēt kā ne-sensitīvu
-        nsfw_on: Atzīmēt kā sensitīvu
       deleted: Dzēstie
-      failed_to_execute: Neizdevās izpildīt
       media:
         title: Mediji
-      no_media: Nav mediju
       no_status_selected: Neviena ziņa netika mainīta, jo neviena netika atlasīta
       title: Konta ziņas
       with_media: Ar medijiem
@@ -1491,24 +1481,15 @@ lv:
       subject: Lūdzu, apstiprini pierakstīšanās mēģinājumu
       title: Pierakstīšanās mēģinājums
     warning:
-      explanation:
-        disable: Tu vairs nevari pieteikties savā kontā vai izmantot to citādāk, taču tavs profils un citi dati paliek neskarti.
-        sensitive: Tevis augšupielādētie mediju faili un saistītie mediju faili tiks uzskatīti par sensitīviem.
-        silence: Tu joprojām vari izmantot savu kontu, taču tikai tie cilvēki, kuri jau tev seko, redzēs tavas ziņas šajā serverī, un tu vari tikt izslēgts no dažādiem publiskiem sarakstiem. Tomēr citi joprojām var tev manuāli sekot.
-        suspend: Tu vairs nevari izmantot savu kontu, un tavs profils un citi dati vairs nav pieejami. Tu joprojām vari pieteikties, lai pieprasītu savu datu dublēšanu, līdz dati tiks pilnībā noņemti, taču mēs saglabāsim dažus datus, lai neļautu tev izvairīties no apturēšanas.
-      get_in_touch: Lai sazinātos ar %{instance} darbiniekiem, tu vari atbildēt uz šo e-pastu.
       review_server_policies: Pārskati servera politikas
-      statuses: 'Konkrēti, priekš:'
       subject:
         disable: Tavs konts %{acct} tika iesaldēts
         none: Brīdinājums par %{acct}
-        sensitive: Tavs konts %{acct}, kurā tiek publicēts mediju saturs, ir atzīmēts kā sensitīvs
         silence: Tavs konts %{acct} tika ierobežots
         suspend: Tava konta %{acct} darbība ir apturēta
       title:
         disable: Konts iesaldēts
         none: Brīdinājums
-        sensitive: Tavs medijs ir atzīmēta kā sensitīvs
         silence: Konts ierobežots
         suspend: Konts apturēts
     welcome:
