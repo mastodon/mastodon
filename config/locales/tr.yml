@@ -112,6 +112,7 @@ tr:
       confirm: Onayla
       confirmed: Onaylandı
       confirming: Onaylanıyor
+      custom: Özel
       delete: Veriyi sil
       deleted: Silindi
       demote: Düşür
@@ -548,29 +549,37 @@ tr:
     report_notes:
       created_msg: Şikayet notu başarıyla oluşturuldu!
       destroyed_msg: Şikayet notu başarıyla silindi!
+      today_at: 'Bugün şu saatte: %{time}'
     reports:
       account:
         notes:
           one: "%{count} not"
           other: "%{count} not"
+      action_log: Denetim günlüğü
       action_taken_by: tarafından gerçekleştirilen eylem
+      add_to_report: Bildirime daha fazlasını ekle
       are_you_sure: Emin misiniz?
       assign_to_self: Bana ata
       assigned: Denetleyici atandı
       by_target_domain: Şikayet edilen hesabın alan adı
+      category: Kategori
       comment:
         none: Yok
+      comment_description_html: 'Daha fazla bilgi vermek için %{name} şunu yazdı:'
       created_at: Şikayet edildi
+      delete_and_resolve: Çöz ve sil
       forwarded: İletildi
       forwarded_to: '%{domain}''e iletildi'
       mark_as_resolved: Giderildi olarak işaretle
       mark_as_unresolved: Çözümlenmemiş olarak işaretle
+      no_one_assigned: Hiç kimse
       notes:
         create: Not Ekle
         create_and_resolve: Not ile çözümle
         create_and_unresolve: Not ile tekrar aç
         delete: Sil
         placeholder: Hangi işlemlerin yapıldığını, ya da diğer ilgili güncellemeleri açıklayın...
+        title: Notlar
       reopen: Şikayeti tekrar aç
       report: 'Şikayet #%{id}'
       reported_account: Şikayet edilen hesap
@@ -578,11 +587,13 @@ tr:
       resolved: Giderildi
       resolved_msg: Şikayet başarıyla çözümlendi!
       status: Durum
+      statuses: Bildirilen içerik
       target_origin: Şikayet edilen hesabın kökeni
       title: Şikayetler
       unassign: Atamayı geri al
       unresolved: Giderilmedi
       updated_at: Güncellendi
+      view_profile: Profili görüntüle
     rules:
       add_new: Kural ekle
       delete: Sil
@@ -684,6 +695,10 @@ tr:
       destroyed_msg: Site yüklemesi başarıyla silindi!
     statuses:
       back_to_account: Hesap sayfasına geri dön
+      back_to_report: Bildirim sayfasına geri dön
+      batch:
+        remove_from_report: Bildirimden kaldır
+        report: Bildirim
       deleted: Silindi
       media:
         title: Medya
@@ -1445,6 +1460,7 @@ tr:
     formats:
       default: "%d %b %Y %H:%M"
       month: "%b %Y"
+      time: "%H:%M"
   two_factor_authentication:
     add: Ekle
     disable: 2FA'yı devre dışı bırak
@@ -1472,6 +1488,9 @@ tr:
       subject: Lütfen oturum açma girişimini onaylayın
       title: Oturum açma girişimi
     warning:
+      categories:
+        spam: İstenmeyen
+        violation: İçerik aşağıdaki topluluk ilkelerini ihlal ediyor
       review_server_policies: Sunucu politikalarını inceleyin
       subject:
         disable: '%{acct} hesabınız donduruldu'
