@@ -19,7 +19,7 @@
   %div.muted-hint.center-text
     = t 'admin.action_logs.empty'
 - else
-  .announcements-list
+  .report-notes
     = render partial: 'action_log', collection: @action_logs
 
 = paginate @action_logs

@@ -6,11 +6,11 @@ class Admin::Metrics::Measure::ResolvedReportsMeasure < Admin::Metrics::Measure:
   end
 
   def total
-    Report.resolved.where(updated_at: time_period).count
+    Report.resolved.where(action_taken_at: time_period).count
   end
 
   def previous_total
-    Report.resolved.where(updated_at: previous_time_period).count
+    Report.resolved.where(action_taken_at: previous_time_period).count
   end
 
   def data
@@ -19,8 +19,7 @@ class Admin::Metrics::Measure::ResolvedReportsMeasure < Admin::Metrics::Measure:
         WITH resolved_reports AS (
           SELECT reports.id
           FROM reports
-          WHERE action_taken
-            AND date_trunc('day', reports.updated_at)::date = axis.period
+          WHERE date_trunc('day', reports.action_taken_at)::date = axis.period
         )
         SELECT count(*) FROM resolved_reports
       ) AS value

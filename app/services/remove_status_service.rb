@@ -9,6 +9,7 @@ class RemoveStatusService < BaseService
   # @param   [Hash] options
   # @option  [Boolean] :redraft
   # @option  [Boolean] :immediate
+  # @option  [Boolean] :preserve
   # @option  [Boolean] :original_removed
   def call(status, **options)
     @payload  = Oj.dump(event: :delete, payload: status.id.to_s)
@@ -44,7 +45,7 @@ class RemoveStatusService < BaseService
           remove_media
         end
 
-        @status.destroy! if @options[:immediate] || !@status.reported?
+        @status.destroy! if permanently?
       else
         raise Mastodon::RaceConditionError
       end
@@ -143,9 +144,13 @@ class RemoveStatusService < BaseService
   end
 
   def remove_media
-    return if @options[:redraft] || (!@options[:immediate] && @status.reported?)
+    return if @options[:redraft] || !permanently?
 
     @status.media_attachments.destroy_all
+  end
+
+  def permanently?
+    @options[:immediate] || !(@options[:preserve] || @status.reported?)
   end
 
   def lock_options
