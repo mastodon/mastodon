@@ -552,9 +552,6 @@ gl:
         notes:
           one: "%{count} nota"
           other: "%{count} notas"
-        reports:
-          one: "%{count} denuncia"
-          other: "%{count} denuncias"
       action_taken_by: Acción tomada por
       are_you_sure: Estás seguro?
       assign_to_self: Asignarme
@@ -686,15 +683,9 @@ gl:
       destroyed_msg: Eliminado correctamente o subido!
     statuses:
       back_to_account: Volver a páxina da conta
-      batch:
-        delete: Eliminar
-        nsfw_off: Marcar como non sensible
-        nsfw_on: Marcar como sensible
       deleted: Eliminado
-      failed_to_execute: Fallou a execución
       media:
         title: Medios
-      no_media: Sen medios
       no_status_selected: Non se cambiou ningunha publicación xa que ningunha foi seleccionada
       title: Publicacións da conta
       with_media: con medios
@@ -1480,24 +1471,15 @@ gl:
       subject: Por favor confirma o intento de conexión
       title: Intento de conexión
     warning:
-      explanation:
-        disable: Cando a súa conta está conxelada, os datos permanecen intactos, pero non pode levar a fin accións ate que se desbloquea.
-        sensitive: Os teus ficheiros e ligazóns a multimedia serán tratados como sensibles.
-        silence: Mentras a conta está limitada, só a xente que actualmente te segue verá as publicacións neste servidor, e poderías estar excluída de varias listaxes públicas. Porén, outras persoas poderíante seguir de xeito manual.
-        suspend: A súa conta foi suspendida, e todos os seus toots e medios subidos foron eliminados de este servidor de xeito irreversible, e dos servidores onde tivese seguidoras.
-      get_in_touch: Pode responder a este correo para contactar coa administración de %{instance}.
       review_server_policies: Revisar políticas do servidor
-      statuses: 'En concreto, para:'
       subject:
         disable: A súa conta %{acct} foi conxelada
         none: Aviso para %{acct}
-        sensitive: Ó publicar multimedia a túa conta %{acct} foi marcada como sensible
         silence: A súa conta %{acct} foi limitada
         suspend: A súa conta %{acct} foi suspendida
       title:
         disable: Conta conxelada
         none: Aviso
-        sensitive: O teu multimedia foi marcado como sensible
         silence: Conta limitada
         suspend: Conta suspendida
     welcome:
