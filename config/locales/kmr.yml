@@ -552,9 +552,6 @@ kmr:
         notes:
           one: "%{count} nîşe"
           other: "%{count} nîşe"
-        reports:
-          one: "%{count} gilî"
-          other: "%{count} gilî"
       action_taken_by: Çalakî hate kirin ji aliyê
       are_you_sure: Gelo tu bawerî?
       assign_to_self: Bo min diyar bike
@@ -686,15 +683,9 @@ kmr:
       destroyed_msg: Barkirina malperê bi serkeftî hate jêbirin!
     statuses:
       back_to_account: Vegere bo rûpela ajimêr
-      batch:
-        delete: Jê bibe
-        nsfw_off: Wekî ne hestiyar nîşan bide
-        nsfw_on: Wekî hestiyar nîşan bide
       deleted: Hate jêbirin
-      failed_to_execute: Bi ser neket
       media:
         title: Medya
-      no_media: Medya nîne
       no_status_selected: Tu şandî nehat hilbijartin ji ber vê tu şandî jî nehat guhertin
       title: Şandiyên ajimêr
       with_media: Bi medya yê re
@@ -1481,24 +1472,15 @@ kmr:
       subject: Ji kerema xwe re hewldanên têketinê piştrast bike
       title: Hewldanên têketinê
     warning:
-      explanation:
-        disable: Tu êdî nikarî têkevî ajimêra xwe an wê bi rengeke din bi kar bînî, lê profîla te û daneyên din saxlem dimînin.
-        sensitive: Pelên te yê medyayê a barkirî û girêdanên te yên medyayê wek hestiyarî wê bihê nirxandin.
-        silence: Gava ajimêra te sînorkirî be dîsa jî tu dikarî ajimêra xwe bi kar bînî lê tenê kesên ku berê te dişopînin dê şandiyên te li ser vê rajekarê bibînin, û dibe ku tu ji navnîşên cihêreng ên gelemperî bêne awaretkirin. Lêbelê, dibe ku yên din hîn te bişopînin bi destan.
-        suspend: Tu êdî nikarî têkevî ajimêra xwe, û profîla te û daneyên din êdî nayên gihîştin. Dîsa jî tu dikarî têkevî da ku hilanîna daneyên xwe daxwaz bikî heya ku dane bi tevahî werin rakirin, lê em ê hin daneyan biparêzin da ku tu ji rawestandinê rizgar bikin.
-      get_in_touch: Ji bo bi xebatkarên %{instance} têkilî deynî tu dikarî vê e-nameyê bibersivînî.
       review_server_policies: Rêbazên rajeker lêkolîn bike
-      statuses: 'Bi taybetî, ji bo wê:'
       subject:
         disable: Ajimêra te a %{acct} hat qerisandin
         none: Hişyarî bo %{acct}
-        sensitive: Ajimêra te %{acct} medyaya ku wek hestyar hatiye nîşandin weşandiye
         silence: Ajimêra te ya %{acct} hate bisînorkirin
         suspend: Ajimêra te %{acct} hate rawestandin
       title:
         disable: Ajimêr hate qerisandin
         none: Hişyarî
-        sensitive: Medyayê te wekî hestyar hate nîşandan
         silence: Ajimêr sînor kiriye
         suspend: Ajimêr hatiye rawestandin
     welcome:
