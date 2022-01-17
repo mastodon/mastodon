@@ -1445,6 +1445,7 @@ zh-TW:
     formats:
       default: "%Y年%-m月%d日 %H:%M"
       month: "%b %Y"
+      time: "%H:%M"
   two_factor_authentication:
     add: 新增
     disable: 停用
@@ -1472,6 +1473,9 @@ zh-TW:
       subject: 請確認登入嘗試
       title: 登入嘗試
     warning:
+      categories:
+        spam: 垃圾訊息
+        violation: 該內容違反以下社群規章
       review_server_policies: 檢視伺服器政策
       subject:
         disable: 您的帳號 %{acct} 已被凍結
