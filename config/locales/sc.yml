@@ -489,9 +489,6 @@ sc:
         notes:
           one: "%{count} nota"
           other: "%{count} notas"
-        reports:
-          one: "%{count} informe"
-          other: "%{count} informes"
       action_taken_by: Mesuras adotadas dae
       are_you_sure: Seguru?
       assign_to_self: Assigna a mie
@@ -622,15 +619,9 @@ sc:
       destroyed_msg: Càrriga de su situ cantzellada.
     statuses:
       back_to_account: Torra a sa pàgina de su contu
-      batch:
-        delete: Cantzella
-        nsfw_off: Signala comente a non sensìbile
-        nsfw_on: Signala comente a sensìbile
       deleted: Cantzelladu
-      failed_to_execute: Faddina in s'esecutzione
       media:
         title: Elementos multimediales
-      no_media: Perunu elementu multimediale
       no_status_selected: Perunu istadu est istadu mudadu dae chi non nd'as seletzionadu
       title: Istados de su contu
       with_media: Cun elementos multimediales
@@ -1324,24 +1315,15 @@ sc:
       subject: Cunfirma su tentativu de identificatzione
       title: Tentativu de identificatzione
     warning:
-      explanation:
-        disable: Non podes prus intrare in su contu tuo o dd'impreare in cale si siat àtera manera, ma su profilu e is àteros datos tuos abarrant intatos.
-        sensitive: Is elementos e documentos multimediales carrigados e ligados tuos ant a èssere tratados che a sensìbiles.
-        silence: Podes ancora impreare su contu tuo, ma isceti is persones chi ti sunt giai sighende ant a bìdere is tuts tuos in custu serbidore, e dias pòdere èssere esclùdidu dae unas cantas listas pùblicas. Nointames custu, is àteros ti diant pòdere galu sighire in manera manuale.
-        suspend: Non podes prus impreare su contu tuo, e su profilu e àteros datos non sunt prus atzessìbiles. Bi podes ancora intrare pro pedire una còpia de seguresa de is datos tuos finas a cando no ant a èssere cantzellados de su totu, ma nd'amus a mantènnere unos cantos pro non ti permìtere de evàdere sa suspensione.
-      get_in_touch: Podes rispòndere a custu indiritzu de posta eletrònica pro cuntatare cun su personale de %{instance}.
       review_server_policies: Revisiona sas polìticas de su serbidore
-      statuses: 'In manera cuncreta, pro:'
       subject:
         disable: Su contu tuo %{acct} est istadu cungeladu
         none: Avisu pro %{acct}
-        sensitive: Is elementos multimediales de publicatzione de su contu tuo %{acct} sunt istados marcados comente sensìbiles
         silence: Su contu tuo %{acct} est istadu limitadu
         suspend: Su contu tuo %{acct} est istadu suspèndidu
       title:
         disable: Contu congeladu
         none: Atentzione
-        sensitive: S'elementu multimediale tuo est istadu marcadu comente sensìbile
         silence: Contu limitadu
         suspend: Contu suspèndidu
     welcome:
