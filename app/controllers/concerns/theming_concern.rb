@@ -46,8 +46,8 @@ module ThemingConcern
 
     if skin != 'default' && data['skin'][skin]
       pack_data[:skin] = skin if data['skin'][skin].include?(pack_name)
-    else # default skin
-      pack_data[:skin] = 'default' if data['pack'][pack_name]['stylesheet']
+    elsif data['pack'][pack_name]['stylesheet']
+      pack_data[:skin] = 'default'
     end
 
     pack_data
