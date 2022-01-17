@@ -411,9 +411,6 @@ oc:
         notes:
           one: "%{count} nòta"
           other: "%{count} nòtas"
-        reports:
-          one: "%{count} senhalament"
-          other: "%{count} senhalaments"
       action_taken_by: Mesura menada per
       are_you_sure: Es segur ?
       assign_to_self: Me l’assignar
@@ -528,15 +525,9 @@ oc:
       delete: Suprimir lo fichièr enviat
     statuses:
       back_to_account: Tornar a la pagina Compte
-      batch:
-        delete: Suprimir
-        nsfw_off: Marcar coma pas sensible
-        nsfw_on: Marcar coma sensible
       deleted: Suprimits
-      failed_to_execute: Fracàs
       media:
         title: Mèdia
-      no_media: Cap de mèdia
       no_status_selected: Cap d’estatut pas cambiat estant que cap èra pas seleccionat
       title: Estatuts del compte
       with_media: Amb mèdia
@@ -1155,13 +1146,7 @@ oc:
       subject: Vòstre archiu es prèst per telecargament
       title: Archiu per emportar
     warning:
-      explanation:
-        disable: Quand vòstre compte es gelat, las donadas d’aqueste demòran senceras, mas podètz pas realizar cap d’accion fins que siá desblocat.
-        silence: Del temps que vòstre compte es limitat, solament lo monde que vos sègon veiràn vòstres tuts sus aqueste servidor, e poiriatz èsser tirat de mantuna lista publica. Pasmens, d’autres vos pòdon sègre manualament.
-        suspend: Vòstre compte es suspendut e totes vòstres tuts e fichièrs enviats son estats suprimits sens retorn possible d’aqueste servidor e los de vòstres seguidors.
-      get_in_touch: Podètz respondre a aqueste corrièl per contactar la còla de %{instance}.
       review_server_policies: Repassar las politicas del servidor
-      statuses: 'Especificament per :'
       subject:
         disable: Vòstre compte %{acct} es gelat
         none: Avertiment per %{acct}
