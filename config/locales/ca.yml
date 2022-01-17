@@ -574,16 +574,20 @@ ca:
         none: Cap
       comment_description_html: 'Per a donar més informació, %{name} ha escrit:'
       created_at: Reportat
+      delete_and_resolve: Esborra i resol
       forwarded: Reenviat
       forwarded_to: Reenviat a %{domain}
       mark_as_resolved: Marca com a resolt
       mark_as_unresolved: Marcar com a sense resoldre
+      no_one_assigned: Ningú
       notes:
         create: Afegeix una nota
         create_and_resolve: Resol amb una nota
         create_and_unresolve: Reobre amb una nota
         delete: Esborra
         placeholder: Descriu les accions que s'han pres o qualsevol altra actualització relacionada…
+        title: Notes
+      notes_description_html: Veu i deixa notes als altres moderadors i a tu mateix
       reopen: Reobre l'informe
       report: 'Informe #%{id}'
       reported_account: Compte reportat
@@ -591,11 +595,14 @@ ca:
       resolved: Resolt
       resolved_msg: Informe resolt amb èxit!
       status: Estat
+      statuses: Contingut reportat
+      statuses_description_html: El contingut ofensiu serà citat en comunicació amb el compte reportat
       target_origin: Origen del compte reportat
       title: Informes
       unassign: Treu l'assignació
       unresolved: No resolt
       updated_at: Actualitzat
+      view_profile: Veure perfil
     rules:
       add_new: Afegir norma
       delete: Suprimeix
@@ -697,6 +704,10 @@ ca:
       destroyed_msg: La càrrega al lloc s'ha suprimit correctament!
     statuses:
       back_to_account: Torna a la pàgina del compte
+      back_to_report: Torna a la pàgina del informe
+      batch:
+        remove_from_report: Treu del informe
+        report: Informe
       deleted: Esborrats
       media:
         title: Contingut multimèdia
@@ -1459,6 +1470,7 @@ ca:
     formats:
       default: "%b %d, %Y, %H:%M"
       month: "%b %Y"
+      time: "%H:%M"
   two_factor_authentication:
     add: Afegeix
     disable: Desactiva
@@ -1486,6 +1498,9 @@ ca:
       subject: Si us plau confirma l’intent d’inici de sessió
       title: Intent d’inici de sessió
     warning:
+      categories:
+        spam: Contingut brossa
+        violation: El contingut viola les següents guies de la comunitat
       review_server_policies: Revisa les polítiques del servidor
       subject:
         disable: S'ha congelat el teu compte %{acct}
