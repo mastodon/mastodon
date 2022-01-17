@@ -112,6 +112,7 @@ de:
       confirm: Bestätigen
       confirmed: Bestätigt
       confirming: Bestätigung
+      custom: Benutzerdefiniert
       delete: Daten löschen
       deleted: Gelöscht
       demote: Degradieren
@@ -202,6 +203,7 @@ de:
       silence: Stummschalten
       silenced: Stummgeschaltet
       statuses: Beiträge
+      strikes: Vorherige Strikes
       subscribe: Abonnieren
       suspended: Verbannt
       suspension_irreversible: Die Daten dieses Kontos wurden unwiderruflich gelöscht. Du kannst das Konto aufheben, um es brauchbar zu machen, aber es wird keine Daten wiederherstellen, die es davor schon hatte.
@@ -548,29 +550,44 @@ de:
     report_notes:
       created_msg: Meldungs-Kommentar erfolgreich erstellt!
       destroyed_msg: Meldungs-Kommentar erfolgreich gelöscht!
+      today_at: Heute um %{time}
     reports:
       account:
         notes:
           one: "%{count} Notiz"
           other: "%{count} Notizen"
+      action_log: Überprüfungsprotokoll
       action_taken_by: Maßnahme ergriffen durch
+      actions:
+        other_description_html: Weitere Optionen zur Kontrolle des Kontoverhaltens und zur Anpassung der Kommunikation an das gemeldete Konto.
+        silence_description_html: Das Profil wird nur für diejenigen sichtbar sein, die es bereits verfolgen oder manuell nachschlagen und die Reichweite wird stark begrenzt. Kann immer rückgängig gemacht werden.
+        suspend_description_html: Das Profil und alle seine Inhalte werden unzugänglich werden, bis es schließlich gelöscht wird. Interaktion mit dem Konto wird unmöglich sein. Reversibel innerhalb von 30 Tagen.
+      actions_description_html: 'Wenn das Entfernen des obigen Inhalts nicht ausreicht:'
+      add_to_report: Mehr zur Meldung hinzufügen
       are_you_sure: Bist du dir sicher?
       assign_to_self: Mir zuweisen
       assigned: Zugewiesener Moderator
       by_target_domain: Domain des gemeldeten Kontos
+      category: Kategorie
+      category_description_html: Der Grund, warum dieses Konto und/oder der Inhalt gemeldet wurden, wird in der Kommunikation mit dem gemeldeten Konto zitiert
       comment:
         none: Kein
+      comment_description_html: 'Um weitere Informationen bereitzustellen, schrieb %{name} folgendes:'
       created_at: Gemeldet
+      delete_and_resolve: Löschen und auflösen
       forwarded: Weitergeleitet
       forwarded_to: Weitergeleitet an %{domain}
       mark_as_resolved: Als gelöst markieren
       mark_as_unresolved: Als ungelöst markieren
+      no_one_assigned: Niemand
       notes:
         create: Kommentar hinzufügen
         create_and_resolve: Mit Kommentar lösen
         create_and_unresolve: Mit Kommentar wieder öffnen
         delete: Löschen
         placeholder: Beschreibe, welche Maßnahmen ergriffen wurden oder irgendwelche andere Neuigkeiten…
+        title: Notizen
+      notes_description_html: Zeige und hinterlasse Notizen an andere Moderatoren und dein zukünftiges Selbst
       reopen: Meldung wieder eröffnen
       report: 'Meldung #%{id}'
       reported_account: Gemeldetes Konto
@@ -578,11 +595,14 @@ de:
       resolved: Gelöst
       resolved_msg: Meldung erfolgreich gelöst!
       status: Zustand
+      statuses: Gemeldeter Inhalt
+      statuses_description_html: Störende Inhalte werden in der Kommunikation mit dem gemeldeten Konto zitiert
       target_origin: Domain des gemeldeten Kontos
       title: Meldungen
       unassign: Zuweisung entfernen
       unresolved: Ungelöst
       updated_at: Aktualisiert
+      view_profile: Zeige Profil
     rules:
       add_new: Regel hinzufügen
       delete: Löschen
@@ -684,6 +704,10 @@ de:
       destroyed_msg: Upload erfolgreich gelöscht!
     statuses:
       back_to_account: Zurück zum Konto
+      back_to_report: Zurück zur Seite mit den Meldungen
+      batch:
+        remove_from_report: Von der Meldung entfernen
+        report: Meldung
       deleted: Gelöscht
       media:
         title: Medien
@@ -1448,6 +1472,7 @@ de:
     formats:
       default: "%d.%m.%Y %H:%M"
       month: "%b %Y"
+      time: "%H:%M"
   two_factor_authentication:
     add: Hinzufügen
     disable: Deaktivieren
@@ -1475,15 +1500,31 @@ de:
       subject: Bitte bestätige den Anmeldeversuch
       title: Anmeldeversuch
     warning:
+      categories:
+        spam: Spam
+        violation: Inhalt verletzt die folgenden Community-Richtlinien
+      explanation:
+        delete_statuses: Einige deiner Beiträge wurden aufgrund eines Verstoßes gegen eine oder mehrere Community-Richtlinien entfernt und von den Moderatoren auf %{instance} entfernt. Künftige Verstöße können zu härteren Strafmaßnahmen gegen dein Konto führen.
+        disable: Du kannst dein Konto nicht mehr verwenden, aber dein Profil und andere Daten bleiben unversehrt. Du kannst ein Backup deiner Daten anfordern, die Kontoeinstellungen ändern oder dein Konto löschen.
+        sensitive: Von nun an werden alle deine hochgeladenen Mediendateien als sensibel markiert und hinter einer Warnung versteckt.
+        silence: Solange dein Konto limitiert ist, können nur die Leute, die dir bereits folgen, deine Beiträge auf dem Server sehen und es könnte sein, dass du von verschiedenen öffentlichen Listungen ausgeschlossen wirst. Andererseits können andere dir manuell folgen.
+        suspend: Du kannst dein Konto nicht mehr verwenden und dein Profil und andere Daten sind nicht mehr verfügbar. Du kannst dich immer noch anmelden, um ein Backup deiner Daten anzufordern, bis die Daten innerhalb von 30 Tagen vollständig gelöscht wurden. Allerdings werden wir einige Daten speichern, um zu verhindern, dass du die Sperrung umgehst.
+      get_in_touch: Wenn du glaubst, dass dies ein Fehler ist, kannst auf diese E-Mail antworten, um mit den Mitarbeitern von %{instance} in Kontakt zu treten.
+      reason: 'Grund:'
       review_server_policies: Serverrichtlinien ansehen
+      statuses: 'Beiträge, die in Verletzung gefunden wurden:'
       subject:
+        delete_statuses: Deine Beiträge auf %{acct} wurden entfernt
         disable: Dein Konto %{acct} wurde eingefroren
         none: Warnung für %{acct}
+        sensitive: Deine Mediendateien auf %{acct} werden von nun an als sensibel markiert
         silence: Dein Konto %{acct} wurde limitiert
         suspend: Dein Konto %{acct} wurde gesperrt
       title:
+        delete_statuses: Beiträge entfernt
         disable: Konto eingefroren
         none: Warnung
+        sensitive: Medien versteckt
         silence: Konto limitiert
         suspend: Konto gesperrt
     welcome:
