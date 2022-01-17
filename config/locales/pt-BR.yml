@@ -534,9 +534,6 @@ pt-BR:
         notes:
           one: "%{count} nota"
           other: "%{count} notas"
-        reports:
-          one: "%{count} denúncia"
-          other: "%{count} denúncias"
       action_taken_by: Atitude tomada por
       are_you_sure: Você tem certeza?
       assign_to_self: Pegar
@@ -668,15 +665,9 @@ pt-BR:
       destroyed_msg: Upload do site excluído com sucesso!
     statuses:
       back_to_account: Voltar para página da conta
-      batch:
-        delete: Excluir
-        nsfw_off: Desmarcar como sensível
-        nsfw_on: Marcar como sensível
       deleted: Excluídos
-      failed_to_execute: Falha ao executar
       media:
         title: Mídia
-      no_media: Sem mídia
       no_status_selected: Nenhum status foi modificado porque nenhum estava selecionado
       title: Toots da conta
       with_media: Com mídia
@@ -1445,24 +1436,15 @@ pt-BR:
       subject: Por favor, confirme a tentativa de acesso
       title: Tentativa de acesso
     warning:
-      explanation:
-        disable: Enquanto sua conta está congelada, seus dados de conta permanecem intactos, mas você não pode realizar nenhuma ação até que esteja destrancada.
-        sensitive: Seus arquivos de mídia carregados e mídias vinculadas serão tratados como sensíveis.
-        silence: Enquanto sua conta está silenciada, somente pessoas que já estão seguindo você poderão ver seus toots nessa instância, e você pode ser excluído de várias listas públicas. No entanto, outros ainda podem te seguir manualmente.
-        suspend: Sua conta foi banida e todos os seus toots e mídias foram irreversivelmente excluídos desta instância e das instâncias dos seus seguidores.
-      get_in_touch: Você pode responder a este e-mail para entrar em contato com a equipe de %{instance}.
       review_server_policies: Revisar as políticas da instância
-      statuses: 'Especificamente, para:'
       subject:
         disable: Sua conta %{acct} foi bloqueada
         none: Aviso para %{acct}
-        sensitive: Sua conta %{acct} de postagem de mídia foi marcada como sensível
         silence: Sua conta %{acct} foi silenciada
         suspend: Sua conta %{acct} foi banida
       title:
         disable: Conta bloqueada
         none: Aviso
-        sensitive: Sua mídia foi marcada como sensível
         silence: Conta silenciada
         suspend: Conta banida
     welcome:
