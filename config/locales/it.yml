@@ -553,9 +553,6 @@ it:
         notes:
           one: "%{count} nota"
           other: "%{count} note"
-        reports:
-          one: "%{count} rapporto"
-          other: "%{count} rapporti"
       action_taken_by: Azione intrapresa da
       are_you_sure: Sei sicuro?
       assign_to_self: Assegna a me
@@ -687,15 +684,9 @@ it:
       destroyed_msg: Caricamento sito eliminato!
     statuses:
       back_to_account: Torna alla pagina dell'account
-      batch:
-        delete: Elimina
-        nsfw_off: Segna come non sensibile
-        nsfw_on: Segna come sensibile
       deleted: Cancellato
-      failed_to_execute: Impossibile eseguire
       media:
         title: Media
-      no_media: Nessun media
       no_status_selected: Nessun status è stato modificato perché nessuno era stato selezionato
       title: Gli status dell'account
       with_media: con media
@@ -1484,24 +1475,15 @@ it:
       subject: Conferma il tentativo di accesso
       title: Tentativo di accesso
     warning:
-      explanation:
-        disable: Mentre il tuo account è congelato, i tuoi dati dell'account rimangono intatti, ma non potrai eseguire nessuna azione fintanto che non viene sbloccato.
-        sensitive: I tuoi file multimediali caricati e multimedia collegati saranno trattati come sensibili.
-        silence: Mentre il tuo account è limitato, solo le persone che già ti seguono possono vedere i tuoi post su questo server, e potresti essere escluso da vari elenchi pubblici. Comunque, altri possono manualmente seguirti.
-        suspend: Non puoi più utilizzare il tuo account, e il tuo profilo e altri dati non sono più accessibili. È ancora possibile effettuare il login per richiedere un backup dei dati fino a quando i dati non vengono completamente rimossi, ma conserveremo alcuni dati per impedirti di eludere la sospensione.
-      get_in_touch: Puoi rispondere a questa email per entrare in contatto con lo staff di %{instance}.
       review_server_policies: Rivedi regole del server
-      statuses: 'Nello specifico, per:'
       subject:
         disable: Il tuo account %{acct} è stato congelato
         none: Avviso per %{acct}
-        sensitive: Il multimedia in pubblicazione del tuo profilo %{acct} è stato contrassegnato come sensibile
         silence: Il tuo account %{acct} è stato limitato
         suspend: Il tuo account %{acct} è stato sospeso
       title:
         disable: Account congelato
         none: Avviso
-        sensitive: Il tuo multimedia è stato contrassegnato come sensibile
         silence: Account limitato
         suspend: Account sospeso
     welcome:
