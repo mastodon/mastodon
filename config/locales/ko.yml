@@ -108,6 +108,7 @@ ko:
       confirm: 확인
       confirmed: 확인됨
       confirming: 확인 중
+      custom: 사용자 지정
       delete: 데이터 삭제
       deleted: 삭제됨
       demote: 강등
@@ -538,15 +539,18 @@ ko:
     report_notes:
       created_msg: 리포트 노트가 성공적으로 작성되었습니다!
       destroyed_msg: 리포트 노트가 성공적으로 삭제되었습니다!
+      today_at: 오늘 %{time}
     reports:
       account:
         notes:
           other: "%{count}개의 기록"
+      action_log: 감사 기록
       action_taken_by: 신고 처리자
       are_you_sure: 정말로 실행하시겠습니까?
       assign_to_self: 나에게 할당하기
       assigned: 할당 된 중재자
       by_target_domain: 신고된 계정의 도메인
+      category: 카테고리
       comment:
         none: 없음
       created_at: 리포트 시각
@@ -554,12 +558,14 @@ ko:
       forwarded_to: '%{domain}에게 전달됨'
       mark_as_resolved: 해결 완료 처리
       mark_as_unresolved: 미해결로 표시
+      no_one_assigned: 아무도 없음
       notes:
         create: 기록 추가
         create_and_resolve: 기록을 작성하고 해결됨으로 표시
         create_and_unresolve: 기록 작성과 함께 미해결로 표시
         delete: 삭제
         placeholder: 이 리포트에 대한 조치, 기타 관련 된 사항에 대해 설명합니다…
+        title: 노트
       reopen: 리포트 다시 열기
       report: '신고 #%{id}'
       reported_account: 신고 대상 계정
@@ -572,6 +578,7 @@ ko:
       unassign: 할당 해제
       unresolved: 미해결
       updated_at: 업데이트 시각
+      view_profile: 프로필 보기
     rules:
       add_new: 규칙 추가
       delete: 삭제
@@ -673,6 +680,10 @@ ko:
       destroyed_msg: 사이트 업로드를 성공적으로 삭제했습니다!
     statuses:
       back_to_account: 계정으로 돌아가기
+      back_to_report: 신고 페이지로 돌아가기
+      batch:
+        remove_from_report: 신고에서 제거
+        report: 신고
       deleted: 삭제됨
       media:
         title: 미디어
@@ -1268,6 +1279,7 @@ ko:
     open_in_web: Web으로 열기
     over_character_limit: 최대 %{max}자까지 입력할 수 있습니다
     pin_errors:
+      direct: 멘션된 사용자들에게만 보이는 게시물은 고정될 수 없습니다
       limit: 이미 너무 많은 게시물을 고정했습니다
       ownership: 다른 사람의 게시물은 고정될 수 없습니다
       reblog: 부스트는 고정될 수 없습니다
@@ -1422,6 +1434,7 @@ ko:
     formats:
       default: "%Y년 %m월 %d일 %H:%M"
       month: "%Y년 %b"
+      time: "%H:%M"
   two_factor_authentication:
     add: 추가
     disable: 비활성화
@@ -1449,15 +1462,22 @@ ko:
       subject: 로그인 시도를 확인해 주십시오
       title: 로그인 시도
     warning:
+      categories:
+        spam: 스팸
+        violation: 컨텐츠가 다음의 커뮤니티 규정을 위반합니다
+      reason: '사유:'
       review_server_policies: 서버 정책 검토하기
       subject:
+        delete_statuses: 당신의 계정 %{acct}에서 작성한 게시물이 삭제되었습니다
         disable: 당신의 계정 %{acct}가 동결 되었습니다
         none: '%{acct}에게의 경고'
         silence: 당신의 계정 %{acct}가 제한 되었습니다
         suspend: 당신의 계정 %{acct}가 정지 되었습니다
       title:
+        delete_statuses: 게시물 삭제됨
         disable: 계정 동결 됨
         none: 경고
+        sensitive: 미디어 숨겨짐
         silence: 계정 제한 됨
         suspend: 계정 정지 됨
     welcome:
