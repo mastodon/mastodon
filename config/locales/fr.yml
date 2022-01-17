@@ -1501,15 +1501,28 @@ fr:
       categories:
         spam: Indésirable
         violation: Le contenu viole les directives de la communauté suivantes
+      explanation:
+        delete_statuses: Certains de vos messages ont été jugés en violation d'une ou plusieurs directives de la communauté et ont été supprimés par les modérateurs de %{instance}. De nouvelles violations peuvent entraîner des actions punitives plus sévères contre votre compte.
+        disable: Vous ne pouvez plus utiliser votre compte, mais votre profil et d'autres données restent intacts. Vous pouvez demander une sauvegarde de vos données, modifier les paramètres de votre compte ou supprimer votre compte.
+        sensitive: Désormais, tous vos fichiers multimédias téléchargés seront marqués comme sensibles et cachés derrière un avertissement à cliquer.
+        silence: Vous pouvez toujours utiliser votre compte, mais seules les personnes qui vous suivent déjà verront vos messages sur ce serveur, et vous pourriez être exclu de diverses fonctions de découverte. Cependant, d'autres personnes peuvent toujours vous suivre manuellement.
+        suspend: Vous ne pouvez plus utiliser votre compte, votre profil et vos autres données ne sont plus accessibles. Vous pouvez toujours vous connecter pour demander une sauvegarde de vos données jusqu'à leur suppression complète dans environ 30 jours, mais nous conserverons certaines données de base pour vous empêcher d'échapper à la suspension.
+      get_in_touch: Si vous pensez qu'il s'agit d'une erreur, vous pouvez répondre à ce courriel pour entrer en contact avec le personnel de %{instance}.
+      reason: 'Motif :'
       review_server_policies: Passer en revue les politiques du serveur
+      statuses: 'Les messages qui ont été jugés en violation :'
       subject:
+        delete_statuses: Vos messages sur %{acct} ont été supprimés
         disable: Votre compte %{acct} a été gelé
         none: Avertissement pour %{acct}
+        sensitive: Vos fichiers multimédias sur %{acct} seront désormais marqués comme sensibles
         silence: Votre compte %{acct} a été limité
         suspend: Votre compte %{acct} a été suspendu
       title:
+        delete_statuses: Publications supprimées
         disable: Compte gelé
         none: Avertissement
+        sensitive: Média masqué
         silence: Compte limité
         suspend: Compte suspendu
     welcome:
