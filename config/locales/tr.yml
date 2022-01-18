@@ -203,6 +203,7 @@ tr:
       silence: Sustur
       silenced: Susturulmuş
       statuses: Durumlar
+      strikes: Önceki eylemler
       subscribe: Abone ol
       suspended: Askıya alındı
       suspension_irreversible: Bu hesabın verileri geri dönüşümsüz olarak silindi. Hesabı kullanılabilir hale getirmek için hesabın askıya alınmasını kaldırabilirsiniz, ancak daha önce sahip olduğu herhangi bir veri kurtarılamaz.
@@ -557,6 +558,11 @@ tr:
           other: "%{count} not"
       action_log: Denetim günlüğü
       action_taken_by: tarafından gerçekleştirilen eylem
+      actions:
+        other_description_html: Hesabın davranışını denetlemek ve bildirilen hesabın iletişimini yapılandırmak için daha fazla seçenek görün.
+        silence_description_html: Profil sadece halihazırda takip edenler ve elle bakanlarca görünecek, böylece erişimi ciddi bir şekilde kısıtlanacak. Her zaman geri alınabilir.
+        suspend_description_html: Profil ve tüm içeriği sonunda silinene kadar erişilmez olacak. Hesapla etkileşim mümkün olmayacak. 30 gün boyunca geri alınabilir.
+      actions_description_html: 'Yukarıdaki incitici içeriğin kaldırılması yetersiz ise:'
       add_to_report: Bildirime daha fazlasını ekle
       are_you_sure: Emin misiniz?
       assign_to_self: Bana ata
@@ -1491,15 +1497,21 @@ tr:
       categories:
         spam: İstenmeyen
         violation: İçerik aşağıdaki topluluk ilkelerini ihlal ediyor
+      reason: 'Gerekçe:'
       review_server_policies: Sunucu politikalarını inceleyin
+      statuses: 'İhlal içeren gönderiler:'
       subject:
+        delete_statuses: '%{acct} hesabınızdaki gönderiler kaldırıldı'
         disable: '%{acct} hesabınız donduruldu'
         none: '%{acct} için uyarı'
+        sensitive: '%{acct} hesabınızdaki ortam dosyaları artık hassas olarak işaretlenecek'
         silence: '%{acct} hesabınız sınırlandırıldı'
         suspend: '%{acct} hesabınız askıya alındı'
       title:
+        delete_statuses: Kaldırılan gönderiler
         disable: Hesap donduruldu
         none: Uyarı
+        sensitive: Gizlenmiş ortam dosyaları
         silence: Hesap sınırlandırıldı
         suspend: Hesap askıya alındı
     welcome:
