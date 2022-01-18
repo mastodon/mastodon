@@ -569,6 +569,7 @@ tr:
       assigned: Denetleyici atandı
       by_target_domain: Şikayet edilen hesabın alan adı
       category: Kategori
+      category_description_html: Bu hesap ve/veya içeriğin bildirilme gerekçesi, bildirilen hesapla iletişimde alıntılanacaktır
       comment:
         none: Yok
       comment_description_html: 'Daha fazla bilgi vermek için %{name} şunu yazdı:'
@@ -586,6 +587,7 @@ tr:
         delete: Sil
         placeholder: Hangi işlemlerin yapıldığını, ya da diğer ilgili güncellemeleri açıklayın...
         title: Notlar
+      notes_description_html: Kendiniz ve diğer moderatörler için not bırakın veya notları görüntüleyin
       reopen: Şikayeti tekrar aç
       report: 'Şikayet #%{id}'
       reported_account: Şikayet edilen hesap
@@ -594,6 +596,7 @@ tr:
       resolved_msg: Şikayet başarıyla çözümlendi!
       status: Durum
       statuses: Bildirilen içerik
+      statuses_description_html: İncitici içerik, bildirilen hesapla iletişimde alıntılanacaktır
       target_origin: Şikayet edilen hesabın kökeni
       title: Şikayetler
       unassign: Atamayı geri al
@@ -1310,6 +1313,7 @@ tr:
     open_in_web: Web sayfasında aç
     over_character_limit: '%{max} karakter limiti aşıldı'
     pin_errors:
+      direct: Sadece değinilen kullanıcıların görebileceği gönderiler üstte tutulamaz
       limit: Hali hazırda maksimum sayıda tootu sabitlediniz
       ownership: Başkasının tootu sabitlenemez
       reblog: Bir boost sabitlenemez
@@ -1497,6 +1501,11 @@ tr:
       categories:
         spam: İstenmeyen
         violation: İçerik aşağıdaki topluluk ilkelerini ihlal ediyor
+      explanation:
+        delete_statuses: Bazı gönderilerinizin bir veya daha topluluk ilkemizi ihlal ettiği bulundu ve dolayısıyla %{instance} sunucusu moderatörleri tarafından kaldırıldı. Gelecekteki ihlaller hesabınıza karşı daha sert cezalandırmayla sonuçlanabilir.
+        disable: Artık hesabınızı kullanamazsınız, ancak profil ve diğer veri sağlam. Verinizin bir yedeğini isteyebilir, hesap ayarlarınızı değiştirebilir veya hesabınızı silebilirsiniz.
+        sensitive: Artık tüm yüklenmiş ortam dosyalarınız hassas olarak işaretlenecek ve üzerine tıklanarak açılacak şekilde bir uyarının ardına gizlenecektir.
+        silence: Hesabınız sınırlı iken, yalnızca sizi takip eden kişiler bu sunucudaki gönderilenizi görecek ve çeşitli keşif özelliklerinin dışında bırakılabilirsiniz. Ancak, başkaları sizi manuel olarak hala takip edebilir.
       reason: 'Gerekçe:'
       review_server_policies: Sunucu politikalarını inceleyin
       statuses: 'İhlal içeren gönderiler:'
