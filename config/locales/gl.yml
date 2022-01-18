@@ -111,6 +111,7 @@ gl:
       confirm: Confirmar
       confirmed: Confirmado
       confirming: Estase a confirmar
+      custom: Personalizado
       delete: Eliminar datos
       deleted: Eliminado
       demote: Rebaixar
@@ -201,6 +202,7 @@ gl:
       silence: Silenciar
       silenced: Silenciado
       statuses: Publicacións
+      strikes: Accións previas
       subscribe: Subscribirse
       suspended: Suspendida
       suspension_irreversible: Elimináronse de xeito irreversible os datos desta conta. Podes reactivar a conta para facela usable novamente pero non recuperará os datos eliminados.
@@ -547,29 +549,44 @@ gl:
     report_notes:
       created_msg: A nota da denuncia creouse de xeito correcto!
       destroyed_msg: A nota da denuncia borrouse de xeito correcto!
+      today_at: Hoxe ás %{time}
     reports:
       account:
         notes:
           one: "%{count} nota"
           other: "%{count} notas"
+      action_log: Rexistro de auditoría
       action_taken_by: Acción tomada por
+      actions:
+        other_description_html: Mira máis opcións para controlar o comportamento da conta e personalizar as comunicacións coa conta denunciada.
+        silence_description_html: O perfil será visible só para quen xa o está a seguir ou quen o buscou manualmente, limitando moito o seu alcance. Pódese cambiar.
+        suspend_description_html: O perfil e tódolos seus contidos será inaccesbles e finalmente eliminados. A interacción coa conta non será posible. Reversible durante 30 días.
+      actions_description_html: 'Se eliminar o contido ofensivo non é suficiente:'
+      add_to_report: Engadir máis á denuncia
       are_you_sure: Estás seguro?
       assign_to_self: Asignarme
       assigned: Moderador asignado
       by_target_domain: Dominio da conta denunciada
+      category: Categoría
+      category_description_html: A razón para denunciar esta conta ou contido será citada na comunicación coa conta denunciada
       comment:
         none: Ningún
+      comment_description_html: 'Como información engadida, %{name} escribiu:'
       created_at: Denunciado
+      delete_and_resolve: Eliminar e resolver
       forwarded: Reenviado
       forwarded_to: Reenviado a %{domain}
       mark_as_resolved: Marcar como resolto
       mark_as_unresolved: Marcar como non resolto
+      no_one_assigned: Ninguén
       notes:
         create: Engadir nota
         create_and_resolve: Resolver cunha nota
         create_and_unresolve: Reabrir cunha nota
         delete: Eliminar
         placeholder: Describir que accións foron tomadas ou calquera outra novidade sobre esta denuncia...
+        title: Notas
+      notes_description_html: Ver e deixar unha nota para ti no futuro e outras moderadoras
       reopen: Reabrir denuncia
       report: 'Denuncia #%{id}'
       reported_account: Conta denunciada
@@ -577,11 +594,14 @@ gl:
       resolved: Resolto
       resolved_msg: Resolveuse con éxito a denuncia!
       status: Estado
+      statuses: Contido denunciado
+      statuses_description_html: O contido ofensivo será citado na comunicación coa conta denunciada
       target_origin: Orixe da conta denunciada
       title: Denuncias
       unassign: Non asignar
       unresolved: Non resolto
       updated_at: Actualizado
+      view_profile: Ver perfil
     rules:
       add_new: Engadir regra
       delete: Eliminar
@@ -683,6 +703,10 @@ gl:
       destroyed_msg: Eliminado correctamente o subido!
     statuses:
       back_to_account: Volver a páxina da conta
+      back_to_report: Volver a denuncias
+      batch:
+        remove_from_report: Eliminar da denuncia
+        report: Denuncia
       deleted: Eliminado
       media:
         title: Medios
