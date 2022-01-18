@@ -87,6 +87,7 @@ ro:
       admin: Admin
       bot: Robot
       group: Grup
+      moderator: Moderator
     unavailable: Profil indisponibil
     unfollow: Nu mai urmării
   admin:
@@ -101,7 +102,9 @@ ro:
     accounts:
       add_email_domain_block: Domeniu de e-mail în lista neagră
       approve: Aprobă
+      approved_msg: Cererea de înregistrare de către %{username} a fost aprobată cu succes
       are_you_sure: Ești sigur?
+      avatar: Poză de profil
       by_domain: Domeniu
       change_email:
         changed_msg: E-mail de cont schimbat cu succes!
@@ -113,9 +116,13 @@ ro:
       confirm: Confirmă
       confirmed: Confirmat
       confirming: Confirmare
+      custom: Personalizat
+      delete: Ștergere datele
       deleted: Șters
       demote: Retrogradează
+      destroyed_msg: "Datele utilizatorului %{username} sunt acum în așteptare pentru a fi șterse iminent"
       disable: Dezactivează
+      disable_sign_in_token_auth: Dezactivează autentificarea prin token e-mail
       disable_two_factor_authentication: Dezactivează 2FA
       disabled: Dezactivat
       display_name: Nume afișat
@@ -124,20 +131,26 @@ ro:
       email: E-mail
       email_status: Stare e-mail
       enable: Activează
+      enable_sign_in_token_auth: Activează autentificarea prin token e-mail
       enabled: Activat
+      enabled_msg: Am dezghețat cu succes contul %{username}
       followers: Urmăritori
       follows: Urmăriri
       header: Antet
       inbox_url: URL mesaje primite
+      invite_request_text: Motive pentru alăturare
       invited_by: Invitat de
+      ip: IP
       joined: Înscris
       location:
         all: Toate
+        local: Local
         remote: La distanţă
         title: Locaţie
       login_status: Stare conectare
       media_attachments: Atașamente media
       memorialize: Transformă în memorie
+      memorialized: Memorializat
       moderation:
         active: Activ
         all: Toate
