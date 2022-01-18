@@ -223,10 +223,13 @@ ro:
       unsubscribe: Dezabonare
       unsuspended_msg: S-a anulat cu succes suspendarea contului %{username}
       username: Nume
+      view_domain: Vezi sumarul pentru domeniul
       warn: Avertizează
+      web: Web
       whitelisted: Excluse la blocare
     action_logs:
       action_types:
+        approve_user: Aprobă Utilizatorul
         assigned_to_self_report: Atribuie raportul
         change_email_user: Schimbă e-mailul pentru utilizator
         confirm_user: Confirmare Utilizator
@@ -236,22 +239,33 @@ ro:
         create_domain_allow: Creează permis domeniu
         create_domain_block: Crează blocare de domenii
         create_email_domain_block: Creați blocare de domeniu e-mail
+        create_ip_block: Creează regulă IP
+        create_unavailable_domain: Crează domeniu indisponibil
         demote_user: Retrogradare Utilizatorul
         destroy_announcement: Ștergere anunț
         destroy_custom_emoji: Ștergere Zâmbet Personalizat
         destroy_domain_allow: Ștergere Permitere Domeniu
         destroy_domain_block: Ștergere Blocare Domeniu
+        destroy_email_domain_block: Șterge Blocarea Domeniului de Email
+        destroy_instance: Curăță Domeniul
+        destroy_ip_block: Șterge regula IP
         destroy_status: Șterge starea
+        destroy_unavailable_domain: Șterge Domeniul Indisponibil
         disable_2fa_user: Dezactivează 2FA
         disable_custom_emoji: Dezactivează Emoji-urile Personalizate
+        disable_sign_in_token_auth_user: Dezactivează Autentificarea prin Token E-mail pentru Utilizator
         disable_user: Dezactivează Utilizator
         enable_custom_emoji: Activează Emoji Personalizat
+        enable_sign_in_token_auth_user: Activează Autentificarea prin Token e-mail pentru Utilizator
         enable_user: Activează Utilizator
+        memorialize_account: Comemoreză Contul
         promote_user: Promovează utilizator
+        reject_user: Respinge Utilizatorul
         remove_avatar_user: Elimină avatar
         reopen_report: Redeschide Raport
         reset_password_user: Resetează Parola
         resolve_report: Rezolvă Raport
+        sensitive_account: Cont Sensibil
         suspend_account: Suspendă Cont
         unassigned_report: Raport Neasignat
         unsuspend_account: Anulează Suspendarea Contului
