@@ -1312,6 +1312,7 @@ gl:
     open_in_web: Abrir na web
     over_character_limit: Excedeu o límite de caracteres %{max}
     pin_errors:
+      direct: As publicacións que son son visibles para as usuarias mencionadas non se poden fixar
       limit: Xa fixaches o número máximo permitido de publicacións
       ownership: Non podes fixar a publicación doutra usuaria
       reblog: Non se poden fixar as mensaxes promovidas
@@ -1468,6 +1469,7 @@ gl:
     formats:
       default: "%d %b, %Y, %H:%M"
       month: "%b %Y"
+      time: "%H:%M"
   two_factor_authentication:
     add: Engadir
     disable: Deshabilitar
@@ -1495,15 +1497,31 @@ gl:
       subject: Por favor confirma o intento de conexión
       title: Intento de conexión
     warning:
+      categories:
+        spam: Spam
+        violation: O contido viola as seguintes normas da comunidade
+      explanation:
+        delete_statuses: Algunha das túas publicacións semella que viola algunha das normas da comunidade e foi eliminada pola moderación de %{instance}. Futuras violacións poderían implicar accións máis contundentes contra a túa conta.
+        disable: Xa non podes usar a túa conta, pero o teu perfil e outros datos permanecen intactos. Podes solicitar unha copia dos teus datos, cambiar os axustes da conta ou eliminar a túa conta.
+        sensitive: A partir deste momento, tódolos ficheiros que subiches estarán marcados como sensibles e agochados tras un aviso de contido.
+        silence: Aínda podes usar a túa conta pero só as persoas que te siguen poden ver as túas publicacións neste servidor, e podes que foses excluída de varios xeitos de descubrimento. Porén, aínda te poden seguir de xeito manual.
+        suspend: Xa non podes usar a túa conta, o teu perfil e outros datos xa non son accesibles. Aínda podes conectarte para solicitar unha copia dos teus datos no prazo de 30 días previos á eliminación da conta, pero imos reter algúns datos básicos para evitar que poidas evitar a suspensión.
+      get_in_touch: Se consideras que isto é un erro, podes responder a este email para contactar coa administración de %{instance}.
+      reason: 'Razón:'
       review_server_policies: Revisar políticas do servidor
+      statuses: 'Publicacións que contradín as normas:'
       subject:
+        delete_statuses: As túas publicacións en %{acct} foron eliminadas
         disable: A súa conta %{acct} foi conxelada
         none: Aviso para %{acct}
+        sensitive: A partir de agora os ficheiros multimedia en %{acct} van ser marcados como sensibles
         silence: A súa conta %{acct} foi limitada
         suspend: A súa conta %{acct} foi suspendida
       title:
+        delete_statuses: Publicacións eliminadas
         disable: Conta conxelada
         none: Aviso
+        sensitive: Contido multimedia agochado
         silence: Conta limitada
         suspend: Conta suspendida
     welcome:
