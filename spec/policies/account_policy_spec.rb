@@ -37,7 +37,7 @@ RSpec.describe AccountPolicy do
     end
   end
 
-  permissions :unsuspend? do
+  permissions :unsuspend?, :unblock_email? do
     before do
       alice.suspend!
     end

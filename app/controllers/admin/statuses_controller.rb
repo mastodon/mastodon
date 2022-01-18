@@ -2,71 +2,57 @@
 
 module Admin
   class StatusesController < BaseController
-    helper_method :current_params
-
     before_action :set_account
+    before_action :set_statuses
 
     PER_PAGE = 20
 
     def index
       authorize :status, :index?
 
-      @statuses = @account.statuses.where(visibility: [:public, :unlisted])
-
-      if params[:media]
-        @statuses.merge!(Status.joins(:media_attachments).merge(@account.media_attachments.reorder(nil)).group(:id))
-      end
-
-      @statuses = @statuses.preload(:media_attachments, :mentions).page(params[:page]).per(PER_PAGE)
-      @form     = Form::StatusBatch.new
+      @status_batch_action = Admin::StatusBatchAction.new
     end
 
-    def show
-      authorize :status, :index?
-
-      @statuses = @account.statuses.where(id: params[:id])
-      authorize @statuses.first, :show?
-
-      @form = Form::StatusBatch.new
-    end
-
-    def create
-      authorize :status, :update?
-
-      @form         = Form::StatusBatch.new(form_status_batch_params.merge(current_account: current_account, action: action_from_button))
-      flash[:alert] = I18n.t('admin.statuses.failed_to_execute') unless @form.save
-
-      redirect_to admin_account_statuses_path(@account.id, current_params)
+    def batch
+      @status_batch_action = Admin::StatusBatchAction.new(admin_status_batch_action_params.merge(current_account: current_account, report_id: params[:report_id], type: action_from_button))
+      @status_batch_action.save!
     rescue ActionController::ParameterMissing
       flash[:alert] = I18n.t('admin.statuses.no_status_selected')
-
-      redirect_to admin_account_statuses_path(@account.id, current_params)
+    ensure
+      redirect_to after_create_redirect_path
     end
 
     private
 
-    def form_status_batch_params
-      params.require(:form_status_batch).permit(:action, status_ids: [])
+    def admin_status_batch_action_params
+      params.require(:admin_status_batch_action).permit(status_ids: [])
+    end
+
+    def after_create_redirect_path
+      if @status_batch_action.report_id.present?
+        admin_report_path(@status_batch_action.report_id)
+      else
+        admin_account_statuses_path(params[:account_id], current_params)
+      end
     end
 
     def set_account
       @account = Account.find(params[:account_id])
     end
 
-    def current_params
-      page = (params[:page] || 1).to_i
+    def set_statuses
+      @statuses = Admin::StatusFilter.new(@account, filter_params).results.preload(:application, :preloadable_poll, :media_attachments, active_mentions: :account, reblog: [:account, :application, :preloadable_poll, :media_attachments, active_mentions: :account]).page(params[:page]).per(PER_PAGE)
+    end
 
-      {
-        media: params[:media],
-        page: page > 1 && page,
-      }.select { |_, value| value.present? }
+    def filter_params
+      params.slice(*Admin::StatusFilter::KEYS).permit(*Admin::StatusFilter::KEYS)
     end
 
     def action_from_button
-      if params[:nsfw_on]
-        'nsfw_on'
-      elsif params[:nsfw_off]
-        'nsfw_off'
+      if params[:report]
+        'report'
+      elsif params[:remove_from_report]
+        'remove_from_report'
       elsif params[:delete]
         'delete'
       end

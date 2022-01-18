@@ -113,8 +113,9 @@ ko:
       delete: 데이터 삭제
       deleted: 삭제됨
       demote: 강등
-      destroyed_msg: "%{username}의 데이터는 곧 삭제되도록 큐에 들어갔습니다"
+      destroyed_msg: "%{username}의 데이터는 곧 삭제되도록 대기열에 들어갔습니다"
       disable: 비활성화
+      disable_sign_in_token_auth: 이메일 토큰 인증 비활성화
       disable_two_factor_authentication: 2단계 인증을 비활성화
       disabled: 비활성화된
       display_name: 이름
@@ -123,6 +124,7 @@ ko:
       email: 이메일
       email_status: 이메일 상태
       enable: 활성화
+      enable_sign_in_token_auth: 이메일 토큰 인증 활성화
       enabled: 활성
       enabled_msg: "%{username}의 계정을 성공적으로 얼리기 해제하였습니다"
       followers: 팔로워 수
@@ -140,9 +142,9 @@ ko:
         title: 위치
       login_status: 로그인 상태
       media_attachments: 첨부된 미디어
-      memorialize: 메모리엄으로 전환
-      memorialized: 기념비화 됨
-      memorialized_msg: 성공적으로 %{username}를 기념비 계정으로 전환하였습니다
+      memorialize: 추모비로 전환
+      memorialized: 추모비화 됨
+      memorialized_msg: 성공적으로 %{username}를 추모비 계정으로 전환하였습니다
       moderation:
         active: 활동
         all: 전체
@@ -160,7 +162,7 @@ ko:
       perform_full_suspension: 정지시키기
       promote: 승급
       protocol: 프로토콜
-      public: 전체 공개
+      public: 공개
       push_subscription_expires: PuSH 구독 기간 만료
       redownload: 프로필 업데이트
       redownloaded_msg: 성공적으로 %{username}의 프로필을 원본으로부터 업데이트 하였습니다
@@ -187,6 +189,10 @@ ko:
       search: 검색
       search_same_email_domain: 같은 이메일 도메인을 가진 다른 사용자들
       search_same_ip: 같은 IP의 다른 사용자들
+      security_measures:
+        only_password: 암호만
+        password_and_2fa: 암호와 2단계 인증
+        password_and_sign_in_token: 암호와 이메일 토큰
       sensitive: 민감함
       sensitized: 민감함으로 설정됨
       shared_inbox_url: 공유된 inbox URL
@@ -195,10 +201,10 @@ ko:
         targeted_reports: 이 계정에 대한 신고
       silence: 침묵
       silenced: 침묵 됨
-      statuses: 게시물 수
+      statuses: 게시물
       subscribe: 구독하기
       suspended: 정지 됨
-      suspension_irreversible: 이 계정의 데이터는 복구할 수 없도록 삭제 됩니다. 계정을 정지 해제함으로서 계정을 다시 사용 가능하게 할 수 있지만 이전에 삭제한 어떤 데이터도 복구되지 않습니다.
+      suspension_irreversible: 이 계정의 데이터는 복구할 수 없도록 삭제되었습니다. 계정을 정지 해제함으로서 계정을 다시 사용 가능하게 할 수 있지만 이전에 삭제한 어떤 데이터도 복구되지 않습니다.
       suspension_reversible_hint_html: 계정이 정지되었습니다, 그리고 %{date}에 데이터가 완전히 삭제될 것입니다. 그 때까지는 어떤 안 좋은 효과 없이 계정이 복구 될 수 있습니다. 만약 지금 당장 계정의 모든 데이터를 삭제하고 싶다면, 아래에서 행할 수 있습니다.
       time_in_queue: "%{time}동안 기다림"
       title: 계정
@@ -238,10 +244,12 @@ ko:
         destroy_unavailable_domain: 사용 불가능한 도메인 제거
         disable_2fa_user: 2단계 인증 비활성화
         disable_custom_emoji: 커스텀 에모지 비활성화
+        disable_sign_in_token_auth_user: 사용자에 대한 이메일 토큰 인증 비활성화
         disable_user: 사용자 비활성화
         enable_custom_emoji: 커스텀 에모지 활성화
+        enable_sign_in_token_auth_user: 사용자에 대한 이메일 토큰 인증 활성화
         enable_user: 사용자 활성화
-        memorialize_account: 계정을 장기 저장
+        memorialize_account: 추모계정으로 전환
         promote_user: 사용자 승급
         remove_avatar_user: 아바타 지우기
         reopen_report: 신고 다시 열기
@@ -281,10 +289,12 @@ ko:
         destroy_unavailable_domain_html: "%{name} 님이 도메인 %{target}에 대한 전달을 재개"
         disable_2fa_user_html: "%{name} 님이 사용자 %{target}의 2FA를 비활성화 했습니다"
         disable_custom_emoji_html: "%{name} 님이 에모지 %{target}를 비활성화 했습니다"
+        disable_sign_in_token_auth_user_html: "%{name} 님이 %{target} 님의 이메일 토큰 인증을 비활성화 했습니다"
         disable_user_html: "%{name} 님이 사용자 %{target}의 로그인을 비활성화 했습니다"
         enable_custom_emoji_html: "%{name} 님이 에모지 %{target}를 활성화 했습니다"
+        enable_sign_in_token_auth_user_html: "%{name} 님이 %{target} 님의 이메일 토큰 인증을 활성화 했습니다"
         enable_user_html: "%{name} 님이 사용자 %{target}의 로그인을 활성화 했습니다"
-        memorialize_account_html: "%{name} 님이 %{target}의 계정을 기념비 페이지로 전환했습니다"
+        memorialize_account_html: "%{name} 님이 %{target}의 계정을 추모비 페이지로 전환했습니다"
         promote_user_html: "%{name} 님이 사용자 %{target}를 승급시켰습니다"
         remove_avatar_user_html: "%{name} 님이 %{target}의 아바타를 지웠습니다"
         reopen_report_html: "%{name} 님이 신고 %{target}을 다시 열었습니다"
@@ -341,7 +351,7 @@ ko:
       enabled: 활성됨
       enabled_msg: 성공적으로 활성화하였습니다
       image_hint: 50KB 이하의 PNG
-      list: 목록
+      list: 목록에 추가
       listed: 목록에 실림
       new:
         title: 새 커스텀 에모지 추가
@@ -357,32 +367,9 @@ ko:
       updated_msg: 에모지가 성공적으로 업데이트 되었습니다!
       upload: 업로드
     dashboard:
-      authorized_fetch_mode: 인증 된 페치 모드
-      backlog: 미처리 된 작업
-      config: 설정
-      feature_deletions: 계정 삭제
-      feature_invites: 초대 링크
-      feature_profile_directory: 프로필 책자
-      feature_registrations: 가입
-      feature_relay: 연합 릴레이
-      feature_timeline_preview: 타임라인 미리보기
-      features: 기능
-      hidden_service: 히든 서비스와의 연합
-      open_reports: 미해결 신고
-      pending_tags: 심사를 기다리는 해시태그
-      pending_users: 심사를 기다리는 유저
-      recent_users: 최근 가입 한 유저
-      search: 전문 검색
-      single_user_mode: 싱글 유저 모드
       software: 소프트웨어
       space: 디스크 사용량
       title: 대시보드
-      total_users: 총 유저 수
-      trends: 트렌드
-      week_interactions: 이번 주의 상호작용
-      week_users_active: 이번 주의 활성 사용자
-      week_users_new: 이번 주의 신규 유저
-      whitelist_mode: 제한된 페더레이션 모드
     domain_allows:
       add_new: 도메인 허용
       created_msg: 도메인이 성공적으로 허용 목록에 추가되었습니다
@@ -400,7 +387,7 @@ ko:
         hint: 도메인 차단은 내부 데이터베이스에 계정이 생성되는 것까지는 막을 수 없지만, 그 도메인에서 생성된 계정에 자동적으로 특정한 중재 규칙을 적용하게 할 수 있습니다.
         severity:
           desc_html: |-
-            <strong>침묵</strong>은 계정을 팔로우 하지 않고 있는 사람들에겐 계정의 툿을 보이지 않게 합니다. <strong>정지</strong>는 계정의 컨텐츠, 미디어, 프로필 데이터를 삭제합니다.
+            <strong>침묵</strong>은 계정을 팔로우 하지 않고 있는 사람들에겐 계정의 게시물을 보이지 않게 합니다. <strong>정지</strong>는 계정의 컨텐츠, 미디어, 프로필 데이터를 삭제합니다.
             미디어 파일만을 거부하고 싶다면 <strong>없음</strong>으로 두세요.
           noop: 없음
           silence: 침묵
@@ -446,7 +433,7 @@ ko:
     follow_recommendations:
       description_html: "<strong>팔로우 추천은 새 사용자들이 관심 가는 콘텐트를 빠르게 찾을 수 있도록 도와줍니다</strong>. 사용자가 개인화 된 팔로우 추천이 만들어지기 위한 충분한 상호작용을 하지 않은 경우, 이 계정들이 대신 추천 됩니다. 이들은 해당 언어에 대해 많은 관심을 갖거나 많은 로컬 팔로워를 가지고 있는 계정들을 섞어서 날마다 다시 계산 됩니다."
       language: 할당할 언어
-      status: 게시물
+      status: 상태
       suppress: 팔로우 추천 숨기기
       suppressed: 숨겨짐
       title: 팔로우 추천
@@ -519,7 +506,7 @@ ko:
       disable: 비활성화
       disabled: 비활성화 됨
       enable: 활성화
-      enable_hint: 활성화 되면, 이 릴레이의 모든 공개 게시물을 구독하고 이 서버의 공개 툿을 전송하게 됩니다.
+      enable_hint: 활성화 되면, 이 릴레이의 모든 공개 게시물을 구독하고 이 서버의 공개 게시물을 전송하게 됩니다.
       enabled: 활성화 됨
       inbox_url: 릴레이 URL
       pending: 릴레이의 승인 대기중
@@ -562,6 +549,7 @@ ko:
       resolved: 해결됨
       resolved_msg: 리포트가 성공적으로 해결되었습니다!
       status: 상태
+      target_origin: 신고된 계정의 소속
       title: 신고
       unassign: 할당 해제
       unresolved: 미해결
@@ -631,7 +619,7 @@ ko:
           open: 누구나 가입 할 수 있음
         title: 가입 모드
       show_known_fediverse_at_about_page:
-        desc_html: 활성화 되면 프리뷰 페이지에서 페디버스의 모든 툿을 표시합니다. 비활성화시 로컬에 있는 툿만 표시 됩니다.
+        desc_html: 활성화 되면 프리뷰 페이지에서 페디버스의 모든 게시물을 표시합니다. 비활성화시 로컬에 있는 게시물만 표시 됩니다.
         title: 타임라인 프리뷰에 알려진 페디버스 표시하기
       show_staff_badge:
         desc_html: 유저 페이지에 스태프 배지를 표시합니다
@@ -947,7 +935,7 @@ ko:
     i_am_html: 나는 %{service}의 %{username} 입니다.
     identity: 신원
     inactive: 비활성
-    publicize_checkbox: '그리고 이것을 툿 하세요:'
+    publicize_checkbox: '그리고 이것을 게시하세요:'
     publicize_toot: '증명되었습니다! 저는 %{service}에 있는 %{username}입니다: %{url}'
     remove: 계정증명 삭제
     removed: 성공적으로 계정증명을 삭제했습니다
@@ -970,7 +958,7 @@ ko:
       following: 팔로우 중인 계정 목록
       muting: 뮤트 중인 계정 목록
     upload: 업로드
-  in_memoriam_html: 메모리엄에 있음.
+  in_memoriam_html: 고인의 계정입니다.
   invites:
     delete: 비활성화
     expired: 만료됨
@@ -995,6 +983,17 @@ ko:
   lists:
     errors:
       limit: 리스트 최대치에 도달했습니다
+  login_activities:
+    authentication_methods:
+      otp: 2단계 인증 앱
+      password: 암호
+      sign_in_token: 이메일 보안 코드
+      webauthn: 보안 키
+    description_html: 확인되지 않은 활동이 보인다면, 암호를 바꾸거나 2단계 인증을 활성화 하는 것을 고려해 보세요.
+    empty: 인증 이력이 존재하지 않습니다
+    failed_sign_in_html: 실패한 로그인 시도 %{method} %{ip} (%{browser})
+    successful_sign_in_html: 성공한 로그인 시도 %{method} %{ip} (%{browser})
+    title: 인증 이력
   media_attachments:
     validations:
       images_and_video: 이미 사진이 첨부 된 게시물엔 동영상을 첨부 할 수 없습니다
@@ -1048,7 +1047,7 @@ ko:
         other: "%{count}건의 새로운 알림 \U0001F418"
       title: 당신이 없는 동안에...
     favourite:
-      body: "%{name} 님이 내 게시물을 즐겨찾기에 등록했습니다:"
+      body: '당신의 게시물을 %{name} 님이 즐겨찾기에 등록했습니다:'
       subject: "%{name} 님이 내 게시물을 즐겨찾기에 등록했습니다"
       title: 새 즐겨찾기
     follow:
@@ -1068,7 +1067,7 @@ ko:
     poll:
       subject: "%{name}의 투표가 종료되었습니다"
     reblog:
-      body: "%{name} 님이 내 게시물을 부스트 했습니다:"
+      body: '당신의 게시물을 %{name} 님이 부스트 했습니다:'
       subject: "%{name} 님이 내 게시물을 부스트 했습니다"
       title: 새 부스트
     status:
@@ -1199,6 +1198,7 @@ ko:
     revoke: 삭제
     revoke_success: 세션이 성공적으로 삭제되었습니다
     title: 세션
+    view_authentication_history: 내 계정에 대한 인증 이력 보기
   settings:
     account: 계정
     account_settings: 계정 설정
@@ -1219,6 +1219,7 @@ ko:
     preferences: 사용자 설정
     profile: 프로필
     relationships: 팔로잉과 팔로워
+    statuses_cleanup: 게시물 자동 삭제
     two_factor_authentication: 2단계 인증
     webauthn_authentication: 보안 키
   statuses:
@@ -1264,6 +1265,40 @@ ko:
       public_long: 누구나 볼 수 있으며, 공개 타임라인에 표시됩니다
       unlisted: 공개 타임라인 비공개
       unlisted_long: 누구나 볼 수 있지만, 공개 타임라인에는 표시되지 않습니다
+  statuses_cleanup:
+    enabled: 오래된 게시물 자동 삭제
+    enabled_hint: 아래의 예외 목록에 해당하지 않는다면, 명시된 기한 이후 당신의 게시물을 자동으로 삭제합니다
+    exceptions: 예외
+    explanation: 게시물 삭제는 많은 성능이 필요하기 때문에, 서버에서 바쁘지 않을 때 시간을 들여서 천천히 진행합니다. 이런 이유로, 당신의 게시물은 아마도 정해진 기간보다 좀 더 시간이 지난 이후에 삭제될 것입니다.
+    ignore_favs: 즐겨찾기 무시
+    ignore_reblogs: 부스트 무시
+    interaction_exceptions: 상호작용에 기반한 예외들
+    interaction_exceptions_explanation: 즐겨찾기나 부스트 수가 설정한 값을 넘은 후 다시 낮아진 경우에는 게시물이 삭제되는 것을 보장하지 못합니다.
+    keep_direct: 다이렉트 메시지 유지
+    keep_direct_hint: 다이렉트 메시지를 삭제하지 않습니다
+    keep_media: 미디어가 있는 게시물 유지
+    keep_media_hint: 미디어가 첨부된 게시물을 삭제하지 않습니다
+    keep_pinned: 고정된 게시물 유지
+    keep_pinned_hint: 고정 게시물을 삭제하지 않습니다
+    keep_polls: 투표 유지
+    keep_polls_hint: 투표를 삭제하지 않습니다
+    keep_self_bookmark: 북마크된 게시물 유지
+    keep_self_bookmark_hint: 내 스스로 북마크한 본인의 게시물을 삭제하지 않습니다
+    keep_self_fav: 즐겨찾기한 게시물 유지
+    keep_self_fav_hint: 내 스스로 즐겨찾기한 본인의 게시물을 삭제하지 않습니다
+    min_age:
+      '1209600': 2 주
+      '15778476': 6 개월
+      '2629746': 1 개월
+      '31556952': 1 년
+      '5259492': 2 개월
+      '63113904': 2 년
+      '7889238': 3 개월
+    min_age_label: 기한
+    min_favs: 해당 횟수 이상 즐겨찾기된 게시물 유지
+    min_favs_hint: 이 횟수 이상의 즐겨찾기가 된 게시물은 삭제하지 않습니다. 즐겨찾기 수와 관계없이 게시물을 지우고 싶다면 공백으로 두세요
+    min_reblogs: 해당 횟수 이상 부스트된 게시물 유지
+    min_reblogs_hint: 이 횟수 이상의 부스트가 된 게시물은 삭제하지 않습니다. 부스트 수와 관계없이 게시물을 지우고 싶다면 공백으로 두세요
   stream_entries:
     pinned: 고정된 게시물
     reblogged: 님이 부스트 했습니다
@@ -1276,7 +1311,7 @@ ko:
       <h3 id="collect">우리가 어떤 정보를 수집하나요?</h3>
 
       <ul>
-      <li><em>기본 계정 정보</em>: 이 서버에 가입하실 때 유저네임, 이메일 주소, 패스워드 등을 입력 받게 됩니다. 추가적으로 디스플레이네임이나 자기소개, 프로필 이미지, 헤더 이미지 등의 프로필 정보를 입력하게 됩니다. 유저네임, 디스플레이네임, 자기소개, 프로필 이미지와 헤더 이미지는 언제나 공개적으로 게시됩니다.</li>
+      <li><em>기본 계정 정보</em>: 이 서버에 가입하실 때 사용자명, 이메일 주소, 패스워드 등을 입력 받게 됩니다. 추가적으로 표시되는 이름이나 자기소개, 프로필 이미지, 헤더 이미지 등의 프로필 정보를 입력하게 됩니다. 사용자명, 표시되는 이름, 자기소개, 프로필 이미지와 헤더 이미지는 언제나 공개적으로 게시됩니다.</li>
       <li><em>게시물, 팔로잉, 기타 공개된 정보</em>: 당신이 팔로우 하는 사람들의 리스트는 공개됩니다. 당신을 팔로우 하는 사람들도 마찬가지입니다. 당신이 게시물을 작성하는 경우, 응용프로그램이 메시지를 받았을 때의 날짜와 시간이 기록 됩니다. 게시물은 그림이나 영상 등의 미디어를 포함할 수 있습니다. 퍼블릭과 미표시(unlisted) 게시물은 공개적으로 접근이 가능합니다. 프로필에 게시물을 고정하는 경우 마찬가지로 공개적으로 접근 가능한 정보가 됩니다. 당신의 게시물들은 당신의 팔로워들에게 전송 됩니다. 몇몇 경우 이것은 다른 서버에 전송되고 그곳에 사본이 저장 됩니다. 당신이 게시물을 삭제하는 경우 이 또한 당신의 팔로워들에게 전송 됩니다. 다른 게시물을 리블로깅 하거나 즐겨찾기 하는 경우 이는 언제나 공개적으로 제공 됩니다.</li>
       <li><em>DM, 팔로워 공개 게시물</em>: 모든 게시물들은 서버에서 처리되고 저장됩니다. 팔로워 공개 게시물은 당신의 팔로워와 멘션 된 사람들에게 전달이 됩니다. 다이렉트 메시지는 멘션 된 사람들에게만 전송 됩니다. 몇몇 경우 이것은 다른 서버에 전송 되고 그곳에 사본이 저장됨을 의미합니다. 우리는 이 게시물들이 권한을 가진 사람들만 열람이 가능하도록 노력을 할 것이지만 다른 서버에서는 이것이 실패할 수도 있습니다. 그러므로 당신의 팔로워들이 속한 서버를 재확인하는 것이 중요합니다. 당신은 새 팔로워를 수동으로 승인하거나 거절하도록 설정을 변경할 수 있습니다. <em>해당 서버의 운영자는 서버가 받는 메시지를 열람할 수 있다는 것을 항상 염두해 두세요</em>, 그리고 수신자들은 스크린샷을 찍거나 복사하는 등의 방법으로 다시 공유할 수 있습니다. <em>위험한 정보를 마스토돈을 통해 공유하지 마세요.</em></li>
       <li><em>IP와 기타 메타데이터</em>: 당신이 로그인 하는 경우 IP 주소와 브라우저의 이름을 저장합니다. 모든 세션은 당신이 검토하고 취소할 수 있도록 설정에서 제공 됩니다. 마지막으로 사용 된 IP 주소는 최대 12개월 간 저장됩니다. 또한, 모든 요청에 대해 IP주소를 포함한 정보를 로그에 저장할 수 있습니다.</li>
@@ -1308,7 +1343,7 @@ ko:
 
       <ul>
       <li>IP를 포함해 이 서버에 전송 되는 모든 요청에 대한 로그는 90일을 초과하여 저장되지 않습니다.</li>
-      <li>가입 된 유저의 IP 정보는 12개월을 초과하여 저장 되지 않습니다.</li>
+      <li>가입 된 사용자의 IP 정보는 12개월을 초과하여 저장 되지 않습니다.</li>
       </ul>
 
       <p>당신은 언제든지 게시물, 미디어 첨부, 프로필 이미지, 헤더 이미지를 포함한 당신의 컨텐트에 대한 아카이브를 요청하고 다운로드 할 수 있습니다.</p>
@@ -1392,7 +1427,7 @@ ko:
         disable: 당신의 계정이 동결 된 동안 당신의 계정은 유지 됩니다. 하지만 잠금이 풀릴 때까지 당신은 아무 것도 할 수 없습니다.
         sensitive: 당신의 업로드 한 미디어 파일들과 링크된 미디어들은 민감함으로 취급됩니다.
         silence: 당신의 계정이 제한 된 동안엔 당신의 팔로워 이외엔 게시물을 받아 볼 수 없고 공개 리스팅에서 제외 됩니다. 하지만 다른 사람들은 여전히 당신을 팔로우 가능합니다.
-        suspend: 당신의 계정은 정지 되었으며, 모든 툿과 업로드 한 미디어가 서버에서 삭제 되어 되돌릴 수 없습니다.
+        suspend: 당신의 계정은 정지 되었으며, 모든 게시물과 업로드 한 미디어가 서버에서 삭제 되어 되돌릴 수 없습니다.
       get_in_touch: 이 메일에 대해 답장해서 %{instance}의 스태프와 연락 할 수 있습니다.
       review_server_policies: 서버 정책 검토하기
       statuses: '구체적으로:'

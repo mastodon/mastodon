@@ -44,7 +44,7 @@ es-AR:
       rejecting_media: 'Los archivos de medios de este servidor no van a ser procesados y no se mostrarán miniaturas, lo que requiere un clic manual hacia el archivo original:'
       rejecting_media_title: Medios filtrados
       silenced: 'Los mensajes de estos servidores se ocultarán en las líneas temporales y conversaciones públicas, y no se generarán notificaciones de las interacciones de sus usuarios, a menos que los estés siguiendo:'
-      silenced_title: Servidores silenciados
+      silenced_title: Servidores limitados
       suspended: 'No se procesarán, almacenarán o intercambiarán datos de estos servidores, haciendo imposible cualquier interacción o comunicación con los usuarios de estos servidores:'
       suspended_title: Servidores suspendidos
     unavailable_content_html: Mastodon generalmente te permite ver contenido e interactuar con usuarios de cualquier otro servidor en el fediverso. Estas son las excepciones que se hicieron en este servidor en particular.
@@ -119,6 +119,7 @@ es-AR:
       demote: Bajar de nivel
       destroyed_msg: Los datos de %{username} están ahora en cola para ser eliminados inminentemente
       disable: Congelar
+      disable_sign_in_token_auth: Deshabilitar autenticación de token por correo electrónico
       disable_two_factor_authentication: Deshabilitar 2FA
       disabled: Congelada
       display_name: Nombre para mostrar
@@ -127,6 +128,7 @@ es-AR:
       email: Correo electrónico
       email_status: Estado del correo
       enable: Descongelar
+      enable_sign_in_token_auth: Habilitar autenticación de token por correo electrónico
       enabled: Habilitada
       enabled_msg: Se descongeló exitosamente la cuenta de %{username}
       followers: Seguidores
@@ -151,7 +153,7 @@ es-AR:
         active: Activas
         all: Todas
         pending: Pendientes
-        silenced: Silenciadas
+        silenced: Limitadas
         suspended: Suspendidas
         title: Moderación
       moderation_notes: Notas de moderación
@@ -191,8 +193,12 @@ es-AR:
       search: Buscar
       search_same_email_domain: Otros usuarios con el mismo dominio de correo electrónico
       search_same_ip: Otros usuarios con la misma dirección IP
-      sensitive: Sensible
-      sensitized: marcado como sensible
+      security_measures:
+        only_password: Sólo contraseña
+        password_and_2fa: Contraseña y 2FA
+        password_and_sign_in_token: Contraseña y token por correo electrónico
+      sensitive: Forzar como sensible
+      sensitized: Marcado como sensible
       shared_inbox_url: Dirección web de la bandeja de entrada compartida
       show:
         created_reports: Denuncias hechas
@@ -207,8 +213,8 @@ es-AR:
       time_in_queue: Esperando en cola %{time}
       title: Cuentas
       unconfirmed_email: Correo electrónico sin confirmar
-      undo_sensitized: Deshacer marcado como sensible
-      undo_silenced: Deshacer silenciado
+      undo_sensitized: Deshacer Forzar como sensible
+      undo_silenced: Deshacer límite
       undo_suspension: Deshacer suspensión
       unsilenced_msg: Se quitó exitosamente el límite de la cuenta de %{username}
       unsubscribe: Desuscribirse
@@ -242,8 +248,10 @@ es-AR:
         destroy_unavailable_domain: Eliminar dominio no disponible
         disable_2fa_user: Deshabilitar 2FA
         disable_custom_emoji: Deshabilitar emoji personalizado
+        disable_sign_in_token_auth_user: Deshabilitar autenticación de token por correo electrónico para el usuario
         disable_user: Deshabilitar usuario
         enable_custom_emoji: Habilitar emoji personalizado
+        enable_sign_in_token_auth_user: Habilitar autenticación de token por correo electrónico para el usuario
         enable_user: Habilitar usuario
         memorialize_account: Convertir en cuenta conmemorativa
         promote_user: Promover usuario
@@ -251,12 +259,12 @@ es-AR:
         reopen_report: Reabrir denuncia
         reset_password_user: Cambiar contraseña
         resolve_report: Resolver denuncia
-        sensitive_account: Marcar los medios en tu cuenta como sensibles
-        silence_account: Silenciar cuenta
+        sensitive_account: Forzar cuenta como sensible
+        silence_account: Limitar cuenta
         suspend_account: Suspender cuenta
         unassigned_report: Desasignar denuncia
-        unsensitive_account: Desmarcar los medios en tu cuenta como sensibles
-        unsilence_account: Dejar de silenciar cuenta
+        unsensitive_account: Desmarcar Forzar cuenta como sensible
+        unsilence_account: Deshacer Limitar cuenta
         unsuspend_account: Dejar de suspender cuenta
         update_announcement: Actualizar anuncio
         update_custom_emoji: Actualizar emoji personalizado
@@ -285,8 +293,10 @@ es-AR:
         destroy_unavailable_domain_html: "%{name} reanudó la entrega al dominio %{target}"
         disable_2fa_user_html: "%{name} deshabilitó el requerimiento de dos factores para el usuario %{target}"
         disable_custom_emoji_html: "%{name} deshabilitó el emoji %{target}"
+        disable_sign_in_token_auth_user_html: "%{name} deshabilitó la autenticación de token por correo electrónico para %{target}"
         disable_user_html: "%{name} deshabilitó el inicio de sesión para el usuario %{target}"
         enable_custom_emoji_html: "%{name} habilitó el emoji %{target}"
+        enable_sign_in_token_auth_user_html: "%{name} habilitó la autenticación de token por correo electrónico para %{target}"
         enable_user_html: "%{name} habilitó el inicio de sesión para el usuario %{target}"
         memorialize_account_html: "%{name} convirtió la cuenta de %{target} en una cuenta conmemorativa"
         promote_user_html: "%{name} promovió al usuario %{target}"
@@ -295,11 +305,11 @@ es-AR:
         reset_password_user_html: "%{name} cambió la contraseña del usuario %{target}"
         resolve_report_html: "%{name} resolvió la denuncia %{target}"
         sensitive_account_html: "%{name} marcó los medios de %{target} como sensibles"
-        silence_account_html: "%{name} silenció la cuenta de %{target}"
+        silence_account_html: "%{name} limitó la cuenta de %{target}"
         suspend_account_html: "%{name} suspendió la cuenta de %{target}"
         unassigned_report_html: "%{name} desasignó la denuncia %{target}"
         unsensitive_account_html: "%{name} desmarcó los medios de %{target} como sensibles"
-        unsilence_account_html: "%{name} quitó el silenciado de la cuenta de %{target}"
+        unsilence_account_html: "%{name} quitó el límite de la cuenta de %{target}"
         unsuspend_account_html: "%{name} quitó la suspensión de la cuenta de %{target}"
         update_announcement_html: "%{name} actualizó el anuncio %{target}"
         update_custom_emoji_html: "%{name} actualizó el emoji %{target}"
@@ -361,32 +371,9 @@ es-AR:
       updated_msg: "¡Emoji actualizado exitosamente!"
       upload: Subir
     dashboard:
-      authorized_fetch_mode: Modo seguro
-      backlog: trabajos registrados
-      config: Configuración
-      feature_deletions: Eliminaciones de cuenta
-      feature_invites: Enlaces de invitación
-      feature_profile_directory: Directorio de perfiles
-      feature_registrations: Registros
-      feature_relay: Relé de federación
-      feature_timeline_preview: Previsualización de la línea temporal
-      features: Funciones
-      hidden_service: Federación con servicios ocultos
-      open_reports: denuncias abiertas
-      pending_tags: etiquetas esperando revisión
-      pending_users: usuarios esperando revisión
-      recent_users: Usuarios recientes
-      search: Búsqueda de texto completo
-      single_user_mode: Modo de usuario único
       software: Software
       space: Uso de almacenamiento
       title: Panel
-      total_users: usuarios en total
-      trends: Tendencias
-      week_interactions: interacciones esta semana
-      week_users_active: activos esta semana
-      week_users_new: usuarios esta semana
-      whitelist_mode: Modo de federación limitada
     domain_allows:
       add_new: Permitir federación con el dominio
       created_msg: El dominio fue exitosamente permitido para la federación
@@ -421,14 +408,14 @@ es-AR:
       rejecting_media: rechazo de archivos de medios
       rejecting_reports: rechazo de denuncias
       severity:
-        silence: silenciados
+        silence: limitados
         suspend: suspendidos
       show:
         affected_accounts:
           one: Una cuenta afectada en la base de datos
           other: "%{count} cuentas afectadas en la base de datos"
         retroactive:
-          silence: Quitar silenciado de las cuentas existentes afectadas de este dominio
+          silence: Quitar límite de las cuentas existentes afectadas de este dominio
           suspend: Quitar suspensión de las cuentas existentes afectadas de este dominio
         title: Deshacer el bloqueo de dominio para %{domain}
         undo: Deshacer
@@ -569,6 +556,7 @@ es-AR:
       resolved: Resueltas
       resolved_msg: "¡Denuncia exitosamente resuelta!"
       status: Estado
+      target_origin: Origen de la cuenta denunciada
       title: Denuncias
       unassign: Desasignar
       unresolved: No resueltas
@@ -1004,6 +992,17 @@ es-AR:
   lists:
     errors:
       limit: Alcanzaste el máximo de listas
+  login_activities:
+    authentication_methods:
+      otp: aplicación de autenticación de dos factores
+      password: contraseña
+      sign_in_token: código de seguridad por correo electrónico
+      webauthn: llaves de seguridad
+    description_html: Si ves actividad que no reconocés, considerá cambiar tu contraseña y habilitar la autenticación de dos factores.
+    empty: No hay historial de autenticación disponible
+    failed_sign_in_html: Intento de inicio de sesión fallido con %{method} desde %{ip} (%{browser})
+    successful_sign_in_html: Inicio de sesión exitoso con %{method} desde %{ip} (%{browser})
+    title: Historial de autenticación
   media_attachments:
     validations:
       images_and_video: No se puede adjuntar un video a un mensaje que ya contenga imágenes
@@ -1210,6 +1209,7 @@ es-AR:
     revoke: Revocar
     revoke_success: Sesión revocada exitosamente
     title: Sesiones
+    view_authentication_history: Ver historial de autenticación de tu cuenta
   settings:
     account: Cuenta
     account_settings: Config. de la cuenta
@@ -1230,6 +1230,7 @@ es-AR:
     preferences: Configuración
     profile: Perfil
     relationships: Seguimientos
+    statuses_cleanup: Eliminación automática de mensajes
     two_factor_authentication: Autenticación de dos factores
     webauthn_authentication: Llaves de seguridad
   statuses:
@@ -1281,6 +1282,40 @@ es-AR:
       public_long: Todos pueden ver
       unlisted: No listado
       unlisted_long: Todos pueden ver, pero no está listado en las líneas temporales públicas
+  statuses_cleanup:
+    enabled: Eliminar automáticamente mensajes antiguos
+    enabled_hint: Elimina automáticamente tus mensajes una vez que alcancen un umbral de edad especificado, a menos que coincidan con una de las excepciones a continuación
+    exceptions: Exepciones
+    explanation: Debido a que la eliminación de mensajes es una operación costosa, esto se hace lentamente con el tiempo cuando el servidor no está ocupado. Por esta razón, tus mensajes pueden ser borrados un poco después de que alcancen el umbral de edad.
+    ignore_favs: Ignorar mensajes marcados como favoritos
+    ignore_reblogs: Ignorar adhesiones
+    interaction_exceptions: Excepciones basadas en interacciones
+    interaction_exceptions_explanation: Tené en cuenta que no hay garantía de que los mensajes se eliminen si van por debajo del umbral de los mensajes marcados como favorito o de las adhesiones después de haberlos superado una vez.
+    keep_direct: Conservar mensajes directos
+    keep_direct_hint: No elimina ninguno de tus mensajes directos
+    keep_media: Conservar mensajes con archivos adjuntos
+    keep_media_hint: No elimina ninguno de tus mensajes con archivos adjuntos
+    keep_pinned: Conservar mensajes fijados
+    keep_pinned_hint: No elimina ninguno de tus mensajes fijados
+    keep_polls: Conservar encuestas
+    keep_polls_hint: No elimina ninguna de tus encuestas
+    keep_self_bookmark: Conservar mensajes que marcaste como favoritos
+    keep_self_bookmark_hint: No elimina tus propios mensajes si los marcaste como favoritos
+    keep_self_fav: Conservar mensajes marcados como favoritos
+    keep_self_fav_hint: No elimina tus propios mensajes si los marcaste como favoritos
+    min_age:
+      '1209600': 2 semanas
+      '15778476': 6 meses
+      '2629746': 1 mes
+      '31556952': 1 año
+      '5259492': 2 meses
+      '63113904': 2 años
+      '7889238': 3 meses
+    min_age_label: Umbral de edad
+    min_favs: Conservar mensajes marcados como favoritos de hace más de
+    min_favs_hint: No elimina ninguno de tus mensajes que haya recibido más de esta cantidad de favoritos. Dejá en blanco para eliminar mensajes independientemente de su número de favoritos
+    min_reblogs: Conservar adhesiones de hace más de
+    min_reblogs_hint: No elimina ninguno de tus mensajes que haya recibido más de esta cantidad de adhesiones. Dejá en blanco para eliminar mensajes independientemente de su número de adhesiones
   stream_entries:
     pinned: Mensaje fijado
     reblogged: adhirió a este mensaje

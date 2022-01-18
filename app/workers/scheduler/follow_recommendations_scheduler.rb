@@ -16,12 +16,12 @@ class Scheduler::FollowRecommendationsScheduler
     AccountSummary.refresh
     FollowRecommendation.refresh
 
-    fallback_recommendations = FollowRecommendation.limit(SET_SIZE).index_by(&:account_id)
+    fallback_recommendations = FollowRecommendation.order(rank: :desc).limit(SET_SIZE).index_by(&:account_id)
 
     I18n.available_locales.each do |locale|
       recommendations = begin
         if AccountSummary.safe.filtered.localized(locale).exists? # We can skip the work if no accounts with that language exist
-          FollowRecommendation.localized(locale).limit(SET_SIZE).index_by(&:account_id)
+          FollowRecommendation.localized(locale).order(rank: :desc).limit(SET_SIZE).index_by(&:account_id)
         else
           {}
         end

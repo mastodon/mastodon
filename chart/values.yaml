@@ -8,7 +8,7 @@ image:
   # built from the most recent commit
   #
   # tag: latest
-  tag: v3.3.0
+  tag: v3.4.4
   # use `Always` when using `latest` tag
   pullPolicy: IfNotPresent
 
@@ -60,7 +60,7 @@ mastodon:
     concurrency: 25
   smtp:
     auth_method: plain
-    ca_file:
+    ca_file: /etc/ssl/certs/ca-certificates.crt
     delivery_method: smtp
     domain:
     enable_starttls_auto: true
@@ -110,10 +110,8 @@ elasticsearch:
   # RAILS_ENV=production bundle exec rake chewy:sync
   # (https://docs.joinmastodon.org/admin/optional/elasticsearch/)
   enabled: true
-  # may be removed once https://github.com/tootsuite/mastodon/pull/13828 is part
-  # of a tagged release
   image:
-    tag: 6
+    tag: 7
 
 # https://github.com/bitnami/charts/tree/master/bitnami/postgresql#parameters
 postgresql:

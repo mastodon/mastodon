@@ -119,6 +119,7 @@ es:
       demote: Degradar
       destroyed_msg: Los datos de %{username} están ahora en cola para ser eliminados inminentemente
       disable: Deshabilitar
+      disable_sign_in_token_auth: Deshabilitar la autenticación por token de correo electrónico
       disable_two_factor_authentication: Desactivar autenticación de dos factores
       disabled: Deshabilitada
       display_name: Nombre
@@ -127,6 +128,7 @@ es:
       email: E-mail
       email_status: E-mail Status
       enable: Habilitar
+      enable_sign_in_token_auth: Habilitar la autenticación por token de correo electrónico
       enabled: Habilitada
       enabled_msg: Se ha descongelado correctamente la cuenta de %{username}
       followers: Seguidores
@@ -191,6 +193,10 @@ es:
       search: Buscar
       search_same_email_domain: Otros usuarios con el mismo dominio de correo
       search_same_ip: Otros usuarios con la misma IP
+      security_measures:
+        only_password: Sólo contraseña
+        password_and_2fa: Contraseña y 2FA
+        password_and_sign_in_token: Contraseña y token de correo electrónico
       sensitive: Sensible
       sensitized: marcado como sensible
       shared_inbox_url: URL de bandeja compartida
@@ -242,8 +248,10 @@ es:
         destroy_unavailable_domain: Eliminar Dominio No Disponible
         disable_2fa_user: Deshabilitar 2FA
         disable_custom_emoji: Deshabilitar Emoji Personalizado
+        disable_sign_in_token_auth_user: Deshabilitar la Autenticación por Token de Correo Electrónico para el Usuario
         disable_user: Deshabilitar Usuario
         enable_custom_emoji: Habilitar Emoji Personalizado
+        enable_sign_in_token_auth_user: Habilitar la Autenticación por Token de Correo Electrónico para el Usuario
         enable_user: Habilitar Usuario
         memorialize_account: Transformar en Cuenta Conmemorativa
         promote_user: Promover Usuario
@@ -285,8 +293,10 @@ es:
         destroy_unavailable_domain_html: "%{name} reanudó las entregas al dominio %{target}"
         disable_2fa_user_html: "%{name} desactivó el requisito de dos factores para el usuario %{target}"
         disable_custom_emoji_html: "%{name} desactivó el emoji %{target}"
+        disable_sign_in_token_auth_user_html: "%{name} ha deshabilitado la autenticación por token de correo electrónico para %{target}"
         disable_user_html: "%{name} deshabilitó el inicio de sesión para el usuario %{target}"
         enable_custom_emoji_html: "%{name} activó el emoji %{target}"
+        enable_sign_in_token_auth_user_html: "%{name} ha habilitado la autenticación por token de correo electrónico para %{target}"
         enable_user_html: "%{name} habilitó el inicio de sesión para el usuario %{target}"
         memorialize_account_html: "%{name} convirtió la cuenta de %{target} en una página in memoriam"
         promote_user_html: "%{name} promoción al usuario %{target}"
@@ -361,32 +371,28 @@ es:
       updated_msg: "¡Emoji actualizado con éxito!"
       upload: Subir
     dashboard:
-      authorized_fetch_mode: Modo seguro
-      backlog: trabajos de backlog
-      config: Configuración
-      feature_deletions: Borrados de cuenta
-      feature_invites: Enlaces de invitación
-      feature_profile_directory: Directorio de perfil
-      feature_registrations: Registros
-      feature_relay: Relés de federación
-      feature_timeline_preview: Vista previa de la línea de tiempo
-      features: Características
-      hidden_service: Federación con servicios ocultos
-      open_reports: informes abiertos
-      pending_tags: hashtags esperando revisión
-      pending_users: usuarios esperando por revisión
-      recent_users: Usuarios recientes
-      search: Búsqueda por texto completo
-      single_user_mode: Modo único usuario
+      active_users: usuarios activos
+      interactions: interacciones
+      media_storage: Almacenamiento multimedia
+      new_users: nuevos usuarios
+      opened_reports: informes abiertos
+      pending_reports_html:
+        one: "<strong>1</strong> informe pendiente"
+        other: "<strong>%{count}</strong> informes pendientes"
+      pending_tags_html:
+        one: "<strong>1</strong> etiqueta pendiente"
+        other: "<strong>%{count}</strong> etiquetas pendientes"
+      pending_users_html:
+        one: "<strong>1</strong> usuario pendiente"
+        other: "<strong>%{count}</strong> usuarios pendientes"
+      resolved_reports: informes resueltos
       software: Software
+      sources: Fuentes de registro
       space: Uso de almacenamiento
       title: Tablero
-      total_users: usuarios en total
-      trends: Tendencias
-      week_interactions: interacciones esta semana
-      week_users_active: activo esta semana
-      week_users_new: usuarios esta semana
-      whitelist_mode: En la lista blanca
+      top_languages: Idiomas más activos
+      top_servers: Servidores más activos
+      website: Sitio web
     domain_allows:
       add_new: Añadir dominio a la lista blanca
       created_msg: Dominio añadido a la lista blanca con éxito
@@ -569,6 +575,7 @@ es:
       resolved: Resuelto
       resolved_msg: "¡La denuncia se ha resuelto correctamente!"
       status: Estado
+      target_origin: Origen de la cuenta reportada
       title: Reportes
       unassign: Desasignar
       unresolved: No resuelto
@@ -1004,6 +1011,17 @@ es:
   lists:
     errors:
       limit: Has alcanzado la cantidad máxima de listas
+  login_activities:
+    authentication_methods:
+      otp: aplicación de autenticación en dos pasos
+      password: contraseña
+      sign_in_token: código de seguridad por correo electrónico
+      webauthn: claves de seguridad
+    description_html: Si ve una actividad que no reconoce, considere cambiar su contraseña y habilitar la autenticación de dos factores.
+    empty: No hay historial de autenticación disponible
+    failed_sign_in_html: Intento de inicio de sesión fallido con %{method} de %{ip} (%{browser})
+    successful_sign_in_html: Inicio de sesión exitoso con %{method} desde %{ip} (%{browser})
+    title: Historial de autenticación
   media_attachments:
     validations:
       images_and_video: No se puede adjuntar un video a un estado que ya contenga imágenes
@@ -1210,6 +1228,7 @@ es:
     revoke: Revocar
     revoke_success: Sesión revocada exitosamente
     title: Sesiones
+    view_authentication_history: Ver historial de autenticación de tu cuenta
   settings:
     account: Cuenta
     account_settings: Ajustes de la cuenta
@@ -1230,6 +1249,7 @@ es:
     preferences: Preferencias
     profile: Perfil
     relationships: Siguiendo y seguidores
+    statuses_cleanup: Eliminación automática de publicaciones
     two_factor_authentication: Autenticación de dos factores
     webauthn_authentication: Claves de seguridad
   statuses:
@@ -1281,6 +1301,40 @@ es:
       public_long: Todos pueden ver
       unlisted: Público, pero no mostrar en la historia federada
       unlisted_long: Todos pueden ver, pero no está listado en las líneas de tiempo públicas
+  statuses_cleanup:
+    enabled: Borrar automáticamente publicaciones antiguas
+    enabled_hint: Elimina automáticamente tus publicaciones una vez que alcancen un umbral de tiempo especificado, a menos que coincidan con alguna de las excepciones detalladas debajo
+    exceptions: Excepciones
+    explanation: Debido a que la eliminación de mensajes es una operación costosa, esto se hace lentamente, a lo largo de un tiempo, cuando el servidor no está ocupado. Por este motivo, puede que tus publicaciones sean borradas algo después de que alcancen el umbral de tiempo especificado.
+    ignore_favs: Ignorar favoritos
+    ignore_reblogs: Ignorar reblogueos
+    interaction_exceptions: Excepciones basadas en interacciones
+    interaction_exceptions_explanation: Ten en cuenta que no hay garantía de que se eliminen las publicaciones que están por debajo de los umbrales de favoritos o de reblogueos si los han superado en algún momento.
+    keep_direct: Mantener mensajes directos
+    keep_direct_hint: No elimina ninguno de tus mensajes directos
+    keep_media: Mantener publicaciones con multimedia adjunto
+    keep_media_hint: No borra ninguna de tus publicaciones con multimedia adjunto
+    keep_pinned: Mantener publicaciones fijadas
+    keep_pinned_hint: No borra ninguna de tus publicaciones fijadas
+    keep_polls: Mantener encuestas
+    keep_polls_hint: No borra ninguna de tus encuestas
+    keep_self_bookmark: Mantener publicaciones a las que has añadido un marcador
+    keep_self_bookmark_hint: No borra tus propias publicaciones si les has añadido un marcador
+    keep_self_fav: Mantener publicaciones que marcaste como favoritas
+    keep_self_fav_hint: No borra publicaciones tuyas que hayas marcado como favoritas
+    min_age:
+      '1209600': 2 semanas
+      '15778476': 6 meses
+      '2629746': 1 mes
+      '31556952': 1 año
+      '5259492': 2 meses
+      '63113904': 2 años
+      '7889238': 3 meses
+    min_age_label: Umbral de tiempo
+    min_favs: Mantener mensajes con un número de favoritos mayor que
+    min_favs_hint: No borra ninguna de las publicaciones que hayan recibido más de esta cantidad de favoritos. Deja en blanco para eliminar publicaciones sin importar el número de favoritos
+    min_reblogs: Mantener publicaciones reblogueadas más de
+    min_reblogs_hint: No borra ninguna de las publicaciones que hayan sido reblogueadas más de este número de veces. Deja en blanco para eliminar publicaciones sin importar el número de reblogueos
   stream_entries:
     pinned: Publicación fijada
     reblogged: retooteado

@@ -32,7 +32,6 @@ class FollowRequests extends ImmutablePureComponent {
   static propTypes = {
     params: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired,
-    shouldUpdateScroll: PropTypes.func,
     hasMore: PropTypes.bool,
     isLoading: PropTypes.bool,
     accountIds: ImmutablePropTypes.list,
@@ -51,7 +50,7 @@ class FollowRequests extends ImmutablePureComponent {
   }, 300, { leading: true });
 
   render () {
-    const { intl, shouldUpdateScroll, accountIds, hasMore, multiColumn, locked, domain, isLoading } = this.props;
+    const { intl, accountIds, hasMore, multiColumn, locked, domain, isLoading } = this.props;
 
     if (!accountIds) {
       return (
@@ -80,7 +79,6 @@ class FollowRequests extends ImmutablePureComponent {
           onLoadMore={this.handleLoadMore}
           hasMore={hasMore}
           isLoading={isLoading}
-          shouldUpdateScroll={shouldUpdateScroll}
           emptyMessage={emptyMessage}
           bindToDocument={!multiColumn}
           prepend={unlockedPrependMessage}

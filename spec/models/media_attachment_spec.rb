@@ -62,11 +62,23 @@ RSpec.describe MediaAttachment, type: :model do
   end
 
   describe '#to_param' do
-    let(:media_attachment) { Fabricate(:media_attachment) }
-    let(:shortcode)        { media_attachment.shortcode }
+    let(:media_attachment) { Fabricate(:media_attachment, shortcode: shortcode) }
+    let(:shortcode)        { nil }
 
-    it 'returns shortcode' do
-      expect(media_attachment.to_param).to eq shortcode
+    context 'when media attachment has a shortcode' do
+      let(:shortcode) { 'foo' }
+
+      it 'returns shortcode' do
+        expect(media_attachment.to_param).to eq shortcode
+      end
+    end
+
+    context 'when media attachment does not have a shortcode' do
+      let(:shortcode) { nil }
+
+      it 'returns string representation of id' do
+        expect(media_attachment.to_param).to eq media_attachment.id.to_s
+      end
     end
   end
 
@@ -114,6 +126,30 @@ RSpec.describe MediaAttachment, type: :model do
     end
   end
 
+  describe 'ogg with cover art' do
+    let(:media) { MediaAttachment.create(account: Fabricate(:account), file: attachment_fixture('boop.ogg')) }
+
+    it 'detects it as an audio file' do
+      expect(media.type).to eq 'audio'
+    end
+
+    it 'sets meta for the duration' do
+      expect(media.file.meta['original']['duration']).to be_within(0.05).of(0.235102)
+    end
+
+    it 'extracts thumbnail' do
+      expect(media.thumbnail.present?).to eq true
+    end
+
+    it 'extracts colors from thumbnail' do
+      expect(media.file.meta['colors']['background']).to eq '#3088d4'
+    end
+
+    it 'gives the file a random name' do
+      expect(media.file_file_name).to_not eq 'boop.ogg'
+    end
+  end
+
   describe 'jpeg' do
     let(:media) { MediaAttachment.create(account: Fabricate(:account), file: attachment_fixture('attachment.jpg')) }
 
@@ -155,6 +191,34 @@ RSpec.describe MediaAttachment, type: :model do
       media = Fabricate(:media_attachment, description: 'foo' * 1000, remote_url: 'http://example.com/blah.jpg')
 
       expect(media.description.size).to be <= 1_500
+    end
+  end
+
+  describe 'size limit validation' do
+    it 'rejects video files that are too large' do
+      stub_const 'MediaAttachment::IMAGE_LIMIT', 100.megabytes
+      stub_const 'MediaAttachment::VIDEO_LIMIT', 1.kilobyte
+      expect { MediaAttachment.create!(account: Fabricate(:account), file: attachment_fixture('attachment.webm')) }.to raise_error(ActiveRecord::RecordInvalid)
+    end
+
+    it 'accepts video files that are small enough' do
+      stub_const 'MediaAttachment::IMAGE_LIMIT', 1.kilobyte
+      stub_const 'MediaAttachment::VIDEO_LIMIT', 100.megabytes
+      media = MediaAttachment.create!(account: Fabricate(:account), file: attachment_fixture('attachment.webm'))
+      expect(media.valid?).to be true
+    end
+
+    it 'rejects image files that are too large' do
+      stub_const 'MediaAttachment::IMAGE_LIMIT', 1.kilobyte
+      stub_const 'MediaAttachment::VIDEO_LIMIT', 100.megabytes
+      expect { MediaAttachment.create!(account: Fabricate(:account), file: attachment_fixture('attachment.jpg')) }.to raise_error(ActiveRecord::RecordInvalid)
+    end
+
+    it 'accepts image files that are small enough' do
+      stub_const 'MediaAttachment::IMAGE_LIMIT', 100.megabytes
+      stub_const 'MediaAttachment::VIDEO_LIMIT', 1.kilobyte
+      media = MediaAttachment.create!(account: Fabricate(:account), file: attachment_fixture('attachment.jpg'))
+      expect(media.valid?).to be true
     end
   end
 end

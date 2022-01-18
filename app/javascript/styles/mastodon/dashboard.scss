@@ -56,23 +56,70 @@
   }
 }
 
-.dashboard__widgets {
-  display: flex;
-  flex-wrap: wrap;
-  margin: 0 -5px;
+.dashboard {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
+  grid-gap: 10px;
 
-  & > div {
-    flex: 0 0 33.333%;
-    margin-bottom: 20px;
+  @media screen and (max-width: 1350px) {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
 
-    & > div {
-      padding: 0 5px;
+  &__item {
+    &--span-double-column {
+      grid-column: span 2;
+    }
+
+    &--span-double-row {
+      grid-row: span 2;
+    }
+
+    h4 {
+      padding-top: 20px;
     }
   }
 
-  a:not(.name-tag) {
-    color: $ui-secondary-color;
-    font-weight: 500;
+  &__quick-access {
+    display: flex;
+    align-items: baseline;
+    border-radius: 4px;
+    background: $ui-highlight-color;
+    color: $primary-text-color;
+    transition: all 100ms ease-in;
+    font-size: 14px;
+    padding: 0 16px;
+    line-height: 36px;
+    height: 36px;
     text-decoration: none;
+    margin-bottom: 4px;
+
+    &:active,
+    &:focus,
+    &:hover {
+      background-color: lighten($ui-highlight-color, 10%);
+      transition: all 200ms ease-out;
+    }
+
+    &.positive {
+      background: lighten($ui-base-color, 4%);
+      color: $valid-value-color;
+    }
+
+    &.negative {
+      background: lighten($ui-base-color, 4%);
+      color: $error-value-color;
+    }
+
+    span {
+      flex: 1 1 auto;
+    }
+
+    .fa {
+      flex: 0 0 auto;
+    }
+
+    strong {
+      font-weight: 700;
+    }
   }
 }

@@ -113,6 +113,7 @@ id:
       demote: Turunkan
       destroyed_msg: Data %{username} masuk antrean untuk dihapus segera
       disable: Nonaktifkan
+      disable_sign_in_token_auth: Nonaktifkan otentikasi token email
       disable_two_factor_authentication: Nonaktifkan 2FA
       disabled: Dinonaktifkan
       display_name: Nama
@@ -121,6 +122,7 @@ id:
       email: Email
       email_status: Status Email
       enable: Aktifkan
+      enable_sign_in_token_auth: Aktifkan otentikasi token email
       enabled: Diaktifkan
       enabled_msg: Berhasil mencairkan akun %{username}
       followers: Pengikut
@@ -185,6 +187,10 @@ id:
       search: Cari
       search_same_email_domain: Pengguna lain dengan domain email yang sama
       search_same_ip: Pengguna lain dengan IP yang sama
+      security_measures:
+        only_password: Hanya kata sandi
+        password_and_2fa: Kata sandi dan 2FA
+        password_and_sign_in_token: Kata sandi dan token email
       sensitive: Sensitif
       sensitized: ditandai sebagai sensitif
       shared_inbox_url: URL kotak masuk bersama
@@ -236,8 +242,10 @@ id:
         destroy_unavailable_domain: Hapus Domain yang Tidak Tersedia
         disable_2fa_user: Nonaktifkan 2FA
         disable_custom_emoji: Nonaktifkan Emoji Khusus
+        disable_sign_in_token_auth_user: Nonaktifkan Otentikasi Token Email untuk Pengguna
         disable_user: Nonaktifkan Pengguna
         enable_custom_emoji: Aktifkan Emoji Khusus
+        enable_sign_in_token_auth_user: Aktifkan Otentikasi Token Email untuk Pengguna
         enable_user: Aktifkan Pengguna
         memorialize_account: Kenang Akun
         promote_user: Promosikan Pengguna
@@ -279,8 +287,10 @@ id:
         destroy_unavailable_domain_html: "%{name} melanjutkan pengiriman ke domain %{target}"
         disable_2fa_user_html: "%{name} mematikan syarat dua faktor utk pengguna %{target}"
         disable_custom_emoji_html: "%{name} mematikan emoji %{target}"
+        disable_sign_in_token_auth_user_html: "%{name} menonaktifkan otentikasi token email untuk %{target}"
         disable_user_html: "%{name} mematikan login untuk pengguna %{target}"
         enable_custom_emoji_html: "%{name} mengaktifkan emoji %{target}"
+        enable_sign_in_token_auth_user_html: "%{name} mengaktifkan otentikasi token email untuk %{target}"
         enable_user_html: "%{name} mengaktifkan login untuk pengguna %{target}"
         memorialize_account_html: "%{name} mengubah akun %{target} jadi halaman memorial"
         promote_user_html: "%{name} mempromosikan pengguna %{target}"
@@ -355,32 +365,25 @@ id:
       updated_msg: Emoji berhasil diperbarui!
       upload: Unggah
     dashboard:
-      authorized_fetch_mode: Mode aman
-      backlog: pekerjaan di-backlog
-      config: Konfigurasi
-      feature_deletions: Penghapusan akun
-      feature_invites: Tautan undangan
-      feature_profile_directory: Direktori profil
-      feature_registrations: Registrasi
-      feature_relay: Relai federasi
-      feature_timeline_preview: Pratinjau linimasa
-      features: Fitur
-      hidden_service: Federasi dengan layanan tersembunyi
-      open_reports: buka laporan
-      pending_tags: tagar menunggu ditinjau
-      pending_users: pengguna menunggu ditinjau
-      recent_users: Pengguna terbaru
-      search: Pencarian teks lengkap
-      single_user_mode: Mode pengguna tunggal
+      active_users: pengguna aktif
+      interactions: interaksi
+      media_storage: Penyimpanan media
+      new_users: pengguna baru
+      opened_reports: laporan dibuka
+      pending_reports_html:
+        other: "<strong>%{count}</strong> laporan ditunda"
+      pending_tags_html:
+        other: "<strong>%{count}</strong> tagar ditunda"
+      pending_users_html:
+        other: "<strong>%{count}</strong> pengguna ditunda"
+      resolved_reports: laporan sudah diselesaikan
       software: Perangkat lunak
+      sources: Sumber pendaftaran
       space: Penggunaan ruang
       title: Dasbor
-      total_users: total pengguna
-      trends: Tren
-      week_interactions: interaksi minggu ini
-      week_users_active: aktif minggu ini
-      week_users_new: pengguna minggu ini
-      whitelist_mode: Mode daftar putih
+      top_languages: Bahasa aktif teratas
+      top_servers: Server aktif teratas
+      website: Situs web
     domain_allows:
       add_new: Daftar putihkan domain
       created_msg: Domain berhasil masuk daftar putih
@@ -558,6 +561,7 @@ id:
       resolved: Terseleseikan
       resolved_msg: Laporan berhasil diselesaikan!
       status: Status
+      target_origin: Akun asal yang dilaporkan
       title: Laporan
       unassign: Bebas Tugas
       unresolved: Belum Terseleseikan
@@ -991,6 +995,17 @@ id:
   lists:
     errors:
       limit: Daftar Anda telah mencapai jumlah maksimum
+  login_activities:
+    authentication_methods:
+      otp: aplikasi otentikasi dua-faktor
+      password: kata sandi
+      sign_in_token: kode keamanan email
+      webauthn: kunci keamanan
+    description_html: Jika Anda melihat aktivitas tidak dikenal, pertimbangkan untuk mengubah kata sandi dan mengaktifkan otentikasi dua-faktor.
+    empty: Riwayat otentikasi tidak tersedia
+    failed_sign_in_html: Upaya gagal masuk dengan %{method} dari %{ip} (%{browser})
+    successful_sign_in_html: Berhasil masuk dengan %{method} dari %{ip} (%{browser})
+    title: Riwayat otentikasi
   media_attachments:
     validations:
       images_and_video: Tidak bisa melampirkan video pada status yang telah memiliki gambar
@@ -1195,6 +1210,7 @@ id:
     revoke: Cabut izin
     revoke_success: Sesi berhasil dicabut
     title: Sesi
+    view_authentication_history: Lihat riwayat otentikasi akun Anda
   settings:
     account: Akun
     account_settings: Pengaturan akun
@@ -1215,6 +1231,7 @@ id:
     preferences: Pilihan
     profile: Profil
     relationships: Ikuti dan pengikut
+    statuses_cleanup: Hapus kiriman otomatis
     two_factor_authentication: Autentikasi Two-factor
     webauthn_authentication: Kunci keamanan
   statuses:
@@ -1260,6 +1277,40 @@ id:
       public_long: Bisa dilihat semua orang
       unlisted: Bisa dilihat semua orang, tapi tidak ditampilkan di linimasa publik
       unlisted_long: Tidak terdaftar di linimasa publik tetapi siapapun dapat melihat
+  statuses_cleanup:
+    enabled: Otomatis hapus kiriman lama
+    enabled_hint: "Otomatis menghapus kiriman Anda saat sudah mencapai batasan usia, kecuali yang cocok \nsesuai di bawah ini"
+    exceptions: Pengecualian
+    explanation: Karena menghapus kiriman adalah operasi dengan sumber daya besar, ini akan dilakukan perlahan ketika server tidak sedang sibuk. Karena alasan ini, kiriman akan dihapus setelah mencapai batas waktu.
+    ignore_favs: Abaikan favorit
+    ignore_reblogs: Abaikan boost
+    interaction_exceptions: Pengecualian berdasar interaksi
+    interaction_exceptions_explanation: Perlu diingat tidak ada jaminan kiriman akan dihapus jika ia di bawah batas favorit atau boost setelah sebelumnya berhasil melewatinya.
+    keep_direct: Simpan pesan langsung
+    keep_direct_hint: Tidak mengapus pesan langsung Anda
+    keep_media: Simpan kiriman dengan lampiran media
+    keep_media_hint: Tidak menghapus kiriman Anda dengan lampiran media
+    keep_pinned: Simpan kiriman tersemat
+    keep_pinned_hint: Tidak menghapus kiriman tersemat Anda
+    keep_polls: Simpan japat
+    keep_polls_hint: Tidak menghapus japat Anda
+    keep_self_bookmark: Simpan kiriman yang Anda markahi
+    keep_self_bookmark_hint: Tidak menghapus kiriman Anda sendiri jika Anda telah memasukkannya ke markah
+    keep_self_fav: Simpan kiriman favorit Anda
+    keep_self_fav_hint: Tidak menghapus kiriman Anda yang Anda favoritkan
+    min_age:
+      '1209600': 2 minggu
+      '15778476': 6 bulan
+      '2629746': 1 bulan
+      '31556952': 1 tahun
+      '5259492': 2 bulan
+      '63113904': 2 tahun
+      '7889238': 3 bulan
+    min_age_label: Batas usia
+    min_favs: Simpan kiriman favorit lebih dari
+    min_favs_hint: Tidak menghapus kiriman Anda yang mendapatkan sekian favorit. Kosongkan bila ingin menghapus kiriman tanpa peduli jumlah favoritnya
+    min_reblogs: Simpan kiriman yang di-boost lebih dari
+    min_reblogs_hint: Tidak menghapus kiriman Anda yang di-boost lebih dari sekian kali. Kosongkan bila ingin menghapus kiriman tanpa peduli jumlah boost-nya
   stream_entries:
     pinned: Toot tersemat
     reblogged: di-boost-kan

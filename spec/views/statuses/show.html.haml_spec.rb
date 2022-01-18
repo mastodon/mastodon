@@ -16,10 +16,11 @@ describe 'statuses/show.html.haml', without_verify_partial_doubles: true do
   end
 
   it 'has valid author h-card and basic data for a detailed_status' do
-    alice  =  Fabricate(:account, username: 'alice', display_name: 'Alice')
-    bob    =  Fabricate(:account, username: 'bob', display_name: 'Bob')
-    status =  Fabricate(:status, account: alice, text: 'Hello World')
-    reply  =  Fabricate(:status, account: bob, thread: status, text: 'Hello Alice')
+    alice  = Fabricate(:account, username: 'alice', display_name: 'Alice')
+    bob    = Fabricate(:account, username: 'bob', display_name: 'Bob')
+    status = Fabricate(:status, account: alice, text: 'Hello World')
+    media  = Fabricate(:media_attachment, account: alice, status: status, type: :video)
+    reply  = Fabricate(:status, account: bob, thread: status, text: 'Hello Alice')
 
     assign(:status, status)
     assign(:account, alice)
@@ -35,12 +36,13 @@ describe 'statuses/show.html.haml', without_verify_partial_doubles: true do
   end
 
   it 'has valid h-cites for p-in-reply-to and p-comment' do
-    alice   =  Fabricate(:account, username: 'alice', display_name: 'Alice')
-    bob     =  Fabricate(:account, username: 'bob', display_name: 'Bob')
-    carl    =  Fabricate(:account, username: 'carl', display_name: 'Carl')
-    status  =  Fabricate(:status, account: alice, text: 'Hello World')
-    reply   =  Fabricate(:status, account: bob, thread: status, text: 'Hello Alice')
-    comment =  Fabricate(:status, account: carl, thread: reply, text: 'Hello Bob')
+    alice   = Fabricate(:account, username: 'alice', display_name: 'Alice')
+    bob     = Fabricate(:account, username: 'bob', display_name: 'Bob')
+    carl    = Fabricate(:account, username: 'carl', display_name: 'Carl')
+    status  = Fabricate(:status, account: alice, text: 'Hello World')
+    media   = Fabricate(:media_attachment, account: alice, status: status, type: :video)
+    reply   = Fabricate(:status, account: bob, thread: status, text: 'Hello Alice')
+    comment = Fabricate(:status, account: carl, thread: reply, text: 'Hello Bob')
 
     assign(:status, reply)
     assign(:account, alice)
@@ -62,8 +64,9 @@ describe 'statuses/show.html.haml', without_verify_partial_doubles: true do
   end
 
   it 'has valid opengraph tags' do
-    alice   =  Fabricate(:account, username: 'alice', display_name: 'Alice')
-    status  =  Fabricate(:status, account: alice, text: 'Hello World')
+    alice  = Fabricate(:account, username: 'alice', display_name: 'Alice')
+    status = Fabricate(:status, account: alice, text: 'Hello World')
+    media  = Fabricate(:media_attachment, account: alice, status: status, type: :video)
 
     assign(:status, status)
     assign(:account, alice)
@@ -77,5 +80,22 @@ describe 'statuses/show.html.haml', without_verify_partial_doubles: true do
     expect(header_tags).to match(%r{<meta content="article" property="og:type" />})
     expect(header_tags).to match(%r{<meta content=".+" property="og:image" />})
     expect(header_tags).to match(%r{<meta content="http://.+" property="og:url" />})
+  end
+
+  it 'has twitter player tag' do
+    alice  = Fabricate(:account, username: 'alice', display_name: 'Alice')
+    status = Fabricate(:status, account: alice, text: 'Hello World')
+    media  = Fabricate(:media_attachment, account: alice, status: status, type: :video)
+
+    assign(:status, status)
+    assign(:account, alice)
+    assign(:descendant_threads, [])
+
+    render
+
+    header_tags = view.content_for(:header_tags)
+
+    expect(header_tags).to match(%r{<meta content="http://.+/media/.+/player" property="twitter:player" />})
+    expect(header_tags).to match(%r{<meta content="player" property="twitter:card" />})
   end
 end

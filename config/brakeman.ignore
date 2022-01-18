@@ -67,7 +67,7 @@
       "check_name": "SQL",
       "message": "Possible SQL injection",
       "file": "app/models/account.rb",
-      "line": 479,
+      "line": 484,
       "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
       "code": "find_by_sql([\"          WITH first_degree AS (\\n            SELECT target_account_id\\n            FROM follows\\n            WHERE account_id = ?\\n            UNION ALL\\n            SELECT ?\\n          )\\n          SELECT\\n            accounts.*,\\n            (count(f.id) + 1) * ts_rank_cd(#{textsearch}, #{query}, 32) AS rank\\n          FROM accounts\\n          LEFT OUTER JOIN follows AS f ON (accounts.id = f.account_id AND f.target_account_id = ?)\\n          WHERE accounts.id IN (SELECT * FROM first_degree)\\n            AND #{query} @@ #{textsearch}\\n            AND accounts.suspended_at IS NULL\\n            AND accounts.moved_to_account_id IS NULL\\n          GROUP BY accounts.id\\n          ORDER BY rank DESC\\n          LIMIT ? OFFSET ?\\n\".squish, account.id, account.id, account.id, limit, offset])",
       "render_path": null,
@@ -98,6 +98,26 @@
       },
       "user_input": "id",
       "confidence": "Weak",
+      "note": ""
+    },
+    {
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
+      "fingerprint": "75fcd147b7611763ab6915faf8c5b0709e612b460f27c05c72d8b9bd0a6a77f8",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "lib/mastodon/snowflake.rb",
+      "line": 87,
+      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "connection.execute(\"CREATE OR REPLACE FUNCTION timestamp_id(table_name text)\\nRETURNS bigint AS\\n$$\\n  DECLARE\\n    time_part bigint;\\n    sequence_base bigint;\\n    tail bigint;\\n  BEGIN\\n    time_part := (\\n      -- Get the time in milliseconds\\n      ((date_part('epoch', now()) * 1000))::bigint\\n      -- And shift it over two bytes\\n      << 16);\\n\\n    sequence_base := (\\n      'x' ||\\n      -- Take the first two bytes (four hex characters)\\n      substr(\\n        -- Of the MD5 hash of the data we documented\\n        md5(table_name || '#{SecureRandom.hex(16)}' || time_part::text),\\n        1, 4\\n      )\\n    -- And turn it into a bigint\\n    )::bit(16)::bigint;\\n\\n    -- Finally, add our sequence number to our base, and chop\\n    -- it to the last two bytes\\n    tail := (\\n      (sequence_base + nextval(table_name || '_id_seq'))\\n      & 65535);\\n\\n    -- Return the time part and the sequence part. OR appears\\n    -- faster here than addition, but they're equivalent:\\n    -- time_part has no trailing two bytes, and tail is only\\n    -- the last two bytes.\\n    RETURN time_part | tail;\\n  END\\n$$ LANGUAGE plpgsql VOLATILE;\\n\")",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Mastodon::Snowflake",
+        "method": "define_timestamp_id"
+      },
+      "user_input": "SecureRandom.hex(16)",
+      "confidence": "Medium",
       "note": ""
     },
     {
@@ -143,11 +163,31 @@
     {
       "warning_type": "SQL Injection",
       "warning_code": 0,
+      "fingerprint": "8c1d8c4b76c1cd3960e90dff999f854a6ff742fcfd8de6c7184ac5a1b1a4d7dd",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "app/models/preview_card_filter.rb",
+      "line": 50,
+      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "PreviewCard.joins(\"join unnest(array[#{(Trends.links.currently_trending_ids(true, -1) or Trends.links.currently_trending_ids(false, -1)).map(&:to_i).join(\",\")}]::integer[]) with ordinality as x (id, ordering) on preview_cards.id = x.id\")",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "PreviewCardFilter",
+        "method": "trending_scope"
+      },
+      "user_input": "(Trends.links.currently_trending_ids(true, -1) or Trends.links.currently_trending_ids(false, -1)).map(&:to_i).join(\",\")",
+      "confidence": "Medium",
+      "note": ""
+    },
+    {
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
       "fingerprint": "9251d682c4e2840e1b2fea91e7d758efe2097ecb7f6255c065e3750d25eb178c",
       "check_name": "SQL",
       "message": "Possible SQL injection",
       "file": "app/models/account.rb",
-      "line": 448,
+      "line": 453,
       "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
       "code": "find_by_sql([\"        SELECT\\n          accounts.*,\\n          ts_rank_cd(#{textsearch}, #{query}, 32) AS rank\\n        FROM accounts\\n        WHERE #{query} @@ #{textsearch}\\n          AND accounts.suspended_at IS NULL\\n          AND accounts.moved_to_account_id IS NULL\\n        ORDER BY rank DESC\\n        LIMIT ? OFFSET ?\\n\".squish, limit, offset])",
       "render_path": null,
@@ -157,26 +197,6 @@
         "method": "search_for"
       },
       "user_input": "textsearch",
-      "confidence": "Medium",
-      "note": ""
-    },
-    {
-      "warning_type": "SQL Injection",
-      "warning_code": 0,
-      "fingerprint": "9ccb9ba6a6947400e187d515e0bf719d22993d37cfc123c824d7fafa6caa9ac3",
-      "check_name": "SQL",
-      "message": "Possible SQL injection",
-      "file": "lib/mastodon/snowflake.rb",
-      "line": 87,
-      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
-      "code": "connection.execute(\"        CREATE OR REPLACE FUNCTION timestamp_id(table_name text)\\n        RETURNS bigint AS\\n        $$\\n          DECLARE\\n            time_part bigint;\\n            sequence_base bigint;\\n            tail bigint;\\n          BEGIN\\n            time_part := (\\n              -- Get the time in milliseconds\\n              ((date_part('epoch', now()) * 1000))::bigint\\n              -- And shift it over two bytes\\n              << 16);\\n\\n            sequence_base := (\\n              'x' ||\\n              -- Take the first two bytes (four hex characters)\\n              substr(\\n                -- Of the MD5 hash of the data we documented\\n                md5(table_name ||\\n                  '#{SecureRandom.hex(16)}' ||\\n                  time_part::text\\n                ),\\n                1, 4\\n              )\\n            -- And turn it into a bigint\\n            )::bit(16)::bigint;\\n\\n            -- Finally, add our sequence number to our base, and chop\\n            -- it to the last two bytes\\n            tail := (\\n              (sequence_base + nextval(table_name || '_id_seq'))\\n              & 65535);\\n\\n            -- Return the time part and the sequence part. OR appears\\n            -- faster here than addition, but they're equivalent:\\n            -- time_part has no trailing two bytes, and tail is only\\n            -- the last two bytes.\\n            RETURN time_part | tail;\\n          END\\n        $$ LANGUAGE plpgsql VOLATILE;\\n\")",
-      "render_path": null,
-      "location": {
-        "type": "method",
-        "class": "Mastodon::Snowflake",
-        "method": "define_timestamp_id"
-      },
-      "user_input": "SecureRandom.hex(16)",
       "confidence": "Medium",
       "note": ""
     },
@@ -201,23 +221,53 @@
       "note": ""
     },
     {
-      "warning_type": "Redirect",
-      "warning_code": 18,
-      "fingerprint": "ba699ddcc6552c422c4ecd50d2cd217f616a2446659e185a50b05a0f2dad8d33",
-      "check_name": "Redirect",
-      "message": "Possible unprotected redirect",
-      "file": "app/controllers/media_controller.rb",
-      "line": 20,
-      "link": "https://brakemanscanner.org/docs/warning_types/redirect/",
-      "code": "redirect_to(MediaAttachment.attached.find_by!(:shortcode => ((params[:id] or params[:medium_id]))).file.url(:original))",
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
+      "fingerprint": "c32a484ccd9da46abd3bc93d08b72029d7dbc0576ccf4e878a9627e9a83cad2e",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "app/models/tag_filter.rb",
+      "line": 50,
+      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "Tag.joins(\"join unnest(array[#{Trends.tags.currently_trending_ids(false, -1).map(&:to_i).join(\",\")}]::integer[]) with ordinality as x (id, ordering) on tags.id = x.id\")",
       "render_path": null,
       "location": {
         "type": "method",
-        "class": "MediaController",
-        "method": "show"
+        "class": "TagFilter",
+        "method": "trending_scope"
       },
-      "user_input": "MediaAttachment.attached.find_by!(:shortcode => ((params[:id] or params[:medium_id]))).file.url(:original)",
-      "confidence": "High",
+      "user_input": "Trends.tags.currently_trending_ids(false, -1).map(&:to_i).join(\",\")",
+      "confidence": "Medium",
+      "note": ""
+    },
+    {
+      "warning_type": "Cross-Site Scripting",
+      "warning_code": 4,
+      "fingerprint": "cd5cfd7f40037fbfa753e494d7129df16e358bfc43ef0da3febafbf4ee1ed3ac",
+      "check_name": "LinkToHref",
+      "message": "Potentially unsafe model attribute in `link_to` href",
+      "file": "app/views/admin/trends/links/_preview_card.html.haml",
+      "line": 7,
+      "link": "https://brakemanscanner.org/docs/warning_types/link_to_href",
+      "code": "link_to((Unresolved Model).new.title, (Unresolved Model).new.url)",
+      "render_path": [
+        {
+          "type": "template",
+          "name": "admin/trends/links/index",
+          "line": 37,
+          "file": "app/views/admin/trends/links/index.html.haml",
+          "rendered": {
+            "name": "admin/trends/links/_preview_card",
+            "file": "app/views/admin/trends/links/_preview_card.html.haml"
+          }
+        }
+      ],
+      "location": {
+        "type": "template",
+        "template": "admin/trends/links/_preview_card"
+      },
+      "user_input": "(Unresolved Model).new.url",
+      "confidence": "Weak",
       "note": ""
     },
     {
@@ -227,7 +277,7 @@
       "check_name": "SQL",
       "message": "Possible SQL injection",
       "file": "app/models/account.rb",
-      "line": 495,
+      "line": 500,
       "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
       "code": "find_by_sql([\"          SELECT\\n            accounts.*,\\n            (count(f.id) + 1) * ts_rank_cd(#{textsearch}, #{query}, 32) AS rank\\n          FROM accounts\\n          LEFT OUTER JOIN follows AS f ON (accounts.id = f.account_id AND f.target_account_id = ?) OR (accounts.id = f.target_account_id AND f.account_id = ?)\\n          WHERE #{query} @@ #{textsearch}\\n            AND accounts.suspended_at IS NULL\\n            AND accounts.moved_to_account_id IS NULL\\n          GROUP BY accounts.id\\n          ORDER BY rank DESC\\n          LIMIT ? OFFSET ?\\n\".squish, account.id, account.id, limit, offset])",
       "render_path": null,
@@ -261,6 +311,6 @@
       "note": ""
     }
   ],
-  "updated": "2021-05-11 20:22:27 +0900",
-  "brakeman_version": "5.0.1"
+  "updated": "2021-11-14 05:26:09 +0100",
+  "brakeman_version": "5.1.2"
 }

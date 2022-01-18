@@ -59,6 +59,10 @@ describe Settings::DeletesController do
           expect(user.account.reload).to be_suspended
         end
 
+        it 'does not create an email block' do
+          expect(CanonicalEmailBlock.block?(user.email)).to be false
+        end
+
         context 'when suspended' do
           let(:user) { Fabricate(:user, account_attributes: { username: 'alice', suspended_at: Time.now.utc }) }
 

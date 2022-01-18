@@ -1,0 +1,16 @@
+<%= raw t('application_mailer.salutation', name: display_name(@me)) %>
+
+<%= raw t('admin_mailer.new_trending_tags.body') %>
+
+<% @tags.each do |tag| %>
+- #<%= tag.name %>
+  <%= t('admin.trends.tags.usage_comparison', today: tag.history.get(Time.now.utc).accounts, yesterday: tag.history.get(Time.now.utc - 1.day).accounts) %> • <%= t('admin.trends.tags.current_score', score: Trends.tags.score(tag.id).round(2)) %>
+<% end %>
+
+<% if @lowest_trending_tag %>
+<%= t('admin_mailer.new_trending_tags.requirements', lowest_tag_name: @lowest_trending_tag.name, lowest_tag_score: Trends.tags.score(@lowest_trending_tag.id).round(2)) %>
+<% else %>
+<%= t('admin_mailer.new_trending_tags.no_approved_tags') %>
+<% end %>
+
+<%= raw t('application_mailer.view')%> <%= admin_trends_tags_url(pending_review: '1') %>

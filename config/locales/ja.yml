@@ -25,7 +25,7 @@ ja:
     learn_more: もっと詳しく
     privacy_policy: プライバシーポリシー
     rules: サーバーのルール
-    rules_html: 'このMastodonサーバーにアカウントをお持ちの場合は、以下のルールの概要を確認してください:'
+    rules_html: 'このMastodonサーバーには、アカウントの所持にあたって従うべきルールが設定されています。概要は以下の通りです:'
     see_whats_happening: やりとりを見てみる
     server_stats: 'サーバー統計:'
     source_code: ソースコード
@@ -185,6 +185,8 @@ ja:
       search: 検索
       search_same_email_domain: 同じドメインのメールアドレスを使用しているユーザー
       search_same_ip: 同じ IP のユーザーを検索
+      security_measures:
+        password_and_2fa: パスワードと 2FA
       sensitive: 閲覧注意
       sensitized: 閲覧注意済み
       shared_inbox_url: Shared inbox URL
@@ -355,32 +357,9 @@ ja:
       updated_msg: 絵文字の更新に成功しました！
       upload: アップロード
     dashboard:
-      authorized_fetch_mode: セキュアモード
-      backlog: 未処理のジョブ
-      config: 構成
-      feature_deletions: アカウント削除
-      feature_invites: 招待リンク
-      feature_profile_directory: ディレクトリ
-      feature_registrations: 新規登録
-      feature_relay: 連合リレー
-      feature_timeline_preview: タイムラインプレビュー
-      features: 機能
-      hidden_service: 秘匿サービスとの連合
-      open_reports: 未解決の通報
-      pending_tags: 審査待ちのハッシュタグ
-      pending_users: 承認待ちの人数
-      recent_users: 最近登録したユーザー
-      search: 全文検索
-      single_user_mode: シングルユーザーモード
       software: ソフトウェア
       space: ディスク使用量
       title: ダッシュボード
-      total_users: 全ユーザー
-      trends: トレンドタグ
-      week_interactions: 今週交流のあった回数
-      week_users_active: 今週活動した人数
-      week_users_new: 今週登録した人数
-      whitelist_mode: 連合制限モード
     domain_allows:
       add_new: 連合を許可
       created_msg: 連合を許可しました
@@ -991,6 +970,11 @@ ja:
   lists:
     errors:
       limit: リストの上限に達しました
+  login_activities:
+    authentication_methods:
+      password: パスワード
+      sign_in_token: 電子メールセキュリティコード
+      webauthn: セキュリティキー
   media_attachments:
     validations:
       images_and_video: 既に画像が追加されているため、動画を追加することはできません
@@ -1215,6 +1199,7 @@ ja:
     preferences: ユーザー設定
     profile: プロフィール
     relationships: フォロー・フォロワー
+    statuses_cleanup: 投稿の自動削除
     two_factor_authentication: 二段階認証
     webauthn_authentication: セキュリティキー
   statuses:
@@ -1260,6 +1245,40 @@ ja:
       public_long: 誰でも見ることができ、かつ公開タイムラインに表示されます
       unlisted: 未収載
       unlisted_long: 誰でも見ることができますが、公開タイムラインには表示されません
+  statuses_cleanup:
+    enabled: 古い投稿を自動的に削除する
+    enabled_hint: 設定した期間を過ぎた投稿は、以下の例外に該当しない限り、自動的に削除されます
+    exceptions: 例外
+    explanation: 投稿の削除はサーバーに負荷がかかるため、サーバーが混み合っていないときに時間をかけて行われます。
+    ignore_favs: お気に入りされた数を無視
+    ignore_reblogs: ブーストされた数を無視
+    interaction_exceptions: インタラクションに基づく例外
+    interaction_exceptions_explanation: お気に入りやブーストの基準値を一度超えてしまった投稿は、基準値を下回った後であっても、削除される保証はありません。
+    keep_direct: ダイレクトメッセージを保持
+    keep_direct_hint: ダイレクトメッセージを削除せずに残します
+    keep_media: メディア付きの投稿を保持
+    keep_media_hint: メディア付きの投稿を削除せずに残します
+    keep_pinned: ピン留めされた投稿を保持
+    keep_pinned_hint: ピン留めされた投稿を削除せずに残します
+    keep_polls: アンケート付きの投稿を保持
+    keep_polls_hint: アンケート付きの投稿を削除せずに残します
+    keep_self_bookmark: ブックマークした投稿を保持
+    keep_self_bookmark_hint: 自分自身でブックマークした投稿を削除せずに残します
+    keep_self_fav: お気に入りに登録した投稿を保持
+    keep_self_fav_hint: 自分自身でお気に入りに登録した投稿を削除せずに残します
+    min_age:
+      '1209600': 2週間
+      '15778476': 6ヶ月
+      '2629746': 1ヶ月
+      '31556952': 1年
+      '5259492': 2ヶ月
+      '63113904': 2年
+      '7889238': 3ヶ月
+    min_age_label: 投稿を保持する期間
+    min_favs: これ以上お気に入りに登録された投稿を無視する
+    min_favs_hint: この数以上、お気に入りに登録された投稿を削除しません。空白にしておくと、お気に入りに登録された数に関わらず投稿を削除します。
+    min_reblogs: これ以上ブーストされた投稿を無視する
+    min_reblogs_hint: この数以上、ブーストされた投稿を削除しません。空白にしておくと、ブーストされた数に関わらず投稿を削除します。
   stream_entries:
     pinned: 固定された投稿
     reblogged: さんがブースト

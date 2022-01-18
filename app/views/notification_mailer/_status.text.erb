@@ -1,8 +1,8 @@
 <% if status.spoiler_text? %>
-<%= raw status.spoiler_text %>
-----
-
+> <%= raw word_wrap(status.spoiler_text, break_sequence: "\n> ") %>
+> ----
+>
 <% end %>
-<%= raw Formatter.instance.plaintext(status) %>
+> <%= raw word_wrap(Formatter.instance.plaintext(status), break_sequence: "\n> ") %>
 
 <%= raw t('application_mailer.view')%> <%= web_url("statuses/#{status.id}") %>
