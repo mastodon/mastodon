@@ -32,7 +32,7 @@ class FanOutOnWriteService < BaseService
 
   def fan_out_to_local_recipients!
     deliver_to_self!
-    deliver_to_mentioned_accounts!
+    notify_mentioned_accounts!
 
     case @status.visibility.to_sym
     when :public, :unlisted, :private
@@ -55,7 +55,7 @@ class FanOutOnWriteService < BaseService
     FeedManager.instance.push_to_home(@account, @status, update: update?) if @account.local?
   end
 
-  def deliver_to_mentioned_accounts!
+  def notify_mentioned_accounts!
     @status.active_mentions.joins(:account).merge(Account.local).select(:id, :account_id).reorder(nil).find_in_batches do |mentions|
       LocalNotificationWorker.push_bulk(mentions) do |mention|
         [mention.account_id, mention.id, 'Mention', :mention]

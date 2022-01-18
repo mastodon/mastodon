@@ -7,6 +7,13 @@ class ActivityPub::Parser::MediaAttachmentParser
     @json = json
   end
 
+  # @param [MediaAttachment] other
+  def ==(other)
+    remote_url == other.remote_url &&
+      thumbnail_remote_url == other.thumbnail_remote_url &&
+      description == other.description
+  end
+
   def remote_url
     Addressable::URI.parse(@json['url'])&.normalize&.to_s
   rescue Addressable::URI::InvalidURIError

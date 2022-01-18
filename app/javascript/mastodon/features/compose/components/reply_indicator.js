@@ -21,7 +21,6 @@ class ReplyIndicator extends ImmutablePureComponent {
 
   static propTypes = {
     status: ImmutablePropTypes.map,
-    editing: PropTypes.bool,
     onCancel: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
   };

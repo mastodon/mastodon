@@ -160,7 +160,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
 
     return unless delivered_to_account.following?(@account)
 
-    FeedInsertWorker.perform_async(@status.id, delivered_to_account.id, :home, false)
+    FeedInsertWorker.perform_async(@status.id, delivered_to_account.id, :home)
   end
 
   def attach_tags(status)

@@ -7,6 +7,12 @@ class ActivityPub::Parser::PollParser
     @json = json
   end
 
+  # @param [Poll] other
+  def ==(other)
+    options == other.options &&
+      multiple == other.multiple
+  end
+
   def options
     items.filter_map { |item| item['name'].presence || item['content'] }
   end

@@ -3,6 +3,9 @@
 class ActivityPub::Parser::StatusParser
   include JsonLdHelper
 
+  # @param [Hash] json
+  # @param [Hash] magic_values
+  # @option magic_values [String] :followers_collection
   def initialize(json, magic_values = {})
     @json         = json
     @object       = json['object'] || json
@@ -10,7 +13,15 @@ class ActivityPub::Parser::StatusParser
   end
 
   def uri
-    @object['id']
+    id = @object['id']
+
+    if id&.start_with?('bear:')
+      Addressable::URI.parse(id).query_values['u']
+    else
+      id
+    end
+  rescue Addressable::URI::InvalidURIError
+    id
   end
 
   def url

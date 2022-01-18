@@ -59,9 +59,9 @@ class FeedInsertWorker
   def perform_unpush
     case @type
     when :home
-      FeedManager.instance.unpush_from_home(@follower, @status)
+      FeedManager.instance.unpush_from_home(@follower, @status, update: true)
     when :list
-      FeedManager.instance.unpush_from_list(@list, @status)
+      FeedManager.instance.unpush_from_list(@list, @status, update: true)
     end
   end
 

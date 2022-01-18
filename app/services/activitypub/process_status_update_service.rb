@@ -5,14 +5,14 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
 
   def call(status, json)
     @json                      = json
-    @uri                       = @json['id']
+    @status_parser             = ActivityPub::Parser::StatusParser.new(@json)
+    @uri                       = @status_parser.uri
     @status                    = status
     @account                   = status.account
     @media_attachments_changed = false
 
-    return unless expected_type?
-
-    return if already_updated_more_recently?
+    # Only native types can be updated at the moment
+    return if !expected_type? || already_updated_more_recently?
 
     # Only allow processing one create/update per status at a time
     RedisLock.acquire(lock_options) do |lock|
@@ -50,6 +50,12 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
         media_attachment   = previous_media_attachments.find { |previous_media_attachment| previous_media_attachment.remote_url == media_attachment_parser.remote_url }
         media_attachment ||= MediaAttachment.new(account: @account, remote_url: media_attachment_parser.remote_url)
 
+        # If a previously existing media attachment was significantly updated, mark
+        # media attachments as changed even if none were added or removed
+        if media_attachment_parser != media_attachment && !media_attachment.new_record?
+          @media_attachments_changed = true
+        end
+
         media_attachment.description          = media_attachment_parser.description
         media_attachment.focus                = media_attachment_parser.focus
         media_attachment.thumbnail_remote_url = media_attachment_parser.thumbnail_remote_url
@@ -67,11 +73,12 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
     end
 
     removed_media_attachments = previous_media_attachments - next_media_attachments
+    added_media_attachments   = next_media_attachments - previous_media_attachments
 
     MediaAttachment.where(id: removed_media_attachments.map(&:id)).update_all(status_id: nil)
-    MediaAttachment.where(id: next_media_attachments.map(&:id)).update_all(status_id: @status.id)
+    MediaAttachment.where(id: added_media_attachments.map(&:id)).update_all(status_id: @status.id)
 
-    @media_attachments_changed = true if previous_media_attachments != @status.media_attachments.reload
+    @media_attachments_changed = true if removed_media_attachments.positive? || added_media_attachments.positive?
   end
 
   def update_poll!
@@ -84,7 +91,10 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
 
       # If for some reasons the options were changed, it invalidates all previous
       # votes, so we need to remove them
-      poll.votes.delete_all if poll_parser.options != poll.options && !poll.new_record?
+      if poll_parser != poll
+        @media_attachments_changed = true
+        poll.votes.delete_all unless poll.new_record?
+      end
 
       poll.last_fetched_at = Time.now.utc
       poll.options         = poll_parser.options
@@ -95,19 +105,14 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
       poll.save!
 
       @status.poll_id = poll.id
-    else
-      previous_poll&.destroy!
+    elsif previous_poll.present?
+      previous_poll.destroy!
+      @media_attachments_changed = true
       @status.poll_id = nil
     end
-
-    # Because of both has_one/belongs_to associations on status and poll,
-    # poll_id is not updated on the status record here yet
-    @media_attachments_changed = true if previous_poll&.id != @status.poll_id
   end
 
   def update_immediate_attributes!
-    @status_parser = ActivityPub::Parser::StatusParser.new(@json)
-
     @status.text         = @status_parser.text || ''
     @status.spoiler_text = @status_parser.spoiler_text || ''
     @status.sensitive    = @account.sensitized? || @status_parser.sensitive || false
