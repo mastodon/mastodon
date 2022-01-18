@@ -486,6 +486,7 @@ sv:
       assign_to_self: Tilldela till mig
       assigned: Tilldelad moderator
       by_target_domain: Domän för rapporterat konto
+      category: Kategori
       comment:
         none: Ingen
       created_at: Anmäld
@@ -493,12 +494,14 @@ sv:
       forwarded_to: Vidarebefordrad till %{domain}
       mark_as_resolved: Markera som löst
       mark_as_unresolved: Markera som olöst
+      no_one_assigned: Ingen
       notes:
         create: Lägg till anteckning
         create_and_resolve: Lös med anteckning
         create_and_unresolve: Återuppta med anteckning
         delete: Radera
         placeholder: Beskriv vilka åtgärder som vidtagits eller andra uppdateringar till den här anmälan.
+        title: Anteckningar
       reopen: Återuppta anmälan
       report: 'Anmäl #%{id}'
       reported_account: Anmält konto
@@ -511,6 +514,7 @@ sv:
       unassign: Otilldela
       unresolved: Olösta
       updated_at: Uppdaterad
+      view_profile: Visa profil
     rules:
       add_new: Lägg till regel
       delete: Radera
@@ -1232,6 +1236,7 @@ sv:
     formats:
       default: "%b %d, %Y, %H:%M"
       month: "%b %Y"
+      time: "%H:%M"
   two_factor_authentication:
     add: Lägg till
     disable: Inaktivera
@@ -1256,6 +1261,7 @@ sv:
       further_actions: 'Om det inte var du, vänligen ändra ditt lösenord och aktivera tvåfaktor-autentisering i ditt konto. Du kan göra det här:'
       title: Inloggningsförsök
     warning:
+      reason: 'Anledning:'
       subject:
         disable: Ditt konto %{acct} har blivit fruset
         none: Varning för %{acct}
