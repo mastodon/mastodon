@@ -150,7 +150,8 @@ ro:
       login_status: Stare conectare
       media_attachments: Atașamente media
       memorialize: Transformă în memorie
-      memorialized: Memorializat
+      memorialized: Comemorat
+      memorialized_msg: S-a transforma cu succes %{username} într-un cont comemorat
       moderation:
         active: Activ
         all: Toate
@@ -166,11 +167,17 @@ ro:
       pending: În așteptare
       perform_full_suspension: Suspendate
       promote: Promovează
+      protocol: Protocol
+      public: Public
       push_subscription_expires: Abonamentul PuSH expiră
       redownload: Reîmprospătează profilul
+      redownloaded_msg: S-a reîmprospătat cu succes profilul %{username} de la origine
       reject: Respinge
+      rejected_msg: S-a respins cu succes cererea de înregistrare a utilizatorului %{username}
       remove_avatar: Elimină avatar
       remove_header: Elimină antet
+      removed_avatar_msg: S-a îndepărtat cu succes poza de profil a utilizatorului %{username}
+      removed_header_msg: S-a îndepărtat cu succes coperta utilizatorului %{username}
       resend_confirmation:
         already_confirmed: Acest utilizator este deja confirmat
         send: Retrimite e-mail de confirmare
@@ -180,11 +187,19 @@ ro:
       resubscribe: Resubscrie-te
       role: Permisiuni
       roles:
+        admin: Administrator
+        moderator: Moderator
         staff: Personal
         user: Utilizator
       search: Caută
       search_same_email_domain: Alţi utilizatori cu acelaşi domeniu de e-mail
       search_same_ip: Alţi utilizatori cu acelaşi IP
+      security_measures:
+        only_password: Doar parola
+        password_and_2fa: Parolă și Conectarea în 2 pași
+        password_and_sign_in_token: Parola și token-ul e-mail
+      sensitive: Sensibil
+      sensitized: Marcat ca sensibil
       shared_inbox_url: URL inbox distribuit
       show:
         created_reports: Rapoarte realizate
@@ -192,13 +207,21 @@ ro:
       silence: Ignoră
       silenced: Ignorate
       statuses: Stări
+      strikes: Atenționări anterioare
       subscribe: Subscrie
       suspended: Suspendate
+      suspension_irreversible: Datele acestui cont au fost șterse în mod ireversibil. Poți să renunți la suspnedarea contului pentru a-l face utilizabil, dar acesta nu va recupera nicio informație pe care a avut-o anterior.
+      suspension_reversible_hint_html: Contul a fost suspendat și datele vor fi șterse complet pe %{date}. Până atunci, contul poate fi restabilit fără efecte adverse. Dacă dorești să ştergi imediat toate datele contului, poți face acest lucru mai jos.
       title: Conturi
+      unblock_email: Deblochează adresa de e-mail
+      unblocked_email_msg: S-a deblocat cu succes adresa de email a utilizatorului %{username}
       unconfirmed_email: E-mail neconfirmat
+      undo_sensitized: Anulează ca sensibil
       undo_silenced: Anulează ignorarea
       undo_suspension: Anulați suspendarea
+      unsilenced_msg: S-a refăcut cu succes limita contului %{username}
       unsubscribe: Dezabonare
+      unsuspended_msg: S-a anulat cu succes suspendarea contului %{username}
       username: Nume
       warn: Avertizează
       whitelisted: Excluse la blocare
