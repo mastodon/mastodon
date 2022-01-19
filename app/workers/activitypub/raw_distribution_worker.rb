@@ -43,6 +43,6 @@ class ActivityPub::RawDistributionWorker
   end
 
   def options
-    nil
+    {}
   end
 end
