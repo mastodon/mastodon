@@ -25,13 +25,29 @@ class ActivityPub::Activity::Announce < ActivityPub::Activity
       Trends.tags.register(@status)
       Trends.links.register(@status)
 
-      distribute(@status)
+      distribute
     end
 
     @status
   end
 
   private
+
+  def distribute
+    # Notify the author of the original status if that status is local
+    NotifyService.new.call(@status.reblog.account, :reblog, @status) if reblog_of_local_account?(@status) && !reblog_by_following_group_account?(@status)
+
+    # Distribute into home and list feeds
+    ::DistributionWorker.perform_async(@status.id) if @options[:override_timestamps] || @status.within_realtime_window?
+  end
+
+  def reblog_of_local_account?(status)
+    status.reblog? && status.reblog.account.local?
+  end
+
+  def reblog_by_following_group_account?(status)
+    status.reblog? && status.account.group? && status.reblog.account.following?(status.account)
+  end
 
   def audience_to
     as_array(@json['to']).map { |x| value_or_id(x) }

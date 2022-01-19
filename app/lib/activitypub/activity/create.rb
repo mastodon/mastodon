@@ -69,9 +69,10 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   end
 
   def process_status
-    @tags     = []
-    @mentions = []
-    @params   = {}
+    @tags                 = []
+    @mentions             = []
+    @silenced_account_ids = []
+    @params               = {}
 
     process_status_params
     process_tags
@@ -84,8 +85,16 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
 
     resolve_thread(@status)
     fetch_replies(@status)
-    distribute(@status)
+    distribute
     forward_for_reply
+  end
+
+  def distribute
+    # Spread out crawling randomly to avoid DDoSing the link
+    LinkCrawlWorker.perform_in(rand(1..59).seconds, @status.id)
+
+    # Distribute into home and list feeds and notify mentioned accounts
+    ::DistributionWorker.perform_async(@status.id, silenced_account_ids: @silenced_account_ids) if @options[:override_timestamps] || @status.within_realtime_window?
   end
 
   def find_existing_status
@@ -120,41 +129,41 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   end
 
   def process_audience
-    (audience_to + audience_cc).uniq.each do |audience|
-      next if ActivityPub::TagManager.instance.public_collection?(audience)
+    # Unlike with tags, there is no point in resolving accounts we don't already
+    # know here, because silent mentions would only be used for local access control anyway
+    accounts_in_audience = (audience_to + audience_cc).uniq.filter_map do |audience|
+      account_from_uri(audience) unless ActivityPub::TagManager.instance.public_collection?(audience)
+    end
 
-      # Unlike with tags, there is no point in resolving accounts we don't already
-      # know here, because silent mentions would only be used for local access
-      # control anyway
-      account = account_from_uri(audience)
+    # If the payload was delivered to a specific inbox, the inbox owner must have
+    # access to it, unless they already have access to it anyway
+    if @options[:delivered_to_account_id]
+      accounts_in_audience << delivered_to_account
+      accounts_in_audience.uniq!
+    end
 
-      next if account.nil? || @mentions.any? { |mention| mention.account_id == account.id }
+    accounts_in_audience.each do |account|
+      # This runs after tags are processed, and those translate into non-silent
+      # mentions, which take precedence
+      next if @mentions.any? { |mention| mention.account_id == account.id }
 
       @mentions << Mention.new(account: account, silent: true)
 
       # If there is at least one silent mention, then the status can be considered
       # as a limited-audience status, and not strictly a direct message, but only
       # if we considered a direct message in the first place
-      next unless @params[:visibility] == :direct
-
-      @params[:visibility] = :limited
+      @params[:visibility] = :limited if @params[:visibility] == :direct
     end
 
-    # If the payload was delivered to a specific inbox, the inbox owner must have
-    # access to it, unless they already have access to it anyway
-    return if @options[:delivered_to_account_id].nil? || @mentions.any? { |mention| mention.account_id == @options[:delivered_to_account_id] }
-
-    @mentions << Mention.new(account_id: @options[:delivered_to_account_id], silent: true)
-
-    return unless @params[:visibility] == :direct
-
-    @params[:visibility] = :limited
+    # Accounts that are tagged but are not in the audience are not
+    # supposed to be notified explicitly
+    @silenced_account_ids = @mentions.flat_map do |mention|
+      mention.account_id if accounts_in_audience.none? { |account| account.id == mention.account_id }
+    end
   end
 
   def postprocess_audience_and_deliver
     return if @status.mentions.find_by(account_id: @options[:delivered_to_account_id])
-
-    delivered_to_account = Account.find(@options[:delivered_to_account_id])
 
     @status.mentions.create(account: delivered_to_account, silent: true)
     @status.update(visibility: :limited) if @status.direct_visibility?
@@ -162,6 +171,10 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     return unless delivered_to_account.following?(@account)
 
     FeedInsertWorker.perform_async(@status.id, delivered_to_account.id, :home)
+  end
+
+  def delivered_to_account
+    @delivered_to_account ||= Account.find(@options[:delivered_to_account_id])
   end
 
   def attach_tags(status)

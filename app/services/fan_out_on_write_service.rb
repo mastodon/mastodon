@@ -5,6 +5,7 @@ class FanOutOnWriteService < BaseService
   # @param [Status] status
   # @param [Hash] options
   # @option options [Boolean] update
+  # @option options [Array<Integer>] silenced_account_ids
   def call(status, options = {})
     @status    = status
     @account   = status.account
@@ -56,7 +57,7 @@ class FanOutOnWriteService < BaseService
   end
 
   def notify_mentioned_accounts!
-    @status.active_mentions.joins(:account).merge(Account.local).select(:id, :account_id).reorder(nil).find_in_batches do |mentions|
+    @status.active_mentions.where.not(id: @options[:silenced_account_ids] || []).joins(:account).merge(Account.local).select(:id, :account_id).reorder(nil).find_in_batches do |mentions|
       LocalNotificationWorker.push_bulk(mentions) do |mention|
         [mention.account_id, mention.id, 'Mention', :mention]
       end
