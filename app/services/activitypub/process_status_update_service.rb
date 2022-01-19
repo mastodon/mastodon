@@ -269,7 +269,7 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
 
     return unless poll.present? && poll.expires_at.present? && poll.votes.exists?
 
-    PollExpirationNotifyWorker.remove_from_scheduled(poll.id) if @previous_expires_at.present?
+    PollExpirationNotifyWorker.remove_from_scheduled(poll.id) if @previous_expires_at.present? && @previous_expires_at > poll.expires_at
     PollExpirationNotifyWorker.perform_at(poll.expires_at + 5.minutes, poll.id)
   end
 end
