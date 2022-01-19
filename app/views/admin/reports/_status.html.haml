@@ -22,6 +22,9 @@
         = react_component :media_gallery, height: 343, sensitive: status.proper.sensitive?, visible: false, media: status.proper.media_attachments.map { |a| ActiveModelSerializers::SerializableResource.new(a, serializer: REST::MediaAttachmentSerializer).as_json }
 
     .detailed-status__meta
+      - if status.application
+        = status.application.name
+        ·
       = link_to ActivityPub::TagManager.instance.url_for(status), class: 'detailed-status__datetime', target: stream_link_target, rel: 'noopener noreferrer' do
         %time.formatted{ datetime: status.created_at.iso8601, title: l(status.created_at) }= l(status.created_at)
       - if status.discarded?
