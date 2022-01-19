@@ -17,6 +17,11 @@ class PollExpirationNotifyWorker
     true
   end
 
+  def self.remove_from_scheduled(poll_id)
+    queue = Sidekiq::ScheduledSet.new
+    queue.select { |scheduled| scheduled.klass == name && scheduled.args[0] == poll_id }.map(&:delete)
+  end
+
   private
 
   def does_not_expire?

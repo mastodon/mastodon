@@ -52,7 +52,7 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
 
         # If a previously existing media attachment was significantly updated, mark
         # media attachments as changed even if none were added or removed
-        if media_attachment_parser != media_attachment && !media_attachment.new_record?
+        if media_attachment_parser.significantly_changes?(media_attachment)
           @media_attachments_changed = true
         end
 
@@ -84,14 +84,14 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
   def update_poll!
     previous_poll        = @status.preloadable_poll
     @previous_expires_at = previous_poll&.expires_at
+    poll_parser          = ActivityPub::Parser::PollParser.new(@json)
 
-    if equals_or_includes?(@json['type'], 'Question') && (@json['anyOf'].is_a?(Array) || @json['oneOf'].is_a?(Array))
-      poll_parser = ActivityPub::Parser::PollParser.new(@json)
-      poll        = previous_poll || @account.polls.new(status: @status)
+    if poll_parser.valid?
+      poll = previous_poll || @account.polls.new(status: @status)
 
       # If for some reasons the options were changed, it invalidates all previous
       # votes, so we need to remove them
-      if poll_parser != poll
+      if poll_parser.significantly_changes?(poll)
         @media_attachments_changed = true
         poll.votes.delete_all unless poll.new_record?
       end
@@ -249,9 +249,7 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
   end
 
   def already_updated_more_recently?
-    @status.edited_at.present? && @json['updated'].present? && @status.edited_at > @json['updated'].to_datetime
-  rescue ArgumentError
-    false
+    @status.edited_at.present? && @status_parser.edited_at.present? && @status.edited_at > @status_parser.edited_at
   end
 
   def reset_preview_card!
@@ -266,11 +264,12 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
   def queue_poll_notifications!
     poll = @status.preloadable_poll
 
-    # If the poll had no expiration date set but now has, and people have
-    # voted, schedule a notification
+    # If the poll had no expiration date set but now has, or now has a sooner
+    # expiration date, and people have voted, schedule a notification
 
-    if @previous_expires_at.nil? && poll.present? && poll.expires_at.present? && poll.votes.exists?
-      PollExpirationNotifyWorker.perform_at(poll.expires_at + 5.minutes, poll.id)
-    end
+    return unless poll.present? && poll.expires_at.present? && poll.votes.exists?
+
+    PollExpirationNotifyWorker.remove_from_scheduled(poll.id) if @previous_expires_at.present?
+    PollExpirationNotifyWorker.perform_at(poll.expires_at + 5.minutes, poll.id)
   end
 end

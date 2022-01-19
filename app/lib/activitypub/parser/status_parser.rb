@@ -53,11 +53,15 @@ class ActivityPub::Parser::StatusParser
   end
 
   def created_at
-    @object['published']
+    @object['published']&.to_datetime
+  rescue ArgumentError
+    nil
   end
 
   def edited_at
-    @object['updated']
+    @object['updated']&.to_datetime
+  rescue ArgumentError
+    nil
   end
 
   def reply

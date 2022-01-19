@@ -7,10 +7,14 @@ class ActivityPub::Parser::PollParser
     @json = json
   end
 
-  # @param [Poll] other
-  def ==(other)
-    options == other.options &&
-      multiple == other.multiple
+  def valid?
+    equals_or_includes?(@json['type'], 'Question') && items.is_a?(Array)
+  end
+
+  # @param [Poll] previous_record
+  def significantly_changes?(previous_record)
+    options != previous_record.options ||
+      multiple != previous_record.multiple
   end
 
   def options
@@ -23,12 +27,14 @@ class ActivityPub::Parser::PollParser
 
   def expires_at
     if @json['closed'].is_a?(String)
-      @json['closed']
+      @json['closed'].to_datetime
     elsif !@json['closed'].nil? && !@json['closed'].is_a?(FalseClass)
       Time.now.utc
     else
-      @json['endTime']
+      @json['endTime']&.to_datetime
     end
+  rescue ArgumentError
+    nil
   end
 
   def voters_count

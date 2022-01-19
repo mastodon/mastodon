@@ -20,6 +20,8 @@ class ActivityPub::Parser::CustomEmojiParser
   end
 
   def updated_at
-    @json['updated']
+    @json['updated']&.to_datetime
+  rescue ArgumentError
+    nil
   end
 end

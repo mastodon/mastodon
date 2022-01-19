@@ -106,6 +106,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
         language: @status_parser.language || detected_language,
         spoiler_text: converted_object_type? ? '' : (@status_parser.spoiler_text || ''),
         created_at: @status_parser.created_at,
+        edited_at: @status_parser.edited_at,
         override_timestamps: @options[:override_timestamps],
         reply: @status_parser.reply,
         sensitive: @account.sensitized? || @status_parser.sensitive || false,
@@ -276,9 +277,9 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   end
 
   def process_poll
-    return unless @object['type'] == 'Question' && (@object['anyOf'].is_a?(Array) || @object['oneOf'].is_a?(Array))
-
     poll_parser = ActivityPub::Parser::PollParser.new(@object)
+
+    return unless poll_parser.valid?
 
     @account.polls.new(
       multiple: poll_parser.multiple,

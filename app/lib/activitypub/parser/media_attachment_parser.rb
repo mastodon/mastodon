@@ -7,11 +7,11 @@ class ActivityPub::Parser::MediaAttachmentParser
     @json = json
   end
 
-  # @param [MediaAttachment] other
-  def ==(other)
-    remote_url == other.remote_url &&
-      thumbnail_remote_url == other.thumbnail_remote_url &&
-      description == other.description
+  # @param [MediaAttachment] previous_record
+  def significantly_changes?(previous_record)
+    remote_url != previous_record.remote_url ||
+      thumbnail_remote_url != previous_record.thumbnail_remote_url ||
+      description != previous_record.description
   end
 
   def remote_url
