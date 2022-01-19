@@ -26,6 +26,7 @@
 #  poll_id                :bigint(8)
 #  content_type           :string
 #  deleted_at             :datetime
+#  edited_at              :datetime
 #
 
 class Status < ApplicationRecord
@@ -58,6 +59,8 @@ class Status < ApplicationRecord
 
   belongs_to :thread, foreign_key: 'in_reply_to_id', class_name: 'Status', inverse_of: :replies, optional: true
   belongs_to :reblog, foreign_key: 'reblog_of_id', class_name: 'Status', inverse_of: :reblogs, optional: true
+
+  has_many :edits, class_name: 'StatusEdit', inverse_of: :status, dependent: :destroy
 
   has_many :favourites, inverse_of: :status, dependent: :destroy
   has_many :bookmarks, inverse_of: :status, dependent: :destroy
@@ -213,6 +216,10 @@ class Status < ApplicationRecord
 
   def distributable?
     public_visibility? || unlisted_visibility?
+  end
+
+  def edited?
+    edited_at.present?
   end
 
   alias sign? distributable?

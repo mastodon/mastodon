@@ -55,46 +55,50 @@ class FeedManager
   # Add a status to a home feed and send a streaming API update
   # @param [Account] account
   # @param [Status] status
+  # @param [Boolean] update
   # @return [Boolean]
-  def push_to_home(account, status)
+  def push_to_home(account, status, update: false)
     return false unless add_to_feed(:home, account.id, status, account.user&.aggregates_reblogs?)
 
     trim(:home, account.id)
-    PushUpdateWorker.perform_async(account.id, status.id, "timeline:#{account.id}") if push_update_required?("timeline:#{account.id}")
+    PushUpdateWorker.perform_async(account.id, status.id, "timeline:#{account.id}", update: update) if push_update_required?("timeline:#{account.id}")
     true
   end
 
   # Remove a status from a home feed and send a streaming API update
   # @param [Account] account
   # @param [Status] status
+  # @param [Boolean] update
   # @return [Boolean]
-  def unpush_from_home(account, status)
+  def unpush_from_home(account, status, update: false)
     return false unless remove_from_feed(:home, account.id, status, account.user&.aggregates_reblogs?)
 
-    redis.publish("timeline:#{account.id}", Oj.dump(event: :delete, payload: status.id.to_s))
+    redis.publish("timeline:#{account.id}", Oj.dump(event: :delete, payload: status.id.to_s)) unless update
     true
   end
 
   # Add a status to a list feed and send a streaming API update
   # @param [List] list
   # @param [Status] status
+  # @param [Boolean] update
   # @return [Boolean]
-  def push_to_list(list, status)
+  def push_to_list(list, status, update: false)
     return false if filter_from_list?(status, list) || !add_to_feed(:list, list.id, status, list.account.user&.aggregates_reblogs?)
 
     trim(:list, list.id)
-    PushUpdateWorker.perform_async(list.account_id, status.id, "timeline:list:#{list.id}") if push_update_required?("timeline:list:#{list.id}")
+    PushUpdateWorker.perform_async(list.account_id, status.id, "timeline:list:#{list.id}", update: update) if push_update_required?("timeline:list:#{list.id}")
     true
   end
 
   # Remove a status from a list feed and send a streaming API update
   # @param [List] list
   # @param [Status] status
+  # @param [Boolean] update
   # @return [Boolean]
-  def unpush_from_list(list, status)
+  def unpush_from_list(list, status, update: false)
     return false unless remove_from_feed(:list, list.id, status, list.account.user&.aggregates_reblogs?)
 
-    redis.publish("timeline:list:#{list.id}", Oj.dump(event: :delete, payload: status.id.to_s))
+    redis.publish("timeline:list:#{list.id}", Oj.dump(event: :delete, payload: status.id.to_s)) unless update
     true
   end
 
@@ -102,11 +106,11 @@ class FeedManager
   # @param [Account] account
   # @param [Status] status
   # @return [Boolean]
-  def push_to_direct(account, status)
+  def push_to_direct(account, status, update: false)
     return false unless add_to_feed(:direct, account.id, status)
 
     trim(:direct, account.id)
-    PushUpdateWorker.perform_async(account.id, status.id, "timeline:direct:#{account.id}")
+    PushUpdateWorker.perform_async(account.id, status.id, "timeline:direct:#{account.id}") unless update
     true
   end
 
@@ -114,10 +118,10 @@ class FeedManager
   # @param [List] list
   # @param [Status] status
   # @return [Boolean]
-  def unpush_from_direct(account, status)
+  def unpush_from_direct(account, status, update: false)
     return false unless remove_from_feed(:direct, account.id, status)
 
-    redis.publish("timeline:direct:#{account.id}", Oj.dump(event: :delete, payload: status.id.to_s))
+    redis.publish("timeline:direct:#{account.id}", Oj.dump(event: :delete, payload: status.id.to_s)) unless update
     true
   end
 

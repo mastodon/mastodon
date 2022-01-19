@@ -8,12 +8,23 @@ class ProcessMentionsService < BaseService
   # remote users
   # @param [Status] status
   def call(status)
-    return unless status.local?
+    @status = status
 
-    @status  = status
-    mentions = []
+    return unless @status.local?
 
-    status.text = status.text.gsub(Account::MENTION_RE) do |match|
+    @previous_mentions = @status.active_mentions.includes(:account).to_a
+    @current_mentions  = []
+
+    Status.transaction do
+      scan_text!
+      assign_mentions!
+    end
+  end
+
+  private
+
+  def scan_text!
+    @status.text = @status.text.gsub(Account::MENTION_RE) do |match|
       username, domain = Regexp.last_match(1).split('@')
 
       domain = begin
@@ -26,49 +37,45 @@ class ProcessMentionsService < BaseService
 
       mentioned_account = Account.find_remote(username, domain)
 
+      # If the account cannot be found or isn't the right protocol,
+      # first try to resolve it
       if mention_undeliverable?(mentioned_account)
         begin
-          mentioned_account = resolve_account_service.call(Regexp.last_match(1))
+          mentioned_account = ResolveAccountService.new.call(Regexp.last_match(1))
         rescue Webfinger::Error, HTTP::Error, OpenSSL::SSL::SSLError, Mastodon::UnexpectedResponseError
           mentioned_account = nil
         end
       end
 
+      # If after resolving it still isn't found or isn't the right
+      # protocol, then give up
       next match if mention_undeliverable?(mentioned_account) || mentioned_account&.suspended?
 
-      mention = mentioned_account.mentions.new(status: status)
-      mentions << mention if mention.save
+      mention   = @previous_mentions.find { |x| x.account_id == mentioned_account.id }
+      mention ||= mentioned_account.mentions.new(status: @status)
+
+      @current_mentions << mention
 
       "@#{mentioned_account.acct}"
     end
 
-    status.save!
-
-    mentions.each { |mention| create_notification(mention) }
+    @status.save!
   end
 
-  private
+  def assign_mentions!
+    @current_mentions.each do |mention|
+      mention.save if mention.new_record?
+    end
+
+    # If previous mentions are no longer contained in the text, convert them
+    # to silent mentions, since withdrawing access from someone who already
+    # received a notification might be more confusing
+    removed_mentions = @previous_mentions - @current_mentions
+
+    Mention.where(id: removed_mentions.map(&:id)).update_all(silent: true) unless removed_mentions.empty?
+  end
 
   def mention_undeliverable?(mentioned_account)
-    mentioned_account.nil? || (!mentioned_account.local? && mentioned_account.ostatus?)
-  end
-
-  def create_notification(mention)
-    mentioned_account = mention.account
-
-    if mentioned_account.local?
-      LocalNotificationWorker.perform_async(mentioned_account.id, mention.id, mention.class.name, :mention)
-    elsif mentioned_account.activitypub? && !@status.local_only?
-      ActivityPub::DeliveryWorker.perform_async(activitypub_json, mention.status.account_id, mentioned_account.inbox_url, { synchronize_followers: !mention.status.distributable? })
-    end
-  end
-
-  def activitypub_json
-    return @activitypub_json if defined?(@activitypub_json)
-    @activitypub_json = Oj.dump(serialize_payload(ActivityPub::ActivityPresenter.from_status(@status), ActivityPub::ActivitySerializer, signer: @status.account))
-  end
-
-  def resolve_account_service
-    ResolveAccountService.new
+    mentioned_account.nil? || (!mentioned_account.local? && !mentioned_account.activitypub?)
   end
 end
