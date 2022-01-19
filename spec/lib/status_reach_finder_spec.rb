@@ -38,7 +38,7 @@ describe StatusReachFinder do
         context 'when status is not public' do
           let(:visibility) { :private }
 
-          it 'does not include the inbox of the replier' do
+          it 'does not include the inbox of the reblogger' do
             expect(subject.inboxes).to_not include 'https://foo.bar/inbox'
           end
         end
@@ -58,7 +58,7 @@ describe StatusReachFinder do
         context 'when status is not public' do
           let(:visibility) { :private }
 
-          it 'does not include the inbox of the replier' do
+          it 'does not include the inbox of the favouriter' do
             expect(subject.inboxes).to_not include 'https://foo.bar/inbox'
           end
         end
