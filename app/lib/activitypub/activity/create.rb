@@ -157,9 +157,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
 
     # Accounts that are tagged but are not in the audience are not
     # supposed to be notified explicitly
-    @silenced_account_ids = @mentions.flat_map do |mention|
-      mention.account_id if accounts_in_audience.none? { |account| account.id == mention.account_id }
-    end
+    @silenced_account_ids = @mentions.map(&:account_id) - accounts_in_audience.map(&:id)
   end
 
   def postprocess_audience_and_deliver
