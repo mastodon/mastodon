@@ -38,6 +38,7 @@ const messages = defineMessages({
   admin_status: { id: 'status.admin_status', defaultMessage: 'Open this status in the moderation interface' },
   copy: { id: 'status.copy', defaultMessage: 'Copy link to status' },
   hide: { id: 'status.hide', defaultMessage: 'Hide toot' },
+  edited: { id: 'status.edited', defaultMessage: 'Edited {date}' },
 });
 
 export default @injectIntl
@@ -324,7 +325,9 @@ class StatusActionBar extends ImmutablePureComponent {
           </div>,
         ]}
 
-        <a href={status.get('url')} className='status__relative-time' target='_blank' rel='noopener'><RelativeTimestamp timestamp={status.get('created_at')} /></a>
+        <a href={status.get('url')} className='status__relative-time' target='_blank' rel='noopener'>
+          <RelativeTimestamp timestamp={status.get('created_at')} />{status.get('edited_at') && <abbr title={intl.formatMessage(messages.edited, { date: intl.formatDate(status.get('edited_at'), { hour12: false, year: 'numeric', month: 'short', day: '2-digit', hour: '2-digit', minute: '2-digit' }) })}> *</abbr>}
+        </a>
       </div>
     );
   }
