@@ -48,6 +48,6 @@ class ActivityPub::FetchFeaturedCollectionService < BaseService
   end
 
   def local_follower
-    @local_follower ||= account.followers.local.without_suspended.first
+    @local_follower ||= @account.followers.local.without_suspended.first
   end
 end
