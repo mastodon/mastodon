@@ -585,11 +585,13 @@ id:
       resolved_msg: Laporan berhasil diselesaikan!
       status: Status
       statuses: Konten yang dilaporkan
+      statuses_description_html: Konten menyinggung akan disampaikan saat komunikasi dengan akun yang dilaporkan
       target_origin: Akun asal yang dilaporkan
       title: Laporan
       unassign: Bebas Tugas
       unresolved: Belum Terseleseikan
       updated_at: Diperbarui
+      view_profile: Lihat profil
     rules:
       add_new: Tambah aturan
       delete: Hapus
@@ -691,6 +693,10 @@ id:
       destroyed_msg: Situs yang diunggah berhasil dihapus!
     statuses:
       back_to_account: Kembali ke halaman akun
+      back_to_report: Kembali ke halaman laporan
+      batch:
+        remove_from_report: Hapus dari laporan
+        report: Laporan
       deleted: Dihapus
       media:
         title: Media
@@ -1440,6 +1446,7 @@ id:
     formats:
       default: "%d %b %Y, %H:%M"
       month: "%b %Y"
+      time: "%H:%M"
   two_factor_authentication:
     add: Tambah
     disable: Matikan
@@ -1467,6 +1474,9 @@ id:
       subject: Harap konfirmasi usaha masuk akun
       title: Usaha masuk akun
     warning:
+      categories:
+        spam: Spam
+        violation: Konten melanggar panduan komunitas berikut
       reason: 'Alasan:'
       review_server_policies: Tinjau kebijakan server
       statuses: 'Postingan yang telah terbukti pelanggarannya:'
