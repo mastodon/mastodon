@@ -550,6 +550,7 @@ id:
       actions:
         other_description_html: Lihat opsi lain untuk mengendalikan perilaku akun dan menyesuaikan komunikasi ke akun yang dilaporkan.
         silence_description_html: Profil hanya dapat terlihat oleh pengguna yang telah mengikuti atau melihatnya secara manual, yang sangat membatasi jangkauannya. Selalu dapat dipulihkan kembali.
+        suspend_description_html: Profil dan semua kontennya tidak dapat diakses sampai ia terhapus. Interaksi dengan akun tersebut tidak dimungkinkan. Dapat dipulihkan dalam waktu 30 hari.
       are_you_sure: Apakah Anda yakin?
       assign_to_self: Tugaskan kpd saya
       assigned: Moderator tertugas
@@ -1456,15 +1457,21 @@ id:
       subject: Harap konfirmasi usaha masuk akun
       title: Usaha masuk akun
     warning:
+      reason: 'Alasan:'
       review_server_policies: Tinjau kebijakan server
+      statuses: 'Postingan yang telah terbukti pelanggarannya:'
       subject:
+        delete_statuses: Postingan anda pada %{acct} telah dihapus
         disable: Akun Anda %{acct} telah dibekukan
         none: Peringatan untuk %{acct}
+        sensitive: File media anda pada %{acct} akan ditandai sebagai sensitif mulai saat ini
         silence: Akun Anda %{acct} telah dibatasi
         suspend: Akun Anda %{acct} telah ditangguhkan
       title:
+        delete_statuses: Postingan dihapus
         disable: Akun dibekukan
         none: Peringatan
+        sensitive: Media disembunyikan
         silence: Akun dibatasi
         suspend: Akun ditangguhkan
     welcome:
