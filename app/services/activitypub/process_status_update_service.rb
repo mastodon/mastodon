@@ -78,7 +78,7 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
     MediaAttachment.where(id: removed_media_attachments.map(&:id)).update_all(status_id: nil)
     MediaAttachment.where(id: added_media_attachments.map(&:id)).update_all(status_id: @status.id)
 
-    @media_attachments_changed = true if removed_media_attachments.positive? || added_media_attachments.positive?
+    @media_attachments_changed = true if removed_media_attachments.any? || added_media_attachments.any?
   end
 
   def update_poll!
