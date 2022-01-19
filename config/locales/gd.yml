@@ -120,6 +120,7 @@ gd:
       confirm: Dearbh
       confirmed: Chaidh a dhearbhachadh
       confirming: '’Ga dhearbhadh'
+      custom: Gnàthaichte
       delete: Sguab às an dàta
       deleted: Chaidh a sguabadh às
       demote: Ìslich
@@ -210,11 +211,14 @@ gd:
       silence: Cuingich
       silenced: Cuingichte
       statuses: Postaichean
+      strikes: Rabhaidhean roimhe
       subscribe: Fo-sgrìobh
       suspended: À rèim
       suspension_irreversible: Chaidh dàta a’ chunntais seo a sguabadh às gu buan. ’S urrainn an cunntas a chur ann an rèim a-rithist ach an gabh a chleachdadh ach chan fhaigh thu gin dhen dàta air ais a b’ àbhaist a bhith aige.
       suspension_reversible_hint_html: Chaidh an cunntas a chur à rèim agus thèid an dàta aige a sguabadh às gu buan %{date}. Gus an dig an t-àm ud, gabhaidh an cunntas aiseag fhathast gun droch bhuaidh sam bith air. Nam bu toigh leat gach dàta a’ chunntais a thoirt air falbh sa bhad, ’s urrainn dhut sin a dhèanamh gu h-ìosal.
       title: Cunntasan
+      unblock_email: Dì-bhac an seòladh puist-d
+      unblocked_email_msg: Chaidh am post-d aig %{username} a dhì-bhacadh
       unconfirmed_email: Post-d gun dearbhadh
       undo_sensitized: Na spàrr an fhrionasachd air tuilleadh
       undo_silenced: Dì-chuingich
@@ -229,6 +233,7 @@ gd:
       whitelisted: Ceadaichte a chùm co-nasgaidh
     action_logs:
       action_types:
+        approve_user: Aontaich ris a’ chleachdaiche
         assigned_to_self_report: Iomruin an gearan
         change_email_user: Atharraich post-d a’ chleachdaiche
         confirm_user: Dearbh an cleachdaiche
@@ -246,6 +251,7 @@ gd:
         destroy_domain_allow: Sguab às ceadachadh na h-àrainne
         destroy_domain_block: Sguab às bacadh na h-àrainne
         destroy_email_domain_block: Sguab às bacadh na h-àrainne puist-d
+        destroy_instance: Purgaidich an àrainn
         destroy_ip_block: Sguab às an riaghailt IP
         destroy_status: Sguab às am post
         destroy_unavailable_domain: Sguab às àrainn nach eil ri fhaighinn
@@ -258,6 +264,7 @@ gd:
         enable_user: Cuir an cleachdaiche an comas
         memorialize_account: Dèan cuimhneachan dhen chunntas
         promote_user: Àrdaich an cleachdaiche
+        reject_user: Diùlt an cleachdaiche
         remove_avatar_user: Thoir air falbh an t-avatar
         reopen_report: Fosgail an gearan a-rithist
         reset_password_user: Ath-shuidhich am facal-faire
@@ -266,6 +273,7 @@ gd:
         silence_account: Cuingich an cunntas
         suspend_account: Cuir an cunntas à rèim
         unassigned_report: Dì-iomruin an gearan
+        unblock_email_account: Dì-bhac an seòladh puist-d
         unsensitive_account: Na spàrr an fhrionasachd air a’ chunntas seo tuilleadh
         unsilence_account: Dì-chuingich an cunntas
         unsuspend_account: Cuir an cunntas ann an rèim a-rithist
@@ -274,6 +282,7 @@ gd:
         update_domain_block: Ùraich bacadh na h-àrainne
         update_status: Ùraich am post
       actions:
+        approve_user_html: "Dh’aontaich %{name} ri clàradh o %{target}"
         assigned_to_self_report_html: "Dh’iomruin %{name} an gearan %{target} dhaibh fhèin"
         change_email_user_html: "Dh’atharraich %{name} seòladh puist-d a’ chleachdaiche %{target}"
         confirm_user_html: "Dhearbh %{name} seòladh puist-d a’ chleachdaiche %{target}"
@@ -291,6 +300,7 @@ gd:
         destroy_domain_allow_html: "Dì-cheadaich %{name} co-nasgadh leis an àrainn %{target}"
         destroy_domain_block_html: "Dì-bhac %{name} an àrainn %{target}"
         destroy_email_domain_block_html: "Dì-bhac %{name} an àrainn puist-d %{target}"
+        destroy_instance_html: "Purgaidich %{name} an àrainn %{target}"
         destroy_ip_block_html: "Sguab %{name} às riaghailt dhan IP %{target}"
         destroy_status_html: "Thug %{name} post aig %{target} air falbh"
         destroy_unavailable_domain_html: "Lean %{name} air adhart leis an lìbhrigeadh dhan àrainn %{target}"
@@ -303,6 +313,7 @@ gd:
         enable_user_html: "Chuir %{name} an clàradh a-steach an comas dhan chleachdaiche %{target}"
         memorialize_account_html: "Rinn %{name} duilleag cuimhneachain dhen chunntas aig %{target}"
         promote_user_html: "Dh’àrdaich %{name} an cleachdaiche %{target}"
+        reject_user_html: "Dhiùlt %{name} an clàradh o %{target}"
         remove_avatar_user_html: "Thug %{name} avatar aig %{target} air falbh"
         reopen_report_html: "Dh’fhosgail %{name} an gearan %{target} a-rithist"
         reset_password_user_html: "Dh’ath-shuidhich %{name} am facal-faire aig a’ chleachdaiche %{target}"
@@ -311,6 +322,7 @@ gd:
         silence_account_html: "Chuingich %{name} an cunntas aig %{target}"
         suspend_account_html: "Chuir %{name} an cunntas aig %{target} à rèim"
         unassigned_report_html: "Neo-iomruin %{name} an gearan %{target}"
+        unblock_email_account_html: "Dhì-bhac %{name} an seòladh puist-d aig %{target}"
         unsensitive_account_html: "Chuir %{name} comharra nach eil e frionasach ri meadhan aig %{target}"
         unsilence_account_html: "Dì-chuingich %{name} an cunntas aig %{target}"
         unsuspend_account_html: "Chuir %{name} an cunntas aig %{target} ann an rèim a-rithist"
@@ -379,6 +391,21 @@ gd:
       media_storage: Stòras mheadhanan
       new_users: cleachdaichean ùra
       opened_reports: gearanan air am fosgladh
+      pending_reports_html:
+        one: "<strong>%{count}</strong> lèirmheas ri dhèiligeadh"
+        two: "<strong>%{count}</strong> lèirmheas ri dhèiligeadh"
+        few: "<strong>%{count}</strong> lèirmheasan ri dhèiligeadh"
+        other: "<strong>%{count}</strong> lèirmheas ri dhèiligeadh"
+      pending_tags_html:
+        one: "<strong>%{count}</strong> taga hais ri dhèiligeadh"
+        two: "<strong>%{count}</strong> thaga hais ri dhèiligeadh"
+        few: "<strong>%{count}</strong> tagaichean hais ri dhèiligeadh"
+        other: "<strong>%{count}</strong> taga hais ri dhèiligeadh"
+      pending_users_html:
+        one: "<strong>%{count}</strong> chleachdaiche ri dhèiligeadh"
+        two: "<strong>%{count}</strong> chleachdaiche ri dhèiligeadh"
+        few: "<strong>%{count}</strong> cleachdaichean ri dhèiligeadh"
+        other: "<strong>%{count}</strong> cleachdaiche ri dhèiligeadh"
       resolved_reports: gearanan air am fuasgladh
       software: Bathar-bog
       sources: Tùsan clàraidh
@@ -461,6 +488,7 @@ gd:
       back_to_limited: Cuingichte
       back_to_warning: Rabhadh
       by_domain: Àrainn
+      confirm_purge: A bheil thu cinnteach gu bheil thu airson an dàta on àrainn seo a sguabadh às gu buan?
       delivery:
         all: Na h-uile
         clear: Falamhaich na mearachdan lìbhrigidh
@@ -478,6 +506,7 @@ gd:
       delivery_available: Tha lìbhrigeadh ri fhaighinn
       delivery_error_days: Làithean le mearachd lìbhrigidh
       delivery_error_hint: Mura gabh a lìbhrigeadh fad %{count} là(ithean), thèid comharra a chur ris gu fèin-obrachail a dh’innseas nach gabh a lìbhrigeadh.
+      destroyed_msg: Tha an dàta o %{domain} air ciutha an sguabaidh às aithghearr.
       empty: Cha deach àrainn a lorg.
       known_accounts:
         one: "%{count} cunntas as aithne dhuinn"
@@ -490,6 +519,7 @@ gd:
         title: Maorsainneachd
       private_comment: Beachd prìobhaideachd
       public_comment: Beachd poblach
+      purge: Purgaidich
       title: Co-nasgadh
       total_blocked_by_us: '‘Ga bhacadh leinne'
       total_followed_by_them: '’Ga leantainn leotha-san'
@@ -540,6 +570,7 @@ gd:
     report_notes:
       created_msg: Chaidh nòta a chruthachadh dhan ghearan!
       destroyed_msg: Chaidh nòta a’ ghearain a sguabadh às!
+      today_at: An-diugh aig %{time}
     reports:
       account:
         notes:
@@ -547,11 +578,19 @@ gd:
           two: "%{count} nòta"
           few: "%{count} nòtaichean"
           other: "%{count} nòta"
+      action_log: Sgrùd an loga
       action_taken_by: Chaidh an gnìomh a ghabhail le
+      actions:
+        other_description_html: Seall barrachd roghainnean airson giùlan a’ chunntais a stiùireadh agus an conaltradh leis a’ chunntas a chaidh gearan a dhèanamh mu dhèidhinn a ghnàthachadh.
+        silence_description_html: Chan fhaic ach an fheadhainn a tha a’ leantainn oirre mu thràth no a lorgas a làimh i a’ phròifil seo agus cuingichidh seo uiread nan daoine a ruigeas i gu mòr. Gabhaidh seo a neo-dhèanamh uair sam bith.
+        suspend_description_html: Cha ghabh a’ phròifil seo agus an t-susbaint gu leòr aice inntrigeadh gus an dèid a sguabadh às air deireadh na sgeòil. Cha ghabh eadar-ghabhail a dhèanamh leis a’ chunntas. Gabhaidh seo a neo-dhèanamh am broinn 30 latha.
+      actions_description_html: 'Mura foghainn toirt air falbh na droch-shusbaint gu h-àrd:'
+      add_to_report: Cuir barrachd ris a’ ghearan
       are_you_sure: A bheil thu cinnteach?
       assign_to_self: Iomruin dhomh-sa
       assigned: Maor iomruinte
       by_target_domain: Àrainn cunntas a’ ghearain
+      category: Roinn-seòrsa
       comment:
         none: Chan eil gin
       created_at: Chaidh an gearan a dhèanamh
