@@ -112,6 +112,7 @@ es-MX:
       confirm: Confirmar
       confirmed: Confirmado
       confirming: Confirmando
+      custom: Personalizado
       delete: Eliminar datos
       deleted: Borrado
       demote: Degradar
@@ -202,6 +203,7 @@ es-MX:
       silence: Silenciar
       silenced: Silenciado
       statuses: Estados
+      strikes: Amonestaciones previas
       subscribe: Suscribir
       suspended: Suspendido
       suspension_irreversible: Los datos de esta cuenta han sido irreversiblemente eliminados. Puedes deshacer la suspensión de la cuenta para hacerla utilizable, pero no recuperará los datos que tenías anteriormente.
@@ -548,29 +550,44 @@ es-MX:
     report_notes:
       created_msg: '¡El registro de la denuncia se ha creado correctamente!'
       destroyed_msg: '¡El registro de la denuncia se ha borrado correctamente!'
+      today_at: Hoy a las %{time}
     reports:
       account:
         notes:
           one: "%{count} nota"
           other: "%{count} notas"
+      action_log: Registro de auditoría
       action_taken_by: Acción tomada por
+      actions:
+        other_description_html: Ver más opciones para controlar el comportamiento de la cuenta y personalizar la comunicación de la cuenta reportada.
+        silence_description_html: El perfil será visible solo para aquellos que ya lo sigan o lo busquen manualmente, limitando seriamente su alcance. Siempre puede ser revertido.
+        suspend_description_html: El perfil y todos sus contenidos serán inaccesibles hasta que sean finalmente eliminados. La interacción con la cuenta será imposible. Reversible durante un plazo de 30 días.
+      actions_description_html: 'Si eliminar el contenido ofensivo de arriba no es suficiente:'
+      add_to_report: Añadir más al reporte
       are_you_sure: '¿Estás seguro?'
       assign_to_self: Asignármela a mí
       assigned: Moderador asignado
       by_target_domain: Dominio de la cuenta reportada
+      category: Categoría
+      category_description_html: La razón por la que se reportó esta cuenta o contenido será citada en las comunicaciones con la cuenta reportada
       comment:
         none: Ninguno
+      comment_description_html: 'Para proporcionar más información, %{name} escribió:'
       created_at: Denunciado
+      delete_and_resolve: Eliminar y resolver
       forwarded: Reenviado
       forwarded_to: Reenviado a %{domain}
       mark_as_resolved: Marcar como resuelto
       mark_as_unresolved: Marcar como no resuelto
+      no_one_assigned: Nadie
       notes:
         create: Añadir una nota
         create_and_resolve: Resolver con una nota
         create_and_unresolve: Reabrir con una nota
         delete: Eliminar
         placeholder: Especificar qué acciones se han tomado o cualquier otra novedad respecto a esta denuncia…
+        title: Notas
+      notes_description_html: Ver y dejar notas a otros moderadores y a tu yo futuro
       reopen: Reabrir denuncia
       report: 'Reportar #%{id}'
       reported_account: Cuenta reportada
@@ -578,11 +595,14 @@ es-MX:
       resolved: Resuelto
       resolved_msg: '¡La denuncia se ha resuelto correctamente!'
       status: Estado
+      statuses: Contenido reportado
+      statuses_description_html: El contenido ofensivo se citará en la comunicación con la cuenta reportada
       target_origin: Origen de la cuenta reportada
       title: Reportes
       unassign: Desasignar
       unresolved: No resuelto
       updated_at: Actualizado
+      view_profile: Ver perfil
     rules:
       add_new: Añadir norma
       delete: Eliminar
@@ -684,6 +704,10 @@ es-MX:
       destroyed_msg: '¡Carga del sitio eliminada con éxito!'
     statuses:
       back_to_account: Volver a la cuenta
+      back_to_report: Volver a la página del reporte
+      batch:
+        remove_from_report: Eliminar del reporte
+        report: Reporte
       deleted: Eliminado
       media:
         title: Multimedia
@@ -1289,6 +1313,7 @@ es-MX:
     open_in_web: Abrir en web
     over_character_limit: Límite de caracteres de %{max} superado
     pin_errors:
+      direct: Las publicaciones que son visibles solo para los usuarios mencionados no pueden fijarse
       limit: Ya has fijado el número máximo de publicaciones
       ownership: El toot de alguien más no puede fijarse
       reblog: Un boost no puede fijarse
@@ -1445,6 +1470,7 @@ es-MX:
     formats:
       default: "%d de %b del %Y, %H:%M"
       month: "%b %Y"
+      time: "%H:%M"
   two_factor_authentication:
     add: Añadir
     disable: Deshabilitar
@@ -1472,15 +1498,31 @@ es-MX:
       subject: Por favor, confirma el intento de inicio de sesión
       title: Intento de inicio de sesión
     warning:
+      categories:
+        spam: Spam
+        violation: El contenido viola las siguientes directrices de la comunidad
+      explanation:
+        delete_statuses: Se ha visto que algunas de tus publicaciones violan una o más directrices de la comunidad y seguidamente han sido eliminadas por los moderadores de %{instance}. Futuras violaciones pueden resultar en acciones punitivas más severas contra tu cuenta.
+        disable: Ya no puedes usar tu cuenta, pero tu perfil y el resto de datos permanecen intactos. Puedes solicitar una copia de seguridad de tus datos, cambiar la configuración de tu cuenta o eliminarla.
+        sensitive: A partir de ahora todos los archivos multimedia que subas serán marcados como sensibles y ocultos tras una advertencia que habrá que clicar.
+        silence: Aún puedes usar tu cuenta, pero solo las personas que te están siguiendo verán tus publicaciones en este servidor, y puedes ser excluido de varias funcionalidades de descubrimiento. Sin embargo, otras cuentas podrán empezar a seguirte manualmente.
+        suspend: Ya no puedes utilizar tu cuenta, y tu perfil y el resto de datos ya no son accesibles. Todavía puedes iniciar sesión para solicitar una copia de seguridad de tus datos, hasta que estos sean eliminados por completo en unos 30 días, aunque conservaremos algunos datos básicos para impedir que esquives la suspensión.
+      get_in_touch: Si crees que esto es un error, puedes responder a este correo electrónico para ponerte en contacto con el personal de %{instance}.
+      reason: 'Razón:'
       review_server_policies: Revisar las políticas del servidor
+      statuses: 'Publicaciones que han sido halladas contrarias las directrices:'
       subject:
+        delete_statuses: Tus publicaciones en %{acct} han sido eliminadas
         disable: Su cuenta %{acct} ha sido congelada
         none: Advertencia para %{acct}
+        sensitive: Tus archivos multimedia en %{acct} se marcarán como sensibles a partir de ahora
         silence: Su cuenta %{acct} ha sido limitada
         suspend: Su cuenta %{acct} ha sido suspendida
       title:
+        delete_statuses: Publicaciones eliminadas
         disable: Cuenta congelada
         none: Advertencia
+        sensitive: Contenido multimedia oculto
         silence: Cuenta limitada
         suspend: Cuenta suspendida
     welcome:
