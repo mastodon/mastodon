@@ -1286,12 +1286,14 @@ id:
     content_warning: 'Peringatan konten: %{warning}'
     disallowed_hashtags:
       other: 'berisi tagar yang tidak diizinkan: %{tags}'
+    edited_at: Diedit %{date}
     errors:
       in_reply_not_found: Status yang ingin Anda balas sudah tidak ada.
     language_detection: Deteksi bahasa secara otomatis
     open_in_web: Buka di web
     over_character_limit: melebihi %{max} karakter
     pin_errors:
+      direct: Kiriman yang hanya terlihat oleh pengguna yang disebutkan tidak dapat disematkan
       limit: Anda sudah mencapai jumlah maksimum toot yang dapat disematkan
       ownership: Toot orang lain tidak bisa disematkan
       reblog: Boost tidak bisa disematkan
@@ -1481,6 +1483,9 @@ id:
         delete_statuses: Beberapa kiriman Anda melanggar satu atau lebih panduan komunitas dan telah dihapus oleh moderator %{instance}. Pelanggaran berikutnya akan menyebabkan tindakan yang lebih parah terhadap akun Anda.
         disable: Anda tidak lagi dapat menggunakan akun, tapi profil dan data Anda lainnya masih tersimpan. Anda dapat minta cadangan data Anda, mengubah pengaturan akun, atau menghapus akun.
         sensitive: Mulai sekarang, semua berkas media yang telah Anda unggah akan ditandai sebagai sensitif dan disembunyikan di balik peringatan yang harus diklik.
+        silence: Anda masih tetap dapat menggunakan akun tetapi hanya orang yang mengikuti Anda yang dapat melihat kiriman Anda di server ini, dan Anda mungkin akan dikeluarkan dari fitur pencarian akun. Bagaimana pun, orang lain tetap dapat mengikuti Anda secara manual.
+        suspend: Anda tidak dapat menggunakan akun Anda, dan profil serta data lain Anda tidak lagi dapat diakses. Anda masih tetap bisa masuk akun untuk minta cadangan data sampai data Anda akan dihapus permanen 30 hari lagi, tapi kami akan menyimpan beberapa data dasar untuk mencegah Anda menghindari penangguhan.
+      get_in_touch: Jika Anda yakin ini kesalahan, Anda dapat membalas email ini untuk menghubungi staf %{instance}.
       reason: 'Alasan:'
       review_server_policies: Tinjau kebijakan server
       statuses: 'Postingan yang telah terbukti pelanggarannya:'
