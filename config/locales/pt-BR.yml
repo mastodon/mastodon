@@ -536,17 +536,28 @@ pt-BR:
           other: "%{count} notas"
       action_log: Logs de auditoria
       action_taken_by: Atitude tomada por
+      actions:
+        other_description_html: Veja mais opções para controlar o comportamento da conta e personalizar a comunicação com a conta reportada.
+        silence_description_html: O perfil será visível apenas para aqueles que já o seguem ou que o procuram manualmente, limitando severamente seu alcance. Pode ser sempre revertido.
+        suspend_description_html: O perfil e todo o seu conteúdo ficarão inacessíveis até que seja eventualmente excluído. Interagir com a conta será impossível. Reversível dentro de 30 dias.
+      actions_description_html: 'Se remover o conteúdo ofensivo acima for insuficiente:'
+      add_to_report: Adicionar mais ao relatório
       are_you_sure: Você tem certeza?
       assign_to_self: Pegar
       assigned: Moderador responsável
       by_target_domain: Domínio da conta denunciada
+      category: Categoria
+      category_description_html: O motivo pelo qual esta conta e/ou conteúdo foi reportado será citado na comunicação com a conta reportada
       comment:
         none: Nenhum
+      comment_description_html: 'Para fornecer mais informações, %{name} escreveu:'
       created_at: Denunciado
+      delete_and_resolve: Apagar e resolver
       forwarded: Encaminhados
       forwarded_to: Encaminhado para %{domain}
       mark_as_resolved: Marcar como resolvido
       mark_as_unresolved: Marcar como não resolvido
+      no_one_assigned: Ninguém
       notes:
         create: Adicionar nota
         create_and_resolve: Resolver com nota
@@ -554,6 +565,7 @@ pt-BR:
         delete: Excluir
         placeholder: Descreva que ações foram tomadas, ou quaisquer outras atualizações relacionadas…
         title: Notas
+      notes_description_html: Visualize e deixe anotações para outros moderadores e para o seu "eu" do futuro
       reopen: Reabrir denúncia
       report: 'Denúncia #%{id}'
       reported_account: Conta denunciada
@@ -562,6 +574,7 @@ pt-BR:
       resolved_msg: Denúncia resolvida com sucesso!
       status: Situação
       statuses: Conteúdo denunciado
+      statuses_description_html: Conteúdo Ofensivo será citado em comunicação com a conta relatada
       target_origin: Origem da conta relatada
       title: Denúncias
       unassign: Largar
@@ -761,6 +774,7 @@ pt-BR:
     toot_layout: Layout do Toot
   application_mailer:
     notification_preferences: Alterar preferências de e-mail
+    salutation: "%{name},"
     settings: 'Alterar e-mail de preferência: %{link}'
     view: 'Ver:'
     view_profile: Ver perfil
@@ -1257,6 +1271,7 @@ pt-BR:
     open_in_web: Abrir no navegador
     over_character_limit: limite de caracteres de %{max} excedido
     pin_errors:
+      direct: Posts visíveis apenas para usuários mencionados não podem ser fixados
       limit: Quantidade máxima de toots excedida
       ownership: Toots dos outros não podem ser fixados
       reblog: Boosts não podem ser fixados
@@ -1440,6 +1455,10 @@ pt-BR:
       subject: Por favor, confirme a tentativa de acesso
       title: Tentativa de acesso
     warning:
+      categories:
+        spam: Spam
+        violation: O conteúdo viola as seguintes diretrizes da comunidade
+      reason: 'Motivo:'
       review_server_policies: Revisar as políticas da instância
       subject:
         disable: Sua conta %{acct} foi bloqueada
@@ -1447,8 +1466,10 @@ pt-BR:
         silence: Sua conta %{acct} foi silenciada
         suspend: Sua conta %{acct} foi banida
       title:
+        delete_statuses: Publicações removidas
         disable: Conta bloqueada
         none: Aviso
+        sensitive: Mídia oculta
         silence: Conta silenciada
         suspend: Conta banida
     welcome:
