@@ -199,6 +199,7 @@ zh-CN:
       silence: 隐藏
       silenced: 已隐藏
       statuses: 嘟文
+      strikes: 既往处罚
       subscribe: 订阅
       suspended: 已封禁
       suspension_irreversible: 该帐号的数据已被不可逆转地删除。你可以取消暂停该帐号以使其可用，但它不会恢复以前拥有的任何数据。
@@ -546,6 +547,8 @@ zh-CN:
           other: "%{count} 条笔记"
       action_log: 审计日志
       action_taken_by: 操作执行者
+      actions:
+        silence_description_html: 只有关注或手工搜索此帐号才能查看其资料，将严重限制其触达范围。可随时撤销。
       are_you_sure: 你确定吗？
       assign_to_self: 接管
       assigned: 已接管的监察员
@@ -558,6 +561,7 @@ zh-CN:
       forwarded_to: 转发举报至 %{domain}
       mark_as_resolved: 标记为“已处理”
       mark_as_unresolved: 标记为“未处理”
+      no_one_assigned: 未分派
       notes:
         create: 添加记录
         create_and_resolve: 添加记录并标记为“已处理”
@@ -572,11 +576,13 @@ zh-CN:
       resolved: 已处理
       resolved_msg: 举报处理成功！
       status: 状态
+      statuses: 被举报内容
       target_origin: 被举报账号的来源
       title: 举报
       unassign: 取消接管
       unresolved: 未处理
       updated_at: 更新时间
+      view_profile: 查看资料
     rules:
       add_new: 添加规则
       delete: 删除
@@ -678,6 +684,9 @@ zh-CN:
       destroyed_msg: 站点上传的文件已经成功删除！
     statuses:
       back_to_account: 返回帐户信息页
+      back_to_report: 返回举报页
+      batch:
+        report: 举报
       deleted: 已删除
       media:
         title: 媒体文件
@@ -1429,6 +1438,7 @@ zh-CN:
     formats:
       default: "%Y年%m月%d日 %H:%M"
       month: "%Y年%m月"
+      time: "%H:%M"
   two_factor_authentication:
     add: 添加
     disable: 停用双重认证
@@ -1456,6 +1466,9 @@ zh-CN:
       subject: 请确认登录请求：
       title: 登录请求
     warning:
+      categories:
+        spam: 垃圾信息
+      reason: '理由:'
       review_server_policies: 查看服务器政策
       subject:
         disable: 你的帐户 %{acct} 已被冻结
@@ -1463,8 +1476,10 @@ zh-CN:
         silence: 你的帐户 %{acct} 已被隐藏
         suspend: 你的帐户 %{acct} 已被封禁。
       title:
+        delete_statuses: 日志已删除
         disable: 账号已冻结
         none: 警示
+        sensitive: 已隐藏的媒体内容
         silence: 帐户被隐藏
         suspend: 账号被封禁
     welcome:
