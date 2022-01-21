@@ -108,6 +108,7 @@ zh-CN:
       confirm: 确认
       confirmed: 已确认
       confirming: 等待确认
+      custom: 自定义
       delete: 删除数据
       deleted: 已删除
       demote: 降任
@@ -538,15 +539,18 @@ zh-CN:
     report_notes:
       created_msg: 举报记录建立成功！
       destroyed_msg: 举报记录删除成功！
+      today_at: 今天 %{time}
     reports:
       account:
         notes:
           other: "%{count} 条笔记"
+      action_log: 审计日志
       action_taken_by: 操作执行者
       are_you_sure: 你确定吗？
       assign_to_self: 接管
       assigned: 已接管的监察员
       by_target_domain: 被举报账户的域名
+      category: 类别
       comment:
         none: 没有
       created_at: 举报时间
@@ -560,6 +564,7 @@ zh-CN:
         create_and_unresolve: 添加记录并重开
         delete: 删除
         placeholder: 描述已经执行的操作，或其他任何相关的跟进情况…
+        title: 备注
       reopen: 重开举报
       report: '举报 #%{id}'
       reported_account: 举报用户
@@ -1262,6 +1267,7 @@ zh-CN:
     content_warning: '内容警告：%{warning}'
     disallowed_hashtags:
       other: '包含了这些禁止的话题标签：%{tags}'
+    edited_at: 编辑于 %{date}
     errors:
       in_reply_not_found: 你回复的嘟文似乎不存在
     language_detection: 自动检测语言
