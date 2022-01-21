@@ -1478,6 +1478,12 @@ zh-CN:
     warning:
       categories:
         spam: 垃圾信息
+        violation: 内容违反了以下社区准则
+      explanation:
+        delete_statuses: 你的某些嘟文被发现违反了一项或多项社区准则，随后被 %{instance} 的监察员删除。继续违规将可能导致你的帐号受到更严厉的惩罚。
+        disable: 你不能再使用你的帐户，但你的个人资料和其他数据保持不变。 你可以请求数据备份，更改账户设置或删除账户。
+        sensitive: 即刻起，你上传的所有媒体文件都将被标记为敏感内容并隐藏，在点击警告后才能查看。
+        silence: 你可以继续使用你的帐号，但只有已关注你的人才能在看到你在此服务器上的嘟文，并且你会被排除在各类公共列表之外。其他用户仍可以手动关注你。
       reason: '理由:'
       review_server_policies: 查看服务器政策
       subject:
@@ -1486,7 +1492,7 @@ zh-CN:
         silence: 你的帐户 %{acct} 已被隐藏
         suspend: 你的帐户 %{acct} 已被封禁。
       title:
-        delete_statuses: 日志已删除
+        delete_statuses: 嘟文已删除
         disable: 账号已冻结
         none: 警示
         sensitive: 已隐藏的媒体内容
