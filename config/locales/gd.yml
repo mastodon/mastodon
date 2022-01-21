@@ -808,6 +808,16 @@ gd:
       body: "Rinn %{reporter} gearan air %{target}"
       body_remote: Rinn cuideigin o %{domain} gearan air %{target}
       subject: 'Tha gearan ùr aig %{instance} (#%{id})'
+    new_trending_links:
+      body: Tha na ceanglaichean a leanas a’ treandadh an-diugh ach cha deach lèirmheas a dhèanamh air na foillsichearan aca fhathast. Cha nochd iad gu poblach mur aontaich thu riutha. Chan fhaic thu brathan eile mu na h-aon fhoillsichearan.
+      no_approved_links: Chan eil ceangal a’ treandadh le aontachadh ann.
+      requirements: '’S e “%{lowest_link_title}” a tha sa cheangal a’ treandadh as ìsle le aontachadh agus sgòr de %{lowest_link_score} air.'
+      subject: Tha ceanglaichean ùra a’ trèanadh feumach air lèirmheas air %{instance}
+    new_trending_tags:
+      body: 'Tha na tagaichean hais a leanas a’ treandadh an-diugh ach cha deach lèirmheas a dhèanamh orra fhathast. Cha nochd iad gu poblach mur aontaich thu riutha:'
+      no_approved_tags: Chan eil tagaichean hais a’ treandadh le aontachadh ann.
+      requirements: '’S e #%{lowest_tag_name} a tha san taga hais a’ treandadh as ìsle le aontachadh agus sgòr de %{lowest_tag_score} air.'
+      subject: Tha tagaichean hais ùra a’ trèanadh feumach air lèirmheas air %{instance}
   aliases:
     add_new: Cruthaich alias
     created_msg: Chaidh an t-alias ùr a chruthachadh. ’S urrainn dhut tòiseachadh air imrich on seann-chunntas a-nis.
@@ -1014,8 +1024,10 @@ gd:
     changes_saved_msg: Chaidh na h-atharraichean a shàbhaladh!
     copy: Dèan lethbhreac
     delete: Sguab às
+    none: Chan eil gin
     order_by: Seòrsaich a-rèir
     save_changes: Sàbhail na h-atharraichean
+    today: an-diugh
     validation_errors:
       one: Tha rud ann nach eil buileach ceart fhathast! Thoir sùil air an %{count} mhearachd gu h-ìosal
       two: Tha rud ann nach eil buileach ceart fhathast! Thoir sùil air an %{count} mhearachd gu h-ìosal
@@ -1337,12 +1349,14 @@ gd:
       two: '– bha na tagaichean hais toirmisgte seo ann: %{tags}'
       few: '– bha na tagaichean hais toirmisgte seo ann: %{tags}'
       other: '– bha na tagaichean hais toirmisgte seo ann: %{tags}'
+    edited_at: Air a dheasachadh %{date}
     errors:
       in_reply_not_found: Tha coltas nach eil am post dhan a tha thu airson freagairt ann.
     language_detection: Mothaich dhan chànan gu fèin-obrachail
     open_in_web: Fosgail air an lìon
     over_character_limit: chaidh thu thar crìoch charactaran de %{max}
     pin_errors:
+      direct: Chan urrainn dhut post a phrìneachadh nach fhaic ach na cleachdaichean le iomradh orra
       limit: Tha an àireamh as motha de phostaichean prìnichte agad a tha ceadaichte
       ownership: Chan urrainn dhut post càich a phrìneachadh
       reblog: Chan urrainn dhut brosnachadh a phrìneachadh
@@ -1424,6 +1438,7 @@ gd:
     formats:
       default: "%d %b %Y, %H:%M"
       month: "%b %Y"
+      time: "%H:%M"
   two_factor_authentication:
     add: Cuir ris
     disable: Cuir an dearbhadh dà-cheumnach à comas
@@ -1451,15 +1466,31 @@ gd:
       subject: Dearbh an oidhirp air clàradh a-steach
       title: Oidhirp clàraidh a-steach
     warning:
+      categories:
+        spam: Spama
+        violation: Tha an t-susbaint a’ briseadh na riaghailtean giùlain a leanas
+      explanation:
+        delete_statuses: Thathar dhen bheachd gu bheil cuid dhe na postaichean agad a’ briseadh riaghailt no riaghailtean giùlain agus chaidh an toirt air falbh le maoir %{instance} an uairsin. Ma bhriseas tu na riaghailtean a-rithist, dh’fhaoidte gum fulaing an cunntas agad peanas nas teinne.
+        disable: Chan urrainn dhut an cunntas agad a chleachdadh tuilleadh ach mairidh a’ phròifil ’s an dàta eile agad. Faodaidh tu lethbhreac-glèidhidh dhen dàta agad iarraidh, roghainnean a’ chunntais atharrachadh no an cunntas agad a sguabadh às.
+        sensitive: O seo a-mach, thèid comharra na frionasachd a chur ri faidhle meadhain sam bith a luchdaicheas tu suas agus thèid am falach air cùlaibh rabhaidh a ghabhas briogadh air.
+        silence: '’S urrainn dhut an cunntas agad a chleachdadh fhathast ach chan fhaic ach na daoine a tha a’ leantainn ort mu thràth na postaichean agad air an fhrithealaiche seo agus dh’fhaoidte gun dèid d’ às-dhùnadh o iomadh gleus luirg. Gidheadh, faodaidh càch leantainn ort a làimh fhathast.'
+        suspend: Chan urrainn dhut an cunntas agad a chleachdadh tuilleadh agus chan fhaigh thu grèim air a’ phròifil no air an dàta eile agad. ’S urrainn dhut clàradh a-steach fhathast airson lethbhreac-glèidhidh dhen dàta agad iarraidh mur dèid an dàta a thoirt air falbh an ceann 30 latha gu slàn ach cumaidh sinn cuid dhen dàta bhunasach ach nach seachain thu an cur à rèim.
+      get_in_touch: Ma tha thu dhen bheachd gur e mearachd a th’ ann, ’s urrainn dhut freagairt dhan phost-d seo no conaltradh ris an sgioba aig %{instance}.
+      reason: 'Adhbhar:'
       review_server_policies: Thoir sùil air riaghailtean an fhrithealaiche
+      statuses: 'Na postaichean a bhris riaghailt:'
       subject:
+        delete_statuses: Chaidh na postaichean agad air %{acct} a thoirt air falbh
         disable: Chaidh an cunntas %{acct} agad a reòthadh
         none: Rabhadh dha %{acct}
+        sensitive: Thèid comharra na frionasachd a chur ris na faidhlichean meadhain agad air %{acct} o seo a-mach
         silence: Chaidh an cunntas %{acct} agad a chuingeachadh
         suspend: Chaidh an cunntas %{acct} agad a chur à rèim
       title:
+        delete_statuses: Chaidh postaichean a thoirt air falbh
         disable: Cunntas reòite
         none: Rabhadh
+        sensitive: Chaidh meadhanan fhalach
         silence: Cunntas cuingichte
         suspend: Cunntas à rèim
     welcome:
