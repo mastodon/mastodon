@@ -591,19 +591,25 @@ gd:
       assigned: Maor iomruinte
       by_target_domain: Àrainn cunntas a’ ghearain
       category: Roinn-seòrsa
+      category_description_html: Thèid iomradh a thoirt air adhbhar a’ ghearain mun chunntas/susbaint seo sa chonaltradh leis a’ chunntas mun a chaidh an gearan a thogail
       comment:
         none: Chan eil gin
+      comment_description_html: 'Airson barrachd fiosrachaidh a sholar, sgrìobh %{name}:'
       created_at: Chaidh an gearan a dhèanamh
+      delete_and_resolve: Sguab às is fuasgail
       forwarded: Chaidh a shìneadh air adhart
       forwarded_to: Chaidh a shìneadh air adhart gu %{domain}
       mark_as_resolved: Cuir comharra gun deach fhuasgladh
       mark_as_unresolved: Cuir comharra nach deach fhuasgladh
+      no_one_assigned: Gun iomruineadh
       notes:
         create: Cuir nòta ris
         create_and_resolve: Fuasgail le nòta
         create_and_unresolve: Ath-fhosgail le nòta
         delete: Sguab às
         placeholder: Mìnich dè na ghnìomhan a chaidh a ghabhail no naidheachd sam bith eile mu dhèidhinn…
+        title: Nòtaichean
+      notes_description_html: Seall is sgrìobh nòtaichean do mhaoir eile is dhut fhèin san àm ri teachd
       reopen: Fosgail an gearan a-rithist
       report: 'Gearan air #%{id}'
       reported_account: Cunntas mun a chaidh a ghearan
@@ -611,11 +617,14 @@ gd:
       resolved: Air fhuasgladh
       resolved_msg: Chaidh an gearan fhuasgladh!
       status: Staid
+      statuses: Susbaint le gearan
+      statuses_description_html: Thèid iomradh a thoirt air an t-susbaint oilbheumach sa chonaltradh leis a’ chunntas mun a chaidh an gearan a thogail
       target_origin: Tùs cunntas a’ ghearain
       title: Gearanan
       unassign: Dì-iomruin
       unresolved: Gun fhuasgladh
       updated_at: Air ùrachadh
+      view_profile: Seall a’ phròifil
     rules:
       add_new: Cuir riaghailt ris
       delete: Sguab às
@@ -717,6 +726,10 @@ gd:
       destroyed_msg: Chaidh an luchdadh suas dhan làrach a sguabadh às!
     statuses:
       back_to_account: Till gu duilleag a’ chunntais
+      back_to_report: Till gu duilleag a’ ghearain
+      batch:
+        remove_from_report: Thoir air falbh on ghearan
+        report: Gearan
       deleted: Chaidh a sguabadh às
       media:
         title: Meadhanan
@@ -736,6 +749,50 @@ gd:
       updated_msg: Chaidh roghainnean nan tagaichean hais ùrachadh
     title: Rianachd
     trends:
+      allow: Ceadaich
+      approved: Aontaichte
+      disallow: Na ceadaich
+      links:
+        allow: Ceadaich an ceangal
+        allow_provider: Ceadaich am foillsichear
+        disallow: Na ceadaich an ceangal
+        disallow_provider: Na ceadaich am foillsichear
+        shared_by_over_week:
+          one: Chaidh a cho-roinneadh le %{count} rè na seachdain seo chaidh
+          two: Chaidh a cho-roinneadh le %{count} rè na seachdain seo chaidh
+          few: Chaidh a cho-roinneadh le %{count} rè na seachdain seo chaidh
+          other: Chaidh a cho-roinneadh le %{count} rè na seachdain seo chaidh
+        title: Ceanglaichean a’ treandadh
+        usage_comparison: Chaidh a cho-roinneadh %{today} tura(i)s an-diugh an coimeas ri %{yesterday} an-dè
+      pending_review: A’ feitheamh air lèirmheas
+      preview_card_providers:
+        allowed: Faodaidh ceanglaichean on fhoillsichear seo treandadh
+        rejected: Cha treandaich ceanglaichean on fhoillsichear seo
+        title: Foillsichearan
+      rejected: Air a dhiùltadh
+      tags:
+        current_score: Sgòr làithreach de %{score}
+        dashboard:
+          tag_accounts_measure: cleachdaidhean àraidh
+          tag_languages_dimension: Brod nan cànan
+          tag_servers_dimension: Brod nam frithealaichean
+          tag_servers_measure: frithealaichean eadar-dhealaichte
+          tag_uses_measure: cleachdaidhean iomlan
+        listable: Gabhaidh a mholadh
+        not_listable: Cha dèid a mholadh
+        not_trendable: Cha nochd e am measg nan treandaichean
+        not_usable: Cha ghabh a chleachdadh
+        peaked_on_and_decaying: Air a’ bhàrr %{date}, a’ crìonadh an-dràsta
+        title: Tagaichean hais a’ treandadh
+        trendable: Faodaidh e nochdadh am measg nan treandaichean
+        trending_rank: 'A’ treandadh #%{rank}'
+        usable: Gabhaidh a chleachdadh
+        usage_comparison: Chaidh a chleachdadh %{today} tura(i)s an-diugh an coimeas ri %{yesterday} an-dè
+        used_by_over_week:
+          one: Chaidh a chleachdadh le %{count} rè na seachdain seo chaidh
+          two: Chaidh a chleachdadh le %{count} rè na seachdain seo chaidh
+          few: Chaidh a chleachdadh le %{count} rè na seachdain seo chaidh
+          other: Chaidh a chleachdadh le %{count} rè na seachdain seo chaidh
       title: Treandaichean
     warning_presets:
       add_new: Cuir fear ùr ris
