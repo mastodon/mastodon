@@ -288,7 +288,7 @@ hu:
         create_unavailable_domain_html: "%{name} leállította a kézbesítést a %{target} domainbe"
         demote_user_html: "%{name} lefokozta %{target} felhasználót"
         destroy_announcement_html: "%{name} törölte a %{target} közleményt"
-        destroy_custom_emoji_html: "%{name} törölte a %{target} emodzsit"
+        destroy_custom_emoji_html: "%{name} törölte az emodzsit: %{target}"
         destroy_domain_allow_html: "%{name} letiltotta a föderációt a %{target} domainnel"
         destroy_domain_block_html: "%{name} engedélyezte a %{target} domaint"
         destroy_email_domain_block_html: "%{name} engedélyezte a %{target} e-mail domaint"
@@ -297,10 +297,10 @@ hu:
         destroy_status_html: "%{name} eltávolította %{target} felhasználó bejegyzését"
         destroy_unavailable_domain_html: "%{name} újraindította a kézbesítést a %{target} domainbe"
         disable_2fa_user_html: "%{name} kikapcsolta a kétlépcsős azonosítást %{target} felhasználó fiókján"
-        disable_custom_emoji_html: "%{name} letiltotta a %{target} emodzsit"
+        disable_custom_emoji_html: "%{name} letiltotta az emodzsit: %{target}"
         disable_sign_in_token_auth_user_html: "%{name} letiltotta a tokenes e-mail hitelesítést %{target} felhasználóra"
         disable_user_html: "%{name} letiltotta %{target} felhasználó bejelentkezését"
-        enable_custom_emoji_html: "%{name} engedélyezte a %{target} emodzsit"
+        enable_custom_emoji_html: "%{name} engedélyezte az emodzsit: %{target}"
         enable_sign_in_token_auth_user_html: "%{name} engedélyezte a tokenes e-mail hitelesítést %{target} felhasználóra"
         enable_user_html: "%{name} engedélyezte %{target} felhasználó bejelentkezését"
         memorialize_account_html: "%{name} emléket állított %{target} felhasználónak"
@@ -319,7 +319,7 @@ hu:
         unsilence_account_html: "%{name} feloldotta a némítást %{target} felhasználói fiókján"
         unsuspend_account_html: "%{name} feloldotta %{target} felhasználói fiókjának felfüggesztését"
         update_announcement_html: "%{name} frissítette a %{target} közleményt"
-        update_custom_emoji_html: "%{name} frissítette a %{target} emodzsit"
+        update_custom_emoji_html: "%{name} frissítette az emodzsit: %{target}"
         update_domain_block_html: "%{name} frissítette a %{target} domain tiltását"
         update_status_html: "%{name} frissítette %{target} felhasználó bejegyzését"
       deleted_status: "(törölt bejegyzés)"
@@ -345,32 +345,32 @@ hu:
       unpublished_msg: A közlemény közzététele sikeresen visszavonva!
       updated_msg: A közlemény sikeresen frissítve!
     custom_emojis:
-      assign_category: Kategóriák
+      assign_category: Kategória hozzárendelése
       by_domain: Domain
-      copied_msg: Sikeresen létrehoztuk az emodzsi helyi másolatát
+      copied_msg: Sikeresen létrejött az emodzsi helyi másolata
       copy: Másolás
-      copy_failed_msg: Emodzsi helyi másolatának létrehozása sikertelen
+      copy_failed_msg: Az emodzsi helyi másolatának létrehozása sikertelen
       create_new_category: Új kategória létrehozása
-      created_msg: Emodzsi létrehozva!
+      created_msg: Emodzsi sikeresen létrehozva!
       delete: Törlés
-      destroyed_msg: Emodzsi törlése sikeres!
+      destroyed_msg: Az emodzsi törlése sikeres!
       disable: Letiltás
       disabled: Letiltva
-      disabled_msg: Emodzsi letiltva
+      disabled_msg: Emodzsi sikeresen letiltva
       emoji: Emodzsi
       enable: Engedélyezés
       enabled: Engedélyezve
-      enabled_msg: Emodzsji engedélyezve
-      image_hint: PNG (maximális méret 50KB)
-      list: Listázás
-      listed: Listázva
+      enabled_msg: Emodzsi sikeresen engedélyezve
+      image_hint: PNG (legfeljebb 50 kB-os)
+      list: Felsorolás
+      listed: Felsorolva
       new:
-        title: Új egyedi emodzsi hozzáadása
+        title: Új egyéni emodzsi hozzáadása
       not_permitted: Nem vagy jogosult a művelet végrehajtására
       overwrite: Felülírás
       shortcode: Rövidítés
       shortcode_hint: Legalább két karakter, csak betűk, számok és alsóvonás
-      title: Egyedi emodzsik
+      title: Egyéni emodzsik
       uncategorized: Nem kategorizált
       unlist: Elrejtés a listáról
       unlisted: Nincs listázva
@@ -622,7 +622,7 @@ hu:
         username: Kapcsolattartó felhasználóneve
       custom_css:
         desc_html: Változtasd meg a kinézetet ebben a CSS-ben, mely minden oldalon be fog töltődni
-        title: Egyedi CSS
+        title: Egyéni CSS
       default_noindex:
         desc_html: Olyan felhasználókat érinti, akik nem módosították ezt a beállítást
         title: Alapértelmezésként ne indexeljék a keresők a felhasználóinkat
@@ -678,13 +678,13 @@ hu:
         title: A szerver bemutatása
       site_description_extended:
         desc_html: Ide teheted például a közösségi és egyéb szabályzatot, útmutatókat és mindent, ami egyedivé teszi szerveredet. HTML-tageket is használhatsz
-        title: További egyedi információ
+        title: További egyéni információk
       site_short_description:
         desc_html: Oldalsávban és meta tag-ekben jelenik meg. Írd le, mi teszi ezt a szervert különlegessé egyetlen bekezdésben.
         title: Rövid leírás
       site_terms:
         desc_html: Megírhatod saját adatkezelési szabályzatodat, felhasználási feltételeidet vagy más hasonló jellegű dokumentumodat. HTML-tageket is használhatsz
-        title: Egyedi felhasználási feltételek
+        title: Egyéni felhasználási feltételek
       site_title: A szerver neve
       thumbnail:
         desc_html: OpenGraph-os és API-s előnézetekben használjuk. Ajánlott mérete 1200x630 pixel
@@ -1039,8 +1039,8 @@ hu:
     generate: Generálás
     invited_by: 'Téged meghívott:'
     max_uses:
-      one: 1 felhasználás
-      other: "%{count} felhasználás"
+      one: 1 használat
+      other: "%{count} használat"
     max_uses_prompt: Nincs korlát
     prompt: Az itt generált linkek megosztásával hívhatod meg ismerőseidet erre a szerverre
     table:
@@ -1078,7 +1078,7 @@ hu:
       not_found: nem található
       on_cooldown: Még tart a türelmi idő
     followers_count: Követő a költözéskor
-    incoming_migrations: Más fiókból költöző
+    incoming_migrations: Átköltözés egy másik fiókból
     incoming_migrations_html: Ahhoz, hogy egy másik fiókból ebbe költözz, először <a href="%{path}">hozz létre egy fiók aliast</a>.
     moved_msg: A fiókod mostantól ide %{acct} irányít át, a követőidet átköltöztetjük.
     not_redirecting: A fiókod nincs átirányítva jelenleg sehová sem.
