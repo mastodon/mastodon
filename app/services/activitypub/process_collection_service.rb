@@ -8,6 +8,8 @@ class ActivityPub::ProcessCollectionService < BaseService
     @json    = Oj.load(body, mode: :strict)
     @options = options
 
+    @json = compact(@json) if @json['signature'].is_a?(Hash)
+
     return if !supported_context? || (different_actor? && verify_account!.nil?) || suspended_actor? || @account.local?
 
     case @json['type']
