@@ -31,7 +31,7 @@ default: &default
     - .ttf
     - .woff
     - .woff2
-
+    - .gif
   extensions:
     - .mjs
     - .js
@@ -46,7 +46,7 @@ default: &default
     - .gif
     - .jpeg
     - .jpg
-
+    
 development:
   <<: *default
 
