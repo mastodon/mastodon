@@ -1,0 +1,53 @@
+// https://github.com/kumame/mastodon/blob/main/app/javascript/styles/beebear.scss
+$black: #000000; // Black
+$white: #ffffff; // White
+
+// Dependent colors
+$classic-base-color: #3c3532;
+$classic-primary-color: #d8c8c0;
+$classic-secondary-color: #f1ece9;
+$classic-highlight-color: #d6942b;
+
+// Variables for defaults in UI
+$base-shadow-color: $black !default;
+$base-overlay-background: $black !default;
+$base-border-color: $white !default;
+$simple-background-color: $white !default;
+
+// Tell UI to use selected colors
+$ui-base-color: $classic-base-color !default; // Darkest
+$ui-base-lighter-color: lighten(
+  $ui-base-color,
+  26%
+) !default; // Lighter darkest
+$ui-primary-color: $classic-primary-color !default; // Lighter
+$ui-secondary-color: $classic-secondary-color !default; // Lightest
+$ui-highlight-color: $classic-highlight-color !default;
+
+// Variables for texts
+$primary-text-color: $white !default;
+$darker-text-color: $ui-primary-color !default;
+$dark-text-color: $ui-base-lighter-color !default;
+$secondary-text-color: $ui-secondary-color !default;
+$highlight-text-color: $ui-highlight-color !default;
+$action-button-color: $ui-base-lighter-color !default;
+// For texts on inverted backgrounds
+$inverted-text-color: $ui-base-color !default;
+$lighter-text-color: $ui-base-lighter-color !default;
+$light-text-color: $ui-primary-color !default;
+
+@import "application";
+@import 'contrast/diff';
+
+body {
+  background: #695e59;
+}
+.public-layout .header .brand svg {
+  fill: #fff;
+}
+.drawer__inner__mastodon {
+  background: none;
+}
+.drawer__inner__mastodon > img {
+  opacity: 0.6;
+}

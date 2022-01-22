@@ -1,0 +1,62 @@
+/* https://github.com/AstroProfundis/mastodon/blob/lynx/app/javascript/styles/nga.scss */
+
+// Dependent colors
+$black: #330e04;
+$white: #fffffc;
+
+$classic-base-color: #591804;
+$classic-secondary-color: #fdedba;
+$classic-highlight-color: #7f2206;
+
+// Differences
+$success-green: #57a96f;
+
+$base-overlay-background: $white !default;
+$valid-value-color: $success-green !default;
+
+$ui-base-color: $classic-secondary-color !default;
+$ui-base-lighter-color: #f9f7f2;
+$ui-primary-color: #ffe49b;
+$ui-secondary-color: $classic-base-color !default;
+$ui-highlight-color: #591804;
+
+$primary-text-color: $black !default;
+$darker-text-color: $classic-base-color !default;
+$dark-text-color: #281b16;
+$action-button-color: #a4705e;
+
+$inverted-text-color: $black !default;
+$lighter-text-color: $classic-base-color !default;
+$light-text-color: #986756;
+
+//Newly added colors
+$account-background-color: $white !default;
+
+//Invert darkened and lightened colors
+@function darken($color, $amount) {
+  @return hsl(hue($color), saturation($color), lightness($color) + $amount);
+}
+
+@function lighten($color, $amount) {
+  @return hsl(hue($color), saturation($color), lightness($color) - $amount);
+}
+
+// base on mastodon-light theme
+@import 'application';
+@import 'mastodon-light/diff';
+
+.drawer__inner, .column > .scrollable, .column-link, .column-header, .column-header__button, .drawer__header a, .getting-started .column-link, .column-back-button, .account__header__bar, .column-header__back-button {
+  background: #F9F6E8 !important;
+}
+
+.directory__tag > a {
+    background: #fef2ce !important;
+}
+
+.detailed-status, .detailed-status__action-bar, .getting-started__footer {
+  background: #FEFDF5 !important;
+}
+
+.drawer__inner__mastodon {
+    background: #F9F6E8 url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 234.80078 31.757813" width="234.80078" height="31.757812"><path d="M19.599609 0c-1.05 0-2.10039.375-2.90039 1.125L0 16.925781v14.832031h234.80078V17.025391l-16.5-15.900391c-1.6-1.5-4.20078-1.5-5.80078 0l-13.80078 13.099609c-1.6 1.5-4.19883 1.5-5.79883 0L179.09961 1.125c-1.6-1.5-4.19883-1.5-5.79883 0L159.5 14.224609c-1.6 1.5-4.20078 1.5-5.80078 0L139.90039 1.125c-1.6-1.5-4.20078-1.5-5.80078 0l-13.79883 13.099609c-1.6 1.5-4.20078 1.5-5.80078 0L100.69922 1.125c-1.600001-1.5-4.198829-1.5-5.798829 0l-13.59961 13.099609c-1.6 1.5-4.200781 1.5-5.800781 0L61.699219 1.125c-1.6-1.5-4.198828-1.5-5.798828 0L42.099609 14.224609c-1.6 1.5-4.198828 1.5-5.798828 0L22.5 1.125C21.7.375 20.649609 0 19.599609 0z" fill="%23fdedba"/></svg>') no-repeat bottom/100% auto !important;
+  }

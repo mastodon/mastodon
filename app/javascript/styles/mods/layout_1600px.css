@@ -1,0 +1,12 @@
+/*
+Allow for wider layout on bigger screens
+- vanilla max-width is 1200px
+- there is no penalty to slightly expanding flexbox on bigger screens
+- only applies on landing pages (webapp will expand as you add columns)
+
+author: trwnh
+license: Public Domain
+*/
+@media (min-width: 1600px) {
+    .landing-page .container {max-width: 1600px}
+}

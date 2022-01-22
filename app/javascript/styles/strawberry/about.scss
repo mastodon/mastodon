@@ -1,0 +1,84 @@
+.public-layout .header {
+	background: $bhd
+}
+.public-layout .header .brand:hover {
+	background: transparent;
+}
+.public-layout .header .nav-button {
+	background: $cbut;
+	color: white
+}
+.public-layout .header .nav-button:hover,
+.public-layout .header .nav-button:focus,
+.public-layout .header .nav-button:active {
+	background: $curl
+}
+
+.hero-widget__text {
+	background: $btxt;
+	color: $btt2
+}
+.hero-widget__text em,
+.hero-widget__text a {
+	color: $curl;
+	padding: 0.3em;
+}
+
+.box-widget {
+	background: $btt;
+}
+.rich-formatting {
+	color: $ctxt;
+	padding-right: 0;
+	max-width: 95%;
+	margin: 1em auto;
+	text-align: justify;
+}
+.rich-formatting em {
+	font-size: 24px;
+	color: $curl;
+	margin-left: 1em;
+}
+.rich-formatting a,
+.contact-widget__mail a:hover {
+	color: $curl;
+}
+.rich-formatting p,
+.rich-formatting li {
+	color: $cui2;
+}
+
+.contact-widget,
+.landing-page__information.contact-widget {
+	background: $btt3;
+}
+.contact-widget__mail a {
+	color: $cbut;
+}
+.contact-widget p:last-child {
+	margin-top: 1.5em;
+}
+
+.public-layout .footer .brand svg {
+	display: inline-block;
+}
+.public-layout .footer .brand:active svg path,
+.public-layout .footer .brand:focus svg path,
+.public-layout .footer .brand:hover svg path {
+	fill: $cbut;
+}
+.public-layout .footer .brand svg path {
+	fill: $btt;
+}
+.public-layout .footer ul a,
+.public-layout .footer {
+	color: $btt;
+}
+.public-layout .footer h4,
+.public-layout .footer .grid .column-2 h4 a {
+	color: $cbut;
+	text-shadow: 0 0 0.4em $btt2;
+}
+.landing-page__information .account {
+	box-shadow: none;
+}

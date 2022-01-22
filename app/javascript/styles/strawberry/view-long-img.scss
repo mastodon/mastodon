@@ -1,0 +1,27 @@
+.image-loader {
+	align-items:center;
+}
+.zoomable-image {
+	display: flex;
+	max-height: 100%;
+	max-width: 85%;
+	overflow: auto !important;
+	text-align:center;
+	align-items:center;
+}
+.zoomable-image:hover {
+	height:auto;
+	width: auto;
+	align-items: flex-start;
+}
+
+.zoomable-image img {
+	display:block !important;
+	max-width: 100%;
+	max-height: 80%;
+}
+.zoomable-image img:hover {
+	display:block !important;
+	max-height: 500%;
+	max-width: 100%;
+}

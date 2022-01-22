@@ -1,0 +1,67 @@
+$bpg: rgb(250,153,134);	//页面背景
+$btt: rgb(235,230,232);	//TL背景
+$btt2: rgb(247,252,247);	//TL背景-选中
+$btt3: rgb(236,222,210);	//TL背景-私信
+$btxt: rgb(170,48,41);	//发送栏背景
+$bhd: rgb(249,235,221);	//TL标题背景
+$blb: rgb(239,199,179);	//媒体标签背景
+$ctxt: rgb(123,29,29);	//正文颜色*/
+$curl: rgb(255,125,117);	//链接颜色
+$cui: rgb(225,130,125);	//UI颜色
+$cui2: rgb(192,110,107);	//UI颜色2
+$cbut: rgb(255,80,80);	//发送按钮颜色
+
+// Commonly used web colors
+$black: #000000;            // Black
+$white: #ffffff;            // White
+$success-green: #79bd9a !default;    // Padua
+$error-red: #df405a !default;        // Cerise
+$warning-red: #ff5050 !default;      // Sunset Orange
+$gold-star: #ca8f04 !default;        // Dark Goldenrod
+
+// Values from the classic Mastodon UI
+$classic-base-color: $ctxt;         // Midnight Express
+$classic-primary-color: $cui2;      // Echo Blue
+$classic-secondary-color: $btt;    // Pattens Blue
+$classic-highlight-color: $cbut;    // Summer Sky
+
+// Variables for defaults in UI
+$base-shadow-color: $black !default;
+$base-overlay-background: $black !default;
+$base-border-color: $white !default;
+$simple-background-color: $white !default;
+$valid-value-color: $success-green !default;
+$error-value-color: $error-red !default;
+
+// Tell UI to use selected colors
+$ui-base-color: $classic-base-color !default;                  // Darkest
+$ui-base-lighter-color: lighten($ui-base-color, 26%) !default; // Lighter darkest
+$ui-primary-color: $classic-primary-color !default;            // Lighter
+$ui-secondary-color: $classic-secondary-color !default;        // Lightest
+$ui-highlight-color: $classic-highlight-color !default;
+
+// Variables for texts
+$primary-text-color: $white !default;
+$darker-text-color: $ui-primary-color !default;
+$dark-text-color: $ui-base-lighter-color !default;
+$secondary-text-color: $ui-secondary-color !default;
+$highlight-text-color: $ui-highlight-color !default;
+$action-button-color: $ui-base-lighter-color !default;
+// For texts on inverted backgrounds
+$inverted-text-color: $ui-base-color !default;
+$lighter-text-color: $ui-base-lighter-color !default;
+$light-text-color: $ui-primary-color !default;
+
+// Language codes that uses CJK fonts
+$cjk-langs: ja, ko, zh-CN, zh-HK, zh-TW;
+
+// Variables for components
+$media-modal-media-max-width: 100%;
+// put margins on top and bottom of image to avoid the screen covered by image.
+$media-modal-media-max-height: 80%;
+
+$no-gap-breakpoint: 415px;
+
+$font-sans-serif: 'mastodon-font-sans-serif' !default;
+$font-display: 'mastodon-font-display' !default;
+$font-monospace: 'mastodon-font-monospace' !default;

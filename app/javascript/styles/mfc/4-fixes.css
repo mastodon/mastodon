@@ -1,0 +1,253 @@
+/*------------------------------------------------------------------------------
+* FIXES 
+*
+* Due to the extensive level of recolors, some elements will need slight fixes.
+* This section contains any overrides that are mostly necessary to beautify or
+* otherwise make elements look like they belong in the new palette.
+
+TODO: deprecate this and merge into the fg/bg/highlights where applicable?
+*------------------------------------------------------------------------------*/
+
+/* remove registration form gradient */
+.simple_form .label_input__append::after {background-image: none}
+
+/* visible focus indicator */
+.focusable:focus
+{border: 2px solid var(--accent) !important;}
+
+/* webkit scrollbars //todo: firefox equivalent */
+::-webkit-scrollbar-track {background: rgba(0,0,0,0.4)}
+::-webkit-scrollbar-thumb {background: rgba(255,255,255,0.4)}
+
+/* recolor scrollbars in firefox */
+html, .scrollable, .report-modal__statuses {scrollbar-color: var(--bg) var(--bgPage);}
+
+/* transparent drawer / gs columns */
+.getting-started,
+    .getting-started__wrapper,
+.drawer__header,
+.flex-spacer,
+.focusable:focus
+{background: none}
+
+
+
+/* triangle tab popout (from toots/replies/media) */
+.account__section-headline a.active:after,
+    .account__section-headline a.active:before,
+    .community-timeline__section-headline a.active:after,
+    .community-timeline__section-headline a.active:before,
+    .public-timeline__section-headline a.active:after,
+    .public-timeline__section-headline a.active:before,
+    .notification__filter-bar button.active::before,
+    .notification__filter-bar button.active::after
+{
+    border-color: transparent transparent var(--bg)
+}
+
+/* color trending taglines with accent color */
+.trends__item__sparkline path {stroke: var(--accent) !important}
+
+/* hover feedback for buttons //todo: make this look better */
+.button:hover,
+    .block-button:hover,
+    .simple_form button:hover,
+    .compose-form__publish button:hover
+{text-decoration: underline}
+
+/* fixes for 70ch maxwidths */
+.landing-page__footer p {margin: 0 auto}
+
+/* remove black artefacts from settings menu */
+.admin-wrapper .sidebar ul,
+    .admin-wrapper .sidebar ul a,
+    .admin-wrapper .sidebar ul a.selected,
+    .admin-wrapper .sidebar ul ul
+{border-radius: 0}
+
+/* make tables in settings look consistent //todo:cleanup */
+.admin-wrapper .content h4 {padding: 8px; font-weight: 700; font-size: 16px}
+.table thead th, .table thead td {font-family: "Arial Black"}
+.table td:first-child, .table>tbody>tr:nth-child(odd)>td:first-child
+{background: rgba(0,0,0,0.5); color: #ddd}
+.column-inline-form label input {padding: 6px}
+
+/*---------------
+public page fixes
+---------------*/
+
+/* add shadow to help with visibility on light bg */
+.brand img {filter: drop-shadow(1px 1px 1px black)}
+
+/* footer logo recolor */
+.public-layout .footer .brand svg path {fill: var(--textPageMuted)}
+.public-layout .footer .brand:hover svg path {fill: var(--accent)}
+
+/* cleanup stray background elements */
+.endorsements-widget .account,
+.public-layout .header,
+.public-layout .public-account-header__bar .avatar img,
+.simple_form .input-with-append .append::after,
+.public-layout .header .brand:active,
+.public-layout .header .brand:focus,
+.public-layout .header .brand:hover
+{background: none}
+
+/* flatten toots view */
+.activity-stream,
+    .activity-stream .entry:first-child .status,
+    .activity-stream .entry:first-child .detailed-status,
+    .activity-stream .entry:first-child .load-more,
+    .activity-stream .entry:last-child .status,
+    .activity-stream .entry:last-child .detailed-status,
+    .activity-stream .entry:last-child .load-more,
+.public-layout .header,
+.nothing-here
+{box-shadow: none; border-radius: 0px}
+
+/* toots, following, followers */
+.public-layout .public-account-header__tabs__tabs .counter::after
+{border-bottom: 4px solid var(--textMuted)}
+.public-layout .public-account-header__tabs__tabs .counter.active::after,
+.public-layout .public-account-header__tabs__tabs .counter:hover::after
+{border-bottom: 4px solid var(--accent)}
+
+/* make profile field keys bold */
+.account__header__fields dt {font-weight: 700}
+
+/* improve avatar and profile-card look */
+.card__bar .avatar img {background: none}
+.card__img {background: rgba(0,0,0,0.5)}
+
+/*---------------
+deal with borders
+---------------*/
+
+/* remove most borders */
+.status-card,
+.setting-text,
+.flash-message.notice,
+.introduction__text,
+.introduction__text p code,
+.account__moved-note,
+.account__header__fields dl,
+    .account__header .account__header__fields dl,
+.account__section-headline,
+.notification__filter-bar,
+.search-results__section h5,
+.public-layout .public-account-header__bar .avatar img,
+    .public-layout .public-account-header__tabs__tabs .counter
+{border: none}
+
+/* recolor some other borders */
+.account,
+.status,
+    .status__wrapper--filtered,
+.load-gap,
+.loading-indicator__figure,
+.button.button-secondary,
+.account__header__fields,
+    .account__header__fields dl:last-child,
+.account__action-bar,
+    .account__action-bar__tab,
+.account__disclaimer,
+.admin-wrapper .content h4
+{border-color: var(--textPageMuted) !important}
+
+/* active tabs */
+.account__action-bar__tab {border-bottom: 0px solid transparent}
+.account__action-bar__tab.active,
+.tabs-bar__link.active
+{border-bottom-color: var(--accent) !important}
+
+/* fix detailed status borders */
+.detailed-status__action-bar
+{border-color: transparent transparent var(--bgPage) transparent !important}
+
+/* domain blocks */
+.domain {border-color: var(--bgPage)}
+.domain .domain__domain-name {background: transparent}
+
+/*
+* Fix glowing elements when there are new toots to be fetched
+* //todo: try to find a way to make this look good against bgHead
+*/
+.column-header.active .column-header__icon {
+    text-shadow: 0 0 10px var(--accent);
+}
+.column-header.active {
+    box-shadow: 0 0 0;
+}
+.column-header__wrapper.active:before {
+    background: radial-gradient(ellipse, var(--accent) 0, rgba(0,0,0,0) 60%);
+}
+
+/*
+* Fix highlights on unread DM conversations
+* - new conversations view in 2.6.0
+* - 2.6.0 adds highlight, :not(.read) has its own bg
+* - instead, let's add a dot next to the timestamp
+*/
+.status.status-direct:not(.read) {background: var(--bgPage);}
+.column[aria-label="Direct messages"] .status.status-direct:not(.read) .status__relative-time:before
+{
+    content: "⏺ ";
+    font-size: 1em;
+    color: var(--accent);
+}
+
+/* ------------------------------------------------------------
+various tweaks related to making account view look a bit better
+-------------------------------------------------------------*/
+
+/* profile field keys //todo */
+.account__header .account__header__fields dd,
+.public-account-bio .account__header__fields dd
+{background: var(--bg); color: var(--text)}
+
+/* profile field values //todo */
+.account__header .account__header__fields dt,
+.public-account-bio .account__header__fields dt
+{background: var(--bg); color: var(--text)}
+
+/* bold profile field keys */
+.account__header .account__header__fields dt
+{font-weight: 700}
+
+/* view profile - shadow overlay style */
+.account__header {background: var(--bgHead)}
+.account__header>div {background: rgba(0,0,0,0.5)}
+.account__header .account__header__display-name {color: #fff}
+.account__header .account__header__content {color: #eee}
+.account__header .account__header__content a,
+.account__header__fields a
+{color: var(--accent)}
+
+/* padded background around @handle */
+.account__header .account__header__username {
+    display: inline-block;
+    padding: 7px 7px 8px 7px;
+    border-radius: 8px;
+    margin-bottom: 0px;
+    background: rgba(0,0,0,0.6);
+    color: #ccc;
+}
+
+/* adjust margins to account for padding */
+.account__header__content p {margin-bottom: 16px;}
+
+/* floating follow/edit profile button */
+.account--action-button {background: rgba(255,255,255,0.5); padding: 0.5em; border-radius: 50%;}
+.account--action-button .icon-button, .account--action-button .icon-button.active {color: #fff}
+.account--action-button:hover {background: var(--accent)}
+.account--action-button:hover .icon-button {color: var(--accentText)}
+
+/* account page tab underline */
+.card .counter.active:after {border-bottom: 4px solid var(--accent)}
+
+/* make footer logo visible against light bg */
+.footer .powered-by a {
+    filter: drop-shadow(
+            0px 0px 2px rgba(0,0,0,0.6)
+    )
+}

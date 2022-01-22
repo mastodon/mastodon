@@ -1,0 +1,11 @@
+/*
+Always show full name and handle:
+- this removes the `...` and allows text to overflow past the column.
+- this can look worse, but it can also prevent having to mouse over
+  to see the full name or handle.
+- by default, it will also break long names onto a new line.
+
+author: trwnh
+license: Public Domain
+*/
+.display-name {overflow: visible; white-space: normal; word-wrap: break-word}

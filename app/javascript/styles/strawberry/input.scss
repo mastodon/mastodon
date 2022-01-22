@@ -1,0 +1,45 @@
+.boost-modal,
+.confirmation-modal,
+.report-modal,
+.actions-modal,
+.mute-modal {
+	background: $btt;
+	color: $cui2;
+}
+
+.confirmation-modal__action-bar .confirmation-modal__cancel-button,
+.confirmation-modal__action-bar .mute-modal__cancel-button,
+.mute-modal__action-bar .confirmation-modal__cancel-button,
+.mute-modal__action-bar .mute-modal__cancel-button {
+	color: $cui2;
+}
+.confirmation-modal__action-bar .confirmation-modal__cancel-button:hover,
+.confirmation-modal__action-bar .confirmation-modal__cancel-button:focus,
+.confirmation-modal__action-bar .confirmation-modal__cancel-button:active,
+.confirmation-modal__action-bar .mute-modal__cancel-button:hover,
+.confirmation-modal__action-bar .mute-modal__cancel-button:focus,
+.confirmation-modal__action-bar .mute-modal__cancel-button:active,
+.mute-modal__action-bar .confirmation-modal__cancel-button:hover,
+.mute-modal__action-bar .confirmation-modal__cancel-button:focus,
+.mute-modal__action-bar .confirmation-modal__cancel-button:active,
+.mute-modal__action-bar .mute-modal__cancel-button:hover,
+.mute-modal__action-bar .mute-modal__cancel-button:focus,
+.mute-modal__action-bar .mute-modal__cancel-button:active {
+	color: $curl;
+	background: transparent;
+}
+
+.reply-indicator,
+.boost-modal__action-bar,
+.confirmation-modal__action-bar,
+.mute-modal__action-bar {
+	background: $blb;
+}
+
+.button {
+	background-color: $cbut;
+}
+
+.reply-indicator__display-name {
+	color: $btxt;
+}

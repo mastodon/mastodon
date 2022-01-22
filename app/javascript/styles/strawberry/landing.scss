@@ -1,0 +1,104 @@
+.landing-page__forms {
+	background: $btxt;
+}
+
+.landing-page .separator-or::before {
+	border-bottom: 1px solid $cui;
+}
+.landing-page .separator-or span {
+	background: $cui;
+	color: white;
+	border-radius: 0.5em;
+}
+
+.button.button-alternative-2 {
+	background: $cui2;
+}
+.button.button-alternative-2:active,
+.button.button-alternative-2:focus,
+.button.button-alternative-2:hover {
+	background: $cui;
+}
+.button.button-alternative:active,
+.button.button-alternative:focus,
+.button.button-alternative:hover {
+	background: $curl;
+}
+
+.landing-page__information,
+.landing-page #mastodon-timeline {
+	background: $btt;
+}
+
+.landing-page #mastodon-timeline p a,
+.simple_form p.hint.subtle-hint a {
+	color: $curl;
+}
+.landing-page #mastodon-timeline .column-header {
+	color: $cbut;
+}
+.landing-page #mastodon-timeline p {
+	color: $ctxt;
+}
+
+.landing-page__logo {
+	background: $cbut;
+	padding: 10px 10px 5px 10px;
+	border-radius: 50%
+}
+
+.landing-page__short-description h1,
+.landing-page__short-description p a,
+.landing-page h5, .landing-page h6,
+.landing-page h3, .landing-page h4,
+.landing-page .features-list .features-list__row .visual .fa {
+	color: $curl;
+}
+.landing-page__short-description h1 small,
+.landing-page li, .landing-page p,
+.landing-page .features-list .features-list__row .text {
+	color: $ctxt;
+}
+.landing-page em,
+.landing-page__short-description h1 small span {
+	color: $btxt;
+}
+
+.landing-page__call-to-action {
+	background-color: $btxt;
+	background-image: url(https://cmx.im/strawberry/elephant.png);
+	background-position: 0% 84%;
+	background-repeat:no-repeat;
+	background-size:355px auto;
+	-webkit-box-shadow: 0 0 15px rgba(0,0,0,.2);
+	box-shadow: 0 0 15px rgba(0,0,0,.2);
+}
+.landing-page__mascot img {
+	display: none;
+}
+.information-board__section strong {
+	color: $cbut;
+	text-shadow: -1px -1px 0.5px rgba(0,0,0,.5), 1px 1px 0.5px rgba(255,255,255,.5);
+}
+.information-board__section span:last-child,
+.information-board__section {
+	color: $btt;
+}
+.contact-widget strong {
+	color: $cui;
+}
+
+.button.button-alternative {
+	background: $cbut;
+	color: $btt2;
+}
+
+.button.button-secondary {
+	color: $cbut;
+	border-color: $cbut;
+}
+.button.button-secondary:hover {
+	color: $curl;
+	border-color: $cbut;
+	background: transparent;
+}

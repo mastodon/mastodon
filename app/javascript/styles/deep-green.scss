@@ -1,0 +1,195 @@
+@import 'application';
+::-webkit-scrollbar {
+    display: none;
+}
+body {
+    color: #26c7b7;
+    /*フォント指定PCに"ＤＦＰ勘亭流"がない場合は以下の通りに置き換えて下さい*/
+     /*Font designation: If there is no "DFKanTeiRyu-XB-MP-RKSJ-H" on the PC, please replace it as follows*/
+     /*Win →　  font-family: 'Yu Gothic' !important;  */
+     /*Mac →　  font-family: ''HiraKakuProN-W6'!important;  */
+    /*font-family: 'Yu Gothic' !important;*/
+}
+.navigation-bar {
+    /*プロフィールを編集*/
+        color:#62cdbf  ;
+}
+.ui {
+    /*カラムの背景*/
+    background: #0b2226;
+}
+.table a {
+    color: #32353e;
+}
+.column {
+    width: 380px;
+    font-size: 100% !important;
+    
+}
+.column > .scrollable {
+    background: #0b2226;
+}
+.column-header {
+    /*カラム上*/
+
+    background: #0b2226;
+}
+.column-icon {
+    /*カラム右上のアイコン*/
+        color: #d85128;
+    background: #0b2226;
+}
+
+.column-settings--section, .setting-toggle{  /*カラムドロップダウン文字*/
+     color: #fff;
+}
+.column-settings--outer,.column-link  { /*カラムドロップダウン背景ブロック*/
+    background: #025354;
+}
+
+.icon-button.active {
+    color: #c1b717;
+    
+}
+.column-back-button {
+    /*カラム戻る*/
+
+    background: #0b2226;
+    color: #cb1953!important;
+}
+.column-icon:hover {
+    color: #dc163b;
+    text-shadow: 0 0 8px #dc163b;
+}
+.status__content {
+    /*TLの本文*/
+
+    color: #26c7b7;
+    /*font-size: 12px !important;*/
+}
+
+.drawer__tab {  /*左上のタブの一番上のアイコン*/
+    color: #26c7b7;
+      
+}
+.autosuggest-textarea__textarea,
+.compose-form__modifiers ,.compose-form__buttons,.search__input ,.search__input:focus,.autosuggest-textarea__suggestions,
+.autosuggest-textarea__textarea{
+    /*ツゥーと入力欄と検索*/
+    /*background: #06665e;*/
+        color: #ffffda ;
+    text-shadow: 0 0 8px #fcfcf6;
+}
+
+.button {
+    background-color: #851a24 !important;
+    color: #ffffff;
+    /*font-size: 11px !important;*/
+}
+.button:hover {
+    background-color: #fa051c;
+    text-shadow: 0 0 12px #fff;
+}
+.button:disabled {
+    background-color: #851a24;
+}
+.emoji-dialog {
+    background: #37e8f3;
+    border-radius: 20px;
+    box-shadow: 0 0 18px rgba(10, 241, 255, 0.9);
+    opacity: 0.8;
+}
+
+.drawer__inner, .drawer__inner.darker {
+    /*左のタブ*/
+     background: #0b2226;
+    color: #dd4968;
+}
+.navigation-bar strong {
+    color: #26c7b7;
+}
+
+
+.status__display-name strong ,.muted .status__display-name strong, .notification .display-name__html {
+    /*TLグローバルのディスプレイネーム*/
+    color: #dd4968;
+}
+.status .status__display-name ,.account .account__display-name {
+    /*全部の＠ネーム*/
+      color: #cb777d;
+}
+.status .status__relative-time {  /*時間　*/
+    color: #cb777d;
+}
+
+.notification__message, .notification__display-name:hover {
+    /*通知のメッセージ*/
+
+    color: #d29a2e;
+}
+.muted .status__content p,
+.muted .status__content a {
+    /*通知本文*/
+
+    color: #189487;
+}
+.account {
+    /*通知した文*/
+     color: #26c7b7;
+}
+.owner .name .username {
+    display: block;
+    color: #12f607;
+}
+.status.light .status__relative-time {
+    color: #12f607;
+}
+
+.dropdown__sep { /*...のドロップダウンメニューの区切り線*/
+     background: #000;
+
+}
+.dropdown--active .dropdown__content>ul {/*...のドロップダウンメニューの背景*/
+    background: #37e8f3;
+    border-radius: 15px;
+    box-shadow: 0 0 18px rgba(10, 241, 255, 0.9);
+    opacity: 0.9;
+}
+.dropdown--active .dropdown__content>ul>li>a {/*...のドロップダウンメニューの文字*/
+     color: #fff;
+	background: transparent;
+}
+
+/* ---------First Column--------- */
+
+.drawer__inner__mastodon {
+  background: #0b2226 url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 234.80078 31.757813" width="234.80078" height="31.757812"><path d="M19.599609 0c-1.05 0-2.10039.375-2.90039 1.125L0 16.925781v14.832031h234.80078V17.025391l-16.5-15.900391c-1.6-1.5-4.20078-1.5-5.80078 0l-13.80078 13.099609c-1.6 1.5-4.19883 1.5-5.79883 0L179.09961 1.125c-1.6-1.5-4.19883-1.5-5.79883 0L159.5 14.224609c-1.6 1.5-4.20078 1.5-5.80078 0L139.90039 1.125c-1.6-1.5-4.20078-1.5-5.80078 0l-13.79883 13.099609c-1.6 1.5-4.20078 1.5-5.80078 0L100.69922 1.125c-1.600001-1.5-4.198829-1.5-5.798829 0l-13.59961 13.099609c-1.6 1.5-4.200781 1.5-5.800781 0L61.699219 1.125c-1.6-1.5-4.198828-1.5-5.798828 0L42.099609 14.224609c-1.6 1.5-4.198828 1.5-5.798828 0L22.5 1.125C21.7.375 20.649609 0 19.599609 0z" fill="%2326c7b7"/></svg>') no-repeat bottom/100% auto;
+}
+
+
+  .empty-column-indicator, .detailed-status, .notification, .status, .getting-started, .column-link, .column-subheading, .column-header, .column-header__button, .search__input, .drawer__header, .drawer__tab, .column-back-button,  .account__header__content, .account__header, .account__action-bar__tab > span, .account__action-bar__tab strong, .column-header__back-button, .search__icon .fa, .search, .status-card__title, .column-header__collapsible-inner, .setting-toggle__label, .column-settings__section, .column-inline-form, .getting-started__wrapper, .keyboard-shortcuts, .status__content, .account__header__fields dt, .account__header__fields dd, .account__section-headline, .account__section-headline a {
+    background-color: transparent !important;
+}
+
+.notification__filter-bar button, .search-results__header {
+  background: #154047;
+}
+
+  .hashtag:hover, .mention:hover {
+    text-shadow: 0 0 5px #fff;
+  }
+.status-link:hover {
+    text-shadow: 0 0 5px #8ca6f6;
+}
+.search-results__section h5 {
+    background: #091a1c;
+}
+
+.account__header__bar, body, .activity-stream--under-tabs, .public-layout .header {
+    background: #0b2226 !important;
+}
+
+
+.activity-stream .entry,.public-layout .public-account-bio, .public-layout .hero-widget__text, .directory__tag > a, .public-layout .public-account-header__bar::before, .grid-4 .landing-page__call-to-action, .contact-widget, .box-widget, .table-of-contents {
+    background: transparent !important;
+}

@@ -1,0 +1,132 @@
+* {
+	outline: 0
+}
+
+.column-header > button,
+.column-header__button,
+.column-header > .column-header__back-button,
+.column-header__buttons {
+	color: $cbut;
+	background: transparent;
+	box-shadow: none !important
+}
+.column-header__button:hover {
+	color: $curl;
+	background: transparent;
+}
+.column-back-button,
+.column-header__back-button,
+.column-header,
+.column-header.active {
+	background: $bhd;
+	color: $cbut;
+	box-shadow: 0 8px 20px -8px $cui;
+}
+
+.column-header.active .column-header__icon {
+	color: white;
+	text-shadow: 0 0 10px $btt;
+}
+.column-header__wrapper.active::before {
+	background: radial-gradient(ellipse, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0) 60%);
+	height: 50px;
+	top: 20px;
+}
+.column .scrollable {
+	background: $btt;
+}
+.detailed-status,
+.status.status-direct,
+.detailed-status__action-bar,
+.status.status-direct:not(.read) {
+	background: $btt3;
+	border-color: $cui;
+}
+.focusable:focus,
+.load-more:hover,
+.focusable:focus .status.status-direct,
+.focusable:focus .status.status-direct .muted,
+.focusable:focus .detailed-status,
+.focusable:focus .detailed-status__action-bar {
+	background: $btt2;
+}
+.status.status-direct:not(.read),
+.status,
+.load-gap,
+.status__wrapper--filtered {
+	border-color: $cui;
+	box-shadow: 0 5px 20px -8px $cui;
+}
+.icon-button,
+.muted .emojione,
+.muted .status__avatar,
+.notification .status__wrapper-public,
+.notification__message .fa,
+.notification__favourite-icon-wrapper .star-icon {
+	opacity: 0.7;
+}
+.notification__message .fa,
+.notification__favourite-icon-wrapper .star-icon {
+	color: $curl;
+}
+.icon-button:hover,
+.icon-button:active,
+.icon-button.active,
+.icon-button:focus {
+	color: $cbut !important;
+}
+.icon-button.disabled,
+.notification-favourite .status.status-direct .icon-button.disabled {
+	color: $cui2
+}
+.notification-favourite .status.status-direct {
+	background: transparent;
+	opacity: 0.7;
+}
+.account__display-name strong,
+.status__display-name strong,
+.detailed-status__display-name strong,
+.notification__display-name {
+	color: $btxt !important;
+	text-shadow: 0 0 0.2em $btt2;
+}
+.status__content,
+.reply-indicator__content,
+.status__content p:last-child,
+.reply-indicator__content p:last-child,
+.muted .status__content p,
+.muted .status__content a {
+	color: $ctxt;
+}
+.status__content a,
+.reply-indicator__content a,
+.attachment-list__list a,
+.attachment-list.compact .fa,
+.muted .status__content a,
+.notification__message,
+.status__prepend {
+	color: $curl;
+}
+.status__display-name,
+.status__relative-time,
+.icon-button,
+.status__action-bar__counter__label,
+.load-more,
+.detailed-status__meta,
+.detailed-status__display-name,
+.status__wrapper--filtered {
+	color: $cui;
+}
+
+a .account__avatar {
+	border-radius: 20px 20px 5px 20px;
+	border: 3px outset $cbut;
+	box-shadow: 0 0 0 1px $blb, 0 15px 25px -10px $cui;
+}
+
+.empty-column-indicator,
+.error-column,
+.regeneration-indicator {
+	background: $btt;
+	color: $cui;
+}
