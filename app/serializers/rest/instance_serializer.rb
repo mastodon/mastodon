@@ -5,7 +5,7 @@ class REST::InstanceSerializer < ActiveModel::Serializer
 
   attributes :uri, :title, :short_description, :description, :email,
              :version, :urls, :stats, :thumbnail,
-             :languages, :registrations, :approval_required, :invites_enabled,
+             :languages, :registrations, :approval_required, :max_toot_chars, :invites_enabled,
              :configuration
 
   has_one :contact_account, serializer: REST::AccountSerializer
@@ -58,7 +58,7 @@ class REST::InstanceSerializer < ActiveModel::Serializer
     {
       statuses: {
         max_characters: StatusLengthValidator::MAX_CHARS,
-        max_media_attachments: 4,
+        max_media_attachments: 9,
         characters_reserved_per_url: StatusLengthValidator::URL_PLACEHOLDER_CHARS,
       },
 
@@ -90,6 +90,10 @@ class REST::InstanceSerializer < ActiveModel::Serializer
 
   def approval_required
     Setting.registrations_mode == 'approved'
+  end
+  
+  def max_toot_chars
+      5000
   end
 
   def invites_enabled
