@@ -50,11 +50,35 @@ module ApplicationHelper
   end
 
   def available_sign_up_path
-    if closed_registrations?
+    if closed_registrations? || omniauth_only?
       'https://joinmastodon.org/#getting-started'
     else
       new_user_registration_path
     end
+  end
+
+  def omniauth_only?
+    ENV['OMNIAUTH_ONLY'] == 'true'
+  end
+
+  def link_to_login(name = nil, html_options = nil, &block)
+    target = new_user_session_path
+
+    if omniauth_only? && Devise.mappings[:user].omniauthable? && User.omniauth_providers.size == 1
+      target = omniauth_authorize_path(:user, User.omniauth_providers[0])
+      html_options ||= {}
+      html_options[:method] = :post
+    end
+
+    if block_given?
+      link_to(target, html_options, &block)
+    else
+      link_to(name, target, html_options)
+    end
+  end
+
+  def provider_sign_in_link(provider)
+    link_to I18n.t("auth.providers.#{provider}", default: provider.to_s.chomp('_oauth2').capitalize), omniauth_authorize_path(:user, provider), class: "button button-#{provider}", method: :post
   end
 
   def open_deletion?
