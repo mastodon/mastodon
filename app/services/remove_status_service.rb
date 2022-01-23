@@ -89,7 +89,7 @@ class RemoveStatusService < BaseService
     # the author and wouldn't normally receive the delete
     # notification - so here, we explicitly send it to them
 
-    status_reach_finder = StatusReachFinder.new(@status)
+    status_reach_finder = StatusReachFinder.new(@status, unsafe: true)
 
     ActivityPub::DeliveryWorker.push_bulk(status_reach_finder.inboxes) do |inbox_url|
       [signed_activity_json, @account.id, inbox_url]

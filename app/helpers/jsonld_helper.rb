@@ -34,7 +34,13 @@ module JsonLdHelper
   end
 
   def as_array(value)
-    value.is_a?(Array) ? value : [value]
+    if value.nil?
+      []
+    elsif value.is_a?(Array)
+      value
+    else
+      [value]
+    end
   end
 
   def value_or_id(value)

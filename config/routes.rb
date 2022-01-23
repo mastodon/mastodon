@@ -352,6 +352,9 @@ Rails.application.routes.draw do
 
           resource :pin, only: :create
           post :unpin, to: 'pins#destroy'
+
+          resource :history, only: :show
+          resource :source, only: :show
         end
 
         member do

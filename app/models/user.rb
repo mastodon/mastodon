@@ -10,7 +10,6 @@
 #  encrypted_password        :string           default(""), not null
 #  reset_password_token      :string
 #  reset_password_sent_at    :datetime
-#  remember_created_at       :datetime
 #  sign_in_count             :integer          default(0), not null
 #  current_sign_in_at        :datetime
 #  last_sign_in_at           :datetime
@@ -32,7 +31,6 @@
 #  disabled                  :boolean          default(FALSE), not null
 #  moderator                 :boolean          default(FALSE), not null
 #  invite_id                 :bigint(8)
-#  remember_token            :string
 #  chosen_languages          :string           is an Array
 #  created_by_application_id :bigint(8)
 #  approved                  :boolean          default(TRUE), not null
@@ -44,6 +42,11 @@
 #
 
 class User < ApplicationRecord
+  self.ignored_columns = %w(
+    remember_created_at
+    remember_token
+  )
+
   include Settings::Extend
   include UserRoles
 
@@ -329,10 +332,9 @@ class User < ApplicationRecord
   end
 
   def reset_password!
-    # First, change password to something random, invalidate the remember-me token,
-    # and deactivate all sessions
+    # First, change password to something random and deactivate all sessions
     transaction do
-      update(remember_token: nil, remember_created_at: nil, password: SecureRandom.hex)
+      update(password: SecureRandom.hex)
       session_activations.destroy_all
     end
 

@@ -25,6 +25,7 @@ const mapStateToProps = state => ({
   isUploading: state.getIn(['compose', 'is_uploading']),
   showSearch: state.getIn(['search', 'submitted']) && !state.getIn(['search', 'hidden']),
   anyMedia: state.getIn(['compose', 'media_attachments']).size > 0,
+  isInReply: state.getIn(['compose', 'in_reply_to']) !== null,
 });
 
 const mapDispatchToProps = (dispatch) => ({

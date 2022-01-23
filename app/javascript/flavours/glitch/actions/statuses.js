@@ -128,6 +128,9 @@ export function deleteStatusFail(id, error) {
   };
 };
 
+export const updateStatus = status => dispatch =>
+  dispatch(importFetchedStatus(status));
+
 export function fetchContext(id) {
   return (dispatch, getState) => {
     dispatch(fetchContextRequest(id));

@@ -68,6 +68,7 @@ function mapStateToProps (state) {
     spoilersAlwaysOn: spoilersAlwaysOn,
     mediaDescriptionConfirmation: state.getIn(['local_settings', 'confirm_missing_media_description']),
     preselectOnReply: state.getIn(['local_settings', 'preselect_on_reply']),
+    isInReply: state.getIn(['compose', 'in_reply_to']) !== null,
   };
 };
 
