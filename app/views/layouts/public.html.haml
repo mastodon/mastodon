@@ -21,7 +21,7 @@
             - if user_signed_in?
               = link_to t('settings.back'), root_url, class: 'nav-link nav-button webapp-btn'
             - else
-              = link_to t('auth.login'), new_user_session_path, class: 'webapp-btn nav-link nav-button'
+              = link_to_login t('auth.login'), class: 'webapp-btn nav-link nav-button'
               = link_to t('auth.register'), available_sign_up_path, class: 'webapp-btn nav-link nav-button'
 
     .container= yield
