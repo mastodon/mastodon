@@ -489,7 +489,11 @@ class Account < ApplicationRecord
       terms = unsanitized_terms.gsub(DISALLOWED_TSQUERY_CHARACTERS, ' ')
 
       # The final ":*" is for prefix search.
-      "'#{terms}':*"
+      # The trailing space does not seem to fit any purpose, but `to_tsquery`
+      # behaves differently with and without a leading space if the terms start
+      # with `./`, `../`, or `.. `. I don't understand why, so, in doubt, keep
+      # the same query.
+      "' #{terms} ':*"
     end
 
     def advanced_search_for_sql_template(following)
