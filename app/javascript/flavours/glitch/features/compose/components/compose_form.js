@@ -58,6 +58,7 @@ class ComposeForm extends ImmutablePureComponent {
     onPickEmoji: PropTypes.func,
     showSearch: PropTypes.bool,
     anyMedia: PropTypes.bool,
+    isInReply: PropTypes.bool,
     singleColumn: PropTypes.bool,
 
     advancedOptions: ImmutablePropTypes.map,
@@ -233,7 +234,7 @@ class ComposeForm extends ImmutablePureComponent {
     //  Caret/selection handling.
     if (focusDate !== prevProps.focusDate) {
       switch (true) {
-      case preselectDate !== prevProps.preselectDate && preselectOnReply:
+      case preselectDate !== prevProps.preselectDate && this.props.isInReply && preselectOnReply:
         selectionStart = text.search(/\s/) + 1;
         selectionEnd = text.length;
         break;
