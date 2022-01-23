@@ -186,6 +186,8 @@ he:
     reset_password: איפוס סיסמא
     security: החלפת סיסמא
     set_new_password: שינוי סיסמא
+    status:
+      redirecting_to: חשבונכם לא פעיל כעת מכיוון שמפנה ל%{acct}.
   authorize_follow:
     error: למרבה הצער, היתה שגיאה בחיפוש החשבון המרוחק
     follow: לעקוב
@@ -235,6 +237,8 @@ he:
     validations:
       images_and_video: לא ניתן להוסיף וידאו לחצרוץ שכבר מכיל תמונות
       too_many: לא ניתן להוסיף יותר מארבעה קבצים
+  migrations:
+    not_redirecting: חשבונכם לא מפנה לשום חשבון אחר כעת.
   notification_mailer:
     digest:
       body: להלן סיכום זריז של הדברים שקרו על מאז ביקורך האחרון ב-%{since}
