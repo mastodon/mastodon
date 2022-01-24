@@ -107,6 +107,7 @@ ja:
       confirm: 確認
       confirmed: 確認済み
       confirming: 確認中
+      custom: カスタム
       delete: データを削除する
       deleted: 削除済み
       demote: 降格
@@ -537,18 +538,22 @@ ja:
     report_notes:
       created_msg: 通報メモを書き込みました！
       destroyed_msg: 通報メモを削除しました！
+      today_at: 今日 %{time}
     reports:
       account:
         notes:
           other: "%{count} 件のメモ"
       action_taken_by: 通報処理者
+      add_to_report: レポートにさらに追加
       are_you_sure: 本当に実行しますか？
       assign_to_self: 担当になる
       assigned: 担当者
       by_target_domain: ドメイン
+      category: カテゴリー
       comment:
         none: なし
       created_at: 通報日時
+      delete_and_resolve: 解決済みにして削除
       forwarded: 転送済み
       forwarded_to: '%{domain} に転送されました'
       mark_as_resolved: 解決済みとしてマーク
@@ -559,6 +564,7 @@ ja:
         create_and_unresolve: 書き込み、未解決に戻す
         delete: 削除
         placeholder: どのような措置が取られたか、または関連する更新を記述してください…
+        title: メモ
       reopen: 未解決に戻す
       report: '通報#%{id}'
       reported_account: 報告対象アカウント
@@ -571,6 +577,7 @@ ja:
       unassign: 担当を外す
       unresolved: 未解決
       updated_at: 更新日時
+      view_profile: プロフィールを表示
     rules:
       add_new: ルールを追加
       delete: 削除
@@ -672,6 +679,8 @@ ja:
       destroyed_msg: ファイルを削除しました！
     statuses:
       back_to_account: アカウントページに戻る
+      batch:
+        report: 通報
       deleted: 削除済み
       media:
         title: メディア
@@ -1265,6 +1274,7 @@ ja:
     open_in_web: Webで開く
     over_character_limit: 上限は %{max}文字までです
     pin_errors:
+      direct: 返信したユーザーのみに表示される投稿はピン留めできません
       limit: 固定できる投稿数の上限に達しました
       ownership: 他人の投稿を固定することはできません
       reblog: ブーストを固定することはできません
@@ -1419,6 +1429,7 @@ ja:
     formats:
       default: "%Y年%m月%d日 %H:%M"
       month: "%Y年 %b"
+      time: "%H:%M"
   two_factor_authentication:
     add: 追加
     disable: 無効化
@@ -1446,6 +1457,11 @@ ja:
       subject: ログイン試行を確認してください
       title: ログインを検出しました
     warning:
+      categories:
+        spam: スパム
+        violation: コンテンツは以下のコミュニティガイドラインに違反しています
+      explanation:
+        delete_statuses: あなたの投稿のいくつかは、1つ以上のコミュニティガイドラインに違反していることが判明し、 %{instance} のモデレータによって削除されました。 今後の違反は、より厳しい処罰が行われる可能性があります。
       review_server_policies: サーバーのポリシーを確認
       subject:
         disable: あなたのアカウント %{acct} は凍結されました
