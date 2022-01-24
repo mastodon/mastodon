@@ -8,4 +8,8 @@ module Admin::SettingsHelper
     link = link_to t('admin.site_uploads.delete'), admin_site_upload_path(upload), data: { method: :delete }
     safe_join([hint, link], '<br/>'.html_safe)
   end
+
+  def captcha_available?
+    ENV['HCAPTCHA_SECRET_KEY'].present? && ENV['HCAPTCHA_SITE_KEY'].present?
+  end
 end

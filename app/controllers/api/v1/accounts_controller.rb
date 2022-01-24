@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Api::V1::AccountsController < Api::BaseController
+  include CaptchaConcern
+
   before_action -> { authorize_if_got_token! :read, :'read:accounts' }, except: [:create, :follow, :unfollow, :remove_from_followers, :block, :unblock, :mute, :unmute]
   before_action -> { doorkeeper_authorize! :follow, :'write:follows' }, only: [:follow, :unfollow, :remove_from_followers]
   before_action -> { doorkeeper_authorize! :follow, :'write:mutes' }, only: [:mute, :unmute]
@@ -83,7 +85,7 @@ class Api::V1::AccountsController < Api::BaseController
   end
 
   def check_enabled_registrations
-    forbidden if single_user_mode? || omniauth_only? || !allowed_registrations?
+    forbidden if single_user_mode? || omniauth_only? || !allowed_registrations? || captcha_enabled?
   end
 
   def allowed_registrations?

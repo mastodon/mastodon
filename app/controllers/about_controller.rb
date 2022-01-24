@@ -2,6 +2,7 @@
 
 class AboutController < ApplicationController
   include RegistrationSpamConcern
+  include CaptchaConcern
 
   before_action :set_pack
 
@@ -12,6 +13,7 @@ class AboutController < ApplicationController
   before_action :set_instance_presenter
   before_action :set_expires_in, only: [:more, :terms]
   before_action :set_registration_form_time, only: :show
+  before_action :extend_csp_for_captcha!, only: :show
 
   skip_before_action :require_functional!, only: [:more, :terms]
 

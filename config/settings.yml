@@ -77,6 +77,7 @@ defaults: &defaults
   show_domain_blocks_rationale: 'disabled'
   outgoing_spoilers: ''
   require_invite_text: false
+  captcha_enabled: false
 
 development:
   <<: *defaults

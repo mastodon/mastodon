@@ -40,6 +40,7 @@ class Form::AdminSettings
     noindex
     outgoing_spoilers
     require_invite_text
+    captcha_enabled
   ).freeze
 
   BOOLEAN_KEYS = %i(
@@ -58,6 +59,7 @@ class Form::AdminSettings
     trendable_by_default
     noindex
     require_invite_text
+    captcha_enabled
   ).freeze
 
   UPLOAD_KEYS = %i(

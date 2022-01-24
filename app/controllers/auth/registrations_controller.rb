@@ -2,6 +2,7 @@
 
 class Auth::RegistrationsController < Devise::RegistrationsController
   include RegistrationSpamConcern
+  include CaptchaConcern
 
   layout :determine_layout
 
@@ -15,6 +16,8 @@ class Auth::RegistrationsController < Devise::RegistrationsController
   before_action :require_not_suspended!, only: [:update]
   before_action :set_cache_headers, only: [:edit, :update]
   before_action :set_registration_form_time, only: :new
+  before_action :extend_csp_for_captcha!, only: [:new, :create]
+  before_action :check_captcha!, only: :create
 
   skip_before_action :require_functional!, only: [:edit, :update]
 
@@ -134,5 +137,19 @@ class Auth::RegistrationsController < Devise::RegistrationsController
 
   def set_cache_headers
     response.headers['Cache-Control'] = 'no-cache, no-store, max-age=0, must-revalidate'
+  end
+
+  def sign_up(resource_name, resource)
+    clear_captcha!
+    super
+  end
+
+  def check_captcha!
+    super do |error|
+      build_resource(sign_up_params)
+      resource.validate
+      resource.errors.add(:base, error)
+      respond_with resource
+    end
   end
 end
