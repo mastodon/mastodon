@@ -23,6 +23,8 @@ module CaptchaConcern
   end
 
   def captcha_required?
+    return false if ENV['OMNIAUTH_ONLY'] == 'true'
+    return false unless Setting.registrations_mode != 'none' || @invite&.valid_for_use?
     captcha_enabled? && !current_user && !(@invite.present? && @invite.valid_for_use? && !@invite.max_uses.nil?) && !captcha_recently_passed?
   end
 
