@@ -15,6 +15,16 @@ class AdminMailer < ApplicationMailer
     end
   end
 
+  def new_appeal(recipient, appeal)
+    @appeal   = appeal
+    @me       = recipient
+    @instance = Rails.configuration.x.local_domain
+
+    locale_for_account(@me) do
+      mail to: @me.user_email, subject: I18n.t('admin_mailer.new_appeal.subject', instance: @instance, username: @appeal.account.username)
+    end
+  end
+
   def new_pending_account(recipient, user)
     @account  = user.account
     @me       = recipient

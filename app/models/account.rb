@@ -40,13 +40,15 @@
 #  also_known_as                 :string           is an Array
 #  silenced_at                   :datetime
 #  suspended_at                  :datetime
-#  trust_level                   :integer
 #  hide_collections              :boolean
 #  avatar_storage_schema_version :integer
 #  header_storage_schema_version :integer
 #  devices_url                   :string
 #  suspension_origin             :integer
 #  sensitized_at                 :datetime
+#  trendable                     :boolean
+#  reviewed_at                   :datetime
+#  requested_review_at           :datetime
 #
 
 class Account < ApplicationRecord
@@ -268,6 +270,10 @@ class Account < ApplicationRecord
 
   def sign?
     true
+  end
+
+  def previous_strikes_count
+    strikes.where(appealed_at: nil).count
   end
 
   def keypair

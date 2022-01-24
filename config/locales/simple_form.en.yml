@@ -27,6 +27,8 @@ en:
         scheduled_at: Leave blank to publish the announcement immediately
         starts_at: Optional. In case your announcement is bound to a specific time range
         text: You can use post syntax. Please be mindful of the space the announcement will take up on the user's screen
+      appeal:
+        text: You can only appeal a strike once
       defaults:
         autofollow: People who sign up through the invite will automatically follow you
         avatar: PNG, GIF or JPG. At most %{size}. Will be downscaled to %{dimensions}px
@@ -119,6 +121,8 @@ en:
         scheduled_at: Schedule publication
         starts_at: Start of event
         text: Announcement
+      appeal:
+        text: Explain why this decision should be reversed
       defaults:
         autofollow: Invite to follow your account
         avatar: Avatar

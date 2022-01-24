@@ -12,6 +12,7 @@
 #  updated_at        :datetime         not null
 #  report_id         :bigint(8)
 #  status_ids        :string           is an Array
+#  appealed_at       :datetime
 #
 
 class AccountWarning < ApplicationRecord
@@ -28,12 +29,16 @@ class AccountWarning < ApplicationRecord
   belongs_to :target_account, class_name: 'Account', inverse_of: :strikes
   belongs_to :report, optional: true
 
-  has_one :appeal, dependent: :destroy
+  has_one :appeal, dependent: :destroy, inverse_of: :strike
 
   scope :latest, -> { order(id: :desc) }
   scope :custom, -> { where.not(text: '') }
 
   def statuses
     Status.with_discarded.where(id: status_ids || [])
+  end
+
+  def appealed?
+    appealed_at.present?
   end
 end
