@@ -35,14 +35,14 @@ module CaptchaConcern
 
     if verify_hcaptcha
       session[:captcha_passed_at] = Time.now.utc
-      return true
+      true
     else
       if block_given?
         message = flash[:hcaptcha_error]
         flash.delete(:hcaptcha_error)
         yield message
       end
-      return false
+      false
     end
   end
 
