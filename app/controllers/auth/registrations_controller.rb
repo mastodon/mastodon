@@ -141,6 +141,11 @@ class Auth::RegistrationsController < Devise::RegistrationsController
 
   def sign_up(resource_name, resource)
     clear_captcha!
+
+    old_session_values = session.to_hash
+    reset_session
+    session.update old_session_values.except('session_id')
+
     super
   end
 
