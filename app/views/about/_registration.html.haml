@@ -1,4 +1,4 @@
-- disabled = closed_registrations? || current_account.present?
+- disabled = closed_registrations? || omniauth_only? || current_account.present?
 - show_message = disabled && (current_user.present? || @instance_presenter.closed_registrations_message.present?)
 
 .simple_form__overlay-area{ class: show_message ? 'simple_form__overlay-area__blurred' : '' }
