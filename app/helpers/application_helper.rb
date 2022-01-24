@@ -64,6 +64,8 @@ module ApplicationHelper
   def link_to_login(name = nil, html_options = nil, &block)
     target = new_user_session_path
 
+    html_options = name if block_given?
+
     if omniauth_only? && Devise.mappings[:user].omniauthable? && User.omniauth_providers.size == 1
       target = omniauth_authorize_path(:user, User.omniauth_providers[0])
       html_options ||= {}
