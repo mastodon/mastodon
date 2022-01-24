@@ -24,7 +24,7 @@ class SearchPopout extends React.PureComponent {
       <div style={{ ...style, position: 'absolute', width: 285, zIndex: 2 }}>
         <Motion defaultStyle={{ opacity: 0, scaleX: 0.85, scaleY: 0.75 }} style={{ opacity: spring(1, { damping: 35, stiffness: 400 }), scaleX: spring(1, { damping: 35, stiffness: 400 }), scaleY: spring(1, { damping: 35, stiffness: 400 }) }}>
           {({ opacity, scaleX, scaleY }) => (
-            <div className='search-popout' style={{ opacity: opacity, transform: `scale(${scaleX}, ${scaleY})`, position: 'fixed', width: 257, top: 58 }}>
+            <div className='search-popout' style={{ opacity: opacity, transform: `scale(${scaleX}, ${scaleY})` }}>
               <h4><FormattedMessage id='search_popout.search_format' defaultMessage='Advanced search format' /></h4>
 
               <ul>
@@ -139,8 +139,7 @@ class Search extends React.PureComponent {
           <Icon id='search' className={hasValue ? '' : 'active'} />
           <Icon id='times-circle' className={hasValue ? 'active' : ''} aria-label={intl.formatMessage(messages.placeholder)} />
         </div>
-
-        <Overlay show={expanded && !hasValue} placement='bottom' target={this}>
+        <Overlay show={expanded && !hasValue} placement='bottom' target={this} container={this}>
           <SearchPopout />
         </Overlay>
       </div>
