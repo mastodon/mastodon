@@ -5,7 +5,7 @@
   = hidden_field_tag :confirmation_token, params[:confirmation_token]
 
   .field-group
-    = render_captcha_if_needed
+    = render_captcha
 
   .actions
     %button.button= t('challenge.continue')

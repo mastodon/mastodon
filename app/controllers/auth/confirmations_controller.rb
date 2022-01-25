@@ -22,8 +22,6 @@ class Auth::ConfirmationsController < Devise::ConfirmationsController
   end
 
   def show
-    clear_captcha!
-
     old_session_values = session.to_hash
     reset_session
     session.update old_session_values.except('session_id')
@@ -61,10 +59,6 @@ class Auth::ConfirmationsController < Devise::ConfirmationsController
 
     invite = Invite.find(@confirmation_user.invite_id) if @confirmation_user.invite_id.present?
     invite.present? && !invite.max_uses.nil?
-  end
-
-  def captcha_context
-    'email-confirmation'
   end
 
   def set_pack

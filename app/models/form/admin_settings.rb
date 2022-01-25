@@ -40,7 +40,7 @@ class Form::AdminSettings
     noindex
     outgoing_spoilers
     require_invite_text
-    captcha_mode
+    captcha_enabled
   ).freeze
 
   BOOLEAN_KEYS = %i(
@@ -59,6 +59,7 @@ class Form::AdminSettings
     trendable_by_default
     noindex
     require_invite_text
+    captcha_enabled
   ).freeze
 
   UPLOAD_KEYS = %i(
@@ -82,7 +83,6 @@ class Form::AdminSettings
   validates :bootstrap_timeline_accounts, existing_username: { multiple: true }
   validates :show_domain_blocks, inclusion: { in: %w(disabled users all) }
   validates :show_domain_blocks_rationale, inclusion: { in: %w(disabled users all) }
-  validates :captcha_mode, inclusion: { in: %w(disabled registration-form email-confirmation) }
 
   def initialize(_attributes = {})
     super

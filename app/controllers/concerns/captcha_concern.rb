@@ -4,10 +4,8 @@ module CaptchaConcern
   extend ActiveSupport::Concern
   include Hcaptcha::Adapters::ViewMethods
 
-  CAPTCHA_TIMEOUT = 2.hours.freeze
-
   included do
-    helper_method :render_captcha_if_needed
+    helper_method :render_captcha
   end
 
   def captcha_available?
@@ -15,32 +13,21 @@ module CaptchaConcern
   end
 
   def captcha_enabled?
-    captcha_available? && Setting.captcha_mode == captcha_context
-  end
-
-  def captcha_recently_passed?
-    session[:captcha_passed_at].present? && session[:captcha_passed_at] >= CAPTCHA_TIMEOUT.ago
+    captcha_available? && Setting.captcha_enabled
   end
 
   def captcha_user_bypass?
-    current_user.present? || (@invite.present? && @invite.valid_for_use? && !@invite.max_uses.nil?)
+    false
   end
 
   def captcha_required?
-    return false if ENV['OMNIAUTH_ONLY'] == 'true'
-    return false unless Setting.registrations_mode != 'none' || @invite&.valid_for_use?
-    captcha_enabled? && !captcha_user_bypass? && !captcha_recently_passed?
-  end
-
-  def clear_captcha!
-    session.delete(:captcha_passed_at)
+    captcha_enabled? && !captcha_user_bypass?
   end
 
   def check_captcha!
     return true unless captcha_required?
 
     if verify_hcaptcha
-      session[:captcha_passed_at] = Time.now.utc
       true
     else
       if block_given?
@@ -64,13 +51,9 @@ module CaptchaConcern
     end
   end
 
-  def render_captcha_if_needed
+  def render_captcha
     return unless captcha_required?
 
     hcaptcha_tags
-  end
-
-  def captcha_context
-    'registration-form'
   end
 end
