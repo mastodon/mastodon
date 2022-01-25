@@ -2,9 +2,18 @@
 en:
   admin:
     settings:
-      captcha_enabled:
-        desc_html: Enable hCaptcha integration, requiring new users to solve a challenge when signing up. Note that this disables app-based registration, may prevent your instance from being listed as having open registrations, and requires third-party scripts from hCaptcha to be embedded in the registration pages. This may have security and privacy concerns.
-        title: Require new users to go through a CAPTCHA to sign up
+      captcha:
+        desc_html: Configure hCaptcha integration, relying on third-party scripts. This may have security and privacy implications.
+        email-confirmation:
+          desc_html: Require new users to go through hCaptcha at the e-mail validation step. Bots will not be deterred from creating accounts, but they may be prevented from confirming them, leaving them to be automatically cleaned up after a couple days. This does not interfere with app-based registrations.
+          title: CAPTCHA on email validation
+        disabled:
+          desc_html: Do not require a CAPTCHA
+          title: Disabled
+        registration-form:
+          desc_html: Require new users to go through hCaptcha on the registration form, so that CAPTCHA requirement is immediately apparent to them. This disables app-based registrations and may prevent your instance from being listed as having open registrations.
+          title: CAPTCHA on registration forms
+        title: CAPTCHA configuration
       enable_keybase:
         desc_html: Allow your users to prove their identity via keybase
         title: Enable keybase integration
@@ -20,6 +29,8 @@ en:
       show_replies_in_public_timelines:
         desc_html: In addition to public self-replies (threads), show public replies in local and public timelines.
         title: Show replies in public timelines
+  auth:
+    confirm_captcha: User verification
   generic:
     use_this: Use this
   settings:

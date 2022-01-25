@@ -45,7 +45,7 @@
 
   - if captcha_available?
     .fields-group
-      = f.input :captcha_enabled, as: :boolean, wrapper: :with_label, label: t('admin.settings.captcha_enabled.title'), hint: t('admin.settings.captcha_enabled.desc_html')
+      = f.input :captcha_mode, as: :radio_buttons, collection: %w(disabled registration-form email-confirmation), include_blank: false, wrapper: :with_block_label, label_method: ->(type) { safe_join([t("admin.settings.captcha.#{type}.title"), content_tag(:span, t("admin.settings.captcha.#{type}.desc_html"), class: 'hint')])}, label: t('admin.settings.captcha.title'), hint: t('admin.settings.captcha.desc_html')
 
   %hr.spacer/
 

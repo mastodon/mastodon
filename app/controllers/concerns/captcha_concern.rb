@@ -15,17 +15,21 @@ module CaptchaConcern
   end
 
   def captcha_enabled?
-    captcha_available? && Setting.captcha_enabled
+    captcha_available? && Setting.captcha_mode == captcha_context
   end
 
   def captcha_recently_passed?
     session[:captcha_passed_at].present? && session[:captcha_passed_at] >= CAPTCHA_TIMEOUT.ago
   end
 
+  def captcha_user_bypass?
+    current_user.present? || (@invite.present? && @invite.valid_for_use? && !@invite.max_uses.nil?)
+  end
+
   def captcha_required?
     return false if ENV['OMNIAUTH_ONLY'] == 'true'
     return false unless Setting.registrations_mode != 'none' || @invite&.valid_for_use?
-    captcha_enabled? && !current_user && !(@invite.present? && @invite.valid_for_use? && !@invite.max_uses.nil?) && !captcha_recently_passed?
+    captcha_enabled? && !captcha_user_bypass? && !captcha_recently_passed?
   end
 
   def clear_captcha!
@@ -64,5 +68,9 @@ module CaptchaConcern
     return unless captcha_required?
 
     hcaptcha_tags
+  end
+
+  def captcha_context
+    'registration-form'
   end
 end

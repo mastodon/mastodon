@@ -116,6 +116,6 @@ class REST::InstanceSerializer < ActiveModel::Serializer
   end
 
   def captcha_enabled?
-    ENV['HCAPTCHA_SECRET_KEY'].present? && ENV['HCAPTCHA_SITE_KEY'].present? && Setting.captcha_enabled
+    ENV['HCAPTCHA_SECRET_KEY'].present? && ENV['HCAPTCHA_SITE_KEY'].present? && Setting.captcha_mode == 'registration-form'
   end
 end
