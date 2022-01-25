@@ -120,6 +120,7 @@ ru:
       confirm: Подтвердить
       confirmed: Подтверждено
       confirming: Подтверждение
+      custom: Другое
       delete: Удалить данные
       deleted: Удалён
       demote: Разжаловать
@@ -574,6 +575,7 @@ ru:
           many: "%{count} заметок"
           other: "%{count} заметок"
       action_taken_by: 'Действие предпринято:'
+      actions_description_html: 'Если удаления вышеуказанного содержимого недостаточно:'
       are_you_sure: Вы уверены?
       assign_to_self: Назначить себе
       assigned: Назначенный модератор
@@ -591,6 +593,8 @@ ru:
         create_and_unresolve: Переоткрыть с примечанием
         delete: Удалить
         placeholder: Опишите, какие действия были приняты, или любые другие подробности…
+        title: Примечания
+      notes_description_html: Просмотрите или оставьте примечания для остальных модераторов и себя в будущем
       reopen: Переоткрыть жалобу
       report: 'Жалоба №%{id}'
       reported_account: Учётная запись нарушителя
@@ -598,11 +602,13 @@ ru:
       resolved: Решённые
       resolved_msg: Жалоба обработана, спасибо!
       status: Статус
+      statuses: Содержимое относящееся к жалобе
       target_origin: Происхождение объекта жалобы
       title: Жалобы
       unassign: Снять назначение
       unresolved: Нерешённые
       updated_at: Обновлена
+      view_profile: Открыть профиль
     rules:
       add_new: Добавить правило
       delete: Удалить
@@ -704,6 +710,9 @@ ru:
       destroyed_msg: Файл успешно удалён.
     statuses:
       back_to_account: Назад к учётной записи
+      back_to_report: Вернуться к жалобе
+      batch:
+        remove_from_report: Убрать из жалобы
       deleted: Удалено
       media:
         title: Файлы мультимедиа
