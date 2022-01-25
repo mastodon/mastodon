@@ -2,6 +2,9 @@
 en:
   admin:
     settings:
+      captcha_enabled:
+        desc_html: Enable hCaptcha integration, requiring new users to solve a challenge when confirming their email address. This requires third-party scripts from hCaptcha to be embedded in the email verification page, which may have security and privacy concerns. Users that have been invited through a limited-use invite will not need to solve a CAPTCHA challenge.
+        title: Require new users to go through a CAPTCHA to confirm their account
       enable_keybase:
         desc_html: Allow your users to prove their identity via keybase
         title: Enable keybase integration
@@ -17,6 +20,8 @@ en:
       show_replies_in_public_timelines:
         desc_html: In addition to public self-replies (threads), show public replies in local and public timelines.
         title: Show replies in public timelines
+  auth:
+    confirm_captcha: User verification
   generic:
     use_this: Use this
   settings:
