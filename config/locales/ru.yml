@@ -216,6 +216,7 @@ ru:
       suspension_irreversible: Данные этой учётной записи были необратимо удалены. Вы можете разблокировать учетную запись, чтобы сделать её доступной, но это не восстановит ранее имевшиеся в ней данные.
       suspension_reversible_hint_html: Учётная запись была заблокирована, и данные будут полностью удалены %{date}. До этого момента её можно восстановить без каких-либо неприятных последствий. Если вы хотите немедленно удалить все данные учётной записи, вы можете сделать это ниже.
       title: Учётные записи
+      unblocked_email_msg: E-mail адрес %{username} разблокирован
       unconfirmed_email: Неподтверждённый e-mail
       undo_sensitized: Убрать отметку «деликатного содержания»
       undo_silenced: Отменить скрытие
@@ -269,6 +270,7 @@ ru:
         silence_account: Скрытие пользователей
         suspend_account: Блокировка пользователей
         unassigned_report: Снятие жалоб
+        unblock_email_account: Разблокировать e-mail адрес
         unsensitive_account: Снятие с пользователей отметки «деликатного содержания»
         unsilence_account: Отмена скрытия пользователей
         unsuspend_account: Разблокировка пользователей
@@ -295,6 +297,7 @@ ru:
         destroy_domain_allow_html: "%{name} запретил(а) федерацию с доменом %{target}"
         destroy_domain_block_html: "%{name} снял(а) блокировку с домена %{target}"
         destroy_email_domain_block_html: "%{name} снял(а) блокировку с e-mail домена %{target}"
+        destroy_instance_html: "%{name} очистил(а) данные для домена %{target}"
         destroy_ip_block_html: "%{name} удалил(а) правило для IP %{target}"
         destroy_status_html: "%{name} удалил(а) пост пользователя %{target}"
         destroy_unavailable_domain_html: "%{name} возобновил доставку на узел %{target}"
@@ -316,6 +319,7 @@ ru:
         silence_account_html: "%{name} наложил(а) ограничения на видимость постов пользователя %{target}"
         suspend_account_html: "%{name} заблокировал(а) учётную запись %{target}"
         unassigned_report_html: "%{name} снял(а) назначение жалобы %{target}"
+        unblock_email_account_html: "%{name} разблокировал(а) e-mail адрес %{target}"
         unsensitive_account_html: "%{name} снял(а) отметку файлов %{target} как «деликатного характера»"
         unsilence_account_html: "%{name} снял(а) ограничения видимости постов пользователя %{target}"
         unsuspend_account_html: "%{name} снял(а) блокировку с пользователя %{target}"
