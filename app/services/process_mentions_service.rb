@@ -66,9 +66,9 @@ class ProcessMentionsService < BaseService
   end
 
   def assign_mentions!
-    mentioned_account = mention.account
-
     @current_mentions.each do |mention|
+      mentioned_account = mention.account
+
       if mentioned_account.local?
         mention.save if mention.new_record?
       elsif mentioned_account.activitypub? && !@status.local_only?
