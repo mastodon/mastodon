@@ -15,10 +15,10 @@
 
 - if Devise.mappings[:user].omniauthable? and User.omniauth_providers.any?
   .simple_form.alternative-login
-    %h4= omniauth_only? ? t('auth.log_in_with') : t('auth.or_log_in_with')
+    -# %h4= omniauth_only? ? t('auth.log_in_with') : t('auth.or_log_in_with')
 
-    .actions
-      - User.omniauth_providers.each do |provider|
+    - User.omniauth_providers.each do |provider|
+      .actions
         = link_to omniauth_authorize_path('user', provider), class: "button button-#{provider}", method: :post do
           %i{:class => ['fab', "fa-#{provider}"]}
           %span 
