@@ -98,7 +98,7 @@ class REST::InstanceSerializer < ActiveModel::Serializer
   end
 
   def registrations
-    Setting.registrations_mode != 'none' && !Rails.configuration.x.single_user_mode
+    Setting.registrations_mode != 'none' && !Rails.configuration.x.single_user_mode && !captcha_enabled?
   end
 
   def approval_required
@@ -113,5 +113,9 @@ class REST::InstanceSerializer < ActiveModel::Serializer
 
   def instance_presenter
     @instance_presenter ||= InstancePresenter.new
+  end
+
+  def captcha_enabled?
+    ENV['HCAPTCHA_SECRET_KEY'].present? && ENV['HCAPTCHA_SITE_KEY'].present? && Setting.captcha_enabled
   end
 end
