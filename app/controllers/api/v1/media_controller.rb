@@ -20,7 +20,16 @@ class Api::V1::MediaController < Api::BaseController
   end
 
   def update
-    @media_attachment.update!(media_attachment_params)
+    @media_attachment.update!(updateable_media_attachment_params)
+
+    # If the media attachment being updated is attached to a published
+    # status, then the changes need to be recorded and distributed along
+    # with the status, but it may be that the status is going to be updated
+    # along with the media attachment, so we need to debounce
+    if @media_attachment.status_id.present? && @media_attachment.significantly_changed?
+      PublishMediaAttachmentUpdateWorker.perform_in(5.minutes, @media_attachment.id, @media_attachment.updated_at)
+    end
+
     render json: @media_attachment, serializer: REST::MediaAttachmentSerializer, status: status_code_for_media_attachment
   end
 
@@ -31,7 +40,7 @@ class Api::V1::MediaController < Api::BaseController
   end
 
   def set_media_attachment
-    @media_attachment = current_account.media_attachments.unattached.find(params[:id])
+    @media_attachment = current_account.media_attachments.find(params[:id])
   end
 
   def check_processing
@@ -40,6 +49,10 @@ class Api::V1::MediaController < Api::BaseController
 
   def media_attachment_params
     params.permit(:file, :thumbnail, :description, :focus)
+  end
+
+  def updateable_media_attachment_params
+    params.permit(:thumbnail, :description, :focus)
   end
 
   def file_type_error

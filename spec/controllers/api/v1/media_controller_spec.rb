@@ -110,21 +110,29 @@ RSpec.describe Api::V1::MediaController, type: :controller do
       end
     end
 
-    context 'when not attached to a status' do
-      let(:media) { Fabricate(:media_attachment, status: nil, account: user.account) }
+    context 'when the author \'s' do
+      let(:status) { nil }
+      let(:media)  { Fabricate(:media_attachment, status: status, account: user.account) }
+
+      before do
+        allow(PublishMediaAttachmentUpdateWorker).to receive(:perform_in)
+        put :update, params: { id: media.id, description: 'Lorem ipsum!!!' }
+      end
 
       it 'updates the description' do
-        put :update, params: { id: media.id, description: 'Lorem ipsum!!!' }
         expect(media.reload.description).to eq 'Lorem ipsum!!!'
       end
-    end
 
-    context 'when attached to a status' do
-      let(:media) { Fabricate(:media_attachment, status: Fabricate(:status), account: user.account) }
+      it 'does not queue an update worker' do
+        expect(PublishMediaAttachmentUpdateWorker).to_not have_received(:perform_in)
+      end
 
-      it 'returns http not found' do
-        put :update, params: { id: media.id, description: 'Lorem ipsum!!!' }
-        expect(response).to have_http_status(:not_found)
+      context 'when already attached to a status' do
+        let(:status) { Fabricate(:status, account: user.account) }
+
+        it 'queues an update worker' do
+          expect(PublishMediaAttachmentUpdateWorker).to have_received(:perform_in)
+        end
       end
     end
   end
