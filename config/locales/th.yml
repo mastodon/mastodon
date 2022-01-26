@@ -534,6 +534,7 @@ th:
         create_and_resolve: แก้ปัญหาโดยมีหมายเหตุ
         create_and_unresolve: เปิดใหม่โดยมีหมายเหตุ
         delete: ลบ
+        title: หมายเหตุ
       reopen: เปิดรายงานใหม่
       report: 'รายงาน #%{id}'
       reported_account: บัญชีที่ได้รับการรายงาน
@@ -541,6 +542,7 @@ th:
       resolved: แก้ปัญหาแล้ว
       resolved_msg: แก้ปัญหารายงานสำเร็จ!
       status: สถานะ
+      statuses: เนื้อหาที่รายงาน
       target_origin: จุดเริ่มต้นของบัญชีที่ได้รับการรายงาน
       title: รายงาน
       unassign: เลิกมอบหมาย
@@ -1246,6 +1248,7 @@ th:
     formats:
       default: "%d %b %Y, %H:%M"
       month: "%b %Y"
+      time: "%H:%M"
   two_factor_authentication:
     add: เพิ่ม
     disable: ปิดใช้งาน 2FA
@@ -1270,6 +1273,9 @@ th:
       subject: โปรดยืนยันการลงชื่อเข้าที่พยายาม
       title: ความพยายามลงชื่อเข้า
     warning:
+      categories:
+        spam: สแปม
+      reason: 'เหตุผล:'
       review_server_policies: ตรวจทานนโยบายของเซิร์ฟเวอร์
       subject:
         disable: บัญชีของคุณ %{acct} ถูกอายัด
