@@ -27,6 +27,6 @@ class ActivityPub::DistributionWorker < ActivityPub::RawDistributionWorker
   end
 
   def options
-    { synchronize_followers: @status.private_visibility? }
+    { 'synchronize_followers' => @status.private_visibility? }
   end
 end
