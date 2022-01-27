@@ -97,7 +97,7 @@ gem 'webauthn', '~> 3.0.0.alpha1'
 
 gem 'json-ld'
 gem 'json-ld-preloaded', '~> 3.2'
-gem 'rdf-normalize', '~> 0.4'
+gem 'rdf-normalize', '~> 0.5'
 
 group :development, :test do
   gem 'fabrication', '~> 2.24'
