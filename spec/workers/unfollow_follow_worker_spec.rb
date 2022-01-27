@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 describe UnfollowFollowWorker do
-  let(:local_follower)   { Fabricate(:user, email: 'bob@example.com', account: Fabricate(:account, username: 'bob')).account }
+  let(:local_follower)   { Fabricate(:account) }
   let(:source_account)   { Fabricate(:account) }
   let(:target_account)   { Fabricate(:account) }
   let(:show_reblogs)     { true }

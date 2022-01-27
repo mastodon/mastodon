@@ -228,7 +228,7 @@ RSpec.describe Auth::RegistrationsController, type: :controller do
     end
 
     it 'does nothing if user already exists' do
-      Fabricate(:user, account: Fabricate(:account, username: 'test'))
+      Fabricate(:account, username: 'test')
       subject
     end
 
