@@ -3,9 +3,9 @@ require 'rails_helper'
 RSpec.describe FanOutOnWriteService, type: :service do
   let(:last_active_at) { Time.now.utc }
 
-  let!(:alice) { Fabricate(:user, current_sign_in_at: last_active_at, account: Fabricate(:account, username: 'alice')).account }
-  let!(:bob)   { Fabricate(:user, current_sign_in_at: last_active_at, account: Fabricate(:account, username: 'bob')).account }
-  let!(:tom)   { Fabricate(:user, current_sign_in_at: last_active_at, account: Fabricate(:account, username: 'tom')).account }
+  let!(:alice) { Fabricate(:user, current_sign_in_at: last_active_at).account }
+  let!(:bob)   { Fabricate(:user, current_sign_in_at: last_active_at, account_attributes: { username: 'bob' }).account }
+  let!(:tom)   { Fabricate(:user, current_sign_in_at: last_active_at).account }
 
   subject { described_class.new }
 
